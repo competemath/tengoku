@@ -112,11 +112,17 @@ noncomputable def C_rhoKernelsReduction : ℝ :=
   (2 : ℝ) ^ (21 : ℕ) *
     (C_meanFourScaleGaussianKernel 2 + C_fourScaleGaussianKernel 2)
 
+/--
+@isnad1 id=mem.1h1v.s5.e6ebe0d65d97 from=translated src=- shape=2cabe642 vocab=c6dbf246
+-/
 theorem aux_rho_nu_mem {n : ℕ} (_hn : 2 ≤ n) :
     aux_reductionNu n ∈ Set.Ico (-1 : ℝ) 0 := by
   unfold aux_reductionNu
   split <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s3.351d1eb29401 from=translated src=- shape=b9369acb vocab=c4eced66
+-/
 theorem aux_rho_cmean_nonneg (N : ℕ) : 0 ≤ C_meanFourScaleGaussianKernel N := by
   unfold C_meanFourScaleGaussianKernel
   apply add_nonneg
@@ -138,6 +144,9 @@ theorem aux_rho_cmean_nonneg (N : ℕ) : 0 ≤ C_meanFourScaleGaussianKernel N :
         (aux_le_maxUpTo (fun l => (2 : ℝ) ^ l * C_secondGaussianEstimate l)
           (Nat.zero_le _))
 
+/--
+@isnad1 id=le.0h1v.s3.abed4e3a41ed from=translated src=- shape=b9369acb vocab=f4743da0
+-/
 theorem aux_rho_cfour_nonneg (N : ℕ) : 0 ≤ C_fourScaleGaussianKernel N := by
   unfold C_fourScaleGaussianKernel C_smoothDecay2
   apply add_nonneg
@@ -148,6 +157,9 @@ theorem aux_rho_cfour_nonneg (N : ℕ) : 0 ≤ C_fourScaleGaussianKernel N := by
     · positivity
     · exact (aux_C_secondGaussianEstimate_nonneg 0).trans (le_max_left _ _)
 
+/--
+@isnad1 id=and.6h5v.s8.f419df510080 from=translated src=- shape=4a42596e vocab=8a580999
+-/
 theorem aux_rho_standard_fourScale (muMinus muPlus lambdaMinus lambdaPlus nu : ℝ)
     (hmuMinus : 0 < muMinus) (hmuPlus : 0 < muPlus)
     (hlambdaMinus : 0 < lambdaMinus) (hlambdaPlus : 0 < lambdaPlus)
@@ -177,6 +189,9 @@ theorem aux_rho_standard_fourScale (muMinus muPlus lambdaMinus lambdaPlus nu : �
     muMinus muPlus lambdaMinus lambdaPlus nu
     hmuMinus hmuPlus hlambdaMinus hlambdaPlus hscales hnu
 
+/--
+@isnad1 id=and.7h5v.s8.f5c23cd97491 from=translated src=- shape=a57f6f44 vocab=10d51c77
+-/
 theorem aux_rho_standard_meanFourScale (muMinus muPlus lambdaMinus lambdaPlus nu : ℝ)
     (hmuMinus : 0 < muMinus) (hmuPlus : 0 < muPlus)
     (hlambdaMinus : 0 < lambdaMinus) (hlambdaPlus : 0 < lambdaPlus)
@@ -212,6 +227,9 @@ theorem aux_rho_standard_meanFourScale (muMinus muPlus lambdaMinus lambdaPlus nu
     muMinus muPlus lambdaMinus lambdaPlus nu
     hmuMinus hmuPlus hlambdaMinus hlambdaPlus hscales hlambdaEq hnu
 
+/--
+@isnad1 id=le.3h4v.s7.30ecd68650be from=translated src=- shape=89d5c503 vocab=977f0b86
+-/
 theorem aux_rho_move_two_pi_out {A lambda y B : ℝ}
     (hA : 0 ≤ A) (_hlambda : 0 < lambda) (hB : 0 ≤ B) :
     A * min 1 (2 * Real.pi * lambda⁻¹ * |y|) * B ≤
@@ -232,6 +250,9 @@ theorem aux_rho_move_two_pi_out {A lambda y B : ℝ}
       mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hmin hA) hB
     _ = (2 * Real.pi * A) * min 1 (lambda⁻¹ * |y|) * B := by ring
 
+/--
+@isnad1 id=le.0h0v.s6.2467c805c030 from=translated src=- shape=210bef59 vocab=cd295827
+-/
 theorem aux_rho_constant_dominates_mean :
     2 * Real.pi * ((2 : ℝ) ^ 18 * C_meanFourScaleGaussianKernel 2) ≤
       C_rhoKernelsReduction := by
@@ -248,6 +269,9 @@ theorem aux_rho_constant_dominates_mean :
       mul_le_mul_of_nonneg_left (le_add_of_nonneg_right hfour) (by positivity)
     _ = C_rhoKernelsReduction := rfl
 
+/--
+@isnad1 id=le.0h0v.s5.00c573311339 from=translated src=- shape=9dffceb2 vocab=523ead67
+-/
 theorem aux_rho_constant_dominates_four :
     (2 : ℝ) ^ 18 * C_fourScaleGaussianKernel 2 ≤ C_rhoKernelsReduction := by
   have hmean := aux_rho_cmean_nonneg 2
@@ -261,6 +285,9 @@ theorem aux_rho_constant_dominates_four :
       mul_le_mul_of_nonneg_left (le_add_of_nonneg_left hmean) (by positivity)
     _ = C_rhoKernelsReduction := rfl
 
+/--
+@isnad1 id=and.2h4v.s7.a79a00bd9712 from=translated src=- shape=b3620ede vocab=f1f68ae3
+-/
 theorem aux_rho_kernels_reduction {n : ℕ} (hn : 2 ≤ n) (a : ℤ → ℝ)
     (ha : SpacedSequence a) (h : ℕ) (j : ℤ) :
     MemW0 (rhoKernel n a h j) ∧
@@ -522,7 +549,9 @@ Gaussian kernel estimate},2}+C_{\text{four scale Gaussian kernel estimate},2})$.
 
 See also `Auto.rhoKernelsReduction`,
 `Auto.meanFourScaleGaussianKernel`,
-`Auto.fourScaleGaussianKernel`.-/
+`Auto.fourScaleGaussianKernel`.
+@isnad1 id=and.2h4v.s7.a79a00bd9712 from=translated src=- shape=b3620ede vocab=f1f68ae3
+-/
 theorem rhoKernelsReduction {n : ℕ} (hn : 2 ≤ n) (a : ℤ → ℝ)
     (ha : SpacedSequence a) (h : ℕ) (j : ℤ) :
     MemW0 (rhoKernel n a h j) ∧
@@ -545,7 +574,9 @@ C_{\rho\text{ kernels - reduction variant}}
 <2^{66}.
 $$
 
-See also `Auto.rhoKernelsReduction`.-/
+See also `Auto.rhoKernelsReduction`.
+@isnad1 id=lt.0h0v.s4.90eaeddb94a9 from=translated src=- shape=0cd4e242 vocab=f7017484
+-/
 theorem constantRhoKernelsReduction : C_rhoKernelsReduction < (2 : ℝ) ^ (66 : ℕ) := by
   have hmean : C_meanFourScaleGaussianKernel 2 < 20397963318112 :=
     aux_C_meanFourScaleGaussianKernel_two_lt_value
@@ -560,7 +591,9 @@ theorem constantRhoKernelsReduction : C_rhoKernelsReduction < (2 : ℝ) ^ (66 : 
 
 /--
 The sharper numerical form of `constantRhoKernelsReduction` needed by the
-subsequent reduction constants.-/
+subsequent reduction constants.
+@isnad1 id=lt.0h0v.s3.3bee10d9bc9a from=translated src=- shape=ffdda526 vocab=b76f6e49
+-/
 theorem aux_rhoKernelsReduction_lt_numeric :
     C_rhoKernelsReduction < (44114430494276321280 : ℝ) := by
   have hmean : C_meanFourScaleGaussianKernel 2 < (20397963318112 : ℝ) :=
@@ -577,7 +610,9 @@ theorem aux_rhoKernelsReduction_lt_numeric :
 
 /--
 The precise fractional power-of-two consequence of the rho-kernel
-constant estimate used in `constantIncreaseDataBracketDomination`.-/
+constant estimate used in `constantIncreaseDataBracketDomination`.
+@isnad1 id=lt.0h0v.s5.ee85e7f7a919 from=translated src=- shape=ff0ce2aa vocab=8dc50e42
+-/
 theorem aux_rhoKernelsReduction_lt_three_fifths_two_pow_66 :
     C_rhoKernelsReduction < (3 / 5 : ℝ) * (2 : ℝ) ^ (66 : ℕ) := by
   calc
@@ -598,7 +633,9 @@ $$
 
 $$
     \int_{\mathbb R}M(x+q,q)\,dq=0
-$$-/
+$$
+@isnad1 id=eq.2h2v.s6.052c26f5f429 from=translated src=- shape=07f55dde vocab=38a4092a
+-/
 theorem affineDiagonalCancellationReduction (M : RealPlane → ℝ) (hM : MemW0 M)
     (hcancel : ∀ ξ : ℝ, aux_fourierPlane M (ξ, -ξ) = 0) (x : ℝ) :
     ∫ q : ℝ, M (x + q, q) = 0 := by
@@ -656,7 +693,9 @@ theorem affineDiagonalCancellationReduction (M : RealPlane → ℝ) (hM : MemW0 
 /--
 The coordinate-change form of diagonal cancellation used in the reduction
 bracket estimates.  It permits subtraction at an arbitrary reference value
-of the one-dimensional kernel.-/
+of the one-dimensional kernel.
+@isnad1 id=eq.3h5v.s7.ba31467545dc from=translated src=- shape=c7b67699 vocab=810438c2
+-/
 theorem aux_reduction_diagonal_convolution_cancellation
     {rho : ℝ → ℝ} (hrho : MemW0 rho) (M : RealPlane → ℝ) (hM : MemW0 M)
     (hcancel : ∀ x : ℝ, ∫ q : ℝ, M (x + q, q) = 0) (x y c : ℝ) :
@@ -733,7 +772,9 @@ theorem aux_reduction_diagonal_convolution_cancellation
 
 /--
 The rotated-coordinate cancellation formula for `reductionNKernel`, used
-to gain the small mean-difference factor when the reduction scale is positive.-/
+to gain the small mean-difference factor when the reduction scale is positive.
+@isnad1 id=eq.1h6v.s7.e87fc203938f from=translated src=- shape=3cb30699 vocab=2c9586c7
+-/
 theorem aux_reductionNKernel_caseOne_cancellation {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (j : ℤ) (w₀ w₁ : ℝ) :
     reductionNKernel n D h j (w₀ - w₁, w₀ + w₁) =
@@ -771,14 +812,18 @@ theorem aux_reductionNKernel_caseOne_cancellation {n : ℕ} (hn : 2 ≤ n)
 
 /--
 The identity orientation in the coordinates used for the bracket
-domination proof.-/
+domination proof.
+@isnad1 id=eq.0h2v.s6.ea1fbdb8ff60 from=translated src=- shape=ba54f87e vocab=ac464d0f
+-/
 theorem aux_reduction_W_zero_coordinates (w₀ w₁ : ℝ) :
     W 0 (w₀ - w₁, w₀ + w₁) = (w₀ - w₁, w₀ + w₁) := by
   simp [W]
 
 /--
 The rotated orientation in the coordinates used for the bracket
-domination proof.-/
+domination proof.
+@isnad1 id=eq.0h2v.s6.611dc41b9522 from=translated src=- shape=7b65bd97 vocab=1f54411f
+-/
 theorem aux_reduction_W_one_coordinates (w₀ w₁ : ℝ) :
     W 1 (w₀ - w₁, w₀ + w₁) = (Real.sqrt 2 * w₀, Real.sqrt 2 * w₁) := by
   rw [W, ite_eq_right (by decide)]
@@ -794,7 +839,9 @@ theorem aux_reduction_W_one_coordinates (w₀ w₁ : ℝ) :
 
 /--
 The elementary one-third power bound used to turn a mean-difference
-factor into the (2^{-h/3}) gain in bracket domination.-/
+factor into the (2^{-h/3}) gain in bracket domination.
+@isnad1 id=le.1h1v.s5.95ee7e53e567 from=translated src=- shape=14ba5005 vocab=bcceea94
+-/
 theorem aux_reduction_min_le_rpow_one_third {x : ℝ} (hx : 0 ≤ x) :
     min 1 x ≤ Real.rpow x (1 / 3 : ℝ) := by
   by_cases hxone : x ≤ 1
@@ -815,7 +862,9 @@ theorem aux_reduction_min_le_rpow_one_third {x : ℝ} (hx : 0 ≤ x) :
 
 /--
 The one-sided scale condition in `increaseDataBracketDomination` gives
-the dyadic ratio required by the positive-height one-third-loss estimate.-/
+the dyadic ratio required by the positive-height one-third-loss estimate.
+@isnad1 id=le.3h3v.s6.db867453ff9f from=translated src=- shape=d3f855ad vocab=16c7a539
+-/
 theorem aux_reduction_positive_scale_ratio (t a : ℝ) (h : ℕ)
     (_ht : 0 ≤ t) (ha : 0 < a) (hta : t ≤ a) :
     t / ((2 : ℝ) ^ h * a) ≤ Real.rpow 2 (-(h : ℝ)) := by
@@ -832,7 +881,9 @@ theorem aux_reduction_positive_scale_ratio (t a : ℝ) (h : ℕ)
         _ = Real.rpow 2 (-(h : ℝ)) :=
           (Real.rpow_neg (by norm_num : (0 : ℝ) ≤ 2) (h : ℝ)).symm
 
-/-- A scale-ratio loss is bounded by a (1/3)-power bracket loss.-/
+/-- A scale-ratio loss is bounded by a (1/3)-power bracket loss.
+@isnad1 id=le.3h4v.s7.d954dbcf6796 from=translated src=- shape=2931bf8d vocab=ffd4725a
+-/
 theorem aux_reduction_min_scale_third_le {t lam : ℝ} {h : ℕ}
     (ht : 0 < t) (hlam : 0 < lam)
     (hscale : t / lam ≤ Real.rpow 2 (-(h : ℝ))) (p : ℝ) :
@@ -882,7 +933,9 @@ theorem aux_reduction_min_scale_third_le {t lam : ℝ} {h : ℕ}
 
 /--
 The (1/3)-power loss lowers the exponent (3/2) to the required
-(7/6) in the reduction bracket majorant.-/
+(7/6) in the reduction bracket majorant.
+@isnad1 id=eq.1h2v.s7.e9d5d7273404 from=translated src=- shape=77d8028b vocab=50ed3cb6
+-/
 theorem aux_reduction_one_third_times_bump_eq (t x : ℝ) (ht : 0 < t) :
     Real.rpow (1 + t⁻¹ * |x|) (1 / 3 : ℝ) *
       scaledBracketBumpReal (3 / 2 : ℝ) t x =
@@ -909,7 +962,9 @@ theorem aux_reduction_one_third_times_bump_eq (t x : ℝ) (ht : 0 < t) :
       congr 2
       norm_num
 
-/-- The orientation-one version of the one-third bracket loss.-/
+/-- The orientation-one version of the one-third bracket loss.
+@isnad1 id=le.1h2v.s7.3464a601ce5d from=translated src=- shape=2c053d0a vocab=9cafb40e
+-/
 theorem aux_reduction_third_loss_bump_sqrt (t p : ℝ) (ht : 0 < t) :
     Real.rpow (1 + t⁻¹ * |p|) (1 / 3 : ℝ) *
       scaledBracketBumpReal (3 / 2 : ℝ) t (-Real.sqrt 2 * p) ≤
@@ -941,7 +996,9 @@ theorem aux_reduction_third_loss_bump_sqrt (t p : ℝ) (ht : 0 < t) :
     _ = scaledBracketBumpReal (7 / 6 : ℝ) t (Real.sqrt 2 * p) :=
       aux_reduction_one_third_times_bump_eq t (Real.sqrt 2 * p) ht
 
-/-- The numerical two-bump constant needed at the reduction exponent (7/6).-/
+/-- The numerical two-bump constant needed at the reduction exponent (7/6).
+@isnad1 id=lt.0h0v.s6.697b8fe82e24 from=translated src=- shape=638259e8 vocab=24be9302
+-/
 theorem aux_reduction_two_bump_constant :
     C_twoBumpEstimate (7 / 6 : ℝ) (7 / 6 : ℝ) < 2 ^ (6 : ℕ) := by
   have hvalue : C_twoBumpEstimate (7 / 6 : ℝ) (7 / 6 : ℝ) =
@@ -953,7 +1010,9 @@ theorem aux_reduction_two_bump_constant :
   norm_num [Real.rpow_natCast] at hpow ⊢
   nlinarith
 
-/-- The fixed √2 rescaling loss for the (7/6)-bracket bump.-/
+/-- The fixed √2 rescaling loss for the (7/6)-bracket bump.
+@isnad1 id=le.1h2v.s6.cc9d3eff0569 from=translated src=- shape=d587933d vocab=5493ee64
+-/
 theorem aux_reduction_fixed_scaling_down (s x : ℝ) (hs : 0 < s) :
     scaledBracketBumpReal (7 / 6 : ℝ) s (x / Real.sqrt 2) ≤
       2 * scaledBracketBumpReal (7 / 6 : ℝ) s x := by
@@ -985,7 +1044,9 @@ theorem aux_reduction_fixed_scaling_down (s x : ℝ) (hs : 0 < s) :
       mul_le_mul_of_nonneg_right hfactor
         (aux_scaledBracketBumpReal_nonneg _ _ _ hs)
 
-/-- Enlarging the argument by √2 can only decrease the (7/6)-bracket bump.-/
+/-- Enlarging the argument by √2 can only decrease the (7/6)-bracket bump.
+@isnad1 id=le.1h2v.s6.428ef09173cd from=translated src=- shape=962ec485 vocab=5493ee64
+-/
 theorem aux_reduction_fixed_scaling_up (s x : ℝ) (hs : 0 < s) :
     scaledBracketBumpReal (7 / 6 : ℝ) s (Real.sqrt 2 * x) ≤
       scaledBracketBumpReal (7 / 6 : ℝ) s x := by
@@ -1002,7 +1063,9 @@ theorem aux_reduction_fixed_scaling_up (s x : ℝ) (hs : 0 < s) :
   · exact Real.rpow_le_rpow_of_nonpos (by positivity) hbase (by norm_num)
   · exact inv_nonneg.mpr hs.le
 
-/-- Splitting a truncated factor over two nonnegative summands.-/
+/-- Splitting a truncated factor over two nonnegative summands.
+@isnad1 id=le.2h2v.s6.2f2051fafc9a from=translated src=- shape=5add2cd0 vocab=161790d4
+-/
 theorem aux_reduction_min_one_subadd (a b : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤ b) :
     min 1 (a + b) ≤ min 1 a + min 1 b := by
   by_cases ha : 1 ≤ a
@@ -1024,7 +1087,9 @@ theorem aux_reduction_min_one_subadd (a b : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤ b)
 
 /--
 In the horizontal orientation, the mean-difference factor can be charged
-to either of the two translated bracket bumps.-/
+to either of the two translated bracket bumps.
+@isnad1 id=le.1h3v.s7.42abb9d2000a from=translated src=- shape=a77bb50c vocab=94d82372
+-/
 theorem aux_reduction_min_split (lam p w1 : ℝ) (hlam : 0 < lam) :
     min 1 (lam⁻¹ * |p|) ≤
       min 1 ((2 * lam)⁻¹ * |-w1 - p|) +
@@ -1053,7 +1118,9 @@ theorem aux_reduction_min_split (lam p w1 : ℝ) (hlam : 0 < lam) :
     _ = min 1 ((2 * lam)⁻¹ * |-w1 - p|) +
         min 1 ((2 * lam)⁻¹ * |w1 - p|) := by rfl
 
-/-- The complete one-third loss estimate in the horizontal (`W 0`) case.-/
+/-- The complete one-third loss estimate in the horizontal (`W 0`) case.
+@isnad1 id=le.5h6v.s8.fcf5e519df02 from=translated src=- shape=3d65829b vocab=ca81ec6e
+-/
 theorem aux_reduction_loss_u0 {t0 t1 lam : ℝ} {h : ℕ}
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (hscale0 : t0 / lam ≤ Real.rpow 2 (-(h : ℝ)))
@@ -1191,7 +1258,9 @@ theorem aux_reduction_loss_u0 {t0 t1 lam : ℝ} {h : ℕ}
       dsimp [r]
       ring
 
-/-- The complete one-third loss estimate in the rotated (`W 1`) case.-/
+/-- The complete one-third loss estimate in the rotated (`W 1`) case.
+@isnad1 id=le.4h6v.s8.9a25ecd28eea from=translated src=- shape=f0c87a65 vocab=86523eb3
+-/
 theorem aux_reduction_loss_u1 {t0 t1 lam : ℝ} {h : ℕ}
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (hscale0 : t0 / lam ≤ Real.rpow 2 (-(h : ℝ)))
@@ -1259,7 +1328,9 @@ theorem aux_reduction_loss_u1 {t0 t1 lam : ℝ} {h : ℕ}
       dsimp [r] at *
       nlinarith [htarget]
 
-/-- A product of two post-loss bracket bumps is integrable.-/
+/-- A product of two post-loss bracket bumps is integrable.
+@isnad1 id=integrab.2h3v.s7.2d669c23e71c from=translated src=- shape=f97f0385 vocab=14642b0b
+-/
 theorem aux_reduction_bracket_product_integrable
     (a s₀ s₁ : ℝ) (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) :
     Integrable (fun p : ℝ =>
@@ -1307,7 +1378,9 @@ theorem aux_reduction_bracket_product_integrable
 
 /--
 The stationary (`α = 0`) post-loss occurrence in the positive-height
-rotated case is controlled in exact `W 1` coordinates.-/
+rotated case is controlled in exact `W 1` coordinates.
+@isnad1 id=le.3h5v.s8.0bf74c136221 from=translated src=- shape=778b274e vocab=aec9775c
+-/
 theorem aux_reduction_orientation_one_alpha_zero (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     (∫ p : ℝ,
@@ -1375,7 +1448,9 @@ theorem aux_reduction_orientation_one_alpha_zero (w₀ w₁ lam t₀ t₁ : ℝ)
 
 /--
 The translated (`α = 1`) post-loss occurrence in the positive-height
-rotated case is controlled in exact `W 1` coordinates.-/
+rotated case is controlled in exact `W 1` coordinates.
+@isnad1 id=le.4h5v.s8.51012d18b7d5 from=translated src=- shape=c2445ad3 vocab=e9ede9c2
+-/
 theorem aux_reduction_orientation_one_alpha_one (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) (ht₀lam : t₀ ≤ lam) :
     (∫ p : ℝ,
@@ -1499,7 +1574,9 @@ theorem aux_reduction_orientation_one_alpha_one (w₀ w₁ lam t₀ t₁ : ℝ)
 
 /--
 The reduction-exponent two-bump convolution estimate in a symmetric
-max-scale form.-/
+max-scale form.
+@isnad1 id=le.2h4v.s7.befbd70a2023 from=translated src=- shape=29f137d3 vocab=2c6cfabe
+-/
 theorem aux_reduction_two_bump_seven_six (x0 x1 t0 t1 : ℝ)
     (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ, scaledBracketBumpReal (7 / 6 : ℝ) t0 (x0 - p) *
@@ -1543,7 +1620,9 @@ theorem aux_reduction_two_bump_seven_six (x0 x1 t0 t1 : ℝ)
     aux_scaledBracketBumpReal_nonneg _ _ _ hmax
   exact hraw.trans (mul_le_mul_of_nonneg_right aux_reduction_two_bump_constant.le hB)
 
-/-- A convenient boundedness form for reduction-exponent bracket bumps.-/
+/-- A convenient boundedness form for reduction-exponent bracket bumps.
+@isnad1 id=le.1h2v.s5.e20e6f427d62 from=translated src=- shape=0923e109 vocab=61afa23f
+-/
 theorem aux_reduction_seven_six_bump_le_inv (s x : ℝ) (hs : 0 < s) :
     scaledBracketBumpReal (7 / 6 : ℝ) s x ≤ s⁻¹ := by
   unfold scaledBracketBumpReal
@@ -1555,7 +1634,9 @@ theorem aux_reduction_seven_six_bump_le_inv (s x : ℝ) (hs : 0 < s) :
       mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr hs.le)
     _ = s⁻¹ := by ring
 
-/-- Integrability of two translated reduction-exponent bracket bumps.-/
+/-- Integrability of two translated reduction-exponent bracket bumps.
+@isnad1 id=integrab.2h4v.s7.18da3b4a4e54 from=translated src=- shape=02024e38 vocab=e51a0e28
+-/
 theorem aux_reduction_seven_six_product_integrable
     (x0 x1 s0 s1 : ℝ) (hs0 : 0 < s0) (hs1 : 0 < s1) :
     Integrable (fun p : ℝ =>
@@ -1600,7 +1681,9 @@ theorem aux_reduction_seven_six_product_integrable
           mul_le_mul_of_nonneg_left hle hleft
       _ = s1⁻¹ * scaledBracketBumpReal (7 / 6 : ℝ) s0 (x0 - p) := by ring
 
-/-- The reverse form of the fixed `√2` rescaling loss.-/
+/-- The reverse form of the fixed `√2` rescaling loss.
+@isnad1 id=le.1h2v.s6.e98065aea683 from=translated src=- shape=54166a8d vocab=5493ee64
+-/
 theorem aux_reduction_fixed_scaling_w0 (s x : ℝ) (hs : 0 < s) :
     scaledBracketBumpReal (7 / 6 : ℝ) s x ≤
       2 * scaledBracketBumpReal (7 / 6 : ℝ) s (Real.sqrt 2 * x) := by
@@ -1612,7 +1695,9 @@ theorem aux_reduction_fixed_scaling_w0 (s x : ℝ) (hs : 0 < s) :
 
 /--
 The elementary coordinate dichotomy behind the two mixed orientation-zero
-bracket estimates.-/
+bracket estimates.
+@isnad1 id=or.0h2v.s6.fc76f972ad80 from=translated src=- shape=0c2e4cb9 vocab=83994332
+-/
 theorem aux_reduction_mixed_dichotomy (w0 w1 : ℝ) :
     |w0 + w1| ≤ 3 * |w1| ∨
       |Real.sqrt 2 * w0| ≤ 3 * |w0 - w1| := by
@@ -1630,6 +1715,9 @@ theorem aux_reduction_mixed_dichotomy (w0 w1 : ℝ) :
     nlinarith [abs_nonneg w0, abs_nonneg w1, abs_nonneg (w0 - w1),
       Real.sqrt_nonneg (2 : ℝ)]
 
+/--
+@isnad1 id=or.0h2v.s6.bc679b9bab7e from=translated src=- shape=cc897082 vocab=83994332
+-/
 theorem aux_reduction_mixed_dichotomy_swap (w0 w1 : ℝ) :
     |Real.sqrt 2 * w0| ≤ 3 * |w0 + w1| ∨
       |w0 - w1| ≤ 3 * |w1| := by
@@ -1639,6 +1727,9 @@ theorem aux_reduction_mixed_dichotomy_swap (w0 w1 : ℝ) :
   · left
     simpa [sub_eq_add_neg] using h
 
+/--
+@isnad1 id=le.0h0v.s5.f073b367a5b9 from=translated src=- shape=50862e3b vocab=3d4a831f
+-/
 theorem aux_reduction_three_rpow_seven_six_le_four :
     Real.rpow 3 (7 / 6 : ℝ) ≤ 4 := by
   apply (Real.rpow_le_rpow_iff
@@ -1648,7 +1739,9 @@ theorem aux_reduction_three_rpow_seven_six_le_four :
 
 /--
 The first mixed coordinate estimate used in the positive-height
-orientation-zero convolution bound.-/
+orientation-zero convolution bound.
+@isnad1 id=le.2h4v.s8.3862d8af90de from=translated src=- shape=cd82dc76 vocab=9150ce2c
+-/
 theorem aux_reduction_mixed_zero_bound (w0 w1 lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBumpReal (7 / 6 : ℝ) lam (w0 - w1) *
@@ -1711,7 +1804,9 @@ theorem aux_reduction_mixed_zero_bound (w0 w1 lam t : ℝ)
 
 /--
 The second mixed coordinate estimate used in the positive-height
-orientation-zero convolution bound.-/
+orientation-zero convolution bound.
+@isnad1 id=le.2h4v.s8.fe097d65da18 from=translated src=- shape=66f77d09 vocab=9150ce2c
+-/
 theorem aux_reduction_mixed_one_bound (w0 w1 lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBumpReal (7 / 6 : ℝ) lam (w0 + w1) *
@@ -1775,7 +1870,9 @@ theorem aux_reduction_mixed_one_bound (w0 w1 lam t : ℝ)
 
 /--
 Integrability needed to split the two positive-height orientation-zero
-rho contributions.-/
+rho contributions.
+@isnad1 id=integrab.3h5v.s7.7ef4f273aa3a from=translated src=- shape=377beee6 vocab=16bd4233
+-/
 theorem aux_reduction_orientation_zero_alpha1_integrable (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     Integrable (fun p : ℝ =>
@@ -1843,7 +1940,9 @@ theorem aux_reduction_orientation_zero_alpha1_integrable (w0 w1 lam t0 t1 : ℝ)
         (scaledBracketBumpReal (7 / 6 : ℝ) lam (w0 + p) *
           scaledBracketBumpReal (7 / 6 : ℝ) t0 (w1 + p)) := by ring
 
-/-- The stationary positive-height orientation-zero post-loss contribution.-/
+/-- The stationary positive-height orientation-zero post-loss contribution.
+@isnad1 id=le.3h5v.s8.54e4f0daf9e5 from=translated src=- shape=4a9d8a06 vocab=a19292b5
+-/
 theorem aux_reduction_orientation_zero_alpha0_integral_bound (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ,
@@ -1946,7 +2045,9 @@ theorem aux_reduction_orientation_zero_alpha0_integral_bound (w0 w1 lam t0 t1 : 
         scaledBracketBumpReal (7 / 6 : ℝ) lam (Real.sqrt 2 * w0) *
           scaledBracketBumpReal (7 / 6 : ℝ) (max t0 t1) (Real.sqrt 2 * w1) := by ring
 
-/-- The translated positive-height orientation-zero post-loss contribution.-/
+/-- The translated positive-height orientation-zero post-loss contribution.
+@isnad1 id=le.5h5v.s9.9b437fab0585 from=translated src=- shape=436152b6 vocab=145de060
+-/
 theorem aux_reduction_orientation_zero_alpha1_integral_bound (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (ht0lam : t0 ≤ lam) (ht1lam : t1 ≤ lam) :
@@ -2135,7 +2236,9 @@ theorem aux_reduction_orientation_zero_alpha1_integral_bound (w0 w1 lam t0 t1 : 
 
 /--
 The entire positive-height orientation-zero post-loss convolution.  Its
-five output products are exactly slots `0,1,2,3,4` of the tagged witness.-/
+five output products are exactly slots `0,1,2,3,4` of the tagged witness.
+@isnad1 id=le.5h5v.s9.9d41eafeb749 from=translated src=- shape=7b3e9ac6 vocab=a19292b5
+-/
 theorem aux_reduction_orientation_zero_total_integral_bound (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (ht0lam : t0 ≤ lam) (ht1lam : t1 ≤ lam) :
@@ -2219,7 +2322,9 @@ theorem aux_reduction_orientation_zero_total_integral_bound (w0 w1 lam t0 t1 : �
 
 /--
 Integrability of the two combined post-loss occurrences in the
-positive-height orientation-one case.-/
+positive-height orientation-one case.
+@isnad1 id=integrab.3h5v.s7.cbe4e134bf1d from=translated src=- shape=153a0636 vocab=7b50def7
+-/
 theorem aux_reduction_orientation_one_total_integrable (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     Integrable (fun p : ℝ =>
@@ -2294,7 +2399,9 @@ theorem aux_reduction_orientation_one_total_integrable (w₀ w₁ lam t₀ t₁ 
 
 /--
 The stationary summand of the positive-height `W 1` profile is
-integrable; it is extracted from the already integrable combined profile.-/
+integrable; it is extracted from the already integrable combined profile.
+@isnad1 id=integrab.3h5v.s7.881a7f529a0f from=translated src=- shape=5cd6e943 vocab=8f2d3d9f
+-/
 theorem aux_reduction_orientation_one_alpha_zero_integrable
     (w₀ w₁ lam t₀ t₁ : ℝ) (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     Integrable (fun p : ℝ =>
@@ -2351,7 +2458,9 @@ theorem aux_reduction_orientation_one_alpha_zero_integrable
 
 /--
 The translated summand of the positive-height `W 1` profile is
-integrable; it is extracted from the same combined profile.-/
+integrable; it is extracted from the same combined profile.
+@isnad1 id=integrab.3h5v.s7.888be245c135 from=translated src=- shape=d6f815cd vocab=7b50def7
+-/
 theorem aux_reduction_orientation_one_alpha_one_integrable
     (w₀ w₁ lam t₀ t₁ : ℝ) (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     Integrable (fun p : ℝ =>
@@ -2417,7 +2526,9 @@ theorem aux_reduction_orientation_one_alpha_one_integrable
 
 /--
 The combined positive-height orientation-zero post-loss profile is
-integrable; this is the companion of its explicit integral estimate.-/
+integrable; this is the companion of its explicit integral estimate.
+@isnad1 id=integrab.3h5v.s7.6fb4d051923c from=translated src=- shape=b2ff2c13 vocab=16bd4233
+-/
 theorem aux_reduction_orientation_zero_total_integrable (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     Integrable (fun p : ℝ =>
@@ -2458,13 +2569,17 @@ theorem aux_reduction_orientation_zero_total_integrable (w0 w1 lam t0 t1 : ℝ)
     ring]
   exact hzero.add hone
 
-/-- Nonnegativity of the reduction rho constant.-/
+/-- Nonnegativity of the reduction rho constant.
+@isnad1 id=le.0h0v.s3.cb113b2ec8cb from=translated src=- shape=ff3a10fc vocab=4c3eaf92
+-/
 theorem aux_reduction_Crho_nonneg : 0 ≤ C_rhoKernelsReduction := by
   unfold C_rhoKernelsReduction
   exact mul_nonneg (by positivity)
     (add_nonneg (aux_rho_cmean_nonneg 2) (aux_rho_cfour_nonneg 2))
 
-/-- The `W 1` coordinates of a kernel occurrence after diagonal cancellation.-/
+/-- The `W 1` coordinates of a kernel occurrence after diagonal cancellation.
+@isnad1 id=eq.0h2v.s6.2b777974d93a from=translated src=- shape=2173ed9f vocab=e8b76731
+-/
 theorem aux_reduction_W_one_kernel_coordinates (w₁ p : ℝ) :
     W 1 (-w₁ - p, w₁ - p) =
       (-Real.sqrt 2 * p, Real.sqrt 2 * w₁) := by
@@ -2478,7 +2593,9 @@ theorem aux_reduction_W_one_kernel_coordinates (w₁ p : ℝ) :
 /--
 The common analytic core of the two positive-height occurrence bounds.
 The supplied loss estimate has already lowered the two kernel bumps from
-`3/2` to `7/6`; this lemma only combines it with rho domination.-/
+`3/2` to `7/6`; this lemma only combines it with rho domination.
+@isnad1 id=le.5h10v.s9.d29ed17994f3 from=translated src=- shape=9fb01c8f vocab=a70ae922
+-/
 theorem aux_reduction_rho_occurrence_of_loss {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (hh : 1 ≤ h) (j : ℤ)
     (t0 t1 x0 x1 w0 p : ℝ) (ht0 : 0 < t0) (ht1 : 0 < t1)
@@ -2628,7 +2745,9 @@ theorem aux_reduction_rho_occurrence_of_loss {n : ℕ} (hn : 2 ≤ n)
 
 /--
 Positive-height rho domination for one horizontal (`W 0`) kernel
-occurrence, after expressing the diagonal translate in `(w₀,w₁)` coordinates.-/
+occurrence, after expressing the diagonal translate in `(w₀,w₁)` coordinates.
+@isnad1 id=le.3h8v.s9.a345a0b6b2e9 from=translated src=- shape=cf258512 vocab=72cfb006
+-/
 theorem aux_reduction_occurrence_zero_pointwise {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (hh : 1 ≤ h) (q : ReductionScaleTriple D.a)
     (j : ℤ) (w0 w1 p : ℝ) (hu : q.orientation = 0) :
@@ -2667,7 +2786,9 @@ theorem aux_reduction_occurrence_zero_pointwise {n : ℕ} (hn : 2 ≤ n)
 
 /--
 Positive-height rho domination for one rotated (`W 1`) kernel occurrence,
-in the exact square-root coordinates of the two duplicated output slots.-/
+in the exact square-root coordinates of the two duplicated output slots.
+@isnad1 id=le.3h8v.s9.8ee62c05d869 from=translated src=- shape=d170e399 vocab=85513998
+-/
 theorem aux_reduction_occurrence_one_pointwise {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (hh : 1 ≤ h) (q : ReductionScaleTriple D.a)
     (j : ℤ) (w0 w1 p : ℝ) (hu : q.orientation = 1) :
@@ -2701,7 +2822,9 @@ theorem aux_reduction_occurrence_one_pointwise {n : ℕ} (hn : 2 ≤ n)
     aux_scaledBracketBumpReal_neg]
   simpa [lam, t0, t1] using hcore
 
-/-- Integrability of a finite sum of one-dimensional occurrence bounds.-/
+/-- Integrability of a finite sum of one-dimensional occurrence bounds.
+@isnad1 id=integrab.1h3v.s6.81e333f6d655 from=translated src=- shape=4d8ecf6b vocab=211c8add
+-/
 theorem aux_reduction_integrable_finset_sum {α : Type*} (Q : Finset α)
     (f : α → ℝ → ℝ) (hf : ∀ q ∈ Q, Integrable (f q)) :
     Integrable (fun p : ℝ => ∑ q ∈ Q, f q p) := by
@@ -2719,7 +2842,9 @@ theorem aux_reduction_integrable_finset_sum {α : Type*} (Q : Finset α)
 /--
 Pointwise finite kernel decay can be integrated occurrence by occurrence.
 This packages the finite-sum/Fubini bookkeeping in the proof of
-`increaseDataBracketDomination`.-/
+`increaseDataBracketDomination`.
+@isnad1 id=le.5h6v.s7.97a7cd1f7c4b from=translated src=- shape=7a22d453 vocab=5116f42d
+-/
 theorem aux_reduction_finite_integral_bridge {α : Type*} (Q : Finset α)
     (C : ℝ) (rho H : ℝ → ℝ) (B : α → ℝ → ℝ)
     (_hC : 0 ≤ C) (hrho : ∀ p, 0 ≤ rho p) (hH : ∀ p, 0 ≤ H p)
@@ -2753,7 +2878,9 @@ theorem aux_reduction_finite_integral_bridge {α : Type*} (Q : Finset α)
 
 /--
 Scale a finite family of occurrence estimates by a common nonnegative
-coefficient.-/
+coefficient.
+@isnad1 id=le.1h5v.s6.6ba40b9216ae from=translated src=- shape=c409e1ad vocab=8a7a81ab
+-/
 theorem aux_reduction_finset_sum_le_scaled {α : Type*} (Q : Finset α)
     (f g : α → ℝ) (C : ℝ)
     (h : ∀ q ∈ Q, f q ≤ C * g q) :
@@ -2841,13 +2968,17 @@ noncomputable def aux_reductionBracketScales
       | 0 | 1 => fun r => if r = 0 then lam else q.right
       | _ => fun r => if r = 0 then q.left else q.right
 
-/-- The enlarged base scale remains multiplicatively spaced.-/
+/-- The enlarged base scale remains multiplicatively spaced.
+@isnad1 id=spacedse.0h2v.s3.6a8cd74b24ad from=translated src=- shape=c57da3d9 vocab=a1427c8b
+-/
 theorem aux_reductionBracketLambda_spaced (D : ReductionData) (h : ℕ) :
     SpacedSequence (aux_reductionBracketLambda D h) := by
   unfold aux_reductionBracketLambda
   exact smul_mem_A D.a_spaced (pow_pos (by norm_num) _)
 
-/-- The predecessor scale remains multiplicatively spaced.-/
+/-- The predecessor scale remains multiplicatively spaced.
+@isnad1 id=spacedse.0h1v.s2.eaa3ec4e3573 from=translated src=- shape=76a08d12 vocab=e94063df
+-/
 theorem aux_reductionBracketPrev_spaced (D : ReductionData) :
     SpacedSequence (aux_reductionBracketPrev D) := by
   unfold aux_reductionBracketPrev
@@ -2855,13 +2986,17 @@ theorem aux_reductionBracketPrev_spaced (D : ReductionData) :
 
 /--
 Pointwise maxima of the scale sequences used in the bracket slots remain
-multiplicatively spaced.-/
+multiplicatively spaced.
+@isnad1 id=spacedse.2h2v.s4.4607c09a41e4 from=translated src=- shape=088ed7b6 vocab=685e9db9
+-/
 theorem aux_reductionBracketMax_spaced {a b : ℤ → ℝ}
     (ha : SpacedSequence a) (hb : SpacedSequence b) :
     SpacedSequence (aux_reductionBracketMax a b) := by
   exact max_mem_A ha hb
 
-/-- The enlarged base scale lies within the expected height budget.-/
+/-- The enlarged base scale lies within the expected height budget.
+@isnad1 id=withinse.0h2v.s3.7be9013170fc from=translated src=- shape=8a5432c2 vocab=eabfb033
+-/
 theorem aux_reductionBracketLambda_within (D : ReductionData) (h : ℕ) :
     WithinSequenceDistance D.a (aux_reductionBracketLambda D h) h := by
   apply Auto.aux_withinSequenceDistance_of_sequenceDistance_le
@@ -2870,7 +3005,9 @@ theorem aux_reductionBracketLambda_within (D : ReductionData) (h : ℕ) :
   simpa only [zpow_natCast, Int.natAbs_natCast] using
     (sequenceDistance_pow_two_smul_le D.a_spaced (h : ℤ))
 
-/-- The predecessor of the base scale lies at distance at most one.-/
+/-- The predecessor of the base scale lies at distance at most one.
+@isnad1 id=withinse.0h1v.s3.9ce86a69d651 from=translated src=- shape=9b54af4f vocab=93cbbbc1
+-/
 theorem aux_reductionBracketPrev_within (D : ReductionData) :
     WithinSequenceDistance D.a (aux_reductionBracketPrev D) 1 := by
   intro j
@@ -2879,7 +3016,9 @@ theorem aux_reductionBracketPrev_within (D : ReductionData) :
   · change D.a (j - 1) ≤ D.a (j + 1)
     exact aux_spacedSequence_monotone D.a_spaced (by omega)
 
-/-- The original base scale lies within every nonzero height budget of itself.-/
+/-- The original base scale lies within every nonzero height budget of itself.
+@isnad1 id=withinse.0h2v.s3.6a7caa1d0f81 from=translated src=- shape=4ce2b508 vocab=d71e600d
+-/
 theorem aux_reductionBracketBase_within (D : ReductionData) (k : ℕ) :
     WithinSequenceDistance D.a D.a k := by
   intro j
@@ -2887,7 +3026,9 @@ theorem aux_reductionBracketBase_within (D : ReductionData) (k : ℕ) :
 
 /--
 Every scale occurring in one of the labeled bracket slots is a spaced
-sequence.-/
+sequence.
+@isnad1 id=spacedse.0h4v.s4.329a26539234 from=translated src=- shape=adea2d5e vocab=e0547746
+-/
 theorem aux_reductionBracketScales_spaced (D : ReductionData) (h : ℕ)
     (b : ReductionScaleTriple D.a × Fin 8) :
     ∀ r : Fin 2, SpacedSequence (aux_reductionBracketScales D h b r) := by
@@ -2935,7 +3076,9 @@ theorem aux_reductionBracketScales_spaced (D : ReductionData) (h : ℕ)
 /--
 Every tagged bracket scale stays within the distance budget required by
 the reduction witness.  The maximum cases use the common-distance maximum
-lemma, so the `h = 0` and positive-height slot tables are handled uniformly.-/
+lemma, so the `h = 0` and positive-height slot tables are handled uniformly.
+@isnad1 id=le.0h4v.s5.c548bd9ffea7 from=translated src=- shape=eb6748a9 vocab=05ee60ac
+-/
 theorem aux_reductionBracketScales_distance (D : ReductionData) (h : ℕ)
     (b : ReductionScaleTriple D.a × Fin 8) :
     ∀ r : Fin 2,
@@ -3044,7 +3187,9 @@ theorem aux_reductionBracketScales_distance (D : ReductionData) (h : ℕ)
 /--
 The two components of every tagged bracket scale pair have the advertised
 pair-distance bound, by symmetry and the triangle inequality through the
-original base scale.-/
+original base scale.
+@isnad1 id=le.0h3v.s5.8924dbbc4f93 from=translated src=- shape=4abb01db vocab=147c31bb
+-/
 theorem aux_reductionBracketScales_pair_distance (D : ReductionData) (h : ℕ)
     (b : ReductionScaleTriple D.a × Fin 8) :
     sequencePairDistance (aux_reductionBracketScales D h b) ≤
@@ -3069,7 +3214,9 @@ theorem aux_reductionBracketScales_pair_distance (D : ReductionData) (h : ℕ)
 /-- The cardinality constant in bracket domination.-/
 def C_increaseDataBracketDominationCard : ℕ := 2 ^ 6
 
-/-- There are at most eight labeled bracket slots per input scale triple.-/
+/-- There are at most eight labeled bracket slots per input scale triple.
+@isnad1 id=le.0h1v.s5.1d19aa66b4ee from=translated src=- shape=ac569706 vocab=5c0f0bd0
+-/
 theorem aux_reductionBracket_card (D : ReductionData) :
     (D.triples.product Finset.univ : Finset (ReductionScaleTriple D.a × Fin 8)).card ≤
       C_increaseDataBracketDominationCard := by
@@ -3098,7 +3245,9 @@ noncomputable def aux_reductionBracketTerm (D : ReductionData) (h : ℕ)
 
 /--
 Every labeled bracket product is nonnegative, including the padding
-slots used to keep the finite carrier uniform.-/
+slots used to keep the finite carrier uniform.
+@isnad1 id=le.0h5v.s5.8c9c7f995f87 from=translated src=- shape=61939f38 vocab=853fe7ad
+-/
 theorem aux_reductionBracketTerm_nonneg (D : ReductionData) (h : ℕ)
     (b : ReductionScaleTriple D.a × Fin 8) (j : ℤ) (v : RealPlane) :
     0 ≤ aux_reductionBracketTerm D h b j v := by
@@ -3111,7 +3260,9 @@ theorem aux_reductionBracketTerm_nonneg (D : ReductionData) (h : ℕ)
 
 /--
 Keeping the three padding slots in a finite eight-slot table can only
-increase the sum of its first five entries.-/
+increase the sum of its first five entries.
+@isnad1 id=le.3h1v.s7.f952755765af from=translated src=- shape=28f9c417 vocab=2eb5bf6e
+-/
 theorem aux_reductionBracket_five_le_sum (f : Fin 8 → ℝ)
     (h5 : 0 ≤ f 5) (h6 : 0 ≤ f 6) (h7 : 0 ≤ f 7) :
     f 0 + f 1 + f 2 + f 3 + f 4 ≤ ∑ slot : Fin 8, f slot := by
@@ -3120,7 +3271,9 @@ theorem aux_reductionBracket_five_le_sum (f : Fin 8 → ℝ)
 
 /--
 Keeping the six padding slots in a finite eight-slot table can only
-increase the sum of its first two entries.-/
+increase the sum of its first two entries.
+@isnad1 id=le.6h1v.s7.ebfcfa3724f4 from=translated src=- shape=16f91ea4 vocab=2eb5bf6e
+-/
 theorem aux_reductionBracket_two_le_sum (f : Fin 8 → ℝ)
     (h2 : 0 ≤ f 2) (h3 : 0 ≤ f 3) (h4 : 0 ≤ f 4) (h5 : 0 ≤ f 5)
     (h6 : 0 ≤ f 6) (h7 : 0 ≤ f 7) :
@@ -3130,7 +3283,9 @@ theorem aux_reductionBracket_two_le_sum (f : Fin 8 → ℝ)
 
 /--
 The five output products from the positive-height orientation-zero
-convolution are dominated by the corresponding tagged-slot sum.-/
+convolution are dominated by the corresponding tagged-slot sum.
+@isnad1 id=le.2h6v.s9.fa8cb4132e2e from=translated src=- shape=beb67c17 vocab=cea313df
+-/
 theorem aux_reductionBracket_positive_slots_u0 (D : ReductionData) (h : ℕ)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hh : h ≠ 0) (hu : q.orientation = 0) :
@@ -3170,7 +3325,9 @@ theorem aux_reductionBracket_positive_slots_u0 (D : ReductionData) (h : ℕ)
 
 /--
 The two positive-height orientation-one occurrences are the first two
-tagged slots, and their duplicated sum is bounded by the full table.-/
+tagged slots, and their duplicated sum is bounded by the full table.
+@isnad1 id=le.2h6v.s8.8203e899af71 from=translated src=- shape=fd035388 vocab=e179f88d
+-/
 theorem aux_reductionBracket_positive_slots_u1 (D : ReductionData) (h : ℕ)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hh : h ≠ 0) (hu : q.orientation = 1) :
@@ -3207,7 +3364,9 @@ theorem aux_reductionBracket_positive_slots_u1 (D : ReductionData) (h : ℕ)
     aux_reductionBracketOrientation, hh, hu,
     aux_reduction_W_one_coordinates] using hactive
 
-/-- A symmetric two-bump convolution estimate at the height-zero exponent.-/
+/-- A symmetric two-bump convolution estimate at the height-zero exponent.
+@isnad1 id=le.2h4v.s7.befbd70a2023 from=translated src=- shape=29f137d3 vocab=2c6cfabe
+-/
 theorem aux_reduction_hzero_two_bump (x y s t : ℝ) (hs : 0 < s) (ht : 0 < t) :
     (∫ p : ℝ, scaledBracketBumpReal (7 / 6 : ℝ) s (x - p) *
       scaledBracketBumpReal (7 / 6 : ℝ) t (y - p)) ≤
@@ -3266,7 +3425,9 @@ theorem aux_reduction_hzero_two_bump (x y s t : ℝ) (hs : 0 < s) (ht : 0 < t) :
         exact mul_le_mul_of_nonneg_right hC
           (aux_scaledBracketBumpReal_nonneg _ _ _ ht)
 
-/-- The coordinate dichotomy used to split the first mixed height-zero term.-/
+/-- The coordinate dichotomy used to split the first mixed height-zero term.
+@isnad1 id=or.0h2v.s7.4503453335e7 from=translated src=- shape=93650eb7 vocab=83994332
+-/
 theorem aux_reduction_hzero_orthogonal_dichotomy_zero (w0 w1 : ℝ) :
     |w0 + w1| ≤ (2 * Real.sqrt 2) * |Real.sqrt 2 * w1| ∨
       |Real.sqrt 2 * w0| ≤ (2 * Real.sqrt 2) * |w0 - w1| := by
@@ -3296,7 +3457,9 @@ theorem aux_reduction_hzero_orthogonal_dichotomy_zero (w0 w1 : ℝ) :
         rw [abs_mul, abs_of_pos hsqrt]
         nlinarith
 
-/-- The coordinate dichotomy used to split the second mixed height-zero term.-/
+/-- The coordinate dichotomy used to split the second mixed height-zero term.
+@isnad1 id=or.0h2v.s7.396e1d7ba8c7 from=translated src=- shape=93650eb7 vocab=83994332
+-/
 theorem aux_reduction_hzero_orthogonal_dichotomy_one (w0 w1 : ℝ) :
     |w0 - w1| ≤ (2 * Real.sqrt 2) * |Real.sqrt 2 * w1| ∨
       |Real.sqrt 2 * w0| ≤ (2 * Real.sqrt 2) * |w0 + w1| := by
@@ -3328,7 +3491,9 @@ theorem aux_reduction_hzero_orthogonal_dichotomy_one (w0 w1 : ℝ) :
         rw [abs_mul, abs_of_pos hsqrt]
         nlinarith
 
-/-- Numerical bound for the orthogonal-decay constant in the height-zero split.-/
+/-- Numerical bound for the orthogonal-decay constant in the height-zero split.
+@isnad1 id=le.0h0v.s6.21ab3b2f72c5 from=translated src=- shape=798b0a34 vocab=d02c25b3
+-/
 theorem aux_reduction_hzero_orthogonal_constant :
     max (Real.rpow (2 * Real.sqrt 2) (7 / 6 : ℝ))
       (Real.rpow (2 * Real.sqrt 2) (7 / 6 : ℝ)) ≤ 4 := by
@@ -3354,7 +3519,9 @@ theorem aux_reduction_hzero_orthogonal_constant :
       Real.rpow_lt_rpow_of_exponent_lt (by norm_num) (by norm_num)
     _ = 4 := by norm_num
 
-/-- The first mixed-coordinate bracket product is controlled by two slot products.-/
+/-- The first mixed-coordinate bracket product is controlled by two slot products.
+@isnad1 id=le.2h4v.s8.2805dce9ccc9 from=translated src=- shape=56f1d2f9 vocab=9150ce2c
+-/
 theorem aux_reduction_hzero_mixed_zero (s t w0 w1 : ℝ) (hs : 0 < s) (ht : 0 < t) :
     scaledBracketBumpReal (7 / 6 : ℝ) s (w0 - w1) *
         scaledBracketBumpReal (7 / 6 : ℝ) t w1 ≤
@@ -3441,7 +3608,9 @@ theorem aux_reduction_hzero_mixed_zero (s t w0 w1 : ℝ) (hs : 0 < s) (ht : 0 < 
           scaledBracketBumpReal (7 / 6 : ℝ) s (Real.sqrt 2 * w0) *
             scaledBracketBumpReal (7 / 6 : ℝ) t (Real.sqrt 2 * w1)) := by ring
 
-/-- The second mixed-coordinate bracket product is controlled by two slot products.-/
+/-- The second mixed-coordinate bracket product is controlled by two slot products.
+@isnad1 id=le.2h4v.s8.337337fafc6d from=translated src=- shape=b47bd49a vocab=9150ce2c
+-/
 theorem aux_reduction_hzero_mixed_one (s t w0 w1 : ℝ) (hs : 0 < s) (ht : 0 < t) :
     scaledBracketBumpReal (7 / 6 : ℝ) s (w0 + w1) *
         scaledBracketBumpReal (7 / 6 : ℝ) t w1 ≤
@@ -3527,7 +3696,9 @@ theorem aux_reduction_hzero_mixed_one (s t w0 w1 : ℝ) (hs : 0 < s) (ht : 0 < t
           scaledBracketBumpReal (7 / 6 : ℝ) s (Real.sqrt 2 * w0) *
             scaledBracketBumpReal (7 / 6 : ℝ) t (Real.sqrt 2 * w1)) := by ring
 
-/-- A unit-constant bump-triangle split for the two translated kernel factors.-/
+/-- A unit-constant bump-triangle split for the two translated kernel factors.
+@isnad1 id=le.2h4v.s8.be9639f44047 from=translated src=- shape=78443278 vocab=e42de506
+-/
 theorem aux_reduction_hzero_bump_triangle (t0 t1 w1 p : ℝ) (ht0 : 0 < t0)
     (ht1 : 0 < t1) :
     scaledBracketBumpReal (7 / 6 : ℝ) t0 (w1 + p) *
@@ -3546,7 +3717,9 @@ theorem aux_reduction_hzero_bump_triangle (t0 t1 w1 p : ℝ) (ht0 : 0 < t0)
   rw [hC] at hraw
   simpa using hraw
 
-/-- A bracket bump is bounded by the reciprocal of its positive scale.-/
+/-- A bracket bump is bounded by the reciprocal of its positive scale.
+@isnad1 id=le.2h3v.s5.2f128c2d38e2 from=translated src=- shape=1fe31097 vocab=470885b3
+-/
 theorem aux_reduction_hzero_bump_le_inv (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s) :
     scaledBracketBumpReal N s x ≤ s⁻¹ := by
   unfold scaledBracketBumpReal
@@ -3558,7 +3731,9 @@ theorem aux_reduction_hzero_bump_le_inv (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s
       mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr hs.le)
     _ = s⁻¹ := by ring
 
-/-- Integrability of a translated two-bump product used in height-zero bounds.-/
+/-- Integrability of a translated two-bump product used in height-zero bounds.
+@isnad1 id=integrab.4h6v.s6.f35f913888d5 from=translated src=- shape=ff932127 vocab=0cdadadf
+-/
 theorem aux_reduction_hzero_product_integrable
     (n0 n1 s0 s1 x0 x1 : ℝ) (hn0 : 1 < n0) (hn1 : 0 ≤ n1)
     (hs0 : 0 < s0) (hs1 : 0 < s1) :
@@ -3597,7 +3772,9 @@ theorem aux_reduction_hzero_product_integrable
           mul_le_mul_of_nonneg_left hle hleft
       _ = s1⁻¹ * scaledBracketBumpReal n0 s0 (x0 - p) := by ring
 
-/-- The preliminary orientation-zero three-bump integral estimate.-/
+/-- The preliminary orientation-zero three-bump integral estimate.
+@isnad1 id=le.3h5v.s8.018deefc4be5 from=translated src=- shape=c594726a vocab=fb65ee0b
+-/
 theorem aux_reduction_hzero_u0_base (d t0 t1 w0 w1 : ℝ)
     (hd : 0 < d) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ, scaledBracketBumpReal (7 / 6 : ℝ) d (w0 + p) *
@@ -3763,7 +3940,9 @@ theorem aux_reduction_hzero_u0_base (d t0 t1 w0 w1 : ℝ)
           scaledBracketBumpReal (7 / 6 : ℝ) (max d t1) (w0 + w1) *
             scaledBracketBumpReal (7 / 6 : ℝ) t0 w1) := by ring
 
-/-- One orientation-zero rho-scale contribution is bounded by four slot products.-/
+/-- One orientation-zero rho-scale contribution is bounded by four slot products.
+@isnad1 id=le.3h5v.s9.8a1110a8b0a4 from=translated src=- shape=bcb219a7 vocab=a19292b5
+-/
 theorem aux_reduction_hzero_u0_per_epsilon (d t0 t1 w0 w1 : ℝ)
     (hd : 0 < d) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ, scaledBracketBumpReal (7 / 6 : ℝ) d (w0 + p) *
@@ -3814,7 +3993,9 @@ theorem aux_reduction_hzero_u0_per_epsilon (d t0 t1 w0 w1 : ℝ)
       norm_num
       ring
 
-/-- One orientation-one rho-scale contribution is bounded by its active slot.-/
+/-- One orientation-one rho-scale contribution is bounded by its active slot.
+@isnad1 id=le.3h5v.s8.60d2b06c01da from=translated src=- shape=562362db vocab=253baf13
+-/
 theorem aux_reduction_hzero_u1_per_epsilon (d t0 t1 w0 w1 : ℝ)
     (hd : 0 < d) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ, scaledBracketBumpReal (7 / 6 : ℝ) d (w0 + p) *
@@ -3927,7 +4108,9 @@ theorem aux_reduction_hzero_u1_per_epsilon (d t0 t1 w0 w1 : ℝ)
           scaledBracketBumpReal (7 / 6 : ℝ) t1 (Real.sqrt 2 * w1) := by
       ring
 
-/-- Continuity of a bracket bump, used for the height-zero integrability checks.-/
+/-- Continuity of a bracket bump, used for the height-zero integrability checks.
+@isnad1 id=continuo.0h2v.s4.e89cf9f4782a from=translated src=- shape=2e067db6 vocab=9728bfcb
+-/
 theorem aux_reduction_hzero_bump_continuous (N s : ℝ) :
     Continuous (fun x : ℝ => scaledBracketBumpReal N s x) := by
   unfold scaledBracketBumpReal
@@ -3937,7 +4120,9 @@ theorem aux_reduction_hzero_bump_continuous (N s : ℝ) :
   intro x
   exact hbase.continuousAt.rpow_const (Or.inl (by positivity))
 
-/-- Integrability of an orientation-zero height-zero three-bump majorant.-/
+/-- Integrability of an orientation-zero height-zero three-bump majorant.
+@isnad1 id=integrab.3h5v.s7.6d2e88e11118 from=translated src=- shape=4fa249df vocab=16bd4233
+-/
 theorem aux_reduction_hzero_u0_integrable (d t0 t1 w0 w1 : ℝ)
     (hd : 0 < d) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     Integrable (fun p : ℝ =>
@@ -3988,7 +4173,9 @@ theorem aux_reduction_hzero_u0_integrable (d t0 t1 w0 w1 : ℝ)
       _ = t1⁻¹ * (scaledBracketBumpReal (7 / 6 : ℝ) d (w0 + p) *
           scaledBracketBumpReal (7 / 6 : ℝ) t0 (w1 + p)) := by ring
 
-/-- Integrability of an orientation-one height-zero three-bump majorant.-/
+/-- Integrability of an orientation-one height-zero three-bump majorant.
+@isnad1 id=integrab.3h5v.s7.e4bdf800d311 from=translated src=- shape=3c053483 vocab=7b50def7
+-/
 theorem aux_reduction_hzero_u1_integrable (d t0 t1 w0 w1 : ℝ)
     (hd : 0 < d) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     Integrable (fun p : ℝ =>
@@ -4043,14 +4230,18 @@ theorem aux_reduction_hzero_u1_integrable (d t0 t1 w0 w1 : ℝ)
       _ = t1⁻¹ * (scaledBracketBumpReal (7 / 6 : ℝ) d (w0 + p) *
           scaledBracketBumpReal (7 / 6 : ℝ) t0 p) := by ring
 
-/-- Expand the finite sum over the eight labeled bracket slots.-/
+/-- Expand the finite sum over the eight labeled bracket slots.
+@isnad1 id=eq.0h1v.s7.0c53c961d58d from=translated src=- shape=dfa986c5 vocab=250fe31d
+-/
 theorem aux_reduction_hzero_sum_fin8 (f : Fin 8 → ℝ) :
     (∑ r : Fin 8, f r) =
       f 0 + f 1 + f 2 + f 3 + f 4 + f 5 + f 6 + f 7 := by
   simp [Fin.sum_univ_succ]
   ring
 
-/-- Decode the eight height-zero slots for an orientation-zero input triple.-/
+/-- Decode the eight height-zero slots for an orientation-zero input triple.
+@isnad1 id=eq.1h5v.s9.f3a8b15c7190 from=translated src=- shape=79da1f95 vocab=4dd60710
+-/
 theorem aux_reduction_hzero_u0_slots (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hqu : q.orientation = 0) :
@@ -4087,7 +4278,9 @@ theorem aux_reduction_hzero_u0_slots (D : ReductionData)
     aux_reductionBracketOrientation, aux_reductionBracketPrev,
     aux_reductionBracketMax, hqu, hW0, hW1]
 
-/-- The two active orientation-one slots are bounded by the padded eight-slot sum.-/
+/-- The two active orientation-one slots are bounded by the padded eight-slot sum.
+@isnad1 id=le.1h5v.s8.542d0c80b19a from=translated src=- shape=c8e58f40 vocab=a5966273
+-/
 theorem aux_reduction_hzero_u1_slots_le (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hqu : q.orientation = 1) :
@@ -4113,7 +4306,9 @@ theorem aux_reduction_hzero_u1_slots_le (D : ReductionData)
     aux_reductionBracketMax, hqu, hW1]
   nlinarith
 
-/-- The two rho scales in orientation zero are controlled by the eight tagged slots.-/
+/-- The two rho scales in orientation zero are controlled by the eight tagged slots.
+@isnad1 id=le.1h5v.s8.83bd1ae8be0c from=translated src=- shape=d3362d7d vocab=68d6c000
+-/
 theorem aux_reduction_hzero_u0_two_epsilon_slots (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hqu : q.orientation = 0) :
@@ -4170,7 +4365,9 @@ theorem aux_reduction_hzero_u0_two_epsilon_slots (D : ReductionData)
       simpa [mul_add, add_assoc] using add_le_add he0 he1
     _ = _ := by ring
 
-/-- The two rho scales in orientation one are controlled by the padded slots.-/
+/-- The two rho scales in orientation one are controlled by the padded slots.
+@isnad1 id=le.1h5v.s8.bcf95d244b26 from=translated src=- shape=4e8aa622 vocab=7d7c325d
+-/
 theorem aux_reduction_hzero_u1_two_epsilon_slots (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ)
     (hqu : q.orientation = 1) :
@@ -4272,7 +4469,9 @@ noncomputable def aux_reduction_hzero_kernel_factor
     scaledBracketBumpReal (7 / 6 : ℝ) (q.left j) (Real.sqrt 2 * p) *
       scaledBracketBumpReal (7 / 6 : ℝ) (q.right j) (Real.sqrt 2 * w1)
 
-/-- Factor the height-zero integrand into the rho and kernel contributions.-/
+/-- Factor the height-zero integrand into the rho and kernel contributions.
+@isnad1 id=eq.0h6v.s7.77f6a032eedc from=translated src=- shape=7c40adf3 vocab=ba6a65f2
+-/
 theorem aux_reduction_hzero_integrand_factor (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 p : ℝ) :
     aux_reduction_hzero_integrand D q j w0 w1 p =
@@ -4283,7 +4482,9 @@ theorem aux_reduction_hzero_integrand_factor (D : ReductionData)
     simp [aux_reduction_hzero_integrand, aux_reduction_hzero_kernel_factor, hq] <;>
     ring
 
-/-- Lower the kernel bracket exponents in the exact height-zero coordinates.-/
+/-- Lower the kernel bracket exponents in the exact height-zero coordinates.
+@isnad1 id=le.0h5v.s7.ee5dd194e1b0 from=translated src=- shape=ce8b2670 vocab=88c53a9c
+-/
 theorem aux_reduction_hzero_kernel_factor_bound
     (q : ReductionScaleTriple a) (j : ℤ) (w1 p : ℝ) :
     scaledBracketBumpReal (3 / 2 : ℝ) (q.left j)
@@ -4341,7 +4542,9 @@ theorem aux_reduction_hzero_kernel_factor_bound
         rw [show -Real.sqrt 2 * p = -(Real.sqrt 2 * p) by ring,
           aux_scaledBracketBumpReal_neg]
 
-/-- Each height-zero reduced-exponent integrand is integrable.-/
+/-- Each height-zero reduced-exponent integrand is integrable.
+@isnad1 id=integrab.0h5v.s5.ba0ae6ca5fe7 from=translated src=- shape=e51b316a vocab=eb961057
+-/
 theorem aux_reduction_hzero_integrand_integrable (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ) :
     Integrable (fun p : ℝ => aux_reduction_hzero_integrand D q j w0 w1 p) := by
@@ -4379,7 +4582,9 @@ theorem aux_reduction_hzero_integrand_integrable (D : ReductionData)
         (aux_reduction_hzero_u1_integrable (D.a j) (q.left j) (q.right j)
           w0 w1 hd1 ht0 ht1)
 
-/-- Integrate one height-zero integrand and charge it to its labeled slots.-/
+/-- Integrate one height-zero integrand and charge it to its labeled slots.
+@isnad1 id=le.0h5v.s7.1dee7fee0dc2 from=translated src=- shape=d74e7992 vocab=65d36f20
+-/
 theorem aux_reduction_hzero_integrand_integral_slots (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) (w0 w1 : ℝ) :
     (∫ p : ℝ, aux_reduction_hzero_integrand D q j w0 w1 p) ≤
@@ -4424,7 +4629,9 @@ theorem aux_reduction_hzero_integrand_integral_slots (D : ReductionData)
       simp [aux_reduction_hzero_integrand, hq], integral_add h0 h1]
     exact aux_reduction_hzero_u1_two_epsilon_slots D q j w0 w1 hq1
 
-/-- The finite sum of height-zero integrands is integrable.-/
+/-- The finite sum of height-zero integrands is integrable.
+@isnad1 id=integrab.0h4v.s5.c499b5236105 from=translated src=- shape=8da3d7ab vocab=678a54e2
+-/
 theorem aux_reduction_hzero_sum_integrable (D : ReductionData)
     (j : ℤ) (w0 w1 : ℝ) :
     Integrable (fun p : ℝ => ∑ q ∈ D.triples,
@@ -4433,7 +4640,9 @@ theorem aux_reduction_hzero_sum_integrable (D : ReductionData)
     (fun q p => aux_reduction_hzero_integrand D q j w0 w1 p)
     (fun q _ => aux_reduction_hzero_integrand_integrable D q j w0 w1)
 
-/-- The finite sum of height-zero integrands is controlled by all slot products.-/
+/-- The finite sum of height-zero integrands is controlled by all slot products.
+@isnad1 id=le.0h4v.s7.bfc3c0b940ff from=translated src=- shape=3ee76359 vocab=295ed47d
+-/
 theorem aux_reduction_hzero_sum_integral_slots (D : ReductionData)
     (j : ℤ) (w0 w1 : ℝ) :
     (∫ p : ℝ, ∑ q ∈ D.triples,
@@ -4458,13 +4667,17 @@ theorem aux_reduction_hzero_sum_integral_slots (D : ReductionData)
   · intro q _
     exact aux_reduction_hzero_integrand_integrable D q j w0 w1
 
-/-- Nonnegativity of the reduction rho constant for the height-zero wrapper.-/
+/-- Nonnegativity of the reduction rho constant for the height-zero wrapper.
+@isnad1 id=le.0h0v.s3.cb113b2ec8cb from=translated src=- shape=ff3a10fc vocab=4c3eaf92
+-/
 theorem aux_reduction_hzero_Crho_nonneg : 0 ≤ C_rhoKernelsReduction := by
   unfold C_rhoKernelsReduction
   exact mul_nonneg (by positivity)
     (add_nonneg (aux_rho_cmean_nonneg 2) (aux_rho_cfour_nonneg 2))
 
-/-- Pointwise height-zero reduction to the finite integrable majorant.-/
+/-- Pointwise height-zero reduction to the finite integrable majorant.
+@isnad1 id=le.1h6v.s6.01c2e7029e1b from=translated src=- shape=74a234f2 vocab=9d0c6abe
+-/
 theorem aux_reduction_hzero_pointwise {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (j : ℤ) (w0 w1 p : ℝ) :
     |rhoKernel n D.a 0 j (w0 + p) * D.kernel j (-w1 - p, w1 - p)| ≤
@@ -4549,7 +4762,9 @@ theorem aux_reduction_hzero_pointwise {n : ℕ} (hn : 2 ≤ n)
     _ = C_rhoKernelsReduction * ∑ q ∈ D.triples,
         aux_reduction_hzero_integrand D q j w0 w1 p := by rfl
 
-/-- The raw diagonal coordinate change used by the height-zero wrapper.-/
+/-- The raw diagonal coordinate change used by the height-zero wrapper.
+@isnad1 id=eq.0h5v.s6.5d91e52ca930 from=translated src=- shape=3a5bfa43 vocab=e9c1191f
+-/
 theorem aux_reduction_hzero_coordinate_change {n : ℕ} (D : ReductionData)
     (j : ℤ) (w0 w1 : ℝ) :
     reductionNKernel n D 0 j (w0 - w1, w0 + w1) =
@@ -4568,7 +4783,9 @@ theorem aux_reduction_hzero_coordinate_change {n : ℕ} (D : ReductionData)
       dsimp [f]
       ring_nf
 
-/-- The analytic tagged-slot majorant at height zero.-/
+/-- The analytic tagged-slot majorant at height zero.
+@isnad1 id=le.1h4v.s7.fcb0ec3280bc from=translated src=- shape=c33cff72 vocab=61282ad9
+-/
 theorem aux_reductionBracket_zero_majorant {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (j : ℤ) (v : RealPlane) :
     |reductionNKernel n D 0 j v| ≤
@@ -4642,7 +4859,9 @@ theorem aux_reductionBracket_zero_majorant {n : ℕ} (hn : 2 ≤ n)
 /--
 The positive-height analytic bracket majorant.  Diagonal cancellation,
 the rho mean-difference gain, and the tagged positive-height slot table give
-the exact $2^{-h/3}$ bound used to build the reduction witness.-/
+the exact $2^{-h/3}$ bound used to build the reduction witness.
+@isnad1 id=le.2h5v.s7.dec3301a712e from=translated src=- shape=2bb6640f vocab=b039972f
+-/
 theorem aux_reductionBracket_positive_majorant {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (hh : 1 ≤ h) (j : ℤ) (v : RealPlane) :
     |reductionNKernel n D h j v| ≤
@@ -4885,7 +5104,9 @@ structure aux_ReductionBracketDominationWitness {n : ℕ} (D : ReductionData)
 
 /--
 Reassemble a pointwise analytic bound indexed by all labeled slots into
-the finite witness required by bracket domination.-/
+the finite witness required by bracket domination.
+@isnad1 id=nonempty.1h3v.s7.0de95d067721 from=translated src=- shape=c37555d7 vocab=85c1ecc1
+-/
 theorem aux_reductionBracketWitness_of_analytic {n : ℕ} (D : ReductionData)
     (h : ℕ)
     (hmajorant : ∀ j : ℤ, ∀ v : RealPlane,
@@ -5008,7 +5229,9 @@ $$
 $$
 
 See also `Auto.increaseDataBracketDomination`,
-`Auto.rhoKernelsReduction`.-/
+`Auto.rhoKernelsReduction`.
+@isnad1 id=nonempty.1h3v.s4.71e36e77b53f from=translated src=- shape=ab6836b4 vocab=142e3c6e
+-/
 theorem increaseDataBracketDomination {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) :
     Nonempty (aux_ReductionBracketDominationWitness (n := n) D h) := by
@@ -5028,7 +5251,9 @@ C_{\text{bracket domination - reduction variant},1}
 <\tfrac35 2^{76}<2^{76}.
 $$
 
-See also `Auto.increaseDataBracketDomination`.-/
+See also `Auto.increaseDataBracketDomination`.
+@isnad1 id=lt.0h0v.s5.777b42dd254b from=translated src=- shape=ff0ce2aa vocab=bfca41f6
+-/
 theorem constantIncreaseDataBracketDomination :
     C_increaseDataBracketDomination < (3 / 5 : ℝ) * (2 : ℝ) ^ (76 : ℕ) := by
   unfold C_increaseDataBracketDomination
@@ -5084,7 +5309,9 @@ structure aux_ReductionGaussianExpansionWitness {n : ℕ} (D : ReductionData)
 
 /--
 Coordinatewise dyadic dilation preserves the spaced-sequence condition in
-the Gaussian expansion of `increaseDataBracketDomination`.-/
+the Gaussian expansion of `increaseDataBracketDomination`.
+@isnad1 id=spacedse.1h7v.s6.4a76948c50de from=translated src=- shape=71a5d39d vocab=7c2cccbd
+-/
 theorem aux_reductionGaussianExpansion_scales_in_A {n : ℕ}
     (D : ReductionData) (h : ℕ)
     (w : aux_ReductionBracketDominationWitness (n := n) D h)
@@ -5096,7 +5323,9 @@ theorem aux_reductionGaussianExpansion_scales_in_A {n : ℕ}
 
 /--
 The dyadic Gaussian expansion adds at most the total dyadic exponent to
-the pair-distance budget from `increaseDataBracketDomination`.-/
+the pair-distance budget from `increaseDataBracketDomination`.
+@isnad1 id=le.1h6v.s7.c06625c0ffba from=translated src=- shape=4f88575c vocab=cdc77f18
+-/
 theorem aux_reductionGaussianExpansion_pair_distance {n : ℕ}
     (D : ReductionData) (h : ℕ)
     (w : aux_ReductionBracketDominationWitness (n := n) D h)
@@ -5142,7 +5371,9 @@ theorem aux_reductionGaussianExpansion_pair_distance {n : ℕ}
 
 /--
 Splits the two-coordinate Gaussian-expansion weight into its one-dimensional
-dyadic factors.-/
+dyadic factors.
+@isnad1 id=eq.0h1v.s6.cae3384a5b64 from=translated src=- shape=edf20cb1 vocab=05faab54
+-/
 theorem aux_reductionGaussianExpansion_weight_split (m : Fin 2 → ℕ) :
     gaussianExpansionWeight m =
       Real.rpow 2 (-((m 0 : ℕ) : ℝ) / 6) *
@@ -5159,7 +5390,9 @@ theorem aux_reductionGaussianExpansion_weight_split (m : Fin 2 → ℕ) :
 
 /--
 A product of reduction-exponent bracket bumps is dominated by its
-label-preserving two-coordinate Gaussian expansion.-/
+label-preserving two-coordinate Gaussian expansion.
+@isnad1 id=le.1h4v.s7.42c94718acab from=translated src=- shape=d5fb8a5d vocab=14d1a3c8
+-/
 theorem aux_reductionGaussianExpansion_pair_majorant
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -5287,7 +5520,9 @@ theorem aux_reductionGaussianExpansion_pair_majorant
 
 /--
 Pointwise convergence of the Gaussian expansion associated with one base
-scale pair.-/
+scale pair.
+@isnad1 id=summable.1h4v.s6.97043a576405 from=translated src=- shape=720e34fb vocab=91006893
+-/
 theorem aux_reductionGaussianExpansion_pair_summable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -5331,7 +5566,9 @@ theorem aux_reductionGaussianExpansion_pair_summable
 
 /--
 The reduction Gaussian-expansion weights form a summable two-parameter
-geometric family.-/
+geometric family.
+@isnad1 id=summable.0h0v.s4.29739ffa1d0a from=translated src=- shape=bbdec756 vocab=adeb0c95
+-/
 theorem aux_reductionGaussianExpansion_weight_summable :
     Summable gaussianExpansionWeight := by
   let r : ℝ := Real.rpow 2 (-(1 / 6 : ℝ))
@@ -5353,7 +5590,9 @@ theorem aux_reductionGaussianExpansion_weight_summable :
   rw [hterm (m 0), hterm (m 1), aux_reductionGaussianExpansion_weight_split]
   congr 1 <;> ring_nf
 
-/-- Each weighted dyadic two-dimensional Gaussian term is measurable.-/
+/-- Each weighted dyadic two-dimensional Gaussian term is measurable.
+@isnad1 id=measurab.1h4v.s6.6b2bfd0cc181 from=translated src=- shape=5c80377c vocab=7fa8de09
+-/
 theorem aux_reductionGaussianExpansion_term_measurable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (m : Fin 2 → ℕ) :
@@ -5365,7 +5604,9 @@ theorem aux_reductionGaussianExpansion_term_measurable
   simp only [gaussianExpansionPair]
   exact mul_pos (pow_pos (by norm_num) _) (aux_spacedSequence_pos (hp r) j)
 
-/-- Each weighted dyadic two-dimensional Gaussian term is integrable.-/
+/-- Each weighted dyadic two-dimensional Gaussian term is integrable.
+@isnad1 id=integrab.1h4v.s6.c5dc684714ac from=translated src=- shape=4f7ac16a vocab=25444c72
+-/
 theorem aux_reductionGaussianExpansion_term_integrable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (m : Fin 2 → ℕ) :
@@ -5380,7 +5621,9 @@ theorem aux_reductionGaussianExpansion_term_integrable
 
 /--
 Pointwise convergence for a finite, label-preserving family of Gaussian
-expansions.-/
+expansions.
+@isnad1 id=summable.1h6v.s6.2fcb6f0c417d from=translated src=- shape=d90fa9c8 vocab=2201e92e
+-/
 theorem aux_reductionGaussianExpansion_finite_summable
     {α : Type*} (B : Finset α) (p : α → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -5410,7 +5653,9 @@ theorem aux_reductionGaussianExpansion_finite_summable
 
 /--
 Integrability of the pointwise Gaussian expansion for a finite,
-label-preserving family.-/
+label-preserving family.
+@isnad1 id=integrab.1h5v.s7.bb0da06bd4c9 from=translated src=- shape=e18600d4 vocab=07e2214c
+-/
 theorem aux_reductionGaussianExpansion_finite_integrable
     {α : Type*} (B : Finset α) (p : α → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -5483,7 +5728,9 @@ theorem aux_reductionGaussianExpansion_finite_integrable
 
 /--
 Converts the tagged bracket witness into its Gaussian series majorant
-without collapsing coincident decoded scale pairs.-/
+without collapsing coincident decoded scale pairs.
+@isnad1 id=le.1h6v.s7.28ae95cd2ce7 from=translated src=- shape=35be72c5 vocab=71eaaff3
+-/
 theorem aux_reductionBracket_to_gaussian_estimate {n : ℕ} (D : ReductionData)
     (h : ℕ) (w : aux_ReductionBracketDominationWitness (n := n) D h)
     (hC : 0 ≤ C_increaseDataBracketDomination) (j : ℤ) (v : RealPlane) :
@@ -5609,7 +5856,9 @@ $v\in\mathbb R^2$ and in $L^1(\mathbb R^2)$.
 
 See also `Auto.increaseDataGaussianExpansion`,
 `Auto.gaussianDomination`,
-`Auto.increaseDataBracketDomination`.-/
+`Auto.increaseDataBracketDomination`.
+@isnad1 id=nonempty.1h3v.s4.bf575ad49a80 from=translated src=- shape=ab6836b4 vocab=0d6224c4
+-/
 theorem increaseDataGaussianExpansion {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) :
     Nonempty (aux_ReductionGaussianExpansionWitness (n := n) D h) := by
@@ -5644,7 +5893,9 @@ C_{\text{Gaussian domination - reduction variant}}
 <\tfrac{123}{128}2^{91}<2^{91}.
 $$
 
-See also `Auto.increaseDataGaussianExpansion`.-/
+See also `Auto.increaseDataGaussianExpansion`.
+@isnad1 id=lt.0h0v.s5.9805d4aa36e6 from=translated src=- shape=ff0ce2aa vocab=e77cb7fb
+-/
 theorem constantIncreaseDataGaussianExpansion :
     C_increaseDataGaussianExpansion < (123 / 128 : ℝ) * (2 : ℝ) ^ (91 : ℕ) := by
   have aux_exp_pi_lt_81 : Real.exp Real.pi < (81 : ℝ) := by
@@ -5679,7 +5930,9 @@ theorem constantIncreaseDataGaussianExpansion :
 /-- The constant in Lemma `Auto.nReduction`.-/
 noncomputable def C_nReduction : ℝ := (2 : ℝ) ^ (9 : ℕ) * C_rhoKernelsReduction
 
-/-- The `L¹` mass estimate for the reduction rho kernel used in `nReduction`.-/
+/-- The `L¹` mass estimate for the reduction rho kernel used in `nReduction`.
+@isnad1 id=le.1h4v.s6.54181e6b21b1 from=translated src=- shape=4fa97ebf vocab=842cb9db
+-/
 theorem aux_reduction_rho_l1_bound {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (j : ℤ) :
     (∫ x : ℝ, |rhoKernel n D.a h j x|) ≤ 4 * C_rhoKernelsReduction := by
@@ -5737,7 +5990,9 @@ theorem aux_reduction_rho_l1_bound {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     _ = C_rhoKernelsReduction * (∫ x : ℝ, B x) := by rw [integral_const_mul]
     _ = 4 * C_rhoKernelsReduction := by rw [hBint]; ring
 
-/-- The mass of one planar bracket product in the kernel-decay hypothesis of `nReduction`.-/
+/-- The mass of one planar bracket product in the kernel-decay hypothesis of `nReduction`.
+@isnad1 id=eq.0h3v.s7.0a728451cc92 from=translated src=- shape=b296c501 vocab=5f37cd3e
+-/
 theorem aux_reduction_plane_bracket_integral (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) :
     (∫ v : RealPlane,
@@ -5794,7 +6049,9 @@ theorem aux_reduction_plane_bracket_integral (D : ReductionData)
       _ = ∫ v : RealPlane, F v := hchange
       _ = 16 := hFint
 
-/-- Integrability of the planar bracket product used to sum the kernel-decay majorant.-/
+/-- Integrability of the planar bracket product used to sum the kernel-decay majorant.
+@isnad1 id=integrab.0h3v.s7.8273504f0846 from=translated src=- shape=e7a8a866 vocab=5c3e5631
+-/
 theorem aux_reduction_plane_bracket_integrable (D : ReductionData)
     (q : ReductionScaleTriple D.a) (j : ℤ) :
     Integrable (fun v : RealPlane =>
@@ -5824,7 +6081,9 @@ theorem aux_reduction_plane_bracket_integrable (D : ReductionData)
       f ((aux_WContinuousLinearEquiv 1 v).1) * g ((aux_WContinuousLinearEquiv 1 v).2)
     rw [aux_WContinuousLinearEquiv_apply]
 
-/-- The `80`-bound for the base kernel's `L¹` norm required by `nReduction`.-/
+/-- The `80`-bound for the base kernel's `L¹` norm required by `nReduction`.
+@isnad1 id=le.0h2v.s5.38b95213a11e from=translated src=- shape=3d548d6c vocab=4d863f31
+-/
 theorem aux_reduction_kernel_l1_bound (D : ReductionData) (j : ℤ) :
     (∫ v : RealPlane, ‖D.kernel j v‖) ≤ 80 := by
   let F : ReductionScaleTriple D.a → RealPlane → ℝ := fun q v =>
@@ -5856,7 +6115,9 @@ theorem aux_reduction_kernel_l1_bound (D : ReductionData) (j : ℤ) :
       have hcard : (D.triples.card : ℝ) ≤ 5 := by exact_mod_cast D.triples_card
       nlinarith
 
-/-- The Fubini `L¹` bound for the diagonal convolution that defines `reductionNKernel`.-/
+/-- The Fubini `L¹` bound for the diagonal convolution that defines `reductionNKernel`.
+@isnad1 id=le.2h2v.s7.5d953ba31e7f from=translated src=- shape=dab52e70 vocab=96573c40
+-/
 theorem aux_reduction_diagonal_convolution_l1_bound
     (M : RealPlane → ℝ) (hM : MemW0 M) (rho : ℝ → ℝ) (hrho : MemW0 rho) :
     eLpNorm (fun v : RealPlane =>
@@ -5935,7 +6196,9 @@ $$
 with $C_{\text{lem:N-reduction}} = 2^9C_{\rho\text{ kernels - reduction variant}}$
 
 See also `Auto.nReduction`,
-`Auto.rhoKernelsReduction`.-/
+`Auto.rhoKernelsReduction`.
+@isnad1 id=and.1h4v.s6.00ab20eecad2 from=translated src=- shape=4091b5c7 vocab=791f0cb9
+-/
 theorem nReduction {n : ℕ} (hn : 2 ≤ n) (D : ReductionData) (h : ℕ) (j : ℤ) :
     MemW0 (reductionNKernel n D h j) ∧
       eLpNorm (reductionNKernel n D h j) 1 volume ≤ ENNReal.ofReal C_nReduction := by
@@ -5993,7 +6256,9 @@ C_{\text{lem:N-reduction}}
 <\tfrac35 2^{75}<2^{75}.
 $$
 
-See also `Auto.nReduction`.-/
+See also `Auto.nReduction`.
+@isnad1 id=lt.0h0v.s5.19b627c8b584 from=translated src=- shape=ff0ce2aa vocab=a4843a78
+-/
 theorem constantNReduction : C_nReduction < (3 / 5 : ℝ) * (2 : ℝ) ^ (75 : ℕ) := by
   unfold C_nReduction
   calc
@@ -6015,12 +6280,16 @@ noncomputable def aux_reductionBase (n : ℕ) (D : ReductionData) (h : ℕ) (j :
     MKernel 1 :=
   fun x => |reductionNKernel n D h j (x.1 0, x.2 0)|
 
-/-- Pointwise evaluation of the one-coordinate reduction base kernel.-/
+/-- Pointwise evaluation of the one-coordinate reduction base kernel.
+@isnad1 id=eq.0h5v.s6.2bcf18468b60 from=translated src=- shape=93e9049f vocab=a481c0be
+-/
 theorem aux_reductionBase_apply (n : ℕ) (D : ReductionData) (h : ℕ) (j : ℤ)
     (x : RealVector 1 × RealVector 1) :
     aux_reductionBase n D h j x = |reductionNKernel n D h j (x.1 0, x.2 0)| := rfl
 
-/-- The absolute reduction base kernel belongs to the Wiener space.-/
+/-- The absolute reduction base kernel belongs to the Wiener space.
+@isnad1 id=memw0.1h4v.s7.cb06cf3ae48e from=translated src=- shape=0f043b18 vocab=d77eaa18
+-/
 theorem aux_reductionBase_memW0 {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (j : ℤ) :
     MemW0 (aux_reductionBase n D h j) := by
@@ -6037,7 +6306,9 @@ theorem aux_reductionBase_memW0 {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
   funext x
   rfl
 
-/-- Nonnegativity of the absolute reduction base kernel.-/
+/-- Nonnegativity of the absolute reduction base kernel.
+@isnad1 id=le.0h5v.s5.57e7135d476d from=translated src=- shape=5b0e4267 vocab=ea70692a
+-/
 theorem aux_reductionBase_nonneg (n : ℕ) (D : ReductionData) (h : ℕ) (j : ℤ)
     (x : RealVector 1 × RealVector 1) :
     0 ≤ aux_reductionBase n D h j x := by
@@ -6047,7 +6318,9 @@ theorem aux_reductionBase_nonneg (n : ℕ) (D : ReductionData) (h : ℕ) (j : �
 noncomputable def aux_reductionFinTwoNatEnum : ℕ ≃ (Fin 2 → ℕ) :=
   (aux_finTwoNatEquivProd.trans Nat.pairEquiv).symm
 
-/-- Nonnegativity of the constant in the increase-data Gaussian expansion.-/
+/-- Nonnegativity of the constant in the increase-data Gaussian expansion.
+@isnad1 id=le.0h0v.s3.8703bf1841a8 from=translated src=- shape=ff3a10fc vocab=d87b4616
+-/
 theorem aux_reduction_CincreaseDataGaussianExpansion_nonneg :
     0 ≤ C_increaseDataGaussianExpansion := by
   unfold C_increaseDataGaussianExpansion C_increaseDataBracketDomination
@@ -6063,7 +6336,9 @@ noncomputable def aux_reductionGaussianSum {n : ℕ} (D : ReductionData) (h : �
       (fun r => gaussianExpansionPair (w.bracket.scales b) m r j)
       (w.bracket.orientation b) (x.1 0, x.2 0)
 
-/-- The finite Gaussian sum is a Wiener-space kernel.-/
+/-- The finite Gaussian sum is a Wiener-space kernel.
+@isnad1 id=memw0.0h6v.s7.545365f08553 from=translated src=- shape=5679a8b3 vocab=797c0bc7
+-/
 theorem aux_reductionGaussianSum_memW0 {n : ℕ} (D : ReductionData) (h : ℕ)
     (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (m : Fin 2 → ℕ) (j : ℤ) : MemW0 (aux_reductionGaussianSum D h w m j) := by
@@ -6089,7 +6364,9 @@ theorem aux_reductionGaussianSum_memW0 {n : ℕ} (D : ReductionData) (h : ℕ)
   funext x
   rfl
 
-/-- Pointwise nonnegativity of the finite Gaussian sum.-/
+/-- Pointwise nonnegativity of the finite Gaussian sum.
+@isnad1 id=le.0h7v.s5.067f0461e732 from=translated src=- shape=5adb6e98 vocab=4ac6bdd0
+-/
 theorem aux_reductionGaussianSum_nonneg {n : ℕ} (D : ReductionData) (h : ℕ)
     (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (m : Fin 2 → ℕ) (j : ℤ) (x : RealVector 1 × RealVector 1) :
@@ -6108,7 +6385,9 @@ noncomputable def aux_reductionGaussianTerm {n : ℕ} (D : ReductionData) (h : �
     gaussianExpansionWeight (aux_reductionFinTwoNatEnum N) *
     aux_reductionGaussianSum D h w (aux_reductionFinTwoNatEnum N) j x
 
-/-- Each enumerated Gaussian-majorant term belongs to the Wiener space.-/
+/-- Each enumerated Gaussian-majorant term belongs to the Wiener space.
+@isnad1 id=memw0.0h6v.s7.28c12b0d2cd3 from=translated src=- shape=9eab68ec vocab=3ffa93b6
+-/
 theorem aux_reductionGaussianTerm_memW0 {n : ℕ} (D : ReductionData) (h : ℕ)
     (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (N : ℕ) (j : ℤ) : MemW0 (aux_reductionGaussianTerm D h w N j) := by
@@ -6124,7 +6403,9 @@ theorem aux_reductionGaussianTerm_memW0 {n : ℕ} (D : ReductionData) (h : ℕ)
   unfold aux_reductionGaussianTerm
   ring
 
-/-- Pointwise nonnegativity of each enumerated Gaussian-majorant term.-/
+/-- Pointwise nonnegativity of each enumerated Gaussian-majorant term.
+@isnad1 id=le.0h7v.s5.502169c128b4 from=translated src=- shape=6f720e73 vocab=ef73692d
+-/
 theorem aux_reductionGaussianTerm_nonneg {n : ℕ} (D : ReductionData) (h : ℕ)
     (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (N : ℕ) (j : ℤ) (x : RealVector 1 × RealVector 1) :
@@ -6137,7 +6418,9 @@ theorem aux_reductionGaussianTerm_nonneg {n : ℕ} (D : ReductionData) (h : ℕ)
       (Real.rpow_nonneg (by norm_num) _))
     (aux_reductionGaussianSum_nonneg D h w _ j x)
 
-/-- The enumerated Gaussian-majorant series is pointwise summable.-/
+/-- The enumerated Gaussian-majorant series is pointwise summable.
+@isnad1 id=summable.0h6v.s5.37de5efc29c1 from=translated src=- shape=379c3d69 vocab=d727d401
+-/
 theorem aux_reductionGaussianTerm_summable {n : ℕ} (D : ReductionData) (h : ℕ)
     (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (j : ℤ) (x : RealVector 1 × RealVector 1) :
@@ -6172,7 +6455,9 @@ noncomputable def aux_reductionSigmaScalePair (D : ReductionData) (h : ℕ) :
     SequencePair :=
   fun _ r => (Real.sqrt 2)⁻¹ * ((2 : ℝ) ^ h * D.a r)
 
-/-- The two auxiliary sigma scales are multiplicatively spaced.-/
+/-- The two auxiliary sigma scales are multiplicatively spaced.
+@isnad1 id=spacedse.0h3v.s4.0dfb5b2beb25 from=translated src=- shape=1b5ac258 vocab=cc32e6f7
+-/
 theorem aux_reductionSigmaScalePair_spaced (D : ReductionData) (h : ℕ) (r : Fin 2) :
     SpacedSequence (aux_reductionSigmaScalePair D h r) := by
   unfold aux_reductionSigmaScalePair
@@ -6183,7 +6468,9 @@ theorem aux_reductionSigmaScalePair_spaced (D : ReductionData) (h : ℕ) (r : Fi
 
 /--
 The Euclidean combination of the two auxiliary sigma scales recovers the
-original dilated scale.-/
+original dilated scale.
+@isnad1 id=eq.0h3v.s6.02ae302d8bbf from=translated src=- shape=1bc8d14d vocab=5312a143
+-/
 theorem aux_reductionSigmaScalePair_sqrt (D : ReductionData) (h : ℕ) (r : ℤ) :
     Real.sqrt ((aux_reductionSigmaScalePair D h 0 r) ^ 2 +
       (aux_reductionSigmaScalePair D h 1 r) ^ 2) = (2 : ℝ) ^ h * D.a r := by
@@ -6210,7 +6497,9 @@ theorem aux_reductionSigmaScalePair_sqrt (D : ReductionData) (h : ℕ) (r : ℤ)
         rw [← mul_assoc, inv_mul_cancel₀ (by norm_num), one_mul]
   rw [hsq, Real.sqrt_sq_eq_abs, abs_of_pos hpos]
 
-/-- A sequence has finite distance from itself.-/
+/-- A sequence has finite distance from itself.
+@isnad1 id=lt.0h1v.s4.7547f62d3fd2 from=translated src=- shape=3459504b vocab=d23d0702
+-/
 theorem aux_reductionSequenceDistance_self_lt_top (a : ℤ → ℝ) :
     SequenceDistance a a < ⊤ := by
   apply lt_of_le_of_lt (aux_sequenceDistance_le_of_within (a := a) (b := a) (k := 0) ?_)
@@ -6218,7 +6507,9 @@ theorem aux_reductionSequenceDistance_self_lt_top (a : ℤ → ℝ) :
   intro j
   simp
 
-/-- The distance from a sequence to itself is zero.-/
+/-- The distance from a sequence to itself is zero.
+@isnad1 id=eq.0h1v.s4.5926c0a4f9fa from=translated src=- shape=efce5b04 vocab=962728b5
+-/
 theorem aux_reductionSequenceDistance_self_eq_zero (a : ℤ → ℝ) :
     SequenceDistance a a = 0 := by
   apply le_antisymm
@@ -6254,7 +6545,9 @@ noncomputable def aux_reductionGamma {n : ℕ} (hn : 2 ≤ n) (D : ReductionData
     · simpa only [Fin.lastCases_castSucc, sequencePairDistance] using
         lt_of_le_of_lt (w.pair_distance b hb m) (WithTop.coe_lt_top _)
 
-/-- The first geometric coordinate has the bracket orientation.-/
+/-- The first geometric coordinate has the bracket orientation.
+@isnad1 id=eq.2h6v.s7.a28622e919be from=translated src=- shape=46114024 vocab=ac85f3af
+-/
 theorem aux_reductionGamma_orientation_zero {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6264,7 +6557,9 @@ theorem aux_reductionGamma_orientation_zero {n : ℕ} (hn : 2 ≤ n) (D : Reduct
     (fun _ : Fin 1 => w.bracket.orientation b) ((0 : Fin 1).castSucc) = _
   rw [Fin.lastCases_castSucc]
 
-/-- The terminal geometric coordinate has orientation zero.-/
+/-- The terminal geometric coordinate has orientation zero.
+@isnad1 id=eq.2h6v.s7.5b99a557e8b3 from=translated src=- shape=70548bde vocab=82bf9a33
+-/
 theorem aux_reductionGamma_orientation_last {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6274,7 +6569,9 @@ theorem aux_reductionGamma_orientation_last {n : ℕ} (hn : 2 ≤ n) (D : Reduct
     (fun _ : Fin 1 => w.bracket.orientation b) (Fin.last 1) = _
   rw [Fin.lastCases_last]
 
-/-- The first scale pair of the geometric data is the Gaussian expansion pair.-/
+/-- The first scale pair of the geometric data is the Gaussian expansion pair.
+@isnad1 id=eq.2h6v.s7.b9cd4aae57ba from=translated src=- shape=f60f06c4 vocab=afd071d8
+-/
 theorem aux_reductionGamma_scales_zero {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6286,7 +6583,9 @@ theorem aux_reductionGamma_scales_zero {n : ℕ} (hn : 2 ≤ n) (D : ReductionDa
     (fun _ : Fin 1 => gaussianExpansionPair (w.bracket.scales b) m) ((0 : Fin 1).castSucc) = _
   rw [Fin.lastCases_castSucc]
 
-/-- The terminal scale pair is the equal pair producing `reductionSigma`.-/
+/-- The terminal scale pair is the equal pair producing `reductionSigma`.
+@isnad1 id=eq.2h6v.s7.61211bcea4b8 from=translated src=- shape=563937de vocab=e02f586f
+-/
 theorem aux_reductionGamma_scales_last {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6298,7 +6597,9 @@ theorem aux_reductionGamma_scales_last {n : ℕ} (hn : 2 ≤ n) (D : ReductionDa
     (fun _ : Fin 1 => gaussianExpansionPair (w.bracket.scales b) m) (Fin.last 1) = _
   rw [Fin.lastCases_last]
 
-/-- The terminal multiplier of the geometric data is `reductionSigma`.-/
+/-- The terminal multiplier of the geometric data is `reductionSigma`.
+@isnad1 id=eq.2h7v.s7.5a07fe5e82df from=translated src=- shape=1910b345 vocab=936a9960
+-/
 theorem aux_reductionGamma_sMultiplier_last {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) (j : ℤ) :
@@ -6311,7 +6612,9 @@ theorem aux_reductionGamma_sMultiplier_last {n : ℕ} (hn : 2 ≤ n) (D : Reduct
 
 /--
 The terminal sandwich kernel is the tensor-square extension of its first
-Gaussian factor by `reductionSigma`.-/
+Gaussian factor by `reductionSigma`.
+@isnad1 id=eq.2h7v.s8.3716112e88cf from=translated src=- shape=dbadba27 vocab=98d2b528
+-/
 theorem aux_reductionGamma_terminal_sandwich {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) (j : ℤ) :
@@ -6356,7 +6659,9 @@ theorem aux_reductionGamma_terminal_sandwich {n : ℕ} (hn : 2 ≤ n)
     aux_reductionGamma_orientation_zero hn D h w b hb m]
   simp [aux_eraseVector]
 
-/-- The separation budget of the two-coordinate geometric data.-/
+/-- The separation budget of the two-coordinate geometric data.
+@isnad1 id=le.2h6v.s7.e6353e5f8d46 from=translated src=- shape=87c87efb vocab=72f65ffa
+-/
 theorem aux_reductionGamma_delta_le {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6396,7 +6701,9 @@ theorem aux_reductionGamma_delta_le {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
 
 /--
 The positive-terms delta factor is controlled by the dyadic Gaussian
-expansion weight budget.-/
+expansion weight budget.
+@isnad1 id=le.2h6v.s8.38b7304f9ee9 from=translated src=- shape=a92ab8ee vocab=5c0de8fd
+-/
 theorem aux_reductionGamma_delta_rpow_le {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6457,7 +6764,9 @@ theorem aux_reductionGamma_delta_rpow_le {n : ℕ} (hn : 2 ≤ n)
             _ = 16 := by norm_num)
         (Real.rpow_nonneg (by positivity) _)
 
-/-- The geometric data used in the reduction has exactly two coordinates.-/
+/-- The geometric data used in the reduction has exactly two coordinates.
+@isnad1 id=eq.2h6v.s6.9b2433a7c936 from=translated src=- shape=29782b40 vocab=a86b35df
+-/
 theorem aux_reductionGamma_k {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (b : ReductionScaleTriple D.a × Fin 8) (hb : b ∈ w.bracket.B) (m : Fin 2 → ℕ) :
@@ -6465,7 +6774,9 @@ theorem aux_reductionGamma_k {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
 
 /--
 A square-moment summation bound for the dyadic Gaussian expansion
-weights, including the needed loss in `h`.-/
+weights, including the needed loss in `h`.
+@isnad1 id=and.0h1v.s8.09a6d6cf1b24 from=translated src=- shape=6b1a75f7 vocab=054df6e4
+-/
 theorem aux_reductionDecay_sum (h : ℕ) :
     Summable (fun m : Fin 2 → ℕ => gaussianExpansionWeight m *
       ((h : ℝ) + 1 + (m 0 : ℝ) + (m 1 : ℝ)) ^ (2 : ℕ)) ∧
@@ -6705,7 +7016,9 @@ theorem aux_reductionDecay_sum (h : ℕ) :
 
 /--
 The dyadic Gaussian expansion has the required one-quarter decay for
-every exponent at most two.-/
+every exponent at most two.
+@isnad1 id=le.1h2v.s7.55cce3c0357d from=translated src=- shape=e61f2524 vocab=638c691a
+-/
 theorem aux_reductionDecay_sum_rpow (h : ℕ) {q : ℝ} (hq : q ≤ 2) :
     Real.rpow 2 (-((h : ℝ) / 3)) *
       (∑' m : Fin 2 → ℕ, gaussianExpansionWeight m *
@@ -6780,7 +7093,9 @@ theorem aux_reductionDecay_sum_rpow (h : ℕ) {q : ℝ} (hq : q ≤ 2) :
 
 /--
 Summability of the polynomially weighted Gaussian expansion used for the
-finite-prefix estimates.-/
+finite-prefix estimates.
+@isnad1 id=summable.2h2v.s7.676a0ae35fdb from=translated src=- shape=e4661c78 vocab=a592c1d2
+-/
 theorem aux_reductionDecay_summable (h : ℕ) {q : ℝ} (_hq0 : 0 ≤ q) (hq : q ≤ 2) :
     Summable (fun m : Fin 2 → ℕ => gaussianExpansionWeight m *
       Real.rpow ((h : ℝ) + 1 + (m 0 : ℝ) + (m 1 : ℝ)) q) := by
@@ -6817,7 +7132,9 @@ noncomputable def C_increaseDataReduction : ℝ :=
 
 /--
 Expanding one tensor-square Gaussian majorant into its finite family of
-terminal sandwich kernels.-/
+terminal sandwich kernels.
+@isnad1 id=eq.1h6v.s9.62f52419daf6 from=translated src=- shape=c66c0404 vocab=ed60e370
+-/
 theorem aux_reductionGaussianTerm_tensor_eq_sum {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h)
     (N : ℕ) (j : ℤ) :
@@ -6842,7 +7159,9 @@ theorem aux_reductionGaussianTerm_tensor_eq_sum {n : ℕ} (hn : 2 ≤ n)
   intro b _
   ring
 
-/-- The positive-terms bound for one enumerated Gaussian-majorant term.-/
+/-- The positive-terms bound for one enumerated Gaussian-majorant term.
+@isnad1 id=le.1h5v.s8.ee59b1a2573c from=translated src=- shape=eb07d6e3 vocab=ff341cdd
+-/
 theorem aux_reduction_per_term_bound {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h) (N : ℕ) :
     kernelSequenceSeminorm n 2 (by omega) hn
@@ -6979,7 +7298,9 @@ theorem aux_reduction_per_term_bound {n : ℕ} (hn : 2 ≤ n) (D : ReductionData
 
 /--
 The uniform finite-prefix estimate needed to pass from the Gaussian
-majorant to the original reduction kernel.-/
+majorant to the original reduction kernel.
+@isnad1 id=le.1h5v.s7.96588f6ade85 from=translated src=- shape=9d0e8f3a vocab=2826b675
+-/
 theorem aux_reduction_partial_bound {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (h : ℕ) (w : aux_ReductionGaussianExpansionWitness (n := n) D h) (N : ℕ) :
     kernelSequenceSeminorm n 2 (by omega) hn
@@ -7131,7 +7452,9 @@ reduction variant},0}$
 See also `Auto.increaseDataReduction`,
 `Auto.inductPositiveTermsTheorem`,
 `Auto.increaseDataGaussianExpansion`,
-`Auto.increaseDataBracketDomination`.-/
+`Auto.increaseDataBracketDomination`.
+@isnad1 id=le.1h3v.s6.fad2cf59b8ca from=translated src=- shape=37d6c878 vocab=5ec84fef
+-/
 theorem increaseDataReduction {n : ℕ} (hn : 2 ≤ n) (D : ReductionData) (h : ℕ) :
     kernelSequenceSeminorm n 2 (by omega) hn
       (fun j => reductionMajorantKernel n D h j) ≤
@@ -7202,7 +7525,9 @@ C_{\text{increase data - reduction variant}}
 <\tfrac{31}{32}2^{477}<2^{477}.
 $$
 
-See also `Auto.increaseDataReduction`.-/
+See also `Auto.increaseDataReduction`.
+@isnad1 id=lt.0h0v.s5.a7cf84ab6484 from=translated src=- shape=ff0ce2aa vocab=4907b19d
+-/
 theorem constantIncreaseDataReduction :
     C_increaseDataReduction < (31 / 32 : ℝ) * (2 : ℝ) ^ (477 : ℕ) := by
   have hexp : Real.exp Real.pi < (56 : ℝ) := by

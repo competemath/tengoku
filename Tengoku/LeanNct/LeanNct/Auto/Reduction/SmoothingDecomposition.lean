@@ -177,9 +177,15 @@ def C_thetaPrimitive (N : ℕ) : ℝ :=
 noncomputable def aux_thetaBasic (f : ℝ → ℝ) : ℝ → ℝ :=
   fun x ↦ f x - aux_realRescaled 2 f x
 
+/--
+@isnad1 id=ne.0h1v.s4.61ae1a3b422e from=translated src=- shape=476886e2 vocab=243719a4
+-/
 theorem aux_two_zpow_ne_zero (z : ℤ) : (2 : ℝ) ^ z ≠ 0 := by
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.b595ad0fb1f9 from=translated src=- shape=6f6ec382 vocab=e1d00ed7
+-/
 theorem aux_realRescaled_thetaBasic (f : ℝ → ℝ) (ell : ℤ) :
     aux_realRescaled ((2 : ℝ) ^ ell) (aux_thetaBasic f) =
       fun x ↦ aux_realRescaled ((2 : ℝ) ^ ell) f x -
@@ -189,6 +195,9 @@ theorem aux_realRescaled_thetaBasic (f : ℝ → ℝ) (ell : ℤ) :
   rw [zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
   field_simp [aux_two_zpow_ne_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.cece7d068a82 from=translated src=- shape=27a78f88 vocab=6b2caf30
+-/
 theorem aux_sd_sum_Ico_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A)
     (a : ℤ) (N : ℕ) :
     (∑ r ∈ Finset.Ico a (a + (N : ℤ)), (f r - f (r + 1))) =
@@ -202,6 +211,9 @@ theorem aux_sd_sum_Ico_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A
     rw [ih]
     abel
 
+/--
+@isnad1 id=eq.0h4v.s6.a0f4d800b08d from=translated src=- shape=b8e398e4 vocab=e2869b6c
+-/
 theorem aux_sum_Icc_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A)
     (a : ℤ) (N : ℕ) :
     (∑ r ∈ Finset.Icc a (a + (N : ℤ)), (f r - f (r + 1))) =
@@ -210,6 +222,9 @@ theorem aux_sum_Icc_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A)
   have h := aux_sd_sum_Ico_int_telescope f a (N + 1)
   convert h using 1 <;> push_cast <;> ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s7.c51615e0179e from=translated src=- shape=bd17c1a2 vocab=e7483760
+-/
 theorem aux_bumpBasic_partial_sum_eq (f : ℝ → ℝ) (m : ℤ) (N : ℕ) :
     aux_integerIntervalSum
       (fun ell ↦ aux_realRescaled ((2 : ℝ) ^ ell) (aux_thetaBasic f))
@@ -222,6 +237,9 @@ theorem aux_bumpBasic_partial_sum_eq (f : ℝ → ℝ) (m : ℤ) (N : ℕ) :
   exact aux_sum_Icc_int_telescope
     (fun ell ↦ aux_realRescaled ((2 : ℝ) ^ ell) f x) m N
 
+/--
+@isnad1 id=le.2h4v.s5.45d1ade4632e from=translated src=- shape=bd42d737 vocab=aca37cdb
+-/
 theorem aux_bumpBasic_rescale_abs_le (f : ℝ → ℝ) (C : ℝ)
     (hC : ∀ x, |f x| ≤ C) (t x : ℝ) (ht : 0 < t) :
     |aux_realRescaled t f x| ≤ C * t⁻¹ := by
@@ -232,6 +250,9 @@ theorem aux_bumpBasic_rescale_abs_le (f : ℝ → ℝ) (C : ℝ)
       mul_le_mul_of_nonneg_left (hC _) (inv_nonneg.mpr ht.le)
     _ = C * t⁻¹ := mul_comm _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.5fb3168137df from=translated src=- shape=b0e8a219 vocab=6e48ad73
+-/
 theorem aux_bumpBasic_zpow_tail_factor (C : ℝ) (m : ℤ) (n : ℕ) :
     C * ((2 : ℝ) ^ (m + (n : ℤ) + 1))⁻¹ =
       (C * ((2 : ℝ) ^ m)⁻¹ * (2 : ℝ)⁻¹) * ((1 / 2 : ℝ) ^ n) := by
@@ -242,6 +263,9 @@ theorem aux_bumpBasic_zpow_tail_factor (C : ℝ) (m : ℤ) (n : ℕ) :
   field_simp [aux_two_zpow_ne_zero]
   ring
 
+/--
+@isnad1 id=auxunifo.1h3v.s6.fe339334f547 from=translated src=- shape=c8fd00ac vocab=cf6dcefe
+-/
 theorem aux_bumpBasic_uniform_partial_sum (f : ℝ → ℝ) (C : ℝ)
     (hC : ∀ x, |f x| ≤ C) (m : ℤ) :
     aux_uniformlyConverges
@@ -280,12 +304,18 @@ theorem aux_bumpBasic_uniform_partial_sum (f : ℝ → ℝ) (C : ℝ)
   rw [hdiff, abs_neg]
   exact (aux_bumpBasic_rescale_abs_le f C hC _ x hscale).trans_lt hcoef
 
+/--
+@isnad1 id=integrab.1h2v.s6.9fc35346b696 from=translated src=- shape=0ce755d5 vocab=f923be4f
+-/
 theorem aux_bumpBasic_rescale_integrable (f : SchwartzMap ℝ ℝ) (t : ℝ)
     (ht : 0 < t) :
     Integrable (aux_realRescaled t (fun x ↦ f x)) := by
   unfold aux_realRescaled
   convert (f.integrable.comp_mul_left' (inv_ne_zero ht.ne')).const_mul t⁻¹ using 1
 
+/--
+@isnad1 id=eq.2h3v.s7.76d8cf3dea27 from=translated src=- shape=91917df9 vocab=3cb4b296
+-/
 theorem aux_bumpBasic_fourier_sub_of_integrable (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ ((f x - g x : ℝ) : ℂ)) xi =
@@ -319,6 +349,9 @@ theorem aux_bumpBasic_fourier_sub_of_integrable (f g : ℝ → ℝ)
       integral_sub hf' hg'
     _ = _ := by rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.f642e2b941cf from=translated src=- shape=cc27012f vocab=6da7e34c
+-/
 theorem aux_bumpBasic_rescale_fourier (t : ℝ) (ht : 0 < t)
     (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_realRescaled t f x : ℂ)) xi =
@@ -357,6 +390,9 @@ theorem aux_bumpBasic_rescale_fourier (t : ℝ) (ht : 0 < t)
       push_cast
       ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s8.79b8de38831b from=translated src=- shape=394c6582 vocab=4d776a83
+-/
 theorem aux_bumpBasic_fourier_theta (f : SchwartzMap ℝ ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ (aux_thetaBasic (fun y ↦ f y) x : ℂ)) xi =
       FourierTransform.fourier (fun x : ℝ ↦ (f x : ℂ)) xi -
@@ -368,6 +404,9 @@ theorem aux_bumpBasic_fourier_theta (f : SchwartzMap ℝ ℝ) (xi : ℝ) :
       (aux_bumpBasic_rescale_integrable f 2 (by norm_num)),
     aux_bumpBasic_rescale_fourier 2 (by norm_num)]
 
+/--
+@isnad1 id=le.2h1v.s8.fd065a68f3b6 from=translated src=- shape=704e5c8a vocab=11b186a7
+-/
 theorem aux_bumpBasic_fourier_theta_support (f : SchwartzMap ℝ ℝ)
     (hsupp : Function.support (FourierTransform.fourier (fun x : ℝ ↦ (f x : ℂ))) ⊆
       Set.Icc (-1 : ℝ) 1)
@@ -422,7 +461,9 @@ $$
 \sum_{\ell=m}^\infty \theta_{(2^\ell)} = (\phi_0)_{(2^m)}
 $$
 
-and the series converges uniformly.-/
+and the series converges uniformly.
+@isnad1 id=and.0h1v.s7.4d825f522d9b from=translated src=- shape=9674feff vocab=aa1abfcc
+-/
 theorem bumpBasic (b : windowBasedBumpFunctions) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ))) ⊆ aux_frequencyAnnulus ∧
@@ -450,12 +491,18 @@ theorem bumpBasic (b : windowBasedBumpFunctions) :
 
 /-! ### Finite identities for the characteristic-function decomposition -/
 
+/--
+@isnad1 id=continuo.1h2v.s5.9fec4a9ed04e from=translated src=- shape=77b3215a vocab=3ba75194
+-/
 theorem aux_char_realRescaled_continuous (t : ℝ)
     (f : ℝ → ℝ) (hf : Continuous f) :
     Continuous (aux_realRescaled t f) := by
   unfold aux_realRescaled
   fun_prop
 
+/--
+@isnad1 id=integrab.1h2v.s6.4e20356d5883 from=translated src=- shape=96524060 vocab=921bc0e2
+-/
 theorem aux_char_indicator_mul_integrable (f : ℝ → ℝ) (hf : Continuous f) (x : ℝ) :
     Integrable (fun y : ℝ => aux_indicator (Set.Icc 0 1) y * f (x - y)) := by
   have hcont : Continuous (fun y : ℝ => f (x - y)) :=
@@ -467,6 +514,9 @@ theorem aux_char_indicator_mul_integrable (f : ℝ → ℝ) (hf : Continuous f) 
     MeasureTheory.integrable_indicator_iff measurableSet_Icc]
   exact hcont.integrableOn_Icc
 
+/--
+@isnad1 id=eq.0h3v.s6.f162c3c0af14 from=translated src=- shape=1af9c28e vocab=79ed0a61
+-/
 theorem aux_char_convolution_integer_sum_eq (b : windowBasedBumpFunctions)
     (a c : ℤ) :
     aux_integerIntervalSum
@@ -505,6 +555,9 @@ theorem aux_char_convolution_integer_sum_eq (b : windowBasedBumpFunctions)
   intro ell _
   exact aux_char_indicator_mul_integrable _ (hscale ell) x
 
+/--
+@isnad1 id=eq.2h2v.s6.2b7f3d9175ff from=translated src=- shape=d64a22d0 vocab=2c7adcda
+-/
 theorem aux_char_convolution_sub_right (f g : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g) :
     aux_realConvolution (aux_indicator (Set.Icc 0 1)) (fun x ↦ f x - g x) =
@@ -520,6 +573,9 @@ theorem aux_char_convolution_sub_right (f g : ℝ → ℝ)
     integral_sub (aux_char_indicator_mul_integrable f hf x)
       (aux_char_indicator_mul_integrable g hg x)]
 
+/--
+@isnad1 id=eq.1h2v.s8.632d9ba99551 from=translated src=- shape=763d8d7d vocab=636332a4
+-/
 theorem aux_char_partial_sum_eq_rescaled (b : windowBasedBumpFunctions) (N : ℕ)
     (hN : 1 ≤ N) :
     (fun x ↦
@@ -553,6 +609,9 @@ theorem aux_char_partial_sum_eq_rescaled (b : windowBasedBumpFunctions) (N : ℕ
 
 /-! ### A bounded approximate identity in `L²` -/
 
+/--
+@isnad1 id=continuo.1h1v.s6.0869c3e270b9 from=translated src=- shape=8e96efd0 vocab=939f6a0a
+-/
 theorem aux_char_translation_integral_norm_continuous {f : ℝ → ℝ}
     (hf : Integrable f) :
     Continuous (fun p : ℝ => ∫ x : ℝ, ‖f (x - p) - f x‖) := by
@@ -589,11 +648,17 @@ theorem aux_char_translation_integral_norm_continuous {f : ℝ → ℝ}
   have hFu : Continuous fun p => ‖F p - u‖ := (hF.sub continuous_const).norm
   simpa only [hFnorm] using hFu
 
+/--
+@isnad1 id=tendsto.1h1v.s6.631c40f790fd from=translated src=- shape=9f4cc8d5 vocab=c26ab302
+-/
 theorem aux_char_translation_integral_norm_tendsto {f : ℝ → ℝ}
     (hf : Integrable f) :
     Tendsto (fun p : ℝ => ∫ x : ℝ, ‖f (x - p) - f x‖) (nhds 0) (nhds 0) := by
   simpa using (aux_char_translation_integral_norm_continuous hf).tendsto 0
 
+/--
+@isnad1 id=integrab.4h3v.s7.37d8a2a9914c from=translated src=- shape=0fe4039d vocab=e6b474e8
+-/
 theorem aux_sd_integrable_shear_difference
     (f psi : ℝ → ℝ) (hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (hpsim : Measurable psi) (t : ℝ) :
@@ -630,6 +695,9 @@ theorem aux_sd_integrable_shear_difference
     ring
   simpa only [Measure.volume_eq_prod] using hdiff
 
+/--
+@isnad1 id=eq.7h5v.s8.e5180168f97b from=translated src=- shape=46dc7f4a vocab=d8bd51b0
+-/
 theorem aux_scaled_convolution_eq_shear
     (f psi : ℝ → ℝ) (_hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (_hpsim : Measurable psi)
@@ -678,6 +746,9 @@ theorem aux_scaled_convolution_eq_shear
       filter_upwards [] with y
       ring
 
+/--
+@isnad1 id=eq.0h3v.s5.5d1e35f63b82 from=translated src=- shape=9785c1b7 vocab=db76a60c
+-/
 theorem aux_realConvolution_swap (f g : ℝ → ℝ) (x : ℝ) :
     aux_realConvolution f g x = ∫ p : ℝ, f (x - p) * g p := by
   unfold aux_realConvolution
@@ -690,6 +761,9 @@ theorem aux_realConvolution_swap (f g : ℝ → ℝ) (x : ℝ) :
     _ = ∫ p : ℝ, f (x - p) * g p :=
       integral_sub_left_eq_self (fun p : ℝ => f (x - p) * g p) volume x
 
+/--
+@isnad1 id=le.1h2v.s6.d0cc47f92809 from=translated src=- shape=bb8edfe0 vocab=9891d84e
+-/
 theorem aux_sd_translation_difference_bound
     (f : ℝ → ℝ) (hf : Integrable f) (p : ℝ) :
     (∫ x : ℝ, ‖f (x - p) - f x‖) ≤ 2 * ∫ x : ℝ, ‖f x‖ := by
@@ -706,6 +780,9 @@ theorem aux_sd_translation_difference_bound
       rw [integral_sub_right_eq_self (fun x : ℝ => ‖f x‖) p]
       ring
 
+/--
+@isnad1 id=tendsto.7h3v.s8.e823237874c7 from=translated src=- shape=722a3783 vocab=cd06e12e
+-/
 theorem aux_raw_approximate_identity_L1
     (f psi : ℝ → ℝ) (hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (hpsim : Measurable psi)
@@ -802,6 +879,9 @@ theorem aux_raw_approximate_identity_L1
         simpa only [D, Function.uncurry, Measure.volume_eq_prod] using
           (integral_integral_swap hD.norm)
 
+/--
+@isnad1 id=tendsto.4h4v.s7.898c8d31b30e from=translated src=- shape=8bb07de2 vocab=ccd1c65f
+-/
 theorem aux_l1_to_l2_tendsto_of_uniform_bound
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (e : ι → ℝ → ℝ) (D : ℝ)
@@ -834,6 +914,9 @@ theorem aux_l1_to_l2_tendsto_of_uniform_bound
       (Auto.aux_eLpNorm_le_of_l1_linf_bounds hiMeas (q := (2 : ℝ)) (by norm_num)
         hOne hTop)
 
+/--
+@isnad1 id=le.7h5v.s7.42bfde866c4d from=translated src=- shape=4afd2158 vocab=8b557f2b
+-/
 theorem aux_raw_approximate_identity_error_bound
     (f psi : ℝ → ℝ) (hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (hpsim : Measurable psi)
@@ -881,6 +964,9 @@ theorem aux_raw_approximate_identity_error_bound
     _ = 2 * C * ∫ y : ℝ, ‖psi y‖ := by
       rw [integral_const_mul]
 
+/--
+@isnad1 id=integrab.7h4v.s7.d3fccf321b3e from=translated src=- shape=66b3c973 vocab=be1bd943
+-/
 theorem aux_raw_approximate_identity_error_integrable
     (f psi : ℝ → ℝ) (hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (hpsim : Measurable psi)
@@ -900,6 +986,9 @@ theorem aux_raw_approximate_identity_error_integrable
   rw [aux_realConvolution_swap,
     aux_scaled_convolution_eq_shear f psi hf hfm hpsi hpsim C hC hmass t ht x]
 
+/--
+@isnad1 id=tendsto.7h3v.s8.94ff0b275fa6 from=translated src=- shape=d8968fd1 vocab=25e7ae02
+-/
 theorem aux_raw_approximate_identity_L2
     (f psi : ℝ → ℝ) (hf : Integrable f) (hfm : Measurable f)
     (hpsi : Integrable psi) (hpsim : Measurable psi)
@@ -929,6 +1018,9 @@ theorem aux_raw_approximate_identity_L2
       aux_raw_approximate_identity_L1 f psi hf hfm hpsi hpsim C hC hmass htrans
   simpa [e] using aux_l1_to_l2_tendsto_of_uniform_bound e D hInt hMeas hBound hL1
 
+/--
+@isnad1 id=tendsto.0h0v.s5.a1e6960d08d3 from=translated src=- shape=056b1786 vocab=485b27ee
+-/
 theorem aux_zpow_neg_nat_tendsto_zero_within :
     Tendsto (fun N : ℕ => (2 : ℝ) ^ (-(N : ℤ))) atTop
       (nhdsWithin 0 (Set.Ioi 0)) := by
@@ -947,6 +1039,9 @@ theorem aux_zpow_neg_nat_tendsto_zero_within :
   change 0 < (2 : ℝ) ^ (-(N : ℤ))
   exact zpow_pos (by norm_num) _
 
+/--
+@isnad1 id=and.0h0v.s6.b2e339049832 from=translated src=- shape=936f8287 vocab=e97f425f
+-/
 theorem aux_indicator_Icc_data :
     Integrable (aux_indicator (Set.Icc (0 : ℝ) 1)) ∧
     Measurable (aux_indicator (Set.Icc (0 : ℝ) 1)) ∧
@@ -964,6 +1059,9 @@ theorem aux_indicator_Icc_data :
     by_cases hx : x ∈ Set.Icc (0 : ℝ) 1 <;> simp [f, aux_indicator, hx]
   exact ⟨hf, hfm, hbound⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.07034af1551c from=translated src=- shape=319983a9 vocab=343ef428
+-/
 theorem aux_phi0_integral_one (b : windowBasedBumpFunctions) :
     ∫ x : ℝ, b.phi0 x = 1 := by
   have hwindow : cnWindow C_uniPair N_uniPair b.phi0 := b.universalPair.1
@@ -983,7 +1081,9 @@ $$
 \theta_{(2^\ell)}
 $$
 
-holds in $L^2$.-/
+holds in $L^2$.
+@isnad1 id=auxconve.0h1v.s7.b6556facc47e from=translated src=- shape=d81a73a6 vocab=8af6621a
+-/
 theorem charDecomp (b : windowBasedBumpFunctions) :
     aux_convergesInL2
       (fun N ↦ fun x ↦
@@ -1013,6 +1113,9 @@ theorem charDecomp (b : windowBasedBumpFunctions) :
 
 /-! ### The low-frequency projection used in the smoothing decomposition -/
 
+/--
+@isnad1 id=eq.0h3v.s6.46580d98ef57 from=translated src=- shape=4c13f8f2 vocab=8b5a0996
+-/
 theorem aux_smoothing_realConvolution_complex (f g : ℝ → ℝ) (x : ℝ) :
     (aux_realConvolution f g x : ℂ) =
       ((fun y : ℝ => (f y : ℂ)) ⋆[ContinuousLinearMap.mul ℂ ℂ]
@@ -1025,6 +1128,9 @@ theorem aux_smoothing_realConvolution_complex (f g : ℝ → ℝ) (x : ℝ) :
       push_cast
       rfl)
 
+/--
+@isnad1 id=eq.0h1v.s7.ba572a97212c from=translated src=- shape=cbbcd7d9 vocab=3b02d42f
+-/
 theorem aux_phi0_reproduces (b : windowBasedBumpFunctions) :
     aux_realConvolution (fun x : ℝ => b.phi0 x)
       (aux_realRescaled (1 / 4 : ℝ) (fun x : ℝ => b.phi0 x)) =
@@ -1089,6 +1195,9 @@ theorem aux_phi0_reproduces (b : windowBasedBumpFunctions) :
     _ = FourierTransformInv.fourierInv (FourierTransform.fourier phi) x := by rw [hFourier_eq]
     _ = phi x := congrFun (hphiC.fourierInv_fourier_eq hphi hphiFint) x
 
+/--
+@isnad1 id=integrab.0h0v.s5.f08e7d91612b from=translated src=- shape=b3c5e44e vocab=fdc17c0d
+-/
 theorem aux_smoothing_indicator_Ico_integrable :
     Integrable (aux_indicator (Set.Ico (0 : ℝ) 1)) := by
   rw [show aux_indicator (Set.Ico (0 : ℝ) 1) =
@@ -1096,6 +1205,9 @@ theorem aux_smoothing_indicator_Ico_integrable :
     MeasureTheory.integrable_indicator_iff measurableSet_Ico]
   exact (continuous_const.integrableOn_Icc (a := (0 : ℝ)) (b := 1)).mono_set Ico_subset_Icc_self
 
+/--
+@isnad1 id=eventual.0h0v.s5.1401304ee47d from=translated src=- shape=4092131f vocab=b3cc8b79
+-/
 theorem aux_smoothing_indicator_Ico_ae_eq_Icc :
     aux_indicator (Set.Ico (0 : ℝ) 1) =ᵐ[volume]
       aux_indicator (Set.Icc (0 : ℝ) 1) := by
@@ -1115,6 +1227,9 @@ theorem aux_smoothing_indicator_Ico_ae_eq_Icc :
       exact hi
     simp [aux_indicator, h, h']
 
+/--
+@isnad1 id=eq.0h1v.s5.b4336375482f from=translated src=- shape=48601bcf vocab=b97d9e1e
+-/
 theorem aux_smoothing_convolution_Ico_eq_Icc (g : ℝ → ℝ) :
     aux_realConvolution (aux_indicator (Set.Ico (0 : ℝ) 1)) g =
       aux_realConvolution (aux_indicator (Set.Icc (0 : ℝ) 1)) g := by
@@ -1124,6 +1239,9 @@ theorem aux_smoothing_convolution_Ico_eq_Icc (g : ℝ → ℝ) :
   filter_upwards [aux_smoothing_indicator_Ico_ae_eq_Icc] with y hy
   rw [hy]
 
+/--
+@isnad1 id=eq.0h0v.s5.d0432290b775 from=translated src=- shape=c0881e55 vocab=08c9fdd4
+-/
 theorem aux_smoothing_indicator_Ico_eq_sub_Ici :
     aux_indicator (Set.Ico (0 : ℝ) 1) =
       fun x : ℝ => aux_indicator (Set.Ici 0) x - aux_indicator (Set.Ici 1) x := by
@@ -1131,6 +1249,9 @@ theorem aux_smoothing_indicator_Ico_eq_sub_Ici :
   by_cases h0 : 0 ≤ x <;> by_cases h1 : 1 ≤ x
   all_goals simp [aux_indicator, Set.indicator_apply, h0, h1] <;> linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.9109f8f16af9 from=translated src=- shape=6525fc4d vocab=2b331f4b
+-/
 theorem aux_smoothing_convolution_Ici_sub_eq_Ico (g : ℝ → ℝ) (hg : Integrable g) :
     aux_realConvolution (aux_indicator (Set.Ici 0)) g +
         (-aux_realConvolution (aux_indicator (Set.Ici 1)) g) =
@@ -1166,6 +1287,9 @@ noncomputable def aux_smoothing_G (b : windowBasedBumpFunctions) : ℝ → ℝ :
   fun x ↦ aux_realConvolution (aux_indicator (Set.Ico 0 1))
     (fun y ↦ b.phi0 y) x - b.phi0 x
 
+/--
+@isnad1 id=eq.0h1v.s8.e72d7bd142f6 from=translated src=- shape=00ea58f1 vocab=f980a1ff
+-/
 theorem aux_smoothing_G_reproduces (b : windowBasedBumpFunctions) :
     aux_realConvolution
       (fun x ↦ aux_realConvolution (aux_indicator (Set.Ico 0 1))
@@ -1298,6 +1422,9 @@ theorem aux_smoothing_G_reproduces (b : windowBasedBumpFunctions) :
     _ = FourierTransformInv.fourierInv (FourierTransform.fourier gc) x := by rw [hFH_eq]
     _ = gc x := congrFun (hGcCont.fourierInv_fourier_eq hgc hFGint) x
 
+/--
+@isnad1 id=integrab.0h2v.s5.c397cb9af85a from=translated src=- shape=4ed49d07 vocab=9b703ca1
+-/
 theorem aux_smoothing_rescaled_theta_integrable
     (b : windowBasedBumpFunctions) (ell : ℤ) :
     Integrable (aux_realRescaled ((2 : ℝ) ^ ell) (windowBasedBumpFunctions.theta b)) := by
@@ -1309,6 +1436,9 @@ theorem aux_smoothing_rescaled_theta_integrable
     (aux_bumpBasic_rescale_integrable b.phi0 ((2 : ℝ) ^ (ell + 1))
       (zpow_pos (by norm_num) _))
 
+/--
+@isnad1 id=continuo.0h2v.s5.d946de47e302 from=translated src=- shape=66f3a8d1 vocab=c3995f0b
+-/
 theorem aux_smoothing_rescaled_theta_continuous
     (b : windowBasedBumpFunctions) (ell : ℤ) :
     Continuous (aux_realRescaled ((2 : ℝ) ^ ell) (windowBasedBumpFunctions.theta b)) := by
@@ -1318,6 +1448,9 @@ theorem aux_smoothing_rescaled_theta_continuous
   exact (aux_char_realRescaled_continuous _ _ b.phi0.continuous).sub
     (aux_char_realRescaled_continuous _ _ b.phi0.continuous)
 
+/--
+@isnad1 id=le.0h3v.s8.bcde1a4ade20 from=translated src=- shape=6890f4d3 vocab=1be87682
+-/
 theorem aux_smoothing_rescaled_phi_norm_le
     (b : windowBasedBumpFunctions) (t x : ℝ) :
     ‖aux_realRescaled t (fun y ↦ b.phi0 y) x‖ ≤
@@ -1328,6 +1461,9 @@ theorem aux_smoothing_rescaled_phi_norm_le
   simpa [Real.norm_eq_abs] using
     SchwartzMap.norm_le_seminorm ℝ b.phi0 (t⁻¹ * x)
 
+/--
+@isnad1 id=le.0h3v.s9.fd401d94124c from=translated src=- shape=1a5450f6 vocab=b1a61388
+-/
 theorem aux_smoothing_rescaled_theta_norm_le
     (b : windowBasedBumpFunctions) (ell : ℤ) (x : ℝ) :
     ‖aux_realRescaled ((2 : ℝ) ^ ell) (windowBasedBumpFunctions.theta b) x‖ ≤
@@ -1340,6 +1476,9 @@ theorem aux_smoothing_rescaled_theta_norm_le
     (aux_smoothing_rescaled_phi_norm_le b ((2 : ℝ) ^ ell) x)
     (aux_smoothing_rescaled_phi_norm_le b ((2 : ℝ) ^ (ell + 1)) x)
 
+/--
+@isnad1 id=integrab.0h1v.s4.80e45dc1f106 from=translated src=- shape=b684bfc9 vocab=47a29be8
+-/
 theorem aux_smoothing_G_integrable (b : windowBasedBumpFunctions) :
     Integrable (aux_smoothing_G b) := by
   have hconv : Integrable (aux_realConvolution (aux_indicator (Set.Ico 0 1))
@@ -1350,6 +1489,9 @@ theorem aux_smoothing_G_integrable (b : windowBasedBumpFunctions) :
       (ContinuousLinearMap.mul ℝ ℝ) b.phi0.integrable
   exact hconv.sub b.phi0.integrable
 
+/--
+@isnad1 id=integrab.0h3v.s6.1c9a46443ec2 from=translated src=- shape=ba1768bd vocab=a8cf36c6
+-/
 theorem aux_smoothing_G_mul_rescaled_theta_integrable
     (b : windowBasedBumpFunctions) (ell : ℤ) (x : ℝ) :
     Integrable (fun y : ℝ => aux_smoothing_G b y *
@@ -1360,6 +1502,9 @@ theorem aux_smoothing_G_mul_rescaled_theta_integrable
   · filter_upwards [] with y
     exact aux_smoothing_rescaled_theta_norm_le b ell (x - y)
 
+/--
+@isnad1 id=eq.0h2v.s6.07d27aa8e79b from=translated src=- shape=66dae0de vocab=3aaf1924
+-/
 theorem aux_smoothing_phiZero_partial_sum (b : windowBasedBumpFunctions) (N : ℕ) :
     aux_integerIntervalSum (windowBasedBumpFunctions.phiZero b) (-2) (N : ℤ) =
       aux_realConvolution (aux_smoothing_G b)
@@ -1400,6 +1545,9 @@ theorem aux_smoothing_phiZero_partial_sum (b : windowBasedBumpFunctions) (N : �
         exact aux_smoothing_G_mul_rescaled_theta_integrable b ell x]
   rw [hsum]
 
+/--
+@isnad1 id=integrab.0h3v.s5.0726b4d25475 from=translated src=- shape=a24c50fe vocab=5c2ce1a7
+-/
 theorem aux_smoothing_G_mul_R_integrable
     (b : windowBasedBumpFunctions) (ell : ℤ) (x : ℝ) :
     Integrable (fun y : ℝ => aux_smoothing_G b y * aux_smoothing_R b ell (x - y)) := by
@@ -1411,6 +1559,9 @@ theorem aux_smoothing_G_mul_R_integrable
     dsimp [aux_smoothing_R]
     exact aux_smoothing_rescaled_phi_norm_le b ((2 : ℝ) ^ ell) (x - y)
 
+/--
+@isnad1 id=eq.0h3v.s5.48d6b97690c9 from=translated src=- shape=670bc904 vocab=f0ea828d
+-/
 theorem aux_smoothing_G_convolution_sub_R
     (b : windowBasedBumpFunctions) (k l : ℤ) :
     aux_realConvolution (aux_smoothing_G b)
@@ -1428,6 +1579,9 @@ theorem aux_smoothing_G_convolution_sub_R
     integral_sub (aux_smoothing_G_mul_R_integrable b k x)
       (aux_smoothing_G_mul_R_integrable b l x)]
 
+/--
+@isnad1 id=integrab.0h3v.s6.dd9adbad3e01 from=translated src=- shape=b4e8b7ee vocab=efa470eb
+-/
 theorem aux_smoothing_Ico_mul_R_integrable
     (b : windowBasedBumpFunctions) (ell : ℤ) (x : ℝ) :
     Integrable (fun y : ℝ => aux_indicator (Set.Ico 0 1) y *
@@ -1444,6 +1598,9 @@ theorem aux_smoothing_Ico_mul_R_integrable
     MeasureTheory.integrable_indicator_iff measurableSet_Ico]
   exact (hcont.integrableOn_Icc (a := (0 : ℝ)) (b := 1)).mono_set Ico_subset_Icc_self
 
+/--
+@isnad1 id=eq.0h3v.s6.33c02cc30bb6 from=translated src=- shape=ebeeb977 vocab=a7427d3b
+-/
 theorem aux_smoothing_Ico_convolution_sub_R
     (b : windowBasedBumpFunctions) (k l : ℤ) :
     aux_realConvolution (aux_indicator (Set.Ico 0 1))
@@ -1461,6 +1618,9 @@ theorem aux_smoothing_Ico_convolution_sub_R
     integral_sub (aux_smoothing_Ico_mul_R_integrable b k x)
       (aux_smoothing_Ico_mul_R_integrable b l x)]
 
+/--
+@isnad1 id=eq.0h1v.s4.cd433de5bc37 from=translated src=- shape=161faae9 vocab=878161cf
+-/
 theorem aux_smoothing_G_RminusTwo_reproduces (b : windowBasedBumpFunctions) :
     aux_realConvolution (aux_smoothing_G b) (aux_smoothing_R b (-2)) = aux_smoothing_G b := by
   have hscale : aux_smoothing_R b (-2) =
@@ -1476,6 +1636,9 @@ theorem aux_smoothing_G_RminusTwo_reproduces (b : windowBasedBumpFunctions) :
         (fun y ↦ b.phi0 y) x - b.phi0 x
   exact aux_smoothing_G_reproduces b
 
+/--
+@isnad1 id=eq.1h2v.s6.ba4a2156e93c from=translated src=- shape=0e248f5f vocab=67f62179
+-/
 theorem aux_smoothing_one_two_partial_sum (b : windowBasedBumpFunctions)
     (N : ℕ) (hN : 1 ≤ N) :
     aux_integerIntervalSum
@@ -1518,6 +1681,9 @@ theorem aux_smoothing_one_two_partial_sum (b : windowBasedBumpFunctions)
     simp [aux_realRescaled]
   rw [hzero]
 
+/--
+@isnad1 id=eq.1h2v.s6.6f75da3ce201 from=translated src=- shape=67960b26 vocab=f9951084
+-/
 theorem aux_smoothingPartialSum_finite_algebra
     (b : windowBasedBumpFunctions) (N : ℕ) (hN : 1 ≤ N) :
     windowBasedBumpFunctions.smoothingPartialSum b N =
@@ -1546,6 +1712,9 @@ theorem aux_smoothingPartialSum_finite_algebra
 
 /-! ### Decay of the high-scale remainder -/
 
+/--
+@isnad1 id=tendsto.4h4v.s7.0426d41c6eab from=translated src=- shape=e8faa41e vocab=7fb77de6
+-/
 theorem aux_smoothing_interp_l1_bound_linf_tendsto
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (e : ι → ℝ → ℝ) (A : ℝ≥0∞)
@@ -1575,6 +1744,9 @@ theorem aux_smoothing_interp_l1_bound_linf_tendsto
     rw [htwo] at h
     exact h
 
+/--
+@isnad1 id=le.2h4v.s5.ec9d37857082 from=translated src=- shape=2a592e9d vocab=5383c069
+-/
 theorem aux_smoothing_realRescaled_abs_bound (psi : ℝ → ℝ) (C t x : ℝ)
     (hC : ∀ y, |psi y| ≤ C) (ht : 0 < t) :
     ‖aux_realRescaled t psi x‖ ≤ C * t⁻¹ := by
@@ -1585,12 +1757,18 @@ theorem aux_smoothing_realRescaled_abs_bound (psi : ℝ → ℝ) (C t x : ℝ)
       mul_le_mul_of_nonneg_left (hC _) (inv_nonneg.mpr ht.le)
     _ = C * t⁻¹ := mul_comm _ _
 
+/--
+@isnad1 id=integrab.2h2v.s6.a4773dfd863f from=translated src=- shape=c407e5b3 vocab=59006aee
+-/
 theorem aux_smoothing_realRescaled_integrable (psi : ℝ → ℝ) (t : ℝ)
     (hpsi : Integrable psi) (ht : 0 < t) :
     Integrable (aux_realRescaled t psi) := by
   unfold aux_realRescaled
   convert (hpsi.comp_mul_left' (inv_ne_zero ht.ne')).const_mul t⁻¹ using 1
 
+/--
+@isnad1 id=eq.1h2v.s6.b7969acff89b from=translated src=- shape=6d11f97d vocab=40015c12
+-/
 theorem aux_smoothing_realRescaled_integral_norm (psi : ℝ → ℝ) (t : ℝ)
     (ht : 0 < t) :
     (∫ x : ℝ, ‖aux_realRescaled t psi x‖) = ∫ x : ℝ, ‖psi x‖ := by
@@ -1604,6 +1782,9 @@ theorem aux_smoothing_realRescaled_integral_norm (psi : ℝ → ℝ) (t : ℝ)
     abs_of_pos ht, smul_eq_mul]
   field_simp
 
+/--
+@isnad1 id=le.2h2v.s7.ca21e2115112 from=translated src=- shape=073ba590 vocab=f4e9504e
+-/
 theorem aux_smoothing_raw_convolution_l1_bound (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) :
     (∫ x : ℝ, ‖aux_realConvolution f g x‖) ≤
@@ -1634,6 +1815,9 @@ theorem aux_smoothing_raw_convolution_l1_bound (f g : ℝ → ℝ)
     _ = (∫ y : ℝ, ‖f y‖) * (∫ x : ℝ, ‖g x‖) := by
       rw [integral_mul_const]
 
+/--
+@isnad1 id=le.4h5v.s7.6d15a14b08c6 from=translated src=- shape=cd5962b5 vocab=3b09782e
+-/
 theorem aux_smoothing_raw_convolution_linf_scaled_bound (f psi : ℝ → ℝ)
     (hf : Integrable f) (hpsim : Measurable psi) (C t x : ℝ)
     (hC : ∀ y, |psi y| ≤ C) (ht : 0 < t) :
@@ -1667,6 +1851,9 @@ theorem aux_smoothing_raw_convolution_linf_scaled_bound (f psi : ℝ → ℝ)
       rw [integral_mul_const]
       ring
 
+/--
+@isnad1 id=tendsto.0h0v.s5.a369f5c28e6a from=translated src=- shape=ef11393a vocab=9d722d96
+-/
 theorem aux_smoothing_dyadic_zpow_inv_tendsto_zero :
     Tendsto (fun N : ℕ => ((2 : ℝ) ^ (N : ℤ))⁻¹) atTop (nhds 0) := by
   have hpow : Tendsto (fun N : ℕ => (1 / 2 : ℝ) ^ N) atTop (nhds 0) :=
@@ -1676,6 +1863,9 @@ theorem aux_smoothing_dyadic_zpow_inv_tendsto_zero :
   rw [zpow_natCast, ← inv_pow]
   norm_num
 
+/--
+@isnad1 id=tendsto.4h3v.s7.bdfc550933bd from=translated src=- shape=31a910bd vocab=eb765802
+-/
 theorem aux_smoothing_scaled_convolution_tendsto_L2 (f psi : ℝ → ℝ)
     (hf : Integrable f) (hpsi : Integrable psi) (hpsim : Measurable psi)
     (C : ℝ) (hC : ∀ y, |psi y| ≤ C) :
@@ -1729,6 +1919,9 @@ theorem aux_smoothing_scaled_convolution_tendsto_L2 (f psi : ℝ → ℝ)
   have hAfin : A ≠ ∞ := by simp [A]
   exact aux_smoothing_interp_l1_bound_linf_tendsto e A hAfin hMeas hOne hTop
 
+/--
+@isnad1 id=tendsto.4h3v.s7.129d7f20b0a4 from=translated src=- shape=fecefcf8 vocab=386e99ee
+-/
 theorem aux_smoothing_scaled_convolution_tendsto_L2_succ (f psi : ℝ → ℝ)
     (hf : Integrable f) (hpsi : Integrable psi) (hpsim : Measurable psi)
     (C : ℝ) (hC : ∀ y, |psi y| ≤ C) :
@@ -1739,6 +1932,9 @@ theorem aux_smoothing_scaled_convolution_tendsto_L2_succ (f psi : ℝ → ℝ)
   have hshift := hbase.comp (tendsto_add_atTop_nat 1)
   simpa only [Function.comp_def] using hshift
 
+/--
+@isnad1 id=tendsto.0h1v.s7.cbc7ec6a424c from=translated src=- shape=99d312ea vocab=e1b1ebca
+-/
 theorem aux_smoothing_G_high_scale_tail (b : windowBasedBumpFunctions) :
     Tendsto (fun N : ℕ => eLpNorm
       (aux_realConvolution (aux_smoothing_G b)
@@ -1750,6 +1946,9 @@ theorem aux_smoothing_G_high_scale_tail (b : windowBasedBumpFunctions) :
   intro y
   simpa [Real.norm_eq_abs] using SchwartzMap.norm_le_seminorm ℝ b.phi0 y
 
+/--
+@isnad1 id=and.0h0v.s6.94f4d9830e9e from=translated src=- shape=936f8287 vocab=062c675b
+-/
 theorem aux_smoothing_indicator_Ico_data :
     Integrable (aux_indicator (Set.Ico (0 : ℝ) 1)) ∧
     Measurable (aux_indicator (Set.Ico (0 : ℝ) 1)) ∧
@@ -1759,6 +1958,9 @@ theorem aux_smoothing_indicator_Ico_data :
   · intro x
     by_cases hx : x ∈ Set.Ico (0 : ℝ) 1 <;> simp [aux_indicator, hx]
 
+/--
+@isnad1 id=tendsto.0h1v.s6.8a20c74fc6a7 from=translated src=- shape=7d2df093 vocab=84508603
+-/
 theorem aux_smoothing_Ico_approximate_identity (b : windowBasedBumpFunctions) :
     Tendsto (fun N : ℕ => eLpNorm (fun x : ℝ =>
       aux_realConvolution (aux_indicator (Set.Ico 0 1))
@@ -1790,7 +1992,9 @@ $$
 \varphi_{1,k}+ \sum_{k=-\infty}^{-1}\varphi_{2,k}.
 $$
 
-holds in the $L^2$ sense.-/
+holds in the $L^2$ sense.
+@isnad1 id=auxconve.0h1v.s4.4f4c050ef837 from=translated src=- shape=a62b6e56 vocab=7111e8aa
+-/
 theorem smoothingDecomp (b : windowBasedBumpFunctions) :
     aux_convergesInL2 (windowBasedBumpFunctions.smoothingPartialSum b)
       (aux_indicator (Set.Icc 0 1)) := by
@@ -1844,6 +2048,9 @@ theorem smoothingDecomp (b : windowBasedBumpFunctions) :
       hrearrange]
     exact eLpNorm_sub_le (hA.sub hIcc).aestronglyMeasurable hB.aestronglyMeasurable (by norm_num)
 
+/--
+@isnad1 id=le.2h3v.s7.98d536c646ca from=translated src=- shape=7467ff7a vocab=cd4386aa
+-/
 theorem aux_thetaDecay_phi0 (b : windowBasedBumpFunctions) (N : ℕ)
     (hN_one : 1 ≤ N) (hN_three : N ≤ 3) (u : ℝ) :
     |b.phi0 u| ≤ (2 : ℝ) ^ (N + 2) * C_uniPair * bracketBump u ^ N := by
@@ -1896,6 +2103,9 @@ theorem aux_thetaDecay_phi0 (b : windowBasedBumpFunctions) (N : ℕ)
   rw [hinv, Complex.norm_real, Real.norm_eq_abs] at hdecay
   exact hdecay
 
+/--
+@isnad1 id=le.0h1v.s5.be431b9d4480 from=translated src=- shape=50ebcc8c vocab=00eea530
+-/
 theorem aux_thetaDecay_bracket_half (u : ℝ) :
     bracketBump (u / 2) ≤ 2 * bracketBump u := by
   rw [bracketBump, bracketBump]
@@ -1924,7 +2134,9 @@ C_{\text{lem:theta\_decay},N}=2^{2N+2}C_{\text{Universal pair}}.
 $$
 
 See also `Auto.thetaDecay`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=le.2h3v.s5.89711a6cb0c5 from=translated src=- shape=6f39441e vocab=a2c4159b
+-/
 theorem thetaDecay (b : windowBasedBumpFunctions) (N : ℕ)
     (hN_one : 1 ≤ N) (hN_three : N ≤ 3) :
     ∀ u : ℝ, |windowBasedBumpFunctions.theta b u| ≤
@@ -2005,13 +2217,18 @@ $$
 C_{\text{lem:theta\_decay},N}\le2^{2N+17}.
 $$
 
-See also `Auto.thetaDecay`.-/
+See also `Auto.thetaDecay`.
+@isnad1 id=le.2h1v.s6.235c88429b8e from=translated src=- shape=902bb322 vocab=68887c30
+-/
 theorem constantThetaDecay (N : ℕ) (hN_one : 1 ≤ N) (hN_three : N ≤ 3) :
     C_thetaDecay N ≤ (2 : ℝ) ^ (2 * N + 17) := by
   have _ := hN_one
   have _ := hN_three
   rw [C_thetaDecay, C_uniPair, ← pow_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.56143416988b from=translated src=- shape=caceb46a vocab=59fb01ff
+-/
 theorem aux_smoothing_fourier_real_const_mul (c : ℝ) (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => ((c * f x : ℝ) : ℂ)) xi =
       (c : ℂ) * FourierTransform.fourier (fun x : ℝ => (f x : ℂ)) xi := by
@@ -2030,7 +2247,9 @@ For $k\in\mathbb{Z}$ and $\xi\in\mathbb{R}$,
 $$
 \widehat{\varphi_{3,k}}(\xi) =
 2^k(\widehat{\mathbf{1}_{[0,1)}}-1)(2^{-k}\xi)\widehat{\phi_0}(2^{-k}\xi)\widehat{\theta}(\xi)
-$$-/
+$$
+@isnad1 id=eq.0h3v.s8.772e7edb7ca3 from=translated src=- shape=f9a47286 vocab=69fae476
+-/
 theorem fourierPhiThreeEq (b : windowBasedBumpFunctions) (k : ℤ) (ξ : ℝ) :
     FourierTransform.fourier
       (fun x : ℝ ↦ (windowBasedBumpFunctions.phiThree b k x : ℂ)) ξ =
@@ -2106,6 +2325,9 @@ namespace aux_phiThree
 
 def icoC : ℝ → ℂ := fun x => (aux_indicator (Set.Ico 0 1) x : ℂ)
 
+/--
+@isnad1 id=measurab.0h0v.s2.d8c22384ca04 from=translated src=- shape=54c8eceb vocab=b0e3a208
+-/
 theorem icoC_measurable : Measurable icoC := by
   rw [show icoC = Set.indicator (Set.Ico (0 : ℝ) 1) (fun _ : ℝ => (1 : ℂ)) by
     funext x
@@ -2113,6 +2335,9 @@ theorem icoC_measurable : Measurable icoC := by
       simp [icoC, aux_indicator, hx]]
   exact measurable_const.indicator measurableSet_Ico
 
+/--
+@isnad1 id=integrab.0h1v.s6.76c9ca8a9da1 from=translated src=- shape=a8c85988 vocab=2455bbb1
+-/
 theorem icoC_moment_integrable (q : ℕ) :
     Integrable (fun x : ℝ => x ^ q • icoC x) := by
   rw [show (fun x : ℝ => x ^ q • icoC x) =
@@ -2124,6 +2349,9 @@ theorem icoC_moment_integrable (q : ℕ) :
   exact ((continuous_id.pow q).smul continuous_const).integrableOn_Icc.mono_set
     Ico_subset_Icc_self
 
+/--
+@isnad1 id=eq.0h1v.s6.9a4bdbb16a81 from=translated src=- shape=6e15dc76 vocab=849e2d50
+-/
 theorem icoC_moment (q : ℕ) :
     ∫ x : ℝ, |x| ^ q * ‖icoC x‖ = 1 / (q + 1 : ℝ) := by
   rw [show (fun x : ℝ => |x| ^ q * ‖icoC x‖) =
@@ -2147,6 +2375,9 @@ theorem icoC_moment (q : ℕ) :
       rw [integral_pow]
       norm_num
 
+/--
+@isnad1 id=le.0h2v.s6.d1b0533726e2 from=translated src=- shape=5eec6bd4 vocab=d699951c
+-/
 theorem icoC_fourier_deriv_bound (q : ℕ) (x : ℝ) :
     ‖iteratedDeriv q (FourierTransform.fourier icoC) x‖ ≤
       (2 * Real.pi) ^ q / (q + 1 : ℝ) := by
@@ -2159,6 +2390,9 @@ theorem icoC_fourier_deriv_bound (q : ℕ) (x : ℝ) :
   · rw [icoC_moment]
     ring
 
+/--
+@isnad1 id=contdiff.0h1v.s5.636d94f850ed from=translated src=- shape=2b4f25c7 vocab=5c85ff88
+-/
 theorem icoC_fourier_contDiff (q : ℕ) :
     ContDiff ℝ q (FourierTransform.fourier icoC) := by
   apply Real.contDiff_fourier (N := q)
@@ -2168,6 +2402,9 @@ theorem icoC_fourier_contDiff (q : ℕ) :
       (by simpa only [norm_smul, Real.norm_eq_abs, abs_pow] using
         (icoC_moment_integrable j).norm))
 
+/--
+@isnad1 id=eq.0h0v.s5.9871958414d3 from=translated src=- shape=114401b7 vocab=a2e174d1
+-/
 theorem icoC_fourier_zero : FourierTransform.fourier icoC 0 = 1 := by
   rw [Real.fourier_real_eq]
   have hphasezero : (𝐞 (0 : ℝ) : Circle) = 1 := by
@@ -2187,15 +2424,24 @@ def factorA (k : ℤ) : ℝ → ℂ := fun x =>
   (↑((2 : ℝ) ^ k) : ℂ) *
     (FourierTransform.fourier icoC ((2 : ℝ) ^ (-k) * x) - 1)
 
+/--
+@isnad1 id=contdiff.0h2v.s5.fbea5ae9af9c from=translated src=- shape=e0ec41aa vocab=2b491570
+-/
 theorem factorA_contDiff (k : ℤ) (q : ℕ) :
     ContDiff ℝ q (factorA k) := by
   unfold factorA
   apply contDiff_const.mul
   apply ((icoC_fourier_contDiff q).comp (by fun_prop)).sub contDiff_const
 
+/--
+@isnad1 id=eq.0h1v.s4.46103bdc712f from=translated src=- shape=59ae2d96 vocab=49cdf0e1
+-/
 theorem factorA_zero (k : ℤ) : factorA k 0 = 0 := by
   simp [factorA, icoC_fourier_zero]
 
+/--
+@isnad1 id=eq.1h3v.s7.8554c710282a from=translated src=- shape=346ef6b6 vocab=7730bd15
+-/
 theorem iteratedDeriv_factorA_eq (k : ℤ) (q : ℕ) (hq : q ≠ 0) (x : ℝ) :
     iteratedDeriv q (factorA k) x =
       (↑((2 : ℝ) ^ k) : ℂ) *
@@ -2220,6 +2466,9 @@ theorem iteratedDeriv_factorA_eq (k : ℤ) (q : ℕ) (hq : q ≠ 0) (x : ℝ) :
       s ^ q • iteratedDeriv q F (s * x) by
         exact congrFun (iteratedDeriv_comp_const_smul hF s) x]
 
+/--
+@isnad1 id=le.1h3v.s7.913cb6bb5561 from=translated src=- shape=5c94f660 vocab=71037afa
+-/
 theorem norm_iteratedDeriv_factorA_le (k : ℤ) (q : ℕ) (hq : q ≠ 0) (x : ℝ) :
     ‖iteratedDeriv q (factorA k) x‖ ≤
       (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ q *
@@ -2241,23 +2490,35 @@ theorem norm_iteratedDeriv_factorA_le (k : ℤ) (q : ℕ) (hq : q ≠ 0) (x : �
       gcongr
       exact icoC_fourier_deriv_bound q _
 
+/--
+@isnad1 id=eq.0h1v.s6.b9670152b8b9 from=translated src=- shape=f01b8933 vocab=be0fbd29
+-/
 theorem factorA_scale_one (k : ℤ) :
     (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ (1 : ℕ) = 1 := by
   rw [pow_one, ← zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s6.372a504abd0f from=translated src=- shape=74ac1289 vocab=be0fbd29
+-/
 theorem factorA_scale_two (k : ℤ) :
     (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ (2 : ℕ) = (2 : ℝ) ^ (-k) := by
   rw [← zpow_natCast, ← zpow_mul, ← zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.e431d183e338 from=translated src=- shape=9c56a7ba vocab=be0fbd29
+-/
 theorem factorA_scale_three (k : ℤ) :
     (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ (3 : ℕ) = (2 : ℝ) ^ (-2 * k) := by
   rw [← zpow_natCast, ← zpow_mul, ← zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
   congr 1
   ring
 
+/--
+@isnad1 id=le.1h1v.s6.512f32d29a64 from=translated src=- shape=eb3cc91f vocab=8e0a6064
+-/
 theorem factorA_scale_two_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) :
     (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ (2 : ℕ) ≤ 4 := by
   rw [factorA_scale_two]
@@ -2267,6 +2528,9 @@ theorem factorA_scale_two_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) :
       omega
     _ = 4 := by norm_num
 
+/--
+@isnad1 id=le.1h1v.s6.3423cc88ac73 from=translated src=- shape=eb3cc91f vocab=8e0a6064
+-/
 theorem factorA_scale_three_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) :
     (2 : ℝ) ^ k * ((2 : ℝ) ^ (-k)) ^ (3 : ℕ) ≤ 16 := by
   rw [factorA_scale_three]
@@ -2276,6 +2540,9 @@ theorem factorA_scale_three_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) :
       omega
     _ = 16 := by norm_num
 
+/--
+@isnad1 id=le.0h2v.s5.74f563166260 from=translated src=- shape=307ce74a vocab=9a7bd34b
+-/
 theorem factorA_deriv_one_le (k : ℤ) (x : ℝ) :
     ‖iteratedDeriv 1 (factorA k) x‖ ≤ 4 := by
   calc
@@ -2286,6 +2553,9 @@ theorem factorA_deriv_one_le (k : ℤ) (x : ℝ) :
     _ = Real.pi := by rw [factorA_scale_one]; ring
     _ ≤ 4 := Real.pi_le_four
 
+/--
+@isnad1 id=le.1h2v.s5.776388be9e83 from=translated src=- shape=96fa68c2 vocab=4a489353
+-/
 theorem factorA_deriv_two_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) (x : ℝ) :
     ‖iteratedDeriv 2 (factorA k) x‖ ≤ 86 := by
   have hpi : 2 * Real.pi ≤ 8 := by nlinarith [Real.pi_le_four]
@@ -2311,6 +2581,9 @@ theorem factorA_deriv_two_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) (x : ℝ) :
     _ = 4 * 64 / 3 := by ring
     _ ≤ 86 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.f9feb0a14f7f from=translated src=- shape=96fa68c2 vocab=4a489353
+-/
 theorem factorA_deriv_three_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) (x : ℝ) :
     ‖iteratedDeriv 3 (factorA k) x‖ ≤ 2048 := by
   have hpi : 2 * Real.pi ≤ 8 := by nlinarith [Real.pi_le_four]
@@ -2336,6 +2609,9 @@ theorem factorA_deriv_three_le (k : ℤ) (hk : (-2 : ℤ) ≤ k) (x : ℝ) :
     _ = 16 * 512 / 4 := by ring
     _ = 2048 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.6dc3c42d93e0 from=translated src=- shape=602c6020 vocab=adb8cc2e
+-/
 theorem factorA_deriv_zero_le (k : ℤ) (x : ℝ) (hx : |x| ≤ 1) :
     ‖iteratedDeriv 0 (factorA k) x‖ ≤ 4 := by
   rw [iteratedDeriv_zero]
@@ -2366,6 +2642,9 @@ open scoped BigOperators FourierTransform Real ENNReal
 def F (b : windowBasedBumpFunctions) : ℝ → ℂ :=
   FourierTransform.fourier (fun x : ℝ => (b.phi0 x : ℂ))
 
+/--
+@isnad1 id=contdiff.0h1v.s5.dff4453a8d9f from=translated src=- shape=d0bc4254 vocab=e5c3438a
+-/
 theorem F_contDiff (b : windowBasedBumpFunctions) : ContDiff ℝ 3 (F b) := by
   let phiC : SchwartzMap ℝ ℂ :=
     b.phi0.postcompCLM (𝕜 := ℝ) Complex.ofRealCLM
@@ -2377,6 +2656,9 @@ theorem F_contDiff (b : windowBasedBumpFunctions) : ContDiff ℝ 3 (F b) := by
   rw [SchwartzMap.fourier_coe, hphiC] at hs
   exact hs
 
+/--
+@isnad1 id=le.1h3v.s5.1d1c78aba151 from=translated src=- shape=146e7356 vocab=d43bd1dc
+-/
 theorem F_deriv_bound (b : windowBasedBumpFunctions) (m : ℕ)
     (hm : m ≤ 3) (x : ℝ) : ‖iteratedDeriv m (F b) x‖ ≤ C_uniPair := by
   have hwin : cnWindow C_uniPair N_uniPair b.phi0 := b.universalPair.1
@@ -2399,10 +2681,16 @@ theorem F_deriv_bound (b : windowBasedBumpFunctions) (m : ℕ)
 def B (b : windowBasedBumpFunctions) (k : ℤ) : ℝ → ℂ :=
   fun x => F b ((2 : ℝ) ^ (-k) * x)
 
+/--
+@isnad1 id=contdiff.0h2v.s5.969124c7b820 from=translated src=- shape=bcf5e658 vocab=7496bbfa
+-/
 theorem B_contDiff (b : windowBasedBumpFunctions) (k : ℤ) :
     ContDiff ℝ 3 (B b k) := by
   exact (F_contDiff b).comp (contDiff_const.mul contDiff_id)
 
+/--
+@isnad1 id=le.0h3v.s5.7f7f5bcfeda2 from=translated src=- shape=af030916 vocab=c87feaf9
+-/
 theorem B_zero_bound (b : windowBasedBumpFunctions) (k : ℤ) (x : ℝ) :
     ‖iteratedDeriv 0 (B b k) x‖ ≤ 1 := by
   have hwin : cnWindow C_uniPair N_uniPair b.phi0 := b.universalPair.1
@@ -2411,6 +2699,9 @@ theorem B_zero_bound (b : windowBasedBumpFunctions) (k : ℤ) (x : ℝ) :
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hr.1]
   exact hr.2
 
+/--
+@isnad1 id=le.2h4v.s6.cdcf132db9a8 from=translated src=- shape=f5930833 vocab=f234cc33
+-/
 theorem B_deriv_bound (b : windowBasedBumpFunctions) (m : ℕ)
     (hm : m ≤ 3) (k : ℤ) (hk : -2 ≤ k) (x : ℝ) :
     ‖iteratedDeriv m (B b k) x‖ ≤ (4 : ℝ) ^ m * C_uniPair := by
@@ -2442,12 +2733,18 @@ theorem B_deriv_bound (b : windowBasedBumpFunctions) (m : ℕ)
             _ ≤ (4 : ℝ) ^ m * C_uniPair :=
               mul_le_mul_of_nonneg_left hderiv (pow_nonneg (by norm_num) _)
 
+/--
+@isnad1 id=integrab.1h2v.s6.9fc35346b696 from=translated src=- shape=0ce755d5 vocab=f923be4f
+-/
 theorem rescale_integrable (f : SchwartzMap ℝ ℝ) (t : ℝ)
     (ht : 0 < t) :
     Integrable (aux_realRescaled t (fun x ↦ f x)) := by
   unfold aux_realRescaled
   convert (f.integrable.comp_mul_left' (inv_ne_zero ht.ne')).const_mul t⁻¹ using 1
 
+/--
+@isnad1 id=eq.2h3v.s7.76d8cf3dea27 from=translated src=- shape=91917df9 vocab=3cb4b296
+-/
 theorem fourier_sub (f g : ℝ → ℝ) (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ ((f x - g x : ℝ) : ℂ)) xi =
       FourierTransform.fourier (fun x : ℝ ↦ (f x : ℂ)) xi -
@@ -2478,6 +2775,9 @@ theorem fourier_sub (f g : ℝ → ℝ) (hf : Integrable f) (hg : Integrable g) 
       integral_sub hf' hg'
     _ = _ := by rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.f642e2b941cf from=translated src=- shape=cc27012f vocab=6da7e34c
+-/
 theorem rescale_fourier (t : ℝ) (ht : 0 < t)
     (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_realRescaled t f x : ℂ)) xi =
@@ -2516,6 +2816,9 @@ theorem rescale_fourier (t : ℝ) (ht : 0 < t)
       push_cast
       ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s6.e3bdb29eac9e from=translated src=- shape=7e04e2e3 vocab=61f6629f
+-/
 theorem theta_formula (b : windowBasedBumpFunctions) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ)) xi =
       F b xi - F b (2 * xi) := by
@@ -2529,14 +2832,23 @@ theorem theta_formula (b : windowBasedBumpFunctions) (xi : ℝ) :
 def C (b : windowBasedBumpFunctions) : ℝ → ℂ :=
   FourierTransform.fourier (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ))
 
+/--
+@isnad1 id=eq.0h1v.s5.62188b26d000 from=translated src=- shape=342c4a1b vocab=8c7a9ef5
+-/
 theorem C_eq (b : windowBasedBumpFunctions) : C b = fun x => F b x - F b (2*x) := by
   funext x
   exact theta_formula b x
 
+/--
+@isnad1 id=contdiff.0h1v.s5.358e2ca26141 from=translated src=- shape=d0bc4254 vocab=21b5e021
+-/
 theorem C_contDiff (b : windowBasedBumpFunctions) : ContDiff ℝ 3 (C b) := by
   rw [C_eq]
   exact (F_contDiff b).sub ((F_contDiff b).comp (contDiff_const.mul contDiff_id))
 
+/--
+@isnad1 id=le.0h2v.s5.40dd3672d657 from=translated src=- shape=307ce74a vocab=4d3d4866
+-/
 theorem C_zero_bound (b : windowBasedBumpFunctions) (x : ℝ) :
     ‖iteratedDeriv 0 (C b) x‖ ≤ 1 := by
   have hwin : cnWindow C_uniPair N_uniPair b.phi0 := b.universalPair.1
@@ -2554,6 +2866,9 @@ theorem C_zero_bound (b : windowBasedBumpFunctions) (x : ℝ) :
   rw [hcast, Complex.norm_real]
   exact this
 
+/--
+@isnad1 id=le.1h3v.s6.fbfc49ce7706 from=translated src=- shape=03ee10e5 vocab=00609920
+-/
 theorem C_deriv_bound (b : windowBasedBumpFunctions) (m : ℕ)
     (hm : m ≤ 3) (x : ℝ) :
     ‖iteratedDeriv m (C b) x‖ ≤ (1 + (2:ℝ)^m) * C_uniPair := by
@@ -2595,6 +2910,9 @@ def D (c : ℝ) : ℕ → ℝ
   | 3 => 69 * (2 : ℝ) ^ 4 * c ^ 2 + 47 * 2 * 5 ^ 2 * c + 2 ^ 11
   | _ + 4 => 0
 
+/--
+@isnad1 id=and.10h4v.s9.f6489fe3d17f from=translated src=- shape=da1c0ea1 vocab=3c77fef4
+-/
 theorem pair_profile_bounds (c : ℝ) (A B : ℝ → ℂ)
     (hA : ContDiff ℝ 3 A) (hB : ContDiff ℝ 3 B) (x : ℝ)
     (hA0 : ‖iteratedDeriv 0 A x‖ ≤ 4)
@@ -2681,6 +2999,9 @@ theorem pair_profile_bounds (c : ℝ) (A B : ℝ → ℂ)
         gcongr
       _ = 1480*c + 2048 := by ring
 
+/--
+@isnad1 id=le.17h6v.s9.c0175d8c2495 from=translated src=- shape=b70cdfb4 vocab=b86a185c
+-/
 theorem triple_profile_bound (c : ℝ) (hc : 1 ≤ c)
     (A B C : ℝ → ℂ) (hA : ContDiff ℝ 3 A) (hB : ContDiff ℝ 3 B)
     (hC : ContDiff ℝ 3 C) (x : ℝ)
@@ -2910,10 +3231,16 @@ def B (b : windowBasedBumpFunctions) (k : ℤ) : ℝ → ℂ :=
 def C (b : windowBasedBumpFunctions) : ℝ → ℂ :=
   FourierTransform.fourier (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ))
 
+/--
+@isnad1 id=le.0h1v.s3.2dca7ba1cea1 from=translated src=- shape=99b3c5b0 vocab=c7946539
+-/
 theorem C_support (b : windowBasedBumpFunctions) :
     Function.support (C b) ⊆ aux_frequencyAnnulus := by
   exact bumpBasic b |>.1
 
+/--
+@isnad1 id=le.1h1v.s5.47aad0e13e58 from=translated src=- shape=59ce94c1 vocab=60d07e24
+-/
 theorem annulus_abs_lower {x : ℝ} (hx : x ∈ aux_frequencyAnnulus) :
     1 / 4 ≤ |x| := by
   rcases hx with hx | hx
@@ -2924,6 +3251,9 @@ theorem annulus_abs_lower {x : ℝ} (hx : x ∈ aux_frequencyAnnulus) :
     rw [abs_of_nonneg (by linarith [hx.1])]
     exact hx.1
 
+/--
+@isnad1 id=not.2h2v.s6.759a4daf9e9f from=translated src=- shape=f5b1437e vocab=f85f4def
+-/
 theorem scaled_outside (k : ℤ) (hk : k < -2) (x : ℝ)
     (hx : 1 / 4 ≤ |x|) :
     (2 : ℝ) ^ (-k) * x ∉ Set.Icc (-1 : ℝ) 1 := by
@@ -2940,6 +3270,9 @@ theorem scaled_outside (k : ℤ) (hk : k < -2) (x : ℝ)
   rw [abs_mul, abs_of_pos hpos] at hupper
   nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s6.e466f622e589 from=translated src=- shape=93b1e80d vocab=ff61d153
+-/
 theorem B_mul_C_zero (b : windowBasedBumpFunctions) (k : ℤ) (hk : k < -2) :
     B b k * C b = 0 := by
   funext x
@@ -2997,7 +3330,9 @@ pair}}^2+47\cdot2\cdot5^2C_{\text{Universal pair}}+2^{11}.
 $$
 
 See also `Auto.absDerivFourierPhiThreeLe`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=le.2h4v.s6.26920d0bd759 from=translated src=- shape=768f51be vocab=13a01b1d
+-/
 theorem absDerivFourierPhiThreeLe (b : windowBasedBumpFunctions) (m : ℕ)
     (hm : m < 4) (k : ℤ) (ξ : ℝ) (hξ : |ξ| ≤ 1) :
     ‖iteratedDeriv m
@@ -3057,6 +3392,9 @@ theorem absDerivFourierPhiThreeLe (b : windowBasedBumpFunctions) (m : ℕ)
     rw [hformula, hprod]
     interval_cases m <;> norm_num [C_absDerivFourierPhiThreeLe, C_uniPair]
 
+/--
+@isnad1 id=integrab.0h0v.s5.f08e7d91612b from=translated src=- shape=b3c5e44e vocab=fdc17c0d
+-/
 theorem aux_TphiThree_indicator_Ico_integrable :
     Integrable (aux_indicator (Set.Ico (0 : ℝ) 1)) := by
   rw [show aux_indicator (Set.Ico (0 : ℝ) 1) =
@@ -3065,6 +3403,9 @@ theorem aux_TphiThree_indicator_Ico_integrable :
   exact (continuous_const.integrableOn_Icc (a := (0 : ℝ)) (b := 1)).mono_set
     Ico_subset_Icc_self
 
+/--
+@isnad1 id=contdiff.0h0v.s6.5abff049e821 from=translated src=- shape=55e7f042 vocab=d40bd540
+-/
 theorem aux_TphiThree_indicator_fourier_contDiff :
     ContDiff ℝ (⊤ : ℕ∞)
       (FourierTransform.fourier
@@ -3090,6 +3431,9 @@ theorem aux_TphiThree_indicator_fourier_contDiff :
     simpa [Real.norm_eq_abs] using hpow
   · simp [aux_indicator, hx]
 
+/--
+@isnad1 id=eq.1h3v.s6.f642e2b941cf from=translated src=- shape=cc27012f vocab=6da7e34c
+-/
 theorem aux_TphiThree_rescale_fourier (t : ℝ) (ht : 0 < t)
     (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_realRescaled t f x : ℂ)) xi =
@@ -3128,6 +3472,9 @@ theorem aux_TphiThree_rescale_fourier (t : ℝ) (ht : 0 < t)
       push_cast
       ring_nf
 
+/--
+@isnad1 id=eq.2h3v.s7.76d8cf3dea27 from=translated src=- shape=91917df9 vocab=3cb4b296
+-/
 theorem aux_TphiThree_fourier_sub (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ ((f x - g x : ℝ) : ℂ)) xi =
@@ -3161,6 +3508,9 @@ theorem aux_TphiThree_fourier_sub (f g : ℝ → ℝ)
       integral_sub hf' hg'
     _ = _ := by rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.70ad11522f7a from=translated src=- shape=73562efd vocab=f0497481
+-/
 theorem aux_TphiThree_theta_fourier_eq (b : windowBasedBumpFunctions) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ)) xi =
       FourierTransform.fourier (fun x : ℝ ↦ (b.phi0 x : ℂ)) xi -
@@ -3175,6 +3525,9 @@ theorem aux_TphiThree_theta_fourier_eq (b : windowBasedBumpFunctions) (xi : ℝ)
     aux_TphiThree_fourier_sub _ _ b.phi0.integrable hrescale xi,
     aux_TphiThree_rescale_fourier 2 (by norm_num)]
 
+/--
+@isnad1 id=contdiff.0h1v.s6.b4e8ad7c611b from=translated src=- shape=3a1e5417 vocab=29417e00
+-/
 theorem aux_TphiThree_phi0_fourier_contDiff (b : windowBasedBumpFunctions) :
     ContDiff ℝ (⊤ : ℕ∞)
       (FourierTransform.fourier (fun x : ℝ ↦ (b.phi0 x : ℂ))) := by
@@ -3188,6 +3541,9 @@ theorem aux_TphiThree_phi0_fourier_contDiff (b : windowBasedBumpFunctions) :
   rw [SchwartzMap.fourier_coe, hphiC] at hs
   exact hs
 
+/--
+@isnad1 id=contdiff.0h1v.s6.ff75cf738666 from=translated src=- shape=e704ea13 vocab=26c29ba6
+-/
 theorem aux_TphiThree_theta_fourier_contDiff (b : windowBasedBumpFunctions) :
     ContDiff ℝ (⊤ : ℕ∞)
       (FourierTransform.fourier (fun x : ℝ ↦ (windowBasedBumpFunctions.theta b x : ℂ))) := by
@@ -3199,6 +3555,9 @@ theorem aux_TphiThree_theta_fourier_contDiff (b : windowBasedBumpFunctions) :
   exact (aux_TphiThree_phi0_fourier_contDiff b).sub
     ((aux_TphiThree_phi0_fourier_contDiff b).comp (by fun_prop))
 
+/--
+@isnad1 id=contdiff.0h2v.s6.cd4e211c8ce2 from=translated src=- shape=1f4b7374 vocab=6f23239c
+-/
 theorem aux_TphiThree_phiThree_fourier_contDiff
     (b : windowBasedBumpFunctions) (k : ℤ) :
     ContDiff ℝ (⊤ : ℕ∞)
@@ -3221,6 +3580,9 @@ theorem aux_TphiThree_phiThree_fourier_contDiff
       ((aux_TphiThree_phi0_fourier_contDiff b).comp (by fun_prop))).mul
         (aux_TphiThree_theta_fourier_contDiff b)
 
+/--
+@isnad1 id=le.0h2v.s5.cbb71564f162 from=translated src=- shape=3aaed579 vocab=200af627
+-/
 theorem aux_TphiThree_phiThree_fourier_support
     (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
@@ -3237,6 +3599,9 @@ theorem aux_TphiThree_phiThree_fourier_support
   rw [htheta]
   ring
 
+/--
+@isnad1 id=hascompa.0h2v.s5.a72d3a8e1efd from=translated src=- shape=1204453a vocab=6e7c18ba
+-/
 theorem aux_TphiThree_phiThree_fourier_compact
     (b : windowBasedBumpFunctions) (k : ℤ) :
     HasCompactSupport (FourierTransform.fourier
@@ -3249,6 +3614,9 @@ noncomputable def aux_TphiThree_G (b : windowBasedBumpFunctions) : ℝ → ℝ :
   fun x ↦ aux_realConvolution (aux_indicator (Set.Ico 0 1))
     (fun y ↦ b.phi0 y) x - b.phi0 x
 
+/--
+@isnad1 id=integrab.0h1v.s4.8349a1b4c48d from=translated src=- shape=b684bfc9 vocab=ecd75235
+-/
 theorem aux_TphiThree_theta_integrable (b : windowBasedBumpFunctions) :
     Integrable (windowBasedBumpFunctions.theta b) := by
   have hrescale : Integrable (aux_realRescaled 2 (fun y ↦ b.phi0 y)) := by
@@ -3258,17 +3626,26 @@ theorem aux_TphiThree_theta_integrable (b : windowBasedBumpFunctions) :
   change Integrable (fun x ↦ b.phi0 x - aux_realRescaled 2 (fun y ↦ b.phi0 y) x)
   exact b.phi0.integrable.sub hrescale
 
+/--
+@isnad1 id=continuo.0h1v.s4.55dd95ced964 from=translated src=- shape=8735051e vocab=ef950685
+-/
 theorem aux_TphiThree_theta_continuous (b : windowBasedBumpFunctions) :
     Continuous (windowBasedBumpFunctions.theta b) := by
   unfold windowBasedBumpFunctions.theta aux_realRescaled
   fun_prop
 
+/--
+@isnad1 id=integrab.2h2v.s6.62b5c8cd8cac from=translated src=- shape=93b8e303 vocab=22773ac6
+-/
 theorem aux_TphiThree_rescale_integrable (f : ℝ → ℝ) (hf : Integrable f)
     (t : ℝ) (ht : t ≠ 0) :
     Integrable (aux_realRescaled t f) := by
   unfold aux_realRescaled
   convert (hf.comp_mul_left' (inv_ne_zero ht)).const_mul t⁻¹ using 1
 
+/--
+@isnad1 id=integrab.0h1v.s4.e28b7e467377 from=translated src=- shape=b684bfc9 vocab=6bdcbea0
+-/
 theorem aux_TphiThree_G_integrable (b : windowBasedBumpFunctions) :
     Integrable (aux_TphiThree_G b) := by
   have hconv : Integrable (aux_realConvolution (aux_indicator (Set.Ico (0 : ℝ) 1))
@@ -3279,6 +3656,9 @@ theorem aux_TphiThree_G_integrable (b : windowBasedBumpFunctions) :
       (ContinuousLinearMap.mul ℝ ℝ) b.phi0.integrable
   exact hconv.sub b.phi0.integrable
 
+/--
+@isnad1 id=bddabove.0h1v.s4.12c7ecc0d6fe from=translated src=- shape=6ff6b139 vocab=568c7b0a
+-/
 theorem aux_TphiThree_theta_bddAbove (b : windowBasedBumpFunctions) :
     BddAbove (Set.range fun x ↦ ‖windowBasedBumpFunctions.theta b x‖) := by
   let S : ℝ := SchwartzMap.seminorm ℝ 0 0 b.phi0
@@ -3297,6 +3677,9 @@ theorem aux_TphiThree_theta_bddAbove (b : windowBasedBumpFunctions) :
           SchwartzMap.norm_le_seminorm ℝ b.phi0 ((2 : ℝ)⁻¹ * x)
     _ = (3 / 2 : ℝ) * S := by ring
 
+/--
+@isnad1 id=bddabove.0h2v.s4.28b94f37dd62 from=translated src=- shape=453bf47a vocab=de58faf1
+-/
 theorem aux_TphiThree_rescaled_theta_bddAbove
     (b : windowBasedBumpFunctions) (t : ℝ) :
     BddAbove (Set.range fun x ↦
@@ -3310,6 +3693,9 @@ theorem aux_TphiThree_rescaled_theta_bddAbove
   gcongr
   exact hC ⟨t⁻¹ * x, rfl⟩
 
+/--
+@isnad1 id=integrab.0h2v.s5.01cf7bc34095 from=translated src=- shape=af685a7a vocab=557857f3
+-/
 theorem aux_TphiThree_phiZero_integrable (b : windowBasedBumpFunctions) (k : ℤ) :
     Integrable (windowBasedBumpFunctions.phiZero b k) := by
   have hA : (2 : ℝ) ^ k ≠ 0 := by positivity
@@ -3320,6 +3706,9 @@ theorem aux_TphiThree_phiZero_integrable (b : windowBasedBumpFunctions) (k : ℤ
   exact (aux_TphiThree_G_integrable b).integrable_convolution
     (ContinuousLinearMap.mul ℝ ℝ) htheta
 
+/--
+@isnad1 id=continuo.0h2v.s4.dff4a68beae7 from=translated src=- shape=dffb4191 vocab=be770391
+-/
 theorem aux_TphiThree_phiZero_continuous (b : windowBasedBumpFunctions) (k : ℤ) :
     Continuous (windowBasedBumpFunctions.phiZero b k) := by
   have htheta : Continuous (aux_realRescaled ((2 : ℝ) ^ k)
@@ -3334,6 +3723,9 @@ theorem aux_TphiThree_phiZero_continuous (b : windowBasedBumpFunctions) (k : ℤ
     (aux_TphiThree_rescaled_theta_bddAbove b ((2 : ℝ) ^ k))
     (aux_TphiThree_G_integrable b) htheta
 
+/--
+@isnad1 id=integrab.0h2v.s5.4b90dd736b5e from=translated src=- shape=af685a7a vocab=ad606593
+-/
 theorem aux_TphiThree_phiThree_integrable (b : windowBasedBumpFunctions) (k : ℤ) :
     Integrable (windowBasedBumpFunctions.phiThree b k) := by
   have hB : (2 : ℝ) ^ (-k) ≠ 0 := by positivity
@@ -3342,6 +3734,9 @@ theorem aux_TphiThree_phiThree_integrable (b : windowBasedBumpFunctions) (k : �
   exact (aux_TphiThree_rescale_integrable (windowBasedBumpFunctions.phiZero b k)
     (aux_TphiThree_phiZero_integrable b k) ((2 : ℝ) ^ (-k)) hB).const_mul _
 
+/--
+@isnad1 id=continuo.0h2v.s4.8784ec5b2149 from=translated src=- shape=dffb4191 vocab=aa9b381b
+-/
 theorem aux_TphiThree_phiThree_continuous (b : windowBasedBumpFunctions) (k : ℤ) :
     Continuous (windowBasedBumpFunctions.phiThree b k) := by
   unfold windowBasedBumpFunctions.phiThree aux_realRescaled
@@ -3352,6 +3747,9 @@ theorem aux_TphiThree_phiThree_continuous (b : windowBasedBumpFunctions) (k : �
     continuous_const.mul ((aux_TphiThree_phiZero_continuous b k).comp hinner)
   exact continuous_const.mul hrescaled
 
+/--
+@isnad1 id=ex.0h2v.s6.59ca55f7e4ec from=translated src=- shape=ccad121e vocab=a6309453
+-/
 theorem aux_TphiThree_phiThree_schwartz
     (b : windowBasedBumpFunctions) (k : ℤ) :
     ∃ Phi : SchwartzMap ℝ ℂ, ∀ x : ℝ,
@@ -3387,7 +3785,9 @@ noncomputable def phiThreeSchwartz (b : windowBasedBumpFunctions) (k : ℤ) :
   (Classical.choose (aux_TphiThree_phiThree_schwartz b k)).postcompCLM
     (𝕜 := ℝ) Complex.reCLM
 
-/-- The real Schwartz realization agrees pointwise with the raw bump `phiThree`.-/
+/-- The real Schwartz realization agrees pointwise with the raw bump `phiThree`.
+@isnad1 id=eq.0h3v.s6.0b359b000b10 from=translated src=- shape=bbd6be5b vocab=57405042
+-/
 theorem phiThreeSchwartz_apply (b : windowBasedBumpFunctions) (k : ℤ) (x : ℝ) :
     phiThreeSchwartz b k x = windowBasedBumpFunctions.phiThree b k x := by
   have hPhi := Classical.choose_spec (aux_TphiThree_phiThree_schwartz b k)
@@ -3395,6 +3795,9 @@ theorem phiThreeSchwartz_apply (b : windowBasedBumpFunctions) (k : ℤ) (x : ℝ
   rw [hPhi]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s6.1bcd33b3e468 from=translated src=- shape=121319e1 vocab=9254ebdb
+-/
 theorem aux_TphiThree_aux_T_cast_eq (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) :
     (fun x : ℝ ↦ (aux_sd_T f x : ℂ)) =
       Auto.aux_T (fun x : ℝ ↦ (f x : ℂ)) := by
@@ -3451,7 +3854,9 @@ $$
 
 See also `Auto.absDerivFourierTPhiThreeLe`,
 `Auto.absDerivFourierPhiThreeLe`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=le.2h4v.s6.049715a221a9 from=translated src=- shape=9b447c4c vocab=98bf32bf
+-/
 theorem absDerivFourierTPhiThreeLe (b : windowBasedBumpFunctions) (m : ℕ)
     (hm : m < 3) (k : ℤ) (ξ : ℝ) (hξ : |ξ| ≤ 1) :
     ‖iteratedDeriv m
@@ -3505,7 +3910,9 @@ theorem absDerivFourierTPhiThreeLe (b : windowBasedBumpFunctions) (m : ℕ)
     _ = C_absDerivFourierTPhiThreeLe m := by
       rw [C_absDerivFourierTPhiThreeLe]
 
-/-- Auxiliary bounds for the physical-side primitive in `thetaPrimitive`.-/
+/-- Auxiliary bounds for the physical-side primitive in `thetaPrimitive`.
+@isnad1 id=le.1h2v.s5.e459d2d011a9 from=translated src=- shape=dae9a509 vocab=0c18c270
+-/
 theorem aux_thetaPrimitive_bracket_le_two_of_abs_le_twice (x z : ℝ)
     (h : |x| ≤ 2 * |z|) :
     bracketBump z ≤ 2 * bracketBump x := by
@@ -3516,7 +3923,9 @@ theorem aux_thetaPrimitive_bracket_le_two_of_abs_le_twice (x z : ℝ)
     (by positivity : 0 < 1 + |x|)).2
   nlinarith [abs_nonneg z]
 
-/-- A third-order physical decay bound for `phi0`, reused in `thetaPrimitive`.-/
+/-- A third-order physical decay bound for `phi0`, reused in `thetaPrimitive`.
+@isnad1 id=le.0h2v.s7.548d894deb1b from=translated src=- shape=707e462a vocab=cd4386aa
+-/
 theorem aux_thetaPrimitive_phi0_decay_three (b : windowBasedBumpFunctions) (u : ℝ) :
     |b.phi0 u| ≤ (2 : ℝ) ^ (3 + 2) * C_uniPair * bracketBump u ^ 3 := by
   let g : ℝ → ℂ := FourierTransform.fourier (fun x : ℝ => (b.phi0 x : ℂ))
@@ -3566,7 +3975,9 @@ theorem aux_thetaPrimitive_phi0_decay_three (b : windowBasedBumpFunctions) (u : 
   rw [hinv, Complex.norm_real, Real.norm_eq_abs] at hdecay
   exact hdecay
 
-/-- The cancellation in `theta` turns its half-line primitive into a finite interval integral.-/
+/-- The cancellation in `theta` turns its half-line primitive into a finite interval integral.
+@isnad1 id=eq.0h2v.s8.4b18c5d0a11b from=translated src=- shape=a59bfe02 vocab=6037a4c1
+-/
 theorem aux_thetaPrimitive_conv_theta_eq_interval (f : SchwartzMap ℝ ℝ) (x : ℝ) :
     aux_realConvolution (aux_indicator (Set.Ici 0))
       (fun z : ℝ => f z - aux_realRescaled 2 (fun w : ℝ => f w) z) x =
@@ -3631,6 +4042,9 @@ theorem aux_thetaPrimitive_conv_theta_eq_interval (f : SchwartzMap ℝ ℝ) (x :
   rw [MeasureTheory.integral_sub (hφIic x) hrescaleIic, hscaled]
   exact intervalIntegral.integral_Iic_sub_Iic (hφIic (x / 2)) (hφIic x)
 
+/--
+@isnad1 id=eq.0h2v.s6.2d63c4d29660 from=translated src=- shape=ed351af9 vocab=81487815
+-/
 theorem aux_thetaPrimitive_tilde_eq_interval
     (b : windowBasedBumpFunctions) (x : ℝ) :
     windowBasedBumpFunctions.thetaTilde b x =
@@ -3639,6 +4053,9 @@ theorem aux_thetaPrimitive_tilde_eq_interval
     (fun z : ℝ => b.phi0 z - aux_realRescaled 2 (fun w : ℝ => b.phi0 w) z) x = _
   exact aux_thetaPrimitive_conv_theta_eq_interval b.phi0 x
 
+/--
+@isnad1 id=le.1h2v.s5.343b2b0b92b4 from=translated src=- shape=207faf6b vocab=d002f844
+-/
 theorem aux_thetaPrimitive_abs_le_two_abs_of_mem_uIcc_half (x z : ℝ)
     (hz : z ∈ Set.uIcc (x / 2) x) :
     |x| ≤ 2 * |z| := by
@@ -3652,6 +4069,9 @@ theorem aux_thetaPrimitive_abs_le_two_abs_of_mem_uIcc_half (x z : ℝ)
     rw [abs_of_nonpos hxnonpos, abs_of_nonpos hznonpos]
     linarith
 
+/--
+@isnad1 id=le.0h2v.s6.9784d437d95e from=translated src=- shape=f38f17f2 vocab=ec45a402
+-/
 theorem aux_thetaPrimitive_tilde_decay_two_sharp (b : windowBasedBumpFunctions) (u : ℝ) :
     |windowBasedBumpFunctions.thetaTilde b u| ≤
       (2 : ℝ) ^ 7 * C_uniPair * bracketBump u ^ 2 := by
@@ -3701,6 +4121,9 @@ theorem aux_thetaPrimitive_tilde_decay_two_sharp (b : windowBasedBumpFunctions) 
       nlinarith [mul_nonneg hcoeff hpow]
     _ = (2 : ℝ) ^ 7 * C_uniPair * bracketBump u ^ 2 := by rfl
 
+/--
+@isnad1 id=le.0h2v.s5.899503890d7c from=translated src=- shape=c63e9b11 vocab=0673c41b
+-/
 theorem aux_thetaPrimitive_tilde_decay_two (b : windowBasedBumpFunctions) (u : ℝ) :
     |windowBasedBumpFunctions.thetaTilde b u| ≤
       C_thetaPrimitive 2 * bracketBump u ^ 2 := by
@@ -3714,6 +4137,9 @@ theorem aux_thetaPrimitive_tilde_decay_two (b : windowBasedBumpFunctions) (u : �
         exact pow_nonneg (by rw [bracketBump]; positivity) _
       gcongr <;> norm_num [C_uniPair]
 
+/--
+@isnad1 id=eq.0h2v.s7.60eea0720f63 from=translated src=- shape=8c863ebe vocab=4ce4f73a
+-/
 theorem aux_thetaPrimitive_tilde_eq_primitive_difference
     (b : windowBasedBumpFunctions) (x : ℝ) :
     windowBasedBumpFunctions.thetaTilde b x =
@@ -3723,6 +4149,9 @@ theorem aux_thetaPrimitive_tilde_eq_primitive_difference
   exact intervalIntegral.integral_interval_sub_left
     b.phi0.integrable.intervalIntegrable b.phi0.integrable.intervalIntegrable
 
+/--
+@isnad1 id=continuo.0h1v.s4.32e2706e557e from=translated src=- shape=8735051e vocab=03fd06ee
+-/
 theorem aux_thetaPrimitive_tilde_continuous (b : windowBasedBumpFunctions) :
     Continuous (windowBasedBumpFunctions.thetaTilde b) := by
   let F : ℝ → ℝ := fun x => ∫ z : ℝ in 0..x, b.phi0 z
@@ -3734,6 +4163,9 @@ theorem aux_thetaPrimitive_tilde_continuous (b : windowBasedBumpFunctions) :
         exact aux_thetaPrimitive_tilde_eq_primitive_difference b x]
   exact hF.sub hcomp
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.2a97c6976c63 from=translated src=- shape=f4cbe5c8 vocab=086c82d1
+-/
 theorem aux_thetaPrimitive_tilde_hasDerivAt (b : windowBasedBumpFunctions) (x : ℝ) :
     HasDerivAt (windowBasedBumpFunctions.thetaTilde b)
       (windowBasedBumpFunctions.theta b x) x := by
@@ -3756,6 +4188,9 @@ theorem aux_thetaPrimitive_tilde_hasDerivAt (b : windowBasedBumpFunctions) (x : 
   rw [hfun] at hd
   simpa [windowBasedBumpFunctions.theta, aux_realRescaled, div_eq_mul_inv, mul_comm] using hd
 
+/--
+@isnad1 id=integrab.0h1v.s4.086839b97e96 from=translated src=- shape=b684bfc9 vocab=6f1ba3fd
+-/
 theorem aux_thetaPrimitive_tilde_integrable (b : windowBasedBumpFunctions) :
     Integrable (windowBasedBumpFunctions.thetaTilde b) := by
   apply Integrable.mono' (integrable_inv_one_add_sq.const_mul (C_thetaPrimitive 2))
@@ -3779,12 +4214,18 @@ theorem aux_thetaPrimitive_tilde_integrable (b : windowBasedBumpFunctions) :
           rw [← inv_pow]]
         exact (inv_le_inv₀ hright hleft).mpr hsq
 
+/--
+@isnad1 id=continuo.0h1v.s4.55dd95ced964 from=translated src=- shape=8735051e vocab=ef950685
+-/
 theorem aux_thetaPrimitive_theta_continuous (b : windowBasedBumpFunctions) :
     Continuous (windowBasedBumpFunctions.theta b) := by
   unfold windowBasedBumpFunctions.theta aux_realRescaled
   exact b.phi0.continuous.sub
     (continuous_const.mul (b.phi0.continuous.comp (continuous_const.mul continuous_id)))
 
+/--
+@isnad1 id=integrab.0h1v.s4.8349a1b4c48d from=translated src=- shape=b684bfc9 vocab=ecd75235
+-/
 theorem aux_thetaPrimitive_theta_integrable (b : windowBasedBumpFunctions) :
     Integrable (windowBasedBumpFunctions.theta b) := by
   apply Integrable.mono' (integrable_inv_one_add_sq.const_mul (C_thetaDecay 3))
@@ -3818,6 +4259,9 @@ theorem aux_thetaPrimitive_theta_integrable (b : windowBasedBumpFunctions) :
         rw [show (1 + |x|)⁻¹ ^ 2 = ((1 + |x|) ^ 2)⁻¹ by rw [← inv_pow]]
         exact (inv_le_inv₀ hright hleft).mpr hsq
 
+/--
+@isnad1 id=integrab.0h1v.s5.91a87ec312ab from=translated src=- shape=e81fc27d vocab=22181ace
+-/
 theorem aux_thetaPrimitive_x_theta_integrable (b : windowBasedBumpFunctions) :
     Integrable (fun x : ℝ => x * windowBasedBumpFunctions.theta b x) := by
   apply Integrable.mono' (integrable_inv_one_add_sq.const_mul (C_thetaDecay 3))
@@ -3851,18 +4295,27 @@ theorem aux_thetaPrimitive_x_theta_integrable (b : windowBasedBumpFunctions) :
         rw [show (1 + |x|)⁻¹ ^ 2 = ((1 + |x|) ^ 2)⁻¹ by rw [← inv_pow]]
         exact (inv_le_inv₀ hright hleft).mpr hsq
 
+/--
+@isnad1 id=eq.0h2v.s6.3f731f00d77a from=translated src=- shape=8fae9215 vocab=1d28280f
+-/
 theorem aux_thetaPrimitive_tilde_complex_deriv
     (b : windowBasedBumpFunctions) (x : ℝ) :
     deriv (fun y : ℝ => (windowBasedBumpFunctions.thetaTilde b y : ℂ)) x =
       (windowBasedBumpFunctions.theta b x : ℂ) := by
   simpa using (aux_thetaPrimitive_tilde_hasDerivAt b x).ofReal_comp.deriv
 
+/--
+@isnad1 id=differen.0h1v.s6.859074f206ef from=translated src=- shape=afd02174 vocab=8d625248
+-/
 theorem aux_thetaPrimitive_tilde_complex_differentiable
     (b : windowBasedBumpFunctions) :
     Differentiable ℝ (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ)) := by
   intro x
   exact (aux_thetaPrimitive_tilde_hasDerivAt b x).ofReal_comp.differentiableAt
 
+/--
+@isnad1 id=eq.0h1v.s6.3b2ee25ef531 from=translated src=- shape=14b1c672 vocab=f7bb8e38
+-/
 theorem aux_thetaPrimitive_tilde_fourier_deriv (b : windowBasedBumpFunctions) :
     FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.theta b x : ℂ)) =
@@ -3883,6 +4336,9 @@ theorem aux_thetaPrimitive_tilde_fourier_deriv (b : windowBasedBumpFunctions) :
     exact aux_thetaPrimitive_tilde_complex_deriv b x
   simpa [f, hderiv] using hmain
 
+/--
+@isnad1 id=continuo.0h1v.s5.9057f473b792 from=translated src=- shape=e40dd25c vocab=7dd59624
+-/
 theorem aux_thetaPrimitive_tilde_fourier_continuous (b : windowBasedBumpFunctions) :
     Continuous (FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ))) := by
@@ -3899,6 +4355,9 @@ theorem aux_thetaPrimitive_tilde_fourier_continuous (b : windowBasedBumpFunction
     simpa using hf.norm
   exact hcont.continuous
 
+/--
+@isnad1 id=eq.2h2v.s6.1b7fb6930025 from=translated src=- shape=40e04c2d vocab=19c94bbd
+-/
 theorem aux_thetaPrimitive_tilde_fourier_zero_of_not_annulus
     (b : windowBasedBumpFunctions) (xi : ℝ) (hxi : xi ∉ aux_frequencyAnnulus)
     (hxi0 : xi ≠ 0) :
@@ -3925,6 +4384,9 @@ theorem aux_thetaPrimitive_tilde_fourier_zero_of_not_annulus
     · exact Complex.I_ne_zero
   · exact_mod_cast hxi0
 
+/--
+@isnad1 id=eq.0h1v.s5.599c75ce06ef from=translated src=- shape=9a8c329a vocab=6a4615a4
+-/
 theorem aux_thetaPrimitive_tilde_fourier_zero_at_zero (b : windowBasedBumpFunctions) :
     FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ)) 0 = 0 := by
@@ -3958,6 +4420,9 @@ theorem aux_thetaPrimitive_tilde_fourier_zero_at_zero (b : windowBasedBumpFuncti
     (tendsto_congr' hzeroevent).2 tendsto_const_nhds
   exact tendsto_nhds_unique hlim hzero
 
+/--
+@isnad1 id=le.0h1v.s5.43a5626d0108 from=translated src=- shape=b66c1c0a vocab=cd9ce817
+-/
 theorem aux_thetaPrimitive_tilde_fourier_support (b : windowBasedBumpFunctions) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ))) ⊆
@@ -3970,6 +4435,9 @@ theorem aux_thetaPrimitive_tilde_fourier_support (b : windowBasedBumpFunctions) 
     exact aux_thetaPrimitive_tilde_fourier_zero_at_zero b
   · exact aux_thetaPrimitive_tilde_fourier_zero_of_not_annulus b xi hxi hxi0
 
+/--
+@isnad1 id=eq.0h3v.s6.15c37c96896c from=translated src=- shape=0a75b386 vocab=acba9ad2
+-/
 theorem aux_thetaPrimitive_fourier_complex_const_mul
     (c : ℂ) (f : ℝ → ℂ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => c * f x) xi =
@@ -3980,6 +4448,9 @@ theorem aux_thetaPrimitive_fourier_complex_const_mul
   filter_upwards [] with x
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.7df4670bf119 from=translated src=- shape=fe75e4ea vocab=094613bf
+-/
 theorem aux_thetaPrimitive_fourier_add_of_integrable (f g : ℝ → ℂ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => f x + g x) xi =
@@ -4005,6 +4476,9 @@ theorem aux_thetaPrimitive_fourier_add_of_integrable (f g : ℝ → ℂ)
   change e x • (f x + g x) = e x • f x + e x • g x
   rw [smul_add]
 
+/--
+@isnad1 id=eq.0h1v.s7.ffb1d51840e9 from=translated src=- shape=6114f95a vocab=d7ede017
+-/
 theorem aux_thetaPrimitive_theta_fourier_deriv (b : windowBasedBumpFunctions) :
     deriv (FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.theta b x : ℂ))) =
@@ -4022,6 +4496,9 @@ theorem aux_thetaPrimitive_theta_fourier_deriv (b : windowBasedBumpFunctions) :
   have hmain := Real.deriv_fourier hf hmoment
   simpa [f, smul_eq_mul] using hmain
 
+/--
+@isnad1 id=eq.1h2v.s6.28150990e24c from=translated src=- shape=91a2c34e vocab=f9543c9a
+-/
 theorem aux_thetaPrimitive_theta_fourier_deriv_zero_of_not_annulus
     (b : windowBasedBumpFunctions) (xi : ℝ) (hxi : xi ∉ aux_frequencyAnnulus) :
     deriv (FourierTransform.fourier
@@ -4037,6 +4514,9 @@ theorem aux_thetaPrimitive_theta_fourier_deriv_zero_of_not_annulus
   have hnot : xi ∉ tsupport F := fun hx => hxi (htsupp hx)
   simpa [F] using (deriv_of_notMem_tsupport hnot)
 
+/--
+@isnad1 id=eq.1h2v.s5.f8fce6c7fd97 from=translated src=- shape=3175caa5 vocab=47f4de69
+-/
 theorem aux_thetaPrimitive_x_theta_fourier_zero_of_not_annulus
     (b : windowBasedBumpFunctions) (xi : ℝ) (hxi : xi ∉ aux_frequencyAnnulus) :
     FourierTransform.fourier
@@ -4067,6 +4547,9 @@ theorem aux_thetaPrimitive_x_theta_fourier_zero_of_not_annulus
   rw [heq]
   exact hresult
 
+/--
+@isnad1 id=eq.0h1v.s5.28529e46b05c from=translated src=- shape=b016a06f vocab=d9f300a1
+-/
 theorem aux_thetaPrimitive_T_tilde_eq (b : windowBasedBumpFunctions) :
     aux_sd_T (windowBasedBumpFunctions.thetaTilde b) =
       fun x : ℝ => windowBasedBumpFunctions.thetaTilde b x +
@@ -4082,6 +4565,9 @@ theorem aux_thetaPrimitive_T_tilde_eq (b : windowBasedBumpFunctions) :
   rw [hfun] at hd
   simpa using hd
 
+/--
+@isnad1 id=le.0h1v.s5.ae393264eb0a from=translated src=- shape=38bd5304 vocab=f202bd57
+-/
 theorem aux_thetaPrimitive_T_tilde_fourier_support (b : windowBasedBumpFunctions) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ => (aux_sd_T (windowBasedBumpFunctions.thetaTilde b) x : ℂ))) ⊆
@@ -4125,6 +4611,9 @@ theorem aux_thetaPrimitive_T_tilde_fourier_support (b : windowBasedBumpFunctions
       rw [hA, hB']
       simp)
 
+/--
+@isnad1 id=le.0h0v.s5.40cd225c317c from=translated src=- shape=200b4275 vocab=7c099ab9
+-/
 theorem aux_thetaPrimitive_frequencyAnnulus_subset_annulusOne :
     aux_frequencyAnnulus ⊆ aux_sd_annulusOne 1 ((2 : ℝ) ^ 2) := by
   intro xi hxi
@@ -4145,6 +4634,9 @@ theorem aux_thetaPrimitive_frequencyAnnulus_subset_annulusOne :
       norm_num
       linarith [hxi.2]
 
+/--
+@isnad1 id=le.2h3v.s5.05ad1a1fc806 from=translated src=- shape=a73c13dc vocab=623bdeed
+-/
 theorem aux_thetaPrimitive_tilde_decay_N (b : windowBasedBumpFunctions) (N : ℕ)
     (hN_two : 2 ≤ N) (hN_uni : N < N_uniPair) (u : ℝ) :
     |windowBasedBumpFunctions.thetaTilde b u| ≤
@@ -4155,6 +4647,9 @@ theorem aux_thetaPrimitive_tilde_decay_N (b : windowBasedBumpFunctions) (N : ℕ
   subst N
   exact aux_thetaPrimitive_tilde_decay_two b u
 
+/--
+@isnad1 id=le.2h3v.s5.13ee010816a4 from=translated src=- shape=9306b155 vocab=2966d0f5
+-/
 theorem aux_thetaPrimitive_T_tilde_decay_N (b : windowBasedBumpFunctions) (N : ℕ)
     (hN_two : 2 ≤ N) (hN_uni : N < N_uniPair) (u : ℝ) :
     |aux_sd_T (windowBasedBumpFunctions.thetaTilde b) u| ≤
@@ -4230,7 +4725,9 @@ C_{\text{lem:theta\_prim},N}
 $$
 
 See also `Auto.uniPair`,
-`Auto.thetaPrimitive`.-/
+`Auto.thetaPrimitive`.
+@isnad1 id=and.2h2v.s8.9fc2fd1593c8 from=translated src=- shape=d63d9ba1 vocab=3df2a895
+-/
 theorem thetaPrimitive (b : windowBasedBumpFunctions) (N : ℕ)
     (hN_two : 2 ≤ N) (hN_uni : N < N_uniPair) :
     (Function.support (FourierTransform.fourier
@@ -4267,7 +4764,9 @@ C_{\text{lem:theta\_prim},2}\le2^{31}.
 $$
 
 See also `Auto.thetaPrimitive`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=and.2h1v.s6.36728a5813a6 from=translated src=- shape=cb492c58 vocab=335d4d4f
+-/
 theorem constantThetaPrimitive (N : ℕ) (hN_two : 2 ≤ N) (hN_uni : N < N_uniPair) :
     C_thetaPrimitive N ≤ (2 : ℝ) ^ (5 * N + 21) ∧
     C_thetaPrimitive 2 ≤ (2 : ℝ) ^ 31 := by
@@ -4277,6 +4776,9 @@ theorem constantThetaPrimitive (N : ℕ) (hN_two : 2 ≤ N) (hN_uni : N < N_uniP
   · rw [C_thetaPrimitive, C_uniPair, ← pow_add]
   · norm_num [C_thetaPrimitive, C_uniPair]
 
+/--
+@isnad1 id=eq.0h3v.s7.091d5a724dc2 from=translated src=- shape=7ec8367e vocab=de26c37b
+-/
 theorem aux_phiFour_fourier_translate
     (f : ℝ → ℂ) (a xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => f (x - a)) xi =
@@ -4290,6 +4792,9 @@ theorem aux_phiFour_fourier_translate
     (VectorFourier.fourierIntegral_comp_add_right Real.fourierChar volume
       (innerₗ ℝ) f (-a)) xi
 
+/--
+@isnad1 id=le.1h4v.s6.7a20119e5c70 from=translated src=- shape=90c76f32 vocab=347cc034
+-/
 theorem aux_phiFour_real_scaled_translated_support
     (c a : ℝ) (f : ℝ → ℝ) (s : Set ℝ)
     (hs : Function.support
@@ -4311,6 +4816,9 @@ theorem aux_phiFour_real_scaled_translated_support
   rw [hzero]
   simp
 
+/--
+@isnad1 id=le.4h6v.s7.a15672e3ad73 from=translated src=- shape=d634452d vocab=e50a5be0
+-/
 theorem aux_phiFour_sum_scaled_translated_support
     (c d a : ℝ) (f g : ℝ → ℝ) (s : Set ℝ)
     (hf : Integrable f) (hg : Integrable g)
@@ -4346,12 +4854,18 @@ theorem aux_phiFour_sum_scaled_translated_support
   · exact ((hf.comp_sub_right a).ofReal.const_mul _)
   · exact ((hg.comp_sub_right a).ofReal.const_mul _)
 
+/--
+@isnad1 id=integrab.0h1v.s5.8bab5380f6a2 from=translated src=- shape=6f25d1b4 vocab=b9956591
+-/
 theorem aux_phiFour_TthetaTilde_integrable (b : windowBasedBumpFunctions) :
     Integrable (aux_sd_T (windowBasedBumpFunctions.thetaTilde b)) := by
   rw [aux_thetaPrimitive_T_tilde_eq]
   exact (aux_thetaPrimitive_tilde_integrable b).add
     (aux_thetaPrimitive_x_theta_integrable b)
 
+/--
+@isnad1 id=eq.0h2v.s7.9e49a008e691 from=translated src=- shape=879d1d7d vocab=a9552b1b
+-/
 theorem aux_phiFour_T_eq (b : windowBasedBumpFunctions) (k : ℤ) :
     aux_sd_T (windowBasedBumpFunctions.phiFour b k) =
       fun x : ℝ => (2 : ℝ) ^ k *
@@ -4390,7 +4904,9 @@ theorem aux_phiFour_T_eq (b : windowBasedBumpFunctions) (k : ℤ) :
   rw [aux_thetaPrimitive_T_tilde_eq]
   exact hderiv'.trans (by ring)
 
-/-- The Fourier transform of `phiFour`, with its translation phase explicit.-/
+/-- The Fourier transform of `phiFour`, with its translation phase explicit.
+@isnad1 id=eq.0h3v.s7.8598fc63f15d from=translated src=- shape=eaa571c4 vocab=d762c72e
+-/
 theorem phiFour_fourier_eq (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier
@@ -4424,13 +4940,18 @@ theorem phiFour_fourier_eq (b : windowBasedBumpFunctions) (k : ℤ)
       rw [Circle.smul_def, smul_eq_mul]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s7.7665ec9df3fd from=translated src=- shape=636848e9 vocab=3d164e7c
+-/
 theorem aux_fourierChar_neg_mul_self (u : ℝ) :
     (Real.fourierChar (-u) : ℂ) * Real.fourierChar u = 1 := by
   rw [Real.fourierChar_apply, Real.fourierChar_apply]
   rw [← Complex.exp_add]
   simp
 
-/-- The translation phases cancel in the paired Fourier product of `phiFour`.-/
+/-- The translation phases cancel in the paired Fourier product of `phiFour`.
+@isnad1 id=eq.0h3v.s7.a59c2875fd8e from=translated src=- shape=82f32b09 vocab=910ba443
+-/
 theorem phiFour_fourier_pair_eq (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier
@@ -4482,7 +5003,9 @@ theorem phiFour_fourier_pair_eq (b : windowBasedBumpFunctions) (k : ℤ)
       rw [hscale]
     _ = _ := by rw [hphase]; ring
 
-/-- The explicit logarithmic-derivative formula for `phiFour`.-/
+/-- The explicit logarithmic-derivative formula for `phiFour`.
+@isnad1 id=eq.0h2v.s7.9e49a008e691 from=translated src=- shape=879d1d7d vocab=a9552b1b
+-/
 theorem phiFour_T_eq (b : windowBasedBumpFunctions) (k : ℤ) :
     aux_sd_T (windowBasedBumpFunctions.phiFour b k) =
       fun x : ℝ => (2 : ℝ) ^ k *
@@ -4500,7 +5023,9 @@ We have
 \subset  [-1,-2^{-2}]\cup [2^{-2},1]$\\
 
 (b) $\textup{supp}(\widehat{T\varphi_{4,k}})
-\subset  [-1,-2^{-2}]\cup [2^{-2},1]$-/
+\subset  [-1,-2^{-2}]\cup [2^{-2},1]$
+@isnad1 id=and.0h2v.s6.50ed5e75daac from=translated src=- shape=d3a617b3 vocab=a437a77c
+-/
 theorem phiFourSupport (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ ↦ (windowBasedBumpFunctions.phiFour b k x : ℂ))) ⊆
@@ -4557,11 +5082,17 @@ noncomputable def aux_thetaSchwartz (b : windowBasedBumpFunctions) :
     SchwartzMap.compCLMOfContinuousLinearEquiv ℝ
       (ContinuousLinearEquiv.smulLeft (Units.mk0 ((2 : ℝ)⁻¹) (by norm_num))) b.phi0
 
+/--
+@isnad1 id=eq.0h2v.s6.f5386a6bbc24 from=translated src=- shape=adfa6799 vocab=17c6a099
+-/
 theorem aux_thetaSchwartz_apply (b : windowBasedBumpFunctions) (x : ℝ) :
     aux_thetaSchwartz b x = windowBasedBumpFunctions.theta b x := by
   simp [aux_thetaSchwartz, windowBasedBumpFunctions.theta, aux_realRescaled,
     ContinuousLinearEquiv.smulLeft_apply_apply]
 
+/--
+@isnad1 id=ex.0h2v.s7.c72d0f1462af from=translated src=- shape=2eb283be vocab=9693135a
+-/
 theorem aux_schwartzBracketDecay (f : SchwartzMap ℝ ℝ) (N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x : ℝ, |f x| ≤ C * bracketBump x ^ N := by
   let C : ℝ := (2 : ℝ) ^ N *
@@ -4585,6 +5116,9 @@ theorem aux_schwartzBracketDecay (f : SchwartzMap ℝ ℝ) (N : ℕ) :
     _ = C * bracketBump x ^ N := by
       rw [div_eq_mul_inv, bracketBump, inv_pow]
 
+/--
+@isnad1 id=le.2h4v.s6.64dd75ffeb60 from=translated src=- shape=b4c8199d vocab=c0c2788e
+-/
 theorem aux_bracketDecayWeighted (g : ℝ → ℝ) (C : ℝ) (k : ℕ) (hC : 0 ≤ C)
     (hdecay : ∀ x : ℝ, |g x| ≤ C * bracketBump x ^ k) :
     ∀ x : ℝ, ‖x‖ ^ k * ‖g x‖ ≤ C := by
@@ -4608,6 +5142,9 @@ theorem aux_bracketDecayWeighted (g : ℝ → ℝ) (C : ℝ) (k : ℕ) (hC : 0 �
     _ ≤ C * 1 := by exact mul_le_mul_of_nonneg_left hpow hC
     _ = C := mul_one _
 
+/--
+@isnad1 id=ex.1h3v.s7.03133d25de3c from=translated src=- shape=f6480d8e vocab=8ff61c8f
+-/
 theorem aux_intervalPrimitive_bracketDecay
     (f : SchwartzMap ℝ ℝ) (g : ℝ → ℝ)
     (hinterval : ∀ x : ℝ, g x = ∫ z : ℝ in x / 2..x, f z)
@@ -4730,12 +5267,16 @@ noncomputable def thetaTildeSchwartz (b : windowBasedBumpFunctions) :
     SchwartzMap ℝ ℝ :=
   aux_thetaTildeSchwartz b
 
-/-- thetaTildeSchwartz has the raw primitive as its coercion.-/
+/-- thetaTildeSchwartz has the raw primitive as its coercion.
+@isnad1 id=eq.0h2v.s6.6c2685265f48 from=translated src=- shape=adfa6799 vocab=551ab1cc
+-/
 theorem thetaTildeSchwartz_apply (b : windowBasedBumpFunctions) (x : ℝ) :
     thetaTildeSchwartz b x = windowBasedBumpFunctions.thetaTilde b x := by
   rfl
 
-/-- Fourier support of the primitive thetaTilde.-/
+/-- Fourier support of the primitive thetaTilde.
+@isnad1 id=le.0h1v.s5.43a5626d0108 from=translated src=- shape=b66c1c0a vocab=cd9ce817
+-/
 theorem thetaTildeFourier_support (b : windowBasedBumpFunctions) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ))) ⊆
@@ -4747,6 +5288,9 @@ noncomputable def aux_thetaTildeFourier (b : windowBasedBumpFunctions) :
   FourierTransform.fourier
     (fun x : ℝ => (windowBasedBumpFunctions.thetaTilde b x : ℂ))
 
+/--
+@isnad1 id=contdiff.0h1v.s5.aebd7c9efa36 from=translated src=- shape=d0bc4254 vocab=6c6d1cd8
+-/
 theorem aux_thetaTildeFourier_smooth (b : windowBasedBumpFunctions) :
     ContDiff ℝ 3 (aux_thetaTildeFourier b) := by
   let Phi : SchwartzMap ℝ ℂ :=
@@ -4761,6 +5305,9 @@ theorem aux_thetaTildeFourier_smooth (b : windowBasedBumpFunctions) :
   rw [SchwartzMap.fourier_coe, hPhi] at hs
   exact hs
 
+/--
+@isnad1 id=eq.0h1v.s5.e9ef8c71b790 from=translated src=- shape=af212bfe vocab=80d98af6
+-/
 theorem aux_thetaTildeFourier_formula (b : windowBasedBumpFunctions) :
     aux_phiThreeBC.C b = fun xi : ℝ =>
       (2 * Real.pi * Complex.I * (xi : ℂ)) * aux_thetaTildeFourier b xi := by
@@ -4768,6 +5315,9 @@ theorem aux_thetaTildeFourier_formula (b : windowBasedBumpFunctions) :
   simpa [aux_phiThreeBC.C, aux_thetaTildeFourier, smul_eq_mul] using
     congrFun (aux_thetaPrimitive_tilde_fourier_deriv b) xi
 
+/--
+@isnad1 id=eq.0h1v.s6.a382043cb9e0 from=translated src=- shape=94d388b5 vocab=fd37849b
+-/
 theorem aux_thetaTilde_linearComplex_deriv (x : ℝ) :
     deriv (fun y : ℝ => 2 * Real.pi * Complex.I * (y : ℂ)) x =
       2 * Real.pi * Complex.I := by
@@ -4776,12 +5326,18 @@ theorem aux_thetaTilde_linearComplex_deriv (x : ℝ) :
       (hasDerivAt_const x Complex.ofRealCLM).clm_apply (hasDerivAt_id x)
   simpa using (hcast.const_mul (2 * Real.pi * Complex.I)).deriv
 
+/--
+@isnad1 id=eq.0h0v.s6.726f16c0d589 from=translated src=- shape=b380e455 vocab=fd37849b
+-/
 theorem aux_thetaTilde_linearComplex_deriv_fun :
     deriv (fun y : ℝ => 2 * Real.pi * Complex.I * (y : ℂ)) =
       fun _ : ℝ => 2 * Real.pi * Complex.I := by
   funext x
   exact aux_thetaTilde_linearComplex_deriv x
 
+/--
+@isnad1 id=le.1h1v.s5.47aad0e13e58 from=translated src=- shape=59ce94c1 vocab=60d07e24
+-/
 theorem aux_thetaTilde_frequencyAnnulus_abs_lower {xi : ℝ}
     (hxi : xi ∈ aux_frequencyAnnulus) :
     (1 / 4 : ℝ) ≤ |xi| := by
@@ -4791,6 +5347,9 @@ theorem aux_thetaTilde_frequencyAnnulus_abs_lower {xi : ℝ}
   · rw [abs_of_nonneg (by linarith [hxi.1])]
     exact hxi.1
 
+/--
+@isnad1 id=le.1h1v.s4.c4d289dc1bd3 from=translated src=- shape=1579e6f8 vocab=8942b6f9
+-/
 theorem aux_thetaTilde_frequencyAnnulus_abs_upper {xi : ℝ}
     (hxi : xi ∈ aux_frequencyAnnulus) : |xi| ≤ 1 := by
   rcases hxi with hxi | hxi
@@ -4799,16 +5358,25 @@ theorem aux_thetaTilde_frequencyAnnulus_abs_upper {xi : ℝ}
   · rw [abs_of_nonneg (by linarith [hxi.1])]
     exact hxi.2
 
+/--
+@isnad1 id=eq.0h0v.s5.767b5fbb7c60 from=translated src=- shape=b44d8087 vocab=fca6114b
+-/
 theorem aux_thetaTilde_linearComplex_norm :
     ‖(2 * Real.pi * Complex.I : ℂ)‖ = 2 * Real.pi := by
   norm_num [norm_mul, Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg Real.pi_pos.le, Complex.norm_I]
 
+/--
+@isnad1 id=le.0h0v.s5.0f6059d589b2 from=translated src=- shape=1ce734a1 vocab=726ec7e4
+-/
 theorem aux_thetaTilde_linearComplex_norm_le_eight :
     ‖(2 * Real.pi * Complex.I : ℂ)‖ ≤ 8 := by
   rw [aux_thetaTilde_linearComplex_norm]
   nlinarith [Real.pi_le_four]
 
+/--
+@isnad1 id=le.1h1v.s5.9e7daee890ea from=translated src=- shape=15b16da1 vocab=9eea98bd
+-/
 theorem aux_thetaTilde_linearComplex_mul_norm_ge_one {xi : ℝ}
     (hxi : xi ∈ aux_frequencyAnnulus) :
     1 ≤ ‖2 * Real.pi * Complex.I * (xi : ℂ)‖ := by
@@ -4817,6 +5385,9 @@ theorem aux_thetaTilde_linearComplex_mul_norm_ge_one {xi : ℝ}
   have hlow := aux_thetaTilde_frequencyAnnulus_abs_lower hxi
   nlinarith [Real.two_le_pi]
 
+/--
+@isnad1 id=eq.0h2v.s6.9cb5e5a4d7df from=translated src=- shape=09601870 vocab=c7e32deb
+-/
 theorem aux_thetaTildeFourier_deriv_zero
     (b : windowBasedBumpFunctions) (xi : ℝ) :
     iteratedDeriv 0 (aux_phiThreeBC.C b) xi =
@@ -4824,6 +5395,9 @@ theorem aux_thetaTildeFourier_deriv_zero
   rw [aux_thetaTildeFourier_formula]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.f06087aadb71 from=translated src=- shape=fe59c597 vocab=de6c0d45
+-/
 theorem aux_thetaTildeFourier_deriv_one
     (b : windowBasedBumpFunctions) (xi : ℝ) :
     iteratedDeriv 1 (aux_phiThreeBC.C b) xi =
@@ -4843,6 +5417,9 @@ theorem aux_thetaTildeFourier_deriv_one
   rw [deriv_mul hleft hright]
   rw [aux_thetaTilde_linearComplex_deriv]
 
+/--
+@isnad1 id=eq.0h2v.s7.00877fac62ed from=translated src=- shape=8c1a161d vocab=de6c0d45
+-/
 theorem aux_thetaTildeFourier_deriv_two
     (b : windowBasedBumpFunctions) (xi : ℝ) :
     iteratedDeriv 2 (aux_phiThreeBC.C b) xi =
@@ -4873,6 +5450,9 @@ theorem aux_thetaTildeFourier_deriv_two
   dsimp [q]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.54c6592db01b from=translated src=- shape=8c1a161d vocab=de6c0d45
+-/
 theorem aux_thetaTildeFourier_deriv_three
     (b : windowBasedBumpFunctions) (xi : ℝ) :
     iteratedDeriv 3 (aux_phiThreeBC.C b) xi =
@@ -4906,6 +5486,9 @@ theorem aux_thetaTildeFourier_deriv_three
   dsimp [q]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.1d1c7ded604d from=translated src=- shape=78e37060 vocab=0b3a8a32
+-/
 theorem aux_thetaTildeFourier_deriv_zero_outside
     (b : windowBasedBumpFunctions) (m : ℕ) (xi : ℝ)
     (hxi : xi ∉ aux_frequencyAnnulus) :
@@ -4927,6 +5510,9 @@ theorem aux_thetaTildeFourier_deriv_zero_outside
   intro hmem
   exact hxi (hderivSupp hmem)
 
+/--
+@isnad1 id=and.1h2v.s7.85a1f1e0fcb7 from=translated src=- shape=aed8dd60 vocab=bc07868c
+-/
 theorem aux_thetaTildeFourier_bounds_on_annulus
     (b : windowBasedBumpFunctions) (xi : ℝ) (hxi : xi ∈ aux_frequencyAnnulus) :
     ‖iteratedDeriv 0 (aux_thetaTildeFourier b) xi‖ ≤ 2 * C_uniPair ∧
@@ -5060,6 +5646,9 @@ theorem aux_thetaTildeFourier_bounds_on_annulus
       _ = 7425 * C_uniPair := by ring
   exact ⟨h0, h1, h2, h3⟩
 
+/--
+@isnad1 id=le.1h3v.s6.9429363d4461 from=translated src=- shape=f48f10cd vocab=be8a05b0
+-/
 theorem aux_thetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m ≤ 3) (xi : ℝ) :
     ‖iteratedDeriv m (aux_thetaTildeFourier b) xi‖ ≤
@@ -5071,7 +5660,9 @@ theorem aux_thetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
   · rw [aux_thetaTildeFourier_deriv_zero_outside b m xi hxi, norm_zero]
     norm_num [C_uniPair]
 
-/-- Global Fourier derivative bounds for the primitive thetaTilde.-/
+/-- Global Fourier derivative bounds for the primitive thetaTilde.
+@isnad1 id=le.1h3v.s6.8d9b7d5ebccf from=translated src=- shape=c09eddde vocab=4e82c934
+-/
 theorem thetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m ≤ 3) (xi : ℝ) :
     ‖iteratedDeriv m (FourierTransform.fourier
@@ -5085,6 +5676,9 @@ noncomputable def aux_TthetaTildeFourier (b : windowBasedBumpFunctions) :
   FourierTransform.fourier
     (fun x : ℝ => (aux_sd_T (windowBasedBumpFunctions.thetaTilde b) x : ℂ))
 
+/--
+@isnad1 id=eq.0h3v.s6.57e7adeb1b53 from=translated src=- shape=2e8d2e91 vocab=a2c03ec3
+-/
 theorem aux_TthetaTildeFourier_formula (b : windowBasedBumpFunctions)
     (m : ℕ) (xi : ℝ) :
     iteratedDeriv m (aux_TthetaTildeFourier b) xi =
@@ -5112,6 +5706,9 @@ theorem aux_TthetaTildeFourier_formula (b : windowBasedBumpFunctions)
   rw [hPhi] at hmain
   simpa [aux_thetaTildeFourier, Nat.add_comm, add_comm] using hmain
 
+/--
+@isnad1 id=eq.1h3v.s5.833a5664cdb3 from=translated src=- shape=78e37060 vocab=3fa0a5c1
+-/
 theorem aux_TthetaTildeFourier_deriv_zero_outside
     (b : windowBasedBumpFunctions) (m : ℕ) (xi : ℝ)
     (hxi : xi ∉ aux_frequencyAnnulus) :
@@ -5133,6 +5730,9 @@ theorem aux_TthetaTildeFourier_deriv_zero_outside
   intro hmem
   exact hxi (hderivSupp hmem)
 
+/--
+@isnad1 id=le.1h3v.s6.6b04a8eef1b3 from=translated src=- shape=c04afd5f vocab=c6f23c5c
+-/
 theorem aux_TthetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m (aux_TthetaTildeFourier b) xi‖ ≤
@@ -5192,7 +5792,9 @@ theorem aux_TthetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
   · rw [aux_TthetaTildeFourier_deriv_zero_outside b m xi hxi, norm_zero]
     norm_num [C_uniPair]
 
-/-- Global Fourier derivative bounds for the logarithmic derivative of thetaTilde.-/
+/-- Global Fourier derivative bounds for the logarithmic derivative of thetaTilde.
+@isnad1 id=le.1h3v.s6.76901bb0dc22 from=translated src=- shape=52d97ced vocab=1ce1bc29
+-/
 theorem tThetaTildeFourier_deriv_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m (FourierTransform.fourier
@@ -5209,7 +5811,9 @@ noncomputable def phiFourSchwartz (b : windowBasedBumpFunctions) (k : ℤ) :
 
 /--
 `phiFourSchwartz` has exactly the raw function used in the smoothing
-decomposition as its coercion.-/
+decomposition as its coercion.
+@isnad1 id=eq.0h3v.s6.59ccec0d47ce from=translated src=- shape=bbd6be5b vocab=dc59880d
+-/
 theorem phiFourSchwartz_apply (b : windowBasedBumpFunctions) (k : ℤ) (x : ℝ) :
     phiFourSchwartz b k x = windowBasedBumpFunctions.phiFour b k x := by
   simp only [phiFourSchwartz, smul_apply, aux_translateSchwartz,
@@ -5221,7 +5825,9 @@ noncomputable def tBumpSchwartz (phi : SchwartzMap ℝ ℝ) : SchwartzMap ℝ �
   SchwartzMap.derivCLM ℝ ℝ
     (SchwartzMap.smulLeftCLM ℝ (fun u : ℝ ↦ u) phi)
 
-/-- The coercion of `tBumpSchwartz` is the raw logarithmic derivative.-/
+/-- The coercion of `tBumpSchwartz` is the raw logarithmic derivative.
+@isnad1 id=eq.0h2v.s7.b3a013d942ef from=translated src=- shape=4ed91f67 vocab=11eaa711
+-/
 theorem tBumpSchwartz_apply (phi : SchwartzMap ℝ ℝ) (x : ℝ) :
     tBumpSchwartz phi x = aux_sd_T (fun u : ℝ ↦ phi u) x := by
   change SchwartzMap.derivCLM ℝ ℝ
@@ -5234,7 +5840,9 @@ theorem tBumpSchwartz_apply (phi : SchwartzMap ℝ ℝ) (x : ℝ) :
 
 /--
 The Fourier transform of `T phiFour`, with its translation phase explicit.
-The paired form below removes this phase for the short-variation estimates.-/
+The paired form below removes this phase for the short-variation estimates.
+@isnad1 id=eq.0h3v.s8.35dafedacedc from=translated src=- shape=c9b45c6a vocab=1bdce634
+-/
 theorem phiFour_T_fourier_eq (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier
@@ -5344,7 +5952,9 @@ theorem phiFour_T_fourier_eq (b : windowBasedBumpFunctions) (k : ℤ)
           c * (xi : ℂ) * iteratedDeriv 1 H xi) := by rw [hscale]; ring
   exact hmain.trans (by simpa only [c, q, H, a] using halgebra)
 
-/-- The translation phases cancel in the paired Fourier product of `T phiFour`.-/
+/-- The translation phases cancel in the paired Fourier product of `T phiFour`.
+@isnad1 id=eq.0h3v.s8.673b470d60a5 from=translated src=- shape=40958f0e vocab=692a0633
+-/
 theorem phiFour_T_fourier_pair_eq (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier

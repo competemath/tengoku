@@ -24,7 +24,9 @@ noncomputable section
 /--
 For `Auto.smoothDecay`, compact support is preserved under the
  iterated derivatives
-appearing in the integration-by-parts estimate.-/
+appearing in the integration-by-parts estimate.
+@isnad1 id=hascompa.1h2v.s5.12b8ef01796f from=translated src=- shape=b5c6ff98 vocab=36bb0168
+-/
 theorem aux_hasCompactSupport_iteratedDeriv (zeta : ℝ → ℂ)
     (hzeta : HasCompactSupport zeta) (n : ℕ) :
     HasCompactSupport (iteratedDeriv n zeta) := by
@@ -37,7 +39,9 @@ theorem aux_hasCompactSupport_iteratedDeriv (zeta : ℝ → ℂ)
 /--
 For `Auto.smoothDecay`, a continuous iterated derivative with
  compact support is
-integrable.  This supplies the hypotheses for Fourier integration by parts.-/
+integrable.  This supplies the hypotheses for Fourier integration by parts.
+@isnad1 id=integrab.3h3v.s6.b394aec752cd from=translated src=- shape=0fa31098 vocab=cfa6aa02
+-/
 theorem aux_integrable_iteratedDeriv_of_contDiff_compactSupport
     (N n : ℕ) (zeta : ℝ → ℂ) (hzeta : ContDiff ℝ N zeta)
     (hzetaSupport : HasCompactSupport zeta) (hn : n ≤ N) :
@@ -48,7 +52,9 @@ theorem aux_integrable_iteratedDeriv_of_contDiff_compactSupport
 /--
 For `Auto.smoothDecay`, this is the elementary $L^1$ bound for
  an inverse Fourier
-transform.-/
+transform.
+@isnad1 id=le.0h2v.s6.1d0e9a750150 from=translated src=- shape=4ed7f2b0 vocab=ef54f812
+-/
 theorem aux_norm_inverseFourier_le_integral_norm (zeta : ℝ → ℂ) (x : ℝ) :
     ‖FourierTransformInv.fourierInv zeta x‖ ≤ ∫ xi : ℝ, ‖zeta xi‖ := by
   rw [Real.fourierInv_eq]
@@ -63,7 +69,9 @@ theorem aux_norm_inverseFourier_le_integral_norm (zeta : ℝ → ℂ) (x : ℝ) 
 /--
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this rewrites a
-translated inverse Fourier transform as the inverse transform of its frequency-side difference.-/
+translated inverse Fourier transform as the inverse transform of its frequency-side difference.
+@isnad1 id=eq.1h3v.s8.0f13a1a0b3fd from=translated src=- shape=58907fc4 vocab=3b6d864e
+-/
 theorem aux_fourierInv_translate_sub (f : ℝ → ℂ) (hf : Integrable f) (x y : ℝ) :
     FourierTransformInv.fourierInv f (x + y) - FourierTransformInv.fourierInv f x =
       FourierTransformInv.fourierInv
@@ -126,7 +134,9 @@ theorem aux_fourierInv_translate_sub (f : ℝ → ℂ) (hf : Integrable f) (x y 
 /--
 For `Auto.smoothDecay`, this rewrites the inverse Fourier
  transform of an iterated
-derivative after repeated integration by parts.-/
+derivative after repeated integration by parts.
+@isnad1 id=eq.2h3v.s7.fc54f22cee8c from=translated src=- shape=302a3ce4 vocab=b81c6e8e
+-/
 theorem aux_inverseFourier_iteratedDeriv (N : ℕ) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ N zeta)
     (hzetaInt : ∀ n : ℕ, n ≤ N → Integrable (iteratedDeriv n zeta)) (x : ℝ) :
@@ -146,7 +156,9 @@ theorem aux_inverseFourier_iteratedDeriv (N : ℕ) (zeta : ℝ → ℂ)
 /--
 For `Auto.smoothDecay`, a uniform bound together with
  quadratic decay gives the
-integrable quadratic majorant used to prove the Wiener-space conclusion.-/
+integrable quadratic majorant used to prove the Wiener-space conclusion.
+@isnad1 id=le.4h4v.s7.72724039fd56 from=translated src=- shape=2ee9751b vocab=6f2d850c
+-/
 theorem aux_norm_le_two_mul_add_mul_inv_one_add_sq {f : ℝ → ℂ} (a b : ℝ)
     (ha : 0 ≤ a) (hb : 0 ≤ b) (huniform : ∀ x : ℝ, ‖f x‖ ≤ a)
     (hdecay : ∀ x : ℝ, x ≠ 0 → ‖f x‖ ≤ b * |x|⁻¹ ^ 2) (x : ℝ) :
@@ -193,7 +205,9 @@ theorem aux_norm_le_two_mul_add_mul_inv_one_add_sq {f : ℝ → ℂ} (a b : ℝ)
 /--
 For `Auto.smoothDecay`, a continuous function with the
  displayed quadratic majorant has
-an integrable unit local supremum and hence lies in $W_0$.-/
+an integrable unit local supremum and hence lies in $W_0$.
+@isnad1 id=memw0.3h2v.s6.7fa1378f0006 from=translated src=- shape=c22c5d17 vocab=3d1d2827
+-/
 theorem aux_memW0_of_quadratic_decay {f : ℝ → ℂ} (c : ℝ) (hc : 0 ≤ c)
     (hcont : Continuous f)
     (hdecay : ∀ x : ℝ, ‖f x‖ ≤ c * (1 + x ^ 2)⁻¹) : MemW0 f := by
@@ -233,7 +247,9 @@ theorem aux_memW0_of_quadratic_decay {f : ℝ → ℂ} (c : ℝ) (hc : 0 ≤ c)
 /--
 For `Auto.smoothDecay`, this turns the repeated
  integration-by-parts identity into the
-quantitative inverse-Fourier decay estimate at any positive derivative order.-/
+quantitative inverse-Fourier decay estimate at any positive derivative order.
+@isnad1 id=le.3h3v.s8.3483b539c479 from=translated src=- shape=f6dd3474 vocab=8b709522
+-/
 theorem aux_inverseFourier_iteratedDeriv_decay (n : ℕ) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ n zeta)
     (hzetaInt : ∀ k : ℕ, k ≤ n → Integrable (iteratedDeriv k zeta))
@@ -282,7 +298,9 @@ to $W_0(\mathbb{R})$ and we have for all $x\in\mathbb{R}$, $x\neq0$, the estimat
 
 $$
 |\phi(x)|\le \min(\|\widehat{\phi}\|_1, \|\widehat{\phi}^{(N)}\|_1 (2\pi)^{-N} |x|^{-N}).
-$$-/
+$$
+@isnad1 id=and.3h2v.s8.b8f2a357ecea from=translated src=- shape=6db275f7 vocab=a6ce3f1f
+-/
 theorem smoothDecay (N : ℕ) (hN : 2 ≤ N) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ N zeta) (hzetaSupport : HasCompactSupport zeta) :
     MemW0 (FourierTransformInv.fourierInv zeta) ∧
@@ -400,7 +418,9 @@ def standardBump : ℝ → ℝ := fun x =>
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 rewrites the Fourier transform of an interval indicator in the sinc form used to control the
-finite products.-/
+finite products.
+@isnad1 id=eq.0h2v.s6.9d53bec849b0 from=translated src=- shape=bdeb27da vocab=5bfcfb3c
+-/
 theorem aux_intervalIndicatorFourier_eq_two_mul_sinc (r x : ℝ) :
     aux_intervalIndicatorFourier r x =
       2 * r * Real.sinc (2 * Real.pi * r * x) := by
@@ -416,7 +436,9 @@ theorem aux_intervalIndicatorFourier_eq_two_mul_sinc (r x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-expresses each normalized short-interval Fourier factor as a sinc factor.-/
+expresses each normalized short-interval Fourier factor as a sinc factor.
+@isnad1 id=eq.0h2v.s7.e21b6b5779d5 from=translated src=- shape=4c8ac159 vocab=7d0406dc
+-/
 theorem aux_standardBump_small_factor_eq_sinc (i : ℕ) (x : ℝ) :
     (2 : ℝ) ^ (i + 2) *
         aux_intervalIndicatorFourier ((2 : ℝ) ^ (-(i : ℤ) - 3)) x =
@@ -455,7 +477,9 @@ theorem aux_standardBump_small_factor_eq_sinc (i : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-rewrites each finite standard-bump product in a form suitable for infinite-product convergence.-/
+rewrites each finite standard-bump product in a form suitable for infinite-product convergence.
+@isnad1 id=eq.0h2v.s6.f5ec24534dad from=translated src=- shape=3f578c20 vocab=b23c3295
+-/
 theorem aux_standardBumpFinite_eq_sincProduct (l : ℕ) (x : ℝ) :
     standardBumpFinite l x =
       aux_intervalIndicatorFourier (3 / 4) x *
@@ -471,7 +495,9 @@ theorem aux_standardBumpFinite_eq_sincProduct (l : ℕ) (x : ℝ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 is the quadratic Taylor remainder estimate that makes the sinc-factor deviations summable on
-compact intervals.-/
+compact intervals.
+@isnad1 id=le.0h1v.s5.32826341ce0d from=translated src=- shape=4e216b07 vocab=ae9059f5
+-/
 theorem aux_sinc_sub_one_sq_bound (t : ℝ) :
     |Real.sinc t - 1| ≤ t ^ 2 := by
   by_cases ht : t = 0
@@ -495,7 +521,9 @@ theorem aux_sinc_sub_one_sq_bound (t : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-gives the geometric compact-interval bound for the deviations of the sinc factors from one.-/
+gives the geometric compact-interval bound for the deviations of the sinc factors from one.
+@isnad1 id=le.2h3v.s7.f7e543d196d2 from=translated src=- shape=7f3ff089 vocab=b1016ffb
+-/
 theorem aux_sinc_standard_factor_tail (R : ℝ) (hR : 0 ≤ R) (i : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-R) R) :
     |Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ i) - 1| ≤
@@ -520,7 +548,9 @@ theorem aux_sinc_standard_factor_tail (R : ℝ) (hR : 0 ≤ R) (i : ℕ) {x : �
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-records summability of the geometric majorant for the sinc-product tail.-/
+records summability of the geometric majorant for the sinc-product tail.
+@isnad1 id=summable.0h1v.s6.4153ad33d591 from=translated src=- shape=2ff368f9 vocab=993bc9f4
+-/
 theorem aux_standard_factor_tail_summable (R : ℝ) :
     Summable (fun i : ℕ => ((Real.pi / 4) * R) ^ 2 * ((1 / 4 : ℝ) ^ i)) := by
   exact (summable_geometric_of_lt_one (by norm_num)
@@ -529,7 +559,9 @@ theorem aux_standard_factor_tail_summable (R : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-constructs the compact-uniform infinite product of the normalized sinc factors.-/
+constructs the compact-uniform infinite product of the normalized sinc factors.
+@isnad1 id=hasprodu.1h1v.s7.b9a39fb07f04 from=translated src=- shape=f99c9938 vocab=f1c600ff
+-/
 theorem aux_sinc_standard_factors_hasProdUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
     HasProdUniformlyOn
       (fun (i : ℕ) (x : ℝ) => Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ i))
@@ -571,7 +603,9 @@ theorem aux_sinc_standard_factors_hasProdUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is the local-uniform convergence of the finite sinc products to their infinite product.-/
+is the local-uniform convergence of the finite sinc products to their infinite product.
+@isnad1 id=tendstou.1h1v.s7.9f1488d53911 from=translated src=- shape=483741aa vocab=8ffd418f
+-/
 theorem aux_sinc_standard_factors_tendstoUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn
       (fun (n : ℕ) (x : ℝ) => ∏ i ∈ Finset.range n,
@@ -583,7 +617,9 @@ theorem aux_sinc_standard_factors_tendstoUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-identifies the pointwise limit of the finite standard-bump products.-/
+identifies the pointwise limit of the finite standard-bump products.
+@isnad1 id=tendsto.0h1v.s6.1f2f391ac491 from=translated src=- shape=593d958f vocab=0186f98c
+-/
 theorem aux_standardBumpFinite_tendsto_sincProduct (x : ℝ) :
     Tendsto
       (fun n : ℕ => standardBumpFinite n x)
@@ -615,7 +651,9 @@ theorem aux_standardBumpFinite_tendsto_sincProduct (x : ℝ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 rewrites the `limUnder` definition of the standard bump using the established pointwise product
-limit.-/
+limit.
+@isnad1 id=eq.0h1v.s6.35475f583107 from=translated src=- shape=8cacc270 vocab=6f071a50
+-/
 theorem aux_standardBump_eq_sincTprod (x : ℝ) :
     standardBump x =
       aux_intervalIndicatorFourier (3 / 4) x *
@@ -662,25 +700,33 @@ def aux_standardBumpFiniteDensity : ℕ → ℝ → ℝ
 
 /--
 For `Auto.standardBumpProperties`, the short interval radii
- are positive.-/
+ are positive.
+@isnad1 id=lt.0h1v.s3.0667383dcfed from=translated src=- shape=b9369acb vocab=1f4ad280
+-/
 theorem aux_standardBumpRadius_pos (i : ℕ) : 0 < aux_standardBumpRadius i := by
   simp [aux_standardBumpRadius]
 
 /--
 For `Auto.standardBumpProperties`, the short interval radii
- are nonnegative.-/
+ are nonnegative.
+@isnad1 id=le.0h1v.s3.aa214f4a02d7 from=translated src=- shape=b9369acb vocab=f226b36d
+-/
 theorem aux_standardBumpRadius_nonneg (i : ℕ) : 0 ≤ aux_standardBumpRadius i :=
   (aux_standardBumpRadius_pos i).le
 
 /--
 For `Auto.standardBumpProperties`, finite sums of the short
- interval radii are nonnegative.-/
+ interval radii are nonnegative.
+@isnad1 id=le.0h1v.s3.86a83f5f07a2 from=translated src=- shape=b9369acb vocab=d4fbf0c9
+-/
 theorem aux_standardBumpRadiusSum_nonneg (n : ℕ) : 0 ≤ aux_standardBumpRadiusSum n := by
   exact Finset.sum_nonneg fun i _ => aux_standardBumpRadius_nonneg i
 
 /--
 For `Auto.standardBumpProperties`, this is the recursive
- decomposition of the radius sum.-/
+ decomposition of the radius sum.
+@isnad1 id=eq.0h1v.s4.cc6e39ef8948 from=translated src=- shape=6c7a1718 vocab=bd4675c3
+-/
 theorem aux_standardBumpRadiusSum_succ (n : ℕ) :
     aux_standardBumpRadiusSum (n + 1) =
       aux_standardBumpRadiusSum n + aux_standardBumpRadius n := by
@@ -688,7 +734,9 @@ theorem aux_standardBumpRadiusSum_succ (n : ℕ) :
 
 /--
 For `Auto.standardBumpProperties`, this evaluates the finite
- geometric radius sum.-/
+ geometric radius sum.
+@isnad1 id=eq.0h1v.s6.7851baa2c707 from=translated src=- shape=e9b000ed vocab=fb4095eb
+-/
 theorem aux_standardBumpRadiusSum_formula (n : ℕ) :
     aux_standardBumpRadiusSum n =
       1 / 4 - (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ n := by
@@ -702,7 +750,9 @@ theorem aux_standardBumpRadiusSum_formula (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this converts the finite
  tail radius to the manuscript's
-integer-exponent notation.-/
+integer-exponent notation.
+@isnad1 id=eq.0h1v.s6.98201c242934 from=translated src=- shape=00517c3b vocab=979875a3
+-/
 theorem aux_standardBumpTail_eq_zpow (n : ℕ) :
     (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ n = (2 : ℝ) ^ (-(n : ℤ) - 2) := by
   rw [show (-(n : ℤ) - 2) = -((n : ℤ) + 2) by omega, zpow_neg]
@@ -714,7 +764,9 @@ theorem aux_standardBumpTail_eq_zpow (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this identifies the
  manuscript's short radius with its
-nonnegative geometric expression.-/
+nonnegative geometric expression.
+@isnad1 id=eq.0h1v.s5.11d93fa6acd2 from=translated src=- shape=bd214be2 vocab=b11423b4
+-/
 theorem aux_standardBumpRadius_eq_zpow (i : ℕ) :
     aux_standardBumpRadius i = (2 : ℝ) ^ (-(i : ℤ) - 3) := by
   unfold aux_standardBumpRadius
@@ -726,7 +778,9 @@ theorem aux_standardBumpRadius_eq_zpow (i : ℕ) :
 
 /--
 For `Auto.standardBumpProperties`, the base density vanishes
- outside its defining interval.-/
+ outside its defining interval.
+@isnad1 id=le.0h0v.s6.766050ada9dd from=translated src=- shape=01610d88 vocab=7d5b7498
+-/
 theorem aux_standardBumpBaseDensity_support :
     Function.support aux_standardBumpBaseDensity ⊆
       Set.Icc (-(3 / 4 : ℝ)) (3 / 4) := by
@@ -738,14 +792,18 @@ theorem aux_standardBumpBaseDensity_support :
 
 /--
 For `Auto.standardBumpProperties`, the base interval density
- is nonnegative.-/
+ is nonnegative.
+@isnad1 id=le.0h1v.s3.a72b10e73bfb from=translated src=- shape=8a62b088 vocab=abc3fd85
+-/
 theorem aux_standardBumpBaseDensity_nonneg (t : ℝ) :
     0 ≤ aux_standardBumpBaseDensity t := by
   exact Set.indicator_nonneg (fun _ _ => zero_le_one) t
 
 /--
 For `Auto.standardBumpProperties`, the base interval density
- is bounded by one.-/
+ is bounded by one.
+@isnad1 id=le.0h1v.s3.88971c9fafe9 from=translated src=- shape=b14ee516 vocab=abc3fd85
+-/
 theorem aux_standardBumpBaseDensity_le_one (t : ℝ) :
     aux_standardBumpBaseDensity t ≤ 1 := by
   by_cases ht : t ∈ Set.Icc (-(3 / 4 : ℝ)) (3 / 4)
@@ -754,7 +812,9 @@ theorem aux_standardBumpBaseDensity_le_one (t : ℝ) :
 
 /--
 For `Auto.standardBumpProperties`, the base density is
-integrable.-/
+integrable.
+@isnad1 id=integrab.0h0v.s4.d08585a0a391 from=translated src=- shape=e14394ff vocab=342dbe21
+-/
 theorem aux_standardBumpBaseDensity_integrable :
     Integrable aux_standardBumpBaseDensity := by
   rw [aux_standardBumpBaseDensity,
@@ -763,7 +823,9 @@ theorem aux_standardBumpBaseDensity_integrable :
 
 /--
 For `Auto.standardBumpProperties`, the base density has the
- interval's mass.-/
+ interval's mass.
+@isnad1 id=eq.0h0v.s5.64b0484958c5 from=translated src=- shape=71d3640f vocab=27021e44
+-/
 theorem aux_standardBumpBaseDensity_integral :
     ∫ t : ℝ, aux_standardBumpBaseDensity t = 3 / 2 := by
   change ∫ t : ℝ,
@@ -776,7 +838,9 @@ theorem aux_standardBumpBaseDensity_integral :
 /--
 For `Auto.standardBumpProperties`, a normalized interval
  density vanishes outside its
-defining interval.-/
+defining interval.
+@isnad1 id=le.0h1v.s4.72d7926b09a3 from=translated src=- shape=f2a6ef09 vocab=1faa807b
+-/
 theorem aux_standardBumpIntervalDensity_support (r : ℝ) :
     Function.support (aux_standardBumpIntervalDensity r) ⊆ Set.Icc (-r) r := by
   intro t ht
@@ -788,7 +852,9 @@ theorem aux_standardBumpIntervalDensity_support (r : ℝ) :
 /--
 For `Auto.standardBumpProperties`, a nonnegative radius gives
  a nonnegative normalized
-interval density.-/
+interval density.
+@isnad1 id=le.1h2v.s4.0b14b8a80564 from=translated src=- shape=d58f95ac vocab=3176f0a5
+-/
 theorem aux_standardBumpIntervalDensity_nonneg (r : ℝ) (hr : 0 ≤ r) (t : ℝ) :
     0 ≤ aux_standardBumpIntervalDensity r t := by
   simp only [aux_standardBumpIntervalDensity]
@@ -797,7 +863,9 @@ theorem aux_standardBumpIntervalDensity_nonneg (r : ℝ) (hr : 0 ≤ r) (t : ℝ
 
 /--
 For `Auto.standardBumpProperties`, every normalized interval
- density is integrable.-/
+ density is integrable.
+@isnad1 id=integrab.0h1v.s4.e667104c7ef1 from=translated src=- shape=b231e927 vocab=339facfd
+-/
 theorem aux_standardBumpIntervalDensity_integrable (r : ℝ) :
     Integrable (aux_standardBumpIntervalDensity r) := by
   exact (MeasureTheory.integrable_indicator_iff measurableSet_Icc).mpr
@@ -805,7 +873,9 @@ theorem aux_standardBumpIntervalDensity_integrable (r : ℝ) :
 
 /--
 For `Auto.standardBumpProperties`, a positive-radius interval
- density has mass one.-/
+ density has mass one.
+@isnad1 id=eq.1h1v.s5.ff9c289a4011 from=translated src=- shape=78831b10 vocab=ad98d3b4
+-/
 theorem aux_standardBumpIntervalDensity_integral_one (r : ℝ) (hr : 0 < r) :
     ∫ t : ℝ, aux_standardBumpIntervalDensity r t = 1 := by
   change ∫ t : ℝ, (2 * r)⁻¹ *
@@ -823,7 +893,9 @@ theorem aux_standardBumpIntervalDensity_integral_one (r : ℝ) (hr : 0 < r) :
 For `Auto.standardBumpProperties`, this auxiliary identifies
  differentiation through one
 normalized interval convolution with a symmetric difference quotient.  It is used to control
-successive derivatives of the finite Fourier-side densities.-/
+successive derivatives of the finite Fourier-side densities.
+@isnad1 id=hasderiv.2h3v.s7.a6c70ab429a4 from=translated src=- shape=1f1fe135 vocab=eb401781
+-/
 theorem aux_intervalDensity_convolution_hasDerivAt (f : ℝ → ℝ) (hf : Continuous f)
     (r x : ℝ) (hr : 0 < r) :
     HasDerivAt
@@ -894,7 +966,9 @@ theorem aux_intervalDensity_convolution_hasDerivAt (f : ℝ → ℝ) (hf : Conti
 /--
 For `Auto.standardBumpProperties`, this auxiliary turns a
  uniform bound into the sharp
-bound for one symmetric interval difference quotient.-/
+bound for one symmetric interval difference quotient.
+@isnad1 id=le.2h4v.s6.f2773a67d782 from=translated src=- shape=93013b9d vocab=c00252a2
+-/
 theorem aux_intervalDifferenceQuotient_le_of_bound (f : ℝ → ℝ) (A r x : ℝ)
     (hr : 0 < r) (hbound : ∀ z : ℝ, |f z| ≤ A) :
     |(f (x + r) - f (x - r)) / (2 * r)| ≤ A / r := by
@@ -912,7 +986,9 @@ theorem aux_intervalDifferenceQuotient_le_of_bound (f : ℝ → ℝ) (A r x : �
 /--
 For `Auto.standardBumpProperties`, this auxiliary shows that a
  symmetric interval
-difference quotient does not enlarge a Lipschitz bound.-/
+difference quotient does not enlarge a Lipschitz bound.
+@isnad1 id=le.2h4v.s7.0bcd33a23bca from=translated src=- shape=0443adaa vocab=c00252a2
+-/
 theorem aux_intervalDifferenceQuotient_le_of_lipschitz (f : ℝ → ℝ) (L r x : ℝ)
     (hr : 0 < r) (hLip : ∀ a b : ℝ, |f a - f b| ≤ L * |a - b|) :
     |(f (x + r) - f (x - r)) / (2 * r)| ≤ L := by
@@ -930,7 +1006,9 @@ theorem aux_intervalDifferenceQuotient_le_of_lipschitz (f : ℝ → ℝ) (L r x 
 /--
 For `Auto.standardBumpProperties`, this auxiliary propagates a
  Lipschitz bound through
-the symmetric interval difference quotient, producing the next reciprocal-radius factor.-/
+the symmetric interval difference quotient, producing the next reciprocal-radius factor.
+@isnad1 id=le.2h5v.s7.8f4caf65dedc from=translated src=- shape=359e9618 vocab=c00252a2
+-/
 theorem aux_intervalDifferenceQuotient_lipschitz (f : ℝ → ℝ) (L r x y : ℝ)
     (hr : 0 < r) (hLip : ∀ a b : ℝ, |f a - f b| ≤ L * |a - b|) :
     |((f (x + r) - f (x - r)) / (2 * r)) -
@@ -959,7 +1037,9 @@ theorem aux_intervalDifferenceQuotient_lipschitz (f : ℝ → ℝ) (L r x y : �
 
 /--
 For the sharp derivative bounds used by `existsUniversalPair`, a bounded primitive is
-Lipschitz with the same bound.-/
+Lipschitz with the same bound.
+@isnad1 id=le.3h3v.s7.dac73df9bf04 from=translated src=- shape=2102f267 vocab=d5c1a255
+-/
 theorem aux_standardBump_primitive_lipschitz
     (f : ℝ → ℝ) (hf : Integrable f) (h0 : ∀ x, 0 ≤ f x) (h1 : ∀ x, f x ≤ 1) :
     ∀ x y : ℝ, |(∫ t : ℝ in 0..x, f t) - (∫ t : ℝ in 0..y, f t)| ≤ |x - y| := by
@@ -1009,7 +1089,9 @@ theorem aux_standardBump_primitive_lipschitz
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this is the
-primitive representation of the first finite density.-/
+primitive representation of the first finite density.
+@isnad1 id=eq.0h1v.s7.c756c408dd78 from=translated src=- shape=b4ecca58 vocab=d4374810
+-/
 theorem aux_standardBumpFiniteDensity_one_eq_primitive (x : ℝ) :
     aux_standardBumpFiniteDensity 1 x = (2 * aux_standardBumpRadius 0)⁻¹ *
       ((∫ t : ℝ in 0..x + aux_standardBumpRadius 0, aux_standardBumpBaseDensity t) -
@@ -1057,7 +1139,9 @@ theorem aux_standardBumpFiniteDensity_one_eq_primitive (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the first
-finite density has global Lipschitz constant eight.-/
+finite density has global Lipschitz constant eight.
+@isnad1 id=le.0h2v.s5.ac74aa4548c8 from=translated src=- shape=e01d8bd4 vocab=904a0b29
+-/
 theorem aux_standardBumpFiniteDensity_one_lipschitz (x y : ℝ) :
     |aux_standardBumpFiniteDensity 1 x - aux_standardBumpFiniteDensity 1 y| ≤
       (8 : ℝ) * |x - y| := by
@@ -1123,7 +1207,9 @@ theorem aux_standardBumpFiniteDensity_one_lipschitz (x y : ℝ) :
 
 /--
 For `Auto.standardBumpProperties`, convolution preserves
- nonnegativity of real densities.-/
+ nonnegativity of real densities.
+@isnad1 id=le.2h3v.s7.f7ccc8778132 from=translated src=- shape=63c8b69f vocab=53fca885
+-/
 theorem aux_standardBumpConvolution_nonneg (f g : ℝ → ℝ)
     (hf : ∀ x, 0 ≤ f x) (hg : ∀ x, 0 ≤ g x) (x : ℝ) :
     0 ≤ (f ⋆[ContinuousLinearMap.mul ℝ ℝ, volume] g) x := by
@@ -1133,7 +1219,9 @@ theorem aux_standardBumpConvolution_nonneg (f g : ℝ → ℝ)
 /--
 For `Auto.standardBumpProperties`, convolution with a
  probability density preserves the
-upper bound one.-/
+upper bound one.
+@isnad1 id=le.6h3v.s7.d02a3d616fc9 from=translated src=- shape=6789965f vocab=c2afdf41
+-/
 theorem aux_standardBumpConvolution_le_one (f g : ℝ → ℝ)
     (hfInt : Integrable f) (hgInt : Integrable g)
     (hfnonneg : ∀ x, 0 ≤ f x) (hfle : ∀ x, f x ≤ 1)
@@ -1154,7 +1242,9 @@ theorem aux_standardBumpConvolution_le_one (f g : ℝ → ℝ)
 /--
 For `Auto.standardBumpProperties`, this evaluates the integral
  of a convolution of
-integrable real densities.-/
+integrable real densities.
+@isnad1 id=eq.2h2v.s7.165311a2cfb7 from=translated src=- shape=3f439feb vocab=f9ceba39
+-/
 theorem aux_standardBump_integral_convolution (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) :
     ∫ x : ℝ, (f ⋆[ContinuousLinearMap.mul ℝ ℝ, volume] g) x =
@@ -1165,7 +1255,9 @@ theorem aux_standardBump_integral_convolution (f g : ℝ → ℝ)
 /--
 For `Auto.standardBumpProperties`, convolving with a supported
  probability density preserves
-a plateau after shrinking it by the support radius.-/
+a plateau after shrinking it by the support radius.
+@isnad1 id=eq.4h6v.s7.1074c07e6df8 from=translated src=- shape=81b35b3f vocab=eef5f416
+-/
 theorem aux_standardBumpConvolution_eq_one_on (f u : ℝ → ℝ) (a b r x : ℝ)
     (huSupp : Function.support u ⊆ Set.Icc (-r) r)
     (huMass : ∫ t : ℝ, u t = 1)
@@ -1188,7 +1280,9 @@ theorem aux_standardBumpConvolution_eq_one_on (f u : ℝ → ℝ) (a b r x : ℝ
 
 /--
 For `Auto.standardBumpProperties`, every finite physical-side
- density is integrable.-/
+ density is integrable.
+@isnad1 id=integrab.0h1v.s4.f1b5b50ef0ef from=translated src=- shape=b684bfc9 vocab=16b0f4e2
+-/
 theorem aux_standardBumpFiniteDensity_integrable (n : ℕ) :
     Integrable (aux_standardBumpFiniteDensity n) := by
   induction n with
@@ -1201,7 +1295,9 @@ theorem aux_standardBumpFiniteDensity_integrable (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this tracks the support of
  each finite physical-side
-density.-/
+density.
+@isnad1 id=le.0h1v.s6.769706eec12f from=translated src=- shape=302dcf29 vocab=503b33b1
+-/
 theorem aux_standardBumpFiniteDensity_support (n : ℕ) :
     Function.support (aux_standardBumpFiniteDensity n) ⊆
       Set.Icc (-(3 / 4 : ℝ) - aux_standardBumpRadiusSum n)
@@ -1232,7 +1328,9 @@ theorem aux_standardBumpFiniteDensity_support (n : ℕ) :
 
 /--
 For `Auto.standardBumpProperties`, every finite physical-side
- density has the base mass.-/
+ density has the base mass.
+@isnad1 id=eq.0h1v.s5.70f7155bb19c from=translated src=- shape=b3973598 vocab=f0ce524d
+-/
 theorem aux_standardBumpFiniteDensity_integral (n : ℕ) :
     ∫ x : ℝ, aux_standardBumpFiniteDensity n x = 3 / 2 := by
   induction n with
@@ -1245,7 +1343,9 @@ theorem aux_standardBumpFiniteDensity_integral (n : ℕ) :
 
 /--
 For `Auto.standardBumpProperties`, every finite physical-side
- density is nonnegative.-/
+ density is nonnegative.
+@isnad1 id=le.0h2v.s4.6e33a33f015b from=translated src=- shape=787c1379 vocab=79ef74e4
+-/
 theorem aux_standardBumpFiniteDensity_nonneg (n : ℕ) (x : ℝ) :
     0 ≤ aux_standardBumpFiniteDensity n x := by
   induction n generalizing x with
@@ -1257,7 +1357,9 @@ theorem aux_standardBumpFiniteDensity_nonneg (n : ℕ) (x : ℝ) :
 
 /--
 For `Auto.standardBumpProperties`, every finite physical-side
- density is bounded by one.-/
+ density is bounded by one.
+@isnad1 id=le.0h2v.s4.50d57b77359b from=translated src=- shape=4f17ad3b vocab=79ef74e4
+-/
 theorem aux_standardBumpFiniteDensity_le_one (n : ℕ) (x : ℝ) :
     aux_standardBumpFiniteDensity n x ≤ 1 := by
   induction n generalizing x with
@@ -1273,7 +1375,9 @@ theorem aux_standardBumpFiniteDensity_le_one (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties`, this tracks the plateau of
  each finite physical-side
-density.-/
+density.
+@isnad1 id=eq.1h2v.s6.5cffa96b5c5e from=translated src=- shape=879b4d8a vocab=3aa7c30c
+-/
 theorem aux_standardBumpFiniteDensity_eq_one_on (n : ℕ) (x : ℝ)
     (hx : x ∈ Set.Icc (-(3 / 4 : ℝ) + aux_standardBumpRadiusSum n)
       (3 / 4 - aux_standardBumpRadiusSum n)) :
@@ -1309,7 +1413,9 @@ theorem aux_standardBumpFiniteDensity_eq_one_on (n : ℕ) (x : ℝ)
 /--
 For `Auto.standardBumpProperties`, this is the finite support
  bound in the manuscript's
-explicit endpoint form.-/
+explicit endpoint form.
+@isnad1 id=le.0h1v.s7.fea02f655ce7 from=translated src=- shape=73270889 vocab=67e7250d
+-/
 theorem aux_standardBumpFiniteDensity_support_stated (n : ℕ) :
     Function.support (aux_standardBumpFiniteDensity n) ⊆
       Set.Icc (-1 + (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ n)
@@ -1322,7 +1428,9 @@ theorem aux_standardBumpFiniteDensity_support_stated (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this is the finite plateau
  bound in the manuscript's
-explicit endpoint form.-/
+explicit endpoint form.
+@isnad1 id=eq.1h2v.s7.2ab4d797ffa2 from=translated src=- shape=2108832c vocab=0dbed0ac
+-/
 theorem aux_standardBumpFiniteDensity_eq_one_on_stated (n : ℕ) (x : ℝ)
     (hx : x ∈ Set.Icc (-(1 / 2 : ℝ) - (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ n)
       (1 / 2 + (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ n)) :
@@ -1334,7 +1442,9 @@ theorem aux_standardBumpFiniteDensity_eq_one_on_stated (n : ℕ) (x : ℝ)
 /--
 For `Auto.standardBumpProperties`, this restates the finite
  support bound using the
-manuscript's integer-exponent notation.-/
+manuscript's integer-exponent notation.
+@isnad1 id=le.0h1v.s6.717b3ba2d911 from=translated src=- shape=80c0317c vocab=09e18ac9
+-/
 theorem aux_standardBumpFiniteDensity_support_stated_zpow (n : ℕ) :
     Function.support (aux_standardBumpFiniteDensity n) ⊆
       Set.Icc (-1 + (2 : ℝ) ^ (-(n : ℤ) - 2))
@@ -1345,7 +1455,9 @@ theorem aux_standardBumpFiniteDensity_support_stated_zpow (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this restates the finite
  plateau bound using the
-manuscript's integer-exponent notation.-/
+manuscript's integer-exponent notation.
+@isnad1 id=eq.1h2v.s7.cec1a7414690 from=translated src=- shape=f8708b57 vocab=ba3f4c61
+-/
 theorem aux_standardBumpFiniteDensity_eq_one_on_stated_zpow (n : ℕ) (x : ℝ)
     (hx : x ∈ Set.Icc (-(1 / 2 : ℝ) - (2 : ℝ) ^ (-(n : ℤ) - 2))
       (1 / 2 + (2 : ℝ) ^ (-(n : ℤ) - 2))) :
@@ -1372,7 +1484,9 @@ def aux_standardBumpComplexFiniteDensity : ℕ → ℝ → ℂ
 
 /--
 For `Auto.standardBumpProperties`, the complex interval
- indicator is integrable.-/
+ indicator is integrable.
+@isnad1 id=integrab.0h1v.s5.374033a8e17c from=translated src=- shape=e3851cd2 vocab=55038d2b
+-/
 theorem aux_standardBumpComplexIntervalIndicator_integrable (r : ℝ) :
     Integrable (aux_standardBumpComplexIntervalIndicator r) := by
   rw [aux_standardBumpComplexIntervalIndicator,
@@ -1382,7 +1496,9 @@ theorem aux_standardBumpComplexIntervalIndicator_integrable (r : ℝ) :
 /--
 For `Auto.standardBumpProperties`, this rewrites the
  interval-indicator Fourier integrand
-as an interval-restricted exponential.-/
+as an interval-restricted exponential.
+@isnad1 id=eq.0h2v.s6.ed0fcf6b23cd from=translated src=- shape=f4783d25 vocab=254165b4
+-/
 theorem aux_standardBumpComplexIntervalIndicator_integrand (r x : ℝ) :
     (fun v : ℝ => Complex.exp (((-2 * Real.pi * v * x : ℝ) : ℂ) * Complex.I) •
       aux_standardBumpComplexIntervalIndicator r v) =
@@ -1394,7 +1510,9 @@ theorem aux_standardBumpComplexIntervalIndicator_integrand (r x : ℝ) :
 /--
 For `Auto.standardBumpProperties`, this expresses the Fourier
  transform of a complex
-interval indicator as an interval integral.-/
+interval indicator as an interval integral.
+@isnad1 id=eq.1h2v.s6.b919a917fbed from=translated src=- shape=019be461 vocab=f2cc3f66
+-/
 theorem aux_fourier_standardBumpComplexIntervalIndicator_to_interval (r x : ℝ) (hr : 0 ≤ r) :
     𝓕 (aux_standardBumpComplexIntervalIndicator r) x =
       ∫ v : ℝ in -r..r,
@@ -1407,7 +1525,9 @@ theorem aux_fourier_standardBumpComplexIntervalIndicator_to_interval (r x : ℝ)
 /--
 For `Auto.standardBumpProperties`, this evaluates the
  preceding interval integral in the
-sinc normalization.-/
+sinc normalization.
+@isnad1 id=eq.1h2v.s6.1f03d336bf29 from=translated src=- shape=8e9ae1ec vocab=533a2de9
+-/
 theorem aux_fourier_standardBumpComplexIntervalIndicator_sinc (r x : ℝ) (hr : 0 ≤ r) :
     𝓕 (aux_standardBumpComplexIntervalIndicator r) x =
       (2 * r * Real.sinc (2 * Real.pi * r * x) : ℂ) := by
@@ -1439,7 +1559,9 @@ theorem aux_fourier_standardBumpComplexIntervalIndicator_sinc (r x : ℝ) (hr : 
 /--
 For `Auto.standardBumpProperties`, this identifies the complex
  interval Fourier transform
-with the real-valued factor used in `standardBumpFinite`.-/
+with the real-valued factor used in `standardBumpFinite`.
+@isnad1 id=eq.1h2v.s5.d6eebcc39e9d from=translated src=- shape=c24a6b40 vocab=65cef3fa
+-/
 theorem aux_fourier_standardBumpComplexIntervalIndicator (r x : ℝ) (hr : 0 ≤ r) :
     𝓕 (aux_standardBumpComplexIntervalIndicator r) x =
       (aux_intervalIndicatorFourier r x : ℂ) := by
@@ -1450,7 +1572,9 @@ theorem aux_fourier_standardBumpComplexIntervalIndicator (r x : ℝ) (hr : 0 ≤
 /--
 For `Auto.standardBumpProperties`, this pulls a complex scalar
  through the Fourier
-integral.-/
+integral.
+@isnad1 id=eq.0h3v.s6.15c37c96896c from=translated src=- shape=0a75b386 vocab=acba9ad2
+-/
 theorem aux_standardBump_fourier_const_mul (c : ℂ) (f : ℝ → ℂ) (x : ℝ) :
     𝓕 (fun t => c * f t) x = c * 𝓕 f x := by
   rw [Real.fourier_real_eq_integral_exp_smul, Real.fourier_real_eq_integral_exp_smul]
@@ -1462,7 +1586,9 @@ theorem aux_standardBump_fourier_const_mul (c : ℂ) (f : ℝ → ℂ) (x : ℝ)
 /--
 For `Auto.standardBumpProperties`, this evaluates the Fourier
  transform of a normalized
-complex short-interval density.-/
+complex short-interval density.
+@isnad1 id=eq.1h2v.s6.7e03c3bf40a1 from=translated src=- shape=95d83397 vocab=f3c0b58c
+-/
 theorem aux_fourier_standardBumpComplexIntervalDensity (r x : ℝ) (hr : 0 < r) :
     𝓕 (fun t : ℝ => (2 * r : ℂ)⁻¹ * aux_standardBumpComplexIntervalIndicator r t) x =
       (Real.sinc (2 * Real.pi * r * x) : ℂ) := by
@@ -1474,7 +1600,9 @@ theorem aux_fourier_standardBumpComplexIntervalDensity (r x : ℝ) (hr : 0 < r) 
 /--
 For `Auto.standardBumpProperties`, this puts a normalized
  short-interval Fourier factor
-in the exact sinc form occurring in the finite product.-/
+in the exact sinc form occurring in the finite product.
+@isnad1 id=eq.0h2v.s6.2361c6a7675f from=translated src=- shape=e77c42a6 vocab=6c2ae944
+-/
 theorem aux_fourier_standardBumpComplexIntervalDensity_factor (i : ℕ) (x : ℝ) :
     𝓕 (fun t : ℝ => (2 * aux_standardBumpRadius i : ℂ)⁻¹ *
       aux_standardBumpComplexIntervalIndicator (aux_standardBumpRadius i) t) x =
@@ -1487,7 +1615,9 @@ theorem aux_fourier_standardBumpComplexIntervalDensity_factor (i : ℕ) (x : ℝ
 /--
 For `Auto.standardBumpProperties`, every complex finite
  physical-side convolution is
-integrable.-/
+integrable.
+@isnad1 id=integrab.0h1v.s5.9f6746ec31c1 from=translated src=- shape=5cae27e5 vocab=15b08ec1
+-/
 theorem aux_standardBumpComplexFiniteDensity_integrable (n : ℕ) :
     Integrable (aux_standardBumpComplexFiniteDensity n) := by
   induction n with
@@ -1500,7 +1630,9 @@ theorem aux_standardBumpComplexFiniteDensity_integrable (n : ℕ) :
 /--
 For `Auto.standardBumpProperties`, this transfers a real
  convolution to its pointwise
-complexification; it is used to identify the physical-side finite densities.-/
+complexification; it is used to identify the physical-side finite densities.
+@isnad1 id=eq.4h3v.s8.d3322e983bb7 from=translated src=- shape=7a1da387 vocab=bf1b840f
+-/
 theorem aux_standardBumpComplexConvolution_coe (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g)
     (hfnonneg : ∀ t, 0 ≤ f t) (hfle : ∀ t, f t ≤ 1) (x : ℝ) :
@@ -1524,7 +1656,9 @@ theorem aux_standardBumpComplexConvolution_coe (f g : ℝ → ℝ)
 /--
 For `Auto.standardBumpProperties`, this identifies the
  normalized complex interval
-density with the complexification of its real counterpart.-/
+density with the complexification of its real counterpart.
+@isnad1 id=eq.0h2v.s5.85ff134d9b6b from=translated src=- shape=90319797 vocab=eedeb52a
+-/
 theorem aux_standardBumpComplexIntervalDensity_coe (r t : ℝ) :
     (2 * r : ℂ)⁻¹ * aux_standardBumpComplexIntervalIndicator r t =
       (aux_standardBumpIntervalDensity r t : ℂ) := by
@@ -1535,7 +1669,9 @@ theorem aux_standardBumpComplexIntervalDensity_coe (r t : ℝ) :
 /--
 For `Auto.standardBumpProperties`, this identifies the complex
  finite convolution density
-with the complexification of the real density, transferring its support and plateau bounds.-/
+with the complexification of the real density, transferring its support and plateau bounds.
+@isnad1 id=eq.0h2v.s3.81c5b6c384c9 from=translated src=- shape=56680afe vocab=3b7759a1
+-/
 theorem aux_standardBumpComplexFiniteDensity_coe (n : ℕ) (x : ℝ) :
     aux_standardBumpComplexFiniteDensity n x = (aux_standardBumpFiniteDensity n x : ℂ) := by
   induction n generalizing x with
@@ -1564,7 +1700,9 @@ theorem aux_standardBumpComplexFiniteDensity_coe (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties`, this is the finite
  convolution-to-product Fourier
-identity before evaluating the individual interval factors.-/
+identity before evaluating the individual interval factors.
+@isnad1 id=eq.0h2v.s7.5ae4566f62be from=translated src=- shape=2e1e5420 vocab=a5c6acba
+-/
 theorem aux_fourier_standardBumpComplexFiniteDensity_product (n : ℕ) (x : ℝ) :
     𝓕 (aux_standardBumpComplexFiniteDensity n) x =
       𝓕 (aux_standardBumpComplexIntervalIndicator (3 / 4)) x *
@@ -1583,7 +1721,9 @@ theorem aux_fourier_standardBumpComplexFiniteDensity_product (n : ℕ) (x : ℝ)
 /--
 For `Auto.standardBumpProperties`, this identifies each finite
  standard-bump product as
-the Fourier transform of its complex physical-side convolution density.-/
+the Fourier transform of its complex physical-side convolution density.
+@isnad1 id=eq.0h2v.s5.134840736bb8 from=translated src=- shape=70c88b27 vocab=9fd2a173
+-/
 theorem aux_fourier_standardBumpComplexFiniteDensity_eq_standardBumpFinite (n : ℕ) (x : ℝ) :
     𝓕 (aux_standardBumpComplexFiniteDensity n) x = (standardBumpFinite n x : ℂ) := by
   rw [aux_fourier_standardBumpComplexFiniteDensity_product,
@@ -1603,7 +1743,9 @@ theorem aux_fourier_standardBumpComplexFiniteDensity_eq_standardBumpFinite (n : 
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is the elementary inverse-absolute-value decay of sinc away from zero.-/
+is the elementary inverse-absolute-value decay of sinc away from zero.
+@isnad1 id=le.1h1v.s4.dbd02f03640c from=translated src=- shape=9998964f vocab=8eda341b
+-/
 theorem aux_abs_sinc_le_inv_abs {t : ℝ} (ht : t ≠ 0) :
     |Real.sinc t| ≤ |t|⁻¹ := by
   rw [Real.sinc_of_ne_zero ht, abs_div]
@@ -1616,7 +1758,9 @@ theorem aux_abs_sinc_le_inv_abs {t : ℝ} (ht : t ≠ 0) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 turns the boundedness and inverse decay of a sinc factor into a globally integrable-type
-majorant after multiplication by a positive scale.-/
+majorant after multiplication by a positive scale.
+@isnad1 id=le.3h3v.s6.3a91414321f1 from=translated src=- shape=628428ec vocab=9ab727b8
+-/
 theorem aux_abs_sinc_mul_le_majorant {a c : ℝ} (ha : 0 < a) (hc : 2 ≤ c)
     (hca : 2 ≤ c * a) (x : ℝ) :
     |Real.sinc (a * x)| ≤ c * (1 + |x|)⁻¹ := by
@@ -1651,7 +1795,9 @@ theorem aux_abs_sinc_mul_le_majorant {a c : ℝ} (ha : 0 < a) (hc : 2 ≤ c)
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is a global decay bound for the initial, long-interval sinc factor.-/
+is a global decay bound for the initial, long-interval sinc factor.
+@isnad1 id=le.0h1v.s6.b4cf0e511e46 from=translated src=- shape=84b0286a vocab=ef6d7fa1
+-/
 theorem aux_standardBump_base_sinc_abs_le_majorant (x : ℝ) :
     |aux_intervalIndicatorFourier (3 / 4) x| ≤ 3 * (1 + |x|)⁻¹ := by
   rw [aux_intervalIndicatorFourier_eq_two_mul_sinc]
@@ -1674,7 +1820,9 @@ theorem aux_standardBump_base_sinc_abs_le_majorant (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is a global decay bound for the first short-interval sinc factor.-/
+is a global decay bound for the first short-interval sinc factor.
+@isnad1 id=le.0h1v.s6.6ebef4c7fd27 from=translated src=- shape=aed41f67 vocab=c8abc6fd
+-/
 theorem aux_standardBump_first_sinc_abs_le_majorant (x : ℝ) :
     |Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ 0)| ≤
       4 * (1 + |x|)⁻¹ := by
@@ -1688,7 +1836,9 @@ theorem aux_standardBump_first_sinc_abs_le_majorant (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, the
-remaining finite sinc factors have product of absolute value at most one.-/
+remaining finite sinc factors have product of absolute value at most one.
+@isnad1 id=le.0h2v.s6.87a85834b87d from=translated src=- shape=2273dbf9 vocab=466bfccb
+-/
 theorem aux_standardBump_sinc_tail_abs_le_one (n : ℕ) (x : ℝ) :
     |∏ i ∈ Finset.range n,
       Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ (i + 1))| ≤ 1 := by
@@ -1702,7 +1852,9 @@ theorem aux_standardBump_sinc_tail_abs_le_one (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is the integrable two-sinc majorant for every nontrivial finite standard-bump product.-/
+is the integrable two-sinc majorant for every nontrivial finite standard-bump product.
+@isnad1 id=le.0h2v.s6.c78f94431fa5 from=translated src=- shape=1fbab0e2 vocab=76ff6d13
+-/
 theorem aux_standardBumpFinite_succ_abs_le_majorant (n : ℕ) (x : ℝ) :
     |standardBumpFinite (n + 1) x| ≤ 12 * (1 + x ^ 2)⁻¹ := by
   rw [aux_standardBumpFinite_eq_sincProduct, Finset.prod_range_succ']
@@ -1742,7 +1894,9 @@ theorem aux_standardBumpFinite_succ_abs_le_majorant (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_l1Convergence`, this is the continuity of the interval Fourier factor
-needed for the measurability of the finite products.-/
+needed for the measurability of the finite products.
+@isnad1 id=continuo.0h1v.s4.5b72b10295c9 from=translated src=- shape=f736e2c1 vocab=fda895ff
+-/
 theorem aux_continuous_intervalIndicatorFourier (r : ℝ) :
     Continuous (aux_intervalIndicatorFourier r) := by
   rw [show aux_intervalIndicatorFourier r =
@@ -1754,7 +1908,9 @@ theorem aux_continuous_intervalIndicatorFourier (r : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_l1Convergence`, this supplies continuity, hence strong measurability, of
-each finite standard-bump product.-/
+each finite standard-bump product.
+@isnad1 id=continuo.0h1v.s4.9b0d01ce1840 from=translated src=- shape=8735051e vocab=5e099ef1
+-/
 theorem aux_continuous_standardBumpFinite (n : ℕ) :
     Continuous (standardBumpFinite n) := by
   unfold standardBumpFinite
@@ -1766,7 +1922,9 @@ theorem aux_continuous_standardBumpFinite (n : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorems
 `standardBumpProperties_l1Convergence` and `standardBumpProperties_linfConvergence`, this
-identifies the pointwise finite-product limit with the standard bump.-/
+identifies the pointwise finite-product limit with the standard bump.
+@isnad1 id=tendsto.0h1v.s4.8a171ce27885 from=translated src=- shape=fffc4cd4 vocab=461debe5
+-/
 theorem aux_standardBumpFinite_tendsto (x : ℝ) :
     Tendsto (fun n : ℕ => standardBumpFinite n x) atTop (nhds (standardBump x)) := by
   rw [aux_standardBump_eq_sincTprod]
@@ -1775,7 +1933,9 @@ theorem aux_standardBumpFinite_tendsto (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_l1Convergence`, this derives the strong measurability of the limiting
-standard bump from the continuous finite products and their pointwise limit.-/
+standard bump from the continuous finite products and their pointwise limit.
+@isnad1 id=aestrong.0h0v.s4.e0455cf0452f from=translated src=- shape=e14394ff vocab=47362b19
+-/
 theorem aux_standardBump_aestronglyMeasurable :
     AEStronglyMeasurable standardBump volume := by
   apply aestronglyMeasurable_of_tendsto_ae atTop
@@ -1786,7 +1946,9 @@ theorem aux_standardBump_aestronglyMeasurable :
 /--
 For `Auto.standardBumpProperties` and the public theorems
 `standardBumpProperties_l1Convergence` and `standardBumpProperties_linfConvergence`, this passes
-the finite two-sinc majorant to the pointwise standard-bump limit.-/
+the finite two-sinc majorant to the pointwise standard-bump limit.
+@isnad1 id=le.0h1v.s5.b442fc11b79f from=translated src=- shape=e305d9cc vocab=add8b7d1
+-/
 theorem aux_standardBump_abs_le_majorant (x : ℝ) :
     |standardBump x| ≤ 12 * (1 + x ^ 2)⁻¹ := by
   have hlim := (Filter.tendsto_add_atTop_iff_nat 1).2
@@ -1801,7 +1963,9 @@ theorem aux_standardBump_abs_le_majorant (x : ℝ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 gives the global one-factor decay estimate used to obtain arbitrary polynomial moments of the
-standard bump.-/
+standard bump.
+@isnad1 id=le.0h2v.s7.74f14d62fd32 from=translated src=- shape=2a980669 vocab=c8abc6fd
+-/
 theorem aux_standardBump_sinc_factor_abs_le_majorant (i : ℕ) (x : ℝ) :
     |Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ i)| ≤
       (2 : ℝ) ^ (i + 2) * (1 + |x|)⁻¹ := by
@@ -1828,7 +1992,9 @@ theorem aux_standardBump_sinc_factor_abs_le_majorant (i : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-multiplies the one-factor estimates through a finite prefix of the sinc product.-/
+multiplies the one-factor estimates through a finite prefix of the sinc product.
+@isnad1 id=le.0h2v.s7.7514f6ec7bdd from=translated src=- shape=ba2fa8c8 vocab=a0f86e0e
+-/
 theorem aux_standardBump_sinc_prefix_abs_le_majorant (r : ℕ) (x : ℝ) :
     |∏ i ∈ Finset.range r,
       Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ i)| ≤
@@ -1857,7 +2023,9 @@ theorem aux_standardBump_sinc_prefix_abs_le_majorant (r : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-records that every shifted residual sinc product has absolute value at most one.-/
+records that every shifted residual sinc product has absolute value at most one.
+@isnad1 id=le.0h3v.s6.2ac7ebf597e7 from=translated src=- shape=e06c0e7e vocab=466bfccb
+-/
 theorem aux_standardBump_sinc_shifted_tail_abs_le_one (r l : ℕ) (x : ℝ) :
     (∏ i ∈ Finset.range l,
       abs (Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ (r + i)))) ≤ 1 := by
@@ -1871,7 +2039,9 @@ theorem aux_standardBump_sinc_shifted_tail_abs_le_one (r l : ℕ) (x : ℝ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 is the arbitrary-order finite-product majorant from which the weighted bounds are passed to the
-limit.-/
+limit.
+@isnad1 id=le.0h3v.s7.8695bc2bca1d from=translated src=- shape=8ceb1339 vocab=3360f54d
+-/
 theorem aux_standardBumpFinite_add_abs_le_highMajorant (r l : ℕ) (x : ℝ) :
     |standardBumpFinite (r + l) x| ≤
       3 * (2 : ℝ) ^ (r * (r - 1) / 2 + 2 * r) * (1 + |x|)⁻¹ ^ (r + 1) := by
@@ -1911,7 +2081,9 @@ theorem aux_standardBumpFinite_add_abs_le_highMajorant (r l : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-passes the arbitrary finite-product majorant to the standard-bump limit.-/
+passes the arbitrary finite-product majorant to the standard-bump limit.
+@isnad1 id=le.0h2v.s7.f9db6557d6bd from=translated src=- shape=2b67cbb8 vocab=9119069a
+-/
 theorem aux_standardBump_abs_le_highMajorant (r : ℕ) (x : ℝ) :
     |standardBump x| ≤
       3 * (2 : ℝ) ^ (r * (r - 1) / 2 + 2 * r) * (1 + |x|)⁻¹ ^ (r + 1) := by
@@ -1950,7 +2122,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_schwartz`,
 `Auto.standardBumpProperties_fourierShape`,
 `Auto.standardBumpProperties_fourierDerivativeEstimate`,
-`Auto.standardBumpProperties_derivativeDecay`.-/
+`Auto.standardBumpProperties_derivativeDecay`.
+@isnad1 id=tendsto.0h0v.s6.6467cfb6e585 from=translated src=- shape=2a39eff9 vocab=9ced8f42
+-/
 theorem standardBumpProperties_l1Convergence :
     Tendsto (fun n : ℕ => eLpNorm (standardBumpFinite n - standardBump) 1 volume)
       atTop (nhds 0) := by
@@ -1979,7 +2153,9 @@ theorem standardBumpProperties_l1Convergence :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_linfConvergence`, this turns the decay of the base sinc factor into the
-uniform bound used on compact sets.-/
+uniform bound used on compact sets.
+@isnad1 id=le.0h1v.s5.6d37b49b9d1b from=translated src=- shape=59c16a1e vocab=363d4f6a
+-/
 theorem aux_standardBump_base_abs_le_three (x : ℝ) :
     |aux_intervalIndicatorFourier (3 / 4) x| ≤ 3 := by
   calc
@@ -1993,7 +2169,9 @@ theorem aux_standardBump_base_abs_le_three (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_linfConvergence`, this transfers compact-uniform convergence of the sinc
-product to compact-uniform convergence of the finite standard bumps.-/
+product to compact-uniform convergence of the finite standard bumps.
+@isnad1 id=tendstou.1h1v.s5.fc60891443e4 from=translated src=- shape=a3545ba8 vocab=f4b3b5b5
+-/
 theorem aux_standardBumpFinite_tendstoUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn (fun (n : ℕ) (x : ℝ) => standardBumpFinite n x)
       standardBump atTop (Set.Icc (-R) R) := by
@@ -2022,7 +2200,9 @@ theorem aux_standardBumpFinite_tendstoUniformlyOn (R : ℝ) (hR : 0 ≤ R) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_linfConvergence`, this makes the uniform tail from the two-sinc majorant
-quantitative.-/
+quantitative.
+@isnad1 id=lt.2h2v.s6.c301cb5a7695 from=translated src=- shape=c508e82b vocab=af596482
+-/
 theorem aux_standardBump_tail_lt (ε x : ℝ) (hε : 0 < ε)
     (hx : max 1 (24 / ε) < |x|) :
     24 * (1 + x ^ 2)⁻¹ < ε := by
@@ -2044,7 +2224,9 @@ theorem aux_standardBump_tail_lt (ε x : ℝ) (hε : 0 < ε)
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_linfConvergence`, this combines compact-uniform convergence with the
-uniform two-sinc tail to obtain global uniform convergence.-/
+uniform two-sinc tail to obtain global uniform convergence.
+@isnad1 id=tendstou.0h0v.s4.ec86d441f90e from=translated src=- shape=4dd71eed vocab=93b04d4c
+-/
 theorem aux_standardBumpFinite_tendstoUniformly :
     TendstoUniformly (fun (n : ℕ) (x : ℝ) => standardBumpFinite n x)
       standardBump atTop := by
@@ -2109,7 +2291,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_schwartz`,
 `Auto.standardBumpProperties_fourierShape`,
 `Auto.standardBumpProperties_fourierDerivativeEstimate`,
-`Auto.standardBumpProperties_derivativeDecay`.-/
+`Auto.standardBumpProperties_derivativeDecay`.
+@isnad1 id=tendsto.0h0v.s6.d35f6396c898 from=translated src=- shape=17054b08 vocab=4987bd05
+-/
 theorem standardBumpProperties_linfConvergence :
     Tendsto (fun n : ℕ => eLpNorm (standardBumpFinite n - standardBump) ⊤ volume)
       atTop (nhds 0) := by
@@ -2137,7 +2321,9 @@ theorem standardBumpProperties_linfConvergence :
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this records that an interval density is continuous away
 from its two endpoints.  It supplies the dominated-convergence proof of continuity for the first
-finite convolution density.-/
+finite convolution density.
+@isnad1 id=continuo.2h2v.s5.8f89ae38eb86 from=translated src=- shape=c19ae767 vocab=ea38eadf
+-/
 theorem aux_continuousAt_standardBumpIntervalDensity_offBoundary (r z : ℝ)
     (hlo : z ≠ -r) (hhi : z ≠ r) :
     ContinuousAt (aux_standardBumpIntervalDensity r) z := by
@@ -2169,7 +2355,9 @@ theorem aux_continuousAt_standardBumpIntervalDensity_offBoundary (r z : ℝ)
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this proves continuity of the first nontrivial finite
-physical-side density by dominated convergence.-/
+physical-side density by dominated convergence.
+@isnad1 id=continuo.0h0v.s4.2a9527b49304 from=translated src=- shape=40a3243c vocab=32d137c9
+-/
 theorem aux_continuous_standardBumpFiniteDensity_one :
     Continuous (aux_standardBumpFiniteDensity 1) := by
   change Continuous (aux_standardBumpBaseDensity ⋆[ContinuousLinearMap.mul ℝ ℝ, volume]
@@ -2234,7 +2422,9 @@ theorem aux_continuous_standardBumpFiniteDensity_one :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this propagates continuity through every later finite
-convolution density.-/
+convolution density.
+@isnad1 id=continuo.0h1v.s4.2c6fe78bece0 from=translated src=- shape=de015c78 vocab=e5b85c27
+-/
 theorem aux_continuous_standardBumpFiniteDensity_succ (n : ℕ) :
     Continuous (aux_standardBumpFiniteDensity (n + 1)) := by
   induction n with
@@ -2255,7 +2445,9 @@ theorem aux_continuous_standardBumpFiniteDensity_succ (n : ℕ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this
-identifies the first derivative after a later interval convolution.-/
+identifies the first derivative after a later interval convolution.
+@isnad1 id=hasderiv.0h2v.s7.1d83ada6b6c9 from=translated src=- shape=8bc5b051 vocab=c422b90d
+-/
 theorem aux_standardBumpFiniteDensity_succ_hasDerivAt (n : ℕ) (x : ℝ) :
     HasDerivAt (aux_standardBumpFiniteDensity (n + 2))
       ((aux_standardBumpFiniteDensity (n + 1) (x + aux_standardBumpRadius (n + 1)) -
@@ -2275,7 +2467,9 @@ theorem aux_standardBumpFiniteDensity_succ_hasDerivAt (n : ℕ) (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this
-differentiates a symmetric difference quotient.-/
+differentiates a symmetric difference quotient.
+@isnad1 id=hasderiv.1h4v.s7.5220e0ec9ae8 from=translated src=- shape=59120119 vocab=9401ac1f
+-/
 theorem aux_standardBump_differenceQuotient_hasDerivAt
     (f f' : ℝ → ℝ) (rho x : ℝ) (hderiv : ∀ z, HasDerivAt f (f' z) z) :
     HasDerivAt
@@ -2291,7 +2485,9 @@ theorem aux_standardBump_differenceQuotient_hasDerivAt
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the second
-finite density has the indicated derivative formula.-/
+finite density has the indicated derivative formula.
+@isnad1 id=eq.0h1v.s6.b2f0f919b21a from=translated src=- shape=d8fe74a4 vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_two_deriv_eq (x : ℝ) :
     deriv (aux_standardBumpFiniteDensity 2) x =
       (aux_standardBumpFiniteDensity 1 (x + aux_standardBumpRadius 1) -
@@ -2301,7 +2497,9 @@ theorem aux_standardBumpFiniteDensity_two_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, bound the
-first derivative of the second finite density.-/
+first derivative of the second finite density.
+@isnad1 id=le.0h1v.s5.9a43ee80db56 from=translated src=- shape=6b879895 vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_two_deriv_bound (x : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 2) x| ≤ 8 := by
   rw [aux_standardBumpFiniteDensity_two_deriv_eq]
@@ -2311,7 +2509,9 @@ theorem aux_standardBumpFiniteDensity_two_deriv_bound (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the first
-derivative of the second density is 128-Lipschitz.-/
+derivative of the second density is 128-Lipschitz.
+@isnad1 id=le.0h2v.s6.b9c256903b51 from=translated src=- shape=5e746249 vocab=04e3ebde
+-/
 theorem aux_standardBumpFiniteDensity_two_deriv_lipschitz (x y : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 2) x -
       deriv (aux_standardBumpFiniteDensity 2) y| ≤ 128 * |x - y| := by
@@ -2325,7 +2525,9 @@ theorem aux_standardBumpFiniteDensity_two_deriv_lipschitz (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the second
-finite density is eight-Lipschitz.-/
+finite density is eight-Lipschitz.
+@isnad1 id=le.0h2v.s5.46c986df8007 from=translated src=- shape=e01d8bd4 vocab=904a0b29
+-/
 theorem aux_standardBumpFiniteDensity_two_lipschitz (x y : ℝ) :
     |aux_standardBumpFiniteDensity 2 x - aux_standardBumpFiniteDensity 2 y| ≤
       8 * |x - y| := by
@@ -2342,7 +2544,9 @@ theorem aux_standardBumpFiniteDensity_two_lipschitz (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the third
-finite density has the indicated derivative formula.-/
+finite density has the indicated derivative formula.
+@isnad1 id=eq.0h1v.s6.b9e8694fb461 from=translated src=- shape=d8fe74a4 vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_three_deriv_eq (x : ℝ) :
     deriv (aux_standardBumpFiniteDensity 3) x =
       (aux_standardBumpFiniteDensity 2 (x + aux_standardBumpRadius 2) -
@@ -2352,7 +2556,9 @@ theorem aux_standardBumpFiniteDensity_three_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, bound the
-first derivative of the third finite density.-/
+first derivative of the third finite density.
+@isnad1 id=le.0h1v.s5.e98efaf23173 from=translated src=- shape=6b879895 vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_three_deriv_bound (x : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 3) x| ≤ 8 := by
   rw [aux_standardBumpFiniteDensity_three_deriv_eq]
@@ -2362,7 +2568,9 @@ theorem aux_standardBumpFiniteDensity_three_deriv_bound (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this gives
-the second derivative of the third finite density.-/
+the second derivative of the third finite density.
+@isnad1 id=hasderiv.0h1v.s7.c2197a7abf9c from=translated src=- shape=d85737dd vocab=86a24d5c
+-/
 theorem aux_standardBumpFiniteDensity_three_second_hasDerivAt (x : ℝ) :
     HasDerivAt (deriv (aux_standardBumpFiniteDensity 3))
       ((deriv (aux_standardBumpFiniteDensity 2) (x + aux_standardBumpRadius 2) -
@@ -2383,7 +2591,9 @@ theorem aux_standardBumpFiniteDensity_three_second_hasDerivAt (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, identify the
-second derivative of the third finite density.-/
+second derivative of the third finite density.
+@isnad1 id=eq.0h1v.s7.aafbb11cf1b6 from=translated src=- shape=311c13ca vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_three_second_deriv_eq (x : ℝ) :
     deriv (deriv (aux_standardBumpFiniteDensity 3)) x =
       (deriv (aux_standardBumpFiniteDensity 2) (x + aux_standardBumpRadius 2) -
@@ -2393,7 +2603,9 @@ theorem aux_standardBumpFiniteDensity_three_second_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the second
-derivative of the third density is bounded by 128.-/
+derivative of the third density is bounded by 128.
+@isnad1 id=le.0h1v.s6.08ea29326d2c from=translated src=- shape=31972885 vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_three_second_deriv_bound (x : ℝ) :
     |deriv (deriv (aux_standardBumpFiniteDensity 3)) x| ≤ 128 := by
   rw [aux_standardBumpFiniteDensity_three_second_deriv_eq]
@@ -2403,7 +2615,9 @@ theorem aux_standardBumpFiniteDensity_three_second_deriv_bound (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the first
-derivative of the third density is 128-Lipschitz.-/
+derivative of the third density is 128-Lipschitz.
+@isnad1 id=le.0h2v.s6.644a38443011 from=translated src=- shape=5e746249 vocab=04e3ebde
+-/
 theorem aux_standardBumpFiniteDensity_three_deriv_lipschitz_sharp (x y : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 3) x -
       deriv (aux_standardBumpFiniteDensity 3) y| ≤ 128 * |x - y| := by
@@ -2420,7 +2634,9 @@ theorem aux_standardBumpFiniteDensity_three_deriv_lipschitz_sharp (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the second
-derivative of the third density is 4096-Lipschitz.-/
+derivative of the third density is 4096-Lipschitz.
+@isnad1 id=le.0h2v.s7.4b3454ef51cd from=translated src=- shape=d72eefe6 vocab=04e3ebde
+-/
 theorem aux_standardBumpFiniteDensity_three_second_lipschitz (x y : ℝ) :
     |deriv (deriv (aux_standardBumpFiniteDensity 3)) x -
       deriv (deriv (aux_standardBumpFiniteDensity 3)) y| ≤ 4096 * |x - y| := by
@@ -2434,7 +2650,9 @@ theorem aux_standardBumpFiniteDensity_three_second_lipschitz (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the third
-finite density is eight-Lipschitz.-/
+finite density is eight-Lipschitz.
+@isnad1 id=le.0h2v.s5.1c7fd281cdda from=translated src=- shape=e01d8bd4 vocab=904a0b29
+-/
 theorem aux_standardBumpFiniteDensity_three_lipschitz (x y : ℝ) :
     |aux_standardBumpFiniteDensity 3 x - aux_standardBumpFiniteDensity 3 y| ≤
       8 * |x - y| := by
@@ -2451,7 +2669,9 @@ theorem aux_standardBumpFiniteDensity_three_lipschitz (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the first
-derivative of the third density is 256-Lipschitz.-/
+derivative of the third density is 256-Lipschitz.
+@isnad1 id=le.0h2v.s6.344ada34dd9f from=translated src=- shape=5e746249 vocab=04e3ebde
+-/
 theorem aux_standardBumpFiniteDensity_three_deriv_lipschitz (x y : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 3) x -
       deriv (aux_standardBumpFiniteDensity 3) y| ≤ 256 * |x - y| := by
@@ -2465,7 +2685,9 @@ theorem aux_standardBumpFiniteDensity_three_deriv_lipschitz (x y : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, the fourth
-finite density has the indicated derivative formula.-/
+finite density has the indicated derivative formula.
+@isnad1 id=eq.0h1v.s6.fc37e89a7f78 from=translated src=- shape=d8fe74a4 vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_four_deriv_eq (x : ℝ) :
     deriv (aux_standardBumpFiniteDensity 4) x =
       (aux_standardBumpFiniteDensity 3 (x + aux_standardBumpRadius 3) -
@@ -2475,7 +2697,9 @@ theorem aux_standardBumpFiniteDensity_four_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, bound the
-first derivative of the fourth finite density.-/
+first derivative of the fourth finite density.
+@isnad1 id=le.0h1v.s5.e4251934787f from=translated src=- shape=6b879895 vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_four_deriv_bound (x : ℝ) :
     |deriv (aux_standardBumpFiniteDensity 4) x| ≤ 8 := by
   rw [aux_standardBumpFiniteDensity_four_deriv_eq]
@@ -2485,7 +2709,9 @@ theorem aux_standardBumpFiniteDensity_four_deriv_bound (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this gives
-the second derivative of the fourth finite density.-/
+the second derivative of the fourth finite density.
+@isnad1 id=hasderiv.0h1v.s7.d16261b7ddd5 from=translated src=- shape=d85737dd vocab=86a24d5c
+-/
 theorem aux_standardBumpFiniteDensity_four_second_hasDerivAt (x : ℝ) :
     HasDerivAt (deriv (aux_standardBumpFiniteDensity 4))
       ((deriv (aux_standardBumpFiniteDensity 3) (x + aux_standardBumpRadius 3) -
@@ -2506,7 +2732,9 @@ theorem aux_standardBumpFiniteDensity_four_second_hasDerivAt (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, identify the
-second derivative of the fourth finite density.-/
+second derivative of the fourth finite density.
+@isnad1 id=eq.0h1v.s7.957df573e56f from=translated src=- shape=311c13ca vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_four_second_deriv_eq (x : ℝ) :
     deriv (deriv (aux_standardBumpFiniteDensity 4)) x =
       (deriv (aux_standardBumpFiniteDensity 3) (x + aux_standardBumpRadius 3) -
@@ -2516,7 +2744,9 @@ theorem aux_standardBumpFiniteDensity_four_second_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, bound the
-second derivative of the fourth finite density.-/
+second derivative of the fourth finite density.
+@isnad1 id=le.0h1v.s6.1e8352410bdf from=translated src=- shape=31972885 vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_four_second_deriv_bound (x : ℝ) :
     |deriv (deriv (aux_standardBumpFiniteDensity 4)) x| ≤ 128 := by
   rw [aux_standardBumpFiniteDensity_four_second_deriv_eq]
@@ -2526,7 +2756,9 @@ theorem aux_standardBumpFiniteDensity_four_second_deriv_bound (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, this gives
-the third derivative of the fourth finite density.-/
+the third derivative of the fourth finite density.
+@isnad1 id=hasderiv.0h1v.s8.72be5c7ad07d from=translated src=- shape=2d9f108e vocab=86a24d5c
+-/
 theorem aux_standardBumpFiniteDensity_four_third_hasDerivAt (x : ℝ) :
     HasDerivAt (deriv (deriv (aux_standardBumpFiniteDensity 4)))
       ((deriv (deriv (aux_standardBumpFiniteDensity 3)) (x + aux_standardBumpRadius 3) -
@@ -2548,7 +2780,9 @@ theorem aux_standardBumpFiniteDensity_four_third_hasDerivAt (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, identify the
-third derivative of the fourth finite density.-/
+third derivative of the fourth finite density.
+@isnad1 id=eq.0h1v.s8.f21614ecf371 from=translated src=- shape=ec381b72 vocab=31198b53
+-/
 theorem aux_standardBumpFiniteDensity_four_third_deriv_eq (x : ℝ) :
     deriv (deriv (deriv (aux_standardBumpFiniteDensity 4))) x =
       (deriv (deriv (aux_standardBumpFiniteDensity 3)) (x + aux_standardBumpRadius 3) -
@@ -2558,7 +2792,9 @@ theorem aux_standardBumpFiniteDensity_four_third_deriv_eq (x : ℝ) :
 
 /--
 For the sharp finite-density derivative bounds used by `existsUniversalPair`, bound the
-third derivative of the fourth finite density.-/
+third derivative of the fourth finite density.
+@isnad1 id=le.0h1v.s6.948f5166a637 from=translated src=- shape=b055e8df vocab=10db15be
+-/
 theorem aux_standardBumpFiniteDensity_four_third_deriv_bound (x : ℝ) :
     |deriv (deriv (deriv (aux_standardBumpFiniteDensity 4))) x| ≤ 4096 := by
   rw [aux_standardBumpFiniteDensity_four_third_deriv_eq]
@@ -2568,7 +2804,9 @@ theorem aux_standardBumpFiniteDensity_four_third_deriv_bound (x : ℝ) :
 
 /--
 For `existsUniversalPair`, the fourth finite density has the sharp first three derivative
-bounds required for the universal-pair profile.-/
+bounds required for the universal-pair profile.
+@isnad1 id=and.0h1v.s7.83d9062c7c65 from=translated src=- shape=859255ca vocab=2cb62625
+-/
 theorem aux_standardBumpFiniteDensity_four_sharp_iteratedDeriv (x : ℝ) :
     ‖iteratedDeriv 1 (aux_standardBumpFiniteDensity 4) x‖ ≤ 8 ∧
       ‖iteratedDeriv 2 (aux_standardBumpFiniteDensity 4) x‖ ≤ 128 ∧
@@ -2583,7 +2821,9 @@ theorem aux_standardBumpFiniteDensity_four_sharp_iteratedDeriv (x : ℝ) :
       iteratedDeriv_zero, Real.norm_eq_abs] using
       aux_standardBumpFiniteDensity_four_third_deriv_bound x
 
-/-- For `existsUniversalPair`, a symmetric interval convolution adds one order of smoothness.-/
+/-- For `existsUniversalPair`, a symmetric interval convolution adds one order of smoothness.
+@isnad1 id=contdiff.2h3v.s7.9bc924b8e5ee from=translated src=- shape=107ee0d3 vocab=8e6e6198
+-/
 theorem aux_standardBump_contDiff_intervalConvolution_succ
     (n : ℕ) (f : ℝ → ℝ) (r : ℝ) (hr : 0 < r) (hf : ContDiff ℝ n f) :
     ContDiff ℝ (n + 1) (f ⋆[ContinuousLinearMap.mul ℝ ℝ, volume]
@@ -2603,7 +2843,9 @@ theorem aux_standardBump_contDiff_intervalConvolution_succ
 
 /--
 For `existsUniversalPair`, the fourth finite density is three times continuously
-differentiable.-/
+differentiable.
+@isnad1 id=contdiff.0h0v.s5.f2c82b034928 from=translated src=- shape=e2070c9d vocab=2d2d5018
+-/
 theorem aux_standardBumpFiniteDensity_four_contDiff :
     ContDiff ℝ 3 (aux_standardBumpFiniteDensity 4) := by
   have hD2 : ContDiff ℝ 1 (aux_standardBumpFiniteDensity 2) := by
@@ -2628,7 +2870,9 @@ theorem aux_standardBumpFiniteDensity_four_contDiff :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this records the symmetry of the initial interval
-density.-/
+density.
+@isnad1 id=eq.0h1v.s3.ce33311dd426 from=translated src=- shape=cd419dad vocab=f753fa3f
+-/
 theorem aux_standardBumpBaseDensity_even (x : ℝ) :
     aux_standardBumpBaseDensity (-x) = aux_standardBumpBaseDensity x := by
   have hmem : -x ∈ Set.Icc (-(3 / 4 : ℝ)) (3 / 4) ↔
@@ -2640,7 +2884,9 @@ theorem aux_standardBumpBaseDensity_even (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this records the symmetry of each normalized interval
-density.-/
+density.
+@isnad1 id=eq.0h2v.s3.5fdb358bc971 from=translated src=- shape=6be742d9 vocab=656b6345
+-/
 theorem aux_standardBumpIntervalDensity_even (r x : ℝ) :
     aux_standardBumpIntervalDensity r (-x) = aux_standardBumpIntervalDensity r x := by
   have hmem : -x ∈ Set.Icc (-r) r ↔ x ∈ Set.Icc (-r) r := by
@@ -2651,7 +2897,9 @@ theorem aux_standardBumpIntervalDensity_even (r x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this propagates evenness to every finite physical-side
-density, allowing forward Fourier inversion to be used without reflection.-/
+density, allowing forward Fourier inversion to be used without reflection.
+@isnad1 id=eq.0h2v.s3.e147479a00cf from=translated src=- shape=5a76020b vocab=0eb9ea25
+-/
 theorem aux_standardBumpFiniteDensity_even (n : ℕ) (x : ℝ) :
     aux_standardBumpFiniteDensity n (-x) = aux_standardBumpFiniteDensity n x := by
   induction n generalizing x with
@@ -2666,7 +2914,9 @@ theorem aux_standardBumpFiniteDensity_even (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this supplies integrability of every nontrivial finite
-standard bump for the Fourier inversion argument.-/
+standard bump for the Fourier inversion argument.
+@isnad1 id=integrab.0h1v.s5.0e2cb058d40c from=translated src=- shape=a83f3634 vocab=a2fbfdbc
+-/
 theorem aux_integrable_standardBumpFinite_succ (n : ℕ) :
     Integrable (standardBumpFinite (n + 1)) := by
   apply (integrable_inv_one_add_sq.const_mul 12).mono'
@@ -2677,7 +2927,9 @@ theorem aux_integrable_standardBumpFinite_succ (n : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this uses Fourier inversion and evenness to identify the
-forward Fourier transform of a nontrivial finite bump with its finite physical-side density.-/
+forward Fourier transform of a nontrivial finite bump with its finite physical-side density.
+@isnad1 id=eq.0h2v.s6.be208aa8782a from=translated src=- shape=ad4d0757 vocab=fc1e74cd
+-/
 theorem aux_fourier_standardBumpFinite_succ_eq_density (n : ℕ) (x : ℝ) :
     𝓕 (fun y : ℝ => (standardBumpFinite (n + 1) y : ℂ)) x =
       (aux_standardBumpFiniteDensity (n + 1) x : ℂ) := by
@@ -2714,7 +2966,9 @@ theorem aux_fourier_standardBumpFinite_succ_eq_density (n : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this supplies integrability of the limiting standard bump
-from its already-proved two-sinc majorant.-/
+from its already-proved two-sinc majorant.
+@isnad1 id=integrab.0h0v.s4.95a6fc35391e from=translated src=- shape=e14394ff vocab=88ae8ef1
+-/
 theorem aux_integrable_standardBump : Integrable standardBump := by
   apply (integrable_inv_one_add_sq.const_mul 12).mono'
     aux_standardBump_aestronglyMeasurable
@@ -2724,7 +2978,9 @@ theorem aux_integrable_standardBump : Integrable standardBump := by
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this converts the established $L^1$ convergence into
-convergence of the ordinary real integral of the absolute error.-/
+convergence of the ordinary real integral of the absolute error.
+@isnad1 id=tendsto.0h0v.s5.ba1652ed1a8c from=translated src=- shape=6f98c5d7 vocab=9b070fda
+-/
 theorem aux_standardBumpFinite_tendsto_integral_norm :
     Tendsto (fun n : ℕ => ∫ x : ℝ, |standardBumpFinite n x - standardBump x|)
       atTop (nhds 0) := by
@@ -2749,7 +3005,9 @@ theorem aux_standardBumpFinite_tendsto_integral_norm :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this is the $L^1$ Lipschitz bound for the Fourier
-transform at a fixed frequency.-/
+transform at a fixed frequency.
+@isnad1 id=le.2h3v.s7.9bf511a6a38e from=translated src=- shape=43e1e6f7 vocab=7a84eee4
+-/
 theorem aux_norm_fourier_sub_le_integral (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     ‖𝓕 (fun x : ℝ => (f x : ℂ)) xi - 𝓕 (fun x : ℝ => (g x : ℂ)) xi‖ ≤
@@ -2777,7 +3035,9 @@ theorem aux_norm_fourier_sub_le_integral (f g : ℝ → ℝ)
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this passes the $L^1$ convergence of finite standard
-bumps to pointwise convergence of their Fourier transforms.-/
+bumps to pointwise convergence of their Fourier transforms.
+@isnad1 id=tendsto.0h1v.s6.30f55bc8c23f from=translated src=- shape=9326953c vocab=b44ad8a5
+-/
 theorem aux_fourier_standardBumpFinite_succ_tendsto (xi : ℝ) :
     Tendsto (fun n : ℕ => 𝓕 (fun x : ℝ => (standardBumpFinite (n + 1) x : ℂ)) xi)
       atTop (nhds (𝓕 (fun x : ℝ => (standardBump x : ℂ)) xi)) := by
@@ -2798,7 +3058,9 @@ theorem aux_fourier_standardBumpFinite_succ_tendsto (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this identifies the pointwise Fourier limit of the finite
-density sequence.-/
+density sequence.
+@isnad1 id=tendsto.0h1v.s6.250410cf42d3 from=translated src=- shape=9fc35700 vocab=40c9bfa0
+-/
 theorem aux_standardBumpFiniteDensity_tendsto_fourier_standardBump (xi : ℝ) :
     Tendsto (fun n : ℕ => (aux_standardBumpFiniteDensity (n + 1) xi : ℂ))
       atTop (nhds (𝓕 (fun x : ℝ => (standardBump x : ℂ)) xi)) := by
@@ -2808,7 +3070,9 @@ theorem aux_standardBumpFiniteDensity_tendsto_fourier_standardBump (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this transfers the finite density bounds to show that the
-limiting Fourier transform is real-valued and lies in $[0,1]$.-/
+limiting Fourier transform is real-valued and lies in $[0,1]$.
+@isnad1 id=ex.0h1v.s6.12fe0b21a0ad from=translated src=- shape=6a01079f vocab=d931a716
+-/
 theorem aux_fourier_standardBump_range (xi : ℝ) :
     ∃ r : ℝ, r ∈ Set.Icc (0 : ℝ) 1 ∧
       𝓕 (fun x : ℝ => (standardBump x : ℂ)) xi = r := by
@@ -2842,7 +3106,9 @@ theorem aux_fourier_standardBump_range (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this transfers the finite support bounds to the limiting
-Fourier transform.-/
+Fourier transform.
+@isnad1 id=le.0h0v.s5.cce1a17166ea from=translated src=- shape=fda34853 vocab=b2c9f1ff
+-/
 theorem aux_fourier_standardBump_support :
     Function.support (𝓕 (fun x : ℝ => (standardBump x : ℂ))) ⊆ Set.Icc (-1 : ℝ) 1 := by
   intro xi hxi
@@ -2865,7 +3131,9 @@ theorem aux_fourier_standardBump_support :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierShape`, this transfers the finite plateau bounds to the limiting
-Fourier transform.-/
+Fourier transform.
+@isnad1 id=eq.1h1v.s6.bb55b197cf0e from=translated src=- shape=36035d68 vocab=cefa7391
+-/
 theorem aux_fourier_standardBump_eq_one_on (xi : ℝ)
     (hxi : xi ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2)) :
     𝓕 (fun x : ℝ => (standardBump x : ℂ)) xi = 1 := by
@@ -2909,7 +3177,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_linfConvergence`,
 `Auto.standardBumpProperties_schwartz`,
 `Auto.standardBumpProperties_fourierDerivativeEstimate`,
-`Auto.standardBumpProperties_derivativeDecay`.-/
+`Auto.standardBumpProperties_derivativeDecay`.
+@isnad1 id=and.0h0v.s7.3dc60a0f9c06 from=translated src=- shape=4b626d12 vocab=94a76139
+-/
 theorem standardBumpProperties_fourierShape :
     (∀ xi : ℝ, ∃ r : ℝ, r ∈ Set.Icc (0 : ℝ) 1 ∧
       𝓕 (fun x : ℝ => (standardBump x : ℂ)) xi = r) ∧
@@ -2964,7 +3234,9 @@ def C_standardBumpProperties (m N : ℕ) : ℝ :=
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this computes the first derivative of the
-real restriction of a complex monomial.-/
+real restriction of a complex monomial.
+@isnad1 id=eq.0h2v.s6.a73dda7473a3 from=translated src=- shape=9bdce2f3 vocab=6b0c981c
+-/
 theorem aux_deriv_complexOfReal_pow (k : ℕ) (x : ℝ) :
     deriv (fun t : ℝ => (t : ℂ) ^ k) x =
       (k : ℂ) * (x : ℂ) ^ (k - 1) := by
@@ -2979,7 +3251,9 @@ theorem aux_deriv_complexOfReal_pow (k : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this evaluates all iterated derivatives of
-the real restriction of a complex monomial, including the vanishing orders above its degree.-/
+the real restriction of a complex monomial, including the vanishing orders above its degree.
+@isnad1 id=eq.0h3v.s6.5a1ab3d83257 from=translated src=- shape=2f376004 vocab=4f854e31
+-/
 theorem aux_iteratedDeriv_complexOfReal_pow (m q : ℕ) (x : ℝ) :
     iteratedDeriv q (fun t : ℝ => (t : ℂ) ^ m) x =
       (m.descFactorial q : ℂ) * (x : ℂ) ^ (m - q) := by
@@ -3013,7 +3287,9 @@ theorem aux_iteratedDeriv_complexOfReal_pow (m q : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the exact iterated-derivative
-formula for the polynomial Fourier multiplier $(2\pi i\xi)^m$.-/
+formula for the polynomial Fourier multiplier $(2\pi i\xi)^m$.
+@isnad1 id=eq.0h3v.s7.65ec279df823 from=translated src=- shape=c9ebbd4d vocab=eecc659f
+-/
 theorem aux_iteratedDeriv_standardBumpMultiplier (m q : ℕ) (x : ℝ) :
     iteratedDeriv q
       (fun t : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (t : ℂ)) ^ m) x =
@@ -3035,7 +3311,9 @@ theorem aux_iteratedDeriv_standardBumpMultiplier (m q : ℕ) (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this elementary bound turns polynomial
-degree factors into powers of two.-/
+degree factors into powers of two.
+@isnad1 id=le.0h1v.s4.7a35469a2be0 from=translated src=- shape=e17d9afa vocab=74f5fafa
+-/
 theorem aux_nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
   induction n with
   | zero => simp
@@ -3047,7 +3325,9 @@ theorem aux_nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this bounds a factorial by the quadratic
-power-of-two budget used in the Leibniz estimate.-/
+power-of-two budget used in the Leibniz estimate.
+@isnad1 id=le.0h1v.s5.852873193ad8 from=translated src=- shape=36516485 vocab=e2d1db9e
+-/
 theorem aux_factorial_le_two_pow_sq (n : ℕ) : n.factorial ≤ 2 ^ (n ^ 2) := by
   calc
     n.factorial ≤ n ^ n := Nat.factorial_le_pow n
@@ -3057,7 +3337,9 @@ theorem aux_factorial_le_two_pow_sq (n : ℕ) : n.factorial ≤ 2 ^ (n ^ 2) := b
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this bounds the falling-factorial
-coefficient in an iterated derivative of the Fourier multiplier.-/
+coefficient in an iterated derivative of the Fourier multiplier.
+@isnad1 id=le.0h2v.s5.4011714c6b24 from=translated src=- shape=66172288 vocab=97a69fc9
+-/
 theorem aux_descFactorial_le_two_pow (m q : ℕ) :
     m.descFactorial q ≤ 2 ^ (m + q ^ 2) := by
   rw [Nat.descFactorial_eq_factorial_mul_choose]
@@ -3069,7 +3351,9 @@ theorem aux_descFactorial_le_two_pow (m q : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this bounds each derivative of
-$(2\pi i\xi)^m$ on the Fourier support interval.-/
+$(2\pi i\xi)^m$ on the Fourier support interval.
+@isnad1 id=le.1h3v.s7.ab7527ea4b99 from=translated src=- shape=5a2274fd vocab=597f6429
+-/
 theorem aux_norm_iteratedDeriv_standardBumpMultiplier_le (m q : ℕ) (x : ℝ)
     (hx : |x| ≤ 1) :
     ‖iteratedDeriv q
@@ -3099,7 +3383,9 @@ theorem aux_norm_iteratedDeriv_standardBumpMultiplier_le (m q : ℕ) (x : ℝ)
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 transfers absolute polynomial moments of a function to explicit pointwise bounds for the
-corresponding derivatives of its Fourier transform.-/
+corresponding derivatives of its Fourier transform.
+@isnad1 id=le.2h3v.s7.a168776b3292 from=translated src=- shape=a8d26b08 vocab=7ded6019
+-/
 theorem aux_norm_iteratedDeriv_fourier_le_moment (f : ℝ → ℂ) (n : ℕ)
     (hfmeas : AEStronglyMeasurable f volume)
     (hmom : ∀ j : ℕ, j ≤ n → Integrable (fun x : ℝ => |x| ^ j * ‖f x‖)) (xi : ℝ) :
@@ -3146,7 +3432,9 @@ theorem aux_norm_iteratedDeriv_fourier_le_moment (f : ℝ → ℂ) (n : ℕ)
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 converts the arbitrary sinc-product decay into an integrable majorant for each polynomial
-moment of the standard bump.-/
+moment of the standard bump.
+@isnad1 id=le.0h2v.s7.bcc094473b19 from=translated src=- shape=29d65e68 vocab=9119069a
+-/
 theorem aux_standardBump_weighted_abs_le_majorant (N : ℕ) (x : ℝ) :
     |x| ^ N * |standardBump x| ≤
       (3 * (2 : ℝ) ^ ((N + 2) * (N + 2 - 1) / 2 + 2 * (N + 2))) *
@@ -3207,7 +3495,9 @@ theorem aux_standardBump_weighted_abs_le_majorant (N : ℕ) (x : ℝ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 supplies every absolute polynomial moment needed to differentiate the Fourier transform of the
-standard bump.-/
+standard bump.
+@isnad1 id=integrab.0h1v.s5.dd7c39a0814d from=translated src=- shape=3b4e9b49 vocab=e69fc4cd
+-/
 theorem aux_standardBump_weighted_norm_integrable (N : ℕ) :
     Integrable (fun x : ℝ => |x| ^ N * ‖(standardBump x : ℂ)‖) := by
   let A : ℝ := 3 * (2 : ℝ) ^ ((N + 2) * (N + 2 - 1) / 2 + 2 * (N + 2))
@@ -3226,7 +3516,9 @@ theorem aux_standardBump_weighted_norm_integrable (N : ℕ) :
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 uses the polynomial moment bounds to establish the qualitative smoothness of the Fourier-side
-standard bump.  The separate finite-density argument supplies the manuscript's sharp constants.-/
+standard bump.  The separate finite-density argument supplies the manuscript's sharp constants.
+@isnad1 id=contdiff.0h0v.s5.98bf8aaa10b8 from=translated src=- shape=f1a8e774 vocab=b4ce4610
+-/
 theorem aux_standardBumpComplex_fourier_contDiff :
     ContDiff ℝ (↑(⊤ : ℕ∞))
       (FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ))) := by
@@ -3238,7 +3530,9 @@ theorem aux_standardBumpComplex_fourier_contDiff :
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this uses the high-product decay with exactly
 two residual powers to obtain the quantitative polynomial-moment majorant needed at orders
-greater than two.-/
+greater than two.
+@isnad1 id=le.0h2v.s7.73757ae05497 from=translated src=- shape=7009b9fd vocab=d9d1dc74
+-/
 theorem aux_standardBump_weighted_abs_le_highMomentMajorant (N : ℕ) (x : ℝ) :
     |x| ^ N * |standardBump x| ≤
       (3 * (2 : ℝ) ^ (N * (N + 1) / 2 + 2 * (N + 1))) *
@@ -3293,7 +3587,9 @@ theorem aux_standardBump_weighted_abs_le_highMomentMajorant (N : ℕ) (x : ℝ) 
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this integrates the sharp high-order
-polynomial-moment majorant for the standard bump.-/
+polynomial-moment majorant for the standard bump.
+@isnad1 id=le.0h1v.s7.1ea56ac3729c from=translated src=- shape=5bbb71c8 vocab=90c0bef1
+-/
 theorem aux_standardBump_weighted_norm_integral_le_highMomentMajorant (N : ℕ) :
     ∫ x : ℝ, |x| ^ N * ‖(standardBump x : ℂ)‖ ≤
       (3 * (2 : ℝ) ^ (N * (N + 1) / 2 + 2 * (N + 1))) * Real.pi := by
@@ -3316,7 +3612,9 @@ theorem aux_standardBump_weighted_norm_integral_le_highMomentMajorant (N : ℕ) 
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the quantitative high-order
 derivative profile of the Fourier transform of the standard bump.  Lower orders are improved by
-separate auxiliaries before the final Leibniz estimate.-/
+separate auxiliaries before the final Leibniz estimate.
+@isnad1 id=le.0h2v.s7.1b92daea2ccc from=translated src=- shape=2d84dbba vocab=8759e1d2
+-/
 theorem aux_standardBump_fourier_iteratedDeriv_le_highProfile (N : ℕ) (xi : ℝ) :
     ‖iteratedDeriv N
       (FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ))) xi‖ ≤
@@ -3356,7 +3654,9 @@ theorem aux_standardBump_fourier_iteratedDeriv_le_highProfile (N : ℕ) (xi : �
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-converts each short sinc factor into its sharp inverse-absolute-value bound away from zero.-/
+converts each short sinc factor into its sharp inverse-absolute-value bound away from zero.
+@isnad1 id=le.1h2v.s7.f6c7e4362fec from=translated src=- shape=2c4a0258 vocab=c8abc6fd
+-/
 theorem aux_standardBump_sinc_factor_abs_le_inverse (i : ℕ) (x : ℝ) (hx : x ≠ 0) :
     |Real.sinc ((Real.pi / 4) * x * ((2 : ℝ)⁻¹) ^ i)| ≤
       (2 : ℝ) ^ (i + 2) * (Real.pi * |x|)⁻¹ := by
@@ -3386,7 +3686,9 @@ theorem aux_standardBump_sinc_factor_abs_le_inverse (i : ℕ) (x : ℝ) (hx : x 
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-is the inverse-absolute-value bound for the initial long sinc factor.-/
+is the inverse-absolute-value bound for the initial long sinc factor.
+@isnad1 id=le.1h1v.s5.3c16e924a7ee from=translated src=- shape=70181a08 vocab=b11008b5
+-/
 theorem aux_standardBump_base_abs_le_inverse (x : ℝ) (hx : x ≠ 0) :
     |aux_intervalIndicatorFourier (3 / 4) x| ≤ (Real.pi * |x|)⁻¹ := by
   rw [aux_intervalIndicatorFourier, ite_eq_right hx, abs_div]
@@ -3400,7 +3702,9 @@ theorem aux_standardBump_base_abs_le_inverse (x : ℝ) (hx : x ≠ 0) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-passes the three-factor inverse decay estimate from finite products to the standard bump.-/
+passes the three-factor inverse decay estimate from finite products to the standard bump.
+@isnad1 id=le.1h1v.s6.51ef4a32e585 from=translated src=- shape=2b1cdd6e vocab=71e05dd3
+-/
 theorem aux_standardBump_abs_le_threeInverse (x : ℝ) (hx : x ≠ 0) :
     |standardBump x| ≤ 32 * (Real.pi * |x|)⁻¹ ^ 3 := by
   have hfinite (l : ℕ) :
@@ -3445,7 +3749,9 @@ theorem aux_standardBump_abs_le_threeInverse (x : ℝ) (hx : x ≠ 0) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-passes the four-factor inverse decay estimate from finite products to the standard bump.-/
+passes the four-factor inverse decay estimate from finite products to the standard bump.
+@isnad1 id=le.1h1v.s6.9f89f856631f from=translated src=- shape=2b1cdd6e vocab=71e05dd3
+-/
 theorem aux_standardBump_abs_le_fourInverse (x : ℝ) (hx : x ≠ 0) :
     |standardBump x| ≤ 512 * (Real.pi * |x|)⁻¹ ^ 4 := by
   have hfinite (l : ℕ) :
@@ -3495,7 +3801,9 @@ theorem aux_standardBump_abs_le_fourInverse (x : ℝ) (hx : x ≠ 0) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-gives the bounded branch of the low-order sinc estimates.-/
+gives the bounded branch of the low-order sinc estimates.
+@isnad1 id=le.0h1v.s5.4a59cd1af7f0 from=translated src=- shape=e2474f27 vocab=10211c2d
+-/
 theorem aux_standardBump_abs_le_threeHalves (x : ℝ) :
     |standardBump x| ≤ 3 / 2 := by
   have hfinite (l : ℕ) : |standardBumpFinite l x| ≤ 3 / 2 := by
@@ -3536,7 +3844,9 @@ theorem aux_standardBump_abs_le_threeHalves (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-combines the bounded and three-factor branches into the first sharp weighted estimate.-/
+combines the bounded and three-factor branches into the first sharp weighted estimate.
+@isnad1 id=le.0h1v.s6.9bde7665e1ef from=translated src=- shape=500f5be7 vocab=add8b7d1
+-/
 theorem aux_standardBump_weighted_abs_one (x : ℝ) :
     |x| * |standardBump x| ≤ 4 * (1 + x ^ 2)⁻¹ := by
   by_cases hx : |x| ≤ 1
@@ -3594,7 +3904,9 @@ theorem aux_standardBump_weighted_abs_one (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
-combines the bounded and four-factor branches into the second sharp weighted estimate.-/
+combines the bounded and four-factor branches into the second sharp weighted estimate.
+@isnad1 id=le.0h1v.s6.c667b42bb5ba from=translated src=- shape=48c0f642 vocab=add8b7d1
+-/
 theorem aux_standardBump_weighted_abs_two (x : ℝ) :
     |x| ^ 2 * |standardBump x| ≤ 16 * (1 + x ^ 2)⁻¹ := by
   by_cases hx : |x| ≤ 1
@@ -3657,7 +3969,9 @@ theorem aux_standardBump_weighted_abs_two (x : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this integrates the first sharp weighted
-estimate used for the low Fourier derivative order.-/
+estimate used for the low Fourier derivative order.
+@isnad1 id=le.0h0v.s5.e640c481f6df from=translated src=- shape=f94ac7a9 vocab=65a59e85
+-/
 theorem aux_standardBump_weighted_norm_integral_one_le :
     ∫ x : ℝ, |x| * ‖(standardBump x : ℂ)‖ ≤ 16 := by
   have hleft : Integrable (fun x : ℝ => |x| * ‖(standardBump x : ℂ)‖) :=
@@ -3676,7 +3990,9 @@ theorem aux_standardBump_weighted_norm_integral_one_le :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this integrates the second sharp weighted
-estimate used for the low Fourier derivative order.-/
+estimate used for the low Fourier derivative order.
+@isnad1 id=le.0h0v.s6.8c5b720a18dd from=translated src=- shape=3c728618 vocab=1f61af5c
+-/
 theorem aux_standardBump_weighted_norm_integral_two_le :
     ∫ x : ℝ, |x| ^ 2 * ‖(standardBump x : ℂ)‖ ≤ 64 := by
   have hleft : Integrable (fun x : ℝ => |x| ^ 2 * ‖(standardBump x : ℂ)‖) :=
@@ -3695,7 +4011,9 @@ theorem aux_standardBump_weighted_norm_integral_two_le :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-zero sharp Fourier
-profile estimate.-/
+profile estimate.
+@isnad1 id=le.0h1v.s6.3a5b913782c4 from=translated src=- shape=a012f388 vocab=1f3bc3f7
+-/
 theorem aux_standardBump_fourier_iteratedDeriv_le_zero (xi : ℝ) :
     ‖iteratedDeriv 0 (FourierTransform.fourier
       (fun x : ℝ => (standardBump x : ℂ))) xi‖ ≤ (2 : ℝ) ^ 0 := by
@@ -3708,7 +4026,9 @@ theorem aux_standardBump_fourier_iteratedDeriv_le_zero (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-one sharp Fourier
-profile estimate.-/
+profile estimate.
+@isnad1 id=le.0h1v.s6.b9efdefb3860 from=translated src=- shape=a012f388 vocab=1f3bc3f7
+-/
 theorem aux_standardBump_fourier_iteratedDeriv_le_one (xi : ℝ) :
     ‖iteratedDeriv 1 (FourierTransform.fourier
       (fun x : ℝ => (standardBump x : ℂ))) xi‖ ≤ (2 : ℝ) ^ 7 := by
@@ -3740,7 +4060,9 @@ theorem aux_standardBump_fourier_iteratedDeriv_le_one (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-two sharp Fourier
-profile estimate.-/
+profile estimate.
+@isnad1 id=le.0h1v.s6.6e2405789529 from=translated src=- shape=a012f388 vocab=1f3bc3f7
+-/
 theorem aux_standardBump_fourier_iteratedDeriv_le_two (xi : ℝ) :
     ‖iteratedDeriv 2 (FourierTransform.fourier
       (fun x : ℝ => (standardBump x : ℂ))) xi‖ ≤ (2 : ℝ) ^ 18 := by
@@ -3801,7 +4123,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_linfConvergence`,
 `Auto.standardBumpProperties_fourierShape`,
 `Auto.standardBumpProperties_fourierDerivativeEstimate`,
-`Auto.standardBumpProperties_derivativeDecay`.-/
+`Auto.standardBumpProperties_derivativeDecay`.
+@isnad1 id=ex.0h0v.s6.cb0686fc28ba from=translated src=- shape=adc7be43 vocab=aec8989e
+-/
 theorem standardBumpProperties_schwartz :
     ∃ Phi : SchwartzMap ℝ ℂ, ∀ x : ℝ, Phi x = (standardBump x : ℂ) := by
   let f : ℝ → ℂ := FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ))
@@ -3840,7 +4164,9 @@ Let $N\ge 1$ be an integer, then
 
 $$
 \min(1, |x|^{-N})\le 2^N   \langle x\rangle^{N}\, .
-$$-/
+$$
+@isnad1 id=le.1h2v.s6.f73d78a23873 from=translated src=- shape=3cb6b08e vocab=f0009296
+-/
 theorem min_and_bracket (N : ℕ) (_hN : 1 ≤ N) (x : ℝ) :
     min 1 (|x|⁻¹ ^ N) ≤ (2 : ℝ) ^ N * (bracketBump x) ^ N := by
   rw [bracketBump]
@@ -3874,7 +4200,9 @@ For `Auto.smoothDecay2`, this bounds the integral of a bounded
  function by the
 measure of any finite-measure set containing its support.  It is used in
 `smoothDecay2` to pass from the $L^1$ estimates of `smoothDecay` to the stated
-supremum estimates.-/
+supremum estimates.
+@isnad1 id=le.3h3v.s6.465ac0a857f8 from=translated src=- shape=abf3db2a vocab=b146f27e
+-/
 theorem aux_integralNorm_le_bound_mul_measure_of_support_subset
     {f : ℝ → ℂ} {s : Set ℝ} (hs : Function.support f ⊆ s)
     (hsfin : volume s < ⊤) {B : ℝ} (hB : ∀ x, ‖f x‖ ≤ B) :
@@ -3903,7 +4231,9 @@ theorem aux_integralNorm_le_bound_mul_measure_of_support_subset
 For `Auto.smoothDecay2`, iterated derivatives have topological
  support contained in
 the topological support of the original function.  This lets `smoothDecay2` use a common
-support-measure factor.-/
+support-measure factor.
+@isnad1 id=le.0h2v.s5.44e175afff4a from=translated src=- shape=64213644 vocab=73a0240f
+-/
 theorem aux_tsupport_iteratedDeriv_subset (zeta : ℝ → ℂ) (n : ℕ) :
     tsupport (iteratedDeriv n zeta) ⊆ tsupport zeta := by
   induction n with
@@ -3915,7 +4245,9 @@ theorem aux_tsupport_iteratedDeriv_subset (zeta : ℝ → ℂ) (n : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this specializes the existing preservation of
-topological support under iterated derivatives to the Fourier transform of the standard bump.-/
+topological support under iterated derivatives to the Fourier transform of the standard bump.
+@isnad1 id=le.0h1v.s6.c84ebefe10c0 from=translated src=- shape=0cb9b2dc vocab=f6ef2e03
+-/
 theorem aux_standardBump_fourier_iteratedDeriv_support (n : ℕ) :
     tsupport (iteratedDeriv n
       (FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ)))) ⊆
@@ -3926,7 +4258,9 @@ theorem aux_standardBump_fourier_iteratedDeriv_support (n : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this elementary inequality controls the
-triangular exponent in the high-order Fourier derivative profile.-/
+triangular exponent in the high-order Fourier derivative profile.
+@isnad1 id=le.0h1v.s5.746bc7e392aa from=translated src=- shape=9d074e12 vocab=6111968e
+-/
 theorem aux_triangular_le_sq (r : ℕ) : r * (r + 1) / 2 ≤ r ^ 2 := by
   by_cases hr : r = 0
   · simp [hr]
@@ -3941,7 +4275,9 @@ theorem aux_triangular_le_sq (r : ℕ) : r * (r + 1) / 2 ≤ r ^ 2 := by
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this bounds the two quadratic exponents
-arising in one Leibniz summand.-/
+arising in one Leibniz summand.
+@isnad1 id=le.1h2v.s6.36424a75e2aa from=translated src=- shape=0acf2543 vocab=35c416b2
+-/
 theorem aux_square_sub_split (N i : ℕ) (hi : i ≤ N) :
     i ^ 2 + (N - i) ^ 2 ≤ N ^ 2 := by
   have hsum : i + (N - i) = N := Nat.add_sub_of_le hi
@@ -3950,7 +4286,9 @@ theorem aux_square_sub_split (N i : ℕ) (hi : i ≤ N) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the exponent ledger for one
-Leibniz summand in every order at least three.-/
+Leibniz summand in every order at least three.
+@isnad1 id=le.2h3v.s7.7682df65ee37 from=translated src=- shape=4a96ba9b vocab=cdd2bd17
+-/
 theorem aux_standardBump_leibniz_exponent (m N i : ℕ) (hN : 3 ≤ N) (hi : i ≤ N) :
     N + (4 * m + i ^ 2) +
       ((N - i) * (N - i + 1) / 2 + 5 * (N - i) + 6) ≤
@@ -3970,7 +4308,9 @@ theorem aux_standardBump_leibniz_exponent (m N i : ℕ) (hN : 3 ≤ N) (hi : i �
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this supplies the smoothness hypothesis for
-the polynomial Fourier multiplier $(2\pi i\xi)^m$ in the Leibniz estimate.-/
+the polynomial Fourier multiplier $(2\pi i\xi)^m$ in the Leibniz estimate.
+@isnad1 id=contdiff.0h1v.s6.5a8fa52913ae from=translated src=- shape=c444c55e vocab=5c78f905
+-/
 theorem aux_standardBumpMultiplier_contDiff (m : ℕ) :
     ContDiff ℝ (↑(⊤ : ℕ∞))
       (fun t : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (t : ℂ)) ^ m) := by
@@ -3983,7 +4323,9 @@ theorem aux_standardBumpMultiplier_contDiff (m : ℕ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this sharper zeroth-order bound for the
-polynomial multiplier leaves enough room for the two low-order Leibniz estimates.-/
+polynomial multiplier leaves enough room for the two low-order Leibniz estimates.
+@isnad1 id=le.1h2v.s6.5f92e4c64049 from=translated src=- shape=bfd13ced vocab=4ae42751
+-/
 theorem aux_standardBumpMultiplier_norm_le_zero (m : ℕ) (xi : ℝ) (hxi : |xi| ≤ 1) :
     ‖(2 * (Real.pi : ℂ) * Complex.I * (xi : ℂ)) ^ m‖ ≤ (2 : ℝ) ^ (3 * m) := by
   rw [norm_pow]
@@ -4002,7 +4344,9 @@ theorem aux_standardBumpMultiplier_norm_le_zero (m : ℕ) (xi : ℝ) (hxi : |xi|
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-zero case of the
-Fourier-multiplier estimate, using the sharp Fourier profile bound.-/
+Fourier-multiplier estimate, using the sharp Fourier profile bound.
+@isnad1 id=le.0h2v.s6.3947e8cdc87e from=translated src=- shape=eb584bb4 vocab=a539e4a7
+-/
 theorem aux_standardBumpMultiplier_iteratedDeriv_le_zero (m : ℕ) (xi : ℝ) :
     ‖iteratedDeriv 0
       (fun u : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (u : ℂ)) ^ m *
@@ -4044,7 +4388,9 @@ theorem aux_standardBumpMultiplier_iteratedDeriv_le_zero (m : ℕ) (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-one case of the
-Fourier-multiplier estimate.-/
+Fourier-multiplier estimate.
+@isnad1 id=le.0h2v.s6.50e841ee750d from=translated src=- shape=eb584bb4 vocab=a539e4a7
+-/
 theorem aux_standardBumpMultiplier_iteratedDeriv_le_one (m : ℕ) (xi : ℝ) :
     ‖iteratedDeriv 1
       (fun u : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (u : ℂ)) ^ m *
@@ -4129,7 +4475,9 @@ theorem aux_standardBumpMultiplier_iteratedDeriv_le_one (m : ℕ) (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the order-two case of the
-Fourier-multiplier estimate.-/
+Fourier-multiplier estimate.
+@isnad1 id=le.0h2v.s6.404c21665c52 from=translated src=- shape=eb584bb4 vocab=a539e4a7
+-/
 theorem aux_standardBumpMultiplier_iteratedDeriv_le_two (m : ℕ) (xi : ℝ) :
     ‖iteratedDeriv 2
       (fun u : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (u : ℂ)) ^ m *
@@ -4261,7 +4609,9 @@ theorem aux_standardBumpMultiplier_iteratedDeriv_le_two (m : ℕ) (xi : ℝ) :
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this combines the three sharp low-order
-Fourier-multiplier bounds so that the final estimate can split at derivative order two.-/
+Fourier-multiplier bounds so that the final estimate can split at derivative order two.
+@isnad1 id=le.1h3v.s7.fa97056a25f5 from=translated src=- shape=1a7ff0a2 vocab=a539e4a7
+-/
 theorem aux_standardBumpMultiplier_iteratedDeriv_le_low (m N : ℕ) (hN : N ≤ 2) (xi : ℝ) :
     ‖iteratedDeriv N
       (fun u : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (u : ℂ)) ^ m *
@@ -4275,7 +4625,9 @@ theorem aux_standardBumpMultiplier_iteratedDeriv_le_low (m N : ℕ) (hN : N ≤ 
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this bounds one weighted Leibniz summand in
-the high-order Fourier-multiplier estimate.-/
+the high-order Fourier-multiplier estimate.
+@isnad1 id=le.3h4v.s8.cbce05a55c69 from=translated src=- shape=6c274f07 vocab=b0d2680a
+-/
 theorem aux_standardBumpMultiplier_leibnizTerm (m N i : ℕ) (hN : 3 ≤ N) (hi : i ≤ N)
     (xi : ℝ) (hxi : |xi| ≤ 1) :
     ‖(N.choose i : ℂ) *
@@ -4314,7 +4666,9 @@ theorem aux_standardBumpMultiplier_leibnizTerm (m N i : ℕ) (hN : 3 ≤ N) (hi 
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this is the pointwise high-order part of the
 Fourier-multiplier profile.  The orders zero, one, and two are handled separately with sharper
-moment estimates.-/
+moment estimates.
+@isnad1 id=le.1h3v.s7.ad55a06419cb from=translated src=- shape=eace4bb1 vocab=a539e4a7
+-/
 theorem aux_standardBumpMultiplier_iteratedDeriv_le_high (m N : ℕ) (hN : 3 ≤ N) (xi : ℝ) :
     ‖iteratedDeriv N
       (fun u : ℝ => (2 * (Real.pi : ℂ) * Complex.I * (u : ℂ)) ^ m *
@@ -4367,7 +4721,9 @@ theorem aux_standardBumpMultiplier_iteratedDeriv_le_high (m N : ℕ) (hN : 3 ≤
 /--
 For `Auto.standardBumpProperties` and the public theorem
 `standardBumpProperties_fourierDerivativeEstimate`, this makes the explicit Fourier-side
-constant available uniformly for every derivative order at most the stated order.-/
+constant available uniformly for every derivative order at most the stated order.
+@isnad1 id=le.1h3v.s4.3f322fcccbd3 from=translated src=- shape=a8e0f8bd vocab=8cdf27a7
+-/
 theorem aux_C_standardBumpPropertiesTilde_mono (m k N : ℕ) (hk : k ≤ N) :
     C_standardBumpPropertiesTilde m k ≤ C_standardBumpPropertiesTilde m N := by
   rw [C_standardBumpPropertiesTilde, C_standardBumpPropertiesTilde]
@@ -4391,7 +4747,9 @@ $$
 
 with $C_{\text{lem:smoothdecay2}, N}=2^{N} $.
 
-See also `Auto.smoothDecay2`.-/
+See also `Auto.smoothDecay2`.
+@isnad1 id=and.3h2v.s8.16abb566b3b5 from=translated src=- shape=104b57f1 vocab=5d68b0b9
+-/
 theorem smoothDecay2 (N : ℕ) (hN : 2 ≤ N) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ N zeta) (hzetaSupport : HasCompactSupport zeta) :
     MemW0 (FourierTransformInv.fourierInv zeta) ∧
@@ -4520,7 +4878,9 @@ def C_meanValueBumpEstimate (N : ℕ) : ℝ :=
 
 /--
 The sharp pass-8 mean-value constant is bounded by the former conservative fallback.
-This is retained for downstream explicit-constant estimates.-/
+This is retained for downstream explicit-constant estimates.
+@isnad1 id=le.0h1v.s5.263f19d67a46 from=translated src=- shape=4acff0ba vocab=34901590
+-/
 theorem aux_C_meanValueBumpEstimate_le (N : ℕ) :
     C_meanValueBumpEstimate N ≤ (2 : ℝ) ^ (2 * N + 1) := by
   let q : ℝ := (2 * Real.pi)⁻¹
@@ -4556,7 +4916,9 @@ theorem aux_C_meanValueBumpEstimate_le (N : ℕ) :
       congr 1
       omega
 
-/-- The pass-8 mean-value constant has the stated finite-order value.-/
+/-- The pass-8 mean-value constant has the stated finite-order value.
+@isnad1 id=eq.0h0v.s4.6920268e9c17 from=translated src=- shape=1ac31801 vocab=38a61df5
+-/
 theorem aux_C_meanValueBumpEstimate_two :
     C_meanValueBumpEstimate 2 = 8 := by
   let q : ℝ := (2 * Real.pi)⁻¹
@@ -4592,7 +4954,9 @@ noncomputable def aux_maxUpTo (f : ℕ → ℝ) (N : ℕ) : ℝ :=
 /--
 For `Auto.meanValueBumpEstimate`, `aux_maxUpTo` bounds each of
  the finitely many
-derivative profiles used by the public theorem `meanValueBumpEstimate`.-/
+derivative profiles used by the public theorem `meanValueBumpEstimate`.
+@isnad1 id=le.1h3v.s4.58a89feb1a3c from=translated src=- shape=d8ec127a vocab=280f2966
+-/
 theorem aux_le_maxUpTo (f : ℕ → ℝ) {nu N : ℕ} (hnu : nu ≤ N) :
     f nu ≤ aux_maxUpTo f N := by
   unfold aux_maxUpTo
@@ -4602,7 +4966,9 @@ theorem aux_le_maxUpTo (f : ℕ → ℝ) {nu N : ℕ} (hnu : nu ≤ N) :
 /--
 For `Auto.meanValueBumpEstimate`, this gives the smoothness of
  the Fourier phase
-used in the proof of `meanValueBumpEstimate`.-/
+used in the proof of `meanValueBumpEstimate`.
+@isnad1 id=contdiff.0h2v.s7.26b9ca5e9b80 from=translated src=- shape=02aa0048 vocab=4bc57b97
+-/
 theorem aux_fourierPhase_contDiff (N : ℕ) (y : ℝ) :
     ContDiff ℝ N (fun t : ℝ => (Real.fourierChar (t * y)).1) := by
   have hreal : ContDiff ℝ N (fun t : ℝ => 2 * Real.pi * (t * y)) := by
@@ -4620,7 +4986,9 @@ theorem aux_fourierPhase_contDiff (N : ℕ) (y : ℝ) :
 /--
 For `Auto.meanValueBumpEstimate`, this is the first derivative
  of the Fourier phase
-needed by the public theorem `meanValueBumpEstimate`.-/
+needed by the public theorem `meanValueBumpEstimate`.
+@isnad1 id=eq.0h2v.s8.f5bb9da311c8 from=translated src=- shape=9d69e7e3 vocab=9830cb10
+-/
 theorem aux_deriv_fourierPhase (xi y : ℝ) :
     deriv (fun t : ℝ => (Real.fourierChar (t * y)).1) xi =
       (2 * (Real.pi : ℂ) * Complex.I * (y : ℂ)) *
@@ -4639,7 +5007,9 @@ theorem aux_deriv_fourierPhase (xi y : ℝ) :
 /--
 For `Auto.meanValueBumpEstimate`, this iterates the phase
  derivative appearing in the
-proof of the public theorem `meanValueBumpEstimate`.-/
+proof of the public theorem `meanValueBumpEstimate`.
+@isnad1 id=eq.0h2v.s8.940d8a47f2db from=translated src=- shape=29fb5c7d vocab=6c44d412
+-/
 theorem aux_iteratedDeriv_fourierPhase (n : ℕ) (y : ℝ) :
     iteratedDeriv n (fun t : ℝ => (Real.fourierChar (t * y)).1) =
       fun t => (2 * (Real.pi : ℂ) * Complex.I * (y : ℂ)) ^ n *
@@ -4660,7 +5030,9 @@ theorem aux_iteratedDeriv_fourierPhase (n : ℕ) (y : ℝ) :
 /--
 For `Auto.meanValueBumpEstimate`, this separates the zeroth
  derivative of the phase
-difference from its positive-order derivatives for `meanValueBumpEstimate`.-/
+difference from its positive-order derivatives for `meanValueBumpEstimate`.
+@isnad1 id=eq.0h3v.s8.443ab2f05db7 from=translated src=- shape=da043e5f vocab=bd133a18
+-/
 theorem aux_iteratedDeriv_fourierPhase_sub_one (n : ℕ) (y t : ℝ) :
     iteratedDeriv n (fun u : ℝ => (Real.fourierChar (u * y)).1 - 1) t =
       if n = 0 then (Real.fourierChar (t * y)).1 - 1 else
@@ -4684,7 +5056,9 @@ theorem aux_iteratedDeriv_fourierPhase_sub_one (n : ℕ) (y t : ℝ) :
 /--
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this is the
-elementary mean-value estimate for the Fourier phase difference.-/
+elementary mean-value estimate for the Fourier phase difference.
+@isnad1 id=le.0h2v.s7.61d000cac1ac from=translated src=- shape=7ecc7c1a vocab=0264ccf5
+-/
 theorem aux_norm_fourierPhase_sub_one_le (xi y : ℝ) :
     ‖(Real.fourierChar (xi * y)).1 - 1‖ ≤ 2 * Real.pi * |xi| * |y| := by
   rw [Real.fourierChar_apply]
@@ -4701,7 +5075,9 @@ theorem aux_norm_fourierPhase_sub_one_le (xi y : ℝ) :
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this keeps the
 `(2π)⁻¹` weight attached to every derivative of the Fourier phase difference in the
-small-translation regime.-/
+small-translation regime.
+@isnad1 id=le.2h3v.s8.e5c83c2085ce from=translated src=- shape=2f1472fa vocab=afb022ab
+-/
 theorem aux_scaledIteratedDeriv_fourierPhase_sub_one_le (k : ℕ) (xi y : ℝ)
     (hxi : |xi| ≤ 1) (hsmall : 2 * Real.pi * |y| ≤ 1) :
     (2 * Real.pi)⁻¹ ^ k *
@@ -4775,7 +5151,9 @@ theorem aux_scaledIteratedDeriv_fourierPhase_sub_one_le (k : ℕ) (xi y : ℝ)
 /--
 For `Auto.meanValueBumpEstimate`, this controls each scaled
  Fourier-side derivative by
-the finite maximum used in the public theorem `meanValueBumpEstimate`.-/
+the finite maximum used in the public theorem `meanValueBumpEstimate`.
+@isnad1 id=le.3h4v.s7.e7830de828e6 from=translated src=- shape=c30b432f vocab=74b1f4b8
+-/
 theorem aux_scaledIteratedDeriv_le_maxUpTo (N n : ℕ) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ N zeta) (hzetaSupport : HasCompactSupport zeta)
     (hn : n ≤ N) (xi : ℝ) :
@@ -4807,7 +5185,9 @@ theorem aux_scaledIteratedDeriv_le_maxUpTo (N n : ℕ) (zeta : ℝ → ℂ)
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this is the
 weighted Leibniz estimate for the scaled highest derivative of the frequency-side translated
-difference on the support interval.-/
+difference on the support interval.
+@isnad1 id=le.4h4v.s8.f4d02a003c11 from=translated src=- shape=8ed6b527 vocab=b891bf5b
+-/
 theorem aux_scaledIteratedDeriv_modulated_le (N : ℕ) (rhoHat : ℝ → ℂ)
     (hrhoHat : ContDiff ℝ N rhoHat) (hrhoHatSupport : HasCompactSupport rhoHat)
     (xi y : ℝ) (hxi : |xi| ≤ 1) (hsmall : 2 * Real.pi * |y| ≤ 1) :
@@ -4920,7 +5300,9 @@ theorem aux_scaledIteratedDeriv_modulated_le (N : ℕ) (rhoHat : ℝ → ℂ)
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this lifts the
 weighted small-translation product estimates from the Fourier support interval to the two
-supremum profiles used by inverse-Fourier decay.-/
+supremum profiles used by inverse-Fourier decay.
+@isnad1 id=le.4h3v.s9.4f38f0565509 from=translated src=- shape=af02c615 vocab=3221a18a
+-/
 theorem aux_modulated_profile_le (N : ℕ) (rhoHat : ℝ → ℂ)
     (hrhoHat : ContDiff ℝ N rhoHat) (hrhoHatSupport : HasCompactSupport rhoHat)
     (hsupp : tsupport rhoHat ⊆ Set.Icc (-1) 1) (y : ℝ)
@@ -5042,7 +5424,9 @@ theorem aux_modulated_profile_le (N : ℕ) (rhoHat : ℝ → ℂ)
 For `Auto.meanValueBumpEstimate` and `meanValueBumpEstimate`,
  this is the
 pointwise part of `smoothDecay2` at every positive derivative order. It supplies the
-case `N = 1`, for which the Wiener-space conclusion of `smoothDecay2` is unavailable.-/
+case `N = 1`, for which the Wiener-space conclusion of `smoothDecay2` is unavailable.
+@isnad1 id=le.3h3v.s7.df44449a8736 from=translated src=- shape=9b2dbc58 vocab=e2e426f8
+-/
 theorem aux_smoothDecay2_pointwise (N : ℕ) (hN : 1 ≤ N) (zeta : ℝ → ℂ)
     (hzeta : ContDiff ℝ N zeta) (hzetaSupport : HasCompactSupport zeta) :
     ∀ x : ℝ, ‖FourierTransformInv.fourierInv zeta x‖ ≤
@@ -5166,7 +5550,9 @@ theorem aux_smoothDecay2_pointwise (N : ℕ) (hN : 1 ≤ N) (zeta : ℝ → ℂ)
 
 /--
 For the small-translation branch of `meanValueBumpEstimate`, inverse-Fourier decay
-combined with the weighted profile estimate gives a one-sided bracket bound.-/
+combined with the weighted profile estimate gives a one-sided bracket bound.
+@isnad1 id=le.4h4v.s9.c690095c4106 from=translated src=- shape=f293b6c7 vocab=10ddd9ca
+-/
 theorem aux_small_modulated_inverse_bound (N : ℕ) (hN : 1 ≤ N)
     (rhoHat : ℝ → ℂ) (hsupp : tsupport rhoHat ⊆ Set.Icc (-1) 1)
     (hrhoHat : ContDiff ℝ N rhoHat) (z y : ℝ)
@@ -5262,7 +5648,9 @@ theorem aux_small_modulated_inverse_bound (N : ℕ) (hN : 1 ≤ N)
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 identifies physical iterated derivatives with inverse Fourier transforms of polynomial
-multipliers.-/
+multipliers.
+@isnad1 id=eq.1h3v.s7.36bfc4a0b34a from=translated src=- shape=93510662 vocab=14466447
+-/
 theorem aux_iteratedDeriv_fourierInv (m : ℕ) (hat : ℝ → ℂ)
     (hmom : ∀ n : ℕ, n ≤ m → Integrable (fun xi : ℝ => xi ^ n • hat xi)) (x : ℝ) :
     iteratedDeriv m (FourierTransformInv.fourierInv hat) x =
@@ -5301,7 +5689,9 @@ theorem aux_iteratedDeriv_fourierInv (m : ℕ) (hat : ℝ → ℂ)
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 is the zero-order compact-support bound needed to complement the positive-order inverse-Fourier
-decay argument.-/
+decay argument.
+@isnad1 id=le.3h3v.s7.b3e6a02bd6d8 from=translated src=- shape=4fc02dd4 vocab=b0f71b11
+-/
 theorem aux_fourierProfile_decay_zero (g : ℝ → ℂ) (B : ℝ)
     (hB : 0 ≤ B) (hsupp : tsupport g ⊆ Set.Icc (-1 : ℝ) 1)
     (hprofile : ∀ xi : ℝ, ‖g xi‖ ≤ B) (x : ℝ) :
@@ -5341,7 +5731,9 @@ theorem aux_fourierProfile_decay_zero (g : ℝ → ℂ) (B : ℝ)
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 turns a uniform compactly-supported Fourier derivative profile into the pointwise inverse-Fourier
-decay needed for the physical derivative estimate at positive order.-/
+decay needed for the physical derivative estimate at positive order.
+@isnad1 id=le.5h4v.s7.2ae934fdacd5 from=translated src=- shape=4e56d99f vocab=9e96b164
+-/
 theorem aux_fourierProfile_decay_pos (N : ℕ) (hN : 1 ≤ N) (g : ℝ → ℂ) (B : ℝ)
     (hB : 0 ≤ B) (hg : ContDiff ℝ N g)
     (hsupp : tsupport g ⊆ Set.Icc (-1 : ℝ) 1)
@@ -5449,7 +5841,9 @@ theorem aux_fourierProfile_decay_pos (N : ℕ) (hN : 1 ≤ N) (g : ℝ → ℂ) 
 For `Auto.standardBumpProperties` and the public theorem
  `standardBumpProperties`, this
 converts the sharp compactly-supported Fourier derivative profile into the manuscript's physical
-iterated-derivative decay, including the orders $N=0$ and $N=1$.-/
+iterated-derivative decay, including the orders $N=0$ and $N=1$.
+@isnad1 id=le.2h3v.s8.2bac33e18cb1 from=translated src=- shape=164cdeed vocab=ef1c938d
+-/
 theorem aux_standardBump_iteratedDeriv_decay_of_profile (m N : ℕ)
     (hcont : ContDiff ℝ N
       (fun xi : ℝ => (2 * Real.pi * Complex.I * (xi : ℂ)) ^ m *
@@ -5574,7 +5968,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_linfConvergence`,
 `Auto.standardBumpProperties_schwartz`,
 `Auto.standardBumpProperties_fourierShape`,
-`Auto.standardBumpProperties_derivativeDecay`.-/
+`Auto.standardBumpProperties_derivativeDecay`.
+@isnad1 id=le.0h2v.s7.2f0eb09577e3 from=translated src=- shape=950c3251 vocab=14129ff2
+-/
 theorem standardBumpProperties_fourierDerivativeEstimate (m N : ℕ) :
     eLpNorm (iteratedDeriv N
       (fun ξ : ℝ => (2 * Real.pi * Complex.I * (ξ : ℂ)) ^ m *
@@ -5620,7 +6016,9 @@ See also `Auto.standardBumpProperties`,
 `Auto.standardBumpProperties_linfConvergence`,
 `Auto.standardBumpProperties_schwartz`,
 `Auto.standardBumpProperties_fourierShape`,
-`Auto.standardBumpProperties_fourierDerivativeEstimate`.-/
+`Auto.standardBumpProperties_fourierDerivativeEstimate`.
+@isnad1 id=le.0h3v.s5.106a2a0e11c8 from=translated src=- shape=b18c21d1 vocab=6cb67356
+-/
 theorem standardBumpProperties_derivativeDecay (m N : ℕ) (x : ℝ) :
     ‖iteratedDeriv m (fun y : ℝ => (standardBump y : ℂ)) x‖ ≤
       C_standardBumpProperties m N * bracketBump x ^ N := by
@@ -5670,7 +6068,9 @@ See also `Auto.standardBumpProperties_l1Convergence`,
 `Auto.standardBumpProperties_fourierShape`,
 `Auto.standardBumpProperties_fourierDerivativeEstimate`,
 `Auto.standardBumpProperties_derivativeDecay`,
-`Auto.standardBumpProperties`.-/
+`Auto.standardBumpProperties`.
+@isnad1 id=and.0h0v.s9.7b50ecf2a0b2 from=translated src=- shape=20170909 vocab=34e10c05
+-/
 theorem standardBumpProperties :
     Tendsto (fun n : ℕ => eLpNorm (standardBumpFinite n - standardBump) 1 volume)
       atTop (nhds 0) ∧
@@ -5722,7 +6122,9 @@ $$
 C_{\text{mean value bump estimate},N}=2^N\max(2,(1+(2\pi)^{-1})^N).
 $$
 
-See also `Auto.meanValueBumpEstimate`.-/
+See also `Auto.meanValueBumpEstimate`.
+@isnad1 id=le.5h5v.s8.cb0bf4a708b2 from=translated src=- shape=1d6bbb96 vocab=2e5aa59f
+-/
 theorem meanValueBumpEstimate (N : ℕ) (hN : 1 ≤ N) (rho rhoHat : ℝ → ℂ)
     (_hrhoW0 : MemW0 rho) (hrhoInv : rho = FourierTransformInv.fourierInv rhoHat)
     (hsupp : tsupport rhoHat ⊆ Set.Icc (-1) 1) (hrhoHat : ContDiff ℝ N rhoHat)
@@ -5969,7 +6371,9 @@ theorem meanValueBumpEstimate (N : ℕ) (hN : 1 ≤ N) (rho rhoHat : ℝ → ℂ
 /--
 For source label `Auto.compare_brackets` and public theorem
  `compare_brackets`, this
-supplies the unscaled natural-exponent comparison used by `aux_compareBracketsNat`.-/
+supplies the unscaled natural-exponent comparison used by `aux_compareBracketsNat`.
+@isnad1 id=le.4h5v.s7.cc9c91d01688 from=translated src=- shape=0b9b0999 vocab=600ffd42
+-/
 theorem aux_compareBracketsNat_base (N : ℕ) {lam mu x y : ℝ}
     (hlam : 0 < lam) (hmu : 0 < mu) (hlammu : lam ≤ mu)
     (hxy : lam * |y| ≤ mu * |x|) :
@@ -5998,7 +6402,9 @@ theorem aux_compareBracketsNat_base (N : ℕ) {lam mu x y : ℝ}
 /--
 For source label `Auto.compare_brackets` and public theorem
  `compare_brackets`, this
-supplies the natural-exponent specialization needed by the subsequent auxiliary estimates.-/
+supplies the natural-exponent specialization needed by the subsequent auxiliary estimates.
+@isnad1 id=le.6h6v.s7.c6667c0e5383 from=translated src=- shape=9816f6bd vocab=44ab822e
+-/
 theorem aux_compareBracketsNat (N : ℕ) {lam mu s x y : ℝ}
     (hs : 0 < s) (_hN : 0 < N) (hlam : 0 < lam) (hlammu : lam ≤ mu)
     (hmuone : 1 ≤ mu) (hxy : lam * |y| ≤ mu * |x|) :
@@ -6023,7 +6429,9 @@ theorem aux_compareBracketsNat (N : ℕ) {lam mu s x y : ℝ}
 /--
 For source label `Auto.compare_brackets` and public theorem
  `compare_brackets`, this
-reduces the real-exponent comparison to antitonicity of `Real.rpow` at a nonpositive exponent.-/
+reduces the real-exponent comparison to antitonicity of `Real.rpow` at a nonpositive exponent.
+@isnad1 id=le.5h5v.s7.a923c213e9c6 from=translated src=- shape=9e624dea vocab=f0a0c110
+-/
 theorem aux_compareBracketsReal_base (N : ℝ) {lam mu x y : ℝ}
     (hN : 0 < N) (hlam : 0 < lam) (hmu : 0 < mu) (hlammu : lam ≤ mu)
     (hxy : lam * |y| ≤ mu * |x|) :
@@ -6050,7 +6458,9 @@ Let $0<\lambda\le\mu$ with $1\le\mu$ and let $\lambda|y|\le\mu|x|$. Then for eve
 
 $$
 \mu^{-N}\langle x\rangle_{(s)}^N\le\lambda^{-N}\langle y\rangle_{(s)}^N.
-$$-/
+$$
+@isnad1 id=le.6h6v.s7.788cb9d91905 from=translated src=- shape=ddf75537 vocab=2ac2ff47
+-/
 theorem compare_brackets (N : ℝ) {lam mu s x y : ℝ}
     (hN : 0 < N) (hs : 0 < s) (hlam : 0 < lam) (hlammu : lam ≤ mu)
     (hmuone : 1 ≤ mu) (hxy : lam * |y| ≤ mu * |x|) :
@@ -6075,7 +6485,9 @@ theorem compare_brackets (N : ℝ) {lam mu s x y : ℝ}
 
 /--
 Source label `Auto.bump_triangle`; auxiliary for
- `bump_triangle`.-/
+ `bump_triangle`.
+@isnad1 id=le.1h3v.s4.53b2bee8601c from=translated src=- shape=72a01024 vocab=b89b1e58
+-/
 theorem aux_scaledBracketBump_nonneg (N : ℕ) {s : ℝ} (hs : 0 < s) (x : ℝ) :
     0 ≤ scaledBracketBump N s x := by
   unfold scaledBracketBump
@@ -6083,7 +6495,9 @@ theorem aux_scaledBracketBump_nonneg (N : ℕ) {s : ℝ} (hs : 0 < s) (x : ℝ) 
 
 /--
 Source label `Auto.bump_triangle`; auxiliary for
- `bump_triangle`.-/
+ `bump_triangle`.
+@isnad1 id=le.4h5v.s6.91a45cf8b196 from=translated src=- shape=dcbf6193 vocab=86b6970c
+-/
 theorem aux_scaledBracketBump_le_of_abs_le_mul (N : ℕ) {A s u w : ℝ}
     (hN : 0 < N) (hs : 0 < s) (hA : 0 < A) (h : |w| ≤ A * |u|) :
     scaledBracketBump N s u ≤
@@ -6129,7 +6543,9 @@ def C_gaussianDomination : ℝ := Real.exp Real.pi
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  records nonnegativity of a
-rescaled Gaussian at a positive scale.-/
+rescaled Gaussian at a positive scale.
+@isnad1 id=le.1h2v.s4.0529519cd298 from=translated src=- shape=1852429d vocab=94979b08
+-/
 theorem aux_gaussianDomination_gaussianRescale_nonneg {t : ℝ} (ht : 0 < t) (x : ℝ) :
     0 ≤ gaussianRescale t x := by
   unfold gaussianRescale
@@ -6138,7 +6554,9 @@ theorem aux_gaussianDomination_gaussianRescale_nonneg {t : ℝ} (ht : 0 < t) (x 
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  bounds a rescaled Gaussian
-by the reciprocal of its positive scale.-/
+by the reciprocal of its positive scale.
+@isnad1 id=le.1h2v.s4.ebf6658dabc8 from=translated src=- shape=5cd97d51 vocab=be2cfd2d
+-/
 theorem aux_gaussianDomination_gaussianRescale_le_inv {t : ℝ} (ht : 0 < t) (x : ℝ) :
     gaussianRescale t x ≤ t⁻¹ := by
   unfold gaussianRescale
@@ -6150,7 +6568,9 @@ theorem aux_gaussianDomination_gaussianRescale_le_inv {t : ℝ} (ht : 0 < t) (x 
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  supplies convergence of the
-Gaussian majorant series.-/
+Gaussian majorant series.
+@isnad1 id=summable.2h3v.s6.8092415a067f from=translated src=- shape=dab458e5 vocab=4aca86ea
+-/
 theorem aux_gaussianDomination_weight_summable (N s x : ℝ) (hN : 1 < N) (hs : 0 < s) :
     Summable (fun m : ℕ =>
       Real.rpow 2 ((1 - N) * (m : ℝ)) * gaussianRescale ((2 : ℝ) ^ m * s) x) := by
@@ -6189,7 +6609,9 @@ theorem aux_gaussianDomination_weight_summable (N s x : ℝ) (hN : 1 < N) (hs : 
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  produces a dyadic scale
-above a prescribed real number.-/
+above a prescribed real number.
+@isnad1 id=ex.0h1v.s4.d3ed97b73f4f from=translated src=- shape=268080b9 vocab=7ff6bede
+-/
 theorem aux_gaussianDomination_exists_dyadic_upper (y : ℝ) :
     ∃ m : ℕ, y ≤ (2 : ℝ) ^ m := by
   have h_eventually : ∀ᶠ m : ℕ in atTop, y ≤ (2 : ℝ) ^ m :=
@@ -6199,7 +6621,9 @@ theorem aux_gaussianDomination_exists_dyadic_upper (y : ℝ) :
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  chooses the first dyadic
-scale above a prescribed real number.-/
+scale above a prescribed real number.
+@isnad1 id=ex.0h1v.s6.9418596f6de2 from=translated src=- shape=f0e5edb5 vocab=615c82fd
+-/
 theorem aux_gaussianDomination_dyadic_selector (y : ℝ) :
     ∃ m : ℕ, y ≤ (2 : ℝ) ^ m ∧ (m = 0 ∨ (2 : ℝ) ^ (m - 1) < y) := by
   let m : ℕ := Nat.find (aux_gaussianDomination_exists_dyadic_upper y)
@@ -6217,7 +6641,9 @@ theorem aux_gaussianDomination_dyadic_selector (y : ℝ) :
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  gives the Gaussian lower
-bound on the unit interval needed at the selected dyadic scale.-/
+bound on the unit interval needed at the selected dyadic scale.
+@isnad1 id=le.1h1v.s5.9d826283c63a from=translated src=- shape=d34d5e88 vocab=95c5bf07
+-/
 theorem aux_gaussianDomination_exp_mul_gaussian_ge_one {z : ℝ} (hz : |z| ≤ 1) :
     1 ≤ Real.exp Real.pi * Auto.gaussian z := by
   have hsqabs : |z| ^ 2 ≤ (1 : ℝ) ^ 2 :=
@@ -6236,7 +6662,9 @@ theorem aux_gaussianDomination_exp_mul_gaussian_ge_one {z : ℝ} (hz : |z| ≤ 1
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  turns the unit-interval
-Gaussian lower bound into a lower bound for a rescaled Gaussian.-/
+Gaussian lower bound into a lower bound for a rescaled Gaussian.
+@isnad1 id=le.2h2v.s5.eec9b51f38f3 from=translated src=- shape=6e13fcc4 vocab=1375385f
+-/
 theorem aux_gaussianDomination_inv_le_exp_mul_gaussianRescale {t x : ℝ} (ht : 0 < t)
     (habs : |t⁻¹ * x| ≤ 1) :
     t⁻¹ ≤ Real.exp Real.pi * gaussianRescale t x := by
@@ -6252,7 +6680,9 @@ theorem aux_gaussianDomination_inv_le_exp_mul_gaussianRescale {t x : ℝ} (ht : 
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  is the exponent algebra
-that identifies the selected dyadic summand.-/
+that identifies the selected dyadic summand.
+@isnad1 id=eq.0h2v.s6.175213d22783 from=translated src=- shape=d4fe1ee4 vocab=10d5bef4
+-/
 theorem aux_gaussianDomination_dyadic_weight_identity (N : ℝ) (m : ℕ) :
     Real.rpow 2 N * Real.rpow 2 ((1 - N) * (m : ℝ)) * ((2 : ℝ) ^ m)⁻¹ =
       Real.rpow 2 (-N * ((m : ℝ) - 1)) := by
@@ -6274,7 +6704,9 @@ theorem aux_gaussianDomination_dyadic_weight_identity (N : ℝ) (m : ℕ) :
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  puts the argument of the
-selected rescaled Gaussian in the unit interval.-/
+selected rescaled Gaussian in the unit interval.
+@isnad1 id=le.2h3v.s6.bc2d1885b56b from=translated src=- shape=353e1502 vocab=d140a7e0
+-/
 theorem aux_gaussianDomination_dyadic_argument_bound (s x : ℝ) (hs : 0 < s) (m : ℕ)
     (hy : |s⁻¹ * x| ≤ (2 : ℝ) ^ m) :
     |(((2 : ℝ) ^ m * s)⁻¹ * x)| ≤ 1 := by
@@ -6290,7 +6722,9 @@ theorem aux_gaussianDomination_dyadic_argument_bound (s x : ℝ) (hs : 0 < s) (m
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  bounds the bracket decay
-by the dyadic power associated with a nonzero selected index.-/
+by the dyadic power associated with a nonzero selected index.
+@isnad1 id=le.3h3v.s7.e94ed7baf31a from=translated src=- shape=b4bc0ba9 vocab=5eff0276
+-/
 theorem aux_gaussianDomination_bracket_decay_at_dyadic (N y : ℝ) (hN : 1 < N) (m : ℕ)
     (hm : 0 < m) (hlow : (2 : ℝ) ^ (m - 1) < y) :
     (1 + y) ^ (-N) ≤ Real.rpow 2 (-N * ((m : ℝ) - 1)) := by
@@ -6312,7 +6746,9 @@ theorem aux_gaussianDomination_bracket_decay_at_dyadic (N y : ℝ) (hN : 1 < N) 
 /--
 For `Auto.gaussianDomination` and `gaussianDomination`, this
  shows that the single
-dyadic summand selected from the size of the input dominates the bracket bump.-/
+dyadic summand selected from the size of the input dominates the bracket bump.
+@isnad1 id=le.4h4v.s7.0ab623b7549b from=translated src=- shape=e0e5b124 vocab=f365bec0
+-/
 theorem aux_gaussianDomination_one_term_bound (N s x : ℝ) (hN : 1 < N) (hs : 0 < s)
     (m : ℕ) (hupper : |s⁻¹ * x| ≤ (2 : ℝ) ^ m)
     (hbranch : m = 0 ∨ (2 : ℝ) ^ (m - 1) < |s⁻¹ * x|) :
@@ -6388,7 +6824,9 @@ $$
 
 where $C_{\text{Gaussian domination}}=e^\pi$.
 
-See also `Auto.gaussianDomination`.-/
+See also `Auto.gaussianDomination`.
+@isnad1 id=le.2h3v.s7.dc183c3dba5d from=translated src=- shape=23ba127a vocab=27815a61
+-/
 theorem gaussianDomination (N s x : ℝ) (hN : 1 < N) (hs : 0 < s) :
     scaledBracketBumpReal N s x ≤
       C_gaussianDomination * Real.rpow 2 N *
@@ -6430,14 +6868,18 @@ def C_twoBumpEstimate (n₀ n₁ : ℝ) : ℝ :=
 /--
 Source label `Auto.twoBumpEstimate`; auxiliary for
  `twoBumpEstimate`, recording the
-only specialization of its final constant claim used later.-/
+only specialization of its final constant claim used later.
+@isnad1 id=eq.0h0v.s4.62081cab9687 from=translated src=- shape=7226d0ee vocab=f20a0322
+-/
 theorem aux_twoBumpEstimate_two_two : C_twoBumpEstimate 2 2 = 16 := by
   norm_num [C_twoBumpEstimate, Real.rpow_natCast]
 
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-evaluates the one-sided integral of the unscaled real-exponent bracket profile.-/
+evaluates the one-sided integral of the unscaled real-exponent bracket profile.
+@isnad1 id=eq.1h1v.s6.6fe0574c8d23 from=translated src=- shape=32eab8f0 vocab=1f78fb0f
+-/
 theorem aux_twoBump_halfIntegral (n : ℝ) (hn : 1 < n) :
     ∫ x : ℝ in Set.Ioi 0, (1 + x) ^ (-n) = 1 / (n - 1) := by
   have hd : ∀ x ∈ Set.Ici (0 : ℝ),
@@ -6466,7 +6908,9 @@ theorem aux_twoBump_halfIntegral (n : ℝ) (hn : 1 < n) :
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-computes the mass of the unscaled bracket profile.-/
+computes the mass of the unscaled bracket profile.
+@isnad1 id=eq.1h1v.s6.04f95544d804 from=translated src=- shape=542e5cd2 vocab=fb472fa7
+-/
 theorem aux_twoBump_baseIntegral (n : ℝ) (hn : 1 < n) :
     ∫ x : ℝ, (1 + |x|) ^ (-n) = 2 / (n - 1) := by
   have habs := integral_comp_abs (f := fun x : ℝ => (1 + x) ^ (-n))
@@ -6476,7 +6920,9 @@ theorem aux_twoBump_baseIntegral (n : ℝ) (hn : 1 < n) :
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-computes the mass of a translated and scaled bracket profile.-/
+computes the mass of a translated and scaled bracket profile.
+@isnad1 id=eq.2h3v.s6.3b7313ba39d2 from=translated src=- shape=d761c8a0 vocab=ed2675a9
+-/
 theorem aux_integral_scaledBracketBumpReal_eq (n s a : ℝ) (hn : 1 < n) (hs : 0 < s) :
     ∫ x : ℝ, scaledBracketBumpReal n s (a - x) = 2 / (n - 1) := by
   rw [integral_sub_left_eq_self (fun x : ℝ => scaledBracketBumpReal n s x) volume a]
@@ -6492,7 +6938,9 @@ theorem aux_integral_scaledBracketBumpReal_eq (n s a : ℝ) (hn : 1 < n) (hs : 0
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-establishes integrability of the unscaled bracket profile.-/
+establishes integrability of the unscaled bracket profile.
+@isnad1 id=integrab.1h1v.s6.835516a3f097 from=translated src=- shape=6f1a965e vocab=7b7e0044
+-/
 theorem aux_twoBump_baseIntegrable (n : ℝ) (hn : 1 < n) :
     Integrable (fun x : ℝ => (1 + |x|) ^ (-n)) := by
   have hIoiRaw : IntegrableOn (fun x : ℝ => (x + 1) ^ (-n)) (Set.Ioi 0) :=
@@ -6521,7 +6969,9 @@ theorem aux_twoBump_baseIntegrable (n : ℝ) (hn : 1 < n) :
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-establishes integrability of a scaled bracket profile.-/
+establishes integrability of a scaled bracket profile.
+@isnad1 id=integrab.2h2v.s5.d3455b3335e0 from=translated src=- shape=8e85e725 vocab=ff8b8834
+-/
 theorem aux_integrable_scaledBracketBumpReal (n s : ℝ) (hn : 1 < n) (hs : 0 < s) :
     Integrable (fun x : ℝ => scaledBracketBumpReal n s x) := by
   unfold scaledBracketBumpReal
@@ -6533,7 +6983,9 @@ theorem aux_integrable_scaledBracketBumpReal (n s : ℝ) (hn : 1 < n) (hs : 0 < 
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-transports scaled-bracket integrability to a translated reflection.-/
+transports scaled-bracket integrability to a translated reflection.
+@isnad1 id=integrab.2h3v.s6.4a71a8e17856 from=translated src=- shape=90b6881d vocab=abf3bfe1
+-/
 theorem aux_integrable_scaledBracketBumpReal_translate (n s a : ℝ)
     (hn : 1 < n) (hs : 0 < s) :
     Integrable (fun x : ℝ => scaledBracketBumpReal n s (a - x)) := by
@@ -6542,7 +6994,9 @@ theorem aux_integrable_scaledBracketBumpReal_translate (n s a : ℝ)
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this is
-the weighted power estimate used after normalizing the two scales.-/
+the weighted power estimate used after normalizing the two scales.
+@isnad1 id=le.7h5v.s7.7e4d44f22f8c from=translated src=- shape=cfc5333d vocab=d8e6b3e9
+-/
 theorem aux_twoBump_denominator_power {A B r n D : ℝ}
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hr : 0 < r) (hr1 : r ≤ 1)
     (hn : 1 ≤ n) (hD : 0 ≤ D) (hDle : D ≤ A + r * B) :
@@ -6567,7 +7021,9 @@ theorem aux_twoBump_denominator_power {A B r n D : ℝ}
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-clears the positive normalized denominators in the pointwise estimate.-/
+clears the positive normalized denominators in the pointwise estimate.
+@isnad1 id=le.5h6v.s7.597abb3d4d5e from=translated src=- shape=17fcd545 vocab=be7da25b
+-/
 theorem aux_twoBump_inverse_denominators {A B D r n K : ℝ}
     (hA : 0 < A) (hB : 0 < B) (hD : 0 < D) (hr : 0 < r)
     (hpow : D ^ n ≤ K * (A ^ n + r * B ^ n)) :
@@ -6589,7 +7045,9 @@ theorem aux_twoBump_inverse_denominators {A B D r n K : ℝ}
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this is
-the normalized same-exponent pointwise convolution majorization.-/
+the normalized same-exponent pointwise convolution majorization.
+@isnad1 id=le.4h5v.s7.f9314c4946fc from=translated src=- shape=a46267e0 vocab=834376b4
+-/
 theorem aux_twoBump_pointwise_sameExponent (n s₀ s₁ u v : ℝ)
     (hn : 1 < n) (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) (hs : s₁ ≤ s₀) :
     scaledBracketBumpReal n s₀ u * scaledBracketBumpReal n s₁ v ≤
@@ -6654,7 +7112,9 @@ theorem aux_twoBump_pointwise_sameExponent (n s₀ s₁ u v : ℝ)
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-records nonnegativity of scaled bracket profiles.-/
+records nonnegativity of scaled bracket profiles.
+@isnad1 id=le.1h3v.s4.92e3cb5dbd63 from=translated src=- shape=3f97eefc vocab=c8e2d1b4
+-/
 theorem aux_scaledBracketBumpReal_nonneg (n s x : ℝ) (hs : 0 < s) :
     0 ≤ scaledBracketBumpReal n s x := by
   unfold scaledBracketBumpReal
@@ -6663,7 +7123,9 @@ theorem aux_scaledBracketBumpReal_nonneg (n s x : ℝ) (hs : 0 < s) :
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-lowers a real bracket exponent.-/
+lowers a real bracket exponent.
+@isnad1 id=le.2h4v.s5.68455cdfbd55 from=translated src=- shape=a13ee273 vocab=c8e2d1b4
+-/
 theorem aux_scaledBracketBumpReal_exponent_reduce (n N s x : ℝ) (hs : 0 < s)
     (hnN : n ≤ N) :
     scaledBracketBumpReal N s x ≤ scaledBracketBumpReal n s x := by
@@ -6677,7 +7139,9 @@ theorem aux_scaledBracketBumpReal_exponent_reduce (n N s x : ℝ) (hs : 0 < s)
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-records evenness of scaled bracket profiles.-/
+records evenness of scaled bracket profiles.
+@isnad1 id=eq.0h3v.s4.27d33993f904 from=translated src=- shape=eaf4a99a vocab=7945da3a
+-/
 theorem aux_scaledBracketBumpReal_neg (n s x : ℝ) :
     scaledBracketBumpReal n s (-x) = scaledBracketBumpReal n s x := by
   unfold scaledBracketBumpReal
@@ -6686,7 +7150,9 @@ theorem aux_scaledBracketBumpReal_neg (n s x : ℝ) :
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-integrates a nonnegative pointwise majorization.-/
+integrates a nonnegative pointwise majorization.
+@isnad1 id=le.4h5v.s7.d1f7bc6e6702 from=translated src=- shape=c76c84d5 vocab=383d4597
+-/
 theorem aux_twoBump_integral_pointwise {f g h : ℝ → ℝ} {K w : ℝ}
     (hg : Integrable g) (hh : Integrable h) (hfn : ∀ x, 0 ≤ f x)
     (hpoint : ∀ x, f x ≤ K * w * (g x + h x)) :
@@ -6703,7 +7169,9 @@ theorem aux_twoBump_integral_pointwise {f g h : ℝ → ℝ} {K w : ℝ}
 /--
 For source label `Auto.twoBumpEstimate` and public theorem
  `twoBumpEstimate`, this
-compares the integrated pointwise constant with `C_twoBumpEstimate`.-/
+compares the integrated pointwise constant with `C_twoBumpEstimate`.
+@isnad1 id=le.1h1v.s7.8798d7498b3f from=translated src=- shape=43c9c8f8 vocab=ff874145
+-/
 theorem aux_twoBump_constant_bound (n : ℝ) (hn : 1 < n) :
     (2 : ℝ) ^ (n - 1) * (4 / (n - 1)) ≤
       2 ^ (1 + n) * (1 + (n - 1)⁻¹) := by
@@ -6736,7 +7204,9 @@ $$
 \left\langle x_0-x_1\right\rangle^{\min(n_0,n_1)}_{(s_0)}\, .
 $$
 
-See also `Auto.twoBumpEstimate`.-/
+See also `Auto.twoBumpEstimate`.
+@isnad1 id=le.5h6v.s7.0b091ddbae48 from=translated src=- shape=850ecf61 vocab=478f3f8e
+-/
 theorem twoBumpEstimate (x₀ x₁ s₀ s₁ n₀ n₁ : ℝ)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) (hs : s₁ ≤ s₀)
     (hn₀ : 1 < n₀) (hn₁ : 1 < n₁) :
@@ -6804,7 +7274,9 @@ theorem twoBumpEstimate (x₀ x₁ s₀ s₁ n₀ n₁ : ℝ)
 /--
 Source label `Auto.orthogonalDomination`; auxiliary for
  `orthogonalDomination`, proving
-positivity of the transverse coefficient from linear independence.-/
+positivity of the transverse coefficient from linear independence.
+@isnad1 id=lt.3h4v.s8.70e7649c8f72 from=translated src=- shape=a7e96b59 vocab=25a4c8d3
+-/
 theorem aux_orthogonalDomination_transverse_pos
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [Fact (Module.finrank ℝ E = 2)]
@@ -6840,7 +7312,9 @@ theorem aux_orthogonalDomination_transverse_pos
 /--
 Source label `Auto.orthogonalDomination`; auxiliary for
  `orthogonalDomination`, giving
-the first coordinate estimate in the oriented orthonormal basis.-/
+the first coordinate estimate in the oriented orthonormal basis.
+@isnad1 id=le.1h5v.s9.9810591bbd60 from=translated src=- shape=0640aefe vocab=c004ab2d
+-/
 theorem aux_orthogonalDomination_coordinate_first
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [Fact (Module.finrank ℝ E = 2)]
@@ -6872,7 +7346,9 @@ theorem aux_orthogonalDomination_coordinate_first
 /--
 Source label `Auto.orthogonalDomination`; auxiliary for
  `orthogonalDomination`, giving
-the second coordinate estimate in the oriented orthonormal basis.-/
+the second coordinate estimate in the oriented orthonormal basis.
+@isnad1 id=le.1h5v.s9.a8353683e01e from=translated src=- shape=9d6b56e6 vocab=c004ab2d
+-/
 theorem aux_orthogonalDomination_coordinate_second
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [Fact (Module.finrank ℝ E = 2)]
@@ -6907,7 +7383,9 @@ theorem aux_orthogonalDomination_coordinate_second
 /--
 Source label `Auto.orthogonalDomination`; auxiliary for
  `orthogonalDomination`, recording
-the unit-vector Pythagorean identity for the parallel and transverse coefficients.-/
+the unit-vector Pythagorean identity for the parallel and transverse coefficients.
+@isnad1 id=eq.2h4v.s8.02d5385b5b27 from=translated src=- shape=45872ad5 vocab=e88523cb
+-/
 theorem aux_orthogonalDomination_square_add_square
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [Fact (Module.finrank ℝ E = 2)]
@@ -6922,7 +7400,9 @@ theorem aux_orthogonalDomination_square_add_square
 /--
 Source label `Auto.orthogonalDomination`; auxiliary for
  `orthogonalDomination`, combining
-the two coordinate estimates into the stated alternative.-/
+the two coordinate estimates into the stated alternative.
+@isnad1 id=or.6h6v.s7.75374d2aa2bb from=translated src=- shape=571a38e2 vocab=217ff380
+-/
 theorem aux_orthogonalDomination_algebra (s c A B P Q : ℝ)
     (hs : 0 < s) (hc : 0 ≤ c) (hA : 0 ≤ A)
     (hsq : s ^ 2 + c ^ 2 = 1)
@@ -6983,7 +7463,9 @@ or
 
 $$
      | x\cdot \alpha_1^\perp|\le   2| \alpha_0\cdot \alpha_1^\perp|^{-1}|x\cdot \alpha_0|
-$$-/
+$$
+@isnad1 id=or.3h3v.s13.c49d18cf8d39 from=translated src=- shape=699a5e8f vocab=f5640ead
+-/
 theorem orthogonalDomination
     (α₀ α₁ x : EuclideanSpace ℝ (Fin 2))
     (hα₀ : ‖α₀‖ = 1) (hα₁ : ‖α₁‖ = 1)
@@ -7030,7 +7512,9 @@ def C_orthogonalDecay (α₀ α₁ : EuclideanSpace ℝ (Fin 2)) (n₀ n₁ : �
 /--
 For source label `Auto.orthogonalDecay` and public theorem
  `orthogonalDecay`, this turns
-one of the two scalar coordinate dominations into the required two-bump bound.-/
+one of the two scalar coordinate dominations into the required two-bump bound.
+@isnad1 id=le.7h9v.s7.a80558f21c23 from=translated src=- shape=d6ee996b vocab=59c31209
+-/
 theorem aux_orthogonalDecay_from_domination {A n₀ n₁ s₀ s₁ u₀ u₁ p₀ p₁ : ℝ}
     (hA : 0 < A) (hAone : 1 ≤ A) (hn₀ : 0 < n₀) (hn₁ : 0 < n₁)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁)
@@ -7141,7 +7625,9 @@ $$
 \langle x\cdot \alpha_1^\perp\rangle_{(s_0)}^{n_0} \langle x\cdot \alpha_1\rangle_{(s_1)}^{n_1}).
 $$
 
-See also `Auto.orthogonalDecay`.-/
+See also `Auto.orthogonalDecay`.
+@isnad1 id=le.7h7v.s12.468c578a33f8 from=translated src=- shape=319ace38 vocab=225feecb
+-/
 theorem orthogonalDecay
     (α₀ α₁ x : EuclideanSpace ℝ (Fin 2))
     (hα₀ : ‖α₀‖ = 1) (hα₁ : ‖α₁‖ = 1)
@@ -7217,7 +7703,9 @@ def aux_C_bumpTriangleNat (c₀ c₁ : ℝ) (n₀ n₁ : ℕ) : ℝ :=
 /--
 Source label `Auto.bump_triangle`; auxiliary for
  `bump_triangle`, retaining the earlier
-natural-exponent scalar specialization.-/
+natural-exponent scalar specialization.
+@isnad1 id=le.7h9v.s7.270a857adbc3 from=translated src=- shape=129e1d61 vocab=622d2c93
+-/
 theorem aux_bumpTriangleNat (n₀ n₁ : ℕ) {c₀ c₁ u v w s₀ s₁ : ℝ}
     (hn₀ : 0 < n₀) (hn₁ : 0 < n₁) (hc₀ : c₀ ≠ 0) (hc₁ : c₁ ≠ 0)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) (hw : w = c₀ * u + c₁ * v) :
@@ -7321,7 +7809,9 @@ theorem aux_bumpTriangleNat (n₀ n₁ : ℕ) {c₀ c₁ u v w s₀ s₁ : ℝ}
 /--
 Source label `Auto.bump_triangle`; auxiliary for
  `bump_triangle`, comparing a
-real-exponent bracket after a controlled change of scalar coordinate.-/
+real-exponent bracket after a controlled change of scalar coordinate.
+@isnad1 id=le.6h6v.s6.56325fd489a0 from=translated src=- shape=d606edcb vocab=4ec93089
+-/
 theorem aux_scaledBracketBumpReal_le_of_abs_le_mul (N : ℝ) {A T s u w : ℝ}
     (hN : 0 < N) (hs : 0 < s) (hA : 0 < A)
     (hAT : A ≤ T) (hAinvT : A⁻¹ ≤ T) (h : |w| ≤ A * |u|) :
@@ -7375,7 +7865,9 @@ theorem aux_scaledBracketBumpReal_le_of_abs_le_mul (N : ℝ) {A T s u w : ℝ}
 /--
 Source label `Auto.bump_triangle`; auxiliary for
  `bump_triangle`, proving the scalar
-real-exponent form before applying it to Euclidean inner products.-/
+real-exponent form before applying it to Euclidean inner products.
+@isnad1 id=le.7h9v.s7.10302105c2d7 from=translated src=- shape=28635981 vocab=d956373b
+-/
 theorem aux_bumpTriangleReal {c₀ c₁ u v w s₀ s₁ n₀ n₁ : ℝ}
     (hn₀ : 0 < n₀) (hn₁ : 0 < n₁) (hc₀ : c₀ ≠ 0) (hc₁ : c₁ ≠ 0)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) (hw : w = c₀ * u + c₁ * v) :
@@ -7508,7 +8000,9 @@ x\cdot \alpha_2\rangle_{(s_1)}^{n_1} + \langle x\cdot \alpha_2\rangle_{(s_0)}^{n
 \alpha_1\rangle_{(s_1)}^{n_1}).
 $$
 
-See also `Auto.bump_triangle`.-/
+See also `Auto.bump_triangle`.
+@isnad1 id=le.7h10v.s10.40326af939d7 from=translated src=- shape=4ed5bab2 vocab=dba56bef
+-/
 theorem bump_triangle
     (α₀ α₁ α₂ x : EuclideanSpace ℝ (Fin 2))
     (c₀ c₁ n₀ n₁ s₀ s₁ : ℝ)
@@ -7570,7 +8064,9 @@ def diagonalSquareRoot (t₀ t₁ : ℝ) : ℝ → ℝ := fun x =>
 
 /--
 Source label `Auto.diagonalSquareRoot`; auxiliary for
-`diagonalSquareRoot_memW0` and `diagonalSquareRoot_bound`.-/
+`diagonalSquareRoot_memW0` and `diagonalSquareRoot_bound`.
+@isnad1 id=le.2h3v.s6.462d2b149ffa from=translated src=- shape=cfb010e6 vocab=1c4ac1f0
+-/
 theorem aux_diagonalSquareRootFrequency_nonneg {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) (ξ : ℝ) :
     0 ≤ Auto.gaussian (t₀ * ξ) - Auto.gaussian (t₁ * ξ) := by
@@ -7590,7 +8086,9 @@ theorem aux_diagonalSquareRootFrequency_nonneg {t₀ t₁ : ℝ}
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this proves that inverse Fourier transforms of integrable even real
-profiles have zero imaginary part.-/
+profiles have zero imaginary part.
+@isnad1 id=eq.2h2v.s6.48152a4c71bc from=translated src=- shape=023d75de vocab=b8900db7
+-/
 theorem aux_diagonalSquareRoot_inverseFourier_real_of_even (f : ℝ → ℝ) (hf : Integrable f)
     (heven : ∀ ξ : ℝ, f (-ξ) = f ξ) (x : ℝ) :
     (FourierTransformInv.fourierInv (fun ξ : ℝ => (f ξ : ℂ)) x).im = 0 := by
@@ -7629,7 +8127,9 @@ theorem aux_diagonalSquareRoot_inverseFourier_real_of_even (f : ℝ → ℝ) (hf
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this identifies the real square-root-Gaussian kernel with its complex
-inverse Fourier transform.-/
+inverse Fourier transform.
+@isnad1 id=eq.0h1v.s3.7fd61f217b20 from=translated src=- shape=69b989be vocab=1cc90e90
+-/
 theorem aux_diagonalSquareRoot_sqrtGaussianKernel_real (x : ℝ) :
     aux_sqrtGaussianKernel x = (aux_sqrtGaussianDecayKernel x : ℂ) := by
   apply Complex.ext
@@ -7644,7 +8144,9 @@ theorem aux_diagonalSquareRoot_sqrtGaussianKernel_real (x : ℝ) :
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this supplies the integrability needed for Fourier convolution of the
-square-root-Gaussian kernel.-/
+square-root-Gaussian kernel.
+@isnad1 id=integrab.0h0v.s5.eb2bd48840bd from=translated src=- shape=c57f8401 vocab=97357eb0
+-/
 theorem aux_diagonalSquareRoot_sqrtGaussianKernel_integrable :
     Integrable aux_sqrtGaussianKernel := by
   have hmem := aux_sqrtGaussianDecayKernel_memW0
@@ -7659,7 +8161,9 @@ theorem aux_diagonalSquareRoot_sqrtGaussianKernel_integrable :
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this is the square-root identity for the Gaussian factor.-/
+`diagonalSquareRoot_bound`, this is the square-root identity for the Gaussian factor.
+@isnad1 id=eq.0h1v.s4.44221506a7b4 from=translated src=- shape=9ae93522 vocab=6aec83ff
+-/
 theorem aux_diagonalSquareRoot_sqrtGaussian_half (z : ℝ) :
     Real.sqrt (Auto.gaussian z) =
       Auto.gaussian (z * (Real.sqrt 2)⁻¹) := by
@@ -7676,7 +8180,9 @@ theorem aux_diagonalSquareRoot_sqrtGaussian_half (z : ℝ) :
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this is the frequency-side factorization with
-`r^2 = t_1^2 - t_0^2`.-/
+`r^2 = t_1^2 - t_0^2`.
+@isnad1 id=eq.1h4v.s7.4e66c076a43b from=translated src=- shape=0a610344 vocab=7982a512
+-/
 theorem aux_diagonalSquareRoot_frequency_factor {t₀ t₁ r ξ : ℝ}
     (hrsq : r ^ 2 = t₁ ^ 2 - t₀ ^ 2) :
     Real.sqrt (Auto.gaussian (t₀ * ξ) - Auto.gaussian (t₁ * ξ)) =
@@ -7706,7 +8212,9 @@ theorem aux_diagonalSquareRoot_frequency_factor {t₀ t₁ r ξ : ℝ}
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this evaluates the inverse transform of a scaled Gaussian.-/
+`diagonalSquareRoot_bound`, this evaluates the inverse transform of a scaled Gaussian.
+@isnad1 id=eq.1h2v.s5.49770f83a28c from=translated src=- shape=d2684e37 vocab=d3b961da
+-/
 theorem aux_diagonalSquareRoot_inverseGaussian_scaled (a x : ℝ) (ha : 0 < a) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => (Auto.gaussian (a * ξ) : ℂ)) x =
       (gaussianRescale a x : ℂ) := by
@@ -7722,7 +8230,9 @@ theorem aux_diagonalSquareRoot_inverseGaussian_scaled (a x : ℝ) (ha : 0 < a) :
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this evaluates the inverse transform of the scaled square-root
-Gaussian profile.-/
+Gaussian profile.
+@isnad1 id=eq.1h2v.s6.584be8465c29 from=translated src=- shape=f8a554b9 vocab=0c07bf0c
+-/
 theorem aux_diagonalSquareRoot_inverseRho_scaled (r x : ℝ) (hr : 0 < r) :
     FourierTransformInv.fourierInv
         (fun ξ : ℝ => aux_sqrtGaussianFrequencyProfile (r * ξ)) x =
@@ -7732,7 +8242,9 @@ theorem aux_diagonalSquareRoot_inverseRho_scaled (r x : ℝ) (hr : 0 < r) :
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this is the integrable linearity of the inverse Fourier transform.-/
+`diagonalSquareRoot_bound`, this is the integrable linearity of the inverse Fourier transform.
+@isnad1 id=eq.2h3v.s7.a0d12168f433 from=translated src=- shape=fe75e4ea vocab=1adf8a22
+-/
 theorem aux_diagonalSquareRoot_inverseFourier_sub (f g : ℝ → ℂ) (hf : Integrable f)
     (hg : Integrable g) (x : ℝ) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => f ξ - g ξ) x =
@@ -7754,7 +8266,9 @@ theorem aux_diagonalSquareRoot_inverseFourier_sub (f g : ℝ → ℂ) (hf : Inte
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this is the complex-valued Fourier-convolution representation of the
-diagonal square-root kernel.-/
+diagonal square-root kernel.
+@isnad1 id=other.2h2v.s8.03b16b442e60 from=translated src=- shape=fd464cd2 vocab=9eb314c0
+-/
 theorem aux_diagonalSquareRoot_complexRepresentation {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) :
     let σ : ℝ := t₀ * (Real.sqrt 2)⁻¹
@@ -7915,7 +8429,9 @@ def aux_diagonalSquareRoot_rhoScale (r : ℝ) : ℝ → ℝ :=
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this identifies the complex scaled kernel with the real rescaling.-/
+`diagonalSquareRoot_bound`, this identifies the complex scaled kernel with the real rescaling.
+@isnad1 id=eq.0h2v.s6.c6ca16a6a418 from=translated src=- shape=2a217018 vocab=56ed6354
+-/
 theorem aux_diagonalSquareRoot_rhoScale_complex (r x : ℝ) :
     (r⁻¹ : ℝ) • aux_sqrtGaussianKernel (r⁻¹ * x) =
       (aux_diagonalSquareRoot_rhoScale r x : ℂ) := by
@@ -7926,7 +8442,9 @@ theorem aux_diagonalSquareRoot_rhoScale_complex (r x : ℝ) :
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this turns the complex convolution in the Fourier representation into
-the real convolution used by the manuscript.-/
+the real convolution used by the manuscript.
+@isnad1 id=eq.0h3v.s7.ca716c3c0069 from=translated src=- shape=7de37e6f vocab=f00929ba
+-/
 theorem aux_diagonalSquareRoot_complexConvolution_eq_realConvolution (a r x : ℝ) :
     ((fun y : ℝ => (gaussianRescale a y : ℂ)) ⋆[ContinuousLinearMap.mul ℂ ℂ]
       fun y : ℝ => (r⁻¹ : ℝ) • aux_sqrtGaussianKernel (r⁻¹ * y)) x =
@@ -7945,7 +8463,9 @@ theorem aux_diagonalSquareRoot_complexConvolution_eq_realConvolution (a r x : �
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this is the real convolution representation from the proof.-/
+`diagonalSquareRoot_bound`, this is the real convolution representation from the proof.
+@isnad1 id=eq.2h3v.s7.ba5a427b2c26 from=translated src=- shape=80644e6b vocab=873e59ff
+-/
 theorem aux_diagonalSquareRoot_representation {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) (x : ℝ) :
     diagonalSquareRoot t₀ t₁ x =
@@ -7963,7 +8483,9 @@ theorem aux_diagonalSquareRoot_representation {t₀ t₁ : ℝ}
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this rescales the decay estimate for the square-root-Gaussian
-kernel.-/
+kernel.
+@isnad1 id=and.1h2v.s5.7ab088021399 from=translated src=- shape=13115573 vocab=89a1aefb
+-/
 theorem aux_diagonalSquareRoot_rhoScale_nonneg_bound (r y : ℝ) (hr : 0 < r) :
     0 ≤ aux_diagonalSquareRoot_rhoScale r y ∧
       aux_diagonalSquareRoot_rhoScale r y ≤
@@ -7983,7 +8505,9 @@ theorem aux_diagonalSquareRoot_rhoScale_nonneg_bound (r y : ℝ) (hr : 0 < r) :
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this is Gaussian bump decay after positive rescaling.-/
+`diagonalSquareRoot_bound`, this is Gaussian bump decay after positive rescaling.
+@isnad1 id=le.1h3v.s5.dab99dfcfab5 from=translated src=- shape=d6b77d69 vocab=1d3aeadc
+-/
 theorem aux_diagonalSquareRoot_gaussianRescale_bound (s x : ℝ) (hs : 0 < s) (N : ℕ) :
     |gaussianRescale s x| ≤ C_gaussianBumpDecay 0 N * scaledBracketBump N s x := by
   have h := gaussianBumpDecay (s⁻¹ * x) 0 N
@@ -8002,7 +8526,9 @@ theorem aux_diagonalSquareRoot_gaussianRescale_bound (s x : ℝ) (hs : 0 < s) (N
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this specializes the real-exponent bracket bump to exponent two.-/
+`diagonalSquareRoot_bound`, this specializes the real-exponent bracket bump to exponent two.
+@isnad1 id=eq.0h2v.s4.78abcd2f5476 from=translated src=- shape=74ae3e4f vocab=2c035dd2
+-/
 theorem aux_diagonalSquareRoot_scaledBracketBumpReal_two_eq (s x : ℝ) :
     scaledBracketBumpReal 2 s x = scaledBracketBump 2 s x := by
   unfold scaledBracketBumpReal scaledBracketBump
@@ -8014,7 +8540,9 @@ theorem aux_diagonalSquareRoot_scaledBracketBumpReal_two_eq (s x : ℝ) :
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this supplies an elementary integrable majorant for a scaled
-two-bump profile.-/
+two-bump profile.
+@isnad1 id=le.1h2v.s5.d184cc774436 from=translated src=- shape=98c8fc92 vocab=632dfe64
+-/
 theorem aux_diagonalSquareRoot_scaledBracketBumpReal_two_le_inv (s x : ℝ) (hs : 0 < s) :
     scaledBracketBumpReal 2 s x ≤ s⁻¹ := by
   unfold scaledBracketBumpReal
@@ -8026,7 +8554,9 @@ theorem aux_diagonalSquareRoot_scaledBracketBumpReal_two_le_inv (s x : ℝ) (hs 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this supplies integrability of the two-bump majorant used to control
-the convolution.-/
+the convolution.
+@isnad1 id=integrab.2h3v.s6.34a215daf305 from=translated src=- shape=476aead3 vocab=3cc94ad2
+-/
 theorem aux_diagonalSquareRoot_scaledBracketBumpReal_product_integrable (sigma r x : ℝ)
     (hsigma : 0 < sigma) (hr : 0 < r) :
     Integrable (fun y : ℝ =>
@@ -8066,7 +8596,9 @@ theorem aux_diagonalSquareRoot_scaledBracketBumpReal_product_integrable (sigma r
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this is the two-bump estimate for the convolution term in the
-diagonal representation.-/
+diagonal representation.
+@isnad1 id=le.3h3v.s7.c816d410fb9a from=translated src=- shape=f4f28dba vocab=98924b6e
+-/
 theorem aux_diagonalSquareRoot_convolution_bound (sigma r x : ℝ)
     (hsigma : 0 < sigma) (hr : 0 < r) (hsigma_r : sigma ≤ r) :
     |∫ y : ℝ, gaussianRescale sigma (x - y) * aux_diagonalSquareRoot_rhoScale r y| ≤
@@ -8155,7 +8687,9 @@ theorem aux_diagonalSquareRoot_convolution_bound (sigma r x : ℝ)
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this compares scaled bracket bumps at two comparable positive
-scales.-/
+scales.
+@isnad1 id=le.5h5v.s6.83c3061b8f89 from=translated src=- shape=dfb0a74d vocab=995eba2b
+-/
 theorem aux_scaledBracketBump_scale_le (N : ℕ) {s t A x : ℝ}
     (hs : 0 < s) (ht : 0 < t) (hst : s ≤ t) (hA : 0 ≤ A) (hAt : t ≤ A * s) :
     scaledBracketBump N s x ≤ A * scaledBracketBump N t x := by
@@ -8188,7 +8722,9 @@ theorem aux_scaledBracketBump_scale_le (N : ℕ) {s t A x : ℝ}
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
 `diagonalSquareRoot_bound`, this records the elementary relations among the two intermediate
-scales in the proof.-/
+scales in the proof.
+@isnad1 id=other.2h2v.s7.99fd65ea06bc from=translated src=- shape=5233b930 vocab=c6c2ade4
+-/
 theorem aux_diagonalScaleGeometry {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) :
     let σ := t₀ * (Real.sqrt 2)⁻¹
@@ -8233,7 +8769,9 @@ theorem aux_diagonalScaleGeometry {t₀ t₁ : ℝ}
 
 /--
 For source label `Auto.diagonalSquareRoot` and public theorem
-`diagonalSquareRoot_bound`, this applies the scale geometry to the two bump terms.-/
+`diagonalSquareRoot_bound`, this applies the scale geometry to the two bump terms.
+@isnad1 id=and.2h4v.s7.5c9f3ee62259 from=translated src=- shape=8f9f3130 vocab=50d532a6
+-/
 theorem aux_diagonalScaleComparisons (N : ℕ) {t₀ t₁ x : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) :
     scaledBracketBump N (t₀ * (Real.sqrt 2)⁻¹) x ≤
@@ -8296,7 +8834,9 @@ See also `Auto.diagonalSquareRoot`,
 `Auto.diagonalSquareRoot_memW0`,
 `Auto.gaussianBumpDecay`,
 `Auto.sqrtGaussianDecay`,
-`Auto.twoBumpEstimate`.-/
+`Auto.twoBumpEstimate`.
+@isnad1 id=le.3h4v.s6.a3674cfb3e95 from=translated src=- shape=89ead458 vocab=6582a6e7
+-/
 theorem diagonalSquareRoot_bound (N : ℕ) (_hN : 1 ≤ N) {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) (x : ℝ) :
     |diagonalSquareRoot t₀ t₁ x| ≤ C_diagonalSquareRoot N *
@@ -8378,7 +8918,9 @@ theorem diagonalSquareRoot_bound (N : ℕ) (_hN : 1 ≤ N) {t₀ t₁ : ℝ}
 /--
 For `Auto.diagonalSquareRoot` and `diagonalSquareRoot_memW0`,
  this puts a
-quadratic scaled bracket bump under an integrable unscaled quadratic majorant.-/
+quadratic scaled bracket bump under an integrable unscaled quadratic majorant.
+@isnad1 id=le.1h2v.s6.e2293329e0ec from=translated src=- shape=b2a34320 vocab=20c1df8f
+-/
 theorem aux_diagonalSquareRoot_scaledBracketBump_two_le_quadratic (t x : ℝ) (ht : 0 < t) :
     scaledBracketBump 2 t x ≤ (t⁻¹ + t) * (1 + x ^ 2)⁻¹ := by
   have ht0 : t ≠ 0 := ne_of_gt ht
@@ -8433,7 +8975,9 @@ See also `Auto.diagonalSquareRoot`,
 `Auto.diagonalSquareRoot_bound`,
 `Auto.gaussianBumpDecay`,
 `Auto.sqrtGaussianDecay`,
-`Auto.twoBumpEstimate`.-/
+`Auto.twoBumpEstimate`.
+@isnad1 id=memw0.2h2v.s5.68083f0c4a8d from=translated src=- shape=fa0f199e vocab=505ebd54
+-/
 theorem diagonalSquareRoot_memW0 {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) :
     MemW0 (diagonalSquareRoot t₀ t₁) := by
@@ -8535,7 +9079,9 @@ def C_derivativeDiagonalSquareRoot (N : ℕ) : ℝ :=
 For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
-`derivativeDiagonalSquareRoot_bound`, this rescales the first-order Gaussian bump estimate.-/
+`derivativeDiagonalSquareRoot_bound`, this rescales the first-order Gaussian bump estimate.
+@isnad1 id=le.1h3v.s6.b54539e10ad6 from=translated src=- shape=df572c77 vocab=daf96b31
+-/
 theorem aux_derivativeDiagonalSquareRoot_gaussianRescale_deriv_bound
     (s x : ℝ) (hs : 0 < s) (N : ℕ) :
     |deriv (gaussianRescale s) x| ≤
@@ -8560,7 +9106,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this is the telescoping relation for the positive
-Gaussian-mixture coefficients.-/
+Gaussian-mixture coefficients.
+@isnad1 id=eq.0h1v.s6.e3193441ecb2 from=translated src=- shape=e59065ed vocab=4f12f4d9
+-/
 theorem aux_derivativeDiagonalSquareRoot_coefficient_step (n : ℕ) :
     (2 * (n : ℝ) + 2) * aux_sqrtGaussianCoefficient n -
       (2 * ((n + 1 : ℕ) : ℝ) + 2) * aux_sqrtGaussianCoefficient (n + 1) =
@@ -8575,7 +9123,9 @@ theorem aux_derivativeDiagonalSquareRoot_coefficient_step (n : ℕ) :
 For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
-`derivativeDiagonalSquareRoot_bound`, this evaluates the finite coefficient mass.-/
+`derivativeDiagonalSquareRoot_bound`, this evaluates the finite coefficient mass.
+@isnad1 id=eq.0h1v.s6.108626c9a03d from=translated src=- shape=3850e406 vocab=ad4ec5d4
+-/
 theorem aux_derivativeDiagonalSquareRoot_coefficient_partialSum (n : ℕ) :
     ∑ i ∈ Finset.range n, aux_sqrtGaussianCoefficient i =
       1 - (2 * (n : ℝ) + 2) * aux_sqrtGaussianCoefficient n := by
@@ -8597,7 +9147,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this gives the finite partial-sum bound for the
-positive Gaussian-mixture coefficients.-/
+positive Gaussian-mixture coefficients.
+@isnad1 id=le.0h1v.s4.4ef5e30644e7 from=translated src=- shape=d52ba841 vocab=4a1bcfc5
+-/
 theorem aux_derivativeDiagonalSquareRoot_coefficient_partialSum_le_one (n : ℕ) :
     ∑ i ∈ Finset.range n, aux_sqrtGaussianCoefficient i ≤ 1 := by
   rw [aux_derivativeDiagonalSquareRoot_coefficient_partialSum]
@@ -8611,7 +9163,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this makes the positive Gaussian-mixture coefficients
-summable.-/
+summable.
+@isnad1 id=summable.0h0v.s3.151fb228f4d9 from=translated src=- shape=ef4b497d vocab=0879fa61
+-/
 theorem aux_derivativeDiagonalSquareRoot_coefficient_summable :
     Summable aux_sqrtGaussianCoefficient := by
   exact _root_.summable_of_sum_range_le aux_sqrtGaussianCoefficient_nonneg
@@ -8621,7 +9175,9 @@ theorem aux_derivativeDiagonalSquareRoot_coefficient_summable :
 For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
-`derivativeDiagonalSquareRoot_bound`, this bounds the total coefficient mass by one.-/
+`derivativeDiagonalSquareRoot_bound`, this bounds the total coefficient mass by one.
+@isnad1 id=le.0h0v.s4.1b736581b049 from=translated src=- shape=db078bc9 vocab=83fb0931
+-/
 theorem aux_derivativeDiagonalSquareRoot_coefficient_tsum_le_one :
     ∑' n, aux_sqrtGaussianCoefficient n ≤ 1 := by
   exact Real.tsum_le_of_sum_range_le aux_sqrtGaussianCoefficient_nonneg
@@ -8631,7 +9187,9 @@ theorem aux_derivativeDiagonalSquareRoot_coefficient_tsum_le_one :
 For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
-`derivativeDiagonalSquareRoot_bound`, this records positivity of the Gaussian bump constants.-/
+`derivativeDiagonalSquareRoot_bound`, this records positivity of the Gaussian bump constants.
+@isnad1 id=le.0h2v.s4.dfb824fac171 from=translated src=- shape=5ffe46ab vocab=c3ba2f04
+-/
 theorem aux_derivativeDiagonalSquareRoot_C_gaussianBumpDecay_nonneg (m N : ℕ) :
     0 ≤ C_gaussianBumpDecay m N := by
   unfold C_gaussianBumpDecay
@@ -8643,7 +9201,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this bounds a quadratic scaled bracket bump by its
-inverse scale.-/
+inverse scale.
+@isnad1 id=le.1h2v.s4.723d036e8fbb from=translated src=- shape=436ee213 vocab=1db1ba73
+-/
 theorem aux_derivativeDiagonalSquareRoot_scaledBracketBump_two_le_inv {t x : ℝ}
     (ht : 0 < t) : scaledBracketBump 2 t x ≤ t⁻¹ := by
   rw [← aux_diagonalSquareRoot_scaledBracketBumpReal_two_eq]
@@ -8654,7 +9214,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this rewrites the scaled quadratic bump in an
-unscaled form.-/
+unscaled form.
+@isnad1 id=eq.1h2v.s6.f00ebf23ff89 from=translated src=- shape=ec067300 vocab=62004ffb
+-/
 theorem aux_derivativeDiagonalSquareRoot_inv_mul_scaledBracketBump_two {t x : ℝ}
     (ht : 0 < t) :
     t⁻¹ * scaledBracketBump 2 t x = (t + |x|)⁻¹ ^ 2 := by
@@ -8668,7 +9230,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this compares a large-scale quadratic bump to the
-unscaled bracket bump.-/
+unscaled bracket bump.
+@isnad1 id=le.1h2v.s5.b7166a32a5f7 from=translated src=- shape=3932eb58 vocab=edb6391a
+-/
 theorem aux_derivativeDiagonalSquareRoot_inv_mul_scaledBracketBump_two_le_bracket {t x : ℝ}
     (ht : 1 ≤ t) :
     t⁻¹ * scaledBracketBump 2 t x ≤ bracketBump x ^ 2 := by
@@ -8685,7 +9249,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this gives an unscaled bracket bound for derivatives
-of unit-or-larger Gaussian rescalings.-/
+of unit-or-larger Gaussian rescalings.
+@isnad1 id=le.1h2v.s6.76d83900d1d0 from=translated src=- shape=a9a646d9 vocab=c1de274d
+-/
 theorem aux_derivativeDiagonalSquareRoot_gaussianRescale_deriv_bracket {t x : ℝ}
     (ht : 1 ≤ t) :
     |deriv (gaussianRescale t) x| ≤ C_gaussianBumpDecay 1 2 * bracketBump x ^ 2 := by
@@ -8705,7 +9271,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this gives the uniform derivative bound for the
-Gaussian-mixture terms.-/
+Gaussian-mixture terms.
+@isnad1 id=le.1h2v.s5.90235db38c3a from=translated src=- shape=5108e969 vocab=dc8f5251
+-/
 theorem aux_derivativeDiagonalSquareRoot_gaussianRescale_deriv_uniform {t x : ℝ}
     (ht : 1 ≤ t) :
     |deriv (gaussianRescale t) x| ≤ C_gaussianBumpDecay 1 2 := by
@@ -8736,7 +9304,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this records that every Gaussian scale in the positive
-mixture is at least one.-/
+mixture is at least one.
+@isnad1 id=le.0h1v.s4.16f0d5f355c1 from=translated src=- shape=a1cf021c vocab=5105de95
+-/
 theorem aux_derivativeDiagonalSquareRoot_sqrt_succ_one_le (n : ℕ) :
     1 ≤ Real.sqrt ((n + 1 : ℕ) : ℝ) := by
   apply Real.one_le_sqrt.mpr
@@ -8747,7 +9317,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this differentiates the positive Gaussian mixture
-termwise.-/
+termwise.
+@isnad1 id=hasderiv.0h1v.s6.6c01472a966f from=translated src=- shape=f1a0720d vocab=83ad794a
+-/
 theorem aux_sqrtGaussianDecayKernel_hasDerivAt (x : ℝ) :
     HasDerivAt aux_sqrtGaussianDecayKernel
       (∑' n : ℕ, aux_sqrtGaussianCoefficient n *
@@ -8792,7 +9364,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this supplies summability of the differentiated
-Gaussian-mixture terms.-/
+Gaussian-mixture terms.
+@isnad1 id=summable.0h1v.s6.07a655f708f6 from=translated src=- shape=3f577835 vocab=81f54ee0
+-/
 theorem aux_derivativeDiagonalSquareRoot_derivTerms_summable (x : ℝ) : Summable
     (fun n : ℕ => aux_sqrtGaussianCoefficient n *
       deriv (gaussianRescale (Real.sqrt ((n + 1 : ℕ) : ℝ))) x) := by
@@ -8814,7 +9388,9 @@ theorem aux_derivativeDiagonalSquareRoot_derivTerms_summable (x : ℝ) : Summabl
 For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
-`derivativeDiagonalSquareRoot_bound`, this majorizes one differentiated Gaussian-mixture term.-/
+`derivativeDiagonalSquareRoot_bound`, this majorizes one differentiated Gaussian-mixture term.
+@isnad1 id=le.0h2v.s6.9256edfa965b from=translated src=- shape=34e572b3 vocab=b6b2a75b
+-/
 theorem aux_derivativeDiagonalSquareRoot_derivTerm_le_bracket (x : ℝ) (n : ℕ) :
     |aux_sqrtGaussianCoefficient n *
         deriv (gaussianRescale (Real.sqrt ((n + 1 : ℕ) : ℝ))) x| ≤
@@ -8837,7 +9413,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this makes the bracket majorant for differentiated
-mixture terms summable.-/
+mixture terms summable.
+@isnad1 id=summable.0h1v.s5.e69a2f787b6c from=translated src=- shape=2ec31daa vocab=9ef856b4
+-/
 theorem aux_derivativeDiagonalSquareRoot_derivTerms_majorant_summable (x : ℝ) : Summable
     (fun n : ℕ => C_gaussianBumpDecay 1 2 * bracketBump x ^ 2 *
       aux_sqrtGaussianCoefficient n) :=
@@ -8849,7 +9427,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this identifies the derivative of the square-root
-Gaussian kernel with its differentiated mixture.-/
+Gaussian kernel with its differentiated mixture.
+@isnad1 id=eq.0h1v.s6.fd1e4907de6c from=translated src=- shape=137a8897 vocab=946cab9b
+-/
 theorem aux_derivativeDiagonalSquareRoot_kernel_deriv_eq_tsum (x : ℝ) :
     deriv aux_sqrtGaussianDecayKernel x =
       ∑' n : ℕ, aux_sqrtGaussianCoefficient n *
@@ -8861,7 +9441,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this is the quadratic derivative bound for the
-square-root Gaussian kernel.-/
+square-root Gaussian kernel.
+@isnad1 id=le.0h1v.s6.a8541c84236b from=translated src=- shape=c064071b vocab=958d487c
+-/
 theorem aux_sqrtGaussianDecayKernel_deriv_bound (x : ℝ) :
     |deriv aux_sqrtGaussianDecayKernel x| ≤
       C_gaussianBumpDecay 1 2 * bracketBump x ^ 2 := by
@@ -8911,7 +9493,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this applies the chain rule to the scaled
-square-root Gaussian kernel.-/
+square-root Gaussian kernel.
+@isnad1 id=hasderiv.1h2v.s6.1222f95b0105 from=translated src=- shape=f47fa604 vocab=b4b8dc1e
+-/
 theorem aux_diagonalSquareRoot_rhoScale_hasDerivAt (r x : ℝ) (_hr : 0 < r) :
     HasDerivAt (aux_diagonalSquareRoot_rhoScale r)
       (r⁻¹ * deriv aux_sqrtGaussianDecayKernel (r⁻¹ * x) * r⁻¹) x := by
@@ -8928,7 +9512,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this transports the kernel derivative bound through
-the positive rescaling.-/
+the positive rescaling.
+@isnad1 id=le.1h2v.s6.7690a580efc7 from=translated src=- shape=695867be vocab=9fbd1eb8
+-/
 theorem aux_diagonalSquareRoot_rhoScale_deriv_bound {r x : ℝ} (hr : 0 < r) :
     |deriv (aux_diagonalSquareRoot_rhoScale r) x| ≤
       C_gaussianBumpDecay 1 2 * r⁻¹ * scaledBracketBump 2 r x := by
@@ -8952,7 +9538,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this differentiates a noncompact scalar
-convolution using an integrable Gaussian majorant.-/
+convolution using an integrable Gaussian majorant.
+@isnad1 id=and.5h5v.s8.7dc825deef08 from=translated src=- shape=1d8e35c6 vocab=0246217c
+-/
 theorem aux_derivativeDiagonalSquareRoot_hasDerivAt_integral_convolution_right
     (f g : ℝ → ℝ) (x A B : ℝ) (hf : Integrable f)
     (hg : Continuous g)
@@ -9008,7 +9596,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this gives a uniform bound for the scaled
-square-root Gaussian kernel.-/
+square-root Gaussian kernel.
+@isnad1 id=le.1h2v.s5.5481f417109a from=translated src=- shape=883c21df vocab=31301c8f
+-/
 theorem aux_derivativeDiagonalSquareRoot_rhoScale_abs_uniform {r x : ℝ} (hr : 0 < r) :
     |aux_diagonalSquareRoot_rhoScale r x| ≤ C_squareRootGaussianDecay * r⁻¹ := by
   have h := aux_diagonalSquareRoot_rhoScale_nonneg_bound r x hr
@@ -9028,7 +9618,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this turns the scaled kernel derivative
-estimate into a uniform bound.-/
+estimate into a uniform bound.
+@isnad1 id=le.1h2v.s6.7daeb7804add from=translated src=- shape=ad99ec3d vocab=2ad9b081
+-/
 theorem aux_derivativeDiagonalSquareRoot_rhoScale_deriv_uniform {r x : ℝ} (hr : 0 < r) :
     |deriv (aux_diagonalSquareRoot_rhoScale r) x| ≤
       C_gaussianBumpDecay 1 2 * r⁻¹ * r⁻¹ := by
@@ -9049,7 +9641,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this extracts integrability of a positive
-Gaussian rescaling from its Wiener-space membership.-/
+Gaussian rescaling from its Wiener-space membership.
+@isnad1 id=integrab.1h1v.s5.8a7b44386180 from=translated src=- shape=77bdae96 vocab=7dfda8f1
+-/
 theorem aux_derivativeDiagonalSquareRoot_gaussianRescale_integrable {s : ℝ} (hs : 0 < s) :
     Integrable (gaussianRescale s) := by
   have hmem := aux_gaussianRescale_memW0 hs
@@ -9063,7 +9657,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this flips the real convolution to put the
-derivative on the scaled square-root Gaussian kernel.-/
+derivative on the scaled square-root Gaussian kernel.
+@isnad1 id=eq.0h3v.s6.db1f2df99b24 from=translated src=- shape=2af0f72b vocab=fbc050f9
+-/
 theorem aux_derivativeDiagonalSquareRoot_convolution_flip (s r x : ℝ) :
     (∫ y : ℝ, gaussianRescale s (x - y) * aux_diagonalSquareRoot_rhoScale r y) =
       ∫ y : ℝ, gaussianRescale s y * aux_diagonalSquareRoot_rhoScale r (x - y) := by
@@ -9078,7 +9674,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this differentiates the convolution term in the
-diagonal representation.-/
+diagonal representation.
+@isnad1 id=and.2h3v.s7.483d488f9013 from=translated src=- shape=738bf8cd vocab=eff39637
+-/
 theorem aux_derivativeDiagonalSquareRoot_convolution_hasDerivAt (s r x : ℝ)
     (hs : 0 < s) (hr : 0 < r) :
     Integrable (fun y : ℝ => gaussianRescale s y *
@@ -9107,7 +9705,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_bound`, this is the two-bump bound for the differentiated
-convolution in the diagonal representation.-/
+convolution in the diagonal representation.
+@isnad1 id=le.3h3v.s7.a8df1867e789 from=translated src=- shape=24871876 vocab=c543a330
+-/
 theorem aux_derivativeDiagonalSquareRoot_derivativeConvolution_bound (sigma r x : ℝ)
     (hsigma : 0 < sigma) (hr : 0 < r) (hsigma_r : sigma ≤ r) :
     |∫ y : ℝ, gaussianRescale sigma y *
@@ -9209,7 +9809,9 @@ For source label
  `Auto.derivativeDiagonalSquareRoot_differentiable` and
  public theorem
 `derivativeDiagonalSquareRoot_differentiable`, this differentiates the diagonal square-root
-representation.-/
+representation.
+@isnad1 id=hasderiv.2h3v.s8.759d566f14c8 from=translated src=- shape=00a884a5 vocab=4d958226
+-/
 theorem aux_derivativeDiagonalSquareRoot_hasDerivAt {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) (x : ℝ) :
     HasDerivAt (diagonalSquareRoot t₀ t₁)
@@ -9266,7 +9868,9 @@ C_{\text{two bump estimate},2,2}
 See also `Auto.derivativeDiagonalSquareRoot_bound`,
 `Auto.derivativeDiagonalSquareRoot_differentiable`,
 `Auto.gaussianBumpDecay`,
-`Auto.twoBumpEstimate`.-/
+`Auto.twoBumpEstimate`.
+@isnad1 id=differen.2h2v.s6.26454b960a41 from=translated src=- shape=9978617f vocab=fa941404
+-/
 theorem derivativeDiagonalSquareRoot_differentiable {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) :
     Differentiable ℝ (diagonalSquareRoot t₀ t₁) :=
@@ -9295,7 +9899,9 @@ C_{\text{two bump estimate},2,2}
 
 See also `Auto.derivativeDiagonalSquareRoot_differentiable`,
 `Auto.gaussianBumpDecay`,
-`Auto.twoBumpEstimate`.-/
+`Auto.twoBumpEstimate`.
+@isnad1 id=le.3h4v.s7.926da5b80e6d from=translated src=- shape=edd4f23c vocab=1a1764de
+-/
 theorem derivativeDiagonalSquareRoot_bound (N : ℕ) (_hN : 1 ≤ N) {t₀ t₁ : ℝ}
     (ht : 0 < 2 * t₀) (hscale : 2 * t₀ ≤ t₁) (x : ℝ) :
     |deriv (diagonalSquareRoot t₀ t₁) x| ≤
@@ -9442,7 +10048,9 @@ theorem derivativeDiagonalSquareRoot_bound (N : ℕ) (_hN : 1 ≤ N) {t₀ t₁ 
 
 /--
 For `constantDiagonalSquareRoot`, this elementary induction bounds `N + 1` by a
-power of four.-/
+power of four.
+@isnad1 id=le.0h1v.s5.c20c582744af from=translated src=- shape=fac08094 vocab=5d5ab76f
+-/
 theorem aux_constantDiagonalSquareRoot_one_add_le_four_pow (N : ℕ) :
     ((N + 1 : ℕ) : ℝ) ≤ 4 ^ N := by
   induction N with
@@ -9455,7 +10063,9 @@ theorem aux_constantDiagonalSquareRoot_one_add_le_four_pow (N : ℕ) :
 
 /--
 For `constantDiagonalSquareRoot`, this upgrades the elementary power-of-four
-bound to the Gaussian base appearing in the defining constant.-/
+bound to the Gaussian base appearing in the defining constant.
+@isnad1 id=le.0h1v.s6.755710ff35f2 from=translated src=- shape=bf634d88 vocab=72589b2f
+-/
 theorem aux_constantDiagonalSquareRoot_four_mul_one_add_le_four_pow_succ (N : ℕ) :
     4 * ((N + 1 : ℕ) : ℝ) ≤ (4 : ℝ) ^ (N + 1) := by
   calc
@@ -9466,7 +10076,9 @@ theorem aux_constantDiagonalSquareRoot_four_mul_one_add_le_four_pow_succ (N : �
 
 /--
 For `constantDiagonalSquareRoot`, this normalizes the real power occurring after
-the Gaussian-base comparison to a natural power of two.-/
+the Gaussian-base comparison to a natural power of two.
+@isnad1 id=eq.0h1v.s6.6d3b28ab5857 from=translated src=- shape=1b65f8fd vocab=951c00be
+-/
 theorem aux_constantDiagonalSquareRoot_rpow_four_pow_succ (N : ℕ) :
     ((4 : ℝ) ^ (N + 1)) ^ ((N : ℝ) / 2) = (2 : ℝ) ^ (N * (N + 1)) := by
   rw [← Real.rpow_natCast]
@@ -9481,7 +10093,9 @@ theorem aux_constantDiagonalSquareRoot_rpow_four_pow_succ (N : ℕ) :
 
 /--
 For `constantDiagonalSquareRoot`, this is the required zero-order Gaussian
-constant estimate.-/
+constant estimate.
+@isnad1 id=le.0h1v.s5.cadbafaafea3 from=translated src=- shape=4ef4d767 vocab=82f59c67
+-/
 theorem aux_constantDiagonalSquareRoot_gaussianBumpDecay_zero_bound (N : ℕ) :
     C_gaussianBumpDecay 0 N ≤ (2 : ℝ) ^ ((N + 1) ^ 2) := by
   rw [C_gaussianBumpDecay]
@@ -9502,7 +10116,9 @@ theorem aux_constantDiagonalSquareRoot_gaussianBumpDecay_zero_bound (N : ℕ) :
 
 /--
 For `constantDerivativeDiagonalSquareRoot`, this is the corresponding
-first-order Gaussian constant estimate.-/
+first-order Gaussian constant estimate.
+@isnad1 id=le.0h1v.s6.df17e3a12d05 from=translated src=- shape=c46ed88d vocab=82f59c67
+-/
 theorem aux_constantDerivativeDiagonalSquareRoot_gaussianBumpDecay_one_bound (N : ℕ) :
     C_gaussianBumpDecay 1 N ≤ (2 : ℝ) ^ ((N + 1) ^ 2 + 4) := by
   rw [C_gaussianBumpDecay]
@@ -9526,7 +10142,9 @@ theorem aux_constantDerivativeDiagonalSquareRoot_gaussianBumpDecay_one_bound (N 
       norm_num
       ring
 
-/-- For `constantDiagonalSquareRoot`, this evaluates the fixed `N = 2` constant.-/
+/-- For `constantDiagonalSquareRoot`, this evaluates the fixed `N = 2` constant.
+@isnad1 id=eq.0h0v.s6.ed0bbdafc315 from=translated src=- shape=1df17a7a vocab=5b2caf0d
+-/
 theorem aux_constantDiagonalSquareRoot_two :
     C_diagonalSquareRoot 2 = 51 * 2 ^ 6 * Real.sqrt 2 := by
   rw [C_diagonalSquareRoot, C_squareRootGaussianDecay,
@@ -9534,7 +10152,9 @@ theorem aux_constantDiagonalSquareRoot_two :
   norm_num [C_gaussianBumpDecay, Real.rpow_natCast, Real.sqrt_eq_rpow]
   ring
 
-/-- For `constantDiagonalSquareRoot`, this supplies the displayed small numerical bound.-/
+/-- For `constantDiagonalSquareRoot`, this supplies the displayed small numerical bound.
+@isnad1 id=lt.0h0v.s5.7c0dfbe38a8b from=translated src=- shape=9481a083 vocab=7d1fcde0
+-/
 theorem aux_constantDiagonalSquareRoot_two_lt :
     C_diagonalSquareRoot 2 < 2 ^ 13 := by
   rw [aux_constantDiagonalSquareRoot_two]
@@ -9559,7 +10179,9 @@ $$
 C_{\text{diagonal square root},2}=51\cdot2^6\sqrt2<2^{13}.
 $$
 
-See also `Auto.diagonalSquareRoot`.-/
+See also `Auto.diagonalSquareRoot`.
+@isnad1 id=and.0h0v.s7.e4b1ac298080 from=translated src=- shape=ddb75838 vocab=dac9a7c6
+-/
 theorem constantDiagonalSquareRoot :
     (∀ N : ℕ, 1 ≤ N →
       C_diagonalSquareRoot N ≤ (2 : ℝ) ^ (1 + max ((N + 1) ^ 2) 12)) ∧
@@ -9603,7 +10225,9 @@ theorem constantDiagonalSquareRoot :
 
 /--
 For `constantDerivativeDiagonalSquareRoot`, this evaluates the fixed `N = 2`
-constant using the retained stronger Gaussian coefficient `38`.-/
+constant using the retained stronger Gaussian coefficient `38`.
+@isnad1 id=eq.0h0v.s6.daa58d6ffb6f from=translated src=- shape=1df17a7a vocab=cbc37ee2
+-/
 theorem aux_constantDerivativeDiagonalSquareRoot_two :
     C_derivativeDiagonalSquareRoot 2 = 9 * 2 ^ 10 * Real.sqrt 19 := by
   rw [C_derivativeDiagonalSquareRoot, aux_twoBumpEstimate_two_two]
@@ -9623,7 +10247,9 @@ theorem aux_constantDerivativeDiagonalSquareRoot_two :
 
 /--
 For `constantDerivativeDiagonalSquareRoot`, this supplies the displayed small numerical
-bound for the retained stronger Gaussian coefficient.-/
+bound for the retained stronger Gaussian coefficient.
+@isnad1 id=lt.0h0v.s5.8dfcf51f7ea9 from=translated src=- shape=9481a083 vocab=36023f16
+-/
 theorem aux_constantDerivativeDiagonalSquareRoot_two_lt :
     C_derivativeDiagonalSquareRoot 2 < 2 ^ 16 := by
   rw [aux_constantDerivativeDiagonalSquareRoot_two]
@@ -9648,7 +10274,9 @@ $$
 C_{\text{derivative of diagonal square root},2}=9\cdot2^{12}\sqrt2<2^{16}.
 $$
 
-See also `Auto.derivativeDiagonalSquareRoot_differentiable`.-/
+See also `Auto.derivativeDiagonalSquareRoot_differentiable`.
+@isnad1 id=and.0h0v.s7.a45ece238edc from=translated src=- shape=0f445cd5 vocab=caf16945
+-/
 theorem constantDerivativeDiagonalSquareRoot :
     (∀ N : ℕ, 1 ≤ N →
       C_derivativeDiagonalSquareRoot N ≤
@@ -9714,7 +10342,9 @@ noncomputable def aux_gaussianEstimate_polynomial (n : ℕ) : ℝ → ℝ :=
 
 /--
 For `Auto.gaussianEstimate`, this differentiates the auxiliary
- polynomial termwise.-/
+ polynomial termwise.
+@isnad1 id=eq.0h2v.s7.2068eb110528 from=translated src=- shape=bba6777e vocab=40e83445
+-/
 theorem aux_gaussianEstimate_polynomial_deriv (n : ℕ) (x : ℝ) :
     deriv (aux_gaussianEstimate_polynomial n) x =
       ∑ l ∈ Finset.range (n / 2 + 1),
@@ -9735,7 +10365,9 @@ theorem aux_gaussianEstimate_polynomial_deriv (n : ℕ) (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, this is the initial coefficient
  identity in the odd
-derivative recurrence.-/
+derivative recurrence.
+@isnad1 id=eq.0h1v.s6.233e933ec344 from=translated src=- shape=04dc5b25 vocab=828df7d8
+-/
 theorem aux_gaussianEstimate_coeff_odd_zero (q : ℕ) :
     aux_gaussianEstimate_coeff (2 * q + 1) 0 =
       2 * Real.pi * aux_gaussianEstimate_coeff (2 * q) 0 := by
@@ -9750,7 +10382,9 @@ theorem aux_gaussianEstimate_coeff_odd_zero (q : ℕ) :
 /--
 For `Auto.gaussianEstimate`, this is the coefficient
  recurrence for an odd
-derivative.-/
+derivative.
+@isnad1 id=eq.1h2v.s7.4c286c8c5f60 from=translated src=- shape=cbdd4e58 vocab=62aaa767
+-/
 theorem aux_gaussianEstimate_coeff_odd_succ (q j : ℕ) (hj : j < q) :
     aux_gaussianEstimate_coeff (2 * q + 1) (j + 1) =
       2 * Real.pi * aux_gaussianEstimate_coeff (2 * q) (j + 1) +
@@ -9806,7 +10440,9 @@ theorem aux_gaussianEstimate_coeff_odd_succ (q j : ℕ) (hj : j < q) :
 /--
 For `Auto.gaussianEstimate`, this reindexes the finite sum in
  the odd derivative
-recurrence.-/
+recurrence.
+@isnad1 id=eq.3h4v.s7.d709bc77d583 from=translated src=- shape=ac60940d vocab=259d92fd
+-/
 theorem aux_gaussianEstimate_sum_range_odd_reindex (q : ℕ) (A B C : ℕ → ℝ)
     (hzero : B 0 = A 0)
     (hinner : ∀ j : ℕ, j < q → B (j + 1) = A (j + 1) + C j)
@@ -9826,7 +10462,9 @@ theorem aux_gaussianEstimate_sum_range_odd_reindex (q : ℕ) (A B C : ℕ → �
 /--
 For `Auto.gaussianEstimate`, this is the recurrence for the
  auxiliary polynomial at
-an odd index.-/
+an odd index.
+@isnad1 id=eq.0h2v.s7.ec79bdee8c8f from=translated src=- shape=dad17b62 vocab=4a086b01
+-/
 theorem aux_gaussianEstimate_polynomial_odd_recurrence (q : ℕ) (x : ℝ) :
     aux_gaussianEstimate_polynomial (2 * q + 1) x =
       deriv (aux_gaussianEstimate_polynomial (2 * q)) x +
@@ -9888,7 +10526,9 @@ theorem aux_gaussianEstimate_polynomial_odd_recurrence (q : ℕ) (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, this reindexes the finite sum in
  the even derivative
-recurrence.-/
+recurrence.
+@isnad1 id=eq.3h4v.s7.d05a3d31cd21 from=translated src=- shape=1385f7c9 vocab=259d92fd
+-/
 theorem aux_gaussianEstimate_sum_range_even_reindex (q : ℕ) (A B C : ℕ → ℝ)
     (hzero : B 0 = A 0)
     (hinner : ∀ j, j < q → B (j + 1) = A (j + 1) + C j)
@@ -9909,7 +10549,9 @@ theorem aux_gaussianEstimate_sum_range_even_reindex (q : ℕ) (A B C : ℕ → �
 /--
 For `Auto.gaussianEstimate`, this is the coefficient
  recurrence for an even
-derivative away from its endpoint.-/
+derivative away from its endpoint.
+@isnad1 id=eq.1h2v.s7.1a69076c8da6 from=translated src=- shape=e60a1916 vocab=62aaa767
+-/
 theorem aux_gaussianEstimate_coeff_even_succ (q j : ℕ) (hj : j < q) :
     aux_gaussianEstimate_coeff (2 * q + 2) (j + 1) =
       2 * Real.pi * aux_gaussianEstimate_coeff (2 * q + 1) (j + 1) +
@@ -9972,7 +10614,9 @@ theorem aux_gaussianEstimate_coeff_even_succ (q j : ℕ) (hj : j < q) :
 /--
 For `Auto.gaussianEstimate`, this is the initial coefficient
  identity in the even
-derivative recurrence.-/
+derivative recurrence.
+@isnad1 id=eq.0h1v.s6.6e524a182121 from=translated src=- shape=7c21f4eb vocab=828df7d8
+-/
 theorem aux_gaussianEstimate_coeff_even_succ_zero (q : ℕ) :
     aux_gaussianEstimate_coeff (2 * q + 2) 0 =
       2 * Real.pi * aux_gaussianEstimate_coeff (2 * q + 1) 0 := by
@@ -9983,7 +10627,9 @@ theorem aux_gaussianEstimate_coeff_even_succ_zero (q : ℕ) :
 /--
 For `Auto.gaussianEstimate`, this is the terminal coefficient
  identity in the even
-derivative recurrence.-/
+derivative recurrence.
+@isnad1 id=eq.0h1v.s6.4579d2534d9e from=translated src=- shape=c3383e68 vocab=db121815
+-/
 theorem aux_gaussianEstimate_coeff_even_succ_top (q : ℕ) :
     aux_gaussianEstimate_coeff (2 * q + 2) (q + 1) =
       aux_gaussianEstimate_coeff (2 * q + 1) q := by
@@ -10004,7 +10650,9 @@ theorem aux_gaussianEstimate_coeff_even_succ_top (q : ℕ) :
 /--
 For `Auto.gaussianEstimate`, this is the recurrence for the
  auxiliary polynomial at
-an even index.-/
+an even index.
+@isnad1 id=eq.0h2v.s8.154c36983296 from=translated src=- shape=2e71501c vocab=91c87a04
+-/
 theorem aux_gaussianEstimate_polynomial_even_recurrence (q : ℕ) (x : ℝ) :
     aux_gaussianEstimate_polynomial (2 * q + 2) x =
       2 * Real.pi * x * aux_gaussianEstimate_polynomial (2 * q + 1) x +
@@ -10067,7 +10715,9 @@ theorem aux_gaussianEstimate_polynomial_even_recurrence (q : ℕ) (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, this gives the recurrence
  satisfied by all of the
-auxiliary polynomials.-/
+auxiliary polynomials.
+@isnad1 id=eq.0h2v.s6.8056ab21e37a from=translated src=- shape=facb7e78 vocab=4a086b01
+-/
 theorem aux_gaussianEstimate_polynomial_recurrence (n : ℕ) (x : ℝ) :
     aux_gaussianEstimate_polynomial (n + 1) x =
       deriv (aux_gaussianEstimate_polynomial n) x +
@@ -10083,7 +10733,9 @@ theorem aux_gaussianEstimate_polynomial_recurrence (n : ℕ) (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, this is the explicit formula for
  iterated derivatives
-of the reciprocal Gaussian.-/
+of the reciprocal Gaussian.
+@isnad1 id=eq.0h2v.s6.5ab3874c47eb from=translated src=- shape=ce635335 vocab=5ddfdf00
+-/
 theorem aux_gaussianEstimate_iteratedDeriv (n : ℕ) (x : ℝ) :
     iteratedDeriv n (fun y : ℝ => Real.exp (Real.pi * y ^ 2)) x =
       aux_gaussianEstimate_polynomial n x * Real.exp (Real.pi * x ^ 2) := by
@@ -10132,7 +10784,9 @@ theorem aux_gaussianEstimate_iteratedDeriv (n : ℕ) (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, this rewrites the reciprocal
  Gaussian in a form whose
-derivatives are explicit.-/
+derivatives are explicit.
+@isnad1 id=eq.0h1v.s5.e31f332a9454 from=translated src=- shape=25aad40f vocab=a7df5923
+-/
 theorem aux_gaussianEstimate_inverseGaussian (x : ℝ) :
     (Auto.gaussian x)⁻¹ = Real.exp (Real.pi * x ^ 2) := by
   unfold Auto.gaussian
@@ -10143,7 +10797,9 @@ theorem aux_gaussianEstimate_inverseGaussian (x : ℝ) :
 /--
 For `Auto.gaussianEstimate`, all coefficients of the auxiliary
  polynomial are
-nonnegative.-/
+nonnegative.
+@isnad1 id=le.0h2v.s4.502c7e5aec87 from=translated src=- shape=5ffe46ab vocab=b6f6b171
+-/
 theorem aux_gaussianEstimate_coeff_nonneg (n l : ℕ) :
     0 ≤ aux_gaussianEstimate_coeff n l := by
   unfold aux_gaussianEstimate_coeff
@@ -10152,7 +10808,9 @@ theorem aux_gaussianEstimate_coeff_nonneg (n l : ℕ) :
 /--
 For `Auto.gaussianEstimate`, the auxiliary polynomial is
  bounded on the unit
-interval by the sum of its coefficients.-/
+interval by the sum of its coefficients.
+@isnad1 id=le.1h2v.s6.3a1929abc212 from=translated src=- shape=134d8138 vocab=0066ace9
+-/
 theorem aux_gaussianEstimate_polynomial_abs_bound (n : ℕ) (x : ℝ) (hx : |x| ≤ 1) :
     |aux_gaussianEstimate_polynomial n x| ≤
       ∑ l ∈ Finset.range (n / 2 + 1), aux_gaussianEstimate_coeff n l := by
@@ -10187,7 +10845,9 @@ $$
 where $C_{\text{L:gaussian-estimate},N}=e^{\pi} \sum_{l=0}^{\lfloor N/2 \rfloor}
 \frac{N!}{l!(N-2l)!} 2^{N-2l} \pi^{N-l}$.
 
-See also `Auto.gaussianEstimate`.-/
+See also `Auto.gaussianEstimate`.
+@isnad1 id=le.1h2v.s5.a3406baff986 from=translated src=- shape=3c20555d vocab=52f5c2fc
+-/
 theorem gaussianEstimate (N : ℕ) (xi : ℝ) (hxi : |xi| ≤ 1) :
     |iteratedDeriv N (fun y : ℝ => (Auto.gaussian y)⁻¹) xi| ≤
       C_gaussianEstimate N := by
@@ -10230,7 +10890,9 @@ def C_gaussianBumpEstimate (N : ℕ) : ℝ :=
 /--
 For `Auto.gaussianBumpEstimate`, the explicit Gaussian-bump
  constant is
-nonnegative.-/
+nonnegative.
+@isnad1 id=le.0h1v.s3.7cf3c3aad453 from=translated src=- shape=b9369acb vocab=a30ab0c3
+-/
 theorem aux_C_gaussianBumpEstimate_nonneg (N : ℕ) :
     0 ≤ C_gaussianBumpEstimate N := by
   unfold C_gaussianBumpEstimate
@@ -10257,7 +10919,9 @@ def gaussianBumpQuotient (mu : ℝ) (phiHat : ℝ → ℂ) : ℝ → ℂ := fun 
 /--
 For `Auto.gaussianBumpEstimate`, iterated derivatives
  commute with coercion from
-real-valued functions to complex-valued functions.-/
+real-valued functions to complex-valued functions.
+@isnad1 id=eq.1h3v.s6.390397c7e0aa from=translated src=- shape=b2b0c8d7 vocab=84b9c956
+-/
 theorem aux_gaussianBumpEstimate_iteratedDeriv_ofReal (n : ℕ) (f : ℝ → ℝ)
     (hf : ContDiff ℝ (n + 1) f) (x : ℝ) :
     iteratedDeriv n (fun y : ℝ => (f y : ℂ)) x =
@@ -10281,7 +10945,9 @@ theorem aux_gaussianBumpEstimate_iteratedDeriv_ofReal (n : ℕ) (f : ℝ → ℝ
 
 /--
 For `Auto.gaussianBumpEstimate`, the reciprocal Gaussian is
- smooth.-/
+ smooth.
+@isnad1 id=contdiff.0h1v.s6.b0e6310af3f3 from=translated src=- shape=80176561 vocab=b3648340
+-/
 theorem aux_gaussianBumpEstimate_inverseGaussian_contDiff (n : ℕ) :
     ContDiff ℝ (n + 1) (fun x : ℝ => (Auto.gaussian x)⁻¹) := by
   rw [show (fun x : ℝ => (Auto.gaussian x)⁻¹) =
@@ -10292,7 +10958,9 @@ theorem aux_gaussianBumpEstimate_inverseGaussian_contDiff (n : ℕ) :
 
 /--
 For `Auto.gaussianBumpEstimate`, the complex-valued
- reciprocal Gaussian is smooth.-/
+ reciprocal Gaussian is smooth.
+@isnad1 id=contdiff.0h1v.s6.610d6e5e569e from=translated src=- shape=4cb28d83 vocab=fffac89b
+-/
 theorem aux_gaussianBumpEstimate_complexInverseGaussian_contDiff (n : ℕ) :
     ContDiff ℝ (n + 1) (fun x : ℝ => (((Auto.gaussian x)⁻¹ : ℝ) : ℂ)) := by
   simpa [Function.comp_def, Complex.ofRealCLM_apply] using
@@ -10301,7 +10969,9 @@ theorem aux_gaussianBumpEstimate_complexInverseGaussian_contDiff (n : ℕ) :
 /--
 For `Auto.gaussianBumpEstimate`, the complex reciprocal
  Gaussian has the required
-finite smoothness.-/
+finite smoothness.
+@isnad1 id=contdiff.0h1v.s5.7fb7628f51ca from=translated src=- shape=fe9c8f87 vocab=6b436ed2
+-/
 theorem aux_gaussianBumpEstimate_complexInverseGaussian_contDiff_at (n : ℕ) :
     ContDiff ℝ n (fun x : ℝ => (((Auto.gaussian x)⁻¹ : ℝ) : ℂ)) := by
   exact (aux_gaussianBumpEstimate_complexInverseGaussian_contDiff n).of_le (by norm_num)
@@ -10309,7 +10979,9 @@ theorem aux_gaussianBumpEstimate_complexInverseGaussian_contDiff_at (n : ℕ) :
 /--
 For `Auto.gaussianBumpEstimate`, this is the
  iterated-derivative scaling rule for
-the reciprocal Gaussian.-/
+the reciprocal Gaussian.
+@isnad1 id=eq.0h3v.s7.0913e2d0bbb3 from=translated src=- shape=3f611355 vocab=7e8f845d
+-/
 theorem aux_gaussianBumpEstimate_scaledInverseGaussian_iteratedDeriv
     (n : ℕ) (mu xi : ℝ) :
     iteratedDeriv n (fun x : ℝ => (((Auto.gaussian (mu * x))⁻¹ : ℝ) : ℂ)) xi =
@@ -10325,7 +10997,9 @@ theorem aux_gaussianBumpEstimate_scaledInverseGaussian_iteratedDeriv
 
 /--
 For `Auto.gaussianBumpEstimate`, the quotient in
-`Auto.gaussianBumpQuotient` is as smooth as its bump factor.-/
+`Auto.gaussianBumpQuotient` is as smooth as its bump factor.
+@isnad1 id=contdiff.1h3v.s6.5f2d12911f21 from=translated src=- shape=554c6118 vocab=30536a40
+-/
 theorem aux_gaussianBumpEstimate_contDiff (N : ℕ) (mu : ℝ) (phiHat : ℝ → ℂ)
     (hphi : ContDiff ℝ N phiHat) :
     ContDiff ℝ N (gaussianBumpQuotient mu phiHat) := by
@@ -10337,7 +11011,9 @@ theorem aux_gaussianBumpEstimate_contDiff (N : ℕ) (mu : ℝ) (phiHat : ℝ →
 /--
 For `Auto.gaussianBumpEstimate`, this identifies the
  natural-number power in the
-Fourier normalization with the real power in `C_gaussianBumpEstimate`.-/
+Fourier normalization with the real power in `C_gaussianBumpEstimate`.
+@isnad1 id=eq.0h1v.s5.9a89872604a4 from=translated src=- shape=3852e354 vocab=bfad2d22
+-/
 theorem aux_gaussianBumpEstimate_qpow_eq_rpow (N : ℕ) :
     ((2 * Real.pi)⁻¹ : ℝ) ^ N = Real.rpow (2 * Real.pi) (-(N : ℝ)) := by
   calc
@@ -10351,7 +11027,9 @@ theorem aux_gaussianBumpEstimate_qpow_eq_rpow (N : ℕ) :
 /--
 For `Auto.gaussianBumpEstimate`, this is the pointwise
  Leibniz bound for the
-Gaussian bump quotient.-/
+Gaussian bump quotient.
+@isnad1 id=le.6h5v.s7.c6193e1b0a36 from=translated src=- shape=d653e01c vocab=ae073022
+-/
 theorem aux_gaussianBumpEstimate_pointwise (N : ℕ) (c mu : ℝ) (phiHat : ℝ → ℂ)
     (hc : 0 ≤ c) (hmu0 : 0 ≤ mu) (hmu1 : mu ≤ 1)
     (hphi : ContDiff ℝ N phiHat)
@@ -10455,7 +11133,9 @@ theorem aux_gaussianBumpEstimate_pointwise (N : ℕ) (c mu : ℝ) (phiHat : ℝ 
 /--
 For `Auto.gaussianBumpEstimate`, the pointwise estimate
  gives the stated
-`L^∞` estimate.-/
+`L^∞` estimate.
+@isnad1 id=le.6h4v.s8.67c02739f5af from=translated src=- shape=8363920c vocab=a421682d
+-/
 theorem aux_gaussianBumpEstimate_eLpNorm (N : ℕ) (c mu : ℝ) (phiHat : ℝ → ℂ)
     (hc : 0 ≤ c) (hmu0 : 0 ≤ mu) (hmu1 : mu ≤ 1)
     (hphi : ContDiff ℝ N phiHat)
@@ -10493,7 +11173,9 @@ where $C_{\text{L:gaussian-bump-estimate},N}= (2\pi)^{-N}\sum_{l=0}^N \binom{N}{
 C_{\text{L:gaussian-estimate},l}$.
 
 See also `Auto.gaussianBumpEstimate`,
-`Auto.gaussianEstimate`.-/
+`Auto.gaussianEstimate`.
+@isnad1 id=and.6h4v.s8.7692b35f1460 from=translated src=- shape=433aa487 vocab=6c950bd3
+-/
 theorem gaussianBumpEstimate (c : ℝ) (N : ℕ) (phiHat : ℝ → ℂ)
     (hc : 0 < c) (mu : ℝ) (hmu : 0 < mu) (hmuOne : mu ≤ 1)
     (hphi : ContDiff ℝ N phiHat)
@@ -10508,11 +11190,17 @@ theorem gaussianBumpEstimate (c : ℝ) (N : ℕ) (phiHat : ℝ → ℂ)
   · exact aux_gaussianBumpEstimate_eLpNorm N c mu phiHat hc.le hmu.le hmuOne hphi hsupp
       hphiBound
 
+/--
+@isnad1 id=lt.0h0v.s4.18bae8862190 from=translated src=- shape=3c26ae4f vocab=0dda0365
+-/
 theorem aux_exp_one_lt_three : Real.exp 1 < 3 := by
   calc
     Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
     _ < 3 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.b5ff8abe1226 from=translated src=- shape=2aad6728 vocab=8bb0b4be
+-/
 theorem aux_exp_pi_lt_128 : Real.exp Real.pi < (2 : ℝ) ^ 7 := by
   have hpi : Real.pi < 4 := Real.pi_lt_four
   calc
@@ -10524,6 +11212,9 @@ theorem aux_exp_pi_lt_128 : Real.exp Real.pi < (2 : ℝ) ^ 7 := by
       pow_lt_pow_left₀ aux_exp_one_lt_three (Real.exp_pos _).le (by norm_num)
     _ < (2 : ℝ) ^ 7 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s3.52bcb86845bb from=translated src=- shape=b0ae1d2b vocab=37f1317f
+-/
 theorem aux_exp_pi_lt_81 : Real.exp Real.pi < 81 := by
   have hpi : Real.pi < 4 := Real.pi_lt_four
   calc
@@ -10535,12 +11226,18 @@ theorem aux_exp_pi_lt_81 : Real.exp Real.pi < 81 := by
       pow_lt_pow_left₀ aux_exp_one_lt_three (Real.exp_pos _).le (by norm_num)
     _ = 81 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.43fd98c716bb from=translated src=- shape=4a95dd1a vocab=4d5ee445
+-/
 theorem aux_inv_pi_lt_third : Real.pi⁻¹ < (1 / 3 : ℝ) := by
   calc
     Real.pi⁻¹ < (3 : ℝ)⁻¹ :=
       (inv_lt_inv₀ Real.pi_pos (by norm_num)).mpr Real.pi_gt_three
     _ = 1 / 3 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.7db02e7265c4 from=translated src=- shape=2874044d vocab=debea6dc
+-/
 theorem aux_inv_two_pi_lt_sixth : (2 * Real.pi)⁻¹ < (1 / 6 : ℝ) := by
   calc
     (2 * Real.pi)⁻¹ < (6 : ℝ)⁻¹ :=
@@ -10548,6 +11245,9 @@ theorem aux_inv_two_pi_lt_sixth : (2 * Real.pi)⁻¹ < (1 / 6 : ℝ) := by
         (by nlinarith [Real.pi_gt_three])
     _ = 1 / 6 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.0a88f6a2245a from=translated src=- shape=ff7eda20 vocab=29e114f9
+-/
 theorem aux_inv_four_pi_sq_lt_one_36 :
     (4 * Real.pi ^ 2)⁻¹ < (1 / 36 : ℝ) := by
   have hpiSq : 9 < Real.pi ^ 2 := by
@@ -10560,6 +11260,9 @@ theorem aux_inv_four_pi_sq_lt_one_36 :
       (inv_lt_inv₀ (by positivity) (by norm_num)).mpr (by nlinarith)
     _ = 1 / 36 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.6b119ece494f from=translated src=- shape=ff7eda20 vocab=29e114f9
+-/
 theorem aux_inv_two_pi_sq_lt_one_18 :
     (2 * Real.pi ^ 2)⁻¹ < (1 / 18 : ℝ) := by
   have hpiSq : 9 < Real.pi ^ 2 := by
@@ -10572,6 +11275,9 @@ theorem aux_inv_two_pi_sq_lt_one_18 :
       (inv_lt_inv₀ (by positivity) (by norm_num)).mpr (by nlinarith)
     _ = 1 / 18 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.36f312eb733b from=translated src=- shape=ff7eda20 vocab=29e114f9
+-/
 theorem aux_inv_eight_pi_cube_lt_one_216 :
     (8 * Real.pi ^ 3)⁻¹ < (1 / 216 : ℝ) := by
   have hpiSq : 9 < Real.pi ^ 2 := by
@@ -10590,10 +11296,16 @@ theorem aux_inv_eight_pi_cube_lt_one_216 :
       (inv_lt_inv₀ (by positivity) (by norm_num)).mpr (by nlinarith)
     _ = 1 / 216 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s6.77d43a9ad3a3 from=translated src=- shape=1590d050 vocab=31b2e1d4
+-/
 theorem aux_C_gaussianEstimate_zero :
     C_gaussianEstimate 0 ≤ (2 : ℝ) ^ (7 * (0 + 1) ^ 2) := by
   simpa [C_gaussianEstimate] using (le_of_lt aux_exp_pi_lt_128)
 
+/--
+@isnad1 id=le.0h2v.s7.639ce6e1c510 from=translated src=- shape=ab3dc717 vocab=f8446fa9
+-/
 theorem aux_gaussianEstimate_term_bound (n k : ℕ) :
     (n.factorial : ℝ) / ((k.factorial : ℝ) * ((n - 2 * k).factorial : ℝ)) *
         (2 : ℝ) ^ (n - 2 * k) * Real.pi ^ (n - k) ≤
@@ -10622,6 +11334,9 @@ theorem aux_gaussianEstimate_term_bound (n k : ℕ) :
       congr 1
       omega
 
+/--
+@isnad1 id=le.0h1v.s8.ab8f8012bd14 from=translated src=- shape=a45e505e vocab=93ca8d47
+-/
 theorem aux_gaussianEstimate_sum_bound (n : ℕ) :
     ∑ k ∈ Finset.range (n / 2 + 1),
       (n.factorial : ℝ) / ((k.factorial : ℝ) * ((n - 2 * k).factorial : ℝ)) *
@@ -10636,6 +11351,9 @@ theorem aux_gaussianEstimate_sum_bound (n : ℕ) :
         intro k _
         exact aux_gaussianEstimate_term_bound n k))
 
+/--
+@isnad1 id=le.0h1v.s6.ad714e9fd632 from=translated src=- shape=da442749 vocab=31b2e1d4
+-/
 theorem aux_C_gaussianEstimate_bound (n : ℕ) :
     C_gaussianEstimate n ≤ (2 : ℝ) ^ (7 * (n + 1) ^ 2) := by
   by_cases hn : n = 0
@@ -10667,6 +11385,9 @@ theorem aux_C_gaussianEstimate_bound (n : ℕ) :
         apply pow_le_pow_right₀ (by norm_num)
         nlinarith
 
+/--
+@isnad1 id=le.0h1v.s6.07ce7df7d894 from=translated src=- shape=da442749 vocab=c2861f54
+-/
 theorem aux_C_gaussianBumpEstimate_bound (N : ℕ) :
     C_gaussianBumpEstimate N ≤ (2 : ℝ) ^ (8 * (N + 1) ^ 2) := by
   let B : ℝ := (2 : ℝ) ^ (7 * (N + 1) ^ 2)
@@ -10730,10 +11451,16 @@ theorem aux_C_gaussianBumpEstimate_bound (N : ℕ) :
       apply pow_le_pow_right₀ (by norm_num)
       nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s3.5cca8d69d399 from=translated src=- shape=04794901 vocab=b6e5d76c
+-/
 theorem aux_C_gaussianBumpEstimate_zero_eq :
     C_gaussianBumpEstimate 0 = Real.exp Real.pi := by
   norm_num [C_gaussianBumpEstimate, C_gaussianEstimate]
 
+/--
+@isnad1 id=eq.0h0v.s5.51825454fe4b from=translated src=- shape=64c170ce vocab=e04e8d33
+-/
 theorem aux_C_gaussianBumpEstimate_one_eq :
     C_gaussianBumpEstimate 1 = Real.exp Real.pi * (1 + (2 * Real.pi)⁻¹) := by
   unfold C_gaussianBumpEstimate
@@ -10742,6 +11469,9 @@ theorem aux_C_gaussianBumpEstimate_one_eq :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.d7d6ad205a1c from=translated src=- shape=b92d2759 vocab=40af3176
+-/
 theorem aux_C_gaussianBumpEstimate_two_eq :
     C_gaussianBumpEstimate 2 = Real.exp Real.pi *
       (1 + 3 * (2 * Real.pi)⁻¹ + (4 * Real.pi ^ 2)⁻¹) := by
@@ -10751,6 +11481,9 @@ theorem aux_C_gaussianBumpEstimate_two_eq :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.c3b5dcc9df37 from=translated src=- shape=913cf105 vocab=40af3176
+-/
 theorem aux_C_gaussianBumpEstimate_three_eq :
     C_gaussianBumpEstimate 3 = Real.exp Real.pi *
       (1 + 3 * Real.pi⁻¹ + 3 * (2 * Real.pi ^ 2)⁻¹ + (8 * Real.pi ^ 3)⁻¹) := by
@@ -10760,11 +11493,17 @@ theorem aux_C_gaussianBumpEstimate_three_eq :
   field_simp
   ring
 
+/--
+@isnad1 id=lt.0h0v.s4.238f323d6bca from=translated src=- shape=1ac31801 vocab=fe4a489c
+-/
 theorem aux_C_gaussianBumpEstimate_zero_lt_81 :
     C_gaussianBumpEstimate 0 < 81 := by
   rw [aux_C_gaussianBumpEstimate_zero_eq]
   exact aux_exp_pi_lt_81
 
+/--
+@isnad1 id=lt.0h0v.s4.531f7da7ea56 from=translated src=- shape=1ac31801 vocab=fe4a489c
+-/
 theorem aux_C_gaussianBumpEstimate_one_lt_95 :
     C_gaussianBumpEstimate 1 < 95 := by
   rw [aux_C_gaussianBumpEstimate_one_eq]
@@ -10778,6 +11517,9 @@ theorem aux_C_gaussianBumpEstimate_one_lt_95 :
     _ < 81 * (7 / 6 : ℝ) := mul_lt_mul_of_pos_left hbracket (by norm_num)
     _ < 95 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.0d361a8168e1 from=translated src=- shape=1ac31801 vocab=fe4a489c
+-/
 theorem aux_C_gaussianBumpEstimate_two_lt_124 :
     C_gaussianBumpEstimate 2 < 124 := by
   rw [aux_C_gaussianBumpEstimate_two_eq]
@@ -10792,6 +11534,9 @@ theorem aux_C_gaussianBumpEstimate_two_lt_124 :
     _ < 81 * (55 / 36 : ℝ) := mul_lt_mul_of_pos_left hbracket (by norm_num)
     _ < 124 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.e24943cc31cc from=translated src=- shape=1ac31801 vocab=fe4a489c
+-/
 theorem aux_C_gaussianBumpEstimate_three_lt_176 :
     C_gaussianBumpEstimate 3 < 176 := by
   rw [aux_C_gaussianBumpEstimate_three_eq]
@@ -10828,7 +11573,9 @@ C_{\text{L:gaussian-bump-estimate},2}<124,\qquad
 C_{\text{L:gaussian-bump-estimate},3}<176.
 $$
 
-See also `Auto.gaussianBumpEstimate`.-/
+See also `Auto.gaussianBumpEstimate`.
+@isnad1 id=and.0h1v.s7.55b4fe5e82e3 from=translated src=- shape=0ea42dd6 vocab=1839547b
+-/
 theorem constantGaussianBumpEstimate (N : ℕ) :
     C_gaussianBumpEstimate N ≤ (2 : ℝ) ^ (8 * (N + 1) ^ 2) ∧
       C_gaussianBumpEstimate 0 < 81 ∧ C_gaussianBumpEstimate 1 < 95 ∧
@@ -10849,7 +11596,9 @@ def C_derivativeEstimateForG (N : ℕ) : ℝ :=
 
 /--
 For `derivativeEstimateForG`, the falling-factorial coefficient of the positive-order
-derivative is bounded by the corresponding factorial on `[-1, 0]`.-/
+derivative is bounded by the corresponding factorial on `[-1, 0]`.
+@isnad1 id=le.2h2v.s5.cc281b292ebc from=translated src=- shape=9496af49 vocab=b51365cd
+-/
 theorem aux_derivativeEstimateForG_descPochhammer_bound (N : ℕ) {nu : ℝ}
     (hnu : -1 ≤ nu) (hnu0 : nu ≤ 0) :
     |(descPochhammer ℝ N).eval nu| ≤ N.factorial := by
@@ -10875,7 +11624,9 @@ theorem aux_derivativeEstimateForG_descPochhammer_bound (N : ℕ) {nu : ℝ}
 
 /--
 For `derivativeEstimateForG`, this compares the real-power factor in the derivative
-formula with its value at the endpoint $e^{-3\pi/16}$.-/
+formula with its value at the endpoint $e^{-3\pi/16}$.
+@isnad1 id=le.3h3v.s7.d55c95bf0250 from=translated src=- shape=6ed81b54 vocab=a8578839
+-/
 theorem aux_derivativeEstimateForG_rpow_bound {N : ℕ} {nu x : ℝ}
     (hnu : -1 ≤ nu) (hnu0 : nu ≤ 0)
     (hxa : x ≤ Real.exp (-3 * Real.pi / 16)) :
@@ -10907,7 +11658,9 @@ theorem aux_derivativeEstimateForG_rpow_bound {N : ℕ} {nu x : ℝ}
 
 /--
 For `derivativeEstimateForG`, this is the explicit positive-order derivative formula for
-`x ↦ (1 - x)^ν - 1`.-/
+`x ↦ (1 - x)^ν - 1`.
+@isnad1 id=eq.1h3v.s7.3201c25aca3b from=translated src=- shape=0f7e17ea vocab=b90506e2
+-/
 theorem aux_derivativeEstimateForG_iteratedDeriv_pos (N : ℕ) (hN : 0 < N) (nu x : ℝ) :
     iteratedDeriv N (fun y : ℝ => (1 - y) ^ nu - 1) x =
       (-1 : ℝ) ^ N * (descPochhammer ℝ N).eval nu *
@@ -10944,7 +11697,9 @@ $$
 
 where $C_{\text{L:derivative-estimate-for-G},N}= N! \left(1 - e^{-3\pi/16}\right)^{-(N+1)}$.
 
-See also `Auto.derivativeEstimateForG`.-/
+See also `Auto.derivativeEstimateForG`.
+@isnad1 id=le.2h3v.s7.91e3aa87f4cf from=translated src=- shape=203c13e6 vocab=896b6330
+-/
 theorem derivativeEstimateForG (N : ℕ) {nu x : ℝ}
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0)
     (hx : x ∈ Set.Icc (0 : ℝ) (Real.exp (-3 * Real.pi / 16))) :
@@ -11017,6 +11772,9 @@ noncomputable def C_faaDiBruno (N : ℕ) : ℝ :=
         C_derivativeEstimateForG c.length *
           ∏ j, C_gaussianBumpDecay (c.partSize j) (N + 2)
 
+/--
+@isnad1 id=le.0h1v.s3.d8ab7f3ddcf5 from=translated src=- shape=b9369acb vocab=7525b692
+-/
 theorem aux_C_derivativeEstimateForG_nonneg (N : ℕ) :
     0 ≤ C_derivativeEstimateForG N := by
   unfold C_derivativeEstimateForG
@@ -11028,11 +11786,17 @@ theorem aux_C_derivativeEstimateForG_nonneg (N : ℕ) :
       nlinarith [Real.pi_pos]
     linarith
 
+/--
+@isnad1 id=le.0h2v.s4.dfb824fac171 from=translated src=- shape=5ffe46ab vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_nonneg (m N : ℕ) :
     0 ≤ C_gaussianBumpDecay m N := by
   unfold C_gaussianBumpDecay
   apply mul_nonneg <;> exact Real.rpow_nonneg (by positivity) _
 
+/--
+@isnad1 id=le.0h1v.s3.b90ec4f469f2 from=translated src=- shape=b9369acb vocab=fcc412a1
+-/
 theorem aux_C_faaDiBruno_nonneg (N : ℕ) : 0 ≤ C_faaDiBruno N := by
   rw [C_faaDiBruno]
   split_ifs with hN
@@ -11046,6 +11810,9 @@ theorem aux_C_faaDiBruno_nonneg (N : ℕ) : 0 ≤ C_faaDiBruno N := by
     intro j _
     exact aux_C_gaussianBumpDecay_nonneg (c.partSize j) (N + 2)
 
+/--
+@isnad1 id=le.4h6v.s8.3286ff09b6c6 from=translated src=- shape=9d2eed82 vocab=897b2d84
+-/
 theorem aux_faaDiBruno_ordered_bound
     (N : ℕ) (f g : ℝ → ℝ) (x : ℝ)
     (hg : ContDiffAt ℝ N g (f x)) (hf : ContDiffAt ℝ N f x)
@@ -11077,6 +11844,9 @@ theorem aux_faaDiBruno_ordered_bound
           abs_nonneg (iteratedDeriv (c.partSize j) f x)
       · exact hAc
 
+/--
+@isnad1 id=le.2h3v.s7.8ff33f106376 from=translated src=- shape=958b732d vocab=51e99b80
+-/
 theorem aux_faaDiBruno_scale_tail (N : ℕ) {t xi : ℝ}
     (ht : Real.sqrt 3 / 2 ≤ t) (hxi : 1 / 2 ≤ |xi|) :
     t ^ N * bracketBump (t * xi) ^ (N + 2) ≤
@@ -11136,6 +11906,9 @@ theorem aux_faaDiBruno_scale_tail (N : ℕ) {t xi : ℝ}
       rw [pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h3v.s6.695f9e4bcbd8 from=translated src=- shape=52cdf208 vocab=30eda84a
+-/
 theorem aux_faaDiBruno_scaledGaussian_iteratedDeriv (k : ℕ) (t xi : ℝ) :
     iteratedDeriv k (fun y : ℝ => Auto.gaussian (t * y)) xi =
       t ^ k * iteratedDeriv k Auto.gaussian (t * xi) := by
@@ -11145,6 +11918,9 @@ theorem aux_faaDiBruno_scaledGaussian_iteratedDeriv (k : ℕ) (t xi : ℝ) :
   have hcomp := congrFun (iteratedDeriv_comp_const_smul hgauss t) xi
   simpa only [Function.comp_def, smul_eq_mul] using hcomp
 
+/--
+@isnad1 id=le.1h4v.s7.093420905ced from=translated src=- shape=5fab48ef vocab=be618ff6
+-/
 theorem aux_faaDiBruno_scaledGaussian_bound (N k : ℕ) {t xi : ℝ} (ht : 0 ≤ t) :
     |iteratedDeriv k (fun y : ℝ => Auto.gaussian (t * y)) xi| ≤
       t ^ k * C_gaussianBumpDecay k (N + 2) * bracketBump (t * xi) ^ (N + 2) := by
@@ -11158,6 +11934,9 @@ theorem aux_faaDiBruno_scaledGaussian_bound (N k : ℕ) {t xi : ℝ} (ht : 0 ≤
     _ = t ^ k * C_gaussianBumpDecay k (N + 2) * bracketBump (t * xi) ^ (N + 2) := by
       ring
 
+/--
+@isnad1 id=mem.2h2v.s7.312fce0a18b3 from=translated src=- shape=fc98bd29 vocab=c5c39522
+-/
 theorem aux_faaDiBruno_scaledGaussian_range {t xi : ℝ}
     (ht : Real.sqrt 3 / 2 ≤ t) (hxi : 1 / 2 ≤ |xi|) :
     Auto.gaussian (t * xi) ∈ Set.Icc (0 : ℝ) (Real.exp (-3 * Real.pi / 16)) := by
@@ -11182,10 +11961,16 @@ theorem aux_faaDiBruno_scaledGaussian_range {t xi : ℝ}
     apply Real.exp_le_exp.mpr
     nlinarith [Real.pi_pos]
 
+/--
+@isnad1 id=eq.0h2v.s5.543860fabe2f from=translated src=- shape=1c0a5056 vocab=baa482a8
+-/
 theorem aux_faaDiBruno_partSize_sum {N : ℕ} (c : OrderedFinpartition N) :
     ∑ j, c.partSize j = N := by
   simpa using Fintype.card_congr c.equivSigma
 
+/--
+@isnad1 id=le.4h4v.s7.63e65c9144a2 from=translated src=- shape=6e93131d vocab=4f44b14f
+-/
 theorem aux_faaDiBruno_ordered_product_bound (N : ℕ) (c : OrderedFinpartition N)
     (t b : ℝ) (hN : 0 < N) (ht : 0 ≤ t) (hb0 : 0 ≤ b) (hb1 : b ≤ 1) :
     ∏ j, (t ^ c.partSize j * C_gaussianBumpDecay (c.partSize j) (N + 2) * b ^ (N + 2)) ≤
@@ -11219,6 +12004,9 @@ theorem aux_faaDiBruno_ordered_product_bound (N : ℕ) (c : OrderedFinpartition 
         (t ^ N * b ^ (N + 2)) := by
       ring
 
+/--
+@isnad1 id=le.2h2v.s7.5c3034ac1f8f from=translated src=- shape=27fe1093 vocab=5e36ab09
+-/
 theorem aux_faaDiBruno_zero_cancellation {nu z : ℝ}
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0)
     (hz : z ∈ Set.Icc (0 : ℝ) (Real.exp (-3 * Real.pi / 16))) :
@@ -11259,6 +12047,9 @@ theorem aux_faaDiBruno_zero_cancellation {nu z : ℝ}
     _ = C_derivativeEstimateForG 0 * z := by
       simp [C_derivativeEstimateForG, a, Real.rpow_neg_one, mul_comm]
 
+/--
+@isnad1 id=le.3h3v.s7.9039c909ddb1 from=translated src=- shape=d8eb76d1 vocab=7e2ade68
+-/
 theorem aux_faaDiBruno_zero {nu t xi : ℝ}
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0)
     (ht : Real.sqrt 3 / 2 ≤ t) (hxi : 1 / 2 ≤ |xi|) :
@@ -11292,6 +12083,9 @@ theorem aux_faaDiBruno_zero {nu t xi : ℝ}
       simp [C_faaDiBruno]
       ring
 
+/--
+@isnad1 id=le.4h4v.s7.064f55637d50 from=translated src=- shape=e9730fe5 vocab=fe0ba4ba
+-/
 theorem aux_faaDiBruno_positive (N : ℕ) (hN : 0 < N) {nu t xi : ℝ}
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0)
     (ht : Real.sqrt 3 / 2 ≤ t) (hxi : 1 / 2 ≤ |xi|) :
@@ -11444,7 +12238,9 @@ blocks, and $|B|$ is the size of $B$.
 
 See also `Auto.faaDiBruno`,
 `Auto.derivativeEstimateForG`,
-`Auto.gaussianBumpDecay`.-/
+`Auto.gaussianBumpDecay`.
+@isnad1 id=le.3h4v.s7.17e63020b814 from=translated src=- shape=d9669302 vocab=7e2ade68
+-/
 theorem faaDiBruno (N : ℕ) {nu t xi : ℝ}
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0)
     (ht : Real.sqrt 3 / 2 ≤ t) (hxi : 1 / 2 ≤ |xi|) :
@@ -11455,6 +12251,9 @@ theorem faaDiBruno (N : ℕ) {nu t xi : ℝ}
     exact aux_faaDiBruno_zero hnu ht hxi
   · exact aux_faaDiBruno_positive N (Nat.pos_of_ne_zero hN) hnu ht hxi
 
+/--
+@isnad1 id=le.0h0v.s6.4b2ca3311382 from=translated src=- shape=c4650e50 vocab=fa0ad9a4
+-/
 theorem aux_derivativeEstimateForG_base_ge_third :
     (1 / 3 : ℝ) ≤ 1 - Real.exp (-3 * Real.pi / 16) := by
   have hExpLower : (25 / 16 : ℝ) ≤ Real.exp (9 / 16 : ℝ) := by
@@ -11473,12 +12272,18 @@ theorem aux_derivativeEstimateForG_base_ge_third :
       _ ≤ 16 / 25 := hInv
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s6.cfb705ef422e from=translated src=- shape=fac04621 vocab=b4fb80b4
+-/
 theorem aux_third_rpow_neg_eq_three_pow (q : ℕ) :
     Real.rpow (1 / 3 : ℝ) (-((q + 1 : ℕ) : ℝ)) = (3 : ℝ) ^ (q + 1) := by
   change (1 / 3 : ℝ) ^ (-((q + 1 : ℕ) : ℝ)) = (3 : ℝ) ^ (q + 1)
   rw [Real.rpow_neg (by norm_num), Real.rpow_natCast]
   rw [show (1 / 3 : ℝ) = (3 : ℝ)⁻¹ by norm_num, inv_pow, inv_inv]
 
+/--
+@isnad1 id=le.0h1v.s5.9fe3c050a0cf from=translated src=- shape=052c8556 vocab=2b88a5ab
+-/
 theorem aux_C_derivativeEstimateForG_le (q : ℕ) :
     C_derivativeEstimateForG q ≤ (q.factorial : ℝ) * (3 : ℝ) ^ (q + 1) := by
   unfold C_derivativeEstimateForG
@@ -11496,6 +12301,9 @@ theorem aux_C_derivativeEstimateForG_le (q : ℕ) :
     _ = (q.factorial : ℝ) * (3 : ℝ) ^ (q + 1) := by
       rw [aux_third_rpow_neg_eq_three_pow]
 
+/--
+@isnad1 id=le.1h2v.s6.0e8a1e1b3267 from=translated src=- shape=8f73cfb1 vocab=b15f0287
+-/
 theorem aux_C_gaussianBumpDecay_le_pow (N m : ℕ) (hm : m ≤ N) :
     C_gaussianBumpDecay m (N + 2) ≤ (2 : ℝ) ^ (2 * N ^ 2 + 14 * N + 10) := by
   have hmOne : m + 1 ≤ N + 1 := Nat.succ_le_succ hm
@@ -11566,6 +12374,9 @@ theorem aux_C_gaussianBumpDecay_le_pow (N m : ℕ) (hm : m ≤ N) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.0h1v.s3.1ec39f5d537b from=translated src=- shape=c52356c6 vocab=cd900255
+-/
 theorem aux_orderedFinpartition_card_le_factorial (N : ℕ) :
     Fintype.card (OrderedFinpartition N) ≤ N.factorial := by
   induction N with
@@ -11588,6 +12399,9 @@ theorem aux_orderedFinpartition_card_le_factorial (N : ℕ) :
         _ ≤ N.factorial * (N + 1) := Nat.mul_le_mul_right _ ih
         _ = (N + 1).factorial := by rw [Nat.factorial_succ, Nat.mul_comm]
 
+/--
+@isnad1 id=le.1h2v.s6.8301a697107c from=translated src=- shape=a6d0cd4c vocab=4bb040a9
+-/
 theorem aux_C_derivativeEstimateForG_le_pow (N q : ℕ) (hq : q ≤ N) :
     C_derivativeEstimateForG q ≤ (2 : ℝ) ^ (N ^ 2 + 2 * N + 2) := by
   calc
@@ -11605,6 +12419,9 @@ theorem aux_C_derivativeEstimateForG_le_pow (N q : ℕ) (hq : q ≤ N) :
       apply pow_le_pow_right₀ (by norm_num)
       nlinarith
 
+/--
+@isnad1 id=le.0h2v.s7.89a70a6a0d0c from=translated src=- shape=64fac1d4 vocab=5e55c273
+-/
 theorem aux_C_faaDiBruno_prod_bound (N : ℕ) (c : OrderedFinpartition N) :
     ∏ j, C_gaussianBumpDecay (c.partSize j) (N + 2) ≤
       (2 : ℝ) ^ (N * (2 * N ^ 2 + 14 * N + 10)) := by
@@ -11627,11 +12444,17 @@ theorem aux_C_faaDiBruno_prod_bound (N : ℕ) (c : OrderedFinpartition N) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.0h1v.s5.d1e37399ed1b from=translated src=- shape=ca9aa5bc vocab=8f863f31
+-/
 theorem aux_orderedFinpartition_card_le_two_pow_sq (N : ℕ) :
     Fintype.card (OrderedFinpartition N) ≤ 2 ^ (N ^ 2) :=
   (aux_orderedFinpartition_card_le_factorial N).trans
     (aux_factorial_le_two_pow_sq N)
 
+/--
+@isnad1 id=le.0h2v.s7.0c24c7a909dd from=translated src=- shape=cca6530b vocab=2033eda2
+-/
 theorem aux_C_faaDiBruno_term_bound (N : ℕ) (c : OrderedFinpartition N) :
     C_derivativeEstimateForG c.length *
         ∏ j, C_gaussianBumpDecay (c.partSize j) (N + 2) ≤
@@ -11653,6 +12476,9 @@ theorem aux_C_faaDiBruno_term_bound (N : ℕ) (c : OrderedFinpartition N) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.0h1v.s7.9f6fa3cbf92b from=translated src=- shape=63f343f9 vocab=ba491c38
+-/
 theorem aux_C_faaDiBruno_sum_bound (N : ℕ) :
     ∑ c : OrderedFinpartition N,
       C_derivativeEstimateForG c.length *
@@ -11683,6 +12509,9 @@ theorem aux_C_faaDiBruno_sum_bound (N : ℕ) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.0h0v.s4.7a49302b03af from=translated src=- shape=1ac31801 vocab=fcc412a1
+-/
 theorem aux_C_faaDiBruno_zero_le : C_faaDiBruno 0 ≤ 72 := by
   rw [C_faaDiBruno, ite_eq_left rfl]
   have hderiv : C_derivativeEstimateForG 0 ≤ 3 := by
@@ -11694,6 +12523,9 @@ theorem aux_C_faaDiBruno_zero_le : C_faaDiBruno 0 ≤ 72 := by
     2 * C_derivativeEstimateForG 0 * 12 ≤ 2 * 3 * 12 := by gcongr
     _ = 72 := by norm_num
 
+/--
+@isnad1 id=le.1h1v.s6.025251bd775a from=translated src=- shape=4044aa2c vocab=4f7e6ab8
+-/
 theorem aux_C_faaDiBruno_nonzero_bound (N : ℕ) (hN : N ≠ 0) :
     C_faaDiBruno N ≤ (2 : ℝ) ^ (10 * (N + 1) ^ 3) := by
   rw [C_faaDiBruno, ite_eq_right hN]
@@ -11714,6 +12546,9 @@ theorem aux_C_faaDiBruno_nonzero_bound (N : ℕ) (hN : N ≠ 0) :
       apply pow_le_pow_right₀ (by norm_num)
       nlinarith
 
+/--
+@isnad1 id=le.0h1v.s6.ff7f7d996dd3 from=translated src=- shape=da442749 vocab=4f7e6ab8
+-/
 theorem aux_C_faaDiBruno_bound (N : ℕ) :
     C_faaDiBruno N ≤ (2 : ℝ) ^ (10 * (N + 1) ^ 3) := by
   by_cases hN : N = 0
@@ -11723,6 +12558,9 @@ theorem aux_C_faaDiBruno_bound (N : ℕ) :
       _ ≤ (2 : ℝ) ^ (10 * (0 + 1) ^ 3) := by norm_num
   · exact aux_C_faaDiBruno_nonzero_bound N hN
 
+/--
+@isnad1 id=le.0h0v.s4.8c5f7db48cd5 from=translated src=- shape=8640e5ff vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_one_three_le : C_gaussianBumpDecay 1 3 ≤ 576 := by
   have hpow16 : (16 : ℝ) ^ (3 / 2 : ℝ) = 64 := by
     rw [show (3 / 2 : ℝ) = 1 / 2 + 1 by norm_num,
@@ -11739,6 +12577,9 @@ theorem aux_C_gaussianBumpDecay_one_three_le : C_gaussianBumpDecay 1 3 ≤ 576 :
     rw [Real.sqrt_eq_rpow], hpow16]
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s5.761556b54440 from=translated src=- shape=446a6f07 vocab=7c567bcb
+-/
 theorem aux_C_faaDiBruno_one_eq :
     C_faaDiBruno 1 = 4 * C_derivativeEstimateForG 1 * C_gaussianBumpDecay 1 3 := by
   rw [C_faaDiBruno, ite_eq_right (by norm_num)]
@@ -11747,6 +12588,9 @@ theorem aux_C_faaDiBruno_one_eq :
   norm_num [OrderedFinpartition.atomic]
   ring
 
+/--
+@isnad1 id=lt.0h0v.s4.ae108f2387a4 from=translated src=- shape=1ac31801 vocab=6d28284d
+-/
 theorem aux_C_faaDiBruno_one_lt : C_faaDiBruno 1 < 27648 := by
   rw [aux_C_faaDiBruno_one_eq]
   have hderiv : C_derivativeEstimateForG 1 ≤ 9 := by
@@ -11763,6 +12607,9 @@ theorem aux_C_faaDiBruno_one_lt : C_faaDiBruno 1 < 27648 := by
       · positivity
     _ < 27648 := by norm_num
 
+/--
+@isnad1 id=eq.0h0v.s7.3e1eeb09b6e6 from=translated src=- shape=bc8b516a vocab=129de1a4
+-/
 theorem aux_atomicOne_extendLeft_prod :
     ∏ j, C_gaussianBumpDecay
       ((OrderedFinpartition.atomic 1).extendLeft.partSize j) 4 =
@@ -11775,6 +12622,9 @@ theorem aux_atomicOne_extendLeft_prod :
   simp [hpartSize, OrderedFinpartition.extendLeft_length,
     OrderedFinpartition.atomic_length, pow_two]
 
+/--
+@isnad1 id=eq.0h1v.s7.47d439aa8a80 from=translated src=- shape=ce595f0b vocab=e83964b4
+-/
 theorem aux_atomicOne_extendMiddle_prod (x : Fin (OrderedFinpartition.atomic 1).length) :
     (∏ j, C_gaussianBumpDecay
       (((OrderedFinpartition.atomic 1).extendMiddle x).partSize j) 4) =
@@ -11792,6 +12642,9 @@ theorem aux_atomicOne_extendMiddle_prod (x : Fin (OrderedFinpartition.atomic 1).
     Subsingleton.elim _ _
   rw [hdefault, hpartSize]
 
+/--
+@isnad1 id=le.0h0v.s4.0f4e51a08f57 from=translated src=- shape=8640e5ff vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_one_four_le :
     C_gaussianBumpDecay 1 4 ≤ 3600 := by
   have hpow20 : Real.rpow 20 2 = 400 := by
@@ -11806,6 +12659,9 @@ theorem aux_C_gaussianBumpDecay_one_four_le :
     exact (Real.sqrt_eq_rpow 76).symm, hpow20]
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s4.7203b6110ea1 from=translated src=- shape=8640e5ff vocab=f807fe49
+-/
 theorem aux_C_gaussianBumpDecay_two_four_eq :
     C_gaussianBumpDecay 2 4 = 45600 := by
   unfold C_gaussianBumpDecay
@@ -11813,6 +12669,9 @@ theorem aux_C_gaussianBumpDecay_two_four_eq :
   change Real.rpow 114 1 * Real.rpow 20 2 = 45600
   norm_num [Real.rpow_natCast]
 
+/--
+@isnad1 id=le.0h0v.s7.c70f39153ed5 from=translated src=- shape=cdeab03f vocab=d97dcf58
+-/
 theorem aux_N2_left_term_le :
     C_derivativeEstimateForG ((OrderedFinpartition.atomic 1).extendLeft).length *
         ∏ j, C_gaussianBumpDecay
@@ -11846,6 +12705,9 @@ theorem aux_N2_left_term_le :
         · positivity
     _ = 54 * 3600 * 3600 := by ring
 
+/--
+@isnad1 id=le.0h1v.s7.1f274ace9711 from=translated src=- shape=3eb09bbc vocab=2009c2d5
+-/
 theorem aux_N2_right_term_le (x : Fin (OrderedFinpartition.atomic 1).length) :
     C_derivativeEstimateForG ((OrderedFinpartition.atomic 1).extendMiddle x).length *
         (∏ j, C_gaussianBumpDecay
@@ -11866,6 +12728,9 @@ theorem aux_N2_right_term_le (x : Fin (OrderedFinpartition.atomic 1).length) :
   rw [hterm_eq, aux_C_gaussianBumpDecay_two_four_eq]
   exact mul_le_mul_of_nonneg_right hderiv (by norm_num)
 
+/--
+@isnad1 id=other.0h1v.s8.353b5ca58478 from=translated src=- shape=4c1a5ef6 vocab=38219e25
+-/
 theorem aux_N2_raw_right_term_le (x : Fin (OrderedFinpartition.atomic 1).length) :
     let summand : OrderedFinpartition 2 → ℝ := fun c =>
       C_derivativeEstimateForG c.length *
@@ -11894,6 +12759,9 @@ theorem aux_N2_raw_right_term_le (x : Fin (OrderedFinpartition.atomic 1).length)
       dsimp [summand]
       exact aux_N2_right_term_le x
 
+/--
+@isnad1 id=other.0h0v.s8.f896e9f303ec from=translated src=- shape=934e8dde vocab=fde07e19
+-/
 theorem aux_N2_raw_left_term_le :
     let summand : OrderedFinpartition 2 → ℝ := fun c =>
       C_derivativeEstimateForG c.length *
@@ -11922,6 +12790,9 @@ theorem aux_N2_raw_left_term_le :
       dsimp [summand]
       exact aux_N2_left_term_le
 
+/--
+@isnad1 id=le.0h0v.s7.161691bee79a from=translated src=- shape=be9860e0 vocab=2fb25ea1
+-/
 theorem aux_C_faaDiBruno_two_sum_bound :
     ∑ c : OrderedFinpartition 2,
       C_derivativeEstimateForG c.length *
@@ -11956,6 +12827,9 @@ theorem aux_C_faaDiBruno_two_sum_bound :
     Fintype.sum_option]
   exact add_le_add hleft hsumright
 
+/--
+@isnad1 id=lt.0h0v.s4.a8ced4c9524e from=translated src=- shape=1ac31801 vocab=6d28284d
+-/
 theorem aux_C_faaDiBruno_two_lt : C_faaDiBruno 2 < 8852889600 := by
   rw [C_faaDiBruno, ite_eq_right (by norm_num)]
   calc
@@ -11977,10 +12851,16 @@ theorem aux_C_faaDiBruno_two_lt : C_faaDiBruno 2 < 8852889600 := by
     _ = 5602003200 := by norm_num
     _ < 8852889600 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.0941d888dcae from=translated src=- shape=3c26ae4f vocab=75e1f5d6
+-/
 theorem aux_sqrt_twentyFour_le_five : Real.sqrt 24 ≤ 5 := by
   have hsquare : (Real.sqrt 24) ^ 2 = 24 := Real.sq_sqrt (by norm_num)
   nlinarith [Real.sqrt_nonneg (24 : ℝ)]
 
+/--
+@isnad1 id=le.0h0v.s5.da05cb867cb9 from=translated src=- shape=50862e3b vocab=3d4a831f
+-/
 theorem aux_rpow_twentyFour_five_halves_le :
     Real.rpow 24 (5 / 2 : ℝ) ≤ 2880 := by
   calc
@@ -11997,6 +12877,9 @@ theorem aux_rpow_twentyFour_five_halves_le :
       exact mul_le_mul_of_nonneg_right aux_sqrt_twentyFour_le_five (by norm_num)
     _ = 2880 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.0a62e2577221 from=translated src=- shape=8640e5ff vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_one_five_le :
     C_gaussianBumpDecay 1 5 ≤ 25920 := by
   have hsqrt : Real.sqrt 76 ≤ 9 := by
@@ -12013,6 +12896,9 @@ theorem aux_C_gaussianBumpDecay_one_five_le :
         (Real.rpow_nonneg (by norm_num) _) (by norm_num)
     _ = 25920 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.b73791f9c07a from=translated src=- shape=8640e5ff vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_two_five_le :
     C_gaussianBumpDecay 2 5 ≤ 328320 := by
   unfold C_gaussianBumpDecay
@@ -12024,6 +12910,9 @@ theorem aux_C_gaussianBumpDecay_two_five_le :
       exact mul_le_mul_of_nonneg_left aux_rpow_twentyFour_five_halves_le (by norm_num)
     _ = 328320 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.c491c48ae6c1 from=translated src=- shape=8640e5ff vocab=c3ba2f04
+-/
 theorem aux_C_gaussianBumpDecay_three_five_le :
     C_gaussianBumpDecay 3 5 ≤ 5690880 := by
   have hsqrt : Real.sqrt 152 ≤ 13 := by
@@ -12060,6 +12949,9 @@ def aux_faaAtomicOneMiddleIndex :
       OrderedFinpartition.atomic_length]
     norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s8.33c1207c4375 from=translated src=- shape=f1646a6e vocab=129de1a4
+-/
 theorem aux_N3_111_prod :
     (∏ j, C_gaussianBumpDecay
       ((OrderedFinpartition.atomic 1).extendLeft.extendLeft.partSize j) 5) =
@@ -12069,6 +12961,9 @@ theorem aux_N3_111_prod :
   simp
   ring
 
+/--
+@isnad1 id=le.0h1v.s8.a86ea5e70f39 from=translated src=- shape=43036a2b vocab=b55d6c74
+-/
 theorem aux_N3_11_middle_prod_bound
     (x : Fin ((OrderedFinpartition.atomic 1).extendLeft).length) :
     (∏ j, C_gaussianBumpDecay
@@ -12096,6 +12991,9 @@ theorem aux_N3_11_middle_prod_bound
         aux_C_gaussianBumpDecay_one_five_le
         (aux_C_gaussianBumpDecay_nonneg 1 5) (by norm_num))
 
+/--
+@isnad1 id=eq.0h0v.s8.655e477a2dc4 from=translated src=- shape=080cd510 vocab=d3cde6b5
+-/
 theorem aux_N3_middle_left_prod :
     (∏ j, C_gaussianBumpDecay
       (((OrderedFinpartition.atomic 1).extendMiddle
@@ -12108,6 +13006,9 @@ theorem aux_N3_middle_left_prod :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h0v.s8.f31b6ac70f0e from=translated src=- shape=e8734421 vocab=898ca22b
+-/
 theorem aux_N3_middle_middle_prod :
     (∏ j, C_gaussianBumpDecay
       (((((OrderedFinpartition.atomic 1).extendMiddle aux_faaAtomicOneIndex).extendMiddle
@@ -12142,6 +13043,9 @@ theorem aux_N3_middle_middle_prod :
     Subsingleton.elim _ _
   rw [hdefault, hpartSize]
 
+/--
+@isnad1 id=eq.0h1v.s8.2defd9cdffb6 from=translated src=- shape=65f8ca8b vocab=f8739494
+-/
 theorem aux_faaAtomicOne_extendLeft_sum_middle (F : OrderedFinpartition 3 → ℝ) :
     (∑ x : Fin (OrderedFinpartition.atomic 1).extendLeft.length,
       F ((OrderedFinpartition.atomic 1).extendLeft.extendMiddle x)) =
@@ -12151,6 +13055,9 @@ theorem aux_faaAtomicOne_extendLeft_sum_middle (F : OrderedFinpartition 3 → �
     F ((OrderedFinpartition.atomic 1).extendLeft.extendMiddle x)) = _
   rw [Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h1v.s8.89026bba764c from=translated src=- shape=49315faa vocab=3aa28314
+-/
 theorem aux_faaAtomicOne_sum_branches (F : OrderedFinpartition 3 → ℝ) :
     (∑ x : Fin (OrderedFinpartition.atomic 1).length,
       (F ((OrderedFinpartition.atomic 1).extendMiddle x).extendLeft +
@@ -12176,6 +13083,9 @@ theorem aux_faaAtomicOne_sum_branches (F : OrderedFinpartition 3 → ℝ) :
         aux_faaAtomicOneMiddleIndex := Subsingleton.elim _ _
   rw [hdefault']
 
+/--
+@isnad1 id=eq.0h1v.s8.831a0df7d3d0 from=translated src=- shape=562d55be vocab=5062c8e7
+-/
 theorem aux_sum_orderedFinpartition_three (F : OrderedFinpartition 3 → ℝ) :
     (∑ c : OrderedFinpartition 3, F c) =
       F (OrderedFinpartition.atomic 1).extendLeft.extendLeft +
@@ -12220,6 +13130,9 @@ theorem aux_sum_orderedFinpartition_three (F : OrderedFinpartition 3 → ℝ) :
   rw [aux_faaAtomicOne_extendLeft_sum_middle F, aux_faaAtomicOne_sum_branches F]
   ring
 
+/--
+@isnad1 id=le.0h0v.s4.1bd03bae9d09 from=translated src=- shape=1ac31801 vocab=7525b692
+-/
 theorem aux_C_derivativeEstimateForG_one_le_nine :
     C_derivativeEstimateForG 1 ≤ 9 := by
   calc
@@ -12227,6 +13140,9 @@ theorem aux_C_derivativeEstimateForG_one_le_nine :
       aux_C_derivativeEstimateForG_le 1
     _ = 9 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.275e747b7212 from=translated src=- shape=1ac31801 vocab=7525b692
+-/
 theorem aux_C_derivativeEstimateForG_two_le_fiftyFour :
     C_derivativeEstimateForG 2 ≤ 54 := by
   calc
@@ -12234,6 +13150,9 @@ theorem aux_C_derivativeEstimateForG_two_le_fiftyFour :
       aux_C_derivativeEstimateForG_le 2
     _ = 54 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s4.37cbe5ada341 from=translated src=- shape=1ac31801 vocab=7525b692
+-/
 theorem aux_C_derivativeEstimateForG_three_le_fourHundredEightySix :
     C_derivativeEstimateForG 3 ≤ 486 := by
   calc
@@ -12241,6 +13160,9 @@ theorem aux_C_derivativeEstimateForG_three_le_fourHundredEightySix :
       aux_C_derivativeEstimateForG_le 3
     _ = 486 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s6.3f040c475cef from=translated src=- shape=33087d2d vocab=ac6a5fe4
+-/
 theorem aux_N3_one_cube_bound :
     C_gaussianBumpDecay 1 5 * C_gaussianBumpDecay 1 5 * C_gaussianBumpDecay 1 5 ≤
       25920 * 25920 * 25920 := by
@@ -12251,12 +13173,18 @@ theorem aux_N3_one_cube_bound :
       aux_C_gaussianBumpDecay_one_five_le hnonneg (by norm_num)
   exact mul_le_mul hpair aux_C_gaussianBumpDecay_one_five_le hnonneg (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s5.611fa6c3fe65 from=translated src=- shape=a0c9aa85 vocab=ac6a5fe4
+-/
 theorem aux_N3_two_one_bound :
     C_gaussianBumpDecay 2 5 * C_gaussianBumpDecay 1 5 ≤ 328320 * 25920 := by
   exact mul_le_mul aux_C_gaussianBumpDecay_two_five_le
     aux_C_gaussianBumpDecay_one_five_le
     (aux_C_gaussianBumpDecay_nonneg 1 5) (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s8.13da725ad7e6 from=translated src=- shape=f0675c1f vocab=d97dcf58
+-/
 theorem aux_N3_111_term_le :
     C_derivativeEstimateForG ((OrderedFinpartition.atomic 1).extendLeft.extendLeft).length *
         (∏ j, C_gaussianBumpDecay
@@ -12280,6 +13208,9 @@ theorem aux_N3_111_term_le :
         (by norm_num)
     _ = 8463329722368000 := by norm_num
 
+/--
+@isnad1 id=le.0h1v.s8.8d23b4c2a78e from=translated src=- shape=7b850c0d vocab=cbcc6547
+-/
 theorem aux_N3_11_middle_term_le
     (x : Fin ((OrderedFinpartition.atomic 1).extendLeft).length) :
     C_derivativeEstimateForG ((OrderedFinpartition.atomic 1).extendLeft.extendMiddle x).length *
@@ -12301,6 +13232,9 @@ theorem aux_N3_11_middle_term_le
       mul_le_mul_of_nonneg_right aux_C_derivativeEstimateForG_two_le_fiftyFour (by norm_num)
     _ = 459542937600 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s8.77c087f00d32 from=translated src=- shape=6948df66 vocab=e7495701
+-/
 theorem aux_N3_middle_left_term_le :
     C_derivativeEstimateForG
         (((OrderedFinpartition.atomic 1).extendMiddle aux_faaAtomicOneIndex).extendLeft).length *
@@ -12330,6 +13264,9 @@ theorem aux_N3_middle_left_term_le :
       mul_le_mul_of_nonneg_right aux_C_derivativeEstimateForG_two_le_fiftyFour (by norm_num)
     _ = 459542937600 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s8.d4d7a457ae81 from=translated src=- shape=ef44fe75 vocab=9d1b02f6
+-/
 theorem aux_N3_middle_middle_term_le :
     C_derivativeEstimateForG
         (((OrderedFinpartition.atomic 1).extendMiddle aux_faaAtomicOneIndex).extendMiddle
@@ -12360,6 +13297,9 @@ theorem aux_N3_middle_middle_term_le :
       mul_le_mul_of_nonneg_right aux_C_derivativeEstimateForG_one_le_nine (by norm_num)
     _ = 51217920 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s6.11d6cafeddde from=translated src=- shape=431cb26f vocab=1cf77b30
+-/
 theorem aux_C_faaDiBruno_three_sum_bound :
     (∑ c : OrderedFinpartition 3,
       C_derivativeEstimateForG c.length *
@@ -12391,6 +13331,9 @@ theorem aux_C_faaDiBruno_three_sum_bound :
           aux_N3_middle_middle_term_le
     _ = 8464708402398720 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.b6aa7a145327 from=translated src=- shape=1ac31801 vocab=6d28284d
+-/
 theorem aux_C_faaDiBruno_three_lt :
     C_faaDiBruno 3 < 255689986286813184 := by
   rw [C_faaDiBruno, ite_eq_right (by norm_num)]
@@ -12426,7 +13369,9 @@ C_{\text{L:faa-di-bruno},2}<2^{34},\qquad
 C_{\text{L:faa-di-bruno},3}<2^{58}.
 $$
 
-See also `Auto.faaDiBruno`.-/
+See also `Auto.faaDiBruno`.
+@isnad1 id=and.0h1v.s7.efa74930ca74 from=translated src=- shape=6e887e82 vocab=8a85a0c6
+-/
 theorem constantFaaDiBruno (N : ℕ) :
     C_faaDiBruno N ≤ (2 : ℝ) ^ (10 * (N + 1) ^ 3) ∧
       C_faaDiBruno 0 ≤ 72 ∧ C_faaDiBruno 1 < (2 : ℝ) ^ 15 ∧
@@ -12467,7 +13412,9 @@ def secondGaussianMultiplier (phiHat : ℝ → ℂ) (mu lambda t nu : ℝ) : ℝ
 /--
 For `Auto.secondGaussianEstimate`, iterated derivatives
  commute with real-to-complex
-coercion locally at points where the real function is sufficiently smooth.-/
+coercion locally at points where the real function is sufficiently smooth.
+@isnad1 id=eq.1h3v.s6.dde24794c0e1 from=translated src=- shape=ea3b61bd vocab=077f5f6a
+-/
 theorem aux_secondGaussian_iteratedDeriv_ofReal_at (n : ℕ) (f : ℝ → ℝ) (x : ℝ)
     (hf : ContDiffAt ℝ (n + 1) f x) :
     iteratedDeriv n (fun y : ℝ => (f y : ℂ)) x = ((iteratedDeriv n f x : ℝ) : ℂ) := by
@@ -12492,7 +13439,9 @@ theorem aux_secondGaussian_iteratedDeriv_ofReal_at (n : ℕ) (f : ℝ → ℝ) (
 /--
 For `Auto.secondGaussianEstimate`, scaling an argument by a
  factor in `[0,1]`
-does not enlarge the Fourier-normalized derivative norm.-/
+does not enlarge the Fourier-normalized derivative norm.
+@isnad1 id=le.3h4v.s7.4646c24d8bfc from=translated src=- shape=18c874cb vocab=1ab4b3ef
+-/
 theorem aux_secondGaussian_scaled_normalized_deriv_le (n : ℕ) (lambda : ℝ) (F : ℝ → ℂ) (x : ℝ)
     (hlambda0 : 0 ≤ lambda) (hlambda1 : lambda ≤ 1) (hF : ContDiff ℝ n F) :
     ((2 * Real.pi)⁻¹ : ℝ) ^ n * ‖iteratedDeriv n (fun z : ℝ => F (lambda * z)) x‖ ≤
@@ -12512,7 +13461,9 @@ theorem aux_secondGaussian_scaled_normalized_deriv_le (n : ℕ) (lambda : ℝ) (
 /--
 For `Auto.secondGaussianEstimate`, the first multiplier
  factor is a difference of
-two Gaussian bump quotients.-/
+two Gaussian bump quotients.
+@isnad1 id=eq.1h3v.s6.b724695ecfbe from=translated src=- shape=eaccbcd8 vocab=18be7087
+-/
 theorem aux_secondGaussianQ_eq_gaussianBumpQuotients (phiHat : ℝ → ℂ) (mu lambda : ℝ)
     (hlambda : lambda ≠ 0) :
     aux_secondGaussianQ phiHat mu lambda =
@@ -12528,7 +13479,9 @@ theorem aux_secondGaussianQ_eq_gaussianBumpQuotients (phiHat : ℝ → ℂ) (mu 
 /--
 For `Auto.secondGaussianEstimate`, the first multiplier
  factor has the required
-finite smoothness.-/
+finite smoothness.
+@isnad1 id=contdiff.1h4v.s6.b4e6ffa20146 from=translated src=- shape=16f43e21 vocab=6ce778eb
+-/
 theorem aux_secondGaussianQ_contDiff (N : ℕ) (phiHat : ℝ → ℂ) (mu lambda : ℝ)
     (hphi : ContDiff ℝ N phiHat) :
     ContDiff ℝ N (aux_secondGaussianQ phiHat mu lambda) := by
@@ -12545,7 +13498,9 @@ theorem aux_secondGaussianQ_contDiff (N : ℕ) (phiHat : ℝ → ℂ) (mu lambda
 /--
 For `Auto.secondGaussianEstimate`, the first multiplier
  factor satisfies the
-Fourier-normalized Gaussian-bump estimate.-/
+Fourier-normalized Gaussian-bump estimate.
+@isnad1 id=le.8h7v.s8.797ce6c8e862 from=translated src=- shape=5e306e45 vocab=19aa2505
+-/
 theorem aux_secondGaussianQ_normalized_bound (N l : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (hphi : ContDiff ℝ N phiHat)
@@ -12608,7 +13563,9 @@ theorem aux_secondGaussianQ_normalized_bound (N l : ℕ) (c : ℝ) (phiHat : ℝ
 /--
 For `Auto.secondGaussianEstimate`, this removes the Fourier
  normalization from the
-bound for the first multiplier factor.-/
+bound for the first multiplier factor.
+@isnad1 id=le.8h7v.s8.8efe11166a23 from=translated src=- shape=0c1b9677 vocab=fc035a8e
+-/
 theorem aux_secondGaussianQ_bound (N l : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (hphi : ContDiff ℝ N phiHat)
@@ -12637,7 +13594,9 @@ theorem aux_secondGaussianQ_bound (N l : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
 /--
 For `Auto.secondGaussianEstimate`, the singular real factor
  is smooth away from the
-origin.-/
+origin.
+@isnad1 id=contdiff.2h4v.s7.54d4f23e04e6 from=translated src=- shape=674c0f6f vocab=106c446a
+-/
 theorem aux_secondGaussianS_real_contDiffAt (N : ℕ) (t nu x : ℝ)
     (ht : Real.sqrt 3 / 2 ≤ t) (hx : x ≠ 0) :
     ContDiffAt ℝ N (fun y : ℝ => (1 - Auto.gaussian (t * y)) ^ nu - 1) x := by
@@ -12666,7 +13625,9 @@ theorem aux_secondGaussianS_real_contDiffAt (N : ℕ) (t nu x : ℝ)
 /--
 For `Auto.secondGaussianEstimate`, the complex singular
  factor is smooth away from
-the origin.-/
+the origin.
+@isnad1 id=contdiff.2h4v.s6.4000c248424e from=translated src=- shape=6bf50480 vocab=45237b0e
+-/
 theorem aux_secondGaussianS_contDiffAt (N : ℕ) (t nu x : ℝ)
     (ht : Real.sqrt 3 / 2 ≤ t) (hx : x ≠ 0) :
     ContDiffAt ℝ N (aux_secondGaussianS t nu) x := by
@@ -12679,7 +13640,9 @@ theorem aux_secondGaussianS_contDiffAt (N : ℕ) (t nu x : ℝ)
 /--
 For `Auto.secondGaussianEstimate`, Faa di Bruno gives the
  quadratic-tail bound for
-the singular factor.-/
+the singular factor.
+@isnad1 id=le.3h4v.s7.9ea1a31b4711 from=translated src=- shape=36acc6ab vocab=88f20e83
+-/
 theorem aux_secondGaussianS_bound (k : ℕ) (t nu xi : ℝ)
     (hnu : nu ∈ Set.Ico (-1 : ℝ) 0) (ht : Real.sqrt 3 / 2 ≤ t)
     (hxi : 1 / 2 ≤ |xi|) :
@@ -12700,7 +13663,9 @@ theorem aux_secondGaussianS_bound (k : ℕ) (t nu xi : ℝ)
 /--
 For `Auto.secondGaussianEstimate`, the plateau forces the
  multiplier to vanish near
-the origin.-/
+the origin.
+@isnad1 id=eq.4h6v.s7.ac64fea0025c from=translated src=- shape=dc81e9f5 vocab=ea6a53dd
+-/
 theorem aux_secondGaussianMultiplier_eq_zero_of_abs_lt (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hlambda0 : 0 ≤ lambda) (hlambda : lambda ≤ 1 / 2)
     (hplateau : ∀ u ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2), phiHat u = 1)
@@ -12725,7 +13690,9 @@ theorem aux_secondGaussianMultiplier_eq_zero_of_abs_lt (phiHat : ℝ → ℂ)
 /--
 For `Auto.secondGaussianEstimate`, every iterated derivative
  vanishes on the
-interior plateau.-/
+interior plateau.
+@isnad1 id=eq.4h7v.s7.9ec53c5027ee from=translated src=- shape=f7035955 vocab=8c67cbf2
+-/
 theorem aux_secondGaussianMultiplier_iteratedDeriv_eq_zero_of_abs_lt (N : ℕ)
     (phiHat : ℝ → ℂ) (mu lambda t nu : ℝ) (hlambda0 : 0 ≤ lambda)
     (hlambda : lambda ≤ 1 / 2)
@@ -12749,7 +13716,9 @@ theorem aux_secondGaussianMultiplier_iteratedDeriv_eq_zero_of_abs_lt (N : ℕ)
 /--
 For `Auto.secondGaussianEstimate`, the multiplier is smooth
  despite the apparent
-singularity at the origin, because its first factor vanishes on a neighborhood there.-/
+singularity at the origin, because its first factor vanishes on a neighborhood there.
+@isnad1 id=contdiff.6h6v.s7.09276260b7e1 from=translated src=- shape=d514ec31 vocab=df5a0e02
+-/
 theorem aux_secondGaussianMultiplier_contDiff (N : ℕ) (phiHat : ℝ → ℂ) (mu lambda t nu : ℝ)
     (hmu : 0 < mu) (hmulambda : mu ≤ lambda) (hlambda : lambda ≤ 1 / 2)
     (ht : Real.sqrt 3 / 2 ≤ t)
@@ -12775,7 +13744,9 @@ theorem aux_secondGaussianMultiplier_contDiff (N : ℕ) (phiHat : ℝ → ℂ) (
 /--
 For `Auto.secondGaussianEstimate`, the multiplier has
  compact support inherited from
-the bump difference.-/
+the bump difference.
+@isnad1 id=hascompa.2h5v.s6.c8e648d80d7e from=translated src=- shape=058bb70a vocab=b3d79b0a
+-/
 theorem aux_secondGaussianMultiplier_hasCompactSupport (phiHat : ℝ → ℂ) (mu lambda t nu : ℝ)
     (hlambda : lambda ≠ 0) (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) :
     HasCompactSupport (secondGaussianMultiplier phiHat mu lambda t nu) := by
@@ -12795,7 +13766,9 @@ theorem aux_secondGaussianMultiplier_hasCompactSupport (phiHat : ℝ → ℂ) (m
 
 /--
 For `Auto.secondGaussianEstimate`, the relevant iterated
- derivative is integrable.-/
+ derivative is integrable.
+@isnad1 id=integrab.7h6v.s8.a3ead14d74f8 from=translated src=- shape=27a6f381 vocab=81591aa0
+-/
 theorem aux_secondGaussianMultiplier_iteratedDeriv_integrable (N : ℕ) (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (ht : Real.sqrt 3 / 2 ≤ t)
@@ -12813,7 +13786,9 @@ theorem aux_secondGaussianMultiplier_iteratedDeriv_integrable (N : ℕ) (phiHat 
 /--
 For `Auto.secondGaussianEstimate`, this is the
  complex-valued Leibniz estimate used
-to combine the Gaussian-bump and Faa di Bruno bounds.-/
+to combine the Gaussian-bump and Faa di Bruno bounds.
+@isnad1 id=le.7h7v.s8.14b29062b332 from=translated src=- shape=fd44ce68 vocab=81f8574b
+-/
 theorem aux_secondGaussian_leibniz_majorant (N : ℕ) (Q S : ℝ → ℂ) (x T : ℝ)
     (A B : ℕ → ℝ) (hQcont : ContDiffAt ℝ N Q x)
     (hScont : ContDiffAt ℝ N S x) (_hT : 0 ≤ T)
@@ -12853,7 +13828,9 @@ theorem aux_secondGaussian_leibniz_majorant (N : ℕ) (Q S : ℝ → ℂ) (x T :
 /--
 For `Auto.secondGaussianEstimate`, this is the pointwise
  derivative bound outside
-the plateau region.-/
+the plateau region.
+@isnad1 id=le.10h8v.s8.77a3f26af8cd from=translated src=- shape=fe010d21 vocab=8c662e3c
+-/
 theorem aux_secondGaussianMultiplier_pointwise_bound (N : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (ht : Real.sqrt 3 / 2 ≤ t)
@@ -12912,7 +13889,9 @@ theorem aux_secondGaussianMultiplier_pointwise_bound (N : ℕ) (c : ℝ) (phiHat
 /--
 For `Auto.secondGaussianEstimate`, the closed quadratic tail
  agrees almost everywhere
-with the open tail whose integral is elementary.-/
+with the open tail whose integral is elementary.
+@isnad1 id=eventual.0h0v.s7.1dec96202fb1 from=translated src=- shape=667de150 vocab=c81087b3
+-/
 theorem aux_secondGaussian_tail_closed_ae_eq :
     (fun x : ℝ => if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0) =ᵐ[volume]
       fun x : ℝ => if (1 / 2 : ℝ) < |x| then |x| ^ (-2 : ℝ) else 0 := by
@@ -12939,7 +13918,9 @@ theorem aux_secondGaussian_tail_closed_ae_eq :
 
 /--
 For `Auto.secondGaussianEstimate`, the open quadratic tail
- has integral four.-/
+ has integral four.
+@isnad1 id=eq.0h0v.s6.cf2183a848f4 from=translated src=- shape=f41bd25e vocab=812493c2
+-/
 theorem aux_secondGaussian_openTail_integral :
     (∫ x : ℝ, if (1 / 2 : ℝ) < |x| then |x| ^ (-2 : ℝ) else 0) = 4 := by
   let f : ℝ → ℝ := fun r => if (1 / 2 : ℝ) < r then r ^ (-2 : ℝ) else 0
@@ -12972,7 +13953,9 @@ theorem aux_secondGaussian_openTail_integral :
 
 /--
 For `Auto.secondGaussianEstimate`, the open quadratic tail
- is integrable.-/
+ is integrable.
+@isnad1 id=integrab.0h0v.s6.aa325003392c from=translated src=- shape=906b67db vocab=70e9a2fa
+-/
 theorem aux_secondGaussian_openTail_integrable :
     Integrable (fun x : ℝ => if (1 / 2 : ℝ) < |x| then |x| ^ (-2 : ℝ) else 0) := by
   let f : ℝ → ℝ := fun r => if (1 / 2 : ℝ) < r then r ^ (-2 : ℝ) else 0
@@ -13009,14 +13992,18 @@ theorem aux_secondGaussian_openTail_integrable :
 /--
 For `Auto.secondGaussianEstimate`, the closed quadratic tail
  is integrable and has
-integral four.-/
+integral four.
+@isnad1 id=integrab.0h0v.s6.8bdaf65505ab from=translated src=- shape=906b67db vocab=875150aa
+-/
 theorem aux_secondGaussian_tail_closed_integrable :
     Integrable (fun x : ℝ => if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0) := by
   exact aux_secondGaussian_openTail_integrable.congr aux_secondGaussian_tail_closed_ae_eq.symm
 
 /--
 For `Auto.secondGaussianEstimate`, the closed quadratic tail
- has integral four.-/
+ has integral four.
+@isnad1 id=eq.0h0v.s6.664a484c3582 from=translated src=- shape=f41bd25e vocab=455af923
+-/
 theorem aux_secondGaussian_tail_closed_integral :
     (∫ x : ℝ, if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0) = 4 := by
   rw [MeasureTheory.integral_congr_ae aux_secondGaussian_tail_closed_ae_eq]
@@ -13025,7 +14012,9 @@ theorem aux_secondGaussian_tail_closed_integral :
 /--
 For `Auto.secondGaussianEstimate`, a pointwise closed-tail
  majorant gives the stated
-real $L^1$ estimate.-/
+real $L^1$ estimate.
+@isnad1 id=le.2h2v.s7.58fab3f939bb from=translated src=- shape=279eac7b vocab=04a3df10
+-/
 theorem aux_secondGaussian_l1_tail_bound {g : ℝ → ℂ} (A : ℝ) (hg : Integrable g)
     (hpoint : ∀ x : ℝ,
       ‖g x‖ ≤ A * (if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0)) :
@@ -13050,7 +14039,9 @@ theorem aux_secondGaussian_l1_tail_bound {g : ℝ → ℂ} (A : ℝ) (hg : Integ
 /--
 For `Auto.secondGaussianEstimate`, the closed quadratic tail
  is uniformly bounded
-by four.-/
+by four.
+@isnad1 id=le.0h1v.s6.e2975883c518 from=translated src=- shape=27f8b1d6 vocab=10da8da8
+-/
 theorem aux_secondGaussian_tail_closed_le_four (x : ℝ) :
     (if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0) ≤ 4 := by
   by_cases h : (1 / 2 : ℝ) ≤ |x|
@@ -13068,7 +14059,9 @@ theorem aux_secondGaussian_tail_closed_le_four (x : ℝ) :
 /--
 For `Auto.secondGaussianEstimate`, a pointwise closed-tail
  majorant gives the stated
-uniform derivative estimate.-/
+uniform derivative estimate.
+@isnad1 id=le.2h2v.s7.a0e2ad86c2dc from=translated src=- shape=e4042e52 vocab=4a52220b
+-/
 theorem aux_secondGaussian_linf_tail_bound {g : ℝ → ℂ} (A : ℝ) (hA : 0 ≤ A)
     (hpoint : ∀ x : ℝ,
       ‖g x‖ ≤ A * (if (1 / 2 : ℝ) ≤ |x| then |x| ^ (-2 : ℝ) else 0)) :
@@ -13084,7 +14077,9 @@ theorem aux_secondGaussian_linf_tail_bound {g : ℝ → ℂ} (A : ℝ) (hA : 0 �
 /--
 For `Auto.secondGaussianEstimate`, this is the global
  derivative majorant obtained
-from plateau cancellation and the exterior Leibniz estimate.-/
+from plateau cancellation and the exterior Leibniz estimate.
+@isnad1 id=le.10h8v.s9.34d40b0026db from=translated src=- shape=fcd21137 vocab=f05daab3
+-/
 theorem aux_secondGaussianMultiplier_tail_bound (N : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (ht : Real.sqrt 3 / 2 ≤ t)
@@ -13117,7 +14112,9 @@ theorem aux_secondGaussianMultiplier_tail_bound (N : ℕ) (c : ℝ) (phiHat : �
 /--
 For `Auto.secondGaussianEstimate`, this rewrites the
  unnormalized tail estimate in
-the exact Fourier-normalized constant.-/
+the exact Fourier-normalized constant.
+@isnad1 id=eq.0h2v.s7.33d6ab088978 from=translated src=- shape=c3fa3111 vocab=0713e25b
+-/
 theorem aux_secondGaussian_constant_normalization (N : ℕ) (c : ℝ) :
     ((2 * Real.pi)⁻¹ : ℝ) ^ N *
       (8 * c * ∑ l ∈ Finset.range (N + 1), (N.choose l : ℝ) * (2 * Real.pi) ^ l *
@@ -13185,7 +14182,9 @@ theorem aux_secondGaussian_constant_normalization (N : ℕ) (c : ℝ) :
 /--
 For `Auto.secondGaussianEstimate`, the Fourier-normalized L¹
  derivative bound
-obtained from the inverse-square tail.-/
+obtained from the inverse-square tail.
+@isnad1 id=le.10h7v.s8.cdd7eb911215 from=translated src=- shape=4fb351ce vocab=56b6a050
+-/
 theorem aux_secondGaussianMultiplier_l1_bound (N : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (ht : Real.sqrt 3 / 2 ≤ t)
@@ -13232,7 +14231,9 @@ theorem aux_secondGaussianMultiplier_l1_bound (N : ℕ) (c : ℝ) (phiHat : ℝ 
 /--
 For `Auto.secondGaussianEstimate`, the Fourier-normalized L∞
  derivative bound
-obtained from the inverse-square tail.-/
+obtained from the inverse-square tail.
+@isnad1 id=le.10h7v.s8.d312ee256792 from=translated src=- shape=acff546b vocab=c5afa85d
+-/
 theorem aux_secondGaussianMultiplier_linf_bound (N : ℕ) (c : ℝ) (phiHat : ℝ → ℂ)
     (mu lambda t nu : ℝ) (hc : 0 ≤ c) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
     (hlambda : lambda ≤ 1 / 2) (ht : Real.sqrt 3 / 2 ≤ t)
@@ -13312,7 +14313,9 @@ C_{\text{L:gaussian-bump-estimate},l} C_{\text{L:faa-di-bruno},N-l}$.
 
 See also `Auto.secondGaussianEstimate`,
 `Auto.gaussianBumpEstimate`,
-`Auto.faaDiBruno`.-/
+`Auto.faaDiBruno`.
+@isnad1 id=and.12h8v.s9.50e94724d33e from=translated src=- shape=b1dd5554 vocab=5d0168ee
+-/
 theorem secondGaussianEstimate (c : ℝ) (N : ℕ) (phi phiHat : ℝ → ℂ)
     (_hphiW0 : MemW0 phi) (_hphiHat : phiHat = FourierTransform.fourier phi)
     (hc : 0 < c) (mu lambda t nu : ℝ) (hmu : 0 < mu) (hmulambda : mu ≤ lambda)
@@ -13338,7 +14341,9 @@ theorem secondGaussianEstimate (c : ℝ) (N : ℕ) (phi phiHat : ℝ → ℂ)
       (aux_secondGaussianMultiplier_linf_bound N c phiHat mu lambda t nu hc.le hmu hmulambda
         hlambda ht hnu hplateau hphi hsupp hphiBound)
 
-/-- Rewrite the second-Gaussian constant in terms of powers of `(2π)⁻¹`.-/
+/-- Rewrite the second-Gaussian constant in terms of powers of `(2π)⁻¹`.
+@isnad1 id=eq.0h1v.s6.62dddfd64abd from=translated src=- shape=87c682a9 vocab=0713e25b
+-/
 theorem aux_C_secondGaussianEstimate_eq_q_sum (N : ℕ) :
     C_secondGaussianEstimate N = 8 * ∑ l ∈ Finset.range (N + 1),
       (Nat.choose N l : ℝ) * ((2 * Real.pi)⁻¹ : ℝ) ^ (N - l) *
@@ -13353,18 +14358,27 @@ theorem aux_C_secondGaussianEstimate_eq_q_sum (N : ℕ) :
     ring
   rw [hsub, ← aux_gaussianBumpEstimate_qpow_eq_rpow]
 
+/--
+@isnad1 id=eq.0h0v.s5.a0696ed9849f from=translated src=- shape=ac3fd590 vocab=2dea0f26
+-/
 theorem aux_C_secondGaussianEstimate_zero_eq : C_secondGaussianEstimate 0 =
     8 * C_gaussianBumpEstimate 0 * C_faaDiBruno 0 := by
   rw [aux_C_secondGaussianEstimate_eq_q_sum]
   norm_num [Finset.sum_range_succ]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.cea15e82c4c9 from=translated src=- shape=06aae8f4 vocab=142f2d7e
+-/
 theorem aux_C_secondGaussianEstimate_one_eq : C_secondGaussianEstimate 1 =
     8 * (((2 * Real.pi)⁻¹ * C_gaussianBumpEstimate 0 * C_faaDiBruno 1) +
       (C_gaussianBumpEstimate 1 * C_faaDiBruno 0)) := by
   rw [aux_C_secondGaussianEstimate_eq_q_sum]
   norm_num [Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.0h0v.s7.d84d6e8346b1 from=translated src=- shape=8568273e vocab=93d6f399
+-/
 theorem aux_C_secondGaussianEstimate_two_eq : C_secondGaussianEstimate 2 =
     8 * ((((2 * Real.pi)⁻¹) ^ 2 * C_gaussianBumpEstimate 0 * C_faaDiBruno 2) +
       (2 * (2 * Real.pi)⁻¹ * C_gaussianBumpEstimate 1 * C_faaDiBruno 1) +
@@ -13372,6 +14386,9 @@ theorem aux_C_secondGaussianEstimate_two_eq : C_secondGaussianEstimate 2 =
   rw [aux_C_secondGaussianEstimate_eq_q_sum]
   norm_num [Finset.sum_range_succ]
 
+/--
+@isnad1 id=eq.0h0v.s8.36bda3865515 from=translated src=- shape=dad1aa19 vocab=93d6f399
+-/
 theorem aux_C_secondGaussianEstimate_three_eq : C_secondGaussianEstimate 3 =
     8 * ((((2 * Real.pi)⁻¹) ^ 3 * C_gaussianBumpEstimate 0 * C_faaDiBruno 3) +
       (3 * ((2 * Real.pi)⁻¹) ^ 2 * C_gaussianBumpEstimate 1 * C_faaDiBruno 2) +
@@ -13380,7 +14397,9 @@ theorem aux_C_secondGaussianEstimate_three_eq : C_secondGaussianEstimate 3 =
   rw [aux_C_secondGaussianEstimate_eq_q_sum]
   norm_num [Finset.sum_range_succ]
 
-/-- The general explicit bound for the second-Gaussian constant.-/
+/-- The general explicit bound for the second-Gaussian constant.
+@isnad1 id=le.0h1v.s6.8a286b1fd6ae from=translated src=- shape=da442749 vocab=216538da
+-/
 theorem aux_C_secondGaussianEstimate_bound (N : ℕ) :
     C_secondGaussianEstimate N ≤ (2 : ℝ) ^ (20 * (N + 1) ^ 3) := by
   by_cases hN : N = 0
@@ -13488,7 +14507,9 @@ theorem aux_C_secondGaussianEstimate_bound (N : ℕ) :
       _ ≤ (2 : ℝ) ^ (20 * (N + 1) ^ 3) := by
         exact pow_le_pow_right₀ (by norm_num) hExponent
 
-/-- The first two small-order second-Gaussian constant estimates.-/
+/-- The first two small-order second-Gaussian constant estimates.
+@isnad1 id=lt.0h0v.s5.0ccd5bd09a7e from=translated src=- shape=9481a083 vocab=50fd2c9a
+-/
 theorem aux_C_secondGaussianEstimate_zero_lt :
     C_secondGaussianEstimate 0 < (2 : ℝ) ^ 16 := by
   rw [aux_C_secondGaussianEstimate_zero_eq]
@@ -13505,6 +14526,9 @@ theorem aux_C_secondGaussianEstimate_zero_lt :
     _ < (65536 : ℝ) := by norm_num
     _ = (2 : ℝ) ^ 16 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.fd40201b8e79 from=translated src=- shape=9481a083 vocab=50fd2c9a
+-/
 theorem aux_C_secondGaussianEstimate_one_lt :
     C_secondGaussianEstimate 1 < (2 : ℝ) ^ 22 := by
   have hG0 : C_gaussianBumpEstimate 0 ≤ 81 :=
@@ -13536,12 +14560,16 @@ theorem aux_C_secondGaussianEstimate_one_lt :
     _ < (4194304 : ℝ) := by norm_num
     _ = (2 : ℝ) ^ 22 := by norm_num
 
-/-- Positivity of the zero-order Gaussian-bump constant, used for strict finite estimates.-/
+/-- Positivity of the zero-order Gaussian-bump constant, used for strict finite estimates.
+@isnad1 id=lt.0h0v.s3.f1dc4066f656 from=translated src=- shape=4dcb44f2 vocab=fe4a489c
+-/
 theorem aux_C_gaussianBumpEstimate_zero_pos : 0 < C_gaussianBumpEstimate 0 := by
   norm_num [C_gaussianBumpEstimate, C_gaussianEstimate]
   exact Real.exp_pos _
 
-/-- The sharp direct-substitution second-Gaussian estimate at order two.-/
+/-- The sharp direct-substitution second-Gaussian estimate at order two.
+@isnad1 id=lt.0h0v.s4.e2ad9af1fed3 from=translated src=- shape=1ac31801 vocab=b3bdb257
+-/
 theorem aux_C_secondGaussianEstimate_two_lt_value :
     C_secondGaussianEstimate 2 < 159359088384 := by
   have hG0 : C_gaussianBumpEstimate 0 ≤ 81 :=
@@ -13604,13 +14632,18 @@ theorem aux_C_secondGaussianEstimate_two_lt_value :
         (add_lt_add_of_lt_of_le (add_lt_add_of_lt_of_le hA hB) hC) (by norm_num)
     _ = 159359088384 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.3d9537797363 from=translated src=- shape=9481a083 vocab=50fd2c9a
+-/
 theorem aux_C_secondGaussianEstimate_two_lt :
     C_secondGaussianEstimate 2 < (2 : ℝ) ^ 38 := by
   calc
     C_secondGaussianEstimate 2 < 159359088384 := aux_C_secondGaussianEstimate_two_lt_value
     _ < (2 : ℝ) ^ 38 := by norm_num
 
-/-- The sharp direct-substitution second-Gaussian estimate at order three.-/
+/-- The sharp direct-substitution second-Gaussian estimate at order three.
+@isnad1 id=lt.0h0v.s4.de8e784c0d46 from=translated src=- shape=1ac31801 vocab=b3bdb257
+-/
 theorem aux_C_secondGaussianEstimate_three_lt_value :
     C_secondGaussianEstimate 3 < 767070519557262336 := by
   have hG0 : C_gaussianBumpEstimate 0 ≤ 81 :=
@@ -13702,6 +14735,9 @@ theorem aux_C_secondGaussianEstimate_three_lt_value :
         (by norm_num)
     _ = 767070519557262336 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s5.d0dbd0fe1af1 from=translated src=- shape=9481a083 vocab=50fd2c9a
+-/
 theorem aux_C_secondGaussianEstimate_three_lt :
     C_secondGaussianEstimate 3 < (2 : ℝ) ^ 60 := by
   calc
@@ -13731,7 +14767,9 @@ C_{\text{L:second-gaussian-estimate},2}<2^{38},
 C_{\text{L:second-gaussian-estimate},3}<2^{60}.
 $$
 
-See also `Auto.secondGaussianEstimate`.-/
+See also `Auto.secondGaussianEstimate`.
+@isnad1 id=and.0h1v.s7.6463a51c8b8a from=translated src=- shape=14f7a7b4 vocab=e1b967f7
+-/
 theorem constantSecondGaussianEstimate (N : ℕ) :
     C_secondGaussianEstimate N ≤ (2 : ℝ) ^ (20 * (N + 1) ^ 3) ∧
       C_secondGaussianEstimate 0 < (2 : ℝ) ^ 16 ∧ C_secondGaussianEstimate 1 < (2 : ℝ) ^ 22 ∧
@@ -13816,7 +14854,9 @@ def fourScaleGaussianVarRho2 (phiHat : ℝ → ℂ)
 
 /--
 Auxiliary for gaussianBumpDecomposition: compact support is preserved by a positive
-frequency rescaling.-/
+frequency rescaling.
+@isnad1 id=hascompa.2h2v.s6.0801013915f7 from=translated src=- shape=3810acbf vocab=bbb498ac
+-/
 theorem aux_gaussianBumpDecomposition_scaledSupport {f : ℝ → ℂ} {a : ℝ} (ha : 0 < a)
     (hsupp : tsupport f ⊆ Set.Icc (-1 : ℝ) 1) :
     HasCompactSupport (fun x : ℝ => f (a * x)) := by
@@ -13837,7 +14877,9 @@ theorem aux_gaussianBumpDecomposition_scaledSupport {f : ℝ → ℂ} {a : ℝ} 
 
 /--
 Auxiliary for gaussianBumpDecomposition: the Fourier transform of a W₀ function is
-continuous.-/
+continuous.
+@isnad1 id=continuo.2h2v.s6.b9ef885936ab from=translated src=- shape=6a1f4dc0 vocab=6409b1c2
+-/
 theorem aux_gaussianBumpDecomposition_phiHat_continuous
     (phi phiHat : ℝ → ℂ) (hphi : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi) : Continuous phiHat := by
@@ -13852,7 +14894,9 @@ theorem aux_gaussianBumpDecomposition_phiHat_continuous
 
 /--
 Auxiliary for gaussianBumpDecomposition: the plateau cancels the scaled Fourier
-difference near zero.-/
+difference near zero.
+@isnad1 id=eventual.1h3v.s7.ec8a76f9cd3e from=translated src=- shape=afb307b6 vocab=8300eb43
+-/
 theorem aux_gaussianBumpDecomposition_phiDifference_eventuallyEq_zero (phiHat : ℝ → ℂ)
     (hplateau : ∀ xi ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2), phiHat xi = 1)
     (a b : ℝ) :
@@ -13871,7 +14915,9 @@ theorem aux_gaussianBumpDecomposition_phiDifference_eventuallyEq_zero (phiHat : 
   rw [hplateau _ ⟨hxa.1.le, hxa.2.le⟩, hplateau _ ⟨hxb.1.le, hxb.2.le⟩]
   norm_num
 
-/-- Auxiliary for gaussianBumpDecomposition: the Gaussian difference is positive away from zero.-/
+/-- Auxiliary for gaussianBumpDecomposition: the Gaussian difference is positive away from zero.
+@isnad1 id=lt.3h3v.s6.5ed7e8866612 from=translated src=- shape=5afa360c vocab=1c4ac1f0
+-/
 theorem aux_gaussianBumpDecomposition_gaussianDifference_pos {a b x : ℝ} (ha : 0 < a)
     (hab : 2 * a ≤ b) (hx : x ≠ 0) :
     0 < Auto.gaussian (a * x) - Auto.gaussian (b * x) := by
@@ -13888,7 +14934,9 @@ theorem aux_gaussianBumpDecomposition_gaussianDifference_pos {a b x : ℝ} (ha :
 
 /--
 Auxiliary for gaussianBumpDecomposition: the complementary Gaussian factor is positive
-away from zero.-/
+away from zero.
+@isnad1 id=lt.2h2v.s5.b72cc56da4f2 from=translated src=- shape=14c6f271 vocab=9940c33d
+-/
 theorem aux_gaussianBumpDecomposition_oneSubGaussian_pos {t x : ℝ} (ht : 0 < t) (hx : x ≠ 0) :
     0 < 1 - Auto.gaussian (t * x) := by
   apply sub_pos.mpr
@@ -13899,7 +14947,9 @@ theorem aux_gaussianBumpDecomposition_oneSubGaussian_pos {t x : ℝ} (ht : 0 < t
 
 /--
 Auxiliary for gaussianBumpDecomposition: continuity of the Gaussian-difference real
-power away from zero.-/
+power away from zero.
+@isnad1 id=continuo.3h4v.s6.5570785faa6a from=translated src=- shape=de0b7102 vocab=73fbf0ae
+-/
 theorem aux_gaussianBumpDecomposition_gaussianDifference_rpow_continuousAt {a b nu x : ℝ}
     (ha : 0 < a) (hab : 2 * a ≤ b) (hx : x ≠ 0) :
     ContinuousAt (fun y : ℝ =>
@@ -13916,7 +14966,9 @@ theorem aux_gaussianBumpDecomposition_gaussianDifference_rpow_continuousAt {a b 
 
 /--
 Auxiliary for gaussianBumpDecomposition: continuity of the remainder real power away
-from zero.-/
+from zero.
+@isnad1 id=continuo.2h3v.s6.9d811503ad73 from=translated src=- shape=478dec2b vocab=2d855f3d
+-/
 theorem aux_gaussianBumpDecomposition_oneSubGaussian_rpow_continuousAt {t nu x : ℝ}
     (ht : 0 < t) (hx : x ≠ 0) :
     ContinuousAt (fun y : ℝ => (1 - Auto.gaussian (t * y)) ^ nu) x := by
@@ -13927,7 +14979,9 @@ theorem aux_gaussianBumpDecomposition_oneSubGaussian_rpow_continuousAt {t nu x :
   simpa only [Function.comp_def] using houter.comp
     (f := fun y : ℝ => 1 - Auto.gaussian (t * y)) hdiff
 
-/-- Auxiliary for gaussianBumpDecomposition: the defining frequency multiplier is continuous.-/
+/-- Auxiliary for gaussianBumpDecomposition: the defining frequency multiplier is continuous.
+@isnad1 id=continuo.4h6v.s7.b5b9a050e631 from=translated src=- shape=44be6bd2 vocab=509a3755
+-/
 theorem aux_gaussianBumpDecomposition_rhoFrequency_continuous (phiHat : ℝ → ℂ)
     (hphi : Continuous phiHat)
     (hplateau : ∀ xi ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2), phiHat xi = 1)
@@ -13972,7 +15026,9 @@ theorem aux_gaussianBumpDecomposition_rhoFrequency_continuous (phiHat : ℝ → 
           Auto.gaussian (muPlus * y)) ^ nu : ℝ) : ℂ)) xi
     exact hD.mul hGc
 
-/-- Auxiliary for gaussianBumpDecomposition: reciprocals of scaled Gaussians are continuous.-/
+/-- Auxiliary for gaussianBumpDecomposition: reciprocals of scaled Gaussians are continuous.
+@isnad1 id=continuo.0h1v.s5.12dd5c3c9c2a from=translated src=- shape=93a98d57 vocab=e7a159e4
+-/
 theorem aux_gaussianBumpDecomposition_inverseGaussianScaled_continuous (a : ℝ) :
     Continuous (fun x : ℝ => (Auto.gaussian (a * x) : ℂ)⁻¹) := by
   have hbase : Continuous (fun x : ℝ => (Auto.gaussian (a * x) : ℂ)) :=
@@ -13981,7 +15037,9 @@ theorem aux_gaussianBumpDecomposition_inverseGaussianScaled_continuous (a : ℝ)
   intro x
   exact Complex.ofReal_ne_zero.mpr (ne_of_gt (aux_gaussian_pos (a * x)))
 
-/-- Auxiliary for gaussianBumpDecomposition: the first frequency component is continuous.-/
+/-- Auxiliary for gaussianBumpDecomposition: the first frequency component is continuous.
+@isnad1 id=continuo.1h4v.s5.ed6af9d58018 from=translated src=- shape=8d096a8c vocab=de1f8a08
+-/
 theorem aux_gaussianBumpDecomposition_varRho0Frequency_continuous
     (phiHat : ℝ → ℂ) (hphi : Continuous phiHat) (muMinus lambdaMinus nu : ℝ) :
     Continuous (fourScaleGaussianVarRho0Frequency phiHat muMinus lambdaMinus nu) := by
@@ -13991,7 +15049,9 @@ theorem aux_gaussianBumpDecomposition_varRho0Frequency_continuous
   exact (aux_gaussianBumpDecomposition_inverseGaussianScaled_continuous
     (muMinus * Real.sqrt |nu|)).mul (hphi.comp (by fun_prop))
 
-/-- Auxiliary for gaussianBumpDecomposition: the second frequency component is continuous.-/
+/-- Auxiliary for gaussianBumpDecomposition: the second frequency component is continuous.
+@isnad1 id=continuo.1h4v.s5.3acd207e2ef3 from=translated src=- shape=8d096a8c vocab=95e9e341
+-/
 theorem aux_gaussianBumpDecomposition_varRho1Frequency_continuous
     (phiHat : ℝ → ℂ) (hphi : Continuous phiHat) (muMinus lambdaPlus nu : ℝ) :
     Continuous (fourScaleGaussianVarRho1Frequency phiHat muMinus lambdaPlus nu) := by
@@ -14001,7 +15061,9 @@ theorem aux_gaussianBumpDecomposition_varRho1Frequency_continuous
   exact ((aux_gaussianBumpDecomposition_inverseGaussianScaled_continuous
     (muMinus * Real.sqrt |nu|)).mul (hphi.comp (by fun_prop))).neg
 
-/-- Auxiliary for gaussianBumpDecomposition: the third frequency component is continuous.-/
+/-- Auxiliary for gaussianBumpDecomposition: the third frequency component is continuous.
+@isnad1 id=continuo.4h6v.s7.7c2bc8bea8d3 from=translated src=- shape=44be6bd2 vocab=4cd98903
+-/
 theorem aux_gaussianBumpDecomposition_varRho2Frequency_continuous (phiHat : ℝ → ℂ)
     (hphi : Continuous phiHat)
     (hplateau : ∀ xi ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2), phiHat xi = 1)
@@ -14057,7 +15119,9 @@ theorem aux_gaussianBumpDecomposition_varRho2Frequency_continuous (phiHat : ℝ 
 
 /--
 Auxiliary for gaussianBumpDecomposition: the scale assumptions imply positivity of
-lambdaMinus.-/
+lambdaMinus.
+@isnad1 id=lt.2h2v.s5.d68473071fb2 from=translated src=- shape=7c00b2fd vocab=4414887f
+-/
 theorem aux_gaussianBumpDecomposition_lambdaMinus_pos {muMinus lambdaMinus : ℝ}
     (hmuMinus : 0 < muMinus) (hscale : 2 * muMinus ≤ 2 * lambdaMinus) :
     0 < lambdaMinus := by
@@ -14065,7 +15129,9 @@ theorem aux_gaussianBumpDecomposition_lambdaMinus_pos {muMinus lambdaMinus : ℝ
 
 /--
 Auxiliary for gaussianBumpDecomposition: the scale assumptions imply positivity of
-lambdaPlus.-/
+lambdaPlus.
+@isnad1 id=lt.2h3v.s6.6d0f7f7402a6 from=translated src=- shape=ffdb7c2a vocab=4414887f
+-/
 theorem aux_gaussianBumpDecomposition_lambdaPlus_pos {muMinus lambdaMinus lambdaPlus : ℝ}
     (hmuMinus : 0 < muMinus)
     (hscales : 2 * muMinus ≤ 2 * lambdaMinus ∧ 2 * lambdaMinus ≤ lambdaPlus) :
@@ -14073,7 +15139,9 @@ theorem aux_gaussianBumpDecomposition_lambdaPlus_pos {muMinus lambdaMinus lambda
   have hminus := aux_gaussianBumpDecomposition_lambdaMinus_pos hmuMinus hscales.1
   linarith
 
-/-- Auxiliary for gaussianBumpDecomposition: the Fourier-side difference has compact support.-/
+/-- Auxiliary for gaussianBumpDecomposition: the Fourier-side difference has compact support.
+@isnad1 id=hascompa.3h3v.s6.3d69f456281f from=translated src=- shape=d279c40d vocab=5e75b5e7
+-/
 theorem aux_gaussianBumpDecomposition_phiDifference_compactSupport (phiHat : ℝ → ℂ)
     {lambdaMinus lambdaPlus : ℝ} (hlambdaMinus : 0 < lambdaMinus)
     (hlambdaPlus : 0 < lambdaPlus) (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) :
@@ -14086,7 +15154,9 @@ theorem aux_gaussianBumpDecomposition_phiDifference_compactSupport (phiHat : ℝ
 
 /--
 Auxiliary for gaussianBumpDecomposition: the defining frequency multiplier has compact
-support.-/
+support.
+@isnad1 id=hascompa.3h6v.s6.63227698a72f from=translated src=- shape=077f1138 vocab=ef65d9d4
+-/
 theorem aux_gaussianBumpDecomposition_rhoFrequency_compactSupport (phiHat : ℝ → ℂ)
     {lambdaMinus lambdaPlus : ℝ} (hlambdaMinus : 0 < lambdaMinus)
     (hlambdaPlus : 0 < lambdaPlus) (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1)
@@ -14100,7 +15170,9 @@ theorem aux_gaussianBumpDecomposition_rhoFrequency_compactSupport (phiHat : ℝ 
       (((Auto.gaussian (muMinus * xi) - Auto.gaussian (muPlus * xi)) ^ nu : ℝ) : ℂ))
   exact hD.mul_right
 
-/-- Auxiliary for gaussianBumpDecomposition: the first frequency component has compact support.-/
+/-- Auxiliary for gaussianBumpDecomposition: the first frequency component has compact support.
+@isnad1 id=hascompa.2h4v.s6.c0b6b3932ec1 from=translated src=- shape=23aa31e7 vocab=90cfcfde
+-/
 theorem aux_gaussianBumpDecomposition_varRho0Frequency_compactSupport (phiHat : ℝ → ℂ)
     {lambdaMinus : ℝ} (hlambdaMinus : 0 < lambdaMinus)
     (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) (muMinus nu : ℝ) :
@@ -14111,7 +15183,9 @@ theorem aux_gaussianBumpDecomposition_varRho0Frequency_compactSupport (phiHat : 
       fun xi : ℝ => phiHat (lambdaMinus * xi))
   exact h.mul_left
 
-/-- Auxiliary for gaussianBumpDecomposition: the second frequency component has compact support.-/
+/-- Auxiliary for gaussianBumpDecomposition: the second frequency component has compact support.
+@isnad1 id=hascompa.2h4v.s6.b5c4f8329ebc from=translated src=- shape=23aa31e7 vocab=cc23806c
+-/
 theorem aux_gaussianBumpDecomposition_varRho1Frequency_compactSupport (phiHat : ℝ → ℂ)
     {lambdaPlus : ℝ} (hlambdaPlus : 0 < lambdaPlus)
     (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) (muMinus nu : ℝ) :
@@ -14122,7 +15196,9 @@ theorem aux_gaussianBumpDecomposition_varRho1Frequency_compactSupport (phiHat : 
       fun xi : ℝ => phiHat (lambdaPlus * xi)))
   exact h.mul_left.neg
 
-/-- Auxiliary for gaussianBumpDecomposition: the third frequency component has compact support.-/
+/-- Auxiliary for gaussianBumpDecomposition: the third frequency component has compact support.
+@isnad1 id=hascompa.3h6v.s6.d594087ea09f from=translated src=- shape=077f1138 vocab=c871432b
+-/
 theorem aux_gaussianBumpDecomposition_varRho2Frequency_compactSupport (phiHat : ℝ → ℂ)
     {lambdaMinus lambdaPlus : ℝ} (hlambdaMinus : 0 < lambdaMinus)
     (hlambdaPlus : 0 < lambdaPlus) (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1)
@@ -14141,7 +15217,9 @@ theorem aux_gaussianBumpDecomposition_varRho2Frequency_compactSupport (phiHat : 
 
 /--
 Auxiliary for gaussianBumpDecomposition: inverse Fourier transforms of integrable
-functions are continuous.-/
+functions are continuous.
+@isnad1 id=continuo.1h1v.s6.59eff2c379d6 from=translated src=- shape=24873076 vocab=6924f208
+-/
 theorem aux_gaussianBumpDecomposition_fourierInv_continuous (f : ℝ → ℂ) (hf : Integrable f) :
     Continuous (FourierTransformInv.fourierInv f) := by
   change Continuous (VectorFourier.fourierIntegral 𝐞 volume (-innerₗ ℝ) f)
@@ -14149,7 +15227,9 @@ theorem aux_gaussianBumpDecomposition_fourierInv_continuous (f : ℝ → ℂ) (h
   · fun_prop
   · exact hf
 
-/-- Auxiliary for gaussianBumpDecomposition: a real Gaussian power rescales its argument.-/
+/-- Auxiliary for gaussianBumpDecomposition: a real Gaussian power rescales its argument.
+@isnad1 id=eq.1h3v.s5.a83f49aae075 from=translated src=- shape=097e0fb5 vocab=15c7d800
+-/
 theorem aux_gaussianBumpDecomposition_gaussian_rpow (a s x : ℝ) (hs : 0 ≤ s) :
     Auto.gaussian (a * x) ^ s = Auto.gaussian (a * Real.sqrt s * x) := by
   rw [Real.rpow_def_of_pos (aux_gaussian_pos _)]
@@ -14159,7 +15239,9 @@ theorem aux_gaussianBumpDecomposition_gaussian_rpow (a s x : ℝ) (hs : 0 ≤ s)
   rw [Real.sq_sqrt hs]
   ring
 
-/-- Auxiliary for gaussianBumpDecomposition: this factors a Gaussian at a larger scale.-/
+/-- Auxiliary for gaussianBumpDecomposition: this factors a Gaussian at a larger scale.
+@isnad1 id=eq.1h3v.s7.e89a5f78c8ff from=translated src=- shape=47be0bc5 vocab=848fd9b5
+-/
 theorem aux_gaussianBumpDecomposition_gaussian_split {a b x : ℝ} (h : 0 ≤ b ^ 2 - a ^ 2) :
     Auto.gaussian (b * x) =
       Auto.gaussian (a * x) *
@@ -14175,7 +15257,9 @@ theorem aux_gaussianBumpDecomposition_gaussian_split {a b x : ℝ} (h : 0 ≤ b 
 
 /--
 Auxiliary for gaussianBumpDecomposition: this factors the real power of the Gaussian
-difference.-/
+difference.
+@isnad1 id=eq.2h4v.s7.b87d420522f7 from=translated src=- shape=ade52361 vocab=6805662f
+-/
 theorem aux_gaussianBumpDecomposition_gaussianDifference_rpow {a b nu x : ℝ}
     (h : 0 ≤ b ^ 2 - a ^ 2) (hnu : nu ≤ 0) :
     (Auto.gaussian (a * x) - Auto.gaussian (b * x)) ^ nu =
@@ -14204,7 +15288,9 @@ theorem aux_gaussianBumpDecomposition_gaussianDifference_rpow {a b nu x : ℝ}
 
 /--
 Auxiliary for gaussianBumpDecomposition: the three frequency components sum to the
-defining multiplier.-/
+defining multiplier.
+@isnad1 id=eq.3h6v.s7.8183e0ee13f2 from=translated src=- shape=22ba042f vocab=216b93d9
+-/
 theorem aux_gaussianBumpDecomposition_frequency_decomposition (phiHat : ℝ → ℂ)
     {muMinus muPlus lambdaMinus lambdaPlus nu : ℝ}
     (hmuMinus : 0 < muMinus)
@@ -14248,7 +15334,9 @@ theorem aux_gaussianBumpDecomposition_frequency_decomposition (phiHat : ℝ → 
 
 /--
 Auxiliary for gaussianBumpDecomposition: inverse Fourier transform preserves addition
-for integrable functions.-/
+for integrable functions.
+@isnad1 id=eq.2h2v.s7.2bd0c41fb0d0 from=translated src=- shape=d0d46bce vocab=3c41da14
+-/
 theorem aux_gaussianBumpDecomposition_inverseFourier_add (f g : ℝ → ℂ) (hf : Integrable f)
     (hg : Integrable g) :
     FourierTransformInv.fourierInv (f + g) =
@@ -14313,7 +15401,9 @@ Then $\rho$ is a well-defined continuous function and
 
 $$
 \rho=\sum_{l\in [3)} \mathcal F^{-1} (\varrho_l).
-$$-/
+$$
+@isnad1 id=and.10h7v.s8.93b55ae0871a from=translated src=- shape=48d36765 vocab=c7b4658c
+-/
 theorem gaussianBumpDecomposition (phi phiHat : ℝ → ℂ) (hphi : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi)
     (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1)
@@ -14404,7 +15494,9 @@ noncomputable def C_fourScaleGaussianKernel (N : ℕ) : ℝ :=
   2 * C_smoothDecay2 N * max (C_gaussianBumpEstimate 0) (C_gaussianBumpEstimate N) +
     (2 : ℝ) ^ N * max (C_secondGaussianEstimate 0) (C_secondGaussianEstimate N)
 
-/-- A rescaled `smoothDecay2` estimate with the support-volume factor specialized to `[-1, 1]`.-/
+/-- A rescaled `smoothDecay2` estimate with the support-volume factor specialized to `[-1, 1]`.
+@isnad1 id=and.8h5v.s8.0439fe174698 from=translated src=- shape=cf524c4a vocab=561892bd
+-/
 theorem aux_fourScaleGaussian_rescaledSmoothDecay2 (N : ℕ) (hN : 2 ≤ N) (q : ℝ → ℂ)
     (hq : ContDiff ℝ N q) (hsupp : tsupport q ⊆ Set.Icc (-1 : ℝ) 1)
     (A B a : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B)
@@ -14504,7 +15596,9 @@ theorem aux_fourScaleGaussian_rescaledSmoothDecay2 (N : ℕ) (hN : 2 ≤ N) (q :
       simp only [scaledBracketBump, bracketBump]
       ring
 
-/-- A rescaled `smoothDecay` estimate.-/
+/-- A rescaled `smoothDecay` estimate.
+@isnad1 id=and.8h5v.s8.f634bcfa8935 from=translated src=- shape=05c58f82 vocab=448069de
+-/
 theorem aux_fourScaleGaussian_rescaledSmoothDecay (N : ℕ) (hN : 2 ≤ N) (r : ℝ → ℂ)
     (hr : ContDiff ℝ N r) (hrcompact : HasCompactSupport r)
     (A B a : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B)
@@ -14595,7 +15689,9 @@ theorem aux_fourScaleGaussian_rescaledSmoothDecay (N : ℕ) (hN : 2 ≤ N) (r : 
       simp only [scaledBracketBump, bracketBump]
       ring
 
-/-- The Wiener norm is closed under addition.-/
+/-- The Wiener norm is closed under addition.
+@isnad1 id=memw0.2h2v.s5.b8e230dda93b from=translated src=- shape=6f16f11c vocab=41703ec7
+-/
 theorem aux_fourScaleGaussian_memW0_add (f g : ℝ → ℂ) (hf : MemW0 f) (hg : MemW0 g) :
     MemW0 (fun x => f x + g x) := by
   let hcont : Continuous (fun x : ℝ => f x + g x) := hf.1.add hg.1
@@ -14621,7 +15717,9 @@ theorem aux_fourScaleGaussian_memW0_add (f g : ℝ → ℂ) (hf : MemW0 f) (hg :
         (aux_norm_le_wienerEnvelope_of_mem_closedBall hg.1 (by
           simpa [Metric.mem_closedBall, dist_eq_norm] using hz))
 
-/-- The Wiener norm is closed under negation.-/
+/-- The Wiener norm is closed under negation.
+@isnad1 id=memw0.1h1v.s4.5e1d833949b7 from=translated src=- shape=97906b09 vocab=e60c0f11
+-/
 theorem aux_fourScaleGaussian_memW0_neg (f : ℝ → ℂ) (hf : MemW0 f) :
     MemW0 (fun x => -f x) := by
   refine ⟨hf.1.neg, ?_⟩
@@ -14631,7 +15729,9 @@ theorem aux_fourScaleGaussian_memW0_neg (f : ℝ → ℂ) (hf : MemW0 f) :
   rw [hEnvelope]
   exact hf.2
 
-/-- Inverse Fourier transform commutes with negation.-/
+/-- Inverse Fourier transform commutes with negation.
+@isnad1 id=eq.0h1v.s6.4a174c191e06 from=translated src=- shape=6094b795 vocab=d7f702e5
+-/
 theorem aux_fourScaleGaussian_inverseFourier_neg (f : ℝ → ℂ) :
     FourierTransformInv.fourierInv (fun xi : ℝ => -f xi) =
       fun x : ℝ => -FourierTransformInv.fourierInv f x := by
@@ -14640,7 +15740,9 @@ theorem aux_fourScaleGaussian_inverseFourier_neg (f : ℝ → ℂ) :
   simp_rw [smul_neg]
   exact integral_neg _
 
-/-- The first multiplier is a rescaled Gaussian-bump quotient.-/
+/-- The first multiplier is a rescaled Gaussian-bump quotient.
+@isnad1 id=eq.1h4v.s6.acbb3a6b82c8 from=translated src=- shape=ac70cc84 vocab=cd6f83aa
+-/
 theorem aux_fourScaleGaussian_varRho0Frequency_rescale (phiHat : ℝ → ℂ)
     (muMinus lambdaMinus nu : ℝ) (hlambdaMinus : lambdaMinus ≠ 0) :
     (fun xi : ℝ => gaussianBumpQuotient
@@ -14655,7 +15757,9 @@ theorem aux_fourScaleGaussian_varRho0Frequency_rescale (phiHat : ℝ → ℂ)
   rw [harg]
   simp
 
-/-- The second multiplier is a negated rescaled Gaussian-bump quotient.-/
+/-- The second multiplier is a negated rescaled Gaussian-bump quotient.
+@isnad1 id=eq.1h4v.s6.93bc07fb2572 from=translated src=- shape=5c3b06f9 vocab=2ec181b2
+-/
 theorem aux_fourScaleGaussian_varRho1Frequency_rescale (phiHat : ℝ → ℂ)
     (muMinus lambdaPlus nu : ℝ) (hlambdaPlus : lambdaPlus ≠ 0) :
     (fun xi : ℝ => -gaussianBumpQuotient
@@ -14670,6 +15774,9 @@ theorem aux_fourScaleGaussian_varRho1Frequency_rescale (phiHat : ℝ → ℂ)
   rw [harg]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.351e9005c7d3 from=translated src=- shape=9a2817bc vocab=35be31b7
+-/
 theorem aux_fourScaleGaussian_varRho0_rescale (phiHat : ℝ → ℂ)
     (muMinus lambdaMinus nu : ℝ) (hlambdaMinus : lambdaMinus ≠ 0) :
     fourScaleGaussianVarRho0 phiHat muMinus lambdaMinus nu =
@@ -14678,6 +15785,9 @@ theorem aux_fourScaleGaussian_varRho0_rescale (phiHat : ℝ → ℂ)
   unfold fourScaleGaussianVarRho0
   rw [← aux_fourScaleGaussian_varRho0Frequency_rescale phiHat muMinus lambdaMinus nu hlambdaMinus]
 
+/--
+@isnad1 id=eq.1h4v.s6.5ba02e52afba from=translated src=- shape=3f4f6a07 vocab=9d6ccfc7
+-/
 theorem aux_fourScaleGaussian_varRho1_rescale (phiHat : ℝ → ℂ)
     (muMinus lambdaPlus nu : ℝ) (hlambdaPlus : lambdaPlus ≠ 0) :
     fourScaleGaussianVarRho1 phiHat muMinus lambdaPlus nu =
@@ -14687,7 +15797,9 @@ theorem aux_fourScaleGaussian_varRho1_rescale (phiHat : ℝ → ℂ)
   rw [← aux_fourScaleGaussian_varRho1Frequency_rescale phiHat muMinus lambdaPlus nu hlambdaPlus]
   exact aux_fourScaleGaussian_inverseFourier_neg _
 
-/-- The remainder multiplier is the normalized second Gaussian multiplier.-/
+/-- The remainder multiplier is the normalized second Gaussian multiplier.
+@isnad1 id=eq.1h6v.s7.e6ae2ed45c3e from=translated src=- shape=87aa31bc vocab=795fbaa3
+-/
 theorem aux_fourScaleGaussian_varRho2Frequency_rescale (phiHat : ℝ → ℂ)
     (muMinus muPlus lambdaMinus lambdaPlus nu : ℝ) (hlambdaPlus : lambdaPlus ≠ 0) :
     (fun xi : ℝ => secondGaussianMultiplier phiHat
@@ -14710,6 +15822,9 @@ theorem aux_fourScaleGaussian_varRho2Frequency_rescale (phiHat : ℝ → ℂ)
   rw [hmu, hlambda, ht]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s7.166a9281330f from=translated src=- shape=0dc26c9d vocab=3be1b164
+-/
 theorem aux_fourScaleGaussian_varRho2_rescale (phiHat : ℝ → ℂ)
     (muMinus muPlus lambdaMinus lambdaPlus nu : ℝ) (hlambdaPlus : lambdaPlus ≠ 0) :
     fourScaleGaussianVarRho2 phiHat muMinus muPlus lambdaMinus lambdaPlus nu =
@@ -14720,7 +15835,9 @@ theorem aux_fourScaleGaussian_varRho2_rescale (phiHat : ℝ → ℂ)
   rw [← aux_fourScaleGaussian_varRho2Frequency_rescale
     phiHat muMinus muPlus lambdaMinus lambdaPlus nu hlambdaPlus]
 
-/-- The normalized separation parameter is at least `sqrt 3 / 2`.-/
+/-- The normalized separation parameter is at least `sqrt 3 / 2`.
+@isnad1 id=le.7h4v.s7.40615e76282b from=translated src=- shape=6a382e2a vocab=baf4a9e8
+-/
 theorem aux_fourScaleGaussian_t_lower_bound
     {muMinus muPlus lambdaMinus lambdaPlus : ℝ}
     (hmuMinus : 0 < muMinus) (hmuPlus : 0 < muPlus)
@@ -14749,7 +15866,9 @@ theorem aux_fourScaleGaussian_t_lower_bound
   have hsqrtThree : Real.sqrt 3 ^ 2 = 3 := Real.sq_sqrt (by norm_num)
   nlinarith
 
-/-- The rescaled parameters obey the hypotheses of the Gaussian multiplier estimates.-/
+/-- The rescaled parameters obey the hypotheses of the Gaussian multiplier estimates.
+@isnad1 id=and.6h4v.s8.4695481c003b from=translated src=- shape=43eafe9d vocab=53f1ad2d
+-/
 theorem aux_fourScaleGaussian_normalized_parameters
     {muMinus lambdaMinus lambdaPlus nu : ℝ}
     (hmuMinus : 0 < muMinus) (hlambdaMinus : 0 < lambdaMinus)
@@ -14795,7 +15914,9 @@ theorem aux_fourScaleGaussian_normalized_parameters
   · apply (div_le_iff₀ hlambdaPlus).2
     nlinarith
 
-/-- Combine the three Wiener estimates supplied by the Gaussian decomposition.-/
+/-- Combine the three Wiener estimates supplied by the Gaussian decomposition.
+@isnad1 id=and.9h8v.s7.8cba0a7f061b from=translated src=- shape=1b9e5c63 vocab=163999c1
+-/
 theorem aux_fourScaleGaussian_assemble (rho varrho0 varrho1 varrho2 : ℝ → ℂ)
     (A B : ℝ) (hB : 0 ≤ B) (sMinus sPlus : ℝ → ℝ)
     (hsMinus : ∀ x : ℝ, 0 ≤ sMinus x)
@@ -14823,7 +15944,9 @@ theorem aux_fourScaleGaussian_assemble (rho varrho0 varrho1 varrho2 : ℝ → �
       _ ≤ (A + B) * (sMinus x + sPlus x) :=
         sub_le_self _ (mul_nonneg hB (hsMinus x))
 
-/-- Estimate a rescaled Gaussian-bump component.-/
+/-- Estimate a rescaled Gaussian-bump component.
+@isnad1 id=and.8h5v.s8.ab198009590a from=translated src=- shape=079b8b7b vocab=68881452
+-/
 theorem aux_fourScaleGaussian_gaussian_component_rescale (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
     (phiHat : ℝ → ℂ) (hc : 0 < c) (beta a : ℝ) (hbeta : 0 ≤ beta)
     (hbetaOne : beta ≤ 1) (ha : 0 < a) (hphi : ContDiff ℝ N phiHat)
@@ -14892,7 +16015,9 @@ theorem aux_fourScaleGaussian_gaussian_component_rescale (c : ℝ) (N : ℕ) (hN
           (C_gaussianBumpEstimate N) hc.le]
         ring
 
-/-- The second Gaussian estimate constant is nonnegative.-/
+/-- The second Gaussian estimate constant is nonnegative.
+@isnad1 id=le.0h1v.s3.77f05cb2e25c from=translated src=- shape=b9369acb vocab=391b3d32
+-/
 theorem aux_C_secondGaussianEstimate_nonneg (N : ℕ) :
     0 ≤ C_secondGaussianEstimate N := by
   unfold C_secondGaussianEstimate
@@ -14907,7 +16032,9 @@ theorem aux_C_secondGaussianEstimate_nonneg (N : ℕ) :
     · exact aux_C_gaussianBumpEstimate_nonneg l
   · exact aux_C_faaDiBruno_nonneg (N - l)
 
-/-- Estimate the rescaled second Gaussian component.-/
+/-- Estimate the rescaled second Gaussian component.
+@isnad1 id=and.12h8v.s8.4c83df9dc773 from=translated src=- shape=dca17cb9 vocab=5eebb648
+-/
 theorem aux_fourScaleGaussian_second_component_rescale (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
     (phiHat : ℝ → ℂ) (hc : 0 < c) (mu lambda t nu a : ℝ)
     (hmu : 0 < mu) (hmulambda : mu ≤ lambda) (hlambda : lambda ≤ 1 / 2)
@@ -14991,7 +16118,9 @@ $$
 See also `Auto.fourScaleGaussianKernel`,
 `Auto.smoothDecay2`,
 `Auto.gaussianBumpEstimate`,
-`Auto.secondGaussianEstimate`.-/
+`Auto.secondGaussianEstimate`.
+@isnad1 id=and.14h9v.s8.9cb0668f44e0 from=translated src=- shape=a6f2b2ec vocab=57ee7e85
+-/
 theorem fourScaleGaussianKernel (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
     (phi phiHat : ℝ → ℂ) (hphiW0 : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi) (hc : 0 < c)
@@ -15104,7 +16233,9 @@ theorem fourScaleGaussianKernel (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
       dsimp [A, B]
       ring
 
-/-- The general pass-8 bound for the four-scale Gaussian kernel constant.-/
+/-- The general pass-8 bound for the four-scale Gaussian kernel constant.
+@isnad1 id=le.0h1v.s6.af9f3bdd1116 from=translated src=- shape=da442749 vocab=e0b8f49d
+-/
 theorem aux_C_fourScaleGaussianKernel_bound (N : ℕ) :
     C_fourScaleGaussianKernel N ≤ (2 : ℝ) ^ (25 * (N + 1) ^ 3) := by
   have hG0 : C_gaussianBumpEstimate 0 ≤ (2 : ℝ) ^ 8 := by
@@ -15170,7 +16301,9 @@ theorem aux_C_fourScaleGaussianKernel_bound (N : ℕ) :
     _ ≤ (2 : ℝ) ^ (25 * (N + 1) ^ 3) :=
       pow_le_pow_right₀ (by norm_num) hmaxExp
 
-/-- Sharp finite value for the four-scale Gaussian kernel constant at order two.-/
+/-- Sharp finite value for the four-scale Gaussian kernel constant at order two.
+@isnad1 id=lt.0h0v.s4.1c23c429d7d3 from=translated src=- shape=1ac31801 vocab=75c319a3
+-/
 theorem aux_C_fourScaleGaussianKernel_two_lt_value :
     C_fourScaleGaussianKernel 2 < 637436354528 := by
   have hG0 : C_gaussianBumpEstimate 0 < 81 :=
@@ -15200,7 +16333,9 @@ theorem aux_C_fourScaleGaussianKernel_two_lt_value :
         (mul_lt_mul_of_pos_left hSmax (by positivity))
     _ = 637436354528 := by norm_num
 
-/-- Sharp finite value for the four-scale Gaussian kernel constant at order three.-/
+/-- Sharp finite value for the four-scale Gaussian kernel constant at order three.
+@isnad1 id=lt.0h0v.s4.de59766632fc from=translated src=- shape=1ac31801 vocab=75c319a3
+-/
 theorem aux_C_fourScaleGaussianKernel_three_lt_value :
     C_fourScaleGaussianKernel 3 < 6136564156458101504 := by
   have hG0 : C_gaussianBumpEstimate 0 < 81 :=
@@ -15247,7 +16382,9 @@ C_{\text{four scale Gaussian kernel estimate},2}<2^{40},
 C_{\text{four scale Gaussian kernel estimate},3}<2^{63}.
 $$
 
-See also `Auto.fourScaleGaussianKernel`.-/
+See also `Auto.fourScaleGaussianKernel`.
+@isnad1 id=and.0h0v.s7.9ac699efdbe3 from=translated src=- shape=5762fcc2 vocab=badadf21
+-/
 theorem constantFourScaleGaussianKernel :
     (∀ N : ℕ, C_fourScaleGaussianKernel N ≤ (2 : ℝ) ^ (25 * (N + 1) ^ 3)) ∧
       C_fourScaleGaussianKernel 2 < (2 : ℝ) ^ 40 ∧
@@ -15265,7 +16402,9 @@ noncomputable def C_meanFourScaleGaussianKernel (N : ℕ) : ℝ :=
     4 * C_meanValueBumpEstimate N *
       aux_maxUpTo (fun l => (2 : ℝ) ^ l * C_secondGaussianEstimate l) N
 
-/-- Transfer a pointwise normalized derivative bound to its `L∞` profile.-/
+/-- Transfer a pointwise normalized derivative bound to its `L∞` profile.
+@isnad1 id=le.1h3v.s7.7ced886ecbf6 from=translated src=- shape=0d336294 vocab=2d157b34
+-/
 theorem aux_mean_profile_sSup_le (n : ℕ) (A : ℝ) (F : ℝ → ℂ)
     (h : ∀ xi : ℝ, ((2 * Real.pi)⁻¹ : ℝ) ^ n * ‖iteratedDeriv n F xi‖ ≤ A) :
     ((2 * Real.pi)⁻¹ : ℝ) ^ n *
@@ -15288,7 +16427,9 @@ theorem aux_mean_profile_sSup_le (n : ℕ) (A : ℝ) (F : ℝ → ℂ)
         mul_le_mul_of_nonneg_left hs hq.le
     _ = A := by field_simp [ne_of_gt hq]
 
-/-- Bound a finite `aux_maxUpTo` profile from its individual entries.-/
+/-- Bound a finite `aux_maxUpTo` profile from its individual entries.
+@isnad1 id=le.1h3v.s4.8875a29e688b from=translated src=- shape=e27a265d vocab=280f2966
+-/
 theorem aux_mean_maxUpTo_le (f : ℕ → ℝ) (N : ℕ) (B : ℝ)
     (h : ∀ n : ℕ, n ≤ N → f n ≤ B) :
     aux_maxUpTo f N ≤ B := by
@@ -15298,7 +16439,9 @@ theorem aux_mean_maxUpTo_le (f : ℕ → ℝ) (N : ℕ) (B : ℝ)
   rcases Finset.mem_image.mp hz with ⟨n, hn, rfl⟩
   exact h n (Nat.lt_succ_iff.mp (Finset.mem_range.mp hn))
 
-/-- The mean-value bump estimate for a normalized Gaussian-bump quotient.-/
+/-- The mean-value bump estimate for a normalized Gaussian-bump quotient.
+@isnad1 id=le.7h6v.s8.12f7857fc32b from=translated src=- shape=294bcf07 vocab=48870499
+-/
 theorem aux_mean_gaussian_base_difference (N : ℕ) (hN : 2 ≤ N)
     (c beta : ℝ) (phiHat : ℝ → ℂ) (hc : 0 < c)
     (hbeta0 : 0 ≤ beta) (hbeta1 : beta ≤ 1)
@@ -15383,7 +16526,9 @@ theorem aux_mean_gaussian_base_difference (N : ℕ) (hN : 2 ≤ N)
             min 1 (2 * Real.pi * |y|) *
               (bracketBump (x + y) ^ N + bracketBump x ^ N) := by ring
 
-/-- Rescale a normalized mean-value difference bound on the Fourier side.-/
+/-- Rescale a normalized mean-value difference bound on the Fourier side.
+@isnad1 id=le.2h6v.s8.31576c3a0e77 from=translated src=- shape=1f0a85d4 vocab=c10d85e0
+-/
 theorem aux_mean_rescaled_difference (N : ℕ) (Q : ℝ → ℂ) (a A : ℝ)
     (ha : 0 < a)
     (hbase : ∀ u v : ℝ,
@@ -15417,7 +16562,9 @@ theorem aux_mean_rescaled_difference (N : ℕ) (Q : ℝ → ℂ) (a A : ℝ)
       simp only [scaledBracketBump, bracketBump]
       ring_nf
 
-/-- The rescaled Gaussian-bump component satisfies the normalized mean estimate.-/
+/-- The rescaled Gaussian-bump component satisfies the normalized mean estimate.
+@isnad1 id=le.8h7v.s8.d3cdce3fe574 from=translated src=- shape=7541aff7 vocab=2fddaa29
+-/
 theorem aux_mean_gaussian_rescaled_difference (N : ℕ) (hN : 2 ≤ N)
     (c beta a : ℝ) (phiHat : ℝ → ℂ) (hc : 0 < c)
     (hbeta0 : 0 ≤ beta) (hbeta1 : beta ≤ 1) (ha : 0 < a)
@@ -15438,7 +16585,9 @@ theorem aux_mean_gaussian_rescaled_difference (N : ℕ) (hN : 2 ≤ N)
     (fun u v => aux_mean_gaussian_base_difference N hN c beta phiHat hc hbeta0 hbeta1
       hphi hsupp hphiBound u v) x y
 
-/-- Pull the Fourier support `[-1,1]` back under the map `xi ↦ 2 xi`.-/
+/-- Pull the Fourier support `[-1,1]` back under the map `xi ↦ 2 xi`.
+@isnad1 id=le.1h1v.s6.efab90e25f52 from=translated src=- shape=6879a010 vocab=eb51b1a6
+-/
 theorem aux_mean_tsupport_comp_two_subset (phiHat : ℝ → ℂ)
     (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) :
     tsupport (fun xi : ℝ => phiHat (2 * xi)) ⊆ Set.Icc (-(1 / 2 : ℝ)) (1 / 2) := by
@@ -15456,7 +16605,9 @@ theorem aux_mean_tsupport_comp_two_subset (phiHat : ℝ → ℂ)
     exact (hxiIcc hinterval).elim
   · exact isClosed_Icc
 
-/-- The twice-rescaled second-Gaussian multiplier is supported in `[-1,1]`.-/
+/-- The twice-rescaled second-Gaussian multiplier is supported in `[-1,1]`.
+@isnad1 id=le.2h5v.s7.63eb5b48a4a3 from=translated src=- shape=befa2730 vocab=f84aaf5e
+-/
 theorem aux_mean_second_tilde_support (phiHat : ℝ → ℂ) (mu lambda t nu : ℝ)
     (hlambda : lambda = 1 / 2)
     (hsupp : tsupport phiHat ⊆ Set.Icc (-1 : ℝ) 1) :
@@ -15483,7 +16634,9 @@ theorem aux_mean_second_tilde_support (phiHat : ℝ → ℂ) (mu lambda t nu : �
       intro xi hxi
       constructor <;> linarith [hxi.1, hxi.2])
 
-/-- Rescaling by `2` multiplies the normalized `L∞` derivative profile by at most `2^n`.-/
+/-- Rescaling by `2` multiplies the normalized `L∞` derivative profile by at most `2^n`.
+@isnad1 id=le.3h3v.s7.d1546998f294 from=translated src=- shape=f076b61a vocab=146d8989
+-/
 theorem aux_mean_profile_comp_two_le (n : ℕ) (F : ℝ → ℂ)
     (hF : ContDiff ℝ n F) (hFcompact : HasCompactSupport F) (A : ℝ)
     (h : ((2 * Real.pi)⁻¹ : ℝ) ^ n *
@@ -15512,7 +16665,9 @@ theorem aux_mean_profile_comp_two_le (n : ℕ) (F : ℝ → ℂ)
           gcongr
     _ ≤ (2 : ℝ) ^ n * A := mul_le_mul_of_nonneg_left h (by positivity)
 
-/-- The normalized second-Gaussian component satisfies the mean-value bump estimate.-/
+/-- The normalized second-Gaussian component satisfies the mean-value bump estimate.
+@isnad1 id=le.14h10v.s9.ba501e53ebc1 from=translated src=- shape=2689d45b vocab=91bb04be
+-/
 theorem aux_mean_second_tilde_base_difference (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
     (phi phiHat : ℝ → ℂ) (hphiW0 : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi) (hc : 0 < c)
@@ -15630,7 +16785,9 @@ theorem aux_mean_second_tilde_base_difference (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
             min 1 (2 * Real.pi * |y|) *
               (bracketBump (x + y) ^ N + bracketBump x ^ N) := by ring
 
-/-- The elementary min comparison used when passing from the lower to the upper scale.-/
+/-- The elementary min comparison used when passing from the lower to the upper scale.
+@isnad1 id=le.0h1v.s5.f3e777df1ee8 from=translated src=- shape=367c1f82 vocab=d4bf9430
+-/
 theorem aux_mean_min_double (z : ℝ) :
     min 1 (2 * z) ≤ 2 * min 1 z := by
   by_cases hzOne : 1 ≤ z
@@ -15645,7 +16802,9 @@ theorem aux_mean_min_double (z : ℝ) :
 
 /--
 Compare the lower-scale mean-value profile to the upper-scale profile when the scales differ
-by a factor of two.-/
+by a factor of two.
+@isnad1 id=le.3h5v.s7.55e864f71332 from=translated src=- shape=754322c1 vocab=6f1bf9b7
+-/
 theorem aux_mean_half_scale_compare (N : ℕ) {lambdaMinus lambdaPlus x y : ℝ}
     (hlambdaMinus : 0 < lambdaMinus) (hlambdaPlus : 0 < lambdaPlus)
     (hhalf : lambdaPlus = 2 * lambdaMinus) :
@@ -15723,7 +16882,9 @@ $$
 See also `Auto.meanFourScaleGaussianKernel`,
 `Auto.meanValueBumpEstimate`,
 `Auto.gaussianBumpEstimate`,
-`Auto.secondGaussianEstimate`.-/
+`Auto.secondGaussianEstimate`.
+@isnad1 id=and.15h9v.s9.7368ab1087a1 from=translated src=- shape=57b0efae vocab=f86e2891
+-/
 theorem meanFourScaleGaussianKernel (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
     (phi phiHat : ℝ → ℂ) (hphiW0 : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi) (hc : 0 < c)
@@ -15929,7 +17090,9 @@ theorem meanFourScaleGaussianKernel (c : ℝ) (N : ℕ) (hN : 2 ≤ N)
       dsimp [C_meanFourScaleGaussianKernel, K, G, S]
       ring
 
-/-- Bound a finite `aux_maxUpTo` profile strictly from its individual entries.-/
+/-- Bound a finite `aux_maxUpTo` profile strictly from its individual entries.
+@isnad1 id=lt.1h3v.s4.c1b4d8632423 from=translated src=- shape=a5f58f7c vocab=8ec2884c
+-/
 theorem aux_mean_maxUpTo_lt (f : ℕ → ℝ) (N : ℕ) (B : ℝ)
     (h : ∀ n : ℕ, n ≤ N → f n < B) :
     aux_maxUpTo f N < B := by
@@ -15939,7 +17102,9 @@ theorem aux_mean_maxUpTo_lt (f : ℕ → ℝ) (N : ℕ) (B : ℝ)
   rcases Finset.mem_image.mp hz with ⟨n, hn, rfl⟩
   exact h n (Nat.lt_succ_iff.mp (Finset.mem_range.mp hn))
 
-/-- The general explicit bound for the mean four-scale Gaussian-kernel constant.-/
+/-- The general explicit bound for the mean four-scale Gaussian-kernel constant.
+@isnad1 id=le.0h1v.s6.e34a0835e6b1 from=translated src=- shape=da442749 vocab=0f939b4a
+-/
 theorem aux_C_meanFourScaleGaussianKernel_bound (N : ℕ) :
     C_meanFourScaleGaussianKernel N ≤ (2 : ℝ) ^ (30 * (N + 1) ^ 3) := by
   let K : ℝ := (2 : ℝ) ^ (2 * N + 1)
@@ -16053,7 +17218,9 @@ theorem aux_C_meanFourScaleGaussianKernel_bound (N : ℕ) :
 
 /--
 The exact finite numerical upper bound at order two for the mean four-scale
-Gaussian-kernel constant.-/
+Gaussian-kernel constant.
+@isnad1 id=lt.0h0v.s4.073e33896616 from=translated src=- shape=1ac31801 vocab=efaff6dd
+-/
 theorem aux_C_meanFourScaleGaussianKernel_two_lt_value :
     C_meanFourScaleGaussianKernel 2 < 20397963318112 := by
   have hM : aux_maxUpTo C_gaussianBumpEstimate 2 < 124 := by
@@ -16094,7 +17261,9 @@ theorem aux_C_meanFourScaleGaussianKernel_two_lt_value :
         5 * 8 * 124 + 4 * 8 * (4 * 159359088384) := add_lt_add hfirst hsecond
     _ = 20397963318112 := by norm_num
 
-/-- The sharp finite-order mean four-scale Gaussian-kernel constant estimate.-/
+/-- The sharp finite-order mean four-scale Gaussian-kernel constant estimate.
+@isnad1 id=lt.0h0v.s5.bef22699d1eb from=translated src=- shape=9481a083 vocab=fd36009e
+-/
 theorem aux_C_meanFourScaleGaussianKernel_two_lt :
     C_meanFourScaleGaussianKernel 2 < (2 : ℝ) ^ 45 :=
   aux_C_meanFourScaleGaussianKernel_two_lt_value.trans (by norm_num)
@@ -16114,7 +17283,9 @@ $$
 C_{\text{mean value four scale Gaussian kernel estimate},2}<2^{45}.
 $$
 
-See also `Auto.meanFourScaleGaussianKernel`.-/
+See also `Auto.meanFourScaleGaussianKernel`.
+@isnad1 id=and.0h0v.s6.0974d6ed09a5 from=translated src=- shape=3326a629 vocab=93330110
+-/
 theorem constantMeanFourScaleGaussianKernel :
     (∀ N : ℕ, C_meanFourScaleGaussianKernel N ≤ (2 : ℝ) ^ (30 * (N + 1) ^ 3)) ∧
       C_meanFourScaleGaussianKernel 2 < (2 : ℝ) ^ 45 := by

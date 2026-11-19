@@ -160,7 +160,9 @@ noncomputable def aux_WContinuousLinearEquiv (u : Fin 2) : RealPlane ≃L[ℝ] R
 
 /--
 This auxiliary identity identifies the raw matrix notation `W` with its
-continuous-linear-equivalence implementation.-/
+continuous-linear-equivalence implementation.
+@isnad1 id=eq.0h2v.s8.25c4f83ea365 from=translated src=- shape=e5742d71 vocab=feba25e8
+-/
 theorem aux_WContinuousLinearEquiv_apply (u : Fin 2) (v : RealPlane) :
     aux_WContinuousLinearEquiv u v = W u v := by
   unfold aux_WContinuousLinearEquiv W
@@ -243,7 +245,9 @@ noncomputable def kernelSequenceSeminorm (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤
           (fun y => ∑ j ∈ Finset.range J.1, M (j : ℤ) y)
            (fun i => F.1 i)|)
 
-/-- The kernel-sequence seminorm is homogeneous under a nonnegative scalar.-/
+/-- The kernel-sequence seminorm is homogeneous under a nonnegative scalar.
+@isnad1 id=eq.3h4v.s6.dd89edbe5bca from=translated src=- shape=6ed42fbe vocab=c3a7e4f5
+-/
 theorem aux_kernelSequenceSeminorm_const_mul {n k : ℕ} (hk : 1 ≤ k)
     (hkn : k ≤ n) (c : ℝ) (hc : 0 ≤ c) (M : KernelSequence k) :
     kernelSequenceSeminorm n k hk hkn (fun j y => c * M j y) =
@@ -295,6 +299,9 @@ theorem aux_kernelSequenceSeminorm_const_mul {n k : ℕ} (hk : 1 ≤ k)
   funext J
   rw [ENNReal.mul_iSup]
 
+/--
+@isnad1 id=eq.3h6v.s9.d3a05dc401f0 from=translated src=- shape=1d99281b vocab=a162c8a0
+-/
 theorem aux_sandwich_prismForm_finset_sum {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     {α : Type*} (s : Finset α) (M : α → MKernel k)
     (hM : ∀ a ∈ s, MemW0 (M a))
@@ -341,7 +348,9 @@ theorem aux_sandwich_prismForm_finset_sum {n k : ℕ} (hk : 1 ≤ k) (hkn : k �
           (fun i x => F i x) := hsumP
     _ = ∑ a ∈ s, prismForm n k hk hkn (M a) (fun i => F i) := by rfl
 
-/-- Monotonicity of a prism form after appending a terminal tensor-square factor.-/
+/-- Monotonicity of a prism form after appending a terminal tensor-square factor.
+@isnad1 id=le.8h6v.s9.2d3ab043343c from=translated src=- shape=42641c0a vocab=c9ef09f2
+-/
 theorem aux_prismForm_tensorSquareExtension_last_mono
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (M N : MKernel k) (hM : MemW0 M) (hN : MemW0 N)
@@ -382,7 +391,9 @@ theorem aux_prismForm_tensorSquareExtension_last_mono
           (mToK (d + 1) (by omega) M) (mToK (d + 1) (by omega) N)
           hKM hKN hKM_nonneg hKM_le phi hphi F hF)
 
-/-- The kernel-sequence seminorm preserves the preceding terminal-extension order.-/
+/-- The kernel-sequence seminorm preserves the preceding terminal-extension order.
+@isnad1 id=le.7h5v.s8.468ecde5c21e from=translated src=- shape=a78cf2fd vocab=bf7d27eb
+-/
 theorem aux_kernelSequenceSeminorm_tensorSquareExtension_last_mono
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (M N : ℤ → MKernel k)
@@ -481,7 +492,9 @@ theorem aux_kernelSequenceSeminorm_tensorSquareExtension_last_mono
 
 /--
 This finite algebraic telescoping identity is used to turn the sum of the
-Gaussian-difference sandwich terms into its two boundary products.-/
+Gaussian-difference sandwich terms into its two boundary products.
+@isnad1 id=eq.0h3v.s6.fcf3398867fb from=translated src=- shape=9327eb4e vocab=1e7dbe9a
+-/
 theorem aux_product_telescope (a b : ℕ → ℝ) (n : ℕ) :
     (∑ i ∈ Finset.range n,
       (∏ j ∈ Finset.range i, b j) * (a i - b i) *
@@ -522,7 +535,9 @@ theorem aux_product_telescope (a b : ℕ → ℝ) (n : ℕ) :
     rw [ih]
     ring
 
-/-- The finite telescope in the integer scale parameter.-/
+/-- The finite telescope in the integer scale parameter.
+@isnad1 id=eq.0h2v.s6.e2ad08512fd3 from=translated src=- shape=87052b88 vocab=dbd62954
+-/
 theorem aux_int_telescope (f : ℤ → ℝ) (J : ℕ) :
     (∑ j ∈ Finset.range J, (f ((j : ℤ) - 1) - f (j : ℤ))) =
       f (-1) - f ((J : ℤ) - 1) := by
@@ -533,7 +548,9 @@ theorem aux_int_telescope (f : ℤ → ℝ) (J : ℕ) :
     push_cast
     ring_nf
 
-/-- Reindex a product over the coordinates strictly below a given finite index.-/
+/-- Reindex a product over the coordinates strictly below a given finite index.
+@isnad1 id=eq.1h4v.s6.cbd9e910ff64 from=translated src=- shape=e0deeda7 vocab=096f1f97
+-/
 theorem aux_prod_filter_lt {k : ℕ} (f : Fin k → ℝ) (g : ℕ → ℝ)
     (hg : ∀ m (hm : m < k), g m = f ⟨m, hm⟩) (i : Fin k) :
     (∏ m ∈ Finset.univ.filter (fun m => m < i), f m) =
@@ -552,7 +569,9 @@ theorem aux_prod_filter_lt {k : ℕ} (f : Fin k → ℝ) (g : ℕ → ℝ)
     have hm' : m.1 < k := lt_trans (Finset.mem_filter.mp hm).2 i.2
     simpa using (hg m.1 hm').symm
 
-/-- Reindex a product over the coordinates strictly above a given finite index.-/
+/-- Reindex a product over the coordinates strictly above a given finite index.
+@isnad1 id=eq.1h4v.s6.62d039376ffb from=translated src=- shape=e807a4da vocab=81de06ff
+-/
 theorem aux_prod_filter_gt {k : ℕ} (f : Fin k → ℝ) (g : ℕ → ℝ)
     (hg : ∀ m (hm : m < k), g m = f ⟨m, hm⟩) (i : Fin k) :
     (∏ m ∈ Finset.univ.filter (fun m => i < m), f m) =
@@ -572,7 +591,9 @@ theorem aux_prod_filter_gt {k : ℕ} (f : Fin k → ℝ) (g : ℕ → ℝ)
   · intro m hm
     simpa using (hg m.1 m.2).symm
 
-/-- The finite-coordinate form of the sandwich-product telescope.-/
+/-- The finite-coordinate form of the sandwich-product telescope.
+@isnad1 id=eq.0h3v.s7.78b57e9e7b7b from=translated src=- shape=f29b4659 vocab=bfb2a006
+-/
 theorem aux_fin_telescope {k : ℕ} (a b : Fin k → ℝ) :
     (∑ i : Fin k,
       (∏ m ∈ Finset.univ.filter (fun m => m < i), b m) * (a i - b i) *
@@ -617,7 +638,9 @@ theorem aux_fin_telescope {k : ℕ} (a b : Fin k → ℝ) :
         intro m hm
         simp [B, Finset.mem_range.mp hm]
 
-/-- The normalized one-dimensional rescaled Gaussian has integral one.-/
+/-- The normalized one-dimensional rescaled Gaussian has integral one.
+@isnad1 id=eq.1h1v.s5.3bca3dfe9e44 from=translated src=- shape=78831b10 vocab=c4590113
+-/
 theorem aux_integral_gaussianRescale (t : ℝ) (ht : 0 < t) :
     (∫ x : ℝ, gaussianRescale t x) = 1 := by
   change (∫ x : ℝ, t⁻¹ * Auto.gaussian (t⁻¹ * x)) = 1
@@ -626,7 +649,9 @@ theorem aux_integral_gaussianRescale (t : ℝ) (ht : 0 < t) :
     aux_integral_gaussian]
   simp [smul_eq_mul, abs_of_pos ht, ht.ne']
 
-/-- The product of two normalized rescaled Gaussians has integral one.-/
+/-- The product of two normalized rescaled Gaussians has integral one.
+@isnad1 id=eq.1h1v.s6.b4fc9d663792 from=translated src=- shape=c3be0ab4 vocab=66b3c0f6
+-/
 theorem aux_integral_product_gaussianRescale (q : Fin 2 → ℝ)
     (hq : ∀ r, 0 < q r) :
     (∫ v : RealPlane,
@@ -636,7 +661,9 @@ theorem aux_integral_product_gaussianRescale (q : Fin 2 → ℝ)
     aux_integral_gaussianRescale (q 1) (hq 1)]
   norm_num
 
-/-- Two-dimensional Gaussians belong to `W₀`.-/
+/-- Two-dimensional Gaussians belong to `W₀`.
+@isnad1 id=memw0.1h2v.s5.f0b18ffdd595 from=translated src=- shape=bb9d4a8a vocab=f08ebbad
+-/
 theorem aux_twoDimensionalGaussian_memW0 (q : Fin 2 → ℝ) (u : Fin 2)
     (hq : ∀ r, 0 < q r) :
     MemW0 (twoDimensionalGaussian q u) := by
@@ -661,7 +688,9 @@ theorem aux_twoDimensionalGaussian_memW0 (q : Fin 2 → ℝ) (u : Fin 2)
 noncomputable def aux_balancedScale (a : ℝ) (v : RealPlane) : RealPlane :=
   (a⁻¹ * v.1, a * v.2)
 
-/-- The balanced scaling preserves Lebesgue measure.-/
+/-- The balanced scaling preserves Lebesgue measure.
+@isnad1 id=measurep.1h1v.s5.64538a94e018 from=translated src=- shape=4e3c1c3f vocab=06549e87
+-/
 theorem aux_measurePreserving_balancedScale {a : ℝ} (ha : 0 < a) :
     MeasurePreserving (aux_balancedScale a) volume volume := by
   refine ⟨?_, ?_⟩
@@ -682,7 +711,9 @@ theorem aux_measurePreserving_balancedScale {a : ℝ} (ha : 0 < a) :
   rw [← ENNReal.ofReal_mul (abs_nonneg _)]
   simp [abs_of_pos ha, abs_of_pos hinv, ha.ne']
 
-/-- The nontrivial `W₁` coordinate change preserves Lebesgue measure.-/
+/-- The nontrivial `W₁` coordinate change preserves Lebesgue measure.
+@isnad1 id=measurep.0h0v.s8.90f8ddef6d5a from=translated src=- shape=e923bfea vocab=73a09f46
+-/
 theorem aux_measurePreserving_WOne :
     MeasurePreserving (aux_WOneContinuousLinearEquiv : RealPlane → RealPlane) volume volume := by
   have hshear₁ : MeasurePreserving (fun v : RealPlane => (v.1 + v.2, v.2)) volume volume := by
@@ -709,7 +740,9 @@ theorem aux_measurePreserving_WOne :
     rw [hsq]
     ring
 
-/-- Every normalized two-dimensional Gaussian has integral one.-/
+/-- Every normalized two-dimensional Gaussian has integral one.
+@isnad1 id=eq.1h2v.s6.e871ec2cabbd from=translated src=- shape=4bedc660 vocab=b5d5571d
+-/
 theorem aux_integral_twoDimensionalGaussian (q : Fin 2 → ℝ) (u : Fin 2)
     (hq : ∀ r, 0 < q r) :
     (∫ v : RealPlane, twoDimensionalGaussian q u v) = 1 := by
@@ -729,7 +762,9 @@ theorem aux_integral_twoDimensionalGaussian (q : Fin 2 → ℝ) (u : Fin 2)
       _ = ∫ v : RealPlane, g v := hchange
       _ = 1 := aux_integral_product_gaussianRescale q hq
 
-/-- Gamma Gaussians belong to `W₀`.-/
+/-- Gamma Gaussians belong to `W₀`.
+@isnad1 id=memw0.0h4v.s4.c72d50356120 from=translated src=- shape=f1da3d40 vocab=d9eaddbe
+-/
 theorem aux_gammaGaussian_memW0 {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) :
     MemW0 (gammaGaussian γ i j) := by
@@ -737,20 +772,26 @@ theorem aux_gammaGaussian_memW0 {n : ℕ} (γ : GeometricParameters n)
   intro r
   exact aux_spacedSequence_pos (γ.scales_spaced i r) j
 
-/-- The Gaussian difference belongs coordinatewise to `W₀`.-/
+/-- The Gaussian difference belongs coordinatewise to `W₀`.
+@isnad1 id=memdoubl.0h2v.s3.4d7bf7d8af7d from=translated src=- shape=e74561de vocab=a56b06a0
+-/
 theorem aux_gaussianDifference_mem {n : ℕ} (γ : GeometricParameters n) :
     MemDoubleSequence γ.k (gaussianDifference γ) := by
   intro i j
   exact aux_memW0_sub (aux_gammaGaussian_memW0 γ i (j - 1))
     (aux_gammaGaussian_memW0 γ i j)
 
-/-- A rescaled Gaussian is pointwise positive at every positive scale.-/
+/-- A rescaled Gaussian is pointwise positive at every positive scale.
+@isnad1 id=lt.1h2v.s4.39aba29a936c from=translated src=- shape=334a1355 vocab=bce8d8cd
+-/
 theorem aux_gaussianRescale_pos {t x : ℝ} (ht : 0 < t) :
     0 < gaussianRescale t x := by
   unfold gaussianRescale
   exact mul_pos (inv_pos.mpr ht) (aux_gaussian_pos _)
 
-/-- Two-dimensional Gaussians are nonnegative.-/
+/-- Two-dimensional Gaussians are nonnegative.
+@isnad1 id=le.1h3v.s5.af39b3fbaa6a from=translated src=- shape=22471ea7 vocab=05def0cb
+-/
 theorem aux_twoDimensionalGaussian_nonneg (q : Fin 2 → ℝ) (u : Fin 2)
     (hq : ∀ r, 0 < q r) (v : RealPlane) :
     0 ≤ twoDimensionalGaussian q u v := by
@@ -758,7 +799,9 @@ theorem aux_twoDimensionalGaussian_nonneg (q : Fin 2 → ℝ) (u : Fin 2)
   exact mul_nonneg (aux_gaussianRescale_pos (hq 0)).le
     (aux_gaussianRescale_pos (hq 1)).le
 
-/-- The absolute integral of a normalized two-dimensional Gaussian is one.-/
+/-- The absolute integral of a normalized two-dimensional Gaussian is one.
+@isnad1 id=eq.1h2v.s6.6594b628a571 from=translated src=- shape=fd268cad vocab=a89d85d8
+-/
 theorem aux_integral_abs_twoDimensionalGaussian (q : Fin 2 → ℝ) (u : Fin 2)
     (hq : ∀ r, 0 < q r) :
     (∫ v : RealPlane, |twoDimensionalGaussian q u v|) = 1 := by
@@ -770,7 +813,9 @@ theorem aux_integral_abs_twoDimensionalGaussian (q : Fin 2 → ℝ) (u : Fin 2)
           exact abs_of_nonneg (aux_twoDimensionalGaussian_nonneg q u hq v)
     _ = 1 := aux_integral_twoDimensionalGaussian q u hq
 
-/-- The absolute integral of each gamma Gaussian is one.-/
+/-- The absolute integral of each gamma Gaussian is one.
+@isnad1 id=eq.0h4v.s5.5e1191a12d1c from=translated src=- shape=58cf726e vocab=25b6d6a1
+-/
 theorem aux_integral_abs_gammaGaussian {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) :
     (∫ v : RealPlane, |gammaGaussian γ i j v|) = 1 := by
@@ -785,7 +830,9 @@ noncomputable def aux_gammaBoundaryProduct {n : ℕ} (γ : GeometricParameters n
     MKernel γ.k := fun y =>
   ∏ m, gammaGaussian γ m j (y.1 m, y.2 m)
 
-/-- The boundary Gaussian product has absolute integral one.-/
+/-- The boundary Gaussian product has absolute integral one.
+@isnad1 id=eq.0h3v.s7.e705cdd2b8a5 from=translated src=- shape=187caaa1 vocab=d66b36af
+-/
 theorem aux_integral_abs_gammaBoundaryProduct {n : ℕ} (γ : GeometricParameters n) (j : ℤ) :
     (∫ y, |aux_gammaBoundaryProduct γ j y|) = 1 := by
   let e := MeasurableEquiv.arrowProdEquivProdArrow ℝ ℝ (Fin γ.k)
@@ -810,7 +857,9 @@ theorem aux_integral_abs_gammaBoundaryProduct {n : ℕ} (γ : GeometricParameter
           (fun i => fun x : RealPlane => |gammaGaussian γ i j x|))
     _ = 1 := by simp [aux_integral_abs_gammaGaussian]
 
-/-- The gamma boundary product belongs to `W₀`.-/
+/-- The gamma boundary product belongs to `W₀`.
+@isnad1 id=memw0.0h3v.s6.7769bb423ac2 from=translated src=- shape=0058e31e vocab=08554f8c
+-/
 theorem aux_gammaBoundaryProduct_memW0 {n : ℕ} (γ : GeometricParameters n) (j : ℤ) :
     MemW0 (aux_gammaBoundaryProduct γ j) := by
   let e : EuclideanSpace ℝ (Fin γ.k) ≃L[ℝ] RealVector γ.k :=
@@ -875,7 +924,9 @@ theorem aux_gammaBoundaryProduct_memW0 {n : ℕ} (γ : GeometricParameters n) (j
   intro i hi
   simp [f, π, e, e2]
 
-/-- The `L¹` norm of every gamma boundary product is one.-/
+/-- The `L¹` norm of every gamma boundary product is one.
+@isnad1 id=eq.0h3v.s7.a7dccfe6c3f3 from=translated src=- shape=4fe68f3a vocab=7205889f
+-/
 theorem aux_eLpNorm_one_gammaBoundaryProduct {n : ℕ} (γ : GeometricParameters n) (j : ℤ) :
     eLpNorm (aux_gammaBoundaryProduct γ j) 1 volume = 1 := by
   let : Measure.IsAddHaarMeasure (volume : Measure (RealVector γ.k)) :=
@@ -891,6 +942,9 @@ theorem aux_eLpNorm_one_gammaBoundaryProduct {n : ℕ} (γ : GeometricParameters
   simpa [Real.norm_eq_abs] using congrArg ENNReal.ofReal
     (aux_integral_abs_gammaBoundaryProduct γ j)
 
+/--
+@isnad1 id=eq.0h5v.s7.503e2c1193e9 from=translated src=- shape=e6f95908 vocab=58a46f1b
+-/
 theorem aux_sandwich_factor {k : ℕ} (i : Fin k) (a b c : Fin k → ℝ) :
     (∏ m, if m < i then a m else if i < m then b m else c m) =
       (∏ m ∈ Finset.univ.filter (fun m => m < i), a m) * c i *
@@ -909,7 +963,9 @@ theorem aux_sandwich_factor {k : ℕ} (i : Fin k) (a b c : Fin k → ℝ) :
   have hEq : m = i := by omega
   simp [hEq]
 
-/-- A finite tensor product of two-dimensional Wiener functions is Wiener.-/
+/-- A finite tensor product of two-dimensional Wiener functions is Wiener.
+@isnad1 id=memw0.1h2v.s7.d6c347002b78 from=translated src=- shape=4b8a255c vocab=c4eeec9d
+-/
 theorem aux_fintype_plane_product_memW0 (d : ℕ)
     (f : Fin d → RealPlane → ℝ) (hf : ∀ a, MemW0 (f a)) :
     MemW0 (fun y : RealVector d × RealVector d =>
@@ -975,14 +1031,18 @@ theorem aux_fintype_plane_product_memW0 (d : ℕ)
   intro a ha
   simp [g, π, e, e2]
 
-/-- A finite product of coordinatewise plane Wiener functions is Wiener.-/
+/-- A finite product of coordinatewise plane Wiener functions is Wiener.
+@isnad1 id=memw0.1h2v.s7.d6c347002b78 from=translated src=- shape=4b8a255c vocab=c4eeec9d
+-/
 theorem fintype_plane_product_memW0 (d : ℕ)
     (f : Fin d → RealPlane → ℝ) (hf : ∀ a, MemW0 (f a)) :
     MemW0 (fun y : RealVector d × RealVector d =>
       ∏ a, f a (y.1 a, y.2 a)) :=
   aux_fintype_plane_product_memW0 d f hf
 
-/-- A sandwich built from coordinatewise Wiener factors is a kernel sequence.-/
+/-- A sandwich built from coordinatewise Wiener factors is a kernel sequence.
+@isnad1 id=memkerne.1h4v.s4.156f53a3fedf from=translated src=- shape=00eea485 vocab=1bc8ff92
+-/
 theorem sandwichKernel_memKernelSequence {n : ℕ} (γ : GeometricParameters n)
     (X : DoubleSequence γ.k) (hX : MemDoubleSequence γ.k X) (i : Fin γ.k) :
     MemKernelSequence γ.k (sandwichKernel γ X i) := by
@@ -1023,6 +1083,9 @@ noncomputable def aux_positiveTermsOutside {n : ℕ} (γ : GeometricParameters n
       gammaGaussian γ (Fin.cast hK (i'.succAbove r)) j (z.1 r, z.2 r)
     else gammaGaussian γ (Fin.cast hK (i'.succAbove r)) (j - 1) (z.1 r, z.2 r)
 
+/--
+@isnad1 id=memw0.0h4v.s8.932d8d777787 from=translated src=- shape=df2e462e vocab=ccb4bdbf
+-/
 theorem aux_positiveTermsOutside_memW0 {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) : MemW0 (aux_positiveTermsOutside γ i j) := by
   let hK : γ.k - 1 + 1 = γ.k := Nat.sub_add_cancel γ.one_le_k
@@ -1040,6 +1103,9 @@ theorem aux_positiveTermsOutside_memW0 {n : ℕ} (γ : GeometricParameters n)
   have hmain := aux_fintype_plane_product_memW0 (γ.k - 1) g hg
   simpa [aux_positiveTermsOutside, g, hK, i'] using hmain
 
+/--
+@isnad1 id=le.0h5v.s4.686cbeb86140 from=translated src=- shape=0008e9bb vocab=5d088723
+-/
 theorem aux_sk_gammaGaussian_nonneg {n : ℕ} (γ : GeometricParameters n)
     (a : Fin γ.k) (j : ℤ) (v : RealPlane) : 0 ≤ gammaGaussian γ a j v := by
   unfold gammaGaussian
@@ -1047,6 +1113,9 @@ theorem aux_sk_gammaGaussian_nonneg {n : ℕ} (γ : GeometricParameters n)
   intro r
   exact aux_spacedSequence_pos (γ.scales_spaced a r) j
 
+/--
+@isnad1 id=le.0h5v.s5.ff3b693b2408 from=translated src=- shape=141670b9 vocab=4e84382a
+-/
 theorem aux_positiveTermsOutside_nonneg {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) : ∀ z, 0 ≤ aux_positiveTermsOutside γ i j z := by
   intro z
@@ -1055,6 +1124,9 @@ theorem aux_positiveTermsOutside_nonneg {n : ℕ} (γ : GeometricParameters n)
   intro r hr
   split_ifs <;> apply aux_sk_gammaGaussian_nonneg
 
+/--
+@isnad1 id=other.0h4v.s8.8cf95eb71fc4 from=translated src=- shape=e0d865da vocab=cae8175b
+-/
 theorem aux_prod_univ_succAbove_cast {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (A : Fin γ.k → ℝ) :
     let hK : γ.k - 1 + 1 = γ.k := Nat.sub_add_cancel γ.one_le_k
@@ -1077,6 +1149,9 @@ theorem aux_prod_univ_succAbove_cast {n : ℕ} (γ : GeometricParameters n)
     _ = A i * ∏ r : Fin (γ.k - 1), A (Fin.cast hK (i'.succAbove r)) := by
       simp [A', i']
 
+/--
+@isnad1 id=eq.1h6v.s5.3ec59bbbd077 from=translated src=- shape=9dcf357e vocab=fb371dd5
+-/
 theorem aux_sandwichKernel_eq_tensorSquareExtension {n : ℕ}
     (γ : GeometricParameters n) (X : DoubleSequence γ.k) (i : Fin γ.k)
     (j : ℤ) (f : ℝ → ℝ) (hX : X i j = tensorSquare f) :
@@ -1146,7 +1221,9 @@ Then for each $i\in [k)$, $j\in\mathbb{Z}$, and for all $\mathbf{F}\in {\mathfra
 
 $$
     \Lambda_k(\mathbf{M}(\gamma,X,i)_j)(\mathbf{F})\ge 0.
-$$-/
+$$
+@isnad1 id=le.3h6v.s9.a9d169d08184 from=translated src=- shape=0ca2e481 vocab=04e84c4e
+-/
 theorem positiveTerms {n : ℕ} (γ : GeometricParameters n)
     (X : DoubleSequence γ.k) (_hX : MemDoubleSequence γ.k X)
     (hfactor : ∀ i j, ∃ f : ℝ → ℝ, MemW0 f ∧
@@ -1165,7 +1242,9 @@ theorem positiveTerms {n : ℕ} (γ : GeometricParameters n)
     (aux_positiveTermsOutside γ i j) (aux_positiveTermsOutside_memW0 γ i j)
     (aux_positiveTermsOutside_nonneg γ i j) f hf F hF
 
-/-- Inserting normalized Gaussian factors around a middle factor preserves its `L¹` norm.-/
+/-- Inserting normalized Gaussian factors around a middle factor preserves its `L¹` norm.
+@isnad1 id=eq.1h5v.s8.2ebfa9b95ef4 from=translated src=- shape=920640e6 vocab=9745bd12
+-/
 theorem aux_eLpNorm_one_sandwichKernel {n : ℕ} (γ : GeometricParameters n)
     (X : DoubleSequence γ.k) (i : Fin γ.k) (j : ℤ) (hX : Integrable (X i j)) :
     eLpNorm (sandwichKernel γ X i j) 1 volume = eLpNorm (X i j) 1 volume := by
@@ -1248,7 +1327,9 @@ theorem aux_eLpNorm_one_sandwichKernel {n : ℕ} (γ : GeometricParameters n)
       filter_upwards [] with x
       rw [Real.norm_eq_abs]
 
-/-- A single sandwich sum telescopes to two Gaussian boundary products.-/
+/-- A single sandwich sum telescopes to two Gaussian boundary products.
+@isnad1 id=eq.0h4v.s6.9491a72ae1ea from=translated src=- shape=ca90de1c vocab=1578a242
+-/
 theorem aux_fixed_telescope {n : ℕ} (γ : GeometricParameters n) (j : ℤ)
     (y : RealVector γ.k × RealVector γ.k) :
     (∑ i, sandwichKernel γ (gaussianDifference γ) i j y) =
@@ -1259,7 +1340,9 @@ theorem aux_fixed_telescope {n : ℕ} (γ : GeometricParameters n) (j : ℤ)
       (fun m => gammaGaussian γ m (j - 1) (y.1 m, y.2 m))
       (fun m => gammaGaussian γ m j (y.1 m, y.2 m)))
 
-/-- The scale sum of sandwich terms telescopes to its two endpoint products.-/
+/-- The scale sum of sandwich terms telescopes to its two endpoint products.
+@isnad1 id=eq.0h4v.s6.03d807600c50 from=translated src=- shape=c37b2ac5 vocab=93d34dc6
+-/
 theorem aux_double_telescope {n : ℕ} (γ : GeometricParameters n) (J : ℕ)
     (y : RealVector γ.k × RealVector γ.k) :
     (∑ j ∈ Finset.range J,
@@ -1268,7 +1351,9 @@ theorem aux_double_telescope {n : ℕ} (γ : GeometricParameters n) (J : ℕ)
   simp_rw [aux_fixed_telescope]
   exact aux_int_telescope (fun j => aux_gammaBoundaryProduct γ j y) J
 
-/-- A kernel sequence with two unit-`L¹` boundary terms has seminorm at most two.-/
+/-- A kernel sequence with two unit-`L¹` boundary terms has seminorm at most two.
+@isnad1 id=le.5h4v.s8.a1700f7ecd27 from=translated src=- shape=7640e299 vocab=7ce23d01
+-/
 theorem aux_kernelSequenceSeminorm_le_two {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     (B : ℤ → MKernel k) (M : KernelSequence k)
     (hB : ∀ j, MemW0 (B j))
@@ -1323,7 +1408,9 @@ theorem aux_kernelSequenceSeminorm_le_two {n k : ℕ} (hk : 1 ≤ k) (hkn : k �
 
 /--
 A telescoping kernel sequence is controlled by two uniformly `L¹`-bounded
-boundary terms.-/
+boundary terms.
+@isnad1 id=le.6h5v.s8.2982e50b7584 from=translated src=- shape=877925d6 vocab=3305d06e
+-/
 theorem aux_kernelSequenceSeminorm_le_of_telescope
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n) (C : ℝ) (hC : 0 ≤ C)
     (B : ℤ → MKernel k) (M : KernelSequence k)
@@ -1393,7 +1480,9 @@ Then $Y_\gamma\in \mathcal{X}_k$ and
 
 $$
     \|\sum_{i\in [k)} \mathbf{M}(\gamma,Y_\gamma,i)\|_{{\rm M}(k)}\le 2.
-$$-/
+$$
+@isnad1 id=and.0h2v.s6.e1e340404d1d from=translated src=- shape=dbf7a495 vocab=301c8478
+-/
 theorem telescopingTerms {n : ℕ} (γ : GeometricParameters n) :
     MemDoubleSequence γ.k (gaussianDifference γ) ∧
       kernelSequenceSeminorm n γ.k γ.one_le_k γ.k_le_n

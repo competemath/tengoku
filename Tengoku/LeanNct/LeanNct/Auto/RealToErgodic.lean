@@ -55,6 +55,9 @@ noncomputable def aux_ergodicAverage {X : Type*} [MeasurableSpace X]
   fun x ↦ (N : ℂ)⁻¹ * ∑ m ∈ Finset.range N,
     ∏ i, f i ((S.transformation i)^[m] x)
 
+/--
+@isnad1 id=memlp.2h6v.s7.b097eecd509a from=translated src=- shape=72f8d54e vocab=0b612c64
+-/
 theorem aux_ergodicProduct_memLp_two {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (hn : 0 < n)
     (S : aux_ErgodicSystem X μ n) (m : ℕ) (f : Fin n → X → ℂ)
@@ -74,6 +77,9 @@ theorem aux_ergodicProduct_memLp_two {X : Type*} [MeasurableSpace X]
       _ = 2 := by rw [ENNReal.inv_mul_cancel hn0 hntop, mul_one]
   rwa [hsum] at hprod
 
+/--
+@isnad1 id=memlp.2h6v.s7.987daf8dc4e7 from=translated src=- shape=444cdf6b vocab=2b4d4b30
+-/
 theorem aux_ergodicAverage_memLp_two {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n N : ℕ} (hn : 0 < n)
     (S : aux_ErgodicSystem X μ n) (f : Fin n → X → ℂ)
@@ -119,6 +125,9 @@ noncomputable abbrev _root_.Auto.rteTwistedAverageAtScale {n : ℕ} (t : ℝ) (�
     (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :=
   Auto.aux_rte_twistedAverageAtScale t χ f
 
+/--
+@isnad1 id=eq.0h4v.s5.6ec8c6b1abcf from=translated src=- shape=f0914b5b vocab=e4034823
+-/
 theorem twistedAverageAtScale_eq_reduction {n : ℕ} (t : ℝ) (χ : ℝ → ℝ)
     (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
     aux_rte_twistedAverageAtScale t χ f =
@@ -150,7 +159,9 @@ $$
 C_{\text{main twisted theorem}}=2^{666}.
 $$
 
-For the displayed named constants, see `Auto.aux_main_twisted_theorem`.-/
+For the displayed named constants, see `Auto.aux_main_twisted_theorem`.
+@isnad1 id=le.5h4v.s10.723748d9144f from=translated src=- shape=137b3f3a vocab=f9d95a2c
+-/
 theorem aux_main_twisted_theorem {n : ℕ} (hn : 2 ≤ n) :
     ∀ (J : ℕ), 0 < J → ∀ (t : Fin (J + 1) → ℝ),
       StrictMono t → (∀ j, 0 < t j) →
@@ -170,6 +181,9 @@ theorem aux_main_twisted_theorem {n : ℕ} (hn : 2 ≤ n) :
     Auto.unitIntervalIndicator] using
     Auto.mainTwistedTheoremReductionBound hn
 
+/--
+@isnad1 id=le.4h4v.s10.b016b6ef2dec from=translated src=- shape=7d2ef6cc vocab=8fcbd8ba
+-/
 theorem aux_nCT_main_twisted_theorem {n : ℕ} (hn : 2 ≤ n) {J : ℕ}
     {t : Fin (J + 1) → ℝ} (ht : ∀ i, 0 < t i)
     (ht' : StrictMono t)
@@ -226,7 +240,9 @@ noncomputable def aux_ergodicJumpEnergy {X : Type*} [MeasurableSpace X]
     (fun x ↦ aux_ergodicAverage S (N j.succ) f x -
       aux_ergodicAverage S (N j.castSucc) f x) 2 μ ^ 2
 
-/-- Complexification commutes with the finite ergodic averages.-/
+/-- Complexification commutes with the finite ergodic averages.
+@isnad1 id=eq.0h7v.s5.a7e97af569df from=translated src=- shape=3371eb11 vocab=e675508a
+-/
 theorem aux_ergodicAverage_ofReal {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : aux_ErgodicSystem X μ n)
     (N : ℕ) (f : Fin n → X → ℝ) (x : X) :
@@ -236,7 +252,9 @@ theorem aux_ergodicAverage_ofReal {X : Type*} [MeasurableSpace X]
 
 /--
 The `L²` distance between two packaged averages is their raw `eLpNorm`
-distance.-/
+distance.
+@isnad1 id=eq.2h7v.s11.ba639f68f439 from=translated src=- shape=97fbd57b vocab=a914a982
+-/
 theorem aux_ergodicAverageLp_enorm_sub {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n N M : ℕ} (hn : 0 < n)
     (S : aux_ErgodicSystem X μ n) (f : Fin n → X → ℂ)
@@ -256,7 +274,9 @@ theorem aux_ergodicAverageLp_enorm_sub {X : Type*} [MeasurableSpace X]
 
 /--
 The raw jump energy agrees with the jump energy of the corresponding
-`L²`-valued sequence.-/
+`L²`-valued sequence.
+@isnad1 id=eq.2h7v.s11.3d1b3999252f from=translated src=- shape=b6d380dd vocab=37eae3a5
+-/
 theorem aux_ergodicJumpEnergy_eq_Lp_jumpEnergy {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n J : ℕ} (hn : 0 < n)
     (S : aux_ErgodicSystem X μ n) (N : Fin (J + 1) → ℕ)
@@ -302,6 +322,9 @@ noncomputable def decreasingSort {J : ℕ} (d : Fin J → ℝ) : Fin J → Fin J
     simpa [X] using Fintype.card_congr (indexedEquiv J))
   exact fun i ↦ (e i).val
 
+/--
+@isnad1 id=le.1h4v.s5.4e0d9aeccad3 from=translated src=- shape=15211aca vocab=e3129d84
+-/
 theorem decreasingSort_mono {J : ℕ} (d : Fin J → ℝ) {i j : Fin J} (hij : i ≤ j) :
     d (decreasingSort d j) ≤ d (decreasingSort d i) := by
   unfold decreasingSort
@@ -326,6 +349,9 @@ theorem decreasingSort_mono {J : ℕ} (d : Fin J → ℝ) {i j : Fin J} (hij : i
     exact he.le
   · exact le_of_eq (congrArg OrderDual.ofDual he.1).symm
 
+/--
+@isnad1 id=bijectiv.0h2v.s3.e6e98162a73e from=translated src=- shape=a59a2257 vocab=b2fa901a
+-/
 theorem decreasingSort_bijective {J : ℕ} (d : Fin J → ℝ) :
     Function.Bijective (decreasingSort d) := by
   unfold decreasingSort
@@ -350,6 +376,9 @@ theorem decreasingSort_bijective {J : ℕ} (d : Fin J → ℝ) :
     obtain ⟨i, hi⟩ := e.surjective ⟨x⟩
     exact ⟨i, congrArg Indexed.val hi⟩
 
+/--
+@isnad1 id=le.2h2v.s6.5c59ece74d52 from=translated src=- shape=f235f4c3 vocab=36318e30
+-/
 theorem rpow_interval_lower {p : ℝ} (hp : 1 < p) (m : ℕ) (hm : 1 ≤ m) :
     ((m + 1 : ℕ) : ℝ) ^ (-p) ≤
       ∫ x in (m : ℝ)..((m + 1 : ℕ) : ℝ), x ^ (-p) := by
@@ -374,6 +403,9 @@ theorem rpow_interval_lower {p : ℝ} (hp : 1 < p) (m : ℕ) (hm : 1 ≤ m) :
       intro x hx
       exact Real.rpow_le_rpow_of_nonpos (lt_of_lt_of_le hmR hx.1) hx.2 (by linarith)
 
+/--
+@isnad1 id=le.2h2v.s6.a908e47206eb from=translated src=- shape=d7875a61 vocab=bcce1441
+-/
 theorem pseries_le_one_add_integral {p : ℝ} (hp : 1 < p) (J : ℕ) (hJ : 1 ≤ J) :
     (∑ i ∈ Finset.range J, ((i + 1 : ℕ) : ℝ) ^ (-p)) ≤
       1 + ∫ x in (1 : ℝ)..(J : ℝ), x ^ (-p) := by
@@ -407,6 +439,9 @@ theorem pseries_le_one_add_integral {p : ℝ} (hp : 1 < p) (J : ℕ) (hJ : 1 ≤
       _ = 1 + ∫ x in (1 : ℝ)..((m + 1 : ℕ) : ℝ), x ^ (-p) := by
         rw [intervalIntegral.integral_add_adjacent_intervals hfirst hsecond]
 
+/--
+@isnad1 id=le.1h2v.s6.fca77c1aa15d from=translated src=- shape=18c24c27 vocab=d4df638a
+-/
 theorem pseries_le {p : ℝ} (hp : 1 < p) (J : ℕ) :
     (∑ i ∈ Finset.range J, ((i + 1 : ℕ) : ℝ) ^ (-p)) ≤ p / (p - 1) := by
   by_cases hJ : J = 0
@@ -437,6 +472,9 @@ theorem pseries_le {p : ℝ} (hp : 1 < p) (J : ℕ) :
       rw [hident]
       exact (div_le_div_iff_of_pos_right hdenom).mpr (by linarith)
 
+/--
+@isnad1 id=le.5h5v.s7.e8b8929e9253 from=translated src=- shape=1aa311e0 vocab=a7d7354d
+-/
 theorem pointwise_decay_sum_bound {J : ℕ} {d : Fin J → ℝ}
     {C r r0 : ℝ} (hC : 0 ≤ C) (hr0 : 0 < r0) (hr : r0 < r)
     (hd : ∀ i, 0 ≤ d i)
@@ -490,6 +528,9 @@ def doubledEndpoint {J k : ℕ} (N : Fin (J + 1) → ℕ)
     (e : Fin k → Fin J) (q : Fin (k * 2)) : ℕ :=
   N (if q.val % 2 = 0 then (e q.divNat).castSucc else (e q.divNat).succ)
 
+/--
+@isnad1 id=strictmo.2h4v.s7.7fe4a5a03a54 from=translated src=- shape=e8c2c97e vocab=41aaf73a
+-/
 theorem doubledEndpoint_strictMono {J k : ℕ} (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (e : Fin k → Fin J)
     (hgap : ∀ i j, i < j → (e i).val + 1 < (e j).val) :
@@ -540,6 +581,9 @@ def allJumpStart {k : ℕ} (hk : 0 < k) (q : Fin (k * 2 - 1)) : Fin (k * 2) :=
 def allJumpEnd {k : ℕ} (hk : 0 < k) (q : Fin (k * 2 - 1)) : Fin (k * 2) :=
   Fin.cast (by omega) q.succ
 
+/--
+@isnad1 id=and.1h5v.s6.abbb68435cb0 from=translated src=- shape=e394cd54 vocab=4f45ac2e
+-/
 theorem doubledEndpoint_evenJump {J k : ℕ} (N : Fin (J + 1) → ℕ)
     (e : Fin k → Fin J) (hk : 0 < k) (i : Fin k) :
     doubledEndpoint N e (evenJumpStart hk i) = N (e i).castSucc ∧
@@ -554,6 +598,9 @@ theorem doubledEndpoint_evenJump {J k : ℕ} (N : Fin (J + 1) → ℕ)
       simp [evenJumpEnd, evenJumpPos]
     simp [doubledEndpoint, hdiv, hmod]
 
+/--
+@isnad1 id=injectiv.1h1v.s5.240729deffd2 from=translated src=- shape=9a587133 vocab=caecb192
+-/
 theorem evenJumpPos_injective {k : ℕ} (hk : 0 < k) :
     Function.Injective (evenJumpPos hk) := by
   intro i j hij
@@ -562,6 +609,9 @@ theorem evenJumpPos_injective {k : ℕ} (hk : 0 < k) :
   simp only [evenJumpPos, Fin.val_mk] at hval
   omega
 
+/--
+@isnad1 id=le.1h6v.s8.4faaeae7521c from=translated src=- shape=00c9dbc0 vocab=b50e9fbd
+-/
 theorem selected_energy_le_doubled_energy {B : Type*} [SeminormedAddCommGroup B]
     {J k : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ) (e : Fin k → Fin J) (hk : 0 < k) :
     (∑ i, ‖a (N (e i).succ) - a (N (e i).castSucc)‖ ^ (2 : ℕ)) ≤
@@ -602,6 +652,9 @@ theorem selected_energy_le_doubled_energy {B : Type*} [SeminormedAddCommGroup B]
     _ = ∑ q, ‖a (doubledEndpoint N e (allJumpEnd hk q)) -
         a (doubledEndpoint N e (allJumpStart hk q))‖ ^ (2 : ℕ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7b53f00e6338 from=translated src=- shape=139656d1 vocab=ae631152
+-/
 theorem sum_orderEmbOfFin {J : ℕ} (s : Finset (Fin J)) (f : Fin J → ℝ) :
     (∑ i, f (s.orderEmbOfFin rfl i)) = ∑ j ∈ s, f j := by
   calc
@@ -613,6 +666,9 @@ theorem sum_orderEmbOfFin {J : ℕ} (s : Finset (Fin J)) (f : Fin J → ℝ) :
       symm
       exact Finset.sum_subtype s (by simp) f
 
+/--
+@isnad1 id=le.7h8v.s9.eadad1be523a from=translated src=- shape=18e73180 vocab=34e11f1a
+-/
 theorem selected_energy_bound {B : Type*} [SeminormedAddCommGroup B]
     {J k : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (hNpos : ∀ j, 0 < N j)
@@ -672,6 +728,9 @@ theorem selected_energy_bound {B : Type*} [SeminormedAddCommGroup B]
     _ ≤ D * ((k * 2 - 1 : ℕ) : ℝ) ^ (1 - 2 / r0) := hj
     _ ≤ D * ((k * 2 : ℕ) : ℝ) ^ (1 - 2 / r0) := by gcongr
 
+/--
+@isnad1 id=lt.1h4v.s10.09374902279b from=translated src=- shape=d4b97fa0 vocab=dcff4a43
+-/
 theorem even_orderEmb_gap {J : ℕ} (s : Finset (Fin J)) :
     ∀ i j : Fin ((s.filter fun x ↦ x.val % 2 = 0).card), i < j →
       ((s.filter fun x ↦ x.val % 2 = 0).orderEmbOfFin rfl i).val + 1 <
@@ -691,6 +750,9 @@ theorem even_orderEmb_gap {J : ℕ} (s : Finset (Fin J)) :
   exact_mod_cast (by omega : (t.orderEmbOfFin rfl i).val + 1 <
     (t.orderEmbOfFin rfl j).val)
 
+/--
+@isnad1 id=lt.1h4v.s10.b947365d4a34 from=translated src=- shape=d4b97fa0 vocab=dcff4a43
+-/
 theorem odd_orderEmb_gap {J : ℕ} (s : Finset (Fin J)) :
     ∀ i j : Fin ((s.filter fun x ↦ x.val % 2 ≠ 0).card), i < j →
       ((s.filter fun x ↦ x.val % 2 ≠ 0).orderEmbOfFin rfl i).val + 1 <
@@ -710,6 +772,9 @@ theorem odd_orderEmb_gap {J : ℕ} (s : Finset (Fin J)) :
   exact_mod_cast (by omega : (t.orderEmbOfFin rfl i).val + 1 <
     (t.orderEmbOfFin rfl j).val)
 
+/--
+@isnad1 id=le.6h7v.s9.2808ccdef33a from=translated src=- shape=5fd158aa vocab=7c811e7f
+-/
 theorem finset_selected_energy_bound {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (hNpos : ∀ j, 0 < N j)
@@ -743,11 +808,17 @@ noncomputable def sortedPrefix {J : ℕ} (d : Fin J → ℝ) (m : Fin J) :
     Finset (Fin J) :=
   (Finset.Iic m).image (decreasingSort d)
 
+/--
+@isnad1 id=eq.0h3v.s5.bd23d5861dd9 from=translated src=- shape=af1dc7de vocab=39c478c4
+-/
 theorem sortedPrefix_card {J : ℕ} (d : Fin J → ℝ) (m : Fin J) :
     (sortedPrefix d m).card = m.val + 1 := by
   unfold sortedPrefix
   rw [Finset.card_image_of_injective _ (decreasingSort_bijective d).1, Fin.card_Iic]
 
+/--
+@isnad1 id=le.5h7v.s9.2a0281a7fb9f from=translated src=- shape=a72d7b65 vocab=2db1eb68
+-/
 theorem sorted_prefix_energy_bound {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (hNpos : ∀ j, 0 < N j)
@@ -810,6 +881,9 @@ theorem sorted_prefix_energy_bound {B : Type*} [SeminormedAddCommGroup B]
       gcongr
     _ = 2 * D * ((2 * (m.val + 1) : ℕ) : ℝ) ^ (1 - 2 / r0) := by ring
 
+/--
+@isnad1 id=le.1h3v.s6.e215bfb284e3 from=translated src=- shape=f1bce98e vocab=ada6559f
+-/
 theorem sorted_prefix_lower {J : ℕ} (d : Fin J → ℝ)
     (hd : ∀ j, 0 ≤ d j) (m : Fin J) :
     ((m.val + 1 : ℕ) : ℝ) * (d (decreasingSort d m)) ^ (2 : ℕ) ≤
@@ -829,6 +903,9 @@ theorem sorted_prefix_lower {J : ℕ} (d : Fin J → ℝ)
       intro i hi j hj hij
       exact (decreasingSort_bijective d).1 hij
 
+/--
+@isnad1 id=eq.3h3v.s7.448579dcb7ff from=translated src=- shape=f09fb2d9 vocab=aea5d313
+-/
 theorem decay_constant_square {r0 D x : ℝ} (hr0 : 0 < r0)
     (hD : 0 ≤ D) (hx : 0 < x) :
     x * (2 ^ (1 - 1 / r0) * √D * x ^ (-1 / r0)) ^ (2 : ℕ) =
@@ -870,6 +947,9 @@ theorem decay_constant_square {r0 D x : ℝ} (hr0 : 0 < r0)
       rw [htwo, Real.mul_rpow (by norm_num : (0 : ℝ) ≤ 2) hx.le]
       ring
 
+/--
+@isnad1 id=le.5h7v.s9.14cd02b9f202 from=translated src=- shape=778620f1 vocab=5634efce
+-/
 theorem sorted_pointwise_decay {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (hNpos : ∀ j, 0 < N j)
@@ -915,10 +995,16 @@ theorem sorted_pointwise_decay {B : Type*} [SeminormedAddCommGroup B]
   change d (decreasingSort d m) ≤ R
   exact le_of_sq_le_sq hsq hR
 
+/--
+@isnad1 id=eq.0h3v.s5.2c553802fbfc from=translated src=- shape=b7556ed2 vocab=af33930a
+-/
 theorem sum_decreasingSort {J : ℕ} (d : Fin J → ℝ) (f : Fin J → ℝ) :
     (∑ i, f (decreasingSort d i)) = ∑ j, f j := by
   exact Function.Bijective.sum_comp (decreasingSort_bijective d) f
 
+/--
+@isnad1 id=le.6h7v.s8.6b16e7ad99c3 from=translated src=- shape=dc65ee92 vocab=2cf21cb0
+-/
 theorem chain_variation_rpow_bound {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (hNpos : ∀ j, 0 < N j)
@@ -946,6 +1032,9 @@ theorem chain_variation_rpow_bound {B : Type*} [SeminormedAddCommGroup B]
     _ ≤ C ^ r * (r / (r - r0)) := hsum
     _ = (2 ^ (1 - 1 / r0) * √D) ^ r * (r / (r - r0)) := by rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.85b50a5b26c6 from=translated src=- shape=c307d476 vocab=06f772d0
+-/
 theorem ennreal_energy_eq_ofReal {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ) {r : ℝ} (hr : 0 ≤ r) :
     (∑ j : Fin J,
@@ -961,6 +1050,9 @@ theorem ennreal_energy_eq_ofReal {B : Type*} [SeminormedAddCommGroup B]
   · intro j _
     exact Real.rpow_nonneg (norm_nonneg _) _
 
+/--
+@isnad1 id=le.2h7v.s7.1e7d6f8a0965 from=translated src=- shape=c8e1d9e1 vocab=cf68a2cd
+-/
 theorem ennreal_chain_root_le_of_real_bound {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ) {r C q : ℝ}
     (hr : 0 < r)
@@ -973,6 +1065,9 @@ theorem ennreal_chain_root_le_of_real_bound {B : Type*} [SeminormedAddCommGroup 
   · exact ENNReal.ofReal_le_ofReal hsum
   · exact inv_nonneg.mpr hr.le
 
+/--
+@isnad1 id=le.4h5v.s8.c1bf670c4fee from=translated src=- shape=f24caa52 vocab=497cd579
+-/
 theorem naturalVariationSeminorm_le_jump_bound {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {r0 D r : ℝ} (hr0 : 2 ≤ r0) (hD : 0 ≤ D) (hr : r0 < r)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -991,6 +1086,9 @@ theorem naturalVariationSeminorm_le_jump_bound {B : Type*} [SeminormedAddCommGro
   exact ennreal_chain_root_le_of_real_bound a N.1 hrpos
     (chain_variation_rpow_bound a N.1 N.2.1 N.2.2 hr0 hD hr hjump)
 
+/--
+@isnad1 id=eq.3h3v.s6.6a8242efe6c8 from=translated src=- shape=80b78c60 vocab=88d50e0e
+-/
 theorem ennreal_root_constant_eq {C q r : ℝ} (hC : 0 ≤ C) (hq : 0 ≤ q)
     (hr : 0 < r) :
     (ENNReal.ofReal (C ^ r * q)) ^ r⁻¹ =
@@ -1005,7 +1103,9 @@ theorem ennreal_root_constant_eq {C q r : ℝ} (hC : 0 ≤ C) (hq : 0 ≤ q)
 
 /--
 The abstract jump estimate controls natural-number variation, with the
-exact constant in the blueprint.-/
+exact constant in the blueprint.
+@isnad1 id=le.4h5v.s8.ede7d103af4e from=translated src=- shape=889fa40c vocab=5e254f71
+-/
 theorem jump_estimates_imply_variation {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {r0 D r : ℝ} (hr0 : 2 ≤ r0) (hD : 0 ≤ D) (hr : r0 < r)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -1025,6 +1125,9 @@ theorem jump_estimates_imply_variation {B : Type*} [SeminormedAddCommGroup B]
   rw [ennreal_root_constant_eq hC hq hrpos] at h
   simpa [mul_assoc, mul_left_comm, mul_comm] using h
 
+/--
+@isnad1 id=le.4h5v.s8.95550fa00f87 from=translated src=- shape=758684b3 vocab=30bf2fa3
+-/
 theorem chain_endpoint_energy_bound {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ)
     {D : ℝ} (hD : 0 ≤ D)
@@ -1040,7 +1143,9 @@ theorem chain_endpoint_energy_bound {B : Type*} [SeminormedAddCommGroup B]
   have hj := hjump J (Nat.one_le_iff_ne_zero.mpr hJ) N hN hNpos
   simpa using hj
 
-/-- The endpoint `r₀ = 2` form of `jump_estimates_imply_variation`.-/
+/-- The endpoint `r₀ = 2` form of `jump_estimates_imply_variation`.
+@isnad1 id=le.2h3v.s8.8457fdc8825a from=translated src=- shape=df8e045c vocab=5e254f71
+-/
 theorem jump_estimates_imply_variation_endpoint {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {D : ℝ} (hD : 0 ≤ D)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -1068,6 +1173,9 @@ theorem jump_estimates_imply_variation_endpoint {B : Type*} [SeminormedAddCommGr
       congr 1
       norm_num
 
+/--
+@isnad1 id=le.2h3v.s7.930390e928f8 from=translated src=- shape=76013dab vocab=978721aa
+-/
 theorem finite_rpow_norm_le_sqroot {J : ℕ} (d : Fin J → ℝ)
     (hd : ∀ i, 0 ≤ d i) {r : ℝ} (hr : 2 ≤ r) :
     (∑ i, d i ^ r) ^ (1 / r) ≤
@@ -1137,6 +1245,9 @@ theorem finite_rpow_norm_le_sqroot {J : ℕ} (d : Fin J → ℝ)
       dsimp [p]
       field_simp
 
+/--
+@isnad1 id=le.1h5v.s7.fc61e35b7ef4 from=translated src=- shape=c59dba3f vocab=e56ac679
+-/
 theorem ennreal_chain_rpow_mono_two {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (a : ℕ → B) (N : Fin (J + 1) → ℕ) {r : ℝ} (hr : 2 ≤ r) :
     (∑ j : Fin J,
@@ -1157,7 +1268,9 @@ theorem ennreal_chain_rpow_mono_two {B : Type*} [SeminormedAddCommGroup B]
   exact ENNReal.ofReal_le_ofReal (by
     simpa [d, one_div] using finite_rpow_norm_le_sqroot d (fun j ↦ norm_nonneg _) hr)
 
-/-- Finite `ℓ^r` variation is no larger than finite `ℓ²` variation for `r ≥ 2`.-/
+/-- Finite `ℓ^r` variation is no larger than finite `ℓ²` variation for `r ≥ 2`.
+@isnad1 id=le.1h3v.s5.18415fb648c1 from=translated src=- shape=e0b728af vocab=051ffb1c
+-/
 theorem aux_naturalVariationSeminorm_mono_two {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {r : ℝ} (hr : 2 ≤ r) :
     naturalVariationSeminorm a r ≤ naturalVariationSeminorm a 2 := by
@@ -1169,6 +1282,9 @@ theorem aux_naturalVariationSeminorm_mono_two {B : Type*} [SeminormedAddCommGrou
   exact le_iSup_of_le J (le_iSup_of_le N
     (ennreal_chain_rpow_mono_two a N.1 hr))
 
+/--
+@isnad1 id=le.5h6v.s8.a5ba8e4171df from=translated src=- shape=c7e0d906 vocab=bc57bcde
+-/
 theorem real_jump_estimate_of_enorm {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {r0 D : ℝ} (hD : 0 ≤ D)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -1214,7 +1330,9 @@ $$
 \|a\|_{V_2(N\in\mathbb{N},\ N\ge1;B)}\le D^{1/2}.
 $$
 
-See also `Auto.jump_estimates_imply_variation_endpoint_enorm`.-/
+See also `Auto.jump_estimates_imply_variation_endpoint_enorm`.
+@isnad1 id=le.4h5v.s8.9c7f5f6b5416 from=translated src=- shape=d250a993 vocab=0cb39d6a
+-/
 theorem jump_estimates_imply_variation_enorm {B : Type*} [SeminormedAddCommGroup B]
     (a : ℕ → B) {r0 D r : ℝ} (hr0 : 2 ≤ r0) (hD : 0 ≤ D) (hr : r0 < r)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -1249,7 +1367,9 @@ $$
 \|a\|_{V_2(N\in\mathbb{N},\ N\ge1;B)}\le D^{1/2}.
 $$
 
-See also `Auto.jump_estimates_imply_variation_enorm`.-/
+See also `Auto.jump_estimates_imply_variation_enorm`.
+@isnad1 id=le.2h3v.s8.379a8b899a7a from=translated src=- shape=4f8e25ab vocab=0cb39d6a
+-/
 theorem jump_estimates_imply_variation_endpoint_enorm {B : Type*}
     [SeminormedAddCommGroup B] (a : ℕ → B) {D : ℝ} (hD : 0 ≤ D)
     (hjump : ∀ (L : ℕ), 1 ≤ L → ∀ (M : Fin (L + 1) → ℕ),
@@ -1260,6 +1380,9 @@ theorem jump_estimates_imply_variation_endpoint_enorm {B : Type*}
   exact jump_estimates_imply_variation_endpoint a hD
     (real_jump_estimate_of_enorm a hD hjump)
 
+/--
+@isnad1 id=eq.0h3v.s8.f0d8843e3652 from=translated src=- shape=a917b2d5 vocab=de38439a
+-/
 theorem strongDual_apply_eq_sum {n : ℕ} (f : StrongDual ℝ (Fin n → ℝ))
     (x : Fin n → ℝ) :
     f x = ∑ i, f (Pi.single i 1) * x i := by
@@ -1280,7 +1403,9 @@ theorem strongDual_apply_eq_sum {n : ℕ} (f : StrongDual ℝ (Fin n → ℝ))
 
 /--
 A finite-dimensional support-functional characterization of the convex hull of a
-permutation orbit. This is the separation-theorem part of the exponent-polytope proof.-/
+permutation orbit. This is the separation-theorem part of the exponent-polytope proof.
+@isnad1 id=mem.1h3v.s8.2505b1216a6b from=translated src=- shape=169298b9 vocab=9ab365f0
+-/
 theorem mem_convexHull_perm_of_forall_dot_le {n : ℕ} (b x : Fin n → ℝ)
     (h : ∀ c : Fin n → ℝ, ∃ σ : Equiv.Perm (Fin n),
       ∑ i, c i * x i ≤ ∑ i, c i * b (σ i)) :
@@ -1310,7 +1435,9 @@ theorem mem_convexHull_perm_of_forall_dot_le {n : ℕ} (b x : Fin n → ℝ)
   rw [hfσ] at hlt
   linarith
 
-/-- The summation-by-parts comparison used after sorting a supporting functional.-/
+/-- The summation-by-parts comparison used after sorting a supporting functional.
+@isnad1 id=le.3h4v.s7.5b755b2d0fe9 from=translated src=- shape=3cc34ec4 vocab=9b086eb1
+-/
 theorem dot_le_of_prefix_sums (n : ℕ) (c x b : ℕ → ℝ)
     (hc : ∀ i, i < n - 1 → c (i + 1) ≤ c i)
     (hsum : ∑ i ∈ Finset.range n, x i = ∑ i ∈ Finset.range n, b i)
@@ -1352,6 +1479,9 @@ theorem dot_le_of_prefix_sums (n : ℕ) (c x b : ℕ → ℝ)
 def prefixSum {n : ℕ} (b : Fin n → ℝ) (k : ℕ) (hk : k ≤ n) : ℝ :=
   ∑ i : Fin k, b (Fin.castLE hk i)
 
+/--
+@isnad1 id=eq.3h4v.s5.2dffd524a4f5 from=translated src=- shape=e28a2d1b vocab=ab4dca43
+-/
 theorem prefixSum_congr {n : ℕ} (b : Fin n → ℝ) {k l : ℕ}
     (hkl : k = l) (hk : k ≤ n) (hl : l ≤ n) :
     prefixSum b k hk = prefixSum b l hl := by
@@ -1361,6 +1491,9 @@ theorem prefixSum_congr {n : ℕ} (b : Fin n → ℝ) {k l : ℕ}
 def lowerBoundSet {n : ℕ} (S : ℝ) (lower : ℕ → ℝ) : Set (Fin n → ℝ) :=
   {y | (∑ i, y i) = S ∧ ∀ I : Finset (Fin n), I.Nonempty → lower I.card ≤ ∑ i ∈ I, y i}
 
+/--
+@isnad1 id=convex.0h3v.s5.5057b454f67c from=translated src=- shape=dd4896b2 vocab=cd8c4bbd
+-/
 theorem convex_lowerBoundSet {n : ℕ} (S : ℝ) (lower : ℕ → ℝ) :
     Convex ℝ (lowerBoundSet (n := n) S lower) := by
   intro y hy z hz a b ha hb hab
@@ -1383,13 +1516,18 @@ theorem convex_lowerBoundSet {n : ℕ} (S : ℝ) (lower : ℕ → ℝ) :
         simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul, Finset.sum_add_distrib,
           Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s4.c7a3a7d97776 from=translated src=- shape=312b7eaf vocab=2528facf
+-/
 theorem prefixSum_full {n : ℕ} (b : Fin n → ℝ) :
     prefixSum b n le_rfl = ∑ i, b i := by
   rfl
 
 /--
 The finite-dimensional majorization step in the converse direction of the
-exponent-polytope proposition.-/
+exponent-polytope proposition.
+@isnad1 id=ex.2h4v.s7.841ac756e432 from=translated src=- shape=01621d50 vocab=0a4469f4
+-/
 theorem exists_perm_dot_le_of_upper_subset_bounds {n : ℕ} (b x : Fin n → ℝ)
     (hsum : ∑ i, x i = ∑ i, b i)
     (hupper : ∀ I : Finset (Fin n),
@@ -1479,7 +1617,9 @@ theorem exists_perm_dot_le_of_upper_subset_bounds {n : ℕ} (b x : Fin n → ℝ
   refine ⟨τ.symm, ?_⟩
   rwa [hleft, hright] at hdot
 
-/-- A proved majorization criterion for a finite permutation orbit.-/
+/-- A proved majorization criterion for a finite permutation orbit.
+@isnad1 id=mem.2h3v.s8.a359cdc02a16 from=translated src=- shape=fbbf7792 vocab=08cebef2
+-/
 theorem mem_convexHull_perm_of_upper_subset_bounds {n : ℕ} (b x : Fin n → ℝ)
     (hsum : ∑ i, x i = ∑ i, b i)
     (hupper : ∀ I : Finset (Fin n),
@@ -1490,7 +1630,9 @@ theorem mem_convexHull_perm_of_upper_subset_bounds {n : ℕ} (b x : Fin n → �
 
 /--
 The abstract permutahedron criterion underlying the range-of-exponents proposition.
-The endpoint arithmetic is isolated in `hendpoint` and `hprefix`.-/
+The endpoint arithmetic is isolated in `hendpoint` and `hprefix`.
+@isnad1 id=iff.3h5v.s8.2fa5f0eb0127 from=translated src=- shape=782e3b02 vocab=ecfaef7f
+-/
 theorem mem_convexHull_perm_iff_lower_subset_bounds {n : ℕ} (b x : Fin n → ℝ)
     (S : ℝ) (lower : ℕ → ℝ)
     (hbSum : ∑ i, b i = S)
@@ -1549,6 +1691,9 @@ noncomputable def endpointReciprocalVector (m : ℕ) : Fin m → ℝ :=
 noncomputable def tailOf (m : ℕ) (I : Finset (Fin (m + 1))) : Finset (Fin m) :=
   I.preimage (Fin.succEmb m) (Fin.succ_injective m).injOn
 
+/--
+@isnad1 id=eq.0h2v.s6.db407f7ebb6d from=translated src=- shape=7b321179 vocab=27d0ad2d
+-/
 theorem map_tailOf (m : ℕ) (I : Finset (Fin (m + 1))) :
     (tailOf m I).map (Fin.succEmb m) = I.erase 0 := by
   ext i
@@ -1560,10 +1705,16 @@ theorem map_tailOf (m : ℕ) (I : Finset (Fin (m + 1))) :
     obtain ⟨j, rfl⟩ := Fin.exists_succ_eq_of_ne_zero hi0
     exact ⟨j, Finset.mem_preimage.mpr hiI, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.616ebeb31062 from=translated src=- shape=8bb77c75 vocab=d0867dfb
+-/
 theorem card_tailOf (m : ℕ) (I : Finset (Fin (m + 1))) :
     (tailOf m I).card = (I.erase 0).card := by
   rw [← Finset.card_map (Fin.succEmb m), map_tailOf]
 
+/--
+@isnad1 id=eq.0h3v.s7.a2282b5c88d7 from=translated src=- shape=9e162ea0 vocab=055cca4b
+-/
 theorem sum_tailOf (m : ℕ) (I : Finset (Fin (m + 1))) (f : Fin (m + 1) → ℕ) :
     ∑ i ∈ tailOf m I, f i.succ = ∑ i ∈ I.erase 0, f i := by
   calc
@@ -1571,13 +1722,22 @@ theorem sum_tailOf (m : ℕ) (I : Finset (Fin (m + 1))) (f : Fin (m + 1) → ℕ
       (Finset.sum_map (tailOf m I) (Fin.succEmb m) f).symm
     _ = ∑ i ∈ I.erase 0, f i := by rw [map_tailOf]
 
+/--
+@isnad1 id=eq.0h1v.s6.40816295e18b from=translated src=- shape=2cf380cd vocab=56b887be
+-/
 theorem endpointWeight_zero (m : ℕ) : endpointWeight (m + 2) 0 = 2 ^ (m + 1) := by
   simp [endpointWeight]
 
+/--
+@isnad1 id=eq.0h2v.s5.9e42353c8b0c from=translated src=- shape=428376be vocab=c338ba02
+-/
 theorem endpointWeight_succ (m : ℕ) (i : Fin (m + 1)) :
     endpointWeight (m + 2) i.succ = endpointWeight (m + 1) i := by
   simp [endpointWeight]
 
+/--
+@isnad1 id=eq.1h1v.s5.7769ebea8d4b from=translated src=- shape=5002776e vocab=c5cdc0fa
+-/
 theorem sum_endpointWeight : ∀ m : ℕ, 1 ≤ m →
     (∑ i, endpointWeight m i) = 2 ^ m
   | 0, hm => by omega
@@ -1592,6 +1752,9 @@ theorem sum_endpointWeight : ∀ m : ℕ, 1 ≤ m →
       _ = 2 ^ m * 2 ^ 2 := by norm_num
       _ = 2 ^ (m + 2) := (pow_add _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.33e578af12bd from=translated src=- shape=f4f0529c vocab=4da6fc63
+-/
 theorem sum_tail_endpointWeight (m : ℕ) (I : Finset (Fin (m + 2))) :
     ∑ i ∈ tailOf (m + 1) I, endpointWeight (m + 1) i =
       ∑ i ∈ I.erase 0, endpointWeight (m + 2) i := by
@@ -1604,6 +1767,9 @@ theorem sum_tail_endpointWeight (m : ℕ) (I : Finset (Fin (m + 2))) :
     _ = ∑ i ∈ I.erase 0, endpointWeight (m + 2) i :=
       sum_tailOf (m + 1) I (endpointWeight (m + 2))
 
+/--
+@isnad1 id=eq.1h2v.s8.fe1b11addb61 from=translated src=- shape=59a2c429 vocab=638f4588
+-/
 theorem sum_endpointWeight_of_zero_mem (m : ℕ) (I : Finset (Fin (m + 2)))
     (h0 : 0 ∈ I) :
     ∑ i ∈ I, endpointWeight (m + 2) i =
@@ -1612,10 +1778,16 @@ theorem sum_endpointWeight_of_zero_mem (m : ℕ) (I : Finset (Fin (m + 2)))
     ← sum_tail_endpointWeight]
   omega
 
+/--
+@isnad1 id=eq.1h2v.s7.9415c793c577 from=translated src=- shape=f5b2ebb3 vocab=3d56b5a6
+-/
 theorem card_tailOf_of_zero_mem (m : ℕ) (I : Finset (Fin (m + 2)))
     (h0 : 0 ∈ I) : I.card = (tailOf (m + 1) I).card + 1 := by
   rw [← Finset.card_erase_add_one h0, ← card_tailOf]
 
+/--
+@isnad1 id=le.2h2v.s5.c36693386adc from=translated src=- shape=f3a9cfe3 vocab=f866cb99
+-/
 theorem lower_endpointWeight : ∀ m : ℕ, 1 ≤ m →
     ∀ I : Finset (Fin m), I.Nonempty →
       2 ^ I.card ≤ ∑ i ∈ I, endpointWeight m i
@@ -1679,6 +1851,9 @@ theorem lower_endpointWeight : ∀ m : ℕ, 1 ≤ m →
 def prefixWeight (m k : ℕ) (hk : k ≤ m) : ℕ :=
   ∑ i : Fin k, endpointWeight m (Fin.castLE hk i)
 
+/--
+@isnad1 id=eq.1h2v.s6.385a47bb6fe5 from=translated src=- shape=314dd540 vocab=bf2c880a
+-/
 theorem prefixWeight_succ (m k : ℕ) (hk : k + 1 ≤ m + 2) :
     prefixWeight (m + 2) (k + 1) hk =
       2 ^ (m + 1) + prefixWeight (m + 1) k (by omega) := by
@@ -1691,6 +1866,9 @@ theorem prefixWeight_succ (m k : ℕ) (hk : k + 1 ≤ m + 2) :
     rfl
   simp_rw [hcastSucc, endpointWeight_succ]
 
+/--
+@isnad1 id=eq.2h2v.s6.84bc508a431a from=translated src=- shape=e64bebd1 vocab=5d3579dc
+-/
 theorem prefix_endpointWeight : ∀ m k : ℕ, ∀ hk : k ≤ m, k < m →
     prefixWeight m k hk = 2 ^ m - 2 ^ (m - k)
   | 0, k, hk, hlt => by omega
@@ -1719,6 +1897,9 @@ theorem prefix_endpointWeight : ∀ m k : ℕ, ∀ hk : k ≤ m, k < m →
           rw [show m + 2 = (m + 1) + 1 by omega, pow_succ]
           omega
 
+/--
+@isnad1 id=eq.1h1v.s5.6d1c877672ed from=translated src=- shape=a324c6ca vocab=b88e6555
+-/
 theorem endpointReciprocalVector_sum (m : ℕ) (hm : 1 ≤ m) :
     (∑ i, endpointReciprocalVector m i) = 1 / 2 := by
   unfold endpointReciprocalVector
@@ -1728,6 +1909,9 @@ theorem endpointReciprocalVector_sum (m : ℕ) (hm : 1 ≤ m) :
   field_simp
   rw [pow_succ]
 
+/--
+@isnad1 id=le.2h2v.s6.4364b1a45f62 from=translated src=- shape=637b6a54 vocab=5034acff
+-/
 theorem endpointReciprocalVector_lower (m : ℕ) (hm : 1 ≤ m)
     (I : Finset (Fin m)) (hI : I.Nonempty) :
     (2 : ℝ) ^ I.card / (2 : ℝ) ^ (m + 1) ≤
@@ -1737,6 +1921,9 @@ theorem endpointReciprocalVector_lower (m : ℕ) (hm : 1 ≤ m)
   apply (div_le_div_iff_of_pos_right (by positivity)).mpr
   exact_mod_cast lower_endpointWeight m hm I hI
 
+/--
+@isnad1 id=eq.2h2v.s6.5e30ca99eca7 from=translated src=- shape=8a76cef0 vocab=de1f9294
+-/
 theorem prefix_endpointReciprocalVector (m k : ℕ) (hk : k ≤ m) (hlt : k < m) :
     prefixSum (endpointReciprocalVector m) k hk =
       1 / 2 - (2 : ℝ) ^ (m - k) / (2 : ℝ) ^ (m + 1) := by
@@ -1780,7 +1967,9 @@ $$
 \sum_{i\in I}p_i^{-1}\ge 2^{|I|-n-1}.
 $$
 
-See also `Auto.exponent_polytope_of_exponents`.-/
+See also `Auto.exponent_polytope_of_exponents`.
+@isnad1 id=iff.1h2v.s7.817610ea0b2a from=translated src=- shape=1cb85d9e vocab=e1aacec9
+-/
 theorem exponent_polytope {m : ℕ} (hm : 2 ≤ m) (x : Fin m → ℝ) :
     x ∈ endpointPolytope m ↔
       (∑ i, x i) = 1 / 2 ∧
@@ -1837,7 +2026,9 @@ $$
 \sum_{i\in I}p_i^{-1}\ge 2^{|I|-n-1}.
 $$
 
-See also `Auto.exponent_polytope`.-/
+See also `Auto.exponent_polytope`.
+@isnad1 id=iff.2h2v.s7.5a9d3d6c094b from=translated src=- shape=6b8ef744 vocab=c86487e7
+-/
 theorem exponent_polytope_of_exponents {m : ℕ} (hm : 2 ≤ m)
     (p : Fin m → ℝ≥0∞) (_hp : ∀ i, 1 ≤ p i) :
     (fun i ↦ ((p i)⁻¹).toReal) ∈ endpointPolytope m ↔
@@ -1846,6 +2037,9 @@ theorem exponent_polytope_of_exponents {m : ℕ} (hm : 2 ≤ m)
           (2 : ℝ) ^ I.card / (2 : ℝ) ^ (m + 1) ≤ ∑ i ∈ I, ((p i)⁻¹).toReal :=
   exponent_polytope hm _
 
+/--
+@isnad1 id=le.1h2v.s5.71d8068d938d from=translated src=- shape=622a2f2e vocab=f96c6fce
+-/
 theorem le_mul_two_pow_sub (k d : ℕ) (hk : 1 ≤ k) :
     k + d ≤ k * 2 ^ d := by
   induction d with
@@ -1860,13 +2054,18 @@ theorem le_mul_two_pow_sub (k d : ℕ) (hk : 1 ≤ k) :
       _ ≤ (k * 2 ^ d) * 2 := by omega
       _ = k * (2 ^ d * 2) := by ring
 
+/--
+@isnad1 id=le.2h2v.s5.f9afa8d959c0 from=translated src=- shape=a97cb51c vocab=3e115a59
+-/
 theorem le_card_mul_two_pow_sub (k m : ℕ) (hk : 1 ≤ k) (hkm : k ≤ m) :
     m ≤ k * 2 ^ (m - k) := by
   calc
     m = k + (m - k) := (Nat.add_sub_of_le hkm).symm
     _ ≤ k * 2 ^ (m - k) := le_mul_two_pow_sub k (m - k) hk
 
-/-- The symmetric reciprocal vector is in the endpoint polytope.-/
+/-- The symmetric reciprocal vector is in the endpoint polytope.
+@isnad1 id=mem.1h1v.s5.17f637ee07ad from=translated src=- shape=437a5a7a vocab=010d19de
+-/
 theorem aux_symmetricExponent_mem_endpointPolytope {m : ℕ} (hm : 2 ≤ m) :
     (fun _ : Fin m ↦ (2 * m : ℝ)⁻¹) ∈ endpointPolytope m := by
   rw [exponent_polytope hm]
@@ -1916,11 +2115,17 @@ noncomputable def coordinatePerm {n : ℕ} (π : Equiv.Perm (Fin n)) :
 noncomputable def coordinateAxis {n : ℕ} (i : Fin n) : rteRealVector n :=
   WithLp.toLp 2 (Pi.single i (1 : ℝ))
 
+/--
+@isnad1 id=eq.0h4v.s9.ad2404de7a9e from=translated src=- shape=d8415197 vocab=dd82841f
+-/
 theorem coordinatePerm_apply_index {n : ℕ} (π : Equiv.Perm (Fin n))
     (x : rteRealVector n) (i : Fin n) :
     coordinatePerm π x (π i) = x i := by
   simp [coordinatePerm, LinearIsometryEquiv.piLpCongrLeft_apply, Equiv.piCongrLeft']
 
+/--
+@isnad1 id=eq.0h3v.s9.894f436ee347 from=translated src=- shape=30e32c3e vocab=dccc73b8
+-/
 theorem coordinatePerm_axis {n : ℕ} (π : Equiv.Perm (Fin n)) (i : Fin n) :
     coordinatePerm π (coordinateAxis i) = coordinateAxis (π i) := by
   ext j
@@ -1932,24 +2137,36 @@ theorem coordinatePerm_axis {n : ℕ} (π : Equiv.Perm (Fin n)) (i : Fin n) :
     rw [← hk, coordinatePerm_apply_index]
     simp [coordinateAxis]
 
+/--
+@isnad1 id=eq.0h5v.s10.a2a707991b95 from=translated src=- shape=545dd004 vocab=3ab48193
+-/
 theorem coordinatePerm_translate {n : ℕ} (π : Equiv.Perm (Fin n))
     (x : rteRealVector n) (s : ℝ) (i : Fin n) :
     coordinatePerm π (x + s • coordinateAxis i) =
       coordinatePerm π x + s • coordinateAxis (π i) := by
   rw [map_add, map_smul, coordinatePerm_axis]
 
+/--
+@isnad1 id=eq.0h3v.s10.28e0f3f3ed05 from=translated src=- shape=be48c25b vocab=c57f2d4c
+-/
 theorem coordinatePerm_symm_axis {n : ℕ} (π : Equiv.Perm (Fin n)) (i : Fin n) :
     (coordinatePerm π).symm (coordinateAxis i) = coordinateAxis (π.symm i) := by
   apply (coordinatePerm π).injective
   rw [LinearIsometryEquiv.apply_symm_apply, coordinatePerm_axis]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s10.8b53cce68b3b from=translated src=- shape=2a16b89b vocab=06741802
+-/
 theorem coordinatePerm_symm_translate {n : ℕ} (π : Equiv.Perm (Fin n))
     (x : rteRealVector n) (s : ℝ) (i : Fin n) :
     (coordinatePerm π).symm (coordinatePerm π x + s • coordinateAxis i) =
       x + s • coordinateAxis (π.symm i) := by
   rw [map_add, map_smul, LinearIsometryEquiv.symm_apply_apply, coordinatePerm_symm_axis]
 
+/--
+@isnad1 id=measurep.0h2v.s10.bf6f0b28253e from=translated src=- shape=470281c5 vocab=631ec66e
+-/
 theorem coordinatePerm_measurePreserving {n : ℕ} (π : Equiv.Perm (Fin n)) :
     MeasurePreserving (coordinatePerm π) volume volume := by
   exact LinearIsometryEquiv.measurePreserving (coordinatePerm π)
@@ -1960,10 +2177,16 @@ noncomputable def permutedSchwartz {n : ℕ} (π : Equiv.Perm (Fin n))
   fun i ↦ SchwartzMap.compCLMOfContinuousLinearEquiv ℝ
     (coordinatePerm π).symm.toContinuousLinearEquiv (f (π.symm i))
 
+/--
+@isnad1 id=eq.0h5v.s10.5e0934236662 from=translated src=- shape=ebb04d2e vocab=142b6cc5
+-/
 theorem permutedSchwartz_apply {n : ℕ} (π : Equiv.Perm (Fin n))
     (f : Fin n → SchwartzMap (rteRealVector n) ℝ) (i : Fin n) (x : rteRealVector n) :
     permutedSchwartz π f i x = f (π.symm i) ((coordinatePerm π).symm x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.0a831a7ce92e from=translated src=- shape=7745f321 vocab=c188580e
+-/
 theorem eLpNorm_permutedSchwartz {n : ℕ} (π : Equiv.Perm (Fin n))
     (f : Fin n → SchwartzMap (rteRealVector n) ℝ) (i : Fin n) (p : ℝ≥0∞) :
     eLpNorm (permutedSchwartz π f i) p volume =
@@ -1973,6 +2196,9 @@ theorem eLpNorm_permutedSchwartz {n : ℕ} (π : Equiv.Perm (Fin n))
   change eLpNorm (fun x ↦ f (π.symm i) ((coordinatePerm π).symm x)) p volume = _
   exact eLpNorm_comp_measurePreserving (f (π.symm i)).continuous.aestronglyMeasurable hmp
 
+/--
+@isnad1 id=eq.0h5v.s10.f9c437219af9 from=translated src=- shape=c06f3c5a vocab=5ec5d7a8
+-/
 theorem permuted_product {n : ℕ} (π : Equiv.Perm (Fin n))
     (f : Fin n → SchwartzMap (rteRealVector n) ℝ) (x : rteRealVector n) (s : ℝ) :
     (∏ k, permutedSchwartz π f k
@@ -1989,6 +2215,9 @@ theorem permuted_product {n : ℕ} (π : Equiv.Perm (Fin n))
       simp only [g, permutedSchwartz_apply, coordinatePerm_symm_translate,
         Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.c0c61b09079c from=translated src=- shape=a5b0abfe vocab=fb36f86e
+-/
 theorem twistedAverageAtScale_permuted {n : ℕ} (π : Equiv.Perm (Fin n))
     (t : ℝ) (χ : ℝ → ℝ) (f : Fin n → SchwartzMap (rteRealVector n) ℝ)
     (x : rteRealVector n) :
@@ -2003,6 +2232,9 @@ theorem twistedAverageAtScale_permuted {n : ℕ} (π : Equiv.Perm (Fin n))
   simpa only [coordinateAxis] using congrArg (fun q : ℝ ↦ t⁻¹ * χ (t⁻¹ * s) * q)
     (permuted_product π f x s)
 
+/--
+@isnad1 id=eq.0h6v.s6.7b798bfadb04 from=translated src=- shape=fd25b4a4 vocab=157ab6b1
+-/
 theorem twistedAverageAtScale_smul_tuple {n : ℕ} (t : ℝ) (χ : ℝ → ℝ)
     (a : Fin n → ℝ) (f : Fin n → rteRealVector n → ℝ) (x : rteRealVector n) :
     Auto.rteTwistedAverageAtScale t χ (fun i y ↦ a i * f i y) x =
@@ -2023,6 +2255,9 @@ noncomputable def endpointEnergy {n : ℕ} (J : ℕ) (t : Fin (J + 1) → ℝ)
         Auto.rteTwistedAverageAtScale (t j.castSucc) χ f x)
       2 volume ^ 2
 
+/--
+@isnad1 id=eq.0h6v.s7.7d331ea90960 from=translated src=- shape=90b68a76 vocab=a9b0a8b5
+-/
 theorem endpointEnergy_smul_tuple {n : ℕ} (J : ℕ) (t : Fin (J + 1) → ℝ)
     (χ : ℝ → ℝ) (a : Fin n → ℝ) (f : Fin n → rteRealVector n → ℝ) :
     endpointEnergy J t χ (fun i x ↦ a i * f i x) =
@@ -2065,6 +2300,9 @@ theorem endpointEnergy_smul_tuple {n : ℕ} (J : ℕ) (t : Fin (J + 1) → ℝ)
           Auto.rteTwistedAverageAtScale (t j.castSucc) χ f x)
         2 volume ^ 2 := by rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.93b4892aab54 from=translated src=- shape=b2d6ca62 vocab=24c00b8f
+-/
 theorem eLpNorm_normalize {α : Type*} [MeasurableSpace α]
     (p : ℝ≥0∞) (μ : Measure α) (f : α → ℝ)
     (hzero : eLpNorm f p μ ≠ 0) (htop : eLpNorm f p μ ≠ ∞) :
@@ -2077,6 +2315,9 @@ theorem eLpNorm_normalize {α : Type*} [MeasurableSpace α]
     ENNReal.ofReal_inv_of_pos hqpos, ENNReal.ofReal_toReal htop,
     ENNReal.inv_mul_cancel hzero htop]
 
+/--
+@isnad1 id=eq.2h3v.s9.1035bb143f58 from=translated src=- shape=5308d0a0 vocab=c8bd729d
+-/
 theorem schwartz_eq_zero_of_eLpNorm_eq_zero {n : ℕ}
     (f : SchwartzMap (rteRealVector n) ℝ) (p : ℝ≥0∞) (hp : p ≠ 0)
     (h : eLpNorm f p volume = 0) : f = 0 := by
@@ -2085,6 +2326,9 @@ theorem schwartz_eq_zero_of_eLpNorm_eq_zero {n : ℕ}
     (eLpNorm_eq_zero_iff f.continuous.aestronglyMeasurable hp).mp h
   exact congrFun (Continuous.ae_eq_iff_eq volume f.continuous continuous_zero |>.mp hae) x
 
+/--
+@isnad1 id=eq.1h5v.s6.f40ec6b2a286 from=translated src=- shape=6f593d34 vocab=2b216081
+-/
 theorem twistedAverageAtScale_eq_zero_of_component_eq_zero {n : ℕ}
     (t : ℝ) (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℝ)
     (i : Fin n) (hfi : f i = 0) :
@@ -2105,6 +2349,9 @@ theorem twistedAverageAtScale_eq_zero_of_component_eq_zero {n : ℕ}
   rw [hprod]
   ring
 
+/--
+@isnad1 id=eq.1h6v.s6.fed11b057ca0 from=translated src=- shape=8ada7f4b vocab=3adefa8f
+-/
 theorem endpointEnergy_eq_zero_of_component_eq_zero {n : ℕ}
     (J : ℕ) (t : Fin (J + 1) → ℝ) (χ : ℝ → ℝ)
     (f : Fin n → rteRealVector n → ℝ) (i : Fin n) (hfi : f i = 0) :
@@ -2114,6 +2361,9 @@ theorem endpointEnergy_eq_zero_of_component_eq_zero {n : ℕ}
   intro j _
   simp [twistedAverageAtScale_eq_zero_of_component_eq_zero _ _ f i hfi]
 
+/--
+@isnad1 id=le.2h7v.s10.7d10358e0246 from=translated src=- shape=c0b595aa vocab=3768afc8
+-/
 theorem endpointEnergy_homogeneous {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hp : ∀ i, p i ≠ 0) (J : ℕ) (t : Fin (J + 1) → ℝ) (χ : ℝ → ℝ)
     (B : ℝ≥0∞)
@@ -2182,6 +2432,9 @@ def mainEndpointExponent (n : ℕ) (i : Fin n) : ℝ≥0∞ :=
 noncomputable def unitIntervalKernel : ℝ → ℝ :=
   (Icc (0 : ℝ) 1).indicator fun _ ↦ (1 : ℝ)
 
+/--
+@isnad1 id=memlp.0h0v.s5.818c870d1542 from=translated src=- shape=99f694ea vocab=845ecc73
+-/
 theorem unitIntervalKernel_memLp : MemLp unitIntervalKernel 2 volume := by
   exact memLp_indicator_const 2 measurableSet_Icc (1 : ℝ)
     (Or.inr measure_Icc_lt_top.ne)
@@ -2189,6 +2442,9 @@ theorem unitIntervalKernel_memLp : MemLp unitIntervalKernel 2 volume := by
 noncomputable def scaleKernel (t : ℝ) (χ : ℝ → ℝ) : ℝ → ℝ :=
   fun x ↦ t⁻¹ * χ (t⁻¹ * x)
 
+/--
+@isnad1 id=memlp.2h2v.s7.ddae6ab2f34e from=translated src=- shape=33e04913 vocab=0b4e5c4a
+-/
 theorem scaleKernel_memLp {χ : ℝ → ℝ} (hχ : MemLp χ 2 volume)
     {t : ℝ} (ht : 0 < t) : MemLp (scaleKernel t χ) 2 volume := by
   let m : ℝ → ℝ := fun x ↦ t⁻¹ * x
@@ -2217,6 +2473,9 @@ theorem scaleKernel_memLp {χ : ℝ → ℝ} (hχ : MemLp χ 2 volume)
   rw [heq]
   exact hcomp.const_smul _
 
+/--
+@isnad1 id=memlp.2h3v.s9.4062c4dafade from=translated src=- shape=028ec174 vocab=1ed20489
+-/
 theorem twistedAverageAtScale_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (rteRealVector n) ℝ) {t : ℝ} (ht : 0 < t) :
     MemLp (fun x ↦ Auto.rteTwistedAverageAtScale t unitIntervalKernel
@@ -2226,6 +2485,9 @@ theorem twistedAverageAtScale_memLp {n : ℕ} (hn : 2 ≤ n)
   exact Auto.aux_twistedAverage_memLp hn f
     (scaleKernel t unitIntervalKernel) (scaleKernel_memLp unitIntervalKernel_memLp ht)
 
+/--
+@isnad1 id=memlp.3h4v.s9.501fcf50b5f3 from=translated src=- shape=98f53d7b vocab=b489136b
+-/
 theorem twistedAverageAtScale_sub_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (rteRealVector n) ℝ) {s t : ℝ}
     (hs : 0 < s) (ht : 0 < t) :
@@ -2235,6 +2497,9 @@ theorem twistedAverageAtScale_sub_memLp {n : ℕ} (hn : 2 ≤ n)
         (fun i y ↦ f i y) x) 2 volume :=
   (twistedAverageAtScale_memLp hn f hs).sub (twistedAverageAtScale_memLp hn f ht)
 
+/--
+@isnad1 id=eq.2h5v.s9.3c0200f5c166 from=translated src=- shape=2918ee31 vocab=67e069a7
+-/
 theorem endpointEnergy_permuted {n : ℕ} (hn : 2 ≤ n)
     (π : Equiv.Perm (Fin n)) (J : ℕ) (t : Fin (J + 1) → ℝ)
     (htpos : ∀ j, 0 < t j)
@@ -2269,6 +2534,9 @@ theorem endpointEnergy_permuted {n : ℕ} (hn : 2 ≤ n)
   rw [← hpoint]
   exact hcomp.symm
 
+/--
+@isnad1 id=le.4h4v.s9.f19dd312eec5 from=translated src=- shape=944eddbc vocab=aad5178e
+-/
 theorem endpointEstimate_homogeneous {n : ℕ} (hn : 2 ≤ n)
     (J : ℕ) (hJ : 0 < J) (t : Fin (J + 1) → ℝ)
     (ht : StrictMono t) (htpos : ∀ j, 0 < t j)
@@ -2297,7 +2565,9 @@ $$
 \prod_{i\in[n)}\|f_i\|_{2^{\pi(i)+\min(n-\pi(i),2)}}^2.
 $$
 
-For the displayed named constants, see `Auto.aux_main_twisted_theorem`.-/
+For the displayed named constants, see `Auto.aux_main_twisted_theorem`.
+@isnad1 id=le.4h5v.s10.91bc713aed5f from=translated src=- shape=d8a7495d vocab=e1492321
+-/
 theorem permutation_of_endpoint_estimate {n : ℕ} (hn : 2 ≤ n)
     (π : Equiv.Perm (Fin n)) (J : ℕ) (hJ : 0 < J)
     (t : Fin (J + 1) → ℝ) (ht : StrictMono t) (htpos : ∀ j, 0 < t j)
@@ -2338,7 +2608,9 @@ def complexComponent {n : ℕ} {X : Type*} (ε : Fin n → Fin 2)
     (f : Fin n → X → ℂ) : Fin n → X → ℝ :=
   fun i x ↦ if ε i = 0 then (f i x).re else (f i x).im
 
-/-- Each real/imaginary component of an `L^p` input is again in `L^p`.-/
+/-- Each real/imaginary component of an `L^p` input is again in `L^p`.
+@isnad1 id=memlp.1h7v.s7.5ca18525631f from=translated src=- shape=a5577aec vocab=69c1e0a2
+-/
 theorem complexComponent_memLp {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {n : ℕ} (ε : Fin n → Fin 2) (f : Fin n → X → ℂ)
     {p : ℝ≥0∞} (hf : ∀ i, MemLp (f i) p μ) (i : Fin n) :
@@ -2348,7 +2620,9 @@ theorem complexComponent_memLp {X : Type*} [MeasurableSpace X] {μ : Measure X}
   · simpa [hε] using (hf i).re
   · simpa [hε] using (hf i).im
 
-/-- A real/imaginary component does not increase the `L^p` norm.-/
+/-- A real/imaginary component does not increase the `L^p` norm.
+@isnad1 id=le.0h7v.s6.f2e55e68916f from=translated src=- shape=047c1102 vocab=90cf5eb5
+-/
 theorem eLpNorm_complexComponent_le {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {n : ℕ} (ε : Fin n → Fin 2) (f : Fin n → X → ℂ)
     (p : ℝ≥0∞) (i : Fin n) :
@@ -2363,6 +2637,9 @@ theorem eLpNorm_complexComponent_le {X : Type*} [MeasurableSpace X] {μ : Measur
 def aux_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) : ℂ :=
   ∏ i, if ε i = 0 then 1 else Complex.I
 
+/--
+@isnad1 id=eq.0h2v.s4.664c36301614 from=translated src=- shape=07ab364f vocab=6d7dc38d
+-/
 theorem aux_norm_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) :
     ‖aux_complexComponentPhase ε‖ = 1 := by
   unfold aux_complexComponentPhase
@@ -2371,7 +2648,9 @@ theorem aux_norm_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) :
   intro i _
   split_ifs <;> simp
 
-/-- The finite real/imaginary expansion of a complex product.-/
+/-- The finite real/imaginary expansion of a complex product.
+@isnad1 id=eq.0h4v.s6.bef8285d8ad6 from=translated src=- shape=37d3fc89 vocab=0aed7228
+-/
 theorem aux_complex_product_expand {n : ℕ} {X : Type*}
     (f : Fin n → X → ℂ) (x : X) :
     ∏ i, f i x =
@@ -2405,7 +2684,9 @@ theorem aux_complex_product_expand {n : ℕ} {X : Type*}
       intro i _
       split_ifs <;> rfl
 
-/-- The finite real/imaginary expansion of a multiple ergodic average.-/
+/-- The finite real/imaginary expansion of a multiple ergodic average.
+@isnad1 id=eq.0h7v.s6.989ea4df12a8 from=translated src=- shape=9e063daf vocab=1bbeb698
+-/
 theorem aux_ergodicAverage_complex_expand {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : aux_ErgodicSystem X μ n)
     (N : ℕ) (f : Fin n → X → ℂ) (x : X) :
@@ -2427,6 +2708,9 @@ theorem aux_ergodicAverage_complex_expand {X : Type*} [MeasurableSpace X]
   rw [Finset.sum_comm]
   simp [mul_left_comm]
 
+/--
+@isnad1 id=eq.0h8v.s7.a9b888c27d1d from=translated src=- shape=43c052fc vocab=7357f8d1
+-/
 theorem aux_ergodicAverage_sub_complex_expand {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : aux_ErgodicSystem X μ n)
     (N M : ℕ) (f : Fin n → X → ℂ) (x : X) :
@@ -2444,7 +2728,9 @@ theorem aux_ergodicAverage_sub_complex_expand {X : Type*} [MeasurableSpace X]
 /--
 Complex multiple ergodic jumps are bounded by the sum of their real/imaginary
 component jumps. This is the finite expansion responsible for the `2 ^ n` loss before
-squaring in the complexification step.-/
+squaring in the complexification step.
+@isnad1 id=le.1h7v.s8.492070c7720a from=translated src=- shape=5c7d87a0 vocab=05825d82
+-/
 theorem eLpNorm_ergodicAverage_sub_complex_le_sum {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : aux_ErgodicSystem X μ n)
     (N M : ℕ) (f : Fin n → X → ℂ)
@@ -2491,7 +2777,9 @@ theorem eLpNorm_ergodicAverage_sub_complex_le_sum {X : Type*} [MeasurableSpace X
       filter_upwards [] with x
       exact Complex.norm_real _
 
-/-- A finite Cauchy--Schwarz estimate for non-infinite extended nonnegative reals.-/
+/-- A finite Cauchy--Schwarz estimate for non-infinite extended nonnegative reals.
+@isnad1 id=le.1h2v.s6.ebf7c90acbba from=translated src=- shape=4fd74754 vocab=a824439b
+-/
 theorem aux_ennreal_sq_sum_le_card_mul_sum_sq {ι : Type*} [Fintype ι]
     (a : ι → ℝ≥0∞) (ha : ∀ i, a i ≠ ∞) :
     (∑ i, a i) ^ 2 ≤ (Fintype.card ι : ℝ≥0∞) * ∑ i, a i ^ 2 := by
@@ -2508,7 +2796,9 @@ theorem aux_ennreal_sq_sum_le_card_mul_sum_sq {ι : Type*} [Fintype ι]
     (sq_sum_le_card_mul_sum_sq (s := (Finset.univ : Finset ι))
       (f := fun i ↦ (a i).toReal))
 
-/-- The squared-energy form of the finite real/imaginary expansion.-/
+/-- The squared-energy form of the finite real/imaginary expansion.
+@isnad1 id=le.1h7v.s8.5e3ed419fdcf from=translated src=- shape=3a66861e vocab=364573f0
+-/
 theorem aux_ergodicJumpEnergy_complexification_le {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n J : ℕ} (S : aux_ErgodicSystem X μ n)
     (N : Fin (J + 1) → ℕ) (f : Fin n → X → ℂ)
@@ -2547,7 +2837,9 @@ theorem aux_ergodicJumpEnergy_complexification_le {X : Type*} [MeasurableSpace X
 
 /--
 A complex ergodic jump energy is bounded by the real/imaginary expansion, with
-the exact `2 ^ (2 * n)` squared-energy loss.-/
+the exact `2 ^ (2 * n)` squared-energy loss.
+@isnad1 id=le.2h8v.s7.27742e491edd from=translated src=- shape=1e072bd3 vocab=9808e760
+-/
 theorem ergodicJumpEnergy_complexification_le {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n J : ℕ} (S : aux_ErgodicSystem X μ n)
     (N : Fin (J + 1) → ℕ) (f : Fin n → X → ℂ) (B : ℝ≥0∞)
@@ -2603,7 +2895,9 @@ noncomputable def jumpGrowth (n J : ℕ) : ℝ :=
 
 /--
 The growth function from the jump estimates is at least one on positive
-integer indices, as required by Calderón transference.-/
+integer indices, as required by Calderón transference.
+@isnad1 id=le.2h2v.s5.5abf95ccd47e from=translated src=- shape=b5c6e861 vocab=492bbfa2
+-/
 theorem one_le_jumpGrowth {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J) :
     1 ≤ jumpGrowth n J := by
   unfold jumpGrowth
@@ -2623,7 +2917,9 @@ noncomputable def C_interpolated_real_variable_estimate (n : ℕ) : ℝ :=
 /--
 The singleton inequalities in the exponent polytope keep every interpolated
 input exponent finite.  This supplies the density hypothesis for the
-multilinear interpolation extension.-/
+multilinear interpolation extension.
+@isnad1 id=ne.3h3v.s6.59e654db3aeb from=translated src=- shape=700e5e7d vocab=59f98f08
+-/
 theorem aux_interpolatedExponent_ne_top {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hpoly : (fun i ↦ ((p i)⁻¹).toReal) ∈ endpointPolytope n) :
@@ -2641,7 +2937,9 @@ theorem aux_interpolatedExponent_ne_top {n : ℕ} (hn : 2 ≤ n)
 
 /--
 The polytope's total reciprocal constraint, transported from real coordinates
-back to `ENNReal`; this is the scaling relation needed for raw `L²` averages.-/
+back to `ENNReal`; this is the scaling relation needed for raw `L²` averages.
+@isnad1 id=eq.3h2v.s6.6de8be68e3ae from=translated src=- shape=0737a8a8 vocab=b4009f79
+-/
 theorem aux_interpolatedExponent_reciprocal_sum {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hpoly : (fun i ↦ ((p i)⁻¹).toReal) ∈ endpointPolytope n) :
@@ -2663,7 +2961,9 @@ theorem aux_interpolatedExponent_reciprocal_sum {n : ℕ} (hn : 2 ≤ n)
 /--
 The explicit endpoint exponents have the reciprocal vector used to define
 `endpointPolytope`.  This connects the finite interpolation endpoints to the
-convex-hull hypothesis.-/
+convex-hull hypothesis.
+@isnad1 id=eq.0h2v.s6.d918d1a1434d from=translated src=- shape=d11a4890 vocab=10f5227a
+-/
 theorem aux_endpointWeight_formula : ∀ (n : ℕ) (i : Fin n),
     endpointWeight n i =
       2 ^ (n + 1 - (i.val + min (n - i.val) 2)) := by
@@ -2689,7 +2989,9 @@ theorem aux_endpointWeight_formula : ∀ (n : ℕ) (i : Fin n),
 
 /--
 The reciprocal of `mainEndpointExponent` is its corresponding coordinate
-of `endpointReciprocalVector`.-/
+of `endpointReciprocalVector`.
+@isnad1 id=eq.1h2v.s4.58bfd2ed3b43 from=translated src=- shape=a0377639 vocab=4825b282
+-/
 theorem aux_mainEndpointExponent_reciprocal_eq_endpointReciprocalVector
     {n : ℕ} (_hn : 2 ≤ n) (i : Fin n) :
     ((mainEndpointExponent n i)⁻¹).toReal = endpointReciprocalVector n i := by
@@ -2713,7 +3015,9 @@ theorem aux_mainEndpointExponent_reciprocal_eq_endpointReciprocalVector
 
 /--
 The permutation endpoint exponents have reciprocal sum `1 / 2`, as required
-to package their literal averages on `L²`.-/
+to package their literal averages on `L²`.
+@isnad1 id=eq.1h2v.s6.0023dbe2b762 from=translated src=- shape=4138c6fb vocab=17c1a67b
+-/
 theorem aux_mainEndpointExponent_reciprocal_sum {n : ℕ} (hn : 2 ≤ n)
     (π : Equiv.Perm (Fin n)) :
     ∑ i, (mainEndpointExponent n (π i))⁻¹ = (2 : ℝ≥0∞)⁻¹ := by
@@ -2752,7 +3056,9 @@ namespace RawStability
 
 /--
 The coordinate shear preserves the product of Euclidean volume with every
-sigma-finite parameter measure.-/
+sigma-finite parameter measure.
+@isnad1 id=measurep.0h3v.s9.88da79b212c1 from=translated src=- shape=67a10d5e vocab=0f1a3d78
+-/
 theorem aux_axis_shear_measurePreserving {n : ℕ} {ν : Measure ℝ} [SFinite ν]
     (i : Fin n) :
     MeasurePreserving
@@ -2781,7 +3087,9 @@ theorem aux_axis_shear_measurePreserving {n : ℕ} {ν : Measure ℝ} [SFinite �
 
 /--
 A finite-measure Bochner integral of a jointly `L²` kernel is `L²` in the
-remaining variable.-/
+remaining variable.
+@isnad1 id=memlp.1h5v.s7.8d700380a1c9 from=translated src=- shape=5b9df78f vocab=ac7a4530
+-/
 theorem aux_kernel_integral_memLp
     {X S : Type*} [MeasurableSpace X] [MeasurableSpace S]
     {μ : Measure X} {ν : Measure S} [SFinite μ] [SFinite ν] [IsFiniteMeasure ν]
@@ -2831,7 +3139,9 @@ theorem aux_kernel_integral_memLp
 /--
 Quantitative finite-measure Cauchy--Schwarz for a Bochner integral of a
 jointly `L²` kernel.  This is the coarse continuity estimate used when the
-raw averages are packaged as continuous multilinear maps.-/
+raw averages are packaged as continuous multilinear maps.
+@isnad1 id=le.1h5v.s7.2d43080d1874 from=translated src=- shape=0581492b vocab=156e4994
+-/
 theorem aux_kernel_integral_sq_norm_le
     {X S : Type*} [MeasurableSpace X] [MeasurableSpace S]
     {μ : Measure X} {ν : Measure S} [SFinite μ] [SFinite ν] [IsFiniteMeasure ν]
@@ -2888,7 +3198,9 @@ theorem aux_kernel_integral_sq_norm_le
 
 /--
 A square-integral bound for a joint kernel gives the ordinary norm bound
-needed to make its `Lp`-valued integral continuous.-/
+needed to make its `Lp`-valued integral continuous.
+@isnad1 id=le.3h6v.s8.f19a23d7e7ed from=translated src=- shape=558812f7 vocab=6f6c8e39
+-/
 theorem aux_kernel_toLp_norm_le_of_sq_integral_bound
     {X S : Type*} [MeasurableSpace X] [MeasurableSpace S]
     {μ : Measure X} {ν : Measure S} [SFinite μ] [SFinite ν] [IsFiniteMeasure ν]
@@ -2916,7 +3228,9 @@ theorem aux_kernel_toLp_norm_le_of_sq_integral_bound
 
 /--
 On a finite parameter measure, the joint product of coordinate translates
-is `L²` whenever the input reciprocal exponents add to `1/2`.-/
+is `L²` whenever the input reciprocal exponents add to `1/2`.
+@isnad1 id=memlp.2h4v.s9.9407ccc7c14a from=translated src=- shape=7a5a1653 vocab=5314d414
+-/
 theorem aux_compact_translated_product_memLp
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -2946,6 +3260,9 @@ theorem aux_compact_translated_product_memLp
   rw [hsum] at hprod
   simpa using hprod
 
+/--
+@isnad1 id=eq.1h5v.s9.bd6bb96480fc from=translated src=- shape=209e9100 vocab=1abc4541
+-/
 theorem aux_shear_factor_lintegral
     {n : ℕ} {ν : Measure ℝ} [SFinite ν]
     (f : rteRealVector n → ℂ) (hf : Measurable f) (i : Fin n) (r : ℝ) :
@@ -2973,6 +3290,9 @@ theorem aux_shear_factor_lintegral
         (ENNReal.continuous_rpow_const.measurable.comp hf.enorm).aemeasurable aemeasurable_const
       simpa [mul_comm] using hprod
 
+/--
+@isnad1 id=eq.0h2v.s6.3267bf977ef4 from=translated src=- shape=ff585095 vocab=54824375
+-/
 theorem aux_enorm_finprod {ι : Type*} [Fintype ι] (a : ι → ℂ) :
     ‖∏ i, a i‖ₑ = ∏ i, ‖a i‖ₑ := by
   rw [← ofReal_norm, norm_prod, ENNReal.ofReal_prod_of_nonneg]
@@ -2982,6 +3302,9 @@ theorem aux_enorm_finprod {ι : Type*} [Fintype ι] (a : ι → ℂ) :
   · intro i _
     exact norm_nonneg _
 
+/--
+@isnad1 id=eq.2h5v.s6.a50a0436239f from=translated src=- shape=8d47e700 vocab=f6d0cfbf
+-/
 theorem aux_eLpNorm_sq_eq_lintegral_rpow
     {X E : Type*} [MeasurableSpace X] [TopologicalSpace E] [ENorm E]
     (μ : Measure X) (F : X → E) (p : ENNReal)
@@ -2994,6 +3317,9 @@ theorem aux_eLpNorm_sq_eq_lintegral_rpow
   have hexp : (1 / p.toReal) * (↑(2 : ℕ) : ℝ) = 2 / p.toReal := by ring
   rw [hexp]
 
+/--
+@isnad1 id=eq.1h4v.s6.c5510d74d467 from=translated src=- shape=efd28554 vocab=14308861
+-/
 theorem aux_prod_rpow_eq_rpow_sum_of_nonneg
     {ι : Type*} (s : Finset ι) (B : ENNReal) (q : ι → ℝ)
     (hq : ∀ i ∈ s, 0 ≤ q i) :
@@ -3008,6 +3334,9 @@ theorem aux_prod_rpow_eq_rpow_sum_of_nonneg
       (hq a (Finset.mem_insert_self _ _))
       (Finset.sum_nonneg fun i hi ↦ hq i (Finset.mem_insert_of_mem hi))).symm
 
+/--
+@isnad1 id=eq.2h5v.s7.c6a75f10281b from=translated src=- shape=a6f2ad9e vocab=813fba65
+-/
 theorem aux_prod_mul_rpow_eq_mul_prod_rpow
     {ι : Type*} (s : Finset ι) (B : ENNReal) (I : ι → ENNReal)
     (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i)
@@ -3022,7 +3351,9 @@ theorem aux_prod_mul_rpow_eq_mul_prod_rpow
     _ = B * ∏ i ∈ s, I i ^ q i := by
       rw [aux_prod_rpow_eq_rpow_sum_of_nonneg s B q hq, hqsum, ENNReal.rpow_one]
 
-/-- Finite-product Hölder for the squared joint kernel of a raw average.-/
+/-- Finite-product Hölder for the squared joint kernel of a raw average.
+@isnad1 id=le.3h4v.s12.b080b310761e from=translated src=- shape=e6ec2249 vocab=4baa0f29
+-/
 theorem aux_joint_translated_product_lintegral_sq_le
     {n : ℕ} (p : Fin n → ENNReal)
     (hp0 : ∀ i, p i ≠ 0) (hptop : ∀ i, p i ≠ ∞)
@@ -3113,6 +3444,9 @@ theorem aux_joint_translated_product_lintegral_sq_le
       symm
       exact aux_eLpNorm_sq_eq_lintegral_rpow volume (f i) (p i) (hp0 i) (hptop i)
 
+/--
+@isnad1 id=eq.0h4v.s6.a77f704207c2 from=translated src=- shape=23d1c164 vocab=bf5868b0
+-/
 theorem aux_eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
     [TopologicalSpace E] [ENorm E] (μ : Measure α) (f : α → E) :
     eLpNorm f 2 μ ^ 2 = ∫⁻ x, ‖f x‖ₑ ^ (2 : ℕ) ∂μ := by
@@ -3122,7 +3456,9 @@ theorem aux_eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
   rw [← ENNReal.rpow_mul]
   norm_num
 
-/-- The real square-integral form of the finite-product Hölder estimate.-/
+/-- The real square-integral form of the finite-product Hölder estimate.
+@isnad1 id=le.4h4v.s13.82640ccd37ca from=translated src=- shape=b9a3f698 vocab=257a7518
+-/
 theorem aux_joint_translated_product_integral_sq_le
     {n : ℕ} (p : Fin n → ENNReal)
     (hp0 : ∀ i, p i ≠ 0) (hptop : ∀ i, p i ≠ ∞)
@@ -3168,6 +3504,9 @@ theorem aux_joint_translated_product_integral_sq_le
   simpa only [ENNReal.toReal_mul, ENNReal.toReal_prod, ENNReal.toReal_pow,
     Lp.norm_def, Measure.real] using hreal
 
+/--
+@isnad1 id=eq.2h2v.s6.66a001f95692 from=translated src=- shape=8284bac4 vocab=19f4ef3f
+-/
 theorem aux_real_holder_sum_of_ennreal_reciprocal_sum
     {n : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (_hp_top : ∀ i, p i ≠ ∞)
@@ -3190,7 +3529,9 @@ theorem aux_real_holder_sum_of_ennreal_reciprocal_sum
       ring
     _ = 1 := by rw [hreal]; norm_num
 
-/-- The scaled unit-interval kernel is nonnegative and integrable.-/
+/-- The scaled unit-interval kernel is nonnegative and integrable.
+@isnad1 id=integrab.1h1v.s5.e7f464bc3cf2 from=translated src=- shape=a389a242 vocab=ea06806a
+-/
 theorem aux_scaleKernel_unitInterval_integrable {t : ℝ} (ht : 0 < t) :
     Integrable (scaleKernel t unitIntervalKernel) volume := by
   have hunit : Integrable unitIntervalKernel volume := by
@@ -3204,6 +3545,9 @@ theorem aux_scaleKernel_unitInterval_integrable {t : ℝ} (ht : 0 < t) :
   change Integrable (fun x => t⁻¹ * unitIntervalKernel (t⁻¹ * x)) volume
   simpa [m] using hcomp.const_mul t⁻¹
 
+/--
+@isnad1 id=le.1h2v.s4.45794449cafe from=translated src=- shape=d071e9a2 vocab=16e1b801
+-/
 theorem aux_scaleKernel_unitInterval_nonneg {t : ℝ} (ht : 0 < t) :
     ∀ s : ℝ, 0 ≤ scaleKernel t unitIntervalKernel s := by
   intro s
@@ -3214,7 +3558,9 @@ theorem aux_scaleKernel_unitInterval_nonneg {t : ℝ} (ht : 0 < t) :
 
 /--
 A nonnegative integrable kernel can be incorporated into a finite
-parameter measure, so the literal scalar average is an `L²` function.-/
+parameter measure, so the literal scalar average is an `L²` function.
+@isnad1 id=memlp.4h4v.s9.23c36bda345e from=translated src=- shape=47dfdd59 vocab=c9260241
+-/
 theorem aux_complexTwistedAverage_memLp_of_nonneg
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3248,7 +3594,9 @@ theorem aux_complexTwistedAverage_memLp_of_nonneg
   rw [hraw]
   exact hA
 
-/-- The density change-of-measure identity for the literal scalar integral.-/
+/-- The density change-of-measure identity for the literal scalar integral.
+@isnad1 id=eq.2h3v.s7.f5a6f8089eea from=translated src=- shape=01a3c166 vocab=32bc96f0
+-/
 theorem aux_complexTwistedAverage_eq_weighted
     {n : ℕ} (h : ℝ → ℝ) (hh : Integrable h volume)
     (h_nonneg : ∀ s, 0 ≤ h s) (f : Fin n → rteRealVector n → ℂ) :
@@ -3274,7 +3622,9 @@ theorem aux_complexTwistedAverage_eq_weighted
 
 /--
 Changing any collection of input representatives on null sets changes the
-literal raw average only on a null set.-/
+literal raw average only on a null set.
+@isnad1 id=eventual.3h4v.s9.0052ab505ea0 from=translated src=- shape=adf9dce5 vocab=8ec9a853
+-/
 theorem aux_complexTwistedAverage_congr_ae
     {n : ℕ} (h : ℝ → ℝ) (hh : Integrable h volume)
     (h_nonneg : ∀ s, 0 ≤ h s)
@@ -3311,7 +3661,9 @@ theorem aux_complexTwistedAverage_congr_ae
 
 /--
 If one input representative vanishes almost everywhere, the raw average
-vanishes almost everywhere.-/
+vanishes almost everywhere.
+@isnad1 id=eventual.3h4v.s9.3fd682817399 from=translated src=- shape=81068f12 vocab=8ec9a853
+-/
 theorem aux_complexTwistedAverage_ae_eq_zero_of_component_ae_eq_zero
     {n : ℕ} (h : ℝ → ℝ) (hh : Integrable h volume)
     (h_nonneg : ∀ s, 0 ≤ h s)
@@ -3337,7 +3689,9 @@ theorem aux_complexTwistedAverage_ae_eq_zero_of_component_ae_eq_zero
 
 /--
 The raw scaled unit-interval average is an `L²` representative for every
-finite tuple of admissible `Lp` inputs.-/
+finite tuple of admissible `Lp` inputs.
+@isnad1 id=memlp.3h4v.s9.9edfc914421e from=translated src=- shape=762f377b vocab=2e3183da
+-/
 theorem aux_complexTwistedAverageAtScale_memLp
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3349,6 +3703,9 @@ theorem aux_complexTwistedAverageAtScale_memLp
     (scaleKernel t unitIntervalKernel) (aux_scaleKernel_unitInterval_integrable ht)
     (aux_scaleKernel_unitInterval_nonneg ht) f hf
 
+/--
+@isnad1 id=eq.0h5v.s6.7ec997993300 from=translated src=- shape=3f6a5b12 vocab=22a37dd7
+-/
 theorem aux_prod_update_add {n : ℕ} (f : Fin n → ℂ) (i : Fin n) (a b : ℂ) :
     (∏ j, Function.update f i (a + b) j) =
       (∏ j, Function.update f i a j) + ∏ j, Function.update f i b j := by
@@ -3365,6 +3722,9 @@ theorem aux_prod_update_add {n : ℕ} (f : Fin n → ℂ) (i : Fin n) (a b : ℂ
     · simp
   rw [hprod, hprod, hprod, mul_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.e69252b04f2d from=translated src=- shape=b6606a73 vocab=667d49db
+-/
 theorem aux_prod_update_smul {n : ℕ} (f : Fin n → ℂ) (i : Fin n) (c a : ℂ) :
     (∏ j, Function.update f i (c • a) j) =
       c • ∏ j, Function.update f i a j := by
@@ -3383,6 +3743,9 @@ theorem aux_prod_update_smul {n : ℕ} (f : Fin n → ℂ) (i : Fin n) (c a : �
   change _ = c * _
   ring
 
+/--
+@isnad1 id=eq.0h7v.s8.cda18b764395 from=translated src=- shape=87d77fcf vocab=3ed6e50e
+-/
 theorem aux_joint_prod_update_add {n : ℕ}
     (f : Fin n → rteRealVector n → ℂ) (i : Fin n)
     (a b : rteRealVector n → ℂ) (x : rteRealVector n) (s : ℝ) :
@@ -3405,6 +3768,9 @@ theorem aux_joint_prod_update_add {n : ℕ}
     (aux_prod_update_add g i
       (a (x + s • coordinateAxis i)) (b (x + s • coordinateAxis i)))
 
+/--
+@isnad1 id=eq.0h7v.s8.6f241bbce2a9 from=translated src=- shape=193ff573 vocab=3ed6e50e
+-/
 theorem aux_joint_prod_update_smul {n : ℕ}
     (f : Fin n → rteRealVector n → ℂ) (i : Fin n)
     (c : ℂ) (a : rteRealVector n → ℂ) (x : rteRealVector n) (s : ℝ) :
@@ -3427,7 +3793,9 @@ theorem aux_joint_prod_update_smul {n : ℕ}
 
 /--
 An `L²` kernel has `L²`, hence integrable, parameter fibers almost
-everywhere when the parameter measure is finite.-/
+everywhere when the parameter measure is finite.
+@isnad1 id=eventual.1h5v.s7.a1f831c0db2c from=translated src=- shape=805e1f42 vocab=679a9124
+-/
 theorem aux_memLp_two_fiber_ae
     {X S : Type*} [MeasurableSpace X] [MeasurableSpace S]
     {μ : Measure X} {ν : Measure S} [SFinite μ] [SFinite ν] [IsFiniteMeasure ν]
@@ -3440,6 +3808,9 @@ theorem aux_memLp_two_fiber_ae
   exact (memLp_two_iff_integrable_sq_norm hxmeas).mpr (by
     simpa only [Real.rpow_two] using hxsq)
 
+/--
+@isnad1 id=eventual.6h7v.s10.367948a23d3b from=translated src=- shape=08f6498e vocab=8fcf952c
+-/
 theorem aux_complexTwistedAverage_update_add_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3492,6 +3863,9 @@ theorem aux_complexTwistedAverage_update_add_ae
   rw [hpoint, MeasureTheory.integral_add (hxa.integrable (by norm_num))
     (hxb.integrable (by norm_num))]
 
+/--
+@isnad1 id=eventual.5h7v.s9.db1cd7cf4806 from=translated src=- shape=5a59b740 vocab=e4f79f78
+-/
 theorem aux_complexTwistedAverage_update_smul_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3536,6 +3910,9 @@ theorem aux_complexTwistedAverage_update_smul_ae
   change (∫ s : ℝ, c • Pa (x, s) ∂ν) = c • ∫ s : ℝ, Pa (x, s) ∂ν
   rw [MeasureTheory.integral_smul]
 
+/--
+@isnad1 id=eventual.2h6v.s13.3da63c673b7a from=translated src=- shape=b03c8f95 vocab=bc8aa15e
+-/
 theorem aux_complexTwistedAverage_lp_update_repr_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (h : ℝ → ℝ) (hh : Integrable h volume) (h_nonneg : ∀ s, 0 ≤ h s)
@@ -3550,6 +3927,9 @@ theorem aux_complexTwistedAverage_lp_update_repr_ae
     simp
   · simp [hji]
 
+/--
+@isnad1 id=eventual.3h7v.s14.0d66edcebf74 from=translated src=- shape=a26e116e vocab=8ea38729
+-/
 theorem aux_complexTwistedAverage_lp_update_add_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3578,6 +3958,9 @@ theorem aux_complexTwistedAverage_lp_update_add_ae
       (Lp.memLp x) (Lp.memLp y)
   exact hsumrepr.trans (hconvert.trans (hadd.trans (hxrepr.symm.add hyrepr.symm)))
 
+/--
+@isnad1 id=eventual.3h7v.s15.603ac91d2ff3 from=translated src=- shape=50324fc0 vocab=0544d53e
+-/
 theorem aux_complexTwistedAverage_lp_update_smul_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3746,7 +4129,9 @@ noncomputable def aux_rawAverageLpCMLM
 
 /--
 The `Lp` value of `aux_rawAverageLpMultilinearMap` has the literal raw
-Bochner integral as an almost-everywhere representative.-/
+Bochner integral as an almost-everywhere representative.
+@isnad1 id=eventual.3h4v.s14.c75f7cab7573 from=translated src=- shape=ab559cc7 vocab=14592177
+-/
 theorem aux_rawAverageLpMultilinearMap_raw_ae
     {n : ℕ} (p : Fin n → ℝ≥0∞) [∀ i, Fact (1 ≤ p i)]
     (hsum : ∑ i, (p i)⁻¹ = (2 : ℝ≥0∞)⁻¹)
@@ -3764,7 +4149,9 @@ theorem aux_rawAverageLpMultilinearMap_raw_ae
 
 /--
 The continuous multilinear packaging has the same literal raw integral as
-its almost-everywhere representative.-/
+its almost-everywhere representative.
+@isnad1 id=eventual.4h4v.s16.0b03d07d3268 from=translated src=- shape=7b97e843 vocab=4d7999ba
+-/
 theorem aux_rawAverageLpCMLM_raw_ae
     {n : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -3792,7 +4179,9 @@ noncomputable def aux_packDifferenceCMLM
 
 /--
 The packed differences have the corresponding coordinatewise raw
-representative on the counting-product space.-/
+representative on the counting-product space.
+@isnad1 id=eventual.1h8v.s13.182e05fde9ea from=translated src=- shape=82a83b51 vocab=ff90b903
+-/
 theorem aux_packDifferenceCMLM_coeFn_ae_of_forall
     {J : ℕ} {ι Y : Type*} {X : ι → Type*} [Fintype ι]
     [MeasurableSpace Y] {μ : Measure Y} [SFinite μ]
@@ -3815,7 +4204,9 @@ theorem aux_packDifferenceCMLM_coeFn_ae_of_forall
 
 /--
 The squared `L²` norm of the packed differences is the sum of their raw
-coordinate energies.-/
+coordinate energies.
+@isnad1 id=eq.1h8v.s13.331599bcf59c from=translated src=- shape=b12b6b7e vocab=7e400cad
+-/
 theorem aux_eLpNorm_sq_packDifferenceCMLM_eq_sum_raw
     {J : ℕ} {ι Y : Type*} {X : ι → Type*} [Fintype ι]
     [MeasurableSpace Y] {μ : Measure Y} [SFinite μ]
@@ -3867,7 +4258,9 @@ noncomputable def aux_endpointLpCMLM
 
 /--
 The packed endpoint operator is represented almost everywhere by the
-literal successive differences of the scaled twisted averages.-/
+literal successive differences of the scaled twisted averages.
+@isnad1 id=eventual.3h5v.s16.5a8e0d2e6b94 from=translated src=- shape=1757eafa vocab=8914c2ef
+-/
 theorem aux_endpointLpCMLM_raw_ae
     {n J : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -3896,7 +4289,9 @@ theorem aux_endpointLpCMLM_raw_ae
 
 /--
 The squared `L²` norm of `aux_endpointLpCMLM` is exactly the finite raw
-complex endpoint energy.-/
+complex endpoint energy.
+@isnad1 id=eq.3h5v.s16.e10f648eaff9 from=translated src=- shape=7d483a0b vocab=70cb1f3f
+-/
 theorem aux_eLpNorm_sq_endpointLpCMLM_eq_complexEndpointEnergy
     {n J : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -3922,7 +4317,9 @@ theorem aux_eLpNorm_sq_endpointLpCMLM_eq_complexEndpointEnergy
 
 /--
 Endpoint packagings at two admissible exponent tuples agree almost
-everywhere when their input representatives agree coordinatewise.-/
+everywhere when their input representatives agree coordinatewise.
+@isnad1 id=eventual.6h7v.s17.7b28fa1a41e8 from=translated src=- shape=84f48877 vocab=af3cd50f
+-/
 theorem aux_endpointLpCMLM_congr_ae
     {n J : ℕ} (p q : Fin n → ENNReal)
     [∀ i, Fact (1 ≤ p i)] [∀ i, Fact (1 ≤ q i)]
@@ -3974,7 +4371,9 @@ theorem aux_endpointLpCMLM_congr_ae
 
 /--
 The literal complex endpoint energy is insensitive to almost-everywhere changes
-of any of its input components.-/
+of any of its input components.
+@isnad1 id=eq.2h5v.s8.7281470c4250 from=translated src=- shape=5d74d968 vocab=e44514dc
+-/
 theorem aux_complexEndpointEnergy_congr_ae
     {n J : ℕ} (t : Fin (J + 1) → ℝ) (htpos : ∀ k, 0 < t k)
     (f g : Fin n → rteRealVector n → ℂ)
@@ -3999,7 +4398,9 @@ theorem aux_complexEndpointEnergy_congr_ae
 
 /--
 If one input representative vanishes almost everywhere, then the packed
-finite-jump endpoint output vanishes almost everywhere as well.-/
+finite-jump endpoint output vanishes almost everywhere as well.
+@isnad1 id=eventual.4h6v.s16.161a1bd5969d from=translated src=- shape=cfe30342 vocab=af3cd50f
+-/
 theorem aux_endpointLpCMLM_ae_eq_zero_of_component_ae_eq_zero
     {n J : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -4045,6 +4446,9 @@ end RawStability
 def aux_rv_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) : ℂ :=
   ∏ i, if ε i = 0 then 1 else Complex.I
 
+/--
+@isnad1 id=eq.0h4v.s6.8ab4014d0e6f from=translated src=- shape=37d3fc89 vocab=96d59d9e
+-/
 theorem aux_rv_complex_product_expand {n : ℕ} {X : Type*}
     (f : Fin n → X → ℂ) (x : X) :
     ∏ i, f i x =
@@ -4078,6 +4482,9 @@ theorem aux_rv_complex_product_expand {n : ℕ} {X : Type*}
       intro i _
       split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d4702a662588 from=translated src=- shape=9b44e3a2 vocab=16a0058c
+-/
 theorem aux_rv_complex_product_expand_vec {n : ℕ} (g : Fin n → ℂ) :
     ∏ i, g i =
       ∑ ε : Fin n → Fin 2, aux_rv_complexComponentPhase ε *
@@ -4106,6 +4513,9 @@ theorem aux_rv_complex_product_expand_vec {n : ℕ} (g : Fin n → ℂ) :
       rw [Finset.prod_mul_distrib]
       simp only [aux_rv_complexComponentPhase]
 
+/--
+@isnad1 id=eq.1h4v.s8.c4cad3667d2e from=translated src=- shape=afd02ebb vocab=f6c16c17
+-/
 theorem aux_rv_complexTwistedAverage_expand {n : ℕ} (χ : ℝ → ℝ)
     (f : Fin n → rteRealVector n → ℂ) (x : rteRealVector n)
     (hint : ∀ ε : Fin n → Fin 2, Integrable (fun s : ℝ ↦
@@ -4157,6 +4567,9 @@ theorem aux_rv_complexTwistedAverage_expand {n : ℕ} (χ : ℝ → ℝ)
     _ = (Auto.rteTwistedAverage χ (complexComponent ε f) x : ℂ) := by
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1c42a37c1f0b from=translated src=- shape=07ab364f vocab=f0ebaa44
+-/
 theorem aux_rv_norm_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) :
     ‖aux_rv_complexComponentPhase ε‖ = 1 := by
   unfold aux_rv_complexComponentPhase
@@ -4165,6 +4578,9 @@ theorem aux_rv_norm_complexComponentPhase {n : ℕ} (ε : Fin n → Fin 2) :
   intro i _
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.2h6v.s8.02811bb7e080 from=translated src=- shape=80d1e5bc vocab=f5829c51
+-/
 theorem aux_rv_complexTwistedAverageAtScale_sub_expand {n : ℕ}
     (a b : ℝ) (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℂ) (x : rteRealVector n)
     (hinta : ∀ ε : Fin n → Fin 2, Integrable (fun s : ℝ ↦
@@ -4189,6 +4605,9 @@ theorem aux_rv_complexTwistedAverageAtScale_sub_expand {n : ℕ}
   push_cast
   ring
 
+/--
+@isnad1 id=le.2h5v.s10.073fcfb068b8 from=translated src=- shape=b1c2b9ff vocab=2fa21387
+-/
 theorem aux_rv_eLpNorm_complexTwistedAverageAtScale_sub_le_sum {n : ℕ}
     (a b : ℝ) (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℂ)
     (hint : ∀ ε : Fin n → Fin 2, ∀ x : rteRealVector n, ∀ r : Fin 2,
@@ -4249,6 +4668,9 @@ theorem aux_rv_eLpNorm_complexTwistedAverageAtScale_sub_le_sum {n : ℕ}
       filter_upwards [] with x
       exact Complex.norm_real _
 
+/--
+@isnad1 id=le.1h2v.s6.ebf7c90acbba from=translated src=- shape=4fd74754 vocab=a824439b
+-/
 theorem aux_rv_ennreal_sq_sum_le_card_mul_sum_sq {ι : Type*} [Fintype ι]
     (a : ι → ℝ≥0∞) (ha : ∀ i, a i ≠ ∞) :
     (∑ i, a i) ^ 2 ≤ (Fintype.card ι : ℝ≥0∞) * ∑ i, a i ^ 2 := by
@@ -4265,6 +4687,9 @@ theorem aux_rv_ennreal_sq_sum_le_card_mul_sum_sq {ι : Type*} [Fintype ι]
     (sq_sum_le_card_mul_sum_sq (s := (Finset.univ : Finset ι))
       (f := fun i ↦ (a i).toReal))
 
+/--
+@isnad1 id=le.2h5v.s9.61cb93870198 from=translated src=- shape=3e1062aa vocab=44ff4818
+-/
 theorem aux_rv_complexEndpointEnergy_complexification_le {n J : ℕ}
     (t : Fin (J + 1) → ℝ) (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℂ)
     (hint : ∀ ε : Fin n → Fin 2, ∀ j : Fin J, ∀ x : rteRealVector n, ∀ r : Fin 2,
@@ -4314,6 +4739,9 @@ theorem aux_rv_complexEndpointEnergy_complexification_le {n J : ℕ}
       simp_rw [Finset.mul_sum]
       rw [Finset.sum_comm]
 
+/--
+@isnad1 id=le.3h6v.s9.aa704d2a01d4 from=translated src=- shape=cbd14ed5 vocab=0ca916b6
+-/
 theorem aux_rv_complexEndpointEnergy_complexification_bound {n J : ℕ}
     (t : Fin (J + 1) → ℝ) (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℂ)
     (B : ℝ≥0∞)
@@ -4347,11 +4775,17 @@ theorem aux_rv_complexEndpointEnergy_complexification_bound {n J : ℕ}
       congr 2
       omega
 
+/--
+@isnad1 id=integrab.0h0v.s4.883529218924 from=translated src=- shape=e14394ff vocab=5aaeefdd
+-/
 theorem aux_rv_unitIntervalKernel_integrable : Integrable unitIntervalKernel volume := by
   apply memLp_one_iff_integrable.mp
   exact memLp_indicator_const 1 measurableSet_Icc (1 : ℝ)
     (Or.inr measure_Icc_lt_top.ne)
 
+/--
+@isnad1 id=integrab.1h1v.s5.e7f464bc3cf2 from=translated src=- shape=a389a242 vocab=ea06806a
+-/
 theorem aux_rv_scaleKernel_integrable {t : ℝ} (ht : 0 < t) :
     Integrable (scaleKernel t unitIntervalKernel) volume := by
   have hcomp : Integrable (fun s : ℝ ↦ unitIntervalKernel (t⁻¹ * s)) volume :=
@@ -4368,6 +4802,9 @@ noncomputable def aux_rv_complexComponentSchwartz {n : ℕ}
     SchwartzMap.postcompCLM Complex.reCLM (f i)
   else SchwartzMap.postcompCLM Complex.imCLM (f i)
 
+/--
+@isnad1 id=eq.0h5v.s9.3d6129d52ee9 from=translated src=- shape=b5957d85 vocab=b8b5af6e
+-/
 theorem aux_rv_complexComponentSchwartz_apply {n : ℕ}
     (ε : Fin n → Fin 2) (f : Fin n → SchwartzMap (rteRealVector n) ℂ)
     (i : Fin n) (x : rteRealVector n) :
@@ -4376,6 +4813,9 @@ theorem aux_rv_complexComponentSchwartz_apply {n : ℕ}
   unfold aux_rv_complexComponentSchwartz complexComponent
   split_ifs <;> rfl
 
+/--
+@isnad1 id=integrab.1h5v.s8.1956590f0cd9 from=translated src=- shape=1c947da3 vocab=85cb805a
+-/
 theorem aux_rv_complex_line_integrable_schwartz {n : ℕ}
     (ε : Fin n → Fin 2) (f : Fin n → SchwartzMap (rteRealVector n) ℂ)
     (x : rteRealVector n) {t : ℝ} (ht : 0 < t) :
@@ -4414,6 +4854,9 @@ theorem aux_rv_complex_line_integrable_schwartz {n : ℕ}
   change Integrable ((fun s : ℝ ↦ (scaleKernel t unitIntervalKernel s : ℂ)) * h) volume
   exact hmul
 
+/--
+@isnad1 id=le.3h6v.s10.ed14f8bff73e from=translated src=- shape=0b352ce4 vocab=e28cea68
+-/
 theorem aux_rv_complexEndpointEnergy_complexification_schwartz {n J : ℕ}
     (hn : 2 ≤ n) (p : Fin n → ℝ≥0∞) (t : Fin (J + 1) → ℝ)
     (htpos : ∀ j, 0 < t j)
@@ -4468,6 +4911,9 @@ theorem aux_rv_complexEndpointEnergy_complexification_schwartz {n J : ℕ}
       _ ≤ B * ∏ i, eLpNorm (f i) (p i) volume ^ 2 :=
         mul_le_mul_of_nonneg_left hcomponentNorm bot_le
 
+/--
+@isnad1 id=eq.0h4v.s5.5d9e58954994 from=translated src=- shape=e640f9d0 vocab=544d70aa
+-/
 theorem aux_rv_complexTwistedAverage_ofReal {n : ℕ} (χ : ℝ → ℝ)
     (f : Fin n → rteRealVector n → ℝ) (x : rteRealVector n) :
     complexTwistedAverage χ (fun i y ↦ (f i y : ℂ)) x =
@@ -4483,7 +4929,9 @@ theorem aux_rv_complexTwistedAverage_ofReal {n : ℕ} (χ : ℝ → ℝ)
     _ = (∫ s : ℝ, χ s * ∏ i, f i (x + s • coordinateAxis i)) := by
       exact integral_ofReal
 
-/-- The same real-to-complex identification after scaling the kernel.-/
+/-- The same real-to-complex identification after scaling the kernel.
+@isnad1 id=eq.0h5v.s5.d3afe38ebd97 from=translated src=- shape=4300f0d3 vocab=f1e9b5ab
+-/
 theorem aux_rv_complexTwistedAverageAtScale_ofReal {n : ℕ} (t : ℝ) (χ : ℝ → ℝ)
     (f : Fin n → rteRealVector n → ℝ) (x : rteRealVector n) :
     complexTwistedAverageAtScale t χ (fun i y ↦ (f i y : ℂ)) x =
@@ -4491,7 +4939,9 @@ theorem aux_rv_complexTwistedAverageAtScale_ofReal {n : ℕ} (t : ℝ) (χ : ℝ
   unfold complexTwistedAverageAtScale Auto.rteTwistedAverageAtScale
   exact aux_rv_complexTwistedAverage_ofReal (scaleKernel t χ) f x
 
-/-- On real inputs the complex raw jump energy is exactly the original real jump energy.-/
+/-- On real inputs the complex raw jump energy is exactly the original real jump energy.
+@isnad1 id=eq.0h5v.s5.3f2f360974ed from=translated src=- shape=fd13f13a vocab=1ed8bd0a
+-/
 theorem aux_rv_complexEndpointEnergy_ofReal {n J : ℕ} (t : Fin (J + 1) → ℝ)
     (χ : ℝ → ℝ) (f : Fin n → rteRealVector n → ℝ) :
     complexEndpointEnergy J t χ (fun i x ↦ (f i x : ℂ)) =
@@ -4519,7 +4969,9 @@ theorem aux_rv_complexEndpointEnergy_ofReal {n J : ℕ} (t : Fin (J + 1) → ℝ
 
 /--
 Passing a real-valued function through the canonical inclusion into `ℂ` preserves
-every extended `Lᵖ` norm.-/
+every extended `Lᵖ` norm.
+@isnad1 id=eq.0h4v.s6.92c6903a1eb1 from=translated src=- shape=eaa6860d vocab=61bf6ba6
+-/
 theorem aux_rv_eLpNorm_ofReal {X : Type*} [MeasurableSpace X] (μ : Measure X)
     (q : ℝ≥0∞) (f : X → ℝ) :
     eLpNorm (fun x ↦ (f x : ℂ)) q μ = eLpNorm f q μ := by
@@ -4527,7 +4979,9 @@ theorem aux_rv_eLpNorm_ofReal {X : Type*} [MeasurableSpace X] (μ : Measure X)
   filter_upwards [] with x
   exact Complex.norm_real _
 
-/-- The product of input norms is likewise unchanged by real-to-complex inclusion.-/
+/-- The product of input norms is likewise unchanged by real-to-complex inclusion.
+@isnad1 id=eq.0h3v.s9.853d0639c178 from=translated src=- shape=92672218 vocab=27141897
+-/
 theorem aux_rv_eLpNorm_ofReal_prod {n : ℕ} (p : Fin n → ℝ≥0∞)
     (f : Fin n → rteRealVector n → ℝ) :
     (∏ i, eLpNorm (fun x ↦ (f i x : ℂ)) (p i) volume ^ 2) =
@@ -4538,7 +4992,9 @@ theorem aux_rv_eLpNorm_ofReal_prod {n : ℕ} (p : Fin n → ℝ≥0∞)
 
 /--
 Complexifying a real Schwartz endpoint bound costs exactly `2^(2n)` in the
-squared jump energy.-/
+squared jump energy.
+@isnad1 id=le.3h5v.s10.6801eae83ac7 from=translated src=- shape=2320f475 vocab=7bb8f2dd
+-/
 theorem aux_rv_complexEndpointEnergy_complexification_schwartz_endpoint
     {n J : ℕ} (hn : 2 ≤ n) (t : Fin (J + 1) → ℝ) (htpos : ∀ j, 0 < t j)
     (π : Equiv.Perm (Fin n)) (f : Fin n → SchwartzMap (rteRealVector n) ℂ)
@@ -4557,7 +5013,9 @@ theorem aux_rv_complexEndpointEnergy_complexification_schwartz_endpoint
 
 /--
 Converts the sharp complex-Schwartz endpoint energy estimate into a real squared-norm
-bound for any packed `L²` CMLM whose Schwartz values represent that raw energy.-/
+bound for any packed `L²` CMLM whose Schwartz values represent that raw energy.
+@isnad1 id=le.5h6v.s17.90af100b815d from=translated src=- shape=10e4ee70 vocab=eb08d568
+-/
 theorem aux_packed_endpoint_schwartz_sq_bound
     {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J)
     (t : Fin (J + 1) → ℝ) (htpos : ∀ j, 0 < t j)
@@ -4628,7 +5086,9 @@ theorem aux_packed_endpoint_schwartz_sq_bound
 /--
 A sharp endpoint estimate transfers from a packed CMLM's raw-energy equality on Schwartz
 tuples to arbitrary endpoint `Lp` inputs.  It is applied to
-`RawStability.aux_endpointLpCMLM` using its exact raw-energy theorem.-/
+`RawStability.aux_endpointLpCMLM` using its exact raw-energy theorem.
+@isnad1 id=le.7h7v.s17.a10b7d1ce1ca from=translated src=- shape=d8baa6fe vocab=2c7b18c6
+-/
 theorem aux_packedCMLM_sharp_endpoint_sq_bound
     {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J)
     (t : Fin (J + 1) → ℝ) (htpos : ∀ j, 0 < t j)
@@ -4663,7 +5123,9 @@ theorem aux_packedCMLM_sharp_endpoint_sq_bound
 
 /--
 Transfers an endpoint CMLM squared norm estimate across two exponent tuples on an
-integrable simple-function tuple, using the common literal raw representative.-/
+integrable simple-function tuple, using the common literal raw representative.
+@isnad1 id=le.8h7v.s17.ba4391b59919 from=translated src=- shape=9124712b vocab=fad757db
+-/
 theorem aux_generic_core_endpoint_bound
     {n J : ℕ} (p q : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)] [∀ i, Fact (1 ≤ q i)]
     (hp_top : ∀ i, p i ≠ ∞) (hq_top : ∀ i, q i ≠ ∞)
@@ -4713,7 +5175,9 @@ theorem aux_generic_core_endpoint_bound
 
 /--
 The sharp real Schwartz endpoint estimate supplies the simple-function endpoint
-premise needed for the common-integrable interpolation totalization.-/
+premise needed for the common-integrable interpolation totalization.
+@isnad1 id=le.8h6v.s16.bbd919d42fce from=translated src=- shape=4dc9d502 vocab=c3abac97
+-/
 theorem aux_endpoint_core_bound_from_schwartz
     {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J)
     (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
@@ -4784,6 +5248,9 @@ theorem aux_endpoint_core_bound_from_schwartz
   simpa only [q] using aux_generic_core_endpoint_bound p q hp_top hq_top hpsum hqsum'
     t htpos (C_interpolated_real_variable_estimate n * jumpGrowth n J) hK g hg hsharp
 
+/--
+@isnad1 id=eq.2h3v.s6.4b467d853784 from=translated src=- shape=85438d39 vocab=bdb258b4
+-/
 theorem aux_targetExponent_eq
     {m : ℕ} (p : Fin (m + 1) → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hptop : ∀ i, p i ≠ ∞) (i : Fin (m + 1)) :
@@ -4798,6 +5265,9 @@ theorem aux_targetExponent_eq
       (ENNReal.inv_ne_zero.mpr (hptop i))
       (ENNReal.inv_ne_top.mpr (ne_of_gt (lt_of_lt_of_le zero_lt_one (hp i))))
 
+/--
+@isnad1 id=eq.1h3v.s8.a2388ed622f2 from=translated src=- shape=22985fba vocab=0937984a
+-/
 theorem aux_endpointExponent_eq_of_reciprocal
     {m : ℕ}
     (hreciprocal : ∀ i : Fin (m + 1),
@@ -4823,6 +5293,9 @@ theorem aux_endpointExponent_eq_of_reciprocal
   rw [hqrec]
   exact aux_targetExponent_eq q hq hqtop i
 
+/--
+@isnad1 id=and.1h2v.s6.050349217278 from=translated src=- shape=4ca162f6 vocab=27c3d4e9
+-/
 theorem aux_endpointReciprocal_box_of_reciprocal
     {m : ℕ}
     (hreciprocal : ∀ i : Fin (m + 1),
@@ -4853,7 +5326,9 @@ theorem aux_endpointReciprocal_box_of_reciprocal
 Applies the finite-endpoint squared interpolation theorem to the permutation polytope
 used by the real-variable estimate.  The packed map and its null-input compatibility are
 kept abstract so that the analytic extension and the raw-energy representative can be
-constructed independently.-/
+constructed independently.
+@isnad1 id=le.9h9v.s13.2a93e3145d94 from=translated src=- shape=1a2a4674 vocab=785ac347
+-/
 theorem aux_multilinear_interpolation_endpointPolytope_sq_of_packed
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -4904,7 +5379,9 @@ theorem aux_multilinear_interpolation_endpointPolytope_sq_of_packed
 /--
 A convenience form of the packed endpoint-polytope bridge.  The explicit reciprocal
 identity for the endpoint exponents supplies both the box condition and the exponent rewrite
-required by `multilinear_interpolation_convexHull_Lp_sq`.-/
+required by `multilinear_interpolation_convexHull_Lp_sq`.
+@isnad1 id=le.8h9v.s13.c42f8be995b7 from=translated src=- shape=6ffc30cd vocab=785ac347
+-/
 theorem aux_multilinear_interpolation_endpointPolytope_sq_of_packed_of_reciprocal
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -4937,7 +5414,9 @@ theorem aux_multilinear_interpolation_endpointPolytope_sq_of_packed_of_reciproca
 
 /--
 Rephrases the interpolation estimate on literal integrable simple functions as the
-common-core estimate used by the final dense-range propagation.-/
+common-core estimate used by the final dense-range propagation.
+@isnad1 id=le.4h6v.s17.e9d1b815e556 from=translated src=- shape=1caf553a vocab=19e417ed
+-/
 theorem aux_target_packed_core_bound_of_totalized
     {n J : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -5000,7 +5479,9 @@ theorem aux_target_packed_core_bound_of_totalized
 /--
 The final density and quotient-representative stage of the target interpolation
 argument.  A sharp squared estimate on the common integrable simple-function core extends
-to all `Lp` inputs, and the packed `L²` norm is then returned to the literal raw jump energy.-/
+to all `Lp` inputs, and the packed `L²` norm is then returned to the literal raw jump energy.
+@isnad1 id=le.6h6v.s17.65dfdba0bea4 from=translated src=- shape=a0490fd1 vocab=2b1b3ef1
+-/
 theorem aux_target_packed_core_bound
     {n J : ℕ} (p : Fin n → ENNReal) [∀ i, Fact (1 ≤ p i)]
     (hp_top : ∀ i, p i ≠ ∞)
@@ -5087,7 +5568,9 @@ Then $T$ extends to an $n$-linear map from $\prod_{i\in[n)}L^{p_i}(X_i)$ to $L^p
 $$
 \|T(f_0,\ldots,f_{n-1})\|_{L^p(Y)}\le
 \prod_{a\in[m)}A_a^{\theta_a}\prod_{i\in[n)}\|f_i\|_{L^{p_i}(X_i)}.
-$$-/
+$$
+@isnad1 id=and.7h4v.s11.80814cdde5e5 from=translated src=- shape=43d97725 vocab=0d37b11b
+-/
 theorem multilinear_interpolation_external {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hpoly : (fun i ↦ ((p i)⁻¹).toReal) ∈ endpointPolytope n)
@@ -5216,7 +5699,9 @@ $$
 \prod_{i\in[n)}\|f_i\|_{p_i}^2.
 $$
 
-For the displayed named constants, see `Auto.aux_main_twisted_theorem`.-/
+For the displayed named constants, see `Auto.aux_main_twisted_theorem`.
+@isnad1 id=le.8h5v.s9.210354adaea5 from=translated src=- shape=0bbe2bf7 vocab=3c12184c
+-/
 theorem interpolated_real_variable_estimate {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2)
@@ -5238,7 +5723,9 @@ theorem interpolated_real_variable_estimate {n : ℕ} (hn : 2 ≤ n)
 
 /--
 The real-input component of
-`interpolated_real_variable_estimate`, exposed for Calderón transference.-/
+`interpolated_real_variable_estimate`, exposed for Calderón transference.
+@isnad1 id=le.8h5v.s9.401c7a141ff8 from=translated src=- shape=305535ec vocab=87801050
+-/
 theorem aux_interpolated_real_variable_estimate_real {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2)
@@ -5260,7 +5747,9 @@ theorem aux_interpolated_real_variable_estimate_real {n : ℕ} (hn : 2 ≤ n)
 
 /--
 The exponent-polytope hypotheses force every exponent into `(1, ∞)`,
-as needed by the Calderón theorem.-/
+as needed by the Calderón theorem.
+@isnad1 id=and.3h3v.s7.870de5b74fdc from=translated src=- shape=46f4bf14 vocab=19902e7a
+-/
 theorem aux_exponents_strictly_between_one_and_top {n : ℕ}
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2)
@@ -5290,7 +5779,9 @@ theorem aux_exponents_strictly_between_one_and_top {n : ℕ}
 
 /--
 Measurability of a real multiple ergodic average, used to turn finite
-jump-energy estimates into `MemLp` facts for complexification.-/
+jump-energy estimates into `MemLp` facts for complexification.
+@isnad1 id=aestrong.1h6v.s5.c7c198733c84 from=translated src=- shape=063ef9ac vocab=14fedef1
+-/
 theorem aux_realErgodicAverage_aestronglyMeasurable {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : aux_ErgodicSystem X μ n) (N : ℕ) (f : Fin n → X → ℝ)
@@ -5307,6 +5798,9 @@ theorem aux_realErgodicAverage_aestronglyMeasurable {X : Type*}
   exact (hf i).comp_quasiMeasurePreserving
     ((S.measurePreserving i).iterate m).quasiMeasurePreserving
 
+/--
+@isnad1 id=aestrong.1h7v.s6.14878ecf84fb from=translated src=- shape=2abc8e71 vocab=f877d39f
+-/
 theorem aux_realErgodicAverage_sub_aestronglyMeasurable {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : aux_ErgodicSystem X μ n) (N M : ℕ) (f : Fin n → X → ℝ)
@@ -5318,7 +5812,9 @@ theorem aux_realErgodicAverage_sub_aestronglyMeasurable {X : Type*}
 
 /--
 A finite real jump-energy bound and measurability give `MemLp` for each
-individual real jump.-/
+individual real jump.
+@isnad1 id=memlp.3h9v.s7.94affd65d7b3 from=translated src=- shape=4adee96f vocab=da2c5c0d
+-/
 theorem aux_realErgodicJump_memLp_of_energy_le {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n J : ℕ}
     (S : aux_ErgodicSystem X μ n) (N : Fin (J + 1) → ℕ)
@@ -5347,6 +5843,9 @@ theorem aux_realErgodicJump_memLp_of_energy_le {X : Type*}
       lt_of_le_of_lt (hsingle.trans henergy) (lt_top_iff_ne_top.mpr hBtop)
     exact (ENNReal.pow_lt_top_iff.mp hpowtop).resolve_right (by norm_num)
 
+/--
+@isnad1 id=memlp.1h7v.s7.38db9897e9f0 from=translated src=- shape=9a650203 vocab=69c1e0a2
+-/
 theorem aux_complexComponent_memLp_pi {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (ε : Fin n → Fin 2) (f : Fin n → X → ℂ)
     (p : Fin n → ℝ≥0∞) (hf : ∀ i, MemLp (f i) (p i) μ) (i : Fin n) :
@@ -5358,6 +5857,9 @@ theorem aux_complexComponent_memLp_pi {X : Type*} [MeasurableSpace X]
 
 /-! ### Bridge to the Mathlib-only Calderón transference theorem -/
 
+/--
+@isnad1 id=eq.1h1v.s4.20a1a971f4cf from=translated src=- shape=cfb0e90d vocab=3c708435
+-/
 theorem ct_kernel_eq_of_ne_one (x : ℝ) (hx : x ≠ 1) :
     Auto.ctUnitIntervalKernel x = unitIntervalKernel x := by
   unfold Auto.ctUnitIntervalKernel unitIntervalKernel
@@ -5370,6 +5872,9 @@ theorem ct_kernel_eq_of_ne_one (x : ℝ) (hx : x ≠ 1) :
       exact ⟨hx'.1, lt_of_le_of_ne hx'.2 hx⟩
     simp [h, h']
 
+/--
+@isnad1 id=eventual.1h1v.s5.0d372dbc8239 from=translated src=- shape=3db82231 vocab=318b6ce3
+-/
 theorem ct_scaled_kernel_ae_eq (t : ℝ) (ht : 0 < t) :
     (fun s : ℝ ↦ Auto.ctUnitIntervalKernel (t⁻¹ * s)) =ᵐ[volume]
       fun s ↦ unitIntervalKernel (t⁻¹ * s) := by
@@ -5382,6 +5887,9 @@ theorem ct_scaled_kernel_ae_eq (t : ℝ) (ht : 0 < t) :
     _ = t * (t⁻¹ * s) := by ring
     _ = t := by rw [h, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s5.b0538c62b74c from=translated src=- shape=e24012fe vocab=24abec4c
+-/
 theorem ct_twistedAverageAtScale_eq {n : ℕ} (t : ℝ) (ht : 0 < t)
     (f : Fin n → Auto.ctRealVector n → ℝ) :
     Auto.ctTwistedAverageAtScale t
@@ -5398,6 +5906,9 @@ theorem ct_twistedAverageAtScale_eq {n : ℕ} (t : ℝ) (ht : 0 < t)
   rw [hs]
   simp only [Auto.ctCoordinateAxis]
 
+/--
+@isnad1 id=eq.1h4v.s6.7681615a9b05 from=translated src=- shape=dfdc0fda vocab=e71d3790
+-/
 theorem ct_endpointEnergy_eq {n J : ℕ} (t : Fin (J + 1) → ℝ)
     (ht : ∀ j, 0 < t j)
     (f : Fin n → Auto.ctRealVector n → ℝ) :
@@ -5416,6 +5927,9 @@ def ctSystem {X : Type*} [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     measurePreserving := S.measurePreserving
     commutes := S.commutes }
 
+/--
+@isnad1 id=eq.0h7v.s6.9a5e0c30372d from=translated src=- shape=fbe24ff2 vocab=ec72d36e
+-/
 theorem ct_energy_eq {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n J : ℕ} (S : aux_ErgodicSystem X μ n)
     (N : Fin (J + 1) → ℕ) (f : Fin n → X → ℝ) :
@@ -5508,7 +6022,9 @@ C_{\text{Calderón transference principle},n}
 2^{4n+6}.
 $$
 
-For the displayed named constant, see `Auto.C_calderon_transference_external`.-/
+For the displayed named constant, see `Auto.C_calderon_transference_external`.
+@isnad1 id=and.4h3v.s7.771510cccb3b from=translated src=- shape=6a404a70 vocab=fb124d6d
+-/
 theorem calderon_transference_external {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 < p i ∧ p i < ∞)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2) (C : ℝ) (hC : 0 < C) :
@@ -5565,7 +6081,9 @@ $$
 For the displayed named constants, see
 `Auto.ergodic_jump_estimate_interpolation`,
 `Auto.calderon_transference_external`,
-`Auto.aux_main_twisted_theorem`.-/
+`Auto.aux_main_twisted_theorem`.
+@isnad1 id=le.8h8v.s8.63f843cb107a from=translated src=- shape=7796611a vocab=4024cce6
+-/
 theorem ergodic_jump_estimate_interpolation {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 ≤ p i)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2)
@@ -5636,7 +6154,9 @@ theorem ergodic_jump_estimate_interpolation {n : ℕ} (hn : 2 ≤ n)
 
 /--
 Under the exponent-polytope hypotheses, the general ergodic jump constant
-is strictly positive.-/
+is strictly positive.
+@isnad1 id=lt.4h2v.s7.4450daf1b563 from=translated src=- shape=1667f076 vocab=006f01b6
+-/
 theorem C_ergodic_jump_estimate_interpolation_pos {n : ℕ} (_hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (_hp : ∀ i, 1 ≤ p i)
     (_hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2)
@@ -5648,6 +6168,9 @@ theorem C_ergodic_jump_estimate_interpolation_pos {n : ℕ} (_hn : 2 ≤ n)
   dsimp [Auto.calderonTransferenceConstant]
   positivity
 
+/--
+@isnad1 id=and.1h1v.s8.8c31d37b81dc from=translated src=- shape=476bd588 vocab=c620ed91
+-/
 theorem aux_symmetric_exponent_conditions {n : ℕ} (hn : 2 ≤ n) :
     (∀ _i : Fin n, 1 ≤ (2 * n : ℝ≥0∞)) ∧
       (∑ _i : Fin n, ((2 * n : ℝ≥0∞)⁻¹).toReal) = 1 / 2 ∧
@@ -5678,7 +6201,9 @@ theorem aux_symmetric_exponent_conditions {n : ℕ} (hn : 2 ≤ n) :
 noncomputable def C_symmetric_ergodic_jump_estimate (n : ℕ) : ℝ :=
   (2 : ℝ) ^ (8 * n + 672)
 
-/-- For `n ≥ 2`, the symmetric ergodic jump constant is strictly positive.-/
+/-- For `n ≥ 2`, the symmetric ergodic jump constant is strictly positive.
+@isnad1 id=lt.1h1v.s4.d84ff729dc29 from=translated src=- shape=f8216502 vocab=1b325011
+-/
 theorem C_symmetric_ergodic_jump_estimate_pos {n : ℕ} (_hn : 2 ≤ n) :
     0 < C_symmetric_ergodic_jump_estimate n := by
   unfold C_symmetric_ergodic_jump_estimate
@@ -5706,7 +6231,9 @@ $$
 
 For the displayed named constants, see `Auto.symmetric_ergodic_jump_estimate`,
 `Auto.calderon_transference_external`,
-`Auto.aux_main_twisted_theorem`.-/
+`Auto.aux_main_twisted_theorem`.
+@isnad1 id=le.5h7v.s8.cf33356ab5f1 from=translated src=- shape=fab86b90 vocab=47eda7b3
+-/
 theorem symmetric_ergodic_jump_estimate {n : ℕ} (hn : 2 ≤ n)
     (X : Type u) [MeasurableSpace X] (μ : Measure X)
     (S : aux_ErgodicSystem X μ n) (J : ℕ) (hJ : 0 < J)
@@ -5743,6 +6270,9 @@ theorem symmetric_ergodic_jump_estimate {n : ℕ} (hn : 2 ≤ n)
       (fun _ : Fin n ↦ (2 * n : ℝ≥0∞)) hp hsum hlower
       X μ S J hJ N hN hNpos f hf
 
+/--
+@isnad1 id=eq.1h4v.s8.540f868f81a8 from=translated src=- shape=12f3a5f4 vocab=182dab5f
+-/
 theorem aux_inputNormProductSq {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (f : Fin n → X → ℂ)
     (hf : ∀ i, MemLp (f i) (2 * n : ℝ≥0∞) μ) :
@@ -5756,6 +6286,9 @@ theorem aux_inputNormProductSq {X : Type*} [MeasurableSpace X]
   · intro i _
     positivity
 
+/--
+@isnad1 id=eq.2h6v.s8.2964648aa387 from=translated src=- shape=4e303fd1 vocab=3562a9b6
+-/
 theorem aux_jumpBoundRhsRewrite {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (C G : ℝ) (hC : 0 ≤ C)
     (f : Fin n → X → ℂ)
@@ -5778,10 +6311,16 @@ theorem aux_jumpBoundRhsRewrite {X : Type*} [MeasurableSpace X]
           (C * (∏ i, (eLpNorm (f i) (2 * n : ℝ≥0∞) μ).toReal) ^ 2) *
         ENNReal.ofReal G := by rw [ENNReal.ofReal_mul hC]
 
+/--
+@isnad1 id=eq.0h1v.s5.42c1d6c61c25 from=translated src=- shape=cd920d85 vocab=0b2a71da
+-/
 theorem aux_jumpGrowth_two (J : ℕ) :
     jumpGrowth 2 J = (J : ℝ) ^ (1 - 2 / (2 : ℝ)) := by
   simp [jumpGrowth]
 
+/--
+@isnad1 id=eq.0h2v.s6.f5896ada884c from=translated src=- shape=b98127f8 vocab=0b2a71da
+-/
 theorem aux_jumpGrowth_as_variation_growth (n J : ℕ) :
     jumpGrowth n J =
       (J : ℝ) ^ (1 - 2 / (2 : ℝ) ^ ((n : ℝ) - 1)) := by
@@ -5790,6 +6329,9 @@ theorem aux_jumpGrowth_as_variation_growth (n J : ℕ) :
   rw [show -(n : ℝ) + 2 = 1 - ((n : ℝ) - 1) by ring]
   rw [Real.rpow_sub (by norm_num : (0 : ℝ) < 2), Real.rpow_one]
 
+/--
+@isnad1 id=eq.0h1v.s6.ae14ea88a633 from=translated src=- shape=4446c644 vocab=cf5616cd
+-/
 theorem aux_one_div_two_rpow_sub_one (n : ℕ) :
     1 / (2 : ℝ) ^ ((n : ℝ) - 1) = (2 : ℝ) ^ (1 - (n : ℝ)) := by
   rw [show 1 - (n : ℝ) = -((n : ℝ) - 1) by ring,
@@ -5827,7 +6369,9 @@ and, for $n\ge3$,
 $C_{\text{main ergodic theorem},n,r}=2^{4n+337}
 \left(\tfrac{r}{r-2^{n-1}}\right)^{1/r}$.
 
-For the displayed named constant, see `Auto.aux_main_ergodic_theorem`.-/
+For the displayed named constant, see `Auto.aux_main_ergodic_theorem`.
+@isnad1 id=le.3h6v.s9.b9f4163fc6b9 from=translated src=- shape=0cd5b925 vocab=76320cb4
+-/
 theorem aux_main_ergodic_theorem {X : Type u} [MeasurableSpace X]
     {μ : Measure X} [SigmaFinite μ] {n : ℕ} (hn : 2 ≤ n)
     (S : aux_ErgodicSystem X μ n) (f : Fin n → X → ℂ)
@@ -5973,6 +6517,9 @@ theorem aux_main_ergodic_theorem {X : Type u} [MeasurableSpace X]
     apply le_trans hvar
     exact ENNReal.ofReal_le_ofReal (by simpa [one_div] using hcoeff)
 
+/--
+@isnad1 id=eq.0h6v.s5.fb1fbf478a88 from=translated src=- shape=f09f6953 vocab=18f28d70
+-/
 theorem aux_nCT_multipleErgodicAverage_eq_aux_ergodicAverage
     {X : Type u} [MeasurableSpace X] {μ : Measure X} {n N : ℕ}
     (S : aux_ErgodicSystem X μ n) (f : Fin n → X → ℂ) :
@@ -5992,6 +6539,9 @@ theorem aux_nCT_multipleErgodicAverage_eq_aux_ergodicAverage
       simp only [Finset.mem_range] at hi
       simp [hi]
 
+/--
+@isnad1 id=and.5h7v.s8.fa77684f7fc0 from=translated src=- shape=6c6bb654 vocab=aa7658c4
+-/
 theorem aux_nCT_main_ergodic_theorem {X : Type u} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (hn : 2 ≤ n) {r : ℝ}
     (hr : 2 ^ (n - 1) < r ∨ (n = 2 ∧ 2 ≤ r)) [SigmaFinite μ]

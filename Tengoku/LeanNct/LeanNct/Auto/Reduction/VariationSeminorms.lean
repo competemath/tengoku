@@ -52,7 +52,9 @@ noncomputable def aux_logarithmicL2 (α β : ℝ) (f : ℝ → ℝ) : ℝ≥0∞
 
 /--
 The finite-dimensional three-term Minkowski estimate used in
-`shortlongJumps`.-/
+`shortlongJumps`.
+@isnad1 id=le.2h6v.s7.15bbcf125ae4 from=translated src=- shape=66766d37 vocab=0aa90d13
+-/
 theorem aux_lrpow_three_le {M : ℕ} (r : ℝ) (hr : 1 ≤ r)
     (d u v w : Fin M → ℝ≥0∞)
     (h : ∀ j, d j ≤ u j + v j + w j) :
@@ -75,7 +77,9 @@ theorem aux_lrpow_three_le {M : ℕ} (r : ℝ) (hr : 1 ≤ r)
 
 /--
 A single monotone chain is one candidate in the defining variation
-supremum.-/
+supremum.
+@isnad1 id=le.1h6v.s7.5f83f80c5e5d from=translated src=- shape=7cdcd6a9 vocab=63b731c6
+-/
 theorem aux_chainVariation_le {B : Type*} [SeminormedAddCommGroup B]
     {I : Set ℝ} (a : I → B) (r : ℝ) (J : ℕ)
     (t : Fin (J + 1) → I) (ht : Monotone t) :
@@ -86,7 +90,9 @@ theorem aux_chainVariation_le {B : Type*} [SeminormedAddCommGroup B]
     (∑ j : Fin J,
       (‖a (t.1 j.succ) - a (t.1 j.castSucc)‖₊ : ℝ≥0∞) ^ r) ^ r⁻¹) ⟨t, ht⟩
 
-/-- The two endpoints of a closed dyadic interval are ordered.-/
+/-- The two endpoints of a closed dyadic interval are ordered.
+@isnad1 id=le.0h1v.s5.cc7792af4cbb from=translated src=- shape=6a05c8cb vocab=a78e16e1
+-/
 theorem aux_dyadicLower_le_upper (k : ℤ) :
     (2 : ℝ) ^ k ≤ (2 : ℝ) ^ (k + 1) :=
   zpow_le_zpow_right₀ (by norm_num) (by omega)
@@ -101,12 +107,16 @@ noncomputable def aux_dyadicLocalChain (J : ℕ) (k : ℤ)
   fun j ↦ Set.projIcc ((2 : ℝ) ^ k) ((2 : ℝ) ^ (k + 1))
     (aux_dyadicLower_le_upper k) (t j)
 
-/-- Clamping preserves monotonicity.-/
+/-- Clamping preserves monotonicity.
+@isnad1 id=monotone.1h3v.s7.e1b8b65f9ed3 from=translated src=- shape=3f7bb4df vocab=66e0cf1f
+-/
 theorem aux_dyadicLocalChain_mono {J : ℕ} {k : ℤ} {t : Fin (J + 1) → ℝ}
     (ht : Monotone t) : Monotone (aux_dyadicLocalChain J k t) := by
   exact (Set.monotone_projIcc _).comp ht
 
-/-- A clamped point already inside its dyadic interval is unchanged.-/
+/-- A clamped point already inside its dyadic interval is unchanged.
+@isnad1 id=eq.1h4v.s6.a7c6296e7f60 from=translated src=- shape=b7019295 vocab=67354ee4
+-/
 theorem aux_dyadicLocalChain_eq_of_mem {J : ℕ} {k : ℤ}
     {t : Fin (J + 1) → ℝ} {j : Fin (J + 1)}
     (hj : t j ∈ Set.Icc ((2 : ℝ) ^ k) ((2 : ℝ) ^ (k + 1))) :
@@ -114,14 +124,18 @@ theorem aux_dyadicLocalChain_eq_of_mem {J : ℕ} {k : ℤ}
   simpa [aux_dyadicLocalChain] using congrArg Subtype.val
     (Set.projIcc_of_mem (h := aux_dyadicLower_le_upper k) hj)
 
-/-- A clamped point before a dyadic interval becomes its left endpoint.-/
+/-- A clamped point before a dyadic interval becomes its left endpoint.
+@isnad1 id=eq.1h4v.s6.6cb6e48e0b7e from=translated src=- shape=dc584f49 vocab=ee8ab867
+-/
 theorem aux_dyadicLocalChain_eq_left {J : ℕ} {k : ℤ}
     {t : Fin (J + 1) → ℝ} {j : Fin (J + 1)} (hj : t j ≤ (2 : ℝ) ^ k) :
     (aux_dyadicLocalChain J k t j : ℝ) = (2 : ℝ) ^ k := by
   simpa [aux_dyadicLocalChain] using congrArg Subtype.val
     (Set.projIcc_of_le_left (h := aux_dyadicLower_le_upper k) hj)
 
-/-- The local variation of a clamped chain is bounded by its dyadic variation.-/
+/-- The local variation of a clamped chain is bounded by its dyadic variation.
+@isnad1 id=le.2h6v.s7.8e7d9dbadc8b from=translated src=- shape=677878c1 vocab=723f4526
+-/
 theorem aux_dyadicLocal_sum_le_variation_rpow {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} {k : ℤ} {t : Fin (J + 1) → ℝ} (ht : Monotone t)
     (a : ℝ → B) (r : ℝ) (hr : 1 ≤ r) :
@@ -144,7 +158,9 @@ noncomputable def aux_dyadicPairChain (J : ℕ) (k : ℤ)
     (x : aux_dyadicInterval k) : Fin (J + 1) → aux_dyadicInterval k :=
   Fin.cases (aux_dyadicLowerPoint k) (fun _ ↦ x)
 
-/-- The padded dyadic pair chain is monotone.-/
+/-- The padded dyadic pair chain is monotone.
+@isnad1 id=monotone.0h3v.s6.459406689494 from=translated src=- shape=d758ada4 vocab=14ddb5b9
+-/
 theorem aux_dyadicPairChain_mono {J : ℕ} {k : ℤ} (x : aux_dyadicInterval k) :
     Monotone (aux_dyadicPairChain J k x) := by
   intro i j hij
@@ -162,18 +178,24 @@ theorem aux_dyadicPairChain_mono {J : ℕ} {k : ℤ} (x : aux_dyadicInterval k) 
     obtain ⟨j, rfl⟩ := Fin.eq_succ_of_ne_zero hj
     simp [aux_dyadicPairChain]
 
-/-- Evaluate the padded dyadic pair chain at its initial point.-/
+/-- Evaluate the padded dyadic pair chain at its initial point.
+@isnad1 id=eq.0h3v.s5.6afd1a4bf310 from=translated src=- shape=fc81ee18 vocab=c4ff2891
+-/
 theorem aux_dyadicPairChain_zero {J : ℕ} {k : ℤ} (x : aux_dyadicInterval k) :
     aux_dyadicPairChain J k x 0 = aux_dyadicLowerPoint k := by
   simp [aux_dyadicPairChain]
 
-/-- Evaluate the padded dyadic pair chain away from its initial point.-/
+/-- Evaluate the padded dyadic pair chain away from its initial point.
+@isnad1 id=eq.0h4v.s4.d56761227dcc from=translated src=- shape=51014692 vocab=b53f9ae9
+-/
 theorem aux_dyadicPairChain_succ {J : ℕ} {k : ℤ}
     (x : aux_dyadicInterval k) (j : Fin J) :
     aux_dyadicPairChain J k x j.succ = x := by
   simp [aux_dyadicPairChain]
 
-/-- The energy of the padded dyadic pair has one nonzero increment.-/
+/-- The energy of the padded dyadic pair has one nonzero increment.
+@isnad1 id=eq.1h6v.s8.8b6351d486db from=translated src=- shape=b8a70efa vocab=c4bda7ff
+-/
 theorem aux_dyadicPair_sum {B : Type*} [SeminormedAddCommGroup B]
     {M : ℕ} {k : ℤ} (a : ℝ → B) (r : ℝ) (hr : 0 < r)
     (x : aux_dyadicInterval k) :
@@ -189,7 +211,9 @@ theorem aux_dyadicPair_sum {B : Type*} [SeminormedAddCommGroup B]
 
 /--
 A dyadic lower-endpoint tail is bounded by the corresponding local
-variation whenever there is at least one available jump.-/
+variation whenever there is at least one available jump.
+@isnad1 id=le.2h6v.s7.8466380ab44e from=translated src=- shape=fe742e69 vocab=c08517f8
+-/
 theorem aux_dyadicPair_le_variation_rpow {B : Type*} [SeminormedAddCommGroup B]
     {J : ℕ} (hJ : 0 < J) {k : ℤ} (a : ℝ → B) (r : ℝ) (hr : 1 ≤ r)
     (x : aux_dyadicInterval k) :
@@ -220,14 +244,18 @@ noncomputable def aux_dyadicIndex (x : ℝ) : ℤ :=
 
 /--
 A positive point belongs to the dyadic interval indexed by
-`aux_dyadicIndex`.-/
+`aux_dyadicIndex`.
+@isnad1 id=and.1h1v.s6.7619f6ac415d from=translated src=- shape=178e51ba vocab=09d3777c
+-/
 theorem aux_dyadicIndex_spec (x : ℝ) (hx : 0 < x) :
     (2 : ℝ) ^ aux_dyadicIndex x ≤ x ∧ x < (2 : ℝ) ^ (aux_dyadicIndex x + 1) := by
   rw [aux_dyadicIndex, dite_eq_left hx]
   simpa only [Set.mem_Ico] using
     (exists_mem_Ico_zpow hx (by norm_num : (1 : ℝ) < 2)).choose_spec
 
-/-- Dyadic interval indices respect the order on positive reals.-/
+/-- Dyadic interval indices respect the order on positive reals.
+@isnad1 id=le.2h2v.s4.b19277a98472 from=translated src=- shape=c7f834f3 vocab=5ba9084f
+-/
 theorem aux_dyadicIndex_mono {x y : ℝ} (hx : 0 < x) (hxy : x ≤ y) :
     aux_dyadicIndex x ≤ aux_dyadicIndex y := by
   have hy : 0 < y := hx.trans_le hxy
@@ -239,7 +267,9 @@ theorem aux_dyadicIndex_mono {x y : ℝ} (hx : 0 < x) (hxy : x ≤ y) :
   exact (not_lt_of_ge (hpow.trans ((aux_dyadicIndex_spec x hx).1.trans hxy)))
     (aux_dyadicIndex_spec y hy).2
 
-/-- The dyadic interval label is unique.-/
+/-- The dyadic interval label is unique.
+@isnad1 id=eq.2h2v.s6.9f6e2e4ae3bd from=translated src=- shape=e0a0d4c9 vocab=09d3777c
+-/
 theorem aux_dyadicIndex_eq_of_mem {x : ℝ} {k : ℤ} (hx : 0 < x)
     (hk : (2 : ℝ) ^ k ≤ x ∧ x < (2 : ℝ) ^ (k + 1)) : aux_dyadicIndex x = k := by
   apply le_antisymm
@@ -260,7 +290,9 @@ theorem aux_dyadicIndex_eq_of_mem {x : ℝ} {k : ℤ} (hx : 0 < x)
 noncomputable def aux_dyadicSet {J : ℕ} (t : Fin (J + 1) → ℝ) : Finset ℤ :=
   Finset.univ.image (fun j ↦ aux_dyadicIndex (t j))
 
-/-- Characterize the occupied dyadic interval set.-/
+/-- Characterize the occupied dyadic interval set.
+@isnad1 id=iff.1h3v.s7.cf7037a007a0 from=translated src=- shape=b6d5aa34 vocab=a12ad3af
+-/
 theorem aux_mem_dyadicSet_iff {J : ℕ} (t : Fin (J + 1) → ℝ)
     (ht : ∀ j, 0 < t j) (k : ℤ) :
     k ∈ aux_dyadicSet t ↔ ∃ j, (2 : ℝ) ^ k ≤ t j ∧ t j < (2 : ℝ) ^ (k + 1) := by
@@ -277,7 +309,9 @@ theorem aux_mem_dyadicSet_iff {J : ℕ} (t : Fin (J + 1) → ℝ)
 def aux_crossIndices {J : ℕ} (b : Fin (J + 1) → ℤ) : Finset (Fin J) :=
   Finset.univ.filter fun j ↦ b j.castSucc < b j.succ
 
-/-- A monotone label sequence leaves every occupied dyadic interval at most once.-/
+/-- A monotone label sequence leaves every occupied dyadic interval at most once.
+@isnad1 id=injectiv.1h2v.s7.f3b7f1e929f5 from=translated src=- shape=e647991d vocab=30bdc309
+-/
 theorem aux_crossIndices_b_injective {J : ℕ} {b : Fin (J + 1) → ℤ}
     (hb : Monotone b) :
     Function.Injective (fun j : aux_crossIndices b ↦ b j.1.castSucc) := by
@@ -296,7 +330,9 @@ theorem aux_crossIndices_b_injective {J : ℕ} {b : Fin (J + 1) → ℤ}
     have hlt : b j.1.castSucc < b i.1.castSucc := hcross.trans_le (hb hsuc_le)
     exact hlt.ne hij.symm
 
-/-- Sum terms supported on dyadic crossings using their distinct source labels.-/
+/-- Sum terms supported on dyadic crossings using their distinct source labels.
+@isnad1 id=le.3h4v.s7.8499252c9d3d from=translated src=- shape=ea6e178a vocab=d3aa0118
+-/
 theorem aux_sum_cross_le_image {J : ℕ} {b : Fin (J + 1) → ℤ}
     (hb : Monotone b) (q : Fin J → ℝ≥0∞) (V : ℤ → ℝ≥0∞)
     (hsupport : ∀ j, j ∉ aux_crossIndices b → q j = 0)
@@ -319,7 +355,9 @@ theorem aux_sum_cross_le_image {J : ℕ} {b : Fin (J + 1) → ℤ}
       have hsub : (⟨x, hx⟩ : S) = ⟨y, hy⟩ := aux_crossIndices_b_injective hb hxy
       exact congrArg Subtype.val hsub
 
-/-- Extend the crossing estimate to the full finite set of occupied labels.-/
+/-- Extend the crossing estimate to the full finite set of occupied labels.
+@isnad1 id=le.4h5v.s7.1438a0e747ad from=translated src=- shape=f463308c vocab=d3aa0118
+-/
 theorem aux_sum_cross_le_kappa {J : ℕ} {b : Fin (J + 1) → ℤ}
     (hb : Monotone b) (q : Fin J → ℝ≥0∞) (V : ℤ → ℝ≥0∞)
     (hsupport : ∀ j, j ∉ aux_crossIndices b → q j = 0)
@@ -330,7 +368,9 @@ theorem aux_sum_cross_le_kappa {J : ℕ} {b : Fin (J + 1) → ℤ}
   exact (aux_sum_cross_le_image hb q V hsupport hle).trans
     (Finset.sum_le_sum_of_subset_of_nonneg hκ fun _ _ _ ↦ by positivity)
 
-/-- A diagonal finite sum is bounded by the sum of all its fibers.-/
+/-- A diagonal finite sum is bounded by the sum of all its fibers.
+@isnad1 id=le.1h4v.s6.f02731797b20 from=translated src=- shape=2d737d11 vocab=28d5b890
+-/
 theorem aux_diagonal_sum_le {J : ℕ} {κ : Finset ℤ} (c : Fin J → ℤ)
     (hc : ∀ j, c j ∈ κ) (F : ℤ → Fin J → ℝ≥0∞) :
     ∑ j, F (c j) j ≤ ∑ k ∈ κ, ∑ j, F k j := by
@@ -362,7 +402,9 @@ $$
 \le
 2\Big(\sum_{k\in\mathbb{Z}}\|a\|_{V_{r,J}([2^k,2^{k+1}];B)}^r\Big)^{1/r}
 +\|a\|_{V_{r,J}(2^\mathbb{Z};B)}.
-$$-/
+$$
+@isnad1 id=and.1h4v.s9.64b66c1834a9 from=translated src=- shape=00a4c2f3 vocab=50368c64
+-/
 theorem shortlongJumps {B : Type*} [SeminormedAddCommGroup B]
     (a : ℝ → B) (J : ℕ) (r : ℝ) (hr : 1 ≤ r) :
     (∀ (t : Fin (J + 1) → ℝ), Monotone t → (∀ j, 0 < t j) →
@@ -576,7 +618,9 @@ theorem shortlongJumps {B : Type*} [SeminormedAddCommGroup B]
 /--
 Consecutive intervals cut out by a monotone finite chain are disjoint, so
 their nonnegative integrals are bounded by the integral on the ambient
-interval.-/
+interval.
+@isnad1 id=le.3h6v.s7.3f7cfcbbb5da from=translated src=- shape=76912de2 vocab=818c8898
+-/
 theorem aux_sum_lintegral_Ioc_le {J : ℕ} {μ : Measure ℝ}
     (t : Fin (J + 1) → ℝ) (ht : Monotone t) (f : ℝ → ℝ≥0∞)
     {α β : ℝ} (hα : α ≤ t 0) (hβ : t (Fin.last J) ≤ β) :
@@ -607,7 +651,9 @@ theorem aux_sum_lintegral_Ioc_le {J : ℕ} {μ : Measure ℝ}
 
 /--
 On the interior of the ambient interval, ordinary and interval derivatives
-agree almost everywhere for the logarithmic measure.-/
+agree almost everywhere for the logarithmic measure.
+@isnad1 id=eventual.0h3v.s6.b0a6761cfab7 from=translated src=- shape=53398d46 vocab=31fc86f7
+-/
 theorem aux_deriv_eq_derivWithin_ae {α β : ℝ} (a : ℝ → ℝ) :
     deriv a =ᵐ[aux_logarithmicMeasure α β] derivWithin a (Set.Icc α β) := by
   apply (withDensity_absolutelyContinuous (volume.restrict (Set.Icc α β))
@@ -618,7 +664,9 @@ theorem aux_deriv_eq_derivWithin_ae {α β : ℝ} (a : ℝ → ℝ) :
 
 /--
 On a positive subinterval, multiplying the derivative by the logarithmic
-density cancels the displayed factor of `t`.-/
+density cancels the displayed factor of `t`.
+@isnad1 id=eq.3h5v.s7.7b42d3229702 from=translated src=- shape=53389add vocab=bea20728
+-/
 theorem aux_log_local_integral_eq {α β x y : ℝ} (hα : 0 < α)
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (a : ℝ → ℝ) :
     (∫⁻ t in Set.Icc x y, ‖t * deriv a t‖ₑ ∂aux_logarithmicMeasure α β) =
@@ -643,7 +691,9 @@ theorem aux_log_local_integral_eq {α β x y : ℝ} (hα : 0 < α)
 
 /--
 The logarithmic mass of a subinterval is bounded by the elementary
-`(β - α) / α` estimate.-/
+`(β - α) / α` estimate.
+@isnad1 id=le.3h4v.s6.d1f2f06271c9 from=translated src=- shape=a3ac4bc2 vocab=d72fedae
+-/
 theorem aux_log_measure_le {α β x y : ℝ} (hα : 0 < α)
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) :
     aux_logarithmicMeasure α β (Set.Icc x y) ≤ ENNReal.ofReal ((β - α) / α) := by
@@ -665,7 +715,9 @@ theorem aux_log_measure_le {α β x y : ℝ} (hα : 0 < α)
       rw [← ENNReal.ofReal_mul (inv_nonneg.mpr hα.le)]
       field_simp
 
-/-- Measurability of the weighted derivative on an interval.-/
+/-- Measurability of the weighted derivative on an interval.
+@isnad1 id=aemeasur.4h5v.s7.5f1f0a49ae1f from=translated src=- shape=3e5fca96 vocab=ff8898e0
+-/
 theorem aux_derivmul_aemeasurable_local {α β x y : ℝ} (hαβ : α < β)
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (a : ℝ → ℝ)
     (ha : ContDiffOn ℝ 1 a (Set.Icc α β)) :
@@ -685,7 +737,9 @@ theorem aux_derivmul_aemeasurable_local {α β x y : ℝ} (hαβ : α < β)
   filter_upwards [(aux_deriv_eq_derivWithin_ae (α := α) (β := β) a).restrict] with t ht
   simp only [ht]
 
-/-- The `L¹`--`L²` Cauchy--Schwarz estimate on an arbitrary measure.-/
+/-- The `L¹`--`L²` Cauchy--Schwarz estimate on an arbitrary measure.
+@isnad1 id=le.1h2v.s6.891be7eb5ee2 from=translated src=- shape=e51e741c vocab=d6c553fc
+-/
 theorem aux_cauchy_lintegral_two {mu : Measure ℝ} {f : ℝ → ℝ≥0∞}
     (hf : AEMeasurable f mu) :
     ∫⁻ t, f t ∂mu ≤ (∫⁻ t, f t ^ (2 : ℝ) ∂mu) ^ ((2 : ℝ)⁻¹) *
@@ -697,7 +751,9 @@ theorem aux_cauchy_lintegral_two {mu : Measure ℝ} {f : ℝ → ℝ≥0∞}
     (ENNReal.lintegral_mul_le_Lp_mul_Lq mu hpq hf (g := fun _ : ℝ ↦ 1)
       measurable_const.aemeasurable)
 
-/-- Squaring a product of two square roots in `ℝ≥0∞`.-/
+/-- Squaring a product of two square roots in `ℝ≥0∞`.
+@isnad1 id=eq.0h2v.s6.815bc2d84776 from=translated src=- shape=ef8018b7 vocab=97c8005d
+-/
 theorem aux_half_mul_half_sq (C E : ℝ≥0∞) :
     (C ^ ((2 : ℝ)⁻¹) * E ^ ((2 : ℝ)⁻¹)) ^ (2 : ℝ) = C * E := by
   rw [ENNReal.rpow_two, mul_pow]
@@ -707,7 +763,9 @@ theorem aux_half_mul_half_sq (C E : ℝ≥0∞) :
 
 /--
 The squared fundamental-theorem/Cauchy--Schwarz estimate for one pair of
-points in the finite variation chain.-/
+points in the finite variation chain.
+@isnad1 id=le.6h5v.s8.162fdabbcfc2 from=translated src=- shape=a0ee0903 vocab=849f3347
+-/
 theorem aux_pair_sq_le {α β x y : ℝ} (hα : 0 < α) (hαβ : α < β)
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (hxy : x ≤ y)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β)) :
@@ -748,7 +806,9 @@ theorem aux_pair_sq_le {α β x y : ℝ} (hα : 0 < α) (hαβ : α < β)
       ENNReal.rpow_le_rpow hlin (by norm_num)
     _ = _ := aux_half_mul_half_sq _ _
 
-/-- Summing the first FTC estimate over a monotone finite chain.-/
+/-- Summing the first FTC estimate over a monotone finite chain.
+@isnad1 id=le.4h5v.s8.096e680cc8ea from=translated src=- shape=57e6021a vocab=7d6b2deb
+-/
 theorem aux_chain_sq_energy_le {J : ℕ} {α β : ℝ} (hα : 0 < α) (hαβ : α < β)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (t : Fin (J + 1) → Set.Icc α β) (ht : Monotone t) :
@@ -787,7 +847,9 @@ theorem aux_chain_sq_energy_le {J : ℕ} {α β : ℝ} (hα : 0 < α) (hαβ : �
       exact aux_sum_lintegral_Ioc_le (fun j ↦ (t j : ℝ)) ht'
         (fun x ↦ ‖x * deriv a x‖ₑ ^ (2 : ℝ)) (t 0).2.1 (t (Fin.last J)).2.2
 
-/-- The first finite-variation FTC estimate for one fixed monotone chain.-/
+/-- The first finite-variation FTC estimate for one fixed monotone chain.
+@isnad1 id=le.4h5v.s8.cd4abac00126 from=translated src=- shape=2796a965 vocab=4588f51f
+-/
 theorem aux_chain_first_ftc {J : ℕ} {α β : ℝ} (hα : 0 < α) (hαβ : α < β)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (t : Fin (J + 1) → Set.Icc α β) (ht : Monotone t) :
@@ -828,7 +890,9 @@ theorem aux_chain_first_ftc {J : ℕ} {α β : ℝ} (hα : 0 < α) (hαβ : α <
 /--
 The endpoint estimate for the square of a continuously differentiable
 function.  This is the common analytic input to the sign-sensitive variation
-bound below.-/
+bound below.
+@isnad1 id=le.4h5v.s8.47564f079af3 from=translated src=- shape=696cd90b vocab=f2740569
+-/
 theorem aux_square_endpoint_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ)
     (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (hxy : x ≤ y) :
@@ -856,7 +920,9 @@ theorem aux_square_endpoint_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ)
 
 /--
 The elementary same-sign algebraic estimate used after applying the FTC
-to `a^2`.-/
+to `a^2`.
+@isnad1 id=le.1h2v.s7.0524ae43760e from=translated src=- shape=ef0fb763 vocab=c579e4c3
+-/
 theorem aux_same_sign_square_le (u v : ℝ) (huv : 0 ≤ u * v) :
     ‖u - v‖ₑ ^ (2 : ℕ) ≤ ‖u * u - v * v‖ₑ := by
   rw [show u * u - v * v = (u - v) * (u + v) by ring]
@@ -871,7 +937,9 @@ theorem aux_same_sign_square_le (u v : ℝ) (huv : 0 ≤ u * v) :
 
 /--
 A coarse algebraic estimate used when an interval crosses a zero of the
-function.-/
+function.
+@isnad1 id=le.0h2v.s7.1d4ad6cce96e from=translated src=- shape=aba0c952 vocab=16f36fe3
+-/
 theorem aux_cross_square_le (u v : ℝ) :
     ‖u - v‖ₑ ^ (2 : ℕ) ≤
       2 * (‖u * u‖ₑ + ‖v * v‖ₑ) := by
@@ -886,14 +954,18 @@ theorem aux_cross_square_le (u v : ℝ) :
 
 /--
 Endpoint changes have zero Lebesgue mass, so `Icc` and `Ioc` give the
-same nonnegative integral.-/
+same nonnegative integral.
+@isnad1 id=eq.0h3v.s5.3cb93ce2fd2e from=translated src=- shape=d4cfe273 vocab=9dc3ef56
+-/
 theorem aux_lintegral_Icc_eq_Ioc (f : ℝ → ℝ≥0∞) (x y : ℝ) :
     (∫⁻ z in Set.Icc x y, f z) = ∫⁻ z in Set.Ioc x y, f z := by
   rw [Measure.restrict_congr_set Ioc_ae_eq_Icc]
 
 /--
 Pairwise squared variation is controlled by the unweighted product
-integral.  The crossing case is split at an intermediate zero.-/
+integral.  The crossing case is split at an intermediate zero.
+@isnad1 id=le.4h5v.s8.4de4b6465ee0 from=translated src=- shape=8b412b26 vocab=fb87e5ac
+-/
 theorem aux_pairwise_square_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ)
     (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (hxy : x ≤ y) :
@@ -963,14 +1035,18 @@ theorem aux_pairwise_square_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ)
           _ ≤ 8 * ∫⁻ q in Set.Ioc x y, ‖a q‖ₑ * ‖deriv a q‖ₑ := by
             gcongr; norm_num
 
-/-- Cancellation of the logarithmic density on an `Ioc` interval.-/
+/-- Cancellation of the logarithmic density on an `Ioc` interval.
+@isnad1 id=eq.1h2v.s6.a276fce6eacb from=translated src=- shape=5c7236fd vocab=8bd87919
+-/
 theorem aux_enorm_mul_inv_cancel {z d : ℝ} (hz : 0 < z) :
     ENNReal.ofReal z⁻¹ * ‖z * d‖ₑ = ‖d‖ₑ := by
   rw [enorm_mul, Real.enorm_eq_ofReal hz.le, ENNReal.ofReal_inv_of_pos hz]
   rw [← mul_assoc, ENNReal.inv_mul_cancel
     (ne_of_gt (ENNReal.ofReal_pos.mpr hz)) ENNReal.ofReal_ne_top, one_mul]
 
-/-- Restricting the logarithmic measure to a contained open-closed interval.-/
+/-- Restricting the logarithmic measure to a contained open-closed interval.
+@isnad1 id=eq.1h4v.s6.a4090ce805f4 from=translated src=- shape=f58e853a vocab=fa2b1501
+-/
 theorem aux_restrict_logarithmicMeasure_Ioc {α β x y : ℝ}
     (hsub : Set.Ioc x y ⊆ Set.Icc α β) :
     (aux_logarithmicMeasure α β).restrict (Set.Ioc x y) =
@@ -980,7 +1056,9 @@ theorem aux_restrict_logarithmicMeasure_Ioc {α β x y : ℝ}
 
 /--
 Convert the ordinary product integral on an `Ioc` interval to its
-logarithmically weighted form.-/
+logarithmically weighted form.
+@isnad1 id=eq.2h6v.s8.0d08535aaaf8 from=translated src=- shape=e4056bb0 vocab=f0ac522c
+-/
 theorem aux_log_weight_conversion_Ioc {α β x y : ℝ} (hx : 0 < x)
     (hsub : Set.Ioc x y ⊆ Set.Icc α β) (a d : ℝ → ℝ) :
     ∫⁻ z in Set.Ioc x y, ‖a z‖ₑ * ‖d z‖ₑ =
@@ -1001,7 +1079,9 @@ theorem aux_log_weight_conversion_Ioc {α β x y : ℝ} (hx : 0 < x)
   · exact (measurable_inv.comp measurable_id).ennreal_ofReal.aemeasurable
   · exact ae_of_all _ fun _ ↦ lt_top_iff_ne_top.mpr ENNReal.ofReal_ne_top
 
-/-- Global logarithmic `L²` Hölder estimate.-/
+/-- Global logarithmic `L²` Hölder estimate.
+@isnad1 id=le.1h3v.s7.a349c8bae581 from=translated src=- shape=704020c7 vocab=93e52f5b
+-/
 theorem aux_log_holder_lintegral {α β : ℝ} (a : ℝ → ℝ)
     (ha : ContDiffOn ℝ 1 a (Set.Icc α β)) :
     ∫⁻ z, ‖a z‖ₑ * ‖z * deriv a z‖ₑ ∂aux_logarithmicMeasure α β ≤
@@ -1021,7 +1101,9 @@ theorem aux_log_holder_lintegral {α β : ℝ} (a : ℝ → ℝ)
   rw [eLpNorm_one_eq_lintegral_enorm] at h
   simpa [aux_logarithmicL2, enorm_mul] using h
 
-/-- Restate the pairwise bound with real `rpow` exponent notation.-/
+/-- Restate the pairwise bound with real `rpow` exponent notation.
+@isnad1 id=le.4h5v.s8.341c9a6ed7c2 from=translated src=- shape=45e31c2d vocab=fb87e5ac
+-/
 theorem aux_pairwise_square_rpow_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ)
     (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (hx : x ∈ Set.Icc α β) (hy : y ∈ Set.Icc α β) (hxy : x ≤ y) :
@@ -1030,7 +1112,9 @@ theorem aux_pairwise_square_rpow_le_lintegral {α β x y : ℝ} (a : ℝ → ℝ
   convert aux_pairwise_square_le_lintegral a ha hx hy hxy using 1;
     norm_num [ENNReal.rpow_natCast]
 
-/-- The second FTC estimate summed over one monotone chain.-/
+/-- The second FTC estimate summed over one monotone chain.
+@isnad1 id=le.3h5v.s8.a8d5822dd72e from=translated src=- shape=3735a4ca vocab=114da0ad
+-/
 theorem aux_chain_second_energy_le {J : ℕ} {α β : ℝ} (hα : 0 < α)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β))
     (t : Fin (J + 1) → Set.Icc α β) (ht : Monotone t) :
@@ -1079,7 +1163,9 @@ theorem aux_chain_second_energy_le {J : ℕ} {α β : ℝ} (hα : 0 < α)
     _ = 8 * aux_logarithmicL2 α β a *
         aux_logarithmicL2 α β (fun z ↦ z * deriv a z) := by ring
 
-/-- The `rpow`/supremum closure of the second FTC estimate.-/
+/-- The `rpow`/supremum closure of the second FTC estimate.
+@isnad1 id=le.2h4v.s7.d32085d43f2e from=translated src=- shape=f9528383 vocab=cb5d760c
+-/
 theorem aux_second_ftcCsR {J : ℕ} {α β : ℝ} (hα : 0 < α)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β)) :
     (finiteVariationSeminorm (fun t : Set.Icc α β ↦ a t) 2 J) ^ (2 : ℝ) ≤
@@ -1127,7 +1213,9 @@ $$
 $$
 \|a\|_{V_{2,J}([\alpha, \beta]; \mathbb{R})}^2 \le 8 \|a\|_{L^2([\alpha,
 \beta],\tfrac{dt}{t})}\|ta'(t)\|_{L^2(t\in [\alpha, \beta],\tfrac{dt}{t})}.
-$$-/
+$$
+@isnad1 id=and.3h4v.s8.afc5de3d19fa from=translated src=- shape=79878e1b vocab=d7b99a3b
+-/
 theorem ftcCsR (J : ℕ) {α β : ℝ} (hα : 0 < α) (hαβ : α < β)
     (a : ℝ → ℝ) (ha : ContDiffOn ℝ 1 a (Set.Icc α β)) :
     finiteVariationSeminorm (fun t : Set.Icc α β ↦ a t) 2 J ≤

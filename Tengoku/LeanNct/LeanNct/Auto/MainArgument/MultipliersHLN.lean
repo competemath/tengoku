@@ -39,7 +39,9 @@ noncomputable def squareRootGaussianDifference (a : ℤ → ℝ)
 /--
 This auxiliary Fourier identity turns the real part of the inverse Fourier transform of a
 real-valued integrable function into the cosine integral used by
-`squareRootGaussianDifference`.  It bridges the manuscript's two equivalent notations.-/
+`squareRootGaussianDifference`.  It bridges the manuscript's two equivalent notations.
+@isnad1 id=eq.1h2v.s7.eaf9a660431b from=translated src=- shape=6b82b2c9 vocab=2b44e1d5
+-/
 theorem aux_realInverseFourier_eq_cosineIntegral {f : ℝ → ℝ} (hf : Integrable f) (x : ℝ) :
     (FourierTransformInv.fourierInv (fun ξ : ℝ => (f ξ : ℂ)) x).re =
       ∫ ξ : ℝ, f ξ * Real.cos (2 * Real.pi * x * ξ) := by
@@ -79,7 +81,9 @@ theorem aux_realInverseFourier_eq_cosineIntegral {f : ℝ → ℝ} (hf : Integra
 /--
 This auxiliary lemma supplies the integrability needed to identify the manuscript's
 cosine-integral definition of `s(a,j)` with the inverse Fourier transform in the diagonal
-square-root estimate.-/
+square-root estimate.
+@isnad1 id=integrab.1h2v.s6.2f232f8eba9d from=translated src=- shape=34594d00 vocab=76f698e8
+-/
 theorem aux_squareRootGaussianDifference_integrable {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) :
     Integrable (fun ξ : ℝ =>
@@ -121,7 +125,9 @@ theorem aux_squareRootGaussianDifference_integrable {a : ℤ → ℝ}
 /--
 This auxiliary equality identifies `squareRootGaussianDifference` with the diagonal
 square-root kernel from the preliminary estimates, so their decay theorems apply directly to
-the multipliers $s_\gamma$.-/
+the multipliers $s_\gamma$.
+@isnad1 id=eq.1h3v.s5.05b218b47184 from=translated src=- shape=3d144b03 vocab=f434a3f8
+-/
 theorem aux_squareRootGaussianDifference_eq_diagonalSquareRoot {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) (x : ℝ) :
     squareRootGaussianDifference a ha j x =
@@ -133,7 +139,9 @@ theorem aux_squareRootGaussianDifference_eq_diagonalSquareRoot {a : ℤ → ℝ}
 
 /--
 This auxiliary derivative identity transfers the derivative estimate for the diagonal
-square-root kernel to the cosine-integral multiplier `s(a,j)`.-/
+square-root kernel to the cosine-integral multiplier `s(a,j)`.
+@isnad1 id=eq.1h3v.s6.4c043a19c48b from=translated src=- shape=fb454161 vocab=10c12227
+-/
 theorem aux_squareRootGaussianDifference_deriv_eq_diagonalSquareRoot {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) (x : ℝ) :
     deriv (squareRootGaussianDifference a ha j) x =
@@ -184,7 +192,9 @@ we have that $s(a,j)$ is a well-defined function in $W_0(\mathbb{R})$. Consequen
   \Gamma$ and $i\in [k)$, $j\in \mathbb{Z}$, then $(s_{\gamma})_{i,j}$ is a well-defined function in
   $W_0(\mathbb{R})$.
 
-See also `Auto.sMultiplier_memW0`.-/
+See also `Auto.sMultiplier_memW0`.
+@isnad1 id=memw0.1h2v.s4.b447142bb0f1 from=translated src=- shape=8473924f vocab=56bffa25
+-/
 theorem squareRootGaussianDifference_memW0 {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) :
     MemW0 (squareRootGaussianDifference a ha j) := by
@@ -199,7 +209,9 @@ theorem squareRootGaussianDifference_memW0 {a : ℤ → ℝ}
 /--
 Blueprint label `square root Gaussian difference W0`.
 
-See also `Auto.squareRootGaussianDifference_memW0`.-/
+See also `Auto.squareRootGaussianDifference_memW0`.
+@isnad1 id=memw0.0h4v.s4.54eccf8b7bc4 from=translated src=- shape=f2b695e2 vocab=bdd89a14
+-/
 theorem sMultiplier_memW0 {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) :
     MemW0 (sMultiplier γ i j) := by
@@ -226,7 +238,9 @@ noncomputable def hMultiplier {n : ℕ} (γ : GeometricParameters n) : DoubleSeq
 /--
 **Proposition.**
 
-Let $\gamma=(k,u,a)\in \Gamma$. Then $H_{\gamma}\in \mathcal{X}_k$.-/
+Let $\gamma=(k,u,a)\in \Gamma$. Then $H_{\gamma}\in \mathcal{X}_k$.
+@isnad1 id=memdoubl.0h2v.s3.216bdb095d4c from=translated src=- shape=e74561de vocab=797ff8d8
+-/
 theorem hMultiplier_memDoubleSequence {n : ℕ} (γ : GeometricParameters n) :
     MemDoubleSequence γ.k (hMultiplier γ) := by
   intro i j
@@ -250,7 +264,9 @@ noncomputable def lMultiplierAtScale {n : ℕ} (γ : GeometricParameters n) (t :
 
 /--
 Positive rescalings of the standard bump remain in the Wiener space.  This is the
-input needed for the convolution closure in `lMultiplierAtScale_memDoubleSequence`.-/
+input needed for the convolution closure in `lMultiplierAtScale_memDoubleSequence`.
+@isnad1 id=memw0.1h1v.s4.1013e1b1101f from=translated src=- shape=e217721d vocab=c56d5d24
+-/
 theorem aux_standardBumpRescale_memW0 {t : ℝ} (ht : 0 < t) :
     MemW0 (standardBumpRescale t) := by
   have hcont₀ : Continuous standardBump :=
@@ -315,7 +331,9 @@ $$
 \lim_{t\to 0_+} (L_{\gamma,t})_{i,j} = (H_{\gamma})_{i,j} \quad\text{in}\;L^1.
 $$
 
-See also `Auto.lMultiplierAtScale_tendsto_hMultiplier`.-/
+See also `Auto.lMultiplierAtScale_tendsto_hMultiplier`.
+@isnad1 id=memdoubl.1h3v.s4.5598294e2e28 from=translated src=- shape=c0ffbcc5 vocab=d93df5f7
+-/
 theorem lMultiplierAtScale_memDoubleSequence {n : ℕ} (γ : GeometricParameters n)
     {t : ℝ} (ht : 0 < t) :
     MemDoubleSequence γ.k (lMultiplierAtScale γ t) := by
@@ -333,7 +351,9 @@ theorem lMultiplierAtScale_memDoubleSequence {n : ℕ} (γ : GeometricParameters
 
 /--
 Translation is continuous in the ordinary `L¹` norm for Wiener functions.  This is used
-for the small-scale limit in `lMultiplierAtScale_tendsto_hMultiplier`.-/
+for the small-scale limit in `lMultiplierAtScale_tendsto_hMultiplier`.
+@isnad1 id=tendsto.1h1v.s6.efea352c5cc4 from=translated src=- shape=412be87e vocab=9c80a4f5
+-/
 theorem aux_w0_translation_tendsto_integral_norm
     {f : RealPlane → ℝ} (hf : MemW0 f) :
     Tendsto (fun p : RealPlane => ∫ v : RealPlane, ‖f (v - p) - f v‖)
@@ -385,7 +405,9 @@ theorem aux_w0_translation_tendsto_integral_norm
   simpa using
     (MeasureTheory.tendsto_integral_filter_of_dominated_convergence B hmeas hbound hB_int hlim)
 
-/-- Change of variables for the rescaled bump convolution used in `L:F_t`.-/
+/-- Change of variables for the rescaled bump convolution used in `L:F_t`.
+@isnad1 id=eq.1h3v.s7.9f68851f2828 from=translated src=- shape=89323311 vocab=12ed0f54
+-/
 theorem aux_lMultiplierAtScale_rescale_convolution
     (f : RealPlane → ℝ) (v : RealPlane) (t : ℝ) (ht : 0 < t) :
     (∫ p : ℝ, f (v.1 - p, v.2 - p) * standardBumpRescale t p) =
@@ -408,7 +430,9 @@ theorem aux_lMultiplierAtScale_rescale_convolution
           rw [inv_inv, abs_of_pos ht]
           field_simp
 
-/-- The standard bump has total mass one.  This is used in the convolution-error identity.-/
+/-- The standard bump has total mass one.  This is used in the convolution-error identity.
+@isnad1 id=eq.0h0v.s5.80c4aaed8378 from=translated src=- shape=f0e61117 vocab=01f4ba22
+-/
 theorem aux_standardBump_integral_one :
     (∫ q : ℝ, standardBump q) = 1 := by
   have hfourier := aux_fourier_standardBump_eq_one_on 0 (by norm_num)
@@ -417,13 +441,17 @@ theorem aux_standardBump_integral_one :
     simpa using hfourier
   exact_mod_cast hcomplex
 
-/-- The unscaled standard bump belongs to `W₀`; derived from its positive rescalings.-/
+/-- The unscaled standard bump belongs to `W₀`; derived from its positive rescalings.
+@isnad1 id=memw0.0h0v.s2.428e139feb64 from=translated src=- shape=e3d48bcb vocab=b71cfbb1
+-/
 theorem aux_standardBump_memW0 : MemW0 standardBump := by
   convert aux_standardBumpRescale_memW0 (t := 1) (by norm_num) using 1
   ext x
   simp [standardBumpRescale]
 
-/-- A jointly integrable shear difference for the approximate-identity argument.-/
+/-- A jointly integrable shear difference for the approximate-identity argument.
+@isnad1 id=memw0.1h2v.s6.0c612220ee61 from=translated src=- shape=70b3937f vocab=4e8ecedc
+-/
 theorem aux_memW0_shear_difference
     {f : RealPlane → ℝ} (hf : MemW0 f) (t : ℝ) :
     MemW0 (fun z : RealPlane × ℝ =>
@@ -442,7 +470,9 @@ theorem aux_memW0_shear_difference
   dsimp [P, Function.comp_def, Auto.aux_convolutionAlongShear]
   ring
 
-/-- Integrability of the shear difference used in `lMultiplierAtScale_tendsto_hMultiplier`.-/
+/-- Integrability of the shear difference used in `lMultiplierAtScale_tendsto_hMultiplier`.
+@isnad1 id=integrab.1h2v.s7.cffdf1a4f3cd from=translated src=- shape=722f6bae vocab=1b0095f4
+-/
 theorem aux_integrable_shear_difference
     {f : RealPlane → ℝ} (hf : MemW0 f) (t : ℝ) :
     Integrable (fun z : RealPlane × ℝ =>
@@ -452,7 +482,9 @@ theorem aux_integrable_shear_difference
   exact Auto.aux_memW0_integrable_of_addHaar
     (aux_memW0_shear_difference hf t)
 
-/-- A uniform translation bound that supplies domination for the outer integral.-/
+/-- A uniform translation bound that supplies domination for the outer integral.
+@isnad1 id=le.1h2v.s7.4a03346de29c from=translated src=- shape=7857443b vocab=71847672
+-/
 theorem aux_translation_difference_bound
     {f : RealPlane → ℝ} (hf : MemW0 f) (p : RealPlane) :
     (∫ v : RealPlane, ‖f (v - p) - f v‖) ≤
@@ -477,7 +509,9 @@ theorem aux_translation_difference_bound
           rw [integral_sub_right_eq_self (fun v : RealPlane => ‖f v‖) p]
           ring
 
-/-- Pointwise small-scale convergence of the outer shear-error integrand.-/
+/-- Pointwise small-scale convergence of the outer shear-error integrand.
+@isnad1 id=tendsto.1h2v.s7.72a0093d26d0 from=translated src=- shape=308b7a9e vocab=0ddb57ec
+-/
 theorem aux_shear_difference_pointwise_tendsto
     {f : RealPlane → ℝ} (hf : MemW0 f) (q : ℝ) :
     Tendsto (fun t : ℝ =>
@@ -503,7 +537,9 @@ theorem aux_shear_difference_pointwise_tendsto
         (nhdsWithin 0 (Set.Ioi 0)) (nhds |standardBump q|)).mul htrans)
   simpa only [norm_mul, Real.norm_eq_abs, integral_const_mul] using hmul
 
-/-- A domination estimate for the outer shear-error integral.-/
+/-- A domination estimate for the outer shear-error integral.
+@isnad1 id=le.1h3v.s7.03b64ab2b840 from=translated src=- shape=07ff5820 vocab=829fd043
+-/
 theorem aux_shear_difference_pointwise_bound
     {f : RealPlane → ℝ} (hf : MemW0 f) (t q : ℝ) :
     (∫ v : RealPlane, ‖standardBump q *
@@ -517,7 +553,9 @@ theorem aux_shear_difference_pointwise_bound
       mul_le_mul_of_nonneg_left (aux_translation_difference_bound hf _) (abs_nonneg _)
     _ = (2 * ∫ v : RealPlane, ‖f v‖) * |standardBump q| := by ring
 
-/-- Dominated convergence for the outer shear-error integral.-/
+/-- Dominated convergence for the outer shear-error integral.
+@isnad1 id=tendsto.1h1v.s7.d13a6ce39b8a from=translated src=- shape=fad00be4 vocab=0ddb57ec
+-/
 theorem aux_shear_difference_integral_tendsto
     {f : RealPlane → ℝ} (hf : MemW0 f) :
     Tendsto (fun t : ℝ => ∫ q : ℝ, ∫ v : RealPlane,
@@ -548,7 +586,9 @@ theorem aux_shear_difference_integral_tendsto
   simpa using
     (MeasureTheory.tendsto_integral_filter_of_dominated_convergence B hmeas hbound hB_int hlim)
 
-/-- The difference between a scaled bump convolution and its input is its scaled shear error.-/
+/-- The difference between a scaled bump convolution and its input is its scaled shear error.
+@isnad1 id=eq.2h3v.s7.a57759a0ead5 from=translated src=- shape=0c91ca83 vocab=5415c3f0
+-/
 theorem aux_lMultiplierAtScale_scaled_convolution_difference
     {f : RealPlane → ℝ} (hf : MemW0 f) (t : ℝ) (ht : 0 < t) (v : RealPlane) :
     (∫ p : ℝ, f (v.1 - p, v.2 - p) * standardBumpRescale t p) - f v =
@@ -597,7 +637,9 @@ theorem aux_lMultiplierAtScale_scaled_convolution_difference
           rw [hv]
           ring
 
-/-- The outer `L¹` bound for the scaled convolution error, including the Fubini swap.-/
+/-- The outer `L¹` bound for the scaled convolution error, including the Fubini swap.
+@isnad1 id=le.2h2v.s8.dd0429440ffd from=translated src=- shape=9f9e4b4a vocab=5b759b36
+-/
 theorem aux_lMultiplierAtScale_error_le
     {f : RealPlane → ℝ} (hf : MemW0 f) (t : ℝ) (ht : 0 < t) :
     (∫ v : RealPlane, |(∫ p : ℝ,
@@ -648,7 +690,9 @@ theorem aux_lMultiplierAtScale_error_le
       simpa only [D, Function.uncurry, Measure.volume_eq_prod] using
         (integral_integral_swap hD.norm)
 
-/-- The ordinary `L¹` small-scale convergence used to prove `L:F_t`.-/
+/-- The ordinary `L¹` small-scale convergence used to prove `L:F_t`.
+@isnad1 id=tendsto.1h1v.s7.f35f0a7b662a from=translated src=- shape=1f6b39c7 vocab=e9155c9b
+-/
 theorem aux_lMultiplierAtScale_tendsto_integral_norm
     {f : RealPlane → ℝ} (hf : MemW0 f) :
     Tendsto (fun t : ℝ => ∫ v : RealPlane,
@@ -666,7 +710,9 @@ theorem aux_lMultiplierAtScale_tendsto_integral_norm
 /--
 Blueprint label `L:F_t`.
 
-See also `Auto.lMultiplierAtScale_memDoubleSequence`.-/
+See also `Auto.lMultiplierAtScale_memDoubleSequence`.
+@isnad1 id=tendsto.0h4v.s7.761d4e664355 from=translated src=- shape=6a610b56 vocab=8a447ecc
+-/
 theorem lMultiplierAtScale_tendsto_hMultiplier
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) :
     Tendsto (fun t : ℝ =>
@@ -829,7 +875,9 @@ noncomputable def aux_fourierRealComplex (ρ : ℝ → ℂ) (t : ℝ) : ℂ :=
   ∫ p : ℝ, ρ p * Complex.exp
     (-((2 : ℂ) * Real.pi * Complex.I * (p : ℂ) * (t : ℂ)))
 
-/-- Fourier transform of convolution along the diagonal in the product-coordinate model.-/
+/-- Fourier transform of convolution along the diagonal in the product-coordinate model.
+@isnad1 id=eq.4h3v.s7.c6a528e6d0cf from=translated src=- shape=d5a184f1 vocab=ad9a285e
+-/
 theorem aux_fourierPlaneComplex_diagonalConvolution
     (F : RealPlane → ℂ) (ρ : ℝ → ℂ) (hFcont : Continuous F) (hFint : Integrable F)
     (hρcont : Continuous ρ) (hρint : Integrable ρ)
@@ -952,7 +1000,9 @@ theorem aux_fourierPlaneComplex_diagonalConvolution
     ring
   simpa only [aux_fourierPlaneComplex, aux_fourierRealComplex, K, phase, hphasep] using hcore
 
-/-- The real-valued specialization of diagonal convolution in product coordinates.-/
+/-- The real-valued specialization of diagonal convolution in product coordinates.
+@isnad1 id=eq.2h3v.s7.cbdfb750d4b1 from=translated src=- shape=0218eaae vocab=84d3d97c
+-/
 theorem aux_fourierPlane_diagonalConvolution
     (F : RealPlane → ℝ) (ρ : ℝ → ℝ) (hF : MemW0 F) (hρ : MemW0 ρ)
     (ξ : RealPlane) :
@@ -988,7 +1038,9 @@ theorem aux_fourierPlane_diagonalConvolution
         aux_fourierRealComplex (fun p : ℝ => (ρ p : ℂ)) (ξ.1 + ξ.2) := hcomplex
     _ = aux_fourierPlane F ξ * aux_fourierReal ρ (ξ.1 + ξ.2) := by rfl
 
-/-- Fourier factorization of the one-scale diagonal convolution defining `L`.-/
+/-- Fourier factorization of the one-scale diagonal convolution defining `L`.
+@isnad1 id=eq.1h6v.s6.f004e55b71e0 from=translated src=- shape=e8bf534c vocab=eec5ae59
+-/
 theorem aux_fourierPlane_lMultiplierAtScale {n : ℕ} (γ : GeometricParameters n)
     {t : ℝ} (ht : 0 < t) (i : Fin γ.k) (j : ℤ) (ξ : RealPlane) :
     aux_fourierPlane (lMultiplierAtScale γ t i j) ξ =
@@ -1001,7 +1053,9 @@ theorem aux_fourierPlane_lMultiplierAtScale {n : ℕ} (γ : GeometricParameters 
     (hMultiplier_memDoubleSequence γ i j)
     (aux_standardBumpRescale_memW0 ht) ξ
 
-/-- Fourier factorization of `L` in the central multiplier-index branch.-/
+/-- Fourier factorization of `L` in the central multiplier-index branch.
+@isnad1 id=eq.1h6v.s7.5ca947f012e6 from=translated src=- shape=f56e795b vocab=c88e80f3
+-/
 theorem aux_fourierPlane_lMultiplier_vertical {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 = 0) (ξ : RealPlane) :
@@ -1029,7 +1083,9 @@ theorem aux_fourierPlane_lMultiplier_vertical {n : ℕ}
   exact aux_fourierPlane_diagonalConvolution (hMultiplier γ i j) _
     (hMultiplier_memDoubleSequence γ i j) hphi ξ
 
-/-- Fourier factorization of `L` in the positive multiplier-index branch.-/
+/-- Fourier factorization of `L` in the positive multiplier-index branch.
+@isnad1 id=eq.2h6v.s8.5c1773169844 from=translated src=- shape=6ba7ebd4 vocab=96f69788
+-/
 theorem aux_fourierPlane_lMultiplier_positive {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1) (ξ : RealPlane) :
@@ -1065,7 +1121,9 @@ theorem aux_fourierPlane_lMultiplier_positive {n : ℕ}
   exact aux_fourierPlane_diagonalConvolution (hMultiplier γ i j) _
     (hMultiplier_memDoubleSequence γ i j) hphi ξ
 
-/-- Fourier factorization of `L` in the negative multiplier-index branch.-/
+/-- Fourier factorization of `L` in the negative multiplier-index branch.
+@isnad1 id=eq.2h6v.s8.6c4b5c90b3d9 from=translated src=- shape=7c43aafd vocab=96f69788
+-/
 theorem aux_fourierPlane_lMultiplier_negative {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) (ξ : RealPlane) :
@@ -1101,7 +1159,9 @@ theorem aux_fourierPlane_lMultiplier_negative {n : ℕ}
   exact aux_fourierPlane_diagonalConvolution (hMultiplier γ i j) _
     (hMultiplier_memDoubleSequence γ i j) hphi ξ
 
-/-- The raw plane Fourier transform factors over product functions.-/
+/-- The raw plane Fourier transform factors over product functions.
+@isnad1 id=eq.0h4v.s5.6503e5647957 from=translated src=- shape=edd8b814 vocab=2e087899
+-/
 theorem aux_fourierPlane_tensor (f g : ℝ → ℝ) (ξ η : ℝ) :
     aux_fourierPlane (fun v : RealPlane => f v.1 * g v.2) (ξ, η) =
       aux_fourierReal f ξ * aux_fourierReal g η := by
@@ -1135,7 +1195,9 @@ theorem aux_fourierPlane_tensor (f g : ℝ → ℝ) (ξ η : ℝ) :
     _ = (∫ x, F x) * ∫ y, G y := integral_prod_mul F G
     _ = aux_fourierReal f ξ * aux_fourierReal g η := by rfl
 
-/-- This identifies the raw one-dimensional Fourier integral with mathlib's transform.-/
+/-- This identifies the raw one-dimensional Fourier integral with mathlib's transform.
+@isnad1 id=eq.0h2v.s5.9b2ae2634fac from=translated src=- shape=be90bf9f vocab=aa348d0b
+-/
 theorem aux_fourierReal_eq_fourier (f : ℝ → ℝ) (ξ : ℝ) :
     aux_fourierReal f ξ = FourierTransform.fourier (fun x : ℝ => (f x : ℂ)) ξ := by
   rw [aux_fourierReal, Real.fourier_real_eq_integral_exp_smul]
@@ -1149,7 +1211,9 @@ theorem aux_fourierReal_eq_fourier (f : ℝ → ℝ) (ξ : ℝ) :
   rw [hExp]
   ring
 
-/-- The raw Fourier transform of a positively rescaled standard bump.-/
+/-- The raw Fourier transform of a positively rescaled standard bump.
+@isnad1 id=eq.1h2v.s5.6f8c68f6a6da from=translated src=- shape=17df063e vocab=34857449
+-/
 theorem aux_fourierReal_standardBumpRescale (t : ℝ) (ht : 0 < t) (u : ℝ) :
     aux_fourierReal (standardBumpRescale t) u =
       FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ)) (t * u) := by
@@ -1185,7 +1249,9 @@ theorem aux_fourierReal_standardBumpRescale (t : ℝ) (ht : 0 < t) (u : ℝ) :
         (-((2 : ℂ) * Real.pi * Complex.I * (x : ℂ) * ((t * u : ℝ) : ℂ))) := by
       rfl
 
-/-- Raw one-dimensional Fourier integration is linear on Wiener functions.-/
+/-- Raw one-dimensional Fourier integration is linear on Wiener functions.
+@isnad1 id=eq.2h3v.s5.e1e98d7055be from=translated src=- shape=9dd3f780 vocab=e7172f37
+-/
 theorem aux_fourierReal_sub (f g : ℝ → ℝ)
     (hf : MemW0 f) (hg : MemW0 g) (u : ℝ) :
     aux_fourierReal (fun x => f x - g x) u =
@@ -1227,7 +1293,9 @@ theorem aux_fourierReal_sub (f g : ℝ → ℝ)
       integral_sub hf' hg'
     _ = _ := by rfl
 
-/-- Raw Fourier transform of a difference of two positively rescaled standard bumps.-/
+/-- Raw Fourier transform of a difference of two positively rescaled standard bumps.
+@isnad1 id=eq.2h3v.s7.af77dc231ac2 from=translated src=- shape=00d35b08 vocab=bc155677
+-/
 theorem aux_fourierReal_standardBumpRescale_sub (s t u : ℝ)
     (hs : 0 < s) (ht : 0 < t) :
     aux_fourierReal (fun x => standardBumpRescale s x - standardBumpRescale t x) u =
@@ -1238,7 +1306,9 @@ theorem aux_fourierReal_standardBumpRescale_sub (s t u : ℝ)
     aux_fourierReal_standardBumpRescale s hs,
     aux_fourierReal_standardBumpRescale t ht]
 
-/-- Fourier-side bump factor in the central branch of `L`.-/
+/-- Fourier-side bump factor in the central branch of `L`.
+@isnad1 id=eq.1h6v.s8.7a501d555b03 from=translated src=- shape=97e9fb76 vocab=e8429c2c
+-/
 theorem aux_fourierPlane_lMultiplier_vertical_phiHat {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 = 0) (ξ : RealPlane) :
@@ -1253,7 +1323,9 @@ theorem aux_fourierPlane_lMultiplier_vertical_phiHat {n : ℕ}
   · exact aux_spacedSequence_pos (γ.scales_spaced i 1) _
   · exact aux_spacedSequence_pos (γ.scales_spaced i 1) _
 
-/-- Fourier-side bump factor in the positive branch of `L`.-/
+/-- Fourier-side bump factor in the positive branch of `L`.
+@isnad1 id=eq.2h6v.s8.9304b069c8f4 from=translated src=- shape=f88dbdb8 vocab=08979cfc
+-/
 theorem aux_fourierPlane_lMultiplier_positive_phiHat {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1) (ξ : RealPlane) :
@@ -1272,7 +1344,9 @@ theorem aux_fourierPlane_lMultiplier_positive_phiHat {n : ℕ}
   · exact mul_pos (zpow_pos (by norm_num) _)
       (aux_spacedSequence_pos (γ.scales_spaced i 1) _)
 
-/-- Fourier-side bump factor in the negative branch of `L`.-/
+/-- Fourier-side bump factor in the negative branch of `L`.
+@isnad1 id=eq.2h6v.s8.ccd521d61265 from=translated src=- shape=5ebbc656 vocab=08979cfc
+-/
 theorem aux_fourierPlane_lMultiplier_negative_phiHat {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) (ξ : RealPlane) :
@@ -1291,7 +1365,9 @@ theorem aux_fourierPlane_lMultiplier_negative_phiHat {n : ℕ}
   · exact mul_pos (zpow_pos (by norm_num) _)
       (aux_spacedSequence_pos (γ.scales_spaced i 1) _)
 
-/-- The one-dimensional square-root multiplier has the prescribed Fourier transform.-/
+/-- The one-dimensional square-root multiplier has the prescribed Fourier transform.
+@isnad1 id=eq.1h3v.s6.dcd4d5326eb5 from=translated src=- shape=0b919251 vocab=cae94e16
+-/
 theorem aux_squareRootGaussianDifference_fourier {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) (ξ : ℝ) :
     aux_fourierReal (squareRootGaussianDifference a ha j) ξ =
@@ -1347,14 +1423,18 @@ theorem aux_squareRootGaussianDifference_fourier {a : ℤ → ℝ}
     _ = (f ξ : ℂ) := hprofile
     _ = _ := rfl
 
-/-- The normalized rescaled Gaussian has its expected raw Fourier transform.-/
+/-- The normalized rescaled Gaussian has its expected raw Fourier transform.
+@isnad1 id=eq.1h2v.s5.4981c5a78457 from=translated src=- shape=21a0ff20 vocab=ac0c2cfa
+-/
 theorem aux_fourierReal_gaussianRescale (t : ℝ) (ht : 0 < t) (ξ : ℝ) :
     aux_fourierReal (gaussianRescale t) ξ =
       (Auto.gaussian (t * ξ) : ℂ) := by
   rw [aux_fourierReal_eq_fourier]
   exact congrFun (gaussianRescale_fourier t ht) ξ
 
-/-- The identity-orientation two-dimensional Gaussian factors into one-dimensional transforms.-/
+/-- The identity-orientation two-dimensional Gaussian factors into one-dimensional transforms.
+@isnad1 id=eq.1h3v.s6.08720147980b from=translated src=- shape=a5b8663d vocab=c0c9d058
+-/
 theorem aux_fourierPlane_twoDimensionalGaussian_zero (q : Fin 2 → ℝ)
     (hq : ∀ r, 0 < q r) (ξ η : ℝ) :
     aux_fourierPlane (twoDimensionalGaussian q 0) (ξ, η) =
@@ -1368,7 +1448,9 @@ theorem aux_fourierPlane_twoDimensionalGaussian_zero (q : Fin 2 → ℝ)
     aux_fourierReal_gaussianRescale (q 0) (hq 0) ξ,
     aux_fourierReal_gaussianRescale (q 1) (hq 1) η]
 
-/-- The rotated two-dimensional Gaussian is evaluated by the measure-preserving $W_1$ change.-/
+/-- The rotated two-dimensional Gaussian is evaluated by the measure-preserving $W_1$ change.
+@isnad1 id=eq.1h3v.s7.7a59c1fe2318 from=translated src=- shape=a9b99e6a vocab=9563bb63
+-/
 theorem aux_fourierPlane_twoDimensionalGaussian_one (q : Fin 2 → ℝ)
     (hq : ∀ r, 0 < q r) (ξ η : ℝ) :
     aux_fourierPlane (twoDimensionalGaussian q 1) (ξ, η) =
@@ -1417,7 +1499,9 @@ theorem aux_fourierPlane_twoDimensionalGaussian_one (q : Fin 2 → ℝ)
         aux_fourierReal_gaussianRescale (q 0) (hq 0) ((ξ + η) / Real.sqrt 2),
         aux_fourierReal_gaussianRescale (q 1) (hq 1) ((-ξ + η) / Real.sqrt 2)]
 
-/-- The two identity-orientation Fourier factors combine into the diagonal scale.-/
+/-- The two identity-orientation Fourier factors combine into the diagonal scale.
+@isnad1 id=eq.0h3v.s6.474c3cba65a9 from=translated src=- shape=235130f7 vocab=78b686d8
+-/
 theorem aux_gaussian_mul_diag (a b x : ℝ) :
     (Auto.gaussian (a * x) *
       Auto.gaussian (b * (-x)) : ℂ) =
@@ -1434,7 +1518,9 @@ theorem aux_gaussian_mul_diag (a b x : ℝ) :
     _ = -Real.pi * (Real.sqrt (a ^ 2 + b ^ 2) ^ 2 * x ^ 2) := by rw [hsqrt]
     _ = -Real.pi * (Real.sqrt (a ^ 2 + b ^ 2) * x) ^ 2 := by ring
 
-/-- The rotated diagonal frequency reduces to the second scale.-/
+/-- The rotated diagonal frequency reduces to the second scale.
+@isnad1 id=eq.0h2v.s6.136efa4d1acf from=translated src=- shape=e53d417d vocab=5136c45c
+-/
 theorem aux_gaussian_wOne_diag (a x : ℝ) :
     (Auto.gaussian
       (a * ((-x + -x) / Real.sqrt 2)) : ℂ) =
@@ -1448,7 +1534,9 @@ theorem aux_gaussian_wOne_diag (a x : ℝ) :
   rw [harg]
   simp [Auto.gaussian]
 
-/-- The Fourier transform of a gamma Gaussian on the anti-diagonal.-/
+/-- The Fourier transform of a gamma Gaussian on the anti-diagonal.
+@isnad1 id=eq.0h5v.s8.cd8a3e4ced78 from=translated src=- shape=f9c1b759 vocab=e3efb994
+-/
 theorem aux_gammaGaussian_fourier_diagonal {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (ξ : ℝ) :
     aux_fourierPlane (gammaGaussian γ i j) (ξ, -ξ) =
@@ -1483,7 +1571,9 @@ theorem aux_gammaGaussian_fourier_diagonal {n : ℕ} (γ : GeometricParameters n
     norm_num
     exact_mod_cast aux_gaussian_wOne_diag (γ.scales i 1 j) ξ
 
-/-- The two anti-diagonal Fourier factors of a square-root Gaussian recover its difference.-/
+/-- The two anti-diagonal Fourier factors of a square-root Gaussian recover its difference.
+@isnad1 id=eq.1h3v.s6.b20a0f083d7f from=translated src=- shape=b75f53ad vocab=a934a476
+-/
 theorem aux_squareRootGaussianDifference_fourier_diagonal {a : ℤ → ℝ}
     (ha : SpacedSequence a) (j : ℤ) (ξ : ℝ) :
     aux_fourierReal (squareRootGaussianDifference a ha j) ξ *
@@ -1508,7 +1598,9 @@ theorem aux_squareRootGaussianDifference_fourier_diagonal {a : ℤ → ℝ}
   norm_cast
   simpa [pow_two] using Real.sq_sqrt hrad
 
-/-- The tensor square of the $s$ multiplier has the corresponding Gaussian difference.-/
+/-- The tensor square of the $s$ multiplier has the corresponding Gaussian difference.
+@isnad1 id=eq.0h5v.s8.2d5d5b1ae0f3 from=translated src=- shape=4a4fc337 vocab=0e9ed8a6
+-/
 theorem aux_sMultiplier_tensor_fourier_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (ξ : ℝ) :
     aux_fourierPlane (fun v : RealPlane =>
@@ -1531,7 +1623,9 @@ theorem aux_sMultiplier_tensor_fourier_diagonal {n : ℕ}
     exact aux_squareRootGaussianDifference_fourier_diagonal
       (smul_mem_A (γ.scales_spaced i 1) (Real.sqrt_pos.2 (by norm_num))) j ξ
 
-/-- Raw Fourier integration is linear for the integrable functions used below.-/
+/-- Raw Fourier integration is linear for the integrable functions used below.
+@isnad1 id=eq.2h3v.s6.74a99d1d138e from=translated src=- shape=09b0dc81 vocab=7109685e
+-/
 theorem aux_fourierPlane_sub (f g : RealPlane → ℝ)
     (hf : Integrable f) (hg : Integrable g) (ξ : RealPlane) :
     aux_fourierPlane (fun v => f v - g v) ξ =
@@ -1571,7 +1665,9 @@ theorem aux_fourierPlane_sub (f g : RealPlane → ℝ)
         ∫ v : RealPlane, (g v : ℂ) * e v := integral_sub hf' hg'
     _ = _ := rfl
 
-/-- The Gaussian difference transforms to the difference of its two gamma Gaussian transforms.-/
+/-- The Gaussian difference transforms to the difference of its two gamma Gaussian transforms.
+@isnad1 id=eq.0h5v.s6.9fa62a4d0415 from=translated src=- shape=a34d745d vocab=59e09a7c
+-/
 theorem aux_gaussianDifference_fourier_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (ξ : ℝ) :
     aux_fourierPlane (gaussianDifference γ i j) (ξ, -ξ) =
@@ -1591,7 +1687,9 @@ For $\gamma=(k,u,a)\in \Gamma$, $i\in [k)$, $j\in \mathbb{Z}$, and $\xi\in \math
 
 $$
     \widehat{(H_{\gamma})_{i,j}}(\xi,-\xi)=0\, .
-$$-/
+$$
+@isnad1 id=eq.0h5v.s5.b10dd8f399d6 from=translated src=- shape=957458f6 vocab=4431e76d
+-/
 theorem hMultiplier_fourier_diagonal_vanishing {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (ξ : ℝ) :
     aux_fourierPlane (hMultiplier γ i j) (ξ, -ξ) = 0 := by
@@ -1643,7 +1741,9 @@ noncomputable def aux_diagonalShear : RealPlane ≃L[ℝ] RealPlane where
   continuous_toFun := by fun_prop
   continuous_invFun := by fun_prop
 
-/-- The diagonal shear preserves Lebesgue measure.-/
+/-- The diagonal shear preserves Lebesgue measure.
+@isnad1 id=measurep.0h0v.s8.368e37268c96 from=translated src=- shape=e923bfea vocab=58ede264
+-/
 theorem aux_measurePreserving_diagonalShear :
     MeasurePreserving (aux_diagonalShear : RealPlane → RealPlane) volume volume := by
   change MeasurePreserving (fun v : ℝ × ℝ => (v.1 + v.2, v.2))
@@ -1651,7 +1751,9 @@ theorem aux_measurePreserving_diagonalShear :
     ((volume : Measure ℝ).prod (volume : Measure ℝ))
   exact measurePreserving_add_prod (volume : Measure ℝ) (volume : Measure ℝ)
 
-/-- The Fourier transform of a diagonal line integral is the anti-diagonal slice in frequency.-/
+/-- The Fourier transform of a diagonal line integral is the anti-diagonal slice in frequency.
+@isnad1 id=eq.1h2v.s6.877462dca75a from=translated src=- shape=c7af88b0 vocab=483f5eac
+-/
 theorem aux_fourierReal_diagonalSlice (f : RealPlane → ℝ) (hf : MemW0 f)
     (ξ : ℝ) :
     aux_fourierReal (fun z : ℝ => ∫ p : ℝ, f (z + p, p)) ξ =
@@ -1738,7 +1840,9 @@ For $\gamma=(k,u,a)\in \Gamma$, $i\in [k)$, $j\in \mathbb{Z}$, and $z\in \mathbb
 
 $$
    \int_{\mathbb{R}} (H_{\gamma})_{i,j}(z+p,p)\,dp=0.
-$$-/
+$$
+@isnad1 id=eq.0h5v.s5.42ed7472064e from=translated src=- shape=487227ba vocab=b43c8cfc
+-/
 theorem hMultiplier_vanishing_integral {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (z : ℝ) :
     (∫ p : ℝ, hMultiplier γ i j (z + p, p)) = 0 := by
@@ -1795,6 +1899,9 @@ theorem hMultiplier_vanishing_integral {n : ℕ} (γ : GeometricParameters n)
     exact_mod_cast hzeroC
   simpa [L] using hzero
 
+/--
+@isnad1 id=eq.0h5v.s7.503e2c1193e9 from=translated src=- shape=e6f95908 vocab=58a46f1b
+-/
 theorem aux_sandwichFactor_terminal {k : ℕ} (i : Fin k) (a b c : Fin k → ℝ) :
     (∏ m, if m < i then a m else if i < m then b m else c m) =
       (∏ m ∈ Finset.univ.filter (fun m => m < i), a m) * c i *
@@ -1812,7 +1919,9 @@ theorem aux_sandwichFactor_terminal {k : ℕ} (i : Fin k) (a b c : Fin k → ℝ
   have hEq : m = i := by omega
   simp [hEq]
 
-/-- The terminal sandwich built from `H` has zero diagonal integral.-/
+/-- The terminal sandwich built from `H` has zero diagonal integral.
+@isnad1 id=eq.0h5v.s7.ca265a6f3312 from=translated src=- shape=2c903536 vocab=187f5b84
+-/
 theorem sandwichHMultiplier_terminalIntegral {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (z : RealVector γ.k) :
     (∫ p : RealVector γ.k,
@@ -1848,7 +1957,9 @@ theorem sandwichHMultiplier_terminalIntegral {n : ℕ} (γ : GeometricParameters
     _ = 0 := by
       exact Finset.prod_eq_zero (Finset.mem_univ i) hcenter
 
-/-- Translation is continuous in ordinary `L¹` for one-dimensional Wiener functions.-/
+/-- Translation is continuous in ordinary `L¹` for one-dimensional Wiener functions.
+@isnad1 id=tendsto.1h1v.s6.a6d550370f57 from=translated src=- shape=57ccdbfd vocab=64c1c1c0
+-/
 theorem aux_w0_translation_tendsto_integral_norm_oneDim
     {f : ℝ → ℝ} (hf : MemW0 f) :
     Tendsto (fun p : ℝ => ∫ v : ℝ, ‖f (v - p) - f v‖)
@@ -1898,7 +2009,9 @@ theorem aux_w0_translation_tendsto_integral_norm_oneDim
   simpa using
     (MeasureTheory.tendsto_integral_filter_of_dominated_convergence B hmeas hbound hB_int hlim)
 
-/-- Change of scale for the translated standard bump.-/
+/-- Change of scale for the translated standard bump.
+@isnad1 id=eq.1h2v.s6.24a6790362a3 from=translated src=- shape=18e24de0 vocab=3525cbf1
+-/
 theorem aux_standardBumpRescale_translation_integral_norm
     (t q : ℝ) (ht : 0 < t) :
     (∫ y : ℝ, |standardBumpRescale t (y - q) - standardBumpRescale t y|) =
@@ -1928,7 +2041,9 @@ theorem aux_standardBumpRescale_translation_integral_norm
             _ = ∫ z : ℝ, |standardBump (z - q / t) - standardBump z| := by
                 rw [inv_mul_cancel₀ ht.ne', one_mul]
 
-/-- A uniform `L¹` bound for translated standard-bump differences.-/
+/-- A uniform `L¹` bound for translated standard-bump differences.
+@isnad1 id=le.0h1v.s6.ec542bd68d44 from=translated src=- shape=c5b49994 vocab=595e8e00
+-/
 theorem aux_standardBump_translation_integral_norm_le (r : ℝ) :
     (∫ z : ℝ, ‖standardBump (z - r) - standardBump z‖) ≤
       2 * ∫ z : ℝ, ‖standardBump z‖ := by
@@ -1949,7 +2064,9 @@ theorem aux_standardBump_translation_integral_norm_le (r : ℝ) :
           rw [integral_sub_right_eq_self (fun z : ℝ => ‖standardBump z‖) r]
           ring
 
-/-- The one-dimensional translation-distance functional of a Wiener function is continuous.-/
+/-- The one-dimensional translation-distance functional of a Wiener function is continuous.
+@isnad1 id=continuo.1h1v.s6.dfbc553447b1 from=translated src=- shape=4359f340 vocab=d5b58f6d
+-/
 theorem aux_w0_translation_integral_norm_continuous_oneDim
     {f : ℝ → ℝ} (hf : MemW0 f) :
     Continuous (fun p : ℝ => ∫ z : ℝ, ‖f (z - p) - f z‖) := by
@@ -2018,7 +2135,9 @@ theorem aux_w0_translation_integral_norm_continuous_oneDim
   simpa using hsub.add
     (tendsto_const_nhds : Tendsto (fun _ : ℝ => ω p₀) (nhds p₀) (nhds (ω p₀)))
 
-/-- Dominated convergence for large-scale translated standard-bump cancellation.-/
+/-- Dominated convergence for large-scale translated standard-bump cancellation.
+@isnad1 id=tendsto.2h1v.s7.3084babff4ed from=translated src=- shape=b56f4255 vocab=531c72bc
+-/
 theorem aux_weighted_standardBump_translation_tendsto
     (g : ℝ → ℝ) (hg : Integrable g) (hg_nonneg : ∀ q : ℝ, 0 ≤ g q) :
     Tendsto (fun t : ℝ => ∫ q : ℝ,
@@ -2113,7 +2232,9 @@ noncomputable def aux_lMultiplierAtScale_largeScaleShear :
   continuous_toFun := by fun_prop
   continuous_invFun := by fun_prop
 
-/-- The cancellative large-scale integrand remains in `W₀` on three variables.-/
+/-- The cancellative large-scale integrand remains in `W₀` on three variables.
+@isnad1 id=memw0.2h2v.s6.9a3f0ba138fa from=translated src=- shape=3a7deec1 vocab=d3fc8555
+-/
 theorem aux_lMultiplierAtScale_largeScaleIntegrand_memW0
     {F : RealPlane → ℝ} (hF : MemW0 F) (t : ℝ) (ht : 0 < t) :
     MemW0 (fun z : RealPlane × ℝ =>
@@ -2138,7 +2259,9 @@ theorem aux_lMultiplierAtScale_largeScaleIntegrand_memW0
     aux_lMultiplierAtScale_largeScaleReorder]
   ring
 
-/-- Cancellation bounds the diagonal convolution by the translated bump error.-/
+/-- Cancellation bounds the diagonal convolution by the translated bump error.
+@isnad1 id=le.3h2v.s8.d3f454dd2830 from=translated src=- shape=3d92528f vocab=9cc17fea
+-/
 theorem aux_lMultiplierAtScale_largeScaleConvolution_bound
     {F : RealPlane → ℝ} (hF : MemW0 F)
     (hzero : ∀ x : ℝ, (∫ q : ℝ, F (x, q)) = 0)
@@ -2262,7 +2385,9 @@ theorem aux_lMultiplierAtScale_largeScaleConvolution_bound
           aux_standardBumpRescale_translation_integral_norm t q ht
       rw [hscale]
 
-/-- The raw large-scale `L¹` convergence for $L_{\gamma,t}$.-/
+/-- The raw large-scale `L¹` convergence for $L_{\gamma,t}$.
+@isnad1 id=tendsto.0h4v.s6.20bb10b7377e from=translated src=- shape=8afaac62 vocab=bbfadf5a
+-/
 theorem aux_lMultiplierAtScale_tendsto_integral_norm_atTop
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) :
     Tendsto (fun t : ℝ => ∫ v : RealPlane, |lMultiplierAtScale γ t i j v|)
@@ -2339,7 +2464,9 @@ Let $\gamma=(k,u,a)\in \Gamma$, $i\in [k)$, $j\in \mathbb{Z}$, $t>0$. Then
 
 $$
 \lim_{t\to \infty} (L_{\gamma,t})_{i,j} = 0 \quad\text{in}\;L^1.
-$$-/
+$$
+@isnad1 id=tendsto.0h4v.s6.7a8b00dad6b6 from=translated src=- shape=54cdda52 vocab=db615018
+-/
 theorem lMultiplierAtScale_tendsto_zero
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) :
     Tendsto (fun t : ℝ => eLpNorm (lMultiplierAtScale γ t i j) 1 volume)
@@ -2359,6 +2486,9 @@ theorem lMultiplierAtScale_tendsto_zero
     simp only [Real.norm_eq_abs]
     exact le_rfl
 
+/--
+@isnad1 id=integrab.0h5v.s6.b0271d94eb2c from=translated src=- shape=81fff595 vocab=e02c0118
+-/
 theorem aux_hMultiplier_diagonal_translate_integrable
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane) :
     Integrable (fun p : ℝ => hMultiplier γ i j (v.1 - p, v.2 - p)) := by
@@ -2384,6 +2514,9 @@ theorem aux_hMultiplier_diagonal_translate_integrable
   dsimp
   ring_nf
 
+/--
+@isnad1 id=integrab.1h6v.s6.0411feebaed1 from=translated src=- shape=e9b1d3be vocab=19759821
+-/
 theorem aux_integrable_lMultiplierAtScale_integrand
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
     {t : ℝ} (ht : 0 < t) :
@@ -2399,6 +2532,9 @@ theorem aux_integrable_lMultiplierAtScale_integrand
     exact mul_le_mul_of_nonneg_left (aux_standardBump_abs_le_threeHalves _) (inv_nonneg.mpr ht.le)
   exact hH.mul_bdd hmeas (Filter.Eventually.of_forall hbound)
 
+/--
+@isnad1 id=eq.2h6v.s7.8f2c8c5ee924 from=translated src=- shape=c9b28ad4 vocab=96170ff4
+-/
 theorem aux_lMultiplierAtScale_sub_eq_convolution_difference
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     {s t : ℝ} (hs : 0 < s) (ht : 0 < t) :
@@ -2414,6 +2550,9 @@ theorem aux_lMultiplierAtScale_sub_eq_convolution_difference
   filter_upwards [] with p
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.b9a07b0e53d7 from=translated src=- shape=20b78381 vocab=5a41ceec
+-/
 theorem aux_lMultiplier_vertical_eq
     {n : ℕ} (γ : GeometricParameters n) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 = 0) :
@@ -2426,6 +2565,9 @@ theorem aux_lMultiplier_vertical_eq
   unfold lMultiplier
   simp [hzero]
 
+/--
+@isnad1 id=eq.2h5v.s8.8bc6813b818f from=translated src=- shape=38cb2a5c vocab=db770059
+-/
 theorem aux_lMultiplier_positive_eq
     {n : ℕ} (γ : GeometricParameters n) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1) :
@@ -2442,6 +2584,9 @@ theorem aux_lMultiplier_positive_eq
   unfold lMultiplier
   simp [hzero, hpositive]
 
+/--
+@isnad1 id=eq.2h5v.s8.27d3fa330ed2 from=translated src=- shape=32fbe7d9 vocab=db770059
+-/
 theorem aux_lMultiplier_negative_eq
     {n : ℕ} (γ : GeometricParameters n) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) :
@@ -2458,6 +2603,9 @@ theorem aux_lMultiplier_negative_eq
   unfold lMultiplier
   simp [hzero, not_lt_of_ge hnegative.le]
 
+/--
+@isnad1 id=tendsto.0h4v.s8.bd26095a961b from=translated src=- shape=f5f404ca vocab=84f7e0c7
+-/
 theorem aux_lMultiplierPartialSum_boundary_tendsto_hMultiplier
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) :
     Tendsto (fun N : ℕ => eLpNorm
@@ -2543,11 +2691,17 @@ noncomputable def aux_lMultiplierVerticalIndices (D : ℕ) : Finset (ℤ × ℤ)
 noncomputable def aux_lMultiplierPosIndices (N : ℕ) : Finset (ℤ × ℤ) :=
   (Finset.Icc 1 (N : ℤ)).image fun h => (h, 0)
 
+/--
+@isnad1 id=iff.0h2v.s4.71799c35c34e from=translated src=- shape=47d1e377 vocab=7412af35
+-/
 theorem aux_int_natAbs_le_iff (z : ℤ) (N : ℕ) :
     z.natAbs ≤ N ↔ (-(N : ℤ) ≤ z ∧ z ≤ N) := by
   rw [← Int.ofNat_le]
   simpa only [Int.natCast_natAbs] using (abs_le (a := z) (b := (N : ℤ)))
 
+/--
+@isnad1 id=eq.1h3v.s6.c14d403db723 from=translated src=- shape=a5b1721a vocab=7cfc2af7
+-/
 theorem aux_lMultiplier_truncation_decomp {n : ℕ} (γ : GeometricParameters n) (N : ℕ)
     (hN : geometricDelta γ < N) :
     aux_multiplierIndexTruncation γ N =
@@ -2560,6 +2714,9 @@ theorem aux_lMultiplier_truncation_decomp {n : ℕ} (γ : GeometricParameters n)
     aux_lMultiplierVerticalIndices, aux_lMultiplierPosIndices, aux_int_natAbs_le_iff]
   omega
 
+/--
+@isnad1 id=eq.0h4v.s6.cece7d068a82 from=translated src=- shape=27a78f88 vocab=6b2caf30
+-/
 theorem aux_sum_Ico_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A)
     (a : ℤ) (N : ℕ) :
     (∑ r ∈ Finset.Ico a (a + (N : ℤ)), (f r - f (r + 1))) =
@@ -2573,6 +2730,9 @@ theorem aux_sum_Ico_int_telescope {A : Type*} [AddCommGroup A] (f : ℤ → A)
     rw [ih]
     abel
 
+/--
+@isnad1 id=eq.0h4v.s6.47e2bb43b94d from=translated src=- shape=d6a5b84c vocab=74d9128f
+-/
 theorem aux_sum_range_sub_translate {A : Type*} [AddCommGroup A]
     (f : ℤ → A) (a : ℤ) (N : ℕ) :
     (∑ r ∈ Finset.range N, (f (a + r) - f (a + r + 1))) =
@@ -2584,6 +2744,9 @@ theorem aux_sum_range_sub_translate {A : Type*} [AddCommGroup A]
     push_cast
     abel_nf
 
+/--
+@isnad1 id=eq.0h4v.s6.bac96aa88e87 from=translated src=- shape=08fe11cd vocab=e2869b6c
+-/
 theorem aux_sum_Icc_sub_translate {A : Type*} [AddCommGroup A]
     (f : ℤ → A) (a : ℤ) (N : ℕ) :
     (∑ z ∈ Finset.Icc a (a + N), (f (z - 1) - f z)) =
@@ -2605,6 +2768,9 @@ noncomputable def lMultiplierPartialSum {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (N : ℕ) : RealPlane → ℝ :=
   ∑ ι ∈ aux_multiplierIndexTruncation γ N, aux_lMultiplierTerm γ i j ι
 
+/--
+@isnad1 id=eq.0h5v.s7.0ada763bc129 from=translated src=- shape=f4acad76 vocab=d0232396
+-/
 theorem aux_lMultiplier_negative_block_eq {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ)
     (N : ℕ) :
@@ -2642,6 +2808,9 @@ theorem aux_lMultiplier_negative_block_eq {n : ℕ} (γ : GeometricParameters n)
     _ = F (-(N : ℤ)) - F 0 := by congr 2; omega
     _ = _ := by simp [F]
 
+/--
+@isnad1 id=eq.0h4v.s7.1894180efb71 from=translated src=- shape=0e37fa83 vocab=eeb2d690
+-/
 theorem aux_lMultiplier_vertical_block_eq {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) :
     ∑ x ∈ aux_lMultiplierVerticalIndices (geometricDelta γ), aux_lMultiplierTerm γ i j x =
@@ -2681,6 +2850,9 @@ theorem aux_lMultiplier_vertical_block_eq {n : ℕ} (γ : GeometricParameters n)
       simp [F]
       congr 3; omega
 
+/--
+@isnad1 id=eq.0h5v.s7.ecb6b471c71b from=translated src=- shape=5a3af8d5 vocab=fc1c60be
+-/
 theorem aux_lMultiplier_positive_block_eq {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (N : ℕ) :
     ∑ x ∈ aux_lMultiplierPosIndices N, aux_lMultiplierTerm γ i j x =
@@ -2716,6 +2888,9 @@ theorem aux_lMultiplier_positive_block_eq {n : ℕ} (γ : GeometricParameters n)
     _ = _ := by
       simp [F]
 
+/--
+@isnad1 id=eq.1h5v.s7.68112b14196b from=translated src=- shape=c60bd634 vocab=5f44c67d
+-/
 theorem aux_lMultiplierPartialSum_eq_boundary {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (N : ℕ) (hN : geometricDelta γ < N) :
     lMultiplierPartialSum γ i j N =
@@ -2746,6 +2921,9 @@ theorem aux_lMultiplierPartialSum_eq_boundary {n : ℕ} (γ : GeometricParameter
     aux_lMultiplier_positive_block_eq]
   abel
 
+/--
+@isnad1 id=memdoubl.0h3v.s4.c768498e03b5 from=translated src=- shape=83662528 vocab=8d3b63f2
+-/
 theorem lMultiplier_memDoubleSequence {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) : MemDoubleSequence γ.k (lMultiplier γ ι) := by
   intro i j
@@ -2813,7 +2991,9 @@ $$
 (H_{\gamma})_{i,j} = \sum_{\iota \in\mathcal{I}_{\gamma}} (L_{\gamma,\iota})_{i,j},
 $$
 
-where the sum on the right converges in $L^1$.-/
+where the sum on the right converges in $L^1$.
+@isnad1 id=and.0h3v.s7.0c5c314d004e from=translated src=- shape=c4e9ac09 vocab=55e49bb8
+-/
 theorem sumLMultiplierConvergenceL1 {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) :
     MemDoubleSequence γ.k (lMultiplier γ ι) ∧
@@ -2842,6 +3022,9 @@ noncomputable def sandwichMultiplierIndexPartialSum {n : ℕ} (γ : GeometricPar
   exact ∑ ξ ∈ aux_multiplierIndexTruncation γ N,
     if hξ : ξ ∈ multiplierIndexSet γ then sandwichKernel γ (Xι ⟨ξ, hξ⟩) i j else 0
 
+/--
+@isnad1 id=memw0.1h6v.s5.0b668bc7ee6e from=translated src=- shape=7daae5f8 vocab=7426d163
+-/
 theorem aux_multiplierIndexPartialSum_memW0 {n : ℕ} (γ : GeometricParameters n)
     (Xι : MultiplierIndex γ → DoubleSequence γ.k)
     (hXι : ∀ ι, MemDoubleSequence γ.k (Xι ι))
@@ -2864,6 +3047,9 @@ noncomputable def multiplierIndexPartialDifference {n : ℕ} (γ : GeometricPara
     (X : DoubleSequence γ.k) (Xι : MultiplierIndex γ → DoubleSequence γ.k) (N : ℕ) :
     DoubleSequence γ.k := fun i j => multiplierIndexPartialSum γ Xι i j N - X i j
 
+/--
+@isnad1 id=eq.0h7v.s6.6aa88079258a from=translated src=- shape=521f8ed2 vocab=37433cba
+-/
 theorem aux_sandwichMultiplierIndexPartialSum_sub_eq_sandwichKernel {n : ℕ}
     (γ : GeometricParameters n) (X : DoubleSequence γ.k)
     (Xι : MultiplierIndex γ → DoubleSequence γ.k)
@@ -2930,7 +3116,9 @@ Then for every $i\in [k), j\in\mathbb{Z}$,
 $$
 \mathbf{M}(\gamma,X,i)_j = \sum_{\iota\in \mathcal{I}_{\gamma}}
 \mathbf{M}(\gamma,X_\iota,i)_j\quad\text{in}\;L^1.
-$$-/
+$$
+@isnad1 id=tendsto.3h6v.s8.197aa68a388d from=translated src=- shape=f10b50b9 vocab=5a16339e
+-/
 theorem sandwichSumsL1 {n : ℕ} (γ : GeometricParameters n) (X : DoubleSequence γ.k)
     (Xι : MultiplierIndex γ → DoubleSequence γ.k)
     (hX : MemDoubleSequence γ.k X)
@@ -2960,6 +3148,9 @@ noncomputable def mKernelMultiplierIndexPartialSum {n : ℕ}
   exact ∑ ξ ∈ aux_multiplierIndexTruncation γ N,
     if hξ : ξ ∈ multiplierIndexSet γ then Mι ⟨ξ, hξ⟩ else 0
 
+/--
+@isnad1 id=memw0.1h4v.s8.5abc3a7d704b from=translated src=- shape=a417ed65 vocab=8dd71695
+-/
 theorem aux_mKernelMultiplierIndexPartialSum_memW0 {n : ℕ}
     (γ : GeometricParameters n)
     (Mι : MultiplierIndex γ → Auto.MKernel γ.k)
@@ -2979,6 +3170,9 @@ theorem aux_mKernelMultiplierIndexPartialSum_memW0 {n : ℕ}
   funext x
   simp only [Finset.sum_apply]
 
+/--
+@isnad1 id=eq.3h6v.s9.d3a05dc401f0 from=translated src=- shape=1d99281b vocab=a162c8a0
+-/
 theorem aux_prismForm_finset_sum {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     {α : Type*} (s : Finset α) (M : α → Auto.MKernel k)
     (hM : ∀ a ∈ s, MemW0 (M a))
@@ -3034,7 +3228,9 @@ theorem aux_prismForm_finset_sum {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     _ = ∑ a ∈ s, Auto.prismForm n k hk hkn (M a)
         (fun i => F i) := by rfl
 
-/-- The kernel-sequence seminorm is subadditive on Wiener kernel sequences.-/
+/-- The kernel-sequence seminorm is subadditive on Wiener kernel sequences.
+@isnad1 id=le.4h4v.s6.fc40df67465e from=translated src=- shape=896eb4ef vocab=b2ae930f
+-/
 theorem kernelSequenceSeminorm_add_le {n k : Nat} (hk : 1 <= k) (hkn : k <= n)
     (M N : KernelSequence k) (hM : MemKernelSequence k M) (hN : MemKernelSequence k N) :
     kernelSequenceSeminorm n k hk hkn (fun j y => M j y + N j y) <=
@@ -3145,7 +3341,9 @@ theorem kernelSequenceSeminorm_add_le {n k : Nat} (hk : 1 <= k) (hkn : k <= n)
       (mul_nonneg hw (abs_nonneg _)) (mul_nonneg hw (abs_nonneg _))
   exact htriangle.trans (hsplit.le.trans (add_le_add hMbound hNbound))
 
-/-- Finite subadditivity of the kernel-sequence seminorm.-/
+/-- Finite subadditivity of the kernel-sequence seminorm.
+@isnad1 id=le.3h5v.s6.810abbc1c231 from=translated src=- shape=d510f7ea vocab=3a59cc93
+-/
 theorem aux_kernelSequenceSeminorm_finset_sum_le {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     {α : Type*} (s : Finset α) (M : α → KernelSequence k)
     (hM : ∀ a ∈ s, MemKernelSequence k (M a)) :
@@ -3209,6 +3407,9 @@ noncomputable def prismMultiplierIndexPartialSum {n : ℕ}
         (Mι ⟨ξ, hξ⟩) (fun i => F i)
     else 0
 
+/--
+@isnad1 id=eq.1h5v.s8.d1175feabb4b from=translated src=- shape=0a4dcd35 vocab=8d748233
+-/
 theorem aux_prismForm_mKernelMultiplierIndexPartialSum {n : ℕ} (γ : GeometricParameters n)
     (Mι : MultiplierIndex γ → Auto.MKernel γ.k)
     (hMι : ∀ ι, MemW0 (Mι ι))
@@ -3236,6 +3437,9 @@ theorem aux_prismForm_mKernelMultiplierIndexPartialSum {n : ℕ} (γ : Geometric
     have hmem : ξ ∈ multiplierIndexSet γ := (Finset.mem_filter.mp hξ).2
     simpa [hmem] using hMι ⟨ξ, hmem⟩
 
+/--
+@isnad1 id=eq.3h3v.s7.56ea9e64a0bf from=translated src=- shape=bc311619 vocab=debecfb2
+-/
 theorem aux_mToK_sub {k : ℕ} (hk : 1 ≤ k)
     (M₁ M₂ : Auto.MKernel k)
     (hM₁ : MemW0 M₁) (hM₂ : MemW0 M₂) :
@@ -3250,6 +3454,9 @@ theorem aux_mToK_sub {k : ℕ} (hk : 1 ≤ k)
   · exact Auto.aux_memW0_integrable_of_addHaar
       (Auto.mToK_integrand_memW0 k k hk le_rfl M₂ hM₂ z)
 
+/--
+@isnad1 id=eq.4h5v.s9.bd57f05c92bc from=translated src=- shape=188596a1 vocab=43a45a3a
+-/
 theorem aux_prismForm_sub {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     (M₁ M₂ : Auto.MKernel k)
     (hM₁ : MemW0 M₁) (hM₂ : MemW0 M₂)
@@ -3266,6 +3473,9 @@ theorem aux_prismForm_sub {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     (Auto.mToK_memW0 n k hk hkn M₁ hM₁)
     (Auto.mToK_memW0 n k hk hkn M₂ hM₂) F
 
+/--
+@isnad1 id=le.1h5v.s8.e65b624b5640 from=translated src=- shape=a07a1637 vocab=42ad40c5
+-/
 theorem aux_enorm_prismForm_mKernelMultiplierIndexPartialSum_le {n : ℕ}
     (γ : GeometricParameters n)
     (Mι : MultiplierIndex γ → Auto.MKernel γ.k)
@@ -3294,6 +3504,9 @@ theorem aux_enorm_prismForm_mKernelMultiplierIndexPartialSum_le {n : ℕ}
       intro ξ _
       split_ifs <;> simp
 
+/--
+@isnad1 id=le.2h3v.s5.81213d32e8cb from=translated src=- shape=01d0b068 vocab=c7e7a0ce
+-/
 theorem aux_le_iSup_of_tendsto_error {a S : ℝ≥0∞} {e : ℕ → ℝ≥0∞}
     (he : Tendsto e atTop (nhds 0)) (h : ∀ N, a ≤ S + e N) : a ≤ S := by
   have hright : Tendsto (fun N : ℕ => S + e N) atTop (nhds (S + 0)) :=
@@ -3314,7 +3527,9 @@ $$
 \mathcal{I}_\gamma\\|\iota|\le N}} |\Lambda_k(M_\iota)(\mathbf{F})|.
 $$
 
-Here the supremum is taken in the extended half-line $[0,\infty]$.-/
+Here the supremum is taken in the extended half-line $[0,\infty]$.
+@isnad1 id=le.4h5v.s9.5ac5960e3305 from=translated src=- shape=70a0a1bd vocab=266ce19b
+-/
 theorem prismSumLeSumPrismL1 {n : ℕ} (γ : GeometricParameters n)
     (M : Auto.MKernel γ.k)
     (Mι : MultiplierIndex γ → Auto.MKernel γ.k)
@@ -3435,7 +3650,9 @@ noncomputable def sigmaMultiplier {n : ℕ} (γ : GeometricParameters n) (ι : M
       (smul_mem_A (shift_mem_A (γ.scales_spaced i 1) (-(geometricDelta γ : ℤ)))
         (zpow_pos (by norm_num) _)) j
 
-/-- The one-dimensional sigma multiplier is a Wiener function.-/
+/-- The one-dimensional sigma multiplier is a Wiener function.
+@isnad1 id=memw0.0h5v.s4.eb4b665ad9c7 from=translated src=- shape=d7147b65 vocab=87e4285a
+-/
 theorem sigmaMultiplier_memW0 {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) :
     MemW0 (sigmaMultiplier γ ι i j) := by
@@ -3509,7 +3726,9 @@ noncomputable def nMultiplierRho {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) : ℝ → ℝ :=
   fun q => (nMultiplierRhoComplex γ hkn ι i j q).re
 
-/-- Taking real parts preserves the Wiener space.-/
+/-- Taking real parts preserves the Wiener space.
+@isnad1 id=memw0.1h2v.s5.31cac6c91065 from=translated src=- shape=92bdb338 vocab=fb1031e6
+-/
 theorem aux_memW0_re {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] {f : E → ℂ} (hf : MemW0 f) :
     MemW0 (fun x => (f x).re) := by
@@ -3530,7 +3749,9 @@ theorem aux_memW0_re {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
       aux_norm_le_wienerEnvelope_of_mem_closedBall hf.1 (by
         simpa [Metric.mem_closedBall, dist_eq_norm] using hz)
 
-/-- The complex standard bump is in the Wiener space.-/
+/-- The complex standard bump is in the Wiener space.
+@isnad1 id=memw0.0h0v.s3.0e89ed0acb8f from=translated src=- shape=55d8b4ca vocab=683fb06e
+-/
 theorem aux_standardBumpComplex_memW0 : MemW0 (fun x : ℝ => (standardBump x : ℂ)) := by
   refine ⟨Complex.continuous_ofReal.comp aux_standardBump_memW0.1, ?_⟩
   have hEnvelope : wienerEnvelope (fun x : ℝ => (standardBump x : ℂ)) 1 =
@@ -3540,7 +3761,9 @@ theorem aux_standardBumpComplex_memW0 : MemW0 (fun x : ℝ => (standardBump x : 
   rw [hEnvelope]
   exact aux_standardBump_memW0.2
 
-/-- The four-scale Gaussian theorem applied to the standard bump.-/
+/-- The four-scale Gaussian theorem applied to the standard bump.
+@isnad1 id=memw0.6h5v.s7.ceb8223c99ba from=translated src=- shape=57f9fe6a vocab=ff7edee5
+-/
 theorem aux_fourScaleGaussianRho_memW0 {muMinus muPlus lambdaMinus lambdaPlus nu : ℝ}
     (hmuMinus : 0 < muMinus) (hmuPlus : 0 < muPlus)
     (hlambdaMinus : 0 < lambdaMinus) (hlambdaPlus : 0 < lambdaPlus)
@@ -3566,7 +3789,9 @@ theorem aux_fourScaleGaussianRho_memW0 {muMinus muPlus lambdaMinus lambdaPlus nu
     · exact (aux_standardBump_fourier_iteratedDeriv_le_one xi).trans (by norm_num)
     · exact aux_standardBump_fourier_iteratedDeriv_le_two xi
 
-/-- The central-band scale tuple satisfies the four-scale hypotheses.-/
+/-- The central-band scale tuple satisfies the four-scale hypotheses.
+@isnad1 id=memw0.2h3v.s6.70c0cbafbd59 from=translated src=- shape=7b4391f5 vocab=7aec2e59
+-/
 theorem aux_fourScaleGaussianRho_spaced_memW0 (a : ℤ → ℝ) (ha : SpacedSequence a)
     (r : ℤ) (nu : ℝ) (hnu : nu ∈ Set.Ico (-1 : ℝ) 0) :
     MemW0 (fourScaleGaussianRho
@@ -3581,7 +3806,9 @@ theorem aux_fourScaleGaussianRho_spaced_memW0 (a : ℤ → ℝ) (ha : SpacedSequ
     convert (ha (r - 1)).2 using 1; ring_nf
   · exact hnu
 
-/-- The positive-band scale tuple satisfies the four-scale hypotheses.-/
+/-- The positive-band scale tuple satisfies the four-scale hypotheses.
+@isnad1 id=memw0.2h4v.s7.d3f9055832c0 from=translated src=- shape=29bcda58 vocab=97b42501
+-/
 theorem aux_fourScaleGaussianRho_positive_memW0 (a : ℤ → ℝ) (ha : SpacedSequence a)
     (r h : ℤ) (nu : ℝ) (hnu : nu ∈ Set.Ico (-1 : ℝ) 0) :
     MemW0 (fourScaleGaussianRho
@@ -3609,7 +3836,9 @@ theorem aux_fourScaleGaussianRho_positive_memW0 (a : ℤ → ℝ) (ha : SpacedSe
     apply le_of_eq
     ring
 
-/-- The negative-band scale tuple satisfies the four-scale hypotheses.-/
+/-- The negative-band scale tuple satisfies the four-scale hypotheses.
+@isnad1 id=memw0.2h4v.s7.913473216e03 from=translated src=- shape=1cb71198 vocab=8fc9fe8c
+-/
 theorem aux_fourScaleGaussianRho_negative_memW0 (a : ℤ → ℝ) (ha : SpacedSequence a)
     (r h : ℤ) (nu : ℝ) (hnu : nu ∈ Set.Ico (-1 : ℝ) 0) :
     MemW0 (fourScaleGaussianRho
@@ -3633,13 +3862,17 @@ theorem aux_fourScaleGaussianRho_negative_memW0 (a : ℤ → ℝ) (ha : SpacedSe
       _ ≤ (2 : ℝ) ^ h * a (r + 1) :=
         mul_le_mul_of_nonneg_left (ha r).2 (by positivity)
 
-/-- The exponent used for N multipliers lies in the range of the four-scale theorem.-/
+/-- The exponent used for N multipliers lies in the range of the four-scale theorem.
+@isnad1 id=mem.0h2v.s5.38803808e133 from=translated src=- shape=ba7d9b30 vocab=79970b8f
+-/
 theorem nMultiplierFourScaleExponent_memIco {n : ℕ} (γ : GeometricParameters n) :
     nMultiplierFourScaleExponent γ ∈ Set.Ico (-1 : ℝ) 0 := by
   unfold nMultiplierFourScaleExponent
   split <;> norm_num
 
-/-- The complex four-scale representative is a Wiener function.-/
+/-- The complex four-scale representative is a Wiener function.
+@isnad1 id=memw0.1h5v.s5.20d02c613eec from=translated src=- shape=295fa84c vocab=1d12b474
+-/
 theorem nMultiplierRhoComplex_memW0 {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) :
     MemW0 (nMultiplierRhoComplex γ hkn ι i j) := by
@@ -3655,12 +3888,17 @@ theorem nMultiplierRhoComplex_memW0 {n : ℕ} (γ : GeometricParameters n)
       (aux_fourScaleGaussianRho_negative_memW0 (γ.scales i 1) (γ.scales_spaced i 1)
         (j - (geometricDelta γ : ℤ) - 1) ι.1.1 _ hnu)
 
-/-- The real four-scale representative is a Wiener function.-/
+/-- The real four-scale representative is a Wiener function.
+@isnad1 id=memw0.1h5v.s5.0a034a73f01b from=translated src=- shape=2aa15060 vocab=1a34ff75
+-/
 theorem nMultiplierRho_memW0 {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) :
     MemW0 (nMultiplierRho γ hkn ι i j) := by
   exact aux_memW0_re (nMultiplierRhoComplex_memW0 γ hkn ι i j)
 
+/--
+@isnad1 id=eq.0h1v.s6.d72918b5cbfc from=translated src=- shape=dbcf87ac vocab=bed9f4d9
+-/
 theorem aux_standardBump_fourier_even (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ)) (-xi) =
       FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ)) xi := by
@@ -3674,6 +3912,9 @@ theorem aux_standardBump_fourier_even (xi : ℝ) :
   rw [hseq] at hneg
   exact tendsto_nhds_unique hneg hpos
 
+/--
+@isnad1 id=eq.0h6v.s6.9fbeef3f34fa from=translated src=- shape=62829c7d vocab=bb284e71
+-/
 theorem aux_fourScaleGaussianRhoFrequency_even
     (muMinus muPlus lambdaMinus lambdaPlus nu xi : ℝ) :
     fourScaleGaussianRhoFrequency
@@ -3693,6 +3934,9 @@ theorem aux_fourScaleGaussianRhoFrequency_even
     aux_gaussian_neg,
     aux_gaussian_neg]
 
+/--
+@isnad1 id=ex.0h6v.s5.bd8a907d2a59 from=translated src=- shape=e89f1354 vocab=73b000cf
+-/
 theorem aux_fourScaleGaussianRhoFrequency_real
     (muMinus muPlus lambdaMinus lambdaPlus nu xi : ℝ) :
     ∃ r : ℝ,
@@ -3708,6 +3952,9 @@ theorem aux_fourScaleGaussianRhoFrequency_real
   rw [hfa, hfb]
   norm_cast
 
+/--
+@isnad1 id=eq.5h2v.s7.de0f11b91961 from=translated src=- shape=9f2668c4 vocab=ac7553df
+-/
 theorem aux_fourierReal_re_fourierInv_of_real_even
     (f : ℝ → ℂ) (hcont : Continuous f) (hint : Integrable f)
     (hinvint : Integrable (FourierTransformInv.fourierInv f))
@@ -3753,7 +4000,9 @@ theorem aux_fourierReal_re_fourierInv_of_real_even
   rw [← hinvreal]
   exact congrFun (hcont.fourier_fourierInv_eq hint hfourierint) xi
 
-/-- The raw Fourier transform of the real four-scale Gaussian representative.-/
+/-- The raw Fourier transform of the real four-scale Gaussian representative.
+@isnad1 id=eq.6h6v.s7.f0f0cd3352bc from=translated src=- shape=eb1bc8e2 vocab=6d43b3e2
+-/
 theorem aux_fourierReal_re_fourScaleGaussianRho
     {muMinus muPlus lambdaMinus lambdaPlus nu : ℝ}
     (hmuMinus : 0 < muMinus) (hmuPlus : 0 < muPlus)
@@ -3790,7 +4039,9 @@ theorem aux_fourierReal_re_fourScaleGaussianRho
   · exact aux_fourScaleGaussianRhoFrequency_even
       muMinus muPlus lambdaMinus lambdaPlus nu
 
-/-- The raw Fourier transform of the central-band N kernel.-/
+/-- The raw Fourier transform of the central-band N kernel.
+@isnad1 id=eq.2h6v.s8.4f118c848a30 from=translated src=- shape=55d671a6 vocab=791f22cf
+-/
 theorem aux_fourierReal_nMultiplierRho_vertical {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 = 0) (u : ℝ) :
@@ -3823,7 +4074,9 @@ theorem aux_fourierReal_nMultiplierRho_vertical {n : ℕ}
   rw [hrepr]
   simpa [r, a] using hraw
 
-/-- The raw Fourier transform of the positive-band N kernel.-/
+/-- The raw Fourier transform of the positive-band N kernel.
+@isnad1 id=eq.3h6v.s9.e435e5c9c600 from=translated src=- shape=1f0ae105 vocab=49b6793e
+-/
 theorem aux_fourierReal_nMultiplierRho_positive {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1) (u : ℝ) :
@@ -3880,7 +4133,9 @@ theorem aux_fourierReal_nMultiplierRho_positive {n : ℕ}
   rw [hrepr]
   simpa [r, h, a] using hraw
 
-/-- The raw Fourier transform of the negative-band N kernel.-/
+/-- The raw Fourier transform of the negative-band N kernel.
+@isnad1 id=eq.3h6v.s9.ce782cb87997 from=translated src=- shape=26f907b5 vocab=49b6793e
+-/
 theorem aux_fourierReal_nMultiplierRho_negative {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) (u : ℝ) :
@@ -3944,7 +4199,9 @@ noncomputable def nMultiplier {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k
 **Proposition.**
 
 Let $\gamma=(k,u,a)\in \Gamma$ and assume $k\le n-1$. Then for every $\iota\in\mathcal{I}_{\gamma}$,
-the double sequence $N_{\gamma,\iota}$ is well-defined and belongs to $\mathcal{X}_k$.-/
+the double sequence $N_{\gamma,\iota}$ is well-defined and belongs to $\mathcal{X}_k$.
+@isnad1 id=memdoubl.1h3v.s5.4b118286f9fc from=translated src=- shape=751d8c1c vocab=0d82f65b
+-/
 theorem nKernelWellDefinedness {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) :
     MemDoubleSequence γ.k (nMultiplier γ hkn ι) := by
@@ -3958,6 +4215,9 @@ theorem nKernelWellDefinedness {n : ℕ} (γ : GeometricParameters n)
   rcases v with ⟨v₁, v₂⟩
   simp [smul_eq_mul, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.2h3v.s5.192e00c376de from=translated src=- shape=53e847db vocab=fe455f84
+-/
 theorem aux_fourierReal_realConvolution (f g : ℝ → ℝ)
     (hf : MemW0 f) (hg : MemW0 g) (u : ℝ) :
     aux_fourierReal (realConvolution f g) u =
@@ -3986,11 +4246,17 @@ theorem aux_fourierReal_realConvolution (f g : ℝ → ℝ)
     ← aux_fourierReal_eq_fourier f,
     ← aux_fourierReal_eq_fourier g]
 
+/--
+@isnad1 id=eq.1h1v.s6.6d5fb3c9bea0 from=translated src=- shape=f7e63e18 vocab=03846f44
+-/
 theorem aux_rpow_neg_half_mul_sqrt (g : ℝ) (hg : 0 < g) :
     g ^ (-(1 / 2 : ℝ)) * Real.sqrt g = 1 := by
   rw [Real.sqrt_eq_rpow, ← Real.rpow_add hg]
   norm_num
 
+/--
+@isnad1 id=eq.2h2v.s6.5588e0c0aea1 from=translated src=- shape=27574f00 vocab=019c4280
+-/
 theorem aux_fourScale_rpow_sqrt_cancel (c : ℂ) (g : ℝ)
     (hg : 0 ≤ g) (hzero : g = 0 → c = 0) :
     (c * ((g ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) = c := by
@@ -4009,7 +4275,9 @@ theorem aux_fourScale_rpow_sqrt_cancel (c : ℂ) (g : ℝ)
             ring
       _ = c := by rw [hscalarC, mul_one]
 
-/-- The interior four-scale frequency is cancelled by one square-root Gaussian factor.-/
+/-- The interior four-scale frequency is cancelled by one square-root Gaussian factor.
+@isnad1 id=eq.2h6v.s7.9f77bc098a48 from=translated src=- shape=9f749ad7 vocab=91251ab8
+-/
 theorem aux_fourScaleFrequency_mul_sqrt_eq_phiDifference
     (phiHat : ℝ → ℂ) (muMinus muPlus lambdaMinus lambdaPlus u : ℝ)
     (hmuMinus : 0 < muMinus) (hmuScale : 2 * muMinus ≤ muPlus) :
@@ -4035,6 +4303,9 @@ theorem aux_fourScaleFrequency_mul_sqrt_eq_phiDifference
   change (c * ((g ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) = c
   exact aux_fourScale_rpow_sqrt_cancel c g hg hzero
 
+/--
+@isnad1 id=eq.2h2v.s6.e9e0241d8ab8 from=translated src=- shape=b61249a3 vocab=49f07c02
+-/
 theorem aux_fourScale_rpow_neg_one_mul_sqrt_sq_cancel (c : ℂ) (g : ℝ)
     (hg : 0 ≤ g) (hzero : g = 0 → c = 0) :
     (c * ((g ^ (-1 : ℝ) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) * (Real.sqrt g : ℂ) = c := by
@@ -4061,7 +4332,9 @@ theorem aux_fourScale_rpow_neg_one_mul_sqrt_sq_cancel (c : ℂ) (g : ℝ)
         ring
       _ = c := by rw [hscalarC, mul_one]
 
-/-- The endpoint four-scale frequency is cancelled by two square-root Gaussian factors.-/
+/-- The endpoint four-scale frequency is cancelled by two square-root Gaussian factors.
+@isnad1 id=eq.2h6v.s7.7bb742d5911c from=translated src=- shape=47aab936 vocab=b5398e8f
+-/
 theorem aux_fourScaleFrequency_mul_sqrt_sq_eq_phiDifference
     (phiHat : ℝ → ℂ) (muMinus muPlus lambdaMinus lambdaPlus u : ℝ)
     (hmuMinus : 0 < muMinus) (hmuScale : 2 * muMinus ≤ muPlus) :
@@ -4088,6 +4361,9 @@ theorem aux_fourScaleFrequency_mul_sqrt_sq_eq_phiDifference
   change (c * ((g ^ (-1 : ℝ) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) * (Real.sqrt g : ℂ) = c
   exact aux_fourScale_rpow_neg_one_mul_sqrt_sq_cancel c g hg hzero
 
+/--
+@isnad1 id=eq.1h6v.s7.2fd21c36b1c6 from=translated src=- shape=bf696f4e vocab=7310f7b1
+-/
 theorem aux_fourierReal_sigmaMultiplier_vertical {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 = 0) (u : ℝ) :
@@ -4099,6 +4375,9 @@ theorem aux_fourierReal_sigmaMultiplier_vertical {n : ℕ}
   convert aux_squareRootGaussianDifference_fourier
     (shift_mem_A (γ.scales_spaced i 1) ι.1.2) j u using 1; ring_nf
 
+/--
+@isnad1 id=eq.2h6v.s8.da0301c3acc3 from=translated src=- shape=6424857b vocab=36e93a9d
+-/
 theorem aux_fourierReal_sigmaMultiplier_positive {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1) (u : ℝ) :
@@ -4117,6 +4396,9 @@ theorem aux_fourierReal_sigmaMultiplier_positive {n : ℕ}
   convert aux_squareRootGaussianDifference_fourier ha j u using 1;
     dsimp [a]; ring_nf
 
+/--
+@isnad1 id=eq.2h6v.s8.068de0b67666 from=translated src=- shape=4623279d vocab=93194139
+-/
 theorem aux_fourierReal_sigmaMultiplier_negative {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) (u : ℝ) :
@@ -4136,6 +4418,9 @@ theorem aux_fourierReal_sigmaMultiplier_negative {n : ℕ}
   convert aux_squareRootGaussianDifference_fourier ha j u using 1;
     dsimp [a]; ring_nf
 
+/--
+@isnad1 id=eq.3h6v.s8.2b67cd59494b from=translated src=- shape=e64d2bc7 vocab=af90b1bf
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigma_vertical
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4158,7 +4443,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigma_vertical
     nMultiplierFourScaleExponent, ite_eq_left hk]
   exact aux_fourScaleFrequency_mul_sqrt_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
-/-- Raw Fourier identity for the interior positive-band one-dimensional convolution.-/
+/-- Raw Fourier identity for the interior positive-band one-dimensional convolution.
+@isnad1 id=eq.4h6v.s8.8f547dc5dba0 from=translated src=- shape=d0dde15d vocab=343b8530
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigma_positive
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4191,7 +4478,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigma_positive
   dsimp [r, p] at hmuMinus hmuScale ⊢
   exact aux_fourScaleFrequency_mul_sqrt_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
-/-- Raw Fourier identity for the interior negative-band one-dimensional convolution.-/
+/-- Raw Fourier identity for the interior negative-band one-dimensional convolution.
+@isnad1 id=eq.4h6v.s8.69d871d28468 from=translated src=- shape=566ce9d8 vocab=343b8530
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigma_negative
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4225,6 +4514,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigma_negative
   dsimp [r, p] at hmuMinus hmuScale ⊢
   exact aux_fourScaleFrequency_mul_sqrt_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
+/--
+@isnad1 id=integrab.0h0v.s6.6e600e1d64ee from=translated src=- shape=4add016d vocab=254a4052
+-/
 theorem aux_standardBumpFourier_integrable :
     Integrable (FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ))) := by
   apply Continuous.integrable_of_hasCompactSupport
@@ -4232,6 +4524,9 @@ theorem aux_standardBumpFourier_integrable :
   · apply isCompact_Icc.of_isClosed_subset isClosed_closure
     exact closure_minimal aux_fourier_standardBump_support isClosed_Icc
 
+/--
+@isnad1 id=integrab.2h2v.s6.7836291f0ffd from=translated src=- shape=c90a5ce1 vocab=f53dc5e3
+-/
 theorem aux_fourierReal_standardBumpRescale_sub_integrable
     (s t : ℝ) (hs : 0 < s) (ht : 0 < t) :
     Integrable (fun u => aux_fourierReal
@@ -4248,6 +4543,9 @@ theorem aux_fourierReal_standardBumpRescale_sub_integrable
   simpa [phiHat] using
     (aux_fourierReal_standardBumpRescale_sub s t u hs ht).symm
 
+/--
+@isnad1 id=eq.4h2v.s6.0c9f3e5db493 from=translated src=- shape=80b93eba vocab=752541c4
+-/
 theorem aux_real_eq_of_aux_fourierReal_eq (f g : ℝ → ℝ)
     (hf : MemW0 f) (hg : MemW0 g)
     (hfourierInt : Integrable (fun u => aux_fourierReal g u))
@@ -4288,7 +4586,9 @@ theorem aux_real_eq_of_aux_fourierReal_eq (f g : ℝ → ℝ)
   funext x
   exact_mod_cast congrFun hfgC x
 
-/-- The interior central N-rho convolved with sigma reconstructs the L bump difference.-/
+/-- The interior central N-rho convolved with sigma reconstructs the L bump difference.
+@isnad1 id=eq.3h5v.s7.9dbd299b274b from=translated src=- shape=0cf3e92b vocab=943937d1
+-/
 theorem aux_realConvolution_nRho_sigma_vertical_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4319,7 +4619,9 @@ theorem aux_realConvolution_nRho_sigma_vertical_eq
         (aux_fourierReal_standardBumpRescale_sub _ _ u
           (γ.scales_spaced i 1 _ |>.1) (γ.scales_spaced i 1 _ |>.1)).symm
 
-/-- The interior positive N-rho convolved with sigma reconstructs the L bump difference.-/
+/-- The interior positive N-rho convolved with sigma reconstructs the L bump difference.
+@isnad1 id=eq.4h5v.s8.a728bc00e553 from=translated src=- shape=abe302f3 vocab=04fb83cd
+-/
 theorem aux_realConvolution_nRho_sigma_positive_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4360,7 +4662,9 @@ theorem aux_realConvolution_nRho_sigma_positive_eq
             γ.scales i 1 (j + (geometricDelta γ : ℤ))) x) u :=
         (aux_fourierReal_standardBumpRescale_sub _ _ u hs ht).symm
 
-/-- The interior negative N-rho convolved with sigma reconstructs the L bump difference.-/
+/-- The interior negative N-rho convolved with sigma reconstructs the L bump difference.
+@isnad1 id=eq.4h5v.s8.839452fd17ee from=translated src=- shape=c82e7b7b vocab=04fb83cd
+-/
 theorem aux_realConvolution_nRho_sigma_negative_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4401,7 +4705,9 @@ theorem aux_realConvolution_nRho_sigma_negative_eq
             γ.scales i 1 (j - (geometricDelta γ : ℤ) - 1)) x) u :=
         (aux_fourierReal_standardBumpRescale_sub _ _ u hs ht).symm
 
-/-- Raw Fourier identity for the endpoint central-band double convolution.-/
+/-- Raw Fourier identity for the endpoint central-band double convolution.
+@isnad1 id=eq.3h6v.s8.6d66dea85744 from=translated src=- shape=527781f2 vocab=af90b1bf
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigmaSq_vertical
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4430,7 +4736,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigmaSq_vertical
   rw [← mul_assoc]
   exact aux_fourScaleFrequency_mul_sqrt_sq_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
-/-- Raw Fourier identity for the endpoint positive-band double convolution.-/
+/-- Raw Fourier identity for the endpoint positive-band double convolution.
+@isnad1 id=eq.4h6v.s8.eaf5eca7000a from=translated src=- shape=3b11f12f vocab=343b8530
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigmaSq_positive
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4468,7 +4776,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigmaSq_positive
   rw [← mul_assoc]
   exact aux_fourScaleFrequency_mul_sqrt_sq_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
-/-- Raw Fourier identity for the endpoint negative-band double convolution.-/
+/-- Raw Fourier identity for the endpoint negative-band double convolution.
+@isnad1 id=eq.4h6v.s8.dfaef6743807 from=translated src=- shape=23cbc482 vocab=343b8530
+-/
 theorem aux_fourierReal_realConvolution_nRho_sigmaSq_negative
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4509,7 +4819,9 @@ theorem aux_fourierReal_realConvolution_nRho_sigmaSq_negative
   rw [← mul_assoc]
   exact aux_fourScaleFrequency_mul_sqrt_sq_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
-/-- The endpoint central N-rho convolved with two sigma factors reconstructs L.-/
+/-- The endpoint central N-rho convolved with two sigma factors reconstructs L.
+@isnad1 id=eq.3h5v.s7.d3a1fb5dd654 from=translated src=- shape=19cd32d0 vocab=943937d1
+-/
 theorem aux_realConvolution_nRho_sigmaSq_vertical_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4542,7 +4854,9 @@ theorem aux_realConvolution_nRho_sigmaSq_vertical_eq
         (aux_fourierReal_standardBumpRescale_sub _ _ u
           (γ.scales_spaced i 1 _ |>.1) (γ.scales_spaced i 1 _ |>.1)).symm
 
-/-- The endpoint positive N-rho convolved with two sigma factors reconstructs L.-/
+/-- The endpoint positive N-rho convolved with two sigma factors reconstructs L.
+@isnad1 id=eq.4h5v.s8.5b90150d42d3 from=translated src=- shape=42b5480e vocab=04fb83cd
+-/
 theorem aux_realConvolution_nRho_sigmaSq_positive_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4585,7 +4899,9 @@ theorem aux_realConvolution_nRho_sigmaSq_positive_eq
             γ.scales i 1 (j + (geometricDelta γ : ℤ))) x) u :=
         (aux_fourierReal_standardBumpRescale_sub _ _ u hs ht).symm
 
-/-- The endpoint negative N-rho convolved with two sigma factors reconstructs L.-/
+/-- The endpoint negative N-rho convolved with two sigma factors reconstructs L.
+@isnad1 id=eq.4h5v.s8.876e0f837070 from=translated src=- shape=014c16c9 vocab=04fb83cd
+-/
 theorem aux_realConvolution_nRho_sigmaSq_negative_eq
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
@@ -4628,7 +4944,9 @@ theorem aux_realConvolution_nRho_sigmaSq_negative_eq
             γ.scales i 1 (j - (geometricDelta γ : ℤ) - 1)) x) u :=
         (aux_fourierReal_standardBumpRescale_sub _ _ u hs ht).symm
 
-/-- Fubini reassociation for two diagonal convolutions in product-plane coordinates.-/
+/-- Fubini reassociation for two diagonal convolutions in product-plane coordinates.
+@isnad1 id=eq.3h4v.s7.b9932aec4f39 from=translated src=- shape=074b75b7 vocab=400a55a1
+-/
 theorem aux_diagonalConvolution_assoc
     (F : RealPlane → ℝ) (rho sigma : ℝ → ℝ)
     (hF : MemW0 F) (hrho : MemW0 rho) (hsigma : MemW0 sigma) (v : RealPlane) :
@@ -4739,7 +5057,9 @@ theorem aux_diagonalConvolution_assoc
     _ = ∫ r : ℝ, ∫ p : ℝ, G (r, p) := hG_fubini.symm
     _ = ∫ r : ℝ, F (v.1 - r, v.2 - r) * realConvolution rho sigma r := hRight.symm
 
-/-- A one-dimensional reconstruction turns directly into its diagonal-convolution form.-/
+/-- A one-dimensional reconstruction turns directly into its diagonal-convolution form.
+@isnad1 id=eq.4h8v.s7.cf161c5ed35d from=translated src=- shape=9d7cf3e2 vocab=e5dbcec5
+-/
 theorem aux_lMultiplier_eq_nMultiplier_diagonalConvolution_of_reconstruction
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
@@ -4756,7 +5076,9 @@ theorem aux_lMultiplier_eq_nMultiplier_diagonalConvolution_of_reconstruction
     (hMultiplier_memDoubleSequence γ i j) (nMultiplierRho_memW0 γ hkn ι i j) hkappa v,
     hrecon]
 
-/-- In an interior coordinate, `L` is the diagonal convolution of `N` and one sigma factor.-/
+/-- In an interior coordinate, `L` is the diagonal convolution of `N` and one sigma factor.
+@isnad1 id=eq.2h5v.s7.ed6dc3fef73e from=translated src=- shape=eb9feaaf vocab=642a383e
+-/
 theorem lMultiplier_eq_nMultiplier_diagonalConvolution
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (hk : γ.k < n - 1) :
@@ -4792,7 +5114,9 @@ theorem lMultiplier_eq_nMultiplier_diagonalConvolution
         (by simp [lMultiplier, hzero, hpositive])
         (aux_realConvolution_nRho_sigma_negative_eq γ hkn ι i j hzero hnegative hk)
 
-/-- At the terminal coordinate, `L` is the diagonal convolution of `N` and two sigma factors.-/
+/-- At the terminal coordinate, `L` is the diagonal convolution of `N` and two sigma factors.
+@isnad1 id=eq.2h5v.s7.552f66d6ecd0 from=translated src=- shape=eea7986e vocab=412bf1be
+-/
 theorem lMultiplier_eq_nMultiplier_diagonalConvolution_endpoint
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (hk : ¬ γ.k < n - 1) :
@@ -4837,7 +5161,9 @@ theorem lMultiplier_eq_nMultiplier_diagonalConvolution_endpoint
 
 /--
 Diagonal cancellation rewrites the convolution representative of an N multiplier using a
-difference of its one-dimensional kernel.-/
+difference of its one-dimensional kernel.
+@isnad1 id=eq.1h8v.s7.3017bce6fed2 from=translated src=- shape=6a24a651 vocab=f8b565ca
+-/
 theorem aux_hMultiplier_diagonal_convolution_cancellation
     {n : ℕ} {rho : ℝ → ℝ} (hrho : MemW0 rho) (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (x y c : ℝ) :
@@ -4914,7 +5240,9 @@ theorem aux_hMultiplier_diagonal_convolution_cancellation
 
 /--
 The preceding cancellation identity specialized to the convolution representative of an N
-multiplier.-/
+multiplier.
+@isnad1 id=eq.1h7v.s8.07518332d211 from=translated src=- shape=b29b3da9 vocab=83cf94fa
+-/
 theorem aux_nMultiplier_diagonal_cancellation {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (x y : ℝ) :
@@ -4927,7 +5255,9 @@ theorem aux_nMultiplier_diagonal_cancellation {n : ℕ} (γ : GeometricParameter
 
 /--
 The positive-band cancellation identity in the rotated coordinates used by the first
-Gaussian-domination case.-/
+Gaussian-domination case.
+@isnad1 id=eq.1h7v.s7.383f18d91a25 from=translated src=- shape=9faea08d vocab=8b281dd6
+-/
 theorem aux_nMultiplier_caseOne_cancellation {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (w₀ w₁ : ℝ) :

@@ -108,7 +108,9 @@ def window (φ : SchwartzMap ℝ ℝ) : Prop :=
 
 /--
 For `existsUniversalPair`, Fourier inversion preserves a real-even compact smooth
-frequency profile after taking the real part of its inverse transform.-/
+frequency profile after taking the real part of its inverse transform.
+@isnad1 id=eq.5h2v.s7.0d940ac38f2e from=translated src=- shape=07a1b7e4 vocab=499482d3
+-/
 theorem aux_fourier_re_fourierInv_of_real_even
     (f : ℝ → ℂ) (hcont : Continuous f) (hint : Integrable f)
     (hinvint : Integrable (FourierTransformInv.fourierInv f))
@@ -152,7 +154,9 @@ theorem aux_fourier_re_fourierInv_of_real_even
   rw [← hinvreal]
   exact congrFun (hcont.fourier_fourierInv_eq hint hfourierint) xi
 
-/-- An even real-valued Fourier profile has an even inverse Fourier transform.-/
+/-- An even real-valued Fourier profile has an even inverse Fourier transform.
+@isnad1 id=eq.1h2v.s6.05626b91dfe0 from=translated src=- shape=bc48ff2c vocab=d7f702e5
+-/
 theorem aux_fourierInv_even_of_even (H : ℝ → ℂ)
     (heven : ∀ x : ℝ, H (-x) = H x) (x : ℝ) :
     FourierTransformInv.fourierInv H (-x) = FourierTransformInv.fourierInv H x := by
@@ -167,7 +171,9 @@ theorem aux_fourierInv_even_of_even (H : ℝ → ℂ)
 
 /--
 Construct a real even Schwartz function with a prescribed real-even, compactly supported
-smooth Fourier profile.-/
+smooth Fourier profile.
+@isnad1 id=ex.4h1v.s8.448ca2e84625 from=translated src=- shape=d345c817 vocab=7561f5c7
+-/
 theorem exists_real_even_schwartz_fourier_eq
     (H : ℝ → ℂ) (hcompact : HasCompactSupport H)
     (hsmooth : ContDiff ℝ (⊤ : ℕ∞) H)
@@ -207,7 +213,9 @@ theorem exists_real_even_schwartz_fourier_eq
     rw [hG]
     exact congrArg Complex.re (aux_fourierInv_even_of_even H heven x)
 
-/-- For `existsUniversalPair`, package two suitable frequency profiles into a `(c,N)`-pair.-/
+/-- For `existsUniversalPair`, package two suitable frequency profiles into a `(c,N)`-pair.
+@isnad1 id=ex.16h4v.s9.47bac88bb662 from=translated src=- shape=8ce96839 vocab=f6846efe
+-/
 theorem aux_exists_cPair_of_profiles
     (c : ℝ) (N : ℕ) (A B : ℝ → ℂ) (hc : 0 < c)
     (hAcompact : HasCompactSupport A) (hAsmooth : ContDiff ℝ (⊤ : ℕ∞) A)
@@ -285,6 +293,9 @@ def aux_uniPairDensity : ℝ → ℝ := aux_standardBumpFiniteDensity 4
 def aux_uniPairProfile : ℝ → ℝ :=
   aux_uniPairDensity ⋆[ContinuousLinearMap.mul ℝ ℝ, volume] aux_uniPairK
 
+/--
+@isnad1 id=le.0h0v.s5.eef2b58b5d29 from=translated src=- shape=01610d88 vocab=16b324ec
+-/
 theorem aux_uniPairK_support :
     Function.support aux_uniPairK ⊆ Set.Icc (-(1 / 64 : ℝ)) (1 / 64) := by
   rw [aux_uniPairK, ContDiffBump.support_normed_eq]
@@ -293,24 +304,45 @@ theorem aux_uniPairK_support :
   have hx' : |x| < (1 / 64 : ℝ) := by simpa [aux_uniPairKappa] using hx
   exact abs_le.mp hx'.le
 
+/--
+@isnad1 id=le.0h1v.s3.9ad8c0310106 from=translated src=- shape=8a62b088 vocab=536ae394
+-/
 theorem aux_uniPairK_nonneg (x : ℝ) : 0 ≤ aux_uniPairK x := by
   exact aux_uniPairKappa.nonneg_normed x
 
+/--
+@isnad1 id=integrab.0h0v.s4.c35f8d776678 from=translated src=- shape=e14394ff vocab=62100ae6
+-/
 theorem aux_uniPairK_integrable : Integrable aux_uniPairK := by
   exact aux_uniPairKappa.integrable_normed
 
+/--
+@isnad1 id=eq.0h0v.s5.8b9b718f5751 from=translated src=- shape=f0e61117 vocab=aa20504c
+-/
 theorem aux_uniPairK_mass : ∫ x : ℝ, aux_uniPairK x = 1 := by
   exact aux_uniPairKappa.integral_normed
 
+/--
+@isnad1 id=eq.0h1v.s3.30dc344b2856 from=translated src=- shape=cd419dad vocab=60a429d0
+-/
 theorem aux_uniPairK_even (x : ℝ) : aux_uniPairK (-x) = aux_uniPairK x := by
   simpa [aux_uniPairK] using (aux_uniPairKappa.normed_neg (μ := volume) x)
 
+/--
+@isnad1 id=hascompa.0h0v.s3.5e23812584b4 from=translated src=- shape=e3d48bcb vocab=eea16597
+-/
 theorem aux_uniPairK_compact : HasCompactSupport aux_uniPairK := by
   exact aux_uniPairKappa.hasCompactSupport_normed
 
+/--
+@isnad1 id=contdiff.0h0v.s5.7fa8a894f158 from=translated src=- shape=3cea26be vocab=a2076c82
+-/
 theorem aux_uniPairK_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairK := by
   exact aux_uniPairKappa.contDiff_normed
 
+/--
+@isnad1 id=le.0h0v.s6.8ef9517e7ba5 from=translated src=- shape=096525e8 vocab=1d0ed972
+-/
 theorem aux_uniPairDensity_support :
     Function.support aux_uniPairDensity ⊆
       Set.Icc (-1 + (1 / 64 : ℝ)) (1 - 1 / 64) := by
@@ -319,6 +351,9 @@ theorem aux_uniPairDensity_support :
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=le.0h0v.s4.8ca043e69fc8 from=translated src=- shape=66c352d6 vocab=63f0a96b
+-/
 theorem aux_uniPairProfile_support :
     Function.support aux_uniPairProfile ⊆ Set.Icc (-1 : ℝ) 1 := by
   calc
@@ -330,11 +365,17 @@ theorem aux_uniPairProfile_support :
       Set.add_subset_add aux_uniPairDensity_support aux_uniPairK_support
     _ = Set.Icc (-1 : ℝ) 1 := by rw [Set.Icc_add_Icc] <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s3.d00c6570f718 from=translated src=- shape=8a62b088 vocab=65ed181e
+-/
 theorem aux_uniPairProfile_nonneg (x : ℝ) : 0 ≤ aux_uniPairProfile x := by
   apply aux_standardBumpConvolution_nonneg aux_uniPairDensity aux_uniPairK
   · exact fun y => aux_standardBumpFiniteDensity_nonneg 4 y
   · exact aux_uniPairK_nonneg
 
+/--
+@isnad1 id=le.0h1v.s3.2aee808ed3e8 from=translated src=- shape=b14ee516 vocab=65ed181e
+-/
 theorem aux_uniPairProfile_le_one (x : ℝ) : aux_uniPairProfile x ≤ 1 := by
   apply aux_standardBumpConvolution_le_one aux_uniPairDensity aux_uniPairK
   · exact aux_standardBumpFiniteDensity_integrable 4
@@ -344,6 +385,9 @@ theorem aux_uniPairProfile_le_one (x : ℝ) : aux_uniPairProfile x ≤ 1 := by
   · exact aux_uniPairK_nonneg
   · exact aux_uniPairK_mass
 
+/--
+@isnad1 id=eq.1h1v.s6.7cda3a7d05ff from=translated src=- shape=312c1e8c vocab=a0c46ebd
+-/
 theorem aux_uniPairProfile_one (x : ℝ)
     (hx : x ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2)) : aux_uniPairProfile x = 1 := by
   apply aux_standardBumpConvolution_eq_one_on aux_uniPairDensity aux_uniPairK
@@ -356,20 +400,32 @@ theorem aux_uniPairProfile_one (x : ℝ)
     exact hz
   · constructor <;> linarith [hx.1, hx.2]
 
+/--
+@isnad1 id=eq.0h1v.s3.a210d47585c9 from=translated src=- shape=cd419dad vocab=f10f7e2d
+-/
 theorem aux_uniPairProfile_even (x : ℝ) :
     aux_uniPairProfile (-x) = aux_uniPairProfile x := by
   apply MeasureTheory.convolution_neg_of_neg_eq (ContinuousLinearMap.mul ℝ ℝ)
   · exact Filter.Eventually.of_forall fun y => aux_standardBumpFiniteDensity_even 4 y
   · exact Filter.Eventually.of_forall fun y => aux_uniPairK_even y
 
+/--
+@isnad1 id=contdiff.0h0v.s5.543c47f5a3b1 from=translated src=- shape=3cea26be vocab=93f7f346
+-/
 theorem aux_uniPairProfile_smooth :
     ContDiff ℝ (⊤ : ℕ∞) aux_uniPairProfile := by
   exact aux_uniPairK_compact.contDiff_convolution_right (ContinuousLinearMap.mul ℝ ℝ)
     (aux_standardBumpFiniteDensity_integrable 4).locallyIntegrable aux_uniPairK_smooth
 
+/--
+@isnad1 id=hascompa.0h0v.s3.ca7e64b68c47 from=translated src=- shape=e3d48bcb vocab=47ba5f7f
+-/
 theorem aux_uniPairDensity_compact : HasCompactSupport aux_uniPairDensity := by
   exact HasCompactSupport.of_support_subset_isCompact isCompact_Icc aux_uniPairDensity_support
 
+/--
+@isnad1 id=integrab.1h1v.s5.7add63f73bc0 from=translated src=- shape=06748d80 vocab=608eaabe
+-/
 theorem aux_uniPairDensity_iteratedDeriv_integrable (m : ℕ) (hm : m ≤ 3) :
     Integrable (iteratedDeriv m aux_uniPairDensity) := by
   have hcont : Continuous (iteratedDeriv m aux_uniPairDensity) :=
@@ -386,6 +442,9 @@ theorem aux_uniPairDensity_iteratedDeriv_integrable (m : ℕ) (hm : m ≤ 3) :
         aux_uniPairDensity_compact.deriv.deriv.deriv
   exact hcont.integrable_of_hasCompactSupport hcompact
 
+/--
+@isnad1 id=hasderiv.2h2v.s8.9aa30d771761 from=translated src=- shape=4fee7a41 vocab=3ff9ba6d
+-/
 theorem aux_uniPair_derivative_transfer
     (f : ℝ → ℝ) (hfcompact : HasCompactSupport f) (hfsmooth : ContDiff ℝ 1 f) (x : ℝ) :
     HasDerivAt (f ⋆[ContinuousLinearMap.mul ℝ ℝ, volume] aux_uniPairK)
@@ -393,6 +452,9 @@ theorem aux_uniPair_derivative_transfer
   exact hfcompact.hasDerivAt_convolution_left (ContinuousLinearMap.mul ℝ ℝ)
     hfsmooth aux_uniPairK_integrable.locallyIntegrable x
 
+/--
+@isnad1 id=eq.3h2v.s8.97cc7aa1f629 from=translated src=- shape=e59f400f vocab=465d9c9c
+-/
 theorem aux_uniPair_iteratedDeriv_convolution_transfer_three (f : ℝ → ℝ)
     (hfcompact : HasCompactSupport f) (hfsmooth : ContDiff ℝ 3 f) (m : ℕ) (hm : m ≤ 3) :
     iteratedDeriv m (f ⋆[ContinuousLinearMap.mul ℝ ℝ, volume] aux_uniPairK) =
@@ -424,6 +486,9 @@ theorem aux_uniPair_iteratedDeriv_convolution_transfer_three (f : ℝ → ℝ)
   · simpa only [iteratedDeriv_succ, iteratedDeriv_zero] using hEq2
   · simpa only [iteratedDeriv_succ, iteratedDeriv_zero] using hEq3
 
+/--
+@isnad1 id=le.5h4v.s7.d47d30af401f from=translated src=- shape=dad799e4 vocab=440a1843
+-/
 theorem aux_uniPair_convolution_abs_le_of_bound (f k : ℝ → ℝ) (C x : ℝ)
     (hf : Integrable f) (hk : Integrable k)
     (hk_nonneg : ∀ t, 0 ≤ k t) (hk_mass : ∫ t : ℝ, k t = 1)
@@ -451,6 +516,9 @@ theorem aux_uniPair_convolution_abs_le_of_bound (f k : ℝ → ℝ) (C x : ℝ)
       exact mul_le_mul_of_nonneg_right (hbound (x - t)) (hk_nonneg t)
     _ = C := by rw [integral_const_mul, hk_mass, mul_one]
 
+/--
+@isnad1 id=le.2h2v.s6.a6bde9259644 from=translated src=- shape=fd47b502 vocab=6b886ffc
+-/
 theorem aux_uniPairProfile_deriv_bound (m : ℕ) (hm : 1 ≤ m) (hm3 : m ≤ 3)
     (x : ℝ) :
     ‖iteratedDeriv m aux_uniPairProfile x‖ ≤
@@ -480,24 +548,42 @@ def aux_uniPairBReal (x : ℝ) : ℝ := 1 - Real.sin (aux_uniPairPhase x)
 def aux_uniPairA (x : ℝ) : ℂ := aux_uniPairAReal x
 def aux_uniPairB (x : ℝ) : ℂ := aux_uniPairBReal x
 
+/--
+@isnad1 id=contdiff.0h0v.s5.273fcded5771 from=translated src=- shape=3cea26be vocab=9bad6a79
+-/
 theorem aux_uniPairPhase_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairPhase := by
   unfold aux_uniPairPhase
   exact contDiff_const.mul (contDiff_const.sub aux_uniPairProfile_smooth)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.b4b97b083ab0 from=translated src=- shape=3cea26be vocab=9d5cb993
+-/
 theorem aux_uniPairAReal_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairAReal := by
   exact Real.contDiff_cos.comp aux_uniPairPhase_smooth
 
+/--
+@isnad1 id=contdiff.0h0v.s5.975669c63a3f from=translated src=- shape=3cea26be vocab=6bce7edf
+-/
 theorem aux_uniPairBReal_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairBReal := by
   exact contDiff_const.sub (Real.contDiff_sin.comp aux_uniPairPhase_smooth)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.3d20cff3b751 from=translated src=- shape=352d7a74 vocab=d187b991
+-/
 theorem aux_uniPairA_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairA := by
   change ContDiff ℝ (⊤ : ℕ∞) (fun x => (aux_uniPairAReal x : ℂ))
   simpa [Function.comp_def] using Complex.ofRealCLM.contDiff.comp aux_uniPairAReal_smooth
 
+/--
+@isnad1 id=contdiff.0h0v.s5.a4c398027e65 from=translated src=- shape=352d7a74 vocab=679654ff
+-/
 theorem aux_uniPairB_smooth : ContDiff ℝ (⊤ : ℕ∞) aux_uniPairB := by
   change ContDiff ℝ (⊤ : ℕ∞) (fun x => (aux_uniPairBReal x : ℂ))
   simpa [Function.comp_def] using Complex.ofRealCLM.contDiff.comp aux_uniPairBReal_smooth
 
+/--
+@isnad1 id=mem.0h1v.s5.8db580b9b8cf from=translated src=- shape=32c532c2 vocab=7bdb6d12
+-/
 theorem aux_uniPairPhase_mem (x : ℝ) :
     aux_uniPairPhase x ∈ Set.Icc (0 : ℝ) (Real.pi / 2) := by
   unfold aux_uniPairPhase
@@ -512,6 +598,9 @@ theorem aux_uniPairPhase_mem (x : ℝ) :
         mul_le_mul_of_nonneg_left h1 (by positivity)
       _ = Real.pi / 2 := by ring
 
+/--
+@isnad1 id=ex.0h1v.s5.07d90be05611 from=translated src=- shape=320e6dbf vocab=89b1030b
+-/
 theorem aux_uniPairA_real (x : ℝ) :
     ∃ r : ℝ, r ∈ Set.Icc (0 : ℝ) 1 ∧ aux_uniPairA x = r := by
   refine ⟨aux_uniPairAReal x, ?_, rfl⟩
@@ -523,6 +612,9 @@ theorem aux_uniPairA_real (x : ℝ) :
     · exact hp.2
   · exact Real.cos_le_one _
 
+/--
+@isnad1 id=ex.0h1v.s5.6c32d49c5f8d from=translated src=- shape=320e6dbf vocab=13f1e7e7
+-/
 theorem aux_uniPairB_real (x : ℝ) :
     ∃ r : ℝ, r ∈ Set.Icc (0 : ℝ) 1 ∧ aux_uniPairB x = r := by
   refine ⟨aux_uniPairBReal x, ?_, rfl⟩
@@ -533,6 +625,9 @@ theorem aux_uniPairB_real (x : ℝ) :
   · linarith [Real.sin_nonneg_of_nonneg_of_le_pi hp.1
       (by nlinarith [hp.2, Real.pi_pos])]
 
+/--
+@isnad1 id=le.0h0v.s4.01cc87c68714 from=translated src=- shape=9a6f0bd2 vocab=6fa6d4f4
+-/
 theorem aux_uniPairA_support : Function.support aux_uniPairA ⊆ Set.Icc (-1 : ℝ) 1 := by
   intro x hx
   by_contra hnot
@@ -547,6 +642,9 @@ theorem aux_uniPairA_support : Function.support aux_uniPairA ⊆ Set.Icc (-1 : �
   rw [aux_uniPairAReal, hphase, Real.cos_pi_div_two] at hx
   exact hx rfl
 
+/--
+@isnad1 id=le.0h0v.s4.965c9647774b from=translated src=- shape=9a6f0bd2 vocab=7732436d
+-/
 theorem aux_uniPairB_support : Function.support aux_uniPairB ⊆ Set.Icc (-1 : ℝ) 1 := by
   intro x hx
   by_contra hnot
@@ -561,6 +659,9 @@ theorem aux_uniPairB_support : Function.support aux_uniPairB ⊆ Set.Icc (-1 : �
   rw [aux_uniPairBReal, hphase, Real.sin_pi_div_two] at hx
   norm_num at hx
 
+/--
+@isnad1 id=eq.1h1v.s6.ab1111789b38 from=translated src=- shape=a8996673 vocab=d516d706
+-/
 theorem aux_uniPairA_one (x : ℝ)
     (hx : x ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2)) : aux_uniPairA x = 1 := by
   have hphase : aux_uniPairPhase x = 0 := by
@@ -569,6 +670,9 @@ theorem aux_uniPairA_one (x : ℝ)
   rw [aux_uniPairA, aux_uniPairAReal, hphase]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.b3ec59da14b3 from=translated src=- shape=a8996673 vocab=8b54d372
+-/
 theorem aux_uniPairB_one (x : ℝ)
     (hx : x ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2)) : aux_uniPairB x = 1 := by
   have hphase : aux_uniPairPhase x = 0 := by
@@ -577,20 +681,35 @@ theorem aux_uniPairB_one (x : ℝ)
   rw [aux_uniPairB, aux_uniPairBReal, hphase]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s3.7fcff42340e2 from=translated src=- shape=8fc7e33b vocab=02c44ef9
+-/
 theorem aux_uniPairA_even (x : ℝ) : aux_uniPairA (-x) = aux_uniPairA x := by
   unfold aux_uniPairA aux_uniPairAReal aux_uniPairPhase
   rw [aux_uniPairProfile_even]
 
+/--
+@isnad1 id=eq.0h1v.s3.082dddb93664 from=translated src=- shape=8fc7e33b vocab=085835a3
+-/
 theorem aux_uniPairB_even (x : ℝ) : aux_uniPairB (-x) = aux_uniPairB x := by
   unfold aux_uniPairB aux_uniPairBReal aux_uniPairPhase
   rw [aux_uniPairProfile_even]
 
+/--
+@isnad1 id=hascompa.0h0v.s3.5d66dd204e8f from=translated src=- shape=54c8eceb vocab=9d3af687
+-/
 theorem aux_uniPairA_compact : HasCompactSupport aux_uniPairA := by
   exact HasCompactSupport.of_support_subset_isCompact isCompact_Icc aux_uniPairA_support
 
+/--
+@isnad1 id=hascompa.0h0v.s3.bb87eed0a367 from=translated src=- shape=54c8eceb vocab=fa0fc54b
+-/
 theorem aux_uniPairB_compact : HasCompactSupport aux_uniPairB := by
   exact HasCompactSupport.of_support_subset_isCompact isCompact_Icc aux_uniPairB_support
 
+/--
+@isnad1 id=eq.0h1v.s6.3447209bc594 from=translated src=- shape=da32dcc4 vocab=0dae972b
+-/
 theorem aux_uniPair_partition (x : ℝ) :
     aux_uniPairA x ^ 2 + (1 - aux_uniPairB x) ^ 2 = 1 := by
   unfold aux_uniPairA aux_uniPairB aux_uniPairAReal aux_uniPairBReal
@@ -606,6 +725,9 @@ def aux_uniPairPhaseTwo (x : ℝ) : ℝ :=
 def aux_uniPairPhaseThree (x : ℝ) : ℝ :=
   -(Real.pi / 2) * iteratedDeriv 3 aux_uniPairProfile x
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.688c5b992e06 from=translated src=- shape=6e9f0007 vocab=6b344e6d
+-/
 theorem aux_uniPairProfile_iteratedDeriv_hasDerivAt (n : ℕ) (x : ℝ) :
     HasDerivAt (iteratedDeriv n aux_uniPairProfile)
       (iteratedDeriv (n + 1) aux_uniPairProfile x) x := by
@@ -615,6 +737,9 @@ theorem aux_uniPairProfile_iteratedDeriv_hasDerivAt (n : ℕ) (x : ℝ) :
       exact_mod_cast (show (n + 1 : ℕ∞) ≤ ⊤ by exact le_top))
   simpa only [iteratedDeriv_succ] using (hdiff x).hasDerivAt
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.d984a956b926 from=translated src=- shape=475e04ea vocab=225a680f
+-/
 theorem aux_uniPairPhase_hasDerivAt (x : ℝ) :
     HasDerivAt aux_uniPairPhase (aux_uniPairPhaseOne x) x := by
   have hprofile : HasDerivAt aux_uniPairProfile
@@ -632,6 +757,9 @@ theorem aux_uniPairPhase_hasDerivAt (x : ℝ) :
   simp only [aux_uniPairPhase]
   ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.5fc39bea221b from=translated src=- shape=475e04ea vocab=ea354b9c
+-/
 theorem aux_uniPairPhaseOne_hasDerivAt (x : ℝ) :
     HasDerivAt aux_uniPairPhaseOne (aux_uniPairPhaseTwo x) x := by
   have hprofile : HasDerivAt (iteratedDeriv 1 aux_uniPairProfile)
@@ -643,6 +771,9 @@ theorem aux_uniPairPhaseOne_hasDerivAt (x : ℝ) :
     (-(Real.pi / 2) * iteratedDeriv 2 aux_uniPairProfile x) x
   exact hprofile.const_mul (-(Real.pi / 2))
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.84d6cc65e7aa from=translated src=- shape=475e04ea vocab=c35ed66f
+-/
 theorem aux_uniPairPhaseTwo_hasDerivAt (x : ℝ) :
     HasDerivAt aux_uniPairPhaseTwo (aux_uniPairPhaseThree x) x := by
   have hprofile : HasDerivAt (iteratedDeriv 2 aux_uniPairProfile)
@@ -654,10 +785,16 @@ theorem aux_uniPairPhaseTwo_hasDerivAt (x : ℝ) :
     (-(Real.pi / 2) * iteratedDeriv 3 aux_uniPairProfile x) x
   exact hprofile.const_mul (-(Real.pi / 2))
 
+/--
+@isnad1 id=le.0h0v.s5.be05f9262101 from=translated src=- shape=d247c0ad vocab=5b159bee
+-/
 theorem aux_uniPair_halfPi_abs_le_two : |Real.pi / 2| ≤ (2 : ℝ) := by
   rw [abs_of_nonneg (by positivity)]
   nlinarith [Real.pi_le_four]
 
+/--
+@isnad1 id=le.0h1v.s4.3d4468889851 from=translated src=- shape=38becc55 vocab=a0585edd
+-/
 theorem aux_uniPairPhaseOne_bound (x : ℝ) : |aux_uniPairPhaseOne x| ≤ 16 := by
   have hprofile := aux_uniPairProfile_deriv_bound 1 (by norm_num) (by norm_num) x
   norm_num at hprofile
@@ -669,6 +806,9 @@ theorem aux_uniPairPhaseOne_bound (x : ℝ) : |aux_uniPairPhaseOne x| ≤ 16 := 
       mul_le_mul aux_uniPair_halfPi_abs_le_two hprofile' (abs_nonneg _) (by norm_num)
     _ = 16 := by norm_num
 
+/--
+@isnad1 id=le.0h1v.s4.83f7a2940901 from=translated src=- shape=38becc55 vocab=3db44c8b
+-/
 theorem aux_uniPairPhaseTwo_bound (x : ℝ) : |aux_uniPairPhaseTwo x| ≤ 256 := by
   have hprofile := aux_uniPairProfile_deriv_bound 2 (by norm_num) (by norm_num) x
   norm_num at hprofile
@@ -678,6 +818,9 @@ theorem aux_uniPairPhaseTwo_bound (x : ℝ) : |aux_uniPairPhaseTwo x| ≤ 256 :=
       mul_le_mul aux_uniPair_halfPi_abs_le_two hprofile (abs_nonneg _) (by norm_num)
     _ = 256 := by norm_num
 
+/--
+@isnad1 id=le.0h1v.s4.ba2950cd1834 from=translated src=- shape=38becc55 vocab=2d8b20c3
+-/
 theorem aux_uniPairPhaseThree_bound (x : ℝ) : |aux_uniPairPhaseThree x| ≤ 8192 := by
   have hprofile := aux_uniPairProfile_deriv_bound 3 (by norm_num) (by norm_num) x
   norm_num at hprofile
@@ -694,11 +837,17 @@ def u (H : ℝ → ℝ) : ℝ → ℝ := fun x => (Real.pi / 2) * (1 - H x)
 def A (H : ℝ → ℝ) : ℝ → ℝ := Real.cos ∘ u H
 def B (H : ℝ → ℝ) : ℝ → ℝ := fun x => 1 - Real.sin (u H x)
 
+/--
+@isnad1 id=contdiff.1h2v.s6.ba9751e0bd95 from=translated src=- shape=bf3b315c vocab=cc5a6fc2
+-/
 theorem u_contDiff {H : ℝ → ℝ} {n : ℕ∞} (hH : ContDiff ℝ n H) :
     ContDiff ℝ n (u H) := by
   unfold u
   fun_prop
 
+/--
+@isnad1 id=eq.1h3v.s6.17c461d21f60 from=translated src=- shape=849ba07e vocab=2bc0e461
+-/
 theorem u_iteratedDeriv {H : ℝ → ℝ} (q : ℕ) (hq : 0 < q) (x : ℝ) :
     iteratedDeriv q (u H) x = -(Real.pi / 2) * iteratedDeriv q H x := by
   unfold u
@@ -707,6 +856,9 @@ theorem u_iteratedDeriv {H : ℝ → ℝ} (q : ℕ) (hq : 0 < q) (x : ℝ) :
   simp only [iteratedDeriv_neg]
   ring
 
+/--
+@isnad1 id=le.2h4v.s6.c4f850806271 from=translated src=- shape=16e5e12e vocab=c74d2f8e
+-/
 theorem u_iteratedDeriv_norm_le {H : ℝ → ℝ} (q : ℕ) (hq : 0 < q) (C : ℝ)
     (hH : ∀ x, ‖iteratedDeriv q H x‖ ≤ C) (x : ℝ) :
     ‖iteratedDeriv q (u H) x‖ ≤ (8 / 5 : ℝ) * C := by
@@ -720,6 +872,9 @@ theorem u_iteratedDeriv_norm_le {H : ℝ → ℝ} (q : ℕ) (hq : 0 < q) (C : �
         nlinarith [Real.pi_lt_d2]
       · exact hH x
 
+/--
+@isnad1 id=le.1h4v.s6.64511f25af81 from=translated src=- shape=c88b355d vocab=b4205d7d
+-/
 theorem scale_iteratedDeriv_norm_le {H : ℝ → ℝ} (q : ℕ) (C : ℝ)
     (hH : ∀ x, ‖iteratedDeriv q H x‖ ≤ C) (x : ℝ) :
     ‖-(Real.pi / 2) * iteratedDeriv q H x‖ ≤ (8 / 5 : ℝ) * C := by
@@ -732,11 +887,17 @@ theorem scale_iteratedDeriv_norm_le {H : ℝ → ℝ} (q : ℕ) (C : ℝ)
         nlinarith [Real.pi_lt_d2]
       · exact hH x
 
+/--
+@isnad1 id=eq.1h2v.s7.bd9586ab14f7 from=translated src=- shape=e04236ca vocab=54a0905c
+-/
 theorem u_deriv_eq {H : ℝ → ℝ} (_hH : ContDiff ℝ 1 H) (x : ℝ) :
     deriv (u H) x = -(Real.pi / 2) * iteratedDeriv 1 H x := by
   simpa only [iteratedDeriv_succ, iteratedDeriv_zero] using u_iteratedDeriv (H := H) 1
     (by norm_num) x
 
+/--
+@isnad1 id=le.4h3v.s7.2449d539885b from=translated src=- shape=fefc437f vocab=6f36de17
+-/
 theorem comp_deriv_bound_one (g H : ℝ → ℝ)
     (hg : Differentiable ℝ g) (hH : ContDiff ℝ 1 H)
     (hg1 : ∀ x, ‖deriv g x‖ ≤ 1)
@@ -752,6 +913,9 @@ theorem comp_deriv_bound_one (g H : ℝ → ℝ)
         (norm_nonneg _) (by norm_num)
     _ = 64 / 5 := by norm_num
 
+/--
+@isnad1 id=le.5h3v.s8.5ba4f2742fa7 from=translated src=- shape=1c02deb2 vocab=c9003f9a
+-/
 theorem comp_deriv_bound_two (g H : ℝ → ℝ)
     (hg : ContDiff ℝ 2 g) (hH : ContDiff ℝ 2 H)
     (hg2 : ∀ q : ℕ, q ≤ 2 → ∀ x, ‖iteratedDeriv q g x‖ ≤ 1)
@@ -793,6 +957,9 @@ theorem comp_deriv_bound_two (g H : ℝ → ℝ)
           _ ≤ 1 * (1024 / 5 : ℝ) := mul_le_mul_of_nonneg_left hu2 zero_le_one
     _ = 9216 / 25 := by norm_num
 
+/--
+@isnad1 id=le.6h3v.s8.b8f44970ac5f from=translated src=- shape=627c0665 vocab=c9003f9a
+-/
 theorem comp_deriv_bound_three (g H : ℝ → ℝ)
     (hg : ContDiff ℝ 3 g) (hH : ContDiff ℝ 3 H)
     (hg3 : ∀ q : ℕ, q ≤ 3 → ∀ x, ‖iteratedDeriv q g x‖ ≤ 1)
@@ -864,6 +1031,9 @@ theorem comp_deriv_bound_three (g H : ℝ → ℝ)
           _ ≤ 1 * (32768 / 5 : ℝ) := mul_le_mul_of_nonneg_left hu3 zero_le_one
     _ = 2064384 / 125 := by norm_num
 
+/--
+@isnad1 id=and.4h2v.s8.14f59323596d from=translated src=- shape=dd1332f3 vocab=55c7bcaf
+-/
 theorem profiles_deriv_bound {H : ℝ → ℝ} (hH : ContDiff ℝ 3 H)
     (hH1 : ∀ x, ‖iteratedDeriv 1 H x‖ ≤ 8)
     (hH2 : ∀ x, ‖iteratedDeriv 2 H x‖ ≤ 128)
@@ -913,6 +1083,9 @@ theorem profiles_deriv_bound {H : ℝ → ℝ} (hH : ContDiff ℝ 3 H)
       iteratedDeriv_const_sub hm 1, iteratedDeriv_neg, norm_neg]
     exact hbound
 
+/--
+@isnad1 id=and.5h3v.s8.0e72bde8f4dc from=translated src=- shape=7cfeffa6 vocab=c4b3ecac
+-/
 theorem profiles_complex_deriv_bound {H : ℝ → ℝ}
     (hH : ContDiff ℝ 4 H)
     (hH1 : ∀ x, ‖iteratedDeriv 1 H x‖ ≤ 8)
@@ -955,6 +1128,9 @@ theorem profiles_complex_deriv_bound {H : ℝ → ℝ}
 
 end aux_uniPairTrig
 
+/--
+@isnad1 id=and.1h2v.s6.3d76e73fda90 from=translated src=- shape=ec8ac169 vocab=402e952c
+-/
 theorem aux_uniPair_profiles_deriv_bound (m : ℕ) (hm : m ≤ 3) (x : ℝ) :
     ‖iteratedDeriv m aux_uniPairA x‖ ≤ C_uniPair ∧
       ‖iteratedDeriv m aux_uniPairB x‖ ≤ C_uniPair := by
@@ -988,7 +1164,9 @@ theorem aux_uniPair_profiles_deriv_bound (m : ℕ) (hm : m ≤ 3) (x : ℝ) :
 /--
 **Lemma (Existence of a universal pair).**
 
-There exists a universal pair.-/
+There exists a universal pair.
+@isnad1 id=ex.0h0v.s6.993f85f6fa43 from=translated src=- shape=8fdac9f3 vocab=d13ab3b4
+-/
 theorem existsUniversalPair : ∃ φ₀ φ₁ : SchwartzMap ℝ ℝ, uniPair φ₀ φ₁ := by
   exact aux_exists_cPair_of_profiles C_uniPair N_uniPair aux_uniPairA aux_uniPairB
     (by norm_num [C_uniPair])

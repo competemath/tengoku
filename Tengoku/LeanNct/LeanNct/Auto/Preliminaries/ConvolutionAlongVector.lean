@@ -60,7 +60,9 @@ noncomputable def aux_shear {n : ℕ} (alpha : EuclideanSpace ℝ (Fin n)) :
 
 /--
 Auxiliary dominated-convergence argument for the continuity of an integral over the real
-coordinate of a Wiener-space function.-/
+coordinate of a Wiener-space function.
+@isnad1 id=continuo.1h3v.s8.ade3eea96faf from=translated src=- shape=67e5b020 vocab=fd200ca8
+-/
 theorem aux_continuous_integral_real {n : ℕ}
     {𝕜 : Type*} [NormedField 𝕜] [NormedSpace ℝ 𝕜] [CompleteSpace 𝕜]
     {f : EuclideanSpace ℝ (Fin n) × ℝ → 𝕜} (hf : MemW0 f) :
@@ -99,7 +101,9 @@ theorem aux_continuous_integral_real {n : ℕ}
     exact hf.1.continuousAt.tendsto.comp
       (continuous_id.prodMk continuous_const).continuousAt
 
-/-- Auxiliary fact extracting ordinary integrability from Wiener-space membership.-/
+/-- Auxiliary fact extracting ordinary integrability from Wiener-space membership.
+@isnad1 id=integrab.1h3v.s6.8e5808338bf1 from=translated src=- shape=87c0c8ab vocab=91ca4202
+-/
 theorem aux_integrable_of_memW0 {E 𝕜 : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] [NormedAddCommGroup 𝕜]
     {f : E → 𝕜} (hf : MemW0 f) : Integrable f := by
@@ -108,7 +112,9 @@ theorem aux_integrable_of_memW0 {E 𝕜 : Type*} [NormedAddCommGroup E] [ProperS
     abs_of_nonneg (aux_wienerEnvelope_nonneg hf.1 zero_le_one x)] using
       aux_norm_le_wienerEnvelope hf.1 zero_le_one x
 
-/-- Auxiliary fibre-integration closure result needed for convolution along a real direction.-/
+/-- Auxiliary fibre-integration closure result needed for convolution along a real direction.
+@isnad1 id=memw0.1h3v.s8.e30b4e602583 from=translated src=- shape=95a3d919 vocab=07f914b2
+-/
 theorem aux_memW0_integral_real {n : ℕ}
     {𝕜 : Type*} [NormedField 𝕜] [NormedSpace ℝ 𝕜] [CompleteSpace 𝕜]
     {f : EuclideanSpace ℝ (Fin n) × ℝ → 𝕜} (hf : MemW0 f) :
@@ -158,7 +164,9 @@ $$
 \widehat{\rho *_\alpha \varphi}(\xi) = \widehat{\rho}(\xi)\widehat{\varphi}(\alpha\cdot\xi).
 $$
 
-See also `Auto.fourier_convolutionAlongVector`.-/
+See also `Auto.fourier_convolutionAlongVector`.
+@isnad1 id=memw0.2h5v.s8.69d9f9d1a9ca from=translated src=- shape=7816c3c2 vocab=55e1bf11
+-/
 theorem memW0_convolutionAlongVector {n : ℕ}
     {𝕜 : Type*} [NormedField 𝕜] [NormedSpace ℝ 𝕜] [CompleteSpace 𝕜]
     {rho : EuclideanSpace ℝ (Fin n) → 𝕜} {phi : ℝ → 𝕜}
@@ -191,7 +199,9 @@ $$
 \widehat{\rho *_\alpha \varphi}(\xi) = \widehat{\rho}(\xi)\widehat{\varphi}(\alpha\cdot\xi).
 $$
 
-See also `Auto.memW0_convolutionAlongVector`.-/
+See also `Auto.memW0_convolutionAlongVector`.
+@isnad1 id=eq.2h5v.s8.975da39dd843 from=translated src=- shape=9e6a5440 vocab=8a0a4f7d
+-/
 theorem fourier_convolutionAlongVector {n : ℕ}
     {rho : EuclideanSpace ℝ (Fin n) → ℂ} {phi : ℝ → ℂ}
     (hrho : MemW0 rho) (hphi : MemW0 phi)

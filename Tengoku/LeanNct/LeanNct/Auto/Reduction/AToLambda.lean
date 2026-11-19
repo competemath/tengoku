@@ -33,6 +33,9 @@ variable {n : ℕ}
 def rawShear (i : Fin n) (x : RealVector n) : RealVector n :=
   fun r => if r = i then ∑ q, x q else -x r
 
+/--
+@isnad1 id=eq.0h3v.s4.7ca176f83276 from=translated src=- shape=dae2c4ea vocab=594a1588
+-/
 lemma rawShear_sum (i : Fin n) (x : RealVector n) :
     ∑ r, rawShear i x r = x i := by
   rw [← Finset.sum_erase_add Finset.univ (rawShear i x) (Finset.mem_univ i)]
@@ -51,6 +54,9 @@ lemma rawShear_sum (i : Fin n) (x : RealVector n) :
   rw [← hsum]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.cf000e382d1d from=translated src=- shape=c2334928 vocab=4872c9d6
+-/
 lemma rawShear_involutive (i : Fin n) (x : RealVector n) :
     rawShear i (rawShear i x) = x := by
   funext r
@@ -80,6 +86,9 @@ noncomputable def rawShearLinearEquiv (i : Fin n) : RealVector n ≃ₗ[ℝ] Rea
       simp [rawShear, Finset.mul_sum]
     · simp [rawShear, hr]
 
+/--
+@isnad1 id=eq.0h2v.s8.dd6b1b80abfa from=translated src=- shape=e17d98fc vocab=b779aa49
+-/
 lemma rawShearLinearEquiv_comp_self (i : Fin n) :
     (rawShearLinearEquiv i).toLinearMap.comp (rawShearLinearEquiv i).toLinearMap =
       LinearMap.id := by
@@ -87,10 +96,16 @@ lemma rawShearLinearEquiv_comp_self (i : Fin n) :
   intro x
   exact rawShear_involutive i x
 
+/--
+@isnad1 id=eq.0h2v.s9.18bc81f00ef9 from=translated src=- shape=ab9ead7e vocab=92adf2a8
+-/
 lemma rawShear_det_sq (i : Fin n) :
     LinearMap.det (rawShearLinearEquiv i).toLinearMap ^ 2 = 1 := by
   rw [pow_two, ← LinearMap.det_comp, rawShearLinearEquiv_comp_self, LinearMap.det_id]
 
+/--
+@isnad1 id=eq.0h2v.s9.625f228767aa from=translated src=- shape=0b7cd7fd vocab=988f9601
+-/
 lemma rawShear_det_abs (i : Fin n) :
     |LinearMap.det (rawShearLinearEquiv i).toLinearMap| = 1 := by
   have hsq := rawShear_det_sq i
@@ -98,6 +113,9 @@ lemma rawShear_det_abs (i : Fin n) :
     rw [sq_abs, hsq]
   nlinarith [abs_nonneg (LinearMap.det (rawShearLinearEquiv i).toLinearMap)]
 
+/--
+@isnad1 id=measurep.0h2v.s8.52df45802c40 from=translated src=- shape=48f80b23 vocab=a2db79d3
+-/
 lemma rawShear_measurePreserving (i : Fin n) :
     MeasurePreserving (rawShearLinearEquiv i) volume volume := by
   let e := rawShearLinearEquiv i
@@ -132,6 +150,9 @@ noncomputable def coordinatePerm (d : ℕ) (i : Fin (d + 1)) :
   ContinuousLinearEquiv.piCongrLeft ℝ (fun _ : Fin (d + 1) => ℝ)
     (indexPerm d i)
 
+/--
+@isnad1 id=eq.0h4v.s10.e5e10220dcbb from=translated src=- shape=cb792157 vocab=7fba5ef3
+-/
 lemma coordinatePerm_apply_index (d : ℕ) (i : Fin (d + 1))
     (x : RealVector (d + 1)) (j : Fin (d + 1)) :
     coordinatePerm d i x (indexPerm d i j) = x j := by
@@ -140,6 +161,9 @@ lemma coordinatePerm_apply_index (d : ℕ) (i : Fin (d + 1))
   exact Equiv.piCongrLeft_apply_apply (fun _ : Fin (d + 1) => ℝ)
     (indexPerm d i) x j
 
+/--
+@isnad1 id=measurep.0h2v.s10.eae66ed6bf87 from=translated src=- shape=c6f3c3aa vocab=4185f2de
+-/
 lemma coordinatePerm_measurePreserving (d : ℕ) (i : Fin (d + 1)) :
     MeasurePreserving (coordinatePerm d i) volume volume := by
   change MeasurePreserving
@@ -154,6 +178,9 @@ noncomputable def coordinate (d : ℕ) (i : Fin (d + 1)) :
     RealVector (d + 1) ≃L[ℝ] RealVector (d + 1) :=
   (coordinatePerm d i).trans (rawShearLinearEquiv i).toContinuousLinearEquiv
 
+/--
+@isnad1 id=measurep.0h2v.s10.fd0be775859f from=translated src=- shape=c6f3c3aa vocab=8e3a4558
+-/
 lemma coordinate_measurePreserving (d : ℕ) (i : Fin (d + 1)) :
     MeasurePreserving (coordinate d i) volume volume := by
   exact (rawShear_measurePreserving i).comp (coordinatePerm_measurePreserving d i)
@@ -162,6 +189,9 @@ noncomputable def coordinateToEuclidean (d : ℕ) (i : Fin (d + 1)) :
     RealVector (d + 1) ≃L[ℝ] EuclideanSpace ℝ (Fin (d + 1)) :=
   (coordinate d i).trans (EuclideanSpace.equiv (Fin (d + 1)) ℝ).symm
 
+/--
+@isnad1 id=measurep.0h2v.s11.c6c760931e73 from=translated src=- shape=19b89b78 vocab=f1c18e04
+-/
 lemma coordinateToEuclidean_measurePreserving (d : ℕ) (i : Fin (d + 1)) :
     MeasurePreserving (coordinateToEuclidean d i) volume volume := by
   change MeasurePreserving
@@ -174,6 +204,9 @@ noncomputable def transformedFunctions {d : ℕ}
     Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ := fun i =>
   SchwartzMap.compCLMOfContinuousLinearEquiv ℝ (coordinateToEuclidean d i) (f i)
 
+/--
+@isnad1 id=eq.0h4v.s10.c33a86569221 from=translated src=- shape=051b1982 vocab=c49a414c
+-/
 lemma transformedFunctions_eLpNorm {d : ℕ}
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ)
     (i : Fin (d + 1)) (p : ℝ≥0∞) :
@@ -183,14 +216,23 @@ lemma transformedFunctions_eLpNorm {d : ℕ}
   exact eLpNorm_comp_measurePreserving (f i).continuous.aestronglyMeasurable
     (coordinateToEuclidean_measurePreserving d i)
 
+/--
+@isnad1 id=eq.0h2v.s7.c53097a9b475 from=translated src=- shape=113b4205 vocab=721e64c2
+-/
 lemma indexPerm_zero (d : ℕ) (i : Fin (d + 1)) :
     indexPerm d i 0 = i := by
   simp [indexPerm]
 
+/--
+@isnad1 id=eq.0h3v.s7.fc0cbed477bb from=translated src=- shape=71bc7ea4 vocab=ee0fa02b
+-/
 lemma indexPerm_succ (d : ℕ) (i : Fin (d + 1)) (j : Fin d) :
     indexPerm d i j.succ = i.succAbove j := by
   simp [indexPerm]
 
+/--
+@isnad1 id=eq.0h4v.s10.c73bb1e29a6f from=translated src=- shape=bccd8156 vocab=f4d924a9
+-/
 lemma coordinatePerm_concat (d : ℕ) (i : Fin (d + 1))
     (r : ℝ) (x : RealVector (d + 1)) :
     coordinatePerm d i
@@ -227,6 +269,9 @@ lemma coordinatePerm_concat (d : ℕ) (i : Fin (d + 1))
         (Fin.insertNth_apply_succAbove (α := fun _ : Fin (d + 1) => ℝ)
           i r (eraseVector i x) j).symm
 
+/--
+@isnad1 id=eq.1h5v.s6.e1d91caed98d from=translated src=- shape=ac3832b6 vocab=092d707f
+-/
 lemma insertNth_eraseVector_apply_ne (d : ℕ) (i q : Fin (d + 1))
     (r : ℝ) (x : RealVector (d + 1)) (hqi : q ≠ i) :
     (i.insertNth r (eraseVector i x) : RealVector (d + 1)) q = x q := by
@@ -234,6 +279,9 @@ lemma insertNth_eraseVector_apply_ne (d : ℕ) (i q : Fin (d + 1))
   subst q
   simp [eraseVector]
 
+/--
+@isnad1 id=eq.0h4v.s10.37050220421f from=translated src=- shape=f9bbe4fb vocab=eaf0b68d
+-/
 lemma coordinate_concat (d : ℕ) (i : Fin (d + 1))
     (r : ℝ) (x : RealVector (d + 1)) :
     coordinate d i
@@ -257,6 +305,9 @@ lemma coordinate_concat (d : ℕ) (i : Fin (d + 1))
     congr 1
     exact insertNth_eraseVector_apply_ne d i q r x hqi
 
+/--
+@isnad1 id=eq.1h3v.s7.7a27a9c72849 from=translated src=- shape=ca66bc2b vocab=0c5b1489
+-/
 lemma eLpNorm_two_sq_eq_ofReal_integral_sq {α : Type*} [MeasurableSpace α]
     (μ : Measure α) (g : α → ℝ) (hg : Integrable (fun x => g x ^ 2) μ) :
     eLpNorm g 2 μ ^ 2 = ENNReal.ofReal (∫ x, g x ^ 2 ∂μ) := by
@@ -276,6 +327,9 @@ lemma eLpNorm_two_sq_eq_ofReal_integral_sq {α : Type*} [MeasurableSpace α]
       congr 1
       rw [Real.rpow_two, sq_abs]
 
+/--
+@isnad1 id=eq.0h4v.s10.1339d94fa11c from=translated src=- shape=25676b05 vocab=9dd45c41
+-/
 lemma coordinate_concat_eq_neg_add_single (d : ℕ) (i : Fin (d + 1))
     (r : ℝ) (x : RealVector (d + 1)) :
     coordinate d i
@@ -289,6 +343,9 @@ lemma coordinate_concat_eq_neg_add_single (d : ℕ) (i : Fin (d + 1))
     ring
   · simp [hq]
 
+/--
+@isnad1 id=eq.0h5v.s10.e8ca85d5665d from=translated src=- shape=c8a74cf9 vocab=88362f69
+-/
 lemma transformedFunctions_concat {d : ℕ}
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ)
     (i : Fin (d + 1)) (r : ℝ) (x : RealVector (d + 1)) :
@@ -301,11 +358,17 @@ lemma transformedFunctions_concat {d : ℕ}
     (concatVector (d + 1) 1 (by omega) (fun _ : Fin 1 => r) (eraseVector i x)))) = _
   rw [coordinate_concat_eq_neg_add_single]
 
+/--
+@isnad1 id=eq.0h2v.s5.1547a8b7770d from=translated src=- shape=9c84736a vocab=96154bd4
+-/
 lemma prismIndex_one (d : ℕ) (i : Fin (d + 1)) :
     prismIndex (n := d + 1) (k := 1) (by omega) (by omega) i = i := by
   apply Fin.ext
   simp [prismIndex]
 
+/--
+@isnad1 id=memw0.0h1v.s6.11fe418b18bf from=translated src=- shape=b7122fc3 vocab=1d6e390e
+-/
 lemma schwartzMap_memW0_real (phi : SchwartzMap ℝ ℝ) : Auto.MemW0 phi := by
   let e : EuclideanSpace ℝ (Fin 1) ≃L[ℝ] ℝ :=
     PiLp.equivOfUnique 2 ℝ (fun _ : Fin 1 => ℝ)
@@ -318,6 +381,9 @@ lemma schwartzMap_memW0_real (phi : SchwartzMap ℝ ℝ) : Auto.MemW0 phi := by
   change phi x = phi (e (e.symm x))
   rw [e.apply_symm_apply]
 
+/--
+@isnad1 id=memw0.0h1v.s8.187790ce7edc from=translated src=- shape=6251ea38 vocab=4187d720
+-/
 lemma oneTensorSquare_memW0 (phi : SchwartzMap ℝ ℝ) :
     Auto.MemW0 (fun y : RealVector 1 × RealVector 1 =>
       phi (y.1 0) * phi (y.2 0)) := by
@@ -339,6 +405,9 @@ lemma oneTensorSquare_memW0 (phi : SchwartzMap ℝ ℝ) :
   funext y
   simp [E, e, tensorSquare]
 
+/--
+@isnad1 id=eq.0h2v.s8.efc77aae7658 from=translated src=- shape=af75c72c vocab=96c4da33
+-/
 lemma mToK_oneTensorSquare_eq (phi : SchwartzMap ℝ ℝ)
     (u : RealVector 1 × ℝ) :
     mToK 1 (by omega) (fun y : RealVector 1 × RealVector 1 =>
@@ -353,6 +422,9 @@ def rawTwistedFactor {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (x : RealVector (d + 1)) (r : ℝ) : ℝ :=
   phi r * ∏ i, f i (WithLp.toLp 2 (x + r • Pi.single i (1 : ℝ)))
 
+/--
+@isnad1 id=eq.0h5v.s8.42a80fb0011f from=translated src=- shape=19ab31a5 vocab=2e27be55
+-/
 lemma rankOneFactor_transformedFunctions {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ)
@@ -370,10 +442,16 @@ def globalChange (d : ℕ) :
     RealVector (d + 1) × (ℝ × ℝ) → RealVector (d + 1) × (ℝ × ℝ) :=
   fun q => (-q.1, (q.2.1 + coordinateSum q.1, q.2.2 + coordinateSum q.1))
 
+/--
+@isnad1 id=eq.0h2v.s4.ad243f3a8ae9 from=translated src=- shape=0f2b6cde vocab=4e2b888d
+-/
 lemma coordinateSum_neg (d : ℕ) (x : RealVector d) :
     coordinateSum (-x) = -coordinateSum x := by
   simp [coordinateSum, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=eq.0h2v.s5.deb260e62860 from=translated src=- shape=2857e279 vocab=a7d6996e
+-/
 lemma globalChange_involutive (d : ℕ)
     (q : RealVector (d + 1) × (ℝ × ℝ)) :
     globalChange d (globalChange d q) = q := by
@@ -382,6 +460,9 @@ lemma globalChange_involutive (d : ℕ)
   · simp [globalChange]
   · apply Prod.ext <;> simp [globalChange, coordinateSum_neg]
 
+/--
+@isnad1 id=measurep.0h1v.s8.e746e79b101f from=translated src=- shape=79deb840 vocab=d59c5a86
+-/
 lemma globalChange_measurePreserving (d : ℕ) :
     MeasurePreserving (globalChange d) volume volume := by
   let A := RealVector (d + 1)
@@ -441,6 +522,9 @@ lemma globalChange_measurePreserving (d : ℕ) :
       rw [coordinateSum_neg]
       ring
 
+/--
+@isnad1 id=eq.1h2v.s9.5a83bfd129a0 from=translated src=- shape=68744940 vocab=841baf49
+-/
 lemma globalChange_integral_comp (d : ℕ)
     (g : RealVector (d + 1) × (ℝ × ℝ) → ℝ)
     (hg : Integrable g) :
@@ -460,6 +544,9 @@ def rawTwistedSquareIntegrand {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (q : RealVector (d + 1) × (ℝ × ℝ)) : ℝ :=
   rawTwistedFactor phi f q.1 q.2.1 * rawTwistedFactor phi f q.1 q.2.2
 
+/--
+@isnad1 id=eq.0h4v.s11.9cc907bc223c from=translated src=- shape=1efd302f vocab=1474dc51
+-/
 lemma rankOneRawIntegrand_eq_global {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ)
@@ -474,6 +561,9 @@ lemma rankOneRawIntegrand_eq_global {d : ℕ}
   rw [rankOneFactor_transformedFunctions]
   ring
 
+/--
+@isnad1 id=integrab.0h3v.s8.e3b72ac2536e from=translated src=- shape=1d953c44 vocab=b7af1833
+-/
 lemma rawTwistedSquareIntegrand_integrable {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -534,6 +624,9 @@ def rawTwistedAverage {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (x : RealVector (d + 1)) : ℝ :=
   ∫ r : ℝ, rawTwistedFactor phi f x r
 
+/--
+@isnad1 id=and.0h3v.s9.3fe59dbcb744 from=translated src=- shape=2d0a6763 vocab=9f63380b
+-/
 lemma rawTwistedAverage_sq_fubini {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -574,6 +667,9 @@ lemma rawTwistedAverage_sq_fubini {d : ℕ}
       simpa only [Measure.volume_eq_prod] using
         (integral_prod (rawTwistedSquareIntegrand phi f) hIprod).symm
 
+/--
+@isnad1 id=eq.0h4v.s9.dd28eaec844f from=translated src=- shape=4ccb8aa7 vocab=dcfbf924
+-/
 lemma twistedAverage_toLp_eq_rawTwistedAverage {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ)
@@ -585,6 +681,9 @@ lemma twistedAverage_toLp_eq_rawTwistedAverage {d : ℕ}
   filter_upwards [] with r
   congr 1
 
+/--
+@isnad1 id=eq.0h3v.s10.e6caabf5ca99 from=translated src=- shape=33a02264 vocab=eca239d6
+-/
 lemma rawTwistedSquareIntegrand_integral_eq_prismForm {d : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -645,6 +744,9 @@ lemma rawTwistedSquareIntegrand_integral_eq_prismForm {d : ℕ}
         simpa only [Measure.volume_eq_prod] using (integral_prod H hH)
   simpa [prismForm, F, M, K] using hcalc
 
+/--
+@isnad1 id=eq.1h2v.s10.e85131fbfc0b from=translated src=- shape=6f442d02 vocab=2985e1d0
+-/
 lemma toLp_integral_comp {d : ℕ}
     (g : EuclideanSpace ℝ (Fin (d + 1)) → ℝ)
     (hg : Integrable g) :
@@ -666,6 +768,9 @@ open aux_aToLambda
 /- The canonical form of the change-of-variables identity.  Unlike the public
 existential formulation below, this fixes the transformed tuple once and for all,
 which is needed when several kernels are considered simultaneously. -/
+/--
+@isnad1 id=eq.0h3v.s11.5223b7eb825e from=translated src=- shape=baa22f13 vocab=820abeb6
+-/
 theorem aux_aToLambda_explicit {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
     eLpNorm (twistedAverage phi (fun i x ↦ f i x)) 2 volume ^ 2 =
@@ -737,7 +842,9 @@ $$
 \|F_i\|_p=\|f_i\|_p
 $$
 
-for every $p\in[1,\infty]$.-/
+for every $p\in[1,\infty]$.
+@isnad1 id=ex.1h3v.s10.38bef272468c from=translated src=- shape=61d70910 vocab=60089050
+-/
 theorem aToLambda {n : ℕ} (hn : 1 ≤ n) (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) :
     ∃ F : Fin n → SchwartzMap (RealVector n) ℝ,
@@ -759,7 +866,9 @@ theorem aToLambda {n : ℕ} (hn : 1 ≤ n) (phi : SchwartzMap ℝ ℝ)
 The canonical, scale-independent successor-dimensional form of the
 `A`-to-`Λ₁` identity.  Unlike `aToLambda`, this fixes
 `transformedFunctions f` explicitly, which is needed when the kernel varies
-under an integral or a parameterized family.-/
+under an integral or a parameterized family.
+@isnad1 id=eq.0h3v.s11.5223b7eb825e from=translated src=- shape=baa22f13 vocab=820abeb6
+-/
 theorem aToLambda_transformed {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
     eLpNorm (twistedAverage phi (fun i x ↦ f i x)) 2 volume ^ 2 =
@@ -771,6 +880,9 @@ theorem aToLambda_transformed {d : ℕ} (phi : SchwartzMap ℝ ℝ)
 
 /- The tensor-square prism form in the canonical `A`-to-`Λ₁` reduction is a
 square integral, hence nonnegative. -/
+/--
+@isnad1 id=le.0h3v.s9.5d791045ff00 from=translated src=- shape=994a01bf vocab=0de70eae
+-/
 lemma aux_aToLambda_explicit_prism_nonneg {d : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
     0 ≤ prismForm (d + 1) 1 (by omega) (by omega)
@@ -782,6 +894,9 @@ lemma aux_aToLambda_explicit_prism_nonneg {d : ℕ} (phi : SchwartzMap ℝ ℝ)
 
 /- Finite linearity of the first prism form for the special tensor-square
 kernels arising from the `A`-to-`Λ₁` change of variables. -/
+/--
+@isnad1 id=eq.0h4v.s10.4ec9aede59e4 from=translated src=- shape=5af705a9 vocab=57cd92f9
+-/
 lemma aux_aToLambda_prismForm_fin_sum {d J : ℕ}
     (phi : Fin J → SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -807,7 +922,9 @@ lemma aux_aToLambda_prismForm_fin_sum {d J : ℕ}
 /--
 A finite-family version of `aToLambda`. It uses one common determinant-one
 coordinate transform of `f` for every kernel, so a finite square sum of
-twisted averages becomes a single first prism form.-/
+twisted averages becomes a single first prism form.
+@isnad1 id=ex.1h4v.s10.d22da3a10864 from=translated src=- shape=d6886eba vocab=2b0c0871
+-/
 theorem aToLambda_fin_sum {n J : ℕ} (hn : 1 ≤ n)
     (phi : Fin J → SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) :

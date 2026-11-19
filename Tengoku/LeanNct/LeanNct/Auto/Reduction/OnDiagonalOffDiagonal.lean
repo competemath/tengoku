@@ -48,6 +48,9 @@ noncomputable def C_diagonalBandReduction : ℝ :=
   (2 : ℝ) ^ 4 * Real.sqrt (C_nReduction * C_increaseDataReduction) +
     (2 : ℝ) ^ 3 * C_increaseDataReduction
 
+/--
+@isnad1 id=eq.2h3v.s5.192e00c376de from=translated src=- shape=53e847db vocab=fe455f84
+-/
 theorem fourierReal_realConvolution (f g : ℝ → ℝ)
     (hf : MemW0 f) (hg : MemW0 g) (u : ℝ) :
     aux_fourierReal (realConvolution f g) u =
@@ -76,6 +79,9 @@ theorem fourierReal_realConvolution (f g : ℝ → ℝ)
     ← aux_fourierReal_eq_fourier f,
     ← aux_fourierReal_eq_fourier g]
 
+/--
+@isnad1 id=eq.4h2v.s6.0c9f3e5db493 from=translated src=- shape=80b93eba vocab=752541c4
+-/
 theorem real_eq_of_fourierReal_eq (f g : ℝ → ℝ)
     (hf : MemW0 f) (hg : MemW0 g)
     (hfourierInt : Integrable (fun u => aux_fourierReal g u))
@@ -116,6 +122,9 @@ theorem real_eq_of_fourierReal_eq (f g : ℝ → ℝ)
   funext x
   exact_mod_cast congrFun hfgC x
 
+/--
+@isnad1 id=integrab.0h0v.s6.6e600e1d64ee from=translated src=- shape=4add016d vocab=254a4052
+-/
 theorem standardBumpFourier_integrable :
     Integrable (FourierTransform.fourier (fun x : ℝ => (standardBump x : ℂ))) := by
   apply Continuous.integrable_of_hasCompactSupport
@@ -123,6 +132,9 @@ theorem standardBumpFourier_integrable :
   · apply isCompact_Icc.of_isClosed_subset isClosed_closure
     exact closure_minimal aux_fourier_standardBump_support isClosed_Icc
 
+/--
+@isnad1 id=integrab.2h2v.s6.7836291f0ffd from=translated src=- shape=c90a5ce1 vocab=f53dc5e3
+-/
 theorem fourierReal_standardBumpRescale_sub_integrable
     (s t : ℝ) (hs : 0 < s) (ht : 0 < t) :
     Integrable (fun u => aux_fourierReal
@@ -139,11 +151,17 @@ theorem fourierReal_standardBumpRescale_sub_integrable
   simpa [phiHat] using
     (aux_fourierReal_standardBumpRescale_sub s t u hs ht).symm
 
+/--
+@isnad1 id=eq.1h1v.s6.6d5fb3c9bea0 from=translated src=- shape=f7e63e18 vocab=03846f44
+-/
 theorem rpow_neg_half_mul_sqrt (g : ℝ) (hg : 0 < g) :
     g ^ (-(1 / 2 : ℝ)) * Real.sqrt g = 1 := by
   rw [Real.sqrt_eq_rpow, ← Real.rpow_add hg]
   norm_num
 
+/--
+@isnad1 id=eq.2h2v.s6.5588e0c0aea1 from=translated src=- shape=27574f00 vocab=019c4280
+-/
 theorem fourScale_rpow_sqrt_cancel (c : ℂ) (g : ℝ)
     (hg : 0 ≤ g) (hzero : g = 0 → c = 0) :
     (c * ((g ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) = c := by
@@ -162,6 +180,9 @@ theorem fourScale_rpow_sqrt_cancel (c : ℂ) (g : ℝ)
             ring
       _ = c := by rw [hscalarC, mul_one]
 
+/--
+@isnad1 id=eq.2h6v.s7.9f77bc098a48 from=translated src=- shape=9f749ad7 vocab=91251ab8
+-/
 theorem fourScaleFrequency_mul_sqrt_eq_phiDifference
     (phiHat : ℝ → ℂ) (muMinus muPlus lambdaMinus lambdaPlus u : ℝ)
     (hmuMinus : 0 < muMinus) (hmuScale : 2 * muMinus ≤ muPlus) :
@@ -187,6 +208,9 @@ theorem fourScaleFrequency_mul_sqrt_eq_phiDifference
   change (c * ((g ^ (-(1 / 2 : ℝ)) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) = c
   exact fourScale_rpow_sqrt_cancel c g hg hzero
 
+/--
+@isnad1 id=eq.4h4v.s7.1d6e1e1593b8 from=translated src=- shape=f19a8bdf vocab=3a37b0f8
+-/
 theorem realConvolution_fourScaleRho_sigma_eq_band
     {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ)
     (lambdaMinus lambdaPlus : ℝ) (hlambdaMinus : 0 < lambdaMinus)
@@ -225,6 +249,9 @@ theorem realConvolution_fourScaleRho_sigma_eq_band
         hlambdaMinus hlambdaPlus]
     exact fourScaleFrequency_mul_sqrt_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
+/--
+@isnad1 id=eq.2h2v.s6.e9e0241d8ab8 from=translated src=- shape=b61249a3 vocab=49f07c02
+-/
 theorem fourScale_rpow_neg_one_mul_sqrt_sq_cancel (c : ℂ) (g : ℝ)
     (hg : 0 ≤ g) (hzero : g = 0 → c = 0) :
     (c * ((g ^ (-1 : ℝ) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) * (Real.sqrt g : ℂ) = c := by
@@ -251,6 +278,9 @@ theorem fourScale_rpow_neg_one_mul_sqrt_sq_cancel (c : ℂ) (g : ℝ)
             ring
       _ = c := by rw [hscalarC, mul_one]
 
+/--
+@isnad1 id=eq.2h6v.s7.7bb742d5911c from=translated src=- shape=47aab936 vocab=b5398e8f
+-/
 theorem fourScaleFrequency_mul_sqrt_sq_eq_phiDifference
     (phiHat : ℝ → ℂ) (muMinus muPlus lambdaMinus lambdaPlus u : ℝ)
     (hmuMinus : 0 < muMinus) (hmuScale : 2 * muMinus ≤ muPlus) :
@@ -277,6 +307,9 @@ theorem fourScaleFrequency_mul_sqrt_sq_eq_phiDifference
   change (c * ((g ^ (-1 : ℝ) : ℝ) : ℂ)) * (Real.sqrt g : ℂ) * (Real.sqrt g : ℂ) = c
   exact fourScale_rpow_neg_one_mul_sqrt_sq_cancel c g hg hzero
 
+/--
+@isnad1 id=eq.4h4v.s7.da3822f6e44a from=translated src=- shape=5ad1053d vocab=9c1a5791
+-/
 theorem realConvolution_fourScaleRho_sigmaSq_eq_band
     {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ)
     (lambdaMinus lambdaPlus : ℝ) (hlambdaMinus : 0 < lambdaMinus)
@@ -321,6 +354,9 @@ theorem realConvolution_fourScaleRho_sigmaSq_eq_band
     rw [← mul_assoc]
     exact fourScaleFrequency_mul_sqrt_sq_eq_phiDifference _ _ _ _ _ _ hmuMinus hmuScale
 
+/--
+@isnad1 id=and.0h3v.s7.95ebcadfcff9 from=translated src=- shape=824cb749 vocab=c4ff9f8b
+-/
 theorem reduction_scale_conditions (D : ReductionData) (h : ℕ) (j : ℤ) :
     0 < rhoLowerScale D.a h j ∧ 0 < rhoUpperScale D.a h j ∧
       2 * ((2 : ℝ) ^ h * D.a (j - 1)) ≤ 2 * rhoLowerScale D.a h j ∧
@@ -356,6 +392,9 @@ theorem reduction_scale_conditions (D : ReductionData) (h : ℕ) (j : ℤ) :
         apply le_of_eq
         ring
 
+/--
+@isnad1 id=eq.1h4v.s5.597b9bfffadf from=translated src=- shape=0da7c8fe vocab=2e9713e1
+-/
 theorem reduction_rho_sigma_reconstruct {n : ℕ} (hn : 2 < n)
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     realConvolution (rhoKernel n D.a h j) (reductionSigma D h j) =
@@ -382,6 +421,9 @@ theorem reduction_rho_sigma_reconstruct {n : ℕ} (hn : 2 < n)
   rw [show aux_reductionNu n = -(1 / 2 : ℝ) by simp [aux_reductionNu, hn2]]
   simpa [rhoGaussianLowerScale, rhoGaussianUpperScale, b] using hcore
 
+/--
+@isnad1 id=eq.0h3v.s5.22b614713b73 from=translated src=- shape=b394b6ad vocab=833367ec
+-/
 theorem reduction_rho_sigmaSq_reconstruct
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     realConvolution (rhoKernel 2 D.a h j)
@@ -408,6 +450,9 @@ theorem reduction_rho_sigmaSq_reconstruct
   simp only [aux_reductionNu, ite_eq_left]
   simpa [rhoGaussianLowerScale, rhoGaussianUpperScale, b] using hcore
 
+/--
+@isnad1 id=eq.1h4v.s6.e8bdbe610ef3 from=translated src=- shape=f983094e vocab=8721a665
+-/
 theorem diagonalBand_factorization_interior {n : ℕ} (hn : 2 < n)
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     aux_diagonalBandKernel D.kernel D.a h j =
@@ -425,6 +470,9 @@ theorem diagonalBand_factorization_interior {n : ℕ} (hn : 2 < n)
     (reductionSigma D h j) (D.kernel_memW0 j) hrho hsigma v]
   rw [reduction_rho_sigma_reconstruct hn D h j]
 
+/--
+@isnad1 id=eq.0h3v.s6.8430cb1d485d from=translated src=- shape=2fef2a52 vocab=46ab1a54
+-/
 theorem diagonalBand_factorization_endpoint
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     aux_diagonalBandKernel D.kernel D.a h j =
@@ -451,6 +499,9 @@ noncomputable def liftPlaneEquiv :
   (ContinuousLinearEquiv.piUnique ℝ (fun _ : Fin 1 => ℝ)).prodCongr
     (ContinuousLinearEquiv.piUnique ℝ (fun _ : Fin 1 => ℝ))
 
+/--
+@isnad1 id=measurep.0h0v.s10.8520c616daaa from=translated src=- shape=87777dd4 vocab=9c790042
+-/
 theorem liftPlaneEquiv_measurePreserving :
     MeasurePreserving liftPlaneEquiv volume volume := by
   change MeasurePreserving
@@ -460,12 +511,18 @@ theorem liftPlaneEquiv_measurePreserving :
     (volume_preserving_piUnique (fun _ : Fin 1 => ℝ)).prod
       (volume_preserving_piUnique (fun _ : Fin 1 => ℝ))
 
+/--
+@isnad1 id=eq.1h1v.s8.0e2c821b663c from=translated src=- shape=a2d6617d vocab=c87b8f53
+-/
 theorem eLpNorm_liftPlaneKernel (M : RealPlane → ℝ) (hM : MemW0 M) :
     eLpNorm (aux_liftPlaneKernel M) 1 volume = eLpNorm M 1 volume := by
   change eLpNorm (M ∘ liftPlaneEquiv) 1 volume = eLpNorm M 1 volume
   exact eLpNorm_comp_measurePreserving hM.1.aestronglyMeasurable
     liftPlaneEquiv_measurePreserving
 
+/--
+@isnad1 id=le.0h1v.s3.351d1eb29401 from=translated src=- shape=b9369acb vocab=c4eced66
+-/
 theorem rho_cmean_nonneg (N : ℕ) :
     0 ≤ C_meanFourScaleGaussianKernel N := by
   unfold C_meanFourScaleGaussianKernel
@@ -488,6 +545,9 @@ theorem rho_cmean_nonneg (N : ℕ) :
         (aux_le_maxUpTo (fun l => (2 : ℝ) ^ l * C_secondGaussianEstimate l)
           (Nat.zero_le _))
 
+/--
+@isnad1 id=le.0h1v.s3.abed4e3a41ed from=translated src=- shape=b9369acb vocab=f4743da0
+-/
 theorem rho_cfour_nonneg (N : ℕ) :
     0 ≤ C_fourScaleGaussianKernel N := by
   unfold C_fourScaleGaussianKernel C_smoothDecay2
@@ -499,21 +559,33 @@ theorem rho_cfour_nonneg (N : ℕ) :
     · positivity
     · exact (aux_C_secondGaussianEstimate_nonneg 0).trans (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h0v.s3.cb113b2ec8cb from=translated src=- shape=ff3a10fc vocab=4c3eaf92
+-/
 theorem CrhoReduction_nonneg : 0 ≤ C_rhoKernelsReduction := by
   unfold C_rhoKernelsReduction
   exact mul_nonneg (by positivity)
     (add_nonneg (rho_cmean_nonneg 2) (rho_cfour_nonneg 2))
 
+/--
+@isnad1 id=le.0h0v.s3.4c0b15b13d9e from=translated src=- shape=ff3a10fc vocab=ede6ff31
+-/
 theorem CnReduction_nonneg : 0 ≤ C_nReduction := by
   unfold C_nReduction
   exact mul_nonneg (by positivity) CrhoReduction_nonneg
 
+/--
+@isnad1 id=le.0h0v.s3.8703bf1841a8 from=translated src=- shape=ff3a10fc vocab=d87b4616
+-/
 theorem CincreaseDataGaussianExpansion_nonneg :
     0 ≤ C_increaseDataGaussianExpansion := by
   unfold C_increaseDataGaussianExpansion C_increaseDataBracketDomination
   exact mul_nonneg (mul_nonneg (by positivity) (sq_nonneg _))
     (mul_nonneg (by positivity) CrhoReduction_nonneg)
 
+/--
+@isnad1 id=le.0h0v.s3.c19195ee728c from=translated src=- shape=ff3a10fc vocab=b23c98fb
+-/
 theorem CincreaseDataReduction_nonneg : 0 ≤ C_increaseDataReduction := by
   unfold C_increaseDataReduction
   exact mul_nonneg (mul_nonneg (mul_nonneg (by positivity)
@@ -522,10 +594,15 @@ theorem CincreaseDataReduction_nonneg : 0 ≤ C_increaseDataReduction := by
 
 /--
 The reduction increase-data constant is nonnegative.  This public form is
-used when reduction constants are assembled in the final argument.-/
+used when reduction constants are assembled in the final argument.
+@isnad1 id=le.0h0v.s3.c19195ee728c from=translated src=- shape=ff3a10fc vocab=b23c98fb
+-/
 theorem aux_CincreaseDataReduction_nonneg : 0 ≤ C_increaseDataReduction :=
   CincreaseDataReduction_nonneg
 
+/--
+@isnad1 id=memw0.1h1v.s7.06a1644e65c9 from=translated src=- shape=8e2cc800 vocab=e03c38c3
+-/
 theorem liftPlaneKernel_memW0 (M : RealPlane → ℝ) (hM : MemW0 M) :
     MemW0 (aux_liftPlaneKernel M) := by
   let : Measure.IsAddHaarMeasure (volume : Measure (RealVector 1 × RealVector 1)) :=
@@ -538,11 +615,17 @@ theorem liftPlaneKernel_memW0 (M : RealPlane → ℝ) (hM : MemW0 M) :
   funext x
   rfl
 
+/--
+@isnad1 id=memw0.1h4v.s7.e84d4b84d8ff from=translated src=- shape=a0bb8165 vocab=26b996cb
+-/
 theorem lift_reductionN_memW0 {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     MemW0 (aux_liftPlaneKernel (reductionNKernel n D h j)) :=
   liftPlaneKernel_memW0 _ (nReduction hn D h j).1
 
+/--
+@isnad1 id=le.1h4v.s7.48c2e4a034ba from=translated src=- shape=d3a3658a vocab=6a02edfe
+-/
 theorem eLpNorm_lift_reductionN_toReal_le {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (j : ℤ) :
     (eLpNorm (aux_liftPlaneKernel (reductionNKernel n D h j)) 1 volume).toReal ≤
@@ -560,6 +643,9 @@ theorem eLpNorm_lift_reductionN_toReal_le {n : ℕ} (hn : 2 ≤ n)
       ENNReal.toReal_mono ENNReal.ofReal_ne_top hbound
     _ = C_nReduction := ENNReal.toReal_ofReal CnReduction_nonneg
 
+/--
+@isnad1 id=le.1h4v.s8.414b054e1887 from=translated src=- shape=c8f580c7 vocab=aa4e9ea7
+-/
 theorem sum_eLpNorm_lift_reductionN_toReal_le {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (h : ℕ) (J : ℕ) :
     (∑ l : Fin J,
@@ -573,6 +659,9 @@ theorem sum_eLpNorm_lift_reductionN_toReal_le {n : ℕ} (hn : 2 ≤ n)
         eLpNorm_lift_reductionN_toReal_le hn D h (l : ℤ)
     _ = C_nReduction * J := by simp [mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.b3be7d6d4401 from=translated src=- shape=18dd8f81 vocab=5fea3250
+-/
 theorem cauchySchwarzLift_reduction_eq {n : ℕ} (D : ReductionData)
     (h : ℕ) (J : ℕ) :
     (fun y => ∑ j ∈ Finset.range J,
@@ -588,6 +677,9 @@ theorem cauchySchwarzLift_reduction_eq {n : ℕ} (D : ReductionData)
   simp [Finset.mem_range.mp hl]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.b42103d2228f from=translated src=- shape=1e8cacdc vocab=80afa59f
+-/
 theorem cauchySchwarzKernel_diagonalBand_eq {n : ℕ} (hn : 2 < n)
     (D : ReductionData) (h : ℕ) (J : ℕ) :
     (fun y => ∑ j ∈ Finset.range J, aux_diagonalBandSequence D h (j : ℤ) y) =
@@ -605,6 +697,9 @@ theorem cauchySchwarzKernel_diagonalBand_eq {n : ℕ} (hn : 2 < n)
   simp [diagonalConvolution, aux_liftPlaneKernel, aux_diagonalShift,
     Finset.mem_range.mp hl]
 
+/--
+@isnad1 id=eq.0h3v.s6.3de4b557b124 from=translated src=- shape=001e119e vocab=fede336a
+-/
 theorem doublyCauchySchwarzKernel_diagonalBand_eq
     (D : ReductionData) (h : ℕ) (J : ℕ) :
     (fun y => ∑ j ∈ Finset.range J, aux_diagonalBandSequence D h (j : ℤ) y) =
@@ -622,6 +717,9 @@ theorem doublyCauchySchwarzKernel_diagonalBand_eq
   simp [diagonalConvolution, aux_liftPlaneKernel, aux_diagonalShift,
     Finset.mem_range.mp hl]
 
+/--
+@isnad1 id=le.1h3v.s6.3af269c767f7 from=translated src=- shape=86a91165 vocab=ad8d3a78
+-/
 theorem seminorm_diagonalBand_interior_raw {n : ℕ} (hn : 2 < n)
     (D : ReductionData) (h : ℕ) :
     kernelSequenceSeminorm n 1 (by omega) (by omega)
@@ -680,6 +778,9 @@ theorem seminorm_diagonalBand_interior_raw {n : ℕ} (hn : 2 < n)
           (fun r => F.1 r)| * Real.sqrt (C_nReduction * (J.1 : ℝ)) := by
         rw [← hlift]
 
+/--
+@isnad1 id=eq.2h3v.s7.95bbbb090435 from=translated src=- shape=b08018f1 vocab=c09e0944
+-/
 theorem sqrt_decay_eighth {C D : ℝ} (hC : 0 ≤ C) (hD : 0 ≤ D) (h : ℕ) :
     Real.sqrt C * Real.sqrt (D * Real.rpow 2 (-(h : ℝ) / 4)) =
       Real.sqrt (C * D) * Real.rpow 2 (-(h : ℝ) / 8) := by
@@ -708,6 +809,9 @@ theorem sqrt_decay_eighth {C D : ℝ} (hC : 0 ≤ C) (hD : 0 ≤ D) (h : ℕ) :
   dsimp [r, q] at hleft0 hright0 hleftsq hrightsq ⊢
   nlinarith
 
+/--
+@isnad1 id=le.1h3v.s6.b08c95dea72c from=translated src=- shape=d0feecc4 vocab=ad8d3a78
+-/
 theorem seminorm_diagonalBand_interior {n : ℕ} (hn : 2 < n)
     (D : ReductionData) (h : ℕ) :
     kernelSequenceSeminorm n 1 (by omega) (by omega)
@@ -717,6 +821,9 @@ theorem seminorm_diagonalBand_interior {n : ℕ} (hn : 2 < n)
   rw [← sqrt_decay_eighth CnReduction_nonneg CincreaseDataReduction_nonneg h]
   exact seminorm_diagonalBand_interior_raw hn D h
 
+/--
+@isnad1 id=le.0h2v.s6.794a47a8e30c from=translated src=- shape=c467f8df vocab=efec6e4c
+-/
 theorem seminorm_diagonalBand_endpoint (D : ReductionData) (h : ℕ) :
     kernelSequenceSeminorm 2 1 (by omega) (by omega)
       (aux_diagonalBandSequence D h) ≤
@@ -792,6 +899,9 @@ theorem seminorm_diagonalBand_endpoint (D : ReductionData) (h : ℕ) :
       _ ≤ U := hsup
   simpa [hnormal, U] using ENNReal.ofReal_le_ofReal hreal
 
+/--
+@isnad1 id=le.1h1v.s6.c301c0404d0e from=translated src=- shape=2aa1deeb vocab=1704cf65
+-/
 theorem eighth_height_tsum (C : ℝ) (hC : 0 ≤ C) :
     (∑' h : ℕ, ENNReal.ofReal (C * Real.rpow 2 (-((h : ℝ) / 8)))) ≤
       ENNReal.ofReal ((2 : ℝ) ^ 4 * C) := by
@@ -855,6 +965,9 @@ theorem eighth_height_tsum (C : ℝ) (hC : 0 ≤ C) :
       (ENNReal.ofReal_tsum_of_nonneg hnonneg hactual).symm
     _ ≤ ENNReal.ofReal ((2 : ℝ) ^ 4 * C) := ENNReal.ofReal_le_ofReal hsum
 
+/--
+@isnad1 id=le.1h1v.s6.23b25022a242 from=translated src=- shape=2aa1deeb vocab=1704cf65
+-/
 theorem quarter_height_tsum (C : ℝ) (hC : 0 ≤ C) :
     (∑' h : ℕ, ENNReal.ofReal (C * Real.rpow 2 (-((h : ℝ) / 4)))) ≤
       ENNReal.ofReal ((2 : ℝ) ^ 3 * C) := by
@@ -920,7 +1033,9 @@ theorem quarter_height_tsum (C : ℝ) (hC : 0 ≤ C) :
 
 /--
 The ENNReal geometric tail of a quarter-power dyadic decay is at most eight
-times its nonnegative coefficient.-/
+times its nonnegative coefficient.
+@isnad1 id=le.1h1v.s6.23b25022a242 from=translated src=- shape=2aa1deeb vocab=1704cf65
+-/
 theorem quarterHeightTsum (C : ℝ) (hC : 0 ≤ C) :
     (∑' h : ℕ, ENNReal.ofReal (C * Real.rpow 2 (-((h : ℝ) / 4)))) ≤
       ENNReal.ofReal ((2 : ℝ) ^ 3 * C) :=
@@ -955,7 +1070,9 @@ C_{\text{increase data - reduction variant}}
 
 See also `Auto.diagonalBandReduction`,
 `Auto.nReduction`,
-`Auto.increaseDataReduction`.-/
+`Auto.increaseDataReduction`.
+@isnad1 id=le.1h2v.s5.c8b0128a52e9 from=translated src=- shape=747b8f9c vocab=39319efe
+-/
 theorem diagonalBandReduction {n : ℕ} (hn : 2 ≤ n) (D : ReductionData) :
     ∑' h : ℕ,
       kernelSequenceSeminorm n 1 (by omega) (by omega)
@@ -1006,7 +1123,9 @@ C_{\text{diagonal band - reduction variant}}
 <\tfrac{63}{64}2^{480}<2^{480}.
 $$
 
-See also `Auto.diagonalBandReduction`.-/
+See also `Auto.diagonalBandReduction`.
+@isnad1 id=lt.0h0v.s5.096abfa5285d from=translated src=- shape=ff0ce2aa vocab=1a404df7
+-/
 theorem constantDiagonalBandReduction :
     C_diagonalBandReduction < (63 / 64 : ℝ) * (2 : ℝ) ^ 480 := by
   have hn0 : 0 ≤ C_nReduction := CnReduction_nonneg
@@ -1068,7 +1187,9 @@ theorem constantDiagonalBandReduction :
 noncomputable def aux_largeScaleSmoothing (M : RealPlane → ℝ) (t : ℝ) : RealPlane → ℝ :=
   aux_diagonalConvolution M (standardBumpRescale t)
 
-/-- Diagonal Fourier cancellation makes the large-scale smoothing integral vanish.-/
+/-- Diagonal Fourier cancellation makes the large-scale smoothing integral vanish.
+@isnad1 id=tendsto.2h1v.s6.ead3b0bd92ae from=translated src=- shape=4350f22a vocab=4f353693
+-/
 theorem aux_largeScaleSmoothing_tendsto_integral_norm_atTop
     (M : RealPlane → ℝ) (hM : MemW0 M)
     (hcancel : ∀ ξ : ℝ, aux_fourierPlane M (ξ, -ξ) = 0) :
@@ -1137,7 +1258,9 @@ theorem aux_largeScaleSmoothing_tendsto_integral_norm_atTop
             dsimp [g]
             ring
 
-/-- The cancellation estimate implies convergence of the smoothing in `L¹`.-/
+/-- The cancellation estimate implies convergence of the smoothing in `L¹`.
+@isnad1 id=tendsto.2h1v.s6.691d12ad3043 from=translated src=- shape=4ee4dd8c vocab=45b5b2e0
+-/
 theorem aux_largeScaleSmoothing_tendsto_zero
     (M : RealPlane → ℝ) (hM : MemW0 M)
     (hcancel : ∀ ξ : ℝ, aux_fourierPlane M (ξ, -ξ) = 0) :
@@ -1181,7 +1304,9 @@ $$
 \lim_{t\to\infty}
     \| M_j\ast_{(1,1)}\Phi_{(t)} \|_1
     =0
-$$-/
+$$
+@isnad1 id=tendsto.2h1v.s6.691d12ad3043 from=translated src=- shape=4ee4dd8c vocab=45b5b2e0
+-/
 theorem lOneReduction (M : RealPlane → ℝ) (hM : MemW0 M)
     (hcancel : ∀ ξ : ℝ, aux_fourierPlane M (ξ, -ξ) = 0) :
     Tendsto (fun t : ℝ => eLpNorm (aux_largeScaleSmoothing M t) 1 volume)
@@ -1204,6 +1329,9 @@ def aux_frequencyDiagonalBound (D : ReductionData) : Prop :=
         {z : EuclideanSpace ℝ (Fin 2) |
           |z 0 + z 1| ≤ (2 : ℝ)⁻¹ * (D.a (j - 1))⁻¹}
 
+/--
+@isnad1 id=eq.1h3v.s8.ae140b1d0f94 from=translated src=- shape=aa5ebed1 vocab=87dcd4eb
+-/
 theorem aux_initialSmoothing_fourier_factor
     (D : ReductionData) (hsupport : aux_frequencyDiagonalBound D)
     (j : ℤ) (xi : EuclideanSpace ℝ (Fin 2)) :
@@ -1235,12 +1363,18 @@ noncomputable def aux_vanishingDiagonalDirection :
     EuclideanSpace ℝ (Fin 2) :=
   WithLp.toLp 2 ![1, 1]
 
+/--
+@isnad1 id=eq.0h1v.s8.bc395a92aab7 from=translated src=- shape=ce9d4fa5 vocab=37a00d2f
+-/
 theorem aux_inner_vanishingDiagonalDirection
     (xi : EuclideanSpace ℝ (Fin 2)) :
     inner ℝ aux_vanishingDiagonalDirection xi = xi 0 + xi 1 := by
   rw [PiLp.inner_apply]
   simp [aux_vanishingDiagonalDirection, Fin.sum_univ_two]
 
+/--
+@isnad1 id=memw0.1h2v.s5.3be84cda0643 from=translated src=- shape=92bdb338 vocab=4f398e9e
+-/
 theorem aux_memW0_complex_ofReal_vanishing {E : Type*}
     [NormedAddCommGroup E] [ProperSpace E] [MeasureSpace E] [BorelSpace E]
     (f : E → ℝ) (hf : MemW0 f) : MemW0 (fun x => (f x : ℂ)) := by
@@ -1251,6 +1385,9 @@ theorem aux_memW0_complex_ofReal_vanishing {E : Type*}
   rw [henv]
   exact hf.2
 
+/--
+@isnad1 id=eq.2h3v.s10.32d67deb4b1b from=translated src=- shape=de78ed85 vocab=798a968f
+-/
 theorem aux_fourier_sub_euclidean_vanishing
     (f g : EuclideanSpace ℝ (Fin 2) → ℂ)
     (hf : Integrable f) (hg : Integrable g) (xi : EuclideanSpace ℝ (Fin 2)) :
@@ -1269,6 +1406,9 @@ theorem aux_fourier_sub_euclidean_vanishing
           · exact (Real.fourierIntegral_convergent_iff xi).mpr hf
           · exact (Real.fourierIntegral_convergent_iff xi).mpr hg
 
+/--
+@isnad1 id=and.0h2v.s9.3d4214acdcfc from=translated src=- shape=b3ce6967 vocab=c5a8c8ea
+-/
 theorem aux_vanishingDiagonalDirection_coords (v : RealPlane) (q : ℝ) :
     ((WithLp.toLp 2 ![v.1, v.2] : EuclideanSpace ℝ (Fin 2)) -
       q • aux_vanishingDiagonalDirection) 0 = v.1 - q ∧
@@ -1276,6 +1416,9 @@ theorem aux_vanishingDiagonalDirection_coords (v : RealPlane) (q : ℝ) :
       q • aux_vanishingDiagonalDirection) 1 = v.2 - q := by
   constructor <;> simp [aux_vanishingDiagonalDirection]
 
+/--
+@isnad1 id=eq.1h2v.s5.9fc4663e6e35 from=translated src=- shape=371b8c71 vocab=2ee99358
+-/
 theorem aux_initialSmoothing_eq
     (D : ReductionData) (hsupport : aux_frequencyDiagonalBound D) (j : ℤ) :
     aux_largeScaleSmoothing (D.kernel j) (D.a (j - 1)) = D.kernel j := by
@@ -1382,6 +1525,9 @@ theorem aux_initialSmoothing_eq
       _ = (aux_largeScaleSmoothing (D.kernel j) (D.a (j - 1)) v : ℂ) := hconv_eval
   exact_mod_cast hcast.symm
 
+/--
+@isnad1 id=memw0.2h2v.s5.cbe5700fa55b from=translated src=- shape=002be372 vocab=acb33dce
+-/
 theorem aux_largeScaleSmoothing_memW0 (M : RealPlane → ℝ) (hM : MemW0 M)
     {t : ℝ} (ht : 0 < t) : MemW0 (aux_largeScaleSmoothing M t) := by
   have hphi : MemW0 (standardBumpRescale t) := aux_standardBumpRescale_memW0 ht
@@ -1393,6 +1539,9 @@ theorem aux_largeScaleSmoothing_memW0 (M : RealPlane → ℝ) (hM : MemW0 M)
   rcases v with ⟨v₀, v₁⟩
   simp [smul_eq_mul, sub_eq_add_neg]
 
+/--
+@isnad1 id=integrab.1h2v.s6.2ff0a39eb637 from=translated src=- shape=525617a2 vocab=c3c45325
+-/
 theorem aux_diagonalTranslate_integrable
     (M : RealPlane → ℝ) (hM : MemW0 M) (v : RealPlane) :
     Integrable (fun p : ℝ => M (v.1 - p, v.2 - p)) := by
@@ -1417,6 +1566,9 @@ theorem aux_diagonalTranslate_integrable
   dsimp
   ring_nf
 
+/--
+@isnad1 id=integrab.2h3v.s6.1d560990a71e from=translated src=- shape=c6c61b84 vocab=54a14187
+-/
 theorem aux_diagonalSmoothing_integrand_integrable
     (M : RealPlane → ℝ) (hM : MemW0 M) (v : RealPlane)
     {t : ℝ} (ht : 0 < t) :
@@ -1432,6 +1584,9 @@ theorem aux_diagonalSmoothing_integrand_integrable
       (inv_nonneg.mpr ht.le)
   exact hbase.mul_bdd hmeas (Filter.Eventually.of_forall hbound)
 
+/--
+@isnad1 id=eq.2h4v.s6.c207e9d54370 from=translated src=- shape=c7657ad8 vocab=e0a1e3ee
+-/
 theorem aux_diagonalBand_eq_smoothing_sub
     (M : ℤ → RealPlane → ℝ) (hM : ∀ j, MemW0 (M j)) (a : ℤ → ℝ)
     (ha : SpacedSequence a)
@@ -1464,6 +1619,9 @@ theorem aux_diagonalBand_eq_smoothing_sub
   filter_upwards [] with p
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.7a162ebc0330 from=translated src=- shape=bdb6104d vocab=61dc2bb6
+-/
 theorem aux_diagonalBand_partialSum
     (D : ReductionData) (hsupport : aux_frequencyDiagonalBound D) (H : ℕ) (j : ℤ) :
     (∑ h ∈ Finset.range (H + 1), aux_diagonalBandKernel D.kernel D.a h j) =
@@ -1484,6 +1642,9 @@ theorem aux_diagonalBand_partialSum
         rhoUpperScale]
       ring
 
+/--
+@isnad1 id=memw0.0h3v.s7.51803561f7c2 from=translated src=- shape=1a1d42e8 vocab=2c995112
+-/
 theorem aux_diagonalBand_memW0 (D : ReductionData) (h : ℕ) (j : ℤ) :
     MemW0 (aux_diagonalBandSequence D h j) := by
   rcases reduction_scale_conditions D h j with ⟨hlow, hupper, _, _, _⟩
@@ -1505,6 +1666,9 @@ theorem aux_diagonalBand_memW0 (D : ReductionData) (h : ℕ) (j : ℤ) :
   rcases v with ⟨v₀, v₁⟩
   simp [smul_eq_mul, sub_eq_add_neg]
 
+/--
+@isnad1 id=tendsto.0h2v.s8.32e31566711d from=translated src=- shape=90c8540f vocab=91b585a3
+-/
 theorem aux_liftLargeScaleSmoothing_tendsto_zero
     (D : ReductionData) (j : ℤ) :
     Tendsto (fun H : ℕ => eLpNorm
@@ -1523,6 +1687,9 @@ theorem aux_liftLargeScaleSmoothing_tendsto_zero
       (mul_pos (pow_pos (by norm_num) _) (aux_spacedSequence_pos D.a_spaced j)))]
   rfl
 
+/--
+@isnad1 id=tendsto.1h2v.s8.4b8eb3f6b922 from=translated src=- shape=3530fc95 vocab=9e041e1e
+-/
 theorem aux_diagonalBand_prefix_tendsto
     (D : ReductionData) (hsupport : aux_frequencyDiagonalBound D)
     (J : {J : ℕ // 0 < J}) :
@@ -1585,11 +1752,17 @@ theorem aux_diagonalBand_prefix_tendsto
   · filter_upwards [] with H
     exact hnorm H
 
+/--
+@isnad1 id=memkerne.0h1v.s3.d6fd3c6251d2 from=translated src=- shape=4438ec56 vocab=fd5344eb
+-/
 theorem aux_diagonalBand_target_mem (D : ReductionData) :
     MemKernelSequence 1 (fun j => aux_liftPlaneKernel (D.kernel j)) := by
   intro j
   exact liftPlaneKernel_memW0 _ (D.kernel_memW0 j)
 
+/--
+@isnad1 id=memkerne.0h2v.s5.1cf02cf0d021 from=translated src=- shape=42aeb371 vocab=29151e2c
+-/
 theorem aux_diagonalBand_prefix_mem (D : ReductionData) (H : ℕ) :
     MemKernelSequence 1 (fun j y =>
       ∑ h ∈ Finset.range (H + 1), aux_diagonalBandSequence D h j y) := by
@@ -1598,6 +1771,9 @@ theorem aux_diagonalBand_prefix_mem (D : ReductionData) (H : ℕ) :
   intro h hh
   exact aux_diagonalBand_memW0 D h j
 
+/--
+@isnad1 id=le.1h3v.s6.f7c21bc0f35b from=translated src=- shape=ca93658b vocab=857dd9c1
+-/
 theorem aux_diagonalBand_prefix_bound {n : ℕ} (hn : 2 ≤ n)
     (D : ReductionData) (H : ℕ) :
     kernelSequenceSeminorm n 1 (by omega) (by omega)
@@ -1629,7 +1805,9 @@ $$
 \|\mathbf{M}\|_{\rm M(1)} \leq C_{\text{diagonal band - reduction variant}}
 $$
 
-See also `Auto.diagonalBandReduction`.-/
+See also `Auto.diagonalBandReduction`.
+@isnad1 id=le.2h2v.s5.9cabf154181d from=translated src=- shape=1302055f vocab=9ff2cb2d
+-/
 theorem vanishingDiagonalReduction {n : ℕ} (hn : 2 ≤ n) (D : ReductionData)
     (hsupport : aux_frequencyDiagonalBound D) :
     kernelSequenceSeminorm n 1 (by omega) (by omega)
@@ -1670,6 +1848,9 @@ noncomputable def aux_oneScaleWindowSequence (phi : SchwartzMap ℝ ℝ) (a : �
 noncomputable def C_oneScaleEstimateWindow : ℝ :=
   (2 : ℝ) ^ 9 * C_uniPair ^ 2
 
+/--
+@isnad1 id=memw0.0h1v.s6.11fe418b18bf from=translated src=- shape=b7122fc3 vocab=1d6e390e
+-/
 theorem aux_schwartzMap_memW0_real (phi : SchwartzMap ℝ ℝ) : MemW0 phi := by
   let e : EuclideanSpace ℝ (Fin 1) ≃L[ℝ] ℝ :=
     PiLp.equivOfUnique 2 ℝ (fun _ : Fin 1 => ℝ)
@@ -1682,6 +1863,9 @@ theorem aux_schwartzMap_memW0_real (phi : SchwartzMap ℝ ℝ) : MemW0 phi := by
   change phi x = phi (e (e.symm x))
   rw [e.apply_symm_apply]
 
+/--
+@isnad1 id=memw0.1h2v.s5.3123619a23eb from=translated src=- shape=68d6dcf1 vocab=7408220c
+-/
 theorem aux_windowRescale_memW0 (phi : SchwartzMap ℝ ℝ) {t : ℝ} (ht : 0 < t) :
     MemW0 (aux_windowRescale phi t) := by
   let e : ℝ ≃L[ℝ] ℝ :=
@@ -1693,6 +1877,9 @@ theorem aux_windowRescale_memW0 (phi : SchwartzMap ℝ ℝ) {t : ℝ} (ht : 0 < 
   funext x
   simp [Phi, e, aux_windowRescale, ContinuousLinearEquiv.smulLeft_apply_apply]
 
+/--
+@isnad1 id=le.1h2v.s7.ec03ea1242d8 from=translated src=- shape=db135ed4 vocab=b05e4725
+-/
 theorem aux_window_decay (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) (x : ℝ) :
     |phi x| ≤ 8 * C_uniPair * bracketBump x ^ 2 := by
@@ -1769,6 +1956,9 @@ theorem aux_window_decay (phi : SchwartzMap ℝ ℝ)
   norm_num [C_smoothDecay2, scaledBracketBump, bracketBump, inv_pow] at hpoint ⊢
   exact hpoint
 
+/--
+@isnad1 id=eq.0h0v.s5.13b4cea669d5 from=translated src=- shape=b3993066 vocab=540239d4
+-/
 theorem aux_bracket_integral_two :
     (∫ x : ℝ, bracketBump x ^ 2) = 2 := by
   calc
@@ -1784,6 +1974,9 @@ theorem aux_bracket_integral_two :
       rw [aux_twoBump_baseIntegral 2 (by norm_num)]
       norm_num
 
+/--
+@isnad1 id=integrab.0h0v.s5.20aabd5ccc42 from=translated src=- shape=ade5f55c vocab=e7e45a19
+-/
 theorem aux_bracket_integrable_two : Integrable (fun x : ℝ => bracketBump x ^ 2) := by
   convert aux_twoBump_baseIntegrable 2 (by norm_num) using 1
   funext x
@@ -1792,6 +1985,9 @@ theorem aux_bracket_integrable_two : Integrable (fun x : ℝ => bracketBump x ^ 
   congr 1
   exact (Real.rpow_natCast (1 + |x|) 2).symm
 
+/--
+@isnad1 id=le.1h1v.s7.b097ea7f30ae from=translated src=- shape=153533dc vocab=e5fe5640
+-/
 theorem aux_window_l1_bound (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) :
     (∫ x : ℝ, ‖phi x‖) ≤ 16 * C_uniPair := by
@@ -1808,6 +2004,9 @@ theorem aux_window_l1_bound (phi : SchwartzMap ℝ ℝ)
       rw [integral_const_mul]
     _ = 16 * C_uniPair := by rw [aux_bracket_integral_two]; ring
 
+/--
+@isnad1 id=eq.1h2v.s7.05c282542f77 from=translated src=- shape=fdb92862 vocab=62dfbda6
+-/
 theorem aux_windowRescale_integral_norm_eq (phi : SchwartzMap ℝ ℝ)
     {t : ℝ} (ht : 0 < t) :
     (∫ x : ℝ, ‖aux_windowRescale phi t x‖) = ∫ y : ℝ, ‖phi y‖ := by
@@ -1827,12 +2026,18 @@ theorem aux_windowRescale_integral_norm_eq (phi : SchwartzMap ℝ ℝ)
       rw [abs_of_pos ht]
       field_simp
 
+/--
+@isnad1 id=le.2h2v.s6.191d718b0f13 from=translated src=- shape=a96af40a vocab=cabf51a0
+-/
 theorem aux_windowRescale_l1_bound (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) {t : ℝ} (ht : 0 < t) :
     (∫ x : ℝ, ‖aux_windowRescale phi t x‖) ≤ 16 * C_uniPair := by
   rw [aux_windowRescale_integral_norm_eq phi ht]
   exact aux_window_l1_bound phi hwin
 
+/--
+@isnad1 id=le.2h2v.s8.2e5b6e9c7ad2 from=translated src=- shape=13dc8567 vocab=ca60b7a5
+-/
 theorem aux_window_boundary_l1 (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) {t : ℝ} (ht : 0 < t) :
     eLpNorm (aux_liftPlaneKernel (tensorSquare (aux_windowRescale phi t))) 1 volume ≤
@@ -1867,6 +2072,9 @@ theorem aux_window_boundary_l1 (phi : SchwartzMap ℝ ℝ)
     _ ≤ ENNReal.ofReal (256 * C_uniPair ^ 2) :=
       aux_eLpNorm_one_le_of_integral_norm_le hTint hprodint
 
+/--
+@isnad1 id=eq.0h4v.s6.195abae9d8cc from=translated src=- shape=af0d5922 vocab=3b460c43
+-/
 theorem aux_oneScale_telescope (phi : SchwartzMap ℝ ℝ) (a : ℤ → ℝ) :
     ∀ J y, (∑ j ∈ Finset.range J,
       aux_oneScaleWindowSequence phi a (j : ℤ) y) =
@@ -1899,7 +2107,9 @@ $$
 where $C_{\text{P:one-scale-estimate-window}}=2^9C_{\text{Universal pair}}^2$.
 
 See also `Auto.oneScaleEstimateWindow`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=le.3h4v.s6.bf57598806fd from=translated src=- shape=453b1233 vocab=a04ebc1d
+-/
 theorem oneScaleEstimateWindow {n : ℕ} (hn : 2 ≤ n) (a : ℤ → ℝ)
     (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
@@ -1941,18 +2151,24 @@ $$
 C_{\text{P:one-scale-estimate-window}}=2^{39}.
 $$
 
-See also `Auto.oneScaleEstimateWindow`.-/
+See also `Auto.oneScaleEstimateWindow`.
+@isnad1 id=eq.0h0v.s4.764269b0d4b3 from=translated src=- shape=0cd4e242 vocab=2be6fe31
+-/
 theorem constantOneScaleWindow : C_oneScaleEstimateWindow = (2 : ℝ) ^ 39 := by
   norm_num [C_oneScaleEstimateWindow, C_uniPair]
 
-/-- The `L¹`-normalized rescaling of a Schwartz window is integrable.-/
+/-- The `L¹`-normalized rescaling of a Schwartz window is integrable.
+@isnad1 id=integrab.1h2v.s6.08a00ddecad2 from=translated src=- shape=2158ce64 vocab=5425c30f
+-/
 theorem aux_windowRescale_integrable (phi : SchwartzMap ℝ ℝ)
     (t : ℝ) (ht : 0 < t) :
     Integrable (aux_windowRescale phi t) := by
   unfold aux_windowRescale
   convert (phi.integrable.comp_mul_left' (inv_ne_zero ht.ne')).const_mul t⁻¹ using 1
 
-/-- Fourier transform commutes with subtraction for integrable real-valued functions.-/
+/-- Fourier transform commutes with subtraction for integrable real-valued functions.
+@isnad1 id=eq.2h3v.s7.76d8cf3dea27 from=translated src=- shape=91917df9 vocab=3cb4b296
+-/
 theorem aux_fourier_sub_of_integrable (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => ((f x - g x : ℝ) : ℂ)) xi =
@@ -1988,7 +2204,9 @@ theorem aux_fourier_sub_of_integrable (f g : ℝ → ℝ)
 
 /--
 Fourier transform converts a positive `L¹`-normalized window rescaling
-into frequency rescaling.-/
+into frequency rescaling.
+@isnad1 id=eq.1h3v.s7.6757ccfc75e1 from=translated src=- shape=90f1e3bc vocab=c107a8a2
+-/
 theorem aux_windowRescale_fourier (t : ℝ) (ht : 0 < t)
     (phi : SchwartzMap ℝ ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_windowRescale phi t x : ℂ)) xi =
@@ -2027,7 +2245,9 @@ theorem aux_windowRescale_fourier (t : ℝ) (ht : 0 < t)
       push_cast
       ring_nf
 
-/-- The elementary square rearrangement used in `fourierTransformWindow`.-/
+/-- The elementary square rearrangement used in `fourierTransformWindow`.
+@isnad1 id=eq.2h3v.s7.12e0a162a176 from=translated src=- shape=ffced657 vocab=a4e5d5bd
+-/
 theorem aux_window_square_fourier_algebra (A B C : ℂ)
     (hAB : A * B = B) (hBC : C ^ 2 + (1 - B) ^ 2 = 1) :
     (A - B) ^ 2 = A ^ 2 - C ^ 2 := by
@@ -2045,7 +2265,9 @@ Let $a\in A$. Then for any $j\in \mathbb{Z}$,
 $$
 \mathcal F({\phi}_{0,a(j-1)}-{\phi}_{1,a(j)})^2=
 (\widehat{{\phi}_{0,a(j-1)}})^2-(\widehat{{\phi}_{0,a(j)}})^2.
-$$-/
+$$
+@isnad1 id=eq.2h5v.s8.b8a90e2ecad4 from=translated src=- shape=9ee16e1a vocab=8f8c0232
+-/
 theorem fourierTransformWindow (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (j : ℤ) (xi : ℝ) :
@@ -2112,7 +2334,9 @@ For any $x\in \mathbb{R}$ and $\lambda, s>0$,
 
 $$
 \langle x \rangle^2_{(\lambda s)} \le \max\{\lambda,\lambda^{-1}\}\langle x \rangle^2_{(s)}
-$$-/
+$$
+@isnad1 id=le.2h3v.s6.64292217843a from=translated src=- shape=ae0ff8a6 vocab=a995bc35
+-/
 theorem scaleEstimate (x lambda s : ℝ) (hlambda : 0 < lambda) (hs : 0 < s) :
     scaledBracketBump 2 (lambda * s) x ≤
       max lambda lambda⁻¹ * scaledBracketBump 2 s x := by
@@ -2176,7 +2400,9 @@ noncomputable def aux_nonWhitneyCorrection (phi0 phi1 : SchwartzMap ℝ ℝ)
     (a : ℤ → ℝ) (j : ℤ) : RealPlane → ℝ :=
   aux_nonWhitneyKernel phi0 phi1 a j - aux_oneScaleWindowKernel phi0 a j
 
-/-- The correction is a Wiener kernel, so it can be used as reduction data.-/
+/-- The correction is a Wiener kernel, so it can be used as reduction data.
+@isnad1 id=memw0.1h4v.s6.eeb60a15e316 from=translated src=- shape=dd81b51a vocab=c4f6a815
+-/
 theorem aux_nonWhitneyCorrection_memW0 (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (j : ℤ) :
     MemW0 (aux_nonWhitneyCorrection phi0 phi1 a j) := by
@@ -2193,7 +2419,9 @@ theorem aux_nonWhitneyCorrection_memW0 (a : ℤ → ℝ) (ha : SpacedSequence a)
 
 /--
 The original non-Whitney sequence splits into its telescoping and
-transverse components.-/
+transverse components.
+@isnad1 id=eq.0h3v.s7.e10e4afc706c from=translated src=- shape=3aff50ae vocab=155fc8de
+-/
 theorem aux_nonWhitney_decompose (phi0 phi1 : SchwartzMap ℝ ℝ)
     (a : ℤ → ℝ) :
     aux_nonWhitneySequence phi0 phi1 a =
@@ -2216,11 +2444,17 @@ noncomputable def aux_nonWhitneyBase (a : ℤ → ℝ) : ℤ → ℝ :=
 noncomputable def aux_nonWhitneyPrev (a : ℤ → ℝ) : ℤ → ℝ :=
   fun j => aux_nonWhitneyBase a (j - 1)
 
+/--
+@isnad1 id=spacedse.1h1v.s3.6455a9a89147 from=translated src=- shape=b6154235 vocab=677748f1
+-/
 theorem aux_nonWhitneyBase_spaced (a : ℤ → ℝ) (ha : SpacedSequence a) :
     SpacedSequence (aux_nonWhitneyBase a) := by
   change SpacedSequence (fun j => (4 : ℝ)⁻¹ * a j)
   exact smul_mem_A ha (by norm_num)
 
+/--
+@isnad1 id=spacedse.1h1v.s3.fd196c1fe3ed from=translated src=- shape=b6154235 vocab=c4300325
+-/
 theorem aux_nonWhitneyPrev_spaced (a : ℤ → ℝ) (ha : SpacedSequence a) :
     SpacedSequence (aux_nonWhitneyPrev a) := by
   have h := shift_mem_A (aux_nonWhitneyBase_spaced a ha) (-1)
@@ -2229,6 +2463,9 @@ theorem aux_nonWhitneyPrev_spaced (a : ℤ → ℝ) (ha : SpacedSequence a) :
   simp only [aux_nonWhitneyPrev]
   congr 1
 
+/--
+@isnad1 id=le.1h1v.s4.a9425e95ebe7 from=translated src=- shape=ef430333 vocab=35101cb7
+-/
 theorem aux_nonWhitneyPrev_distance (a : ℤ → ℝ) (ha : SpacedSequence a) :
     SequenceDistance (aux_nonWhitneyBase a) (aux_nonWhitneyPrev a) ≤
       (1 : WithTop ℕ) := by
@@ -2241,6 +2478,9 @@ theorem aux_nonWhitneyPrev_distance (a : ℤ → ℝ) (ha : SpacedSequence a) :
     apply aux_spacedSequence_monotone (aux_nonWhitneyBase_spaced a ha)
     omega
 
+/--
+@isnad1 id=le.1h1v.s4.dc7ac8fd7ea0 from=translated src=- shape=82f549f3 vocab=06898929
+-/
 theorem aux_nonWhitneyBase_distance (a : ℤ → ℝ) (ha : SpacedSequence a) :
     SequenceDistance (aux_nonWhitneyBase a) (aux_nonWhitneyBase a) ≤
       (1 : WithTop ℕ) := by
@@ -2293,6 +2533,9 @@ noncomputable def aux_nonWhitneyTriples (a : ℤ → ℝ) (ha : SpacedSequence a
   classical
   exact Finset.univ.image (aux_nonWhitneyTriple a ha)
 
+/--
+@isnad1 id=ne.1h1v.s3.d26366030c66 from=translated src=- shape=41432c08 vocab=466ebe0f
+-/
 theorem aux_nonWhitneyBase_prev_ne (a : ℤ → ℝ) (ha : SpacedSequence a) :
     aux_nonWhitneyPrev a ≠ aux_nonWhitneyBase a := by
   intro h
@@ -2304,6 +2547,9 @@ theorem aux_nonWhitneyBase_prev_ne (a : ℤ → ℝ) (ha : SpacedSequence a) :
     convert hstep using 1; ring_nf
   nlinarith
 
+/--
+@isnad1 id=injectiv.1h1v.s4.bb76d68cba8f from=translated src=- shape=3cad9933 vocab=79e3d0a9
+-/
 theorem aux_nonWhitneyTriple_injective (a : ℤ → ℝ) (ha : SpacedSequence a) :
     Function.Injective (aux_nonWhitneyTriple a ha) := by
   intro u w huw
@@ -2327,6 +2573,9 @@ theorem aux_nonWhitneyTriple_injective (a : ℤ → ℝ) (ha : SpacedSequence a)
       simpa [aux_nonWhitneyTriple] using hright.symm
   exact Prod.ext hu0 hu1
 
+/--
+@isnad1 id=le.1h1v.s4.a73d9f4bfa71 from=translated src=- shape=3cf09349 vocab=49a0e929
+-/
 theorem aux_nonWhitneyTriples_card (a : ℤ → ℝ) (ha : SpacedSequence a) :
     (aux_nonWhitneyTriples a ha).card ≤ 5 := by
   classical
@@ -2337,7 +2586,9 @@ theorem aux_nonWhitneyTriples_card (a : ℤ → ℝ) (ha : SpacedSequence a) :
     _ = 4 := by simp
     _ ≤ 5 := by norm_num
 
-/-- The window decay estimate after an `L¹`-normalized rescaling.-/
+/-- The window decay estimate after an `L¹`-normalized rescaling.
+@isnad1 id=le.2h3v.s6.7911b561bd9b from=translated src=- shape=d511fd32 vocab=f70a5996
+-/
 theorem aux_nonWhitney_windowRescale_decay (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) {t : ℝ} (ht : 0 < t) (x : ℝ) :
     |aux_windowRescale phi t x| ≤
@@ -2353,6 +2604,9 @@ theorem aux_nonWhitney_windowRescale_decay (phi : SchwartzMap ℝ ℝ)
       unfold scaledBracketBump bracketBump
       ring
 
+/--
+@isnad1 id=le.0h0v.s6.dd6d184c1f15 from=translated src=- shape=2eb6ccb4 vocab=c64cfd0e
+-/
 theorem aux_nonWhitney_window_constant_bound :
     8 * C_uniPair ≤
       2 * C_smoothDecay2 2 * max 1 ((C_uniPair / (2 * Real.pi)) ^ 2) := by
@@ -2373,6 +2627,9 @@ theorem aux_nonWhitney_window_constant_bound :
     _ = 2 * C_smoothDecay2 2 * max 1 ((C_uniPair / (2 * Real.pi)) ^ 2) := by
       norm_num [C_smoothDecay2]
 
+/--
+@isnad1 id=le.2h3v.s7.1475675301ce from=translated src=- shape=a10c0552 vocab=81070ee9
+-/
 theorem aux_nonWhitney_windowRescale_decay' (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) {t : ℝ} (ht : 0 < t) (x : ℝ) :
     |aux_windowRescale phi t x| ≤
@@ -2382,6 +2639,9 @@ theorem aux_nonWhitney_windowRescale_decay' (phi : SchwartzMap ℝ ℝ)
     (mul_le_mul_of_nonneg_right aux_nonWhitney_window_constant_bound
       (aux_scaledBracketBump_nonneg 2 ht x))
 
+/--
+@isnad1 id=le.11h9v.s8.527c1b6a3c26 from=translated src=- shape=fae8704b vocab=12558069
+-/
 theorem aux_nonWhitney_tensor_correction_decay
     (f g h : ℝ → ℝ) (K P0 P1 Q0 Q1 : ℝ)
     (hK : 0 ≤ K) (hP0 : 0 ≤ P0) (hP1 : 0 ≤ P1)
@@ -2447,12 +2707,18 @@ theorem aux_nonWhitney_tensor_correction_decay
 noncomputable def aux_nonWhitneyDecayConstant : ℝ :=
   2 * C_smoothDecay2 2 * max 1 ((C_uniPair / (2 * Real.pi)) ^ 2)
 
+/--
+@isnad1 id=le.0h0v.s3.3d6f6285c560 from=translated src=- shape=ff3a10fc vocab=ffef6a3d
+-/
 theorem aux_nonWhitneyDecayConstant_nonneg :
     0 ≤ aux_nonWhitneyDecayConstant := by
   unfold aux_nonWhitneyDecayConstant
   exact mul_nonneg (mul_nonneg (by norm_num) (by norm_num [C_smoothDecay2]))
     ((by norm_num : (0 : ℝ) ≤ 1).trans (le_max_left _ _))
 
+/--
+@isnad1 id=le.2h5v.s8.69958188d1e8 from=translated src=- shape=68ca973d vocab=4d899877
+-/
 theorem aux_nonWhitneyCorrection_decay_two
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (j : ℤ) (v : RealPlane) :
@@ -2485,6 +2751,9 @@ theorem aux_nonWhitneyCorrection_decay_two
   · exact aux_nonWhitney_windowRescale_decay' phi0 hpair.1
       (aux_spacedSequence_pos ha j) v.2
 
+/--
+@isnad1 id=le.1h3v.s6.40346c4ab2aa from=translated src=- shape=d7fd95a9 vocab=2229705f
+-/
 theorem aux_nonWhitney_scale_to_base (a : ℤ → ℝ) (ha : SpacedSequence a)
     (j : ℤ) (x : ℝ) :
     scaledBracketBump 2 (a j) x ≤
@@ -2507,6 +2776,9 @@ theorem aux_nonWhitney_scale_to_base (a : ℤ → ℝ) (ha : SpacedSequence a)
         (aux_scaledBracketBumpReal_exponent_reduce (3 / 2 : ℝ) 2
           (aux_nonWhitneyBase a j) x hb (by norm_num)) (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s5.8f5b9dab9447 from=translated src=- shape=45cf5bf9 vocab=0da0b2e3
+-/
 theorem aux_CuniPair_over_two_pi_one_le :
     1 ≤ C_uniPair / (2 * Real.pi) := by
   have hp : 0 < 2 * Real.pi := by positivity
@@ -2515,6 +2787,9 @@ theorem aux_CuniPair_over_two_pi_one_le :
   norm_num [C_uniPair]
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s6.e562a555a66b from=translated src=- shape=4fae563b vocab=f13451f1
+-/
 theorem aux_nonWhitneyDecayConstant_sq :
     aux_nonWhitneyDecayConstant ^ 2 =
       4 * C_smoothDecay2 2 ^ 2 *
@@ -2527,6 +2802,9 @@ theorem aux_nonWhitneyDecayConstant_sq :
   rw [max_eq_right hr2, max_eq_right hr4]
   ring
 
+/--
+@isnad1 id=le.12h8v.s8.6d6fdcd184e9 from=translated src=- shape=fd0b4a94 vocab=805e4ba8
+-/
 theorem aux_nonWhitney_four_bracket_terms_le
     (A0 A1 B0 B1 P0 P1 Q0 Q1 : ℝ)
     (_hA0 : 0 ≤ A0) (hA1 : 0 ≤ A1) (_hB0 : 0 ≤ B0) (hB1 : 0 ≤ B1)
@@ -2567,6 +2845,9 @@ theorem aux_nonWhitney_four_bracket_terms_le
 noncomputable def aux_nonWhitneyCorrectionConstant : ℝ :=
   128 * max 1 ((C_uniPair / (2 * Real.pi)) ^ 4) * C_smoothDecay2 2 ^ 2
 
+/--
+@isnad1 id=lt.0h0v.s3.048d25085f88 from=translated src=- shape=ff3a10fc vocab=ad80b514
+-/
 theorem aux_nonWhitneyCorrectionConstant_pos :
     0 < aux_nonWhitneyCorrectionConstant := by
   unfold aux_nonWhitneyCorrectionConstant
@@ -2574,6 +2855,9 @@ theorem aux_nonWhitneyCorrectionConstant_pos :
     lt_of_lt_of_le zero_lt_one (le_max_left _ _)
   exact mul_pos (mul_pos (by norm_num) hmax) (by norm_num [C_smoothDecay2])
 
+/--
+@isnad1 id=le.2h5v.s8.4886f63cce2b from=translated src=- shape=084d8c30 vocab=d98e7786
+-/
 theorem aux_nonWhitneyCorrection_decay
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (j : ℤ) (v : RealPlane) :
@@ -2638,6 +2922,9 @@ theorem aux_nonWhitneyCorrection_decay
       unfold aux_nonWhitneyCorrectionConstant
       ring
 
+/--
+@isnad1 id=eq.1h3v.s8.044e294201c4 from=translated src=- shape=46dbc69e vocab=c96b2ea6
+-/
 theorem aux_nonWhitneyTriples_sum
     (a : ℤ → ℝ) (ha : SpacedSequence a) (j : ℤ) (v : RealPlane) :
     (∑ q ∈ aux_nonWhitneyTriples a ha,
@@ -2662,6 +2949,9 @@ theorem aux_nonWhitneyTriples_sum
   · intro x _ y _ hxy
     exact aux_nonWhitneyTriple_injective a ha hxy
 
+/--
+@isnad1 id=eq.0h3v.s5.bae434ed2328 from=translated src=- shape=684b4703 vocab=d672f211
+-/
 theorem aux_planeFourier_const_mul (c : ℝ) (M : RealPlane → ℝ)
     (xi : EuclideanSpace ℝ (Fin 2)) :
     aux_planeFourier (fun v => c * M v) xi = c * aux_planeFourier M xi := by
@@ -2673,6 +2963,9 @@ theorem aux_planeFourier_const_mul (c : ℝ) (M : RealPlane → ℝ)
   rw [Circle.smul_def, Circle.smul_def]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.b84f5523b576 from=translated src=- shape=aae45ee2 vocab=2513bcee
+-/
 theorem aux_fourierPlane_const_mul (c : ℝ) (M : RealPlane → ℝ)
     (xi : RealPlane) :
     aux_fourierPlane (fun v => c * M v) xi = c * aux_fourierPlane M xi := by
@@ -2726,7 +3019,9 @@ noncomputable def aux_nonWhitneyData
             scaledBracketBumpReal (3 / 2 : ℝ) (q.right j) ((W q.orientation v).2) := by
         field_simp [ne_of_gt aux_nonWhitneyCorrectionConstant_pos]
 
-/-- Coordinate transport of a planar Wiener kernel to the canonical Fourier model.-/
+/-- Coordinate transport of a planar Wiener kernel to the canonical Fourier model.
+@isnad1 id=memw0.1h1v.s8.e785745e7a95 from=translated src=- shape=96dfb891 vocab=4bf756d9
+-/
 theorem aux_plane_memW0 (M : RealPlane → ℝ) (hM : MemW0 M) :
     MemW0 (fun z : EuclideanSpace ℝ (Fin 2) => M (z 0, z 1)) := by
   let e : EuclideanSpace ℝ (Fin 2) ≃L[ℝ] RealPlane :=
@@ -2735,6 +3030,9 @@ theorem aux_plane_memW0 (M : RealPlane → ℝ) (hM : MemW0 M) :
     aux_memW0_comp_continuousLinearEquiv hM e
   simpa [e, Function.comp_def] using hcomp
 
+/--
+@isnad1 id=eq.0h2v.s7.a73a9c1e1648 from=translated src=- shape=d5e0f37d vocab=3b14b152
+-/
 theorem aux_planeFourier_tensorSquare (f : ℝ → ℝ)
     (xi : EuclideanSpace ℝ (Fin 2)) :
     aux_planeFourier (tensorSquare f) xi =
@@ -2743,6 +3041,9 @@ theorem aux_planeFourier_tensorSquare (f : ℝ → ℝ)
   unfold aux_planeFourier tensorSquare
   simpa using aux_fourier_tensor_two_eq f f xi
 
+/--
+@isnad1 id=eq.2h3v.s6.9a3c3cea8cf5 from=translated src=- shape=0dad5de6 vocab=9c002291
+-/
 theorem aux_planeFourier_sub_of_memW0 (M N : RealPlane → ℝ)
     (hM : MemW0 M) (hN : MemW0 N) (xi : EuclideanSpace ℝ (Fin 2)) :
     aux_planeFourier (fun v => M v - N v) xi =
@@ -2760,6 +3061,9 @@ theorem aux_planeFourier_sub_of_memW0 (M N : RealPlane → ℝ)
   simpa [aux_planeFourier, f, g] using
     aux_fourier_sub_euclidean_vanishing f g hf hg xi
 
+/--
+@isnad1 id=eq.3h4v.s9.9a70c0c760bd from=translated src=- shape=517894cb vocab=c0eb679c
+-/
 theorem aux_planeFourier_nonWhitneyCorrection
     (f g h : ℝ → ℝ) (hf : MemW0 f) (hg : MemW0 g) (hh : MemW0 h)
     (xi : EuclideanSpace ℝ (Fin 2)) :
@@ -2780,6 +3084,9 @@ theorem aux_planeFourier_nonWhitneyCorrection
     aux_planeFourier_tensorSquare]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.cd377b6b483f from=translated src=- shape=1b83b942 vocab=2beb108e
+-/
 theorem aux_nonWhitneyCorrection_eq_tensor_form
     (phi0 phi1 : SchwartzMap ℝ ℝ) (a : ℤ → ℝ) (j : ℤ) :
     aux_nonWhitneyCorrection phi0 phi1 a j =
@@ -2791,6 +3098,9 @@ theorem aux_nonWhitneyCorrection_eq_tensor_form
   funext v
   simp [aux_nonWhitneyCorrection, aux_nonWhitneyKernel, aux_oneScaleWindowKernel]
 
+/--
+@isnad1 id=eq.1h5v.s9.9a428fd8b3b3 from=translated src=- shape=159b771e vocab=7c6fd4bd
+-/
 theorem aux_nonWhitneyCorrection_planeFourier_formula
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (j : ℤ) (xi : EuclideanSpace ℝ (Fin 2)) :
@@ -2829,6 +3139,9 @@ theorem aux_nonWhitneyCorrection_planeFourier_formula
   simpa [f, g, h] using
     aux_planeFourier_nonWhitneyCorrection f g h hf hg hh xi
 
+/--
+@isnad1 id=eq.0h2v.s6.083574be4bd6 from=translated src=- shape=d6ced94f vocab=ca3c25b7
+-/
 theorem aux_fourier_neg_conj_real (phi : ℝ → ℝ) (w : ℝ) :
     FourierTransform.fourier (fun u => (phi u : ℂ)) (-w) =
       (starRingEnd ℂ) (FourierTransform.fourier (fun u => (phi u : ℂ)) w) := by
@@ -2852,6 +3165,9 @@ theorem aux_fourier_neg_conj_real (phi : ℝ → ℝ) (w : ℝ) :
     ring
   · simp
 
+/--
+@isnad1 id=eq.2h3v.s6.1e7cab23c773 from=translated src=- shape=2343c173 vocab=84dc2f2b
+-/
 theorem aux_windowRescale_fourier_even (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) {t : ℝ} (ht : 0 < t) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_windowRescale phi t x : ℂ)) (-xi) =
@@ -2863,6 +3179,9 @@ theorem aux_windowRescale_fourier_even (phi : SchwartzMap ℝ ℝ)
   rw [hEq]
   simp
 
+/--
+@isnad1 id=eq.3h3v.s6.f0cce6de47af from=translated src=- shape=488d422e vocab=b9320e12
+-/
 theorem aux_windowRescale_fourier_zero_of_abs_mul_gt_one
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow C_uniPair N_uniPair phi)
     {t : ℝ} (ht : 0 < t) (xi : ℝ) (hxi : 1 < |t * xi|) :
@@ -2875,6 +3194,9 @@ theorem aux_windowRescale_fourier_zero_of_abs_mul_gt_one
   have hbound : t * xi ∈ Set.Icc (-1 : ℝ) 1 := hwin.2.2.1 hmem
   exact (not_lt_of_ge (abs_le.mpr hbound)) hxi
 
+/--
+@isnad1 id=eq.3h3v.s6.453ab9342feb from=translated src=- shape=ea2042cf vocab=2183a3d1
+-/
 theorem aux_windowRescale_fourier_zero_of_inv_lt_abs
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow C_uniPair N_uniPair phi)
     {t : ℝ} (ht : 0 < t) (xi : ℝ) (hxi : t⁻¹ < |xi|) :
@@ -2885,7 +3207,9 @@ theorem aux_windowRescale_fourier_zero_of_inv_lt_abs
     1 = t * t⁻¹ := by field_simp [ne_of_gt ht]
     _ < t * |xi| := mul_lt_mul_of_pos_left hxi ht
 
-/-- The Fourier support of the correction lies in the transverse diagonal strip.-/
+/-- The Fourier support of the correction lies in the transverse diagonal strip.
+@isnad1 id=le.2h4v.s9.b6ce113056a5 from=translated src=- shape=cef7f578 vocab=9905b8ac
+-/
 theorem aux_nonWhitneyCorrection_planeFourier_support
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (j : ℤ) :
@@ -2972,12 +3296,18 @@ theorem aux_nonWhitneyCorrection_planeFourier_support
     rw [hformula]
     simp [hf, hg, hh]
 
+/--
+@isnad1 id=eq.0h3v.s4.9a9611d0775f from=translated src=- shape=2cce887a vocab=5d0f37b1
+-/
 theorem aux_fourierPlane_tensorSquare (f : ℝ → ℝ) (xi eta : ℝ) :
     aux_fourierPlane (tensorSquare f) (xi, eta) =
       aux_fourierReal f xi * aux_fourierReal f eta := by
   change aux_fourierPlane (fun v : RealPlane => f v.1 * f v.2) (xi, eta) = _
   exact aux_fourierPlane_tensor f f xi eta
 
+/--
+@isnad1 id=eq.3h5v.s6.155f5c499090 from=translated src=- shape=51708832 vocab=3b41fa7f
+-/
 theorem aux_fourierPlane_nonWhitneyCorrection
     (f g h : ℝ → ℝ) (hf : MemW0 f) (hg : MemW0 g) (hh : MemW0 h)
     (xi eta : ℝ) :
@@ -2997,6 +3327,9 @@ theorem aux_fourierPlane_nonWhitneyCorrection
     aux_fourierPlane_tensorSquare]
   ring
 
+/--
+@isnad1 id=eq.1h6v.s7.14f200196d06 from=translated src=- shape=fcd143f1 vocab=abf20622
+-/
 theorem aux_nonWhitneyCorrection_fourierPlane_formula
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (j : ℤ) (xi eta : ℝ) :
@@ -3029,7 +3362,9 @@ theorem aux_nonWhitneyCorrection_fourierPlane_formula
   simpa [f, g, h] using
     aux_fourierPlane_nonWhitneyCorrection f g h hf hg hh xi eta
 
-/-- The correction has the anti-diagonal cancellation required by reduction data.-/
+/-- The correction has the anti-diagonal cancellation required by reduction data.
+@isnad1 id=eq.2h5v.s6.171b9fc76c50 from=translated src=- shape=aaf0c65a vocab=6eee9df7
+-/
 theorem aux_nonWhitneyCorrection_fourier_cancel
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (j : ℤ) (xi : ℝ) :
@@ -3086,6 +3421,9 @@ theorem aux_nonWhitneyCorrection_fourier_cancel
     hwindow]
   ring
 
+/--
+@isnad1 id=le.2h4v.s8.2418fed258ce from=translated src=- shape=93dabbc7 vocab=178bd37f
+-/
 theorem aux_nonWhitneyCorrection_frequency_support
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (j : ℤ) :
@@ -3104,6 +3442,9 @@ theorem aux_nonWhitneyCorrection_frequency_support
       field_simp [ne_of_gt (aux_spacedSequence_pos ha (j - 1))]
       ring
 
+/--
+@isnad1 id=auxfrequ.3h3v.s6.43000eda06c9 from=translated src=- shape=f077547f vocab=0f847b43
+-/
 theorem aux_nonWhitneyData_frequencyDiagonalBound
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1)
@@ -3121,6 +3462,9 @@ theorem aux_nonWhitneyData_frequencyDiagonalBound
   intro hzero
   exact hnonzero (by rw [hzero, mul_zero])
 
+/--
+@isnad1 id=memkerne.1h2v.s5.17a20a3d7b58 from=translated src=- shape=664da8a8 vocab=6e527a29
+-/
 theorem aux_oneScaleWindowSequence_mem
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 : SchwartzMap ℝ ℝ) :
     MemKernelSequence 1 (aux_oneScaleWindowSequence phi0 a) := by
@@ -3134,6 +3478,9 @@ theorem aux_oneScaleWindowSequence_mem
     (aux_memW0_tensorSquare _
       (aux_windowRescale_memW0 phi0 (aux_spacedSequence_pos ha j)))
 
+/--
+@isnad1 id=memkerne.1h3v.s6.0e5bd2ee9b99 from=translated src=- shape=a2b18317 vocab=0e86885d
+-/
 theorem aux_nonWhitneyCorrectionSequence_mem
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ) :
     MemKernelSequence 1
@@ -3142,6 +3489,9 @@ theorem aux_nonWhitneyCorrectionSequence_mem
   exact liftPlaneKernel_memW0 _
     (aux_nonWhitneyCorrection_memW0 a ha phi0 phi1 j)
 
+/--
+@isnad1 id=eq.3h3v.s7.8c5c005c77e1 from=translated src=- shape=56300c11 vocab=5c5d52a4
+-/
 theorem aux_nonWhitneyCorrectionSequence_eq_const_mul_data
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1)
@@ -3179,7 +3529,9 @@ See also `Auto.inductPositiveTermsReductionNonWhitney`,
 `Auto.oneScaleEstimateWindow`,
 `Auto.uniPair`,
 `Auto.smoothDecay2`,
-`Auto.diagonalBandReduction`.-/
+`Auto.diagonalBandReduction`.
+@isnad1 id=le.3h4v.s6.854d51221e7a from=translated src=- shape=d92cdf30 vocab=0926fb8c
+-/
 theorem inductPositiveTermsReductionNonWhitney {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
@@ -3257,7 +3609,9 @@ C_{\text{induct positive terms - reduction variant, non-Whitney}}
 <\tfrac89 2^{541}<2^{541}.
 $$
 
-See also `Auto.inductPositiveTermsReductionNonWhitney`.-/
+See also `Auto.inductPositiveTermsReductionNonWhitney`.
+@isnad1 id=lt.0h0v.s5.9cdde38ac6fa from=translated src=- shape=ff0ce2aa vocab=f15134d5
+-/
 theorem constantNonWhitneyReduction :
     C_inductPositiveTermsReductionNonWhitney <
       (8 / 9 : ℝ) * (2 : ℝ) ^ 541 := by
@@ -3340,7 +3694,9 @@ noncomputable def C_inductPositiveTermsReductionNonWhitneySkip (n : ℕ) : ℝ :
 
 /--
 Odd-indexed partial sums of a nonnegative sequence are bounded by the
-corresponding doubled prefix.-/
+corresponding doubled prefix.
+@isnad1 id=le.1h2v.s6.65913c8c045e from=translated src=- shape=98dacb78 vocab=a09ec63f
+-/
 theorem aux_odd_sum_le_double_sum (p : ℕ → ℝ)
     (hpos : ∀ j, 0 ≤ p j) (J : ℕ) :
     (∑ j ∈ Finset.range J, p (2 * j + 1)) ≤
@@ -3353,7 +3709,9 @@ theorem aux_odd_sum_le_double_sum (p : ℕ → ℝ)
       rw [htwo, Finset.sum_range_succ, Finset.sum_range_succ]
       linarith [hpos (2 * J)]
 
-/-- The odd-subsequence normalization produces the stated dyadic factor.-/
+/-- The odd-subsequence normalization produces the stated dyadic factor.
+@isnad1 id=eq.2h2v.s7.939269a74384 from=translated src=- shape=42631eb5 vocab=87614afa
+-/
 theorem aux_nonWhitneySkip_weight {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J) :
     min 1 (Real.rpow (J : ℝ)
       (-1 + (2 : ℝ) ^ ((1 : ℤ) - (n : ℤ) + 1))) =
@@ -3413,7 +3771,9 @@ theorem aux_nonWhitneySkip_weight {n J : ℕ} (hn : 2 ≤ n) (hJ : 0 < J) :
     _ = Real.rpow 2 alpha *
         (Real.rpow 2 (-alpha) * Real.rpow (J : ℝ) (-alpha)) := by ring
 
-/-- A pointwise-positive kernel sequence controls its odd-indexed subsequence.-/
+/-- A pointwise-positive kernel sequence controls its odd-indexed subsequence.
+@isnad1 id=le.4h3v.s9.add2274749d2 from=translated src=- shape=71369c03 vocab=8498c6aa
+-/
 theorem aux_kernelSequenceSeminorm_odd_subsequence_le {n : ℕ} (hn : 2 ≤ n)
     (M : KernelSequence 1) (hM : MemKernelSequence 1 M)
     (hpos : ∀ (j : ℤ) (F : NormalizedFunctionTuple n),
@@ -3563,7 +3923,9 @@ where $C_{\text{induct positive terms - reduction variant, non-Whitney, skip ter
 C_{\text{induct positive terms - reduction variant, non-Whitney}}$.
 
 See also `Auto.inductPositiveTermsReductionNonWhitneySkip`,
-`Auto.inductPositiveTermsReductionNonWhitney`.-/
+`Auto.inductPositiveTermsReductionNonWhitney`.
+@isnad1 id=le.3h4v.s6.46c55067d3df from=translated src=- shape=571333cd vocab=bfb095e6
+-/
 theorem inductPositiveTermsReductionNonWhitneySkip {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a) (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
@@ -3668,7 +4030,9 @@ C_{\text{induct positive terms - reduction variant, non-Whitney, skip terms}}
 <\tfrac89 2^{542}<2^{542}.
 $$
 
-See also `Auto.inductPositiveTermsReductionNonWhitneySkip`.-/
+See also `Auto.inductPositiveTermsReductionNonWhitneySkip`.
+@isnad1 id=lt.1h1v.s6.f8a8f8709a60 from=translated src=- shape=1353f379 vocab=3dc8bae7
+-/
 theorem constantNonWhitneySkipReduction {n : ℕ} (_hn : 2 ≤ n) :
     C_inductPositiveTermsReductionNonWhitneySkip n <
       (8 / 9 : ℝ) * (2 : ℝ) ^ 542 := by
@@ -3735,7 +4099,9 @@ noncomputable def aux_planeRescale (t : ℝ) (Psi : RealPlane → ℝ) : RealPla
 
 /--
 In plane coordinates, the normalized rescaling of `integralFctKernel` is
-the two-dimensional rescaling used by the integral-kernel estimates.-/
+the two-dimensional rescaling used by the integral-kernel estimates.
+@isnad1 id=eq.0h3v.s7.cd8727eb3302 from=translated src=- shape=181cb1a5 vocab=dd5fbae9
+-/
 theorem planeRescale_integralFctKernel_eq
     (s : ℝ) (psi : ℝ → ℝ) (u : EuclideanSpace ℝ (Fin 2)) :
     aux_planeRescale s
@@ -3747,7 +4113,9 @@ theorem planeRescale_integralFctKernel_eq
 
 /--
 The preceding coordinate identity remains available after replacing the
-physical kernel by any bundled Schwartz representative.-/
+physical kernel by any bundled Schwartz representative.
+@isnad1 id=eq.1h4v.s9.84f669369437 from=translated src=- shape=993705f6 vocab=53a04b27
+-/
 theorem planeRescale_schwartzKernel_eq
     (s : ℝ) (psi : ℝ → ℝ) (K : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hK : ∀ u : EuclideanSpace ℝ (Fin 2), K u = integralFctKernel psi u)
@@ -3771,10 +4139,16 @@ noncomputable def aux_whitneyAlpha (a : ℤ → ℝ) (k : ℤ) : ℝ :=
   if k % 2 = 0 then (2 : ℝ) ^ (-5 : ℤ) * a (k / 2)
   else (2 : ℝ) ^ (5 : ℤ) * a ((k - 1) / 2)
 
+/--
+@isnad1 id=eq.0h2v.s5.992752ac1f5b from=translated src=- shape=b50c1e28 vocab=cadfaf2a
+-/
 theorem aux_whitneyAlpha_even (a : ℤ → ℝ) (j : ℤ) :
     aux_whitneyAlpha a (2 * j) = (2 : ℝ) ^ (-5 : ℤ) * a j := by
   simp [aux_whitneyAlpha]
 
+/--
+@isnad1 id=eq.0h2v.s6.0facf01aba9a from=translated src=- shape=8eaf497f vocab=ef9cfdf1
+-/
 theorem aux_whitneyAlpha_odd (a : ℤ → ℝ) (j : ℤ) :
     aux_whitneyAlpha a (2 * j + 1) = (2 : ℝ) ^ (5 : ℤ) * a j := by
   have hmod : (2 * j + 1) % 2 = 1 := by omega
@@ -3782,6 +4156,9 @@ theorem aux_whitneyAlpha_odd (a : ℤ → ℝ) (j : ℤ) :
   congr 2
   omega
 
+/--
+@isnad1 id=spacedse.2h1v.s6.7582f5b45c9c from=translated src=- shape=e85e8b80 vocab=873cfbb7
+-/
 theorem aux_whitneyAlpha_spaced (a : ℤ → ℝ) (ha : SpacedSequence a)
     (hgap : ∀ j : ℤ, (2 : ℝ) ^ 11 * a (j - 1) ≤ a j) :
     SpacedSequence (aux_whitneyAlpha a) := by
@@ -3821,6 +4198,9 @@ theorem aux_whitneyAlpha_spaced (a : ℤ → ℝ) (ha : SpacedSequence a)
               ring
         _ ≤ (2 : ℝ) ^ (-5 : ℤ) * a (j + 1) := hscale
 
+/--
+@isnad1 id=ex.1h3v.s10.28a84e07bdbe from=translated src=- shape=87c20dcd vocab=146dba59
+-/
 theorem aux_whitney_phiJProperties
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (Psi : WhitneyKernelData) :
@@ -3889,6 +4269,9 @@ theorem aux_whitney_phiJProperties
     simpa [aux_planeFourier, Psi.kernel_schwartz_eq] using Psi.diagonal_derivative
   exact phiJProperties phi0 phi1 hpair Psi.kernel_schwartz hnonzero hsym hpos hsupp hderiv
 
+/--
+@isnad1 id=memw0.2h2v.s5.893067c0154c from=translated src=- shape=ba827c09 vocab=fead1467
+-/
 theorem aux_planeRescale_memW0 (Psi : RealPlane → ℝ) (hPsi : MemW0 Psi)
     {t : ℝ} (ht : 0 < t) : MemW0 (aux_planeRescale t Psi) := by
   let e : RealPlane ≃L[ℝ] RealPlane :=
@@ -3901,6 +4284,9 @@ theorem aux_planeRescale_memW0 (Psi : RealPlane → ℝ) (hPsi : MemW0 Psi)
   change t⁻¹ ^ 2 * Psi (t⁻¹ * v.1, t⁻¹ * v.2) = t⁻¹ ^ 2 * Psi (t⁻¹ • v)
   congr 2
 
+/--
+@isnad1 id=le.3h3v.s7.3b94c45b0c59 from=translated src=- shape=ba98c1a5 vocab=d041c563
+-/
 theorem aux_planeRescale_positive (Psi : RealPlane → ℝ)
     (hpos : ∀ g : ℝ → ℝ, aux_bounded g →
       0 ≤ ∫ v : RealPlane, g v.1 * g v.2 * Psi v)
@@ -3929,6 +4315,9 @@ theorem aux_planeRescale_positive (Psi : RealPlane → ℝ)
   rw [← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ ht.ne'), one_mul]
   exact hbase
 
+/--
+@isnad1 id=eq.1h3v.s5.848fccefe6e4 from=translated src=- shape=f78d386b vocab=e4037724
+-/
 theorem aux_planeRescale_fourierPlane (t : ℝ) (ht : 0 < t)
     (Psi : RealPlane → ℝ) (xi : RealPlane) :
     aux_fourierPlane (aux_planeRescale t Psi) xi =
@@ -3965,6 +4354,9 @@ theorem aux_planeRescale_fourierPlane (t : ℝ) (ht : 0 < t)
       field_simp [ne_of_gt ht]
     _ = aux_fourierPlane Psi (t • xi) := by rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.6687a764f100 from=translated src=- shape=d8dca6a7 vocab=4e5cf78a
+-/
 theorem aux_planeRescale_planeFourier (t : ℝ) (ht : 0 < t)
     (Psi : RealPlane → ℝ) (xi : EuclideanSpace ℝ (Fin 2)) :
     aux_planeFourier (aux_planeRescale t Psi) xi =
@@ -4005,6 +4397,9 @@ theorem aux_planeRescale_planeFourier (t : ℝ) (ht : 0 < t)
     _ = _ := by
       simp only [g]
 
+/--
+@isnad1 id=eq.0h3v.s6.5449cf508538 from=translated src=- shape=3f1fbcf6 vocab=4f48aab0
+-/
 theorem aux_planeFourier_eq_fourierPlane (M : RealPlane → ℝ) (xi eta : ℝ) :
     aux_planeFourier M (WithLp.toLp 2 ![xi, eta]) =
       aux_fourierPlane M (xi, eta) := by
@@ -4030,6 +4425,9 @@ theorem aux_planeFourier_eq_fourierPlane (M : RealPlane → ℝ) (xi eta : ℝ) 
   rw [hpoint]
   exact he.integral_comp' H
 
+/--
+@isnad1 id=le.1h3v.s7.1e481cc164c0 from=translated src=- shape=bec54188 vocab=9f4663b9
+-/
 theorem aux_planeRescale_decay (Psi : WhitneyKernelData) {t : ℝ} (ht : 0 < t)
     (v : RealPlane) :
     |aux_planeRescale t Psi.kernel v| ≤
@@ -4070,6 +4468,9 @@ theorem aux_planeRescale_decay (Psi : WhitneyKernelData) {t : ℝ} (ht : 0 < t)
       intro u hu
       field_simp [ne_of_gt ht]
 
+/--
+@isnad1 id=le.5h3v.s8.49e25b2b3b95 from=translated src=- shape=f4018122 vocab=f4b76f27
+-/
 theorem aux_whitney_inverseFourier_decay
     (q : ℝ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hqCont : ContDiff ℝ 2 q)
@@ -4153,6 +4554,9 @@ theorem aux_whitney_inverseFourier_decay
       norm_num [C_smoothDecay2]
       ring
 
+/--
+@isnad1 id=le.3h3v.s8.634e1a88f92e from=translated src=- shape=ef9fa510 vocab=86c5e6d8
+-/
 theorem aux_whitney_psi_decay
     (psi : SchwartzMap ℝ ℝ) (C : ℝ) (hC : 0 ≤ C)
     (hsupp : Function.support
@@ -4200,6 +4604,9 @@ theorem aux_whitney_psi_decay
   rw [hinv] at hdecay
   simpa [Complex.norm_real] using hdecay
 
+/--
+@isnad1 id=eq.3h5v.s7.fcff241a7416 from=translated src=- shape=218e564d vocab=994b9ce8
+-/
 theorem aux_whitneyM3_fourierPlane_formula
     (K : RealPlane → ℝ) (p f : ℝ → ℝ)
     (hK : MemW0 K) (hp : MemW0 p) (hf : MemW0 f)
@@ -4228,6 +4635,9 @@ theorem aux_whitneyM3_fourierPlane_formula
     aux_fourierPlane_const_mul, hfp, hpp]
   norm_num
 
+/--
+@isnad1 id=eq.3h4v.s8.19c7d45581c5 from=translated src=- shape=0fb845a3 vocab=4018465b
+-/
 theorem aux_whitneyM3_planeFourier_formula
     (K : RealPlane → ℝ) (p f : ℝ → ℝ)
     (hK : MemW0 K) (hp : MemW0 p) (hf : MemW0 f)
@@ -4249,6 +4659,9 @@ theorem aux_whitneyM3_planeFourier_formula
     aux_planeFourier_tensorSquare, aux_planeFourier_tensorSquare]
   norm_num
 
+/--
+@isnad1 id=eq.6h4v.s7.0164efdf2cb4 from=translated src=- shape=bf1d43f9 vocab=dc3843c9
+-/
 theorem aux_whitneyM3_cancellation_of_square_identity
     (K : RealPlane → ℝ) (p f : ℝ → ℝ)
     (hK : MemW0 K) (hp : MemW0 p) (hf : MemW0 f)
@@ -4265,6 +4678,9 @@ theorem aux_whitneyM3_cancellation_of_square_identity
     hsquare]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s10.ea770f3d0136 from=translated src=- shape=c458e8a7 vocab=73bb04dc
+-/
 theorem aux_whitney_rawPhiJIdentity
     (phi0 phi1 : SchwartzMap ℝ ℝ) (Psi : WhitneyKernelData)
     (psi : SchwartzMap ℝ ℝ)
@@ -4302,6 +4718,9 @@ theorem aux_whitney_rawPhiJIdentity
         aux_planeFourier_eq_fourierPlane Psi.kernel z (-z)
   rw [hcoord]
 
+/--
+@isnad1 id=eq.2h7v.s10.efe79eda18b7 from=translated src=- shape=06203914 vocab=ab2a1f2b
+-/
 theorem aux_whitneyM3_square_identity
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 psi : SchwartzMap ℝ ℝ) (Psi : WhitneyKernelData)
@@ -4350,6 +4769,9 @@ theorem aux_whitneyM3_square_identity
   have hraw := aux_whitney_rawPhiJIdentity phi0 phi1 Psi psi hpsi (a j * xi)
   rw [hp, hraw, ← hf, ← hK]
 
+/--
+@isnad1 id=le.4h3v.s8.76c52791c926 from=translated src=- shape=a8e20b96 vocab=bcfd57f0
+-/
 theorem aux_whitney_strip_from_coordinate_kill
     (F : EuclideanSpace ℝ (Fin 2) → ℂ) {s t : ℝ}
     (hs : 0 < s) (ht : 0 < t) (hgap : (2 : ℝ) ^ 11 * s ≤ t)
@@ -4382,6 +4804,9 @@ theorem aux_whitney_strip_from_coordinate_kill
   · exact hneq (hkill z 0 h0)
   · exact hneq (hkill z 1 h1)
 
+/--
+@isnad1 id=eq.4h4v.s8.65080d1e287f from=translated src=- shape=3e6881b8 vocab=75f74426
+-/
 theorem aux_whitney_windowRescale_zero_of_upper_support
     (phi : SchwartzMap ℝ ℝ) (t R : ℝ) (ht : 0 < t)
     (hrescale : ∀ xi : ℝ,
@@ -4402,6 +4827,9 @@ theorem aux_whitney_windowRescale_zero_of_upper_support
       _ = |t * xi| := by rw [abs_mul, abs_of_pos ht]
   exact (not_lt_of_ge hupper) hlower
 
+/--
+@isnad1 id=eq.4h5v.s8.a664493eca15 from=translated src=- shape=639ce90d vocab=488a3d59
+-/
 theorem aux_whitney_planeRescale_zero_of_coordinate_upper_support
     (K : RealPlane → ℝ) (t R : ℝ) (ht : 0 < t)
     (hrescale : ∀ z : EuclideanSpace ℝ (Fin 2),
@@ -4423,6 +4851,9 @@ theorem aux_whitney_planeRescale_zero_of_coordinate_upper_support
       _ = |t * z q| := by rw [abs_mul, abs_of_pos ht]
   exact (not_lt_of_ge hupper) hlower
 
+/--
+@isnad1 id=eq.4h5v.s9.189ff4240716 from=translated src=- shape=6abf226f vocab=20b830e7
+-/
 theorem aux_whitneyM3_fourier_zero_of_coordinate_kill
     (K : RealPlane → ℝ) (p f : ℝ → ℝ)
     (z : EuclideanSpace ℝ (Fin 2))
@@ -4452,6 +4883,9 @@ theorem aux_whitneyM3_fourier_zero_of_coordinate_kill
       simpa using hfzero
     simp [hp1, hf1]
 
+/--
+@isnad1 id=le.7h5v.s10.64d84b326823 from=translated src=- shape=f8b6b228 vocab=20954c45
+-/
 theorem aux_whitneyM3_support_of_formula_and_kills
     (K : RealPlane → ℝ) (p f : ℝ → ℝ) {s t : ℝ}
     (hs : 0 < s) (ht : 0 < t) (hgap : (2 : ℝ) ^ 11 * s ≤ t)
@@ -4479,6 +4913,9 @@ theorem aux_whitneyM3_support_of_formula_and_kills
   exact aux_whitneyM3_fourier_zero_of_coordinate_kill K p f
     z (hformula z) q (hKkill z q hz) (hpkill z q hz) (hfkill z q hz)
 
+/--
+@isnad1 id=le.4h6v.s9.5f04929f91ce from=translated src=- shape=2e5dbd76 vocab=d74c1ad1
+-/
 theorem aux_whitneyM3_frequency_support
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (hgap : ∀ j : ℤ, (2 : ℝ) ^ 11 * a (j - 1) ≤ a j)
@@ -4594,6 +5031,9 @@ noncomputable def aux_whitneyTriples (a : ℤ → ℝ) (ha : SpacedSequence a) :
   classical
   exact Finset.univ.image (aux_whitneyTriple a ha)
 
+/--
+@isnad1 id=le.1h1v.s4.521d4cacc90a from=translated src=- shape=27569300 vocab=8511d897
+-/
 theorem aux_whitneyTriples_card (a : ℤ → ℝ) (ha : SpacedSequence a) :
     (aux_whitneyTriples a ha).card ≤ 5 := by
   classical
@@ -4604,11 +5044,17 @@ theorem aux_whitneyTriples_card (a : ℤ → ℝ) (ha : SpacedSequence a) :
     _ = 2 := by simp
     _ ≤ 5 := by omega
 
+/--
+@isnad1 id=injectiv.1h1v.s4.f631c2cb816d from=translated src=- shape=2a241d7b vocab=716d52e4
+-/
 theorem aux_whitneyTriple_injective (a : ℤ → ℝ) (ha : SpacedSequence a) :
     Function.Injective (aux_whitneyTriple a ha) := by
   intro u v huv
   exact congrArg ReductionScaleTriple.orientation huv
 
+/--
+@isnad1 id=eq.1h3v.s7.fbcef9f8ff7d from=translated src=- shape=6631513f vocab=bbf40bc8
+-/
 theorem aux_whitneyTriples_sum (a : ℤ → ℝ) (ha : SpacedSequence a)
     (j : ℤ) (v : RealPlane) :
     (∑ q ∈ aux_whitneyTriples a ha,
@@ -4663,6 +5109,9 @@ noncomputable def aux_whitneyData
             scaledBracketBumpReal (3 / 2 : ℝ) (a j) ((W u v).2) := by
         field_simp [ne_of_gt hc]
 
+/--
+@isnad1 id=le.2h4v.s7.e68dce9ba42b from=translated src=- shape=972545ab vocab=0305bd50
+-/
 theorem aux_whitney_windowRescale_decay_of_bracket
     (phi : SchwartzMap ℝ ℝ) (C : ℝ)
     (hphi : ∀ x : ℝ, |phi x| ≤ C * bracketBump x ^ 2)
@@ -4679,6 +5128,9 @@ theorem aux_whitney_windowRescale_decay_of_bracket
       unfold scaledBracketBump bracketBump
       ring
 
+/--
+@isnad1 id=le.2h4v.s7.3c76eb2b9cf0 from=translated src=- shape=a3e26b66 vocab=78d18e8c
+-/
 theorem aux_whitney_f_decay
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     {t : ℝ} (ht : 0 < t) (x : ℝ) :
@@ -4728,6 +5180,9 @@ theorem aux_whitney_f_decay
         (256 * C_uniPair * scaledBracketBump 2 t x) := add_le_add h0' h1'
     _ = (2 : ℝ) ^ 9 * C_uniPair * scaledBracketBump 2 t x := by norm_num; ring
 
+/--
+@isnad1 id=le.3h4v.s7.bb19d3c49153 from=translated src=- shape=5e027486 vocab=c4792c58
+-/
 theorem aux_whitney_tensorSquare_decay
     (f : ℝ → ℝ) (C : ℝ) (hC : 0 ≤ C)
     {t : ℝ} (ht : 0 < t)
@@ -4766,6 +5221,9 @@ theorem aux_whitney_tensorSquare_decay
           scaledBracketBumpReal (3 / 2 : ℝ) t v.2) :=
       mul_le_mul_of_nonneg_left hprod1 (sq_nonneg _)
 
+/--
+@isnad1 id=le.3h7v.s9.07610f18d332 from=translated src=- shape=f554cf37 vocab=f0528fb9
+-/
 theorem aux_whitneyM3_decay
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 psi : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
@@ -4942,6 +5400,9 @@ theorem aux_whitneyM3_decay
 reduction.  It is stated for arbitrary plane kernels so that the later
 normalization of the correction remains separate from the form argument. -/
 
+/--
+@isnad1 id=le.2h2v.s8.1b85a046b222 from=translated src=- shape=8c9ca784 vocab=11187501
+-/
 theorem aux_whitney_lift_positive (M : RealPlane → ℝ)
     (hquad : ∀ g : ℝ → ℝ, aux_bounded g →
       0 ≤ ∫ v : RealPlane, g v.1 * g v.2 * M v) :
@@ -4967,6 +5428,9 @@ theorem aux_whitney_lift_positive (M : RealPlane → ℝ)
       dsimp [G, e, e1, aux_liftPlaneKernel]
       rfl
 
+/--
+@isnad1 id=le.5h3v.s9.89964fbcc928 from=translated src=- shape=7cb500d0 vocab=0b40ac3a
+-/
 theorem aux_whitney_seminorm_le_of_positive_difference {n : ℕ} (hn : 2 ≤ n)
     (M0 M1 : KernelSequence 1)
     (hM0 : ∀ j : ℤ, MemW0 (M0 j))
@@ -5091,6 +5555,9 @@ theorem aux_whitney_seminorm_le_of_positive_difference {n : ℕ} (hn : 2 ≤ n)
               (fun y => ∑ j ∈ Finset.range J.1, M0 (j : ℤ) y)
               (fun i => F.1 i)|)) J
 
+/--
+@isnad1 id=le.4h3v.s7.19256a9b935f from=translated src=- shape=bee2cbff vocab=6ea3e5f5
+-/
 theorem aux_whitney_positive_comparison {n : ℕ} (hn : 2 ≤ n)
     (K : ℤ → RealPlane → ℝ) (p : ℤ → ℝ → ℝ)
     (hKmem : ∀ j, MemW0 (K j))
@@ -5137,6 +5604,9 @@ theorem aux_whitney_positive_comparison {n : ℕ} (hn : 2 ≤ n)
   rw [← hEq]
   exact aux_whitney_seminorm_le_of_positive_difference hn M0 M1 hM0 hM1 hpos hpos1
 
+/--
+@isnad1 id=eq.1h2v.s4.8f138e26e840 from=translated src=- shape=db29517c vocab=337f5102
+-/
 theorem aux_whitney_fourierReal_even_of_even (f : ℝ → ℝ)
     (heven : ∀ x : ℝ, f (-x) = f x) (xi : ℝ) :
     aux_fourierReal f (-xi) = aux_fourierReal f xi := by
@@ -5216,7 +5686,9 @@ See also `Auto.inductPositiveTermsReductionWhitneyGap`,
 `Auto.inductPositiveTermsReductionNonWhitneySkip`,
 `Auto.uniPair`,
 `Auto.phiJProperties`,
-`Auto.diagonalBandReduction`.-/
+`Auto.diagonalBandReduction`.
+@isnad1 id=le.4h5v.s7.73a712aad77a from=translated src=- shape=d51a8b4d vocab=27c5e3ef
+-/
 theorem inductPositiveTermsReductionWhitneyGap {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (hgap : ∀ j : ℤ, (2 : ℝ) ^ 11 * a (j - 1) ≤ a j)
@@ -5444,7 +5916,9 @@ C_{\text{induct positive terms - reduction variant, Whitney, with gap}}
 <\tfrac{127}{128}2^{553}<2^{553}.
 $$
 
-See also `Auto.inductPositiveTermsReductionWhitneyGap`.-/
+See also `Auto.inductPositiveTermsReductionWhitneyGap`.
+@isnad1 id=lt.1h1v.s6.7ade3b1adcd6 from=translated src=- shape=1353f379 vocab=07600083
+-/
 theorem constantWhitneyGapReduction {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitneyGap n <
       (127 / 128 : ℝ) * (2 : ℝ) ^ 553 := by
@@ -5528,20 +6002,32 @@ noncomputable def C_inductPositiveTermsReductionWhitney (n : ℕ) : ℝ :=
 /-! Splitting a prefix into eleven residue classes transfers the Whitney-gap
 estimate to an arbitrary spaced scale sequence. -/
 
+/--
+@isnad1 id=iff.0h3v.s6.cd7fc21c36e4 from=translated src=- shape=bdbe344d vocab=10106a83
+-/
 theorem aux_whitney_residue_length (J q s : ℕ) :
     q < (J + 10 - s) / 11 ↔ 11 * q + s < J := by
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.702cf6d73234 from=translated src=- shape=70d68bd5 vocab=24ae8d1a
+-/
 theorem aux_whitney_residue_mod (s : Fin 11) (q : ℕ) :
     (⟨(11 * q + s.1) % 11, Nat.mod_lt _ (by omega)⟩ : Fin 11) = s := by
   apply Fin.ext
   change (11 * q + s.1) % 11 = s.1
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.d262f5f88691 from=translated src=- shape=683e33f7 vocab=3a054e05
+-/
 theorem aux_whitney_residue_div (s : Fin 11) (q : ℕ) :
     (11 * q + s.1) / 11 = q := by
   omega
 
+/--
+@isnad1 id=le.3h3v.s7.d6d4438afa07 from=translated src=- shape=da8ca177 vocab=cb25ac68
+-/
 theorem aux_whitney_normalizer_antitone {n J K : ℕ} (hn : 2 ≤ n)
     (hK : 0 < K) (hKJ : K ≤ J) :
     min 1 (Real.rpow (J : ℝ)
@@ -5565,6 +6051,9 @@ theorem aux_whitney_normalizer_antitone {n J K : ℕ} (hn : 2 ≤ n)
       Real.rpow_le_one_of_one_le_of_nonpos (by norm_num) hbase
     linarith
 
+/--
+@isnad1 id=eq.0h3v.s7.f8a77fa54282 from=translated src=- shape=5b0f2837 vocab=81f50984
+-/
 theorem aux_whitney_residue_sum {α : Type*} [AddCommMonoid α]
     (f : ℕ → α) (J : ℕ) :
     (∑ j ∈ Finset.range J, f j) =
@@ -5604,6 +6093,9 @@ theorem aux_whitney_residue_sum {α : Type*} [AddCommMonoid α]
     congr 1
     omega
 
+/--
+@isnad1 id=eq.0h2v.s7.e7180a43ec7e from=translated src=- shape=b4f1bd55 vocab=7aa75f2a
+-/
 theorem aux_whitney_residue_kernel_sum (M : KernelSequence 1) (J : ℕ) :
     (fun y => ∑ j ∈ Finset.range J, M (j : ℤ) y) =
       fun y => ∑ s : Fin 11, ∑ q ∈ Finset.range ((J + 10 - s.1) / 11),
@@ -5618,16 +6110,25 @@ theorem aux_whitney_residue_kernel_sum (M : KernelSequence 1) (J : ℕ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h2v.s9.72c0262646a9 from=translated src=- shape=6153af77 vocab=b85d8468
+-/
 theorem aux_whitney_prismForm_zero {n : ℕ} (hn : 1 ≤ n)
     (F : NormalizedFunctionTuple n) :
     prismForm n 1 (by omega) hn (fun _ => 0) (fun q => F.1 q) = 0 := by
   simp [prismForm, mToK, prismBrascampLiebForm]
 
+/--
+@isnad1 id=eq.0h1v.s5.2c7cae0d454a from=translated src=- shape=af53a348 vocab=5e7a5765
+-/
 theorem aux_whitney_ennreal_sum_eleven_ofReal (C : ℝ) :
     (∑ _ : Fin 11, ENNReal.ofReal C) = ENNReal.ofReal (11 * C) := by
   rw [Finset.sum_const]
   norm_num [ENNReal.ofReal_mul]
 
+/--
+@isnad1 id=le.3h3v.s6.c7cf7abc84c9 from=translated src=- shape=016301b3 vocab=d5bde991
+-/
 theorem aux_kernelSequenceSeminorm_residue_le {n : ℕ} (hn : 2 ≤ n)
     (M : KernelSequence 1) (hM : MemKernelSequence 1 M) (C : ℝ)
     (hbound : ∀ s : Fin 11,
@@ -5755,7 +6256,9 @@ C_{\text{induct positive terms - reduction variant, Whitney}}
 $$
 
 See also `Auto.inductPositiveTermsReductionWhitney`,
-`Auto.inductPositiveTermsReductionWhitneyGap`.-/
+`Auto.inductPositiveTermsReductionWhitneyGap`.
+@isnad1 id=le.3h5v.s6.70ff2432e2a6 from=translated src=- shape=4fcb7747 vocab=a52548a8
+-/
 theorem inductPositiveTermsReductionWhitney {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
@@ -5814,7 +6317,9 @@ C_{\text{induct positive terms - reduction variant, Whitney}}
 <2^{557}.
 $$
 
-See also `Auto.inductPositiveTermsReductionWhitney`.-/
+See also `Auto.inductPositiveTermsReductionWhitney`.
+@isnad1 id=lt.1h1v.s5.ae16f4ba15fb from=translated src=- shape=34f18a82 vocab=503be0df
+-/
 theorem constantWhitneyReduction {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitney n < (2 : ℝ) ^ 557 := by
   unfold C_inductPositiveTermsReductionWhitney
@@ -5846,12 +6351,18 @@ noncomputable def aux_whitneyProduct_zeta (psi : SchwartzMap ℝ ℝ) :
     SchwartzMap ℝ ℂ :=
   FourierTransform.fourier (SchwartzMap.postcompCLM Complex.ofRealCLM psi)
 
+/--
+@isnad1 id=eq.0h2v.s7.3d28ab602a27 from=translated src=- shape=ff088353 vocab=7dc41621
+-/
 theorem aux_whitneyProduct_zeta_apply (psi : SchwartzMap ℝ ℝ) (x : ℝ) :
     aux_whitneyProduct_zeta psi x =
       FourierTransform.fourier (fun y : ℝ => (psi y : ℂ)) x := by
   rw [aux_whitneyProduct_zeta, SchwartzMap.fourier_coe]
   congr 1
 
+/--
+@isnad1 id=iscompac.0h0v.s5.0343779eb424 from=translated src=- shape=78f5925f vocab=2d551408
+-/
 theorem aux_whitneyProduct_ann3_compact :
     IsCompact (aux_annulusOne 1 ((2 : ℝ) ^ 3)) := by
   apply isCompact_Icc.of_isClosed_subset
@@ -5869,6 +6380,9 @@ noncomputable def aux_whitneyProduct_planeEquiv :
   (EuclideanSpace.equiv (Fin 2) ℝ).trans
     (ContinuousLinearEquiv.finTwoArrow ℝ ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s9.eee2c410d194 from=translated src=- shape=18f82f76 vocab=3e2354b5
+-/
 theorem aux_whitneyProduct_planeEquiv_apply (u : EuclideanSpace ℝ (Fin 2)) :
     aux_whitneyProduct_planeEquiv u = (u 0, u 1) := by
   simp [aux_whitneyProduct_planeEquiv]
@@ -5877,6 +6391,9 @@ noncomputable def aux_whitneyProduct_zetaTensorRaw (psi : SchwartzMap ℝ ℝ) :
     EuclideanSpace ℝ (Fin 2) → ℂ :=
   fun u => aux_whitneyProduct_zeta psi (u 0) * aux_whitneyProduct_zeta psi (u 1)
 
+/--
+@isnad1 id=hascompa.1h1v.s7.d4c029100e4f from=translated src=- shape=deb5595b vocab=ea5b8184
+-/
 theorem aux_whitneyProduct_zetaTensorRaw_compact (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -5913,6 +6430,9 @@ theorem aux_whitneyProduct_zetaTensorRaw_compact (psi : SchwartzMap ℝ ℝ)
   · rw [hzero (u 0) h0]
     ring
 
+/--
+@isnad1 id=contdiff.0h1v.s7.6e3c9fff46cd from=translated src=- shape=a66396ba vocab=9a3f74b7
+-/
 theorem aux_whitneyProduct_zetaTensorRaw_smooth (psi : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_whitneyProduct_zetaTensorRaw psi) := by
   unfold aux_whitneyProduct_zetaTensorRaw
@@ -5926,6 +6446,9 @@ noncomputable def aux_whitneyProduct_zetaTensor (psi : SchwartzMap ℝ ℝ)
   (aux_whitneyProduct_zetaTensorRaw_compact psi hsupport).toSchwartzMap
     (aux_whitneyProduct_zetaTensorRaw_smooth psi)
 
+/--
+@isnad1 id=eq.1h2v.s8.ef6f4ea0280d from=translated src=- shape=c5fc485f vocab=c90fd080
+-/
 theorem aux_whitneyProduct_zetaTensor_apply (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -5940,6 +6463,9 @@ noncomputable def aux_whitneyProduct_tensorSchwartzC (psi : SchwartzMap ℝ ℝ)
     SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℂ :=
   FourierTransform.fourierInv (aux_whitneyProduct_zetaTensor psi hsupport)
 
+/--
+@isnad1 id=eq.1h2v.s9.90f39a4c2121 from=translated src=- shape=6dc1a067 vocab=0c0dba41
+-/
 theorem aux_whitneyProduct_tensorSchwartzC_apply (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -5985,6 +6511,9 @@ noncomputable def aux_whitneyProduct_tensorSchwartz (psi : SchwartzMap ℝ ℝ)
     SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ :=
   SchwartzMap.postcompCLM Complex.reCLM (aux_whitneyProduct_tensorSchwartzC psi hsupport)
 
+/--
+@isnad1 id=eq.1h2v.s9.7ff742b33c29 from=translated src=- shape=ab4630dc vocab=3ba66a74
+-/
 theorem aux_whitneyProduct_tensorSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -5997,9 +6526,15 @@ theorem aux_whitneyProduct_tensorSchwartz_apply (psi : SchwartzMap ℝ ℝ)
 
 noncomputable def aux_whitneyProduct_productC : ℝ := (2 : ℝ) ^ (-12 : ℤ)
 
+/--
+@isnad1 id=lt.0h0v.s3.55758a1ac2c6 from=translated src=- shape=ff3a10fc vocab=f6bbf746
+-/
 theorem aux_whitneyProduct_productC_pos : 0 < aux_whitneyProduct_productC := by
   exact zpow_pos (by norm_num) _
 
+/--
+@isnad1 id=le.1h2v.s7.664a3098de7b from=translated src=- shape=dcb28787 vocab=d5808fdc
+-/
 theorem aux_whitneyProduct_product_positive (psi : SchwartzMap ℝ ℝ)
     (g : ℝ → ℝ) (hg : aux_bounded g) :
     0 ≤ ∫ v : RealPlane,
@@ -6037,6 +6572,9 @@ theorem aux_whitneyProduct_product_positive (psi : SchwartzMap ℝ ℝ)
   rw [hcalc]
   exact mul_nonneg aux_whitneyProduct_productC_pos.le (sq_nonneg _)
 
+/--
+@isnad1 id=le.1h1v.s8.753553966bc0 from=translated src=- shape=35060528 vocab=81b22b6a
+-/
 theorem aux_whitneyProduct_product_fourier_support (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -6058,6 +6596,9 @@ theorem aux_whitneyProduct_product_fourier_support (psi : SchwartzMap ℝ ℝ)
   exact ⟨hsupport (Function.mem_support.mpr h0),
     hsupport (Function.mem_support.mpr h1)⟩
 
+/--
+@isnad1 id=le.3h3v.s7.6ca0d76198a2 from=translated src=- shape=9709d841 vocab=cbfa45fa
+-/
 theorem aux_whitneyProduct_diagonal_product_deriv_bound
     (F : ℝ → ℂ) (hF : ContDiff ℝ 2 F)
     (hbound : ∀ m : ℕ, m < 3 → ∀ x : ℝ,
@@ -6125,6 +6666,9 @@ theorem aux_whitneyProduct_diagonal_product_deriv_bound
       _ ≤ 1 * 1 + 2 * 1 * 1 + 1 * 1 := by gcongr
       _ ≤ 4 := by norm_num
 
+/--
+@isnad1 id=le.2h3v.s8.f655220bc414 from=translated src=- shape=50497e3d vocab=aaae8a31
+-/
 theorem aux_whitneyProduct_product_diagonal_derivative (psi : SchwartzMap ℝ ℝ)
     (hderiv : ∀ m : ℕ, m < 3 → ∀ xi : ℝ,
       ‖iteratedDeriv m
@@ -6168,6 +6712,9 @@ theorem aux_whitneyProduct_product_diagonal_derivative (psi : SchwartzMap ℝ �
     _ ≤ 1 := by
       norm_num [aux_whitneyProduct_productC]
 
+/--
+@isnad1 id=le.2h2v.s8.9da5e460d46f from=translated src=- shape=bcb3a8aa vocab=86c5e6d8
+-/
 theorem aux_whitneyProduct_psi_decay (psi : SchwartzMap ℝ ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -6319,6 +6866,9 @@ theorem aux_whitneyProduct_psi_decay (psi : SchwartzMap ℝ ℝ)
     _ = (2 : ℝ) ^ 6 * bracketBump x ^ 2 := by
       norm_num [C_smoothDecay2]
 
+/--
+@isnad1 id=eq.0h1v.s5.855ad668bf3b from=translated src=- shape=cf7581f5 vocab=96255c32
+-/
 theorem aux_whitneyProduct_bracket_sq_eq_scaled_two (x : ℝ) :
     bracketBump x ^ 2 = scaledBracketBumpReal 2 1 x := by
   unfold bracketBump scaledBracketBumpReal
@@ -6330,12 +6880,18 @@ theorem aux_whitneyProduct_bracket_sq_eq_scaled_two (x : ℝ) :
     _ = Real.rpow (1 + |x|) (-(2 : ℝ)) :=
       (Real.rpow_neg (by positivity) _).symm
 
+/--
+@isnad1 id=le.0h1v.s5.fb7f7943755d from=translated src=- shape=d9d98710 vocab=fef70225
+-/
 theorem aux_whitneyProduct_bracket_sq_le_scaled_three_halves (x : ℝ) :
     bracketBump x ^ 2 ≤ scaledBracketBumpReal (3 / 2 : ℝ) 1 x := by
   rw [aux_whitneyProduct_bracket_sq_eq_scaled_two]
   exact aux_scaledBracketBumpReal_exponent_reduce (3 / 2 : ℝ) 2 1 x
     (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=le.2h2v.s8.bd4594bd2b64 from=translated src=- shape=7dc3afb2 vocab=aee6044a
+-/
 theorem aux_whitneyProduct_product_decay (psi : SchwartzMap ℝ ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -6492,6 +7048,9 @@ noncomputable def aux_tensorWhitneyData
   diagonal_derivative := hdiag
   decay := hdecay
 
+/--
+@isnad1 id=eq.3h2v.s8.8e94904e10fc from=translated src=- shape=2513c9fa vocab=56d537c4
+-/
 theorem aux_whitneyProduct_product_sequence_eq (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -6514,12 +7073,18 @@ theorem aux_whitneyProduct_product_sequence_eq (psi : SchwartzMap ℝ ℝ)
   norm_num [aux_whitneyProduct_productC]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s6.5f1ad65413c5 from=translated src=- shape=d36ba6c0 vocab=4c16186d
+-/
 theorem aux_whitneyProduct_kernelSequenceSeminorm_zero {n k : ℕ}
     (hk : 1 ≤ k) (hkn : k ≤ n) :
     kernelSequenceSeminorm n k hk hkn (0 : KernelSequence k) = 0 := by
   unfold kernelSequenceSeminorm
   simp [prismForm, mToK, prismBrascampLiebForm]
 
+/--
+@isnad1 id=eq.0h1v.s7.0f61e28988f3 from=translated src=- shape=f3041d3f vocab=c5241352
+-/
 theorem aux_whitneyProduct_whitneyProductSequence_zero (a : ℤ → ℝ) :
     aux_whitneyProductSequence (0 : SchwartzMap ℝ ℝ) a = 0 := by
   funext j y
@@ -6564,7 +7129,9 @@ C_{\text{induct positive terms - reduction variant, Whitney, product-type}}
 $$
 
 See also `Auto.inductPositiveTermsReductionWhitneyProduct`,
-`Auto.inductPositiveTermsReductionWhitney`.-/
+`Auto.inductPositiveTermsReductionWhitney`.
+@isnad1 id=le.4h3v.s8.1de1f7d49a24 from=translated src=- shape=913805dd vocab=4b2ca110
+-/
 theorem inductPositiveTermsReductionWhitneyProduct {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a) (psi : SchwartzMap ℝ ℝ)
     (hsupport : Function.support
@@ -6605,7 +7172,9 @@ C_{\text{induct positive terms - reduction variant, Whitney, product-type}}
 <2^{569}.
 $$
 
-See also `Auto.inductPositiveTermsReductionWhitneyProduct`.-/
+See also `Auto.inductPositiveTermsReductionWhitneyProduct`.
+@isnad1 id=lt.1h1v.s5.6a2becee1ecf from=translated src=- shape=34f18a82 vocab=209b527f
+-/
 theorem constantWhitneyProductReduction {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitneyProduct n < (2 : ℝ) ^ 569 := by
   unfold C_inductPositiveTermsReductionWhitneyProduct

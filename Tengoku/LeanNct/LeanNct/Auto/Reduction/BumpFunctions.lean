@@ -41,7 +41,9 @@ for every $m\ge 0$,
 
 $$
 (\widehat{T\phi})^{(m)}(\xi) = -(m (\widehat{\phi})^{(m)}(\xi) + \xi (\widehat{\phi})^{(m+1)}(\xi)).
-$$-/
+$$
+@isnad1 id=eq.0h3v.s8.ba6fae0a3063 from=translated src=- shape=fd30216f vocab=f13ee1f2
+-/
 theorem fourierDerivativeMul (phi : SchwartzMap ℝ ℂ) (m : ℕ) (xi : ℝ) :
     iteratedDeriv m
         (FourierTransform.fourier (aux_T (fun x : ℝ ↦ phi x))) xi =
@@ -206,7 +208,9 @@ $$
 
 where $C_{\text{lem:widebump},N}=2^{3N}$.
 
-See also `Auto.wideBump`.-/
+See also `Auto.wideBump`.
+@isnad1 id=le.3h4v.s7.3bc6209791ce from=translated src=- shape=d78b2a6d vocab=dcd768df
+-/
 theorem wideBump (k : ℤ) (hk : k ≤ 2) (t : ℝ)
     (ht : t ∈ Set.Icc ((2 : ℝ) ^ (1 - k)) ((2 : ℝ) ^ (2 - k)))
     (u N : ℝ) (hN : 0 ≤ N) :
@@ -275,20 +279,32 @@ theorem wideBump (k : ℤ) (hk : k ≤ 2) (t : ℝ)
 /-- The constant in Lemma `Auto.thetaTOffcenter`.-/
 noncomputable def C_thetaTOffcenter : ℝ := 133
 
+/--
+@isnad1 id=lt.0h1v.s3.734bd372ac1d from=translated src=- shape=8a62b088 vocab=26c01e24
+-/
 theorem thetaTOffcenter_bracket_pos (x : ℝ) : 0 < bracketBump x := by
   rw [bracketBump]
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.93118abde6bb from=translated src=- shape=b14ee516 vocab=989df058
+-/
 theorem thetaTOffcenter_bracket_le_one (x : ℝ) : bracketBump x ≤ 1 := by
   rw [bracketBump]
   exact (inv_le_one₀ (by positivity)).2 (by linarith [abs_nonneg x])
 
+/--
+@isnad1 id=le.0h1v.s5.357c9b4812e7 from=translated src=- shape=05784385 vocab=9b3624db
+-/
 theorem thetaTOffcenter_bracket_sq_le_three_halves (x : ℝ) :
     bracketBump x ^ 2 ≤ Real.rpow (bracketBump x) (3 / 2 : ℝ) := by
   rw [← Real.rpow_natCast]
   exact Real.rpow_le_rpow_of_exponent_ge
     (thetaTOffcenter_bracket_pos x) (thetaTOffcenter_bracket_le_one x) (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s5.855ad668bf3b from=translated src=- shape=cf7581f5 vocab=96255c32
+-/
 theorem thetaTOffcenter_sq_eq_scaled (x : ℝ) :
     bracketBump x ^ 2 = scaledBracketBumpReal 2 1 x := by
   unfold bracketBump scaledBracketBumpReal
@@ -300,6 +316,9 @@ theorem thetaTOffcenter_sq_eq_scaled (x : ℝ) :
     _ = Real.rpow (1 + |x|) (-(2 : ℝ)) :=
       (Real.rpow_neg (by positivity) _).symm
 
+/--
+@isnad1 id=le.1h2v.s6.1c81b2a6f73c from=translated src=- shape=cdbce39d vocab=7bdefbff
+-/
 theorem thetaTOffcenter_mass (R v : ℝ) (hR : 0 < R) :
     ∫ t : ℝ in Set.Icc 1 2, bracketBump (v - t * R) ^ 2 ≤ 2 * R⁻¹ := by
   let g : ℝ → ℝ := fun t ↦ bracketBump (v - t * R) ^ 2
@@ -331,6 +350,9 @@ theorem thetaTOffcenter_mass (R v : ℝ) (hR : 0 < R) :
   rw [← hfull]
   exact MeasureTheory.setIntegral_le_integral hg (ae_of_all _ hnonneg)
 
+/--
+@isnad1 id=integrab.1h2v.s6.0e95dd6903e9 from=translated src=- shape=ce6cdc4c vocab=254fc7dc
+-/
 theorem thetaTOffcenter_integrable_shift (R v : ℝ) (hR : 0 < R) :
     Integrable (fun t : ℝ ↦ bracketBump (v - t * R) ^ 2) := by
   let f : ℝ → ℝ := fun t ↦ R⁻¹ *
@@ -352,6 +374,9 @@ theorem thetaTOffcenter_integrable_shift (R v : ℝ) (hR : 0 < R) :
   rw [← hfg]
   exact hf
 
+/--
+@isnad1 id=le.3h3v.s7.bb3f040ab89d from=translated src=- shape=32c65f29 vocab=284e8520
+-/
 theorem thetaTOffcenter_scale (R c v : ℝ) (hR : 0 < R) (hc : 0 < c)
     (h : 1 + |v| ≤ c * R) :
     Real.rpow R (-(3 / 2 : ℝ)) ≤
@@ -371,6 +396,9 @@ theorem thetaTOffcenter_scale (R c v : ℝ) (hR : 0 < R) (hc : 0 < c)
     _ = Real.rpow c (3 / 2 : ℝ) * Real.rpow (bracketBump v) (3 / 2 : ℝ) :=
       Real.mul_rpow hc.le (thetaTOffcenter_bracket_pos v).le
 
+/--
+@isnad1 id=le.3h3v.s6.74471d137ee1 from=translated src=- shape=a72601e1 vocab=97619c79
+-/
 theorem thetaTOffcenter_large (R v t : ℝ) (hR : 0 < R) (hv : 3 * R ≤ |v|)
     (ht : t ∈ Set.Icc 1 2) :
     bracketBump (v - t * R) ≤ 3 * bracketBump v := by
@@ -394,6 +422,9 @@ theorem thetaTOffcenter_large (R v t : ℝ) (hR : 0 < R) (hv : 3 * R ≤ |v|)
       (div_le_div_iff₀ (by positivity) (by positivity)).2 (by simpa using htri)
     _ = 3 * (1 + |v|)⁻¹ := by rw [div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h1v.s6.198b40ca3511 from=translated src=- shape=88ae30fb vocab=48f951fe
+-/
 theorem thetaTOffcenter_lead (k : ℤ) :
     Real.rpow 2 ((k : ℝ) / 2) =
       Real.rpow ((2 : ℝ) ^ (-k)) (-(1 / 2 : ℝ)) := by
@@ -407,6 +438,9 @@ theorem thetaTOffcenter_lead (k : ℤ) :
       simpa using (Real.rpow_intCast_mul (x := (2 : ℝ)) (by norm_num : (0 : ℝ) ≤ 2)
         (-k) (-(1 / 2 : ℝ)))
 
+/--
+@isnad1 id=eq.1h1v.s6.8de9f64fbd79 from=translated src=- shape=4fcc5a0a vocab=c7ea603a
+-/
 theorem thetaTOffcenter_combine (R : ℝ) (hR : 0 < R) :
     Real.rpow R (-(1 / 2 : ℝ)) * R⁻¹ = Real.rpow R (-(3 / 2 : ℝ)) := by
   calc
@@ -417,6 +451,9 @@ theorem thetaTOffcenter_combine (R : ℝ) (hR : 0 < R) :
       (Real.rpow_add hR _ _).symm
     _ = Real.rpow R (-(3 / 2 : ℝ)) := by congr 1; ring
 
+/--
+@isnad1 id=le.0h0v.s5.b3473a62d406 from=translated src=- shape=50862e3b vocab=3d4a831f
+-/
 theorem thetaTOffcenter_rpow_three : Real.rpow 3 (3 / 2 : ℝ) ≤ 6 := by
   have hsqrt : Real.sqrt 3 ≤ 2 := by
     nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 3), Real.sqrt_nonneg (3 : ℝ)]
@@ -427,6 +464,9 @@ theorem thetaTOffcenter_rpow_three : Real.rpow 3 (3 / 2 : ℝ) ≤ 6 := by
     _ ≤ 2 * 3 := by gcongr
     _ = 6 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s5.555fb7dabcb9 from=translated src=- shape=013d6194 vocab=3d4a831f
+-/
 theorem thetaTOffcenter_rpow_seven_halves :
     Real.rpow (7 / 2 : ℝ) (3 / 2 : ℝ) ≤ 7 := by
   have hsqrt : Real.sqrt (7 / 2 : ℝ) ≤ 2 := by
@@ -441,6 +481,9 @@ theorem thetaTOffcenter_rpow_seven_halves :
     _ ≤ 2 * (7 / 2 : ℝ) := by gcongr
     _ = 7 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s6.8fa9ed97fc71 from=translated src=- shape=3baf3fe8 vocab=3d4a831f
+-/
 theorem thetaTOffcenter_rpow_thirteen_halves :
     Real.rpow (13 / 2 : ℝ) (3 / 2 : ℝ) ≤ 133 / 8 := by
   have hsqrt : Real.sqrt (13 / 2 : ℝ) ≤ 133 / 52 := by
@@ -455,12 +498,18 @@ theorem thetaTOffcenter_rpow_thirteen_halves :
     _ ≤ (133 / 52 : ℝ) * (13 / 2 : ℝ) := by gcongr
     _ = 133 / 8 := by norm_num
 
+/--
+@isnad1 id=eq.0h1v.s5.cb2f001c591d from=translated src=- shape=cd3d5241 vocab=f286855f
+-/
 theorem thetaTOffcenter_scaled_neg (x : ℝ) :
     scaledBracketBumpReal 2 1 (-x) = scaledBracketBumpReal 2 1 x := by
   unfold scaledBracketBumpReal
   norm_num only [inv_one, one_mul]
   rw [abs_neg]
 
+/--
+@isnad1 id=le.0h2v.s7.8349ea4503b0 from=translated src=- shape=ae6b6f98 vocab=900cd57c
+-/
 theorem thetaTOffcenter_two_point (a b : ℝ) :
     bracketBump a ^ 2 * bracketBump b ^ 2 ≤
       2 * bracketBump (a - b) ^ 2 * (bracketBump a ^ 2 + bracketBump b ^ 2) := by
@@ -477,6 +526,9 @@ theorem thetaTOffcenter_two_point (a b : ℝ) :
           (scaledBracketBumpReal 2 1 a + scaledBracketBumpReal 2 1 (-b)) := by
       norm_num [Real.rpow_one]
 
+/--
+@isnad1 id=le.4h3v.s8.fdf72dca86f9 from=translated src=- shape=9f79f7d3 vocab=6c1d1af7
+-/
 theorem thetaTOffcenter_one_small (R v w : ℝ) (hR : 0 < R) (hRtwo : 2 ≤ R)
     (hv : ¬ 3 * R ≤ |v|) (hw : 3 * R ≤ |w|) :
     Real.rpow R (-(1 / 2 : ℝ)) *
@@ -556,6 +608,9 @@ theorem thetaTOffcenter_one_small (R v w : ℝ) (hR : 0 < R) (hRtwo : 2 ≤ R)
       · exact mul_nonneg (Real.rpow_nonneg (thetaTOffcenter_bracket_pos v).le _)
           (Real.rpow_nonneg (thetaTOffcenter_bracket_pos w).le _)
 
+/--
+@isnad1 id=le.4h3v.s8.90dbdf08d756 from=translated src=- shape=967b0c38 vocab=32b77f14
+-/
 theorem thetaTOffcenter_two_small (R v₀ v₁ : ℝ) (hR : 0 < R) (hRtwo : 2 ≤ R)
     (h₀ : ¬ 3 * R ≤ |v₀|) (h₁ : ¬ 3 * R ≤ |v₁|) :
     Real.rpow R (-(1 / 2 : ℝ)) *
@@ -669,7 +724,9 @@ $$
 C_{\text{lem:thetat\_offcenter}}=133.
 $$
 
-See also `Auto.thetaTOffcenter`.-/
+See also `Auto.thetaTOffcenter`.
+@isnad1 id=le.1h3v.s8.e1d7ea93fe19 from=translated src=- shape=6a7463cd vocab=d1a1fd4d
+-/
 theorem thetaTOffcenter (k : ℤ) (hk : k ≤ -1) (v₀ v₁ : ℝ) :
     Real.rpow 2 ((k : ℝ) / 2) *
         ∫ t : ℝ in Set.Icc 1 2,
@@ -841,7 +898,9 @@ $$
 C_{\text{lem:thetat\_offcenter}}\le133.
 $$
 
-See also `Auto.thetaTOffcenter`.-/
+See also `Auto.thetaTOffcenter`.
+@isnad1 id=le.0h0v.s3.09a30b327d60 from=translated src=- shape=ffdda526 vocab=4152061a
+-/
 theorem constantOffCenterBump : C_thetaTOffcenter ≤ 133 := by
   norm_num [C_thetaTOffcenter]
 
@@ -895,7 +954,9 @@ def aux_bounded (f : ℝ → ℝ) : Prop :=
 
 /--
 Auxiliary scaling identity for the Fourier-support part of
-`integralFct` (Lemma `Auto.integralFct`).-/
+`integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=eq.1h3v.s6.c80edaa281db from=translated src=- shape=cc27012f vocab=4a10fb42
+-/
 theorem aux_realRescaled_fourier (t : ℝ) (ht : 0 < t) (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_bf_realRescaled t f x : ℂ)) xi =
       FourierTransform.fourier (fun x : ℝ => (f x : ℂ)) (t * xi) := by
@@ -947,6 +1008,9 @@ noncomputable def aux_partialFDeriv
     (F : E → ℝ → V) : E → ℝ → E →L[ℝ] V :=
   fun x t => (fderiv ℝ F.uncurry (x, t)).comp (ContinuousLinearMap.inl ℝ E ℝ)
 
+/--
+@isnad1 id=contdiff.1h4v.s8.4e70a423bff2 from=translated src=- shape=c0fa3d23 vocab=5b0b030e
+-/
 theorem aux_partialFDeriv_contDiffOn
     {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V]
@@ -968,6 +1032,9 @@ theorem aux_partialFDeriv_contDiffOn
     (univ ×ˢ Ioi (0 : ℝ))
   exact hcomp
 
+/--
+@isnad1 id=hasfderi.2h5v.s7.e831de11c223 from=translated src=- shape=696b3a07 vocab=c31b8a78
+-/
 theorem aux_partialFDeriv_hasFDerivAt_of_contDiffOn
     {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup V] [NormedSpace ℝ V]
@@ -991,6 +1058,9 @@ theorem aux_partialFDeriv_hasFDerivAt_of_contDiffOn
   funext y
   rfl
 
+/--
+@isnad1 id=hasfderi.3h5v.s9.226dae78a804 from=translated src=- shape=60744718 vocab=0e72a78c
+-/
 theorem aux_hasFDerivAt_setIntegral_Icc_of_continuousOn
     {E V : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [ProperSpace E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
@@ -1045,6 +1115,9 @@ theorem aux_hasFDerivAt_setIntegral_Icc_of_continuousOn
     exact hderiv y t (lt_of_lt_of_le zero_lt_one ht.1)
   exact hasFDerivAt_integral_of_dominated_of_fderiv_le hs hFmeas hFint hDmeas hbound hCint hdiff
 
+/--
+@isnad1 id=contdiff.1h4v.s7.c7f4736c0315 from=translated src=- shape=3746a111 vocab=16be703e
+-/
 theorem aux_contDiff_setIntegral_Icc_of_contDiffOn
     {E V : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] [ProperSpace E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
@@ -1092,6 +1165,9 @@ theorem aux_contDiff_setIntegral_Icc_of_contDiffOn
           exact hIntD
       simpa only [Nat.cast_add, Nat.cast_one] using htarget
 
+/--
+@isnad1 id=contdiff.1h3v.s7.c821b9f9ebb5 from=translated src=- shape=0edc7574 vocab=acd44e16
+-/
 theorem aux_contDiff_infty_setIntegral_Icc_of_contDiffOn
     {E V : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] [ProperSpace E]
     [NormedAddCommGroup V] [NormedSpace ℝ V] [CompleteSpace V]
@@ -1107,7 +1183,9 @@ theorem aux_contDiff_infty_setIntegral_Icc_of_contDiffOn
 
 /--
 The product Fourier factorization used in the support calculation of
-`integralFct` (Lemma `Auto.integralFct`).-/
+`integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=eq.0h3v.s8.afdbca775128 from=translated src=- shape=57569770 vocab=861969ee
+-/
 theorem aux_fourier_tensor_two (f g : ℝ → ℝ) (xi : EuclideanSpace ℝ (Fin 2)) :
     FourierTransform.fourier (fun u : EuclideanSpace ℝ (Fin 2) =>
       (f (u 0) * g (u 1) : ℂ)) xi =
@@ -1161,7 +1239,9 @@ theorem aux_fourier_tensor_two (f g : ℝ → ℝ) (xi : EuclideanSpace ℝ (Fin
 /--
 The Fourier transform of a two-coordinate tensor product factors into the
 two one-dimensional Fourier transforms.  This exposes the calculation used in
-the reduction argument without duplicating its Fubini proof.-/
+the reduction argument without duplicating its Fubini proof.
+@isnad1 id=eq.0h3v.s8.afdbca775128 from=translated src=- shape=57569770 vocab=861969ee
+-/
 theorem aux_fourier_tensor_two_eq (f g : ℝ → ℝ) (xi : EuclideanSpace ℝ (Fin 2)) :
     FourierTransform.fourier (fun u : EuclideanSpace ℝ (Fin 2) =>
       (f (u 0) * g (u 1) : ℂ)) xi =
@@ -1171,7 +1251,9 @@ theorem aux_fourier_tensor_two_eq (f g : ℝ → ℝ) (xi : EuclideanSpace ℝ (
 
 /--
 Integrability of the three-variable Fubini integrand in the positivity part of
-`integralFct` (Lemma `Auto.integralFct`).-/
+`integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=integrab.3h4v.s8.d20c8eb906e8 from=translated src=- shape=98876c73 vocab=828ff6ab
+-/
 theorem aux_integralFct_triple_integrable
     (psi : SchwartzMap ℝ ℝ) (s : ℝ) (hs : 0 < s)
     (f : ℝ → ℝ) (hf : Measurable f) (C : ℝ) (hC : ∀ x, |f x| ≤ C) :
@@ -1283,7 +1365,9 @@ theorem aux_integralFct_triple_integrable
 
 /--
 Rewriting the scaled kernel as the corresponding integral of one-dimensional
-dilations, used in the positivity and Fourier-support parts of `integralFct`.-/
+dilations, used in the positivity and Fourier-support parts of `integralFct`.
+@isnad1 id=eq.1h3v.s7.ae6c9aa66f1c from=translated src=- shape=e04fef56 vocab=5a50103e
+-/
 theorem aux_integralFctKernelAtScale_eq
     (s : ℝ) (hs : s ≠ 0) (psi : ℝ → ℝ) (u : EuclideanSpace ℝ (Fin 2)) :
     aux_integralFctKernelAtScale s psi u =
@@ -1301,7 +1385,9 @@ theorem aux_integralFctKernelAtScale_eq
 
 /--
 Expand a nonzero dilation of `integralFctKernel` into its defining compact
-scale integral.  This is the reusable scale/Fubini form of the kernel.-/
+scale integral.  This is the reusable scale/Fubini form of the kernel.
+@isnad1 id=eq.1h3v.s7.ae6c9aa66f1c from=translated src=- shape=e04fef56 vocab=5a50103e
+-/
 theorem integralFctKernelAtScale_eq
     (s : ℝ) (hs : s ≠ 0) (psi : ℝ → ℝ) (u : EuclideanSpace ℝ (Fin 2)) :
     aux_integralFctKernelAtScale s psi u =
@@ -1312,7 +1398,9 @@ theorem integralFctKernelAtScale_eq
 
 /--
 The product-square form of the Fubini integral in the positivity part of
-`integralFct` (Lemma `Auto.integralFct`) is nonnegative.-/
+`integralFct` (Lemma `Auto.integralFct`) is nonnegative.
+@isnad1 id=le.1h1v.s8.13c3fba2dcb2 from=translated src=- shape=d80297b6 vocab=ee01fcd7
+-/
 theorem aux_integralFct_triple_nonnegative (A : ℝ × ℝ → ℝ)
     (hH : Integrable (fun q : ℝ × (ℝ × ℝ) =>
       A (q.1, q.2.1) * A (q.1, q.2.2) * q.1⁻¹)
@@ -1343,7 +1431,9 @@ theorem aux_integralFct_triple_nonnegative (A : ℝ × ℝ → ℝ)
 
 /--
 Fubini interchange for the compact scale integral in the Fourier-support
-calculation of `integralFct` (Lemma `Auto.integralFct`).-/
+calculation of `integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=eq.1h5v.s8.28be89cc637b from=translated src=- shape=ffde1f48 vocab=b54730e9
+-/
 theorem aux_fourier_setIntegral_swap
     {V} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     [MeasurableSpace V] [BorelSpace V] [FiniteDimensional ℝ V]
@@ -1359,7 +1449,9 @@ theorem aux_fourier_setIntegral_swap
 
 /--
 A version of `aux_fourier_setIntegral_swap` which obtains the harmless
-Fourier phase integrability from the raw integrability hypothesis.-/
+Fourier phase integrability from the raw integrability hypothesis.
+@isnad1 id=eq.1h5v.s8.0ac61547cc32 from=translated src=- shape=064a0122 vocab=bcf58a37
+-/
 theorem aux_fourier_setIntegral_swap_of_integrable
     {V} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     [MeasurableSpace V] [BorelSpace V] [FiniteDimensional ℝ V]
@@ -1385,7 +1477,9 @@ theorem aux_fourier_setIntegral_swap_of_integrable
 
 /--
 The unit Fourier band, after a scale in `[1,2]`, lies in the band used by
-`integralFct` (Lemma `Auto.integralFct`).-/
+`integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=mem.3h3v.s7.728936ee8519 from=translated src=- shape=2caedd07 vocab=3fef48b8
+-/
 theorem aux_integralFct_scale_band_mem (s t x : ℝ) (hs : 0 < s)
     (ht : t ∈ Set.Icc 1 2)
     (h : s * t * x ∈ Set.Icc (-1 : ℝ) (-(1 / 4 : ℝ)) ∪ Set.Icc (1 / 4 : ℝ) 1) :
@@ -1426,7 +1520,9 @@ theorem aux_integralFct_scale_band_mem (s t x : ℝ) (hs : 0 < s)
 /--
 A coordinate outside the scaled band forces the corresponding Fourier factor
 to vanish in the support proof of `integralFct` (Lemma
-`Auto.integralFct`).-/
+`Auto.integralFct`).
+@isnad1 id=eq.3h4v.s8.cc94b38ab79e from=translated src=- shape=d6d03614 vocab=80f06eb6
+-/
 theorem aux_integralFct_fourier_zero_outside_band
     (psi : SchwartzMap ℝ ℝ)
     (hpsi : Function.support (FourierTransform.fourier (fun x : ℝ ↦ (psi x : ℂ))) ⊆
@@ -1449,7 +1545,9 @@ theorem aux_integralFct_fourier_zero_outside_band
   rw [hpow0, hpow3]
   convert hband using 1; ring_nf
 
-/-- The one-dimensional band in `integralFct` lies in its stated annulus.-/
+/-- The one-dimensional band in `integralFct` lies in its stated annulus.
+@isnad1 id=le.1h1v.s7.f7b61a6a3f12 from=translated src=- shape=083e6539 vocab=ac773f5b
+-/
 theorem aux_band_subset_annulus (r : ℝ) (hr : 0 ≤ r) :
     Set.Icc (-r) (-(r / 8)) ∪ Set.Icc (r / 8) r ⊆
       {x : ℝ | r / 8 ≤ |x| ∧ |x| ≤ 8 * r} := by
@@ -1469,7 +1567,9 @@ theorem aux_band_subset_annulus (r : ℝ) (hr : 0 ≤ r) :
 /--
 The scale-integrated tensor kernel has nonnegative quadratic forms.  This is
 the positivity assertion used by `integralFct` (Lemma
-`Auto.integralFct`).-/
+`Auto.integralFct`).
+@isnad1 id=le.2h3v.s9.f5f26db9a49a from=translated src=- shape=7f76116d vocab=c6d6257b
+-/
 theorem aux_integralFctKernelAtScale_nonnegative
     (psi : SchwartzMap ℝ ℝ) (s : ℝ) (hs : 0 < s)
     (f : ℝ → ℝ) (hf : aux_bounded f) :
@@ -1540,7 +1640,9 @@ theorem aux_integralFctKernelAtScale_nonnegative
 /--
 Integrability of the complex scale-integrated tensor used to exchange the
 Fourier and scale integrals in `integralFct` (Lemma
-`Auto.integralFct`).-/
+`Auto.integralFct`).
+@isnad1 id=integrab.1h2v.s9.45f65cd71764 from=translated src=- shape=dfc74496 vocab=f5d28d6e
+-/
 theorem aux_integralFctKernelAtScale_triple_integrable
     (psi : SchwartzMap ℝ ℝ) (s : ℝ) (hs : 0 < s) :
     Integrable (fun q : ℝ × EuclideanSpace ℝ (Fin 2) =>
@@ -1579,7 +1681,9 @@ theorem aux_integralFctKernelAtScale_triple_integrable
 /--
 Joint integrability of the scale parameter and spatial variables for the
 expanded `integralFctKernel` at a positive scale.  This is the Fubini input for
-parameterized Brascamp--Lieb forms.-/
+parameterized Brascamp--Lieb forms.
+@isnad1 id=integrab.1h2v.s9.45f65cd71764 from=translated src=- shape=dfc74496 vocab=f5d28d6e
+-/
 theorem integralFctKernelAtScale_triple_integrable
     (psi : SchwartzMap ℝ ℝ) (s : ℝ) (hs : 0 < s) :
     Integrable (fun q : ℝ × EuclideanSpace ℝ (Fin 2) =>
@@ -1590,7 +1694,9 @@ theorem integralFctKernelAtScale_triple_integrable
 
 /--
 Multiplication by a scalar commutes with the Fourier integral.  This
-form is used for the `dt/t` factor in `integralFct`.-/
+form is used for the `dt/t` factor in `integralFct`.
+@isnad1 id=eq.0h4v.s7.ee4e484429b7 from=translated src=- shape=47639288 vocab=c41a870b
+-/
 theorem aux_fourier_mul_const
     {V} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     [MeasurableSpace V] [BorelSpace V] [FiniteDimensional ℝ V]
@@ -1617,6 +1723,9 @@ noncomputable def aux_integralFctFourierKernel (psi : SchwartzMap ℝ ℝ) :
       FourierTransform.fourier (fun x : ℝ => (psi x : ℂ)) (t * xi 1) *
         ((t⁻¹ : ℝ) : ℂ)
 
+/--
+@isnad1 id=contdiff.0h1v.s7.71d54d776f34 from=translated src=- shape=a66396ba vocab=abec9c65
+-/
 theorem aux_integralFctFourierKernel_smooth (psi : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_integralFctFourierKernel psi) := by
   let q : ℝ → ℂ := FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))
@@ -1663,11 +1772,17 @@ noncomputable def aux_integralFctFourierKernelPlaneEquiv :
   (EuclideanSpace.equiv (Fin 2) ℝ).trans
     (ContinuousLinearEquiv.finTwoArrow ℝ ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s9.fd7608d81333 from=translated src=- shape=18f82f76 vocab=ca5dd59a
+-/
 theorem aux_integralFctFourierKernelPlaneEquiv_apply
     (u : EuclideanSpace ℝ (Fin 2)) :
     aux_integralFctFourierKernelPlaneEquiv u = (u 0, u 1) := by
   simp [aux_integralFctFourierKernelPlaneEquiv]
 
+/--
+@isnad1 id=hascompa.1h1v.s7.a756128a002a from=translated src=- shape=deb5595b vocab=be51a8f4
+-/
 theorem aux_integralFctFourierKernel_compact (psi : SchwartzMap ℝ ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -1730,6 +1845,9 @@ noncomputable def aux_integralFctFourierKernelSchwartz (psi : SchwartzMap ℝ �
   (aux_integralFctFourierKernel_compact psi hsupp).toSchwartzMap
     (aux_integralFctFourierKernel_smooth psi)
 
+/--
+@isnad1 id=eq.1h2v.s8.e58cc9e46c96 from=translated src=- shape=c5fc485f vocab=93c9a481
+-/
 theorem aux_integralFctFourierKernelSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -1738,6 +1856,9 @@ theorem aux_integralFctFourierKernelSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     aux_integralFctFourierKernelSchwartz psi hsupp u =
       aux_integralFctFourierKernel psi u := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s7.62a4fed8593f from=translated src=- shape=2cb1f440 vocab=26fecd9f
+-/
 theorem aux_integralFctKernel_continuous (psi : SchwartzMap ℝ ℝ) :
     Continuous (fun u : EuclideanSpace ℝ (Fin 2) =>
       (integralFctKernel (fun x => psi x) u : ℂ)) := by
@@ -1762,6 +1883,9 @@ theorem aux_integralFctKernel_continuous (psi : SchwartzMap ℝ ℝ) :
     rfl
   exact Complex.ofRealCLM.continuous.comp (by simpa [heq] using hcontR)
 
+/--
+@isnad1 id=integrab.0h1v.s8.6f4f7ad60f08 from=translated src=- shape=7281f005 vocab=2dcfea6a
+-/
 theorem aux_integralFctKernel_integrable (psi : SchwartzMap ℝ ℝ) :
     Integrable (fun u : EuclideanSpace ℝ (Fin 2) =>
       (integralFctKernel (fun x => psi x) u : ℂ)) := by
@@ -1787,6 +1911,9 @@ theorem aux_integralFctKernel_integrable (psi : SchwartzMap ℝ ℝ) :
   rw [hkernel]
   exact hk.integral_prod_right
 
+/--
+@isnad1 id=eq.0h1v.s8.7ce18ff9215d from=translated src=- shape=6afe0344 vocab=b330483a
+-/
 theorem aux_integralFctKernel_fourier_eq (psi : SchwartzMap ℝ ℝ) :
     FourierTransform.fourier
       (fun u : EuclideanSpace ℝ (Fin 2) =>
@@ -1830,7 +1957,9 @@ theorem aux_integralFctKernel_fourier_eq (psi : SchwartzMap ℝ ℝ) :
 /--
 The Fourier transform of the compact scale-integrated tensor kernel.
 This explicit form makes the cancellation on the diagonal available to the
-short-variation estimates.-/
+short-variation estimates.
+@isnad1 id=eq.0h1v.s9.2d7d6638635c from=translated src=- shape=2aa0d770 vocab=d9da0528
+-/
 theorem integralFctKernel_fourier_eq (psi : SchwartzMap ℝ ℝ) :
     FourierTransform.fourier
       (fun u : EuclideanSpace ℝ (Fin 2) =>
@@ -1855,7 +1984,9 @@ noncomputable def integralFctKernelSchwartz (psi : SchwartzMap ℝ ℝ)
 
 /--
 The coercion of `integralFctKernelSchwartz` is the original physical
-kernel.-/
+kernel.
+@isnad1 id=eq.1h2v.s9.fb43dbeaab9a from=translated src=- shape=6a13eb8e vocab=eabd3eb9
+-/
 theorem integralFctKernelSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : ℝ => (psi x : ℂ))) ⊆
@@ -1883,7 +2014,9 @@ theorem integralFctKernelSchwartz_apply (psi : SchwartzMap ℝ ℝ)
 
 /--
 The Fourier-support inclusion in the first part of the conclusion of
-`integralFct` (Lemma `Auto.integralFct`).-/
+`integralFct` (Lemma `Auto.integralFct`).
+@isnad1 id=le.1h2v.s8.a57187eb799a from=translated src=- shape=2b5387aa vocab=06e3cbe5
+-/
 theorem aux_integralFct_fourier_support
     (psi : SchwartzMap ℝ ℝ)
     (hpsi : Function.support (FourierTransform.fourier (fun x : ℝ ↦ (psi x : ℂ))) ⊆
@@ -1978,7 +2111,9 @@ and let $\ell\in\mathbb{Z}$.
 
 1. $         \textup{supp}(\widehat{\Psi_{(2^\ell)}})
 \subset  ([-2^{-\ell},-2^{-3-\ell}]\cup [2^{-3-\ell},2^{-\ell}])^2 \subset
-   \textup{Ann}_1(2^{-\ell},2^3)^2$-/
+   \textup{Ann}_1(2^{-\ell},2^3)^2$
+@isnad1 id=and.1h2v.s10.17b72d8e6f7a from=translated src=- shape=4c231b63 vocab=d75c4fed
+-/
 theorem integralFct (psi : SchwartzMap ℝ ℝ)
     (hpsi : Function.support
       (FourierTransform.fourier (fun x : ℝ ↦ (psi x : ℂ))) ⊆
@@ -2049,7 +2184,9 @@ $$
 Then for all $\xi\in \mathbb{R}$,
 $$
 \widehat{\Psi}(\xi,-\xi)\geq 0.
-$$-/
+$$
+@isnad1 id=le.2h2v.s9.5a2ebee382f8 from=translated src=- shape=ff79501c vocab=4d1dab69
+-/
 theorem phiPosV2 (Psi : EuclideanSpace ℝ (Fin 2) → ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2), Psi u = Psi (aux_swapTwo u))
     (hpos : ∀ g : ℝ → ℝ, aux_bounded g →
@@ -2150,12 +2287,17 @@ noncomputable def aux_swapTwoLinearIsometry :
     EuclideanSpace ℝ (Fin 2) ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin 2) :=
   LinearIsometryEquiv.piLpCongrLeft 2 ℝ ℝ (Equiv.swap 0 1)
 
+/--
+@isnad1 id=eq.0h1v.s10.5a73d5b128bc from=translated src=- shape=0d2434e6 vocab=edda4006
+-/
 theorem aux_swapTwoLinearIsometry_apply (u : EuclideanSpace ℝ (Fin 2)) :
     aux_swapTwoLinearIsometry u = aux_swapTwo u := by
   ext i
   fin_cases i <;> simp [aux_swapTwoLinearIsometry, aux_swapTwo, Equiv.piCongrLeft']
 
-/-- The Fourier transform of a real-valued function has conjugate symmetry.-/
+/-- The Fourier transform of a real-valued function has conjugate symmetry.
+@isnad1 id=eq.0h2v.s9.93afa3a32681 from=translated src=- shape=cf072a70 vocab=11ed63f3
+-/
 theorem aux_fourier_conj_of_real (Psi : EuclideanSpace ℝ (Fin 2) → ℝ)
     (w : EuclideanSpace ℝ (Fin 2)) :
     FourierTransform.fourier (fun u => (Psi u : ℂ)) (-w) =
@@ -2182,6 +2324,9 @@ theorem aux_fourier_conj_of_real (Psi : EuclideanSpace ℝ (Fin 2) → ℝ)
     ring
   · simp
 
+/--
+@isnad1 id=eq.1h2v.s10.83bf6bd80a07 from=translated src=- shape=34bbcfe5 vocab=56db1a2e
+-/
 theorem aux_fourier_diagonal_even_of_swap (Psi : EuclideanSpace ℝ (Fin 2) → ℝ)
     (hsym : ∀ u, Psi u = Psi (aux_swapTwoLinearIsometry u)) (xi : ℝ) :
     FourierTransform.fourier (fun u => (Psi u : ℂ)) (WithLp.toLp 2 ![-xi, xi]) =
@@ -2207,7 +2352,9 @@ theorem aux_fourier_diagonal_even_of_swap (Psi : EuclideanSpace ℝ (Fin 2) → 
 
 /--
 For a real coordinate-symmetric two-dimensional function, its Fourier transform on the
-anti-diagonal is real and even.-/
+anti-diagonal is real and even.
+@isnad1 id=and.1h1v.s9.4c76a71ac325 from=translated src=- shape=b02a63ab vocab=2e53ec03
+-/
 theorem fourierDiagonalRealEven (Psi : EuclideanSpace ℝ (Fin 2) → ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2), Psi u = Psi (aux_swapTwo u)) :
     (∀ xi : ℝ, ∃ r : ℝ,

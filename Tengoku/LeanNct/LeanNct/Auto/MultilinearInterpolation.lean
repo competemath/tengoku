@@ -6295,7 +6295,9 @@ private theorem normalized_pairing_bound_of_deformations
 The common domain is the integrable-simple-function core: for a simple function,
 `Integrable f μ` is equivalent to finite measure support. Analyticity is the source theorem's
 weak scalar-pairing analyticity, and the conclusion has the exact Hirschman
-harmonic-measure constant.-/
+harmonic-measure constant.
+@isnad1 id=and.19h15v.s11.eb988443758b from=translated src=- shape=6ef51f17 vocab=ac2ea520
+-/
 theorem stein_interpolation
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -6667,7 +6669,9 @@ theorem stein_interpolation
   exact bilinear_bound_of_unit B hleft hright hunit hzero_left hzero_right f g hf hg
     (memLp_simpleFunc_of_integrable f hf) (memLp_simpleFunc_of_integrable g hg)
 
-/-- Stein interpolation with boundary constants independent of the height.-/
+/-- Stein interpolation with boundary constants independent of the height.
+@isnad1 id=and.18h15v.s11.24f21494c8fc from=translated src=- shape=e8728c12 vocab=24c785ae
+-/
 theorem stein_interpolation_constant_bounds
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -6719,7 +6723,9 @@ theorem stein_interpolation_constant_bounds
 
 /--
 **Riesz--Thorin interpolation**, obtained from `stein_interpolation_constant_bounds` by
-taking the analytic family to be constant.-/
+taking the analytic family to be constant.
+@isnad1 id=and.15h15v.s10.6abc547cbd9e from=translated src=- shape=38b32e60 vocab=3283dd3d
+-/
 theorem riesz_thorin
     {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -6789,7 +6795,9 @@ noncomputable def aux_multilinear_input_deformation
 
 /--
 The standard finite-range deformations are centered at the original tuple,
-preserve integrability, and are normalized at the two endpoint exponents.-/
+preserve integrability, and are normalized at the two endpoint exponents.
+@isnad1 id=and.8h8v.s9.ac08e01331cd from=translated src=- shape=e439ff5b vocab=3c2e7dd3
+-/
 theorem aux_multilinear_input_deformation_properties
     {m : ℕ} {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {p₀ p₁ p : Fin (m + 1) → ENNReal} {θ : ℝ}
@@ -6842,7 +6850,9 @@ theorem aux_multilinear_input_deformation_properties
 
 /--
 Packages the usual finite-range input deformations for all but one input of a
-multilinear interpolation argument.-/
+multilinear interpolation argument.
+@isnad1 id=ex.8h8v.s9.a70603f42351 from=translated src=- shape=79b46bb6 vocab=6e4a60ce
+-/
 theorem aux_multilinear_input_deformations
     {m : ℕ} {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {p₀ p₁ p : Fin (m + 1) → ENNReal} {θ : ℝ}
@@ -6898,7 +6908,9 @@ theorem aux_multilinear_input_deformations
 
 /--
 Reduces a multilinear two-endpoint estimate to Stein interpolation after all
-but one inputs have been replaced by normalized analytic deformations.-/
+but one inputs have been replaced by normalized analytic deformations.
+@isnad1 id=and.20h16v.s11.30fdd41567c8 from=translated src=- shape=31cb3e40 vocab=665bed42
+-/
 theorem aux_multilinear_interpolation_of_deformations
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -7029,7 +7041,9 @@ theorem aux_multilinear_interpolation_of_deformations
 A two-endpoint multilinear interpolation step for complex integrable simple
 functions.  The standard finite-range deformations of all non-distinguished inputs
 are inserted automatically; the analytic and growth hypotheses are precisely their
-weak scalar-pairing conditions.-/
+weak scalar-pairing conditions.
+@isnad1 id=and.20h15v.s11.2637bd77dbf9 from=translated src=- shape=12e29da9 vocab=66080247
+-/
 theorem aux_multilinear_interpolation_two_endpoint_normalized
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -7302,7 +7316,9 @@ private theorem aux_multilinear_pairing_growth
 The normalized two-endpoint complex interpolation theorem for a complex multilinear
 map on integrable simple functions.  Its hypotheses are only the endpoint bounds and the
 basic measurability and scalar-pairing integrability conditions; analyticity and growth of the
-standard finite-range deformations follow from multilinearity.-/
+standard finite-range deformations follow from multilinearity.
+@isnad1 id=and.15h14v.s11.fb7bc45f074b from=translated src=- shape=4dafe638 vocab=bc235865
+-/
 theorem multilinear_interpolation_two_endpoint_normalized
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -7410,7 +7426,9 @@ theorem multilinear_interpolation_two_endpoint_normalized
 /--
 A set containing the endpoints and closed under binary convex combinations contains their
 convex hull.  This is the induction principle used to pass from two-endpoint interpolation to a
-finite family of endpoints.-/
+finite family of endpoints.
+@isnad1 id=le.2h3v.s8.6e14fc1f0604 from=translated src=- shape=f193c0bc vocab=c77112f9
+-/
 theorem convexHull_subset_of_binary
     {E : Type*} [AddCommMonoid E] [Module ℝ E] {S G : Set E}
     (hS : S ⊆ G)
@@ -7487,7 +7505,9 @@ private theorem aux_enorm_prod_inv_toReal
 /--
 The full-product two-endpoint estimate follows from the normalized theorem by rescaling the
 non-distinguished inputs.  The explicit `hzero` assumption records the natural requirement that
-the operator vanishes when one input has `Lᵖ` seminorm zero.-/
+the operator vanishes when one input has `Lᵖ` seminorm zero.
+@isnad1 id=le.15h14v.s11.23ade49dda00 from=translated src=- shape=9996572f vocab=bc20d0ec
+-/
 theorem multilinear_interpolation_two_endpoint
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -7652,7 +7672,9 @@ Multilinear complex interpolation over an arbitrary family of endpoint reciproca
 The conclusion holds at every point of their convex hull.  The endpoint constant is common to all
 vertices, so every binary interpolation step preserves it exactly.  This is a SimpleFunc-level
 theorem; the final `hzero` condition is the natural a.e.-zero compatibility needed for homogeneous
-rescaling.-/
+rescaling.
+@isnad1 id=le.9h11v.s11.252e995f4982 from=translated src=- shape=b1d6bf95 vocab=67f33e0f
+-/
 theorem multilinear_interpolation_convexHull
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -7942,7 +7964,9 @@ noncomputable def aux_simpleFuncMemLpRetract {X : Type*} [MeasurableSpace X]
     SimpleFunc X ℂ →ₗ[ℂ] aux_simpleFuncMemLpSubmodule p μ :=
   (aux_simpleFuncMemLpSubmodule p μ).subtype.leftInverse
 
-/-- The chosen core retraction is the identity on an integrable simple function.-/
+/-- The chosen core retraction is the identity on an integrable simple function.
+@isnad1 id=eq.1h4v.s9.f7009ff839f7 from=translated src=- shape=58f7a594 vocab=2d6ed76a
+-/
 theorem aux_simpleFuncMemLpRetract_apply_of_memLp {X : Type*} [MeasurableSpace X]
     (p : ℝ≥0∞) (μ : Measure X) (f : SimpleFunc X ℂ)
     (hf : MemLp (f : X → ℂ) p μ) :
@@ -7969,7 +7993,9 @@ noncomputable def aux_simpleFuncMemLpToLp {X : Type*} [MeasurableSpace X]
       c • f.property.toLp (f : X → ℂ)
     exact MemLp.toLp_const_smul c f.property
 
-/-- The core-to-`Lp` map sends an integrable simple function to its usual equivalence class.-/
+/-- The core-to-`Lp` map sends an integrable simple function to its usual equivalence class.
+@isnad1 id=eq.1h4v.s10.8480e2ac82bc from=translated src=- shape=6ad6420b vocab=003aa1fd
+-/
 theorem aux_simpleFuncMemLpToLp_apply {X : Type*} [MeasurableSpace X]
     (p : ℝ≥0∞) (μ : Measure X) (f : SimpleFunc X ℂ)
     (hf : MemLp (f : X → ℂ) p μ) :
@@ -7989,7 +8015,9 @@ noncomputable def aux_extendLpCMLMToSimpleFunc {ι X F : Type*}
     (aux_simpleFuncMemLpToLp (p i) μ).comp
       (aux_simpleFuncMemLpRetract (p i) μ)
 
-/-- The total simple-function extension agrees with the original `Lp` map on its core.-/
+/-- The total simple-function extension agrees with the original `Lp` map on its core.
+@isnad1 id=eq.1h7v.s11.334330bf1f63 from=translated src=- shape=6d4bb672 vocab=64cbd2a8
+-/
 theorem aux_extendLpCMLMToSimpleFunc_apply_of_memLp {ι X F : Type*}
     [Fintype ι] [MeasurableSpace X]
     [NormedAddCommGroup F] [NormedSpace ℂ F]
@@ -8021,13 +8049,17 @@ noncomputable def aux_integrableSimpleFuncRetract {X : Type*} [MeasurableSpace X
     SimpleFunc X ℂ →ₗ[ℂ] aux_integrableSimpleFuncSubmodule μ :=
   aux_simpleFuncMemLpRetract 1 μ
 
-/-- The common-core retraction is the identity on every integrable simple function.-/
+/-- The common-core retraction is the identity on every integrable simple function.
+@isnad1 id=eq.1h3v.s9.c01e1a15a910 from=translated src=- shape=35bed862 vocab=5715dd1b
+-/
 theorem aux_integrableSimpleFuncRetract_apply_of_integrable {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (f : SimpleFunc X ℂ) (hf : Integrable (f : X → ℂ) μ) :
     aux_integrableSimpleFuncRetract μ f = ⟨f, (memLp_one_iff_integrable.mpr hf)⟩ := by
   exact aux_simpleFuncMemLpRetract_apply_of_memLp 1 μ f (memLp_one_iff_integrable.mpr hf)
 
-/-- A finite exponent bounded below by one is nonzero.-/
+/-- A finite exponent bounded below by one is nonzero.
+@isnad1 id=ne.0h1v.s4.0359c8ffc565 from=translated src=- shape=d4be380b vocab=0505a40f
+-/
 theorem aux_simpleFuncExponent_ne_zero {p : ENNReal} [Fact (1 ≤ p)] : p ≠ 0 := by
   exact ne_of_gt (lt_of_lt_of_le zero_lt_one Fact.out)
 
@@ -8051,7 +8083,9 @@ noncomputable def aux_integrableSimpleFuncToLp {X : Type*} [MeasurableSpace X]
     aux_integrableSimpleFuncSubmodule μ →ₗ[ℂ] Lp ℂ p μ :=
   (aux_simpleFuncMemLpToLp p μ).comp (aux_integrableSimpleFuncToMemLp p μ hp_top)
 
-/-- The common-core-to-`Lp` map is the ordinary quotient map on integrable simple functions.-/
+/-- The common-core-to-`Lp` map is the ordinary quotient map on integrable simple functions.
+@isnad1 id=eq.2h4v.s10.bf2c724aa148 from=translated src=- shape=fdd43868 vocab=329d4fbe
+-/
 theorem aux_integrableSimpleFuncToLp_apply {X : Type*} [MeasurableSpace X]
     (p : ENNReal) (μ : Measure X) [Fact (1 ≤ p)] (hp_top : p ≠ ∞)
     (f : SimpleFunc X ℂ) (hf : Integrable (f : X → ℂ) μ) :
@@ -8077,7 +8111,9 @@ noncomputable def aux_extendLpCMLMToSimpleFuncIntegrable {ι X F : Type*}
 
 /--
 The common-core totalization agrees with the original continuous multilinear map on
-integrable simple-function inputs.-/
+integrable simple-function inputs.
+@isnad1 id=eq.2h7v.s11.6ffea5ba96e2 from=translated src=- shape=65e78bac vocab=cd0af3fb
+-/
 theorem aux_extendLpCMLMToSimpleFuncIntegrable_apply_of_integrable {ι X F : Type*}
     [Fintype ι] [MeasurableSpace X]
     [NormedAddCommGroup F] [NormedSpace ℂ F]
@@ -8135,7 +8171,9 @@ private theorem aux_extendLpCMLMToSimpleFuncIntegrable_eq_zero_of_eLpNorm_eq_zer
 /--
 The common-integrable-core totalization vanishes when any finite-`Lᵖ`
 input has zero extended norm.  This supplies the null-input compatibility
-required by `multilinear_interpolation_convexHull_Lp_sq`.-/
+required by `multilinear_interpolation_convexHull_Lp_sq`.
+@isnad1 id=eq.3h9v.s10.8b61c2cfdcb3 from=translated src=- shape=8500aaeb vocab=b737c602
+-/
 theorem aux_extendLpCMLMToSimpleFuncIntegrable_enorm_eq_zero_of_eLpNorm_eq_zero
     {m : ℕ} {X F : Type*} [MeasurableSpace X]
     [NormedAddCommGroup F] [NormedSpace ℂ F]
@@ -8150,7 +8188,9 @@ theorem aux_extendLpCMLMToSimpleFuncIntegrable_enorm_eq_zero_of_eLpNorm_eq_zero
     p μ hp_top B u hu g i hzero]
   simp
 
-/-- The common integrable simple-function core is dense in every finite ambient `Lp` space.-/
+/-- The common integrable simple-function core is dense in every finite ambient `Lp` space.
+@isnad1 id=denseran.1h3v.s11.cacb62e32ef8 from=translated src=- shape=548ad159 vocab=dda016dd
+-/
 theorem aux_denseRange_integrableSimpleFuncToLp {X : Type*} [MeasurableSpace X]
     (p : ENNReal) (μ : Measure X) [Fact (1 ≤ p)] (hp_top : p ≠ ∞) :
     DenseRange (aux_integrableSimpleFuncToLp p μ hp_top) := by
@@ -8169,7 +8209,9 @@ theorem aux_denseRange_integrableSimpleFuncToLp {X : Type*} [MeasurableSpace X]
 
 /--
 A product-norm estimate for a continuous multilinear map extends from a coordinatewise
-dense core to all inputs.-/
+dense core to all inputs.
+@isnad1 id=le.2h9v.s10.3541c9f20de6 from=translated src=- shape=50c0b4e7 vocab=fa7fab02
+-/
 theorem aux_ContinuousMultilinearMap_norm_le_of_denseRange
     {𝕜 ι F : Type*} {E₀ E : ι → Type*}
     [NontriviallyNormedField 𝕜] [Fintype ι]
@@ -8199,7 +8241,9 @@ theorem aux_ContinuousMultilinearMap_norm_le_of_denseRange
 
 /--
 The squared form of `aux_ContinuousMultilinearMap_norm_le_of_denseRange`, useful for
-finite `L²` energies whose natural endpoint bounds contain squared norms.-/
+finite `L²` energies whose natural endpoint bounds contain squared norms.
+@isnad1 id=le.2h9v.s10.633370b5cb64 from=translated src=- shape=e796e1b6 vocab=1bd02da2
+-/
 theorem aux_ContinuousMultilinearMap_norm_sq_le_of_denseRange
     {𝕜 ι F : Type*} {E₀ E : ι → Type*}
     [NontriviallyNormedField 𝕜] [Fintype ι]
@@ -8229,7 +8273,9 @@ theorem aux_ContinuousMultilinearMap_norm_sq_le_of_denseRange
 
 /--
 The integrable simple-function core is dense in the ambient `Lp` space.  This is used
-to transfer endpoint estimates from the core on which a raw operator is defined.-/
+to transfer endpoint estimates from the core on which a raw operator is defined.
+@isnad1 id=denseran.1h3v.s11.7070a9158d82 from=translated src=- shape=db41d194 vocab=0a84097f
+-/
 theorem aux_denseRange_simpleFuncMemLpToLp {X : Type*} [MeasurableSpace X]
     (p : ℝ≥0∞) (μ : Measure X) [Fact (1 ≤ p)] (hp_top : p ≠ ∞) :
     DenseRange (aux_simpleFuncMemLpToLp p μ) := by
@@ -8243,7 +8289,9 @@ theorem aux_denseRange_simpleFuncMemLpToLp {X : Type*} [MeasurableSpace X]
 
 /--
 Dense-range transfer for a continuous multilinear map, phrased for arbitrary core maps.
-Unlike the linear-map version, this does not require normed-space instances on the core.-/
+Unlike the linear-map version, this does not require normed-space instances on the core.
+@isnad1 id=le.2h9v.s9.da28a691086c from=translated src=- shape=088b92c3 vocab=fa42f55f
+-/
 theorem aux_ContinuousMultilinearMap_norm_sq_le_of_denseRange_functions
     {𝕜 ι F : Type*} {E₀ E : ι → Type*}
     [NontriviallyNormedField 𝕜] [Fintype ι]
@@ -8272,7 +8320,9 @@ theorem aux_ContinuousMultilinearMap_norm_sq_le_of_denseRange_functions
 
 /--
 A sharp squared estimate verified on the `MemLp` simple-function core extends to all
-ambient `Lp` inputs.-/
+ambient `Lp` inputs.
+@isnad1 id=le.2h8v.s13.fd20975c5fe4 from=translated src=- shape=cf717be4 vocab=b45f4c57
+-/
 theorem aux_ContinuousMultilinearMap_norm_sq_le_of_simpleFuncMemLp
     {ι X F : Type*} [Fintype ι] [MeasurableSpace X]
     [SeminormedAddCommGroup F] [NormedSpace ℂ F]
@@ -8295,7 +8345,9 @@ theorem aux_ContinuousMultilinearMap_norm_sq_le_of_simpleFuncMemLp
 /--
 Converts a real squared product-norm estimate to its extended-norm form.
 This is used to pass sharp continuous-multilinear endpoint estimates into
-the squared `Lp` interpolation theorem.-/
+the squared `Lp` interpolation theorem.
+@isnad1 id=le.2h6v.s8.ed5011811f11 from=translated src=- shape=4d17bf82 vocab=29fbf1f7
+-/
 theorem aux_enorm_sq_le_of_norm_sq_le
     {ι F : Type*} [Fintype ι] [NormedAddCommGroup F]
     {E : ι → Type*} [∀ i, NormedAddCommGroup (E i)]
@@ -8317,7 +8369,9 @@ theorem aux_enorm_sq_le_of_norm_sq_le
 /--
 Converts an extended-norm squared product estimate back to its real-norm form.
 This is the converse of `aux_enorm_sq_le_of_norm_sq_le`, and is used when a sharp
-interpolation bound on a dense simple-function core is propagated by continuity.-/
+interpolation bound on a dense simple-function core is propagated by continuity.
+@isnad1 id=le.2h6v.s8.dfbdd951d335 from=translated src=- shape=a03fa50e vocab=29fbf1f7
+-/
 theorem aux_norm_sq_le_of_enorm_sq_le
     {ι F : Type*} [Fintype ι] [NormedAddCommGroup F]
     {E : ι → Type*} [∀ i, NormedAddCommGroup (E i)]
@@ -8340,7 +8394,9 @@ theorem aux_norm_sq_le_of_enorm_sq_le
 
 /--
 A sharp squared norm estimate for a complex CMLM transfers from Schwartz inputs to
-arbitrary `Lp` inputs.  Its codomain is arbitrary, so it applies to packed `L²` targets.-/
+arbitrary `Lp` inputs.  Its codomain is arbitrary, so it applies to packed `L²` targets.
+@isnad1 id=le.2h8v.s12.9c84fd90996a from=translated src=- shape=8eb97321 vocab=76f284a3
+-/
 theorem aux_schwartz_sq_bound
     {ι X F : Type*} [Fintype ι]
     [NormedAddCommGroup X] [NormedSpace ℝ X] [MeasurableSpace X]
@@ -8383,7 +8439,9 @@ theorem aux_schwartz_sq_bound
 The finite-endpoint convex-hull interpolation theorem for an `L²`-valued complex
 multilinear map on integrable simple functions.  It is the quotient-valued form of
 `multilinear_interpolation_convexHull`; its only additional compatibility hypothesis says that
-the map vanishes in `L²` when one input has zero seminorm.-/
+the map vanishes in `L²` when one input has zero seminorm.
+@isnad1 id=le.6h10v.s13.451ed6a90d6f from=translated src=- shape=a149ec59 vocab=4b90acfd
+-/
 theorem multilinear_interpolation_convexHull_Lp
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -8449,7 +8507,9 @@ theorem multilinear_interpolation_convexHull_Lp
 
 /--
 The squared-energy form of `multilinear_interpolation_convexHull_Lp`.  It keeps a
-common squared endpoint constant unchanged throughout the convex-hull interpolation.-/
+common squared endpoint constant unchanged throughout the convex-hull interpolation.
+@isnad1 id=le.6h10v.s13.c237b767bc6e from=translated src=- shape=078d5d81 vocab=4338ba37
+-/
 theorem multilinear_interpolation_convexHull_Lp_sq
     {m : ℕ} {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y} [SigmaFinite ν]
@@ -8508,11 +8568,17 @@ noncomputable def aux_lpStrongRepresentative
     (f : Lp ℂ 2 μ) : X → ℂ :=
   (Lp.memLp f).aestronglyMeasurable.mk (f : X → ℂ)
 
+/--
+@isnad1 id=strongly.0h3v.s7.45276e12863a from=translated src=- shape=c0013826 vocab=15d58841
+-/
 theorem aux_lpStrongRepresentative_stronglyMeasurable
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     (f : Lp ℂ 2 μ) : StronglyMeasurable (aux_lpStrongRepresentative f) := by
   exact (Lp.memLp f).aestronglyMeasurable.stronglyMeasurable_mk
 
+/--
+@isnad1 id=eventual.0h3v.s8.6145f770c42d from=translated src=- shape=4933e7dd vocab=802c3290
+-/
 theorem aux_lpStrongRepresentative_ae_eq
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     (f : Lp ℂ 2 μ) : (f : X → ℂ) =ᵐ[μ] aux_lpStrongRepresentative f := by
@@ -8523,6 +8589,9 @@ noncomputable def aux_packLpFun
     (u : Fin J → Lp ℂ 2 μ) : Fin J × X → ℂ :=
   fun z ↦ aux_lpStrongRepresentative (u z.1) z.2
 
+/--
+@isnad1 id=strongly.0h4v.s7.389b7d9896d9 from=translated src=- shape=fd6c4e79 vocab=756f3641
+-/
 theorem aux_packLpFun_stronglyMeasurable
     {J : ℕ} {X : Type*} [MeasurableSpace X] {μ : Measure X}
     (u : Fin J → Lp ℂ 2 μ) : StronglyMeasurable (aux_packLpFun u) := by
@@ -8534,6 +8603,9 @@ theorem aux_packLpFun_stronglyMeasurable
   · intro j
     exact aux_lpStrongRepresentative_stronglyMeasurable (u j)
 
+/--
+@isnad1 id=eq.0h4v.s6.e8258df3b6f7 from=translated src=- shape=fd5037b2 vocab=ee065b6b
+-/
 theorem aux_eLpNorm_two_sq_eq_lintegral {X E : Type*} [MeasurableSpace X] [ENorm E]
     {μ : Measure X} (F : X → E) :
     eLpNorm F 2 μ ^ 2 = ∫⁻ x, ‖F x‖ₑ ^ (2 : ℝ) ∂μ := by
@@ -8542,6 +8614,9 @@ theorem aux_eLpNorm_two_sq_eq_lintegral {X E : Type*} [MeasurableSpace X] [ENorm
   rw [← ENNReal.rpow_natCast, ← ENNReal.rpow_mul]
   norm_num
 
+/--
+@isnad1 id=eq.1h5v.s8.2ef96091395f from=translated src=- shape=dcbbee88 vocab=a81f8934
+-/
 theorem aux_eLpNorm_sq_pack {J : ℕ} {X E : Type*} [MeasurableSpace X]
     [NormedAddCommGroup E] [MeasurableSpace E] [BorelSpace E]
     {μ : Measure X} [SFinite μ]
@@ -8562,6 +8637,9 @@ theorem aux_eLpNorm_sq_pack {J : ℕ} {X E : Type*} [MeasurableSpace X]
   rw [lintegral_count, tsum_fintype]
   simp_rw [← aux_eLpNorm_two_sq_eq_lintegral]
 
+/--
+@isnad1 id=eq.0h4v.s9.0c0e239a08a3 from=translated src=- shape=ddd1dd17 vocab=9f18b2c2
+-/
 theorem aux_eLpNorm_sq_packLpFun {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u : Fin J → Lp ℂ 2 μ) :
     eLpNorm (aux_packLpFun u) 2 ((Measure.count : Measure (Fin J)).prod μ) ^ 2 =
@@ -8576,6 +8654,9 @@ theorem aux_eLpNorm_sq_packLpFun {J : ℕ} {X : Type*} [MeasurableSpace X]
       intro j _
       rw [eLpNorm_congr_ae (aux_lpStrongRepresentative_ae_eq (u j)).symm]
 
+/--
+@isnad1 id=memlp.0h4v.s8.fa5bd8d83dc0 from=translated src=- shape=e51d9c1c vocab=b8241788
+-/
 theorem aux_packLpFun_memLp {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u : Fin J → Lp ℂ 2 μ) :
     MemLp (aux_packLpFun u) 2 ((Measure.count : Measure (Fin J)).prod μ) := by
@@ -8591,6 +8672,9 @@ theorem aux_packLpFun_memLp {J : ℕ} {X : Type*} [MeasurableSpace X]
     exact ENNReal.pow_ne_top (Lp.memLp (u j)).eLpNorm_ne_top
   exact hsumne hsumtop
 
+/--
+@isnad1 id=eventual.3h5v.s7.0ecb954af23d from=translated src=- shape=49838ba7 vocab=ad5285af
+-/
 theorem aux_packed_ae_eq_of_forall {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] {f g : Fin J → X → ℂ}
     (hf : StronglyMeasurable (fun z : Fin J × X ↦ f z.1 z.2))
@@ -8604,7 +8688,9 @@ theorem aux_packed_ae_eq_of_forall {J : ℕ} {X : Type*} [MeasurableSpace X]
 
 /--
 Finite counting-measure packing preserves a coordinatewise a.e. equality, with no
-measurability hypotheses on either side.-/
+measurability hypotheses on either side.
+@isnad1 id=eventual.1h5v.s7.5f10d4b0cefd from=translated src=- shape=1bef5d8c vocab=eee75732
+-/
 theorem aux_packed_ae_eq_of_forall' {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {f g : Fin J → X → ℂ}
     (hfg : ∀ j, f j =ᵐ[μ] g j) :
@@ -8629,6 +8715,9 @@ theorem aux_packed_ae_eq_of_forall' {J : ℕ} {X : Type*} [MeasurableSpace X]
   exact nonpos_iff_eq_zero.mp
     ((measure_mono hsubset).trans_eq (MeasureTheory.measure_iUnion_null hrect))
 
+/--
+@isnad1 id=eventual.0h4v.s10.91be27471f16 from=translated src=- shape=fd4229d4 vocab=3f0d89e0
+-/
 theorem aux_lpStrongRepresentative_add_ae {X : Type*} [MeasurableSpace X]
     {μ : Measure X} (u v : Lp ℂ 2 μ) :
     aux_lpStrongRepresentative (u + v) =ᵐ[μ]
@@ -8638,6 +8727,9 @@ theorem aux_lpStrongRepresentative_add_ae {X : Type*} [MeasurableSpace X]
   rw [← hsum, hadd]
   simpa only [Pi.add_apply] using congrArg₂ (· + ·) hu hv
 
+/--
+@isnad1 id=eventual.0h4v.s11.ddf8758f2879 from=translated src=- shape=c7be3e9d vocab=dc12fd42
+-/
 theorem aux_lpStrongRepresentative_smul_ae {X : Type*} [MeasurableSpace X]
     {μ : Measure X} (c : ℂ) (u : Lp ℂ 2 μ) :
     aux_lpStrongRepresentative (c • u) =ᵐ[μ]
@@ -8647,6 +8739,9 @@ theorem aux_lpStrongRepresentative_smul_ae {X : Type*} [MeasurableSpace X]
   rw [← hcu, hsmul]
   simpa only [Pi.smul_apply] using congrArg (c • ·) hu
 
+/--
+@isnad1 id=eventual.0h5v.s10.33a7b9aedf4a from=translated src=- shape=a39471f9 vocab=572f5f6e
+-/
 theorem aux_packLpFun_add_ae {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u v : Fin J → Lp ℂ 2 μ) :
     aux_packLpFun (u + v) =ᵐ[(Measure.count : Measure (Fin J)).prod μ]
@@ -8656,6 +8751,9 @@ theorem aux_packLpFun_add_ae {J : ℕ} {X : Type*} [MeasurableSpace X]
     ((aux_packLpFun_stronglyMeasurable u).add (aux_packLpFun_stronglyMeasurable v))
     (fun j ↦ by simpa [aux_packLpFun] using aux_lpStrongRepresentative_add_ae (u j) (v j))
 
+/--
+@isnad1 id=eventual.0h5v.s11.6d1cad29fa23 from=translated src=- shape=67f3b016 vocab=6cd146fa
+-/
 theorem aux_packLpFun_smul_ae {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (c : ℂ) (u : Fin J → Lp ℂ 2 μ) :
     aux_packLpFun (c • u) =ᵐ[(Measure.count : Measure (Fin J)).prod μ]
@@ -8686,6 +8784,9 @@ noncomputable def aux_packLpLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
       _ = c • (aux_packLpFun_memLp u).toLp (aux_packLpFun u) :=
         MemLp.toLp_const_smul c _
 
+/--
+@isnad1 id=eq.0h4v.s12.34d67e46b8a6 from=translated src=- shape=fb8f408b vocab=1f571f35
+-/
 theorem aux_eLpNorm_sq_packLpLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u : Fin J → Lp ℂ 2 μ) :
     eLpNorm ((aux_packLpLinearMap (μ := μ)) u : Fin J × X → ℂ) 2
@@ -8700,6 +8801,9 @@ theorem aux_eLpNorm_sq_packLpLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
       rw [eLpNorm_congr_ae (MemLp.coeFn_toLp (aux_packLpFun_memLp u))]
     _ = _ := aux_eLpNorm_sq_packLpFun u
 
+/--
+@isnad1 id=eq.0h4v.s12.eef22254af5d from=translated src=- shape=f6f66576 vocab=c35e7558
+-/
 theorem aux_norm_sq_packLpLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u : Fin J → Lp ℂ 2 μ) :
     ‖(aux_packLpLinearMap (μ := μ)) u‖ ^ 2 = ∑ j : Fin J, ‖u j‖ ^ 2 := by
@@ -8716,6 +8820,9 @@ noncomputable def aux_packLpPiLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X
   (aux_packLpLinearMap (μ := μ)).comp
     (PiLp.continuousLinearEquiv 2 ℂ (fun _ : Fin J ↦ Lp ℂ 2 μ)).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s12.df08dd498801 from=translated src=- shape=9e264770 vocab=2b59f846
+-/
 theorem aux_norm_sq_packLpPiLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ] (u : PiLp 2 (fun _ : Fin J ↦ Lp ℂ 2 μ)) :
     ‖aux_packLpPiLinearMap (μ := μ) u‖ ^ 2 = ‖u‖ ^ 2 := by
@@ -8738,6 +8845,9 @@ noncomputable def aux_packLpContinuousLinearMap {J : ℕ} {X : Type*} [Measurabl
       Lp ℂ 2 ((Measure.count : Measure (Fin J)).prod μ) :=
   (aux_packLpLinearIsometry (μ := μ)).toContinuousLinearMap
 
+/--
+@isnad1 id=eventual.0h4v.s13.aa9cbf9a434b from=translated src=- shape=65bb4a17 vocab=672ab7a9
+-/
 theorem aux_packLpContinuousLinearMap_coeFn_ae {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ]
     (u : PiLp 2 (fun _ : Fin J ↦ Lp ℂ 2 μ)) :
@@ -8750,6 +8860,9 @@ theorem aux_packLpContinuousLinearMap_coeFn_ae {J : ℕ} {X : Type*} [Measurable
       aux_packLpFun (fun j ↦ u j)
   exact MemLp.coeFn_toLp _
 
+/--
+@isnad1 id=eq.0h4v.s13.dab9158f74a4 from=translated src=- shape=722cf095 vocab=eb9412cc
+-/
 theorem aux_eLpNorm_sq_packLpContinuousLinearMap {J : ℕ} {X : Type*} [MeasurableSpace X]
     {μ : Measure X} [SFinite μ]
     (u : PiLp 2 (fun _ : Fin J ↦ Lp ℂ 2 μ)) :
@@ -8761,6 +8874,9 @@ theorem aux_eLpNorm_sq_packLpContinuousLinearMap {J : ℕ} {X : Type*} [Measurab
       ((Measure.count : Measure (Fin J)).prod μ) ^ 2 = _
   exact aux_eLpNorm_sq_packLpLinearMap (fun j ↦ u j)
 
+/--
+@isnad1 id=eventual.1h5v.s13.0666877d73c4 from=translated src=- shape=c12ed960 vocab=96190ab1
+-/
 theorem aux_packLpContinuousLinearMap_coeFn_ae_of_forall {J : ℕ} {X : Type*}
     [MeasurableSpace X] {μ : Measure X} [SFinite μ]
     (u : PiLp 2 (fun _ : Fin J ↦ Lp ℂ 2 μ)) (raw : Fin J → X → ℂ)
@@ -8773,6 +8889,9 @@ theorem aux_packLpContinuousLinearMap_coeFn_ae_of_forall {J : ℕ} {X : Type*}
     (aux_packed_ae_eq_of_forall' fun j ↦
       (aux_lpStrongRepresentative_ae_eq (u j)).symm.trans (hraw j))
 
+/--
+@isnad1 id=eq.1h5v.s13.c0544ef35bd4 from=translated src=- shape=0080d7a6 vocab=1a4d2ab6
+-/
 theorem aux_eLpNorm_sq_packLpContinuousLinearMap_eq_sum_raw {J : ℕ} {X : Type*}
     [MeasurableSpace X] {μ : Measure X} [SFinite μ]
     (u : PiLp 2 (fun _ : Fin J ↦ Lp ℂ 2 μ)) (raw : Fin J → X → ℂ)
@@ -8800,6 +8919,9 @@ noncomputable def aux_packLpCMLM {J : ℕ} {ι Y : Type*} {X : ι → Type*} [Fi
       |>.compContinuousMultilinearMap
         ((ContinuousMultilinearMap.piₗᵢ ℂ X) B))
 
+/--
+@isnad1 id=eq.0h7v.s15.588d4dd1f258 from=translated src=- shape=a3b644a6 vocab=04c56e1c
+-/
 @[simp]
 theorem aux_packLpCMLM_apply {J : ℕ} {ι Y : Type*} {X : ι → Type*} [Fintype ι]
     [MeasurableSpace Y] {μ : Measure Y} [SFinite μ]
@@ -8809,6 +8931,9 @@ theorem aux_packLpCMLM_apply {J : ℕ} {ι Y : Type*} {X : ι → Type*} [Fintyp
       ((PiLp.continuousLinearEquiv 2 ℂ (fun _ : Fin J ↦ Lp ℂ 2 μ)).symm
         (fun j ↦ B j x)) := rfl
 
+/--
+@isnad1 id=eventual.1h8v.s13.0fdb9fffd67d from=translated src=- shape=011f1875 vocab=5b5b39cf
+-/
 theorem aux_packLpCMLM_coeFn_ae_of_forall {J : ℕ} {ι Y : Type*} {X : ι → Type*}
     [Fintype ι] [MeasurableSpace Y] {μ : Measure Y} [SFinite μ]
     [∀ i, SeminormedAddCommGroup (X i)] [∀ i, NormedSpace ℂ (X i)]
@@ -8822,6 +8947,9 @@ theorem aux_packLpCMLM_coeFn_ae_of_forall {J : ℕ} {ι Y : Type*} {X : ι → T
   intro j
   simpa using hraw j
 
+/--
+@isnad1 id=eq.1h8v.s13.15c7f7d1cc4e from=translated src=- shape=d12d9fb7 vocab=ee484735
+-/
 theorem aux_eLpNorm_sq_packLpCMLM_eq_sum_raw {J : ℕ} {ι Y : Type*} {X : ι → Type*}
     [Fintype ι] [MeasurableSpace Y] {μ : Measure Y} [SFinite μ]
     [∀ i, SeminormedAddCommGroup (X i)] [∀ i, NormedSpace ℂ (X i)]

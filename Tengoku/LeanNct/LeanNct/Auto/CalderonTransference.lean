@@ -91,6 +91,9 @@ def aux_orbit {X : Type*} : {n : ℕ} →
       aux_orbit (fun i ↦ S i.succ) (fun i ↦ k i.succ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.87b647b7bf53 from=translated src=- shape=4eb01ba8 vocab=329d2ebf
+-/
 theorem aux_orbit_zero_vector {X : Type*} : ∀ {n : ℕ}
     (S : Fin n → X → X), aux_orbit S 0 = id
   | 0, S => rfl
@@ -100,7 +103,9 @@ theorem aux_orbit_zero_vector {X : Type*} : ∀ {n : ℕ}
       rw [aux_orbit_zero_vector]
       simp
 
-/-- A joint orbit preserves the measure when each generator does.-/
+/-- A joint orbit preserves the measure when each generator does.
+@isnad1 id=measurep.1h5v.s5.b250fbef872e from=translated src=- shape=5f557929 vocab=ff3011d2
+-/
 theorem aux_orbit_measurePreserving {X : Type*} [MeasurableSpace X]
     {μ : Measure X} : ∀ {n : ℕ} (S : Fin n → X → X) (k : Fin n → ℕ),
       (∀ i, MeasurePreserving (S i) μ μ) →
@@ -117,7 +122,9 @@ theorem aux_orbit_measurePreserving {X : Type*} [MeasurableSpace X]
 
 /--
 A map commuting with every generator also commutes with their joint
-orbit.-/
+orbit.
+@isnad1 id=commute.1h5v.s5.db64145d76aa from=translated src=- shape=aa03cd93 vocab=53fa21f3
+-/
 theorem aux_orbit_commute {X : Type*} : ∀ {n : ℕ}
     (S : Fin n → X → X) (k : Fin n → ℕ) (h : X → X)
     (_hcomm : ∀ i, Function.Commute h (S i)),
@@ -133,7 +140,9 @@ theorem aux_orbit_commute {X : Type*} : ∀ {n : ℕ}
         intro i
         exact hcomm i.succ
 
-/-- Joint orbits turn addition of multi-indices into composition.-/
+/-- Joint orbits turn addition of multi-indices into composition.
+@isnad1 id=eq.1h5v.s6.6c9694c7e434 from=translated src=- shape=2a135093 vocab=2ae77f2f
+-/
 theorem aux_orbit_add {X : Type*} : ∀ {n : ℕ} (S : Fin n → X → X)
     (_ : ∀ i j, Function.Commute (S i) (S j)) (k l : Fin n → ℕ),
     aux_orbit S (k + l) = aux_orbit S k ∘ aux_orbit S l
@@ -158,7 +167,9 @@ theorem aux_orbit_add {X : Type*} : ∀ {n : ℕ} (S : Fin n → X → X)
 
 /--
 A joint orbit with only one nonzero coordinate is the corresponding
-iterate.-/
+iterate.
+@isnad1 id=eq.0h5v.s5.c2dd219b2617 from=translated src=- shape=edb0336b vocab=bb526928
+-/
 theorem aux_orbit_single {X : Type*} : ∀ {n : ℕ}
     (S : Fin n → X → X) (i : Fin n) (r : ℕ),
     aux_orbit S (Pi.single i r) = (S i)^[r]
@@ -195,6 +206,9 @@ theorem aux_orbit_single {X : Type*} : ∀ {n : ℕ}
 def aux_coordinate {n : ℕ} (i : Fin n) (m : ℕ) : Fin n → ℕ :=
   fun j ↦ if j = i then m else 0
 
+/--
+@isnad1 id=eq.0h5v.s5.f9329195e3f4 from=translated src=- shape=bda4347f vocab=1e07151d
+-/
 theorem aux_orbit_coordinate {X : Type*} : ∀ {n : ℕ}
     (S : Fin n → X → X) (i : Fin n) (m : ℕ),
     aux_orbit S (aux_coordinate i m) = (S i)^[m]
@@ -217,7 +231,9 @@ theorem aux_orbit_coordinate {X : Type*} : ∀ {n : ℕ}
 
 /--
 Shifting a joint orbit in one coordinate amounts to composing with the
-corresponding transformation iterate.-/
+corresponding transformation iterate.
+@isnad1 id=eq.1h6v.s6.d9b83c874ab7 from=translated src=- shape=daeff01f vocab=cfb51eec
+-/
 theorem aux_orbit_add_coordinate {X : Type*} {n : ℕ}
     (S : Fin n → X → X) (hS : ∀ i j, Function.Commute (S i) (S j))
     (k : Fin n → ℕ) (i : Fin n) (m : ℕ) :
@@ -298,7 +314,9 @@ noncomputable def aux_natToInt {n : ℕ}
 
 /--
 On the forward lattice, the integer-lattice average of the zero
-extension is the original discrete average.-/
+extension is the original discrete average.
+@isnad1 id=eq.0h4v.s5.e130e05957e4 from=translated src=- shape=9c19ce91 vocab=9f0359a7
+-/
 theorem aux_integerDiscreteAverage_natToInt {n : ℕ} (N : ℕ)
     (F : Fin n → (Fin n → ℕ) → ℝ) (k : Fin n → ℕ) :
     aux_integerDiscreteAverage N (fun i ↦ aux_natToInt (F i))
@@ -329,7 +347,9 @@ theorem aux_integerDiscreteAverage_natToInt {n : ℕ} (N : ℕ)
 
 /--
 Rescaling the half-open unit-interval kernel by a positive integer gives
-the indicator of the corresponding half-open scale interval.-/
+the indicator of the corresponding half-open scale interval.
+@isnad1 id=eq.1h2v.s6.7ba684777a52 from=translated src=- shape=a8745ccf vocab=1bf2f10d
+-/
 theorem aux_scaled_unitIntervalKernel {N : ℕ} (hN : 0 < N) (s : ℝ) :
     (N : ℝ)⁻¹ * ctUnitIntervalKernel ((N : ℝ)⁻¹ * s) =
       (N : ℝ)⁻¹ * (Ico (0 : ℝ) N).indicator (fun _ ↦ (1 : ℝ)) s := by
@@ -360,7 +380,9 @@ theorem aux_scaled_unitIntervalKernel {N : ℕ} (hN : 0 < N) (s : ℝ) :
 
 /--
 A scaled half-open interval kernel converts a full integral into the
-corresponding scale-interval integral.-/
+corresponding scale-interval integral.
+@isnad1 id=eq.0h2v.s7.2e6d37e5e765 from=translated src=- shape=321db959 vocab=c13e81dd
+-/
 theorem aux_integral_scaled_Ico_eq_setIntegral {N : ℕ} (P : ℝ → ℝ) :
     ∫ s : ℝ, ((N : ℝ)⁻¹ * (Ico (0 : ℝ) N).indicator (fun _ ↦ (1 : ℝ)) s) *
         P s =
@@ -384,7 +406,9 @@ theorem aux_integral_scaled_Ico_eq_setIntegral {N : ℕ} (P : ℝ → ℝ) :
 
 /--
 The scaled kernel may be replaced by any pointwise equal integrand on
-its scale interval.-/
+its scale interval.
+@isnad1 id=eq.1h3v.s7.fdc399148c39 from=translated src=- shape=68134f90 vocab=b667ddb8
+-/
 theorem aux_integral_scaled_Ico_eq_of_pointwise {N : ℕ}
     (P Q : ℝ → ℝ) (hPQ : ∀ s, s ∈ Ico (0 : ℝ) N → P s = Q s) :
     ∫ s : ℝ, ((N : ℝ)⁻¹ * (Ico (0 : ℝ) N).indicator (fun _ ↦ (1 : ℝ)) s) *
@@ -411,6 +435,9 @@ noncomputable def aux_cuboidEmbed {n : ℕ} (ε δ : ℝ) (i : Fin n)
     then a (fun j ↦ ⌊y j⌋)
     else 0
 
+/--
+@isnad1 id=eq.2h2v.s5.9515b74f774b from=translated src=- shape=583c6eaa vocab=0f00ee69
+-/
 theorem aux_floor_intCast_add_of_mem_Ico (z : ℤ) {r : ℝ}
     (hr0 : 0 ≤ r) (hr1 : r < 1) :
     ⌊(z : ℝ) + r⌋ = z := by
@@ -423,7 +450,9 @@ theorem aux_floor_intCast_add_of_mem_Ico (z : ℤ) {r : ℝ}
 /--
 On a common overlap interval, the `i`th cuboid lift recovers the
 corresponding discrete translate.  This is the exact pointwise
-continuous-to-discrete identity.-/
+continuous-to-discrete identity.
+@isnad1 id=eq.4h9v.s7.f5535342202e from=translated src=- shape=311fe143 vocab=1f48d4b1
+-/
 theorem aux_cuboidEmbed_translateAxis_eq {n : ℕ} {ε δ : ℝ}
     (hε : ε < 1) (hεδ : ε + δ < 1) (i : Fin n)
     (a : aux_ZVector n → ℝ) (k : aux_ZVector n) (u : aux_RVector n)
@@ -477,7 +506,9 @@ theorem aux_cuboidEmbed_translateAxis_eq {n : ℕ} {ε δ : ℝ}
 
 /--
 If one parameter lies in every overlap interval, the product of cuboid
-lifts is exactly the corresponding diagonal discrete product.-/
+lifts is exactly the corresponding diagonal discrete product.
+@isnad1 id=eq.4h8v.s7.f1f989b0af0c from=translated src=- shape=014efabb vocab=08711b32
+-/
 theorem aux_cuboidEmbed_product_translateAxis_eq {n : ℕ} {ε δ : ℝ}
     (hε : ε < 1) (hεδ : ε + δ < 1)
     (a : Fin n → aux_ZVector n → ℝ) (k : aux_ZVector n)
@@ -493,7 +524,9 @@ theorem aux_cuboidEmbed_product_translateAxis_eq {n : ℕ} {ε δ : ℝ}
 
 /--
 At a base point in the small cube, a cuboid lift is either its one
-discrete translate on an overlap interval, or it vanishes.-/
+discrete translate on an overlap interval, or it vanishes.
+@isnad1 id=or.3h8v.s8.7ec7b5c0c666 from=translated src=- shape=b209e372 vocab=1f48d4b1
+-/
 theorem aux_cuboidEmbed_translateAxis_exists_or_eq_zero {n : ℕ}
     {ε δ : ℝ} (hε : ε < 1) (hεδ : ε + δ < 1) (i : Fin n)
     (a : aux_ZVector n → ℝ) (k : aux_ZVector n) (u : aux_RVector n)
@@ -534,7 +567,9 @@ theorem aux_cuboidEmbed_translateAxis_exists_or_eq_zero {n : ℕ}
 
 /--
 Different coordinate overlap intervals cannot meet at distinct integer
-indices when their total width is less than one.-/
+indices when their total width is less than one.
+@isnad1 id=eq.4h9v.s7.84ff52b27f3a from=translated src=- shape=be83e31c vocab=b9a42728
+-/
 theorem aux_overlap_index_eq {n : ℕ} {ε δ : ℝ}
     (hwidth : ε + δ < 1) (u : aux_RVector n)
     (hu : ∀ i, 0 ≤ u i ∧ u i < ε) (i j : Fin n) (s : ℝ)
@@ -558,7 +593,9 @@ theorem aux_overlap_index_eq {n : ℕ} {ε δ : ℝ}
 
 /--
 Outside the common overlap intervals, one cuboid factor vanishes and so
-does their product.-/
+does their product.
+@isnad1 id=eq.5h7v.s7.01a2794a12a7 from=translated src=- shape=05f40e28 vocab=11c19539
+-/
 theorem aux_cuboidEmbed_product_eq_zero_of_no_common_overlap
     {n : ℕ} (hn : 0 < n) {ε δ : ℝ} (hε : ε < 1)
     (hwidth : ε + δ < 1) (a : Fin n → aux_ZVector n → ℝ)
@@ -593,7 +630,9 @@ theorem aux_cuboidEmbed_product_eq_zero_of_no_common_overlap
 
 /--
 The raw-coordinate translation agrees with translation by
-`ctCoordinateAxis` after passing to Euclidean space.-/
+`ctCoordinateAxis` after passing to Euclidean space.
+@isnad1 id=eq.0h4v.s7.eb83646443f7 from=translated src=- shape=be70d8cb vocab=77466f62
+-/
 theorem aux_toLp_translateAxis {n : ℕ} (x : aux_RVector n)
     (i : Fin n) (s : ℝ) :
     WithLp.toLp 2 (aux_translateAxis x i s) =
@@ -606,6 +645,9 @@ noncomputable def aux_liftRaw {n : ℕ}
     (F : aux_RVector n → ℝ) : ctRealVector n → ℝ :=
   fun x ↦ F fun j ↦ x j
 
+/--
+@isnad1 id=eq.0h3v.s5.e566f98d885d from=translated src=- shape=6ec61f3e vocab=4bf3d4ec
+-/
 theorem aux_liftRaw_toLp {n : ℕ} (F : aux_RVector n → ℝ)
     (x : aux_RVector n) :
     aux_liftRaw F (WithLp.toLp 2 x) = F x :=
@@ -613,7 +655,9 @@ theorem aux_liftRaw_toLp {n : ℕ} (F : aux_RVector n → ℝ)
 
 /--
 The cuboid lifts have the expected integrand after passing from raw
-coordinates to `ctRealVector n`.-/
+coordinates to `ctRealVector n`.
+@isnad1 id=eq.0h7v.s8.8cb9b778f6d5 from=translated src=- shape=6bf61861 vocab=ee225282
+-/
 theorem aux_cuboidEmbed_integrand_toLp {n : ℕ} {ε δ : ℝ}
     (a : Fin n → aux_ZVector n → ℝ) (k : aux_ZVector n)
     (u : aux_RVector n) (s : ℝ) :
@@ -637,6 +681,9 @@ def aux_commonOverlapSet {n : ℕ} (ε δ : ℝ) (u : aux_RVector n)
     (m : ℕ) : Set ℝ :=
   {s | aux_commonOverlap ε δ u m s}
 
+/--
+@isnad1 id=nonempty.1h1v.s4.5abbcf77870f from=translated src=- shape=def59b51 vocab=6dd48084
+-/
 theorem aux_fin_univ_nonempty {n : ℕ} (hn : 0 < n) :
     (Finset.univ : Finset (Fin n)).Nonempty := by
   refine ⟨⟨0, hn⟩, Finset.mem_univ _⟩
@@ -655,12 +702,17 @@ noncomputable def aux_overlapUpper {n : ℕ} (hn : 0 < n) (ε δ : ℝ)
   Finset.univ.inf' ⟨i₀, Finset.mem_univ i₀⟩
     (fun i ↦ (m : ℝ) + ε + δ - u i)
 
+/--
+@isnad1 id=eq.1h4v.s5.40927200eb41 from=translated src=- shape=f88038fa vocab=5a6d6363
+-/
 theorem aux_add_inf' {ι : Type*} (q : Finset ι) (hq : q.Nonempty)
     (f : ι → ℝ) (a : ℝ) :
     a + q.inf' hq f = q.inf' hq (fun i ↦ a + f i) :=
   map_finset_inf' (OrderIso.addLeft a) hq f
 
-/-- The common-overlap condition is a half-open interval condition.-/
+/-- The common-overlap condition is a half-open interval condition.
+@isnad1 id=iff.1h6v.s5.2a60d72797be from=translated src=- shape=c48439dc vocab=c67bf24f
+-/
 theorem aux_mem_commonOverlapSet_iff {n : ℕ} (hn : 0 < n)
     {ε δ s : ℝ} (u : aux_RVector n) (m : ℕ) :
     s ∈ aux_commonOverlapSet ε δ u m ↔
@@ -688,7 +740,9 @@ theorem aux_mem_commonOverlapSet_iff {n : ℕ} (hn : 0 < n)
         (fun i ↦ (m : ℝ) + ε + δ - u i) (Finset.mem_univ i)
       linarith
 
-/-- On the base cube, every common-overlap interval is nonempty.-/
+/-- On the base cube, every common-overlap interval is nonempty.
+@isnad1 id=le.3h5v.s6.21d17ae93bee from=translated src=- shape=4a669ddf vocab=ff2f53fe
+-/
 theorem aux_overlapLower_le_overlapUpper {n : ℕ} (hn : 0 < n)
     {ε δ : ℝ} (u : aux_RVector n) (m : ℕ)
     (hu : ∀ i, 0 ≤ u i ∧ u i ≤ ε) (hεδ : ε ≤ δ) :
@@ -708,7 +762,9 @@ theorem aux_overlapLower_le_overlapUpper {n : ℕ} (hn : 0 < n)
     linarith [(hu i).2]
   linarith
 
-/-- Translating the lattice time translates the overlap's left endpoint.-/
+/-- Translating the lattice time translates the overlap's left endpoint.
+@isnad1 id=eq.1h4v.s5.c3f65f413f48 from=translated src=- shape=1cb20fa5 vocab=e5354a1b
+-/
 theorem aux_overlapLower_eq_add_overlapLower_zero {n : ℕ}
     (hn : 0 < n) (ε : ℝ) (u : aux_RVector n) (m : ℕ) :
     aux_overlapLower hn ε u m = (m : ℝ) + aux_overlapLower hn ε u 0 := by
@@ -718,7 +774,9 @@ theorem aux_overlapLower_eq_add_overlapLower_zero {n : ℕ}
   simpa [sub_eq_add_neg, add_assoc] using
     (Finset.add_sup' Finset.univ (fun i ↦ ε - u i) (m : ℝ) hne).symm
 
-/-- Translating the lattice time translates the overlap's right endpoint.-/
+/-- Translating the lattice time translates the overlap's right endpoint.
+@isnad1 id=eq.1h5v.s5.f969a18488c8 from=translated src=- shape=6488f563 vocab=0c8da273
+-/
 theorem aux_overlapUpper_eq_add_overlapUpper_zero {n : ℕ}
     (hn : 0 < n) (ε δ : ℝ) (u : aux_RVector n) (m : ℕ) :
     aux_overlapUpper hn ε δ u m = (m : ℝ) + aux_overlapUpper hn ε δ u 0 := by
@@ -730,7 +788,9 @@ theorem aux_overlapUpper_eq_add_overlapUpper_zero {n : ℕ}
 
 /--
 The length of a common overlap interval is independent of its lattice
-time.-/
+time.
+@isnad1 id=eq.1h5v.s6.d6150eb62a51 from=translated src=- shape=64d2f0c3 vocab=3f669cd8
+-/
 theorem aux_overlapWidth_invariant {n : ℕ} (hn : 0 < n)
     (ε δ : ℝ) (u : aux_RVector n) (m : ℕ) :
     aux_overlapUpper hn ε δ u m - aux_overlapLower hn ε u m =
@@ -744,6 +804,9 @@ noncomputable def aux_overlapWidth {n : ℕ} (hn : 0 < n) (ε δ : ℝ)
     (u : aux_RVector n) : ℝ :=
   aux_overlapUpper hn ε δ u 0 - aux_overlapLower hn ε u 0
 
+/--
+@isnad1 id=eq.1h5v.s5.44bd1ebe36d0 from=translated src=- shape=55c9adca vocab=75bfe4f5
+-/
 theorem aux_overlapWidth_eq_translate_width {n : ℕ} (hn : 0 < n)
     (ε δ : ℝ) (u : aux_RVector n) (m : ℕ) :
     aux_overlapWidth hn ε δ u =
@@ -751,7 +814,9 @@ theorem aux_overlapWidth_eq_translate_width {n : ℕ} (hn : 0 < n)
   symm
   exact aux_overlapWidth_invariant hn ε δ u m
 
-/-- On the base cube, the common overlap width is at least `δ - ε`.-/
+/-- On the base cube, the common overlap width is at least `δ - ε`.
+@isnad1 id=le.2h4v.s5.35e348f81e09 from=translated src=- shape=7640bd47 vocab=75a5233b
+-/
 theorem aux_overlapWidth_lower_bound {n : ℕ} (hn : 0 < n)
     {ε δ : ℝ} (u : aux_RVector n) (hu : ∀ i, 0 ≤ u i ∧ u i ≤ ε) :
     δ - ε ≤ aux_overlapWidth hn ε δ u := by
@@ -772,7 +837,9 @@ theorem aux_overlapWidth_lower_bound {n : ℕ} (hn : 0 < n)
 
 /--
 Every overlap indexed by `range N` lies inside the scale interval
-`[0,N)`.-/
+`[0,N)`.
+@isnad1 id=le.3h6v.s6.cbfc9abc1a2d from=translated src=- shape=57215f2d vocab=0167a74a
+-/
 theorem aux_commonOverlapSet_subset_scale {n : ℕ} (hn : 0 < n)
     {ε δ : ℝ} (hwidth : ε + δ < 1) (u : aux_RVector n)
     (hu : ∀ i, 0 ≤ u i ∧ u i < ε) (N : ℕ) (q : Fin N) :
@@ -802,7 +869,9 @@ noncomputable def aux_overlapContribution {n : ℕ} (ε δ : ℝ)
 
 /--
 An overlap contribution is the indicator of its common half-open
-interval times its diagonal lattice coefficient.-/
+interval times its diagonal lattice coefficient.
+@isnad1 id=eq.1h8v.s6.9d8bbb3f0d20 from=translated src=- shape=f379d582 vocab=e6cc7504
+-/
 theorem aux_overlapContribution_eq_indicator {n : ℕ} (hn : 0 < n)
     (ε δ : ℝ) (a : Fin n → aux_ZVector n → ℝ) (k : aux_ZVector n)
     (u : aux_RVector n) (q : ℕ) (s : ℝ) :
@@ -821,7 +890,9 @@ theorem aux_overlapContribution_eq_indicator {n : ℕ} (hn : 0 < n)
     intro hmem
     exact h ((aux_mem_commonOverlapSet_iff hn u q).mpr hmem)
 
-/-- Integral of a constant on a half-open real interval.-/
+/-- Integral of a constant on a half-open real interval.
+@isnad1 id=eq.1h3v.s6.082e2deb132d from=translated src=- shape=532b18d7 vocab=4ebc72ad
+-/
 theorem aux_integral_indicator_Ico_const {a b c : ℝ} (hab : a ≤ b) :
     ∫ s : ℝ, (Ico a b).indicator (fun _ ↦ c) s = (b - a) * c := by
   rw [MeasureTheory.integral_indicator measurableSet_Ico]
@@ -830,7 +901,9 @@ theorem aux_integral_indicator_Ico_const {a b c : ℝ} (hab : a ≤ b) :
 
 /--
 The full scale integral of the finite overlap expansion factors as the
-common overlap width times the discrete diagonal sum.-/
+common overlap width times the discrete diagonal sum.
+@isnad1 id=eq.3h7v.s7.90c62fd4ba46 from=translated src=- shape=e48d5fc3 vocab=de37ce00
+-/
 theorem aux_integral_sum_overlapContribution {n : ℕ} (hn : 0 < n)
     {ε δ : ℝ} (hεδ : ε ≤ δ) (a : Fin n → aux_ZVector n → ℝ)
     (k : aux_ZVector n) (u : aux_RVector n) (N : ℕ)
@@ -874,7 +947,9 @@ theorem aux_integral_sum_overlapContribution {n : ℕ} (hn : 0 < n)
 
 /--
 Restricting the finite overlap expansion to its scale interval does not
-change its integral.-/
+change its integral.
+@isnad1 id=eq.4h7v.s7.49008ca1ec83 from=translated src=- shape=fdd6fc92 vocab=4769ec51
+-/
 theorem aux_setIntegral_sum_overlapContribution {n : ℕ}
     (hn : 0 < n) {ε δ : ℝ} (hεδ : ε ≤ δ) (hwidth : ε + δ < 1)
     (a : Fin n → aux_ZVector n → ℝ) (k : aux_ZVector n)
@@ -908,7 +983,9 @@ theorem aux_setIntegral_sum_overlapContribution {n : ℕ}
 
 /--
 A common overlap contributing to the interval `[0,N)` has an index in
-`range N`.  The open upper faces of the cuboids remove endpoint terms.-/
+`range N`.  The open upper faces of the cuboids remove endpoint terms.
+@isnad1 id=ex.5h7v.s7.c7e6dec310da from=translated src=- shape=0154be85 vocab=ccc76d2f
+-/
 theorem aux_commonOverlap_index_mem_range {n : ℕ} (hn : 0 < n)
     {ε δ : ℝ} (hwidth : ε + δ < 1) (u : aux_RVector n)
     (hu : ∀ i, 0 ≤ u i ∧ u i < ε) (N : ℕ) {s : ℝ}
@@ -941,7 +1018,9 @@ theorem aux_commonOverlap_index_mem_range {n : ℕ} (hn : 0 < n)
 
 /--
 On `[0,N)`, the cuboid product is a finite sum of the diagonal discrete
-products over its common overlap intervals.-/
+products over its common overlap intervals.
+@isnad1 id=eq.5h8v.s7.a3dafb0d6366 from=translated src=- shape=615f9138 vocab=83570664
+-/
 theorem aux_cuboidEmbed_product_eq_overlapSum {n : ℕ}
     (hn : 0 < n) {ε δ : ℝ} (hε : ε < 1)
     (hwidth : ε + δ < 1) (a : Fin n → aux_ZVector n → ℝ)
@@ -1014,7 +1093,9 @@ theorem aux_cuboidEmbed_product_eq_overlapSum {n : ℕ}
 /--
 At a point of the base cuboid, the rescaled continuous average of the
 cuboid lift is exactly the common-overlap width times the integer-lattice
-discrete average.-/
+discrete average.
+@isnad1 id=eq.6h7v.s7.4c5e754db1bc from=translated src=- shape=ebf608a7 vocab=d0b8b07d
+-/
 theorem aux_twistedAverageAtScale_cuboidLift_eq {n : ℕ}
     (hn : 0 < n) {ε δ : ℝ} (hε : ε < 1) (hεδ : ε ≤ δ)
     (hwidth : ε + δ < 1) (N : ℕ) (hN : 0 < N)
@@ -1064,6 +1145,9 @@ def aux_orbitFunction {X : Type*} [MeasurableSpace X]
     Fin n → (Fin n → ℕ) → ℝ :=
   fun i k ↦ f i (aux_orbit S.transformation k x)
 
+/--
+@isnad1 id=eq.0h8v.s6.58218ee29791 from=translated src=- shape=61c5a9d3 vocab=9d1f8b8c
+-/
 theorem aux_orbit_add_coordinate_apply {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : ErgodicSystem X μ n) (k : Fin n → ℕ) (i : Fin n)
@@ -1080,7 +1164,9 @@ theorem aux_orbit_add_coordinate_apply {X : Type*}
 
 /--
 The exact finite identity at the core of the ergodic-to-discrete
-reduction.-/
+reduction.
+@isnad1 id=eq.0h8v.s6.654b943be6ea from=translated src=- shape=d7e4eee5 vocab=7b0b9e12
+-/
 theorem aux_discreteAverage_orbitFunction {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : ErgodicSystem X μ n) (f : Fin n → X → ℝ) (x : X)
@@ -1096,7 +1182,9 @@ theorem aux_discreteAverage_orbitFunction {X : Type*}
 
 /--
 The discrete jump energy of orbit data is exactly the lattice sum of the
-corresponding ergodic jump functions.-/
+corresponding ergodic jump functions.
+@isnad1 id=eq.0h8v.s7.93368c6eb440 from=translated src=- shape=d3d0bb46 vocab=da8cd6ce
+-/
 theorem aux_discreteJumpEnergy_orbitFunction {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n J : ℕ}
     (S : ErgodicSystem X μ n) (N : Fin (J + 1) → ℕ)
@@ -1118,14 +1206,18 @@ theorem aux_discreteJumpEnergy_orbitFunction {X : Type*}
 
 /--
 A nonnegative measurable integral is invariant under a joint forward
-orbit.-/
+orbit.
+@isnad1 id=eq.1h6v.s5.cbce790204c8 from=translated src=- shape=e921cdac vocab=96fcc918
+-/
 theorem aux_lintegral_orbit_comp {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : ErgodicSystem X μ n) (k : Fin n → ℕ)
     {F : X → ℝ≥0∞} (hF : Measurable F) :
     ∫⁻ x, F (aux_orbit S.transformation k x) ∂μ = ∫⁻ x, F x ∂μ :=
   (aux_orbit_measurePreserving S.transformation k S.measurePreserving).lintegral_comp hF
 
-/-- `Lᵖ` norms are invariant under joint forward orbits.-/
+/-- `Lᵖ` norms are invariant under joint forward orbits.
+@isnad1 id=eq.1h8v.s6.ac153ab6b863 from=translated src=- shape=0011ebc5 vocab=61e8646d
+-/
 theorem aux_eLpNorm_orbit_comp {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : ErgodicSystem X μ n) (k : Fin n → ℕ)
     {E : Type*} [TopologicalSpace E] [ContinuousENorm E]
@@ -1134,7 +1226,9 @@ theorem aux_eLpNorm_orbit_comp {X : Type*} [MeasurableSpace X]
   eLpNorm_comp_measurePreserving hF
     (aux_orbit_measurePreserving S.transformation k S.measurePreserving)
 
-/-- Membership in `Lᵖ` is stable under joint forward orbits.-/
+/-- Membership in `Lᵖ` is stable under joint forward orbits.
+@isnad1 id=memlp.1h8v.s6.263e4cabddb5 from=translated src=- shape=5d53682e vocab=d60a42a6
+-/
 theorem aux_memLp_orbit_comp {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {n : ℕ} (S : ErgodicSystem X μ n) (k : Fin n → ℕ)
     {E : Type*} [TopologicalSpace E] [ContinuousENorm E]
@@ -1198,11 +1292,17 @@ abbrev ZVector (n : ℕ) := aux_ZVector n
 def cuboid {n : ℕ} (l u : RVector n) : Set (RVector n) :=
   Set.pi Set.univ fun j ↦ Ico (l j) (u j)
 
+/--
+@isnad1 id=measurab.0h3v.s4.022085e4c707 from=translated src=- shape=e201c139 vocab=d072b3cd
+-/
 theorem measurableSet_cuboid {n : ℕ} (l u : RVector n) :
     MeasurableSet (cuboid l u) := by
   unfold cuboid
   exact MeasurableSet.univ_pi fun _ ↦ measurableSet_Ico
 
+/--
+@isnad1 id=eq.0h3v.s6.e8fa96e95cf8 from=translated src=- shape=563be232 vocab=7601fe4f
+-/
 theorem volume_cuboid {n : ℕ} (l u : RVector n) :
     volume (cuboid l u) = ∏ j, ENNReal.ofReal (u j - l j) :=
   Real.volume_pi_Ico
@@ -1225,7 +1325,9 @@ def latticeAxisCuboid {n : ℕ} (ε δ : ℝ) (i : Fin n)
 
 /--
 The floor description of the cuboid lift agrees with the corresponding
-half-open translated cuboid.-/
+half-open translated cuboid.
+@isnad1 id=iff.3h6v.s7.22452337950c from=translated src=- shape=bc810352 vocab=4b800773
+-/
 theorem mem_latticeAxisCuboid_iff {n : ℕ} {ε δ : ℝ}
     (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (k : ZVector n) (y : RVector n) :
@@ -1285,6 +1387,9 @@ theorem mem_latticeAxisCuboid_iff {n : ℕ} {ε δ : ℝ}
       simp only [ite_eq_right hji] at hcond
       constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h5v.s6.71b166db9c6f from=translated src=- shape=9ba6a3bb vocab=ab3b17a7
+-/
 theorem volume_axisCuboid {n : ℕ} {ε δ : ℝ} (i : Fin n)
     (k : RVector n) :
     volume (axisCuboid ε δ i k) =
@@ -1295,6 +1400,9 @@ theorem volume_axisCuboid {n : ℕ} {ε δ : ℝ} (i : Fin n)
   simp only [axisUpper, axisLower]
   by_cases hji : j = i <;> simp [hji]
 
+/--
+@isnad1 id=disjoint.2h4v.s6.fe2ae9f8c9f5 from=translated src=- shape=4ec00a63 vocab=c07e8329
+-/
 theorem disjoint_Ico_int_shift {c w : ℝ} (hw : w ≤ 1)
     {k l : ℤ} (hkl : k ≠ l) :
     Disjoint (Ico ((k : ℝ) + c) ((k : ℝ) + c + w))
@@ -1311,6 +1419,9 @@ theorem disjoint_Ico_int_shift {c w : ℝ} (hw : w ≤ 1)
     have hgap : (l : ℝ) + 1 ≤ (k : ℝ) := by exact_mod_cast hgapZ
     linarith
 
+/--
+@isnad1 id=disjoint.3h6v.s6.506e722b16e5 from=translated src=- shape=25f23eb4 vocab=7af06c33
+-/
 theorem latticeAxisCuboid_pairwise_disjoint {n : ℕ}
     {ε δ : ℝ} (hε : ε ≤ 1) (hδ : δ ≤ 1) (i : Fin n)
     {k l : ZVector n} (hkl : k ≠ l) :
@@ -1352,6 +1463,9 @@ def finiteStep (A : Finset κ) (s : κ → Set α) (a : κ → ℝ) :
   fun x ↦ ∑ k ∈ A, (s k).indicator (fun _ ↦ a k) x
 
 omit [MeasurableSpace α] [DecidableEq κ] in
+/--
+@isnad1 id=eq.3h7v.s7.b266f059f75f from=translated src=- shape=bbc98229 vocab=6afff1f6
+-/
 theorem finiteStep_apply_of_mem (A : Finset κ) (s : κ → Set α)
     (a : κ → ℝ)
     (hdisj : ∀ ⦃k⦄, k ∈ A → ∀ ⦃l⦄, l ∈ A → k ≠ l → Disjoint (s k) (s l))
@@ -1369,6 +1483,9 @@ theorem finiteStep_apply_of_mem (A : Finset κ) (s : κ → Set α)
   · simp [hk]
 
 omit [MeasurableSpace α] [DecidableEq κ] in
+/--
+@isnad1 id=eq.1h6v.s5.5c5bf04d8777 from=translated src=- shape=444dddb0 vocab=d288f91e
+-/
 theorem finiteStep_apply_eq_zero (A : Finset κ) (s : κ → Set α)
     (a : κ → ℝ) {x : α} (hx : ∀ k ∈ A, x ∉ s k) :
     finiteStep A s a x = 0 := by
@@ -1379,6 +1496,9 @@ theorem finiteStep_apply_eq_zero (A : Finset κ) (s : κ → Set α)
   simp [hx k hk]
 
 omit [MeasurableSpace α] [DecidableEq κ] in
+/--
+@isnad1 id=eq.2h7v.s7.747dcae55a00 from=translated src=- shape=d03e6b72 vocab=648da02c
+-/
 theorem finiteStep_enorm_rpow (A : Finset κ) (s : κ → Set α)
     (a : κ → ℝ) (q : ℝ) (hq : 0 < q)
     (hdisj : ∀ ⦃k⦄, k ∈ A → ∀ ⦃l⦄, l ∈ A → k ≠ l → Disjoint (s k) (s l))
@@ -1412,6 +1532,9 @@ theorem finiteStep_enorm_rpow (A : Finset κ) (s : κ → Set α)
     simp [hxk]
 
 omit [DecidableEq κ] in
+/--
+@isnad1 id=eq.3h7v.s8.585f18de52c2 from=translated src=- shape=9485ad98 vocab=6829c62f
+-/
 theorem lintegral_finiteStep_enorm_rpow (μ : Measure α) (A : Finset κ)
     (s : κ → Set α) (a : κ → ℝ) (q : ℝ) (hq : 0 < q)
     (hmeas : ∀ k ∈ A, MeasurableSet (s k))
@@ -1426,6 +1549,9 @@ theorem lintegral_finiteStep_enorm_rpow (μ : Measure α) (A : Finset κ)
   · intro k hk
     exact measurable_const.indicator (hmeas k hk)
 
+/--
+@isnad1 id=measurab.0h5v.s5.b19613ca270d from=translated src=- shape=35e43283 vocab=977ba1e4
+-/
 theorem measurableSet_latticeAxisCuboid {n : ℕ} (ε δ : ℝ)
     (i : Fin n) (k : ZVector n) :
     MeasurableSet (latticeAxisCuboid ε δ i k) :=
@@ -1437,7 +1563,9 @@ def finiteLatticeStep {n : ℕ} (ε δ : ℝ) (i : Fin n)
 
 /--
 A finite-support floor cuboid lift is a finite sum of disjoint
-half-open cuboid steps.-/
+half-open cuboid steps.
+@isnad1 id=eq.4h7v.s6.5cea786c4edd from=translated src=- shape=1114d32b vocab=034a515e
+-/
 theorem cuboidEmbed_eq_finiteLatticeStep_apply {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1476,6 +1604,9 @@ theorem cuboidEmbed_eq_finiteLatticeStep_apply {n : ℕ}
       exact hsupport _ hnot
     · exact hstepzero.symm
 
+/--
+@isnad1 id=eq.3h7v.s8.7b5abcd31ed7 from=translated src=- shape=fa4c7890 vocab=e2a341f7
+-/
 theorem lintegral_finiteLatticeStep_enorm_rpow {n : ℕ}
     {ε δ : ℝ} (hε : ε ≤ 1) (hδ : δ ≤ 1) (i : Fin n)
     (A : Finset (ZVector n)) (a : ZVector n → ℝ) (q : ℝ) (hq : 0 < q) :
@@ -1488,7 +1619,9 @@ theorem lintegral_finiteLatticeStep_enorm_rpow {n : ℕ}
   · intro k hk l hl hkl
     exact latticeAxisCuboid_pairwise_disjoint hε hδ i hkl
 
-/-- The finite-support `L^q` integral formula for the cuboid lift.-/
+/-- The finite-support `L^q` integral formula for the cuboid lift.
+@isnad1 id=eq.5h7v.s8.85e6e71ab0d5 from=translated src=- shape=e47dd667 vocab=6d51982c
+-/
 theorem lintegral_cuboidEmbed_enorm_rpow {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1511,6 +1644,9 @@ theorem lintegral_cuboidEmbed_enorm_rpow {n : ℕ}
       intro k hk
       rw [latticeAxisCuboid, volume_axisCuboid]
 
+/--
+@isnad1 id=eq.6h7v.s8.0223afd6e045 from=translated src=- shape=297fa73d vocab=cf1cf602
+-/
 theorem eLpNorm_cuboidEmbed_eq {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1524,6 +1660,9 @@ theorem eLpNorm_cuboidEmbed_eq {n : ℕ}
   exact lintegral_cuboidEmbed_enorm_rpow hε0 hε hεδ i A a hsupport
     p.toReal (ENNReal.toReal_pos hp0 hptop)
 
+/--
+@isnad1 id=eq.2h4v.s7.bbd6b1f527cb from=translated src=- shape=57af9437 vocab=2c894a55
+-/
 theorem lintegral_count_enorm_rpow_eq_finset {κ : Type*}
     [MeasurableSpace κ] [MeasurableSingletonClass κ]
     (A : Finset κ) (a : κ → ℝ) (q : ℝ) (hq : 0 < q)
@@ -1537,7 +1676,9 @@ theorem lintegral_count_enorm_rpow_eq_finset {κ : Type*}
 
 /--
 The cuboid lift has the original counting norm times its box-volume
-factor.-/
+factor.
+@isnad1 id=eq.6h7v.s8.980ea4a986d1 from=translated src=- shape=5bd7150d vocab=0b850b90
+-/
 theorem eLpNorm_cuboidEmbed_eq_count_mul {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1554,6 +1695,9 @@ theorem eLpNorm_cuboidEmbed_eq_count_mul {n : ℕ}
     (ENNReal.toReal_pos hp0 hptop) hsupport]
   rw [ENNReal.mul_rpow_of_nonneg _ _ (by positivity)]
 
+/--
+@isnad1 id=measurab.4h6v.s6.bc4d8493dd6a from=translated src=- shape=06b3546b vocab=3bca815a
+-/
 theorem measurable_cuboidEmbed {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1568,6 +1712,9 @@ theorem measurable_cuboidEmbed {n : ℕ}
   intro k hk
   exact measurable_const.indicator (measurableSet_latticeAxisCuboid ε δ i k)
 
+/--
+@isnad1 id=memlp.6h7v.s7.338e7b752e40 from=translated src=- shape=4fd7fadf vocab=e6cec58f
+-/
 theorem memLp_cuboidEmbed {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1584,12 +1731,18 @@ theorem memLp_cuboidEmbed {n : ℕ}
     intro j hj
     exact ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=measurab.1h2v.s6.faeace1c5e9d from=translated src=- shape=b8ce0e3b vocab=1d60abe8
+-/
 theorem measurable_liftRaw {n : ℕ} {F : RVector n → ℝ}
     (hF : Measurable F) :
     Measurable (aux_liftRaw F) := by
   change Measurable (F ∘ WithLp.ofLp)
   exact hF.comp (PiLp.volume_preserving_ofLp (ι := Fin n)).measurable
 
+/--
+@isnad1 id=eq.1h3v.s8.d28f75ee25de from=translated src=- shape=ce164259 vocab=24f476a9
+-/
 theorem eLpNorm_liftRaw_eq {n : ℕ} (F : RVector n → ℝ)
     (p : ℝ≥0∞) (hF : Measurable F) :
     eLpNorm (aux_liftRaw F) p volume = eLpNorm F p volume := by
@@ -1605,7 +1758,9 @@ theorem eLpNorm_liftRaw_eq {n : ℕ} (F : RVector n → ℝ)
 /--
 The coordinate `WithLp` equivalence preserves `eLpNorm` without an
 additional measurability assumption.  This form is useful for jump
-functions, whose measurability is not part of the real-variable hypothesis.-/
+functions, whose measurability is not part of the real-variable hypothesis.
+@isnad1 id=eq.2h3v.s8.5ef4e0f33293 from=translated src=- shape=acd9c70f vocab=2871deee
+-/
 theorem eLpNorm_liftRaw_eq_any {n : ℕ} (F : RVector n → ℝ)
     (p : ℝ≥0∞) (hp0 : p ≠ 0) (hptop : p ≠ ∞) :
     eLpNorm (aux_liftRaw F) p volume = eLpNorm F p volume := by
@@ -1625,7 +1780,9 @@ theorem eLpNorm_liftRaw_eq_any {n : ℕ} (F : RVector n → ℝ)
 
 /--
 Pulling a function back along the coordinate `WithLp` equivalence leaves
-its `eLpNorm` unchanged, without a measurability side condition.-/
+its `eLpNorm` unchanged, without a measurability side condition.
+@isnad1 id=eq.2h4v.s8.f9542cbf53fd from=translated src=- shape=5415b099 vocab=f843736e
+-/
 theorem eLpNorm_toLp_comp_eq {n : ℕ} {E : Type*}
     [TopologicalSpace E] [ENorm E] (F : ctRealVector n → E)
     (p : ℝ≥0∞) (hp0 : p ≠ 0) (hptop : p ≠ ∞) :
@@ -1640,7 +1797,9 @@ theorem eLpNorm_toLp_comp_eq {n : ℕ} {E : Type*}
 
 /--
 The Euclidean cuboid lift has the corresponding counting norm times its
-fixed box-volume factor.-/
+fixed box-volume factor.
+@isnad1 id=eq.6h7v.s8.ccbcec8b18a6 from=translated src=- shape=8361c21f vocab=548405c6
+-/
 theorem eLpNorm_liftedCuboidEmbed_eq_count_mul {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1653,6 +1812,9 @@ theorem eLpNorm_liftedCuboidEmbed_eq_count_mul {n : ℕ}
     (measurable_cuboidEmbed hε0 hε hεδ i A a hsupport),
     eLpNorm_cuboidEmbed_eq_count_mul hε0 hε hεδ i A a hsupport p hp0 hptop]
 
+/--
+@isnad1 id=memlp.6h7v.s8.58650cce3d8b from=translated src=- shape=19470e6f vocab=1e009cd2
+-/
 theorem memLp_liftedCuboidEmbed {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1665,6 +1827,9 @@ theorem memLp_liftedCuboidEmbed {n : ℕ}
     (measurable_cuboidEmbed hε0 hε hεδ i A a hsupport)]
   exact (memLp_cuboidEmbed hε0 hε hεδ i A a hsupport p hp0 hptop).2
 
+/--
+@isnad1 id=le.7h7v.s8.6d80933c05f7 from=translated src=- shape=072cd999 vocab=a845beb8
+-/
 theorem eLpNorm_liftedCuboidEmbed_le_count {n : ℕ}
     {ε δ : ℝ} (hε0 : 0 ≤ ε) (hε : ε < 1) (hεδ : ε + δ < 1)
     (i : Fin n) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
@@ -1690,11 +1855,17 @@ def latticeCuboid {n : ℕ} (ε : ℝ) (k : ZVector n) :
     Set (RVector n) :=
   cuboid (fun j ↦ (k j : ℝ)) (fun j ↦ (k j : ℝ) + ε)
 
+/--
+@isnad1 id=measurab.0h3v.s4.977b01b91ee6 from=translated src=- shape=de3237e4 vocab=3943a961
+-/
 theorem measurableSet_latticeCuboid {n : ℕ} (ε : ℝ)
     (k : ZVector n) :
     MeasurableSet (latticeCuboid ε k) :=
   measurableSet_cuboid _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.afba497107ce from=translated src=- shape=c565aa43 vocab=bf99a2af
+-/
 theorem volume_latticeCuboid {n : ℕ} (ε : ℝ) (k : ZVector n) :
     volume (latticeCuboid ε k) = ∏ _ : Fin n, ENNReal.ofReal ε := by
   rw [latticeCuboid, volume_cuboid]
@@ -1702,6 +1873,9 @@ theorem volume_latticeCuboid {n : ℕ} (ε : ℝ) (k : ZVector n) :
   intro j _
   simp
 
+/--
+@isnad1 id=disjoint.2h4v.s6.9033f271e90f from=translated src=- shape=fc34dbe3 vocab=eb3615f5
+-/
 theorem latticeCuboid_pairwise_disjoint {n : ℕ} {ε : ℝ} (hε : ε ≤ 1)
     {k l : ZVector n} (hkl : k ≠ l) :
     Disjoint (latticeCuboid ε k) (latticeCuboid ε l) := by
@@ -1723,6 +1897,9 @@ def finiteLatticeCubeStep {n : ℕ} (ε : ℝ) (A : Finset (ZVector n))
     (a : ZVector n → ℝ) : RVector n → ℝ :=
   finiteStep A (latticeCuboid ε) a
 
+/--
+@isnad1 id=eq.2h5v.s8.58b0b518da64 from=translated src=- shape=a8e44a4d vocab=b0884449
+-/
 theorem lintegral_finiteLatticeCubeStep_enorm_rpow {n : ℕ}
     {ε : ℝ} (hε : ε ≤ 1) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
     (q : ℝ) (hq : 0 < q) :
@@ -1734,6 +1911,9 @@ theorem lintegral_finiteLatticeCubeStep_enorm_rpow {n : ℕ}
   · intro k hk l hl hkl
     exact latticeCuboid_pairwise_disjoint hε hkl
 
+/--
+@isnad1 id=eq.3h5v.s8.e89bd76bbfc3 from=translated src=- shape=beb25057 vocab=0b626e3e
+-/
 theorem lintegral_finiteLatticeCubeStep_eq_count_mul {n : ℕ}
     {ε : ℝ} (hε : ε ≤ 1) (A : Finset (ZVector n)) (a : ZVector n → ℝ)
     (hsupport : ∀ k, k ∉ A → a k = 0) (q : ℝ) (hq : 0 < q) :
@@ -1750,6 +1930,9 @@ theorem lintegral_finiteLatticeCubeStep_eq_count_mul {n : ℕ}
         ∏ _ : Fin n, ENNReal.ofReal ε := by
           rw [lintegral_count_enorm_rpow_eq_finset A a q hq hsupport]
 
+/--
+@isnad1 id=le.2h7v.s7.24b969f35eda from=translated src=- shape=5aa7bcae vocab=91d34cb5
+-/
 theorem finiteLatticeCubeStep_enorm_le_of_cube_dom {n : ℕ}
     {ε c : ℝ} (hε : ε ≤ 1) (A : Finset (ZVector n))
     (a : ZVector n → ℝ) (G : RVector n → ℝ)
@@ -1773,6 +1956,9 @@ theorem finiteLatticeCubeStep_enorm_le_of_cube_dom {n : ℕ}
     rw [hstep, enorm_zero]
     exact bot_le
 
+/--
+@isnad1 id=le.3h6v.s8.62170ed6878e from=translated src=- shape=ca5d10b7 vocab=dee0431a
+-/
 theorem count_energy_mul_le_lintegral_of_cube_dom {n : ℕ}
     {ε c : ℝ} (hε : ε ≤ 1) (A : Finset (ZVector n))
     (a : ZVector n → ℝ) (G : RVector n → ℝ)
@@ -1789,6 +1975,9 @@ theorem count_energy_mul_le_lintegral_of_cube_dom {n : ℕ}
   exact ENNReal.rpow_le_rpow
     (finiteLatticeCubeStep_enorm_le_of_cube_dom hε A a G hdom x) (by norm_num)
 
+/--
+@isnad1 id=eq.0h4v.s6.a77f704207c2 from=translated src=- shape=23d1c164 vocab=bf5868b0
+-/
 theorem eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
     [TopologicalSpace E] [ENorm E] (μ : Measure α) (f : α → E) :
     eLpNorm f 2 μ ^ 2 = ∫⁻ x, ‖f x‖ₑ ^ (2 : ℕ) ∂μ := by
@@ -1798,6 +1987,9 @@ theorem eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
   rw [← ENNReal.rpow_mul]
   norm_num
 
+/--
+@isnad1 id=le.3h6v.s8.dc0e784c9c67 from=translated src=- shape=5a437400 vocab=51ebd246
+-/
 theorem count_energy_mul_le_eLpNorm_two_sq_of_cube_dom {n : ℕ}
     {ε c : ℝ} (hε : ε ≤ 1) (A : Finset (ZVector n))
     (a : ZVector n → ℝ) (G : RVector n → ℝ)
@@ -1814,7 +2006,9 @@ theorem count_energy_mul_le_eLpNorm_two_sq_of_cube_dom {n : ℕ}
 
 /--
 A nonnegative lower coefficient can be moved through a real scalar
-multiple inside the extended norm.-/
+multiple inside the extended norm.
+@isnad1 id=le.2h3v.s6.2b4b47ee130a from=translated src=- shape=c59d5de0 vocab=bd971dde
+-/
 theorem enorm_mul_le_enorm_mul_of_nonneg_le {c w h : ℝ}
     (hc : 0 ≤ c) (hcw : c ≤ w) :
     ‖c * h‖ₑ ≤ ‖w * h‖ₑ := by
@@ -1826,7 +2020,9 @@ theorem enorm_mul_le_enorm_mul_of_nonneg_le {c w h : ℝ}
 
 /--
 The overlap formula gives the pointwise endpoint-jump domination needed
-for the finite base-cube energy comparison.-/
+for the finite base-cube energy comparison.
+@isnad1 id=le.5h11v.s8.88370f62de74 from=translated src=- shape=e771e8e0 vocab=ca52fa54
+-/
 theorem endpointJump_cube_dom_of_overlap_formula {n J : ℕ}
     {ε δ : ℝ} (hεδ : ε ≤ δ)
     (N : Fin (J + 1) → ℕ) (T : ℕ → RVector n → ℝ)
@@ -1858,6 +2054,9 @@ theorem endpointJump_cube_dom_of_overlap_formula {n J : ℕ}
   exact enorm_mul_le_enorm_mul_of_nonneg_le (sub_nonneg.mpr hεδ)
     (hW u (fun i ↦ ⟨(hu i).1, (hu i).2.le⟩))
 
+/--
+@isnad1 id=eq.1h5v.s7.3c356916164a from=translated src=- shape=2be7be66 vocab=b1e2624e
+-/
 theorem finite_energy_factor {n : ℕ} (A : Finset (ZVector n))
     (ε c : ℝ) (hc : 0 ≤ c) (a : ZVector n → ℝ) :
     (∑ k ∈ A, ‖c * a k‖ₑ ^ (2 : ℝ)) *
@@ -1877,7 +2076,9 @@ theorem finite_energy_factor {n : ℕ} (A : Finset (ZVector n))
   rw [Finset.card_fin]
   ac_rfl
 
-/-- Sum the finite base-cube lower bound over all adjacent scale pairs.-/
+/-- Sum the finite base-cube lower bound over all adjacent scale pairs.
+@isnad1 id=le.4h7v.s8.7f42275591e6 from=translated src=- shape=2d99a260 vocab=609a8ebd
+-/
 theorem finite_jump_energy_lower_of_cube_dom {n J : ℕ}
     {ε c : ℝ} (hε : ε ≤ 1) (hc : 0 ≤ c)
     (A : Finset (ZVector n)) (d : Fin J → ZVector n → ℝ)
@@ -1911,7 +2112,9 @@ theorem finite_jump_energy_lower_of_cube_dom {n J : ℕ}
 
 /--
 The exact cuboid-overlap formula controls every finite portion of the
-integer-lattice jump energy by the corresponding continuous jump energy.-/
+integer-lattice jump energy by the corresponding continuous jump energy.
+@isnad1 id=le.5h7v.s9.368d955a914a from=translated src=- shape=b9e63898 vocab=f9f48fba
+-/
 theorem finite_jump_energy_lower_on_of_overlap_formula {n J : ℕ}
     (hn : 0 < n) {ε δ : ℝ} (hε : ε < 1) (hεδ : ε ≤ δ)
     (hwidth : ε + δ < 1) (N : Fin (J + 1) → ℕ)
@@ -1977,7 +2180,9 @@ theorem finite_jump_energy_lower_on_of_overlap_formula {n J : ℕ}
 
 /--
 Re-express the raw-coordinate jump energy used by the cuboid calculation
-as the `ctEndpointEnergy` of its Euclidean lifts.-/
+as the `ctEndpointEnergy` of its Euclidean lifts.
+@isnad1 id=eq.0h6v.s8.22f567b070bd from=translated src=- shape=cd25eb6a vocab=bc4745da
+-/
 theorem raw_cuboid_jumpEnergy_eq_endpointEnergy {n J : ℕ}
     (N : Fin (J + 1) → ℕ) (a : Fin n → ZVector n → ℝ)
     (ε δ : ℝ) :
@@ -2011,16 +2216,25 @@ def natToIntEmbedding {n : ℕ} : (Fin n → ℕ) ↪ ZVector n where
     funext i
     exact Int.ofNat.inj (congrFun h i)
 
+/--
+@isnad1 id=eq.1h3v.s5.3053e32505e1 from=translated src=- shape=d78c0e4d vocab=5727b890
+-/
 theorem natToInt_apply_of_nonneg {n : ℕ}
     (F : (Fin n → ℕ) → ℝ) (k : ZVector n) (hk : ∀ i, 0 ≤ k i) :
     aux_natToInt F k = F fun i ↦ (k i).toNat := by
   simp [aux_natToInt, hk]
 
+/--
+@isnad1 id=eq.1h3v.s5.e1d866aea5a3 from=translated src=- shape=d656deb7 vocab=ab4cf4a8
+-/
 theorem natToInt_apply_of_not_nonneg {n : ℕ}
     (F : (Fin n → ℕ) → ℝ) (k : ZVector n) (hk : ¬ ∀ i, 0 ≤ k i) :
     aux_natToInt F k = 0 := by
   simp [aux_natToInt, hk]
 
+/--
+@isnad1 id=eq.0h3v.s5.126020de18f0 from=translated src=- shape=d9988c99 vocab=3415e1a4
+-/
 theorem natToInt_eq_of_embedding {n : ℕ}
     (F : (Fin n → ℕ) → ℝ) (k : Fin n → ℕ) :
     aux_natToInt F (natToIntEmbedding k) = F k := by
@@ -2035,6 +2249,9 @@ theorem natToInt_eq_of_embedding {n : ℕ}
   apply Int.ofNat.inj
   exact Int.toNat_of_nonneg (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s6.a50c7b993f99 from=translated src=- shape=107c4e4b vocab=dc5f34c4
+-/
 theorem natToInt_support_map {n : ℕ} (A : Finset (Fin n → ℕ))
     (F : (Fin n → ℕ) → ℝ) (hsupport : ∀ k, k ∉ A → F k = 0) :
     ∀ z, z ∉ A.map natToIntEmbedding → aux_natToInt F z = 0 := by
@@ -2052,6 +2269,9 @@ theorem natToInt_support_map {n : ℕ} (A : Finset (Fin n → ℕ))
     exact hsupport _ hnot
   · exact natToInt_apply_of_not_nonneg F z hnonneg
 
+/--
+@isnad1 id=eq.2h4v.s7.49f4062234a6 from=translated src=- shape=4dadf368 vocab=a4ec3607
+-/
 theorem lintegral_count_natToInt_enorm_rpow_eq {n : ℕ}
     (A : Finset (Fin n → ℕ)) (F : (Fin n → ℕ) → ℝ)
     (hsupport : ∀ k, k ∉ A → F k = 0) (q : ℝ) (hq : 0 < q) :
@@ -2065,6 +2285,9 @@ theorem lintegral_count_natToInt_enorm_rpow_eq {n : ℕ}
   intro k hk
   rw [natToInt_eq_of_embedding]
 
+/--
+@isnad1 id=eq.3h4v.s7.664d48159fde from=translated src=- shape=8254c190 vocab=3e36252e
+-/
 theorem eLpNorm_natToInt_eq_count {n : ℕ}
     (A : Finset (Fin n → ℕ)) (F : (Fin n → ℕ) → ℝ)
     (hsupport : ∀ k, k ∉ A → F k = 0) (p : ℝ≥0∞)
@@ -2093,6 +2316,9 @@ noncomputable def aux_localInputSupport {n : ℕ}
     (Finset.univ : Finset (Fin n)).biUnion fun i ↦
       (Finset.range L).image fun m ↦ k + aux_coordinate i m
 
+/--
+@isnad1 id=mem.2h6v.s6.44a1e2a87679 from=translated src=- shape=c536444b vocab=9ad25dd3
+-/
 theorem aux_mem_localInputSupport {n : ℕ}
     {B : Finset (Fin n → ℕ)} {L : ℕ} {k : Fin n → ℕ} (hk : k ∈ B)
     (i : Fin n) {m : ℕ} (hm : m < L) :
@@ -2102,18 +2328,27 @@ theorem aux_mem_localInputSupport {n : ℕ}
     true_and, Finset.mem_image, Finset.mem_range]
   exact ⟨k, hk, i, m, hm, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.64ee848d723d from=translated src=- shape=f60c97e9 vocab=96178efc
+-/
 theorem aux_truncate_eq_self_of_mem {n : ℕ}
     (A : Finset (Fin n → ℕ)) (F : (Fin n → ℕ) → ℝ)
     {k : Fin n → ℕ} (hk : k ∈ A) :
     aux_truncate A F k = F k := by
   simp [aux_truncate, hk]
 
+/--
+@isnad1 id=eq.1h4v.s5.8eefa3b6ca09 from=translated src=- shape=5fd40452 vocab=96178efc
+-/
 theorem aux_truncate_eq_zero_of_not_mem {n : ℕ}
     (A : Finset (Fin n → ℕ)) (F : (Fin n → ℕ) → ℝ)
     {k : Fin n → ℕ} (hk : k ∉ A) :
     aux_truncate A F k = 0 := by
   simp [aux_truncate, hk]
 
+/--
+@isnad1 id=eq.1h5v.s7.c066b3458304 from=translated src=- shape=b05df638 vocab=0da2a81f
+-/
 theorem aux_discreteAverage_congr_on {n : ℕ} (N : ℕ)
     (F G : Fin n → (Fin n → ℕ) → ℝ) (k : Fin n → ℕ)
     (h : ∀ i m, m ∈ Finset.range N →
@@ -2129,7 +2364,9 @@ theorem aux_discreteAverage_congr_on {n : ℕ} (N : ℕ)
 
 /--
 Truncation to the sites relevant for a finite output set preserves all
-averages whose scale does not exceed the chosen cutoff.-/
+averages whose scale does not exceed the chosen cutoff.
+@isnad1 id=eq.2h6v.s6.81978763b3b7 from=translated src=- shape=02d03344 vocab=4a8ea48c
+-/
 theorem aux_discreteAverage_truncate_eq_of_mem {n : ℕ}
     {B : Finset (Fin n → ℕ)} {L N : ℕ} (hNL : N ≤ L)
     (F : Fin n → (Fin n → ℕ) → ℝ) {k : Fin n → ℕ} (hk : k ∈ B) :
@@ -2142,6 +2379,9 @@ theorem aux_discreteAverage_truncate_eq_of_mem {n : ℕ}
   exact aux_mem_localInputSupport hk i
     (lt_of_lt_of_le (Finset.mem_range.mp hm) hNL)
 
+/--
+@isnad1 id=le.0h4v.s7.f81c591a28fb from=translated src=- shape=30b5a8d7 vocab=fe99be82
+-/
 theorem aux_eLpNorm_truncate_le {n : ℕ} (A : Finset (Fin n → ℕ))
     (F : (Fin n → ℕ) → ℝ) (p : ℝ≥0∞) :
     eLpNorm (aux_truncate A F) p Measure.count ≤ eLpNorm F p Measure.count := by
@@ -2149,6 +2389,9 @@ theorem aux_eLpNorm_truncate_le {n : ℕ} (A : Finset (Fin n → ℕ))
   intro k
   by_cases hk : k ∈ A <;> simp [aux_truncate, hk]
 
+/--
+@isnad1 id=memlp.1h4v.s7.3e5bb61e6307 from=translated src=- shape=e6916969 vocab=5885fc28
+-/
 theorem aux_memLp_truncate {n : ℕ} (A : Finset (Fin n → ℕ))
     (F : (Fin n → ℕ) → ℝ) (p : ℝ≥0∞) (hF : MemLp F p Measure.count) :
     MemLp (aux_truncate A F) p Measure.count := by
@@ -2157,6 +2400,9 @@ theorem aux_memLp_truncate {n : ℕ} (A : Finset (Fin n → ℕ))
 
 /-! ### The finite continuous-to-discrete reduction -/
 
+/--
+@isnad1 id=le.6h7v.s8.383dc2ace721 from=translated src=- shape=daf73a58 vocab=6f202b48
+-/
 theorem aux_finite_forward_jump_energy_lower {n J : ℕ}
     (hn : 0 < n) {ε δ : ℝ} (hε : ε < 1) (hεδ : ε ≤ δ)
     (hwidth : ε + δ < 1) (N : Fin (J + 1) → ℕ)
@@ -2210,6 +2456,9 @@ theorem aux_finite_forward_jump_energy_lower {n J : ℕ}
   rw [hsum, aux_CuboidNorm.raw_cuboid_jumpEnergy_eq_endpointEnergy] at hlower
   simpa only [L, B, F', a] using hlower
 
+/--
+@isnad1 id=eq.0h1v.s7.5c4f931d0b06 from=translated src=- shape=6a577b6e vocab=2c8d244d
+-/
 theorem aux_cuboid_factor_mul_dyadic (n : ℕ) :
     (ENNReal.ofReal ((1 : ℝ) / 8) ^ (2 : ℝ) *
       ENNReal.ofReal ((1 : ℝ) / 8) ^ n) *
@@ -2222,12 +2471,17 @@ theorem aux_cuboid_factor_mul_dyadic (n : ℕ) :
   rw [hexp, ← ENNReal.inv_pow]
   exact ENNReal.inv_mul_cancel (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s6.955b32fea2c3 from=translated src=- shape=a8a773fd vocab=898ae4ca
+-/
 theorem aux_ofReal_dyadic_power (n : ℕ) :
     ENNReal.ofReal ((2 : ℝ) ^ (3 * n + 6)) =
       ((2 : ℝ≥0∞) ^ (3 * n + 6)) := by
   norm_num
 
-/-- Cancel the positive-volume cuboid factor in the finite lower estimate.-/
+/-- Cancel the positive-volume cuboid factor in the finite lower estimate.
+@isnad1 id=le.3h7v.s8.1092c8af17d9 from=translated src=- shape=dfbcf13c vocab=81ab9e64
+-/
 theorem aux_finite_continuous_to_discrete_constant_bridge {n : ℕ}
     (C g : ℝ) (D E : ℝ≥0∞) (L F : Fin n → ℝ≥0∞)
     (hlower :
@@ -2284,7 +2538,9 @@ theorem aux_finite_continuous_to_discrete_constant_bridge {n : ℕ}
 /--
 The continuous real-variable hypothesis bounds every finite portion of a
 forward-lattice jump sum.  The data are first truncated only at sites read by
-the finitely many output points under consideration.-/
+the finitely many output points under consideration.
+@isnad1 id=le.7h8v.s8.4bf73f6e5f81 from=translated src=- shape=56015a5b vocab=980da179
+-/
 theorem aux_finite_forward_jump_bound_of_realVariable {n J : ℕ}
     (hn : 0 < n) (p : Fin n → ℝ≥0∞) (C : ℝ) (g : ℕ → ℝ)
     (hreal : realVariableJumpBound p C g) (hJ : 0 < J)
@@ -2376,13 +2632,22 @@ open scoped ENNReal BigOperators
 def box (n L : ℕ) : Finset (Fin n → ℕ) :=
   Fintype.piFinset fun _ : Fin n => Finset.range L
 
+/--
+@isnad1 id=iff.0h3v.s5.c71302af03ba from=translated src=- shape=c725c16d vocab=2b6e9764
+-/
 theorem mem_box {n L : ℕ} (k : Fin n → ℕ) :
     k ∈ box n L ↔ ∀ i, k i < L := by
   simp [box]
 
+/--
+@isnad1 id=eq.0h2v.s4.d8d91a16b6e4 from=translated src=- shape=c77b71e6 vocab=e8ddba95
+-/
 theorem card_box (n L : ℕ) : (box n L).card = L ^ n := by
   simp [box]
 
+/--
+@isnad1 id=le.0h2v.s5.2068161ffdc5 from=translated src=- shape=e73e0bc0 vocab=a09910dc
+-/
 theorem box_subset_double (n M : ℕ) :
     box n M ⊆ box n (M + M) := by
   intro k hk
@@ -2390,6 +2655,9 @@ theorem box_subset_double (n M : ℕ) :
   intro i
   exact lt_of_lt_of_le (hk i) (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=eq.0h2v.s5.008f7ebd9fa1 from=translated src=- shape=a60686b5 vocab=4d8b78d3
+-/
 theorem card_box_double (n M : ℕ) :
     (box n (M + M)).card = 2 ^ n * (box n M).card := by
   rw [card_box, card_box]
@@ -2398,7 +2666,9 @@ theorem card_box_double (n M : ℕ) :
 /--
 Cancels the inner-box cardinality after enlarging a side length from
 `M` to `2M`.  This is the sole cardinality loss in the finite-box
-ergodic-to-discrete reduction.-/
+ergodic-to-discrete reduction.
+@isnad1 id=le.2h5v.s7.f184abb31389 from=translated src=- shape=f471a3ba vocab=c0885e43
+-/
 theorem cancel_box_ratio {n M : ℕ} (hM : 0 < M)
     {E A P : ℝ≥0∞}
     (h : ((box n M).card : ℝ≥0∞) * E ≤
@@ -2423,11 +2693,17 @@ theorem cancel_box_ratio {n M : ℕ} (hM : 0 < M)
       rw [hcard]
       ac_rfl
 
+/--
+@isnad1 id=aemeasur.1h4v.s6.8524ebeb34e8 from=translated src=- shape=32dbf89a vocab=2ce1556a
+-/
 theorem aemeasurable_enorm_rpow {X : Type*} [MeasurableSpace X]
     {μ : Measure X} (f : X → ℝ) (hf : AEStronglyMeasurable f μ) (p : ℝ) :
     AEMeasurable (fun x ↦ ‖f x‖ₑ ^ p) μ := by
   exact ENNReal.continuous_rpow_const.aemeasurable.comp_aemeasurable hf.enorm
 
+/--
+@isnad1 id=eq.2h5v.s7.5e19b18cea77 from=translated src=- shape=5614fffd vocab=6297058c
+-/
 theorem lintegral_enorm_rpow_comp_measurePreserving
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     (T : X → X) (hT : MeasurePreserving T μ μ)
@@ -2442,6 +2718,9 @@ noncomputable def orbitPowerSum {X κ : Type*} [MeasurableSpace X]
     (B : Finset κ) (T : κ → X → X) (f : X → ℝ) (p : ℝ) : X → ℝ≥0∞ :=
   fun x ↦ ∑ k ∈ B, ‖f (T k x)‖ₑ ^ p
 
+/--
+@isnad1 id=aemeasur.2h7v.s6.2315a74a8ecd from=translated src=- shape=403396d1 vocab=ed070c56
+-/
 theorem aemeasurable_orbitPowerSum
     {X κ : Type*} [MeasurableSpace X] {μ : Measure X}
     (B : Finset κ) (T : κ → X → X)
@@ -2453,6 +2732,9 @@ theorem aemeasurable_orbitPowerSum
     (fun k hk ↦ aemeasurable_enorm_rpow (f ∘ T k)
       (hf.comp_quasiMeasurePreserving (hT k hk).quasiMeasurePreserving) p)
 
+/--
+@isnad1 id=eq.2h7v.s7.3e42f8d64c34 from=translated src=- shape=83760ef2 vocab=484513c9
+-/
 theorem lintegral_orbitPowerSum
     {X κ : Type*} [MeasurableSpace X] {μ : Measure X}
     (B : Finset κ) (T : κ → X → X)
@@ -2475,6 +2757,9 @@ theorem lintegral_orbitPowerSum
     exact aemeasurable_enorm_rpow (f ∘ T k)
       (hf.comp_quasiMeasurePreserving (hT k hk).quasiMeasurePreserving) p
 
+/--
+@isnad1 id=eq.4h4v.s7.b3b7abc6c038 from=translated src=- shape=445cdd30 vocab=9037fc67
+-/
 theorem eLpNorm_count_sq_eq_finset_sum_rpow
     {κ : Type*} [MeasurableSpace κ] [Countable κ] [MeasurableSingletonClass κ]
     (B : Finset κ) (F : κ → ℝ) (p : ℝ≥0∞)
@@ -2493,6 +2778,9 @@ theorem eLpNorm_count_sq_eq_finset_sum_rpow
   rw [hF k hk]
   simp [ENNReal.zero_rpow_of_pos hpreal]
 
+/--
+@isnad1 id=eq.2h5v.s6.a50a0436239f from=translated src=- shape=8d47e700 vocab=f6d0cfbf
+-/
 theorem eLpNorm_sq_eq_lintegral_rpow
     {X E : Type*} [MeasurableSpace X] [TopologicalSpace E] [ENorm E]
     (μ : Measure X) (F : X → E) (p : ℝ≥0∞)
@@ -2505,6 +2793,9 @@ theorem eLpNorm_sq_eq_lintegral_rpow
   have hexp : (1 / p.toReal) * (↑(2 : ℕ) : ℝ) = 2 / p.toReal := by ring
   rw [hexp]
 
+/--
+@isnad1 id=eq.1h4v.s6.c5510d74d467 from=translated src=- shape=efd28554 vocab=14308861
+-/
 theorem prod_rpow_eq_rpow_sum_of_nonneg
     {ι : Type*} (s : Finset ι) (B : ℝ≥0∞) (q : ι → ℝ)
     (hq : ∀ i ∈ s, 0 ≤ q i) :
@@ -2519,6 +2810,9 @@ theorem prod_rpow_eq_rpow_sum_of_nonneg
         (hq a (Finset.mem_insert_self _ _))
         (Finset.sum_nonneg fun i hi ↦ hq i (Finset.mem_insert_of_mem hi))).symm
 
+/--
+@isnad1 id=eq.2h5v.s7.c6a75f10281b from=translated src=- shape=a6f2ad9e vocab=813fba65
+-/
 theorem prod_mul_rpow_eq_mul_prod_rpow
     {ι : Type*} (s : Finset ι) (B : ℝ≥0∞) (I : ι → ℝ≥0∞)
     (q : ι → ℝ) (hq : ∀ i ∈ s, 0 ≤ q i)
@@ -2537,6 +2831,9 @@ noncomputable def truncOrbit {X κ : Type*} [MeasurableSpace X]
     (B : Finset κ) (T : κ → X → X) (f : X → ℝ) (x : X) : κ → ℝ :=
   (B : Set κ).indicator fun k ↦ f (T k x)
 
+/--
+@isnad1 id=eq.3h7v.s7.f919ef99aa4c from=translated src=- shape=f8079b56 vocab=a072b5f8
+-/
 theorem eLpNorm_truncOrbit_sq
     {X κ : Type*} [MeasurableSpace X] [MeasurableSpace κ]
     [Countable κ] [MeasurableSingletonClass κ]
@@ -2555,6 +2852,9 @@ theorem eLpNorm_truncOrbit_sq
     unfold truncOrbit
     rw [Set.indicator_of_notMem (by simpa using hk)]
 
+/--
+@isnad1 id=le.6h8v.s8.1a63b501aba3 from=translated src=- shape=68e19b56 vocab=6b2e0ef1
+-/
 theorem holder_truncOrbit_norms
     {X κ : Type*} [MeasurableSpace X] [MeasurableSpace κ]
     [Countable κ] [MeasurableSingletonClass κ] {μ : Measure X}
@@ -2608,6 +2908,9 @@ theorem holder_truncOrbit_norms
       symm
       exact eLpNorm_sq_eq_lintegral_rpow μ (f i) (p i) (hp0 i) (hptop i)
 
+/--
+@isnad1 id=eq.0h4v.s6.a77f704207c2 from=translated src=- shape=23d1c164 vocab=bf5868b0
+-/
 theorem eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
     [TopologicalSpace E] [ENorm E] (μ : Measure α) (f : α → E) :
     eLpNorm f 2 μ ^ 2 = ∫⁻ x, ‖f x‖ₑ ^ (2 : ℕ) ∂μ := by
@@ -2617,6 +2920,9 @@ theorem eLpNorm_two_sq_nat {α E : Type*} [MeasurableSpace α]
   rw [← ENNReal.rpow_mul]
   norm_num
 
+/--
+@isnad1 id=eq.2h7v.s8.41bde87e3557 from=translated src=- shape=8ec26d61 vocab=21d1b7f6
+-/
 theorem lintegral_finite_orbit_sum
     {X κ : Type*} [MeasurableSpace X] (μ : Measure X)
     (B : Finset κ) (T : κ → X → X)
@@ -2666,7 +2972,9 @@ theorem lintegral_finite_orbit_sum
 
 /--
 Converts a pointwise finite-box lower bound into the integrated lower
-bound required by the transference assembly step.-/
+bound required by the transference assembly step.
+@isnad1 id=le.3h8v.s8.4fc5476dc491 from=translated src=- shape=72e38cc2 vocab=7c735a91
+-/
 theorem finite_box_orbit_lower_bound
     {X κ : Type*} [MeasurableSpace X] {μ : Measure X}
     (B : Finset κ) (T : κ → X → X)
@@ -2694,7 +3002,9 @@ theorem finite_box_orbit_lower_bound
 /--
 Generic finite-box ergodic-to-discrete transfer.  The input `hpoint` is
 the local discrete-energy lower bound, `hdiscrete` is the discrete estimate,
-and `hright` is the finite-box Hölder estimate for its norm product.-/
+and `hright` is the finite-box Hölder estimate for its norm product.
+@isnad1 id=le.6h12v.s8.336d76f9797d from=translated src=- shape=afd7a89c vocab=2d0fec18
+-/
 theorem finite_box_ergodic_to_discrete
     {X κ : Type*} [MeasurableSpace X] {μ : Measure X}
     (B B' : Finset κ) (T : κ → X → X)
@@ -2717,7 +3027,9 @@ theorem finite_box_ergodic_to_discrete
     _ = A * ∫⁻ x, Q x ∂μ := lintegral_const_mul'' A hQmeas
     _ ≤ A * ((B'.card : ℝ≥0∞) * P) := mul_le_mul_right hright A
 
-/-- The exponent normalization used by the finite-box Hölder estimate.-/
+/-- The exponent normalization used by the finite-box Hölder estimate.
+@isnad1 id=and.2h2v.s7.b5a0e417b176 from=translated src=- shape=87a10910 vocab=2a4ad84f
+-/
 theorem holder_exponents_of_inverse_sum {n : ℕ} (p : Fin n → ℝ≥0∞)
     (hp : ∀ i, 1 < p i ∧ p i < ∞)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2) :
@@ -2746,7 +3058,9 @@ theorem holder_exponents_of_inverse_sum {n : ℕ} (p : Fin n → ℝ≥0∞)
 /--
 Measurability of the discrete norm product for finite orbit truncations.
 The pointwise norm formula is the same one used in the finite-box Hölder
-estimate.-/
+estimate.
+@isnad1 id=aemeasur.5h8v.s7.c0a4d25ac30f from=translated src=- shape=628fb9df vocab=e84cc0f6
+-/
 theorem aemeasurable_truncOrbit_normProduct
     {X κ : Type*} [MeasurableSpace X] [MeasurableSpace κ]
     [Countable κ] [MeasurableSingletonClass κ] {μ : Measure X}
@@ -2772,7 +3086,9 @@ theorem aemeasurable_truncOrbit_normProduct
 
 /--
 The last member of a strictly increasing finite scale tuple bounds all
-of its scales.-/
+of its scales.
+@isnad1 id=le.1h3v.s6.b34b599a5c9e from=translated src=- shape=78c116cb vocab=dc57cca7
+-/
 theorem scale_le_last {J : ℕ} (N : Fin (J + 1) → ℕ)
     (hN : StrictMono N) (q : Fin (J + 1)) :
     N q ≤ N (Fin.last J) :=
@@ -2781,7 +3097,9 @@ theorem scale_le_last {J : ℕ} (N : Fin (J + 1) → ℕ)
 /--
 Most local finite-box form of the ergodic-to-discrete reduction.  The
 input is only the finite inner-box sum of discrete jumps; no global discrete
-jump energy and no finite-support theorem for that energy are used.-/
+jump energy and no finite-support theorem for that energy are used.
+@isnad1 id=le.11h12v.s9.0cc5b817503c from=translated src=- shape=ac6898b5 vocab=dd3aaa8f
+-/
 theorem finite_box_bound_of_finite_sum_cancelled
     {X : Type*} [MeasurableSpace X] {μ : Measure X} {n J M : ℕ}
     (hM : 0 < M)
@@ -2856,6 +3174,9 @@ theorem finite_box_bound_of_finite_sum_cancelled
 
 /-! ### Concrete finite-inner-sum ergodic reduction -/
 
+/--
+@isnad1 id=mem.2h6v.s6.87e1921c8f52 from=translated src=- shape=0e242213 vocab=5b311885
+-/
 theorem add_coordinate_mem_box {n L M : ℕ} (k : Fin n → ℕ)
     (hk : k ∈ box n L) (i : Fin n) (m : ℕ) (hm : m < M) :
     k + aux_coordinate i m ∈ box n (L + M) := by
@@ -2870,6 +3191,9 @@ theorem add_coordinate_mem_box {n L M : ℕ} (k : Fin n → ℕ)
     have hkj : k j < L := (mem_box k).mp hk j
     omega
 
+/--
+@isnad1 id=eq.2h10v.s6.0b9de753c65e from=translated src=- shape=475e2fce vocab=e8864b59
+-/
 theorem discreteAverage_truncated_orbit_eq {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n L M N : ℕ}
     (S : ErgodicSystem X μ n) (f : Fin n → X → ℝ) (x : X)
@@ -2895,6 +3219,9 @@ theorem discreteAverage_truncated_orbit_eq {X : Type*}
   · apply add_coordinate_mem_box k hk i m
     exact Finset.mem_range.mp hm |>.trans_le hN
 
+/--
+@isnad1 id=aestrong.1h6v.s5.9928276a8c2e from=translated src=- shape=063ef9ac vocab=cf35f65c
+-/
 theorem realErgodicAverage_aestronglyMeasurable {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : ErgodicSystem X μ n) (N : ℕ) (f : Fin n → X → ℝ)
@@ -2911,6 +3238,9 @@ theorem realErgodicAverage_aestronglyMeasurable {X : Type*}
   exact (hf i).comp_quasiMeasurePreserving
     ((S.measurePreserving i).iterate m).quasiMeasurePreserving
 
+/--
+@isnad1 id=aestrong.1h7v.s6.31b4ee182191 from=translated src=- shape=2abc8e71 vocab=807dc85d
+-/
 theorem realErgodicAverage_sub_aestronglyMeasurable {X : Type*}
     [MeasurableSpace X] {μ : Measure X} {n : ℕ}
     (S : ErgodicSystem X μ n) (N M : ℕ) (f : Fin n → X → ℝ)
@@ -2920,6 +3250,9 @@ theorem realErgodicAverage_sub_aestronglyMeasurable {X : Type*}
   exact (realErgodicAverage_aestronglyMeasurable S N f hf).sub
     (realErgodicAverage_aestronglyMeasurable S M f hf)
 
+/--
+@isnad1 id=le.6h9v.s9.b492ca7a5e94 from=translated src=- shape=198c6596 vocab=6c388e34
+-/
 theorem realErgodicJumpEnergy_of_finite_sum
     {X : Type*} [MeasurableSpace X] {μ : Measure X} {n J : ℕ}
     (p : Fin n → ℝ≥0∞)
@@ -2992,6 +3325,9 @@ theorem realErgodicJumpEnergy_of_finite_sum
 
 end aux_ErgodicBox
 
+/--
+@isnad1 id=eq.0h2v.s6.944471fa5458 from=translated src=- shape=980dc71b vocab=843f5055
+-/
 theorem aux_ofReal_two_pow_mul (n : ℕ) (C : ℝ) :
     ENNReal.ofReal ((2 : ℝ) ^ n * C) =
       ((2 ^ n : ℕ) : ℝ≥0∞) * ENNReal.ofReal C := by
@@ -3001,7 +3337,9 @@ theorem aux_ofReal_two_pow_mul (n : ℕ) (C : ℝ) :
 
 /--
 The fully internal combination of the finite cuboid reduction and the
-finite-box orbit reduction.-/
+finite-box orbit reduction.
+@isnad1 id=realergo.4h4v.s7.ebecfd1158c6 from=translated src=- shape=cef967ee vocab=22b765fd
+-/
 theorem aux_realErgodicJumpBound_of_realVariable {n : ℕ}
     (hn : 0 < n) (p : Fin n → ℝ≥0∞) (C : ℝ) (g : ℕ → ℝ)
     (hp : ∀ i, 1 < p i ∧ p i < ∞)
@@ -3042,7 +3380,9 @@ def calderonTransferenceConstant (n : ℕ) : ℝ :=
 Calderón transference for the multilinear averages defined in this
 Mathlib-only module.  The explicit transference factor is
 `calderonTransferenceConstant n = 2 ^ (4 * n + 6)`; thus an input constant
-`C` is transferred with constant `C * calderonTransferenceConstant n`.-/
+`C` is transferred with constant `C * calderonTransferenceConstant n`.
+@isnad1 id=and.4h3v.s7.53e91d8b692d from=translated src=- shape=6a404a70 vocab=cf2ad697
+-/
 theorem ct_calderon_transference_external {n : ℕ} (hn : 2 ≤ n)
     (p : Fin n → ℝ≥0∞) (hp : ∀ i, 1 < p i ∧ p i < ∞)
     (hsum : (∑ i, ((p i)⁻¹).toReal) = 1 / 2) (C : ℝ) (_hC : 0 < C) :

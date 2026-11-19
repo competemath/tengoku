@@ -50,7 +50,9 @@ def C_gaussianBumpDecay (m N : ℕ) : ℝ :=
 /--
 This auxiliary maximization estimate bounds a monomial times a decaying exponential.
 It is used to control the terms in the explicit Hermite-polynomial formula for the
-Gaussian derivatives.-/
+Gaussian derivatives.
+@isnad1 id=le.1h2v.s6.c4e507be6643 from=translated src=- shape=7b26c249 vocab=092c3fb7
+-/
 theorem aux_pow_mul_exp_neg_le (n : ℕ) (y : ℝ) (hy : 0 ≤ y) :
     y ^ n * Real.exp (-y) ≤ ((n : ℝ) * Real.exp (-1)) ^ n := by
   by_cases hn : n = 0
@@ -84,7 +86,9 @@ theorem aux_pow_mul_exp_neg_le (n : ℕ) (y : ℝ) (hy : 0 ≤ y) :
 /--
 This auxiliary consequence of `aux_pow_mul_exp_neg_le` controls the monomial factor left
 after splitting a Gaussian into two equal decaying exponentials.  It is used termwise in the
-Hermite-polynomial proof of `gaussianBumpDecay`.-/
+Hermite-polynomial proof of `gaussianBumpDecay`.
+@isnad1 id=le.0h2v.s7.2c6d115252aa from=translated src=- shape=70080f1d vocab=ae9250dd
+-/
 theorem aux_abs_pow_mul_exp_neg_half_le (d : ℕ) (x : ℝ) :
     |x| ^ d * Real.exp (-(Real.pi / 2) * x ^ 2) ≤
       Real.rpow (((d + 1 : ℕ) : ℝ) * Real.exp (-1) / Real.pi) ((d : ℝ) / 2) := by
@@ -143,7 +147,9 @@ theorem aux_abs_pow_mul_exp_neg_half_le (d : ℕ) (x : ℝ) :
 /--
 This auxiliary estimate supplies the arbitrary polynomial-decay factor for the
 half-Gaussian left after the Hermite derivative estimate.  It is used in
-`gaussianBumpDecay`.-/
+`gaussianBumpDecay`.
+@isnad1 id=le.0h2v.s7.f218b2446b5a from=translated src=- shape=8ed3c3d7 vocab=d249fb62
+-/
 theorem aux_halfGaussian_le_bracketDecay (x : ℝ) (n : ℕ) :
     Real.exp (-(Real.pi / 2) * x ^ 2) ≤
       (4 * ((n + 1 : ℕ) : ℝ)) ^ ((n : ℝ) / 2) * bracketBump x ^ n := by
@@ -237,7 +243,9 @@ theorem aux_halfGaussian_le_bracketDecay (x : ℝ) (n : ℕ) :
 /--
 This auxiliary factorial identity rewrites the odd double factorial in the Hermite
 coefficient formula.  It is used to retain the factor of `2` needed for the sharp
-combinatorial estimate in `gaussianBumpDecay`.-/
+combinatorial estimate in `gaussianBumpDecay`.
+@isnad1 id=eq.0h1v.s6.186dd23450a9 from=translated src=- shape=1ce581fd vocab=72ab220b
+-/
 theorem aux_oddDoubleFactorial_mul_twoPow_mul_factorial (j : ℕ) :
     Nat.doubleFactorial (2 * j - 1) * (2 ^ j * j.factorial) = (2 * j).factorial := by
   induction j with
@@ -261,7 +269,9 @@ theorem aux_oddDoubleFactorial_mul_twoPow_mul_factorial (j : ℕ) :
 /--
 This auxiliary estimate bounds the nonzero Hermite coefficient with index `d` in
 the parametrization `2 * j + d`.  It is used termwise in the proof of
-`gaussianBumpDecay`.-/
+`gaussianBumpDecay`.
+@isnad1 id=le.0h2v.s7.9a98ba82c190 from=translated src=- shape=e1debabb vocab=d37826fe
+-/
 theorem aux_hermiteCoeff_nat_bound (j d : ℕ) :
     Nat.doubleFactorial (2 * j - 1) * Nat.choose (2 * j + d) d ≤
       2 ^ (j + d) * (2 * j + d) ^ j := by
@@ -298,7 +308,9 @@ theorem aux_hermiteCoeff_nat_bound (j d : ℕ) :
 /--
 This auxiliary real-valued form of `aux_hermiteCoeff_nat_bound` bounds a Hermite
 coefficient of the parity occurring in the Gaussian derivative formula.  It is used
-termwise in `gaussianBumpDecay`.-/
+termwise in `gaussianBumpDecay`.
+@isnad1 id=le.2h2v.s7.c80275a0bfe1 from=translated src=- shape=1501a7e7 vocab=fae2eba2
+-/
 theorem aux_hermiteCoeff_bound (m d : ℕ) (hd : d ≤ m) (he : Even (m + d)) :
     |((Polynomial.hermite m).coeff d : ℝ)| ≤
       (2 : ℝ) ^ (m - (m - d) / 2) * (m : ℝ) ^ ((m - d) / 2) := by
@@ -335,7 +347,9 @@ theorem aux_hermiteCoeff_bound (m d : ℕ) (hd : d ≤ m) (he : Even (m + d)) :
 /--
 This auxiliary identity expresses an iterated derivative of the manuscript's Gaussian
 through the Hermite polynomial formula in mathlib.  It is used to reduce
-`gaussianBumpDecay` to a finite coefficient estimate.-/
+`gaussianBumpDecay` to a finite coefficient estimate.
+@isnad1 id=eq.0h2v.s8.3fe1c620a4bc from=translated src=- shape=f002a7a9 vocab=b91826b1
+-/
 theorem aux_gaussian_iteratedDeriv_hermite (m : ℕ) (x : ℝ) :
     iteratedDeriv m gaussian x =
       (Real.sqrt (2 * Real.pi)) ^ m *
@@ -363,7 +377,9 @@ theorem aux_gaussian_iteratedDeriv_hermite (m : ℕ) (x : ℝ) :
 /--
 This auxiliary cardinality bound counts the parity-compatible nonzero terms in the
 Hermite polynomial expansion.  It is used to sum the termwise estimate in
-`gaussianBumpDecay`.-/
+`gaussianBumpDecay`.
+@isnad1 id=le.0h1v.s6.cd2d6ba432eb from=translated src=- shape=f6d7a7ea vocab=deb62667
+-/
 theorem aux_hermiteParity_card_le (m : ℕ) :
     ((Finset.range (m + 1)).filter (fun d => Even (m + d))).card ≤ m / 2 + 1 := by
   let S := (Finset.range (m + 1)).filter (fun d => Even (m + d))
@@ -404,7 +420,9 @@ theorem aux_hermiteParity_card_le (m : ℕ) :
 /--
 This auxiliary elementary estimate turns the cardinality in
 `aux_hermiteParity_card_le` into the square-root power of two used in
-`gaussianBumpDecay`.-/
+`gaussianBumpDecay`.
+@isnad1 id=le.0h1v.s5.19b9896de465 from=translated src=- shape=a8ecff57 vocab=97d7e7c2
+-/
 theorem aux_halfCard_le_rpow_two (m : ℕ) :
     ((m / 2 + 1 : ℕ) : ℝ) ≤ Real.rpow 2 ((m : ℝ) / 2) := by
   have hsucc : ∀ k : ℕ, k + 1 ≤ 2 ^ k := by
@@ -430,7 +448,9 @@ theorem aux_halfCard_le_rpow_two (m : ℕ) :
 
 /--
 This auxiliary estimate combines the scaled Hermite coefficient and monomial bounds into
-the explicit order-dependent factor required by `gaussianBumpDecay`.-/
+the explicit order-dependent factor required by `gaussianBumpDecay`.
+@isnad1 id=le.1h3v.s8.b3a5fdb88127 from=translated src=- shape=3d00e673 vocab=8a4dcf47
+-/
 theorem aux_scaledHermite_term_le (m j d : Nat) (hm : m = 2 * j + d) :
     (Real.sqrt (2 * Real.pi)) ^ m * ((2 : Real) ^ (j + d) * (m : Real) ^ j) *
         (Real.sqrt (2 * Real.pi)) ^ d *
@@ -588,7 +608,9 @@ theorem aux_scaledHermite_term_le (m j d : Nat) (hm : m = 2 * j + d) :
 /--
 This auxiliary applies the Hermite coefficient estimate and the Gaussian monomial
 estimate to one parity-compatible term of the scaled Hermite expansion.  It is used to
-bound the finite sum in `gaussianBumpDecay`.-/
+bound the finite sum in `gaussianBumpDecay`.
+@isnad1 id=le.2h3v.s8.09faf250b75d from=translated src=- shape=51a9b32b vocab=f9b7ea54
+-/
 theorem aux_scaledHermite_summand_le (m d : ℕ) (x : ℝ) (hd : d ≤ m) (he : Even (m + d)) :
     |(Real.sqrt (2 * Real.pi)) ^ m *
         (((Polynomial.hermite m).coeff d : ℝ) *
@@ -662,7 +684,9 @@ theorem aux_scaledHermite_summand_le (m d : ℕ) (x : ℝ) (hd : d ≤ m) (he : 
 
 /--
 This auxiliary sums the parity-compatible Hermite terms to give the order-dependent
-half-Gaussian derivative estimate used in `gaussianBumpDecay`.-/
+half-Gaussian derivative estimate used in `gaussianBumpDecay`.
+@isnad1 id=le.0h2v.s7.7d8fe08e4ea4 from=translated src=- shape=eec25fca vocab=1dd5734c
+-/
 theorem aux_gaussian_iteratedDeriv_half_decay (m : ℕ) (x : ℝ) :
     |iteratedDeriv m gaussian x| ≤
       (38 * ((m + 1 : ℕ) : ℝ)) ^ ((m : ℝ) / 2) *
@@ -786,7 +810,9 @@ C_{\text{Gaussian bump decay},m,N}
 =\bigl(64(m+1)\bigr)^{m/2}\bigl(4(N+1)\bigr)^{N/2}.
 $$
 
-See also `Auto.gaussianBumpDecay`.-/
+See also `Auto.gaussianBumpDecay`.
+@isnad1 id=le.0h3v.s5.f75af0a0ba4c from=translated src=- shape=0bcd78a2 vocab=25bc6946
+-/
 theorem gaussianBumpDecay (x : ℝ) (m N : ℕ) :
     |iteratedDeriv m gaussian x| ≤ C_gaussianBumpDecay m N * bracketBump x ^ N := by
   let A : ℝ := Real.rpow (38 * ((m + 1 : ℕ) : ℝ)) ((m : ℝ) / 2)
@@ -808,18 +834,24 @@ theorem gaussianBumpDecay (x : ℝ) (m N : ℕ) :
       dsimp [A, B, C_gaussianBumpDecay]
       ring
 
-/-- The Gaussian is strictly positive at every real point.-/
+/-- The Gaussian is strictly positive at every real point.
+@isnad1 id=lt.0h1v.s3.d2c7fd7ffcd0 from=translated src=- shape=8a62b088 vocab=f01d0d0e
+-/
 theorem aux_gaussian_pos (x : ℝ) : 0 < gaussian x := by
   change 0 < Real.exp (-Real.pi * x ^ 2)
   exact Real.exp_pos _
 
-/-- The Gaussian takes values at most one.-/
+/-- The Gaussian takes values at most one.
+@isnad1 id=le.0h1v.s3.b263cf166e36 from=translated src=- shape=b14ee516 vocab=e938f602
+-/
 theorem aux_gaussian_le_one (x : ℝ) : gaussian x ≤ 1 := by
   change Real.exp (-Real.pi * x ^ 2) ≤ 1
   apply Real.exp_le_one_iff.mpr
   nlinarith [Real.pi_pos, sq_nonneg x]
 
-/-- The Gaussian is an even function.-/
+/-- The Gaussian is an even function.
+@isnad1 id=eq.0h1v.s3.37f8f1ab072b from=translated src=- shape=cd419dad vocab=cd624985
+-/
 theorem aux_gaussian_neg (x : ℝ) : gaussian (-x) = gaussian x := by
   change Real.exp (-Real.pi * (-x) ^ 2) = Real.exp (-Real.pi * x ^ 2)
   congr 1
@@ -827,7 +859,9 @@ theorem aux_gaussian_neg (x : ℝ) : gaussian (-x) = gaussian x := by
 
 /--
 This is the zero-th, zero-decay instance of the Gaussian bump estimate and is useful when
-normalizing later Gaussian bounds.-/
+normalizing later Gaussian bounds.
+@isnad1 id=le.0h1v.s5.14919ffaaf9a from=translated src=- shape=42bca278 vocab=aece19a2
+-/
 theorem aux_gaussianBumpDecay_zero_zero (x : ℝ) :
     |gaussian x| ≤ C_gaussianBumpDecay 0 0 * bracketBump x ^ 0 := by
   rw [abs_of_pos (aux_gaussian_pos x)]
@@ -835,7 +869,9 @@ theorem aux_gaussianBumpDecay_zero_zero (x : ℝ) :
   norm_num [Real.rpow_zero]
   exact aux_gaussian_le_one x
 
-/-- This auxiliary quadratic-decay estimate supplies the zero-order case used below.-/
+/-- This auxiliary quadratic-decay estimate supplies the zero-order case used below.
+@isnad1 id=le.0h1v.s5.aa98213d3295 from=translated src=- shape=5db43898 vocab=b1286325
+-/
 theorem aux_gaussian_le_four_bracket_sq (x : ℝ) :
     gaussian x ≤ 4 * bracketBump x ^ 2 := by
   rw [bracketBump]
@@ -875,7 +911,9 @@ theorem aux_gaussian_le_four_bracket_sq (x : ℝ) :
           mul_le_mul_of_nonneg_right (le_of_lt Real.pi_gt_three) (sq_nonneg _)
         nlinarith
 
-/-- This auxiliary quartic-decay estimate is used when differentiating the Gaussian.-/
+/-- This auxiliary quartic-decay estimate is used when differentiating the Gaussian.
+@isnad1 id=le.0h1v.s5.31286ca13afb from=translated src=- shape=5db43898 vocab=b1286325
+-/
 theorem aux_gaussian_le_sixteen_bracket_four (x : ℝ) :
     gaussian x ≤ 16 * bracketBump x ^ 4 := by
   rw [bracketBump]
@@ -945,7 +983,9 @@ theorem aux_gaussian_le_sixteen_bracket_four (x : ℝ) :
       _ ≤ (|x| ^ 4)⁻¹ := hinv
       _ ≤ 16 / (1 + |x|) ^ 4 := hlast
 
-/-- This rescaled zero-order bound is the instance of Gaussian decay used by the diagonal kernel.-/
+/-- This rescaled zero-order bound is the instance of Gaussian decay used by the diagonal kernel.
+@isnad1 id=le.1h2v.s5.63a49be22eec from=translated src=- shape=6eabdc9d vocab=1d3aeadc
+-/
 theorem gaussianRescale_le_C_gaussianBumpDecay_zero_two {t x : ℝ} (ht : 0 < t) :
     |gaussianRescale t x| ≤
       C_gaussianBumpDecay 0 2 * scaledBracketBump 2 t x := by
@@ -963,7 +1003,9 @@ theorem gaussianRescale_le_C_gaussianBumpDecay_zero_two {t x : ℝ} (ht : 0 < t)
       gcongr
     _ = C_gaussianBumpDecay 0 2 * (t⁻¹ * bracketBump (t⁻¹ * x) ^ 2) := by ring
 
-/-- This auxiliary derivative formula starts the first-order Gaussian decay estimate.-/
+/-- This auxiliary derivative formula starts the first-order Gaussian decay estimate.
+@isnad1 id=hasderiv.0h1v.s6.ad3737fdede6 from=translated src=- shape=794e22f0 vocab=cfa630b7
+-/
 theorem aux_gaussian_hasDerivAt (x : ℝ) :
     HasDerivAt gaussian (-2 * Real.pi * x * gaussian x) x := by
   have hpow : HasDerivAt (fun y : ℝ => y ^ 2) (2 * x) x := by
@@ -974,7 +1016,9 @@ theorem aux_gaussian_hasDerivAt (x : ℝ) :
     (-2 * Real.pi * x * Real.exp (-Real.pi * x ^ 2)) x
   convert (Real.hasDerivAt_exp (-Real.pi * x ^ 2)).comp x hinner using 1 <;> first | rfl | ring
 
-/-- This auxiliary chain-rule formula transports the Gaussian derivative through rescaling.-/
+/-- This auxiliary chain-rule formula transports the Gaussian derivative through rescaling.
+@isnad1 id=hasderiv.0h2v.s6.323f528fbb7e from=translated src=- shape=dc884c23 vocab=436cab48
+-/
 theorem gaussianRescale_hasDerivAt (t x : ℝ) :
     HasDerivAt (gaussianRescale t)
       (t⁻¹ * (-2 * Real.pi * (t⁻¹ * x) * gaussian (t⁻¹ * x)) * t⁻¹) x := by
@@ -987,7 +1031,9 @@ theorem gaussianRescale_hasDerivAt (t x : ℝ) :
 
 /--
 This auxiliary estimate is the first-derivative, quadratic-decay Gaussian bound needed to
-transport the manuscript's derivative estimate through a positive rescaling.-/
+transport the manuscript's derivative estimate through a positive rescaling.
+@isnad1 id=le.0h1v.s6.c13330ed2de3 from=translated src=- shape=6a1fa7c8 vocab=46897933
+-/
 theorem aux_gaussian_deriv_le_C_gaussianBumpDecay_one_two (x : ℝ) :
     |-2 * Real.pi * x * gaussian x| ≤
       C_gaussianBumpDecay 1 2 * bracketBump x ^ 2 := by
@@ -1030,7 +1076,9 @@ theorem aux_gaussian_deriv_le_C_gaussianBumpDecay_one_two (x : ℝ) :
     _ ≤ C_gaussianBumpDecay 1 2 * bracketBump x ^ 2 :=
       mul_le_mul_of_nonneg_right hconstant (by positivity)
 
-/-- This first-order rescaled estimate is a downstream instance of Gaussian bump decay.-/
+/-- This first-order rescaled estimate is a downstream instance of Gaussian bump decay.
+@isnad1 id=le.1h2v.s6.eae6fc941917 from=translated src=- shape=4db535a1 vocab=daf96b31
+-/
 theorem gaussianRescale_deriv_bound {t x : ℝ} (ht : 0 < t) :
     |deriv (gaussianRescale t) x| ≤
       t⁻¹ * C_gaussianBumpDecay 1 2 * scaledBracketBump 2 t x := by
@@ -1050,20 +1098,26 @@ theorem gaussianRescale_deriv_bound {t x : ℝ} (ht : 0 < t) :
 
 /--
 Auxiliary for Proposition `Auto.gaussian_memSchwartz`, formalized as
-gaussian_memW0. It supplies the continuity used there.-/
+gaussian_memW0. It supplies the continuity used there.
+@isnad1 id=continuo.0h0v.s3.164f23828bae from=translated src=- shape=e3d48bcb vocab=62c45b2c
+-/
 theorem gaussian_continuous : Continuous gaussian := by
   fun_prop [gaussian, Auto.gaussian]
 
 /--
 Auxiliary for Proposition `Auto.gaussian_memSchwartz`, formalized as
-gaussian_memW0. It supplies the integrability used there.-/
+gaussian_memW0. It supplies the integrability used there.
+@isnad1 id=integrab.0h0v.s4.5c8b7e022ce2 from=translated src=- shape=e14394ff vocab=7b25c899
+-/
 theorem aux_gaussian_integrable : Integrable gaussian := by
   change Integrable (fun x : ℝ => Real.exp (-Real.pi * x ^ 2))
   exact integrable_exp_neg_mul_sq Real.pi_pos
 
 /--
 This auxiliary envelope estimate supplies the integrable majorant needed to put the Gaussian
-in the manuscript's Wiener space.-/
+in the manuscript's Wiener space.
+@isnad1 id=le.0h1v.s6.47157cef346b from=translated src=- shape=194f7f69 vocab=071d10b7
+-/
 theorem aux_wienerEnvelope_gaussian_le (x : ℝ) :
     wienerEnvelope gaussian 1 x ≤
       Real.exp Real.pi * Real.exp (-(Real.pi / 2) * x ^ 2) := by
@@ -1089,7 +1143,9 @@ theorem aux_wienerEnvelope_gaussian_le (x : ℝ) :
 /--
 Auxiliary smoothness fact used to construct the Schwartz function in
 `gaussian_memSchwartz`, formalizing part (i) of Proposition
-`Auto.gaussian_memSchwartz`.-/
+`Auto.gaussian_memSchwartz`.
+@isnad1 id=contdiff.0h0v.s5.564a0ad2f070 from=translated src=- shape=3cea26be vocab=ff04ccf9
+-/
 theorem aux_gaussian_contDiff : ContDiff ℝ (↑(⊤ : ℕ∞)) gaussian := by
   change ContDiff ℝ (↑(⊤ : ℕ∞)) (fun x : ℝ => Real.exp (-Real.pi * x ^ 2))
   fun_prop
@@ -1098,7 +1154,9 @@ theorem aux_gaussian_contDiff : ContDiff ℝ (↑(⊤ : ℕ∞)) gaussian := by
 Auxiliary Hermite-type representation used by `gaussian_memSchwartz`, formalizing part (i)
 of Proposition `Auto.gaussian_memSchwartz`.  It expresses each
 derivative as a
-polynomial times the Gaussian, which is needed to transfer rapid decay to all derivatives.-/
+polynomial times the Gaussian, which is needed to transfer rapid decay to all derivatives.
+@isnad1 id=ex.0h1v.s5.b828bbed4f78 from=translated src=- shape=c234dc27 vocab=2f5255d2
+-/
 theorem aux_gaussian_iteratedDeriv_polynomial : ∀ n : ℕ, ∃ p : Polynomial ℝ,
     ∀ x : ℝ, iteratedDeriv n gaussian x = p.eval x * gaussian x := by
   intro n
@@ -1125,7 +1183,9 @@ theorem aux_gaussian_iteratedDeriv_polynomial : ∀ n : ℕ, ∃ p : Polynomial 
 Auxiliary rapid-decay fact used by `gaussian_memSchwartz`, formalizing part (i) of
 Proposition `Auto.gaussian_memSchwartz`.  It packages the standard
 super-polynomial
-decay of the Gaussian at infinity.-/
+decay of the Gaussian at infinity.
+@isnad1 id=superpol.0h0v.s4.ee74f5dc75b8 from=translated src=- shape=884476dd vocab=45a56205
+-/
 theorem aux_gaussian_superpolynomialDecay :
     Asymptotics.SuperpolynomialDecay (cocompact ℝ) (fun x : ℝ => x) gaussian := by
   intro n
@@ -1138,7 +1198,9 @@ theorem aux_gaussian_superpolynomialDecay :
 Auxiliary global bound used by `gaussian_memSchwartz`, formalizing part (i) of Proposition
 `Auto.gaussian_memSchwartz`.  It turns rapid Gaussian decay into a
 uniform bound after
-multiplication by an arbitrary polynomial.-/
+multiplication by an arbitrary polynomial.
+@isnad1 id=ex.0h2v.s5.55a101500ebf from=translated src=- shape=f147048b vocab=a0058367
+-/
 theorem aux_polynomial_gaussian_bound (p : Polynomial ℝ) (k : ℕ) :
     ∃ C : ℝ, ∀ x : ℝ, |x| ^ k * |p.eval x * gaussian x| ≤ C := by
   have hspd := aux_gaussian_superpolynomialDecay.polynomial_mul p
@@ -1175,7 +1237,9 @@ $$
 See also `Auto.gaussian_memW0`,
 `Auto.gaussian_fourier_fixed`,
 `Auto.gaussianRescale_convolution`,
-`Auto.gaussianRescale_fourier`.-/
+`Auto.gaussianRescale_fourier`.
+@isnad1 id=ex.0h0v.s6.42b79573a11e from=translated src=- shape=ec57a194 vocab=734beb14
+-/
 theorem gaussian_memSchwartz :
     ∃ G : SchwartzMap ℝ ℝ, ∀ x : ℝ, G x = gaussian x := by
   let G : SchwartzMap ℝ ℝ := {
@@ -1216,7 +1280,9 @@ $$
 See also `Auto.gaussian_memSchwartz`,
 `Auto.gaussian_fourier_fixed`,
 `Auto.gaussianRescale_convolution`,
-`Auto.gaussianRescale_fourier`.-/
+`Auto.gaussianRescale_fourier`.
+@isnad1 id=memw0.0h0v.s2.ed0e67213b10 from=translated src=- shape=e3d48bcb vocab=486bac03
+-/
 theorem gaussian_memW0 : MemW0 gaussian := by
   refine ⟨gaussian_continuous, ?_⟩
   have hmajorant : Integrable (fun x : ℝ =>
@@ -1229,7 +1295,9 @@ theorem gaussian_memW0 : MemW0 gaussian := by
 
 /--
 This auxiliary envelope estimate transports the Gaussian Wiener bound to a positive
-rescaling.-/
+rescaling.
+@isnad1 id=le.1h2v.s7.a92d7f41be4c from=translated src=- shape=baf86e78 vocab=838b66ca
+-/
 theorem aux_wienerEnvelope_gaussianRescale_le {t : ℝ} (ht : 0 < t) (x : ℝ) :
     wienerEnvelope (gaussianRescale t) 1 x ≤
       t⁻¹ * Real.exp (Real.pi * t⁻¹ ^ 2) *
@@ -1278,7 +1346,9 @@ theorem aux_wienerEnvelope_gaussianRescale_le {t : ℝ} (ht : 0 < t) (x : ℝ) :
 
 /--
 Positive rescalings of the Gaussian remain in the manuscript's Wiener space; this helper is
-used by the sandwich-kernel construction.-/
+used by the sandwich-kernel construction.
+@isnad1 id=memw0.1h1v.s4.57bb40ab30b2 from=translated src=- shape=e217721d vocab=f3cdbd2a
+-/
 theorem aux_gaussianRescale_memW0 {t : ℝ} (ht : 0 < t) : MemW0 (gaussianRescale t) := by
   have hcontinuous : Continuous (gaussianRescale t) := by
     unfold gaussianRescale
@@ -1301,7 +1371,9 @@ theorem aux_gaussianRescale_memW0 {t : ℝ} (ht : 0 < t) : MemW0 (gaussianRescal
     (ae_of_all _ fun x => aux_wienerEnvelope_nonneg hcontinuous zero_le_one x)
     (ae_of_all _ fun x => aux_wienerEnvelope_gaussianRescale_le ht x)
 
-/-- The standard Gaussian from the manuscript has unit integral.-/
+/-- The standard Gaussian from the manuscript has unit integral.
+@isnad1 id=eq.0h0v.s5.d435cd9445d8 from=translated src=- shape=f0e61117 vocab=ed980f97
+-/
 theorem aux_integral_gaussian : ∫ x : ℝ, gaussian x = 1 := by
   have h := integral_gaussian Real.pi
   simpa [gaussian, Auto.gaussian, Real.pi_ne_zero, div_self, Real.sqrt_one] using h
@@ -1328,7 +1400,9 @@ $$
 See also `Auto.gaussian_memSchwartz`,
 `Auto.gaussian_memW0`,
 `Auto.gaussianRescale_convolution`,
-`Auto.gaussianRescale_fourier`.-/
+`Auto.gaussianRescale_fourier`.
+@isnad1 id=eq.0h0v.s5.6b6593f7f5de from=translated src=- shape=8d2cebc9 vocab=0a4efb4f
+-/
 theorem gaussian_fourier_fixed :
     FourierTransform.fourier (fun x : ℝ => (gaussian x : ℂ)) =
       fun ξ : ℝ => (gaussian ξ : ℂ) := by
@@ -1337,7 +1411,9 @@ theorem gaussian_fourier_fixed :
 
 /--
 Auxiliary completed-square identity used to evaluate the convolution in
-`gaussianRescale_convolution`.-/
+`gaussianRescale_convolution`.
+@isnad1 id=eq.2h4v.s8.e7f09a035421 from=translated src=- shape=f77fdcaa vocab=73be4d85
+-/
 theorem aux_gaussianRescale_complete_square (a μ x y : ℝ) (ha : 0 < a) (hμ : 0 < μ) :
     gaussianRescale a (x - y) * gaussianRescale μ y =
       (a⁻¹ * μ⁻¹ * Real.exp (-Real.pi * x ^ 2 / (a ^ 2 + μ ^ 2))) *
@@ -1369,7 +1445,9 @@ theorem aux_gaussianRescale_complete_square (a μ x y : ℝ) (ha : 0 < a) (hμ :
         Real.exp (-(Real.pi * (a ^ 2 + μ ^ 2) / (a ^ 2 * μ ^ 2)) *
           (y - μ ^ 2 / (a ^ 2 + μ ^ 2) * x) ^ 2) := by ring
 
-/-- Auxiliary translation-invariance identity used in `gaussianRescale_convolution`.-/
+/-- Auxiliary translation-invariance identity used in `gaussianRescale_convolution`.
+@isnad1 id=eq.0h2v.s6.5a98af4d451a from=translated src=- shape=b0bbe8a6 vocab=b35422e2
+-/
 theorem aux_integral_gaussian_shift (B c : ℝ) :
     (∫ y : ℝ, Real.exp (-B * (y - c) ^ 2)) =
       ∫ y : ℝ, Real.exp (-B * y ^ 2) := by
@@ -1399,7 +1477,9 @@ $$
 See also `Auto.gaussian_memSchwartz`,
 `Auto.gaussian_memW0`,
 `Auto.gaussian_fourier_fixed`,
-`Auto.gaussianRescale_fourier`.-/
+`Auto.gaussianRescale_fourier`.
+@isnad1 id=eq.2h3v.s6.22a3514b08d0 from=translated src=- shape=6f7e24b3 vocab=cab87a02
+-/
 theorem gaussianRescale_convolution (a μ : ℝ) (ha : 0 < a) (hμ : 0 < μ) (x : ℝ) :
     (∫ y : ℝ, gaussianRescale a (x - y) * gaussianRescale μ y) =
       gaussianRescale (Real.sqrt (a ^ 2 + μ ^ 2)) x := by
@@ -1473,7 +1553,9 @@ $$
 See also `Auto.gaussian_memSchwartz`,
 `Auto.gaussian_memW0`,
 `Auto.gaussian_fourier_fixed`,
-`Auto.gaussianRescale_convolution`.-/
+`Auto.gaussianRescale_convolution`.
+@isnad1 id=eq.1h1v.s5.5fb430306ceb from=translated src=- shape=d9685069 vocab=1959b6cb
+-/
 theorem gaussianRescale_fourier (a : ℝ) (ha : 0 < a) :
     FourierTransform.fourier (fun x : ℝ => (gaussianRescale a x : ℂ)) =
       fun ξ : ℝ => (gaussian (a * ξ) : ℂ) := by
@@ -1552,7 +1634,9 @@ def sqrtOneMinusGaussian (x : ℝ) : ℝ := Real.sqrt (1 - gaussian x)
 
 /--
 This auxiliary theorem verifies the nonnegative radicand needed to use the manuscript's
-nonnegative square root.-/
+nonnegative square root.
+@isnad1 id=le.0h1v.s4.a3966c4dd19b from=translated src=- shape=350398d8 vocab=6f99c406
+-/
 theorem aux_one_sub_gaussian_nonneg (x : ℝ) : 0 ≤ 1 - gaussian x := by
   rw [show gaussian x = Real.exp (-Real.pi * x ^ 2) by rfl]
   apply sub_nonneg.mpr
@@ -1585,7 +1669,9 @@ $$
 See also `Auto.sqrtOneMinusGaussian`,
 `Auto.continuous_sqrtOneMinusGaussian`,
 `Auto.sqrtOneMinusGaussian_lower`,
-`Auto.sqrtOneMinusGaussian_bounds`.-/
+`Auto.sqrtOneMinusGaussian_bounds`.
+@isnad1 id=le.0h1v.s4.a3966c4dd19b from=translated src=- shape=350398d8 vocab=6f99c406
+-/
 theorem sqrtOneMinusGaussian_wellDefined (x : ℝ) : 0 ≤ 1 - gaussian x :=
   aux_one_sub_gaussian_nonneg x
 
@@ -1615,7 +1701,9 @@ $$
 See also `Auto.sqrtOneMinusGaussian`,
 `Auto.sqrtOneMinusGaussian_wellDefined`,
 `Auto.sqrtOneMinusGaussian_lower`,
-`Auto.sqrtOneMinusGaussian_bounds`.-/
+`Auto.sqrtOneMinusGaussian_bounds`.
+@isnad1 id=continuo.0h0v.s3.d38cb8888777 from=translated src=- shape=e3d48bcb vocab=d3423c6c
+-/
 theorem continuous_sqrtOneMinusGaussian : Continuous sqrtOneMinusGaussian := by
   apply Continuous.sqrt
   exact continuous_const.sub gaussian_continuous
@@ -1646,7 +1734,9 @@ $$
 See also `Auto.sqrtOneMinusGaussian`,
 `Auto.sqrtOneMinusGaussian_wellDefined`,
 `Auto.continuous_sqrtOneMinusGaussian`,
-`Auto.sqrtOneMinusGaussian_bounds`.-/
+`Auto.sqrtOneMinusGaussian_bounds`.
+@isnad1 id=le.1h1v.s6.587b45ed1d97 from=translated src=- shape=c8f2d58e vocab=5d4017d0
+-/
 theorem sqrtOneMinusGaussian_lower (x : ℝ) (hx : |x| ≤ 1 / 2) :
     1 / 2 * |x| ≤ sqrtOneMinusGaussian x := by
   have hx2 : x ^ 2 ≤ 1 / 4 := by
@@ -1725,7 +1815,9 @@ $$
 See also `Auto.sqrtOneMinusGaussian`,
 `Auto.sqrtOneMinusGaussian_wellDefined`,
 `Auto.continuous_sqrtOneMinusGaussian`,
-`Auto.sqrtOneMinusGaussian_lower`.-/
+`Auto.sqrtOneMinusGaussian_lower`.
+@isnad1 id=and.1h1v.s6.1ad471841323 from=translated src=- shape=5d279739 vocab=c6bddbe5
+-/
 theorem sqrtOneMinusGaussian_bounds (x : ℝ) (_hx : 1 / 2 ≤ |x|) :
     1 - gaussian x ≤ sqrtOneMinusGaussian x ∧ sqrtOneMinusGaussian x ≤ 1 := by
   let y := 1 - gaussian x
@@ -1746,7 +1838,9 @@ theorem sqrtOneMinusGaussian_bounds (x : ℝ) (_hx : 1 / 2 ≤ |x|) :
 
 /--
 This auxiliary derivative is used in the removable-singularity analysis of the
-derivatives of the manuscript's auxiliary function $B$.-/
+derivatives of the manuscript's auxiliary function $B$.
+@isnad1 id=hasderiv.0h1v.s6.d94ebacf66eb from=translated src=- shape=d0251222 vocab=898d90a0
+-/
 theorem aux_one_sub_gaussian_hasDerivAt (x : ℝ) :
     HasDerivAt (fun y : ℝ => 1 - gaussian y)
       (2 * Real.pi * x * gaussian x) x := by
@@ -1759,7 +1853,9 @@ theorem aux_one_sub_gaussian_hasDerivAt (x : ℝ) :
 
 /--
 This auxiliary L'Hôpital computation identifies the quadratic coefficient of
-$1 - \mathfrak{g}$ at the origin.  It is used to remove the square-root singularity in $B'$.-/
+$1 - \mathfrak{g}$ at the origin.  It is used to remove the square-root singularity in $B'$.
+@isnad1 id=tendsto.0h0v.s6.b20c41c5eac8 from=translated src=- shape=4d0dcda9 vocab=574581cd
+-/
 theorem aux_one_sub_gaussian_div_sq_tendsto :
     Tendsto (fun x : ℝ => (1 - gaussian x) / x ^ 2)
       (nhdsWithin (0 : ℝ) ({0}ᶜ : Set ℝ)) (𝓝 Real.pi) := by
@@ -1800,7 +1896,9 @@ theorem aux_one_sub_gaussian_div_sq_tendsto :
 
 /--
 This auxiliary limit is the positive square-root form of the preceding quadratic
-Gaussian quotient.  It makes the extension at the origin in the formula for $B'$ explicit.-/
+Gaussian quotient.  It makes the extension at the origin in the formula for $B'$ explicit.
+@isnad1 id=tendsto.0h0v.s5.0ce0aff4003a from=translated src=- shape=c65bd6c9 vocab=2628f68d
+-/
 theorem aux_sqrtOneMinusGaussian_div_abs_tendsto :
     Tendsto (fun x : ℝ => sqrtOneMinusGaussian x / |x|)
       (nhdsWithin (0 : ℝ) ({0}ᶜ : Set ℝ)) (𝓝 (Real.sqrt Real.pi)) := by
@@ -1813,7 +1911,9 @@ theorem aux_sqrtOneMinusGaussian_div_abs_tendsto :
 
 /--
 This auxiliary positivity statement supplies the nonzero square-root denominators that
-occur in the formula for $B'$ away from the origin.-/
+occur in the formula for $B'$ away from the origin.
+@isnad1 id=lt.1h1v.s4.a8c4b251532d from=translated src=- shape=2b511f7f vocab=5463ffbf
+-/
 theorem aux_sqrtOneMinusGaussian_pos {x : ℝ} (hx : x ≠ 0) :
     0 < sqrtOneMinusGaussian x := by
   apply Real.sqrt_pos.2
@@ -1840,7 +1940,9 @@ $$
 See also `Auto.poissonKernel_fourier`.-/
 def poissonKernel (x : ℝ) : ℝ := 2 * (1 + (2 * Real.pi * x) ^ 2)⁻¹
 
-/-- The Poisson kernel in the manuscript is strictly positive.-/
+/-- The Poisson kernel in the manuscript is strictly positive.
+@isnad1 id=lt.0h1v.s3.a14e8921ed67 from=translated src=- shape=8a62b088 vocab=3a5fab01
+-/
 theorem aux_poissonKernel_pos (x : ℝ) : 0 < poissonKernel x := by
   unfold poissonKernel
   positivity
@@ -1852,7 +1954,9 @@ def aux_poissonFrequency (ξ : ℝ) : ℝ := Real.exp (-|ξ|)
 
 /--
 This auxiliary continuity fact supplies a Fourier-inversion hypothesis for the Poisson
-kernel.-/
+kernel.
+@isnad1 id=continuo.0h0v.s3.fd8009412e0a from=translated src=- shape=e3d48bcb vocab=dc53dc09
+-/
 theorem aux_poissonKernel_continuous : Continuous poissonKernel := by
   unfold poissonKernel
   refine continuous_const.mul ?_
@@ -1863,7 +1967,9 @@ theorem aux_poissonKernel_continuous : Continuous poissonKernel := by
 
 /--
 This auxiliary integrability fact supplies a Fourier-inversion hypothesis for the Poisson
-kernel.-/
+kernel.
+@isnad1 id=integrab.0h0v.s4.1b629d97bb26 from=translated src=- shape=e14394ff vocab=72150d19
+-/
 theorem aux_poissonKernel_integrable : Integrable poissonKernel := by
   have hmajorant : Integrable (fun x : ℝ => 2 * (1 + x ^ 2)⁻¹) :=
     integrable_inv_one_add_sq.const_mul 2
@@ -1886,14 +1992,18 @@ theorem aux_poissonKernel_integrable : Integrable poissonKernel := by
       by simpa only [one_div] using one_div_le_one_div_of_le hdenpos hden
     gcongr
 
-/-- This auxiliary continuity fact is used to apply Fourier inversion to the Abel profile.-/
+/-- This auxiliary continuity fact is used to apply Fourier inversion to the Abel profile.
+@isnad1 id=continuo.0h0v.s3.c44c310e9d3c from=translated src=- shape=e3d48bcb vocab=ceaf6a36
+-/
 theorem aux_poissonFrequency_continuous : Continuous aux_poissonFrequency := by
   unfold aux_poissonFrequency
   fun_prop
 
 /--
 This auxiliary theorem supplies the integrability hypothesis for Fourier inversion in the
-Poisson-to-Abel identity by splitting $e^{-|\xi|}$ at the origin.-/
+Poisson-to-Abel identity by splitting $e^{-|\xi|}$ at the origin.
+@isnad1 id=integrab.0h0v.s4.f3e8ae9e8c17 from=translated src=- shape=e14394ff vocab=a25c2959
+-/
 theorem aux_poissonFrequency_integrable : Integrable aux_poissonFrequency := by
   have hleft : IntegrableOn aux_poissonFrequency (Set.Iic (0 : ℝ)) := by
     refine (integrableOn_exp_Iic 0).congr_fun ?_ measurableSet_Iic
@@ -1910,7 +2020,9 @@ theorem aux_poissonFrequency_integrable : Integrable aux_poissonFrequency := by
 
 /--
 This auxiliary integral evaluation normalizes the Abel profile used in the Poisson-to-Abel
-argument.-/
+argument.
+@isnad1 id=eq.0h0v.s5.480d354d3597 from=translated src=- shape=f0e61117 vocab=11b7efaf
+-/
 theorem aux_integral_poissonFrequency : ∫ ξ : ℝ, aux_poissonFrequency ξ = 2 := by
   have hleft : IntegrableOn aux_poissonFrequency (Set.Iic (0 : ℝ)) := by
     refine (integrableOn_exp_Iic 0).congr_fun ?_ measurableSet_Iic
@@ -1951,7 +2063,9 @@ theorem aux_integral_poissonFrequency : ∫ ξ : ℝ, aux_poissonFrequency ξ = 
 
 /--
 This auxiliary computation is the inverse-Fourier half of the Poisson-to-Abel identity.
-It evaluates the two exponential half-line integrals before applying Fourier inversion.-/
+It evaluates the two exponential half-line integrals before applying Fourier inversion.
+@isnad1 id=eq.0h1v.s5.b9c3c9568cda from=translated src=- shape=2b44b288 vocab=acfd00e5
+-/
 theorem aux_inverseFourier_poissonFrequency (x : ℝ) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => (aux_poissonFrequency ξ : ℂ)) x =
       (poissonKernel x : ℂ) := by
@@ -2038,7 +2152,9 @@ theorem aux_inverseFourier_poissonFrequency (x : ℝ) :
 
 /--
 This change-of-variables identity is used by `aux_inverseFourier_scaledPoissonFrequency`
-in the proof of Proposition `Auto.sqrtGaussianDecay`.-/
+in the proof of Proposition `Auto.sqrtGaussianDecay`.
+@isnad1 id=eq.1h3v.s7.126718109198 from=translated src=- shape=b692bf04 vocab=c4810a62
+-/
 theorem aux_inverseFourier_comp_mul_pos (f : ℝ → ℂ) (a x : ℝ) (ha : 0 < a) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => f (a * ξ)) x =
       (a⁻¹ : ℝ) • FourierTransformInv.fourierInv f (a⁻¹ * x) := by
@@ -2069,7 +2185,9 @@ $$
     \widehat{p}(\xi)=e^{- |\xi|}.
 $$
 
-See also `Auto.poissonKernel`.-/
+See also `Auto.poissonKernel`.
+@isnad1 id=eq.0h0v.s5.28bfa138e507 from=translated src=- shape=8d2cebc9 vocab=e6d19fe9
+-/
 theorem poissonKernel_fourier :
     FourierTransform.fourier (fun x : ℝ => (poissonKernel x : ℂ)) =
       fun ξ : ℝ => (aux_poissonFrequency ξ : ℂ) := by
@@ -2101,7 +2219,9 @@ theorem poissonKernel_fourier :
 
 /--
 This auxiliary estimate controls the Abel profile at the scale $\sqrt\pi$ by the
-integrable unscaled Abel profile.-/
+integrable unscaled Abel profile.
+@isnad1 id=le.0h1v.s4.d144dc94f2aa from=translated src=- shape=d3402a10 vocab=4fc63e0a
+-/
 theorem aux_exp_neg_abs_sqrt_pi_le_poissonFrequency (x : ℝ) :
     Real.exp (-|Real.sqrt Real.pi * x|) ≤ aux_poissonFrequency x := by
   have hsqrt_nonneg : 0 ≤ Real.sqrt Real.pi := Real.sqrt_nonneg _
@@ -2116,7 +2236,9 @@ theorem aux_exp_neg_abs_sqrt_pi_le_poissonFrequency (x : ℝ) :
 
 /--
 This auxiliary theorem proves integrability of the Abel profile appearing in $B$ after
-the manuscript's $\sqrt\pi$ rescaling.-/
+the manuscript's $\sqrt\pi$ rescaling.
+@isnad1 id=integrab.0h0v.s5.29e45ff90950 from=translated src=- shape=501bb205 vocab=875e56b5
+-/
 theorem aux_exp_neg_abs_sqrt_pi_integrable :
     Integrable (fun x : ℝ => Real.exp (-|Real.sqrt Real.pi * x|)) := by
   refine aux_poissonFrequency_integrable.mono_nonneg
@@ -2132,7 +2254,9 @@ def auxiliaryFunctionB (ξ : ℝ) : ℝ :=
 
 /--
 This auxiliary rewrite verifies that the concrete definition of $B$ uses precisely the
-Fourier transform of the Poisson kernel appearing in the manuscript.-/
+Fourier transform of the Poisson kernel appearing in the manuscript.
+@isnad1 id=eq.0h1v.s6.ea0afdfc18fc from=translated src=- shape=7c586589 vocab=9f1c65b0
+-/
 theorem aux_auxiliaryFunctionB_eq_fourierPoisson (ξ : ℝ) :
     auxiliaryFunctionB ξ = 1 - sqrtOneMinusGaussian ξ -
       (FourierTransform.fourier (fun x : ℝ => (poissonKernel x : ℂ))
@@ -2146,7 +2270,9 @@ theorem aux_auxiliaryFunctionB_eq_fourierPoisson (ξ : ℝ) :
 /--
 This auxiliary continuity fact supplies the continuity clause of
 `auxiliaryFunctionB_properties`, the formalization of Proposition
-`Auto.auxiliaryFunctionB_properties`.-/
+`Auto.auxiliaryFunctionB_properties`.
+@isnad1 id=continuo.0h0v.s3.961b4e7c68a4 from=translated src=- shape=e3d48bcb vocab=a9fcd167
+-/
 theorem aux_auxiliaryFunctionB_continuous : Continuous auxiliaryFunctionB := by
   unfold auxiliaryFunctionB
   exact (continuous_const.sub continuous_sqrtOneMinusGaussian).sub
@@ -2165,7 +2291,9 @@ def auxiliaryFunctionBDerivative (x : ℝ) : ℝ :=
 
 /--
 This auxiliary off-origin derivative computation supplies the $B'$ formula used in
-`auxiliaryFunctionB_properties`.-/
+`auxiliaryFunctionB_properties`.
+@isnad1 id=hasderiv.1h1v.s5.3e9b196ecba2 from=translated src=- shape=e771e0a7 vocab=94ff3cd6
+-/
 theorem aux_auxiliaryFunctionB_hasDerivAt_of_ne_zero {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt auxiliaryFunctionB (auxiliaryFunctionBDerivative x) x := by
   have hgauss_lt_one : gaussian x < 1 := by
@@ -2208,7 +2336,9 @@ theorem aux_auxiliaryFunctionB_hasDerivAt_of_ne_zero {x : ℝ} (hx : x ≠ 0) :
 
 /--
 This auxiliary smoothness fact supplies the off-origin smoothness clause of
-`auxiliaryFunctionB_properties`.-/
+`auxiliaryFunctionB_properties`.
+@isnad1 id=contdiff.0h0v.s5.20e05259f795 from=translated src=- shape=d8cabf99 vocab=924941a1
+-/
 theorem aux_auxiliaryFunctionB_smoothOffZero :
     ContDiffOn ℝ (↑(⊤ : ℕ∞)) auxiliaryFunctionB ({0}ᶜ : Set ℝ) := by
   intro x hx
@@ -2240,7 +2370,9 @@ theorem aux_auxiliaryFunctionB_smoothOffZero :
 
 /--
 This auxiliary continuity statement transfers the smooth off-origin derivative of $B$ to
-the explicit formula used for its continuous extension.-/
+the explicit formula used for its continuous extension.
+@isnad1 id=continuo.1h1v.s4.255da70767c8 from=translated src=- shape=9008da95 vocab=ad147cbd
+-/
 theorem aux_auxiliaryFunctionBDerivative_continuousAt_of_ne_zero {x : ℝ} (hx : x ≠ 0) :
     ContinuousAt auxiliaryFunctionBDerivative x := by
   have hmem : x ∈ ({0}ᶜ : Set ℝ) := by simpa using hx
@@ -2256,7 +2388,9 @@ theorem aux_auxiliaryFunctionBDerivative_continuousAt_of_ne_zero {x : ℝ} (hx :
 
 /--
 This auxiliary deleted-neighborhood limit verifies that the displayed formula for $B'$ has
-the continuous value zero at the origin.-/
+the continuous value zero at the origin.
+@isnad1 id=tendsto.0h0v.s5.5ba4ffbf6e6d from=translated src=- shape=2b280528 vocab=72f45f8d
+-/
 theorem aux_auxiliaryFunctionBDerivative_tendsto_zero :
     Tendsto auxiliaryFunctionBDerivative
       (nhdsWithin (0 : ℝ) ({0}ᶜ : Set ℝ)) (𝓝 0) := by
@@ -2370,7 +2504,9 @@ theorem aux_auxiliaryFunctionBDerivative_tendsto_zero :
 
 /--
 This auxiliary continuity fact supplies the continuous-extension clause for $B'$ in
-`auxiliaryFunctionB_properties`.-/
+`auxiliaryFunctionB_properties`.
+@isnad1 id=continuo.0h0v.s3.e7e204805491 from=translated src=- shape=e3d48bcb vocab=28cc0b6e
+-/
 theorem aux_auxiliaryFunctionBDerivative_continuous : Continuous auxiliaryFunctionBDerivative := by
   refine continuous_iff_continuousAt.2 fun x => ?_
   by_cases hx : x = 0
@@ -2381,7 +2517,9 @@ theorem aux_auxiliaryFunctionBDerivative_continuous : Continuous auxiliaryFuncti
 
 /--
 This auxiliary extension theorem upgrades the off-origin derivative formula for $B$ to the
-continuous derivative extension at zero, which is needed for Fourier integration by parts.-/
+continuous derivative extension at zero, which is needed for Fourier integration by parts.
+@isnad1 id=hasderiv.0h1v.s5.1bc822143c0e from=translated src=- shape=475e04ea vocab=94ff3cd6
+-/
 theorem aux_auxiliaryFunctionB_hasDerivAt (x : ℝ) :
     HasDerivAt auxiliaryFunctionB (auxiliaryFunctionBDerivative x) x := by
   by_cases hx : x = 0
@@ -2394,14 +2532,18 @@ theorem aux_auxiliaryFunctionB_hasDerivAt (x : ℝ) :
 
 /--
 This auxiliary differentiability consequence is the hypothesis needed to transfer the
-integrable $B'$ bound through the Fourier derivative identity.-/
+integrable $B'$ bound through the Fourier derivative identity.
+@isnad1 id=differen.0h0v.s5.c1115dcb7e0e from=translated src=- shape=aa9fb30a vocab=57d7a822
+-/
 theorem aux_auxiliaryFunctionB_differentiable : Differentiable ℝ auxiliaryFunctionB := by
   intro x
   exact (aux_auxiliaryFunctionB_hasDerivAt x).differentiableAt
 
 /--
 This auxiliary lower bound controls the square-root denominator in the formula for $B'$ by
-a Gaussian factor.-/
+a Gaussian factor.
+@isnad1 id=le.0h1v.s6.c5506affa822 from=translated src=- shape=2abc167e vocab=62296d71
+-/
 theorem aux_sqrtOneMinusGaussian_lower (x : ℝ) :
     Real.sqrt Real.pi * |x| * Real.exp (-(Real.pi / 2) * x ^ 2) ≤
       sqrtOneMinusGaussian x := by
@@ -2451,7 +2593,9 @@ theorem aux_sqrtOneMinusGaussian_lower (x : ℝ) :
 
 /--
 This auxiliary quotient estimate turns the lower bound on the square-root denominator into
-the Gaussian part of an integrable majorant for $B'$.-/
+the Gaussian part of an integrable majorant for $B'$.
+@isnad1 id=le.1h1v.s7.2277aa8c0d1e from=translated src=- shape=10f865ca vocab=b9e03c60
+-/
 theorem aux_auxiliaryFunctionBDerivative_gaussianTerm_bound {x : ℝ} (hx : x ≠ 0) :
     |(-2 * Real.pi * x * gaussian x) / (2 * sqrtOneMinusGaussian x)| ≤
       Real.sqrt Real.pi * Real.exp (-(Real.pi / 2) * x ^ 2) := by
@@ -2491,7 +2635,9 @@ theorem aux_auxiliaryFunctionBDerivative_gaussianTerm_bound {x : ℝ} (hx : x �
 
 /--
 This auxiliary pointwise bound supplies a single integrable majorant for the continuous
-extension of $B'$.-/
+extension of $B'$.
+@isnad1 id=le.0h1v.s6.054cadea6bb6 from=translated src=- shape=3c85acae vocab=3bdc2a43
+-/
 theorem aux_auxiliaryFunctionBDerivative_norm_le (x : ℝ) :
     ‖auxiliaryFunctionBDerivative x‖ ≤
       Real.sqrt Real.pi * Real.exp (-(Real.pi / 2) * x ^ 2) +
@@ -2566,7 +2712,9 @@ theorem aux_auxiliaryFunctionBDerivative_norm_le (x : ℝ) :
 
 /--
 This auxiliary integrability fact is used to convert the pointwise $B'$ majorant into its
-explicit $L^1$ estimate.-/
+explicit $L^1$ estimate.
+@isnad1 id=integrab.0h0v.s4.27f6be65385b from=translated src=- shape=e14394ff vocab=05484422
+-/
 theorem aux_auxiliaryFunctionBDerivative_integrable :
     Integrable auxiliaryFunctionBDerivative := by
   have hgaussian : Integrable (fun x : ℝ =>
@@ -2585,7 +2733,9 @@ theorem aux_auxiliaryFunctionBDerivative_integrable :
 
 /--
 This auxiliary $L^1$ estimate supplies the $B'$ norm clause of
-`auxiliaryFunctionB_properties`.-/
+`auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s5.1148ea9b709b from=translated src=- shape=8c87a25f vocab=4fbfddbd
+-/
 theorem aux_auxiliaryFunctionBDerivative_eLpNorm_one_le :
     eLpNorm auxiliaryFunctionBDerivative 1 volume ≤ ENNReal.ofReal 12 := by
   have hgaussian : Integrable (fun x : ℝ =>
@@ -2649,7 +2799,9 @@ def aux_BSecondNumerator (x : ℝ) : ℝ :=
 
 /--
 This auxiliary Taylor-free estimate controls the numerator left after the cancellation in
-the Gaussian quotient part of $B''$ on the only interval where its denominator is small.-/
+the Gaussian quotient part of $B''$ on the only interval where its denominator is small.
+@isnad1 id=and.1h1v.s6.84ce28297633 from=translated src=- shape=f1f83423 vocab=1568c326
+-/
 theorem aux_BSecondNumerator_bounds {x : ℝ} (hx : |x| ≤ 1 / 2) :
     0 ≤ aux_BSecondNumerator x ∧
       aux_BSecondNumerator x ≤ 2 * (Real.pi * x ^ 2) ^ 2 := by
@@ -2719,7 +2871,9 @@ theorem aux_BSecondNumerator_bounds {x : ℝ} (hx : |x| ≤ 1 / 2) :
 
 /--
 This auxiliary numerical estimate bounds the harmless exponential factor appearing after
-the cancellation in the local $B''$ estimate.-/
+the cancellation in the local $B''$ estimate.
+@isnad1 id=le.1h1v.s6.a58eb63e7a4c from=translated src=- shape=5cd4f146 vocab=a348a5a1
+-/
 theorem aux_exp_three_half_pi_sq_le_nine {x : ℝ} (hx : |x| ≤ 1 / 2) :
     Real.exp (3 * (Real.pi * x ^ 2) / 2) ≤ 9 := by
   have hx2 : x ^ 2 ≤ 1 / 4 := by
@@ -2748,7 +2902,9 @@ theorem aux_exp_three_half_pi_sq_le_nine {x : ℝ} (hx : |x| ≤ 1 / 2) :
 This auxiliary numerical estimate sharpens the local exponential factor in the
 pass-5 proof of Proposition `Auto.auxiliaryFunctionB_properties`.  It
 is used to obtain the stated
-`56` bound for the $L^1$ norm of $B''$.-/
+`56` bound for the $L^1$ norm of $B''$.
+@isnad1 id=le.1h1v.s6.07fbf87afe44 from=translated src=- shape=5cd4f146 vocab=a348a5a1
+-/
 theorem aux_exp_three_half_pi_sq_le_four {x : ℝ} (hx : |x| ≤ 1 / 2) :
     Real.exp (3 * (Real.pi * x ^ 2) / 2) ≤ 4 := by
   have hx2 : x ^ 2 ≤ 1 / 4 := by
@@ -2783,7 +2939,9 @@ def auxiliaryFunctionBSecondDerivative (x : ℝ) : ℝ :=
 
 /--
 This auxiliary identity exposes the cancellation that controls the apparent singularity in
-the Gaussian part of $B''$.-/
+the Gaussian part of $B''$.
+@isnad1 id=eq.1h1v.s8.a99aea22e412 from=translated src=- shape=cb6c2213 vocab=7df96320
+-/
 theorem aux_BSecondGaussianPart_eq_cancelled {x : ℝ} (hx : x ≠ 0) :
     ((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) /
         (2 * sqrtOneMinusGaussian x) +
@@ -2802,7 +2960,9 @@ theorem aux_BSecondGaussianPart_eq_cancelled {x : ℝ} (hx : x ≠ 0) :
 
 /--
 This auxiliary local envelope is the cancellation estimate required to control the Gaussian
-quotient part of $B''$ at its removable singularity.-/
+quotient part of $B''$ at its removable singularity.
+@isnad1 id=le.2h1v.s8.2c3dd3063afe from=translated src=- shape=c85fc274 vocab=452e127f
+-/
 theorem aux_BSecondGaussianPart_abs_le_near_zero {x : ℝ}
     (hx0 : x ≠ 0) (hx : |x| ≤ 1 / 2) :
     |((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) /
@@ -2899,7 +3059,9 @@ theorem aux_BSecondGaussianPart_abs_le_near_zero {x : ℝ}
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this retains the sign and sharp local envelope in the
-cancellation of the Gaussian quotient terms of $B''$.-/
+cancellation of the Gaussian quotient terms of $B''$.
+@isnad1 id=and.2h1v.s9.a50604d0a953 from=translated src=- shape=ee0006c9 vocab=98920cce
+-/
 theorem aux_BSecondGaussianPart_nonneg_le_local {x : ℝ}
     (hx0 : x ≠ 0) (hx : |x| ≤ 1 / 2) :
     0 ≤ ((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) /
@@ -2982,7 +3144,9 @@ theorem aux_BSecondGaussianPart_nonneg_le_local {x : ℝ}
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this is the pass-5 local $B''$ estimate on the interval where
-the quotient formula has a removable singularity.-/
+the quotient formula has a removable singularity.
+@isnad1 id=le.1h1v.s5.355ccc3fba3d from=translated src=- shape=8cf3eef0 vocab=80a058fe
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_norm_le_twentySix {x : ℝ}
     (hx : |x| ≤ 1 / 2) :
     ‖auxiliaryFunctionBSecondDerivative x‖ ≤ 26 := by
@@ -3049,7 +3213,9 @@ theorem aux_auxiliaryFunctionBSecondDerivative_norm_le_twentySix {x : ℝ}
 
 /--
 This auxiliary elementary estimate replaces the linear Gaussian factor arising in the
-off-origin $B''$ bound by a standard integrable Gaussian.-/
+off-origin $B''$ bound by a standard integrable Gaussian.
+@isnad1 id=le.0h1v.s6.404d33bc8ebe from=translated src=- shape=82351157 vocab=73bff22f
+-/
 theorem aux_abs_mul_exp_neg_pi_half_sq_le (x : ℝ) :
     |x| * Real.exp (-(Real.pi / 2) * x ^ 2) ≤
       Real.exp (-(1 / 2) * x ^ 2) := by
@@ -3070,7 +3236,9 @@ theorem aux_abs_mul_exp_neg_pi_half_sq_le (x : ℝ) :
 
 /--
 This auxiliary numerical estimate gives the coefficient used in the integrable
-off-origin $B''$ Gaussian envelope.-/
+off-origin $B''$ Gaussian envelope.
+@isnad1 id=le.0h0v.s5.d34868bccb34 from=translated src=- shape=f1809de3 vocab=fdc2c1d5
+-/
 theorem aux_two_pi_sqrt_pi_le_twelve :
     2 * Real.pi * Real.sqrt Real.pi ≤ 12 := by
   have hp : Real.pi ≤ (9 / 5 : ℝ) ^ 2 := by
@@ -3085,7 +3253,9 @@ theorem aux_two_pi_sqrt_pi_le_twelve :
 
 /--
 This auxiliary off-origin envelope controls the Gaussian quotient part of $B''$ by two
-integrable Gaussian functions.-/
+integrable Gaussian functions.
+@isnad1 id=le.1h1v.s8.c1944017a9cc from=translated src=- shape=8216460e vocab=4448a3a5
+-/
 theorem aux_BSecondGaussianPart_abs_le_outer {x : ℝ}
     (hx : 1 / 2 ≤ |x|) :
     |((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) /
@@ -3271,7 +3441,9 @@ theorem aux_BSecondGaussianPart_abs_le_outer {x : ℝ}
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this supplies the tail lower bound for the square-root
-denominators in the sharp $B''$ estimate.-/
+denominators in the sharp $B''$ estimate.
+@isnad1 id=le.1h1v.s5.b9085ad76ece from=translated src=- shape=d928d89c vocab=ab41da9f
+-/
 theorem aux_sqrtOneMinusGaussian_half_of_half_le_abs {x : ℝ}
     (hx : 1 / 2 ≤ |x|) :
     1 / 2 ≤ sqrtOneMinusGaussian x := by
@@ -3307,7 +3479,9 @@ theorem aux_sqrtOneMinusGaussian_half_of_half_le_abs {x : ℝ}
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this is the pass-5 tail envelope for the Gaussian quotient
-terms of $B''$.-/
+terms of $B''$.
+@isnad1 id=le.1h1v.s8.236ba9c708c1 from=translated src=- shape=c7edf41b vocab=452e127f
+-/
 theorem aux_BSecondGaussianPart_abs_le_outer_sharp {x : ℝ}
     (hx : 1 / 2 ≤ |x|) :
     |((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) /
@@ -3392,7 +3566,9 @@ theorem aux_BSecondGaussianPart_abs_le_outer_sharp {x : ℝ}
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this supplies the integrability of the Gaussian second moment
-needed for the sharp tail majorant.-/
+needed for the sharp tail majorant.
+@isnad1 id=integrab.0h0v.s5.21cdc556a886 from=translated src=- shape=9c4389d5 vocab=731a02ce
+-/
 theorem aux_sq_mul_gaussian_integrable :
     Integrable (fun x : ℝ => x ^ 2 * gaussian x) := by
   simpa [gaussian, Auto.gaussian, Real.rpow_natCast] using
@@ -3403,7 +3579,9 @@ theorem aux_sq_mul_gaussian_integrable :
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this evaluates the Gaussian second moment in the sharp
-tail estimate.-/
+tail estimate.
+@isnad1 id=eq.0h0v.s6.a7cc4d31254d from=translated src=- shape=71402082 vocab=8c7ae917
+-/
 theorem aux_integral_gaussian_second_moment :
     (∫ x : ℝ, x ^ 2 * gaussian x) = (2 * Real.pi)⁻¹ := by
   have hlin : Integrable (fun x : ℝ => x * gaussian x) := by
@@ -3448,7 +3626,9 @@ theorem aux_integral_gaussian_second_moment :
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this evaluates the Abel tail occurring in the sharp $B''$
-majorant.-/
+majorant.
+@isnad1 id=eq.0h0v.s5.021af153e215 from=translated src=- shape=257fc711 vocab=c550eeae
+-/
 theorem aux_integral_exp_neg_abs_sqrt_pi :
     (∫ x : ℝ, Real.exp (-|Real.sqrt Real.pi * x|)) = 2 / Real.sqrt Real.pi := by
   have hsqrt : 0 < Real.sqrt Real.pi := Real.sqrt_pos.2 Real.pi_pos
@@ -3462,7 +3642,9 @@ theorem aux_integral_exp_neg_abs_sqrt_pi :
 
 /--
 This auxiliary integral computes the compactly supported local majorant used in the
-explicit $L^1$ estimate for $B''$.-/
+explicit $L^1$ estimate for $B''$.
+@isnad1 id=eq.0h0v.s7.27d237d2a54c from=translated src=- shape=1d5ceac3 vocab=a6f6dbe1
+-/
 theorem aux_integral_indicator_localQuadratic :
     (∫ x : ℝ, (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator
       (fun y : ℝ => y ^ 2 + 1 / 4) x) = 1 / 3 := by
@@ -3479,7 +3661,9 @@ theorem aux_integral_indicator_localQuadratic :
 
 /--
 This auxiliary integral computes the measure of the compact interval in the local
-majorant for $B''$.-/
+majorant for $B''$.
+@isnad1 id=eq.0h0v.s6.1d889ce558b8 from=translated src=- shape=a51838e3 vocab=f6634708
+-/
 theorem aux_integral_indicator_localOne :
     (∫ x : ℝ, (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator
       (fun _ : ℝ => (1 : ℝ)) x) = 1 := by
@@ -3490,7 +3674,9 @@ theorem aux_integral_indicator_localOne :
 
 /--
 This auxiliary pointwise estimate combines the local cancellation and off-origin Gaussian
-envelopes into a single integrable majorant for the zero extension of $B''$.-/
+envelopes into a single integrable majorant for the zero extension of $B''$.
+@isnad1 id=le.0h1v.s8.abe0ed29465f from=translated src=- shape=531beb26 vocab=a052c87e
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_norm_le (x : ℝ) :
     ‖auxiliaryFunctionBSecondDerivative x‖ ≤
       144 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator
@@ -3624,7 +3810,9 @@ theorem aux_auxiliaryFunctionBSecondDerivative_norm_le (x : ℝ) :
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this combines the pass-5 local and tail estimates into the
-sharp integrable majorant for the zero extension of $B''$.-/
+sharp integrable majorant for the zero extension of $B''$.
+@isnad1 id=le.0h1v.s7.13e0fc9deb0b from=translated src=- shape=abc4a0fc vocab=ade9f6de
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_norm_le_sharp (x : ℝ) :
     ‖auxiliaryFunctionBSecondDerivative x‖ ≤
       26 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator (fun _ : ℝ => (1 : ℝ)) x +
@@ -3708,7 +3896,9 @@ theorem aux_auxiliaryFunctionBSecondDerivative_norm_le_sharp (x : ℝ) :
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this proves integrability of the pass-5 sharp $B''$
-majorant.-/
+majorant.
+@isnad1 id=integrab.0h0v.s7.56cf081cc9ff from=translated src=- shape=f8cbbeac vocab=ae55dacb
+-/
 theorem aux_BSecondSharpMajorant_integrable :
     Integrable (fun x : ℝ =>
       26 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator (fun _ : ℝ => (1 : ℝ)) x +
@@ -3731,7 +3921,9 @@ theorem aux_BSecondSharpMajorant_integrable :
 Auxiliary for Proposition `Auto.auxiliaryFunctionB_properties`,
  formalized by
 `auxiliaryFunctionB_properties`: this integrates the pass-5 sharp $B''$ majorant and verifies
-the constant $56$.-/
+the constant $56$.
+@isnad1 id=le.0h0v.s7.e5bb069e1f37 from=translated src=- shape=04aca66b vocab=8141ab6f
+-/
 theorem aux_BSecondSharpMajorant_integral_le_fiftySix :
     (∫ x : ℝ,
       26 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator (fun _ : ℝ => (1 : ℝ)) x +
@@ -3803,7 +3995,9 @@ theorem aux_BSecondSharpMajorant_integral_le_fiftySix :
 /--
 This auxiliary theorem proves integrability of the explicit pointwise majorant for the
 zero extension of $B''$, so that it can be used both for integrability and the stated norm
-estimate.-/
+estimate.
+@isnad1 id=integrab.0h0v.s8.0acc02829662 from=translated src=- shape=7ccd077c vocab=78da24ad
+-/
 theorem aux_BSecondMajorant_integrable :
     Integrable (fun x : ℝ =>
       144 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator
@@ -3835,7 +4029,9 @@ theorem aux_BSecondMajorant_integrable :
 /--
 This auxiliary calculation integrates the explicit $B''$ majorant and checks that the
 numerical total is below the constant in Proposition
-`Auto.auxiliaryFunctionB_properties`.-/
+`Auto.auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s8.a75eb786825b from=translated src=- shape=6ff0d46c vocab=6253e74b
+-/
 theorem aux_BSecondMajorant_integral_le_hundred :
     (∫ x : ℝ,
       144 * (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)).indicator
@@ -3937,7 +4133,9 @@ theorem aux_BSecondMajorant_integral_le_hundred :
 
 /--
 This auxiliary second-derivative formula is used to differentiate the Gaussian quotient
-in the off-origin expression for $B''$.-/
+in the off-origin expression for $B''$.
+@isnad1 id=hasderiv.0h1v.s7.d18aeb09c25f from=translated src=- shape=e0b6b708 vocab=847ae9bd
+-/
 theorem aux_gaussian_deriv_hasDerivAt (x : ℝ) :
     HasDerivAt (fun y : ℝ => -2 * Real.pi * y * gaussian y)
       ((4 * Real.pi ^ 2 * x ^ 2 - 2 * Real.pi) * gaussian x) x := by
@@ -3959,7 +4157,9 @@ theorem aux_gaussian_deriv_hasDerivAt (x : ℝ) :
 
 /--
 This auxiliary differentiability formula supplies the square-root denominator derivative
-away from its removable singularity.-/
+away from its removable singularity.
+@isnad1 id=hasderiv.1h1v.s6.bbd7645f2e58 from=translated src=- shape=24afa31c vocab=faa22c83
+-/
 theorem aux_sqrtOneMinusGaussian_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt sqrtOneMinusGaussian
       ((2 * Real.pi * x * gaussian x) / (2 * sqrtOneMinusGaussian x)) x := by
@@ -3972,7 +4172,9 @@ theorem aux_sqrtOneMinusGaussian_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
 
 /--
 This auxiliary quotient-rule calculation differentiates the Gaussian part of the displayed
-formula for $B'$ away from zero.-/
+formula for $B'$ away from zero.
+@isnad1 id=hasderiv.1h1v.s8.cea2b31cd005 from=translated src=- shape=1f81d9db vocab=6bcd359b
+-/
 theorem aux_BDerivative_gaussianTerm_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt (fun y : ℝ =>
       (-2 * Real.pi * y * gaussian y) / (2 * sqrtOneMinusGaussian y))
@@ -4012,7 +4214,9 @@ theorem aux_BDerivative_gaussianTerm_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
 
 /--
 This auxiliary fixed-sign calculation differentiates the Abel summand in $B'$ without
-crossing its absolute-value singularity.-/
+crossing its absolute-value singularity.
+@isnad1 id=hasderiv.1h1v.s7.fb7c7de23605 from=translated src=- shape=dcdd129e vocab=828bed62
+-/
 theorem aux_BDerivative_abelTerm_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt (fun y : ℝ =>
       Real.sqrt Real.pi * (SignType.sign (Real.sqrt Real.pi * y) : ℝ) *
@@ -4091,7 +4295,9 @@ theorem aux_BDerivative_abelTerm_hasDerivAt {x : ℝ} (hx : x ≠ 0) :
 
 /--
 This auxiliary off-origin theorem identifies the derivative of the continuous extension of
-$B'$ with the displayed zero-extension formula for $B''$.-/
+$B'$ with the displayed zero-extension formula for $B''$.
+@isnad1 id=hasderiv.1h1v.s5.4271984d3a79 from=translated src=- shape=e771e0a7 vocab=a7346d01
+-/
 theorem aux_auxiliaryFunctionBDerivative_hasDerivAt_of_ne_zero {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt auxiliaryFunctionBDerivative (auxiliaryFunctionBSecondDerivative x) x := by
   have hq := aux_BDerivative_gaussianTerm_hasDerivAt hx
@@ -4131,7 +4337,9 @@ theorem aux_auxiliaryFunctionBDerivative_hasDerivAt_of_ne_zero {x : ℝ} (hx : x
 /--
 This auxiliary measurability fact supplies the Borel-measurability conclusion for the
 zero extension of $B''$ in Proposition
-`Auto.auxiliaryFunctionB_properties`.-/
+`Auto.auxiliaryFunctionB_properties`.
+@isnad1 id=measurab.0h0v.s2.fa36bc469139 from=translated src=- shape=e3d48bcb vocab=fed9c18c
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_measurable :
     Measurable auxiliaryFunctionBSecondDerivative := by
   unfold auxiliaryFunctionBSecondDerivative
@@ -4162,7 +4370,9 @@ theorem aux_auxiliaryFunctionBSecondDerivative_measurable :
 /--
 This auxiliary continuity statement supplies the actual derivative value $-\pi$ at the
 removable singularity of $B'$.  The manuscript's measurable $B''$ remains defined to be zero
-there, since changing one point does not affect its integrability.-/
+there, since changing one point does not affect its integrability.
+@isnad1 id=continuo.0h0v.s5.6e4836f33b18 from=translated src=- shape=1eb3a5b9 vocab=787425e6
+-/
 theorem aux_auxiliaryFunctionBTrueSecondDerivative_continuousAt_zero :
     ContinuousAt (fun x : ℝ =>
       if x = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative x) 0 := by
@@ -4222,7 +4432,9 @@ theorem aux_auxiliaryFunctionBTrueSecondDerivative_continuousAt_zero :
 
 /--
 This auxiliary derivative fact restores the genuine derivative at zero needed for Fourier
-integration by parts.  Away from zero it is exactly the displayed formula for $B''$.-/
+integration by parts.  Away from zero it is exactly the displayed formula for $B''$.
+@isnad1 id=hasderiv.0h0v.s5.7c60fc30183b from=translated src=- shape=527f26bb vocab=3d0165b8
+-/
 theorem aux_auxiliaryFunctionBDerivative_hasDerivAt_zero :
     HasDerivAt auxiliaryFunctionBDerivative (-Real.pi) 0 := by
   have h := hasDerivAt_of_hasDerivAt_of_ne
@@ -4238,7 +4450,9 @@ theorem aux_auxiliaryFunctionBDerivative_hasDerivAt_zero :
 
 /--
 This auxiliary differentiability theorem packages the off-origin formula and its removable
-value at zero for use in Fourier integration by parts.-/
+value at zero for use in Fourier integration by parts.
+@isnad1 id=differen.0h0v.s5.d52fc09fea2b from=translated src=- shape=aa9fb30a vocab=55bcd8ca
+-/
 theorem aux_auxiliaryFunctionBDerivative_differentiable :
     Differentiable ℝ auxiliaryFunctionBDerivative := by
   intro x
@@ -4249,7 +4463,9 @@ theorem aux_auxiliaryFunctionBDerivative_differentiable :
 
 /--
 This auxiliary identity identifies the ordinary derivative of the continuous extension of
-$B'$; it differs from the manuscript's zero extension of $B''$ only at the origin.-/
+$B'$; it differs from the manuscript's zero extension of $B''$ only at the origin.
+@isnad1 id=eq.0h1v.s5.bebd71e3230b from=translated src=- shape=4e9093f1 vocab=c9bd5e6c
+-/
 theorem aux_deriv_auxiliaryFunctionBDerivative (x : ℝ) :
     deriv auxiliaryFunctionBDerivative x =
       if x = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative x := by
@@ -4261,7 +4477,9 @@ theorem aux_deriv_auxiliaryFunctionBDerivative (x : ℝ) :
 /--
 This auxiliary integrability theorem turns the explicit majorant for the zero extension of
 $B''$ into the integrability component of Proposition
-`Auto.auxiliaryFunctionB_properties`.-/
+`Auto.auxiliaryFunctionB_properties`.
+@isnad1 id=integrab.0h0v.s4.c4aa3fb61901 from=translated src=- shape=e14394ff vocab=0d3e9938
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_integrable :
     Integrable auxiliaryFunctionBSecondDerivative := by
   exact aux_BSecondSharpMajorant_integrable.mono'
@@ -4271,7 +4489,9 @@ theorem aux_auxiliaryFunctionBSecondDerivative_integrable :
 /--
 This auxiliary integrability fact replaces the manuscript's value $B''(0)=0$ by the true
 derivative value $-\pi$ at a single null point, so it can serve as `deriv B'` in Fourier
-integration by parts.-/
+integration by parts.
+@isnad1 id=integrab.0h0v.s5.8faec507a5d7 from=translated src=- shape=dbfd96b8 vocab=6ad9b16d
+-/
 theorem aux_auxiliaryFunctionBTrueSecondDerivative_integrable :
     Integrable (fun x : ℝ =>
       if x = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative x) := by
@@ -4285,7 +4505,9 @@ theorem aux_auxiliaryFunctionBTrueSecondDerivative_integrable :
 /--
 This is the $B''$ norm component of Proposition
  `Auto.auxiliaryFunctionB_properties`; the complete
-source proposition is recorded in `auxiliaryFunctionB_properties`.-/
+source proposition is recorded in `auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s5.d1f9c08c4291 from=translated src=- shape=8c87a25f vocab=dc1597c8
+-/
 theorem aux_auxiliaryFunctionBSecondDerivative_eLpNorm_one_le :
     eLpNorm auxiliaryFunctionBSecondDerivative 1 volume ≤ ENNReal.ofReal 56 := by
   have hnorm_bound : (∫ x : ℝ, ‖auxiliaryFunctionBSecondDerivative x‖) ≤ 56 := by
@@ -4313,7 +4535,9 @@ noncomputable def aux_sqrtGaussianCoefficient (n : ℕ) : ℝ :=
 
 /--
 This auxiliary binomial recurrence is used to prove positivity of the coefficients in
-`aux_sqrtGaussianCoefficient_nonneg`.-/
+`aux_sqrtGaussianCoefficient_nonneg`.
+@isnad1 id=eq.0h2v.s7.863e3e17c2f7 from=translated src=- shape=38c5702d vocab=45ad3acd
+-/
 theorem aux_choose_succ (r : ℝ) (n : ℕ) :
     Ring.choose r (n + 1) = Ring.choose r n * (r - n) / (n + 1) := by
   rw [Ring.choose_eq_smul, Ring.choose_eq_smul]
@@ -4326,7 +4550,9 @@ theorem aux_choose_succ (r : ℝ) (n : ℕ) :
 
 /--
 This auxiliary recurrence reduces the sign of the next binomial coefficient in
-`aux_sqrtGaussianCoefficient` to the preceding coefficient.-/
+`aux_sqrtGaussianCoefficient` to the preceding coefficient.
+@isnad1 id=eq.0h1v.s6.0c6161d5f660 from=translated src=- shape=058e5fa8 vocab=0ab10864
+-/
 theorem aux_sqrtGaussianCoefficient_succ (n : ℕ) :
     aux_sqrtGaussianCoefficient (n + 1) =
       aux_sqrtGaussianCoefficient n * ((n : ℝ) + 1 / 2) / ((n : ℝ) + 2) := by
@@ -4337,7 +4563,9 @@ theorem aux_sqrtGaussianCoefficient_succ (n : ℕ) :
 /--
 This auxiliary positivity fact makes the binomial Gaussian-mixture terms nonnegative in
 the proof of Proposition `Auto.sqrtGaussianDecay`, formalized by
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s3.c4408949eaa6 from=translated src=- shape=b9369acb vocab=1ce47585
+-/
 theorem aux_sqrtGaussianCoefficient_nonneg (n : ℕ) :
     0 ≤ aux_sqrtGaussianCoefficient n := by
   induction n with
@@ -4348,7 +4576,9 @@ theorem aux_sqrtGaussianCoefficient_nonneg (n : ℕ) :
 
 /--
 This auxiliary binomial-series identity expands the real square-root profile.  It is used
-to represent the inverse Fourier kernel in `sqrtGaussianDecay` as a positive Gaussian mixture.-/
+to represent the inverse Fourier kernel in `sqrtGaussianDecay` as a positive Gaussian mixture.
+@isnad1 id=hassum.2h1v.s6.c1d7b22c5bf4 from=translated src=- shape=ac4fb4d3 vocab=c0054e7e
+-/
 theorem aux_sqrtGaussianCoefficient_hasSum (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t < 1) :
     @HasSum ℝ ℕ Real.instAddCommGroup.toAddCommMonoid _
       (fun n : ℕ => aux_sqrtGaussianCoefficient n * t ^ (n + 1))
@@ -4373,7 +4603,9 @@ theorem aux_sqrtGaussianCoefficient_hasSum (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t < 
 /--
 This auxiliary identity identifies each power in the binomial expansion with the Gaussian
 at the corresponding square-root scale, used by the positive-mixture proof of
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=eq.0h2v.s5.87a1fae6913b from=translated src=- shape=fd6ff7c6 vocab=5b53b4e7
+-/
 theorem aux_gaussian_pow_succ_eq (x : ℝ) (n : ℕ) :
     gaussian x ^ (n + 1) = gaussian (Real.sqrt (n + 1) * x) := by
   change Real.exp (-Real.pi * x ^ 2) ^ (n + 1) =
@@ -4388,7 +4620,9 @@ theorem aux_gaussian_pow_succ_eq (x : ℝ) (n : ℕ) :
 /--
 This auxiliary specialization of the binomial expansion writes the square-root Gaussian
 frequency profile as a positive Gaussian mixture away from the origin.  It is used by the
-positive-mixture proof of `sqrtGaussianDecay`.-/
+positive-mixture proof of `sqrtGaussianDecay`.
+@isnad1 id=hassum.1h1v.s6.8de994f0d56d from=translated src=- shape=4213b083 vocab=41964eca
+-/
 theorem aux_sqrtGaussianFrequencyProfile_hasSum {x : ℝ} (hx : x ≠ 0) :
     @HasSum ℝ ℕ Real.instAddCommGroup.toAddCommMonoid _
       (fun n : ℕ => aux_sqrtGaussianCoefficient n *
@@ -4436,7 +4670,9 @@ def aux_scaledPoissonKernel (x : ℝ) : ℝ :=
 
 /--
 This auxiliary inequality is the nonnegative branch condition for the frequency profile
-in the square-root Gaussian kernel.-/
+in the square-root Gaussian kernel.
+@isnad1 id=le.0h1v.s4.4233d41b8b81 from=translated src=- shape=350398d8 vocab=d19d71d1
+-/
 theorem aux_one_sub_sqrtOneMinusGaussian_nonneg (x : ℝ) :
     0 ≤ 1 - sqrtOneMinusGaussian x := by
   have hrad : 0 ≤ 1 - gaussian x := aux_one_sub_gaussian_nonneg x
@@ -4448,7 +4684,9 @@ theorem aux_one_sub_sqrtOneMinusGaussian_nonneg (x : ℝ) :
 
 /--
 This auxiliary inequality gives an integrable Gaussian majorant for the square-root
-Gaussian frequency profile.-/
+Gaussian frequency profile.
+@isnad1 id=le.0h1v.s4.ecb2ad1da361 from=translated src=- shape=66759b31 vocab=4d74af1a
+-/
 theorem aux_one_sub_sqrtOneMinusGaussian_le_gaussian (x : ℝ) :
     1 - sqrtOneMinusGaussian x ≤ gaussian x := by
   have hrad : 0 ≤ 1 - gaussian x := aux_one_sub_gaussian_nonneg x
@@ -4460,7 +4698,9 @@ theorem aux_one_sub_sqrtOneMinusGaussian_le_gaussian (x : ℝ) :
 
 /--
 This auxiliary theorem proves integrability of the real frequency profile defining the
-square-root Gaussian kernel.-/
+square-root Gaussian kernel.
+@isnad1 id=integrab.0h0v.s5.740c090f9c85 from=translated src=- shape=239fa9b0 vocab=011e85d3
+-/
 theorem aux_sqrtGaussianFrequencyProfile_integrable_real :
     Integrable (fun ξ : ℝ => 1 - sqrtOneMinusGaussian ξ) := by
   refine aux_gaussian_integrable.mono_nonneg
@@ -4470,7 +4710,9 @@ theorem aux_sqrtGaussianFrequencyProfile_integrable_real :
 
 /--
 This auxiliary theorem gives the complex-valued integrability hypothesis required by the
-inverse Fourier transform defining $\rho$.-/
+inverse Fourier transform defining $\rho$.
+@isnad1 id=integrab.0h0v.s5.c908021b9ed1 from=translated src=- shape=c57f8401 vocab=8d30cddb
+-/
 theorem aux_sqrtGaussianFrequencyProfile_integrable :
     Integrable aux_sqrtGaussianFrequencyProfile := by
   unfold aux_sqrtGaussianFrequencyProfile
@@ -4478,7 +4720,9 @@ theorem aux_sqrtGaussianFrequencyProfile_integrable :
 
 /--
 This evaluates the scaled Abel contribution used in the inverse-Fourier decomposition for
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=eq.0h1v.s5.c28482542167 from=translated src=- shape=2b44b288 vocab=36bcdef8
+-/
 theorem aux_inverseFourier_scaledPoissonFrequency (x : ℝ) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => (aux_scaledPoissonFrequency ξ : ℂ)) x =
       (aux_scaledPoissonKernel x : ℂ) := by
@@ -4493,7 +4737,9 @@ theorem aux_inverseFourier_scaledPoissonFrequency (x : ℝ) :
 /--
 The inverse-Fourier kernel $\rho$ from Proposition
  `Auto.sqrtGaussianDecay` is
-continuous.-/
+continuous.
+@isnad1 id=continuo.0h0v.s4.385fea497b07 from=translated src=- shape=54c8eceb vocab=356f5a27
+-/
 theorem aux_sqrtGaussianKernel_continuous : Continuous aux_sqrtGaussianKernel := by
   change Continuous
     (VectorFourier.fourierIntegral 𝐞 volume (-innerₗ ℝ) aux_sqrtGaussianFrequencyProfile)
@@ -4503,7 +4749,9 @@ theorem aux_sqrtGaussianKernel_continuous : Continuous aux_sqrtGaussianKernel :=
 
 /--
 This auxiliary integrability fact is the starting point for the later integration-by-parts
-control of the inverse Fourier transform of $B$.-/
+control of the inverse Fourier transform of $B$.
+@isnad1 id=integrab.0h0v.s4.aa0269d8ac1c from=translated src=- shape=e14394ff vocab=0b2e0d17
+-/
 theorem aux_auxiliaryFunctionB_integrable : Integrable auxiliaryFunctionB := by
   unfold auxiliaryFunctionB
   exact aux_sqrtGaussianFrequencyProfile_integrable_real.sub
@@ -4511,7 +4759,9 @@ theorem aux_auxiliaryFunctionB_integrable : Integrable auxiliaryFunctionB := by
 
 /--
 This inverse-Fourier decomposition combines $B$ with the scaled Abel profile in the proof of
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=eq.0h1v.s5.8fe95b25d7ae from=translated src=- shape=62330a07 vocab=78b68408
+-/
 theorem aux_sqrtGaussianKernel_eq_inverseFourier_auxiliaryFunctionB_add_scaledPoisson
     (x : ℝ) :
     aux_sqrtGaussianKernel x =
@@ -4555,7 +4805,9 @@ theorem aux_sqrtGaussianKernel_eq_inverseFourier_auxiliaryFunctionB_add_scaledPo
 
 /--
 This auxiliary $L^1$ estimate supplies the $B$ norm clause of
-`auxiliaryFunctionB_properties`.-/
+`auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s5.381cd1bdf24a from=translated src=- shape=8c87a25f vocab=7bd16b85
+-/
 theorem aux_auxiliaryFunctionB_eLpNorm_one_le :
     eLpNorm auxiliaryFunctionB 1 volume ≤ ENNReal.ofReal 6 := by
   have hprofile_bound :
@@ -4623,7 +4875,9 @@ $$
     \|B\|_1\le 6,\qquad
     \|B'\|_1\le 12,\qquad
     \|B''\|_1\le 68.
-$$-/
+$$
+@isnad1 id=and.0h0v.s8.d1f2961e8734 from=translated src=- shape=7798c3d0 vocab=261193af
+-/
 theorem auxiliaryFunctionB_properties :
     Continuous auxiliaryFunctionB ∧
       ContDiffOn ℝ (↑(⊤ : ℕ∞)) auxiliaryFunctionB ({0}ᶜ : Set ℝ) ∧
@@ -4649,7 +4903,9 @@ theorem auxiliaryFunctionB_properties :
 
 /--
 This auxiliary integration-by-parts identity transfers integrable derivative bounds to
-inverse Fourier transforms in the normalization used in this formalization.-/
+inverse Fourier transforms in the normalization used in this formalization.
+@isnad1 id=eq.3h2v.s8.94ca36584033 from=translated src=- shape=463d5551 vocab=7e8a7a12
+-/
 theorem aux_inverseFourier_deriv {f : ℝ → ℂ}
     (hf : Integrable f) (h'f : Differentiable ℝ f) (hf' : Integrable (deriv f)) (x : ℝ) :
     FourierTransformInv.fourierInv (deriv f) x =
@@ -4662,7 +4918,9 @@ theorem aux_inverseFourier_deriv {f : ℝ → ℂ}
 
 /--
 This auxiliary derivative formula complexifies the global differentiability of $B$ so that
-the Fourier derivative theorem can be applied.-/
+the Fourier derivative theorem can be applied.
+@isnad1 id=hasderiv.0h1v.s5.1bdcd87d6991 from=translated src=- shape=0d09379a vocab=1a465eaf
+-/
 theorem aux_auxiliaryFunctionB_complex_hasDerivAt (x : ℝ) :
     HasDerivAt (fun y : ℝ => (auxiliaryFunctionB y : ℂ))
       (auxiliaryFunctionBDerivative x) x := by
@@ -4670,7 +4928,9 @@ theorem aux_auxiliaryFunctionB_complex_hasDerivAt (x : ℝ) :
 
 /--
 This auxiliary identity gives the complex derivative of $B$ used in inverse-Fourier
-integration by parts.-/
+integration by parts.
+@isnad1 id=eq.0h1v.s6.ccb8fe1c18bf from=translated src=- shape=dcb54e96 vocab=51bf0204
+-/
 theorem aux_deriv_auxiliaryFunctionB_complex (x : ℝ) :
     deriv (fun y : ℝ => (auxiliaryFunctionB y : ℂ)) x =
       (auxiliaryFunctionBDerivative x : ℂ) := by
@@ -4678,7 +4938,9 @@ theorem aux_deriv_auxiliaryFunctionB_complex (x : ℝ) :
 
 /--
 This auxiliary derivative formula complexifies the true derivative of the continuous
-extension of $B'$ for the second integration-by-parts step.-/
+extension of $B'$ for the second integration-by-parts step.
+@isnad1 id=hasderiv.0h1v.s6.034bbb562eb3 from=translated src=- shape=56fdf83f vocab=c3b0012e
+-/
 theorem aux_auxiliaryFunctionBDerivative_complex_hasDerivAt (x : ℝ) :
     HasDerivAt (fun y : ℝ => (auxiliaryFunctionBDerivative y : ℂ))
       ((if x = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative x) : ℝ) x := by
@@ -4690,7 +4952,9 @@ theorem aux_auxiliaryFunctionBDerivative_complex_hasDerivAt (x : ℝ) :
 /--
 This auxiliary identity gives the complex derivative of the continuous extension of $B'$.
 It uses the derivative value $-\pi$ at zero rather than the manuscript's separately extended
-value of $B''$.-/
+value of $B''$.
+@isnad1 id=eq.0h1v.s6.68ece6acb308 from=translated src=- shape=d6c06d16 vocab=e9d9c011
+-/
 theorem aux_deriv_auxiliaryFunctionBDerivative_complex (x : ℝ) :
     deriv (fun y : ℝ => (auxiliaryFunctionBDerivative y : ℂ)) x =
       ((if x = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative x) : ℝ) := by
@@ -4698,7 +4962,9 @@ theorem aux_deriv_auxiliaryFunctionBDerivative_complex (x : ℝ) :
 
 /--
 This auxiliary integrability statement supplies the derivative hypothesis for the first
-inverse-Fourier integration-by-parts step.-/
+inverse-Fourier integration-by-parts step.
+@isnad1 id=integrab.0h0v.s6.ac47fce9d8b1 from=translated src=- shape=815d674c vocab=e699250a
+-/
 theorem aux_deriv_auxiliaryFunctionB_complex_integrable :
     Integrable (deriv (fun y : ℝ => (auxiliaryFunctionB y : ℂ))) := by
   convert aux_auxiliaryFunctionBDerivative_integrable.ofReal using 1
@@ -4707,14 +4973,18 @@ theorem aux_deriv_auxiliaryFunctionB_complex_integrable :
 
 /--
 This auxiliary integrability statement supplies the derivative hypothesis for the second
-inverse-Fourier integration-by-parts step.-/
+inverse-Fourier integration-by-parts step.
+@isnad1 id=integrab.0h0v.s6.69aca2e5fe38 from=translated src=- shape=815d674c vocab=40fd8a8a
+-/
 theorem aux_deriv_auxiliaryFunctionBDerivative_complex_integrable :
     Integrable (deriv (fun y : ℝ => (auxiliaryFunctionBDerivative y : ℂ))) := by
   convert aux_auxiliaryFunctionBTrueSecondDerivative_integrable.ofReal using 1
   funext x
   exact aux_deriv_auxiliaryFunctionBDerivative_complex x
 
-/-- This auxiliary Fourier identity is the first integration-by-parts relation for $B$.-/
+/-- This auxiliary Fourier identity is the first integration-by-parts relation for $B$.
+@isnad1 id=eq.0h1v.s6.fa4da6e04627 from=translated src=- shape=51228edb vocab=78d72052
+-/
 theorem aux_inverseFourier_auxiliaryFunctionBDerivative (x : ℝ) :
     FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionBDerivative ξ : ℂ)) x =
       (-(2 * Real.pi * Complex.I * x)) *
@@ -4731,7 +5001,9 @@ theorem aux_inverseFourier_auxiliaryFunctionBDerivative (x : ℝ) :
 
 /--
 This auxiliary Fourier identity is the second integration-by-parts relation for the true
-derivative of the continuous extension of $B'$.-/
+derivative of the continuous extension of $B'$.
+@isnad1 id=eq.0h1v.s7.f53b4b4bf4f0 from=translated src=- shape=7c18e521 vocab=89e73a02
+-/
 theorem aux_inverseFourier_auxiliaryFunctionBTrueSecondDerivative (x : ℝ) :
     FourierTransformInv.fourierInv
         (fun ξ : ℝ => (((if ξ = 0 then -Real.pi
@@ -4751,7 +5023,9 @@ theorem aux_inverseFourier_auxiliaryFunctionBTrueSecondDerivative (x : ℝ) :
 
 /--
 This auxiliary real-valued estimate extracts the sharpened $L^1$ bound for $B$ from the
-corresponding `eLpNorm` clause of `auxiliaryFunctionB_properties`.-/
+corresponding `eLpNorm` clause of `auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s5.94947a33ac5a from=translated src=- shape=02cc0b04 vocab=b4942698
+-/
 theorem aux_integral_norm_auxiliaryFunctionB_le_six :
     (∫ ξ : ℝ, ‖auxiliaryFunctionB ξ‖) ≤ 6 := by
   have h := aux_auxiliaryFunctionB_eLpNorm_one_le
@@ -4759,14 +5033,18 @@ theorem aux_integral_norm_auxiliaryFunctionB_le_six :
     ← ofReal_integral_norm_eq_lintegral_enorm aux_auxiliaryFunctionB_integrable] at h
   exact (ENNReal.ofReal_le_ofReal_iff (by norm_num)).mp h
 
-/-- This weaker form of the $B$ integral estimate is retained for earlier auxiliary bounds.-/
+/-- This weaker form of the $B$ integral estimate is retained for earlier auxiliary bounds.
+@isnad1 id=le.0h0v.s5.dc76239f865e from=translated src=- shape=02cc0b04 vocab=b4942698
+-/
 theorem aux_integral_norm_auxiliaryFunctionB_le_eight :
     (∫ ξ : ℝ, ‖auxiliaryFunctionB ξ‖) ≤ 8 :=
   aux_integral_norm_auxiliaryFunctionB_le_six.trans (by norm_num)
 
 /--
 This auxiliary uniform estimate is the sharpened zeroth-order inverse-Fourier bound for
-$B$.-/
+$B$.
+@isnad1 id=le.0h1v.s5.60ecd0f385f0 from=translated src=- shape=a23bdc26 vocab=0c2c107f
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_six (x : ℝ) :
     ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤ 6 := by
   rw [Real.fourierInv_eq]
@@ -4780,7 +5058,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_six (x : ℝ) :
       simp [Circle.norm_smul]
     _ ≤ 6 := aux_integral_norm_auxiliaryFunctionB_le_six
 
-/-- This auxiliary uniform estimate is the zeroth-order inverse-Fourier bound for $B$.-/
+/-- This auxiliary uniform estimate is the zeroth-order inverse-Fourier bound for $B$.
+@isnad1 id=le.0h1v.s5.5f982decbc5b from=translated src=- shape=a23bdc26 vocab=0c2c107f
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_eight (x : ℝ) :
     ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤ 8 := by
   rw [Real.fourierInv_eq]
@@ -4796,7 +5076,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_eight (x : ℝ) :
 
 /--
 This auxiliary real-valued estimate extracts the $L^1$ bound for the manuscript's zero
-extension of $B''$ from `auxiliaryFunctionB_properties`.-/
+extension of $B''$ from `auxiliaryFunctionB_properties`.
+@isnad1 id=le.0h0v.s5.2b282a156451 from=translated src=- shape=02cc0b04 vocab=892a686f
+-/
 theorem aux_integral_norm_auxiliaryFunctionBSecondDerivative_le_fiftySix :
     (∫ ξ : ℝ, ‖auxiliaryFunctionBSecondDerivative ξ‖) ≤ 56 := by
   have h := aux_auxiliaryFunctionBSecondDerivative_eLpNorm_one_le
@@ -4807,7 +5089,9 @@ theorem aux_integral_norm_auxiliaryFunctionBSecondDerivative_le_fiftySix :
 
 /--
 This auxiliary $L^1$ estimate changes the zero extension of $B''$ to the true derivative of
-the continuous extension of $B'$; the functions differ only on a null singleton.-/
+the continuous extension of $B'$; the functions differ only on a null singleton.
+@isnad1 id=le.0h0v.s5.8c1b8a97f027 from=translated src=- shape=faa28520 vocab=e3de1552
+-/
 theorem aux_integral_norm_auxiliaryFunctionBTrueSecondDerivative_le_fiftySix :
     (∫ ξ : ℝ, ‖if ξ = 0 then -Real.pi else auxiliaryFunctionBSecondDerivative ξ‖) ≤ 56 := by
   have hne : ∀ᵐ ξ : ℝ ∂volume, ξ ≠ 0 := by
@@ -4823,7 +5107,9 @@ theorem aux_integral_norm_auxiliaryFunctionBTrueSecondDerivative_le_fiftySix :
 
 /--
 This auxiliary uniform estimate is the zeroth-order inverse-Fourier bound for the true
-second derivative of the continuous extension of $B'$.-/
+second derivative of the continuous extension of $B'$.
+@isnad1 id=le.0h1v.s6.23c0632b7a33 from=translated src=- shape=221ef260 vocab=5e68a707
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionBTrueSecondDerivative_le_fiftySix (x : ℝ) :
     ‖FourierTransformInv.fourierInv
         (fun ξ : ℝ => (((if ξ = 0 then -Real.pi
@@ -4843,7 +5129,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionBTrueSecondDerivative_le_fiftyS
 
 /--
 This auxiliary norm computation records the Fourier multiplier introduced by one
-integration-by-parts step.-/
+integration-by-parts step.
+@isnad1 id=eq.0h1v.s6.09e1ded80353 from=translated src=- shape=17809952 vocab=6b9f4abf
+-/
 theorem aux_norm_fourier_derivative_factor (x : ℝ) :
     ‖-(2 * Real.pi * Complex.I * x)‖ = 2 * Real.pi * |x| := by
   rw [norm_neg, norm_mul, norm_mul, norm_mul]
@@ -4851,7 +5139,9 @@ theorem aux_norm_fourier_derivative_factor (x : ℝ) :
 
 /--
 This auxiliary identity combines the two inverse-Fourier integration-by-parts formulas into
-the quadratic multiplier relation used for decay of the inverse transform of $B$.-/
+the quadratic multiplier relation used for decay of the inverse transform of $B$.
+@isnad1 id=eq.0h1v.s7.56719165b995 from=translated src=- shape=7d77fed6 vocab=516603c8
+-/
 theorem aux_auxiliaryFunctionBTrueSecondDerivative_factor_norm (x : ℝ) :
     ‖FourierTransformInv.fourierInv
         (fun ξ : ℝ => (((if ξ = 0 then -Real.pi
@@ -4867,7 +5157,9 @@ theorem aux_auxiliaryFunctionBTrueSecondDerivative_factor_norm (x : ℝ) :
 
 /--
 This auxiliary estimate is the quadratic inverse-Fourier decay bound for $B$ obtained from
-its second derivative.-/
+its second derivative.
+@isnad1 id=le.0h1v.s6.a15467d6f7ec from=translated src=- shape=03312293 vocab=d139f5ea
+-/
 theorem aux_quadratic_inverseFourier_auxiliaryFunctionB_bound (x : ℝ) :
     (4 * Real.pi ^ 2 * x ^ 2) *
         ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤ 56 := by
@@ -4876,7 +5168,9 @@ theorem aux_quadratic_inverseFourier_auxiliaryFunctionB_bound (x : ℝ) :
 
 /--
 This auxiliary decay estimate combines the uniform and quadratic bounds for the inverse
-Fourier transform of $B$ into the bracket-bump majorant used in `sqrtGaussianDecay`.-/
+Fourier transform of $B$ into the bracket-bump majorant used in `sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s6.07d7d1da470b from=translated src=- shape=9bb55c8e vocab=d0685578
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_thirtyTwo_bracket_sq (x : ℝ) :
     ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤
       32 * bracketBump x ^ 2 := by
@@ -4930,7 +5224,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_thirtyTwo_bracket_sq (x : 
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
 `sqrtGaussianDecay`: this combines the sharpened uniform and second-derivative bounds for the
-inverse transform of $B$.-/
+inverse transform of $B$.
+@isnad1 id=le.0h1v.s6.6e5bd09a1ca0 from=translated src=- shape=9bb55c8e vocab=d0685578
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_fifteen_bracket_sq (x : ℝ) :
     ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤
       15 * bracketBump x ^ 2 := by
@@ -4988,7 +5284,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_fifteen_bracket_sq (x : �
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
 `sqrtGaussianDecay`: this is the retained weaker pass-5 bracket-bump estimate for the inverse
-transform of $B$.-/
+transform of $B$.
+@isnad1 id=le.0h1v.s6.1401ecc6e5c2 from=translated src=- shape=9bb55c8e vocab=d0685578
+-/
 theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_seventeen_bracket_sq (x : ℝ) :
     ‖FourierTransformInv.fourierInv (fun ξ : ℝ => (auxiliaryFunctionB ξ : ℂ)) x‖ ≤
       17 * bracketBump x ^ 2 := by
@@ -5043,7 +5341,9 @@ theorem aux_norm_inverseFourier_auxiliaryFunctionB_le_seventeen_bracket_sq (x : 
         mul_le_mul_of_nonneg_left hquad (by norm_num)
       _ ≤ 17 := by norm_num
 
-/-- This bound controls the scaled Abel kernel in the proof of `sqrtGaussianDecay`.-/
+/-- This bound controls the scaled Abel kernel in the proof of `sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s5.0028d428f1bd from=translated src=- shape=5db43898 vocab=8959352e
+-/
 theorem aux_scaledPoissonKernel_le_eight_bracket_sq (x : ℝ) :
     aux_scaledPoissonKernel x ≤ 8 * bracketBump x ^ 2 := by
   have hformula : aux_scaledPoissonKernel x =
@@ -5090,7 +5390,9 @@ theorem aux_scaledPoissonKernel_le_eight_bracket_sq (x : ℝ) :
 
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
-`sqrtGaussianDecay`: this is the pass-5 bracket-bump bound for the scaled Abel kernel.-/
+`sqrtGaussianDecay`: this is the pass-5 bracket-bump bound for the scaled Abel kernel.
+@isnad1 id=le.0h1v.s5.fe54d2f7655c from=translated src=- shape=fad92239 vocab=7abb95db
+-/
 theorem aux_scaledPoissonKernel_le_three_halves_bracket_sq (x : ℝ) :
     aux_scaledPoissonKernel x ≤ (3 / 2 : ℝ) * bracketBump x ^ 2 := by
   have hformula : aux_scaledPoissonKernel x =
@@ -5147,7 +5449,9 @@ theorem aux_scaledPoissonKernel_le_three_halves_bracket_sq (x : ℝ) :
 
 /--
 This absolute-value form of the $B$ and scaled Abel estimates is used to establish the
-Wiener-space conclusion in `sqrtGaussianDecay`.-/
+Wiener-space conclusion in `sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s5.e7a75fae9600 from=translated src=- shape=a0ec00bd vocab=27729611
+-/
 theorem aux_abs_sqrtGaussianDecayKernel_le_forty_bracket_sq (x : ℝ) :
     |aux_sqrtGaussianDecayKernel x| ≤ 40 * bracketBump x ^ 2 := by
   have hPoisson_nonneg (y : ℝ) : 0 ≤ aux_scaledPoissonKernel y := by
@@ -5173,7 +5477,9 @@ theorem aux_abs_sqrtGaussianDecayKernel_le_forty_bracket_sq (x : ℝ) :
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
 `sqrtGaussianDecay`: this combines the sharpened $15$ and $3/2$ estimates into the pass-8
-decay constant.-/
+decay constant.
+@isnad1 id=le.0h1v.s5.e454a396b6c6 from=translated src=- shape=a0ec00bd vocab=27729611
+-/
 theorem aux_abs_sqrtGaussianDecayKernel_le_seventeen_bracket_sq (x : ℝ) :
     |aux_sqrtGaussianDecayKernel x| ≤ 17 * bracketBump x ^ 2 := by
   have hPoisson_nonneg (y : ℝ) : 0 ≤ aux_scaledPoissonKernel y := by
@@ -5199,7 +5505,9 @@ theorem aux_abs_sqrtGaussianDecayKernel_le_seventeen_bracket_sq (x : ℝ) :
 
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
-`sqrtGaussianDecay`: this retains the weaker pass-5 decay estimate.-/
+`sqrtGaussianDecay`: this retains the weaker pass-5 decay estimate.
+@isnad1 id=le.0h1v.s5.14b7f20f9e17 from=translated src=- shape=a0ec00bd vocab=27729611
+-/
 theorem aux_abs_sqrtGaussianDecayKernel_le_nineteen_bracket_sq (x : ℝ) :
     |aux_sqrtGaussianDecayKernel x| ≤ 19 * bracketBump x ^ 2 := by
   have hPoisson_nonneg (y : ℝ) : 0 ≤ aux_scaledPoissonKernel y := by
@@ -5225,28 +5533,36 @@ theorem aux_abs_sqrtGaussianDecayKernel_le_nineteen_bracket_sq (x : ℝ) :
 
 /--
 This one-sided consequence of the absolute decay estimate is used for the upper bound in
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s5.5062f9369d30 from=translated src=- shape=5db43898 vocab=2a945f6a
+-/
 theorem aux_sqrtGaussianDecayKernel_le_forty_bracket_sq (x : ℝ) :
     aux_sqrtGaussianDecayKernel x ≤ 40 * bracketBump x ^ 2 :=
   (le_abs_self _).trans (aux_abs_sqrtGaussianDecayKernel_le_forty_bracket_sq x)
 
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
-`sqrtGaussianDecay`: this is the one-sided form of the pass-8 decay estimate.-/
+`sqrtGaussianDecay`: this is the one-sided form of the pass-8 decay estimate.
+@isnad1 id=le.0h1v.s5.5bfb121d7b0b from=translated src=- shape=5db43898 vocab=2a945f6a
+-/
 theorem aux_sqrtGaussianDecayKernel_le_seventeen_bracket_sq (x : ℝ) :
     aux_sqrtGaussianDecayKernel x ≤ 17 * bracketBump x ^ 2 :=
   (le_abs_self _).trans (aux_abs_sqrtGaussianDecayKernel_le_seventeen_bracket_sq x)
 
 /--
 Auxiliary for Proposition `Auto.sqrtGaussianDecay`, formalized by
-`sqrtGaussianDecay`: this retains the weaker pass-5 one-sided decay estimate.-/
+`sqrtGaussianDecay`: this retains the weaker pass-5 one-sided decay estimate.
+@isnad1 id=le.0h1v.s5.53221d7d924f from=translated src=- shape=5db43898 vocab=2a945f6a
+-/
 theorem aux_sqrtGaussianDecayKernel_le_nineteen_bracket_sq (x : ℝ) :
     aux_sqrtGaussianDecayKernel x ≤ 19 * bracketBump x ^ 2 :=
   (le_abs_self _).trans (aux_abs_sqrtGaussianDecayKernel_le_nineteen_bracket_sq x)
 
 /--
 This exports the positive Gaussian-mixture representation used in the proof of
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=hassum.0h1v.s5.75eec6c012c9 from=translated src=- shape=34f22568 vocab=6081e4bc
+-/
 theorem aux_sqrtGaussianDecayKernel_hasSum (x : ℝ) :
     HasSum (fun n : ℕ => aux_sqrtGaussianCoefficient n *
       gaussianRescale (Real.sqrt (n + 1)) x)
@@ -5355,7 +5671,9 @@ theorem aux_sqrtGaussianDecayKernel_hasSum (x : ℝ) :
 
 /--
 This positive Gaussian-mixture argument proves the nonnegativity needed in
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s3.a5f2de7d4bee from=translated src=- shape=8a62b088 vocab=1cf5c281
+-/
 theorem aux_sqrtGaussianDecayKernel_nonneg (x : ℝ) :
     0 ≤ aux_sqrtGaussianDecayKernel x := by
   rw [← (aux_sqrtGaussianDecayKernel_hasSum x).tsum_eq]
@@ -5367,7 +5685,9 @@ theorem aux_sqrtGaussianDecayKernel_nonneg (x : ℝ) :
 
 /--
 This auxiliary bound is the zero-th order Fourier estimate for the square-root Gaussian
-kernel. It supplies the uniform part of the later decay argument.-/
+kernel. It supplies the uniform part of the later decay argument.
+@isnad1 id=le.0h1v.s4.4671d0ec5f84 from=translated src=- shape=0cfb200e vocab=1b7d3190
+-/
 theorem aux_norm_sqrtGaussianKernel_le_one (x : ℝ) :
     ‖aux_sqrtGaussianKernel x‖ ≤ 1 := by
   rw [aux_sqrtGaussianKernel, Real.fourierInv_eq]
@@ -5390,7 +5710,9 @@ theorem aux_norm_sqrtGaussianKernel_le_one (x : ℝ) :
 
 /--
 This elementary comparison gives the integrable majorant used for the Wiener-space clause of
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s5.69cb318bef8e from=translated src=- shape=e81b0667 vocab=dc128d97
+-/
 theorem aux_bracketBump_sq_le_inv_one_add_sq (x : ℝ) :
     bracketBump x ^ 2 ≤ (1 + x ^ 2)⁻¹ := by
   rw [bracketBump]
@@ -5405,7 +5727,9 @@ theorem aux_bracketBump_sq_le_inv_one_add_sq (x : ℝ) :
 
 /--
 This local-envelope estimate is used to establish the Wiener-space membership in
-`sqrtGaussianDecay`.-/
+`sqrtGaussianDecay`.
+@isnad1 id=le.0h1v.s5.d93d42b4e7c8 from=translated src=- shape=789b227d vocab=6e090713
+-/
 theorem aux_wienerEnvelope_sqrtGaussianDecayKernel_le_hundredSixty_bracket_sq (x : ℝ) :
     wienerEnvelope aux_sqrtGaussianDecayKernel 1 x ≤
       160 * bracketBump x ^ 2 := by
@@ -5448,7 +5772,9 @@ theorem aux_wienerEnvelope_sqrtGaussianDecayKernel_le_hundredSixty_bracket_sq (x
       mul_le_mul_of_nonneg_left (hlocal z hz) (by norm_num)
     _ = 160 * bracketBump x ^ 2 := by ring
 
-/-- This auxiliary conclusion supplies the $W_0$ clause of `sqrtGaussianDecay`.-/
+/-- This auxiliary conclusion supplies the $W_0$ clause of `sqrtGaussianDecay`.
+@isnad1 id=memw0.0h0v.s2.020d1daa888e from=translated src=- shape=e3d48bcb vocab=de360230
+-/
 theorem aux_sqrtGaussianDecayKernel_memW0 : MemW0 aux_sqrtGaussianDecayKernel := by
   have hcont : Continuous aux_sqrtGaussianDecayKernel := by
     exact Complex.continuous_re.comp aux_sqrtGaussianKernel_continuous
@@ -5486,7 +5812,9 @@ $$
 
 where $C_{\text{square root of Gaussian decay}}=17$.
 
-See also `Auto.sqrtGaussianDecay`.-/
+See also `Auto.sqrtGaussianDecay`.
+@isnad1 id=and.0h0v.s5.7d59974c90bd from=translated src=- shape=ca5e7f61 vocab=6d7eda51
+-/
 theorem sqrtGaussianDecay :
     MemW0 aux_sqrtGaussianDecayKernel ∧
       ∀ x : ℝ, 0 ≤ aux_sqrtGaussianDecayKernel x ∧

@@ -43,7 +43,9 @@ def C_main_ergodic_theorem (n : ℕ) (r : ℝ) : ℝ≥0∞ :=
   ENNReal.ofReal <| if n = 2 then 2 ^ 344
   else 2 ^ (4 * n + 337) * ((r / (r - (2 : ℝ) ^ ((n : ℝ) - 1))) ^ r⁻¹)
 
-/-- The constant appearing in the main ergodic theorem is finite.-/
+/-- The constant appearing in the main ergodic theorem is finite.
+@isnad1 id=lt.0h2v.s4.66573fff1bac from=translated src=- shape=92158592 vocab=29e62332
+-/
 theorem C_main_ergodic_theorem_finite (n : ℕ) (r : ℝ) : C_main_ergodic_theorem n r < ∞ :=
   ENNReal.ofReal_lt_top
 
@@ -65,7 +67,9 @@ $$
 \le C_{n,r}
  \prod_{j\in [n)} \|f_j\|_{2n},
 $$
-where the constant is defined in `nCT.C_main_ergodic_theorem`.-/
+where the constant is defined in `nCT.C_main_ergodic_theorem`.
+@isnad1 id=and.5h7v.s8.99275770c1a6 from=translated src=- shape=6e08acef vocab=83aa5ccb
+-/
 theorem main_ergodic_theorem (hn : 2 ≤ n) {r : ℝ} (hr : 2 ^ (n - 1) < r ∨ (n = 2 ∧ 2 ≤ r))
     [SigmaFinite μ] {T : Fin n → X → X} (hT : ∀ i, MeasurePreserving (T i) μ μ)
     (hT' : ∀ i j x, (T i) (T j x) = (T j) (T i x)) {f : Fin n → X → ℂ}
@@ -95,7 +99,9 @@ $$\lim_{N\to\infty} \|M_{N} (\mathbf{f}) - g\|_{L^2(X)} \longrightarrow 0.$$
 It follows directly from `nCT.C_main_ergodic_theorem` for $n\ge 2$. For $n=1$ it is
 the classical mean ergodic theorem, which is contained in mathlib.
 
-2. This Lean formulation also includes the trivial case `n = 0`.-/
+2. This Lean formulation also includes the trivial case `n = 0`.
+@isnad1 id=ex.4h5v.s8.d5f06de4ab75 from=translated src=- shape=3bd5d377 vocab=d5144944
+-/
 theorem tao_norm_convergence
     {n : ℕ} [IsProbabilityMeasure μ]
     {T : Fin n → X → X} (hT : ∀ i, MeasurePreserving (T i) μ μ)
@@ -128,7 +134,9 @@ This differs from standard mathematical convention. In this theorem, this does n
 a difference, because the integrated function
 $A_{t_{j+1}}(\mathbf 1_{[0,1]},\mathbf f) - A_{t_j}(\mathbf 1_{[0,1]},\mathbf f)$ is again Schwartz
 for every $j\in [J)$, and in particular measurable with finite $L^2(\mathbb{R}^n)$ norm.
-2. We allow $J = 0$ where the conclusion holds trivially.-/
+2. We allow $J = 0$ where the conclusion holds trivially.
+@isnad1 id=le.4h4v.s10.a799f6236585 from=translated src=- shape=db265d2c vocab=c1fd2fdf
+-/
 theorem main_twisted_theorem (hn : 2 ≤ n) {J : ℕ}
     {t : Fin (J + 1) → ℝ} (ht : ∀ i, 0 < t i) (ht' : StrictMono t)
     {f : Fin n → 𝓢(ℝ^n, ℝ)} (hf : ∀ i, eLpNorm (f i) (2 ^ min n (i + 2)) volume = 1) :

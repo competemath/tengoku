@@ -37,17 +37,23 @@ abbrev CubeKernel (k : ℕ) := RealVector k → ℝ
 /-- The sum $\Sigma(x)$ of the coordinates of a real vector.-/
 def coordinateSum {d : ℕ} (x : RealVector d) : ℝ := ∑ i, x i
 
-/-- Auxiliary algebraic rule for the manuscript's coordinate sum.-/
+/-- Auxiliary algebraic rule for the manuscript's coordinate sum.
+@isnad1 id=eq.0h3v.s5.2c0f6e0afaef from=translated src=- shape=e4bc9e79 vocab=da0dd8b8
+-/
 theorem aux_coordinateSum_add {d : ℕ} (x y : RealVector d) :
     coordinateSum (x + y) = coordinateSum x + coordinateSum y := by
   simp [coordinateSum, Finset.sum_add_distrib]
 
-/-- Auxiliary algebraic rule for the manuscript's coordinate sum.-/
+/-- Auxiliary algebraic rule for the manuscript's coordinate sum.
+@isnad1 id=eq.0h3v.s5.1fc311eefc98 from=translated src=- shape=6bac413d vocab=deaaf667
+-/
 theorem aux_coordinateSum_smul {d : ℕ} (c : ℝ) (x : RealVector d) :
     coordinateSum (c • x) = c * coordinateSum x := by
   simp [coordinateSum, Finset.mul_sum]
 
-/-- Auxiliary continuity of the finite coordinate sum, used in affine Haar shears.-/
+/-- Auxiliary continuity of the finite coordinate sum, used in affine Haar shears.
+@isnad1 id=continuo.0h1v.s4.3cc56be4ea17 from=translated src=- shape=64d36d98 vocab=873dde91
+-/
 theorem aux_continuous_coordinateSum (d : ℕ) : Continuous (@coordinateSum d) := by
   unfold coordinateSum
   fun_prop
@@ -55,7 +61,9 @@ theorem aux_continuous_coordinateSum (d : ℕ) : Continuous (@coordinateSum d) :
 /--
 Auxiliary finite-product Hölder inequality.  This is the analytic core used after the
 finite-dimensional affine coordinate changes in the cube and prism estimates: it turns the
-product of the pulled-back factors into the product of their `Lᵖ` bounds.-/
+product of the pulled-back factors into the product of their `Lᵖ` bounds.
+@isnad1 id=le.3h5v.s7.5ecdf30f38ad from=translated src=- shape=d863383f vocab=8327fa58
+-/
 theorem aux_finiteHolder_lintegral {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {m : ℕ} (f : Fin m → α → ℝ≥0∞) (hf : ∀ i, AEMeasurable (f i) μ)
     (p : Fin m → ℝ) (hp : ∑ i, p i = 1) (hp_nonneg : ∀ i, 0 ≤ p i) :
@@ -66,7 +74,9 @@ theorem aux_finiteHolder_lintegral {α : Type*} [MeasurableSpace α] (μ : Measu
 /--
 Auxiliary finite-product Hölder inequality for non-negative extended-real
 functions.  The cube Brascamp--Lieb estimate uses this exact version after
-putting the common outer power into every corner factor.-/
+putting the common outer power into every corner factor.
+@isnad1 id=le.2h4v.s6.1d3b35d2de7b from=translated src=- shape=f5f17fac vocab=c83f8890
+-/
 theorem aux_lintegral_prod_le_eLpNorm_fintype {α ι : Type*} [MeasurableSpace α]
     [Fintype ι] (μ : Measure α) (hι : 0 < Fintype.card ι)
     (f : ι → α → ℝ≥0∞) (hf : ∀ i, AEMeasurable (f i) μ) :
@@ -108,7 +118,9 @@ theorem aux_lintegral_prod_le_eLpNorm_fintype {α ι : Type*} [MeasurableSpace �
 Auxiliary real-valued Hölder estimate.  This is the Cauchy--Schwarz/Hölder
 step used after the affine Fubini rearrangements in the cancellative kernel
 arguments; it isolates the standard analytic inequality from those coordinate
-calculations.-/
+calculations.
+@isnad1 id=le.3h6v.s8.ccd5174b2b2f from=translated src=- shape=4c799247 vocab=fd8976d2
+-/
 theorem aux_abs_integral_mul_le_holder {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {p q : ℝ} (hpq : p.HolderConjugate q) (f g : α → ℝ)
     (hf : MemLp f (ENNReal.ofReal p) μ) (hg : MemLp g (ENNReal.ofReal q) μ) :
@@ -130,7 +142,9 @@ theorem aux_abs_integral_mul_le_holder {α : Type*} [MeasurableSpace α] (μ : M
 /--
 Auxiliary weighted Cauchy--Schwarz estimate on an ordinary product measure.
 Writing the weight as two square roots avoids introducing a separate weighted
-measure in the singly-cancellative argument.-/
+measure in the singly-cancellative argument.
+@isnad1 id=le.3h5v.s8.076b0f82e3a4 from=translated src=- shape=954a994c vocab=ad18d1c3
+-/
 theorem aux_weightedCauchySchwarz {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (w A B : α → ℝ) (hw : ∀ x, 0 ≤ w x)
     (hA : MemLp (fun x => Real.sqrt (w x) * A x) 2 μ)
@@ -155,7 +169,9 @@ theorem aux_weightedCauchySchwarz {α : Type*} [MeasurableSpace α] (μ : Measur
 /--
 The elementary squaring step for the weighted Cauchy--Schwarz estimate.  It
 is used immediately in Proposition `Auto.singlyCancellativeKernel_memW0`
-by `singlyCancellativeCauchySchwarz_bound`.-/
+by `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.3h3v.s6.022330bb0b3f from=translated src=- shape=54fb938e vocab=9d4bbbae
+-/
 theorem aux_weightedCauchySchwarz_square_bound {T X Y : ℝ}
     (hX : 0 ≤ X) (hY : 0 ≤ Y)
     (h : |T| ≤ Real.sqrt X * Real.sqrt Y) :
@@ -170,7 +186,9 @@ theorem aux_weightedCauchySchwarz_square_bound {T X Y : ℝ}
 Auxiliary finite-index weighted Cauchy--Schwarz estimate.  It aggregates the
 individual weighted estimates after the finite `j`-sum in Proposition
 `Auto.singlyCancellativeKernel_memW0`; it is used immediately by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.5h7v.s8.3493e42b03ad from=translated src=- shape=29b0f7d0 vocab=9269b192
+-/
 theorem aux_finite_weightedCauchySchwarz
     {α : Type*} [MeasurableSpace α] (μ : Measure α) (J : ℕ)
     (r w A : Fin J → α → ℝ) (B : α → ℝ)
@@ -294,7 +312,9 @@ theorem aux_finite_weightedCauchySchwarz
 /--
 Auxiliary finite-index weighted Cauchy--Schwarz estimate with both factors
 depending on the finite index.  This variant is needed when the second
-factor contains the bump associated to the same `j` as the kernel.-/
+factor contains the bump associated to the same `j` as the kernel.
+@isnad1 id=le.5h7v.s8.3d11bef9c064 from=translated src=- shape=e09286f1 vocab=9269b192
+-/
 theorem aux_finite_weightedCauchySchwarz_indexed
     {α : Type*} [MeasurableSpace α] (μ : Measure α) (J : ℕ)
     (r w A B : Fin J → α → ℝ)
@@ -418,7 +438,9 @@ theorem aux_finite_weightedCauchySchwarz_indexed
 /--
 Auxiliary product-coordinate permutation.  The measure-parametric statement
 is the form that composes without any ambiguity between product and Borel
-measure-space instances in affine changes of variables.-/
+measure-space instances in affine changes of variables.
+@isnad1 id=measurep.0h4v.s5.2c7197219ffe from=translated src=- shape=eae22e30 vocab=9a74e51b
+-/
 theorem aux_volume_preserving_prod_swap {E F : Type*}
     [MeasurableSpace E] [MeasurableSpace F] (μ : Measure E) (ν : Measure F)
     [SFinite μ] [SFinite ν] :
@@ -442,7 +464,9 @@ def aux_cubeDifferenceEquiv (d : ℕ) :
 
 /--
 The inverse determinant-one cube change of variables
-$(y^0,u) \mapsto (y^0,y^0+u)$, used to restore the original cube coordinates.-/
+$(y^0,u) \mapsto (y^0,y^0+u)$, used to restore the original cube coordinates.
+@isnad1 id=measurep.0h1v.s8.9737b0815db6 from=translated src=- shape=fc9393de vocab=14a67bc4
+-/
 theorem aux_measurePreserving_cubeDifference_symm (d : ℕ) :
     MeasurePreserving
       (fun y : RealVector d × RealVector d => (y.1, y.1 + y.2))
@@ -454,7 +478,9 @@ theorem aux_measurePreserving_cubeDifference_symm (d : ℕ) :
 
 /--
 Auxiliary product extension of the cube shear.  It transports the full
-`(y⁰,y¹,x)` integration space in the cube Brascamp--Lieb proof.-/
+`(y⁰,y¹,x)` integration space in the cube Brascamp--Lieb proof.
+@isnad1 id=measurep.0h2v.s8.c8e035d7ca01 from=translated src=- shape=25c81b9a vocab=3cf191ea
+-/
 theorem aux_measurePreserving_cubeDifferenceProd (d r : ℕ) :
     MeasurePreserving
       (fun p : (RealVector d × RealVector d) × RealVector r =>
@@ -476,12 +502,16 @@ noncomputable def aux_cubeReorderEquiv (d r : ℕ) :
   MeasurableEquiv.prodAssoc.symm.trans
     (MeasurableEquiv.prodCongr MeasurableEquiv.prodComm (MeasurableEquiv.refl _))
 
-/-- The literal coordinate formula for the cube Fubini rearrangement.-/
+/-- The literal coordinate formula for the cube Fubini rearrangement.
+@isnad1 id=eq.0h5v.s8.af7066d7b3a8 from=translated src=- shape=06bcda3e vocab=ade54cfb
+-/
 theorem aux_cubeReorderEquiv_apply (d r : ℕ)
     (u : RealVector d) (y : RealVector d) (x : RealVector r) :
     aux_cubeReorderEquiv d r (u, (y, x)) = ((y, u), x) := rfl
 
-/-- Haar preservation of the three-factor cube Fubini rearrangement.-/
+/-- Haar preservation of the three-factor cube Fubini rearrangement.
+@isnad1 id=measurep.0h2v.s9.8b479c85c175 from=translated src=- shape=dd8ef4d7 vocab=fd7500fa
+-/
 theorem aux_measurePreserving_cubeReorder (d r : ℕ) :
     MeasurePreserving (aux_cubeReorderEquiv d r) volume volume := by
   have hassoc : MeasurePreserving
@@ -512,7 +542,9 @@ theorem aux_measurePreserving_cubeReorder (d r : ℕ) :
 
 /--
 Auxiliary invertible-linear part of the finite-dimensional affine changes of variables used in
-the cube and prism estimates.  The result packages the radius comparison required by `MemW0`.-/
+the cube and prism estimates.  The result packages the radius comparison required by `MemW0`.
+@isnad1 id=memw0.1h5v.s8.be54b41b045f from=translated src=- shape=11f24535 vocab=754a4f4e
+-/
 theorem aux_memW0_comp_continuousLinearEquiv {E F K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] [Measure.IsAddHaarMeasure (volume : Measure E)]
@@ -524,7 +556,9 @@ theorem aux_memW0_comp_continuousLinearEquiv {E F K : Type*}
   exact aux_integrable_wienerEnvelope_of_integrable' hf.aux_continuous zero_lt_one
     (norm_nonneg e.toContinuousLinearMap) hf.aux_integrable_envelope
 
-/-- Auxiliary `L¹` consequence of `MemW0` for arbitrary finite-dimensional Haar spaces.-/
+/-- Auxiliary `L¹` consequence of `MemW0` for arbitrary finite-dimensional Haar spaces.
+@isnad1 id=integrab.1h3v.s6.a83090fba4f4 from=translated src=- shape=5dfc7737 vocab=2a090b8e
+-/
 theorem aux_memW0_integrable_of_addHaar {E K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] [Measure.IsAddHaarMeasure (volume : Measure E)]
@@ -537,7 +571,9 @@ theorem aux_memW0_integrable_of_addHaar {E K : Type*}
 /--
 Auxiliary closure of `W₀` under the absolute value.  It is used to form the
 positive measures occurring in the Cauchy--Schwarz steps without changing the
-local Wiener envelope.-/
+local Wiener envelope.
+@isnad1 id=memw0.1h2v.s5.21208b8c6ca5 from=translated src=- shape=8a932696 vocab=17cf72c9
+-/
 theorem aux_memW0_abs {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] {f : E → ℝ} (hf : MemW0 f) :
     MemW0 (fun x => |f x|) := by
@@ -550,7 +586,9 @@ theorem aux_memW0_abs {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 
 /--
 Auxiliary closure of `W₀` under addition.  This is used for the finite sums
-over the manuscript's kernel index sets.-/
+over the manuscript's kernel index sets.
+@isnad1 id=memw0.2h3v.s6.a75ea4ba6a2c from=translated src=- shape=8cce7c13 vocab=a511199f
+-/
 theorem aux_memW0_add {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] {f g : E → ℝ} (hf : MemW0 f) (hg : MemW0 g) :
     MemW0 (fun x => f x + g x) := by
@@ -579,7 +617,9 @@ theorem aux_memW0_add {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 
 /--
 Auxiliary finite-sum closure of `W₀`, used for the manuscript's finite sums
-of kernel pieces.-/
+of kernel pieces.
+@isnad1 id=memw0.1h4v.s6.a121a9a0a7e7 from=translated src=- shape=6bea73ca vocab=38ff7ced
+-/
 theorem aux_memW0_finset_sum {E ι : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] (s : Finset ι) (f : ι → E → ℝ)
     (hf : ∀ i ∈ s, MemW0 (f i)) :
@@ -607,7 +647,9 @@ theorem aux_memW0_finset_sum {E ι : Type*} [NormedAddCommGroup E] [ProperSpace 
 /--
 Auxiliary continuity statement for integration along a coordinate fibre of a finite-dimensional
 real Haar space.  It supplies the continuity part of the affine fibre-integration step used by
-the kernel estimates.-/
+the kernel estimates.
+@isnad1 id=continuo.1h4v.s7.6ca867d6961a from=translated src=- shape=a0c5d6b4 vocab=8ee01e8e
+-/
 theorem aux_continuous_integral_slice_of_addHaar {E F K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] [SFinite (volume : Measure E)]
@@ -652,7 +694,9 @@ theorem aux_continuous_integral_slice_of_addHaar {E F K : Type*}
 
 /--
 Auxiliary finite-dimensional Haar-space fibre-integration theorem.  It is the form needed after
-the explicit affine coordinate equivalences in the `K` and `M` kernel estimates.-/
+the explicit affine coordinate equivalences in the `K` and `M` kernel estimates.
+@isnad1 id=memw0.1h4v.s7.e4b11606fa45 from=translated src=- shape=b321b0e3 vocab=ef9cbf17
+-/
 theorem aux_memW0_integral_slice_of_addHaar {E F K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] [SFinite (volume : Measure E)]
@@ -697,7 +741,9 @@ theorem aux_memW0_integral_slice_of_addHaar {E F K : Type*}
 /--
 Auxiliary `L¹` contraction of integration along a product fibre.  This is the
 triangle-inequality/Fubini part of the `M`-to-`K` estimate and is also reused
-by the kernel-form bounds.-/
+by the kernel-form bounds.
+@isnad1 id=le.1h6v.s7.4b68436fdf41 from=translated src=- shape=8d9ff671 vocab=acf78923
+-/
 theorem aux_eLpNorm_one_integral_slice_le {E F K : Type*}
     [MeasurableSpace E] [MeasurableSpace F] (μ : Measure E) (ν : Measure F)
     [SFinite μ] [SFinite ν] [NormedAddCommGroup K] [NormedSpace ℝ K]
@@ -738,7 +784,9 @@ noncomputable def aux_concatVectorEquiv (n k : ℕ) (hkn : k ≤ n) :
     (MeasurableEquiv.piCongrLeft (fun _ : Fin n => ℝ)
       (aux_concatIndexEquiv n k hkn))
 
-/-- The measurable-equivalence formula agrees with the manuscript's literal concatenation.-/
+/-- The measurable-equivalence formula agrees with the manuscript's literal concatenation.
+@isnad1 id=eq.1h4v.s8.84fb1860a572 from=translated src=- shape=89aa231a vocab=0b21f2da
+-/
 theorem aux_concatVectorEquiv_apply (n k : ℕ) (hkn : k ≤ n)
     (u : RealVector k) (v : RealVector (n - k)) :
     aux_concatVectorEquiv n k hkn (u, v) = concatVector n k hkn u v := by
@@ -780,7 +828,9 @@ theorem aux_concatVectorEquiv_apply (n k : ℕ) (hkn : k ≤ n)
     apply Fin.ext
     simp [aux_concatIndexEquiv, j]
 
-/-- Haar preservation of the coordinate concatenation used in the cube form.-/
+/-- Haar preservation of the coordinate concatenation used in the cube form.
+@isnad1 id=measurep.1h2v.s9.1a385df24d03 from=translated src=- shape=822a2d4c vocab=5a684d76
+-/
 theorem aux_measurePreserving_concatVector (n k : ℕ) (hkn : k ≤ n) :
     MeasurePreserving (aux_concatVectorEquiv n k hkn) volume volume := by
   let hsplit := volume_measurePreserving_sumPiEquivProdPi
@@ -802,7 +852,9 @@ def cubeShift (n k : ℕ) (hkn : k ≤ n) (h : Fin k → Fin 2)
     (u : RealVector k) : RealVector n → RealVector n :=
   fun x => x + cubeShiftVector n k hkn h u
 
-/-- Each cube-coordinate map is a Haar-preserving translation.-/
+/-- Each cube-coordinate map is a Haar-preserving translation.
+@isnad1 id=measurep.1h4v.s6.d2e11efdb30f from=translated src=- shape=05073d02 vocab=72e4a744
+-/
 theorem aux_measurePreserving_cubeShift (n k : ℕ) (hkn : k ≤ n) (h : Fin k → Fin 2)
     (u : RealVector k) :
     MeasurePreserving (cubeShift n k hkn h u) (volume : Measure (RealVector n)) volume := by
@@ -822,7 +874,9 @@ def cubeCorner {k : ℕ} (y : RealVector k × RealVector k) (h : Fin k → Fin 2
 /--
 Auxiliary finite-index reindexing of cube corners by their final binary
 coordinate.  It is used to separate the two copies of the new cube coordinate
-in the A² calculation.-/
+in the A² calculation.
+@isnad1 id=eq.0h3v.s8.3cf5ec5a1d16 from=translated src=- shape=b48aa185 vocab=2deb6ba5
+-/
 theorem aux_prod_cubeCorners_snoc {M : Type*} [CommMonoid M] (k : ℕ)
     (f : (Fin (k + 1) → Fin 2) → M) :
     (∏ h : Fin (k + 1) → Fin 2, f h) =
@@ -844,7 +898,9 @@ theorem aux_prod_cubeCorners_snoc {M : Type*} [CommMonoid M] (k : ℕ)
 
 /--
 Auxiliary two-valued form of `aux_prod_cubeCorners_snoc`, used to write the
-two duplicated corner products in the singly-cancellative A² identity.-/
+two duplicated corner products in the singly-cancellative A² identity.
+@isnad1 id=eq.0h3v.s8.e0a2abe9b633 from=translated src=- shape=8621524a vocab=0acdc1ea
+-/
 theorem aux_prod_cubeCorners_snoc_two {M : Type*} [CommMonoid M] (k : ℕ)
     (f : (Fin (k + 1) → Fin 2) → M) :
     (∏ h : Fin (k + 1) → Fin 2, f h) =
@@ -857,7 +913,9 @@ theorem aux_prod_cubeCorners_snoc_two {M : Type*} [CommMonoid M] (k : ℕ)
 /--
 The literal cube corner after the difference substitution is the corresponding
 translated copy of the base point.  This identifies the manuscript's
-$F(y^h,x_{[k,n)})$ with $F \circ \pi_h$.-/
+$F(y^h,x_{[k,n)})$ with $F \circ \pi_h$.
+@isnad1 id=eq.1h6v.s6.ca944d8bbbb4 from=translated src=- shape=ee0425f6 vocab=88d9be5c
+-/
 theorem aux_concat_cubeCorner_eq_cubeShift (n k : ℕ) (hkn : k ≤ n)
     (y₀ u : RealVector k) (x : RealVector (n - k)) (h : Fin k → Fin 2) :
     concatVector n k hkn (cubeCorner (y₀, y₀ + u) h) x =
@@ -887,7 +945,9 @@ def aux_prismFiber {k d : ℕ} (s : ℝ) (a : RealVector k) (t : RealVector d) :
     RealVector (d + 1) :=
   Fin.cons (s - coordinateSum a - coordinateSum t) t
 
-/-- The coordinate sum of the prism fibre is the distinguished scalar minus the base sum.-/
+/-- The coordinate sum of the prism fibre is the distinguished scalar minus the base sum.
+@isnad1 id=eq.0h5v.s5.7718628f01ef from=translated src=- shape=b19e2b0c vocab=d863bac6
+-/
 theorem aux_coordinateSum_prismFiber {k d : ℕ} (s : ℝ) (a : RealVector k)
     (t : RealVector d) :
     coordinateSum (aux_prismFiber s a t) = s - coordinateSum a := by
@@ -911,7 +971,9 @@ def aux_prismPullback (n k : ℕ) (hkn : k ≤ n) (h : Fin k → Fin 2)
   concatVector n k hkn (cubeCorner (z'.1, z'.1 + u) h)
     (aux_prismTailMap i s z'.1 z'.2)
 
-/-- The literal formula identifying the prism points with the maps $\pi_{h,i}$.-/
+/-- The literal formula identifying the prism points with the maps $\pi_{h,i}$.
+@isnad1 id=eq.2h8v.s7.0c8531c463fb from=translated src=- shape=cc1f7fa4 vocab=5b066000
+-/
 theorem aux_prismPoint_eq_prismPullback (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (a : RealVector k) (t : RealVector (n - k)) (u : RealVector k) (s : ℝ)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) :
@@ -940,7 +1002,9 @@ def aux_oldPrismTail (k d : ℕ) (x : RealVector (d + 1)) :
 
 /--
 Auxiliary transport of a successor finite index across equal fibre dimensions.
-It is used in the normalized A² prism-corner identity.-/
+It is used in the normalized A² prism-corner identity.
+@isnad1 id=eq.1h3v.s5.ca5d7cb6032a from=translated src=- shape=485d3cd8 vocab=f6876000
+-/
 theorem aux_finCast_succ {a b : ℕ} (e : a = b) (i : Fin a) :
     Fin.cast (congrArg Nat.succ e) i.succ = (Fin.cast e i).succ := by
   cases e
@@ -948,7 +1012,9 @@ theorem aux_finCast_succ {a b : ℕ} (e : a = b) (i : Fin a) :
 
 /--
 Auxiliary transport of `succAbove` across equal fibre dimensions.  It keeps
-the finite-coordinate casts local to the A² prism-corner calculation.-/
+the finite-coordinate casts local to the A² prism-corner calculation.
+@isnad1 id=eq.1h4v.s5.73676a966f6e from=translated src=- shape=93ad7f3e vocab=f0a5aded
+-/
 theorem aux_finCast_succAbove {a b : ℕ} (e : a = b) (p : Fin (a + 1)) (i : Fin a) :
     Fin.cast (congrArg Nat.succ e) (p.succAbove i) =
       (Fin.cast (congrArg Nat.succ e) p).succAbove (Fin.cast e i) := by
@@ -959,7 +1025,9 @@ theorem aux_finCast_succAbove {a b : ℕ} (e : a = b) (p : Fin (a + 1)) (i : Fin
 The literal prism point at level `k+1` is the level-`k` prism point with its
 new corner scalar inserted into the simplex tail.  This normalized,
 cast-aware coordinate identity is the finite-dimensional bridge in the A²
-part of singly-cancellative Cauchy--Schwarz.-/
+part of singly-cancellative Cauchy--Schwarz.
+@isnad1 id=eq.1h8v.s9.6da77b9a9cb4 from=translated src=- shape=fe338296 vocab=892f017c
+-/
 theorem aux_prismPoint_succ_bridge_cast (k d : ℕ) (hk : 1 ≤ k)
     (y : RealVector k × RealVector k) (r0 r1 : ℝ) (x : RealVector (d + 1))
     (h : Fin (k + 1) → Fin 2) (i : Fin (d + 1)) :
@@ -1052,7 +1120,9 @@ theorem aux_prismPoint_succ_bridge_cast (k d : ℕ) (hk : 1 ≤ k)
 /--
 Auxiliary factorization of the level-`k+1` prism corner product into the two
 level-`k` products obtained by fixing the new last corner coordinate.  This is
-the pointwise finite-product identity in the A² calculation.-/
+the pointwise finite-product identity in the A² calculation.
+@isnad1 id=eq.1h7v.s10.45f5d571d80f from=translated src=- shape=7a7c3c0b vocab=0a05908d
+-/
 theorem aux_singlyCancellative_a2CornerProduct (k d : ℕ) (hk : 1 ≤ k)
     (F : Fin (k + 1 + d) → RealVector (k + 1 + d) → ℝ)
     (y : RealVector k × RealVector k) (r0 r1 : ℝ) (x : RealVector (d + 1)) :
@@ -1146,7 +1216,9 @@ noncomputable def aux_fourBlockReorder (k d : ℕ) :
     MeasurableEquiv.prodCongr MeasurableEquiv.prodAssoc.symm (MeasurableEquiv.refl _)
   exact e1.trans ((MeasurableEquiv.prodCongr (MeasurableEquiv.refl _) e2).trans (e3.trans e4))
 
-/-- Haar preservation of the four-block Fubini reordering.-/
+/-- Haar preservation of the four-block Fubini reordering.
+@isnad1 id=measurep.0h2v.s9.bba34fc9aa60 from=translated src=- shape=99e582bd vocab=7ce7a015
+-/
 theorem aux_measurePreserving_fourBlockReorder (k d : ℕ) :
     MeasurePreserving (aux_fourBlockReorder k d) volume volume := by
   have h1 : MeasurePreserving
@@ -1205,7 +1277,9 @@ theorem aux_measurePreserving_fourBlockReorder (k d : ℕ) :
 /--
 Auxiliary scalar affine map over a real-vector base.  This is the fibrewise
 reflection-and-translation calculation used to prove Haar preservation of the
-prism tail maps.-/
+prism tail maps.
+@isnad1 id=measurep.1h2v.s7.6dd63ad70582 from=translated src=- shape=a82c5741 vocab=0dd71073
+-/
 theorem aux_measurePreserving_scalarAffine (d : ℕ) (c : RealVector d → ℝ)
     (hc : Continuous c) :
     MeasurePreserving (fun p : ℝ × RealVector d => (c p.2 - p.1, p.2))
@@ -1257,7 +1331,9 @@ theorem aux_measurePreserving_scalarAffine (d : ℕ) (c : RealVector d → ℝ)
 
 /--
 Auxiliary Haar change of variables `(t,x) ↦ (x,x₀-t)` used in the
-single-cancellative A² calculation.-/
+single-cancellative A² calculation.
+@isnad1 id=measurep.0h1v.s9.20ad7e32aa4f from=translated src=- shape=2fdd9011 vocab=88766c50
+-/
 theorem aux_measurePreserving_a2AffineMap (d : ℕ) :
     MeasurePreserving
       (fun p : ℝ × RealVector (d + 1) => (p.2, p.2 0 - p.1)) volume volume := by
@@ -1275,7 +1351,9 @@ theorem aux_measurePreserving_a2AffineMap (d : ℕ) :
 
 /--
 Auxiliary fibrewise scalar translation.  It is obtained from the preceding
-reflection-and-translation map by one more Haar-preserving reflection.-/
+reflection-and-translation map by one more Haar-preserving reflection.
+@isnad1 id=measurep.1h2v.s7.bf47286dbfeb from=translated src=- shape=32b9a0dd vocab=530ce767
+-/
 theorem aux_measurePreserving_scalarTranslation (d : ℕ) (c : RealVector d → ℝ)
     (hc : Continuous c) :
     MeasurePreserving (fun p : ℝ × RealVector d => (p.1 + c p.2, p.2))
@@ -1298,7 +1376,9 @@ theorem aux_measurePreserving_scalarTranslation (d : ℕ) (c : RealVector d → 
     ring
   · rfl
 
-/-- The scalar translation in a fixed prism tail fibre.-/
+/-- The scalar translation in a fixed prism tail fibre.
+@isnad1 id=measurep.0h3v.s7.e6a597f522eb from=translated src=- shape=e2f2c477 vocab=5c16a1f8
+-/
 theorem aux_measurePreserving_prismTailScalarTranslation (k d : ℕ)
     (a : RealVector k) :
     MeasurePreserving
@@ -1322,7 +1402,9 @@ noncomputable def aux_prismInnerReorderEquiv (k d : ℕ) :
       (MeasurableEquiv.prodAssoc.trans
         (MeasurableEquiv.prodCongr (MeasurableEquiv.refl _) MeasurableEquiv.prodComm)))
 
-/-- Haar preservation of the inner four-block coordinate reordering.-/
+/-- Haar preservation of the inner four-block coordinate reordering.
+@isnad1 id=measurep.0h2v.s8.e41cea8a530f from=translated src=- shape=11f5b194 vocab=e6776d3e
+-/
 theorem aux_measurePreserving_prismInnerReorder (k d : ℕ) :
     MeasurePreserving (aux_prismInnerReorderEquiv k d) volume volume := by
   have h₁ : MeasurePreserving
@@ -1380,12 +1462,16 @@ noncomputable def aux_prismCoordinateReorderEquiv (k d : ℕ) :
         ((MeasurableEquiv.prodCongr (MeasurableEquiv.refl _)
           (aux_prismInnerReorderEquiv k d)).trans MeasurableEquiv.prodAssoc.symm)))
 
-/-- Literal formula for the global prism block reordering.-/
+/-- Literal formula for the global prism block reordering.
+@isnad1 id=eq.0h6v.s9.7cf31c28c270 from=translated src=- shape=f1392a97 vocab=8de7ad2f
+-/
 theorem aux_prismCoordinateReorderEquiv_apply (k d : ℕ) (u a : RealVector k)
     (s : ℝ) (t : RealVector d) :
     aux_prismCoordinateReorderEquiv k d (u, (s, (a, t))) = ((a, u), (s, t)) := rfl
 
-/-- Haar preservation of the global prism block reordering.-/
+/-- Haar preservation of the global prism block reordering.
+@isnad1 id=measurep.0h2v.s9.67f9553164af from=translated src=- shape=d31c5340 vocab=28a07b5f
+-/
 theorem aux_measurePreserving_prismCoordinateReorder (k d : ℕ) :
     MeasurePreserving (aux_prismCoordinateReorderEquiv k d) volume volume := by
   have h₁ : MeasurePreserving
@@ -1434,7 +1520,9 @@ theorem aux_measurePreserving_prismCoordinateReorder (k d : ℕ) :
           (MeasurableEquiv.prodComm ∘ MeasurableEquiv.prodAssoc.symm))) ) volume volume
   exact h₅.comp (h₄.comp (h₃.comp (h₂.comp h₁)))
 
-/-- The scalar affine replacement in a fixed prism tail fibre.-/
+/-- The scalar affine replacement in a fixed prism tail fibre.
+@isnad1 id=measurep.0h4v.s7.5077628259c7 from=translated src=- shape=c4456c4d vocab=5c16a1f8
+-/
 theorem aux_measurePreserving_prismTailScalarAffine (k d : ℕ) (s : ℝ)
     (a : RealVector k) :
     MeasurePreserving
@@ -1451,12 +1539,16 @@ noncomputable def aux_prismTailSplitEquiv (d : ℕ) (j : Fin (d + 1)) :
     RealVector (d + 1) ≃ᵐ ℝ × RealVector d :=
   MeasurableEquiv.piFinSuccAbove (fun _ : Fin (d + 1) => ℝ) j
 
-/-- The tail-coordinate splitting has the expected deleted-coordinate formula.-/
+/-- The tail-coordinate splitting has the expected deleted-coordinate formula.
+@isnad1 id=eq.0h3v.s8.b0ff21e9a9e9 from=translated src=- shape=6d0294e1 vocab=2904f221
+-/
 theorem aux_prismTailSplitEquiv_apply (d : ℕ) (j : Fin (d + 1))
     (t : RealVector (d + 1)) :
     aux_prismTailSplitEquiv d j t = (t j, eraseVector j t) := rfl
 
-/-- Haar preservation of splitting a real vector at one coordinate.-/
+/-- Haar preservation of splitting a real vector at one coordinate.
+@isnad1 id=measurep.0h2v.s9.5e8723119e42 from=translated src=- shape=5ccb2f2a vocab=45fb706a
+-/
 theorem aux_measurePreserving_prismTailSplit (d : ℕ) (j : Fin (d + 1)) :
     MeasurePreserving (aux_prismTailSplitEquiv d j) volume volume :=
   volume_preserving_piFinSuccAbove (fun _ : Fin (d + 1) => ℝ) j
@@ -1471,14 +1563,18 @@ def aux_singlyCancellativeBaseChange (k d : ℕ) :
       ((RealVector k × RealVector k) × RealVector (d + 2)) × ℝ :=
   fun p => ((p.1, Fin.cons p.2.2.1 p.2.2.2), p.2.2.1 - p.2.1)
 
-/-- The coordinate sum after extracting one coordinate of a real vector.-/
+/-- The coordinate sum after extracting one coordinate of a real vector.
+@isnad1 id=eq.0h3v.s6.94af5e6523e2 from=translated src=- shape=75e0c515 vocab=9cfe4364
+-/
 theorem aux_coordinateSum_eraseVector (d : ℕ) (j : Fin (d + 1))
     (t : RealVector (d + 1)) :
     coordinateSum t = t j + coordinateSum (eraseVector j t) := by
   unfold coordinateSum eraseVector
   rw [Fin.sum_univ_succAbove _ j]
 
-/-- The prism tail map is the identity when the distinguished coordinate is first.-/
+/-- The prism tail map is the identity when the distinguished coordinate is first.
+@isnad1 id=eq.0h5v.s5.c60bbbe8e54e from=translated src=- shape=e38cda48 vocab=2087a702
+-/
 theorem aux_prismTailMap_zero {k d : ℕ} (s : ℝ) (a : RealVector k)
     (t : RealVector d) :
     aux_prismTailMap (0 : Fin (d + 1)) s a t = t := by
@@ -1487,7 +1583,9 @@ theorem aux_prismTailMap_zero {k d : ℕ} (s : ℝ) (a : RealVector k)
 
 /--
 Deleting a non-first distinguished coordinate inserts the affine scalar in the
-first remaining tail coordinate.-/
+first remaining tail coordinate.
+@isnad1 id=eq.0h6v.s7.06f64ec6eace from=translated src=- shape=c78efab8 vocab=7e773177
+-/
 theorem aux_prismTailMap_succ {k d : ℕ} (j : Fin (d + 1)) (s : ℝ)
     (a : RealVector k) (t : RealVector (d + 1)) :
     aux_prismTailMap (Fin.succ j) s a t =
@@ -1498,7 +1596,9 @@ theorem aux_prismTailMap_succ {k d : ℕ} (j : Fin (d + 1)) (s : ℝ)
   · intro r
     simp [aux_prismTailMap, aux_prismFiber, eraseVector, Fin.succ_succAbove_succ]
 
-/-- Each prism tail-coordinate map is Haar preserving.-/
+/-- Each prism tail-coordinate map is Haar preserving.
+@isnad1 id=measurep.0h5v.s6.68e3dcb22b50 from=translated src=- shape=6c88c277 vocab=2e6391e3
+-/
 theorem aux_measurePreserving_prismTailMap (k d : ℕ) (i : Fin (d + 1))
     (s : ℝ) (a : RealVector k) :
     MeasurePreserving (aux_prismTailMap i s a) volume volume := by
@@ -1542,7 +1642,9 @@ theorem aux_measurePreserving_prismTailMap (k d : ℕ) (i : Fin (d + 1))
       · ring
       · rfl
 
-/-- The first block of a prism pullback is the corresponding cube translation.-/
+/-- The first block of a prism pullback is the corresponding cube translation.
+@isnad1 id=eq.0h4v.s5.8d7a0b462b72 from=translated src=- shape=38081265 vocab=19ede09e
+-/
 theorem aux_cubeCorner_eq_cubeShift (k : ℕ) (h : Fin k → Fin 2)
     (a u : RealVector k) :
     cubeCorner (a, a + u) h = cubeShift k k le_rfl h u a := by
@@ -1550,7 +1652,9 @@ theorem aux_cubeCorner_eq_cubeShift (k : ℕ) (h : Fin k → Fin 2)
   simp [cubeCorner, cubeShift, cubeShiftVector]
   split_ifs <;> ring
 
-/-- Every affine map $\pi_{h,i}$ in the prism Brascamp--Lieb proof is Haar preserving.-/
+/-- Every affine map $\pi_{h,i}$ in the prism Brascamp--Lieb proof is Haar preserving.
+@isnad1 id=measurep.1h6v.s6.46981a9ec3bb from=translated src=- shape=5eeec198 vocab=e93c6cda
+-/
 theorem aux_measurePreserving_prismPullback (n k : ℕ) (hkn : k ≤ n)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) (u : RealVector k) (s : ℝ) :
     MeasurePreserving (aux_prismPullback n k hkn h i u s) volume volume := by
@@ -1617,7 +1721,9 @@ theorem aux_measurePreserving_prismPullback (n k : ℕ) (hkn : k ≤ n)
 /--
 Joint measurability of the prism pullback in its affine parameters and its
 Euclidean input.  It is needed to form the measure-preserving skew product
-used when proving integrability of prism-form integrands.-/
+used when proving integrability of prism-form integrands.
+@isnad1 id=measurab.1h4v.s7.c0b15efebe20 from=translated src=- shape=2e3ad2bb vocab=5098e163
+-/
 theorem aux_measurable_prismPullback (n k : ℕ) (hkn : k ≤ n) (h : Fin k → Fin 2)
     (i : Fin (n - k + 1)) :
     Measurable (Function.uncurry
@@ -1669,7 +1775,9 @@ theorem aux_measurable_prismPullback (n k : ℕ) (hkn : k ≤ n) (h : Fin k → 
 /--
 The prism pullback is jointly measure preserving after adjoining its affine
 parameters.  This packages the fibrewise Haar preservation into the skew
-product required for integrability estimates.-/
+product required for integrability estimates.
+@isnad1 id=measurep.1h4v.s8.e16aa07cf708 from=translated src=- shape=9815554a vocab=9ffe216e
+-/
 theorem aux_measurePreserving_prismPullbackSkew (n k : ℕ) (hkn : k ≤ n)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) :
     MeasurePreserving
@@ -1695,7 +1803,9 @@ theorem aux_measurePreserving_prismPullbackSkew (n k : ℕ) (hkn : k ≤ n)
 /--
 The prism pullback remains Haar preserving after adjoining one scalar kernel
 parameter.  This is the exact skew product needed to prove integrability of
-the unintegrated lifted-kernel term in single-cancellative Cauchy--Schwarz.-/
+the unintegrated lifted-kernel term in single-cancellative Cauchy--Schwarz.
+@isnad1 id=measurep.1h4v.s8.c2bc4e4a9f86 from=translated src=- shape=a286471f vocab=9ffe216e
+-/
 theorem aux_measurePreserving_prismPullbackSkewScalar (n k : ℕ) (hkn : k ≤ n)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) :
     MeasurePreserving
@@ -1732,7 +1842,9 @@ def aux_prismCoordinates (n k : ℕ) (hkn : k ≤ n) :
   let z := (aux_concatVectorEquiv n k hkn).symm w.2.2
   ((z.1, z.1 + w.1), aux_prismFiber w.2.1 z.1 z.2)
 
-/-- The literal form of the global prism coordinate substitution.-/
+/-- The literal form of the global prism coordinate substitution.
+@isnad1 id=eq.1h6v.s7.83e1f3ce5110 from=translated src=- shape=9eb40a4b vocab=bb5dd1a2
+-/
 theorem aux_prismCoordinates_apply (n k : ℕ) (hkn : k ≤ n) (u a : RealVector k)
     (s : ℝ) (t : RealVector (n - k)) :
     aux_prismCoordinates n k hkn (u, (s, concatVector n k hkn a t)) =
@@ -1744,7 +1856,9 @@ theorem aux_prismCoordinates_apply (n k : ℕ) (hkn : k ≤ n) (u a : RealVector
 The global prism coordinate substitution preserves Haar volume.  This packages
 the change from $(y^1,x_{k-1})$ to `(u,s)` and the remaining-coordinate
 relabelling, so it can be used as a single change of variables in the prism
-Brascamp--Lieb estimate.-/
+Brascamp--Lieb estimate.
+@isnad1 id=measurep.1h2v.s8.2845a166251a from=translated src=- shape=924078b7 vocab=cc1f5d54
+-/
 theorem aux_measurePreserving_prismCoordinates (n k : ℕ) (hkn : k ≤ n) :
     MeasurePreserving (aux_prismCoordinates n k hkn) volume volume := by
   let e := aux_concatVectorEquiv n k hkn
@@ -1842,7 +1956,9 @@ theorem aux_measurePreserving_prismCoordinates (n k : ℕ) (hkn : k ≤ n) :
   rw [hcoords]
   exact Prod.ext (Prod.ext rfl rfl) (htail s a t).symm
 
-/-- The kernel arguments become exactly `(u,s)` after the prism substitution.-/
+/-- The kernel arguments become exactly `(u,s)` after the prism substitution.
+@isnad1 id=eq.1h5v.s8.a979954dcb65 from=translated src=- shape=65d2cc2c vocab=36dbb81a
+-/
 theorem aux_prismCoordinates_kernelArguments (n k : ℕ) (hkn : k ≤ n)
     (u : RealVector k) (s : ℝ) (z : RealVector n) :
     ((aux_prismCoordinates n k hkn (u, (s, z))).1.2 -
@@ -1869,7 +1985,9 @@ theorem aux_prismCoordinates_kernelArguments (n k : ℕ) (hkn : k ≤ n)
 
 /--
 Under the global prism substitution, each manuscript factor is its affine
-pullback $\pi_{h,i}$.  This identifies the integrand with the Hölder product.-/
+pullback $\pi_{h,i}$.  This identifies the integrand with the Hölder product.
+@isnad1 id=eq.2h7v.s7.30c328240fe1 from=translated src=- shape=2b7a9e39 vocab=7eac2686
+-/
 theorem aux_prismPoint_eq_prismPullbackCoordinates (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k ≤ n) (u : RealVector k) (s : ℝ) (z : RealVector n)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) :
@@ -1894,7 +2012,9 @@ theorem aux_prismPoint_eq_prismPullbackCoordinates (n k : ℕ) (hk : 1 ≤ k)
   rw [aux_concatVectorEquiv_apply]
   exact aux_prismPoint_eq_prismPullback n k hk hkn a t u s h i
 
-/-- The prism-factor product becomes the product over the affine pullbacks.-/
+/-- The prism-factor product becomes the product over the affine pullbacks.
+@isnad1 id=eq.2h6v.s9.f09ede45f64c from=translated src=- shape=19a80f79 vocab=052bc0d9
+-/
 theorem aux_prismCoordinates_product_eq (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (F : Fin n → RealVector n → ℝ) (u : RealVector k) (s : ℝ) (z : RealVector n) :
     (∏ h : Fin k → Fin 2, ∏ i : Fin (n - k + 1),
@@ -1913,7 +2033,9 @@ theorem aux_prismCoordinates_product_eq (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ 
   exact congrArg (fun x => ‖F (prismIndex hk hkn hi.2) x‖ₑ)
     (aux_prismPoint_eq_prismPullbackCoordinates n k hk hkn u s z hi.1 hi.2)
 
-/-- Auxiliary multiplicativity of the extended norm over a finite product of real factors.-/
+/-- Auxiliary multiplicativity of the extended norm over a finite product of real factors.
+@isnad1 id=eq.0h2v.s6.b0e894543d87 from=translated src=- shape=ff585095 vocab=e7491c81
+-/
 theorem aux_enorm_fintype_prod {ι : Type*} [Fintype ι] (f : ι → ℝ) :
     ‖∏ i, f i‖ₑ = ∏ i, ‖f i‖ₑ := by
   classical
@@ -1926,7 +2048,9 @@ theorem aux_enorm_fintype_prod {ι : Type*} [Fintype ι] (f : ι → ℝ) :
 /--
 Auxiliary finite Holder inequality with individual natural exponents.  The
 reciprocal-sum hypothesis is exactly the exponent bookkeeping needed for the
-prism Brascamp--Lieb factors.-/
+prism Brascamp--Lieb factors.
+@isnad1 id=le.3h5v.s7.edaba3031f73 from=translated src=- shape=0a407396 vocab=5ed2cd21
+-/
 theorem aux_lintegral_prod_enorm_le_eLpNorm_of_reciprocal_sum
     {α ι : Type*} [MeasurableSpace α] [Fintype ι] (μ : Measure α)
     (f : ι → α → ℝ) (hf : ∀ i, AEMeasurable (f i) μ) (p : ι → ℕ)
@@ -1973,7 +2097,9 @@ def aux_prismLpExponent (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
 
 /--
 Explicit form of a prism exponent: all but the final simplex index receive the
-ordinary `i+2` exponent, while the final one receives the exceptional exponent.-/
+ordinary `i+2` exponent, while the final one receives the exceptional exponent.
+@isnad1 id=eq.2h3v.s7.42e76bdc6a6e from=translated src=- shape=ecec401f vocab=230a4f51
+-/
 theorem aux_prismLpExponent_eq (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (i : Fin (n - k + 1)) :
     aux_prismLpExponent n k hk hkn i =
@@ -1991,7 +2117,9 @@ theorem aux_prismLpExponent_eq (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     have hmin : min (n - (k - 1 + i.1)) 2 = 1 := by omega
     omega
 
-/-- The simplex-indexed form of the dyadic Holder identity.-/
+/-- The simplex-indexed form of the dyadic Holder identity.
+@isnad1 id=eq.0h1v.s7.7a2248ba6df4 from=translated src=- shape=a4f690ba vocab=f4e6b1b6
+-/
 theorem aux_prism_weight_sum (m : ℕ) :
     (∑ i : Fin (m + 1),
       (if i.1 < m then ((2 : ℝ) ^ (i.1 + 1))⁻¹ else ((2 : ℝ) ^ m)⁻¹)) = 1 := by
@@ -2029,7 +2157,9 @@ theorem aux_prism_weight_sum (m : ℕ) :
               rw [Finset.mul_sum]
         _ = 1 := by rw [ih]; norm_num
 
-/-- The reciprocal prism exponents sum to the inverse cube cardinality.-/
+/-- The reciprocal prism exponents sum to the inverse cube cardinality.
+@isnad1 id=eq.2h2v.s7.9a84385bb5cf from=translated src=- shape=7190f0e0 vocab=5465cd45
+-/
 theorem aux_prismLpExponent_simplex_sum (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) :
     ∑ i : Fin (n - k + 1), ((aux_prismLpExponent n k hk hkn i : ℝ)⁻¹) =
       ((2 : ℝ) ^ k)⁻¹ := by
@@ -2065,7 +2195,9 @@ theorem aux_prismLpExponent_simplex_sum (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ 
       rw [aux_prism_weight_sum]
       simp
 
-/-- The reciprocal exponents of all prism factors sum to one.-/
+/-- The reciprocal exponents of all prism factors sum to one.
+@isnad1 id=eq.2h2v.s7.f62bcec93374 from=translated src=- shape=f96b47ee vocab=b8bfc088
+-/
 theorem aux_prismLpExponent_factor_sum (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) :
     ∑ hi : (Fin k → Fin 2) × Fin (n - k + 1),
       ((aux_prismLpExponent n k hk hkn hi.2 : ℝ)⁻¹) = 1 := by
@@ -2091,7 +2223,9 @@ def aux_topFiberIndex (n : ℕ) : Fin (n - n + 1) := ⟨0, by omega⟩
 def aux_topFiberVector (n : ℕ) (x : RealVector 1) : RealVector (n - n + 1) :=
   fun _ => x 0
 
-/-- At the top prism level, the sole simplex index is the final function index.-/
+/-- At the top prism level, the sole simplex index is the final function index.
+@isnad1 id=eq.1h1v.s4.1392f842dacf from=translated src=- shape=462b45ca vocab=f79e9d4e
+-/
 theorem aux_prismIndex_top (n : ℕ) (hn : 1 ≤ n) :
     prismIndex (n := n) (k := n) hn le_rfl (aux_topFiberIndex n) = aux_topIndex n hn := by
   apply Fin.ext
@@ -2099,7 +2233,9 @@ theorem aux_prismIndex_top (n : ℕ) (hn : 1 ≤ n) :
   change n - 1 + 0 = n - 1
   omega
 
-/-- Auxiliary version of the top-index fact for an arbitrary element of the singleton fibre.-/
+/-- Auxiliary version of the top-index fact for an arbitrary element of the singleton fibre.
+@isnad1 id=eq.1h2v.s5.052ee9be2df4 from=translated src=- shape=966e9ba9 vocab=f8a320d1
+-/
 theorem aux_prismIndex_top_apply (n : ℕ) (hn : 1 ≤ n) (i : Fin (n - n + 1)) :
     prismIndex (n := n) (k := n) hn le_rfl i = aux_topIndex n hn := by
   have hi : i = aux_topFiberIndex n := Fin.ext (by omega)
@@ -2109,18 +2245,24 @@ theorem aux_prismIndex_top_apply (n : ℕ) (hn : 1 ≤ n) (i : Fin (n - n + 1)) 
 /--
 Auxiliary version of the top-point fact for an arbitrary singleton-fibre vector.
 It is used to simplify the literal prism form before applying one-dimensional
-cancellation.-/
+cancellation.
+@isnad1 id=eq.1h5v.s6.e3d6bc6bb0ce from=translated src=- shape=766146fe vocab=8f13d6ba
+-/
 theorem aux_prismPoint_top_apply (n : ℕ) (hn : 1 ≤ n) (y : RealVector n × RealVector n)
     (x : RealVector (n - n + 1)) (h : Fin n → Fin 2) (i : Fin (n - n + 1)) :
     prismPoint (n := n) (k := n) hn le_rfl y x h i = cubeCorner y h := by
   funext j
   simp [prismPoint, concatVector, j.isLt]
 
-/-- Auxiliary simplification of the coordinate sum in a one-dimensional fibre.-/
+/-- Auxiliary simplification of the coordinate sum in a one-dimensional fibre.
+@isnad1 id=eq.0h1v.s5.00a40b9f77cc from=translated src=- shape=e76fba2b vocab=e471a943
+-/
 theorem aux_coordinateSum_finOne (x : RealVector 1) : coordinateSum x = x 0 := by
   simp [coordinateSum]
 
-/-- The coordinate sum on the singleton top fibre is its unique coordinate.-/
+/-- The coordinate sum on the singleton top fibre is its unique coordinate.
+@isnad1 id=eq.0h2v.s5.777a227ad75f from=translated src=- shape=a22bde3c vocab=9abc5663
+-/
 theorem aux_coordinateSum_topFiber (n : ℕ) (x : RealVector (n - n + 1)) :
     coordinateSum x = x (aux_topFiberIndex n) := by
   unfold coordinateSum
@@ -2156,7 +2298,9 @@ abbrev NormalizedFunctionTuple (n : ℕ) := {F : Fin n → SchwartzMap (RealVect
 Auxiliary preservation of normalized function tuples under the interchange of
 the final two functions.  It is used by
 `doublyCancellativeCauchySchwarz_bound`, where those two functions have the
-same prescribed exponent.-/
+same prescribed exponent.
+@isnad1 id=mem.2h2v.s9.8430948a9c90 from=translated src=- shape=c3780717 vocab=2f7af8be
+-/
 theorem aux_normalizedFunctionTuples_swap_lastTwo (n : ℕ) (hn : 2 ≤ n)
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
     (hF : F ∈ normalizedFunctionTuples n) :
@@ -2208,7 +2352,9 @@ def cubeBrascampLiebForm (n k : ℕ) (_hk : 1 ≤ k) (hkn : k ≤ n) (L : CubeKe
 /--
 Auxiliary normalized cube estimate.  This is the Hölder calculation in the
 proof of the cube Brascamp--Lieb inequality, after the cube corners have
-been expressed as the translated maps `cubeShift`.-/
+been expressed as the translated maps `cubeShift`.
+@isnad1 id=le.3h4v.s8.b36046b3fafa from=translated src=- shape=52f16e76 vocab=513382bd
+-/
 theorem aux_cube_lintegral_le_one (n k : ℕ) (hkn : k ≤ n)
     (F : RealVector n → ℝ) (hF : MemW0 F)
     (hFnorm : eLpNorm F ((2 ^ (k + min (n - k) 1) : ℕ) : ℝ≥0∞) volume = 1)
@@ -2289,7 +2435,9 @@ theorem aux_cube_lintegral_le_one (n k : ℕ) (hkn : k ≤ n)
 Auxiliary change-of-variables form of the normalized cube estimate.  It
 packages the substitution $(y^0,u,x) \mapsto (y^0,y^0+u,x)$ together with the
 coordinate concatenation, so the outer kernel integration can use the
-pointwise cube bound.-/
+pointwise cube bound.
+@isnad1 id=le.3h4v.s9.68ca7b313e40 from=translated src=- shape=e499c0c5 vocab=bcd6b27e
+-/
 theorem aux_cube_corner_lintegral_le_one (n k : ℕ) (hkn : k ≤ n)
     (F : RealVector n → ℝ) (hF : MemW0 F)
     (hFnorm : eLpNorm F ((2 ^ (k + min (n - k) 1) : ℕ) : ℝ≥0∞) volume = 1)
@@ -2346,7 +2494,9 @@ W_0(\mathbb{R}^n)$ with $\|F\|_{2^{k+\min(n-k,1)}}=1$,
 
 $$
    |\Theta_{\rm cube}(k,L)(F)| \le\|L\|_1 .
-$$-/
+$$
+@isnad1 id=le.5h4v.s8.faf3c3238f7c from=translated src=- shape=79f9d077 vocab=ad85192b
+-/
 theorem cubeBLInequality (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (L : CubeKernel k) (hL : MemW0 L) (F : RealVector n → ℝ) (hF : MemW0 F)
     (hFnorm : eLpNorm F ((2 ^ (k + min (n - k) 1) : ℕ) : ℝ≥0∞) volume = 1) :
@@ -2519,7 +2669,9 @@ Auxiliary absolute integrability of the raw prism-form integrand.  It combines
 one integrable Schwartz factor with the kernel after the measure-preserving
 prism pullback, and bounds all remaining Schwartz factors by their zeroth
 Schwartz seminorms.  This supplies the Fubini hypotheses used in the
-cancellation and positivity arguments.-/
+cancellation and positivity arguments.
+@isnad1 id=integrab.3h4v.s10.087ee7318864 from=translated src=- shape=3aec9dff vocab=55150924
+-/
 theorem aux_integrable_prismIntegrand (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (K : KKernel k) (hK : MemW0 K)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -2663,7 +2815,9 @@ theorem aux_integrable_prismIntegrand (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
 Auxiliary global-coordinate expression for the prism form.  It is the
 Fubini/change-of-variables step used immediately in the cancellative
 Cauchy--Schwarz argument: the kernel arguments become the independent
-coordinates `(u,s)`, while each function factor becomes its prism pullback.-/
+coordinates `(u,s)`, while each function factor becomes its prism pullback.
+@isnad1 id=eq.3h4v.s9.8d4cf21843f9 from=translated src=- shape=8c9997f6 vocab=e6299c32
+-/
 theorem aux_prismBrascampLiebForm_eq_global (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (K : KKernel k) (hK : MemW0 K)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -2737,7 +2891,9 @@ theorem aux_prismBrascampLiebForm_eq_global (n k : ℕ) (hk : 1 ≤ k) (hkn : k 
 /--
 Auxiliary normalized prism estimate.  It is the finite Hölder step in the
 proof of the prism Brascamp--Lieb inequality, after all prism factors have
-been pulled back by their measure-preserving affine maps.-/
+been pulled back by their measure-preserving affine maps.
+@isnad1 id=le.3h5v.s9.ac6585d6cb0f from=translated src=- shape=21d8836a vocab=8948eda3
+-/
 theorem aux_prism_lintegral_le_one (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) (hF : F ∈ normalizedFunctionTuples n)
     (u : RealVector k) (s : ℝ) :
@@ -2794,7 +2950,9 @@ Let $k\in\mathbb{N}$ satisfy $1\le k\le n$ and $K\in W_0(\mathbb{R}^{k+1})$ and 
 
 $$
    |\Theta_k(K)(\mathbf{F})| \le \|K\|_1.
-$$-/
+$$
+@isnad1 id=le.4h4v.s9.cdeff3cce0eb from=translated src=- shape=5a5d5687 vocab=e30c862b
+-/
 theorem prismBLInequality (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (K : KKernel k) (hK : MemW0 K)
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -2962,7 +3120,9 @@ theorem prismBLInequality (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
         (lintegral_prod (fun w : RealVector k × ℝ => ‖K w‖ₑ) hKmeas.aemeasurable).symm
     _ = eLpNorm K 1 volume := (eLpNorm_one_eq_lintegral_enorm).symm
 
-/-- The same singleton-fibre integration rule at the dependent top-prism index.-/
+/-- The same singleton-fibre integration rule at the dependent top-prism index.
+@isnad1 id=eq.0h2v.s8.56844b55aa1f from=translated src=- shape=90436842 vocab=d78832c2
+-/
 theorem aux_integral_topFiber (n : ℕ) (f : ℝ → ℝ) :
     (∫ x : RealVector (n - n + 1), f (x (aux_topFiberIndex n))) = ∫ q : ℝ, f q := by
   let : Unique (Fin (n - n + 1)) :=
@@ -2995,7 +3155,9 @@ then for all $\mathbf{F}\in \mathfrak{F}$,
 
 $$
          \Theta_n(K)(\mathbf{F})= 0\, .
-$$-/
+$$
+@isnad1 id=eq.4h3v.s9.751386a24e6a from=translated src=- shape=3cdcac2c vocab=27b1d7d1
+-/
 theorem simplificationOnePrism (n : ℕ) (hn : 1 ≤ n) (K : KKernel n) (_hK : MemW0 K)
     (hzero : ∀ z : RealVector n × ℝ, ∫ q : ℝ, K (z.1, z.2 + q) = 0)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) (_hF : F ∈ normalizedFunctionTuples n) :
@@ -3077,7 +3239,9 @@ noncomputable def aux_singlyCancellativeShear (k : ℕ) :
 
 /--
 Auxiliary `W₀` closure for one convolution summand.  It is the fibre-integral
-part of the singly cancellative kernel construction.-/
+part of the singly cancellative kernel construction.
+@isnad1 id=memw0.2h3v.s7.e2c97b080462 from=translated src=- shape=99fa8d1e vocab=24fa0836
+-/
 theorem aux_memW0_singlyCancellativeSummand (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (fun u : RealVector k × ℝ =>
@@ -3132,7 +3296,9 @@ $$
 $$
 
 See also `Auto.singlyCancellativeLift_memW0`,
-`Auto.singlyCancellativeCauchySchwarz_bound`.-/
+`Auto.singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.5h5v.s7.3373d238c480 from=translated src=- shape=d6896839 vocab=718e718f
+-/
 theorem singlyCancellativeKernel_memW0 (n k J : ℕ) (_hJ : 1 ≤ J) (_hk : 1 ≤ k)
     (_hkn : k < n) (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
     (hrho : ∀ j, MemW0 (rho j)) (hphi : ∀ j, MemW0 (phi j)) :
@@ -3152,7 +3318,9 @@ def aux_singlyCancellativeExpandedKernel (k : ℕ) (rho : KKernel k)
 
 /--
 The unintegrated singly-cancellative summand belongs to `W₀`.  This is the
-tensor-product/shear input for its prism-integrand Fubini certificate.-/
+tensor-product/shear input for its prism-integrand Fubini certificate.
+@isnad1 id=memw0.2h3v.s6.41aaacd7edef from=translated src=- shape=fd5fbc29 vocab=442caf64
+-/
 theorem aux_memW0_singlyCancellativeExpandedKernel (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (aux_singlyCancellativeExpandedKernel k rho phi) := by
@@ -3178,7 +3346,9 @@ theorem aux_memW0_singlyCancellativeExpandedKernel (k : ℕ) (rho : KKernel k)
 /--
 Absolute integrability of the raw singly-cancellative prism integrand.  This
 is the Fubini certificate used to expand the original prism form into its
-individual convolution summands before applying Cauchy--Schwarz.-/
+individual convolution summands before applying Cauchy--Schwarz.
+@isnad1 id=integrab.4h5v.s9.cafeb4ce0e5c from=translated src=- shape=3b442f61 vocab=32b96e39
+-/
 theorem aux_integrable_singlyCancellativeExpandedPrismIntegrand
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -3275,7 +3445,9 @@ theorem aux_integrable_singlyCancellativeExpandedPrismIntegrand
 Auxiliary Fubini expansion of the singly-cancellative prism form into the
 individual unintegrated convolution summands.  This provides the common
 product-measure expression to which the subsequent Cauchy--Schwarz argument
-is applied.-/
+is applied.
+@isnad1 id=eq.5h6v.s9.57370de8b1e9 from=translated src=- shape=2f92b857 vocab=76cac0ff
+-/
 theorem aux_singlyCancellative_prismForm_expand
     (n k J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -3373,7 +3545,9 @@ def aux_singlyCancellativeOriginalIntegrand (n k : ℕ) (hk : 1 ≤ k) (hkn : k 
 
 /--
 Measurability of the original-coordinate raw integrand.  It is needed to
-transport its integrability through the global prism-coordinate map.-/
+transport its integrability through the global prism-coordinate map.
+@isnad1 id=measurab.4h5v.s8.2898f93c9a54 from=translated src=- shape=1664f4b2 vocab=015f7dff
+-/
 theorem aux_measurable_singlyCancellativeOriginalIntegrand (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -3444,7 +3618,9 @@ def aux_singlyCancellativeGlobalToOriginal (n k : ℕ) (hkn : k ≤ n) :
 /--
 The global-to-original raw-coordinate transport preserves Haar volume.  It
 combines the established prism-coordinate transformation with a Fubini block
-reordering.-/
+reordering.
+@isnad1 id=measurep.1h2v.s9.14ddc0ec3539 from=translated src=- shape=bf527deb vocab=6774aa77
+-/
 theorem aux_measurePreserving_singlyCancellativeGlobalToOriginal (n k : ℕ)
     (hkn : k ≤ n) :
     MeasurePreserving (aux_singlyCancellativeGlobalToOriginal n k hkn) volume volume := by
@@ -3463,7 +3639,9 @@ theorem aux_measurePreserving_singlyCancellativeGlobalToOriginal (n k : ℕ)
 /--
 Pointwise compatibility of the original raw integrand with the global raw
 integrand.  This is the finite-coordinate identity that transfers the
-existing global integrability certificate.-/
+existing global integrability certificate.
+@isnad1 id=eq.2h5v.s7.4764f4b9a184 from=translated src=- shape=cefe8a26 vocab=69179144
+-/
 theorem aux_singlyCancellativeOriginalIntegrand_comp_globalToOriginal
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -3498,7 +3676,9 @@ theorem aux_singlyCancellativeOriginalIntegrand_comp_globalToOriginal
 /--
 Absolute integrability of the original-coordinate raw integrand.  This is the
 Fubini certificate used for the manuscript's direct `(y,t,r,x)` expansion in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.4h5v.s9.cad1fcdbba6f from=translated src=- shape=70d0c0bb vocab=ac85e216
+-/
 theorem aux_integrable_singlyCancellativeOriginalIntegrand (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -3527,7 +3707,9 @@ theorem aux_integrable_singlyCancellativeOriginalIntegrand (n k : ℕ)
 /--
 The singly-cancellative prism form expanded into raw integrals in the original
 prism coordinates.  This is the first literal Fubini form of the proof of
-Proposition `Auto.singlyCancellativeKernel_memW0`.-/
+Proposition `Auto.singlyCancellativeKernel_memW0`.
+@isnad1 id=eq.5h6v.s9.4f049798710c from=translated src=- shape=0744bb52 vocab=6e042094
+-/
 theorem aux_singlyCancellative_prismForm_expand_original
     (n k J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k) (hkn : k ≤ n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -3605,7 +3787,9 @@ def aux_singlyCancellativeBaseChangeGeneral (n k : ℕ) :
       ((RealVector k × RealVector k) × RealVector (n - k + 1)) × ℝ := fun p =>
   ((p.1, Fin.cons p.2.2.1 p.2.2.2), p.2.2.1 - p.2.1)
 
-/-- The general base coordinate substitution is Haar preserving.-/
+/-- The general base coordinate substitution is Haar preserving.
+@isnad1 id=measurep.0h2v.s9.7c670a552897 from=translated src=- shape=ce8afaf1 vocab=9fbf6757
+-/
 theorem aux_measurePreserving_singlyCancellativeBaseChangeGeneral (n k : ℕ) :
     MeasurePreserving (aux_singlyCancellativeBaseChangeGeneral n k) volume volume := by
   let eTail : ℝ × RealVector (n - k) → RealVector (n - k + 1) :=
@@ -3688,7 +3872,9 @@ def aux_singlyCancellativeBProduct (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
 The split of the prism product into its $i=0$ (`B`) and nonzero (`A`)
 factors, used before Cauchy--Schwarz in Proposition
 `Auto.singlyCancellativeKernel_memW0`.
-It is used by `singlyCancellativeCauchySchwarz_bound`.-/
+It is used by `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.2h6v.s8.0da79f3d5659 from=translated src=- shape=7001a93f vocab=cab367c2
+-/
 theorem aux_singlyCancellative_product_split (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k ≤ n) (F : Fin n → SchwartzMap (RealVector n) ℝ)
     (y : RealVector k × RealVector k) (r : ℝ) (x : RealVector (n - k)) :
@@ -3710,7 +3896,9 @@ theorem aux_singlyCancellative_product_split (n k : ℕ) (hk : 1 ≤ k)
   unfold aux_singlyCancellativeBProduct aux_singlyCancellativeAProduct
   congr 1
 
-/-- Pointwise compatibility of the general base change with the raw integrand.-/
+/-- Pointwise compatibility of the general base change with the raw integrand.
+@isnad1 id=eq.2h5v.s7.9e3e527d38d0 from=translated src=- shape=41214b19 vocab=bb8889a4
+-/
 theorem aux_singlyCancellativeOriginalIntegrand_comp_baseChangeGeneral
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -3737,7 +3925,9 @@ theorem aux_singlyCancellativeOriginalIntegrand_comp_baseChangeGeneral
 /--
 The integral-level base coordinate substitution.  The measurability hypothesis
 is explicit because the map is a raw map rather than packaged as a measurable
-equivalence.-/
+equivalence.
+@isnad1 id=eq.3h5v.s10.42088f427a62 from=translated src=- shape=b8ac092a vocab=8bca9b8c
+-/
 theorem aux_singlyCancellativeOriginalIntegral_eq_baseIntegral (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -3775,7 +3965,9 @@ theorem aux_singlyCancellativeOriginalIntegral_eq_baseIntegral (n k : ℕ)
 /--
 The raw `(y,t,r,x)` Fubini expansion of the singly-cancellative prism form.
 This is the exact pre-Cauchy--Schwarz expression in the manuscript and feeds
-the A² and B² identifications in `singlyCancellativeCauchySchwarz_bound`.-/
+the A² and B² identifications in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.5h6v.s9.785262e7c799 from=translated src=- shape=f8050b74 vocab=8018b5e3
+-/
 theorem aux_singlyCancellative_prismForm_expand_base
     (n k J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k) (hkn : k ≤ n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -3823,7 +4015,9 @@ def aux_singlyCancellativeCSFubiniReorder (n k : ℕ) :
 /--
 The Fubini reassociation is Haar preserving.  This is the change of variables
 used to expose the outer pairing in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.0h2v.s10.8f115143d2ae from=translated src=- shape=f4effcb4 vocab=98532a65
+-/
 theorem aux_measurePreserving_singlyCancellativeCSFubiniReorder (n k : ℕ) :
     MeasurePreserving (aux_singlyCancellativeCSFubiniReorder n k) volume volume := by
   let Y := RealVector k × RealVector k
@@ -3896,7 +4090,9 @@ def aux_singlyCancellativeCSFubiniIntegrand (n k : ℕ) (hk : 1 ≤ k) (hkn : k 
 /--
 Pointwise compatibility of the Fubini reassociation with the raw base
 integrand in Proposition `Auto.singlyCancellativeKernel_memW0`.  It is
-used by `singlyCancellativeCauchySchwarz_bound`.-/
+used by `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.2h5v.s9.776bf604bc22 from=translated src=- shape=7facf541 vocab=c732c70c
+-/
 theorem aux_singlyCancellativeCSFubiniIntegrand_comp_reorder (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -3916,7 +4112,9 @@ theorem aux_singlyCancellativeCSFubiniIntegrand_comp_reorder (n k : ℕ)
 The scalar fibre integral of the raw Fubini integrand is the product of the
 outer `R`, `A`, and `B` factors in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.2h6v.s7.3cf372ba923a from=translated src=- shape=1d2a2f9f vocab=d92ce6c6
+-/
 theorem aux_singlyCancellativeCSRawIntegral_apply (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -3936,7 +4134,9 @@ theorem aux_singlyCancellativeCSRawIntegral_apply (n k : ℕ) (hk : 1 ≤ k)
 /--
 Absolute integrability of the Fubini intermediary for Proposition
 `Auto.singlyCancellativeKernel_memW0`.  This supplies the Fubini
-certificate in `singlyCancellativeCauchySchwarz_bound`.-/
+certificate in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.4h5v.s8.38dc59cd570a from=translated src=- shape=8f4f4394 vocab=10c95d00
+-/
 theorem aux_integrable_singlyCancellativeCSFubiniIntegrand (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi) (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -3962,7 +4162,9 @@ theorem aux_integrable_singlyCancellativeCSFubiniIntegrand (n k : ℕ)
 Absolute integrability of the outer `R*A*B` pairing in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It supplies the integrability
 input for the finite weighted Cauchy--Schwarz estimate in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.4h5v.s8.505f5627c7d9 from=translated src=- shape=d239b443 vocab=fd244bcb
+-/
 theorem aux_integrable_singlyCancellativeCSRawPairing (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho) (phi : ℝ → ℝ)
     (hphi : MemW0 phi) (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -3981,7 +4183,9 @@ theorem aux_integrable_singlyCancellativeCSRawPairing (n k : ℕ) (hk : 1 ≤ k)
 The exact base-integral to outer-pairing Fubini identity in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  This is the direct input to
 the finite weighted Cauchy--Schwarz estimate in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.4h5v.s9.60f6c1dd72e5 from=translated src=- shape=e8fb8942 vocab=1a238c47
+-/
 theorem aux_singlyCancellativeBaseIntegral_eq_rawPairing (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi) (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -4015,7 +4219,9 @@ theorem aux_singlyCancellativeBaseIntegral_eq_rawPairing (n k : ℕ)
 /--
 The exact raw outer-pairing expansion of the singly-cancellative prism form.
 It combines the manuscript's Fubini substitutions and is used directly by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.5h6v.s9.923ac39cfe3e from=translated src=- shape=03c707d6 vocab=0dc948e0
+-/
 theorem aux_singlyCancellative_prismForm_eq_rawPairing
     (n k J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k) (hkn : k ≤ n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -4038,7 +4244,9 @@ Auxiliary transport of the existing Schwartz-to-Wiener result to the raw
 finite-coordinate model.  It is needed to apply `cubeBLInequality` to the
 Schwartz factor in the B² term of Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.0h2v.s7.e8acf26d69aa from=translated src=- shape=fe77a769 vocab=dacd7909
+-/
 theorem aux_memW0_schwartzMap (n : ℕ) (F : SchwartzMap (RealVector n) ℝ) :
     MemW0 F := by
   let : Measure.IsAddHaarMeasure (volume : Measure (RealVector n)) :=
@@ -4064,7 +4272,9 @@ def aux_singlyCancellativeSliceKernel (k : ℕ) (rho : KKernel k) : CubeKernel k
 The slice kernel is in $W_0$.  This supplies the kernel hypothesis of
 `cubeBLInequality` in the B² term of Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.1h2v.s6.7c40bf815e46 from=translated src=- shape=866b3f80 vocab=ed874db3
+-/
 theorem aux_memW0_singlyCancellativeSliceKernel (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) :
     MemW0 (aux_singlyCancellativeSliceKernel k rho) := by
@@ -4078,7 +4288,9 @@ theorem aux_memW0_singlyCancellativeSliceKernel (k : ℕ) (rho : KKernel k)
 /--
 The $L^1$ contraction for the slice kernel.  It bounds the B² factor in
 Proposition `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.1h2v.s7.ff351870f216 from=translated src=- shape=c7789958 vocab=2f698c2b
+-/
 theorem aux_eLpNorm_one_singlyCancellativeSliceKernel_le (k : ℕ)
     (rho : KKernel k) (hrho : MemW0 rho) :
     eLpNorm (aux_singlyCancellativeSliceKernel k rho) 1 volume ≤
@@ -4103,7 +4315,9 @@ theorem aux_eLpNorm_one_singlyCancellativeSliceKernel_le (k : ℕ)
 The real-valued form of the slice-kernel $L^1$ contraction.  It is the form
 used after applying `cubeBLInequality` in the B² term of Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.1h2v.s7.ba0e010c1019 from=translated src=- shape=f9c962f4 vocab=11ae062d
+-/
 theorem aux_eLpNorm_one_toReal_singlyCancellativeSliceKernel_le (k : ℕ)
     (rho : KKernel k) (hrho : MemW0 rho) :
     (eLpNorm (aux_singlyCancellativeSliceKernel k rho) 1 volume).toReal ≤
@@ -4121,7 +4335,9 @@ theorem aux_eLpNorm_one_toReal_singlyCancellativeSliceKernel_le (k : ℕ)
 The normalized cube-Brascamp--Lieb estimate for one slice kernel.  This is
 the immediate B² estimate in Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.4h4v.s9.d25c24fce350 from=translated src=- shape=a8c3e91c vocab=43966422
+-/
 theorem aux_singlyCancellative_normalizedCubeBL (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k < n) (rho : KKernel k) (hrho : MemW0 rho)
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -4156,7 +4372,9 @@ theorem aux_singlyCancellative_normalizedCubeBL (n k : ℕ) (hk : 1 ≤ k)
 The aggregate normalized cube-Brascamp--Lieb estimate for all slice kernels.
 It is the B² bound used immediately in Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.4h5v.s9.8f1719ea6cf7 from=translated src=- shape=b5972da0 vocab=db605fd8
+-/
 theorem aux_singlyCancellative_sum_normalizedCubeBL (n k J : ℕ) (hk : 1 ≤ k)
     (hkn : k < n) (rho : Fin J → KKernel k) (hrho : ∀ j, MemW0 (rho j))
     (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -4209,14 +4427,18 @@ noncomputable def aux_singlyCancellativeB2Reorder (k d : ℕ) :
   (MeasurableEquiv.prodCongr (MeasurableEquiv.refl _) MeasurableEquiv.prodComm).trans
     MeasurableEquiv.prodAssoc.symm
 
-/-- The literal formula for the B² Fubini reordering.-/
+/-- The literal formula for the B² Fubini reordering.
+@isnad1 id=eq.0h5v.s9.721480e10776 from=translated src=- shape=653475c7 vocab=f276f8d5
+-/
 theorem aux_singlyCancellativeB2Reorder_apply (k d : ℕ)
     (y : RealVector k × RealVector k) (t : ℝ) (x : RealVector d) :
     aux_singlyCancellativeB2Reorder k d (y, (t, x)) = ((y, x), t) := rfl
 
 /--
 Haar preservation of the B² Fubini reordering.  This justifies the first
-integral reordering in `aux_singlyCancellativeB2Original_eq_cubeForm`.-/
+integral reordering in `aux_singlyCancellativeB2Original_eq_cubeForm`.
+@isnad1 id=measurep.0h2v.s9.5e40d0a4c3f3 from=translated src=- shape=79f91eb9 vocab=783a4630
+-/
 theorem aux_measurePreserving_singlyCancellativeB2Reorder (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeB2Reorder k d) volume volume := by
   have h1 : MeasurePreserving
@@ -4244,7 +4466,9 @@ theorem aux_measurePreserving_singlyCancellativeB2Reorder (k d : ℕ) :
 /--
 Translation invariance of the scalar integral used to form the slice kernel
 in the B² calculation of Proposition
-`Auto.singlyCancellativeKernel_memW0`.-/
+`Auto.singlyCancellativeKernel_memW0`.
+@isnad1 id=eq.0h2v.s6.81a8a8754567 from=translated src=- shape=4d91d572 vocab=0cbb34e4
+-/
 theorem aux_singlyCancellative_scalarTranslationIntegral (c : ℝ) (f : ℝ → ℝ) :
     (∫ q : ℝ, f (c + q)) = ∫ q : ℝ, f q := by
   have hmp : MeasurePreserving (MeasurableEquiv.addLeft c : ℝ ≃ᵐ ℝ) volume volume := by
@@ -4255,7 +4479,9 @@ theorem aux_singlyCancellative_scalarTranslationIntegral (c : ℝ) (f : ℝ → 
 The reordered B² integral is the cube Brascamp--Lieb form with the slice
 kernel.  The integrability hypothesis is precisely what permits the Fubini
 step in Proposition `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.3h4v.s9.49cc215a6d12 from=translated src=- shape=fd774383 vocab=c527474c
+-/
 theorem aux_singlyCancellativeB2_eq_cubeForm (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k < n) (rho : KKernel k) (F : RealVector n → ℝ)
     (hInt : Integrable (aux_singlyCancellativeB2Integrand n k hk hkn.le rho F)) :
@@ -4328,7 +4554,9 @@ theorem aux_singlyCancellativeB2_eq_cubeForm (n k : ℕ) (hk : 1 ≤ k)
 /--
 Absolute integrability of the literal-order B² integrand in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  This supplies the Fubini
-certificate for the B² calculation in `singlyCancellativeCauchySchwarz_bound`.-/
+certificate for the B² calculation in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.3h4v.s9.a8cd27744d3d from=translated src=- shape=630ff629 vocab=370e61ab
+-/
 theorem aux_integrable_singlyCancellativeB2OriginalIntegrand (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k < n) (rho : KKernel k) (hrho : MemW0 rho)
     (F : SchwartzMap (RealVector n) ℝ) :
@@ -4504,7 +4732,9 @@ theorem aux_integrable_singlyCancellativeB2OriginalIntegrand (n k : ℕ)
 The literal-order B² integral is the cube Brascamp--Lieb form with the slice
 kernel.  This is the B² identification in Proposition
 `Auto.singlyCancellativeKernel_memW0`, formalized by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.3h4v.s9.cbb47f387d3e from=translated src=- shape=1e1b98c9 vocab=13469670
+-/
 theorem aux_singlyCancellativeB2Original_eq_cubeForm (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k < n) (rho : KKernel k) (F : RealVector n → ℝ)
     (hInt : Integrable (aux_singlyCancellativeB2OriginalIntegrand n k hk hkn.le rho F)) :
@@ -4550,7 +4780,9 @@ theorem aux_singlyCancellativeB2Original_eq_cubeForm (n k : ℕ) (hk : 1 ≤ k)
 The finite sum of literal B² integrals is the corresponding sum of slice-kernel
 cube Brascamp--Lieb forms.  This is the aggregate Fubini identity in
 Proposition `Auto.singlyCancellativeKernel_memW0`, used by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.3h5v.s9.f13295f3f809 from=translated src=- shape=961b91de vocab=4237c42c
+-/
 theorem aux_singlyCancellativeB2Original_sum_eq_cubeForm
     (n k J : ℕ) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (hrho : ∀ j, MemW0 (rho j))
@@ -4573,7 +4805,9 @@ theorem aux_singlyCancellativeB2Original_sum_eq_cubeForm
 The aggregate B² estimate in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is the total B² bound used
 immediately in
-`singlyCancellativeCauchySchwarz_bound` after the outer Cauchy--Schwarz split.-/
+`singlyCancellativeCauchySchwarz_bound` after the outer Cauchy--Schwarz split.
+@isnad1 id=le.4h5v.s9.d2eb0aefefc6 from=translated src=- shape=89c8f8b0 vocab=22612825
+-/
 theorem aux_singlyCancellativeB2Original_sum_le
     (n k J : ℕ) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (hrho : ∀ j, MemW0 (rho j))
@@ -4590,7 +4824,9 @@ theorem aux_singlyCancellativeB2Original_sum_le
 /--
 The B-side `L²` certificate for the weighted Cauchy--Schwarz application in
 Proposition `Auto.singlyCancellativeKernel_memW0`.  It is used directly
-by `singlyCancellativeCauchySchwarz_bound`.-/
+by `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memlp.3h6v.s8.40a8f1e681e2 from=translated src=- shape=d9d44668 vocab=02473dd1
+-/
 theorem aux_memLp_singlyCancellativeCSRawB
     (n k J : ℕ) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (hrho : ∀ j, MemW0 (rho j))
@@ -4661,7 +4897,9 @@ theorem aux_memLp_singlyCancellativeCSRawB
 The outer finite weighted Cauchy--Schwarz step in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  The hypotheses retain the
 separate `A²` certificate so that `singlyCancellativeCauchySchwarz_bound`
-can identify it with the lifted prism form.-/
+can identify it with the lifted prism form.
+@isnad1 id=le.5h6v.s10.ebd254e7adb3 from=translated src=- shape=d7dfabb5 vocab=7e2690b3
+-/
 theorem aux_singlyCancellativeCS_pairing_cauchy
     (n k J : ℕ) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -4797,7 +5035,9 @@ noncomputable def aux_singlyCancellativeLiftShear (k : ℕ) :
 /--
 The explicit coordinate formula for `aux_singlyCancellativeLiftShear`.
 This records the identification used when transporting the tensor-product
-`W₀` membership back to the literal lifted-kernel formula.-/
+`W₀` membership back to the literal lifted-kernel formula.
+@isnad1 id=eq.0h3v.s10.a344e5e46339 from=translated src=- shape=bb938bff vocab=1699d3d3
+-/
 theorem aux_singlyCancellativeLiftShear_apply (k : ℕ)
     (u : RealVector (k + 1) × ℝ) (q : ℝ) :
     aux_singlyCancellativeLiftShear k (u, q) =
@@ -4805,7 +5045,9 @@ theorem aux_singlyCancellativeLiftShear_apply (k : ℕ)
   simp [aux_singlyCancellativeLiftShear, aux_lastCoordinateSplit,
     aux_singlyCancellativeLiftScalarShear]
 
-/-- Haar preservation of the final-coordinate splitting used in the lift shear.-/
+/-- Haar preservation of the final-coordinate splitting used in the lift shear.
+@isnad1 id=measurep.0h1v.s9.c60a7ccb3e9b from=translated src=- shape=7ee9d188 vocab=dddfff2f
+-/
 theorem aux_measurePreserving_lastCoordinateSplit (k : ℕ) :
     MeasurePreserving (aux_lastCoordinateSplit k) volume volume := by
   have hsplit : MeasurePreserving
@@ -4827,7 +5069,9 @@ theorem aux_measurePreserving_lastCoordinateSplit (k : ℕ) :
     simp [Fin.init]
   · rfl
 
-/-- Haar preservation of the scalar part of the lifted-kernel shear.-/
+/-- Haar preservation of the scalar part of the lifted-kernel shear.
+@isnad1 id=measurep.0h1v.s10.dbadeb66ce1e from=translated src=- shape=1fbeb232 vocab=6ef69217
+-/
 theorem aux_measurePreserving_singlyCancellativeLiftScalarShear (k : ℕ) :
     MeasurePreserving (aux_singlyCancellativeLiftScalarShear k) volume volume := by
   have hassoc : MeasurePreserving
@@ -4925,7 +5169,9 @@ noncomputable def aux_singlyCancellativeA2CoordinatesGrouped (k d : ℕ) :
       Fin.lastCases p.1.1.2.2 p.1.1.2.1),
     p.1.1.1.2 - p.2), p.1.2)
 
-/-- The literal coordinate formula for the grouped A² change of variables.-/
+/-- The literal coordinate formula for the grouped A² change of variables.
+@isnad1 id=eq.0h8v.s8.84048435592e from=translated src=- shape=be07be33 vocab=27eedb90
+-/
 theorem aux_singlyCancellativeA2CoordinatesGrouped_apply (k d : ℕ)
     (y0 y1 : RealVector k) (r0 r1 t : ℝ) (x : RealVector (d + 1)) :
     aux_singlyCancellativeA2CoordinatesGrouped k d ((((y0, r0), (y1, r1)), x), t) =
@@ -4970,7 +5216,9 @@ noncomputable def aux_singlyCancellativeA2GroupedReorder (k d : ℕ) :
 
 /--
 Haar preservation of the A² Fubini reassociation.  This is used immediately
-in `aux_measurePreserving_singlyCancellativeA2CoordinatesGrouped`.-/
+in `aux_measurePreserving_singlyCancellativeA2CoordinatesGrouped`.
+@isnad1 id=measurep.0h2v.s10.16f537389f6c from=translated src=- shape=c2c4e73a vocab=3a714cb2
+-/
 theorem aux_measurePreserving_singlyCancellativeA2GroupedReorder (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeA2GroupedReorder k d) volume volume := by
   let P := (RealVector k × ℝ) × (RealVector k × ℝ)
@@ -5011,7 +5259,9 @@ noncomputable def aux_singlyCancellativeA2GroupedLastCoordinateMap (k d : ℕ) :
 /--
 Haar preservation of the final-coordinate insertion used in the grouped A²
 map.  This is an immediate component of
-`aux_measurePreserving_singlyCancellativeA2CoordinatesGrouped`.-/
+`aux_measurePreserving_singlyCancellativeA2CoordinatesGrouped`.
+@isnad1 id=measurep.0h2v.s9.0fed7a80272d from=translated src=- shape=15f8c58a vocab=09f28553
+-/
 theorem aux_measurePreserving_singlyCancellativeA2GroupedLastCoordinateMap (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeA2GroupedLastCoordinateMap k d) volume volume := by
   let e := (aux_lastCoordinateSplit k).toHomeomorph.toMeasurableEquiv
@@ -5030,7 +5280,9 @@ theorem aux_measurePreserving_singlyCancellativeA2GroupedLastCoordinateMap (k d 
 /--
 The grouped A² map preserves Haar measure.  This packages the scalar
 reflection, Fubini reassociation, and two final-coordinate insertions used to
-identify the A² factor in `singlyCancellativeCauchySchwarz_bound`.-/
+identify the A² factor in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.0h2v.s9.9f83dddbde33 from=translated src=- shape=afbdc04d vocab=7d6567c9
+-/
 theorem aux_measurePreserving_singlyCancellativeA2CoordinatesGrouped (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeA2CoordinatesGrouped k d) volume volume := by
   let B := ((RealVector k × ℝ) × (RealVector k × ℝ)) × RealVector (d + 1)
@@ -5094,7 +5346,9 @@ noncomputable def aux_singlyCancellativeA2CoordinatesGroupedEquiv (k d : ℕ) :
     ((aux_singlyCancellativeA2GroupedReorder k d).trans
       (aux_singlyCancellativeA2GroupedLastCoordinateEquiv k d))
 
-/-- The measurable-equivalence coercion is the literal grouped A² map.-/
+/-- The measurable-equivalence coercion is the literal grouped A² map.
+@isnad1 id=eq.0h2v.s10.33d994485fc8 from=translated src=- shape=38f25c17 vocab=a30f1bce
+-/
 theorem aux_singlyCancellativeA2CoordinatesGroupedEquiv_coe (k d : ℕ) :
     (aux_singlyCancellativeA2CoordinatesGroupedEquiv k d :
       aux_singlyCancellativeA2GroupedSource k d → aux_singlyCancellativeA2Target k d) =
@@ -5108,7 +5362,9 @@ theorem aux_singlyCancellativeA2CoordinatesGroupedEquiv_coe (k d : ℕ) :
 /--
 Haar preservation of the full grouped A² coordinate equivalence.  It is the
 change-of-variables input for
-`aux_singlyCancellativeA2_integral_cornerProduct`.-/
+`aux_singlyCancellativeA2_integral_cornerProduct`.
+@isnad1 id=measurep.0h2v.s11.bbce95aa8011 from=translated src=- shape=3a24f4cb vocab=4a2f52c7
+-/
 theorem aux_measurePreserving_singlyCancellativeA2CoordinatesGroupedEquiv (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeA2CoordinatesGroupedEquiv k d) volume volume := by
   rw [aux_singlyCancellativeA2CoordinatesGroupedEquiv_coe]
@@ -5145,7 +5401,9 @@ noncomputable def aux_singlyCancellativeA2SourceCornerProduct (k d : ℕ) (hk : 
 /--
 The grouped A² coordinate map takes the lifted corner product to the product
 of the two level-`k` corner factors.  This is the pointwise form of the A²
-identification in `singlyCancellativeCauchySchwarz_bound`.-/
+identification in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.1h4v.s6.2ae5bf549c8e from=translated src=- shape=73f738df vocab=a5399f89
+-/
 theorem aux_singlyCancellativeA2CoordinatesGrouped_cornerProduct (k d : ℕ) (hk : 1 ≤ k)
     (F : Fin (k + 1 + d) → RealVector (k + 1 + d) → ℝ)
     (p : aux_singlyCancellativeA2GroupedSource k d) :
@@ -5164,7 +5422,9 @@ theorem aux_singlyCancellativeA2CoordinatesGrouped_cornerProduct (k d : ℕ) (hk
 The raw normalized A² integral equality.  The measure-preserving coordinate
 map and the corner-product factorization transport any remaining target
 factor unchanged; this is used immediately in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.1h4v.s10.70c1b9037e02 from=translated src=- shape=5b487ca6 vocab=8ff4fa30
+-/
 theorem aux_singlyCancellativeA2_integral_cornerProduct (k d : ℕ) (hk : 1 ≤ k)
     (F : Fin (k + 1 + d) → RealVector (k + 1 + d) → ℝ)
     (G : aux_singlyCancellativeA2Target k d → ℝ) :
@@ -5200,7 +5460,9 @@ theorem aux_singlyCancellativeA2_integral_cornerProduct (k d : ℕ) (hk : 1 ≤ 
 Auxiliary coordinate-sum normalization for the grouped A² change of variables
 in Proposition `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `aux_singlyCancellativeA2_kernelFactor_comp_coordinates` in the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h3v.s6.f81740f9988f from=translated src=- shape=3f5cb1d6 vocab=81fff62a
+-/
 theorem aux_coordinateSum_lastCases (k : ℕ) (r : ℝ) (y : RealVector k) :
     coordinateSum (Fin.lastCases r (fun i => y i)) = coordinateSum y + r := by
   unfold coordinateSum
@@ -5233,7 +5495,9 @@ def aux_singlyCancellativeA2SourceKernelFactor (k d : ℕ) (rho : KKernel k)
 Auxiliary pointwise identification of the source and target kernel factors in
 Proposition `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `aux_singlyCancellativeA2_raw_coordinate_identity` in the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h5v.s5.7d19d29d0373 from=translated src=- shape=e23fd5a9 vocab=13154971
+-/
 theorem aux_singlyCancellativeA2_kernelFactor_comp_coordinates (k d : ℕ)
     (rho : KKernel k) (phi : ℝ → ℝ)
     (p : aux_singlyCancellativeA2GroupedSource k d) :
@@ -5271,7 +5535,9 @@ theorem aux_singlyCancellativeA2_kernelFactor_comp_coordinates (k d : ℕ)
 Auxiliary raw A² coordinate identity in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It transports the two-fibre
 source integrand to the unintegrated lifted prism integrand, and is used in
-the proof of `singlyCancellativeCauchySchwarz_bound`.-/
+the proof of `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.1h5v.s10.655c04d95f92 from=translated src=- shape=b4227d89 vocab=8df05a41
+-/
 theorem aux_singlyCancellativeA2_raw_coordinate_identity (k d : ℕ) (hk : 1 ≤ k)
     (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + d) → RealVector (k + 1 + d) → ℝ) :
@@ -5302,7 +5568,9 @@ theorem aux_singlyCancellativeA2_raw_coordinate_identity (k d : ℕ) (hk : 1 ≤
 Auxiliary finite-index normalization for Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `aux_singlyCancellativeA2_sourceCorner_eq_AProduct` in the proof of
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=eq.1h6v.s10.f81caefea265 from=translated src=- shape=e329c7a4 vocab=94f41704
+-/
 theorem aux_singlyCancellativeAProduct_normalize (k d : ℕ) (hk : 1 ≤ k)
     (F : Fin (k + 1 + d) → SchwartzMap (RealVector (k + 1 + d)) ℝ)
     (y : RealVector k × RealVector k) (r : ℝ) (x : RealVector (d + 1)) :
@@ -5336,7 +5604,9 @@ theorem aux_singlyCancellativeAProduct_normalize (k d : ℕ) (hk : 1 ≤ k)
 Auxiliary identification of the two source corner products in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct` in the proof
-of `aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+of `aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=eq.1h4v.s10.247d99d23e0c from=translated src=- shape=2f09c55b vocab=2171b67b
+-/
 theorem aux_singlyCancellativeA2_sourceCorner_eq_AProduct (k d : ℕ) (hk : 1 ≤ k)
     (F : Fin (k + 1 + d) → SchwartzMap (RealVector (k + 1 + d)) ℝ)
     (p : aux_singlyCancellativeA2GroupedSource k d) :
@@ -5355,7 +5625,9 @@ theorem aux_singlyCancellativeA2_sourceCorner_eq_AProduct (k d : ℕ) (hk : 1 �
 /--
 Auxiliary Fubini-to-`L²` principle for the A-side of Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=memlp.2h3v.s7.ac766991717c from=translated src=- shape=89027950 vocab=0c319984
+-/
 theorem aux_memLp_two_of_integrable_product_square
     {P : Type*} [MeasurableSpace P] (μ : Measure P)
     (a : P → ℝ → ℝ)
@@ -5376,7 +5648,9 @@ theorem aux_memLp_two_of_integrable_product_square
 /--
 Auxiliary continuity of a parameterized prism point.  It is used by
 `aux_measurable_singlyCancellativeAProductFiber` for the A-side of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=continuo.2h4v.s8.49a1eaa78c6c from=translated src=- shape=df8993b7 vocab=f436d285
+-/
 theorem aux_continuous_prismPoint_parameterized (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (h : Fin k → Fin 2)
     (i : Fin (n - k + 1)) :
@@ -5400,7 +5674,9 @@ theorem aux_continuous_prismPoint_parameterized (n k : ℕ)
 /--
 Auxiliary measurability of the nonzero prism-coordinate product in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
-`aux_measurable_singlyCancellativeWeightedAIntegrand`.-/
+`aux_measurable_singlyCancellativeWeightedAIntegrand`.
+@isnad1 id=measurab.2h3v.s8.58317364da3a from=translated src=- shape=6c356918 vocab=e76ae81a
+-/
 theorem aux_measurable_singlyCancellativeAProductFiber (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -5441,7 +5717,9 @@ noncomputable def aux_singlyCancellativeWeightedAIntegrand (n k : ℕ)
 /--
 Auxiliary measurability of the weighted A-fibre integrand in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=measurab.4h5v.s8.f32bfca57794 from=translated src=- shape=c810fdd5 vocab=1661d66f
+-/
 theorem aux_measurable_singlyCancellativeWeightedAIntegrand (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -5478,7 +5756,9 @@ noncomputable def aux_oldPrismTailEquiv (k d : ℕ) :
 /--
 Auxiliary literal formula for `aux_oldPrismTailEquiv`, used by
 `aux_singlyCancellativeA2SourceSquareReorder` in the proof of
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=eq.0h3v.s9.3949ddc521ee from=translated src=- shape=a417a330 vocab=ddec1c50
+-/
 theorem aux_oldPrismTailEquiv_apply (k d : ℕ) (x : RealVector (d + 1)) :
     aux_oldPrismTailEquiv k d x = aux_oldPrismTail k d x := by
   funext i
@@ -5491,7 +5771,9 @@ theorem aux_oldPrismTailEquiv_apply (k d : ℕ) (x : RealVector (d + 1)) :
 
 /--
 Auxiliary Haar preservation of `aux_oldPrismTailEquiv`, used by
-`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.-/
+`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.
+@isnad1 id=measurep.0h2v.s10.707769f1eb58 from=translated src=- shape=5697dca6 vocab=c609d44a
+-/
 theorem aux_measurePreserving_oldPrismTailEquiv (k d : ℕ) :
     MeasurePreserving (aux_oldPrismTailEquiv k d) volume volume := by
   exact volume_measurePreserving_piCongrLeft (fun _ : Fin (k + 1 + d - k) => ℝ)
@@ -5500,7 +5782,9 @@ theorem aux_measurePreserving_oldPrismTailEquiv (k d : ℕ) :
 /--
 Auxiliary product transport for the coordinate permutation in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used only by
-`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.-/
+`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.
+@isnad1 id=measurep.2h6v.s8.9e8518acadc6 from=translated src=- shape=46634282 vocab=62871e3d
+-/
 theorem aux_measurePreserving_prodCongr
     {A B C D : Type*} [MeasureSpace A] [MeasureSpace B]
     [MeasureSpace C] [MeasureSpace D]
@@ -5532,7 +5816,9 @@ noncomputable def aux_fourBlockTranspose
 
 /--
 Auxiliary Haar preservation of the four-block transpose used only by
-`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.-/
+`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.
+@isnad1 id=measurep.0h4v.s8.9d4b9ed93950 from=translated src=- shape=1eec29bb vocab=73d88f7b
+-/
 theorem aux_measurePreserving_fourBlockTranspose
     (A B C D : Type*) [MeasureSpace A] [MeasureSpace B]
     [MeasureSpace C] [MeasureSpace D]
@@ -5597,7 +5883,9 @@ noncomputable def aux_outerSquareReorder
 
 /--
 Auxiliary Haar preservation of `aux_outerSquareReorder`, used only by
-`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.-/
+`aux_measurePreserving_singlyCancellativeA2SourceSquareReorder`.
+@isnad1 id=measurep.0h4v.s8.385e398f5219 from=translated src=- shape=3e2a05fb vocab=3fb08811
+-/
 theorem aux_measurePreserving_outerSquareReorder
     (Y R X T : Type*) [MeasureSpace Y] [MeasureSpace R]
     [MeasureSpace X] [MeasureSpace T]
@@ -5654,7 +5942,9 @@ noncomputable def aux_singlyCancellativeA2SourceSquareReorder (k d : ℕ) :
 
 /--
 Auxiliary literal formula for the six-block A-side rearrangement, used by
-`aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct`.-/
+`aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct`.
+@isnad1 id=eq.0h8v.s10.077bd955a785 from=translated src=- shape=fabcb3d9 vocab=b9bc7612
+-/
 theorem aux_singlyCancellativeA2SourceSquareReorder_apply (k d : ℕ)
     (y0 y1 : RealVector k) (r0 r1 t : ℝ) (x : RealVector (d + 1)) :
     aux_singlyCancellativeA2SourceSquareReorder k d ((((y0, r0), (y1, r1)), x), t) =
@@ -5664,7 +5954,9 @@ theorem aux_singlyCancellativeA2SourceSquareReorder_apply (k d : ℕ)
 
 /--
 Auxiliary Haar preservation of the six-block A-side rearrangement, used by
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=measurep.0h2v.s11.3531201044bc from=translated src=- shape=2741d1a6 vocab=9c4a1936
+-/
 theorem aux_measurePreserving_singlyCancellativeA2SourceSquareReorder (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeA2SourceSquareReorder k d) volume volume := by
   let Y := RealVector k
@@ -5697,7 +5989,9 @@ theorem aux_measurePreserving_singlyCancellativeA2SourceSquareReorder (k d : ℕ
 
 /--
 Auxiliary coordinate-sum transport along the old prism-tail equivalence.  It
-is used by `aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct`.-/
+is used by `aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct`.
+@isnad1 id=eq.0h3v.s6.51ae0e8b3aef from=translated src=- shape=e39c8e98 vocab=fdb08feb
+-/
 theorem aux_coordinateSum_oldPrismTail (k d : ℕ) (x : RealVector (d + 1)) :
     coordinateSum (aux_oldPrismTail k d x) = coordinateSum x := by
   unfold coordinateSum aux_oldPrismTail
@@ -5712,7 +6006,9 @@ theorem aux_coordinateSum_oldPrismTail (k d : ℕ) (x : RealVector (d + 1)) :
 /--
 Auxiliary pointwise source-square identification in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
-`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.-/
+`aux_memLp_singlyCancellativeCSRawA_of_integrable_source`.
+@isnad1 id=eq.1h6v.s12.3c2b96217d0d from=translated src=- shape=f4830069 vocab=af527b29
+-/
 theorem aux_singlyCancellativeA2_sourceIntegrand_eq_weightedAProduct (k d : ℕ)
     (hk : 1 ≤ k) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + d) → SchwartzMap (RealVector (k + 1 + d)) ℝ)
@@ -5757,7 +6053,9 @@ Auxiliary `L²` certificate for the A-factor in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  Given the absolute-integrability
 certificate for the grouped source square, it is used by
 `aux_memLp_singlyCancellativeCSRawA` in the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memlp.4h5v.s10.2cbb349810d9 from=translated src=- shape=5dd2aa75 vocab=0ebd70db
+-/
 theorem aux_memLp_singlyCancellativeCSRawA_of_integrable_source
     (k d : ℕ) (hk : 1 ≤ k) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -5829,7 +6127,9 @@ def aux_singlyCancellativeLiftExpandedKernel (k : ℕ) (rho : KKernel k)
 /--
 The unintegrated lifted summand is in `W₀`.  This is needed immediately to
 justify Fubini before identifying the squared Cauchy--Schwarz term with the
-lifted prism form.-/
+lifted prism form.
+@isnad1 id=memw0.2h3v.s8.b4c837ce103f from=translated src=- shape=289a0589 vocab=dcac1752
+-/
 theorem aux_memW0_singlyCancellativeLiftExpandedKernel (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (aux_singlyCancellativeLiftExpandedKernel k rho phi) := by
@@ -5875,7 +6175,9 @@ theorem aux_memW0_singlyCancellativeLiftExpandedKernel (k : ℕ) (rho : KKernel 
 /--
 Absolute integrability of the raw lifted-kernel prism integrand.  This is the
 Fubini certificate used immediately to identify the first squared
-Cauchy--Schwarz term with the level-`k+1` prism form.-/
+Cauchy--Schwarz term with the level-`k+1` prism form.
+@isnad1 id=integrab.4h5v.s10.1ecd9a49f824 from=translated src=- shape=9ad94322 vocab=e98b8771
+-/
 theorem aux_integrable_singlyCancellativeLiftExpandedPrismIntegrand
     (n k : ℕ) (hk1 : 1 ≤ k + 1) (hkn1 : k + 1 ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -5971,7 +6273,9 @@ theorem aux_integrable_singlyCancellativeLiftExpandedPrismIntegrand
 /--
 Auxiliary `W₀` closure for one lifted singly-cancellative summand.  The proof
 uses the preceding affine equivalence to reduce it to a fibre integral of the
-tensor product $|\rho|\otimes\phi\otimes\phi$.-/
+tensor product $|\rho|\otimes\phi\otimes\phi$.
+@isnad1 id=memw0.2h3v.s8.f3bb12c78520 from=translated src=- shape=bbd97b82 vocab=f74b34fd
+-/
 theorem aux_memW0_singlyCancellativeLiftSummand (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (fun u : RealVector (k + 1) × ℝ => ∫ q : ℝ,
@@ -6035,7 +6339,9 @@ $$
 $$
 
 See also `Auto.singlyCancellativeKernel_memW0`,
-`Auto.singlyCancellativeCauchySchwarz_bound`.-/
+`Auto.singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.5h5v.s8.d86aae636751 from=translated src=- shape=8bb5e59d vocab=945d1a7d
+-/
 theorem singlyCancellativeLift_memW0 (n k J : ℕ) (_hJ : 1 ≤ J) (_hk : 1 ≤ k)
     (_hkn : k < n) (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
     (hrho : ∀ j, MemW0 (rho j)) (hphi : ∀ j, MemW0 (phi j)) :
@@ -6059,7 +6365,9 @@ noncomputable def aux_singlyCancellativeLiftA2_newPrismTailEquiv (k d : ℕ) :
 /--
 Auxiliary evaluation rule for the tail-coordinate equivalence used in
 Proposition `Auto.singlyCancellativeKernel_memW0`, for the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h3v.s10.ed0c2f635c39 from=translated src=- shape=ff8c9fab vocab=9b11ee08
+-/
 theorem aux_singlyCancellativeLiftA2_newPrismTailEquiv_apply (k d : ℕ)
     (x : RealVector (d + 1)) :
     aux_singlyCancellativeLiftA2_newPrismTailEquiv k d x = aux_newPrismFiber k d x := by
@@ -6079,7 +6387,9 @@ theorem aux_singlyCancellativeLiftA2_newPrismTailEquiv_apply (k d : ℕ)
 /--
 Auxiliary Haar-measure preservation for the tail-coordinate equivalence in
 Proposition `Auto.singlyCancellativeKernel_memW0`; this supports the
-coordinate transport in `singlyCancellativeCauchySchwarz_bound`.-/
+coordinate transport in `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.0h2v.s10.86797d903e7c from=translated src=- shape=30e4a7a3 vocab=b1c01ae1
+-/
 theorem aux_measurePreserving_singlyCancellativeLiftA2_newPrismTailEquiv
     (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeLiftA2_newPrismTailEquiv k d) volume volume := by
@@ -6090,7 +6400,9 @@ theorem aux_measurePreserving_singlyCancellativeLiftA2_newPrismTailEquiv
 /--
 Auxiliary coordinate-sum normalization for the new prism tail in Proposition
 `Auto.singlyCancellativeKernel_memW0`, used by
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h3v.s6.23e1a84b979b from=translated src=- shape=4c351108 vocab=430ef442
+-/
 theorem aux_singlyCancellativeLiftA2_coordinateSum_newPrismFiber (k d : ℕ)
     (x : RealVector (d + 1)) :
     coordinateSum (aux_newPrismFiber k d x) = coordinateSum x := by
@@ -6120,7 +6432,9 @@ noncomputable def aux_singlyCancellativeLiftA2_rawToTarget (k d : ℕ) :
 /--
 Auxiliary evaluation rule for the raw-to-target map in Proposition
 `Auto.singlyCancellativeKernel_memW0`, used in the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h6v.s10.c621627ea1d2 from=translated src=- shape=1e5021c2 vocab=f8c5e47e
+-/
 theorem aux_singlyCancellativeLiftA2_rawToTarget_apply (k d : ℕ)
     (u : RealVector (k + 1)) (s q : ℝ) (z : RealVector (k + 1 + d)) :
     aux_singlyCancellativeLiftA2_rawToTarget k d (((u, s), q), z) =
@@ -6131,7 +6445,9 @@ theorem aux_singlyCancellativeLiftA2_rawToTarget_apply (k d : ℕ)
 /--
 Auxiliary coordinate-sum rule for the inverse tail equivalence in Proposition
 `Auto.singlyCancellativeKernel_memW0`, used in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h3v.s10.bbfc29ce2fff from=translated src=- shape=1128f752 vocab=a5bd632c
+-/
 theorem aux_singlyCancellativeLiftA2_coordinateSum_newPrismTailEquiv_symm
     (k d : ℕ) (x : RealVector (k + 1 + d - (k + 1) + 1)) :
     coordinateSum ((aux_singlyCancellativeLiftA2_newPrismTailEquiv k d).symm x) =
@@ -6145,7 +6461,9 @@ theorem aux_singlyCancellativeLiftA2_coordinateSum_newPrismTailEquiv_symm
 Auxiliary Haar-measure-preserving raw-to-target coordinate change for the
 lifted A² calculation in Proposition
 `Auto.singlyCancellativeKernel_memW0`.
-It is used by `singlyCancellativeCauchySchwarz_bound`.-/
+It is used by `singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.0h2v.s10.4a3bac5ef768 from=translated src=- shape=5507df2b vocab=5f40098f
+-/
 theorem aux_measurePreserving_singlyCancellativeLiftA2_rawToTarget (k d : ℕ) :
     MeasurePreserving (aux_singlyCancellativeLiftA2_rawToTarget k d) volume volume := by
   let N := k + 1 + d
@@ -6186,7 +6504,9 @@ theorem aux_measurePreserving_singlyCancellativeLiftA2_rawToTarget (k d : ℕ) :
 Auxiliary pointwise identification of the raw lifted integrand with the A²
 target integrand in Proposition `Auto.singlyCancellativeKernel_memW0`.
 It is used to transport the lifted prism form in
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h5v.s9.9637ec7800c8 from=translated src=- shape=8d4e7160 vocab=da841581
+-/
 theorem aux_singlyCancellativeLiftA2TargetIntegrand_comp_rawToTarget
     (k d : ℕ) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + d) → RealVector (k + 1 + d) → ℝ) :
@@ -6250,7 +6570,9 @@ theorem aux_singlyCancellativeLiftA2TargetIntegrand_comp_rawToTarget
 The A² target integrand is integrable.  This auxiliary fact supplies the
 Fubini and measure-transport justification needed for Proposition
 `Auto.singlyCancellativeKernel_memW0`, specifically for
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.2h5v.s10.66d2dc0b1fa7 from=translated src=- shape=dcdbe70e vocab=560b69e1
+-/
 theorem aux_integrable_singlyCancellativeLiftA2TargetIntegrand
     (k d : ℕ) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -6313,7 +6635,9 @@ theorem aux_integrable_singlyCancellativeLiftA2TargetIntegrand
 Auxiliary expansion of the lifted prism form into the A² target coordinates.
 It is the lifted-form comparison required by Proposition
 `Auto.singlyCancellativeKernel_memW0` in the proof of
-`singlyCancellativeCauchySchwarz_bound`.-/
+`singlyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.4h6v.s11.d3517d252540 from=translated src=- shape=1339c11a vocab=d9ded0ed
+-/
 theorem aux_singlyCancellativeLift_prismForm_expand_A2Target
     (k d J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -6440,7 +6764,9 @@ theorem aux_singlyCancellativeLift_prismForm_expand_A2Target
 Auxiliary `L²` certificate for the A-factor in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `singlyCancellativeCauchySchwarz_bound` after normalizing the ambient
-dimension as `k + 1 + d`.-/
+dimension as `k + 1 + d`.
+@isnad1 id=memlp.3h5v.s10.af7deb56f144 from=translated src=- shape=638bf01f vocab=ecebbc56
+-/
 theorem aux_memLp_singlyCancellativeCSRawA
     (k d : ℕ) (hk : 1 ≤ k) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -6469,7 +6795,9 @@ theorem aux_memLp_singlyCancellativeCSRawA
 Auxiliary Fubini identity for the A² term in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It is used by
 `singlyCancellativeCauchySchwarz_bound` to replace the weighted raw A-square
-by the grouped source integral.-/
+by the grouped source integral.
+@isnad1 id=eq.2h5v.s11.d4357e6a4bca from=translated src=- shape=a6828e1b vocab=045bbbdd
+-/
 theorem aux_singlyCancellativeA2_weightedSquare_eq_source
     (k d : ℕ) (hk : 1 ≤ k) (rho : KKernel k) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + d) → SchwartzMap (RealVector (k + 1 + d)) ℝ)
@@ -6572,7 +6900,9 @@ theorem aux_singlyCancellativeA2_weightedSquare_eq_source
 Auxiliary integrability of the grouped A² source integrand in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  This transports the already
 integrable target expression back through the Haar-preserving grouped
-coordinate equivalence, so that the raw A-square Fubini identity applies.-/
+coordinate equivalence, so that the raw A-square Fubini identity applies.
+@isnad1 id=integrab.3h5v.s10.58fa9a55ac96 from=translated src=- shape=435ad7bf vocab=deaf06b5
+-/
 theorem aux_integrable_singlyCancellativeA2SourceIntegrand
     (k d : ℕ) (hk : 1 ≤ k) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -6599,7 +6929,9 @@ theorem aux_integrable_singlyCancellativeA2SourceIntegrand
 Auxiliary A² identification in Proposition
 `Auto.singlyCancellativeKernel_memW0`.  It identifies the sum of the
 weighted raw A-squares from the finite Cauchy--Schwarz step with the lifted
-prism Brascamp--Lieb form.-/
+prism Brascamp--Lieb form.
+@isnad1 id=eq.4h6v.s10.131ecd17e27b from=translated src=- shape=133be84d vocab=f0608a17
+-/
 theorem aux_singlyCancellativeA2_eq_liftPrism
     (k d J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -6665,7 +6997,9 @@ $$
 $$
 
 See also `Auto.singlyCancellativeKernel_memW0`,
-`Auto.singlyCancellativeLift_memW0`.-/
+`Auto.singlyCancellativeLift_memW0`.
+@isnad1 id=le.6h6v.s9.0e12fd537832 from=translated src=- shape=a6e64f26 vocab=d1916c56
+-/
 theorem singlyCancellativeCauchySchwarz_bound
     (n k J : ℕ) (hJ : 1 ≤ J) (hk : 1 ≤ k) (hkn : k < n)
     (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ)
@@ -6771,7 +7105,9 @@ def aux_doublyCancellativeCSExpandedKernel (k : ℕ) (rho : KKernel k)
 
 /--
 Auxiliary lemma for Proposition `Auto.doublyCancellativeKernel_memW0`
-and `doublyCancellativeCauchySchwarz_bound`.-/
+and `doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.2h3v.s7.795cc66a4b23 from=translated src=- shape=44d7e179 vocab=1599e97c
+-/
 theorem aux_memW0_doublyCancellativeCSExpandedKernel (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (aux_doublyCancellativeCSExpandedKernel k rho phi) := by
@@ -6812,7 +7148,9 @@ theorem aux_memW0_doublyCancellativeCSExpandedKernel (k : ℕ) (rho : KKernel k)
 
 /--
 Auxiliary lemma for Proposition `Auto.doublyCancellativeKernel_memW0`
-and `doublyCancellativeCauchySchwarz_bound`.-/
+and `doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.1h4v.s8.d507bd02f3ef from=translated src=- shape=37883b27 vocab=9ffe216e
+-/
 theorem aux_measurePreserving_prismPullbackSkewTwoScalars (n k : ℕ) (hkn : k ≤ n)
     (h : Fin k → Fin 2) (i : Fin (n - k + 1)) :
     MeasurePreserving
@@ -6843,7 +7181,9 @@ theorem aux_measurePreserving_prismPullbackSkewTwoScalars (n k : ℕ) (hkn : k �
 
 /--
 Auxiliary lemma for Proposition `Auto.doublyCancellativeKernel_memW0`
-and `doublyCancellativeCauchySchwarz_bound`.-/
+and `doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=integrab.4h5v.s9.8d975d56e234 from=translated src=- shape=47b71733 vocab=9477a2c4
+-/
 theorem aux_integrable_doublyCancellativeCSExpandedIntegrand
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -6972,7 +7312,9 @@ noncomputable def aux_doublyCancellativeCSGlobalReorder (n k : ℕ) :
     ((MeasurableEquiv.refl ((RealVector k × ℝ) × ℝ)).prodCongr
       MeasurableEquiv.prodComm)).trans MeasurableEquiv.prodAssoc.symm
 
-/-- Haar preservation of `aux_doublyCancellativeCSGlobalReorder`.-/
+/-- Haar preservation of `aux_doublyCancellativeCSGlobalReorder`.
+@isnad1 id=measurep.0h2v.s9.2d12f6541e4c from=translated src=- shape=c16aa96d vocab=05585e78
+-/
 theorem aux_measurePreserving_doublyCancellativeCSGlobalReorder
     (n k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeCSGlobalReorder n k) volume volume := by
@@ -7006,7 +7348,9 @@ def aux_doublyCancellativeCSGlobalToOriginal (n k : ℕ) (hkn : k ≤ n) :
 
 /--
 Haar preservation of the doubled global-to-original prism-coordinate
-transport.-/
+transport.
+@isnad1 id=measurep.1h2v.s9.8271b950b15f from=translated src=- shape=d323e24d vocab=f388c4a2
+-/
 theorem aux_measurePreserving_doublyCancellativeCSGlobalToOriginal
     (n k : ℕ) (hkn : k ≤ n) :
     MeasurePreserving (aux_doublyCancellativeCSGlobalToOriginal n k hkn)
@@ -7029,7 +7373,9 @@ theorem aux_measurePreserving_doublyCancellativeCSGlobalToOriginal
 /--
 Pointwise compatibility of the doubled global and original raw integrands.
 It supplies the literal coordinate identity used to transfer the direct
-integrability certificate into original prism coordinates.-/
+integrability certificate into original prism coordinates.
+@isnad1 id=eq.2h5v.s9.e4bc31a40281 from=translated src=- shape=b56b40c2 vocab=05f53be8
+-/
 theorem aux_doublyCancellativeCSOriginalIntegrand_comp_globalToOriginal
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k)
     (phi : ℝ → ℝ) (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -7067,7 +7413,9 @@ theorem aux_doublyCancellativeCSOriginalIntegrand_comp_globalToOriginal
 
 /--
 Measurability of the fully unintegrated original-coordinate integrand used
-in the doubly-cancellative raw Fubini expansion.-/
+in the doubly-cancellative raw Fubini expansion.
+@isnad1 id=measurab.4h5v.s8.e6c7c13573ad from=translated src=- shape=b6ce61e4 vocab=40a0dc2d
+-/
 theorem aux_measurable_doublyCancellativeCSOriginalIntegrand
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -7121,7 +7469,9 @@ theorem aux_measurable_doublyCancellativeCSOriginalIntegrand
 /--
 Absolute integrability of the original-coordinate doubled raw integrand.
 This is the Fubini certificate for the raw pairing identity in Proposition
-`Auto.doublyCancellativeKernel_memW0`.-/
+`Auto.doublyCancellativeKernel_memW0`.
+@isnad1 id=integrab.4h5v.s9.c3554291f751 from=translated src=- shape=d4b1b27e vocab=e1b2c770
+-/
 theorem aux_integrable_doublyCancellativeCSOriginalIntegrand
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -7143,7 +7493,9 @@ theorem aux_integrable_doublyCancellativeCSOriginalIntegrand
 
 /--
 Auxiliary `W₀` closure for one doubly-cancellative summand.  It realizes the
-two scalar integrations as two successive final-coordinate convolutions.-/
+two scalar integrations as two successive final-coordinate convolutions.
+@isnad1 id=memw0.2h3v.s7.b8852b613b56 from=translated src=- shape=e1915c4c vocab=24fa0836
+-/
 theorem aux_memW0_doublyCancellativeSummand (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) :
     MemW0 (fun u : RealVector k × ℝ => ∫ r : ℝ, ∫ s : ℝ,
@@ -7201,7 +7553,9 @@ $$
 $$
 
 See also `Auto.doublyCancellativeLift_memW0`,
-`Auto.doublyCancellativeCauchySchwarz_bound`.-/
+`Auto.doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.4h4v.s8.7a1ee0e7ab76 from=translated src=- shape=26b78677 vocab=f009cfff
+-/
 theorem doublyCancellativeKernel_memW0 (n J : ℕ) (_hn : 1 ≤ n) (_hJ : 1 ≤ J)
     (rho : Fin J → KKernel (n - 1)) (phi : Fin J → ℝ → ℝ)
     (hrho : ∀ j, MemW0 (rho j)) (hphi : ∀ j, MemW0 (phi j)) :
@@ -7225,7 +7579,9 @@ def doublyCancellativeLift (n J : ℕ) (hn : 1 ≤ n) (rho : Fin J → KKernel (
 Auxiliary successor-normalized identification of the doubly-cancellative lift
 with the existing singly-cancellative lift in Proposition
 `Auto.doublyCancellativeKernel_memW0`.  It lets
-`doublyCancellativeCauchySchwarz_bound` reuse the single-lift expansion.-/
+`doublyCancellativeCauchySchwarz_bound` reuse the single-lift expansion.
+@isnad1 id=eq.0h4v.s5.8d853898e240 from=translated src=- shape=aa2fa310 vocab=4677ffbb
+-/
 theorem aux_doublyCancellativeLift_eq_singlyCancellativeLift
     (k J : ℕ) (rho : Fin J → KKernel k) (phi : Fin J → ℝ → ℝ) :
     doublyCancellativeLift (k + 1) J (by omega) rho phi =
@@ -7271,7 +7627,9 @@ $$
 $$
 
 See also `Auto.doublyCancellativeKernel_memW0`,
-`Auto.doublyCancellativeCauchySchwarz_bound`.-/
+`Auto.doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=memw0.4h4v.s8.2881f53b931d from=translated src=- shape=b9a236ef vocab=7cea26ed
+-/
 theorem doublyCancellativeLift_memW0 (n J : ℕ) (hn : 1 ≤ n) (_hJ : 1 ≤ J)
     (rho : Fin J → KKernel (n - 1)) (phi : Fin J → ℝ → ℝ)
     (hrho : ∀ j, MemW0 (rho j)) (hphi : ∀ j, MemW0 (phi j)) :
@@ -7307,7 +7665,9 @@ theorem doublyCancellativeLift_memW0 (n J : ℕ) (hn : 1 ≤ n) (_hJ : 1 ≤ J)
 Auxiliary uniform upper bound for the normalized top-prism forms of the
 lifted kernel in Proposition `Auto.doublyCancellativeKernel_memW0`.  It
 supplies the boundedness required to interpret the manuscript supremum in
-`doublyCancellativeCauchySchwarz_bound`.-/
+`doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=bddabove.4h4v.s9.14d4a84a10d2 from=translated src=- shape=7ed9ac8b vocab=42589c13
+-/
 theorem aux_bddAbove_doublyCancellativeLift_prismForms
     (n J : ℕ) (hn : 1 ≤ n) (hJ : 1 ≤ J)
     (rho : Fin J → KKernel (n - 1)) (phi : Fin J → ℝ → ℝ)
@@ -7349,7 +7709,9 @@ noncomputable def aux_doublyCancellativeCSPairingScalarSwap (k : ℕ) :
 /--
 Haar preservation of the scalar swap used by
 `aux_doublyCancellativeCSPairingScalarSwap` in the proof of
-`doublyCancellativeCauchySchwarz_bound`.-/
+`doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=measurep.0h1v.s10.57c52a738cef from=translated src=- shape=8028018b vocab=614363c2
+-/
 theorem aux_measurePreserving_doublyCancellativeCSPairingScalarSwap
     (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeCSPairingScalarSwap k) volume volume := by
@@ -7375,7 +7737,9 @@ theorem aux_measurePreserving_doublyCancellativeCSPairingScalarSwap
 /--
 Auxiliary coordinate formula for `aux_doublyCancellativeCSPairingScalarSwap`.
 It is used to identify the B-factor with the swapped A-factor in
-`doublyCancellativeCauchySchwarz_bound`.-/
+`doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=eq.0h4v.s7.ea9dbab6f4e7 from=translated src=- shape=59d14101 vocab=adb1f8f5
+-/
 theorem aux_doublyCancellativeCSPairingScalarSwap_apply (k : ℕ)
     (y : RealVector (k + 1) × RealVector (k + 1)) (t : ℝ) (x : RealVector 1) :
     aux_doublyCancellativeCSPairingScalarSwap k (y, (t, x)) =
@@ -7440,7 +7804,9 @@ noncomputable def aux_doublyCancellativeCSPairingSwap (k : ℕ) :
 
 /--
 Auxiliary coordinate formula for the tail reindexing in
-`aux_doublyCancellativeCSPairingSwap`.-/
+`aux_doublyCancellativeCSPairingSwap`.
+@isnad1 id=eq.0h2v.s9.937978fb9a03 from=translated src=- shape=f1538673 vocab=44e8abab
+-/
 theorem aux_doublyCancellativeTailEquiv_apply_zero (k : ℕ)
     (z : RealVector (k + 1 + 1 - (k + 1))) :
     aux_doublyCancellativeTailEquiv k z 0 = coordinateSum z := by
@@ -7463,7 +7829,9 @@ theorem aux_doublyCancellativeTailEquiv_apply_zero (k : ℕ)
 
 /--
 Auxiliary constant-tail formula for the inverse reindexing in
-`aux_doublyCancellativeCSPairingSwap`.-/
+`aux_doublyCancellativeCSPairingSwap`.
+@isnad1 id=eq.0h2v.s10.aed424a5e57f from=translated src=- shape=c7f50b90 vocab=5659f2cb
+-/
 theorem aux_doublyCancellativeTailEquiv_symm_const (k : ℕ) (t : ℝ) :
     (aux_doublyCancellativeTailEquiv k).symm (fun _ : Fin 1 => t) =
       (fun _ : Fin (k + 1 + 1 - (k + 1)) => t) := by
@@ -7474,7 +7842,9 @@ theorem aux_doublyCancellativeTailEquiv_symm_const (k : ℕ) (t : ℝ) :
 
 /--
 The natural-pairing scalar swap has the expected coordinate formula. It is
-used by `aux_doublyCancellativeCSRawB_eq_swappedRawA`.-/
+used by `aux_doublyCancellativeCSRawB_eq_swappedRawA`.
+@isnad1 id=eq.0h4v.s8.440c769e82be from=translated src=- shape=9e9f6ecb vocab=4a72ef3c
+-/
 theorem aux_doublyCancellativeCSPairingSwap_apply (k : ℕ)
     (y : RealVector (k + 1) × RealVector (k + 1)) (t : ℝ)
     (z : RealVector (k + 1 + 1 - (k + 1))) :
@@ -7497,7 +7867,9 @@ theorem aux_doublyCancellativeCSPairingSwap_apply (k : ℕ)
 
 /--
 Haar preservation of `aux_doublyCancellativeCSPairingSwap`, used to transport
-the B-square in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.-/
+the B-square in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.
+@isnad1 id=measurep.0h1v.s11.dfc1b53befe6 from=translated src=- shape=01544fdb vocab=d37d3632
+-/
 theorem aux_measurePreserving_doublyCancellativeCSPairingSwap (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeCSPairingSwap k) volume volume := by
   let e := aux_doublyCancellativePairEquiv k
@@ -7533,7 +7905,9 @@ theorem aux_measurePreserving_doublyCancellativeCSPairingSwap (k : ℕ) :
 /--
 The doubly-cancellative B-factor is the singly-cancellative raw A-factor for
 the tuple with its final two entries swapped. This is used to identify the
-B-square in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.-/
+B-square in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.
+@isnad1 id=eq.0h4v.s9.93ff545c6dbb from=translated src=- shape=0e9db366 vocab=5f856f6c
+-/
 theorem aux_doublyCancellativeCSRawB_eq_swappedRawA (k : ℕ) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ)
     (p : aux_singlyCancellativeCSPairingSpace (k + 1 + 1) (k + 1)) :
@@ -7608,7 +7982,9 @@ noncomputable def aux_doublyCancellativeCSPairingSwapEquiv (k : ℕ) :
 
 /--
 Auxiliary identification of the measurable-equivalence swap with the raw
-pairing-space swap, used in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.-/
+pairing-space swap, used in `aux_doublyCancellativeCSRawB2_eq_liftPrism`.
+@isnad1 id=eq.0h1v.s11.c4af66fd0663 from=translated src=- shape=94b4e4ae vocab=f23a96e8
+-/
 theorem aux_doublyCancellativeCSPairingSwapEquiv_coe (k : ℕ) :
     (aux_doublyCancellativeCSPairingSwapEquiv k :
       aux_singlyCancellativeCSPairingSpace (k + 1 + 1) (k + 1) →
@@ -7620,7 +7996,9 @@ theorem aux_doublyCancellativeCSPairingSwapEquiv_coe (k : ℕ) :
 /--
 Auxiliary evaluation of the coordinate sum of the constant one-dimensional
 tail.  It is used to show that the raw kernel factor is invariant under the
-pairing swap.-/
+pairing swap.
+@isnad1 id=eq.0h2v.s6.9c4330d6e1d2 from=translated src=- shape=f6ceb52c vocab=c403fc76
+-/
 theorem aux_coordinateSum_doublyCancellativeConstTail (k : ℕ) (t : ℝ) :
     coordinateSum (fun _ : Fin (k + 1 + 1 - (k + 1)) => t) = t := by
   unfold coordinateSum
@@ -7636,7 +8014,9 @@ theorem aux_coordinateSum_doublyCancellativeConstTail (k : ℕ) (t : ℝ) :
 /--
 Auxiliary invariance of the raw kernel factor under the pairing swap.  It is
 used in the B-square and `MemLp` transports to the singly-cancellative
-A-factor.-/
+A-factor.
+@isnad1 id=eq.0h3v.s7.fe5aeb74730b from=translated src=- shape=a9cbbd84 vocab=48fdca2d
+-/
 theorem aux_doublyCancellativeCSRawR_swap (k : ℕ) (rho : KKernel (k + 1))
     (p : aux_singlyCancellativeCSPairingSpace (k + 1 + 1) (k + 1)) :
     aux_singlyCancellativeCSRawR (k + 1 + 1) (k + 1) rho
@@ -7654,7 +8034,9 @@ theorem aux_doublyCancellativeCSRawR_swap (k : ℕ) (rho : KKernel (k + 1))
 
 /--
 Auxiliary one-summand B-square transport.  It is the change-of-variables
-step used by `aux_doublyCancellativeCSRawB2_eq_liftPrism`.-/
+step used by `aux_doublyCancellativeCSRawB2_eq_liftPrism`.
+@isnad1 id=eq.0h4v.s11.6e5e528c2dfd from=translated src=- shape=d081701b vocab=827e8875
+-/
 theorem aux_doublyCancellativeCSRawB2_eq_swappedRawA2
     (k : ℕ) (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -7702,7 +8084,9 @@ theorem aux_doublyCancellativeCSRawB2_eq_swappedRawA2
 Auxiliary `L²` certificate for the B-factor in Proposition
 `Auto.doublyCancellativeKernel_memW0`.  It transports the corresponding
 raw A-factor certificate through the pairing swap, for use in the finite
-Cauchy--Schwarz step.-/
+Cauchy--Schwarz step.
+@isnad1 id=memlp.2h4v.s10.3fa14604120e from=translated src=- shape=313be770 vocab=8d3d342c
+-/
 theorem aux_memLp_doublyCancellativeCSRawB
     (k : ℕ) (rho : KKernel (k + 1)) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi)
@@ -7731,7 +8115,9 @@ theorem aux_memLp_doublyCancellativeCSRawB
 /--
 Auxiliary B-square identification in Proposition
 `Auto.doublyCancellativeKernel_memW0`.  It transports the B-side of the
-finite Cauchy--Schwarz estimate to the lifted prism Brascamp--Lieb form.-/
+finite Cauchy--Schwarz estimate to the lifted prism Brascamp--Lieb form.
+@isnad1 id=eq.3h5v.s11.9d976ab103a1 from=translated src=- shape=0dd9a3e6 vocab=098c9c1e
+-/
 theorem aux_doublyCancellativeCSRawB2_eq_liftPrism
     (k J : ℕ) (hJ : 1 ≤ J)
     (rho : Fin J → KKernel (k + 1)) (phi : Fin J → ℝ → ℝ)
@@ -7849,7 +8235,9 @@ noncomputable def aux_doublyCancellativeRawPairingShear (k : ℕ) :
 
 /--
 Coordinate formula for the scalarization of the final one-dimensional tail.
-It is used to make the raw pairing shear literal.-/
+It is used to make the raw pairing shear literal.
+@isnad1 id=eq.0h2v.s9.24baa07b95d2 from=translated src=- shape=df67756c vocab=89b7ecb6
+-/
 theorem aux_doublyCancellativeRawPairingTailScalarEquiv_apply (k : ℕ)
     (x : RealVector (k + 1 + 1 - (k + 1))) :
     aux_doublyCancellativeRawPairingTailScalarEquiv k x = x ⟨0, by omega⟩ := by
@@ -7863,7 +8251,9 @@ theorem aux_doublyCancellativeRawPairingTailScalarEquiv_apply (k : ℕ)
 /--
 Literal coordinate formula for `aux_doublyCancellativeRawPairingShear`; it is
 the substitution used to turn the inner kernel integral into the second
-scalar bracket of the raw doubly-cancellative pairing.-/
+scalar bracket of the raw doubly-cancellative pairing.
+@isnad1 id=eq.0h5v.s11.c6107f2795fe from=translated src=- shape=be0d4af7 vocab=8c6ba6f5
+-/
 theorem aux_doublyCancellativeRawPairingShear_apply (k : ℕ)
     (y : RealVector (k + 1) × RealVector (k + 1))
     (t q : ℝ) (x : RealVector (k + 1 + 1 - (k + 1))) :
@@ -7887,7 +8277,9 @@ theorem aux_doublyCancellativeRawPairingShear_apply (k : ℕ)
 
 /--
 Haar preservation of the scalarization of the final one-dimensional tail.
-This is an auxiliary change-of-variables fact for the raw pairing shear.-/
+This is an auxiliary change-of-variables fact for the raw pairing shear.
+@isnad1 id=measurep.0h1v.s10.fb9288ec5e32 from=translated src=- shape=b203c1ab vocab=a07243c9
+-/
 theorem aux_measurePreserving_doublyCancellativeRawPairingTailScalarEquiv
     (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeRawPairingTailScalarEquiv k)
@@ -7901,7 +8293,9 @@ theorem aux_measurePreserving_doublyCancellativeRawPairingTailScalarEquiv
 
 /--
 Haar preservation of the determinant-one scalar shear used in the raw
-doubly-cancellative pairing rearrangement.-/
+doubly-cancellative pairing rearrangement.
+@isnad1 id=measurep.0h0v.s6.ab1e6c0e4c1f from=translated src=- shape=50af542a vocab=9a492f9b
+-/
 theorem aux_measurePreserving_doublyCancellativeRawPairingScalarShear :
     MeasurePreserving aux_doublyCancellativeRawPairingScalarShear volume volume := by
   have h1 : MeasurePreserving
@@ -7920,7 +8314,9 @@ theorem aux_measurePreserving_doublyCancellativeRawPairingScalarShear :
 
 /--
 Haar preservation of the scalar-tail shear used by
-`aux_doublyCancellativeRawPairingShear`.-/
+`aux_doublyCancellativeRawPairingShear`.
+@isnad1 id=measurep.0h1v.s11.c6fcd2ee1d2b from=translated src=- shape=f8694d77 vocab=41c01d6c
+-/
 theorem aux_measurePreserving_doublyCancellativeRawPairingTailShear
     (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeRawPairingTailShear k)
@@ -7950,7 +8346,9 @@ theorem aux_measurePreserving_doublyCancellativeRawPairingTailShear
 /--
 The raw pairing shear is Haar preserving.  This is the change of variables
 which converts the inner singly-cancellative kernel fibre into the second
-bracketed scalar integral in the doubly-cancellative argument.-/
+bracketed scalar integral in the doubly-cancellative argument.
+@isnad1 id=measurep.0h1v.s12.e0f72d4af559 from=translated src=- shape=435b59fb vocab=e3a68b4e
+-/
 theorem aux_measurePreserving_doublyCancellativeRawPairingShear (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeRawPairingShear k) volume volume := by
   let Y := RealVector (k + 1) × RealVector (k + 1)
@@ -8014,7 +8412,9 @@ def aux_doublyCancellativeCSRawBaseChange (k : ℕ) :
       aux_doublyCancellativeCSOriginalSpace (k + 1 + 1) (k + 1) := fun p =>
   (aux_singlyCancellativeBaseChangeGeneral (k + 1 + 1) (k + 1) p.1, p.2)
 
-/-- Haar preservation of `aux_doublyCancellativeCSRawBaseChange`.-/
+/-- Haar preservation of `aux_doublyCancellativeCSRawBaseChange`.
+@isnad1 id=measurep.0h1v.s11.aa92d4974a7c from=translated src=- shape=1790b9b9 vocab=3fabd1e8
+-/
 theorem aux_measurePreserving_doublyCancellativeCSRawBaseChange (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeCSRawBaseChange k) volume volume := by
   change MeasurePreserving
@@ -8043,7 +8443,9 @@ def aux_doublyCancellativeCSRawBaseIntegrand (k : ℕ) (rho : KKernel (k + 1))
 
 /--
 Pointwise compatibility of the doubled original integrand with the first raw
-base-coordinate change in the doubly-cancellative Fubini expansion.-/
+base-coordinate change in the doubly-cancellative Fubini expansion.
+@isnad1 id=eq.0h4v.s8.c8a90973c221 from=translated src=- shape=c35a7cd8 vocab=02a968d1
+-/
 theorem aux_doublyCancellativeCSOriginalIntegrand_comp_rawBaseChange (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8092,14 +8494,18 @@ noncomputable def aux_doublyCancellativeCSRawFubiniReorder (k : ℕ) :
       ((q.1.1.1, (q.1.1.2.1, (q.2, q.1.1.2.2))), q.1.2))
     fun_prop
 
-/-- Coordinate formula for `aux_doublyCancellativeCSRawFubiniReorder`.-/
+/-- Coordinate formula for `aux_doublyCancellativeCSRawFubiniReorder`.
+@isnad1 id=eq.0h6v.s11.3602a39815e7 from=translated src=- shape=121a9365 vocab=8648aa1a
+-/
 theorem aux_doublyCancellativeCSRawFubiniReorder_apply (k : ℕ)
     (y : RealVector (k + 1) × RealVector (k + 1)) (t r q : ℝ)
     (x : RealVector (k + 1 + 1 - (k + 1))) :
     aux_doublyCancellativeCSRawFubiniReorder k ((y, (t, (r, x))), q) =
       (((y, (t, x)), q), r) := rfl
 
-/-- Haar preservation of the raw doubly-cancellative Fubini reassociation.-/
+/-- Haar preservation of the raw doubly-cancellative Fubini reassociation.
+@isnad1 id=measurep.0h1v.s12.343b4d6c77be from=translated src=- shape=3ca0d14b vocab=dc3a87f8
+-/
 theorem aux_measurePreserving_doublyCancellativeCSRawFubiniReorder (k : ℕ) :
     MeasurePreserving (aux_doublyCancellativeCSRawFubiniReorder k) volume volume := by
   let e1 : aux_doublyCancellativeCSRawBaseSpace k × ℝ ≃ᵐ
@@ -8175,7 +8581,9 @@ def aux_doublyCancellativeCSRawFubiniIntegrand (k : ℕ) (rho : KKernel (k + 1))
 /--
 Pointwise compatibility of the raw Fubini reassociation with the doubled
 base integrand. This is the product splitting immediately before the two
-scalar brackets in the manuscript.-/
+scalar brackets in the manuscript.
+@isnad1 id=eq.0h4v.s11.0622674b9a9a from=translated src=- shape=fa2b3594 vocab=9c2ce076
+-/
 theorem aux_doublyCancellativeCSRawFubiniIntegrand_comp_reorder (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8197,7 +8605,9 @@ theorem aux_doublyCancellativeCSRawFubiniIntegrand_comp_reorder (k : ℕ)
 Absolute integrability of the unintegrated raw Fubini form for the
 doubly-cancellative pairing. It is obtained from the established doubled
 original-coordinate integrability certificate by the two literal changes of
-variables above.-/
+variables above.
+@isnad1 id=integrab.2h4v.s10.5e937a7cbac8 from=translated src=- shape=fc003f4f vocab=048e65f4
+-/
 theorem aux_integrable_doublyCancellativeCSRawFubiniIntegrand (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8235,7 +8645,9 @@ def aux_doublyCancellativeCSRawSourceIntegrand (k : ℕ) (rho : KKernel (k + 1))
 
 /--
 The `r`-fibre integral of the raw Fubini integrand is the source-side raw
-pairing integrand.-/
+pairing integrand.
+@isnad1 id=eq.0h5v.s8.34348c82ec06 from=translated src=- shape=509137b8 vocab=98f8fc40
+-/
 theorem aux_doublyCancellativeCSRawFubiniIntegral_apply (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ)
@@ -8260,7 +8672,9 @@ theorem aux_doublyCancellativeCSRawFubiniIntegral_apply (k : ℕ)
 /--
 Absolute integrability of the source-side raw pairing integrand. This is the
 Fubini certificate used before shearing the inner kernel scalar into the
-second bracket.-/
+second bracket.
+@isnad1 id=integrab.2h4v.s10.6173222ce545 from=translated src=- shape=81bda8da vocab=8461f94b
+-/
 theorem aux_integrable_doublyCancellativeCSRawSourceIntegrand (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8274,7 +8688,9 @@ theorem aux_integrable_doublyCancellativeCSRawSourceIntegrand (k : ℕ)
 /--
 The coordinate sum of the final one-dimensional tail is its unique
 coordinate. This auxiliary identity removes the dependent tail notation in
-the raw doubly-cancellative pairing shear.-/
+the raw doubly-cancellative pairing shear.
+@isnad1 id=eq.0h2v.s7.1ad3cd28230f from=translated src=- shape=8ce07f3f vocab=0211acf2
+-/
 theorem aux_doublyCancellativeCS_coordinateSum_tail (k : ℕ)
     (x : RealVector (k + 1 + 1 - (k + 1))) :
     coordinateSum x = x ⟨0, by omega⟩ := by
@@ -8294,7 +8710,9 @@ theorem aux_doublyCancellativeCS_coordinateSum_tail (k : ℕ)
 /--
 The first scalar bracket is independent of the one-dimensional final tail.
 This is used when the raw pairing shear changes that tail while preserving
-the first bracket in the doubly-cancellative argument.-/
+the first bracket in the doubly-cancellative argument.
+@isnad1 id=eq.0h7v.s9.8146ad05de64 from=translated src=- shape=cd56e7fe vocab=a5d9f73a
+-/
 theorem aux_doublyCancellativeCSRawA_tail_independent (k : ℕ) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ)
     (y : RealVector (k + 1) × RealVector (k + 1)) (t : ℝ)
@@ -8351,7 +8769,9 @@ def aux_doublyCancellativeCSRawTargetIntegrand (k : ℕ) (rho : KKernel (k + 1))
 /--
 The scalar fibre integral of the target raw pairing is the product of the
 kernel factor and the two scalar brackets in the doubly-cancellative
-manuscript calculation.-/
+manuscript calculation.
+@isnad1 id=eq.0h5v.s9.8a43d5fcf6dd from=translated src=- shape=4aad9ffb vocab=09abf874
+-/
 theorem aux_doublyCancellativeCSRawTargetIntegral_apply (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ)
@@ -8372,7 +8792,9 @@ theorem aux_doublyCancellativeCSRawTargetIntegral_apply (k : ℕ)
 /--
 The raw pairing shear converts the source-side Fubini integrand into the
 target-side pairing integrand. This is the literal change of variables that
-creates the second scalar bracket in the doubly-cancellative proof.-/
+creates the second scalar bracket in the doubly-cancellative proof.
+@isnad1 id=eq.0h4v.s11.d8efe42b73fa from=translated src=- shape=084a8667 vocab=8e09d00d
+-/
 theorem aux_doublyCancellativeCSRawTargetIntegrand_comp_shear (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8407,7 +8829,9 @@ theorem aux_doublyCancellativeCSRawTargetIntegrand_comp_shear (k : ℕ)
 /--
 Absolute integrability of the target-side unintegrated raw pairing. It is
 transported from the source-side Fubini certificate by the Haar-preserving
-raw pairing shear.-/
+raw pairing shear.
+@isnad1 id=integrab.2h4v.s10.63e112c3d584 from=translated src=- shape=81bda8da vocab=5bf5213f
+-/
 theorem aux_integrable_doublyCancellativeCSRawTargetIntegrand (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8432,7 +8856,9 @@ theorem aux_integrable_doublyCancellativeCSRawTargetIntegrand (k : ℕ)
 /--
 Absolute integrability of the exact raw product in display `(`ncs1`)`:
 the kernel factor, the first scalar bracket, and the second scalar bracket.
-It is the Fubini certificate for the doubly-cancellative raw pairing.-/
+It is the Fubini certificate for the doubly-cancellative raw pairing.
+@isnad1 id=integrab.2h4v.s10.45221e26c82c from=translated src=- shape=e700f5b8 vocab=7790e03c
+-/
 theorem aux_integrable_doublyCancellativeCSRawPairing (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ) :
@@ -8451,7 +8877,9 @@ theorem aux_integrable_doublyCancellativeCSRawPairing (k : ℕ)
 Auxiliary expansion of the top-dimensional doubly-cancellative prism form
 into integrals of the original-coordinate raw integrand. It isolates the
 finite-sum/Fubini rearrangement needed to reach the two Cauchy--Schwarz
-brackets.-/
+brackets.
+@isnad1 id=eq.2h5v.s11.ac17b42e4d8c from=translated src=- shape=4b80a2a3 vocab=27e46360
+-/
 theorem aux_doublyCancellativeCS_prismForm_expand_original
     (k J : ℕ) (rho : Fin J → KKernel (k + 1))
     (phi : Fin J → ℝ → ℝ) (hrho : ∀ j, MemW0 (rho j))
@@ -8552,7 +8980,9 @@ theorem aux_doublyCancellativeCS_prismForm_expand_original
 
 /--
 Auxiliary Haar change of variables from the original-coordinate integrand to
-the raw base integrand used in the top-dimensional Fubini expansion.-/
+the raw base integrand used in the top-dimensional Fubini expansion.
+@isnad1 id=eq.1h4v.s12.e2fd4e902856 from=translated src=- shape=7eb8fbed vocab=9056ad17
+-/
 theorem aux_doublyCancellativeCS_originalIntegral_eq_rawBaseIntegral (k : ℕ)
     (rho : KKernel (k + 1)) (phi : ℝ → ℝ)
     (F : Fin (k + 1 + 1) → SchwartzMap (RealVector (k + 1 + 1)) ℝ)
@@ -8592,7 +9022,9 @@ theorem aux_doublyCancellativeCS_originalIntegral_eq_rawBaseIntegral (k : ℕ)
 /--
 Auxiliary Fubini reassociation from raw base variables to the source-side raw
 pairing integrand. It records the exact integral identity before the final
-Haar shear.-/
+Haar shear.
+@isnad1 id=eq.2h4v.s11.0effe45262a8 from=translated src=- shape=50e463cb vocab=24324a2a
+-/
 theorem aux_doublyCancellativeCS_rawBaseIntegral_eq_rawSourceIntegral (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ)
     (hphi : MemW0 phi)
@@ -8628,7 +9060,9 @@ theorem aux_doublyCancellativeCS_rawBaseIntegral_eq_rawSourceIntegral (k : ℕ)
 
 /--
 Auxiliary Haar-shear transport from the source-side raw integral to the exact
-raw pairing of the two scalar brackets in the doubly-cancellative argument.-/
+raw pairing of the two scalar brackets in the doubly-cancellative argument.
+@isnad1 id=eq.2h4v.s11.ce6bdb1b627d from=translated src=- shape=26407c41 vocab=0cbb599b
+-/
 theorem aux_doublyCancellativeCS_rawSourceIntegral_eq_rawPairing (k : ℕ)
     (rho : KKernel (k + 1)) (hrho : MemW0 rho) (phi : ℝ → ℝ)
     (hphi : MemW0 phi)
@@ -8665,7 +9099,9 @@ theorem aux_doublyCancellativeCS_rawSourceIntegral_eq_rawPairing (k : ℕ)
 /--
 Auxiliary complete raw pairing identity for the top-dimensional
 doubly-cancellative Cauchy--Schwarz calculation. It is used to apply the
-finite weighted Cauchy--Schwarz estimate to the exact manuscript integrand.-/
+finite weighted Cauchy--Schwarz estimate to the exact manuscript integrand.
+@isnad1 id=eq.2h5v.s11.a7db5c8cb05c from=translated src=- shape=f11bfbfe vocab=e46e90e8
+-/
 theorem aux_doublyCancellativeCS_prismForm_eq_rawPairing
     (k J : ℕ) (rho : Fin J → KKernel (k + 1))
     (phi : Fin J → ℝ → ℝ) (hrho : ∀ j, MemW0 (rho j))
@@ -8704,7 +9140,9 @@ theorem aux_doublyCancellativeCS_prismForm_eq_rawPairing
 /--
 Auxiliary successor-normalized proof of Proposition
 `Auto.doublyCancellativeKernel_memW0`.  It isolates the `n = k + 2`
-coordinate normalization used by `doublyCancellativeCauchySchwarz_bound`.-/
+coordinate normalization used by `doublyCancellativeCauchySchwarz_bound`.
+@isnad1 id=le.4h5v.s12.843027af2d9b from=translated src=- shape=2942b1de vocab=30b2d241
+-/
 theorem aux_doublyCancellativeCauchySchwarz_bound_succSucc
     (k J : ℕ) (hJ : 1 ≤ J) (rho : Fin J → KKernel (k + 1))
     (phi : Fin J → ℝ → ℝ) (hrho : ∀ j, MemW0 (rho j))
@@ -8873,7 +9311,9 @@ $$
 $$
 
 See also `Auto.doublyCancellativeKernel_memW0`,
-`Auto.doublyCancellativeLift_memW0`.-/
+`Auto.doublyCancellativeLift_memW0`.
+@isnad1 id=le.5h5v.s10.807df3339156 from=translated src=- shape=77ec4b17 vocab=1de9d7d3
+-/
 theorem doublyCancellativeCauchySchwarz_bound
     (n J : ℕ) (hn : 2 ≤ n) (hJ : 1 ≤ J)
     (rho : Fin J → KKernel (n - 1)) (phi : Fin J → ℝ → ℝ)
@@ -8939,7 +9379,9 @@ noncomputable def aux_eraseCoordinateSplit (k : ℕ) (i : Fin (k + 1)) :
 /--
 The coordinate splitting `aux_eraseCoordinateSplit` is Haar preserving.  This
 is the coordinate-permutation step used to isolate the distinguished cube
-coordinate in the positivity and monotonicity arguments.-/
+coordinate in the positivity and monotonicity arguments.
+@isnad1 id=measurep.0h2v.s9.6b9eb3a08814 from=translated src=- shape=13e6c0bb vocab=bfa344fe
+-/
 theorem aux_measurePreserving_eraseCoordinateSplit (k : ℕ) (i : Fin (k + 1)) :
     MeasurePreserving (aux_eraseCoordinateSplit k i) volume volume := by
   have hsplit : MeasurePreserving
@@ -8966,7 +9408,9 @@ noncomputable def aux_positivityKernelShear (k : ℕ) (i : Fin (k + 1)) :
   (((aux_eraseCoordinateSplit k i).prodCongr (ContinuousLinearEquiv.refl ℝ ℝ)).prodCongr
     (ContinuousLinearEquiv.refl ℝ ℝ)).trans (aux_singlyCancellativeLiftScalarShear k)
 
-/-- The literal coordinate formula for the positivity-kernel affine shear.-/
+/-- The literal coordinate formula for the positivity-kernel affine shear.
+@isnad1 id=eq.0h4v.s10.29a3bea58ed5 from=translated src=- shape=d90efb93 vocab=e7295d14
+-/
 theorem aux_positivityKernelShear_apply (k : ℕ) (i : Fin (k + 1))
     (u : RealVector (k + 1) × ℝ) (q : ℝ) :
     aux_positivityKernelShear k i (u, q) =
@@ -8994,7 +9438,9 @@ def aux_positivityExpandedKernel (k : ℕ) (rho : KKernel k) (phi : ℝ → ℝ)
 /--
 The unintegrated positivity kernel belongs to `W₀`.  This is the tensor
 product $\rho\otimes\phi\otimes\phi$ transported by the affine shear used
-in the manuscript's positivity proof.-/
+in the manuscript's positivity proof.
+@isnad1 id=memw0.2h4v.s8.d61a3923224b from=translated src=- shape=de3741a1 vocab=7babc65c
+-/
 theorem aux_memW0_positivityExpandedKernel (k : ℕ) (rho : KKernel k)
     (hrho : MemW0 rho) (phi : ℝ → ℝ) (hphi : MemW0 phi) (i : Fin (k + 1)) :
     MemW0 (aux_positivityExpandedKernel k rho phi i) := by
@@ -9034,7 +9480,9 @@ theorem aux_memW0_positivityExpandedKernel (k : ℕ) (rho : KKernel k)
 /--
 Auxiliary `W₀` closure for the kernel in the positivity proposition.  It is a
 coordinate-fibre integral of $\rho\otimes\phi\otimes\phi$ after the explicit
-affine shear `aux_positivityKernelShear`.-/
+affine shear `aux_positivityKernelShear`.
+@isnad1 id=memw0.2h4v.s8.955f523621dc from=translated src=- shape=955c2807 vocab=6465e7d1
+-/
 theorem aux_memW0_positivityKernel (k : ℕ) (rho : KKernel k) (hrho : MemW0 rho)
     (phi : ℝ → ℝ) (hphi : MemW0 phi) (i : Fin (k + 1)) :
     MemW0 (positivityKernel k rho phi i) := by
@@ -9083,7 +9531,9 @@ $$
     \Theta_{k+1}(K)(\mathbf{F})\ge 0\, .
 $$
 
-See also `Auto.positivityKernel_nonnegative`.-/
+See also `Auto.positivityKernel_nonnegative`.
+@isnad1 id=memw0.5h5v.s8.3bcd6fbb955d from=translated src=- shape=baabdd19 vocab=b2ab3c50
+-/
 theorem positivityKernel_memW0 (n k : ℕ) (_hk : 1 ≤ k) (_hkn : k + 1 ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (_hrho_nonneg : ∀ u, 0 ≤ rho u)
     (phi : ℝ → ℝ) (hphi : MemW0 phi) (i : Fin (k + 1)) :
@@ -9099,14 +9549,18 @@ noncomputable def aux_positivityIndexPerm (k : ℕ) (i : Fin (k + 1)) :
     Fin (k + 1) ≃ Fin (k + 1) :=
   (finSuccEquiv' i).trans (finSuccEquiv' (Fin.last k)).symm
 
-/-- Auxiliary formula saying that `aux_positivityIndexPerm` sends `i` to the last index.-/
+/-- Auxiliary formula saying that `aux_positivityIndexPerm` sends `i` to the last index.
+@isnad1 id=eq.0h2v.s7.43bbbb559254 from=translated src=- shape=22e21237 vocab=1fa6a6c0
+-/
 theorem aux_positivityIndexPerm_apply_self (k : ℕ) (i : Fin (k + 1)) :
     aux_positivityIndexPerm k i i = Fin.last k := by
   simp [aux_positivityIndexPerm]
 
 /--
 Auxiliary formula for the remaining coordinates of `aux_positivityIndexPerm`;
-it is used to preserve the literal erased vector in the kernel.-/
+it is used to preserve the literal erased vector in the kernel.
+@isnad1 id=eq.0h3v.s7.72c84b3d4f4e from=translated src=- shape=269624c0 vocab=23e6408d
+-/
 theorem aux_positivityIndexPerm_apply_succAbove (k : ℕ) (i : Fin (k + 1))
     (j : Fin k) : aux_positivityIndexPerm k i (i.succAbove j) = j.castSucc := by
   simp [aux_positivityIndexPerm]
@@ -9122,7 +9576,9 @@ noncomputable def aux_positivityCoordinatePerm (k : ℕ) (i : Fin (k + 1)) :
 
 /--
 Auxiliary coordinate formula for `aux_positivityCoordinatePerm`; it makes the
-permutation usable pointwise in cube corners and kernel arguments.-/
+permutation usable pointwise in cube corners and kernel arguments.
+@isnad1 id=eq.0h4v.s10.250ad3a09087 from=translated src=- shape=cb792157 vocab=94c18792
+-/
 theorem aux_positivityCoordinatePerm_apply_index (k : ℕ) (i : Fin (k + 1))
     (x : RealVector (k + 1)) (j : Fin (k + 1)) :
     aux_positivityCoordinatePerm k i x (aux_positivityIndexPerm k i j) = x j := by
@@ -9134,7 +9590,9 @@ theorem aux_positivityCoordinatePerm_apply_index (k : ℕ) (i : Fin (k + 1))
 /--
 Auxiliary preservation of the erased coordinate vector under the positivity
 permutation.  This is why the original kernel `rho` does not need to be
-reindexed.-/
+reindexed.
+@isnad1 id=eq.0h3v.s9.62f76e10cf59 from=translated src=- shape=6d00ca83 vocab=96379c47
+-/
 theorem aux_erase_positivityCoordinatePerm (k : ℕ) (i : Fin (k + 1))
     (x : RealVector (k + 1)) :
     eraseVector (Fin.last k) (aux_positivityCoordinatePerm k i x) = eraseVector i x := by
@@ -9149,7 +9607,9 @@ theorem aux_erase_positivityCoordinatePerm (k : ℕ) (i : Fin (k + 1))
 
 /--
 Auxiliary formula for the final coordinate after the positivity permutation.
-It identifies it with the distinguished original coordinate `i`.-/
+It identifies it with the distinguished original coordinate `i`.
+@isnad1 id=eq.0h3v.s9.a83c780b1c3d from=translated src=- shape=e954a52b vocab=c68410ab
+-/
 theorem aux_positivityCoordinatePerm_last (k : ℕ) (i : Fin (k + 1))
     (x : RealVector (k + 1)) :
     aux_positivityCoordinatePerm k i x (Fin.last k) = x i := by
@@ -9158,7 +9618,9 @@ theorem aux_positivityCoordinatePerm_last (k : ℕ) (i : Fin (k + 1))
 
 /--
 Auxiliary invariance of the coordinate sum under the positivity permutation.
-This preserves the scalar kernel coordinate in the prism form.-/
+This preserves the scalar kernel coordinate in the prism form.
+@isnad1 id=eq.0h3v.s9.8b7fdc9765c2 from=translated src=- shape=083c8b20 vocab=59c467ed
+-/
 theorem aux_coordinateSum_positivityCoordinatePerm (k : ℕ) (i : Fin (k + 1))
     (x : RealVector (k + 1)) :
     coordinateSum (aux_positivityCoordinatePerm k i x) = coordinateSum x := by
@@ -9192,7 +9654,9 @@ noncomputable def aux_positivityFullCoordinatePerm (n k : ℕ) (hkn : k + 1 ≤ 
 
 /--
 Auxiliary formula for the ambient index permutation on the head--tail
-concatenation indices.-/
+concatenation indices.
+@isnad1 id=eq.1h4v.s10.51403ffa66fc from=translated src=- shape=a02c1c6d vocab=5f198f60
+-/
 theorem aux_positivityFullIndexPerm_apply_concatIndex (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (s : Fin (k + 1) ⊕ Fin (n - (k + 1))) :
     aux_positivityFullIndexPerm n k hkn i (aux_concatIndexEquiv n (k + 1) hkn s) =
@@ -9201,7 +9665,9 @@ theorem aux_positivityFullIndexPerm_apply_concatIndex (n k : ℕ) (hkn : k + 1 �
           (Equiv.refl (Fin (n - (k + 1)))) ) s) := by
   simp [aux_positivityFullIndexPerm]
 
-/-- Auxiliary pointwise formula for the ambient positivity permutation.-/
+/-- Auxiliary pointwise formula for the ambient positivity permutation.
+@isnad1 id=eq.1h5v.s8.fc0c1880f974 from=translated src=- shape=2433bc73 vocab=063f811f
+-/
 theorem aux_positivityFullCoordinatePerm_apply_index (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (x : RealVector n) (j : Fin n) :
     aux_positivityFullCoordinatePerm n k hkn i x
@@ -9215,7 +9681,9 @@ theorem aux_positivityFullCoordinatePerm_apply_index (n k : ℕ) (hkn : k + 1 �
 /--
 Auxiliary evaluation of `concatVector` at a head index.  It keeps the proof of
 the ambient permutation independent of implementation details of the index
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h5v.s7.54b0504569e7 from=translated src=- shape=f5c03910 vocab=0e174eb7
+-/
 theorem aux_positivityConcatVector_apply_inl (n m : ℕ) (hmn : m ≤ n)
     (c : RealVector m) (t : RealVector (n - m)) (s : Fin m) :
     concatVector n m hmn c t (aux_concatIndexEquiv n m hmn (Sum.inl s)) = c s := by
@@ -9227,7 +9695,9 @@ theorem aux_positivityConcatVector_apply_inl (n m : ℕ) (hmn : m ≤ n)
 
 /--
 Auxiliary evaluation of `concatVector` at a tail index, used alongside
-`aux_positivityConcatVector_apply_inl`.-/
+`aux_positivityConcatVector_apply_inl`.
+@isnad1 id=eq.1h5v.s7.c1e322b2d70d from=translated src=- shape=35bd9d4e vocab=4705a649
+-/
 theorem aux_positivityConcatVector_apply_inr (n m : ℕ) (hmn : m ≤ n)
     (c : RealVector m) (t : RealVector (n - m)) (s : Fin (n - m)) :
     concatVector n m hmn c t (aux_concatIndexEquiv n m hmn (Sum.inr s)) = t s := by
@@ -9239,7 +9709,9 @@ theorem aux_positivityConcatVector_apply_inr (n m : ℕ) (hmn : m ≤ n)
 
 /--
 Auxiliary compatibility of the ambient positivity permutation with the
-head--tail coordinate concatenation.-/
+head--tail coordinate concatenation.
+@isnad1 id=eq.1h5v.s10.90bdacf767ba from=translated src=- shape=1f280ffd vocab=fadda5f2
+-/
 theorem aux_positivityFullCoordinatePerm_concatVector (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (c : RealVector (k + 1))
     (t : RealVector (n - (k + 1))) :
@@ -9268,7 +9740,9 @@ noncomputable def aux_positivityCubeEquiv (k : ℕ) (i : Fin (k + 1)) :
     (Fin (k + 1) → Fin 2) ≃ (Fin (k + 1) → Fin 2) :=
   Equiv.piCongrLeft (fun _ : Fin (k + 1) => Fin 2) (aux_positivityIndexPerm k i)
 
-/-- Auxiliary pointwise formula for the cube-vertex reindexing.-/
+/-- Auxiliary pointwise formula for the cube-vertex reindexing.
+@isnad1 id=eq.0h4v.s8.4a34b77fbf13 from=translated src=- shape=5074a281 vocab=82a34a3c
+-/
 theorem aux_positivityCubeEquiv_apply_index (k : ℕ) (i : Fin (k + 1))
     (h : Fin (k + 1) → Fin 2) (j : Fin (k + 1)) :
     aux_positivityCubeEquiv k i h (aux_positivityIndexPerm k i j) = h j := by
@@ -9277,7 +9751,9 @@ theorem aux_positivityCubeEquiv_apply_index (k : ℕ) (i : Fin (k + 1))
 
 /--
 Auxiliary compatibility of the positivity coordinate permutation with a cube
-corner; it is the finite-dimensional part of the prism-form transport.-/
+corner; it is the finite-dimensional part of the prism-form transport.
+@isnad1 id=eq.0h4v.s11.a8fcdd7bcaeb from=translated src=- shape=0f718a82 vocab=a0706d8b
+-/
 theorem aux_positivityCoordinatePerm_cubeCorner (k : ℕ) (i : Fin (k + 1))
     (y : RealVector (k + 1) × RealVector (k + 1))
     (h : Fin (k + 1) → Fin 2) :
@@ -9296,7 +9772,9 @@ theorem aux_positivityCoordinatePerm_cubeCorner (k : ℕ) (i : Fin (k + 1))
 
 /--
 Auxiliary transport of one prism point under the ambient positivity
-permutation.-/
+permutation.
+@isnad1 id=eq.1h7v.s11.0738279f00c2 from=translated src=- shape=fd25a31f vocab=31031a70
+-/
 theorem aux_positivityFullCoordinatePerm_prismPoint (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (y : RealVector (k + 1) × RealVector (k + 1))
     (x : RealVector (n - (k + 1) + 1)) (h : Fin (k + 1) → Fin 2)
@@ -9313,7 +9791,9 @@ theorem aux_positivityFullCoordinatePerm_prismPoint (n k : ℕ) (hkn : k + 1 ≤
 /--
 Auxiliary reindexing of the full prism product under the positivity coordinate
 permutation.  It is needed to turn the original function tuple into a
-Schwartz tuple precomposed with the inverse ambient permutation.-/
+Schwartz tuple precomposed with the inverse ambient permutation.
+@isnad1 id=eq.1h6v.s11.38e5ff74bf24 from=translated src=- shape=b3d22cbb vocab=748f45d6
+-/
 theorem aux_positivityFullCoordinatePerm_prismProduct (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (F : Fin n → RealVector n → ℝ)
     (y : RealVector (k + 1) × RealVector (k + 1))
@@ -9337,7 +9817,9 @@ theorem aux_positivityFullCoordinatePerm_prismProduct (n k : ℕ) (hkn : k + 1 �
 
 /--
 Auxiliary inverse form of the prism-product transport.  This is the exact
-identity used in the prism-form change of variables below.-/
+identity used in the prism-form change of variables below.
+@isnad1 id=eq.1h6v.s11.f945a36caf03 from=translated src=- shape=76bf9656 vocab=c953e6b3
+-/
 theorem aux_positivityFullCoordinatePerm_prismProduct_symm (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (F : Fin n → RealVector n → ℝ)
     (y : RealVector (k + 1) × RealVector (k + 1))
@@ -9361,7 +9843,9 @@ theorem aux_positivityFullCoordinatePerm_prismProduct_symm (n k : ℕ) (hkn : k 
 /--
 Auxiliary kernel conjugacy for the positivity argument.  It identifies the
 literal arbitrary-coordinate kernel with the final-coordinate kernel after
-the coordinate permutation.-/
+the coordinate permutation.
+@isnad1 id=eq.0h5v.s10.4bda484726e3 from=translated src=- shape=008ef5ed vocab=0ba0df29
+-/
 theorem aux_positivityKernel_conj_coordinatePerm (k : ℕ) (rho : KKernel k)
     (phi : ℝ → ℝ) (i : Fin (k + 1)) (u : RealVector (k + 1) × ℝ) :
     positivityKernel k rho phi i u =
@@ -9392,7 +9876,9 @@ noncomputable def aux_positivityCubePairEquiv (k : ℕ) (i : Fin (k + 1)) :
 /--
 Auxiliary pointwise formula for `aux_positivityCubePairEquiv`.  Keeping this
 formula opaque prevents unnecessary unfolding of the coordinate equivalences
-in the raw prism integrand calculation.-/
+in the raw prism integrand calculation.
+@isnad1 id=eq.0h3v.s11.185dcc6b9662 from=translated src=- shape=0070c88f vocab=5e23b3a5
+-/
 theorem aux_positivityCubePairEquiv_apply (k : ℕ) (i : Fin (k + 1))
     (y : RealVector (k + 1) × RealVector (k + 1)) :
     aux_positivityCubePairEquiv k i y =
@@ -9401,7 +9887,9 @@ theorem aux_positivityCubePairEquiv_apply (k : ℕ) (i : Fin (k + 1))
 
 /--
 Auxiliary Haar preservation of the cube-pair measurable equivalence.  It is
-the outer change of variables in the positivity proof.-/
+the outer change of variables in the positivity proof.
+@isnad1 id=measurep.0h2v.s10.2f111e805265 from=translated src=- shape=3eb51566 vocab=6e4b5f73
+-/
 theorem aux_measurePreserving_positivityCubePairEquiv (k : ℕ) (i : Fin (k + 1)) :
     MeasurePreserving (aux_positivityCubePairEquiv k i) volume volume := by
   let E := aux_positivityCoordinateMeasurableEquiv k i
@@ -9425,7 +9913,9 @@ noncomputable def aux_positivityPrecomposeTuple (n k : ℕ) (hkn : k + 1 ≤ n)
   SchwartzMap.compCLMOfContinuousLinearEquiv ℝ
     (aux_positivityFullCoordinatePerm n k hkn i).symm (F a)
 
-/-- Auxiliary pointwise formula for the precomposed Schwartz tuple.-/
+/-- Auxiliary pointwise formula for the precomposed Schwartz tuple.
+@isnad1 id=eq.1h6v.s9.b5fe2de946b0 from=translated src=- shape=7b154007 vocab=7d6c704a
+-/
 theorem aux_positivityPrecomposeTuple_apply (n k : ℕ) (hkn : k + 1 ≤ n)
     (i : Fin (k + 1)) (F : Fin n → SchwartzMap (RealVector n) ℝ)
     (a : Fin n) (z : RealVector n) :
@@ -9448,7 +9938,9 @@ def aux_positivityPrismRawIntegrand (n k : ℕ) (hkn : k + 1 ≤ n)
 /--
 Auxiliary pointwise raw-integrand conjugacy.  It combines the kernel
 conjugacy with the cube-product reindexing, and is the core equality in the
-positivity change of variables.-/
+positivity change of variables.
+@isnad1 id=eq.1h8v.s10.244ab0a4311a from=translated src=- shape=036186eb vocab=fc55a749
+-/
 theorem aux_positivityPrismRawIntegrand_comp_cubePairEquiv
     (n k : ℕ) (hkn : k + 1 ≤ n) (rho : KKernel k) (phi : ℝ → ℝ)
     (i : Fin (k + 1)) (F : Fin n → SchwartzMap (RealVector n) ℝ)
@@ -9484,7 +9976,9 @@ theorem aux_positivityPrismRawIntegrand_comp_cubePairEquiv
 Auxiliary existential prism-form conjugacy for the positivity proposition.  It
 transports the arbitrary distinguished coordinate to the final one and
 produces the precomposed Schwartz tuple needed for the final-coordinate
-square identity.-/
+square identity.
+@isnad1 id=ex.2h6v.s9.8d0c9328ea3e from=translated src=- shape=af4aa621 vocab=5ac17f7c
+-/
 theorem aux_positivityKernel_prismForm_exists_coordinatePerm
     (n k : ℕ) (_hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (rho : KKernel k) (phi : ℝ → ℝ) (i : Fin (k + 1))
@@ -9525,7 +10019,9 @@ theorem aux_positivityKernel_prismForm_exists_coordinatePerm
 /--
 Auxiliary identification of the final-coordinate positivity kernel with the
 one-summand singly-cancellative lift.  This exposes the pre-existing square
-identity for the final-coordinate case.-/
+identity for the final-coordinate case.
+@isnad1 id=eq.1h3v.s6.01237bcc014c from=translated src=- shape=10210686 vocab=9c96c542
+-/
 theorem aux_positivityKernel_last_eq_singlyCancellativeLift
     (k : ℕ) (rho : KKernel k) (hrho_nonneg : ∀ u, 0 ≤ rho u)
     (phi : ℝ → ℝ) :
@@ -9546,7 +10042,9 @@ theorem aux_positivityKernel_last_eq_singlyCancellativeLift
 
 /--
 Auxiliary nonnegativity of the final-coordinate positivity kernel.  It is the
-weighted square identity furnished by the singly-cancellative lift theorem.-/
+weighted square identity furnished by the singly-cancellative lift theorem.
+@isnad1 id=le.5h5v.s8.a685fee9eb31 from=translated src=- shape=16d1b0bd vocab=64af6594
+-/
 theorem aux_positivityKernel_last_nonnegative
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (hrho_nonneg : ∀ u, 0 ≤ rho u)
@@ -9581,7 +10079,9 @@ $$
     \Theta_{k+1}(K)(\mathbf{F})\ge 0\, .
 $$
 
-See also `Auto.positivityKernel_memW0`.-/
+See also `Auto.positivityKernel_memW0`.
+@isnad1 id=le.6h6v.s9.9e26bbb09b78 from=translated src=- shape=fa91b3fa vocab=67b20b96
+-/
 theorem positivityKernel_nonnegative
     (n k : ℕ) (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (rho : KKernel k) (hrho : MemW0 rho) (hrho_nonneg : ∀ u, 0 ≤ rho u)
@@ -9605,7 +10105,9 @@ def monotonicityKernel (k : ℕ) (rho : KKernel k) (phi : ℝ → ℝ) : KKernel
 Auxiliary for Proposition `Auto.monotonicityK`, formalized as
 `monotonicityK`.
 It supplies the closure of `W₀` under negation needed to form the kernel
-difference.-/
+difference.
+@isnad1 id=memw0.1h2v.s5.b20d2a7226f7 from=translated src=- shape=8a932696 vocab=42a64367
+-/
 theorem aux_memW0_neg {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] {f : E → ℝ} (hf : MemW0 f) :
     MemW0 (fun x => -f x) := by
@@ -9619,7 +10121,9 @@ theorem aux_memW0_neg {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 /--
 Auxiliary for Proposition `Auto.monotonicityK`, formalized as
 `monotonicityK`.
-It forms the `W₀` difference to which positivity is applied.-/
+It forms the `W₀` difference to which positivity is applied.
+@isnad1 id=memw0.2h3v.s6.5cb78aaf6ace from=translated src=- shape=8cce7c13 vocab=0ea2dd86
+-/
 theorem aux_memW0_sub {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
     [MeasureSpace E] [BorelSpace E] {f g : E → ℝ} (hf : MemW0 f) (hg : MemW0 g) :
     MemW0 (fun x => f x - g x) := by
@@ -9629,7 +10133,9 @@ theorem aux_memW0_sub {E : Type*} [NormedAddCommGroup E] [ProperSpace E]
 /--
 Auxiliary for Proposition `Auto.monotonicityK`, formalized as
 `monotonicityK`.
-It gives the kernel-linearity identity for the prism Brascamp--Lieb form.-/
+It gives the kernel-linearity identity for the prism Brascamp--Lieb form.
+@isnad1 id=eq.4h5v.s9.874a95ce8eb2 from=translated src=- shape=e236e314 vocab=c72a4e66
+-/
 theorem aux_prismBrascampLiebForm_sub (n l : ℕ) (hl : 1 ≤ l) (hln : l ≤ n)
     (K₁ K₂ : KKernel l) (hK₁ : MemW0 K₁) (hK₂ : MemW0 K₂)
     (F : Fin n → SchwartzMap (RealVector n) ℝ) :
@@ -9675,7 +10181,9 @@ theorem aux_prismBrascampLiebForm_sub (n l : ℕ) (hl : 1 ≤ l) (hln : l ≤ n)
 Auxiliary for Proposition `Auto.monotonicityK`, formalized as
 `monotonicityK`.
 It identifies the difference of the two monotonicity kernels with the kernel
-of the pointwise difference.-/
+of the pointwise difference.
+@isnad1 id=eq.3h4v.s7.4877975998ab from=translated src=- shape=e9361753 vocab=87c3b4c2
+-/
 theorem aux_monotonicityKernel_sub (k : ℕ)
     (rho rhotilde : KKernel k) (hrho : MemW0 rho) (hrhotilde : MemW0 rhotilde)
     (phi : ℝ → ℝ) (hphi : MemW0 phi) :
@@ -9738,7 +10246,9 @@ then
 
 $$
 \Theta_{k+1}(K_\rho)(\mathbf{F}) \le \Theta_{k+1}(K_{\tilde{\rho}})(\mathbf{F})
-$$-/
+$$
+@isnad1 id=le.8h6v.s9.55b40ba2cbfb from=translated src=- shape=7dca97a7 vocab=dc502f51
+-/
 theorem monotonicityK (n k : ℕ) (hk : 1 ≤ k)
     (hkn : k + 1 ≤ n) (rho rhotilde : KKernel k)
     (hrho : MemW0 rho) (hrhotilde : MemW0 rhotilde)

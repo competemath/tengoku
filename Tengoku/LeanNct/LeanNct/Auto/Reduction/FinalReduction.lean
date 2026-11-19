@@ -99,7 +99,9 @@ def aux_dyadicVariationBound {n : ℕ} (C : ℝ) (chi : ℝ → ℝ)
 noncomputable def C_mainAuxOne (n : ℕ) : ℝ :=
   (2 : ℝ) ^ 4 * C_inductPositiveTermsReductionWhitneyProduct n
 
-/-- The first main-auxiliary constant is nonnegative.-/
+/-- The first main-auxiliary constant is nonnegative.
+@isnad1 id=le.0h1v.s3.e3da99a27197 from=translated src=- shape=b9369acb vocab=55a197c3
+-/
 theorem aux_C_mainAuxOne_nonneg (n : ℕ) : 0 ≤ C_mainAuxOne n := by
   have hdiagonal : 0 ≤ C_diagonalBandReduction := by
     unfold C_diagonalBandReduction
@@ -129,6 +131,9 @@ theorem aux_C_mainAuxOne_nonneg (n : ℕ) : 0 ≤ C_mainAuxOne n := by
   unfold C_mainAuxOne
   exact mul_nonneg (by positivity) hproduct
 
+/--
+@isnad1 id=eq.1h3v.s7.6757ccfc75e1 from=translated src=- shape=90f1e3bc vocab=c107a8a2
+-/
 theorem aux_mainAuxOne_windowRescale_fourier (t : ℝ) (ht : 0 < t)
     (phi : SchwartzMap ℝ ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_windowRescale phi t x : ℂ)) xi =
@@ -167,6 +172,9 @@ theorem aux_mainAuxOne_windowRescale_fourier (t : ℝ) (ht : 0 < t)
       push_cast
       ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s6.56143416988b from=translated src=- shape=caceb46a vocab=59fb01ff
+-/
 theorem aux_mainAuxOne_fourier_real_const_mul (c : ℝ) (f : ℝ → ℝ) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => ((c * f x : ℝ) : ℂ)) xi =
       (c : ℂ) * FourierTransform.fourier (fun x : ℝ => (f x : ℂ)) xi := by
@@ -183,6 +191,9 @@ noncomputable def aux_mainAuxOne_windowSchwartz (psi : SchwartzMap ℝ ℝ)
     ContinuousLinearEquiv.smulLeft (Units.mk0 t⁻¹ (inv_ne_zero ht.ne'))
   t⁻¹ • SchwartzMap.compCLMOfContinuousLinearEquiv ℝ e psi
 
+/--
+@isnad1 id=eq.1h3v.s6.ab1c01e3f7c7 from=translated src=- shape=9ed931f2 vocab=30ff4565
+-/
 theorem aux_mainAuxOne_windowSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     (t : ℝ) (ht : 0 < t) (x : ℝ) :
     aux_mainAuxOne_windowSchwartz psi t ht x = aux_windowRescale psi t x := by
@@ -193,6 +204,9 @@ noncomputable def aux_mainAuxOne_scaledWindowSchwartz (psi : SchwartzMap ℝ ℝ
     (t : ℝ) (ht : 0 < t) : SchwartzMap ℝ ℝ :=
   (2 : ℝ) ^ (-2 : ℤ) • aux_mainAuxOne_windowSchwartz psi t ht
 
+/--
+@isnad1 id=eq.1h3v.s7.f8266c20fb8f from=translated src=- shape=9d2f7193 vocab=3b340683
+-/
 theorem aux_mainAuxOne_scaledWindowSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     (t : ℝ) (ht : 0 < t) (x : ℝ) :
     aux_mainAuxOne_scaledWindowSchwartz psi t ht x =
@@ -201,6 +215,9 @@ theorem aux_mainAuxOne_scaledWindowSchwartz_apply (psi : SchwartzMap ℝ ℝ)
     aux_mainAuxOne_windowSchwartz_apply]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.b9f6f41eac4a from=translated src=- shape=e6edf0ed vocab=9e5a4ae8
+-/
 theorem aux_mainAuxOne_scaledWindowSchwartz_fourier (psi : SchwartzMap ℝ ℝ)
     (t : ℝ) (ht : 0 < t) (xi : ℝ) :
     FourierTransform.fourier
@@ -215,6 +232,9 @@ theorem aux_mainAuxOne_scaledWindowSchwartz_fourier (psi : SchwartzMap ℝ ℝ)
     aux_mainAuxOne_windowRescale_fourier t ht psi xi]
   norm_cast
 
+/--
+@isnad1 id=le.2h2v.s7.404a56a36a91 from=translated src=- shape=30d03e72 vocab=b234af30
+-/
 theorem aux_mainAuxOne_scaledWindowSchwartz_support (psi : SchwartzMap ℝ ℝ)
     (hpsi : aux_mainAuxiliaryHypotheses psi) (t : ℝ) (ht : t ∈ Set.Icc 1 2) :
     Function.support
@@ -245,6 +265,9 @@ theorem aux_mainAuxOne_scaledWindowSchwartz_support (psi : SchwartzMap ℝ ℝ)
       _ ≤ 4 := hmem.2
       _ ≤ 8 := by norm_num
 
+/--
+@isnad1 id=le.3h4v.s7.1f06968f9cba from=translated src=- shape=d6830d5d vocab=a24b3f65
+-/
 theorem aux_mainAuxOne_scaledWindowSchwartz_deriv (psi : SchwartzMap ℝ ℝ)
     (hpsi : aux_mainAuxiliaryHypotheses psi) (t : ℝ) (ht : t ∈ Set.Icc 1 2) :
     ∀ m : ℕ, m < 3 → ∀ xi : ℝ,
@@ -311,7 +334,9 @@ theorem aux_mainAuxOne_scaledWindowSchwartz_deriv (psi : SchwartzMap ℝ ℝ)
 
 /--
 Extend the finite dyadic scales selected by a `TwistedDyadicChain` to a
-multiplicatively spaced bi-infinite sequence.-/
+multiplicatively spaced bi-infinite sequence.
+@isnad1 id=ex.1h2v.s7.9cd3cd6eae35 from=translated src=- shape=2aa4be82 vocab=1226217b
+-/
 theorem aux_mainAuxOne_extend_dyadic_chain (J : ℕ) (hJ : 0 < J)
     (k : aux_dyadicChain J) :
     ∃ a : ℤ → ℝ, SpacedSequence a ∧
@@ -364,6 +389,9 @@ theorem aux_mainAuxOne_extend_dyadic_chain (J : ℕ) (hJ : 0 < J)
   rw [dite_eq_left ⟨by omega, by omega⟩]
   congr 3
 
+/--
+@isnad1 id=le.4h4v.s6.f143f16749ed from=translated src=- shape=1566afe2 vocab=67a34760
+-/
 theorem aux_mainAuxOne_scaled_product_bound {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (hpsi : aux_mainAuxiliaryHypotheses psi)
     (t : ℝ) (ht : t ∈ Set.Icc 1 2) (a : ℤ → ℝ) (ha : SpacedSequence a) :
@@ -376,6 +404,9 @@ theorem aux_mainAuxOne_scaled_product_bound {n : ℕ} (hn : 2 ≤ n)
   · exact aux_mainAuxOne_scaledWindowSchwartz_support psi hpsi t ht
   · exact aux_mainAuxOne_scaledWindowSchwartz_deriv psi hpsi t ht
 
+/--
+@isnad1 id=eq.2h2v.s7.ec4ff2ef2adb from=translated src=- shape=e3738b9a vocab=620e2a09
+-/
 theorem aux_mainAuxOne_normalizer_mul_variation (n : ℕ) (hn : 2 ≤ n)
     (J : ℕ) (hJ : 0 < J) :
     ENNReal.ofReal (min 1
@@ -413,6 +444,9 @@ theorem aux_mainAuxOne_normalizer_mul_variation (n : ℕ) (hn : 2 ≤ n)
   ring_nf
   simp
 
+/--
+@isnad1 id=le.3h5v.s9.b51a5bd0201a from=translated src=- shape=2ae1f6ad vocab=bcf997d9
+-/
 theorem aux_mainAuxOne_prefix_from_seminorm {n : ℕ} (hn : 2 ≤ n)
     (M : KernelSequence 1) (C : ℝ)
     (hM : kernelSequenceSeminorm n 1 (by omega) (by omega) M ≤ ENNReal.ofReal C)
@@ -465,6 +499,9 @@ theorem aux_mainAuxOne_prefix_from_seminorm {n : ℕ} (hn : 2 ≤ n)
     _ ≤ ENNReal.ofReal C * ENNReal.ofReal ((J : ℝ) ^ variationExponent n) :=
       mul_le_mul_of_nonneg_right hterm' bot_le
 
+/--
+@isnad1 id=eq.2h5v.s7.2ade4f7d19f3 from=translated src=- shape=1256605b vocab=14b0bbcc
+-/
 theorem aux_mainAuxOne_product_rescale_identity (psi : SchwartzMap ℝ ℝ)
     (t : ℝ) (ht : 0 < t) (a : ℤ → ℝ) (ha : SpacedSequence a)
     (j : ℤ) (y : RealVector 1 × RealVector 1) :
@@ -479,6 +516,9 @@ theorem aux_mainAuxOne_product_rescale_identity (psi : SchwartzMap ℝ ℝ)
   have hapos : a j ≠ 0 := ne_of_gt (ha j).1
   field_simp [hapos, ht.ne']
 
+/--
+@isnad1 id=eq.1h4v.s7.f144d2db441f from=translated src=- shape=1705409c vocab=e134a95b
+-/
 theorem aux_mainAuxOne_twistedAverage_window {n : ℕ} (psi : SchwartzMap ℝ ℝ)
     (s : ℝ) (hs : 0 < s)
     (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
@@ -487,6 +527,9 @@ theorem aux_mainAuxOne_twistedAverage_window {n : ℕ} (psi : SchwartzMap ℝ �
   unfold twistedAverage twistedAverageAtScale
   congr 1
 
+/--
+@isnad1 id=le.4h4v.s7.eed4e945016c from=translated src=- shape=e234e565 vocab=da10e881
+-/
 theorem aux_mainAuxOne_rescaled_sequence_bound {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (hpsi : aux_mainAuxiliaryHypotheses psi)
     (t : ℝ) (ht : t ∈ Set.Icc 1 2) (a : ℤ → ℝ) (ha : SpacedSequence a) :
@@ -559,7 +602,9 @@ C_{\text{lem:main\_aux1}}
 $$
 
 See also `Auto.mainAuxOne`,
-`Auto.inductPositiveTermsReductionWhitneyProduct`.-/
+`Auto.inductPositiveTermsReductionWhitneyProduct`.
+@isnad1 id=le.4h6v.s10.a96e392909c1 from=translated src=- shape=491eb057 vocab=42019782
+-/
 theorem mainAuxOne {n : ℕ} (hn : 2 ≤ n) (psi : SchwartzMap ℝ ℝ)
     (hpsi : aux_mainAuxiliaryHypotheses psi)
     (f : ReductionNormalizedTuple n) (t : ℝ) (ht : t ∈ Set.Icc 1 2)
@@ -645,7 +690,9 @@ theorem mainAuxOne {n : ℕ} (hn : 2 ≤ n) (psi : SchwartzMap ℝ ℝ)
 
 /--
 The sharp Whitney-product reduction estimate used for the first final-reduction
-constant.-/
+constant.
+@isnad1 id=lt.1h1v.s6.9b5d286852ba from=translated src=- shape=1353f379 vocab=9fbbb47f
+-/
 theorem aux_constantWhitneyProductReduction_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitneyProduct n <
       (1397 / 2048 : ℝ) * (2 : ℝ) ^ 569 := by
@@ -672,7 +719,9 @@ theorem aux_constantWhitneyProductReduction_sharp {n : ℕ} (hn : 2 ≤ n) :
 
 /--
 The sharper form of the `mainAuxOne` constant estimate before its final
-relaxation to a pure power of two.-/
+relaxation to a pure power of two.
+@isnad1 id=lt.1h1v.s6.d14fcf80e9fe from=translated src=- shape=1353f379 vocab=1ce25ccf
+-/
 theorem aux_constantMainAuxOne_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_mainAuxOne n < (1397 / 2048 : ℝ) * (2 : ℝ) ^ 573 := by
   unfold C_mainAuxOne
@@ -695,7 +744,9 @@ $$
 C_{\text{lem:main\_aux1}}<2^{573}.
 $$
 
-See also `Auto.mainAuxOne`.-/
+See also `Auto.mainAuxOne`.
+@isnad1 id=lt.1h1v.s5.c49f65ca6719 from=translated src=- shape=34f18a82 vocab=c3546673
+-/
 theorem constantMainAuxiliaryOne {n : ℕ} (hn : 2 ≤ n) :
     C_mainAuxOne n < (2 : ℝ) ^ 573 := by
   calc
@@ -710,6 +761,9 @@ noncomputable def aux_shortLong_scaleKernel
     (phi : SchwartzMap ℝ ℝ) (t : ℝ) : ℝ → ℝ :=
   fun s ↦ t⁻¹ * phi (t⁻¹ * s)
 
+/--
+@isnad1 id=memlp.0h2v.s6.7738576e3f9f from=translated src=- shape=18360614 vocab=bbe44c92
+-/
 theorem aux_shortLong_scaleKernel_memLp (phi : SchwartzMap ℝ ℝ) (t : ℝ) :
     MemLp (aux_shortLong_scaleKernel phi t) 2 volume := by
   by_cases ht : t = 0
@@ -743,6 +797,9 @@ noncomputable def aux_shortLong_averageLp {n : ℕ} (hn : 2 ≤ n)
   (aux_twistedAverage_memLp hn f.1 (aux_shortLong_scaleKernel phi t)
     (aux_shortLong_scaleKernel_memLp phi t)).toLp _
 
+/--
+@isnad1 id=contdiff.2h6v.s8.abea76a675ba from=translated src=- shape=24272b07 vocab=8b170c98
+-/
 theorem aux_shortLong_twistedAverageAtScale_contDiffOn {n : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -793,6 +850,9 @@ theorem aux_shortLong_twistedAverageAtScale_contDiffOn {n : ℕ}
     (lt_of_lt_of_le hα ht.1)).hasDerivWithinAt.derivWithin
       ((uniqueDiffOn_Icc hαβ) t ht)
 
+/--
+@isnad1 id=eq.1h5v.s13.f0dd47a9570a from=translated src=- shape=0a4c7244 vocab=06b0176f
+-/
 theorem aux_shortLong_averageLp_enorm_sub {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (s t : ℝ) :
     (‖aux_shortLong_averageLp hn phi f s -
@@ -810,6 +870,9 @@ theorem aux_shortLong_averageLp_enorm_sub {n : ℕ} (hn : 2 ≤ n)
   rw [Lp.enorm_toLp]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.5ee09f087dbb from=translated src=- shape=2a6596cb vocab=9faf22ef
+-/
 theorem aux_shortLong_ftcATphi_lintegral {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (k : ℤ) :
@@ -959,6 +1022,9 @@ theorem aux_shortLong_ftcATphi_lintegral {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     ∫⁻ t in Set.Icc (1 : ℝ) 2, ‖g t‖ₑ ^ (2 : ℝ) * ENNReal.ofReal t⁻¹
   rw [hleftDensity, ← hleftOfReal, hFTC, hrightOfReal, hrightEnorm]
 
+/--
+@isnad1 id=le.1h7v.s10.f128b646f370 from=translated src=- shape=60538c29 vocab=4b78b4bd
+-/
 theorem aux_shortLong_pointwise_local_energy {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (J : ℕ) (k : ℤ)
@@ -1045,6 +1111,9 @@ theorem aux_shortLong_pointwise_local_energy {n : ℕ} (phi : SchwartzMap ℝ �
           (fun i y ↦ f i y) x‖ₑ ^ (2 : ℝ) * ENNReal.ofReal t⁻¹ :=
       aux_shortLong_ftcATphi_lintegral phi f x k
 
+/--
+@isnad1 id=strongly.0h4v.s8.32cd805913f5 from=translated src=- shape=a6947991 vocab=a7dad3ef
+-/
 theorem aux_shortLong_joint_measurable_twistedAverageAtScale {n : ℕ}
     (psi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (α : ℝ) :
@@ -1061,6 +1130,9 @@ theorem aux_shortLong_joint_measurable_twistedAverageAtScale {n : ℕ}
     hF.stronglyMeasurable.integral_prod_right' (ν := volume)
   simpa only [F, aux_twistedAverageAtScale, aux_twistedAverage] using hInt
 
+/--
+@isnad1 id=eq.2h6v.s15.e6c5f08e095e from=translated src=- shape=df138934 vocab=f1c81c40
+-/
 theorem aux_shortLong_lp_chain_energy_eq_lintegral {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (J : ℕ) (k : ℤ)
     (u : Fin (J + 1) → aux_dyadicInterval k) (_hu : Monotone u) :
@@ -1105,6 +1177,9 @@ theorem aux_shortLong_lp_chain_energy_eq_lintegral {n : ℕ} (hn : 2 ≤ n)
       simpa using (lintegral_finsetSum' (μ := volume) Finset.univ
         (f := fun j x ↦ ‖g j x‖ₑ ^ (2 : ℝ)) (fun j _ ↦ hmeas j)).symm
 
+/--
+@isnad1 id=le.1h5v.s12.402e14a86bc1 from=translated src=- shape=b43f6632 vocab=44d89d45
+-/
 theorem aux_shortLong_local_variation_sq_le {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (J : ℕ) (k : ℤ) :
     (finiteVariationSeminorm
@@ -1233,6 +1308,9 @@ noncomputable def aux_shortLong_intEnergy (d : ℤ → ℤ → ℝ≥0∞) {J : 
     (t : Fin (J + 1) → ℤ) : ℝ≥0∞ :=
   ∑ j : Fin J, d (t j.succ) (t j.castSucc)
 
+/--
+@isnad1 id=ex.2h3v.s8.9d750ee6ec80 from=translated src=- shape=0a16dd4e vocab=ae7cec3c
+-/
 theorem aux_shortLong_compress_mono_chain
     (d : ℤ → ℤ → ℝ≥0∞) (hdiag : ∀ z, d z z = 0) :
     ∀ (J : ℕ) (t : Fin (J + 1) → ℤ), Monotone t →
@@ -1307,6 +1385,9 @@ theorem aux_shortLong_compress_mono_chain
             rfl
           rw [hsplit, henergy, hqsplit]
 
+/--
+@isnad1 id=le.1h1v.s4.e49871629b72 from=translated src=- shape=7f2e781e vocab=49a6f57c
+-/
 theorem aux_shortLong_variationExponent_nonneg {n : ℕ} (hn : 2 ≤ n) :
     0 ≤ variationExponent n := by
   unfold variationExponent
@@ -1316,6 +1397,9 @@ theorem aux_shortLong_variationExponent_nonneg {n : ℕ} (hn : 2 ≤ n) :
     Real.rpow_le_one_of_one_le_of_nonpos (by norm_num) hexp
   linarith
 
+/--
+@isnad1 id=le.1h3v.s7.cdd42554532c from=translated src=- shape=d2f7846e vocab=99269517
+-/
 theorem aux_shortLong_energy_of_root_le (E S V : ℝ≥0∞)
     (h : E ^ ((2 : ℝ)⁻¹) ≤ 2 * S ^ ((2 : ℝ)⁻¹) + V) :
     E ≤ 8 * S + 2 * V ^ (2 : ℝ) := by
@@ -1341,6 +1425,9 @@ theorem aux_shortLong_energy_of_root_le (E S V : ℝ≥0∞)
       · rw [← mul_assoc]
         norm_num
 
+/--
+@isnad1 id=le.3h5v.s12.fd4a2e1931e2 from=translated src=- shape=06ae10fc vocab=c64a9cfe
+-/
 theorem aux_shortLong_long_variation_sq_le {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (J : ℕ) (_hJ : 0 < J)
     (A : ℝ) (hA : aux_dyadicVariationBound A (fun x ↦ phi x) f.1) :
@@ -1434,6 +1521,9 @@ theorem aux_shortLong_long_variation_sq_le {n : ℕ} (hn : 2 ≤ n)
   rw [hright] at hsquare
   exact hsquare
 
+/--
+@isnad1 id=eq.2h3v.s7.1050b902e0d3 from=translated src=- shape=ab5a120c vocab=5a7ef3bd
+-/
 theorem aux_shortLong_dyadic_index_unique {x : ℝ} {k l : ℤ}
     (hk : (2 : ℝ) ^ k ≤ x ∧ x < (2 : ℝ) ^ (k + 1))
     (hl : (2 : ℝ) ^ l ≤ x ∧ x < (2 : ℝ) ^ (l + 1)) :
@@ -1452,6 +1542,9 @@ theorem aux_shortLong_dyadic_index_unique {x : ℝ} {k l : ℤ}
       (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mpr hstep
     exact (not_lt_of_ge (hp.trans hl.1)) hk.2
 
+/--
+@isnad1 id=le.2h3v.s7.191a4e3ae620 from=translated src=- shape=c9b6ea47 vocab=aa4afbe8
+-/
 theorem aux_shortLong_kappa_card_le {J : ℕ}
     (t : Fin (J + 1) → ℝ) (_htpos : ∀ j, 0 < t j)
     (kappa : Finset ℤ)
@@ -1468,6 +1561,9 @@ theorem aux_shortLong_kappa_card_le {J : ℕ}
     · simpa [hkl] using hq l
   simpa using Fintype.card_le_of_injective q hqin
 
+/--
+@isnad1 id=ex.1h1v.s7.c247aab81658 from=translated src=- shape=daf0e4ad vocab=db7deec8
+-/
 theorem aux_shortLong_finset_sum_as_dyadic_chain (kappa : Finset ℤ)
     (hkappa : kappa.Nonempty) :
     ∃ (K : ℕ) (_ : 0 < K) (_ : K = kappa.card) (q : aux_dyadicChain K),
@@ -1527,6 +1623,9 @@ theorem aux_shortLong_finset_sum_as_dyadic_chain (kappa : Finset ℤ)
       change F (e j) = F (qfun j.castSucc)
       simp [qfun]
 
+/--
+@isnad1 id=le.5h6v.s10.a7ea5779ef97 from=translated src=- shape=fb76808e vocab=27f5fdcd
+-/
 theorem aux_shortLong_mainAuxOne_finset_pointwise {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (hpsi : aux_mainAuxiliaryHypotheses psi)
     (f : ReductionNormalizedTuple n) (J : ℕ) (hJ : 0 < J)
@@ -1600,6 +1699,9 @@ theorem aux_shortLong_mainAuxOne_finset_pointwise {n : ℕ} (hn : 2 ≤ n)
   · have hempty : kappa = ∅ := Finset.not_nonempty_iff_eq_empty.mp hkappa
     simp [hempty]
 
+/--
+@isnad1 id=auxvaria.5h5v.s12.52d4c3358f0a from=translated src=- shape=f76e80ca vocab=5e541cfc
+-/
 theorem aux_shortLong_finish_of_local {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (B A : ℝ)
     (hBnonneg : 0 ≤ B) (hAnonneg : 0 ≤ A)
@@ -1668,6 +1770,9 @@ theorem aux_shortLong_finish_of_local {n : ℕ} (hn : 2 ≤ n)
   rw [hjump]
   exact henergy.trans htarget
 
+/--
+@isnad1 id=auxvaria.5h4v.s12.7f91008cd60f from=translated src=- shape=87008bc3 vocab=85c5f8e9
+-/
 theorem aux_shortLong_finish {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (A : ℝ)
     (hApos : 0 < A) (hCnonneg : 0 ≤ C_mainAuxOne n)
@@ -1738,6 +1843,9 @@ theorem aux_shortLong_finish {n : ℕ} (hn : 2 ≤ n)
   rw [hjump]
   exact henergy.trans htarget
 
+/--
+@isnad1 id=eq.0h1v.s7.a3e5f161ae9a from=translated src=- shape=d01b243a vocab=9993c863
+-/
 theorem aux_shortLong_T_eq_tBump (phi : SchwartzMap ℝ ℝ) :
     Auto.aux_T (fun x : ℝ ↦ phi x) = aux_tBump phi := by
   funext x
@@ -1745,6 +1853,9 @@ theorem aux_shortLong_T_eq_tBump (phi : SchwartzMap ℝ ℝ) :
     Auto.multiplicationOperatorX aux_tBump
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=ex.1h1v.s8.531a7092113c from=translated src=- shape=5fec3ccf vocab=9678b77c
+-/
 theorem aux_shortLong_tBump_auxHyp (phi : SchwartzMap ℝ ℝ)
     (hTphi : aux_mainAuxiliaryFourierHypotheses
       (Auto.aux_T (fun x : ℝ ↦ phi x))) :
@@ -1768,6 +1879,9 @@ theorem aux_shortLong_tBump_auxHyp (phi : SchwartzMap ℝ ℝ)
         exact htau.trans (aux_shortLong_T_eq_tBump phi).symm]
     exact hTphi
 
+/--
+@isnad1 id=le.2h3v.s7.dd4e2ca2ea8a from=translated src=- shape=1475e69d vocab=176ec7bd
+-/
 theorem aux_shortLong_finset_log_integral_le
     (κ : Finset ℤ) (g : ℤ → ℝ → ℝ≥0∞)
     (hg : ∀ k ∈ κ, AEMeasurable (g k) (volume.restrict (Set.Icc (1 : ℝ) 2)))
@@ -1808,6 +1922,9 @@ theorem aux_shortLong_finset_log_integral_le
       simp [Real.volume_Icc]
       norm_num
 
+/--
+@isnad1 id=aemeasur.1h2v.s9.09a643c065c4 from=translated src=- shape=52e3c1e8 vocab=ac7c54f2
+-/
 theorem aux_shortLong_eLpNorm_sq_aemeasurable_of_joint {n : ℕ}
     (g : ℝ → EuclideanSpace ℝ (Fin n) → ℝ)
     (hjoint : AEStronglyMeasurable (fun tx : ℝ × EuclideanSpace ℝ (Fin n) ↦
@@ -1823,6 +1940,9 @@ theorem aux_shortLong_eLpNorm_sq_aemeasurable_of_joint {n : ℕ}
     (eLpNorm_nnreal_pow_eq_lintegral (μ := volume) (f := g t)
       (p := (2 : NNReal)) (by norm_num))
 
+/--
+@isnad1 id=le.5h5v.s11.bbcc06a5d571 from=translated src=- shape=288a1a2d vocab=8ca1cea1
+-/
 theorem aux_shortLong_mainAuxOne_finset_log_lintegral {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (hpsi : aux_mainAuxiliaryHypotheses psi)
     (f : ReductionNormalizedTuple n) (J : ℕ) (hJ : 0 < J)
@@ -1848,6 +1968,9 @@ theorem aux_shortLong_mainAuxOne_finset_log_lintegral {n : ℕ} (hn : 2 ≤ n)
   · filter_upwards [self_mem_ae_restrict measurableSet_Icc] with t ht
     simpa [F] using aux_shortLong_mainAuxOne_finset_pointwise hn psi hpsi f J hJ kappa hcard t ht
 
+/--
+@isnad1 id=le.5h6v.s12.ab7b37349ee2 from=translated src=- shape=93430d77 vocab=1f5f2a23
+-/
 theorem aux_shortLong_local_finset_bound {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n)
     (tau : SchwartzMap ℝ ℝ) (htau : (tau : ℝ → ℝ) = aux_tBump phi)
@@ -1913,7 +2036,9 @@ $$
 2A.
 $$
 
-See also `Auto.mainAuxOne`.-/
+See also `Auto.mainAuxOne`.
+@isnad1 id=auxvaria.5h5v.s10.6cf12c85f94e from=translated src=- shape=19d8a3c2 vocab=1ac59969
+-/
 theorem shortLongFtcReduction {n : ℕ} (hn : 2 ≤ n) (phi : SchwartzMap ℝ ℝ)
     (hTphi : aux_mainAuxiliaryFourierHypotheses
       (Auto.aux_T (fun x : ℝ ↦ phi x)))
@@ -1930,6 +2055,9 @@ theorem shortLongFtcReduction {n : ℕ} (hn : 2 ≤ n) (phi : SchwartzMap ℝ �
 noncomputable def C_mainBumpOneLongOne (n : ℕ) : ℝ :=
   (2 * C_uniPair) ^ 2 * C_mainAuxOne n
 
+/--
+@isnad1 id=eq.2h3v.s7.76d8cf3dea27 from=translated src=- shape=91917df9 vocab=3cb4b296
+-/
 theorem aux_mainBumpOneLongOne_fourier_sub_of_integrable (f g : ℝ → ℝ)
     (hf : Integrable f) (hg : Integrable g) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ ((f x - g x : ℝ) : ℂ)) xi =
@@ -1963,6 +2091,9 @@ theorem aux_mainBumpOneLongOne_fourier_sub_of_integrable (f g : ℝ → ℝ)
       integral_sub hf' hg'
     _ = _ := by rfl
 
+/--
+@isnad1 id=contdiff.0h1v.s7.434b6d4c0bf6 from=translated src=- shape=9f3daeb2 vocab=75bc297c
+-/
 theorem aux_mainBumpOneLongOne_window_profile_smooth (phi : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞)
       (FourierTransform.fourier (fun x : ℝ => (phi x : ℂ))) := by
@@ -1976,6 +2107,9 @@ theorem aux_mainBumpOneLongOne_window_profile_smooth (phi : SchwartzMap ℝ ℝ)
   rw [SchwartzMap.fourier_coe, hphiC] at hs
   exact hs
 
+/--
+@isnad1 id=le.2h5v.s7.679f7601d7fa from=translated src=- shape=69100aff vocab=96ce9062
+-/
 theorem aux_mainBumpOneLongOne_window_profile_deriv_bound (c : ℝ) (N : ℕ)
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow c N phi)
     (m : ℕ) (hm : m ≤ N) (xi : ℝ) :
@@ -2005,6 +2139,9 @@ noncomputable def aux_mainBumpOneLongOne_psi
     (phi0 phi1 : SchwartzMap ℝ ℝ) : SchwartzMap ℝ ℝ :=
   (2 * C_uniPair)⁻¹ • (phi0 - phi1)
 
+/--
+@isnad1 id=eq.0h3v.s8.a0890464e0b6 from=translated src=- shape=c7ceda3f vocab=c80b75f5
+-/
 theorem aux_mainBumpOneLongOne_psi_fourier (phi0 phi1 : SchwartzMap ℝ ℝ)
     (xi : ℝ) :
     FourierTransform.fourier
@@ -2020,6 +2157,9 @@ theorem aux_mainBumpOneLongOne_psi_fourier (phi0 phi1 : SchwartzMap ℝ ℝ)
   rw [aux_mainAuxOne_fourier_real_const_mul,
     aux_mainBumpOneLongOne_fourier_sub_of_integrable _ _ phi0.integrable phi1.integrable]
 
+/--
+@isnad1 id=auxmaina.1h2v.s5.1b24d067787f from=translated src=- shape=7869c36b vocab=0f8c3b49
+-/
 theorem aux_mainBumpOneLongOne_psi_hypotheses (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
     aux_mainAuxiliaryHypotheses (aux_mainBumpOneLongOne_psi phi0 phi1) := by
@@ -2104,6 +2244,9 @@ theorem aux_mainBumpOneLongOne_psi_hypotheses (phi0 phi1 : SchwartzMap ℝ ℝ)
         gcongr
       _ = 1 := by norm_num [C_uniPair]
 
+/--
+@isnad1 id=eq.0h5v.s5.4a18cc3b8d2f from=translated src=- shape=2092a37f vocab=3f870c8e
+-/
 theorem aux_mainBumpOneLongOne_twistedAverageAtScale_const_mul {n : ℕ} (c : ℝ)
     (phi : ℝ → ℝ) (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (s : ℝ) :
     twistedAverageAtScale s (fun u => c * phi u) f =
@@ -2122,6 +2265,9 @@ theorem aux_mainBumpOneLongOne_twistedAverageAtScale_const_mul {n : ℕ} (c : �
           ring
     _ = _ := integral_const_mul _ _
 
+/--
+@isnad1 id=eq.1h5v.s10.3a68a926157c from=translated src=- shape=98d866eb vocab=993f38ea
+-/
 theorem aux_mainBumpOneLongOne_twistedAverageAtScale_sub {n : ℕ}
     (phi0 phi1 : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -2168,6 +2314,9 @@ theorem aux_mainBumpOneLongOne_twistedAverageAtScale_sub {n : ℕ}
         ring
     _ = _ := integral_sub hI0 hI1
 
+/--
+@isnad1 id=eq.1h5v.s10.78640e170f5d from=translated src=- shape=33ead65c vocab=1774ccdc
+-/
 theorem aux_mainBumpOneLongOne_psi_twistedAverageAtScale {n : ℕ}
     (phi0 phi1 : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -2186,6 +2335,9 @@ theorem aux_mainBumpOneLongOne_psi_twistedAverageAtScale {n : ℕ}
     aux_mainBumpOneLongOne_twistedAverageAtScale_sub phi0 phi1 f s hs]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.04e5207b6073 from=translated src=- shape=b5680249 vocab=aec00c05
+-/
 theorem aux_mainBumpOneLongOne_eLpNorm_sq_const_mul {X : Type*} [MeasurableSpace X]
     (c : ℝ) (hc : 0 ≤ c) (g : X → ℝ) (mu : Measure X) :
     eLpNorm (fun x => c * g x) 2 mu ^ 2 =
@@ -2218,7 +2370,9 @@ $$
 
 See also `Auto.mainBumpOneLongOne`,
 `Auto.uniPair`,
-`Auto.mainAuxOne`.-/
+`Auto.mainAuxOne`.
+@isnad1 id=le.3h6v.s11.daa6acece2b8 from=translated src=- shape=30591b63 vocab=49fc0a81
+-/
 theorem mainBumpOneLongOne {n : ℕ} (hn : 2 ≤ n)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (f : ReductionNormalizedTuple n) (J : ℕ) (hJ : 0 < J)
@@ -2324,7 +2478,9 @@ $$
 C_{\text{lem:mainbump1\_long1}}<2^{605}.
 $$
 
-See also `Auto.mainBumpOneLongOne`.-/
+See also `Auto.mainBumpOneLongOne`.
+@isnad1 id=lt.1h1v.s5.bc724fd3134a from=translated src=- shape=34f18a82 vocab=4336499d
+-/
 theorem constantMainBumpOneLongOne {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpOneLongOne n < (2 : ℝ) ^ 605 := by
   unfold C_mainBumpOneLongOne
@@ -2343,7 +2499,9 @@ theorem constantMainBumpOneLongOne {n : ℕ} (hn : 2 ≤ n) :
 noncomputable def C_mainBumpOneLongTwo (n : ℕ) : ℝ :=
   2 * C_inductPositiveTermsReductionNonWhitneySkip n
 
-/-- Extend all finite scales in a dyadic chain to a spaced sequence.-/
+/-- Extend all finite scales in a dyadic chain to a spaced sequence.
+@isnad1 id=ex.0h2v.s7.22890b3f3cac from=translated src=- shape=9c311c59 vocab=4eed5005
+-/
 theorem aux_mainBumpOneLongTwo_extend_dyadic_chain (J : ℕ)
     (k : aux_dyadicChain J) :
     ∃ a : ℤ → ℝ, SpacedSequence a ∧
@@ -2398,6 +2556,9 @@ theorem aux_mainBumpOneLongTwo_extend_dyadic_chain (J : ℕ)
     apply h
     omega
 
+/--
+@isnad1 id=eq.0h3v.s6.6459e780909c from=translated src=- shape=30381c34 vocab=d361aece
+-/
 theorem aux_mainBumpOneLongTwo_sum_range_two_mul {M : Type*} [AddCommMonoid M]
     (q : ℕ → M) (K : ℕ) :
     (∑ j ∈ Finset.range (2 * K), q j) =
@@ -2409,6 +2570,9 @@ theorem aux_mainBumpOneLongTwo_sum_range_two_mul {M : Type*} [AddCommMonoid M]
       simp only [Nat.mul_succ, Finset.sum_range_succ, ih]
       ac_rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.320779bf9c59 from=translated src=- shape=8b005e12 vocab=d361aece
+-/
 theorem aux_mainBumpOneLongTwo_sum_range_two_mul_add_one
     {M : Type*} [AddCommMonoid M] (q : ℕ → M) (K : ℕ) :
     (∑ j ∈ Finset.range (2 * K + 1), q j) =
@@ -2418,6 +2582,9 @@ theorem aux_mainBumpOneLongTwo_sum_range_two_mul_add_one
   rw [Finset.sum_range_succ]
   ac_rfl
 
+/--
+@isnad1 id=le.4h6v.s11.3836ce0ec4af from=translated src=- shape=7154e0c6 vocab=f445a489
+-/
 theorem aux_mainBumpOneLongTwo_nonWhitneySkip_prefix {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
@@ -2539,6 +2706,9 @@ theorem aux_mainBumpOneLongTwo_nonWhitneySkip_prefix {n : ℕ} (hn : 2 ≤ n)
         ENNReal.ofReal ((N : ℝ) ^ variationExponent n) := by
       simpa [Fnorm] using hprefix
 
+/--
+@isnad1 id=le.4h7v.s11.b02dcd9de297 from=translated src=- shape=f2591d9d vocab=3d449dea
+-/
 theorem aux_mainBumpOneLongTwo_nonWhitneySkip_prefix_le {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
@@ -2564,6 +2734,9 @@ theorem aux_mainBumpOneLongTwo_nonWhitneySkip_prefix_le {n : ℕ} (hn : 2 ≤ n)
         ENNReal.ofReal ((J : ℝ) ^ variationExponent n) := ENNReal.ofReal_le_ofReal hpow
     exact hprefix.trans (mul_le_mul_of_nonneg_left hpowENN bot_le)
 
+/--
+@isnad1 id=eq.1h8v.s12.c33fa28c7f9f from=translated src=- shape=608c17f5 vocab=82530114
+-/
 theorem aux_mainBumpOneLongTwo_chain_pair_eq {n : ℕ} (a : ℤ → ℝ) (J : ℕ)
     (k : aux_dyadicChain J)
     (ha : ∀ j : Fin (J + 1), a (j : ℤ) = (2 : ℝ) ^ (k.1 j))
@@ -2594,6 +2767,9 @@ noncomputable def aux_mainBumpOneLongTwo_pairEnergy {n : ℕ}
           (fun i y ↦ f.1 i y) x)
     2 volume ^ 2
 
+/--
+@isnad1 id=eq.0h6v.s11.28d12a77941f from=translated src=- shape=85414f0b vocab=f5d61be4
+-/
 theorem aux_mainBumpOneLongTwo_pairEnergy_even {n : ℕ}
     (phi0 phi1 : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n)
     (a : ℤ → ℝ) (r : ℕ) :
@@ -2607,6 +2783,9 @@ theorem aux_mainBumpOneLongTwo_pairEnergy_even {n : ℕ}
   unfold aux_mainBumpOneLongTwo_pairEnergy
   congr 5
 
+/--
+@isnad1 id=eq.0h6v.s11.226c7e23ede6 from=translated src=- shape=de4002a5 vocab=f5d61be4
+-/
 theorem aux_mainBumpOneLongTwo_pairEnergy_odd {n : ℕ}
     (phi0 phi1 : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n)
     (a : ℤ → ℝ) (r : ℕ) :
@@ -2620,6 +2799,9 @@ theorem aux_mainBumpOneLongTwo_pairEnergy_odd {n : ℕ}
   unfold aux_mainBumpOneLongTwo_pairEnergy
   congr 5
 
+/--
+@isnad1 id=eq.1h8v.s11.b6d79f582bf4 from=translated src=- shape=b4587c5d vocab=f1786bbb
+-/
 theorem aux_mainBumpOneLongTwo_chain_pairEnergy_eq {n : ℕ} (a : ℤ → ℝ) (J : ℕ)
     (k : aux_dyadicChain J)
     (ha : ∀ j : Fin (J + 1), a (j : ℤ) = (2 : ℝ) ^ (k.1 j))
@@ -2648,7 +2830,9 @@ where $C_{\text{lem:mainbump1\_long2}}=2 C_{\text{induct positive terms - reduct
 non-Whitney, skip terms}}$.
 
 See also `Auto.mainBumpOneLongTwo`,
-`Auto.inductPositiveTermsReductionNonWhitneySkip`.-/
+`Auto.inductPositiveTermsReductionNonWhitneySkip`.
+@isnad1 id=le.3h6v.s11.d200b63151d7 from=translated src=- shape=33d2485d vocab=e8312c3f
+-/
 theorem mainBumpOneLongTwo {n : ℕ} (hn : 2 ≤ n)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (f : ReductionNormalizedTuple n) (J : ℕ) (hJ : 0 < J)
@@ -2833,7 +3017,9 @@ $$
 C_{\text{lem:mainbump1\_long2}}<\tfrac89 2^{543}<2^{543}.
 $$
 
-See also `Auto.mainBumpOneLongTwo`.-/
+See also `Auto.mainBumpOneLongTwo`.
+@isnad1 id=lt.1h1v.s6.a51a26b5ffaa from=translated src=- shape=1353f379 vocab=4f938a60
+-/
 theorem constantMainBumpOneLongTwo {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpOneLongTwo n < (8 / 9 : ℝ) * (2 : ℝ) ^ 543 := by
   unfold C_mainBumpOneLongTwo
@@ -2854,6 +3040,9 @@ theorem constantMainBumpOneLongTwo {n : ℕ} (hn : 2 ≤ n) :
 noncomputable def C_mainBumpOneLong (n : ℕ) : ℝ :=
   2 * (C_mainBumpOneLongOne n + C_mainBumpOneLongTwo n)
 
+/--
+@isnad1 id=aestrong.0h4v.s9.281c1390368c from=translated src=- shape=d58babd8 vocab=7e128c28
+-/
 theorem aux_mainBumpOneLong_average_aestronglyMeasurable {n : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (t : ℝ) :
@@ -2874,6 +3063,9 @@ theorem aux_mainBumpOneLong_average_aestronglyMeasurable {n : ℕ}
   filter_upwards [] with x
   rfl
 
+/--
+@isnad1 id=le.0h2v.s6.4fb72c5d3142 from=translated src=- shape=5f4d4362 vocab=8275746e
+-/
 theorem aux_mainBumpOneLong_ennreal_add_sq_le (u v : ℝ≥0∞) :
     (u + v) ^ (2 : ℝ) ≤ 2 * (u ^ (2 : ℝ) + v ^ (2 : ℝ)) := by
   simp only [ENNReal.rpow_two]
@@ -2893,11 +3085,17 @@ theorem aux_mainBumpOneLong_ennreal_add_sq_le (u v : ℝ≥0∞) :
     ENNReal.toReal_pow]
   nlinarith [sq_nonneg (u.toReal - v.toReal)]
 
+/--
+@isnad1 id=le.0h1v.s3.4164bf721aa0 from=translated src=- shape=b9369acb vocab=038f649e
+-/
 theorem aux_mainBumpOneLong_one_nonneg (n : ℕ) :
     0 ≤ C_mainBumpOneLongOne n := by
   unfold C_mainBumpOneLongOne
   exact mul_nonneg (sq_nonneg _) (aux_C_mainAuxOne_nonneg n)
 
+/--
+@isnad1 id=le.0h1v.s3.4388d36991a8 from=translated src=- shape=b9369acb vocab=f87d6e4e
+-/
 theorem aux_mainBumpOneLong_two_nonneg (n : ℕ) :
     0 ≤ C_mainBumpOneLongTwo n := by
   have hdiagonal : 0 ≤ C_diagonalBandReduction := by
@@ -2917,6 +3115,9 @@ theorem aux_mainBumpOneLong_two_nonneg (n : ℕ) :
   unfold C_mainBumpOneLongTwo
   exact mul_nonneg (by norm_num) hskip
 
+/--
+@isnad1 id=ex.0h2v.s7.66314002aafa from=translated src=- shape=b9ecbdc8 vocab=cfd4fefd
+-/
 theorem aux_mainBumpOneLong_shifted_dyadic_chain {J : ℕ}
     (k : aux_dyadicChain J) :
     ∃ q : aux_dyadicChain J, ∀ j : Fin J, q.1 j.castSucc = k.1 j.succ := by
@@ -2964,7 +3165,9 @@ C_{\text{lem:mainbump1\_long1}})$.
 
 See also `Auto.mainBumpOneLong`,
 `Auto.mainBumpOneLongTwo`,
-`Auto.mainBumpOneLongOne`.-/
+`Auto.mainBumpOneLongOne`.
+@isnad1 id=auxdyadi.2h4v.s9.5162673d6b31 from=translated src=- shape=b64b36be vocab=8a2f628a
+-/
 theorem mainBumpOneLong {n : ℕ} (hn : 2 ≤ n)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (f : ReductionNormalizedTuple n) :
@@ -3074,6 +3277,9 @@ theorem mainBumpOneLong {n : ℕ} (hn : 2 ≤ n)
       · exact hC1
       · exact hC2
 
+/--
+@isnad1 id=lt.1h1v.s6.3245784f5c9b from=translated src=- shape=1353f379 vocab=cb625c75
+-/
 theorem aux_mainBumpOneLong_one_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpOneLongOne n < (1397 / 2048 : ℝ) * (2 : ℝ) ^ 605 := by
   unfold C_mainBumpOneLongOne
@@ -3100,7 +3306,9 @@ $$
 C_{\text{lem:mainbump1\_long}}<\tfrac{11}{16}2^{606}<2^{606}.
 $$
 
-See also `Auto.mainBumpOneLong`.-/
+See also `Auto.mainBumpOneLong`.
+@isnad1 id=lt.1h1v.s6.a54073089a80 from=translated src=- shape=1353f379 vocab=df86b39a
+-/
 theorem constantMainBumpOneLong {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpOneLong n < (11 / 16 : ℝ) * (2 : ℝ) ^ 606 := by
   have h1 := aux_mainBumpOneLong_one_sharp hn
@@ -3140,6 +3348,9 @@ noncomputable def C_mainBumpOne (n : ℕ) : ℝ :=
 
 /-! Private Fourier and scalar-normalization infrastructure for `mainBumpOne`. -/
 
+/--
+@isnad1 id=eq.1h1v.s6.1bcd33b3e468 from=translated src=- shape=121319e1 vocab=9254ebdb
+-/
 theorem aux_mainBumpOne_T_cast_eq (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) :
     (fun x : ℝ ↦ (Auto.aux_sd_T f x : ℂ)) =
       Auto.aux_T (fun x : ℝ ↦ (f x : ℂ)) := by
@@ -3159,6 +3370,9 @@ theorem aux_mainBumpOne_T_cast_eq (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) :
     Auto.aux_T
   rw [← hfun, hcast]
 
+/--
+@isnad1 id=eq.0h3v.s8.fb73d502abd5 from=translated src=- shape=594ae57a vocab=494906e1
+-/
 theorem aux_mainBumpOne_T_fourier_formula (phi : SchwartzMap ℝ ℝ)
     (m : ℕ) (xi : ℝ) :
     iteratedDeriv m
@@ -3178,6 +3392,9 @@ theorem aux_mainBumpOne_T_fourier_formula (phi : SchwartzMap ℝ ℝ)
   rw [aux_mainBumpOne_T_cast_eq _ hsmooth, ← hphiC]
   simpa using Auto.fourierDerivativeMul phiC m xi
 
+/--
+@isnad1 id=eq.2h2v.s7.3c34b34d1d5b from=translated src=- shape=6acade70 vocab=a83eed32
+-/
 theorem aux_mainBumpOne_deriv_eq_zero_of_eq_one_on_Icc
     (F : ℝ → ℂ) (x : ℝ) (hx : |x| < 1 / 2)
     (hF : ∀ y ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2), F y = 1) :
@@ -3195,6 +3412,9 @@ theorem aux_mainBumpOne_deriv_eq_zero_of_eq_one_on_Icc
     deriv F x = deriv (fun _ : ℝ => (1 : ℂ)) x := Filter.EventuallyEq.deriv_eq heq
     _ = 0 := deriv_const _ _
 
+/--
+@isnad1 id=le.1h1v.s7.cfdacbfd198b from=translated src=- shape=4e2603ba vocab=c6822cd6
+-/
 theorem aux_mainBumpOne_T_fourier_support_window (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) :
     Function.support
@@ -3249,6 +3469,9 @@ theorem aux_mainBumpOne_T_fourier_support_window (phi : SchwartzMap ℝ ℝ)
     apply hne
     simpa [iteratedDeriv_zero, hderiv] using hformula
 
+/--
+@isnad1 id=eq.1h2v.s6.1af59d585613 from=translated src=- shape=07037dab vocab=c6400f1e
+-/
 theorem aux_mainBumpOne_T_const_mul (c : ℝ) (f : ℝ → ℝ)
     (hf : ContDiff ℝ 1 f) :
     Auto.aux_sd_T (fun x ↦ c * f x) =
@@ -3262,6 +3485,9 @@ theorem aux_mainBumpOne_T_const_mul (c : ℝ) (f : ℝ → ℝ)
       ring]
   rw [deriv_const_mul c hdiff]
 
+/--
+@isnad1 id=eq.2h3v.s7.3e8879a34fad from=translated src=- shape=dc42204e vocab=4894c7d8
+-/
 theorem aux_mainBumpOne_window_profile_deriv_zero_outside
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow C_uniPair N_uniPair phi)
     (m : ℕ) (xi : ℝ) (hxi : xi ∉ Set.Icc (-1 : ℝ) 1) :
@@ -3279,6 +3505,9 @@ theorem aux_mainBumpOne_window_profile_deriv_zero_outside
   intro hsupp
   exact hxi (hderivSupp hsupp)
 
+/--
+@isnad1 id=le.2h3v.s7.3a874b6b4ab1 from=translated src=- shape=dbb3b404 vocab=143b25f2
+-/
 theorem aux_mainBumpOne_T_fourier_deriv_bound_window
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow C_uniPair N_uniPair phi)
     (m : ℕ) (hm : m < 3) (xi : ℝ) :
@@ -3332,10 +3561,16 @@ noncomputable def aux_mainBumpOne_psi
     (phi : SchwartzMap ℝ ℝ) : SchwartzMap ℝ ℝ :=
   (3 * C_uniPair)⁻¹ • phi
 
+/--
+@isnad1 id=eq.0h2v.s7.59819dead457 from=translated src=- shape=177700e8 vocab=9ddf96f3
+-/
 theorem aux_mainBumpOne_psi_apply (phi : SchwartzMap ℝ ℝ) (x : ℝ) :
     aux_mainBumpOne_psi phi x = (3 * C_uniPair)⁻¹ * phi x := by
   simp [aux_mainBumpOne_psi, smul_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.ed0109fea765 from=translated src=- shape=f8b4a5ee vocab=9ca12f55
+-/
 theorem aux_mainBumpOne_psi_T_fourier (phi : SchwartzMap ℝ ℝ)
     (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦
@@ -3353,6 +3588,9 @@ theorem aux_mainBumpOne_psi_T_fourier (phi : SchwartzMap ℝ ℝ)
         exact aux_mainBumpOne_psi_apply phi y,
     hT, aux_mainAuxOne_fourier_real_const_mul]
 
+/--
+@isnad1 id=auxmaina.1h1v.s6.975ee9df70ff from=translated src=- shape=a3b66b90 vocab=cc74da83
+-/
 theorem aux_mainBumpOne_psi_T_hypotheses (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) :
     aux_mainAuxiliaryFourierHypotheses
@@ -3402,6 +3640,9 @@ theorem aux_mainBumpOne_psi_T_hypotheses (phi : SchwartzMap ℝ ℝ)
             exact mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hc.le)
       _ = 1 := by norm_num [C_uniPair]
 
+/--
+@isnad1 id=eq.1h6v.s7.ae0a60157966 from=translated src=- shape=3ef23f54 vocab=83a9f4c4
+-/
 theorem aux_mainBumpOne_jumpEnergy_const_mul {n : ℕ} (c : ℝ) (hc : 0 ≤ c)
     (chi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -3451,6 +3692,9 @@ theorem aux_mainBumpOne_jumpEnergy_const_mul {n : ℕ} (c : ℝ) (hc : 0 ≤ c)
             2 volume ^ 2) := by
           rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h6v.s7.090c2ab974cc from=translated src=- shape=3ef23f54 vocab=c87459b7
+-/
 theorem aux_mainBumpOne_dyadicJumpEnergy_const_mul {n : ℕ} (c : ℝ) (hc : 0 ≤ c)
     (chi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -3500,6 +3744,9 @@ theorem aux_mainBumpOne_dyadicJumpEnergy_const_mul {n : ℕ} (c : ℝ) (hc : 0 �
             2 volume ^ 2) := by
           rw [Finset.mul_sum]
 
+/--
+@isnad1 id=auxvaria.2h5v.s7.30c750e7b147 from=translated src=- shape=93ffe23e vocab=05f9dd8e
+-/
 theorem aux_mainBumpOne_variationBound_const_mul {n : ℕ} (c : ℝ) (hc : 0 ≤ c)
     (A : ℝ) (chi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -3518,6 +3765,9 @@ theorem aux_mainBumpOne_variationBound_const_mul {n : ℕ} (c : ℝ) (hc : 0 ≤
       rw [ENNReal.ofReal_mul (sq_nonneg c)]
       ring
 
+/--
+@isnad1 id=auxdyadi.2h5v.s7.66b9eaf12aa0 from=translated src=- shape=93ffe23e vocab=994b9849
+-/
 theorem aux_mainBumpOne_dyadicVariationBound_const_mul {n : ℕ}
     (c : ℝ) (hc : 0 ≤ c) (A : ℝ) (chi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -3536,6 +3786,9 @@ theorem aux_mainBumpOne_dyadicVariationBound_const_mul {n : ℕ}
       rw [ENNReal.ofReal_mul (sq_nonneg c)]
       ring
 
+/--
+@isnad1 id=lt.0h1v.s3.072960dfd51d from=translated src=- shape=b9369acb vocab=f9de7aba
+-/
 theorem aux_mainBumpOne_C_mainAuxOne_pos (n : ℕ) : 0 < C_mainAuxOne n := by
   have hdiagonal : 0 ≤ C_diagonalBandReduction := by
     unfold C_diagonalBandReduction
@@ -3566,6 +3819,9 @@ theorem aux_mainBumpOne_C_mainAuxOne_pos (n : ℕ) : 0 < C_mainAuxOne n := by
   unfold C_mainAuxOne
   exact mul_pos (by positivity) hproduct
 
+/--
+@isnad1 id=lt.0h1v.s3.b6083b25126c from=translated src=- shape=b9369acb vocab=a0d9a9a5
+-/
 theorem aux_mainBumpOne_C_long_pos (n : ℕ) :
     0 < C_mainBumpOneLong n := by
   have hOne : 0 < C_mainBumpOneLongOne n := by
@@ -3597,7 +3853,9 @@ $$
 See also `Auto.mainBumpOne`,
 `Auto.uniPair`,
 `Auto.mainAuxOne`,
-`Auto.mainBumpOneLong`.-/
+`Auto.mainBumpOneLong`.
+@isnad1 id=auxvaria.2h4v.s9.860d81802ffa from=translated src=- shape=b64b36be vocab=58383566
+-/
 theorem mainBumpOne {n : ℕ} (hn : 2 ≤ n)
     (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (f : ReductionNormalizedTuple n) :
@@ -3668,7 +3926,9 @@ $$
 C_{\text{lem:mainbump1}}<\tfrac78 2^{610}<2^{610}.
 $$
 
-See also `Auto.mainBumpOne`.-/
+See also `Auto.mainBumpOne`.
+@isnad1 id=lt.1h1v.s6.d4d1b61f05ff from=translated src=- shape=1353f379 vocab=7115e8a8
+-/
 theorem constantMainBumpOne {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpOne n < (7 / 8 : ℝ) * (2 : ℝ) ^ 610 := by
   unfold C_mainBumpOne
@@ -3690,7 +3950,9 @@ theorem constantMainBumpOne {n : ℕ} (hn : 2 ≤ n) :
 noncomputable def C_mainAuxTwo (n : ℕ) : ℝ :=
   24 * C_mainAuxOne n
 
-/-- Pad a finite strictly increasing sequence by one terminal exponent.-/
+/-- Pad a finite strictly increasing sequence by one terminal exponent.
+@isnad1 id=ex.1h2v.s7.f9cecbfde802 from=translated src=- shape=9322ac2c vocab=4aa6cf59
+-/
 theorem aux_mainAuxTwo_chain_to_dyadicChain (J : ℕ) (hJ : 0 < J)
     (ks : {u : Fin J → ℤ // StrictMono u}) :
     ∃ q : aux_dyadicChain J, ∀ j : Fin J, q.1 j.castSucc = ks.1 j := by
@@ -3723,7 +3985,9 @@ theorem aux_mainAuxTwo_chain_to_dyadicChain (J : ℕ) (hJ : 0 < J)
 
 /--
 The first auxiliary estimate, together with `bootstrap`, gives the dyadic
-variation estimate required by the short-long reduction.-/
+variation estimate required by the short-long reduction.
+@isnad1 id=auxdyadi.2h3v.s9.9a31ffa3fe5e from=translated src=- shape=d26088eb vocab=0becc136
+-/
 theorem aux_mainAuxTwo_dyadic {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (hpsi : aux_mainAuxiliaryTwoHypotheses psi)
     (f : ReductionNormalizedTuple n) :
@@ -3762,7 +4026,9 @@ theorem aux_mainAuxTwo_dyadic {n : ℕ} (hn : 2 ≤ n)
       norm_num
       ring
 
-/-- Complexification commutes with the logarithmic-derivative operator.-/
+/-- Complexification commutes with the logarithmic-derivative operator.
+@isnad1 id=eq.0h1v.s7.f4e8e1853f1e from=translated src=- shape=64d39522 vocab=c3eb4908
+-/
 theorem aux_mainAuxTwo_T_cast_eq (f : SchwartzMap ℝ ℝ) :
     (fun x : ℝ ↦
       ((Auto.aux_T
@@ -3792,7 +4058,9 @@ theorem aux_mainAuxTwo_T_cast_eq (f : SchwartzMap ℝ ℝ) :
 
 /--
 The Fourier support assumption for `psi` is stable under the logarithmic
-derivative.-/
+derivative.
+@isnad1 id=auxmaina.1h1v.s6.bb1e65227a94 from=translated src=- shape=6c564f30 vocab=e5c431ff
+-/
 theorem aux_mainAuxTwo_T_hyp (psi : SchwartzMap ℝ ℝ)
     (hpsi : aux_mainAuxiliaryTwoHypotheses psi) :
     aux_mainAuxiliaryFourierHypotheses
@@ -3871,7 +4139,9 @@ $$
 where $C_{\text{lem:main\_aux2}}=24C_{\text{lem:main\_aux1}}$.
 
 See also `Auto.mainAuxTwo`,
-`Auto.mainAuxOne`.-/
+`Auto.mainAuxOne`.
+@isnad1 id=auxvaria.2h3v.s9.0cc0a4c58742 from=translated src=- shape=3ca4f324 vocab=bd881423
+-/
 theorem mainAuxTwo {n : ℕ} (hn : 2 ≤ n) (psi : SchwartzMap ℝ ℝ)
     (hpsi : aux_mainAuxiliaryTwoHypotheses psi)
     (f : ReductionNormalizedTuple n) :
@@ -3891,7 +4161,9 @@ $$
 C_{\text{lem:main\_aux2}}<2^{578}.
 $$
 
-See also `Auto.mainAuxTwo`.-/
+See also `Auto.mainAuxTwo`.
+@isnad1 id=lt.1h1v.s5.7c55967db0bb from=translated src=- shape=34f18a82 vocab=784d2cb0
+-/
 theorem constantMainAuxiliaryTwo {n : ℕ} (hn : 2 ≤ n) :
     C_mainAuxTwo n < (2 : ℝ) ^ 578 := by
   unfold C_mainAuxTwo
@@ -3919,6 +4191,9 @@ noncomputable def C_mainBumpTwo (n : ℕ) : ℝ :=
 
 /-! Private Fourier, normalization, and scale-transport infrastructure for `mainBumpTwo`. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.8111886ce7b7 from=translated src=- shape=2ae313b7 vocab=cc862fa5
+-/
 theorem aux_mainBumpTwo_phiThree_eq_rescaled (b : windowBasedBumpFunctions)
     (k : ℤ) :
     windowBasedBumpFunctions.phiThree b k =
@@ -3927,6 +4202,9 @@ theorem aux_mainBumpTwo_phiThree_eq_rescaled (b : windowBasedBumpFunctions)
   funext x
   rfl
 
+/--
+@isnad1 id=le.0h2v.s5.cbb71564f162 from=translated src=- shape=3aaed579 vocab=200af627
+-/
 theorem aux_mainBumpTwo_phiThree_fourier_support_small
     (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
@@ -3941,11 +4219,17 @@ theorem aux_mainBumpTwo_phiThree_fourier_support_small
     simp [hzero] at hne
   exact (bumpBasic b).1 (Function.mem_support.mpr htheta)
 
+/--
+@isnad1 id=le.0h0v.s4.b9560e07e601 from=translated src=- shape=e628c874 vocab=7d025645
+-/
 theorem aux_mainBumpTwo_frequencyAnnulus_subset_Icc :
     aux_frequencyAnnulus ⊆ Set.Icc (-1 : ℝ) 1 := by
   intro x hx
   rcases hx with hx | hx <;> exact ⟨by linarith [hx.1], by linarith [hx.2]⟩
 
+/--
+@isnad1 id=le.0h2v.s6.baeaecabb7ff from=translated src=- shape=e90a234b vocab=d4de2f3e
+-/
 theorem aux_mainBumpTwo_phiThree_fourier_support (b : windowBasedBumpFunctions)
     (k : ℤ) :
     Function.support (FourierTransform.fourier
@@ -3970,6 +4254,9 @@ theorem aux_mainBumpTwo_phiThree_fourier_support (b : windowBasedBumpFunctions)
       norm_num
       linarith [hmem.2]
 
+/--
+@isnad1 id=eq.1h4v.s6.f65b344b783e from=translated src=- shape=d353334d vocab=e8d6e86b
+-/
 theorem aux_mainBumpTwo_phiThree_deriv_zero_outside
     (b : windowBasedBumpFunctions) (k : ℤ) (m : ℕ) (xi : ℝ)
     (hxi : xi ∉ Set.Icc (-1 : ℝ) 1) :
@@ -3992,6 +4279,9 @@ theorem aux_mainBumpTwo_phiThree_deriv_zero_outside
   intro hsupp
   exact hxi (hderivSupp hsupp)
 
+/--
+@isnad1 id=le.1h4v.s6.a953d85af7aa from=translated src=- shape=b98ad0d0 vocab=c3b0107c
+-/
 theorem aux_mainBumpTwo_phiThree_deriv_bound (b : windowBasedBumpFunctions)
     (k : ℤ) (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m
@@ -4014,9 +4304,15 @@ theorem aux_mainBumpTwo_phiThree_deriv_bound (b : windowBasedBumpFunctions)
     norm_num [C_absDerivFourierTPhiThreeLe, C_absDerivFourierPhiThreeLe,
       C_uniPair]
 
+/--
+@isnad1 id=isclosed.0h0v.s3.8bb612e67238 from=translated src=- shape=25b03439 vocab=d5a7be34
+-/
 theorem aux_mainBumpTwo_frequencyAnnulus_closed : IsClosed aux_frequencyAnnulus := by
   exact isClosed_Icc.union isClosed_Icc
 
+/--
+@isnad1 id=eq.0h4v.s7.465da8d698db from=translated src=- shape=75879046 vocab=42856984
+-/
 theorem aux_mainBumpTwo_phiThree_T_fourier_formula
     (b : windowBasedBumpFunctions) (k : ℤ) (m : ℕ) (xi : ℝ) :
     iteratedDeriv m
@@ -4032,6 +4328,9 @@ theorem aux_mainBumpTwo_phiThree_T_fourier_formula
   simpa only [phiThreeSchwartz_apply] using
     aux_mainBumpOne_T_fourier_formula (phiThreeSchwartz b k) m xi
 
+/--
+@isnad1 id=le.0h2v.s5.b697f38d9070 from=translated src=- shape=85196806 vocab=3e4d0488
+-/
 theorem aux_mainBumpTwo_phiThree_T_fourier_support_small
     (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier (fun x : ℝ ↦
@@ -4059,6 +4358,9 @@ theorem aux_mainBumpTwo_phiThree_T_fourier_support_small
   apply hderivSupp
   exact Function.mem_support.mpr hderiv
 
+/--
+@isnad1 id=eq.1h4v.s6.1559c84978ae from=translated src=- shape=7c8508af vocab=b3220f35
+-/
 theorem aux_mainBumpTwo_phiThree_T_deriv_zero_outside
     (b : windowBasedBumpFunctions) (k : ℤ) (m : ℕ) (xi : ℝ)
     (hxi : xi ∉ Set.Icc (-1 : ℝ) 1) :
@@ -4083,6 +4385,9 @@ theorem aux_mainBumpTwo_phiThree_T_deriv_zero_outside
   intro hsupp
   exact hxi (hderivSupp hsupp)
 
+/--
+@isnad1 id=le.1h4v.s6.b8187266ab46 from=translated src=- shape=d5c09bb8 vocab=b4a15eb8
+-/
 theorem aux_mainBumpTwo_phiThree_T_deriv_bound (b : windowBasedBumpFunctions)
     (k : ℤ) (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m
@@ -4100,6 +4405,9 @@ theorem aux_mainBumpTwo_phiThree_T_deriv_bound (b : windowBasedBumpFunctions)
     norm_num [C_absDerivFourierTPhiThreeLe, C_absDerivFourierPhiThreeLe,
       C_uniPair]
 
+/--
+@isnad1 id=lt.0h0v.s3.b1cf55982195 from=translated src=- shape=4dcb44f2 vocab=e049ba1b
+-/
 theorem aux_mainBumpTwo_C_absDerivFourierTPhiThreeLe_two_pos :
     0 < C_absDerivFourierTPhiThreeLe 2 := by
   norm_num [C_absDerivFourierTPhiThreeLe, C_absDerivFourierPhiThreeLe,
@@ -4109,12 +4417,18 @@ noncomputable def aux_mainBumpTwo_psi (b : windowBasedBumpFunctions)
     (k : ℤ) : SchwartzMap ℝ ℝ :=
   (C_absDerivFourierTPhiThreeLe 2)⁻¹ • phiThreeSchwartz b k
 
+/--
+@isnad1 id=eq.0h3v.s6.eba747e57750 from=translated src=- shape=1193511e vocab=d1cd4296
+-/
 theorem aux_mainBumpTwo_psi_apply (b : windowBasedBumpFunctions) (k : ℤ)
     (x : ℝ) :
     aux_mainBumpTwo_psi b k x = (C_absDerivFourierTPhiThreeLe 2)⁻¹ *
       windowBasedBumpFunctions.phiThree b k x := by
   simp [aux_mainBumpTwo_psi, smul_apply, phiThreeSchwartz_apply]
 
+/--
+@isnad1 id=eq.0h3v.s7.ca37f8e41037 from=translated src=- shape=4e956f3d vocab=d917eadf
+-/
 theorem aux_mainBumpTwo_psi_fourier (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦ (aux_mainBumpTwo_psi b k x : ℂ)) xi =
@@ -4129,6 +4443,9 @@ theorem aux_mainBumpTwo_psi_fourier (b : windowBasedBumpFunctions) (k : ℤ)
         exact aux_mainBumpTwo_psi_apply b k x,
     aux_mainAuxOne_fourier_real_const_mul]
 
+/--
+@isnad1 id=contdiff.0h2v.s5.086df234a2f2 from=translated src=- shape=c6179acc vocab=c7cc04ac
+-/
 theorem aux_mainBumpTwo_phiThree_smooth (b : windowBasedBumpFunctions)
     (k : ℤ) : ContDiff ℝ 1 (windowBasedBumpFunctions.phiThree b k) := by
   have hfun : windowBasedBumpFunctions.phiThree b k =
@@ -4138,6 +4455,9 @@ theorem aux_mainBumpTwo_phiThree_smooth (b : windowBasedBumpFunctions)
   rw [hfun]
   exact (phiThreeSchwartz b k).smooth 1
 
+/--
+@isnad1 id=eq.0h3v.s7.029dc162a3ea from=translated src=- shape=163a9713 vocab=1936761a
+-/
 theorem aux_mainBumpTwo_psi_T_fourier (b : windowBasedBumpFunctions) (k : ℤ)
     (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ ↦
@@ -4155,6 +4475,9 @@ theorem aux_mainBumpTwo_psi_T_fourier (b : windowBasedBumpFunctions) (k : ℤ)
     aux_mainBumpOne_T_const_mul _ _ (aux_mainBumpTwo_phiThree_smooth b k),
     aux_mainAuxOne_fourier_real_const_mul]
 
+/--
+@isnad1 id=auxmaina.0h2v.s3.352b8b036ee1 from=translated src=- shape=c57da3d9 vocab=9a56ed49
+-/
 theorem aux_mainBumpTwo_psi_hypotheses (b : windowBasedBumpFunctions)
     (k : ℤ) : aux_mainAuxiliaryTwoHypotheses (aux_mainBumpTwo_psi b k) := by
   let c : ℝ := C_absDerivFourierTPhiThreeLe 2
@@ -4236,6 +4559,9 @@ theorem aux_mainBumpTwo_psi_hypotheses (b : windowBasedBumpFunctions)
             exact mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hc.le)
       _ = 1 := by field_simp [hc.ne']
 
+/--
+@isnad1 id=eq.2h5v.s6.827910a3135a from=translated src=- shape=4e4191a9 vocab=f1359708
+-/
 theorem aux_mainBumpTwo_twistedAverageAtScale_oneRescaled {n : ℕ}
     (phi : ℝ → ℝ) (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ)
     (t lambda : ℝ) (ht : 0 < t) (hlambda : 0 < lambda) :
@@ -4259,6 +4585,9 @@ def aux_mainBumpTwo_scaleMul (lambda : ℝ) (hlambda : 0 < lambda)
       intro j
       exact mul_pos hlambda (t.2.2 j)⟩⟩
 
+/--
+@isnad1 id=auxvaria.2h5v.s7.ece415d465a2 from=translated src=- shape=349dc45d vocab=b7c5751a
+-/
 theorem aux_mainBumpTwo_variationBound_of_oneRescaled {n : ℕ} (lambda : ℝ)
     (hlambda : 0 < lambda) (A : ℝ) (phi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -4306,7 +4635,9 @@ $$
 
 See also `Auto.mainBumpTwo`,
 `Auto.mainAuxTwo`,
-`Auto.absDerivFourierTPhiThreeLe`.-/
+`Auto.absDerivFourierTPhiThreeLe`.
+@isnad1 id=auxvaria.2h4v.s9.8bba76b40e0d from=translated src=- shape=f67ccea1 vocab=0743e362
+-/
 theorem mainBumpTwo {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : -2 ≤ k) :
@@ -4359,6 +4690,9 @@ theorem mainBumpTwo {n : ℕ} (hn : 2 ≤ n)
   rw [hCscale] at hrescaled
   exact hrescaled
 
+/--
+@isnad1 id=lt.1h1v.s6.58cdf59abd60 from=translated src=- shape=1353f379 vocab=a200b1f5
+-/
 theorem aux_mainBumpTwo_C_mainAuxTwo_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_mainAuxTwo n < (4191 / 8192 : ℝ) * (2 : ℝ) ^ 578 := by
   unfold C_mainAuxTwo
@@ -4377,6 +4711,9 @@ theorem aux_mainBumpTwo_C_mainAuxTwo_sharp {n : ℕ} (hn : 2 ≤ n) :
             ring
         _ = (4191 / 8192 : ℝ) * (2 : ℝ) ^ 578 := by rw [← pow_add]
 
+/--
+@isnad1 id=lt.0h0v.s6.3afb81e39907 from=translated src=- shape=adf1ceba vocab=1b427f88
+-/
 theorem aux_mainBumpTwo_C_absDerivFourierTPhiThreeLe_two_sharp :
     C_absDerivFourierTPhiThreeLe 2 <
       (41 / 64 : ℝ) * (2 : ℝ) ^ 41 := by
@@ -4391,7 +4728,9 @@ $$
 C_{\text{lem:mainbump2}}<\tfrac{27}{32}2^{658}<2^{658}.
 $$
 
-See also `Auto.mainBumpTwo`.-/
+See also `Auto.mainBumpTwo`.
+@isnad1 id=lt.1h1v.s6.23c8ef335f70 from=translated src=- shape=1353f379 vocab=803b6556
+-/
 theorem constantMainBumpTwo {n : ℕ} (hn : 2 ≤ n) :
     C_mainBumpTwo n < (27 / 32 : ℝ) * (2 : ℝ) ^ 658 := by
   let c : ℝ := C_absDerivFourierTPhiThreeLe 2
@@ -4443,11 +4782,17 @@ noncomputable def aux_leftBump_psi (b : windowBasedBumpFunctions) :
     SchwartzMap ℝ ℝ :=
   ((2 : ℝ) ^ 14 * C_uniPair)⁻¹ • thetaTildeSchwartz b
 
+/--
+@isnad1 id=eq.0h2v.s6.9ee118469ef9 from=translated src=- shape=42a5eb7c vocab=65b701a3
+-/
 theorem aux_leftBump_psi_apply (b : windowBasedBumpFunctions) (x : ℝ) :
     aux_leftBump_psi b x = ((2 : ℝ) ^ 14 * C_uniPair)⁻¹ *
       windowBasedBumpFunctions.thetaTilde b x := by
   simp [aux_leftBump_psi, smul_apply, thetaTildeSchwartz_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.c1e10ec75f2e from=translated src=- shape=f1f9851a vocab=de739432
+-/
 theorem aux_leftBump_psi_fourier (b : windowBasedBumpFunctions) (xi : ℝ) :
     FourierTransform.fourier (fun x : ℝ => (aux_leftBump_psi b x : ℂ)) xi =
       ((((2 : ℝ) ^ 14 * C_uniPair)⁻¹ : ℝ) : ℂ) *
@@ -4460,6 +4805,9 @@ theorem aux_leftBump_psi_fourier (b : windowBasedBumpFunctions) (xi : ℝ) :
         rw [aux_leftBump_psi_apply],
     aux_mainAuxOne_fourier_real_const_mul]
 
+/--
+@isnad1 id=auxmaina.0h1v.s2.1c8e1d0a8236 from=translated src=- shape=76a08d12 vocab=bb58312e
+-/
 theorem aux_leftBump_psi_hypotheses (b : windowBasedBumpFunctions) :
     aux_mainAuxiliaryTwoHypotheses (aux_leftBump_psi b) := by
   let c : ℝ := (2 : ℝ) ^ 14 * C_uniPair
@@ -4555,6 +4903,9 @@ theorem aux_leftBump_psi_hypotheses (b : windowBasedBumpFunctions) :
         mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hc.le)
       _ = 1 := by field_simp [hc.ne']
 
+/--
+@isnad1 id=eq.0h2v.s6.f4e4096e8479 from=translated src=- shape=8b2753db vocab=34513b11
+-/
 theorem aux_leftBump_phiOne_eq_scaled_thetaTilde (b : windowBasedBumpFunctions)
     (k : ℤ) :
     windowBasedBumpFunctions.phiOne b k =
@@ -4633,7 +4984,9 @@ $$
 
 See also `Auto.leftBump`,
 `Auto.mainAuxTwo`,
-`Auto.uniPair`.-/
+`Auto.uniPair`.
+@isnad1 id=auxvaria.2h4v.s9.5519186f9ad9 from=translated src=- shape=2cbae15d vocab=ec97c836
+-/
 theorem leftBump {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : k ≤ -1) :
@@ -4704,7 +5057,9 @@ $$
 C_{\text{lem:leftbump}}<\tfrac{33}{64}2^{636}<2^{636}.
 $$
 
-See also `Auto.leftBump`.-/
+See also `Auto.leftBump`.
+@isnad1 id=lt.1h1v.s6.24a7b3073105 from=translated src=- shape=1353f379 vocab=8a1d0212
+-/
 theorem constantLeftBump {n : ℕ} (hn : 2 ≤ n) :
     C_leftBump n < (33 / 64 : ℝ) * (2 : ℝ) ^ 636 := by
   have haux := aux_mainBumpTwo_C_mainAuxTwo_sharp hn
@@ -4733,7 +5088,9 @@ theorem constantLeftBump {n : ℕ} (hn : 2 ≤ n) :
       · norm_num
       · positivity
 
-/-- Fubini for a first prism form whose kernel is a compact parameter integral.-/
+/-- Fubini for a first prism form whose kernel is a compact parameter integral.
+@isnad1 id=eq.2h4v.s11.b46627a8f77e from=translated src=- shape=dbecce2c vocab=ffa39c54
+-/
 theorem aux_leftBumpOneShort_prismBrascampLiebForm_setIntegral
     {d : ℕ} (K : ℝ → KKernel 1) (Kint : KKernel 1)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
@@ -4813,7 +5170,9 @@ theorem aux_leftBumpOneShort_prismBrascampLiebForm_setIntegral
                 (fun i x => F i x) := by
                   rfl
 
-/-- The nonnegative extended-real form of the preceding compact-parameter Fubini step.-/
+/-- The nonnegative extended-real form of the preceding compact-parameter Fubini step.
+@isnad1 id=eq.5h5v.s12.49c88c4c37da from=translated src=- shape=83985be2 vocab=0a0dd365
+-/
 theorem aux_leftBumpOneShort_lintegral_energy_eq_prism_of_setIntegral
     {d : ℕ} (K : ℝ → KKernel 1) (Kint : KKernel 1)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
@@ -4868,6 +5227,9 @@ noncomputable def aux_leftBumpOneShort_scaleK
     Auto.aux_bf_realRescaled (s * t)
       (fun x => psi x) z.2
 
+/--
+@isnad1 id=eq.1h3v.s6.197e4a500135 from=translated src=- shape=97635838 vocab=744de8ea
+-/
 theorem aux_leftBumpOneShort_mToK_integralM_eq_setIntegral
     (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) (z : RealVector 1 × ℝ) :
     mToK 1 (by omega) (aux_leftBumpOneShort_integralM s psi) z =
@@ -4887,6 +5249,9 @@ theorem aux_leftBumpOneShort_mToK_integralM_eq_setIntegral
   simp
   ring
 
+/--
+@isnad1 id=eq.2h3v.s8.d11ce731fdfa from=translated src=- shape=bbf78e7d vocab=26ef2b8d
+-/
 theorem aux_leftBumpOneShort_scaleK_eq_mToK_tensor
     (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) (t : ℝ) (ht : 0 < t) :
     aux_leftBumpOneShort_scaleK s psi t = fun z => t⁻¹ *
@@ -4901,6 +5266,9 @@ theorem aux_leftBumpOneShort_scaleK_eq_mToK_tensor
   simp only [Auto.aux_bf_realRescaled, aux_windowRescale]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s10.01a534f87247 from=translated src=- shape=a5b34ac2 vocab=dd25b852
+-/
 theorem aux_leftBumpOneShort_prism_scaleK_eq_tensor
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) (t : ℝ) (ht : 0 < t)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ) :
@@ -4922,6 +5290,9 @@ theorem aux_leftBumpOneShort_prism_scaleK_eq_tensor
   simp_rw [integral_const_mul]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.249c4e480827 from=translated src=- shape=529dfee9 vocab=5dd8f192
+-/
 theorem aux_leftBumpOneShort_energy_eq_scaleK_prism
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) (t : ℝ) (ht : 0 < t)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -4939,6 +5310,9 @@ theorem aux_leftBumpOneShort_energy_eq_scaleK_prism
   exact (aux_leftBumpOneShort_prism_scaleK_eq_tensor d s hs psi t ht
     (Auto.aux_aToLambda.transformedFunctions f)).symm
 
+/--
+@isnad1 id=integrab.1h3v.s11.40aa94ba37a6 from=translated src=- shape=934afe87 vocab=f4864f79
+-/
 theorem aux_leftBumpOneShort_prism_parameter_integrable
     {d : ℕ} (K : ℝ → KKernel 1)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
@@ -4969,6 +5343,9 @@ theorem aux_leftBumpOneShort_prism_parameter_integrable
   simpa [P, prismBrascampLiebForm, Measure.volume_eq_prod] using
     (integral_prod (P (K t)) ht)
 
+/--
+@isnad1 id=le.2h5v.s9.a23550e22b10 from=translated src=- shape=67553ce0 vocab=bd9f4c9d
+-/
 theorem aux_leftBumpOneShort_prism_scaleK_nonnegative
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) (t : ℝ) (ht : 0 < t)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ) :
@@ -4985,6 +5362,9 @@ theorem aux_leftBumpOneShort_prism_scaleK_nonnegative
     rw [Auto.aux_aToLambda.mToK_oneTensorSquare_eq]
     ring
 
+/--
+@isnad1 id=integrab.1h2v.s8.366e0b93fc0a from=translated src=- shape=994ae3a5 vocab=b2b37336
+-/
 theorem aux_leftBumpOneShort_scaleK_triple_integrable
     (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ) :
     Integrable (fun q : ℝ × (RealVector 1 × ℝ) =>
@@ -5036,7 +5416,9 @@ theorem aux_leftBumpOneShort_scaleK_triple_integrable
 
 /--
 The parameterized version of the absolute-integrability core for a first prism.
-The scale parameter is carried inertly through the standard prism coordinates.-/
+The scale parameter is carried inertly through the standard prism coordinates.
+@isnad1 id=integrab.2h4v.s11.6a46420e6ef4 from=translated src=- shape=7d334ff6 vocab=e3aae0a3
+-/
 theorem aux_leftBumpOneShort_parameterized_prismIntegrand
     (d : ℕ) (μ : Measure ℝ) [SFinite μ]
     (K : ℝ → KKernel 1)
@@ -5215,6 +5597,9 @@ theorem aux_leftBumpOneShort_parameterized_prismIntegrand
   have hG := (hliftCoords.integrable_comp hGmeas.aestronglyMeasurable).mp hGcomp
   simpa [G] using hG
 
+/--
+@isnad1 id=integrab.1h4v.s10.575ef0179a57 from=translated src=- shape=d9018781 vocab=a8692d9e
+-/
 theorem aux_leftBumpOneShort_scaleK_prism_core_integrable
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ) :
@@ -5242,6 +5627,9 @@ theorem aux_leftBumpOneShort_scaleK_prism_core_integrable
   convert hcomp using 1
   rfl
 
+/--
+@isnad1 id=integrab.1h4v.s11.a72e1c0c130e from=translated src=- shape=9c066926 vocab=905f206b
+-/
 theorem aux_leftBumpOneShort_scaleK_prism_joint_integrable
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ) :
@@ -5259,7 +5647,9 @@ theorem aux_leftBumpOneShort_scaleK_prism_joint_integrable
       unfold aux_leftBumpOneShort_scaleK Auto.aux_bf_realRescaled
       fun_prop) F (aux_leftBumpOneShort_scaleK_prism_core_integrable d s hs psi F)
 
-/-- Continuous `A`-to-`Λ₁` for the integral kernel used in the two short estimates.-/
+/-- Continuous `A`-to-`Λ₁` for the integral kernel used in the two short estimates.
+@isnad1 id=eq.1h4v.s10.c85435009f55 from=translated src=- shape=2e9feaa4 vocab=46770d2f
+-/
 theorem aux_leftBumpOneShort_continuous_aToLambda_integralFct
     (d : ℕ) (s : ℝ) (hs : 0 < s) (psi : SchwartzMap ℝ ℝ)
     (f : Fin (d + 1) → SchwartzMap (EuclideanSpace ℝ (Fin (d + 1))) ℝ) :
@@ -5304,6 +5694,9 @@ theorem aux_leftBumpOneShort_continuous_aToLambda_integralFct
 
 /-! ### First short-variation Whitney normalization -/
 
+/--
+@isnad1 id=le.1h2v.s5.ec5303bea085 from=translated src=- shape=c21b7873 vocab=b49a6f4f
+-/
 theorem aux_leftBumpOneShort_bracket_inv_mul_le (t x : ℝ) (ht : 1 ≤ t) :
     bracketBump (t⁻¹ * x) ≤ t * bracketBump x := by
   have htpos : 0 < t := lt_of_lt_of_le zero_lt_one ht
@@ -5317,6 +5710,9 @@ theorem aux_leftBumpOneShort_bracket_inv_mul_le (t x : ℝ) (ht : 1 ≤ t) :
   field_simp [ne_of_gt htpos]
   nlinarith [abs_nonneg x]
 
+/--
+@isnad1 id=le.1h4v.s7.e393e439113d from=translated src=- shape=7753480c vocab=5c7e4ed5
+-/
 theorem aux_leftBumpOneShort_phiFour_rescaled_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (t u : ℝ)
     (ht : t ∈ Set.Icc (1 : ℝ) 2) :
@@ -5377,6 +5773,9 @@ theorem aux_leftBumpOneShort_phiFour_rescaled_bound
     _ = (2 : ℝ) ^ (k + 1) * C_thetaPrimitive 2 *
         bracketBump (u - t * (2 : ℝ) ^ (-k)) ^ 2 := by rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e592779a6e15 from=translated src=- shape=02df3418 vocab=528acd2f
+-/
 theorem aux_leftBumpOneShort_scalar_identity (k : ℤ) (C : ℝ) :
     Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2) *
       (((2 : ℝ) ^ (k + 1) * C) ^ 2) =
@@ -5410,6 +5809,9 @@ theorem aux_leftBumpOneShort_scalar_identity (k : ℤ) (C : ℝ) :
       norm_num
       ring
 
+/--
+@isnad1 id=eq.0h1v.s6.4588d3b1370e from=translated src=- shape=effc72d6 vocab=2e4ba8d6
+-/
 theorem aux_leftBumpOneShort_scaledBracket_one_eq_rpow (x : ℝ) :
     scaledBracketBumpReal (3 / 2 : ℝ) 1 x =
       Real.rpow (bracketBump x) (3 / 2 : ℝ) := by
@@ -5422,6 +5824,9 @@ theorem aux_leftBumpOneShort_scaledBracket_one_eq_rpow (x : ℝ) :
     _ = Real.rpow ((1 + |x|)⁻¹) (3 / 2 : ℝ) :=
       (Real.inv_rpow (by positivity) _).symm
 
+/--
+@isnad1 id=le.0h1v.s4.13660d36e360 from=translated src=- shape=baaaaa88 vocab=cd0eee49
+-/
 theorem aux_leftBumpOneShort_bracket_le_div_sqrt_two (x : ℝ) :
     bracketBump x ≤ bracketBump (x / Real.sqrt 2) := by
   have hsqrt_nonneg : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg _
@@ -5437,6 +5842,9 @@ theorem aux_leftBumpOneShort_bracket_le_div_sqrt_two (x : ℝ) :
     nlinarith [abs_nonneg x]
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s7.c18f21339c30 from=translated src=- shape=878a7a9f vocab=e72e4c72
+-/
 theorem aux_leftBumpOneShort_offcenter_second_term_le_whitney
     (v : RealPlane) :
     Real.rpow (bracketBump (v.1 + v.2)) (3 / 2 : ℝ) *
@@ -5471,6 +5879,9 @@ theorem aux_leftBumpOneShort_offcenter_second_term_le_whitney
   exact mul_le_mul h0 h1 h1nonneg
     (Real.rpow_nonneg (by rw [bracketBump]; positivity) _)
 
+/--
+@isnad1 id=le.0h1v.s8.972b477da342 from=translated src=- shape=039d5623 vocab=2c3eca90
+-/
 theorem aux_leftBumpOneShort_offcenter_rhs_le_whitney (v : RealPlane) :
     C_thetaTOffcenter *
       (Real.rpow (bracketBump v.1) (3 / 2 : ℝ) *
@@ -5495,6 +5906,9 @@ theorem aux_leftBumpOneShort_offcenter_rhs_le_whitney (v : RealPlane) :
           Real.rpow (bracketBump v.2) (3 / 2 : ℝ)))
     (by norm_num [C_thetaTOffcenter])
 
+/--
+@isnad1 id=le.1h4v.s8.c0dc9134490e from=translated src=- shape=1156138a vocab=dc503851
+-/
 theorem aux_leftBumpOneShort_integrand_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (t : ℝ)
     (ht : t ∈ Set.Icc (1 : ℝ) 2) (v : RealPlane) :
@@ -5538,6 +5952,9 @@ theorem aux_leftBumpOneShort_integrand_bound
         (bracketBump (v.1 - t * (2 : ℝ) ^ (-k)) ^ 2 *
           bracketBump (v.2 - t * (2 : ℝ) ^ (-k)) ^ 2) := by ring
 
+/--
+@isnad1 id=le.1h3v.s8.a59e243ed684 from=translated src=- shape=cf951716 vocab=fa19f2e1
+-/
 theorem aux_leftBumpOneShort_kernel_decay
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1) (v : RealPlane) :
     |Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2) *
@@ -5664,11 +6081,17 @@ theorem aux_leftBumpOneShort_kernel_decay
 noncomputable def aux_leftBumpOneShort_whitneyNormalizer : ℝ :=
   4 * C_thetaPrimitive 2 ^ 2 * C_thetaTOffcenter
 
+/--
+@isnad1 id=lt.0h0v.s3.861f87a362b5 from=translated src=- shape=ff3a10fc vocab=01ab413d
+-/
 theorem aux_leftBumpOneShort_whitneyNormalizer_pos :
     0 < aux_leftBumpOneShort_whitneyNormalizer := by
   norm_num [aux_leftBumpOneShort_whitneyNormalizer, C_thetaPrimitive, C_uniPair,
     C_thetaTOffcenter]
 
+/--
+@isnad1 id=le.1h3v.s8.b92df30c8a7d from=translated src=- shape=ba3529f0 vocab=10f66bbb
+-/
 theorem aux_leftBumpOneShort_normalized_decay
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1) (v : RealPlane) :
     |(aux_leftBumpOneShort_whitneyNormalizer)⁻¹ *
@@ -5707,6 +6130,9 @@ theorem aux_leftBumpOneShort_normalized_decay
       mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hD.le)
     _ = S := by field_simp [ne_of_gt hD]
 
+/--
+@isnad1 id=eq.0h3v.s5.bae434ed2328 from=translated src=- shape=684b4703 vocab=d672f211
+-/
 theorem aux_leftBumpOneShort_planeFourier_const_mul
     (c : ℝ) (M : RealPlane → ℝ) (xi : EuclideanSpace ℝ (Fin 2)) :
     aux_planeFourier (fun v => c * M v) xi = c * aux_planeFourier M xi := by
@@ -5718,6 +6144,9 @@ theorem aux_leftBumpOneShort_planeFourier_const_mul
   rw [Circle.smul_def, Circle.smul_def]
   ring
 
+/--
+@isnad1 id=le.2h4v.s7.e1180d7d3923 from=translated src=- shape=a8a59001 vocab=186b8143
+-/
 theorem aux_leftBumpOneShort_planeFourier_normalize_diagonal
     (D : ℝ) (hD : 0 < D) (M : RealPlane → ℝ)
     (m : ℕ) (xi : ℝ)
@@ -5742,6 +6171,9 @@ theorem aux_leftBumpOneShort_planeFourier_normalize_diagonal
       mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hD.le)
     _ = 1 := by field_simp [ne_of_gt hD]
 
+/--
+@isnad1 id=eq.0h2v.s8.ca2f7eed363d from=translated src=- shape=269005c7 vocab=14f716d6
+-/
 theorem aux_leftBumpOneShort_integralFctKernel_plane_diagonal_fourier_eq
     (psi : SchwartzMap ℝ ℝ) (z : ℝ) :
     aux_planeFourier
@@ -5765,6 +6197,9 @@ theorem aux_leftBumpOneShort_integralFctKernel_plane_diagonal_fourier_eq
   congr 3
   ring_nf
 
+/--
+@isnad1 id=le.1h1v.s9.840010e486ab from=translated src=- shape=ba065f71 vocab=febf71f2
+-/
 theorem aux_leftBumpOneShort_integralFct_plane_fourier_support
     (psi : SchwartzMap ℝ ℝ)
     (hband : Function.support (FourierTransform.fourier
@@ -5791,6 +6226,9 @@ theorem aux_leftBumpOneShort_integralFct_plane_fourier_support
       Auto.rescaled] using hz
   exact hbase.2.2.2 (hbase.2.2.1 hz')
 
+/--
+@isnad1 id=le.1h2v.s9.cb444c0bd4b7 from=translated src=- shape=948bb4f0 vocab=cadb6356
+-/
 theorem aux_leftBumpOneShort_integralFct_plane_fourier_support_smul
     (psi : SchwartzMap ℝ ℝ)
     (hband : Function.support (FourierTransform.fourier
@@ -5814,6 +6252,9 @@ theorem aux_leftBumpOneShort_integralFct_plane_fourier_support_smul
   exact aux_leftBumpOneShort_integralFct_plane_fourier_support psi hband
     (Function.mem_support.mpr hbase)
 
+/--
+@isnad1 id=le.0h2v.s7.6861e1e353a1 from=translated src=- shape=d0990ecb vocab=aed26bac
+-/
 theorem aux_leftBumpOneShort_phiFourSchwartz_support
     (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
@@ -5826,6 +6267,9 @@ theorem aux_leftBumpOneShort_phiFourSchwartz_support
   exact (thetaPrimitive b 2 (by omega) (by norm_num [N_uniPair])).1.2
     ((phiFourSupport b k).1 hraw)
 
+/--
+@isnad1 id=eq.1h2v.s8.756f8940546e from=translated src=- shape=a75b6f91 vocab=3dc37972
+-/
 theorem aux_leftBumpOneShort_integralFct_base_symmetric
     (psi : SchwartzMap ℝ ℝ)
     (hband : Function.support (FourierTransform.fourier
@@ -5838,6 +6282,9 @@ theorem aux_leftBumpOneShort_integralFct_base_symmetric
   simpa [aux_integralFctKernelAtScale, Auto.rescaled,
     aux_swapTwo] using hsym (WithLp.toLp 2 ![v.1, v.2])
 
+/--
+@isnad1 id=le.2h2v.s9.27f339bed3f3 from=translated src=- shape=a9e4b270 vocab=cc7b2ad3
+-/
 theorem aux_leftBumpOneShort_integralFct_base_positive
     (psi : SchwartzMap ℝ ℝ)
     (hband : Function.support (FourierTransform.fourier
@@ -6006,11 +6453,17 @@ noncomputable def aux_leftBumpOneShort_whitneyData
   · simpa only [c, psi] using hdiag
   · exact hdecay
 
+/--
+@isnad1 id=contdiff.1h1v.s6.664da2fa0570 from=translated src=- shape=a914338f vocab=1ec748d5
+-/
 theorem aux_leftBumpOneShort_pair_contDiff
     (q : ℝ → ℂ) (hq : ContDiff ℝ 2 q) :
     ContDiff ℝ 2 (fun z : ℝ => q z * q (-z)) := by
   exact hq.mul (hq.comp (by fun_prop))
 
+/--
+@isnad1 id=le.4h4v.s7.3d39a8fa1c0a from=translated src=- shape=fc349177 vocab=844b01ac
+-/
 theorem aux_leftBumpOneShort_pair_deriv_bound
     (q : ℝ → ℂ) (hq : ContDiff ℝ 2 q)
     (C : ℝ) (hC : 0 ≤ C)
@@ -6070,6 +6523,9 @@ theorem aux_leftBumpOneShort_pair_deriv_bound
       interval_cases m <;> norm_num [Finset.sum_range_succ, Nat.choose] <;>
         ring_nf <;> exact le_rfl
 
+/--
+@isnad1 id=hasderiv.2h3v.s8.f80d794644a2 from=translated src=- shape=c27cf3a0 vocab=e6026853
+-/
 theorem aux_leftBumpOneShort_integral_comp_inv_hasDeriv
     (H : ℝ → ℂ) (hH : ContDiff ℝ 2 H) (C : ℝ)
     (hHbound : ∀ y : ℝ, ‖deriv H y‖ ≤ C) (x : ℝ) :
@@ -6131,6 +6587,9 @@ theorem aux_leftBumpOneShort_integral_comp_inv_hasDeriv
     (Metric.ball_mem_nhds x zero_lt_one) hFmeas hFint hFprimeMeas hbound hCint hdiff
   simpa [μ, F, F'] using hmain
 
+/--
+@isnad1 id=hasderiv.3h3v.s8.b66b892063ad from=translated src=- shape=db6ca20d vocab=0c871924
+-/
 theorem aux_leftBumpOneShort_integral_comp_hasDeriv
     (H : ℝ → ℂ) (hH : ContDiff ℝ 1 H) (C : ℝ) (hC : 0 ≤ C)
     (hHbound : ∀ y : ℝ, ‖deriv H y‖ ≤ C) (x : ℝ) :
@@ -6180,6 +6639,9 @@ theorem aux_leftBumpOneShort_integral_comp_hasDeriv
     (Metric.ball_mem_nhds x zero_lt_one) hFmeas hFint hFprimeMeas hbound hCint hdiff
   simpa [μ, F, F'] using hmain
 
+/--
+@isnad1 id=le.1h2v.s6.110aee067bda from=translated src=- shape=848d452c vocab=de87a4cf
+-/
 theorem aux_leftBumpOneShort_norm_setIntegral_Icc_le_const
     (F : ℝ → ℂ) (A : ℝ) (hA : ∀ t ∈ Icc (1 : ℝ) 2, ‖F t‖ ≤ A) :
     ‖∫ t : ℝ in Icc (1 : ℝ) 2, F t‖ ≤ A := by
@@ -6189,6 +6651,9 @@ theorem aux_leftBumpOneShort_norm_setIntegral_Icc_le_const
         (Filter.Eventually.of_forall hA)
     _ = A := by norm_num [Real.volume_Icc]
 
+/--
+@isnad1 id=le.4h4v.s8.af5fc4c8e814 from=translated src=- shape=648f0e01 vocab=f51a1d8e
+-/
 theorem aux_leftBumpOneShort_pair_logIntegral_deriv_bound
     (q : ℝ → ℂ) (hq : ContDiff ℝ 2 q) (C : ℝ) (hC : 0 ≤ C)
     (hqbound : ∀ m : ℕ, m ≤ 2 → ∀ x : ℝ,
@@ -6283,6 +6748,9 @@ theorem aux_leftBumpOneShort_pair_logIntegral_deriv_bound
       iteratedDeriv_one, hI1, hI2]
     exact hI2bound x
 
+/--
+@isnad1 id=contdiff.0h1v.s6.132e1b57c234 from=translated src=- shape=7686fc97 vocab=dc005923
+-/
 theorem aux_leftBumpOneShort_thetaTildeFourier_contDiff
     (b : windowBasedBumpFunctions) :
     ContDiff ℝ 3 (FourierTransform.fourier
@@ -6298,6 +6766,9 @@ theorem aux_leftBumpOneShort_thetaTildeFourier_contDiff
   rw [SchwartzMap.fourier_coe, hTheta] at hs
   exact hs
 
+/--
+@isnad1 id=le.1h3v.s7.7e739b136afb from=translated src=- shape=a3420e94 vocab=01221b65
+-/
 theorem aux_leftBumpOneShort_thetaTilde_pair_logIntegral_bound
     (b : windowBasedBumpFunctions) (m : ℕ) (hm : m < 3) (z : ℝ) :
     ‖iteratedDeriv m (fun x : ℝ => ∫ t : ℝ in Icc (1 : ℝ) 2,
@@ -6316,6 +6787,9 @@ theorem aux_leftBumpOneShort_thetaTilde_pair_logIntegral_bound
     (fun r hr x => thetaTildeFourier_deriv_bound b r (by omega) x)
     m hm z
 
+/--
+@isnad1 id=eq.0h3v.s8.aa4791b97fa8 from=translated src=- shape=9ba4c066 vocab=f03fa780
+-/
 theorem aux_leftBumpOneShort_phiFour_integralFct_plane_diagonal_eq
     (b : windowBasedBumpFunctions) (k : ℤ) (z : ℝ) :
     aux_planeFourier
@@ -6350,6 +6824,9 @@ theorem aux_leftBumpOneShort_phiFour_integralFct_plane_diagonal_eq
         rw [hpair]
         ring)
 
+/--
+@isnad1 id=le.1h4v.s8.03d9eecb790a from=translated src=- shape=5dcd07e9 vocab=a7e87d32
+-/
 theorem aux_leftBumpOneShort_phiFour_base_diagonal_deriv_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (m : ℕ) (hm : m < 3) (z : ℝ) :
     ‖iteratedDeriv m
@@ -6381,12 +6858,18 @@ theorem aux_leftBumpOneShort_phiFour_base_diagonal_deriv_bound
   exact mul_le_mul_of_nonneg_left
     (aux_leftBumpOneShort_thetaTilde_pair_logIntegral_bound b m hm z) hs
 
+/--
+@isnad1 id=le.0h0v.s6.95994ffcdb2d from=translated src=- shape=b95980a4 vocab=6df99d55
+-/
 theorem aux_leftBumpOneShort_normalizer_dominates_thetaTilde_pair :
     8 * ((2 : ℝ) ^ 14 * C_uniPair) ^ 2 ≤
       aux_leftBumpOneShort_whitneyNormalizer := by
   norm_num [aux_leftBumpOneShort_whitneyNormalizer, C_thetaPrimitive,
     C_uniPair, C_thetaTOffcenter]
 
+/--
+@isnad1 id=eq.0h1v.s6.8f377ebb3db9 from=translated src=- shape=90d5a042 vocab=e9357a9e
+-/
 theorem aux_leftBumpOneShort_rpow_zpow_product_eq (k : ℤ) :
     Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2) * (2 : ℝ) ^ (2 * k) =
       Real.rpow 2 ((k : ℝ) / 2) := by
@@ -6403,6 +6886,9 @@ theorem aux_leftBumpOneShort_rpow_zpow_product_eq (k : ℤ) :
       push_cast
       ring
 
+/--
+@isnad1 id=le.1h1v.s6.1ce83ffb6565 from=translated src=- shape=bcaf7e16 vocab=88629a6b
+-/
 theorem aux_leftBumpOneShort_rpow_zpow_product_le_one
     (k : ℤ) (hk : k ≤ -1) :
     Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2) * (2 : ℝ) ^ (2 * k) ≤ 1 := by
@@ -6411,6 +6897,9 @@ theorem aux_leftBumpOneShort_rpow_zpow_product_le_one
   have hkreal : (k : ℝ) ≤ -1 := by exact_mod_cast hk
   linarith
 
+/--
+@isnad1 id=le.2h4v.s8.fd1816d17cb8 from=translated src=- shape=65bf81bf vocab=4ce97239
+-/
 theorem aux_leftBumpOneShort_raw_scaled_diagonal_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (m : ℕ) (hm : m < 3) (z : ℝ) :
@@ -6475,6 +6964,9 @@ theorem aux_leftBumpOneShort_raw_scaled_diagonal_bound
     _ ≤ aux_leftBumpOneShort_whitneyNormalizer :=
       aux_leftBumpOneShort_normalizer_dominates_thetaTilde_pair
 
+/--
+@isnad1 id=le.2h4v.s8.d70f683fefc9 from=translated src=- shape=15264a47 vocab=821f0345
+-/
 theorem aux_leftBumpOneShort_normalized_diagonal_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (m : ℕ) (hm : m < 3) (z : ℝ) :
@@ -6500,6 +6992,9 @@ theorem aux_leftBumpOneShort_normalized_diagonal_bound
     M m z hraw
   simpa only [D, P, M, mul_assoc] using hnorm
 
+/--
+@isnad1 id=eq.0h3v.s7.46d7adaaf937 from=translated src=- shape=0351f394 vocab=9d02af32
+-/
 theorem aux_leftBumpOneShort_whitneySequence_integralM_eq
     (c : ℝ) (psi : SchwartzMap ℝ ℝ) (a : ℤ → ℝ) :
     aux_whitneySequence
@@ -6530,6 +7025,9 @@ theorem aux_leftBumpOneShort_whitneySequence_integralM_eq
     _ = c * aux_leftBumpOneShort_integralM (a j) psi y := by
       simp [aux_leftBumpOneShort_integralM, u]
 
+/--
+@isnad1 id=eq.2h3v.s8.aad25527bc55 from=translated src=- shape=6dd9119b vocab=e7737757
+-/
 theorem aux_leftBumpOneShort_integralM_zero_of_kernel_zero
     (c : ℝ) (hc : 0 < c) (psi : SchwartzMap ℝ ℝ)
     (hzero : (fun v : RealPlane => c * integralFctKernel (fun x => psi x)
@@ -6552,6 +7050,9 @@ theorem aux_leftBumpOneShort_integralM_zero_of_kernel_zero
         exact congrFun hbase (s⁻¹ * u 0, s⁻¹ * u 1)]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.edf8e4577b92 from=translated src=- shape=e74d36c9 vocab=9b3a5fa6
+-/
 theorem aux_leftBumpOneShort_prismForm_const_mul
     {n : ℕ} (hn : 1 ≤ n) (c : ℝ) (M : MKernel 1)
     (F : Fin n → RealVector n → ℝ) :
@@ -6583,12 +7084,18 @@ theorem aux_leftBumpOneShort_prismForm_const_mul
     ring]
   rw [integral_const_mul]
 
+/--
+@isnad1 id=eq.1h2v.s6.1db23696c261 from=translated src=- shape=90df5565 vocab=275e4221
+-/
 theorem aux_leftBumpOneShort_prismForm_zero
     {n : ℕ} (hn : 1 ≤ n) (F : Fin n → RealVector n → ℝ) :
     prismForm n 1 (by omega) hn (0 : MKernel 1) F = 0 := by
   unfold prismForm prismBrascampLiebForm mToK
   simp
 
+/--
+@isnad1 id=eq.3h8v.s11.ddc037104588 from=translated src=- shape=f5486214 vocab=784a3f2d
+-/
 theorem aux_leftBumpOneShort_zero_energy_sum
     {d J : ℕ} (c : ℝ) (hc : 0 < c) (psi : SchwartzMap ℝ ℝ)
     (hzero : (fun v : RealPlane => c * integralFctKernel (fun x => psi x)
@@ -6608,6 +7115,9 @@ theorem aux_leftBumpOneShort_zero_energy_sum
     aux_leftBumpOneShort_integralM_zero_of_kernel_zero c hc psi hzero (a (j : ℤ))]
   simp [aux_leftBumpOneShort_prismForm_zero]
 
+/--
+@isnad1 id=memw0.2h2v.s5.893067c0154c from=translated src=- shape=ba827c09 vocab=fead1467
+-/
 theorem aux_leftBumpOneShort_planeRescale_memW0
     (Psi : RealPlane → ℝ) (hPsi : MemW0 Psi) {t : ℝ} (ht : 0 < t) :
     MemW0 (aux_planeRescale t Psi) := by
@@ -6621,6 +7131,9 @@ theorem aux_leftBumpOneShort_planeRescale_memW0
   change t⁻¹ ^ 2 * Psi (t⁻¹ * v.1, t⁻¹ * v.2) = t⁻¹ ^ 2 * Psi (t⁻¹ • v)
   congr 2
 
+/--
+@isnad1 id=memw0.1h1v.s7.06a1644e65c9 from=translated src=- shape=8e2cc800 vocab=e03c38c3
+-/
 theorem aux_leftBumpOneShort_liftPlaneKernel_memW0
     (M : RealPlane → ℝ) (hM : MemW0 M) :
     MemW0 (aux_liftPlaneKernel M) := by
@@ -6636,6 +7149,9 @@ theorem aux_leftBumpOneShort_liftPlaneKernel_memW0
   funext x
   rfl
 
+/--
+@isnad1 id=memw0.1h3v.s7.dbab2e9363c1 from=translated src=- shape=5a190d0a vocab=20394830
+-/
 theorem aux_leftBumpOneShort_whitneySequence_memW0
     (Psi : WhitneyKernelData) (a : ℤ → ℝ) (ha : SpacedSequence a) :
     ∀ j : ℤ, MemW0 (aux_whitneySequence Psi.kernel a j) := by
@@ -6644,6 +7160,9 @@ theorem aux_leftBumpOneShort_whitneySequence_memW0
   exact aux_leftBumpOneShort_liftPlaneKernel_memW0 _
     (aux_leftBumpOneShort_planeRescale_memW0 _ Psi.kernel_memW0 (ha j).1)
 
+/--
+@isnad1 id=le.3h3v.s7.3b94c45b0c59 from=translated src=- shape=ba98c1a5 vocab=d041c563
+-/
 theorem aux_leftBumpOneShort_planeRescale_positive
     (Psi : RealPlane → ℝ)
     (hpos : ∀ g : ℝ → ℝ, aux_bounded g →
@@ -6674,6 +7193,9 @@ theorem aux_leftBumpOneShort_planeRescale_positive
   rw [← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ ht.ne'), one_mul]
   exact hbase
 
+/--
+@isnad1 id=le.2h2v.s8.1b85a046b222 from=translated src=- shape=8c9ca784 vocab=11187501
+-/
 theorem aux_leftBumpOneShort_whitney_lift_positive
     (M : RealPlane → ℝ)
     (hquad : ∀ g : ℝ → ℝ, aux_bounded g →
@@ -6700,6 +7222,9 @@ theorem aux_leftBumpOneShort_whitney_lift_positive
       dsimp [G, e, e1, aux_liftPlaneKernel]
       rfl
 
+/--
+@isnad1 id=le.2h5v.s8.1c1527a7d64d from=translated src=- shape=bc1e1e78 vocab=6659fafa
+-/
 theorem aux_leftBumpOneShort_whitneySequence_form_nonneg
     {n : ℕ} (hn : 1 ≤ n) (Psi : WhitneyKernelData)
     (a : ℤ → ℝ) (ha : SpacedSequence a) (j : ℤ)
@@ -6712,6 +7237,9 @@ theorem aux_leftBumpOneShort_whitneySequence_form_nonneg
     exact aux_leftBumpOneShort_whitney_lift_positive _
       (aux_leftBumpOneShort_planeRescale_positive Psi.kernel Psi.positive (ha j).1)
 
+/--
+@isnad1 id=eq.2h4v.s9.75d9b1bc23a1 from=translated src=- shape=0e893e13 vocab=7658d690
+-/
 theorem aux_leftBumpOneShort_prismForm_finset_sum
     {n J : ℕ} (hn : 1 ≤ n) (M : Fin J → MKernel 1)
     (hM : ∀ j, MemW0 (M j))
@@ -6725,6 +7253,9 @@ theorem aux_leftBumpOneShort_prismForm_finset_sum
   exact aux_prismBrascampLiebForm_finset_sum n 1 J (by omega) hn
     (fun j => mToK 1 (by omega) (M j)) hK F
 
+/--
+@isnad1 id=le.9h12v.s11.c20486f32880 from=translated src=- shape=92a42666 vocab=c9bb3da4
+-/
 theorem aux_leftBumpOneShort_scaled_integralM_prefix
     {d J : ℕ} (hd : 1 ≤ d)
     (D P c : ℝ) (hD : 0 < D) (hc : 0 < c) (hPc : D * c = P)
@@ -6900,7 +7431,9 @@ $$
 See also `Auto.leftBumpOneShortOne`,
 `Auto.inductPositiveTermsReductionWhitney`,
 `Auto.thetaPrimitive`,
-`Auto.thetaTOffcenter`.-/
+`Auto.thetaTOffcenter`.
+@isnad1 id=le.3h6v.s10.0ed768b319ea from=translated src=- shape=1939f22c vocab=0200ace3
+-/
 theorem leftBumpOneShortOne {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (k : ℤ) (hk : k ≤ -1) (J : ℕ) (hJ : 0 < J)
@@ -6994,7 +7527,9 @@ C_{\text{lem:leftbump1\_short1}}
 <2^{628}.
 $$
 
-See also `Auto.leftBumpOneShortOne`.-/
+See also `Auto.leftBumpOneShortOne`.
+@isnad1 id=lt.1h1v.s6.cc1663bdcd90 from=translated src=- shape=1353f379 vocab=6ffc77f9
+-/
 theorem constantLeftBumpOneShortOne {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOneShortOne n <
       (185801 / 262144 : ℝ) * (2 : ℝ) ^ 628 := by
@@ -7042,6 +7577,9 @@ noncomputable def C_leftBumpOneShortTwo (n : ℕ) : ℝ :=
   (2 : ℝ) ^ 4 * C_inductPositiveTermsReductionWhitney n * C_thetaTOffcenter *
     C_leftBumpOneShortTwoAuxiliary ^ 2
 
+/--
+@isnad1 id=le.7h6v.s8.556ccf9a337d from=translated src=- shape=67f5b651 vocab=347f5f23
+-/
 theorem aux_leftBumpOneShortTwo_product_deriv_bound
     (p q : ℝ → ℂ) (hp : ContDiff ℝ 2 p) (hq : ContDiff ℝ 2 q)
     (A B : ℝ) (hA : 0 ≤ A) (_hB : 0 ≤ B)
@@ -7082,6 +7620,9 @@ theorem aux_leftBumpOneShortTwo_product_deriv_bound
       interval_cases m <;> norm_num [Finset.sum_range_succ, Nat.choose] <;>
         ring_nf <;> exact le_rfl
 
+/--
+@isnad1 id=le.7h6v.s8.3a7ff48f9099 from=translated src=- shape=3f89bc5a vocab=347f5f23
+-/
 theorem aux_leftBumpOneShortTwo_product_deriv_bound_at
     (p q : ℝ → ℂ) (hp : ContDiff ℝ 2 p) (hq : ContDiff ℝ 2 q)
     (A B : ℝ) (hA : 0 ≤ A) (_hB : 0 ≤ B) (x : ℝ)
@@ -7133,6 +7674,9 @@ noncomputable def aux_leftBumpOneShortTwo_amplitude
     2 * Real.pi * Complex.I * (xi : ℂ) * aux_leftBumpOneShortTwo_fourier b xi -
       ((2 : ℝ) ^ k : ℂ) * (xi : ℂ) * iteratedDeriv 1 (aux_leftBumpOneShortTwo_fourier b) xi
 
+/--
+@isnad1 id=contdiff.0h1v.s5.71dfed2c781f from=translated src=- shape=d0bc4254 vocab=994ceeca
+-/
 theorem aux_leftBumpOneShortTwo_fourier_contDiff (b : windowBasedBumpFunctions) :
     ContDiff ℝ 3 (aux_leftBumpOneShortTwo_fourier b) := by
   let Theta : SchwartzMap ℝ ℂ :=
@@ -7146,12 +7690,18 @@ theorem aux_leftBumpOneShortTwo_fourier_contDiff (b : windowBasedBumpFunctions) 
   rw [SchwartzMap.fourier_coe, hTheta] at hs
   simpa [aux_leftBumpOneShortTwo_fourier] using hs
 
+/--
+@isnad1 id=le.1h3v.s6.2ff05654b5d7 from=translated src=- shape=f48f10cd vocab=33b8ed95
+-/
 theorem aux_leftBumpOneShortTwo_fourier_deriv_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m ≤ 3) (xi : ℝ) :
     ‖iteratedDeriv m (aux_leftBumpOneShortTwo_fourier b) xi‖ ≤
       (2 : ℝ) ^ 14 * C_uniPair := by
   simpa [aux_leftBumpOneShortTwo_fourier] using thetaTildeFourier_deriv_bound b m hm xi
 
+/--
+@isnad1 id=eq.1h3v.s5.b25e078afc19 from=translated src=- shape=78e37060 vocab=116b0f76
+-/
 theorem aux_leftBumpOneShortTwo_fourier_deriv_zero_outside (b : windowBasedBumpFunctions)
     (m : ℕ) (xi : ℝ) (hxi : xi ∉ aux_frequencyAnnulus) :
     iteratedDeriv m (aux_leftBumpOneShortTwo_fourier b) xi = 0 := by
@@ -7170,6 +7720,9 @@ theorem aux_leftBumpOneShortTwo_fourier_deriv_zero_outside (b : windowBasedBumpF
   intro hmem
   exact hxi (hderivSupp hmem)
 
+/--
+@isnad1 id=le.0h2v.s4.fb7c31cd7f88 from=translated src=- shape=4a641c9a vocab=9d4029e7
+-/
 theorem aux_leftBumpOneShortTwo_amplitude_support (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (aux_leftBumpOneShortTwo_amplitude b k) ⊆ aux_frequencyAnnulus := by
   intro xi hxi
@@ -7180,6 +7733,9 @@ theorem aux_leftBumpOneShortTwo_amplitude_support (b : windowBasedBumpFunctions)
   simp only [iteratedDeriv_zero] at h0
   simp [aux_leftBumpOneShortTwo_amplitude, h0, h1]
 
+/--
+@isnad1 id=eq.1h4v.s5.c5c1610c3552 from=translated src=- shape=2c43bbe5 vocab=92d3e460
+-/
 theorem aux_leftBumpOneShortTwo_amplitude_deriv_zero_outside (b : windowBasedBumpFunctions)
     (k : ℤ) (m : ℕ) (xi : ℝ) (hxi : xi ∉ aux_frequencyAnnulus) :
     iteratedDeriv m (aux_leftBumpOneShortTwo_amplitude b k) xi = 0 := by
@@ -7196,6 +7752,9 @@ theorem aux_leftBumpOneShortTwo_amplitude_deriv_zero_outside (b : windowBasedBum
   intro hmem
   exact hxi (hderivSupp hmem)
 
+/--
+@isnad1 id=eq.0h1v.s6.a382043cb9e0 from=translated src=- shape=94d388b5 vocab=fd37849b
+-/
 theorem aux_leftBumpOneShortTwo_linear_deriv (xi : ℝ) :
     deriv (fun y : ℝ => 2 * Real.pi * Complex.I * (y : ℂ)) xi =
       2 * Real.pi * Complex.I := by
@@ -7204,12 +7763,18 @@ theorem aux_leftBumpOneShortTwo_linear_deriv (xi : ℝ) :
       (hasDerivAt_const xi Complex.ofRealCLM).clm_apply (hasDerivAt_id xi)
   simpa using (hcast.const_mul (2 * Real.pi * Complex.I)).deriv
 
+/--
+@isnad1 id=eq.0h0v.s6.726f16c0d589 from=translated src=- shape=b380e455 vocab=fd37849b
+-/
 theorem aux_leftBumpOneShortTwo_linear_deriv_fun :
     deriv (fun y : ℝ => 2 * Real.pi * Complex.I * (y : ℂ)) =
       fun _ : ℝ => 2 * Real.pi * Complex.I := by
   funext x
   exact aux_leftBumpOneShortTwo_linear_deriv x
 
+/--
+@isnad1 id=le.1h1v.s4.c4d289dc1bd3 from=translated src=- shape=1579e6f8 vocab=8942b6f9
+-/
 theorem aux_leftBumpOneShortTwo_annulus_abs_upper {xi : ℝ}
     (hxi : xi ∈ aux_frequencyAnnulus) : |xi| ≤ 1 := by
   rcases hxi with hxi | hxi
@@ -7218,6 +7783,9 @@ theorem aux_leftBumpOneShortTwo_annulus_abs_upper {xi : ℝ}
   · rw [abs_of_nonneg (by linarith [hxi.1])]
     exact hxi.2
 
+/--
+@isnad1 id=le.2h2v.s6.df7aca331338 from=translated src=- shape=084e1f00 vocab=b1a3063f
+-/
 theorem aux_leftBumpOneShortTwo_linear_iterated_bound (xi : ℝ)
     (hxi : xi ∈ aux_frequencyAnnulus) (m : ℕ) (hm : m ≤ 2) :
     ‖iteratedDeriv m (fun y : ℝ => 2 * Real.pi * Complex.I * (y : ℂ)) xi‖ ≤ 8 := by
@@ -7243,6 +7811,9 @@ theorem aux_leftBumpOneShortTwo_linear_iterated_bound (xi : ℝ)
       iteratedDeriv_one, aux_leftBumpOneShortTwo_linear_deriv_fun]
     simp
 
+/--
+@isnad1 id=le.2h2v.s5.56394e1cb013 from=translated src=- shape=47cab0b4 vocab=171f51e7
+-/
 theorem aux_leftBumpOneShortTwo_cast_iterated_bound (xi : ℝ)
     (hxi : xi ∈ aux_frequencyAnnulus) (m : ℕ) (hm : m ≤ 2) :
     ‖iteratedDeriv m (fun y : ℝ => (y : ℂ)) xi‖ ≤ 1 := by
@@ -7267,10 +7838,16 @@ theorem aux_leftBumpOneShortTwo_cast_iterated_bound (xi : ℝ)
     rw [hcastfun]
     simp
 
+/--
+@isnad1 id=contdiff.0h1v.s6.90e0baba7c7a from=translated src=- shape=d40f6eaa vocab=2540bb9b
+-/
 theorem aux_leftBumpOneShortTwo_fourier_deriv_contDiff (b : windowBasedBumpFunctions) :
     ContDiff ℝ 2 (deriv (aux_leftBumpOneShortTwo_fourier b)) := by
   simpa using (aux_leftBumpOneShortTwo_fourier_contDiff b).deriv'
 
+/--
+@isnad1 id=le.1h3v.s6.7392c34e278e from=translated src=- shape=c0ced5c9 vocab=54feb081
+-/
 theorem aux_leftBumpOneShortTwo_fourier_deriv_iterated_bound (b : windowBasedBumpFunctions)
     (m : ℕ) (hm : m ≤ 2) (xi : ℝ) :
     ‖iteratedDeriv m (deriv (aux_leftBumpOneShortTwo_fourier b)) xi‖ ≤
@@ -7299,6 +7876,9 @@ theorem aux_leftBumpOneShortTwo_fourier_deriv_iterated_bound (b : windowBasedBum
             iteratedDeriv_one], ← heq]
     exact aux_leftBumpOneShortTwo_fourier_deriv_bound b 3 (by norm_num) xi
 
+/--
+@isnad1 id=contdiff.0h2v.s5.9928c2483e77 from=translated src=- shape=bcf5e658 vocab=c59c8208
+-/
 theorem aux_leftBumpOneShortTwo_amplitude_contDiff
     (b : windowBasedBumpFunctions) (k : ℤ) :
     ContDiff ℝ 2 (aux_leftBumpOneShortTwo_amplitude b k) := by
@@ -7328,6 +7908,9 @@ theorem aux_leftBumpOneShortTwo_amplitude_contDiff
   rw [hfun]
   exact hmain
 
+/--
+@isnad1 id=le.2h4v.s6.b21a4d71c9c4 from=translated src=- shape=d3d8cac2 vocab=7fae1f47
+-/
 theorem aux_leftBumpOneShortTwo_amplitude_deriv_bound
     (b : windowBasedBumpFunctions) (k : ℤ)
     (hk : k ≤ -1) (m : ℕ) (hm : m < 3) (xi : ℝ) :
@@ -7431,6 +8014,9 @@ theorem aux_leftBumpOneShortTwo_amplitude_deriv_bound
   · rw [aux_leftBumpOneShortTwo_amplitude_deriv_zero_outside b k m xi hxi, norm_zero]
     positivity
 
+/--
+@isnad1 id=eq.0h3v.s8.5d78ec49a79e from=translated src=- shape=5f8b84f4 vocab=c2e3b092
+-/
 theorem aux_leftBumpOneShortTwo_integralFct_plane_diagonal_eq
     (b : windowBasedBumpFunctions) (k : ℤ) (z : ℝ) :
     aux_planeFourier
@@ -7482,6 +8068,9 @@ theorem aux_leftBumpOneShortTwo_integralFct_plane_diagonal_eq
         push_cast
         rfl)
 
+/--
+@isnad1 id=le.2h4v.s8.9d8fdc47bde8 from=translated src=- shape=0d55191e vocab=0f4ee1f1
+-/
 theorem aux_leftBumpOneShortTwo_base_diagonal_deriv_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (m : ℕ) (hm : m < 3) (z : ℝ) :
@@ -7515,6 +8104,9 @@ theorem aux_leftBumpOneShortTwo_base_diagonal_deriv_bound
   rw [hformula]
   exact hlog
 
+/--
+@isnad1 id=le.0h0v.s6.0e4211b129c8 from=translated src=- shape=3709e1fc vocab=956ad378
+-/
 theorem aux_leftBumpOneShortTwo_normalizer_dominates_diagonal :
     8 * (64 * ((2 : ℝ) ^ 14 * C_uniPair)) ^ 2 ≤
       16 * C_leftBumpOneShortTwoAuxiliary ^ 2 * C_thetaTOffcenter := by
@@ -7537,6 +8129,9 @@ theorem aux_leftBumpOneShortTwo_normalizer_dominates_diagonal :
     _ ≤ 16 * C_leftBumpOneShortTwoAuxiliary ^ 2 * C_thetaTOffcenter := by
       gcongr
 
+/--
+@isnad1 id=le.2h4v.s8.9de4ef77577e from=translated src=- shape=70d163ff vocab=d018df5d
+-/
 theorem aux_leftBumpOneShortTwo_raw_scaled_diagonal_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (m : ℕ) (hm : m < 3) (z : ℝ) :
@@ -7590,6 +8185,9 @@ theorem aux_leftBumpOneShortTwo_raw_scaled_diagonal_bound
     _ ≤ 16 * C_leftBumpOneShortTwoAuxiliary ^ 2 * C_thetaTOffcenter :=
       aux_leftBumpOneShortTwo_normalizer_dominates_diagonal
 
+/--
+@isnad1 id=le.2h4v.s8.69c8dc7d934c from=translated src=- shape=e09d17e6 vocab=0b8ff20b
+-/
 theorem aux_leftBumpOneShortTwo_normalized_diagonal_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (m : ℕ) (hm : m < 3) (z : ℝ) :
@@ -7662,11 +8260,17 @@ theorem aux_leftBumpOneShortTwo_normalized_diagonal_bound
         (inv_nonneg.mpr hD.le)
     _ = 1 := by field_simp [ne_of_gt hD]
 
+/--
+@isnad1 id=le.0h0v.s3.26adc36252cf from=translated src=- shape=ff3a10fc vocab=e434f2a8
+-/
 theorem aux_leftBumpOneShortTwo_auxiliary_nonneg :
     0 ≤ C_leftBumpOneShortTwoAuxiliary := by
   unfold C_leftBumpOneShortTwoAuxiliary
   exact le_max_of_le_left (by norm_num [C_thetaPrimitive, C_uniPair])
 
+/--
+@isnad1 id=lt.0h0v.s3.bf918b9568aa from=translated src=- shape=ff3a10fc vocab=fb925b65
+-/
 theorem aux_leftBumpOneShortTwo_auxiliary_pos :
     0 < C_leftBumpOneShortTwoAuxiliary := by
   unfold C_leftBumpOneShortTwoAuxiliary
@@ -7677,6 +8281,9 @@ theorem aux_leftBumpOneShortTwo_auxiliary_pos :
 noncomputable def aux_leftBumpOneShortTwo_normalizer : ℝ :=
   16 * C_leftBumpOneShortTwoAuxiliary ^ 2 * C_thetaTOffcenter
 
+/--
+@isnad1 id=lt.0h0v.s3.3ac512c0a08e from=translated src=- shape=ff3a10fc vocab=38eb3264
+-/
 theorem aux_leftBumpOneShortTwo_normalizer_pos :
     0 < aux_leftBumpOneShortTwo_normalizer := by
   unfold aux_leftBumpOneShortTwo_normalizer
@@ -7684,6 +8291,9 @@ theorem aux_leftBumpOneShortTwo_normalizer_pos :
     (sq_pos_of_pos aux_leftBumpOneShortTwo_auxiliary_pos))
     (by norm_num [C_thetaTOffcenter])
 
+/--
+@isnad1 id=eq.0h1v.s7.8f72acd20574 from=translated src=- shape=910b091e vocab=b0c8c9ee
+-/
 theorem aux_leftBumpOneShortTwo_tBump_eq_aux_T (phi : SchwartzMap ℝ ℝ) :
     (fun x : ℝ => tBumpSchwartz phi x) =
       Auto.aux_T (fun x : ℝ => phi x) := by
@@ -7694,6 +8304,9 @@ theorem aux_leftBumpOneShortTwo_tBump_eq_aux_T (phi : SchwartzMap ℝ ℝ) :
     Auto.multiplicationOperatorX
   congr 1
 
+/--
+@isnad1 id=le.3h4v.s8.72dad398bb32 from=translated src=- shape=7d28917a vocab=96c24ffa
+-/
 theorem aux_leftBumpOneShortTwo_rescaled_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (t u : ℝ) (ht : t ∈ Set.Icc (1 : ℝ) 2)
@@ -7817,7 +8430,9 @@ theorem aux_leftBumpOneShortTwo_rescaled_bound
         mul_le_mul_of_nonneg_right hcoeff (mul_nonneg hC hB)
       simpa [mul_assoc] using hmain
 
-/-- Product estimate for the short-two logarithmic integrand.-/
+/-- Product estimate for the short-two logarithmic integrand.
+@isnad1 id=le.3h4v.s8.5b56544de2a7 from=translated src=- shape=4d720d53 vocab=ca9c5b71
+-/
 theorem aux_leftBumpOneShortTwo_integrand_bound
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (t : ℝ) (ht : t ∈ Set.Icc (1 : ℝ) 2) (v : RealPlane)
@@ -7871,7 +8486,9 @@ theorem aux_leftBumpOneShortTwo_integrand_bound
 
 /--
 The fully normalized physical Whitney decay for the short-two kernel,
-conditional only on the public logarithmic-derivative formula for `phiFour`.-/
+conditional only on the public logarithmic-derivative formula for `phiFour`.
+@isnad1 id=le.2h3v.s8.f42d0f1564c0 from=translated src=- shape=4ae95466 vocab=3b185b4a
+-/
 theorem aux_leftBumpOneShortTwo_kernel_decay
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (v : RealPlane)
@@ -8006,6 +8623,9 @@ theorem aux_leftBumpOneShortTwo_kernel_decay
           scaledBracketBumpReal (3 / 2 : ℝ) 1 ((W u v).1) *
             scaledBracketBumpReal (3 / 2 : ℝ) 1 ((W u v).2) := by ring
 
+/--
+@isnad1 id=le.2h3v.s8.ce76a9465889 from=translated src=- shape=62f1a7c8 vocab=3f112c1a
+-/
 theorem aux_leftBumpOneShortTwo_normalized_decay
     (b : windowBasedBumpFunctions) (k : ℤ) (hk : k ≤ -1)
     (v : RealPlane)
@@ -8064,6 +8684,9 @@ theorem aux_leftBumpOneShortTwo_normalized_decay
       mul_le_mul_of_nonneg_left hraw (inv_nonneg.mpr hD.le)
     _ = S := by field_simp [ne_of_gt hD]
 
+/--
+@isnad1 id=le.0h2v.s7.72932639363f from=translated src=- shape=fc53a755 vocab=093851e6
+-/
 theorem aux_leftBumpOneShortTwo_tPhiFourSchwartz_support
     (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
@@ -8204,7 +8827,9 @@ See also `Auto.leftBumpOneShortTwo`,
 `Auto.thetaPrimitive`,
 `Auto.thetaDecay`,
 `Auto.inductPositiveTermsReductionWhitney`,
-`Auto.thetaTOffcenter`.-/
+`Auto.thetaTOffcenter`.
+@isnad1 id=le.3h6v.s10.05820675ffc7 from=translated src=- shape=58fcca83 vocab=ed9f5e6a
+-/
 theorem leftBumpOneShortTwo {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (k : ℤ) (hk : k ≤ -1) (J : ℕ) (hJ : 0 < J)
@@ -8313,7 +8938,9 @@ C_{\text{lem:leftbump1\_short2}}
 <2^{630}.
 $$
 
-See also `Auto.leftBumpOneShortTwo`.-/
+See also `Auto.leftBumpOneShortTwo`.
+@isnad1 id=lt.1h1v.s5.1804ec5e2b88 from=translated src=- shape=34f18a82 vocab=b1fceda7
+-/
 theorem constantLeftBumpOneShortTwo {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOneShortTwo n < (2 : ℝ) ^ 630 := by
   have hWhitney : C_inductPositiveTermsReductionWhitney n <
@@ -8390,14 +9017,23 @@ noncomputable def C_leftBumpOneLong (n : ℕ) : ℝ :=
 
 /-! ### Long-variation Whitney normalization -/
 
+/--
+@isnad1 id=lt.0h1v.s3.734bd372ac1d from=translated src=- shape=8a62b088 vocab=26c01e24
+-/
 theorem aux_leftBumpOneLong_bracket_pos (x : ℝ) : 0 < bracketBump x := by
   rw [bracketBump]
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.93118abde6bb from=translated src=- shape=b14ee516 vocab=989df058
+-/
 theorem aux_leftBumpOneLong_bracket_le_one (x : ℝ) : bracketBump x ≤ 1 := by
   rw [bracketBump]
   exact (inv_le_one₀ (by positivity)).2 (by linarith [abs_nonneg x])
 
+/--
+@isnad1 id=le.0h2v.s4.4c0a4acab8f5 from=translated src=- shape=69a2cdb0 vocab=9d1b3d82
+-/
 theorem aux_leftBumpOneLong_bracket_mul_le (x y : ℝ) :
     bracketBump x * bracketBump y ≤ bracketBump (x - y) := by
   rw [bracketBump, bracketBump, bracketBump]
@@ -8412,6 +9048,9 @@ theorem aux_leftBumpOneLong_bracket_mul_le (x y : ℝ) :
   have h' := one_div_le_one_div_of_le hp h
   simpa [one_div, div_eq_mul_inv, mul_comm] using h'
 
+/--
+@isnad1 id=le.0h2v.s6.69ee3a6d8169 from=translated src=- shape=d7eab6ed vocab=0af9bcb2
+-/
 theorem aux_leftBumpOneLong_bracket_sq_mul_le_three_halves (x y : ℝ) :
     bracketBump x ^ 2 * bracketBump y ^ 2 ≤
       Real.rpow (bracketBump (x - y)) (3 / 2 : ℝ) := by
@@ -8430,12 +9069,18 @@ theorem aux_leftBumpOneLong_bracket_sq_mul_le_three_halves (x y : ℝ) :
       exact Real.rpow_le_rpow_of_exponent_ge (aux_leftBumpOneLong_bracket_pos _)
         (aux_leftBumpOneLong_bracket_le_one _) (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s5.357c9b4812e7 from=translated src=- shape=05784385 vocab=9b3624db
+-/
 theorem aux_leftBumpOneLong_bracket_sq_le_three_halves (x : ℝ) :
     bracketBump x ^ 2 ≤ Real.rpow (bracketBump x) (3 / 2 : ℝ) := by
   rw [← Real.rpow_natCast]
   exact Real.rpow_le_rpow_of_exponent_ge (aux_leftBumpOneLong_bracket_pos x)
     (aux_leftBumpOneLong_bracket_le_one x) (by norm_num)
 
+/--
+@isnad1 id=le.2h2v.s6.c453b6cf2b18 from=translated src=- shape=430d98dd vocab=d230d1a2
+-/
 theorem aux_leftBumpOneLong_bracket_shift_large_raw (R u : ℝ) (hR : 2 ≤ R)
     (hu : R / 2 ≤ |u - R|) :
     bracketBump (u - R) ≤ 3 * bracketBump u := by
@@ -8455,6 +9100,9 @@ theorem aux_leftBumpOneLong_bracket_shift_large_raw (R u : ℝ) (hR : 2 ≤ R)
       (div_le_div_iff₀ (by positivity) (by positivity)).2 (by simpa using htri)
     _ = 3 * (1 + |u|)⁻¹ := by rw [div_eq_mul_inv]
 
+/--
+@isnad1 id=le.2h2v.s7.29d75d1e01ac from=translated src=- shape=c881f7e3 vocab=5ddf617a
+-/
 theorem aux_leftBumpOneLong_bracket_shift_large (R u : ℝ) (hR : 2 ≤ R)
     (hu : R / 2 ≤ |u - R|) :
     bracketBump (u - R) ^ 2 ≤
@@ -8470,6 +9118,9 @@ theorem aux_leftBumpOneLong_bracket_shift_large (R u : ℝ) (hR : 2 ≤ R)
         Real.rpow (bracketBump u) (3 / 2 : ℝ) :=
       Real.mul_rpow (by norm_num) (aux_leftBumpOneLong_bracket_pos _).le
 
+/--
+@isnad1 id=le.1h2v.s6.065e50d17adb from=translated src=- shape=fe026b91 vocab=da2cb2e5
+-/
 theorem aux_leftBumpOneLong_bracket_shift_scale_raw (R v : ℝ) (hR : 2 ≤ R) :
     bracketBump (v - R) ≤ ((3 / 2 : ℝ) * R) * bracketBump v := by
   have hRpos : 0 < R := by linarith
@@ -8487,6 +9138,9 @@ theorem aux_leftBumpOneLong_bracket_shift_scale_raw (R v : ℝ) (hR : 2 ≤ R) :
       (div_le_div_iff₀ (by positivity) (by positivity)).2 (by simpa using htri)
     _ = ((3 / 2 : ℝ) * R) * (1 + |v|)⁻¹ := by rw [div_eq_mul_inv]
 
+/--
+@isnad1 id=le.1h2v.s7.f317f0e60780 from=translated src=- shape=817c2b8b vocab=79400a7c
+-/
 theorem aux_leftBumpOneLong_bracket_shift_scale (R v : ℝ) (hR : 2 ≤ R) :
     Real.rpow R (-(3 / 2 : ℝ)) * bracketBump (v - R) ^ 2 ≤
       Real.rpow (3 / 2 : ℝ) (3 / 2 : ℝ) *
@@ -8521,6 +9175,9 @@ theorem aux_leftBumpOneLong_bracket_shift_scale (R v : ℝ) (hR : 2 ≤ R) :
       rw [hsplit1, hsplit2, hneg]
       field_simp [ne_of_gt (Real.rpow_pos_of_pos hRpos (3 / 2 : ℝ))]
 
+/--
+@isnad1 id=le.3h3v.s7.bb3f040ab89d from=translated src=- shape=32c65f29 vocab=284e8520
+-/
 theorem aux_leftBumpOneLong_scale_to_bracket (R c v : ℝ) (hR : 0 < R)
     (hc : 0 < c) (h : 1 + |v| ≤ c * R) :
     Real.rpow R (-(3 / 2 : ℝ)) ≤
@@ -8541,6 +9198,9 @@ theorem aux_leftBumpOneLong_scale_to_bracket (R c v : ℝ) (hR : 0 < R)
         Real.rpow (bracketBump v) (3 / 2 : ℝ) :=
       Real.mul_rpow hc.le (aux_leftBumpOneLong_bracket_pos v).le
 
+/--
+@isnad1 id=le.2h1v.s6.f30ff33a12e1 from=translated src=- shape=64e59e5f vocab=8296a06b
+-/
 theorem aux_leftBumpOneLong_rpow_three_halves_le (q : ℝ) (hq : 0 < q)
     (hroot : Real.sqrt q ≤ 3) :
     Real.rpow q (3 / 2 : ℝ) ≤ 3 * q := by
@@ -8551,6 +9211,9 @@ theorem aux_leftBumpOneLong_rpow_three_halves_le (q : ℝ) (hq : 0 < q)
       exact congrArg (fun z : ℝ => z * q) (Real.sqrt_eq_rpow q).symm
     _ ≤ 3 * q := by gcongr
 
+/--
+@isnad1 id=le.0h0v.s5.8c879eae9d73 from=translated src=- shape=013d6194 vocab=3d4a831f
+-/
 theorem aux_leftBumpOneLong_rpow_nine_halves_le_sixteen :
     Real.rpow (9 / 2 : ℝ) (3 / 2 : ℝ) ≤ 16 := by
   have hsqrt : Real.sqrt (9 / 2 : ℝ) ≤ 3 := by
@@ -8561,6 +9224,9 @@ theorem aux_leftBumpOneLong_rpow_nine_halves_le_sixteen :
       aux_leftBumpOneLong_rpow_three_halves_le _ (by norm_num) hsqrt
     _ ≤ 16 := by norm_num
 
+/--
+@isnad1 id=le.0h0v.s5.2e9158e48e9b from=translated src=- shape=013d6194 vocab=3d4a831f
+-/
 theorem aux_leftBumpOneLong_rpow_seven_halves_le_sixteen :
     Real.rpow (7 / 2 : ℝ) (3 / 2 : ℝ) ≤ 16 := by
   have hsqrt : Real.sqrt (7 / 2 : ℝ) ≤ 2 := by
@@ -8572,6 +9238,9 @@ theorem aux_leftBumpOneLong_rpow_seven_halves_le_sixteen :
         (hsqrt.trans (by norm_num))
     _ ≤ 16 := by norm_num
 
+/--
+@isnad1 id=le.1h3v.s8.a9fffb89aef1 from=translated src=- shape=e213c9ec vocab=2b7c2afa
+-/
 theorem aux_leftBumpOneLong_shifted_bracket_decay (R u v : ℝ) (hR : 2 ≤ R) :
     Real.rpow R (-(3 / 2 : ℝ)) *
         (bracketBump (u - R) ^ 2 * bracketBump (v - R) ^ 2) ≤
@@ -8728,6 +9397,9 @@ theorem aux_leftBumpOneLong_shifted_bracket_decay (R u v : ℝ) (hR : 2 ≤ R) :
         _ ≤ 16 * (A + B) :=
           mul_le_mul_of_nonneg_left (le_add_of_nonneg_left hA) (by norm_num)
 
+/--
+@isnad1 id=eq.0h4v.s8.d6bf43510115 from=translated src=- shape=08f258f0 vocab=3667ac67
+-/
 theorem aux_leftBumpOneLong_phiFour_plane_formula (b : windowBasedBumpFunctions)
     (k : ℤ) (c z : ℝ) :
     aux_planeFourier (fun v => c * tensorSquare (phiFourSchwartz b k) v)
@@ -8756,6 +9428,9 @@ theorem aux_leftBumpOneLong_phiFour_plane_formula (b : windowBasedBumpFunctions)
   rw [phiFour_fourier_pair_eq]
   ring
 
+/--
+@isnad1 id=le.0h2v.s7.db852bff311d from=translated src=- shape=d0990ecb vocab=aed26bac
+-/
 theorem aux_leftBumpOneLong_phiFour_support (b : windowBasedBumpFunctions) (k : ℤ) :
     Function.support (FourierTransform.fourier
       (fun x : ℝ => (phiFourSchwartz b k x : ℂ))) ⊆
@@ -8765,6 +9440,9 @@ theorem aux_leftBumpOneLong_phiFour_support (b : windowBasedBumpFunctions) (k : 
   unfold Auto.aux_annulusOne at h ⊢
   constructor <;> nlinarith [h.1, h.2]
 
+/--
+@isnad1 id=le.2h5v.s8.238b70cf66ba from=translated src=- shape=ed1435f5 vocab=71c863e0
+-/
 theorem aux_leftBumpOneLong_diagonal_bound (b : windowBasedBumpFunctions)
     (k : ℤ) (c : ℝ)
     (hscalar : |c * (2 : ℝ) ^ (2 * k)| *
@@ -8813,6 +9491,9 @@ theorem aux_leftBumpOneLong_diagonal_bound (b : windowBasedBumpFunctions)
       mul_le_mul_of_nonneg_left hprod' (abs_nonneg _)
     _ ≤ 1 := by simpa [B] using hscalar
 
+/--
+@isnad1 id=le.1h1v.s5.f43ce5b9ba9c from=translated src=- shape=9bd6bd9c vocab=5a4efb1c
+-/
 theorem aux_leftBumpOneLong_R_ge_two (k : ℤ) (hk : k ≤ -1) :
     (2 : ℝ) ≤ (2 : ℝ) ^ (-k) := by
   calc
@@ -8820,6 +9501,9 @@ theorem aux_leftBumpOneLong_R_ge_two (k : ℤ) (hk : k ≤ -1) :
     _ ≤ (2 : ℝ) ^ (-k) :=
       (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mpr (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s6.1458661ff02b from=translated src=- shape=598fb2db vocab=f2b2b4bb
+-/
 theorem aux_leftBumpOneLong_zpow_twice_rpow (k : ℤ) :
     (2 : ℝ) ^ (2 * k) = Real.rpow ((2 : ℝ) ^ (-k)) (-2 : ℝ) := by
   let R : ℝ := (2 : ℝ) ^ (-k)
@@ -8836,6 +9520,9 @@ theorem aux_leftBumpOneLong_zpow_twice_rpow (k : ℤ) :
     _ = Real.rpow R (-2 : ℝ) := by
       simp
 
+/--
+@isnad1 id=other.0h1v.s7.d762e89948ed from=translated src=- shape=ad3af9e3 vocab=d04f9efc
+-/
 theorem aux_leftBumpOneLong_c_scale_physical (k : ℤ) :
     let R : ℝ := (2 : ℝ) ^ (-k)
     let C : ℝ := C_thetaPrimitive 2
@@ -8884,6 +9571,9 @@ theorem aux_leftBumpOneLong_c_scale_physical (k : ℤ) :
                   ring
             rw [hsum]
 
+/--
+@isnad1 id=le.0h3v.s7.71447edc67cd from=translated src=- shape=1759be4b vocab=75a33b21
+-/
 theorem aux_leftBumpOneLong_phiFour_decay (b : windowBasedBumpFunctions)
     (k : ℤ) (x : ℝ) :
     |phiFourSchwartz b k x| ≤
@@ -8897,6 +9587,9 @@ theorem aux_leftBumpOneLong_phiFour_decay (b : windowBasedBumpFunctions)
         (x - (2 : ℝ) ^ (-k)))
       (zpow_pos (by norm_num : (0 : ℝ) < 2) k).le)
 
+/--
+@isnad1 id=le.0h1v.s8.d9798e13a3e6 from=translated src=- shape=2ccad797 vocab=a6f128ac
+-/
 theorem aux_leftBumpOneLong_W_decay_dominates (v : RealPlane) :
     Real.rpow (bracketBump v.1) (3 / 2 : ℝ) *
           Real.rpow (bracketBump v.2) (3 / 2 : ℝ) +
@@ -8918,6 +9611,9 @@ theorem aux_leftBumpOneLong_W_decay_dominates (v : RealPlane) :
       (Real.rpow (bracketBump v.1) (3 / 2 : ℝ) *
         Real.rpow (bracketBump v.2) (3 / 2 : ℝ)))
 
+/--
+@isnad1 id=other.1h2v.s8.f158693eff01 from=translated src=- shape=97f1286a vocab=d3a4f0ba
+-/
 theorem aux_leftBumpOneLong_data_decay (b : windowBasedBumpFunctions) (k : ℤ)
     (hk : k ≤ -1) :
     let R : ℝ := (2 : ℝ) ^ (-k)
@@ -9004,6 +9700,9 @@ theorem aux_leftBumpOneLong_data_decay (b : windowBasedBumpFunctions) (k : ℤ)
           scaledBracketBumpReal (3 / 2 : ℝ) 1 ((W u v).2) :=
       aux_leftBumpOneLong_W_decay_dominates v
 
+/--
+@isnad1 id=other.1h1v.s7.5fa0c56e4b24 from=translated src=- shape=da2f04c0 vocab=0c118b4f
+-/
 theorem aux_leftBumpOneLong_c_diagonal_scalar (k : ℤ) (hk : k ≤ -1) :
     let R : ℝ := (2 : ℝ) ^ (-k)
     let C : ℝ := C_thetaPrimitive 2
@@ -9069,6 +9768,9 @@ theorem aux_leftBumpOneLong_c_diagonal_scalar (k : ℤ) (hk : k ≤ -1) :
         ring
     _ ≤ 1 := by nlinarith
 
+/--
+@isnad1 id=eq.2h5v.s7.5c644ab9f8d6 from=translated src=- shape=76303bd7 vocab=dedd6981
+-/
 theorem aux_leftBumpOneLong_tensor_sequence_eq (psi : SchwartzMap ℝ ℝ)
     (c : ℝ) (hc : c ≠ 0) (a : ℤ → ℝ) (ha : SpacedSequence a)
     (j : ℤ) (y : RealVector 1 × RealVector 1) :
@@ -9080,6 +9782,9 @@ theorem aux_leftBumpOneLong_tensor_sequence_eq (psi : SchwartzMap ℝ ℝ)
   have hapos : a j ≠ 0 := ne_of_gt (ha j).1
   field_simp [hc, hapos]
 
+/--
+@isnad1 id=le.5h7v.s10.5db85fdf465a from=translated src=- shape=6ae6fdd1 vocab=874e7861
+-/
 theorem aux_leftBumpOneLong_tensor_whitney_prefix {n : ℕ} (hn : 2 ≤ n)
     (a : ℤ → ℝ) (ha : SpacedSequence a) (psi : SchwartzMap ℝ ℝ)
     (c : ℝ) (hc : 0 < c) (Psi : WhitneyKernelData)
@@ -9179,6 +9884,9 @@ theorem aux_leftBumpOneLong_tensor_whitney_prefix {n : ℕ} (hn : 2 ≤ n)
         ENNReal.ofReal ((J : ℝ) ^ variationExponent n) := by
       simpa [Fnorm] using hprefix
 
+/--
+@isnad1 id=auxdyadi.3h5v.s9.f1a6d5025825 from=translated src=- shape=c55f50ff vocab=d5c8a764
+-/
 theorem aux_leftBumpOneLong_tensor_whitney_dyadic {n : ℕ} (hn : 2 ≤ n)
     (psi : SchwartzMap ℝ ℝ) (c : ℝ) (hc : 0 < c) (Psi : WhitneyKernelData)
     (hkernel : Psi.kernel = fun v => c * tensorSquare psi v)
@@ -9242,6 +9950,9 @@ noncomputable def aux_leftBumpOneLong_data (b : windowBasedBumpFunctions)
         (aux_leftBumpOneLong_c_diagonal_scalar k hk) m hm xi)
     (aux_leftBumpOneLong_data_decay b k hk)
 
+/--
+@isnad1 id=other.0h2v.s7.07df1524e84d from=translated src=- shape=3d387aec vocab=535d60ff
+-/
 theorem aux_leftBumpOneLong_final_scalar (n : ℕ) (k : ℤ) :
     let R : ℝ := (2 : ℝ) ^ (-k)
     let C : ℝ := C_thetaPrimitive 2
@@ -9301,7 +10012,9 @@ $$
 
 See also `Auto.leftBumpOneLong`,
 `Auto.inductPositiveTermsReductionWhitney`,
-`Auto.thetaPrimitive`.-/
+`Auto.thetaPrimitive`.
+@isnad1 id=auxdyadi.2h4v.s9.c627268c7c79 from=translated src=- shape=44737da7 vocab=317acae9
+-/
 theorem leftBumpOneLong {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : k ≤ -1) :
@@ -9342,6 +10055,9 @@ theorem leftBumpOneLong {n : ℕ} (hn : 2 ≤ n)
     rw [hscalar] at hdyadic
     simpa only [phiFourSchwartz_apply] using hdyadic
 
+/--
+@isnad1 id=lt.1h1v.s6.1b81bf31b183 from=translated src=- shape=1353f379 vocab=0812f0fe
+-/
 theorem aux_leftBumpOneLong_whitney_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitney n <
       (1397 / 2048 : ℝ) * (2 : ℝ) ^ 557 := by
@@ -9362,6 +10078,9 @@ theorem aux_leftBumpOneLong_whitney_sharp {n : ℕ} (hn : 2 ≤ n) :
             ring
         _ = (1397 / 2048 : ℝ) * (2 : ℝ) ^ 557 := by rw [← pow_add]
 
+/--
+@isnad1 id=lt.1h1v.s6.99b717a98827 from=translated src=- shape=1353f379 vocab=159c61a8
+-/
 theorem aux_leftBumpOneLong_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOneLong n <
       (1397 / 2048 : ℝ) * (2 : ℝ) ^ 625 := by
@@ -9396,7 +10115,9 @@ $$
 C_{\text{lem:leftbump1\_long}}<2^{625}.
 $$
 
-See also `Auto.leftBumpOneLong`.-/
+See also `Auto.leftBumpOneLong`.
+@isnad1 id=lt.1h1v.s5.8923e17e6e2e from=translated src=- shape=34f18a82 vocab=e1cd575d
+-/
 theorem constantLeftBumpOneLong {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOneLong n < (2 : ℝ) ^ 625 := by
   calc
@@ -9412,7 +10133,9 @@ noncomputable def C_leftBumpOne (n : ℕ) : ℝ :=
   (2 : ℝ) ^ 7 * Real.sqrt (C_leftBumpOneShortOne n) *
       Real.sqrt (C_leftBumpOneShortTwo n) + 2 * C_leftBumpOneLong n
 
-/-- Lemma `Auto.leftBumpOne`.-/
+/-- Lemma `Auto.leftBumpOne`.
+@isnad1 id=eq.1h2v.s7.4e8640e45815 from=translated src=- shape=e8b28848 vocab=f791b8e2
+-/
 theorem aux_leftBumpOne_logarithmic_setIntegral_rescale (a : ℝ) (ha : 0 < a)
     (g : ℝ → ℝ) :
     (∫ t : ℝ in Set.Icc a (a * 2), |g t| ^ 2 * t⁻¹) =
@@ -9444,6 +10167,9 @@ theorem aux_leftBumpOne_logarithmic_setIntegral_rescale (a : ℝ) (ha : 0 < a)
   dsimp [h]
   field_simp [ha.ne']
 
+/--
+@isnad1 id=contdiff.2h6v.s8.abea76a675ba from=translated src=- shape=24272b07 vocab=8b170c98
+-/
 theorem aux_leftBumpOne_twistedAverageAtScale_contDiffOn {n : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -9494,6 +10220,9 @@ theorem aux_leftBumpOne_twistedAverageAtScale_contDiffOn {n : ℕ}
     (lt_of_lt_of_le hα ht.1)).hasDerivWithinAt.derivWithin
       ((uniqueDiffOn_Icc hαβ) t ht)
 
+/--
+@isnad1 id=eq.0h5v.s9.b1de0f6f2109 from=translated src=- shape=73525f3c vocab=bcc1c8db
+-/
 theorem aux_leftBumpOne_Aphi_lintegral {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (k : ℤ) :
@@ -9604,6 +10333,9 @@ theorem aux_leftBumpOne_Aphi_lintegral {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     ∫⁻ t in Set.Icc (1 : ℝ) 2, ‖g t‖ₑ ^ (2 : ℝ) * ENNReal.ofReal t⁻¹
   rw [hleftDensity, ← hleftOfReal, hFTC, hrightOfReal, hrightEnorm]
 
+/--
+@isnad1 id=le.1h7v.s10.37b05d62fcac from=translated src=- shape=46928ffb vocab=4b78b4bd
+-/
 theorem aux_leftBumpOne_pointwise_local_product {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (J : ℕ) (k : ℤ)
@@ -9752,6 +10484,9 @@ noncomputable def aux_leftBumpOne_scaleKernel
     (phi : SchwartzMap ℝ ℝ) (t : ℝ) : ℝ → ℝ :=
   fun s ↦ t⁻¹ * phi (t⁻¹ * s)
 
+/--
+@isnad1 id=memlp.0h2v.s6.49ea5d125781 from=translated src=- shape=18360614 vocab=3f358f1e
+-/
 theorem aux_leftBumpOne_scaleKernel_memLp (phi : SchwartzMap ℝ ℝ) (t : ℝ) :
     MemLp (aux_leftBumpOne_scaleKernel phi t) 2 volume := by
   by_cases ht : t = 0
@@ -9785,6 +10520,9 @@ noncomputable def aux_leftBumpOne_averageLp {n : ℕ} (hn : 2 ≤ n)
   (aux_twistedAverage_memLp hn f.1 (aux_leftBumpOne_scaleKernel phi t)
     (aux_leftBumpOne_scaleKernel_memLp phi t)).toLp _
 
+/--
+@isnad1 id=eq.1h5v.s13.dedd10cc43b3 from=translated src=- shape=0a4c7244 vocab=a18ceada
+-/
 theorem aux_leftBumpOne_averageLp_enorm_sub {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (s t : ℝ) :
     (‖aux_leftBumpOne_averageLp hn phi f s -
@@ -9802,6 +10540,9 @@ theorem aux_leftBumpOne_averageLp_enorm_sub {n : ℕ} (hn : 2 ≤ n)
   rw [Lp.enorm_toLp]
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s15.d6a31896d38d from=translated src=- shape=df138934 vocab=e09524c4
+-/
 theorem aux_leftBumpOne_lp_chain_energy_eq_lintegral {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (J : ℕ) (k : ℤ)
     (u : Fin (J + 1) → aux_dyadicInterval k) (_hu : Monotone u) :
@@ -9846,6 +10587,9 @@ theorem aux_leftBumpOne_lp_chain_energy_eq_lintegral {n : ℕ} (hn : 2 ≤ n)
       simpa using (lintegral_finsetSum' (μ := volume) Finset.univ
         (f := fun j x ↦ ‖g j x‖ₑ ^ (2 : ℝ)) (fun j _ ↦ hmeas j)).symm
 
+/--
+@isnad1 id=strongly.0h4v.s8.32cd805913f5 from=translated src=- shape=a6947991 vocab=a7dad3ef
+-/
 theorem aux_leftBumpOne_joint_measurable_twistedAverageAtScale {n : ℕ}
     (psi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (α : ℝ) :
@@ -9862,6 +10606,9 @@ theorem aux_leftBumpOne_joint_measurable_twistedAverageAtScale {n : ℕ}
     hF.stronglyMeasurable.integral_prod_right' (ν := volume)
   simpa only [F, aux_twistedAverageAtScale, aux_twistedAverage] using hInt
 
+/--
+@isnad1 id=aemeasur.0h4v.s9.0688ce927f5d from=translated src=- shape=b4ae8f50 vocab=de26b592
+-/
 theorem aux_leftBumpOne_energy_inner_aemeasurable {n : ℕ}
     (psi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (k : ℤ) :
@@ -9893,6 +10640,9 @@ theorem aux_leftBumpOne_energy_inner_aemeasurable {n : ℕ}
     exact (hjoint.enorm.pow_const _).mul hweight
   simpa only [H] using hHmeas.lintegral_prod_right
 
+/--
+@isnad1 id=eq.0h4v.s10.e652c498cebb from=translated src=- shape=2be18f12 vocab=a9831663
+-/
 theorem aux_leftBumpOne_energy_tonelli {n : ℕ}
     (psi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (k : ℤ) :
@@ -9950,6 +10700,9 @@ theorem aux_leftBumpOne_energy_tonelli {n : ℕ}
           (fun i y ↦ f i y) x) (p := (2 : NNReal)) (by norm_num))
   rw [← hnorm]
 
+/--
+@isnad1 id=le.2h4v.s7.dbe90dddc7fc from=translated src=- shape=3fa76c06 vocab=47e32307
+-/
 theorem aux_leftBumpOne_lintegral_sqrt_mul_sqrt_le {α : Type*} [MeasurableSpace α]
     (μ : Measure α) (p q : α → ℝ≥0∞)
     (hp : AEMeasurable p μ) (hq : AEMeasurable q μ) :
@@ -9962,6 +10715,9 @@ theorem aux_leftBumpOne_lintegral_sqrt_mul_sqrt_le {α : Type*} [MeasurableSpace
     (by norm_num : (2 : ℝ)⁻¹ + (2 : ℝ)⁻¹ = 1)
   simpa using h
 
+/--
+@isnad1 id=le.2h6v.s12.3a4573f6fa0e from=translated src=- shape=3b2a038f vocab=5bc64ea1
+-/
 theorem aux_leftBumpOne_local_variation_product {n : ℕ} (hn : 2 ≤ n)
     (phi tau : SchwartzMap ℝ ℝ) (htau : (tau : ℝ → ℝ) = aux_tBump phi)
     (f : ReductionNormalizedTuple n) (J : ℕ) (k : ℤ) :
@@ -10060,6 +10816,9 @@ theorem aux_leftBumpOne_local_variation_product {n : ℕ} (hn : 2 ≤ n)
   rw [hright] at hsquare
   exact hsquare
 
+/--
+@isnad1 id=le.7h8v.s8.ca05d3567e5e from=translated src=- shape=801fa393 vocab=f611491d
+-/
 theorem aux_leftBumpOne_weighted_energy_bound
     (u v w C D P X Y : ℝ≥0∞)
     (hu0 : u ≠ 0) (hutop : u ≠ ∞) (hv0 : v ≠ 0) (hvtop : v ≠ ∞)
@@ -10120,6 +10879,9 @@ theorem aux_leftBumpOne_weighted_energy_bound
           rw [hpowTwo, hpowP]
           ring
 
+/--
+@isnad1 id=eq.0h1v.s7.0799c7d6ad47 from=translated src=- shape=d584df4e vocab=615b3e90
+-/
 theorem aux_leftBumpOne_leftBumpOne_weight_identity (k : ℤ) :
     (ENNReal.ofReal (Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2)))⁻¹ ^ ((2 : ℝ)⁻¹) *
       (ENNReal.ofReal (Real.rpow 2 ((k : ℝ) / 2)))⁻¹ ^ ((2 : ℝ)⁻¹) =
@@ -10143,24 +10905,39 @@ theorem aux_leftBumpOne_leftBumpOne_weight_identity (k : ℤ) :
   dsimp [a, b]
   ring
 
+/--
+@isnad1 id=ne.0h1v.s5.33adeeb8639f from=translated src=- shape=0c8365d9 vocab=86f34549
+-/
 theorem aux_leftBumpOne_leftBumpOne_weight_nonzero (k : ℤ) :
     ENNReal.ofReal (Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2)) ≠ 0 := by
   exact ENNReal.ofReal_ne_zero_iff.mpr
     (Real.rpow_pos_of_pos (by norm_num) _)
 
+/--
+@isnad1 id=ne.0h1v.s5.00b65e4077fe from=translated src=- shape=b10db268 vocab=bcbd0a76
+-/
 theorem aux_leftBumpOne_leftBumpOne_weight_not_top (k : ℤ) :
     ENNReal.ofReal (Real.rpow 2 (-(3 : ℝ) * (k : ℝ) / 2)) ≠ ∞ :=
   ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=ne.0h1v.s5.10094bc592d1 from=translated src=- shape=0e0aeb0c vocab=efa085aa
+-/
 theorem aux_leftBumpOne_leftBumpOne_Tweight_nonzero (k : ℤ) :
     ENNReal.ofReal (Real.rpow 2 ((k : ℝ) / 2)) ≠ 0 := by
   exact ENNReal.ofReal_ne_zero_iff.mpr
     (Real.rpow_pos_of_pos (by norm_num) _)
 
+/--
+@isnad1 id=ne.0h1v.s5.25acc05760e6 from=translated src=- shape=1b0fd945 vocab=148ecb60
+-/
 theorem aux_leftBumpOne_leftBumpOne_Tweight_not_top (k : ℤ) :
     ENNReal.ofReal (Real.rpow 2 ((k : ℝ) / 2)) ≠ ∞ :=
   ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=le.0h4v.s7.638a593ead12 from=translated src=- shape=9f886006 vocab=8d7f887b
+-/
 theorem aux_leftBumpOne_finset_sqrt_mul_sqrt_le {ι : Type*} (κ : Finset ι)
     (p q : ι → ℝ≥0∞) :
     (∑ i ∈ κ, p i ^ ((2 : ℝ)⁻¹) * q i ^ ((2 : ℝ)⁻¹)) ≤
@@ -10177,6 +10954,9 @@ theorem aux_leftBumpOne_finset_sqrt_mul_sqrt_le {ι : Type*} (κ : Finset ι)
     ← Finset.sum_coe_sort κ (fun i ↦ p i ^ ((2 : ℝ)⁻¹) * q i ^ ((2 : ℝ)⁻¹)),
     ← Finset.sum_coe_sort κ p, ← Finset.sum_coe_sort κ q] using h
 
+/--
+@isnad1 id=eq.2h3v.s7.1050b902e0d3 from=translated src=- shape=ab5a120c vocab=5a7ef3bd
+-/
 theorem aux_leftBumpOne_dyadic_index_unique {x : ℝ} {k l : ℤ}
     (hk : (2 : ℝ) ^ k ≤ x ∧ x < (2 : ℝ) ^ (k + 1))
     (hl : (2 : ℝ) ^ l ≤ x ∧ x < (2 : ℝ) ^ (l + 1)) :
@@ -10195,6 +10975,9 @@ theorem aux_leftBumpOne_dyadic_index_unique {x : ℝ} {k l : ℤ}
       (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mpr hstep
     exact (not_lt_of_ge (hp.trans hl.1)) hk.2
 
+/--
+@isnad1 id=le.2h3v.s7.191a4e3ae620 from=translated src=- shape=c9b6ea47 vocab=aa4afbe8
+-/
 theorem aux_leftBumpOne_kappa_card_le {J : ℕ}
     (t : Fin (J + 1) → ℝ) (_htpos : ∀ j, 0 < t j)
     (kappa : Finset ℤ)
@@ -10211,6 +10994,9 @@ theorem aux_leftBumpOne_kappa_card_le {J : ℕ}
     · simpa [hkl] using hq l
   simpa using Fintype.card_le_of_injective q hqin
 
+/--
+@isnad1 id=ex.1h1v.s7.c247aab81658 from=translated src=- shape=daf0e4ad vocab=db7deec8
+-/
 theorem aux_leftBumpOne_finset_sum_as_dyadic_chain (kappa : Finset ℤ)
     (hkappa : kappa.Nonempty) :
     ∃ (K : ℕ) (_ : 0 < K) (_ : K = kappa.card) (q : aux_dyadicChain K),
@@ -10270,6 +11056,9 @@ theorem aux_leftBumpOne_finset_sum_as_dyadic_chain (kappa : Finset ℤ)
       change F (e j) = F (qfun j.castSucc)
       simp [qfun]
 
+/--
+@isnad1 id=le.3h3v.s6.9b9dc24e9402 from=translated src=- shape=f1932da1 vocab=00d7c59b
+-/
 theorem aux_leftBumpOne_card_power_bound {n J K : ℕ} (hn : 2 ≤ n) (hJ : 0 < J)
     (hK : K ≤ J + 1) :
     ENNReal.ofReal ((K : ℝ) ^ variationExponent n) ≤
@@ -10311,6 +11100,9 @@ theorem aux_leftBumpOne_card_power_bound {n J K : ℕ} (hn : 2 ≤ n) (hJ : 0 < 
       rw [ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 2)]
       norm_num
 
+/--
+@isnad1 id=eq.2h3v.s7.791e76c64695 from=translated src=- shape=ee72cb63 vocab=adbe84a1
+-/
 theorem aux_leftBumpOne_ofReal_sqrt_rpow_product (C D : ℝ) (hC : 0 ≤ C) (hD : 0 ≤ D)
     (k : ℤ) :
     ENNReal.ofReal (Real.rpow 2 ((k : ℝ) / 2)) *
@@ -10341,6 +11133,9 @@ theorem aux_leftBumpOne_ofReal_sqrt_rpow_product (C D : ℝ) (hC : 0 ≤ C) (hD 
           congr 1
           ring
 
+/--
+@isnad1 id=le.0h1v.s3.1187732e5385 from=translated src=- shape=b9369acb vocab=062bd768
+-/
 theorem aux_leftBumpOne_whitney_nonneg (n : ℕ) :
     0 ≤ C_inductPositiveTermsReductionWhitney n := by
   have hdiagonal : 0 ≤ C_diagonalBandReduction := by
@@ -10365,28 +11160,43 @@ theorem aux_leftBumpOne_whitney_nonneg (n : ℕ) :
   unfold C_inductPositiveTermsReductionWhitney
   exact mul_nonneg (by norm_num) hgap
 
+/--
+@isnad1 id=le.0h1v.s3.2b6b4d537b62 from=translated src=- shape=b9369acb vocab=b62e68b3
+-/
 theorem aux_leftBumpOne_short_one_nonneg (n : ℕ) : 0 ≤ C_leftBumpOneShortOne n := by
   unfold C_leftBumpOneShortOne
   exact mul_nonneg (mul_nonneg (mul_nonneg (by positivity)
     (aux_leftBumpOne_whitney_nonneg n)) (sq_nonneg _))
     (by norm_num [C_thetaTOffcenter])
 
+/--
+@isnad1 id=le.0h0v.s3.26adc36252cf from=translated src=- shape=ff3a10fc vocab=e434f2a8
+-/
 theorem aux_leftBumpOne_short_two_aux_nonneg : 0 ≤ C_leftBumpOneShortTwoAuxiliary := by
   unfold C_leftBumpOneShortTwoAuxiliary
   exact le_max_of_le_left (by norm_num [C_thetaPrimitive, Auto.C_uniPair])
 
+/--
+@isnad1 id=le.0h1v.s3.968b5cbd61fe from=translated src=- shape=b9369acb vocab=cacb6194
+-/
 theorem aux_leftBumpOne_short_two_nonneg (n : ℕ) : 0 ≤ C_leftBumpOneShortTwo n := by
   unfold C_leftBumpOneShortTwo
   exact mul_nonneg (mul_nonneg (mul_nonneg (by positivity)
     (aux_leftBumpOne_whitney_nonneg n))
     (by norm_num [C_thetaTOffcenter])) (sq_nonneg _)
 
+/--
+@isnad1 id=le.0h1v.s3.fa1827e225c8 from=translated src=- shape=b9369acb vocab=18420438
+-/
 theorem aux_leftBumpOne_long_nonneg (n : ℕ) : 0 ≤ C_leftBumpOneLong n := by
   unfold C_leftBumpOneLong
   exact mul_nonneg
     (mul_nonneg (by positivity) (aux_leftBumpOne_whitney_nonneg n))
     (sq_nonneg _)
 
+/--
+@isnad1 id=eq.0h1v.s7.a3e5f161ae9a from=translated src=- shape=d01b243a vocab=9993c863
+-/
 theorem aux_leftBumpOne_T_eq_tBump (phi : SchwartzMap ℝ ℝ) :
     Auto.aux_T (fun x : ℝ ↦ phi x) = aux_tBump phi := by
   funext x
@@ -10394,6 +11204,9 @@ theorem aux_leftBumpOne_T_eq_tBump (phi : SchwartzMap ℝ ℝ) :
     Auto.multiplicationOperatorX aux_tBump
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=le.4h6v.s12.4d7cc2cb2103 from=translated src=- shape=f2375b00 vocab=2873f8e8
+-/
 theorem aux_leftBumpOne_leftBumpOne_local_finset_bound {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : k ≤ -1) (J : ℕ) (hJ : 0 < J)
@@ -10550,6 +11363,9 @@ noncomputable def aux_leftBumpOne_intEnergy (d : ℤ → ℤ → ℝ≥0∞) {J 
     (t : Fin (J + 1) → ℤ) : ℝ≥0∞ :=
   ∑ j : Fin J, d (t j.succ) (t j.castSucc)
 
+/--
+@isnad1 id=ex.2h3v.s8.69b02cb68ea8 from=translated src=- shape=0a16dd4e vocab=f3e0bab9
+-/
 theorem aux_leftBumpOne_compress_mono_chain
     (d : ℤ → ℤ → ℝ≥0∞) (hdiag : ∀ z, d z z = 0) :
     ∀ (J : ℕ) (t : Fin (J + 1) → ℤ), Monotone t →
@@ -10623,6 +11439,9 @@ theorem aux_leftBumpOne_compress_mono_chain
             rfl
           rw [hsplit, henergy, hqsplit]
 
+/--
+@isnad1 id=le.1h1v.s4.e49871629b72 from=translated src=- shape=7f2e781e vocab=49a6f57c
+-/
 theorem aux_leftBumpOne_variationExponent_nonneg {n : ℕ} (hn : 2 ≤ n) :
     0 ≤ variationExponent n := by
   unfold variationExponent
@@ -10632,6 +11451,9 @@ theorem aux_leftBumpOne_variationExponent_nonneg {n : ℕ} (hn : 2 ≤ n) :
     Real.rpow_le_one_of_one_le_of_nonpos (by norm_num) hexp
   linarith
 
+/--
+@isnad1 id=le.1h3v.s7.cdd42554532c from=translated src=- shape=d2f7846e vocab=99269517
+-/
 theorem aux_leftBumpOne_energy_of_root_le (E S V : ℝ≥0∞)
     (h : E ^ ((2 : ℝ)⁻¹) ≤ 2 * S ^ ((2 : ℝ)⁻¹) + V) :
     E ≤ 8 * S + 2 * V ^ (2 : ℝ) := by
@@ -10657,6 +11479,9 @@ theorem aux_leftBumpOne_energy_of_root_le (E S V : ℝ≥0∞)
       · rw [← mul_assoc]
         norm_num
 
+/--
+@isnad1 id=le.3h5v.s12.02fd4950c51d from=translated src=- shape=06ae10fc vocab=a0d83383
+-/
 theorem aux_leftBumpOne_long_variation_sq_le {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (J : ℕ) (_hJ : 0 < J)
     (A : ℝ) (hA : aux_dyadicVariationBound A (fun x ↦ phi x) f.1) :
@@ -10750,6 +11575,9 @@ theorem aux_leftBumpOne_long_variation_sq_le {n : ℕ} (hn : 2 ≤ n)
   rw [hright] at hsquare
   exact hsquare
 
+/--
+@isnad1 id=auxvaria.5h5v.s12.6ac4bc73bd26 from=translated src=- shape=f76e80ca vocab=debdd986
+-/
 theorem aux_leftBumpOne_shortLong_finish_of_local {n : ℕ} (hn : 2 ≤ n)
     (phi : SchwartzMap ℝ ℝ) (f : ReductionNormalizedTuple n) (B A : ℝ)
     (hBnonneg : 0 ≤ B) (hAnonneg : 0 ≤ A)
@@ -10818,6 +11646,9 @@ theorem aux_leftBumpOne_shortLong_finish_of_local {n : ℕ} (hn : 2 ≤ n)
   rw [hjump]
   exact henergy.trans htarget
 
+/--
+@isnad1 id=eq.2h5v.s6.827910a3135a from=translated src=- shape=4e4191a9 vocab=f1359708
+-/
 theorem aux_leftBumpOne_twistedAverageAtScale_oneRescaled {n : ℕ}
     (phi : ℝ → ℝ) (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ)
     (t lambda : ℝ) (ht : 0 < t) (hlambda : 0 < lambda) :
@@ -10841,6 +11672,9 @@ def aux_leftBumpOne_scaleMul (lambda : ℝ) (hlambda : 0 < lambda)
       intro j
       exact mul_pos hlambda (t.2.2 j)⟩⟩
 
+/--
+@isnad1 id=auxvaria.2h5v.s7.ece415d465a2 from=translated src=- shape=349dc45d vocab=b7c5751a
+-/
 theorem aux_leftBumpOne_variationBound_of_oneRescaled {n : ℕ} (lambda : ℝ)
     (hlambda : 0 < lambda) (A : ℝ) (phi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -10869,6 +11703,9 @@ theorem aux_leftBumpOne_variationBound_of_oneRescaled {n : ℕ} (lambda : ℝ)
     _ ≤ ENNReal.ofReal A * ENNReal.ofReal ((J : ℝ) ^ variationExponent n) :=
       hA J hJ t'
 
+/--
+@isnad1 id=eq.0h4v.s9.65b8bac82949 from=translated src=- shape=c63e1f45 vocab=af018e30
+-/
 theorem aux_leftBumpOne_twistedAverageAtScale_neg {n : ℕ}
     (phi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (t : ℝ) :
@@ -10884,6 +11721,9 @@ theorem aux_leftBumpOne_twistedAverageAtScale_neg {n : ℕ}
   rw [hkernel]
   exact aux_twistedAverage_neg f _
 
+/--
+@isnad1 id=auxvaria.1h4v.s7.7b24d0fbe637 from=translated src=- shape=f667de77 vocab=dc2670a0
+-/
 theorem aux_leftBumpOne_variationBound_neg {n : ℕ} (A : ℝ) (phi : ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (hA : aux_variationBound A phi f) :
@@ -10922,6 +11762,9 @@ theorem aux_leftBumpOne_variationBound_neg {n : ℕ} (A : ℝ) (phi : ℝ → �
     _ ≤ ENNReal.ofReal A * ENNReal.ofReal ((J : ℝ) ^ variationExponent n) :=
       hA J hJ t
 
+/--
+@isnad1 id=eq.0h2v.s5.f4eb1cde892a from=translated src=- shape=50792a94 vocab=09dff2d8
+-/
 theorem aux_leftBumpOne_conv_Ici_one_eq_conv_Ici_zero_shift (g : ℝ → ℝ) (x : ℝ) :
     Auto.aux_realConvolution
       (Auto.aux_indicator (Set.Ici 1)) g x =
@@ -10954,6 +11797,9 @@ theorem aux_leftBumpOne_conv_Ici_one_eq_conv_Ici_zero_shift (g : ℝ → ℝ) (x
       congr 1
       ring_nf
 
+/--
+@isnad1 id=eq.1h3v.s5.cf77c63a0ee7 from=translated src=- shape=bee1afd7 vocab=c7f80dbd
+-/
 theorem aux_leftBumpOne_conv_Ici_zero_rescaled_theta_eq (b : windowBasedBumpFunctions)
     (a x : ℝ) (ha : 0 < a) :
     Auto.aux_realConvolution
@@ -11015,6 +11861,9 @@ theorem aux_leftBumpOne_conv_Ici_zero_rescaled_theta_eq (b : windowBasedBumpFunc
           dsimp [g]
           field_simp [ha.ne']
 
+/--
+@isnad1 id=eq.0h2v.s5.5f2f4da07806 from=translated src=- shape=c65ea66f vocab=665449eb
+-/
 theorem aux_leftBumpOne_phiTwo_eq_neg_oneRescaled_phiFour (b : windowBasedBumpFunctions)
     (k : ℤ) :
     windowBasedBumpFunctions.phiTwo b k =
@@ -11039,6 +11888,9 @@ theorem aux_leftBumpOne_phiTwo_eq_neg_oneRescaled_phiFour (b : windowBasedBumpFu
   field_simp [ha.ne']
   rw [hprod]
 
+/--
+@isnad1 id=auxvaria.2h4v.s9.1155030925c2 from=translated src=- shape=44737da7 vocab=131e6545
+-/
 theorem aux_leftBumpOne_leftBumpOne {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : k ≤ -1) :
@@ -11135,7 +11987,9 @@ where  $C_{\text{lem:leftbump1}}
 See also `Auto.leftBumpOne`,
 `Auto.leftBumpOneShortOne`,
 `Auto.leftBumpOneShortTwo`,
-`Auto.leftBumpOneLong`.-/
+`Auto.leftBumpOneLong`.
+@isnad1 id=auxvaria.2h4v.s9.1155030925c2 from=translated src=- shape=44737da7 vocab=131e6545
+-/
 theorem leftBumpOne {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n) (k : ℤ)
     (hk : k ≤ -1) :
@@ -11143,7 +11997,9 @@ theorem leftBumpOne {n : ℕ} (hn : 2 ≤ n)
       (windowBasedBumpFunctions.phiTwo b k) f.1 := by
   exact aux_leftBumpOne_leftBumpOne hn b f k hk
 
-/-- The numerical estimate in Lemma `Auto.constantLeftBumpOne`.-/
+/-- The numerical estimate in Lemma `Auto.constantLeftBumpOne`.
+@isnad1 id=lt.1h1v.s6.1b81bf31b183 from=translated src=- shape=1353f379 vocab=0812f0fe
+-/
 theorem aux_leftBumpOne_whitney_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_inductPositiveTermsReductionWhitney n <
       (1397 / 2048 : ℝ) * (2 : ℝ) ^ 557 := by
@@ -11164,6 +12020,9 @@ theorem aux_leftBumpOne_whitney_sharp {n : ℕ} (hn : 2 ≤ n) :
             ring
         _ = (1397 / 2048 : ℝ) * (2 : ℝ) ^ 557 := by rw [← pow_add]
 
+/--
+@isnad1 id=le.0h0v.s4.6a82cda9756e from=translated src=- shape=0cd4e242 vocab=1ea77c2b
+-/
 theorem aux_leftBumpOne_short_two_aux_le :
     C_leftBumpOneShortTwoAuxiliary ≤ (2 : ℝ) ^ 31 := by
   unfold C_leftBumpOneShortTwoAuxiliary
@@ -11179,6 +12038,9 @@ theorem aux_leftBumpOne_short_two_aux_le :
           constantThetaDecay 3 (by norm_num) (by norm_num)
         _ ≤ (2 : ℝ) ^ 31 := by norm_num
 
+/--
+@isnad1 id=lt.1h1v.s6.d03d4b1f4ed5 from=translated src=- shape=1353f379 vocab=d83fdcf5
+-/
 theorem aux_leftBumpOne_short_two_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOneShortTwo n <
       (185801 / 262144 : ℝ) * (2 : ℝ) ^ 630 := by
@@ -11219,6 +12081,9 @@ theorem aux_leftBumpOne_short_two_sharp {n : ℕ} (hn : 2 ≤ n) :
         _ = (185801 / 262144 : ℝ) * (2 : ℝ) ^ 630 := by
           rw [← pow_add, ← pow_add]
 
+/--
+@isnad1 id=lt.1h1v.s6.5f7e3fd3a62e from=translated src=- shape=1353f379 vocab=c2a09e13
+-/
 theorem aux_leftBumpOne_constant_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOne n < (23 / 32 : ℝ) * (2 : ℝ) ^ 636 := by
   let q : ℝ := 185801 / 262144
@@ -11297,7 +12162,9 @@ $$
 C_{\text{lem:leftbump1}}<\tfrac{23}{32}2^{636}<2^{636}.
 $$
 
-See also `Auto.leftBumpOne`.-/
+See also `Auto.leftBumpOne`.
+@isnad1 id=lt.1h1v.s6.5f7e3fd3a62e from=translated src=- shape=1353f379 vocab=c2a09e13
+-/
 theorem constantLeftBumpOne {n : ℕ} (hn : 2 ≤ n) :
     C_leftBumpOne n < (23 / 32 : ℝ) * (2 : ℝ) ^ 636 := by
   exact aux_leftBumpOne_constant_sharp hn
@@ -11308,6 +12175,9 @@ noncomputable def C_mainTwistedTheorem (n : ℕ) : ℝ :=
     (C_mainBumpOne n + (2 : ℝ) ^ 6 * C_mainBumpTwo n + C_leftBump n +
       (2 : ℝ) ^ 6 * C_leftBumpOne n)
 
+/--
+@isnad1 id=lt.1h1v.s6.cb7ffd055e14 from=translated src=- shape=1353f379 vocab=9b66c8b5
+-/
 theorem aux_constantMainTwistedTheoremReduction_sharp {n : ℕ} (hn : 2 ≤ n) :
     C_mainTwistedTheorem n < (7 / 8 : ℝ) * (2 : ℝ) ^ 666 := by
   have h1 := constantMainBumpOne hn
@@ -11343,6 +12213,9 @@ theorem aux_constantMainTwistedTheoremReduction_sharp {n : ℕ} (hn : 2 ≤ n) :
       set_option exponentiation.threshold 1000 in
         norm_num
 
+/--
+@isnad1 id=lt.1h1v.s5.62ca1235b732 from=translated src=- shape=34f18a82 vocab=599912b5
+-/
 theorem constantMainTwistedTheoremReduction {n : ℕ} (hn : 2 ≤ n) :
     C_mainTwistedTheorem n < (2 : ℝ) ^ 666 := by
   calc
@@ -11361,6 +12234,9 @@ noncomputable def aux_mainTwisted_delta
     (b : windowBasedBumpFunctions) (N : ℕ) : ℝ → ℝ :=
   fun x => b.smoothingPartialSum (N + 1) x - b.smoothingPartialSum N x
 
+/--
+@isnad1 id=eq.0h2v.s5.37195563934c from=translated src=- shape=b18ab201 vocab=c286d23f
+-/
 theorem aux_mainTwisted_delta_sum (b : windowBasedBumpFunctions) (N : ℕ) :
     ∑ q ∈ Finset.range N, aux_mainTwisted_delta b q =
       b.smoothingPartialSum N - b.smoothingPartialSum 0 := by
@@ -11368,6 +12244,9 @@ theorem aux_mainTwisted_delta_sum (b : windowBasedBumpFunctions) (N : ℕ) :
   simp only [Finset.sum_apply, aux_mainTwisted_delta]
   exact Finset.sum_range_sub (fun N => b.smoothingPartialSum N x) N
 
+/--
+@isnad1 id=eq.0h2v.s6.a41cfd6a58ca from=translated src=- shape=f082e9b8 vocab=3b81f378
+-/
 theorem aux_mainTwisted_delta_expand (b : windowBasedBumpFunctions) (N : ℕ) :
     aux_mainTwisted_delta b N =
       fun x => windowBasedBumpFunctions.phiZero b ((N + 1 : ℕ) : ℤ) x +
@@ -11400,6 +12279,9 @@ theorem aux_mainTwisted_delta_expand (b : windowBasedBumpFunctions) (N : ℕ) :
   simp
   ring
 
+/--
+@isnad1 id=tendsto.0h1v.s7.a27897c49d6c from=translated src=- shape=23b30fad vocab=7bbeed77
+-/
 theorem aux_mainTwisted_delta_converges (b : windowBasedBumpFunctions) :
     Tendsto (fun N => eLpNorm
       ((aux_indicator (Set.Icc 0 1) - b.smoothingPartialSum 0) -
@@ -11426,6 +12308,9 @@ theorem aux_mainTwisted_delta_converges (b : windowBasedBumpFunctions) :
     exact eLpNorm_neg _ _ _
   simpa only [heq] using h'
 
+/--
+@isnad1 id=memlp.2h2v.s7.936096d6747f from=translated src=- shape=33e04913 vocab=72450151
+-/
 theorem aux_mainTwisted_oneRescaled_memLp {g : ℝ → ℝ} (hg : MemLp g 2 volume)
     {t : ℝ} (ht : 0 < t) :
     MemLp (aux_oneRescaled t g) 2 volume := by
@@ -11456,6 +12341,9 @@ theorem aux_mainTwisted_oneRescaled_memLp {g : ℝ → ℝ} (hg : MemLp g 2 volu
   rw [heq]
   exact hcomp.const_smul _
 
+/--
+@isnad1 id=eq.2h2v.s8.5db2c6b887d7 from=translated src=- shape=dc2772cc vocab=9b2af1b2
+-/
 theorem aux_mainTwisted_oneRescaled_eLpNorm_eq {g : ℝ → ℝ} (hg : MemLp g 2 volume)
     {t : ℝ} (ht : 0 < t) :
     eLpNorm (aux_oneRescaled t g) 2 volume =
@@ -11483,6 +12371,9 @@ theorem aux_mainTwisted_oneRescaled_eLpNorm_eq {g : ℝ → ℝ} (hg : MemLp g 2
     rw [mul_assoc]
   · exact ENNReal.ofReal_ne_zero_iff.mpr ht
 
+/--
+@isnad1 id=memlp.4h4v.s7.01dc221dd5fb from=translated src=- shape=390a55e4 vocab=0750c297
+-/
 theorem aux_mainTwisted_memLp_of_const_oneRescaled
     {psi chi : ℝ → ℝ} {a lambda : ℝ}
     (hpsi : MemLp psi 2 volume) (ha : a ≠ 0) (hlambda : 0 < lambda)
@@ -11498,6 +12389,9 @@ theorem aux_mainTwisted_memLp_of_const_oneRescaled
   rw [hfun]
   exact hscaled.const_smul _
 
+/--
+@isnad1 id=memlp.1h2v.s7.3f5ba64dee82 from=translated src=- shape=ed377261 vocab=f8883d31
+-/
 theorem aux_mainTwisted_phiZero_memLp_of_phiThree_eq
     (b : windowBasedBumpFunctions) (k : ℤ)
     (heq : windowBasedBumpFunctions.phiThree b k =
@@ -11512,6 +12406,9 @@ theorem aux_mainTwisted_phiZero_memLp_of_phiThree_eq
     exact (phiThreeSchwartz_apply b k x).symm
   exact aux_mainTwisted_memLp_of_const_oneRescaled hthree (by positivity) (by positivity) heq
 
+/--
+@isnad1 id=memlp.1h2v.s7.b6bf67916d40 from=translated src=- shape=fa4e63cb vocab=dba47b6a
+-/
 theorem aux_mainTwisted_phiOne_memLp_of_thetaTilde_eq
     (b : windowBasedBumpFunctions) (k : ℤ)
     (heq : windowBasedBumpFunctions.phiOne b k =
@@ -11531,6 +12428,9 @@ theorem aux_mainTwisted_phiOne_memLp_of_thetaTilde_eq
   funext x
   simp only [Pi.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=memlp.1h2v.s6.d271ea04f451 from=translated src=- shape=b1084c11 vocab=395b2025
+-/
 theorem aux_mainTwisted_phiTwo_memLp_of_phiFour_eq
     (b : windowBasedBumpFunctions) (k : ℤ)
     (heq : windowBasedBumpFunctions.phiTwo b k =
@@ -11545,6 +12445,9 @@ theorem aux_mainTwisted_phiTwo_memLp_of_phiFour_eq
   rw [heq]
   exact (aux_mainTwisted_oneRescaled_memLp hfour (by positivity : 0 < (2 : ℝ) ^ k)).neg
 
+/--
+@isnad1 id=tendsto.4h3v.s8.b4b8a23acf90 from=translated src=- shape=048e2643 vocab=240cb300
+-/
 theorem aux_mainTwisted_scaleDiff_tendsto_zero_L2
     {g : ℕ → ℝ → ℝ} (hmem : ∀ N, MemLp (g N) 2 volume)
     (hconv : Tendsto (fun N ↦ eLpNorm (g N) 2 volume) atTop (nhds 0))
@@ -11585,6 +12488,9 @@ theorem aux_mainTwisted_scaleDiff_tendsto_zero_L2
       (aux_mainTwisted_oneRescaled_memLp (hmem N) hs).aestronglyMeasurable
       (aux_mainTwisted_oneRescaled_memLp (hmem N) hr).aestronglyMeasurable (by norm_num)
 
+/--
+@isnad1 id=le.6h6v.s10.bedd1946d2e3 from=translated src=- shape=b4b56ec3 vocab=91bd0e83
+-/
 theorem aux_mainTwisted_jump_norm_le_tsum {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (phi : ℝ → ℝ) (phiJ : ℕ → ℝ → ℝ)
@@ -11663,6 +12569,9 @@ theorem aux_mainTwisted_jump_norm_le_tsum {n : ℕ} (hn : 2 ≤ n)
         (aux_mainTwisted_oneRescaled_memLp (hphiJ q) hs)
         (aux_mainTwisted_oneRescaled_memLp (hphiJ q) hr)]
 
+/--
+@isnad1 id=le.3h7v.s11.751ece8f2964 from=translated src=- shape=e16925f7 vocab=22572dc4
+-/
 theorem aux_mainTwisted_jump_norm_add_le {n J : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (t : aux_scaleChain J) (j : Fin J) (u v : ℝ → ℝ)
@@ -11750,6 +12659,9 @@ theorem aux_mainTwisted_jump_norm_add_le {n J : ℕ} (hn : 2 ≤ n)
             ring
     _ ≤ _ := eLpNorm_add_le hmeasU hmeasV (by norm_num : (1 : ℝ≥0∞) ≤ 2)
 
+/--
+@isnad1 id=eq.0h1v.s6.3b87d275f6a2 from=translated src=- shape=cf0e35a5 vocab=80d8befa
+-/
 theorem aux_mainTwisted_s0_expand (b : windowBasedBumpFunctions) :
     b.smoothingPartialSum 0 =
       fun x => b.phi0 x +
@@ -11776,6 +12688,9 @@ noncomputable def aux_mainTwisted_jumpNorm {n J : ℕ}
       twistedAverageAtScale (t.1 j.castSucc) chi (fun i y ↦ f i y) x)
     2 volume
 
+/--
+@isnad1 id=le.3h7v.s8.41652b301a72 from=translated src=- shape=ddce40fa vocab=5f3818f2
+-/
 theorem aux_mainTwisted_jumpNorm_add_le {n J : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (t : aux_scaleChain J) (j : Fin J) (u v : ℝ → ℝ)
@@ -11785,7 +12700,9 @@ theorem aux_mainTwisted_jumpNorm_add_le {n J : ℕ} (hn : 2 ≤ n)
   simpa only [aux_mainTwisted_jumpNorm] using
     aux_mainTwisted_jump_norm_add_le hn f t j u v hu hv
 
-/-- Pointwise smoothing decomposition for one adjacent pair of scales.-/
+/-- Pointwise smoothing decomposition for one adjacent pair of scales.
+@isnad1 id=le.6h6v.s9.e421312f5852 from=translated src=- shape=5f7f4c16 vocab=cf039013
+-/
 theorem aux_mainTwisted_pointwise_smoothing_bound {n J : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -11945,7 +12862,9 @@ theorem aux_mainTwisted_pointwise_smoothing_bound {n J : ℕ} (hn : 2 ≤ n)
       add_le_add_right hsumdelta _
     _ = _ := by ac_rfl
 
-/-- Pure ENNReal bookkeeping for the final four-family square estimate.-/
+/-- Pure ENNReal bookkeeping for the final four-family square estimate.
+@isnad1 id=le.8h9v.s8.f3e9bd1146ed from=translated src=- shape=6460a167 vocab=023faf14
+-/
 theorem aux_mainTwisted_four_family_aggregation
     {R E0 E1 E2 E3 : ℝ≥0∞} {C0 C1 C2 C3 : ℝ}
     (hC0 : 0 ≤ C0) (hC1 : 0 ≤ C1) (hC2 : 0 ≤ C2) (hC3 : 0 ≤ C3)
@@ -11988,6 +12907,9 @@ theorem aux_mainTwisted_four_family_aggregation
       norm_num
       ring
 
+/--
+@isnad1 id=le.8h9v.s8.4de0d487e32c from=translated src=- shape=c341aee8 vocab=023faf14
+-/
 theorem aux_mainTwisted_four_family_aggregation_ofReal_weights
     {R E0 E1 E2 E3 : ℝ≥0∞} {C0 C1 C2 C3 : ℝ}
     (hC0 : 0 ≤ C0) (hC1 : 0 ≤ C1) (hC2 : 0 ≤ C2) (hC3 : 0 ≤ C3)
@@ -12002,6 +12924,9 @@ theorem aux_mainTwisted_four_family_aggregation_ofReal_weights
   · exact h2
   · simpa [ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 64), mul_assoc] using h3
 
+/--
+@isnad1 id=le.8h6v.s7.6f975b6905e7 from=translated src=- shape=993254b0 vocab=79d481c3
+-/
 theorem aux_mainTwisted_four_family_aggregation_main_constant {n : ℕ}
     {R E0 E1 E2 E3 : ℝ≥0∞}
     (hC0 : 0 ≤ C_mainBumpOne n) (hC1 : 0 ≤ C_mainBumpTwo n)
@@ -12019,6 +12944,9 @@ theorem aux_mainTwisted_four_family_aggregation_main_constant {n : ℕ}
   rw [hC]
   exact aux_mainTwisted_four_family_aggregation_ofReal_weights hC0 hC1 hC2 hC3 h0 h1 h2 h3
 
+/--
+@isnad1 id=le.0h2v.s6.cbab2b38674d from=translated src=- shape=5f4d4362 vocab=843b1dec
+-/
 theorem aux_mainTwisted_ennreal_add_sq_le (u v : ℝ≥0∞) :
     (u + v) ^ 2 ≤ 2 * (u ^ 2 + v ^ 2) := by
   have h := ENNReal.rpow_add_le_mul_rpow_add_rpow u v (p := (2 : ℝ))
@@ -12026,6 +12954,9 @@ theorem aux_mainTwisted_ennreal_add_sq_le (u v : ℝ≥0∞) :
   have htwo : (2 : ℝ≥0∞) ^ ((2 : ℝ) - 1) = 2 := by norm_num
   simpa [ENNReal.rpow_two, htwo] using h
 
+/--
+@isnad1 id=le.0h4v.s7.18c31fde1fb5 from=translated src=- shape=ffaf4e06 vocab=843b1dec
+-/
 theorem aux_mainTwisted_ennreal_four_add_sq_le (a b c d : ℝ≥0∞) :
     (a + b + c + d) ^ 2 ≤ 4 * (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) := by
   calc
@@ -12038,6 +12969,9 @@ theorem aux_mainTwisted_ennreal_four_add_sq_le (a b c d : ℝ≥0∞) :
       · exact aux_mainTwisted_ennreal_add_sq_le _ _
     _ = 4 * (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) := by ring
 
+/--
+@isnad1 id=le.0h6v.s7.28e55787b2d4 from=translated src=- shape=062e2409 vocab=6d70fe3f
+-/
 theorem aux_mainTwisted_finset_four_family_square {ι : Type*} (s : Finset ι)
     (a b c d : ι → ℝ≥0∞) :
     (∑ i ∈ s, (a i + b i + c i + d i) ^ 2) ≤
@@ -12051,7 +12985,9 @@ theorem aux_mainTwisted_finset_four_family_square {ι : Type*} (s : Finset ι)
         (∑ i ∈ s, c i ^ 2) + (∑ i ∈ s, d i ^ 2)) := by
           simp only [mul_add, Finset.sum_add_distrib, ← Finset.mul_sum]
 
-/-- The terminal reduction: pointwise smoothing plus four family energy bounds.-/
+/-- The terminal reduction: pointwise smoothing plus four family energy bounds.
+@isnad1 id=le.14h6v.s10.c52be5c5965c from=translated src=- shape=e33e0107 vocab=a5cc6cde
+-/
 theorem aux_mainTwisted_terminal_aggregation {n J : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -12122,7 +13058,9 @@ theorem aux_mainTwisted_terminal_aggregation {n J : ℕ} (hn : 2 ≤ n)
     _ ≤ ENNReal.ofReal (C_mainTwistedTheorem n) * R :=
       aux_mainTwisted_four_family_aggregation_main_constant hC0 hC1 hC2 hC3 ha hz ho hw
 
-/-- Exact conversion of `mainBumpOne` to the terminal component-energy shape.-/
+/-- Exact conversion of `mainBumpOne` to the terminal component-energy shape.
+@isnad1 id=le.2h5v.s9.6ada7718ff5e from=translated src=- shape=cf1f6605 vocab=16ee0ce0
+-/
 theorem aux_mainTwisted_mainBumpOne_energy {n J : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (t : aux_scaleChain J) (hJ : 0 < J) :
@@ -12135,6 +13073,9 @@ theorem aux_mainTwisted_mainBumpOne_energy {n J : ℕ} (hn : 2 ≤ n)
 open Filter Finset MeasureTheory
 open scoped BigOperators ENNReal NNReal Real
 
+/--
+@isnad1 id=le.1h4v.s7.2cd26bd78694 from=translated src=- shape=459cb58e vocab=37f83673
+-/
 theorem aux_mainTwisted_weighted_tsum_sq_of_sq_le {J : ℕ}
     (a : ℕ → Fin J → ℝ≥0∞) (u : ℕ → ℝ≥0∞) (e : ℕ → Fin J → ℝ≥0∞)
     (h : ∀ q j, (a q j) ^ 2 ≤ u q * e q j) :
@@ -12194,6 +13135,9 @@ theorem aux_mainTwisted_weighted_tsum_sq_of_sq_le {J : ℕ}
       intro q
       exact tsum_fintype (L := .unconditional _) _
 
+/--
+@isnad1 id=le.5h7v.s7.51662678fa5a from=translated src=- shape=240fb2b3 vocab=a85267ea
+-/
 theorem aux_mainTwisted_weighted_tsum_energy_bound {J : ℕ}
     (a : ℕ → Fin J → ℝ≥0∞) (v B : ℕ → ℝ≥0∞) (P U V : ℝ≥0∞)
     (hv0 : ∀ q, v q ≠ 0) (hvt : ∀ q, v q ≠ ∞)
@@ -12231,6 +13175,9 @@ theorem aux_mainTwisted_weighted_tsum_energy_bound {J : ℕ}
       rw [ENNReal.tsum_mul_right]
     _ ≤ U * (V * P) := by gcongr
 
+/--
+@isnad1 id=le.1h1v.s6.8745771f2dcf from=translated src=- shape=150e725f vocab=77cb6f89
+-/
 theorem aux_mainTwisted_halfHeightTsum (C : ℝ) (hC : 0 ≤ C) :
     (∑' h : ℕ, ENNReal.ofReal (C * (1 / 2 : ℝ) ^ h)) ≤
       ENNReal.ofReal (2 * C) := by
@@ -12257,6 +13204,9 @@ theorem aux_mainTwisted_halfHeightTsum (C : ℝ) (hC : 0 ≤ C) :
       (ENNReal.ofReal_tsum_of_nonneg hnonneg hactual).symm
     _ ≤ ENNReal.ofReal (2 * C) := ENNReal.ofReal_le_ofReal hsum
 
+/--
+@isnad1 id=eq.0h1v.s7.273aa4709831 from=translated src=- shape=c4824956 vocab=152bdaab
+-/
 theorem aux_mainTwisted_high_dyadic_product (q : ℕ) :
     ((2 : ℝ) ^ q) * (2 : ℝ) ^ (-2 * ((q + 1 : ℕ) : ℤ)) =
       (1 / 4 : ℝ) * (1 / 2 : ℝ) ^ q := by
@@ -12268,6 +13218,9 @@ theorem aux_mainTwisted_high_dyadic_product (q : ℕ) :
   rw [zpow_neg, zpow_neg, zpow_natCast, ← inv_pow]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s7.74e585f10d22 from=translated src=- shape=b7b09964 vocab=b2287105
+-/
 theorem aux_mainTwisted_high_dyadic_ENNReal_product (C : ℝ) (q : ℕ) :
     ENNReal.ofReal ((2 : ℝ) ^ q) *
       ENNReal.ofReal (C * (2 : ℝ) ^ (-2 * ((q + 1 : ℕ) : ℤ))) =
@@ -12281,6 +13234,9 @@ theorem aux_mainTwisted_high_dyadic_ENNReal_product (C : ℝ) (q : ℕ) :
       rw [aux_mainTwisted_high_dyadic_product]
     _ = (C / 4) * (1 / 2 : ℝ) ^ q := by ring
 
+/--
+@isnad1 id=eq.0h1v.s6.3f2b7c2995e9 from=translated src=- shape=903f1419 vocab=a54030be
+-/
 theorem aux_mainTwisted_inv_dyadic_ENNReal (q : ℕ) :
     (ENNReal.ofReal ((2 : ℝ) ^ q))⁻¹ = ENNReal.ofReal ((1 / 2 : ℝ) ^ q) := by
   rw [← ENNReal.ofReal_inv_of_pos (by positivity)]
@@ -12288,6 +13244,9 @@ theorem aux_mainTwisted_inv_dyadic_ENNReal (q : ℕ) :
   rw [← inv_pow]
   norm_num
 
+/--
+@isnad1 id=le.3h5v.s11.620423ab770b from=translated src=- shape=3f4e7e8d vocab=799a81ba
+-/
 theorem aux_mainTwisted_high_phiZero_energy {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (J : ℕ) (hJ : 0 < J) (t : aux_scaleChain J)
@@ -12356,6 +13315,9 @@ theorem aux_mainTwisted_high_phiZero_energy {n : ℕ} (hn : 2 ≤ n)
         ring
       rw [← mul_assoc, hcoef]
 
+/--
+@isnad1 id=le.3h5v.s11.495d6d92da6e from=translated src=- shape=90dac873 vocab=40cdca19
+-/
 theorem aux_mainTwisted_high_phiOne_energy {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (J : ℕ) (hJ : 0 < J) (t : aux_scaleChain J)
@@ -12426,6 +13388,9 @@ theorem aux_mainTwisted_high_phiOne_energy {n : ℕ} (hn : 2 ≤ n)
         ring
       rw [← mul_assoc, hcoef]
 
+/--
+@isnad1 id=eq.0h1v.s6.8a4110dc538f from=translated src=- shape=0e8785c1 vocab=99301a76
+-/
 theorem aux_mainTwisted_rpow_inv (q : ℕ) :
     (ENNReal.ofReal (Real.rpow 2 ((q : ℝ) / 4)))⁻¹ =
       ENNReal.ofReal (Real.rpow 2 (-((q : ℝ) / 4))) := by
@@ -12435,6 +13400,9 @@ theorem aux_mainTwisted_rpow_inv (q : ℕ) :
   exact (ENNReal.ofReal_inv_of_pos
     (Real.rpow_pos_of_pos (by norm_num) ((q : ℝ) / 4))).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.e671f8bc425a from=translated src=- shape=82c4bca7 vocab=7f86f912
+-/
 theorem aux_mainTwisted_rpow_weighted_product (C : ℝ) (q : ℕ) :
     ENNReal.ofReal (Real.rpow 2 ((q : ℝ) / 4)) *
       ENNReal.ofReal (C * Real.rpow 2 (-(((q + 1 : ℕ) : ℝ) / 2))) =
@@ -12460,6 +13428,9 @@ theorem aux_mainTwisted_rpow_weighted_product (C : ℝ) (q : ℕ) :
       push_cast
       ring
 
+/--
+@isnad1 id=le.1h2v.s7.a3d620dca808 from=translated src=- shape=e5ea54b4 vocab=c230d4c4
+-/
 theorem aux_mainTwisted_rpow_weighted_product_le (C : ℝ) (hC : 0 ≤ C) (q : ℕ) :
     ENNReal.ofReal (Real.rpow 2 ((q : ℝ) / 4)) *
       ENNReal.ofReal (C * Real.rpow 2 (-(((q + 1 : ℕ) : ℝ) / 2))) ≤
@@ -12472,6 +13443,9 @@ theorem aux_mainTwisted_rpow_weighted_product_le (C : ℝ) (hC : 0 ≤ C) (q : �
     linarith
   exact mul_le_mul_of_nonneg_left hfactor hC
 
+/--
+@isnad1 id=le.3h5v.s11.3c2cf9fc2d49 from=translated src=- shape=21829d8a vocab=6b858672
+-/
 theorem aux_mainTwisted_high_phiTwo_energy {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (J : ℕ) (hJ : 0 < J) (t : aux_scaleChain J)
@@ -12557,6 +13531,9 @@ noncomputable def aux_mainTwisted_low_jumpNorm {n J : ℕ}
       twistedAverageAtScale (t.1 j.castSucc) chi (fun i y ↦ f i y) x)
     2 volume
 
+/--
+@isnad1 id=le.3h6v.s7.92df06da76e5 from=translated src=- shape=ad539f04 vocab=b2443698
+-/
 theorem aux_mainTwisted_weighted_finset_energy {ι : Type*} [Fintype ι] {J : ℕ}
     (a : ι → Fin J → ℝ≥0∞) (v B : ι → ℝ≥0∞) (P : ℝ≥0∞)
     (hv0 : ∀ i, v i ≠ 0) (hvt : ∀ i, v i ≠ ∞)
@@ -12631,6 +13608,9 @@ theorem aux_mainTwisted_weighted_finset_energy {ι : Type*} [Fintype ι] {J : �
       simpa using
         (Finset.sum_mul Finset.univ (fun i : ι => v i * B i) P).symm
 
+/--
+@isnad1 id=le.4h5v.s11.171f20ae9d24 from=translated src=- shape=cb00da53 vocab=01ee1c4c
+-/
 theorem aux_mainTwisted_low_high_phiZero_energy {n : ℕ} (hn : 2 ≤ n)
     (b : windowBasedBumpFunctions) (f : ReductionNormalizedTuple n)
     (J : ℕ) (hJ : 0 < J) (t : aux_scaleChain J)
@@ -12748,7 +13728,9 @@ theorem aux_mainTwisted_low_high_phiZero_energy {n : ℕ} (hn : 2 ≤ n)
 The fixed-constant reduction-side form of Theorem
 `Auto.aux_main_twisted_theorem`.
 It is stated over the shared `Auto` twisted-average definitions to
-keep imports acyclic.-/
+keep imports acyclic.
+@isnad1 id=le.5h4v.s10.c2d4d002dc69 from=translated src=- shape=35ffef06 vocab=3063fc3d
+-/
 theorem mainTwistedTheoremReductionBound {n : ℕ} (hn : 2 ≤ n) :
     ∀ (J : ℕ), 0 < J → ∀ (t : Fin (J + 1) → ℝ),
       StrictMono t → (∀ j, 0 < t j) →
@@ -12852,7 +13834,9 @@ theorem mainTwistedTheoremReductionBound {n : ℕ} (hn : 2 ≤ n) :
 
 /--
 The existentially packaged compatibility form of
-`mainTwistedTheoremReductionBound`.-/
+`mainTwistedTheoremReductionBound`.
+@isnad1 id=ex.1h1v.s10.a9c9e1389f31 from=translated src=- shape=b6c0eafb vocab=3063fc3d
+-/
 theorem mainTwistedTheoremReduction {n : ℕ} (hn : 2 ≤ n) :
     ∃ C : ℝ, 0 < C ∧ ∀ (J : ℕ), 0 < J → ∀ (t : Fin (J + 1) → ℝ),
       StrictMono t → (∀ j, 0 < t j) →

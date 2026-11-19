@@ -209,7 +209,9 @@ private theorem cauchySeq_of_variationSeminorm_lt_top
     (ENNReal.rpow_ne_top_of_nonneg hr.le hvariation.ne)
   exact (not_lt_of_ge (hbound J)) hJ
 
-/-- **Tao's norm-convergence theorem**-/
+/-- **Tao's norm-convergence theorem**
+@isnad1 id=ex.0h9v.s8.36a18ad27533 from=translated src=- shape=d03a31ea vocab=06fce6a3
+-/
 theorem tao_norm_convergence
     {n : ℕ} [IsProbabilityMeasure μ]
     {T : Fin n → X → X}

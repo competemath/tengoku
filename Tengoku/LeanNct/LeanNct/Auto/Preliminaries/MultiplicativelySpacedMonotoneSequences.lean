@@ -49,22 +49,30 @@ Let ${\rm A}$ be the set of such sequences.
 See also `Auto.SpacedSequence`.-/
 def A : Set (ℤ → ℝ) := {a | SpacedSequence a}
 
-/-- This auxiliary theorem extracts positivity from the defining conditions of a spaced sequence.-/
+/-- This auxiliary theorem extracts positivity from the defining conditions of a spaced sequence.
+@isnad1 id=lt.1h2v.s4.74ea5524414e from=translated src=- shape=a272d9fe vocab=fa7139cd
+-/
 theorem aux_spacedSequence_pos {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ) : 0 < a j :=
   (ha j).1
 
-/-- This auxiliary theorem records the one-step monotonicity implied by multiplicative spacing.-/
+/-- This auxiliary theorem records the one-step monotonicity implied by multiplicative spacing.
+@isnad1 id=le.1h2v.s4.7b58a745d342 from=translated src=- shape=0d6e8716 vocab=d858f9a4
+-/
 theorem aux_spacedSequence_le_succ {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ) :
     a j ≤ a (j + 1) := by
   have hpos := (ha j).1
   have hspace := (ha j).2
   nlinarith
 
-/-- This auxiliary theorem gives the monotonicity used in the distance estimates below.-/
+/-- This auxiliary theorem gives the monotonicity used in the distance estimates below.
+@isnad1 id=monotone.1h1v.s4.4816a481c0e2 from=translated src=- shape=9862d0d1 vocab=2e542944
+-/
 theorem aux_spacedSequence_monotone {a : ℤ → ℝ} (ha : SpacedSequence a) : Monotone a :=
   monotone_int_of_le_succ (aux_spacedSequence_le_succ ha)
 
-/-- This auxiliary theorem iterates the defining spacing inequality forward.-/
+/-- This auxiliary theorem iterates the defining spacing inequality forward.
+@isnad1 id=le.1h3v.s5.06f9798e0265 from=translated src=- shape=32d31188 vocab=aa779f56
+-/
 theorem aux_pow_two_mul_le_shift {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ) (k : ℕ) :
     (2 : ℝ) ^ k * a j ≤ a (j + k) := by
   induction k with
@@ -81,7 +89,9 @@ theorem aux_pow_two_mul_le_shift {a : ℤ → ℝ} (ha : SpacedSequence a) (j : 
         _ ≤ a (j + Nat.succ k) := by
           convert hstep using 1; push_cast; ring_nf
 
-/-- This auxiliary theorem is the backwards form of the iterated spacing inequality.-/
+/-- This auxiliary theorem is the backwards form of the iterated spacing inequality.
+@isnad1 id=le.1h3v.s5.414f19851c98 from=translated src=- shape=98f611cd vocab=549fad21
+-/
 theorem aux_pow_two_mul_shift_le {a : ℤ → ℝ} (ha : SpacedSequence a) (j : ℤ) (k : ℕ) :
     (2 : ℝ) ^ k * a (j - k) ≤ a j := by
   convert aux_pow_two_mul_le_shift ha (j - k) k using 1; ring_nf
@@ -101,7 +111,9 @@ noncomputable def aux_extensionOfSequence (J : ℕ) (a : ℤ → ℝ) : ℤ → 
 Let $J\in\mathbb{N}$ with $J\ge1$ and let $a:[J)\to\mathbb{R}$ satisfy $a(j)>0$ for every $j\in[J)$
 and, for all $j\in[J-1)$, we have $a(j+1)\ge 2a(j)$.
 Then there is a unique $b\in A$ such that for all $j\in [J)$ we have $a(j)=b(j)$ and for $j\ge J$ we
-have $b(j)=2^{j-J+1} a(J-1)$ and for $j<0$ we have $b(j)=2^j a(0)$\, .-/
+have $b(j)=2^{j-J+1} a(J-1)$ and for $j<0$ we have $b(j)=2^j a(0)$\, .
+@isnad1 id=existsun.3h2v.s8.508f85c627c6 from=translated src=- shape=adf5e64b vocab=2083ffa5
+-/
 theorem extensionOfSequences (J : ℕ) (hJ : 0 < J) (a : ℤ → ℝ)
     (ha_pos : ∀ j : ℤ, 0 ≤ j → j < (J : ℤ) → 0 < a j)
     (ha_space : ∀ j : ℤ, 0 ≤ j → j + 1 < (J : ℤ) → 2 * a j ≤ a (j + 1)) :
@@ -218,7 +230,9 @@ $j\in\mathbb{Z}$, then $c\in {\rm A}$.
 
 See also `Auto.smul_mem_A`,
 `Auto.shift_mem_A`,
-`Auto.sqrt_sq_add_sq_mem_A`.-/
+`Auto.sqrt_sq_add_sq_mem_A`.
+@isnad1 id=spacedse.2h2v.s4.ad43db3e2318 from=translated src=- shape=87851985 vocab=42adc9ca
+-/
 theorem max_mem_A {a b : ℤ → ℝ} (ha : SpacedSequence a) (hb : SpacedSequence b) :
     SpacedSequence (fun j => max (a j) (b j)) := by
   intro j
@@ -248,7 +262,9 @@ $j\in\mathbb{Z}$, then $c\in {\rm A}$.
 
 See also `Auto.max_mem_A`,
 `Auto.shift_mem_A`,
-`Auto.sqrt_sq_add_sq_mem_A`.-/
+`Auto.sqrt_sq_add_sq_mem_A`.
+@isnad1 id=spacedse.2h2v.s5.74d9d82d1a2a from=translated src=- shape=594d12c6 vocab=1fc2b872
+-/
 theorem smul_mem_A {a : ℤ → ℝ} (ha : SpacedSequence a) {t : ℝ} (ht : 0 < t) :
     SpacedSequence (fun j => t * a j) := by
   intro j
@@ -275,7 +291,9 @@ $j\in\mathbb{Z}$, then $c\in {\rm A}$.
 
 See also `Auto.max_mem_A`,
 `Auto.smul_mem_A`,
-`Auto.sqrt_sq_add_sq_mem_A`.-/
+`Auto.sqrt_sq_add_sq_mem_A`.
+@isnad1 id=spacedse.1h2v.s4.27347d9cac72 from=translated src=- shape=dcc414f3 vocab=73ac1674
+-/
 theorem shift_mem_A {a : ℤ → ℝ} (ha : SpacedSequence a) (n : ℤ) :
     SpacedSequence (fun j => a (j + n)) := by
   intro j
@@ -300,7 +318,9 @@ $j\in\mathbb{Z}$, then $c\in {\rm A}$.
 
 See also `Auto.max_mem_A`,
 `Auto.smul_mem_A`,
-`Auto.shift_mem_A`.-/
+`Auto.shift_mem_A`.
+@isnad1 id=spacedse.2h2v.s6.71b9fbe1f286 from=translated src=- shape=410a8350 vocab=aefdceef
+-/
 theorem sqrt_sq_add_sq_mem_A {a b : ℤ → ℝ} (ha : SpacedSequence a) (hb : SpacedSequence b) :
     SpacedSequence (fun j => Real.sqrt (a j ^ 2 + b j ^ 2)) := by
   intro j
@@ -355,7 +375,9 @@ noncomputable def SequenceDistance (a b : ℤ → ℝ) : WithTop ℕ :=
 
 /--
 This auxiliary theorem is useful for deriving all distance estimates from an explicit
-comparison at a particular integer shift.-/
+comparison at a particular integer shift.
+@isnad1 id=le.1h3v.s5.3b9e3ff7f3e5 from=translated src=- shape=d46c70c3 vocab=c1c47c9b
+-/
 theorem aux_sequenceDistance_le_of_within {a b : ℤ → ℝ} {k : ℕ}
     (hk : WithinSequenceDistance a b k) : SequenceDistance a b ≤ (k : WithTop ℕ) := by
   classical
@@ -364,7 +386,9 @@ theorem aux_sequenceDistance_le_of_within {a b : ℤ → ℝ} {k : ℕ}
     exact_mod_cast Nat.find_min' h hk
   · exact (h ⟨k, hk⟩).elim
 
-/-- This auxiliary theorem transports a distance comparison after exchanging its two sequences.-/
+/-- This auxiliary theorem transports a distance comparison after exchanging its two sequences.
+@isnad1 id=iff.0h3v.s4.9263d8018e1f from=translated src=- shape=87b94cb8 vocab=9df92964
+-/
 theorem aux_withinSequenceDistance_symm {a b : ℤ → ℝ} {k : ℕ} :
     WithinSequenceDistance a b k ↔ WithinSequenceDistance b a k := by
   constructor <;> intro h <;> intro j
@@ -379,7 +403,9 @@ theorem aux_withinSequenceDistance_symm {a b : ℤ → ℝ} {k : ℕ} :
     · have h' := (h (j + k)).1
       convert h' using 1; ring_nf
 
-/-- This auxiliary theorem composes the pointwise comparisons used to define sequence distance.-/
+/-- This auxiliary theorem composes the pointwise comparisons used to define sequence distance.
+@isnad1 id=withinse.2h5v.s5.92a75231bae7 from=translated src=- shape=d2b162c7 vocab=d1bad4cc
+-/
 theorem aux_withinSequenceDistance_trans {a b c : ℤ → ℝ} {k l : ℕ}
     (hab : WithinSequenceDistance a b k) (hbc : WithinSequenceDistance b c l) :
     WithinSequenceDistance a c (k + l) := by
@@ -397,7 +423,9 @@ theorem aux_withinSequenceDistance_trans {a b c : ℤ → ℝ} {k l : ℕ}
 /--
 Pointwise maxima remain within a common finite sequence-distance comparison.
 This is used when finite bracket majorants produce the maximum of two nearby
-scale sequences.-/
+scale sequences.
+@isnad1 id=withinse.2h4v.s5.38ba0202414c from=translated src=- shape=75ff6000 vocab=bfc74050
+-/
 theorem aux_withinSequenceDistance_max {a b c : ℤ → ℝ} {k : ℕ}
     (hab : WithinSequenceDistance a b k) (hac : WithinSequenceDistance a c k) :
     WithinSequenceDistance a (fun j => max (b j) (c j)) k := by
@@ -429,7 +457,9 @@ See also `Auto.sequenceDistance_comm`,
 `Auto.sequenceDistance_triangle`,
 `Auto.sequenceDistance_shift_le`,
 `Auto.sequenceDistance_smul`,
-`Auto.sequenceDistance_pow_two_smul_le`.-/
+`Auto.sequenceDistance_pow_two_smul_le`.
+@isnad1 id=eq.1h2v.s5.514bfebd836e from=translated src=- shape=8e2ea06a vocab=962728b5
+-/
 theorem sequenceDistance_zero_eq {a b : ℤ → ℝ} (h : SequenceDistance a b = 0) : a = b := by
   classical
   by_cases hab : ∃ k : ℕ, WithinSequenceDistance a b k
@@ -465,7 +495,9 @@ See also `Auto.sequenceDistance_zero_eq`,
 `Auto.sequenceDistance_triangle`,
 `Auto.sequenceDistance_shift_le`,
 `Auto.sequenceDistance_smul`,
-`Auto.sequenceDistance_pow_two_smul_le`.-/
+`Auto.sequenceDistance_pow_two_smul_le`.
+@isnad1 id=eq.0h2v.s4.315234c25650 from=translated src=- shape=3cd40797 vocab=962728b5
+-/
 theorem sequenceDistance_comm (a b : ℤ → ℝ) :
     SequenceDistance a b = SequenceDistance b a := by
   classical
@@ -509,7 +541,9 @@ See also `Auto.sequenceDistance_zero_eq`,
 `Auto.sequenceDistance_comm`,
 `Auto.sequenceDistance_shift_le`,
 `Auto.sequenceDistance_smul`,
-`Auto.sequenceDistance_pow_two_smul_le`.-/
+`Auto.sequenceDistance_pow_two_smul_le`.
+@isnad1 id=le.0h3v.s5.8e0124101eef from=translated src=- shape=d694148d vocab=7dfa21cc
+-/
 theorem sequenceDistance_triangle (a b c : ℤ → ℝ) :
     SequenceDistance a c ≤ SequenceDistance a b + SequenceDistance b c := by
   classical
@@ -549,7 +583,9 @@ See also `Auto.sequenceDistance_zero_eq`,
 `Auto.sequenceDistance_comm`,
 `Auto.sequenceDistance_triangle`,
 `Auto.sequenceDistance_smul`,
-`Auto.sequenceDistance_pow_two_smul_le`.-/
+`Auto.sequenceDistance_pow_two_smul_le`.
+@isnad1 id=le.3h3v.s6.d9f68182cd5a from=translated src=- shape=1760dddf vocab=72bb827c
+-/
 theorem sequenceDistance_shift_le {a b c : ℤ → ℝ}
     (ha : SpacedSequence a) (hb : SpacedSequence b)
     (hc : ∀ j : ℤ, c j = b (j + 1)) :
@@ -599,7 +635,9 @@ See also `Auto.sequenceDistance_zero_eq`,
 `Auto.sequenceDistance_comm`,
 `Auto.sequenceDistance_triangle`,
 `Auto.sequenceDistance_shift_le`,
-`Auto.sequenceDistance_pow_two_smul_le`.-/
+`Auto.sequenceDistance_pow_two_smul_le`.
+@isnad1 id=eq.1h3v.s5.c5e6d1265bc7 from=translated src=- shape=3f918078 vocab=3fafac15
+-/
 theorem sequenceDistance_smul (a b : ℤ → ℝ) {t : ℝ} (ht : 0 < t) :
     SequenceDistance (fun j => t * a j) (fun j => t * b j) = SequenceDistance a b := by
   classical
@@ -652,7 +690,9 @@ See also `Auto.sequenceDistance_zero_eq`,
 `Auto.sequenceDistance_comm`,
 `Auto.sequenceDistance_triangle`,
 `Auto.sequenceDistance_shift_le`,
-`Auto.sequenceDistance_smul`.-/
+`Auto.sequenceDistance_smul`.
+@isnad1 id=le.1h2v.s5.eb1252469456 from=translated src=- shape=e1e4981b vocab=e61b8520
+-/
 theorem sequenceDistance_pow_two_smul_le {a : ℤ → ℝ} (ha : SpacedSequence a) (h : ℤ) :
     SequenceDistance a (fun j => (2 : ℝ) ^ h * a j) ≤ (Int.natAbs h : WithTop ℕ) := by
   classical

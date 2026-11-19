@@ -29,14 +29,18 @@ noncomputable def aux_sMultiplierTensorSquare {n : ℕ} (γ : GeometricParameter
     DoubleSequence γ.k :=
   fun i j v => sMultiplier γ i j v.1 * sMultiplier γ i j v.2
 
-/-- The tensor square of the square-root multiplier is a double sequence.-/
+/-- The tensor square of the square-root multiplier is a double sequence.
+@isnad1 id=memdoubl.0h2v.s3.5a92aef09430 from=translated src=- shape=e74561de vocab=068eafca
+-/
 theorem aux_sMultiplierTensorSquare_memDoubleSequence {n : ℕ}
     (γ : GeometricParameters n) :
     MemDoubleSequence γ.k (aux_sMultiplierTensorSquare γ) := by
   intro i j
   exact (sMultiplier_memW0 γ i j).aux_mul_prod (sMultiplier_memW0 γ i j)
 
-/-- The square-root tensor sandwich splits into its vanishing and telescoping parts.-/
+/-- The square-root tensor sandwich splits into its vanishing and telescoping parts.
+@isnad1 id=eq.0h3v.s5.4555a6ae0762 from=translated src=- shape=6514d271 vocab=29869563
+-/
 theorem aux_sMultiplierTensorSquare_sandwich_eq {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) :
     sandwichKernel γ (aux_sMultiplierTensorSquare γ) i =
@@ -60,7 +64,9 @@ noncomputable def aux_increaseDataKernel {n : ℕ} (γ : GeometricParameters n)
         gammaGaussian γ m (j - 1) (y.1 m.castSucc, y.2 m.castSucc)) *
     tensorSquare (sigmaMultiplier γ ι i j) (y.1 (Fin.last γ.k), y.2 (Fin.last γ.k))
 
-/-- The raw kernel in `IncreaseData` is a Wiener kernel sequence.-/
+/-- The raw kernel in `IncreaseData` is a Wiener kernel sequence.
+@isnad1 id=memkerne.1h4v.s5.877afedf3dff from=translated src=- shape=f68c30bc vocab=aad18263
+-/
 theorem aux_increaseDataKernel_memKernelSequence {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) :
@@ -129,6 +135,9 @@ noncomputable def aux_sigmaScale {n : ℕ} (γ : GeometricParameters n)
   else
     fun r => (2 : ℝ) ^ ι.1.1 * γ.scales i 1 (r - (geometricDelta γ : ℤ))
 
+/--
+@isnad1 id=spacedse.0h4v.s4.0ddb0f0abdc2 from=translated src=- shape=d87e2aa8 vocab=71e64aca
+-/
 theorem aux_sigmaScale_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) :
     SpacedSequence (aux_sigmaScale γ ι i) := by
@@ -140,6 +149,9 @@ theorem aux_sigmaScale_spaced {n : ℕ} (γ : GeometricParameters n)
   · exact smul_mem_A (shift_mem_A (γ.scales_spaced i 1) (-(geometricDelta γ : ℤ)))
       (zpow_pos (by norm_num) _)
 
+/--
+@isnad1 id=eq.0h5v.s5.ed980dd2664c from=translated src=- shape=d222376a vocab=2596db2f
+-/
 theorem aux_sigmaMultiplier_eq_sigmaScale {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) :
     sigmaMultiplier γ ι i j =
@@ -152,6 +164,9 @@ noncomputable def aux_sigmaScalePair {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) : SequencePair :=
   fun _ r => (Real.sqrt 2)⁻¹ * aux_sigmaScale γ ι i r
 
+/--
+@isnad1 id=spacedse.0h5v.s4.8c7d2ef2ca92 from=translated src=- shape=e6de98e7 vocab=37be5cb7
+-/
 theorem aux_sigmaScalePair_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (r : Fin 2) :
     SpacedSequence (aux_sigmaScalePair γ ι i r) := by
@@ -159,6 +174,9 @@ theorem aux_sigmaScalePair_spaced {n : ℕ} (γ : GeometricParameters n)
   apply smul_mem_A (aux_sigmaScale_spaced γ ι i)
   exact inv_pos.mpr (Real.sqrt_pos.2 (by norm_num))
 
+/--
+@isnad1 id=eq.0h5v.s6.c036ef35176b from=translated src=- shape=e0725e52 vocab=09a6f43a
+-/
 theorem aux_sqrt_sigmaScalePair {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (r : ℤ) :
     Real.sqrt ((aux_sigmaScalePair γ ι i 0 r) ^ 2 +
@@ -182,6 +200,9 @@ theorem aux_sqrt_sigmaScalePair {n : ℕ} (γ : GeometricParameters n)
         rw [← mul_assoc, inv_mul_cancel₀ (by norm_num), one_mul]
   rw [hsq, Real.sqrt_sq_eq_abs, abs_of_pos hpos]
 
+/--
+@isnad1 id=le.0h3v.s5.50daa71b99c3 from=translated src=- shape=5ed11f51 vocab=7dfa21cc
+-/
 theorem aux_sequenceDistance_common_shift_le (a b : ℤ → ℝ) (s : ℤ) :
     SequenceDistance (fun j => a (j + s)) (fun j => b (j + s)) ≤
       SequenceDistance a b := by
@@ -198,12 +219,18 @@ theorem aux_sequenceDistance_common_shift_le (a b : ℤ → ℝ) (s : ℤ) :
       ring_nf
   · simp [SequenceDistance, hab]
 
+/--
+@isnad1 id=lt.0h1v.s4.7547f62d3fd2 from=translated src=- shape=3459504b vocab=d23d0702
+-/
 theorem aux_sequenceDistance_self_lt_top (a : ℤ → ℝ) : SequenceDistance a a < ⊤ := by
   apply lt_of_le_of_lt (aux_sequenceDistance_le_of_within (a := a) (b := a) (k := 0) ?_)
     (WithTop.coe_lt_top 0)
   intro j
   simp
 
+/--
+@isnad1 id=eq.0h1v.s4.5926c0a4f9fa from=translated src=- shape=efce5b04 vocab=962728b5
+-/
 theorem aux_sequenceDistance_self_eq_zero (a : ℤ → ℝ) : SequenceDistance a a = 0 := by
   apply le_antisymm
   · apply aux_sequenceDistance_le_of_within
@@ -224,6 +251,9 @@ noncomputable def aux_augmentedIncreaseScales {n : ℕ} (γ : GeometricParameter
     (fun r => if r < i then γ.scales r else if r = i then w.scales b m
       else fun s j => γ.scales r s (j - 1))
 
+/--
+@isnad1 id=spacedse.2h10v.s6.421e8f63a563 from=translated src=- shape=64bc554a vocab=79237cca
+-/
 theorem aux_augmentedIncreaseScales_spaced {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -237,6 +267,9 @@ theorem aux_augmentedIncreaseScales_spaced {n : ℕ} (γ : GeometricParameters n
     · exact w.scales_in_A b hb m s
     · simpa only [sub_eq_add_neg] using shift_mem_A (γ.scales_spaced q s) (-1)
 
+/--
+@isnad1 id=lt.2h9v.s7.c740c042100d from=translated src=- shape=895bd871 vocab=43b41d8d
+-/
 theorem aux_augmentedIncreaseScales_finite_distance {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -279,7 +312,9 @@ noncomputable def aux_augmentedIncreaseParameters {n : ℕ} (γ : GeometricParam
   scales_spaced := aux_augmentedIncreaseScales_spaced γ i ι w b hb m
   finite_distance := aux_augmentedIncreaseScales_finite_distance γ i ι w b hb m
 
-/-- The old-coordinate orientations of the augmented parameters.-/
+/-- The old-coordinate orientations of the augmented parameters.
+@isnad1 id=eq.2h9v.s7.4bda3c87da2d from=translated src=- shape=0f9ea6f9 vocab=7b2b6e18
+-/
 theorem aux_augmentedIncreaseParameters_orientation_castSucc {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1} (i : Fin γ.k)
     (ι : MultiplierIndex γ) {C : ℝ} (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -288,7 +323,9 @@ theorem aux_augmentedIncreaseParameters_orientation_castSucc {n : ℕ}
       if q = i then w.orientation b else γ.orientation q := by
   simp [aux_augmentedIncreaseParameters, aux_augmentedIncreaseOrientation]
 
-/-- The old-coordinate scale pairs of the augmented parameters.-/
+/-- The old-coordinate scale pairs of the augmented parameters.
+@isnad1 id=eq.2h9v.s7.3a0dc12b6824 from=translated src=- shape=a142a211 vocab=fa4c3712
+-/
 theorem aux_augmentedIncreaseParameters_scales_castSucc {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1} (i : Fin γ.k)
     (ι : MultiplierIndex γ) {C : ℝ} (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -298,7 +335,9 @@ theorem aux_augmentedIncreaseParameters_scales_castSucc {n : ℕ}
       else fun s r => γ.scales q s (r - 1) := by
   simp [aux_augmentedIncreaseParameters, aux_augmentedIncreaseScales]
 
-/-- The old-coordinate Gaussian factors of the augmented parameters.-/
+/-- The old-coordinate Gaussian factors of the augmented parameters.
+@isnad1 id=eq.2h11v.s7.e4d8d9909be4 from=translated src=- shape=32e23cc8 vocab=eb7aa22b
+-/
 theorem aux_augmentedIncreaseParameters_gammaGaussian_castSucc {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -330,6 +369,9 @@ noncomputable def aux_augmentedLastBaseKernel
       aux_dominatingGaussianTerm (w.scales b m) (w.orientation b) j (x.1 q, x.2 q)
     else gammaGaussian γ q (j - 1) (x.1 q, x.2 q)
 
+/--
+@isnad1 id=eq.1h9v.s8.5f5e36b96c20 from=translated src=- shape=3e5924c6 vocab=414c706d
+-/
 theorem aux_augmentedLastBaseKernel_eq_explicit
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -362,7 +404,9 @@ theorem aux_augmentedLastBaseKernel_eq_explicit
   unfold aux_augmentedLastBaseKernel
   apply hfactor
 
-/-- The Gaussian product preceding the terminal sigma factor is Wiener.-/
+/-- The Gaussian product preceding the terminal sigma factor is Wiener.
+@isnad1 id=memw0.2h9v.s7.8fb6203bb73e from=translated src=- shape=8c16b7a9 vocab=33b13542
+-/
 theorem aux_augmentedLastBaseKernel_memW0
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -391,7 +435,9 @@ theorem aux_augmentedLastBaseKernel_memW0
       else gammaGaussian γ q (j - 1) (x.1 q, x.2 q))
   simpa only [A, ite_apply] using hprod
 
-/-- The Gaussian product preceding the terminal sigma factor is nonnegative.-/
+/-- The Gaussian product preceding the terminal sigma factor is nonnegative.
+@isnad1 id=le.2h10v.s6.ee1c13f18335 from=translated src=- shape=5f7125e8 vocab=597bc035
+-/
 theorem aux_augmentedLastBaseKernel_nonneg
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -408,7 +454,9 @@ theorem aux_augmentedLastBaseKernel_nonneg
       (w.scales b m) (w.scales_in_A b hb m) (w.orientation b) j _
   · exact Auto.aux_gammaGaussian_nonneg γ q (j - 1) _
 
-/-- The terminal sandwich of the augmented parameters has the required tensor-extension form.-/
+/-- The terminal sandwich of the augmented parameters has the required tensor-extension form.
+@isnad1 id=eq.2h9v.s7.b6defdeb2859 from=translated src=- shape=9a292a7b vocab=2deb9f43
+-/
 theorem aux_augmentedLast_sandwich_eq_tensorSquareExtension
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -491,7 +539,9 @@ theorem aux_augmentedLast_sandwich_eq_tensorSquareExtension
   simp only [herase, mul_one]
   rfl
 
-/-- The terminal augmented sandwich with its base kernel written coordinatewise.-/
+/-- The terminal augmented sandwich with its base kernel written coordinatewise.
+@isnad1 id=eq.2h9v.s9.782066286f43 from=translated src=- shape=a263fdf2 vocab=c7913a30
+-/
 theorem aux_augmentedLast_sandwich_eq_explicit_tensorSquareExtension
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -512,6 +562,9 @@ theorem aux_augmentedLast_sandwich_eq_explicit_tensorSquareExtension
     aux_augmentedLastBaseKernel_eq_explicit]
   rfl
 
+/--
+@isnad1 id=eq.2h8v.s6.435086241211 from=translated src=- shape=46be5211 vocab=eea426ee
+-/
 theorem aux_augmentedIncreaseParameters_orientation_last {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -519,6 +572,9 @@ theorem aux_augmentedIncreaseParameters_orientation_last {n : ℕ} (γ : Geometr
     (aux_augmentedIncreaseParameters γ i ι w b hb m).orientation (Fin.last γ.k) = 0 := by
   simp [aux_augmentedIncreaseParameters, aux_augmentedIncreaseOrientation]
 
+/--
+@isnad1 id=eq.2h8v.s6.c3630f0c0f0f from=translated src=- shape=05273e8d vocab=c1e53c85
+-/
 theorem aux_augmentedIncreaseParameters_scales_last {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -527,7 +583,9 @@ theorem aux_augmentedIncreaseParameters_scales_last {n : ℕ} (γ : GeometricPar
       aux_sigmaScalePair γ ι i := by
   simp [aux_augmentedIncreaseParameters, aux_augmentedIncreaseScales]
 
-/-- The final-coordinate multiplier of the augmented parameters is the sigma multiplier.-/
+/-- The final-coordinate multiplier of the augmented parameters is the sigma multiplier.
+@isnad1 id=eq.2h9v.s6.87e01a718b10 from=translated src=- shape=5b4c7a05 vocab=ef458789
+-/
 theorem aux_sMultiplier_augmentedIncreaseParameters_last {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -542,7 +600,9 @@ theorem aux_sMultiplier_augmentedIncreaseParameters_last {n : ℕ} (γ : Geometr
   simp_rw [aux_augmentedIncreaseParameters_scales_last]
   simp_rw [aux_sqrt_sigmaScalePair]
 
-/-- The augmented parameters have the geometric bound required by Gaussian domination.-/
+/-- The augmented parameters have the geometric bound required by Gaussian domination.
+@isnad1 id=le.2h8v.s7.533ceee832a5 from=translated src=- shape=8863e7cc vocab=de180c6d
+-/
 theorem aux_geometricDelta_augmentedIncreaseParameters_le {n : ℕ} (γ : GeometricParameters n)
     {hkn : γ.k ≤ n - 1} (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
     (w : aux_GaussianDominationWitness γ hkn i ι C) (b : ℕ) (hb : b ∈ w.B)
@@ -732,7 +792,9 @@ def IncreaseData (n k : ℕ) (C : ℝ) (_hk : 1 ≤ k) (hkn : k ≤ n - 1) (_hC 
             Real.rpow (geometricDelta γ : ℝ)
               (2 - (2 : ℝ) ^ ((k : ℤ) - (n : ℤ) + 2)))
 
-/-- The geometric loss in the induction estimates is at least one.-/
+/-- The geometric loss in the induction estimates is at least one.
+@isnad1 id=le.2h3v.s6.40cd0f8f7c37 from=translated src=- shape=085aaeb0 vocab=45c33f84
+-/
 theorem aux_one_le_geometricDelta_rpow {n k : ℕ} (_hk : 1 ≤ k) (hkn : k ≤ n)
     (γ : GeometricParameters n) :
     1 ≤ Real.rpow (geometricDelta γ : ℝ)
@@ -753,6 +815,9 @@ theorem aux_one_le_geometricDelta_rpow {n k : ℕ} (_hk : 1 ≤ k) (hkn : k ≤ 
     linarith
   exact Real.one_le_rpow hdelta hexp
 
+/--
+@isnad1 id=eq.2h3v.s5.51b20f35a37c from=translated src=- shape=ebf2cb67 vocab=474a0d22
+-/
 theorem aux_terminalSandwichSeminorm_eq_zero {n : ℕ} (hn : 1 ≤ n)
     (γ : GeometricParameters n) (hγ : γ.k = n) (i : Fin γ.k) :
     kernelSequenceSeminorm n γ.k γ.one_le_k γ.k_le_n
@@ -838,6 +903,9 @@ theorem aux_terminalSandwichSeminorm_eq_zero {n : ℕ} (hn : 1 ≤ n)
     norm_num
   · exact bot_le
 
+/--
+@isnad1 id=vanishin.1h1v.s4.e43962bc7d8c from=translated src=- shape=0cb82189 vocab=780e53be
+-/
 theorem aux_terminalVanishingDiagonal {n : ℕ} (hn : 1 ≤ n) :
     VanishingDiagonal n n 1 hn le_rfl (by norm_num) := by
   intro γ hγ i
@@ -854,7 +922,9 @@ $$
     \|\mathbf{M}(\gamma,H_\gamma,i)\|_{{\rm M}(n)}=0.
 $$
 
-In particular, $\mathrm{VanishingDiagonal}(n,1)$ holds.-/
+In particular, $\mathrm{VanishingDiagonal}(n,1)$ holds.
+@isnad1 id=and.1h1v.s5.fe04e99101c9 from=translated src=- shape=837181c8 vocab=97250bdd
+-/
 theorem vanishingKernelIntegral (n : ℕ) (hn : 1 ≤ n) :
     (∀ (γ : GeometricParameters n), γ.k = n → ∀ i : Fin γ.k,
       kernelSequenceSeminorm n γ.k γ.one_le_k γ.k_le_n
@@ -868,7 +938,9 @@ theorem vanishingKernelIntegral (n : ℕ) (hn : 1 ≤ n) :
 /--
 This auxiliary monotonicity lemma lets later induction steps enlarge the
 constant in the conclusion of `InductPositiveTerms` without changing the
-geometric data.-/
+geometric data.
+@isnad1 id=inductpo.6h4v.s6.814c73fc543b from=translated src=- shape=d646fad2 vocab=654063f0
+-/
 theorem aux_inductPositiveTerms_mono {n k : ℕ} {C D : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n) (hC : 1 ≤ C) (hD : 1 ≤ D) (hCD : C ≤ D) :
     InductPositiveTerms n k C hk hkn hC →
@@ -879,7 +951,9 @@ theorem aux_inductPositiveTerms_mono {n k : ℕ} {C D : ℝ}
   apply mul_le_mul_of_nonneg_right hCD
   exact Real.rpow_nonneg (by positivity) _
 
-/-- A kernel sequence is bounded by a uniform limit of finite partial approximants.-/
+/-- A kernel sequence is bounded by a uniform limit of finite partial approximants.
+@isnad1 id=le.6h5v.s8.f70ca9d07eb8 from=translated src=- shape=4dc2b18a vocab=8e528e4d
+-/
 theorem aux_kernelSequenceSeminorm_le_of_tendsto_eLpNorm
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     (M : KernelSequence k) (P : ℕ → KernelSequence k) (A : ℝ≥0∞)
@@ -998,7 +1072,9 @@ theorem aux_kernelSequenceSeminorm_le_of_tendsto_eLpNorm
 
 /--
 A kernel sequence inherits a uniform seminorm bound from finite approximants
-that converge on every finite index prefix in `L¹`.-/
+that converge on every finite index prefix in `L¹`.
+@isnad1 id=le.6h5v.s8.f70ca9d07eb8 from=translated src=- shape=4dc2b18a vocab=8e528e4d
+-/
 theorem aux_kernelSequenceSeminorm_le_of_prefix_tendsto_eLpNorm
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n)
     (M : KernelSequence k) (P : ℕ → KernelSequence k) (A : ℝ≥0∞)
@@ -1013,7 +1089,9 @@ theorem aux_kernelSequenceSeminorm_le_of_prefix_tendsto_eLpNorm
 
 /--
 This auxiliary monotonicity lemma is used to align the output constants of
-the diagonal-band and positive-term implications.-/
+the diagonal-band and positive-term implications.
+@isnad1 id=vanishin.6h4v.s6.053334eec29a from=translated src=- shape=d646fad2 vocab=77e446d7
+-/
 theorem aux_vanishingDiagonal_mono {n k : ℕ} {C D : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n) (hC : 1 ≤ C) (hD : 1 ≤ D) (hCD : C ≤ D) :
     VanishingDiagonal n k C hk hkn hC →
@@ -1026,7 +1104,9 @@ theorem aux_vanishingDiagonal_mono {n k : ℕ} {C D : ℝ}
 
 /--
 This auxiliary monotonicity lemma is used to enlarge the summation bound
-in `DiagonalBand` when composing the main induction implications.-/
+in `DiagonalBand` when composing the main induction implications.
+@isnad1 id=diagonal.6h4v.s6.a0f6bc8a6f06 from=translated src=- shape=46ade3ce vocab=fb0d48da
+-/
 theorem aux_diagonalBand_mono {n k : ℕ} {C D : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C) (hD : 1 ≤ D) (hCD : C ≤ D) :
     DiagonalBand n k C hk hkn hC →
@@ -1052,7 +1132,9 @@ satisfies
 
 $$
 C_{\mathrm{induct\ positive\ terms\ imply\ increase\ data}}<2^{172}.
-$$-/
+$$
+@isnad1 id=lt.0h0v.s4.0a830c92675f from=translated src=- shape=0cd4e242 vocab=d1673b3d
+-/
 theorem constantInductPositiveTermsImplyIncreaseData :
     C_inductPositiveTermsImplyIncreaseData < (2 : ℝ) ^ (172 : ℕ) := by
   unfold C_inductPositiveTermsImplyIncreaseData
@@ -1062,7 +1144,9 @@ theorem constantInductPositiveTermsImplyIncreaseData :
 
 /--
 This auxiliary positivity fact is needed when taking square roots of the
-constant in the reverse induction estimates.-/
+constant in the reverse induction estimates.
+@isnad1 id=lt.0h0v.s3.93a3ccd9c532 from=translated src=- shape=ff3a10fc vocab=22252979
+-/
 theorem aux_C_inductPositiveTermsImplyIncreaseData_pos :
     0 < C_inductPositiveTermsImplyIncreaseData := by
   unfold C_inductPositiveTermsImplyIncreaseData
@@ -1073,7 +1157,9 @@ theorem aux_C_inductPositiveTermsImplyIncreaseData_pos :
 /--
 This auxiliary lower bound supplies the manuscript's admissibility
 condition `C ∈ [1,∞)` when the Gaussian-domination constant is fed into the
-main induction.-/
+main induction.
+@isnad1 id=le.0h0v.s3.55163af49ad3 from=translated src=- shape=ff3a10fc vocab=54068317
+-/
 theorem aux_one_le_C_inductPositiveTermsImplyIncreaseData :
     1 ≤ C_inductPositiveTermsImplyIncreaseData := by
   unfold C_inductPositiveTermsImplyIncreaseData
@@ -1115,6 +1201,9 @@ noncomputable def outerGaussianProduct {n : ℕ}
     ∏ q ∈ Finset.univ.filter (fun q => i < q),
       gammaGaussian γ q (j - 1) (x.1 q, x.2 q)
 
+/--
+@isnad1 id=memw0.1h5v.s7.029b9c9d31c3 from=translated src=- shape=f7d34cb2 vocab=d56afe44
+-/
 theorem increaseBase_memW0 {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ) :
@@ -1157,6 +1246,9 @@ theorem increaseBase_memW0 {n : ℕ}
   symm
   apply hfactor
 
+/--
+@isnad1 id=le.1h6v.s5.d9227542857f from=translated src=- shape=2c63bf8b vocab=1bb16ffe
+-/
 theorem increaseBase_nonneg {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ)
@@ -1173,6 +1265,9 @@ theorem increaseBase_nonneg {n : ℕ}
     intro q _
     exact Auto.aux_gammaGaussian_nonneg γ q (j - 1) _
 
+/--
+@isnad1 id=memw0.2h9v.s7.c8a87eaa8f93 from=translated src=- shape=8c16b7a9 vocab=a415e500
+-/
 theorem gaussianBase_memW0 {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1217,6 +1312,9 @@ theorem gaussianBase_memW0 {n : ℕ}
   symm
   apply hfactor
 
+/--
+@isnad1 id=le.2h10v.s6.102ad74cdbc9 from=translated src=- shape=5f7125e8 vocab=0e95d82e
+-/
 theorem gaussianBase_nonneg {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1236,6 +1334,9 @@ theorem gaussianBase_nonneg {n : ℕ}
     intro q _
     exact Auto.aux_gammaGaussian_nonneg γ q (j - 1) _
 
+/--
+@isnad1 id=eq.1h6v.s6.648402d2fabf from=translated src=- shape=8eda1ccd vocab=b196430c
+-/
 theorem increaseBase_eq_outer_mul_abs {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ)
@@ -1246,6 +1347,9 @@ theorem increaseBase_eq_outer_mul_abs {n : ℕ}
   unfold increaseBase outerGaussianProduct
   ring
 
+/--
+@isnad1 id=eq.1h10v.s7.28d469028f6e from=translated src=- shape=1c6aede5 vocab=9ccf2418
+-/
 theorem gaussianBase_eq_outer_mul {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1258,6 +1362,9 @@ theorem gaussianBase_eq_outer_mul {n : ℕ}
   unfold gaussianBase outerGaussianProduct
   ring
 
+/--
+@isnad1 id=le.0h5v.s5.9870867f8adf from=translated src=- shape=5e86c6e2 vocab=08c6abc1
+-/
 theorem outerGaussianProduct_nonneg {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (x : RealVector γ.k × RealVector γ.k) :
@@ -1274,6 +1381,9 @@ theorem outerGaussianProduct_nonneg {n : ℕ}
 noncomputable def finTwoNatEnum : ℕ ≃ (Fin 2 → ℕ) :=
   ((finTwoArrowEquiv ℕ).trans Nat.pairEquiv).symm
 
+/--
+@isnad1 id=memw0.2h3v.s6.069e9af5c688 from=translated src=- shape=89e8fb63 vocab=1fdda807
+-/
 theorem memW0ConstMulNonneg {E : Type*}
     [NormedAddCommGroup E] [ProperSpace E] [MeasureSpace E] [BorelSpace E]
     {f : E → ℝ} (hf : MemW0 f) (c : ℝ) (hc : 0 ≤ c) :
@@ -1303,6 +1413,9 @@ noncomputable def gaussianPartialTerm {n : ℕ}
     aux_gaussianDominationWeight (finTwoNatEnum N) *
     ∑ b ∈ w.B, gaussianBase γ i ι w b (finTwoNatEnum N) j x
 
+/--
+@isnad1 id=memw0.2h9v.s7.9e6e3202c6d4 from=translated src=- shape=dc1779f6 vocab=0b06c9ec
+-/
 theorem gaussianPartialTerm_memW0 {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1326,6 +1439,9 @@ theorem gaussianPartialTerm_memW0 {n : ℕ}
   unfold gaussianPartialTerm
   ring
 
+/--
+@isnad1 id=le.2h10v.s6.86d7e947cd21 from=translated src=- shape=131a0729 vocab=52823279
+-/
 theorem gaussianPartialTerm_nonneg {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1342,6 +1458,9 @@ theorem gaussianPartialTerm_nonneg {n : ℕ}
     intro b hb
     exact gaussianBase_nonneg γ i ι w b hb _ j x
 
+/--
+@isnad1 id=eq.1h9v.s7.ea74e52e37c2 from=translated src=- shape=c79f9b80 vocab=4e8cb449
+-/
 theorem sumGaussianBase_eq {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1356,6 +1475,9 @@ theorem sumGaussianBase_eq {n : ℕ}
   intro b hb
   rw [gaussianBase_eq_outer_mul]
 
+/--
+@isnad1 id=eq.1h10v.s8.7d2919b0ee48 from=translated src=- shape=0211d2b2 vocab=a54d9acd
+-/
 theorem gaussianPartialTerm_eq_outer {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1372,6 +1494,9 @@ theorem gaussianPartialTerm_eq_outer {n : ℕ}
   rw [sumGaussianBase_eq]
   ring
 
+/--
+@isnad1 id=summable.1h9v.s6.d87d13ab7dc5 from=translated src=- shape=f009efed vocab=00f9c8a2
+-/
 theorem gaussianPartialTerm_summable {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1394,6 +1519,9 @@ theorem gaussianPartialTerm_summable {n : ℕ}
   intro N
   exact (gaussianPartialTerm_eq_outer γ i ι w c N j x).symm
 
+/--
+@isnad1 id=le.1h8v.s6.7064a1b4899a from=translated src=- shape=9ee087d6 vocab=978ebaad
+-/
 theorem increaseBase_le_tsum_gaussianPartialTerm {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1439,6 +1567,9 @@ theorem increaseBase_le_tsum_gaussianPartialTerm {n : ℕ}
       intro N
       exact (gaussianPartialTerm_eq_outer γ i ι w C N j x).symm
 
+/--
+@isnad1 id=eq.1h5v.s6.b0b60d64a7e2 from=translated src=- shape=e32dd07a vocab=b638614d
+-/
 theorem increaseDataKernel_eq_tensorSquareExtension {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ) :
@@ -1453,6 +1584,9 @@ theorem increaseDataKernel_eq_tensorSquareExtension {n : ℕ}
     simp [aux_eraseVector]
   simp only [aux_increaseDataKernel, tensorSquareExtension, increaseBase, herase]
 
+/--
+@isnad1 id=eq.2h9v.s7.b6a8cfcd6ff5 from=translated src=- shape=941a3ec9 vocab=261e142f
+-/
 theorem gaussianBase_tensorSquareExtension_eq_sandwich {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1480,6 +1614,9 @@ theorem gaussianBase_tensorSquareExtension_eq_sandwich {n : ℕ}
   exact congrFun
     (aux_augmentedLast_sandwich_eq_explicit_tensorSquareExtension γ i ι w b hb m j) y
 
+/--
+@isnad1 id=eq.1h9v.s8.ed8206034914 from=translated src=- shape=2668fccc vocab=8b1b6fb4
+-/
 theorem gaussianPartialTerm_tensorSquareExtension_eq_sum {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1509,12 +1646,18 @@ theorem gaussianPartialTerm_tensorSquareExtension_eq_sum {n : ℕ}
   rw [← Finset.sum_attach]
   rfl
 
+/--
+@isnad1 id=memkerne.2h3v.s5.f4286a26fef5 from=translated src=- shape=276234ed vocab=8c4d5811
+-/
 theorem memKernelSequence_const_mul_nonneg {r : ℕ}
     (M : KernelSequence r) (hM : MemKernelSequence r M) (c : ℝ) (hc : 0 ≤ c) :
     MemKernelSequence r (fun j y => c * M j y) := by
   intro j
   exact memW0ConstMulNonneg (hM j) c hc
 
+/--
+@isnad1 id=memkerne.2h8v.s7.79252416c394 from=translated src=- shape=3fcd4b57 vocab=4fa60a07
+-/
 theorem gaussianBase_terminal_mem {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1535,6 +1678,9 @@ theorem gaussianBase_terminal_mem {n : ℕ}
       (aux_augmentedIncreaseParameters γ i ι w b hb m))
     (Fin.last γ.k) j
 
+/--
+@isnad1 id=le.6h10v.s8.52f25b51e4bf from=translated src=- shape=a40a5fbd vocab=3ef22d44
+-/
 theorem gaussianBase_IPT_bound
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) {C C' : ℝ}
     (hC : 1 ≤ C')
@@ -1573,6 +1719,9 @@ theorem gaussianBase_IPT_bound
   rw [hexp] at hbound
   exact hbound
 
+/--
+@isnad1 id=le.4h5v.s6.15ec3ce8c199 from=translated src=- shape=57c43bc8 vocab=3c9c7cfe
+-/
 theorem kernelSequenceSeminorm_fintype_sum_const_mul_le
     {n r : ℕ} (hr : 1 ≤ r) (hrn : r ≤ n)
     {β : Type*} [Fintype β] (S : β → KernelSequence r)
@@ -1593,6 +1742,9 @@ theorem kernelSequenceSeminorm_fintype_sum_const_mul_le
       intro b _
       rw [aux_kernelSequenceSeminorm_const_mul hr hrn c hc]
 
+/--
+@isnad1 id=le.6h5v.s7.dadb17a04323 from=translated src=- shape=4e57a933 vocab=cef4cf1d
+-/
 theorem rpowGrowthBound (A D h q a : ℝ)
     (hA : 1 ≤ A) (hD : 1 ≤ D) (hh : 0 ≤ h) (hq : 0 ≤ q)
     (ha0 : 0 ≤ a) (ha2 : a ≤ 2) :
@@ -1635,6 +1787,9 @@ theorem rpowGrowthBound (A D h q a : ℝ)
     _ ≤ A ^ (2 : ℕ) * D ^ a * (1 + h) ^ (2 : ℕ) * (1 + q) ^ (2 : ℕ) := by
       gcongr
 
+/--
+@isnad1 id=le.2h8v.s8.7be312fffce2 from=translated src=- shape=8919abc5 vocab=1ed5d3aa
+-/
 theorem augmentedDeltaRpowLe {n : ℕ}
     (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1692,6 +1847,9 @@ theorem augmentedDeltaRpowLe {n : ℕ}
         (ι.1.1.natAbs : ℝ) (aux_natPairWeight m : ℝ) a hA hD
         (by positivity) (by positivity) ha0 ha2
 
+/--
+@isnad1 id=le.5h8v.s9.f0058fce6038 from=translated src=- shape=b3a0e70e vocab=4ec89dfb
+-/
 theorem partialTerm_seminorm_le_branch_sum
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) {C : ℝ}
     (hC : 1 ≤ C)
@@ -1759,6 +1917,9 @@ theorem partialTerm_seminorm_le_branch_sum
       exact gaussianBase_IPT_bound hk hkn hC hIPT γ hγ i ι w b.1 b.2 m
     _ = _ := by rfl
 
+/--
+@isnad1 id=le.1h7v.s7.776bb2a4a3e7 from=translated src=- shape=14e14f33 vocab=8671e8d7
+-/
 theorem gaussianWeight_card_factor
     {n : ℕ} (γ : GeometricParameters n) {hkn : γ.k ≤ n - 1}
     (i : Fin γ.k) (ι : MultiplierIndex γ) {C : ℝ}
@@ -1784,6 +1945,9 @@ theorem gaussianWeight_card_factor
   rw [Finset.sum_const, nsmul_eq_mul, hsubcard]
   exact mul_le_mul_of_nonneg_right hcard (hf_nonneg m)
 
+/--
+@isnad1 id=le.5h8v.s9.d98ddaf48aa9 from=translated src=- shape=bb95a70a vocab=524c5630
+-/
 theorem partialTerm_weighted_seminorm_bound
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) {C : ℝ}
     (hC : 1 ≤ C)
@@ -1915,6 +2079,9 @@ theorem partialTerm_weighted_seminorm_bound
       dsimp [A, D, H, W, a, m]
       ring_nf
 
+/--
+@isnad1 id=le.0h1v.s7.0ba0ba0c3740 from=translated src=- shape=19c21d33 vocab=1b2420e0
+-/
 theorem gaussianWeight_prefix_le (N : ℕ) :
     (∑ r ∈ Finset.range N,
       aux_gaussianDominationWeight (finTwoNatEnum r) *
@@ -1938,6 +2105,9 @@ theorem gaussianWeight_prefix_le (N : ℕ) :
     _ ≤ (2 : ℝ) ^ (10 : ℕ) :=
       aux_gaussianDominationWeight_secondMoment_le_two_pow_ten
 
+/--
+@isnad1 id=eq.0h6v.s7.463f1970a353 from=translated src=- shape=bcd8dc87 vocab=27a82476
+-/
 theorem tensorSquareExtension_finset_sum {k : ℕ}
     {α : Type*} (s : Finset α) (G : α → ℤ → MKernel k)
     (phi : ℤ → ℝ → ℝ) (j : ℤ) :
@@ -1949,6 +2119,9 @@ theorem tensorSquareExtension_finset_sum {k : ℕ}
   unfold tensorSquareExtension
   rw [Finset.sum_mul]
 
+/--
+@isnad1 id=le.5h8v.s8.2b3d5c4e83a0 from=translated src=- shape=8629c9d2 vocab=c5be28c3
+-/
 theorem partialPrefix_terminal_IPT_bound
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) {C : ℝ}
     (hC : 1 ≤ C)
@@ -2061,6 +2234,9 @@ theorem partialPrefix_terminal_IPT_bound
         _ = B := by norm_num
     _ = _ := by rfl
 
+/--
+@isnad1 id=memw0.2h3v.s6.e15969a48835 from=translated src=- shape=46ccbdd5 vocab=9172e8c0
+-/
 theorem memW0Min {E : Type*}
     [NormedAddCommGroup E] [ProperSpace E] [MeasureSpace E] [BorelSpace E]
     {f g : E → ℝ} (hf : MemW0 f) (hg : MemW0 g) :
@@ -2076,6 +2252,9 @@ theorem memW0Min {E : Type*}
   · rw [min_eq_right hgf, abs_of_nonneg (sub_nonneg.mpr hgf)]
     ring
 
+/--
+@isnad1 id=tendsto.7h5v.s9.4efd9f91c094 from=translated src=- shape=f547b10f vocab=fcd3bf28
+-/
 theorem tendsto_eLpNorm_one_tensorSquareExtension_min_partialSum_sub
     {k : ℕ} (M : ℤ → MKernel k) (G : ℕ → ℤ → MKernel k)
     (phi : ℤ → ℝ → ℝ)
@@ -2223,6 +2402,9 @@ theorem tendsto_eLpNorm_one_tensorSquareExtension_min_partialSum_sub
   simpa only [eLpNorm_one_eq_lintegral_enorm, Pi.sub_apply,
     ← ofReal_norm] using hdc
 
+/--
+@isnad1 id=le.10h6v.s8.eeff4b197a4d from=translated src=- shape=e9584edb vocab=42de9e75
+-/
 theorem kernelSequenceSeminorm_tensorSquareExtension_le_of_base_majorant
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (M : ℤ → MKernel k) (G : ℕ → ℤ → MKernel k)
@@ -2301,7 +2483,9 @@ end aux_inductPositiveTerms
 
 /--
 A terminal tensor-square extension inherits finite-prefix seminorm bounds
-from a nonnegative summable pointwise majorant.-/
+from a nonnegative summable pointwise majorant.
+@isnad1 id=le.10h6v.s8.eeff4b197a4d from=translated src=- shape=e9584edb vocab=42de9e75
+-/
 theorem aux_kernelSequenceSeminorm_tensorSquareExtension_le_of_base_majorant
     {n k : ℕ} (hk : 1 ≤ k) (hkn : k + 1 ≤ n)
     (M : ℤ → MKernel k) (G : ℕ → ℤ → MKernel k)
@@ -2323,7 +2507,9 @@ theorem aux_kernelSequenceSeminorm_tensorSquareExtension_le_of_base_majorant
 
 /--
 A nonnegative scalar multiple of a Wiener-space function is again in the
-Wiener space.-/
+Wiener space.
+@isnad1 id=memw0.2h3v.s6.069e9af5c688 from=translated src=- shape=89e8fb63 vocab=1fdda807
+-/
 theorem aux_memW0_const_mul_nonneg {E : Type*}
     [NormedAddCommGroup E] [ProperSpace E] [MeasureSpace E] [BorelSpace E]
     {f : E → ℝ} (hf : MemW0 f) (c : ℝ) (hc : 0 ≤ c) :
@@ -2332,7 +2518,9 @@ theorem aux_memW0_const_mul_nonneg {E : Type*}
 
 /--
 The seminorm of a finite nonnegative-scalar combination is bounded by the
-corresponding finite sum of scalar seminorm bounds.-/
+corresponding finite sum of scalar seminorm bounds.
+@isnad1 id=le.4h5v.s6.15ec3ce8c199 from=translated src=- shape=57c43bc8 vocab=3c9c7cfe
+-/
 theorem aux_kernelSequenceSeminorm_fintype_sum_const_mul_le
     {n r : ℕ} (hr : 1 ≤ r) (hrn : r ≤ n)
     {β : Type*} [Fintype β] (S : β → KernelSequence r)
@@ -2356,7 +2544,9 @@ combined},2}.
 $$
 
 `Auto.gaussianDominationCombined` supplies the
-Gaussian-domination constants.-/
+Gaussian-domination constants.
+@isnad1 id=increase.4h3v.s6.78d032f14add from=translated src=- shape=fc9724ab vocab=c7863c7a
+-/
 theorem inductPositiveTerms_implies_increaseData
     {n k : ℕ} {C : ℝ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C) :
     InductPositiveTerms n (k + 1) C (by omega) (by omega) hC →
@@ -2456,7 +2646,9 @@ noncomputable def C_betterInduction (k : ℕ) : ℝ :=
 
 /--
 This auxiliary positivity fact supplies the admissibility condition on the
-constant in `betterInduction`.-/
+constant in `betterInduction`.
+@isnad1 id=lt.0h1v.s3.c187a46b11ff from=translated src=- shape=b9369acb vocab=01aa90ba
+-/
 theorem aux_C_betterInduction_pos (k : ℕ) : 0 < C_betterInduction k := by
   unfold C_betterInduction
   apply sq_pos_of_pos
@@ -2466,7 +2658,9 @@ theorem aux_C_betterInduction_pos (k : ℕ) : 0 < C_betterInduction k := by
 
 /--
 This auxiliary lower bound supplies the `C ∈ [1,∞)` hypothesis needed
-when `betterInduction` invokes the preceding induction implication.-/
+when `betterInduction` invokes the preceding induction implication.
+@isnad1 id=le.0h1v.s3.1619333997d8 from=translated src=- shape=b9369acb vocab=a12cf71f
+-/
 theorem aux_one_le_C_betterInduction (k : ℕ) : 1 ≤ C_betterInduction k := by
   unfold C_betterInduction
   have hmain : 0 ≤ (2 : ℝ) ^ (15 : ℕ) * (k + 2 : ℕ) *
@@ -2508,7 +2702,9 @@ The constant from `Auto.inductPositiveTermsTheorem` satisfies
 
 $$
 C_{\mathrm{induct\ positive\ terms\ theorem}}<2^{359}.
-$$-/
+$$
+@isnad1 id=lt.0h0v.s4.8d2661367b43 from=translated src=- shape=0cd4e242 vocab=8993b25a
+-/
 theorem constantInductPositiveTermsTheorem :
     C_inductPositiveTermsTheorem < (2 : ℝ) ^ (359 : ℕ) := by
   unfold C_inductPositiveTermsTheorem
@@ -2549,7 +2745,9 @@ theorem constantInductPositiveTermsTheorem :
 
 /--
 This auxiliary positivity fact supplies the admissibility condition on the
-constant in `inductPositiveTermsTheorem`.-/
+constant in `inductPositiveTermsTheorem`.
+@isnad1 id=lt.0h0v.s3.cc3c2ad5f992 from=translated src=- shape=ff3a10fc vocab=ad7d4897
+-/
 theorem aux_C_inductPositiveTermsTheorem_pos :
     0 < C_inductPositiveTermsTheorem := by
   unfold C_inductPositiveTermsTheorem
@@ -2560,7 +2758,9 @@ theorem aux_C_inductPositiveTermsTheorem_pos :
 
 /--
 This auxiliary lower bound supplies the admissibility condition on the
-constant used in the final `inductPositiveTermsTheorem`.-/
+constant used in the final `inductPositiveTermsTheorem`.
+@isnad1 id=le.0h0v.s3.0ad3d21fd8be from=translated src=- shape=ff3a10fc vocab=c44dcb4d
+-/
 theorem aux_one_le_C_inductPositiveTermsTheorem :
     1 ≤ C_inductPositiveTermsTheorem := by
   unfold C_inductPositiveTermsTheorem
@@ -2597,7 +2797,9 @@ def C_vanishingDiagonalImpliesInductPositiveTerms (k : ℕ) (C : ℝ) : ℝ :=
 
 /--
 This auxiliary bound verifies the admissibility condition on the output
-constant of `vanishingDiagonal_implies_inductPositiveTerms`.-/
+constant of `vanishingDiagonal_implies_inductPositiveTerms`.
+@isnad1 id=le.1h2v.s4.1a4ee9df4b40 from=translated src=- shape=696abc3b vocab=1f347bcd
+-/
 theorem aux_one_le_C_vanishingDiagonalImpliesInductPositiveTerms (k : ℕ) {C : ℝ}
     (hC : 1 ≤ C) : 1 ≤ C_vanishingDiagonalImpliesInductPositiveTerms k C := by
   unfold C_vanishingDiagonalImpliesInductPositiveTerms
@@ -2605,7 +2807,9 @@ theorem aux_one_le_C_vanishingDiagonalImpliesInductPositiveTerms (k : ℕ) {C : 
     mul_nonneg (Nat.cast_nonneg k) (by linarith)
   linarith
 
-/-- Positivity lets one sandwich term be bounded by the finite sum of all sandwich terms.-/
+/-- Positivity lets one sandwich term be bounded by the finite sum of all sandwich terms.
+@isnad1 id=le.2h4v.s7.97a2104a3482 from=translated src=- shape=fb017457 vocab=7e4e5329
+-/
 theorem aux_kernelSequenceSeminorm_le_sum_of_positive {n : ℕ}
     (γ : GeometricParameters n) (X : DoubleSequence γ.k) (hX : MemDoubleSequence γ.k X)
     (hfactor : ∀ i j, ∃ f : ℝ → ℝ, MemW0 f ∧
@@ -2714,7 +2918,9 @@ theorem aux_kernelSequenceSeminorm_le_sum_of_positive {n : ℕ}
 **Proposition.**
 
 Let $k\in\mathbb{N}$ with $1\le k\le n$ and $C\in [1,\infty)$.
-If $\mathrm{VanishingDiagonal}(k,C)$ holds, then $\mathrm{InductPositiveTerms}(k,kC+2)$ holds.-/
+If $\mathrm{VanishingDiagonal}(k,C)$ holds, then $\mathrm{InductPositiveTerms}(k,kC+2)$ holds.
+@isnad1 id=inductpo.4h3v.s5.458e85d1d8d4 from=translated src=- shape=6080bb6c vocab=25e9ff68
+-/
 theorem vanishingDiagonal_implies_inductPositiveTerms {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n) (hC : 1 ≤ C) :
     VanishingDiagonal n k C hk hkn hC →
@@ -2850,7 +3056,9 @@ theorem vanishingDiagonal_implies_inductPositiveTerms {n k : ℕ} {C : ℝ}
             (2 - (2 : ℝ) ^ ((k : ℤ) - (n : ℤ) + 1))) := by
         simp [C_vanishingDiagonalImpliesInductPositiveTerms, D, hγ]
 
-/-- The symmetric partial sums of the sandwiched L multipliers converge in `L¹`.-/
+/-- The symmetric partial sums of the sandwiched L multipliers converge in `L¹`.
+@isnad1 id=tendsto.0h4v.s8.83c7a69cd191 from=translated src=- shape=591a201c vocab=e89a34b6
+-/
 theorem aux_sandwichLMultiplierPartial_tendsto {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) :
     Tendsto (fun N : ℕ =>
@@ -2868,7 +3076,9 @@ theorem aux_sandwichLMultiplierPartial_tendsto {n : ℕ} (γ : GeometricParamete
       exact (sumLMultiplierConvergenceL1 γ ι₀).2 i j)
     i j
 
-/-- A finite sum over the scale index preserves the symmetric `L¹` convergence.-/
+/-- A finite sum over the scale index preserves the symmetric `L¹` convergence.
+@isnad1 id=tendsto.0h4v.s8.751533998e3e from=translated src=- shape=4a617f13 vocab=43510c42
+-/
 theorem aux_finiteSandwichLMultiplier_convergesL1 {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (J : ℕ) :
     Tendsto (fun N : ℕ => eLpNorm
@@ -2938,7 +3148,9 @@ theorem aux_finiteSandwichLMultiplier_convergesL1 {n : ℕ} (γ : GeometricParam
       (sandwichKernel_memKernelSequence γ (hMultiplier γ)
         (hMultiplier_memDoubleSequence γ) i (j : ℤ))).aux_continuous.aestronglyMeasurable
 
-/-- The H-multiplier sandwich seminorm is bounded by the symmetric L-multiplier sum.-/
+/-- The H-multiplier sandwich seminorm is bounded by the symmetric L-multiplier sum.
+@isnad1 id=le.0h3v.s5.882d790e630b from=translated src=- shape=aa78e060 vocab=86b8a76f
+-/
 theorem aux_hMultiplier_seminorm_le_symmetricLMultiplierSum {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) :
     kernelSequenceSeminorm n γ.k γ.one_le_k γ.k_le_n
@@ -3017,7 +3229,9 @@ theorem aux_hMultiplier_seminorm_le_symmetricLMultiplierSum {n : ℕ}
 **Proposition.**
 
 Let $k\in\mathbb{N}$ with $1\le k\le n-1$ and $C\in [1,\infty)$.
-If $\mathrm{DiagonalBand}(k,C)$ holds, then $\mathrm{VanishingDiagonal}(k,C)$ holds.-/
+If $\mathrm{DiagonalBand}(k,C)$ holds, then $\mathrm{VanishingDiagonal}(k,C)$ holds.
+@isnad1 id=vanishin.4h3v.s5.ef6178d4f204 from=translated src=- shape=70c58a3d vocab=cdab4ef6
+-/
 theorem diagonalBand_implies_vanishingDiagonal {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C) :
     DiagonalBand n k C hk hkn hC → VanishingDiagonal n k C hk (by omega) hC := by
@@ -3035,7 +3249,9 @@ noncomputable def C_increaseDataImpliesDiagonalBand (k n : ℕ) (C : ℝ) : ℝ 
 
 /--
 This auxiliary bound verifies the `C ∈ [1,∞)` side condition for the
-two constants in `increaseData_implies_diagonalBand`.-/
+two constants in `increaseData_implies_diagonalBand`.
+@isnad1 id=le.1h3v.s4.3711ff616498 from=translated src=- shape=5f0becbc vocab=5c663851
+-/
 theorem aux_one_le_C_increaseDataImpliesDiagonalBand (k n : ℕ) {C : ℝ}
     (hC : 1 ≤ C) : 1 ≤ C_increaseDataImpliesDiagonalBand k n C := by
   unfold C_increaseDataImpliesDiagonalBand
@@ -3063,11 +3279,17 @@ namespace aux_increaseDataDiagonal
 
 mutual
 
+/--
+@isnad1 id=eq.1h2v.s6.7110c477676e from=translated src=- shape=382b3333 vocab=8899dc84
+-/
 theorem aux_endpoint_increase_exponent {k n : ℕ} (htop : k + 1 = n) :
     2 - (2 : ℝ) ^ ((k : ℤ) - (n : ℤ) + 2) = 0 := by
   subst n
   norm_num
 
+/--
+@isnad1 id=le.6h6v.s7.52c6c2bcc612 from=translated src=- shape=639be7ad vocab=e84d19a9
+-/
 theorem aux_lMultiplier_seminorm_endpoint_bound {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C)
     (hIncrease : IncreaseData n k C hk hkn hC)
@@ -3102,6 +3324,9 @@ theorem aux_lMultiplier_seminorm_endpoint_bound {n k : ℕ} {C : ℝ}
   rw [hexp, Real.rpow_zero]
   simp
 
+/--
+@isnad1 id=diagonal.5h3v.s6.5d928529885a from=translated src=- shape=83e833f6 vocab=ec036f4e
+-/
 theorem aux_increaseData_implies_diagonalBand_endpoint {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C)
     (hend : ¬ k < n - 1) :
@@ -3139,6 +3364,9 @@ theorem aux_increaseData_implies_diagonalBand_endpoint {n k : ℕ} {C : ℝ}
     ring
   simpa [d, q] using hsum.trans_eq (congrArg ENNReal.ofReal hscalar)
 
+/--
+@isnad1 id=diagonal.4h3v.s5.c40a4846f014 from=translated src=- shape=fd2835e1 vocab=9d6574ef
+-/
 theorem impl {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C) :
     IncreaseData n k C hk hkn hC →
@@ -3148,6 +3376,9 @@ theorem impl {n k : ℕ} {C : ℝ}
   · exact aux_increaseData_implies_diagonalBand_interior hk hkn hC hinterior
   · exact aux_increaseData_implies_diagonalBand_endpoint hk hkn hC hinterior
 
+/--
+@isnad1 id=eq.1h3v.s7.011d3970df3b from=translated src=- shape=77b0b8f7 vocab=5e5791f1
+-/
 theorem aux_scalar_test {d q A : ℝ} (hd : 0 < d) :
     ((2 : ℝ) ^ (10 : ℕ) * d) * A * Real.rpow d (1 - q) =
       (2 : ℝ) ^ (10 : ℕ) * A * Real.rpow d (2 - q) := by
@@ -3164,6 +3395,9 @@ theorem aux_scalar_test {d q A : ℝ} (hd : 0 < d) :
         (2 : ℝ) ^ (10 : ℕ) * A * (d * Real.rpow d (1 - q)) := by ring
     _ = _ := by rw [hpow]
 
+/--
+@isnad1 id=eq.0h3v.s7.c3ca30d122ab from=translated src=- shape=d9b760ff vocab=c4d3439c
+-/
 theorem aux_constant_test {a b p : ℝ} :
     (2 : ℝ) ^ (10 : ℕ) * ((2 : ℝ) ^ (5 : ℕ) * a * b) * p =
       (2 : ℝ) ^ (15 : ℕ) * a * b * p := by
@@ -3172,6 +3406,9 @@ theorem aux_constant_test {a b p : ℝ} :
   rw [h]
   ring
 
+/--
+@isnad1 id=diagonal.5h3v.s6.fb2ded57622c from=translated src=- shape=e0afe84b vocab=ec036f4e
+-/
 theorem aux_increaseData_implies_diagonalBand_interior {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C)
     (hinterior : k < n - 1) :
@@ -3224,6 +3461,9 @@ theorem aux_increaseData_implies_diagonalBand_interior {n k : ℕ} {C : ℝ}
         exact aux_constant_test
   simpa [d, q] using hsum.trans_eq (congrArg ENNReal.ofReal hscalar)
 
+/--
+@isnad1 id=ex.2h4v.s11.fe27253ca186 from=translated src=- shape=861856af vocab=322bce84
+-/
 theorem aux_prismForm_transport_from_top {n k : ℕ} (hk : 1 ≤ k)
     (htop : k + 1 = n) (M : MKernel k) (F : NormalizedFunctionTuple n) :
     ∃ F0 : NormalizedFunctionTuple (k + 1),
@@ -3232,6 +3472,9 @@ theorem aux_prismForm_transport_from_top {n k : ℕ} (hk : 1 ≤ k)
   subst n
   exact ⟨F, rfl⟩
 
+/--
+@isnad1 id=ex.2h4v.s11.1d51f6506fd1 from=translated src=- shape=0e2192c8 vocab=fd052e10
+-/
 theorem aux_prismForm_transport_to_top {n k : ℕ} (hk : 1 ≤ k)
     (htop : k + 1 = n) (M : MKernel (k + 1))
     (G : NormalizedFunctionTuple (k + 1)) :
@@ -3243,6 +3486,9 @@ theorem aux_prismForm_transport_to_top {n k : ℕ} (hk : 1 ≤ k)
   subst n
   exact ⟨G, rfl⟩
 
+/--
+@isnad1 id=le.5h5v.s7.433757ad7e5b from=translated src=- shape=39e91c43 vocab=6dd78ac9
+-/
 theorem aux_lMultiplier_seminorm_endpoint_of_increase_verified {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hend : ¬ γ.k < n - 1)
@@ -3376,6 +3622,9 @@ theorem aux_lMultiplier_seminorm_endpoint_of_increase_verified {n : ℕ}
       nlinarith
     _ ≤ ENNReal.ofReal U := ENNReal.ofReal_le_ofReal hCS
 
+/--
+@isnad1 id=le.2h4v.s7.f59d18b1c8dc from=translated src=- shape=1a337797 vocab=4567de9a
+-/
 theorem aux_sumOverMultiplierIndex_half_le {n : ℕ}
     (γ : GeometricParameters n) (X : MultiplierIndex γ → ℝ≥0∞)
     (A : ℝ) (hA : 0 ≤ A)
@@ -3503,6 +3752,9 @@ theorem aux_sumOverMultiplierIndex_half_le {n : ℕ}
     _ = ENNReal.ofReal (((2 : ℝ) ^ (10 : ℕ) * (geometricDelta γ : ℝ)) * A) := by
       rfl
 
+/--
+@isnad1 id=le.1h2v.s8.fb7a05e2934d from=translated src=- shape=262d836f vocab=bb3494f3
+-/
 theorem aux_sum_multiplier_blocks_half_le (N D : ℕ) (hD : 1 ≤ D) :
     (∑ x ∈ aux_lMultiplierNegIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 2) *
@@ -3527,6 +3779,9 @@ theorem aux_sum_multiplier_blocks_half_le (N D : ℕ) (hD : 1 ≤ D) :
       have hD' : (1 : ℝ) ≤ D := by exact_mod_cast hD
       nlinarith
 
+/--
+@isnad1 id=le.1h4v.s5.3c8ca35f4699 from=translated src=- shape=5e289a50 vocab=09c4a245
+-/
 theorem aux_truncation_mono {n : ℕ} (γ : GeometricParameters n)
     {N M : ℕ} (hNM : N ≤ M) :
     aux_multiplierIndexTruncation γ N ⊆ aux_multiplierIndexTruncation γ M := by
@@ -3538,6 +3793,9 @@ theorem aux_truncation_mono {n : ℕ} (γ : GeometricParameters n)
   rcases hbox with ⟨⟨hx1, hx2⟩, hx3, hx4⟩
   exact ⟨⟨by omega, by omega⟩, by omega, by omega⟩
 
+/--
+@isnad1 id=mem.1h4v.s5.5a82579bc068 from=translated src=- shape=6a22f9c9 vocab=bbb43787
+-/
 theorem aux_mem_multiplierIndex_of_truncation {n : ℕ}
     (γ : GeometricParameters n) (N : ℕ) {x : ℤ × ℤ}
     (hx : x ∈ aux_multiplierIndexTruncation γ N) : x ∈ multiplierIndexSet γ := by
@@ -3546,6 +3804,9 @@ theorem aux_mem_multiplierIndex_of_truncation {n : ℕ}
     Finset.mem_product, Finset.mem_Icc] at hx
   exact hx.2
 
+/--
+@isnad1 id=le.3h5v.s7.5030f489aa19 from=translated src=- shape=ea286516 vocab=4567de9a
+-/
 theorem aux_sumOverMultiplierIndex_quarter_le {n : ℕ}
     (γ : GeometricParameters n) (X : MultiplierIndex γ → ℝ≥0∞)
     (A R : ℝ) (hA : 0 ≤ A) (hR : 0 ≤ R)
@@ -3674,6 +3935,9 @@ theorem aux_sumOverMultiplierIndex_quarter_le {n : ℕ}
     _ = ENNReal.ofReal (((2 : ℝ) ^ (10 : ℕ) * (geometricDelta γ : ℝ)) * A * R) := by
       rfl
 
+/--
+@isnad1 id=summable.0h0v.s6.5b9c54680f62 from=translated src=- shape=c49f5b26 vocab=ae232606
+-/
 theorem aux_half_weight_summable :
     Summable (fun a : ℕ => Real.rpow 2 (-((a : ℝ) / 2)) * (1 + (a : ℝ)) ^ (2 : ℕ)) := by
   let q : ℝ := Real.rpow 2 (-(1 / 2 : ℝ))
@@ -3724,6 +3988,9 @@ theorem aux_half_weight_summable :
   exact hsum.of_nonneg_of_le (fun a =>
     mul_nonneg (Real.rpow_nonneg (by norm_num) _) (sq_nonneg _)) hpoint
 
+/--
+@isnad1 id=le.0h0v.s6.59f933422ae8 from=translated src=- shape=d24d924c vocab=8946efaa
+-/
 theorem aux_half_weight_tsum_le_oneTwentyEight :
     (∑' a : ℕ, Real.rpow 2 (-((a : ℝ) / 2)) * (1 + (a : ℝ)) ^ (2 : ℕ)) ≤
       (128 : ℝ) := by
@@ -3788,6 +4055,9 @@ theorem aux_half_weight_tsum_le_oneTwentyEight :
       Summable.tsum_le_tsum hpoint hweight hsum
     _ = (128 : ℝ) := hftsum
 
+/--
+@isnad1 id=le.0h1v.s6.58c6708981e4 from=translated src=- shape=d6f0d5c6 vocab=77e45da1
+-/
 theorem aux_sum_half_weight_pos_le (N : ℕ) :
     (∑ x ∈ aux_lMultiplierPosIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 2) *
@@ -3826,6 +4096,9 @@ theorem aux_sum_half_weight_pos_le (N : ℕ) :
   · intro a ha b hb hab
     exact congrArg Prod.fst hab
 
+/--
+@isnad1 id=le.0h1v.s6.198513172fe4 from=translated src=- shape=d6f0d5c6 vocab=c4fe2895
+-/
 theorem aux_sum_half_weight_neg_le (N : ℕ) :
     (∑ x ∈ aux_lMultiplierNegIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 2) *
@@ -3865,6 +4138,9 @@ theorem aux_sum_half_weight_neg_le (N : ℕ) :
   · intro a ha b hb hab
     exact congrArg Prod.fst hab
 
+/--
+@isnad1 id=summable.0h0v.s6.b75055c8a457 from=translated src=- shape=741159a6 vocab=ca27d96e
+-/
 theorem aux_quarter_weight_summable :
     Summable (fun a : ℕ => Real.rpow 2 (-((a : ℝ) / 4)) * (1 + (a : ℝ))) := by
   let q : ℝ := Real.rpow 2 (-(1 / 4 : ℝ))
@@ -3913,6 +4189,9 @@ theorem aux_quarter_weight_summable :
   exact hsum.of_nonneg_of_le (fun a =>
     mul_nonneg (Real.rpow_nonneg (by norm_num) _) (by positivity)) hpoint
 
+/--
+@isnad1 id=le.0h0v.s6.21e8dcd4d41e from=translated src=- shape=58bd5cb5 vocab=cd7ed981
+-/
 theorem aux_quarter_weight_tsum_le_fortyNine :
     (∑' a : ℕ, Real.rpow 2 (-((a : ℝ) / 4)) * (1 + (a : ℝ))) ≤ (49 : ℝ) := by
   let q : ℝ := Real.rpow 2 (-(1 / 4 : ℝ))
@@ -3978,6 +4257,9 @@ theorem aux_quarter_weight_tsum_le_fortyNine :
       Summable.tsum_le_tsum hpoint hweight hsum
     _ = (49 : ℝ) := hftsum
 
+/--
+@isnad1 id=le.0h1v.s6.0f8c4bb158fa from=translated src=- shape=ddec661d vocab=9b9346e7
+-/
 theorem aux_sum_quarter_weight_pos_le (N : ℕ) :
     (∑ x ∈ aux_lMultiplierPosIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 4) *
@@ -4020,6 +4302,9 @@ theorem aux_sum_quarter_weight_pos_le (N : ℕ) :
   · intro a ha b hb hab
     exact congrArg Prod.fst hab
 
+/--
+@isnad1 id=le.0h1v.s6.0b44299ffdff from=translated src=- shape=ddec661d vocab=22e24b2a
+-/
 theorem aux_sum_quarter_weight_neg_le (N : ℕ) :
     (∑ x ∈ aux_lMultiplierNegIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 4) *
@@ -4062,6 +4347,9 @@ theorem aux_sum_quarter_weight_neg_le (N : ℕ) :
   · intro a ha b hb hab
     exact congrArg Prod.fst hab
 
+/--
+@isnad1 id=le.1h1v.s5.6a979d2eeb33 from=translated src=- shape=c63f0f69 vocab=6d4f5f80
+-/
 theorem aux_sum_vertical_one_le (D : ℕ) (hD : 1 ≤ D) :
     (∑ _x ∈ aux_lMultiplierVerticalIndices D, (1 : ℝ)) ≤ 3 * D := by
   classical
@@ -4073,6 +4361,9 @@ theorem aux_sum_vertical_one_le (D : ℕ) (hD : 1 ≤ D) :
   · intro a ha b hb hab
     exact congrArg Prod.snd hab
 
+/--
+@isnad1 id=le.1h2v.s7.a9e53b402011 from=translated src=- shape=f75a41c7 vocab=bb3494f3
+-/
 theorem aux_sum_multiplier_blocks_quarter_le (N D : ℕ) (hD : 1 ≤ D) :
     (∑ x ∈ aux_lMultiplierNegIndices N,
       Real.rpow 2 (-((x.1.natAbs : ℕ) : ℝ) / 4) *
@@ -4097,6 +4388,9 @@ theorem aux_sum_multiplier_blocks_quarter_le (N D : ℕ) (hD : 1 ≤ D) :
       have hD' : (1 : ℝ) ≤ D := by exact_mod_cast hD
       nlinarith
 
+/--
+@isnad1 id=le.6h6v.s8.992922365b7a from=translated src=- shape=d9b21abc vocab=524bc63d
+-/
 theorem aux_lMultiplier_seminorm_interior_bound {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C)
     (hIncrease : IncreaseData n k C hk hkn hC)
@@ -4169,11 +4463,17 @@ theorem aux_lMultiplier_seminorm_interior_bound {n k : ℕ} {C : ℝ}
       dsimp [h, d, q]
       ring
 
+/--
+@isnad1 id=le.0h2v.s4.4e06a5ca2592 from=translated src=- shape=179c2224 vocab=4ea1ceb9
+-/
 theorem aux_one_le_geometricDelta {n : ℕ} (γ : GeometricParameters n) :
     1 ≤ geometricDelta γ := by
   unfold geometricDelta
   omega
 
+/--
+@isnad1 id=eq.3h4v.s7.7687787eccd9 from=translated src=- shape=4bc3523d vocab=1951954a
+-/
 theorem aux_sqrt_increase_product {C d h q : ℝ}
     (hC0 : 0 ≤ C) (hd0 : 0 ≤ d) (hh0 : 0 ≤ h) :
     Real.sqrt (C * Real.rpow 2 (-h / 2) * (1 + h) ^ (2 : ℕ) *
@@ -4213,6 +4513,9 @@ theorem aux_sqrt_increase_product {C d h q : ℝ}
   have hEq : Real.sqrt X = Y := by nlinarith
   simpa [X, Y] using hEq
 
+/--
+@isnad1 id=le.0h0v.s6.e9ec329edfe2 from=translated src=- shape=f61d7feb vocab=8223a1ac
+-/
 theorem aux_sqrt_gaussianDomination_le_two_pow_five :
     Real.sqrt ((2 : ℝ) ^ (9 : ℕ) * C_gaussianDominationCombined) ≤
       (2 : ℝ) ^ (5 : ℕ) * Real.sqrt C_gaussianDominationCombined := by
@@ -4229,6 +4532,9 @@ theorem aux_sqrt_gaussianDomination_le_two_pow_five :
     nlinarith
   nlinarith
 
+/--
+@isnad1 id=le.8h7v.s7.4f94dd715e05 from=translated src=- shape=6c21fa00 vocab=42aab4bf
+-/
 theorem aux_normalized_cauchy_real {J : ℕ} {a a' P S D U : ℝ}
     (ha : 0 ≤ a) (hP0 : 0 ≤ P) (hS0 : 0 ≤ S) (hD0 : 0 ≤ D) (hU0 : 0 ≤ U)
     (hsquare : a ^ 2 * (J : ℝ) = a')
@@ -4253,14 +4559,23 @@ theorem aux_normalized_cauchy_real {J : ℕ} {a a' P S D U : ℝ}
   have hright0 : 0 ≤ Real.sqrt D * Real.sqrt U := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s5.e758631c9f0b from=translated src=- shape=bf28936d vocab=8577ebb4
+-/
 theorem aux_succ_le_of_le_pred {k n : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n - 1) :
     k + 1 ≤ n := by
   omega
 
+/--
+@isnad1 id=eq.3h2v.s6.d6af49da013c from=translated src=- shape=7e86e1c0 vocab=327f97a7
+-/
 theorem aux_succ_eq_of_le_pred_not_lt {k n : ℕ} (hk : 1 ≤ k)
     (hkn : k ≤ n - 1) (hend : ¬ k < n - 1) : k + 1 = n := by
   omega
 
+/--
+@isnad1 id=le.4h5v.s7.15a66c30bf51 from=translated src=- shape=2effb0cc vocab=597d0d35
+-/
 theorem aux_lMultiplier_seminorm_interior_of_increase {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hk : γ.k < n - 1)
@@ -4394,6 +4709,9 @@ theorem aux_lMultiplier_seminorm_interior_of_increase {n : ℕ}
         aux_normalized_cauchy_real ha hP0 hS0 hD0 hU0 hnormal hP hS
   simpa [a, D] using ENNReal.ofReal_le_ofReal hreal
 
+/--
+@isnad1 id=eq.2h3v.s7.01a2f4d0ac94 from=translated src=- shape=1aecbe3d vocab=3a3aeb24
+-/
 theorem aux_interior_normalizer_square {n k J : ℕ} (hJ : 0 < J)
     (hk : k < n - 1) :
     (min 1 (Real.rpow (J : ℝ)
@@ -4451,6 +4769,9 @@ theorem aux_interior_normalizer_square {n k J : ℕ} (hJ : 0 < J)
   rw [haI]
   ring
 
+/--
+@isnad1 id=le.0h0v.s6.06949b50401a from=translated src=- shape=b23f3ed9 vocab=2decfd16
+-/
 theorem aux_gaussianDominationWeight_tsum_le_fortyNine_div_four :
     (∑' m : Fin 2 → ℕ, aux_gaussianDominationWeight m) ≤ (49 / 4 : ℝ) := by
   let q : ℝ := Real.rpow 2 (-(1 / 2 : ℝ))
@@ -4515,6 +4836,9 @@ theorem aux_gaussianDominationWeight_tsum_le_fortyNine_div_four :
       Summable.tsum_le_tsum hpoint hweight_sum hprod
     _ = (49 / 4 : ℝ) := by rw [hprod_tsum, hftsum]; norm_num
 
+/--
+@isnad1 id=le.1h6v.s7.a6bf0f7d8683 from=translated src=- shape=1255bb4c vocab=df79bf0a
+-/
 theorem aux_witness_mass_le_two_pow_nine {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     {C : ℝ} (w : aux_GaussianDominationWitness γ hkn i ι C) :
@@ -4531,6 +4855,9 @@ theorem aux_witness_mass_le_two_pow_nine {n : ℕ} (γ : GeometricParameters n)
     _ ≤ (2 : ℝ) ^ (9 : ℕ) := by
       norm_num [C_gaussianDominationCombinedCard]
 
+/--
+@isnad1 id=le.1h5v.s7.48ffc2e2ebba from=translated src=- shape=3b1c303e vocab=5855fbb7
+-/
 theorem aux_eLpNorm_nMultiplier_le_two_pow_nine {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ) :
@@ -4558,6 +4885,9 @@ theorem aux_eLpNorm_nMultiplier_le_two_pow_nine {n : ℕ}
     _ = (2 : ℝ) ^ (9 : ℕ) * C_gaussianDominationCombined *
         Real.rpow 2 (-((ι.1.1.natAbs : ℕ) : ℝ) / 2) := by ring
 
+/--
+@isnad1 id=le.1h5v.s8.c2a4c1a69dba from=translated src=- shape=ade700b6 vocab=d65dc822
+-/
 theorem aux_eLpNorm_sandwichN_le_two_pow_nine {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ) :
@@ -4569,6 +4899,9 @@ theorem aux_eLpNorm_sandwichN_le_two_pow_nine {n : ℕ}
       (nKernelWellDefinedness γ hkn ι i j))]
   exact aux_eLpNorm_nMultiplier_le_two_pow_nine γ hkn i ι j
 
+/--
+@isnad1 id=le.1h5v.s8.b70de9b121ac from=translated src=- shape=2ac65500 vocab=aa98fee9
+-/
 theorem aux_eLpNorm_sandwichN_toReal_le_two_pow_nine {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) (j : ℤ) :
@@ -4587,6 +4920,9 @@ theorem aux_eLpNorm_sandwichN_toReal_le_two_pow_nine {n : ℕ}
           (aux_eLpNorm_sandwichN_le_two_pow_nine γ hkn i ι j)
     _ = B := ENNReal.toReal_ofReal hB
 
+/--
+@isnad1 id=le.1h5v.s8.c6ae19327e59 from=translated src=- shape=92115942 vocab=2d99dc19
+-/
 theorem aux_sum_eLpNorm_sandwichN_toReal_le_two_pow_nine {n J : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (i : Fin γ.k) (ι : MultiplierIndex γ) :
@@ -4605,6 +4941,9 @@ theorem aux_sum_eLpNorm_sandwichN_toReal_le_two_pow_nine {n J : ℕ}
           exact aux_eLpNorm_sandwichN_toReal_le_two_pow_nine γ hkn i ι (l.1 : ℤ)
     _ = (J : ℝ) * B := by simp [nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.023935d0c9bb from=translated src=- shape=70473957 vocab=1310fba2
+-/
 theorem aux_integral_dominatingGaussianTerm (p : SequencePair)
     (hp : ∀ r : Fin 2, SpacedSequence (p r)) (u : Fin 2) (j : ℤ) :
     (∫ v : RealPlane, aux_dominatingGaussianTerm p u j v) = 1 := by
@@ -4612,6 +4951,9 @@ theorem aux_integral_dominatingGaussianTerm (p : SequencePair)
   exact aux_integral_twoDimensionalGaussian (fun r => p r j) u
     (fun r => aux_spacedSequence_pos (hp r) j)
 
+/--
+@isnad1 id=eq.1h8v.s7.ec13b8d7c9ed from=translated src=- shape=93b7ca87 vocab=73966579
+-/
 theorem aux_integral_witness_level {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     {C : ℝ} (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -4644,6 +4986,9 @@ theorem aux_integral_witness_level {n : ℕ} (γ : GeometricParameters n)
       (aux_dominatingGaussianTerm_memW0 (w.scales b m)
         (w.scales_in_A b hb m) (w.orientation b) j)).const_mul _
 
+/--
+@isnad1 id=eq.1h7v.s7.42be27a1d8b7 from=translated src=- shape=deb66b29 vocab=32ae88ea
+-/
 theorem aux_integral_witness_series {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     {C : ℝ} (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -4697,6 +5042,9 @@ theorem aux_integral_witness_series {n : ℕ} (γ : GeometricParameters n)
     _ = (w.B.card : ℝ) * ∑' m : Fin 2 → ℕ, aux_gaussianDominationWeight m :=
       tsum_mul_left
 
+/--
+@isnad1 id=le.2h7v.s7.c0387139a79a from=translated src=- shape=57bb04ee vocab=39aadeca
+-/
 theorem aux_nMultiplier_integral_abs_le_witness {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     {C : ℝ} (_hC : 0 ≤ C) (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -4728,6 +5076,9 @@ theorem aux_nMultiplier_integral_abs_le_witness {n : ℕ} (γ : GeometricParamet
           ∑' m : Fin 2 → ℕ, aux_gaussianDominationWeight m from
         aux_integral_witness_series γ hkn i ι w j]
 
+/--
+@isnad1 id=le.2h7v.s7.6d45eec9b4f4 from=translated src=- shape=8e97ccd3 vocab=2ee50a88
+-/
 theorem aux_eLpNorm_nMultiplier_le_witness {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     {C : ℝ} (hC : 0 ≤ C) (w : aux_GaussianDominationWitness γ hkn i ι C)
@@ -4741,6 +5092,9 @@ theorem aux_eLpNorm_nMultiplier_le_witness {n : ℕ} (γ : GeometricParameters n
   simpa [Real.norm_eq_abs] using
     aux_nMultiplier_integral_abs_le_witness γ hkn i ι hC w j
 
+/--
+@isnad1 id=eq.2h5v.s6.0fcc85d88f0a from=translated src=- shape=7af0adf2 vocab=8970ca96
+-/
 theorem aux_sandwichKernel_lMultiplier_eq_diagonalConvolution
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (hk : γ.k < n - 1) :
@@ -4798,6 +5152,9 @@ theorem aux_sandwichKernel_lMultiplier_eq_diagonalConvolution
       filter_upwards [] with q
       ring
 
+/--
+@isnad1 id=eq.2h6v.s7.3671409d5b87 from=translated src=- shape=c59cccec vocab=0548031f
+-/
 theorem aux_sandwichKernel_eq_diagonalConvolution_of_repr
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (φ : ℝ → ℝ)
@@ -4854,6 +5211,9 @@ theorem aux_sandwichKernel_eq_diagonalConvolution_of_repr
       filter_upwards [] with q
       ring
 
+/--
+@isnad1 id=eq.2h5v.s7.e09cec34172e from=translated src=- shape=5196b8e4 vocab=06f8d317
+-/
 theorem aux_cauchySchwarzKernel_eq_lMultiplier_partial
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (J : ℕ) (hk : γ.k < n - 1) :
@@ -4868,6 +5228,9 @@ theorem aux_cauchySchwarzKernel_eq_lMultiplier_partial
   exact (congrFun (aux_sandwichKernel_lMultiplier_eq_diagonalConvolution
     γ hkn ι i (l.1 : ℤ) hk) y).symm
 
+/--
+@isnad1 id=eq.1h5v.s7.da1c18c35e67 from=translated src=- shape=49b683cb vocab=ed359207
+-/
 theorem aux_cauchySchwarzLift_eq_increaseData_partial
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (J : ℕ) :
@@ -4903,6 +5266,9 @@ theorem aux_cauchySchwarzLift_eq_increaseData_partial
           (y.1 (Fin.last γ.k), y.2 (Fin.last γ.k))
   rw [abs_mul, abs_mul, abs_of_nonneg hA, abs_of_nonneg hB]
 
+/--
+@isnad1 id=eq.2h5v.s7.7ec5c83bf2b0 from=translated src=- shape=4d269239 vocab=d350cab4
+-/
 theorem aux_doublyCauchySchwarzKernel_eq_lMultiplier_partial
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (J : ℕ) (hk : ¬ γ.k < n - 1) :
@@ -4924,7 +5290,9 @@ end
 
 end aux_increaseDataDiagonal
 
-/-- A one-coordinate seminorm descends through a fixed Cauchy--Schwarz bound.-/
+/-- A one-coordinate seminorm descends through a fixed Cauchy--Schwarz bound.
+@isnad1 id=le.5h5v.s10.5aa2ebcf6425 from=translated src=- shape=6ffb5e3a vocab=6681e8c1
+-/
 theorem aux_kernelSequenceSeminorm_one_le_of_cauchySchwarz {n : ℕ} (hn : 2 < n)
     (L : KernelSequence 1) (T : KernelSequence 2)
     {C U : ℝ} (hC : 0 ≤ C) (hU : 0 ≤ U)
@@ -5005,7 +5373,9 @@ holds.
 (ii) If $k=n-1$, then $\mathrm{DiagonalBand}(n-1,2^{10}C)$ holds.
 
 `Auto.gaussianDominationCombined` supplies the displayed
-constant.-/
+constant.
+@isnad1 id=diagonal.4h3v.s5.c40a4846f014 from=translated src=- shape=fd2835e1 vocab=9d6574ef
+-/
 theorem increaseData_implies_diagonalBand {n k : ℕ} {C : ℝ}
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) (hC : 1 ≤ C) :
     IncreaseData n k C hk hkn hC →
@@ -5030,7 +5400,9 @@ noncomputable def C_inductPositiveTermsByInduction (n : ℕ) : ℕ → ℝ
 
 /--
 This auxiliary induction establishes the admissibility side condition for
-the recursive constants in `inductPositiveTermsByInduction`.-/
+the recursive constants in `inductPositiveTermsByInduction`.
+@isnad1 id=le.0h2v.s4.d8cc5c53e909 from=translated src=- shape=5ffe46ab vocab=01b22af0
+-/
 theorem aux_one_le_C_inductPositiveTermsByInduction (n r : ℕ) :
     1 ≤ C_inductPositiveTermsByInduction n r := by
   induction r with
@@ -5065,6 +5437,9 @@ theorem aux_one_le_C_inductPositiveTermsByInduction (n r : ℕ) :
 /-! Private reverse-distance induction for Proposition `P:C_k-induction`. -/
 namespace aux_inductPositiveTermsByInduction
 
+/--
+@isnad1 id=inductpo.2h2v.s5.0febf6a4cb7e from=translated src=- shape=c133a5ec vocab=ee0757bf
+-/
 theorem distance (n : ℕ) (hn : 1 ≤ n) :
     ∀ r : ℕ, ∀ _hr : r < n,
       InductPositiveTerms n (n - r) (C_inductPositiveTermsByInduction n r)
@@ -5205,7 +5580,9 @@ See also `Auto.vanishingDiagonal_implies_inductPositiveTerms`,
 `Auto.inductPositiveTerms_implies_increaseData`,
 `Auto.increaseData_implies_diagonalBand`,
 `Auto.diagonalBand_implies_vanishingDiagonal`, and
-`Auto.gaussianDominationCombined`.-/
+`Auto.gaussianDominationCombined`.
+@isnad1 id=inductpo.2h2v.s5.18899fb9aac4 from=translated src=- shape=c4a1dfdf vocab=78ed4ae3
+-/
 theorem inductPositiveTermsByInduction (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n) :
     InductPositiveTerms n k
@@ -5223,6 +5600,9 @@ def A : ℝ :=
     Real.sqrt
       (C_gaussianDominationCombined * C_inductPositiveTermsImplyIncreaseData)
 
+/--
+@isnad1 id=eq.0h0v.s6.945103c533aa from=translated src=- shape=531ba35d vocab=d86c782d
+-/
 theorem product_eq_square :
     C_gaussianDominationCombined * C_inductPositiveTermsImplyIncreaseData =
       ((18 : ℝ) * (2 : ℝ) ^ (158 : ℕ)) ^ (2 : ℕ) := by
@@ -5231,6 +5611,9 @@ theorem product_eq_square :
     C_gaussianDominationCombined
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.79f18d71d43a from=translated src=- shape=accce7bf vocab=b61ada47
+-/
 theorem sqrt_product :
     Real.sqrt
       (C_gaussianDominationCombined * C_inductPositiveTermsImplyIncreaseData) =
@@ -5238,32 +5621,53 @@ theorem sqrt_product :
   rw [product_eq_square, Real.sqrt_sq_eq_abs, abs_of_nonneg]
   positivity
 
+/--
+@isnad1 id=eq.0h0v.s5.ee23a42d151c from=translated src=- shape=1f220f17 vocab=121a894e
+-/
 theorem A_eq : A = (18 : ℝ) * (2 : ℝ) ^ (173 : ℕ) := by
   unfold A
   rw [sqrt_product]
   norm_num
 
+/--
+@isnad1 id=le.0h0v.s3.c4cec3fec443 from=translated src=- shape=ff3a10fc vocab=450e31eb
+-/
 theorem one_le_A : (1 : ℝ) ≤ A := by
   rw [A_eq]
   norm_num
 
+/--
+@isnad1 id=le.0h0v.s3.14d4332d1fa6 from=translated src=- shape=ff3a10fc vocab=450e31eb
+-/
 theorem A_nonneg : 0 ≤ A := by
   exact one_le_A.trans' (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s5.ff2787f20805 from=translated src=- shape=09053639 vocab=288fdac7
+-/
 theorem c_better_eq (k : ℕ) :
     C_betterInduction k = (A * (k + 2 : ℕ) + Real.sqrt 2) ^ (2 : ℕ) := by
   unfold C_betterInduction A
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.887506e08af6 from=translated src=- shape=464c3819 vocab=8465c339
+-/
 theorem sqrt_c_better (k : ℕ) :
     Real.sqrt (C_betterInduction k) = A * (k + 2 : ℕ) + Real.sqrt 2 := by
   rw [c_better_eq, Real.sqrt_sq_eq_abs, abs_of_nonneg]
   exact add_nonneg (mul_nonneg A_nonneg (Nat.cast_nonneg _)) (Real.sqrt_nonneg _)
 
+/--
+@isnad1 id=eq.0h0v.s5.cf4d3864bf7d from=translated src=- shape=424e5f08 vocab=2d61703d
+-/
 theorem sqrt_two_sq : (Real.sqrt 2) ^ (2 : ℕ) = (2 : ℝ) := by
   rw [Real.sq_sqrt]
   norm_num
 
+/--
+@isnad1 id=le.0h0v.s5.4c9ad74dcb5a from=translated src=- shape=3276c4ad vocab=7a2c90b9
+-/
 theorem coefficient_le_A_sq :
     (2 : ℝ) ^ (10 : ℕ) * C_inductPositiveTermsImplyIncreaseData ≤ A ^ (2 : ℕ) := by
   rw [A_eq]
@@ -5272,6 +5676,9 @@ theorem coefficient_le_A_sq :
     C_gaussianDominationCombined
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.062122053fab from=translated src=- shape=b207da84 vocab=2f12a9eb
+-/
 theorem A_factor :
     A = (2 : ℝ) ^ (15 : ℕ) * Real.sqrt C_gaussianDominationCombined *
       Real.sqrt C_inductPositiveTermsImplyIncreaseData := by
@@ -5281,6 +5688,9 @@ theorem A_factor :
   · unfold C_gaussianDominationCombined
     positivity
 
+/--
+@isnad1 id=le.0h1v.s4.2189f4ae7a9c from=translated src=- shape=2fb3a9cb vocab=4235cc30
+-/
 theorem base_zero_bound (n : ℕ) :
     (2 : ℝ) + n ≤ C_betterInduction n := by
   rw [c_better_eq]
@@ -5300,6 +5710,9 @@ theorem base_zero_bound (n : ℕ) :
   change (2 : ℝ) + n ≤ y ^ (2 : ℕ)
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s6.c4172e8bf02a from=translated src=- shape=59ad6fc8 vocab=8b5d52cb
+-/
 theorem base_one_bound (k : ℕ) :
     (2 : ℝ) + (k : ℝ) * (2 : ℝ) ^ (10 : ℕ) *
         C_inductPositiveTermsImplyIncreaseData * ((k + 3 : ℕ) : ℝ) ≤
@@ -5330,6 +5743,9 @@ theorem base_one_bound (k : ℕ) :
   rw [hcast3] at hmain
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=le.1h2v.s6.f9dffb78d4c6 from=translated src=- shape=30b1410a vocab=b78526f3
+-/
 theorem recursive_step_bound (k : ℕ) {C : ℝ}
     (hC : C ≤ C_betterInduction (k + 1)) :
     (2 : ℝ) + (k : ℝ) * (2 : ℝ) ^ (15 : ℕ) *
@@ -5394,6 +5810,9 @@ theorem recursive_step_bound (k : ℕ) {C : ℝ}
   rw [hcast3] at hmain
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=le.1h2v.s4.27378f60df04 from=translated src=- shape=496d6165 vocab=cba1aa74
+-/
 theorem recursive_constant_le_better (n : ℕ) :
     ∀ r : ℕ, r ≤ n →
       C_inductPositiveTermsByInduction n r ≤ C_betterInduction (n - r) := by
@@ -5437,7 +5856,9 @@ $$
 holds.
 
 See also `Auto.inductPositiveTermsByInduction` and
-`Auto.gaussianDominationCombined`.-/
+`Auto.gaussianDominationCombined`.
+@isnad1 id=inductpo.2h2v.s5.1744722721c0 from=translated src=- shape=a4aa8df2 vocab=918d7207
+-/
 theorem betterInduction (n k : ℕ)
     (hk : 1 ≤ k) (hkn : k ≤ n - 1) :
     InductPositiveTerms n k (C_betterInduction k) hk (by omega)
@@ -5467,7 +5888,9 @@ $$
 See also `Auto.betterInduction`,
 `Auto.inductPositiveTermsByInduction`,
 `Auto.gaussianDominationCombined`, and
-`Auto.inductPositiveTerms_implies_increaseData`.-/
+`Auto.inductPositiveTerms_implies_increaseData`.
+@isnad1 id=inductpo.1h1v.s4.29d458f544c6 from=translated src=- shape=16519e1f vocab=0488712b
+-/
 theorem inductPositiveTermsTheorem (n : ℕ) (hn : 2 ≤ n) :
     InductPositiveTerms n 2 C_inductPositiveTermsTheorem (by omega) hn
       aux_one_le_C_inductPositiveTermsTheorem := by

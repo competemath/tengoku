@@ -27,7 +27,9 @@ def aux_diagonalDerivative (f : RealPlane → ℝ) (v : RealPlane) : ℝ :=
 
 /--
 This auxiliary product-rule identity evaluates the manuscript's diagonal derivative on a
-tensor product of two copies of a differentiable one-dimensional function.-/
+tensor product of two copies of a differentiable one-dimensional function.
+@isnad1 id=eq.2h2v.s7.928af15e1bdf from=translated src=- shape=eee05bd3 vocab=f8c5efb1
+-/
 theorem aux_diagonalDerivative_tensor {f : ℝ → ℝ} {v : RealPlane}
     (hf₀ : DifferentiableAt ℝ f v.1) (hf₁ : DifferentiableAt ℝ f v.2) :
     aux_diagonalDerivative (fun w : RealPlane => f w.1 * f w.2) v =
@@ -88,7 +90,9 @@ theorem aux_diagonalDerivative_tensor {f : ℝ → ℝ} {v : RealPlane}
 
 /--
 This auxiliary product-rule identity is the two-function version needed for differentiated
-two-dimensional Gaussians.-/
+two-dimensional Gaussians.
+@isnad1 id=eq.2h3v.s7.6e6629fb1603 from=translated src=- shape=c68d8fff vocab=f8c5efb1
+-/
 theorem aux_diagonalDerivative_product {f g : ℝ → ℝ} {v : RealPlane}
     (hf : DifferentiableAt ℝ f v.1) (hg : DifferentiableAt ℝ g v.2) :
     aux_diagonalDerivative (fun w : RealPlane => f w.1 * g w.2) v =
@@ -149,7 +153,9 @@ theorem aux_diagonalDerivative_product {f g : ℝ → ℝ} {v : RealPlane}
 
 /--
 This auxiliary product-rule identity evaluates the diagonal derivative of a two-dimensional
-Gaussian in the identity orientation.-/
+Gaussian in the identity orientation.
+@isnad1 id=eq.0h2v.s7.3d2d9b193d6f from=translated src=- shape=ca9c9641 vocab=1626b6f1
+-/
 theorem aux_diagonalDerivative_twoDimensionalGaussian_zero
     (t : Fin 2 → ℝ) (v : RealPlane) :
     aux_diagonalDerivative (twoDimensionalGaussian t 0) v =
@@ -164,7 +170,9 @@ theorem aux_diagonalDerivative_twoDimensionalGaussian_zero
 
 /--
 This auxiliary estimate bounds the diagonal derivative of a product Gaussian in the identity
-orientation by the weighted bracket product used in the derivative kernel estimate.-/
+orientation by the weighted bracket product used in the derivative kernel estimate.
+@isnad1 id=le.1h2v.s7.333d58d37db5 from=translated src=- shape=57467ece vocab=7380b3d3
+-/
 theorem aux_abs_diagonalDerivative_twoDimensionalGaussian_zero_le
     (t : Fin 2 → ℝ) (ht : ∀ r : Fin 2, 0 < t r) (v : RealPlane) :
     |aux_diagonalDerivative (twoDimensionalGaussian t 0) v| ≤
@@ -256,7 +264,9 @@ theorem aux_abs_diagonalDerivative_twoDimensionalGaussian_zero_le
 
 /--
 This auxiliary product-rule identity evaluates the diagonal derivative of a two-dimensional
-Gaussian in the nontrivial orientation.-/
+Gaussian in the nontrivial orientation.
+@isnad1 id=eq.0h2v.s7.3b76bf0fd417 from=translated src=- shape=5293fe6b vocab=70cd77b1
+-/
 theorem aux_diagonalDerivative_twoDimensionalGaussian_one
     (t : Fin 2 → ℝ) (v : RealPlane) :
     aux_diagonalDerivative (twoDimensionalGaussian t 1) v =
@@ -311,7 +321,9 @@ theorem aux_diagonalDerivative_twoDimensionalGaussian_one
 
 /--
 This auxiliary estimate bounds the diagonal derivative of a product Gaussian in the
-nontrivial orientation by the weighted bracket product used in the derivative kernel estimate.-/
+nontrivial orientation by the weighted bracket product used in the derivative kernel estimate.
+@isnad1 id=le.1h2v.s8.37264ae5564e from=translated src=- shape=e260e612 vocab=29f8e27f
+-/
 theorem aux_abs_diagonalDerivative_twoDimensionalGaussian_one_le
     (t : Fin 2 → ℝ) (ht : ∀ r : Fin 2, 0 < t r) (v : RealPlane) :
     |aux_diagonalDerivative (twoDimensionalGaussian t 1) v| ≤
@@ -413,7 +425,9 @@ def C_hKernelDerivativeEstimateGaussianDomination : ℝ :=
 
 /--
 This auxiliary sign check is needed when combining the positive component estimates into
-the kernel majorant.-/
+the kernel majorant.
+@isnad1 id=le.0h0v.s3.af680064f1b5 from=translated src=- shape=ff3a10fc vocab=066487f6
+-/
 theorem aux_C_hKernelEstimateGaussianDomination_nonneg :
     0 ≤ C_hKernelEstimateGaussianDomination := by
   rw [C_hKernelEstimateGaussianDomination, C_diagonalSquareRoot,
@@ -422,7 +436,9 @@ theorem aux_C_hKernelEstimateGaussianDomination_nonneg :
 
 /--
 This auxiliary sign check is needed when combining the differentiated component estimates
-into the derivative kernel majorant.-/
+into the derivative kernel majorant.
+@isnad1 id=le.0h0v.s3.9bcd8c7d213c from=translated src=- shape=ff3a10fc vocab=c976ac8f
+-/
 theorem aux_C_hKernelDerivativeEstimateGaussianDomination_nonneg :
     0 ≤ C_hKernelDerivativeEstimateGaussianDomination := by
   have hgaussian (m N : ℕ) : 0 ≤ C_gaussianBumpDecay m N := by
@@ -474,7 +490,9 @@ noncomputable def C_gaussDominationCase3 : ℝ :=
 
 /--
 This auxiliary positivity fact removes the junk-value branch of a rescaled Gaussian at
-the positive scales supplied by spaced sequences.-/
+the positive scales supplied by spaced sequences.
+@isnad1 id=le.1h2v.s4.0529519cd298 from=translated src=- shape=1852429d vocab=94979b08
+-/
 theorem aux_gaussianRescale_nonneg {t : ℝ} (ht : 0 < t) (x : ℝ) :
     0 ≤ gaussianRescale t x := by
   unfold gaussianRescale
@@ -482,7 +500,9 @@ theorem aux_gaussianRescale_nonneg {t : ℝ} (ht : 0 < t) (x : ℝ) :
 
 /--
 This auxiliary positivity fact is used when estimating the Gaussian-difference part of
-the `H` multiplier.-/
+the `H` multiplier.
+@isnad1 id=le.0h5v.s4.686cbeb86140 from=translated src=- shape=0008e9bb vocab=5d088723
+-/
 theorem aux_gammaGaussian_nonneg {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) :
     0 ≤ gammaGaussian γ i j v := by
@@ -493,7 +513,9 @@ theorem aux_gammaGaussian_nonneg {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary triangle-inequality estimate isolates the two Gaussian terms in the
-Gaussian-difference part of the `H` multiplier.-/
+Gaussian-difference part of the `H` multiplier.
+@isnad1 id=le.0h5v.s5.abcaaa3bc2cc from=translated src=- shape=f5504d28 vocab=33e87fb2
+-/
 theorem aux_abs_gaussianDifference_le {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) :
     |gaussianDifference γ i j v| ≤
@@ -510,7 +532,9 @@ theorem aux_abs_gaussianDifference_le {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary estimate reduces the kernel bound to estimates for the two factors of
-$s_\gamma$ and the two Gaussian terms.-/
+$s_\gamma$ and the two Gaussian terms.
+@isnad1 id=le.0h5v.s6.e2086ba71f1e from=translated src=- shape=4e62ba8c vocab=ad0cc169
+-/
 theorem aux_abs_hMultiplier_le {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) :
     |hMultiplier γ i j v| ≤
@@ -535,7 +559,9 @@ theorem aux_abs_hMultiplier_le {n : ℕ} (γ : GeometricParameters n)
 /--
 This auxiliary lemma recovers the defining comparison at an arbitrary larger finite
 distance from the `SequenceDistance` bound.  It is needed to verify the explicit multiset
-used in the kernel estimate.-/
+used in the kernel estimate.
+@isnad1 id=withinse.2h3v.s5.7c88121a3020 from=translated src=- shape=3b1d0405 vocab=bebe5f63
+-/
 theorem aux_withinSequenceDistance_of_sequenceDistance_le {a b : ℤ → ℝ}
     (ha : SpacedSequence a) {r : ℕ}
     (h : SequenceDistance a b ≤ (r : WithTop ℕ)) : WithinSequenceDistance a b r := by
@@ -559,7 +585,9 @@ theorem aux_withinSequenceDistance_of_sequenceDistance_le {a b : ℤ → ℝ}
 
 /--
 This auxiliary bound says that the distance of the two scale sequences at a fixed index
-is absorbed by the manuscript's global parameter $\Delta_\gamma$.-/
+is absorbed by the manuscript's global parameter $\Delta_\gamma$.
+@isnad1 id=le.0h3v.s5.7cd5232ed11c from=translated src=- shape=88b3f1e2 vocab=c2eb6176
+-/
 theorem aux_sequencePairDistance_succ_le_geometricDelta {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) :
     sequencePairDistance (γ.scales i) + 1 ≤ (geometricDelta γ : WithTop ℕ) := by
@@ -584,7 +612,9 @@ theorem aux_sequencePairDistance_succ_le_geometricDelta {n : ℕ}
 
 /--
 This auxiliary positivity fact is used for the nonnegative Gaussian series in the combined
-domination statement.-/
+domination statement.
+@isnad1 id=le.0h1v.s4.1ad1f55e4bcd from=translated src=- shape=63df34e2 vocab=42c39a5f
+-/
 theorem aux_gaussianDominationWeight_nonneg (m : Fin 2 → ℕ) :
     0 ≤ aux_gaussianDominationWeight m := by
   unfold aux_gaussianDominationWeight
@@ -592,7 +622,9 @@ theorem aux_gaussianDominationWeight_nonneg (m : Fin 2 → ℕ) :
 
 /--
 This auxiliary positivity fact verifies that every Gaussian term in the displayed
-dominating series is nonnegative.-/
+dominating series is nonnegative.
+@isnad1 id=le.1h4v.s5.c67b9f794c0f from=translated src=- shape=432fe285 vocab=4069731a
+-/
 theorem aux_dominatingGaussianTerm_nonneg (p : SequencePair)
     (hp : ∀ r : Fin 2, SpacedSequence (p r)) (u : Fin 2) (j : ℤ)
     (v : RealPlane) :
@@ -602,7 +634,9 @@ theorem aux_dominatingGaussianTerm_nonneg (p : SequencePair)
     (aux_gaussianRescale_nonneg ((hp 0 j).1) _)
     (aux_gaussianRescale_nonneg ((hp 1 j).1) _)
 
-/-- Each Gaussian term in a domination series is a Wiener function.-/
+/-- Each Gaussian term in a domination series is a Wiener function.
+@isnad1 id=memw0.1h3v.s5.2f83ffc946c6 from=translated src=- shape=d02943fe vocab=8068416b
+-/
 theorem aux_dominatingGaussianTerm_memW0 (p : SequencePair)
     (hp : ∀ r : Fin 2, SpacedSequence (p r)) (u : Fin 2) (j : ℤ) :
     MemW0 (aux_dominatingGaussianTerm p u j) := by
@@ -613,7 +647,9 @@ theorem aux_dominatingGaussianTerm_memW0 (p : SequencePair)
 
 /--
 This auxiliary algebraic estimate expands the product of the two two-scale bounds used
-for the tensor-product term of the `H` multiplier.-/
+for the tensor-product term of the `H` multiplier.
+@isnad1 id=le.7h7v.s7.ede3e279d3b0 from=translated src=- shape=ac71615b vocab=50773ea0
+-/
 theorem aux_abs_mul_le_four_products {f g A u₀ u₁ v₀ v₁ : ℝ}
     (hA : 0 ≤ A) (hu₀ : 0 ≤ u₀) (hu₁ : 0 ≤ u₁)
     (hv₀ : 0 ≤ v₀) (hv₁ : 0 ≤ v₁)
@@ -629,7 +665,9 @@ theorem aux_abs_mul_le_four_products {f g A u₀ u₁ v₀ v₁ : ℝ}
 
 /--
 This auxiliary product-rule majorant is the algebraic part of the derivative kernel
-estimate.  It keeps the inverse scale attached to the factor on which the derivative falls.-/
+estimate.  It keeps the inverse scale attached to the factor on which the derivative falls.
+@isnad1 id=le.14h14v.s8.62172a922103 from=translated src=- shape=3e1846fe vocab=8b842841
+-/
 theorem aux_abs_tensorDerivative_le_four_products
     {f₀ f₁ d₀ d₁ c d a₀ a₁ b₀ b₁ u₀ u₁ v₀ v₁ : ℝ}
     (hc : 0 ≤ c) (hd : 0 ≤ d) (ha₀ : 0 ≤ a₀) (ha₁ : 0 ≤ a₁)
@@ -683,7 +721,9 @@ theorem aux_abs_tensorDerivative_le_four_products
 
 /--
 This auxiliary estimate converts the one-dimensional Gaussian bump estimate into the
-two-dimensional product estimate needed for each Gaussian entry of the kernel multiset.-/
+two-dimensional product estimate needed for each Gaussian entry of the kernel multiset.
+@isnad1 id=le.1h3v.s7.8ef39bf61d00 from=translated src=- shape=140aafec vocab=fc0957ba
+-/
 theorem aux_twoDimensionalGaussian_le_gaussianBumpProduct (t : Fin 2 → ℝ)
     (ht : ∀ r : Fin 2, 0 < t r) (u : Fin 2) (v : RealPlane) :
     twoDimensionalGaussian t u v ≤ C_gaussianBumpDecay 0 2 ^ 2 *
@@ -710,7 +750,9 @@ theorem aux_twoDimensionalGaussian_le_gaussianBumpProduct (t : Fin 2 → ℝ)
 
 /--
 This auxiliary arithmetic step combines the tensor-product contribution and the two
-Gaussian-difference contributions into the six-term kernel majorant.-/
+Gaussian-difference contributions into the six-term kernel majorant.
+@isnad1 id=le.6h6v.s8.a003f9b7f14c from=translated src=- shape=5aa18c5d vocab=cef4cf1d
+-/
 theorem aux_sixTermKernelMajorant {A c d S r₀ r₁ : ℝ}
     (hc : 0 ≤ c) (hd : 0 ≤ d) (hS : 0 ≤ S) (hr₀ : 0 ≤ r₀) (hr₁ : 0 ≤ r₁)
     (hA : A ≤ 4 * c ^ 2 * S) :
@@ -726,7 +768,9 @@ theorem aux_sixTermKernelMajorant {A c d S r₀ r₁ : ℝ}
 
 /--
 This auxiliary arithmetic step combines the tensor derivative contribution and the two
-Gaussian derivative contributions into the six-term differentiated-kernel majorant.-/
+Gaussian derivative contributions into the six-term differentiated-kernel majorant.
+@isnad1 id=le.7h7v.s7.03ab8ba51cd7 from=translated src=- shape=bef9fb94 vocab=805e4ba8
+-/
 theorem aux_sixTermDerivativeMajorant {X c d g S r₀ r₁ : ℝ}
     (hc : 0 ≤ c) (hd : 0 ≤ d) (hg : 0 ≤ g)
     (hS : 0 ≤ S) (hr₀ : 0 ≤ r₀) (hr₁ : 0 ≤ r₁)
@@ -745,7 +789,9 @@ theorem aux_sixTermDerivativeMajorant {X c d g S r₀ r₁ : ℝ}
 /--
 This auxiliary comparison replaces a scale lying between `t` and `2t` by `t` in the
 second-order bracket bump.  It is the elementary scale comparison used in both orientation
-cases of the kernel estimate.-/
+cases of the kernel estimate.
+@isnad1 id=le.3h3v.s6.dc0af6e2a64d from=translated src=- shape=1059ed2a vocab=995eba2b
+-/
 theorem aux_scaledBracketBump_two_scale_le {t s x : ℝ}
     (ht : 0 < t) (hts : t ≤ s) (hst : s ≤ 2 * t) :
     scaledBracketBump 2 s x ≤ 2 * scaledBracketBump 2 t x := by
@@ -773,7 +819,9 @@ theorem aux_scaledBracketBump_two_scale_le {t s x : ℝ}
 
 /--
 This auxiliary identity writes the second-order scaled bracket bump in a form convenient for
-comparing nearby scales.-/
+comparing nearby scales.
+@isnad1 id=eq.1h2v.s6.c803e127e9b1 from=translated src=- shape=e3e0bd62 vocab=7d29e84c
+-/
 theorem aux_scaledBracketBump_two_eq {t x : ℝ} (ht : 0 < t) :
     scaledBracketBump 2 t x = t / (t + |x|) ^ 2 := by
   unfold scaledBracketBump
@@ -786,7 +834,9 @@ theorem aux_scaledBracketBump_two_eq {t x : ℝ} (ht : 0 < t) :
 
 /--
 This auxiliary comparison is the derivative-scale version of the preceding bump comparison:
-the extra inverse scale removes the loss incurred by enlarging a scale.-/
+the extra inverse scale removes the loss incurred by enlarging a scale.
+@isnad1 id=le.2h3v.s6.7ff533e1b899 from=translated src=- shape=af8ec49b vocab=df1a20ee
+-/
 theorem aux_inv_mul_scaledBracketBump_two_le_of_le_scale {t s x : ℝ}
     (ht : 0 < t) (hts : t ≤ s) :
     s⁻¹ * scaledBracketBump 2 s x ≤ t⁻¹ * scaledBracketBump 2 t x := by
@@ -814,7 +864,9 @@ theorem aux_inv_mul_scaledBracketBump_two_le_of_le_scale {t s x : ℝ}
 /--
 This auxiliary scale comparison controls the Euclidean combination of two positive scales by
 their pointwise maximum.  It is used to compare the first orientation's `s`-multiplier scales
-with the two maximum sequences in the explicit multiset.-/
+with the two maximum sequences in the explicit multiset.
+@isnad1 id=and.2h2v.s7.8e5184aab102 from=translated src=- shape=101187de vocab=2811e01e
+-/
 theorem aux_sqrt_sq_add_sq_between_max_and_two_mul_max {x y : ℝ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) :
     max x y ≤ Real.sqrt (x ^ 2 + y ^ 2) ∧
@@ -859,7 +911,9 @@ noncomputable def aux_sMultiplierScale {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary fact verifies the spacedness required to use the diagonal-square-root
-estimate for the uniformly packaged scale sequence.-/
+estimate for the uniformly packaged scale sequence.
+@isnad1 id=spacedse.0h3v.s3.747e78188fc6 from=translated src=- shape=82c4aaa8 vocab=a0991b17
+-/
 theorem aux_sMultiplierScale_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) : SpacedSequence (aux_sMultiplierScale γ i) := by
   classical
@@ -871,7 +925,9 @@ theorem aux_sMultiplierScale_spaced {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary identity lets the preliminary diagonal-square-root estimates be used directly
-for `sMultiplier`.-/
+for `sMultiplier`.
+@isnad1 id=eq.0h5v.s5.eea638610d02 from=translated src=- shape=bffc466b vocab=366c4e86
+-/
 theorem aux_sMultiplier_eq_diagonalSquareRoot {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (x : ℝ) :
     sMultiplier γ i j x =
@@ -888,7 +944,9 @@ theorem aux_sMultiplier_eq_diagonalSquareRoot {n : ℕ}
 
 /--
 This auxiliary derivative identity transfers the preliminary derivative estimate for the
-diagonal-square-root kernel to the raw `sMultiplier` definition.-/
+diagonal-square-root kernel to the raw `sMultiplier` definition.
+@isnad1 id=eq.0h5v.s6.59b7b3ff5105 from=translated src=- shape=db6efc0c vocab=e5d2cb12
+-/
 theorem aux_deriv_sMultiplier_eq_diagonalSquareRoot {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (x : ℝ) :
     deriv (sMultiplier γ i j) x =
@@ -905,7 +963,9 @@ theorem aux_deriv_sMultiplier_eq_diagonalSquareRoot {n : ℕ}
 
 /--
 This auxiliary identity evaluates the diagonal derivative of a difference once both
-restrictions to the diagonal line are differentiable.-/
+restrictions to the diagonal line are differentiable.
+@isnad1 id=eq.2h3v.s7.b0966f43273c from=translated src=- shape=dbd183c9 vocab=437e549b
+-/
 theorem aux_diagonalDerivative_sub
     {f g : RealPlane → ℝ} {v : RealPlane}
     (hf : DifferentiableAt ℝ (fun t : ℝ => f (v.1 + t, v.2 + t)) 0)
@@ -915,7 +975,9 @@ theorem aux_diagonalDerivative_sub
   unfold aux_diagonalDerivative
   exact deriv_sub hf hg
 
-/-- This auxiliary supplies differentiability along the diagonal line for a tensor square.-/
+/-- This auxiliary supplies differentiability along the diagonal line for a tensor square.
+@isnad1 id=differen.2h2v.s7.5c68664eaec3 from=translated src=- shape=7e633108 vocab=d51e9f4e
+-/
 theorem aux_tensor_line_differentiable {f : ℝ → ℝ} {v : RealPlane}
     (hf₀ : DifferentiableAt ℝ f v.1) (hf₁ : DifferentiableAt ℝ f v.2) :
     DifferentiableAt ℝ (fun t : ℝ => f (v.1 + t) * f (v.2 + t)) 0 := by
@@ -963,7 +1025,9 @@ theorem aux_tensor_line_differentiable {f : ℝ → ℝ} {v : RealPlane}
     simpa using hright₁
   exact (hleft.mul hright).differentiableAt
 
-/-- The scalar multiplier is differentiable, by its diagonal-square-root representation.-/
+/-- The scalar multiplier is differentiable, by its diagonal-square-root representation.
+@isnad1 id=differen.0h4v.s6.e88a1980fab9 from=translated src=- shape=09709565 vocab=360fe849
+-/
 theorem aux_sMultiplier_differentiable {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) :
     Differentiable ℝ (sMultiplier γ i j) := by
@@ -977,7 +1041,9 @@ theorem aux_sMultiplier_differentiable {n : ℕ}
   · linarith [hsp.1]
   · convert hsp.2 using 1; ring_nf
 
-/-- Each gamma Gaussian is differentiable along every translated diagonal line.-/
+/-- Each gamma Gaussian is differentiable along every translated diagonal line.
+@isnad1 id=differen.0h5v.s6.35516800dc00 from=translated src=- shape=a007072c vocab=3cd733a0
+-/
 theorem aux_gammaGaussian_diagonal_differentiable {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (v : RealPlane) :
@@ -1001,7 +1067,9 @@ theorem aux_gammaGaussian_diagonal_differentiable {n : ℕ}
 
 /--
 This auxiliary identity expands the diagonal derivative of the H multiplier once its
-component restrictions to the diagonal line are differentiable.-/
+component restrictions to the diagonal line are differentiable.
+@isnad1 id=eq.5h5v.s9.a7af25f22f3e from=translated src=- shape=10f07f8d vocab=fe2b3c3c
+-/
 theorem aux_hMultiplier_diagonalDerivative_decomposition
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
     (hs₀ : DifferentiableAt ℝ (sMultiplier γ i j) v.1)
@@ -1035,7 +1103,9 @@ theorem aux_hMultiplier_diagonalDerivative_decomposition
 
 /--
 This auxiliary triangle inequality isolates the tensor and two Gaussian derivative terms
-in the differentiated H multiplier.-/
+in the differentiated H multiplier.
+@isnad1 id=le.5h5v.s9.3e149599017e from=translated src=- shape=3bac524f vocab=f5b06496
+-/
 theorem aux_abs_hMultiplier_diagonalDerivative_triangle
     {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
     (hs₀ : DifferentiableAt ℝ (sMultiplier γ i j) v.1)
@@ -1093,7 +1163,9 @@ theorem aux_abs_hMultiplier_diagonalDerivative_triangle
 
 /--
 This auxiliary sign check permits the diagonal-square-root bound to be enlarged by the
-scale-comparison factor in the kernel estimate.-/
+scale-comparison factor in the kernel estimate.
+@isnad1 id=le.0h0v.s3.899b6eee776a from=translated src=- shape=4dcb44f2 vocab=73ecadcd
+-/
 theorem aux_C_diagonalSquareRoot_two_nonneg :
     0 ≤ C_diagonalSquareRoot 2 := by
   have hgaussian (m N : ℕ) : 0 ≤ C_gaussianBumpDecay m N := by
@@ -1119,7 +1191,9 @@ def aux_kernelBracketProduct (q : SequencePair × Fin 2) (j : ℤ) (v : RealPlan
 
 /--
 This auxiliary positivity fact allows finite multiset sums of kernel bracket products to
-serve as nonnegative majorants.-/
+serve as nonnegative majorants.
+@isnad1 id=le.1h3v.s5.507c2cfa6238 from=translated src=- shape=70403b9c vocab=d18fb65d
+-/
 theorem aux_kernelBracketProduct_nonneg (q : SequencePair × Fin 2)
     (hq : ∀ r : Fin 2, SpacedSequence (q.1 r)) (j : ℤ) (v : RealPlane) :
     0 ≤ aux_kernelBracketProduct q j v := by
@@ -1146,7 +1220,9 @@ def aux_hKernelMaxScale {n : ℕ} (γ : GeometricParameters n) (i : Fin γ.k)
 
 /--
 This auxiliary theorem verifies that every shifted scale used in the six-term multiset
-remains multiplicatively spaced.-/
+remains multiplicatively spaced.
+@isnad1 id=spacedse.0h5v.s4.9ed9b91dd2f0 from=translated src=- shape=3325b860 vocab=798b2679
+-/
 theorem aux_hKernelShiftedScale_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (m r : Fin 2) : SpacedSequence (aux_hKernelShiftedScale γ i m r) := by
   convert shift_mem_A (γ.scales_spaced i r) ((m : ℤ) - 1) using 1
@@ -1156,7 +1232,9 @@ theorem aux_hKernelShiftedScale_spaced {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary estimate gives the one-step distance control for each of the shifted scales
-appearing in the six-element multiset.-/
+appearing in the six-element multiset.
+@isnad1 id=le.0h5v.s5.88bc074827a1 from=translated src=- shape=8c39d81c vocab=345e44be
+-/
 theorem aux_sequenceDistance_scale_hKernelShiftedScale_le_one {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (m r : Fin 2) :
     SequenceDistance (γ.scales i r) (aux_hKernelShiftedScale γ i m r) ≤ 1 := by
@@ -1177,7 +1255,9 @@ theorem aux_sequenceDistance_scale_hKernelShiftedScale_le_one {n : ℕ}
 
 /--
 This auxiliary membership proof supplies the distance condition for each shifted scale in
-the kernel Gaussian multiset.-/
+the kernel Gaussian multiset.
+@isnad1 id=mem.0h5v.s6.f1b40519366b from=translated src=- shape=02a72408 vocab=56b704f5
+-/
 theorem aux_hKernelShiftedScale_mem_sequenceDistanceBall {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (m r : Fin 2) :
     aux_hKernelShiftedScale γ i m r ∈
@@ -1207,7 +1287,9 @@ theorem aux_hKernelShiftedScale_mem_sequenceDistanceBall {n : ℕ}
 
 /--
 This auxiliary theorem verifies that the pointwise maximum scales used when `u(i)=0`
-remain multiplicatively spaced.-/
+remain multiplicatively spaced.
+@isnad1 id=spacedse.0h4v.s4.b4d5cd77fe59 from=translated src=- shape=d0b97e69 vocab=d2f14f15
+-/
 theorem aux_hKernelMaxScale_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (m : Fin 2) : SpacedSequence (aux_hKernelMaxScale γ i m) := by
   exact max_mem_A (aux_hKernelShiftedScale_spaced γ i m 0)
@@ -1215,7 +1297,9 @@ theorem aux_hKernelMaxScale_spaced {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary membership proof supplies the distance condition for the maximum scales
-used in the `u(i)=0` part of the kernel Gaussian multiset.-/
+used in the `u(i)=0` part of the kernel Gaussian multiset.
+@isnad1 id=mem.0h4v.s6.6f00ae60dda4 from=translated src=- shape=7216aa2f vocab=69ffc706
+-/
 theorem aux_hKernelMaxScale_mem_sequenceDistanceBall {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (m : Fin 2) :
     aux_hKernelMaxScale γ i m ∈
@@ -1240,7 +1324,9 @@ theorem aux_hKernelMaxScale_mem_sequenceDistanceBall {n : ℕ}
 
 /--
 This auxiliary consequence translates a diagonal-square-root estimate to the two maximum
-scales used in the `u(i)=0` part of the six-term kernel multiset.-/
+scales used in the `u(i)=0` part of the six-term kernel multiset.
+@isnad1 id=le.2h5v.s7.53a917b64f98 from=translated src=- shape=6adb915c vocab=cf9eb78b
+-/
 theorem aux_sMultiplier_bound_orientation_zero_of_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (horientation : γ.orientation i = 0)
@@ -1287,7 +1373,9 @@ theorem aux_sMultiplier_bound_orientation_zero_of_diagonal {n : ℕ}
 
 /--
 This auxiliary consequence translates a diagonal-square-root estimate to the shifted second
-scale sequences used in the `u(i)=1` part of the six-term kernel multiset.-/
+scale sequences used in the `u(i)=1` part of the six-term kernel multiset.
+@isnad1 id=le.2h5v.s7.32f1eedb5f77 from=translated src=- shape=1d1c9724 vocab=b9da7653
+-/
 theorem aux_sMultiplier_bound_orientation_one_of_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (horientation : γ.orientation i ≠ 0)
@@ -1342,7 +1430,9 @@ theorem aux_sMultiplier_bound_orientation_one_of_diagonal {n : ℕ}
 
 /--
 This auxiliary sign check permits the derivative diagonal-square-root bound to be enlarged
-or transported through the scale comparisons used below.-/
+or transported through the scale comparisons used below.
+@isnad1 id=le.0h0v.s3.43ce229b26c3 from=translated src=- shape=4dcb44f2 vocab=83571ce8
+-/
 theorem aux_C_derivativeDiagonalSquareRoot_two_nonneg :
     0 ≤ C_derivativeDiagonalSquareRoot 2 := by
   have hgaussian (m N : ℕ) : 0 ≤ C_gaussianBumpDecay m N := by
@@ -1353,7 +1443,9 @@ theorem aux_C_derivativeDiagonalSquareRoot_two_nonneg :
 
 /--
 This auxiliary consequence translates a derivative diagonal-square-root estimate to the
-maximum scales used in the `u(i)=0` part of the derivative kernel estimate.-/
+maximum scales used in the `u(i)=0` part of the derivative kernel estimate.
+@isnad1 id=le.2h5v.s8.9c7de4dfbf21 from=translated src=- shape=5c05af6b vocab=0c1b297a
+-/
 theorem aux_deriv_sMultiplier_bound_orientation_zero_of_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (horientation : γ.orientation i = 0)
@@ -1403,7 +1495,9 @@ theorem aux_deriv_sMultiplier_bound_orientation_zero_of_diagonal {n : ℕ}
 
 /--
 This auxiliary consequence translates a derivative diagonal-square-root estimate to the
-shifted second scales used in the `u(i)=1` part of the derivative kernel estimate.-/
+shifted second scales used in the `u(i)=1` part of the derivative kernel estimate.
+@isnad1 id=le.2h5v.s8.b45b6120c224 from=translated src=- shape=598299ff vocab=0bee4acd
+-/
 theorem aux_deriv_sMultiplier_bound_orientation_one_of_diagonal {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ)
     (horientation : γ.orientation i ≠ 0)
@@ -1457,14 +1551,18 @@ def aux_sequencePairOf (t₀ t₁ : ℤ → ℝ) : SequencePair :=
 
 /--
 This auxiliary projection identity is used to read the two scale sequences from an entry
-of the explicitly constructed multiset.-/
+of the explicitly constructed multiset.
+@isnad1 id=eq.0h2v.s5.74f2db9bc17e from=translated src=- shape=ab435f29 vocab=750a523c
+-/
 theorem aux_sequencePairOf_apply_zero (t₀ t₁ : ℤ → ℝ) :
     aux_sequencePairOf t₀ t₁ 0 = t₀ := by
   simp [aux_sequencePairOf]
 
 /--
 This auxiliary projection identity is used to read the two scale sequences from an entry
-of the explicitly constructed multiset.-/
+of the explicitly constructed multiset.
+@isnad1 id=eq.0h2v.s5.3dcc8792f60c from=translated src=- shape=2df47995 vocab=750a523c
+-/
 theorem aux_sequencePairOf_apply_one (t₀ t₁ : ℤ → ℝ) :
     aux_sequencePairOf t₀ t₁ 1 = t₁ := by
   simp [aux_sequencePairOf]
@@ -1503,7 +1601,9 @@ def aux_hKernelGaussianMultiset {n : ℕ} (γ : GeometricParameters n) (i : Fin 
 
 /--
 This auxiliary theorem records the multiplicity-sensitive cardinality of the explicitly
-constructed multiset; repetitions of sequences are retained, as in the manuscript.-/
+constructed multiset; repetitions of sequences are retained, as in the manuscript.
+@isnad1 id=eq.0h3v.s4.50434df99b51 from=translated src=- shape=eb28f105 vocab=7ed6d8b8
+-/
 theorem aux_hKernelGaussianMultiset_card {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) : (aux_hKernelGaussianMultiset γ i).card = 6 := by
   classical
@@ -1512,7 +1612,9 @@ theorem aux_hKernelGaussianMultiset_card {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary theorem verifies the distance-ball membership of every entry of the explicit
-six-element multiset from the proof of the kernel Gaussian estimate.-/
+six-element multiset from the proof of the kernel Gaussian estimate.
+@isnad1 id=auxvalid.0h3v.s4.ed4d62f65a5f from=translated src=- shape=d0ada332 vocab=25f92038
+-/
 theorem aux_hKernelGaussianMultiset_valid {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) :
     aux_ValidKernelGaussianPackage γ i (aux_hKernelGaussianMultiset γ i) := by
@@ -1595,7 +1697,9 @@ def aux_HKernelDerivativeGaussianBound {n : ℕ} (γ : GeometricParameters n)
 
 /--
 This auxiliary theorem carries out the `u(i)=0` algebra in the proof of the kernel estimate
-after the one-dimensional diagonal-square-root estimate has been supplied.-/
+after the one-dimensional diagonal-square-root estimate has been supplied.
+@isnad1 id=auxhkern.2h3v.s7.f98a163d9eb6 from=translated src=- shape=a657a855 vocab=24e6a7c4
+-/
 theorem aux_hKernelGaussianBound_orientation_zero_of_sBounds {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (horientation : γ.orientation i = 0)
     (hs : ∀ (j : ℤ) (x : ℝ), |sMultiplier γ i j x| ≤
@@ -1719,7 +1823,9 @@ theorem aux_hKernelGaussianBound_orientation_zero_of_sBounds {n : ℕ}
 
 /--
 This auxiliary theorem carries out the `u(i)=1` algebra in the proof of the kernel estimate
-after the one-dimensional diagonal-square-root estimate has been supplied.-/
+after the one-dimensional diagonal-square-root estimate has been supplied.
+@isnad1 id=auxhkern.2h3v.s7.1d3cacf48f25 from=translated src=- shape=f528f6ed vocab=db99c435
+-/
 theorem aux_hKernelGaussianBound_orientation_one_of_sBounds {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (horientation : γ.orientation i ≠ 0)
     (hs : ∀ (j : ℤ) (x : ℝ), |sMultiplier γ i j x| ≤
@@ -1859,7 +1965,9 @@ $C_{\text{Kernel estimate for Gaussian domination}}
 =
 4C_{\text{diagonal square root},2}^{\,2}
 +
-C_{\text{Gaussian bump decay},0,2}^{\,2}.$-/
+C_{\text{Gaussian bump decay},0,2}^{\,2}.$
+@isnad1 id=ex.0h3v.s5.86364e9c183a from=translated src=- shape=dc9e88e8 vocab=5df80e3a
+-/
 theorem hKernelEstimateGaussianDomination {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) :
     ∃ P : Multiset (SequencePair × Fin 2), aux_HKernelGaussianBound γ i P := by
@@ -1893,7 +2001,9 @@ satisfies
 $$
 C_{\mathrm{H\ kernel\ estimate\ Gaussian\ domination}}
 =51^2\cdot2^{15}+12^2<2^{27}.
-$$-/
+$$
+@isnad1 id=and.0h0v.s6.424bdb490995 from=translated src=- shape=563e1e55 vocab=0c8c204f
+-/
 theorem constantHKernelEstimateGaussianDomination :
     C_hKernelEstimateGaussianDomination = 51 ^ 2 * 2 ^ 15 + 12 ^ 2 ∧
       C_hKernelEstimateGaussianDomination < 2 ^ 27 := by
@@ -1912,7 +2022,9 @@ theorem constantHKernelEstimateGaussianDomination :
 
 /--
 This auxiliary theorem carries out the differentiated six-term kernel algebra in the
-identity-orientation case.-/
+identity-orientation case.
+@isnad1 id=auxhkern.3h3v.s8.e9a908f51ff0 from=translated src=- shape=890d0bcb vocab=ddf5a95c
+-/
 theorem aux_hKernelDerivativeGaussianBound_orientation_zero_of_sBounds {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (horientation : γ.orientation i = 0)
     (hs : ∀ (j : ℤ) (x : ℝ), |sMultiplier γ i j x| ≤
@@ -2097,7 +2209,9 @@ theorem aux_hKernelDerivativeGaussianBound_orientation_zero_of_sBounds {n : ℕ}
       ring
 /--
 This auxiliary theorem carries out the differentiated six-term kernel algebra in the
-nontrivial-orientation case.-/
+nontrivial-orientation case.
+@isnad1 id=auxhkern.3h3v.s8.786cad6977d6 from=translated src=- shape=b3ad23ee vocab=6d70db03
+-/
 theorem aux_hKernelDerivativeGaussianBound_orientation_one_of_sBounds {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (horientation : γ.orientation i ≠ 0)
     (hs : ∀ (j : ℤ) (x : ℝ), |sMultiplier γ i j x| ≤
@@ -2303,7 +2417,9 @@ C_{\text{derivative of diagonal square root},2}
 +
 2C_{\text{Gaussian bump decay},0,2}
 C_{\text{Gaussian bump decay},1,2}.
-$-/
+$
+@isnad1 id=ex.0h3v.s5.aed11e8fe160 from=translated src=- shape=dc9e88e8 vocab=7cb638e7
+-/
 theorem hKernelDerivativeEstimateGaussianDomination {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) :
     ∃ P : Multiset (SequencePair × Fin 2), aux_HKernelDerivativeGaussianBound γ i P := by
@@ -2353,7 +2469,9 @@ The constant from
 $$
 C_{\mathrm{H\ kernel\ derivative\ estimate\ Gaussian\ domination}}
 <2^{30}.
-$$-/
+$$
+@isnad1 id=lt.0h0v.s4.6f1e82a39989 from=translated src=- shape=0cd4e242 vocab=14b14271
+-/
 theorem constantHKernelDerivativeEstimateGaussianDomination :
     C_hKernelDerivativeEstimateGaussianDomination < 2 ^ 30 := by
   have hgaussian0 : C_gaussianBumpDecay 0 2 = 12 := by
@@ -2384,6 +2502,9 @@ theorem constantHKernelDerivativeEstimateGaussianDomination :
       _ = 15 / 2 := by norm_num
   nlinarith
 
+/--
+@isnad1 id=lt.0h0v.s4.66aba8be405d from=translated src=- shape=0cd4e242 vocab=a0524e93
+-/
 theorem aux_gaussDominationCase1_lt_two_pow_117 :
     C_gaussDominationCase1 < (2 : ℝ) ^ (117 : ℕ) := by
   have hexpPi : Real.exp Real.pi < 55 := by
@@ -2467,6 +2588,9 @@ theorem aux_gaussDominationCase1_lt_two_pow_117 :
       exact Real.pi_lt_four
     _ < (2 : ℝ) ^ (117 : ℕ) := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.c2dffa310459 from=translated src=- shape=0cd4e242 vocab=86c16d87
+-/
 theorem aux_gaussDominationCase2_lt_two_pow_153 :
     C_gaussDominationCase2 < (2 : ℝ) ^ (153 : ℕ) := by
   have hexp : Real.exp (2 * Real.pi) < 6656 := by
@@ -2507,6 +2631,9 @@ theorem aux_gaussDominationCase2_lt_two_pow_153 :
       gcongr
     _ < (2 : ℝ) ^ (153 : ℕ) := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.57e52ece9e6b from=translated src=- shape=0cd4e242 vocab=0ff70f2a
+-/
 theorem aux_gaussDominationCase3_lt_two_pow_110 :
     C_gaussDominationCase3 < (2 : ℝ) ^ (110 : ℕ) := by
   have hexp : Real.exp (2 * Real.pi) < 6656 := by
@@ -2547,7 +2674,9 @@ theorem aux_gaussDominationCase3_lt_two_pow_110 :
       gcongr
     _ < (2 : ℝ) ^ (110 : ℕ) := by norm_num
 
-/-- The three case constants are all bounded by the common domination constant.-/
+/-- The three case constants are all bounded by the common domination constant.
+@isnad1 id=le.0h0v.s3.38b3465f3da2 from=translated src=- shape=b5d88fea vocab=21744015
+-/
 theorem aux_gaussDominationCaseConstants_le_combined :
     max C_gaussDominationCase1 (max C_gaussDominationCase2 C_gaussDominationCase3) ≤
       C_gaussianDominationCombined := by
@@ -2592,7 +2721,9 @@ domination main estimate`).
 
 See also `Auto.gaussDominationCase1`,
 `Auto.gaussDominationCase2`, and
-`Auto.gaussDominationCase3`.-/
+`Auto.gaussDominationCase3`.
+@isnad1 id=and.0h0v.s6.f761104d1768 from=translated src=- shape=7e623db6 vocab=7763dfcb
+-/
 theorem gaussDominationConstant :
     C_gaussDominationCase1 < (2 : ℝ) ^ (117 : ℕ) ∧
       C_gaussDominationCase2 < (2 : ℝ) ^ (153 : ℕ) ∧
@@ -2640,7 +2771,9 @@ def aux_GaussianDominationConclusion {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ) (C : ℝ) : Prop :=
   Nonempty (aux_GaussianDominationWitness γ hkn i ι C)
 
-/-- A Gaussian-domination witness remains valid after increasing its majorant constant.-/
+/-- A Gaussian-domination witness remains valid after increasing its majorant constant.
+@isnad1 id=auxgauss.3h6v.s5.cd2a4b4d1519 from=translated src=- shape=43c6cb25 vocab=2fec36b9
+-/
 theorem aux_GaussianDominationConclusion_mono {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (ι : MultiplierIndex γ) {C C' : ℝ} (hCC' : C ≤ C') :
@@ -2693,7 +2826,9 @@ theorem aux_GaussianDominationConclusion_mono {n : ℕ}
 
 /--
 The multiplier-index definition has exactly the three analytic cases used in the
-Gaussian-domination argument.-/
+Gaussian-domination argument.
+@isnad1 id=or.0h3v.s7.99e5b3a6c349 from=translated src=- shape=e1479839 vocab=3f9c8168
+-/
 theorem aux_multiplierIndex_cases {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) :
     (0 < ι.1.1 ∧ ι.1.2 = 0) ∨ (ι.1.1 < 0 ∧ ι.1.2 = 0) ∨
@@ -2708,7 +2843,9 @@ theorem aux_multiplierIndex_cases {n : ℕ} (γ : GeometricParameters n)
 
 /--
 Combines the three multiplier-index cases once each has been established at the
-common Gaussian-domination constant.-/
+common Gaussian-domination constant.
+@isnad1 id=auxgauss.4h4v.s8.877e121c3ca4 from=translated src=- shape=8fa33e64 vocab=1f2395ee
+-/
 theorem aux_gaussianDominationCombined_of_cases {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (hpositive : ∀ ι : MultiplierIndex γ,
@@ -2730,7 +2867,9 @@ theorem aux_gaussianDominationCombined_of_cases {n : ℕ}
 
 /--
 Diagonal cancellation converts a convolution into a difference of its one-dimensional
-kernel. This is the pointwise bridge used in the Gaussian-domination cases.-/
+kernel. This is the pointwise bridge used in the Gaussian-domination cases.
+@isnad1 id=eq.3h4v.s7.4c262e67f927 from=translated src=- shape=b18e3a16 vocab=0283502b
+-/
 theorem aux_diagonal_convolution_eq_difference
     {F : RealPlane → ℝ} (hF : MemW0 F)
     (hzero : ∀ x : ℝ, (∫ q : ℝ, F (x, q)) = 0)
@@ -2758,7 +2897,9 @@ theorem aux_diagonal_convolution_eq_difference
 
 /--
 The positive horizontal band of the four-scale N-kernel has the mean-difference estimate
-needed for Gaussian domination.-/
+needed for Gaussian domination.
+@isnad1 id=le.3h7v.s9.a41db8f1c6c9 from=translated src=- shape=2b392886 vocab=5b066ce9
+-/
 theorem aux_nMultiplierRho_positive_difference_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1)
@@ -2875,6 +3016,9 @@ theorem aux_nMultiplierRho_positive_difference_bound {n : ℕ}
 
 /-! ## Gauss domination case 1 -/
 
+/--
+@isnad1 id=le.3h4v.s7.30ecd68650be from=translated src=- shape=89d5c503 vocab=977f0b86
+-/
 theorem aux_caseOne_move_twoPi_out {A lambda y B : ℝ}
     (hA : 0 ≤ A) (_hlambda : 0 < lambda) (hB : 0 ≤ B) :
     A * min 1 (2 * Real.pi * lambda⁻¹ * |y|) * B ≤
@@ -2898,7 +3042,9 @@ theorem aux_caseOne_move_twoPi_out {A lambda y B : ℝ}
 
 /--
 Scratch: any scale in the H-kernel distance ball is smaller than a positive-band
-N scale by the required factor.-/
+N scale by the required factor.
+@isnad1 id=le.2h5v.s6.135b35dff82a from=translated src=- shape=81be4049 vocab=42883ff5
+-/
 theorem aux_caseOne_distanceBall_scale_ratio_le {a b : ℤ → ℝ} (ha : SpacedSequence a)
     {d : ℕ} (hb : b ∈ sequenceDistanceBall a (d : WithTop ℕ))
     (h j : ℤ) :
@@ -2919,7 +3065,9 @@ theorem aux_caseOne_distanceBall_scale_ratio_le {a b : ℤ → ℝ} (ha : Spaced
 
 /--
 Scratch: multiplying a second-order bracket bump by the square-root loss converts it
-exactly to the real exponent `3/2` used by the two-bump estimate.-/
+exactly to the real exponent `3/2` used by the two-bump estimate.
+@isnad1 id=eq.1h2v.s6.b709dc329e2e from=translated src=- shape=147d835a vocab=8e28e83d
+-/
 theorem aux_caseOne_scaledBracketBump_two_sqrt_eq_threeHalves (t x : ℝ) (ht : 0 < t) :
     Real.rpow (1 + t⁻¹ * |x|) (1 / 2 : ℝ) * scaledBracketBump 2 t x =
       scaledBracketBumpReal (3 / 2 : ℝ) t x := by
@@ -2951,6 +3099,9 @@ theorem aux_caseOne_scaledBracketBump_two_sqrt_eq_threeHalves (t x : ℝ) (ht : 
       exact congrArg (fun r : ℝ => t⁻¹ * r) hsum.symm
     _ = t⁻¹ * Real.rpow z (-(3 / 2 : ℝ)) := by ring_nf
 
+/--
+@isnad1 id=le.3h4v.s7.8a8b41461b64 from=translated src=- shape=617825c9 vocab=b14fb42a
+-/
 theorem aux_caseOne_min_scale_half_le {t lam : ℝ} {h : ℕ} (ht : 0 < t) (hlam : 0 < lam)
     (hscale : t / lam ≤ Real.rpow 2 (-(h : ℝ))) (p : ℝ) :
     min 1 (lam⁻¹ * |p|) ≤ Real.rpow 2 (-((h : ℝ) / 2)) *
@@ -2992,7 +3143,9 @@ theorem aux_caseOne_min_scale_half_le {t lam : ℝ} {h : ℕ} (ht : 0 < t) (hlam
     ring
   simpa [a, b, hroot] using hmin.trans hsqrt
 
-/-- A two-bump integral with the larger of the two scales chosen as output scale.-/
+/-- A two-bump integral with the larger of the two scales chosen as output scale.
+@isnad1 id=le.2h4v.s7.a6fb4fcd02fc from=translated src=- shape=46128619 vocab=5c142d0c
+-/
 theorem aux_caseOne_twoBumpIntegral_max (x₀ x₁ t₀ t₁ : ℝ)
     (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     (∫ p : ℝ, scaledBracketBumpReal (3 / 2 : ℝ) t₀ (x₀ - p) *
@@ -3028,7 +3181,9 @@ theorem aux_caseOne_twoBumpIntegral_max (x₀ x₁ t₀ t₁ : ℝ)
       ht₀ ht₁ h' (by norm_num) (by norm_num)
     simpa [max_eq_left h'] using htwo
 
-/-- Exact simultaneous rescaling of a real-exponent bracket bump.-/
+/-- Exact simultaneous rescaling of a real-exponent bracket bump.
+@isnad1 id=eq.1h4v.s5.727047130cb5 from=translated src=- shape=8a472b46 vocab=673a4ce1
+-/
 theorem aux_caseOne_scaledBracketBumpReal_simul_rescale (N c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBumpReal N (c * s) (c * x) = scaledBracketBumpReal N s x := by
   unfold scaledBracketBumpReal
@@ -3045,7 +3200,9 @@ theorem aux_caseOne_scaledBracketBumpReal_simul_rescale (N c s x : ℝ) (hc : 0 
 
 /--
 A simultaneous spatial-and-scale rescaling leaves a real-exponent bracket bump
-invariant after its natural prefactor.-/
+invariant after its natural prefactor.
+@isnad1 id=eq.1h4v.s5.727047130cb5 from=translated src=- shape=8a472b46 vocab=673a4ce1
+-/
 theorem aux_scaledBracketBumpReal_simul_rescale (N c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBumpReal N (c * s) (c * x) = scaledBracketBumpReal N s x :=
   aux_caseOne_scaledBracketBumpReal_simul_rescale N c s x hc
@@ -3053,7 +3210,9 @@ theorem aux_scaledBracketBumpReal_simul_rescale (N c s x : ℝ) (hc : 0 < c) :
 /--
 A concrete scalar form of the orthogonal-coordinate dichotomy needed in case one.
 It is deliberately stated directly in the `W₁` coordinates, avoiding an auxiliary
-identification of `ℝ × ℝ` with Euclidean space.-/
+identification of `ℝ × ℝ` with Euclidean space.
+@isnad1 id=or.0h2v.s6.e18fa782a178 from=translated src=- shape=aa3e5907 vocab=36d3aab9
+-/
 theorem aux_caseOne_orthogonal_dichotomy (x y : ℝ) :
     |x| ≤ 3 * |(-x + y) / Real.sqrt 2| ∨
       |(x + y) / Real.sqrt 2| ≤ 3 * |y| := by
@@ -3104,7 +3263,9 @@ theorem aux_caseOne_orthogonal_dichotomy (x y : ℝ) :
 
 /--
 The two-term real-exponent orthogonal decay used to turn the remaining case-one
-three-bump integral into its two `M₂` products.-/
+three-bump integral into its two `M₂` products.
+@isnad1 id=le.2h4v.s8.fdb9d1dab76a from=translated src=- shape=f61eaa94 vocab=2e819809
+-/
 theorem aux_caseOne_orthogonal_decay (x y lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBumpReal (3 / 2 : ℝ) lam y *
@@ -3145,6 +3306,9 @@ theorem aux_caseOne_orthogonal_decay (x y lam t : ℝ)
       apply aux_scaledBracketBumpReal_nonneg <;> assumption
   exact hraw.trans (mul_le_mul_of_nonneg_right hcoef hnonneg)
 
+/--
+@isnad1 id=le.2h4v.s8.924a26940771 from=translated src=- shape=d5f2bfbd vocab=2e819809
+-/
 theorem aux_caseOne_orthogonal_decay_swap (x y lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBumpReal (3 / 2 : ℝ) lam x *
@@ -3162,7 +3326,9 @@ theorem aux_caseOne_orthogonal_decay_swap (x y lam t : ℝ)
   rw [show -y + x = x - y by ring, hneg] at h
   simpa [add_comm] using h
 
-/-- Every nonnegative-exponent real bracket bump is bounded by the reciprocal scale.-/
+/-- Every nonnegative-exponent real bracket bump is bounded by the reciprocal scale.
+@isnad1 id=le.2h3v.s5.2f128c2d38e2 from=translated src=- shape=1fe31097 vocab=470885b3
+-/
 theorem aux_caseOne_scaledBracketBumpReal_le_inv (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s) :
     scaledBracketBumpReal N s x ≤ s⁻¹ := by
   unfold scaledBracketBumpReal
@@ -3174,7 +3340,9 @@ theorem aux_caseOne_scaledBracketBumpReal_le_inv (N s x : ℝ) (hN : 0 ≤ N) (h
       mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr hs.le)
     _ = s⁻¹ := by ring
 
-/-- Integrability of a product of translated real-exponent bracket bumps.-/
+/-- Integrability of a product of translated real-exponent bracket bumps.
+@isnad1 id=integrab.4h6v.s6.f35f913888d5 from=translated src=- shape=ff932127 vocab=0cdadadf
+-/
 theorem aux_caseOne_scaledBracketBumpReal_product_integrable
     (n₀ n₁ s₀ s₁ x₀ x₁ : ℝ) (hn₀ : 1 < n₀) (hn₁ : 0 ≤ n₁)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) :
@@ -3215,7 +3383,9 @@ theorem aux_caseOne_scaledBracketBumpReal_product_integrable
 
 /--
 The three-bump integral in the orientation-zero H-kernel case, before the final
-orthogonal-coordinate splitting.-/
+orthogonal-coordinate splitting.
+@isnad1 id=le.5h5v.s8.3a9ab437615b from=translated src=- shape=4ec2f233 vocab=de25ab0f
+-/
 theorem aux_caseOne_threeBumpIntegral_bound (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁)
     (ht₀lam : t₀ ≤ lam) (ht₁lam : t₁ ≤ lam) :
@@ -3418,7 +3588,9 @@ theorem aux_caseOne_threeBumpIntegral_bound (w₀ w₁ lam t₀ t₁ : ℝ)
 /--
 The orientation-zero three-bump contribution is controlled by the four `M₂` terms
 arising from the orthogonal-coordinate split.  The harmless `√2` rescalings make the
-coordinate identities exact in the formal `W 1` convention.-/
+coordinate identities exact in the formal `W 1` convention.
+@isnad1 id=le.5h5v.s9.6c48772272d4 from=translated src=- shape=e4c213bc vocab=962dd80c
+-/
 theorem aux_caseOne_threeBump_to_fourM2 (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (ht0lam : t0 ≤ lam) (ht1lam : t1 ≤ lam) :
@@ -3619,7 +3791,9 @@ theorem aux_caseOne_threeBump_to_fourM2 (w0 w1 lam t0 t1 : ℝ)
 
 /--
 Exact rescaling of the orientation-one M₁ term coming from an orientation-zero
-H occurrence.-/
+H occurrence.
+@isnad1 id=eq.0h5v.s7.152041e6137a from=translated src=- shape=9e92c842 vocab=a63d0423
+-/
 theorem aux_caseOne_M1_zero_rescale (w0 w1 lam t0 t1 : ℝ) :
     scaledBracketBumpReal (3 / 2 : ℝ) lam w0 *
         scaledBracketBumpReal (3 / 2 : ℝ) (max t0 t1) (2 * w1) =
@@ -3677,6 +3851,9 @@ def aux_caseOneExactSlotOf (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (r : 
     (aux_sequencePairOf (fun j => Real.sqrt 2 * lam j) (aux_caseOneExactM1Scale q),
       (1 : Fin 2))
 
+/--
+@isnad1 id=spacedse.1h1v.s4.47f4452fe322 from=translated src=- shape=7894952c vocab=68e560a3
+-/
 theorem aux_caseOneExactM1Scale_spaced (q : SequencePair × Fin 2)
     (hq : ∀ r : Fin 2, SpacedSequence (q.1 r)) :
     SpacedSequence (aux_caseOneExactM1Scale q) := by
@@ -3686,6 +3863,9 @@ theorem aux_caseOneExactM1Scale_spaced (q : SequencePair × Fin 2)
     exact smul_mem_A (max_mem_A (hq 0) (hq 1)) (inv_pos.mpr hsqrt)
   · simpa [aux_caseOneExactM1Scale, hu] using hq 1
 
+/--
+@isnad1 id=spacedse.2h4v.s5.fb7deb18ca9b from=translated src=- shape=3f204a52 vocab=b957707c
+-/
 theorem aux_caseOneExactSlotOf_spaced (lam : ℤ → ℝ) (hlam : SpacedSequence lam)
     (q : SequencePair × Fin 2) (hq : ∀ r : Fin 2, SpacedSequence (q.1 r)) (r : Fin 5) :
     ∀ s : Fin 2, SpacedSequence ((aux_caseOneExactSlotOf lam q r).1 s) := by
@@ -3725,12 +3905,17 @@ theorem aux_caseOneExactSlotOf_spaced (lam : ℤ → ℝ) (hlam : SpacedSequence
     · simpa [aux_caseOneExactSlotOf, hr0, hu, aux_sequencePairOf] using
         aux_caseOneExactM1Scale_spaced q hq
 
+/--
+@isnad1 id=eq.0h1v.s7.904a29364c4e from=translated src=- shape=4f6d8cf6 vocab=250fe31d
+-/
 theorem aux_caseOne_sum_fin5 (f : Fin 5 → ℝ) :
     (∑ r : Fin 5, f r) = f 0 + f 1 + f 2 + f 3 + f 4 := by
   simp [Fin.sum_univ_succ]
   ring
 
-/-- Coordinates of the first orthogonal transform at the case-one parametrization.-/
+/-- Coordinates of the first orthogonal transform at the case-one parametrization.
+@isnad1 id=eq.0h2v.s6.611dc41b9522 from=translated src=- shape=7b65bd97 vocab=1f54411f
+-/
 theorem aux_caseOne_Wone (w0 w1 : ℝ) :
     W (1 : Fin 2) (w0 - w1, w0 + w1) =
       (Real.sqrt 2 * w0, Real.sqrt 2 * w1) := by
@@ -3759,6 +3944,9 @@ def aux_caseOneExactSlotTerm (lam : ℤ → ℝ) (q : SequencePair × Fin 2)
     scaledBracketBumpReal (3 / 2 : ℝ) ((aux_caseOneExactSlotOf lam q r).1 1 j)
       (W (aux_caseOneExactSlotOf lam q r).2 v).2
 
+/--
+@isnad1 id=le.2h5v.s5.072c2d85fa4c from=translated src=- shape=ba5beaad vocab=3e5f89b5
+-/
 theorem aux_caseOneExactSlotTerm_nonneg (lam : ℤ → ℝ) (hlam : SpacedSequence lam)
     (q : SequencePair × Fin 2) (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
     (j : ℤ) (v : RealPlane) (r : Fin 5) :
@@ -3771,7 +3959,9 @@ theorem aux_caseOneExactSlotTerm_nonneg (lam : ℤ → ℝ) (hlam : SpacedSequen
 
 /--
 The four non-padding slots of an orientation-zero occurrence are exactly the four
-real-exponent products output by `aux_caseOne_threeBump_to_fourM2`.-/
+real-exponent products output by `aux_caseOne_threeBump_to_fourM2`.
+@isnad1 id=eq.1h5v.s9.7bebb2b62bde from=translated src=- shape=b7c2f839 vocab=0ac78dd2
+-/
 theorem aux_caseOneExactSlotTerms_M2 (lam : ℤ → ℝ) (q : SequencePair × Fin 2)
     (j : ℤ) (w0 w1 : ℝ) (hu : q.2 = 0) :
     scaledBracketBumpReal (3 / 2 : ℝ) (Real.sqrt 2 * q.1 0 j) (w0 - w1) *
@@ -3796,7 +3986,9 @@ theorem aux_caseOneExactSlotTerms_M2 (lam : ℤ → ℝ) (q : SequencePair × Fi
 
 /--
 The orientation-zero three-bump contribution is bounded by the same five-slot
-occurrence package used for the final thirty-slot witness.-/
+occurrence package used for the final thirty-slot witness.
+@isnad1 id=le.5h5v.s9.7331ebfc041f from=translated src=- shape=ee86ff89 vocab=240c80bb
+-/
 theorem aux_caseOne_threeBump_to_exactSlots (lam : ℤ → ℝ)
     (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (j : ℤ) (w0 w1 : ℝ)
@@ -3897,7 +4089,9 @@ theorem aux_caseOne_threeBump_to_exactSlots (lam : ℤ → ℝ)
 
 /--
 The M₁ contribution of an orientation-zero H occurrence.  The two-bump integral is
-placed in exact `W 1` coordinates using the max-scale output.-/
+placed in exact `W 1` coordinates using the max-scale output.
+@isnad1 id=le.3h5v.s8.9cc90b297220 from=translated src=- shape=3e27f7aa vocab=8500a7c0
+-/
 theorem aux_caseOne_m1_orientation_zero (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     scaledBracketBumpReal 2 lam w0 *
@@ -3962,7 +4156,9 @@ theorem aux_caseOne_m1_orientation_zero (w0 w1 lam t0 t1 : ℝ)
 
 /--
 The orientation-zero M₁ contribution is absorbed by the same five exact slots as
-the M₂ contribution.-/
+the M₂ contribution.
+@isnad1 id=le.3h5v.s8.0dfa13bcd620 from=translated src=- shape=d2ebed04 vocab=ec546ad6
+-/
 theorem aux_caseOne_m1_zero_to_exactSlots (lam : ℤ → ℝ)
     (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (j : ℤ) (w0 w1 : ℝ)
@@ -4016,7 +4212,9 @@ theorem aux_caseOne_m1_zero_to_exactSlots (lam : ℤ → ℝ)
 /--
 Uniformly absorbs the M₁ and M₂ coefficients of one orientation-zero occurrence
 into the case-one max constant.  The slack is deliberately kept explicit for the outer
-multiset summation.-/
+multiset summation.
+@isnad1 id=le.3h3v.s9.445986756872 from=translated src=- shape=7a0a94e4 vocab=d0e01d86
+-/
 theorem aux_caseOne_zero_coefficients_absorb (S X Y : ℝ) (hS : 0 ≤ S)
     (hX : X ≤ C_twoBumpEstimate (3 / 2) (3 / 2) * S)
     (hY : Y ≤ 16 * C_bumpTriangle (-(1 / 2 : ℝ)) (1 / 2) (3 / 2) (3 / 2) *
@@ -4070,7 +4268,9 @@ theorem aux_caseOne_zero_coefficients_absorb (S X Y : ℝ) (hS : 0 ≤ S)
 
 /--
 Subadditivity of the clipped linear factor used to split the cancellation gain
-between the two orientation-zero H coordinates.-/
+between the two orientation-zero H coordinates.
+@isnad1 id=le.2h2v.s6.2f2051fafc9a from=translated src=- shape=5add2cd0 vocab=161790d4
+-/
 theorem aux_caseOne_min_one_subadd (a b : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤ b) :
     min 1 (a + b) ≤ min 1 a + min 1 b := by
   by_cases ha : 1 ≤ a
@@ -4090,7 +4290,9 @@ theorem aux_caseOne_min_one_subadd (a b : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤ b) :
     rw [min_eq_right ha', min_eq_right hb']
     exact min_le_right _ _
 
-/-- Splits the cancellation factor between the two translated horizontal coordinates.-/
+/-- Splits the cancellation factor between the two translated horizontal coordinates.
+@isnad1 id=le.1h3v.s7.42abb9d2000a from=translated src=- shape=a77bb50c vocab=94d82372
+-/
 theorem aux_caseOne_min_split (lam p w1 : ℝ) (hlam : 0 < lam) :
     min 1 (lam⁻¹ * |p|) ≤
       min 1 ((2 * lam)⁻¹ * |-w1 - p|) +
@@ -4121,7 +4323,9 @@ theorem aux_caseOne_min_split (lam p w1 : ℝ) (hlam : 0 < lam) :
 
 /--
 The square-root cancellation gain turns the two orientation-zero second-order
-bracket factors into real exponent `3/2` factors.-/
+bracket factors into real exponent `3/2` factors.
+@isnad1 id=le.5h6v.s8.0579ed45365e from=translated src=- shape=dfb41a1a vocab=afde97f8
+-/
 theorem aux_caseOne_u0_min_product (d : ℕ) (lam t0 t1 p w1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (hscale0 : t0 / (2 * lam) ≤ Real.rpow 2 (-(d : ℝ)))
@@ -4242,7 +4446,9 @@ theorem aux_caseOne_u0_min_product (d : ℕ) (lam t0 t1 p w1 : ℝ)
 
 /--
 Full orientation-zero occurrence estimate in the common five-slot case-one package.
-This is the analytic input used before summing the six H-kernel occurrences.-/
+This is the analytic input used before summing the six H-kernel occurrences.
+@isnad1 id=le.5h6v.s9.38223d9a51a6 from=translated src=- shape=add17fe9 vocab=a0e455d0
+-/
 theorem aux_caseOne_u0_occurrence (d : ℕ) (lam : ℤ → ℝ)
     (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (j : ℤ) (w0 w1 : ℝ)
@@ -4435,7 +4641,9 @@ theorem aux_caseOne_u0_occurrence (d : ℕ) (lam : ℤ → ℝ)
 
 /--
 The orientation-zero five-slot occurrence estimate with its dyadic loss obtained
-directly from a member of an H-kernel Gaussian package.-/
+directly from a member of an H-kernel Gaussian package.
+@isnad1 id=le.6h10v.s9.98ecb012b894 from=translated src=- shape=8b0856e4 vocab=12551e1b
+-/
 theorem aux_caseOne_u0_occurrence_of_package {n : ℕ}
     (γ : GeometricParameters n) (_hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1)
@@ -4519,6 +4727,9 @@ theorem aux_caseOne_u0_occurrence_of_package {n : ℕ}
   rw [hExponent] at hmain
   simpa [lamSeq, hlambda] using hmain
 
+/--
+@isnad1 id=integrab.3h5v.s7.9e04609653a2 from=translated src=- shape=fd9a6d44 vocab=d3e32029
+-/
 theorem aux_caseOne_u0_real_integrand_integrable
     (w0 w1 lambda t0 t1 : ℝ) (hlambda : 0 < lambda)
     (ht0 : 0 < t0) (ht1 : 0 < t1) :
@@ -4654,7 +4865,9 @@ theorem aux_caseOne_u0_real_integrand_integrable
 
 /--
 The rho-difference estimate lifted through one orientation-zero occurrence of an
-H-kernel Gaussian package, in the common exact five-slot majorant.-/
+H-kernel Gaussian package, in the common exact five-slot majorant.
+@isnad1 id=le.6h10v.s9.d1747446a32d from=translated src=- shape=0a3fc125 vocab=b3f92559
+-/
 theorem aux_caseOne_u0_rho_occurrence_of_package {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1)
@@ -4865,6 +5078,9 @@ noncomputable def caseOneOccurrence (P : Multiset (SequencePair × Fin 2))
     (k : Fin P.card) : SequencePair × Fin 2 :=
   P.toList.get (Fin.cast (Multiset.length_toList P).symm k)
 
+/--
+@isnad1 id=mem.0h2v.s5.4192fc5fa510 from=translated src=- shape=79d20c14 vocab=bec2fe9b
+-/
 theorem caseOneOccurrence_mem (P : Multiset (SequencePair × Fin 2))
     (k : Fin P.card) : caseOneOccurrence P k ∈ P := by
   unfold caseOneOccurrence
@@ -4892,6 +5108,9 @@ def caseOneExactSlotOf (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (r : Fin 
     (aux_sequencePairOf (fun j => Real.sqrt 2 * lam j) (caseOneExactM1Scale q),
       (1 : Fin 2))
 
+/--
+@isnad1 id=spacedse.1h1v.s4.176d427d1d6a from=translated src=- shape=7894952c vocab=2e29e189
+-/
 theorem caseOneExactM1Scale_spaced (q : SequencePair × Fin 2)
     (hq : ∀ r : Fin 2, SpacedSequence (q.1 r)) :
     SpacedSequence (caseOneExactM1Scale q) := by
@@ -4901,6 +5120,9 @@ theorem caseOneExactM1Scale_spaced (q : SequencePair × Fin 2)
     exact smul_mem_A (max_mem_A (hq 0) (hq 1)) (inv_pos.mpr hsqrt)
   · simpa [caseOneExactM1Scale, hu] using hq 1
 
+/--
+@isnad1 id=spacedse.2h4v.s5.74cb365503fc from=translated src=- shape=3f204a52 vocab=f2a060ec
+-/
 theorem caseOneExactSlotOf_spaced (lam : ℤ → ℝ) (hlam : SpacedSequence lam)
     (q : SequencePair × Fin 2) (hq : ∀ r : Fin 2, SpacedSequence (q.1 r)) (r : Fin 5) :
     ∀ s : Fin 2, SpacedSequence ((caseOneExactSlotOf lam q r).1 s) := by
@@ -4944,13 +5166,18 @@ def caseOneLambda {n : ℕ} (γ : GeometricParameters n) (ι : MultiplierIndex �
     (i : Fin γ.k) : ℤ → ℝ :=
   fun j => (2 : ℝ) ^ ι.1.1 * γ.scales i 1 (j + (geometricDelta γ : ℤ))
 
+/--
+@isnad1 id=spacedse.0h4v.s4.ecae1ec268b2 from=translated src=- shape=d87e2aa8 vocab=3489933b
+-/
 theorem caseOneLambda_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ)
     (i : Fin γ.k) : SpacedSequence (caseOneLambda γ ι i) := by
   unfold caseOneLambda
   exact smul_mem_A (shift_mem_A (γ.scales_spaced i 1) _) (zpow_pos (by norm_num) _)
 
-/-- A scale and its `√2` rescaling are at sequence distance at most one.-/
+/-- A scale and its `√2` rescaling are at sequence distance at most one.
+@isnad1 id=withinse.1h1v.s5.4451f8bffb3d from=translated src=- shape=aab26abd vocab=0c5ae589
+-/
 theorem caseOne_within_sqrt_two_smul (a : ℤ → ℝ) (ha : SpacedSequence a) :
     WithinSequenceDistance a (fun j => Real.sqrt 2 * a j) 1 := by
   have hsqrt_pos : 0 < Real.sqrt (2 : ℝ) := Real.sqrt_pos.2 (by norm_num)
@@ -4969,7 +5196,9 @@ theorem caseOne_within_sqrt_two_smul (a : ℤ → ℝ) (ha : SpacedSequence a) :
         mul_le_mul_of_nonneg_right hsqrt_two (le_of_lt (ha j).1)
       _ ≤ a (j + 1) := (ha j).2
 
-/-- A scale and its reciprocal-`√2` rescaling are at sequence distance at most one.-/
+/-- A scale and its reciprocal-`√2` rescaling are at sequence distance at most one.
+@isnad1 id=withinse.1h1v.s5.ee26c6e2f2d6 from=translated src=- shape=b4daabe5 vocab=1f47bc3f
+-/
 theorem caseOne_within_inv_sqrt_two_smul (a : ℤ → ℝ) (ha : SpacedSequence a) :
     WithinSequenceDistance a (fun j => (Real.sqrt 2)⁻¹ * a j) 1 := by
   have hsqrt_pos : 0 < Real.sqrt (2 : ℝ) := Real.sqrt_pos.2 (by norm_num)
@@ -4997,6 +5226,9 @@ theorem caseOne_within_inv_sqrt_two_smul (a : ℤ → ℝ) (ha : SpacedSequence 
           mul_le_mul_of_nonneg_right hinv_one (le_of_lt (ha j).1)
       _ ≤ a (j + 1) := aux_spacedSequence_le_succ ha j
 
+/--
+@isnad1 id=withinse.1h2v.s4.d2631170e00d from=translated src=- shape=a7bf6158 vocab=9a5368e3
+-/
 theorem caseOne_within_shift (a : ℤ → ℝ) (ha : SpacedSequence a) (d : ℕ) :
     WithinSequenceDistance a (fun j => a (j + d)) d := by
   intro j
@@ -5004,6 +5236,9 @@ theorem caseOne_within_shift (a : ℤ → ℝ) (ha : SpacedSequence a) (d : ℕ)
   · exact aux_spacedSequence_monotone ha (by omega)
   · exact le_rfl
 
+/--
+@isnad1 id=withinse.2h4v.s5.38ba0202414c from=translated src=- shape=75ff6000 vocab=bfc74050
+-/
 theorem caseOne_within_max {a q₀ q₁ : ℤ → ℝ} {d : ℕ}
     (hq₀ : WithinSequenceDistance a q₀ d) (hq₁ : WithinSequenceDistance a q₁ d) :
     WithinSequenceDistance a (fun j => max (q₀ j) (q₁ j)) d := by
@@ -5012,7 +5247,9 @@ theorem caseOne_within_max {a q₀ q₁ : ℤ → ℝ} {d : ℕ}
   · exact (hq₀ j).1.trans (le_max_left _ _)
   · exact max_le (hq₀ j).2 (hq₁ j).2
 
-/-- The `λ` scale lies within `Δ+h` of the original scale sequence.-/
+/-- The `λ` scale lies within `Δ+h` of the original scale sequence.
+@isnad1 id=withinse.0h4v.s6.cd7f9920e94a from=translated src=- shape=18746b6e vocab=144e9dc9
+-/
 theorem caseOneLambda_within {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ)
     (i : Fin γ.k) :
@@ -5034,7 +5271,9 @@ theorem caseOneLambda_within {n : ℕ} (γ : GeometricParameters n)
     (geometricDelta γ + ι.1.1.natAbs)
   simpa [a, d, h, ashift] using aux_withinSequenceDistance_trans hshift hpow
 
-/-- A `√2`-rescaled H scale is within the uniform case-one distance budget of `λ`.-/
+/-- A `√2`-rescaled H scale is within the uniform case-one distance budget of `λ`.
+@isnad1 id=le.4h5v.s6.40c571e25c37 from=translated src=- shape=8734a9c4 vocab=0be4b418
+-/
 theorem caseOne_distance_sqrt_q_lam {a q lam : ℤ → ℝ} {d h : ℕ}
     (hq : WithinSequenceDistance a q d)
     (hlam : WithinSequenceDistance a lam (d + h)) (hlam_mem : SpacedSequence lam)
@@ -5079,7 +5318,9 @@ theorem caseOne_distance_sqrt_q_lam {a q lam : ℤ → ℝ} {d h : ℕ}
       norm_cast
       omega
 
-/-- The M₁ slot made from `λ` and the maximum of two H scales obeys the same budget.-/
+/-- The M₁ slot made from `λ` and the maximum of two H scales obeys the same budget.
+@isnad1 id=le.5h6v.s7.c7302b3d6153 from=translated src=- shape=08ad5cad vocab=cbffd350
+-/
 theorem caseOne_distance_sqrt_lam_inv_sqrt_max {a q₀ q₁ lam : ℤ → ℝ} {d h : ℕ}
     (hq₀ : WithinSequenceDistance a q₀ d) (hq₁ : WithinSequenceDistance a q₁ d)
     (hlam : WithinSequenceDistance a lam (d + h)) (hlam_mem : SpacedSequence lam)
@@ -5143,7 +5384,9 @@ theorem caseOne_distance_sqrt_lam_inv_sqrt_max {a q₀ q₁ lam : ℤ → ℝ} {
       norm_cast
       omega
 
-/-- The orientation-one M₁ slot has the same uniform distance budget.-/
+/-- The orientation-one M₁ slot has the same uniform distance budget.
+@isnad1 id=le.4h5v.s6.72710e12df1b from=translated src=- shape=22e9a8de vocab=0be4b418
+-/
 theorem caseOne_distance_sqrt_lam_q {a q lam : ℤ → ℝ} {d h : ℕ}
     (hq : WithinSequenceDistance a q d)
     (hlam : WithinSequenceDistance a lam (d + h)) (hlam_mem : SpacedSequence lam)
@@ -5175,7 +5418,9 @@ theorem caseOne_distance_sqrt_lam_q {a q lam : ℤ → ℝ} {d h : ℕ}
       norm_cast
       omega
 
-/-- Each of the five exact slots has base-pair distance at most `2(Δ+h)`.-/
+/-- Each of the five exact slots has base-pair distance at most `2(Δ+h)`.
+@isnad1 id=le.2h6v.s7.87bae9e8a371 from=translated src=- shape=3ff17743 vocab=3dded837
+-/
 theorem caseOneExactSlotOf_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hpositive : 0 < ι.1.1)
     (q : SequencePair × Fin 2) (hq : q ∈ aux_hKernelGaussianMultiset γ i) (r : Fin 5) :
@@ -5247,9 +5492,15 @@ def caseOneScales {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (b : ℕ) (m : Fin 2 → ℕ) : SequencePair :=
   fun r j => (2 : ℝ) ^ (m r) * (caseOneSlotNat γ ι i b).1 r j
 
+/--
+@isnad1 id=le.0h0v.s2.e990be321507 from=translated src=- shape=28fc0566 vocab=c75c4d88
+-/
 theorem caseOneB_card : caseOneB.card ≤ C_gaussianDominationCombinedCard := by
   norm_num [caseOneB, C_gaussianDominationCombinedCard]
 
+/--
+@isnad1 id=spacedse.0h6v.s5.e3ac6edd148c from=translated src=- shape=2197782f vocab=2b8ad3cb
+-/
 theorem caseOneSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (b : ℕ) :
     ∀ r : Fin 2, SpacedSequence ((caseOneSlotNat γ ι i b).1 r) := by
@@ -5269,12 +5520,18 @@ theorem caseOneSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
     (caseOneLambda_spaced γ ι i) q hq (caseOneSlotIndex b).2
   simpa [caseOneSlotNat, P, k, q] using hslot
 
+/--
+@isnad1 id=spacedse.0h7v.s5.3d627772f5bf from=translated src=- shape=0d9228a6 vocab=d79dcd1a
+-/
 theorem caseOneScales_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (b : ℕ) (m : Fin 2 → ℕ) (r : Fin 2) :
     SpacedSequence (caseOneScales γ ι i b m r) := by
   unfold caseOneScales
   exact smul_mem_A (caseOneSlotNat_spaced γ ι i b r) (pow_pos (by norm_num) _)
 
+/--
+@isnad1 id=le.1h5v.s7.a10ccc72280a from=translated src=- shape=73e92c6a vocab=87ca0701
+-/
 theorem caseOneSlotNat_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hpositive : 0 < ι.1.1) (b : ℕ) :
     sequencePairDistance (caseOneSlotNat γ ι i b).1 ≤
@@ -5288,7 +5545,9 @@ theorem caseOneSlotNat_distance_bound {n : ℕ} (γ : GeometricParameters n)
     simpa [P] using hqmem) (caseOneSlotIndex b).2
   simpa [caseOneSlotNat, P, k, q] using hslot
 
-/-- The dyadically rescaled slot data satisfies exactly the witness distance field.-/
+/-- The dyadically rescaled slot data satisfies exactly the witness distance field.
+@isnad1 id=le.1h6v.s7.69de6a080e9a from=translated src=- shape=00794e9b vocab=90e9329c
+-/
 theorem caseOneScales_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hpositive : 0 < ι.1.1)
     (b : ℕ) (m : Fin 2 → ℕ) :
@@ -5338,7 +5597,9 @@ theorem caseOneScales_distance_bound {n : ℕ} (γ : GeometricParameters n)
 
 /--
 The first three fields of the case-one Gaussian-domination witness, ready to be paired
-with the analytic estimate and Gaussian-series convergence proofs.-/
+with the analytic estimate and Gaussian-series convergence proofs.
+@isnad1 id=and.1h4v.s7.7689e5b9909a from=translated src=- shape=23b3c824 vocab=c5567dbf
+-/
 theorem caseOne_witness_side_conditions {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hpositive : 0 < ι.1.1) :
     caseOneB.card ≤ C_gaussianDominationCombinedCard ∧
@@ -5354,12 +5615,17 @@ theorem caseOne_witness_side_conditions {n : ℕ} (γ : GeometricParameters n)
   · intro b _ m
     exact caseOneScales_distance_bound γ ι i hpositive b m
 
-/-- The range carrier decodes the expected occurrence-slot pair on its 30 valid indices.-/
+/-- The range carrier decodes the expected occurrence-slot pair on its 30 valid indices.
+@isnad1 id=eq.0h2v.s6.9c9a7a4341b3 from=translated src=- shape=1d00e1bd vocab=89e8a675
+-/
 theorem caseOneSlotIndex_encode (k : Fin 6) (r : Fin 5) :
     caseOneSlotIndex (k.1 * 5 + r.1) = (k, r) := by
   apply Prod.ext <;> apply Fin.ext <;> simp [caseOneSlotIndex]
   · omega
 
+/--
+@isnad1 id=eq.0h6v.s6.290466271951 from=translated src=- shape=aaf3d307 vocab=7616514a
+-/
 theorem caseOneSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (k : Fin 6) (r : Fin 5) :
     caseOneSlotNat γ ι i (k.1 * 5 + r.1) =
@@ -5371,7 +5637,9 @@ theorem caseOneSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
 
 /--
 Reindex the 30 natural-number witness slots as six multiset occurrences with five slots
-each.  This preserves the occurrence multiplicities of the H-kernel package.-/
+each.  This preserves the occurrence multiplicities of the H-kernel package.
+@isnad1 id=eq.0h6v.s7.a61a3ae0e726 from=translated src=- shape=feec687e vocab=47fb4d63
+-/
 theorem caseOne_sum_range30_reindex {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) {R : Type*} [AddCommMonoid R]
     (F : SequencePair × Fin 2 → R) :
@@ -5423,6 +5691,9 @@ noncomputable def aux_finTwoNatEquivProd : (Fin 2 → ℕ) ≃ (ℕ × ℕ) wher
     rintro ⟨a, b⟩
     rfl
 
+/--
+@isnad1 id=summable.4h2v.s7.c4223eb26c8f from=translated src=- shape=e2c3dac4 vocab=20677629
+-/
 theorem aux_summable_finTwo_product {f₀ f₁ : ℕ → ℝ}
     (h₀nonneg : ∀ a, 0 ≤ f₀ a) (h₁nonneg : ∀ a, 0 ≤ f₁ a)
     (h₀ : Summable f₀) (h₁ : Summable f₁) :
@@ -5438,6 +5709,9 @@ theorem aux_summable_finTwo_product {f₀ f₁ : ℕ → ℝ}
     simpa using h₁.mul_left (f₀ a)
   · simpa only [tsum_mul_left] using h₀.mul_right (∑' b, f₁ b)
 
+/--
+@isnad1 id=summable.1h4v.s6.58255d03696c from=translated src=- shape=2ca4216c vocab=4397f39e
+-/
 theorem aux_dyadic_gaussian_pair_summable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -5492,6 +5766,9 @@ theorem aux_dyadic_gaussian_pair_summable
   dsimp [f₀, f₁]
   ring
 
+/--
+@isnad1 id=summable.1h5v.s7.2b992fb7a91d from=translated src=- shape=d87fdf29 vocab=405ef120
+-/
 theorem aux_finite_dyadic_gaussian_series_summable
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -5521,6 +5798,9 @@ theorem aux_finite_dyadic_gaussian_series_summable
   dsimp [F]
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=summable.0h0v.s4.19a01067616d from=translated src=- shape=bbdec756 vocab=448282a8
+-/
 theorem aux_gaussianDominationWeight_summable :
     Summable aux_gaussianDominationWeight := by
   let r : ℝ := Real.rpow 2 (-(1 / 2 : ℝ))
@@ -5550,6 +5830,9 @@ theorem aux_gaussianDominationWeight_summable :
       ring
     _ = _ := Real.rpow_add (by norm_num) _ _
 
+/--
+@isnad1 id=eq.4h2v.s7.5ad14859a268 from=translated src=- shape=20cfa30d vocab=c74b4e10
+-/
 theorem aux_gaussianWeightMoment_finTwo_tsum_product {f₀ f₁ : ℕ → ℝ}
     (h₀nonneg : ∀ a, 0 ≤ f₀ a) (h₁nonneg : ∀ a, 0 ≤ f₁ a)
     (h₀ : Summable f₀) (h₁ : Summable f₁) :
@@ -5569,6 +5852,9 @@ theorem aux_gaussianWeightMoment_finTwo_tsum_product {f₀ f₁ : ℕ → ℝ}
         (aux_finTwoNatEquivProd.symm.tsum_eq
           (fun m : Fin 2 → ℕ => f₀ (m 0) * f₁ (m 1)))
 
+/--
+@isnad1 id=summable.0h0v.s6.5935c86ec220 from=translated src=- shape=89f3b87e vocab=cb1f9b7c
+-/
 theorem aux_gaussianWeightMoment_square_summable :
     Summable (fun a : ℕ => ((a : ℝ) + 1) ^ (2 : ℕ) * (17 / 24 : ℝ) ^ a) := by
   let r : ℝ := 17 / 24
@@ -5583,6 +5869,9 @@ theorem aux_gaussianWeightMoment_square_summable :
   norm_num [Nat.cast_choose_two]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.f35e14d23506 from=translated src=- shape=643bdcde vocab=f36ac781
+-/
 theorem aux_gaussianWeightMoment_square_tsum :
     (∑' a : ℕ, ((a : ℝ) + 1) ^ (2 : ℕ) * (17 / 24 : ℝ) ^ a) =
       23616 / 343 := by
@@ -5611,6 +5900,9 @@ theorem aux_gaussianWeightMoment_square_tsum :
       dsimp [r]
       norm_num
 
+/--
+@isnad1 id=le.0h0v.s5.d25048052186 from=translated src=- shape=97043b67 vocab=00767409
+-/
 theorem aux_gaussianWeightMoment_half_le :
     Real.rpow 2 (-(1 / 2 : ℝ)) ≤ (17 / 24 : ℝ) := by
   change (2 : ℝ) ^ (-(1 / 2 : ℝ)) ≤ (17 / 24 : ℝ)
@@ -5619,7 +5911,9 @@ theorem aux_gaussianWeightMoment_half_le :
   apply (inv_le_iff_one_le_mul₀ (Real.sqrt_pos.2 (by norm_num : (0 : ℝ) < 2))).mpr
   nlinarith [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2), Real.sqrt_nonneg (2 : ℝ)]
 
-/-- The weighted second moment of the dyadic Gaussian-domination series is summable.-/
+/-- The weighted second moment of the dyadic Gaussian-domination series is summable.
+@isnad1 id=summable.0h0v.s6.99afdef78272 from=translated src=- shape=edcd5aee vocab=df069786
+-/
 theorem aux_gaussianDominationWeight_secondMoment_summable :
     Summable (fun m : Fin 2 → ℕ => aux_gaussianDominationWeight m *
       (1 + (aux_natPairWeight m : ℝ)) ^ (2 : ℕ)) := by
@@ -5703,7 +5997,9 @@ theorem aux_gaussianDominationWeight_secondMoment_summable :
 
 /--
 The dyadic two-parameter Gaussian weight has the second moment used in the
-main induction.-/
+main induction.
+@isnad1 id=le.0h0v.s6.2c31b78ee041 from=translated src=- shape=876886fe vocab=dac2e305
+-/
 theorem aux_gaussianDominationWeight_secondMoment_le_two_pow_ten :
     (∑' m : Fin 2 → ℕ, aux_gaussianDominationWeight m *
       (1 + (aux_natPairWeight m : ℝ)) ^ (2 : ℕ)) ≤ (2 : ℝ) ^ (10 : ℕ) := by
@@ -5819,6 +6115,9 @@ theorem aux_gaussianDominationWeight_secondMoment_le_two_pow_ten :
       rw [h₀, h₂]
       norm_num
 
+/--
+@isnad1 id=measurab.1h4v.s6.2d13b46b614e from=translated src=- shape=5530662d vocab=f709713e
+-/
 theorem aux_dyadic_gaussian_term_measurable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (m : Fin 2 → ℕ) :
@@ -5833,6 +6132,9 @@ theorem aux_dyadic_gaussian_term_measurable
   simpa [aux_dominatingGaussianTerm] using
     (hmem.aux_continuous.const_mul (aux_gaussianDominationWeight m)).measurable
 
+/--
+@isnad1 id=integrab.1h4v.s6.1a54b72ce4f1 from=translated src=- shape=84738579 vocab=161c538b
+-/
 theorem aux_dyadic_gaussian_term_integrable
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (m : Fin 2 → ℕ) :
@@ -5850,6 +6152,9 @@ theorem aux_dyadic_gaussian_term_integrable
   simpa [aux_dominatingGaussianTerm] using
     hint.const_mul (aux_gaussianDominationWeight m)
 
+/--
+@isnad1 id=eq.1h4v.s6.dc324da78e26 from=translated src=- shape=d08c86d3 vocab=5fdc5a3e
+-/
 theorem aux_integral_dyadic_gaussian_term
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (m : Fin 2 → ℕ) :
@@ -5866,6 +6171,9 @@ theorem aux_integral_dyadic_gaussian_term
       (aux_integral_twoDimensionalGaussian
         (fun r => (2 : ℝ) ^ (m r) * p r j) u hq)
 
+/--
+@isnad1 id=integrab.5h4v.s7.b2d7a27d3c2b from=translated src=- shape=eb058c42 vocab=8d00cf1a
+-/
 theorem aux_integrable_tsum_of_nonneg
     {ι α : Type*} [Countable ι] [MeasurableSpace α] {μ : Measure α}
     (f : ι → α → ℝ)
@@ -5893,6 +6201,9 @@ theorem aux_integrable_tsum_of_nonneg
         (ae_of_all _ fun x => hnonneg k x)).symm
     _ < ∞ := hintsum.tsum_ofReal_lt_top
 
+/--
+@isnad1 id=integrab.1h4v.s7.18eefb271ec1 from=translated src=- shape=b23ba9a4 vocab=068b8a03
+-/
 theorem aux_finite_dyadic_gaussian_series_integrable
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -5964,7 +6275,9 @@ theorem aux_finite_dyadic_gaussian_series_integrable
 
 /--
 Wrapper in the exact `aux_GaussianDominationWitness.scales` shape: the scale pair at
-`m` is obtained from a fixed base pair by coordinatewise dyadic dilation.-/
+`m` is obtained from a fixed base pair by coordinatewise dyadic dilation.
+@isnad1 id=summable.2h6v.s7.b5349ca0e58c from=translated src=- shape=ce2f60ee vocab=405ef120
+-/
 theorem aux_finite_dyadic_gaussian_series_summable_of_scales
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -5985,6 +6298,9 @@ theorem aux_finite_dyadic_gaussian_series_summable_of_scales
   funext r k
   exact hscales b hb m r k
 
+/--
+@isnad1 id=integrab.2h5v.s7.fd46f4e189ad from=translated src=- shape=e7124950 vocab=068b8a03
+-/
 theorem aux_finite_dyadic_gaussian_series_integrable_of_scales
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -6018,7 +6334,9 @@ theorem aux_finite_dyadic_gaussian_series_integrable_of_scales
 
 /--
 The two analytic tail fields of a Gaussian-domination witness, for any finite family of
-base scale pairs and their coordinatewise dyadic dilates.-/
+base scale pairs and their coordinatewise dyadic dilates.
+@isnad1 id=and.2h4v.s8.fe78d355ac69 from=translated src=- shape=8d4d9c5f vocab=f3c73903
+-/
 theorem aux_finite_dyadic_gaussian_series
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r))
@@ -6040,7 +6358,9 @@ theorem aux_finite_dyadic_gaussian_series
     exact aux_finite_dyadic_gaussian_series_integrable_of_scales
       B p hp u scales hscales j
 
-/-- Coordinatewise dyadic dilation preserves membership in the spaced-sequence class.-/
+/-- Coordinatewise dyadic dilation preserves membership in the spaced-sequence class.
+@isnad1 id=spacedse.2h5v.s6.50a0c1679b56 from=translated src=- shape=c41b8513 vocab=bc319d2f
+-/
 theorem aux_dyadic_scales_in_A
     (B : Finset ℕ) (p : ℕ → SequencePair)
     (hp : ∀ b ∈ B, ∀ r : Fin 2, SpacedSequence (p b r)) :
@@ -6051,7 +6371,9 @@ theorem aux_dyadic_scales_in_A
 
 /--
 In the orientation-one case the kernel sees `√2 * p`; this only improves
-the real bracket profile.-/
+the real bracket profile.
+@isnad1 id=le.2h3v.s5.b5a13e62c17a from=translated src=- shape=742102df vocab=4c5c298b
+-/
 theorem aux_caseOne_m1_sqrt_arg_le (N t p : ℝ)
     (hN : 0 ≤ N) (ht : 0 < t) :
     scaledBracketBumpReal N t (Real.sqrt 2 * p) ≤
@@ -6071,7 +6393,9 @@ theorem aux_caseOne_m1_sqrt_arg_le (N t p : ℝ)
 
 /--
 Exact simultaneous rescaling used to express the first M₁ coordinate in
-the formal `W 1` coordinates.-/
+the formal `W 1` coordinates.
+@isnad1 id=eq.1h4v.s5.727047130cb5 from=translated src=- shape=8a472b46 vocab=673a4ce1
+-/
 theorem aux_caseOne_m1_simul_rescale (N c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBumpReal N (c * s) (c * x) =
       scaledBracketBumpReal N s x := by
@@ -6087,6 +6411,9 @@ theorem aux_caseOne_m1_simul_rescale (N c s x : ℝ) (hc : 0 < c) :
         (c * (c * s)⁻¹) * (1 + |s⁻¹ * x|).rpow (-N) := by ring
     _ = s⁻¹ * (1 + |s⁻¹ * x|).rpow (-N) := by rw [hinv]
 
+/--
+@isnad1 id=le.2h3v.s5.2f128c2d38e2 from=translated src=- shape=1fe31097 vocab=470885b3
+-/
 theorem aux_caseOne_m1_le_inv (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s) :
     scaledBracketBumpReal N s x ≤ s⁻¹ := by
   unfold scaledBracketBumpReal
@@ -6098,6 +6425,9 @@ theorem aux_caseOne_m1_le_inv (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s) :
       mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr hs.le)
     _ = s⁻¹ := by ring
 
+/--
+@isnad1 id=integrab.2h3v.s7.129f2d3c52a3 from=translated src=- shape=f97f0385 vocab=14642b0b
+-/
 theorem aux_caseOne_m1_product_integrable
     (a s₀ s₁ : ℝ) (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) :
     Integrable (fun p : ℝ =>
@@ -6140,7 +6470,9 @@ theorem aux_caseOne_m1_product_integrable
 /--
 The single orientation-one occurrence in the positive-horizontal case is
 controlled by its M₁ term in exact `W 1` coordinates.  The factor `2` only
-absorbs `√2 ≤ 2`; the output scale pair is `(√2 * λ, t₁)`.-/
+absorbs `√2 ≤ 2`; the output scale pair is `(√2 * λ, t₁)`.
+@isnad1 id=le.4h5v.s8.ac46f8b70b5b from=translated src=- shape=7566e269 vocab=29cd1b66
+-/
 theorem aux_caseOne_m1_orientation_one (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) (ht₀lam : t₀ ≤ lam) :
     (∫ p : ℝ,
@@ -6303,7 +6635,9 @@ theorem aux_caseOne_m1_orientation_one (w₀ w₁ lam t₀ t₁ : ℝ)
       dsimp [D]
       ring
 
-/-- Pulls the `2π` in the positive rho estimate outside the minimum.-/
+/-- Pulls the `2π` in the positive rho estimate outside the minimum.
+@isnad1 id=le.3h4v.s7.30ecd68650be from=translated src=- shape=89d5c503 vocab=977f0b86
+-/
 theorem aux_caseOne_m1_move_twoPi_out {A lambda y B : ℝ}
     (hA : 0 ≤ A) (_hlambda : 0 < lambda) (hB : 0 ≤ B) :
     A * min 1 (2 * Real.pi * lambda⁻¹ * |y|) * B ≤
@@ -6326,7 +6660,9 @@ theorem aux_caseOne_m1_move_twoPi_out {A lambda y B : ℝ}
 
 /--
 A scale in the H-kernel distance ball is smaller than the positive-band
-N scale by the required dyadic factor.-/
+N scale by the required dyadic factor.
+@isnad1 id=le.2h5v.s6.135b35dff82a from=translated src=- shape=81be4049 vocab=42883ff5
+-/
 theorem aux_caseOne_m1_distanceBall_scale_ratio_le {a b : ℤ → ℝ}
     (ha : SpacedSequence a) {d : ℕ} (hb : b ∈ sequenceDistanceBall a (d : WithTop ℕ))
     (h j : ℤ) :
@@ -6347,7 +6683,9 @@ theorem aux_caseOne_m1_distanceBall_scale_ratio_le {a b : ℤ → ℝ}
 
 /--
 The square-root loss converts the second-order H bump into the `3/2` bump
-needed by the M₁ integral theorem.-/
+needed by the M₁ integral theorem.
+@isnad1 id=eq.1h2v.s6.b709dc329e2e from=translated src=- shape=147d835a vocab=8e28e83d
+-/
 theorem aux_caseOne_m1_two_sqrt_eq_threeHalves (t x : ℝ) (ht : 0 < t) :
     Real.rpow (1 + t⁻¹ * |x|) (1 / 2 : ℝ) * scaledBracketBump 2 t x =
       scaledBracketBumpReal (3 / 2 : ℝ) t x := by
@@ -6379,6 +6717,9 @@ theorem aux_caseOne_m1_two_sqrt_eq_threeHalves (t x : ℝ) (ht : 0 < t) :
       exact congrArg (fun r : ℝ => t⁻¹ * r) hsum.symm
     _ = t⁻¹ * Real.rpow z (-(3 / 2 : ℝ)) := by ring_nf
 
+/--
+@isnad1 id=le.3h4v.s7.8a8b41461b64 from=translated src=- shape=617825c9 vocab=b14fb42a
+-/
 theorem aux_caseOne_m1_min_scale_half_le {t lam : ℝ} {h : ℕ}
     (ht : 0 < t) (hlam : 0 < lam)
     (hscale : t / lam ≤ Real.rpow 2 (-(h : ℝ))) (p : ℝ) :
@@ -6423,7 +6764,9 @@ theorem aux_caseOne_m1_min_scale_half_le {t lam : ℝ} {h : ℕ}
 
 /--
 Combines the loss based on `p` with the orientation-one H bump, whose first
-coordinate is `√2 p`.-/
+coordinate is `√2 p`.
+@isnad1 id=le.1h2v.s6.70af901e670c from=translated src=- shape=0660f6db vocab=bf0d25a8
+-/
 theorem aux_caseOne_m1_sqrt_loss_bump (t p : ℝ) (ht : 0 < t) :
     Real.sqrt (1 + t⁻¹ * |p|) * scaledBracketBump 2 t (-Real.sqrt 2 * p) ≤
       scaledBracketBumpReal (3 / 2 : ℝ) t (Real.sqrt 2 * p) := by
@@ -6459,6 +6802,9 @@ theorem aux_caseOne_m1_sqrt_loss_bump (t p : ℝ) (ht : 0 < t) :
       rw [hpow]
       exact aux_caseOne_m1_two_sqrt_eq_threeHalves t (Real.sqrt 2 * p) ht
 
+/--
+@isnad1 id=integrab.3h5v.s7.df75a7a802de from=translated src=- shape=ecb88c5b vocab=7b50def7
+-/
 theorem aux_caseOne_m1_integrand_integrable (w₀ w₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     Integrable (fun p : ℝ =>
@@ -6563,6 +6909,9 @@ theorem aux_caseOne_m1_integrand_integrable (w₀ w₁ lam t₀ t₁ : ℝ)
                 (aux_scaledBracketBumpReal_nonneg _ _ _ ht₀))
       _ = D * (g₀ p + g₁ p) := by ring
 
+/--
+@isnad1 id=le.7h7v.s8.46ae8d288921 from=translated src=- shape=052bb50a vocab=29cd1b66
+-/
 theorem aux_caseOne_m1_integral_le_of_pointwise
     (w₀ w₁ lam t₀ t₁ K : ℝ) (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁)
     (ht₀lam : t₀ ≤ lam) (hK : 0 ≤ K) (f : ℝ → ℝ)
@@ -6606,7 +6955,9 @@ theorem aux_caseOne_m1_integral_le_of_pointwise
 The rho-difference estimate applied to one orientation-one H occurrence.
 The supplied `hminloss` is exactly the scale-ratio consequence of membership in
 the H-package distance ball; the conclusion is in the M₁ coordinates shared by
-the five-slot case-one package.-/
+the five-slot case-one package.
+@isnad1 id=le.10h10v.s9.e3d721fd4524 from=translated src=- shape=40eb6737 vocab=7670fc64
+-/
 theorem aux_caseOne_m1_orientation_one_rho_occurrence {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hpositive : 0 < ι.1.1)
@@ -6808,6 +7159,9 @@ theorem aux_caseOne_m1_orientation_one_rho_occurrence {n : ℕ}
       dsimp [K, A, t₁]
       ring
 
+/--
+@isnad1 id=le.4h8v.s8.5ff1db783958 from=translated src=- shape=486ec6fb vocab=c215ce4a
+-/
 theorem aux_caseOne_m1_hminloss_of_distanceBall {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hpositive : 0 < ι.1.1) (q : SequencePair × Fin 2)
@@ -6849,7 +7203,9 @@ theorem aux_caseOne_m1_hminloss_of_distanceBall {n : ℕ}
 
 /--
 The orientation-one occurrence bound with the dyadic loss obtained directly
-from its membership in the H-kernel Gaussian package.-/
+from its membership in the H-kernel Gaussian package.
+@isnad1 id=le.6h10v.s9.ce76276cf9d6 from=translated src=- shape=7368785a vocab=f4a38d94
+-/
 theorem aux_caseOne_m1_orientation_one_rho_occurrence_of_package {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1)
@@ -6893,7 +7249,9 @@ theorem aux_caseOne_m1_orientation_one_rho_occurrence_of_package {n : ℕ}
 
 /--
 Integrability of a finite multiset sum follows from integrability of its
-occurrences.-/
+occurrences.
+@isnad1 id=integrab.1h3v.s6.f504d0b7b89f from=translated src=- shape=cb843146 vocab=de4d900e
+-/
 theorem aux_caseOne_integrable_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     Integrable (fun x : ℝ => (P.map fun q => g q x).sum) := by
@@ -6907,7 +7265,9 @@ theorem aux_caseOne_integrable_multiset_sum {α : Type*} (P : Multiset α)
         intro q hq
         exact hg q (by simp [hq])
 
-/-- Integration commutes with the finite multiset sum used by the H package.-/
+/-- Integration commutes with the finite multiset sum used by the H package.
+@isnad1 id=eq.1h3v.s6.3384f5e88568 from=translated src=- shape=7af74257 vocab=59feda4f
+-/
 theorem aux_caseOne_integral_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     (∫ x : ℝ, (P.map fun q => g q x).sum) =
@@ -6923,7 +7283,9 @@ theorem aux_caseOne_integral_multiset_sum {α : Type*} (P : Multiset α)
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [integral_add (hg a (by simp)) hsumP, ih hgP]
 
-/-- Pulling a scalar through a finite multiset sum.-/
+/-- Pulling a scalar through a finite multiset sum.
+@isnad1 id=eq.0h4v.s5.85a4ce2000b1 from=translated src=- shape=a1eac3f6 vocab=4c69c2c3
+-/
 theorem aux_caseOne_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset α)
     (g : α → ℝ) :
     a * (P.map g).sum = (P.map fun q => a * g q).sum := by
@@ -6933,7 +7295,9 @@ theorem aux_caseOne_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset α)
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [mul_add, ih]
 
-/-- A finite H-package pointwise bound may be integrated occurrence-by-occurrence.-/
+/-- A finite H-package pointwise bound may be integrated occurrence-by-occurrence.
+@isnad1 id=le.5h6v.s7.05f3234c6ba0 from=translated src=- shape=9be356b0 vocab=57476610
+-/
 theorem aux_caseOne_finite_multiset_integral_bridge {α : Type*}
     (P : Multiset α) (C : ℝ) (rho H : ℝ → ℝ) (B : α → ℝ → ℝ)
     (_hC : 0 ≤ C) (hrho : ∀ p, 0 ≤ rho p) (hH : ∀ p, 0 ≤ H p)
@@ -6963,7 +7327,9 @@ theorem aux_caseOne_finite_multiset_integral_bridge {α : Type*}
     _ = C * (P.map fun q => ∫ p : ℝ, rho p * B q p).sum := by
       rw [aux_caseOne_integral_multiset_sum P (fun q p => rho p * B q p) hint]
 
-/-- Sum occurrence bounds while preserving every multiplicity of the H package.-/
+/-- Sum occurrence bounds while preserving every multiplicity of the H package.
+@isnad1 id=le.1h5v.s6.518667ea9d7d from=translated src=- shape=153a5c79 vocab=97df26c1
+-/
 theorem aux_caseOne_multiset_sum_le_scaled {α : Type*} (P : Multiset α)
     (f g : α → ℝ) (D : ℝ) (h : ∀ q ∈ P, f q ≤ D * g q) :
     (P.map f).sum ≤ D * (P.map g).sum := by
@@ -6981,7 +7347,9 @@ theorem aux_caseOne_multiset_sum_le_scaled {α : Type*} (P : Multiset α)
 
 /--
 Cancellation plus an H-package estimate reduces the positive-band N bound
-to the finite sum of its occurrence integrals.-/
+to the finite sum of its occurrence integrals.
+@isnad1 id=le.4h10v.s8.0f5e27ce45a2 from=translated src=- shape=a87adcb0 vocab=ffcd71ea
+-/
 theorem aux_caseOne_outer_from_occurrences {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (w₀ w₁ : ℝ)
@@ -7036,7 +7404,9 @@ theorem aux_caseOne_outer_from_occurrences {n : ℕ}
 /--
 Each one-dimensional slice of an H-package bracket product is integrable.
 This is the only integrability input needed to pass from the pointwise H bound
-to the finite sum of occurrence integrals.-/
+to the finite sum of occurrence integrals.
+@isnad1 id=integrab.2h3v.s6.27c7f7828381 from=translated src=- shape=4c4f588f vocab=1d58c586
+-/
 theorem aux_caseOne_kernelBracketProduct_integrable
     (q : SequencePair × Fin 2) (j : ℤ) (w₁ : ℝ)
     (hq₀ : SpacedSequence (q.1 0)) (hq₁ : SpacedSequence (q.1 1)) :
@@ -7089,7 +7459,9 @@ theorem aux_caseOne_kernelBracketProduct_integrable
 
 /--
 We use the explicit six-occurrence H-package so its multiplicities agree
-with the range-30 witness decoder.-/
+with the range-30 witness decoder.
+@isnad1 id=auxhkern.0h3v.s4.37cb64145b8e from=translated src=- shape=d0ada332 vocab=fbee9c16
+-/
 theorem aux_caseOne_HPackage_explicit {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) :
     aux_HKernelGaussianBound γ i (aux_hKernelGaussianMultiset γ i) := by
@@ -7115,7 +7487,9 @@ theorem aux_caseOne_HPackage_explicit {n : ℕ} (γ : GeometricParameters n)
 
 /--
 The orientation-one M₁ product is exactly slot zero of the shared
-five-slot occurrence package.-/
+five-slot occurrence package.
+@isnad1 id=eq.1h5v.s7.021798389bbc from=translated src=- shape=0b50c825 vocab=0ac78dd2
+-/
 theorem aux_caseOne_m1_slot_zero
     (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (j : ℤ) (w₀ w₁ : ℝ)
     (hqu : q.2 = 1) :
@@ -7125,6 +7499,9 @@ theorem aux_caseOne_m1_slot_zero
   simp [aux_caseOneExactSlotTerm, aux_caseOneExactSlotOf,
     aux_caseOneExactM1Scale, hqu, aux_sequencePairOf, aux_caseOne_Wone]
 
+/--
+@isnad1 id=le.0h0v.s3.b52c3b502539 from=translated src=- shape=4dcb44f2 vocab=c4eced66
+-/
 theorem aux_caseOne_meanFour_nonneg :
     0 ≤ C_meanFourScaleGaussianKernel 2 := by
   have hK : 0 ≤ C_meanValueBumpEstimate 2 := by
@@ -7145,6 +7522,9 @@ theorem aux_caseOne_meanFour_nonneg :
     (mul_nonneg (mul_nonneg (by norm_num) hK) hM)
     (mul_nonneg (mul_nonneg (by norm_num) hK) hT)
 
+/--
+@isnad1 id=le.0h0v.s5.4bd849b8acaf from=translated src=- shape=fdb76323 vocab=d663cb99
+-/
 theorem aux_caseOne_twoBump_nonneg :
     0 ≤ C_twoBumpEstimate (3 / 2) (3 / 2) := by
   norm_num [C_twoBumpEstimate]
@@ -7152,7 +7532,9 @@ theorem aux_caseOne_twoBump_nonneg :
 
 /--
 Both orientation branches of one H-kernel occurrence have the same exact
-five-slot majorant and the coefficient needed for the doubled Case 1 constant.-/
+five-slot majorant and the coefficient needed for the doubled Case 1 constant.
+@isnad1 id=le.4h9v.s9.1e835706ad9a from=translated src=- shape=de7dfac1 vocab=cfbf580b
+-/
 theorem aux_caseOne_occurrence_uniform {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1)
@@ -7296,6 +7678,9 @@ def aux_caseOneSlotProduct (j : ℤ) (v : RealPlane)
   scaledBracketBumpReal (3 / 2 : ℝ) (s.1 0 j) (W s.2 v).1 *
     scaledBracketBumpReal (3 / 2 : ℝ) (s.1 1 j) (W s.2 v).2
 
+/--
+@isnad1 id=eq.0h3v.s5.d27ab6bc3200 from=translated src=- shape=b9e69303 vocab=1b954a59
+-/
 theorem aux_caseOneExactSlotOf_eq_caseOneExactSlotOf
     (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (r : Fin 5) :
     aux_caseOneExactSlotOf lam q r = caseOneExactSlotOf lam q r := by
@@ -7303,6 +7688,9 @@ theorem aux_caseOneExactSlotOf_eq_caseOneExactSlotOf
   unfold aux_caseOneExactM1Scale caseOneExactM1Scale
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.4b962e631ba7 from=translated src=- shape=b25f4f1d vocab=e9ed15bc
+-/
 theorem aux_caseOneExactSlotTerm_eq_caseOneSlotProduct
     (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (j : ℤ) (v : RealPlane) (r : Fin 5) :
     aux_caseOneExactSlotTerm lam q j v r =
@@ -7310,6 +7698,9 @@ theorem aux_caseOneExactSlotTerm_eq_caseOneSlotProduct
   simp only [aux_caseOneExactSlotTerm, aux_caseOneSlotProduct,
     aux_caseOneExactSlotOf_eq_caseOneExactSlotOf]
 
+/--
+@isnad1 id=eq.0h3v.s6.8cb3d50655d2 from=translated src=- shape=1d7e5472 vocab=dccbe77e
+-/
 theorem aux_caseOne_multiset_sum_eq_occurrence_sum
     {R : Type*} [AddCommMonoid R] (P : Multiset (SequencePair × Fin 2))
     (F : SequencePair × Fin 2 → R) :
@@ -7324,6 +7715,9 @@ theorem aux_caseOne_multiset_sum_eq_occurrence_sum
   intro k
   simp [e, caseOneOccurrence]
 
+/--
+@isnad1 id=eq.0h6v.s6.26a58ae47981 from=translated src=- shape=197d1654 vocab=96f4f9aa
+-/
 theorem aux_caseOne_multiset_slot_sum_reindex {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (v : RealPlane) :
     ((aux_hKernelGaussianMultiset γ i).map
@@ -7360,7 +7754,9 @@ theorem aux_caseOne_multiset_slot_sum_reindex {n : ℕ} (γ : GeometricParameter
 /--
 The raw rho-difference times any one H-package bracket product is integrable.
 For this bookkeeping step a uniform boundedness consequence of the positive
-rho estimate is sufficient.-/
+rho estimate is sufficient.
+@isnad1 id=integrab.4h9v.s7.114c24085c32 from=translated src=- shape=e7c4061d vocab=6b70b127
+-/
 theorem aux_caseOne_raw_occurrence_integrable {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1)
@@ -7462,7 +7858,9 @@ theorem aux_caseOne_raw_occurrence_integrable {n : ℕ}
 /--
 Cancellation, the explicit six-term H package, and the two orientation
 occurrence estimates give a 30-slot real-bracket majorant before Gaussian
-domination is applied to its slots.-/
+domination is applied to its slots.
+@isnad1 id=le.2h7v.s9.a8001926405c from=translated src=- shape=6b1366d2 vocab=d113767a
+-/
 theorem aux_caseOne_preGaussian_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hpositive : 0 < ι.1.1) (w₀ w₁ : ℝ) :
@@ -7517,6 +7915,9 @@ theorem aux_caseOne_preGaussian_bound {n : ℕ}
             (caseOneSlotNat γ ι i b) := by rw [hreindex]
     _ = _ := by rfl
 
+/--
+@isnad1 id=le.1h4v.s7.55c98787498a from=translated src=- shape=4a538b2c vocab=fef9ae2a
+-/
 theorem aux_caseOne_slot_gaussian_majorant
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -7643,6 +8044,9 @@ theorem aux_caseOne_slot_gaussian_majorant
           ((∑' a : ℕ, f₀ a) * ∑' a : ℕ, f₁ a) := by rw [hcoeff]
     _ = _ := by rw [hseriesEq]
 
+/--
+@isnad1 id=le.0h6v.s7.0d96c547b474 from=translated src=- shape=c137f636 vocab=fd6f6217
+-/
 theorem aux_caseOne_slot_sum_gaussian_majorant {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (j : ℤ) (v : RealPlane) :
@@ -7713,7 +8117,9 @@ C_{\text{two bump estimate},\tfrac32,\tfrac32}+4,
 4C_{\text{bump triangle},-\tfrac12,\tfrac12,\tfrac32,\tfrac32}
 C_{\text{two bump estimate},\tfrac32,\tfrac32}
 \bigr).
-$$-/
+$$
+@isnad1 id=auxgauss.3h4v.s6.95d22361dae3 from=translated src=- shape=89084d19 vocab=efa17630
+-/
 theorem gaussDominationCase1 {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (ι : MultiplierIndex γ) (hpositive : 0 < ι.1.1) (_hvertical : ι.1.2 = 0) :
@@ -7815,6 +8221,9 @@ theorem gaussDominationCase1 {n : ℕ}
 open Filter Topology Metric
 
 namespace aux_caseTwo
+/--
+@isnad1 id=eq.2h2v.s6.ff46a135dd36 from=translated src=- shape=40d73318 vocab=30f6e969
+-/
 theorem scratch_integral_Ioi_scaledBracketBumpReal_three
     (s a : ℝ) (hs : 0 < s) (ha : 0 ≤ a) :
     ∫ x : ℝ in Set.Ioi a, scaledBracketBumpReal 3 s x =
@@ -7864,6 +8273,9 @@ theorem scratch_integral_Ioi_scaledBracketBumpReal_three
   field_simp [hs.ne']
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.908a3b6dad4a from=translated src=- shape=2c8671ec vocab=b9413de9
+-/
 theorem scratch_scaledBracketBump_nat_eq_real (N : ℕ) (s x : ℝ) :
     scaledBracketBump N s x = scaledBracketBumpReal (N : ℝ) s x := by
   unfold scaledBracketBump scaledBracketBumpReal
@@ -7872,11 +8284,17 @@ theorem scratch_scaledBracketBump_nat_eq_real (N : ℕ) (s x : ℝ) :
   rw [Real.rpow_neg (by positivity) (N : ℝ), Real.rpow_natCast]
   simp only [inv_pow]
 
+/--
+@isnad1 id=eq.0h3v.s4.0390c9fdae60 from=translated src=- shape=0153c957 vocab=d7a050d3
+-/
 theorem scratch_scaledBracketBump_neg (N : ℕ) (s x : ℝ) :
     scaledBracketBump N s (-x) = scaledBracketBump N s x := by
   unfold scaledBracketBump
   rw [show s⁻¹ * -x = -(s⁻¹ * x) by ring, abs_neg]
 
+/--
+@isnad1 id=eq.2h2v.s6.7951f1793a36 from=translated src=- shape=2d781d3d vocab=052aebc9
+-/
 theorem scratch_integral_Ioi_scaledBracketBump_three
     (s a : ℝ) (hs : 0 < s) (ha : 0 ≤ a) :
     ∫ x : ℝ in Set.Ioi a, scaledBracketBump 3 s x =
@@ -7884,6 +8302,9 @@ theorem scratch_integral_Ioi_scaledBracketBump_three
   have h := scratch_integral_Ioi_scaledBracketBumpReal_three s a hs ha
   convert h using 1 <;> norm_num [scratch_scaledBracketBump_nat_eq_real]
 
+/--
+@isnad1 id=le.5h4v.s7.117323dd7bbd from=translated src=- shape=c99472ae vocab=69aef115
+-/
 theorem scratch_primitive_Iic_bound
     {rho : ℝ → ℝ} (A s : ℝ) (hA : 0 ≤ A) (hs : 0 < s)
     (hrho : Integrable rho) (hzero : (∫ x : ℝ, rho x) = 0)
@@ -7943,6 +8364,9 @@ theorem scratch_primitive_Iic_bound
 
 namespace ScratchCase2Fourier
 
+/--
+@isnad1 id=eq.7h7v.s8.df86f9eedb3b from=translated src=- shape=bfb05d67 vocab=dea4b096
+-/
 theorem fourScaleGaussianRho_integral_eq_zero
     (phi phiHat : ℝ → ℂ) (hphi : MemW0 phi)
     (hphiHat : phiHat = FourierTransform.fourier phi)
@@ -7992,6 +8416,9 @@ theorem fourScaleGaussianRho_integral_eq_zero
     _ = f 0 := congrFun hFourierRho 0
     _ = 0 := hfZero
 
+/--
+@isnad1 id=eq.5h2v.s9.fd9def5b3e05 from=translated src=- shape=50e08edc vocab=0935f383
+-/
 theorem primitive_integration_by_parts (rho g : ℝ → ℝ) (hrho : Continuous rho)
     (hg : ∀ x : ℝ, DifferentiableAt ℝ g x)
     (hprimeg : Integrable (fun x : ℝ => rho x * g x))
@@ -8021,6 +8448,9 @@ theorem primitive_integration_by_parts (rho g : ℝ → ℝ) (hrho : Continuous 
   rw [hparts']
   ring
 
+/--
+@isnad1 id=eq.6h4v.s9.595b5645fa58 from=translated src=- shape=ccd0bc31 vocab=748391f0
+-/
 theorem primitive_integration_by_parts_of_bounds (rho g : ℝ → ℝ)
     (hrho : Continuous rho) (hg : ∀ x : ℝ, DifferentiableAt ℝ g x)
     (hgint : Integrable g) (C_rho C_R : ℝ)
@@ -8056,6 +8486,9 @@ theorem primitive_integration_by_parts_of_bounds (rho g : ℝ → ℝ)
   exact primitive_integration_by_parts rho g hrho hg hprimeg hprimitiveDeriv
     (by simpa [R] using hprimitive)
 
+/--
+@isnad1 id=eq.6h2v.s9.5986748357d3 from=translated src=- shape=a0446add vocab=d7ac7e63
+-/
 theorem iic_primitive_integration_by_parts (rho g : ℝ → ℝ) (hrho : Continuous rho)
     (hrhoInt : Integrable rho) (hg : ∀ x : ℝ, DifferentiableAt ℝ g x)
     (hprimeg : Integrable (fun x : ℝ => rho x * g x))
@@ -8101,6 +8534,9 @@ theorem iic_primitive_integration_by_parts (rho g : ℝ → ℝ) (hrho : Continu
   rw [hparts']
   ring
 
+/--
+@isnad1 id=eq.7h4v.s9.79a3d63e6fb2 from=translated src=- shape=6ab2d5bf vocab=b81e13f2
+-/
 theorem iic_primitive_integration_by_parts_of_bounds (rho g : ℝ → ℝ)
     (hrho : Continuous rho) (hrhoInt : Integrable rho)
     (hg : ∀ x : ℝ, DifferentiableAt ℝ g x) (hgint : Integrable g)
@@ -8149,6 +8585,9 @@ theorem iic_primitive_integration_by_parts_of_bounds (rho g : ℝ → ℝ)
   exact iic_primitive_integration_by_parts (rho := rho) (g := g) hrho hrhoInt hg hprimeg
     hprimitiveDeriv (by simpa only [P] using hprimitive)
 
+/--
+@isnad1 id=eq.1h3v.s8.35e38f9d32fb from=translated src=- shape=480a7f2a vocab=e15d33e7
+-/
 theorem fderiv_translate_negDiagonal (F : ℝ × ℝ → ℝ) (w : ℝ × ℝ) (p : ℝ)
     (hF : DifferentiableAt ℝ
       (fun t : ℝ => F (w.1 - p + t, w.2 - p + t)) 0) :
@@ -8185,6 +8624,9 @@ theorem fderiv_translate_negDiagonal (F : ℝ × ℝ → ℝ) (w : ℝ × ℝ) (
   simp
   ring
 
+/--
+@isnad1 id=differen.0h5v.s6.0d9a6a7f60bc from=translated src=- shape=6423de6c vocab=8540f3e4
+-/
 theorem hMultiplier_diagonal_differentiable {n : ℕ} (gamma : GeometricParameters n)
     (i : Fin gamma.k) (j : ℤ) (v : ℝ × ℝ) :
     DifferentiableAt ℝ
@@ -8209,6 +8651,9 @@ theorem hMultiplier_diagonal_differentiable {n : ℕ} (gamma : GeometricParamete
       fun t : ℝ => gaussianDifference gamma i j (v.1 + t, v.2 + t)) 0
   exact htensor.sub hgauss
 
+/--
+@isnad1 id=eq.0h6v.s8.935b2da44112 from=translated src=- shape=07401cad vocab=7cea9c96
+-/
 theorem hMultiplier_fderiv_translate_negDiagonal {n : ℕ}
     (gamma : GeometricParameters n) (i : Fin gamma.k) (j : ℤ)
     (w : ℝ × ℝ) (p : ℝ) :
@@ -8217,7 +8662,9 @@ theorem hMultiplier_fderiv_translate_negDiagonal {n : ℕ}
   apply fderiv_translate_negDiagonal
   exact hMultiplier_diagonal_differentiable gamma i j (w.1 - p, w.2 - p)
 
-/-- The symmetric order-free two-bump estimate at the quadratic exponent.-/
+/-- The symmetric order-free two-bump estimate at the quadratic exponent.
+@isnad1 id=le.2h4v.s7.5491d4d84f7a from=translated src=- shape=42b84ac3 vocab=1699813c
+-/
 theorem scratch_twoBumpIntegral_max_two (x₀ x₁ s₀ s₁ : ℝ)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) :
     (∫ p : ℝ, scaledBracketBump 2 s₀ (x₀ - p) *
@@ -8266,12 +8713,17 @@ theorem scratch_twoBumpIntegral_max_two (x₀ x₁ s₀ s₁ : ℝ)
       _ = C_twoBumpEstimate 2 2 * scaledBracketBump 2 (max s₀ s₁) (x₀ - x₁) := by
             rw [min_self, max_eq_left h', aux_diagonalSquareRoot_scaledBracketBumpReal_two_eq]
 
+/--
+@isnad1 id=eq.0h0v.s5.863bae936fa2 from=translated src=- shape=8b5addfb vocab=e098fc83
+-/
 theorem scratch_bumpTriangle_const_two :
     aux_C_bumpTriangleNat 1 1 2 2 = C_bumpTriangle 1 1 2 2 := by
   norm_num [aux_C_bumpTriangleNat, C_bumpTriangle, C_bumpTriangleTilde,
     Real.rpow_natCast]
 
-/-- Integrability of a product of two translated quadratic scaled bumps.-/
+/-- Integrability of a product of two translated quadratic scaled bumps.
+@isnad1 id=integrab.2h4v.s6.09859f3c6094 from=translated src=- shape=8225c7e0 vocab=8701fa1a
+-/
 theorem scratch_B2_product_integrable (x₀ x₁ s₀ s₁ : ℝ)
     (hs₀ : 0 < s₀) (hs₁ : 0 < s₁) :
     Integrable (fun p : ℝ => scaledBracketBump 2 s₀ (x₀ - p) *
@@ -8292,11 +8744,17 @@ theorem scratch_B2_product_integrable (x₀ x₁ s₀ s₁ : ℝ)
     abs_of_nonneg (aux_scaledBracketBump_nonneg 2 hs₁ _)]
   exact aux_derivativeDiagonalSquareRoot_scaledBracketBump_two_le_inv hs₁
 
+/--
+@isnad1 id=eq.0h3v.s4.0390c9fdae60 from=translated src=- shape=0153c957 vocab=d7a050d3
+-/
 theorem scratch_scaledBracketBump_neg (N : ℕ) (s x : ℝ) :
     scaledBracketBump N s (-x) = scaledBracketBump N s x := by
   unfold scaledBracketBump
   rw [mul_neg, abs_neg]
 
+/--
+@isnad1 id=eq.1h3v.s5.5cf633acbe4d from=translated src=- shape=da974607 vocab=34114202
+-/
 theorem scratch_B2_simul_rescale (c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBump 2 (c * s) (c * x) = scaledBracketBump 2 s x := by
   unfold scaledBracketBump
@@ -8311,6 +8769,9 @@ theorem scratch_B2_simul_rescale (c s x : ℝ) (hc : 0 < c) :
         (c * (c * s)⁻¹) * (1 + |s⁻¹ * x|)⁻¹ ^ 2 := by ring
     _ = s⁻¹ * (1 + |s⁻¹ * x|)⁻¹ ^ 2 := by rw [hinv]
 
+/--
+@isnad1 id=le.1h2v.s6.dc8b592c710f from=translated src=- shape=fd68719f vocab=4a9c9931
+-/
 theorem scratch_B2_scale_down_sqrt_two (t x : ℝ) (ht : 0 < t) :
     scaledBracketBump 2 (t / Real.sqrt 2) x ≤
       Real.sqrt 2 * scaledBracketBump 2 t x := by
@@ -8327,6 +8788,9 @@ theorem scratch_B2_scale_down_sqrt_two (t x : ℝ) (ht : 0 < t) :
   · apply le_of_eq
     field_simp [hsqrt.ne']
 
+/--
+@isnad1 id=or.0h2v.s6.e18fa782a178 from=translated src=- shape=aa3e5907 vocab=36d3aab9
+-/
 theorem scratch_caseTwo_orthogonal_dichotomy (x y : ℝ) :
     |x| ≤ 3 * |(-x + y) / Real.sqrt 2| ∨
       |(x + y) / Real.sqrt 2| ≤ 3 * |y| := by
@@ -8375,6 +8839,9 @@ theorem scratch_caseTwo_orthogonal_dichotomy (x y : ℝ) :
       nlinarith [habound, hsqrty, hbsmall']
     simpa [a] using hfinal
 
+/--
+@isnad1 id=le.2h4v.s7.040a01b7772b from=translated src=- shape=32b24122 vocab=9069e82c
+-/
 theorem scratch_caseTwo_orthogonal_decay_two (x y lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBump 2 lam y *
@@ -8411,7 +8878,9 @@ theorem scratch_caseTwo_orthogonal_decay_two (x y lam t : ℝ)
 
 /--
 The required scalar orthogonal split in the Case-2 coordinates.  The
-constant `9` is within the permitted harmless loss from the blueprint's `8`.-/
+constant `9` is within the permitted harmless loss from the blueprint's `8`.
+@isnad1 id=le.2h4v.s7.12d0c38e7b8a from=translated src=- shape=c7e077cc vocab=22a8d510
+-/
 theorem scratch_caseTwo_orthogonal_split (v₀ v₁ lam t : ℝ)
     (hlam : 0 < lam) (ht : 0 < t) :
     scaledBracketBump 2 lam v₀ * scaledBracketBump 2 t (v₀ - v₁) ≤
@@ -8507,7 +8976,9 @@ theorem scratch_caseTwo_orthogonal_split (v₀ v₁ lam t : ℝ)
 
 /--
 The three-bump part of a Case-2 orientation-zero occurrence, before the
-orthogonal-coordinate split.-/
+orthogonal-coordinate split.
+@isnad1 id=le.3h5v.s7.87046348ff71 from=translated src=- shape=cd4af771 vocab=e24bd3fd
+-/
 theorem scratch_caseTwo_u0_threeBump_raw (v₀ v₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     (∫ p : ℝ, scaledBracketBump 2 lam p *
@@ -8636,7 +9107,9 @@ theorem scratch_caseTwo_u0_threeBump_raw (v₀ v₁ lam t₀ t₁ : ℝ)
 
 /--
 The complete orientation-zero Case-2 occurrence bound.  It retains the
-inverse-scale factor supplied by the diagonal derivative estimate.-/
+inverse-scale factor supplied by the diagonal derivative estimate.
+@isnad1 id=le.3h5v.s8.884ed0b2cf57 from=translated src=- shape=8856002c vocab=1bf33443
+-/
 theorem scratch_caseTwo_u0_occurrence (v₀ v₁ lam t₀ t₁ : ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁) :
     (∫ p : ℝ, scaledBracketBump 2 lam p *
@@ -8714,6 +9187,9 @@ theorem scratch_caseTwo_u0_occurrence (v₀ v₁ lam t₀ t₁ : ℝ)
 
 end ScratchCase2Fourier
 
+/--
+@isnad1 id=le.3h6v.s8.8850b50b34ad from=translated src=- shape=0240e285 vocab=51381a1b
+-/
 theorem scratch_nMultiplierRho_negative_decay_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0)
@@ -8803,6 +9279,9 @@ theorem scratch_nMultiplierRho_negative_decay_bound {n : ℕ}
     nMultiplierRho, nMultiplierRhoComplex, hzero,
     not_lt_of_ge hnegative.le] using hreal
 
+/--
+@isnad1 id=le.3h6v.s8.f7b08b0cdfa4 from=translated src=- shape=703899fa vocab=51381a1b
+-/
 theorem scratch_nMultiplierRho_negative_decay_bound_collapsed {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0)
@@ -8862,6 +9341,9 @@ theorem scratch_nMultiplierRho_negative_decay_bound_collapsed {n : ℕ}
       mul_le_mul_of_nonneg_left hsum hC
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.3h5v.s7.3a3951e8c997 from=translated src=- shape=4f76da16 vocab=4d047596
+-/
 theorem scratch_nMultiplierRho_negative_integral_zero {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 ≠ 0) (hnegative : ι.1.1 < 0) :
@@ -8955,6 +9437,9 @@ theorem scratch_nMultiplierRho_negative_integral_zero {n : ℕ}
     rfl
   simpa [nMultiplierRho] using hrealZero
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.2365d6f5b45a from=translated src=- shape=5b2c17c0 vocab=67466737
+-/
 theorem scratch_cumulativeIic_hasDerivAt {rho : ℝ → ℝ}
     (hcont : Continuous rho) (hint : Integrable rho) (x : ℝ) :
     HasDerivAt (fun y : ℝ => ∫ q in Set.Iic y, rho q) (rho x) x := by
@@ -8977,6 +9462,9 @@ theorem scratch_cumulativeIic_hasDerivAt {rho : ℝ → ℝ}
   rw [hfun]
   exact hsum
 
+/--
+@isnad1 id=integrab.1h3v.s6.f504d0b7b89f from=translated src=- shape=cb843146 vocab=de4d900e
+-/
 theorem scratch_integrable_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     Integrable (fun x : ℝ => (P.map fun q => g q x).sum) := by
@@ -8990,6 +9478,9 @@ theorem scratch_integrable_multiset_sum {α : Type*} (P : Multiset α)
         intro q hq
         exact hg q (by simp [hq])
 
+/--
+@isnad1 id=eq.1h3v.s6.3384f5e88568 from=translated src=- shape=7af74257 vocab=59feda4f
+-/
 theorem scratch_integral_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     (∫ x : ℝ, (P.map fun q => g q x).sum) =
@@ -9005,6 +9496,9 @@ theorem scratch_integral_multiset_sum {α : Type*} (P : Multiset α)
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [integral_add (hg a (by simp)) hsumP, ih hgP]
 
+/--
+@isnad1 id=eq.0h4v.s5.85a4ce2000b1 from=translated src=- shape=a1eac3f6 vocab=4c69c2c3
+-/
 theorem scratch_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset α)
     (g : α → ℝ) :
     a * (P.map g).sum = (P.map fun q => a * g q).sum := by
@@ -9014,6 +9508,9 @@ theorem scratch_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset α)
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [mul_add, ih]
 
+/--
+@isnad1 id=le.5h6v.s7.05f3234c6ba0 from=translated src=- shape=9be356b0 vocab=57476610
+-/
 theorem scratch_finite_multiset_integral_bridge {α : Type*}
     (P : Multiset α) (C : ℝ) (rho H : ℝ → ℝ) (B : α → ℝ → ℝ)
     (hC : 0 ≤ C) (hrho : ∀ p, 0 ≤ rho p) (hH : ∀ p, 0 ≤ H p)
@@ -9044,6 +9541,9 @@ theorem scratch_finite_multiset_integral_bridge {α : Type*}
     _ = C * (P.map fun q => ∫ p : ℝ, rho p * B q p).sum := by
       rw [scratch_integral_multiset_sum P (fun q p => rho p * B q p) hint]
 
+/--
+@isnad1 id=le.4h8v.s8.d1ba426b4044 from=translated src=- shape=223e0de7 vocab=126eafc0
+-/
 theorem scratch_caseTwo_outer_from_occurrences {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane)
@@ -9093,6 +9593,9 @@ theorem scratch_caseTwo_outer_from_occurrences {n : ℕ}
             aux_kernelBracketProduct q j (v.1 - p, v.2 - p))).sum := by
       rfl
 
+/--
+@isnad1 id=le.1h5v.s6.518667ea9d7d from=translated src=- shape=153a5c79 vocab=97df26c1
+-/
 theorem scratch_multiset_sum_le_scaled {α : Type*} (P : Multiset α)
     (f g : α → ℝ) (D : ℝ) (h : ∀ q ∈ P, f q ≤ D * g q) :
     (P.map f).sum ≤ D * (P.map g).sum := by
@@ -9108,6 +9611,9 @@ theorem scratch_multiset_sum_le_scaled {α : Type*} (P : Multiset α)
           add_le_add (h a (by simp)) (ih hP)
         _ = D * (g a + (P.map g).sum) := by ring
 
+/--
+@isnad1 id=le.1h3v.s5.92f2da25073d from=translated src=- shape=4a3c1635 vocab=995eba2b
+-/
 theorem scratch_scale_mul_scaledBracketBump_le_one (N : ℕ) (s x : ℝ) (hs : 0 < s) :
     s * scaledBracketBump N s x ≤ 1 := by
   unfold scaledBracketBump
@@ -9117,6 +9623,9 @@ theorem scratch_scale_mul_scaledBracketBump_le_one (N : ℕ) (s x : ℝ) (hs : 0
   · apply inv_le_one_of_one_le₀
     linarith [abs_nonneg (s⁻¹ * x)]
 
+/--
+@isnad1 id=integrab.4h3v.s6.56674cb7b236 from=translated src=- shape=5410e46f vocab=35dd378b
+-/
 theorem scratch_integrable_mul_of_continuous_bound
     {R K : ℝ → ℝ} {C : ℝ} (hR : Continuous R) (hC : 0 ≤ C)
     (hRbound : ∀ p : ℝ, |R p| ≤ C) (hK : Integrable K) :
@@ -9129,6 +9638,9 @@ theorem scratch_integrable_mul_of_continuous_bound
   rw [Real.norm_eq_abs, abs_mul]
   exact mul_le_mul_of_nonneg_right (hRbound p) (abs_nonneg _)
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.2365d6f5b45a from=translated src=- shape=5b2c17c0 vocab=67466737
+-/
 theorem scratch_cumulativeIic_hasDerivAt_outer {rho : ℝ → ℝ}
     (hcont : Continuous rho) (hint : Integrable rho) (x : ℝ) :
     HasDerivAt (fun y : ℝ => ∫ q in Set.Iic y, rho q) (rho x) x := by
@@ -9151,6 +9663,9 @@ theorem scratch_cumulativeIic_hasDerivAt_outer {rho : ℝ → ℝ}
   rw [hfun]
   exact hsum
 
+/--
+@isnad1 id=integrab.6h4v.s7.24c7bb114019 from=translated src=- shape=bd6d7c5a vocab=db06afde
+-/
 theorem scratch_primitive_times_integrable
     {rho K : ℝ → ℝ} {A s : ℝ} (hcont : Continuous rho) (hrho : Integrable rho)
     (hA : 0 ≤ A) (hs : 0 < s)
@@ -9172,6 +9687,9 @@ theorem scratch_primitive_times_integrable
       _ = A := by ring
   simpa [R] using scratch_integrable_mul_of_continuous_bound hRcont hA hRbound hK
 
+/--
+@isnad1 id=integrab.6h4v.s7.2a970b865cca from=translated src=- shape=5f803d71 vocab=db06afde
+-/
 theorem scratch_absPrimitive_times_integrable
     {rho K : ℝ → ℝ} {A s : ℝ} (hcont : Continuous rho) (hrho : Integrable rho)
     (hA : 0 ≤ A) (hs : 0 < s)
@@ -9194,6 +9712,9 @@ theorem scratch_absPrimitive_times_integrable
   simpa [R] using scratch_integrable_mul_of_continuous_bound hRcont.abs hA
     (fun p => by simpa using hRbound p) hK
 
+/--
+@isnad1 id=integrab.3h6v.s9.8757fa324026 from=translated src=- shape=27767c73 vocab=d0ffa104
+-/
 theorem scratch_integrable_mul_fderiv_from_package
     {R g : ℝ → ℝ} {α : Type*} (Rcont : Continuous R)
     (P : Multiset α) (C : ℝ) (B : α → ℝ → ℝ)
@@ -9225,7 +9746,9 @@ theorem scratch_integrable_mul_fderiv_from_package
 
 /--
 Combines a pair of orientation-specific Case-2 occurrence estimates without losing
-multiset multiplicities.-/
+multiset multiplicities.
+@isnad1 id=le.4h11v.s9.bc77933fb980 from=translated src=- shape=acf4287f vocab=e6f78656
+-/
 theorem scratch_caseTwo_occurrence_by_orientation
     {n : ℕ} (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
@@ -9255,7 +9778,9 @@ theorem scratch_caseTwo_occurrence_by_orientation
 
 /--
 The source-ready finite package assembly after the Case-2 integration-by-parts
-representation has been established.-/
+representation has been established.
+@isnad1 id=le.6h10v.s9.39ebd98dad32 from=translated src=- shape=94e2f5a2 vocab=126eafc0
+-/
 theorem scratch_caseTwo_outer_scaled_from_occurrences {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane)
@@ -9289,7 +9814,9 @@ theorem scratch_caseTwo_outer_scaled_from_occurrences {n : ℕ}
 
 /--
 Algebraic conversion of the decaying-primitive integration-by-parts identity into the
-diagonal-derivative representation used by the derivative H package.-/
+diagonal-derivative representation used by the derivative H package.
+@isnad1 id=eq.4h8v.s9.28855b77f889 from=translated src=- shape=11c54746 vocab=5f4d4732
+-/
 theorem scratch_caseTwo_representation_from_parts {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) (rho : ℝ → ℝ)
@@ -9328,7 +9855,9 @@ theorem scratch_caseTwo_representation_from_parts {n : ℕ}
 
 /--
 A cubic bracket tail makes the original rho-times-H term integrable whenever the
-translated H slice is integrable.-/
+translated H slice is integrable.
+@isnad1 id=integrab.5h4v.s7.c90c64ee6da9 from=translated src=- shape=803b2319 vocab=c3cc459e
+-/
 theorem scratch_caseTwo_decay_mul_integrable
     {rho g : ℝ → ℝ} {A s : ℝ}
     (hrhoCont : Continuous rho) (hA : 0 ≤ A) (hs : 0 < s)
@@ -9350,7 +9879,9 @@ theorem scratch_caseTwo_decay_mul_integrable
 
 /--
 The derivative H package supplies the final integrability input of Iic integration
-by parts, once every primitive-weighted occurrence has been shown integrable.-/
+by parts, once every primitive-weighted occurrence has been shown integrable.
+@isnad1 id=integrab.4h7v.s9.97c093206351 from=translated src=- shape=99aa727d vocab=645b16d2
+-/
 theorem scratch_caseTwo_primitive_fderiv_integrable {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane)
     (P : Multiset (SequencePair × Fin 2)) (hP : aux_HKernelDerivativeGaussianBound γ i P)
@@ -9378,7 +9909,9 @@ theorem scratch_caseTwo_primitive_fderiv_integrable {n : ℕ}
 
 /--
 Translation converts the centered two-coordinate bracket slice used by the existing
-Case-1 integrability lemma into the arbitrary `v-p` slice needed in Case 2.-/
+Case-1 integrability lemma into the arbitrary `v-p` slice needed in Case 2.
+@isnad1 id=integrab.1h2v.s7.515f8e219bff from=translated src=- shape=72dd97b4 vocab=b961f061
+-/
 theorem scratch_caseTwo_translate_integrable
     (B : RealPlane → ℝ) (v : RealPlane)
     (hcentered : Integrable (fun p : ℝ =>
@@ -9396,6 +9929,9 @@ theorem scratch_caseTwo_translate_integrable
   rw [heq] at htranslate
   exact htranslate
 
+/--
+@isnad1 id=le.9h8v.s9.3f5e97516ec7 from=translated src=- shape=257685d4 vocab=bc3a7bea
+-/
 theorem scratch_caseTwo_u0_primitive_scalar
     (v₀ v₁ lam t₀ t₁ A r : ℝ) (R : ℝ → ℝ)
     (hlam : 0 < lam) (ht₀ : 0 < t₀) (ht₁ : 0 < t₁)
@@ -9499,7 +10035,9 @@ theorem scratch_caseTwo_u0_primitive_scalar
       mul_le_mul_of_nonneg_left hscalar' hAlam
     _ ≤ 9 * A * r * C_bumpTriangle 1 1 2 2 * C_twoBumpEstimate 2 2 * S := hscale
 
-/-- Orientation-zero kernel-product form of the preceding primitive lifting.-/
+/-- Orientation-zero kernel-product form of the preceding primitive lifting.
+@isnad1 id=le.10h7v.s10.f795d2642b99 from=translated src=- shape=fb30fb42 vocab=6702bbde
+-/
 theorem scratch_caseTwo_u0_primitive_kernelBracket
     (q : SequencePair × Fin 2) (j : ℤ) (v : RealPlane)
     (lam A r : ℝ) (R : ℝ → ℝ)
@@ -9549,6 +10087,9 @@ theorem scratch_caseTwo_u0_primitive_kernelBracket
     A r R hlam ht₀ ht₁ hA hr hratio hR hint' hscalar
   simpa [aux_kernelBracketProduct, hqu, W] using hmain
 
+/--
+@isnad1 id=eq.1h4v.s5.947b0cc2f6c3 from=translated src=- shape=9b0970ec vocab=34114202
+-/
 theorem scratch_scaledBracketBump_simul_rescale (N : ℕ) (c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBump N (c * s) (c * x) = scaledBracketBump N s x := by
   unfold scaledBracketBump
@@ -9563,12 +10104,18 @@ theorem scratch_scaledBracketBump_simul_rescale (N : ℕ) (c s x : ℝ) (hc : 0 
         (c * (c * s)⁻¹) * (1 + |s⁻¹ * x|)⁻¹ ^ N := by ring
     _ = s⁻¹ * (1 + |s⁻¹ * x|)⁻¹ ^ N := by rw [hinv]
 
+/--
+@isnad1 id=eq.1h2v.s6.c22729d80a44 from=translated src=- shape=ab1de32c vocab=1dfdcbf9
+-/
 theorem scratch_integral_scale_pos (c : ℝ) (hc : 0 < c) (g : ℝ → ℝ) :
     (∫ p : ℝ, c * g (c * p)) = ∫ x : ℝ, g x := by
   rw [integral_const_mul, Measure.integral_comp_mul_left]
   simp only [smul_eq_mul, abs_of_pos (inv_pos.mpr hc)]
   field_simp [hc.ne']
 
+/--
+@isnad1 id=le.4h5v.s8.630c8ce4cf6f from=translated src=- shape=1c65c22b vocab=9a9e4181
+-/
 theorem scratch_caseTwo_u1_occurrence
     (w0 w1 lam t0 t1 : ℝ) (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1)
     (hlam_t0 : Real.sqrt 2 * lam ≤ t0) :
@@ -9671,6 +10218,9 @@ theorem scratch_caseTwo_u1_occurrence
         scaledBracketBump 2 t0 (Real.sqrt 2 * w0) *
         scaledBracketBump 2 t1 (Real.sqrt 2 * w1) := by rfl
 
+/--
+@isnad1 id=le.5h5v.s8.8674d595a84d from=translated src=- shape=318b1685 vocab=b97ffea3
+-/
 theorem scratch_caseTwo_u1_kernelBracket
     (q : SequencePair × Fin 2) (j : ℤ) (w0 w1 lam : ℝ)
     (hqu : q.2 = 1) (ht0 : 0 < q.1 0 j) (ht1 : 0 < q.1 1 j)
@@ -9737,6 +10287,9 @@ theorem scratch_caseTwo_u1_kernelBracket
           (W q.2 (w0 - w1, w0 + w1)).2 := by
       rw [hWbase0, hWbase1]
 
+/--
+@isnad1 id=le.3h5v.s7.6730ebdfbfdd from=translated src=- shape=4b2a4640 vocab=fcf391c9
+-/
 theorem scratch_negative_distanceBall_sqrt_scale_le
     {a b : ℤ → ℝ} (ha : SpacedSequence a) {d : ℕ}
     (hb : b ∈ sequenceDistanceBall a (d : WithTop ℕ))
@@ -9769,6 +10322,9 @@ theorem scratch_negative_distanceBall_sqrt_scale_le
     _ ≤ a (j - (d : ℤ)) := hsp'
     _ ≤ b j := hlow
 
+/--
+@isnad1 id=le.3h5v.s7.89154d90bb76 from=translated src=- shape=d443483f vocab=3ac7b663
+-/
 theorem scratch_negative_distanceBall_scale_ratio_le
     {a b : ℤ → ℝ} (ha : SpacedSequence a) {d : ℕ}
     (hb : b ∈ sequenceDistanceBall a (d : WithTop ℕ))
@@ -9793,6 +10349,9 @@ theorem scratch_negative_distanceBall_scale_ratio_le
     _ ≤ (2 : ℝ) ^ h * b j :=
       mul_le_mul_of_nonneg_left (hsp'.trans hlow) (zpow_pos (by norm_num) _).le
 
+/--
+@isnad1 id=le.5h4v.s7.12cdba770360 from=translated src=- shape=b8cc13f9 vocab=31f58ba0
+-/
 theorem scratch_negative_scale_ratio_sum_le
     (lambda t0 t1 : ℝ) (h : ℤ) (hlambda : 0 ≤ lambda)
     (ht0 : 0 < t0) (ht1 : 0 < t1)
@@ -9815,6 +10374,9 @@ theorem scratch_negative_scale_ratio_sum_le
       rw [zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0), zpow_one]
       ring
 
+/--
+@isnad1 id=le.5h10v.s9.359925354bb9 from=translated src=- shape=4be00fe9 vocab=5a78769b
+-/
 theorem scratch_caseTwo_u1_kernelBracket_of_package {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (ι : MultiplierIndex γ)
     (j : ℤ) (hnegative : ι.1.1 < 0)
@@ -9843,6 +10405,9 @@ theorem scratch_caseTwo_u1_kernelBracket_of_package {n : ℕ}
   exact scratch_caseTwo_u1_kernelBracket q j w0 w1 lambda hqu hq0pos hq1pos
     hlambda_pos hscale
 
+/--
+@isnad1 id=le.10h8v.s9.9ab535d0c82d from=translated src=- shape=2bf514b8 vocab=e91ca222
+-/
 theorem scratch_caseTwo_u1_primitive_occurrence
     (q : SequencePair × Fin 2) (j : ℤ) (w0 w1 lambda A r : ℝ) (R : ℝ → ℝ)
     (hqu : q.2 = 1) (hq0 : SpacedSequence (q.1 0)) (hq1 : SpacedSequence (q.1 1))
@@ -9931,6 +10496,9 @@ noncomputable def caseTwoOccurrence (P : Multiset (SequencePair × Fin 2))
     (k : Fin P.card) : SequencePair × Fin 2 :=
   P.toList.get (Fin.cast (Multiset.length_toList P).symm k)
 
+/--
+@isnad1 id=mem.0h2v.s5.9442c09c5358 from=translated src=- shape=79d20c14 vocab=9d8cf158
+-/
 theorem caseTwoOccurrence_mem (P : Multiset (SequencePair × Fin 2))
     (k : Fin P.card) : caseTwoOccurrence P k ∈ P := by
   unfold caseTwoOccurrence
@@ -9962,6 +10530,9 @@ def caseTwoExactSlotOf (lam : ℤ → ℝ) (q : SequencePair × Fin 2) (r : Fin 
     else q
   else q
 
+/--
+@isnad1 id=spacedse.2h4v.s5.5e6e914d3b88 from=translated src=- shape=3f204a52 vocab=a35ba11e
+-/
 theorem caseTwoExactSlotOf_spaced (lam : ℤ → ℝ) (hlam : SpacedSequence lam)
     (q : SequencePair × Fin 2) (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (r : Fin 5) :
     ∀ s : Fin 2, SpacedSequence ((caseTwoExactSlotOf lam q r).1 s) := by
@@ -10017,9 +10588,15 @@ def caseTwoScales {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (b : ℕ) (m : Fin 2 → ℕ) : SequencePair :=
   fun r j => (2 : ℝ) ^ (m r) * (caseTwoSlotNat γ i lam b).1 r j
 
+/--
+@isnad1 id=le.0h0v.s2.892b6cd765f9 from=translated src=- shape=28fc0566 vocab=bb35377b
+-/
 theorem caseTwoB_card : caseTwoB.card ≤ C_gaussianDominationCombinedCard := by
   norm_num [caseTwoB, C_gaussianDominationCombinedCard]
 
+/--
+@isnad1 id=spacedse.1h6v.s5.bb7ff7c91ac6 from=translated src=- shape=92161b45 vocab=a6599c65
+-/
 theorem caseTwoSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (b : ℕ) :
     ∀ r : Fin 2, SpacedSequence ((caseTwoSlotNat γ i lam b).1 r) := by
@@ -10037,6 +10614,9 @@ theorem caseTwoSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
   have hslot := caseTwoExactSlotOf_spaced lam hlam q hq (caseTwoSlotIndex b).2
   simpa [caseTwoSlotNat, P, k, q] using hslot
 
+/--
+@isnad1 id=spacedse.1h7v.s5.c3d215ac5814 from=translated src=- shape=56192cd3 vocab=925689ee
+-/
 theorem caseTwoScales_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (b : ℕ)
     (m : Fin 2 → ℕ) (r : Fin 2) :
@@ -10044,7 +10624,9 @@ theorem caseTwoScales_spaced {n : ℕ} (γ : GeometricParameters n)
   unfold caseTwoScales
   exact smul_mem_A (caseTwoSlotNat_spaced γ i lam hlam b r) (pow_pos (by norm_num) _)
 
-/-- Enlarging a finite comparison radius preserves the comparison.-/
+/-- Enlarging a finite comparison radius preserves the comparison.
+@isnad1 id=withinse.3h4v.s4.5491b8350ec3 from=translated src=- shape=11f313f3 vocab=6635e55f
+-/
 theorem caseTwo_within_mono {a q : ℤ → ℝ} {d e : ℕ} (ha : SpacedSequence a)
     (hq : WithinSequenceDistance a q d) (hde : d ≤ e) :
     WithinSequenceDistance a q e := by
@@ -10057,7 +10639,9 @@ theorem caseTwo_within_mono {a q : ℤ → ℝ} {d e : ℕ} (ha : SpacedSequence
       q j ≤ a (j + d) := (hq j).2
       _ ≤ a (j + e) := aux_spacedSequence_monotone ha (by omega)
 
-/-- Pointwise maxima preserve a common finite distance-ball comparison.-/
+/-- Pointwise maxima preserve a common finite distance-ball comparison.
+@isnad1 id=withinse.2h4v.s5.38ba0202414c from=translated src=- shape=75ff6000 vocab=bfc74050
+-/
 theorem caseTwo_within_max {a q₀ q₁ : ℤ → ℝ} {d : ℕ}
     (hq₀ : WithinSequenceDistance a q₀ d) (hq₁ : WithinSequenceDistance a q₁ d) :
     WithinSequenceDistance a (fun j => max (q₀ j) (q₁ j)) d := by
@@ -10068,7 +10652,9 @@ theorem caseTwo_within_max {a q₀ q₁ : ℤ → ℝ} {d : ℕ}
 
 /--
 The three Case 2 orientation-zero outputs, the orientation-one output, and padding all
-have pair distance at most `2(Δ+h)` once `λ` lies within `Δ+h` of the reference scale.-/
+have pair distance at most `2(Δ+h)` once `λ` lies within `Δ+h` of the reference scale.
+@isnad1 id=le.2h7v.s7.d5c1e0635303 from=translated src=- shape=83d588c2 vocab=dadc0d31
+-/
 theorem caseTwoExactSlotOf_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (h : ℕ)
     (hlam : WithinSequenceDistance (γ.scales i 1) lam (geometricDelta γ + h))
@@ -10167,6 +10753,9 @@ theorem caseTwoExactSlotOf_distance_bound {n : ℕ} (γ : GeometricParameters n)
         · simpa [caseTwoExactSlotOf, hqu, hr0, hr1, hr2] using hpad
   · simpa [caseTwoExactSlotOf, hqu] using hpad
 
+/--
+@isnad1 id=le.1h6v.s6.513567054760 from=translated src=- shape=7dd84fd8 vocab=d50a3644
+-/
 theorem caseTwoSlotNat_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (h : ℕ)
     (hlam : WithinSequenceDistance (γ.scales i 1) lam (geometricDelta γ + h)) (b : ℕ) :
@@ -10181,6 +10770,9 @@ theorem caseTwoSlotNat_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (by simpa [P] using hqmem) (caseTwoSlotIndex b).2
   simpa [caseTwoSlotNat, P, k, q] using hslot
 
+/--
+@isnad1 id=le.2h7v.s7.77b4aac6a542 from=translated src=- shape=ffd77179 vocab=82e42fed
+-/
 theorem caseTwoScales_distance_bound {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (h : ℕ) (hlam_mem : SpacedSequence lam)
     (hlam : WithinSequenceDistance (γ.scales i 1) lam (geometricDelta γ + h))
@@ -10228,6 +10820,9 @@ theorem caseTwoScales_distance_bound {n : ℕ} (γ : GeometricParameters n)
       simp only [aux_natPairWeight]
       omega
 
+/--
+@isnad1 id=and.2h5v.s7.b2c18acaccae from=translated src=- shape=fc4a4d52 vocab=5ff70255
+-/
 theorem caseTwo_witness_side_conditions {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (h : ℕ) (hlam_mem : SpacedSequence lam)
     (hlam : WithinSequenceDistance (γ.scales i 1) lam (geometricDelta γ + h)) :
@@ -10244,11 +10839,17 @@ theorem caseTwo_witness_side_conditions {n : ℕ} (γ : GeometricParameters n)
   · intro b _ m
     exact caseTwoScales_distance_bound γ i lam h hlam_mem hlam b m
 
+/--
+@isnad1 id=eq.0h2v.s6.372ee3034743 from=translated src=- shape=1d00e1bd vocab=34a55b16
+-/
 theorem caseTwoSlotIndex_encode (k : Fin 6) (r : Fin 5) :
     caseTwoSlotIndex (k.1 * 5 + r.1) = (k, r) := by
   apply Prod.ext <;> apply Fin.ext <;> simp [caseTwoSlotIndex]
   · omega
 
+/--
+@isnad1 id=eq.0h6v.s6.329651b74518 from=translated src=- shape=a751e726 vocab=da51968b
+-/
 theorem caseTwoSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) (k : Fin 6) (r : Fin 5) :
     caseTwoSlotNat γ i lam (k.1 * 5 + r.1) =
@@ -10258,6 +10859,9 @@ theorem caseTwoSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
   unfold caseTwoSlotNat
   rw [caseTwoSlotIndex_encode]
 
+/--
+@isnad1 id=eq.0h6v.s7.03eb2511de7e from=translated src=- shape=0ce3f871 vocab=dfd279a5
+-/
 theorem caseTwo_sum_range30_reindex {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) {R : Type*} [AddCommMonoid R]
     (F : SequencePair × Fin 2 → R) :
@@ -10315,7 +10919,9 @@ def caseTwoActivePackage (lam : ℤ → ℝ) (P : Multiset (SequencePair × Fin 
 /--
 The manuscript's `14` count applies only when the H package has its two orientation-one
 entries.  In the other canonical orientation all six occurrences are orientation zero, so the
-same construction has exactly `18` unpadded outputs.-/
+same construction has exactly `18` unpadded outputs.
+@isnad1 id=eq.0h4v.s6.0f4eb4696726 from=translated src=- shape=b7c9e13b vocab=e76edf4e
+-/
 theorem caseTwoCanonicalActivePackage_card {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lam : ℤ → ℝ) :
     (caseTwoActivePackage lam (aux_hKernelGaussianMultiset γ i)).card =
@@ -10333,6 +10939,9 @@ noncomputable def scratch_caseTwoLambda {n : ℕ} (γ : GeometricParameters n)
   fun j => (2 : ℝ) ^ (ι.1.1 + 1) *
     γ.scales i 1 (j - (geometricDelta γ : ℤ) - 1)
 
+/--
+@isnad1 id=spacedse.0h4v.s4.5df6644a9d8c from=translated src=- shape=d87e2aa8 vocab=22ccd107
+-/
 theorem scratch_caseTwoLambda_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) : SpacedSequence (scratch_caseTwoLambda γ ι i) := by
   unfold scratch_caseTwoLambda
@@ -10340,6 +10949,9 @@ theorem scratch_caseTwoLambda_spaced {n : ℕ} (γ : GeometricParameters n)
     (smul_mem_A (shift_mem_A (γ.scales_spaced i 1)
       (-(geometricDelta γ : ℤ) - 1)) (zpow_pos (by norm_num) _))
 
+/--
+@isnad1 id=withinse.1h2v.s5.d0539b7e69a2 from=translated src=- shape=282adbc0 vocab=38f7dffc
+-/
 theorem scratch_caseTwo_within_backward_shift (a : ℤ → ℝ) (ha : SpacedSequence a)
     (d : ℕ) :
     WithinSequenceDistance a (fun j => a (j - (d : ℤ) - 1)) (d + 1) := by
@@ -10353,6 +10965,9 @@ theorem scratch_caseTwo_within_backward_shift (a : ℤ → ℝ) (ha : SpacedSequ
     push_cast
     omega
 
+/--
+@isnad1 id=withinse.1h4v.s6.542a5acb0196 from=translated src=- shape=bec02614 vocab=0a40945d
+-/
 theorem scratch_caseTwoLambda_within {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (hnegative : ι.1.1 < 0) :
     WithinSequenceDistance (γ.scales i 1) (scratch_caseTwoLambda γ ι i)
@@ -10396,6 +11011,9 @@ theorem scratch_caseTwoLambda_within {n : ℕ} (γ : GeometricParameters n)
   funext j
   rfl
 
+/--
+@isnad1 id=le.1h3v.s7.95751ce2677e from=translated src=- shape=f74e92b9 vocab=13fe22ab
+-/
 theorem scratch_caseTwo_negative_loss {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (hnegative : ι.1.1 < 0) :
     (2 : ℝ) ^ (ι.1.1 + 1) ≤
@@ -10431,6 +11049,9 @@ noncomputable def scratch_caseTwoPrimitive {n : ℕ} (γ : GeometricParameters n
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) : ℝ → ℝ :=
   fun p => ∫ x : ℝ in Set.Iic p, nMultiplierRho γ hkn ι i j x
 
+/--
+@isnad1 id=le.2h6v.s7.f425662d2063 from=translated src=- shape=1b760db2 vocab=3a9fa2f0
+-/
 theorem scratch_caseTwoPrimitive_bound {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ)
     (hnegative : ι.1.1 < 0) (p : ℝ) :
@@ -10477,6 +11098,9 @@ theorem scratch_caseTwoPrimitive_bound {n : ℕ} (γ : GeometricParameters n)
         (A / 2) * lam * scaledBracketBump 2 lam p := htail
     _ = _ := by dsimp [A, lam]; ring
 
+/--
+@isnad1 id=continuo.1h5v.s5.576aa31a3b83 from=translated src=- shape=2aa15060 vocab=08d0041b
+-/
 theorem scratch_caseTwoPrimitive_continuous {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) :
     Continuous (scratch_caseTwoPrimitive γ hkn ι i j) := by
@@ -10492,6 +11116,9 @@ theorem scratch_caseTwoPrimitive_continuous {n : ℕ} (γ : GeometricParameters 
     exact (scratch_cumulativeIic_hasDerivAt hrhoCont hrhoInt x).differentiableAt
   exact hdiff.continuous
 
+/--
+@isnad1 id=le.3h7v.s7.999eb012bf2f from=translated src=- shape=b03a47ee vocab=e2731617
+-/
 theorem scratch_caseTwo_ratio_of_package {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) (j : ℤ) (hnegative : ι.1.1 < 0)
     (P : Multiset (SequencePair × Fin 2)) (hP : aux_HKernelDerivativeGaussianBound γ i P)
@@ -10517,6 +11144,9 @@ theorem scratch_caseTwo_ratio_of_package {n : ℕ} (γ : GeometricParameters n)
   simpa [lam] using scratch_negative_scale_ratio_sum_le lam (q.1 0 j) (q.1 1 j)
     ι.1.1 hlam ht0 ht1 h0 h1
 
+/--
+@isnad1 id=le.2h3v.s5.2f128c2d38e2 from=translated src=- shape=1fe31097 vocab=470885b3
+-/
 theorem scratch_caseTwo_scaledBracketBumpReal_le_inv
     (N s x : ℝ) (hN : 0 ≤ N) (hs : 0 < s) :
     scaledBracketBumpReal N s x ≤ s⁻¹ := by
@@ -10529,6 +11159,9 @@ theorem scratch_caseTwo_scaledBracketBumpReal_le_inv
       mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr hs.le)
     _ = s⁻¹ := by ring
 
+/--
+@isnad1 id=integrab.4h6v.s6.f35f913888d5 from=translated src=- shape=ff932127 vocab=0cdadadf
+-/
 theorem scratch_caseTwo_scaledBracketBumpReal_product_integrable
     (n0 n1 s0 s1 x0 x1 : ℝ) (hn0 : 1 < n0) (hn1 : 0 ≤ n1)
     (hs0 : 0 < s0) (hs1 : 0 < s1) :
@@ -10567,12 +11200,18 @@ theorem scratch_caseTwo_scaledBracketBumpReal_product_integrable
           mul_le_mul_of_nonneg_left hle hleft
       _ = s1⁻¹ * scaledBracketBumpReal n0 s0 (x0 - p) := by ring
 
+/--
+@isnad1 id=le.1h3v.s4.08e28b2a198f from=translated src=- shape=61148ab2 vocab=1db1ba73
+-/
 theorem scratch_caseTwo_scaledBracketBump_le_inv
     (N : ℕ) (s x : ℝ) (hs : 0 < s) : scaledBracketBump N s x ≤ s⁻¹ := by
   have h := scratch_caseTwo_scaledBracketBumpReal_le_inv (N : ℝ) s x
     (Nat.cast_nonneg N) hs
   simpa [aux_caseTwo.scratch_scaledBracketBump_nat_eq_real] using h
 
+/--
+@isnad1 id=continuo.0h2v.s4.d03598e7e181 from=translated src=- shape=9dae8271 vocab=434a917c
+-/
 theorem scratch_caseTwo_continuous_scaledBracketBump (N : ℕ) (s : ℝ) :
     Continuous (fun x : ℝ => scaledBracketBump N s x) := by
   unfold scaledBracketBump
@@ -10582,7 +11221,9 @@ theorem scratch_caseTwo_continuous_scaledBracketBump (N : ℕ) (s : ℝ) :
   intro x
   exact (hbase.continuousAt.inv₀ (ne_of_gt (by positivity))).pow N
 
-/-- The weighted bracket product needed by both Case 2 occurrence bounds is integrable.-/
+/-- The weighted bracket product needed by both Case 2 occurrence bounds is integrable.
+@isnad1 id=integrab.3h5v.s7.553952990f0d from=translated src=- shape=c3336704 vocab=9e1584be
+-/
 theorem scratch_caseTwo_weighted_kernel_integrable
     (q : SequencePair × Fin 2) (j : ℤ) (w0 w1 lam : ℝ)
     (hq0 : SpacedSequence (q.1 0)) (hq1 : SpacedSequence (q.1 1))
@@ -10711,6 +11352,9 @@ theorem scratch_caseTwo_weighted_kernel_integrable
     rw [heq]
     exact htarget
 
+/--
+@isnad1 id=continuo.0h4v.s6.f82556e5673e from=translated src=- shape=76780849 vocab=12411494
+-/
 theorem scratch_caseTwo_kernel_continuous
     (q : SequencePair × Fin 2) (j : ℤ) (w0 w1 : ℝ) :
     Continuous (fun p : ℝ =>
@@ -10769,6 +11413,9 @@ theorem scratch_caseTwo_kernel_continuous
     rw [heq]
     exact hcont
 
+/--
+@isnad1 id=integrab.6h7v.s8.0a59eef90c64 from=translated src=- shape=c16c28e7 vocab=a6cf9ad8
+-/
 theorem scratch_caseTwo_primitive_occurrence_integrable
     (q : SequencePair × Fin 2) (j : ℤ) (w0 w1 lam A : ℝ) (R : ℝ → ℝ)
     (hq0 : SpacedSequence (q.1 0)) (hq1 : SpacedSequence (q.1 1))
@@ -10821,6 +11468,9 @@ def scratch_caseTwoSlotTerm (lam : ℤ → ℝ) (q : SequencePair × Fin 2)
     (j : ℤ) (v : RealPlane) (r : Fin 5) : ℝ :=
   aux_kernelBracketProduct (ScratchCase2Witness.caseTwoExactSlotOf lam q r) j v
 
+/--
+@isnad1 id=le.2h5v.s5.cc084881c10d from=translated src=- shape=ba5beaad vocab=d2a682f2
+-/
 theorem scratch_caseTwoSlotTerm_nonneg
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (j : ℤ) (v : RealPlane) (r : Fin 5) :
@@ -10829,11 +11479,17 @@ theorem scratch_caseTwoSlotTerm_nonneg
   unfold scratch_caseTwoSlotTerm
   exact aux_kernelBracketProduct_nonneg _ hs j v
 
+/--
+@isnad1 id=eq.0h1v.s7.904a29364c4e from=translated src=- shape=4f6d8cf6 vocab=250fe31d
+-/
 theorem scratch_caseTwo_sum_fin5 (f : Fin 5 → ℝ) :
     (∑ r : Fin 5, f r) = f 0 + f 1 + f 2 + f 3 + f 4 := by
   simp [Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=le.3h4v.s8.d9ba671d52e7 from=translated src=- shape=1befe04c vocab=7d1860c6
+-/
 theorem scratch_caseTwo_u0_output_le_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -10883,6 +11539,9 @@ theorem scratch_caseTwo_u0_output_le_slots
   rw [← hterms.1, ← hterms.2.1, ← hterms.2.2]
   nlinarith
 
+/--
+@isnad1 id=le.3h4v.s6.25d1ab28ab49 from=translated src=- shape=9d8e7aaf vocab=f546f050
+-/
 theorem scratch_caseTwo_u1_output_le_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -10899,6 +11558,9 @@ theorem scratch_caseTwo_u1_output_le_slots
   rw [scratch_caseTwo_sum_fin5, ← hslot0]
   nlinarith
 
+/--
+@isnad1 id=le.6h7v.s9.858ce9302339 from=translated src=- shape=913455fe vocab=ddfe16cb
+-/
 theorem scratch_caseTwo_u0_bound_to_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -10923,6 +11585,9 @@ theorem scratch_caseTwo_u0_bound_to_slots
     exact mul_nonneg (mul_nonneg (mul_nonneg (mul_nonneg (by norm_num) hA) hr) htri) htwo
   exact hmain.trans (mul_le_mul_of_nonneg_left hslots hcoef)
 
+/--
+@isnad1 id=le.5h6v.s7.86a7a949b6e8 from=translated src=- shape=40dfcb1b vocab=f729a1cf
+-/
 theorem scratch_caseTwo_u1_bound_to_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -10933,6 +11598,9 @@ theorem scratch_caseTwo_u1_bound_to_slots
   have hslots := scratch_caseTwo_u1_output_le_slots lam hlam q hq j v hqu
   exact hmain.trans (mul_le_mul_of_nonneg_left hslots hK)
 
+/--
+@isnad1 id=le.4h9v.s9.30f4d9d6c474 from=translated src=- shape=8c82917f vocab=314ad859
+-/
 theorem scratch_caseTwo_occurrence_raw_to_slots {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hnegative : ι.1.1 < 0)
@@ -11042,6 +11710,9 @@ theorem scratch_caseTwo_occurrence_raw_to_slots {n : ℕ}
         mul_le_mul_of_nonneg_right hcoef hsum
       _ = _ := by rfl
 
+/--
+@isnad1 id=le.4h9v.s9.be5d316ca007 from=translated src=- shape=576b2e74 vocab=df85a229
+-/
 theorem scratch_caseTwo_occurrence_to_slots {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hnegative : ι.1.1 < 0)
@@ -11128,6 +11799,9 @@ theorem scratch_caseTwo_occurrence_to_slots {n : ℕ}
       mul_le_mul_of_nonneg_right hcoef hS
     _ = _ := by rfl
 
+/--
+@isnad1 id=auxhkern.0h3v.s4.1af480635f8e from=translated src=- shape=d0ada332 vocab=a1a4e1ba
+-/
 theorem scratch_caseTwo_HPackage_explicit {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) :
     aux_HKernelDerivativeGaussianBound γ i (aux_hKernelGaussianMultiset γ i) := by
@@ -11167,6 +11841,9 @@ theorem scratch_caseTwo_HPackage_explicit {n : ℕ} (γ : GeometricParameters n)
       · linarith [hsp.1]
       · convert hsp.2 using 1; ring_nf
 
+/--
+@isnad1 id=differen.0h6v.s6.73c5deda1eb0 from=translated src=- shape=020f839f vocab=c14426aa
+-/
 theorem scratch_caseTwo_translate_negDiagonal_differentiable {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (j : ℤ) (v : RealPlane) (p : ℝ) :
     DifferentiableAt ℝ (fun q : ℝ => hMultiplier γ i j (v.1 - q, v.2 - q)) p := by
@@ -11187,6 +11864,9 @@ theorem scratch_caseTwo_translate_negDiagonal_differentiable {n : ℕ}
     congr 1; ring_nf
   exact hcomp.congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=integrab.4h8v.s8.4b5fa00f75a3 from=translated src=- shape=3adb90e6 vocab=c09e91d9
+-/
 theorem scratch_caseTwo_primitive_occurrence_integrable_at {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hnegative : ι.1.1 < 0)
@@ -11233,6 +11913,9 @@ theorem scratch_caseTwo_primitive_occurrence_integrable_at {n : ℕ}
   have hv1 : w0 + w1 = v.2 := congrArg Prod.snd hv
   simpa [R, hv0, hv1] using hint
 
+/--
+@isnad1 id=eq.3h7v.s7.93c42ce69d3e from=translated src=- shape=49a05e82 vocab=fbc542d3
+-/
 theorem scratch_caseTwo_representation {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) (hnegative : ι.1.1 < 0)
@@ -11319,6 +12002,9 @@ theorem scratch_caseTwo_representation {n : ℕ}
   apply scratch_caseTwo_representation_from_parts γ hkn ι i j v rho R hparts hfderiv
   rfl
 
+/--
+@isnad1 id=le.4h8v.s8.e354e85a3181 from=translated src=- shape=b9a9a944 vocab=5053b29b
+-/
 theorem scratch_caseTwo_occurrence_to_slots_at {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hnegative : ι.1.1 < 0)
@@ -11340,6 +12026,9 @@ theorem scratch_caseTwo_occurrence_to_slots_at {n : ℕ}
   have hraw := scratch_caseTwo_occurrence_to_slots γ hkn ι i j hnegative P hP q hqmem w0 w1
   simpa [hv0, hv1] using hraw
 
+/--
+@isnad1 id=eq.0h3v.s6.0d089dcf9d63 from=translated src=- shape=1d7e5472 vocab=35a5b96b
+-/
 theorem scratch_caseTwo_multiset_sum_eq_occurrence_sum
     {R : Type*} [AddCommMonoid R] (P : Multiset (SequencePair × Fin 2))
     (F : SequencePair × Fin 2 → R) :
@@ -11354,6 +12043,9 @@ theorem scratch_caseTwo_multiset_sum_eq_occurrence_sum
   intro k
   simp [e, ScratchCase2Witness.caseTwoOccurrence]
 
+/--
+@isnad1 id=eq.0h6v.s6.b8c331def9a5 from=translated src=- shape=8b1d16ed vocab=5bb6feff
+-/
 theorem scratch_caseTwo_multiset_slot_sum_reindex {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (j : ℤ) (v : RealPlane) :
@@ -11390,6 +12082,9 @@ theorem scratch_caseTwo_multiset_slot_sum_reindex {n : ℕ}
     (scratch_caseTwoLambda γ ι i) (fun s => aux_kernelBracketProduct s j v)]
   simp only [scratch_caseTwoSlotTerm]
 
+/--
+@isnad1 id=le.2h6v.s8.b0bc22eb0d34 from=translated src=- shape=49e49082 vocab=7060aa54
+-/
 theorem scratch_caseTwo_preGaussian_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) (hnegative : ι.1.1 < 0) :
@@ -11466,6 +12161,9 @@ theorem scratch_caseTwo_preGaussian_bound {n : ℕ}
       rw [hreindex]
     _ = _ := by rfl
 
+/--
+@isnad1 id=le.1h4v.s7.63a1cb1fb46a from=translated src=- shape=5a70d5c0 vocab=a6111d9d
+-/
 theorem scratch_caseTwo_slot_gaussian_majorant
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -11606,6 +12304,9 @@ theorem scratch_caseTwo_slot_gaussian_majorant
           ((∑' a : ℕ, f0 a) * ∑' a : ℕ, f1 a) := by rw [hcoeff]
     _ = _ := by rw [hseriesEq]
 
+/--
+@isnad1 id=le.0h6v.s7.4b962eb31e54 from=translated src=- shape=379d481c vocab=3883f9f7
+-/
 theorem scratch_caseTwo_slot_sum_gaussian_majorant {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (j : ℤ) (v : RealPlane) :
@@ -11675,6 +12376,9 @@ theorem scratch_caseTwo_slot_sum_gaussian_majorant {n : ℕ}
       dsimp [T]
       rw [Finset.mul_sum]
 
+/--
+@isnad1 id=auxgauss.3h4v.s6.9a4b32123577 from=translated src=- shape=c0f68a68 vocab=5b7cde09
+-/
 theorem scratch_gaussDominationCase2 {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (ι : MultiplierIndex γ) (hnegative : ι.1.1 < 0) (_hvertical : ι.1.2 = 0) :
@@ -11827,7 +12531,9 @@ C_{\text{four scale Gaussian kernel estimate},3}
 C_{\text{Kernel derivative estimate for Gaussian domination}}
 C_{\text{bump triangle},1,1,2,2}
 C_{\text{two bump estimate},2,2}.
-$$-/
+$$
+@isnad1 id=auxgauss.3h4v.s6.9a4b32123577 from=translated src=- shape=c0f68a68 vocab=5b7cde09
+-/
 theorem gaussDominationCase2 {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     (hnegative : ι.1.1 < 0) (_hvertical : ι.1.2 = 0) :
@@ -11848,6 +12554,9 @@ noncomputable def scratch_caseThreeLambdaPlus {n : ℕ} (γ : GeometricParameter
     (ι : MultiplierIndex γ) (i : Fin γ.k) : ℤ → ℝ :=
   fun j => γ.scales i 1 (j + ι.1.2)
 
+/--
+@isnad1 id=spacedse.0h4v.s4.a882e7d82cf0 from=translated src=- shape=d87e2aa8 vocab=842ff7cc
+-/
 theorem scratch_caseThreeLambdaMinus_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) :
     SpacedSequence (scratch_caseThreeLambdaMinus γ ι i) := by
@@ -11856,6 +12565,9 @@ theorem scratch_caseThreeLambdaMinus_spaced {n : ℕ} (γ : GeometricParameters 
   simp [scratch_caseThreeLambdaMinus]
   ring_nf
 
+/--
+@isnad1 id=spacedse.0h4v.s4.b7299602f9ae from=translated src=- shape=d87e2aa8 vocab=800ac30c
+-/
 theorem scratch_caseThreeLambdaPlus_spaced {n : ℕ} (γ : GeometricParameters n)
     (ι : MultiplierIndex γ) (i : Fin γ.k) :
     SpacedSequence (scratch_caseThreeLambdaPlus γ ι i) := by
@@ -11865,7 +12577,9 @@ theorem scratch_caseThreeLambdaPlus_spaced {n : ℕ} (γ : GeometricParameters n
 
 /--
 The central-band four-scale representative has the `N = 2` two-scale decay needed
-for Gaussian domination case 3.-/
+for Gaussian domination case 3.
+@isnad1 id=le.2h6v.s8.3746045fe222 from=translated src=- shape=65fe421c vocab=d33279cb
+-/
 theorem scratch_caseThree_nMultiplierRho_decay_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (hzero : ι.1.1 = 0) (x : ℝ) :
@@ -11937,6 +12651,9 @@ theorem scratch_caseThree_nMultiplierRho_decay_bound {n : ℕ}
   simpa [r, a, muMinus, muPlus, lamMinus, lamPlus,
     nMultiplierRho, nMultiplierRhoComplex, hzero] using hreal
 
+/--
+@isnad1 id=le.4h4v.s9.709388d54ef0 from=translated src=- shape=172e7dce vocab=c0941b25
+-/
 theorem scratch_caseThree_u0_threeSlot (q : SequencePair × Fin 2) (j : ℤ)
     (v : RealPlane) (lam : ℝ) (hqu : q.2 = 0)
     (hq₀ : SpacedSequence (q.1 0)) (hq₁ : SpacedSequence (q.1 1))
@@ -12010,7 +12727,9 @@ theorem scratch_caseThree_u0_threeSlot (q : SequencePair × Fin 2) (j : ℤ)
   simpa [A, B, C, W, hneg,
     aux_caseTwo.ScratchCase2Fourier.scratch_scaledBracketBump_neg] using hmain
 
-/-- A scale enlargement by at most two costs at most two for quadratic bracket bumps.-/
+/-- A scale enlargement by at most two costs at most two for quadratic bracket bumps.
+@isnad1 id=le.4h3v.s6.767d819d9618 from=translated src=- shape=3dce3449 vocab=995eba2b
+-/
 theorem scratch_scaledBracketBump_scale_le_two {r s x : ℝ}
     (hr : 0 < r) (hs : 0 < s) (hrs : r ≤ s) (hsr : s ≤ 2 * r) :
     scaledBracketBump 2 s x ≤ 2 * scaledBracketBump 2 r x := by
@@ -12047,6 +12766,9 @@ theorem scratch_scaledBracketBump_scale_le_two {r s x : ℝ}
     _ ≤ 2 * scaledBracketBump 2 r x :=
       mul_le_mul_of_nonneg_right hratio hnon
 
+/--
+@isnad1 id=eq.1h4v.s5.947b0cc2f6c3 from=translated src=- shape=9b0970ec vocab=34114202
+-/
 theorem scratch_caseThree_simul_rescale (N : ℕ) (c s x : ℝ) (hc : 0 < c) :
     c * scaledBracketBump N (c * s) (c * x) = scaledBracketBump N s x := by
   unfold scaledBracketBump
@@ -12061,6 +12783,9 @@ theorem scratch_caseThree_simul_rescale (N : ℕ) (c s x : ℝ) (hc : 0 < c) :
         (c * (c * s)⁻¹) * (1 + |s⁻¹ * x|)⁻¹ ^ N := by ring
     _ = s⁻¹ * (1 + |s⁻¹ * x|)⁻¹ ^ N := by rw [hinv]
 
+/--
+@isnad1 id=eq.1h2v.s6.c22729d80a44 from=translated src=- shape=ab1de32c vocab=1dfdcbf9
+-/
 theorem scratch_caseThree_integral_scale_pos (c : ℝ) (hc : 0 < c)
     (g : ℝ → ℝ) :
     (∫ p : ℝ, c * g (c * p)) = ∫ x : ℝ, g x := by
@@ -12070,7 +12795,9 @@ theorem scratch_caseThree_integral_scale_pos (c : ℝ) (hc : 0 < c)
 
 /--
 The central-band orientation-one occurrence uses the maximum of its scale and the
-first H-package scale, at a harmless factor two.-/
+first H-package scale, at a harmless factor two.
+@isnad1 id=le.3h5v.s7.a26a6205a086 from=translated src=- shape=954ae179 vocab=20455656
+-/
 theorem scratch_caseThree_u1_oneSlot (w0 w1 lam t0 t1 : ℝ)
     (hlam : 0 < lam) (ht0 : 0 < t0) (ht1 : 0 < t1) :
     (∫ p : ℝ, scaledBracketBump 2 lam p *
@@ -12174,6 +12901,9 @@ theorem scratch_caseThree_u1_oneSlot (w0 w1 lam t0 t1 : ℝ)
       dsimp [b, r, c]
       ring
 
+/--
+@isnad1 id=le.4h4v.s8.0374382d6d65 from=translated src=- shape=4320e602 vocab=8510e018
+-/
 theorem scratch_caseThree_u1_kernelSlot (q : SequencePair × Fin 2) (j : ℤ)
     (v : RealPlane) (lam : ℝ) (hqu : q.2 = 1)
     (hq₀ : SpacedSequence (q.1 0)) (hq₁ : SpacedSequence (q.1 1))
@@ -12242,6 +12972,9 @@ theorem scratch_caseThree_u1_kernelSlot (q : SequencePair × Fin 2) (j : ℤ)
       _ ≤ _ := hraw
   simpa [hVfirst, hVsecond] using hmain
 
+/--
+@isnad1 id=continuo.0h2v.s4.d03598e7e181 from=translated src=- shape=9dae8271 vocab=434a917c
+-/
 theorem scratch_caseThree_continuous_scaledBracketBump (N : ℕ) (s : ℝ) :
     Continuous (fun x : ℝ => scaledBracketBump N s x) := by
   unfold scaledBracketBump
@@ -12251,7 +12984,9 @@ theorem scratch_caseThree_continuous_scaledBracketBump (N : ℕ) (s : ℝ) :
   intro x
   exact (hbase.continuousAt.inv₀ (ne_of_gt (by positivity))).pow N
 
-/-- Every central-rho/H-package occurrence has an integrable nonnegative majorant.-/
+/-- Every central-rho/H-package occurrence has an integrable nonnegative majorant.
+@isnad1 id=integrab.3h4v.s7.f0d89ca1f4ba from=translated src=- shape=d3443147 vocab=7dfe10ac
+-/
 theorem scratch_caseThree_weighted_kernel_integrable
     (q : SequencePair × Fin 2) (j : ℤ) (v : RealPlane) (lam : ℝ)
     (hq₀ : SpacedSequence (q.1 0)) (hq₁ : SpacedSequence (q.1 1))
@@ -12302,6 +13037,9 @@ theorem scratch_caseThree_weighted_kernel_integrable
   rw [Real.norm_eq_abs, abs_of_nonneg (hBracketNonneg p)]
   exact hBracketBound p
 
+/--
+@isnad1 id=auxhkern.0h3v.s4.37cb64145b8e from=translated src=- shape=d0ada332 vocab=fbee9c16
+-/
 theorem scratch_caseThree_HPackage_explicit {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) :
     aux_HKernelGaussianBound γ i (aux_hKernelGaussianMultiset γ i) := by
@@ -12325,6 +13063,9 @@ theorem scratch_caseThree_HPackage_explicit {n : ℕ} (γ : GeometricParameters 
     · linarith [hsp.1]
     · convert hsp.2 using 1; ring_nf
 
+/--
+@isnad1 id=integrab.1h3v.s6.f504d0b7b89f from=translated src=- shape=cb843146 vocab=de4d900e
+-/
 theorem scratch_caseThree_integrable_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     Integrable (fun x : ℝ => (P.map fun q => g q x).sum) := by
@@ -12338,6 +13079,9 @@ theorem scratch_caseThree_integrable_multiset_sum {α : Type*} (P : Multiset α)
         intro q hq
         exact hg q (by simp [hq])
 
+/--
+@isnad1 id=eq.1h3v.s6.3384f5e88568 from=translated src=- shape=7af74257 vocab=59feda4f
+-/
 theorem scratch_caseThree_integral_multiset_sum {α : Type*} (P : Multiset α)
     (g : α → ℝ → ℝ) (hg : ∀ q ∈ P, Integrable (g q)) :
     (∫ x : ℝ, (P.map fun q => g q x).sum) =
@@ -12353,6 +13097,9 @@ theorem scratch_caseThree_integral_multiset_sum {α : Type*} (P : Multiset α)
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [integral_add (hg a (by simp)) hsumP, ih hgP]
 
+/--
+@isnad1 id=eq.0h4v.s5.85a4ce2000b1 from=translated src=- shape=a1eac3f6 vocab=4c69c2c3
+-/
 theorem scratch_caseThree_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset α)
     (g : α → ℝ) :
     a * (P.map g).sum = (P.map fun q => a * g q).sum := by
@@ -12362,6 +13109,9 @@ theorem scratch_caseThree_mul_multiset_sum {α : Type*} (a : ℝ) (P : Multiset 
       simp only [Multiset.map_cons, Multiset.sum_cons]
       rw [mul_add, ih]
 
+/--
+@isnad1 id=le.5h6v.s7.05f3234c6ba0 from=translated src=- shape=9be356b0 vocab=57476610
+-/
 theorem scratch_caseThree_finite_multiset_integral_bridge {α : Type*}
     (P : Multiset α) (C : ℝ) (rho H : ℝ → ℝ) (B : α → ℝ → ℝ)
     (_hC : 0 ≤ C) (hrho : ∀ p, 0 ≤ rho p) (hH : ∀ p, 0 ≤ H p)
@@ -12391,6 +13141,9 @@ theorem scratch_caseThree_finite_multiset_integral_bridge {α : Type*}
     _ = C * (P.map fun q => ∫ p : ℝ, rho p * B q p).sum := by
       rw [scratch_caseThree_integral_multiset_sum P (fun q p => rho p * B q p) hint]
 
+/--
+@isnad1 id=le.0h0v.s3.e36de49294e7 from=translated src=- shape=4dcb44f2 vocab=f4743da0
+-/
 theorem scratch_caseThree_fourScale_nonneg :
     0 ≤ C_fourScaleGaussianKernel 2 := by
   have hgauss : 0 ≤ max (C_gaussianBumpEstimate 0) (C_gaussianBumpEstimate 2) :=
@@ -12404,7 +13157,9 @@ theorem scratch_caseThree_fourScale_nonneg :
 
 /--
 The direct central-band convolution is reduced to the six H-package occurrence
-integrals, retaining both four-scale rho terms.-/
+integrals, retaining both four-scale rho terms.
+@isnad1 id=le.2h6v.s8.e83ee5a29ec8 from=translated src=- shape=e4973386 vocab=8f1183d8
+-/
 theorem scratch_caseThree_outer_raw {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) (hzero : ι.1.1 = 0) :
@@ -12576,6 +13331,9 @@ def scratch_caseThreeExactSlotOf (lam : ℤ → ℝ) (q : SequencePair × Fin 2)
       (1 : Fin 2))
   else q
 
+/--
+@isnad1 id=spacedse.2h4v.s5.5ffa1c38df95 from=translated src=- shape=3f204a52 vocab=c7256719
+-/
 theorem scratch_caseThreeExactSlotOf_spaced (lam : ℤ → ℝ) (hlam : SpacedSequence lam)
     (q : SequencePair × Fin 2) (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (r : Fin 3) :
     ∀ s : Fin 2, SpacedSequence ((scratch_caseThreeExactSlotOf lam q r).1 s) := by
@@ -12645,9 +13403,15 @@ noncomputable def scratch_caseThreeScales {n : ℕ} (γ : GeometricParameters n)
     SequencePair :=
   fun r j => (2 : ℝ) ^ (m r) * (scratch_caseThreeSlotNat γ i lamMinus lamPlus b).1 r j
 
+/--
+@isnad1 id=eq.0h0v.s3.8607886e61ff from=translated src=- shape=3701a056 vocab=fd46cf8c
+-/
 theorem scratch_caseThreeB_card : scratch_caseThreeB.card = 36 := by
   simp [scratch_caseThreeB]
 
+/--
+@isnad1 id=spacedse.2h7v.s5.c12d55fa91bc from=translated src=- shape=cc0a9a85 vocab=2d3d8f26
+-/
 theorem scratch_caseThreeSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ)
     (hminus : SpacedSequence lamMinus) (hplus : SpacedSequence lamPlus) (b : ℕ) :
@@ -12672,6 +13436,9 @@ theorem scratch_caseThreeSlotNat_spaced {n : ℕ} (γ : GeometricParameters n)
     hlam q hq (scratch_caseThreeSlotIndex b).2
   simpa [scratch_caseThreeSlotNat, e, P, k, q] using hslot
 
+/--
+@isnad1 id=spacedse.2h8v.s5.2ced38d04ca0 from=translated src=- shape=1b8ccc34 vocab=29b0f412
+-/
 theorem scratch_caseThreeScales_spaced {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ)
     (hminus : SpacedSequence lamMinus) (hplus : SpacedSequence lamPlus) (b : ℕ)
@@ -12681,6 +13448,9 @@ theorem scratch_caseThreeScales_spaced {n : ℕ} (γ : GeometricParameters n)
   exact smul_mem_A (scratch_caseThreeSlotNat_spaced γ i lamMinus lamPlus hminus hplus b r)
     (pow_pos (by norm_num) _)
 
+/--
+@isnad1 id=eq.0h3v.s7.1021b0a49213 from=translated src=- shape=2b45e3d5 vocab=cfc0b5f6
+-/
 theorem scratch_caseThreeSlotIndex_encode (k : Fin 6) (e : Fin 2) (r : Fin 3) :
     scratch_caseThreeSlotIndex ((k.1 * 2 + e.1) * 3 + r.1) = ((k, e), r) := by
   apply Prod.ext
@@ -12694,6 +13464,9 @@ theorem scratch_caseThreeSlotIndex_encode (k : Fin 6) (e : Fin 2) (r : Fin 3) :
   · apply Fin.ext
     simp [scratch_caseThreeSlotIndex]
 
+/--
+@isnad1 id=eq.0h8v.s7.ed64fbe408ee from=translated src=- shape=7b9003a6 vocab=49b4d041
+-/
 theorem scratch_caseThreeSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ) (k : Fin 6) (e : Fin 2) (r : Fin 3) :
     scratch_caseThreeSlotNat γ i lamMinus lamPlus ((k.1 * 2 + e.1) * 3 + r.1) =
@@ -12703,6 +13476,9 @@ theorem scratch_caseThreeSlotNat_encode {n : ℕ} (γ : GeometricParameters n)
   unfold scratch_caseThreeSlotNat
   rw [scratch_caseThreeSlotIndex_encode]
 
+/--
+@isnad1 id=eq.0h7v.s7.109243d12c23 from=translated src=- shape=097b65f4 vocab=2e445d45
+-/
 theorem scratch_caseThree_sum_range36_reindex {n : ℕ} (γ : GeometricParameters n)
     (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ) {R : Type*} [AddCommMonoid R]
     (F : SequencePair × Fin 2 → R) :
@@ -12752,7 +13528,9 @@ open scoped BigOperators ENNReal Real FourierTransform
 The lower central rho scale is within the exact `2 Δ` pair-distance budget
 of each basic shifted H scale.  The slack comes from the `+1` in
 `geometricDelta`: the possible extra backwards shift is paid for by the
-same-index scale-pair distance.-/
+same-index scale-pair distance.
+@isnad1 id=le.1h6v.s6.ba7b143af0cd from=translated src=- shape=7e698f6e vocab=45e958f9
+-/
 theorem scratch_caseThree_lambdaMinus_hKernelShiftedScale_distance {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (l : ℤ)
     (hl : l.natAbs ≤ geometricDelta γ) (m r : Fin 2) :
@@ -12807,7 +13585,9 @@ theorem scratch_caseThree_lambdaMinus_hKernelShiftedScale_distance {n : ℕ}
 
 /--
 Both central Case 3 rho scales have the exact `2 Δ` comparison with every
-basic shifted H scale.  The `e = 0` case is `λ₋`; `e = 1` is `λ₊`.-/
+basic shifted H scale.  The `e = 0` case is `λ₋`; `e = 1` is `λ₊`.
+@isnad1 id=le.1h7v.s7.3dd553bfebc4 from=translated src=- shape=cf043631 vocab=a8f61755
+-/
 theorem scratch_caseThree_centralLambda_hKernelShiftedScale_distance {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (l : ℤ)
     (hl : l.natAbs ≤ geometricDelta γ) (e m r : Fin 2) :
@@ -12860,6 +13640,9 @@ theorem scratch_caseThree_centralLambda_hKernelShiftedScale_distance {n : ℕ}
       apply aux_spacedSequence_monotone (γ.scales_spaced i 1)
       omega
 
+/--
+@isnad1 id=spacedse.0h5v.s6.28086a823cff from=translated src=- shape=2aaed529 vocab=92388ccd
+-/
 theorem scratch_caseThree_centralLambda_spaced {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (l : ℤ) (e : Fin 2) :
     SpacedSequence (fun j => γ.scales i 1 (j + l + (e : ℤ) - 1)) := by
@@ -12869,7 +13652,9 @@ theorem scratch_caseThree_centralLambda_spaced {n : ℕ}
 
 /--
 The same exact `2 Δ` comparison is stable under the maximum scale used
-in the orientation-zero H package.-/
+in the orientation-zero H package.
+@isnad1 id=le.1h6v.s7.aa15192ecb49 from=translated src=- shape=bcfc67eb vocab=731e853b
+-/
 theorem scratch_caseThree_centralLambda_hKernelMaxScale_distance {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (l : ℤ)
     (hl : l.natAbs ≤ geometricDelta γ) (e m : Fin 2) :
@@ -12902,6 +13687,9 @@ open scoped BigOperators ENNReal Real FourierTransform
 
 open aux_caseTwo.ScratchCase2Witness
 
+/--
+@isnad1 id=le.2h7v.s7.430c0929cf8c from=translated src=- shape=2ed287af vocab=de4ff841
+-/
 theorem scratch_caseThree_centralLambda_hKernel_coordinate_distance {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (l : ℤ)
     (hl : l.natAbs ≤ geometricDelta γ) (e : Fin 2)
@@ -12972,7 +13760,9 @@ theorem scratch_caseThree_centralLambda_hKernel_coordinate_distance {n : ℕ}
 /--
 The corrected Case 3 decoder preserves a common pair-distance bound.  In
 the orientation-one active branch this uses `(max λ q₀,q₁)`, rather than the
-Case 2 decoder's padded `q`.-/
+Case 2 decoder's padded `q`.
+@isnad1 id=le.4h4v.s7.4b4482584756 from=translated src=- shape=881019b0 vocab=e6259419
+-/
 theorem scratch_caseThreeExactSlotOf_distance_of_bounds
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (R : ℕ)
@@ -13031,6 +13821,9 @@ theorem scratch_caseThreeExactSlotOf_distance_of_bounds
       exact aux_sequenceDistance_le_of_within huone
     · simpa [scratch_caseThreeExactSlotOf, hqu, hr0] using hqq
 
+/--
+@isnad1 id=le.1h4v.s7.8e2acb517673 from=translated src=- shape=7f956c31 vocab=1f617660
+-/
 theorem scratch_caseThree_hKernel_pair_distance {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k)
     (q : SequencePair × Fin 2) (hq : q ∈ aux_hKernelGaussianMultiset γ i) :
@@ -13053,7 +13846,9 @@ theorem scratch_caseThree_hKernel_pair_distance {n : ℕ}
       norm_cast
       omega
 
-/-- Every exact corrected Case 3 slot has base pair-distance at most `2 Δ`.-/
+/-- Every exact corrected Case 3 slot has base pair-distance at most `2 Δ`.
+@isnad1 id=le.2h7v.s7.4d19edab7922 from=translated src=- shape=f2c34d22 vocab=caa71f68
+-/
 theorem scratch_caseThreeExactSlotOf_distance_bound {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (hcentral : ι.1.2.natAbs ≤ geometricDelta γ) (e : Fin 2)
@@ -13093,6 +13888,9 @@ theorem scratch_caseThreeExactSlotOf_distance_bound {n : ℕ}
     · exact hvalid.1.1
     · exact hvalid.2.1) (2 * geometricDelta γ) hlamq hqq r
 
+/--
+@isnad1 id=le.1h5v.s6.46b73d378a6d from=translated src=- shape=4bf199dd vocab=ae0054dc
+-/
 theorem scratch_caseThreeSlotNat_distance_bound {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (hcentral : ι.1.2.natAbs ≤ geometricDelta γ) (b : ℕ) :
@@ -13110,6 +13908,9 @@ theorem scratch_caseThreeSlotNat_distance_bound {n : ℕ}
     (by simpa [P] using hqmem) (scratch_caseThreeSlotIndex b).2
   simpa [scratch_caseThreeSlotNat, P, k, q, e] using hslot
 
+/--
+@isnad1 id=le.1h6v.s7.afeacd81316a from=translated src=- shape=3d465eb9 vocab=d44877a6
+-/
 theorem scratch_caseThreeScales_distance_bound {n : ℕ}
     (γ : GeometricParameters n) (ι : MultiplierIndex γ) (i : Fin γ.k)
     (hcentral : ι.1.2.natAbs ≤ geometricDelta γ) (b : ℕ) (m : Fin 2 → ℕ) :
@@ -13171,6 +13972,9 @@ noncomputable def scratch_caseThreeSlotTerm (lam : ℤ → ℝ)
     (q : SequencePair × Fin 2) (j : ℤ) (v : RealPlane) (r : Fin 3) : ℝ :=
   aux_kernelBracketProduct (scratch_caseThreeExactSlotOf lam q r) j v
 
+/--
+@isnad1 id=le.2h5v.s5.4638f88b4c2a from=translated src=- shape=ba5beaad vocab=f4a46b5b
+-/
 theorem scratch_caseThreeSlotTerm_nonneg
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s)) (j : ℤ) (v : RealPlane) (r : Fin 3) :
@@ -13179,11 +13983,17 @@ theorem scratch_caseThreeSlotTerm_nonneg
   unfold scratch_caseThreeSlotTerm
   exact aux_kernelBracketProduct_nonneg _ hs j v
 
+/--
+@isnad1 id=eq.0h1v.s6.5afe09d0e4da from=translated src=- shape=c71f99e9 vocab=250fe31d
+-/
 theorem scratch_caseThree_sum_fin3 (f : Fin 3 → ℝ) :
     (∑ r : Fin 3, f r) = f 0 + f 1 + f 2 := by
   simp [Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=le.3h4v.s8.62188be97367 from=translated src=- shape=1befe04c vocab=dcdb4f51
+-/
 theorem scratch_caseThree_u0_output_le_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -13230,6 +14040,9 @@ theorem scratch_caseThree_u0_output_le_slots
   rw [scratch_caseThree_sum_fin3]
   rw [← hterms.1, ← hterms.2.1, ← hterms.2.2]
 
+/--
+@isnad1 id=le.3h4v.s7.43f01c58685e from=translated src=- shape=82f61b45 vocab=cd62e9af
+-/
 theorem scratch_caseThree_u1_output_le_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -13250,6 +14063,9 @@ theorem scratch_caseThree_u1_output_le_slots
   rw [scratch_caseThree_sum_fin3, ← hslot0]
   nlinarith
 
+/--
+@isnad1 id=le.0h0v.s6.65a8c242f155 from=translated src=- shape=f98da5e9 vocab=803ad415
+-/
 theorem scratch_caseThree_u0_coefficient_nonneg :
     0 ≤ 9 * C_bumpTriangle 1 1 2 2 * C_twoBumpEstimate 2 2 := by
   have htri : 0 ≤ C_bumpTriangle 1 1 2 2 := by
@@ -13258,6 +14074,9 @@ theorem scratch_caseThree_u0_coefficient_nonneg :
     norm_num [C_twoBumpEstimate]
   positivity
 
+/--
+@isnad1 id=le.0h0v.s6.7fcddbd92e15 from=translated src=- shape=90acdbcf vocab=803ad415
+-/
 theorem scratch_caseThree_u1_coefficient_le_u0 :
     2 * C_twoBumpEstimate 2 2 ≤
       9 * C_bumpTriangle 1 1 2 2 * C_twoBumpEstimate 2 2 := by
@@ -13273,7 +14092,9 @@ theorem scratch_caseThree_u1_coefficient_le_u0 :
 
 /--
 A single H-package occurrence and a single central rho scale are bounded by its
-three exact Case-3 slots, uniformly in the occurrence orientation.-/
+three exact Case-3 slots, uniformly in the occurrence orientation.
+@isnad1 id=le.2h4v.s7.7bf804e60670 from=translated src=- shape=35ec38ae vocab=9e7c32cd
+-/
 theorem scratch_caseThree_occurrence_to_slots
     (lam : ℤ → ℝ) (hlam : SpacedSequence lam) (q : SequencePair × Fin 2)
     (hq : ∀ s : Fin 2, SpacedSequence (q.1 s))
@@ -13351,7 +14172,9 @@ theorem scratch_caseThree_occurrence_to_slots
 
 /--
 The two central rho scales for one H-package occurrence are controlled by
-the six decoder slots attached to that occurrence.-/
+the six decoder slots attached to that occurrence.
+@isnad1 id=le.3h5v.s8.7a7fee364a23 from=translated src=- shape=28ab7f16 vocab=8467ce49
+-/
 theorem scratch_caseThree_twoLambda_occurrence_to_slots
     (lamMinus lamPlus : ℤ → ℝ) (hminus : SpacedSequence lamMinus)
     (hplus : SpacedSequence lamPlus) (q : SequencePair × Fin 2)
@@ -13397,6 +14220,9 @@ theorem scratch_caseThree_twoLambda_occurrence_to_slots
     _ = D * (Sminus + Splus) := by ring
     _ = _ := by rw [hsum]
 
+/--
+@isnad1 id=eq.0h3v.s6.0d089dcf9d63 from=translated src=- shape=1d7e5472 vocab=35a5b96b
+-/
 theorem scratch_caseThree_multiset_sum_eq_occurrence_sum
     {R : Type*} [AddCommMonoid R] (P : Multiset (SequencePair × Fin 2))
     (F : SequencePair × Fin 2 → R) :
@@ -13412,6 +14238,9 @@ theorem scratch_caseThree_multiset_sum_eq_occurrence_sum
   intro k
   simp [e, aux_caseTwo.ScratchCase2Witness.caseTwoOccurrence]
 
+/--
+@isnad1 id=eq.0h7v.s7.45ea9d04520b from=translated src=- shape=6b49c4d4 vocab=397c7f66
+-/
 theorem scratch_caseThree_multiset_slot_sum_reindex {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ)
     (j : ℤ) (v : RealPlane) :
@@ -13454,7 +14283,9 @@ theorem scratch_caseThree_multiset_slot_sum_reindex {n : ℕ}
 
 /--
 The central-band convolution is reduced to the fixed 36-slot Case-3
-decoder, before applying Gaussian domination to each slot.-/
+decoder, before applying Gaussian domination to each slot.
+@isnad1 id=le.2h6v.s7.012b6e9cc89f from=translated src=- shape=71f53b81 vocab=7c365a7c
+-/
 theorem scratch_caseThree_preGaussian_bound {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (j : ℤ) (v : RealPlane) (hzero : ι.1.1 = 0) :
@@ -13543,6 +14374,9 @@ theorem scratch_caseThree_preGaussian_bound {n : ℕ}
               (scratch_caseThreeSlotNat γ i lamMinus lamPlus b) j v := by rw [hreindex]
     _ = _ := by rfl
 
+/--
+@isnad1 id=le.1h4v.s7.63a1cb1fb46a from=translated src=- shape=5a70d5c0 vocab=a6111d9d
+-/
 theorem scratch_caseThree_slot_gaussian_majorant
     (p : SequencePair) (hp : ∀ r : Fin 2, SpacedSequence (p r))
     (u : Fin 2) (j : ℤ) (v : RealPlane) :
@@ -13682,6 +14516,9 @@ theorem scratch_caseThree_slot_gaussian_majorant
           ((∑' a : ℕ, f0 a) * ∑' a : ℕ, f1 a) := by rw [hcoeff]
     _ = _ := by rw [hseriesEq]
 
+/--
+@isnad1 id=le.2h7v.s7.b8974882bd9a from=translated src=- shape=53691e9d vocab=ed55697b
+-/
 theorem scratch_caseThree_slot_sum_gaussian_majorant {n : ℕ}
     (γ : GeometricParameters n) (i : Fin γ.k) (lamMinus lamPlus : ℤ → ℝ)
     (hminus : SpacedSequence lamMinus) (hplus : SpacedSequence lamPlus)
@@ -13749,6 +14586,9 @@ theorem scratch_caseThree_slot_sum_gaussian_majorant {n : ℕ}
       dsimp [T]
       rw [Finset.mul_sum]
 
+/--
+@isnad1 id=le.3h6v.s8.3ef83933329d from=translated src=- shape=32cefd40 vocab=0c192277
+-/
 theorem scratch_caseThree_estimate_from_side_conditions {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (hzero : ι.1.1 = 0)
@@ -13856,7 +14696,9 @@ theorem scratch_caseThree_estimate_from_side_conditions {n : ℕ}
 /--
 All analytic Case-3 fields, parametrized only by the finite decoder's
 cardinality and distance side conditions.  Once the global cardinality cap is
-raised to the honest value 36, this instantiates directly.-/
+raised to the honest value 36, this instantiates directly.
+@isnad1 id=auxgauss.5h4v.s8.ca83e3ea09db from=translated src=- shape=d159592b vocab=0b4165c8
+-/
 theorem scratch_caseThree_witness_of_side_conditions {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (ι : MultiplierIndex γ)
     (i : Fin γ.k) (hzero : ι.1.1 = 0)
@@ -13908,6 +14750,9 @@ theorem scratch_caseThree_witness_of_side_conditions {n : ℕ}
   simpa [lamMinus, lamPlus] using
     scratch_caseThree_estimate_from_side_conditions γ hkn ι i hzero hscales j v
 
+/--
+@isnad1 id=le.1h0v.s4.21720da4fe85 from=translated src=- shape=73795d2f vocab=87d0d761
+-/
 theorem scratch_caseThree_card_le_of_cap
     (hcap : 36 ≤ C_gaussianDominationCombinedCard) :
     scratch_caseThreeB.card ≤ C_gaussianDominationCombinedCard := by
@@ -13915,7 +14760,9 @@ theorem scratch_caseThree_card_le_of_cap
 
 /--
 The complete Case-3 theorem, conditional only on raising the global finite
-cardinality cap to the honest value 36.-/
+cardinality cap to the honest value 36.
+@isnad1 id=auxgauss.4h4v.s6.6b9755c4a4ac from=translated src=- shape=7bb3dde1 vocab=09a6a83e
+-/
 theorem scratch_gaussDominationCase3_of_cap {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (ι : MultiplierIndex γ) (hzero : ι.1.1 = 0)
@@ -13942,6 +14789,9 @@ theorem scratch_gaussDominationCase3_of_cap {n : ℕ}
         gcongr
         exact Nat.le_add_right _ _
 
+/--
+@isnad1 id=auxgauss.3h4v.s6.d5d0ae724847 from=translated src=- shape=6fde645d vocab=13862326
+-/
 theorem scratch_gaussDominationCase3 {n : ℕ}
     (γ : GeometricParameters n) (hkn : γ.k ≤ n - 1) (i : Fin γ.k)
     (ι : MultiplierIndex γ) (hzero : ι.1.1 = 0)
@@ -13966,7 +14816,9 @@ C_{\text{four scale Gaussian kernel estimate},2}
 C_{\text{Kernel estimate for Gaussian domination}}
 C_{\text{bump triangle},1,1,2,2}
 C_{\text{two bump estimate},2,2}.
-$$-/
+$$
+@isnad1 id=auxgauss.3h4v.s6.d5d0ae724847 from=translated src=- shape=6fde645d vocab=13862326
+-/
 theorem gaussDominationCase3 {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) (ι : MultiplierIndex γ)
     (hzero : ι.1.1 = 0) (hvertical : ι.1.2.natAbs ≤ geometricDelta γ) :
@@ -14015,7 +14867,9 @@ norm.
 See also `Auto.gaussDominationCase1`,
 `Auto.gaussDominationCase2`,
 `Auto.gaussDominationCase3`, and
-`Auto.gaussDominationConstant`.-/
+`Auto.gaussDominationConstant`.
+@isnad1 id=auxgauss.1h4v.s5.7b7dc01caccd from=translated src=- shape=0e781cd5 vocab=7ee122c9
+-/
 theorem gaussianDominationCombined {n : ℕ} (γ : GeometricParameters n)
     (hkn : γ.k ≤ n - 1) (i : Fin γ.k) :
     ∀ ι : MultiplierIndex γ,

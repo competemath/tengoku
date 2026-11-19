@@ -40,7 +40,9 @@ noncomputable def aux_twistedVariation {n : ℕ} (phi : ℝ → ℝ)
         (fun x ↦ twistedAverageAtScale (t.1 j.succ) phi f x -
           twistedAverageAtScale (t.1 j.castSucc) phi f x) p volume) ^ r) ^ r⁻¹
 
-/-- Auxiliary scale-composition identity for the rescaling lemma `lem:rescaling`.-/
+/-- Auxiliary scale-composition identity for the rescaling lemma `lem:rescaling`.
+@isnad1 id=eq.2h5v.s6.827910a3135a from=translated src=- shape=4e4191a9 vocab=f1359708
+-/
 theorem aux_twistedAverageAtScale_oneRescaled {n : ℕ} (phi : ℝ → ℝ)
     (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (t lambda : ℝ)
     (ht : 0 < t) (hlambda : 0 < lambda) :
@@ -75,7 +77,9 @@ For all $r,q,\lambda>0$,
 $$
 \|A_t({\phi_{(\lambda)}})\|_{V_{r,J}(t\in (0,\infty); L^q)} =  \|A_t({\phi})\|_{V_{r,J}(t\in
 (0,\infty); L^q)}.
-$$-/
+$$
+@isnad1 id=eq.2h6v.s6.f7de9df2594f from=translated src=- shape=31242cf3 vocab=e0a8925d
+-/
 theorem rescaling {n : ℕ} (phi : ℝ → ℝ) (_hphi : Integrable phi)
     (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ)
     (r : ℝ) (J : ℕ) (lambda : ℝ) (hlambda : 0 < lambda) :
@@ -148,7 +152,9 @@ theorem rescaling {n : ℕ} (phi : ℝ → ℝ) (_hphi : Integrable phi)
 **Lemma.**
 
 If $\phi=\sum_j\phi_j$ in $L^2$, then
-$\|A(\phi,\mathbf f)\|_2\le\sum_j\|A(\phi_j,\mathbf f)\|_2$.-/
+$\|A(\phi,\mathbf f)\|_2\le\sum_j\|A(\phi_j,\mathbf f)\|_2$.
+@isnad1 id=memw0.1h2v.s10.3c09459a2402 from=translated src=- shape=49bdd491 vocab=8fb8cfdf
+-/
 theorem aux_normASum_kernel_memW0 {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) :
     MemW0 (fun uv : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin 1) ↦
@@ -192,6 +198,9 @@ theorem aux_normASum_kernel_memW0 {n : ℕ} (hn : 2 ≤ n)
   have h := MemW0.aux_fintype_tensor_comp_injective hf maps hmaps
   convert h using 1 <;> try rfl
 
+/--
+@isnad1 id=memlp.1h2v.s10.3ace26968f41 from=translated src=- shape=b11d9794 vocab=f36b2bc4
+-/
 theorem aux_normASum_kernel_memLp_two {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) :
     MemLp (fun uv : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin 1) ↦
@@ -222,10 +231,16 @@ theorem aux_normASum_kernel_memLp_two {n : ℕ} (hn : 2 ≤ n)
 def aux_normASum_E1ToReal : EuclideanSpace ℝ (Fin 1) ≃L[ℝ] ℝ :=
   PiLp.equivOfUnique 2 ℝ (fun _ : Fin 1 => ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s9.d166baef72a4 from=translated src=- shape=25930512 vocab=8fee5c46
+-/
 theorem aux_normASum_E1ToReal_apply (s : EuclideanSpace ℝ (Fin 1)) :
     aux_normASum_E1ToReal s = s 0 := by
   rfl
 
+/--
+@isnad1 id=measurep.0h0v.s8.9ab7048a6320 from=translated src=- shape=64d74af7 vocab=b1cc6056
+-/
 theorem aux_normASum_E1_to_real_measurePreserving :
     MeasurePreserving (fun s : EuclideanSpace ℝ (Fin 1) => s 0) volume volume := by
   let e0 : EuclideanSpace ℝ (Fin 1) → (Fin 1 → ℝ) := WithLp.ofLp
@@ -237,6 +252,9 @@ theorem aux_normASum_E1_to_real_measurePreserving :
   have h := he1.comp he0
   simpa [e0, e1, Function.comp_def] using h
 
+/--
+@isnad1 id=measurab.0h0v.s7.042c6c8506da from=translated src=- shape=358247c4 vocab=11819ffd
+-/
 theorem aux_normASum_E1_to_real_measurableEmbedding :
     MeasurableEmbedding (fun s : EuclideanSpace ℝ (Fin 1) => s 0) := by
   apply Continuous.measurableEmbedding
@@ -245,11 +263,17 @@ theorem aux_normASum_E1_to_real_measurableEmbedding :
     apply aux_normASum_E1ToReal.injective
     simpa [aux_normASum_E1ToReal_apply] using hab
 
+/--
+@isnad1 id=eq.0h1v.s8.f671e4a4664a from=translated src=- shape=fa89b408 vocab=26445736
+-/
 theorem aux_normASum_E1_integral_eq_real (g : ℝ → ℝ) :
     (∫ s : EuclideanSpace ℝ (Fin 1), g (s 0)) = ∫ t : ℝ, g t := by
   exact aux_normASum_E1_to_real_measurePreserving.integral_comp
     aux_normASum_E1_to_real_measurableEmbedding g
 
+/--
+@isnad1 id=memlp.3h3v.s10.f9f12c2c5dd5 from=translated src=- shape=13913689 vocab=4c01599e
+-/
 theorem aux_normASum_kernel_operator_memLp
     {n : ℕ}
     (K : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin 1) → ℝ)
@@ -304,6 +328,9 @@ theorem aux_normASum_kernel_operator_memLp
   rw [abs_of_nonneg (sq_nonneg _)]
   exact hpoint x
 
+/--
+@isnad1 id=le.3h3v.s11.4abbaa4873ac from=translated src=- shape=995990da vocab=261d7d52
+-/
 theorem aux_normASum_kernel_operator_sq_integral_bound
     {n : ℕ}
     (K : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin 1) → ℝ)
@@ -365,6 +392,9 @@ theorem aux_normASum_kernel_operator_sq_integral_bound
     _ = (∫ s : ℝ, chi s ^ 2) * (∫ z : E × E1, K z ^ 2) := by
       rw [← aux_normASum_E1_integral_eq_real (fun s => chi s ^ 2)]
 
+/--
+@isnad1 id=eq.1h3v.s7.f387bbea0c3a from=translated src=- shape=c3de75ba vocab=58a55399
+-/
 theorem aux_normASum_eLpNorm_two_toReal_eq_sqrt_integral_sq
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (g : α → ℝ) (hg : MemLp g 2 μ) :
@@ -374,6 +404,9 @@ theorem aux_normASum_eLpNorm_two_toReal_eq_sqrt_integral_sq
   rw [ENNReal.toReal_ofReal, ← Real.sqrt_eq_rpow]
   positivity
 
+/--
+@isnad1 id=tendsto.5h6v.s9.c4b97c78fb0a from=translated src=- shape=6bb41b27 vocab=f5392a17
+-/
 theorem aux_normASum_eLpNorm_two_tendsto_zero_of_sq_integral_bound
     {ι : Type*} {l : Filter ι} {n : ℕ}
     (chi : ι → ℝ → ℝ) (A : ι → EuclideanSpace ℝ (Fin n) → ℝ)
@@ -403,6 +436,9 @@ theorem aux_normASum_eLpNorm_two_tendsto_zero_of_sq_integral_bound
       _ = Real.sqrt C * Real.sqrt (∫ x : ℝ, chi i x ^ 2) := by
         rw [Real.sqrt_mul hC]
 
+/--
+@isnad1 id=eq.0h4v.s10.9594e9d4db4b from=translated src=- shape=bc9353e4 vocab=ae54c843
+-/
 theorem aux_normASum_twistedAverage_eq_E1Kernel {n : ℕ}
     (chi : ℝ → ℝ) (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) :
@@ -414,6 +450,9 @@ theorem aux_normASum_twistedAverage_eq_E1Kernel {n : ℕ}
   exact (aux_normASum_E1_integral_eq_real (fun t : ℝ => chi t * ∏ i,
     f i (x + t • WithLp.toLp 2 (Pi.single i (1 : ℝ))))).symm
 
+/--
+@isnad1 id=eq.4h5v.s10.67ae337ed11c from=translated src=- shape=e9f57635 vocab=c122b94a
+-/
 theorem aux_normASum_twistedAverage_add_of_memLp {n : ℕ}
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (K : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin 1) → ℝ)
@@ -468,6 +507,9 @@ theorem aux_normASum_twistedAverage_add_of_memLp {n : ℕ}
         filter_upwards [] with s
         rw [hK]
 
+/--
+@isnad1 id=memlp.2h3v.s9.67141059132b from=translated src=- shape=634fdb32 vocab=109c41f5
+-/
 theorem aux_normASum_twistedAverage_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (chi : ℝ → ℝ) (hchi : MemLp chi 2 volume) :
@@ -486,14 +528,18 @@ theorem aux_normASum_twistedAverage_memLp {n : ℕ} (hn : 2 ≤ n)
 /--
 A twisted average of a square-integrable scalar kernel against a Schwartz
 tuple is square-integrable.  This public interface is used by the final
-short/long-variation reduction.-/
+short/long-variation reduction.
+@isnad1 id=memlp.2h3v.s9.67141059132b from=translated src=- shape=634fdb32 vocab=109c41f5
+-/
 theorem aux_twistedAverage_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (chi : ℝ → ℝ) (hchi : MemLp chi 2 volume) :
     MemLp (twistedAverage chi (fun i x ↦ f i x)) 2 volume :=
   aux_normASum_twistedAverage_memLp hn f chi hchi
 
-/-- Twisted averaging is additive for square-integrable scalar kernels.-/
+/-- Twisted averaging is additive for square-integrable scalar kernels.
+@isnad1 id=eq.3h4v.s9.24826781db80 from=translated src=- shape=39188cd6 vocab=d8cd6cf3
+-/
 theorem aux_twistedAverage_add_of_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (u v : ℝ → ℝ) (hu : MemLp u 2 volume) (hv : MemLp v 2 volume) :
@@ -506,7 +552,9 @@ theorem aux_twistedAverage_add_of_memLp {n : ℕ} (hn : 2 ≤ n)
   exact aux_normASum_twistedAverage_add_of_memLp f K hK u v hu hv
     (by intro x s; simp [K])
 
-/-- Twisted averaging commutes with negation.-/
+/-- Twisted averaging commutes with negation.
+@isnad1 id=eq.0h3v.s9.f2e81c97d5ba from=translated src=- shape=5c655093 vocab=a4cafae3
+-/
 theorem aux_twistedAverage_neg {n : ℕ}
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (u : ℝ → ℝ) :
@@ -524,7 +572,9 @@ theorem aux_twistedAverage_neg {n : ℕ}
   filter_upwards [] with s
   simp
 
-/-- Twisted averaging respects subtraction of square-integrable scalar kernels.-/
+/-- Twisted averaging respects subtraction of square-integrable scalar kernels.
+@isnad1 id=eq.3h4v.s9.ed9e07e6daae from=translated src=- shape=39188cd6 vocab=43afa512
+-/
 theorem aux_twistedAverage_sub_of_memLp {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (u v : ℝ → ℝ) (hu : MemLp u 2 volume) (hv : MemLp v 2 volume) :
@@ -534,6 +584,9 @@ theorem aux_twistedAverage_sub_of_memLp {n : ℕ} (hn : 2 ≤ n)
     aux_twistedAverage_neg]
   rfl
 
+/--
+@isnad1 id=le.2h3v.s10.ef21891b870b from=translated src=- shape=b810a3c2 vocab=d31ddcc7
+-/
 theorem aux_normASum_twistedAverage_sq_integral_bound {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (chi : ℝ → ℝ) (hchi : MemLp chi 2 volume) :
@@ -554,6 +607,9 @@ theorem aux_normASum_twistedAverage_sq_integral_bound {n : ℕ} (hn : 2 ≤ n)
     filter_upwards [] with x
     rw [aux_normASum_twistedAverage_eq_E1Kernel chi f x]
 
+/--
+@isnad1 id=tendsto.3h3v.s9.8da722eb8222 from=translated src=- shape=4ca793f7 vocab=d7cd9bbd
+-/
 theorem aux_normASum_twistedAverage_tendsto_L2 {n : ℕ} (hn : 2 ≤ n)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (chi : ℕ → ℝ → ℝ) (hchi : ∀ N, MemLp (chi N) 2 volume)
@@ -588,6 +644,9 @@ theorem aux_normASum_twistedAverage_tendsto_L2 {n : ℕ} (hn : 2 ≤ n)
   filter_upwards [] with x
   simpa [A, K] using (aux_normASum_twistedAverage_eq_E1Kernel (chi N) f x).symm
 
+/--
+@isnad1 id=le.4h4v.s10.2870208c8556 from=translated src=- shape=31a07338 vocab=a669717c
+-/
 theorem aux_normASum_normASumLeSum {n : ℕ} (hn : 2 ≤ n) (phi : ℝ → ℝ)
     (phiJ : ℕ → ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -703,7 +762,9 @@ If $\phi=\sum_{j=1}^\infty \phi_j$ holds in $L^2$ (with $L^2$ functions $\phi, \
 $$
 \|A(\phi, \mathbf{f})\|_{L^2(\mathbb{R}^n)} \le \sum_{j=1}^\infty \|A({\phi_j},
 \mathbf{f})\|_{L^2(\mathbb{R}^n)}.
-$$-/
+$$
+@isnad1 id=le.4h4v.s10.2870208c8556 from=translated src=- shape=31a07338 vocab=a669717c
+-/
 theorem normASumLeSum {n : ℕ} (hn : 2 ≤ n) (phi : ℝ → ℝ) (phiJ : ℕ → ℝ → ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (_hphi : MemLp phi 2 volume) (_hphiJ : ∀ j, MemLp (phiJ j) 2 volume)
@@ -724,6 +785,9 @@ def aux_formPosFiber (d : ℕ)
           r - Auto.coordinateSum x)
         (eraseVector i x))
 
+/--
+@isnad1 id=auxbound.0h3v.s7.05d62fa17a69 from=translated src=- shape=ab10647a vocab=49214e5f
+-/
 theorem aux_formPosFiber_bounded (d : ℕ)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
     (x : RealVector (d + 1)) :
@@ -782,6 +846,9 @@ theorem aux_formPosFiber_bounded (d : ℕ)
           exact
             (F (prismIndex (n := d + 1) (k := 1) (by omega) (by omega) i)).norm_le_seminorm ℝ _
 
+/--
+@isnad1 id=eq.0h4v.s9.3700fbd992ec from=translated src=- shape=66ba1061 vocab=d532778f
+-/
 theorem aux_formPosFiber_add_coordinateSum (d : ℕ)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
     (x : RealVector (d + 1)) (r : ℝ) :
@@ -797,7 +864,9 @@ theorem aux_formPosFiber_add_coordinateSum (d : ℕ)
   funext j
   simp
 
-/-- The `k = 1` expansion of `mToK` used in `formPos`.-/
+/-- The `k = 1` expansion of `mToK` used in `formPos`.
+@isnad1 id=eq.0h2v.s6.ebd530aeb927 from=translated src=- shape=a1d2ba0e vocab=643eb023
+-/
 theorem aux_formPos_mToK_one (Psi : MKernel 1) (u : RealVector 1 × ℝ) :
     mToK 1 (by omega) Psi u =
       Psi ((fun _ : Fin 1 => u.1 0 + u.2), fun _ : Fin 1 => u.2) := by
@@ -814,7 +883,9 @@ theorem aux_formPos_mToK_one (Psi : MKernel 1) (u : RealVector 1 × ℝ) :
     subst i
     simp [mToKPoint, lastIndex, Auto.coordinateSum]
 
-/-- The one-prism product expanded into its two corners.-/
+/-- The one-prism product expanded into its two corners.
+@isnad1 id=eq.0h3v.s11.f66d124c044b from=translated src=- shape=77dfa4ad vocab=a11f4e24
+-/
 theorem aux_formPos_prism_product (d : ℕ)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
     (p : (RealVector 1 × RealVector 1) × RealVector (d + 1)) :
@@ -863,12 +934,18 @@ def aux_formPosShearInv (d : ℕ) :
   fun q => (q.1, (q.2.2 - Auto.coordinateSum q.1,
     q.2.1 - Auto.coordinateSum q.1))
 
+/--
+@isnad1 id=eq.0h2v.s5.595699aff078 from=translated src=- shape=2857e279 vocab=6af190cb
+-/
 theorem aux_formPosShearInv_shear (d : ℕ)
     (q : RealVector (d + 1) × (ℝ × ℝ)) :
     aux_formPosShearInv d (aux_formPosShear d q) = q := by
   rcases q with ⟨x, a, b⟩
   simp [aux_formPosShear, aux_formPosShearInv]
 
+/--
+@isnad1 id=eq.0h2v.s5.c77b7e8f8a9f from=translated src=- shape=2857e279 vocab=6af190cb
+-/
 theorem aux_formPosShear_shearInv (d : ℕ)
     (q : RealVector (d + 1) × (ℝ × ℝ)) :
     aux_formPosShear d (aux_formPosShearInv d q) = q := by
@@ -899,6 +976,9 @@ noncomputable def aux_formPosShearEquiv (d : ℕ) :
     funext q
     rfl
 
+/--
+@isnad1 id=measurep.0h1v.s8.0c1b7d502527 from=translated src=- shape=79deb840 vocab=341cf4d4
+-/
 theorem aux_formPosShear_measurePreserving (d : ℕ) :
     MeasurePreserving (aux_formPosShear d) volume volume := by
   let A := RealVector (d + 1)
@@ -937,6 +1017,9 @@ theorem aux_formPosShear_measurePreserving (d : ℕ) :
   · filter_upwards [] with x
     exact (hpair x).map_eq
 
+/--
+@isnad1 id=measurep.0h1v.s10.a51feb81cb16 from=translated src=- shape=bf0858c0 vocab=bfdebfae
+-/
 theorem aux_formPosShearEquiv_measurePreserving (d : ℕ) :
     MeasurePreserving (aux_formPosShearEquiv d) volume volume := by
   change MeasurePreserving (aux_formPosShear d) volume volume
@@ -960,6 +1043,9 @@ def aux_formPosTarget (d : ℕ) (Psi : MKernel 1)
   Psi ((fun _ : Fin 1 => q.2.1), fun _ : Fin 1 => q.2.2) *
     aux_formPosFiber d F q.1 q.2.1 * aux_formPosFiber d F q.1 q.2.2
 
+/--
+@isnad1 id=eq.0h4v.s10.402669d6f296 from=translated src=- shape=a8e07629 vocab=b71edf35
+-/
 theorem aux_formPosRaw_eq_target (d : ℕ) (Psi : MKernel 1)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
     (p : (RealVector 1 × RealVector 1) × RealVector (d + 1)) :
@@ -974,6 +1060,9 @@ theorem aux_formPosRaw_eq_target (d : ℕ) (Psi : MKernel 1)
   rw [aux_coordinateSum_finOne]
   ring_nf
 
+/--
+@isnad1 id=eq.0h5v.s9.7f705790f0ab from=translated src=- shape=6cf62856 vocab=521540fd
+-/
 theorem aux_formPosTarget_piUnique (d : ℕ) (Psi : MKernel 1)
     (F : Fin (d + 1) → SchwartzMap (RealVector (d + 1)) ℝ)
     (x : RealVector (d + 1)) (u : RealVector 1 × RealVector 1) :
@@ -1009,7 +1098,9 @@ $\mathbf{F}\in\mathfrak F$,
 
 $$
 \Lambda_1(\psi^{\otimes2})(\mathbf{F})\ge0.
-$$-/
+$$
+@isnad1 id=le.3h3v.s9.85fb6bf142a3 from=translated src=- shape=a9c65e00 vocab=ddf0bac6
+-/
 theorem formPos {n : ℕ} (hn : 1 ≤ n) (Psi : MKernel 1) (hPsi : MemW0 Psi)
     (hquad : ∀ g : ℝ → ℝ,
       Auto.aux_bounded g →
@@ -1111,7 +1202,9 @@ theorem formPos {n : ℕ} (hn : 1 ≤ n) (Psi : MKernel 1) (hPsi : MemW0 Psi)
       _ = ∫ q : RealVector (d + 1) × (ℝ × ℝ), Q q := hT.integral_comp' Q
       _ ≥ 0 := hnonneg
 
-/-- The tensor-square specialization in Lemma `Auto.formPos`.-/
+/-- The tensor-square specialization in Lemma `Auto.formPos`.
+@isnad1 id=le.2h3v.s8.0377ef3d36c1 from=translated src=- shape=ce367c01 vocab=b9e1740d
+-/
 theorem aux_formPos_tensorSquare {n : ℕ} (hn : 1 ≤ n) (psi : ℝ → ℝ)
     (hpsi : MemW0 psi) (F : Fin n → SchwartzMap (RealVector n) ℝ) :
     0 ≤ prismForm n 1 (by omega) hn
@@ -1159,6 +1252,9 @@ theorem aux_formPos_tensorSquare {n : ℕ} (hn : 1 ≤ n) (psi : ℝ → ℝ)
       ring
     _ ≥ 0 := sq_nonneg _
 
+/--
+@isnad1 id=eq.0h2v.s7.9b38340fa334 from=translated src=- shape=863a975a vocab=cc8d8b88
+-/
 theorem aux_tBump_eq (phi : SchwartzMap ℝ ℝ) (u : ℝ) :
     aux_tBump phi u = phi u + u * deriv (fun z : ℝ ↦ phi z) u := by
   unfold aux_tBump
@@ -1166,6 +1262,9 @@ theorem aux_tBump_eq (phi : SchwartzMap ℝ ℝ) (u : ℝ) :
   have h := ((hasDerivAt_id u).mul (phi.hasDerivAt u)).deriv
   simpa [id, Pi.mul_apply] using h
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.3ee097f5c7a0 from=translated src=- shape=08aacd0d vocab=a29ad91d
+-/
 theorem scaleKernel_hasDerivAt (phi : SchwartzMap ℝ ℝ) (s t : ℝ) (ht : t ≠ 0) :
     HasDerivAt (fun r : ℝ ↦ r⁻¹ * phi (r⁻¹ * s))
       (-t⁻¹ ^ 2 * aux_tBump phi (t⁻¹ * s)) t := by
@@ -1185,6 +1284,9 @@ theorem scaleKernel_hasDerivAt (phi : SchwartzMap ℝ ℝ) (s t : ℝ) (ht : t �
   field_simp
   ring
 
+/--
+@isnad1 id=ex.0h1v.s7.7e3a5315187c from=translated src=- shape=0a4098a6 vocab=1e90b1b1
+-/
 theorem tBump_eq_schwartz (phi : SchwartzMap ℝ ℝ) :
     ∃ tau : SchwartzMap ℝ ℝ, (tau : ℝ → ℝ) = aux_tBump phi := by
   let psi : SchwartzMap ℝ ℝ :=
@@ -1199,6 +1301,9 @@ theorem tBump_eq_schwartz (phi : SchwartzMap ℝ ℝ) :
   rw [SchwartzMap.smulLeftCLM_apply_apply (by fun_prop)]
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=le.0h2v.s9.5b2c263cdf48 from=translated src=- shape=1be8d5af vocab=1c07b0f3
+-/
 theorem schwartz_abs_le_inv_one_add_sq (tau : SchwartzMap ℝ ℝ) :
     ∀ u : ℝ, |tau u| ≤
       (SchwartzMap.seminorm ℝ 0 0 tau + SchwartzMap.seminorm ℝ 2 0 tau) *
@@ -1214,6 +1319,9 @@ theorem schwartz_abs_le_inv_one_add_sq (tau : SchwartzMap ℝ ℝ) :
   rw [hsquare] at h2
   nlinarith
 
+/--
+@isnad1 id=le.2h4v.s10.1d0cd1476142 from=translated src=- shape=92f7091a vocab=66607f36
+-/
 theorem rescaled_schwartz_local_bound (tau : SchwartzMap ℝ ℝ)
     (a r s : ℝ) (ha : 0 < a) (hr : r ∈ Set.Ioo (a / 2) (3 * a / 2)) :
     |-(r⁻¹ ^ 2) * tau (r⁻¹ * s)| ≤
@@ -1272,6 +1380,9 @@ theorem rescaled_schwartz_local_bound (tau : SchwartzMap ℝ ℝ)
         (SchwartzMap.seminorm ℝ 0 0 tau + SchwartzMap.seminorm ℝ 2 0 tau) *
           (1 + (3 * a / 2) ^ 2)) * (1 + s ^ 2)⁻¹ := by ring
 
+/--
+@isnad1 id=le.0h4v.s10.cab112c18af4 from=translated src=- shape=1717bc55 vocab=39ee188e
+-/
 theorem twistedProduct_abs_le (n : ℕ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (s : ℝ) :
@@ -1285,6 +1396,9 @@ theorem twistedProduct_abs_le (n : ℕ)
     simpa [Real.norm_eq_abs] using SchwartzMap.norm_le_seminorm ℝ (f i)
       (x + s • WithLp.toLp 2 (Pi.single i (1 : ℝ)))
 
+/--
+@isnad1 id=hasderiv.1h5v.s9.219493ede991 from=translated src=- shape=33ccd284 vocab=382143a0
+-/
 theorem twistedAverageAtScale_hasDerivAt
     {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -1376,7 +1490,9 @@ theorem twistedAverageAtScale_hasDerivAt
 
 /--
 The scale derivative of a twisted average.  This is the differentiability
-interface used by the final short/long-variation argument.-/
+interface used by the final short/long-variation argument.
+@isnad1 id=hasderiv.1h5v.s9.219493ede991 from=translated src=- shape=33ccd284 vocab=382143a0
+-/
 theorem aux_twistedAverageAtScale_hasDerivAt
     {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
@@ -1386,6 +1502,9 @@ theorem aux_twistedAverageAtScale_hasDerivAt
       (-t⁻¹ * twistedAverageAtScale t (aux_tBump phi) (fun i y ↦ f i y) x) t :=
   twistedAverageAtScale_hasDerivAt phi f x t ht
 
+/--
+@isnad1 id=eq.1h2v.s7.4e8640e45815 from=translated src=- shape=e8b28848 vocab=f791b8e2
+-/
 theorem logarithmic_setIntegral_rescale (a : ℝ) (ha : 0 < a)
     (g : ℝ → ℝ) :
     (∫ t : ℝ in Set.Icc a (a * 2), |g t| ^ 2 * t⁻¹) =
@@ -1426,7 +1545,9 @@ $a(t)=A_t(\phi)(x)$. Then
 $$
 \|ta'(t)\|_{L^2(t\in [2^k, 2^{k+1}],\tfrac{dt}{t})}^2 = \int_{1}^2 |A_{2^k
 t}(T\phi)(x)|^2\,\tfrac{dt}{t}.
-$$-/
+$$
+@isnad1 id=eq.0h5v.s9.949e901bdcc8 from=translated src=- shape=99c1d5b1 vocab=2382606c
+-/
 theorem ftcATphi {n : ℕ} (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ)
     (x : EuclideanSpace ℝ (Fin n)) (k : ℤ) :
@@ -1485,6 +1606,9 @@ def aux_phiJ_theta (phi0 phi1 : SchwartzMap ℝ ℝ) : ℝ → ℂ :=
   fun xi => aux_phiJ_profile phi0 ((2 : ℝ) ^ (-5 : ℤ) * xi) -
     aux_phiJ_profile phi1 ((2 : ℝ) ^ (5 : ℤ) * xi)
 
+/--
+@isnad1 id=eq.0h2v.s6.083574be4bd6 from=translated src=- shape=d6ced94f vocab=ca3c25b7
+-/
 theorem aux_phiJ_fourier_neg_conj (phi : ℝ → ℝ) (w : ℝ) :
     FourierTransform.fourier (fun u => (phi u : ℂ)) (-w) =
       (starRingEnd ℂ) (FourierTransform.fourier (fun u => (phi u : ℂ)) w) := by
@@ -1508,6 +1632,9 @@ theorem aux_phiJ_fourier_neg_conj (phi : ℝ → ℝ) (w : ℝ) :
     ring
   · simp
 
+/--
+@isnad1 id=eq.1h2v.s5.8cb60bde35f5 from=translated src=- shape=30330104 vocab=928279a1
+-/
 theorem aux_phiJ_profile_even_of_window (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) (xi : ℝ) :
     aux_phiJ_profile phi (-xi) = aux_phiJ_profile phi xi := by
@@ -1516,6 +1643,9 @@ theorem aux_phiJ_profile_even_of_window (phi : SchwartzMap ℝ ℝ)
   rw [hEq]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.85aa06303db0 from=translated src=- shape=24751ec3 vocab=9c1e97f4
+-/
 theorem aux_phiJ_theta_even (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ) :
     aux_phiJ_theta phi0 phi1 (-xi) = aux_phiJ_theta phi0 phi1 xi := by
@@ -1525,11 +1655,17 @@ theorem aux_phiJ_theta_even (phi0 phi1 : SchwartzMap ℝ ℝ)
     aux_phiJ_profile_even_of_window phi0 hpair.1,
     aux_phiJ_profile_even_of_window phi1 hpair.2.1]
 
+/--
+@isnad1 id=eq.2h2v.s6.2d4a740ad8b1 from=translated src=- shape=44d9d2dc vocab=2a6d47aa
+-/
 theorem aux_phiJ_profile_eq_one_of_abs_le_half (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) (x : ℝ) (hx : |x| ≤ 1 / 2) :
     aux_phiJ_profile phi x = 1 := by
   exact hwin.2.2.2.1 x (abs_le.mp hx)
 
+/--
+@isnad1 id=eq.2h2v.s5.ce53fc32af5f from=translated src=- shape=2d69d4ba vocab=b8fa8fa3
+-/
 theorem aux_phiJ_profile_eq_zero_of_one_lt_abs (phi : SchwartzMap ℝ ℝ)
     (hwin : cnWindow C_uniPair N_uniPair phi) (x : ℝ) (hx : 1 < |x|) :
     aux_phiJ_profile phi x = 0 := by
@@ -1539,6 +1675,9 @@ theorem aux_phiJ_profile_eq_zero_of_one_lt_abs (phi : SchwartzMap ℝ ℝ)
   have habs : |x| ≤ 1 := abs_le.mpr hmem
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s6.2576dd4c7a4c from=translated src=- shape=1a56f2ad vocab=bbfc258f
+-/
 theorem aux_phiJ_theta_eq_zero_small (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ) (hxi : |xi| ≤ 1 / 64) :
     aux_phiJ_theta phi0 phi1 xi = 0 := by
@@ -1557,6 +1696,9 @@ theorem aux_phiJ_theta_eq_zero_small (phi0 phi1 : SchwartzMap ℝ ℝ)
     aux_phiJ_profile_eq_one_of_abs_le_half phi1 h1 _ hright]
   ring
 
+/--
+@isnad1 id=eq.3h3v.s6.e6d2f92d5fe2 from=translated src=- shape=adfdbdd8 vocab=bbfc258f
+-/
 theorem aux_phiJ_theta_eq_one_mid (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ)
     (hlow : 1 / 16 ≤ |xi|) (hhigh : |xi| ≤ 16) :
@@ -1576,6 +1718,9 @@ theorem aux_phiJ_theta_eq_one_mid (phi0 phi1 : SchwartzMap ℝ ℝ)
     aux_phiJ_profile_eq_zero_of_one_lt_abs phi1 h1 _ hright]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.ab02bff2ee67 from=translated src=- shape=f97b223f vocab=a5865e02
+-/
 theorem aux_phiJ_theta_eq_zero_large (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ) (hxi : 64 < |xi|) :
     aux_phiJ_theta phi0 phi1 xi = 0 := by
@@ -1594,6 +1739,9 @@ theorem aux_phiJ_theta_eq_zero_large (phi0 phi1 : SchwartzMap ℝ ℝ)
     aux_phiJ_profile_eq_zero_of_one_lt_abs phi1 h1 _ hright]
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.936fda39f7bc from=translated src=- shape=c96a3e0c vocab=7f259ee4
+-/
 theorem aux_phiJ_theta_support (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
     Function.support (aux_phiJ_theta phi0 phi1) ⊆
@@ -1616,6 +1764,9 @@ theorem aux_phiJ_theta_support (phi0 phi1 : SchwartzMap ℝ ℝ)
     exact (Function.mem_support.mp hxi)
       (aux_phiJ_theta_eq_zero_large phi0 phi1 hpair xi hlarge)
 
+/--
+@isnad1 id=eq.2h3v.s6.ce2cc8d79ac6 from=translated src=- shape=d89e097a vocab=560c1671
+-/
 theorem aux_phiJ_theta_one_on_annulus (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ)
     (hxi : xi ∈ Auto.aux_annulusOne 1 ((2 : ℝ) ^ 4)) :
@@ -1629,6 +1780,9 @@ theorem aux_phiJ_theta_one_on_annulus (phi0 phi1 : SchwartzMap ℝ ℝ)
     exact hxi.2
   exact aux_phiJ_theta_eq_one_mid phi0 phi1 hpair xi hlow hhigh
 
+/--
+@isnad1 id=ex.1h3v.s6.ba94abccb648 from=translated src=- shape=23665030 vocab=f1f6b3b3
+-/
 theorem aux_phiJ_theta_real_nonneg (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (xi : ℝ) :
     ∃ r : ℝ, 0 ≤ r ∧ aux_phiJ_theta phi0 phi1 xi = r := by
@@ -1668,6 +1822,9 @@ theorem aux_phiJ_theta_real_nonneg (phi0 phi1 : SchwartzMap ℝ ℝ)
     have hlarge' : 64 < |xi| := lt_of_not_ge hlarge
     simpa using aux_phiJ_theta_eq_zero_large phi0 phi1 hpair xi hlarge'
 
+/--
+@isnad1 id=contdiff.0h1v.s5.b57c79883ec7 from=translated src=- shape=40251616 vocab=b36297d4
+-/
 theorem aux_phiJ_profile_smooth (phi : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_profile phi) := by
   let phiC : SchwartzMap ℝ ℂ :=
@@ -1680,6 +1837,9 @@ theorem aux_phiJ_profile_smooth (phi : SchwartzMap ℝ ℝ) :
   rw [SchwartzMap.fourier_coe, hphiC] at hs
   exact hs
 
+/--
+@isnad1 id=le.2h5v.s6.1b62081238ff from=translated src=- shape=5ba7a271 vocab=6d22ec63
+-/
 theorem aux_phiJ_profile_deriv_bound (c : ℝ) (N : ℕ)
     (phi : SchwartzMap ℝ ℝ) (hwin : cnWindow c N phi)
     (m : ℕ) (hm : m ≤ N) (xi : ℝ) :
@@ -1704,12 +1864,18 @@ theorem aux_phiJ_profile_deriv_bound (c : ℝ) (N : ℕ)
     rw [hzero, norm_zero]
     exact hwin.1.le
 
+/--
+@isnad1 id=contdiff.0h2v.s6.fcbc938f42fd from=translated src=- shape=887c4f57 vocab=93db5686
+-/
 theorem aux_phiJ_theta_smooth (phi0 phi1 : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_theta phi0 phi1) := by
   unfold aux_phiJ_theta
   exact ((aux_phiJ_profile_smooth phi0).comp (contDiff_const.mul contDiff_id)).sub
     ((aux_phiJ_profile_smooth phi1).comp (contDiff_const.mul contDiff_id))
 
+/--
+@isnad1 id=eq.0h4v.s8.8e950a5355e6 from=translated src=- shape=c2510ff3 vocab=e89b6981
+-/
 theorem aux_phiJ_theta_deriv_formula (phi0 phi1 : SchwartzMap ℝ ℝ)
     (m : ℕ) (xi : ℝ) :
     iteratedDeriv m (aux_phiJ_theta phi0 phi1) xi =
@@ -1738,6 +1904,9 @@ theorem aux_phiJ_theta_deriv_formula (phi0 phi1 : SchwartzMap ℝ ℝ)
     congrFun (iteratedDeriv_comp_const_smul hF0 ((2 : ℝ) ^ (-5 : ℤ))) xi,
     congrFun (iteratedDeriv_comp_const_smul hF1 ((2 : ℝ) ^ (5 : ℤ))) xi]
 
+/--
+@isnad1 id=le.2h4v.s7.dc888e788a5b from=translated src=- shape=3ce1d96d vocab=0b97657f
+-/
 theorem aux_phiJ_theta_deriv_bound (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m (aux_phiJ_theta phi0 phi1) xi‖ ≤
@@ -1779,6 +1948,9 @@ theorem aux_phiJ_theta_deriv_bound (phi0 phi1 : SchwartzMap ℝ ℝ)
 def aux_phiJ_thetaReal (phi0 phi1 : SchwartzMap ℝ ℝ) : ℝ → ℝ :=
   fun xi => (aux_phiJ_theta phi0 phi1 xi).re
 
+/--
+@isnad1 id=eq.1h2v.s6.50c1ac05b5f9 from=translated src=- shape=555310de vocab=b1c4a6d5
+-/
 theorem aux_phiJ_theta_eq_ofReal (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) :
     aux_phiJ_theta phi0 phi1 = fun xi => (aux_phiJ_thetaReal phi0 phi1 xi : ℂ) := by
@@ -1788,10 +1960,16 @@ theorem aux_phiJ_theta_eq_ofReal (phi0 phi1 : SchwartzMap ℝ ℝ)
   rw [hr]
   norm_num
 
+/--
+@isnad1 id=contdiff.0h2v.s6.caeab77ac51b from=translated src=- shape=c2964fb3 vocab=a840c81c
+-/
 theorem aux_phiJ_thetaReal_smooth (phi0 phi1 : SchwartzMap ℝ ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_thetaReal phi0 phi1) := by
   exact Complex.reCLM.contDiff.comp (aux_phiJ_theta_smooth phi0 phi1)
 
+/--
+@isnad1 id=le.2h4v.s7.e28739e4457d from=translated src=- shape=5563e988 vocab=163c4ff8
+-/
 theorem aux_phiJ_theta_deriv_bound_sharp (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (m : ℕ) (hm : m < 3) (xi : ℝ) :
     ‖iteratedDeriv m (aux_phiJ_theta phi0 phi1) xi‖ ≤
@@ -1830,6 +2008,9 @@ theorem aux_phiJ_theta_deriv_bound_sharp (phi0 phi1 : SchwartzMap ℝ ℝ)
     _ ≤ (2 : ℝ) ^ (5 * m + 1) * C_uniPair := by
       interval_cases m <;> norm_num [C_uniPair]
 
+/--
+@isnad1 id=le.2h4v.s7.344d63546a1e from=translated src=- shape=23542a57 vocab=83a51cdb
+-/
 theorem aux_phiJ_thetaReal_deriv_bound_sharp (phi0 phi1 : SchwartzMap ℝ ℝ)
     (hpair : uniPair phi0 phi1) (m : ℕ) (hm : m < 3) (xi : ℝ) :
     |iteratedDeriv m (aux_phiJ_thetaReal phi0 phi1) xi| ≤
@@ -1853,6 +2034,9 @@ theorem aux_phiJ_thetaReal_deriv_bound_sharp (phi0 phi1 : SchwartzMap ℝ ℝ)
 def aux_phiJ_q (theta p : ℝ → ℝ) : ℝ → ℝ :=
   fun x => √(2 * theta x ^ 2 - p x)
 
+/--
+@isnad1 id=eqon.1h3v.s5.874667f21d1d from=translated src=- shape=efeddc83 vocab=e88eb9e7
+-/
 theorem aux_phiJ_q_eq_inner (theta p : ℝ → ℝ) (B : Set ℝ)
     (htheta_one : ∀ x ∈ B, theta x = 1) :
     Set.EqOn (aux_phiJ_q theta p) (fun x => √(2 - p x)) B := by
@@ -1862,6 +2046,9 @@ theorem aux_phiJ_q_eq_inner (theta p : ℝ → ℝ) (B : Set ℝ)
   congr 1
   ring
 
+/--
+@isnad1 id=eqon.2h3v.s6.f19ed1c0c3cf from=translated src=- shape=2054243c vocab=990b9948
+-/
 theorem aux_phiJ_q_eq_outer (theta p : ℝ → ℝ) (A : Set ℝ)
     (htheta_nonneg : ∀ x, 0 ≤ theta x)
     (hp_off : ∀ x ∉ A, p x = 0) :
@@ -1874,6 +2061,9 @@ theorem aux_phiJ_q_eq_outer (theta p : ℝ → ℝ) (A : Set ℝ)
     _ = √2 * √(theta x ^ 2) := Real.sqrt_mul (by norm_num) _
     _ = √2 * theta x := by rw [Real.sqrt_sq (htheta_nonneg x)]
 
+/--
+@isnad1 id=contdiff.8h4v.s7.4014a4f0dc3f from=translated src=- shape=4e6a401e vocab=c45e1bea
+-/
 theorem aux_phiJ_q_contDiff
     (A B : Set ℝ) (theta p : ℝ → ℝ)
     (htheta : ContDiff ℝ (⊤ : ℕ∞) theta)
@@ -1902,6 +2092,9 @@ theorem aux_phiJ_q_contDiff
       exact aux_phiJ_q_eq_outer theta p A htheta_nonneg hp_off hy
     exact (contDiff_const.mul htheta).contDiffAt.congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=eq.4h5v.s6.b4356dd1c3c9 from=translated src=- shape=82e9ec6a vocab=2d85015f
+-/
 theorem aux_phiJ_q_zero_outside
     (A K : Set ℝ) (theta p : ℝ → ℝ)
     (hAK : A ⊆ K) (htheta_zero : ∀ x ∉ K, theta x = 0)
@@ -1911,6 +2104,9 @@ theorem aux_phiJ_q_zero_outside
   rw [htheta_zero x hx, hp_off x (fun hxA => hx (hAK hxA))]
   norm_num
 
+/--
+@isnad1 id=hascompa.4h4v.s6.497474066de9 from=translated src=- shape=c17822b3 vocab=c00a286f
+-/
 theorem aux_phiJ_q_hasCompactSupport
     (A K : Set ℝ) (theta p : ℝ → ℝ)
     (hKcompact : IsCompact K) (hAK : A ⊆ K)
@@ -1920,6 +2116,9 @@ theorem aux_phiJ_q_hasCompactSupport
   exact HasCompactSupport.intro hKcompact
     (aux_phiJ_q_zero_outside A K theta p hAK htheta_zero hp_off)
 
+/--
+@isnad1 id=eq.2h3v.s5.8b497ff98bd1 from=translated src=- shape=d6ed9283 vocab=747873e4
+-/
 theorem aux_phiJ_q_even (theta p : ℝ → ℝ)
     (htheta : ∀ x, theta (-x) = theta x)
     (hp : ∀ x, p (-x) = p x) :
@@ -1928,6 +2127,9 @@ theorem aux_phiJ_q_even (theta p : ℝ → ℝ)
   unfold aux_phiJ_q
   rw [htheta x, hp x]
 
+/--
+@isnad1 id=le.4h2v.s7.ee11da633435 from=translated src=- shape=ae2053d2 vocab=a6d7c2af
+-/
 theorem aux_phiJ_sqrt_comp_second_deriv_bound {f : ℝ → ℝ} (hf : ContDiff ℝ 2 f)
     (h0 : ∀ x, 1 ≤ f x) (h1 : ∀ x, |deriv f x| ≤ 1)
     (h2 : ∀ x, |iteratedDeriv 2 f x| ≤ 1) (x : ℝ) :
@@ -1991,6 +2193,9 @@ theorem aux_phiJ_sqrt_comp_second_deriv_bound {f : ℝ → ℝ} (hf : ContDiff �
           _ = 1 / 2 := by norm_num
     _ ≤ 1 := by norm_num
 
+/--
+@isnad1 id=le.5h3v.s7.bf5ef9b43888 from=translated src=- shape=005323d4 vocab=74aeadfc
+-/
 theorem aux_phiJ_inner_sqrt_deriv_bound
     (p : ℝ → ℝ) (hp : ContDiff ℝ (⊤ : ℕ∞) p)
     (hp_nonneg : ∀ x, 0 ≤ p x) (hp_le_one : ∀ x, p x ≤ 1)
@@ -2044,6 +2249,9 @@ theorem aux_phiJ_inner_sqrt_deriv_bound
       _ ≤ 2 := by norm_num
   · exact (aux_phiJ_sqrt_comp_second_deriv_bound hf hf0 hf1 hf2 x).trans (by norm_num)
 
+/--
+@isnad1 id=eq.3h6v.s7.175bf59e8b42 from=translated src=- shape=61cbce37 vocab=0beefc7b
+-/
 theorem aux_phiJ_q_iteratedDeriv_eq_inner
     (A B : Set ℝ) (theta p : ℝ → ℝ)
     (hAB : A ⊆ interior B) (htheta_one : ∀ x ∈ B, theta x = 1)
@@ -2053,6 +2261,9 @@ theorem aux_phiJ_q_iteratedDeriv_eq_inner
     ((aux_phiJ_q_eq_inner theta p B htheta_one).mono interior_subset)
     isOpen_interior m) (hAB hx)
 
+/--
+@isnad1 id=eq.4h5v.s7.a6ca736ef953 from=translated src=- shape=7e4fe3c0 vocab=17674780
+-/
 theorem aux_phiJ_q_iteratedDeriv_eq_outer
     (A : Set ℝ) (theta p : ℝ → ℝ) (hAclosed : IsClosed A)
     (htheta_nonneg : ∀ x, 0 ≤ theta x)
@@ -2063,6 +2274,9 @@ theorem aux_phiJ_q_iteratedDeriv_eq_outer
     (aux_phiJ_q_eq_outer theta p A htheta_nonneg hp_off)
     hAclosed.isOpen_compl m) hx
 
+/--
+@isnad1 id=le.12h7v.s8.b0faaa9fac3f from=translated src=- shape=6c450c34 vocab=672b9216
+-/
 theorem aux_phiJ_q_deriv_bound
     (A B : Set ℝ) (theta p : ℝ → ℝ) (C : ℝ)
     (hAclosed : IsClosed A) (hAB : A ⊆ interior B)
@@ -2098,11 +2312,17 @@ theorem aux_phiJ_q_deriv_bound
 
 def aux_phiJ_qComplex (q : ℝ → ℝ) : ℝ → ℂ := fun x => (q x : ℂ)
 
+/--
+@isnad1 id=hascompa.1h1v.s4.eb7a68f63867 from=translated src=- shape=15f6b12b vocab=f8173438
+-/
 theorem aux_phiJ_qComplex_hasCompactSupport (q : ℝ → ℝ)
     (hq : HasCompactSupport q) :
     HasCompactSupport (aux_phiJ_qComplex q) := by
   exact hq.comp_left rfl
 
+/--
+@isnad1 id=le.1h2v.s4.eec0bb0b4023 from=translated src=- shape=9b7b1f54 vocab=76353d46
+-/
 theorem aux_phiJ_qComplex_support_subset (q : ℝ → ℝ) (K : Set ℝ)
     (hq : Function.support q ⊆ K) :
     Function.support (aux_phiJ_qComplex q) ⊆ K := by
@@ -2112,11 +2332,17 @@ theorem aux_phiJ_qComplex_support_subset (q : ℝ → ℝ) (K : Set ℝ)
   intro hz
   exact (Function.mem_support.mp hx) (by simp [aux_phiJ_qComplex, hz])
 
+/--
+@isnad1 id=contdiff.1h1v.s6.252b8898aab1 from=translated src=- shape=a2df2fa4 vocab=da01b191
+-/
 theorem aux_phiJ_qComplex_contDiff (q : ℝ → ℝ)
     (hq : ContDiff ℝ (⊤ : ℕ∞) q) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_qComplex q) := by
   exact Complex.ofRealCLM.contDiff.comp hq
 
+/--
+@isnad1 id=eq.2h4v.s7.9a05be6ce141 from=translated src=- shape=b346104d vocab=f1c75c9d
+-/
 theorem aux_phiJ_q_complex_sq (theta p q : ℝ → ℝ)
     (hq : ∀ x, q x = √(2 * theta x ^ 2 - p x))
     (hrad : ∀ x, 0 ≤ 2 * theta x ^ 2 - p x) (x : ℝ) :
@@ -2125,6 +2351,9 @@ theorem aux_phiJ_q_complex_sq (theta p q : ℝ → ℝ)
   norm_cast
   exact Real.sq_sqrt (hrad x)
 
+/--
+@isnad1 id=le.3h4v.s6.5729c93de2bd from=translated src=- shape=669e0867 vocab=1ee68775
+-/
 theorem aux_phiJ_qComplex_iteratedDeriv_bound
     (q : ℝ → ℝ) (hq : ContDiff ℝ (⊤ : ℕ∞) q)
     (C : ℝ) (hbound : ∀ m : ℕ, m < 3 → ∀ x, |iteratedDeriv m q x| ≤ C)
@@ -2138,6 +2367,9 @@ theorem aux_phiJ_qComplex_iteratedDeriv_bound
     Complex.norm_real, Real.norm_eq_abs]
   exact hbound m hm x
 
+/--
+@isnad1 id=ex.9h7v.s9.da23b49eb78a from=translated src=- shape=dcd9e0fc vocab=4fd88c07
+-/
 theorem aux_phiJ_profile_to_schwartz
     (theta p q : ℝ → ℝ) (thetaC pC : ℝ → ℂ) (K : Set ℝ) (C : ℝ)
     (hqdef : ∀ x, q x = √(2 * theta x ^ 2 - p x))
@@ -2192,6 +2424,9 @@ noncomputable def aux_phiJ_diagMap : ℝ →L[ℝ] EuclideanSpace ℝ (Fin 2) :=
       else
         (-1 : ℝ →L[ℝ] ℝ))).toLinearMap).toContinuousLinearMap
 
+/--
+@isnad1 id=eq.0h1v.s8.47b6217a0a35 from=translated src=- shape=b8731f6e vocab=b28e55d5
+-/
 theorem aux_phiJ_diagMap_apply (xi : ℝ) :
     aux_phiJ_diagMap xi = WithLp.toLp 2 ![xi, -xi] := by
   ext i
@@ -2204,6 +2439,9 @@ def aux_phiJ_P (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) : ℝ → �
 def aux_phiJ_p (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) : ℝ → ℝ :=
   fun xi => (aux_phiJ_P Psi xi).re
 
+/--
+@isnad1 id=contdiff.0h1v.s7.adbfe2bed688 from=translated src=- shape=7fdcfacc vocab=cc0677ee
+-/
 theorem aux_phiJ_P_smooth (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_P Psi) := by
   let PsiC : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℂ :=
@@ -2223,10 +2461,16 @@ theorem aux_phiJ_P_smooth (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) :
     hs.comp aux_phiJ_diagMap.contDiff
   simpa only [aux_phiJ_diagMap_apply] using hcomp
 
+/--
+@isnad1 id=contdiff.0h1v.s7.bb96106dcb04 from=translated src=- shape=6b097abc vocab=e8ea3ba5
+-/
 theorem aux_phiJ_p_smooth (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) :
     ContDiff ℝ (⊤ : ℕ∞) (aux_phiJ_p Psi) := by
   exact Complex.reCLM.contDiff.comp (aux_phiJ_P_smooth Psi)
 
+/--
+@isnad1 id=eq.1h1v.s9.c9de51b2c35d from=translated src=- shape=021023b6 vocab=6fc1606d
+-/
 theorem aux_phiJ_P_eq_ofReal (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2),
       Psi u = Psi (Auto.aux_swapTwo u)) :
@@ -2243,6 +2487,9 @@ theorem aux_phiJ_P_eq_ofReal (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ
   rw [hr]
   norm_num
 
+/--
+@isnad1 id=le.2h2v.s10.62db43e384a7 from=translated src=- shape=17812218 vocab=cc10f400
+-/
 theorem aux_phiJ_p_nonneg (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2),
       Psi u = Psi (Auto.aux_swapTwo u))
@@ -2252,6 +2499,9 @@ theorem aux_phiJ_p_nonneg (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
   exact Auto.phiPosV2
     (Psi : EuclideanSpace ℝ (Fin 2) → ℝ) hsym hpos xi
 
+/--
+@isnad1 id=le.1h2v.s7.4291dd06f60b from=translated src=- shape=1e83bc77 vocab=728d50a7
+-/
 theorem aux_phiJ_p_le_one (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hderiv : ∀ m : ℕ, m < 3 → ∀ xi : ℝ,
       ‖iteratedDeriv m (aux_phiJ_P Psi) xi‖ ≤ 1)
@@ -2260,6 +2510,9 @@ theorem aux_phiJ_p_le_one (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
   rw [iteratedDeriv_zero] at h
   exact (le_trans (le_abs_self _) (Complex.abs_re_le_norm _)).trans h
 
+/--
+@isnad1 id=le.1h1v.s9.8ad944179694 from=translated src=- shape=fe1282d0 vocab=a324e745
+-/
 theorem aux_phiJ_P_support (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsupp : Function.support
       (FourierTransform.fourier (fun x : EuclideanSpace ℝ (Fin 2) => (Psi x : ℂ))) ⊆
@@ -2273,6 +2526,9 @@ theorem aux_phiJ_P_support (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     exact hxi
   exact (hsupp hfull).1
 
+/--
+@isnad1 id=eq.2h2v.s9.cfde528de3b7 from=translated src=- shape=61676fe8 vocab=5699b21c
+-/
 theorem aux_phiJ_p_zero_of_not_ann3
     (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsupp : Function.support
@@ -2287,6 +2543,9 @@ theorem aux_phiJ_p_zero_of_not_ann3
     exact hx (aux_phiJ_P_support Psi hsupp h)
   exact congrArg Complex.re hzero
 
+/--
+@isnad1 id=eq.1h2v.s9.6dbd39f5d599 from=translated src=- shape=a08c8b11 vocab=a91fe6cc
+-/
 theorem aux_phiJ_P_even (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2),
       Psi u = Psi (Auto.aux_swapTwo u)) (xi : ℝ) :
@@ -2296,12 +2555,18 @@ theorem aux_phiJ_P_even (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
       (Psi : EuclideanSpace ℝ (Fin 2) → ℝ) hsym
   simpa only [aux_phiJ_P, neg_neg] using heven xi
 
+/--
+@isnad1 id=eq.1h2v.s9.b2e82cba3b3e from=translated src=- shape=68ea21ce vocab=3dbab88c
+-/
 theorem aux_phiJ_p_even (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2),
       Psi u = Psi (Auto.aux_swapTwo u)) (xi : ℝ) :
     aux_phiJ_p Psi (-xi) = aux_phiJ_p Psi xi := by
   exact congrArg Complex.re (aux_phiJ_P_even Psi hsym xi)
 
+/--
+@isnad1 id=le.3h3v.s9.bd00b46124a4 from=translated src=- shape=566853aa vocab=b7f41360
+-/
 theorem aux_phiJ_p_deriv_bound (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (hsym : ∀ u : EuclideanSpace ℝ (Fin 2),
       Psi u = Psi (Auto.aux_swapTwo u))
@@ -2324,12 +2589,18 @@ theorem aux_phiJ_p_deriv_bound (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) �
       rw [aux_phiJ_P_eq_ofReal Psi hsym]
     _ ≤ 1 := hderiv m hm xi
 
+/--
+@isnad1 id=isclosed.0h0v.s5.11357dac8749 from=translated src=- shape=78f5925f vocab=b175e52b
+-/
 theorem aux_phiJ_ann3_closed :
     IsClosed (Auto.aux_annulusOne 1 ((2 : ℝ) ^ 3)) := by
   change IsClosed {x : ℝ | 1 / ((2 : ℝ) ^ 3) ≤ |x| ∧ |x| ≤ ((2 : ℝ) ^ 3) * 1}
   exact (isClosed_le continuous_const continuous_abs).inter
     (isClosed_le continuous_abs continuous_const)
 
+/--
+@isnad1 id=le.0h0v.s6.a5a1642c1a49 from=translated src=- shape=fc88e34f vocab=8302d135
+-/
 theorem aux_phiJ_ann3_subset_interior_ann4 :
     Auto.aux_annulusOne 1 ((2 : ℝ) ^ 3) ⊆
       interior (Auto.aux_annulusOne 1 ((2 : ℝ) ^ 4)) := by
@@ -2347,6 +2618,9 @@ theorem aux_phiJ_ann3_subset_interior_ann4 :
   norm_num at hx
   exact ⟨lt_of_lt_of_le (by norm_num) hx.1, lt_of_le_of_lt hx.2 (by norm_num)⟩
 
+/--
+@isnad1 id=iscompac.0h0v.s5.77e5d062030e from=translated src=- shape=78f5925f vocab=2d551408
+-/
 theorem aux_phiJ_ann6_compact :
     IsCompact (Auto.aux_annulusOne 1 ((2 : ℝ) ^ 6)) := by
   apply isCompact_Icc.of_isClosed_subset
@@ -2359,6 +2633,9 @@ theorem aux_phiJ_ann6_compact :
     · exact neg_le_of_abs_le (by norm_num at hx ⊢; exact hx.2)
     · exact le_of_abs_le (by norm_num at hx ⊢; exact hx.2)
 
+/--
+@isnad1 id=le.0h0v.s6.55c5db9599d0 from=translated src=- shape=d0f33304 vocab=4b9021ce
+-/
 theorem aux_phiJ_ann3_subset_ann6 :
     Auto.aux_annulusOne 1 ((2 : ℝ) ^ 3) ⊆
       Auto.aux_annulusOne 1 ((2 : ℝ) ^ 6) := by
@@ -2422,7 +2699,9 @@ $\psi:\mathbb{R}\to \mathbb{R}$ such that
    C_{\text{lem:Phij\_prop}}=2^{12}C_{\text{Universal pair}}.
    $$
 
-See also `Auto.phiJProperties`, `Auto.uniPair`.-/
+See also `Auto.phiJProperties`, `Auto.uniPair`.
+@isnad1 id=ex.6h3v.s12.1d5b6539f950 from=translated src=- shape=cebad7c1 vocab=b45be0b2
+-/
 theorem phiJProperties (phi0 phi1 : SchwartzMap ℝ ℝ) (hpair : uniPair phi0 phi1)
     (Psi : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) (hPsi : Psi ≠ 0)
     (hsym : ∀ u, Psi u = Psi (WithLp.toLp 2 ![u 1, u 0]))
@@ -2595,11 +2874,16 @@ $$
 C_{\text{lem:Phij\_prop}}=2^{27}.
 $$
 
-See also `Auto.phiJProperties`.-/
+See also `Auto.phiJProperties`.
+@isnad1 id=eq.0h0v.s4.c8073810980b from=translated src=- shape=0cd4e242 vocab=22e8b2c3
+-/
 theorem constantPhiJProposition : C_phiJProperties = (2 : ℝ) ^ 27 := by
   unfold C_phiJProperties C_uniPair
   rw [← pow_add]
 
+/--
+@isnad1 id=aestrong.0h4v.s9.281c1390368c from=translated src=- shape=d58babd8 vocab=7e128c28
+-/
 theorem aux_bootstrap_average_aestronglyMeasurable {n : ℕ}
     (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (t : ℝ) :
@@ -2620,6 +2904,9 @@ theorem aux_bootstrap_average_aestronglyMeasurable {n : ℕ}
   filter_upwards [] with x
   rfl
 
+/--
+@isnad1 id=le.0h2v.s6.cbab2b38674d from=translated src=- shape=5f4d4362 vocab=843b1dec
+-/
 theorem aux_bootstrap_ennreal_add_sq_le (u v : ℝ≥0∞) :
     (u + v) ^ 2 ≤ 2 * (u ^ 2 + v ^ 2) := by
   by_cases hu : u = ∞
@@ -2637,6 +2924,9 @@ theorem aux_bootstrap_ennreal_add_sq_le (u v : ℝ≥0∞) :
     ENNReal.toReal_pow]
   nlinarith [sq_nonneg (u.toReal - v.toReal)]
 
+/--
+@isnad1 id=le.1h3v.s9.18dfc86c1345 from=translated src=- shape=f0097827 vocab=9f9cf8b4
+-/
 theorem aux_bootstrap_energy_core {J : ℕ} (a : ℤ → ℝ≥0∞)
     (d : ℤ → ℤ → ℝ≥0∞)
     (hd : ∀ u v, d u v ≤ a u + a v) :
@@ -2696,7 +2986,9 @@ $$
 \|A_{2^{k_{\ell}}}(\phi)\|^2_2
 $$
 
-where the supremum is over all sequences of integers $k_0<\cdots <k_{J-1}$.-/
+where the supremum is over all sequences of integers $k_0<\cdots <k_{J-1}$.
+@isnad1 id=le.1h4v.s10.d33f77b3c8f9 from=translated src=- shape=8ccd19a3 vocab=cea9c9d8
+-/
 theorem bootstrap {n : ℕ} (hn : 2 ≤ n) (phi : SchwartzMap ℝ ℝ)
     (f : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin n)) ℝ) (J : ℕ) :
     twistedDyadicVariationEnergy (fun x ↦ phi x) (fun i x ↦ f i x) J ≤
