@@ -15,6 +15,9 @@ namespace CongruenceTheory
 
 variable {ι : Type*} [DecidableEq ι]
 
+/--
+@isnad1 id=ex.2h8v.s7.ec4b5bae23f1 from=translated src=- shape=10537a04 vocab=3b840f13
+-/
 theorem dvd_sum_of_const_on_classes (r : ι → ι → Prop) (hrefl : ∀ x, r x x)
     (hsymm : ∀ x y, r x y → r y x) (htrans : ∀ x y z, r x y → r y z → r x z)
     [DecidableRel r] (f : ι → MvPolynomial ℕ ℤ) (hf : ∀ x y, r x y → f x = f y)

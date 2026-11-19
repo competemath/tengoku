@@ -18,7 +18,9 @@ namespace CongruenceTheory
 
 open Equiv Equiv.Perm Nat MvPolynomial
 
-/-- `p` does not divide `n!` when `n < p`.-/
+/-- `p` does not divide `n!` when `n < p`.
+@isnad1 id=not.2h2v.s4.84a8786e7801 from=translated src=- shape=b9aa8cbb vocab=61b61fd7
+-/
 theorem not_dvd_factorial_of_lt (p n : ℕ) (hp : p.Prime) (h : n < p) : ¬ p ∣ n ! := by
   induction n with
   | zero => simp [hp.one_lt.ne']
@@ -29,6 +31,9 @@ theorem not_dvd_factorial_of_lt (p n : ℕ) (hp : p.Prime) (h : n < p) : ¬ p �
     · have := Nat.le_of_dvd (by omega) h1; omega
     · exact ih (by omega) h2
 
+/--
+@isnad1 id=le.0h2v.s4.92e2b5723997 from=translated src=- shape=6b7f8883 vocab=f28724e9
+-/
 theorem replicate_count_le (m : Multiset ℕ) (n : ℕ) : Multiset.replicate (m.count n) n ≤ m := by
   rw [Multiset.le_iff_count]
   intro a
@@ -37,12 +42,17 @@ theorem replicate_count_le (m : Multiset ℕ) (n : ℕ) : Multiset.replicate (m.
   · subst h; simp
   · rw [ite_eq_right (Ne.symm h)]; exact Nat.zero_le _
 
+/--
+@isnad1 id=le.1h2v.s4.9304bae6e8ed from=translated src=- shape=4486ad1d vocab=7fc66f67
+-/
 theorem multiset_sum_le_of_le (m1 m2 : Multiset ℕ) (h : m1 ≤ m2) : m1.sum ≤ m2.sum := by
   obtain ⟨c, rfl⟩ := Multiset.le_iff_exists_add.mp h
   simp [Multiset.sum_add]
 
 /-- **The centralizer-size formula `z_λ` is `p`-free** for every conjugacy class other than
-the identity and the `p`-cycles: the manuscript's key structural fact behind `prop:prime`.-/
+the identity and the `p`-cycles: the manuscript's key structural fact behind `prop:prime`.
+@isnad1 id=not.3h2v.s6.6b4b688b43e8 from=translated src=- shape=25fd1d17 vocab=b0c716ee
+-/
 theorem not_dvd_centralizer_size (p : ℕ) (hp : p.Prime) (g : Equiv.Perm (Fin p)) (hg1 : g ≠ 1)
     (hgp : g.cycleType ≠ {p}) :
     ¬ p ∣ ((p - g.cycleType.sum)! * g.cycleType.prod *
@@ -104,7 +114,9 @@ theorem not_dvd_centralizer_size (p : ℕ) (hp : p.Prime) (g : Equiv.Perm (Fin p
   · exact h3 hdvd3
 
 /-- Every conjugacy class other than the identity's and the `p`-cycles' has size divisible
-by `p`, via Mathlib's own `Equiv.Perm.card_isConj_mul_eq`.-/
+by `p`, via Mathlib's own `Equiv.Perm.card_isConj_mul_eq`.
+@isnad1 id=dvd.3h2v.s6.35c853208506 from=translated src=- shape=ab277475 vocab=4b9c1afc
+-/
 theorem prime_dvd_isConj_card (p : ℕ) (hp : p.Prime) (g : Equiv.Perm (Fin p)) (hg1 : g ≠ 1)
     (hgp : g.cycleType ≠ {p}) :
     p ∣ Nat.card {h : Equiv.Perm (Fin p) | IsConj g h} := by
@@ -122,7 +134,9 @@ theorem prime_dvd_isConj_card (p : ℕ) (hp : p.Prime) (g : Equiv.Perm (Fin p)) 
 
 open scoped Classical in
 /-- **The exceptional-class decomposition of `Cperm p`**: `Cperm p = X_1^p + (p-1)!·X_p +
-p·Q` for some `Q`, for every prime `p`.-/
+p·Q` for some `Q`, for every prime `p`.
+@isnad1 id=ex.1h1v.s8.50593a908090 from=translated src=- shape=6bcd6a47 vocab=a90294c2
+-/
 theorem Cperm_prime_decomp (p : ℕ) (hp : p.Prime) :
     ∃ Q : MvPolynomial ℕ ℤ,
       Cperm p = (MvPolynomial.X 1 : MvPolynomial ℕ ℤ) ^ p +
@@ -215,7 +229,9 @@ theorem Cperm_prime_decomp (p : ℕ) (hp : p.Prime) :
     ring
   rw [hci1, hcip]
 
-/-- **Proposition `prop:prime`**: for every prime `p`, `A_w(p) ≡ w_1 - w_p (mod p)`.-/
+/-- **Proposition `prop:prime`**: for every prime `p`, `A_w(p) ≡ w_1 - w_p (mod p)`.
+@isnad1 id=dvd.1h2v.s5.f799eea10370 from=translated src=- shape=4629a0ef vocab=af2625de
+-/
 theorem AwPerm_prime_cong (w : ℕ → ℤ) (p : ℕ) (hp : p.Prime) :
     (p : ℤ) ∣ (AwPerm w p - (w 1 - w p)) := by
   haveI := Fact.mk hp

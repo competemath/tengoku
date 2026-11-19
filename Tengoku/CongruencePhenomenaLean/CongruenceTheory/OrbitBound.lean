@@ -18,10 +18,15 @@ open Nat
 /-- The 2-adic valuation of a natural number, via `Nat.factorization`.-/
 noncomputable def v2 (m : ℕ) : ℕ := m.factorization 2
 
+/--
+@isnad1 id=prime.0h0v.s2.5fb530e88d94 from=translated src=- shape=e590c3e1 vocab=1464e337
+-/
 lemma v2_two_prime : Nat.Prime 2 := by norm_num
 
 /-- Auxiliary fact: for `t ≥ 1`, `v2(t) ≤ v2((t-1)!) + 1`. The single factor
-`2^(v2(t)-1) ≤ t - 1` already present among `1, ..., t-1` accounts for it.-/
+`2^(v2(t)-1) ≤ t - 1` already present among `1, ..., t-1` accounts for it.
+@isnad1 id=le.1h1v.s5.c510f423a7a2 from=translated src=- shape=5eb8a616 vocab=a139c2e7
+-/
 lemma v2_le_v2_pred_factorial_add_one (t : ℕ) (ht : 1 ≤ t) :
     v2 t ≤ v2 ((t - 1)!) + 1 := by
   rcases Nat.eq_zero_or_pos (v2 t) with hc0 | hcpos
@@ -44,14 +49,18 @@ lemma v2_le_v2_pred_factorial_add_one (t : ℕ) (ht : 1 ≤ t) :
         (Nat.factorial_ne_zero _)).mp hdvd2
     omega
 
-/-- Factorial valuation is monotone.-/
+/-- Factorial valuation is monotone.
+@isnad1 id=le.1h2v.s4.33da91ea2232 from=translated src=- shape=e178799e vocab=9f9fc165
+-/
 lemma v2_factorial_mono {m n : ℕ} (h : m ≤ n) : v2 (m !) ≤ v2 (n !) :=
   Nat.factorization_le_factorization_of_dvd_right
     (Nat.factorial_dvd_factorial h) (Nat.factorial_ne_zero m) (Nat.factorial_ne_zero n)
 
 /-- The key elementary inequality behind the orbit bound, isolated from the
 prime-power structure of `n = 2^s`: for `1 ≤ a, b`,
-`max(v2(a!), v2(b!)) + 1 ≥ v2(a) + v2(b)`.-/
+`max(v2(a!), v2(b!)) + 1 ≥ v2(a) + v2(b)`.
+@isnad1 id=le.2h2v.s5.672fe1c81828 from=translated src=- shape=0dc11cb4 vocab=aa878f72
+-/
 lemma max_v2_factorial_add_one_ge (a b : ℕ) (ha : 1 ≤ a) (hb : 1 ≤ b) :
     v2 a + v2 b ≤ max (v2 (a !)) (v2 (b !)) + 1 := by
   wlog hab : a ≤ b generalizing a b

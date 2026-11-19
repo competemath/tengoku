@@ -16,7 +16,9 @@ open Finset
 
 /-- **Proposition `prop:finitewidth`**: for `w j = 0` when `j > h`,
 `A_w(n+1) = ∑_{r=0}^{min(n,h-1)} (n)_r · w_{r+1} · A_w(n-r)`, stated as a sum over
-`Finset.range (min (n+1) h)` to avoid truncated subtraction in `h - 1`.-/
+`Finset.range (min (n+1) h)` to avoid truncated subtraction in `h - 1`.
+@isnad1 id=eq.1h3v.s6.80e6cb3cb0df from=translated src=- shape=9eab5f85 vocab=2d6a7f1d
+-/
 theorem Aw_finiteWidth (w : ℕ → ℤ) (h : ℕ) (hw : ∀ j, h < j → w j = 0) (n : ℕ) :
     Aw w (n + 1) =
       ∑ r ∈ Finset.range (min (n + 1) h), (fall n r : ℤ) * w (r + 1) * Aw w (n - r) := by

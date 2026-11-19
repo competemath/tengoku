@@ -20,9 +20,15 @@ namespace CongruenceTheory
 noncomputable def Cmod (k n : ℕ) : MvPolynomial ℕ (ZMod k) :=
   MvPolynomial.map (Int.castRingHom (ZMod k)) (C n)
 
+/--
+@isnad1 id=eq.0h1v.s5.3a5c4e75721a from=translated src=- shape=92d9cb2f vocab=6d1586f2
+-/
 lemma Cmod_zero (k : ℕ) : Cmod k 0 = 1 := by
   simp [Cmod, C_zero]
 
+/--
+@isnad1 id=eq.0h2v.s8.f6c66e7f9e24 from=translated src=- shape=8af92971 vocab=4714e04c
+-/
 lemma Cmod_succ (k n : ℕ) :
     Cmod k (n + 1) =
       ∑ r ∈ range (n + 1),
@@ -30,7 +36,9 @@ lemma Cmod_succ (k n : ℕ) :
   simp [Cmod, C_succ, map_sum]
 
 /-- Lemma `lem:falling`, part (i): for `0 ≤ r ≤ n`,
-`fall (n+k) r ≡ fall n r (mod k)`.-/
+`fall (n+k) r ≡ fall n r (mod k)`.
+@isnad1 id=eq.1h3v.s7.e3dd718c3fa6 from=translated src=- shape=27e03df9 vocab=88992dd4
+-/
 lemma fall_mod_eq (k n r : ℕ) (hr : r ≤ n) :
     ((fall (n + k) r : ℤ) : MvPolynomial ℕ (ZMod k)) = ((fall n r : ℤ) : MvPolynomial ℕ (ZMod k)) := by
   have h : ((fall (n + k) r : ℤ) : ZMod k) = ((fall n r : ℤ) : ZMod k) := by
@@ -44,7 +52,9 @@ lemma fall_mod_eq (k n r : ℕ) (hr : r ≤ n) :
   simpa [map_intCast] using hC
 
 /-- Lemma `lem:falling`, part (ii): if `n < r`, then `k ∣ fall (n+k) r` — the
-factor at index `i = n` in the falling-factorial product is exactly `k`.-/
+factor at index `i = n` in the falling-factorial product is exactly `k`.
+@isnad1 id=dvd.1h3v.s4.94ba1afb6cd9 from=translated src=- shape=01eaee4f vocab=49b2a4a4
+-/
 lemma fall_dvd_of_lt (n r k : ℕ) (h : n < r) : (k : ℤ) ∣ fall (n + k) r := by
   have hmem : n ∈ range r := Finset.mem_range.mpr h
   have hterm : (fun i : ℕ => ((n + k : ℕ) : ℤ) - (i : ℤ)) n = (k : ℤ) := by
@@ -56,7 +66,9 @@ lemma fall_dvd_of_lt (n r k : ℕ) (h : n < r) : (k : ℤ) ∣ fall (n + k) r :=
   rwa [hterm] at hdvd
 
 /-- The mod-`k` case of Theorem `thm:universal`, proved by the manuscript's
-own induction: `C_{n+k} ≡ C_k C_n (mod k)` for every `n ≥ 0`.-/
+own induction: `C_{n+k} ≡ C_k C_n (mod k)` for every `n ≥ 0`.
+@isnad1 id=eq.1h2v.s6.851103819ce8 from=translated src=- shape=1532752d vocab=e4187af2
+-/
 theorem universal_shift_mod (k : ℕ) (hk : 1 ≤ k) :
     ∀ n : ℕ, Cmod k (n + k) = Cmod k k * Cmod k n := by
   intro n
@@ -114,7 +126,9 @@ theorem universal_shift_mod (k : ℕ) (hk : 1 ≤ k) :
 precise meaning of `P ≡ 0 (mod m Z[X_1,X_2,...])`.-/
 def DvdCoeffs (m : ℕ) (P : MvPolynomial ℕ ℤ) : Prop := ∀ d, (m : ℤ) ∣ MvPolynomial.coeff d P
 
-/-- Coefficientwise divisibility from a vanishing `Cmod`-image.-/
+/-- Coefficientwise divisibility from a vanishing `Cmod`-image.
+@isnad1 id=dvdcoeff.1h2v.s7.1cf888f19f41 from=translated src=- shape=70ccc031 vocab=c754137b
+-/
 lemma dvdCoeffs_of_map_eq_zero {k : ℕ} {P : MvPolynomial ℕ ℤ}
     (h : MvPolynomial.map (Int.castRingHom (ZMod k)) P = 0) : DvdCoeffs k P := by
   intro d
@@ -125,7 +139,9 @@ lemma dvdCoeffs_of_map_eq_zero {k : ℕ} {P : MvPolynomial ℕ ℤ}
   rwa [ZMod.intCast_zmod_eq_zero_iff_dvd] at hc
 
 /-- **Theorem `thm:universal`, symmetric `lcm(n,k)` form.** For every `n, k ≥ 1`,
-`C_{n+k} ≡ C_n C_k (mod lcm(n,k) Z[X_1,X_2,...])`.-/
+`C_{n+k} ≡ C_n C_k (mod lcm(n,k) Z[X_1,X_2,...])`.
+@isnad1 id=dvdcoeff.2h2v.s7.192d934c800c from=translated src=- shape=1e984b9b vocab=417ed0ed
+-/
 theorem universal_shift_lcm (n k : ℕ) (hn : 1 ≤ n) (hk : 1 ≤ k) :
     DvdCoeffs (Nat.lcm n k) (C (n + k) - C n * C k) := by
   have hmodk : DvdCoeffs k (C (n + k) - C k * C n) :=

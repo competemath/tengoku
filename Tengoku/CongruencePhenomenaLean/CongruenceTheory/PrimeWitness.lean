@@ -23,7 +23,9 @@ noncomputable def singleCycleCount (n ℓ : ℕ) : ℤ :=
   ((Finset.univ.filter (fun σ : Equiv.Perm (Fin n) => σ.cycleType = ({ℓ} : Multiset ℕ))).card : ℤ)
 
 /-- **Generalized `card_twoCycle_eq_choose`**: the number of single-`ℓ`-cycles in `Perm α` is
-`C(N,ℓ)·(ℓ-1)!`, `N = Fintype.card α`.-/
+`C(N,ℓ)·(ℓ-1)!`, `N = Fintype.card α`.
+@isnad1 id=eq.1h2v.s6.2e6d29e403d3 from=translated src=- shape=e9b4dcbe vocab=004a36a7
+-/
 theorem card_singleCycle_eq_choose_mul {α : Type*} [Fintype α] [DecidableEq α] (ℓ : ℕ)
     (hℓ : 2 ≤ ℓ) :
     (Finset.univ.filter (fun g : Equiv.Perm α => g.cycleType = ({ℓ} : Multiset ℕ))).card =
@@ -52,7 +54,9 @@ theorem card_singleCycle_eq_choose_mul {α : Type*} [Fintype α] [DecidableEq α
 
 /-- **Ultrametric dominance**: if one term of a finite sum of naturals has `p`-adic valuation
 exactly `V` and every other term is divisible by `p^(V+1)`, the whole sum has valuation
-exactly `V`.-/
+exactly `V`.
+@isnad1 id=eq.5h6v.s6.f8ad9395737d from=translated src=- shape=de79fd2e vocab=4a06ef2f
+-/
 theorem padicValNat_sum_eq_of_unique_min (p : ℕ) (hp : p.Prime) {ι : Type*} (s : Finset ι)
     (f : ι → ℕ) (i0 : ι) (hi0 : i0 ∈ s) (V : ℕ) (hV : padicValNat p (f i0) = V)
     (hne0 : f i0 ≠ 0) (hother : ∀ i ∈ s, i ≠ i0 → p ^ (V + 1) ∣ f i) :
@@ -84,7 +88,9 @@ theorem padicValNat_sum_eq_of_unique_min (p : ℕ) (hp : p.Prime) {ι : Type*} (
     exact (Nat.dvd_add_right hpw).mp hdvd
   omega
 
-/-- `v_p((2p-1)!) = 1`, for any prime `p`.-/
+/-- `v_p((2p-1)!) = 1`, for any prime `p`.
+@isnad1 id=eq.1h1v.s5.ca17964ac5dd from=translated src=- shape=129cecf7 vocab=96cff0a3
+-/
 theorem padicValNat_factorial_twoP_sub_one (p : ℕ) (hp : p.Prime) :
     padicValNat p ((2 * p - 1)!) = 1 := by
   haveI := Fact.mk hp
@@ -101,7 +107,9 @@ theorem padicValNat_factorial_twoP_sub_one (p : ℕ) (hp : p.Prime) :
   omega
 
 /-- **The central-term exact valuation**: `v_p(C(n,p)) + 1 = v_p(n)`, for `p ∣ n`, `n ≠ 0`.
-Among the `p` consecutive integers `n, n-1, …, n-p+1`, only `n` itself is divisible by `p`.-/
+Among the `p` consecutive integers `n, n-1, …, n-p+1`, only `n` itself is divisible by `p`.
+@isnad1 id=eq.3h2v.s5.afc695abca28 from=translated src=- shape=913cc3cd vocab=f4aa058c
+-/
 theorem padicValNat_choose_prime_self_add_one (p n : ℕ) (hp : p.Prime) (hpn : p ∣ n)
     (hn0 : n ≠ 0) : padicValNat p (n.choose p) + 1 = padicValNat p n := by
   haveI := Fact.mk hp
@@ -143,7 +151,9 @@ theorem padicValNat_choose_prime_self_add_one (p n : ℕ) (hp : p.Prime) (hpn : 
   rw [hpfact] at hfactp
   omega
 
-/-- The central-term product `C(n,p)·C(k,p)` has `v_p + 1 = v_p(n) + v_p(k)`.-/
+/-- The central-term product `C(n,p)·C(k,p)` has `v_p + 1 = v_p(n) + v_p(k)`.
+@isnad1 id=eq.5h3v.s6.9c62320287e4 from=translated src=- shape=f5dda699 vocab=351fbd4d
+-/
 theorem padicValNat_two_p_defect (n k p : ℕ) (hp : p.Prime) (hpn : p ∣ n) (hpk : p ∣ k)
     (hn0 : n ≠ 0) (hk0 : k ≠ 0) :
     padicValNat p (n.choose p * k.choose p) + 2 = padicValNat p n + padicValNat p k := by
@@ -160,7 +170,9 @@ theorem padicValNat_two_p_defect (n k p : ℕ) (hp : p.Prime) (hpn : p ∣ n) (h
   omega
 
 /-- **The Vandermonde-sum valuation**: `v_p(∑_{i=1}^{2p-1} C(n,i)C(k,2p-i)) + 2 = v_p(n) + v_p(k)`,
-via ultrametric dominance of the central (`i=p`) term.-/
+via ultrametric dominance of the central (`i=p`) term.
+@isnad1 id=eq.5h3v.s7.adee45e3ae88 from=translated src=- shape=2c32bd75 vocab=66e97f7b
+-/
 theorem padicValNat_sum_eq (n k p : ℕ) (hp : p.Prime) (hpn : p ∣ n) (hpk : p ∣ k) (hn0 : n ≠ 0)
     (hk0 : k ≠ 0) :
     padicValNat p (∑ i ∈ Finset.Ico 1 (2 * p), n.choose i * k.choose (2 * p - i)) + 2 =

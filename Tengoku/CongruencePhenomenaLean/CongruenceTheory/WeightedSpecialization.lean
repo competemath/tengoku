@@ -16,6 +16,9 @@ open Finset MvPolynomial
 /-- `A_w(n)`, the weighted-permutation enumerator for an integral weight sequence `w`.-/
 noncomputable def Aw (w : ℕ → ℤ) (n : ℕ) : ℤ := MvPolynomial.eval w (C n)
 
+/--
+@isnad1 id=eq.0h3v.s7.b1a13225653e from=translated src=- shape=553a0159 vocab=8e95c363
+-/
 lemma cast_Aw_eq_eval_Cmod (k : ℕ) (w : ℕ → ℤ) (m : ℕ) :
     ((Aw w m : ℤ) : ZMod k) = MvPolynomial.eval (fun j => ((w j : ℤ) : ZMod k)) (Cmod k m) := by
   show (Int.castRingHom (ZMod k)) (Aw w m) = _
@@ -23,7 +26,9 @@ lemma cast_Aw_eq_eval_Cmod (k : ℕ) (w : ℕ → ℤ) (m : ℕ) :
     ← MvPolynomial.eval_map]
   rfl
 
-/-- **Theorem `thm:universal`, specialized to `A_w`.** `A_w(n+k) ≡ A_w(n) A_w(k) (mod k)`.-/
+/-- **Theorem `thm:universal`, specialized to `A_w`.** `A_w(n+k) ≡ A_w(n) A_w(k) (mod k)`.
+@isnad1 id=dvd.1h3v.s5.220852f5719d from=translated src=- shape=dc2ec847 vocab=55776cf6
+-/
 theorem Aw_shift_mod (k : ℕ) (hk : 1 ≤ k) (w : ℕ → ℤ) (n : ℕ) :
     (k : ℤ) ∣ (Aw w (n + k) - Aw w n * Aw w k) := by
   rw [← ZMod.intCast_zmod_eq_zero_iff_dvd]
@@ -33,7 +38,9 @@ theorem Aw_shift_mod (k : ℕ) (hk : 1 ≤ k) (w : ℕ → ℤ) (n : ℕ) :
   ring
 
 /-- The `A_w`-eigenvector corollary: `A_w(n+k) ≡ A_w(k) A_w(n) (mod k)`, i.e. `A_w` modulo `k` is
-an eigenvector of the translation operator `T_k`, with eigenvalue `A_w(k)`.-/
+an eigenvector of the translation operator `T_k`, with eigenvalue `A_w(k)`.
+@isnad1 id=dvd.1h3v.s5.bec480b340e6 from=translated src=- shape=daf1350d vocab=55776cf6
+-/
 theorem Aw_translation_eigenvector (k : ℕ) (hk : 1 ≤ k) (w : ℕ → ℤ) (n : ℕ) :
     (k : ℤ) ∣ (Aw w (n + k) - Aw w k * Aw w n) := by
   have := Aw_shift_mod k hk w n

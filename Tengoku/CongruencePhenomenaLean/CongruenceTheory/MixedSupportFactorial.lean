@@ -18,7 +18,9 @@ namespace CongruenceTheory
 open Nat
 
 /-- `v_p((p^c)!) ≥ 2c - 1` for `c ≥ 1` (additive form avoiding subtraction:
-`2c ≤ v_p((p^c)!) + 1`). The numerical engine behind the sub-lemma below.-/
+`2c ≤ v_p((p^c)!) + 1`). The numerical engine behind the sub-lemma below.
+@isnad1 id=le.2h2v.s5.f7e7a65e29ba from=translated src=- shape=28a619d9 vocab=85191fad
+-/
 theorem padicValNat_factorial_pow_ge (p : ℕ) (hp : p.Prime) :
     ∀ c : ℕ, 1 ≤ c → 2 * c ≤ padicValNat p ((p ^ c)!) + 1 := by
   haveI := Fact.mk hp
@@ -42,7 +44,9 @@ theorem padicValNat_factorial_pow_ge (p : ℕ) (hp : p.Prime) :
       have := ih hc0
       omega
 
-/-- `v_p(m!)` is monotone in `m`.-/
+/-- `v_p(m!)` is monotone in `m`.
+@isnad1 id=le.2h3v.s4.0fbd5f337d6d from=translated src=- shape=1ec5a98c vocab=cdb1c38c
+-/
 theorem padicValNat_factorial_mono (p : ℕ) (hp : p.Prime) {m n : ℕ} (h : m ≤ n) :
     padicValNat p (m !) ≤ padicValNat p (n !) := by
   haveI := Fact.mk hp
@@ -53,7 +57,9 @@ theorem padicValNat_factorial_mono (p : ℕ) (hp : p.Prime) {m n : ℕ} (h : m �
   omega
 
 /-- The crux sub-lemma (extracted from the manuscript's proof of
-`lem:mixed-support-factorial`): if `v_p(r!) ≤ v_p(s!)` then `v_p(r) ≤ v_p((s-1)!) + 1`.-/
+`lem:mixed-support-factorial`): if `v_p(r!) ≤ v_p(s!)` then `v_p(r) ≤ v_p((s-1)!) + 1`.
+@isnad1 id=le.4h3v.s6.f7e035932c7e from=translated src=- shape=05d813b8 vocab=96476c22
+-/
 theorem padicValNat_le_padicValNat_pred_factorial_add_one (p : ℕ) (hp : p.Prime) {r s : ℕ}
     (hr : 1 ≤ r) (hs : 1 ≤ s) (hrs : padicValNat p (r !) ≤ padicValNat p (s !)) :
     padicValNat p r ≤ padicValNat p ((s - 1)!) + 1 := by

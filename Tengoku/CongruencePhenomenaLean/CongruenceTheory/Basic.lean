@@ -24,8 +24,14 @@ namespace CongruenceTheory
 truncation issues arise; matches `\fall{n}{r}` in the manuscript.-/
 def fall (n r : ℕ) : ℤ := ∏ i ∈ range r, ((n : ℤ) - i)
 
+/--
+@isnad1 id=eq.0h1v.s4.00fe98b40240 from=translated src=- shape=8fc7241c vocab=a76bf9a6
+-/
 @[simp] lemma fall_zero (n : ℕ) : fall n 0 = 1 := by simp [fall]
 
+/--
+@isnad1 id=eq.0h2v.s5.7b9f5cfda903 from=translated src=- shape=6831156f vocab=fa0fd238
+-/
 lemma fall_succ (n r : ℕ) :
     fall n (r + 1) = fall n r * ((n : ℤ) - r) := by
   simp [fall, Finset.prod_range_succ]
@@ -42,8 +48,14 @@ noncomputable def C : ℕ → MvPolynomial ℕ ℤ
 termination_by n => n
 decreasing_by all_goals omega
 
+/--
+@isnad1 id=eq.0h0v.s5.9904af070e8a from=translated src=- shape=978b4adc vocab=ab9048ca
+-/
 lemma C_zero : C 0 = 1 := by simp [C]
 
+/--
+@isnad1 id=eq.0h1v.s7.d361183177f1 from=translated src=- shape=ad8c62e1 vocab=78b2f738
+-/
 lemma C_succ (n : ℕ) :
     C (n + 1) =
       ∑ r ∈ range (n + 1),

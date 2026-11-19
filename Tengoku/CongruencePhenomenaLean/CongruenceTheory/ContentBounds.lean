@@ -20,7 +20,9 @@ open scoped Classical
 noncomputable def CpermPair (n k : ℕ) : MvPolynomial ℕ ℤ :=
   ∑ g : Equiv.Perm (Fin n ⊕ Fin k), ci g
 
-/-- Additivity of `ciExp` under multiset addition.-/
+/-- Additivity of `ciExp` under multiset addition.
+@isnad1 id=eq.0h4v.s6.2fd1d7ebc5c3 from=translated src=- shape=00962bba vocab=0b4c344c
+-/
 lemma ciExp_add (a a' : ℕ) (m m' : Multiset ℕ) :
     ciExp a m + ciExp a' m' = ciExp (a + a') (m + m') := by
   ext j
@@ -28,7 +30,9 @@ lemma ciExp_add (a a' : ℕ) (m m' : Multiset ℕ) :
   by_cases hj : j = 1 <;> simp [hj] <;> omega
 
 /-- A multiset sum of two multisets equals a singleton iff exactly one summand is that
-singleton and the other is empty.-/
+singleton and the other is empty.
+@isnad1 id=iff.0h3v.s6.d4c461a5a9ae from=translated src=- shape=0ec993be vocab=d1ac662a
+-/
 lemma multiset_add_eq_singleton_iff {A B : Multiset ℕ} {x : ℕ} :
     A + B = {x} ↔ (A = {x} ∧ B = 0) ∨ (A = 0 ∧ B = {x}) := by
   constructor
@@ -56,6 +60,9 @@ lemma multiset_add_eq_singleton_iff {A B : Multiset ℕ} {x : ℕ} :
 noncomputable def twoCycleCount (n : ℕ) : ℤ :=
   ((Finset.univ.filter (fun σ : Equiv.Perm (Fin n) => σ.cycleType = {2})).card : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s6.bf3a1e09869b from=translated src=- shape=7044580a vocab=46921b02
+-/
 lemma card_cycleType_zero (N : ℕ) :
     (Finset.univ.filter (fun σ : Equiv.Perm (Fin N) => σ.cycleType = (0 : Multiset ℕ))).card
       = 1 := by
@@ -65,7 +72,9 @@ lemma card_cycleType_zero (N : ℕ) :
     simp [Equiv.Perm.cycleType_eq_zero]
   rw [this]; simp
 
-/-- **`ci_eq_monomial`, general ambient type version.**-/
+/-- **`ci_eq_monomial`, general ambient type version.**
+@isnad1 id=eq.0h2v.s7.651dc9980871 from=translated src=- shape=0d694765 vocab=8657ff40
+-/
 lemma ci_eq_monomial' {α : Type*} [Fintype α] [DecidableEq α] (g : Equiv.Perm α) :
     ci g = MvPolynomial.monomial (ciExp (Fintype.card α - g.cycleType.sum) g.cycleType)
       (1 : ℤ) := by
@@ -73,7 +82,9 @@ lemma ci_eq_monomial' {α : Type*} [Fintype α] [DecidableEq α] (g : Equiv.Perm
   rw [pow_mul_multisetProd_eq_monomial]
 
 /-- The number of `2`-cycles (transpositions) among `Perm α` equals `C(N,2)` where
-`N = Fintype.card α`.-/
+`N = Fintype.card α`.
+@isnad1 id=eq.0h1v.s6.1ab38677fcae from=translated src=- shape=88c65e0f vocab=cf7ade5e
+-/
 theorem card_twoCycle_eq_choose {α : Type*} [Fintype α] [DecidableEq α] :
     (Finset.univ.filter (fun g : Equiv.Perm α => g.cycleType = ({2} : Multiset ℕ))).card =
       (Fintype.card α).choose 2 := by
@@ -91,6 +102,9 @@ theorem card_twoCycle_eq_choose {α : Type*} [Fintype α] [DecidableEq α] :
     rw [hdenom]
   · rw [ite_eq_right (by simp [hN]), Nat.choose_eq_zero_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.0h1v.s6.d407e97ca95a from=translated src=- shape=6997d080 vocab=7607000f
+-/
 theorem two_mul_card_twoCycle {α : Type*} [Fintype α] [DecidableEq α] :
     2 * ((Finset.univ.filter (fun g : Equiv.Perm α => g.cycleType = ({2} : Multiset ℕ))).card :
       ℤ) = (Fintype.card α : ℤ) * ((Fintype.card α : ℤ) - 1) := by
@@ -106,6 +120,9 @@ theorem two_mul_card_twoCycle {α : Type*} [Fintype α] [DecidableEq α] :
   · push_cast [Nat.cast_sub h]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.22dead549dab from=translated src=- shape=54c3d2ae vocab=f23a3346
+-/
 theorem two_mul_twoCycleCount (N : ℕ) : 2 * twoCycleCount N = (N : ℤ) * ((N : ℤ) - 1) := by
   have h := two_mul_card_twoCycle (α := Fin N)
   rw [Fintype.card_fin] at h

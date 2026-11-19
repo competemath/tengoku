@@ -27,7 +27,9 @@ open scoped ArithmeticFunction.Moebius
 noncomputable def MTrans (w : ℕ → ℤ) (N : ℕ) : ℤ := ∑ d ∈ N.divisors, (μ (N / d) : ℤ) * w d
 
 /-- **Möbius inversion**: `w_m = ∑_{d∣m} M_d`, for free from Mathlib's own
-`ArithmeticFunction.sum_eq_iff_sum_smul_moebius_eq`.-/
+`ArithmeticFunction.sum_eq_iff_sum_smul_moebius_eq`.
+@isnad1 id=eq.1h2v.s5.678269fe38da from=translated src=- shape=e7704788 vocab=0d4d2523
+-/
 theorem moebius_inversion (w : ℕ → ℤ) (m : ℕ) (hm : 0 < m) :
     w m = ∑ d ∈ m.divisors, MTrans w d := by
   have hiff := @sum_eq_iff_sum_smul_moebius_eq ℤ _ (MTrans w) w

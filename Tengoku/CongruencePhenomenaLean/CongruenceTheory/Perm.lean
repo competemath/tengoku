@@ -23,11 +23,16 @@ noncomputable def ci {α : Type*} [Fintype α] [DecidableEq α] (g : Equiv.Perm 
 noncomputable def Cperm (n : ℕ) : MvPolynomial ℕ ℤ :=
   ∑ g : Equiv.Perm (Fin n), ci g
 
+/--
+@isnad1 id=eq.0h3v.s5.0416a98c53b5 from=translated src=- shape=6db72262 vocab=895b745b
+-/
 lemma ci_conj {α : Type*} [Fintype α] [DecidableEq α] (h g : Equiv.Perm α) :
     ci (h * g * h⁻¹) = ci g := by
   simp [ci, Equiv.Perm.cycleType_conj]
 
-/-- `sumCongr σ 1` has the same cycle type as `σ`, via `extendDomain`.-/
+/-- `sumCongr σ 1` has the same cycle type as `σ`, via `extendDomain`.
+@isnad1 id=eq.0h3v.s6.7784ff6b2590 from=translated src=- shape=a56b6709 vocab=806a030a
+-/
 lemma cycleType_sumCongr_one_right {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m]
     [DecidableEq n] (σ : Equiv.Perm m) :
     (Equiv.Perm.sumCongr σ (1 : Equiv.Perm n)).cycleType = σ.cycleType := by
@@ -47,7 +52,9 @@ lemma cycleType_sumCongr_one_right {m n : Type*} [Fintype m] [Fintype n] [Decida
       simp
   rw [← hext, Equiv.Perm.cycleType_extendDomain]
 
-/-- `sumCongr 1 τ` has the same cycle type as `τ`, via `extendDomain`.-/
+/-- `sumCongr 1 τ` has the same cycle type as `τ`, via `extendDomain`.
+@isnad1 id=eq.0h3v.s6.be947eb63c21 from=translated src=- shape=14008578 vocab=806a030a
+-/
 lemma cycleType_sumCongr_one_left {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m]
     [DecidableEq n] (τ : Equiv.Perm n) :
     (Equiv.Perm.sumCongr (1 : Equiv.Perm m) τ).cycleType = τ.cycleType := by
@@ -67,7 +74,9 @@ lemma cycleType_sumCongr_one_left {m n : Type*} [Fintype m] [Fintype n] [Decidab
       simp
   rw [← hext, Equiv.Perm.cycleType_extendDomain]
 
-/-- The two factors `sumCongr σ 1` and `sumCongr 1 τ` are disjoint permutations.-/
+/-- The two factors `sumCongr σ 1` and `sumCongr 1 τ` are disjoint permutations.
+@isnad1 id=disjoint.0h4v.s5.e727a086ed98 from=translated src=- shape=77e92a86 vocab=d91c28ae
+-/
 lemma disjoint_sumCongr_one {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (σ : Equiv.Perm m) (τ : Equiv.Perm n) :
     Equiv.Perm.Disjoint (Equiv.Perm.sumCongr σ (1 : Equiv.Perm n))
@@ -77,7 +86,9 @@ lemma disjoint_sumCongr_one {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m
   | inl a => right; simp
   | inr b => left; simp
 
-/-- **Cycle-type gluing**: `cycleType (sumCongr σ τ) = cycleType σ + cycleType τ`.-/
+/-- **Cycle-type gluing**: `cycleType (sumCongr σ τ) = cycleType σ + cycleType τ`.
+@isnad1 id=eq.0h4v.s6.d1dd6fdf230d from=translated src=- shape=3d1af121 vocab=be22a544
+-/
 theorem cycleType_sumCongr {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (σ : Equiv.Perm m) (τ : Equiv.Perm n) :
     (Equiv.Perm.sumCongr σ τ).cycleType = σ.cycleType + τ.cycleType := by

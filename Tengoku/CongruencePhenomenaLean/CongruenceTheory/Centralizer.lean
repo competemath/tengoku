@@ -29,6 +29,9 @@ noncomputable def MixedA (x : Fin n ⊕ Fin n) : Prop := x.isLeft ∧ IsMixed g 
 /-- The predicate cutting out the right mixed points.-/
 noncomputable def MixedB (x : Fin n ⊕ Fin n) : Prop := x.isRight ∧ IsMixed g x
 
+/--
+@isnad1 id=iff.1h4v.s5.9eb8cd79c189 from=translated src=- shape=6cbe4dee vocab=bd8b6a7b
+-/
 lemma isMixed_of_sameCycle {x y : Fin n ⊕ Fin n} (h : g.SameCycle x y) :
     IsMixed g x ↔ IsMixed g y := by
   unfold IsMixed
@@ -38,7 +41,9 @@ lemma isMixed_of_sameCycle {x y : Fin n ⊕ Fin n} (h : g.SameCycle x y) :
   · rintro ⟨⟨a, ha⟩, ⟨b, hb⟩⟩
     exact ⟨⟨a, h.trans ha⟩, ⟨b, h.trans hb⟩⟩
 
-/-- If `h` commutes with `g` and fixes `x`, it fixes every point in `x`'s `g`-cycle.-/
+/-- If `h` commutes with `g` and fixes `x`, it fixes every point in `x`'s `g`-cycle.
+@isnad1 id=eq.3h5v.s7.e8b5be87e511 from=translated src=- shape=8b6d99af vocab=1c087d15
+-/
 lemma fixed_of_commute_of_fixed {h : Equiv.Perm (Fin n ⊕ Fin n)} (hcomm : Commute h g)
     {x y : Fin n ⊕ Fin n} (hxy : g.SameCycle x y) (hx : h x = x) : h y = y := by
   obtain ⟨i, hi⟩ := hxy
@@ -49,7 +54,9 @@ lemma fixed_of_commute_of_fixed {h : Equiv.Perm (Fin n ⊕ Fin n)} (hcomm : Comm
     _ = (g ^ i) x := by rw [hx]
     _ = y := hi
 
-/-- If `h` commutes with `g`, it maps `g`-cycles to `g`-cycles.-/
+/-- If `h` commutes with `g`, it maps `g`-cycles to `g`-cycles.
+@isnad1 id=samecycl.2h5v.s7.95d9ab006890 from=translated src=- shape=02fb3e6a vocab=1c087d15
+-/
 lemma sameCycle_apply_of_commute {h : Equiv.Perm (Fin n ⊕ Fin n)} (hcomm : Commute h g)
     {x y : Fin n ⊕ Fin n} (hxy : g.SameCycle x y) : g.SameCycle (h x) (h y) := by
   obtain ⟨i, hi⟩ := hxy
@@ -60,7 +67,9 @@ lemma sameCycle_apply_of_commute {h : Equiv.Perm (Fin n ⊕ Fin n)} (hcomm : Com
     _ = h ((g ^ i) x) := rfl
     _ = h y := by rw [hi]
 
-/-- If `h ∈ H` commutes with `g` and `x` is mixed, so is `h x`.-/
+/-- If `h ∈ H` commutes with `g` and `x` is mixed, so is `h x`.
+@isnad1 id=ismixed.3h4v.s7.f77cd93b9731 from=translated src=- shape=f6ad11c8 vocab=c6f06afa
+-/
 lemma isMixed_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
     (hcomm : Commute h g) {x : Fin n ⊕ Fin n} (hx : IsMixed g x) : IsMixed g (h x) := by
   obtain ⟨⟨a, ha⟩, ⟨b, hb⟩⟩ := hx
@@ -73,6 +82,9 @@ lemma isMixed_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n
     rwa [show h (Sum.inr b) = Sum.inr (p.2 b) by
       rw [← hp, Equiv.Perm.sumCongrHom_apply]; rfl] at hs
 
+/--
+@isnad1 id=iff.2h4v.s7.dc76dfb57c33 from=translated src=- shape=8d20c3e7 vocab=c6f06afa
+-/
 lemma isMixed_apply_iff {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
     (hcomm : Commute h g) (x : Fin n ⊕ Fin n) : IsMixed g (h x) ↔ IsMixed g x := by
   refine ⟨fun hm => ?_, isMixed_apply_of_mem g hH hcomm⟩
@@ -81,7 +93,9 @@ lemma isMixed_apply_iff {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
   have := isMixed_apply_of_mem g hH' hcomm' hm
   simpa using this
 
-/-- `h ∈ H` commuting with `g` maps left points to left points.-/
+/-- `h ∈ H` commuting with `g` maps left points to left points.
+@isnad1 id=eq.2h3v.s7.f1f7a47c334e from=translated src=- shape=517f4f74 vocab=d2875064
+-/
 lemma isLeft_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
     {x : Fin n ⊕ Fin n} (hx : x.isLeft) : (h x).isLeft := by
   obtain ⟨p, hp⟩ := hH
@@ -90,6 +104,9 @@ lemma isLeft_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
     rw [← hp, Equiv.Perm.sumCongrHom_apply]; rfl]
   exact rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.249e64cbb537 from=translated src=- shape=517f4f74 vocab=0f3a3c05
+-/
 lemma isRight_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n)
     {x : Fin n ⊕ Fin n} (hx : x.isRight) : (h x).isRight := by
   obtain ⟨p, hp⟩ := hH
@@ -99,20 +116,31 @@ lemma isRight_apply_of_mem {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n
   exact rfl
 
 /-- **Set preservation**: `h ∈ H` commuting with `g` maps `MixedA g`-points to
-`MixedA g`-points.-/
+`MixedA g`-points.
+@isnad1 id=mixeda.3h4v.s7.21841112b040 from=translated src=- shape=f6ad11c8 vocab=1798aa66
+-/
 lemma mapsTo_MixedA {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n) (hcomm : Commute h g)
     {x : Fin n ⊕ Fin n} (hx : MixedA g x) : MixedA g (h x) :=
   ⟨isLeft_apply_of_mem hH hx.1, isMixed_apply_of_mem g hH hcomm hx.2⟩
 
+/--
+@isnad1 id=mixedb.3h4v.s7.2d45a07e5cc0 from=translated src=- shape=f6ad11c8 vocab=34a68316
+-/
 lemma mapsTo_MixedB {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n) (hcomm : Commute h g)
     {x : Fin n ⊕ Fin n} (hx : MixedB g x) : MixedB g (h x) :=
   ⟨isRight_apply_of_mem hH hx.1, isMixed_apply_of_mem g hH hcomm hx.2⟩
 
+/--
+@isnad1 id=and.3h4v.s7.04a75e5e75fa from=translated src=- shape=60e0095f vocab=44c3d369
+-/
 lemma mapsTo_NonMixedA {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n) (hcomm : Commute h g)
     {x : Fin n ⊕ Fin n} (hx : x.isLeft ∧ ¬ IsMixed g x) :
     (h x).isLeft ∧ ¬ IsMixed g (h x) :=
   ⟨isLeft_apply_of_mem hH hx.1, fun hm => hx.2 ((isMixed_apply_iff g hH hcomm x).mp hm)⟩
 
+/--
+@isnad1 id=and.3h4v.s7.ce6998819e38 from=translated src=- shape=60e0095f vocab=20efbc42
+-/
 lemma mapsTo_NonMixedB {h : Equiv.Perm (Fin n ⊕ Fin n)} (hH : h ∈ Hgrp n) (hcomm : Commute h g)
     {x : Fin n ⊕ Fin n} (hx : x.isRight ∧ ¬ IsMixed g x) :
     (h x).isRight ∧ ¬ IsMixed g (h x) :=
@@ -147,7 +175,9 @@ theorem eq_of_agree {h1 h2 : Equiv.Perm (Fin n ⊕ Fin n)} (hH1 : h1 ∈ Hgrp n)
     | inl a => exact hA (Sum.inl a) rfl hx
     | inr b => exact hB (Sum.inr b) rfl hx
 
-/-- Membership in the stabilizer of `g` (under `H`-conjugation) is exactly commuting with `g`.-/
+/-- Membership in the stabilizer of `g` (under `H`-conjugation) is exactly commuting with `g`.
+@isnad1 id=iff.0h3v.s9.82fbe75d938d from=translated src=- shape=788e53c0 vocab=0267609b
+-/
 lemma stab_iff_commute (h : ↥(Hgrp n)) :
     h ∈ MulAction.stabilizer ↥(Hgrp n) g ↔ Commute (h : Equiv.Perm (Fin n ⊕ Fin n)) g := by
   rw [MulAction.mem_stabilizer_iff, smul_def]
@@ -170,7 +200,9 @@ noncomputable def mixedCardA : ℕ := Nat.card {x : Fin n ⊕ Fin n // MixedA g 
 noncomputable def mixedCardB : ℕ := Nat.card {x : Fin n ⊕ Fin n // MixedB g x}
 
 variable {g} in
-/-- The restriction of `f` to a `Fintype`-preserved predicate is compatible with `*`.-/
+/-- The restriction of `f` to a `Fintype`-preserved predicate is compatible with `*`.
+@isnad1 id=eq.0h6v.s8.5444c466dcb4 from=translated src=- shape=300bf6bd vocab=22949652
+-/
 lemma subtypePermOfFintype_mul {p : Fin n ⊕ Fin n → Prop} [Finite {x // p x}]
     {f1 f2 : Equiv.Perm (Fin n ⊕ Fin n)} (h1 : ∀ x, p x → p (f1 x)) (h2 : ∀ x, p x → p (f2 x)) :
     Equiv.Perm.subtypePermOfFintype (f1 * f2) (fun x hx => h1 (f2 x) (h2 x hx)) =
@@ -198,6 +230,9 @@ noncomputable def restrictTriple (h : ↥(MulAction.stabilizer ↥(Hgrp n) g)) :
     Equiv.Perm.subtypePermOfFintype (h.1 : Equiv.Perm (Fin n ⊕ Fin n))
       (fun x hx => mapsTo_MixedA g h.1.2 ((stab_iff_commute g h.1).mp h.2) hx) )
 
+/--
+@isnad1 id=eq.0h4v.s12.c9a7e5dec02d from=translated src=- shape=05703bdc vocab=fc25940c
+-/
 lemma restrictTriple_mul (h1 h2 : ↥(MulAction.stabilizer ↥(Hgrp n) g)) :
     restrictTriple g (h1 * h2) = restrictTriple g h1 * restrictTriple g h2 := by
   simp only [restrictTriple, Prod.mk_mul_mk, Prod.mk.injEq]
@@ -210,6 +245,9 @@ noncomputable def restrictHom : ↥(MulAction.stabilizer ↥(Hgrp n) g) →*
       Equiv.Perm {x : Fin n ⊕ Fin n // MixedA g x} :=
   MonoidHom.mk' (restrictTriple g) (restrictTriple_mul g)
 
+/--
+@isnad1 id=injectiv.0h2v.s13.095ad36d78ca from=translated src=- shape=8cc45324 vocab=dea8ef7e
+-/
 theorem restrictHom_injective : Function.Injective (restrictHom (n := n) g) := by
   intro h1 h2 heq
   simp only [restrictHom, MonoidHom.mk'_apply] at heq
@@ -268,6 +306,9 @@ noncomputable def restrictTriple' (h : ↥(MulAction.stabilizer ↥(Hgrp n) g)) 
     Equiv.Perm.subtypePermOfFintype (h.1 : Equiv.Perm (Fin n ⊕ Fin n))
       (fun x hx => mapsTo_MixedB g h.1.2 ((stab_iff_commute g h.1).mp h.2) hx) )
 
+/--
+@isnad1 id=eq.0h4v.s12.63c7025b8555 from=translated src=- shape=05703bdc vocab=e54df537
+-/
 lemma restrictTriple'_mul (h1 h2 : ↥(MulAction.stabilizer ↥(Hgrp n) g)) :
     restrictTriple' g (h1 * h2) = restrictTriple' g h1 * restrictTriple' g h2 := by
   simp only [restrictTriple', Prod.mk_mul_mk, Prod.mk.injEq]
@@ -279,6 +320,9 @@ noncomputable def restrictHom' : ↥(MulAction.stabilizer ↥(Hgrp n) g) →*
       Equiv.Perm {x : Fin n ⊕ Fin n // MixedB g x} :=
   MonoidHom.mk' (restrictTriple' g) (restrictTriple'_mul g)
 
+/--
+@isnad1 id=injectiv.0h2v.s13.d016091a20f7 from=translated src=- shape=8cc45324 vocab=eea66d98
+-/
 theorem restrictHom'_injective : Function.Injective (restrictHom' (n := n) g) := by
   intro h1 h2 heq
   simp only [restrictHom', MonoidHom.mk'_apply] at heq
@@ -327,30 +371,45 @@ noncomputable def aCard : ℕ := Nat.card {a : Fin n // IsMixed g (Sum.inl a)}
 
 noncomputable def bCard : ℕ := Nat.card {b : Fin n // IsMixed g (Sum.inr b)}
 
+/--
+@isnad1 id=eq.0h2v.s5.1daa26bafbcc from=translated src=- shape=5a14326a vocab=817ceaf9
+-/
 lemma card_NonMixedA :
     Nat.card {x : Fin n ⊕ Fin n // x.isLeft ∧ ¬ IsMixed g x} = n - aCard g := by
   rw [Nat.card_congr (sumLeftSubtypeEquiv (fun x => ¬ IsMixed g x))]
   rw [Nat.card_eq_fintype_card, Fintype.card_subtype_compl]
   simp [aCard, Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h2v.s5.49c73a155ecb from=translated src=- shape=5a14326a vocab=73c5b813
+-/
 lemma card_NonMixedB :
     Nat.card {x : Fin n ⊕ Fin n // x.isRight ∧ ¬ IsMixed g x} = n - bCard g := by
   rw [Nat.card_congr (sumRightSubtypeEquiv (fun x => ¬ IsMixed g x))]
   rw [Nat.card_eq_fintype_card, Fintype.card_subtype_compl]
   simp [bCard, Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h2v.s4.de3c81419d9c from=translated src=- shape=98548aa4 vocab=3328ab92
+-/
 lemma card_MixedA :
     Nat.card {x : Fin n ⊕ Fin n // MixedA g x} = aCard g := by
   show Nat.card {x : Fin n ⊕ Fin n // x.isLeft ∧ IsMixed g x} = aCard g
   rw [Nat.card_congr (sumLeftSubtypeEquiv (IsMixed g))]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5c9818bc3fbc from=translated src=- shape=98548aa4 vocab=342cced3
+-/
 lemma card_MixedB :
     Nat.card {x : Fin n ⊕ Fin n // MixedB g x} = bCard g := by
   show Nat.card {x : Fin n ⊕ Fin n // x.isRight ∧ IsMixed g x} = bCard g
   rw [Nat.card_congr (sumRightSubtypeEquiv (IsMixed g))]
   rfl
 
+/--
+@isnad1 id=dvd.0h2v.s9.b1a5cb8aba42 from=translated src=- shape=6035a25e vocab=09fa2d20
+-/
 theorem card_stabilizer_dvd_A :
     Nat.card ↥(MulAction.stabilizer ↥(Hgrp n) g) ∣
       (n - aCard g)! * (n - bCard g)! * (aCard g)! := by
@@ -359,6 +418,9 @@ theorem card_stabilizer_dvd_A :
     card_NonMixedA, card_NonMixedB, card_MixedA, ← mul_assoc] at hdvd
   exact hdvd
 
+/--
+@isnad1 id=dvd.0h2v.s9.5e98787dd6da from=translated src=- shape=28dc5fae vocab=09fa2d20
+-/
 theorem card_stabilizer_dvd_B :
     Nat.card ↥(MulAction.stabilizer ↥(Hgrp n) g) ∣
       (n - aCard g)! * (n - bCard g)! * (bCard g)! := by
@@ -367,6 +429,9 @@ theorem card_stabilizer_dvd_B :
     card_NonMixedA, card_NonMixedB, card_MixedB, ← mul_assoc] at hdvd
   exact hdvd
 
+/--
+@isnad1 id=dvd.0h2v.s9.a5ec5e483363 from=translated src=- shape=ae829049 vocab=247c0728
+-/
 theorem card_stabilizer_dvd_min :
     Nat.card ↥(MulAction.stabilizer ↥(Hgrp n) g) ∣
       (n - aCard g)! * (n - bCard g)! * min (aCard g)! (bCard g)! := by
@@ -377,7 +442,9 @@ theorem card_stabilizer_dvd_min :
   · rwa [min_eq_right hle]
 
 /-- **The centralizer bound**: the manuscript's key valuation inequality
-`v₂(|C_H(g)|) ≤ v₂((n-a)!) + v₂((n-b)!) + min(v₂(a!), v₂(b!))`.-/
+`v₂(|C_H(g)|) ≤ v₂((n-a)!) + v₂((n-b)!) + min(v₂(a!), v₂(b!))`.
+@isnad1 id=le.0h2v.s9.06d7e3a96280 from=translated src=- shape=33c8cffe vocab=6e30dc22
+-/
 theorem v2_stabilizer_le :
     v2 (Nat.card ↥(MulAction.stabilizer ↥(Hgrp n) g)) ≤
       v2 ((n - aCard g)!) + v2 ((n - bCard g)!) + min (v2 ((aCard g)!)) (v2 ((bCard g)!)) := by
@@ -402,6 +469,9 @@ theorem v2_stabilizer_le :
   rw [hval, hminv2] at hle
   simpa [v2] using hle
 
+/--
+@isnad1 id=ex.1h2v.s7.9f5e00c9d9ed from=translated src=- shape=c579ec66 vocab=dd3ffb79
+-/
 lemma exists_mixed_pair (hg : g ∉ Hgrp n) : ∃ a b, g (Sum.inl a) = Sum.inr b := by
   by_contra hc
   push_neg at hc
@@ -412,12 +482,18 @@ lemma exists_mixed_pair (hg : g ∉ Hgrp n) : ∃ a b, g (Sum.inl a) = Sum.inr b
   · exact ⟨a', rfl⟩
   · exact absurd hgx (hc a b')
 
+/--
+@isnad1 id=le.1h2v.s6.716db566051e from=translated src=- shape=67b3cafc vocab=250e0f8c
+-/
 theorem one_le_aCard (hg : g ∉ Hgrp n) : 1 ≤ aCard g := by
   obtain ⟨a, b, hab⟩ := exists_mixed_pair g hg
   have hmixed : IsMixed g (Sum.inl a) := ⟨⟨a, SameCycle.refl g _⟩, ⟨b, ⟨1, by simpa using hab⟩⟩⟩
   haveI : Nonempty {a : Fin n // IsMixed g (Sum.inl a)} := ⟨⟨a, hmixed⟩⟩
   exact Nat.card_pos
 
+/--
+@isnad1 id=le.1h2v.s6.e3f4007239fd from=translated src=- shape=67b3cafc vocab=711e1108
+-/
 theorem one_le_bCard (hg : g ∉ Hgrp n) : 1 ≤ bCard g := by
   obtain ⟨a, b, hab⟩ := exists_mixed_pair g hg
   have hmixed : IsMixed g (Sum.inl a) := ⟨⟨a, SameCycle.refl g _⟩, ⟨b, ⟨1, by simpa using hab⟩⟩⟩
@@ -426,12 +502,18 @@ theorem one_le_bCard (hg : g ∉ Hgrp n) : 1 ≤ bCard g := by
   haveI : Nonempty {b : Fin n // IsMixed g (Sum.inr b)} := ⟨⟨b, hmixed'⟩⟩
   exact Nat.card_pos
 
+/--
+@isnad1 id=le.0h2v.s4.ec69502b13a1 from=translated src=- shape=223db2e5 vocab=8812613c
+-/
 theorem aCard_le (g : Equiv.Perm (Fin n ⊕ Fin n)) : aCard g ≤ n := by
   rw [aCard]
   have : Nat.card {a : Fin n // IsMixed g (Sum.inl a)} ≤ Nat.card (Fin n) :=
     Nat.card_le_card_of_injective Subtype.val Subtype.val_injective
   simpa using this
 
+/--
+@isnad1 id=le.0h2v.s4.28b7c3bd05ef from=translated src=- shape=223db2e5 vocab=aadc6860
+-/
 theorem bCard_le (g : Equiv.Perm (Fin n ⊕ Fin n)) : bCard g ≤ n := by
   rw [bCard]
   have : Nat.card {b : Fin n // IsMixed g (Sum.inr b)} ≤ Nat.card (Fin n) :=

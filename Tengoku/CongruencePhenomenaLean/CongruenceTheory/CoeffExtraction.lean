@@ -22,6 +22,9 @@ multiset `m` of (non-trivial) cycle lengths.-/
 noncomputable def ciExp (a : ℕ) (m : Multiset ℕ) : ℕ →₀ ℕ :=
   Finsupp.single 1 a + (m.map (fun j => Finsupp.single j 1)).sum
 
+/--
+@isnad1 id=eq.0h3v.s6.a186d406530e from=translated src=- shape=41aba532 vocab=c901ae8a
+-/
 lemma ciExp_apply (a : ℕ) (m : Multiset ℕ) (j : ℕ) :
     ciExp a m j = (if j = 1 then a else 0) + m.count j := by
   induction m using Multiset.induction with
@@ -38,7 +41,9 @@ lemma ciExp_apply (a : ℕ) (m : Multiset ℕ) (j : ℕ) :
     rw [key, ih, Multiset.count_cons]
     by_cases hj1 : j = 1 <;> by_cases hjx : j = x <;> simp [hj1, hjx] <;> omega
 
-/-- `X_1^a * ∏_{ℓ ∈ m} X_ℓ = monomial (ciExp a m) 1`.-/
+/-- `X_1^a * ∏_{ℓ ∈ m} X_ℓ = monomial (ciExp a m) 1`.
+@isnad1 id=eq.0h2v.s8.2da048e6c026 from=translated src=- shape=33268719 vocab=1b3d95b7
+-/
 lemma pow_mul_multisetProd_eq_monomial (a : ℕ) (m : Multiset ℕ) :
     (MvPolynomial.X 1 : MvPolynomial ℕ ℤ) ^ a * (m.map MvPolynomial.X).prod =
       MvPolynomial.monomial (ciExp a m) (1 : ℤ) := by
@@ -54,14 +59,18 @@ lemma pow_mul_multisetProd_eq_monomial (a : ℕ) (m : Multiset ℕ) :
     simp only [ciExp, Multiset.map_cons, Multiset.sum_cons]
     abel
 
-/-- `ci g` is the cycle-indicator monomial for `g`.-/
+/-- `ci g` is the cycle-indicator monomial for `g`.
+@isnad1 id=eq.0h2v.s7.717f2dc24148 from=translated src=- shape=1552eb86 vocab=0743677d
+-/
 lemma ci_eq_monomial {N : ℕ} (g : Equiv.Perm (Fin N)) :
     ci g = MvPolynomial.monomial (ciExp (N - g.cycleType.sum) g.cycleType) (1 : ℤ) := by
   unfold ci
   rw [pow_mul_multisetProd_eq_monomial]
   simp
 
-/-- Injectivity of `ciExp` on pairs `(a, m)` with `m` having no length-`1` parts.-/
+/-- Injectivity of `ciExp` on pairs `(a, m)` with `m` having no length-`1` parts.
+@isnad1 id=iff.2h4v.s6.974317b727c5 from=translated src=- shape=3bafb482 vocab=9d0e3d10
+-/
 lemma ciExp_eq_iff {a a' : ℕ} {m m' : Multiset ℕ} (hm : ∀ x ∈ m, x ≠ 1)
     (hm' : ∀ x ∈ m', x ≠ 1) : ciExp a m = ciExp a' m' ↔ a = a' ∧ m = m' := by
   constructor

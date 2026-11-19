@@ -38,6 +38,9 @@ matching the manuscript's own formula in both `thm:optimal-divisor` and `thm:tre
 (`r = 2` case).-/
 noncomputable def treeM (n k : ℕ) : ℕ := n * k / radical (Nat.gcd n k)
 
+/--
+@isnad1 id=dvd.1h2v.s4.82cfb2fc7a97 from=translated src=- shape=d57820f8 vocab=e4e1ae04
+-/
 theorem dvd_natAbs_of_int_dvd {D : ℕ} {c : ℤ} (h : (D : ℤ) ∣ c) : D ∣ c.natAbs := by
   have := Int.natAbs_dvd_natAbs.mpr h
   simpa using this

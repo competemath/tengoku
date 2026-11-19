@@ -17,7 +17,9 @@ open MvPolynomial
 
 /-- **Theorem `thm:translation-moduli`, (i) ⟺ (ii).** For `P : MvPolynomial ℕ ℤ` and `m : ℕ`,
 coefficientwise divisibility by `m` (`DvdCoeffs m P`) is equivalent to: for every commutative
-ring `R` and every specialization `φ : ℕ → R`, `m` divides the specialized value.-/
+ring `R` and every specialization `φ : ℕ → R`, `m` divides the specialized value.
+@isnad1 id=iff.0h2v.s6.478c3e0e3f6e from=translated src=- shape=6d63378c vocab=cf1a2f41
+-/
 theorem dvdCoeffs_iff_forall_specialization (m : ℕ) (P : MvPolynomial ℕ ℤ) :
     DvdCoeffs m P ↔
       ∀ (R : Type) [CommRing R] (φ : ℕ → R),

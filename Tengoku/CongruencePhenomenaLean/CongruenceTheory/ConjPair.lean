@@ -26,6 +26,9 @@ noncomputable def HgrpPair : Subgroup (Equiv.Perm (Fin n ⊕ Fin k)) :=
 noncomputable def HSetPair : Finset (Equiv.Perm (Fin n ⊕ Fin k)) :=
   Finset.univ.filter (· ∈ (Equiv.Perm.sumCongrHom (Fin n) (Fin k)).range)
 
+/--
+@isnad1 id=iff.0h3v.s6.7b82f8202d7b from=translated src=- shape=2826f63e vocab=ac429d4b
+-/
 lemma mem_HgrpPair_iff (g : Equiv.Perm (Fin n ⊕ Fin k)) : g ∈ HgrpPair n k ↔ g ∈ HSetPair n k := by
   simp [HgrpPair, HSetPair]
 
@@ -43,10 +46,15 @@ noncomputable instance : MulAction ↥(HgrpPair n k) (Equiv.Perm (Fin n ⊕ Fin 
     simp only [Subgroup.coe_mul, mul_inv_rev]
     group
 
+/--
+@isnad1 id=eq.0h4v.s10.62652a9756f0 from=translated src=- shape=d2933656 vocab=9e1bd0af
+-/
 lemma smul_def_pair (h : ↥(HgrpPair n k)) (g : Equiv.Perm (Fin n ⊕ Fin k)) :
     h • g = h.1 * g * h.1⁻¹ := rfl
 
-/-- `HSetPair n k`ᶜ is invariant under `H`-conjugation.-/
+/-- `HSetPair n k`ᶜ is invariant under `H`-conjugation.
+@isnad1 id=mem.1h4v.s10.121f2fc2c334 from=translated src=- shape=368b11ed vocab=390bd2ba
+-/
 lemma compl_HSetPair_invariant (h : ↥(HgrpPair n k)) (g : Equiv.Perm (Fin n ⊕ Fin k))
     (hg : g ∈ (HSetPair n k)ᶜ) : h • g ∈ (HSetPair n k)ᶜ := by
   rw [Finset.mem_compl] at hg ⊢
@@ -62,7 +70,9 @@ lemma compl_HSetPair_invariant (h : ↥(HgrpPair n k)) (g : Equiv.Perm (Fin n �
 noncomputable abbrev orbRelPair : Setoid (Equiv.Perm (Fin n ⊕ Fin k)) :=
   MulAction.orbitRel ↥(HgrpPair n k) (Equiv.Perm (Fin n ⊕ Fin k))
 
-/-- `|H| = n! * k!`.-/
+/-- `|H| = n! * k!`.
+@isnad1 id=eq.0h2v.s6.50303d2bd2a8 from=translated src=- shape=21b1333d vocab=c1407120
+-/
 theorem card_HgrpPair : Fintype.card ↥(HgrpPair n k) = (n !) * (k !) := by
   have h1 : Fintype.card ↥(HgrpPair n k) = Fintype.card (Equiv.Perm (Fin n) × Equiv.Perm (Fin k)) :=
     Equiv.Perm.sumCongrHom.card_range
@@ -70,7 +80,9 @@ theorem card_HgrpPair : Fintype.card ↥(HgrpPair n k) = (n !) * (k !) := by
   simp [Fintype.card_prod, Fintype.card_perm, Fintype.card_fin]
 
 open scoped Classical in
-/-- The `H`-conjugation class of `g` (as a `Finset`) is exactly its orbit.-/
+/-- The `H`-conjugation class of `g` (as a `Finset`) is exactly its orbit.
+@isnad1 id=eq.0h3v.s11.20e765dcc60a from=translated src=- shape=761afcf4 vocab=f7c262f9
+-/
 theorem filter_orbRelPair_eq_orbit_toFinset (g : Equiv.Perm (Fin n ⊕ Fin k)) :
     Finset.univ.filter ((orbRelPair n k).r g) = (MulAction.orbit ↥(HgrpPair n k) g).toFinset := by
   ext g'
@@ -79,7 +91,9 @@ theorem filter_orbRelPair_eq_orbit_toFinset (g : Equiv.Perm (Fin n ⊕ Fin k)) :
 
 open scoped Classical in
 /-- **Orbit-stabilizer**, specialized: the class size of `g` times the stabilizer size
-equals `|H| = n! * k!`.-/
+equals `|H| = n! * k!`.
+@isnad1 id=eq.0h3v.s10.4a5c607cb0c2 from=translated src=- shape=7fe9c86d vocab=1fd98637
+-/
 theorem class_card_mul_stabilizer_card_pair (g : Equiv.Perm (Fin n ⊕ Fin k)) :
     (Finset.univ.filter ((orbRelPair n k).r g)).card *
       Fintype.card ↥(MulAction.stabilizer ↥(HgrpPair n k) g) = (n !) * (k !) := by

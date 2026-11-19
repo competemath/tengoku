@@ -22,7 +22,9 @@ def Gamma (w : ℕ → ℤ) : Set ℕ :=
   {n | ∃ m : Multiset ℕ, (∀ x ∈ m, 1 ≤ x ∧ w x ≠ 0) ∧ m.sum = n}
 
 /-- `eval w` of the cycle-indicator monomial for `a` fixed points and cycle-length multiset `m`
-is `w 1 ^ a * (m.map w).prod`.-/
+is `w 1 ^ a * (m.map w).prod`.
+@isnad1 id=eq.0h3v.s8.bd581fd255b5 from=translated src=- shape=aaa4f2b6 vocab=d8571214
+-/
 lemma eval_ciExp_monomial (w : ℕ → ℤ) (a : ℕ) (m : Multiset ℕ) :
     MvPolynomial.eval w (MvPolynomial.monomial (ciExp a m) (1 : ℤ)) =
       w 1 ^ a * (m.map w).prod := by
@@ -33,13 +35,17 @@ lemma eval_ciExp_monomial (w : ℕ → ℤ) (a : ℕ) (m : Multiset ℕ) :
   | empty => simp
   | cons x s ih => simp [Multiset.map_cons, Multiset.prod_cons, ih]
 
-/-- `eval w (ci g) = w 1 ^ (fixed points of g) * ∏_{ℓ ∈ cycleType g} w ℓ`.-/
+/-- `eval w (ci g) = w 1 ^ (fixed points of g) * ∏_{ℓ ∈ cycleType g} w ℓ`.
+@isnad1 id=eq.0h3v.s7.53d4b2ede052 from=translated src=- shape=fb8d8a84 vocab=8f4b0b6b
+-/
 lemma eval_ci (w : ℕ → ℤ) {α : Type*} [Fintype α] [DecidableEq α] (g : Equiv.Perm α) :
     MvPolynomial.eval w (ci g) =
       w 1 ^ (Fintype.card α - g.cycleType.sum) * (g.cycleType.map w).prod := by
   rw [ci_eq_monomial', eval_ciExp_monomial]
 
-/-- **Proposition `prop:support`**, main clause: if `n ∉ Γ(w)`, then `AwPerm w n = 0`.-/
+/-- **Proposition `prop:support`**, main clause: if `n ∉ Γ(w)`, then `AwPerm w n = 0`.
+@isnad1 id=eq.1h2v.s4.f801b71ae33d from=translated src=- shape=3f33fafa vocab=672a4bc4
+-/
 theorem AwPerm_eq_zero_of_not_mem_Gamma (w : ℕ → ℤ) (n : ℕ) (hn : n ∉ Gamma w) :
     AwPerm w n = 0 := by
   rw [AwPerm, Cperm, map_sum]
@@ -79,7 +85,9 @@ theorem AwPerm_eq_zero_of_not_mem_Gamma (w : ℕ → ℤ) (n : ℕ) (hn : n ∉ 
     omega
 
 /-- **Proposition `prop:support`, "in particular" clause (first half)**: if `d` is the least
-index with `w d ≠ 0`, then `AwPerm w n = 0` for every `1 ≤ n < d`.-/
+index with `w d ≠ 0`, then `AwPerm w n = 0` for every `1 ≤ n < d`.
+@isnad1 id=eq.3h3v.s5.6d39183b1d89 from=translated src=- shape=b5023e54 vocab=8e743728
+-/
 theorem AwPerm_eq_zero_below_min_support (w : ℕ → ℤ) (d : ℕ) (hmin : ∀ j, 1 ≤ j → j < d → w j = 0)
     (n : ℕ) (hn1 : 1 ≤ n) (hnd : n < d) : AwPerm w n = 0 := by
   apply AwPerm_eq_zero_of_not_mem_Gamma

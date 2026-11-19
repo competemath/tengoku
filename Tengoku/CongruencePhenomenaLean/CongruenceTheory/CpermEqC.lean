@@ -42,6 +42,9 @@ variable (m r : ℕ)
 /-- The `m`-element subtype of points other than `0`.-/
 abbrev NZ (m : ℕ) := {x : Fin (m + 1) // x ≠ 0}
 
+/--
+@isnad1 id=eq.0h1v.s7.fb93fb87765e from=translated src=- shape=47dcad53 vocab=0616d525
+-/
 theorem card_NZ (m : ℕ) : Fintype.card (NZ m) = m := by
   unfold NZ; rw [Fintype.card_subtype_compl]; simp
 
@@ -51,6 +54,9 @@ abbrev CycleTuple (m r : ℕ) := Fin r ↪ NZ m
 
 noncomputable instance : Fintype (CycleTuple m r) := by unfold CycleTuple; infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s4.ef8c7655a5e6 from=translated src=- shape=26a905d5 vocab=25104a4c
+-/
 theorem card_CycleTuple : Fintype.card (CycleTuple m r) = m.descFactorial r := by
   unfold CycleTuple
   rw [Fintype.card_embedding_eq, card_NZ, Fintype.card_fin]
@@ -63,6 +69,9 @@ def CycleCompl (t : CycleTuple m r) (x : Fin (m + 1)) : Prop :=
 noncomputable instance (t : CycleTuple m r) : Fintype {x // CycleCompl m r t x} :=
   Fintype.ofFinite _
 
+/--
+@isnad1 id=eq.1h3v.s6.896e0e1326c3 from=translated src=- shape=f28fb72c vocab=0e791b22
+-/
 theorem card_CycleCompl (t : CycleTuple m r) (hr : r ≤ m) :
     Fintype.card {x : Fin (m + 1) // CycleCompl m r t x} = m - r := by
   rw [Fintype.card_subtype]
@@ -101,9 +110,15 @@ theorem card_CycleCompl (t : CycleTuple m r) (hr : r ≤ m) :
 def cycleList (t : CycleTuple m r) : List (Fin (m + 1)) :=
   0 :: List.ofFn (fun i => (t i : Fin (m + 1)))
 
+/--
+@isnad1 id=eq.0h3v.s5.b898e80823c9 from=translated src=- shape=f57bfc8e vocab=eb933a8f
+-/
 theorem cycleList_length (t : CycleTuple m r) : (cycleList m r t).length = r + 1 := by
   simp [cycleList]
 
+/--
+@isnad1 id=nodup.0h3v.s4.f43cf36c954d from=translated src=- shape=575bb733 vocab=deab9d70
+-/
 theorem cycleList_nodup (t : CycleTuple m r) : (cycleList m r t).Nodup := by
   simp only [cycleList, List.nodup_cons, List.mem_ofFn]
   refine ⟨?_, List.nodup_ofFn.mpr (fun i j hij => t.injective (Subtype.ext hij))⟩
@@ -113,6 +128,9 @@ theorem cycleList_nodup (t : CycleTuple m r) : (cycleList m r t).Nodup := by
 /-- The `(r+1)`-cycle `(0, t 0, t 1, ..., t (r-1))`, or the identity when `r = 0`.-/
 def cyc (t : CycleTuple m r) : Equiv.Perm (Fin (m + 1)) := List.formPerm (cycleList m r t)
 
+/--
+@isnad1 id=le.0h3v.s7.bdf91d3ddbe5 from=translated src=- shape=72e268cd vocab=eb56d813
+-/
 theorem cyc_support_subset (t : CycleTuple m r) :
     (cyc m r t).support ⊆ (cycleList m r t).toFinset := by
   intro x hx
@@ -121,6 +139,9 @@ theorem cyc_support_subset (t : CycleTuple m r) :
   rw [List.mem_toFinset] at hxnot
   exact hx (List.formPerm_apply_of_notMem hxnot)
 
+/--
+@isnad1 id=disjoint.0h4v.s9.1730b2385c08 from=translated src=- shape=15ea737c vocab=429afa91
+-/
 theorem cyc_disjoint_ofSubtype (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x}) :
     Disjoint (cyc m r t) (Equiv.Perm.ofSubtype h) := by
   rw [Equiv.Perm.disjoint_iff_disjoint_support]
@@ -134,9 +155,15 @@ theorem cyc_disjoint_ofSubtype (t : CycleTuple m r) (h : Equiv.Perm {x // CycleC
   · exact hp.1 h0
   · exact hp.2 i hi
 
+/--
+@isnad1 id=iscycle.1h3v.s5.605287419d03 from=translated src=- shape=465c355a vocab=49aef750
+-/
 theorem cyc_isCycle_of_pos (t : CycleTuple m r) (hr : 1 ≤ r) : IsCycle (cyc m r t) :=
   List.isCycle_formPerm (cycleList_nodup m r t) (by rw [cycleList_length]; omega)
 
+/--
+@isnad1 id=eq.1h3v.s6.0fd01e5fb277 from=translated src=- shape=836ca81d vocab=eb56d813
+-/
 theorem cyc_support_eq (t : CycleTuple m r) (hr : 1 ≤ r) :
     (cyc m r t).support = (cycleList m r t).toFinset := by
   apply List.support_formPerm_of_nodup _ (cycleList_nodup m r t)
@@ -146,14 +173,23 @@ theorem cyc_support_eq (t : CycleTuple m r) (hr : 1 ≤ r) :
   simp at hlen
   omega
 
+/--
+@isnad1 id=ne.1h3v.s7.4106bddddb4a from=translated src=- shape=26abdfd7 vocab=2e801b83
+-/
 theorem cyc_apply_zero_ne_zero (t : CycleTuple m r) (hr : 1 ≤ r) : cyc m r t 0 ≠ 0 := by
   have hsupp : (0 : Fin (m + 1)) ∈ (cyc m r t).support := by
     rw [cyc_support_eq m r t hr]; simp [cycleList]
   exact (Equiv.Perm.mem_support.mp hsupp)
 
+/--
+@isnad1 id=eq.0h2v.s6.f55673172df2 from=translated src=- shape=f971882f vocab=6078ef88
+-/
 theorem cyc_eq_one_of_zero (t : CycleTuple m 0) : cyc m 0 t = 1 := by
   unfold cyc cycleList; simp
 
+/--
+@isnad1 id=iff.0h4v.s7.ef39a6bd5176 from=translated src=- shape=d2a7ac55 vocab=f02f717f
+-/
 theorem not_CycleCompl_iff (t : CycleTuple m r) (x : Fin (m + 1)) :
     ¬ CycleCompl m r t x ↔ (x = 0 ∨ ∃ i, (t i : Fin (m + 1)) = x) := by
   unfold CycleCompl
@@ -169,6 +205,9 @@ theorem not_CycleCompl_iff (t : CycleTuple m r) (x : Fin (m + 1)) :
     · exact hx0 rfl
     · exact hall i hi
 
+/--
+@isnad1 id=iff.1h4v.s7.65eb34925de3 from=translated src=- shape=3944dbc7 vocab=1de504e9
+-/
 theorem mem_support_cyc_iff (t : CycleTuple m r) (hr : 1 ≤ r) (x : Fin (m + 1)) :
     x ∈ (cyc m r t).support ↔ ¬ CycleCompl m r t x := by
   rw [cyc_support_eq m r t hr, List.mem_toFinset]
@@ -180,11 +219,17 @@ theorem mem_support_cyc_iff (t : CycleTuple m r) (hr : 1 ≤ r) (x : Fin (m + 1)
 noncomputable def gAssemble (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x}) :
     Equiv.Perm (Fin (m + 1)) := cyc m r t * Equiv.Perm.ofSubtype h
 
+/--
+@isnad1 id=eq.0h3v.s8.021abcf0ff77 from=translated src=- shape=d11d7358 vocab=b12e8d79
+-/
 theorem gAssemble_cycleType_zero (t : CycleTuple m 0) (h : Equiv.Perm {x // CycleCompl m 0 t x}) :
     (gAssemble m 0 t h).cycleType = h.cycleType := by
   unfold gAssemble
   rw [cyc_eq_one_of_zero m t, one_mul, Equiv.Perm.cycleType_ofSubtype]
 
+/--
+@isnad1 id=eq.1h4v.s8.66f1c9629371 from=translated src=- shape=69b7fa97 vocab=5f34c214
+-/
 theorem gAssemble_cycleType_pos (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x})
     (hpos : 1 ≤ r) :
     (gAssemble m r t h).cycleType = {r + 1} + h.cycleType := by
@@ -197,7 +242,9 @@ theorem gAssemble_cycleType_pos (t : CycleTuple m r) (h : Equiv.Perm {x // Cycle
   rw [hdisj.cycleType_mul, hcyc, Equiv.Perm.cycleType_ofSubtype]
 
 /-- The cycle-indicator monomial of an assembled permutation is `X_{r+1}` times that of the
-complement permutation `h` — matching the manuscript's "assign weight `w_{r+1}`" remark.-/
+complement permutation `h` — matching the manuscript's "assign weight `w_{r+1}`" remark.
+@isnad1 id=eq.1h4v.s8.4bdc249f3cd8 from=translated src=- shape=74956061 vocab=179954fa
+-/
 theorem ci_gAssemble (hr : r ≤ m) (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x}) :
     ci (gAssemble m r t h) = X (r + 1) * ci h := by
   unfold ci
@@ -229,7 +276,9 @@ theorem ci_gAssemble (hr : r ≤ m) (t : CycleTuple m r) (h : Equiv.Perm {x // C
     rw [Multiset.map_add, Multiset.prod_add, Multiset.map_singleton, Multiset.prod_singleton]
     ring
 
-/-- Recovering the tuple: the cycle of `0` in an assembled permutation is exactly `cyc t`.-/
+/-- Recovering the tuple: the cycle of `0` in an assembled permutation is exactly `cyc t`.
+@isnad1 id=eq.1h4v.s7.216da56ea714 from=translated src=- shape=bdfc7e7d vocab=2f5d8fd5
+-/
 theorem cycleOf_gAssemble (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x})
     (hr1 : 1 ≤ r) :
     (gAssemble m r t h).cycleOf 0 = cyc m r t := by
@@ -242,6 +291,9 @@ theorem cycleOf_gAssemble (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl 
   rw [Equiv.Perm.cycleOf_mul_of_apply_right_eq_self hcomm 0 h0fix]
   exact Equiv.Perm.IsCycle.cycleOf_eq (cyc_isCycle_of_pos m r t hr1) (cyc_apply_zero_ne_zero m r t hr1)
 
+/--
+@isnad1 id=eq.2h4v.s5.68547d4b11c6 from=translated src=- shape=80cb0d6c vocab=ebc08644
+-/
 theorem cyc_injective (hr1 : 1 ≤ r) (t1 t2 : CycleTuple m r) (heq : cyc m r t1 = cyc m r t2) :
     t1 = t2 := by
   have hl1 : 2 ≤ (cycleList m r t1).length := by rw [cycleList_length]; omega
@@ -263,6 +315,9 @@ theorem cyc_injective (hr1 : 1 ≤ r) (t1 t2 : CycleTuple m r) (heq : cyc m r t1
   intro i
   exact Subtype.ext (congrFun hofFn i)
 
+/--
+@isnad1 id=ex.2h6v.s7.67b331db906b from=translated src=- shape=38a2a2c3 vocab=be21b6e3
+-/
 theorem gAssemble_injective_pos (hr1 : 1 ≤ r) (t1 t2 : CycleTuple m r)
     (h1 : Equiv.Perm {x // CycleCompl m r t1 x}) (h2 : Equiv.Perm {x // CycleCompl m r t2 x})
     (heq : gAssemble m r t1 h1 = gAssemble m r t2 h2) :
@@ -281,7 +336,9 @@ theorem gAssemble_injective_pos (hr1 : 1 ≤ r) (t1 t2 : CycleTuple m r)
 
 /-- If a permutation fixes everything outside a predicate `p`, then `p` is invariant under it —
 the general fact behind gluing a "cycle part" and a "complement part" back into one
-`subtypePerm`.-/
+`subtypePerm`.
+@isnad1 id=iff.1h4v.s5.955dafc29807 from=translated src=- shape=261585b6 vocab=26837e6f
+-/
 theorem invariant_of_fixes_compl {α : Type*} {f : Equiv.Perm α} {p : α → Prop}
     (hfix : ∀ x, ¬ p x → f x = x) : ∀ x, p (f x) ↔ p x := by
   intro x
@@ -296,6 +353,9 @@ theorem invariant_of_fixes_compl {α : Type*} {f : Equiv.Perm α} {p : α → Pr
       exact hpfx hpx
   · rw [hfix x hpx]
 
+/--
+@isnad1 id=eq.2h3v.s7.73d294bf8a27 from=translated src=- shape=c349686b vocab=bd85f7ed
+-/
 theorem ofSubtype_subtypePerm_eq_self {α : Type*} [DecidableEq α] {p : α → Prop} [DecidablePred p]
     (f : Equiv.Perm α) (hf : ∀ x, p (f x) ↔ p x) (hsupp : ∀ x, ¬ p x → f x = x) :
     Equiv.Perm.ofSubtype (f.subtypePerm hf) = f := by
@@ -311,6 +371,9 @@ instance : Subsingleton (CycleTuple m 0) := by
   intro i
   exact i.elim0
 
+/--
+@isnad1 id=ex.1h2v.s8.148b2417ae37 from=translated src=- shape=b28ef4ca vocab=6eb799f5
+-/
 theorem exists_decomp_zero (g : Equiv.Perm (Fin (m + 1))) (hg0 : g 0 = 0) :
     ∃ (t : CycleTuple m 0) (h : Equiv.Perm {x // CycleCompl m 0 t x}), gAssemble m 0 t h = g := by
   classical
@@ -340,6 +403,9 @@ theorem exists_decomp_zero (g : Equiv.Perm (Fin (m + 1))) (hg0 : g 0 = 0) :
   rw [cyc_eq_one_of_zero m t, one_mul]
   exact ofSubtype_subtypePerm_eq_self g hinv hfix
 
+/--
+@isnad1 id=ex.1h5v.s8.96cd6f2ea5fa from=translated src=- shape=e40e2437 vocab=8f0b23a8
+-/
 theorem gAssemble_injective_zero (t1 t2 : CycleTuple m 0)
     (h1 : Equiv.Perm {x // CycleCompl m 0 t1 x}) (h2 : Equiv.Perm {x // CycleCompl m 0 t2 x})
     (heq : gAssemble m 0 t1 h1 = gAssemble m 0 t2 h2) :
@@ -353,6 +419,9 @@ theorem gAssemble_injective_zero (t1 t2 : CycleTuple m 0)
     exact mul_left_cancel heq
   exact Equiv.Perm.ofSubtype_injective hofsub
 
+/--
+@isnad1 id=ex.2h3v.s8.18bcb85b2e05 from=translated src=- shape=ad1dec75 vocab=7cc5ccc1
+-/
 theorem exists_decomp_pos (g : Equiv.Perm (Fin (m + 1))) (hr1 : 1 ≤ r)
     (hcard : (g.cycleOf 0).support.card = r + 1) :
     ∃ (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x}), gAssemble m r t h = g := by
@@ -416,6 +485,9 @@ theorem exists_decomp_pos (g : Equiv.Perm (Fin (m + 1))) (hr1 : 1 ≤ r)
     _ = g * ((g.cycleOf 0)⁻¹ * g.cycleOf 0) := by rw [mul_assoc]
     _ = g := by simp
 
+/--
+@isnad1 id=eq.0h4v.s8.cec6f1977714 from=translated src=- shape=7439c9df vocab=2c891036
+-/
 theorem rCard_gAssemble (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m r t x}) :
     ((gAssemble m r t h).cycleOf 0).support.card = if r = 0 then 0 else r + 1 := by
   rcases Nat.eq_zero_or_pos r with h0 | hpos
@@ -431,6 +503,9 @@ theorem rCard_gAssemble (t : CycleTuple m r) (h : Equiv.Perm {x // CycleCompl m 
   · rw [ite_eq_right (by omega), cycleOf_gAssemble m r t h hpos, cyc_support_eq m r t hpos,
       List.toFinset_card_of_nodup (cycleList_nodup m r t), cycleList_length]
 
+/--
+@isnad1 id=eq.1h7v.s6.157fdff2bae5 from=translated src=- shape=54901b2b vocab=5a9e18d4
+-/
 theorem r_eq_of_gAssemble_eq (t1 : CycleTuple m r) (t2 : CycleTuple m r')
     (h1 : Equiv.Perm {x // CycleCompl m r t1 x}) (h2 : Equiv.Perm {x // CycleCompl m r' t2 x})
     (heq : gAssemble m r t1 h1 = gAssemble m r' t2 h2) : r = r' := by
@@ -441,7 +516,9 @@ theorem r_eq_of_gAssemble_eq (t1 : CycleTuple m r) (t2 : CycleTuple m r')
   by_cases hr : r = 0 <;> by_cases hr' : r' = 0 <;> simp [hr, hr'] at e2 <;> omega
 
 /-- Cycle type is invariant under transporting a permutation across any equivalence of the
-ambient finite type.-/
+ambient finite type.
+@isnad1 id=eq.0h4v.s6.ac46bb9c00e9 from=translated src=- shape=c44a43b3 vocab=e1b0fd3c
+-/
 theorem cycleType_permCongr {β γ : Type*} [Fintype β] [Fintype γ] [DecidableEq β] [DecidableEq γ]
     (e : β ≃ γ) (g : Equiv.Perm β) : (e.permCongr g).cycleType = g.cycleType := by
   set f : β ≃ Subtype (fun _ : γ => True) :=
@@ -453,14 +530,18 @@ theorem cycleType_permCongr {β γ : Type*} [Fintype β] [Fintype γ] [Decidable
   rw [← hext, Equiv.Perm.cycleType_extendDomain]
 
 /-- The cycle-indicator monomial is invariant under transporting a permutation across any
-equivalence of the ambient finite type.-/
+equivalence of the ambient finite type.
+@isnad1 id=eq.0h4v.s6.8c03544386da from=translated src=- shape=3124445b vocab=f02fbd8f
+-/
 theorem ci_permCongr {β γ : Type*} [Fintype β] [Fintype γ] [DecidableEq β] [DecidableEq γ]
     (e : β ≃ γ) (g : Equiv.Perm β) : ci (e.permCongr g) = ci g := by
   unfold ci
   rw [cycleType_permCongr e g, Fintype.card_congr e.symm]
 
 /-- The `Cperm`-sum over any Fintype `β` of cardinality `n` equals `Cperm n` — lets `Cperm`'s
-defining sum be computed over any finite type of the right size, not just `Fin n` itself.-/
+defining sum be computed over any finite type of the right size, not just `Fin n` itself.
+@isnad1 id=eq.1h2v.s5.b500103fffad from=translated src=- shape=c42d664d vocab=2bbd4c02
+-/
 theorem Cperm_eq_sum_of_card_eq {β : Type*} [Fintype β] [DecidableEq β] {n : ℕ}
     (hβ : Fintype.card β = n) : Cperm n = ∑ g : Equiv.Perm β, ci g := by
   subst hβ
@@ -470,6 +551,9 @@ theorem Cperm_eq_sum_of_card_eq {β : Type*} [Fintype β] [DecidableEq β] {n : 
     (fun g : Equiv.Perm (Fin (Fintype.card β)) => ci g)
     (fun h => (ci_permCongr e h).symm)).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.10967f41d2f5 from=translated src=- shape=8ec67f47 vocab=8d53d620
+-/
 theorem fall_eq_descFactorial_nat (n s : ℕ) (hs : s ≤ n) :
     (fall n s : ℤ) = (n.descFactorial s : ℤ) := by
   rw [fall, Nat.descFactorial_eq_prod_range]
@@ -482,7 +566,9 @@ theorem fall_eq_descFactorial_nat (n s : ℕ) (hs : s ≤ n) :
 
 /-- **`Cperm` satisfies `C`'s own recurrence** (`C_succ`, `Basic.lean`): the manuscript's
 "distinguished-point" decomposition, proved directly for the permutation-native cycle-index
-sum via the bijection `gAssemble`/`exists_decomp_*`/`gAssemble_injective_*` above.-/
+sum via the bijection `gAssemble`/`exists_decomp_*`/`gAssemble_injective_*` above.
+@isnad1 id=eq.0h1v.s7.62f12d1d7932 from=translated src=- shape=ad8c62e1 vocab=f120e1ce
+-/
 theorem Cperm_succ_alt (m : ℕ) :
     Cperm (m + 1) =
       ∑ s ∈ Finset.range (m + 1), (fall m s : MvPolynomial ℕ ℤ) * (X (s + 1) * Cperm (m - s)) := by
@@ -574,6 +660,9 @@ theorem Cperm_succ_alt (m : ℕ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.c1fb16099f50 from=translated src=- shape=978b4adc vocab=86699c3a
+-/
 theorem Cperm_zero : Cperm 0 = 1 := by
   unfold Cperm
   rw [show (Finset.univ : Finset (Equiv.Perm (Fin 0))) = {1} from by
@@ -587,7 +676,9 @@ theorem Cperm_zero : Cperm 0 = 1 := by
   unfold ci
   simp
 
-/-- **The `Cperm = C` bridge, in full.**-/
+/-- **The `Cperm = C` bridge, in full.**
+@isnad1 id=eq.0h1v.s3.5066050e8c7b from=translated src=- shape=a951267f vocab=45dab96a
+-/
 theorem Cperm_eq_C : ∀ n, Cperm n = C n := by
   intro n
   induction n using Nat.strong_induction_on with
