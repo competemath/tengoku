@@ -35,6 +35,9 @@ open IsLocalRing IsRegularLocalRing
 variable (R : Type*) [CommRing R]
 
 variable {R} in
+/--
+@isnad1 id=injectiv.0h3v.s7.fc494f5279f6 from=translated src=- shape=4a02d29c vocab=1f4489a6
+-/
 lemma IsLocalRing.ResidueField.map_injective [IsLocalRing R] {S : Type*} [CommRing S]
     [IsLocalRing S] (f : R →+* S) [IsLocalHom f] :
     Function.Injective (ResidueField.map f) := by
@@ -43,6 +46,9 @@ lemma IsLocalRing.ResidueField.map_injective [IsLocalRing R] {S : Type*} [CommRi
   simpa only [map_eq_zero] using hx
 
 variable {R} in
+/--
+@isnad1 id=bijectiv.1h3v.s8.487bd93629c0 from=translated src=- shape=d6d7e87b vocab=e1c1a778
+-/
 lemma IsLocalRing.ResidueField.map_bijective_of_surjective [IsLocalRing R] {S : Type*} [CommRing S]
     [IsLocalRing S] (f : R →+* S) (surj : Function.Surjective f) [IsLocalHom f] :
     Function.Bijective (ResidueField.map f) := by
@@ -51,6 +57,9 @@ lemma IsLocalRing.ResidueField.map_bijective_of_surjective [IsLocalRing R] {S : 
   apply Ideal.Quotient.lift_surjective_of_surjective
   exact (Ideal.Quotient.mk_surjective (I := maximalIdeal S)).comp surj
 
+/--
+@isnad1 id=ex.0h1v.s4.d6bf901ef2a5 from=translated src=- shape=81131f7c vocab=9fd1cf2e
+-/
 lemma _root_.Tengoku.ZanelloLc.exist_nat_eq [FiniteRingKrullDim R] : ∃ n : ℕ, ringKrullDim R = n := by
   have : (ringKrullDim R).unbot ringKrullDim_ne_bot ≠ ⊤ := by
     by_contra eq

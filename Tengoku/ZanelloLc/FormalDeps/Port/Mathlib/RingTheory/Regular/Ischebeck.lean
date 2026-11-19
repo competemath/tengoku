@@ -28,6 +28,9 @@ universe u v
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=nontrivi.1h3v.s6.f7c7f7e56fd8 from=translated src=- shape=51a5dba0 vocab=ca77e503
+-/
 lemma _root_.Tengoku.ZanelloLc.quotSMulTop_nontrivial [IsLocalRing R] {x : R} (mem : x ∈ maximalIdeal R)
     (L : Type*) [AddCommGroup L] [Module R L] [Module.Finite R L] [Nontrivial L] :
     Nontrivial (QuotSMulTop x L) := by
@@ -35,6 +38,9 @@ lemma _root_.Tengoku.ZanelloLc.quotSMulTop_nontrivial [IsLocalRing R] {x : R} (m
   apply Submodule.top_ne_pointwise_smul_of_mem_jacobson_annihilator
   exact IsLocalRing.maximalIdeal_le_jacobson _ mem
 
+/--
+@isnad1 id=ne.1h2v.s5.33cf18af2272 from=translated src=- shape=d03d61ec vocab=54e5027c
+-/
 lemma _root_.Tengoku.ZanelloLc.quotient_prime_ringKrullDim_ne_bot {P : Ideal R} (prime : P.IsPrime) :
     ringKrullDim (R ⧸ P) ≠ ⊥ :=
   ne_bot_of_le_ne_bot WithBot.zero_ne_bot

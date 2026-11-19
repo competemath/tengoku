@@ -31,6 +31,9 @@ open CategoryTheory Abelian
 
 section
 
+/--
+@isnad1 id=iff.0h3v.s10.e83462e03c23 from=translated src=- shape=48b6e7a8 vocab=3972d562
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_quotient_one_subsingleton_iff [Small.{v} R] (M : ModuleCat.{v} R) (I : Ideal R) :
     Subsingleton (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M 1) ↔
     ∀ g : I →ₗ[R] M, ∃ g' : R →ₗ[R] M, ∀ (x : R) (mem : x ∈ I), g' x = g ⟨x, mem⟩ := by
@@ -95,6 +98,9 @@ lemma _root_.Tengoku.ZanelloLc.ext_quotient_one_subsingleton_iff [Small.{v} R] (
       Function.comp_apply, S, eq, hg' _ ((Shrink.linearEquiv R I) x).2]
     exact congrArg _ ((Shrink.linearEquiv R I).symm_apply_apply _)
 
+/--
+@isnad1 id=injectiv.1h2v.s7.3983f2ea7bfb from=translated src=- shape=8a14a036 vocab=b7f9cf38
+-/
 lemma _root_.Tengoku.ZanelloLc.injective_of_subsingleton_ext_quotient_one [Small.{v} R] (M : ModuleCat.{v} R)
     (h : ∀ (I : Ideal R), Subsingleton (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M 1)) :
     Injective M := by
@@ -102,6 +108,9 @@ lemma _root_.Tengoku.ZanelloLc.injective_of_subsingleton_ext_quotient_one [Small
   exact fun I ↦ (ext_quotient_one_subsingleton_iff M I).mp (h I)
 
 open Limits in
+/--
+@isnad1 id=subsingl.1h4v.s7.9f0bf47d302c from=translated src=- shape=ee606781 vocab=5cea8848
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_subsingleton_of_quotients' [Small.{v} R] (M : ModuleCat.{v} R) (n : ℕ)
     (h : ∀ I : Ideal R, Subsingleton (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M (n + 1))) :
     ∀ N : ModuleCat.{v} R, Subsingleton (Ext N M (n + 1)) := by
@@ -123,6 +132,9 @@ lemma _root_.Tengoku.ZanelloLc.ext_subsingleton_of_quotients' [Small.{v} R] (M :
     simp only [this] at h ⊢
     exact ih (cokernel ip.3) h
 
+/--
+@isnad1 id=subsingl.1h4v.s7.c1e3533708c5 from=translated src=- shape=a568039f vocab=0ef77b1f
+-/
 lemma _root_.Tengoku.ZanelloLc.ext_subsingleton_of_quotients [Small.{v} R] (M : ModuleCat.{v} R) (n : ℕ)
     (h : ∀ I : Ideal R, Subsingleton (Ext (ModuleCat.of R (Shrink.{v} (R ⧸ I))) M n)) :
     ∀ N : ModuleCat.{v} R, Subsingleton (Ext N M n) := by

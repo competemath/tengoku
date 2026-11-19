@@ -56,10 +56,16 @@ open scoped Pointwise
 class ModuleCat.IsCohenMacaulay [IsLocalRing R] [Small.{v} R] (M : ModuleCat.{v} R) : Prop where
   depth_eq_dim : Subsingleton M ∨ Module.supportDim R M = IsLocalRing.depth M
 
+/--
+@isnad1 id=iff.0h2v.s6.d3cb3b830d1c from=translated src=- shape=af6dcde5 vocab=115b159d
+-/
 lemma ModuleCat.isCohenMacaulay_iff [IsLocalRing R] [Small.{v} R] (M : ModuleCat.{v} R) :
     M.IsCohenMacaulay ↔ Subsingleton M ∨ Module.supportDim R M = IsLocalRing.depth M :=
   ⟨fun ⟨h⟩ ↦ h, fun h ↦ ⟨h⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.3efeb11578b4 from=translated src=- shape=11d2d1be vocab=84768a11
+-/
 lemma ModuleCat.depth_eq_supportDim_of_cohenMacaulay [IsLocalRing R] [Small.{v} R]
     (M : ModuleCat.{v} R) [cm : M.IsCohenMacaulay] [ntr : Nontrivial M] :
     Module.supportDim R M = IsLocalRing.depth M := by
@@ -67,12 +73,18 @@ lemma ModuleCat.depth_eq_supportDim_of_cohenMacaulay [IsLocalRing R] [Small.{v} 
   have := M.isCohenMacaulay_iff.mp cm
   tauto
 
+/--
+@isnad1 id=eq.0h2v.s6.a9834ec5d0a0 from=translated src=- shape=4f373394 vocab=3a93ffe4
+-/
 lemma ModuleCat.depth_eq_supportDim_unbot_of_cohenMacaulay [IsLocalRing R] [Small.{v} R]
     (M : ModuleCat.{v} R) [cm : M.IsCohenMacaulay] [ntr : Nontrivial M] :
     (Module.supportDim R M).unbot
     (Module.supportDim_ne_bot_of_nontrivial R M) = IsLocalRing.depth M := by
   simp [M.depth_eq_supportDim_of_cohenMacaulay]
 
+/--
+@isnad1 id=iscohenm.0h4v.s5.cc56a29cac10 from=translated src=- shape=c311fbfc vocab=4aed5baa
+-/
 lemma ModuleCat.IsCohenMacaulay_of_iso [IsLocalRing R] [Small.{v} R] {M M' : ModuleCat.{v} R}
     (e : M ≅ M') [M.IsCohenMacaulay] : M'.IsCohenMacaulay := by
   rw [M'.isCohenMacaulay_iff]
@@ -86,6 +98,9 @@ section IsLocalization
 
 variable [IsLocalRing R] [IsNoetherianRing R] (p : Ideal R) [Small.{v} R]
 
+/--
+@isnad1 id=iff.2h3v.s10.38d4757a7e3a from=translated src=- shape=e4c3d1bd vocab=899f6fe4
+-/
 lemma _root_.Tengoku.ZanelloLc.quotSMulTop_isCohenMacaulay_iff_isCohenMacaulay (M : ModuleCat.{v} R) [Module.Finite R M]
     (r : R) (reg : IsSMulRegular M r) (mem : r ∈ maximalIdeal R) :
      M.IsCohenMacaulay ↔ (ModuleCat.of R (QuotSMulTop r M)).IsCohenMacaulay := by
@@ -101,6 +116,9 @@ lemma _root_.Tengoku.ZanelloLc.quotSMulTop_isCohenMacaulay_iff_isCohenMacaulay (
       ← IsLocalRing.depth_quotSMulTop_succ_eq_moduleDepth M r reg mem, WithBot.coe_add]
     exact ENat.WithBot.add_natCast_cancel
 
+/--
+@isnad1 id=iff.1h3v.s9.d04c777b36af from=translated src=- shape=ee149521 vocab=576d526d
+-/
 lemma _root_.Tengoku.ZanelloLc.quotient_regular_isCohenMacaulay_iff_isCohenMacaulay
     (M : ModuleCat.{v} R) [Module.Finite R M] (rs : List R) (reg : IsRegular M rs) :
     M.IsCohenMacaulay ↔
@@ -152,6 +170,9 @@ abbrev _root_.Tengoku.ZanelloLc.quotSMulTop_isLocalizedModule_map (x : R) (M : T
 
 variable (Rₚ) in
 omit [IsLocalRing R] [IsNoetherianRing R] [Small.{v, u} R] in
+/--
+@isnad1 id=atprime.0h7v.s10.6cfe6724503a from=translated src=- shape=0cd5b6bb vocab=03ae7f71
+-/
 lemma _root_.Tengoku.ZanelloLc.isLocalizedModule_quotSMulTop_isLocalizedModule_map (x : R)
     (M : Type*) [AddCommGroup M] [Module R M] (Mₚ : Type*) [AddCommGroup Mₚ] [Module R Mₚ]
     [Module Rₚ Mₚ] [IsScalarTower R Rₚ Mₚ] (f : M →ₗ[R] Mₚ) [IsLocalizedModule.AtPrime p f] :
@@ -205,10 +226,16 @@ variable (R)
 class _root_.Tengoku.ZanelloLc.IsCohenMacaulayLocalRing : Prop extends IsLocalRing R where
   depth_eq_dim : ringKrullDim R = IsLocalRing.depth (ModuleCat.of R R)
 
+/--
+@isnad1 id=iff.0h1v.s5.971f607293db from=translated src=- shape=fe070d63 vocab=06dd8c7e
+-/
 lemma _root_.Tengoku.ZanelloLc.isCohenMacaulayLocalRing_def [IsLocalRing R] : IsCohenMacaulayLocalRing R ↔
     ringKrullDim R = IsLocalRing.depth (ModuleCat.of R R) :=
   ⟨fun ⟨h⟩ ↦ h, fun h ↦ ⟨h⟩⟩
 
+/--
+@isnad1 id=iff.0h1v.s5.b04c574c570f from=translated src=- shape=191a1445 vocab=b2636129
+-/
 lemma _root_.Tengoku.ZanelloLc.isCohenMacaulayLocalRing_iff [IsLocalRing R] :
     IsCohenMacaulayLocalRing R ↔ (ModuleCat.of R R).IsCohenMacaulay := by
   simp [isCohenMacaulayLocalRing_def, isCohenMacaulay_iff,
@@ -219,10 +246,16 @@ lemma _root_.Tengoku.ZanelloLc.isCohenMacaulayLocalRing_iff [IsLocalRing R] :
 class _root_.Tengoku.ZanelloLc.IsCohenMacaulayRing : Prop where
   CM_localize : ∀ p : Ideal R, ∀ (_ : p.IsPrime), IsCohenMacaulayLocalRing (Localization.AtPrime p)
 
+/--
+@isnad1 id=iff.0h1v.s5.11c80a91f43a from=translated src=- shape=f7df49f2 vocab=702d0cd8
+-/
 lemma _root_.Tengoku.ZanelloLc.isCohenMacaulayRing_def : IsCohenMacaulayRing R ↔
     ∀ p : Ideal R, ∀ (_ : p.IsPrime), IsCohenMacaulayLocalRing (Localization.AtPrime p) :=
   ⟨fun ⟨h⟩ ↦ h, fun h ↦ ⟨h⟩⟩
 
+/--
+@isnad1 id=iff.0h1v.s6.1eea57b14604 from=translated src=- shape=e8abf496 vocab=3d238626
+-/
 lemma _root_.Tengoku.ZanelloLc.isCohenMacaulayRing_def' : IsCohenMacaulayRing R ↔
   ∀ p : PrimeSpectrum R, IsCohenMacaulayLocalRing (Localization.AtPrime p.1) :=
   ⟨fun ⟨h⟩ ↦ fun p ↦ h p.1 p.2, fun h ↦ ⟨fun p hp ↦ h ⟨p, hp⟩⟩⟩
