@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "ac0e587d18b65d120a371454a24f71ece1e9b64d6b9fdd42cd8b996e5d6d8440",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 4,
+  "print lines removed": 10
+ },
+ "gate2_unjudged": [],
+ "library": "jsp-000198-lean",
+ "lint_mode": "proposed",
+ "modules": 51,
+ "part": 1,
+ "theorems": 246
+}
