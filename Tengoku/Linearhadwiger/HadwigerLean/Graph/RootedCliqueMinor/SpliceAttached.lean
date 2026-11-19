@@ -1,0 +1,166 @@
+import Tengoku.Linearhadwiger.HadwigerLean.Graph.RootedCliqueMinor.TorsoConnectivity
+import Tengoku.Linearhadwiger.HadwigerLean.Graph.RootedCliqueMinor.ContractionAttached
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Splicing an attached clique model across a separation
+
+Disjoint paths from original roots to every boundary vertex extend an
+attached clique model on the far shore back to the original roots. The
+initial vertex of each path is excluded from its new branch.
+-/
+
+namespace HadwigerLean
+
+universe v
+
+namespace RootAttachedCliqueModel
+
+variable {V : Type v} {G : SimpleGraph V}
+
+/-- The path vertices after the first vertex. For a singleton path this is
+empty; for a nontrivial path it is the support of the path's tail.-/
+def pathAfterStart {u w : V} (p : G.Path u w) : Set V :=
+  pathVertexSet p \ {u}
+
+/--
+@isnad1 id=le.0h5v.s5.0375b9ef7140 from=translated src=- shape=fc1313c7 vocab=517d21d9
+-/
+theorem pathAfterStart_subset {u w : V} (p : G.Path u w) :
+    pathAfterStart p ⊆ pathVertexSet p :=
+  Set.sdiff_subset
+
+/--
+@isnad1 id=not.0h5v.s4.20e553299960 from=translated src=- shape=31479e1e vocab=4ee51383
+-/
+theorem start_not_mem_pathAfterStart {u w : V} (p : G.Path u w) :
+    u ∉ pathAfterStart p := by
+  simp [pathAfterStart]
+
+/--
+@isnad1 id=eq.1h5v.s5.5e1b307087d1 from=translated src=- shape=d0a3f0ab vocab=9fda4f61
+-/
+theorem pathAfterStart_eq_empty_of_nil {u w : V}
+    (p : G.Path u w) (hnil : (p : G.Walk u w).Nil) :
+    pathAfterStart p = ∅ := by
+  have huw : u = w := hnil.eq
+  subst w
+  rw [p.loop_eq]
+  simp [pathAfterStart, pathVertexSet]
+
+/--
+@isnad1 id=not.1h5v.s6.bfaa5cd07ada from=translated src=- shape=9c2dbe07 vocab=0eaf6848
+-/
+theorem start_not_mem_tail_support {u w : V}
+    (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
+    u ∉ (p : G.Walk u w).tail.support := by
+  have hnodup := p.property.support_nodup
+  rw [← (p : G.Walk u w).cons_support_tail hnil] at hnodup
+  exact (List.nodup_cons.mp hnodup).1
+
+/--
+@isnad1 id=eq.1h5v.s6.b622a406d058 from=translated src=- shape=dc028102 vocab=c3096fbe
+-/
+theorem pathAfterStart_eq_tail_support {u w : V}
+    (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
+    pathAfterStart p =
+      {x | x ∈ (p : G.Walk u w).tail.support} := by
+  ext x
+  have hsupport := (p : G.Walk u w).cons_support_tail hnil
+  have hnot := start_not_mem_tail_support p hnil
+  simp only [pathAfterStart, pathVertexSet, Set.mem_sdiff,
+    Set.mem_singleton_iff, Set.mem_ofPred_eq, ← hsupport, List.mem_cons]
+  constructor
+  · rintro ⟨hx | hx, hne⟩
+    · exact (hne hx).elim
+    · exact hx
+  · intro hx
+    exact ⟨Or.inr hx, fun heq => hnot (heq ▸ hx)⟩
+
+/--
+@isnad1 id=connecte.1h5v.s5.f25aa09f4dc0 from=translated src=- shape=44b72d4c vocab=d0bbd881
+-/
+theorem pathAfterStart_connected {u w : V}
+    (p : G.Path u w) (hnil : ¬(p : G.Walk u w).Nil) :
+    (G.induce (pathAfterStart p)).Connected := by
+  rw [pathAfterStart_eq_tail_support p hnil]
+  exact (p : G.Walk u w).tail.connected_induce_support
+
+/-- The far-side clique model can be enlarged by the interior of a
+vertex-disjoint linkage whose finishes each attach to the assigned branch.
+All branches avoid the linkage paths.-/
+noncomputable def extendAlongLinkage {r : ℕ}
+    {P : IndexedPairs (Fin r) V} (L : IndexedLinkage G P)
+    (N : MinorModel (SimpleGraph.completeGraph (Fin r)) G)
+    (havoid : ∀ i j, Disjoint (N.branch i) (pathVertexSet (L.path j)))
+    (hattach : ∀ i, ∃ y ∈ N.branch i, G.Adj (P.finish i) y) :
+    RootAttachedCliqueModel G P.start := by
+  let B : Fin r → Set V := fun i =>
+    N.branch i ∪ pathAfterStart (L.path i)
+  have htailPath (i : Fin r) :
+      pathAfterStart (L.path i) ⊆ pathVertexSet (L.path i) :=
+    pathAfterStart_subset (L.path i)
+  refine {
+    branch := B
+    root_injective := L.start_injective
+    connected := ?_
+    disjoint := ?_
+    avoids_roots := ?_
+    adjacent := ?_
+    attached := ?_
+  }
+  · intro i
+    obtain ⟨y, hy, hxy⟩ := hattach i
+    by_cases hnil : (L.path i : G.Walk (P.start i) (P.finish i)).Nil
+    · have htail : pathAfterStart (L.path i) = ∅ :=
+        pathAfterStart_eq_empty_of_nil (L.path i) hnil
+      change (G.induce (N.branch i ∪ pathAfterStart (L.path i))).Connected
+      rw [htail, Set.union_empty]
+      exact N.connected i
+    · have hfinish : P.finish i ∈ pathAfterStart (L.path i) := by
+        rw [pathAfterStart_eq_tail_support (L.path i) hnil]
+        rw [(L.path i : G.Walk (P.start i) (P.finish i)).support_tail_of_not_nil hnil]
+        exact (L.path i : G.Walk (P.start i) (P.finish i)).end_mem_tail_support hnil
+      exact G.connected_induce_union
+        (N.connected i).preconnected
+        (pathAfterStart_connected (L.path i) hnil).preconnected
+        hy hfinish hxy.symm
+  · intro i j hij
+    apply Set.disjoint_left.mpr
+    intro x hxi hxj
+    rcases hxi with hxi | hxi
+    · rcases hxj with hxj | hxj
+      · exact (Set.disjoint_left.mp (N.disjoint hij)) hxi hxj
+      · exact (Set.disjoint_left.mp (havoid i j)) hxi (htailPath j hxj)
+    · rcases hxj with hxj | hxj
+      · exact (Set.disjoint_left.mp (havoid j i)) hxj (htailPath i hxi)
+      · exact (Set.disjoint_left.mp (L.disjoint hij))
+          (htailPath i hxi) (htailPath j hxj)
+  · intro i j hx
+    rcases hx with hx | hx
+    · exact (Set.disjoint_left.mp (havoid i j)) hx
+        (pathVertexSet.start_mem (L.path j))
+    · have hpath : P.start j ∈ pathVertexSet (L.path i) :=
+        htailPath i hx
+      by_cases hij : i = j
+      · subst j
+        exact start_not_mem_pathAfterStart (L.path i) hx
+      · exact (Set.disjoint_left.mp (L.disjoint hij)) hpath
+          (pathVertexSet.start_mem (L.path j))
+  · intro i j hij
+    obtain ⟨x, hx, y, hy, hxy⟩ := N.adjacent hij
+    exact ⟨x, Or.inl hx, y, Or.inl hy, hxy⟩
+  · intro i
+    by_cases hnil : (L.path i : G.Walk (P.start i) (P.finish i)).Nil
+    · obtain ⟨y, hy, hxy⟩ := hattach i
+      have heq : P.start i = P.finish i := hnil.eq
+      exact ⟨y, Or.inl hy, heq ▸ hxy⟩
+    · let w : G.Walk (P.start i) (P.finish i) := L.path i
+      refine ⟨w.snd, Or.inr ?_, w.adj_snd hnil⟩
+      rw [pathAfterStart_eq_tail_support (L.path i) hnil]
+      rw [w.support_tail_of_not_nil hnil]
+      exact w.snd_mem_tail_support hnil
+end RootAttachedCliqueModel
+
+end HadwigerLean

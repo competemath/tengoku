@@ -1,0 +1,67 @@
+import Tengoku.Linearhadwiger.HadwigerLean.Graph.SimplicialElimination
+import Tengoku.Linearhadwiger.HadwigerLean.Graph.CliqueMinor
+import Tengoku.Linearhadwiger.HadwigerLean.ReedSeymour.QuotientWeight
+import Tengoku.Linearhadwiger.HadwigerLean.ReedSeymour.LPBridge
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# The Reed--Seymour bound from egg decompositions
+
+This module assembles the checked LP, quotient-coloring, and weighted-yolk
+steps. The remaining combinatorial theorem is stated explicitly as a
+hypothesis in `reed_seymour_bound_of_egg_decompositions`; its proof belongs in
+the decomposition modules.
+-/
+
+namespace HadwigerLean
+
+variable {V I : Type*} [Fintype V] [DecidableEq V]
+  [Fintype I] [Nonempty I] {G : SimpleGraph V}
+
+omit [DecidableEq V] in
+/-- Every egg partition with a simplicial-elimination touching quotient
+produces the weighted stable set at the Reed--Seymour constant.
+@isnad1 id=ex.2h5v.s6.dc62bf34848f from=translated src=- shape=00820206 vocab=5c47311e
+-/
+theorem weighted_stable_of_egg_partition
+    (P : ConnectedPartition G I) (w : V → ℝ)
+    (hEgg : ∀ i, IsEgg G w (P.block i))
+    (hElim : HasSimplicialElimination P.touchingQuotient) :
+    ∃ s : Finset V, G.IsIndepSet (s : Set V) ∧
+      (∑ v, w v) ≤ 2 * (cliqueMinorNumber G : ℝ) * ∑ v ∈ s, w v := by
+  have hclique : P.touchingQuotient.cliqueNum ≤ cliqueMinorNumber G :=
+    (cliqueNum_le_cliqueMinorNumber P.touchingQuotient).trans
+      P.cliqueMinorNumber_touchingQuotient_le
+  have hcolor : P.touchingQuotient.Colorable (cliqueMinorNumber G) := by
+    apply (chromatic_le_iff_colorable P.touchingQuotient _).mp
+    rw [hElim.chromatic_eq_cliqueNum]
+    exact hclique
+  exact exists_weighted_stable_finset_of_colored_egg_partition
+    P w hEgg hcolor
+
+/-- The Reed--Seymour inequality follows once the egg-decomposition theorem is
+available for every nonnegative vertex weight. The hypothesis is the exact
+remaining combinatorial obligation; it is not assumed elsewhere as an axiom.
+@isnad1 id=le.1h2v.s6.184fb88e89e0 from=translated src=- shape=a5074b93 vocab=f2837cc3
+-/
+theorem reed_seymour_bound_of_egg_decompositions
+    (G : SimpleGraph V) [Nonempty V]
+    (hdecomp : ∀ (w : V → ℝ), (∀ v, 0 ≤ w v) →
+      ∃ n : ℕ, ∃ P : ConnectedPartition G (Fin n),
+        (∀ i, IsEgg G w (P.block i)) ∧
+        HasSimplicialElimination P.touchingQuotient) :
+    fractionalChromaticNumber G ≤ 2 * (cliqueMinorNumber G : ℝ) := by
+  apply fractionalChromaticNumber_le_twice_cliqueMinorNumber_of_weighted G
+  intro w hw
+  obtain ⟨n, P, hEgg, hElim⟩ := hdecomp w hw
+  let v : V := Classical.choice inferInstance
+  letI : Nonempty (Fin n) := ⟨Classical.choose (P.cover v)⟩
+  exact weighted_stable_of_egg_partition P w hEgg hElim
+/-- The empty-graph case of the Reed--Seymour bound.
+@isnad1 id=le.0h2v.s5.c88bff1cf58a from=translated src=- shape=c118b3c3 vocab=8dab3475
+-/
+theorem reed_seymour_bound_empty [IsEmpty V] (G : SimpleGraph V) :
+    fractionalChromaticNumber G ≤ 2 * (cliqueMinorNumber G : ℝ) := by
+  simp
+end HadwigerLean

@@ -1,0 +1,1 @@
+-- Linearhadwiger: a factory bundle (data/intake/linearhadwiger). This file only marks the library for Tengoku/All.lean.

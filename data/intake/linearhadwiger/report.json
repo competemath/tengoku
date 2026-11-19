@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "95541753fa939dbc31f4a29c19063624dee61774177c6f07532df504eb19a14e",
+ "factory_changes": {
+  "inert lines removed": 3,
+  "modules changed": 3
+ },
+ "gate2_unjudged": [],
+ "library": "linearhadwiger",
+ "lint_mode": "proposed",
+ "modules": 183,
+ "part": 1,
+ "theorems": 1383
+}

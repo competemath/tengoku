@@ -183,6 +183,7 @@ import Tengoku.RiemannhypothesisFormalization
 import Tengoku.LeanDescriptiveSetTheory
 import Tengoku.PdtLean
 import Tengoku.Formalslt
+import Tengoku.Linearhadwiger
 import Tengoku.CkHopfFormalization
 import Tengoku.Physlib
 import Tengoku.Twinprime
