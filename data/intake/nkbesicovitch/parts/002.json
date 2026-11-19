@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "33922b40bd94a10aa591c41de4ecef43e9619f6f61d59f3c176077d83b50ef62",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "nkbesicovitch",
+ "lint_mode": "proposed",
+ "modules": 156,
+ "part": 2,
+ "theorems": 407
+}
