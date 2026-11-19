@@ -13,7 +13,9 @@ noncomputable section
 namespace Erdos647Sieve.Bonferroni
 
 /-- The analytic majorant for an arbitrary even weighted truncation.
-This is a finite-list result, not a claim about independent arithmetic events.-/
+This is a finite-list result, not a claim about independent arithmetic events.
+@isnad1 id=le.2h2v.s6.4b0190033c15 from=translated src=- shape=77fe942a vocab=65acff89
+-/
 theorem even_truncation_le_exp_add_tail (xs : List ℝ)
     (h : ∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1) (J : ℕ) (hJ : Even J) :
     truncation xs J ≤ Real.exp (-xs.sum) +
@@ -22,7 +24,9 @@ theorem even_truncation_le_exp_add_tail (xs : List ℝ)
     (add_le_add (avoidProduct_le_exp_neg_sum xs h)
       (elementary_le_pow_sum_div_factorial xs (fun a ha => (h a ha).1) (J + 1)))
 
-/-- The same majorant for the actual alternating sum.-/
+/-- The same majorant for the actual alternating sum.
+@isnad1 id=le.2h2v.s7.50a84f6df5a0 from=translated src=- shape=489b8cf2 vocab=55ad1d6e
+-/
 theorem even_sum_le_exp_add_tail (xs : List ℝ)
     (h : ∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1) (J : ℕ) (hJ : Even J) :
     (∑ j ∈ Finset.range (J + 1), (-1 : ℝ) ^ j * elementary xs j) ≤

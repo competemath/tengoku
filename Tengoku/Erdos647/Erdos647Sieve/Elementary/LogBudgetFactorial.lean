@@ -14,7 +14,9 @@ open Finset Real
 noncomputable section
 namespace Erdos647Sieve.Elementary
 
-/-- The one-step recurrence for the exact shifted factorial expression.-/
+/-- The one-step recurrence for the exact shifted factorial expression.
+@isnad1 id=eq.0h1v.s5.c3d167e3b3e0 from=translated src=- shape=c2d66bb6 vocab=5d2f71ce
+-/
 theorem shiftedFactorialLog_succ (H : ℕ) :
     shiftedFactorialLog (H + 1) =
       shiftedFactorialLog H + Real.log ((H : ℝ) + 3) := by
@@ -27,7 +29,9 @@ theorem shiftedFactorialLog_succ (H : ℕ) :
   rw [he, Real.log_mul (by positivity) (by positivity)]
   ring
 
-/-- Sum of shifted logarithms, including the empty sum at H=0.-/
+/-- Sum of shifted logarithms, including the empty sum at H=0.
+@isnad1 id=eq.0h1v.s5.60eaa3a7c8f5 from=translated src=- shape=574ef0ff vocab=f3196320
+-/
 theorem sum_log_shift_eq_factorial (H : ℕ) :
     (∑ k ∈ Finset.Icc 1 H, Real.log ((k : ℝ) + 2)) = shiftedFactorialLog H := by
   induction H with
@@ -38,7 +42,9 @@ theorem sum_log_shift_eq_factorial (H : ℕ) :
     push_cast
     ring
 
-/-- The precise integer-floor budget is bounded by the real factorial expression.-/
+/-- The precise integer-floor budget is bounded by the real factorial expression.
+@isnad1 id=le.0h1v.s4.d7be3e3aa12d from=translated src=- shape=d28016fd vocab=9d284a4a
+-/
 theorem logBudget_le_factorial (H : ℕ) :
     (Erdos647Sieve.logBudget H : ℝ) ≤ shiftedFactorialLog H / Real.log 2 := by
   unfold Erdos647Sieve.logBudget

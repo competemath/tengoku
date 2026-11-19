@@ -12,7 +12,9 @@ open scoped BigOperators Topology
 noncomputable section
 namespace Erdos647Sieve.Elementary
 
-/-- A quadratic upper bound with the exact coefficient needed by the main term.-/
+/-- A quadratic upper bound with the exact coefficient needed by the main term.
+@isnad1 id=le.2h1v.s6.14a3e06577ff from=translated src=- shape=24603cb4 vocab=af0a365f
+-/
 theorem neg_log_one_sub_le_add_sq (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) :
     -Real.log (1 - t) ≤ t + t ^ 2 := by
   let f : ℝ → ℝ := fun u => u + u ^ 2 + Real.log (1 - u)
@@ -43,7 +45,9 @@ theorem neg_log_one_sub_le_add_sq (t : ℝ) (ht0 : 0 ≤ t) (ht : t ≤ 1 / 2) :
   norm_num at h
   linarith
 
-/-- The fixed positive gap; a lower bound using log 8 already suffices.-/
+/-- The fixed positive gap; a lower bound using log 8 already suffices.
+@isnad1 id=lt.0h0v.s6.f90f997aa22a from=translated src=- shape=69becfe7 vocab=11c1893c
+-/
 theorem endpoint_log_gap :
     (3 / 2 : ℝ) < Real.log (25 / 2) + 1 / Real.log 2 - 2 := by
   have hlog0 : 0 < Real.log 2 := Real.log_pos (by norm_num)
@@ -63,7 +67,9 @@ theorem endpoint_log_gap :
   rw [h8] at hmono
   linarith
 
-/-- The numerical coefficient in the factorial-tail exponent.-/
+/-- The numerical coefficient in the factorial-tail exponent.
+@isnad1 id=le.0h0v.s6.dbc40d543cf8 from=translated src=- shape=79476c7b vocab=9d687c90
+-/
 theorem endpoint_tail_log_constant :
     (1 / 30 : ℝ) ≤ (Real.log 20 - 1) / 50 - 1 / 500 := by
   have hlow : (693 / 1000 : ℝ) < Real.log 2 := by

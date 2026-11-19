@@ -23,7 +23,9 @@ private theorem nonnegative_pow_le_one (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
     rw [pow_succ]
     exact (mul_le_mul ih ht1 ht0 (by norm_num : (0 : ℝ) ≤ 1)).trans_eq (by ring)
 
-/-- Every retained weighted error is at most H^J.-/
+/-- Every retained weighted error is at most H^J.
+@isnad1 id=le.4h7v.s7.c5464a61ddc0 from=translated src=- shape=114d5b9a vocab=b67fefef
+-/
 theorem retained_weighted_subset_error_le
     (A : ℤ) (X H : ℕ) (y z : ℝ) (J : ℕ)
     (hH : 1 ≤ H) (hz0 : 0 < z) (hz1 : z < 1)
@@ -49,7 +51,9 @@ theorem retained_weighted_subset_error_le
       exact real_pow_mono_of_one_le (H : ℝ) hHr _ _ hcard
 
 /-- The complete signed discrepancy for every truncation degree, even or odd.
-Evenness is required later by Bonferroni, not by this absolute-error theorem.-/
+Evenness is required later by Bonferroni, not by this absolute-error theorem.
+@isnad1 id=le.4h6v.s7.2803f4bcdd3a from=translated src=- shape=9c747d08 vocab=f776dd86
+-/
 theorem arithmetic_discrepancy_le
     (A : ℤ) (X H : ℕ) (y z : ℝ) (J : ℕ)
     (hH : 1 ≤ H) (hy : (H : ℝ) < y) (hz0 : 0 < z) (hz1 : z < 1) :

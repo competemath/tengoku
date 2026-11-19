@@ -13,7 +13,9 @@ open scoped BigOperators
 noncomputable section
 namespace Erdos647Sieve
 
-/-- Each distinct prime factor contributes a factor at least two to the divisor count.-/
+/-- Each distinct prime factor contributes a factor at least two to the divisor count.
+@isnad1 id=le.1h1v.s5.ddb7d85449b5 from=translated src=- shape=c00bc99d vocab=6dbc04e2
+-/
 theorem two_pow_primeFactors_card_le_tau {m : ℕ} (hm : m ≠ 0) :
     2 ^ m.primeFactors.card ≤ tau m := by
   classical
@@ -28,7 +30,9 @@ theorem two_pow_primeFactors_card_le_tau {m : ℕ} (hm : m ≠ 0) :
         (hprime.dvd_iff_one_le_factorization hm).mp hdvd
       omega
 
-/-- Use the real logarithm and integer floor from the unchanged specification.-/
+/-- Use the real logarithm and integer floor from the unchanged specification.
+@isnad1 id=le.2h2v.s6.49c4939302fb from=translated src=- shape=1a983a9c vocab=05063573
+-/
 theorem primeFactors_card_le_log_floor {m k : ℕ} (hm : m ≠ 0)
     (htau : tau m ≤ k + 2) :
     (m.primeFactors.card : ℤ) ≤
@@ -45,7 +49,9 @@ theorem primeFactors_card_le_log_floor {m k : ℕ} (hm : m ≠ 0)
   apply (le_div_iff₀ htwo).mpr
   simpa only [Real.log_pow] using hlog
 
-/-- Sum the exact individual integer bounds; no positivity is assumed at zero.-/
+/-- Sum the exact individual integer bounds; no positivity is assumed at zero.
+@isnad1 id=le.1h2v.s5.bbfbfdc18c0e from=translated src=- shape=80d39a71 vocab=821890ad
+-/
 theorem prefix_primeFactor_sum_le_logBudget {H n : ℕ} (hprefix : Prefix H n) :
     ((∑ k ∈ Finset.Icc 1 H, (n - k).primeFactors.card : ℕ) : ℤ) ≤ logBudget H := by
   classical

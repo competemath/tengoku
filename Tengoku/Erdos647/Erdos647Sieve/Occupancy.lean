@@ -18,7 +18,9 @@ def divisorOccurrences (H n p : ℕ) : ℕ :=
   ((Finset.Icc 1 H).filter (fun k => p ∣ n - k)).card
 
 /-- Any positive p divides at least floor(H/p) of H consecutive positive integers.
-The map j ↦ ((n-1) mod p + 1) + j*p supplies the distinct shifts.-/
+The map j ↦ ((n-1) mod p + 1) + j*p supplies the distinct shifts.
+@isnad1 id=le.2h3v.s5.86ee6435c040 from=translated src=- shape=6353c457 vocab=7c80ccde
+-/
 theorem div_le_divisorOccurrences {H n p : ℕ} (hHn : H < n) (hp : 0 < p) :
     H / p ≤ divisorOccurrences H n p := by
   classical
@@ -60,7 +62,9 @@ theorem div_le_divisorOccurrences {H n p : ℕ} (hHn : H < n) (hp : 0 < p) :
     · exact hinj
   simpa only [Finset.card_range, divisorOccurrences] using hcard
 
-/-- Transpose the finite incidence relation between selected primes and shifts.-/
+/-- Transpose the finite incidence relation between selected primes and shifts.
+@isnad1 id=eq.0h3v.s6.0b824b10d6f6 from=translated src=- shape=f4d3e2c5 vocab=9acbaaad
+-/
 theorem sum_divisorOccurrences_eq (P : Finset ℕ) (H n : ℕ) :
     (∑ p ∈ P, divisorOccurrences H n p) =
       ∑ k ∈ Finset.Icc 1 H, (P.filter (fun p => p ∣ n - k)).card := by

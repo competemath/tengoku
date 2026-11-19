@@ -15,7 +15,9 @@ open scoped BigOperators
 noncomputable section
 namespace Erdos647Sieve
 
-/-- The actual subset-hit count is the count of the actual root residue set.-/
+/-- The actual subset-hit count is the count of the actual root residue set.
+@isnad1 id=eq.1h3v.s6.90550c6f8e12 from=translated src=- shape=e9c0b6f0 vocab=d3a72e54
+-/
 theorem subsetHitCount_eq_windowRootResidues_count
     (I : Finset ℤ) (H : ℕ) (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) :
     subsetHitCount I H S =
@@ -31,7 +33,9 @@ theorem subsetHitCount_eq_windowRootResidues_count
       (primeSubsetProduct_pos S hS) n]
 
 /-- One error at most one for each of the H^|S| roots.
-A is any integer and X may be zero. Empty prime subsets are included.-/
+A is any integer and X may be zero. Empty prime subsets are included.
+@isnad1 id=le.1h4v.s7.8c2847cbedcd from=translated src=- shape=bd7fece3 vocab=ead3b441
+-/
 theorem subsetHitCount_error_le
     (A : ℤ) (X H : ℕ) (S : Finset ℕ)
     (hS : ∀ p ∈ S, p.Prime ∧ H < p) :
@@ -47,7 +51,9 @@ theorem subsetHitCount_error_le
     card_windowRootResidues_primeSubsetProduct H S hS] at he
   simpa only [Nat.cast_pow] using he
 
-/-- The same exact discrepancy for a subset of the selected primes.-/
+/-- The same exact discrepancy for a subset of the selected primes.
+@isnad1 id=le.1h5v.s7.09b202b07067 from=translated src=- shape=23c3573f vocab=dd70d87c
+-/
 theorem selected_subsetHitCount_error_le
     (A : ℤ) (X H : ℕ) (y : ℝ) (S : Finset ℕ)
     (hS : S ⊆ selectedPrimes H y) :

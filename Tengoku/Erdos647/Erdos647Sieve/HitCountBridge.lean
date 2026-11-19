@@ -15,7 +15,9 @@ noncomputable section
 namespace Erdos647Sieve
 
 /-- Filtering an injectively cast finite set counts the same elements as filtering
-before the cast. No primality, window positivity, or budget premise is needed.-/
+before the cast. No primality, window positivity, or budget premise is needed.
+@isnad1 id=eq.0h2v.s5.92bfecf5bd60 from=translated src=- shape=60c3203e vocab=88c4e72c
+-/
 theorem card_filter_natCast_image (s : Finset ℕ) (P : ℤ → Prop) [DecidablePred P] :
     ((s.image (fun p : ℕ => (p : ℤ))).filter P).card =
       (s.filter (fun p : ℕ => P (p : ℤ))).card := by
@@ -39,7 +41,9 @@ theorem card_filter_natCast_image (s : Finset ℕ) (P : ℤ → Prop) [Decidable
   exact Finset.card_image_of_injective _ hinj
 
 /-- The exact protected hitCount equals the explicitly natural-indexed hit count.
-This works for arbitrary integer n, including zeros of the window polynomial.-/
+This works for arbitrary integer n, including zeros of the window polynomial.
+@isnad1 id=eq.0h3v.s5.3f29943145c5 from=translated src=- shape=1f287b46 vocab=889fb22a
+-/
 theorem hitCount_eq_nat_filter_card (H : ℕ) (y : ℝ) (n : ℤ) :
     hitCount H y n =
       ((selectedPrimes H y).filter

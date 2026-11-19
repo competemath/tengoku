@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 namespace Erdos647Sieve
 
+/--
+@isnad1 id=finiteco.0h0v.s0.3716a43f0754 from=translated src=- shape=45709ebd vocab=3716a43f
+-/
 theorem finiteCounting : FiniteCountingClaim :=
   finiteCounting_of_finiteMoment finiteMoment
 

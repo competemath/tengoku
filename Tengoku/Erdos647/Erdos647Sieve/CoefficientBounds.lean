@@ -14,7 +14,9 @@ noncomputable section
 namespace Erdos647Sieve.Bonferroni
 
 /-- The constant and linear terms of (s+a)^(q+1) give a lower bound for
-nonnegative s,a. This finite induction avoids a binomial-sum API.-/
+nonnegative s,a. This finite induction avoids a binomial-sum API.
+@isnad1 id=le.2h3v.s7.4980b7c5b7a4 from=translated src=- shape=65c8b521 vocab=72589b2f
+-/
 theorem pow_add_linear_le (s a : ℝ) (hs : 0 ≤ s) (ha : 0 ≤ a) (q : ℕ) :
     s ^ (q + 1) + ((q : ℝ) + 1) * a * s ^ q ≤ (s + a) ^ (q + 1) := by
   induction q with
@@ -35,7 +37,9 @@ theorem pow_add_linear_le (s a : ℝ) (hs : 0 ≤ s) (ha : 0 ≤ a) (q : ℕ) :
         _ = (s + a) ^ (q + 1 + 1) := (pow_succ _ _).symm
 
 /-- q! times the elementary symmetric coefficient is bounded by the q-th
-power of the sum. Repeated weights are retained, not converted to a finset.-/
+power of the sum. Repeated weights are retained, not converted to a finset.
+@isnad1 id=le.1h2v.s5.a5cd58593366 from=translated src=- shape=3f559ba0 vocab=34b4e79f
+-/
 theorem factorial_mul_elementary_le_pow_sum : ∀ (xs : List ℝ),
     (∀ a ∈ xs, 0 ≤ a) → ∀ q : ℕ,
     (Nat.factorial q : ℝ) * elementary xs q ≤ xs.sum ^ q := by
@@ -68,7 +72,9 @@ theorem factorial_mul_elementary_le_pow_sum : ∀ (xs : List ℝ),
             _ ≤ (xs.sum + a) ^ (q + 1) := pow_add_linear_le xs.sum a hs ha q
             _ = (a :: xs).sum ^ (q + 1) := by rw [List.sum_cons, add_comm]
 
-/-- The factorial denominator is positive, including at q=0.-/
+/-- The factorial denominator is positive, including at q=0.
+@isnad1 id=le.1h2v.s6.1c758c35c208 from=translated src=- shape=6f179265 vocab=6f688128
+-/
 theorem elementary_le_pow_sum_div_factorial (xs : List ℝ)
     (h : ∀ a ∈ xs, 0 ≤ a) (q : ℕ) :
     elementary xs q ≤ xs.sum ^ q / (Nat.factorial q : ℝ) := by

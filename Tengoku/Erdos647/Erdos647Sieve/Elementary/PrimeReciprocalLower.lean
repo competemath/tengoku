@@ -27,13 +27,18 @@ def reciprocalNatHom : ℕ →* ℝ where
   map_one' := by simp
   map_mul' m n := by simp [mul_comm]
 
+/--
+@isnad1 id=lt.1h1v.s5.df2751b43d07 from=translated src=- shape=3071a3d3 vocab=e9c3dc74
+-/
 theorem reciprocalNatHom_prime_norm_lt_one {p : ℕ} (hp : p.Prime) :
     ‖reciprocalNatHom p‖ < 1 := by
   change ‖(p : ℝ)⁻¹‖ < 1
   rw [Real.norm_eq_abs, abs_of_nonneg (by positivity)]
   exact inv_lt_one_of_one_lt₀ (by exact_mod_cast hp.one_lt)
 
-/-- The finite Euler product dominates the first H terms of the harmonic series.-/
+/-- The finite Euler product dominates the first H terms of the harmonic series.
+@isnad1 id=le.0h1v.s4.57d1f2774e12 from=translated src=- shape=d8da06ea vocab=1667fbe8
+-/
 theorem harmonic_sum_le_finitePrimeEuler (H : ℕ) :
     (∑ m ∈ Finset.Icc 1 H, (m : ℝ)⁻¹) ≤ finitePrimeEuler H := by
   classical
@@ -62,6 +67,9 @@ theorem harmonic_sum_le_finitePrimeEuler (H : ℕ) :
           (Finset.sum_attach (Finset.Icc 1 H) (fun m : ℕ => (m : ℝ)⁻¹)).symm
     _ ≤ finitePrimeEuler H := hle
 
+/--
+@isnad1 id=le.0h1v.s3.777723537da3 from=translated src=- shape=327d930b vocab=e47d66f5
+-/
 theorem log_le_finitePrimeEuler (H : ℕ) :
     Real.log (H : ℝ) ≤ finitePrimeEuler H := by
   have hh : Real.log (H : ℝ) ≤ (harmonic H : ℝ) := by
@@ -71,7 +79,9 @@ theorem log_le_finitePrimeEuler (H : ℕ) :
   rw [heq] at hh
   exact hh.trans (harmonic_sum_le_finitePrimeEuler H)
 
-/-- A finite telescoping comparison, with no infinite-series assumption.-/
+/-- A finite telescoping comparison, with no infinite-series assumption.
+@isnad1 id=eq.0h1v.s6.f3f208955740 from=translated src=- shape=2f06ccc4 vocab=a4558860
+-/
 theorem reciprocal_remainder_telescope (n : ℕ) :
     (∑ m ∈ Finset.Icc 2 (n + 1), 1 / ((m : ℝ) * ((m : ℝ) - 1))) =
       1 - 1 / ((n : ℝ) + 1) := by
@@ -87,6 +97,9 @@ theorem reciprocal_remainder_telescope (n : ℕ) :
       field_simp [h1, h2]
       ring
 
+/--
+@isnad1 id=le.1h1v.s6.bb5956c03cfd from=translated src=- shape=9585cb9f vocab=06268a03
+-/
 theorem prime_remainder_sum_le_one (H : ℕ) (hH : 1 ≤ H) :
     (∑ p ∈ debitPrimes H, 1 / ((p : ℝ) * ((p : ℝ) - 1))) ≤ 1 := by
   classical
@@ -104,7 +117,9 @@ theorem prime_remainder_sum_le_one (H : ℕ) (hH : 1 ≤ H) :
       have : 0 ≤ 1 / ((n : ℝ) + 1) := by positivity
       linarith
 
-/-- The logarithmic remainder at 1/p is bounded by a telescoping summand.-/
+/-- The logarithmic remainder at 1/p is bounded by a telescoping summand.
+@isnad1 id=le.1h1v.s6.e53fdc96ee0d from=translated src=- shape=638677c8 vocab=d22400d2
+-/
 theorem prime_log_factor_le (p : ℕ) (hp : 2 ≤ p) :
     -Real.log (1 - (p : ℝ)⁻¹) ≤
       (p : ℝ)⁻¹ + 1 / ((p : ℝ) * ((p : ℝ) - 1)) := by
@@ -120,6 +135,9 @@ theorem prime_log_factor_le (p : ℕ) (hp : 2 ≤ p) :
       field_simp [hp0, hm0, ne_of_gt hbase]
       ring
 
+/--
+@isnad1 id=le.1h1v.s5.c43694c66631 from=translated src=- shape=caf9c160 vocab=af86b5cc
+-/
 theorem log_finitePrimeEuler_le (H : ℕ) (hH : 1 ≤ H) :
     Real.log (finitePrimeEuler H) ≤ (∑ p ∈ debitPrimes H, (p : ℝ)⁻¹) + 1 := by
   classical
@@ -141,7 +159,9 @@ theorem log_finitePrimeEuler_le (H : ℕ) (hH : 1 ≤ H) :
       rw [Finset.sum_add_distrib]
     _ ≤ _ := add_le_add le_rfl (prime_remainder_sum_le_one H hH)
 
-/-- The fixed constant -1 is obtained without knowing the value of the Mertens constant.-/
+/-- The fixed constant -1 is obtained without knowing the value of the Mertens constant.
+@isnad1 id=le.1h1v.s5.4d6e7b58335a from=translated src=- shape=b72b94fe vocab=3d23298d
+-/
 theorem prime_reciprocal_lower (H : ℕ) (hH : 2 ≤ H) :
     Real.log (Real.log (H : ℝ)) - 1 ≤ ∑ p ∈ debitPrimes H, (p : ℝ)⁻¹ := by
   have hlogpos : 0 < Real.log (H : ℝ) :=

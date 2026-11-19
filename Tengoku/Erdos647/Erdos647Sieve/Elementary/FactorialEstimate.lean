@@ -18,7 +18,9 @@ namespace Erdos647Sieve.Elementary
 def shiftedFactorialLog (H : ℕ) : ℝ :=
   Real.log ((Nat.factorial (H + 2) : ℝ) / 2)
 
-/-- The exact shift identity also includes H=0.-/
+/-- The exact shift identity also includes H=0.
+@isnad1 id=eq.0h1v.s6.24db98c1332f from=translated src=- shape=0d029cb1 vocab=f9566cd7
+-/
 theorem shiftedFactorialLog_eq_expanded (H : ℕ) :
     shiftedFactorialLog H = Real.log (Nat.factorial H : ℝ) +
       Real.log ((H : ℝ) + 1) + Real.log ((H : ℝ) + 2) - Real.log 2 := by
@@ -34,14 +36,18 @@ theorem shiftedFactorialLog_eq_expanded (H : ℕ) :
       Real.log_mul (by positivity) (by positivity)]
   ring
 
-/-- The standard logarithm-over-identity limit, composed with natural casts.-/
+/-- The standard logarithm-over-identity limit, composed with natural casts.
+@isnad1 id=tendsto.0h0v.s5.255b24d33c72 from=translated src=- shape=69636548 vocab=95411f06
+-/
 theorem log_nat_div_nat_tendsto_zero :
     Tendsto (fun n : ℕ => Real.log (n : ℝ) / (n : ℝ)) atTop (𝓝 0) := by
   have h : Tendsto (fun x : ℝ => Real.log x / x) atTop (𝓝 0) := by
     simpa using (Real.tendsto_pow_log_div_mul_add_atTop 1 0 1 (by norm_num))
   exact h.comp tendsto_natCast_atTop_atTop
 
-/-- A fixed real shift in the logarithm is harmless after division by n.-/
+/-- A fixed real shift in the logarithm is harmless after division by n.
+@isnad1 id=tendsto.0h1v.s5.2137fda6c7b1 from=translated src=- shape=aceb1b82 vocab=6153bcf2
+-/
 theorem log_nat_add_div_nat_tendsto_zero (c : ℝ) :
     Tendsto (fun n : ℕ => Real.log ((n : ℝ) + c) / (n : ℝ)) atTop (𝓝 0) := by
   have hshift : Tendsto
@@ -56,7 +62,9 @@ theorem log_nat_add_div_nat_tendsto_zero (c : ℝ) :
     simpa using (hshift.mul hinv).add log_nat_div_nat_tendsto_zero
   exact h.congr (fun n => by ring)
 
-/-- Stirling's upper and lower bounds imply the normalized remainder tends to zero.-/
+/-- Stirling's upper and lower bounds imply the normalized remainder tends to zero.
+@isnad1 id=tendsto.0h0v.s6.c1bcf7484b1b from=translated src=- shape=a5ccf57b vocab=34cb91fa
+-/
 theorem log_factorial_residual_tendsto_zero :
     Tendsto (fun n : ℕ =>
       (Real.log (Nat.factorial n : ℝ) -
@@ -78,7 +86,9 @@ theorem log_factorial_residual_tendsto_zero :
     apply div_le_div_of_nonneg_right _ (Nat.cast_nonneg n)
     linarith [log_factorial_upper n hn]
 
-/-- The exact normalized residual requested in the endpoint handoff.-/
+/-- The exact normalized residual requested in the endpoint handoff.
+@isnad1 id=tendsto.0h0v.s6.06ddc773d831 from=translated src=- shape=f0c78fe7 vocab=8ee0e697
+-/
 theorem shiftedFactorialLog_residual_tendsto_zero :
     Tendsto (fun H : ℕ =>
       (shiftedFactorialLog H -

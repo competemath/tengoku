@@ -14,7 +14,9 @@ open Filter Real
 noncomputable section
 namespace Erdos647Sieve.Elementary
 
-/-- The exact correction term in the library's logarithmic Stirling formula.-/
+/-- The exact correction term in the library's logarithmic Stirling formula.
+@isnad1 id=eq.1h1v.s6.89fbc0b6399e from=translated src=- shape=d705ab0d vocab=ca5f636e
+-/
 theorem log_factorial_decomposition (n : ℕ) (hn : 1 ≤ n) :
     Real.log (Nat.factorial n : ℝ) =
       (n : ℝ) * Real.log (n : ℝ) - (n : ℝ) + Real.log (n : ℝ) / 2 +
@@ -25,7 +27,9 @@ theorem log_factorial_decomposition (n : ℕ) (hn : 1 ≤ n) :
       Real.log_div hn0 (Real.exp_ne_zero 1), Real.log_exp] at h
   linarith
 
-/-- A global upper bound: in particular, the linear term is not lost.-/
+/-- A global upper bound: in particular, the linear term is not lost.
+@isnad1 id=le.1h1v.s6.8f659ec8b5a2 from=translated src=- shape=81fbf457 vocab=009f3b13
+-/
 theorem log_factorial_upper (n : ℕ) (hn : 1 ≤ n) :
     Real.log (Nat.factorial n : ℝ) ≤
       (n : ℝ) * Real.log (n : ℝ) - (n : ℝ) + Real.log (n : ℝ) / 2 + 1 := by
@@ -43,7 +47,9 @@ theorem log_factorial_upper (n : ℕ) (hn : 1 ≤ n) :
       (Stirling.log_stirlingSeq'_antitone (Nat.zero_le m))
   linarith
 
-/-- A lower bound sufficient for the varying-numerator factorial tail.-/
+/-- A lower bound sufficient for the varying-numerator factorial tail.
+@isnad1 id=le.1h1v.s5.c3d72d0bd444 from=translated src=- shape=34e689d6 vocab=25518754
+-/
 theorem log_factorial_lower (n : ℕ) (hn : 1 ≤ n) :
     (n : ℝ) * Real.log (n : ℝ) - (n : ℝ) ≤
       Real.log (Nat.factorial n : ℝ) := by
@@ -54,7 +60,9 @@ theorem log_factorial_lower (n : ℕ) (hn : 1 ≤ n) :
     Real.log_nonneg (by linarith [Real.pi_gt_three])
   linarith
 
-/-- Unlike a fixed-numerator series limit, this lower bound is usable uniformly.-/
+/-- Unlike a fixed-numerator series limit, this lower bound is usable uniformly.
+@isnad1 id=le.0h1v.s5.1985d72498c0 from=translated src=- shape=0f1664f2 vocab=38f987ca
+-/
 theorem factorial_pow_lower (n : ℕ) :
     ((n : ℝ) / Real.exp 1) ^ n ≤ (Nat.factorial n : ℝ) := by
   rcases eq_or_ne n 0 with rfl | hn0

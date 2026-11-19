@@ -19,7 +19,9 @@ private theorem card_filter_eq_indicator_sum {α : Type*} (s : Finset α) (P : �
   rw [← Finset.sum_filter]
   simp
 
-/-- Count good points by an exceptional set plus a nonnegative weighted majorant.-/
+/-- Count good points by an exceptional set plus a nonnegative weighted majorant.
+@isnad1 id=le.3h6v.s7.d91ad2430c62 from=translated src=- shape=b39eb401 vocab=1e8548c6
+-/
 theorem count_le_exceptions_add_weight {α : Type*}
     (s e : Finset α) (P : α → Prop) [DecidablePred P] (w : α → ℝ) (K : ℝ)
     (hK : 0 ≤ K)
@@ -55,7 +57,9 @@ theorem count_le_exceptions_add_weight {α : Type*}
         ← card_filter_eq_indicator_sum]
     _ ≤ (e.card : ℝ) + K * ∑ a ∈ s, w a := add_le_add hc le_rfl
 
-/-- The exact exponential weight paid for a signed integral hit budget.-/
+/-- The exact exponential weight paid for a signed integral hit budget.
+@isnad1 id=le.3h3v.s6.7698b5c3ac6d from=translated src=- shape=8ccf9529 vocab=5cdc8e5d
+-/
 theorem one_le_budget_weight (z : ℝ) (hz : 0 < z) (hz1 : z < 1)
     (B : ℤ) (k : ℕ) (hk : (k : ℤ) ≤ B) :
     1 ≤ Real.exp ((-Real.log z) * (B : ℝ)) * z ^ k := by

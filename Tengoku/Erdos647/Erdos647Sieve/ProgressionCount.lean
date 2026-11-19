@@ -19,7 +19,9 @@ def progressionCount (A : ℤ) (X d : ℕ) (r : ℤ) : ℕ := by
   exact ((Finset.Icc (A + 1) (A + (X : ℤ))).filter
     (fun n : ℤ => (d : ℤ) ∣ n - r)).card
 
-/-- A quotient threshold, proved from the Euclidean remainder inequalities.-/
+/-- A quotient threshold, proved from the Euclidean remainder inequalities.
+@isnad1 id=iff.1h3v.s5.b98a9c8d918a from=translated src=- shape=10d3fd50 vocab=921eb918
+-/
 theorem mul_le_iff_le_euclideanQuotient (u d q : ℤ) (hd : 0 < d) :
     d * q ≤ u ↔ q ≤ u / d := by
   constructor
@@ -33,7 +35,9 @@ theorem mul_le_iff_le_euclideanQuotient (u d q : ℤ) (hd : 0 < d) :
     exact (mul_le_mul_of_nonneg_left h hd.le).trans
       (Int.mul_ediv_self_le (x := u) hd.ne')
 
-/-- The exact integer-division formula, with no sign restriction on A or r.-/
+/-- The exact integer-division formula, with no sign restriction on A or r.
+@isnad1 id=eq.1h4v.s6.dfa9e3f44b08 from=translated src=- shape=4940213a vocab=937f2cb4
+-/
 theorem progressionCount_eq_quotient_difference
     (A : ℤ) (X d : ℕ) (r : ℤ) (hd : 0 < d) :
     (progressionCount A X d r : ℤ) =
@@ -90,7 +94,9 @@ theorem progressionCount_eq_quotient_difference
   rw [← hcard]
   exact hinterval
 
-/-- Euclidean division differs from real division by a number in [0,1).-/
+/-- Euclidean division differs from real division by a number in [0,1).
+@isnad1 id=and.1h2v.s6.86beb4240a5e from=translated src=- shape=046df4cb vocab=df8f398b
+-/
 theorem euclideanQuotient_real_bounds (u : ℤ) (d : ℕ) (hd : 0 < d) :
     ((u / (d : ℤ) : ℤ) : ℝ) ≤ (u : ℝ) / (d : ℝ) ∧
       (u : ℝ) / (d : ℝ) < ((u / (d : ℤ) : ℤ) : ℝ) + 1 := by
@@ -107,7 +113,9 @@ theorem euclideanQuotient_real_bounds (u : ℤ) (d : ℕ) (hd : 0 < d) :
   · apply (div_lt_iff₀ hdr).mpr
     nlinarith
 
-/-- Uniform discrepancy at most one, including negative translations and X=0.-/
+/-- Uniform discrepancy at most one, including negative translations and X=0.
+@isnad1 id=le.1h4v.s5.208661e6eac5 from=translated src=- shape=4fce3663 vocab=ad77599a
+-/
 theorem progressionCount_error_le_one
     (A : ℤ) (X d : ℕ) (r : ℤ) (hd : 0 < d) :
     |(progressionCount A X d r : ℝ) - (X : ℝ) / (d : ℝ)| ≤ 1 := by
@@ -130,6 +138,9 @@ def residueClassCount (A : ℤ) (X d : ℕ) (r : ZMod d) : ℕ := by
   exact ((Finset.Icc (A + 1) (A + (X : ℤ))).filter
     (fun n : ℤ => (n : ZMod d) = r)).card
 
+/--
+@isnad1 id=eq.1h4v.s5.1b49e44e4054 from=translated src=- shape=4c867ca4 vocab=7d6cfb83
+-/
 theorem residueClassCount_eq_progressionCount
     (A : ℤ) (X d : ℕ) (r : ZMod d) (hd : 0 < d) :
     residueClassCount A X d r = progressionCount A X d (r.val : ℤ) := by
@@ -144,13 +155,18 @@ theorem residueClassCount_eq_progressionCount
       ZMod.natCast_zmod_val, sub_eq_zero]
   simp only [Finset.mem_filter, hiff]
 
+/--
+@isnad1 id=le.1h4v.s6.57d9b8c0a6e7 from=translated src=- shape=b3dd6b38 vocab=a1a72b1e
+-/
 theorem residueClassCount_error_le_one
     (A : ℤ) (X d : ℕ) (r : ZMod d) (hd : 0 < d) :
     |(residueClassCount A X d r : ℝ) - (X : ℝ) / (d : ℝ)| ≤ 1 := by
   rw [residueClassCount_eq_progressionCount A X d r hd]
   exact progressionCount_error_le_one A X d (r.val : ℤ) hd
 
-/-- Counting an arbitrary finite set of residue classes, with one error per class.-/
+/-- Counting an arbitrary finite set of residue classes, with one error per class.
+@isnad1 id=le.1h4v.s7.d19f810ba7fe from=translated src=- shape=30cc616a vocab=fd4cfdeb
+-/
 theorem residueSetCount_error_le_card
     (A : ℤ) (X d : ℕ) (R : Finset (ZMod d)) (hd : 0 < d) :
     |(((Finset.Icc (A + 1) (A + (X : ℤ))).filter

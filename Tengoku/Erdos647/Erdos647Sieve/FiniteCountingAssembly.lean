@@ -20,12 +20,17 @@ open scoped BigOperators
 noncomputable section
 namespace Erdos647Sieve
 
+/--
+@isnad1 id=prefix.2h2v.s4.015094cb41d8 from=translated src=- shape=3752da2c vocab=9ab4b7fd
+-/
 theorem candidate_prefix {n H : ℕ} (hc : Candidate n) (hH : H < n) : Prefix H n := by
   refine ⟨hH, ?_⟩
   intro k hk hkH
   exact hc.2 k hk (lt_of_le_of_lt hkH hH)
 
-/-- Exclude zero from the counting range using the ACTUAL candidate predicate.-/
+/-- Exclude zero from the counting range using the ACTUAL candidate predicate.
+@isnad1 id=eq.0h1v.s4.068f6222cee4 from=translated src=- shape=d5768057 vocab=4db16a8f
+-/
 theorem candidateCount_eq_filter_Icc (X : ℕ) [DecidablePred Candidate] :
     candidateCount X = ((Finset.Icc 1 X).filter Candidate).card := by
   classical
@@ -43,7 +48,9 @@ theorem candidateCount_eq_filter_Icc (X : ℕ) [DecidablePred Candidate] :
   · rintro ⟨⟨_, hn⟩, hc⟩
     exact ⟨by omega, hc⟩
 
-/-- Convert the positive natural interval to the identical integer interval.-/
+/-- Convert the positive natural interval to the identical integer interval.
+@isnad1 id=eq.0h2v.s5.fa54e06443e5 from=translated src=- shape=a838d178 vocab=465d84bf
+-/
 theorem sum_nat_Icc_eq_int (X : ℕ) (f : ℤ → ℝ) :
     (∑ n ∈ Finset.Icc 1 X, f (n : ℤ)) =
       ∑ n ∈ Finset.Icc (1 : ℤ) (X : ℤ), f n := by
@@ -69,7 +76,9 @@ theorem sum_nat_Icc_eq_int (X : ℕ) (f : ℤ → ℝ) :
   · intro n _
     rfl
 
-/-- Negative signed budgets exclude all prefix survivors, conditional on the debit lemma.-/
+/-- Negative signed budgets exclude all prefix survivors, conditional on the debit lemma.
+@isnad1 id=not.4h3v.s5.add805c8bbaf from=translated src=- shape=b876007e vocab=6d3d5caa
+-/
 theorem no_prefix_of_negative_budget (hDebit : BudgetDebitClaim)
     (n H : ℕ) (y : ℝ) (hH : 1 ≤ H) (hy : (H : ℝ) < y)
     (hneg : correctedBudget H < 0) : ¬ Prefix H n := by
@@ -80,7 +89,9 @@ theorem no_prefix_of_negative_budget (hDebit : BudgetDebitClaim)
   omega
 
 /-- Assemble exactly the requested finite bound from its two explicit missing inputs.
-This does NOT discharge BudgetDebitClaim or FiniteMomentClaim.-/
+This does NOT discharge BudgetDebitClaim or FiniteMomentClaim.
+@isnad1 id=finiteco.2h0v.s2.8bdafc767e6f from=translated src=- shape=f443e7c7 vocab=cdf399fc
+-/
 theorem finiteCounting_of_budgetDebit_of_finiteMoment
     (hDebit : BudgetDebitClaim) (hMoment : FiniteMomentClaim) : FiniteCountingClaim := by
   classical
@@ -116,7 +127,9 @@ theorem finiteCounting_of_budgetDebit_of_finiteMoment
   rw [candidateCount_eq_filter_Icc]
   exact hcount.trans (add_le_add le_rfl (mul_le_mul_of_nonneg_left hm hK))
 
-/-- The negative-budget branch of the actual candidate count, with the debit premise explicit.-/
+/-- The negative-budget branch of the actual candidate count, with the debit premise explicit.
+@isnad1 id=le.4h3v.s5.ce88cba99102 from=translated src=- shape=08d7f8ac vocab=6937f4fd
+-/
 theorem candidateCount_le_window_of_negative_budget (hDebit : BudgetDebitClaim)
     (X H : ℕ) (y : ℝ) (hH : 1 ≤ H) (hy : (H : ℝ) < y)
     (hneg : correctedBudget H < 0) : candidateCount X ≤ H := by

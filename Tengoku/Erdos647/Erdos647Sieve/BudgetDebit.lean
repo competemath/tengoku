@@ -16,7 +16,9 @@ noncomputable section
 namespace Erdos647Sieve
 
 /-- The unrestricted polynomial is still over Z. Only for n>H can its factors be
-identified with casts of the positive natural values n-k.-/
+identified with casts of the positive natural values n-k.
+@isnad1 id=eq.1h2v.s5.97cff1dea3b9 from=translated src=- shape=a2e49a28 vocab=9ef7ae32
+-/
 theorem windowPolynomial_eq_nat_product {H n : ℕ} (hHn : H < n) :
     windowPolynomial H (n : ℤ) =
       ((∏ k ∈ Finset.Icc 1 H, (n - k) : ℕ) : ℤ) := by
@@ -28,7 +30,9 @@ theorem windowPolynomial_eq_nat_product {H n : ℕ} (hHn : H < n) :
   have hkn : k ≤ n := (Finset.mem_Icc.mp hk).2.trans hHn.le
   exact (Nat.cast_sub hkn).symm
 
-/-- Elementary prime-divides-product extraction, with no assumptions on the values.-/
+/-- Elementary prime-divides-product extraction, with no assumptions on the values.
+@isnad1 id=iff.1h3v.s5.a5cb02d7e566 from=translated src=- shape=cf99d09b vocab=80960fa7
+-/
 theorem prime_dvd_nat_product_iff {p : ℕ} (hp : p.Prime) (S : Finset ℕ) (f : ℕ → ℕ) :
     p ∣ ∏ k ∈ S, f k ↔ ∃ k ∈ S, p ∣ f k := by
   classical
@@ -52,7 +56,9 @@ theorem prime_dvd_nat_product_iff {p : ℕ} (hp : p.Prime) (S : Finset ℕ) (f :
           exact Or.inl hd
         · exact Or.inr ⟨k, hk, hd⟩
 
-/-- Bridge the prime divisibility test over Z to an actual positive window value.-/
+/-- Bridge the prime divisibility test over Z to an actual positive window value.
+@isnad1 id=iff.2h3v.s6.62dcfceb7dac from=translated src=- shape=7a33ac8c vocab=796e2134
+-/
 theorem prime_dvd_window_iff {H n p : ℕ} (hHn : H < n) (hp : p.Prime) :
     (p : ℤ) ∣ windowPolynomial H (n : ℤ) ↔
       ∃ k ∈ Finset.Icc 1 H, p ∣ n - k := by
@@ -63,7 +69,9 @@ theorem prime_dvd_window_iff {H n p : ℕ} (hHn : H < n) (hp : p.Prime) :
   rw [hcast]
   exact prime_dvd_nat_product_iff hp (Finset.Icc 1 H) (fun k => n - k)
 
-/-- Every prime hit contributes at least one incidence with a shift.-/
+/-- Every prime hit contributes at least one incidence with a shift.
+@isnad1 id=le.3h3v.s5.ee7eb18a8899 from=translated src=- shape=a32ed21a vocab=be61e0ca
+-/
 theorem one_le_divisorOccurrences_of_hit {H n p : ℕ} (hHn : H < n) (hp : p.Prime)
     (hhit : (p : ℤ) ∣ windowPolynomial H (n : ℤ)) :
     1 ≤ divisorOccurrences H n p := by
@@ -72,7 +80,9 @@ theorem one_le_divisorOccurrences_of_hit {H n p : ℕ} (hHn : H < n) (hp : p.Pri
     Finset.card_pos.mpr ⟨k, Finset.mem_filter.mpr ⟨hk, hkdvd⟩⟩
   exact hpos
 
-/-- The selected-prime and small-prime sets are disjoint for purely order reasons.-/
+/-- The selected-prime and small-prime sets are disjoint for purely order reasons.
+@isnad1 id=disjoint.0h2v.s4.302b6ce04e8a from=translated src=- shape=99d22050 vocab=335c71f7
+-/
 theorem smallPrimes_disjoint_selectedPrimes (H : ℕ) (y : ℝ) :
     Disjoint ((Finset.Icc 2 H).filter Nat.Prime) (selectedPrimes H y) := by
   classical
@@ -85,7 +95,9 @@ theorem smallPrimes_disjoint_selectedPrimes (H : ℕ) (y : ℝ) :
   omega
 
 /-- Disjoint small and selected prime incidences fit inside the total omega budget.
-This lemma does not require a prefix survivor: it holds in every positive window.-/
+This lemma does not require a prefix survivor: it holds in every positive window.
+@isnad1 id=le.1h3v.s5.867b66b9ae9b from=translated src=- shape=45323a4d vocab=de991463
+-/
 theorem smallPrimeDebit_add_hitCount_le_primeFactor_sum
     {H n : ℕ} (hHn : H < n) (y : ℝ) :
     smallPrimeDebit H + hitCount H y (n : ℤ) ≤
@@ -147,7 +159,9 @@ theorem smallPrimeDebit_add_hitCount_le_primeFactor_sum
     _ ≤ ∑ k ∈ Finset.Icc 1 H, (n - k).primeFactors.card :=
         Finset.sum_le_sum hrow
 
-/-- The EXACT protected target; no missing arithmetic estimate is a premise.-/
+/-- The EXACT protected target; no missing arithmetic estimate is a premise.
+@isnad1 id=budgetde.0h0v.s0.f3594e2e4d60 from=translated src=- shape=45709ebd vocab=f3594e2e
+-/
 theorem budgetDebit : BudgetDebitClaim := by
   intro n H y _hH _hy hprefix
   have hinc := smallPrimeDebit_add_hitCount_le_primeFactor_sum hprefix.1 y

@@ -18,12 +18,17 @@ namespace Erdos647Sieve
 def windowEvaluation {R : Type*} [CommRing R] (H : ℕ) (r : R) : R :=
   ∏ k ∈ Finset.Icc 1 H, (r - (k : R))
 
-/-- Ring homomorphisms commute with the window evaluation.-/
+/-- Ring homomorphisms commute with the window evaluation.
+@isnad1 id=eq.0h5v.s6.0cd87b9b358f from=translated src=- shape=75b29690 vocab=df913b78
+-/
 theorem map_windowEvaluation {R T : Type*} [CommRing R] [CommRing T]
     (f : R →+* T) (H : ℕ) (r : R) :
     f (windowEvaluation H r) = windowEvaluation H (f r) := by
   simp only [windowEvaluation, map_prod, map_sub, map_natCast]
 
+/--
+@isnad1 id=eq.0h3v.s5.a6945489f688 from=translated src=- shape=3fdf0b3b vocab=efbb06cf
+-/
 theorem windowEvaluation_intCast (H d : ℕ) (n : ℤ) :
     (windowPolynomial H n : ZMod d) = windowEvaluation H (n : ZMod d) := by
   simp only [windowPolynomial, windowEvaluation, Int.cast_prod, Int.cast_sub,
@@ -37,6 +42,9 @@ def windowRootResidues (H d : ℕ) : Finset (ZMod d) := by
   exact ((Finset.range d).image (fun k : ℕ => (k : ZMod d))).filter
     (fun r : ZMod d => windowEvaluation H r = 0)
 
+/--
+@isnad1 id=iff.1h3v.s6.9a41650240b4 from=translated src=- shape=5bea8e1a vocab=203f7f1a
+-/
 theorem mem_windowRootResidues (H d : ℕ) (hd : 0 < d) (r : ZMod d) :
     r ∈ windowRootResidues H d ↔ windowEvaluation H r = 0 := by
   classical
@@ -46,7 +54,9 @@ theorem mem_windowRootResidues (H d : ℕ) (hd : 0 < d) (r : ZMod d) :
       ZMod.natCast_zmod_val r⟩
   simp only [windowRootResidues, Finset.mem_filter, hm, true_and]
 
-/-- Integer casts belong to the root set exactly when the modulus divides F(n).-/
+/-- Integer casts belong to the root set exactly when the modulus divides F(n).
+@isnad1 id=iff.1h3v.s5.1c4d921d0ce6 from=translated src=- shape=739958ad vocab=3f4e95ea
+-/
 theorem intCast_mem_windowRootResidues_iff
     (H d : ℕ) (hd : 0 < d) (n : ℤ) :
     (n : ZMod d) ∈ windowRootResidues H d ↔
@@ -55,7 +65,9 @@ theorem intCast_mem_windowRootResidues_iff
     ← windowEvaluation_intCast H d n,
     ZMod.intCast_zmod_eq_zero_iff_dvd]
 
-/-- The new root set agrees with the accepted single-prime residue description.-/
+/-- The new root set agrees with the accepted single-prime residue description.
+@isnad1 id=eq.1h2v.s4.4f882a8c05e1 from=translated src=- shape=3c47def9 vocab=0e65be03
+-/
 theorem windowRootResidues_eq_primeWindowResidues
     (H p : ℕ) (hp : p.Prime) :
     windowRootResidues H p = primeWindowResidues H p := by
@@ -69,13 +81,18 @@ theorem windowRootResidues_eq_primeWindowResidues
     (prime_dvd_window_iff_mem_residues H p (r.val : ℤ) hp)
   simpa only [hr] using heq
 
+/--
+@isnad1 id=eq.2h2v.s4.e9d3f57152d4 from=translated src=- shape=76f8e99e vocab=fc38dfb2
+-/
 theorem card_windowRootResidues_prime (H p : ℕ)
     (hp : p.Prime) (hHp : H < p) :
     (windowRootResidues H p).card = H := by
   rw [windowRootResidues_eq_primeWindowResidues H p hp]
   exact card_primeWindowResidues H p hHp
 
-/-- The empty prime product gives the single residue modulo one, even for H=0.-/
+/-- The empty prime product gives the single residue modulo one, even for H=0.
+@isnad1 id=eq.0h1v.s4.ff4d6dba731b from=translated src=- shape=6b745252 vocab=8b3ab986
+-/
 theorem card_windowRootResidues_one (H : ℕ) :
     (windowRootResidues H 1).card = 1 := by
   classical
@@ -93,7 +110,9 @@ private theorem windowEvaluation_snd {R T : Type*} [CommRing R] [CommRing T]
     (windowEvaluation H r).2 = windowEvaluation H r.2 := by
   exact map_windowEvaluation (RingHom.snd R T) H r
 
-/-- A CRT bijection restricts to a bijection between the polynomial root sets.-/
+/-- A CRT bijection restricts to a bijection between the polynomial root sets.
+@isnad1 id=eq.3h3v.s6.ec61470d020a from=translated src=- shape=6639329f vocab=af3be1ef
+-/
 theorem card_windowRootResidues_mul (H m d : ℕ)
     (hm : 0 < m) (hd : 0 < d) (hcop : Nat.Coprime m d) :
     (windowRootResidues H (m * d)).card =
@@ -129,7 +148,9 @@ theorem card_windowRootResidues_mul (H m d : ℕ)
     _ = _ := Finset.card_product _ _
 
 /-- Exactly H^|S| roots modulo the product of any finite set of primes exceeding H.
-The proof includes S=empty (modulus one) and H=0.-/
+The proof includes S=empty (modulus one) and H=0.
+@isnad1 id=eq.1h2v.s5.48f067fb1c93 from=translated src=- shape=20d7e723 vocab=a0739b69
+-/
 theorem card_windowRootResidues_primeSubsetProduct
     (H : ℕ) (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime ∧ H < p) :
     (windowRootResidues H (primeSubsetProduct S)).card = H ^ S.card := by

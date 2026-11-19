@@ -14,7 +14,9 @@ open Filter Real
 noncomputable section
 namespace Erdos647Sieve.Elementary
 
-/-- An eventual upper estimate retaining all constants needed for the endpoint gap.-/
+/-- An eventual upper estimate retaining all constants needed for the endpoint gap.
+@isnad1 id=eventual.1h1v.s7.109542581e82 from=translated src=- shape=4f347857 vocab=75c13cb6
+-/
 theorem correctedBudget_upper_eventually (ε : ℝ) (hε : 0 < ε) :
     ∀ᶠ H : ℕ in atTop,
       (Erdos647Sieve.correctedBudget H : ℝ) / (H : ℝ) ≤

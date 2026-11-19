@@ -12,7 +12,9 @@ noncomputable section
 namespace Erdos647Sieve.Bonferroni
 
 /-- The complementary product is at most exp of minus the total weight.
-The nonnegative product condition is kept explicit in the induction.-/
+The nonnegative product condition is kept explicit in the induction.
+@isnad1 id=le.1h1v.s5.4939383cd1d6 from=translated src=- shape=5cd4b4d7 vocab=ab65a8cb
+-/
 theorem avoidProduct_le_exp_neg_sum : ∀ (xs : List ℝ),
     (∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1) →
     avoidProduct xs ≤ Real.exp (-xs.sum) := by

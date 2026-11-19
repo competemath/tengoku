@@ -15,7 +15,9 @@ noncomputable section
 namespace Erdos647Sieve
 open Bonferroni
 
-/-- The insertion recurrence for the degree-q subset sum.-/
+/-- The insertion recurrence for the degree-q subset sum.
+@isnad1 id=eq.1h4v.s7.133989e9ddc1 from=translated src=- shape=82acba56 vocab=1e5d7bb4
+-/
 theorem sum_powersetCard_succ_insert (s : Finset ℕ) (a : ℕ)
     (ha : a ∉ s) (w : ℕ → ℝ) (q : ℕ) :
     (∑ S ∈ (insert a s).powersetCard (q + 1), ∏ p ∈ S, w p) =
@@ -53,7 +55,9 @@ theorem sum_powersetCard_succ_insert (s : Finset ℕ) (a : ℕ)
   exact Finset.prod_insert (hnot (Finset.mem_powersetCard.mp hS).1)
 
 /-- Any duplicate-free enumeration of indices gives the same subset polynomial.
-The real values w(i) may coincide or be negative.-/
+The real values w(i) may coincide or be negative.
+@isnad1 id=eq.1h3v.s5.22ec868110be from=translated src=- shape=4585d3cd vocab=6d0bf4b9
+-/
 theorem elementary_map_eq_sum_powersetCard : ∀ (l : List ℕ), l.Nodup →
     ∀ (w : ℕ → ℝ) (q : ℕ), elementary (l.map w) q =
       ∑ S ∈ l.toFinset.powersetCard q, ∏ p ∈ S, w p := by
@@ -80,7 +84,9 @@ theorem elementary_map_eq_sum_powersetCard : ∀ (l : List ℕ), l.Nodup →
           rw [sum_powersetCard_succ_insert l.toFinset a ha w q,
             ih hnodup w (q + 1), ih hnodup w q]
 
-/-- Exact finite-index form, preserving repeated weight values.-/
+/-- Exact finite-index form, preserving repeated weight values.
+@isnad1 id=eq.0h3v.s5.5a4822ba2b90 from=translated src=- shape=c79cbcb8 vocab=b419271f
+-/
 theorem elementary_toList_eq_sum_powersetCard (s : Finset ℕ)
     (w : ℕ → ℝ) (q : ℕ) :
     elementary (s.toList.map w) q =
@@ -89,7 +95,9 @@ theorem elementary_toList_eq_sum_powersetCard (s : Finset ℕ)
   simpa only [Finset.toList_toFinset] using
     elementary_map_eq_sum_powersetCard s.toList s.nodup_toList w q
 
-/-- Enumeration order is irrelevant; indices, not weight values, are compared.-/
+/-- Enumeration order is irrelevant; indices, not weight values, are compared.
+@isnad1 id=eq.3h4v.s5.9c74948dbdd1 from=translated src=- shape=4d092759 vocab=285d8833
+-/
 theorem elementary_map_eq_of_toFinset_eq (l₁ l₂ : List ℕ)
     (h₁ : l₁.Nodup) (h₂ : l₂.Nodup) (hset : l₁.toFinset = l₂.toFinset)
     (w : ℕ → ℝ) (q : ℕ) :

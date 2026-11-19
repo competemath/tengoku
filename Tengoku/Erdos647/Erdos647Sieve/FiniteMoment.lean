@@ -14,7 +14,9 @@ noncomputable section
 namespace Erdos647Sieve
 open Bonferroni
 
-/-- Finite-moment theorem with every protected parameter and hypothesis unchanged.-/
+/-- Finite-moment theorem with every protected parameter and hypothesis unchanged.
+@isnad1 id=finitemo.0h0v.s0.100aa68baee5 from=translated src=- shape=45709ebd vocab=100aa68b
+-/
 theorem finiteMoment : FiniteMomentClaim := by
   intro A X H y z J _hX hH hy hz0 hz1 hJ
   let I : Finset ℤ := Finset.Icc (A + 1) (A + (X : ℤ))

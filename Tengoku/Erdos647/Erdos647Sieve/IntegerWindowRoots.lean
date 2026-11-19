@@ -13,7 +13,9 @@ open scoped BigOperators
 noncomputable section
 namespace Erdos647Sieve
 
-/-- Prime factor extraction in the integer polynomial at EVERY integer n.-/
+/-- Prime factor extraction in the integer polynomial at EVERY integer n.
+@isnad1 id=iff.1h3v.s6.61c3b4e47351 from=translated src=- shape=05629855 vocab=51abcee2
+-/
 theorem prime_dvd_window_iff_int (H p : ℕ) (n : ℤ) (hp : p.Prime) :
     (p : ℤ) ∣ windowPolynomial H n ↔
       ∃ k ∈ Finset.Icc 1 H, (p : ℤ) ∣ n - (k : ℤ) := by
@@ -30,7 +32,9 @@ def primeWindowResidues (H p : ℕ) : Finset (ZMod p) := by
   classical
   exact (Finset.Icc 1 H).image (fun k : ℕ => (k : ZMod p))
 
-/-- Congruence membership exactly characterizes the prime divisibility test.-/
+/-- Congruence membership exactly characterizes the prime divisibility test.
+@isnad1 id=iff.1h3v.s5.0143baedbff3 from=translated src=- shape=9f70b4dc vocab=94f7b9f6
+-/
 theorem prime_dvd_window_iff_mem_residues (H p : ℕ) (n : ℤ) (hp : p.Prime) :
     (p : ℤ) ∣ windowPolynomial H n ↔ (n : ZMod p) ∈ primeWindowResidues H p := by
   classical
@@ -49,7 +53,9 @@ theorem prime_dvd_window_iff_mem_residues (H p : ℕ) (n : ℤ) (hp : p.Prime) :
     simp only [Int.cast_sub, Int.cast_natCast, heq, sub_self]
 
 /-- For any modulus p>H, the H classes are distinct. In particular this holds
-for each selected prime. The empty-window case H=0 is included.-/
+for each selected prime. The empty-window case H=0 is included.
+@isnad1 id=eq.1h2v.s4.33c067a087f9 from=translated src=- shape=26c8e7a4 vocab=876f95c2
+-/
 theorem card_primeWindowResidues (H p : ℕ) (hHp : H < p) :
     (primeWindowResidues H p).card = H := by
   classical

@@ -22,13 +22,17 @@ def subsetHitCount (I : Finset ℤ) (H : ℕ) (S : Finset ℕ) : ℕ := by
   classical
   exact (I.filter (fun n : ℤ => ∀ p ∈ S, (p : ℤ) ∣ windowPolynomial H n)).card
 
-/-- The empty subset imposes no congruence restriction.-/
+/-- The empty subset imposes no congruence restriction.
+@isnad1 id=eq.0h2v.s4.cc3df7981f18 from=translated src=- shape=78f48b55 vocab=c6695184
+-/
 theorem subsetHitCount_empty (I : Finset ℤ) (H : ℕ) :
     subsetHitCount I H ∅ = I.card := by
   classical
   simp [subsetHitCount]
 
-/-- Conjunction form and product-modulus form agree for distinct prime bases.-/
+/-- Conjunction form and product-modulus form agree for distinct prime bases.
+@isnad1 id=eq.1h3v.s5.74d6e09d1b2c from=translated src=- shape=8a634ce2 vocab=05cf1aef
+-/
 theorem subsetHitCount_eq_modulus_count (I : Finset ℤ) (H : ℕ) (S : Finset ℕ)
     (hS : ∀ p ∈ S, p.Prime) :
     subsetHitCount I H S =
@@ -40,7 +44,9 @@ theorem subsetHitCount_eq_modulus_count (I : Finset ℤ) (H : ℕ) (S : Finset �
   intro n
   simp only [Finset.mem_filter, primeSubsetProduct_int_dvd_iff S hS]
 
-/-- A product of t-or-zero weights detects the conjunction, including the empty set.-/
+/-- A product of t-or-zero weights detects the conjunction, including the empty set.
+@isnad1 id=eq.0h3v.s6.39f26206516e from=translated src=- shape=10180b1d vocab=86b6d1f3
+-/
 theorem prod_ite_zero_eq_pow_card (S : Finset ℕ) (P : ℕ → Prop)
     [DecidablePred P] (t : ℝ) :
     (∏ p ∈ S, if P p then t else 0) =
@@ -58,7 +64,9 @@ theorem prod_ite_zero_eq_pow_card (S : Finset ℕ) (P : ℕ → Prop)
     obtain ⟨p, hp, hnot⟩ := hall
     exact Finset.prod_eq_zero hp (by simp only [ite_eq_right hnot])
 
-/-- Pointwise coefficient as an explicit sum of simultaneous-hit indicators.-/
+/-- Pointwise coefficient as an explicit sum of simultaneous-hit indicators.
+@isnad1 id=eq.0h5v.s7.3cc1d3bc1d38 from=translated src=- shape=1413e8f6 vocab=2ebea454
+-/
 theorem hitWeights_elementary_eq_subset_sum (H : ℕ) (y z : ℝ) (n : ℤ) (q : ℕ) :
     elementary (hitWeights H y z n) q =
       (1 - z) ^ q *
@@ -73,7 +81,9 @@ theorem hitWeights_elementary_eq_subset_sum (H : ℕ) (y z : ℝ) (n : ℤ) (q :
   split_ifs <;> ring
 
 /-- Summing the pointwise coefficient counts actual simultaneous congruences.
-No upper estimate or stochastic independence assumption enters this identity.-/
+No upper estimate or stochastic independence assumption enters this identity.
+@isnad1 id=eq.0h5v.s6.3418677b17fa from=translated src=- shape=33dd3e25 vocab=0dddd649
+-/
 theorem sum_hitWeights_elementary_eq_subset_counts
     (I : Finset ℤ) (H : ℕ) (y z : ℝ) (q : ℕ) :
     (∑ n ∈ I, elementary (hitWeights H y z n) q) =
@@ -88,7 +98,9 @@ theorem sum_hitWeights_elementary_eq_subset_counts
   simp only [subsetHitCount, ← Finset.sum_filter, Finset.sum_const,
     nsmul_eq_mul, mul_one]
 
-/-- Exact translated-interval version, including X=0 and every A in Z.-/
+/-- Exact translated-interval version, including X=0 and every A in Z.
+@isnad1 id=eq.0h6v.s7.e07f9d34e797 from=translated src=- shape=96408594 vocab=f978ad86
+-/
 theorem interval_hitWeights_elementary_eq_subset_counts
     (A : ℤ) (X H : ℕ) (y z : ℝ) (q : ℕ) :
     (∑ n ∈ Finset.Icc (A + 1) (A + (X : ℤ)),
@@ -97,7 +109,9 @@ theorem interval_hitWeights_elementary_eq_subset_counts
         (subsetHitCount (Finset.Icc (A + 1) (A + (X : ℤ))) H S : ℝ)) :=
   sum_hitWeights_elementary_eq_subset_counts _ H y z q
 
-/-- Exact mean-coefficient formula. Products are over indices, not weight values.-/
+/-- Exact mean-coefficient formula. Products are over indices, not weight values.
+@isnad1 id=eq.0h4v.s6.6021e282ac5c from=translated src=- shape=1286f4f0 vocab=d69866c3
+-/
 theorem meanWeights_elementary_eq_subset_sum (H : ℕ) (y z : ℝ) (q : ℕ) :
     elementary (meanWeights H y z) q =
       (1 - z) ^ q * (∑ S ∈ (selectedPrimes H y).powersetCard q,
@@ -114,7 +128,9 @@ theorem meanWeights_elementary_eq_subset_sum (H : ℕ) (y z : ℝ) (q : ℕ) :
   ring
 
 /-- Exact discrepancy of one coefficient, with every scale factor retained.
-This is an identity; it does not bound the actual counts by their CRT main terms.-/
+This is an identity; it does not bound the actual counts by their CRT main terms.
+@isnad1 id=eq.0h6v.s7.0a4bffb508ff from=translated src=- shape=d7bd8823 vocab=94cf5a0c
+-/
 theorem coefficient_discrepancy_eq_subset_errors
     (I : Finset ℤ) (X H : ℕ) (y z : ℝ) (q : ℕ) :
     (∑ n ∈ I, elementary (hitWeights H y z n) q) -
@@ -127,7 +143,9 @@ theorem coefficient_discrepancy_eq_subset_errors
   ring
 
 /-- Exact signed discrepancy before taking absolute errors.
-No evenness, positive translation, or distribution hypothesis is required.-/
+No evenness, positive translation, or distribution hypothesis is required.
+@isnad1 id=eq.0h6v.s7.c19d0e0db9b4 from=translated src=- shape=22170277 vocab=72a57bff
+-/
 theorem signed_discrepancy_eq_subset_errors
     (I : Finset ℤ) (X H : ℕ) (y z : ℝ) (J : ℕ) :
     (∑ j ∈ Finset.range (J + 1), (-1 : ℝ) ^ j *

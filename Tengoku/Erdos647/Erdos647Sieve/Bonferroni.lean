@@ -35,12 +35,21 @@ def truncation : List ℝ → ℕ → ℝ
   | _ :: _, 0 => 1
   | a :: xs, j + 1 => truncation xs (j + 1) - a * truncation xs j
 
+/--
+@isnad1 id=eq.0h1v.s4.445a8b9555fe from=translated src=- shape=18650b26 vocab=425dfa31
+-/
 @[simp] theorem elementary_zero (xs : List ℝ) : elementary xs 0 = 1 := by
   cases xs <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.e2f2a44dec57 from=translated src=- shape=18650b26 vocab=e1612af9
+-/
 @[simp] theorem truncation_zero (xs : List ℝ) : truncation xs 0 = 1 := by
   cases xs <;> rfl
 
+/--
+@isnad1 id=le.1h2v.s5.b7cdad05c909 from=translated src=- shape=bb038013 vocab=916a6691
+-/
 theorem elementary_nonneg : ∀ (xs : List ℝ),
     (∀ a ∈ xs, 0 ≤ a) → ∀ j, 0 ≤ elementary xs j := by
   intro xs
@@ -57,6 +66,9 @@ theorem elementary_nonneg : ∀ (xs : List ℝ),
       | succ j =>
           exact add_nonneg (ih hxs (j + 1)) (mul_nonneg ha (ih hxs j))
 
+/--
+@isnad1 id=and.1h1v.s5.ecab2bb58e91 from=translated src=- shape=7bca0277 vocab=339d0740
+-/
 theorem avoidProduct_bounds : ∀ (xs : List ℝ),
     (∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1) →
     0 ≤ avoidProduct xs ∧ avoidProduct xs ≤ 1 := by
@@ -76,14 +88,18 @@ theorem avoidProduct_bounds : ∀ (xs : List ℝ),
             mul_le_mul (by linarith : 1 - a ≤ 1) h1 h0 (by norm_num)
           _ = 1 := by ring
 
-/-- Link the recursive complementary product to the ordinary list product.-/
+/-- Link the recursive complementary product to the ordinary list product.
+@isnad1 id=eq.0h1v.s4.134af5b1d969 from=translated src=- shape=55a91afa vocab=3158822f
+-/
 theorem avoidProduct_eq_prod (xs : List ℝ) :
     avoidProduct xs = (xs.map (fun a => 1 - a)).prod := by
   induction xs with
   | nil => rfl
   | cons a xs ih => simp only [avoidProduct, List.map_cons, List.prod_cons, ih]
 
-/-- The difference between consecutive truncations is the next signed coefficient.-/
+/-- The difference between consecutive truncations is the next signed coefficient.
+@isnad1 id=eq.0h2v.s6.59654a915ef6 from=translated src=- shape=9e9b7e76 vocab=439ec11e
+-/
 theorem truncation_step (xs : List ℝ) (j : ℕ) :
     truncation xs (j + 1) = truncation xs j +
       (-1 : ℝ) ^ (j + 1) * elementary xs (j + 1) := by
@@ -105,6 +121,9 @@ theorem truncation_step (xs : List ℝ) (j : ℕ) :
           simp only [ih (j + 1), ih j, pow_succ]
           ring
 
+/--
+@isnad1 id=eq.0h2v.s5.2cddb3f83438 from=translated src=- shape=baa821cf vocab=4eb99b24
+-/
 theorem truncation_eq_sum (xs : List ℝ) (J : ℕ) :
     truncation xs J =
       ∑ j ∈ Finset.range (J + 1), (-1 : ℝ) ^ j * elementary xs j := by
@@ -119,7 +138,9 @@ theorem truncation_eq_sum (xs : List ℝ) (J : ℕ) :
         _ = ∑ j ∈ Finset.range (J + 1 + 1),
             (-1 : ℝ) ^ j * elementary xs j := (Finset.sum_range_succ _ _).symm
 
-/-- All parities at once; the sign is the central Bonferroni invariant.-/
+/-- All parities at once; the sign is the central Bonferroni invariant.
+@isnad1 id=le.1h2v.s6.568d848dd827 from=translated src=- shape=0c5244d9 vocab=3358a6f0
+-/
 theorem signedError_nonneg : ∀ (xs : List ℝ),
     (∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1) → ∀ J,
     0 ≤ (-1 : ℝ) ^ J * (truncation xs J - avoidProduct xs) := by
@@ -146,7 +167,9 @@ theorem signedError_nonneg : ∀ (xs : List ℝ),
               simp only [truncation, avoidProduct, pow_succ]
               ring
 
-/-- Weighted Bonferroni, including the empty list and arbitrary even truncation order.-/
+/-- Weighted Bonferroni, including the empty list and arbitrary even truncation order.
+@isnad1 id=and.2h2v.s6.ecdda7081f26 from=translated src=- shape=1f12b1e1 vocab=5ae027ad
+-/
 theorem even_bounds (xs : List ℝ) (h : ∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1)
     (J : ℕ) (hJ : Even J) :
     avoidProduct xs ≤ truncation xs J ∧
@@ -160,7 +183,9 @@ theorem even_bounds (xs : List ℝ) (h : ∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1)
   rw [hsnext] at hhi hstep
   constructor <;> linarith
 
-/-- The same result stated as actual alternating sums, not only a recursive surrogate.-/
+/-- The same result stated as actual alternating sums, not only a recursive surrogate.
+@isnad1 id=and.2h2v.s7.dea9303dfc47 from=translated src=- shape=19c4e5f3 vocab=87ad0dfa
+-/
 theorem even_sum_bounds (xs : List ℝ) (h : ∀ a ∈ xs, 0 ≤ a ∧ a ≤ 1)
     (J : ℕ) (hJ : Even J) :
     avoidProduct xs ≤ (∑ j ∈ Finset.range (J + 1),

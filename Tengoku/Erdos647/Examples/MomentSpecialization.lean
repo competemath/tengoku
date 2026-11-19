@@ -6,7 +6,9 @@ open scoped BigOperators
 
 namespace Erdos647Sieve.Examples
 
-/-- A concrete choice of weights/window, still uniform in the translation and length.-/
+/-- A concrete choice of weights/window, still uniform in the translation and length.
+@isnad1 id=le.1h2v.s7.bacf9ddd37cf from=translated src=- shape=e68a85e9 vocab=64b3d478
+-/
 theorem halfWeightedMoment (A : ℤ) (X : ℕ) (hX : 1 ≤ X) :
     (∑ n ∈ Finset.Icc (A + 1) (A + (X : ℤ)),
       (1 / 2 : ℝ) ^ Erdos647Sieve.hitCount 1 2 n) ≤
