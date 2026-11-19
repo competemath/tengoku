@@ -1,0 +1,120 @@
+/-
+Copyright (c) 2026 Yongxi Lin. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yongxi Lin
+-/
+module
+
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Projection.CornerPattern
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Finite admissible corner trees
+
+Nodes have separate finite labels even when their numerical heights agree.
+Each nonterminal node carries a corner pattern, and each of its children
+has exactly the triple prescribed by the inner-code identity. Terminal
+nodes need only three distinct heights, with no input projection estimate.
+-/
+
+@[expose] public section
+
+namespace NKBesicovitch.Projection
+
+/-- A finite labeled height tree whose nonterminal nodes carry admissible corner patterns.-/
+structure CornerTree (m : ℕ) (β : ℝ) (J : ℕ) where
+  Node : Type
+  nodeFintype : Fintype Node
+  level : Node → ℕ
+  level_le : ∀ v, level v ≤ J
+  a : Node → ℝ
+  b : Node → ℝ
+  c : Node → ℝ
+  b_ne_a : ∀ v, b v ≠ a v
+  c_ne_a : ∀ v, c v ≠ a v
+  c_ne_b : ∀ v, c v ≠ b v
+  root : Node
+  root_level : level root = 0
+  pattern : ∀ v, level v < J → CornerPattern m β
+  pattern_a : ∀ v h, (pattern v h).a = a v
+  pattern_b : ∀ v h, (pattern v h).b = b v
+  pattern_c : ∀ v h, (pattern v h).c = c v
+  child : ∀ v h, (pattern v h).children → Node
+  child_level : ∀ v h u, level (child v h u) = level v + 1
+  child_a : ∀ v h u, a (child v h u) = b v
+  child_b : ∀ v h u, b (child v h u) = u.val.2
+  child_c : ∀ v h u, c (child v h u) =
+    dualTime (b v) (a v)
+      (cornerInnerCoefficient (a v) (c v) (pattern v h).κ u.val.1) u.val.2
+
+attribute [instance] CornerTree.nodeFintype
+
+namespace CornerTree
+
+variable {m J : ℕ} {β : ℝ}
+
+/-- Every height used in the tree, including terminal triples and all input patterns.-/
+noncomputable def times (T : CornerTree m β J) : Finset ℝ :=
+  Finset.univ.biUnion fun v ↦ {T.a v, T.b v, T.c v} ∪
+    if h : T.level v < J then (T.pattern v h).times else ∅
+
+/--
+@isnad1 id=mem.0h5v.s5.921462474f5b from=translated src=- shape=f81c8c9c vocab=761272fd
+-/
+theorem a_mem_times (T : CornerTree m β J) (v : T.Node) : T.a v ∈ T.times := by
+  classical
+  exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
+
+/--
+@isnad1 id=mem.0h5v.s5.5f95bc56eae7 from=translated src=- shape=f81c8c9c vocab=e89764ea
+-/
+theorem b_mem_times (T : CornerTree m β J) (v : T.Node) : T.b v ∈ T.times := by
+  classical
+  exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
+
+/--
+@isnad1 id=mem.0h5v.s5.592dc311c7ae from=translated src=- shape=f81c8c9c vocab=430bcc64
+-/
+theorem c_mem_times (T : CornerTree m β J) (v : T.Node) : T.c v ∈ T.times := by
+  classical
+  exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
+
+/--
+@isnad1 id=nonempty.0h4v.s4.d0f10e514412 from=translated src=- shape=50dd11d9 vocab=c6921570
+-/
+theorem times_nonempty (T : CornerTree m β J) : T.times.Nonempty :=
+  ⟨T.a T.root, T.a_mem_times T.root⟩
+
+/--
+@isnad1 id=le.1h5v.s5.b08d7b8185ca from=translated src=- shape=26bf2dd2 vocab=0c067767
+-/
+theorem pattern_times_subset (T : CornerTree m β J) (v : T.Node) (h : T.level v < J) :
+    (T.pattern v h).times ⊆ T.times := by
+  classical
+  intro t ht
+  exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _,
+    Finset.mem_union_right _ (by simpa only [dite_eq_left h] using ht)⟩
+
+/--
+@isnad1 id=mem.5h6v.s7.1b12aef99642 from=translated src=- shape=4578d70b vocab=7d6c9af4
+-/
+theorem times_subset (T : CornerTree m β J) {I : Set ℝ}
+    (ha : ∀ v, T.a v ∈ I) (hb : ∀ v, T.b v ∈ I) (hc : ∀ v, T.c v ∈ I)
+    (hP : ∀ v h, ∀ t ∈ (T.pattern v h).times, t ∈ I) : ∀ t ∈ T.times, t ∈ I := by
+  classical
+  intro t ht
+  obtain ⟨v, _, ht⟩ := Finset.mem_biUnion.mp ht
+  rcases Finset.mem_union.mp ht with ht | ht
+  · simp only [Finset.mem_insert, Finset.mem_singleton] at ht
+    rcases ht with rfl | rfl | rfl
+    · exact ha v
+    · exact hb v
+    · exact hc v
+  · split_ifs at ht with h
+    · exact hP v h t ht
+    · exact (Finset.notMem_empty t ht).elim
+
+end CornerTree
+
+end NKBesicovitch.Projection

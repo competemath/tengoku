@@ -1,0 +1,124 @@
+/-
+Copyright (c) 2026 Yongxi Lin. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yongxi Lin
+-/
+module
+
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Operators.XRay.Basic
+public import Tengoku.Seed.Analysis.Normed.Group.Bounded
+public import Tengoku.Seed.MeasureTheory.Measure.Typeclasses.Finite
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Uniform intercept bounds for local X-ray superlevel sets
+
+A bounded spatial support and bounded slopes put every rich line's
+intercept in one fixed ball. The bound is uniform over subsets of the
+support and over positive richness thresholds. The superlevel sets are
+Borel when the spatial set and slope set are Borel.
+-/
+
+@[expose] public section
+
+open MeasureTheory Set Bornology NKBesicovitch.Projection
+open scoped ENNReal
+
+namespace NKBesicovitch.XRay
+
+variable {m : ℕ}
+
+/-- Lines in the prescribed slope set with indicator transform at least `r`.-/
+noncomputable def richLines (E : Set (EuclideanSpace ℝ (Fin m) × ℝ))
+    (Ξ : Set (EuclideanSpace ℝ (Fin m))) (r : ℝ) : Set (Line m) :=
+  {g | g.2 ∈ Ξ ∧ ENNReal.ofReal r ≤ localXRay (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) g.2 g.1}
+
+/--
+@isnad1 id=measurab.2h4v.s7.49f0bb1f9e0c from=translated src=- shape=0c66a0bc vocab=972aa325
+-/
+theorem measurableSet_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
+    (hE : MeasurableSet E) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : MeasurableSet Ξ) (r : ℝ) :
+    MeasurableSet (richLines E Ξ r) := by
+  have h := (hΞ.preimage (measurable_snd : Measurable (Prod.snd : Line m → _))).inter
+    (measurableSet_le (measurable_const (a := ENNReal.ofReal r))
+      (measurable_localXRay ((measurable_const (a := (1 : ℝ≥0∞))).indicator hE)))
+  simpa only [richLines, preimage, ofPred_and] using h
+
+/--
+@isnad1 id=le.5h7v.s8.ff5d4dafa5b9 from=translated src=- shape=9bd81567 vocab=da25d916
+-/
+theorem norm_intercept_le_of_mem_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
+    (hE : MeasurableSet E) {Ξ : Set (EuclideanSpace ℝ (Fin m))} {R A r : ℝ}
+    (hR : ∀ p ∈ E, ‖p.1‖ ≤ R) (hA : ∀ ξ ∈ Ξ, ‖ξ‖ ≤ A) (hr : 0 < r)
+    {g : Line m} (hg : g ∈ richLines E Ξ r) : ‖g.1‖ ≤ R + A := by
+  have hmass : 0 < volume (lineTimes E g) := by
+    rw [← localXRay_indicator_eq_volume_lineTimes hE]
+    exact (ENNReal.ofReal_pos.mpr hr).trans_le hg.2
+  obtain ⟨t, htunit, htE⟩ : (lineTimes E g).Nonempty :=
+    nonempty_of_measure_ne_zero hmass.ne'
+  have ht0 : 0 ≤ t := htunit.1
+  have ht : |t| ≤ 1 := by
+    rw [abs_of_nonneg ht0]
+    exact htunit.2
+  have hξ := hA g.2 hg.1
+  have hpoint : ‖atHeight t g‖ ≤ R := hR (atHeight t g, t) htE
+  have hnorm : ‖t • g.2‖ ≤ A := by
+    rw [norm_smul, Real.norm_eq_abs]
+    exact (mul_le_mul_of_nonneg_right ht (norm_nonneg _)).trans (by
+      simpa only [one_mul] using hξ)
+  have heq : atHeight t g - t • g.2 = g.1 := by
+    simp only [atHeight, add_sub_cancel_right]
+  rw [← heq]
+  exact (norm_sub_le _ _).trans (add_le_add hpoint hnorm)
+
+/-- One intercept ball works for every Borel subset of a fixed bounded support.
+@isnad1 id=ex.2h3v.s8.d53df094ef41 from=translated src=- shape=7fb7c5c4 vocab=55855e62
+-/
+theorem exists_uniform_intercept_bound {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
+    (hK : IsBounded K) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : IsBounded Ξ) :
+    ∃ R : ℝ, 0 < R ∧ ∀ E : Set (EuclideanSpace ℝ (Fin m) × ℝ), MeasurableSet E → E ⊆ K →
+      ∀ r : ℝ, 0 < r → richLines E Ξ r ⊆ Metric.closedBall 0 R ×ˢ Ξ := by
+  obtain ⟨R, hR, hbound⟩ := hK.image_fst.exists_pos_norm_le
+  obtain ⟨A, hA, hslopes⟩ := hΞ.exists_pos_norm_le
+  refine ⟨R + A, add_pos hR hA, fun E hE hEK r hr g hg ↦ ⟨?_, hg.1⟩⟩
+  rw [Metric.mem_closedBall, dist_zero_right]
+  exact norm_intercept_le_of_mem_richLines hE
+    (fun p hp ↦ hbound p.1 ⟨p, hEK hp, rfl⟩) hslopes hr hg
+
+/--
+@isnad1 id=isbounde.4h4v.s7.c7ae1e6f81c3 from=translated src=- shape=057676bf vocab=44496494
+-/
+theorem isBounded_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
+    (hE : MeasurableSet E) (hEb : IsBounded E) {Ξ : Set (EuclideanSpace ℝ (Fin m))}
+    (hΞ : IsBounded Ξ) {r : ℝ} (hr : 0 < r) : IsBounded (richLines E Ξ r) := by
+  obtain ⟨R, _, hR⟩ := exists_uniform_intercept_bound hEb hΞ
+  exact ((Metric.isBounded_closedBall (x := (0 : EuclideanSpace ℝ (Fin m)))
+    (r := R)).prod hΞ).subset
+    (hR E hE Subset.rfl r hr)
+
+/-- Every positive superlevel fiber has one common finite measure bound.
+@isnad1 id=ex.2h3v.s9.02aa6257eb62 from=translated src=- shape=c0211f65 vocab=c4f3fbd0
+-/
+theorem exists_uniform_fiber_bound {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
+    (hK : IsBounded K) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : IsBounded Ξ) :
+    ∃ B : ℝ, 0 < B ∧ ∀ E : Set (EuclideanSpace ℝ (Fin m) × ℝ), MeasurableSet E → E ⊆ K →
+      ∀ r : ℝ, 0 < r → ∀ ξ : EuclideanSpace ℝ (Fin m),
+        volume ((fun x ↦ (x, ξ)) ⁻¹' richLines E Ξ r) ≤ ENNReal.ofReal B := by
+  obtain ⟨R, _, hR⟩ := exists_uniform_intercept_bound hK hΞ
+  have hfin : volume (Metric.closedBall (0 : EuclideanSpace ℝ (Fin m)) R) ≠ ∞ :=
+    Metric.isBounded_closedBall.measure_lt_top.ne
+  refine ⟨(volume (Metric.closedBall (0 : EuclideanSpace ℝ (Fin m)) R)).toReal + 1,
+    by positivity, ?_⟩
+  intro E hE hEK r hr ξ
+  have hsub : (fun x ↦ (x, ξ)) ⁻¹' richLines E Ξ r ⊆
+      Metric.closedBall (0 : EuclideanSpace ℝ (Fin m)) R :=
+    fun _ hx ↦ (hR E hE hEK r hr hx).1
+  calc
+    _ ≤ volume (Metric.closedBall (0 : EuclideanSpace ℝ (Fin m)) R) :=
+      measure_mono hsub
+    _ ≤ _ := by
+      conv_lhs => rw [← ENNReal.ofReal_toReal hfin]
+      exact ENNReal.ofReal_le_ofReal (by linarith)
+
+end NKBesicovitch.XRay

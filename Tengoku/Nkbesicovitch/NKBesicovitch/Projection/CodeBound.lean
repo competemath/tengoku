@@ -1,0 +1,90 @@
+/-
+Copyright (c) 2026 Yongxi Lin. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yongxi Lin
+-/
+module
+
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Projection.CodeSlices
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Projection.Parallel
+public import Tengoku.Nkbesicovitch.NKBesicovitch.Projection.BoundedFamilies
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Bounding code density by parallel multiplicity
+
+The exceptional slopes in the essential supremum remain negligible under the
+invertible affine map from first-line position to second-line slope. Thus the
+bound holds at every code value, without replacing the essential supremum by
+a pointwise supremum.
+-/
+
+public section
+
+open MeasureTheory Set
+open scoped ENNReal
+
+namespace NKBesicovitch.Projection
+
+variable {m : ℕ}
+
+/--
+@isnad1 id=quasimea.2h5v.s9.0d578b72026b from=translated src=- shape=8d7d90b5 vocab=cd12caaa
+-/
+theorem quasiMeasurePreserving_codeSlope {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
+    (z : EuclideanSpace ℝ (Fin m)) :
+    Measure.QuasiMeasurePreserving (fun y : EuclideanSpace ℝ (Fin m) ↦
+      (b - a)⁻¹ • (z - c • y)) volume volume := by
+  have h₁ := Measure.quasiMeasurePreserving_smul (volume : Measure (EuclideanSpace ℝ (Fin m)))
+    (neg_ne_zero.mpr hc)
+  have h₂ := quasiMeasurePreserving_add_left (volume : Measure (EuclideanSpace ℝ (Fin m))) z
+  have h₃ := Measure.quasiMeasurePreserving_smul (volume : Measure (EuclideanSpace ℝ (Fin m)))
+    (inv_ne_zero (sub_ne_zero.mpr hab.symm))
+  simpa [Function.comp_def, sub_eq_add_neg, neg_smul] using h₃.comp (h₂.comp h₁)
+
+/--
+@isnad1 id=eventual.3h7v.s8.175d48661819 from=translated src=- shape=f3db05da vocab=75d7a925
+-/
+theorem codeSliceMass_ae_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
+    {G : Set (Line m)} {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G)
+    (z : EuclideanSpace ℝ (Fin m)) : ∀ᵐ y, codeSliceMass a b c W z y ≤ parallelMultiplicity G := by
+  have h := (quasiMeasurePreserving_codeSlope hab hc z).ae
+    (ENNReal.ae_le_essSup (μ := (volume : Measure (EuclideanSpace ℝ (Fin m))))
+      (fun ξ : EuclideanSpace ℝ (Fin m) ↦ volume {x : EuclideanSpace ℝ (Fin m) | (x, ξ) ∈ G}))
+  exact h.mono fun y hy ↦ (codeSliceMass_le_parallelFiber hab c hWG z y).trans hy
+
+/--
+@isnad1 id=le.2h5v.s6.798fcf0e39ff from=translated src=- shape=abe659e0 vocab=e626b2fb
+-/
+theorem lintegral_le_mul_measure_of_ae_le {X : Type*} [MeasurableSpace X] {μ : Measure X}
+    {f : X → ℝ≥0∞} {S : Set X} (hS : Function.support f ⊆ S) {C : ℝ≥0∞}
+    (hC : ∀ᵐ x ∂μ, f x ≤ C) : (∫⁻ x, f x ∂μ) ≤ C * μ S := by
+  rw [← setLIntegral_eq_of_support_subset hS]
+  exact (lintegral_mono_ae (ae_restrict_of_ae hC)).trans_eq (setLIntegral_const S C)
+
+/-- The exact constant in the code-density upper bound from the basic pair argument.
+@isnad1 id=le.4h7v.s9.028abcd6a5d7 from=translated src=- shape=eb99b571 vocab=1e2d63de
+-/
+theorem codeDensity_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
+    {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
+    (hWG : W ⊆ pairFamily a G) (z : EuclideanSpace ℝ (Fin m)) :
+    codeDensity a b c W z ≤ codeJacobian m a b ^ 2 *
+      (parallelMultiplicity G * volume (atHeight b '' G)) := by
+  rw [codeDensity_eq_lintegral_codeSliceMass hab c hW]
+  exact mul_le_mul le_rfl (lintegral_le_mul_measure_of_ae_le
+    (support_codeSliceMass_subset hab c hWG z)
+    (codeSliceMass_ae_le_parallelMultiplicity hab hc hWG z)) bot_le bot_le
+
+/--
+@isnad1 id=ne.5h7v.s7.6da933d68eef from=translated src=- shape=e6d99986 vocab=12197454
+-/
+theorem codeDensity_ne_top {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
+    {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
+    (hWG : W ⊆ pairFamily a G) (hG : Bornology.IsBounded G) (z : EuclideanSpace ℝ (Fin m)) :
+    codeDensity a b c W z ≠ ∞ := by
+  apply ne_top_of_le_ne_top _ (codeDensity_le_parallelMultiplicity hab hc hW hWG z)
+  exact ENNReal.mul_ne_top (ENNReal.pow_ne_top (codeJacobian_ne_top m a b))
+    (ENNReal.mul_ne_top (parallelMultiplicity_ne_top hG) (volume_projection_ne_top b hG))
+
+end NKBesicovitch.Projection
