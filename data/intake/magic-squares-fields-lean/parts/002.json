@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "9e087ce8e66f4018df7db28e405dd86a405ad34c030258310f8d1ac85c4b0867",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "magic-squares-fields-lean",
+ "lint_mode": "proposed",
+ "modules": 158,
+ "part": 2,
+ "theorems": 360
+}
