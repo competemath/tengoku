@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "49f84236014163af08944e90818ab6527a3aa416220e246a525c8ab19e8fb9cb",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-hahn-kaplansky",
+ "lint_mode": "proposed",
+ "modules": 9,
+ "part": 1,
+ "theorems": 100
+}
