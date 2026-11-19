@@ -1,0 +1,1 @@
+-- LeanNct: a factory bundle (data/intake/lean-nct). This file only marks the library for Tengoku/All.lean.

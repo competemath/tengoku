@@ -1,0 +1,157 @@
+/- This file was machine generated -/
+
+module
+public import Tengoku
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Notation
+
+The manuscript's coordinate and analytic notation that is not already supplied by mathlib.
+-/
+
+@[expose] public section
+
+namespace Auto
+
+open MeasureTheory
+open scoped BigOperators ENNReal
+
+/--
+For $x\in \mathbb{R}^n$ let
+
+$$
+\Sigma(x)=\sum_{i\in[n)} x_i.
+$$-/
+noncomputable def ntnCoordinateSum {n : ℕ} (x : EuclideanSpace ℝ (Fin n)) : ℝ :=
+  ∑ i, x i
+
+/--
+For a subset $I\subset [n)$ (which inherits the natural order on $[m)$) and a
+$x\in \mathbb{R}^n$ we use notation
+
+$$
+x_I = (x_{i})_{i\in I} \in \mathbb{R}^{|I|}
+$$
+
+and when $I\subset [n)$ and $i\in [n)$ we also write $I\setminus i$ for the
+set $I$ without the index $i$.-/
+noncomputable def coordinateRestriction {n : ℕ} (I : Finset (Fin n))
+    (x : EuclideanSpace ℝ (Fin n)) : EuclideanSpace ℝ I :=
+  WithLp.toLp 2 fun i ↦ x i
+
+/--
+**Definition.**
+
+The standard Gaussian on $\mathbb{R}$ is defined by
+
+$$
+\mathfrak{g}(x)=e^{-\pi x^2}
+$$
+
+for $x\in\mathbb{R}$. This is chosen so that $\int_{\mathbb{R}}\mathfrak{g}=1$.-/
+noncomputable def gaussian (x : ℝ) : ℝ :=
+  Real.exp (-Real.pi * x ^ 2)
+
+/--
+For $t>0$ and a function $\psi$ on $\mathbb{R}^n$ define the rescaled function
+
+$$
+\psi_{(t)}(x)=t^{-n} \psi(t^{-1}x).
+$$
+
+This is chosen so that $\int_{\mathbb{R}^n} \psi_{(t)} = \int_{\mathbb{R}^n} \psi$.-/
+noncomputable def rescaled {n : ℕ} (t : ℝ)
+    (ψ : EuclideanSpace ℝ (Fin n) → ℝ) : EuclideanSpace ℝ (Fin n) → ℝ :=
+  fun x ↦ t⁻¹ ^ n * ψ (t⁻¹ • x)
+
+/--
+If $\phi:\mathbb{R}^n\to \mathbb{C}, \psi:\mathbb{R}^m\to\mathbb{C}$ are functions, then
+$\phi\otimes \psi:\mathbb{R}^{n+m}\to\mathbb{C}$
+denotes their tensor product
+
+$$
+(\phi\otimes \psi)(x,y) = \phi(x)\psi(y),
+$$
+
+where we have identified $\mathbb{R}^{n+m}$ with $\mathbb{R}^n\times \mathbb{R}^m$.-/
+noncomputable def tensorProduct {n m : ℕ} {𝕜 : Type*} [Mul 𝕜]
+    (φ : EuclideanSpace ℝ (Fin n) → 𝕜) (ψ : EuclideanSpace ℝ (Fin m) → 𝕜) :
+    EuclideanSpace ℝ (Fin (n + m)) → 𝕜 :=
+  fun z ↦ φ (EuclideanSpace.finAddEquivProd z).1 * ψ (EuclideanSpace.finAddEquivProd z).2
+
+/--
+For $d\in\mathbb{N}$ also define
+
+$$
+\chi^{\otimes d} = \underbrace{\chi \otimes \cdots \otimes \chi}_{d\;\text{times}}.
+$$-/
+noncomputable def tensorPower {𝕜 : Type*} [CommMonoid 𝕜]
+    (χ : ℝ → 𝕜) (d : ℕ) : EuclideanSpace ℝ (Fin d) → 𝕜 :=
+  fun x ↦ ∏ i, χ (x i)
+
+/--
+**Definition (bracket bump).**
+
+Define
+
+$$
+    \left\langle x\right\rangle=(1+|x|)^{-1}\, .
+$$
+
+We agree on the following parsing, which interprets the power first:
+
+$$
+\left\langle x\right\rangle^N_{(s)}=(\left\langle
+    .\right\rangle^N)_{(s)}(x)=s^{-1}(1+|s^{-1}x|)^{-N}\, .
+$$
+
+See also `Auto.scaledBracketBump`,
+`Auto.scaledBracketBumpReal`.-/
+noncomputable def bracketBump (x : ℝ) : ℝ :=
+  (1 + |x|)⁻¹
+
+/--
+**Definition (bracket bump).**
+
+Define
+
+$$
+    \left\langle x\right\rangle=(1+|x|)^{-1}\, .
+$$
+
+We agree on the following parsing, which interprets the power first:
+
+$$
+\left\langle x\right\rangle^N_{(s)}=(\left\langle
+    .\right\rangle^N)_{(s)}(x)=s^{-1}(1+|s^{-1}x|)^{-N}\, .
+$$
+
+See also `Auto.bracketBump`,
+`Auto.scaledBracketBumpReal`.-/
+noncomputable def scaledBracketBump (N : ℕ) (s x : ℝ) : ℝ :=
+  s⁻¹ * (1 + |s⁻¹ * x|)⁻¹ ^ N
+
+/--
+**Definition (bracket bump).**
+
+Define
+
+$$
+    \left\langle x\right\rangle=(1+|x|)^{-1}\, .
+$$
+
+We agree on the following parsing, which interprets the power first:
+
+$$
+\left\langle x\right\rangle^N_{(s)}=(\left\langle
+    .\right\rangle^N)_{(s)}(x)=s^{-1}(1+|s^{-1}x|)^{-N}\, .
+$$
+
+See also `Auto.bracketBump`,
+`Auto.scaledBracketBump`.-/
+noncomputable def scaledBracketBumpReal (N s x : ℝ) : ℝ :=
+  s⁻¹ * Real.rpow (1 + |s⁻¹ * x|) (-N)
+
+end Auto

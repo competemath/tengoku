@@ -1,0 +1,87 @@
+/- This file was machine generated -/
+
+module
+public import Tengoku.LeanNct.LeanNct.Auto.Preliminaries.Notation
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Twisted averages
+
+The shared definitions from the introduction, placed below the reduction
+modules so that the final reduction can prove the introductory theorem
+without creating an import cycle.
+-/
+
+@[expose] public section
+namespace Auto
+
+open MeasureTheory Set
+open scoped BigOperators ENNReal
+
+noncomputable section
+/-- Reduction-local implementation of the public twisted-average definition.-/
+noncomputable def aux_twistedAverage {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
+    EuclideanSpace ℝ (Fin n) → ℝ :=
+  fun x ↦ ∫ s : ℝ, chi s * ∏ i,
+    f i (x + s • WithLp.toLp 2 (Pi.single i (1 : ℝ)))
+
+/-- Reduction-local implementation of the public scaled twisted average.-/
+noncomputable def aux_twistedAverageAtScale {n : ℕ} (t : ℝ) (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
+    EuclideanSpace ℝ (Fin n) → ℝ :=
+  aux_twistedAverage (fun s ↦ t⁻¹ * chi (t⁻¹ * s)) f
+
+/- Compatibility names retained for the generated reduction proofs. -/
+noncomputable abbrev twistedAverage {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
+    EuclideanSpace ℝ (Fin n) → ℝ :=
+  aux_twistedAverage chi f
+
+noncomputable abbrev twistedAverageAtScale {n : ℕ} (t : ℝ) (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) :
+    EuclideanSpace ℝ (Fin n) → ℝ :=
+  aux_twistedAverageAtScale t chi f
+
+/-- A positive, strictly increasing finite scale chain.-/
+def TwistedScaleChain (J : ℕ) :=
+  {t : Fin (J + 1) → ℝ // StrictMono t ∧ ∀ j, 0 < t j}
+
+/-- The squared (L^2) jump energy of one finite scale chain.-/
+noncomputable def twistedJumpEnergy {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (J : ℕ)
+    (t : TwistedScaleChain J) : ℝ≥0∞ :=
+  ∑ j : Fin J,
+    eLpNorm
+      (fun x ↦ twistedAverageAtScale (t.1 j.succ) chi f x -
+        twistedAverageAtScale (t.1 j.castSucc) chi f x)
+      2 volume ^ 2
+
+/-- The finite-(J) (L^2) variation energy, written as a supremum over scale chains.-/
+noncomputable def twistedVariationEnergy {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (J : ℕ) : ℝ≥0∞ :=
+  ⨆ t : TwistedScaleChain J, twistedJumpEnergy chi f J t
+
+/-- A strictly increasing finite chain of dyadic exponents.-/
+def TwistedDyadicChain (J : ℕ) :=
+  {k : Fin (J + 1) → ℤ // StrictMono k}
+
+/-- The squared (L^2) jump energy along a dyadic scale chain.-/
+noncomputable def twistedDyadicJumpEnergy {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (J : ℕ)
+    (k : TwistedDyadicChain J) : ℝ≥0∞ :=
+  ∑ j : Fin J,
+    eLpNorm
+      (fun x ↦ twistedAverageAtScale ((2 : ℝ) ^ (k.1 j.succ)) chi f x -
+        twistedAverageAtScale ((2 : ℝ) ^ (k.1 j.castSucc)) chi f x)
+      2 volume ^ 2
+
+/-- The finite-(J) dyadic variation energy.-/
+noncomputable def twistedDyadicVariationEnergy {n : ℕ} (chi : ℝ → ℝ)
+    (f : Fin n → EuclideanSpace ℝ (Fin n) → ℝ) (J : ℕ) : ℝ≥0∞ :=
+  ⨆ k : TwistedDyadicChain J, twistedDyadicJumpEnergy chi f J k
+
+end
+
+end Auto

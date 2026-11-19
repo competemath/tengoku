@@ -153,6 +153,7 @@ import Tengoku.PalomarQseriesRowFactorization
 import Tengoku.Formalbook
 import Tengoku.EgzFormalProof
 import Tengoku.MiyaokaMoriCharzero
+import Tengoku.LeanNct
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.TutteHomotopyLean
