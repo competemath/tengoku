@@ -25,7 +25,9 @@ namespace Stickelberger
 
 /-- **Linear binomial approximation mod `x²`.** In any commutative ring, `(1 + x)^k` is
 congruent to `1 + k·x` modulo `x²`. Used to expand `ζ_p^{T(a)} = (1 + (ζ_p - 1))^{T(a)}` to first
-order modulo `(ζ_p - 1)²` in the Gauss-sum congruence (Washington Lemma 6.12).-/
+order modulo `(ζ_p - 1)²` in the Gauss-sum congruence (Washington Lemma 6.12).
+@isnad1 id=dvd.0h3v.s7.c38db8c8ab6a from=translated src=- shape=d85d1d30 vocab=242a95b4
+-/
 theorem sq_dvd_one_add_pow_sub {R : Type*} [CommRing R] (x : R) (k : ℕ) :
     x ^ 2 ∣ (1 + x) ^ k - (1 + k • x) := by
   induction k with
@@ -41,7 +43,9 @@ theorem sq_dvd_one_add_pow_sub {R : Type*} [CommRing R] (x : R) (k : ℕ) :
 /-- **Multiplicity is invariant under a ring automorphism.** For `τ : R ≃+* R`, the induced map
 `I ↦ I.map τ` is a multiplicative automorphism of the ideal monoid, so it preserves `emultiplicity`:
 `v_{τ P}(τ I) = v_P(I)`. This is the Galois-invariance of valuations used in the Stickelberger
-factorization (`v_{σ•𝒫̄}(σ•x) = v_𝒫̄(x)` for `σ` in the Galois group).-/
+factorization (`v_{σ•𝒫̄}(σ•x) = v_𝒫̄(x)` for `σ` in the Galois group).
+@isnad1 id=eq.0h4v.s9.0c31c49f8d92 from=translated src=- shape=0ee08277 vocab=2932ca2f
+-/
 theorem emultiplicity_map_ringEquiv {R : Type*} [CommRing R] (τ : R ≃+* R) (P I : Ideal R) :
     emultiplicity (P.map (τ : R →+* R)) (I.map (τ : R →+* R)) = emultiplicity P I :=
   emultiplicity_map_eq
@@ -54,7 +58,9 @@ theorem emultiplicity_map_ringEquiv {R : Type*} [CommRing R] (τ : R ≃+* R) (P
 /-- **A prime containing `p` lies over `(p)`.** If `(p : 𝓞 K) ∈ Q` for a prime `Q` (and `p` a
 rational prime), then `Q` lies over `(p)`: the contraction `Q ∩ ℤ` is a prime containing the maximal
 ideal `(p)`, hence equals it. Contrapositive: a prime `Q` *not* over `p` does not contain `p` — used
-to show the Gauss sum has trivial valuation away from primes over the residue prime.-/
+to show the Gauss sum has trivial valuation away from primes over the residue prime.
+@isnad1 id=liesover.1h3v.s7.3403cfe90b07 from=translated src=- shape=ee0493aa vocab=8caeb338
+-/
 theorem liesOver_of_natCast_mem {K : Type*} [Field K] [NumberField K] {p : ℕ} [Fact p.Prime]
     {Q : Ideal (𝓞 K)} [Q.IsPrime] (hp_mem : (p : 𝓞 K) ∈ Q) :
     Q.LiesOver (Ideal.span {(p : ℤ)}) := by
@@ -69,7 +75,9 @@ open scoped Pointwise in
 commutative ring `R` (`MulSemiringAction`), the `(σ•P)`-multiplicity of `σ•x` equals the
 `P`-multiplicity of `x`, since `σ` acts by the ring automorphism `MulSemiringAction.toRingEquiv`.
 Applied with `M = Gal(L/ℚ)` acting on `𝓞 L`, this lets the exponent of a conjugate prime `σ•𝒫̄` in
-`(σ•g)` be read off from that of `𝒫̄` in `(g)` — the symmetry behind the factorization.-/
+`(σ•g)` be read off from that of `𝒫̄` in `(g)` — the symmetry behind the factorization.
+@isnad1 id=eq.0h5v.s8.f61a04bfff99 from=translated src=- shape=de4cf1b1 vocab=ef6396c3
+-/
 theorem emultiplicity_smul {M R : Type*} [Group M] [CommRing R] [MulSemiringAction M R]
     (σ : M) (P : Ideal R) (x : R) :
     emultiplicity (σ • P) (Ideal.span {σ • x}) = emultiplicity P (Ideal.span {x}) := by
@@ -83,7 +91,9 @@ theorem emultiplicity_smul {M R : Type*} [Group M] [CommRing R] [MulSemiringActi
 
 /-- **Valuation from congruence.** If `v_P(b) = 1` and `a ≡ b (mod P²)`, then `v_P(a) = 1`.
 (`a ∈ P` since `b ∈ P` and `a - b ∈ P² ⊆ P`; `a ∉ P²` else `b = a - (a-b) ∈ P²`.) This turns
-the congruence `g(ω⁻¹) ≡ ζ_p - 1 (mod 𝒫̄²)` into `s(1) = v(g(ω⁻¹)) = v(ζ_p-1) = 1`.-/
+the congruence `g(ω⁻¹) ≡ ζ_p - 1 (mod 𝒫̄²)` into `s(1) = v(g(ω⁻¹)) = v(ζ_p-1) = 1`.
+@isnad1 id=eq.2h4v.s9.f3f6b2958ce6 from=translated src=- shape=d94287ed vocab=94b9f148
+-/
 theorem emultiplicity_eq_one_of_sub_mem {K : Type*} [Field K] [NumberField K]
     {P : Ideal (𝓞 K)} {a b : 𝓞 K}
     (hb : emultiplicity P (Ideal.span {b}) = 1) (hab : a - b ∈ P ^ 2) :

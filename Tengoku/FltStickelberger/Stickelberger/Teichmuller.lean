@@ -29,6 +29,9 @@ variable {K : Type*} [Field K] [NumberField K]
 noncomputable def zetaInteger (n : ℕ) [NeZero n] [IsCyclotomicExtension {n} ℚ K] : 𝓞 K :=
   (IsCyclotomicExtension.zeta_spec n ℚ K).toInteger
 
+/--
+@isnad1 id=isprimit.0h2v.s5.ca8b5d81fcc3 from=translated src=- shape=39e99e01 vocab=eb827501
+-/
 theorem zetaInteger_isPrimitiveRoot (n : ℕ) [NeZero n] [IsCyclotomicExtension {n} ℚ K] :
     IsPrimitiveRoot (zetaInteger (K := K) n) n :=
   (IsCyclotomicExtension.zeta_spec n ℚ K).toInteger_isPrimitiveRoot

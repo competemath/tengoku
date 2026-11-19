@@ -21,7 +21,9 @@ namespace Stickelberger
 
 open Finset
 
-/-- Helper: the mixed-radix decomposition of a `mod` by a product.-/
+/-- Helper: the mixed-radix decomposition of a `mod` by a product.
+@isnad1 id=eq.2h3v.s6.7c85f42e8032 from=translated src=- shape=e7cc44fe vocab=1ec7a304
+-/
 theorem mod_mul' (a : ℕ) {b c : ℕ} (hb : 0 < b) (hc : 0 < c) :
     a % (b * c) = a % b + b * (a / b % c) := by
   have h1 : a = (a % b + b * (a / b % c)) + b * c * (a / b / c) := by
@@ -38,7 +40,9 @@ theorem mod_mul' (a : ℕ) {b c : ℕ} (hb : 0 < b) (hc : 0 < c) :
 
 /-- **Rotation invariance.** Summing `g` over the cyclic rotation `i ↦ (k + i) % f`
 of `range f` gives the same result as summing `g` over `range f`. This is what lets
-the digit-rotation double sum in Lemma 6.14 be reindexed.-/
+the digit-rotation double sum in Lemma 6.14 be reindexed.
+@isnad1 id=eq.0h4v.s5.193ca2a2b93e from=translated src=- shape=3d92bc10 vocab=9b083cc3
+-/
 theorem sum_range_rotate {M : Type*} [AddCommMonoid M] (g : ℕ → M) (f k : ℕ) :
     ∑ i ∈ range f, g ((k + i) % f) = ∑ i ∈ range f, g i := by
   rcases Nat.eq_zero_or_pos f with hf | hf
@@ -53,7 +57,9 @@ theorem sum_range_rotate {M : Type*} [AddCommMonoid M] (g : ℕ → M) (f k : �
   congr 1
   exact ((Nat.mod_modEq k (n + 1)).add_right x.val).symm
 
-/-- A finite sum of `Nat.ModEq`s is a `Nat.ModEq`.-/
+/-- A finite sum of `Nat.ModEq`s is a `Nat.ModEq`.
+@isnad1 id=modeq.1h5v.s5.0915cbcac0db from=translated src=- shape=fd08eb72 vocab=88d146c4
+-/
 theorem modEq_sum {α : Type*} {n : ℕ} {F G : α → ℕ} {s : Finset α}
     (h : ∀ a ∈ s, F a ≡ G a [MOD n]) : ∑ a ∈ s, F a ≡ ∑ a ∈ s, G a [MOD n] := by
   classical
@@ -70,7 +76,9 @@ def digitSumF (p f h : ℕ) : ℕ := ∑ i ∈ range f, h / p ^ i % p
 
 /-- **Floor split for `(ZMod m)ˣ` representatives.** With `a.val` the canonical unit
 representative, `c·a.val = (a·c).val + m·⌊c·a.val/m⌋` — the bridge between the
-`stickelbergerProd` exponent `⌊c·a/m⌋` and the `σ_c`-twist multiplicity bookkeeping.-/
+`stickelbergerProd` exponent `⌊c·a/m⌋` and the `σ_c`-twist multiplicity bookkeeping.
+@isnad1 id=eq.0h3v.s7.3f76c67766f0 from=translated src=- shape=55c46b4e vocab=fa494338
+-/
 theorem mul_units_val_eq_floor {m : ℕ} [NeZero m] (a : (ZMod m)ˣ) (c : ℕ) :
     c * (a : ZMod m).val = ((a : ZMod m) * (c : ZMod m)).val + m * (c * (a : ZMod m).val / m) := by
   have hdiv := (Nat.div_add_mod (c * (a : ZMod m).val) m).symm
@@ -85,7 +93,9 @@ the shifted exponent `d·a·(1+r·j)` reduces mod `ℓ-1` to `d·a` for every `j
 `d·a·(1+r·j) = d·a + (ℓ-1)·(a·j)` and `d·a < ℓ-1`. This is the arithmetic core of the totally-split
 fiber sum (Washington 6.9): for the character `ω^{-d}` of exact order `r`, every prime in the
 `Gal(L/K)`-fiber over `𝔭_a` (indexed by `j`, with `galEquivZMod` exponent `k = 1+r·j ≡ 1 mod r`)
-carries the *same* base-`ℓ` digit `d·a`.-/
+carries the *same* base-`ℓ` digit `d·a`.
+@isnad1 id=eq.4h4v.s7.2313bb85c834 from=translated src=- shape=6a0acc50 vocab=4496d307
+-/
 theorem div_mul_one_add_mul_mod {r ℓ a j : ℕ} (hr0 : 0 < r) (hrdvd : r ∣ ℓ - 1)
     (hℓ : 0 < ℓ - 1) (ha : a < r) :
     ((ℓ - 1) / r * a * (1 + r * j)) % (ℓ - 1) = (ℓ - 1) / r * a := by
@@ -107,7 +117,9 @@ theorem div_mul_one_add_mul_mod {r ℓ a j : ℕ} (hr0 : 0 < r) (hrdvd : r ∣ �
 /-- **Exponent shift-invariance from `k ≡ 1 (mod r)`.** The `k % r = 1` form of
 `div_mul_one_add_mul_mod` (`k = 1 + r·(k/r)`): if `k ≡ 1 (mod r)` then `(d·a·k) mod (ℓ-1) = d·a`
 (`d = (ℓ-1)/r`, `a < r`). This is the arithmetic that makes `α·k ≡ α (mod q-1)` for the Gauss-sum
-eigenvector hypothesis when `σ` fixes `ℚ(ζ_r)` (so its cyclotomic exponent `k ≡ 1 mod r`).-/
+eigenvector hypothesis when `σ` fixes `ℚ(ζ_r)` (so its cyclotomic exponent `k ≡ 1 mod r`).
+@isnad1 id=eq.5h4v.s7.eac3445b55d4 from=translated src=- shape=b0aada32 vocab=66b6a2fd
+-/
 theorem div_mul_mod_of_mod_eq_one {r ℓ a k : ℕ} (hr0 : 0 < r) (hrdvd : r ∣ ℓ - 1) (hℓ : 0 < ℓ - 1)
     (ha : a < r) (hk : k % r = 1) :
     ((ℓ - 1) / r * a * k) % (ℓ - 1) = (ℓ - 1) / r * a := by
@@ -117,7 +129,9 @@ theorem div_mul_mod_of_mod_eq_one {r ℓ a k : ℕ} (hr0 : 0 < r) (hrdvd : r ∣
   rw [hke]
   exact div_mul_one_add_mul_mod hr0 hrdvd hℓ ha
 
-/-- Reduce a scaled residue: `((ℓ-1)/m · k) mod (ℓ-1) = (ℓ-1)/m · (k mod m)` when `m ∣ ℓ-1`.-/
+/-- Reduce a scaled residue: `((ℓ-1)/m · k) mod (ℓ-1) = (ℓ-1)/m · (k mod m)` when `m ∣ ℓ-1`.
+@isnad1 id=eq.2h3v.s6.d866c33a6fe5 from=translated src=- shape=8ceee075 vocab=66b6a2fd
+-/
 theorem div_mul_mod_eq {ℓ m k : ℕ} (hm0 : 0 < m) (hmdvd : m ∣ ℓ - 1) :
     (ℓ - 1) / m * k % (ℓ - 1) = (ℓ - 1) / m * (k % m) := by
   rcases Nat.eq_zero_or_pos (ℓ - 1) with hℓ0 | hℓpos
@@ -137,7 +151,9 @@ theorem div_mul_mod_eq {ℓ m k : ℕ} (hm0 : 0 < m) (hmdvd : m ∣ ℓ - 1) :
   exact Nat.mod_eq_of_lt hlt
 
 /-- Scaling a digit-position sum: as `h` ranges over `[0, a·m)`, `h / a` takes each value in
-`[0, m)` exactly `a` times, so `∑ (h / a % p) = a · ∑ (k % p)`.-/
+`[0, m)` exactly `a` times, so `∑ (h / a % p) = a · ∑ (k % p)`.
+@isnad1 id=eq.1h3v.s6.f1102c6b8c82 from=translated src=- shape=822d56c6 vocab=05d5cd05
+-/
 theorem sum_range_div_mod (p a m : ℕ) (ha : 0 < a) :
     ∑ h ∈ range (a * m), (h / a % p) = a * ∑ k ∈ range m, (k % p) := by
   induction m with
@@ -150,7 +166,9 @@ theorem sum_range_div_mod (p a m : ℕ) (ha : 0 < a) :
     rw [Finset.sum_congr rfl hconst, Finset.sum_const, Finset.card_range, smul_eq_mul]
 
 /-- Periodicity of `· % p`: as `k` ranges over `[0, p·c)`, the residue `k % p` runs through
-`0, …, p-1` exactly `c` times, so `∑ (k % p) = c · ∑_{d<p} d`.-/
+`0, …, p-1` exactly `c` times, so `∑ (k % p) = c · ∑_{d<p} d`.
+@isnad1 id=eq.0h2v.s5.c987bca318d7 from=translated src=- shape=1e5b814e vocab=a4fcbb85
+-/
 theorem sum_range_mod (p c : ℕ) :
     ∑ k ∈ range (p * c), (k % p) = c * ∑ d ∈ range p, d := by
   induction c with

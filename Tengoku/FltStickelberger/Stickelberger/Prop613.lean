@@ -37,7 +37,9 @@ section Prop613
 
 variable {p : ℕ} {s : ℕ → ℕ}
 
-/-- **`s n ≤ n`** (subadditivity from `s 1 = 1`): `s(n+1) ≤ s n + s 1 = s n + 1`.-/
+/-- **`s n ≤ n`** (subadditivity from `s 1 = 1`): `s(n+1) ≤ s n + s 1 = s n + 1`.
+@isnad1 id=le.3h2v.s6.90546de04664 from=translated src=- shape=2316495c vocab=086a35fc
+-/
 theorem s_le (hs0 : s 0 = 0) (hs1 : s 1 = 1) (hadd : ∀ a b, s (a + b) ≤ s a + s b) :
     ∀ n, s n ≤ n
   | 0 => by rw [hs0]
@@ -47,7 +49,9 @@ theorem s_le (hs0 : s 0 = 0) (hs1 : s 1 = 1) (hadd : ∀ a b, s (a + b) ≤ s a 
     have := s_le hs0 hs1 hadd n
     omega
 
-/-- **Subadditivity over a finite sum** (from the binary `s(a+b) ≤ s a + s b`).-/
+/-- **Subadditivity over a finite sum** (from the binary `s(a+b) ≤ s a + s b`).
+@isnad1 id=le.2h4v.s6.02b2c5b83695 from=translated src=- shape=b1dd3c84 vocab=5297e9b3
+-/
 theorem s_sum_le (hs0 : s 0 = 0) (hadd : ∀ a b, s (a + b) ≤ s a + s b) {ι : Type*}
     (g : ι → ℕ) (t : Finset ι) : s (∑ i ∈ t, g i) ≤ ∑ i ∈ t, s (g i) := by
   classical

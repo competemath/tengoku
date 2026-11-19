@@ -29,7 +29,9 @@ open NumberField
 namespace Stickelberger
 
 /-- A `MulSemiringAction` is determined by its underlying `DistribMulAction`: the remaining
-`smul_one`/`smul_mul` fields are propositions.-/
+`smul_one`/`smul_mul` fields are propositions.
+@isnad1 id=eq.1h4v.s5.d8ca741579c0 from=translated src=- shape=27b8154f vocab=c71e1a1f
+-/
 theorem msa_eq_of_distrib {M R : Type*} [Monoid M] [Semiring R] (a b : MulSemiringAction M R)
     (hd : a.toDistribMulAction = b.toDistribMulAction) : a = b := by
   cases a; cases b; congr 1
@@ -39,7 +41,9 @@ variable {K : Type*} [Field K] [NumberField K]
 /-- **The two Galois actions on `𝓞 K` agree.** The AKLB action
 `IsIntegralClosure.MulSemiringAction ℤ ℚ K (𝓞 K)` (used as `galMulSemiringAction`) equals the
 canonical `RingOfIntegers` action. Both satisfy `algebraMap (σ • x) = σ (algebraMap x)`, and
-`algebraMap (𝓞 K) K` is injective, so they coincide as `MulSemiringAction`s.-/
+`algebraMap (𝓞 K) K` is injective, so they coincide as `MulSemiringAction`s.
+@isnad1 id=eq.0h1v.s8.bc10639d8c9d from=translated src=- shape=be48467e vocab=52a25480
+-/
 theorem galMul_eq_canonical :
     (IsIntegralClosure.MulSemiringAction ℤ ℚ K (𝓞 K) : MulSemiringAction (K ≃ₐ[ℚ] K) (𝓞 K))
       = (inferInstance : MulSemiringAction (K ≃ₐ[ℚ] K) (𝓞 K)) := by
@@ -57,7 +61,9 @@ spans an `H`-stable line with `m`-th-root-of-unity scalars (`∀ τ ∈ H, τ g 
 Then `g^c · (σ_c g)⁻¹` is fixed by `H` — the scalar cancels:
 `τ(g^c (σ_c g)⁻¹) = (u g)^c (u^c σ_c g)⁻¹ = g^c (σ_c g)⁻¹`. Instantiated with `g` the Gauss sum in
 `L` and `H = Gal(L/ℚ(ζ_m))`, this yields `γ^{c-σ_c} ∈ ℚ(ζ_m)` — Washington's descent without the
-Kummer-unramified detour.-/
+Kummer-unramified detour.
+@isnad1 id=mem.4h7v.s10.20d10ef10011 from=translated src=- shape=d708b084 vocab=384476aa
+-/
 theorem twist_fixed {F L : Type*} [Field F] [Field L] [Algebra F L]
     {H : Subgroup (L ≃ₐ[F] L)} {g : L} {σc : L ≃ₐ[F] L} {m c : ℕ} (hm : 0 < m)
     (heig : ∀ τ ∈ H, ∃ u : L, u ^ m = 1 ∧ τ g = u * g)
@@ -75,7 +81,9 @@ theorem twist_fixed {F L : Type*} [Field F] [Field L] [Algebra F L]
 /-- **The Galois group of a cyclotomic extension of `ℚ` is abelian** (it embeds into `(ZMod n)ˣ` via
 `galEquivZMod`). So any two automorphisms commute as functions — discharges
 the `hcomm` hypothesis of
-`twist_fixed` (`σ_c` commutes with `Gal(L/ℚ(ζ_m))`).-/
+`twist_fixed` (`σ_c` commutes with `Gal(L/ℚ(ζ_m))`).
+@isnad1 id=eq.0h5v.s8.75979c9bc1ed from=translated src=- shape=e7084cdc vocab=4984dbf7
+-/
 theorem galEquiv_apply_comm {n : ℕ} [NeZero n] {L : Type*} [Field L] [NumberField L]
     [IsCyclotomicExtension {n} ℚ L] (σ τ : L ≃ₐ[ℚ] L) (x : L) : τ (σ x) = σ (τ x) := by
   have h : σ * τ = τ * σ := by
