@@ -62,7 +62,9 @@ variable {V : Type*} {H : SimpleGraph V}
 
 /-- The `Set`-indexed form of 2-degeneracy: every non-empty set of vertices contains a vertex with
 at most two neighbours inside that set.  This is obtained from `IsTwoDegenerate` by instantiating
-the subgraph quantifier at the subgraph of `H` induced on the given set.-/
+the subgraph quantifier at the subgraph of `H` induced on the given set.
+@isnad1 id=ex.2h3v.s5.0a587973fe43 from=translated src=- shape=f70726ac vocab=2063f035
+-/
 theorem exists_mem_encard_le_two (h : IsTwoDegenerate H) (s : Set V) (hs : s.Nonempty) :
     ∃ u ∈ s, {v | v ∈ s ∧ H.Adj u v}.encard ≤ 2 := by
   obtain ⟨u, hu⟩ := h ((⊤ : H.Subgraph).induce s) hs
@@ -130,7 +132,9 @@ private theorem greedy [DecidableEq V] (h : IsTwoDegenerate H) :
       · rw [Function.update_apply, Function.update_apply, ite_eq_right h1, ite_eq_right h2]
         exact hC' x (Finset.mem_erase.mpr ⟨h1, hx⟩) y (Finset.mem_erase.mpr ⟨h2, hy⟩) hadj
 
-/-- **A 2-degenerate graph on a finite vertex type is 3-colorable.**-/
+/-- **A 2-degenerate graph on a finite vertex type is 3-colorable.**
+@isnad1 id=colorabl.1h2v.s4.dc19184e93a3 from=translated src=- shape=0a9361f2 vocab=b044a6a3
+-/
 theorem colorable_three_of_isTwoDegenerate {V : Type*} [Fintype V] [DecidableEq V]
     {H : SimpleGraph V} (h : IsTwoDegenerate H) : H.Colorable 3 := by
   obtain ⟨C, hC⟩ := greedy h (Finset.univ : Finset V).card Finset.univ le_rfl

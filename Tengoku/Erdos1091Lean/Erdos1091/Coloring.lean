@@ -88,21 +88,36 @@ below are enumerations over the 5-element type `Slot`. -/
 
 namespace Slot
 
-/-- Four `succ`-steps is one `pred`-step. Enumeration size: 5 slots.-/
+/-- Four `succ`-steps is one `pred`-step. Enumeration size: 5 slots.
+@isnad1 id=eq.0h1v.s3.c02a40b09716 from=translated src=- shape=8752b8b2 vocab=66f73fc7
+-/
 theorem succ4_eq_pred (s : Slot) : s.succ.succ.succ.succ = s.pred := by revert s; decide
 
-/-- The far end of the four-step walk closes the pentagon. Enumeration size: 5 slots.-/
+/-- The far end of the four-step walk closes the pentagon. Enumeration size: 5 slots.
+@isnad1 id=eq.0h1v.s3.52d790215728 from=translated src=- shape=fb4aea2f vocab=299c0a15
+-/
 @[simp] theorem rimAdjB_succ4_self (s : Slot) : rimAdjB s.succ.succ.succ.succ s = true := by
   revert s; decide
 
 /-- None of the four other slots of a pentagon is the slot we started from.
-Enumeration size: 5 slots each.-/
+Enumeration size: 5 slots each.
+@isnad1 id=ne.0h1v.s2.1ad77272d6a7 from=translated src=- shape=a365602c vocab=88ad2fed
+-/
 @[simp] theorem succ_ne_self (s : Slot) : s.succ ≠ s := by revert s; decide
 
+/--
+@isnad1 id=ne.0h1v.s3.52f8d4727e6e from=translated src=- shape=47dcad53 vocab=88ad2fed
+-/
 @[simp] theorem succ2_ne_self (s : Slot) : s.succ.succ ≠ s := by revert s; decide
 
+/--
+@isnad1 id=ne.0h1v.s3.68466c2debad from=translated src=- shape=67f0333f vocab=88ad2fed
+-/
 @[simp] theorem succ3_ne_self (s : Slot) : s.succ.succ.succ ≠ s := by revert s; decide
 
+/--
+@isnad1 id=ne.0h1v.s3.788748b519a1 from=translated src=- shape=eb035fde vocab=88ad2fed
+-/
 @[simp] theorem succ4_ne_self (s : Slot) : s.succ.succ.succ.succ ≠ s := by revert s; decide
 
 end Slot
@@ -112,16 +127,22 @@ end Slot
 Which leaf blocks exist. `b`, `d`, `e` always; the `a`-leaf only on `S₀`, the `c`-leaf only
 on `S_m`. These are the two asymmetries that make Proposition 4.5 close. -/
 
-/-- The `b`-, `d`- and `e`-leaves exist on every spine block.-/
+/-- The `b`-, `d`- and `e`-leaves exist on every spine block.
+@isnad1 id=eq.1h3v.s5.44c22108dfce from=translated src=- shape=d45bafac vocab=d90c7981
+-/
 theorem leaf_bde_valid (i : Fin (m + 1)) {x : Slot} (hx : x = .b ∨ x = .d ∨ x = .e) :
     (Block.leaf i x : Block m).validB = true := by
   rcases hx with rfl | rfl | rfl <;> rfl
 
-/-- Spine blocks are always valid; this is the canonical form of that proof.-/
+/-- Spine blocks are always valid; this is the canonical form of that proof.
+@isnad1 id=eq.1h2v.s5.6f4445e964aa from=translated src=- shape=6dacfcac vocab=f840bfc4
+-/
 theorem spineVB_mk (i : Fin (m + 1)) (hs : (Block.spine i : Block m).validB = true) :
     (⟨Block.spine i, hs⟩ : ValidBlock m) = spineVB i := rfl
 
-/-- Lifting a `G'ₘ`-edge to `Gₘ`.-/
+/-- Lifting a `G'ₘ`-edge to `Gₘ`.
+@isnad1 id=adj.1h3v.s4.655cb5e39d0f from=translated src=- shape=865e6982 vocab=763b38ac
+-/
 theorem adj_of_adj' {u w : Vtx m} (h : (G' m).Adj u w) : (G m).Adj u w := G'_le_G h
 
 section Coloring
@@ -136,7 +157,9 @@ remaining two, so its endpoints receive different colours.
 
 This is the combinatorial core of Lemma 4.3. Enumeration size: at most `3⁵ = 243` colourings
 of `α` and four vertices from `Fin 3`, cut down by the three adjacency constraints; it is a
-statement about `Fin 3` only and carries no dependence on `m`.-/
+statement about `Fin 3` only and carries no dependence on `m`.
+@isnad1 id=ne.7h5v.s6.6bc333308093 from=translated src=- shape=0039fbaf vocab=00dd0f92
+-/
 theorem path_four_alternates (α c₁ c₂ c₃ c₄ : Fin 3)
     (h₁ : c₁ ≠ α) (h₂ : c₂ ≠ α) (h₃ : c₃ ≠ α) (h₄ : c₄ ≠ α)
     (e₁ : c₁ ≠ c₂) (e₂ : c₂ ≠ c₃) (e₃ : c₃ ≠ c₄) :
@@ -158,7 +181,9 @@ of `v`.
 The four non-attachment slots `x.succ, x.succ.succ, x.succ.succ.succ, x.pred` are all adjacent
 to `v`, so they avoid `α`; they form a path along the rim, so by `path_four_alternates` its two
 ends `x.succ` and `x.pred` — which are exactly the rim neighbours of the attachment slot `x` —
-disagree. `eq_of_ne_two_ne` then forces `x` onto `α`.-/
+disagree. `eq_of_ne_two_ne` then forces `x` onto `α`.
+@isnad1 id=eq.1h4v.s6.9cfacde4ef68 from=translated src=- shape=68e6e476 vocab=2ffa0dd7
+-/
 theorem leaf_attachment_eq_alpha (m : ℕ) (C : (G m).Coloring (Fin 3))
     (i : Fin (m + 1)) (x : Slot) (hb : (Block.leaf i x).validB = true) :
     C (Vtx.mk ⟨Block.leaf i x, hb⟩ x) = alphaColor C := by
@@ -181,7 +206,9 @@ theorem leaf_attachment_eq_alpha (m : ℕ) (C : (G m).Coloring (Fin 3))
     hends (hrim _ _ (Slot.rimAdjB_succ x)) (hrim _ _ (Slot.rimAdjB_succ4_self x)).symm
 
 /-- Every spine vertex that carries a leaf block avoids the colour `α`: the leaf's attachment
-vertex is adjacent to it and already has colour `α` by Lemma 4.3.-/
+vertex is adjacent to it and already has colour `α` by Lemma 4.3.
+@isnad1 id=ne.2h4v.s7.724c843a4879 from=translated src=- shape=7a9a20c8 vocab=763d8255
+-/
 theorem spine_with_leaf_ne_alpha (m : ℕ) (C : (G m).Coloring (Fin 3))
     (i : Fin (m + 1)) (x : Slot) (hb : (Block.leaf i x).validB = true)
     (hs : (Block.spine i).validB = true) :
@@ -197,7 +224,9 @@ theorem spine_with_leaf_ne_alpha (m : ℕ) (C : (G m).Coloring (Fin 3))
 `a, b, d, e` all avoid `α`, then `c` takes `α`.
 
 Enumeration size: `3⁶ = 729` colourings of `α` and the five pentagon slots, constrained by the
-five rim edges; a pure `Fin 3` statement, independent of `m`.-/
+five rim edges; a pure `Fin 3` statement, independent of `m`.
+@isnad1 id=eq.9h6v.s7.c699893adf4c from=translated src=- shape=f334f46f vocab=00dd0f92
+-/
 theorem pentagon_forces_c (α ca cb cc cd ce : Fin 3)
     (hab : ca ≠ cb) (hbc : cb ≠ cc) (hcd : cc ≠ cd) (hde : cd ≠ ce) (hea : ce ≠ ca)
     (ha : ca ≠ α) (hb : cb ≠ α) (hd : cd ≠ α) (he : ce ≠ α) :
@@ -208,7 +237,9 @@ theorem pentagon_forces_c (α ca cb cc cd ce : Fin 3)
 /-- Colour propagation around one pentagon, case (3) of Lemma 4.4: if `b, c, d, e` all avoid
 `α`, then `a` takes `α`. This is the terminal-block case, used only at `S_m`.
 
-Enumeration size: `3⁶ = 729`, as above.-/
+Enumeration size: `3⁶ = 729`, as above.
+@isnad1 id=eq.9h6v.s7.f9a16cb69f51 from=translated src=- shape=0ae30e0f vocab=00dd0f92
+-/
 theorem pentagon_forces_a (α ca cb cc cd ce : Fin 3)
     (hab : ca ≠ cb) (hbc : cb ≠ cc) (hcd : cc ≠ cd) (hde : cd ≠ ce) (hea : ce ≠ ca)
     (hb : cb ≠ α) (hc : cc ≠ α) (hd : cd ≠ α) (he : ce ≠ α) :
@@ -237,7 +268,9 @@ This is the paper's argument for cases (1) and (2) verbatim: `Q[b], Q[d], Q[e]` 
 because they carry leaves, `Q[a]` avoids `α` by hypothesis, and `pentagon_forces_c` closes it.
 Case (1) (`Q = S₀`) and case (2) (`Q = S_i`, `1 ≤ i ≤ m-1`) differ only in *why* `Q[a]` avoids
 `α` — the `a`-leaf for `S₀`, the incoming spine edge otherwise — which is exactly what
-`spine_a_ne_alpha_aux` below supplies.-/
+`spine_a_ne_alpha_aux` below supplies.
+@isnad1 id=eq.1h3v.s7.ba8dd4b6e651 from=translated src=- shape=7cde7251 vocab=d10ec06a
+-/
 theorem spine_c_of_a (i : Fin (m + 1)) (ha : C (Vtx.mk (spineVB i) Slot.a) ≠ alphaColor C) :
     C (Vtx.mk (spineVB i) Slot.c) = alphaColor C :=
   pentagon_forces_c _ _ _ _ _ _
@@ -281,7 +314,9 @@ private theorem spine_a_ne_alpha_aux :
 
 (`hi` records the paper's range `0 ≤ i ≤ m - 1`; the argument in fact needs no constraint on
 `i`, since the `b`, `d`, `e` leaves exist everywhere and `S_i[a] ≠ α` holds for every `i`.
-It is at `i = m` that the *conclusion* becomes contradictory — see `G_not_colorable_three`.)-/
+It is at `i = m` that the *conclusion* becomes contradictory — see `G_not_colorable_three`.)
+@isnad1 id=eq.2h3v.s7.df1d18be7292 from=translated src=- shape=c2ee5c0e vocab=e6bc9d63
+-/
 theorem spine_c_eq_alpha (m : ℕ) (C : (G m).Coloring (Fin 3)) (i : Fin (m + 1))
     (hi : (i : ℕ) < m) (hs : (Block.spine i).validB = true) :
     C (Vtx.mk ⟨Block.spine i, hs⟩ Slot.c) = alphaColor C := by
@@ -292,7 +327,9 @@ theorem spine_c_eq_alpha (m : ℕ) (C : (G m).Coloring (Fin 3)) (i : Fin (m + 1)
 
 Here the `c`-leaf — which exists only on `S_m` — puts `S_m[c]` in the same position as
 `S_m[b], S_m[d], S_m[e]`, so all four of `b, c, d, e` avoid `α` and `pentagon_forces_a`
-applies.-/
+applies.
+@isnad1 id=eq.3h3v.s7.a7d8239982ee from=translated src=- shape=449d36ac vocab=2f21aaac
+-/
 theorem spine_last_a_eq_alpha (m : ℕ) (hm : 1 ≤ m) (C : (G m).Coloring (Fin 3))
     (i : Fin (m + 1)) (hi : (i : ℕ) = m) (hs : (Block.spine i).validB = true) :
     C (Vtx.mk ⟨Block.spine i, hs⟩ Slot.a) = alphaColor C := by
@@ -312,7 +349,9 @@ theorem spine_last_a_eq_alpha (m : ℕ) (hm : 1 ≤ m) (C : (G m).Coloring (Fin 
     (spine_bde_ne_alpha C i (Or.inr (Or.inr rfl)))
 
 /-- Propagation along the spine: `S_i[c] = α` forces `S_{i+1}[a] ≠ α`, and by induction
-`S_m[a] ≠ α`.-/
+`S_m[a] ≠ α`.
+@isnad1 id=ne.3h3v.s7.522691a2ba37 from=translated src=- shape=f4fccbc3 vocab=2f21aaac
+-/
 theorem spine_last_a_ne_alpha (m : ℕ) (hm : 1 ≤ m) (C : (G m).Coloring (Fin 3))
     (i : Fin (m + 1)) (hi : (i : ℕ) = m) (hs : (Block.spine i).validB = true) :
     C (Vtx.mk ⟨Block.spine i, hs⟩ Slot.a) ≠ alphaColor C := by
@@ -324,7 +363,9 @@ end Coloring
 /-- **Proposition 4.5.** `Gₘ` is not 3-colorable.
 
 At the terminal block `S_m`, Lemma 4.4(3) gives `S_m[a] = α` while the walk down the spine
-gives `S_m[a] ≠ α`.-/
+gives `S_m[a] ≠ α`.
+@isnad1 id=not.1h1v.s4.4ecec734635e from=translated src=- shape=0c29fef7 vocab=4196349f
+-/
 theorem G_not_colorable_three (m : ℕ) (hm : 1 ≤ m) : ¬ (G m).Colorable 3 := by
   rintro ⟨C⟩
   have hlast : ((Fin.last m : Fin (m + 1)) : ℕ) = m := by simp
@@ -356,21 +397,31 @@ slot, then `0, 1, 0, 1` along the rim path away from it.-/
 def leafColor (x s : Slot) : Fin 4 :=
   if s = x then 3 else if s = x.succ ∨ s = x.succ.succ.succ then 0 else 1
 
-/-- Enumeration size: `5 * 5 = 25` pairs of slots.-/
+/-- Enumeration size: `5 * 5 = 25` pairs of slots.
+@isnad1 id=ne.1h2v.s4.30e7074fdefa from=translated src=- shape=4d31b489 vocab=7b99d228
+-/
 theorem spineColor_rim : ∀ s t : Slot, Slot.rimAdjB s t = true → spineColor s ≠ spineColor t := by
   decide
 
-/-- Enumeration size: 5 slots.-/
+/-- Enumeration size: 5 slots.
+@isnad1 id=ne.0h1v.s4.051dbd8a0f99 from=translated src=- shape=13702d8e vocab=d0c75255
+-/
 theorem spineColor_ne_three : ∀ s : Slot, spineColor s ≠ 3 := by decide
 
-/-- Enumeration size: 5 slots.-/
+/-- Enumeration size: 5 slots.
+@isnad1 id=eq.0h1v.s4.e11913bbd688 from=translated src=- shape=191b63ec vocab=c1a834cf
+-/
 @[simp] theorem leafColor_self (x : Slot) : leafColor x x = 3 := by simp [leafColor]
 
 /-- Only the attachment slot of a leaf block uses colour `3`, so no neighbour of `v` does.
-Enumeration size: `5 * 5 = 25` pairs of slots.-/
+Enumeration size: `5 * 5 = 25` pairs of slots.
+@isnad1 id=ne.1h2v.s5.744b103f3371 from=translated src=- shape=83de14af vocab=c1a834cf
+-/
 theorem leafColor_ne_three : ∀ x s : Slot, s ≠ x → leafColor x s ≠ 3 := by decide
 
-/-- The leaf pattern is proper on the rim. Enumeration size: `5³ = 125` triples of slots.-/
+/-- The leaf pattern is proper on the rim. Enumeration size: `5³ = 125` triples of slots.
+@isnad1 id=ne.1h3v.s4.d7d532c63c25 from=translated src=- shape=30649a15 vocab=0a0de467
+-/
 theorem leafColor_rim :
     ∀ x s t : Slot, Slot.rimAdjB s t = true → leafColor x s ≠ leafColor x t := by decide
 
@@ -382,21 +433,32 @@ def color4 : Vtx m → Fin 4
     | .spine _ => spineColor s
     | .leaf _ x => leafColor x s
 
+/--
+@isnad1 id=eq.0h1v.s4.ca4248403f1e from=translated src=- shape=68baaef3 vocab=ac38a3fc
+-/
 @[simp] theorem color4_v : color4 (Vtx.v m) = 3 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.fe8eabb6acdc from=translated src=- shape=901ac6b8 vocab=ff34454f
+-/
 theorem color4_spine {b : ValidBlock m} {i : Fin (m + 1)} (h : b.val = Block.spine i) (s : Slot) :
     color4 (Vtx.mk b s) = spineColor s := by
   obtain ⟨bv, hbv⟩ := b
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.48e70dde1226 from=translated src=- shape=d573502e vocab=08f238d7
+-/
 theorem color4_leaf {b : ValidBlock m} {i : Fin (m + 1)} {x : Slot}
     (h : b.val = Block.leaf i x) (s : Slot) : color4 (Vtx.mk b s) = leafColor x s := by
   obtain ⟨bv, hbv⟩ := b
   subst h
   rfl
 
-/-- Adjacent vertices of `Gₘ` get different `color4` values.-/
+/-- Adjacent vertices of `Gₘ` get different `color4` values.
+@isnad1 id=ne.1h3v.s4.0ff5cbf09163 from=translated src=- shape=f1693791 vocab=d58269b0
+-/
 theorem color4_valid {u w : Vtx m} (h : (G m).Adj u w) : color4 u ≠ color4 w := by
   match u, w with
   | none, none => exact absurd rfl h.ne
@@ -434,11 +496,15 @@ theorem color4_valid {u w : Vtx m} (h : (G m).Adj u w) : color4 u ≠ color4 w :
         · rw [color4_spine hb, color4_spine hb', hs, ht]
           decide
 
-/-- `Gₘ` is 4-colorable, via the explicit pattern `color4`.-/
+/-- `Gₘ` is 4-colorable, via the explicit pattern `color4`.
+@isnad1 id=colorabl.1h1v.s4.8981729c7ec1 from=translated src=- shape=db43be35 vocab=4196349f
+-/
 theorem G_colorable_four (m : ℕ) (hm : 1 ≤ m) : (G m).Colorable 4 :=
   ⟨Coloring.mk color4 fun {_ _} h => color4_valid h⟩
 
-/-- `χ(Gₘ) = 4`, combining Proposition 4.5 with 4-colorability.-/
+/-- `χ(Gₘ) = 4`, combining Proposition 4.5 with 4-colorability.
+@isnad1 id=eq.1h1v.s4.fb10a37a3911 from=translated src=- shape=d79f1f3f vocab=9c960cff
+-/
 theorem G_chromaticNumber (m : ℕ) (hm : 1 ≤ m) : (G m).chromaticNumber = 4 := by
   have h : (G m).chromaticNumber = (3 : ℕ) + 1 :=
     chromaticNumber_eq_iff_colorable_not_colorable.mpr

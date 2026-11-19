@@ -61,13 +61,17 @@ variable {m : ℕ}
 
 /-! ### Two small structural helpers -/
 
-/-- A rim edge joins two slots of one and the same block.-/
+/-- A rim edge joins two slots of one and the same block.
+@isnad1 id=eq.1h5v.s4.f13c9b2c62ad from=translated src=- shape=f3e19f6f vocab=7e6b0caf
+-/
 lemma block_eq_of_rimAdjVB {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     (h : rimAdjVB (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) = true) : b₁ = b₂ := by
   simp only [rimAdjVB, Vtx.mk, Bool.and_eq_true, beq_iff_eq] at h
   exact h.1
 
-/-- Every block is either a spine block or a leaf block.-/
+/-- Every block is either a spine block or a leaf block.
+@isnad1 id=or.0h2v.s6.e0926809ebaf from=translated src=- shape=2906a797 vocab=77b1d967
+-/
 lemma ValidBlock.cases' (b : ValidBlock m) :
     (∃ i : Fin (m + 1), b.val = Block.spine i) ∨
       (∃ (i : Fin (m + 1)) (x : Slot), b.val = Block.leaf i x) := by
@@ -90,7 +94,9 @@ def Block.attachSlot : Block m → Block m → Slot
   | .spine _, .leaf _ x => x
   | .spine i, .spine j => if (i : ℕ) + 1 = (j : ℕ) then Slot.c else Slot.a
 
-/-- The slots of an inter-block edge are determined by the pair of blocks it joins.-/
+/-- The slots of an inter-block edge are determined by the pair of blocks it joins.
+@isnad1 id=and.1h5v.s6.c6e4e541471f from=translated src=- shape=5981c732 vocab=cb2925f8
+-/
 lemma slots_of_interAdjVB {b b' : ValidBlock m} {s s' : Slot}
     (h : interAdjVB (Vtx.mk b s) (Vtx.mk b' s') = true) :
     s = Block.attachSlot b.val b'.val ∧ s' = Block.attachSlot b'.val b.val := by
@@ -105,7 +111,9 @@ lemma slots_of_interAdjVB {b b' : ValidBlock m} {s s' : Slot}
 
 /-- **Cross edges are inter-block edges.** Two adjacent vertices of `G'ₘ` lying in different
 blocks are joined by an inter-block edge (in one orientation or the other); the rim relation
-can only join vertices of one and the same block.-/
+can only join vertices of one and the same block.
+@isnad1 id=or.4h7v.s6.e0aff94d5656 from=translated src=- shape=9242c809 vocab=32180b0a
+-/
 theorem G'_adj_of_ne_block {u w : Vtx m} {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     (hu : u = Vtx.mk b₁ s₁) (hw : w = Vtx.mk b₂ s₂) (hne : b₁ ≠ b₂)
     (hadj : (G' m).Adj u w) :
@@ -121,7 +129,9 @@ theorem G'_adj_of_ne_block {u w : Vtx m} {b₁ b₂ : ValidBlock m} {s₁ s₂ :
 
 /-- The slots of a `G'ₘ`-edge between two *different* blocks are determined by those blocks.
 Note the conclusion is symmetric in the two endpoints, so it does not matter which orientation
-the underlying inter-block edge has.-/
+the underlying inter-block edge has.
+@isnad1 id=and.2h5v.s6.4860630526be from=translated src=- shape=def6259d vocab=4a262f4b
+-/
 lemma slots_of_G'_adj_ne_block {b b' : ValidBlock m} {s s' : Slot} (hne : b ≠ b')
     (h : (G' m).Adj (Vtx.mk b s) (Vtx.mk b' s')) :
     s = Block.attachSlot b.val b'.val ∧ s' = Block.attachSlot b'.val b.val := by
@@ -130,7 +140,9 @@ lemma slots_of_G'_adj_ne_block {b b' : ValidBlock m} {s s' : Slot} (hne : b ≠ 
   · exact (slots_of_interAdjVB h').symm
 
 /-- **There is at most one inter-block edge between two blocks.** Hence two *distinct* vertices
-of one block cannot have a common neighbour outside that block.-/
+of one block cannot have a common neighbour outside that block.
+@isnad1 id=false.4h6v.s5.ff7aeb9b2b0b from=translated src=- shape=02384300 vocab=46fe0c50
+-/
 lemma two_in_one_block {b b' : ValidBlock m} {s t s' : Slot} (hne : b ≠ b') (hst : s ≠ t)
     (h₁ : (G' m).Adj (Vtx.mk b s) (Vtx.mk b' s'))
     (h₂ : (G' m).Adj (Vtx.mk b t) (Vtx.mk b' s')) : False :=
@@ -139,7 +151,9 @@ lemma two_in_one_block {b b' : ValidBlock m} {s t s' : Slot} (hne : b ≠ b') (h
 /-! ### The block graph of the caterpillar is triangle-free -/
 
 /-- **A leaf block has exactly one block-neighbour: its own spine block.** This is the reason
-the block graph has no triangles.-/
+the block graph has no triangles.
+@isnad1 id=eq.3h7v.s6.08d7189094d0 from=translated src=- shape=6182446b vocab=976d3552
+-/
 lemma spine_of_G'_adj_leaf {b b' : ValidBlock m} {s s' : Slot} {i : Fin (m + 1)} {x : Slot}
     (hb : b.val = Block.leaf i x) (hne : b ≠ b')
     (h : (G' m).Adj (Vtx.mk b s) (Vtx.mk b' s')) : b'.val = Block.spine i := by
@@ -151,7 +165,9 @@ lemma spine_of_G'_adj_leaf {b b' : ValidBlock m} {s s' : Slot} {i : Fin (m + 1)}
     · rw [hb] at hb₂; simp at hb₂
     · rw [hb] at hb₂; simp at hb₂
 
-/-- Two adjacent spine blocks have indices differing by exactly one.-/
+/-- Two adjacent spine blocks have indices differing by exactly one.
+@isnad1 id=or.4h7v.s7.9625de4d9a79 from=translated src=- shape=bf3d9759 vocab=33ef91e9
+-/
 lemma spine_adj_index {b b' : ValidBlock m} {s s' : Slot} {i j : Fin (m + 1)}
     (hb : b.val = Block.spine i) (hb' : b'.val = Block.spine j) (hne : b ≠ b')
     (h : (G' m).Adj (Vtx.mk b s) (Vtx.mk b' s')) :
@@ -168,7 +184,9 @@ lemma spine_adj_index {b b' : ValidBlock m} {s s' : Slot} {i j : Fin (m + 1)}
 
 /-- **The block graph is triangle-free.** Three pairwise distinct, pairwise adjacent blocks
 cannot exist: a leaf block has only one block-neighbour, so all three would be spine blocks,
-and three spine indices cannot pairwise differ by exactly one.-/
+and three spine indices cannot pairwise differ by exactly one.
+@isnad1 id=false.6h7v.s6.a094885f6b2c from=translated src=- shape=a2c8c2a6 vocab=46fe0c50
+-/
 lemma no_block_triangle {b₁ b₂ b₃ : ValidBlock m} {s₁ s₂ s₃ : Slot}
     (h12 : b₁ ≠ b₂) (h13 : b₁ ≠ b₃) (h23 : b₂ ≠ b₃)
     (a12 : (G' m).Adj (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂))
@@ -202,20 +220,26 @@ lemma no_block_triangle {b₁ b₂ b₃ : ValidBlock m} {s₁ s₂ s₃ : Slot}
 /-- Inside one pentagon, no three slots are pairwise rim-adjacent.
 
 Enumeration size: `5³ = 125` slot triples, discharged by `decide` on the finite `Slot` type.
-This is independent of `m`.-/
+This is independent of `m`.
+@isnad1 id=not.0h3v.s4.e5bf8c1d8233 from=translated src=- shape=3ad30b71 vocab=8719f08a
+-/
 theorem no_rim_triangle (s t r : Slot) :
     ¬ (Slot.rimAdjB s t = true ∧ Slot.rimAdjB t r = true ∧ Slot.rimAdjB s r = true) := by
   revert s t r
   decide
 
-/-- Every vertex incident to an edge of `G'ₘ` lies in a block (it is not `v`).-/
+/-- Every vertex incident to an edge of `G'ₘ` lies in a block (it is not `v`).
+@isnad1 id=ex.1h3v.s5.9676dbd4512e from=translated src=- shape=748378a1 vocab=46fe0c50
+-/
 lemma exists_mk_of_G'_adj_left {u w : Vtx m} (h : (G' m).Adj u w) :
     ∃ (b : ValidBlock m) (s : Slot), u = Vtx.mk b s := by
   cases u with
   | none => exact absurd h (G'_not_adj_v w)
   | some p => exact ⟨p.1, p.2, rfl⟩
 
-/-- A triangle of `G'ₘ`, written out on block coordinates, is impossible.-/
+/-- A triangle of `G'ₘ`, written out on block coordinates, is impossible.
+@isnad1 id=false.6h7v.s6.2a1a201d21d7 from=translated src=- shape=3e84a567 vocab=46fe0c50
+-/
 theorem G'_no_triangle (b₁ b₂ b₃ : ValidBlock m) (s₁ s₂ s₃ : Slot)
     (hu12 : Vtx.mk b₁ s₁ ≠ Vtx.mk b₂ s₂) (hu13 : Vtx.mk b₁ s₁ ≠ Vtx.mk b₃ s₃)
     (hu23 : Vtx.mk b₂ s₂ ≠ Vtx.mk b₃ s₃)
@@ -246,7 +270,9 @@ theorem G'_no_triangle (b₁ b₂ b₃ : ValidBlock m) (s₁ s₂ s₃ : Slot)
         exact no_block_triangle h12 h13 h23 a12 a13 a23
 
 /-- `G'ₘ` is triangle-free: every pentagon is an induced 5-cycle, and the inter-block edges
-form a tree on the blocks.-/
+form a tree on the blocks.
+@isnad1 id=cliquefr.0h1v.s3.50103b0476c3 from=translated src=- shape=634d9a65 vocab=5ee90fe0
+-/
 theorem G'_cliqueFree_three (m : ℕ) : (G' m).CliqueFree 3 := by
   intro t ht
   obtain ⟨u₁, u₂, u₃, h12, h13, h23, rfl⟩ := Finset.card_eq_three.mp ht.card_eq
@@ -267,7 +293,9 @@ vertex-disjoint paths — so `N(v)` is a disjoint union of paths.
 
 For `K₄`-freeness only triangle-freeness of `N(v)` is needed, and that already follows from
 `Erdos1091.G'_cliqueFree_three`: every neighbour of `v` is distinct from `v`, and on such
-vertices `Gₘ`-adjacency coincides with `G'ₘ`-adjacency.-/
+vertices `Gₘ`-adjacency coincides with `G'ₘ`-adjacency.
+@isnad1 id=cliquefr.0h1v.s4.dad8cc4dcfe2 from=translated src=- shape=b6e857a2 vocab=d0632567
+-/
 theorem neighbor_v_cliqueFree_three (m : ℕ) :
     ((G m).induce ((G m).neighborSet (Vtx.v m))).CliqueFree 3 := by
   intro t ht
@@ -289,7 +317,9 @@ theorem neighbor_v_cliqueFree_three (m : ℕ) :
 
 A `K₄` contains at most one copy of `v`, hence three vertices other than `v`; those three are
 pairwise `G'ₘ`-adjacent by `Erdos1091.G_adj_mk_mk`, contradicting
-`Erdos1091.G'_cliqueFree_three`.-/
+`Erdos1091.G'_cliqueFree_three`.
+@isnad1 id=cliquefr.0h1v.s3.250b06b7adef from=translated src=- shape=634d9a65 vocab=de541afb
+-/
 theorem G_cliqueFree_four (m : ℕ) : (G m).CliqueFree 4 := by
   intro t ht
   -- Drop `v` from the clique; at least three vertices survive.

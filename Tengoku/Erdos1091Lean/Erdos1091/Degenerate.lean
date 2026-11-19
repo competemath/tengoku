@@ -64,7 +64,9 @@ open SimpleGraph
 
 variable {m : ℕ}
 
-/-- Every edge of `Gₘ` has at least one endpoint different from `v`.-/
+/-- Every edge of `Gₘ` has at least one endpoint different from `v`.
+@isnad1 id=or.1h3v.s4.7254d8ec6a08 from=translated src=- shape=51ed57bf vocab=361b3ab5
+-/
 theorem exists_ne_v_of_adj {u w : Vtx m} (h : (G m).Adj u w) :
     u ≠ Vtx.v m ∨ w ≠ Vtx.v m := by
   by_contra hcon
@@ -74,7 +76,9 @@ theorem exists_ne_v_of_adj {u w : Vtx m} (h : (G m).Adj u w) :
 /-- The `Set`-indexed criterion for 2-degeneracy: it is enough to find, in every non-empty set
 of vertices, one vertex with at most two neighbours *inside that set*.
 
-This is the converse of `Erdos1091.exists_mem_encard_le_two`.-/
+This is the converse of `Erdos1091.exists_mem_encard_le_two`.
+@isnad1 id=istwodeg.1h2v.s5.73209ba5a0e2 from=translated src=- shape=0ece49ef vocab=2063f035
+-/
 theorem isTwoDegenerate_of_forall_set {V : Type*} {H : SimpleGraph V}
     (h : ∀ s : Set V, s.Nonempty → ∃ u ∈ s, {z | z ∈ s ∧ H.Adj u z}.encard ≤ 2) :
     IsTwoDegenerate H := by
@@ -94,7 +98,9 @@ theorem isTwoDegenerate_of_forall_set {V : Type*} {H : SimpleGraph V}
 
 /-! ### The counting step -/
 
-/-- `Erdos1091.degree_eq_three` in `Set.encard` form.-/
+/-- `Erdos1091.degree_eq_three` in `Set.encard` form.
+@isnad1 id=eq.2h2v.s5.129793102d94 from=translated src=- shape=9005a01d vocab=37a46564
+-/
 theorem neighborSet_encard_eq_three (m : ℕ) (hm : 1 ≤ m) (u : Vtx m) (hu : u ≠ Vtx.v m) :
     ((G m).neighborSet u : Set (Vtx m)).encard = 3 := by
   have h := degree_eq_three m hm u hu
@@ -105,7 +111,9 @@ theorem neighborSet_encard_eq_three (m : ℕ) (hm : 1 ≤ m) (u : Vtx m) (hu : u
 
 /-- **The counting core.** If `p ≠ v`, `w` is a `Gₘ`-neighbour of `p`, and every element of `T`
 is a `Gₘ`-neighbour of `p` other than `w`, then `T` has at most two elements: `p` has exactly
-three neighbours and `w` is not among those counted.-/
+three neighbours and `w` is not among those counted.
+@isnad1 id=le.4h4v.s6.4945aa51f0aa from=translated src=- shape=2d38ddc6 vocab=5a0774ab
+-/
 theorem encard_le_two_of_subset_neighborSet_diff (m : ℕ) (hm : 1 ≤ m) {p w : Vtx m}
     (hp : p ≠ Vtx.v m) (hw : (G m).Adj p w) {T : Set (Vtx m)}
     (hT : T ⊆ ((G m).neighborSet p : Set (Vtx m)) \ {w}) : T.encard ≤ 2 := by
@@ -117,7 +125,9 @@ theorem encard_le_two_of_subset_neighborSet_diff (m : ℕ) (hm : 1 ≤ m) {p w :
 
 /-- The uniform bound used in every branch of `Erdos1091.master`: if `p ≠ v` has a
 `Gₘ`-neighbour `w` which fails to be an `H`-neighbour of `p` inside `S`, then `p` has at most
-two `H`-neighbours inside `S`.-/
+two `H`-neighbours inside `S`.
+@isnad1 id=le.4h5v.s6.4ef65ad414c9 from=translated src=- shape=00ec38f1 vocab=210d6640
+-/
 theorem encard_le_two_of_excluded (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph)
     (S : Set (Vtx m)) {p w : Vtx m} (hp : p ≠ Vtx.v m) (hpw : (G m).Adj p w)
     (hexcl : ¬ (w ∈ S ∧ H.Adj p w)) :
@@ -128,7 +138,9 @@ theorem encard_le_two_of_excluded (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph)
   rintro rfl
   exact hexcl ⟨hzS, hadj⟩
 
-/-- A proper subgraph carrying *all* the vertices must be missing an edge.-/
+/-- A proper subgraph carrying *all* the vertices must be missing an edge.
+@isnad1 id=ex.2h2v.s6.71d4fcd8c346 from=translated src=- shape=cc674486 vocab=4c6b1fa0
+-/
 theorem exists_missing_edge (m : ℕ) (H : (G m).Subgraph) (hne : H ≠ ⊤)
     (hverts : H.verts = Set.univ) : ∃ a b : Vtx m, (G m).Adj a b ∧ ¬ H.Adj a b := by
   by_contra hcon
@@ -148,9 +160,15 @@ the only vertex missing from `S` is `v` itself, so we must point at a vertex tha
 sees.-/
 def probeVtx (m : ℕ) : Vtx m := Vtx.mk ⟨Block.leaf 0 Slot.b, rfl⟩ Slot.a
 
+/--
+@isnad1 id=ne.0h1v.s3.ea8f50f94cdb from=translated src=- shape=ca92e646 vocab=1810bd2c
+-/
 theorem probeVtx_ne_v (m : ℕ) : probeVtx m ≠ Vtx.v m := by
   simp [probeVtx, Vtx.mk, Vtx.v]
 
+/--
+@isnad1 id=adj.0h1v.s3.95374c05d597 from=translated src=- shape=7c615e45 vocab=108df590
+-/
 theorem probeVtx_adj_v (m : ℕ) : (G m).Adj (probeVtx m) (Vtx.v m) := by
   rw [G_adj]
   refine ⟨probeVtx_ne_v m, Or.inr ?_⟩
@@ -161,7 +179,9 @@ theorem probeVtx_adj_v (m : ℕ) : (G m).Adj (probeVtx m) (Vtx.v m) := by
 
 The case split is on "does `S` contain a vertex other than `v`", then "is there a vertex other
 than `v` *outside* `S`" — which makes `S = Set.univ` fall out as a sub-branch rather than
-needing to be decided up front.-/
+needing to be decided up front.
+@isnad1 id=ex.4h3v.s6.1988bd3394b2 from=translated src=- shape=698071af vocab=1763d900
+-/
 theorem master (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph) (hne : H ≠ ⊤)
     (S : Set (Vtx m)) (hS : S.Nonempty) (hSH : S ⊆ H.verts) :
     ∃ p ∈ S, {z | z ∈ S ∧ H.Adj p z}.encard ≤ 2 := by
@@ -221,7 +241,9 @@ theorem master (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph) (hne : H ≠ ⊤)
 
 /-! ### Assembly -/
 
-/-- **Proposition 4.6**, degeneracy half: every proper subgraph of `Gₘ` is 2-degenerate.-/
+/-- **Proposition 4.6**, degeneracy half: every proper subgraph of `Gₘ` is 2-degenerate.
+@isnad1 id=istwodeg.2h2v.s5.aea61023a78b from=translated src=- shape=e94f63f0 vocab=cdee6077
+-/
 theorem proper_subgraph_isTwoDegenerate (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph) (hne : H ≠ ⊤) :
     IsTwoDegenerate H.coe := by
   refine isTwoDegenerate_of_forall_set ?_
@@ -243,7 +265,9 @@ theorem proper_subgraph_isTwoDegenerate (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subg
 
 /-- Any non-empty proper subgraph of `Gₘ` has a vertex of degree at most 2. This is the
 statement as the paper phrases it ("minimum degree at most 2"); the hereditary version above is
-what the greedy colouring actually consumes.-/
+what the greedy colouring actually consumes.
+@isnad1 id=ex.3h2v.s6.6e6d5e780ee0 from=translated src=- shape=faa6330e vocab=f4634e2f
+-/
 theorem exists_degree_le_two (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph) (hne : H ≠ ⊤)
     (hverts : H.verts.Nonempty) :
     ∃ u : H.verts, (H.coe.neighborSet u : Set H.verts).encard ≤ 2 := by
@@ -256,7 +280,9 @@ theorem exists_degree_le_two (m : ℕ) (hm : 1 ≤ m) (H : (G m).Subgraph) (hne 
     ext z; simp [SimpleGraph.mem_neighborSet]
   rwa [this] at hu
 
-/-- **Proposition 4.6.** Every proper subgraph of `Gₘ` has chromatic number at most 3.-/
+/-- **Proposition 4.6.** Every proper subgraph of `Gₘ` has chromatic number at most 3.
+@isnad1 id=le.2h2v.s6.d73b042fca2c from=translated src=- shape=fe99eedd vocab=5cd419d8
+-/
 theorem proper_subgraph_chromaticNumber_le_three (m : ℕ) (hm : 1 ≤ m)
     (H : (G m).Subgraph) (hne : H ≠ ⊤) :
     H.coe.chromaticNumber ≤ 3 := by

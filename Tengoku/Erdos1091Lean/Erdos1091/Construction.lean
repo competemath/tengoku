@@ -80,6 +80,9 @@ instance : Fintype Slot where
   elems := {Slot.a, Slot.b, Slot.c, Slot.d, Slot.e}
   complete := by intro x; cases x <;> decide
 
+/--
+@isnad1 id=eq.0h0v.s3.2897e190adc1 from=translated src=- shape=b0ae1d2b vocab=23511cf1
+-/
 @[simp]
 theorem card_eq : Fintype.card Slot = 5 := by decide
 
@@ -90,12 +93,16 @@ def succ : Slot → Slot
 /-- Rim adjacency inside one pentagon: `s` and `t` are consecutive on the 5-cycle.-/
 def rimAdjB (s t : Slot) : Bool := (succ s == t) || (succ t == s)
 
-/-- Rim adjacency is symmetric.-/
+/-- Rim adjacency is symmetric.
+@isnad1 id=eq.0h2v.s3.098ec458f8a6 from=translated src=- shape=ab795eaa vocab=f282e78d
+-/
 theorem rimAdjB_comm (s t : Slot) : rimAdjB s t = rimAdjB t s := by
   cases s <;> cases t <;> rfl
 
 /-- No slot is rim-adjacent to itself: the pentagon has no loops.
-Enumeration size: 5 cases.-/
+Enumeration size: 5 cases.
+@isnad1 id=eq.0h1v.s3.45a762b39182 from=translated src=- shape=16c1196c vocab=f243236a
+-/
 theorem rimAdjB_irrefl (s : Slot) : rimAdjB s s = false := by
   cases s <;> rfl
 
@@ -193,15 +200,23 @@ def G (m : ℕ) : SimpleGraph (Vtx m) := SimpleGraph.fromRel (fun u w => rawAdjV
 instance : DecidableRel (G m).Adj := fun _ _ => inferInstanceAs (Decidable (_ ∧ _))
 instance : DecidableRel (G' m).Adj := fun _ _ => inferInstanceAs (Decidable (_ ∧ _))
 
+/--
+@isnad1 id=iff.0h3v.s5.6af8217c98d1 from=translated src=- shape=2097138e vocab=023f6730
+-/
 @[simp]
 lemma G_adj (u w : Vtx m) :
     (G m).Adj u w ↔ u ≠ w ∧ (rawAdjVB u w = true ∨ rawAdjVB w u = true) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.b97ee6310e4e from=translated src=- shape=2097138e vocab=08fb527f
+-/
 @[simp]
 lemma G'_adj (u w : Vtx m) :
     (G' m).Adj u w ↔ u ≠ w ∧ (blockAdjVB u w = true ∨ blockAdjVB w u = true) := Iff.rfl
 
-/-- `G'ₘ` is a subgraph of `Gₘ`: it uses the same edges minus those at `v`.-/
+/-- `G'ₘ` is a subgraph of `Gₘ`: it uses the same edges minus those at `v`.
+@isnad1 id=le.0h1v.s3.e2fdff80fe5f from=translated src=- shape=935d3ac8 vocab=dbb9e6ea
+-/
 lemma G'_le_G : G' m ≤ G m := by
   intro u w h
   rw [G'_adj] at h
@@ -217,33 +232,59 @@ These lemmas are meant to be the *only* thing later files need to know about `ra
 `blockAdjVB`, `interAdjVB` and `specialAdjVB`. Unfolding those definitions again downstream
 is a sign that an interface lemma is missing here. -/
 
+/--
+@isnad1 id=eq.0h2v.s4.f79213488fe0 from=translated src=- shape=4d5f2616 vocab=6f685fe4
+-/
 @[simp] lemma rimAdjVB_none_left (w : Vtx m) : rimAdjVB (none : Vtx m) w = false := by
   cases w <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0f5d570562e7 from=translated src=- shape=6401d9e0 vocab=6f685fe4
+-/
 @[simp] lemma rimAdjVB_none_right (u : Vtx m) : rimAdjVB u (none : Vtx m) = false := by
   cases u <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.dd32d5c13e22 from=translated src=- shape=4d5f2616 vocab=4c1c0cf0
+-/
 @[simp] lemma interAdjVB_none_left (w : Vtx m) : interAdjVB (none : Vtx m) w = false := by
   cases w <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.848fc7d26c75 from=translated src=- shape=6401d9e0 vocab=4c1c0cf0
+-/
 @[simp] lemma interAdjVB_none_right (u : Vtx m) : interAdjVB u (none : Vtx m) = false := by
   cases u <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.57c6584f9f02 from=translated src=- shape=4d5f2616 vocab=1e6f86bf
+-/
 @[simp] lemma blockAdjVB_none_left (w : Vtx m) : blockAdjVB (none : Vtx m) w = false := by
   simp [blockAdjVB]
 
+/--
+@isnad1 id=eq.0h2v.s4.6f2234a36c61 from=translated src=- shape=6401d9e0 vocab=1e6f86bf
+-/
 @[simp] lemma blockAdjVB_none_right (u : Vtx m) : blockAdjVB u (none : Vtx m) = false := by
   simp [blockAdjVB]
 
+/--
+@isnad1 id=eq.0h4v.s4.5243076218bb from=translated src=- shape=9d38d8a8 vocab=ec8472e3
+-/
 @[simp] lemma specialAdjVB_some_left (b : ValidBlock m) (s : Slot) (w : Vtx m) :
     specialAdjVB (Vtx.mk b s) w = false := by
   cases w <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.61ec3bf198a7 from=translated src=- shape=6401d9e0 vocab=d170b731
+-/
 @[simp] lemma specialAdjVB_none_right (u : Vtx m) : specialAdjVB u (none : Vtx m) = false := by
   cases u <;> rfl
 
 /-- The special vertex is isolated in `G'ₘ`; deleting it and isolating it agree for every
-statement we make about `G'ₘ`.-/
+statement we make about `G'ₘ`.
+@isnad1 id=not.0h2v.s3.662ca8f41f47 from=translated src=- shape=586d07a8 vocab=815094d4
+-/
 lemma G'_not_adj_v (w : Vtx m) : ¬ (G' m).Adj (Vtx.v m) w := by
   simp [G'_adj, Vtx.v]
 
@@ -253,12 +294,16 @@ have `v` as an endpoint.
 
 This is what makes Lemma 4.2 short — a `K₄` in `Gₘ` has at least three non-`v` vertices, and
 they form a triangle of `G'ₘ`, so the paper's separate analysis of `N(v)` is subsumed by
-triangle-freeness of `G'ₘ`.-/
+triangle-freeness of `G'ₘ`.
+@isnad1 id=iff.0h5v.s5.4fa249a0821e from=translated src=- shape=64cc4630 vocab=fcef77a2
+-/
 lemma G_adj_mk_mk (b₁ b₂ : ValidBlock m) (s₁ s₂ : Slot) :
     (G m).Adj (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) ↔ (G' m).Adj (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) := by
   simp [G_adj, G'_adj, rawAdjVB]
 
-/-- Adjacency in `Gₘ` between two vertices neither of which is `v` is `G'ₘ`-adjacency.-/
+/-- Adjacency in `Gₘ` between two vertices neither of which is `v` is `G'ₘ`-adjacency.
+@isnad1 id=adj.3h3v.s5.5a1f37dd513f from=translated src=- shape=ed3e3155 vocab=587625f2
+-/
 lemma G'_adj_of_G_adj_of_ne_v {u w : Vtx m} (h : (G m).Adj u w)
     (hu : u ≠ Vtx.v m) (hw : w ≠ Vtx.v m) : (G' m).Adj u w := by
   obtain ⟨⟨b₁, s₁⟩, rfl⟩ : ∃ p, u = some p := by
@@ -272,7 +317,9 @@ lemma G'_adj_of_G_adj_of_ne_v {u w : Vtx m} (h : (G m).Adj u w)
   exact (G_adj_mk_mk b₁ b₂ s₁ s₂).mp h
 
 /-- Unfolding of `interAdjVB` on two block vertices: an inter-block edge is either a leaf
-attaching to its own spine block at its own slot, or a spine edge `S_i[c] — S_{i+1}[a]`.-/
+attaching to its own spine block at its own slot, or a spine edge `S_i[c] — S_{i+1}[a]`.
+@isnad1 id=iff.0h5v.s8.5a0efa88569e from=translated src=- shape=f8310be4 vocab=980e6807
+-/
 lemma interAdjVB_mk_mk_iff (b₁ b₂ : ValidBlock m) (s₁ s₂ : Slot) :
     interAdjVB (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) = true ↔
       (∃ (i : Fin (m + 1)) (x : Slot),
@@ -288,7 +335,9 @@ lemma interAdjVB_mk_mk_iff (b₁ b₂ : ValidBlock m) (s₁ s₂ : Slot) :
     aesop
 
 /-- An inter-block edge really does join two *different* blocks. Consequently, inside a single
-block the only edges are the rim edges of that pentagon.-/
+block the only edges are the rim edges of that pentagon.
+@isnad1 id=ne.1h5v.s4.587fe747cee0 from=translated src=- shape=54990740 vocab=b22abd0e
+-/
 lemma ne_block_of_interAdjVB {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     (h : interAdjVB (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) = true) : b₁ ≠ b₂ := by
   rw [interAdjVB_mk_mk_iff] at h
@@ -299,7 +348,9 @@ lemma ne_block_of_interAdjVB {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     cases Block.spine.inj h₂
     omega
 
-/-- **Within one block, adjacency is rim adjacency.** A pentagon is an induced 5-cycle.-/
+/-- **Within one block, adjacency is rim adjacency.** A pentagon is an induced 5-cycle.
+@isnad1 id=iff.0h4v.s4.7479f694d812 from=translated src=- shape=afe378fc vocab=6e1cf305
+-/
 lemma G'_adj_same_block (b : ValidBlock m) (s₁ s₂ : Slot) :
     (G' m).Adj (Vtx.mk b s₁) (Vtx.mk b s₂) ↔ Slot.rimAdjB s₁ s₂ = true := by
   constructor
@@ -337,7 +388,9 @@ private theorem sum_slot_leaf (m : ℕ) (i : Fin (m + 1)) :
 /-- There are `4m + 6` blocks: `m + 1` spine blocks, `3(m + 1)` leaves at slots `b, d, e`,
 one `a`-leaf on `S₀` and one `c`-leaf on `S_m`.
 
-(`hm` is part of the fixed downstream signature; the count in fact also holds for `m = 0`.)-/
+(`hm` is part of the fixed downstream signature; the count in fact also holds for `m = 0`.)
+@isnad1 id=eq.1h1v.s6.3976bf02186a from=translated src=- shape=8c36cd01 vocab=e1584a39
+-/
 theorem card_validBlock (m : ℕ) (hm : 1 ≤ m) : Fintype.card (ValidBlock m) = 4 * m + 6 := by
   clear hm
   rw [Fintype.card_subtype, Finset.card_filter,
@@ -368,7 +421,9 @@ theorem card_validBlock (m : ℕ) (hm : 1 ≤ m) : Fintype.card (ValidBlock m) =
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul]
   omega
 
-/-- `|V(Gₘ)| = 5(4m + 6) + 1 = 20m + 31`.-/
+/-- `|V(Gₘ)| = 5(4m + 6) + 1 = 20m + 31`.
+@isnad1 id=eq.1h1v.s6.48dbb41bdb6a from=translated src=- shape=8c36cd01 vocab=b077f5b6
+-/
 theorem card_vtx (m : ℕ) (hm : 1 ≤ m) : Fintype.card (Vtx m) = 20 * m + 31 := by
   show Fintype.card (Option (ValidBlock m × Slot)) = 20 * m + 31
   rw [Fintype.card_option, Fintype.card_prod, card_validBlock m hm, Slot.card_eq]
@@ -404,15 +459,25 @@ def pred : Slot → Slot
   | a => e | b => a | c => b | d => c | e => d
 
 /-- Rim adjacency means "the successor or the predecessor".
-Enumeration size: `5 * 5 = 25` pairs of slots.-/
+Enumeration size: `5 * 5 = 25` pairs of slots.
+@isnad1 id=iff.0h2v.s4.03c81d119270 from=translated src=- shape=ceab7f74 vocab=8c00af79
+-/
 theorem rimAdjB_iff (s t : Slot) : rimAdjB s t = true ↔ t = s.succ ∨ t = s.pred := by
   revert s t; decide
 
-/-- Enumeration size: 5 slots.-/
+/-- Enumeration size: 5 slots.
+@isnad1 id=ne.0h1v.s3.dd50f8019090 from=translated src=- shape=0fc427d2 vocab=66f73fc7
+-/
 theorem succ_ne_pred (s : Slot) : s.succ ≠ s.pred := by revert s; decide
 
+/--
+@isnad1 id=eq.0h1v.s3.71a5ca77d394 from=translated src=- shape=bee640bc vocab=299c0a15
+-/
 @[simp] theorem rimAdjB_succ (s : Slot) : rimAdjB s s.succ = true := by revert s; decide
 
+/--
+@isnad1 id=eq.0h1v.s3.1caf37e8ae89 from=translated src=- shape=bee640bc vocab=8d3804b4
+-/
 @[simp] theorem rimAdjB_pred (s : Slot) : rimAdjB s s.pred = true := by revert s; decide
 
 end Slot
@@ -422,16 +487,27 @@ end Slot
 /-- The `i`-th spine block, as a valid block.-/
 def spineVB (i : Fin (m + 1)) : ValidBlock m := ⟨Block.spine i, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.284a505cd5c7 from=translated src=- shape=a4e9157c vocab=746ff135
+-/
 @[simp] theorem spineVB_val (i : Fin (m + 1)) : (spineVB i).val = Block.spine i := rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.549940374023 from=translated src=- shape=644cf092 vocab=a07b2632
+-/
 @[simp] theorem Vtx.mk_eq_mk {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot} :
     Vtx.mk b₁ s₁ = Vtx.mk b₂ s₂ ↔ b₁ = b₂ ∧ s₁ = s₂ := by
   simp [Vtx.mk]
 
+/--
+@isnad1 id=ne.0h3v.s4.eef5dd70a884 from=translated src=- shape=961fb933 vocab=e6333ff9
+-/
 @[simp] theorem Vtx.mk_ne_v (b : ValidBlock m) (s : Slot) : Vtx.mk b s ≠ Vtx.v m := by
   simp [Vtx.mk, Vtx.v]
 
-/-- An inter-block edge yields a `G' m`-edge.-/
+/-- An inter-block edge yields a `G' m`-edge.
+@isnad1 id=adj.1h5v.s5.84c5fc2ef8a9 from=translated src=- shape=53f3a69d vocab=32180b0a
+-/
 theorem G'_adj_of_inter {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     (h : interAdjVB (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) = true) :
     (G' m).Adj (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) := by
@@ -441,7 +517,9 @@ theorem G'_adj_of_inter {b₁ b₂ : ValidBlock m} {s₁ s₂ : Slot}
     exact fun h' _ => hb h'
   · simp [blockAdjVB, h]
 
-/-- The leaf-attachment edge `L_{i,x}[x] — S_i[x]`.-/
+/-- The leaf-attachment edge `L_{i,x}[x] — S_i[x]`.
+@isnad1 id=adj.1h3v.s5.e86b52e6090c from=translated src=- shape=a8ce4924 vocab=5de66d6a
+-/
 theorem G'_adj_leaf_spine (i : Fin (m + 1)) (x : Slot)
     (hv : (Block.leaf i x : Block m).validB = true) :
     (G' m).Adj (Vtx.mk ⟨Block.leaf i x, hv⟩ x) (Vtx.mk (spineVB i) x) := by
@@ -449,7 +527,9 @@ theorem G'_adj_leaf_spine (i : Fin (m + 1)) (x : Slot)
   rw [interAdjVB_mk_mk_iff]
   exact Or.inl ⟨i, x, rfl, rfl, rfl, rfl⟩
 
-/-- The spine edge `S_i[c] — S_j[a]` whenever `i + 1 = j`.-/
+/-- The spine edge `S_i[c] — S_j[a]` whenever `i + 1 = j`.
+@isnad1 id=adj.1h3v.s6.d4fae5be50ed from=translated src=- shape=e39120a6 vocab=4fd2cb66
+-/
 theorem G'_adj_spine_spine {i j : Fin (m + 1)} (h : (i : ℕ) + 1 = (j : ℕ)) :
     (G' m).Adj (Vtx.mk (spineVB i) Slot.c) (Vtx.mk (spineVB j) Slot.a) := by
   refine G'_adj_of_inter ?_
@@ -458,7 +538,9 @@ theorem G'_adj_spine_spine {i j : Fin (m + 1)} (h : (i : ℕ) + 1 = (j : ℕ)) :
 
 /-! ### Connectivity of `G' m` away from `v` -/
 
-/-- Inside one block every two vertices are joined by a walk: the block is a 5-cycle.-/
+/-- Inside one block every two vertices are joined by a walk: the block is a 5-cycle.
+@isnad1 id=reachabl.0h4v.s4.2d3e24e5978e from=translated src=- shape=7958286a vocab=6497bbd9
+-/
 theorem reach_same_block (b : ValidBlock m) (s t : Slot) :
     (G' m).Reachable (Vtx.mk b s) (Vtx.mk b t) := by
   have hadj : ∀ s t : Slot, Slot.rimAdjB s t = true → (G' m).Adj (Vtx.mk b s) (Vtx.mk b t) :=
@@ -477,7 +559,9 @@ theorem reach_same_block (b : ValidBlock m) (s t : Slot) :
     · exact h1.trans (h2.trans (h3.trans h4))
   exact (key s).symm.trans (key t)
 
-/-- Every spine block reaches `S₀[a]`, by downward induction along the spine.-/
+/-- Every spine block reaches `S₀[a]`, by downward induction along the spine.
+@isnad1 id=reachabl.1h3v.s6.2d02b966f49d from=translated src=- shape=26e19f11 vocab=241afa95
+-/
 theorem reach_spine_aux : ∀ (n : ℕ) (i : Fin (m + 1)), (i : ℕ) = n →
     (G' m).Reachable (Vtx.mk (spineVB i) Slot.a) (Vtx.mk (spineVB (0 : Fin (m + 1))) Slot.a) := by
   intro n
@@ -497,7 +581,9 @@ theorem reach_spine_aux : ∀ (n : ℕ) (i : Fin (m + 1)), (i : ℕ) = n →
       exact (hadj.symm.reachable.trans (reach_same_block _ Slot.c Slot.a)).trans
         (ih ⟨n, hlt⟩ rfl)
 
-/-- Every non-special vertex reaches `S₀[a]`.-/
+/-- Every non-special vertex reaches `S₀[a]`.
+@isnad1 id=reachabl.0h3v.s5.87a9a18b8896 from=translated src=- shape=77427e2f vocab=23e1387b
+-/
 theorem reach_root (b : ValidBlock m) (s : Slot) :
     (G' m).Reachable (Vtx.mk b s) (Vtx.mk (spineVB (0 : Fin (m + 1))) Slot.a) := by
   obtain ⟨bv, hbv⟩ := b
@@ -507,7 +593,9 @@ theorem reach_root (b : ValidBlock m) (s : Slot) :
       exact ((reach_same_block _ s x).trans (G'_adj_leaf_spine i x hbv).reachable).trans
         ((reach_same_block _ x Slot.a).trans (reach_spine_aux _ i rfl))
 
-/-- `G'ₘ` is connected away from `v`: the block tree is a tree and each block is a 5-cycle.-/
+/-- `G'ₘ` is connected away from `v`: the block tree is a tree and each block is a 5-cycle.
+@isnad1 id=reachabl.3h3v.s5.ad4a79f497e7 from=translated src=- shape=47b94f05 vocab=474e9da1
+-/
 theorem G'_reachable (m : ℕ) (hm : 1 ≤ m) (u w : Vtx m) (hu : u ≠ Vtx.v m) (hw : w ≠ Vtx.v m) :
     (G' m).Reachable u w := by
   obtain ⟨⟨b₁, s₁⟩, rfl⟩ : ∃ p, u = some p := by
@@ -530,6 +618,9 @@ section GenericDegree
 
 variable {V : Type*} [Fintype V] [DecidableEq V] {H : SimpleGraph V} [DecidableRel H.Adj]
 
+/--
+@isnad1 id=le.1h6v.s6.f66174ebf57f from=translated src=- shape=17712ac6 vocab=64d92d3b
+-/
 theorem degree_le_three_of {u n₁ n₂ n₃ : V}
     (huniq : ∀ w, H.Adj u w → w = n₁ ∨ w = n₂ ∨ w = n₃) : H.degree u ≤ 3 := by
   have hsub : H.neighborFinset u ⊆ ({n₁, n₂, n₃} : Finset V) := by
@@ -542,6 +633,9 @@ theorem degree_le_three_of {u n₁ n₂ n₃ : V}
         exact Nat.succ_le_succ (le_trans (Finset.card_insert_le _ _)
           (Nat.succ_le_succ (Finset.card_singleton _).le))
 
+/--
+@isnad1 id=eq.7h6v.s6.05674a8b5481 from=translated src=- shape=e2a42b35 vocab=7d632068
+-/
 theorem degree_eq_three_of {u n₁ n₂ n₃ : V}
     (h₁ : H.Adj u n₁) (h₂ : H.Adj u n₂) (h₃ : H.Adj u n₃)
     (h12 : n₁ ≠ n₂) (h13 : n₁ ≠ n₃) (h23 : n₂ ≠ n₃)
@@ -564,7 +658,9 @@ end GenericDegree
 /-! ### Adjacency, fully unfolded -/
 
 /-- Adjacency in `Gₘ` between two block vertices: a rim edge of a common block, or an
-inter-block edge in either direction.-/
+inter-block edge in either direction.
+@isnad1 id=iff.0h5v.s6.7bd6a678c09c from=translated src=- shape=25fd24b9 vocab=c2c23b19
+-/
 theorem G_adj_mk_iff (b₁ b₂ : ValidBlock m) (s₁ s₂ : Slot) :
     (G m).Adj (Vtx.mk b₁ s₁) (Vtx.mk b₂ s₂) ↔
       (b₁ = b₂ ∧ Slot.rimAdjB s₁ s₂ = true) ∨
@@ -589,7 +685,9 @@ theorem G_adj_mk_iff (b₁ b₂ : ValidBlock m) (s₁ s₂ : Slot) :
     · exact G'_adj_of_inter h
     · exact (G'_adj_of_inter h).symm
 
-/-- Adjacency to the special vertex.-/
+/-- Adjacency to the special vertex.
+@isnad1 id=iff.0h3v.s4.858bdfbdbe6a from=translated src=- shape=07ddaec2 vocab=39ef7389
+-/
 theorem G_adj_v_mk_iff (b : ValidBlock m) (s : Slot) :
     (G m).Adj (Vtx.v m) (Vtx.mk b s) ↔ specialAdjVB (Vtx.v m) (Vtx.mk b s) = true := by
   rw [G_adj]
@@ -600,7 +698,9 @@ theorem G_adj_v_mk_iff (b : ValidBlock m) (s : Slot) :
   · intro h
     exact ⟨by simp [Vtx.v, Vtx.mk], Or.inl (by simp [rawAdjVB, h])⟩
 
-/-- `v` is adjacent to exactly the non-attachment vertices of the leaf blocks.-/
+/-- `v` is adjacent to exactly the non-attachment vertices of the leaf blocks.
+@isnad1 id=iff.0h3v.s6.3efb03497614 from=translated src=- shape=ec896414 vocab=4389eb73
+-/
 theorem specialAdjVB_mk_iff (b : ValidBlock m) (s : Slot) :
     specialAdjVB (Vtx.v m) (Vtx.mk b s) = true ↔ ∃ i x, b.val = Block.leaf i x ∧ s ≠ x := by
   obtain ⟨bv, hbv⟩ := b
@@ -614,19 +714,29 @@ theorem specialAdjVB_mk_iff (b : ValidBlock m) (s : Slot) :
         cases hj
         exact hs
 
-/-- Adjacency to `v`, seen from a block vertex.-/
+/-- Adjacency to `v`, seen from a block vertex.
+@isnad1 id=iff.0h3v.s6.0a61129d07c4 from=translated src=- shape=ea21361e vocab=44fdc8f3
+-/
 theorem G_adj_mk_v_iff (b : ValidBlock m) (s : Slot) :
     (G m).Adj (Vtx.mk b s) (Vtx.v m) ↔ ∃ i x, b.val = Block.leaf i x ∧ s ≠ x := by
   rw [SimpleGraph.adj_comm, G_adj_v_mk_iff, specialAdjVB_mk_iff]
 
-/-- Adjacency inside one block is rim adjacency, also in `Gₘ`.-/
+/-- Adjacency inside one block is rim adjacency, also in `Gₘ`.
+@isnad1 id=iff.0h4v.s4.40e5deb72cd1 from=translated src=- shape=afe378fc vocab=40e538bc
+-/
 theorem G_adj_same_block (b : ValidBlock m) (s t : Slot) :
     (G m).Adj (Vtx.mk b s) (Vtx.mk b t) ↔ Slot.rimAdjB s t = true := by
   rw [G_adj_mk_mk, G'_adj_same_block]
 
+/--
+@isnad1 id=ne.1h3v.s5.0f8ef9da5ca9 from=translated src=- shape=78286a06 vocab=4725c033
+-/
 theorem valBlock_ne {b₁ b₂ : ValidBlock m} (h : b₁.val ≠ b₂.val) : b₁ ≠ b₂ :=
   fun hh => h (by rw [hh])
 
+/--
+@isnad1 id=ne.1h5v.s4.d154cec54266 from=translated src=- shape=c5ed99e1 vocab=a07b2632
+-/
 theorem mk_ne_mk_of_block_ne {b₁ b₂ : ValidBlock m} (h : b₁ ≠ b₂) (s t : Slot) :
     Vtx.mk b₁ s ≠ Vtx.mk b₂ t := by
   simp only [Vtx.mk_eq_mk, ne_eq, not_and]
@@ -636,7 +746,9 @@ theorem mk_ne_mk_of_block_ne {b₁ b₂ : ValidBlock m} (h : b₁ ≠ b₂) (s t
 
 A `Gₘ`-neighbour of `(b, s)` is one of: the two rim neighbours `(b, s.succ)` and `(b, s.pred)`;
 the special vertex `v`; the spine attachment point of a leaf block; a leaf attached to a spine
-block; or a spine neighbour in either direction.-/
+block; or a spine neighbour in either direction.
+@isnad1 id=or.1h4v.s8.1a0c4a953a19 from=translated src=- shape=2e683e75 vocab=34395a1e
+-/
 theorem G_nbr_cases (b : ValidBlock m) (s : Slot) (w : Vtx m) (h : (G m).Adj (Vtx.mk b s) w) :
     (w = Vtx.mk b s.succ ∨ w = Vtx.mk b s.pred) ∨
     (w = Vtx.v m) ∨
@@ -677,10 +789,15 @@ def IsOutside (b : ValidBlock m) (s : Slot) (w : Vtx m) : Prop :=
   (G m).Adj (Vtx.mk b s) w ∧ w ≠ Vtx.mk b s.succ ∧ w ≠ Vtx.mk b s.pred ∧
     ∀ w', (G m).Adj (Vtx.mk b s) w' → w' = Vtx.mk b s.succ ∨ w' = Vtx.mk b s.pred ∨ w' = w
 
-/-- A vertex in a different block is not a rim neighbour.-/
+/-- A vertex in a different block is not a rim neighbour.
+@isnad1 id=ne.1h5v.s5.ef1c554be779 from=translated src=- shape=e563263d vocab=2e08ce0f
+-/
 theorem outside_ne_rim {b b' : ValidBlock m} (hne : b'.val ≠ b.val) (s t : Slot) :
     Vtx.mk b' t ≠ Vtx.mk b s := mk_ne_mk_of_block_ne (valBlock_ne hne) _ _
 
+/--
+@isnad1 id=ne.0h3v.s4.37e070894c64 from=translated src=- shape=83f49473 vocab=e6333ff9
+-/
 theorem v_ne_mk (b : ValidBlock m) (s : Slot) : Vtx.v m ≠ Vtx.mk b s := by
   simp [Vtx.v, Vtx.mk]
 
@@ -689,7 +806,9 @@ theorem v_ne_mk (b : ValidBlock m) (s : Slot) : Vtx.v m ≠ Vtx.mk b s := by
 At slot `a` the outside edge is the `a`-leaf if `i = 0` and the spine edge to `S_{i-1}[c]`
 otherwise; at slot `c` it is the `c`-leaf if `i = m` and the spine edge to `S_{i+1}[a]`
 otherwise; at `b`, `d`, `e` it is always the corresponding leaf. This is exactly where the
-endpoint asymmetry of the construction pays for itself.-/
+endpoint asymmetry of the construction pays for itself.
+@isnad1 id=ex.0h3v.s5.791fc1cc24c0 from=translated src=- shape=25fac327 vocab=0b08cdfa
+-/
 theorem exists_outside_spine (i : Fin (m + 1)) (s : Slot) :
     ∃ w : Vtx m, IsOutside (spineVB i) s w := by
   have key : ∀ w : Vtx m, (G m).Adj (Vtx.mk (spineVB i) s) w →
@@ -779,7 +898,9 @@ theorem exists_outside_spine (i : Fin (m + 1)) (s : Slot) :
   | e => exact leafcase rfl (fun _ _ => by decide) (fun _ _ => by decide)
 
 /-- **Every vertex other than `v` has exactly one neighbour outside its own pentagon.**
-This is the whole content of `degree_eq_three`.-/
+This is the whole content of `degree_eq_three`.
+@isnad1 id=ex.0h3v.s4.554d75d1f83f from=translated src=- shape=9946f2e2 vocab=3cd9126e
+-/
 theorem exists_outside (b : ValidBlock m) (s : Slot) : ∃ w : Vtx m, IsOutside b s w := by
   obtain ⟨bv, hbv⟩ := b
   cases bv with
@@ -821,7 +942,9 @@ theorem exists_outside (b : ValidBlock m) (s : Slot) : ∃ w : Vtx m, IsOutside 
 /-! ### The degree theorems -/
 
 /-- Every vertex except `v` has degree exactly 3: two rim neighbours plus the unique
-neighbour outside its pentagon.-/
+neighbour outside its pentagon.
+@isnad1 id=eq.2h2v.s6.ac5e3fdf9477 from=translated src=- shape=e51113db vocab=303f7202
+-/
 theorem degree_eq_three (m : ℕ) (hm : 1 ≤ m) (u : Vtx m) (hu : u ≠ Vtx.v m) :
     (G m).degree u = 3 := by
   obtain ⟨⟨b, s⟩, rfl⟩ : ∃ p, u = some p := by
@@ -836,7 +959,9 @@ theorem degree_eq_three (m : ℕ) (hm : 1 ≤ m) (u : Vtx m) (hu : u ≠ Vtx.v m
   exact fun _ => Slot.succ_ne_pred s
 
 /-- All degrees in `G'ₘ` are at most 3: `v` is isolated, and every other vertex keeps at most
-its three `Gₘ`-neighbours.-/
+its three `Gₘ`-neighbours.
+@isnad1 id=le.0h2v.s6.cdb8940486de from=translated src=- shape=e936a591 vocab=74a98f55
+-/
 theorem G'_degree_le_three (m : ℕ) (u : Vtx m) : (G' m).degree u ≤ 3 := by
   match u with
   | none =>
