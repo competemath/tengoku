@@ -32,7 +32,9 @@ private theorem length_le_of_carrier_subset {I J : RealInterval}
 /-- Survival through `n` removals produces an actual chain of `n + 1`
 distinct intervals, with the given interval as its largest member and
 an actual nondegenerate interval as its smallest member. No laminarity
-hypothesis is needed for this direction.-/
+hypothesis is needed for this direction.
+@isnad1 id=ex.1h3v.s7.7539030cfa11 from=translated src=- shape=ea403be1 vocab=b959b126
+-/
 theorem exists_chain_of_mem_remainingIntervals
     {S : Finset RealInterval} {n : ℕ} {I : RealInterval}
     (hI : I ∈ remainingIntervals S n) :
@@ -94,7 +96,9 @@ theorem exists_chain_of_mem_remainingIntervals
         · exact (hK J hJC).trans hJI
         · exact hK L hL
 
-/-- The chain statement for the actual minimal-generation family.-/
+/-- The chain statement for the actual minimal-generation family.
+@isnad1 id=ex.1h3v.s7.96d92213e609 from=translated src=- shape=ea403be1 vocab=9968d7eb
+-/
 theorem exists_chain_of_mem_generation
     {S : Finset RealInterval} {n : ℕ} {I : RealInterval}
     (hI : I ∈ generation S n) :
@@ -111,7 +115,9 @@ noncomputable def overlapCount (S : Finset RealInterval) (x : ℝ) : ℕ := by
   exact (S.filter fun I ↦ x ∈ I.carrier).card
 
 /-- Survival at depth `n` forces overlap at least `n + 1` on an entire
-nondegenerate member of the original family, not merely at one point.-/
+nondegenerate member of the original family, not merely at one point.
+@isnad1 id=ex.1h3v.s6.5fb6bc638536 from=translated src=- shape=6d850226 vocab=eea8c39e
+-/
 theorem exists_interval_overlapCount_gt_of_mem_remainingIntervals
     {S : Finset RealInterval} {n : ℕ} {I : RealInterval}
     (hI : I ∈ remainingIntervals S n) :
@@ -129,6 +135,9 @@ theorem exists_interval_overlapCount_gt_of_mem_remainingIntervals
   rw [hcard] at hle
   exact lt_of_lt_of_le (Nat.lt_succ_self n) hle
 
+/--
+@isnad1 id=ex.1h3v.s6.2ffec2a7e638 from=translated src=- shape=6d850226 vocab=07ec1691
+-/
 theorem exists_interval_overlapCount_gt_of_mem_generation
     {S : Finset RealInterval} {n : ℕ} {I : RealInterval}
     (hI : I ∈ generation S n) :
@@ -137,7 +146,9 @@ theorem exists_interval_overlapCount_gt_of_mem_generation
   exists_interval_overlapCount_gt_of_mem_remainingIntervals (minimalLayer_subset _ hI)
 
 /-- An almost-everywhere spatial-overlap cap already exhausts the actual
-minimal-layer construction after at most that many layers.-/
+minimal-layer construction after at most that many layers.
+@isnad1 id=eq.2h3v.s5.079e64caf852 from=translated src=- shape=7b8873ef vocab=212cc491
+-/
 theorem remainingIntervals_eq_empty_of_ae_overlapCount_le
     (S : Finset RealInterval) {M n : ℕ}
     (hbound : ∀ᵐ x ∂volume, overlapCount S x ≤ M) (hMn : M ≤ n) :
@@ -153,6 +164,9 @@ theorem remainingIntervals_eq_empty_of_ae_overlapCount_le
     (ae_restrict_of_ae hbound)
   exact (not_lt_of_ge (hxb.trans hMn)) (hK x hx)
 
+/--
+@isnad1 id=eq.2h3v.s5.4d6c22508dd0 from=translated src=- shape=7b8873ef vocab=9dd7c27e
+-/
 theorem generation_eq_empty_of_ae_overlapCount_le
     (S : Finset RealInterval) {M n : ℕ}
     (hbound : ∀ᵐ x ∂volume, overlapCount S x ≤ M) (hMn : M ≤ n) :
@@ -161,6 +175,9 @@ theorem generation_eq_empty_of_ae_overlapCount_le
   rw [generation, remainingIntervals_eq_empty_of_ae_overlapCount_le S hbound hMn]
   simp [minimalLayer]
 
+/--
+@isnad1 id=eq.2h3v.s5.83ff339b5d68 from=translated src=- shape=7a9b9287 vocab=9c1b8b3c
+-/
 theorem generation_eq_empty_of_overlapCount_le
     (S : Finset RealInterval) {M n : ℕ}
     (hbound : ∀ x, overlapCount S x ≤ M) (hMn : M ≤ n) :
@@ -168,7 +185,9 @@ theorem generation_eq_empty_of_overlapCount_le
   generation_eq_empty_of_ae_overlapCount_le S (Filter.Eventually.of_forall hbound) hMn
 
 /-- Under an overlap cap, every source interval belongs to one of the
-first `M` actual minimal generations.-/
+first `M` actual minimal generations.
+@isnad1 id=ex.2h3v.s6.dcf60296bccc from=translated src=- shape=4dd7103a vocab=5dd4917c
+-/
 theorem exists_generation_lt_of_mem_of_ae_overlapCount_le
     {S : Finset RealInterval} {M : ℕ} {I : RealInterval}
     (hbound : ∀ᵐ x ∂volume, overlapCount S x ≤ M) (hI : I ∈ S) :
@@ -180,7 +199,9 @@ theorem exists_generation_lt_of_mem_of_ae_overlapCount_le
   exact Finset.notMem_empty I hn
 
 /-- A finite prefix of an eventually zero sequence is exactly its prefix
-truncated at the vanishing threshold.-/
+truncated at the vanishing threshold.
+@isnad1 id=eq.1h4v.s6.e38af56cac07 from=translated src=- shape=ddbfb370 vocab=13703f05
+-/
 theorem sum_range_eq_sum_range_min_of_eq_zero
     {α : Type*} [AddCommMonoid α] (v : ℕ → α) (M n : ℕ)
     (hzero : ∀ i, M ≤ i → v i = 0) :
@@ -193,7 +214,9 @@ theorem sum_range_eq_sum_range_min_of_eq_zero
   omega
 
 /-- The actual generation prefixes truncate exactly at an almost-everywhere
-spatial-overlap cap. The summands may depend on both the layer and interval.-/
+spatial-overlap cap. The summands may depend on both the layer and interval.
+@isnad1 id=eq.1h5v.s6.c644c28a7378 from=translated src=- shape=8e7bb478 vocab=a1cdcd5a
+-/
 theorem sum_generations_eq_sum_generations_min_of_ae_overlapCount_le
     {α : Type*} [AddCommMonoid α] (S : Finset RealInterval) (v : ℕ → RealInterval → α)
     (M n : ℕ) (hbound : ∀ᵐ x ∂volume, overlapCount S x ≤ M) :

@@ -36,15 +36,24 @@ open KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.0h3v.s4.c1fa5cc78103 from=translated src=- shape=8ff19361 vocab=d806ec35
+-/
 theorem localUnitMass_nonneg (I : RealInterval) (b : ℝ → ℂ) (x : ℝ) :
     0 ≤ localUnitMass I b x := integral_nonneg (fun _ ↦ norm_nonneg _)
 
+/--
+@isnad1 id=le.1h3v.s6.7a3e99bd1e3c from=translated src=- shape=c6e95258 vocab=140a58f0
+-/
 theorem localUnitMass_le_total (I : RealInterval) {b : ℝ → ℂ}
     (hb : Integrable b) (x : ℝ) :
     localUnitMass I b x ≤ ∫ t, ‖I.centralThird.indicator b t‖ :=
   setIntegral_le_integral (hb.indicator I.measurableSet_centralThird).norm
     (Filter.Eventually.of_forall (fun _ ↦ norm_nonneg _))
 
+/--
+@isnad1 id=eq.0h3v.s7.0cf68c863024 from=translated src=- shape=4d530f14 vocab=91ee2ebb
+-/
 theorem localUnitMass_eq_integral_indicator (I : RealInterval) (b : ℝ → ℂ) (x : ℝ) :
     localUnitMass I b x =
       ∫ t, if |x - t| ≤ (1 / 2 : ℝ) then ‖I.centralThird.indicator b t‖ else 0 := by
@@ -56,6 +65,9 @@ theorem localUnitMass_eq_integral_indicator (I : RealInterval) (b : ℝ → ℂ)
     constructor <;> intro h <;> constructor <;> linarith [h.1, h.2]
   simp only [indicator_apply, heq]
 
+/--
+@isnad1 id=aestrong.1h2v.s5.1c03cbbb91b9 from=translated src=- shape=19b78d01 vocab=1508cd60
+-/
 theorem aestronglyMeasurable_localUnitMass (I : RealInterval) {b : ℝ → ℂ}
     (hb : Integrable b) : AEStronglyMeasurable (localUnitMass I b) volume := by
   have hm : MeasurableSet {z : ℝ × ℝ | |z.1 - z.2| ≤ (1 / 2 : ℝ)} :=
@@ -67,6 +79,9 @@ theorem aestronglyMeasurable_localUnitMass (I : RealInterval) {b : ℝ → ℂ}
     if |x - y| ≤ (1 / 2 : ℝ) then ‖I.centralThird.indicator b y‖ else 0) volume at hi
   simpa only [← localUnitMass_eq_integral_indicator] using hi
 
+/--
+@isnad1 id=integrab.1h2v.s6.3c2743e9717a from=translated src=- shape=59e852d9 vocab=85824491
+-/
 theorem integrable_mul_localUnitMass (I : RealInterval) {b : ℝ → ℂ}
     (hb : Integrable b) :
     Integrable (fun x ↦ ‖I.centralThird.indicator b x‖ * localUnitMass I b x) := by
@@ -93,15 +108,23 @@ noncomputable def farEnergy (I : RealInterval) (b : ℝ → ℂ) : ℝ :=
   (128 * positiveDyadicAmplitudeBound ^ 2 / I.length ^ 2) *
     (∫ x in I.centralThird, ‖b x‖) ^ 2
 
+/--
+@isnad1 id=le.0h2v.s4.48862c52966e from=translated src=- shape=5d2255d1 vocab=ac92252b
+-/
 theorem nearEnergy_nonneg (I : RealInterval) (b : ℝ → ℂ) : 0 ≤ nearEnergy I b := by
   apply mul_nonneg (by positivity [I.length_pos])
     (integral_nonneg (fun x ↦ mul_nonneg (norm_nonneg _) (localUnitMass_nonneg I b x)))
 
+/--
+@isnad1 id=le.0h2v.s4.8f5c98bee2cb from=translated src=- shape=5d2255d1 vocab=86a3e476
+-/
 theorem farEnergy_nonneg (I : RealInterval) (b : ℝ → ℂ) : 0 ≤ farEnergy I b := by
   unfold farEnergy
   positivity
 
-/-- The actual adjoint correlation, bounded by its two positive regions.-/
+/-- The actual adjoint correlation, bounded by its two positive regions.
+@isnad1 id=le.1h4v.s8.cbb5ac02e725 from=translated src=- shape=6c8f1368 vocab=fb79f26f
+-/
 theorem krauseLaceyPositiveKernel_same_adjoint_le (k : ℤ) (I : RealInterval)
     (hscale : I.length = (2 : ℝ) ^ (k + 2)) (x y : ℝ) :
     ‖∫ t, conj (krauseLaceyPositiveKernel k t x) * krauseLaceyPositiveKernel k t y‖ ≤
@@ -140,7 +163,9 @@ theorem krauseLaceyPositiveKernel_same_adjoint_le (k : ℤ) (I : RealInterval)
   split_ifs <;> linarith
 
 /-- The concrete adjoint majorant used to pass from the kernel estimate
-to the scalar energy split.-/
+to the scalar energy split.
+@isnad1 id=le.2h4v.s8.9156a9e08c20 from=translated src=- shape=6e259669 vocab=8b20d0bc
+-/
 theorem norm_adjoint_localizedPiece_le_near_add_far
     (k : ℤ) (I : RealInterval) (hscale : I.length = (2 : ℝ) ^ (k + 2))
     {b : ℝ → ℂ} (hb : Integrable b) (x : ℝ) :
@@ -182,7 +207,9 @@ theorem norm_adjoint_localizedPiece_le_near_add_far
       simp only [A, B, c, norm_indicator_eq_indicator_norm,
         integral_indicator I.measurableSet_centralThird]
 
-/-- A variable adjoint majorant controls the genuine energy.-/
+/-- A variable adjoint majorant controls the genuine energy.
+@isnad1 id=le.3h4v.s7.94f48b6f066c from=translated src=- shape=d026be74 vocab=4440d3d0
+-/
 theorem localizedEnergy_le_integral_adjoint_majorant
     (k : ℤ) (I : RealInterval) {b : ℝ → ℂ} (hb : Integrable b)
     (H : ℝ → ℝ)
@@ -217,7 +244,9 @@ theorem localizedEnergy_le_integral_adjoint_majorant
   · simp [c, indicator_of_notMem hxI]
 
 /-- The actual `TT*` energy is bounded by the sum of the two explicit
-positive budgets. No classification hypothesis is used.-/
+positive budgets. No classification hypothesis is used.
+@isnad1 id=le.2h3v.s6.6b335c5a2e94 from=translated src=- shape=a232878d vocab=94a75315
+-/
 theorem localizedEnergy_le_near_add_far
     (k : ℤ) (I : RealInterval) (hscale : I.length = (2 : ℝ) ^ (k + 2))
     {b : ℝ → ℂ} (hb : Integrable b) :
@@ -260,14 +289,22 @@ does imply the far-energy estimate proved below.-/
 def IsEnergyStandard (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) : Prop :=
   100 * nearEnergy I b < localizedEnergy k I b
 
+/--
+@isnad1 id=iff.0h3v.s4.e87c1937f69f from=translated src=- shape=6f926a7b vocab=98fc3e30
+-/
 theorem not_isEnergyNonstandard_iff (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) :
     ¬ IsEnergyNonstandard k I b ↔ IsEnergyStandard k I b := not_le
 
+/--
+@isnad1 id=or.0h3v.s4.d44ef4c25a5c from=translated src=- shape=699be57c vocab=98fc3e30
+-/
 theorem energy_classification (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) :
     IsEnergyNonstandard k I b ∨ IsEnergyStandard k I b := le_or_gt _ _
 
 /-- The old pointwise condition implies the scalar near-energy branch;
-the converse is neither assumed nor needed.-/
+the converse is neither assumed nor needed.
+@isnad1 id=isenergy.2h3v.s5.7497420f56c9 from=translated src=- shape=69a2115b vocab=81d0d7cf
+-/
 theorem IsNonstandard.isEnergyNonstandard
     {k : ℤ} {I : RealInterval} {b : ℝ → ℂ} (h : IsNonstandard k I b)
     (hb : Integrable b) : IsEnergyNonstandard k I b := by
@@ -288,7 +325,9 @@ theorem IsNonstandard.isEnergyNonstandard
   ring
 
 /-- A genuine uniform standard energy estimate, obtained by absorbing
-the near term. The loss is exactly `100 / 99`.-/
+the near term. The loss is exactly `100 / 99`.
+@isnad1 id=le.3h3v.s7.a1d50cf9a77f from=translated src=- shape=b9bf8664 vocab=0eda5bdc
+-/
 theorem IsEnergyStandard.localizedEnergy_le_far
     {k : ℤ} {I : RealInterval} {b : ℝ → ℂ} (h : IsEnergyStandard k I b)
     (hb : Integrable b) (hscale : I.length = (2 : ℝ) ^ (k + 2)) :
@@ -298,7 +337,9 @@ theorem IsEnergyStandard.localizedEnergy_le_far
   linarith
 
 /-- The positive near energy of an actual bad-scale input has the desired
-`2^(-s)` gain, derived from stopping parents and the unit-window bound.-/
+`2^(-s)` gain, derived from stopping parents and the unit-window bound.
+@isnad1 id=le.6h7v.s8.da4868aa5dc9 from=translated src=- shape=43bab589 vocab=9e21f95c
+-/
 theorem nearEnergy_badScaleInput_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ k s : ℤ)
@@ -342,7 +383,9 @@ theorem nearEnergy_badScaleInput_le
   ring
 
 /-- The new near-energy branch recovers the concrete diagonal estimate
-without assuming any pointwise adjoint-majorization property.-/
+without assuming any pointwise adjoint-majorization property.
+@isnad1 id=le.7h7v.s8.23ff7aaf9d0e from=translated src=- shape=35ec8590 vocab=c0d9b41d
+-/
 theorem energyNonstandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ k s : ℤ)
@@ -383,6 +426,9 @@ noncomputable def energyStandardIntervals
   (energyEligibleIntervals S f I₀ k₀ s scale).filter fun I ↦
     IsEnergyStandard (scale I) I (badScaleInput S f I₀ k₀ (scale I + 2 - s))
 
+/--
+@isnad1 id=eq.0h6v.s5.5c1185522ab6 from=translated src=- shape=41b889dd vocab=190fb938
+-/
 theorem energyIntervals_partition
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) :
@@ -400,6 +446,9 @@ theorem energyIntervals_partition
     · exact Finset.mem_union.mpr (Or.inl (Finset.mem_filter.mpr ⟨h, hn⟩))
     · exact Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨h, hs⟩))
 
+/--
+@isnad1 id=disjoint.0h6v.s5.e428a5ccc834 from=translated src=- shape=71019a9e vocab=d4019594
+-/
 theorem energyIntervals_disjoint
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) :
@@ -409,6 +458,9 @@ theorem energyIntervals_disjoint
   intro I hn hs
   exact not_lt_of_ge (Finset.mem_filter.mp hn).2 (Finset.mem_filter.mp hs).2
 
+/--
+@isnad1 id=le.0h6v.s5.3698d75225af from=translated src=- shape=a41cfead vocab=b5573cdd
+-/
 theorem energyEligibleIntervals_subset
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) : energyEligibleIntervals S f I₀ k₀ s scale ⊆ S := by
@@ -416,7 +468,9 @@ theorem energyEligibleIntervals_subset
   exact (Finset.mem_filter.mp (Finset.mem_filter.mp hI).1).1
 
 /-- Every old pointwise nonstandard interval belongs to the new scalar
-near branch, with no converse assertion.-/
+near branch, with no converse assertion.
+@isnad1 id=le.1h6v.s6.933b3e1500b1 from=translated src=- shape=4dfc6262 vocab=715f113b
+-/
 theorem nonstandardIntervals_subset_energyNonstandardIntervals
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ) :
@@ -426,7 +480,9 @@ theorem nonstandardIntervals_subset_energyNonstandardIntervals
   exact Finset.mem_filter.mpr ⟨Finset.mem_filter.mpr ⟨hg, hscale, hgap⟩,
     hns.isEnergyNonstandard (integrable_badScaleInput S hf I₀ k₀ _)⟩
 
-/-- Summed near energy with no cardinality or scale-count loss.-/
+/-- Summed near energy with no cardinality or scale-count loss.
+@isnad1 id=le.6h7v.s8.2be520ae386a from=translated src=- shape=2b6636a7 vocab=58c83004
+-/
 theorem sum_energyNonstandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -460,7 +516,9 @@ theorem sum_energyNonstandard_badPiece_diagonalEnergy_le
       (by dsimp [C]; positivity [intervalL1Average_nonneg f I₀])
 
 /-- Standard energy at an actual good interval gains its inverse length.
-The only upper average bound used is the proved stopping bound.-/
+The only upper average bound used is the proved stopping bound.
+@isnad1 id=le.6h7v.s8.f426bc246bc3 from=translated src=- shape=e5e0c84e vocab=e8cbaf75
+-/
 theorem energyStandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ k s : ℤ)
@@ -493,7 +551,9 @@ theorem energyStandard_badPiece_diagonalEnergy_le
 
 /-- Uniform summed standard diagonal energy above a physical scale.
 This retains geometric decay in the physical scale and does not charge
-the number of intervals or the number of represented physical scales.-/
+the number of intervals or the number of represented physical scales.
+@isnad1 id=le.5h8v.s8.611679ffdf8b from=translated src=- shape=c0d592cc vocab=c6023a48
+-/
 theorem sum_energyStandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s kmin : ℤ) (scale : RealInterval → ℤ)
@@ -533,7 +593,9 @@ theorem sum_energyStandard_badPiece_diagonalEnergy_le
       (by dsimp [C]; positivity [intervalL1Average_nonneg f I₀])
 
 /-- On a single physical scale, disjoint output supports turn the summed
-standard diagonal estimate into an estimate for the actual operator sum.-/
+standard diagonal estimate into an estimate for the actual operator sum.
+@isnad1 id=le.5h8v.s10.a73dc2194b77 from=translated src=- shape=996e52bd vocab=fa4fedbb
+-/
 theorem norm_energyStandard_fixedScale_sum_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s k : ℤ) (scale : RealInterval → ℤ)

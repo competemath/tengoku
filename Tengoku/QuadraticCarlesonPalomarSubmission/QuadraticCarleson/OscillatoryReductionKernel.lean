@@ -27,10 +27,16 @@ namespace OscillatoryReduction
 noncomputable def innerRadius (lam : ℝ) (hlam : lam ≠ 0) : ℝ :=
   (2 : ℝ) ^ (oscillatoryScaleIndex lam 0 hlam - 3)
 
+/--
+@isnad1 id=lt.1h1v.s4.4e06c43154d4 from=translated src=- shape=60baa177 vocab=6e6d4fb3
+-/
 theorem innerRadius_pos (lam : ℝ) (hlam : lam ≠ 0) : 0 < innerRadius lam hlam := by
   unfold innerRadius
   positivity
 
+/--
+@isnad1 id=le.1h1v.s5.a8713926c81d from=translated src=- shape=c7bcfeed vocab=465f9469
+-/
 theorem innerRadius_phase_bound (lam : ℝ) (hlam : lam ≠ 0) :
     |lam| * innerRadius lam hlam ^ 2 ≤ 1 := by
   have hs := (oscillatoryScaleIndex_spec lam 0 hlam).2
@@ -52,6 +58,9 @@ noncomputable def highPassKernel (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) : ℂ 
   sharpQuadraticTailKernel lam (innerRadius lam hlam) t -
     cutoffBoundaryKernel lam (innerRadius lam hlam) t
 
+/--
+@isnad1 id=eq.2h2v.s7.ae4944d5b64f from=translated src=- shape=a2682490 vocab=22bcf6a0
+-/
 theorem highPassKernel_eq_cutoff (lam : ℝ) (hlam : lam ≠ 0) {t : ℝ} (ht : t ≠ 0) :
     highPassKernel lam hlam t =
       (((1 - dyadicCutoff ((2⁻¹ : ℝ) ^ (oscillatoryScaleIndex lam 0 hlam - 1) * t)) /
@@ -76,10 +85,16 @@ theorem highPassKernel_eq_cutoff (lam : ℝ) (hlam : lam ≠ 0) {t : ℝ} (ht : 
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h1v.s4.db783c579a5c from=translated src=- shape=08f44604 vocab=0b50541c
+-/
 theorem highPassKernel_zero (lam : ℝ) (hlam : lam ≠ 0) : highPassKernel lam hlam 0 = 0 := by
   simp [highPassKernel, sharpQuadraticTailKernel, cutoffBoundaryKernel,
     not_lt_of_ge (innerRadius_pos lam hlam).le]
 
+/--
+@isnad1 id=hassum.1h2v.s6.5a6891033cf9 from=translated src=- shape=441fc4db vocab=62e350aa
+-/
 theorem hasSum_oscillatoryKernels (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     HasSum (fun r : ℕ ↦ (dyadicPsi (oscillatoryScaleIndex lam r hlam) t : ℂ) *
       phase (lam * t ^ 2)) (highPassKernel lam hlam t) := by
@@ -91,10 +106,16 @@ theorem hasSum_oscillatoryKernels (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     exact (Complex.hasSum_ofReal.mpr
       (hasSum_dyadicPsi_oscillatoryScaleIndex lam hlam ht)).mul_right _
 
+/--
+@isnad1 id=measurab.1h1v.s4.184e6f31eb12 from=translated src=- shape=a5372030 vocab=daabe84d
+-/
 theorem measurable_highPassKernel (lam : ℝ) (hlam : lam ≠ 0) :
     Measurable (highPassKernel lam hlam) :=
   (measurable_sharpQuadraticTailKernel lam _).sub (measurable_cutoffBoundaryKernel lam _)
 
+/--
+@isnad1 id=le.1h2v.s5.1f654b59896d from=translated src=- shape=faf43e1a vocab=05145550
+-/
 theorem highPassKernel_norm_le (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     ‖highPassKernel lam hlam t‖ ≤ 2 / innerRadius lam hlam := by
   apply (norm_sub_le _ _).trans
@@ -106,6 +127,9 @@ theorem highPassKernel_norm_le (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
 noncomputable def smallPhaseKernel (lam ε ρ t : ℝ) : ℂ :=
   if ε < |t| ∧ |t| ≤ ρ then (phase (lam * t ^ 2) - 1) / (t : ℂ) else 0
 
+/--
+@isnad1 id=measurab.0h3v.s3.01e2a37f5069 from=translated src=- shape=229f8ef9 vocab=a432bba4
+-/
 theorem measurable_smallPhaseKernel (lam ε ρ : ℝ) : Measurable (smallPhaseKernel lam ε ρ) := by
   unfold smallPhaseKernel
   apply Measurable.ite
@@ -115,6 +139,9 @@ theorem measurable_smallPhaseKernel (lam ε ρ : ℝ) : Measurable (smallPhaseKe
     fun_prop
   · exact measurable_const
 
+/--
+@isnad1 id=le.0h3v.s4.bda3e556640b from=translated src=- shape=72b965cb vocab=66734477
+-/
 theorem smallPhaseKernel_support_subset (lam ε ρ : ℝ) :
     support (smallPhaseKernel lam ε ρ) ⊆ Metric.closedBall 0 ρ := by
   intro t ht
@@ -123,6 +150,9 @@ theorem smallPhaseKernel_support_subset (lam ε ρ : ℝ) :
     exact ht (by simp [smallPhaseKernel, hn])
   simpa only [Metric.mem_closedBall, Real.dist_eq, sub_zero] using h.2
 
+/--
+@isnad1 id=le.1h3v.s5.f003a99a649b from=translated src=- shape=77c73a0f vocab=f14dda6b
+-/
 theorem smallPhaseKernel_norm_le (lam ε : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     ‖smallPhaseKernel lam ε (innerRadius lam hlam) t‖ ≤
       (2 * Real.pi) / innerRadius lam hlam := by
@@ -149,6 +179,9 @@ theorem smallPhaseKernel_norm_le (lam ε : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
   · rw [smallPhaseKernel, ite_eq_right ht, norm_zero]
     positivity
 
+/--
+@isnad1 id=eq.3h3v.s6.b4885817caf4 from=translated src=- shape=765b383e vocab=ac9e1257
+-/
 theorem sharpQuadraticTailKernel_eq_oscillatory_reduction
     (lam ε : ℝ) (hlam : lam ≠ 0) (_hε : 0 < ε)
     (hερ : ε ≤ innerRadius lam hlam) (t : ℝ) :

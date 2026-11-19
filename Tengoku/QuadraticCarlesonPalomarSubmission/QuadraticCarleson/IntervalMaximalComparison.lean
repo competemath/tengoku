@@ -25,6 +25,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.2h3v.s5.1caeb8d7f624 from=translated src=- shape=6154b419 vocab=308c9c34
+-/
 theorem RealInterval.carrier_subset_closedBall_of_mem
     (I : RealInterval) {x : ℝ} (hx : x ∈ I.carrier) {r : ℝ}
     (hr : I.length ≤ r) : I.carrier ⊆ closedBall x r := by
@@ -35,6 +38,9 @@ theorem RealInterval.carrier_subset_closedBall_of_mem
   rw [abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=ex.0h1v.s6.eaa717cbd661 from=translated src=- shape=375c0452 vocab=17fa82ec
+-/
 theorem exists_positive_rational_radius_for_interval (I : RealInterval) :
     ∃ q : PositiveRational, I.length < (q : ℝ) ∧ (q : ℝ) < 2 * I.length := by
   have hlt : I.length < 2 * I.length := by linarith [I.length_pos]
@@ -42,6 +48,9 @@ theorem exists_positive_rational_radius_for_interval (I : RealInterval) :
   refine ⟨⟨q, ?_⟩, hIq, hqI⟩
   exact_mod_cast I.length_pos.trans hIq
 
+/--
+@isnad1 id=eq.1h2v.s7.a082812d3944 from=translated src=- shape=c185a1b5 vocab=aac092a6
+-/
 theorem ofReal_localAverage_one_eq
     (f : ℝ → ℂ) (I : RealInterval) (hf : IntegrableOn f I.carrier) :
     ENNReal.ofReal (localAverage 1 f I) =
@@ -58,7 +67,9 @@ theorem ofReal_localAverage_one_eq
   rw [ENNReal.div_eq_inv_mul]
 
 /-- An arbitrary interval `L¹` average is at most four times the centered
-rational-radius maximal function at every point of that interval.-/
+rational-radius maximal function at every point of that interval.
+@isnad1 id=le.2h3v.s7.3735d3003686 from=translated src=- shape=729a2390 vocab=206c24c6
+-/
 theorem ofReal_localAverage_one_le_centeredHardyLittlewoodMaximal
     (f : ℝ → ℂ) (I : RealInterval) (hf : IntegrableOn f I.carrier)
     {x : ℝ} (hx : x ∈ I.carrier) :
@@ -107,6 +118,9 @@ theorem ofReal_localAverage_one_le_centeredHardyLittlewoodMaximal
       exact le_iSup (fun q' : PositiveRational ↦
         centeredAverage (q' : ℝ) (fun y ↦ ‖f y‖ₑ) x) q
 
+/--
+@isnad1 id=integrab.0h2v.s5.5c0cdb701282 from=translated src=- shape=2e59a885 vocab=b979c261
+-/
 theorem L0Infinity.integrableOn_realInterval (f : L0Infinity) (I : RealInterval) :
     IntegrableOn f I.carrier := by
   rcases f.bounded_toFun with ⟨C, hC⟩
@@ -115,7 +129,9 @@ theorem L0Infinity.integrableOn_realInterval (f : L0Infinity) (I : RealInterval)
   exact Filter.Eventually.of_forall hC
 
 /-- The uncentered interval maximal average used by the sparse form at
-exponent one is controlled by the measurable centered maximal function.-/
+exponent one is controlled by the measurable centered maximal function.
+@isnad1 id=le.0h2v.s6.cdf262d05d70 from=translated src=- shape=2124a7f9 vocab=2f895670
+-/
 theorem intervalMaximalAverage_one_le_centeredHardyLittlewoodMaximal
     (f : L0Infinity) (x : ℝ) :
     intervalMaximalAverage 1 f x ≤
@@ -127,6 +143,9 @@ theorem intervalMaximalAverage_one_le_centeredHardyLittlewoodMaximal
   exact ofReal_localAverage_one_le_centeredHardyLittlewoodMaximal
     f I (f.integrableOn_realInterval I) hx
 
+/--
+@isnad1 id=integrab.1h3v.s5.f5765a8a78c6 from=translated src=- shape=19615e44 vocab=5e3dff3b
+-/
 theorem L0Infinity.integrableOn_norm_rpow (f : L0Infinity) (I : RealInterval)
     {p : ℝ} (hp : 0 ≤ p) : IntegrableOn (fun y ↦ ‖f y‖ ^ p) I.carrier := by
   rcases f.bounded_toFun with ⟨C, hC⟩
@@ -140,6 +159,9 @@ theorem L0Infinity.integrableOn_norm_rpow (f : L0Infinity) (I : RealInterval)
     rw [Real.norm_eq_abs, abs_of_nonneg (Real.rpow_nonneg (norm_nonneg _) _)]
     exact Real.rpow_le_rpow (norm_nonneg _) (hbound x) hp)
 
+/--
+@isnad1 id=eq.2h3v.s7.3d7b3f9aff3a from=translated src=- shape=d3fea3e8 vocab=c3cfc785
+-/
 theorem ofReal_localAverage_eq_rpow_lintegral
     (p : ℝ) (hp : 0 < p) (f : ℝ → ℂ) (I : RealInterval)
     (hpow : IntegrableOn (fun y ↦ ‖f y‖ ^ p) I.carrier) :
@@ -158,7 +180,9 @@ theorem ofReal_localAverage_eq_rpow_lintegral
   rw [ENNReal.div_eq_inv_mul]
 
 /-- Arbitrary-interval `Lᵖ` averages are controlled by the rational centered
-maximal operator applied to `|f|^p`.-/
+maximal operator applied to `|f|^p`.
+@isnad1 id=le.3h4v.s7.3336543a79bc from=translated src=- shape=f6d6d020 vocab=e7c8dea3
+-/
 theorem ofReal_localAverage_le_centeredHardyLittlewoodMaximal_rpow
     (p : ℝ) (hp : 0 < p) (f : ℝ → ℂ) (I : RealInterval)
     (hpow : IntegrableOn (fun y ↦ ‖f y‖ ^ p) I.carrier)
@@ -210,7 +234,9 @@ theorem ofReal_localAverage_le_centeredHardyLittlewoodMaximal_rpow
         centeredAverage (q' : ℝ) (fun y ↦ ‖f y‖ₑ ^ p) x) q
 
 /-- Pointwise comparison for the complete interval maximal average at a
-positive exponent.-/
+positive exponent.
+@isnad1 id=le.1h3v.s7.4f5543378706 from=translated src=- shape=a400df89 vocab=055396b2
+-/
 theorem intervalMaximalAverage_le_centeredHardyLittlewoodMaximal_rpow
     (p : ℝ) (hp : 0 < p) (f : L0Infinity) (x : ℝ) :
     intervalMaximalAverage p f x ≤

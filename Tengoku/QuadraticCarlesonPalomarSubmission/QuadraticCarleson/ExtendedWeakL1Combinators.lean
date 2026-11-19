@@ -26,6 +26,9 @@ open KaltonPaperApplication
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=hasexten.2h5v.s5.da84e0ed11c4 from=translated src=- shape=63cc1e37 vocab=dcc23212
+-/
 theorem HasExtendedWeakL1Bound.mono_output
     {X : Type*} [MeasurableSpace X] {mu : Measure X}
     {A : ℝ} {F G : X → ENNReal}
@@ -36,6 +39,9 @@ theorem HasExtendedWeakL1Bound.mono_output
   exact (mul_le_mul' le_rfl (measure_mono fun x hx ↦ hx.trans_le (hFG x))).trans
     (h.2 a ha)
 
+/--
+@isnad1 id=hasexten.2h5v.s5.cf0e729ccf80 from=translated src=- shape=44325828 vocab=dcc23212
+-/
 theorem HasExtendedWeakL1Bound.mono_constant
     {X : Type*} [MeasurableSpace X] {mu : Measure X}
     {A B : ℝ} {F : X → ENNReal}
@@ -45,6 +51,9 @@ theorem HasExtendedWeakL1Bound.mono_constant
   intro a ha
   exact (h.2 a ha).trans (ENNReal.ofReal_le_ofReal hAB)
 
+/--
+@isnad1 id=hasexten.1h5v.s5.d87738250054 from=translated src=- shape=72329eac vocab=a60bdc3a
+-/
 theorem HasExtendedWeakL1Bound.restrict
     {X : Type*} [MeasurableSpace X] {mu : Measure X}
     {A : ℝ} {F : X → ENNReal} (h : HasExtendedWeakL1Bound mu A F)
@@ -56,7 +65,9 @@ theorem HasExtendedWeakL1Bound.restrict
 /-- A directed countable supremum inherits any weak `L¹` constant which is
 uniform over the approximating family.  This is the distribution-function
 form of continuity from below and does not require choosing pointwise-finite
-representatives of the limiting extended-valued output.-/
+representatives of the limiting extended-valued output.
+@isnad1 id=hasexten.2h5v.s6.df1583379df9 from=translated src=- shape=108bfe66 vocab=7c4d6e81
+-/
 theorem hasExtendedWeakL1Bound_iSup_of_directed
     {X ι : Type*} [MeasurableSpace X] [Countable ι] [Nonempty ι]
     {mu : Measure X} {A : ℝ} {F : ι → X → ENNReal}
@@ -78,7 +89,9 @@ theorem hasExtendedWeakL1Bound_iSup_of_directed
   exact iSup_le fun i ↦ (hweak i).2 a ha
 
 /-- Weak bounds for two outputs combine across the exact coefficients that
-occur in the smooth-to-sharp quadratic-kernel comparison.-/
+occur in the smooth-to-sharp quadratic-kernel comparison.
+@isnad1 id=hasexten.3h7v.s7.b873e40e8520 from=translated src=- shape=b9736e9a vocab=ce3be470
+-/
 theorem hasExtendedWeakL1Bound_of_le_two_mul_add_sixteen_mul
     {X : Type*} [MeasurableSpace X] {mu : Measure X}
     {AH AM : ℝ} {F H M : X → ENNReal}
@@ -162,7 +175,9 @@ theorem hasExtendedWeakL1Bound_of_le_two_mul_add_sixteen_mul
       positivity
 
 /-- The concrete centered Hardy--Littlewood maximal function, applied to the
-norm of an integrable input, in the extended weak-bound interface.-/
+norm of an integrable input, in the extended weak-bound interface.
+@isnad1 id=hasexten.2h1v.s7.966d391f831d from=translated src=- shape=4d922754 vocab=cb086748
+-/
 theorem hasExtendedWeakL1Bound_centeredHardyLittlewoodMaximal_enorm
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     HasExtendedWeakL1Bound volume

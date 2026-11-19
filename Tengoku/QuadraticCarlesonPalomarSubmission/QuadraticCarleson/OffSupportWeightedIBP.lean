@@ -18,12 +18,18 @@ namespace QuadraticCarleson
 noncomputable def quadraticOscillatoryCoeff (lam : ℝ) : ℂ :=
   ((-(4 * Real.pi * lam) : ℝ) : ℂ) * Complex.I
 
+/--
+@isnad1 id=ne.1h1v.s4.8366c467185a from=translated src=- shape=20a1293d vocab=6cf9bf3b
+-/
 theorem quadraticOscillatoryCoeff_ne_zero {lam : ℝ} (hlam : lam ≠ 0) :
     quadraticOscillatoryCoeff lam ≠ 0 := by
   exact mul_ne_zero (Complex.ofReal_ne_zero.mpr
     (neg_ne_zero.mpr (mul_ne_zero (mul_ne_zero (by norm_num) Real.pi_ne_zero) hlam)))
     Complex.I_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s5.f33902f0547d from=translated src=- shape=5d8f6291 vocab=4e2a9ac3
+-/
 theorem norm_quadraticOscillatoryCoeff (lam : ℝ) :
     ‖quadraticOscillatoryCoeff lam‖ = 4 * Real.pi * |lam| := by
   simp only [quadraticOscillatoryCoeff, norm_mul, Complex.norm_real, Real.norm_eq_abs,
@@ -134,6 +140,9 @@ private theorem weighted_integrand_support (r q : ℕ) {lam s t x : ℝ} (ht : 0
   have hsupp := iteratedWavePacketDeriv_support r ht hp
   constructor <;> linarith [hsupp.1, hsupp.2]
 
+/--
+@isnad1 id=eq.3h6v.s7.a244883a42af from=translated src=- shape=fc2af427 vocab=eb6d7a7d
+-/
 theorem offSupportWeightedAction_step (r q : ℕ) {lam s t x : ℝ}
     (hlam : lam ≠ 0) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -162,6 +171,9 @@ theorem offSupportWeightedAction_step (r q : ℕ) {lam s t x : ℝ}
   · exact iteratedWavePacketDeriv_left_third_eq_zero r s ht
   · exact iteratedWavePacketDeriv_right_third_eq_zero r s ht
 
+/--
+@isnad1 id=le.3h6v.s7.d76b9f99d40b from=translated src=- shape=88eea9ab vocab=2ace9faf
+-/
 theorem offSupportWeightedAction_norm_le_step (r q : ℕ) {lam s t x : ℝ}
     (hlam : lam ≠ 0) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -178,6 +190,9 @@ theorem offSupportWeightedAction_norm_le_step (r q : ℕ) {lam s t x : ℝ}
       Complex.norm_natCast]
     simp)
 
+/--
+@isnad1 id=le.2h6v.s7.727be85b7fae from=translated src=- shape=d9d72cc9 vocab=4481ee5a
+-/
 theorem offSupportWeightedAction_norm_le_zero (r q : ℕ) {lam s t x : ℝ}
     (ht : 0 < t) (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
     ‖offSupportWeightedAction lam r q s t x‖ ≤

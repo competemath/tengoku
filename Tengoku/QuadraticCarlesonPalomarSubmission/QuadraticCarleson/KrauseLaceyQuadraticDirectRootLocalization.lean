@@ -50,22 +50,33 @@ def intervalRestrictionL0Infinity (g : L0Infinity)
     · simp only [Set.indicator_of_mem hxI, hg]
     · simp only [Set.indicator_of_notMem hxI]
 
+/--
+@isnad1 id=eq.0h3v.s4.4ee0ab5d74b8 from=translated src=- shape=cc55e8db vocab=4311b887
+-/
 @[simp] theorem intervalRestrictionL0Infinity_apply
     (g : L0Infinity) (I : RealInterval) (x : ℝ) :
     intervalRestrictionL0Infinity g I x = I.carrier.indicator g x := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.6a6babe273ed from=translated src=- shape=5d758b76 vocab=62297e56
+-/
 theorem intervalRestrictionL0Infinity_eq_of_mem
     (g : L0Infinity) (I : RealInterval) {x : ℝ} (hx : x ∈ I.carrier) :
     intervalRestrictionL0Infinity g I x = g x := by
   simp only [intervalRestrictionL0Infinity_apply, Set.indicator_of_mem hx]
 
+/--
+@isnad1 id=eq.1h3v.s4.2e8a886d0920 from=translated src=- shape=73adfe05 vocab=62297e56
+-/
 theorem intervalRestrictionL0Infinity_eq_zero_of_notMem
     (g : L0Infinity) (I : RealInterval) {x : ℝ} (hx : x ∉ I.carrier) :
     intervalRestrictionL0Infinity g I x = 0 := by
   simp only [intervalRestrictionL0Infinity_apply, Set.indicator_of_notMem hx]
 
 /-- The global real `p`-mass of the restricted function is exactly the local
-mass of the original function on the interval.-/
+mass of the original function on the interval.
+@isnad1 id=eq.1h3v.s6.1f7c1513fc88 from=translated src=- shape=bc3c42da vocab=0ee59c03
+-/
 theorem integral_norm_rpow_intervalRestrictionL0Infinity
     (g : L0Infinity) (I : RealInterval) {p : ℝ} (hp : 0 < p) :
     (∫ x, ‖intervalRestrictionL0Infinity g I x‖ ^ p) =
@@ -79,7 +90,9 @@ theorem integral_norm_rpow_intervalRestrictionL0Infinity
   · simp only [intervalRestrictionL0Infinity_eq_zero_of_notMem g I hx,
       norm_zero, Real.zero_rpow hp.ne', Set.indicator_of_notMem hx]
 
-/-- Extended-nonnegative form of the preceding exact mass identity.-/
+/-- Extended-nonnegative form of the preceding exact mass identity.
+@isnad1 id=eq.1h3v.s6.bc2ad3bbb15b from=translated src=- shape=a3b0fe56 vocab=ef6eb388
+-/
 theorem lintegral_ofReal_norm_rpow_intervalRestrictionL0Infinity
     (g : L0Infinity) (I : RealInterval) {p : ℝ} (hp : 0 < p) :
     (∫⁻ x, ENNReal.ofReal
@@ -95,7 +108,9 @@ theorem lintegral_ofReal_norm_rpow_intervalRestrictionL0Infinity
   exact integral_norm_rpow_intervalRestrictionL0Infinity g I hp
 
 /-- Restricting to the root does not change an `L¹` interval average on a
-subinterval of that root.-/
+subinterval of that root.
+@isnad1 id=eq.1h3v.s4.be9dced427cc from=translated src=- shape=2a91c676 vocab=67758eb4
+-/
 theorem intervalL1Average_intervalRestrictionL0Infinity_eq_of_subset
     (g : L0Infinity) {I J : RealInterval}
     (hJI : J.carrier ⊆ I.carrier) :
@@ -108,7 +123,9 @@ theorem intervalL1Average_intervalRestrictionL0Infinity_eq_of_subset
   rw [intervalRestrictionL0Infinity_eq_of_mem g I (hJI hx)]
 
 /-- The localized maximal-tail pairing is unchanged by restricting the test
-function to the root that contains every selected interval.-/
+function to the root that contains every selected interval.
+@isnad1 id=eq.2h6v.s7.e03ed3bbd4ca from=translated src=- shape=a73e65c4 vocab=9f526232
+-/
 theorem lintegral_localizedTailMaximal_mul_intervalRestrictionL0Infinity_eq
     {S : Finset RealInterval} (scale : RealInterval → ℤ)
     (f g : L0Infinity) (ell₀ : ℤ) (I₀ : RealInterval)
@@ -126,7 +143,9 @@ theorem lintegral_localizedTailMaximal_mul_intervalRestrictionL0Infinity_eq
     simp only [zero_mul]
 
 /-- The complete geometric direct quadratic estimate under only the paper's
-root-local `p`-mass hypothesis.  No global `p`-mass premise remains.-/
+root-local `p`-mass hypothesis.  No global `p`-mass premise remains.
+@isnad1 id=le.16h12v.s9.f9ebb4ced0b9 from=translated src=- shape=069df786 vocab=fcba5cb0
+-/
 theorem lintegral_localizedTailMaximal_le_directQuadratic_geometric_local
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

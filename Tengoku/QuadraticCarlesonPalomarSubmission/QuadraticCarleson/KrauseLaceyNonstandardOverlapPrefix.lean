@@ -22,6 +22,9 @@ open KrauseLaceyGenerationLayers
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.0h9v.s5.e890ccbe72e5 from=translated src=- shape=df42b903 vocab=182971b7
+-/
 theorem badSubcollectionPrefixMaximal_nonneg
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (M : ℕ) (x : ℝ) :
@@ -34,7 +37,9 @@ theorem badSubcollectionPrefixMaximal_nonneg
   simpa [badSubcollectionPrefixMaximal] using h
 
 /-- An actual a.e. overlap bound controls every finite generation prefix,
-not merely the first `M` prefixes.-/
+not merely the first `M` prefixes.
+@isnad1 id=le.1h10v.s6.cf301c7ef686 from=translated src=- shape=ef2ca838 vocab=55a4f394
+-/
 theorem badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (L M : ℕ)
@@ -56,7 +61,9 @@ theorem badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le
     ⟨min n.val M, by omega⟩
 
 /-- The full actual subcollection maximal prefix has the RM bound with
-the geometric overlap cutoff, uniformly in the number of intervals.-/
+the geometric overlap cutoff, uniformly in the number of intervals.
+@isnad1 id=le.8h9v.s8.66b15efc5e2d from=translated src=- shape=af7c178a vocab=e792c3eb
+-/
 theorem eLpNorm_badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)

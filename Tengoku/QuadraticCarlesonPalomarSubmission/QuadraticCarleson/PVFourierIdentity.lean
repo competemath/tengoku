@@ -23,7 +23,9 @@ open scoped SchwartzMap
 namespace QuadraticCarleson
 
 /-- With Mathlib's Fourier-transform normalization,
-`𝓕 (p.v. (1 / x)) = -π i sign`.-/
+`𝓕 (p.v. (1 / x)) = -π i sign`.
+@isnad1 id=eq.0h0v.s8.214325ce551f from=translated src=- shape=9a1d1880 vocab=f5ab97d2
+-/
 theorem fourier_principalValueOneDiv :
     𝓕 principalValueOneDiv =
       (-((Real.pi : ℂ) * Complex.I)) • signTemperedDistribution :=
@@ -31,7 +33,9 @@ theorem fourier_principalValueOneDiv :
     exists_schwartz_antiderivative_of_odd
 
 /-- The direct symmetric-limit construction of `p.v. (1 / x)` agrees with
-the equivalent inverse-Fourier construction.-/
+the equivalent inverse-Fourier construction.
+@isnad1 id=eq.0h0v.s5.bb1697a51d73 from=translated src=- shape=9094f7d5 vocab=b5cd9d12
+-/
 theorem principalValueOneDiv_eq_FourierCandidate :
     principalValueOneDiv = principalValueOneDivFourierCandidate :=
   principalValueOneDiv_eq_FourierCandidate_of_odd_schwartz_antiderivatives

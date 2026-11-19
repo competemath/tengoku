@@ -34,7 +34,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- The actual difference between adjacent smooth cutoffs is one annular
-error, uniformly dominated by the same maximal function.-/
+error, uniformly dominated by the same maximal function.
+@isnad1 id=le.5h5v.s7.8ef389bfdd6d from=translated src=- shape=3c58f5a4 vocab=28309c35
+-/
 theorem enorm_smoothHighPass_sub_le_maximal
     (lam : ℝ) {ε ρ : ℝ} (hε : 0 < ε) (hερ : ε ≤ ρ) (hρε : ρ ≤ 2 * ε)
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -65,6 +67,9 @@ theorem enorm_smoothHighPass_sub_le_maximal
         (cutoffBoundaryOperator_enorm_le_maximal lam hρ f hf x)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.3h4v.s7.1c8cf25106be from=translated src=- shape=0b3dd19b vocab=bea11d81
+-/
 theorem enorm_smoothHighPass_sub_dyadicRounded_le_maximal
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ)
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -74,6 +79,9 @@ theorem enorm_smoothHighPass_sub_dyadicRounded_le_maximal
   enorm_smoothHighPass_sub_le_maximal lam hρ (lt_dyadicCeilRadius ρ hρ).le
     (dyadicCeilRadius_le_two_mul ρ hρ) hf hfi x
 
+/--
+@isnad1 id=le.3h4v.s7.b457e06a16b0 from=translated src=- shape=16cf6715 vocab=5736c85d
+-/
 theorem enorm_smoothHighPass_le_dyadicRounded_add_maximal
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ)
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -93,12 +101,18 @@ theorem enorm_smoothHighPass_le_dyadicRounded_add_maximal
 def adjacentDyadicLowerIndex (s : Finset PositiveSmoothRadius) : ℤ :=
   if hs : s.Nonempty then s.inf' hs (fun ρ ↦ dyadicFloorScale ρ.1 ρ.2 + 4) else 0
 
+/--
+@isnad1 id=le.1h2v.s5.3e84f5ba9f2e from=translated src=- shape=c83f570b vocab=3ad3276b
+-/
 theorem adjacentDyadicLowerIndex_le (s : Finset PositiveSmoothRadius)
     (ρ : PositiveSmoothRadius) (hρ : ρ ∈ s) :
     adjacentDyadicLowerIndex s ≤ dyadicFloorScale ρ.1 ρ.2 + 4 := by
   rw [adjacentDyadicLowerIndex, dite_eq_left ⟨ρ, hρ⟩]
   exact Finset.inf'_le _ hρ
 
+/--
+@isnad1 id=le.1h5v.s7.5ba49487ff39 from=translated src=- shape=20ad6d79 vocab=57137d75
+-/
 theorem enorm_adjacentRounded_le_dyadicMax
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (ρ : PositiveSmoothRadius) (hρ : ρ ∈ s)
     (f : L0Infinity) (x : ℝ) :
@@ -116,6 +130,9 @@ theorem enorm_adjacentRounded_le_dyadicMax
     ‖smoothQuadraticHighPass lam ((2 : ℝ) ^ (adjacentDyadicLowerIndex s + (r : ℤ) - 3))
       f x‖ₑ) m
 
+/--
+@isnad1 id=eq.0h4v.s6.e806d222cacb from=translated src=- shape=96b8a645 vocab=14b345fd
+-/
 @[simp] theorem enorm_finiteSmoothMaxOperator (lam : ℝ)
     (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteSmoothMaxOperator lam s f x‖ₑ =
@@ -127,7 +144,9 @@ theorem enorm_adjacentRounded_le_dyadicMax
   rfl
 
 /-- The cardinality-free annular comparison for every finite positive-radius
-family, including every common real scale offset of the rounded radii.-/
+family, including every common real scale offset of the rounded radii.
+@isnad1 id=le.0h4v.s7.78cda8eff8a1 from=translated src=- shape=b96a7e88 vocab=77534451
+-/
 theorem enorm_finiteSmoothMax_le_dyadicMax_add_maximal
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteSmoothMaxOperator lam s f x‖ₑ ≤
@@ -140,6 +159,9 @@ theorem enorm_finiteSmoothMax_le_dyadicMax_add_maximal
     f.measurable_toFun f.integrable x).trans
       (add_le_add (enorm_adjacentRounded_le_dyadicMax lam s ρ hρ f x) le_rfl)
 
+/--
+@isnad1 id=le.0h4v.s5.f85031d2ecfa from=translated src=- shape=c11b862e vocab=3c1eadc9
+-/
 theorem norm_finiteSmoothMax_le_dyadicMax_add_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteSmoothMaxOperator lam s f x‖ ≤
@@ -155,6 +177,9 @@ theorem norm_finiteSmoothMax_le_dyadicMax_add_boundary
     ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 24), ENNReal.ofReal_ofNat,
     ofReal_norm] using h
 
+/--
+@isnad1 id=eq.0h0v.s2.f9a88ba02087 from=translated src=- shape=4b736592 vocab=1a9f9e13
+-/
 @[simp] theorem absoluteValue_centeredHardyLittlewoodBoundaryOperator :
     absoluteValueOperator centeredHardyLittlewoodBoundaryOperator =
       centeredHardyLittlewoodBoundaryOperator := by
@@ -162,7 +187,9 @@ theorem norm_finiteSmoothMax_le_dyadicMax_add_boundary
   simp [absoluteValueOperator, centeredHardyLittlewoodBoundaryOperator]
 
 /-- Pairing form of the actual annular comparison.  The right-hand test
-function is its norm, so this statement remains valid for complex inputs.-/
+function is its norm, so this statement remains valid for complex inputs.
+@isnad1 id=le.0h4v.s5.3138e4e5a94f from=translated src=- shape=239cdff9 vocab=f2d56e8c
+-/
 theorem norm_pairing_finiteSmoothMax_le_dyadicMax_add_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f g : L0Infinity) :
     ‖operatorPairing (finiteSmoothMaxOperator lam s) f g‖ ≤

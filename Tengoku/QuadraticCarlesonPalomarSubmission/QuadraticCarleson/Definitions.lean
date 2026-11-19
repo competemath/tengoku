@@ -22,6 +22,9 @@ namespace QuadraticCarleson
 noncomputable def phase (s : ℝ) : ℂ :=
   Complex.exp (((2 * Real.pi * s : ℝ) : ℂ) * Complex.I)
 
+/--
+@isnad1 id=eq.0h0v.s3.b66185373d51 from=translated src=- shape=1ac31801 vocab=59f0b38e
+-/
 @[simp]
 theorem phase_zero : phase 0 = 1 := by
   simp [phase]
@@ -31,9 +34,15 @@ noncomputable def paperLog : ℕ → ℝ → ℝ
   | 0 => id
   | n + 1 => fun t => Real.log (10 + paperLog n t)
 
+/--
+@isnad1 id=eq.0h1v.s3.86cc68cd8202 from=translated src=- shape=5b483ac0 vocab=4a0922f0
+-/
 @[simp]
 theorem paperLog_zero (t : ℝ) : paperLog 0 t = t := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f9a0db5ff224 from=translated src=- shape=7e210627 vocab=839900a2
+-/
 @[simp]
 theorem paperLog_succ (n : ℕ) (t : ℝ) :
     paperLog (n + 1) t = Real.log (10 + paperLog n t) := rfl

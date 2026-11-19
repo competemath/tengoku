@@ -44,6 +44,9 @@ def finiteRadiusQuadraticHilbertMaxTestOperator
     (lam : ℝ) (s : Finset densePositiveRadii) : TestOperator :=
   fun f x ↦ ((finiteRadiusQuadraticHilbertMaxNNNorm lam s f x : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s5.113f4f98c54c from=translated src=- shape=88ca513f vocab=0b25fde2
+-/
 @[simp] theorem norm_finiteRadiusQuadraticHilbertMaxTestOperator
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) (x : ℝ) :
     ‖finiteRadiusQuadraticHilbertMaxTestOperator lam s f x‖ =
@@ -52,7 +55,9 @@ def finiteRadiusQuadraticHilbertMaxTestOperator
     Real.norm_eq_abs, abs_of_nonneg]
   exact NNReal.coe_nonneg _
 
-/-- The finite-radius maximum is subadditive.-/
+/-- The finite-radius maximum is subadditive.
+@isnad1 id=le.0h5v.s5.c0574bfc79d7 from=translated src=- shape=5966e80a vocab=9456825f
+-/
 theorem finiteRadiusQuadraticHilbertMaxNNNorm_add_le
     (lam : ℝ) (s : Finset densePositiveRadii) (f g : L0Infinity) (x : ℝ) :
     finiteRadiusQuadraticHilbertMaxNNNorm lam s (L0Infinity.add f g) x ≤
@@ -78,7 +83,9 @@ theorem finiteRadiusQuadraticHilbertMaxNNNorm_add_le
       (Finset.le_sup (s := s)
         (f := fun δ ↦ ‖quadraticHilbertTrunc lam δ.1.1 g x‖₊) hε)
 
-/-- Complex homogeneity of the finite-radius maximum.-/
+/-- Complex homogeneity of the finite-radius maximum.
+@isnad1 id=eq.0h5v.s6.53fe98e1f6c9 from=translated src=- shape=8116597e vocab=05f1fdc8
+-/
 theorem finiteRadiusQuadraticHilbertMaxNNNorm_smul
     (lam : ℝ) (s : Finset densePositiveRadii) (c : ℂ)
     (f : L0Infinity) (x : ℝ) :
@@ -105,7 +112,9 @@ theorem finiteRadiusQuadraticHilbertMaxNNNorm_smul
         (fun ε ↦ ‖quadraticHilbertTrunc lam ε.1.1 f x‖₊)).symm
 
 /-- Every finite-radius maximal quadratic truncation is a genuine sublinear
-operator on the project's bounded compact-support test-function space.-/
+operator on the project's bounded compact-support test-function space.
+@isnad1 id=issublin.0h2v.s4.7fcd624d3252 from=translated src=- shape=6e7ccef6 vocab=5cbe1184
+-/
 theorem finiteRadiusQuadraticHilbertMaxTestOperator_isSublinear
     (lam : ℝ) (s : Finset densePositiveRadii) :
     IsSublinear (finiteRadiusQuadraticHilbertMaxTestOperator lam s) := by
@@ -119,7 +128,9 @@ theorem finiteRadiusQuadraticHilbertMaxTestOperator_isSublinear
     rfl
 
 /-- Every selected radius is dominated pointwise by the finite-radius test
-operator.-/
+operator.
+@isnad1 id=le.1h5v.s8.ab3260d92efc from=translated src=- shape=010bc45e vocab=e1d6aee1
+-/
 theorem quadraticHilbertTrunc_enorm_le_finiteRadiusTestOperator
     (lam : ℝ) (s : Finset densePositiveRadii) {ε : densePositiveRadii}
     (hε : ε ∈ s) (f : L0Infinity) (x : ℝ) :

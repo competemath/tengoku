@@ -44,21 +44,32 @@ def remainderFrequencyCutoff (ξ : ℝ) : ℂ :=
   (remainderFrequencyCutoffData ξ : ℂ)
 
 /-- The cutoff used in the explicit kernel calculation is literally the
-cutoff used by the project's `L²` annular projection.-/
+cutoff used by the project's `L²` annular projection.
+@isnad1 id=eq.0h0v.s2.0197d47c840c from=translated src=- shape=db2d4fff vocab=952440cc
+-/
 theorem remainderFrequencyCutoff_eq_annularFrequencyCutoff :
     remainderFrequencyCutoff =
       KrauseLaceyQuadraticSmoothProjection.annularFrequencyCutoff := by
   funext ξ
   rfl
 
+/--
+@isnad1 id=contdiff.0h0v.s5.a6460db50b33 from=translated src=- shape=352d7a74 vocab=1aea3302
+-/
 theorem contDiff_remainderFrequencyCutoff :
     ContDiff ℝ ∞ remainderFrequencyCutoff :=
   Complex.ofRealCLM.contDiff.comp remainderFrequencyCutoffData.contDiff
 
+/--
+@isnad1 id=hascompa.0h0v.s3.c33c80591f02 from=translated src=- shape=54c8eceb vocab=d540a99d
+-/
 theorem hasCompactSupport_remainderFrequencyCutoff :
     HasCompactSupport remainderFrequencyCutoff :=
   remainderFrequencyCutoffData.hasCompactSupport.comp_left rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.0d0924c7d307 from=translated src=- shape=df0b7202 vocab=e660ac73
+-/
 theorem remainderFrequencyCutoff_eq_one {ξ : ℝ}
     (hξ : ξ ∈ Icc (1 / 8 : ℝ) 2) :
     remainderFrequencyCutoff ξ = 1 := by
@@ -72,7 +83,9 @@ theorem remainderFrequencyCutoff_eq_one {ξ : ℝ}
   norm_num
 
 /-- The cutoff is one at the stationary frequency `2v` wherever the fixed
-amplitude is nonzero.-/
+amplitude is nonzero.
+@isnad1 id=eq.0h1v.s5.457419924af3 from=translated src=- shape=84304f5a vocab=46b111d0
+-/
 theorem positiveDyadicBase_mul_remainderFrequencyCutoff_two (v : ℝ) :
     positiveDyadicBase v * remainderFrequencyCutoff (2 * v) =
       positiveDyadicBase v := by
@@ -92,6 +105,9 @@ def remainderFrequencyCutoffSchwartz : SchwartzMap ℝ ℂ :=
 def projectionKernelSchwartz : SchwartzMap ℝ ℂ :=
   fourierInv remainderFrequencyCutoffSchwartz
 
+/--
+@isnad1 id=eq.0h0v.s7.c37e084e1f6d from=translated src=- shape=8870e6f4 vocab=a83e7f60
+-/
 theorem fourier_projectionKernelSchwartz :
     fourier projectionKernelSchwartz = remainderFrequencyCutoffSchwartz := by
   exact fourier_fourierInv_eq remainderFrequencyCutoffSchwartz
@@ -101,13 +117,18 @@ def scaledProjectionKernel (k : ℤ) (t : ℝ) : ℂ :=
   (((2 : ℝ) ^ k : ℝ) : ℂ) *
     projectionKernelSchwartz ((2 : ℝ) ^ k * t)
 
+/--
+@isnad1 id=integrab.0h1v.s5.760865b49fbc from=translated src=- shape=5cae27e5 vocab=42b8fda5
+-/
 theorem integrable_scaledProjectionKernel (k : ℤ) :
     Integrable (scaledProjectionKernel k) := by
   have hk : (2 : ℝ) ^ k ≠ 0 := zpow_ne_zero _ (by norm_num)
   exact (projectionKernelSchwartz.integrable.comp_mul_left' hk).const_mul _
 
 /-- The scaled physical kernel has exactly the cutoff used to define
-`annularProjectionL2`.-/
+`annularProjectionL2`.
+@isnad1 id=eq.0h2v.s5.e719233c538b from=translated src=- shape=9ab52306 vocab=e063cfbb
+-/
 theorem fourier_scaledProjectionKernel (k : ℤ) (ξ : ℝ) :
     𝓕 (scaledProjectionKernel k) ξ =
       KrauseLaceyQuadraticSmoothProjection.scaledAnnularFrequencyCutoff k ξ := by
@@ -157,7 +178,9 @@ def scaledProjectionConvolution (k : ℤ) (f : ℝ → ℂ) : ℝ → ℂ :=
 /-- The Fourier-defined annular projection agrees in `L²` with convolution
 by the concrete inverse-Fourier kernel.  The only extra premise is that this
 convolution belongs to `L²`; for the localized scale outputs this is supplied
-by their already established `L²` estimate.-/
+by their already established `L²` estimate.
+@isnad1 id=eq.3h2v.s8.cead7a656825 from=translated src=- shape=5c48ecf6 vocab=37b37b17
+-/
 theorem annularProjectionL2_toLp_eq_scaledProjectionConvolution
     (k : ℤ) {f : ℝ → ℂ} (hf : Integrable f) (hf₂ : MemLp f 2 volume)
     (hconv₂ : MemLp (scaledProjectionConvolution k f) 2 volume) :
@@ -190,7 +213,9 @@ theorem annularProjectionL2_toLp_eq_scaledProjectionConvolution
     fourier_scaledProjectionKernel]
 
 /-- Fourier inversion identifies the oscillatory integral of the smoothing
-kernel with the concrete cutoff.-/
+kernel with the concrete cutoff.
+@isnad1 id=eq.0h1v.s7.8209c852d204 from=translated src=- shape=a121fd58 vocab=d8747127
+-/
 theorem integral_projectionKernel_mul_phase (v : ℝ) :
     (∫ u : ℝ, projectionKernelSchwartz u * phase (-2 * v * u)) =
       remainderFrequencyCutoff (2 * v) := by
@@ -203,7 +228,9 @@ theorem integral_projectionKernel_mul_phase (v : ℝ) :
     mul_comm, mul_left_comm, mul_assoc] using h
 
 /-- The exact cancellation identity used to insert the projection into the
-kernel formula.-/
+kernel formula.
+@isnad1 id=eq.0h1v.s6.b55581497456 from=translated src=- shape=74886a77 vocab=625be12c
+-/
 theorem positiveDyadicBase_eq_projectionKernel_integral (v : ℝ) :
     positiveDyadicBase v =
       ∫ u : ℝ, projectionKernelSchwartz u * phase (-2 * v * u) *
@@ -230,7 +257,9 @@ def quadraticScaleKernel (R x : ℝ) : ℂ :=
   R⁻¹ * positiveDyadicBase (x / R) * phase (x ^ 2)
 
 /-- At `R = 2^k`, the normalized kernel is the project's actual positive
-dyadic quadratic kernel.-/
+dyadic quadratic kernel.
+@isnad1 id=eq.0h2v.s5.5c2b2dbe02c3 from=translated src=- shape=8a493d1f vocab=8cf2b0e7
+-/
 theorem quadraticScaleKernel_two_zpow (k : ℤ) (x : ℝ) :
     quadraticScaleKernel ((2 : ℝ) ^ k) x =
       annularQuadraticKernel (positiveDyadicAmplitude k) 1 x := by
@@ -244,7 +273,9 @@ def smoothProjectedQuadraticScaleKernel (R x : ℝ) : ℂ :=
       positiveDyadicBase (x / R - u / R ^ 2) * phase (u ^ 2 / R ^ 2)
 
 /-- The explicit projected-kernel formula is exactly convolution with the
-inverse-Fourier kernel at the same dyadic scale.-/
+inverse-Fourier kernel at the same dyadic scale.
+@isnad1 id=eq.0h2v.s5.d1df106492c3 from=translated src=- shape=ee28efe0 vocab=2f7ec557
+-/
 theorem scaledProjectionConvolution_quadraticScaleKernel_eq
     (k : ℤ) (x : ℝ) :
     scaledProjectionConvolution k
@@ -303,6 +334,9 @@ theorem scaledProjectionConvolution_quadraticScaleKernel_eq
   dsimp [R]
   ring
 
+/--
+@isnad1 id=continuo.0h1v.s5.b44770fe634a from=translated src=- shape=b7969d85 vocab=8a197d1d
+-/
 theorem continuous_quadraticScaleKernel_two_zpow (k : ℤ) :
     Continuous (quadraticScaleKernel ((2 : ℝ) ^ k)) := by
   have hamp : Continuous (positiveDyadicAmplitude k) :=
@@ -316,6 +350,9 @@ theorem continuous_quadraticScaleKernel_two_zpow (k : ℤ) :
   funext x
   exact quadraticScaleKernel_two_zpow k x
 
+/--
+@isnad1 id=hascompa.0h1v.s5.1b4a10e527b2 from=translated src=- shape=b7969d85 vocab=290280b4
+-/
 theorem hasCompactSupport_quadraticScaleKernel_two_zpow (k : ℤ) :
     HasCompactSupport (quadraticScaleKernel ((2 : ℝ) ^ k)) := by
   let A : ℝ := (2 : ℝ) ^ (k - 1)
@@ -328,11 +365,17 @@ theorem hasCompactSupport_quadraticScaleKernel_two_zpow (k : ℤ) :
     rw [quadraticScaleKernel_two_zpow]
     simp [annularQuadraticKernel, ha])
 
+/--
+@isnad1 id=integrab.0h1v.s5.e4485f81b9bd from=translated src=- shape=4afd909c vocab=fe32be40
+-/
 theorem integrable_quadraticScaleKernel_two_zpow (k : ℤ) :
     Integrable (quadraticScaleKernel ((2 : ℝ) ^ k)) :=
   (continuous_quadraticScaleKernel_two_zpow k).integrable_of_hasCompactSupport
     (hasCompactSupport_quadraticScaleKernel_two_zpow k)
 
+/--
+@isnad1 id=integrab.0h1v.s5.d4530c0fc313 from=translated src=- shape=4afd909c vocab=ecd7b1ea
+-/
 theorem integrable_smoothProjectedQuadraticScaleKernel_two_zpow (k : ℤ) :
     Integrable (smoothProjectedQuadraticScaleKernel ((2 : ℝ) ^ k)) := by
   have heq : smoothProjectedQuadraticScaleKernel ((2 : ℝ) ^ k) =
@@ -345,6 +388,9 @@ theorem integrable_smoothProjectedQuadraticScaleKernel_two_zpow (k : ℤ) :
     (ContinuousLinearMap.mul ℂ ℂ)
     (integrable_quadraticScaleKernel_two_zpow k)
 
+/--
+@isnad1 id=eq.0h2v.s6.ab8fbb111599 from=translated src=- shape=6718195e vocab=d84af458
+-/
 theorem fourier_smoothProjectedQuadraticScaleKernel_two_zpow
     (k : ℤ) (ξ : ℝ) :
     𝓕 (smoothProjectedQuadraticScaleKernel ((2 : ℝ) ^ k)) ξ =
@@ -378,6 +424,9 @@ def projectionKernelFirstMoment : ℝ :=
 def projectionKernelSecondMoment : ℝ :=
   ∫ u : ℝ, ‖projectionKernelSchwartz u‖ * u ^ 2
 
+/--
+@isnad1 id=integrab.0h0v.s6.17e8f8d23e97 from=translated src=- shape=c0b151a8 vocab=fcc049e9
+-/
 theorem projectionKernelFirstMoment_integrable :
     Integrable (fun u : ℝ ↦
       ‖projectionKernelSchwartz u‖ * (|u| + u ^ 2)) := by
@@ -392,19 +441,30 @@ theorem projectionKernelFirstMoment_integrable :
         ‖projectionKernelSchwartz u‖ * u ^ 2) := h1'.add h2'
   simpa only [mul_add] using hsum
 
+/--
+@isnad1 id=integrab.0h0v.s6.a1a382d721cf from=translated src=- shape=6f29e799 vocab=c66ce56f
+-/
 theorem projectionKernelSecondMoment_integrable :
     Integrable (fun u : ℝ ↦ ‖projectionKernelSchwartz u‖ * u ^ 2) := by
   have h2 := projectionKernelSchwartz.integrable_pow_mul volume 2
   simpa only [Real.norm_eq_abs, sq_abs, mul_comm] using h2
 
+/--
+@isnad1 id=le.0h0v.s3.d51e4e7b4e6b from=translated src=- shape=ff3a10fc vocab=5ff655d9
+-/
 theorem projectionKernelFirstMoment_nonneg : 0 ≤ projectionKernelFirstMoment := by
   exact integral_nonneg fun u ↦ mul_nonneg (norm_nonneg _) (by positivity)
 
+/--
+@isnad1 id=le.0h0v.s3.a2b69f1dd8f9 from=translated src=- shape=ff3a10fc vocab=6f8c6a3d
+-/
 theorem projectionKernelSecondMoment_nonneg : 0 ≤ projectionKernelSecondMoment := by
   exact integral_nonneg fun u ↦ mul_nonneg (norm_nonneg _) (sq_nonneg _)
 
 /-- The displayed bracket formula is exactly the difference between the
-scale kernel and its normalized smooth projection.-/
+scale kernel and its normalized smooth projection.
+@isnad1 id=eq.0h2v.s4.7a29109bc65c from=translated src=- shape=b624e142 vocab=800f02b1
+-/
 theorem quadraticProjectionRemainder_eq_sub (R x : ℝ) :
     quadraticProjectionRemainder R x =
       quadraticScaleKernel R x - smoothProjectedQuadraticScaleKernel R x := by
@@ -472,6 +532,9 @@ theorem quadraticProjectionRemainder_eq_sub (R x : ℝ) :
   dsimp [v]
   ring
 
+/--
+@isnad1 id=integrab.0h1v.s5.ae87239249f1 from=translated src=- shape=4afd909c vocab=14633e05
+-/
 theorem integrable_quadraticProjectionRemainder_two_zpow (k : ℤ) :
     Integrable (quadraticProjectionRemainder ((2 : ℝ) ^ k)) := by
   have heq : quadraticProjectionRemainder ((2 : ℝ) ^ k) =
@@ -483,6 +546,9 @@ theorem integrable_quadraticProjectionRemainder_two_zpow (k : ℤ) :
   exact (integrable_quadraticScaleKernel_two_zpow k).sub
     (integrable_smoothProjectedQuadraticScaleKernel_two_zpow k)
 
+/--
+@isnad1 id=eq.0h2v.s6.297a75945ccd from=translated src=- shape=2cfc9214 vocab=4aaffb7e
+-/
 theorem fourier_quadraticProjectionRemainder_two_zpow
     (k : ℤ) (ξ : ℝ) :
     𝓕 (quadraticProjectionRemainder ((2 : ℝ) ^ k)) ξ =
@@ -515,7 +581,9 @@ def quadraticProjectionRemainderOutput (k : ℤ) (f : ℝ → ℂ) : ℝ → ℂ
   quadraticProjectionRemainder ((2 : ℝ) ^ k) ⋆[ContinuousLinearMap.mul ℂ ℂ] f
 
 /-- Adapter to the convolution orientation used by the localized quadratic
-pieces in the direct proof.-/
+pieces in the direct proof.
+@isnad1 id=eq.0h3v.s5.739535f1ea7e from=translated src=- shape=6333cc66 vocab=478ca525
+-/
 theorem quadraticScaleOutput_eq_actual_convolution
     (k : ℤ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticScaleOutput k f x =
@@ -538,6 +606,9 @@ theorem quadraticScaleOutput_eq_actual_convolution
       unfold F
       rw [quadraticScaleKernel_two_zpow]
 
+/--
+@isnad1 id=eq.0h3v.s6.fedf7f7bdc22 from=translated src=- shape=f09507e8 vocab=d2b20d91
+-/
 theorem quadraticProjectionRemainderOutput_eq_actual_convolution
     (k : ℤ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticProjectionRemainderOutput k f x =
@@ -556,11 +627,17 @@ theorem quadraticProjectionRemainderOutput_eq_actual_convolution
     _ = ∫ t, F t := MeasureTheory.integral_sub_left_eq_self F volume x
     _ = _ := rfl
 
+/--
+@isnad1 id=integrab.1h2v.s6.6efc3b65d93f from=translated src=- shape=2c930462 vocab=ad1f3297
+-/
 theorem integrable_quadraticScaleOutput (k : ℤ) {f : ℝ → ℂ}
     (hf : Integrable f) : Integrable (quadraticScaleOutput k f) :=
   (integrable_quadraticScaleKernel_two_zpow k).integrable_convolution
     (ContinuousLinearMap.mul ℂ ℂ) hf
 
+/--
+@isnad1 id=integrab.1h2v.s6.29906f1dc90a from=translated src=- shape=2c930462 vocab=b37eda95
+-/
 theorem integrable_quadraticProjectionRemainderOutput
     (k : ℤ) {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (quadraticProjectionRemainderOutput k f) :=
@@ -569,7 +646,9 @@ theorem integrable_quadraticProjectionRemainderOutput
 
 /-- Concrete `L²` projection-error identity for an actual scale output.
 Both `MemLp` premises are properties of the displayed convolution outputs,
-not abstract projection assumptions.-/
+not abstract projection assumptions.
+@isnad1 id=eq.3h2v.s10.fabc25a203f4 from=translated src=- shape=ae30ee7e vocab=54e5c8ab
+-/
 theorem quadraticScaleOutputL2_sub_annularProjectionL2_eq_remainderOutputL2
     (k : ℤ) {f : ℝ → ℂ} (hf : Integrable f)
     (hscale₂ : MemLp (quadraticScaleOutput k f) 2 volume)
@@ -621,7 +700,9 @@ theorem quadraticScaleOutputL2_sub_annularProjectionL2_eq_remainderOutputL2
   ring
 
 /-- Representative form of the preceding identity.  This is the a.e.
-statement consumed by the a.e. prefix-control interface.-/
+statement consumed by the a.e. prefix-control interface.
+@isnad1 id=eventual.3h2v.s9.a1cf2252af58 from=translated src=- shape=8aa4abcd vocab=f9e0b5ad
+-/
 theorem quadraticScaleOutput_sub_annularProjection_ae
     (k : ℤ) {f : ℝ → ℂ} (hf : Integrable f)
     (hscale₂ : MemLp (quadraticScaleOutput k f) 2 volume)
@@ -642,7 +723,9 @@ theorem quadraticScaleOutput_sub_annularProjection_ae
   exact hx.symm.trans hrem
 
 /-- The fixed amplitude is globally Lipschitz with its already constructed
-derivative bound.-/
+derivative bound.
+@isnad1 id=le.0h2v.s5.2e0e7a0b805d from=translated src=- shape=9b3f6877 vocab=676e5100
+-/
 theorem norm_positiveDyadicBase_sub_le (v w : ℝ) :
     ‖positiveDyadicBase v - positiveDyadicBase w‖ ≤
       positiveDyadicAmplitudeBound * |v - w| := by
@@ -655,7 +738,9 @@ theorem norm_positiveDyadicBase_sub_le (v w : ℝ) :
       (fun z _ ↦ hdiff z) (fun z _ ↦ norm_deriv_positiveDyadicBase_le z)
       (Set.mem_univ w) (Set.mem_univ v))
 
-/-- The bracket gains the exact `R⁻²` factor required in the paper.-/
+/-- The bracket gains the exact `R⁻²` factor required in the paper.
+@isnad1 id=le.1h3v.s7.558f0c24b120 from=translated src=- shape=026bb789 vocab=76e6f936
+-/
 theorem norm_projectionRemainderBracket_le
     {R : ℝ} (hR : 1 ≤ R) (v u : ℝ) :
     ‖projectionRemainderBracket R v u‖ ≤
@@ -716,6 +801,9 @@ def projectionRemainderCentralConstant : ℝ :=
   positiveDyadicAmplitudeBound * (1 + 2 * Real.pi) *
     projectionKernelFirstMoment
 
+/--
+@isnad1 id=le.0h0v.s3.940cc9778f8c from=translated src=- shape=ff3a10fc vocab=0bbef42b
+-/
 theorem projectionRemainderCentralConstant_nonneg :
     0 ≤ projectionRemainderCentralConstant := by
   unfold projectionRemainderCentralConstant
@@ -724,7 +812,9 @@ theorem projectionRemainderCentralConstant_nonneg :
     projectionKernelFirstMoment_nonneg
 
 /-- The first half of the remainder estimate: the explicit bracket gives a
-uniform gain of two powers of the physical scale.-/
+uniform gain of two powers of the physical scale.
+@isnad1 id=le.1h2v.s5.cb58c0d0c745 from=translated src=- shape=d272b547 vocab=415974fc
+-/
 theorem norm_quadraticProjectionRemainder_le_central
     {R : ℝ} (hR : 1 ≤ R) (x : ℝ) :
     ‖quadraticProjectionRemainder R x‖ ≤
@@ -772,6 +862,9 @@ theorem norm_quadraticProjectionRemainder_le_central
       dsimp [C₀, projectionRemainderCentralConstant]
       field_simp
 
+/--
+@isnad1 id=eq.1h1v.s4.39bb543099d5 from=translated src=- shape=63817f57 vocab=83107055
+-/
 theorem positiveDyadicBase_eq_zero_of_one_le_abs
     {v : ℝ} (hv : 1 ≤ |v|) : positiveDyadicBase v = 0 := by
   by_contra hne
@@ -781,7 +874,9 @@ theorem positiveDyadicBase_eq_zero_of_one_le_abs
   linarith [hs.2]
 
 /-- Outside the fixed amplitude support, a nonzero translated amplitude
-forces the integration variable to be large.-/
+forces the integration variable to be large.
+@isnad1 id=le.3h3v.s7.79e62ae77ccf from=translated src=- shape=20667f71 vocab=2ebe6c84
+-/
 theorem scale_sq_mul_v_sq_le_four_mul_u_sq_of_translatedAmplitude_ne_zero
     {R v u : ℝ} (hR : 1 ≤ R) (hv : 1 ≤ |v|)
     (ha : positiveDyadicBase (v - u / R ^ 2) ≠ 0) :
@@ -806,7 +901,9 @@ theorem scale_sq_mul_v_sq_le_four_mul_u_sq_of_translatedAmplitude_ne_zero
   nlinarith
 
 /-- The support geometry converts the crude amplitude bound into the
-second-moment majorant used for spatial decay.-/
+second-moment majorant used for spatial decay.
+@isnad1 id=le.2h3v.s7.cbc7fd44f917 from=translated src=- shape=baac0f0d vocab=c295434e
+-/
 theorem norm_projectionRemainderBracket_le_tail
     {R v : ℝ} (hR : 1 ≤ R) (hv : 1 ≤ |v|) (u : ℝ) :
     ‖projectionRemainderBracket R v u‖ ≤
@@ -846,6 +943,9 @@ theorem norm_projectionRemainderBracket_le_tail
 def projectionRemainderTailConstant : ℝ :=
   4 * positiveDyadicAmplitudeBound * projectionKernelSecondMoment
 
+/--
+@isnad1 id=le.0h0v.s3.4423fe92798c from=translated src=- shape=ff3a10fc vocab=de490877
+-/
 theorem projectionRemainderTailConstant_nonneg :
     0 ≤ projectionRemainderTailConstant := by
   unfold projectionRemainderTailConstant
@@ -854,7 +954,9 @@ theorem projectionRemainderTailConstant_nonneg :
     projectionKernelSecondMoment_nonneg
 
 /-- The support of the amplitude gives two powers of spatial decay.  This
-version retains the stronger `R⁻⁵` factor delivered by the proof.-/
+version retains the stronger `R⁻⁵` factor delivered by the proof.
+@isnad1 id=le.2h2v.s6.20412f9c9b29 from=translated src=- shape=6b58282d vocab=50e56a28
+-/
 theorem norm_quadraticProjectionRemainder_le_tail
     {R : ℝ} (hR : 1 ≤ R) {x : ℝ} (hx : 1 ≤ |x / R|) :
     ‖quadraticProjectionRemainder R x‖ ≤
@@ -940,13 +1042,18 @@ private theorem inv_sq_le_four_mul_one_add_abs_inv_sq_of_one_le_abs
 def projectionRemainderConstant : ℝ :=
   4 * max projectionRemainderCentralConstant projectionRemainderTailConstant
 
+/--
+@isnad1 id=le.0h0v.s3.00c334882f8d from=translated src=- shape=ff3a10fc vocab=5df06989
+-/
 theorem projectionRemainderConstant_nonneg : 0 ≤ projectionRemainderConstant := by
   unfold projectionRemainderConstant
   exact mul_nonneg (by norm_num) <|
     projectionRemainderCentralConstant_nonneg.trans (le_max_left _ _)
 
 /-- The explicit smooth-projection remainder bound from the direct
-quadratic proof.-/
+quadratic proof.
+@isnad1 id=le.1h2v.s6.b079e47858f2 from=translated src=- shape=68188695 vocab=52569172
+-/
 theorem norm_quadraticProjectionRemainder_le
     {R : ℝ} (hR : 1 ≤ R) (x : ℝ) :
     ‖quadraticProjectionRemainder R x‖ ≤
@@ -1009,7 +1116,9 @@ def quadraticRemainderWeight (R x : ℝ) : ℝ :=
   (1 + (x / R) ^ 2)⁻¹
 
 /-- Integrable Cauchy-weight form of the explicit pointwise remainder
-estimate.-/
+estimate.
+@isnad1 id=le.1h2v.s5.344715f609e6 from=translated src=- shape=2e2fc2c2 vocab=4e2f07a5
+-/
 theorem norm_quadraticProjectionRemainder_le_weight
     {R : ℝ} (hR : 1 ≤ R) (x : ℝ) :
     ‖quadraticProjectionRemainder R x‖ ≤
@@ -1024,16 +1133,25 @@ theorem norm_quadraticProjectionRemainder_le_weight
   exact hr.trans <| mul_le_mul_of_nonneg_left hinv <|
     mul_nonneg projectionRemainderConstant_nonneg (by positivity)
 
+/--
+@isnad1 id=integrab.1h1v.s5.a699737c60dc from=translated src=- shape=77bdae96 vocab=b71efa6a
+-/
 theorem integrable_quadraticRemainderWeight {R : ℝ} (hR : 0 < R) :
     Integrable (quadraticRemainderWeight R) := by
   change Integrable (fun x : ℝ ↦ (1 + (x / R) ^ 2)⁻¹)
   exact integrable_inv_one_add_sq.comp_div hR.ne'
 
+/--
+@isnad1 id=integrab.1h2v.s5.eb6a4dcf6a85 from=translated src=- shape=2c4690d2 vocab=457c9df8
+-/
 theorem integrable_quadraticRemainderWeight_sub_left
     {R : ℝ} (hR : 0 < R) (x : ℝ) :
     Integrable (fun t ↦ quadraticRemainderWeight R (x - t)) := by
   exact (integrable_quadraticRemainderWeight hR).comp_sub_left x
 
+/--
+@isnad1 id=eq.1h2v.s5.1660d68e0eda from=translated src=- shape=26d82066 vocab=016e5bb7
+-/
 theorem integral_quadraticRemainderWeight_sub_left
     {R : ℝ} (hR : 0 < R) (x : ℝ) :
     (∫ t : ℝ, quadraticRemainderWeight R (x - t)) = R * Real.pi := by
@@ -1048,6 +1166,9 @@ theorem integral_quadraticRemainderWeight_sub_left
       rw [abs_of_pos hR, integral_univ_inv_one_add_sq]
       rfl
 
+/--
+@isnad1 id=le.2h4v.s6.2a78199ff3b1 from=translated src=- shape=4b5a9836 vocab=58688ebe
+-/
 theorem quadraticRemainderWeight_sub_le_two_mul
     {R : ℝ} (hR : 1 ≤ R) {x t z : ℝ} (htz : |t - z| ≤ 1 / 2) :
     quadraticRemainderWeight R (x - t) ≤
@@ -1082,7 +1203,9 @@ def centeredUnitMass (f : ℝ → ℂ) (x : ℝ) : ℝ :=
   ∫ t in Set.Icc (x - 1 / 2) (x + 1 / 2), ‖f t‖
 
 /-- A Cauchy weight at scale `R ≥ 1` integrates against any input with
-uniform centered-unit mass at most `M` with size `O(R M)`.-/
+uniform centered-unit mass at most `M` with size `O(R M)`.
+@isnad1 id=le.4h4v.s7.da50ec124e98 from=translated src=- shape=176ff471 vocab=446411a5
+-/
 theorem integral_weight_mul_norm_le_of_centeredUnitMass
     {R : ℝ} (hR : 1 ≤ R) {f : ℝ → ℂ} (hf : Integrable f)
     {M : ℝ} (hM : 0 ≤ M) (hlocal : ∀ z, centeredUnitMass f z ≤ M)
@@ -1209,7 +1332,9 @@ theorem integral_weight_mul_norm_le_of_centeredUnitMass
       ring
 
 /-- The pointwise kernel estimate integrates to the paper's `R⁻²` mass
-bound at every nonnegative dyadic scale.-/
+bound at every nonnegative dyadic scale.
+@isnad1 id=le.1h1v.s6.8849573d0d67 from=translated src=- shape=45ee7520 vocab=889612c1
+-/
 theorem integral_norm_quadraticProjectionRemainder_two_zpow_le
     {k : ℤ} (hk : 0 ≤ k) :
     (∫ x : ℝ, ‖quadraticProjectionRemainder ((2 : ℝ) ^ k) x‖) ≤
@@ -1266,7 +1391,9 @@ theorem integral_norm_quadraticProjectionRemainder_two_zpow_le
     _ = _ := rfl
 
 /-- The explicit remainder convolution is uniformly bounded by the
-`R⁻³` kernel supremum times the `L¹` mass of its input.-/
+`R⁻³` kernel supremum times the `L¹` mass of its input.
+@isnad1 id=le.2h3v.s7.285762367810 from=translated src=- shape=197e3a4f vocab=eed97dfb
+-/
 theorem norm_quadraticProjectionRemainderOutput_le
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     ‖quadraticProjectionRemainderOutput k f x‖ ≤
@@ -1295,7 +1422,9 @@ theorem norm_quadraticProjectionRemainderOutput_le
     _ = _ := integral_const_mul _ _
 
 /-- The standard `L¹ * L¹ → L¹` estimate, specialized to the explicit
-projection remainder and proved directly from convolution/Fubini.-/
+projection remainder and proved directly from convolution/Fubini.
+@isnad1 id=le.1h2v.s7.1e2d7445632c from=translated src=- shape=3d493980 vocab=f8aa639a
+-/
 theorem integral_norm_quadraticProjectionRemainderOutput_le
     (k : ℤ) {f : ℝ → ℂ} (hf : Integrable f) :
     (∫ x : ℝ, ‖quadraticProjectionRemainderOutput k f x‖) ≤
@@ -1330,7 +1459,9 @@ theorem integral_norm_quadraticProjectionRemainderOutput_le
     _ = _ := rfl
 
 /-- At nonnegative dyadic scales the remainder output has the paper's
-`R⁻²` `L¹` bound.-/
+`R⁻²` `L¹` bound.
+@isnad1 id=le.2h2v.s7.5c99f709b90d from=translated src=- shape=7d53f264 vocab=855063b8
+-/
 theorem integral_norm_quadraticProjectionRemainderOutput_two_zpow_le
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f) :
     (∫ x : ℝ, ‖quadraticProjectionRemainderOutput k f x‖) ≤
@@ -1349,7 +1480,9 @@ theorem integral_norm_quadraticProjectionRemainderOutput_two_zpow_le
 
 /-- The local-unit-mass replacement for a pointwise input bound.  At scale
 `R = 2^k`, local mass `M` yields the uniform remainder bound
-`2 π C M R⁻²`.-/
+`2 π C M R⁻²`.
+@isnad1 id=le.4h4v.s7.61582655ef2c from=translated src=- shape=cfaea0d7 vocab=21a2f387
+-/
 theorem norm_quadraticProjectionRemainderOutput_le_of_centeredUnitMass
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     {M : ℝ} (hM : 0 ≤ M) (hlocal : ∀ z, centeredUnitMass f z ≤ M)
@@ -1416,7 +1549,9 @@ theorem norm_quadraticProjectionRemainderOutput_le_of_centeredUnitMass
     _ = _ := rfl
 
 /-- If the input is bounded by `K`, the remainder output has the paper's
-`K R⁻²` uniform bound.-/
+`K R⁻²` uniform bound.
+@isnad1 id=le.3h4v.s6.2f695999ab4b from=translated src=- shape=99269611 vocab=4b181874
+-/
 theorem norm_quadraticProjectionRemainderOutput_le_of_bound
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} {K : ℝ} (hK : 0 ≤ K)
     (hfK : ∀ x, ‖f x‖ ≤ K) (x : ℝ) :
@@ -1449,7 +1584,9 @@ theorem norm_quadraticProjectionRemainderOutput_le_of_bound
         (integral_norm_quadraticProjectionRemainder_two_zpow_le hk) hK
 
 /-- The interpolation step in squared form.  It combines the concrete
-`L∞` and `L¹` output estimates and already has scale decay `R⁻⁴`.-/
+`L∞` and `L¹` output estimates and already has scale decay `R⁻⁴`.
+@isnad1 id=le.4h3v.s7.18ab89d179ff from=translated src=- shape=f7a39a80 vocab=855063b8
+-/
 theorem integral_sq_norm_quadraticProjectionRemainderOutput_le
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     {K : ℝ} (hK : 0 ≤ K) (hfK : ∀ x, ‖f x‖ ≤ K) :
@@ -1502,7 +1639,9 @@ theorem integral_sq_norm_quadraticProjectionRemainderOutput_le
     _ = _ := rfl
 
 /-- `L²` interpolation using only the centered-unit mass hypothesis and
-the total `L¹` mass.-/
+the total `L¹` mass.
+@isnad1 id=le.4h3v.s8.64821382c3c6 from=translated src=- shape=b864f5d8 vocab=c191c73d
+-/
 theorem integral_sq_norm_quadraticProjectionRemainderOutput_le_of_centeredUnitMass
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     {M : ℝ} (hM : 0 ≤ M) (hlocal : ∀ z, centeredUnitMass f z ≤ M) :
@@ -1558,7 +1697,9 @@ theorem integral_sq_norm_quadraticProjectionRemainderOutput_le_of_centeredUnitMa
     _ = _ := rfl
 
 /-- For nonnegative dyadic scales the actual projection-remainder output of
-every integrable input has a canonical `L²` representative.-/
+every integrable input has a canonical `L²` representative.
+@isnad1 id=memlp.2h2v.s7.7aa8014ef3ad from=translated src=- shape=971b26bd vocab=e0daa22e
+-/
 theorem memLp_two_quadraticProjectionRemainderOutput
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f) :
     MemLp (quadraticProjectionRemainderOutput k f) 2 volume := by
@@ -1577,7 +1718,9 @@ theorem memLp_two_quadraticProjectionRemainderOutput
   simpa only [pow_two] using hi
 
 /-- Quantitative `L²` interpolation for the concrete remainder output.  This
-is the per-scale estimate used in the final finite sum.-/
+is the per-scale estimate used in the final finite sum.
+@isnad1 id=le.4h3v.s8.b90d25ce500e from=translated src=- shape=3258f201 vocab=ddd00a57
+-/
 theorem norm_quadraticProjectionRemainderOutputL2_le
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     {K : ℝ} (hK : 0 ≤ K) (hfK : ∀ x, ‖f x‖ ≤ K) :
@@ -1624,7 +1767,9 @@ theorem norm_quadraticProjectionRemainderOutputL2_le
     _ = _ := rfl
 
 /-- Quantitative `L²` remainder estimate from local unit-window mass and
-total mass.-/
+total mass.
+@isnad1 id=le.4h3v.s8.001a995237cd from=translated src=- shape=fbc90e47 vocab=74ba50d8
+-/
 theorem norm_quadraticProjectionRemainderOutputL2_le_of_centeredUnitMass
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     {M : ℝ} (hM : 0 ≤ M) (hlocal : ∀ z, centeredUnitMass f z ≤ M) :
@@ -1684,6 +1829,9 @@ noncomputable def nonnegativeDyadicProjectionRemainderOutputL2
       (k := (k : ℤ)) (by omega) hf).toLp
     (quadraticProjectionRemainderOutput (k : ℤ) f)
 
+/--
+@isnad1 id=le.3h3v.s8.b203f1027d83 from=translated src=- shape=e8f0da3a vocab=c1871480
+-/
 theorem norm_nonnegativeDyadicProjectionRemainderOutputL2_le
     (k : ℕ) {f : ℝ → ℂ} (hf : Integrable f)
     {K : ℝ} (hK : 0 ≤ K) (hfK : ∀ x, ‖f x‖ ≤ K) :
@@ -1697,7 +1845,9 @@ theorem norm_nonnegativeDyadicProjectionRemainderOutputL2_le
       (k := (k : ℤ)) (by omega) hf hK hfK
 
 /-- Concrete `L²` projection-error identity with no remainder-space premise:
-integrability of the input supplies it automatically.-/
+integrability of the input supplies it automatically.
+@isnad1 id=eq.3h2v.s10.e75e7d5dce89 from=translated src=- shape=b5883027 vocab=d564c2f7
+-/
 theorem quadraticScaleOutputL2_sub_annularProjectionL2_eq_remainderOutputL2_of_nonneg
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     (hscale₂ : MemLp (quadraticScaleOutput k f) 2 volume) :
@@ -1710,7 +1860,9 @@ theorem quadraticScaleOutputL2_sub_annularProjectionL2_eq_remainderOutputL2_of_n
     k hf hscale₂ (memLp_two_quadraticProjectionRemainderOutput hk hf)
 
 /-- A.e. representative form of the concrete nonnegative-scale projection
-error identity.-/
+error identity.
+@isnad1 id=eventual.3h2v.s9.c7d806810953 from=translated src=- shape=0811eba8 vocab=a1969741
+-/
 theorem quadraticScaleOutput_sub_annularProjection_ae_of_nonneg
     {k : ℤ} (hk : 0 ≤ k) {f : ℝ → ℂ} (hf : Integrable f)
     (hscale₂ : MemLp (quadraticScaleOutput k f) 2 volume) :
@@ -1728,6 +1880,9 @@ def finiteProjectionErrorMajorant
     (N : ℕ) (u : ℕ → ℝ → ℂ) (x : ℝ) : ℝ :=
   ∑ n ∈ Finset.range N, ‖u n x‖
 
+/--
+@isnad1 id=memlp.1h2v.s7.5d84f53ed18b from=translated src=- shape=c6d853a6 vocab=5e5d444f
+-/
 theorem memLp_two_finiteProjectionErrorMajorant
     {N : ℕ} {u : ℕ → ℝ → ℂ} (hu : ∀ n, MemLp (u n) 2 volume) :
     MemLp (finiteProjectionErrorMajorant N u) 2 volume := by
@@ -1735,7 +1890,9 @@ theorem memLp_two_finiteProjectionErrorMajorant
   exact memLp_finsetSum (Finset.range N) fun n _ ↦ (hu n).norm
 
 /-- The square integral of the extended-nonnegative version of the finite
-projection-error majorant is exactly the square of its real `L²` norm.-/
+projection-error majorant is exactly the square of its real `L²` norm.
+@isnad1 id=eq.1h2v.s8.abfffb0f32f4 from=translated src=- shape=73cbd81b vocab=c720c8b0
+-/
 theorem lintegral_ofReal_finiteProjectionErrorMajorant_sq_eq
     {N : ℕ} {u : ℕ → ℝ → ℂ} (hu : ∀ n, MemLp (u n) 2 volume) :
     (∫⁻ x, ENNReal.ofReal (finiteProjectionErrorMajorant N u x) ^ 2) =
@@ -1770,7 +1927,9 @@ private theorem toLp_finsetSum_eq_sum
       simpa only [Finset.sum_insert ha, ih] using hadd
 
 /-- The `L²` norm of the pointwise finite error majorant is bounded by the
-sum of the individual error norms.-/
+sum of the individual error norms.
+@isnad1 id=le.1h2v.s9.fb1b7616d466 from=translated src=- shape=691aae1a vocab=b9d59a21
+-/
 theorem norm_finiteProjectionErrorMajorantL2_le
     {N : ℕ} {u : ℕ → ℝ → ℂ} (hu : ∀ n, MemLp (u n) 2 volume) :
     ‖(memLp_two_finiteProjectionErrorMajorant hu).toLp
@@ -1803,7 +1962,9 @@ theorem norm_finiteProjectionErrorMajorantL2_le
 /-- A finite pointwise remainder majorant is controlled in `L²` by the sum
 of the centered-unit-mass bounds for its individual scale outputs.  This is
 the abstract bridge needed by the direct quadratic residue families; unlike
-the earlier bounded-input route, it assumes no pointwise bound on the inputs.-/
+the earlier bounded-input route, it assumes no pointwise bound on the inputs.
+@isnad1 id=other.4h4v.s9.f322c8e3af20 from=translated src=- shape=8efe667c vocab=fdbcb81a
+-/
 theorem norm_finiteProjectionErrorMajorantL2_le_of_centeredUnitMass
     {N : ℕ} {k : ℕ → ℤ} (hk : ∀ n, 0 ≤ k n)
     {f : ℕ → ℝ → ℂ} (hf : ∀ n, Integrable (f n))
@@ -1848,6 +2009,9 @@ def finiteDyadicProjectionRemainderMajorant
   ∑ n ∈ Finset.range N,
     ‖quadraticProjectionRemainderOutput ((s + j₀ + n : ℕ) : ℤ) (f n) x‖
 
+/--
+@isnad1 id=memlp.1h4v.s6.776b7167379c from=translated src=- shape=6f3ae479 vocab=2383a82b
+-/
 theorem memLp_two_finiteDyadicProjectionRemainderMajorant
     (N s j₀ : ℕ) {f : ℕ → ℝ → ℂ} (hf : ∀ n, Integrable (f n)) :
     MemLp (finiteDyadicProjectionRemainderMajorant N s j₀ f) 2 volume := by
@@ -1858,7 +2022,9 @@ theorem memLp_two_finiteDyadicProjectionRemainderMajorant
     (k := ((s + j₀ + n : ℕ) : ℤ)) (by omega) (hf n)).norm
 
 /-- Cancellation-free `L²` estimate for the concrete pointwise finite
-error majorant.-/
+error majorant.
+@isnad1 id=le.1h4v.s9.fd641597805f from=translated src=- shape=68f60023 vocab=25b027ac
+-/
 theorem norm_finiteDyadicProjectionRemainderMajorantL2_le
     (N s j₀ : ℕ) {f : ℕ → ℝ → ℂ} (hf : ∀ n, Integrable (f n)) :
     ‖(memLp_two_finiteDyadicProjectionRemainderMajorant N s j₀ hf).toLp
@@ -1952,7 +2118,9 @@ private theorem sqrt_sum_sixteenth_shift_le
 /-- Finite `L²` summation of projection errors.  The hypothesis is exactly
 the per-scale bound obtained by interpolating the paper's
 `‖r_R * F_j‖∞ ≲ K R⁻²` and `‖r_R * F_j‖₁ ≲ R⁻² m_j` estimates.  The result is
-cardinality-free and has the required `(1/4)^s = 2^(-2s)` decay.-/
+cardinality-free and has the required `(1/4)^s = 2^(-2s)` decay.
+@isnad1 id=le.6h8v.s10.5400326df741 from=translated src=- shape=4cc86ae0 vocab=4e1da3f6
+-/
 theorem norm_finset_sum_projectionErrors_le
     (N s j₀ : ℕ) {K V C : ℝ}
     (_hK : 0 ≤ K) (_hV : 0 ≤ V) (hC : 0 ≤ C)
@@ -2014,7 +2182,9 @@ private theorem inv_two_pow_sq_eq_sqrt_sixteenth_pow (q : ℕ) :
 
 /-- Fully concrete finite summation of the actual remainder convolutions.
 The inputs may vary with the scale, are bounded by `K`, and their `L¹`
-masses sum to at most `V`.  No cardinality factor remains.-/
+masses sum to at most `V`.  No cardinality factor remains.
+@isnad1 id=le.7h7v.s9.579ee976b266 from=translated src=- shape=9b08b92f vocab=59ac26e0
+-/
 theorem norm_finset_sum_nonnegativeDyadicProjectionRemainderOutputL2_le
     (N s j₀ : ℕ) {K V : ℝ} (hK : 0 ≤ K) (hV : 0 ≤ V)
     (f : ℕ → ℝ → ℂ) (hf : ∀ n, Integrable (f n))

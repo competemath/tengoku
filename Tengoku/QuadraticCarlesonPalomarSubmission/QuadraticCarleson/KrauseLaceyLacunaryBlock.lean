@@ -47,7 +47,9 @@ def HasFiniteSparseMaximalWeakBound (K : ℝ) : Prop :=
 /-- The two analytic sparse inputs give the paper's exact frozen-block
 Hilbert estimate.  The proof includes the finite-radius approximation,
 enumeration of `Q B τ`, its exact cardinality `B`, and restriction away from
-the fivefold exceptional set.-/
+the fivefold exceptional set.
+@isnad1 id=haslogsq.2h5v.s5.f404e42c09b2 from=translated src=- shape=5bc800de vocab=c482f7ff
+-/
 theorem hasLogSquaredFrozenHilbertBlockWeakBounds_of_sparse
     {K A : ℝ} (hmax : HasFiniteSparseMaximalWeakBound K)
     (hKL : HasUniformFiniteRadiusQuadraticSparseBound A)
@@ -67,7 +69,9 @@ theorem hasLogSquaredFrozenHilbertBlockWeakBounds_of_sparse
   simpa only [card_Q] using hweak
 
 /-- Uniform version on exactly the paper's `L0Infinity` input class.  No
-estimate on arbitrary integrable functions is required.-/
+estimate on arbitrary integrable functions is required.
+@isnad1 id=hasunifo.2h2v.s5.ee2caef2bdf9 from=translated src=- shape=b2fc712f vocab=9d4e290e
+-/
 theorem hasUniformL0LogSquaredFrozenBlockWeakBounds_of_sparse
     {K A : ℝ} (hmax : HasFiniteSparseMaximalWeakBound K)
     (hKL : HasUniformFiniteRadiusQuadraticSparseBound A) :
@@ -79,7 +83,9 @@ theorem hasUniformL0LogSquaredFrozenBlockWeakBounds_of_sparse
       hmax hKL f PositiveHighHeightEstimate.lacunaryHighCutoff 0)
 
 /-- The paper-facing lacunary principal-value endpoint follows directly from
-the ordinary Hilbert weak theorem and the two still-analytic sparse inputs.-/
+the ordinary Hilbert weak theorem and the two still-analytic sparse inputs.
+@isnad1 id=ex.3h3v.s7.d4395c1cc9ef from=translated src=- shape=1d3f06ff vocab=a5fd80d2
+-/
 theorem lacunary_principalValue_endpoint_of_sparse
     {CH : ℝ≥0∞} (hH : HilbertPrincipalValueClosure.HasUniformHilbertMaximalWeakBound CH)
     {K A : ℝ} (hmax : HasFiniteSparseMaximalWeakBound K)

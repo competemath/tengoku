@@ -24,12 +24,18 @@ attribute [local instance] Classical.propDecidable
 noncomputable def badPieceUniformBound (f : ℝ → ℂ) (I₀ : RealInterval) : ℝ :=
   80 * positiveDyadicAmplitudeBound * intervalL1Average f I₀
 
+/--
+@isnad1 id=le.0h2v.s4.754153452404 from=translated src=- shape=67b19932 vocab=0bf51353
+-/
 theorem badPieceUniformBound_nonneg (f : ℝ → ℂ) (I₀ : RealInterval) :
     0 ≤ badPieceUniformBound f I₀ := by
   unfold badPieceUniformBound
   exact mul_nonneg (mul_nonneg (by norm_num) positiveDyadicAmplitudeBound_nonneg)
     (intervalL1Average_nonneg f I₀)
 
+/--
+@isnad1 id=le.4h8v.s7.b77b5f421bc0 from=translated src=- shape=dc4d553a vocab=b4f9d2d7
+-/
 theorem norm_localizedBadPiece_le_uniform
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -65,6 +71,9 @@ theorem norm_localizedBadPiece_le_uniform
       field_simp
       <;> ring
 
+/--
+@isnad1 id=le.4h8v.s7.52d9edd8d569 from=translated src=- shape=172bf359 vocab=10292d28
+-/
 theorem badLengthTailMaximal_le_uniform_mul_overlapCount
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -96,7 +105,9 @@ theorem badLengthTailMaximal_le_uniform_mul_overlapCount
       simp only [Finset.sum_const, nsmul_eq_mul, overlapCount, mul_comm]
 
 /-- This squared extended `L²` estimate concerns the actual all-threshold
-maximal action of the removed intervals, not a formal counting operator.-/
+maximal action of the removed intervals, not a formal counting operator.
+@isnad1 id=le.4h7v.s9.c2f7169b10fe from=translated src=- shape=98de6067 vocab=fe1485ec
+-/
 theorem eLpNorm_removed_badLengthTailMaximal_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (scale : RealInterval → ℤ)

@@ -20,6 +20,9 @@ open scoped ENNReal NNReal
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=le.0h1v.s6.1572816d109f from=translated src=- shape=6d735731 vocab=7266a648
+-/
 theorem fixedHeight_floor_decay_le_rpow (height : ℕ) :
     1 / (2 : ℝ) ^ ((height - 1) / 5) ≤
       2 * (2 : ℝ) ^ (-(height : ℝ) / 5) := by
@@ -37,6 +40,9 @@ theorem fixedHeight_floor_decay_le_rpow (height : ℕ) :
     _ ≤ 2 / (2 : ℝ) ^ ((height : ℝ) / 5) := hinv
     _ = _ := by rw [neg_div, Real.rpow_neg (by norm_num : (0 : ℝ) ≤ 2)]; rfl
 
+/--
+@isnad1 id=le.1h2v.s8.7454b6658750 from=translated src=- shape=69a690a6 vocab=24ce9228
+-/
 theorem paperFixedHeightQuadraticMaximal_sq_lintegral_rpow_decay
     (height : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     (∫⁻ x, paperFixedHeightQuadraticMaximal height f x ^ 2) ≤
@@ -58,15 +64,24 @@ theorem paperFixedHeightQuadraticMaximal_sq_lintegral_rpow_decay
 noncomputable def fixedHeightL2DecayConstant : ℝ :=
   1000000 * (positiveDyadicAmplitudeBound + 1)
 
+/--
+@isnad1 id=lt.0h0v.s3.a82ac6f08fe3 from=translated src=- shape=ff3a10fc vocab=66d1c97d
+-/
 theorem fixedHeightL2DecayConstant_pos : 0 < fixedHeightL2DecayConstant := by
   unfold fixedHeightL2DecayConstant
   positivity [positiveDyadicAmplitudeBound_nonneg]
 
+/--
+@isnad1 id=le.0h0v.s5.1a7027fdde8f from=translated src=- shape=c980f5b6 vocab=cf0db992
+-/
 theorem fixedHeightL2DecayConstant_sq_ge :
     141993451776 * positiveDyadicAmplitudeBound ^ 2 ≤ fixedHeightL2DecayConstant ^ 2 := by
   unfold fixedHeightL2DecayConstant
   nlinarith [positiveDyadicAmplitudeBound_nonneg, sq_nonneg positiveDyadicAmplitudeBound]
 
+/--
+@isnad1 id=eq.0h2v.s6.eb70daaa8c07 from=translated src=- shape=b8754a78 vocab=1cc80cbe
+-/
 theorem eLpNorm_two_sq_lintegral {ε : Type*} [ENorm ε] (f : ℝ → ε) :
     eLpNorm f 2 ^ 2 = ∫⁻ x, ‖f x‖ₑ ^ 2 := by
   rw [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num) (by norm_num)]
@@ -75,7 +90,9 @@ theorem eLpNorm_two_sq_lintegral {ε : Type*} [ENorm ε] (f : ℝ → ε) :
   norm_num
 
 /-- The conventional fixed-height quadratic maximal `L²` decay estimate,
-with exponent `1/10`, for the paper's actual unrestricted real supremum.-/
+with exponent `1/10`, for the paper's actual unrestricted real supremum.
+@isnad1 id=le.1h2v.s7.916a2dcb12e2 from=translated src=- shape=f9ef53af vocab=047b9662
+-/
 theorem paperFixedHeightQuadraticMaximal_eLpNorm_decay
     (height : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     eLpNorm (paperFixedHeightQuadraticMaximal height f) 2 ≤
@@ -98,6 +115,9 @@ theorem paperFixedHeightQuadraticMaximal_eLpNorm_decay
   rw [mul_pow, hp]
   exact mul_le_mul_of_nonneg_right fixedHeightL2DecayConstant_sq_ge (by positivity)
 
+/--
+@isnad1 id=memlp.1h2v.s6.1cd1f34aec97 from=translated src=- shape=bb3bf327 vocab=183683bc
+-/
 theorem memLp_paperFixedHeightQuadraticMaximal
     (height : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     MemLp (paperFixedHeightQuadraticMaximal height f) 2 := by

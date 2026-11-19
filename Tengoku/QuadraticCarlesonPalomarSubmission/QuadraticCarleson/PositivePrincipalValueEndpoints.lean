@@ -30,7 +30,9 @@ open KaltonPaperApplication
 set_option autoImplicit false
 
 /-- The L0-only Hilbert hypothesis gives the earlier real-valued weak-bound
-interface on each actual L0 input, without extending its domain.-/
+interface on each actual L0 input, without extending its domain.
+@isnad1 id=hasexten.1h2v.s6.08e75b9843d2 from=translated src=- shape=f6b507df vocab=15b68a02
+-/
 theorem extendedWeakL1Bound_zeroHilbert_of_uniform
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH) (f : L0Infinity) :
     HasExtendedWeakL1Bound volume (CH.toReal * (∫⁻ x, ‖f x‖ₑ).toReal)
@@ -42,7 +44,9 @@ theorem extendedWeakL1Bound_zeroHilbert_of_uniform
   exact hH.2 f (ENNReal.ofReal a)
 
 /-- Compatibility with the previously isolated, stronger all-integrable-input
-form of the ordinary Hilbert maximal theorem.-/
+form of the ordinary Hilbert maximal theorem.
+@isnad1 id=hasunifo.1h1v.s3.7db10ae5f0f7 from=translated src=- shape=58f8d12c vocab=ff9fa4d6
+-/
 theorem uniformHilbertMaximalWeakBound_of_all_integrable
     {CH : ℝ} (hH : HasUniformZeroHilbertMaximalWeakBound CH) :
     HasUniformHilbertMaximalWeakBound (ENNReal.ofReal CH) := by
@@ -55,6 +59,9 @@ theorem uniformHilbertMaximalWeakBound_of_all_integrable
 noncomputable def fullPrincipalValueEndpointConstant (CH : ℝ≥0∞) : ℝ≥0∞ :=
   4 * fullOscillatoryEndpointConstant + 8 * CH + 16 * maximalErrorConstant
 
+/--
+@isnad1 id=lt.1h1v.s4.d9e57b0cc716 from=translated src=- shape=f435bc32 vocab=a67ae48e
+-/
 theorem fullPrincipalValueEndpointConstant_lt_top
     {CH : ℝ≥0∞} (hCH : CH < ∞) : fullPrincipalValueEndpointConstant CH < ∞ := by
   unfold fullPrincipalValueEndpointConstant
@@ -64,7 +71,9 @@ theorem fullPrincipalValueEndpointConstant_lt_top
     ENNReal.mul_lt_top (by finiteness) maximalErrorConstant_lt_top⟩
 
 /-- The exact arbitrary-threshold full-modulation source modular, now using
-only the ordinary Hilbert maximal estimate on the paper's own test domain.-/
+only the ordinary Hilbert maximal estimate on the paper's own test domain.
+@isnad1 id=le.2h3v.s7.f21131fb62c6 from=translated src=- shape=2b783a04 vocab=ff48844b
+-/
 theorem quadraticCarlesonL0_levelSet_le_full_modular
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
@@ -80,7 +89,9 @@ theorem quadraticCarlesonL0_levelSet_le_full_modular
     ofReal_maximalErrorConstantReal, fullPrincipalValueEndpointConstant] using h
 
 /-- The ordinary Hilbert remainder at threshold `α/6` is absorbed into the
-paper's lacunary modular using its elementary domination of `L¹`.-/
+paper's lacunary modular using its elementary domination of `L¹`.
+@isnad1 id=le.2h3v.s7.7064bc9fe811 from=translated src=- shape=ffe91e86 vocab=f8b8cc34
+-/
 theorem zeroHilbert_levelSet_sixth_le_lacunary_modular
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
@@ -106,6 +117,9 @@ noncomputable def lacunaryPrincipalValueEndpointConstant
     (CH : ℝ≥0∞) (CB : ℝ) : ℝ≥0∞ :=
   6 * CH + lacunaryRemainderEndpointConstant CB
 
+/--
+@isnad1 id=lt.1h2v.s4.49fd9fba9394 from=translated src=- shape=91eeb589 vocab=cf5b341e
+-/
 theorem lacunaryPrincipalValueEndpointConstant_lt_top
     {CH : ℝ≥0∞} (hCH : CH < ∞) (CB : ℝ) :
     lacunaryPrincipalValueEndpointConstant CH CB < ∞ := by
@@ -114,7 +128,9 @@ theorem lacunaryPrincipalValueEndpointConstant_lt_top
 
 /-- The exact lacunary source modular, conditional only on the two already
 isolated individual analytic estimates. The block hypothesis is uniform in
-the input, so no unjustified scaling of stopping atoms is used.-/
+the input, so no unjustified scaling of stopping atoms is used.
+@isnad1 id=le.3h4v.s7.3108a7c0d6d1 from=translated src=- shape=02cf81b2 vocab=c184f537
+-/
 theorem lacunaryQuadraticCarlesonL0_levelSet_le_lacunary_modular
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     {CB : ℝ} (hB : HasUniformL0LogSquaredFrozenBlockWeakBounds CB)
@@ -134,6 +150,9 @@ noncomputable def principalValueRepresentative (lam : ℝ) (f : L0Infinity) (x :
   classical
   exact if h : ∃ z : ℂ, HasQuadraticPrincipalValue lam f x z then h.choose else 0
 
+/--
+@isnad1 id=eq.1h4v.s4.a0783c7d9f52 from=translated src=- shape=1d954355 vocab=de016047
+-/
 theorem principalValueRepresentative_eq {lam : ℝ} {f : L0Infinity} {x : ℝ} {z : ℂ}
     (hz : HasQuadraticPrincipalValue lam f x z) :
     principalValueRepresentative lam f x = z := by
@@ -141,6 +160,9 @@ theorem principalValueRepresentative_eq {lam : ℝ} {f : L0Infinity} {x : ℝ} {
   rw [principalValueRepresentative, dite_eq_left hex]
   exact tendsto_nhds_unique hex.choose_spec hz
 
+/--
+@isnad1 id=eventual.1h2v.s5.2eaa48d2cceb from=translated src=- shape=5ed2133a vocab=9ceacbe4
+-/
 theorem ae_forall_hasPrincipalValue_representative
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH) (f : L0Infinity) :
     ∀ᵐ x, ∀ lam : ℝ,
@@ -159,7 +181,9 @@ noncomputable def lacunaryPrincipalValueMaximal (f : L0Infinity) (x : ℝ) : ℝ
   ⨆ m : ℤ, ENNReal.ofReal ‖principalValueRepresentative (dyadicModulation m) f x‖
 
 /-- The equality holds on one common full-measure set before the uncountable
-real supremum is taken; no uncountable intersection of null sets is used.-/
+real supremum is taken; no uncountable intersection of null sets is used.
+@isnad1 id=eventual.1h2v.s4.6c92f197526a from=translated src=- shape=66004649 vocab=42e3f43a
+-/
 theorem fullPrincipalValueMaximal_ae_eq
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH) (f : L0Infinity) :
     fullPrincipalValueMaximal f =ᵐ[volume] quadraticCarlesonL0 f := by
@@ -168,6 +192,9 @@ theorem fullPrincipalValueMaximal_ae_eq
   exact iSup_congr fun lam ↦
     (quadraticHilbertL0Limsup_eq_of_principalValue lam f x _ (hx lam)).symm
 
+/--
+@isnad1 id=eventual.1h2v.s4.f274b68147ce from=translated src=- shape=66004649 vocab=ca28db25
+-/
 theorem lacunaryPrincipalValueMaximal_ae_eq
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH) (f : L0Infinity) :
     lacunaryPrincipalValueMaximal f =ᵐ[volume] lacunaryQuadraticCarlesonL0 f := by
@@ -177,7 +204,9 @@ theorem lacunaryPrincipalValueMaximal_ae_eq
     (dyadicModulation m) f x _ (hx (dyadicModulation m))).symm
 
 /-- Full-modulation `L log₁ L` endpoint for genuine PVs, at every positive
-threshold. Only the ordinary Hilbert maximal weak estimate is conditional.-/
+threshold. Only the ordinary Hilbert maximal weak estimate is conditional.
+@isnad1 id=le.2h3v.s7.41e38dd11b22 from=translated src=- shape=2b783a04 vocab=cf106460
+-/
 theorem fullPrincipalValueMaximal_levelSet_le
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
@@ -194,7 +223,9 @@ theorem fullPrincipalValueMaximal_levelSet_le
   exact quadraticCarlesonL0_levelSet_le_full_modular hH f hα
 
 /-- Lacunary `L (log₂ L)² log₄ L` endpoint for genuine PVs, conditional on
-the ordinary Hilbert and individual frozen-block weak estimates only.-/
+the ordinary Hilbert and individual frozen-block weak estimates only.
+@isnad1 id=le.3h4v.s7.6746ed79dff4 from=translated src=- shape=02cf81b2 vocab=98d4db39
+-/
 theorem lacunaryPrincipalValueMaximal_levelSet_le
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     {CB : ℝ} (hB : HasUniformL0LogSquaredFrozenBlockWeakBounds CB)
@@ -212,7 +243,9 @@ theorem lacunaryPrincipalValueMaximal_levelSet_le
   exact lacunaryQuadraticCarlesonL0_levelSet_le_lacunary_modular hH hB f hα
 
 /-- Paper-facing full theorem: one finite constant works for every input
-and threshold, and all modulations are actual PVs on one common conull set.-/
+and threshold, and all modulations are actual PVs on one common conull set.
+@isnad1 id=ex.1h1v.s7.27e1bd084600 from=translated src=- shape=bc9a62f4 vocab=47652ee4
+-/
 theorem full_principalValue_endpoint
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH) :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
@@ -227,7 +260,9 @@ theorem full_principalValue_endpoint
     fun _ hα ↦ fullPrincipalValueMaximal_levelSet_le hH f hα⟩
 
 /-- Paper-facing lacunary theorem. The only additional input beyond the
-ordinary Hilbert theorem is the exact uniform individual-block estimate.-/
+ordinary Hilbert theorem is the exact uniform individual-block estimate.
+@isnad1 id=ex.2h2v.s7.d75b9e4d5087 from=translated src=- shape=959274d3 vocab=7b9e47a4
+-/
 theorem lacunary_principalValue_endpoint
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     {CB : ℝ} (hB : HasUniformL0LogSquaredFrozenBlockWeakBounds CB) :

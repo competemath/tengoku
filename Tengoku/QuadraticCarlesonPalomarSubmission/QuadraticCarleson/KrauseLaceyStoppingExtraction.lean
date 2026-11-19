@@ -21,6 +21,9 @@ namespace KrauseLaceyStoppingExtraction
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h2v.s4.c7adcd3bd594 from=translated src=- shape=5ebdec04 vocab=18da39c3
+-/
 theorem interval_eq_of_carrier_subset_of_length_le {I J : RealInterval}
     (hsub : I.carrier ⊆ J.carrier) (hlen : J.length ≤ I.length) : I = J := by
   have he := (Ioc_subset_Ioc_iff I.left_lt_right).mp hsub
@@ -49,12 +52,18 @@ noncomputable def stoppingChildren
   exact (badDescendants S f g I).filter fun J ↦
     ∀ K ∈ badDescendants S f g I, J.carrier ⊆ K.carrier → K = J
 
+/--
+@isnad1 id=iff.0h5v.s5.2fd2b8f0fae4 from=translated src=- shape=e5349fd1 vocab=ab000453
+-/
 theorem mem_badDescendants_iff
     {S : Finset RealInterval} {f g : ℝ → ℂ} {I J : RealInterval} :
     J ∈ badDescendants S f g I ↔ J ∈ S ∧ IsBadDescendant f g I J := by
   classical
   simp [badDescendants]
 
+/--
+@isnad1 id=iff.0h5v.s6.f5166e5a2a3a from=translated src=- shape=ae44be90 vocab=ec5c66fd
+-/
 theorem mem_stoppingChildren_iff
     {S : Finset RealInterval} {f g : ℝ → ℂ} {I J : RealInterval} :
     J ∈ stoppingChildren S f g I ↔
@@ -63,23 +72,35 @@ theorem mem_stoppingChildren_iff
   classical
   simp [stoppingChildren]
 
+/--
+@isnad1 id=le.0h4v.s4.a46be8e265cd from=translated src=- shape=a875a304 vocab=5f95fa20
+-/
 theorem stoppingChildren_subset
     (S : Finset RealInterval) (f g : ℝ → ℂ) (I : RealInterval) :
     stoppingChildren S f g I ⊆ S := by
   intro J hJ
   exact (mem_badDescendants_iff.mp (mem_stoppingChildren_iff.mp hJ).1).1
 
+/--
+@isnad1 id=isbaddes.1h5v.s5.076cf3ba892a from=translated src=- shape=4a408927 vocab=4635ce0e
+-/
 theorem stoppingChildren_bad
     {S : Finset RealInterval} {f g : ℝ → ℂ} {I J : RealInterval}
     (hJ : J ∈ stoppingChildren S f g I) : IsBadDescendant f g I J :=
   (mem_badDescendants_iff.mp (mem_stoppingChildren_iff.mp hJ).1).2
 
+/--
+@isnad1 id=not.0h3v.s4.4ce6fa965dfd from=translated src=- shape=4c006af5 vocab=e3aae056
+-/
 theorem self_not_badDescendant (f g : ℝ → ℂ) (I : RealInterval) :
     ¬ IsBadDescendant f g I I := by
   rintro ⟨_, hf | hg⟩
   · linarith [intervalL1Average_nonneg f I]
   · linarith [intervalL1Average_nonneg g I]
 
+/--
+@isnad1 id=not.0h4v.s4.9e9c63315cb9 from=translated src=- shape=d056af1e vocab=19dcae14
+-/
 theorem self_not_mem_stoppingChildren
     (S : Finset RealInterval) (f g : ℝ → ℂ) (I : RealInterval) :
     I ∉ stoppingChildren S f g I := fun h ↦
@@ -87,7 +108,9 @@ theorem self_not_mem_stoppingChildren
 
 /-- Every actual bad interval lies in a selected maximal child. The finite
 maximal element is obtained by maximizing interval length among bad
-ancestors; no stopping-family existence is assumed.-/
+ancestors; no stopping-family existence is assumed.
+@isnad1 id=ex.1h5v.s5.68ccc65f0d0e from=translated src=- shape=9e512b21 vocab=ec5c66fd
+-/
 theorem badDescendant_subset_stoppingChild
     {S : Finset RealInterval} {f g : ℝ → ℂ} {I J : RealInterval}
     (hJ : J ∈ badDescendants S f g I) :
@@ -104,7 +127,9 @@ theorem badDescendant_subset_stoppingChild
   exact (interval_eq_of_carrier_subset_of_length_le hKL (hmax L hLA)).symm
 
 /-- Distinct maximal stopping children are disjoint, derived from the
-laminar geometry of the candidate intervals.-/
+laminar geometry of the candidate intervals.
+@isnad1 id=pairwise.1h4v.s7.98f5e16a34c2 from=translated src=- shape=1341b1cf vocab=158349c8
+-/
 theorem stoppingChildren_pairwiseDisjoint
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -128,7 +153,9 @@ noncomputable def goodCollection
   exact S.filter fun J ↦ ¬ ∃ K ∈ stoppingChildren S f g I, J.carrier ⊆ K.carrier
 
 /-- The exact bounded-average hypotheses of KL18 Lemma 3.5 hold on the
-constructed remaining collection with `K = 10`.-/
+constructed remaining collection with `K = 10`.
+@isnad1 id=and.2h5v.s6.ef5198945694 from=translated src=- shape=b14fa540 vocab=2e3786d8
+-/
 theorem goodCollection_averages_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} {I J : RealInterval}
     (hsub : ∀ K ∈ S, K.carrier ⊆ I.carrier)
@@ -148,7 +175,9 @@ theorem goodCollection_averages_le
     exact hnot ⟨hsub J hmem.1, Or.inr (lt_of_not_ge hg)⟩
 
 /-- The actual maximal-child extraction consumes at most one fifth of the
-parent's length, by the already proved source packing argument.-/
+parent's length, by the already proved source packing argument.
+@isnad1 id=le.3h4v.s7.d3973d48f238 from=translated src=- shape=6694e757 vocab=956894b1
+-/
 theorem stoppingChildren_length_le_fifth
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hf : IntegrableOn f I.carrier) (hg : IntegrableOn g I.carrier)
@@ -161,6 +190,9 @@ theorem stoppingChildren_length_le_fifth
     (fun _ hJ ↦ (stoppingChildren_bad hJ).1) hf hg
     (fun _ hJ ↦ (stoppingChildren_bad hJ).2)
 
+/--
+@isnad1 id=le.3h4v.s7.d32d07c62573 from=translated src=- shape=0d47dc61 vocab=bd8f7537
+-/
 theorem stoppingMajorSubset_measure_ge_four_fifths
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hf : IntegrableOn f I.carrier) (hg : IntegrableOn g I.carrier)
@@ -180,7 +212,9 @@ noncomputable def stoppingStepFamily
   exact insert I (stoppingChildren S f g I)
 
 /-- The root together with its actually extracted children is `1/4` sparse.
-No selected-family, packing, or tree-separation hypothesis is supplied.-/
+No selected-family, packing, or tree-separation hypothesis is supplied.
+@isnad1 id=issparse.3h4v.s7.6e6f6ebcab60 from=translated src=- shape=a3cbbf38 vocab=e5fdc919
+-/
 theorem root_insert_stoppingChildren_isSparse
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hf : Integrable f) (hg : Integrable g)
@@ -221,7 +255,9 @@ noncomputable def childCollection
   exact S.filter fun J ↦ J.carrier ⊆ K.carrier
 
 /-- Different selected children receive disjoint collections of interval
-indices, a consequence of spatial disjointness and nonempty intervals.-/
+indices, a consequence of spatial disjointness and nonempty intervals.
+@isnad1 id=pairwise.1h4v.s6.66dc9fb33d02 from=translated src=- shape=eec99048 vocab=4afc4e43
+-/
 theorem childCollections_pairwiseDisjoint
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -240,7 +276,9 @@ theorem childCollections_pairwiseDisjoint
     (hsubK hxJ) (hsubL hxJ)
 
 /-- Exact finite sum decomposition into the bounded-average collection and
-the collections passed to the recursively selected children.-/
+the collections passed to the recursively selected children.
+@isnad1 id=eq.1h5v.s7.858716298d91 from=translated src=- shape=813592be vocab=a7ebe8fe
+-/
 theorem sum_eq_good_add_sum_children
     {S : Finset RealInterval} (f g : ℝ → ℂ) (I : RealInterval)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦

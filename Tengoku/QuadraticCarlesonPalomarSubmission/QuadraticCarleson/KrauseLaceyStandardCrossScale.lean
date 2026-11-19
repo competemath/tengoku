@@ -25,6 +25,9 @@ open KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.0h6v.s5.bb70d1b019f3 from=translated src=- shape=a41cfead vocab=1426a697
+-/
 theorem energyStandardIntervals_subset
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) :
@@ -35,7 +38,9 @@ theorem energyStandardIntervals_subset
 
 /-- One separated cross row for the scalar-standard family.  The only
 classification use is membership in the actual good collection; the row
-itself follows from kernel separation and local bad-input mass packing.-/
+itself follows from kernel separation and local bad-input mass packing.
+@isnad1 id=le.6h8v.s8.66bb5df1cd2f from=translated src=- shape=768fc28b vocab=76509361
+-/
 theorem sum_energyStandard_crossPairing_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -109,6 +114,9 @@ theorem sum_energyStandard_crossPairing_le
       mul_le_mul_of_nonneg_left hmass (mul_nonneg hC hm)
     _ = _ := by field_simp; ring
 
+/--
+@isnad1 id=le.6h8v.s9.18e9a38f53e7 from=translated src=- shape=dd40419b vocab=10765f67
+-/
 theorem sum_abs_inner_energyStandard_crossRow_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -131,7 +139,9 @@ theorem sum_abs_inner_energyStandard_crossRow_le
 
 /-- All separated cross rows inside one physical suffix.  The inverse
 physical length survives the finite double sum, by restricted local packing
-followed by the global bad-input mass estimate.-/
+followed by the global bad-input mass estimate.
+@isnad1 id=le.5h8v.s9.7bf515f6c606 from=translated src=- shape=adb29b22 vocab=ae4032fe
+-/
 theorem sum_energyStandard_physicalTail_crossRows_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s ell : ℤ) (scale : RealInterval → ℤ)

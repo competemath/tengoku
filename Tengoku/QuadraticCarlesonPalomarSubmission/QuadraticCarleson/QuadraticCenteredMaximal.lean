@@ -22,7 +22,9 @@ namespace QuadraticCarleson
 
 /-- The weak covering estimate for a bounded family of centered intervals.
 Each point of `E` chooses an interval on which the average is at least `a`.
-The selected radii need not be measurable, and `E` need not be measurable.-/
+The selected radii need not be measurable, and `E` need not be measurable.
+@isnad1 id=le.3h5v.s7.4fd2a3ad99fd from=translated src=- shape=9a5f4be1 vocab=4b11513c
+-/
 theorem centered_average_covering_weak_bound
     (f : ℝ → ℝ≥0∞) (E : Set ℝ) (r : ℝ → ℝ) (R : ℝ)
     (hrpos : ∀ x ∈ E, 0 < r x) (hrbound : ∀ x ∈ E, r x ≤ R)
@@ -76,6 +78,9 @@ theorem centered_average_covering_weak_bound
 noncomputable def centeredAverage (r : ℝ) (f : ℝ → ℝ≥0∞) (x : ℝ) : ℝ≥0∞ :=
   (∫⁻ y in closedBall x r, f y) / ENNReal.ofReal (2 * r)
 
+/--
+@isnad1 id=measurab.1h2v.s4.810bf4b78c77 from=translated src=- shape=ecc16346 vocab=811e24f1
+-/
 theorem measurable_centeredAverage (r : ℝ) {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
     Measurable (centeredAverage r f) := by
   have hset : MeasurableSet {z : ℝ × ℝ | dist z.2 z.1 ≤ r} :=
@@ -94,6 +99,9 @@ theorem measurable_centeredAverage (r : ℝ) {f : ℝ → ℝ≥0∞} (hf : Meas
   change Measurable (fun x ↦ (∫⁻ y in closedBall x r, f y) / ENNReal.ofReal (2 * r))
   simpa only [hid] using hint.div_const (ENNReal.ofReal (2 * r))
 
+/--
+@isnad1 id=iff.1h4v.s6.69b574267860 from=translated src=- shape=4fa864a3 vocab=c6316b62
+-/
 theorem le_centeredAverage_iff {r : ℝ} (hr : 0 < r) (f : ℝ → ℝ≥0∞) (x : ℝ)
     (a : ℝ≥0∞) : a ≤ centeredAverage r f x ↔
       a * volume (closedBall x r) ≤ ∫⁻ y in closedBall x r, f y := by
@@ -106,12 +114,17 @@ noncomputable def finiteCenteredMaximal {N : ℕ} (r : Fin N → ℝ)
     (f : ℝ → ℝ≥0∞) (x : ℝ) : ℝ≥0∞ :=
   ⨆ i, centeredAverage (r i) f x
 
+/--
+@isnad1 id=measurab.1h3v.s4.dd921d9454b9 from=translated src=- shape=140e3127 vocab=8df02818
+-/
 theorem measurable_finiteCenteredMaximal {N : ℕ} (r : Fin N → ℝ)
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) : Measurable (finiteCenteredMaximal r f) :=
   Measurable.iSup (fun i ↦ measurable_centeredAverage (r i) hf)
 
 /-- Uniform weak `(1,1)` control of the finite centered maximal operator.
-The constant is independent of the number and sizes of the positive radii.-/
+The constant is independent of the number and sizes of the positive radii.
+@isnad1 id=le.1h4v.s6.66e06e306278 from=translated src=- shape=ae2adb38 vocab=6d3c26ee
+-/
 theorem finiteCenteredMaximal_weak_bound {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) (f : ℝ → ℝ≥0∞) (a : ℝ≥0∞) :
     a * volume {x | a < finiteCenteredMaximal r f x} ≤ 4 * ∫⁻ y, f y := by
@@ -135,7 +148,9 @@ theorem finiteCenteredMaximal_weak_bound {N : ℕ} (r : Fin N → ℝ)
   exact (le_centeredAverage_iff (hr _) f x a).mp (hi ⟨x, hx⟩).le
 
 /-- Removing values below a threshold changes any centered average by at
-most that threshold.-/
+most that threshold.
+@isnad1 id=le.1h4v.s5.b7bc4ec07c2a from=translated src=- shape=2f4f27e3 vocab=560a2d36
+-/
 theorem centeredAverage_le_truncate_add {r : ℝ} (hr : 0 < r)
     (f : ℝ → ℝ≥0∞) (b : ℝ≥0∞) (x : ℝ) :
     centeredAverage r f x ≤ centeredAverage r ({y | b < f y}.indicator f) x + b := by
@@ -156,6 +171,9 @@ theorem centeredAverage_le_truncate_add {r : ℝ} (hr : 0 < r)
     _ = _ := by
       rw [ENNReal.add_div, ENNReal.mul_div_cancel_right hden ENNReal.ofReal_ne_top]
 
+/--
+@isnad1 id=le.1h5v.s6.4e1747707118 from=translated src=- shape=e4e6d020 vocab=9a834432
+-/
 theorem finiteCenteredMaximal_le_truncate_add {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) (f : ℝ → ℝ≥0∞) (b : ℝ≥0∞) (x : ℝ) :
     finiteCenteredMaximal r f x ≤
@@ -166,7 +184,9 @@ theorem finiteCenteredMaximal_le_truncate_add {N : ℕ} (r : Fin N → ℝ)
     (add_le_add (le_iSup (fun j ↦ centeredAverage (r j) ({y | b < f y}.indicator f) x) i) le_rfl)
 
 /-- The localized weak estimate needed for the `L²` layer-cake argument.
-Only the part of the input exceeding half the level contributes.-/
+Only the part of the input exceeding half the level contributes.
+@isnad1 id=le.1h4v.s7.ddf6aab0a6cf from=translated src=- shape=7c1ac935 vocab=295dd2d8
+-/
 theorem finiteCenteredMaximal_localized_weak_bound {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) (f : ℝ → ℝ≥0∞) (b : ℝ≥0∞) :
     (2 * b) * volume {x | 2 * b < finiteCenteredMaximal r f x} ≤
@@ -189,7 +209,9 @@ theorem finiteCenteredMaximal_localized_weak_bound {N : ℕ} (r : Fin N → ℝ)
     _ = _ := by ring
 
 /-- Integrating the high-value cutoff over all levels gives its exact second
-moment. This scalar identity also covers an infinite input value.-/
+moment. This scalar identity also covers an infinite input value.
+@isnad1 id=eq.0h1v.s6.2aee61d99442 from=translated src=- shape=449163aa vocab=0d8f9269
+-/
 theorem lintegral_half_level_indicator (v : ℝ≥0∞) :
     (∫⁻ a in Ioi (0 : ℝ), {a : ℝ | ENNReal.ofReal (a / 2) < v}.indicator
       (fun _ ↦ v) a) = 2 * v ^ 2 := by
@@ -224,7 +246,9 @@ theorem lintegral_half_level_indicator (v : ℝ≥0∞) :
     norm_num
     ring
 
-/-- Tonelli converts the integrated localized weak bound into a second moment.-/
+/-- Tonelli converts the integrated localized weak bound into a second moment.
+@isnad1 id=eq.1h1v.s7.0f60d0fbc7a9 from=translated src=- shape=47262cdc vocab=9c1bafb5
+-/
 theorem lintegral_high_value_tails {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ a in Ioi (0 : ℝ), ∫⁻ y,
       {y : ℝ | ENNReal.ofReal (a / 2) < f y}.indicator f y) = 2 * ∫⁻ y, f y ^ 2 := by
@@ -252,7 +276,9 @@ theorem lintegral_high_value_tails {f : ℝ → ℝ≥0∞} (hf : Measurable f) 
   simp_rw [hid']
   exact lintegral_const_mul _ (hf.pow_const 2)
 
-/-- The second-moment layer-cake formula in the normalization used below.-/
+/-- The second-moment layer-cake formula in the normalization used below.
+@isnad1 id=eq.2h1v.s7.ffb2785c5bea from=translated src=- shape=30ad9312 vocab=da3fc1e5
+-/
 theorem lintegral_ofReal_sq_eq_tail {g : ℝ → ℝ} (hg : Measurable g) (hnn : ∀ x, 0 ≤ g x) :
     (∫⁻ x, ENNReal.ofReal (g x ^ 2)) =
       ∫⁻ a in Ioi (0 : ℝ), volume {x | a < g x} * ENNReal.ofReal (2 * a) := by
@@ -269,7 +295,9 @@ theorem lintegral_ofReal_sq_eq_tail {g : ℝ → ℝ} (hg : Measurable g) (hnn :
   simpa only [hid] using h
 
 /-- Each bounded truncation of the finite centered maximal function has the
-uniform second-moment bound.-/
+uniform second-moment bound.
+@isnad1 id=le.2h4v.s7.f24ceaf3f4a2 from=translated src=- shape=86fe29ae vocab=7ca229bd
+-/
 theorem finiteCenteredMaximal_truncated_sq_lintegral_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) {f : ℝ → ℝ≥0∞}
     (hf : Measurable f) (n : ℕ) :
@@ -322,7 +350,9 @@ theorem finiteCenteredMaximal_truncated_sq_lintegral_le {N : ℕ}
       lintegral_const_mul' _ _ (by norm_num)
     _ = 32 * ∫⁻ y, f y ^ 2 := by rw [lintegral_high_value_tails hf]; ring
 
-/-- Increasing finite truncations recover an extended nonnegative square.-/
+/-- Increasing finite truncations recover an extended nonnegative square.
+@isnad1 id=eq.0h1v.s6.c63b6846c022 from=translated src=- shape=4859a8d6 vocab=f9355d68
+-/
 theorem iSup_min_nat_sq (v : ℝ≥0∞) :
     (⨆ n : ℕ, (min v (n : ℝ≥0∞)) ^ 2) = v ^ 2 := by
   apply le_antisymm
@@ -348,7 +378,9 @@ theorem iSup_min_nat_sq (v : ℝ≥0∞) :
 
 /-- The one-dimensional centered maximal `L²` inequality, uniformly for any
 finite family of positive radii. No finiteness assumption on the input moment
-is needed; all integrals take values in the extended nonnegative reals.-/
+is needed; all integrals take values in the extended nonnegative reals.
+@isnad1 id=le.2h3v.s7.dfcdd04ad949 from=translated src=- shape=d4f4c933 vocab=84266951
+-/
 theorem finiteCenteredMaximal_sq_lintegral_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) {f : ℝ → ℝ≥0∞}
     (hf : Measurable f) :

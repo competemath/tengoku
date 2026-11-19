@@ -34,7 +34,9 @@ noncomputable def quadraticCarlesonL0 (f : L0Infinity) (x : ℝ) : ℝ≥0∞ :=
   ⨆ modulation : ℝ, quadraticHilbertL0Limsup modulation f x
 
 /-- The elementary inclusion `2^ℤ ⊆ ℝ`, expressed as the pointwise
-operator inequality used in the paper.-/
+operator inequality used in the paper.
+@isnad1 id=le.0h2v.s3.def0c3e7ba70 from=translated src=- shape=fee7f684 vocab=6b0bcbf6
+-/
 theorem lacunaryQuadraticCarlesonL0_le_quadraticCarlesonL0
     (f : L0Infinity) (x : ℝ) :
     lacunaryQuadraticCarlesonL0 f x ≤ quadraticCarlesonL0 f x := by
@@ -58,13 +60,18 @@ def HasFunctionPhiModularEstimate
     volume (functionOperatorLevelSet T f α) ≤
       ENNReal.ofReal C * ∫⁻ x : ℝ, ENNReal.ofReal (Phi (‖f x‖ / α))
 
+/--
+@isnad1 id=iff.0h2v.s3.941082e14fdd from=translated src=- shape=1ad6fc30 vocab=b14bd55e
+-/
 theorem hasFunctionPhiModularEstimate_iff
     (Phi : YoungFunction) (T : NonnegativeOperator) :
     HasFunctionPhiModularEstimate Phi T ↔ HasPhiModularEstimate Phi T := by
   rfl
 
 /-- The full real-modulation operator has no modular estimate below
-`L log₂ L`, solely because it pointwise dominates the lacunary operator.-/
+`L log₂ L`, solely because it pointwise dominates the lacunary operator.
+@isnad1 id=not.1h1v.s3.8452001fc15a from=translated src=- shape=2d03b771 vocab=f0ed54bb
+-/
 theorem fullNegativeEndpoint_not_hasPhiModularEstimate
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi) :
     ¬HasFunctionPhiModularEstimate Phi quadraticCarlesonL0 := by
@@ -78,7 +85,9 @@ theorem fullNegativeEndpoint_not_hasPhiModularEstimate
   exact hx.trans_le (lacunaryQuadraticCarlesonL0_le_quadraticCarlesonL0 f x)
 
 /-- The paper's normalized witnesses for the lacunary operator are also
-witnesses for the full real-modulation supremum.-/
+witnesses for the full real-modulation supremum.
+@isnad1 id=ex.2h2v.s6.d4976e172f51 from=translated src=- shape=ff9d8d31 vocab=6c81e1f9
+-/
 theorem fullNegativeEndpoint_exists_paper_modular_witness
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi)
     {kappa : ℝ} (hkappa : 0 < kappa ∧ kappa < 1) :

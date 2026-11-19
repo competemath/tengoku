@@ -47,14 +47,23 @@ def dilate (a : ℝ) (ha : 0 < a) (f : L0Infinity) : L0Infinity where
       f.hasCompactSupport_toFun.comp_homeomorph
         (Homeomorph.mulRight₀ a⁻¹ (inv_ne_zero ha.ne'))
 
+/--
+@isnad1 id=eq.1h3v.s5.f094ea7edd74 from=translated src=- shape=e5c6d942 vocab=9566e34c
+-/
 @[simp] theorem dilate_apply (a : ℝ) (ha : 0 < a) (f : L0Infinity) (x : ℝ) :
     dilate a ha f x = f (x / a) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.e032175d59da from=translated src=- shape=40b2c143 vocab=05b7482b
+-/
 @[simp] theorem dilate_dilate_inv (a : ℝ) (ha : 0 < a) (f : L0Infinity) :
     dilate a⁻¹ (inv_pos.mpr ha) (dilate a ha f) = f := by
   cases f
   simp [dilate, div_eq_mul_inv, ha.ne']
 
+/--
+@isnad1 id=eq.1h2v.s4.50117231201d from=translated src=- shape=96836b0b vocab=05b7482b
+-/
 @[simp] theorem dilate_inv_dilate (a : ℝ) (ha : 0 < a) (f : L0Infinity) :
     dilate a ha (dilate a⁻¹ (inv_pos.mpr ha) f) = f := by
   cases f
@@ -68,9 +77,15 @@ def conjugate (f : L0Infinity) : L0Infinity where
     exact ⟨C, fun x ↦ by simpa using hC x⟩
   hasCompactSupport_toFun := f.hasCompactSupport_toFun.comp_left (by simp)
 
+/--
+@isnad1 id=eq.0h2v.s5.0c1ce1fa7726 from=translated src=- shape=9197516c vocab=fed7c6c9
+-/
 @[simp] theorem conjugate_apply (f : L0Infinity) (x : ℝ) :
     conjugate f x = conj (f x) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.c6accf4213a5 from=translated src=- shape=47dcad53 vocab=4896ceeb
+-/
 @[simp] theorem conjugate_conjugate (f : L0Infinity) :
     conjugate (conjugate f) = f := by
   cases f
@@ -83,30 +98,51 @@ namespace RealInterval
 def dilate (a : ℝ) (ha : 0 < a) (I : RealInterval) : RealInterval :=
   ⟨a * I.left, a * I.right, mul_lt_mul_of_pos_left I.left_lt_right ha⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.8ef576c819c4 from=translated src=- shape=037edbf2 vocab=2b553246
+-/
 @[simp] theorem dilate_left (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (I.dilate a ha).left = a * I.left := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.5d72e0fbc117 from=translated src=- shape=037edbf2 vocab=b52a07f7
+-/
 @[simp] theorem dilate_right (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (I.dilate a ha).right = a * I.right := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.1b089b2b095b from=translated src=- shape=037edbf2 vocab=af508958
+-/
 @[simp] theorem dilate_length (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (I.dilate a ha).length = a * I.length := by
   simp only [length, dilate_left, dilate_right, mul_sub]
 
+/--
+@isnad1 id=eq.1h2v.s4.d68b8f89f554 from=translated src=- shape=96836b0b vocab=25ad2453
+-/
 @[simp] theorem dilate_inv_dilate (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (I.dilate a⁻¹ (inv_pos.mpr ha)).dilate a ha = I := by
   cases I
   simp [dilate, ha.ne']
 
+/--
+@isnad1 id=eq.1h2v.s4.6fc200d92b65 from=translated src=- shape=40b2c143 vocab=25ad2453
+-/
 @[simp] theorem dilate_dilate_inv (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (I.dilate a ha).dilate a⁻¹ (inv_pos.mpr ha) = I := by
   cases I
   simp [dilate, ha.ne']
 
+/--
+@isnad1 id=injectiv.1h1v.s4.a70c729fb587 from=translated src=- shape=c9b7f0d5 vocab=57384b07
+-/
 theorem dilate_injective (a : ℝ) (ha : 0 < a) : Injective (dilate a ha) :=
   (show LeftInverse (dilate a⁻¹ (inv_pos.mpr ha)) (dilate a ha) from
     dilate_dilate_inv a ha).injective
 
+/--
+@isnad1 id=eq.1h2v.s5.637edeab582d from=translated src=- shape=bf4d634f vocab=76a47f4e
+-/
 @[simp] theorem preimage_mul_dilate_carrier (a : ℝ) (ha : 0 < a) (I : RealInterval) :
     (fun x : ℝ ↦ a * x) ⁻¹' (I.dilate a ha).carrier = I.carrier := by
   ext x
@@ -122,6 +158,9 @@ open KrauseLaceySharpSmoothAdapter QuadraticHilbertMaximalMeasurable
 def pullbackFamily (a : ℝ) (ha : 0 < a) (S : Set RealInterval) : Set RealInterval :=
   RealInterval.dilate a ha ⁻¹' S
 
+/--
+@isnad1 id=eq.1h2v.s4.df2e7c132bd9 from=translated src=- shape=aafd1569 vocab=eb830037
+-/
 @[simp] theorem pullbackFamily_inverse (a : ℝ) (ha : 0 < a) (S : Set RealInterval) :
     pullbackFamily a⁻¹ (inv_pos.mpr ha) (pullbackFamily a ha S) = S := by
   ext I
@@ -136,7 +175,9 @@ def pullbackIndexEquiv (a : ℝ) (ha : 0 < a) (S : Set RealInterval) :
   right_inv I := by ext; simp
 
 /-- The major subsets are pulled back by the same dilation.  In particular
-the exact density parameter, including the source's `1/4`, is preserved.-/
+the exact density parameter, including the source's `1/4`, is preserved.
+@isnad1 id=issparse.2h3v.s4.e5c58d14f99c from=translated src=- shape=e7f1f22e vocab=b23e22c4
+-/
 theorem isSparse_pullbackFamily (a : ℝ) (ha : 0 < a)
     {η : ℝ} {S : Set RealInterval} (hS : IsSparse η S) :
     IsSparse η (pullbackFamily a ha S) := by
@@ -165,6 +206,9 @@ theorem isSparse_pullbackFamily (a : ℝ) (ha : 0 < a)
     convert hh using 1
     field_simp
 
+/--
+@isnad1 id=iff.1h3v.s4.593ca12b4ef1 from=translated src=- shape=c101a3c6 vocab=b23e22c4
+-/
 theorem isSparse_pullbackFamily_iff (a : ℝ) (ha : 0 < a)
     {η : ℝ} {S : Set RealInterval} :
     IsSparse η (pullbackFamily a ha S) ↔ IsSparse η S := by
@@ -173,7 +217,9 @@ theorem isSparse_pullbackFamily_iff (a : ℝ) (ha : 0 < a)
     simpa using isSparse_pullbackFamily a⁻¹ (inv_pos.mpr ha) h
   · exact isSparse_pullbackFamily a ha
 
-/-- Exact normalized local averages under positive dilation.-/
+/-- Exact normalized local averages under positive dilation.
+@isnad1 id=eq.1h4v.s5.fcc6220f2b41 from=translated src=- shape=a0474bf9 vocab=05ac86ca
+-/
 theorem localAverage_dilate (p : ℝ) (a : ℝ) (ha : 0 < a)
     (f : ℝ → ℂ) (I : RealInterval) :
     localAverage p (fun x ↦ f (x / a)) (I.dilate a ha) =
@@ -193,6 +239,9 @@ theorem localAverage_dilate (p : ℝ) (a : ℝ) (ha : 0 < a)
   congr 1
   field_simp
 
+/--
+@isnad1 id=eq.1h5v.s6.f1680407bb28 from=translated src=- shape=af837204 vocab=282f3ff0
+-/
 theorem sparseForm_pullbackFamily (p : ℝ) (a : ℝ) (ha : 0 < a)
     (f g : ℝ → ℂ) (S : Set RealInterval) :
     sparseForm p f g (pullbackFamily a ha S) =
@@ -214,6 +263,9 @@ theorem sparseForm_pullbackFamily (p : ℝ) (a : ℝ) (ha : 0 < a)
 def dilatedOperator (a : ℝ) (ha : 0 < a) (T : TestOperator) : TestOperator :=
   fun f x ↦ T (L0Infinity.dilate a ha f) (a * x)
 
+/--
+@isnad1 id=eq.1h4v.s6.491d814f424b from=translated src=- shape=3f128572 vocab=4e85537d
+-/
 theorem operatorPairing_dilatedOperator (a : ℝ) (ha : 0 < a)
     (T : TestOperator) (f g : L0Infinity) :
     operatorPairing (dilatedOperator a ha T) f g =
@@ -224,7 +276,9 @@ theorem operatorPairing_dilatedOperator (a : ℝ) (ha : 0 < a)
     mul_div_cancel_left₀ _ ha.ne', abs_of_pos (inv_pos.mpr ha)] using hi
 
 /-- Sparse constants are unchanged, because the pairing and the sparse form
-acquire exactly the same positive Jacobian.-/
+acquire exactly the same positive Jacobian.
+@isnad1 id=hasspars.2h4v.s4.b7f34a8bc749 from=translated src=- shape=1f3cf681 vocab=dc0087c0
+-/
 theorem hasSparseOnePBound_dilatedOperator (a : ℝ) (ha : 0 < a)
     {C p : ℝ} {T : TestOperator} (hT : HasSparseOnePBound C p T) :
     HasSparseOnePBound C p (dilatedOperator a ha T) := by
@@ -240,11 +294,17 @@ theorem hasSparseOnePBound_dilatedOperator (a : ℝ) (ha : 0 < a)
       mul_le_mul' le_rfl hb
     _ = _ := by rw [mul_left_comm]; rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.e1318da3afa4 from=translated src=- shape=40b2c143 vocab=961b9987
+-/
 @[simp] theorem dilatedOperator_inverse (a : ℝ) (ha : 0 < a) (T : TestOperator) :
     dilatedOperator a⁻¹ (inv_pos.mpr ha) (dilatedOperator a ha T) = T := by
   funext f x
   simp [dilatedOperator, ha.ne']
 
+/--
+@isnad1 id=iff.1h4v.s4.f89cda873e5f from=translated src=- shape=b71a11c8 vocab=dc0087c0
+-/
 theorem hasSparseOnePBound_dilatedOperator_iff (a : ℝ) (ha : 0 < a)
     {C p : ℝ} {T : TestOperator} :
     HasSparseOnePBound C p (dilatedOperator a ha T) ↔ HasSparseOnePBound C p T := by
@@ -253,14 +313,23 @@ theorem hasSparseOnePBound_dilatedOperator_iff (a : ℝ) (ha : 0 < a)
     simpa using hasSparseOnePBound_dilatedOperator a⁻¹ (inv_pos.mpr ha) h
   · exact hasSparseOnePBound_dilatedOperator a ha
 
+/--
+@isnad1 id=eq.1h3v.s4.2b1bd84d1774 from=translated src=- shape=5e15f4a2 vocab=d4a3734b
+-/
 theorem sparseOnePNorm_dilatedOperator (p a : ℝ) (ha : 0 < a) (T : TestOperator) :
     sparseOnePNorm p (dilatedOperator a ha T) = sparseOnePNorm p T := by
   simp only [sparseOnePNorm, hasSparseOnePBound_dilatedOperator_iff]
 
+/--
+@isnad1 id=eq.0h3v.s5.85b176353444 from=translated src=- shape=cc0abcbb vocab=4930af46
+-/
 theorem localAverage_conjugate (p : ℝ) (f : ℝ → ℂ) (I : RealInterval) :
     localAverage p (fun x ↦ conj (f x)) I = localAverage p f I := by
   simp [localAverage]
 
+/--
+@isnad1 id=eq.0h4v.s6.a37e47dbac00 from=translated src=- shape=2f2e3e52 vocab=a4d1bff7
+-/
 theorem sparseForm_conjugate (p : ℝ) (f g : ℝ → ℂ) (S : Set RealInterval) :
     sparseForm p (fun x ↦ conj (f x)) (fun x ↦ conj (g x)) S = sparseForm p f g S := by
   simp only [sparseForm, localAverage_conjugate]
@@ -268,11 +337,17 @@ theorem sparseForm_conjugate (p : ℝ) (f g : ℝ → ℂ) (S : Set RealInterval
 def conjugatedOperator (T : TestOperator) : TestOperator :=
   fun f x ↦ conj (T (L0Infinity.conjugate f) x)
 
+/--
+@isnad1 id=eq.0h1v.s3.bf461628c06c from=translated src=- shape=47dcad53 vocab=e026d5e1
+-/
 @[simp] theorem conjugatedOperator_conjugatedOperator (T : TestOperator) :
     conjugatedOperator (conjugatedOperator T) = T := by
   funext f x
   simp [conjugatedOperator]
 
+/--
+@isnad1 id=eq.0h3v.s5.e11561b7c841 from=translated src=- shape=b98db1d8 vocab=bfde963b
+-/
 theorem operatorPairing_conjugatedOperator (T : TestOperator) (f g : L0Infinity) :
     operatorPairing (conjugatedOperator T) f g =
       conj (operatorPairing T (L0Infinity.conjugate f) (L0Infinity.conjugate g)) := by
@@ -281,6 +356,9 @@ theorem operatorPairing_conjugatedOperator (T : TestOperator) (f g : L0Infinity)
   funext x
   simp [conjugatedOperator]
 
+/--
+@isnad1 id=hasspars.1h3v.s4.59d85734f022 from=translated src=- shape=aecd9571 vocab=7fd48008
+-/
 theorem hasSparseOnePBound_conjugatedOperator {C p : ℝ} {T : TestOperator}
     (hT : HasSparseOnePBound C p T) :
     HasSparseOnePBound C p (conjugatedOperator T) := by
@@ -290,6 +368,9 @@ theorem hasSparseOnePBound_conjugatedOperator {C p : ℝ} {T : TestOperator}
   rw [operatorPairing_conjugatedOperator, Complex.norm_conj]
   simpa only [L0Infinity.conjugate, sparseForm_conjugate] using hb
 
+/--
+@isnad1 id=iff.0h3v.s4.f88fc4c4e81b from=translated src=- shape=fbc43e97 vocab=7fd48008
+-/
 theorem hasSparseOnePBound_conjugatedOperator_iff {C p : ℝ} {T : TestOperator} :
     HasSparseOnePBound C p (conjugatedOperator T) ↔ HasSparseOnePBound C p T := by
   constructor
@@ -297,13 +378,18 @@ theorem hasSparseOnePBound_conjugatedOperator_iff {C p : ℝ} {T : TestOperator}
     simpa using hasSparseOnePBound_conjugatedOperator h
   · exact hasSparseOnePBound_conjugatedOperator
 
+/--
+@isnad1 id=eq.0h2v.s3.bda718be9791 from=translated src=- shape=ef094beb vocab=5dee18d2
+-/
 theorem sparseOnePNorm_conjugatedOperator (p : ℝ) (T : TestOperator) :
     sparseOnePNorm p (conjugatedOperator T) = sparseOnePNorm p T := by
   simp only [sparseOnePNorm, hasSparseOnePBound_conjugatedOperator_iff]
 
 /-- The cutoff ratio itself is invariant when the radius and space are
 scaled together; this follows from the actual definition, not dyadic
-telescoping.  The factor `a` is the kernel Jacobian.-/
+telescoping.  The factor `a` is the kernel Jacobian.
+@isnad1 id=eq.1h4v.s6.653b42821ef2 from=translated src=- shape=e0676e8f vocab=09524ee8
+-/
 theorem smoothQuadraticHighPassKernel_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
     (ρ t : ℝ) :
     smoothQuadraticHighPassKernel (sigma * a ^ 2) ρ t =
@@ -320,7 +406,9 @@ theorem smoothQuadraticHighPassKernel_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
   field_simp [ha.ne', ht]
 
 /-- Exact smooth high-pass change of variables, valid even without an
-integrability premise under the total Bochner-integral convention.-/
+integrability premise under the total Bochner-integral convention.
+@isnad1 id=eq.1h5v.s6.c99efd020842 from=translated src=- shape=d529b928 vocab=c3fab3d5
+-/
 theorem smoothQuadraticHighPass_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
     (ρ : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     smoothQuadraticHighPass (sigma * a ^ 2) ρ f x =
@@ -341,6 +429,9 @@ theorem smoothQuadraticHighPass_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
     _ = (a : ℂ) * (a⁻¹ • ∫ u, F u) := by rw [hi]
     _ = _ := by simp [smoothQuadraticHighPass, F, ha.ne']
 
+/--
+@isnad1 id=eq.1h4v.s6.78f4eca2bb50 from=translated src=- shape=d0fee2bf vocab=45945574
+-/
 theorem smoothQuadraticHighPass_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0)
     (ρ : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     smoothQuadraticHighPass lam ρ f x =
@@ -350,6 +441,9 @@ theorem smoothQuadraticHighPass_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0)
   conv_lhs => rw [nonzero_modulation_eq_signed_sqrt_square hlam]
   exact smoothQuadraticHighPass_scale _ _ (Real.sqrt_pos.2 (abs_pos.2 hlam)) ρ f x
 
+/--
+@isnad1 id=eq.0h2v.s5.568d297bb2c4 from=translated src=- shape=bfb87c0d vocab=54946a01
+-/
 theorem smoothQuadraticHighPassKernel_neg_one_eq_conj (ρ t : ℝ) :
     smoothQuadraticHighPassKernel (-1) ρ t =
       conj (smoothQuadraticHighPassKernel 1 ρ t) := by
@@ -360,6 +454,9 @@ theorem smoothQuadraticHighPassKernel_neg_one_eq_conj (ρ t : ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.a4d76f8db888 from=translated src=- shape=2fe85bff vocab=54741b37
+-/
 theorem smoothQuadraticHighPass_neg_one_eq_conj (ρ : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     smoothQuadraticHighPass (-1) ρ f x =
       conj (smoothQuadraticHighPass 1 ρ (fun y ↦ conj (f y)) x) := by
@@ -387,13 +484,18 @@ def finiteSmoothMaxNNNorm (lam : ℝ) (s : Finset PositiveSmoothRadius)
 def finiteSmoothMaxOperator (lam : ℝ) (s : Finset PositiveSmoothRadius) : TestOperator :=
   fun f x ↦ ((finiteSmoothMaxNNNorm lam s f x : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s3.568671ba7293 from=translated src=- shape=3373d63f vocab=83a624b2
+-/
 @[simp] theorem absoluteValue_finiteSmoothMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) :
     absoluteValueOperator (finiteSmoothMaxOperator lam s) = finiteSmoothMaxOperator lam s := by
   funext f x
   simp [absoluteValueOperator, finiteSmoothMaxOperator]
 
-/-- No scale set is rounded in this identity.-/
+/-- No scale set is rounded in this identity.
+@isnad1 id=eq.1h3v.s5.75eeeff529cf from=translated src=- shape=35b707fa vocab=9406e782
+-/
 theorem finiteSmoothMaxOperator_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
     (s : Finset PositiveSmoothRadius) :
     finiteSmoothMaxOperator (sigma * a ^ 2) s =
@@ -408,6 +510,9 @@ theorem finiteSmoothMaxOperator_scale (sigma : ℝ) (a : ℝ) (ha : 0 < a)
   rw [smoothQuadraticHighPass_scale sigma a ha]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.53c7723a9e35 from=translated src=- shape=c65204f4 vocab=1bab341d
+-/
 theorem finiteSmoothMaxOperator_neg_one_eq_conjugated (s : Finset PositiveSmoothRadius) :
     finiteSmoothMaxOperator (-1) s = conjugatedOperator (finiteSmoothMaxOperator 1 s) := by
   funext f x
@@ -416,7 +521,9 @@ theorem finiteSmoothMaxOperator_neg_one_eq_conjugated (s : Finset PositiveSmooth
     Complex.conj_ofReal, smoothQuadraticHighPass_neg_one_eq_conj, hn]
   rfl
 
-/-- The negative sign needs no extra analytic hypothesis.-/
+/-- The negative sign needs no extra analytic hypothesis.
+@isnad1 id=hasspars.1h3v.s5.e90ddfd34332 from=translated src=- shape=20b4bb7f vocab=496ea363
+-/
 theorem hasSparseOnePBound_finiteSmoothMaxOperator_neg_one {C p : ℝ}
     (s : Finset PositiveSmoothRadius)
     (h : HasSparseOnePBound C p (finiteSmoothMaxOperator 1 s)) :
@@ -425,7 +532,9 @@ theorem hasSparseOnePBound_finiteSmoothMaxOperator_neg_one {C p : ℝ}
   exact hasSparseOnePBound_conjugatedOperator h
 
 /-- For one selected finite family, the unit-phase estimate is needed only
-at its exact normalized radius set.-/
+at its exact normalized radius set.
+@isnad1 id=hasspars.2h4v.s5.54829042d6d2 from=translated src=- shape=3af44c02 vocab=64d0817c
+-/
 theorem hasSparseOnePBound_finiteSmoothMaxOperator_nonzero_of_scaled_unit {C p : ℝ}
     {lam : ℝ} (hlam : lam ≠ 0) (s : Finset PositiveSmoothRadius)
     (hunit : HasSparseOnePBound C p (finiteSmoothMaxOperator 1
@@ -441,7 +550,9 @@ theorem hasSparseOnePBound_finiteSmoothMaxOperator_nonzero_of_scaled_unit {C p :
   · exact hunit
 
 /-- Every nonzero modulation reduces to the positive unit phase, with the
-same sparse constant, by exact dilation and conjugation.-/
+same sparse constant, by exact dilation and conjugation.
+@isnad1 id=hasspars.2h4v.s5.7d1651d7c3ef from=translated src=- shape=7c1bd91a vocab=cd03b6d1
+-/
 theorem hasSparseOnePBound_finiteSmoothMaxOperator_nonzero {C p : ℝ}
     (hunit : ∀ s : Finset PositiveSmoothRadius,
       HasSparseOnePBound C p (finiteSmoothMaxOperator 1 s))
@@ -454,6 +565,9 @@ def roundedRadii (s : Finset densePositiveRadii) : Finset PositiveSmoothRadius :
   exact s.image fun ε ↦
     ⟨dyadicCeilRadius ε.1.1 ε.1.2, dyadicCeilRadius_pos ε.1.1 ε.1.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.48a1ae892825 from=translated src=- shape=eaaf73e8 vocab=5feeeee7
+-/
 theorem finiteRadiusSmoothHighPassMaxTestOperator_eq_finiteSmoothMaxOperator
     (lam : ℝ) (s : Finset densePositiveRadii) :
     finiteRadiusSmoothHighPassMaxTestOperator lam s =
@@ -464,6 +578,9 @@ theorem finiteRadiusSmoothHighPassMaxTestOperator_eq_finiteSmoothMaxOperator
     finiteSmoothMaxOperator, finiteSmoothMaxNNNorm, roundedRadii, Finset.sup_image,
     Function.comp_def]
 
+/--
+@isnad1 id=hasspars.2h4v.s5.037c4be6794b from=translated src=- shape=093d14e8 vocab=812aad35
+-/
 theorem hasSparseOnePBound_finiteRadiusSmoothHighPassMax_nonzero {C p : ℝ}
     (hunit : ∀ s : Finset PositiveSmoothRadius,
       HasSparseOnePBound C p (finiteSmoothMaxOperator 1 s))
@@ -473,7 +590,9 @@ theorem hasSparseOnePBound_finiteRadiusSmoothHighPassMax_nonzero {C p : ℝ}
   exact hasSparseOnePBound_finiteSmoothMaxOperator_nonzero hunit hlam _
 
 /-- Local integrability of every finite smooth maximum is a direct kernel
-bound; it is not an extra assumption in the sparse transfer.-/
+bound; it is not an extra assumption in the sparse transfer.
+@isnad1 id=locallyi.0h3v.s5.af85e95d96dd from=translated src=- shape=8e211aea vocab=3f25609c
+-/
 theorem locallyIntegrable_finiteSmoothMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) :
     LocallyIntegrable (finiteSmoothMaxOperator lam s f) volume := by
@@ -552,7 +671,9 @@ def HasUnitScaleOffsetSmoothSparseBound (A : ℝ) : Prop :=
 
 /-- Exact paper-facing reduction with the sharper scale-offset unit input.
 All local-integrability clauses, both modulation signs, and the unchanged
-quantitative constant are established rather than assumed.-/
+quantitative constant are established rather than assumed.
+@isnad1 id=hasunifo.1h1v.s2.bb5da7883f87 from=translated src=- shape=6321fd23 vocab=e12ba78e
+-/
 theorem hasUniformFiniteRadiusSmoothSparseBound_of_unit_scaleOffset
     {A : ℝ} (hA : HasUnitScaleOffsetSmoothSparseBound A) :
     HardyLittlewoodBoundaryControl.HasUniformFiniteRadiusSmoothSparseBound A := by
@@ -572,7 +693,9 @@ theorem hasUniformFiniteRadiusSmoothSparseBound_of_unit_scaleOffset
 
 /-- Convenient stronger unit-phase input with arbitrary finite positive
 radii.  The scale-offset theorem above records exactly which families this
-adapter actually uses.-/
+adapter actually uses.
+@isnad1 id=hasunifo.1h1v.s2.bdf8564f885f from=translated src=- shape=6321fd23 vocab=f45e370e
+-/
 theorem hasUniformFiniteRadiusSmoothSparseBound_of_unit
     {A : ℝ} (hA : HasUnitFiniteSmoothSparseBound A) :
     HardyLittlewoodBoundaryControl.HasUniformFiniteRadiusSmoothSparseBound A := by

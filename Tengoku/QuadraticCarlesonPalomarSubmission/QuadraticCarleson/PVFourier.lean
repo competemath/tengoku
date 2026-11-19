@@ -30,14 +30,18 @@ open scoped SchwartzMap Topology
 namespace QuadraticCarleson
 
 /-- The canonical direct distribution is the symmetric principal-value
-limit on every Schwartz test function.-/
+limit on every Schwartz test function.
+@isnad1 id=tendsto.0h1v.s8.8967b5d5dbea from=translated src=- shape=94690fff vocab=c04d7639
+-/
 theorem tendsto_principalValueTruncation_oneDiv (f : 𝓢(ℝ, ℂ)) :
     Tendsto (fun ε : ℝ ↦ principalValueTruncation ε f) (𝓝[>] 0)
       (𝓝 (principalValueOneDiv f)) := by
   simpa only [principalValueOneDiv_apply] using tendsto_principalValueTruncation f
 
 /-- Multiplication by the coordinate cancels the principal-value kernel:
-`x * p.v. (1 / x) = 1` as tempered distributions.-/
+`x * p.v. (1 / x) = 1` as tempered distributions.
+@isnad1 id=eq.0h0v.s11.73a1f65ed27c from=translated src=- shape=b3ab1057 vocab=bccda0f3
+-/
 theorem smulLeft_id_principalValueOneDiv :
     TemperedDistribution.smulLeftCLM ℂ (fun x : ℝ ↦ (x : ℂ)) principalValueOneDiv =
       (volume : Measure ℝ).toTemperedDistribution := by
@@ -65,7 +69,9 @@ theorem smulLeft_id_principalValueOneDiv :
   exact integral_add_compl measurableSet_Ioo f.integrable
 
 /-- The integral of a Schwartz derivative on a positive half-line is its
-negative boundary value.-/
+negative boundary value.
+@isnad1 id=eq.0h2v.s7.b02bc1372edb from=translated src=- shape=1d674247 vocab=dfbce222
+-/
 theorem integral_Ioi_schwartz_deriv (f : 𝓢(ℝ, ℂ)) (a : ℝ) :
     (∫ x in Ioi a, deriv f x) = -f a := by
   simpa only [zero_sub] using integral_Ioi_of_hasDerivAt_of_tendsto'
@@ -73,7 +79,9 @@ theorem integral_Ioi_schwartz_deriv (f : 𝓢(ℝ, ℂ)) (a : ℝ) :
     (f.tendsto_cocompact.mono_left atTop_le_cocompact)
 
 /-- The integral of a Schwartz derivative on a negative half-line is its
-boundary value.-/
+boundary value.
+@isnad1 id=eq.0h2v.s7.0876f1bf2a83 from=translated src=- shape=92cec414 vocab=9b75eed7
+-/
 theorem integral_Iio_schwartz_deriv (f : 𝓢(ℝ, ℂ)) (a : ℝ) :
     (∫ x in Iio a, deriv f x) = f a := by
   rw [← integral_Iic_eq_integral_Iio]
@@ -81,7 +89,9 @@ theorem integral_Iio_schwartz_deriv (f : 𝓢(ℝ, ℂ)) (a : ℝ) :
     (fun x _ ↦ f.hasDerivAt x) (SchwartzMap.derivCLM ℂ ℂ f).integrable.integrableOn
     (f.tendsto_cocompact.mono_left atBot_le_cocompact)
 
-/-- The jump of the sign distribution has size two at the origin.-/
+/-- The jump of the sign distribution has size two at the origin.
+@isnad1 id=eq.0h0v.s11.13b71354d2d2 from=translated src=- shape=911e2c91 vocab=f1fd4951
+-/
 theorem deriv_signTemperedDistribution :
     TemperedDistribution.derivCLM ℂ signTemperedDistribution =
       (2 : ℂ) • TemperedDistribution.delta (0 : ℝ) := by
@@ -92,11 +102,17 @@ theorem deriv_signTemperedDistribution :
     integral_neg, integral_Ioi_schwartz_deriv, integral_Iio_schwartz_deriv]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s9.f09581398ad0 from=translated src=- shape=9feee2d4 vocab=41476744
+-/
 theorem schwartz_lineDeriv_one_eq_deriv (f : 𝓢(ℝ, ℂ)) :
     ∂_{(1 : ℝ)} f = SchwartzMap.derivCLM ℂ ℂ f := by
   ext x
   simp [SchwartzMap.lineDerivOp_apply_eq_fderiv]
 
+/--
+@isnad1 id=eq.0h1v.s11.32328dc7667c from=translated src=- shape=3f24befd vocab=ebfe5740
+-/
 theorem distribution_lineDeriv_one_eq_deriv (T : 𝓢'(ℝ, ℂ)) :
     ∂_{(1 : ℝ)} T = TemperedDistribution.derivCLM ℂ T := by
   ext f
@@ -104,7 +120,9 @@ theorem distribution_lineDeriv_one_eq_deriv (T : 𝓢'(ℝ, ℂ)) :
     TemperedDistribution.derivCLM_apply_apply, schwartz_lineDeriv_one_eq_deriv]
 
 /-- The inverse Fourier transform of the delta at zero is the constant
-distribution with density one.-/
+distribution with density one.
+@isnad1 id=eq.0h0v.s7.73f0ac3a9060 from=translated src=- shape=d3e88e95 vocab=a6195a79
+-/
 theorem fourierInv_delta_zero :
     𝓕⁻ (TemperedDistribution.delta (0 : ℝ)) =
       (volume : Measure ℝ).toTemperedDistribution := by
@@ -112,14 +130,18 @@ theorem fourierInv_delta_zero :
   simp [SchwartzMap.fourierInv_coe, Real.fourierInv_eq]
 
 /-- The Fourier transform of the constant distribution with density one
-is the delta at zero.-/
+is the delta at zero.
+@isnad1 id=eq.0h0v.s7.48768e142789 from=translated src=- shape=d34f6824 vocab=a3f7ae50
+-/
 theorem fourier_volume :
     𝓕 (volume : Measure ℝ).toTemperedDistribution =
       TemperedDistribution.delta (0 : ℝ) := by
   rw [← fourierInv_delta_zero, fourier_fourierInv_eq]
 
 /-- The Fourier transform of the direct principal-value distribution has
-the derivative required by `-π i sign`.-/
+the derivative required by `-π i sign`.
+@isnad1 id=eq.0h0v.s11.06b166ec75a3 from=translated src=- shape=b76fe6ba vocab=0bc2c1d0
+-/
 theorem deriv_fourier_principalValueOneDiv :
     TemperedDistribution.derivCLM ℂ (𝓕 principalValueOneDiv) =
       (-((2 : ℂ) * (Real.pi : ℂ) * Complex.I)) •
@@ -133,7 +155,9 @@ theorem deriv_fourier_principalValueOneDiv :
   rw [hm, fourier_smul, fourier_volume]
 
 /-- The remaining error in the desired principal-value Fourier identity
-has zero distributional derivative.-/
+has zero distributional derivative.
+@isnad1 id=eq.0h0v.s12.81c3bbcbbb0d from=translated src=- shape=c3d11612 vocab=52dea93b
+-/
 theorem deriv_principalValueFourier_error_eq_zero :
     TemperedDistribution.derivCLM ℂ
       (𝓕 principalValueOneDiv -
@@ -145,7 +169,9 @@ theorem deriv_principalValueFourier_error_eq_zero :
   rw [hc, sub_self]
 
 /-- The full principal-value Fourier identity already holds on every
-Schwartz test function which is a derivative of a Schwartz function.-/
+Schwartz test function which is a derivative of a Schwartz function.
+@isnad1 id=eq.0h1v.s11.37854aabab59 from=translated src=- shape=2e9d4a62 vocab=7790cee4
+-/
 theorem fourier_principalValueOneDiv_apply_deriv (f : 𝓢(ℝ, ℂ)) :
     (𝓕 principalValueOneDiv) (SchwartzMap.derivCLM ℂ ℂ f) =
       (-((Real.pi : ℂ) * Complex.I)) *
@@ -162,10 +188,16 @@ theorem fourier_principalValueOneDiv_apply_deriv (f : 𝓢(ℝ, ℂ)) :
 noncomputable def schwartzReflection : 𝓢(ℝ, ℂ) →L[ℂ] 𝓢(ℝ, ℂ) :=
   SchwartzMap.compCLMOfContinuousLinearEquiv ℂ (LinearIsometryEquiv.neg ℝ (E := ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s9.164d207a1658 from=translated src=- shape=eddc5590 vocab=3d2c77c3
+-/
 @[simp]
 theorem schwartzReflection_apply (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     schwartzReflection f x = f (-x) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s10.968b765e899e from=translated src=- shape=d8922f82 vocab=8c8a4795
+-/
 theorem schwartzReflection_fourier (f : 𝓢(ℝ, ℂ)) :
     schwartzReflection (𝓕 f) = 𝓕 (schwartzReflection f) := by
   ext x
@@ -173,6 +205,9 @@ theorem schwartzReflection_fourier (f : 𝓢(ℝ, ℂ)) :
     𝓕 ((f : ℝ → ℂ) ∘ LinearIsometryEquiv.neg ℝ) x
   exact (Real.fourier_comp_linearIsometry _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s9.8a3c5a009d14 from=translated src=- shape=a03425a5 vocab=22c3c6b6
+-/
 theorem principalValueTruncation_reflection (ε : ℝ) (f : 𝓢(ℝ, ℂ)) :
     principalValueTruncation ε (schwartzReflection f) =
       -principalValueTruncation ε f := by
@@ -192,13 +227,18 @@ theorem principalValueTruncation_reflection (ε : ℝ) (f : 𝓢(ℝ, ℂ)) :
   rw [← integral_indicator hs, ← integral_indicator hs, hneg,
     integral_neg, integral_neg_eq_self]
 
-/-- The canonical direct principal-value distribution is odd.-/
+/-- The canonical direct principal-value distribution is odd.
+@isnad1 id=eq.0h1v.s10.f0f45e2322a3 from=translated src=- shape=12f94054 vocab=7cc6c067
+-/
 theorem principalValueOneDiv_reflection (f : 𝓢(ℝ, ℂ)) :
     principalValueOneDiv (schwartzReflection f) = -principalValueOneDiv f := by
   apply tendsto_nhds_unique (tendsto_principalValueTruncation_oneDiv (schwartzReflection f))
   simpa only [principalValueTruncation_reflection] using
     (tendsto_principalValueTruncation_oneDiv f).neg
 
+/--
+@isnad1 id=eq.0h1v.s10.aad1aa9836a3 from=translated src=- shape=12f94054 vocab=f11abe03
+-/
 theorem signTemperedDistribution_reflection (f : 𝓢(ℝ, ℂ)) :
     signTemperedDistribution (schwartzReflection f) = -signTemperedDistribution f := by
   have hp : (∫ x in Ioi (0 : ℝ), f (-x)) = ∫ x in Iio (0 : ℝ), f x := by
@@ -209,7 +249,9 @@ theorem signTemperedDistribution_reflection (f : 𝓢(ℝ, ℂ)) :
   ring
 
 /-- The error in the desired Fourier identity is odd, so the remaining
-zero-derivative uniqueness argument cannot leave a nonzero constant.-/
+zero-derivative uniqueness argument cannot leave a nonzero constant.
+@isnad1 id=eq.0h1v.s11.7bfd35e84948 from=translated src=- shape=12043f0c vocab=26ea96f2
+-/
 theorem principalValueFourier_error_reflection (f : 𝓢(ℝ, ℂ)) :
     (𝓕 principalValueOneDiv -
       (-((Real.pi : ℂ) * Complex.I)) • signTemperedDistribution)
@@ -227,7 +269,9 @@ theorem principalValueFourier_error_reflection (f : 𝓢(ℝ, ℂ)) :
 
 /-- Exact reduction of the one-dimensional distributional uniqueness
 argument to the existence of Schwartz antiderivatives of odd Schwartz
-functions. No antiderivative existence is assumed by the preceding results.-/
+functions. No antiderivative existence is assumed by the preceding results.
+@isnad1 id=eq.3h1v.s12.ee3d9294eca2 from=translated src=- shape=c4853e00 vocab=2382030a
+-/
 theorem distribution_eq_zero_of_odd_schwartz_antiderivatives
     (hprimitive : ∀ f : 𝓢(ℝ, ℂ), Function.Odd (f : ℝ → ℂ) →
       ∃ g : 𝓢(ℝ, ℂ), SchwartzMap.derivCLM ℂ ℂ g = f)
@@ -246,7 +290,9 @@ theorem distribution_eq_zero_of_odd_schwartz_antiderivatives
 
 /-- Once odd Schwartz antiderivatives are available, all analytic
 prerequisites proved above yield the desired Fourier characterization of
-the canonical symmetric principal-value distribution.-/
+the canonical symmetric principal-value distribution.
+@isnad1 id=eq.1h0v.s10.3c6714284913 from=translated src=- shape=789028c1 vocab=b9edc9f9
+-/
 theorem fourier_principalValueOneDiv_of_odd_schwartz_antiderivatives
     (hprimitive : ∀ f : 𝓢(ℝ, ℂ), Function.Odd (f : ℝ → ℂ) →
       ∃ g : 𝓢(ℝ, ℂ), SchwartzMap.derivCLM ℂ ℂ g = f) :
@@ -256,6 +302,9 @@ theorem fourier_principalValueOneDiv_of_odd_schwartz_antiderivatives
   exact distribution_eq_zero_of_odd_schwartz_antiderivatives hprimitive _
     deriv_principalValueFourier_error_eq_zero principalValueFourier_error_reflection
 
+/--
+@isnad1 id=eq.1h0v.s9.b1e0c9fbabb4 from=translated src=- shape=f814ca57 vocab=7b757f6f
+-/
 theorem principalValueOneDiv_eq_FourierCandidate_of_odd_schwartz_antiderivatives
     (hprimitive : ∀ f : 𝓢(ℝ, ℂ), Function.Odd (f : ℝ → ℂ) →
       ∃ g : 𝓢(ℝ, ℂ), SchwartzMap.derivCLM ℂ ℂ g = f) :

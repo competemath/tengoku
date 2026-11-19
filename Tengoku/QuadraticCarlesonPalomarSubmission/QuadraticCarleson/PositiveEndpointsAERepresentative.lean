@@ -22,7 +22,9 @@ set_option autoImplicit false
 
 /-- The full endpoint also holds for Lebesgue-measurable representatives of
 the paper's test functions. The supplied values are genuine PVs on a common
-conull set, so their supremum is the paper's operator there.-/
+conull set, so their supremum is the paper's operator there.
+@isnad1 id=ex.0h0v.s8.8cd4790b5016 from=translated src=- shape=43e27d76 vocab=c6f542bf
+-/
 theorem full_principalValue_endpoint_aemeasurable :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ (f : ℝ → ℂ), AEMeasurable f volume →
       (∃ C : ℝ, ∀ x, ‖f x‖ ≤ C) → HasCompactSupport f →
@@ -48,7 +50,9 @@ theorem full_principalValue_endpoint_aemeasurable :
       rw [hx]
     simpa only [fullPrincipalValueMaximal, ofReal_norm, hmass] using h
 
-/-- The sharper lacunary endpoint has the same a.e.-representative invariance.-/
+/-- The sharper lacunary endpoint has the same a.e.-representative invariance.
+@isnad1 id=ex.0h0v.s8.4b48794e5a97 from=translated src=- shape=f0ddb4a0 vocab=15e13889
+-/
 theorem lacunary_principalValue_endpoint_aemeasurable :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ (f : ℝ → ℂ), AEMeasurable f volume →
       (∃ C : ℝ, ∀ x, ‖f x‖ ≤ C) → HasCompactSupport f →

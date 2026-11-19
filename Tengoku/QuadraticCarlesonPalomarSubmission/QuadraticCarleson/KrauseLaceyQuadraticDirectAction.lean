@@ -36,6 +36,9 @@ def activeHighCollection (ell₀ : ℤ) (S : Finset RealInterval) :
     Finset RealInterval :=
   S.filter fun I ↦ (2 : ℝ) ^ ell₀ ≤ I.length
 
+/--
+@isnad1 id=iff.0h3v.s5.a637196f0687 from=translated src=- shape=2a65ee0d vocab=950d704b
+-/
 theorem mem_activeHighCollection_iff
     {ell₀ : ℤ} {S : Finset RealInterval} {I : RealInterval} :
     I ∈ activeHighCollection ell₀ S ↔
@@ -43,7 +46,9 @@ theorem mem_activeHighCollection_iff
   simp [activeHighCollection]
 
 /-- At every admissible tail threshold, deleting intervals below the fixed
-cutoff changes no summand.-/
+cutoff changes no summand.
+@isnad1 id=eq.1h5v.s5.e705e010c181 from=translated src=- shape=998af5ba vocab=6eb3854f
+-/
 theorem localizedTailAction_activeHighCollection
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (f : ℝ → ℂ) {ell : ℤ} (hell : ell₀ ≤ ell) :
@@ -65,7 +70,9 @@ theorem localizedTailAction_activeHighCollection
   rw [ite_eq_right hnotell]
 
 /-- Hence the genuine maximal operator is exactly the one obtained from the
-active high-scale selected collection.-/
+active high-scale selected collection.
+@isnad1 id=eq.0h4v.s4.63bff74a688b from=translated src=- shape=ae9d2712 vocab=0d73c5d1
+-/
 theorem localizedTailMaximal_activeHighCollection
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (f : ℝ → ℂ) :
@@ -78,7 +85,9 @@ theorem localizedTailMaximal_activeHighCollection
   rw [localizedTailAction_activeHighCollection ell₀ scale S f ell.2]
 
 /-- Exact dyadic length labels convert active-family membership into the
-paper's lower scale inequality.-/
+paper's lower scale inequality.
+@isnad1 id=le.2h4v.s6.6d3f91fad266 from=translated src=- shape=a3e207ff vocab=445cc14a
+-/
 theorem scale_add_two_ge_cutoff_of_mem_activeHighCollection
     {ell₀ : ℤ} {S : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscale : ∀ I ∈ S, I.length = (2 : ℝ) ^ (scale I + 2))
@@ -151,7 +160,9 @@ def offsetTailMaximalOn
 /-- If every ambient selected scale is nonnegative, then an output interval
 whose scale lies below `s - 2` has no input at offset `s`.  Such intervals
 must be removed before invoking the frequency-radius estimate, rather than
-being burdened with a false gap hypothesis.-/
+being burdened with a false gap hypothesis.
+@isnad1 id=eq.2h5v.s6.2af8702be295 from=translated src=- shape=a3737b7e vocab=af237e2c
+-/
 theorem offsetGroupedInput_eq_zero_of_scale_add_two_sub_neg
     {S : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscaleNonneg : ∀ J ∈ S, 0 ≤ scale J)
@@ -177,6 +188,9 @@ def relevantOffsetOutputs (A : Finset RealInterval)
     (scale : RealInterval → ℤ) (s : ℤ) : Finset RealInterval :=
   A.filter fun I ↦ 0 ≤ scale I + 2 - s
 
+/--
+@isnad1 id=iff.0h4v.s6.1d0cd16de9f5 from=translated src=- shape=04477f01 vocab=2320ca0f
+-/
 theorem mem_relevantOffsetOutputs_iff
     {A : Finset RealInterval} {scale : RealInterval → ℤ}
     {s : ℤ} {I : RealInterval} :
@@ -184,7 +198,9 @@ theorem mem_relevantOffsetOutputs_iff
       I ∈ A ∧ 0 ≤ scale I + 2 - s := by
   simp [relevantOffsetOutputs]
 
-/-- Removing the irrelevant outputs changes no fixed-offset action.-/
+/-- Removing the irrelevant outputs changes no fixed-offset action.
+@isnad1 id=eq.1h6v.s6.e3eaae548b79 from=translated src=- shape=ea74cace vocab=83fab1b9
+-/
 theorem offsetLocalizedActionOn_relevantOffsetOutputs
     {S A : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscaleNonneg : ∀ J ∈ S, 0 ≤ scale J)
@@ -212,7 +228,9 @@ theorem offsetLocalizedActionOn_relevantOffsetOutputs
     simp [krauseLaceyLocalizedPiece]
 
 /-- Removing irrelevant zero outputs also preserves the genuine maximal
-tail exactly.-/
+tail exactly.
+@isnad1 id=eq.1h6v.s6.a1e565446ed3 from=translated src=- shape=27d24256 vocab=70352bbe
+-/
 theorem offsetTailMaximalOn_relevantOffsetOutputs
     {S A : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscaleNonneg : ∀ J ∈ S, 0 ≤ scale J)
@@ -227,7 +245,9 @@ theorem offsetTailMaximalOn_relevantOffsetOutputs
   rw [offsetLocalizedActionOn_relevantOffsetOutputs hscaleNonneg f ell.1 s]
 
 /-- The genuine ambient/subcollection offset tail is measurable for every
-measurable input.-/
+measurable input.
+@isnad1 id=measurab.1h6v.s5.9034fda42c6b from=translated src=- shape=47c8b693 vocab=d8d46e69
+-/
 theorem measurable_offsetTailMaximalOn
     (S A : Finset RealInterval) (scale : RealInterval → ℤ)
     {f : ℝ → ℂ} (hf : Measurable f) (ell₀ s : ℤ) :
@@ -248,19 +268,27 @@ theorem measurable_offsetTailMaximalOn
     exact measurable_localizedPiece (scale I) I (hinput I)
   exact Measurable.iSup fun ell ↦ (haction ell.1).enorm
 
+/--
+@isnad1 id=eq.0h5v.s5.f2df089b1b71 from=translated src=- shape=6f0c5107 vocab=79084bfb
+-/
 @[simp] theorem offsetLocalizedActionOn_self
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell s : ℤ) :
     offsetLocalizedActionOn S S scale f ell s =
       offsetLocalizedAction S scale f ell s := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.86fe4e71aa6d from=translated src=- shape=06b96b9d vocab=9614e1f0
+-/
 @[simp] theorem offsetTailMaximalOn_self
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell₀ s : ℤ) :
     offsetTailMaximalOn S S scale f ell₀ s =
       offsetTailMaximal S scale f ell₀ s := rfl
 
-/-- Every finite grouped input remains an `L²` function.-/
+/-- Every finite grouped input remains an `L²` function.
+@isnad1 id=memlp.0h5v.s6.ecdda4ed3259 from=translated src=- shape=7987dc6e vocab=5229517a
+-/
 theorem memLp_two_offsetGroupedInput
     (S : Finset RealInterval) (scale : RealInterval → ℤ)
     (f : L0Infinity) (I : RealInterval) (s : ℤ) :
@@ -296,7 +324,9 @@ theorem memLp_two_offsetGroupedInput
 
 /-- The scale of a selected subinterval cannot exceed the scale of its
 selected parent.  This is the exact monotonicity supplied by the length
-identity, not an additional dyadic assumption.-/
+identity, not an additional dyadic assumption.
+@isnad1 id=le.4h4v.s6.a49e3a58a167 from=translated src=- shape=f1e3aef9 vocab=896b3eee
+-/
 theorem scale_le_of_carrier_subset
     {S : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscale : ∀ J ∈ S, J.length = (2 : ℝ) ^ (scale J + 2))
@@ -312,6 +342,9 @@ theorem scale_le_of_carrier_subset
     (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mp hlen
   omega
 
+/--
+@isnad1 id=le.3h4v.s6.db26f0376e88 from=translated src=- shape=3236ad68 vocab=1e833815
+-/
 theorem offset_nonneg_of_selectedSubinterval
     {S : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscale : ∀ J ∈ S, J.length = (2 : ℝ) ^ (scale J + 2))
@@ -325,7 +358,9 @@ theorem offset_nonneg_of_selectedSubinterval
 /-- For a nonnegative offset, the interval-dependent grouped input is
 exactly the central-third restriction of the global smallest-region scale
 piece `b_{j-s}`.  This is the bridge from the finite reconstruction to the
-one-piece energy estimate.-/
+one-piece energy estimate.
+@isnad1 id=eq.4h5v.s7.cb1c725dc6e1 from=translated src=- shape=ff3a97b1 vocab=5fb8e3da
+-/
 theorem offsetGroupedInput_eq_indicator_smallestScaleInput
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -382,7 +417,9 @@ theorem offsetGroupedInput_eq_indicator_smallestScaleInput
         (smallestSelectedRegion_subset_carrier S J hxJ)
   · simp [offsetGroupedInput, Set.indicator_of_notMem hxI]
 
-/-- Every offset arising below `I` belongs to the global finite offset set.-/
+/-- Every offset arising below `I` belongs to the global finite offset set.
+@isnad1 id=mem.2h4v.s6.a9f6ea5aae7f from=translated src=- shape=02528359 vocab=11b13052
+-/
 theorem offset_mem_offsetSet
     {S : Finset RealInterval} {scale : RealInterval → ℤ}
     {I J : RealInterval} (hI : I ∈ S)
@@ -393,7 +430,9 @@ theorem offset_mem_offsetSet
     (mem_selectedSubintervals_iff.mp hJ).1⟩, rfl⟩
 
 /-- The grouped inputs sum exactly to the central-third restriction of `f`.
-The outer offset set may contain irrelevant offsets; their groups are zero.-/
+The outer offset set may contain irrelevant offsets; their groups are zero.
+@isnad1 id=eq.2h5v.s6.3ff564225910 from=translated src=- shape=b6be49ce vocab=83497b19
+-/
 theorem sum_offsetGroupedInput_centralThird_eq
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -436,7 +475,9 @@ theorem sum_offsetGroupedInput_centralThird_eq
       exact hzero s hs hslocal
     _ = I.centralThird.indicator f x := hlocal
 
-/-- Negative offsets do not occur below a selected output interval.-/
+/-- Negative offsets do not occur below a selected output interval.
+@isnad1 id=eq.3h5v.s6.eecdeafd6205 from=translated src=- shape=8dfdd3f7 vocab=e0fe33f5
+-/
 theorem offsetGroupedInput_eq_zero_of_neg
     {S : Finset RealInterval} {scale : RealInterval → ℤ}
     (hscale : ∀ J ∈ S, J.length = (2 : ℝ) ^ (scale J + 2))
@@ -453,7 +494,9 @@ theorem offsetGroupedInput_eq_zero_of_neg
   omega
 
 /-- At one output interval, the localized quadratic piece is the finite sum
-of the quadratic pieces applied to all offset groups.-/
+of the quadratic pieces applied to all offset groups.
+@isnad1 id=eq.2h5v.s7.33a717e84fe0 from=translated src=- shape=1a1dbd11 vocab=225108f7
+-/
 theorem localizedPiece_eq_sum_offset
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -536,7 +579,9 @@ theorem localizedPiece_eq_sum_offset
       rw [hcentral s t]
 
 /-- The localized tail action decomposes exactly into the finitely many
-offset-grouped quadratic pieces.  The physical cutoff is unchanged.-/
+offset-grouped quadratic pieces.  The physical cutoff is unchanged.
+@isnad1 id=eq.2h5v.s7.5708a81ab0fb from=translated src=- shape=92918c62 vocab=181337f3
+-/
 theorem localizedTailAction_eq_sum_offsetLocalizedAction
     {S : Finset RealInterval} (scale : RealInterval → ℤ) (f : L0Infinity)
     (ell : ℤ) (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -573,7 +618,9 @@ theorem localizedTailAction_eq_sum_offsetLocalizedAction
 
 /-- The same exact decomposition with the paper's natural nonnegative offset
 range.  The scale/length relation proves that all negative offset groups
-vanish, so no analytic estimate is hidden in this truncation.-/
+vanish, so no analytic estimate is hidden in this truncation.
+@isnad1 id=eq.2h5v.s7.b165677bcfc3 from=translated src=- shape=da8020e7 vocab=af24a099
+-/
 theorem localizedTailAction_eq_sum_nonnegativeOffsetLocalizedAction
     {S : Finset RealInterval} (scale : RealInterval → ℤ) (f : L0Infinity)
     (ell : ℤ) (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -606,7 +653,9 @@ theorem localizedTailAction_eq_sum_nonnegativeOffsetLocalizedAction
 /-- The exact finite decomposition feeds into the genuine maximal operator:
 the maximal tail is bounded by the finite sum of the offset maximal tails.
 This is the only deterministic step needed before proving the per-offset
-analytic bound.-/
+analytic bound.
+@isnad1 id=le.2h5v.s7.f3c2346c8db1 from=translated src=- shape=47f73498 vocab=03ba46a2
+-/
 theorem localizedTailMaximal_le_sum_offsetTailMaximal
     {S : Finset RealInterval} (scale : RealInterval → ℤ) (f : L0Infinity)
     (ell₀ : ℤ) (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

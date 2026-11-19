@@ -42,14 +42,23 @@ noncomputable def pStoppingMonitor (g : L0Infinity) (p : ℝ) (hp : 0 < p) : L0I
     exact g.hasCompactSupport_toFun.comp_left
       (g := fun z : ℂ ↦ ((‖z‖ ^ p : ℝ) : ℂ)) (by simp [hp.ne'])
 
+/--
+@isnad1 id=eq.1h3v.s5.c76eb67b74d9 from=translated src=- shape=c0c66749 vocab=2b6becd5
+-/
 @[simp] theorem pStoppingMonitor_apply (g : L0Infinity) (p : ℝ) (hp : 0 < p) (x : ℝ) :
     pStoppingMonitor g p hp x = ((‖g x‖ ^ p : ℝ) : ℂ) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.ea797ab10248 from=translated src=- shape=1a59b19f vocab=e81b531a
+-/
 @[simp] theorem norm_pStoppingMonitor (g : L0Infinity) (p : ℝ) (hp : 0 < p) (x : ℝ) :
     ‖pStoppingMonitor g p hp x‖ = ‖g x‖ ^ p := by
   rw [pStoppingMonitor_apply, Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg (Real.rpow_nonneg (norm_nonneg _) _)]
 
+/--
+@isnad1 id=eq.1h3v.s6.0019021359a6 from=translated src=- shape=0c107fdb vocab=16348d70
+-/
 theorem intervalL1Average_pStoppingMonitor
     (g : L0Infinity) (p : ℝ) (hp : 0 < p) (I : RealInterval) :
     intervalL1Average (pStoppingMonitor g p hp) I =
@@ -57,7 +66,9 @@ theorem intervalL1Average_pStoppingMonitor
   simp only [intervalL1Average, norm_pStoppingMonitor]
 
 /-- Equivalently, the monitor's `L¹` average is the `p`th power of the
-usual local `L^p` average.-/
+usual local `L^p` average.
+@isnad1 id=eq.1h3v.s5.4682ffc75675 from=translated src=- shape=e5ea50bc vocab=d31ff819
+-/
 theorem intervalL1Average_pStoppingMonitor_eq_localAverage_rpow
     (g : L0Infinity) (p : ℝ) (hp : 0 < p) (I : RealInterval) :
     intervalL1Average (pStoppingMonitor g p hp) I =
@@ -68,7 +79,9 @@ theorem intervalL1Average_pStoppingMonitor_eq_localAverage_rpow
     one_div_mul_cancel hp.ne', Real.rpow_one]
 
 /-- On the collection surviving the monitor stopping step, the exact local
-`p`-mass bound needed by the interpolation argument is automatic.-/
+`p`-mass bound needed by the interpolation argument is automatic.
+@isnad1 id=le.3h6v.s7.d2d621398d58 from=translated src=- shape=7b20a19e vocab=f708db15
+-/
 theorem goodCollection_pMass_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (g : L0Infinity)
     {p : ℝ} (hp : 0 < p) {I₀ J : RealInterval}
@@ -85,7 +98,9 @@ theorem goodCollection_pMass_le
   exact mul_le_mul_of_nonneg_right hgood J.length_pos.le
 
 /-- The exact pointwise recursion when the family is stopped by an auxiliary
-monitor rather than by the pairing test function.-/
+monitor rather than by the pairing test function.
+@isnad1 id=le.1h7v.s7.8d87295f2d48 from=translated src=- shape=818b0347 vocab=346aa33d
+-/
 theorem localizedTailMaximal_le_monitorGood_add_children
     (ell₀ : ℤ) (scale : RealInterval → ℤ) {S : Finset RealInterval}
     (f monitor : ℝ → ℂ) (I : RealInterval)
@@ -99,7 +114,9 @@ theorem localizedTailMaximal_le_monitorGood_add_children
   localizedTailMaximal_le_good_add_children ell₀ scale f monitor I hlam x
 
 /-- The bilinear recursion pairs the operator with the original `g`; only
-the interval selection uses the independent monitor.-/
+the interval selection uses the independent monitor.
+@isnad1 id=le.3h7v.s8.a41661f3d664 from=translated src=- shape=8fa7550c vocab=34fe4881
+-/
 theorem localizedTailMaximal_pairing_le_monitorGood_add_children
     (ell₀ : ℤ) (scale : RealInterval → ℤ) {S : Finset RealInterval}
     {f g monitor : ℝ → ℂ} (hf : Measurable f) (hg : Measurable g)
@@ -134,7 +151,9 @@ theorem localizedTailMaximal_pairing_le_monitorGood_add_children
         (childCollection S K) hf).mul hg.enorm
 
 /-- One complete stopping step using `‖g‖^p` for selection and the original
-`g` for the bilinear pairing.-/
+`g` for the bilinear pairing.
+@isnad1 id=and.6h7v.s9.2b5c3b633de8 from=translated src=- shape=58a39e88 vocab=5b293494
+-/
 theorem finite_localized_p_stopping_step
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     {f : ℝ → ℂ} (g : L0Infinity) {p : ℝ} (hp : 0 < p)

@@ -20,8 +20,14 @@ def reflect (f : L0Infinity) : L0Infinity where
     exact ⟨C, fun x ↦ hC (-x)⟩
   hasCompactSupport_toFun := f.hasCompactSupport_toFun.comp_homeomorph (Homeomorph.neg ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.20e616aea3d5 from=translated src=- shape=7bedae12 vocab=155494b5
+-/
 @[simp] theorem reflect_apply (f : L0Infinity) (x : ℝ) : reflect f x = f (-x) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.188f21751ee3 from=translated src=- shape=47dcad53 vocab=d4daa438
+-/
 @[simp] theorem reflect_reflect (f : L0Infinity) : reflect (reflect f) = f := by
   cases f
   simp [reflect]
@@ -33,21 +39,38 @@ namespace RealInterval
 def reflect (I : RealInterval) : RealInterval :=
   ⟨-I.right, -I.left, neg_lt_neg I.left_lt_right⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.8f6d3632ab40 from=translated src=- shape=96bb4715 vocab=a091d641
+-/
 @[simp] theorem reflect_left (I : RealInterval) : I.reflect.left = -I.right := rfl
+/--
+@isnad1 id=eq.0h1v.s3.f128c4169036 from=translated src=- shape=96bb4715 vocab=a091d641
+-/
 @[simp] theorem reflect_right (I : RealInterval) : I.reflect.right = -I.left := rfl
+/--
+@isnad1 id=eq.0h1v.s3.60581d8acf4c from=translated src=- shape=47dcad53 vocab=284cb58e
+-/
 @[simp] theorem reflect_reflect (I : RealInterval) : I.reflect.reflect = I := by
   cases I
   simp [reflect]
 
+/--
+@isnad1 id=eq.0h1v.s3.71c92efd7106 from=translated src=- shape=8d4cac31 vocab=5b82e1e2
+-/
 @[simp] theorem reflect_length (I : RealInterval) : I.reflect.length = I.length := by
   simp [length, reflect]
   ring
 
+/--
+@isnad1 id=injectiv.0h0v.s2.4b915a3f39d4 from=translated src=- shape=e3d48bcb vocab=a291df5f
+-/
 theorem reflect_injective : Injective reflect :=
   (show Involutive reflect from reflect_reflect).injective
 
 /-- Half-open endpoints flip under reflection; the carriers agree after
-reflection outside their two null endpoints.-/
+reflection outside their two null endpoints.
+@isnad1 id=eventual.0h1v.s5.4659a56c5875 from=translated src=- shape=a7a8f03c vocab=ab655602
+-/
 theorem preimage_neg_reflect_carrier_ae (I : RealInterval) :
     (fun x : ℝ ↦ -x) ⁻¹' I.reflect.carrier =ᵐ[volume] I.carrier := by
   have heq : (fun x : ℝ ↦ -x) ⁻¹' I.reflect.carrier = Ico I.left I.right := by
@@ -63,6 +86,9 @@ namespace KrauseLaceySparseReflection
 
 def reflectedFamily (S : Set RealInterval) : Set RealInterval := RealInterval.reflect ⁻¹' S
 
+/--
+@isnad1 id=eq.0h1v.s3.168a65ec35a2 from=translated src=- shape=e9e6e124 vocab=a1af8120
+-/
 @[simp] theorem reflectedFamily_reflectedFamily (S : Set RealInterval) :
     reflectedFamily (reflectedFamily S) = S := by
   ext I
@@ -76,7 +102,9 @@ def reflectedIndexEquiv (S : Set RealInterval) :
   right_inv I := by ext; simp
 
 /-- Reflection preserves the exact sparse parameter. Removing one endpoint
-from each reflected major subset reconciles the project's `Ioc` convention.-/
+from each reflected major subset reconciles the project's `Ioc` convention.
+@isnad1 id=issparse.1h2v.s3.d6828a5f751a from=translated src=- shape=492c79a0 vocab=0f03fd0e
+-/
 theorem isSparse_reflectedFamily {η : ℝ} {S : Set RealInterval} (hS : IsSparse η S) :
     IsSparse η (reflectedFamily S) := by
   rcases hS with ⟨hη, hη1, E, hEm, hEs, hEd, hEv⟩
@@ -105,6 +133,9 @@ theorem isSparse_reflectedFamily {η : ℝ} {S : Set RealInterval} (hS : IsSpars
     change η * I.1.reflect.length ≤ (volume (E (e I))).toReal at hh
     simpa only [RealInterval.reflect_length] using hh
 
+/--
+@isnad1 id=iff.0h2v.s3.64af84450a07 from=translated src=- shape=d13dc095 vocab=0f03fd0e
+-/
 theorem isSparse_reflectedFamily_iff {η : ℝ} {S : Set RealInterval} :
     IsSparse η (reflectedFamily S) ↔ IsSparse η S := by
   constructor
@@ -112,6 +143,9 @@ theorem isSparse_reflectedFamily_iff {η : ℝ} {S : Set RealInterval} :
     simpa using isSparse_reflectedFamily h
   · exact isSparse_reflectedFamily
 
+/--
+@isnad1 id=eq.0h3v.s4.015096e1ee83 from=translated src=- shape=a46ae018 vocab=32f00ae4
+-/
 theorem localAverage_reflect (p : ℝ) (f : ℝ → ℂ) (I : RealInterval) :
     localAverage p (fun x ↦ f (-x)) I.reflect = localAverage p f I := by
   unfold localAverage
@@ -123,6 +157,9 @@ theorem localAverage_reflect (p : ℝ) (f : ℝ → ℂ) (I : RealInterval) :
   simp only [RealInterval.reflect_right, RealInterval.reflect_left, neg_neg]
   exact intervalIntegral.integral_of_le I.left_lt_right.le
 
+/--
+@isnad1 id=eq.0h4v.s5.90cb721e9847 from=translated src=- shape=6c48ab3a vocab=888ef26c
+-/
 theorem sparseForm_reflectedFamily (p : ℝ) (f g : ℝ → ℂ) (S : Set RealInterval) :
     sparseForm p f g (reflectedFamily S) =
       sparseForm p (fun x ↦ f (-x)) (fun x ↦ g (-x)) S := by
@@ -138,11 +175,17 @@ theorem sparseForm_reflectedFamily (p : ℝ) (f g : ℝ → ℂ) (S : Set RealIn
 def reflectedOperator (T : TestOperator) : TestOperator :=
   fun f x ↦ T (L0Infinity.reflect f) (-x)
 
+/--
+@isnad1 id=eq.0h1v.s3.6195e9ffb991 from=translated src=- shape=47dcad53 vocab=a2d060f2
+-/
 @[simp] theorem reflectedOperator_reflectedOperator (T : TestOperator) :
     reflectedOperator (reflectedOperator T) = T := by
   funext f x
   simp [reflectedOperator]
 
+/--
+@isnad1 id=eq.0h3v.s4.4f5bbc8b90bb from=translated src=- shape=e5b42e44 vocab=9a0e3ae6
+-/
 theorem operatorPairing_reflectedOperator (T : TestOperator) (f g : L0Infinity) :
     operatorPairing (reflectedOperator T) f g =
       operatorPairing T (L0Infinity.reflect f) (L0Infinity.reflect g) := by
@@ -151,7 +194,9 @@ theorem operatorPairing_reflectedOperator (T : TestOperator) (f g : L0Infinity) 
   simpa only [neg_neg, L0Infinity.reflect_apply] using h
 
 /-- Sparse bounds pass to reflection without any loss in their constant
-or their `1/4` sparseness parameter.-/
+or their `1/4` sparseness parameter.
+@isnad1 id=hasspars.1h3v.s4.6a5fbe86d50e from=translated src=- shape=aecd9571 vocab=9a13fc70
+-/
 theorem hasSparseOnePBound_reflectedOperator {C p : ℝ} {T : TestOperator}
     (hT : HasSparseOnePBound C p T) : HasSparseOnePBound C p (reflectedOperator T) := by
   intro f g
@@ -160,6 +205,9 @@ theorem hasSparseOnePBound_reflectedOperator {C p : ℝ} {T : TestOperator}
   rw [operatorPairing_reflectedOperator, sparseForm_reflectedFamily]
   exact hbound
 
+/--
+@isnad1 id=iff.0h3v.s4.7afa51002efc from=translated src=- shape=fbc43e97 vocab=9a13fc70
+-/
 theorem hasSparseOnePBound_reflectedOperator_iff {C p : ℝ} {T : TestOperator} :
     HasSparseOnePBound C p (reflectedOperator T) ↔ HasSparseOnePBound C p T := by
   constructor
@@ -167,12 +215,17 @@ theorem hasSparseOnePBound_reflectedOperator_iff {C p : ℝ} {T : TestOperator} 
     simpa using hasSparseOnePBound_reflectedOperator h
   · exact hasSparseOnePBound_reflectedOperator
 
+/--
+@isnad1 id=eq.0h2v.s3.861dee51a6c7 from=translated src=- shape=ef094beb vocab=8439b1e6
+-/
 theorem sparseOnePNorm_reflectedOperator (p : ℝ) (T : TestOperator) :
     sparseOnePNorm p (reflectedOperator T) = sparseOnePNorm p T := by
   simp only [sparseOnePNorm, hasSparseOnePBound_reflectedOperator_iff]
 
 /-- Two sparse bounds are combined by choosing the family with the larger
-sparse form. The chosen family retains its original density parameter.-/
+sparse form. The chosen family retains its original density parameter.
+@isnad1 id=hasspars.5h6v.s6.71442803dd82 from=translated src=- shape=ad50112c vocab=3f7d2edf
+-/
 theorem hasSparseOnePBound_of_pairing_le_add
     {C D p : ℝ} (hC : 0 ≤ C) (hD : 0 ≤ D) {T V U : TestOperator}
     (hT : HasSparseOnePBound C p T) (hV : HasSparseOnePBound D p V)
@@ -199,7 +252,9 @@ def reflectionDifference (T : TestOperator) : TestOperator :=
   fun f x ↦ T f x - reflectedOperator T f x
 
 /-- The actual odd difference has sparse constant at most `2C`. The
-integrability premise makes subtraction of the two Bochner pairings valid.-/
+integrability premise makes subtraction of the two Bochner pairings valid.
+@isnad1 id=hasspars.3h3v.s6.c1744960495c from=translated src=- shape=2e2ee7ce vocab=76b97266
+-/
 theorem hasSparseOnePBound_reflectionDifference
     {C p : ℝ} (hC : 0 ≤ C) {T : TestOperator} (hT : HasSparseOnePBound C p T)
     (hTi : ∀ f g : L0Infinity, Integrable (fun x ↦ T f x * star (g x))) :
@@ -228,14 +283,23 @@ noncomputable def normInput (g : L0Infinity) : L0Infinity where
   hasCompactSupport_toFun := by
     exact g.hasCompactSupport_toFun.comp_left (g := fun z : ℂ ↦ (‖z‖ : ℂ)) (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s4.21bb18190eae from=translated src=- shape=8203c616 vocab=82582921
+-/
 theorem localAverage_normInput (p : ℝ) (g : L0Infinity) (I : RealInterval) :
     localAverage p (normInput g) I = localAverage p g I := by
   simp [localAverage, normInput]
 
+/--
+@isnad1 id=eq.0h4v.s4.c24df8b64d8f from=translated src=- shape=71fb73eb vocab=ea0cacb0
+-/
 theorem sparseForm_normInput (p : ℝ) (f : ℝ → ℂ) (g : L0Infinity) (S : Set RealInterval) :
     sparseForm p f (normInput g) S = sparseForm p f g S := by
   simp only [sparseForm, localAverage_normInput]
 
+/--
+@isnad1 id=eq.0h3v.s5.03baf4d963d8 from=translated src=- shape=98af1536 vocab=c9cca603
+-/
 theorem norm_operatorPairing_absolute_normInput (T : TestOperator) (f g : L0Infinity) :
     ‖operatorPairing (absoluteValueOperator T) f (normInput g)‖ =
       ∫ x, ‖T f x‖ * ‖g x‖ := by
@@ -250,7 +314,9 @@ theorem norm_operatorPairing_absolute_normInput (T : TestOperator) (f g : L0Infi
 /-- Pointwise domination by an operator and its reflection transfers
 absolute sparse bounds with factor two. Pairing integrability is stated
 explicitly because the project's total Bochner integral is zero on
-nonintegrable functions, so a bare signed sparse bound cannot supply it.-/
+nonintegrable functions, so a bare signed sparse bound cannot supply it.
+@isnad1 id=hasspars.4h4v.s7.26d355105814 from=translated src=- shape=50d17536 vocab=991b8b22
+-/
 theorem hasSparseOnePBound_of_norm_le_add_reflected
     {C p : ℝ} (hC : 0 ≤ C) {T U : TestOperator}
     (hT : HasSparseOnePBound C p (absoluteValueOperator T))
@@ -293,7 +359,9 @@ theorem hasSparseOnePBound_of_norm_le_add_reflected
     exact add_le_add le_rfl (mul_le_mul' le_rfl hRS)
 
 /-- Locally integrable outputs supply the pairing-integrability premise
-against every bounded compact-support test function.-/
+against every bounded compact-support test function.
+@isnad1 id=integrab.1h2v.s7.ad7f47322f5f from=translated src=- shape=bdd0157b vocab=ec42f367
+-/
 theorem integrable_pairing_of_locallyIntegrable {u : ℝ → ℂ}
     (hu : LocallyIntegrable u volume) (g : L0Infinity) :
     Integrable (fun x ↦ u x * star (g x)) := by
@@ -312,6 +380,9 @@ theorem integrable_pairing_of_locallyIntegrable {u : ℝ → ℂ}
     (ae_of_all _ fun x ↦ by simpa only [norm_star] using hC x)
   simpa only [IntegrableOn, mul_comm] using hi
 
+/--
+@isnad1 id=hasspars.4h4v.s7.f2e18457c139 from=translated src=- shape=0631114a vocab=c0cc3dc1
+-/
 theorem hasSparseOnePBound_of_norm_le_add_reflected_of_locallyIntegrable
     {C p : ℝ} (hC : 0 ≤ C) {T U : TestOperator}
     (hT : HasSparseOnePBound C p (absoluteValueOperator T))

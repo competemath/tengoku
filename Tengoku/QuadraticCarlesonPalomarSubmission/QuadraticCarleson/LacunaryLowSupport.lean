@@ -30,7 +30,9 @@ namespace LacunaryLowSupport
 set_option autoImplicit false
 
 /-- A point outside the half-open fivefold interval is more than two atom
-lengths from every point of the original half-open interval.-/
+lengths from every point of the original half-open interval.
+@isnad1 id=lt.3h4v.s6.07e2793bbc25 from=translated src=- shape=0ff2bfba vocab=bf012c82
+-/
 theorem two_mul_length_lt_distance
     {z R x y : ℝ} (hR : 0 < R)
     (hx : x ∉ centeredInterval z (5 * R))
@@ -48,7 +50,9 @@ theorem two_mul_length_lt_distance
 
 /-- The fivefold complement is contained in the complement of the closed
 triple interval. Positivity is needed only because the fivefold interval is
-represented half-open.-/
+represented half-open.
+@isnad1 id=not.2h3v.s5.b0fe52ab9c77 from=translated src=- shape=44c02b6c vocab=6658f0e2
+-/
 theorem not_mem_triple_of_not_mem_fivefold
     {z R x : ℝ} (hR : 0 < R)
     (hx : x ∉ centeredInterval z (5 * R)) :
@@ -60,7 +64,9 @@ theorem not_mem_triple_of_not_mem_fivefold
   constructor <;> linarith
 
 /-- The cancellation-relevant Lipschitz estimate uses the first member
-`|lambda|` of the paper's derivative minimum.-/
+`|lambda|` of the paper's derivative minimum.
+@isnad1 id=le.4h6v.s7.8a79cab8d5cf from=translated src=- shape=69dc9755 vocab=b80577c9
+-/
 theorem paperLowCZKernel_sub_center_norm_le_abs_lam
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {z R x y : ℝ} (hR : 0 < R)
@@ -112,7 +118,9 @@ theorem paperLowCZKernel_sub_center_norm_le_abs_lam
       rw [show x - y - (x - z) = -(y - z) by ring, abs_neg]
 
 /-- Mean-zero cancellation therefore gives the paper's pointwise
-`O(|lambda| R ||b_I||₁)` estimate outside `5I`.-/
+`O(|lambda| R ||b_I||₁)` estimate outside `5I`.
+@isnad1 id=le.6h6v.s8.771a48faf282 from=translated src=- shape=e2da02c0 vocab=10462b4a
+-/
 theorem norm_setIntegral_paperLowCZKernel_le_abs_lam
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) {z R x : ℝ} (hR : 0 < R)
@@ -139,7 +147,9 @@ theorem norm_setIntegral_paperLowCZKernel_le_abs_lam
       (mul_nonneg lowKernelDerivativeConstant_nonneg (abs_nonneg lam)))
 
 /-- Specialization to the actual magnitude-level atom and dyadic modulation
-used in the very-small range.-/
+used in the very-small range.
+@isnad1 id=le.4h8v.s7.97970b50dc53 from=translated src=- shape=632397b1 vocab=eb907ef5
+-/
 theorem norm_setIntegral_paperLowCZKernel_levelAtom_le_dyadic
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k B : ℕ} (hAk : 0 ≤ A k) (m : ℤ)
@@ -163,7 +173,9 @@ theorem norm_setIntegral_paperLowCZKernel_levelAtom_le_dyadic
       (LowKernelLevelSummation.setIntegral_levelAtom_eq_zero k z R)
 
 /-- Quantitative consequence of the normalized support annulus.  This is the
-squared form of `R sqrt |lambda| < 2^(B-1)`.-/
+squared form of `R sqrt |lambda| < 2^(B-1)`.
+@isnad1 id=lt.5h6v.s7.ddb5eb661f0a from=translated src=- shape=5867f84c vocab=d0e9536e
+-/
 theorem four_mul_abs_mul_length_sq_lt
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {z R x y : ℝ} (hR : 0 < R)
@@ -182,7 +194,9 @@ theorem four_mul_abs_mul_length_sq_lt
   nlinarith [Real.sq_sqrt (abs_nonneg lam)]
 
 /-- The too-large alternative in the paper's frozen-range error is genuinely
-zero off the fivefold exceptional interval.-/
+zero off the fivefold exceptional interval.
+@isnad1 id=eq.5h8v.s7.a8a5a4280029 from=translated src=- shape=b756895c vocab=a00781e8
+-/
 theorem paperLowCZKernel_eq_zero_of_tooLarge
     (B c : ℕ) (m j : ℤ)
     (hlarge : (c : ℤ) + 2 * (B : ℤ) < m + 2 * j)
@@ -225,7 +239,9 @@ theorem paperLowCZKernel_eq_zero_of_tooLarge
   rw [hexp] at hlower
   exact (not_lt_of_ge (hpow.le.trans hlower)) hs
 
-/-- Scale-class form used directly for a Calderón--Zygmund atom.-/
+/-- Scale-class form used directly for a Calderón--Zygmund atom.
+@isnad1 id=eq.5h10v.s7.9fed69397170 from=translated src=- shape=a1424e62 vocab=b123fd87
+-/
 theorem paperLowCZKernel_eq_zero_of_mem_scale_tooLarge
     {ι : Type*} {length : ι → ℝ} {I : ι}
     (B c : ℕ) (m j : ℤ)
@@ -239,7 +255,9 @@ theorem paperLowCZKernel_eq_zero_of_mem_scale_tooLarge
 
 /-- Consequently the actual low-kernel action on one magnitude-level atom
 vanishes.  This is the operator-level support observation in the paper, not
-merely a comparison of abstract supports.-/
+merely a comparison of abstract supports.
+@isnad1 id=eq.4h10v.s7.7700897974f5 from=translated src=- shape=4fda1ba9 vocab=987b49b1
+-/
 theorem integral_paperLowCZKernel_mul_levelAtom_eq_zero_of_tooLarge
     {A : ℕ → ℝ} {f : ℝ → ℂ} (k : ℕ)
     (B c : ℕ) (m j : ℤ)

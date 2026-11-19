@@ -27,7 +27,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
-/-- The real derivative of the fixed cutoff has a global finite bound.-/
+/-- The real derivative of the fixed cutoff has a global finite bound.
+@isnad1 id=ex.0h0v.s5.4651b08f4197 from=translated src=- shape=ada7d841 vocab=f3d4c30b
+-/
 theorem exists_dyadicCutoff_deriv_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x : ℝ, |deriv dyadicCutoff x| ≤ C := by
   have hcont : Continuous (fun x : ℝ ↦ |deriv dyadicCutoff x|) := by
@@ -46,13 +48,22 @@ dyadic cutoff.-/
 noncomputable def dyadicCutoffDerivBound : ℝ :=
   Classical.choose exists_dyadicCutoff_deriv_bound
 
+/--
+@isnad1 id=le.0h0v.s3.8d7282f85d50 from=translated src=- shape=ff3a10fc vocab=51567f19
+-/
 theorem dyadicCutoffDerivBound_nonneg : 0 ≤ dyadicCutoffDerivBound :=
   (Classical.choose_spec exists_dyadicCutoff_deriv_bound).1
 
+/--
+@isnad1 id=le.0h1v.s5.7637ad2d18a9 from=translated src=- shape=6bd8b21c vocab=27d56ed9
+-/
 theorem abs_deriv_dyadicCutoff_le (x : ℝ) :
     |deriv dyadicCutoff x| ≤ dyadicCutoffDerivBound :=
   (Classical.choose_spec exists_dyadicCutoff_deriv_bound).2 x
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.5563dbbd0f73 from=translated src=- shape=c4a82ea4 vocab=e1853034
+-/
 theorem hasDerivAt_quadraticPhase_lowKernel (lam t : ℝ) :
     HasDerivAt (fun u : ℝ ↦ phase (lam * u ^ 2))
       (phase (lam * t ^ 2) *
@@ -90,6 +101,9 @@ noncomputable def paperLowOscillatoryKernelDerivative
         dyadicCutoff (lowInnerScale lam hlam * t)) / t : ℝ) : ℂ) *
       (phase (lam * t ^ 2) * (((4 * Real.pi * lam * t : ℝ) : ℂ) * Complex.I))
 
+/--
+@isnad1 id=eq.2h3v.s6.590d8f404be5 from=translated src=- shape=bbb13e53 vocab=3e5650fd
+-/
 theorem lowCutoffQuotient_deriv
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     deriv (fun u : ℝ ↦
@@ -116,7 +130,9 @@ theorem lowCutoffQuotient_deriv
   simpa only [mul_one] using h
 
 /-- Exact derivative formula for the paper's low kernel at every nonzero
-point.-/
+point.
+@isnad1 id=hasderiv.2h3v.s6.b41f5e8da762 from=translated src=- shape=574ee86a vocab=a9daf2ac
+-/
 theorem hasDerivAt_paperLowOscillatoryKernel
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     HasDerivAt (paperLowOscillatoryKernel lam hlam B)
@@ -143,20 +159,32 @@ theorem hasDerivAt_paperLowOscillatoryKernel
   rw [paperLowOscillatoryKernel_eq_cutoffDifference hlam B hu]
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s6.f4c729221ff7 from=translated src=- shape=fb6eb652 vocab=1873b19a
+-/
 theorem paperLowOscillatoryKernel_deriv
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     deriv (paperLowOscillatoryKernel lam hlam B) t =
       paperLowOscillatoryKernelDerivative lam hlam B t := by
   exact (hasDerivAt_paperLowOscillatoryKernel hlam B ht).deriv
 
+/--
+@isnad1 id=lt.1h2v.s4.3156bc0a74bc from=translated src=- shape=aa72dbd5 vocab=1bb48cda
+-/
 theorem lowOuterScale_pos {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) :
     0 < lowOuterScale lam hlam B := by
   exact zpow_pos (by norm_num) _
 
+/--
+@isnad1 id=lt.1h1v.s4.c50d9295e414 from=translated src=- shape=60baa177 vocab=312fbd18
+-/
 theorem lowInnerScale_pos {lam : ℝ} (hlam : lam ≠ 0) :
     0 < lowInnerScale lam hlam := by
   exact zpow_pos (by norm_num) _
 
+/--
+@isnad1 id=le.1h1v.s5.5a462aeac4c7 from=translated src=- shape=f5a4d7a7 vocab=aaf4a74e
+-/
 theorem lowInnerScale_le_two_sqrt_abs {lam : ℝ} (hlam : lam ≠ 0) :
     lowInnerScale lam hlam ≤ 2 * Real.sqrt |lam| := by
   let j := oscillatoryScaleIndex lam 0 hlam
@@ -170,6 +198,9 @@ theorem lowInnerScale_le_two_sqrt_abs {lam : ℝ} (hlam : lam ≠ 0) :
   apply (div_le_iff₀ hp).2
   nlinarith [hs]
 
+/--
+@isnad1 id=le.1h2v.s5.6759e748d9bc from=translated src=- shape=a7f9f2e7 vocab=b68a9cf1
+-/
 theorem lowOuterScale_le_sqrt_abs_div_pow {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) :
     lowOuterScale lam hlam B ≤ Real.sqrt |lam| / (2 : ℝ) ^ B := by
   let j := oscillatoryScaleIndex lam 0 hlam
@@ -193,11 +224,17 @@ bounds.-/
 noncomputable def lowKernelDerivativeConstant : ℝ :=
   256 * (dyadicCutoffDerivBound + 1 + Real.pi)
 
+/--
+@isnad1 id=le.0h0v.s3.e8ab5d9e0843 from=translated src=- shape=ff3a10fc vocab=6c827500
+-/
 theorem lowKernelDerivativeConstant_nonneg : 0 ≤ lowKernelDerivativeConstant := by
   unfold lowKernelDerivativeConstant
   exact mul_nonneg (by norm_num)
     (add_nonneg (add_nonneg dyadicCutoffDerivBound_nonneg zero_le_one) Real.pi_pos.le)
 
+/--
+@isnad1 id=le.0h2v.s4.7e2bab68a650 from=translated src=- shape=783429c3 vocab=367e90cd
+-/
 theorem abs_dyadicCutoff_sub_le_one (x y : ℝ) :
     |dyadicCutoff x - dyadicCutoff y| ≤ 1 := by
   rw [abs_le]
@@ -205,6 +242,9 @@ theorem abs_dyadicCutoff_sub_le_one (x y : ℝ) :
     linarith [dyadicCutoff_nonneg x, dyadicCutoff_le_one x,
       dyadicCutoff_nonneg y, dyadicCutoff_le_one y]
 
+/--
+@isnad1 id=le.2h3v.s6.9deba6092467 from=translated src=- shape=c7237f24 vocab=43977a86
+-/
 theorem abs_lowCutoffQuotientDerivative_le
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     |lowCutoffQuotientDerivative lam hlam B t| ≤
@@ -241,6 +281,9 @@ theorem abs_lowCutoffQuotientDerivative_le
             (mul_le_mul_of_nonneg_right hdi hai)) (abs_nonneg t)) le_rfl
     _ = dyadicCutoffDerivBound * (ao + ai) * |t| + 1 := by ring
 
+/--
+@isnad1 id=le.2h3v.s7.c752c750262c from=translated src=- shape=38a47d44 vocab=06894ce5
+-/
 theorem paperLowOscillatoryKernelDerivative_norm_le_raw
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     ‖paperLowOscillatoryKernelDerivative lam hlam B t‖ ≤
@@ -288,6 +331,9 @@ theorem paperLowOscillatoryKernelDerivative_norm_le_raw
         4 * Real.pi * |lam| :=
       add_le_add (abs_lowCutoffQuotientDerivative_le hlam B ht) le_rfl
 
+/--
+@isnad1 id=eq.3h3v.s6.a4ef3a3a3ffd from=translated src=- shape=1a487f15 vocab=1bef6584
+-/
 theorem paperLowOscillatoryKernelDerivative_eq_zero_of_normalized_lt
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ}
     (ht0 : t ≠ 0) (ht : |t| * Real.sqrt |lam| < 1 / 8) :
@@ -304,6 +350,9 @@ theorem paperLowOscillatoryKernelDerivative_eq_zero_of_normalized_lt
   rw [paperLowOscillatoryKernel_deriv hlam B ht0] at hder
   simpa using hder
 
+/--
+@isnad1 id=eq.3h3v.s6.22d85d5766bc from=translated src=- shape=804b9d99 vocab=291e0d1f
+-/
 theorem paperLowOscillatoryKernelDerivative_eq_zero_of_normalized_gt
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ}
     (ht0 : t ≠ 0) (ht : (2 : ℝ) ^ B < |t| * Real.sqrt |lam|) :
@@ -321,6 +370,9 @@ theorem paperLowOscillatoryKernelDerivative_eq_zero_of_normalized_gt
   rw [paperLowOscillatoryKernel_deriv hlam B ht0] at hder
   simpa using hder
 
+/--
+@isnad1 id=le.2h3v.s5.f604259d8260 from=translated src=- shape=e75b8cc4 vocab=03fcd5eb
+-/
 theorem paperLowOscillatoryKernelDerivative_norm_le_abs_lam
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht0 : t ≠ 0) :
     ‖paperLowOscillatoryKernelDerivative lam hlam B t‖ ≤
@@ -360,6 +412,9 @@ theorem paperLowOscillatoryKernelDerivative_norm_le_abs_lam
   field_simp [abs_ne_zero.mpr ht0]
   nlinarith [mul_nonneg (abs_nonneg lam) (sq_nonneg |t|)]
 
+/--
+@isnad1 id=le.2h3v.s6.093db543af7c from=translated src=- shape=9bf70cef vocab=c148d439
+-/
 theorem paperLowOscillatoryKernelDerivative_norm_le_pow_div
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht0 : t ≠ 0) :
     ‖paperLowOscillatoryKernelDerivative lam hlam B t‖ ≤
@@ -415,7 +470,9 @@ theorem paperLowOscillatoryKernelDerivative_norm_le_pow_div
     mul_nonneg hC hPpos.le, mul_nonneg hpi hPpos.le]
 
 /-- The precise Calderón--Zygmund derivative estimate asserted in the paper,
-with a proved finite constant depending only on the fixed cutoff.-/
+with a proved finite constant depending only on the fixed cutoff.
+@isnad1 id=le.2h3v.s6.5b3ec142587c from=translated src=- shape=388761e0 vocab=64a43a3c
+-/
 theorem paperLowOscillatoryKernelDerivative_norm_le_min
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht0 : t ≠ 0) :
     ‖paperLowOscillatoryKernelDerivative lam hlam B t‖ ≤
@@ -426,6 +483,9 @@ theorem paperLowOscillatoryKernelDerivative_norm_le_min
     (paperLowOscillatoryKernelDerivative_norm_le_abs_lam hlam B ht0)
     (paperLowOscillatoryKernelDerivative_norm_le_pow_div hlam B ht0)
 
+/--
+@isnad1 id=le.2h3v.s7.309f1e246048 from=translated src=- shape=ebd0cca9 vocab=10e94abf
+-/
 theorem paperLowOscillatoryKernel_deriv_norm_le_min
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht0 : t ≠ 0) :
     ‖deriv (paperLowOscillatoryKernel lam hlam B) t‖ ≤

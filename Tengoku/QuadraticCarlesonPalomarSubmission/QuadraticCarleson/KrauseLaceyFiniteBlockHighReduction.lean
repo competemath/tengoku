@@ -27,7 +27,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- Dilation at a physical radius obtained by dividing a normalized radius.-/
+/-- Dilation at a physical radius obtained by dividing a normalized radius.
+@isnad1 id=eq.1h4v.s6.235e757c7ac4 from=translated src=- shape=8d1c81f1 vocab=1c5e6f05
+-/
 theorem smoothHighPass_square_div (a : ℝ) (ha : 0 < a) (ρ : ℝ)
     (f : L0Infinity) (x : ℝ) :
     smoothQuadraticHighPass (a ^ 2) (ρ / a) f x =
@@ -38,7 +40,9 @@ theorem smoothHighPass_square_div (a : ℝ) (ha : 0 < a) (ρ : ℝ)
   exact h
 
 /-- The normalized high finite block is the retained difference of the two
-physical smooth cutoffs.-/
+physical smooth cutoffs.
+@isnad1 id=eq.1h4v.s7.a736c5c19577 from=translated src=- shape=8ffab2a8 vocab=97b48b67
+-/
 theorem normalizedHighBlock_eq_physicalSmoothDifference
     (a : ℝ) (ha : 0 < a) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     finiteQuadraticDyadicBlock 1 1 B (L0Infinity.dilate a ha f) (a * x) =
@@ -51,7 +55,9 @@ theorem normalizedHighBlock_eq_physicalSmoothDifference
   rw [hlo, hhi, smoothHighPass_square_div, smoothHighPass_square_div]
 
 /-- Rounding the two physical endpoints has one common maximal-function cost.
-The geometric premises are discharged at the paper's oscillatory scale below.-/
+The geometric premises are discharged at the paper's oscillatory scale below.
+@isnad1 id=le.3h5v.s9.20f3e3576a84 from=translated src=- shape=d391cedf vocab=c2c91e0f
+-/
 theorem enorm_block_sub_normalizedHighBlock_le
     (a : ℝ) (ha : 0 < a) (j : ℤ) (B : ℕ) (f : L0Infinity) (x : ℝ)
     (hlo : (2 : ℝ) ^ (j - 3) ≤ (1 / 4 : ℝ) / a ∧
@@ -84,7 +90,9 @@ theorem enorm_block_sub_normalizedHighBlock_le
           (zpow_pos (by norm_num) _) hhi.1 hhi.2 f.measurable_toFun f.integrable x)
     _ = _ := by ring
 
-/-- Every complete finite block is the zero-cutoff member of its suffix maximum.-/
+/-- Every complete finite block is the zero-cutoff member of its suffix maximum.
+@isnad1 id=le.0h5v.s6.785615deb3f6 from=translated src=- shape=b5e8cd46 vocab=fafbdcb4
+-/
 theorem enorm_finiteBlock_le_suffixMaxOperator
     (lam : ℝ) (j : ℤ) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖finiteQuadraticDyadicBlock lam j B f x‖ₑ ≤
@@ -103,7 +111,9 @@ theorem enorm_finiteBlock_le_suffixMaxOperator
     finiteFullDyadicSuffixMaxNNNorm] using hsup
 
 /-- The exact paper block is controlled by a normalized high suffix and one
-modulation-independent maximal-function error. No auxiliary scale choice remains.-/
+modulation-independent maximal-function error. No auxiliary scale choice remains.
+@isnad1 id=le.1h4v.s7.b57b3bc5bd10 from=translated src=- shape=5b82c0fc vocab=8109721f
+-/
 theorem enorm_paperLowDyadicOperator_le_dilatedHighSuffix_add_maximal
     (lam : ℝ) (hlam : 0 < lam) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖paperLowDyadicOperator lam hlam.ne' B f x‖ₑ ≤

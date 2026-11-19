@@ -23,6 +23,9 @@ open scoped ENNReal NNReal Topology
 namespace QuadraticCarleson
 namespace OscillatoryReduction
 
+/--
+@isnad1 id=integrab.2h4v.s6.e514b79eb76a from=translated src=- shape=e988db5b vocab=74a6ebbc
+-/
 theorem integrable_kernel_mul_l0 (f : L0Infinity) (x : ℝ) {K : ℝ → ℂ} {C : ℝ}
     (hK : Measurable K) (hb : ∀ t, ‖K t‖ ≤ C) :
     Integrable (fun y ↦ K (x - y) * f y) := by
@@ -30,6 +33,9 @@ theorem integrable_kernel_mul_l0 (f : L0Infinity) (x : ℝ) {K : ℝ → ℂ} {C
   · exact (hK.comp (measurable_const.sub measurable_id)).aestronglyMeasurable
   · exact Eventually.of_forall (fun y ↦ hb (x - y))
 
+/--
+@isnad1 id=le.5h5v.s7.3b6a0b68f248 from=translated src=- shape=15cdcf0c vocab=00e31ee3
+-/
 theorem bounded_ball_kernel_enorm_le_maximal
     {K : ℝ → ℂ} {C ρ : ℝ} (hC : 0 ≤ C) (hρ : 0 < ρ)
     (hb : ∀ t, ‖K t‖ ≤ C / ρ) (hs : support K ⊆ closedBall 0 ρ)
@@ -74,6 +80,9 @@ theorem bounded_ball_kernel_enorm_le_maximal
       congr 2
       ring
 
+/--
+@isnad1 id=le.2h4v.s7.cd78446e55ba from=translated src=- shape=6b321784 vocab=fc82f5b4
+-/
 theorem smallPhaseOperator_enorm_le_maximal (lam ε : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Measurable f) (x : ℝ) :
     ‖∫ y, smallPhaseKernel lam ε (innerRadius lam hlam) (x - y) * f y‖ₑ ≤
@@ -83,6 +92,9 @@ theorem smallPhaseOperator_enorm_le_maximal (lam ε : ℝ) (hlam : lam ≠ 0)
       (innerRadius_pos lam hlam) (smallPhaseKernel_norm_le lam ε hlam)
       (smallPhaseKernel_support_subset lam ε (innerRadius lam hlam)) hf x
 
+/--
+@isnad1 id=eq.3h4v.s7.bd224853b67f from=translated src=- shape=8ca92249 vocab=aa632749
+-/
 theorem quadraticHilbertTrunc_eq_oscillatory_reduction
     (lam ε : ℝ) (hlam : lam ≠ 0) (hε : 0 < ε) (hερ : ε ≤ innerRadius lam hlam)
     (f : L0Infinity) (x : ℝ) :
@@ -127,10 +139,16 @@ theorem quadraticHilbertTrunc_eq_oscillatory_reduction
 
 noncomputable def maximalErrorConstant : ℝ≥0∞ := 8 + ENNReal.ofReal (8 * Real.pi)
 
+/--
+@isnad1 id=lt.0h0v.s3.89f5355dac84 from=translated src=- shape=f463f024 vocab=80bc3013
+-/
 theorem maximalErrorConstant_lt_top : maximalErrorConstant < ∞ := by
   unfold maximalErrorConstant
   finiteness
 
+/--
+@isnad1 id=le.3h4v.s7.3d7c934532a3 from=translated src=- shape=43406ff7 vocab=2f1e4b99
+-/
 theorem quadraticHilbertTrunc_enorm_le_oscillatory
     (lam ε : ℝ) (hlam : lam ≠ 0) (hε : 0 < ε) (hερ : ε ≤ innerRadius lam hlam)
     (f : L0Infinity) (x : ℝ) :
@@ -169,7 +187,9 @@ theorem quadraticHilbertTrunc_enorm_le_oscillatory
 
 /-- Pointwise reduction for the paper-domain principal-value magnitude
 defined by the canonical truncation limsup. This does not assume that the
-principal value exists at the point in question.-/
+principal value exists at the point in question.
+@isnad1 id=le.1h3v.s7.a06b76ddf0eb from=translated src=- shape=e1f16a17 vocab=982475ab
+-/
 theorem quadraticHilbertL0Limsup_le_oscillatory
     (lam : ℝ) (hlam : lam ≠ 0) (f : L0Infinity) (x : ℝ) :
     quadraticHilbertL0Limsup lam f x ≤ ‖paperOscillatoryAction lam hlam f x‖ₑ +
@@ -187,6 +207,9 @@ theorem quadraticHilbertL0Limsup_le_oscillatory
 noncomputable def paperOscillatoryMaximal (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ lam : {lam : ℝ // lam ≠ 0}, ‖paperOscillatoryAction lam.1 lam.2 f x‖ₑ
 
+/--
+@isnad1 id=le.0h2v.s7.3265d520940c from=translated src=- shape=a75299f5 vocab=ccca1048
+-/
 theorem nonzeroQuadraticCarlesonL0_le_oscillatory (f : L0Infinity) (x : ℝ) :
     (⨆ lam : {lam : ℝ // lam ≠ 0}, quadraticHilbertL0Limsup lam.1 f x) ≤
       paperOscillatoryMaximal f x + 2 * quadraticHilbertMaximalTruncation 0 f x +

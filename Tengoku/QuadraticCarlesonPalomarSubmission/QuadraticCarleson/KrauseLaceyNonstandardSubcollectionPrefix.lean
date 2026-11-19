@@ -27,6 +27,9 @@ noncomputable def badSubcollectionGenerationLp
     Lp ℂ 2 (volume : Measure ℝ) :=
   ∑ I ∈ generation N n, badPieceLp S f hf I₀ k₀ s scale I
 
+/--
+@isnad1 id=eventual.1h8v.s8.9de48ade73ed from=translated src=- shape=1d3a84b1 vocab=2fa79ca6
+-/
 theorem badSubcollectionGenerationLp_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) (n : ℕ) :
@@ -44,7 +47,9 @@ theorem badSubcollectionGenerationLp_ae_eq
   exact Finset.sum_congr rfl hx
 
 /-- A prefix of any length inherits the genuinely proved signed-sum
-estimate, including when there are more or fewer intervals than levels.-/
+estimate, including when there are more or fewer intervals than levels.
+@isnad1 id=hassigne.7h8v.s8.9afc85b5498c from=translated src=- shape=bcd835a7 vocab=bd13d1d6
+-/
 theorem hasSignedSumSquareBound_badSubcollectionGenerations
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -75,6 +80,9 @@ noncomputable def badSubcollectionPrefixMaximal
     krauseLaceyCollectionAction (generation N i) scale
       (fun I ↦ badScaleInput S f I₀ k₀ (scale I + 2 - s)) x‖
 
+/--
+@isnad1 id=eventual.1h8v.s6.e13ea0d5a220 from=translated src=- shape=8f44b397 vocab=7e60c68c
+-/
 theorem badSubcollectionPrefixMaximal_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) (M : ℕ) :
@@ -92,6 +100,9 @@ theorem badSubcollectionPrefixMaximal_ae_eq
   congr 1
   exact Finset.sum_congr rfl fun i hi ↦ (hx i).symm
 
+/--
+@isnad1 id=memlp.1h8v.s7.9eaa196cb67d from=translated src=- shape=6fc6bca1 vocab=3ee3380a
+-/
 theorem memLp_badSubcollectionPrefixMaximal
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) (M : ℕ) :
@@ -101,7 +112,9 @@ theorem memLp_badSubcollectionPrefixMaximal
 
 /-- The exact finite RM estimate for the actual prunable subcollection.
 In particular, the constant depends on the specified layer cutoff `M`, not
-on the total number of candidate intervals.-/
+on the total number of candidate intervals.
+@isnad1 id=le.7h8v.s8.5161b2af36af from=translated src=- shape=14be5dd8 vocab=0c28efa4
+-/
 theorem eLpNorm_badSubcollectionPrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)

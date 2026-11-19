@@ -20,6 +20,9 @@ namespace KrauseLaceyBadScale
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.2h4v.s6.9f9d2115b9e1 from=translated src=- shape=e63427c2 vocab=3bd5abca
+-/
 theorem norm_interpolationHigh_le_rpow (g : ℝ → ℂ) {a p : ℝ}
     (ha : 0 < a) (hp : 1 < p) (x : ℝ) :
     ‖interpolationHigh g a x‖ ≤ a ^ (1 - p) * ‖g x‖ ^ p := by
@@ -34,6 +37,9 @@ theorem norm_interpolationHigh_le_rpow (g : ℝ → ℂ) {a p : ℝ}
   · rw [interpolationHigh, ite_eq_right hx, norm_zero]
     exact mul_nonneg (Real.rpow_nonneg ha.le _) (Real.rpow_nonneg (norm_nonneg _) _)
 
+/--
+@isnad1 id=le.3h4v.s6.e0c77477c695 from=translated src=- shape=4c8a3351 vocab=eeaa3425
+-/
 theorem norm_interpolationLow_sq_le_rpow (g : ℝ → ℂ) {a p : ℝ}
     (ha : 0 < a) (hp : 0 < p) (hp2 : p ≤ 2) (x : ℝ) :
     ‖interpolationLow g a x‖ ^ 2 ≤ a ^ (2 - p) * ‖g x‖ ^ p := by
@@ -51,6 +57,9 @@ theorem norm_interpolationLow_sq_le_rpow (g : ℝ → ℂ) {a p : ℝ}
   · rw [interpolationLow, ite_eq_right hx, norm_zero, zero_pow (by omega : 2 ≠ 0)]
     exact mul_nonneg (Real.rpow_nonneg ha.le _) (Real.rpow_nonneg (norm_nonneg _) _)
 
+/--
+@isnad1 id=integrab.2h2v.s6.e9fc0850a259 from=translated src=- shape=282d0a1e vocab=00006947
+-/
 theorem integrable_interpolationHigh_local
     {g : ℝ → ℂ} (hg : Measurable g) (hgi : Integrable g) (a : ℝ) :
     Integrable (interpolationHigh g a) := by
@@ -59,6 +68,9 @@ theorem integrable_interpolationHigh_local
   unfold interpolationHigh
   split_ifs <;> simp [norm_nonneg]
 
+/--
+@isnad1 id=integrab.2h2v.s6.75c0af209ba6 from=translated src=- shape=282d0a1e vocab=10be86a8
+-/
 theorem integrable_interpolationLow_local
     {g : ℝ → ℂ} (hg : Measurable g) (hgi : Integrable g) (a : ℝ) :
     Integrable (interpolationLow g a) := by
@@ -69,6 +81,9 @@ theorem integrable_interpolationLow_local
   unfold interpolationLow
   split_ifs <;> simp [norm_nonneg]
 
+/--
+@isnad1 id=le.6h5v.s7.5af159e38423 from=translated src=- shape=e7afc6de vocab=9fa90834
+-/
 theorem intervalL1Average_interpolationHigh_le
     {g : ℝ → ℂ} (hg : Measurable g) (hgi : Integrable g) {a p G : ℝ}
     (ha : 0 < a) (hp : 1 < p) (hgp : Integrable (fun x ↦ ‖g x‖ ^ p))
@@ -88,6 +103,9 @@ theorem intervalL1Average_interpolationHigh_le
         (inv_nonneg.mpr I.length_pos.le)
     _ = _ := by field_simp [I.length_pos.ne']
 
+/--
+@isnad1 id=le.4h3v.s7.709e2fb5dcc6 from=translated src=- shape=bcba2a29 vocab=bd4e235b
+-/
 theorem eLpNorm_interpolationLow_le_rpow
     (g : ℝ → ℂ) {a p : ℝ} (ha : 0 < a) (hp : 0 < p) (hp2 : p ≤ 2)
     (hg : Measurable g) :
@@ -108,7 +126,9 @@ theorem eLpNorm_interpolationLow_le_rpow
 
 /-- Quantitative local interpolation for every positive splitting
 threshold. The only test-function condition is the actual local `p`-mass
-bound on the intervals, precisely the condition in the source argument.-/
+bound on the intervals, precisely the condition in the source argument.
+@isnad1 id=le.14h11v.s9.a1b6f191a8ab from=translated src=- shape=aa42e832 vocab=9e0823a7
+-/
 theorem lintegral_nonstandard_pairing_le_threshold
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f)
     (hg : Measurable g) (hgi : Integrable g) {p a G : ℝ}

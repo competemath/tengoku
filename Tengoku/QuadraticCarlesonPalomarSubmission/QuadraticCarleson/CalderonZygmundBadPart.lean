@@ -34,6 +34,9 @@ one in Lemma 6.12.-/
 def tripleCenteredInterval (z R : ℝ) : Set ℝ :=
   Icc (z - 3 * R / 2) (z + 3 * R / 2)
 
+/--
+@isnad1 id=le.1h3v.s5.f7d4de387393 from=translated src=- shape=9edc6fc3 vocab=558db291
+-/
 theorem abs_sub_center_le_of_mem_centeredInterval {z R y : ℝ}
     (hy : y ∈ centeredInterval z R) :
     |y - z| ≤ R / 2 := by
@@ -41,6 +44,9 @@ theorem abs_sub_center_le_of_mem_centeredInterval {z R y : ℝ}
   rw [abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=lt.1h3v.s6.2f38bbf92982 from=translated src=- shape=895c39d1 vocab=80ddaebd
+-/
 theorem not_mem_tripleCenteredInterval_abs {z R x : ℝ}
     (hx : x ∉ tripleCenteredInterval z R) :
     3 * R / 2 < |x - z| := by
@@ -51,7 +57,9 @@ theorem not_mem_tripleCenteredInterval_abs {z R x : ℝ}
   · exact Or.inr (by linarith)
 
 /-- Outside the triple interval, every point of the original interval is at
-least half as far from the observation point as the center is.-/
+least half as far from the observation point as the center is.
+@isnad1 id=le.3h4v.s6.2655189131bd from=translated src=- shape=b6476570 vocab=e0821ca6
+-/
 theorem half_center_distance_le_distance {z R x y : ℝ} (hR : 0 ≤ R)
     (hx : x ∉ tripleCenteredInterval z R) (hy : y ∈ centeredInterval z R) :
     |x - z| / 2 ≤ |x - y| := by
@@ -64,7 +72,9 @@ theorem half_center_distance_le_distance {z R x y : ℝ} (hR : 0 ≤ R)
   linarith
 
 /-- Mean-zero cancellation allows subtraction of the kernel at the interval
-center.  All integrability assumptions are explicit.-/
+center.  All integrability assumptions are explicit.
+@isnad1 id=eq.3h5v.s7.dd10481ddfd7 from=translated src=- shape=cfc99b7e vocab=12d77d98
+-/
 theorem setIntegral_kernel_eq_sub_center
     (K : ℝ → ℝ → ℂ) (f : ℝ → ℂ) (x z R : ℝ)
     (hf : IntegrableOn f (centeredInterval z R))
@@ -93,7 +103,9 @@ theorem setIntegral_kernel_eq_sub_center
       ring
 
 /-- A variable pointwise majorant bounds the norm of the cancelled integral.
-This is the Bochner-integral step used in Lemma 6.12.-/
+This is the Bochner-integral step used in Lemma 6.12.
+@isnad1 id=le.2h6v.s7.346bf0681251 from=translated src=- shape=d804627b vocab=6e5e105b
+-/
 theorem norm_setIntegral_kernel_sub_center_le
     (K : ℝ → ℝ → ℂ) (f : ℝ → ℂ) (x z R D : ℝ)
     (hf : IntegrableOn f (centeredInterval z R))
@@ -112,7 +124,9 @@ theorem norm_setIntegral_kernel_sub_center_le
   simpa only [integral_const_mul] using h
 
 /-- The exact pointwise bad-part estimate obtained from a Lipschitz
-Calderón--Zygmund kernel.  The constant is explicit and uniform.-/
+Calderón--Zygmund kernel.  The constant is explicit and uniform.
+@isnad1 id=le.5h6v.s8.8629fb7d902f from=translated src=- shape=26350766 vocab=5bb6833a
+-/
 theorem norm_setIntegral_kernel_sub_center_le_decay
     (K : ℝ → ℝ → ℂ) (f : ℝ → ℂ) (x z R C : ℝ)
     (hR : 0 < R) (hC : 0 ≤ C)
@@ -140,7 +154,9 @@ theorem norm_setIntegral_kernel_sub_center_le_decay
     _ = 2 * C * R / |x - z| ^ 2 := by ring
 
 /-- The pointwise conclusion of Lemma 6.12 in the one-dimensional,
-Lipschitz-kernel form used in the paper.-/
+Lipschitz-kernel form used in the paper.
+@isnad1 id=le.7h6v.s8.29949743ace7 from=translated src=- shape=b3452f4c vocab=5bb6833a
+-/
 theorem norm_setIntegral_kernel_le_decay
     (K : ℝ → ℝ → ℂ) (f : ℝ → ℂ) (x z R C : ℝ)
     (hR : 0 < R) (hC : 0 ≤ C)
@@ -159,7 +175,9 @@ theorem norm_setIntegral_kernel_le_decay
 
 /-! ## Exact integration of the one-dimensional decay majorant -/
 
-/-- The inverse-square majorant is integrable on the right tail.-/
+/-- The inverse-square majorant is integrable on the right tail.
+@isnad1 id=integrab.1h2v.s6.86e3eea29473 from=translated src=- shape=8ff1fce7 vocab=6eb39977
+-/
 theorem integrableOn_inv_abs_sub_sq_Ioi (z d : ℝ) (hd : 0 < d) :
     IntegrableOn (fun x : ℝ ↦ 1 / |x - z| ^ 2) (Ioi (z + d)) := by
   have hp : IntegrableOn (fun x : ℝ ↦ x ^ (-2 : ℝ)) (Ioi d) :=
@@ -178,7 +196,9 @@ theorem integrableOn_inv_abs_sub_sq_Ioi (z d : ℝ) (hd : 0 < d) :
   simp only [Function.comp_apply, add_sub_cancel_right, abs_of_pos hx0]
   rw [Real.rpow_neg hx0.le, Real.rpow_two, one_div]
 
-/-- The exact integral of the inverse-square majorant on the right tail.-/
+/-- The exact integral of the inverse-square majorant on the right tail.
+@isnad1 id=eq.1h2v.s6.0647c2d1a8ab from=translated src=- shape=4c618f54 vocab=ec4572e1
+-/
 theorem integral_inv_abs_sub_sq_Ioi (z d : ℝ) (hd : 0 < d) :
     ∫ x in Ioi (z + d), 1 / |x - z| ^ 2 = 1 / d := by
   rw [← integral_indicator measurableSet_Ioi]
@@ -208,7 +228,9 @@ theorem integral_inv_abs_sub_sq_Ioi (z d : ℝ) (hd : 0 < d) :
   rw [show (-2 : ℝ) + 1 = -1 by norm_num, Real.rpow_neg_one]
   field_simp
 
-/-- The inverse-square majorant is integrable on the reflected left tail.-/
+/-- The inverse-square majorant is integrable on the reflected left tail.
+@isnad1 id=integrab.1h2v.s6.aa46250f7acf from=translated src=- shape=edc1cdf1 vocab=069b4161
+-/
 theorem integrableOn_inv_abs_sub_sq_Iio (z d : ℝ) (hd : 0 < d) :
     IntegrableOn (fun x : ℝ ↦ 1 / |x - z| ^ 2) (Iio (z - d)) := by
   have hr := integrableOn_inv_abs_sub_sq_Ioi (-z) d hd
@@ -226,7 +248,9 @@ theorem integrableOn_inv_abs_sub_sq_Iio (z d : ℝ) (hd : 0 < d) :
   have heq : -x - z = -(x - -z) := by ring
   rw [heq, abs_neg]
 
-/-- The exact integral of the inverse-square majorant on the left tail.-/
+/-- The exact integral of the inverse-square majorant on the left tail.
+@isnad1 id=eq.1h2v.s6.0e3e70e557d1 from=translated src=- shape=0b4d990b vocab=d0aab1dc
+-/
 theorem integral_inv_abs_sub_sq_Iio (z d : ℝ) (hd : 0 < d) :
     ∫ x in Iio (z - d), 1 / |x - z| ^ 2 = 1 / d := by
   rw [← integral_Iic_eq_integral_Iio]
@@ -243,7 +267,9 @@ theorem integral_inv_abs_sub_sq_Iio (z d : ℝ) (hd : 0 < d) :
     _ = 1 / d := integral_inv_abs_sub_sq_Ioi (-z) d hd
 
 /-- The complement of the triple interval is the disjoint union of its two
-open tails.-/
+open tails.
+@isnad1 id=eq.0h2v.s6.85acf0559ddd from=translated src=- shape=56d3134b vocab=c3476e8f
+-/
 theorem compl_tripleCenteredInterval (z R : ℝ) :
     (tripleCenteredInterval z R)ᶜ =
       Iio (z - 3 * R / 2) ∪ Ioi (z + 3 * R / 2) := by
@@ -251,7 +277,9 @@ theorem compl_tripleCenteredInterval (z R : ℝ) :
   simp only [tripleCenteredInterval, mem_compl_iff, mem_Icc, mem_union,
     mem_Iio, mem_Ioi, not_and_or, not_le]
 
-/-- The decay majorant is integrable off the triple interval.-/
+/-- The decay majorant is integrable off the triple interval.
+@isnad1 id=integrab.1h2v.s6.9dd00a352ba0 from=translated src=- shape=5f23e2ab vocab=a6d4805b
+-/
 theorem integrableOn_inv_abs_sub_sq_compl_tripleCenteredInterval
     (z R : ℝ) (hR : 0 < R) :
     IntegrableOn (fun x : ℝ ↦ 1 / |x - z| ^ 2)
@@ -262,7 +290,9 @@ theorem integrableOn_inv_abs_sub_sq_compl_tripleCenteredInterval
     (integrableOn_inv_abs_sub_sq_Ioi z (3 * R / 2) hd)
 
 /-- In dimension one the inverse-square tail outside the triple interval has
-the exact mass `4 / (3R)`.-/
+the exact mass `4 / (3R)`.
+@isnad1 id=eq.1h2v.s7.f4ef866ad57a from=translated src=- shape=7342f04f vocab=6f1ea999
+-/
 theorem integral_inv_abs_sub_sq_compl_tripleCenteredInterval
     (z R : ℝ) (hR : 0 < R) :
     ∫ x in (tripleCenteredInterval z R)ᶜ, 1 / |x - z| ^ 2 = 4 / (3 * R) := by
@@ -288,7 +318,9 @@ theorem integral_inv_abs_sub_sq_compl_tripleCenteredInterval
 /-- The integrated conclusion of Lemma 6.12 in the one-dimensional
 Lipschitz-kernel form used by the paper.  Measurability of the kernel output is
 kept explicit; in applications it follows from the measurable operator
-realization.  The proof gives the uniform constant `8C/3`.-/
+realization.  The proof gives the uniform constant `8C/3`.
+@isnad1 id=le.7h5v.s9.e6dfc419882e from=translated src=- shape=69737c43 vocab=45592b7e
+-/
 theorem integral_norm_setIntegral_kernel_le
     (K : ℝ → ℝ → ℂ) (f : ℝ → ℂ) (z R C : ℝ)
     (hR : 0 < R) (hC : 0 ≤ C)

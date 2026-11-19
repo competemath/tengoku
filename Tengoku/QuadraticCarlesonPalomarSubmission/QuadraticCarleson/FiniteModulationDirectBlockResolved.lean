@@ -42,6 +42,9 @@ private theorem conjugate_smul (c : ℂ) (f : L0Infinity) :
   cases f
   simp [L0Infinity.conjugate, L0Infinity.smul]
 
+/--
+@isnad1 id=issublin.1h1v.s3.69e2cab46e6c from=translated src=- shape=2c86d966 vocab=2d3a6991
+-/
 theorem isSublinear_conjugatedOperator {T : TestOperator} (hT : IsSublinear T) :
     IsSublinear (conjugatedOperator T) := by
   constructor
@@ -52,12 +55,18 @@ theorem isSublinear_conjugatedOperator {T : TestOperator} (hT : IsSublinear T) :
     simpa only [conjugatedOperator, Complex.norm_conj, conjugate_smul] using
       hT.2 (conj c) (L0Infinity.conjugate f) x
 
+/--
+@isnad1 id=eq.0h1v.s3.2cfc0c8a52a2 from=translated src=- shape=2e76f3a7 vocab=6097db89
+-/
 @[simp] theorem absoluteValue_conjugatedOperator (T : TestOperator) :
     absoluteValueOperator (conjugatedOperator T) =
       conjugatedOperator (absoluteValueOperator T) := by
   funext f x
   simp [absoluteValueOperator, conjugatedOperator]
 
+/--
+@isnad1 id=continuo.1h2v.s5.a17253f5eb4c from=translated src=- shape=c7d57d11 vocab=6f08935a
+-/
 theorem continuous_conjugatedOperator {T : TestOperator}
     (hT : ∀ f : L0Infinity, Continuous (T f)) (f : L0Infinity) :
     Continuous (conjugatedOperator T f) :=
@@ -69,6 +78,9 @@ def signedHighSuffixOperator (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) : TestOper
     (finiteFullDyadicSuffixMaxOperator 1 1 (B + 1))
   if lam < 0 then conjugatedOperator T else T
 
+/--
+@isnad1 id=continuo.1h3v.s5.d2e0f6d04ba6 from=translated src=- shape=da640681 vocab=f6e3ec23
+-/
 theorem continuous_signedHighSuffixOperator
     (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) (f : L0Infinity) :
     Continuous (signedHighSuffixOperator B lam hlam f) := by
@@ -80,6 +92,9 @@ theorem continuous_signedHighSuffixOperator
   · exact continuous_conjugatedOperator hcont f
   · exact hcont f
 
+/--
+@isnad1 id=issublin.1h2v.s4.52eaf5f9faa7 from=translated src=- shape=df18e3c7 vocab=2cc1175a
+-/
 theorem isSublinear_signedHighSuffixOperator
     (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) :
     IsSublinear (signedHighSuffixOperator B lam hlam) := by
@@ -91,6 +106,9 @@ theorem isSublinear_signedHighSuffixOperator
   · exact isSublinear_conjugatedOperator hsub
   · exact hsub
 
+/--
+@isnad1 id=hasspars.3h3v.s5.b83b60853186 from=translated src=- shape=c9aa9e7a vocab=98a056d5
+-/
 theorem hasSparseOnePBound_signedHighSuffixOperator
     (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) {p : ℝ}
     (hp : 1 < p) (hp2 : p < 2) :
@@ -109,6 +127,9 @@ def signedHighSuffixFamily {N : ℕ} (B : ℕ) (lam : Fin N → ℝ)
     (hlam : ∀ i, lam i ≠ 0) : Fin N → TestOperator :=
   fun i ↦ signedHighSuffixOperator B (lam i) (hlam i)
 
+/--
+@isnad1 id=finitesp.1h3v.s5.f09cd7e18e89 from=translated src=- shape=5fc72d89 vocab=bff7edea
+-/
 theorem finiteSparseMaximalHypothesis_signedHighSuffixFamily
     {N : ℕ} (B : ℕ) (lam : Fin N → ℝ) (hlam : ∀ i, lam i ≠ 0) :
     FiniteSparseMaximalHypothesis (signedHighSuffixFamily B lam hlam)
@@ -124,6 +145,9 @@ theorem finiteSparseMaximalHypothesis_signedHighSuffixFamily
       mul_nonneg highFullSuffixSparseConstant_nonneg (holderConjugate_spec hp).symm.pos.le
     exact ⟨⟨_, hC, hb⟩, sparseOnePNorm_le_of_bound hC hb⟩
 
+/--
+@isnad1 id=hasweako.1h3v.s6.2376aa6523d7 from=translated src=- shape=b70cecbf vocab=518d45fb
+-/
 theorem hasWeakOneOneBound_signedHighSuffixFamily
     {N : ℕ} (B : ℕ) (lam : Fin N → ℝ) (hlam : ∀ i, lam i ≠ 0) :
     HasWeakOneOneBound
@@ -134,7 +158,9 @@ theorem hasWeakOneOneBound_signedHighSuffixFamily
     highFullSuffixSparseConstant
     (finiteSparseMaximalHypothesis_signedHighSuffixFamily B lam hlam)
 
-/-- The same common error bound applies to either sign of modulation.-/
+/-- The same common error bound applies to either sign of modulation.
+@isnad1 id=le.1h4v.s7.44851633a080 from=translated src=- shape=a7dcf0e1 vocab=0a916049
+-/
 theorem enorm_paperLowDyadicOperator_le_signedHighSuffix_add_maximal
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖paperLowDyadicOperator lam hlam B f x‖ₑ ≤
@@ -157,6 +183,9 @@ def finitePaperBlockMaxEnorm {N : ℕ} (B : ℕ) (lam : Fin N → ℝ)
     (hlam : ∀ i, lam i ≠ 0) (f : L0Infinity) (x : ℝ) : ℝ≥0∞ :=
   Finset.univ.sup fun i ↦ ‖paperLowDyadicOperator (lam i) (hlam i) B f x‖ₑ
 
+/--
+@isnad1 id=le.1h5v.s6.4fe7c48235bd from=translated src=- shape=fd17b2f0 vocab=f20a6ddc
+-/
 theorem finitePaperBlockMaxEnorm_le_signedHighSuffix_add_maximal
     {N : ℕ} (B : ℕ) (lam : Fin N → ℝ) (hlam : ∀ i, lam i ≠ 0)
     (f : L0Infinity) (x : ℝ) :
@@ -177,13 +206,18 @@ theorem finitePaperBlockMaxEnorm_le_signedHighSuffix_add_maximal
 def finiteBlockWeakConstant : ℝ :=
   2 * (finiteSparseMaximalUniversalConstant * highFullSuffixSparseConstant) + 384
 
+/--
+@isnad1 id=le.0h0v.s3.03dd92c5ffb9 from=translated src=- shape=ff3a10fc vocab=4ef6295d
+-/
 theorem finiteBlockWeakConstant_nonneg : 0 ≤ finiteBlockWeakConstant := by
   unfold finiteBlockWeakConstant
   positivity [finiteSparseMaximalUniversalConstant_pos, highFullSuffixSparseConstant_nonneg]
 
 /-- Corollary `c:finitemodulationsweak11` in distribution-function form, for
 arbitrary signed nonzero real modulations, uniformly over every `B ≥ 0`.
-The family need not be injective, and the empty family is included.-/
+The family need not be injective, and the empty family is included.
+@isnad1 id=le.2h5v.s7.73d7848129be from=translated src=- shape=5117f199 vocab=273fd68f
+-/
 theorem finiteModulationBlock_weak_bound
     {N : ℕ} (B : ℕ) (lam : Fin N → ℝ) (hlam : ∀ i, lam i ≠ 0)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :

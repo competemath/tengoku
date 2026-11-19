@@ -22,7 +22,9 @@ namespace KrauseLaceyBadScale
 set_option autoImplicit false
 
 /-- Elementary exponential domination used to absorb the source factor
-`j` into geometric physical-scale decay.-/
+`j` into geometric physical-scale decay.
+@isnad1 id=le.0h1v.s5.1d38beedffe6 from=translated src=- shape=d30e9c43 vocab=a715f2ec
+-/
 theorem nat_sq_le_four_mul_two_pow : ∀ n : ℕ,
     (n : ℝ) ^ 2 ≤ 4 * (2 : ℝ) ^ n := by
   intro n
@@ -42,6 +44,9 @@ theorem nat_sq_le_four_mul_two_pow : ∀ n : ℕ,
             mul_le_mul_of_nonneg_left ih (by norm_num)
           _ = 4 * (2 : ℝ) ^ (n + 1) := by rw [pow_succ]; ring
 
+/--
+@isnad1 id=le.0h1v.s5.f2b859f06571 from=translated src=- shape=8d48accc vocab=6a435dc2
+-/
 theorem nat_le_two_mul_two_rpow_half (n : ℕ) :
     (n : ℝ) ≤ 2 * (2 : ℝ) ^ ((n : ℝ) / 2) := by
   rw [← sq_le_sq₀ (by positivity : (0 : ℝ) ≤ n)
@@ -54,6 +59,9 @@ theorem nat_le_two_mul_two_rpow_half (n : ℕ) :
         show (n : ℝ) / 2 * (2 : ℕ) = n by norm_num,
         Real.rpow_natCast]
 
+/--
+@isnad1 id=le.1h1v.s6.bb29b234031b from=translated src=- shape=b6c2be3a vocab=5701d2e5
+-/
 theorem int_le_two_mul_two_rpow_half {j : ℤ} (hj : 0 ≤ j) :
     (j : ℝ) ≤ 2 * (2 : ℝ) ^ ((j : ℝ) / 2) := by
   have h := nat_le_two_mul_two_rpow_half j.toNat
@@ -63,7 +71,9 @@ theorem int_le_two_mul_two_rpow_half {j : ℤ} (hj : 0 ≤ j) :
   exact h
 
 /-- The polynomial factor in the squared estimate is absorbed by half of
-the available exponential decay.-/
+the available exponential decay.
+@isnad1 id=le.1h1v.s6.450a2e810801 from=translated src=- shape=d43c7462 vocab=56b39c73
+-/
 theorem int_div_two_zpow_le_decay {j : ℤ} (hj : 0 ≤ j) :
     (j : ℝ) / (2 : ℝ) ^ j ≤
       2 * (2 : ℝ) ^ (-(j : ℝ) / 2) := by
@@ -80,7 +90,9 @@ theorem int_div_two_zpow_le_decay {j : ℤ} (hj : 0 ≤ j) :
       ring
 
 /-- After the `q`-th root, the fixed-scale source decay is controlled by
-twice the project-wide geometric summation ratio.-/
+twice the project-wide geometric summation ratio.
+@isnad1 id=le.2h2v.s6.94747466ee2c from=translated src=- shape=7bcdc90f vocab=8a8698a2
+-/
 theorem int_ratio_rpow_le_two_mul_scaleDecayRatio_zpow
     {q : ℝ} (hq : 2 ≤ q) {j : ℤ} (hj : 0 ≤ j) :
     ((j : ℝ) / (2 : ℝ) ^ j) ^ (1 / q) ≤
@@ -118,6 +130,9 @@ theorem int_ratio_rpow_le_two_mul_scaleDecayRatio_zpow
       congr 1
       ring
 
+/--
+@isnad1 id=le.2h2v.s6.8581052dea58 from=translated src=- shape=e0f65bd4 vocab=5596dd6c
+-/
 theorem int_ratio_rpow_le_two_mul_scaleDecayRatio_toNat_pow
     {q : ℝ} (hq : 2 ≤ q) {j : ℤ} (hj : 0 ≤ j) :
     ((j : ℝ) / (2 : ℝ) ^ j) ^ (1 / q) ≤
@@ -131,7 +146,9 @@ theorem int_ratio_rpow_le_two_mul_scaleDecayRatio_toNat_pow
       rw [← zpow_natCast, Int.toNat_of_nonneg hj]
 
 /-- Uniform source-scale summation.  The finite set need not be an interval;
-only nonnegativity of its physical indices is used.-/
+only nonnegativity of its physical indices is used.
+@isnad1 id=le.2h2v.s6.f00de86db491 from=translated src=- shape=e2e2d6d8 vocab=c758b8fe
+-/
 theorem finite_int_ratio_rpow_sum_le_forty_mul_q
     {q : ℝ} (hq : 2 ≤ q) (S : Finset ℤ)
     (hS : ∀ j ∈ S, 0 ≤ j) :
@@ -180,7 +197,9 @@ noncomputable def standardSourceNormBudget
 
 /-- Factorization of the exact fixed-physical-scale interpolation estimate
 into a scale-independent source budget and the `q`-th root of `j * 2⁻ʲ`.
-This is the form needed before applying the finite geometric sum above.-/
+This is the form needed before applying the finite geometric sum above.
+@isnad1 id=le.8h8v.s8.38f743c209a5 from=translated src=- shape=04376c9d vocab=c25cbd17
+-/
 theorem eLpNorm_energyStandardFixedPhysicalSourceAction_le_budget_mul_ratio
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)
@@ -242,7 +261,9 @@ theorem eLpNorm_energyStandardFixedPhysicalSourceAction_le_budget_mul_ratio
 /-- Minkowski aggregation of fixed-physical-scale source actions.  The
 geometric estimate is deliberately separated from the definition of the
 scale-indexed actions, so it can be applied after the standard/nonstandard
-classification has been assembled.-/
+classification has been assembled.
+@isnad1 id=le.4h4v.s8.dd1e37d3c18a from=translated src=- shape=633b1d76 vocab=c44b5517
+-/
 theorem eLpNorm_finset_sum_le_budget_mul_forty_mul_q
     {q : ℝ} (hq : 2 ≤ q) {B : ℝ≥0∞} (S : Finset ℤ)
     (F : ℤ → ℝ → ℂ)

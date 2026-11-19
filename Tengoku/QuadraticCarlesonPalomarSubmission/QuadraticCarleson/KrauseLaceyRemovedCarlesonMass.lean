@@ -22,6 +22,9 @@ open KrauseLaceyGenerationLayers
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.1h3v.s6.118e9d1e3e73 from=translated src=- shape=81690474 vocab=cf2b15a4
+-/
 theorem sum_removed_length_le_carleson_mul_stoppingLength
     (A : Finset RealInterval) (M : ℕ) (Λ : ℝ)
     (hpack : ∀ J : RealInterval,
@@ -51,6 +54,9 @@ theorem sum_removed_length_le_carleson_mul_stoppingLength
       exact local_length_packing_mono Finset.sdiff_subset hpack I
     _ = Λ * ∑ I ∈ C, I.length := (Finset.mul_sum _ _ _).symm
 
+/--
+@isnad1 id=le.3h3v.s7.d8d2df24b96f from=translated src=- shape=35a9d5fb vocab=bae8657f
+-/
 theorem ofReal_sum_removed_length_le_carleson_mul_highOverlap
     (A : Finset RealInterval) (M : ℕ) (Λ : ℝ) (hΛ : 0 ≤ Λ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun I J ↦
@@ -65,7 +71,9 @@ theorem ofReal_sum_removed_length_le_carleson_mul_highOverlap
     ENNReal.ofReal_sum_of_nonneg (fun I _ ↦ I.length_pos.le),
     sum_volume_overlapStoppingIntervals A M hlam]
 
-/-- All discarded lengths enjoy exponential decay at block cutoffs.-/
+/-- All discarded lengths enjoy exponential decay at block cutoffs.
+@isnad1 id=le.5h5v.s8.827e7761288e from=translated src=- shape=d135274b vocab=47c163f1
+-/
 theorem ofReal_sum_removed_length_blocks_le
     (t : ℕ) (A : Finset RealInterval) (K : RealInterval) (M : ℕ) (Λ : ℝ)
     (hΛ : 0 ≤ Λ) (hblock : 2 * Λ ≤ M + 1)

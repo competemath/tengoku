@@ -31,7 +31,9 @@ def HasUniformHilbertMaximalWeakBound (C : ℝ≥0∞) : Prop :=
       C * ∫⁻ x, ‖f x‖ₑ
 
 /-- Positive real thresholds suffice for the classical input; zero and
-infinite ENNReal thresholds add no analytic requirement.-/
+infinite ENNReal thresholds add no analytic requirement.
+@isnad1 id=hasunifo.2h1v.s7.12e29fcd2286 from=translated src=- shape=27c25246 vocab=1c9002ea
+-/
 theorem hasUniformHilbertMaximalWeakBound_of_real
     {C : ℝ≥0∞} (hC : C < ∞)
     (hweak : ∀ (f : L0Infinity) (a : ℝ), 0 < a →
@@ -57,7 +59,9 @@ noncomputable def schwartzResidual (f : L0Infinity) (g : 𝓢(ℝ, ℂ))
   hasCompactSupport_toFun := f.hasCompactSupport_toFun.sub hg
 
 /-- Actual smooth compactly supported `L¹` approximation, with an explicit
-bound on the residual's absolute integral.-/
+bound on the residual's absolute integral.
+@isnad1 id=ex.1h2v.s7.e66ae540e8bc from=translated src=- shape=def80f89 vocab=dca44844
+-/
 theorem exists_compactSchwartz_lintegral_residual_le
     (f : L0Infinity) {ε : ℝ} (hε : 0 < ε) :
     ∃ (g : 𝓢(ℝ, ℂ)) (hg : HasCompactSupport (g : ℝ → ℂ)),
@@ -69,6 +73,9 @@ theorem exists_compactSchwartz_lintegral_residual_le
   change (∫⁻ x, ‖f x - g x‖ₑ) ≤ ENNReal.ofReal ε
   simpa only [eLpNorm_one_eq_lintegral_enorm, Pi.sub_apply] using happrox
 
+/--
+@isnad1 id=eq.3h4v.s7.b0065b3056be from=translated src=- shape=a242b0d6 vocab=9438348a
+-/
 theorem zeroHilbertTrunc_sub {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
     quadraticHilbertTrunc 0 ε (fun y ↦ f y - g y) x =
@@ -78,6 +85,9 @@ theorem zeroHilbertTrunc_sub {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integ
   exact integral_sub (integrableOn_zeroHilbertTail hε hf x)
     (integrableOn_zeroHilbertTail hε hg x)
 
+/--
+@isnad1 id=le.3h4v.s6.b3d4de56f05f from=translated src=- shape=e5b915db vocab=5e808aed
+-/
 theorem norm_zeroHilbertTrunc_le_of_maximal_le
     (f : ℝ → ℂ) {a : ℝ} (ha : 0 ≤ a) {x ε : ℝ} (hε : 0 < ε)
     (hmax : quadraticHilbertMaximalTruncation 0 f x ≤ ENNReal.ofReal a) :
@@ -95,6 +105,9 @@ def badHilbertCauchySet (f : ℝ → ℂ) (η : ℝ) : Set ℝ :=
     ∃ t : ℝ, 0 < t ∧ t < δ ∧
       η < ‖quadraticHilbertTrunc 0 s f x - quadraticHilbertTrunc 0 t f x‖}
 
+/--
+@isnad1 id=ex.2h4v.s6.112b16d5b04d from=translated src=- shape=5b1707bc vocab=cf8c056a
+-/
 theorem principalValue_tail_pair_small
     {g : ℝ → ℂ} {x : ℝ} {w : ℂ}
     (hg : HasQuadraticPrincipalValue 0 g x w) {η : ℝ} (hη : 0 < η) :
@@ -116,7 +129,9 @@ theorem principalValue_tail_pair_small
   linarith
 
 /-- Smooth convergence and a uniformly small maximal residual exclude a
-tail-oscillation obstruction for the original input.-/
+tail-oscillation obstruction for the original input.
+@isnad1 id=le.2h3v.s7.4565c626e830 from=translated src=- shape=7d2015bc vocab=adbf014a
+-/
 theorem badHilbertCauchySet_subset_maximal_residual
     (f : L0Infinity) (g : 𝓢(ℝ, ℂ)) (hg : HasCompactSupport (g : ℝ → ℂ))
     {η : ℝ} (hη : 0 < η) :
@@ -157,7 +172,9 @@ theorem badHilbertCauchySet_subset_maximal_residual
   linarith
 
 /-- Every positive Cauchy-obstruction level has outer measure zero. The
-proof sends the actual smooth-approximation error to zero in `L¹`.-/
+proof sends the actual smooth-approximation error to zero in `L¹`.
+@isnad1 id=eq.2h3v.s5.762add013dd7 from=translated src=- shape=4878524d vocab=5a10d2ec
+-/
 theorem volume_badHilbertCauchySet_eq_zero
     {C : ℝ≥0∞} (hweak : HasUniformHilbertMaximalWeakBound C)
     (f : L0Infinity) {η : ℝ} (hη : 0 < η) :
@@ -182,7 +199,9 @@ theorem volume_badHilbertCauchySet_eq_zero
     (ENNReal.ofReal_pos.mpr (by positivity : 0 < η / 4)).ne'
 
 /-- Vanishing of countably many positive Cauchy obstructions produces a
-limit along the full right-hand neighborhood filter, not only a sequence.-/
+limit along the full right-hand neighborhood filter, not only a sequence.
+@isnad1 id=ex.1h2v.s6.42e366e946e5 from=translated src=- shape=bcf0df10 vocab=266a8af1
+-/
 theorem exists_principalValue_of_not_mem_badHilbertCauchySet
     (f : ℝ → ℂ) (x : ℝ)
     (hx : ∀ n : ℕ, x ∉ badHilbertCauchySet f (1 / ((n : ℝ) + 1))) :
@@ -207,7 +226,9 @@ theorem exists_principalValue_of_not_mem_badHilbertCauchySet
     exact (hp s hs.1 hs.2 t ht.1 ht.2).trans_lt hn
 
 /-- Density plus the uniform maximal weak estimate closes ordinary Hilbert
-principal-value existence on the entire paper domain.-/
+principal-value existence on the entire paper domain.
+@isnad1 id=eventual.1h2v.s5.b5db76ec3f89 from=translated src=- shape=7bdf3b9b vocab=efc57a01
+-/
 theorem ae_exists_ordinaryHilbert_principalValue
     {C : ℝ≥0∞} (hweak : HasUniformHilbertMaximalWeakBound C) (f : L0Infinity) :
     ∀ᵐ x, ∃ z : ℂ, HasQuadraticPrincipalValue 0 f x z := by
@@ -220,7 +241,9 @@ theorem ae_exists_ordinaryHilbert_principalValue
 
 /-- The same null set works for every real modulation, including zero. No
 uncountable intersection of separately obtained almost-everywhere events is
-taken: all modulations follow pointwise from the ordinary PV.-/
+taken: all modulations follow pointwise from the ordinary PV.
+@isnad1 id=eventual.1h2v.s5.f61ce6ef467b from=translated src=- shape=42e2b2c8 vocab=efc57a01
+-/
 theorem ae_forall_real_exists_quadraticPrincipalValue
     {C : ℝ≥0∞} (hweak : HasUniformHilbertMaximalWeakBound C) (f : L0Infinity) :
     ∀ᵐ x, ∀ lam : ℝ, ∃ z : ℂ, HasQuadraticPrincipalValue lam f x z := by
@@ -230,6 +253,9 @@ theorem ae_forall_real_exists_quadraticPrincipalValue
   · simpa only [hlam] using hx
   · exact (exists_quadraticPrincipalValue_iff_hilbert lam hlam f x).mpr hx
 
+/--
+@isnad1 id=eventual.1h2v.s5.9e517abc7a52 from=translated src=- shape=152c095b vocab=7a739ac0
+-/
 theorem ae_forall_lacunary_exists_quadraticPrincipalValue
     {C : ℝ≥0∞} (hweak : HasUniformHilbertMaximalWeakBound C) (f : L0Infinity) :
     ∀ᵐ x, ∀ m : ℤ, ∃ z : ℂ, HasQuadraticPrincipalValue (dyadicModulation m) f x z := by
@@ -237,7 +263,9 @@ theorem ae_forall_lacunary_exists_quadraticPrincipalValue
   exact fun m ↦ hx (dyadicModulation m)
 
 /-- The canonical limsup representative agrees with the genuine PV norm,
-simultaneously at every real modulation outside a single null set.-/
+simultaneously at every real modulation outside a single null set.
+@isnad1 id=eventual.1h2v.s5.6e3ef7964d38 from=translated src=- shape=7cc867df vocab=335c7cbb
+-/
 theorem ae_forall_real_limsup_eq_principalValue_norm
     {C : ℝ≥0∞} (hweak : HasUniformHilbertMaximalWeakBound C) (f : L0Infinity) :
     ∀ᵐ x, ∀ lam : ℝ, ∃ z : ℂ, HasQuadraticPrincipalValue lam f x z ∧

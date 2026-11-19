@@ -38,18 +38,26 @@ def centralThirdTileParent (L : ℝ) (hL : 0 < L) (n : ℤ) : RealInterval where
   right := ((n : ℝ) + 2) * (L / 3)
   left_lt_right := by nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s4.f5de35b3ad0f from=translated src=- shape=ad58832c vocab=6cbef2ac
+-/
 theorem centralThirdTileParent_length (L : ℝ) (hL : 0 < L) (n : ℤ) :
     (centralThirdTileParent L hL n).length = L := by
   unfold centralThirdTileParent RealInterval.length
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.f789890ed442 from=translated src=- shape=b3e0f032 vocab=1273fcfd
+-/
 theorem centralThirdTileParent_centralThird (L : ℝ) (hL : 0 < L) (n : ℤ) :
     (centralThirdTileParent L hL n).centralThird =
       Ioc ((n : ℝ) * (L / 3)) (((n : ℝ) + 1) * (L / 3)) := by
   unfold RealInterval.centralThird centralThirdTileParent
   congr 1 <;> ring
 
-/-- The central thirds of distinct tile parents are literally disjoint.-/
+/-- The central thirds of distinct tile parents are literally disjoint.
+@isnad1 id=pairwise.1h1v.s5.7c43b633c87d from=translated src=- shape=1a9e092a vocab=102da26b
+-/
 theorem centralThirdTileParents_pairwiseDisjoint (L : ℝ) (hL : 0 < L) :
     Pairwise (Disjoint on fun n : ℤ ↦ (centralThirdTileParent L hL n).centralThird) := by
   intro n m hnm
@@ -71,7 +79,9 @@ theorem centralThirdTileParents_pairwiseDisjoint (L : ℝ) (hL : 0 < L) :
       exact_mod_cast hstep
     exact (not_lt_of_ge (hxm.2.trans hcast)) hxn.1
 
-/-- Every real point belongs to exactly one central-third tile.-/
+/-- Every real point belongs to exactly one central-third tile.
+@isnad1 id=existsun.1h2v.s4.fc091e59f34c from=translated src=- shape=2bf63579 vocab=4435841d
+-/
 theorem existsUnique_mem_centralThirdTileParent (L : ℝ) (hL : 0 < L) (x : ℝ) :
     ∃! n : ℤ, x ∈ (centralThirdTileParent L hL n).centralThird := by
   let h : ℝ := L / 3
@@ -103,7 +113,9 @@ theorem existsUnique_mem_centralThirdTileParent (L : ℝ) (hL : 0 < L) (x : ℝ)
       simpa only [h] using ⟨hlower, hupper⟩)
 
 /-- A finite disjoint family of central thirds which covers the support of
-`f` reconstructs `f` exactly, including all interval endpoints.-/
+`f` reconstructs `f` exactly, including all interval endpoints.
+@isnad1 id=eq.2h2v.s6.e5f160998c9e from=translated src=- shape=63dfe84d vocab=f0a4f9e8
+-/
 theorem krauseLaceyFixedScaleInput_eq_of_support_subset
     (S : Finset RealInterval) (f : ℝ → ℂ)
     (hdisj : Set.Pairwise (↑S : Set RealInterval)
@@ -141,7 +153,9 @@ def centralThirdTileParentEmbedding (L : ℝ) (hL : 0 < L) : ℤ ↪ RealInterva
     exact_mod_cast (sub_left_inj.mp hleft)
 
 /-- Every bounded compact-support input admits an exact finite KL18
-central-third decomposition at an arbitrary positive scale.-/
+central-third decomposition at an arbitrary positive scale.
+@isnad1 id=ex.1h2v.s6.e1ddceb4a0ab from=translated src=- shape=01c8771a vocab=46f5cd8e
+-/
 theorem exists_finite_centralThird_localization
     (f : L0Infinity) (L : ℝ) (hL : 0 < L) :
     ∃ S : Finset RealInterval,
@@ -213,7 +227,9 @@ theorem exists_finite_centralThird_localization
     apply Set.mem_iUnion.2 ⟨Finset.mem_map.2 ⟨n, hnmem, rfl⟩, hxn⟩
 
 /-- Consequently the finite localized sum is the genuine positive-half
-quadratic convolution at that scale.-/
+quadratic convolution at that scale.
+@isnad1 id=ex.0h2v.s7.751cd0bbdd4b from=translated src=- shape=d1fa5864 vocab=34219b72
+-/
 theorem exists_finite_localizedSum_eq_globalConvolution
     (f : L0Infinity) (j : ℤ) :
     ∃ S : Finset RealInterval,

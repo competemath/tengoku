@@ -37,7 +37,9 @@ private theorem geom_half_sum_le_two (m : ℕ) :
   exact hstrong m |>.trans (by nlinarith [pow_nonneg (by norm_num : (0 : ℝ) ≤ 1 / 2) m])
 
 /-- At a right-hand stationary packet, `k + τ` is strictly to the left of the
-packet.-/
+packet.
+@isnad1 id=not.4h4v.s6.8b7ca61e88f3 from=translated src=- shape=c9b7846b vocab=2a4550f8
+-/
 theorem stationary_point_not_mem_packetInterval {N : ℕ} {k : ℤ} {τ : ℝ}
     (hN : 0 < N) (hk : 0 ≤ k) (hτ : τ ≤ 1 / 2) {j : ℕ}
     (hj : k.toNat + 1 ≤ j) :
@@ -54,7 +56,9 @@ theorem stationary_point_not_mem_packetInterval {N : ℕ} {k : ℤ} {τ : ℝ}
   linarith [hx.1, ht]
 
 /-- The separation in the stationary window gives a uniform reciprocal
-denominator bound.-/
+denominator bound.
+@isnad1 id=le.3h4v.s7.010b409cf9ee from=translated src=- shape=409edf57 vocab=905fc8f4
+-/
 theorem stationary_packet_reciprocal_le {N : ℕ} {k : ℤ} {τ : ℝ}
     (hk : 0 ≤ k) (hτ : τ ≤ 1 / 2) {j : ℕ}
     (hj : k.toNat + 1 ≤ j) :
@@ -73,7 +77,9 @@ theorem stationary_packet_reciprocal_le {N : ℕ} {k : ℤ} {τ : ℝ}
   apply (div_le_iff₀ hpos).mpr
   nlinarith [packetScale_pos N j]
 
-/-- Packet scales decrease along the right-hand stationary tail.-/
+/-- Packet scales decrease along the right-hand stationary tail.
+@isnad1 id=le.1h3v.s5.db18209bb989 from=translated src=- shape=f322125e vocab=86169853
+-/
 theorem stationary_packetScale_le_first {N : ℕ} {k : ℤ} {j : ℕ}
     (hj : k.toNat + 1 ≤ j) :
     packetScale N j ≤ packetScale N (k.toNat + 1) := by
@@ -84,7 +90,9 @@ theorem stationary_packetScale_le_first {N : ℕ} {k : ℤ} {j : ℕ}
   omega
 
 /-- The upper edge of the exact exponent window supplies the geometric
-decay of the modulation-scale errors to the right of `k`.-/
+decay of the modulation-scale errors to the right of `k`.
+@isnad1 id=le.5h6v.s7.f99a757585b8 from=translated src=- shape=71405d88 vocab=f160290f
+-/
 theorem stationary_modulation_scale_le {N n : ℕ} {L A : ℝ} {k : ℤ}
     (hN : 0 < N) (hk : 0 ≤ k)
     (hn : (n : ℝ) < (N : ℝ) * k + L + N)
@@ -123,7 +131,9 @@ theorem stationary_modulation_scale_le {N n : ℕ} {L A : ℝ} {k : ℤ}
       rw [Real.rpow_neg_eq_inv_rpow]
       norm_num
 
-/-- Summing the preceding dyadic decay costs only the geometric constant two.-/
+/-- Summing the preceding dyadic decay costs only the geometric constant two.
+@isnad1 id=le.5h5v.s7.b039f6b2767a from=translated src=- shape=d9f4c6b2 vocab=d6eb46ae
+-/
 theorem stationary_modulation_scale_sum_le {N n : ℕ} {L A : ℝ} {k : ℤ}
     (hN : 0 < N) (hk : 0 ≤ k)
     (hn : (n : ℝ) < (N : ℝ) * k + L + N)
@@ -164,7 +174,9 @@ theorem stationary_modulation_scale_sum_le {N n : ℕ} {L A : ℝ} {k : ℤ}
     _ = 2 * A := by ring
 
 /-- The packet-scale tail is at most one first packet-scale after the outer
-normalization.-/
+normalization.
+@isnad1 id=le.1h2v.s6.86bdd1738eec from=translated src=- shape=c74f2964 vocab=661fbfb9
+-/
 theorem stationary_packetScale_sum_le {N : ℕ} {k : ℤ}
     (hN : 0 < N) :
     ∑ j ∈ Finset.Icc (k.toNat + 1) N, packetScale N j ≤
@@ -184,7 +196,9 @@ theorem stationary_packetScale_sum_le {N : ℕ} {k : ℤ}
       · exact (packetScale_pos N _).le
 
 /-- The normalized right-hand stationary packet actions differ from their
-kernel main terms by `O(A/N)` plus the first (hence tiny) packet scale.-/
+kernel main terms by `O(A/N)` plus the first (hence tiny) packet scale.
+@isnad1 id=le.6h6v.s8.2f849ee5f746 from=translated src=- shape=116b76dc vocab=b6658eab
+-/
 theorem stationaryPacketSum_sub_kernelMain_le {N n : ℕ} {L A τ : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hkn : (k, n) ∈ paperMainTermIndices N L)
     (hA : (2 : ℝ) ^ L = A) (hApos : 0 < A)
@@ -259,7 +273,9 @@ theorem stationaryPacketSum_sub_kernelMain_le {N n : ℕ} {L A τ : ℝ} {k : �
 
 /-- In the stationary window the normalized action retains the norm of the
 harmonic phase main term up to the explicit packet error.  This is the form
-used when transferring the main-term lower bound to the operator.-/
+used when transferring the main-term lower bound to the operator.
+@isnad1 id=le.6h6v.s8.24a261f4b942 from=translated src=- shape=8c43575f vocab=b1f73ab2
+-/
 theorem norm_stationaryPacketAction_ge_harmonicPhaseSum_sub_error
     {N n : ℕ} {L A τ : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hkn : (k, n) ∈ paperMainTermIndices N L)

@@ -22,6 +22,9 @@ open scoped ENNReal NNReal Topology
 namespace QuadraticCarleson
 namespace OscillatoryReduction
 
+/--
+@isnad1 id=tendsto.0h3v.s5.6f303964d2ab from=translated src=- shape=0432a853 vocab=13eaf344
+-/
 theorem tendsto_smallPhaseKernel (lam ρ t : ℝ) :
     Tendsto (fun ε : ℝ ↦ smallPhaseKernel lam ε ρ t) (𝓝[>] 0)
       (𝓝 (smallPhaseKernel lam 0 ρ t)) := by
@@ -36,6 +39,9 @@ theorem tendsto_smallPhaseKernel (lam ρ t : ℝ) :
     filter_upwards [he] with ε hε
     simp only [smallPhaseKernel, hε, abs_pos.mpr ht, true_and]
 
+/--
+@isnad1 id=tendsto.1h3v.s7.552e09713829 from=translated src=- shape=0e27ef69 vocab=1a09c72a
+-/
 theorem tendsto_smallPhaseIntegral (lam : ℝ) (hlam : lam ≠ 0)
     (f : L0Infinity) (x : ℝ) :
     Tendsto (fun ε : ℝ ↦
@@ -63,7 +69,9 @@ noncomputable def regularRemainder (lam : ℝ) (hlam : lam ≠ 0)
     ∫ y, smallPhaseKernel lam 0 (innerRadius lam hlam) (x - y) * f y
 
 /-- An unconditional truncation-limit theorem on the paper's entire test
-domain. No existence assertion about a Hilbert principal value is assumed.-/
+domain. No existence assertion about a Hilbert principal value is assumed.
+@isnad1 id=tendsto.1h3v.s6.d94f42a8bfb3 from=translated src=- shape=00b79cc7 vocab=dfc248c7
+-/
 theorem tendsto_quadraticHilbertTrunc_sub_hilbert
     (lam : ℝ) (hlam : lam ≠ 0) (f : L0Infinity) (x : ℝ) :
     Tendsto (fun ε : ℝ ↦ quadraticHilbertTrunc lam ε f x - quadraticHilbertTrunc 0 ε f x)
@@ -81,7 +89,9 @@ theorem tendsto_quadraticHilbertTrunc_sub_hilbert
 
 /-- The principal value exists precisely when the ordinary Hilbert
 principal value exists. This is an equivalence, not an existence assumption
-inserted into the oscillatory reduction.-/
+inserted into the oscillatory reduction.
+@isnad1 id=iff.1h3v.s5.560575782adc from=translated src=- shape=fef5d6eb vocab=228a0c09
+-/
 theorem exists_quadraticPrincipalValue_iff_hilbert
     (lam : ℝ) (hlam : lam ≠ 0) (f : L0Infinity) (x : ℝ) :
     (∃ z : ℂ, HasQuadraticPrincipalValue lam f x z) ↔
@@ -104,7 +114,9 @@ theorem exists_quadraticPrincipalValue_iff_hilbert
     ring
 
 /-- A single ordinary Hilbert principal value supplies all nonzero
-quadratic principal values at the same point.-/
+quadratic principal values at the same point.
+@isnad1 id=iff.0h2v.s5.d7a23c55e765 from=translated src=- shape=66915ec0 vocab=222542ee
+-/
 theorem forall_nonzero_principalValue_iff_hilbert (f : L0Infinity) (x : ℝ) :
     (∀ lam : {lam : ℝ // lam ≠ 0}, ∃ z : ℂ, HasQuadraticPrincipalValue lam.1 f x z) ↔
       ∃ z : ℂ, HasQuadraticPrincipalValue 0 f x z := by

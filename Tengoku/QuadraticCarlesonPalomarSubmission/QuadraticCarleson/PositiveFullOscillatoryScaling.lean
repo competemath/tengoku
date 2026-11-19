@@ -19,7 +19,9 @@ namespace PositiveFullOscillatoryEndpoint
 open OscillatoryReduction
 
 /-- Complex scalar homogeneity of the actual height series, proved through
-its established L¹ high-pass integral representation.-/
+its established L¹ high-pass integral representation.
+@isnad1 id=eq.2h4v.s6.8ee9bad46e68 from=translated src=- shape=b8446426 vocab=452e4c5c
+-/
 theorem paperOscillatoryAction_const_mul (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Integrable f) (c : ℂ) (x : ℝ) :
     paperOscillatoryAction lam hlam (fun y ↦ c * f y) x =
@@ -32,7 +34,9 @@ theorem paperOscillatoryAction_const_mul (lam : ℝ) (hlam : lam ≠ 0)
   ring
 
 /-- The unrestricted nonzero-real modulation supremum is genuinely
-homogeneous; no measurability of the supremum is needed for this identity.-/
+homogeneous; no measurability of the supremum is needed for this identity.
+@isnad1 id=eq.1h3v.s6.872c44ae144b from=translated src=- shape=db620ef1 vocab=01cd53c2
+-/
 theorem paperOscillatoryMaximal_const_mul {f : ℝ → ℂ} (hf : Integrable f)
     (c : ℂ) (x : ℝ) :
     paperOscillatoryMaximal (fun y ↦ c * f y) x = ‖c‖ₑ * paperOscillatoryMaximal f x := by
@@ -43,18 +47,30 @@ theorem paperOscillatoryMaximal_const_mul {f : ℝ → ℂ} (hf : Integrable f)
 noncomputable def normalizedOscillatoryInput (α : ℝ) (f : ℝ → ℂ) (x : ℝ) : ℂ :=
   (α : ℂ)⁻¹ * f x
 
+/--
+@isnad1 id=measurab.1h2v.s4.9ae06072b7fa from=translated src=- shape=dae56b0c vocab=20f476fb
+-/
 theorem measurable_normalizedOscillatoryInput {f : ℝ → ℂ} (hf : Measurable f) (α : ℝ) :
     Measurable (normalizedOscillatoryInput α f) := measurable_const.mul hf
 
+/--
+@isnad1 id=integrab.1h2v.s6.544a662beb4c from=translated src=- shape=e31b38b5 vocab=26df64f9
+-/
 theorem integrable_normalizedOscillatoryInput {f : ℝ → ℂ} (hf : Integrable f) (α : ℝ) :
     Integrable (normalizedOscillatoryInput α f) := hf.const_mul _
 
+/--
+@isnad1 id=eq.1h3v.s5.8fafe082cff6 from=translated src=- shape=7558a819 vocab=d084e423
+-/
 theorem norm_normalizedOscillatoryInput {α : ℝ} (hα : 0 < α) (f : ℝ → ℂ) (x : ℝ) :
     ‖normalizedOscillatoryInput α f x‖ = ‖f x‖ / α := by
   simp only [normalizedOscillatoryInput, norm_mul, norm_inv, Complex.norm_real,
     Real.norm_eq_abs, abs_of_pos hα]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s6.f3287e067a3c from=translated src=- shape=d7ac4dc9 vocab=55309012
+-/
 theorem paperOscillatoryMaximal_normalizedInput {α : ℝ} (hα : 0 < α)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     paperOscillatoryMaximal (normalizedOscillatoryInput α f) x =
@@ -66,6 +82,9 @@ theorem paperOscillatoryMaximal_normalizedInput {α : ℝ} (hα : 0 < α)
       ENNReal.ofReal_inv_of_pos hα]
   rw [hc, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=eq.2h2v.s6.f0c50860a609 from=translated src=- shape=55e6b4c6 vocab=005a7555
+-/
 theorem oscillatory_levelSet_eq_normalized {α : ℝ} (hα : 0 < α)
     {f : ℝ → ℂ} (hf : Integrable f) :
     {x | ENNReal.ofReal α < paperOscillatoryMaximal f x} =
@@ -79,7 +98,9 @@ theorem oscillatory_levelSet_eq_normalized {α : ℝ} (hα : 0 < α)
     (Or.inl (ENNReal.ofReal_pos.mpr hα).ne') (Or.inl ENNReal.ofReal_ne_top)).symm
 
 /-- The full-real oscillatory endpoint in the source's exact arbitrary-
-threshold form, with the same explicit universal constant.-/
+threshold form, with the same explicit universal constant.
+@isnad1 id=le.3h2v.s7.ed58a64add91 from=translated src=- shape=2a621834 vocab=47959990
+-/
 theorem paperOscillatoryMaximal_levelSet_le_scaled_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) {α : ℝ} (hα : 0 < α) :
     volume {x | ENNReal.ofReal α < paperOscillatoryMaximal f x} ≤
@@ -90,6 +111,9 @@ theorem paperOscillatoryMaximal_levelSet_le_scaled_orlicz
   rw [← oscillatory_levelSet_eq_normalized hα hfi] at h
   simpa only [norm_normalizedOscillatoryInput hα] using h
 
+/--
+@isnad1 id=le.1h2v.s6.926d3c647995 from=translated src=- shape=ddaba646 vocab=d6cf1636
+-/
 theorem paperOscillatoryMaximal_L0Infinity_levelSet_le_scaled_orlicz
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
     volume {x | ENNReal.ofReal α < paperOscillatoryMaximal f x} ≤

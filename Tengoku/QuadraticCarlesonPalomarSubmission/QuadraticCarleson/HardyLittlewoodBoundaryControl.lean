@@ -48,7 +48,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- A pointwise bound passes through every positive centered average.-/
+/-- A pointwise bound passes through every positive centered average.
+@isnad1 id=le.2h4v.s5.1165f839cd31 from=translated src=- shape=efa35ee2 vocab=593bdb3d
+-/
 theorem centeredAverage_le_of_forall_le {F : ℝ → ℝ≥0∞} {D : ℝ≥0∞}
     (hF : ∀ x, F x ≤ D) {r x : ℝ} (hr : 0 < r) :
     centeredAverage r F x ≤ D := by
@@ -66,7 +68,9 @@ theorem centeredAverage_le_of_forall_le {F : ℝ → ℝ≥0∞} {D : ℝ≥0∞
 
 /-- The centered rational-radius maximal function preserves a uniform
 pointwise bound.  In particular it never takes the value `∞` on a bounded
-input.-/
+input.
+@isnad1 id=le.1h3v.s4.7f75fb47b755 from=translated src=- shape=4bbc8d2c vocab=4730f253
+-/
 theorem centeredHardyLittlewoodMaximal_le_of_forall_le
     {F : ℝ → ℝ≥0∞} {D : ℝ≥0∞} (hF : ∀ x, F x ≤ D) (x : ℝ) :
     centeredHardyLittlewoodMaximal F x ≤ D := by
@@ -74,6 +78,9 @@ theorem centeredHardyLittlewoodMaximal_le_of_forall_le
   intro q
   exact centeredAverage_le_of_forall_le hF (by exact_mod_cast q.property)
 
+/--
+@isnad1 id=ne.0h2v.s5.bd4fa09167e9 from=translated src=- shape=619689da vocab=c5db629a
+-/
 theorem centeredHardyLittlewoodMaximal_enorm_ne_top (f : L0Infinity) (x : ℝ) :
     centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ) x ≠ ∞ := by
   rcases f.bounded_toFun with ⟨C, hC⟩
@@ -89,12 +96,18 @@ sharp/smooth comparison.-/
 noncomputable def centeredHardyLittlewoodBoundaryOperator : TestOperator :=
   fun f x ↦ ((centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ) x).toReal : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s5.e75843b9b113 from=translated src=- shape=97532be0 vocab=5164443b
+-/
 @[simp] theorem norm_centeredHardyLittlewoodBoundaryOperator
     (f : L0Infinity) (x : ℝ) :
     ‖centeredHardyLittlewoodBoundaryOperator f x‖ =
       (centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ) x).toReal := by
   simp [centeredHardyLittlewoodBoundaryOperator]
 
+/--
+@isnad1 id=eq.0h2v.s6.d4c0bd6c3227 from=translated src=- shape=7e4c52f5 vocab=81e43d35
+-/
 @[simp] theorem enorm_centeredHardyLittlewoodBoundaryOperator
     (f : L0Infinity) (x : ℝ) :
     ‖centeredHardyLittlewoodBoundaryOperator f x‖ₑ =
@@ -102,6 +115,9 @@ noncomputable def centeredHardyLittlewoodBoundaryOperator : TestOperator :=
   rw [← ofReal_norm, norm_centeredHardyLittlewoodBoundaryOperator,
     ENNReal.ofReal_toReal (centeredHardyLittlewoodMaximal_enorm_ne_top f x)]
 
+/--
+@isnad1 id=measurab.0h1v.s3.bdac63a5f377 from=translated src=- shape=7000f90d vocab=4cc67a36
+-/
 theorem measurable_centeredHardyLittlewoodBoundaryOperator (f : L0Infinity) :
     Measurable (centeredHardyLittlewoodBoundaryOperator f) := by
   exact Complex.measurable_ofReal.comp
@@ -116,7 +132,9 @@ private theorem eLpNorm_two_sq_lintegral_boundary {E : Type*} [ENorm E]
   norm_num
 
 /-- The boundary operator is locally integrable.  The proof uses the already
-proved strong `L²` maximal theorem.-/
+proved strong `L²` maximal theorem.
+@isnad1 id=locallyi.0h1v.s5.4f6a1b68cf76 from=translated src=- shape=e9f22143 vocab=f77b3295
+-/
 theorem centeredHardyLittlewoodBoundaryOperator_locallyIntegrable
     (f : L0Infinity) :
     LocallyIntegrable (centeredHardyLittlewoodBoundaryOperator f) volume := by
@@ -153,7 +171,9 @@ theorem centeredHardyLittlewoodBoundaryOperator_locallyIntegrable
   exact hcomplex.locallyIntegrable (by norm_num)
 
 /-- Explicit weak `(1,1)` distribution bound for the concrete boundary
-operator.-/
+operator.
+@isnad1 id=hasweako.0h0v.s4.c3ef6fc458c5 from=translated src=- shape=20e92839 vocab=b4dc9a83
+-/
 theorem centeredHardyLittlewoodBoundaryOperator_hasWeakOneOneBound :
     HasWeakOneOneBound 4
       (fun f x ↦ ‖centeredHardyLittlewoodBoundaryOperator f x‖) := by
@@ -174,7 +194,9 @@ theorem centeredHardyLittlewoodBoundaryOperator_hasWeakOneOneBound :
       (fun y ↦ ‖f y‖ₑ) (ENNReal.ofReal a)
 
 /-- The sharp/smooth comparison written with the concrete boundary operator.
-The rightmost term is independent of the finite radius family.-/
+The rightmost term is independent of the finite radius family.
+@isnad1 id=le.0h4v.s6.74ffce89dc85 from=translated src=- shape=af3d5dc9 vocab=7c214981
+-/
 theorem finiteRadiusSharpMax_enorm_le_smoothHighPassMax_add_boundary
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) (x : ℝ) :
     ENNReal.ofReal
@@ -189,7 +211,9 @@ theorem finiteRadiusSharpMax_enorm_le_smoothHighPassMax_add_boundary
 /-- Operational endpoint transfer for one finite radius family.  A weak
 bound for the smooth KL output plus the common Hardy--Littlewood boundary
 term gives a weak bound for the genuine sharp truncation output, with no
-dependence on the number of radii or modulations.-/
+dependence on the number of radii or modulations.
+@isnad1 id=hasexten.1h4v.s7.d9e01d7bf1eb from=translated src=- shape=d20f3824 vocab=b6eb3a96
+-/
 theorem finiteRadiusSharpMax_hasExtendedWeakL1Bound_of_smooth
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) {A : ℝ}
     (hSmooth : KaltonPaperApplication.HasExtendedWeakL1Bound volume A
@@ -237,6 +261,9 @@ def HasUniformFiniteRadiusSmoothSparseBound (A : ℝ) : Prop :=
             (absoluteValueOperator (finiteRadiusSmoothHighPassMaxTestOperator lam s)) ≤
           A * holderConjugate p
 
+/--
+@isnad1 id=finitesp.1h4v.s5.02cce1f2a68c from=translated src=- shape=7d7c92ca vocab=fb1e3737
+-/
 theorem finiteRadiusSmoothHighPassBlockFamily_sparseHypothesis
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A)
     (B : ℕ) (tau : ℤ) (s : Finset densePositiveRadii) :
@@ -253,7 +280,9 @@ theorem finiteRadiusSmoothHighPassBlockFamily_sparseHypothesis
       (dyadicModulation_pos (modulationBlockIndex B tau j)).ne' s).2 p hp hp2
 
 /-- The proved finite sparse-maximal theorem applied to the smooth KL
-family.-/
+family.
+@isnad1 id=hasweako.1h4v.s6.d535af3606c8 from=translated src=- shape=8a9ace18 vocab=de517f93
+-/
 theorem finiteRadiusSmoothHighPassBlockFamily_hasWeakOneOneBound
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A)
     (B : ℕ) (tau : ℤ) (s : Finset densePositiveRadii) :
@@ -273,7 +302,9 @@ private theorem coe_nnreal_finset_sup_boundary {alpha : Type*} [DecidableEq alph
   | @insert a s ha ih => simp [Finset.sup_insert, ih]
 
 /-- A common extended-valued error can be moved outside a finite pointwise
-maximum without being repeated once per member.-/
+maximum without being repeated once per member.
+@isnad1 id=le.1h6v.s6.75b59af39492 from=translated src=- shape=e7298d11 vocab=cf58035b
+-/
 theorem ofReal_finiteMax_le_of_common_error {N : ℕ}
     (T U : Fin N → TestOperator) (f : L0Infinity) (x : ℝ) (E : ℝ≥0∞)
     (hTU : ∀ j, ENNReal.ofReal ‖T j f x‖ ≤ ENNReal.ofReal ‖U j f x‖ + E) :
@@ -296,7 +327,9 @@ theorem ofReal_finiteMax_le_of_common_error {N : ℕ}
         (f := fun i : Fin N ↦ (↑‖U i f x‖₊ : ℝ≥0∞)) (Finset.mem_univ j)
 
 /-- The sharp modulation-block maximum is bounded by the smooth modulation-
-block maximum plus one, not `B`, Hardy--Littlewood boundary term.-/
+block maximum plus one, not `B`, Hardy--Littlewood boundary term.
+@isnad1 id=le.0h5v.s7.2179f8c313e2 from=translated src=- shape=ec6de2df vocab=fcaecfe5
+-/
 theorem finiteRadiusSharpBlock_finiteMax_le_smooth_add_boundary
     (B : ℕ) (tau : ℤ) (s : Finset densePositiveRadii)
     (f : L0Infinity) (x : ℝ) :
@@ -312,7 +345,9 @@ theorem finiteRadiusSharpBlock_finiteMax_le_smooth_add_boundary
 
 /-- The full finite modulation maximum of genuine sharp truncations inherits
 the logarithmic smooth sparse-maximal bound, plus one universal boundary
-constant.  Crucially, `128` is not multiplied by the block cardinality.-/
+constant.  Crucially, `128` is not multiplied by the block cardinality.
+@isnad1 id=hasweako.1h4v.s6.ed760cc4f02d from=translated src=- shape=c9d6764f vocab=d92ad7bf
+-/
 theorem finiteRadiusSharpBlockFamily_hasWeakOneOneBound_of_smoothSparse
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A)
     (B : ℕ) (tau : ℤ) (s : Finset densePositiveRadii) :
@@ -398,7 +433,9 @@ theorem finiteRadiusSharpBlockFamily_hasWeakOneOneBound_of_smoothSparse
 
 /-- The smooth KL sparse theorem supplies the all-radius frozen quadratic-
 Hilbert block.  The common boundary constant is absorbed into the existing
-`log₁(B)²` factor using `log₁(B) ≥ 1`.-/
+`log₁(B)²` factor using `log₁(B) ≥ 1`.
+@isnad1 id=haslogsq.1h4v.s5.ccbb5e039ff2 from=translated src=- shape=602096c7 vocab=cf087e71
+-/
 theorem hasLogSquaredFrozenHilbertBlockWeakBounds_of_smoothSparse
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A)
     (f : L0Infinity) (B : ℕ → ℕ) (c : ℕ) :
@@ -433,7 +470,9 @@ theorem hasLogSquaredFrozenHilbertBlockWeakBounds_of_smoothSparse
 
 /-- Paper-facing uniform frozen-block conclusion with the finite sparse-
 maximal lemma and both deterministic Hardy--Littlewood boundary passages
-fully discharged.  Only the genuine smooth KL sparse estimate remains.-/
+fully discharged.  Only the genuine smooth KL sparse estimate remains.
+@isnad1 id=hasunifo.1h1v.s6.1a172167245c from=translated src=- shape=e4078a0e vocab=e384a489
+-/
 theorem hasUniformL0LogSquaredFrozenBlockWeakBounds_of_smoothSparse
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A) :
     HasUniformL0LogSquaredFrozenBlockWeakBounds
@@ -446,7 +485,9 @@ theorem hasUniformL0LogSquaredFrozenBlockWeakBounds_of_smoothSparse
 
 /-- Strongest downstream lacunary endpoint exposed by this adapter.  Its only
 remaining analytic inputs are the ordinary Hilbert maximal theorem and the
-genuine smooth KL sparse estimate.-/
+genuine smooth KL sparse estimate.
+@isnad1 id=ex.2h2v.s7.29b5823f3b8c from=translated src=- shape=959274d3 vocab=5d823f70
+-/
 theorem lacunary_principalValue_endpoint_of_smoothSparse
     {CH : ℝ≥0∞} (hH : HasUniformHilbertMaximalWeakBound CH)
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A) :

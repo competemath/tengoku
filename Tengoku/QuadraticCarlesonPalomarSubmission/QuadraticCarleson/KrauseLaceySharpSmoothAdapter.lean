@@ -52,26 +52,40 @@ def dyadicFloorScale (ε : ℝ) (hε : 0 < ε) : ℤ :=
 def dyadicCeilRadius (ε : ℝ) (hε : 0 < ε) : ℝ :=
   (2 : ℝ) ^ (dyadicFloorScale ε hε + 1)
 
+/--
+@isnad1 id=and.1h1v.s6.df8039feaa71 from=translated src=- shape=ca05d476 vocab=0a58dcd1
+-/
 theorem dyadicFloorScale_bounds (ε : ℝ) (hε : 0 < ε) :
     (2 : ℝ) ^ dyadicFloorScale ε hε ≤ ε ∧
       ε < (2 : ℝ) ^ (dyadicFloorScale ε hε + 1) := by
   exact dyadicAtomScaleIndex_mem (fun _ : Unit ↦ ε) (fun _ ↦ hε) ()
 
+/--
+@isnad1 id=lt.1h1v.s4.e8c490fe250f from=translated src=- shape=5f1a3ddc vocab=9623daa0
+-/
 theorem dyadicCeilRadius_pos (ε : ℝ) (hε : 0 < ε) :
     0 < dyadicCeilRadius ε hε :=
   zpow_pos (by norm_num) _
 
+/--
+@isnad1 id=lt.1h1v.s4.7baf032f313a from=translated src=- shape=8230224c vocab=9623daa0
+-/
 theorem lt_dyadicCeilRadius (ε : ℝ) (hε : 0 < ε) :
     ε < dyadicCeilRadius ε hε :=
   (dyadicFloorScale_bounds ε hε).2
 
+/--
+@isnad1 id=le.1h1v.s5.9b94068e4ad5 from=translated src=- shape=9a1b54bc vocab=2333f47b
+-/
 theorem dyadicCeilRadius_le_two_mul (ε : ℝ) (hε : 0 < ε) :
     dyadicCeilRadius ε hε ≤ 2 * ε := by
   rw [dyadicCeilRadius, zpow_add_one₀ (by norm_num : (2 : ℝ) ≠ 0)]
   nlinarith [dyadicFloorScale_bounds ε hε |>.1]
 
 /-- The rounded radius has exactly the `2^(j-3)` form used by the project's
-smooth dyadic-kernel normalization.-/
+smooth dyadic-kernel normalization.
+@isnad1 id=eq.1h1v.s6.72746400f222 from=translated src=- shape=c57c939f vocab=553123c1
+-/
 theorem dyadicCeilRadius_eq_two_pow_scale_sub_three (ε : ℝ) (hε : 0 < ε) :
     dyadicCeilRadius ε hε =
       (2 : ℝ) ^ ((dyadicFloorScale ε hε + 4) - 3) := by
@@ -83,23 +97,35 @@ theorem dyadicCeilRadius_eq_two_pow_scale_sub_three (ε : ℝ) (hε : 0 < ε) :
 def radiusRoundingBoundaryKernel (lam ε ρ t : ℝ) : ℂ :=
   sharpQuadraticTailKernel lam ε t - sharpQuadraticTailKernel lam ρ t
 
+/--
+@isnad1 id=measurab.0h3v.s3.f317523efc3d from=translated src=- shape=229f8ef9 vocab=f12247de
+-/
 theorem measurable_radiusRoundingBoundaryKernel (lam ε ρ : ℝ) :
     Measurable (radiusRoundingBoundaryKernel lam ε ρ) :=
   (measurable_sharpQuadraticTailKernel lam ε).sub
     (measurable_sharpQuadraticTailKernel lam ρ)
 
+/--
+@isnad1 id=eq.2h4v.s5.de5264fa1c56 from=translated src=- shape=9da34948 vocab=a55301e4
+-/
 theorem radiusRoundingBoundaryKernel_eq_zero_of_abs_le
     (lam : ℝ) {ε ρ t : ℝ} (hερ : ε ≤ ρ) (ht : |t| ≤ ε) :
     radiusRoundingBoundaryKernel lam ε ρ t = 0 := by
   simp [radiusRoundingBoundaryKernel, sharpQuadraticTailKernel,
     not_lt.mpr ht, not_lt.mpr (ht.trans hερ)]
 
+/--
+@isnad1 id=eq.2h4v.s5.338d57f113f2 from=translated src=- shape=2a85740a vocab=a421405f
+-/
 theorem radiusRoundingBoundaryKernel_eq_zero_of_rho_lt_abs
     (lam : ℝ) {ε ρ t : ℝ} (hερ : ε ≤ ρ) (ht : ρ < |t|) :
     radiusRoundingBoundaryKernel lam ε ρ t = 0 := by
   have hεt : ε < |t| := lt_of_le_of_lt hερ ht
   simp [radiusRoundingBoundaryKernel, sharpQuadraticTailKernel, hεt, ht]
 
+/--
+@isnad1 id=le.2h4v.s5.14d9ee6ed996 from=translated src=- shape=cb995da9 vocab=ddbda4e3
+-/
 theorem radiusRoundingBoundaryKernel_norm_le
     (lam : ℝ) {ε ρ t : ℝ} (hε : 0 < ε) (hερ : ε ≤ ρ) :
     ‖radiusRoundingBoundaryKernel lam ε ρ t‖ ≤ 1 / ε := by
@@ -115,6 +141,9 @@ theorem radiusRoundingBoundaryKernel_norm_le
     rw [radiusRoundingBoundaryKernel_eq_zero_of_abs_le lam hερ htε]
     simpa using one_div_nonneg.mpr hε.le
 
+/--
+@isnad1 id=le.1h3v.s5.21ea4a8aad83 from=translated src=- shape=93dd165f vocab=df4e6797
+-/
 theorem radiusRoundingBoundaryKernel_support_subset
     (lam : ℝ) {ε ρ : ℝ} (hερ : ε ≤ ρ) :
     support (radiusRoundingBoundaryKernel lam ε ρ) ⊆ closedBall 0 ρ := by
@@ -131,7 +160,9 @@ private theorem integrable_kernel_mul
   · exact (hk.comp (measurable_const.sub measurable_id)).aestronglyMeasurable
   · exact Filter.Eventually.of_forall (fun y ↦ hbound (x - y))
 
-/-- Exact operator identity for upward radius rounding.-/
+/-- Exact operator identity for upward radius rounding.
+@isnad1 id=eq.3h5v.s7.c2c59f29ad3b from=translated src=- shape=b34d2512 vocab=d600e1fa
+-/
 theorem quadraticHilbertTrunc_sub_rounded_eq_boundary
     (lam : ℝ) {ε ρ : ℝ} (hε : 0 < ε) (hρ : 0 < ρ)
     {f : ℝ → ℂ} (hfi : Integrable f) (x : ℝ) :
@@ -154,7 +185,9 @@ theorem quadraticHilbertTrunc_sub_rounded_eq_boundary
     simp only [Pi.sub_apply, radiusRoundingBoundaryKernel, sub_mul])
 
 /-- Rounding a truncation radius upward by at most a factor two costs at
-most eight copies of the centered Hardy--Littlewood maximal function.-/
+most eight copies of the centered Hardy--Littlewood maximal function.
+@isnad1 id=le.4h5v.s7.b607f16ee7a8 from=translated src=- shape=ee7677be vocab=f8610ade
+-/
 theorem radiusRoundingBoundaryOperator_enorm_le_maximal
     (lam : ℝ) {ε ρ : ℝ} (hε : 0 < ε) (hερ : ε ≤ ρ) (hρε : ρ ≤ 2 * ε)
     (f : ℝ → ℂ) (hf : Measurable f) (x : ℝ) :
@@ -207,7 +240,9 @@ theorem radiusRoundingBoundaryOperator_enorm_le_maximal
           mul_le_mul' le_rfl h
         _ = _ := by rw [← mul_assoc]; norm_num
 
-/-- Pointwise truncation estimate after dyadic rounding.-/
+/-- Pointwise truncation estimate after dyadic rounding.
+@isnad1 id=le.3h4v.s7.6636eec88e34 from=translated src=- shape=16cf6715 vocab=d179ba40
+-/
 theorem quadraticHilbertTrunc_enorm_le_dyadicRounded_add_maximal
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -238,6 +273,9 @@ def smoothQuadraticHighPassKernel (lam ρ t : ℝ) : ℂ :=
     ((((1 - dyadicCutoff (t / (4 * ρ))) / t : ℝ) : ℂ) *
       phase (lam * t ^ 2))
 
+/--
+@isnad1 id=eq.0h2v.s6.3e3bc7cf69f8 from=translated src=- shape=8f748e3d vocab=5efd2295
+-/
 theorem dyadicHighPass_cutoff_argument (j : ℤ) (t : ℝ) :
     t / (4 * (2 : ℝ) ^ (j - 3)) = (2⁻¹ : ℝ) ^ (j - 1) * t := by
   rw [zpow_sub₀ (by norm_num : (2 : ℝ) ≠ 0)]
@@ -253,7 +291,9 @@ theorem dyadicHighPass_cutoff_argument (j : ℤ) (t : ℝ) :
 /-- At a dyadic radius, the smooth high-pass kernel is exactly the infinite
 sum of the genuine dyadic quadratic kernels entering the KL stopping
 recursion.  Pointwise the sum has finite support, by
-`hasFiniteSupport_dyadicPsi_add_nat`.-/
+`hasFiniteSupport_dyadicPsi_add_nat`.
+@isnad1 id=eq.0h3v.s6.e94bd5772075 from=translated src=- shape=840ef337 vocab=2275a082
+-/
 theorem smoothQuadraticHighPassKernel_two_pow_eq_tsum
     (lam : ℝ) (j : ℤ) (t : ℝ) :
     smoothQuadraticHighPassKernel lam ((2 : ℝ) ^ (j - 3)) t =
@@ -271,7 +311,9 @@ theorem smoothQuadraticHighPassKernel_two_pow_eq_tsum
     rw [smoothQuadraticHighPassKernel, ite_eq_right ht,
       dyadicHighPass_cutoff_argument]
 
-/-- Rounded-radius version of the exact dyadic-tail identity.-/
+/-- Rounded-radius version of the exact dyadic-tail identity.
+@isnad1 id=eq.1h3v.s6.20cf13d8658c from=translated src=- shape=cb9a6d85 vocab=f5a88bac
+-/
 theorem smoothQuadraticHighPassKernel_rounded_eq_tsum
     (lam : ℝ) (ε : ℝ) (hε : 0 < ε) (t : ℝ) :
     smoothQuadraticHighPassKernel lam (dyadicCeilRadius ε hε) t =
@@ -282,6 +324,9 @@ theorem smoothQuadraticHighPassKernel_rounded_eq_tsum
   exact smoothQuadraticHighPassKernel_two_pow_eq_tsum
     lam (dyadicFloorScale ε hε + 4) t
 
+/--
+@isnad1 id=hassum.0h3v.s6.32ddf944f1b9 from=translated src=- shape=90096436 vocab=9d3223e6
+-/
 theorem hasSum_dyadicQuadraticKernel_add_nat
     (lam : ℝ) (j : ℤ) (t : ℝ) :
     HasSum (fun r : ℕ ↦
@@ -292,7 +337,9 @@ theorem hasSum_dyadicQuadraticKernel_add_nat
     (summable_dyadicPsi_add_nat j t)).mul_right _).hasSum
 
 /-- Exact algebra: sharp tail equals smooth high pass plus its compact
-transition-boundary kernel.-/
+transition-boundary kernel.
+@isnad1 id=eq.0h3v.s4.4a50ef771420 from=translated src=- shape=429a9d33 vocab=34195e6c
+-/
 theorem sharpQuadraticTailKernel_eq_smoothHighPass_add_boundary
     (lam ρ t : ℝ) :
     sharpQuadraticTailKernel lam ρ t =
@@ -322,6 +369,9 @@ def smoothQuadraticHighPass
 def smoothQuadraticHighPassTestOperator (lam ρ : ℝ) : TestOperator :=
   fun f x ↦ smoothQuadraticHighPass lam ρ f x
 
+/--
+@isnad1 id=measurab.0h2v.s3.7419f2317f48 from=translated src=- shape=30e1f344 vocab=87c3b8e3
+-/
 theorem measurable_smoothQuadraticHighPassKernel (lam ρ : ℝ) :
     Measurable (smoothQuadraticHighPassKernel lam ρ) := by
   have hnum : Measurable (fun t : ℝ ↦ 1 - dyadicCutoff (t / (4 * ρ))) :=
@@ -334,6 +384,9 @@ theorem measurable_smoothQuadraticHighPassKernel (lam ρ : ℝ) :
   · exact measurable_const
   · exact (Complex.measurable_ofReal.comp (hnum.div measurable_id)).mul hp
 
+/--
+@isnad1 id=le.1h3v.s5.d0e8ec8b3075 from=translated src=- shape=c9f3ae80 vocab=df165165
+-/
 theorem smoothQuadraticHighPassKernel_norm_le
     (lam : ℝ) {ρ t : ℝ} (hρ : 0 < ρ) :
     ‖smoothQuadraticHighPassKernel lam ρ t‖ ≤ 2 / ρ := by
@@ -352,6 +405,9 @@ theorem smoothQuadraticHighPassKernel_norm_le
     _ ≤ 1 / ρ + 1 / ρ := add_le_add hs hb
     _ = 2 / ρ := by ring
 
+/--
+@isnad1 id=eq.1h5v.s5.fe090d6e8c6c from=translated src=- shape=89bd5e52 vocab=cdf6b1f4
+-/
 theorem smoothQuadraticHighPass_add
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) (f g : L0Infinity) (x : ℝ) :
     smoothQuadraticHighPass lam ρ (L0Infinity.add f g) x =
@@ -373,6 +429,9 @@ theorem smoothQuadraticHighPass_add
     change smoothQuadraticHighPassKernel lam ρ (x - y) * (f y + g y) = _
     ring)
 
+/--
+@isnad1 id=eq.1h5v.s5.6943245fbd40 from=translated src=- shape=23526523 vocab=18755283
+-/
 theorem smoothQuadraticHighPass_smul
     (lam : ℝ) {ρ : ℝ} (_hρ : 0 < ρ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     smoothQuadraticHighPass lam ρ (L0Infinity.smul c f) x =
@@ -384,6 +443,9 @@ theorem smoothQuadraticHighPass_smul
       c * (smoothQuadraticHighPassKernel lam ρ (x - y) * f y)
     ring)
 
+/--
+@isnad1 id=issublin.1h2v.s4.95dbdf57bc91 from=translated src=- shape=942306d0 vocab=03f1e559
+-/
 theorem smoothQuadraticHighPassTestOperator_isSublinear
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     IsSublinear (smoothQuadraticHighPassTestOperator lam ρ) := by
@@ -396,6 +458,9 @@ theorem smoothQuadraticHighPassTestOperator_isSublinear
       norm_mul]
     rfl
 
+/--
+@isnad1 id=le.0h3v.s6.0173e8101814 from=translated src=- shape=1176958a vocab=a7da16b6
+-/
 theorem dyadicQuadraticKernel_norm_le_scale
     (lam : ℝ) (j : ℤ) (t : ℝ) :
     ‖(dyadicPsi j t : ℂ) * phase (lam * t ^ 2)‖ ≤
@@ -416,6 +481,9 @@ theorem dyadicQuadraticKernel_norm_le_scale
         exact div_le_div_of_nonneg_left (by norm_num) (zpow_pos (by norm_num) _)
           hs.1.le
 
+/--
+@isnad1 id=measurab.0h2v.s5.c0b77649ce8d from=translated src=- shape=b996f0f2 vocab=1c4d46e9
+-/
 theorem measurable_dyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     Measurable (fun t : ℝ ↦
       (dyadicPsi j t : ℂ) * phase (lam * t ^ 2)) := by
@@ -424,6 +492,9 @@ theorem measurable_dyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     fun_prop
   exact (Complex.measurable_ofReal.comp (dyadicPsi_smooth j).continuous.measurable).mul hp
 
+/--
+@isnad1 id=ex.0h4v.s6.c9b04612b063 from=translated src=- shape=af4b8a0b vocab=7007ff13
+-/
 theorem exists_eventually_zero_dyadicTail_integrands
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     ∃ N : ℕ, ∀ r : ℕ, N ≤ r → ∀ y : ℝ,
@@ -457,7 +528,9 @@ theorem exists_eventually_zero_dyadicTail_integrands
 
 /-- Operator-level completion of the kernel telescoping bridge.  For a test
 input, compact support makes the sequence of integral summands eventually
-zero, so no unproved dominated-convergence premise is hidden here.-/
+zero, so no unproved dominated-convergence premise is hidden here.
+@isnad1 id=hassum.0h4v.s7.ac6e43ef3857 from=translated src=- shape=0d7d4040 vocab=4406be62
+-/
 theorem hasSum_dyadicQuadraticConvolutions_add_nat
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     HasSum (fun r : ℕ ↦ ∫ y,
@@ -492,7 +565,9 @@ theorem hasSum_dyadicQuadraticConvolutions_add_nat
 localized KL tail actions on finite multiscale families.  This composes the
 three-shift localization with the scale ordering used by the high-pass
 series; it is the finite-tree exhaustion bridge needed before invoking the
-stopping recursion.-/
+stopping recursion.
+@isnad1 id=ex.0h3v.s7.d81450a88311 from=translated src=- shape=b494ada2 vocab=51bf7da0
+-/
 theorem exists_threeShift_localizedTailActions_eq_positivePartialSum
     (f : L0Infinity) (j : ℤ) (n : ℕ) :
     ∃ E : ℕ → Finset ℤ, ∀ x : ℝ,
@@ -555,7 +630,9 @@ theorem exists_threeShift_localizedTailActions_eq_positivePartialSum
         omega
       rw [hrevcast, hscale]
 
-/-- Exact operator decomposition at one sharp radius.-/
+/-- Exact operator decomposition at one sharp radius.
+@isnad1 id=eq.2h4v.s6.93ee43d49057 from=translated src=- shape=90adaea7 vocab=b8701908
+-/
 theorem quadraticHilbertTrunc_eq_smoothHighPass_add_boundary
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) {f : ℝ → ℂ}
     (hfi : Integrable f) (x : ℝ) :
@@ -577,7 +654,9 @@ theorem quadraticHilbertTrunc_eq_smoothHighPass_add_boundary
     rw [← add_mul, ← sharpQuadraticTailKernel_eq_smoothHighPass_add_boundary])
 
 /-- A sharp truncation is controlled by the corresponding smooth high-pass
-operator plus eight copies of the centered maximal function.-/
+operator plus eight copies of the centered maximal function.
+@isnad1 id=le.3h4v.s7.d5fadd43171e from=translated src=- shape=1ce8a466 vocab=c5f84c80
+-/
 theorem quadraticHilbertTrunc_enorm_le_smoothHighPass_add_maximal
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -589,7 +668,9 @@ theorem quadraticHilbertTrunc_enorm_le_smoothHighPass_add_maximal
     (cutoffBoundaryOperator_enorm_le_maximal lam hρ f hf x))
 
 /-- The complete deterministic sharp-to-smooth comparison.  Its constant
-`16` is the sum of the radius-rounding and cutoff-boundary costs.-/
+`16` is the sum of the radius-rounding and cutoff-boundary costs.
+@isnad1 id=le.3h4v.s7.928041aea212 from=translated src=- shape=a4ad0a78 vocab=56b3d1d8
+-/
 theorem quadraticHilbertTrunc_enorm_le_dyadicSmoothHighPass_add_maximal
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -625,6 +706,9 @@ def finiteRadiusSmoothHighPassMaxTestOperator
     (lam : ℝ) (s : Finset densePositiveRadii) : TestOperator :=
   fun f x ↦ ((finiteRadiusSmoothHighPassMaxNNNorm lam s f x : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s5.cddc92e73c44 from=translated src=- shape=88ca513f vocab=2acde110
+-/
 @[simp] theorem norm_finiteRadiusSmoothHighPassMaxTestOperator
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) (x : ℝ) :
     ‖finiteRadiusSmoothHighPassMaxTestOperator lam s f x‖ =
@@ -634,7 +718,9 @@ def finiteRadiusSmoothHighPassMaxTestOperator
   exact NNReal.coe_nonneg _
 
 /-- A fixed positive sharp truncation is bounded everywhere by its kernel
-supremum times the input mass.-/
+supremum times the input mass.
+@isnad1 id=le.1h4v.s6.1f77c7afc4ce from=translated src=- shape=1118a495 vocab=d5faec41
+-/
 theorem quadraticHilbertTrunc_norm_le_inv_radius_mul_integral
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) (f : L0Infinity) (x : ℝ) :
     ‖quadraticHilbertTrunc lam ε f x‖ ≤ (1 / ε) * ∫ y, ‖f y‖ := by
@@ -660,7 +746,9 @@ theorem quadraticHilbertTrunc_norm_le_inv_radius_mul_integral
 
 /-- The local-integrability clause in
 `HasUniformFiniteRadiusQuadraticSparseBound` is elementary and does not
-belong to the oscillatory KL input.-/
+belong to the oscillatory KL input.
+@isnad1 id=locallyi.0h3v.s6.7916aa78f8c7 from=translated src=- shape=541dc428 vocab=8742c793
+-/
 theorem finiteRadiusQuadraticHilbertMaxTestOperator_locallyIntegrable
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) :
     LocallyIntegrable (finiteRadiusQuadraticHilbertMaxTestOperator lam s f) volume := by
@@ -706,6 +794,9 @@ theorem finiteRadiusQuadraticHilbertMaxTestOperator_locallyIntegrable
         exact quadraticHilbertTrunc_norm_le_inv_radius_mul_integral
           lam ε.1.2 f x)
 
+/--
+@isnad1 id=le.0h5v.s5.ee3d5dd6f34f from=translated src=- shape=5966e80a vocab=2360ddc3
+-/
 theorem finiteRadiusSmoothHighPassMaxNNNorm_add_le
     (lam : ℝ) (s : Finset densePositiveRadii) (f g : L0Infinity) (x : ℝ) :
     finiteRadiusSmoothHighPassMaxNNNorm lam s (L0Infinity.add f g) x ≤
@@ -733,6 +824,9 @@ theorem finiteRadiusSmoothHighPassMaxNNNorm_add_le
         (Finset.le_sup (s := s) (f := fun δ ↦
           ‖smoothQuadraticHighPass lam (dyadicCeilRadius δ.1.1 δ.1.2) g x‖₊) hε)
 
+/--
+@isnad1 id=eq.0h5v.s6.9b6969df4240 from=translated src=- shape=8116597e vocab=5dcc96af
+-/
 theorem finiteRadiusSmoothHighPassMaxNNNorm_smul
     (lam : ℝ) (s : Finset densePositiveRadii) (c : ℂ)
     (f : L0Infinity) (x : ℝ) :
@@ -758,6 +852,9 @@ theorem finiteRadiusSmoothHighPassMaxNNNorm_smul
           (dyadicCeilRadius ε.1.1 ε.1.2) f x‖₊) :=
       (NNReal.mul_finset_sup ‖c‖₊ s _).symm
 
+/--
+@isnad1 id=issublin.0h2v.s4.dfad73ec2565 from=translated src=- shape=6e7ccef6 vocab=dcc48303
+-/
 theorem finiteRadiusSmoothHighPassMaxTestOperator_isSublinear
     (lam : ℝ) (s : Finset densePositiveRadii) :
     IsSublinear (finiteRadiusSmoothHighPassMaxTestOperator lam s) := by
@@ -779,7 +876,9 @@ private theorem coe_nnreal_finset_sup {α : Type*} [DecidableEq α]
 
 /-- Finite-family form of the complete deterministic comparison.  This is
 the direct bridge needed after proving a sparse theorem for the genuine
-smooth KL maximum: no cardinality-dependent loss appears.-/
+smooth KL maximum: no cardinality-dependent loss appears.
+@isnad1 id=le.0h4v.s6.e4049bf17405 from=translated src=- shape=b40e8771 vocab=e1758cf8
+-/
 theorem finiteRadiusSharpMax_enorm_le_smoothHighPassMax_add_maximal
     (lam : ℝ) (s : Finset densePositiveRadii) (f : L0Infinity) (x : ℝ) :
     ENNReal.ofReal

@@ -33,6 +33,9 @@ noncomputable def lacunaryMiddleLowContribution
     (f : ℝ → ℂ) (B : ℕ → ℕ) (c : ℕ) (x : ℝ) : ℝ≥0∞ :=
   ∑' k : ℕ, middleLowContributionAtLevel lacunaryAmplitude f k (B k) c x
 
+/--
+@isnad1 id=measurab.1h6v.s5.f8f2944cae8b from=translated src=- shape=b11e43ee vocab=c85bf3bd
+-/
 theorem measurable_middleRangeLowAction
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (k B c : ℕ) (m : ℤ) :
     Measurable (middleRangeLowAction A f k B c m) := by
@@ -43,6 +46,9 @@ theorem measurable_middleRangeLowAction
   have hjoint := hK.mul ((measurable_middleRangeInput (A := A) hf k B c m).comp measurable_snd)
   exact hjoint.stronglyMeasurable.integral_prod_right.measurable
 
+/--
+@isnad1 id=measurab.1h3v.s4.05c702bbf1cf from=translated src=- shape=430a9e58 vocab=8bc845f2
+-/
 theorem measurable_lacunaryMiddleLowContribution
     {f : ℝ → ℂ} (hf : Measurable f) (B : ℕ → ℕ) (c : ℕ) :
     Measurable (lacunaryMiddleLowContribution f B c) :=
@@ -50,7 +56,9 @@ theorem measurable_lacunaryMiddleLowContribution
     (measurable_middleRangeLowAction hf k (B k) c m).enorm
 
 /-- The actual middle action is bounded by the frozen main term plus the
-genuine very-small error majorant, uniformly over all modulation blocks.-/
+genuine very-small error majorant, uniformly over all modulation blocks.
+@isnad1 id=le.5h6v.s7.422baf11770e from=translated src=- shape=cbfc34cf vocab=593576d3
+-/
 theorem middleLowContributionAtLevel_le_frozen_add_verySmall
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k B c : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) {x : ℝ}
@@ -68,6 +76,9 @@ theorem middleLowContributionAtLevel_le_frozen_add_verySmall
       (le_iSup (fun τ : ℤ ↦ frozenBlockMaxEnorm A f k B c τ x) τ)
   · exact enorm_frozenBlockErrorLowAction_le_verySmall hf hfi hAk hx
 
+/--
+@isnad1 id=le.4h4v.s6.2e9dd4964f26 from=translated src=- shape=8f0b1a4c vocab=bbe2de57
+-/
 theorem lacunaryMiddleLowContribution_le_frozen_add_verySmall
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) {x : ℝ}
@@ -90,6 +101,9 @@ noncomputable def lacunaryLowContribution
     (f : ℝ → ℂ) (B : ℕ → ℕ) (x : ℝ) : ℝ≥0∞ :=
   ∑' k : ℕ, ⨆ m : ℤ, ‖lacunaryLowActionAtLevel lacunaryAmplitude f k (B k) m x‖ₑ
 
+/--
+@isnad1 id=measurab.1h5v.s5.c7577d0987b0 from=translated src=- shape=241ecb82 vocab=c8e8cfe0
+-/
 theorem measurable_lacunaryLowActionAtLevel
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (k B : ℕ) (m : ℤ) :
     Measurable (lacunaryLowActionAtLevel A f k B m) := by
@@ -100,12 +114,18 @@ theorem measurable_lacunaryLowActionAtLevel
   have hjoint := hK.mul ((measurable_canonicalLevelBadPart (A := A) hf k).comp measurable_snd)
   exact hjoint.stronglyMeasurable.integral_prod_right.measurable
 
+/--
+@isnad1 id=measurab.1h2v.s4.a0d6bdbaad11 from=translated src=- shape=de7735d1 vocab=bd7706a8
+-/
 theorem measurable_lacunaryLowContribution
     {f : ℝ → ℂ} (hf : Measurable f) (B : ℕ → ℕ) :
     Measurable (lacunaryLowContribution f B) :=
   Measurable.tsum fun k ↦ Measurable.iSup fun m ↦
     (measurable_lacunaryLowActionAtLevel hf k (B k) m).enorm
 
+/--
+@isnad1 id=summable.3h6v.s7.4a47d1076919 from=translated src=- shape=44f5260e vocab=82d1d4a6
+-/
 theorem summable_canonicalScaleLowActions
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B : ℕ) (m : ℤ) (x : ℝ) :
@@ -127,6 +147,9 @@ theorem summable_canonicalScaleLowActions
     exact hKi.hasFiniteIntegral
   exact (tsum_enorm_ne_top_iff_summable_norm.mp hsum.ne).of_norm
 
+/--
+@isnad1 id=eq.3h7v.s7.6fe3181e5337 from=translated src=- shape=30684d26 vocab=ab6fb3b5
+-/
 theorem middleRangeLowAction_eq_sum_scaleActions
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (m : ℤ) (x : ℝ) :
@@ -147,7 +170,9 @@ theorem middleRangeLowAction_eq_sum_scaleActions
       paperLowOscillatoryKernel_norm_le_global (dyadicModulation_pos m).ne' B (x-y))
 
 /-- The part outside `S` consists exactly of the very-small scales and
-scales whose action vanishes by the proved support theorem.-/
+scales whose action vanishes by the proved support theorem.
+@isnad1 id=le.4h7v.s7.725fe9c14fa6 from=translated src=- shape=d53fd235 vocab=7935d8c5
+-/
 theorem lacunaryLowActionAtLevel_enorm_le_middle_add_verySmall
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (m : ℤ) {x : ℝ}
@@ -189,6 +214,9 @@ theorem lacunaryLowActionAtLevel_enorm_le_middle_add_verySmall
         (fun _ _ ↦ bot_le) (fun _ ↦ le_rfl) ENNReal.summable
     _ ≤ verySmallLowContributionAtLevel A f k B c x := ENNReal.le_tsum m
 
+/--
+@isnad1 id=le.3h4v.s6.011c4d13800d from=translated src=- shape=352ccadc vocab=af4a79fd
+-/
 theorem lacunaryLowContribution_le_middle_add_verySmall
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (B : ℕ → ℕ) (c : ℕ) {x : ℝ}
@@ -207,7 +235,9 @@ theorem lacunaryLowContribution_le_middle_add_verySmall
     ‖middleRangeLowAction lacunaryAmplitude f k (B k) c m x‖ₑ) m) le_rfl
 
 /-- All genuine low scales, all integer modulations and all magnitude levels;
-the coefficient two records the original very-small term and frozen error.-/
+the coefficient two records the original very-small term and frozen error.
+@isnad1 id=le.4h4v.s7.900d32db5684 from=translated src=- shape=5ce5427b vocab=c09ed4aa
+-/
 theorem lacunaryLowContribution_le_frozen_add_two_verySmall
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) {x : ℝ}
@@ -222,6 +252,9 @@ theorem lacunaryLowContribution_le_frozen_add_two_verySmall
 noncomputable def lacunaryLowEndpointConstant (C : ℝ) : ℝ≥0∞ :=
   5 + 48 * ENNReal.ofReal C * frozenMiddleOrliczConstant + 4 * verySmallL1Constant
 
+/--
+@isnad1 id=lt.0h1v.s3.bf8c100b54bb from=translated src=- shape=d551a7c0 vocab=499fa5e3
+-/
 theorem lacunaryLowEndpointConstant_lt_top (C : ℝ) : lacunaryLowEndpointConstant C < ∞ := by
   unfold lacunaryLowEndpointConstant
   exact ENNReal.add_lt_top.mpr ⟨ENNReal.add_lt_top.mpr ⟨by finiteness,
@@ -230,7 +263,9 @@ theorem lacunaryLowEndpointConstant_lt_top (C : ℝ) : lacunaryLowEndpointConsta
 
 /-- The complete, genuine low-height contribution satisfies the paper's
 normalized lacunary Orlicz estimate. Only the individual finite frozen-block
-weak estimate remains as an analytic input.-/
+weak estimate remains as an analytic input.
+@isnad1 id=le.4h3v.s7.32496b3f9fb6 from=translated src=- shape=8a4cd65c vocab=1137c3db
+-/
 theorem lacunaryLowContribution_paperCutoff_levelSet_one_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -310,6 +345,9 @@ theorem lacunaryLowContribution_paperCutoff_levelSet_one_le_orlicz
       · exact add_le_add hM hV
     _ = _ := by unfold lacunaryLowEndpointConstant; ring
 
+/--
+@isnad1 id=le.3h2v.s7.ba1d8b211cf6 from=translated src=- shape=6e8873e0 vocab=1137c3db
+-/
 theorem lacunaryLowContribution_paperCutoff_zero_levelSet_one_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) {C : ℝ}
     (hblock : HasLogSquaredFrozenBlockWeakBounds f lacunaryHighCutoff 0 C) :
@@ -320,7 +358,9 @@ theorem lacunaryLowContribution_paperCutoff_zero_levelSet_one_le_orlicz
     (by intro k; omega) hblock
 
 /-- Exact agreement with the source's finite height sum and convolution
-convention, including height zero.-/
+convention, including height zero.
+@isnad1 id=eq.3h6v.s7.0d4bfabec6e4 from=translated src=- shape=a6ae0f00 vocab=2206bd23
+-/
 theorem lacunaryLowActionAtLevel_eq_sum_fixedHeights
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B : ℕ) (m : ℤ) (x : ℝ) :

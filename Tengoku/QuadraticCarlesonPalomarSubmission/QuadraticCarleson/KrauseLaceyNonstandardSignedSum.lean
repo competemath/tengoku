@@ -21,6 +21,9 @@ open KrauseLaceyStoppingExtraction KrauseLaceyOrderedEnergy
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.9h8v.s12.8d788dccea34 from=translated src=- shape=5c41f189 vocab=9c4127b3
+-/
 theorem norm_signed_badPieceLp_sq_le_of_residue
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -86,6 +89,9 @@ def physicalScaleResidue (scale : RealInterval → ℤ) (I : RealInterval) : Fin
     have := Int.emod_lt_of_pos (scale I) (by norm_num : (0 : ℤ) < 3)
     omega⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.8dafa3a32d6a from=translated src=- shape=20fe3b5d vocab=2359cb54
+-/
 theorem physicalScaleResidue_eq_imp_mod_eq
     (scale : RealInterval → ℤ) {I J : RealInterval}
     (h : physicalScaleResidue scale I = physicalScaleResidue scale J) :
@@ -97,7 +103,9 @@ theorem physicalScaleResidue_eq_imp_mod_eq
   omega
 
 /-- The full signed-sum estimate is uniform in both the number of
-intervals and the number of actual generations.-/
+intervals and the number of actual generations.
+@isnad1 id=le.8h8v.s12.9bf42a6bb1bc from=translated src=- shape=f560796e vocab=d86fbe1f
+-/
 theorem norm_signed_badPieceLp_sq_le_mass
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -143,6 +151,9 @@ theorem norm_signed_badPieceLp_sq_le_mass
       dsimp [C]
       ring
 
+/--
+@isnad1 id=le.8h8v.s12.d3ebb08b0dd0 from=translated src=- shape=b324dfa0 vocab=7d8eb291
+-/
 theorem norm_signed_badPieceLp_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)

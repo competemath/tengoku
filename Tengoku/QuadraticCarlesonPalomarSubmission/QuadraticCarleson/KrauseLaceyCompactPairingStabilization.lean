@@ -14,7 +14,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 800000
 
 /-- One finite scale cutoff works on the entire compact testing support,
-for every modulation.-/
+for every modulation.
+@isnad1 id=ex.0h3v.s6.ea4d06054c73 from=translated src=- shape=ce40a557 vocab=76610266
+-/
 theorem exists_uniform_zero_fullDyadic_integrands
     (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ (lam : ℝ) (x : ℝ), x ∈ tsupport g →
@@ -42,6 +44,9 @@ theorem exists_uniform_zero_fullDyadic_integrands
   have hz := dyadicPsi_eq_zero_of_abs_le (hxy.trans (hN r hr).le)
   simp [annularQuadraticKernel, hz]
 
+/--
+@isnad1 id=ex.0h3v.s6.0d80eba67cb2 from=translated src=- shape=ab49a5c5 vocab=d574b05d
+-/
 theorem exists_uniform_zero_fullDyadicConvolution (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ (lam : ℝ) (x : ℝ), x ∈ tsupport g →
       ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0 := by
@@ -50,6 +55,9 @@ theorem exists_uniform_zero_fullDyadicConvolution (j : ℤ) (f g : L0Infinity) :
   unfold fullDyadicConvolution
   simp only [hN lam x hx r hr, integral_zero]
 
+/--
+@isnad1 id=eq.2h6v.s6.940baec5b5e3 from=translated src=- shape=e7f23f11 vocab=05c9ade9
+-/
 theorem finiteFullDyadicTail_stable {lam : ℝ} {j : ℤ} {f : ℝ → ℂ} {x : ℝ} {N n : ℕ}
     (hz : ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0)
     (hn : N ≤ n) : finiteFullDyadicTail lam j n f x = finiteFullDyadicTail lam j N f x := by
@@ -59,6 +67,9 @@ theorem finiteFullDyadicTail_stable {lam : ℝ} {j : ℤ} {f : ℝ → ℂ} {x :
   intro r hr hrN
   exact hz r (by simpa only [Finset.mem_range, not_lt] using hrN)
 
+/--
+@isnad1 id=eq.1h5v.s6.7b116a411059 from=translated src=- shape=0fa1a730 vocab=3186e6c9
+-/
 theorem smoothHighPass_eq_finiteFullDyadicTail_of_zero
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) {N : ℕ}
     (hz : ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0) :
@@ -70,7 +81,9 @@ theorem smoothHighPass_eq_finiteFullDyadicTail_of_zero
   exact (hasSum_fullDyadicConvolution_add_nat lam j f x).unique hs
 
 /-- The actual high-pass and every sufficiently long finite tail coincide
-pointwise on the entire testing support, with a modulation-independent cutoff.-/
+pointwise on the entire testing support, with a modulation-independent cutoff.
+@isnad1 id=ex.0h3v.s6.cd8f89d7ad5e from=translated src=- shape=bfa96ed8 vocab=5d088ae0
+-/
 theorem exists_uniform_smoothHighPass_eq_finiteFullDyadicTail (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ (lam : ℝ) (x : ℝ), x ∈ tsupport g → ∀ n : ℕ, N ≤ n →
       smoothQuadraticHighPass lam ((2 : ℝ) ^ (j - 3)) f x = finiteFullDyadicTail lam j n f x := by
@@ -82,6 +95,9 @@ theorem exists_uniform_smoothHighPass_eq_finiteFullDyadicTail (j : ℤ) (f g : L
 noncomputable def finiteFullDyadicTailOperator (lam : ℝ) (j : ℤ) (N : ℕ) : TestOperator :=
   fun f x ↦ finiteFullDyadicTail lam j N f x
 
+/--
+@isnad1 id=ex.0h3v.s6.b4e8598996bd from=translated src=- shape=06453ffb vocab=64908d84
+-/
 theorem exists_operatorPairing_smoothHighPass_eq_finiteTail (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ lam : ℝ, ∀ n : ℕ, N ≤ n →
       operatorPairing (smoothQuadraticHighPassTestOperator lam ((2 : ℝ) ^ (j - 3))) f g =
@@ -97,6 +113,9 @@ theorem exists_operatorPairing_smoothHighPass_eq_finiteTail (j : ℤ) (f g : L0I
   · have hg := image_eq_zero_of_notMem_tsupport hx
     simp [hg]
 
+/--
+@isnad1 id=hasspars.1h4v.s5.677bfd713a7b from=translated src=- shape=f52c070c vocab=5107ac26
+-/
 theorem hasSparseOnePBound_smoothHighPass_of_uniform_finiteTail
     (lam : ℝ) (j : ℤ) {C p : ℝ}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicTailOperator lam j N)) :
@@ -108,12 +127,18 @@ theorem hasSparseOnePBound_smoothHighPass_of_uniform_finiteTail
   rw [hN lam N le_rfl]
   exact hb
 
+/--
+@isnad1 id=le.1h6v.s5.61a32fbe528e from=translated src=- shape=5d6ae8c9 vocab=6b1cf820
+-/
 theorem nnnorm_finiteFullDyadicTail_le_max (lam : ℝ) (j : ℤ) (f : ℝ → ℂ) (x : ℝ)
     {n N : ℕ} (hn : n ≤ N) :
     ‖finiteFullDyadicTail lam j n f x‖₊ ≤ finiteFullDyadicTailMaxNNNorm lam j N f x :=
   Finset.le_sup (f := fun r ↦ ‖finiteFullDyadicTail lam j r f x‖₊)
     (Finset.mem_range.mpr (Nat.lt_succ_of_le hn))
 
+/--
+@isnad1 id=eq.1h5v.s5.4c4c8aca8b41 from=translated src=- shape=a22e6d7a vocab=30754aff
+-/
 theorem fullDyadicTailSupEnorm_eq_finiteMax_of_zero
     (lam : ℝ) (j : ℤ) (f : ℝ → ℂ) (x : ℝ) {N : ℕ}
     (hz : ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0) :
@@ -137,7 +162,9 @@ noncomputable def fullDyadicTailSupTestOperator (lam : ℝ) (j : ℤ) : TestOper
   fun f x ↦ ((fullDyadicTailSupEnorm lam j f x).toReal : ℂ)
 
 /-- The maximal-tail representative is finite at every point on the actual
-test domain; its real conversion never hides an infinite value.-/
+test domain; its real conversion never hides an infinite value.
+@isnad1 id=lt.0h4v.s4.8fc9eec8df0d from=translated src=- shape=b8d9d1fa vocab=598054f4
+-/
 theorem fullDyadicTailSupEnorm_lt_top (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     fullDyadicTailSupEnorm lam j f x < ∞ := by
   obtain ⟨N, hN⟩ := exists_eventually_zero_dyadicTail_integrands lam j f x
@@ -148,6 +175,9 @@ theorem fullDyadicTailSupEnorm_lt_top (lam : ℝ) (j : ℤ) (f : L0Infinity) (x 
   rw [fullDyadicTailSupEnorm_eq_finiteMax_of_zero lam j f x hz]
   exact ENNReal.coe_lt_top
 
+/--
+@isnad1 id=eq.0h4v.s5.d7fd84bbc566 from=translated src=- shape=de26e082 vocab=1d766c03
+-/
 theorem enorm_fullDyadicTailSupTestOperator (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     ‖fullDyadicTailSupTestOperator lam j f x‖ₑ = fullDyadicTailSupEnorm lam j f x := by
   rw [← ofReal_norm, fullDyadicTailSupTestOperator, Complex.norm_real, Real.norm_eq_abs,
@@ -155,7 +185,9 @@ theorem enorm_fullDyadicTailSupTestOperator (lam : ℝ) (j : ℤ) (f : L0Infinit
     ENNReal.ofReal_toReal (fullDyadicTailSupEnorm_lt_top lam j f x).ne]
 
 /-- On any compact pairing support, the supremum over every finite tail is
-already attained by one fixed finite maximal approximant.-/
+already attained by one fixed finite maximal approximant.
+@isnad1 id=ex.0h3v.s5.8eaf9c816e32 from=translated src=- shape=b9fd396b vocab=092823fe
+-/
 theorem exists_fullDyadicTailSup_eq_finiteMax (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ (lam : ℝ) (x : ℝ), x ∈ tsupport g →
       fullDyadicTailSupTestOperator lam j f x = finiteFullDyadicTailMaxOperator lam j N f x := by
@@ -165,6 +197,9 @@ theorem exists_fullDyadicTailSup_eq_finiteMax (j : ℤ) (f g : L0Infinity) :
   rw [fullDyadicTailSupEnorm_eq_finiteMax_of_zero lam j f x (hN lam x hx)]
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s4.ea2e67c0a732 from=translated src=- shape=f16404df vocab=eeef674b
+-/
 theorem exists_operatorPairing_fullDyadicTailSup_eq_finiteMax (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ lam : ℝ,
       operatorPairing (fullDyadicTailSupTestOperator lam j) f g =
@@ -177,6 +212,9 @@ theorem exists_operatorPairing_fullDyadicTailSup_eq_finiteMax (j : ℤ) (f g : L
   · rw [hN lam x hx]
   · simp [image_eq_zero_of_notMem_tsupport hx]
 
+/--
+@isnad1 id=hasspars.1h4v.s4.b740c14f1cbf from=translated src=- shape=e242f9cf vocab=8f2d0883
+-/
 theorem hasSparseOnePBound_fullDyadicTailSup_of_uniform_finiteMax
     (lam : ℝ) (j : ℤ) {C p : ℝ}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicTailMaxOperator lam j N)) :
@@ -189,7 +227,9 @@ theorem hasSparseOnePBound_fullDyadicTailSup_of_uniform_finiteMax
   exact hb
 
 /-- Compact-test domination by one finite maximal approximant is enough to
-transfer a uniform sparse estimate. Its cutoff may depend on both tests.-/
+transfer a uniform sparse estimate. Its cutoff may depend on both tests.
+@isnad1 id=hasspars.2h5v.s6.41bf854e691a from=translated src=- shape=b624b778 vocab=6ab33b39
+-/
 theorem hasSparseOnePBound_of_compact_finiteMax_domination
     (lam : ℝ) (j : ℤ) {C p : ℝ} {U : TestOperator}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicTailMaxOperator lam j N))
@@ -220,6 +260,9 @@ theorem hasSparseOnePBound_of_compact_finiteMax_domination
     · simp [image_eq_zero_of_notMem_tsupport hx]
   exact ⟨S, hS, (ENNReal.ofReal_le_ofReal hnorm).trans hb⟩
 
+/--
+@isnad1 id=hasspars.1h4v.s5.d89e71f8bb58 from=translated src=- shape=f52c070c vocab=1c0fa8ba
+-/
 theorem hasSparseOnePBound_smoothHighPass_of_uniform_finiteMax
     (lam : ℝ) (j : ℤ) {C p : ℝ}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicTailMaxOperator lam j N)) :
@@ -236,6 +279,9 @@ theorem hasSparseOnePBound_smoothHighPass_of_uniform_finiteMax
       (finiteFullDyadicTailMaxNNNorm lam j N f x : ℝ) from
         NNReal.coe_le_coe.mpr (nnnorm_finiteFullDyadicTail_le_max lam j f x le_rfl))
 
+/--
+@isnad1 id=hasspars.1h4v.s5.13d9dc4d85cc from=translated src=- shape=193aca35 vocab=4b5a64af
+-/
 theorem hasSparseOnePBound_absolute_smoothHighPass_of_uniform_finiteMax
     (lam : ℝ) (j : ℤ) {C p : ℝ}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicTailMaxOperator lam j N)) :
@@ -255,7 +301,9 @@ theorem hasSparseOnePBound_absolute_smoothHighPass_of_uniform_finiteMax
         NNReal.coe_le_coe.mpr (nnnorm_finiteFullDyadicTail_le_max lam j f x le_rfl))
 
 /-- Composing positive-half sparse domination, reflection, and compact
-stabilization reaches the genuine absolute smooth high-pass with factor two.-/
+stabilization reaches the genuine absolute smooth high-pass with factor two.
+@isnad1 id=hasspars.2h4v.s6.56e55aacfe12 from=translated src=- shape=0f2cdb4d vocab=48cd9d43
+-/
 theorem hasSparseOnePBound_absolute_smoothHighPass_of_uniform_positive_finiteMax
     (lam : ℝ) (j : ℤ) {C p : ℝ} (hC : 0 ≤ C)
     (hpositive : ∀ N : ℕ, HasSparseOnePBound C p (finitePositiveDyadicTailMaxOperator lam j N)) :
@@ -267,6 +315,9 @@ theorem hasSparseOnePBound_absolute_smoothHighPass_of_uniform_positive_finiteMax
 /-! The KL-oriented bridge: the lower cutoff moves and the upper cutoff
 is fixed. Prefix-maximal statements above are auxiliary only. -/
 
+/--
+@isnad1 id=eq.1h6v.s6.f6057814a0e3 from=translated src=- shape=2fddb900 vocab=fbdb83d2
+-/
 theorem smoothHighPass_eq_finiteSuffix_of_zero
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) {N : ℕ}
     (hz : ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0)
@@ -284,6 +335,9 @@ noncomputable def dyadicSmoothHighPassMaxEnorm
 noncomputable def dyadicSmoothHighPassMaxOperator (lam : ℝ) (j : ℤ) : TestOperator :=
   fun f x ↦ ((dyadicSmoothHighPassMaxEnorm lam j f x).toReal : ℂ)
 
+/--
+@isnad1 id=eq.1h5v.s5.0b0e4f6515cd from=translated src=- shape=058ba80f vocab=49f1f57d
+-/
 theorem dyadicSmoothHighPassMaxEnorm_eq_finiteSuffixMax_of_zero
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) {N : ℕ}
     (hz : ∀ r : ℕ, N ≤ r → fullDyadicConvolution lam (j + (r : ℤ)) f x = 0) :
@@ -307,6 +361,9 @@ theorem dyadicSmoothHighPassMaxEnorm_eq_finiteSuffixMax_of_zero
     exact le_iSup (fun r : ℕ ↦
       ‖smoothQuadraticHighPass lam ((2 : ℝ) ^ (j + (r : ℤ) - 3)) f x‖ₑ) m
 
+/--
+@isnad1 id=lt.0h4v.s4.cc61e885821f from=translated src=- shape=5cc7fc05 vocab=a67633d1
+-/
 theorem dyadicSmoothHighPassMaxEnorm_lt_top (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     dyadicSmoothHighPassMaxEnorm lam j f x < ∞ := by
   obtain ⟨N, hN⟩ := exists_eventually_zero_dyadicTail_integrands lam j f x
@@ -317,6 +374,9 @@ theorem dyadicSmoothHighPassMaxEnorm_lt_top (lam : ℝ) (j : ℤ) (f : L0Infinit
   rw [dyadicSmoothHighPassMaxEnorm_eq_finiteSuffixMax_of_zero lam j f x hz]
   exact ENNReal.coe_lt_top
 
+/--
+@isnad1 id=eq.0h4v.s5.94bcefe2cba4 from=translated src=- shape=9753a62c vocab=766da4aa
+-/
 theorem enorm_dyadicSmoothHighPassMaxOperator (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     ‖dyadicSmoothHighPassMaxOperator lam j f x‖ₑ = dyadicSmoothHighPassMaxEnorm lam j f x := by
   rw [← ofReal_norm, dyadicSmoothHighPassMaxOperator, Complex.norm_real, Real.norm_eq_abs,
@@ -324,7 +384,9 @@ theorem enorm_dyadicSmoothHighPassMaxOperator (lam : ℝ) (j : ℤ) (f : L0Infin
     ENNReal.ofReal_toReal (dyadicSmoothHighPassMaxEnorm_lt_top lam j f x).ne]
 
 /-- The genuine supremum over every moving lower cutoff agrees exactly,
-on the entire compact testing support, with one finite suffix maximum.-/
+on the entire compact testing support, with one finite suffix maximum.
+@isnad1 id=ex.0h3v.s5.1c9ab0bed35a from=translated src=- shape=b9fd396b vocab=e05b86cd
+-/
 theorem exists_dyadicSmoothHighPassMax_eq_finiteSuffixMax (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ (lam : ℝ) (x : ℝ), x ∈ tsupport g →
       dyadicSmoothHighPassMaxOperator lam j f x =
@@ -335,6 +397,9 @@ theorem exists_dyadicSmoothHighPassMax_eq_finiteSuffixMax (j : ℤ) (f g : L0Inf
   rw [dyadicSmoothHighPassMaxEnorm_eq_finiteSuffixMax_of_zero lam j f x (hN lam x hx)]
   rfl
 
+/--
+@isnad1 id=ex.0h3v.s4.8877093c5e28 from=translated src=- shape=f16404df vocab=5bc63aed
+-/
 theorem exists_operatorPairing_dyadicSmoothHighPassMax_eq_finiteSuffixMax
     (j : ℤ) (f g : L0Infinity) :
     ∃ N : ℕ, ∀ lam : ℝ,
@@ -349,7 +414,9 @@ theorem exists_operatorPairing_dyadicSmoothHighPassMax_eq_finiteSuffixMax
   · simp [image_eq_zero_of_notMem_tsupport hx]
 
 /-- Uniform KL-oriented finite suffix bounds pass to the genuine smooth
-high-pass maximum without a sparse-family limit and without constant loss.-/
+high-pass maximum without a sparse-family limit and without constant loss.
+@isnad1 id=hasspars.1h4v.s4.b90f8ba8f34c from=translated src=- shape=e242f9cf vocab=ee821de0
+-/
 theorem hasSparseOnePBound_dyadicSmoothHighPassMax_of_uniform_finiteSuffixMax
     (lam : ℝ) (j : ℤ) {C p : ℝ}
     (hfinite : ∀ N : ℕ, HasSparseOnePBound C p (finiteFullDyadicSuffixMaxOperator lam j N)) :
@@ -362,7 +429,9 @@ theorem hasSparseOnePBound_dyadicSmoothHighPassMax_of_uniform_finiteSuffixMax
   exact hb
 
 /-- Final positive-half-to-genuine-high-pass transfer in the source's
-moving-lower-cutoff orientation. Only reflection costs the factor two.-/
+moving-lower-cutoff orientation. Only reflection costs the factor two.
+@isnad1 id=hasspars.2h4v.s5.b6ed14883fec from=translated src=- shape=78e7553f vocab=8612eece
+-/
 theorem hasSparseOnePBound_dyadicSmoothHighPassMax_of_uniform_positive_finiteSuffixMax
     (lam : ℝ) (j : ℤ) {C p : ℝ} (hC : 0 ≤ C)
     (hpositive : ∀ N : ℕ, HasSparseOnePBound C p (finitePositiveDyadicSuffixMaxOperator lam j N)) :

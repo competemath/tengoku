@@ -21,7 +21,9 @@ open scoped ENNReal
 
 namespace QuadraticCarleson
 
-/-- A small torus norm gives a nearby integer.-/
+/-- A small torus norm gives a nearby integer.
+@isnad1 id=ex.1h2v.s5.ef86c2cffb78 from=translated src=- shape=de21c17e vocab=e2145089
+-/
 theorem exists_int_abs_sub_le_of_torusNorm_le {x ρ : ℝ}
     (h : torusNorm x ≤ ρ) : ∃ a : ℤ, |x - a| ≤ ρ := by
   rcases min_le_iff.mp h with h | h
@@ -37,7 +39,9 @@ theorem exists_int_abs_sub_le_of_torusNorm_le {x ρ : ℝ}
     constructor <;> linarith
 
 /-- For localized Bohr sets, the integer witnessing the torus condition
-lies between zero and the frequency.-/
+lies between zero and the frequency.
+@isnad1 id=ex.2h3v.s6.1c78c4029381 from=translated src=- shape=ebe737e6 vocab=7b58b6ee
+-/
 theorem exists_int_near_of_mem_bohrSet {k : ℕ} {ρ x : ℝ}
     (hρ : ρ < 1 / 10) (hx : x ∈ bohrSet k ρ) :
     ∃ a : ℤ, 0 ≤ a ∧ a ≤ k ∧ |(k : ℝ) * x - a| ≤ ρ := by
@@ -256,7 +260,9 @@ private theorem bohrSet_inter_volume_real_le_of_le {k m : ℕ} {ρ : ℝ}
       nlinarith
 
 /-- Lemma `l:bohrintersection`, with the explicit absolute constant `16`.
-The positive frequencies follow the paper's convention `ℕ = {1, 2, …}`.-/
+The positive frequencies follow the paper's convention `ℕ = {1, 2, …}`.
+@isnad1 id=le.4h3v.s7.732438d34e2b from=translated src=- shape=dfe7c152 vocab=47feb2df
+-/
 theorem bohrSet_inter_volume_real_le {k m : ℕ} {ρ : ℝ}
     (hk : 0 < k) (hm : 0 < m) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1 / 10) :
     volume.real (bohrSet k ρ ∩ bohrSet m ρ) ≤
@@ -268,7 +274,9 @@ theorem bohrSet_inter_volume_real_le {k m : ℕ} {ρ : ℝ}
       bohrSet_inter_volume_real_le_of_le hm hk hmk hρ0 hρ
 
 /-- The same Bohr-intersection estimate expressed in the nonnegative extended
-real codomain of Lebesgue measure.-/
+real codomain of Lebesgue measure.
+@isnad1 id=le.4h3v.s7.1612fb520a78 from=translated src=- shape=7b212ef7 vocab=6d4b3387
+-/
 theorem bohrSet_inter_volume_le {k m : ℕ} {ρ : ℝ}
     (hk : 0 < k) (hm : 0 < m) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1 / 10) :
     volume (bohrSet k ρ ∩ bohrSet m ρ) ≤
@@ -281,12 +289,17 @@ theorem bohrSet_inter_volume_le {k m : ℕ} {ρ : ℝ}
   exact bohrSet_inter_volume_real_le hk hm hρ0 hρ
 
 /-- At zero frequency the Bohr condition is vacuous. This is a supplementary
-note for Lean's convention that `0 ∈ ℕ`; the paper uses positive naturals.-/
+note for Lean's convention that `0 ∈ ℕ`; the paper uses positive naturals.
+@isnad1 id=eq.1h1v.s6.89f2d559fe33 from=translated src=- shape=2a291141 vocab=eb9238dd
+-/
 theorem bohrSet_zero_of_nonneg {ρ : ℝ} (hρ : 0 ≤ ρ) :
     bohrSet 0 ρ = Ico (1 / 4 : ℝ) (1 / 2 : ℝ) := by
   ext x
   simp [bohrSet, torusNorm, hρ]
 
+/--
+@isnad1 id=eq.1h1v.s5.b278a9a34e1e from=translated src=- shape=2cad5adb vocab=ac836a2a
+-/
 theorem volume_real_bohrSet_zero {ρ : ℝ} (hρ : 0 ≤ ρ) :
     volume.real (bohrSet 0 ρ) = 1 / 4 := by
   rw [bohrSet_zero_of_nonneg hρ, Real.volume_real_Ico]

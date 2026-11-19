@@ -40,6 +40,9 @@ def smallestSelectedRegion
     (S : Finset RealInterval) (J : RealInterval) : Set ℝ :=
   J.carrier \ ⋃ H ∈ strictSelectedDescendants S J, H.carrier
 
+/--
+@isnad1 id=measurab.0h2v.s3.0a92afb155e2 from=translated src=- shape=50428634 vocab=0b2ce996
+-/
 theorem measurableSet_smallestSelectedRegion
     (S : Finset RealInterval) (J : RealInterval) :
     MeasurableSet (smallestSelectedRegion S J) := by
@@ -48,6 +51,9 @@ theorem measurableSet_smallestSelectedRegion
     (Finset.measurableSet_biUnion (strictSelectedDescendants S J)
       fun H _ ↦ H.measurableSet_carrier)
 
+/--
+@isnad1 id=le.0h2v.s3.31faabeadf48 from=translated src=- shape=c4dc5016 vocab=1faf0d2c
+-/
 theorem smallestSelectedRegion_subset_carrier
     (S : Finset RealInterval) (J : RealInterval) :
     smallestSelectedRegion S J ⊆ J.carrier :=
@@ -59,12 +65,18 @@ def selectedSubintervals
   classical
   exact S.filter fun J ↦ J.carrier ⊆ I.carrier
 
+/--
+@isnad1 id=iff.0h3v.s5.26115aacdd1c from=translated src=- shape=b246c418 vocab=2ce7d1d9
+-/
 theorem mem_selectedSubintervals_iff
     {S : Finset RealInterval} {I J : RealInterval} :
     J ∈ selectedSubintervals S I ↔ J ∈ S ∧ J.carrier ⊆ I.carrier := by
   classical
   simp [selectedSubintervals]
 
+/--
+@isnad1 id=iff.0h3v.s6.206d24096962 from=translated src=- shape=1d8438a5 vocab=be81f721
+-/
 theorem mem_smallestSelectedRegion_iff
     {S : Finset RealInterval} {J : RealInterval} {x : ℝ} :
     x ∈ smallestSelectedRegion S J ↔
@@ -101,7 +113,9 @@ private theorem length_lt_of_strict_carrier_subset {I J : RealInterval}
   exact interval_eq_of_carrier_subset_of_length_le h heq.ge
 
 /-- Distinct smallest-selected regions are disjoint in a laminar selected
-family.-/
+family.
+@isnad1 id=disjoint.4h3v.s7.748fdab191fb from=translated src=- shape=30df3ed9 vocab=ed49154c
+-/
 theorem smallestSelectedRegion_disjoint
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -121,7 +135,9 @@ theorem smallestSelectedRegion_disjoint
       (mem_smallestSelectedRegion_iff.mp hxJ).1
 
 /-- Every point of a selected root belongs to the region of some selected
-subinterval of that root.-/
+subinterval of that root.
+@isnad1 id=ex.3h3v.s7.8b2adebe8ba5 from=translated src=- shape=f99059fe vocab=ed49154c
+-/
 theorem exists_mem_smallestSelectedRegion_of_mem_carrier
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -157,7 +173,9 @@ theorem exists_mem_smallestSelectedRegion_of_mem_carrier
   exact ⟨J, hJS, hJI, hregion⟩
 
 /-- The smallest-selected regions below a selected root give an exact
-pointwise partition of an input restricted to that root.-/
+pointwise partition of an input restricted to that root.
+@isnad1 id=eq.2h4v.s6.a789ed0d7764 from=translated src=- shape=746a4d24 vocab=01dc271d
+-/
 theorem sum_indicator_smallestSelectedRegion_eq
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -195,7 +213,9 @@ theorem sum_indicator_smallestSelectedRegion_eq
 
 /-- The exact reconstruction remains true after the output interval's
 central-third restriction.  This is the paper's identity
-`f 1_{I'} = ∑ b_m 1_{I'}` before grouping by scale.-/
+`f 1_{I'} = ∑ b_m 1_{I'}` before grouping by scale.
+@isnad1 id=eq.2h4v.s6.385ef81c210b from=translated src=- shape=3001a13d vocab=c5d35a5c
+-/
 theorem sum_indicator_smallestSelectedRegion_centralThird_eq
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -215,7 +235,9 @@ theorem sum_indicator_smallestSelectedRegion_centralThird_eq
     exact Finset.sum_const_zero
 
 /-- The central-third reconstruction grouped by the selected intervals'
-scales.  This is the finite, exact form of the sum over `m ≤ j`.-/
+scales.  This is the finite, exact form of the sum over `m ≤ j`.
+@isnad1 id=eq.2h5v.s7.631d14f16679 from=translated src=- shape=f710624a vocab=d4a3ec2f
+-/
 theorem sum_grouped_selectedRegions_centralThird_eq
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -239,6 +261,9 @@ def smallestScaleInput (S : Finset RealInterval)
   ∑ J ∈ S.filter (fun J ↦ scale J = m),
     (smallestSelectedRegion S J).indicator f x
 
+/--
+@isnad1 id=integrab.0h4v.s5.a5659577ce85 from=translated src=- shape=5c92d170 vocab=ad08886a
+-/
 theorem integrable_smallestScaleInput
     (S : Finset RealInterval) (scale : RealInterval → ℤ)
     (f : L0Infinity) (m : ℤ) : Integrable (smallestScaleInput S scale f m) := by
@@ -250,7 +275,9 @@ theorem integrable_smallestScaleInput
     (measurableSet_smallestSelectedRegion S J)
 
 /-- At a fixed scale, the selected regions are disjoint, so the norm of the
-scale input is exactly the sum of the norms of its regional pieces.-/
+scale input is exactly the sum of the norms of its regional pieces.
+@isnad1 id=eq.1h5v.s7.6e77236e14fd from=translated src=- shape=13072d73 vocab=c06d244d
+-/
 theorem norm_smallestScaleInput_eq_sum
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -301,7 +328,9 @@ theorem norm_smallestScaleInput_eq_sum
     apply (Finset.sum_eq_zero fun J hJ ↦ ?_).symm
     rw [hzero J hJ, norm_zero]
 
-/-- Every scale input is pointwise dominated by the original input.-/
+/-- Every scale input is pointwise dominated by the original input.
+@isnad1 id=le.1h5v.s6.4ebc958492c5 from=translated src=- shape=ffc352e5 vocab=94b2bce7
+-/
 theorem norm_smallestScaleInput_le_norm
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -339,7 +368,9 @@ theorem norm_smallestScaleInput_le_norm
 
 /-- The regional masses are bounded by the mass of the root containing the
 selected family.  This is the formal finite version of
-`∑ₘ ‖bₘ‖₁ ≤ ‖f 1_{I₀}‖₁`.-/
+`∑ₘ ‖bₘ‖₁ ≤ ‖f 1_{I₀}‖₁`.
+@isnad1 id=le.2h3v.s7.863e258099ab from=translated src=- shape=53d63e9e vocab=bba0a58d
+-/
 theorem sum_integral_norm_smallestSelectedRegion_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -394,6 +425,9 @@ theorem sum_integral_norm_smallestSelectedRegion_le
     · rw [Set.indicator_of_notMem hxI]
 
 /- The scale classes are a genuine finite partition of the regional masses. -/
+/--
+@isnad1 id=le.2h4v.s7.3092862d7995 from=translated src=- shape=a0842273 vocab=d194eb09
+-/
 theorem sum_integral_norm_smallestScaleInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -436,6 +470,9 @@ theorem sum_integral_norm_smallestScaleInput_le
 
 /- A scale class has the same local-window estimate as a disjoint carrier
    sum: replacing carriers by their smallest regions only removes mass. -/
+/--
+@isnad1 id=le.7h8v.s8.8947408c2113 from=translated src=- shape=29334202 vocab=1566f028
+-/
 theorem integral_window_norm_smallestScaleInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

@@ -41,6 +41,9 @@ def translatedDyadicRealInterval
     have hd := dyadicLength_pos hL depth
     linarith
 
+/--
+@isnad1 id=eq.1h4v.s4.7c6b373fe6ed from=translated src=- shape=8ba10980 vocab=44336d56
+-/
 theorem translatedDyadicRealInterval_length
     (origin L : ℝ) (hL : 0 < L) (depth : ℕ) (q : ℤ) :
     (translatedDyadicRealInterval origin L hL depth q).length =
@@ -48,6 +51,9 @@ theorem translatedDyadicRealInterval_length
   unfold translatedDyadicRealInterval RealInterval.length
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.2fd0a66268a8 from=translated src=- shape=64a0a1b9 vocab=dd388fe8
+-/
 theorem translatedDyadicRealInterval_carrier
     (origin L : ℝ) (hL : 0 < L) (depth : ℕ) (q : ℤ) :
     (translatedDyadicRealInterval origin L hL depth q).carrier =
@@ -56,7 +62,9 @@ theorem translatedDyadicRealInterval_carrier
 
 /-- A fine translated dyadic cell is contained in a fixed coarse cell or is
 disjoint from it.  This is the exact half-open geometry needed by the finite
-stopping recursion.-/
+stopping recursion.
+@isnad1 id=or.2h6v.s6.e1754dc8f6d2 from=translated src=- shape=aad6c893 vocab=fd61d137
+-/
 theorem translatedDyadicRealInterval_subset_or_disjoint_of_le
     {origin L : ℝ} (hL : 0 < L) {n m : ℕ} (hnm : n ≤ m) (q r : ℤ) :
     (translatedDyadicRealInterval origin L hL m r).carrier ⊆
@@ -110,7 +118,9 @@ theorem translatedDyadicRealInterval_subset_or_disjoint_of_le
       push_cast at hzR hxc
       nlinarith
 
-/-- Any two intervals in one translated dyadic grid are nested or disjoint.-/
+/-- Any two intervals in one translated dyadic grid are nested or disjoint.
+@isnad1 id=or.1h6v.s6.3a1cac8f7f14 from=translated src=- shape=82f6db7c vocab=fd61d137
+-/
 theorem translatedDyadicRealInterval_laminar
     {origin L : ℝ} (hL : 0 < L) (n : ℕ) (q : ℤ) (m : ℕ) (r : ℤ) :
     (translatedDyadicRealInterval origin L hL n q).carrier ⊆
@@ -129,7 +139,9 @@ theorem translatedDyadicRealInterval_laminar
     · exact Or.inl hsub
     · exact Or.inr (Or.inr hdis)
 
-/-- The Euclidean-division address gives the unique dyadic parent.-/
+/-- The Euclidean-division address gives the unique dyadic parent.
+@isnad1 id=le.1h4v.s5.deda615b3cd9 from=translated src=- shape=4ad9b79a vocab=8de1c5f2
+-/
 theorem translatedDyadicRealInterval_parent_subset
     {origin L : ℝ} (hL : 0 < L) (depth : ℕ) (q : ℤ) :
     (translatedDyadicRealInterval origin L hL (depth + 1) q).carrier ⊆
@@ -157,6 +169,9 @@ kernel label is `topScale`.-/
 def shiftedGridRootLength (topScale : ℤ) : ℝ :=
   (2 : ℝ) ^ (topScale + 2)
 
+/--
+@isnad1 id=lt.0h1v.s3.b2b1d8d0bf6f from=translated src=- shape=b9369acb vocab=3e23b91c
+-/
 theorem shiftedGridRootLength_pos (topScale : ℤ) :
     0 < shiftedGridRootLength topScale := by
   unfold shiftedGridRootLength
@@ -170,6 +185,9 @@ def finiteShiftGridInterval
     ((shift : ℝ) * shiftedGridRootLength topScale / 3)
     (shiftedGridRootLength topScale) (shiftedGridRootLength_pos topScale) depth q
 
+/--
+@isnad1 id=eq.0h4v.s4.5f3aca5e8215 from=translated src=- shape=8900d1cc vocab=18ca6407
+-/
 theorem finiteShiftGridInterval_length
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     (finiteShiftGridInterval topScale shift depth q).length =
@@ -177,7 +195,9 @@ theorem finiteShiftGridInterval_length
   translatedDyadicRealInterval_length _ _ _ _ _
 
 /-- Each of the three finite shifted grids is laminar across all of its
-represented scales.-/
+represented scales.
+@isnad1 id=or.0h6v.s6.16f177b97a6a from=translated src=- shape=cde8773a vocab=b4004e0b
+-/
 theorem finiteShiftGridInterval_laminar
     (topScale : ℤ) (shift : Fin 3) (n : ℕ) (q : ℤ) (m : ℕ) (r : ℤ) :
     (finiteShiftGridInterval topScale shift n q).carrier ⊆
@@ -188,6 +208,9 @@ theorem finiteShiftGridInterval_laminar
           (finiteShiftGridInterval topScale shift m r).carrier :=
   translatedDyadicRealInterval_laminar (shiftedGridRootLength_pos topScale) n q m r
 
+/--
+@isnad1 id=le.0h4v.s5.b68e9298ae88 from=translated src=- shape=37e7f44f vocab=54bfdd18
+-/
 theorem finiteShiftGridInterval_parent_subset
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     (finiteShiftGridInterval topScale shift (depth + 1) q).carrier ⊆
@@ -195,6 +218,9 @@ theorem finiteShiftGridInterval_parent_subset
   translatedDyadicRealInterval_parent_subset
     (shiftedGridRootLength_pos topScale) depth q
 
+/--
+@isnad1 id=eq.0h4v.s6.d1aa85cad223 from=translated src=- shape=ea16d990 vocab=f265f1d6
+-/
 theorem finiteShiftGridInterval_parent_length
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     (finiteShiftGridInterval topScale shift depth (q / 2)).length =
@@ -210,7 +236,9 @@ def finiteShiftGridTileIndex (shift : Fin 3) (depth : ℕ) (q : ℤ) : ℤ :=
   3 * q + (shift : ℤ) * (2 : ℤ) ^ depth + 1
 
 /-- At each depth, a three-shift interval is literally the parent used in the
-fixed-scale central-third tiling.-/
+fixed-scale central-third tiling.
+@isnad1 id=eq.0h4v.s4.1cc249f630fc from=translated src=- shape=d975a325 vocab=5d173fac
+-/
 theorem finiteShiftGridInterval_eq_centralThirdTileParent
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     finiteShiftGridInterval topScale shift depth q =
@@ -248,7 +276,9 @@ private theorem pow_two_odd_three_mul_add_two (e : ℕ) :
 
 /-- At every depth, the three translated grids exhaust all consecutive
 central-third tile parents.  This is the integer content of the exact
-three-grid identity in KL18.-/
+three-grid identity in KL18.
+@isnad1 id=ex.0h2v.s4.7dad24034aea from=translated src=- shape=6991dd27 vocab=eb019738
+-/
 theorem finiteShiftGridTileIndex_surjective (depth : ℕ) (n : ℤ) :
     ∃ shift : Fin 3, ∃ q : ℤ, finiteShiftGridTileIndex shift depth q = n := by
   let z : ℤ := n - 1
@@ -280,7 +310,9 @@ theorem finiteShiftGridTileIndex_surjective (depth : ℕ) (n : ℤ) :
       norm_num [finiteShiftGridTileIndex]
       omega
 
-/-- A tile address has a unique grid label and integer position.-/
+/-- A tile address has a unique grid label and integer position.
+@isnad1 id=and.1h5v.s5.4bb920d6b3f7 from=translated src=- shape=56e2b78d vocab=eb019738
+-/
 theorem finiteShiftGridTileIndex_injective (depth : ℕ)
     {shift shift' : Fin 3} {q q' : ℤ}
     (h : finiteShiftGridTileIndex shift depth q =
@@ -295,7 +327,9 @@ theorem finiteShiftGridTileIndex_injective (depth : ℕ)
       norm_num [finiteShiftGridTileIndex] at h ⊢ <;> omega
 
 /-- The central thirds over all three grids at one depth are pairwise
-disjoint, not merely disjoint up to null boundaries.-/
+disjoint, not merely disjoint up to null boundaries.
+@isnad1 id=pairwise.0h2v.s6.079a5d62e65b from=translated src=- shape=b2851948 vocab=77381d74
+-/
 theorem finiteShiftGridCentralThird_pairwiseDisjoint
     (topScale : ℤ) (depth : ℕ) :
     Pairwise (Disjoint on fun p : Fin 3 × ℤ ↦
@@ -312,7 +346,9 @@ theorem finiteShiftGridCentralThird_pairwiseDisjoint
   exact hne (Prod.ext hs hq)
 
 /-- At every represented scale, the central thirds of the three shifted
-grids cover every real point exactly once.-/
+grids cover every real point exactly once.
+@isnad1 id=existsun.0h3v.s5.54265d9f34fa from=translated src=- shape=18238fe5 vocab=4b0b63c6
+-/
 theorem existsUnique_mem_finiteShiftGridCentralThird
     (topScale : ℤ) (depth : ℕ) (x : ℝ) :
     ∃! p : Fin 3 × ℤ,
@@ -346,6 +382,9 @@ noncomputable def completeDescendantIndices
     (Finset.Icc (q₀ * (2 : ℤ) ^ depth)
       ((q₀ + 1) * (2 : ℤ) ^ depth - 1)).image fun q ↦ (depth, q)
 
+/--
+@isnad1 id=iff.0h4v.s7.9b06aa5e2597 from=translated src=- shape=408149c4 vocab=5cf68de0
+-/
 theorem mem_completeDescendantIndices_iff
     {maxDepth depth : ℕ} {q₀ q : ℤ} :
     (depth, q) ∈ completeDescendantIndices maxDepth q₀ ↔
@@ -362,13 +401,18 @@ theorem mem_completeDescendantIndices_iff
   · rintro ⟨hd, hq⟩
     exact ⟨depth, by omega, q, hq, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s5.7ca1e1d90872 from=translated src=- shape=7840c539 vocab=46953d92
+-/
 theorem root_mem_completeDescendantIndices (maxDepth : ℕ) (q₀ : ℤ) :
     (0, q₀) ∈ completeDescendantIndices maxDepth q₀ := by
   rw [mem_completeDescendantIndices_iff]
   norm_num
 
 /-- Every positive-depth node in the complete finite tree has its Euclidean
-dyadic parent in the same tree.-/
+dyadic parent in the same tree.
+@isnad1 id=mem.2h4v.s6.6a83c1573d60 from=translated src=- shape=0fbe3634 vocab=49f7def7
+-/
 theorem parent_mem_completeDescendantIndices
     {maxDepth depth : ℕ} {q₀ q : ℤ}
     (hmem : (depth, q) ∈ completeDescendantIndices maxDepth q₀)
@@ -402,6 +446,9 @@ noncomputable def completeFiniteShiftGridTree
   exact (completeDescendantIndices maxDepth q₀).image fun p ↦
     finiteShiftGridInterval topScale shift p.1 p.2
 
+/--
+@isnad1 id=mem.0h4v.s5.a1087bfac081 from=translated src=- shape=3b9e4cfb vocab=993f6599
+-/
 theorem root_mem_completeFiniteShiftGridTree
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ) :
     finiteShiftGridInterval topScale shift 0 q₀ ∈

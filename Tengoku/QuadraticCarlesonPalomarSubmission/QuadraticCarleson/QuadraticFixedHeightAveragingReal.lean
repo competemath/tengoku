@@ -28,7 +28,9 @@ noncomputable def realFixedHeightQuadraticMaximal
     ‖∫ t, fixedHeightQuadraticKernel lam.val height lam.property (x - t) * f t‖ₑ
 
 /-- Exact pointwise reduction of the unrestricted real supremum to the
-explicit enumeration of nonzero rational modulations.-/
+explicit enumeration of nonzero rational modulations.
+@isnad1 id=eq.1h2v.s5.d97b4ce5d14f from=translated src=- shape=a11af69a vocab=b4674ad7
+-/
 theorem realFixedHeightQuadraticMaximal_eq_rational (height : ℕ)
     {f : ℝ → ℂ} (hf : LocallyIntegrable f) :
     realFixedHeightQuadraticMaximal height f = rationalFixedHeightQuadraticMaximal height f := by
@@ -43,6 +45,9 @@ theorem realFixedHeightQuadraticMaximal_eq_rational (height : ℕ)
       ‖∫ t, fixedHeightQuadraticKernel lam.val height lam.property (x - t) * f t‖ₑ)
       ⟨rationalModulationSequence n, rationalModulationSequence_ne_zero n⟩
 
+/--
+@isnad1 id=measurab.1h2v.s6.031e12d69591 from=translated src=- shape=3f6cf7fe vocab=76ac1833
+-/
 theorem measurable_realFixedHeightQuadraticMaximal (height : ℕ)
     {f : ℝ → ℂ} (hf : MemLp f 2) :
     Measurable (realFixedHeightQuadraticMaximal height f) := by
@@ -53,7 +58,9 @@ theorem measurable_realFixedHeightQuadraticMaximal (height : ℕ)
 
 /-- The actual fixed-height quadratic maximal `L²` decay estimate over all
 nonzero real modulations, including both signs and every natural height. All
-kernel, oscillation, measurability and maximal-operator inputs are proved.-/
+kernel, oscillation, measurability and maximal-operator inputs are proved.
+@isnad1 id=le.1h2v.s8.df66d2851d92 from=translated src=- shape=06a38380 vocab=20c38b6f
+-/
 theorem realFixedHeightQuadraticMaximal_sq_lintegral_decay
     (height : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     (∫⁻ x, realFixedHeightQuadraticMaximal height f x ^ 2) ≤
@@ -65,7 +72,9 @@ theorem realFixedHeightQuadraticMaximal_sq_lintegral_decay
     height rationalModulationSequence rationalModulationSequence_ne_zero hf
 
 /-- Change of variables to the exact convolution convention used in the
-paper: the dyadic kernel is evaluated at `t` and the input at `x - t`.-/
+paper: the dyadic kernel is evaluated at `t` and the input at `x - t`.
+@isnad1 id=eq.1h4v.s7.90d026022421 from=translated src=- shape=18f67e9b vocab=3569f25e
+-/
 theorem fixedHeightQuadraticKernel_integral_eq_paper
     (height : ℕ) (lam : ℝ) (hlam : lam ≠ 0) (f : ℝ → ℂ) (x : ℝ) :
     (∫ t, fixedHeightQuadraticKernel lam height hlam (x - t) * f t) =
@@ -89,6 +98,9 @@ noncomputable def paperFixedHeightQuadraticMaximal
     ‖∫ t, f (x - t) * (dyadicPsi (oscillatoryScaleIndex lam.val height lam.property) t : ℂ) *
       phase (lam.val * t ^ 2)‖ₑ
 
+/--
+@isnad1 id=eq.0h2v.s4.43ebe3e7abfc from=translated src=- shape=cfc3a55b vocab=1522b806
+-/
 theorem paperFixedHeightQuadraticMaximal_eq_real (height : ℕ) (f : ℝ → ℂ) :
     paperFixedHeightQuadraticMaximal height f = realFixedHeightQuadraticMaximal height f := by
   funext x
@@ -96,6 +108,9 @@ theorem paperFixedHeightQuadraticMaximal_eq_real (height : ℕ) (f : ℝ → ℂ
   intro lam
   rw [fixedHeightQuadraticKernel_integral_eq_paper]
 
+/--
+@isnad1 id=measurab.1h2v.s6.22a1f2c99d05 from=translated src=- shape=3f6cf7fe vocab=481d1434
+-/
 theorem measurable_paperFixedHeightQuadraticMaximal (height : ℕ)
     {f : ℝ → ℂ} (hf : MemLp f 2) :
     Measurable (paperFixedHeightQuadraticMaximal height f) := by
@@ -103,7 +118,9 @@ theorem measurable_paperFixedHeightQuadraticMaximal (height : ℕ)
   exact measurable_realFixedHeightQuadraticMaximal height hf
 
 /-- Fixed-height quadratic maximal `L²` decay in the paper's exact integral
-notation. The modulation supremum is unrestricted and both signs are included.-/
+notation. The modulation supremum is unrestricted and both signs are included.
+@isnad1 id=le.1h2v.s8.511b59168767 from=translated src=- shape=06a38380 vocab=c7e8931d
+-/
 theorem paperFixedHeightQuadraticMaximal_sq_lintegral_decay
     (height : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     (∫⁻ x, paperFixedHeightQuadraticMaximal height f x ^ 2) ≤

@@ -44,7 +44,9 @@ private theorem symmetricAnnulus_constant_integral (ε : ℝ) (c : ℂ) :
     _ = -(∫ x : ℝ, F x) := by rw [hodd, integral_neg]
 
 /-- The constant term cancels on the symmetric annulus, leaving the
-regularized near integral and the unmodified far integral.-/
+regularized near integral and the unmodified far integral.
+@isnad1 id=eq.2h2v.s7.72cbb60ab781 from=translated src=- shape=7e840b3e vocab=75a8d9d6
+-/
 theorem principalValueTruncation_eq_near_add_far {ε : ℝ} (hε : 0 < ε)
     (hε₁ : ε < 1) (f : 𝓢(ℝ, ℂ)) :
     principalValueTruncation ε f =
@@ -85,7 +87,9 @@ theorem principalValueTruncation_eq_near_add_far {ε : ℝ} (hε : 0 < ε)
       horig (integrableOn_principalValueFarIntegrand f), hcancel]
 
 /-- The exact truncation error is the cancelled near integrand integrated
-over the deleted symmetric interval.-/
+over the deleted symmetric interval.
+@isnad1 id=eq.2h2v.s6.8b6efd1a69fe from=translated src=- shape=34152c10 vocab=55b1c5f0
+-/
 theorem principalValuePairing_sub_truncation {ε : ℝ} (hε : 0 < ε)
     (hε₁ : ε < 1) (f : 𝓢(ℝ, ℂ)) :
     principalValuePairing f - principalValueTruncation ε f =
@@ -117,7 +121,9 @@ theorem principalValuePairing_sub_truncation {ε : ℝ} (hε : 0 < ε)
   ring
 
 /-- A quantitative bound for the symmetric principal-value truncation
-error, in terms of the first derivative Schwartz seminorm.-/
+error, in terms of the first derivative Schwartz seminorm.
+@isnad1 id=le.2h2v.s8.f34ecf8068a7 from=translated src=- shape=0999f4de vocab=13ebcdaf
+-/
 theorem norm_principalValueTruncation_sub_pairing_le {ε : ℝ} (hε : 0 < ε)
     (hε₁ : ε < 1) (f : 𝓢(ℝ, ℂ)) :
     ‖principalValueTruncation ε f - principalValuePairing f‖ ≤
@@ -133,7 +139,9 @@ theorem norm_principalValueTruncation_sub_pairing_le {ε : ℝ} (hε : 0 < ε)
       ring
 
 /-- Parissis's direct cancelled pairing is precisely the principal-value
-limit of ordinary integrals with symmetric positive truncation radii.-/
+limit of ordinary integrals with symmetric positive truncation radii.
+@isnad1 id=tendsto.0h1v.s6.31c598297803 from=translated src=- shape=defdcb0c vocab=21ae94d5
+-/
 theorem tendsto_principalValueTruncation (f : 𝓢(ℝ, ℂ)) :
     Tendsto (fun ε : ℝ ↦ principalValueTruncation ε f) (𝓝[>] 0)
       (𝓝 (principalValuePairing f)) := by

@@ -19,6 +19,9 @@ open Set
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=eq.0h1v.s3.4a7e4ed0f3fc from=translated src=- shape=85dfed03 vocab=07cefccc
+-/
 @[simp]
 theorem phase_int (z : ℤ) : phase (z : ℝ) = 1 := by
   rw [phase]
@@ -27,11 +30,16 @@ theorem phase_int (z : ℤ) : phase (z : ℝ) = 1 := by
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.30fa6de4283e from=translated src=- shape=00241260 vocab=bee9d0df
+-/
 @[simp]
 theorem phase_add_int (x : ℝ) (z : ℤ) : phase (x + z) = phase x := by
   rw [phase_add, phase_int, mul_one]
 
-/-- The elementary phase error in the paper's `2π` normalization.-/
+/-- The elementary phase error in the paper's `2π` normalization.
+@isnad1 id=le.0h1v.s5.ff3e5cd089ea from=translated src=- shape=75db0e38 vocab=4bb668a6
+-/
 theorem norm_phase_sub_one_le (x : ℝ) : ‖phase x - 1‖ ≤ 2 * Real.pi * |x| := by
   have h := Real.norm_exp_I_mul_ofReal_sub_one_le (x := 2 * Real.pi * x)
   have heq : phase x = Complex.exp (Complex.I * ((2 * Real.pi * x : ℝ) : ℂ)) := by
@@ -43,6 +51,9 @@ theorem norm_phase_sub_one_le (x : ℝ) : ‖phase x - 1‖ ≤ 2 * Real.pi * |x
     rw [Real.norm_eq_abs, abs_mul, abs_mul, abs_of_pos (by norm_num : (0 : ℝ) < 2),
       abs_of_pos Real.pi_pos])
 
+/--
+@isnad1 id=le.0h2v.s6.0bc945376be4 from=translated src=- shape=2c8a3274 vocab=caf53a73
+-/
 theorem norm_phase_sub_one_le_abs_sub_int (x : ℝ) (z : ℤ) :
     ‖phase x - 1‖ ≤ 2 * Real.pi * |x - z| := by
   have h : phase x = phase (x - z) := by
@@ -50,7 +61,9 @@ theorem norm_phase_sub_one_le_abs_sub_int (x : ℝ) (z : ℤ) :
   rw [h]
   exact norm_phase_sub_one_le _
 
-/-- Integer modulation and a Bohr condition make each phase close to one.-/
+/-- Integer modulation and a Bohr condition make each phase close to one.
+@isnad1 id=le.1h5v.s7.6236fed278ae from=translated src=- shape=523c8cde vocab=3b1cb1fe
+-/
 theorem norm_phase_integer_modulation_sub_one_le {ell : ℤ} {τ δ : ℝ}
     (hδ : torusNorm ((ell : ℝ) * τ) ≤ δ) (k j : ℕ) :
     ‖phase (2 * (ell : ℝ) * j * ((k : ℝ) + τ)) - 1‖ ≤ 4 * Real.pi * j * δ := by
@@ -80,13 +93,18 @@ private theorem shifted_denominator_pos {τ : ℝ} (hτ : τ < 1) (i : ℕ) :
   have hi : (0 : ℝ) ≤ i := Nat.cast_nonneg i
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.1286dd8294c4 from=translated src=- shape=cff29cce vocab=cc0dde0e
+-/
 theorem reciprocalMass_nonneg (n : ℕ) {τ : ℝ} (hτ : τ < 1) :
     0 ≤ reciprocalMass n τ := by
   apply Finset.sum_nonneg
   intro i hi
   exact le_of_lt (one_div_pos.mpr (shifted_denominator_pos hτ i))
 
-/-- Comparison with the ordinary harmonic number, below.-/
+/-- Comparison with the ordinary harmonic number, below.
+@isnad1 id=le.2h2v.s5.c4f5bbd382c4 from=translated src=- shape=c35cef56 vocab=6746721c
+-/
 theorem harmonic_le_reciprocalMass (n : ℕ) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ : τ < 1) :
     (harmonic n : ℝ) ≤ reciprocalMass n τ := by
   simp only [harmonic, Rat.cast_sum, Rat.cast_inv, Rat.cast_add, Rat.cast_one, Rat.cast_natCast,
@@ -95,7 +113,9 @@ theorem harmonic_le_reciprocalMass (n : ℕ) {τ : ℝ} (hτ0 : 0 ≤ τ) (hτ :
   intro i hi
   exact inv_anti₀ (shifted_denominator_pos hτ i) (by linarith)
 
-/-- Comparison with the ordinary harmonic number, above.-/
+/-- Comparison with the ordinary harmonic number, above.
+@isnad1 id=le.1h2v.s5.5fe10b775325 from=translated src=- shape=5eb28ff0 vocab=5d3dd0a6
+-/
 theorem reciprocalMass_le_two_mul_harmonic (n : ℕ) {τ : ℝ} (hτ : τ ≤ 1 / 2) :
     reciprocalMass n τ ≤ 2 * (harmonic n : ℝ) := by
   simp only [harmonic, Rat.cast_sum, Rat.cast_inv, Rat.cast_add, Rat.cast_one, Rat.cast_natCast,
@@ -112,7 +132,9 @@ theorem reciprocalMass_le_two_mul_harmonic (n : ℕ) {τ : ℝ} (hτ : τ ≤ 1 
 noncomputable def weightedPhaseSum (n : ℕ) (τ : ℝ) (z : ℕ → ℂ) : ℂ :=
   ∑ i ∈ Finset.range n, z i / (((i : ℝ) + 1 - τ : ℝ) : ℂ)
 
-/-- The exact phase-error estimate relative to the positive reciprocal mass.-/
+/-- The exact phase-error estimate relative to the positive reciprocal mass.
+@isnad1 id=le.2h4v.s6.98be47348882 from=translated src=- shape=aa653b94 vocab=9c4e8e0f
+-/
 theorem weightedPhaseSum_error_le (n : ℕ) {τ ε : ℝ} (z : ℕ → ℂ)
     (hτ : τ < 1) (hz : ∀ i ∈ Finset.range n, ‖z i - 1‖ ≤ ε) :
     ‖weightedPhaseSum n τ z - (reciprocalMass n τ : ℂ)‖ ≤ ε * reciprocalMass n τ := by
@@ -139,6 +161,9 @@ theorem weightedPhaseSum_error_le (n : ℕ) {τ ε : ℝ} (z : ℕ → ℂ)
       intro i hi
       ring
 
+/--
+@isnad1 id=le.2h4v.s6.793cd966d522 from=translated src=- shape=cc94b5af vocab=71ceb192
+-/
 theorem weightedPhaseSum_norm_ge (n : ℕ) {τ ε : ℝ} (z : ℕ → ℂ)
     (hτ : τ < 1) (hz : ∀ i ∈ Finset.range n, ‖z i - 1‖ ≤ ε) :
     (1 - ε) * reciprocalMass n τ ≤ ‖weightedPhaseSum n τ z‖ := by
@@ -159,7 +184,9 @@ private theorem paper_reciprocal_length_bounds {N k : ℕ}
   exact ⟨hkn, by nlinarith, by nlinarith⟩
 
 /-- The shifted reciprocal sum has logarithmic size throughout the paper's
-index interval; the explicit large-`N` threshold is `100`.-/
+index interval; the explicit large-`N` threshold is `100`.
+@isnad1 id=le.4h3v.s6.2ff1dd494ae5 from=translated src=- shape=594bbd0f vocab=a43c2629
+-/
 theorem reciprocalMass_paper_lower {N k : ℕ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10)
     (hτ0 : 0 ≤ τ) (hτ : τ < 1) :
@@ -176,7 +203,9 @@ theorem reciprocalMass_paper_lower {N k : ℕ} {τ : ℝ}
   have hm := harmonic_le_reciprocalMass (N - k) hτ0 hτ
   linarith
 
-/-- The matching logarithmic upper bound controls the total phase error.-/
+/-- The matching logarithmic upper bound controls the total phase error.
+@isnad1 id=le.3h3v.s7.908f2c11a229 from=translated src=- shape=0c269b9e vocab=3b49615d
+-/
 theorem reciprocalMass_paper_upper {N k : ℕ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10) (hτ : τ ≤ 1 / 2) :
     reciprocalMass (N - k) τ ≤ 2 * (1 + Real.log N) := by
@@ -191,10 +220,16 @@ theorem reciprocalMass_paper_upper {N k : ℕ} {τ : ℝ}
 /-- The explicit phase error furnished by the paper's Bohr radius.-/
 noncomputable def paperPhaseError : ℝ := 4 * Real.pi / (2 : ℝ) ^ 100
 
+/--
+@isnad1 id=le.0h0v.s3.ebea5c26d42d from=translated src=- shape=ff3a10fc vocab=fd4e63fb
+-/
 theorem paperPhaseError_nonneg : 0 ≤ paperPhaseError := by
   unfold paperPhaseError
   positivity
 
+/--
+@isnad1 id=le.0h0v.s4.874d77d445af from=translated src=- shape=0efb1284 vocab=f3390c5f
+-/
 theorem paperPhaseError_le_half : paperPhaseError ≤ 1 / 2 := by
   unfold paperPhaseError
   apply (div_le_iff₀ (by positivity)).mpr
@@ -202,6 +237,9 @@ theorem paperPhaseError_le_half : paperPhaseError ≤ 1 / 2 := by
   have hpow : (32 : ℝ) ≤ 2 ^ 100 := by norm_num
   nlinarith
 
+/--
+@isnad1 id=le.3h5v.s7.11e70119b461 from=translated src=- shape=9008a644 vocab=cce2e79e
+-/
 theorem norm_paper_phase_sub_one_le {N k j : ℕ} {ell : ℤ} {τ : ℝ}
     (hN : 0 < N) (hj : j ≤ N)
     (hbohr : torusNorm ((ell : ℝ) * τ) ≤ 1 / ((2 : ℝ) ^ 100 * N)) :
@@ -268,18 +306,26 @@ private theorem harmonicPhaseSum_eq_shifted {N k : ℕ} (hkn : k ≤ N) (ell : �
       (fun i => phase (2 * (ell : ℝ) * (k + i + 1 : ℕ) * ((k : ℝ) + τ)))) := by
   rw [harmonicPhaseSum, sum_paper_denominator_eq hkn, mul_neg]
 
+/--
+@isnad1 id=eq.1h3v.s5.0ffba6af8b08 from=translated src=- shape=69381d0f vocab=88c2537b
+-/
 theorem harmonicReciprocalSum_eq {N k : ℕ} (hkn : k ≤ N) (τ : ℝ) :
     harmonicReciprocalSum N k τ = -((reciprocalMass (N - k) τ / N : ℝ) : ℂ) := by
   rw [harmonicReciprocalSum, sum_paper_denominator_eq hkn, weightedPhaseSum_one]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.2h3v.s5.d6b33b425021 from=translated src=- shape=f1732456 vocab=b7b3a91c
+-/
 theorem norm_harmonicReciprocalSum {N k : ℕ} {τ : ℝ} (hkn : k ≤ N) (hτ : τ < 1) :
     ‖harmonicReciprocalSum N k τ‖ = reciprocalMass (N - k) τ / N := by
   rw [harmonicReciprocalSum_eq hkn, norm_neg, Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg (div_nonneg (reciprocalMass_nonneg _ hτ) (Nat.cast_nonneg N))]
 
-/-- The normalized reciprocal sum alone is at least `(log N)/(2N)`.-/
+/-- The normalized reciprocal sum alone is at least `(log N)/(2N)`.
+@isnad1 id=le.4h3v.s6.bb0217b6f905 from=translated src=- shape=7e35be8e vocab=58812a61
+-/
 theorem harmonicReciprocalSum_norm_ge {N k : ℕ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10)
     (hτ0 : 0 ≤ τ) (hτ : τ < 1) :
@@ -291,7 +337,9 @@ theorem harmonicReciprocalSum_norm_ge {N k : ℕ} {τ : ℝ}
     _ ≤ reciprocalMass (N - k) τ / N :=
       div_le_div_of_nonneg_right (reciprocalMass_paper_lower hN hk hτ0 hτ) (Nat.cast_nonneg N)
 
-/-- The normalized phase error, before invoking the logarithmic upper bound.-/
+/-- The normalized phase error, before invoking the logarithmic upper bound.
+@isnad1 id=le.4h4v.s7.4452fddc623f from=translated src=- shape=94290894 vocab=48251d81
+-/
 theorem harmonicPhaseSum_error_relative {N k : ℕ} {ell : ℤ} {τ : ℝ}
     (hN : 0 < N) (hkn : k ≤ N) (hτ : τ < 1)
     (hbohr : torusNorm ((ell : ℝ) * τ) ≤ 1 / ((2 : ℝ) ^ 100 * N)) :
@@ -324,7 +372,9 @@ private theorem one_le_log_of_paper_large {N : ℕ} (hN : 100 ≤ N) :
   simpa only [Real.log_exp] using h
 
 /-- An explicit version of the paper's `O(2⁻⁹⁹ log(N)/N)` phase error.
-The displayed coefficient is `8π · 2⁻⁹⁹`.-/
+The displayed coefficient is `8π · 2⁻⁹⁹`.
+@isnad1 id=le.4h4v.s7.161631f8eb07 from=translated src=- shape=8ab8bf67 vocab=debb0a7c
+-/
 theorem harmonicPhaseSum_error_le {N k : ℕ} {ell : ℤ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10) (hτ : τ ≤ 1 / 2)
     (hbohr : torusNorm ((ell : ℝ) * τ) ≤ 1 / ((2 : ℝ) ^ 100 * N)) :
@@ -348,7 +398,9 @@ theorem harmonicPhaseSum_error_le {N k : ℕ} {ell : ℤ} {τ : ℝ}
 
 /-- The almost constant phases retain a fixed fraction of the harmonic
 lower bound. This applies throughout `3N/5 ≤ k ≤ 7N/10`; only the upper
-endpoint is needed by the estimate itself.-/
+endpoint is needed by the estimate itself.
+@isnad1 id=le.4h4v.s7.25936444b292 from=translated src=- shape=67c476a6 vocab=3f1791d7
+-/
 theorem harmonicPhaseSum_norm_ge {N k : ℕ} {ell : ℤ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10)
     (hτ : τ ∈ Ico (1 / 4 : ℝ) (1 / 2 : ℝ))
@@ -375,7 +427,9 @@ theorem harmonicPhaseSum_norm_ge {N k : ℕ} {ell : ℤ} {τ : ℝ}
     _ ≤ ‖harmonicPhaseSum N k ell τ‖ := by linarith
 
 /-- Direct specialization to membership in the localized Bohr set, covering
-in particular every dyadic modulation `ell = 2^r`.-/
+in particular every dyadic modulation `ell = 2^r`.
+@isnad1 id=le.3h4v.s7.f3917a92ab8c from=translated src=- shape=f18fece1 vocab=fdaa45d1
+-/
 theorem harmonicPhaseSum_norm_ge_of_mem_bohrSet {N k ell : ℕ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : (k : ℝ) ≤ 7 * (N : ℝ) / 10)
     (hτ : τ ∈ bohrSet ell (1 / ((2 : ℝ) ^ 100 * N))) :
@@ -383,7 +437,9 @@ theorem harmonicPhaseSum_norm_ge_of_mem_bohrSet {N k ell : ℕ} {τ : ℝ}
   exact harmonicPhaseSum_norm_ge hN hk hτ.1 (by simpa using hτ.2)
 
 /-- Including the possible endpoint `j=k` changes the normalized sum by at
-most `4/N`, accounting for the paper's first `O(1/N)` term.-/
+most `4/N`, accounting for the paper's first `O(1/N)` term.
+@isnad1 id=le.2h4v.s7.1f70269999b9 from=translated src=- shape=5f18a8c7 vocab=0bd24073
+-/
 theorem harmonicPhaseSum_endpoint_error_le {N k : ℕ} (ell : ℤ) {τ : ℝ}
     (hkn : k ≤ N) (hτ : 1 / 4 ≤ τ) :
     ‖((1 / (N : ℂ)) * ∑ j ∈ Finset.Icc k N,

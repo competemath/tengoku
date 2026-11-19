@@ -31,7 +31,9 @@ set_option autoImplicit false
 
 /-- The concrete positive-half unit-quadratic kernel has uniformly bounded
 `L¹` action on bounded inputs.  This is the trivial endpoint immediately
-following the oscillatory estimate (2.4) in KL18.-/
+following the oscillatory estimate (2.4) in KL18.
+@isnad1 id=le.2h5v.s5.3e9fb9752f0b from=translated src=- shape=6e7077a1 vocab=13e72084
+-/
 theorem norm_krauseLaceyLocalizedPiece_le
     (j : ℤ) (I : RealInterval) (f : ℝ → ℂ) {M : ℝ} (hM : 0 ≤ M)
     (hf : ∀ t, ‖f t‖ ≤ M) (x : ℝ) :
@@ -89,7 +91,9 @@ theorem norm_krauseLaceyLocalizedPiece_le
 
 /-- Fixed-scale localized `L∞` endpoint.  The exact scale relation supplies
 support in each parent interval, and pairwise-disjoint parents ensure that at
-most one localized output is nonzero at a point.-/
+most one localized output is nonzero at a point.
+@isnad1 id=le.4h5v.s7.e93041cf80a0 from=translated src=- shape=ef45ea01 vocab=caea5d6f
+-/
 theorem norm_krauseLaceyFixedScaleLocalizedSum_le
     (j : ℤ) (S : Finset RealInterval) (f : ℝ → ℂ) {M : ℝ} (hM : 0 ≤ M)
     (hf : ∀ t, ‖f t‖ ≤ M)
@@ -132,6 +136,9 @@ noncomputable def krauseLaceyFiniteScaleMaximal
     (f : ℝ → ℂ) (x : ℝ) : ℝ :=
   ⨆ i, ‖krauseLaceyFixedScaleLocalizedSum (j i) (S i) f x‖
 
+/--
+@isnad1 id=le.4h6v.s7.1c1ed2a67f6f from=translated src=- shape=42ae1b61 vocab=7b95f8c2
+-/
 theorem krauseLaceyFiniteScaleMaximal_le
     {n : ℕ} (j : Fin (n + 1) → ℤ) (S : Fin (n + 1) → Finset RealInterval)
     (f : ℝ → ℂ) {M : ℝ} (hM : 0 ≤ M) (hf : ∀ t, ‖f t‖ ≤ M)
@@ -148,7 +155,9 @@ theorem krauseLaceyFiniteScaleMaximal_le
 /-- The two rigorously available endpoints for the fixed-scale operator,
 packaged in the exact form preceding interpolation in KL18 Proposition 4.1.
 The first component is the trivial `L∞` endpoint; the second is the
-oscillatory squared-`L²` endpoint from (2.4).-/
+oscillatory squared-`L²` endpoint from (2.4).
+@isnad1 id=and.5h4v.s8.47e1aaa30353 from=translated src=- shape=166cb0e4 vocab=f3384c01
+-/
 theorem krauseLaceyFixedScale_endpoints
     (j : ℤ) (S : Finset RealInterval) {f : ℝ → ℂ} (hf2 : MemLp f 2)
     {M : ℝ} (hM : 0 ≤ M) (hfTop : ∀ t, ‖f t‖ ≤ M)

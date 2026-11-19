@@ -28,6 +28,9 @@ open LacunaryMiddleFinalSummation
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=le.1h1v.s7.7b2620c094b3 from=translated src=- shape=9bfd1d88 vocab=5161914e
+-/
 theorem tsum_lintegral_enorm_lacunaryStoppingLevels_le
     {f : ℝ → ℂ} (hf : Measurable f) :
     (∑' k : ℕ, ∫⁻ x, ‖lacunaryStoppingLevelBadPart f k x‖ₑ) ≤
@@ -35,6 +38,9 @@ theorem tsum_lintegral_enorm_lacunaryStoppingLevels_le
   simpa only [tsum_lintegral_enorm_stoppingScaleLevelBadPart hf,
     lacunaryStoppingLevelBadPart] using tsum_lacunary_scale_level_L1Mass_le hf
 
+/--
+@isnad1 id=lt.3h3v.s7.768fe10b3a63 from=translated src=- shape=7cfd6c55 vocab=225bd7d7
+-/
 theorem tsum_lintegral_enorm_highPass_lacunaryStoppingLevels_lt_top
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
@@ -62,7 +68,9 @@ theorem tsum_lintegral_enorm_highPass_lacunaryStoppingLevels_lt_top
       (ENNReal.mul_lt_top (by finiteness) hfi.hasFiniteIntegral)))
 
 /-- Actual Bochner interchange for the canonical lacunary magnitude atoms,
-at every point and every nonzero modulation.-/
+at every point and every nonzero modulation.
+@isnad1 id=eq.3h3v.s6.85cdbd10839d from=translated src=- shape=f5d1ed96 vocab=5607bfb0
+-/
 theorem paperOscillatoryAction_stoppingBadPart_eq_tsum_lacunaryLevels
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
@@ -82,7 +90,9 @@ theorem paperOscillatoryAction_stoppingBadPart_eq_tsum_lacunaryLevels
     (tsum_lintegral_enorm_highPass_lacunaryStoppingLevels_lt_top hf hfi lam hlam x).ne
 
 /-- The exact complete low contribution and strict high tail dominate the
-actual lacunary oscillatory maximal action of the canonical bad part.-/
+actual lacunary oscillatory maximal action of the canonical bad part.
+@isnad1 id=le.2h3v.s6.2dd1d0d05d7d from=translated src=- shape=b2cf118f vocab=ca970f14
+-/
 theorem paperLacunaryOscillatoryMaximal_stoppingBadPart_le_low_add_high
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (B : ℕ → ℕ) (x : ℝ) :
@@ -112,6 +122,9 @@ theorem paperLacunaryOscillatoryMaximal_stoppingBadPart_le_low_add_high
         (dyadicPsi (oscillatoryScaleIndex ((2 : ℝ) ^ m) (B k+n+1)
           (zpow_pos (by norm_num) m).ne') t : ℂ) * phase ((2 : ℝ) ^ m*t^2)‖ₑ) m
 
+/--
+@isnad1 id=le.0h1v.s7.74f8234176bf from=translated src=- shape=f4926b34 vocab=aac2bc27
+-/
 theorem lintegral_lacunaryHighOrlicz_le_lowOrlicz (f : ℝ → ℂ) :
     (∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 2 ‖f x‖ ^ 2)) ≤
       ∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 2 ‖f x‖ ^ 2 * paperLog 4 ‖f x‖) := by
@@ -124,12 +137,17 @@ theorem lintegral_lacunaryHighOrlicz_le_lowOrlicz (f : ℝ → ℂ) :
 noncomputable def lacunaryBadEndpointConstant (C : ℝ) : ℝ≥0∞ :=
   lacunaryLowEndpointConstant C + lacunaryHighEndpointConstant
 
+/--
+@isnad1 id=lt.0h1v.s3.ae6cca33b637 from=translated src=- shape=d551a7c0 vocab=309c3d12
+-/
 theorem lacunaryBadEndpointConstant_lt_top (C : ℝ) : lacunaryBadEndpointConstant C < ∞ :=
   ENNReal.add_lt_top.mpr ⟨lacunaryLowEndpointConstant_lt_top C,
     lacunaryHighEndpointConstant_lt_top⟩
 
 /-- Both estimated bad-part contributions are combined at the universal
-threshold two, exactly reflecting the source's `≳ 1` formulation.-/
+threshold two, exactly reflecting the source's `≳ 1` formulation.
+@isnad1 id=le.4h3v.s7.0fd110d41c10 from=translated src=- shape=3a5d1510 vocab=9ce988de
+-/
 theorem stoppingBadPart_lacunaryOscillatory_levelSet_two_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -160,6 +178,9 @@ theorem stoppingBadPart_lacunaryOscillatory_levelSet_two_le_orlicz
       centeredStoppingIntervals_pairwiseDisjoint).trans
         (mul_le_mul' le_rfl (lintegral_lacunaryHighOrlicz_le_lowOrlicz f))
 
+/--
+@isnad1 id=le.2h3v.s7.33f4bfeacbbd from=translated src=- shape=b4e69a8c vocab=04b14132
+-/
 theorem paperLacunaryOscillatoryMaximal_add_le
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     paperLacunaryOscillatoryMaximal (f + g) x ≤
@@ -175,6 +196,9 @@ theorem paperLacunaryOscillatoryMaximal_add_le
     (le_iSup (fun m : ℤ ↦
       ‖paperOscillatoryAction (dyadicModulation m) (dyadicModulation_pos m).ne' g x‖ₑ) m)
 
+/--
+@isnad1 id=le.2h2v.s6.451a299c972b from=translated src=- shape=19646c72 vocab=47b9040a
+-/
 theorem paperLacunaryOscillatoryMaximal_le_good_add_bad
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     paperLacunaryOscillatoryMaximal f x ≤
@@ -189,6 +213,9 @@ theorem paperLacunaryOscillatoryMaximal_le_good_add_bad
 noncomputable def lacunaryOscillatoryEndpointConstant (C : ℝ) : ℝ≥0∞ :=
   stoppingGoodOscillatoryConstant + lacunaryBadEndpointConstant C
 
+/--
+@isnad1 id=lt.0h1v.s3.567621091877 from=translated src=- shape=d551a7c0 vocab=10de0808
+-/
 theorem lacunaryOscillatoryEndpointConstant_lt_top (C : ℝ) :
     lacunaryOscillatoryEndpointConstant C < ∞ :=
   ENNReal.add_lt_top.mpr ⟨stoppingGoodOscillatoryConstant_lt_top,
@@ -196,7 +223,9 @@ theorem lacunaryOscillatoryEndpointConstant_lt_top (C : ℝ) :
 
 /-- The original input, its actual all-height lacunary oscillatory operator,
 and the paper's exact Orlicz modular. Threshold three combines the separately
-normalized good, low and high estimates without altering the stopping atoms.-/
+normalized good, low and high estimates without altering the stopping atoms.
+@isnad1 id=le.4h3v.s7.925f9bb08c80 from=translated src=- shape=b3c5ef5a vocab=596b5d11
+-/
 theorem paperLacunaryOscillatoryMaximal_levelSet_three_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -223,6 +252,9 @@ theorem paperLacunaryOscillatoryMaximal_levelSet_three_le_orlicz
       (mul_le_mul' le_rfl (lintegral_enorm_le_lacunaryOrlicz f)))
     (stoppingBadPart_lacunaryOscillatory_levelSet_two_le_orlicz hf hfi hc hblock)
 
+/--
+@isnad1 id=le.1h2v.s7.7ff4a9e846f5 from=translated src=- shape=7947058f vocab=afb2b21d
+-/
 theorem paperLacunaryOscillatoryMaximal_L0Infinity_levelSet_three_le_orlicz
     (f : L0Infinity) {C : ℝ}
     (hblock : HasLogSquaredFrozenBlockWeakBounds f lacunaryHighCutoff 0 C) :

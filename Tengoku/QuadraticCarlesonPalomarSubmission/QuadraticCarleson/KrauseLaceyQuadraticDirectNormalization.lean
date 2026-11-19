@@ -22,7 +22,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- Exact scaling of a local real `p`-mass by a nonnegative real scalar.-/
+/-- Exact scaling of a local real `p`-mass by a nonnegative real scalar.
+@isnad1 id=eq.1h4v.s7.12be7ed76657 from=translated src=- shape=d49500f0 vocab=d1463768
+-/
 theorem integral_norm_rpow_smul
     (c : ℝ) (hc : 0 ≤ c) (f : L0Infinity) (I : RealInterval) (p : ℝ) :
     (∫ x in I.carrier, ‖L0Infinity.smul (c : ℂ) f x‖ ^ p) =
@@ -35,7 +37,9 @@ theorem integral_norm_rpow_smul
   rw [Real.mul_rpow hc (norm_nonneg (f x))]
 
 /-- Normalized local averages are exactly homogeneous under multiplication
-by a positive real scalar.-/
+by a positive real scalar.
+@isnad1 id=eq.2h4v.s5.853b02977583 from=translated src=- shape=15100651 vocab=460d9034
+-/
 theorem localAverage_smul
     (c : ℝ) (hc : 0 < c) (f : L0Infinity) (I : RealInterval)
     (p : ℝ) (hp : 0 < p) :
@@ -87,7 +91,9 @@ private theorem localizedTailAction_smul
       rw [Finset.mul_sum]
 
 /-- The localized maximal tail is exactly homogeneous under complex scalar
-multiplication of its input.-/
+multiplication of its input.
+@isnad1 id=eq.0h6v.s6.842f8fee7585 from=translated src=- shape=647311c9 vocab=067bb70b
+-/
 theorem localizedTailMaximal_smul
     (c : ℂ) (ell₀ : ℤ) (scale : RealInterval → ℤ)
     (S : Finset RealInterval) (f : L0Infinity) (x : ℝ) :

@@ -24,6 +24,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=integrab.0h1v.s5.7303c5fa1868 from=translated src=- shape=5cae27e5 vocab=fcc0a784
+-/
 theorem L0Infinity.integrable_finiteSparseProof (f : L0Infinity) : Integrable f := by
   have hcompact : IsCompact (tsupport f) := f.hasCompactSupport_toFun
   have hfinite : volume (tsupport f) < ∞ := hcompact.measure_lt_top
@@ -50,12 +53,17 @@ noncomputable def setIndicatorL0Infinity (s K : Set ℝ) (hs : MeasurableSet s)
     by_contra hxs
     exact hx (by simp [Set.indicator_of_notMem (fun h ↦ hxs (hsK h))])
 
+/--
+@isnad1 id=eq.3h3v.s5.6027dddbaf47 from=translated src=- shape=cc3f513e vocab=26dfa450
+-/
 @[simp] theorem setIndicatorL0Infinity_apply (s K : Set ℝ) (hs : MeasurableSet s)
     (hK : IsCompact K) (hsK : s ⊆ K) (x : ℝ) :
     setIndicatorL0Infinity s K hs hK hsK x = s.indicator (fun _ ↦ (1 : ℂ)) x := rfl
 
 /-- Any explicit nonnegative weak bound bounds the infimum defining the weak
-operator norm.-/
+operator norm.
+@isnad1 id=le.2h2v.s4.143fab5bc41b from=translated src=- shape=5df6b448 vocab=f2587773
+-/
 theorem weakOneOneNorm_le_of_hasWeakOneOneBound
     {T : L0Infinity → ℝ → ℝ} {C : ℝ} (hC : 0 ≤ C)
     (h : HasWeakOneOneBound C T) : weakOneOneNorm T ≤ C := by
@@ -66,7 +74,9 @@ theorem weakOneOneNorm_le_of_hasWeakOneOneBound
 
 /-- The finite maximum is almost everywhere equal to the maximum formed from
 measurable representatives of the locally integrable outputs.  This is the
-representative bridge needed before applying the measurable selector.-/
+representative bridge needed before applying the measurable selector.
+@isnad1 id=eventual.1h3v.s7.c8e41fe889b9 from=translated src=- shape=a317f00a vocab=7d802658
+-/
 theorem finiteMax_ae_eq_measurable_representatives
     {N : ℕ} (T : Fin N → TestOperator) (f : L0Infinity)
     (hlocal : ∀ j, LocallyIntegrable (T j f) volume) :
@@ -86,7 +96,9 @@ theorem finiteMax_ae_eq_measurable_representatives
 
 /-- Exhausting a measurable superlevel set by compact intervals is enough to
 prove its distribution bound.  This is the direct level-set replacement for
-the restricted weak-type dual characterization quoted in the paper.-/
+the restricted weak-type dual characterization quoted in the paper.
+@isnad1 id=le.3h3v.s7.887e785e3dd5 from=translated src=- shape=93cf7b10 vocab=576cdba6
+-/
 theorem mul_measure_level_le_of_closedBall
     (u : ℝ → ℝ) (hu : Measurable u) {a : ℝ} (ha : 0 < a) (C : ℝ≥0∞)
     (h : ∀ n : ℕ, ENNReal.ofReal a *
@@ -111,7 +123,9 @@ theorem mul_measure_level_le_of_closedBall
 generous: after removing a level set of `M F` and a level set of `M 1_H`, at
 least half of the original finite-measure set remains.  The second removal
 is what ensures that every interval meeting the good set has small density
-of the first exceptional set.-/
+of the first exceptional set.
+@isnad1 id=other.6h2v.s8.05fc9791b971 from=translated src=- shape=4d17e518 vocab=2f294b28
+-/
 theorem centeredMaximal_excision
     (F : ℝ → ℝ≥0∞) (hF : Measurable F)
     (hmassTop : (∫⁻ x, F x) ≠ ∞) (hmassZero : (∫⁻ x, F x) ≠ 0)
@@ -198,7 +212,9 @@ theorem centeredMaximal_excision
 /-- A localized version of the sparse embedding.  Only intervals for which
 the second local average is nonzero need a large major subset; this is the
 form used after restricting the testing function to one leaf of the
-measurable foliation.-/
+measurable foliation.
+@isnad1 id=le.8h7v.s8.dca3c6567e2f from=translated src=- shape=7a8e05bf vocab=05b844a4
+-/
 theorem sparseForm_le_lintegral_on_of_majorSubsets
     {p η : ℝ} {S : Set RealInterval} (hη : 0 < η) (hScount : S.Countable)
     (f g : ℝ → ℂ) (D : Set ℝ) (hD : MeasurableSet D)
@@ -288,7 +304,9 @@ theorem sparseForm_le_lintegral_on_of_majorSubsets
       · exact fun _ ↦ bot_le
 
 /-- The exponent-one local average of a characteristic function is the
-relative Lebesgue measure of the set in the interval.-/
+relative Lebesgue measure of the set in the interval.
+@isnad1 id=eq.1h2v.s6.6ff97b8fb1e2 from=translated src=- shape=10f4fd90 vocab=456f9103
+-/
 theorem localAverage_one_indicator (H : Set ℝ) (hH : MeasurableSet H)
     (I : RealInterval) :
     localAverage 1 (H.indicator fun _ ↦ (1 : ℂ)) I =
@@ -314,7 +332,9 @@ theorem localAverage_one_indicator (H : Set ℝ) (hH : MeasurableSet H)
   field_simp
 
 /-- A nonzero local average of an indicator forces the interval to meet the
-indicated set.-/
+indicated set.
+@isnad1 id=ex.2h3v.s6.526359ed5258 from=translated src=- shape=dedf1378 vocab=599388c9
+-/
 theorem exists_mem_carrier_inter_of_localAverage_indicator_ne_zero
     {p : ℝ} (hp : 0 < p) (G : Set ℝ) (I : RealInterval)
     (havg : localAverage p (G.indicator fun _ ↦ (1 : ℂ)) I ≠ 0) :
@@ -337,7 +357,9 @@ theorem exists_mem_carrier_inter_of_localAverage_indicator_ne_zero
 
 /-- Outside the second exceptional set, every interval through the point has
 at most one eighth of its length in the first exceptional set.  The factor
-four is exactly the uncentered-to-centered interval comparison.-/
+four is exactly the uncentered-to-centered interval comparison.
+@isnad1 id=le.3h3v.s7.c47c87e99830 from=translated src=- shape=7060c4fa vocab=57cadfd1
+-/
 theorem interval_indicator_density_le_eighth_of_maximal_le
     (H : Set ℝ) (hH : MeasurableSet H) (I : RealInterval) {x : ℝ}
     (hx : x ∈ I.carrier)
@@ -373,7 +395,9 @@ theorem interval_indicator_density_le_eighth_of_maximal_le
 
 /-- Cutting the original `1/4`-sparse major subsets by the first exceptional
 set leaves `1/8`-major subsets whenever every contributing interval meets the
-second good set.-/
+second good set.
+@isnad1 id=le.3h5v.s7.455ce7cccb1b from=translated src=- shape=32f39f11 vocab=a6c7f698
+-/
 theorem sparseForm_le_eight_lintegral_off_exceptional
     {p : ℝ} {S : Set RealInterval} (hS : IsSparse (1 / 4) S)
     (f g : ℝ → ℂ) (H : Set ℝ) (hH : MeasurableSet H)
@@ -428,7 +452,9 @@ theorem sparseForm_le_eight_lintegral_off_exceptional
 
 /-- The weak `(1,1)` maximal estimate integrated only below a finite level.
 This is the layer-cake estimate used for the first Hölder factor after
-excision.-/
+excision.
+@isnad1 id=le.4h3v.s7.365d5e626665 from=translated src=- shape=bd0450c1 vocab=d3495eba
+-/
 theorem centeredMaximal_capped_rpow_lintegral_le
     (F : ℝ → ℝ≥0∞) (hF : Measurable F) {b q : ℝ}
     (hmassTop : (∫⁻ y, F y) ≠ ∞) (hb : 0 < b) (hq : 1 < q) :
@@ -544,7 +570,9 @@ theorem centeredMaximal_capped_rpow_lintegral_le
 
 /-- The analytic estimate for one leaf of the maximizing-index foliation.
 The first maximal factor is integrated only off the exceptional set, while
-the second uses the global strong maximal theorem.-/
+the second uses the global strong maximal theorem.
+@isnad1 id=le.6h6v.s9.dc78844ab381 from=translated src=- shape=7143199a vocab=20a639a4
+-/
 theorem sparseForm_foliation_leaf_le
     {p r b : ℝ} (hp : 0 < p) (hr : 1 < r) (hpr : p < r) (hb : 0 < b)
     {S : Set RealInterval} (hS : IsSparse (1 / 4) S)
@@ -634,7 +662,9 @@ theorem sparseForm_foliation_leaf_le
       (one_div_nonneg.mpr (zero_lt_one.trans hr).le)
 
 /-- Pairing the positive operator `|T|` with a measurable characteristic
-function is exactly the integral of `|Tf|` on that set.-/
+function is exactly the integral of `|Tf|` on that set.
+@isnad1 id=eq.3h4v.s6.da0b13ed3467 from=translated src=- shape=39ecf306 vocab=972962f4
+-/
 theorem norm_operatorPairing_absolute_indicator
     (T : TestOperator) (f : L0Infinity) (G K : Set ℝ)
     (hG : MeasurableSet G) (hK : IsCompact K) (hGK : G ⊆ K) :
@@ -655,6 +685,9 @@ theorem norm_operatorPairing_absolute_indicator
     exact integral_complex_ofReal
   rw [heq, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hnonneg]
 
+/--
+@isnad1 id=eq.4h3v.s7.5677dd1d9cac from=translated src=- shape=870bc473 vocab=f1527618
+-/
 theorem lintegral_enorm_setIndicator_rpow
     (G K : Set ℝ) (hG : MeasurableSet G) (hK : IsCompact K) (hGK : G ⊆ K)
     {r : ℝ} (hr : 0 < r) :
@@ -674,12 +707,18 @@ noncomputable def maximizingFoliationSet (n : ℕ) (R : Fin (n + 1) → ℝ → 
     (G : Set ℝ) (j : Fin (n + 1)) : Set ℝ :=
   G ∩ measurableMaximizingIndex n R ⁻¹' {j}
 
+/--
+@isnad1 id=measurab.2h4v.s6.01572f2c22ad from=translated src=- shape=921c00fd vocab=1c66efb8
+-/
 theorem measurableSet_maximizingFoliationSet
     (n : ℕ) (R : Fin (n + 1) → ℝ → ℂ) (hR : ∀ j, Measurable (R j))
     (G : Set ℝ) (hG : MeasurableSet G) (j : Fin (n + 1)) :
     MeasurableSet (maximizingFoliationSet n R G j) :=
   hG.inter ((measurable_measurableMaximizingIndex n R hR) (measurableSet_singleton j))
 
+/--
+@isnad1 id=pairwise.0h3v.s6.c73d4db93ce0 from=translated src=- shape=8d8fa49c vocab=f478f0f3
+-/
 theorem pairwise_disjoint_maximizingFoliationSet
     (n : ℕ) (R : Fin (n + 1) → ℝ → ℂ) (G : Set ℝ) :
     Pairwise fun i j ↦ Disjoint (maximizingFoliationSet n R G i)
@@ -691,6 +730,9 @@ theorem pairwise_disjoint_maximizingFoliationSet
   have hj : measurableMaximizingIndex n R x = j := hxj.2
   exact hij (hi.symm.trans hj)
 
+/--
+@isnad1 id=eq.0h3v.s6.c22af316ad1d from=translated src=- shape=091df5c7 vocab=e5ae5412
+-/
 theorem iUnion_maximizingFoliationSet
     (n : ℕ) (R : Fin (n + 1) → ℝ → ℂ) (G : Set ℝ) :
     ⋃ j, maximizingFoliationSet n R G j = G := by
@@ -703,7 +745,9 @@ theorem iUnion_maximizingFoliationSet
     exact Set.mem_iUnion.mpr
       ⟨measurableMaximizingIndex n R x, ⟨hx, rfl⟩⟩
 
-/-- Measure summation for the measurable maximizing foliation.-/
+/-- Measure summation for the measurable maximizing foliation.
+@isnad1 id=eq.2h3v.s7.e5b23f0df134 from=translated src=- shape=188902f1 vocab=f79e51f5
+-/
 theorem sum_volume_maximizingFoliationSet
     (n : ℕ) (R : Fin (n + 1) → ℝ → ℂ) (hR : ∀ j, Measurable (R j))
     (G : Set ℝ) (hG : MeasurableSet G) :
@@ -717,7 +761,9 @@ theorem sum_volume_maximizingFoliationSet
     _ = volume G := by rw [iUnion_maximizingFoliationSet]
 
 /-- ENNReal form of the finite-dimensional Hölder estimate for a measurable
-foliation.-/
+foliation.
+@isnad1 id=le.4h4v.s8.57936392a5bc from=translated src=- shape=cfe0ff71 vocab=a245c78a
+-/
 theorem sum_volume_rpow_maximizingFoliationSet_le
     (n : ℕ) (R : Fin (n + 1) → ℝ → ℂ) (hR : ∀ j, Measurable (R j))
     (G : Set ℝ) (hG : MeasurableSet G) (hGtop : volume G ≠ ∞)
@@ -749,7 +795,9 @@ theorem sum_volume_rpow_maximizingFoliationSet_le
     exact Real.rpow_nonneg MeasureTheory.measureReal_nonneg _
 
 /-- One foliated characteristic-function leaf, with all dependence on its
-measure factored into the final `|G|^(1/r)` term.-/
+measure factored into the final `|G|^(1/r)` term.
+@isnad1 id=le.9h7v.s9.9e4c412ec2b5 from=translated src=- shape=72331341 vocab=cc79f54d
+-/
 theorem sparseForm_indicator_leaf_le_factored
     {p r b : ℝ} (hp : 0 < p) (hr : 1 < r) (hpr : p < r) (hb : 0 < b)
     {S : Set RealInterval} (hS : IsSparse (1 / 4) S)
@@ -784,6 +832,9 @@ noncomputable def measurableFiniteMaxRep {N : ℕ} (T : Fin N → TestOperator)
     (f : L0Infinity) (hlocal : ∀ j, LocallyIntegrable (T j f) volume) (x : ℝ) : ℝ :=
   ↑(Finset.univ.sup fun j ↦ ‖(hlocal j).aestronglyMeasurable.mk (T j f) x‖₊)
 
+/--
+@isnad1 id=measurab.1h3v.s6.8e2de9fa446c from=translated src=- shape=167bf417 vocab=fccf3329
+-/
 theorem measurable_measurableFiniteMaxRep {N : ℕ} (T : Fin N → TestOperator)
     (f : L0Infinity) (hlocal : ∀ j, LocallyIntegrable (T j f) volume) :
     Measurable (measurableFiniteMaxRep T f hlocal) := by
@@ -791,12 +842,17 @@ theorem measurable_measurableFiniteMaxRep {N : ℕ} (T : Fin N → TestOperator)
   unfold measurableFiniteMaxRep
   fun_prop
 
+/--
+@isnad1 id=eventual.1h3v.s6.769b0957d0a3 from=translated src=- shape=35b7814a vocab=8adb8889
+-/
 theorem finiteMax_ae_eq_measurableFiniteMaxRep {N : ℕ} (T : Fin N → TestOperator)
     (f : L0Infinity) (hlocal : ∀ j, LocallyIntegrable (T j f) volume) :
     finiteMax T f =ᵐ[volume] measurableFiniteMaxRep T f hlocal :=
   finiteMax_ae_eq_measurable_representatives T f hlocal
 
-/-- The full compact-level aggregation before numerical simplification.-/
+/-- The full compact-level aggregation before numerical simplification.
+@isnad1 id=other.13h10v.s9.55978920d3d7 from=translated src=- shape=2a3d00b6 vocab=d5eaeb86
+-/
 theorem finiteMaxRep_compact_level_bound
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A)
@@ -966,18 +1022,27 @@ theorem finiteMaxRep_compact_level_bound
           (one_div_nonneg.mpr (zero_lt_one.trans hr).le)
       · exact Real.rpow_nonneg (Nat.cast_nonneg _) _
 
+/--
+@isnad1 id=eq.1h1v.s5.d7cedec1ddb4 from=translated src=- shape=849d1b3a vocab=366aacb9
+-/
 theorem holderConjugate_sub_one_div {r : ℝ} (hr : 1 < r) :
     (holderConjugate r - 1) / holderConjugate r = 1 / r := by
   rw [holderConjugate]
   field_simp [ne_of_gt (zero_lt_one.trans hr), ne_of_gt (sub_pos.mpr hr)]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.7351ffa77e52 from=translated src=- shape=3403bcb0 vocab=366aacb9
+-/
 theorem holderConjugate_ratio {r : ℝ} (hr : 1 < r) :
     holderConjugate r / (holderConjugate r - 1) = r := by
   rw [holderConjugate]
   field_simp [ne_of_gt (zero_lt_one.trans hr), ne_of_gt (sub_pos.mpr hr)]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.9bfd5aa1ac56 from=translated src=- shape=02bdb541 vocab=a2177958
+-/
 theorem inv_holderConjugate_add_inv {r : ℝ} (hr : 1 < r) :
     1 / holderConjugate r + 1 / r = 1 := by
   simpa [one_div, add_comm] using (holderConjugate_spec hr).inv_add_inv_eq_one
@@ -992,7 +1057,9 @@ noncomputable def finiteSparseRawFactor (p r : ℝ) : ℝ :=
     (2048 : ℝ) ^ (1 / r)
 
 /-- Exact cancellation of the compact level-set measure against the chosen
-threshold `b = 2048 mass / |E|`.-/
+threshold `b = 2048 mass / |E|`.
+@isnad1 id=other.8h5v.s8.4e221f7831ad from=translated src=- shape=1da43bc5 vocab=ffd52757
+-/
 theorem finiteSparse_common_normalization
     {p r : ℝ} (hp : 1 < p) (hr : 1 < r) (hpr : p < r) (m e : ℝ≥0∞)
     (hm0 : m ≠ 0) (hmt : m ≠ ∞) (he0 : e ≠ 0) (het : e ≠ ∞)
@@ -1107,7 +1174,9 @@ theorem finiteSparse_common_normalization
 /-- The constants generated by the two maximal-function excisions are
 controlled by the four-factor expression already optimized in
 `FiniteSparseMaximal`.  The numerical constant is deliberately coarse and
-universal.-/
+universal.
+@isnad1 id=le.4h2v.s7.b645928e37c2 from=translated src=- shape=a39884ba vocab=0329a6e2
+-/
 theorem finiteSparseRawFactor_le
     {p r : ℝ} (hp : 1 < p) (hr : 1 < r) (hpr : p < r) (hr4 : r ≤ 4) :
     finiteSparseRawFactor p r ≤
@@ -1227,7 +1296,9 @@ theorem finiteSparseRawFactor_le
           (r / (r - p)) ^ (1 / p) := by norm_num; ring
 
 /-- The compact-level estimate after the exact normalization has been
-performed.-/
+performed.
+@isnad1 id=le.13h10v.s8.eff685603c68 from=translated src=- shape=1f48f3f1 vocab=598e2752
+-/
 theorem finiteMaxRep_compact_level_bound_normalized
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A)
@@ -1292,6 +1363,9 @@ theorem finiteMaxRep_compact_level_bound_normalized
       dsimp only [mass]
       ring
 
+/--
+@isnad1 id=le.6h5v.s7.0fbcb8b09017 from=translated src=- shape=9fba0a38 vocab=edfa7b06
+-/
 theorem finiteSparse_normalized_factor_le
     {N : ℕ} {A p r ε : ℝ} (hA : 0 ≤ A) (hp : 1 < p) (hr : 1 < r)
     (hpr : p < r) (hr4 : r ≤ 4) (hε : 0 < ε) :
@@ -1341,7 +1415,9 @@ theorem finiteSparse_normalized_factor_le
           (N : ℝ) ^ (1 / holderConjugate r)) := by norm_num; ring
 
 /-- Compact superlevels satisfy the optimized bound, with a positive slack
-only in the sparse-norm coefficient.-/
+only in the sparse-norm coefficient.
+@isnad1 id=le.14h10v.s8.72916d3790a6 from=translated src=- shape=61c54fdf vocab=b557bb45
+-/
 theorem finiteMaxRep_compact_level_bound_optimized
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A)
@@ -1421,6 +1497,9 @@ theorem finiteMaxRep_compact_level_bound_optimized
         (mul_nonneg (by positivity) (add_nonneg hT.1 hε.le)) hfiniteFactor0),
         ENNReal.ofReal_toReal hmassTop]
 
+/--
+@isnad1 id=eq.1h2v.s5.601a3a01ef77 from=translated src=- shape=1d7146e4 vocab=cbf17935
+-/
 theorem localAverage_one_eq_zero_of_ae_eq_zero
     {f : ℝ → ℂ} (hf : f =ᵐ[volume] 0) (I : RealInterval) :
     localAverage 1 f I = 0 := by
@@ -1440,6 +1519,9 @@ theorem localAverage_one_eq_zero_of_ae_eq_zero
   rw [hint]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.2a233c96f5ac from=translated src=- shape=67819387 vocab=518461da
+-/
 theorem sparseForm_eq_zero_of_ae_eq_zero
     {p : ℝ} {f : ℝ → ℂ} (hf : f =ᵐ[volume] 0) (g : ℝ → ℂ)
     (S : Set RealInterval) : sparseForm p f g S = 0 := by
@@ -1451,7 +1533,9 @@ theorem sparseForm_eq_zero_of_ae_eq_zero
 
 /-- Zero input mass forces every member of a finite sparse-bounded family to
 vanish almost everywhere.  This treats the normalization-degenerate case
-without dividing by the mass.-/
+without dividing by the mass.
+@isnad1 id=eventual.2h4v.s6.a5b04732aa85 from=translated src=- shape=a5d47536 vocab=dca09e94
+-/
 theorem finiteMaxRep_ae_eq_zero_of_mass_zero
     {N : ℕ} (T : Fin N → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A) (f : L0Infinity)
@@ -1508,6 +1592,9 @@ theorem finiteMaxRep_ae_eq_zero_of_mass_zero
   unfold measurableFiniteMaxRep
   simp [hx]
 
+/--
+@isnad1 id=le.8h8v.s8.b492817d55b7 from=translated src=- shape=cb08d1dc vocab=fb99f82c
+-/
 theorem finiteMaxRep_level_bound_optimized
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A)
@@ -1556,11 +1643,17 @@ theorem finiteMaxRep_level_bound_optimized
 noncomputable def finiteSparseMaximalUniversalConstant : ℝ :=
   (2 : ℝ) ^ 37 * 50 * Real.exp 3
 
+/--
+@isnad1 id=lt.0h0v.s3.514741b92412 from=translated src=- shape=ff3a10fc vocab=3960f754
+-/
 theorem finiteSparseMaximalUniversalConstant_pos :
     0 < finiteSparseMaximalUniversalConstant := by
   unfold finiteSparseMaximalUniversalConstant
   positivity
 
+/--
+@isnad1 id=le.3h6v.s8.a897087c48bf from=translated src=- shape=6df6cb01 vocab=5c07f3f5
+-/
 theorem finiteMaxRep_level_bound_logarithmic_add
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A) {ε a : ℝ}
@@ -1603,6 +1696,9 @@ theorem finiteMaxRep_level_bound_logarithmic_add
         _ = (2 : ℝ) ^ 37 * 50 * Real.exp 3 * (A + ε) *
             paperLog 1 (n + 1) ^ 2 := by ring
 
+/--
+@isnad1 id=le.2h5v.s7.7d46d7bb6fdc from=translated src=- shape=3d59158f vocab=5c07f3f5
+-/
 theorem finiteMaxRep_level_bound_logarithmic
     (n : ℕ) (T : Fin (n + 1) → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A) {a : ℝ} (ha : 0 < a)
@@ -1637,7 +1733,9 @@ theorem finiteMaxRep_level_bound_logarithmic
 
 /-- Operational form of paper Lemma `l:weak11sparse`: the finite maximum
 itself, rather than merely the infimum defining its weak norm, satisfies the
-distribution inequality with one universal constant.-/
+distribution inequality with one universal constant.
+@isnad1 id=hasweako.1h3v.s5.b89e03577b47 from=translated src=- shape=05de84a0 vocab=7106342c
+-/
 theorem finiteSparseMaximal_hasWeakOneOneBound
     {N : ℕ} (T : Fin N → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A) :
@@ -1662,7 +1760,9 @@ theorem finiteSparseMaximal_hasWeakOneOneBound
         finiteMaxRep_level_bound_logarithmic n T A hT ha f
 
 /-- Universal operational witness, in a definitionally equivalent form to
-`KrauseLaceyLacunaryBlock.HasFiniteSparseMaximalWeakBound`.-/
+`KrauseLaceyLacunaryBlock.HasFiniteSparseMaximalWeakBound`.
+@isnad1 id=ex.0h0v.s6.360e74df9f7e from=translated src=- shape=f065fd30 vocab=8b6eced3
+-/
 theorem exists_finiteSparseMaximal_hasWeakOneOneBound :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ {N : ℕ} (T : Fin N → TestOperator) (A : ℝ),
       FiniteSparseMaximalHypothesis T A →
@@ -1672,6 +1772,9 @@ theorem exists_finiteSparseMaximal_hasWeakOneOneBound :
   intro N T A hT
   exact finiteSparseMaximal_hasWeakOneOneBound T A hT
 
+/--
+@isnad1 id=le.1h3v.s6.5716248914a1 from=translated src=- shape=fe179d62 vocab=1562876f
+-/
 theorem finiteSparseMaximal_weakOneOneNorm_le
     {N : ℕ} (T : Fin N → TestOperator) (A : ℝ)
     (hT : FiniteSparseMaximalHypothesis T A) :
@@ -1683,7 +1786,9 @@ theorem finiteSparseMaximal_weakOneOneNorm_le
   · exact finiteSparseMaximal_hasWeakOneOneBound T A hT
 
 /-- Paper Lemma `l:weak11sparse`, including the absolute placement of the
-constant outside all family quantifiers.-/
+constant outside all family quantifiers.
+@isnad1 id=weak11sp.0h0v.s0.89532c17303c from=translated src=- shape=45709ebd vocab=89532c17
+-/
 theorem weak11sparseStatement_proof : weak11sparseStatement := by
   refine ⟨finiteSparseMaximalUniversalConstant,
     finiteSparseMaximalUniversalConstant_pos, ?_⟩

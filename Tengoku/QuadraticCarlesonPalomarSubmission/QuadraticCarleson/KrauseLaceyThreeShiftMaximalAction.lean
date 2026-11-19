@@ -46,6 +46,9 @@ def finitePositiveGlobalTailMaximal
 
 set_option maxHeartbeats 800000 in
 -- Elaborating the parameterized product-kernel integral needs additional reduction budget.
+/--
+@isnad1 id=measurab.1h4v.s4.e8fbf74fbe9d from=translated src=- shape=c5f3126d vocab=3665cc77
+-/
 theorem measurable_finitePositiveGlobalTail
     (topScale : ℤ) (depths : Finset ℕ) {f : ℝ → ℂ}
     (hf : Measurable f) (ell : ℤ) :
@@ -79,6 +82,9 @@ theorem measurable_finitePositiveGlobalTail
   · simp only [ite_eq_right hcut]
     exact measurable_const
 
+/--
+@isnad1 id=measurab.1h4v.s4.fd6c966dd074 from=translated src=- shape=48739ebc vocab=dc0f586c
+-/
 theorem measurable_finitePositiveGlobalTailMaximal
     (ell₀ topScale : ℤ) (depths : Finset ℕ) {f : ℝ → ℂ}
     (hf : Measurable f) :
@@ -88,7 +94,9 @@ theorem measurable_finitePositiveGlobalTailMaximal
 
 /-- One concrete set of three shifted families simultaneously controls every
 cutoff in the finite global maximal operator, and every family lies in its
-canonical parent-closed forest.-/
+canonical parent-closed forest.
+@isnad1 id=ex.1h5v.s7.085447a17ea5 from=translated src=- shape=13664dc0 vocab=db0f32cb
+-/
 theorem exists_threeShiftForests_globalTailMaximal
     (f : L0Infinity) (ell₀ topScale : ℤ) (depths : Finset ℕ)
     (maxDepth : ℕ) (hdepths : ∀ depth ∈ depths, depth ≤ maxDepth) :

@@ -30,6 +30,9 @@ noncomputable def angularQuadraticCorrelation
   ∫ t in l..r, p t * quadraticExponential (lam - μ)
     (2 * (μ * y - lam * x)) (lam * x ^ 2 - μ * y ^ 2) t
 
+/--
+@isnad1 id=le.9h11v.s8.9b6a21563789 from=translated src=- shape=01cb6ffb vocab=c6fe3e21
+-/
 theorem angularQuadraticCorrelation_norm_le_nonstationary
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {p p' : ℝ → ℂ}
     (hp : ∀ t ∈ Icc l r, HasDerivAt p (p' t) t)
@@ -49,6 +52,9 @@ theorem angularQuadraticCorrelation_norm_le_nonstationary
   unfold quadraticTTStarSlope
   ring
 
+/--
+@isnad1 id=le.9h11v.s8.89753cbdc0f8 from=translated src=- shape=a895ad41 vocab=d1de4cf5
+-/
 theorem angularQuadraticCorrelation_norm_le_split
     {lam μ : ℝ} (hmod : lam ≠ μ) (x y l r : ℝ) (hlr : l ≤ r) {p p' : ℝ → ℂ}
     (hp : ∀ t ∈ Icc l r, HasDerivAt p (p' t) t)
@@ -66,7 +72,9 @@ theorem angularQuadraticCorrelation_norm_le_split
         l r hlr hp hp' hδ hP hQ hbound hbound'
 
 /-- A monotone-slope estimate on a normalized interval.  The curvature bound
-is precisely the one supplied by nearly equal modulations.-/
+is precisely the one supplied by nearly equal modulations.
+@isnad1 id=le.10h10v.s8.9493466e58ac from=translated src=- shape=fd93bfaf vocab=ec788e7c
+-/
 theorem angularQuadraticCorrelation_norm_le_four_div
     (lam μ x y l r : ℝ) (hlr : l ≤ r) (hlen : r - l ≤ 1)
     {p p' : ℝ → ℂ}
@@ -95,7 +103,9 @@ theorem angularQuadraticCorrelation_norm_le_four_div
 power decay. The threshold in the exceptional interval is `H * u²`; the
 condition `1 ≤ H * u⁵` makes all three integration-by-parts errors small.
 This deliberately uses only the weaker cancellation estimate already proved
-above, so no van der Corput theorem is needed.-/
+above, so no van der Corput theorem is needed.
+@isnad1 id=le.14h12v.s8.dcaeb6914d12 from=translated src=- shape=42e62dc8 vocab=d1de4cf5
+-/
 theorem angularQuadraticCorrelation_norm_le_separated_modulations
     (lam μ x y l r : ℝ) (hlr : l ≤ r) (hlen : r - l ≤ 1)
     {p p' : ℝ → ℂ}
@@ -149,7 +159,9 @@ This combines the two cases of the proof of Lemma 6.2 for the quadratic
 phase. `H` measures the oscillatory height, `u` the excluded spatial
 neighborhood, and `B` the permitted comparison of the two modulation
 parameters. Taking `u = H^(-1/5)` gives a positive power of decay. The
-amplitude and its derivative have the same bound after normalization.-/
+amplitude and its derivative have the same bound after normalization.
+@isnad1 id=le.16h12v.s8.12c88350cb3d from=translated src=- shape=56a98e3b vocab=b670bb7d
+-/
 theorem angularQuadraticCorrelation_norm_le_off_diagonal
     (lam μ x y l r : ℝ) (hlr : l ≤ r) (hlen : r - l ≤ 1)
     {p p' : ℝ → ℂ}
@@ -193,7 +205,9 @@ theorem angularQuadraticCorrelation_norm_le_off_diagonal
       mul_le_mul hlam hseparation hu.le (hH.trans_le hlam).le
     linarith
 
-/-- Exact change of scale for the quadratic correlation.-/
+/-- Exact change of scale for the quadratic correlation.
+@isnad1 id=eq.1h8v.s7.d1ede9ccfa2e from=translated src=- shape=b215e9a8 vocab=ff8bc202
+-/
 theorem angularQuadraticCorrelation_scale
     (lam μ x y l r R : ℝ) (hR : R ≠ 0) (p : ℝ → ℂ) :
     R • angularQuadraticCorrelation (lam * R ^ 2) (μ * R ^ 2)
@@ -217,7 +231,9 @@ theorem angularQuadraticCorrelation_scale
 
 /-- The off-diagonal correlation estimate at every positive spatial scale.
 The hypotheses are invariant under dilation, as required by the maximal
-fixed-height argument.-/
+fixed-height argument.
+@isnad1 id=le.17h13v.s9.3249b4aeffd7 from=translated src=- shape=ee196ba0 vocab=d1de4cf5
+-/
 theorem angularQuadraticCorrelation_norm_le_off_diagonal_scaled
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R : ℝ} (hR : 0 < R)
     (hlen : r - l ≤ R) {p p' : ℝ → ℂ}
@@ -273,7 +289,9 @@ theorem angularQuadraticCorrelation_norm_le_off_diagonal_scaled
   exact hh
 
 /-- Integration by parts with amplitude and curvature measured at scale `R`.
-This form also handles widely separated spatial scales.-/
+This form also handles widely separated spatial scales.
+@isnad1 id=le.12h12v.s8.d1bd9060d2ea from=translated src=- shape=59a367ea vocab=26fdca74
+-/
 theorem angularQuadraticCorrelation_norm_le_nonstationary_scaled
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R : ℝ} (hR : 0 < R)
     (hlen : r - l ≤ R) {p p' : ℝ → ℂ}
@@ -303,7 +321,9 @@ theorem angularQuadraticCorrelation_norm_le_nonstationary_scaled
     _ = _ := by ring
 
 /-- At separated spatial scales the quadratic slope cannot vanish on the
-overlap of the two annuli. This is the first case in the proof of (6.7).-/
+overlap of the two annuli. This is the first case in the proof of (6.7).
+@isnad1 id=le.9h8v.s7.823a5db90176 from=translated src=- shape=c2e69975 vocab=40b4a2d4
+-/
 theorem quadraticTTStarSlope_lower_bound_separated_scales
     {lam μ x y t R S H : ℝ} (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
     (hμ : 0 ≤ μ) (hscales : 32 * R ≤ S)
@@ -341,7 +361,9 @@ theorem quadraticTTStarSlope_lower_bound_separated_scales
 
 /-- Power cancellation for widely separated annular scales at the same
 oscillatory height. The resulting factor `1 / H` is stronger than the
-comparable-scale estimate.-/
+comparable-scale estimate.
+@isnad1 id=le.17h12v.s9.be17b58287b3 from=translated src=- shape=2a445cef vocab=08020be1
+-/
 theorem angularQuadraticCorrelation_norm_le_separated_scales
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R S H : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
@@ -386,7 +408,9 @@ theorem angularQuadraticCorrelation_norm_le_separated_scales
 /-- Uniform off-diagonal fixed-height decay, including both comparable and
 widely separated spatial scales. The smaller radius is `R`, the larger is
 `S`; the height and smoothness assumptions are those of the annular `TT*`
-amplitude.-/
+amplitude.
+@isnad1 id=le.21h13v.s9.a030efd37ec4 from=translated src=- shape=8f52281e vocab=08020be1
+-/
 theorem angularQuadraticCorrelation_norm_le_fixed_height_off_diagonal
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R S H u : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
@@ -456,7 +480,9 @@ theorem angularQuadraticCorrelation_norm_le_fixed_height_off_diagonal
 /-- The two-region correlation majorant for the quadratic fixed-height
 argument. The near-diagonal region has width `u * S`; its complement gains
 the factor `u`. For an annular product amplitude `P = A / (R * S)`, the
-prefactor `P * R` is exactly `A / S`, as in equation (6.7).-/
+prefactor `P * R` is exactly `A / S`, as in equation (6.7).
+@isnad1 id=le.20h13v.s9.0bc6ebf0e55f from=translated src=- shape=2cb0210f vocab=99f6c9c7
+-/
 theorem angularQuadraticCorrelation_norm_le_fixed_height
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R S H u : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
@@ -491,7 +517,9 @@ theorem angularQuadraticCorrelation_norm_le_fixed_height
     ring
 
 /-- The angular correlation agrees with the paper's exact `e(t) = exp(2πit)`
-normalization after multiplying both modulations by `2π`.-/
+normalization after multiplying both modulations by `2π`.
+@isnad1 id=eq.0h7v.s6.eb9e770b9ada from=translated src=- shape=67c1c4cb vocab=f6f220e1
+-/
 theorem integral_quadraticTTStar_eq_angularQuadraticCorrelation
     (lam μ x y l r : ℝ) (p : ℝ → ℂ) :
     (∫ t in l..r, p t * phase (quadraticTTStarPhase lam μ x y t)) =
@@ -510,7 +538,9 @@ in equation (6.7), for one interval of the annular support intersection.
 
 The subsequent linearization, kernel representation of `TT*`, and maximal
 function estimates needed to turn this into an operator bound are separate
-analytic steps; they are not hypotheses hidden inside this statement.-/
+analytic steps; they are not hypotheses hidden inside this statement.
+@isnad1 id=le.20h13v.s9.6e4b1bbff6e2 from=translated src=- shape=5740e581 vocab=68fca48f
+-/
 theorem norm_integral_quadraticTTStar_fixed_height
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {R S H u : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
@@ -556,7 +586,9 @@ theorem norm_integral_quadraticTTStar_fixed_height
 
 /-- An explicit dyadic power-decay specialization: height `2^(5n)` permits
 both a diagonal neighborhood of relative width `2^(-n)` and an off-diagonal
-gain `2^(-n)`.-/
+gain `2^(-n)`.
+@isnad1 id=le.16h12v.s9.2a8502273b9b from=translated src=- shape=b3a1ed2b vocab=68fca48f
+-/
 theorem norm_integral_quadraticTTStar_fixed_height_dyadic
     (n : ℕ) (lam μ x y l r : ℝ) (hlr : l ≤ r) {R S : ℝ}
     (hR : 0 < R) (hS : 0 < S)
@@ -593,7 +625,9 @@ theorem norm_integral_quadraticTTStar_fixed_height_dyadic
 /-- The whole-line `TT*` correlation majorant for a smooth amplitude supported
 in one same-sign annular overlap. This includes the outer support restriction
 and requires no interval decomposition or integrability assumption from its
-caller. The positive-half cutoff product in (6.6) has exactly this support.-/
+caller. The positive-half cutoff product in (6.6) has exactly this support.
+@isnad1 id=le.17h11v.s9.8680641ad72c from=translated src=- shape=74e1649a vocab=e11587b1
+-/
 theorem norm_integral_quadraticTTStar_fixed_height_supported
     (lam μ x y : ℝ) {R S H u : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)
@@ -667,7 +701,9 @@ theorem norm_integral_quadraticTTStar_fixed_height_supported
 
 /-- Reflection gives the same whole-line majorant for the negative-half
 annular cutoff. Together with the preceding theorem this covers both signs
-of the spatial cutoff in the linearized `TT*` kernel.-/
+of the spatial cutoff in the linearized `TT*` kernel.
+@isnad1 id=le.17h11v.s9.e8e898fa8719 from=translated src=- shape=a9660e2d vocab=e11587b1
+-/
 theorem norm_integral_quadraticTTStar_fixed_height_supported_negative
     (lam μ x y : ℝ) {R S H u : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H)

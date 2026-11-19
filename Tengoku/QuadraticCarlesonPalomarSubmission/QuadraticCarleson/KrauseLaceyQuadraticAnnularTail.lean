@@ -43,6 +43,9 @@ For `n ≤ N` this is exactly `∑_{n ≤ j < N} u_j`.-/
 def finitePieceTail (N : ℕ) (u : ℕ → ℝ → ℂ) (n : ℕ) (x : ℝ) : ℂ :=
   finitePieceTotal N u x - finitePiecePrefix u n x
 
+/--
+@isnad1 id=eq.1h4v.s5.2dda5e4cf4b8 from=translated src=- shape=7182f9b7 vocab=60348c27
+-/
 theorem finitePieceTail_eq_sum_Ico
     {N n : ℕ} (hn : n ≤ N) (u : ℕ → ℝ → ℂ) (x : ℝ) :
     finitePieceTail N u n x = ∑ j ∈ Finset.Ico n N, u j x := by
@@ -73,6 +76,9 @@ def HasAELowPassPrefixControl (N : ℕ) (u : ℕ → ℝ → ℂ) (A : ℝ≥0�
       A * centeredHardyLittlewoodMaximal
         (fun y ↦ ‖finitePieceTotal N u y‖ₑ) x
 
+/--
+@isnad1 id=hasaelow.1h3v.s4.4b3cb21a1890 from=translated src=- shape=3fe31a4a vocab=5cdd8241
+-/
 theorem HasLowPassPrefixControl.ae
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (h : HasLowPassPrefixControl N u A) :
@@ -84,7 +90,9 @@ theorem HasLowPassPrefixControl.ae
 bounded by `A / (2r)` is pointwise controlled by `A` times the centered
 Hardy--Littlewood maximal function.  This is the basic estimate used for
 each smooth low-pass cutoff after decomposing its rapidly decaying kernel
-into centered dyadic shells.-/
+into centered dyadic shells.
+@isnad1 id=le.3h5v.s8.731045a909b7 from=translated src=- shape=04a5eb72 vocab=455b31e0
+-/
 theorem enorm_convolution_le_maximal_of_supported_kernel
     (q : PositiveRational) {A : ℝ≥0∞} {K f : ℝ → ℂ}
     (hf : Measurable f)
@@ -134,7 +142,9 @@ theorem enorm_convolution_le_maximal_of_supported_kernel
 
 /-- A concrete way to discharge `HasLowPassPrefixControl`: each prefix is
 identified with convolution by a compact centered low-pass kernel with the
-same uniform normalized size bound.-/
+same uniform normalized size bound.
+@isnad1 id=haslowpa.4h5v.s7.a324a1e0492f from=translated src=- shape=83760eb6 vocab=ed65e700
+-/
 theorem hasLowPassPrefixControl_of_kernel_representation
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hu : ∀ j, Measurable (u j))
@@ -157,6 +167,9 @@ theorem hasLowPassPrefixControl_of_kernel_representation
     htotal
     (hKsupport n hn) (hKnorm n hn) x
 
+/--
+@isnad1 id=le.1h4v.s7.a47ebc3cb48c from=translated src=- shape=fe33e36c vocab=c3ed3f5c
+-/
 theorem finitePieceTailMax_le_total_add_maximal
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hprefix : HasLowPassPrefixControl N u A) (x : ℝ) :
@@ -173,7 +186,9 @@ theorem finitePieceTailMax_le_total_add_maximal
 
 /-- Almost-everywhere tail domination from almost-everywhere prefix control.
 The exceptional sets for the finitely many prefixes are intersected before
-taking the finite supremum.-/
+taking the finite supremum.
+@isnad1 id=eventual.1h3v.s7.d41b7365ba5c from=translated src=- shape=8d9b6cf0 vocab=b085e284
+-/
 theorem finitePieceTailMax_le_total_add_maximal_ae
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hprefix : HasAELowPassPrefixControl N u A) :
@@ -195,6 +210,9 @@ theorem finitePieceTailMax_le_total_add_maximal_ae
   intro n hn
   exact enorm_sub_le.trans (add_le_add le_rfl (hx n hn))
 
+/--
+@isnad1 id=measurab.1h2v.s5.816377c9c918 from=translated src=- shape=d8558687 vocab=de650d38
+-/
 theorem measurable_finitePieceTotal {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j < N, Measurable (u j)) :
     Measurable (finitePieceTotal N u) := by
@@ -202,6 +220,9 @@ theorem measurable_finitePieceTotal {N : ℕ} {u : ℕ → ℝ → ℂ}
   unfold finitePieceTotal
   exact Finset.measurable_sum _ fun j hj ↦ hu j (Finset.mem_range.mp hj)
 
+/--
+@isnad1 id=measurab.1h2v.s4.bfadc9931d3d from=translated src=- shape=c88748ae vocab=d7404971
+-/
 theorem measurable_finitePiecePrefix {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, Measurable (u j)) (n : ℕ) :
     Measurable (finitePiecePrefix u n) := by
@@ -209,12 +230,18 @@ theorem measurable_finitePiecePrefix {u : ℕ → ℝ → ℂ}
   unfold finitePiecePrefix
   exact Finset.measurable_sum _ fun j _ ↦ hu j
 
+/--
+@isnad1 id=measurab.1h3v.s4.f1cc765c4ece from=translated src=- shape=56e4889f vocab=6dabf249
+-/
 theorem measurable_finitePieceTail {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, Measurable (u j)) (n : ℕ) :
     Measurable (finitePieceTail N u n) :=
   (measurable_finitePieceTotal fun j _ ↦ hu j).sub
     (measurable_finitePiecePrefix hu n)
 
+/--
+@isnad1 id=measurab.1h2v.s4.64d76212f0ec from=translated src=- shape=41329841 vocab=9996d120
+-/
 theorem measurable_finitePieceTailMax {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, Measurable (u j)) :
     Measurable (finitePieceTailMax N u) := by
@@ -227,7 +254,9 @@ theorem measurable_finitePieceTailMax {N : ℕ} {u : ℕ → ℝ → ℂ}
       exact (measurable_finitePieceTail hu n).enorm.max ih
 
 /-- Almost-everywhere measurable version of
-`measurable_finitePieceTailMax`, suitable for pieces represented in `L²`.-/
+`measurable_finitePieceTailMax`, suitable for pieces represented in `L²`.
+@isnad1 id=aemeasur.1h2v.s5.dcc365d9552c from=translated src=- shape=664f4331 vocab=4be23f20
+-/
 theorem aemeasurable_finitePieceTailMax {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, AEMeasurable (u j) volume) :
     AEMeasurable (finitePieceTailMax N u) volume := by
@@ -272,7 +301,9 @@ private theorem ennreal_add_sq_le_four_sum_sq (a b : ℝ≥0∞) :
 
 /-- Cardinality-free maximal-tail `L²` estimate.  The explicit coefficient
 is `4 + 128 A²`, coming from a top-safe ENNReal square estimate and the proved centered
-Hardy--Littlewood constant `32`.-/
+Hardy--Littlewood constant `32`.
+@isnad1 id=le.2h3v.s7.3085e7ddbd84 from=translated src=- shape=5fd49492 vocab=12d25357
+-/
 theorem finitePieceTailMax_sq_lintegral_le
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hu : ∀ j, Measurable (u j))
@@ -306,7 +337,9 @@ theorem finitePieceTailMax_sq_lintegral_le
 
 /-- Cardinality-free maximal-tail `L²` estimate from almost-everywhere
 low-pass prefix control.  This is the form used by Fourier multiplier
-applications, whose canonical representatives agree only almost everywhere.-/
+applications, whose canonical representatives agree only almost everywhere.
+@isnad1 id=le.2h3v.s7.758268119080 from=translated src=- shape=5fd49492 vocab=63e64641
+-/
 theorem finitePieceTailMax_sq_lintegral_le_ae
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hu : ∀ j, Measurable (u j))
@@ -357,7 +390,9 @@ def HasFourierSupportIn (v : Lp (α := ℝ) ℂ 2 volume) (E : Set ℝ) : Prop :
 
 /-- Pairwise disjoint measurable-frequency regions imply the Fourier
 orthogonality predicate used below.  Thus callers may work with literal
-annuli instead of proving inner products directly.-/
+annuli instead of proving inner products directly.
+@isnad1 id=haspairw.2h3v.s8.15fb0551c50d from=translated src=- shape=77c29abf vocab=a104eb69
+-/
 theorem hasPairwiseSeparatedFourierSupport_of_disjoint_regions
     {ι : Type*} (v : ι → Lp (α := ℝ) ℂ 2 volume) (E : ι → Set ℝ)
     (hdisj : ∀ i j, i ≠ j → Disjoint (E i) (E j))
@@ -370,6 +405,9 @@ theorem hasPairwiseSeparatedFourierSupport_of_disjoint_regions
     rw [hj hξj, inner_zero_right]
   · rw [hi hξ, inner_zero_left]
 
+/--
+@isnad1 id=eq.2h4v.s8.6d35de433d78 from=translated src=- shape=9a12dd53 vocab=d72c062c
+-/
 theorem inner_eq_zero_of_separatedFourierSupport
     {ι : Type*} {v : ι → Lp (α := ℝ) ℂ 2 volume}
     (hsep : HasPairwiseSeparatedFourierSupport v)
@@ -381,7 +419,9 @@ theorem inner_eq_zero_of_separatedFourierSupport
 
 /-- Pythagoras for a finite family with pairwise disjoint Fourier support.
 This is the square-sum part of the annular argument, expressed directly in
-the `L²` norm.-/
+the `L²` norm.
+@isnad1 id=eq.1h3v.s10.ff1f53dbd4cd from=translated src=- shape=e5faf6c7 vocab=217250d2
+-/
 theorem norm_sum_sq_eq_sum_norm_sq_of_separatedFourierSupport
     {ι : Type*} (S : Finset ι)
     (v : ι → Lp (α := ℝ) ℂ 2 volume)
@@ -418,12 +458,18 @@ private theorem toLp_finsetSum_eq_sum
         (memLp_finsetSum' S (fun i _ ↦ hu i))
       simpa only [Finset.sum_insert ha, ih] using hadd
 
+/--
+@isnad1 id=memlp.1h2v.s7.0dd2b0294512 from=translated src=- shape=aa0a7c5c vocab=4a2ac6b8
+-/
 theorem memLp_finitePieceTotal {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, MemLp (u j) 2 volume) :
     MemLp (finitePieceTotal N u) 2 volume := by
   change MemLp (fun x ↦ ∑ j ∈ Finset.range N, u j x) 2 volume
   exact memLp_finsetSum (Finset.range N) fun j _ ↦ hu j
 
+/--
+@isnad1 id=eq.1h2v.s9.b559e0598ded from=translated src=- shape=acd70e8e vocab=e12b60ff
+-/
 theorem toLp_finitePieceTotal_eq_sum {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, MemLp (u j) 2 volume) :
     (memLp_finitePieceTotal hu).toLp (finitePieceTotal N u) =
@@ -438,7 +484,9 @@ theorem toLp_finitePieceTotal_eq_sum {N : ℕ} {u : ℕ → ℝ → ℂ}
     (toLp_finsetSum_eq_sum (Finset.range N) hu)
 
 /-- Plancherel plus disjoint Fourier supports identifies the `L²` energy of
-the total with the sum of the individual energies.-/
+the total with the sum of the individual energies.
+@isnad1 id=eq.2h2v.s8.f01eb32f8e40 from=translated src=- shape=b11b31c8 vocab=aebc96ba
+-/
 theorem eLpNorm_finitePieceTotal_sq_eq_sum
     {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, MemLp (u j) 2 volume)
@@ -469,6 +517,9 @@ theorem eLpNorm_finitePieceTotal_sq_eq_sum
       intro j _
       rw [ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm, Lp.enorm_toLp]
 
+/--
+@isnad1 id=eq.2h2v.s8.76534f0cfce6 from=translated src=- shape=0efbca70 vocab=5a5c75fb
+-/
 theorem finitePieceTotal_sq_lintegral_eq_sum
     {N : ℕ} {u : ℕ → ℝ → ℂ}
     (hu : ∀ j, MemLp (u j) 2 volume)
@@ -483,7 +534,9 @@ theorem finitePieceTotal_sq_lintegral_eq_sum
 /-- Final modular maximal-tail theorem for a separated finite family.  Once
 the smooth cutoff proves `HasLowPassPrefixControl`, the maximal tails are
 bounded by the square-sum of the individual `L²` energies with no dependence
-on the number of pieces.-/
+on the number of pieces.
+@isnad1 id=le.4h3v.s8.e8800219e277 from=translated src=- shape=15798c24 vocab=4cf9b293
+-/
 theorem finitePieceTailMax_sq_lintegral_le_sum
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hmeas : ∀ j, Measurable (u j))
@@ -501,7 +554,9 @@ theorem finitePieceTailMax_sq_lintegral_le_sum
     _ = _ := by rw [finitePieceTotal_sq_lintegral_eq_sum hu hsep]
 
 /-- Final modular maximal-tail theorem with the a.e. low-pass hypothesis
-that is directly produced by `L²` Fourier projection identities.-/
+that is directly produced by `L²` Fourier projection identities.
+@isnad1 id=le.4h3v.s8.ac7a9ecb97cc from=translated src=- shape=15798c24 vocab=6e4b6325
+-/
 theorem finitePieceTailMax_sq_lintegral_le_sum_ae
     {N : ℕ} {u : ℕ → ℝ → ℂ} {A : ℝ≥0∞}
     (hmeas : ∀ j, Measurable (u j))

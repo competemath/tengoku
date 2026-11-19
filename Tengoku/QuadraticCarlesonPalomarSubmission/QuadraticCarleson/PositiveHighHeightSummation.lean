@@ -31,15 +31,24 @@ noncomputable def paperHighContribution (B : ℕ → ℕ) (b : ℕ → ℝ → �
 noncomputable def highContributionMajorant (B : ℕ → ℕ) (b : ℕ → ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ∑' k : ℕ, highHeightMajorant (B k) (b k) x
 
+/--
+@isnad1 id=le.0h3v.s4.e8bf1c1e7ded from=translated src=- shape=a96b9d3a vocab=fb6922c3
+-/
 theorem paperHighContribution_le_majorant (B : ℕ → ℕ) (b : ℕ → ℝ → ℂ) (x : ℝ) :
     paperHighContribution B b x ≤ highContributionMajorant B b x :=
   ENNReal.tsum_le_tsum (fun k ↦ paperHighHeightTail_le_majorant (B k) (b k) x)
 
+/--
+@isnad1 id=measurab.1h2v.s6.a4ccb19c5032 from=translated src=- shape=cc32a96b vocab=539eb150
+-/
 theorem measurable_highContributionMajorant
     (B : ℕ → ℕ) {b : ℕ → ℝ → ℂ} (hb : ∀ k, MemLp (b k) 2) :
     Measurable (highContributionMajorant B b) :=
   Measurable.tsum (fun k ↦ measurable_highHeightMajorant (B k) (hb k))
 
+/--
+@isnad1 id=le.1h2v.s7.773b26492720 from=translated src=- shape=c146b004 vocab=b896df28
+-/
 theorem highContributionMajorant_eLpNorm_le
     (B : ℕ → ℕ) {b : ℕ → ℝ → ℂ} (hb : ∀ k, MemLp (b k) 2) :
     eLpNorm (highContributionMajorant B b) 2 ≤
@@ -54,6 +63,9 @@ theorem highContributionMajorant_eLpNorm_le
   exact (eLpNorm_tsum_two_le (fun k ↦ highHeightMajorant (B k) (b k))
     (fun k ↦ measurable_highHeightMajorant (B k) (hb k))).trans hs
 
+/--
+@isnad1 id=le.1h2v.s7.5d72a32fd304 from=translated src=- shape=c146b004 vocab=8e7c3061
+-/
 theorem paperHighContribution_eLpNorm_le
     (B : ℕ → ℕ) {b : ℕ → ℝ → ℂ} (hb : ∀ k, MemLp (b k) 2) :
     eLpNorm (paperHighContribution B b) 2 ≤
@@ -64,7 +76,9 @@ theorem paperHighContribution_eLpNorm_le
   exact highContributionMajorant_eLpNorm_le B hb
 
 /-- Chebyshev for the measurable majorant gives a genuine outer-measure
-estimate for the paper's high level set.-/
+estimate for the paper's high level set.
+@isnad1 id=le.1h2v.s8.606ef804dff1 from=translated src=- shape=9b96b693 vocab=c1d98555
+-/
 theorem paperHighContribution_levelSet_le
     (B : ℕ → ℕ) {b : ℕ → ℝ → ℂ} (hb : ∀ k, MemLp (b k) 2) :
     volume {x | 1 < paperHighContribution B b x} ≤
@@ -84,6 +98,9 @@ theorem paperHighContribution_levelSet_le
   exact hset.trans (hcheb.trans
     (pow_le_pow_left₀ bot_le (highContributionMajorant_eLpNorm_le B hb) 2))
 
+/--
+@isnad1 id=le.4h6v.s7.65d5bcc8628c from=translated src=- shape=a649600b vocab=2362eb29
+-/
 theorem disjointLevelAtomSum_eLpNorm_le {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -96,7 +113,9 @@ theorem disjointLevelAtomSum_eLpNorm_le {ι : Type*} [Countable ι]
     (by norm_num)
 
 /-- The full countable high contribution for the actual level atoms in an
-explicit countable disjoint interval family, before numerical optimization.-/
+explicit countable disjoint interval family, before numerical optimization.
+@isnad1 id=le.5h6v.s8.1e566ce966ac from=translated src=- shape=c26af744 vocab=ac3a1c69
+-/
 theorem paperHighContribution_disjointLevelAtoms_levelSet_le
     {ι : Type*} [Countable ι] {A : ℕ → ℝ} (hA : ∀ k, 0 ≤ A k)
     (B : ℕ → ℕ) {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)

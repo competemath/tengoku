@@ -26,12 +26,18 @@ noncomputable def intervalBadMass
     (scale : RealInterval → ℤ) (I : RealInterval) : ℝ :=
   ∫ x in I.centralThird, ‖badScaleInput S f I₀ k₀ (scale I + 2 - s) x‖
 
+/--
+@isnad1 id=le.0h7v.s5.275f06b4413c from=translated src=- shape=40705a1c vocab=04c4463a
+-/
 theorem intervalBadMass_nonneg
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (I : RealInterval) :
     0 ≤ intervalBadMass S f I₀ k₀ s scale I :=
   integral_nonneg fun _ ↦ norm_nonneg _
 
+/--
+@isnad1 id=or.6h4v.s7.e178d3ecb198 from=translated src=- shape=e59c0657 vocab=6626414c
+-/
 theorem carrier_subset_or_disjoint_of_scale_lt
     {S : Finset RealInterval} (scale : RealInterval → ℤ)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -50,6 +56,9 @@ theorem carrier_subset_or_disjoint_of_scale_lt
   · exact Or.inl hsub
   · exact Or.inr hd
 
+/--
+@isnad1 id=eq.2h6v.s8.523d0230f147 from=translated src=- shape=d86f211b vocab=76301183
+-/
 theorem inner_localizedPieceLp_eq_re_crossPairing
     (j k : ℤ) (I J : RealInterval) (f g : ℝ → ℂ)
     (hf : Integrable f) (hg : Integrable g) :
@@ -68,6 +77,9 @@ theorem inner_localizedPieceLp_eq_re_crossPairing
       rfl
     _ = _ := integral_re (integrable_krauseLaceyLocalizedPiece_crossPairing j k I J hf hg)
 
+/--
+@isnad1 id=le.2h6v.s8.cb74579b1a78 from=translated src=- shape=939a20d4 vocab=e7c00309
+-/
 theorem abs_inner_localizedPieceLp_le_crossPairing
     (j k : ℤ) (I J : RealInterval) (f g : ℝ → ℂ)
     (hf : Integrable f) (hg : Integrable g) :
@@ -77,6 +89,9 @@ theorem abs_inner_localizedPieceLp_le_crossPairing
   rw [inner_localizedPieceLp_eq_re_crossPairing]
   exact Complex.abs_re_le_norm _
 
+/--
+@isnad1 id=eq.6h8v.s8.84513071264d from=translated src=- shape=c24f829f vocab=1a0449ec
+-/
 theorem inner_badPieceLp_eq_zero_of_scale_eq
     {S : Finset RealInterval} (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -98,7 +113,9 @@ theorem inner_badPieceLp_eq_zero_of_scale_eq
   exact inner_localizedPieceLp_eq_zero_of_disjoint _ _ _ _ _ _ _ _ hlenI hlenJ hd
 
 /-- Sum of the absolute actual pairings over every separated smaller
-interval. The result is uniform in the size and depth of the collection.-/
+interval. The result is uniform in the size and depth of the collection.
+@isnad1 id=le.6h8v.s8.1ead077f7e7c from=translated src=- shape=768fc28b vocab=b503b95f
+-/
 theorem sum_nonstandard_crossPairing_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -169,6 +186,9 @@ theorem sum_nonstandard_crossPairing_le
       mul_le_mul_of_nonneg_left hmass (mul_nonneg hC hm)
     _ = _ := by field_simp; ring
 
+/--
+@isnad1 id=le.7h8v.s9.e603ef1f3fe0 from=translated src=- shape=3321342d vocab=f4dfa68e
+-/
 theorem sum_nonstandard_crossPairing_le_decay
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -197,7 +217,9 @@ theorem sum_nonstandard_crossPairing_le_decay
   simpa only [div_eq_mul_inv] using
     mul_le_mul_of_nonneg_right hc (intervalBadMass_nonneg S f I₀ k₀ s scale I)
 
-/-- The actual `L²` cross row inherits the proved oscillatory kernel decay.-/
+/-- The actual `L²` cross row inherits the proved oscillatory kernel decay.
+@isnad1 id=le.7h8v.s9.a66463ce44cb from=translated src=- shape=09b8461a vocab=c73f71f9
+-/
 theorem sum_abs_inner_badPieceLp_le_decay
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)

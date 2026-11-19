@@ -31,6 +31,9 @@ open KrauseLaceyBadScale KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=hassigne.7h8v.s8.ba1dc9259f16 from=translated src=- shape=bcd835a7 vocab=c2cc7800
+-/
 theorem hasSignedSumSquareBound_badSubcollectionGenerations
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -54,6 +57,9 @@ theorem hasSignedSumSquareBound_badSubcollectionGenerations
     · rcases hc _ hi with h | h | h <;> rw [h] <;> norm_num
     · norm_num
 
+/--
+@isnad1 id=le.7h8v.s8.666b441ae7eb from=translated src=- shape=14be5dd8 vocab=2b8a992a
+-/
 theorem eLpNorm_badSubcollectionPrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -71,6 +77,9 @@ theorem eLpNorm_badSubcollectionPrefixMaximal_le
   exact hasSignedSumSquareBound_badSubcollectionGenerations hf I₀ k₀ s hk₀ hs scale
     hlam hparent hsub N hN M
 
+/--
+@isnad1 id=le.8h9v.s8.1e1ebf4b8dd2 from=translated src=- shape=af7c178a vocab=22f0fe26
+-/
 theorem eLpNorm_badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -91,6 +100,9 @@ theorem eLpNorm_badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le
     Real.norm_of_nonneg (badSubcollectionPrefixMaximal_nonneg S f I₀ k₀ s scale N M x)]
   exact badSubcollectionPrefixMaximal_le_of_ae_overlapCount_le S f I₀ k₀ s scale N L M hbound x
 
+/--
+@isnad1 id=ex.4h7v.s7.75227e059c9a from=translated src=- shape=a922dccf vocab=d605239d
+-/
 theorem exists_chargedCell_of_active_above_base
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -115,6 +127,9 @@ theorem exists_chargedCell_of_active_above_base
   congr 1
   ring
 
+/--
+@isnad1 id=le.5h8v.s8.e665a0c78b5c from=translated src=- shape=fa0e4456 vocab=d335e93e
+-/
 theorem sum_active_aboveBase_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -155,6 +170,9 @@ theorem sum_active_aboveBase_length_le
       (sum_intervalLength_le_of_disjoint C K hCS
         (fun J hJ ↦ (Finset.mem_filter.mp hJ).2)) (by positivity)
 
+/--
+@isnad1 id=le.4h8v.s7.36cd7275a983 from=translated src=- shape=a5184bcc vocab=30995818
+-/
 theorem sum_baseScale_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -176,6 +194,9 @@ theorem sum_baseScale_length_le
   · exact (hne (interval_eq_of_carrier_subset_of_length_le hsub hlen.le).symm).elim
   · exact hd
 
+/--
+@isnad1 id=le.3h8v.s7.512533c255c6 from=translated src=- shape=9bd6220a vocab=176b0dd4
+-/
 theorem sum_activeBadIntervals_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -203,6 +224,9 @@ theorem sum_activeBadIntervals_length_le
   dsimp only [A] at heq
   linarith
 
+/--
+@isnad1 id=le.2h8v.s7.2bc65da32886 from=translated src=- shape=e89393c2 vocab=df7825e8
+-/
 theorem sum_activeBadIntervals_descendants_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -221,6 +245,9 @@ theorem sum_activeBadIntervals_descendants_length_le
   exact sum_activeBadIntervals_length_le f I₀ k₀ s scale hlam _
     ((Finset.filter_subset _ N).trans hN) K (fun I hI ↦ (Finset.mem_filter.mp hI).2)
 
+/--
+@isnad1 id=le.3h9v.s7.736ccbfdd724 from=translated src=- shape=b87730cb vocab=eeeed36f
+-/
 theorem volume_active_highOverlap_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -234,6 +261,9 @@ theorem volume_active_highOverlap_le
   exact ENNReal.div_le_div_right (ENNReal.ofReal_le_ofReal
     (sum_activeBadIntervals_length_le f I₀ k₀ s scale hlam N hN K hsub)) _
 
+/--
+@isnad1 id=eq.2h10v.s7.6ebdb04fe304 from=translated src=- shape=858b9ed1 vocab=4b4a3887
+-/
 theorem sum_weighted_localizedBadPiece_eq_pruned_of_lowOverlap
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -253,6 +283,9 @@ theorem sum_weighted_localizedBadPiece_eq_pruned_of_lowOverlap
   rw [krauseLaceyLocalizedPiece_eq_zero_of_notMem 1 (scale I) I _
     (Finset.mem_filter.mp (hN (Finset.mem_filter.mp hI).1)).2.1 hnot, mul_zero]
 
+/--
+@isnad1 id=le.7h9v.s8.b46b01fbd830 from=translated src=- shape=7bf9da9a vocab=7c040fae
+-/
 theorem eLpNorm_prunedActivePrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -274,6 +307,9 @@ theorem eLpNorm_prunedActivePrefixMaximal_le
   exact Filter.Eventually.of_forall (overlapCount_overlapPrunedFamily_le _ M
     (fun I hI J hJ hne ↦ hlam (hAS hI) (hAS hJ) hne))
 
+/--
+@isnad1 id=le.6h8v.s8.60cdf707c92f from=translated src=- shape=f7e50df2 vocab=75141beb
+-/
 theorem eLpNorm_paperPrunedActivePrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)
@@ -294,6 +330,9 @@ theorem eLpNorm_paperPrunedActivePrefixMaximal_le
   have hr : (Nat.log2 (activeOverlapCutoff s) : ℝ) ≤ 2 * (s : ℝ) + 1 := by exact_mod_cast h
   linarith
 
+/--
+@isnad1 id=le.2h9v.s7.b88f9b0b461e from=translated src=- shape=ba69dc3c vocab=5591b366
+-/
 theorem norm_badLengthTailAction_le_prefix
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -310,6 +349,9 @@ theorem norm_badLengthTailAction_le_prefix
   exact krauseLaceyLocalizedPiece_eq_zero_of_notMem 1 (scale I) I _
     (Finset.mem_filter.mp (hN hI)).2.1 hxI
 
+/--
+@isnad1 id=le.2h8v.s7.7d83a824c2ac from=translated src=- shape=1d7d2abd vocab=97c32096
+-/
 theorem badLengthTailMaximal_le_prefix
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -320,6 +362,9 @@ theorem badLengthTailMaximal_le_prefix
       2 * badSubcollectionPrefixMaximal S f I₀ k₀ s scale N N.card x :=
   ciSup_le fun ell ↦ norm_badLengthTailAction_le_prefix f I₀ k₀ s scale hlam N hN ell x
 
+/--
+@isnad1 id=le.2h8v.s7.d7d7090acd40 from=translated src=- shape=6bd7cc42 vocab=cc24ed08
+-/
 theorem badLengthTailMaximal_nonneg
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -334,6 +379,9 @@ theorem badLengthTailMaximal_nonneg
       exact norm_badLengthTailAction_le_prefix f I₀ k₀ s scale hlam N hN ell x⟩
   exact (norm_nonneg _).trans (le_ciSup hb (0 : ℤ))
 
+/--
+@isnad1 id=eq.2h9v.s6.30acd757d0b1 from=translated src=- shape=4b4606d9 vocab=853e29fc
+-/
 theorem badLengthTailMaximal_eq_pruned_of_lowOverlap
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -349,6 +397,9 @@ theorem badLengthTailMaximal_eq_pruned_of_lowOverlap
     sum_weighted_localizedBadPiece_eq_pruned_of_lowOverlap S f I₀ k₀ s scale N hN M
       (fun I ↦ if (2 : ℝ) ^ ell ≤ I.length then 1 else 0) x hx
 
+/--
+@isnad1 id=le.7h8v.s8.da7e5bee6338 from=translated src=- shape=150d2070 vocab=71c48d44
+-/
 theorem eLpNorm_pruned_badLengthTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -383,6 +434,9 @@ theorem eLpNorm_pruned_badLengthTailMaximal_le
   exact mul_le_mul_right (eLpNorm_prunedActivePrefixMaximal_le hf I₀ k₀ s hk₀ hs scale
     hlam hparent hsub N hN P.card M) _
 
+/--
+@isnad1 id=le.3h9v.s7.d1ed86f10b9c from=translated src=- shape=29394e84 vocab=d13431f7
+-/
 theorem volume_active_overlap_blocks_le_half_pow
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ) (s t : ℕ)
     (scale : RealInterval → ℤ)
@@ -403,6 +457,9 @@ theorem volume_active_overlap_blocks_le_half_pow
       (fun I hI ↦ hsub I (activeBadIntervals_subset S f I₀ k₀ s scale N hI))
       (sum_activeBadIntervals_descendants_length_le f I₀ k₀ s scale hlam N hN)
 
+/--
+@isnad1 id=le.3h8v.s8.49ae59466f22 from=translated src=- shape=e98f6191 vocab=820d08bd
+-/
 theorem volume_active_exponentialCutoff_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ)
     (scale : RealInterval → ℤ)
@@ -417,6 +474,9 @@ theorem volume_active_exponentialCutoff_le
   exact volume_active_overlap_blocks_le_half_pow f I₀ k₀ s (8 * (s + 1)) scale
     hlam N hN K hsub
 
+/--
+@isnad1 id=le.3h8v.s8.a4bb5017e0a2 from=translated src=- shape=a30ffd78 vocab=abed73a9
+-/
 theorem ofReal_sum_active_removed_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ)
     (scale : RealInterval → ℤ)
@@ -439,6 +499,9 @@ theorem ofReal_sum_active_removed_length_le
   exact mul_le_mul_right
     (volume_active_exponentialCutoff_le f I₀ k₀ s scale hlam N hN K hsub) _
 
+/--
+@isnad1 id=le.6h7v.s8.71abc008b9d6 from=translated src=- shape=f8737913 vocab=555c86d1
+-/
 theorem eLpNorm_exponentiallyPruned_badLengthTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)
@@ -459,6 +522,9 @@ theorem eLpNorm_exponentiallyPruned_badLengthTailMaximal_le
     exact_mod_cast log2_activeExponentialCutoff_le s
   nlinarith [Real.sqrt_nonneg (nonstandardSignedEnergyBudget f I₀ s)]
 
+/--
+@isnad1 id=le.3h8v.s8.6cfc7060816f from=translated src=- shape=4b728d12 vocab=069868b8
+-/
 theorem lintegral_active_removed_overlap_sq_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ)
     (scale : RealInterval → ℤ)
@@ -489,6 +555,9 @@ theorem lintegral_active_removed_overlap_sq_le
         hlam N hN K hsub) _
     _ = _ := by rw [pow_two]; simp only [mul_assoc]
 
+/--
+@isnad1 id=le.4h8v.s7.3fed4b867467 from=translated src=- shape=dc4d553a vocab=4902a6e6
+-/
 theorem norm_localizedBadPiece_le_uniform
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -524,6 +593,9 @@ theorem norm_localizedBadPiece_le_uniform
       field_simp
       ring
 
+/--
+@isnad1 id=le.4h8v.s7.4e00be3034ff from=translated src=- shape=172bf359 vocab=b0f8a21f
+-/
 theorem badLengthTailMaximal_le_uniform_mul_overlapCount
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -554,6 +626,9 @@ theorem badLengthTailMaximal_le_uniform_mul_overlapCount
       rw [← Finset.sum_filter]
       simp only [Finset.sum_const, nsmul_eq_mul, overlapCount, mul_comm]
 
+/--
+@isnad1 id=le.4h7v.s9.98d819d5920d from=translated src=- shape=98de6067 vocab=f95f7449
+-/
 theorem eLpNorm_removed_badLengthTailMaximal_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (scale : RealInterval → ℤ)
@@ -598,6 +673,9 @@ theorem eLpNorm_removed_badLengthTailMaximal_sq_le
     _ ≤ _ := mul_le_mul_right (lintegral_active_removed_overlap_sq_le f I₀ k₀ s scale
       hlam N hN I₀ (fun I hI ↦ hsub I (intervals_subset S f I₀ k₀ s scale (hN hI)))) _
 
+/--
+@isnad1 id=le.4h7v.s8.2c917a6d39d3 from=translated src=- shape=fe8afad5 vocab=1b4ebf29
+-/
 theorem eLpNorm_removed_badLengthTailMaximal_le_sqrt
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (scale : RealInterval → ℤ)
@@ -616,6 +694,9 @@ theorem eLpNorm_removed_badLengthTailMaximal_le_sqrt
     Real.sq_sqrt (badRemovedEnergyBudget_nonneg f I₀ s), ofReal_badRemovedEnergyBudget]
   exact eLpNorm_removed_badLengthTailMaximal_sq_le hf I₀ k₀ s scale hlam hsub N hN
 
+/--
+@isnad1 id=eq.1h10v.s6.b89bbab8c2a0 from=translated src=- shape=3baaaead vocab=f619aa97
+-/
 theorem badLengthTailAction_eq_pruned_add_removed
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -631,6 +712,9 @@ theorem badLengthTailAction_eq_pruned_add_removed
   rw [← Finset.sum_sdiff (overlapPrunedFamily_subset _ M)]
   ring
 
+/--
+@isnad1 id=le.2h9v.s7.074797f46c70 from=translated src=- shape=6bfe88fa vocab=5e58cbcb
+-/
 theorem badLengthTailMaximal_le_pruned_add_removed
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -658,6 +742,9 @@ theorem badLengthTailMaximal_le_pruned_add_removed
   exact add_le_add (le_ciSup (hbound _ ((overlapPrunedFamily_subset _ M).trans hA)) ell)
     (le_ciSup (hbound _ (Finset.sdiff_subset.trans hA)) ell)
 
+/--
+@isnad1 id=le.6h7v.s8.8b629a46f8b6 from=translated src=- shape=4eebd1f4 vocab=6d2659e8
+-/
 theorem eLpNorm_nonstandard_badLengthTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)
@@ -699,6 +786,9 @@ theorem eLpNorm_nonstandard_badLengthTailMaximal_le
         (eLpNorm_removed_badLengthTailMaximal_le_sqrt hf I₀ k₀ s scale hlam hsub N hN)
     _ = _ := (ENNReal.ofReal_add (by positivity) (Real.sqrt_nonneg _)).symm
 
+/--
+@isnad1 id=eq.1h9v.s6.348e3d3d386b from=translated src=- shape=cb436e74 vocab=d5ecb97a
+-/
 theorem badLengthTailAction_eq_at_max_lower_endpoint
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -719,6 +809,9 @@ theorem badLengthTailAction_eq_at_max_lower_endpoint
     (zpow_le_zpow_right₀ (by norm_num) (le_of_not_ge he)).trans hbase
   rw [ite_eq_left hbase, ite_eq_left hell]
 
+/--
+@isnad1 id=eq.2h8v.s7.0f56736d5d58 from=translated src=- shape=33d52054 vocab=85f90a17
+-/
 theorem nonstandardSourceTailMaximal_eq_badLengthTailMaximal
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -743,6 +836,9 @@ theorem nonstandardSourceTailMaximal_eq_badLengthTailMaximal
     rw [badLengthTailAction_eq_at_max_lower_endpoint S f I₀ k₀ s scale N hN ell x]
     exact le_ciSup hbr ⟨max ell (k₀ + s), le_max_right _ _⟩
 
+/--
+@isnad1 id=le.6h7v.s8.9a8a78daa756 from=translated src=- shape=4eebd1f4 vocab=2a913074
+-/
 theorem eLpNorm_nonstandardSourceTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)
@@ -761,7 +857,9 @@ theorem eLpNorm_nonstandardSourceTailMaximal_le
   exact eLpNorm_nonstandard_badLengthTailMaximal_le hf I₀ k₀ s hk₀ scale hlam hparent hsub N hN
 
 /-- The unrestricted physical-suffix maximal estimate directly on the
-energy classifier's near family, without overlap or cardinality hypotheses.-/
+energy classifier's near family, without overlap or cardinality hypotheses.
+@isnad1 id=le.6h7v.s8.5a434bfc21ef from=translated src=- shape=4eebd1f4 vocab=ce6421a7
+-/
 theorem eLpNorm_energyNonstandardSourceTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)

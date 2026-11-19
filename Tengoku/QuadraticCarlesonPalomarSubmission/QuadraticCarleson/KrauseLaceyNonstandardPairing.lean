@@ -22,6 +22,9 @@ open KrauseLaceyGenerationLayers KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.2h8v.s7.5466104b9c2a from=translated src=- shape=d0ec6155 vocab=90797202
+-/
 theorem norm_localizedBadPiece_le_mass
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -44,6 +47,9 @@ theorem norm_localizedBadPiece_le_mass
   rw [(Finset.mem_filter.mp hI).2.1, krauseLacey_scale_eq_eight_mul_radius]
   ring
 
+/--
+@isnad1 id=le.2h8v.s7.8b56d5b117a1 from=translated src=- shape=63f0d626 vocab=b9c35d5f
+-/
 theorem badLengthTailMaximal_le_massMajorant
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -68,6 +74,9 @@ theorem badLengthTailMaximal_le_massMajorant
       (Finset.mem_filter.mp (hN hI)).2.1 hx]
     simp
 
+/--
+@isnad1 id=le.4h8v.s8.329d5f6c471d from=translated src=- shape=4393ab85 vocab=c0671b25
+-/
 theorem lintegral_nonstandard_pairing_le_sum_local_averages
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -122,7 +131,9 @@ theorem lintegral_nonstandard_pairing_le_sum_local_averages
       (mul_nonneg (mul_nonneg (by norm_num) positiveDyadicAmplitudeBound_nonneg)
         (intervalBadMass_nonneg S f I₀ k₀ s scale I)) (intervalL1Average_nonneg g I))).symm
 
-/-- Exact Proposition 4.7 with the actual interval-average hypothesis.-/
+/-- Exact Proposition 4.7 with the actual interval-average hypothesis.
+@isnad1 id=le.6h9v.s8.993cd5d1279a from=translated src=- shape=806a4629 vocab=c011e8a1
+-/
 theorem lintegral_nonstandard_pairing_le_of_averages_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -154,7 +165,9 @@ theorem lintegral_nonstandard_pairing_le_of_averages_le
       (mul_nonneg (mul_nonneg (by norm_num) positiveDyadicAmplitudeBound_nonneg) hG)
 
 /-- The genuine two-function good collection supplies the needed
-averages itself, so the source local bound has no average hypothesis.-/
+averages itself, so the source local bound has no average hypothesis.
+@isnad1 id=le.4h7v.s8.7b17adb9ecbd from=translated src=- shape=85f4a891 vocab=2197e631
+-/
 theorem lintegral_nonstandard_good_pairing_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)

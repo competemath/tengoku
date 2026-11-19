@@ -32,6 +32,9 @@ noncomputable section
 def oneNodeNonstandardScaleWeight (s : ℕ) : ℝ :=
   ((s + 1 : ℕ) : ℝ) ^ 2 * (2 : ℝ) ^ (-(s : ℝ))
 
+/--
+@isnad1 id=lt.0h1v.s3.b47de34f894f from=translated src=- shape=b9369acb vocab=4314c0d1
+-/
 theorem oneNodeNonstandardScaleWeight_pos (s : ℕ) :
     0 < oneNodeNonstandardScaleWeight s := by
   unfold oneNodeNonstandardScaleWeight
@@ -70,6 +73,9 @@ private theorem sq_succ_le_sixtyFour_mul_rpow_four_fifths (s : ℕ) :
             norm_num
             ring
 
+/--
+@isnad1 id=le.0h1v.s5.5a391be0acb8 from=translated src=- shape=69feeb86 vocab=aae556d8
+-/
 theorem oneNodeNonstandardScaleWeight_le (s : ℕ) :
     oneNodeNonstandardScaleWeight s ≤ 64 * (2 : ℝ) ^ (-(s : ℝ) / 5) := by
   have h := sq_succ_le_sixtyFour_mul_rpow_four_fifths s
@@ -85,6 +91,9 @@ theorem oneNodeNonstandardScaleWeight_le (s : ℕ) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.1h2v.s6.94a8d57ae6da from=translated src=- shape=54e886ff vocab=6873968d
+-/
 theorem oneNodeNonstandardScaleWeight_rpow_le_scaleDecayRatio
     {q : ℝ} (hq : 2 ≤ q) (s : ℕ) :
     oneNodeNonstandardScaleWeight s ^ (1 / q) ≤
@@ -115,6 +124,9 @@ theorem oneNodeNonstandardScaleWeight_rpow_le_scaleDecayRatio
       congr 2
       field_simp
 
+/--
+@isnad1 id=le.1h2v.s6.59b360acc586 from=translated src=- shape=cad91257 vocab=27747d23
+-/
 theorem finite_sum_oneNodeNonstandardScaleWeight_rpow_le
     {q : ℝ} (hq : 2 ≤ q) (N : ℕ) :
     (∑ s ∈ Finset.range N, oneNodeNonstandardScaleWeight s ^ (1 / q)) ≤
@@ -135,7 +147,9 @@ theorem finite_sum_oneNodeNonstandardScaleWeight_rpow_le
 `(((s+1)^2 2^{-s})^(1/q))` costs at most `160 q`.
 
 This is the finite, extended-nonnegative-real form used for lintegrals.
-Neither the functions `u` nor the common factors are assumed finite.-/
+Neither the functions `u` nor the common factors are assumed finite.
+@isnad1 id=le.2h5v.s7.7689e76db47c from=translated src=- shape=71597930 vocab=99b923cf
+-/
 theorem finite_sum_le_of_nonstandardScaleWeight
     {q : ℝ} (hq : 2 ≤ q) (N : ℕ) (u : ℕ → ℝ≥0∞) (K atom : ℝ≥0∞)
     (hu : ∀ s ∈ Finset.range N,
@@ -158,7 +172,9 @@ theorem finite_sum_le_of_nonstandardScaleWeight
       gcongr
       exact finite_sum_oneNodeNonstandardScaleWeight_rpow_le hq N
 
-/-- The same summation with the paper's exponent `q = p'`.-/
+/-- The same summation with the paper's exponent `q = p'`.
+@isnad1 id=le.3h5v.s7.cdeba6d5f3ad from=translated src=- shape=fdecd616 vocab=83e19393
+-/
 theorem finite_sum_le_of_nonstandardScaleWeight_holderConjugate
     {p : ℝ} (hp : 1 < p) (hp2 : p ≤ 2) (N : ℕ)
     (u : ℕ → ℝ≥0∞) (K atom : ℝ≥0∞)

@@ -12,7 +12,9 @@ set_option autoImplicit false
 
 /-- Cauchy--Schwarz on a common finite-measure support.  This is the
 quantitative step converting an `L²` approximation into an `L¹`
-approximation without changing its support.-/
+approximation without changing its support.
+@isnad1 id=le.4h2v.s8.930472249e37 from=translated src=- shape=d0dc1477 vocab=70583207
+-/
 theorem integral_norm_le_sqIntegral_mul_measureReal_sqrt
     {f : ℝ → ℂ} {s : Set ℝ} (hs : MeasurableSet s)
     (hμs : volume s ≠ ∞) (hf : MemLp f 2 volume)
@@ -43,7 +45,9 @@ theorem integral_norm_le_sqIntegral_mul_measureReal_sqrt
   rw [hgint] at hholder
   exact hholder
 
-/-- Difference form used for a common-support approximation sequence.-/
+/-- Difference form used for a common-support approximation sequence.
+@isnad1 id=le.6h3v.s8.78368e306aa8 from=translated src=- shape=4ea6e5e9 vocab=c2c8a96d
+-/
 theorem integral_norm_sub_le_sqIntegral_mul_measureReal_sqrt
     {f g : ℝ → ℂ} {s : Set ℝ} (hs : MeasurableSet s)
     (hμs : volume s ≠ ∞) (hf : MemLp f 2 volume) (hg : MemLp g 2 volume)

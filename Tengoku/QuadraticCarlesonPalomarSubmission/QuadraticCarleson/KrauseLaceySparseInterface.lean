@@ -50,7 +50,9 @@ set_option autoImplicit false
 def IsKrauseLaceySparse (S : Set RealInterval) : Prop :=
   IsSparse (1 / 4) S
 
-/-- Sparseness is monotone when its density parameter is decreased.-/
+/-- Sparseness is monotone when its density parameter is decreased.
+@isnad1 id=issparse.3h3v.s4.b32305e46c09 from=translated src=- shape=10efd7d0 vocab=249b2986
+-/
 theorem IsSparse.mono_parameter {η η' : ℝ} {S : Set RealInterval}
     (hS : IsSparse η S) (hη' : 0 < η') (hη'η : η' ≤ η) :
     IsSparse η' S := by
@@ -60,13 +62,17 @@ theorem IsSparse.mono_parameter {η η' : ℝ} {S : Set RealInterval}
   exact (mul_le_mul_of_nonneg_right hη'η I.1.length_pos.le).trans (hEmass I)
 
 /-- The Krause--Lacey convention and the project's approved sparse-family
-convention are definitionally identical.-/
+convention are definitionally identical.
+@isnad1 id=iff.0h1v.s4.48c7299d4faa from=translated src=- shape=19a2dae4 vocab=b3175cb9
+-/
 theorem isKrauseLaceySparse_iff {S : Set RealInterval} :
     IsKrauseLaceySparse S ↔ IsSparse (1 / 4) S := Iff.rfl
 
 /-- With the approved parameter, the project's sparse-bound interface is
 literally the Krause--Lacey convention; there is no constant loss or family
-refinement hidden in this adapter.-/
+refinement hidden in this adapter.
+@isnad1 id=iff.0h3v.s5.b0109c61d27b from=translated src=- shape=7c226d82 vocab=fe92c157
+-/
 theorem hasSparseOnePBound_iff_krauseLacey (C p : ℝ) (T : TestOperator) :
     HasSparseOnePBound C p T ↔
       ∀ f g : L0Infinity,
@@ -78,19 +84,26 @@ theorem hasSparseOnePBound_iff_krauseLacey (C p : ℝ) (T : TestOperator) :
 noncomputable def krauseLaceyFactor (p : ℝ) : ℝ :=
   1 / (p - 1)
 
+/--
+@isnad1 id=lt.1h1v.s4.3713d5449625 from=translated src=- shape=35bd48ee vocab=7a5039f0
+-/
 theorem krauseLaceyFactor_pos {p : ℝ} (hp : 1 < p) :
     0 < krauseLaceyFactor p := by
   exact one_div_pos.mpr (sub_pos.mpr hp)
 
 /-- On the range used by the endpoint paper, the cited factor is bounded by
-the project's Hölder conjugate `p' = p/(p-1)`.-/
+the project's Hölder conjugate `p' = p/(p-1)`.
+@isnad1 id=le.1h1v.s4.8c9c156007ce from=translated src=- shape=9c8b14d8 vocab=522338df
+-/
 theorem krauseLaceyFactor_le_holderConjugate {p : ℝ} (hp : 1 < p) :
     krauseLaceyFactor p ≤ holderConjugate p := by
   rw [krauseLaceyFactor, holderConjugate]
   exact (div_le_div_iff_of_pos_right (sub_pos.mpr hp)).2 (by linarith)
 
 /-- Conversely `p'` differs from the source's `1/(p-1)` by at most a factor
-two when `p ≤ 2`.-/
+two when `p ≤ 2`.
+@isnad1 id=le.2h1v.s5.f0cc5d7dafd6 from=translated src=- shape=53c32d29 vocab=0d67f0dd
+-/
 theorem holderConjugate_le_two_mul_krauseLaceyFactor
     {p : ℝ} (hp : 1 < p) (hp2 : p ≤ 2) :
     holderConjugate p ≤ 2 * krauseLaceyFactor p := by
@@ -102,7 +115,9 @@ theorem holderConjugate_le_two_mul_krauseLaceyFactor
 /-- The kernel phase is unchanged when a positive scale is moved from the
 modulation into the spatial variable.  This is the algebraic core of the
 dilation reduction used immediately after Corollary
-`c:finitemodulationsweak11` in the paper.-/
+`c:finitemodulationsweak11` in the paper.
+@isnad1 id=eq.0h3v.s6.a2a11b412238 from=translated src=- shape=085d3b79 vocab=39f1ae99
+-/
 theorem quadratic_phase_scale (sigma a t : ℝ) :
     phase ((sigma * a ^ 2) * t ^ 2) = phase (sigma * (a * t) ^ 2) := by
   congr 1
@@ -111,7 +126,9 @@ theorem quadratic_phase_scale (sigma a t : ℝ) :
 /-- The corresponding identity for the singular kernel density.  The factor
 `a` is precisely the Jacobian which cancels under the change of variables
 `u = a t`.  Division at `t = 0` follows Lean's usual zero convention, so the
-identity is genuinely pointwise.-/
+identity is genuinely pointwise.
+@isnad1 id=eq.1h3v.s7.0d6fcac31d5e from=translated src=- shape=44b0c04b vocab=c044f24e
+-/
 theorem quadratic_kernel_density_scale (sigma a t : ℝ) (ha : a ≠ 0) :
     phase ((sigma * a ^ 2) * t ^ 2) / (t : ℂ) =
       (a : ℂ) * (phase (sigma * (a * t) ^ 2) / ((a * t : ℝ) : ℂ)) := by
@@ -125,7 +142,9 @@ theorem quadratic_kernel_density_scale (sigma a t : ℝ) (ha : a ≠ 0) :
 /-- Every nonzero real modulation is a signed square, with scale
 `sqrt |lambda|`.  Thus the degree-two Krause--Lacey theorem at phase `+t²`
 (and its conjugate at `-t²`) covers exactly the nonzero convention fixed by
-the endpoint paper.-/
+the endpoint paper.
+@isnad1 id=eq.1h1v.s6.ffee0b2784ae from=translated src=- shape=8bddc5cd vocab=8da0d0c8
+-/
 theorem nonzero_modulation_eq_signed_sqrt_square {lam : ℝ} (hlam : lam ≠ 0) :
     lam = (if lam < 0 then (-1 : ℝ) else 1) * (Real.sqrt |lam|) ^ 2 := by
   rw [Real.sq_sqrt (abs_nonneg lam)]
@@ -136,7 +155,9 @@ theorem nonzero_modulation_eq_signed_sqrt_square {lam : ℝ} (hlam : lam ≠ 0) 
 
 /-- Pointwise normalization of the singular density for an arbitrary
 nonzero modulation.  This makes the paper's exclusion of `lambda = 0`
-explicit: no scale selector is defined at zero.-/
+explicit: no scale selector is defined at zero.
+@isnad1 id=eq.1h2v.s7.4f90767ee376 from=translated src=- shape=3e113c94 vocab=076ddf55
+-/
 theorem quadratic_kernel_density_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0)
     (t : ℝ) :
     phase (lam * t ^ 2) / (t : ℂ) =
@@ -159,7 +180,9 @@ theorem quadratic_kernel_density_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0
 Changing variables `u = a t` moves a positive spatial scale from the
 modulation to the input, the evaluation point, and the truncation radius.
 This is the precise integral identity behind the paper's reduction to unit
-absolute modulation.-/
+absolute modulation.
+@isnad1 id=eq.1h5v.s6.a849578d4ace from=translated src=- shape=d529b928 vocab=ce231f4d
+-/
 theorem quadraticHilbertTrunc_scale (sigma : ℝ) {a : ℝ} (ha : 0 < a) (ε : ℝ)
     (f : ℝ → ℂ) (x : ℝ) :
     quadraticHilbertTrunc (sigma * a ^ 2) ε f x =
@@ -219,7 +242,9 @@ theorem quadraticHilbertTrunc_scale (sigma : ℝ) {a : ℝ} (ha : 0 < a) (ε : �
       simp [ha.ne']
 
 /-- Paper-facing form of dilation invariance: each nonzero modulation is
-reduced exactly to sign `+1` or `-1`, with no definition at modulation zero.-/
+reduced exactly to sign `+1` or `-1`, with no definition at modulation zero.
+@isnad1 id=eq.1h4v.s6.2e36a13f616c from=translated src=- shape=d0fee2bf vocab=dce7ad88
+-/
 theorem quadraticHilbertTrunc_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0)
     (ε : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticHilbertTrunc lam ε f x =
@@ -237,7 +262,9 @@ theorem quadraticHilbertTrunc_normalize_nonzero {lam : ℝ} (hlam : lam ≠ 0)
   exact quadraticHilbertTrunc_scale sigma ha ε f x
 
 /-- Reversing the sign of the real phase conjugates the unit complex
-oscillation.-/
+oscillation.
+@isnad1 id=eq.0h1v.s5.bfa4bd173986 from=translated src=- shape=40757b00 vocab=8fa1c8dd
+-/
 theorem phase_neg_eq_conj (s : ℝ) : phase (-s) = conj (phase s) := by
   rw [phase, phase, ← Complex.exp_conj]
   congr 1
@@ -248,7 +275,9 @@ theorem phase_neg_eq_conj (s : ℝ) : phase (-s) = conj (phase s) := by
 /-- The negative unit quadratic truncation is obtained from the positive
 one by conjugating both the input and output.  Consequently the even-degree
 Krause--Lacey estimate for its displayed `+t²` phase also controls the `-t²`
-case with the identical constant.-/
+case with the identical constant.
+@isnad1 id=eq.0h3v.s6.256684647ac0 from=translated src=- shape=2fe85bff vocab=c12f41bd
+-/
 theorem quadraticHilbertTrunc_neg_one_eq_conj (ε : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticHilbertTrunc (-1) ε f x =
       conj (quadraticHilbertTrunc 1 ε (fun y ↦ conj (f y)) x) := by
@@ -305,6 +334,9 @@ private theorem integrableOn_quadraticHilbertTrunc_integrand
     (volume.restrict {t : ℝ | ε < |t|})
   simpa only [s, mul_comm, div_eq_mul_inv, mul_left_comm, mul_assoc] using hi
 
+/--
+@isnad1 id=eq.1h5v.s5.49962ce11016 from=translated src=- shape=4d1cf1ab vocab=fa92bd9f
+-/
 theorem quadraticHilbertTrunc_add
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) (f g : L0Infinity) (x : ℝ) :
     quadraticHilbertTruncTestOperator lam ε (L0Infinity.add f g) x =
@@ -321,6 +353,9 @@ theorem quadraticHilbertTrunc_add
     change (f (x - t) + g (x - t)) * phase (lam * t ^ 2) / (t : ℂ) = _
     ring)
 
+/--
+@isnad1 id=eq.1h5v.s5.11fb0abd45ef from=translated src=- shape=e01bbe3e vocab=79cde9c9
+-/
 theorem quadraticHilbertTrunc_smul
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     quadraticHilbertTruncTestOperator lam ε (L0Infinity.smul c f) x =
@@ -336,7 +371,9 @@ theorem quadraticHilbertTrunc_smul
     ring)
 
 /-- Every positive fixed truncation has the sublinearity required by the
-project's sparse framework.-/
+project's sparse framework.
+@isnad1 id=issublin.1h2v.s4.73555f1da07d from=translated src=- shape=942306d0 vocab=1acab4b3
+-/
 theorem quadraticHilbertTruncTestOperator_isSublinear
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) :
     IsSublinear (quadraticHilbertTruncTestOperator lam ε) := by
@@ -355,6 +392,9 @@ noncomputable def finiteQuadraticHilbertTruncationMax {N : ℕ}
     (lam : ℝ) (eps : Fin N → ℝ) : L0Infinity → ℝ → ℝ :=
   finiteMax (fun j ↦ quadraticHilbertTruncTestOperator lam (eps j))
 
+/--
+@isnad1 id=le.0h6v.s5.5d2916e21612 from=translated src=- shape=79efdad0 vocab=f063b1f2
+-/
 theorem quadraticHilbertTrunc_norm_le_finiteTruncationMax {N : ℕ}
     (lam : ℝ) (eps : Fin N → ℝ) (j : Fin N) (f : L0Infinity) (x : ℝ) :
     ‖quadraticHilbertTrunc lam (eps j) f x‖ ≤

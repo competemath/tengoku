@@ -26,7 +26,9 @@ set_option autoImplicit false
 
 /-- The physical tail at `j + m + 2` of the reversed depth family is exactly
 the consecutive positive suffix beginning at scale `j + m`.  This includes
-`m = N`, where both sums are empty.-/
+`m = N`, where both sums are empty.
+@isnad1 id=eq.1h5v.s6.98181a910c36 from=translated src=- shape=6ffefa0c vocab=f1ed083a
+-/
 theorem finitePositiveGlobalTail_eq_positiveDyadicSuffix
     (f : L0Infinity) (j : ℤ) (N m : ℕ) (hm : m ≤ N) (x : ℝ) :
     finitePositiveGlobalTail (j + (N : ℤ) - 1) (Finset.range N) f
@@ -74,7 +76,9 @@ theorem finitePositiveGlobalTail_eq_positiveDyadicSuffix
 
 /-- The actual finite positive suffix maximal test operator is pointwise
 controlled by the finite global positive-tail maximum with exactly the
-source lower cutoff `j + 2`.-/
+source lower cutoff `j + 2`.
+@isnad1 id=le.0h4v.s6.36d08548bb6e from=translated src=- shape=70a4ac07 vocab=2dbe5c89
+-/
 theorem enorm_finitePositiveDyadicSuffixMaxOperator_le_globalTailMaximal
     (j : ℤ) (N : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖finitePositiveDyadicSuffixMaxOperator 1 j N f x‖ₑ ≤
@@ -101,7 +105,9 @@ theorem enorm_finitePositiveDyadicSuffixMaxOperator_le_globalTailMaximal
 /-- A concrete three-shift and parent-closed-forest reduction for the unit
 positive finite suffix operator.  No sparse estimate is assumed: the result
 is only the exact geometric/operator reduction needed before the local KL
-stopping argument.-/
+stopping argument.
+@isnad1 id=ex.0h3v.s7.c35aa56ee94b from=translated src=- shape=d27cc00f vocab=71f988a2
+-/
 theorem exists_threeShiftForests_finitePositiveDyadicSuffixMax
     (j : ℤ) (N : ℕ) (f : L0Infinity) :
     ∃ E : ℕ → Finset ℤ,

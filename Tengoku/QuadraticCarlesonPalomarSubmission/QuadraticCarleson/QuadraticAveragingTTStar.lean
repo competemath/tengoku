@@ -22,7 +22,9 @@ open scoped ComplexConjugate
 
 namespace QuadraticCarleson
 
-/-- A square majorant valid also when either extended value is infinite.-/
+/-- A square majorant valid also when either extended value is infinite.
+@isnad1 id=le.0h2v.s6.d1a78b76d3b3 from=translated src=- shape=e4fdabee vocab=843b1dec
+-/
 theorem ennreal_mul_le_add_sq (a b : ℝ≥0∞) : a * b ≤ a ^ 2 + b ^ 2 := by
   by_cases ha : a = ⊤
   · subst a
@@ -36,7 +38,9 @@ theorem ennreal_mul_le_add_sq (a b : ℝ≥0∞) : a * b ≤ a ^ 2 + b ^ 2 := by
     nlinarith [sq_nonneg ((a : ℝ) - (b : ℝ)), mul_nonneg a.2 b.2])
 
 /-- The finite centered maximal operator controls its quadratic pairing with
-the input. The nonoptimal numerical constant avoids square roots.-/
+the input. The nonoptimal numerical constant avoids square roots.
+@isnad1 id=le.2h3v.s6.689536ecdeb9 from=translated src=- shape=89db60c5 vocab=84266951
+-/
 theorem lintegral_mul_finiteCenteredMaximal_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) {f : ℝ → ℝ≥0∞}
     (hf : Measurable f) :
@@ -56,6 +60,9 @@ noncomputable def selectedAverageKernel {N : ℕ} (r : Fin N → ℝ)
     (σ : ℝ → Fin N) (x y : ℝ) : ℝ≥0∞ :=
   (closedBall x (r (σ x))).indicator (fun _ ↦ (ENNReal.ofReal (2 * r (σ x)))⁻¹) y
 
+/--
+@isnad1 id=measurab.1h3v.s5.83d6222b00b2 from=translated src=- shape=c80e1872 vocab=dd95b245
+-/
 theorem measurable_selectedAverageKernel {N : ℕ} (r : Fin N → ℝ)
     {σ : ℝ → Fin N} (hσ : Measurable σ) :
     Measurable (Function.uncurry (selectedAverageKernel r σ)) := by
@@ -69,7 +76,9 @@ theorem measurable_selectedAverageKernel {N : ℕ} (r : Fin N → ℝ)
     mem_ofPred_eq, Pi.inv_apply, Function.comp_apply]
 
 /-- Integrating the selected averaging kernel recovers the corresponding
-centered average exactly.-/
+centered average exactly.
+@isnad1 id=eq.1h5v.s6.16d30062d413 from=translated src=- shape=615c869f vocab=b3c93cc8
+-/
 theorem lintegral_selectedAverageKernel_mul {N : ℕ} (r : Fin N → ℝ)
     (σ : ℝ → Fin N) {f : ℝ → ℝ≥0∞} (hf : Measurable f) (x : ℝ) :
     (∫⁻ y, selectedAverageKernel r σ x y * f y) = centeredAverage (r (σ x)) f x := by
@@ -85,7 +94,9 @@ theorem lintegral_selectedAverageKernel_mul {N : ℕ} (r : Fin N → ℝ)
   rw [div_eq_mul_inv, mul_comm]
 
 /-- The pairing for an arbitrary measurable selected radius is bounded by the
-finite centered maximal estimate.-/
+finite centered maximal estimate.
+@isnad1 id=le.2h4v.s7.63ccd83efc27 from=translated src=- shape=7e82e06e vocab=7aa1b62a
+-/
 theorem selectedAverageKernel_pairing_le {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) (σ : ℝ → Fin N) {f : ℝ → ℝ≥0∞}
     (hf : Measurable f) :
@@ -107,7 +118,9 @@ theorem selectedAverageKernel_pairing_le {N : ℕ} (r : Fin N → ℝ)
     _ ≤ _ := lintegral_mul_finiteCenteredMaximal_le r hr hf
 
 /-- The symmetric selected-radius averaging majorant has a uniform quadratic
-form bound. This is the positive-kernel estimate used by `TT*`.-/
+form bound. This is the positive-kernel estimate used by `TT*`.
+@isnad1 id=le.3h4v.s7.a3f6bb2a2d99 from=translated src=- shape=81d8c205 vocab=82f35f76
+-/
 theorem symmetric_selectedAverageKernel_pairing_le {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) {σ : ℝ → Fin N} (hσ : Measurable σ)
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
@@ -147,7 +160,9 @@ theorem symmetric_selectedAverageKernel_pairing_le {N : ℕ} (r : Fin N → ℝ)
 namespace FiniteRangeKernel
 
 /-- The exact `TT*` identity bounds the adjoint energy by the absolute
-correlation quadratic form.-/
+correlation quadratic form.
+@isnad1 id=le.1h2v.s8.033a5085f13c from=translated src=- shape=5d955ec9 vocab=602f188a
+-/
 theorem adjoint_energy_le_correlation_enorm (K : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) :
     (∫⁻ t, ‖K.adjoint.applyIntegral g t‖ₑ ^ 2) ≤
@@ -183,7 +198,9 @@ theorem adjoint_energy_le_correlation_enorm (K : FiniteRangeKernel)
           ring
 
 /-- Operator-level adjoint `L²` decay from the symmetric centered averaging
-majorant. The constant is independent of the finite family and selector.-/
+majorant. The constant is independent of the finite family and selector.
+@isnad1 id=le.6h6v.s8.fbda1f262e38 from=translated src=- shape=4bccd33b vocab=e6634f04
+-/
 theorem adjoint_sq_lintegral_le_of_selectedAverageKernel {N : ℕ}
     (K : FiniteRangeKernel) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {σ : ℝ → Fin N} (hσ : Measurable σ) (C : ℝ≥0∞) (hC : C ≠ ⊤)

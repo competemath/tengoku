@@ -37,16 +37,25 @@ noncomputable def boundedCenteredHardyLittlewoodMaximal (n : ℕ)
     (f : ℝ → ℝ≥0∞) (x : ℝ) : ℝ≥0∞ :=
   ⨆ q : BoundedPositiveRational n, centeredAverage (q : ℝ) f x
 
+/--
+@isnad1 id=measurab.1h1v.s4.f2dc57af6932 from=translated src=- shape=95abb765 vocab=6406ad2a
+-/
 theorem measurable_centeredHardyLittlewoodMaximal {f : ℝ → ℝ≥0∞}
     (hf : Measurable f) : Measurable (centeredHardyLittlewoodMaximal f) :=
   Measurable.iSup (fun q : PositiveRational ↦ measurable_centeredAverage (q : ℝ) hf)
 
+/--
+@isnad1 id=measurab.1h2v.s4.194632b34ac2 from=translated src=- shape=a3f7e0f5 vocab=2fb42eaa
+-/
 theorem measurable_boundedCenteredHardyLittlewoodMaximal (n : ℕ)
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
     Measurable (boundedCenteredHardyLittlewoodMaximal n f) :=
   Measurable.iSup
     (fun q : BoundedPositiveRational n ↦ measurable_centeredAverage (q : ℝ) hf)
 
+/--
+@isnad1 id=le.0h3v.s4.1d4a41c4e98f from=translated src=- shape=17841ada vocab=99a2ed80
+-/
 theorem boundedCenteredHardyLittlewoodMaximal_le (n : ℕ)
     (f : ℝ → ℝ≥0∞) (x : ℝ) :
     boundedCenteredHardyLittlewoodMaximal n f x ≤ centeredHardyLittlewoodMaximal f x := by
@@ -55,6 +64,9 @@ theorem boundedCenteredHardyLittlewoodMaximal_le (n : ℕ)
   exact le_iSup (fun q : PositiveRational ↦ centeredAverage (q : ℝ) f x)
     ⟨q, q.property.1⟩
 
+/--
+@isnad1 id=le.1h4v.s4.e195fde3dfd3 from=translated src=- shape=5f5e5221 vocab=b6dc7e54
+-/
 theorem boundedCenteredHardyLittlewoodMaximal_mono {n m : ℕ} (hnm : n ≤ m)
     (f : ℝ → ℝ≥0∞) (x : ℝ) :
     boundedCenteredHardyLittlewoodMaximal n f x ≤
@@ -67,7 +79,9 @@ theorem boundedCenteredHardyLittlewoodMaximal_mono {n m : ℕ} (hnm : n ≤ m)
     ⟨q, q.property.1, q.property.2.trans (by exact_mod_cast Nat.add_le_add_right hnm 1)⟩
 
 /-- The full rational-radius maximal function is the increasing supremum of
-its bounded-radius versions.-/
+its bounded-radius versions.
+@isnad1 id=eq.0h2v.s4.52eb27cfcf3f from=translated src=- shape=62593cd2 vocab=b0d486c2
+-/
 theorem centeredHardyLittlewoodMaximal_eq_iSup_bounded (f : ℝ → ℝ≥0∞) (x : ℝ) :
     centeredHardyLittlewoodMaximal f x =
       ⨆ n : ℕ, boundedCenteredHardyLittlewoodMaximal n f x := by
@@ -84,7 +98,9 @@ theorem centeredHardyLittlewoodMaximal_eq_iSup_bounded (f : ℝ → ℝ≥0∞) 
     exact boundedCenteredHardyLittlewoodMaximal_le n f x
 
 /-- Uniform weak `(1,1)` estimate for the bounded rational-radius maximal
-operator.-/
+operator.
+@isnad1 id=le.0h3v.s6.007362ae2b8f from=translated src=- shape=e3c32a7d vocab=a6ff454c
+-/
 theorem boundedCenteredHardyLittlewoodMaximal_weak_bound (n : ℕ)
     (f : ℝ → ℝ≥0∞) (a : ℝ≥0∞) :
     a * volume {x | a < boundedCenteredHardyLittlewoodMaximal n f x} ≤
@@ -112,7 +128,9 @@ theorem boundedCenteredHardyLittlewoodMaximal_weak_bound (n : ℕ)
   exact (hq ⟨x, hx⟩).le
 
 /-- The strict superlevel set of the full maximal function is the increasing
-union of the bounded-radius superlevel sets.-/
+union of the bounded-radius superlevel sets.
+@isnad1 id=eq.0h2v.s5.60b8c4d94ab4 from=translated src=- shape=2c870134 vocab=94deeb42
+-/
 theorem centeredHardyLittlewoodMaximal_levelSet_eq_iUnion (f : ℝ → ℝ≥0∞)
     (a : ℝ≥0∞) :
     {x | a < centeredHardyLittlewoodMaximal f x} =
@@ -125,7 +143,9 @@ theorem centeredHardyLittlewoodMaximal_levelSet_eq_iUnion (f : ℝ → ℝ≥0�
   exact lt_iSup_iff
 
 /-- The centered Hardy--Littlewood maximal operator on `ℝ` has weak type
-`(1,1)` with the explicit Vitali constant `4`.-/
+`(1,1)` with the explicit Vitali constant `4`.
+@isnad1 id=le.0h2v.s6.58490d5ac16e from=translated src=- shape=ad31d66f vocab=631b8e64
+-/
 theorem centeredHardyLittlewoodMaximal_weak_bound (f : ℝ → ℝ≥0∞) (a : ℝ≥0∞) :
     a * volume {x | a < centeredHardyLittlewoodMaximal f x} ≤ 4 * ∫⁻ y, f y := by
   rw [centeredHardyLittlewoodMaximal_levelSet_eq_iUnion]
@@ -140,7 +160,9 @@ theorem centeredHardyLittlewoodMaximal_weak_bound (f : ℝ → ℝ≥0∞) (a : 
   exact boundedCenteredHardyLittlewoodMaximal_weak_bound n f a
 
 /-- Removing values below `b` changes the full centered maximal function by
-at most `b`.-/
+at most `b`.
+@isnad1 id=le.0h3v.s5.4752a462d429 from=translated src=- shape=8a037a67 vocab=f420ba3c
+-/
 theorem centeredHardyLittlewoodMaximal_le_truncate_add
     (f : ℝ → ℝ≥0∞) (b : ℝ≥0∞) (x : ℝ) :
     centeredHardyLittlewoodMaximal f x ≤
@@ -154,7 +176,9 @@ theorem centeredHardyLittlewoodMaximal_le_truncate_add
         centeredAverage (q' : ℝ) ({y | b < f y}.indicator f) x) q)
       le_rfl)
 
-/-- Localized weak estimate for the full rational-radius maximal operator.-/
+/-- Localized weak estimate for the full rational-radius maximal operator.
+@isnad1 id=le.0h2v.s7.4d11cf270b1a from=translated src=- shape=59634f0e vocab=4f4e3bbb
+-/
 theorem centeredHardyLittlewoodMaximal_localized_weak_bound
     (f : ℝ → ℝ≥0∞) (b : ℝ≥0∞) :
     (2 * b) * volume {x | 2 * b < centeredHardyLittlewoodMaximal f x} ≤
@@ -181,7 +205,9 @@ theorem centeredHardyLittlewoodMaximal_localized_weak_bound
     _ = _ := by ring
 
 /-- Each finite-value truncation of the genuine centered maximal function has
-the same uniform second-moment bound as its finite-radius approximants.-/
+the same uniform second-moment bound as its finite-radius approximants.
+@isnad1 id=le.1h2v.s6.ad6c819b7fca from=translated src=- shape=9db94047 vocab=25ea209f
+-/
 theorem centeredHardyLittlewoodMaximal_truncated_sq_lintegral_le
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) (n : ℕ) :
     (∫⁻ x, (min (centeredHardyLittlewoodMaximal f x) (n : ℝ≥0∞)) ^ 2) ≤
@@ -242,7 +268,9 @@ theorem centeredHardyLittlewoodMaximal_truncated_sq_lintegral_le
       ring
 
 /-- Strong `L²` estimate for the genuine countable centered maximal
-operator.-/
+operator.
+@isnad1 id=le.1h1v.s6.bbb5a9a24c6f from=translated src=- shape=c5aae68c vocab=823b30ed
+-/
 theorem centeredHardyLittlewoodMaximal_sq_lintegral_le
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ x, (centeredHardyLittlewoodMaximal f x) ^ 2) ≤

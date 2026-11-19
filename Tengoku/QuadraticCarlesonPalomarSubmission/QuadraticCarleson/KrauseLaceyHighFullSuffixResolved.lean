@@ -32,11 +32,16 @@ noncomputable section
 spatial halves of the full odd kernel.-/
 def highFullSuffixSparseConstant : ℝ := 6 * directQuadraticOneNodeConstant
 
+/--
+@isnad1 id=le.0h0v.s3.677d719e85bd from=translated src=- shape=ff3a10fc vocab=c97635a6
+-/
 theorem highFullSuffixSparseConstant_nonneg :
     0 ≤ highFullSuffixSparseConstant :=
   mul_nonneg (by norm_num) directQuadraticOneNodeConstant_nonneg
 
-/-- The high positive suffix estimate has no remaining analytic premise.-/
+/-- The high positive suffix estimate has no remaining analytic premise.
+@isnad1 id=hasnativ.0h0v.s4.4557b8aa0c59 from=translated src=- shape=998bb51b vocab=54c537d2
+-/
 theorem hasNativeUnitHighPositiveSuffixSparseBound_directQuadratic :
     HasNativeUnitHighPositiveSuffixSparseBound
       (3 * directQuadraticOneNodeConstant) :=
@@ -44,7 +49,9 @@ theorem hasNativeUnitHighPositiveSuffixSparseBound_directQuadratic :
     hasOneNodePStoppingGoodPartPairingBound_directQuadratic
 
 /-- Unconditional sparse domination of every finite unit-phase full-odd
-suffix maximum whose initial dyadic scale is at least one.-/
+suffix maximum whose initial dyadic scale is at least one.
+@isnad1 id=hasspars.3h3v.s5.eec4663f7390 from=translated src=- shape=e50ad8ec vocab=e6ff8c2a
+-/
 theorem hasSparseOnePBound_highFullDyadicSuffixMax
     {p : ℝ} (hp : 1 < p) (hp2 : p < 2)
     (j : ℤ) (hj : 1 ≤ j) (N : ℕ) :
@@ -58,7 +65,9 @@ theorem hasSparseOnePBound_highFullDyadicSuffixMax
   have hfull := hasSparseOnePBound_fullDyadicSuffixMax 1 j N hC hpositive
   convert hfull using 1 <;> unfold highFullSuffixSparseConstant <;> ring
 
-/-- The sparse norm has the same uniform high-scale bound.-/
+/-- The sparse norm has the same uniform high-scale bound.
+@isnad1 id=le.3h3v.s6.9489dc722488 from=translated src=- shape=bb6c5076 vocab=f59db0a6
+-/
 theorem sparseOnePNorm_highFullDyadicSuffixMax_le
     {p : ℝ} (hp : 1 < p) (hp2 : p < 2)
     (j : ℤ) (hj : 1 ≤ j) (N : ℕ) :
@@ -68,6 +77,9 @@ theorem sparseOnePNorm_highFullDyadicSuffixMax_le
     (mul_nonneg highFullSuffixSparseConstant_nonneg (holderConjugate_spec hp).symm.pos.le)
     (hasSparseOnePBound_highFullDyadicSuffixMax hp hp2 j hj N)
 
+/--
+@isnad1 id=eq.0h3v.s4.0269590b0c45 from=translated src=- shape=84d6861c vocab=de8dd729
+-/
 @[simp] theorem absoluteValue_finiteFullDyadicSuffixMaxOperator
     (lam : ℝ) (j : ℤ) (N : ℕ) :
     absoluteValueOperator (finiteFullDyadicSuffixMaxOperator lam j N) =
@@ -76,7 +88,9 @@ theorem sparseOnePNorm_highFullDyadicSuffixMax_le
   simp [absoluteValueOperator, finiteFullDyadicSuffixMaxOperator]
 
 /-- Compact-support stabilization passes the uniform high-suffix estimate
-to every moving lower cutoff, with no further constant loss.-/
+to every moving lower cutoff, with no further constant loss.
+@isnad1 id=hasspars.3h2v.s5.fb85672c05ac from=translated src=- shape=301a1287 vocab=f8b7ade4
+-/
 theorem hasSparseOnePBound_highDyadicSmoothHighPassMax
     {p : ℝ} (hp : 1 < p) (hp2 : p < 2) (j : ℤ) (hj : 1 ≤ j) :
     HasSparseOnePBound (highFullSuffixSparseConstant * holderConjugate p) p
@@ -84,7 +98,9 @@ theorem hasSparseOnePBound_highDyadicSmoothHighPassMax
   hasSparseOnePBound_dyadicSmoothHighPassMax_of_uniform_finiteSuffixMax 1 j
     (fun N ↦ hasSparseOnePBound_highFullDyadicSuffixMax hp hp2 j hj N)
 
-/-- The countable high-pass maximum retains subadditivity in extended norm.-/
+/-- The countable high-pass maximum retains subadditivity in extended norm.
+@isnad1 id=le.0h5v.s5.717df1afb36d from=translated src=- shape=f3923914 vocab=02fe6a72
+-/
 theorem dyadicSmoothHighPassMaxEnorm_add_le
     (lam : ℝ) (j : ℤ) (f g : L0Infinity) (x : ℝ) :
     dyadicSmoothHighPassMaxEnorm lam j (L0Infinity.add f g) x ≤
@@ -100,7 +116,9 @@ theorem dyadicSmoothHighPassMaxEnorm_add_le
     (le_iSup (fun n : ℕ ↦
       ‖smoothQuadraticHighPass lam ((2 : ℝ) ^ (j + (n : ℤ) - 3)) g x‖ₑ) m))
 
-/-- Scalar homogeneity passes exactly through the countable supremum.-/
+/-- Scalar homogeneity passes exactly through the countable supremum.
+@isnad1 id=eq.0h5v.s6.b96a7b9b9ce5 from=translated src=- shape=e9c145a4 vocab=57d558cb
+-/
 theorem dyadicSmoothHighPassMaxEnorm_smul
     (lam : ℝ) (j : ℤ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     dyadicSmoothHighPassMaxEnorm lam j (L0Infinity.smul c f) x =
@@ -115,7 +133,9 @@ theorem dyadicSmoothHighPassMaxEnorm_smul
   exact (ENNReal.mul_iSup _ _).symm
 
 /-- The genuine dyadic smooth high-pass maximum satisfies the sublinearity
-interface of the finite-family sparse maximal theorem.-/
+interface of the finite-family sparse maximal theorem.
+@isnad1 id=issublin.0h2v.s3.f6c74452f484 from=translated src=- shape=c57da3d9 vocab=904d8b73
+-/
 theorem isSublinear_dyadicSmoothHighPassMaxOperator (lam : ℝ) (j : ℤ) :
     IsSublinear (dyadicSmoothHighPassMaxOperator lam j) := by
   constructor
@@ -131,7 +151,9 @@ theorem isSublinear_dyadicSmoothHighPassMaxOperator (lam : ℝ) (j : ℤ) :
     simp only [ofReal_norm, enorm_dyadicSmoothHighPassMaxOperator]
     exact dyadicSmoothHighPassMaxEnorm_smul lam j c f x
 
-/-- Full dyadic convolution is additive on the paper's test space.-/
+/-- Full dyadic convolution is additive on the paper's test space.
+@isnad1 id=eq.0h5v.s5.962cb2b63674 from=translated src=- shape=d3338419 vocab=4eb7b676
+-/
 theorem fullDyadicConvolution_add
     (lam : ℝ) (j : ℤ) (f g : L0Infinity) (x : ℝ) :
     fullDyadicConvolution lam j (L0Infinity.add f g) x =
@@ -148,7 +170,9 @@ theorem fullDyadicConvolution_add
   change _ * (f y + g y) = _
   ring
 
-/-- Scalar multiplication commutes with a full dyadic convolution.-/
+/-- Scalar multiplication commutes with a full dyadic convolution.
+@isnad1 id=eq.0h5v.s5.9422860666d9 from=translated src=- shape=73d4049d vocab=6ed3fbbd
+-/
 theorem fullDyadicConvolution_smul
     (lam : ℝ) (j : ℤ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     fullDyadicConvolution lam j (L0Infinity.smul c f) x =
@@ -160,6 +184,9 @@ theorem fullDyadicConvolution_smul
   change _ * (c * f y) = _
   ring
 
+/--
+@isnad1 id=eq.0h7v.s5.a64ef421c149 from=translated src=- shape=1c7c75bd vocab=d6ea232e
+-/
 theorem finiteFullDyadicSuffix_add
     (lam : ℝ) (j : ℤ) (N m : ℕ) (f g : L0Infinity) (x : ℝ) :
     finiteFullDyadicSuffix lam j N m (L0Infinity.add f g) x =
@@ -167,6 +194,9 @@ theorem finiteFullDyadicSuffix_add
   simp only [finiteFullDyadicSuffix, finiteFullDyadicTail,
     fullDyadicConvolution_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h7v.s5.e4c1d59773c4 from=translated src=- shape=ec5c8821 vocab=6c36b12c
+-/
 theorem finiteFullDyadicSuffix_smul
     (lam : ℝ) (j : ℤ) (N m : ℕ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     finiteFullDyadicSuffix lam j N m (L0Infinity.smul c f) x =
@@ -174,7 +204,9 @@ theorem finiteFullDyadicSuffix_smul
   simp only [finiteFullDyadicSuffix, finiteFullDyadicTail,
     fullDyadicConvolution_smul, Finset.mul_sum]
 
-/-- Taking the finite maximum preserves subadditivity of full suffixes.-/
+/-- Taking the finite maximum preserves subadditivity of full suffixes.
+@isnad1 id=le.0h6v.s5.176e23c3a473 from=translated src=- shape=b3149bb0 vocab=afbe8006
+-/
 theorem finiteFullDyadicSuffixMaxNNNorm_add_le
     (lam : ℝ) (j : ℤ) (N : ℕ) (f g : L0Infinity) (x : ℝ) :
     finiteFullDyadicSuffixMaxNNNorm lam j N (L0Infinity.add f g) x ≤
@@ -188,7 +220,9 @@ theorem finiteFullDyadicSuffixMaxNNNorm_add_le
     (Finset.le_sup (f := fun r ↦ ‖finiteFullDyadicSuffix lam j N r f x‖₊) hm)
     (Finset.le_sup (f := fun r ↦ ‖finiteFullDyadicSuffix lam j N r g x‖₊) hm))
 
-/-- The finite full-suffix maximum is exactly homogeneous.-/
+/-- The finite full-suffix maximum is exactly homogeneous.
+@isnad1 id=eq.0h6v.s5.01091d580a2f from=translated src=- shape=c80f4adb vocab=5013dcdb
+-/
 theorem finiteFullDyadicSuffixMaxNNNorm_smul
     (lam : ℝ) (j : ℤ) (N : ℕ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     finiteFullDyadicSuffixMaxNNNorm lam j N (L0Infinity.smul c f) x =
@@ -197,6 +231,9 @@ theorem finiteFullDyadicSuffixMaxNNNorm_smul
   simp_rw [finiteFullDyadicSuffix_smul, nnnorm_mul]
   exact (NNReal.mul_finset_sup ‖c‖₊ _ _).symm
 
+/--
+@isnad1 id=eq.0h5v.s4.8e0d1db42ebc from=translated src=- shape=a11bc5ec vocab=81641c1c
+-/
 theorem norm_finiteFullDyadicSuffixMaxOperator
     (lam : ℝ) (j : ℤ) (N : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖finiteFullDyadicSuffixMaxOperator lam j N f x‖ =
@@ -204,7 +241,9 @@ theorem norm_finiteFullDyadicSuffixMaxOperator
   simp [finiteFullDyadicSuffixMaxOperator]
 
 /-- Sublinearity of the finite full-odd maximum needed for finite sparse
-families; no restriction on scales or modulation is required.-/
+families; no restriction on scales or modulation is required.
+@isnad1 id=issublin.0h3v.s3.1f473c4f40c8 from=translated src=- shape=27322421 vocab=acd18df2
+-/
 theorem isSublinear_finiteFullDyadicSuffixMaxOperator
     (lam : ℝ) (j : ℤ) (N : ℕ) :
     IsSublinear (finiteFullDyadicSuffixMaxOperator lam j N) := by

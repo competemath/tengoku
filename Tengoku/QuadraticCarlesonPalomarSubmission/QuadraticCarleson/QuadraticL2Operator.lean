@@ -39,9 +39,15 @@ instance : CoeFun FiniteRangeKernel (fun _ ↦ ℝ → ℝ → ℂ) := ⟨Finite
 
 namespace FiniteRangeKernel
 
+/--
+@isnad1 id=measurab.0h2v.s3.e79ecb552894 from=translated src=- shape=a17f733d vocab=d54fec0c
+-/
 theorem measurable_row (K : FiniteRangeKernel) (x : ℝ) : Measurable (K x) :=
   K.measurable_toFun.comp (measurable_const.prodMk measurable_id)
 
+/--
+@isnad1 id=measurab.0h2v.s3.9d58744977c5 from=translated src=- shape=dba709e9 vocab=d54fec0c
+-/
 theorem measurable_column (K : FiniteRangeKernel) (t : ℝ) : Measurable (fun x ↦ K x t) :=
   K.measurable_toFun.comp (measurable_id.prodMk measurable_const)
 
@@ -58,6 +64,9 @@ noncomputable def adjoint (K : FiniteRangeKernel) : FiniteRangeKernel where
   eq_zero x t h := by
     rw [K.eq_zero t x (by simpa only [abs_sub_comm] using h), map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.cb3749f0f55c from=translated src=- shape=02f1b9de vocab=3adf25a5
+-/
 @[simp] theorem adjoint_apply (K : FiniteRangeKernel) (x t : ℝ) :
     K.adjoint x t = conj (K t x) := rfl
 
@@ -69,6 +78,9 @@ noncomputable def applyIntegral (K : FiniteRangeKernel) (f : ℝ → ℂ) (x : �
 noncomputable def correlation (K : FiniteRangeKernel) (x y : ℝ) : ℂ :=
   ∫ t, K x t * conj (K y t)
 
+/--
+@isnad1 id=integrab.0h2v.s5.a581bf470af1 from=translated src=- shape=cc283c40 vocab=f4f674ee
+-/
 theorem integrable_row (K : FiniteRangeKernel) (x : ℝ) : Integrable (K x) := by
   let s : Set ℝ := Icc (x - K.radius) (x + K.radius)
   have hi : Integrable (s.indicator (fun _ ↦ K.bound)) :=
@@ -86,22 +98,34 @@ theorem integrable_row (K : FiniteRangeKernel) (x : ℝ) : Integrable (K x) := b
       constructor <;> linarith
     rw [K.eq_zero x t hdist, norm_zero]
 
+/--
+@isnad1 id=integrab.0h2v.s5.13d9998941de from=translated src=- shape=cdece5bf vocab=f4f674ee
+-/
 theorem integrable_column (K : FiniteRangeKernel) (t : ℝ) : Integrable (fun x ↦ K x t) := by
   apply (K.adjoint.integrable_row t).mono (K.measurable_column t).aestronglyMeasurable
   filter_upwards [] with x
   simp only [adjoint_apply, RCLike.norm_conj, le_refl]
 
+/--
+@isnad1 id=integrab.1h3v.s6.c5980a676ac8 from=translated src=- shape=72ee74d7 vocab=e710bbd8
+-/
 theorem integrable_row_mul (K : FiniteRangeKernel) {f : ℝ → ℂ}
     (hf : Integrable f) (x : ℝ) : Integrable (fun t ↦ K x t * f t) :=
   hf.bdd_mul (K.measurable_row x).aestronglyMeasurable
     (Filter.Eventually.of_forall (K.norm_le x))
 
+/--
+@isnad1 id=measurab.1h2v.s4.5508746b6474 from=translated src=- shape=a3f7e0f5 vocab=09e91c0f
+-/
 theorem measurable_applyIntegral (K : FiniteRangeKernel) {f : ℝ → ℂ}
     (hf : Measurable f) : Measurable (K.applyIntegral f) := by
   have hm : Measurable (fun z : ℝ × ℝ ↦ K z.1 z.2 * f z.2) :=
     K.measurable_toFun.mul (hf.comp measurable_snd)
   exact hm.stronglyMeasurable.integral_prod_right'.measurable
 
+/--
+@isnad1 id=le.1h3v.s6.d0ce024cd4ee from=translated src=- shape=ea1000ea vocab=8242f7d2
+-/
 theorem norm_applyIntegral_le (K : FiniteRangeKernel) {f : ℝ → ℂ}
     (hf : Integrable f) (x : ℝ) :
     ‖K.applyIntegral f x‖ ≤ K.bound * ∫ t, ‖f t‖ := by
@@ -115,7 +139,9 @@ theorem norm_applyIntegral_le (K : FiniteRangeKernel) {f : ℝ → ℂ}
       exact mul_le_mul_of_nonneg_right (K.norm_le x t) (norm_nonneg _)
     _ = _ := integral_const_mul _ _
 
-/-- The elementary uniform row-mass estimate.-/
+/-- The elementary uniform row-mass estimate.
+@isnad1 id=le.0h2v.s5.c0687a86611b from=translated src=- shape=0e795a50 vocab=dfa84a20
+-/
 theorem integral_norm_row_le (K : FiniteRangeKernel) (x : ℝ) :
     (∫ t, ‖K x t‖) ≤ 2 * K.radius * K.bound := by
   let s : Set ℝ := Icc (x - K.radius) (x + K.radius)
@@ -141,6 +167,9 @@ theorem integral_norm_row_le (K : FiniteRangeKernel) (x : ℝ) :
         0 ≤ x + K.radius - (x - K.radius))]
       ring
 
+/--
+@isnad1 id=le.0h2v.s5.cd24cc569215 from=translated src=- shape=07997b83 vocab=dfa84a20
+-/
 theorem integral_norm_column_le (K : FiniteRangeKernel) (t : ℝ) :
     (∫ x, ‖K x t‖) ≤ 2 * K.radius * K.bound := by
   have h := K.adjoint.integral_norm_row_le t
@@ -148,7 +177,9 @@ theorem integral_norm_column_le (K : FiniteRangeKernel) (t : ℝ) :
   simpa only [RCLike.norm_conj] using h
 
 /-- Fubini integrability for the operator action follows from the finite
-spatial range; the input need only be integrable.-/
+spatial range; the input need only be integrable.
+@isnad1 id=integrab.1h2v.s7.20dd169cddb5 from=translated src=- shape=68e0abe2 vocab=92f73671
+-/
 theorem integrable_action_integrand (K : FiniteRangeKernel)
     {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (fun z : ℝ × ℝ ↦ K z.1 z.2 * f z.2) (volume.prod volume) := by
@@ -168,12 +199,17 @@ theorem integrable_action_integrand (K : FiniteRangeKernel)
     simp_rw [norm_mul, integral_mul_const]
     exact mul_le_mul_of_nonneg_right (K.integral_norm_column_le t) (norm_nonneg _)
 
+/--
+@isnad1 id=integrab.1h2v.s6.f66c9666053d from=translated src=- shape=2c930462 vocab=af1d5af2
+-/
 theorem integrable_applyIntegral (K : FiniteRangeKernel)
     {f : ℝ → ℂ} (hf : Integrable f) : Integrable (K.applyIntegral f) :=
   (K.integrable_action_integrand hf).integral_prod_left
 
 /-- Integrability of the Fubini integrand is proved from the kernel bounds and
-the integrability of the input; it is not an additional assumption.-/
+the integrability of the input; it is not an additional assumption.
+@isnad1 id=integrab.1h3v.s7.273069779116 from=translated src=- shape=2a1fb43e vocab=fc9db048
+-/
 theorem integrable_correlation_integrand (K : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     Integrable (fun z : ℝ × ℝ ↦ K x z.1 * conj (K z.2 z.1) * g z.2)
@@ -188,7 +224,9 @@ theorem integrable_correlation_integrand (K : FiniteRangeKernel)
   ring
 
 /-- The pointwise integral representation of the actual composition `TT*` on
-integrable inputs.-/
+integrable inputs.
+@isnad1 id=eq.1h3v.s6.f4c724719100 from=translated src=- shape=00fdccb8 vocab=547bc708
+-/
 theorem applyIntegral_adjoint_eq_correlation (K : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     K.applyIntegral (K.adjoint.applyIntegral g) x =
@@ -208,7 +246,9 @@ theorem applyIntegral_adjoint_eq_correlation (K : FiniteRangeKernel)
     _ = ∫ y, ∫ t, K x t * conj (K y t) * g y := hswap
     _ = _ := by simp_rw [integral_mul_const]
 
-/-- The adjoint identity for the genuine integral action on `L¹` test inputs.-/
+/-- The adjoint identity for the genuine integral action on `L¹` test inputs.
+@isnad1 id=eq.2h3v.s7.30bac0ba7d13 from=translated src=- shape=070a2e12 vocab=bb50c70e
+-/
 theorem integral_pairing_adjoint (K : FiniteRangeKernel)
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) :
     (∫ x, K.applyIntegral f x * conj (g x)) =
@@ -240,7 +280,9 @@ theorem integral_pairing_adjoint (K : FiniteRangeKernel)
 
 /-- The exact quadratic-form identity underlying the `TT*` method. The left
 side is the squared `L²` mass of the adjoint applied to the input; the right
-side contains the correlation kernel estimated in `QuadraticTTStar`.-/
+side contains the correlation kernel estimated in `QuadraticTTStar`.
+@isnad1 id=eq.1h2v.s7.7ee32fa3870c from=translated src=- shape=fd680ea6 vocab=db73d192
+-/
 theorem adjoint_energy_eq_correlation_pairing (K : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) :
     (∫ t, ((‖K.adjoint.applyIntegral g t‖ ^ 2 : ℝ) : ℂ)) =
@@ -254,7 +296,9 @@ theorem adjoint_energy_eq_correlation_pairing (K : FiniteRangeKernel)
 
 /-- The adjoint energy is integrable on every integrable input. This avoids
 using a total Bochner integral at an unproved integrability point in the
-quadratic-form argument.-/
+quadratic-form argument.
+@isnad1 id=integrab.1h2v.s6.931a6ada6d48 from=translated src=- shape=8f15a09a vocab=e9d8b43a
+-/
 theorem integrable_adjoint_energy (K : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) :
     Integrable (fun t ↦ ‖K.adjoint.applyIntegral g t‖ ^ 2) := by
@@ -291,6 +335,9 @@ noncomputable def ofFiniteConvolution {N : ℕ} (κ : Fin N → ℝ → ℂ)
   norm_le x t := hbound (σκ x) (x - t)
   eq_zero x t h := hsupport (σκ x) (x - t) h
 
+/--
+@isnad1 id=eq.6h7v.s7.3e99de1b7f93 from=translated src=- shape=9e1399af vocab=55f3e8fd
+-/
 @[simp] theorem ofFiniteConvolution_apply {N : ℕ} (κ : Fin N → ℝ → ℂ)
     (σκ : ℝ → Fin N) (hσ : Measurable σκ)
     (hκ : ∀ i, Measurable (κ i))
@@ -301,7 +348,9 @@ noncomputable def ofFiniteConvolution {N : ℕ} (κ : Fin N → ℝ → ℂ)
 
 /-- Every finite family of continuous compactly supported convolution kernels
 has the uniform elementary bounds required by `FiniteRangeKernel`. No common
-radius or amplitude bound needs to be supplied by the caller.-/
+radius or amplitude bound needs to be supplied by the caller.
+@isnad1 id=ex.3h3v.s6.bae5cc78d27f from=translated src=- shape=16439f7d vocab=918addac
+-/
 theorem exists_of_finite_convolution {N : ℕ} (κ : Fin N → ℝ → ℂ)
     (σκ : ℝ → Fin N) (hσ : Measurable σκ)
     (hc : ∀ i, Continuous (κ i)) (hs : ∀ i, HasCompactSupport (κ i)) :
@@ -333,7 +382,9 @@ theorem exists_of_finite_convolution {N : ℕ} (κ : Fin N → ℝ → ℂ)
 
 /-- Exact measurable linearization of a finite maximal convolution operator.
 The selector is obtained from the measurable maximizing-index theorem, and
-the selected operator is represented by a genuine finite-range kernel.-/
+the selected operator is represented by a genuine finite-range kernel.
+@isnad1 id=ex.3h3v.s8.b4616e52f14a from=translated src=- shape=19b4ae2b vocab=7991ce9c
+-/
 theorem exists_finite_maximal_linearization (n : ℕ) (κ : Fin (n + 1) → ℝ → ℂ)
     (hc : ∀ i, Continuous (κ i)) (hs : ∀ i, HasCompactSupport (κ i))
     {f : ℝ → ℂ} (hf : Measurable f) :

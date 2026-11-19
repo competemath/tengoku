@@ -50,7 +50,9 @@ def directResidueRemainderMajorant
   ∑ n ∈ Finset.range N, ‖directResidueRemainderOutput S A scale f r s n x‖ₑ
 
 /-- The extended-nonnegative direct remainder majorant is exactly the
-`ofReal` encoding of the generic real-valued projection-error majorant.-/
+`ofReal` encoding of the generic real-valued projection-error majorant.
+@isnad1 id=eq.0h8v.s5.a88189fd2540 from=translated src=- shape=ab5c1a65 vocab=6654a5ee
+-/
 theorem directResidueRemainderMajorant_eq_ofReal
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) (x : ℝ) :
@@ -67,7 +69,9 @@ theorem directResidueRemainderMajorant_eq_ofReal
       (fun _ _ ↦ norm_nonneg _)).symm
 
 /-- The square integral of the concrete direct residue remainder majorant is
-exactly the square of the corresponding real `L²` majorant norm.-/
+exactly the square of the corresponding real `L²` majorant norm.
+@isnad1 id=other.0h7v.s8.c9ddf4398ad2 from=translated src=- shape=a5a19210 vocab=bacb653a
+-/
 theorem lintegral_directResidueRemainderMajorant_sq_eq
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -102,13 +106,18 @@ theorem lintegral_directResidueRemainderMajorant_sq_eq
         (by unfold residueScale; omega)
         (integrable_directScaleInput S A scale f (residueScale r n) s))
 
+/--
+@isnad1 id=le.0h2v.s4.1e01c86ba9be from=translated src=- shape=ced043ad vocab=b9cf97cb
+-/
 theorem residueScale_nonneg (r : Fin 7) (n : ℕ) :
     0 ≤ residueScale r n := by
   unfold residueScale
   omega
 
 /-- The inverse cubic scale weights are summable uniformly over every finite
-initial segment of one of the seven residue classes.-/
+initial segment of one of the seven residue classes.
+@isnad1 id=le.0h2v.s6.44bcfbd186cb from=translated src=- shape=ab0e129f vocab=3c026823
+-/
 theorem sum_inv_cube_residueScale_le_two (r : Fin 7) (N : ℕ) :
     (∑ n ∈ Finset.range N,
         (((2 : ℝ) ^ residueScale r n)⁻¹) ^ 3) ≤ 2 := by
@@ -142,7 +151,9 @@ theorem sum_inv_cube_residueScale_le_two (r : Fin 7) (N : ℕ) :
     _ ≤ 2 := sum_geometric_two_le N
 
 /-- After inserting the centered unit-mass estimate, the squared remainder
-coefficient still has a geometric sum independent of the number of scales.-/
+coefficient still has a geometric sum independent of the number of scales.
+@isnad1 id=le.0h3v.s7.260466320973 from=translated src=- shape=71912577 vocab=6e01f66b
+-/
 theorem sum_projectionRemainder_residueWeight_le
     (r : Fin 7) (s : ℤ) (N : ℕ) :
     (∑ n ∈ Finset.range N,
@@ -173,7 +184,9 @@ theorem sum_projectionRemainder_residueWeight_le
 
 /-- The abstract centered-mass remainder estimate specialized to the genuine
 direct inputs along one residue class.  Actual scales use their inherited
-unit-window mass bound; absent scales contribute exactly zero.-/
+unit-window mass bound; absent scales contribute exactly zero.
+@isnad1 id=other.7h8v.s9.24d40a7bb475 from=translated src=- shape=490a3c2c vocab=43d1ec80
+-/
 theorem norm_finiteProjectionErrorMajorant_directResidue_le_centeredSum
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -243,7 +256,9 @@ theorem norm_finiteProjectionErrorMajorant_directResidue_le_centeredSum
 
 /-- Cardinality-free `L²` bound for the real-valued projection-remainder
 majorant along one residue class.  This is the finite Cauchy--Schwarz step
-combining the centered mass, geometric scale weight, and total input mass.-/
+combining the centered mass, geometric scale weight, and total input mass.
+@isnad1 id=other.8h9v.s9.ef693777d908 from=translated src=- shape=b8d9b86e vocab=7d496f01
+-/
 theorem norm_finiteProjectionErrorMajorant_directResidue_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -395,7 +410,9 @@ theorem norm_finiteProjectionErrorMajorant_directResidue_le_root
       ring
 
 /-- Cardinality-free square-integral estimate for the actual nonnegative
-direct residue remainder majorant.-/
+direct residue remainder majorant.
+@isnad1 id=le.8h9v.s9.51d230de46c6 from=translated src=- shape=8ca7257c vocab=35bd24cf
+-/
 theorem lintegral_directResidueRemainderMajorant_sq_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -430,7 +447,9 @@ theorem lintegral_directResidueRemainderMajorant_sq_le_root
       hA hlam scale hscale f hs hM hmass I₀ hsub hgap r N
 
 /-- At every nonnegative residue scale, the literal direct output is almost
-everywhere its annular projection plus the explicit remainder convolution.-/
+everywhere its annular projection plus the explicit remainder convolution.
+@isnad1 id=eventual.0h7v.s6.b83ab4f96e5e from=translated src=- shape=4dbf7ab5 vocab=6db20b2d
+-/
 theorem directResidueOutput_ae_eq_projected_add_remainder
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (n : ℕ) :
@@ -469,7 +488,9 @@ theorem directResidueOutput_ae_eq_projected_add_remainder
     directResidueRemainderOutput, k] using hdirect.trans hadd
 
 /-- Replacing every direct residue output by its projected output costs at
-most the finite scalar sum of the corresponding remainder outputs.-/
+most the finite scalar sum of the corresponding remainder outputs.
+@isnad1 id=eventual.0h7v.s6.b9ac00df9e5e from=translated src=- shape=5bc82678 vocab=6f085e2a
+-/
 theorem finitePieceTailMax_directResidueOutput_ae_le_projected_add_remainder
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -502,7 +523,9 @@ theorem finitePieceTailMax_directResidueOutput_ae_le_projected_add_remainder
 
 /-- Complete finite-tail `L²` estimate for one direct residue class, obtained
 by combining the projected maximal-tail estimate with the cardinality-free
-projection-remainder bound.-/
+projection-remainder bound.
+@isnad1 id=other.8h9v.s9.10de0b109ae4 from=translated src=- shape=04a19c28 vocab=5c523480
+-/
 theorem finitePieceTailMax_directResidueOutput_sq_lintegral_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -597,7 +620,9 @@ private theorem sum_fin_seven_sq_le_fortynine_sum_sq (a : Fin 7 → ℝ≥0∞) 
 
 /-- The seven direct residue-tail maxima have a uniform combined `L²`
 square-integral bound.  The factor `49` comes from the preceding
-extended-nonnegative maximum estimate.-/
+extended-nonnegative maximum estimate.
+@isnad1 id=other.8h8v.s9.6736fdf9778e from=translated src=- shape=46cfa106 vocab=85b51f22
+-/
 theorem sum_directResidueTailMax_sq_lintegral_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -690,7 +715,9 @@ theorem sum_directResidueTailMax_sq_lintegral_le_root
       ring
 
 /-- The paper's direct localized quadratic tail operator inherits the
-cardinality-free `L²` estimate from the seven residue classes.-/
+cardinality-free `L²` estimate from the seven residue classes.
+@isnad1 id=other.10h9v.s9.d33b458908bf from=translated src=- shape=70359534 vocab=e37309e1
+-/
 theorem offsetTailMaximalOn_sq_lintegral_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -746,7 +773,9 @@ theorem offsetTailMaximalOn_sq_lintegral_le_root
 
 /-- Seminorm form of the direct localized-tail estimate.  The square root is
 taken in `ℝ≥0∞`, so this statement also avoids an unnecessary choice of a
-real-valued representative of the maximal function.-/
+real-valued representative of the maximal function.
+@isnad1 id=other.10h9v.s9.59cc3489956b from=translated src=- shape=3abba414 vocab=680d3940
+-/
 theorem eLpNorm_offsetTailMaximalOn_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

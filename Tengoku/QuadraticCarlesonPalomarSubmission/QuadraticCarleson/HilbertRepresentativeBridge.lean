@@ -10,6 +10,9 @@ namespace QuadraticCarleson.HilbertRepresentativeBridge
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=eq.2h2v.s7.38312d9d80d2 from=translated src=- shape=13d674a8 vocab=666b7b54
+-/
 theorem integral_fourier_mul_eq (f g : ℝ → ℂ)
     (hf : Integrable f) (hg : Integrable g) :
     (∫ x, 𝓕 f x * g x) = ∫ x, f x * 𝓕 g x := by
@@ -21,7 +24,9 @@ theorem integral_fourier_mul_eq (f g : ℝ → ℂ)
 
 /-- The integral Fourier transform of an `L¹ ∩ L²` function agrees almost
 everywhere with the canonical `L²` Fourier representative.  Schwartz-test
-duality avoids making an additional approximation choice.-/
+duality avoids making an additional approximation choice.
+@isnad1 id=eventual.2h1v.s12.3f4305c7068f from=translated src=- shape=d86799d5 vocab=f1c4c0b9
+-/
 theorem fourier_toLp_ae_eq {f : ℝ → ℂ} (hf : Integrable f)
     (hf₂ : MemLp f 2 volume) :
     (⇑(Lp.fourierTransformₗᵢ ℝ ℂ (hf₂.toLp f)) : ℝ → ℂ) =ᵐ[volume] 𝓕 f := by
@@ -55,6 +60,9 @@ theorem fourier_toLp_ae_eq {f : ℝ → ℂ} (hf : Integrable f)
 open HilbertPoissonFourier HilbertL2Fourier HilbertMaximalWeakOneOne
 open scoped ComplexConjugate InnerProductSpace
 
+/--
+@isnad1 id=eq.2h2v.s12.a855083de94c from=translated src=- shape=0abd79bb vocab=f94f1ef4
+-/
 theorem integral_conj_mul_eq_fourier {k : ℝ → ℂ} (hk : Integrable k)
     (hk₂ : MemLp k 2 volume) (h : Lp (α := ℝ) ℂ 2 volume) :
     (∫ y, conj (k y) * h y) =
@@ -77,6 +85,9 @@ theorem integral_conj_mul_eq_fourier {k : ℝ → ℂ} (hk : Integrable k)
         simp [hy, RCLike.inner_apply, mul_comm]
   exact hi'.symm
 
+/--
+@isnad1 id=memlp.1h1v.s6.4631d404dfa3 from=translated src=- shape=f6ee69ef vocab=a91df172
+-/
 theorem memLp_normalizedPoissonKernel {r : ℝ} (hr : 0 < r) :
     MemLp (normalizedPoissonKernel r) 2 volume := by
   have hae := fourier_toLp_ae_eq (integrable_poissonSpectralKernel hr)
@@ -84,6 +95,9 @@ theorem memLp_normalizedPoissonKernel {r : ℝ} (hr : 0 < r) :
   rw [fourier_poissonSpectralKernel_eq_normalized hr] at hae
   exact (memLp_congr_ae hae).mp (Lp.memLp _)
 
+/--
+@isnad1 id=eq.1h3v.s6.8fe3396b3aaa from=translated src=- shape=5a5d7302 vocab=d6ad19ea
+-/
 theorem fourier_translated_normalizedPoissonKernel {r : ℝ} (hr : 0 < r)
     (x ξ : ℝ) :
     𝓕 (fun y ↦ normalizedPoissonKernel r (y - x)) ξ =
@@ -92,7 +106,9 @@ theorem fourier_translated_normalizedPoissonKernel {r : ℝ} (hr : 0 < r)
   simpa only [sub_eq_add_neg, neg_mul, fourier_normalizedPoissonKernel hr] using ht
 
 /-- Poisson convolution of any `L²` representative is given pointwise by
-the absolutely convergent damped inverse Fourier integral.-/
+the absolutely convergent damped inverse Fourier integral.
+@isnad1 id=eq.1h3v.s12.34f0fa0f1649 from=translated src=- shape=6a72d326 vocab=0383fda6
+-/
 theorem normalizedPoissonAction_eq_spectral {r : ℝ} (hr : 0 < r)
     (h : Lp (α := ℝ) ℂ 2 volume) (x : ℝ) :
     (∫ y, normalizedPoissonKernel r (x - y) * h y) =
@@ -126,7 +142,9 @@ theorem normalizedPoissonAction_eq_spectral {r : ℝ} (hr : 0 < r)
         map_ofNat]
 
 /-- The genuine conjugate-Poisson action equals Poisson smoothing of the
-Fourier-defined ordinary Hilbert transform, at every center and radius.-/
+Fourier-defined ordinary Hilbert transform, at every center and radius.
+@isnad1 id=eq.3h3v.s8.5321270437a5 from=translated src=- shape=cebee8bf vocab=afe10d2e
+-/
 theorem cotlarConjugatePoissonAction_eq_poisson_hilbert
     {g : ℝ → ℂ} (hg : Integrable g) (hg₂ : MemLp g 2 volume)
     {r : ℝ} (hr : 0 < r) (x : ℝ) :
@@ -153,6 +171,9 @@ theorem cotlarConjugatePoissonAction_eq_poisson_hilbert
 
 open CalderonZygmundDyadicStopping
 
+/--
+@isnad1 id=eq.3h3v.s6.ffd59481c1bb from=translated src=- shape=ec465ae7 vocab=8638abcd
+-/
 theorem cotlarConjugatePoissonAction_stoppingGoodPart_eq_poisson
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {r : ℝ} (hr : 0 < r) (x : ℝ) :
@@ -169,7 +190,9 @@ theorem cotlarConjugatePoissonAction_stoppingGoodPart_eq_poisson
   rw [hy]
 
 /-- The missing pointwise Cotlar bound for the genuine sharp truncation of
-the canonical stopping good part.-/
+the canonical stopping good part.
+@isnad1 id=le.3h3v.s8.e4c95bc3f63f from=translated src=- shape=17eb8a69 vocab=f5ff5a86
+-/
 theorem enorm_quadraticHilbertTrunc_stoppingGoodPart_le_cotlar
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {r : ℝ} (hr : 0 < r) (x : ℝ) :
@@ -189,7 +212,9 @@ theorem enorm_quadraticHilbertTrunc_stoppingGoodPart_le_cotlar
     (enorm_cotlarPoissonAction_stoppingGoodHilbert_le_maximal hfi hr x)
 
 /-- Taking the actual supremum over all positive radii preserves the
-uniform Cotlar estimate.-/
+uniform Cotlar estimate.
+@isnad1 id=le.2h2v.s7.49475732066f from=translated src=- shape=9bd94530 vocab=e90ef738
+-/
 theorem quadraticHilbertMaximalTruncation_stoppingGoodPart_le_cotlar
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     quadraticHilbertMaximalTruncation 0 (stoppingGoodPart f) x ≤

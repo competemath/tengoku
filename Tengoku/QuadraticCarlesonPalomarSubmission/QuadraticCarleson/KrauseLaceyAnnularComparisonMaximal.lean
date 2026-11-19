@@ -38,12 +38,18 @@ def finiteAnnularComparisonMaxOperator (lam : ℝ) (s : Finset PositiveSmoothRad
     TestOperator :=
   fun f x ↦ ((finiteAnnularComparisonMaxNNNorm lam s f x : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s4.9889b91ac35f from=translated src=- shape=9348bf57 vocab=965e9726
+-/
 @[simp] theorem norm_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteAnnularComparisonMaxOperator lam s f x‖ =
       (finiteAnnularComparisonMaxNNNorm lam s f x : ℝ) := by
   simp [finiteAnnularComparisonMaxOperator]
 
+/--
+@isnad1 id=eq.0h4v.s7.0c515b4f44e0 from=translated src=- shape=6a7f2eca vocab=885d19ad
+-/
 @[simp] theorem enorm_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteAnnularComparisonMaxOperator lam s f x‖ₑ =
@@ -53,6 +59,9 @@ def finiteAnnularComparisonMaxOperator (lam : ℝ) (s : Finset PositiveSmoothRad
   simp only [finiteAnnularComparisonMaxNNNorm, ENNReal.coe_finset_sup]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.72d75892c853 from=translated src=- shape=3373d63f vocab=51908ce3
+-/
 @[simp] theorem absoluteValue_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) :
     absoluteValueOperator (finiteAnnularComparisonMaxOperator lam s) =
@@ -60,7 +69,9 @@ def finiteAnnularComparisonMaxOperator (lam : ℝ) (s : Finset PositiveSmoothRad
   funext f x
   simp [absoluteValueOperator, finiteAnnularComparisonMaxOperator]
 
-/-- One common maximal-function error controls the full finite family.-/
+/-- One common maximal-function error controls the full finite family.
+@isnad1 id=le.0h4v.s6.d3087b91b40d from=translated src=- shape=6e986be0 vocab=3caf4a1f
+-/
 theorem enorm_finiteAnnularComparisonMax_le_maximal
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteAnnularComparisonMaxOperator lam s f x‖ₑ ≤
@@ -69,6 +80,9 @@ theorem enorm_finiteAnnularComparisonMax_le_maximal
   exact Finset.sup_le fun ρ _ ↦ enorm_smoothHighPass_sub_dyadicRounded_le_maximal
     lam ρ.2 f.measurable_toFun f.integrable x
 
+/--
+@isnad1 id=le.0h4v.s5.aba4324e5c0d from=translated src=- shape=79ee6694 vocab=b2f29da9
+-/
 theorem norm_finiteAnnularComparisonMax_le_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteAnnularComparisonMaxOperator lam s f x‖ ≤
@@ -80,6 +94,9 @@ theorem norm_finiteAnnularComparisonMax_le_boundary
   simpa only [ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 24),
     ENNReal.ofReal_ofNat, ofReal_norm] using h
 
+/--
+@isnad1 id=measurab.0h3v.s4.eb4174c049ab from=translated src=- shape=089bf5db vocab=bf3af360
+-/
 theorem measurable_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) :
     Measurable (finiteAnnularComparisonMaxOperator lam s f) := by
@@ -102,7 +119,9 @@ theorem measurable_finiteAnnularComparisonMaxOperator
   exact Complex.measurable_ofReal.comp hmax
 
 /-- The actual operator has locally integrable outputs, so none of its
-testing integrals rely on the total integral's nonintegrable convention.-/
+testing integrals rely on the total integral's nonintegrable convention.
+@isnad1 id=locallyi.0h3v.s5.ef464351b0f0 from=translated src=- shape=8e211aea vocab=3c462aa8
+-/
 theorem locallyIntegrable_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) :
     LocallyIntegrable (finiteAnnularComparisonMaxOperator lam s f) volume := by
@@ -112,6 +131,9 @@ theorem locallyIntegrable_finiteAnnularComparisonMaxOperator
   simpa only [Pi.smul_apply, norm_smul, Complex.norm_ofNat] using
     norm_finiteAnnularComparisonMax_le_boundary lam s f x
 
+/--
+@isnad1 id=le.0h4v.s5.c10addb45d1d from=translated src=- shape=7d56cfd9 vocab=5944f54e
+-/
 theorem norm_pairing_finiteAnnularComparisonMax_le_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f g : L0Infinity) :
     ‖operatorPairing (finiteAnnularComparisonMaxOperator lam s) f g‖ ≤
@@ -135,7 +157,9 @@ theorem norm_pairing_finiteAnnularComparisonMax_le_boundary
     _ = _ := by ring
 
 /-- The comparison family's genuine sparse bound, with the explicit
-constant `11520 = 24 * 480` and unchanged `1/4` sparseness.-/
+constant `11520 = 24 * 480` and unchanged `1/4` sparseness.
+@isnad1 id=hasspars.1h3v.s4.6c160163f739 from=translated src=- shape=022b42c3 vocab=a041d73d
+-/
 theorem hasSparseOnePBound_finiteAnnularComparisonMaxOperator
     (lam : ℝ) (s : Finset PositiveSmoothRadius) {p : ℝ} (hp : 1 ≤ p) :
     HasSparseOnePBound 11520 p (finiteAnnularComparisonMaxOperator lam s) := by
@@ -160,7 +184,9 @@ private theorem enorm_le_add_enorm_sub (z w : ℂ) :
     _ ≤ _ := enorm_add_le _ _
 
 /-- The finite arbitrary-radius smooth maximum is controlled by its actual
-adjacent dyadic maximum plus the actual annular-difference maximum.-/
+adjacent dyadic maximum plus the actual annular-difference maximum.
+@isnad1 id=le.0h4v.s7.22898f929c06 from=translated src=- shape=35003667 vocab=bd4d26c4
+-/
 theorem enorm_finiteSmoothMax_le_dyadicMax_add_annularComparisonMax
     (lam : ℝ) (s : Finset PositiveSmoothRadius) (f : L0Infinity) (x : ℝ) :
     ‖finiteSmoothMaxOperator lam s f x‖ₑ ≤

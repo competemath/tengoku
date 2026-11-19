@@ -31,6 +31,9 @@ noncomputable def badLengthTailMaximal
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (x : ℝ) : ℝ :=
   ⨆ ell : ℤ, ‖badLengthTailAction S f I₀ k₀ s scale N ell x‖
 
+/--
+@isnad1 id=le.2h9v.s7.a53f9922d4ef from=translated src=- shape=ba69dc3c vocab=a14a812d
+-/
 theorem norm_badLengthTailAction_le_prefix
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -47,6 +50,9 @@ theorem norm_badLengthTailAction_le_prefix
   exact krauseLaceyLocalizedPiece_eq_zero_of_notMem 1 (scale I) I _
     (Finset.mem_filter.mp (hN hI)).2.1 hxI
 
+/--
+@isnad1 id=le.2h8v.s7.9bdcc747a473 from=translated src=- shape=1d7d2abd vocab=b356b286
+-/
 theorem badLengthTailMaximal_le_prefix
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -57,6 +63,9 @@ theorem badLengthTailMaximal_le_prefix
       2 * badSubcollectionPrefixMaximal S f I₀ k₀ s scale N N.card x :=
   ciSup_le fun ell ↦ norm_badLengthTailAction_le_prefix f I₀ k₀ s scale hlam N hN ell x
 
+/--
+@isnad1 id=le.2h8v.s7.c20b7008f819 from=translated src=- shape=6bd7cc42 vocab=863cb690
+-/
 theorem badLengthTailMaximal_nonneg
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -71,6 +80,9 @@ theorem badLengthTailMaximal_nonneg
       exact norm_badLengthTailAction_le_prefix f I₀ k₀ s scale hlam N hN ell x⟩
   exact (norm_nonneg _).trans (le_ciSup hb (0 : ℤ))
 
+/--
+@isnad1 id=aemeasur.1h7v.s6.d915685e457d from=translated src=- shape=72253e13 vocab=e35f3d76
+-/
 theorem aemeasurable_badLengthTailMaximal
     (S : Finset RealInterval) {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) :
@@ -88,6 +100,9 @@ theorem aemeasurable_badLengthTailMaximal
   · simp only [ite_eq_right he]
     exact aestronglyMeasurable_const
 
+/--
+@isnad1 id=eq.2h9v.s6.8f8a6b5d938b from=translated src=- shape=4b4606d9 vocab=e62ddd9f
+-/
 theorem badLengthTailMaximal_eq_pruned_of_lowOverlap
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -104,7 +119,9 @@ theorem badLengthTailMaximal_eq_pruned_of_lowOverlap
       (fun I ↦ if (2 : ℝ) ^ ell ≤ I.length then 1 else 0) x hx
 
 /-- The actual physical maximal operator of the concretely pruned family
-inherits the proved prefix estimate with the precise factor two.-/
+inherits the proved prefix estimate with the precise factor two.
+@isnad1 id=le.7h8v.s8.55ae8c2c6b55 from=translated src=- shape=150d2070 vocab=13f65460
+-/
 theorem eLpNorm_pruned_badLengthTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)

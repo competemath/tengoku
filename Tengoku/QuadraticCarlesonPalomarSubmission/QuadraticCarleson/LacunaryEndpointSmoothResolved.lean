@@ -27,7 +27,9 @@ set_option autoImplicit false
 
 /-- The paper-facing lacunary principal-value endpoint, conditional only on
 the genuine smooth Krause--Lacey sparse estimate.  The ordinary Hilbert
-maximal input has already been discharged unconditionally.-/
+maximal input has already been discharged unconditionally.
+@isnad1 id=ex.1h1v.s7.428ba0bc1f1b from=translated src=- shape=c04912af vocab=4fe77947
+-/
 theorem lacunary_principalValue_endpoint_of_smoothSparse
     {A : ℝ} (hA : HasUniformFiniteRadiusSmoothSparseBound A) :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
@@ -42,7 +44,9 @@ theorem lacunary_principalValue_endpoint_of_smoothSparse
     (hasUniformL0LogSquaredFrozenBlockWeakBounds_of_smoothSparse hA)
 
 /-- The same endpoint reduced all the way to uniform sparse domination of the
-finite positive dyadic suffix maxima used in the Krause--Lacey proof.-/
+finite positive dyadic suffix maxima used in the Krause--Lacey proof.
+@isnad1 id=ex.1h1v.s7.983d6f2342d1 from=translated src=- shape=c04912af vocab=6c4c76d1
+-/
 theorem lacunary_principalValue_endpoint_of_positiveSuffix
     {A : ℝ} (hA : HasUniformPositiveSuffixSmoothSparseBound A) :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
@@ -58,7 +62,9 @@ theorem lacunary_principalValue_endpoint_of_positiveSuffix
 
 /-- The paper-facing endpoint reduced to the exact unit-modulation analytic
 input needed after the proved dilation and conjugation reductions: sparse
-domination for a common positive scale offset of each rounded dyadic family.-/
+domination for a common positive scale offset of each rounded dyadic family.
+@isnad1 id=ex.1h1v.s7.76586763f44c from=translated src=- shape=c04912af vocab=2429aeb3
+-/
 theorem lacunary_principalValue_endpoint_of_unitScaleOffset
     {A : ℝ}
     (hA : HasUnitScaleOffsetSmoothSparseBound A) :

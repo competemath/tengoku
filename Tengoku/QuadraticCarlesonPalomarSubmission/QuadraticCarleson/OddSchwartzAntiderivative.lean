@@ -30,6 +30,9 @@ namespace QuadraticCarleson
 noncomputable def schwartzPrimitiveFunction (f : 𝓢(ℝ, ℂ)) (x : ℝ) : ℂ :=
   ∫ t in Iic x, f t
 
+/--
+@isnad1 id=eq.0h1v.s7.67ce625f86f1 from=translated src=- shape=dcadfa3c vocab=0bce228e
+-/
 theorem schwartzPrimitiveFunction_eq_intervalIntegral (f : 𝓢(ℝ, ℂ)) :
     schwartzPrimitiveFunction f =
       fun x ↦ (∫ t in (0 : ℝ)..x, f t) + ∫ t in Iic (0 : ℝ), f t := by
@@ -38,15 +41,24 @@ theorem schwartzPrimitiveFunction_eq_intervalIntegral (f : 𝓢(ℝ, ℂ)) :
     (intervalIntegral.integral_Iic_sub_Iic f.integrable.integrableOn
       f.integrable.integrableOn)
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.55873bd985c7 from=translated src=- shape=e4e5036d vocab=b89abe3c
+-/
 theorem hasDerivAt_schwartzPrimitiveFunction (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     HasDerivAt (schwartzPrimitiveFunction f) (f x) x := by
   rw [schwartzPrimitiveFunction_eq_intervalIntegral]
   exact (f.continuous.integral_hasStrictDerivAt 0 x).hasDerivAt.add_const _
 
+/--
+@isnad1 id=eq.0h1v.s7.374b6bf2799c from=translated src=- shape=46fb1d6e vocab=1c72ea06
+-/
 theorem deriv_schwartzPrimitiveFunction (f : 𝓢(ℝ, ℂ)) :
     deriv (schwartzPrimitiveFunction f) = f :=
   funext (fun x ↦ (hasDerivAt_schwartzPrimitiveFunction f x).deriv)
 
+/--
+@isnad1 id=contdiff.0h1v.s5.4f49e623aa61 from=translated src=- shape=36a93571 vocab=61029134
+-/
 theorem contDiff_schwartzPrimitiveFunction (f : 𝓢(ℝ, ℂ)) :
     ContDiff ℝ ∞ (schwartzPrimitiveFunction f) := by
   apply contDiff_infty_iff_deriv.mpr
@@ -54,7 +66,9 @@ theorem contDiff_schwartzPrimitiveFunction (f : 𝓢(ℝ, ℂ)) :
   rw [deriv_schwartzPrimitiveFunction]
   exact f.smooth'
 
-/-- A tail supported where `‖t‖ ≥ ‖x‖` is bounded by a Schwartz moment.-/
+/-- A tail supported where `‖t‖ ≥ ‖x‖` is bounded by a Schwartz moment.
+@isnad1 id=le.1h4v.s8.bd6a7f6f3126 from=translated src=- shape=05adc6e7 vocab=1b7919f4
+-/
 theorem norm_pow_mul_norm_schwartz_setIntegral_le (f : 𝓢(ℝ, ℂ)) (k : ℕ)
     (x : ℝ) (s : Set ℝ) (hs : ∀ t ∈ s, ‖x‖ ≤ ‖t‖) :
     ‖x‖ ^ k * ‖∫ t in s, f t‖ ≤ ∫ t : ℝ, ‖t‖ ^ k * ‖f t‖ := by
@@ -71,6 +85,9 @@ theorem norm_pow_mul_norm_schwartz_setIntegral_le (f : 𝓢(ℝ, ℂ)) (k : ℕ)
       setIntegral_le_integral (f.integrable_pow_mul volume k)
         (Eventually.of_forall fun _ ↦ by positivity)
 
+/--
+@isnad1 id=eq.1h2v.s7.d6819589a8ee from=translated src=- shape=dbece93b vocab=ae66cc00
+-/
 theorem schwartzPrimitiveFunction_eq_neg_tail (f : 𝓢(ℝ, ℂ))
     (hf : (∫ t : ℝ, f t) = 0) (x : ℝ) :
     schwartzPrimitiveFunction f x = -(∫ t in Ioi x, f t) := by
@@ -80,7 +97,9 @@ theorem schwartzPrimitiveFunction_eq_neg_tail (f : 𝓢(ℝ, ℂ))
   exact eq_neg_of_add_eq_zero_left h
 
 /-- Every polynomially weighted value of the primitive is controlled by
-the corresponding weighted `L¹` moment of the original Schwartz function.-/
+the corresponding weighted `L¹` moment of the original Schwartz function.
+@isnad1 id=le.1h3v.s7.3ba12649f9f7 from=translated src=- shape=4a4b7f26 vocab=48671b71
+-/
 theorem norm_pow_mul_schwartzPrimitiveFunction_le (f : 𝓢(ℝ, ℂ))
     (hf : (∫ t : ℝ, f t) = 0) (k : ℕ) (x : ℝ) :
     ‖x‖ ^ k * ‖schwartzPrimitiveFunction f x‖ ≤
@@ -116,17 +135,25 @@ noncomputable def schwartzPrimitive (f : 𝓢(ℝ, ℂ)) (hf : (∫ t : ℝ, f t
       simpa only [norm_iteratedFDeriv_eq_norm_iteratedDeriv, iteratedDeriv_succ',
         deriv_schwartzPrimitiveFunction] using hC x
 
+/--
+@isnad1 id=eq.1h2v.s7.4f4cef038c3f from=translated src=- shape=148dc256 vocab=95606c45
+-/
 @[simp]
 theorem schwartzPrimitive_apply (f : 𝓢(ℝ, ℂ)) (hf : (∫ t : ℝ, f t) = 0) (x : ℝ) :
     schwartzPrimitive f hf x = ∫ t in Iic x, f t := rfl
 
+/--
+@isnad1 id=eq.1h1v.s9.9951bcf767bb from=translated src=- shape=00805b16 vocab=77af1313
+-/
 theorem derivCLM_schwartzPrimitive (f : 𝓢(ℝ, ℂ)) (hf : (∫ t : ℝ, f t) = 0) :
     SchwartzMap.derivCLM ℂ ℂ (schwartzPrimitive f hf) = f := by
   ext x
   change deriv (schwartzPrimitiveFunction f) x = f x
   rw [deriv_schwartzPrimitiveFunction]
 
-/-- An explicit bound for every seminorm involving no derivatives.-/
+/-- An explicit bound for every seminorm involving no derivatives.
+@isnad1 id=le.1h2v.s9.05911712f9a6 from=translated src=- shape=dd1860c6 vocab=0e06987d
+-/
 theorem seminorm_zero_schwartzPrimitive_le (f : 𝓢(ℝ, ℂ))
     (hf : (∫ t : ℝ, f t) = 0) (k : ℕ) :
     SchwartzMap.seminorm ℂ k 0 (schwartzPrimitive f hf) ≤
@@ -139,7 +166,9 @@ theorem seminorm_zero_schwartzPrimitive_le (f : 𝓢(ℝ, ℂ))
     exact norm_pow_mul_schwartzPrimitiveFunction_le f hf k x
 
 /-- Every higher-derivative seminorm is controlled by the corresponding
-seminorm of the original Schwartz function.-/
+seminorm of the original Schwartz function.
+@isnad1 id=le.1h3v.s9.e317b0b74b0c from=translated src=- shape=8d1e07fa vocab=89e7f952
+-/
 theorem seminorm_succ_schwartzPrimitive_le (f : 𝓢(ℝ, ℂ))
     (hf : (∫ t : ℝ, f t) = 0) (k n : ℕ) :
     SchwartzMap.seminorm ℂ k (n + 1) (schwartzPrimitive f hf) ≤
@@ -150,11 +179,17 @@ theorem seminorm_succ_schwartzPrimitive_le (f : 𝓢(ℝ, ℂ))
   simpa only [norm_iteratedFDeriv_eq_norm_iteratedDeriv, iteratedDeriv_succ',
     deriv_schwartzPrimitiveFunction] using f.le_seminorm ℂ k n x
 
+/--
+@isnad1 id=ex.1h1v.s9.e7f1d0f9e03b from=translated src=- shape=8a124dff vocab=76f0bfcd
+-/
 theorem exists_schwartz_antiderivative_of_integral_eq_zero (f : 𝓢(ℝ, ℂ))
     (hf : (∫ t : ℝ, f t) = 0) :
     ∃ g : 𝓢(ℝ, ℂ), SchwartzMap.derivCLM ℂ ℂ g = f :=
   ⟨schwartzPrimitive f hf, derivCLM_schwartzPrimitive f hf⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.5fc58ad3535b from=translated src=- shape=94d4807c vocab=c556ea76
+-/
 theorem integral_schwartz_odd_eq_zero (f : 𝓢(ℝ, ℂ))
     (hf : Function.Odd (f : ℝ → ℂ)) : (∫ t : ℝ, f t) = 0 := by
   apply self_eq_neg.mp
@@ -165,7 +200,9 @@ theorem integral_schwartz_odd_eq_zero (f : 𝓢(ℝ, ℂ))
       rw [heq, integral_neg]
 
 /-- Every odd complex Schwartz function on the real line has a complex
-Schwartz antiderivative.-/
+Schwartz antiderivative.
+@isnad1 id=ex.1h1v.s9.7252c67ce4e9 from=translated src=- shape=bcf056a6 vocab=3b9398ab
+-/
 theorem exists_schwartz_antiderivative_of_odd (f : 𝓢(ℝ, ℂ))
     (hf : Function.Odd (f : ℝ → ℂ)) :
     ∃ g : 𝓢(ℝ, ℂ), SchwartzMap.derivCLM ℂ ℂ g = f :=

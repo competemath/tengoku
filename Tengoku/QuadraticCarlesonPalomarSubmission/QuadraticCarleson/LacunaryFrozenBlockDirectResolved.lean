@@ -33,6 +33,9 @@ noncomputable section
 def blockDilation (B : ℕ) (τ : ℤ) (i : Fin (Q B τ).card) : ℝ :=
   Real.sqrt (dyadicModulation (modulationBlockIndex B τ i))
 
+/--
+@isnad1 id=lt.0h3v.s4.8b5aa9973ca3 from=translated src=- shape=e9092cf1 vocab=10b097f2
+-/
 theorem blockDilation_pos (B : ℕ) (τ : ℤ) (i : Fin (Q B τ).card) :
     0 < blockDilation B τ i :=
   Real.sqrt_pos.mpr (dyadicModulation_pos _)
@@ -40,7 +43,9 @@ theorem blockDilation_pos (B : ℕ) (τ : ℤ) (i : Fin (Q B τ).card) :
 def frozenHighSuffixFamily (B : ℕ) (τ : ℤ) : Fin (Q B τ).card → TestOperator :=
   dilatedHighSuffixFamily B (blockDilation B τ) (blockDilation_pos B τ)
 
-/-- The comparison uses the actual frozen input, with no extra cardinality loss.-/
+/-- The comparison uses the actual frozen input, with no extra cardinality loss.
+@isnad1 id=le.0h6v.s6.bf086dd29cf4 from=translated src=- shape=58d97ad6 vocab=ce07ec78
+-/
 theorem frozenBlockMaxEnorm_le_highSuffixFamily_add_maximal
     (f : L0Infinity) (k B c : ℕ) (τ : ℤ) (x : ℝ) :
     frozenBlockMaxEnorm lacunaryAmplitude f k B c τ x ≤
@@ -72,9 +77,15 @@ theorem frozenBlockMaxEnorm_le_highSuffixFamily_add_maximal
 def directFrozenHighWeakConstant : ℝ :=
   finiteSparseMaximalUniversalConstant * highFullSuffixSparseConstant
 
+/--
+@isnad1 id=le.0h0v.s3.190dc0e50fdc from=translated src=- shape=ff3a10fc vocab=12ca7dac
+-/
 theorem directFrozenHighWeakConstant_nonneg : 0 ≤ directFrozenHighWeakConstant :=
   mul_nonneg finiteSparseMaximalUniversalConstant_pos.le highFullSuffixSparseConstant_nonneg
 
+/--
+@isnad1 id=hasweako.0h2v.s5.e5b998957442 from=translated src=- shape=d3ee3b3f vocab=2dbf07a9
+-/
 theorem hasWeakOneOneBound_frozenHighSuffixFamily (B : ℕ) (τ : ℤ) :
     HasWeakOneOneBound (directFrozenHighWeakConstant * paperLog 1 (B : ℝ) ^ 2)
       (finiteMax (frozenHighSuffixFamily B τ)) := by
@@ -82,7 +93,9 @@ theorem hasWeakOneOneBound_frozenHighSuffixFamily (B : ℕ) (τ : ℤ) :
     hasWeakOneOneBound_dilatedHighSuffixFamily B (blockDilation B τ)
       (blockDilation_pos B τ)
 
-/-- The actual frozen-block weak estimate, now with no outstanding analytic premise.-/
+/-- The actual frozen-block weak estimate, now with no outstanding analytic premise.
+@isnad1 id=haslogsq.0h3v.s5.0eb85b3d103f from=translated src=- shape=652c73d5 vocab=a0bf71bb
+-/
 theorem hasLogSquaredFrozenBlockWeakBounds (f : L0Infinity) (B : ℕ → ℕ) (c : ℕ) :
     HasLogSquaredFrozenBlockWeakBounds (f : ℝ → ℂ) B c
       (2 * directFrozenHighWeakConstant + 384) :=
@@ -92,7 +105,9 @@ theorem hasLogSquaredFrozenBlockWeakBounds (f : L0Infinity) (B : ℕ → ℕ) (c
     (fun k τ ↦ hasWeakOneOneBound_frozenHighSuffixFamily (B k) τ)
     (fun k τ x ↦ frozenBlockMaxEnorm_le_highSuffixFamily_add_maximal f k (B k) c τ x)
 
-/-- Discharges exactly the remaining input of the paper-facing lacunary endpoint.-/
+/-- Discharges exactly the remaining input of the paper-facing lacunary endpoint.
+@isnad1 id=hasunifo.0h0v.s5.cb558cc1eea5 from=translated src=- shape=edf2ae49 vocab=4c7d888a
+-/
 theorem hasUniformL0LogSquaredFrozenBlockWeakBounds :
     LacunaryOscillatoryScaling.HasUniformL0LogSquaredFrozenBlockWeakBounds
       (2 * directFrozenHighWeakConstant + 384) :=

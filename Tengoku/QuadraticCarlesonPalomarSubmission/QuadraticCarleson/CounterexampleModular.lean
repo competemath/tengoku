@@ -24,12 +24,17 @@ open scoped Topology
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=le.1h2v.s4.2e4f24f35865 from=translated src=- shape=696abc3b vocab=8df85848
+-/
 theorem YoungFunction.nonneg (Φ : YoungFunction) {t : ℝ} (ht : 0 ≤ t) : 0 ≤ Φ t := by
   simpa only [Φ.map_zero] using
     Φ.strictMonoOn_nonneg.monotoneOn (show (0 : ℝ) ∈ Ici 0 by simp) ht ht
 
 /-- Convexity and the normalization at zero bound a Young function below
-its secant through any positive endpoint.-/
+its secant through any positive endpoint.
+@isnad1 id=le.3h3v.s5.6ec707fd1050 from=translated src=- shape=69048c07 vocab=161fa0b1
+-/
 theorem YoungFunction.le_secant (Φ : YoungFunction) {t M : ℝ}
     (ht : 0 ≤ t) (htM : t ≤ M) (hM : 0 < M) :
     Φ t ≤ (Φ M / M) * t := by
@@ -46,7 +51,9 @@ theorem YoungFunction.le_secant (Φ : YoungFunction) {t M : ℝ}
     _ = (Φ M / M) * t := by ring
 
 /-- A useful modular estimate for nonnegative, bounded, compactly
-supported continuous functions.-/
+supported continuous functions.
+@isnad1 id=le.5h3v.s7.f74ec3cd5381 from=translated src=- shape=da20cebf vocab=28bb6c6c
+-/
 theorem YoungFunction.integral_le_secant (Φ : YoungFunction) {g : ℝ → ℝ}
     (hg : Continuous g) (hgc : HasCompactSupport g) (hgn : ∀ x, 0 ≤ g x)
     {M : ℝ} (hM : 0 < M) (hgM : ∀ x, g x ≤ M) :
@@ -61,13 +68,22 @@ theorem YoungFunction.integral_le_secant (Φ : YoungFunction) {g : ℝ → ℝ}
         (fun x ↦ Φ.le_secant (hgn x) (hgM x) hM)
     _ = (Φ M / M) * ∫ x : ℝ, g x := integral_const_mul _ _
 
+/--
+@isnad1 id=le.0h2v.s4.3f4adf526276 from=translated src=- shape=787c1379 vocab=0867a9da
+-/
 theorem packetSum_nonneg (N : ℕ) (x : ℝ) : 0 ≤ packetSum N x := by
   rw [packetSum, Finset.sum_apply]
   exact Finset.sum_nonneg (fun j _ ↦ wavePacket_nonneg _ _ (packetScale_pos N j))
 
+/--
+@isnad1 id=eq.0h2v.s5.9d47b72f1dc2 from=translated src=- shape=4d3c4e3a vocab=385b7ffd
+-/
 theorem packetScale_inv (N j : ℕ) : (packetScale N j)⁻¹ = (2 : ℝ) ^ (N * j) := by
   simp only [packetScale, zpow_neg, inv_inv, zpow_natCast]
 
+/--
+@isnad1 id=le.3h3v.s6.485183a98a6e from=translated src=- shape=a47aed2f vocab=36a3b379
+-/
 theorem packetSum_le_uniform {C : ℝ} (hC : 0 < C) (hbound : ∀ x, baseBump x ≤ C)
     {N : ℕ} (hN : 0 < N) (x : ℝ) : packetSum N x ≤ C * (2 : ℝ) ^ (N * N) := by
   rcases packetSum_eq_zero_or_eq_wavePacket hN x with hx | ⟨j, hj, hx⟩
@@ -84,6 +100,9 @@ theorem packetSum_le_uniform {C : ℝ} (hC : 0 < C) (hbound : ∀ x, baseBump x 
           hC.le
       _ = C * (2 : ℝ) ^ (N * N) := mul_comm _ _
 
+/--
+@isnad1 id=eq.0h1v.s5.f5b1af796144 from=translated src=- shape=6415c909 vocab=c125e405
+-/
 theorem packetSum_integral (N : ℕ) : (∫ x : ℝ, packetSum N x) = (N : ℝ) := by
   have hpacket : ∀ j : ℕ, (∫ x : ℝ, wavePacket (j : ℝ) (packetScale N j) x) = 1 :=
     fun j ↦ wavePacket_integral (j : ℝ) (packetScale_pos N j)
@@ -97,6 +116,9 @@ theorem packetSum_integral (N : ℕ) : (∫ x : ℝ, packetSum N x) = (N : ℝ) 
 noncomputable def counterexampleModular (Φ : YoungFunction) (N : ℕ) : ℝ :=
   ∫ x : ℝ, Φ ((N : ℝ) * ‖counterexample N x‖ / Real.log (N : ℝ))
 
+/--
+@isnad1 id=eq.1h2v.s6.fac21151ef4b from=translated src=- shape=a9bcdc2a vocab=80fd5c89
+-/
 theorem scaled_counterexample_eq_packetSum {N : ℕ} (hN : 0 < N) (x : ℝ) :
     (N : ℝ) * ‖counterexample N x‖ / Real.log (N : ℝ) =
       packetSum N x / Real.log (N : ℝ) := by
@@ -105,11 +127,17 @@ theorem scaled_counterexample_eq_packetSum {N : ℕ} (hN : 0 < N) (x : ℝ) :
     abs_of_nonneg (counterexampleReal_nonneg N x), counterexampleReal]
   simp [hNr]
 
+/--
+@isnad1 id=eq.1h2v.s5.f6e7e83a42d4 from=translated src=- shape=1e983295 vocab=c1a8a2f3
+-/
 theorem counterexampleModular_eq {N : ℕ} (hN : 0 < N) (Φ : YoungFunction) :
     counterexampleModular Φ N =
       ∫ x : ℝ, Φ (packetSum N x / Real.log (N : ℝ)) := by
   simp only [counterexampleModular, scaled_counterexample_eq_packetSum hN]
 
+/--
+@isnad1 id=integrab.2h2v.s6.a5b79ffdfce6 from=translated src=- shape=8ff34856 vocab=f38be73c
+-/
 theorem integrable_counterexampleModular_integrand (Φ : YoungFunction)
     {N : ℕ} (hN : 0 < N) (hlog : 0 ≤ Real.log (N : ℝ)) :
     Integrable (fun x : ℝ ↦
@@ -124,6 +152,9 @@ theorem integrable_counterexampleModular_integrand (Φ : YoungFunction)
     (fun x ↦ div_nonneg (packetSum_nonneg N x) hlog)).integrable_of_hasCompactSupport
       (hs.comp_left Φ.map_zero)
 
+/--
+@isnad1 id=le.1h2v.s4.275a8f072360 from=translated src=- shape=696abc3b vocab=8b690a8a
+-/
 theorem paperLog_nonneg (n : ℕ) {t : ℝ} (ht : 0 ≤ t) : 0 ≤ paperLog n t := by
   induction n with
   | zero => exact ht
@@ -131,7 +162,9 @@ theorem paperLog_nonneg (n : ℕ) {t : ℝ} (ht : 0 ≤ t) : 0 ≤ paperLog n t 
     rw [paperLog_succ]
     exact Real.log_nonneg (by linarith)
 
-/-- A convenient exponential envelope for the largest packet amplitude.-/
+/-- A convenient exponential envelope for the largest packet amplitude.
+@isnad1 id=le.3h3v.s6.43a68a235c42 from=translated src=- shape=ecabb3e5 vocab=5020726c
+-/
 theorem packetSum_le_exp {C : ℝ} (hC : 0 < C) (hbound : ∀ x, baseBump x ≤ C)
     {N : ℕ} (hN : 0 < N) (x : ℝ) :
     packetSum N x ≤ Real.exp (C + (N : ℝ) ^ 2) := by
@@ -148,7 +181,9 @@ theorem packetSum_le_exp {C : ℝ} (hC : 0 < C) (hbound : ∀ x, baseBump x ≤ 
       ring
 
 /-- The double logarithm of the exponential packet envelope is uniformly
-bounded by a fixed multiple of `log N`.-/
+bounded by a fixed multiple of `log N`.
+@isnad1 id=le.3h2v.s6.605c87439f5b from=translated src=- shape=b655cdef vocab=54d189e1
+-/
 theorem paperLog_two_exp_sq_le {C x : ℝ} (hC : 0 ≤ C) (hx : 1 ≤ x)
     (hlog : 1 ≤ Real.log x) :
     paperLog 2 (Real.exp (C + x ^ 2)) ≤ (C + 22) * Real.log x := by
@@ -184,6 +219,9 @@ theorem paperLog_two_exp_sq_le {C x : ℝ} (hC : 0 ≤ C) (hx : 1 ≤ x)
     _ ≤ (C + 22) * Real.log x := by
       nlinarith [mul_nonneg (by linarith : 0 ≤ C + 20) (sub_nonneg.mpr hlog)]
 
+/--
+@isnad1 id=isbigo.1h1v.s6.0e8c98a20937 from=translated src=- shape=08ab14ee vocab=f3a230cf
+-/
 theorem paperLog_two_exp_sq_isBigO (C : ℝ) (hC : 0 ≤ C) :
     (fun N : ℕ ↦ paperLog 2 (Real.exp (C + (N : ℝ) ^ 2))) =O[atTop]
       (fun N : ℕ ↦ Real.log (N : ℝ)) := by
@@ -196,6 +234,9 @@ theorem paperLog_two_exp_sq_isBigO (C : ℝ) (hC : 0 ≤ C) :
     Real.norm_eq_abs, abs_of_nonneg (by linarith : 0 ≤ Real.log (N : ℝ))]
   exact paperLog_two_exp_sq_le hC hN hlog
 
+/--
+@isnad1 id=tendsto.0h1v.s5.6179bd9dade5 from=translated src=- shape=85ff405d vocab=958e815c
+-/
 theorem tendsto_exp_sq_atTop (C : ℝ) :
     Tendsto (fun N : ℕ ↦ Real.exp (C + (N : ℝ) ^ 2)) atTop atTop := by
   apply Real.tendsto_exp_atTop.comp
@@ -203,7 +244,9 @@ theorem tendsto_exp_sq_atTop (C : ℝ) :
     ((tendsto_pow_atTop (show (2 : ℕ) ≠ 0 by norm_num)).comp tendsto_natCast_atTop_atTop)
 
 /-- Endpoint little-o growth makes the secant slope at the packet
-envelope little-o of `log N`.-/
+envelope little-o of `log N`.
+@isnad1 id=islittle.2h2v.s6.89d256a2179e from=translated src=- shape=101c6241 vocab=ea7f9c90
+-/
 theorem endpoint_secant_isLittleO_log (Φ : YoungFunction) (hΦ : GrowsSlowerThanEndpoint Φ)
     (C : ℝ) (hC : 0 ≤ C) :
     (fun N : ℕ ↦ Φ (Real.exp (C + (N : ℝ) ^ 2)) /
@@ -218,6 +261,9 @@ theorem endpoint_secant_isLittleO_log (Φ : YoungFunction) (hΦ : GrowsSlowerTha
       field_simp)
   exact hq.trans_isBigO (paperLog_two_exp_sq_isBigO C hC)
 
+/--
+@isnad1 id=le.4h3v.s7.9ce79766519a from=translated src=- shape=b12d00f5 vocab=679f445f
+-/
 theorem counterexampleModular_le_secant (Φ : YoungFunction) {C : ℝ} (hC : 0 < C)
     (hbound : ∀ x, baseBump x ≤ C) {N : ℕ} (hN : 0 < N)
     (hlog : 1 ≤ Real.log (N : ℝ)) :
@@ -243,13 +289,18 @@ theorem counterexampleModular_le_secant (Φ : YoungFunction) {C : ℝ} (hC : 0 <
       Φ.integral_le_secant hc hs hn (Real.exp_pos _) hM
     _ = _ := by rw [integral_div, packetSum_integral]
 
+/--
+@isnad1 id=le.2h2v.s5.fd314dd2eb5d from=translated src=- shape=18681b7b vocab=ef2ebdf6
+-/
 theorem counterexampleModular_nonneg (Φ : YoungFunction) {N : ℕ} (hN : 0 < N)
     (hlog : 0 ≤ Real.log (N : ℝ)) : 0 ≤ counterexampleModular Φ N := by
   rw [counterexampleModular_eq hN]
   exact integral_nonneg (fun x ↦ Φ.nonneg (div_nonneg (packetSum_nonneg N x) hlog))
 
 /-- Equation `eq:modularcalc`: for every Young function growing strictly
-slower than the endpoint, the modular of `N χ_N / log N` is `o(N)`.-/
+slower than the endpoint, the modular of `N χ_N / log N` is `o(N)`.
+@isnad1 id=islittle.1h1v.s4.a656c49d164a from=translated src=- shape=89b6ab71 vocab=e16bc5fa
+-/
 theorem counterexampleModular_isLittleO (Φ : YoungFunction) (hΦ : GrowsSlowerThanEndpoint Φ) :
     counterexampleModular Φ =o[atTop] (fun N : ℕ ↦ (N : ℝ)) := by
   obtain ⟨C, hC, hbound⟩ := exists_baseBump_bound
@@ -276,6 +327,9 @@ theorem counterexampleModular_isLittleO (Φ : YoungFunction) (hΦ : GrowsSlowerT
       mul_le_mul_of_nonneg_right hs (div_nonneg (Nat.cast_nonneg N) hl.le)
     _ = ε * (N : ℝ) := by field_simp
 
+/--
+@isnad1 id=tendsto.1h1v.s5.0dde932e6417 from=translated src=- shape=bb688595 vocab=7b384f53
+-/
 theorem tendsto_counterexampleModular_div (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) :
     Tendsto (fun N : ℕ ↦ counterexampleModular Φ N / (N : ℝ)) atTop (𝓝 0) :=

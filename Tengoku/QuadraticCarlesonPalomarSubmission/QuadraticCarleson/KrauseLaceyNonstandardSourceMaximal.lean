@@ -25,6 +25,9 @@ noncomputable def nonstandardSourceTailMaximal
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (x : ℝ) : ℝ :=
   ⨆ ell : {ell : ℤ // k₀ + s ≤ ell}, ‖badLengthTailAction S f I₀ k₀ s scale N ell.1 x‖
 
+/--
+@isnad1 id=eq.1h9v.s6.1e4c3de431e2 from=translated src=- shape=cb436e74 vocab=632f0e97
+-/
 theorem badLengthTailAction_eq_at_max_lower_endpoint
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -45,6 +48,9 @@ theorem badLengthTailAction_eq_at_max_lower_endpoint
     (zpow_le_zpow_right₀ (by norm_num) (le_of_not_ge he)).trans hbase
   rw [ite_eq_left hbase, ite_eq_left hell]
 
+/--
+@isnad1 id=eq.2h8v.s7.2c307912359d from=translated src=- shape=33d52054 vocab=263a9522
+-/
 theorem nonstandardSourceTailMaximal_eq_badLengthTailMaximal
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -70,7 +76,9 @@ theorem nonstandardSourceTailMaximal_eq_badLengthTailMaximal
     exact le_ciSup hbr ⟨max ell (k₀ + s), le_max_right _ _⟩
 
 /-- The complete bound with exactly the source's physical suffix
-orientation and lower endpoint.-/
+orientation and lower endpoint.
+@isnad1 id=le.6h7v.s8.7ca83649f7aa from=translated src=- shape=4eebd1f4 vocab=be0da817
+-/
 theorem eLpNorm_nonstandardSourceTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)

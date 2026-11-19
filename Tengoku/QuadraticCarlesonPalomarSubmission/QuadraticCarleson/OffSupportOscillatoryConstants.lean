@@ -19,6 +19,9 @@ set_option autoImplicit false
 noncomputable def offSupportDerivativeMass (r : ℕ) : ℝ :=
   ∫ u : ℝ, |iteratedDeriv r baseBump u|
 
+/--
+@isnad1 id=le.0h1v.s3.4000fb444b9f from=translated src=- shape=b9369acb vocab=deed9947
+-/
 theorem offSupportDerivativeMass_nonneg (r : ℕ) : 0 ≤ offSupportDerivativeMass r :=
   integral_nonneg fun _ ↦ abs_nonneg _
 
@@ -28,6 +31,9 @@ noncomputable def offSupportDecayConstant : ℕ → ℕ → ℕ → ℝ
       (offSupportDecayConstant k (r + 1) (q + 1) +
         2 * (q + 1 : ℝ) * offSupportDecayConstant k r (q + 2)) / (4 * Real.pi)
 
+/--
+@isnad1 id=le.0h3v.s4.3f3f2d177b52 from=translated src=- shape=1995cd38 vocab=99f9a1be
+-/
 theorem offSupportDecayConstant_nonneg (k r q : ℕ) : 0 ≤ offSupportDecayConstant k r q := by
   induction k generalizing r q with
   | zero => exact mul_nonneg (by positivity) (offSupportDerivativeMass_nonneg r)
@@ -36,7 +42,9 @@ theorem offSupportDecayConstant_nonneg (k r q : ℕ) : 0 ≤ offSupportDecayCons
         (add_nonneg (ih (r + 1) (q + 1)) (mul_nonneg (by positivity) (ih r (q + 2))))
         (by positivity)
 
-/-- The only scale trade in the induction is the geometric inequality `t ≤ 2a`.-/
+/-- The only scale trade in the induction is the geometric inequality `t ≤ 2a`.
+@isnad1 id=le.7h7v.s8.21d839ef8047 from=translated src=- shape=1d5af85f vocab=37214ce2
+-/
 theorem offSupport_step_fraction_le
     {A B z l mu t a : ℝ} (hB : 0 ≤ B) (hz : 0 ≤ z)
     (hl : 0 < l) (hmu : 0 < mu) (ht : 0 < t) (ha : 0 < a) (hta : t ≤ 2 * a) :
@@ -56,7 +64,9 @@ theorem offSupport_step_fraction_le
     _ = _ := by field_simp
 
 /-- The scalar step with the exact derivative and denominator-power indices
-needed by the weighted integration-by-parts induction.-/
+needed by the weighted integration-by-parts induction.
+@isnad1 id=le.5h8v.s9.8a9e375d476d from=translated src=- shape=8755edcd vocab=e460906a
+-/
 theorem offSupport_step_power_fraction_le (k r q : ℕ)
     {A B mu t a : ℝ} (hB : 0 ≤ B) (hmu : 0 < mu) (ht : 0 < t)
     (ha : 0 < a) (hta : t ≤ 2 * a) :
@@ -81,7 +91,9 @@ theorem offSupport_step_power_fraction_le (k r q : ℕ)
   exact offSupport_step_fraction_le hB (by positivity) (by positivity) hmu ht ha hta
 
 /-- Iterating the weighted recurrence yields the exact all-order decay.
-The analytic zero-step and one-step estimates are supplied separately.-/
+The analytic zero-step and one-step estimates are supplied separately.
+@isnad1 id=le.6h7v.s8.c0e199da78bd from=translated src=- shape=65ca3fd4 vocab=cd91457a
+-/
 theorem offSupportDecay_bound_of_step (U : ℕ → ℕ → ℝ)
     {mu t a : ℝ} (hmu : 0 < mu) (ht : 0 < t) (ha : 0 < a) (hta : t ≤ 2 * a)
     (hzero : ∀ r q : ℕ,

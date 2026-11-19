@@ -26,13 +26,18 @@ namespace QuadraticCarleson
 noncomputable def realCenteredAverageKernel (r x y : ℝ) : ℝ :=
   if |x - y| ≤ r then (2 * r)⁻¹ else 0
 
+/--
+@isnad1 id=le.1h3v.s4.95cd1a5febbc from=translated src=- shape=d586e637 vocab=4d5363f1
+-/
 theorem realCenteredAverageKernel_nonneg {r : ℝ} (hr : 0 < r) (x y : ℝ) :
     0 ≤ realCenteredAverageKernel r x y := by
   unfold realCenteredAverageKernel
   split_ifs <;> positivity
 
 /-- Exact identification with the selected averaging kernels in the `L²`
-operator estimate.-/
+operator estimate.
+@isnad1 id=eq.1h5v.s5.db1eeabcdd77 from=translated src=- shape=59938fc3 vocab=2fd8fc8f
+-/
 theorem ofReal_realCenteredAverageKernel {N : ℕ} (r : Fin N → ℝ)
     (hr : ∀ i, 0 < r i) (σ : ℝ → Fin N) (x y : ℝ) :
     ENNReal.ofReal (realCenteredAverageKernel (r (σ x)) x y) =
@@ -53,7 +58,9 @@ noncomputable def quadraticFixedHeightMajorant (B u S d : ℝ) : ℝ :=
 
 /-- The exceptional strip and its complement are each controlled by a
 normalized centered interval average, with coefficients proportional to the
-small decay parameter.-/
+small decay parameter.
+@isnad1 id=le.3h5v.s7.da7ee3592c11 from=translated src=- shape=80413f04 vocab=e4dad8e1
+-/
 theorem quadraticFixedHeightMajorant_le_averages {B u S : ℝ}
     (hB : 0 ≤ B) (hu : 0 < u) (hS : 0 < S) (x y : ℝ) :
     quadraticFixedHeightMajorant B u S (x - y) ≤
@@ -81,7 +88,9 @@ theorem quadraticFixedHeightMajorant_le_averages {B u S : ℝ}
   · exact add_nonneg hsmall hlarge
 
 /-- The larger radius belongs to one of the two endpoints. Adding the two
-endpoint-selected averages gives a symmetric majorant.-/
+endpoint-selected averages gives a symmetric majorant.
+@isnad1 id=le.4h6v.s7.b3aa5090e082 from=translated src=- shape=2b954ffc vocab=298b1ce8
+-/
 theorem quadraticFixedHeightMajorant_max_le_averages {B u R S : ℝ}
     (hB : 0 ≤ B) (hu : 0 < u) (hR : 0 < R) (hS : 0 < S) (x y : ℝ) :
     quadraticFixedHeightMajorant B u (max R S) (x - y) ≤
@@ -113,7 +122,9 @@ theorem quadraticFixedHeightMajorant_max_le_averages {B u R S : ℝ}
         (by positivity)
 
 /-- Conversion of the real fixed-height majorant to the two symmetric
-selected-average kernels, without discarding the small decay factor.-/
+selected-average kernels, without discarding the small decay factor.
+@isnad1 id=le.3h7v.s8.03fef73ccf1e from=translated src=- shape=65177fb3 vocab=e7eb66d6
+-/
 theorem ofReal_quadraticFixedHeightMajorant_max_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) (σ : ℝ → Fin N)
     {B u : ℝ} (hB : 0 ≤ B) (hu : 0 < u) (x y : ℝ) :
@@ -142,7 +153,9 @@ theorem ofReal_quadraticFixedHeightMajorant_max_le {N : ℕ}
     ofReal_realCenteredAverageKernel (fun i ↦ 2 * r i)
       (fun i ↦ mul_pos (by norm_num) (hr i)) σ] using h
 
-/-- Additivity for the nonnegative double integrals used in the majorant.-/
+/-- Additivity for the nonnegative double integrals used in the majorant.
+@isnad1 id=eq.1h2v.s6.f12ca5f2d954 from=translated src=- shape=07c433b5 vocab=f6e59b4d
+-/
 theorem lintegral_lintegral_add_left {F : ℝ → ℝ → ℝ≥0∞}
     (hF : Measurable (Function.uncurry F)) (G : ℝ → ℝ → ℝ≥0∞) :
     (∫⁻ x, ∫⁻ y, F x y + G x y) = (∫⁻ x, ∫⁻ y, F x y) + ∫⁻ x, ∫⁻ y, G x y := by
@@ -152,7 +165,9 @@ theorem lintegral_lintegral_add_left {F : ℝ → ℝ → ℝ≥0∞}
   exact lintegral_add_left hF.lintegral_prod_right' _
 
 /-- A scalar multiple of the symmetric averaging majorant has the expected
-uniform quadratic-form bound.-/
+uniform quadratic-form bound.
+@isnad1 id=le.4h5v.s7.680a8d7a1810 from=translated src=- shape=6f2d5da6 vocab=a7557b58
+-/
 theorem scaled_symmetric_selectedAverageKernel_pairing_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) {σ : ℝ → Fin N} (hσ : Measurable σ)
     (C : ℝ≥0∞) (hC : C ≠ ⊤) {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
@@ -168,7 +183,9 @@ theorem scaled_symmetric_selectedAverageKernel_pairing_le {N : ℕ}
     _ = _ := by ring
 
 /-- The exact fixed-height quadratic majorant gives a second-moment
-quadratic-form bound with a uniform coefficient proportional to `u`.-/
+quadratic-form bound with a uniform coefficient proportional to `u`.
+@isnad1 id=le.5h6v.s7.bc898a3dc2bd from=translated src=- shape=512aac49 vocab=2268cb1f
+-/
 theorem quadraticFixedHeightMajorant_pairing_le {N : ℕ}
     (r : Fin N → ℝ) (hr : ∀ i, 0 < r i) {σ : ℝ → Fin N} (hσ : Measurable σ)
     {B u : ℝ} (hB : 0 ≤ B) (hu : 0 < u) {f : ℝ → ℝ≥0∞} (hf : Measurable f) :

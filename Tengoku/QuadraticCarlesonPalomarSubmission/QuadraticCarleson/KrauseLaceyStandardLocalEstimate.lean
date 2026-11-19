@@ -34,6 +34,9 @@ noncomputable def energyStandardGenerationLp
     Lp ℂ 2 (volume : Measure ℝ) :=
   ∑ I ∈ generation N n, badPieceLp S f hf I₀ k₀ s scale I
 
+/--
+@isnad1 id=eventual.1h8v.s8.842ac2b3663c from=translated src=- shape=1d3a84b1 vocab=c078ff7d
+-/
 theorem energyStandardGenerationLp_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) (n : ℕ) :
@@ -57,6 +60,9 @@ noncomputable def energyStandardGenerationPrefixMaximal
     krauseLaceyCollectionAction (generation N i) scale
       (fun I ↦ badScaleInput S f I₀ k₀ (scale I + 2 - s)) x‖
 
+/--
+@isnad1 id=eventual.1h7v.s6.ce81fc824119 from=translated src=- shape=c2f17843 vocab=17c29860
+-/
 theorem energyStandardGenerationPrefixMaximal_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (N : Finset RealInterval) :
@@ -76,7 +82,9 @@ theorem energyStandardGenerationPrefixMaximal_ae_eq
 
 /-- The finite signed-sum input required by Rademacher--Menshov follows from
 the already proved standard diagonal estimate.  The visible `N.card` is the
-only loss introduced here; no cross-scale cancellation is asserted.-/
+only loss introduced here; no cross-scale cancellation is asserted.
+@isnad1 id=hassigne.5h8v.s9.e447d9774351 from=translated src=- shape=4801b70c vocab=020f1cff
+-/
 theorem hasSignedSumSquareBound_energyStandardGenerations
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s kmin : ℤ) (scale : RealInterval → ℤ)
@@ -116,6 +124,9 @@ theorem hasSignedSumSquareBound_energyStandardGenerations
       simpa using sq_sum_le_card_mul_sum_sq (s := N) (f := fun I ↦ ‖v I‖)
     _ ≤ _ := mul_le_mul_of_nonneg_left hdiag (by positivity)
 
+/--
+@isnad1 id=le.5h8v.s8.2f56a1238733 from=translated src=- shape=19c084f0 vocab=1d6f25a5
+-/
 theorem eLpNorm_energyStandardGenerationPrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s kmin : ℤ) (scale : RealInterval → ℤ)
@@ -143,6 +154,9 @@ noncomputable def energyStandardSourceTailMaximal
   ⨆ ell : {ell : ℤ // k₀ + s ≤ ell},
     ‖badLengthTailAction S f I₀ k₀ s scale N ell.1 x‖
 
+/--
+@isnad1 id=le.0h8v.s5.41626a2dbb8c from=translated src=- shape=849643d2 vocab=be447419
+-/
 theorem energyStandardGenerationPrefixMaximal_nonneg
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (x : ℝ) :
@@ -154,6 +168,9 @@ theorem energyStandardGenerationPrefixMaximal_nonneg
     (0 : Fin (N.card + 1))
   simpa [energyStandardGenerationPrefixMaximal] using h
 
+/--
+@isnad1 id=le.2h9v.s7.9e28b14478fe from=translated src=- shape=fba21a37 vocab=b794aa1d
+-/
 theorem norm_energyStandard_tailAction_le_prefix
     {S : Finset RealInterval} {f : ℝ → ℂ} (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -171,6 +188,9 @@ theorem norm_energyStandard_tailAction_le_prefix
   exact krauseLaceyLocalizedPiece_eq_zero_of_notMem 1 (scale I) I _
     (Finset.mem_filter.mp (Finset.mem_filter.mp (hN hI)).1).2.1 hxI
 
+/--
+@isnad1 id=le.2h8v.s7.c35900775b8e from=translated src=- shape=1ba7fd5d vocab=f6ea6b7e
+-/
 theorem energyStandardSourceTailMaximal_le_prefix
     {S : Finset RealInterval} {f : ℝ → ℂ} (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -181,6 +201,9 @@ theorem energyStandardSourceTailMaximal_le_prefix
       2 * energyStandardGenerationPrefixMaximal S f I₀ k₀ s scale N x :=
   ciSup_le fun ell ↦ norm_energyStandard_tailAction_le_prefix I₀ k₀ s scale hlam N hN ell.1 x
 
+/--
+@isnad1 id=le.2h8v.s7.b3ab27601d9f from=translated src=- shape=6bd7cc42 vocab=fefaacfd
+-/
 theorem energyStandardSourceTailMaximal_nonneg
     {S : Finset RealInterval} {f : ℝ → ℂ} (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -195,6 +218,9 @@ theorem energyStandardSourceTailMaximal_nonneg
       exact norm_energyStandard_tailAction_le_prefix I₀ k₀ s scale hlam N hN ell x⟩
   exact (norm_nonneg _).trans (le_ciSup hb ⟨k₀ + s, le_rfl⟩)
 
+/--
+@isnad1 id=aemeasur.1h7v.s6.1e7dc519ccdc from=translated src=- shape=72253e13 vocab=07ea2bb5
+-/
 theorem aemeasurable_energyStandardSourceTailMaximal
     (S : Finset RealInterval) {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -215,7 +241,9 @@ theorem aemeasurable_energyStandardSourceTailMaximal
 
 /-- The standard physical tail has the genuine `L²` pairing estimate.  This
 is Hölder applied to the actual source-oriented maximum; the preceding
-theorem supplies its fully concrete first factor.-/
+theorem supplies its fully concrete first factor.
+@isnad1 id=le.2h8v.s8.c42bb4492fa4 from=translated src=- shape=e5344f2d vocab=8a095278
+-/
 theorem lintegral_energyStandardSourceTail_pairing_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hgi : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -230,6 +258,9 @@ theorem lintegral_energyStandardSourceTail_pairing_le
     (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num : (2 : ℝ≥0∞) ≠ ∞),
     ENNReal.toReal_ofNat] using h
 
+/--
+@isnad1 id=le.5h8v.s8.1a6676352d4b from=translated src=- shape=45f76402 vocab=1e784330
+-/
 theorem eLpNorm_energyStandardSourceTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s kmin : ℤ) (scale : RealInterval → ℤ)

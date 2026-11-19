@@ -16,6 +16,9 @@ open scoped ENNReal NNReal Topology
 namespace QuadraticCarleson
 namespace OscillatoryReduction
 
+/--
+@isnad1 id=eq.1h2v.s5.c1cfc39e47e9 from=translated src=- shape=87d9f704 vocab=0e204e89
+-/
 theorem fixedHeightRadius_eq_zero_mul_pow (lam : ℝ) (hlam : lam ≠ 0) (r : ℕ) :
     fixedHeightRadius lam r hlam = fixedHeightRadius lam 0 hlam * (2 : ℝ) ^ r := by
   unfold fixedHeightRadius
@@ -24,6 +27,9 @@ theorem fixedHeightRadius_eq_zero_mul_pow (lam : ℝ) (hlam : lam ≠ 0) (r : �
     (oscillatoryScaleIndex lam 0 hlam - 1) + (r : ℤ) by ring]
   rw [zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0), zpow_natCast]
 
+/--
+@isnad1 id=summable.1h1v.s5.48a6122a5f0e from=translated src=- shape=3e167d61 vocab=f643e858
+-/
 theorem summable_fixedHeightKernelBounds (lam : ℝ) (hlam : lam ≠ 0) :
     Summable (fun r : ℕ ↦ (2 * positiveDyadicAmplitudeBound) /
       fixedHeightRadius lam r hlam) := by
@@ -36,6 +42,9 @@ theorem summable_fixedHeightKernelBounds (lam : ℝ) (hlam : lam ≠ 0) :
   simp only [one_pow]
   ring
 
+/--
+@isnad1 id=summable.2h3v.s6.ab8f45ed12d4 from=translated src=- shape=0b8adcd1 vocab=97a86785
+-/
 theorem summable_integral_norm_fixedHeight (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Summable (fun r : ℕ ↦ ∫ y,
@@ -59,6 +68,9 @@ theorem summable_integral_norm_fixedHeight (lam : ℝ) (hlam : lam ≠ 0)
       _ = _ := integral_const_mul _ _
   · exact (summable_fixedHeightKernelBounds lam hlam).mul_right _
 
+/--
+@isnad1 id=hassum.2h3v.s7.da4d5cc4f181 from=translated src=- shape=44c43704 vocab=6a0b9d75
+-/
 theorem hasSum_oscillatoryIntegrals_of_integrable (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     HasSum (fun r : ℕ ↦ ∫ t, f (x - t) *
@@ -75,12 +87,18 @@ theorem hasSum_oscillatoryIntegrals_of_integrable (lam : ℝ) (hlam : lam ≠ 0)
   exact hs.congr_fun (fun r ↦
     (fixedHeightQuadraticKernel_integral_eq_paper r lam hlam f x).symm)
 
+/--
+@isnad1 id=eq.2h3v.s6.123dd0ad2d24 from=translated src=- shape=1caf5176 vocab=dd36b027
+-/
 theorem paperOscillatoryAction_eq_integral_of_integrable (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     paperOscillatoryAction lam hlam f x =
       ∫ y, highPassKernel lam hlam (x - y) * f y :=
   (hasSum_oscillatoryIntegrals_of_integrable lam hlam hf x).tsum_eq
 
+/--
+@isnad1 id=integrab.2h3v.s6.922ea58267d7 from=translated src=- shape=d91ef5bb vocab=3f1b1fae
+-/
 theorem integrable_highPassKernel_mul (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Integrable (fun y ↦ highPassKernel lam hlam (x - y) * f y) := by
@@ -89,7 +107,9 @@ theorem integrable_highPassKernel_mul (lam : ℝ) (hlam : lam ≠ 0)
     (Filter.Eventually.of_forall fun y ↦ highPassKernel_norm_le lam hlam (x-y))
 
 /-- Linearity of the genuine height series follows from its proved bounded
-high-pass integral representation.-/
+high-pass integral representation.
+@isnad1 id=eq.3h4v.s7.23de0dec6423 from=translated src=- shape=a1f6db11 vocab=bb9bfcc1
+-/
 theorem paperOscillatoryAction_add_of_integrable (lam : ℝ) (hlam : lam ≠ 0)
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     paperOscillatoryAction lam hlam (f + g) x =

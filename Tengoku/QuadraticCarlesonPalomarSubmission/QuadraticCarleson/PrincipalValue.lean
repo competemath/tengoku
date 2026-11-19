@@ -19,12 +19,18 @@ open scoped Topology
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=eq.2h5v.s4.cb122191190e from=translated src=- shape=a315fca7 vocab=ed8fb3d1
+-/
 theorem HasQuadraticPrincipalValue.unique
     {modulation : ℝ} {f : ℝ → ℂ} {x : ℝ} {z w : ℂ}
     (hz : HasQuadraticPrincipalValue modulation f x z)
     (hw : HasQuadraticPrincipalValue modulation f x w) : z = w := by
   exact tendsto_nhds_unique hz hw
 
+/--
+@isnad1 id=iff.0h4v.s6.bde3ce2bf3cb from=translated src=- shape=502ac802 vocab=9b41826a
+-/
 theorem hasQuadraticPrincipalValue_iff_tendsto
     (modulation : ℝ) (f : ℝ → ℂ) (x : ℝ) (z : ℂ) :
     HasQuadraticPrincipalValue modulation f x z ↔

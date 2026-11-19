@@ -32,11 +32,17 @@ set_option autoImplicit false
 def magnitudeLevelSet {α : Type*} (A : ℕ → ℝ) (f : α → ℂ) (k : ℕ) : Set α :=
   {x | InMagnitudeLevel A k ‖f x‖}
 
+/--
+@isnad1 id=iff.0h5v.s5.8a7a87027bc7 from=translated src=- shape=99b09629 vocab=41c1e7b3
+-/
 @[simp] theorem mem_magnitudeLevelSet {α : Type*} {A : ℕ → ℝ}
     {f : α → ℂ} {k : ℕ} {x : α} :
     x ∈ magnitudeLevelSet A f k ↔ InMagnitudeLevel A k ‖f x‖ :=
   Iff.rfl
 
+/--
+@isnad1 id=measurab.1h4v.s4.b5c3cebc24b1 from=translated src=- shape=2955e374 vocab=0dcc5b03
+-/
 theorem measurableSet_magnitudeLevelSet
     {α : Type*} [MeasurableSpace α] {A : ℕ → ℝ} {f : α → ℂ}
     (hf : Measurable f) (k : ℕ) : MeasurableSet (magnitudeLevelSet A f k) := by
@@ -49,7 +55,9 @@ theorem measurableSet_magnitudeLevelSet
       (measurableSet_le hf.norm measurable_const)
 
 /-- Distinct magnitude bands are disjoint when the thresholds are strictly
-increasing.-/
+increasing.
+@isnad1 id=disjoint.2h5v.s6.00653f678511 from=translated src=- shape=8efe9280 vocab=33c38557
+-/
 theorem magnitudeLevelSet_disjoint
     {α : Type*} {A : ℕ → ℝ} (hA : StrictMono A) (f : α → ℂ)
     {k l : ℕ} (hkl : k ≠ l) :
@@ -88,7 +96,9 @@ theorem magnitudeLevelSet_disjoint
       linarith
 
 /-- A nonnegative unbounded threshold sequence covers every magnitude by a
-unique level.-/
+unique level.
+@isnad1 id=existsun.3h4v.s6.7ae20d2f5ff2 from=translated src=- shape=bc64bc22 vocab=4c952bea
+-/
 theorem exists_unique_mem_magnitudeLevelSet
     {α : Type*} {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k) (f : α → ℂ) (x : α) :
@@ -112,6 +122,9 @@ theorem exists_unique_mem_magnitudeLevelSet
   by_contra hne
   exact Set.disjoint_left.1 (magnitudeLevelSet_disjoint hA f (Ne.symm hne)) hkmem hlmem
 
+/--
+@isnad1 id=eq.3h3v.s6.a71396fc6382 from=translated src=- shape=f3ce3fa5 vocab=bc8a71ce
+-/
 theorem iUnion_magnitudeLevelSet_eq_univ
     {α : Type*} {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k) (f : α → ℂ) :
@@ -121,24 +134,36 @@ theorem iUnion_magnitudeLevelSet_eq_univ
   obtain ⟨k, hk, -⟩ := exists_unique_mem_magnitudeLevelSet hA0 hA hcofinal f x
   exact ⟨k, hk⟩
 
+/--
+@isnad1 id=strictmo.0h0v.s2.6cab533fd7f5 from=translated src=- shape=54c8eceb vocab=85f89c5e
+-/
 theorem strictMono_fullAmplitude : StrictMono fullAmplitude := by
   intro k l hkl
   apply Real.exp_lt_exp.mpr
   exact mul_lt_mul_of_pos_left (pow_lt_pow_right₀ (by norm_num) hkl)
     (by linarith [half_lt_log_two])
 
+/--
+@isnad1 id=strictmo.0h0v.s2.00e91ebb05e5 from=translated src=- shape=54c8eceb vocab=4ead0826
+-/
 theorem strictMono_lacunaryScale : StrictMono lacunaryScale := by
   intro k l hkl
   apply Real.exp_lt_exp.mpr
   exact mul_lt_mul_of_pos_left (pow_lt_pow_right₀ (by norm_num) hkl)
     (by linarith [half_lt_log_two])
 
+/--
+@isnad1 id=strictmo.0h0v.s2.6bbea60d7bf7 from=translated src=- shape=54c8eceb vocab=bd8bf847
+-/
 theorem strictMono_lacunaryAmplitude : StrictMono lacunaryAmplitude := by
   intro k l hkl
   apply Real.exp_lt_exp.mpr
   exact mul_lt_mul_of_pos_left (strictMono_lacunaryScale hkl)
     (by linarith [half_lt_log_two])
 
+/--
+@isnad1 id=le.0h1v.s3.871d28ebc70f from=translated src=- shape=b70c6bb1 vocab=031b3071
+-/
 theorem dyadicScale_le_fullAmplitude (k : ℕ) :
     dyadicScale k ≤ fullAmplitude k := by
   rw [fullAmplitude_eq_two_pow, dyadicScale]
@@ -148,6 +173,9 @@ theorem dyadicScale_le_fullAmplitude (k : ℕ) :
   have hreal : (k : ℝ) ≤ (2 : ℝ) ^ k := by linarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=ex.1h1v.s4.9bf45c8d7a0d from=translated src=- shape=85d36e62 vocab=b0ddddcf
+-/
 theorem fullAmplitude_cofinal (t : ℝ) (ht : 0 ≤ t) :
     ∃ k, t ≤ fullAmplitude k := by
   obtain ⟨k, hk⟩ := exists_nat_ge t
@@ -157,6 +185,9 @@ theorem fullAmplitude_cofinal (t : ℝ) (ht : 0 ≤ t) :
     _ ≤ dyadicScale k := dyadicScale_ge_nat_succ k
     _ ≤ fullAmplitude k := dyadicScale_le_fullAmplitude k
 
+/--
+@isnad1 id=le.0h1v.s3.5c30405b829d from=translated src=- shape=b70c6bb1 vocab=a3c27c66
+-/
 theorem lacunaryScale_le_lacunaryAmplitude (k : ℕ) :
     lacunaryScale k ≤ lacunaryAmplitude k := by
   rw [lacunaryAmplitude]
@@ -166,6 +197,9 @@ theorem lacunaryScale_le_lacunaryAmplitude (k : ℕ) :
   exact mul_le_mul_of_nonneg_left (dyadicScale_le_fullAmplitude k)
     (by linarith [half_lt_log_two])
 
+/--
+@isnad1 id=ex.1h1v.s4.b4a75abc40c7 from=translated src=- shape=85d36e62 vocab=a117d9ea
+-/
 theorem lacunaryAmplitude_cofinal (t : ℝ) (ht : 0 ≤ t) :
     ∃ k, t ≤ lacunaryAmplitude k := by
   obtain ⟨k, hk⟩ := fullAmplitude_cofinal t ht
@@ -173,11 +207,17 @@ theorem lacunaryAmplitude_cofinal (t : ℝ) (ht : 0 ≤ t) :
   change lacunaryScale k ≤ lacunaryAmplitude k
   exact lacunaryScale_le_lacunaryAmplitude k
 
+/--
+@isnad1 id=eq.0h2v.s4.0ea9af7874e2 from=translated src=- shape=54594af8 vocab=65510a88
+-/
 theorem fullMagnitudeLevels_cover {α : Type*} (f : α → ℂ) :
     ⋃ k : ℕ, magnitudeLevelSet fullAmplitude f k = Set.univ :=
   iUnion_magnitudeLevelSet_eq_univ (fullAmplitude_pos 0).le
     strictMono_fullAmplitude fullAmplitude_cofinal f
 
+/--
+@isnad1 id=eq.0h2v.s4.e52d2f848511 from=translated src=- shape=54594af8 vocab=0e9268cb
+-/
 theorem lacunaryMagnitudeLevels_cover {α : Type*} (f : α → ℂ) :
     ⋃ k : ℕ, magnitudeLevelSet lacunaryAmplitude f k = Set.univ :=
   iUnion_magnitudeLevelSet_eq_univ (lacunaryAmplitude_pos 0).le
@@ -191,34 +231,55 @@ def fullMagnitudeLevelSet {α : Type*} (f : α → ℂ) (k : ℕ) : Set α :=
 def lacunaryMagnitudeLevelSet {α : Type*} (f : α → ℂ) (k : ℕ) : Set α :=
   magnitudeLevelSet lacunaryAmplitude f k
 
+/--
+@isnad1 id=measurab.1h3v.s4.17793e401395 from=translated src=- shape=55e72ab6 vocab=2324677f
+-/
 theorem measurableSet_fullMagnitudeLevelSet
     {α : Type*} [MeasurableSpace α] {f : α → ℂ} (hf : Measurable f) (k : ℕ) :
     MeasurableSet (fullMagnitudeLevelSet f k) :=
   measurableSet_magnitudeLevelSet hf k
 
+/--
+@isnad1 id=measurab.1h3v.s4.fd4bd1aad165 from=translated src=- shape=55e72ab6 vocab=8f652b79
+-/
 theorem measurableSet_lacunaryMagnitudeLevelSet
     {α : Type*} [MeasurableSpace α] {f : α → ℂ} (hf : Measurable f) (k : ℕ) :
     MeasurableSet (lacunaryMagnitudeLevelSet f k) :=
   measurableSet_magnitudeLevelSet hf k
 
+/--
+@isnad1 id=disjoint.1h4v.s5.a79defe417d1 from=translated src=- shape=0691ecc8 vocab=3a835a15
+-/
 theorem fullMagnitudeLevelSet_disjoint
     {α : Type*} (f : α → ℂ) {k l : ℕ} (hkl : k ≠ l) :
     Disjoint (fullMagnitudeLevelSet f k) (fullMagnitudeLevelSet f l) :=
   magnitudeLevelSet_disjoint strictMono_fullAmplitude f hkl
 
+/--
+@isnad1 id=disjoint.1h4v.s5.cc97db221753 from=translated src=- shape=0691ecc8 vocab=7c87ff18
+-/
 theorem lacunaryMagnitudeLevelSet_disjoint
     {α : Type*} (f : α → ℂ) {k l : ℕ} (hkl : k ≠ l) :
     Disjoint (lacunaryMagnitudeLevelSet f k) (lacunaryMagnitudeLevelSet f l) :=
   magnitudeLevelSet_disjoint strictMono_lacunaryAmplitude f hkl
 
+/--
+@isnad1 id=eq.0h2v.s4.c1e9be5e65a8 from=translated src=- shape=cf55fa4c vocab=e6f4c8e2
+-/
 theorem iUnion_fullMagnitudeLevelSet_eq_univ {α : Type*} (f : α → ℂ) :
     ⋃ k : ℕ, fullMagnitudeLevelSet f k = Set.univ :=
   fullMagnitudeLevels_cover f
 
+/--
+@isnad1 id=eq.0h2v.s4.818f4b87c154 from=translated src=- shape=cf55fa4c vocab=84e1b625
+-/
 theorem iUnion_lacunaryMagnitudeLevelSet_eq_univ {α : Type*} (f : α → ℂ) :
     ⋃ k : ℕ, lacunaryMagnitudeLevelSet f k = Set.univ :=
   lacunaryMagnitudeLevels_cover f
 
+/--
+@isnad1 id=measurab.0h1v.s3.53970deef7e1 from=translated src=- shape=8735051e vocab=40681b5e
+-/
 theorem measurable_paperLog (n : ℕ) : Measurable (paperLog n) := by
   induction n with
   | zero =>
@@ -234,6 +295,9 @@ noncomputable def levelIntegrand {α : Type*} (A weight : ℕ → ℝ) (f : α �
   (magnitudeLevelSet A f k).indicator
     (fun x ↦ ENNReal.ofReal (weight k * ‖f x‖))
 
+/--
+@isnad1 id=measurab.1h5v.s5.531f172c7486 from=translated src=- shape=b8872ee0 vocab=099061d5
+-/
 theorem measurable_levelIntegrand
     {α : Type*} [MeasurableSpace α] {A weight : ℕ → ℝ} {f : α → ℂ}
     (hf : Measurable f) (k : ℕ) : Measurable (levelIntegrand A weight f k) := by
@@ -254,6 +318,9 @@ noncomputable def magnitudeLevelL1Mass
     (A : ℕ → ℝ) (f : α → ℂ) (k : ℕ) : ℝ≥0∞ :=
   ∫⁻ x in magnitudeLevelSet A f k, ENNReal.ofReal ‖f x‖ ∂μ
 
+/--
+@isnad1 id=eq.2h6v.s6.5fe719497e55 from=translated src=- shape=5356b4d7 vocab=0484287b
+-/
 theorem levelLIntegral_eq_weight_mul_mass
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {A weight : ℕ → ℝ} {f : α → ℂ} (hf : Measurable f)
@@ -269,7 +336,9 @@ theorem levelLIntegral_eq_weight_mul_mass
 
 /-- Generic disjoint-level integration principle.  It is a direct application
 of Tonelli's theorem for nonnegative series and therefore needs no finiteness
-or integrability assumption.-/
+or integrability assumption.
+@isnad1 id=le.6h6v.s7.98b7e405d64f from=translated src=- shape=dd400596 vocab=c2f15f6f
+-/
 theorem tsum_levelLIntegral_le
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {A weight : ℕ → ℝ} {f : α → ℂ} (hf : Measurable f)
@@ -302,7 +371,9 @@ noncomputable def fullLevelLIntegral
   levelLIntegral μ fullAmplitude (fullCutoff C) f k
 
 /-- Integrated full-endpoint optimization:
-`Σ B_k ∫_{F_k}|f| ≲ ∫ |f| log₁|f|`, in extended-integral form.-/
+`Σ B_k ∫_{F_k}|f| ≲ ∫ |f| log₁|f|`, in extended-integral form.
+@isnad1 id=le.2h4v.s6.ab34bee9c6a0 from=translated src=- shape=a9de0f9c vocab=23226ad3
+-/
 theorem tsum_fullLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -318,6 +389,9 @@ theorem tsum_fullLevelLIntegral_le_orlicz
         intro k t ht
         exact fullWeightedLevel_le_orlicz_all hC ht)
 
+/--
+@isnad1 id=le.2h4v.s6.8810e8eaaeff from=translated src=- shape=c718da6a vocab=78678c09
+-/
 theorem tsum_full_weight_mul_levelMass_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -335,6 +409,9 @@ theorem tsum_full_weight_mul_levelMass_le_orlicz
       (fun j ↦ mul_nonneg hC (dyadicScale_pos j).le) k]
   exact hmain
 
+/--
+@isnad1 id=le.1h2v.s5.f4e1cb3c0d99 from=translated src=- shape=34fd5a47 vocab=8a1c2f6c
+-/
 theorem one_le_paperLog_succ (n : ℕ) {t : ℝ} (ht : 0 ≤ t) :
     1 ≤ paperLog (n + 1) t := by
   rw [paperLog_succ, Real.le_log_iff_exp_le
@@ -351,10 +428,16 @@ noncomputable def lacunaryHighLevelConstant (C : ℝ) : ℝ :=
 noncomputable def lacunaryLowLevelConstant (C : ℝ) : ℝ :=
   lacunarySmallLevelConstant C + 128 * (paperLog 1 C + 1) ^ 2
 
+/--
+@isnad1 id=le.1h1v.s4.c3ef473a5319 from=translated src=- shape=35bd48ee vocab=e59af9b9
+-/
 theorem lacunarySmallLevelConstant_nonneg {C : ℝ} (hC : 0 ≤ C) :
     0 ≤ lacunarySmallLevelConstant C := by
   exact mul_nonneg (paperLog_nonnegative 1 (by norm_num)) (sq_nonneg _)
 
+/--
+@isnad1 id=le.1h1v.s5.55b8e9db92e2 from=translated src=- shape=0e183ab0 vocab=7a9a0080
+-/
 theorem one_le_lacunaryEndpointFactor {t : ℝ} (ht : 0 ≤ t) :
     1 ≤ paperLog 2 t ^ 2 * paperLog 4 t := by
   have h2 := one_le_paperLog_succ 1 ht
@@ -364,7 +447,9 @@ theorem one_le_lacunaryEndpointFactor {t : ℝ} (ht : 0 ≤ t) :
       (zero_le_one.trans h4)]
 
 /-- All lacunary high-level weights, including the first two levels, are
-absorbed by `L(log₂ L)^2`.-/
+absorbed by `L(log₂ L)^2`.
+@isnad1 id=le.2h3v.s6.08248a918719 from=translated src=- shape=37d5e08d vocab=f7239cef
+-/
 theorem lacunaryHighWeight_le_orlicz_all
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (ht : InMagnitudeLevel lacunaryAmplitude k t) :
     paperLog 1 (lacunaryCutoff C k) ^ 2 * t ≤
@@ -401,7 +486,9 @@ theorem lacunaryHighWeight_le_orlicz_all
         · positivity
 
 /-- All lacunary low-level weights, including the first six levels, are
-absorbed by the paper's complete endpoint weight.-/
+absorbed by the paper's complete endpoint weight.
+@isnad1 id=le.2h3v.s7.685a92e375f7 from=translated src=- shape=19b74273 vocab=a8e0e602
+-/
 theorem lacunaryLowWeight_le_orlicz_all
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (ht : InMagnitudeLevel lacunaryAmplitude k t) :
     paperLog 1 ((k : ℝ) + 2) * paperLog 1 (lacunaryCutoff C k) ^ 2 * t ≤
@@ -446,6 +533,9 @@ noncomputable def lacunaryLowLevelLIntegral
     (fun k ↦ paperLog 1 ((k : ℝ) + 2) *
       paperLog 1 (lacunaryCutoff C k) ^ 2) f k
 
+/--
+@isnad1 id=le.2h4v.s6.942ea9e907ac from=translated src=- shape=e5232afa vocab=302117b7
+-/
 theorem tsum_lacunaryHighLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -465,6 +555,9 @@ theorem tsum_lacunaryHighLevelLIntegral_le_orlicz
         intro k t ht
         exact lacunaryHighWeight_le_orlicz_all hC ht)
 
+/--
+@isnad1 id=le.2h4v.s7.55ac89ea5e49 from=translated src=- shape=a7bc5649 vocab=9f5b189a
+-/
 theorem tsum_lacunaryHighWeight_mul_levelMass_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -483,7 +576,9 @@ theorem tsum_lacunaryHighWeight_mul_levelMass_le_orlicz
   exact hmain
 
 /-- Integrated lacunary low-endpoint optimization, including all initial
-levels and requiring no integrability assumption.-/
+levels and requiring no integrability assumption.
+@isnad1 id=le.2h4v.s7.76572762ac40 from=translated src=- shape=c66dccc8 vocab=75229db9
+-/
 theorem tsum_lacunaryLowLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -507,6 +602,9 @@ theorem tsum_lacunaryLowLevelLIntegral_le_orlicz
         intro k t ht
         exact lacunaryLowWeight_le_orlicz_all hC ht)
 
+/--
+@isnad1 id=le.2h4v.s7.e2a90736f521 from=translated src=- shape=1b955589 vocab=1af28ea6
+-/
 theorem tsum_lacunaryLowWeight_mul_levelMass_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) :
@@ -529,7 +627,9 @@ theorem tsum_lacunaryLowWeight_mul_levelMass_le_orlicz
       (paperLog_nonnegative 1 (by positivity : (0 : ℝ) ≤ (j : ℝ) + 2)) (sq_nonneg _)]
   exact hmain
 
-/-- Every finite partial sum is bounded by the same full endpoint integral.-/
+/-- Every finite partial sum is bounded by the same full endpoint integral.
+@isnad1 id=le.2h5v.s6.d3cce163f422 from=translated src=- shape=972ffc7f vocab=ca88b726
+-/
 theorem sum_range_fullLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) (N : ℕ) :
@@ -538,6 +638,9 @@ theorem sum_range_fullLevelLIntegral_le_orlicz
   exact (ENNReal.summable.sum_le_tsum (Finset.range N) (fun _ _ ↦ bot_le)).trans
     (tsum_fullLevelLIntegral_le_orlicz μ hC hf)
 
+/--
+@isnad1 id=le.2h5v.s6.c618daba03e4 from=translated src=- shape=87b5c879 vocab=37464b54
+-/
 theorem sum_range_lacunaryHighLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) (N : ℕ) :
@@ -547,6 +650,9 @@ theorem sum_range_lacunaryHighLevelLIntegral_le_orlicz
   exact (ENNReal.summable.sum_le_tsum (Finset.range N) (fun _ _ ↦ bot_le)).trans
     (tsum_lacunaryHighLevelLIntegral_le_orlicz μ hC hf)
 
+/--
+@isnad1 id=le.2h5v.s7.cb1830f55b57 from=translated src=- shape=40b26a2a vocab=4642b40e
+-/
 theorem sum_range_lacunaryLowLevelLIntegral_le_orlicz
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     {C : ℝ} (hC : 0 ≤ C) {f : α → ℂ} (hf : Measurable f) (N : ℕ) :

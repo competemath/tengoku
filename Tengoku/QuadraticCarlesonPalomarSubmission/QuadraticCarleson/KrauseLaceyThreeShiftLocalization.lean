@@ -36,6 +36,9 @@ noncomputable def finiteShiftGridAddress (depth : ℕ) (n : ℤ) : Fin 3 × ℤ 
   let h := finiteShiftGridTileIndex_surjective depth n
   (Classical.choose h, Classical.choose (Classical.choose_spec h))
 
+/--
+@isnad1 id=eq.0h2v.s4.1574e9fb1f5a from=translated src=- shape=7caa28fb vocab=4f9421da
+-/
 theorem finiteShiftGridAddress_index (depth : ℕ) (n : ℤ) :
     finiteShiftGridTileIndex (finiteShiftGridAddress depth n).1 depth
       (finiteShiftGridAddress depth n).2 = n := by
@@ -43,7 +46,9 @@ theorem finiteShiftGridAddress_index (depth : ℕ) (n : ℤ) :
     (Classical.choose_spec (finiteShiftGridTileIndex_surjective depth n))
 
 /-- The chosen address represents literally the original consecutive tile
-parent, not merely an interval equal almost everywhere.-/
+parent, not merely an interval equal almost everywhere.
+@isnad1 id=eq.0h3v.s5.720ef00f8372 from=translated src=- shape=0cc1adae vocab=745fd2cd
+-/
 theorem finiteShiftGridAddress_interval
     (topScale : ℤ) (depth : ℕ) (n : ℤ) :
     finiteShiftGridInterval topScale (finiteShiftGridAddress depth n).1 depth
@@ -71,6 +76,9 @@ noncomputable def finiteOneShiftFamily
   exact (E.filter fun n ↦ (finiteShiftGridAddress depth n).1 = shift).image fun n ↦
     finiteShiftGridInterval topScale shift depth (finiteShiftGridAddress depth n).2
 
+/--
+@isnad1 id=ex.1h5v.s6.4fe5c688a899 from=translated src=- shape=8265352c vocab=ace98650
+-/
 theorem mem_finiteOneShiftFamily
     {topScale : ℤ} {depth : ℕ} {E : Finset ℤ} {shift : Fin 3}
     {I : RealInterval} (hI : I ∈ finiteOneShiftFamily topScale depth E shift) :
@@ -83,7 +91,9 @@ theorem mem_finiteOneShiftFamily
   exact ⟨n, hn'.1, hn'.2, rfl⟩
 
 /-- The union of the three finite subfamilies is exactly the original finite
-tile family.-/
+tile family.
+@isnad1 id=eq.0h3v.s5.f060abeb7930 from=translated src=- shape=cd12184e vocab=9737d9ce
+-/
 theorem finiteThreeShiftFamily_eq_biUnion
     (topScale : ℤ) (depth : ℕ) (E : Finset ℤ) :
     finiteThreeShiftFamily topScale depth E =
@@ -106,7 +116,9 @@ theorem finiteThreeShiftFamily_eq_biUnion
     rw [hs]
 
 /-- Across all three grids, the selected central thirds remain literally
-pairwise disjoint.-/
+pairwise disjoint.
+@isnad1 id=pairwise.0h3v.s5.cc3b9ae15fd9 from=translated src=- shape=6ac9080d vocab=eff69555
+-/
 theorem finiteThreeShiftFamily_pairwiseDisjoint
     (topScale : ℤ) (depth : ℕ) (E : Finset ℤ) :
     Set.Pairwise (↑(finiteThreeShiftFamily topScale depth E) : Set RealInterval)
@@ -121,7 +133,9 @@ theorem finiteThreeShiftFamily_pairwiseDisjoint
   rw [hp]
 
 /-- If the selected tile indices cover the support, the three-grid family
-reconstructs the input exactly.-/
+reconstructs the input exactly.
+@isnad1 id=eq.1h4v.s6.8e2cd51440e0 from=translated src=- shape=858370ef vocab=5ac902cb
+-/
 theorem finiteThreeShiftFixedScaleInput_eq_of_support_cover
     (topScale : ℤ) (depth : ℕ) (E : Finset ℤ) (f : ℝ → ℂ)
     (hcover : Function.support f ⊆ ⋃ n ∈ E,
@@ -144,7 +158,9 @@ theorem finiteThreeShiftFixedScaleInput_eq_of_support_cover
   exact hxn
 
 /-- Every bounded compact-support input has an exact finite localization by
-actual intervals from the three shifted grids at the represented scale.-/
+actual intervals from the three shifted grids at the represented scale.
+@isnad1 id=ex.0h3v.s6.63fe16d566c1 from=translated src=- shape=a916289e vocab=285ab7cb
+-/
 theorem exists_finiteThreeShiftFamily_localization
     (f : L0Infinity) (topScale : ℤ) (depth : ℕ) :
     ∃ E : Finset ℤ,
@@ -211,7 +227,9 @@ theorem exists_finiteThreeShiftFamily_localization
     simpa only [L] using hcover
 
 /-- Exact fixed-scale global convolution split into the three finite shifted
-grid families.  This is the finite-support form of KL18 display (3.1).-/
+grid families.  This is the finite-support form of KL18 display (3.1).
+@isnad1 id=ex.0h3v.s7.f3caca93c4c7 from=translated src=- shape=896ed565 vocab=7e4c0e93
+-/
 theorem exists_finite_threeShift_localizedSum_eq_globalConvolution
     (f : L0Infinity) (topScale : ℤ) (depth : ℕ) :
     ∃ G : Fin 3 → Finset RealInterval,

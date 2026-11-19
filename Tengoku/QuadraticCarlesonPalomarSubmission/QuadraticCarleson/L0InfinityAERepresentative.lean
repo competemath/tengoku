@@ -17,7 +17,9 @@ namespace QuadraticCarleson.L0InfinityAERepresentative
 
 set_option autoImplicit false
 
-/-- The Borel representative can retain both the pointwise bound and compact support.-/
+/-- The Borel representative can retain both the pointwise bound and compact support.
+@isnad1 id=ex.3h1v.s6.237c9997d294 from=translated src=- shape=9c82b7cb vocab=15dbdf1f
+-/
 theorem exists_L0Infinity_ae_eq {f : ℝ → ℂ} (hf : AEMeasurable f volume)
     (hb : ∃ C : ℝ, ∀ x, ‖f x‖ ≤ C) (hc : HasCompactSupport f) :
     ∃ g : L0Infinity, f =ᵐ[volume] (g : ℝ → ℂ) := by
@@ -45,7 +47,9 @@ theorem exists_L0Infinity_ae_eq {f : ℝ → ℂ} (hf : AEMeasurable f volume)
     exact image_eq_zero_of_notMem_tsupport hs
 
 /-- Changing an input on a null set changes none of its translated truncation
-integrals, for any evaluation point or modulation.-/
+integrals, for any evaluation point or modulation.
+@isnad1 id=eq.1h5v.s5.2a2e19616736 from=translated src=- shape=5a25fd96 vocab=2d448b3f
+-/
 theorem quadraticHilbertTrunc_congr_ae {f g : ℝ → ℂ}
     (hfg : f =ᵐ[volume] g) (lam ε x : ℝ) :
     quadraticHilbertTrunc lam ε f x = quadraticHilbertTrunc lam ε g x := by
@@ -56,7 +60,9 @@ theorem quadraticHilbertTrunc_congr_ae {f g : ℝ → ℂ}
   filter_upwards [ae_restrict_of_ae hshift] with t ht
   rw [ht]
 
-/-- Principal-value existence and its value are independent of the chosen representative.-/
+/-- Principal-value existence and its value are independent of the chosen representative.
+@isnad1 id=iff.1h5v.s5.6adfb0466103 from=translated src=- shape=666592eb vocab=28e867e8
+-/
 theorem hasQuadraticPrincipalValue_congr_ae {f g : ℝ → ℂ}
     (hfg : f =ᵐ[volume] g) (lam x : ℝ) (z : ℂ) :
     HasQuadraticPrincipalValue lam f x z ↔ HasQuadraticPrincipalValue lam g x z := by

@@ -31,6 +31,9 @@ def finiteIntervalMaximal (S : Finset RealInterval) (f : ℝ → ℂ) (x : ℝ) 
 def finiteCenteredMaximal (s : Finset PositiveRational) (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ q ∈ s, centeredAverage (q : ℝ) (fun y ↦ ‖f y‖ₑ) x
 
+/--
+@isnad1 id=le.2h3v.s5.df75267c69c0 from=translated src=- shape=e9c67a52 vocab=8806603d
+-/
 theorem closedBall_subset_carrier_of_mem_centralThird
     (I : RealInterval) {x r : ℝ} (hx : x ∈ I.centralThird)
     (hr : 3 * r < I.length) : closedBall x r ⊆ I.carrier := by
@@ -43,7 +46,9 @@ theorem closedBall_subset_carrier_of_mem_centralThird
   constructor <;> linarith
 
 /-- A ball contained in an interval of at most eight times its length is
-controlled by eight times that interval's normalized average.-/
+controlled by eight times that interval's normalized average.
+@isnad1 id=le.3h4v.s7.a7d3879849ce from=translated src=- shape=0d25e0c4 vocab=ff5878eb
+-/
 theorem centeredAverage_le_eight_intervalAverage
     (f : L0Infinity) (I : RealInterval) {x r : ℝ} (hr : 0 < r)
     (hsub : closedBall x r ⊆ I.carrier) (hlen : I.length ≤ 16 * r) :
@@ -71,6 +76,9 @@ theorem centeredAverage_le_eight_intervalAverage
 def radiusGridScale (q : PositiveRational) : ℤ :=
   dyadicFloorScale (q : ℝ) (by exact_mod_cast q.property) + 2
 
+/--
+@isnad1 id=and.0h1v.s7.ad78ac525b44 from=translated src=- shape=6df5f1d7 vocab=f4763a1c
+-/
 theorem radiusGridScale_bounds (q : PositiveRational) :
     8 * (q : ℝ) < (2 : ℝ) ^ (radiusGridScale q + 2) ∧
       (2 : ℝ) ^ (radiusGridScale q + 2) ≤ 16 * (q : ℝ) := by
@@ -90,6 +98,9 @@ theorem radiusGridScale_bounds (q : PositiveRational) :
 def radiusTopScale (s : Finset PositiveRational) : ℤ :=
   if hs : s.Nonempty then s.sup' hs radiusGridScale else 0
 
+/--
+@isnad1 id=le.1h2v.s4.891666bb7b3f from=translated src=- shape=be951825 vocab=12b7538e
+-/
 theorem radiusGridScale_le_top {s : Finset PositiveRational} {q : PositiveRational}
     (hq : q ∈ s) : radiusGridScale q ≤ radiusTopScale s := by
   rw [radiusTopScale, dite_eq_left ⟨q, hq⟩]
@@ -98,11 +109,17 @@ theorem radiusGridScale_le_top {s : Finset PositiveRational} {q : PositiveRation
 def radiusDepth (s : Finset PositiveRational) (q : PositiveRational) : ℕ :=
   (radiusTopScale s - radiusGridScale q).toNat
 
+/--
+@isnad1 id=eq.1h2v.s5.742b2b721979 from=translated src=- shape=753b8aff vocab=bf87632c
+-/
 theorem top_sub_radiusDepth {s : Finset PositiveRational} {q : PositiveRational}
     (hq : q ∈ s) : radiusTopScale s - (radiusDepth s q : ℤ) = radiusGridScale q := by
   rw [radiusDepth, Int.toNat_of_nonneg (sub_nonneg.mpr (radiusGridScale_le_top hq))]
   ring
 
+/--
+@isnad1 id=ex.2h3v.s5.6113015de79f from=translated src=- shape=4d1e956b vocab=5cbb21db
+-/
 theorem exists_mem_centralThird_of_fixedScaleInput_eq
     (S : Finset RealInterval) (g : ℝ → ℂ)
     (hinput : krauseLaceyFixedScaleInput S g = g)
@@ -117,7 +134,9 @@ theorem exists_mem_centralThird_of_fixedScaleInput_eq
 
 /-- Every finite radius maximum, when tested against a compactly supported
 function, is controlled by three finite laminar interval maxima.  No
-sparseness or stopping estimate is assumed in this geometric reduction.-/
+sparseness or stopping estimate is assumed in this geometric reduction.
+@isnad1 id=ex.0h2v.s7.381c43ecc067 from=translated src=- shape=01b9f128 vocab=556b55dc
+-/
 theorem exists_three_laminar_maxima_domination
     (s : Finset PositiveRational) (g : L0Infinity) :
     ∃ G : Fin 3 → Finset RealInterval,
@@ -170,12 +189,18 @@ theorem exists_three_laminar_maxima_domination
         (f := fun shift ↦ finiteIntervalMaximal (G shift) f x)
         (fun _ _ ↦ zero_le) (Finset.mem_univ shift)
 
+/--
+@isnad1 id=measurab.0h2v.s3.b592b558088c from=translated src=- shape=29dc0360 vocab=6876df89
+-/
 theorem measurable_finiteCenteredMaximal
     (s : Finset PositiveRational) (f : L0Infinity) :
     Measurable (finiteCenteredMaximal s f) := by
   exact Measurable.biSup (↑s : Set PositiveRational) s.countable_toSet fun q hq ↦
     measurable_centeredAverage (q : ℝ) f.measurable_toFun.enorm
 
+/--
+@isnad1 id=le.1h4v.s5.a2ca971f65a6 from=translated src=- shape=99d5a31f vocab=7a79681f
+-/
 theorem finiteCenteredMaximal_mono {s t : Finset PositiveRational} (hst : s ⊆ t)
     (f : ℝ → ℂ) (x : ℝ) : finiteCenteredMaximal s f x ≤ finiteCenteredMaximal t f x := by
   apply iSup_le
@@ -184,11 +209,17 @@ theorem finiteCenteredMaximal_mono {s t : Finset PositiveRational} (hst : s ⊆ 
   intro hq
   exact le_iSup_of_le q (le_iSup_of_le (hst hq) le_rfl)
 
+/--
+@isnad1 id=eq.0h2v.s6.36c8178351b1 from=translated src=- shape=0783357b vocab=6edd4096
+-/
 theorem centeredMaximal_eq_iSup_finite (f : ℝ → ℂ) (x : ℝ) :
     centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ) x =
       ⨆ s : Finset PositiveRational, finiteCenteredMaximal s f x := by
   exact iSup_eq_iSup_finset _
 
+/--
+@isnad1 id=eq.0h2v.s7.d6475830bbfd from=translated src=- shape=6ad16188 vocab=35ea4cdf
+-/
 theorem lintegral_centeredMaximal_pairing_eq_iSup_finite (f g : L0Infinity) :
     (∫⁻ x, centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ) x * ‖g x‖ₑ) =
       ⨆ s : Finset PositiveRational, ∫⁻ x, finiteCenteredMaximal s f x * ‖g x‖ₑ := by
@@ -203,6 +234,9 @@ theorem lintegral_centeredMaximal_pairing_eq_iSup_finite (f g : L0Infinity) :
     · intro x
       exact mul_le_mul' (finiteCenteredMaximal_mono Finset.subset_union_right f x) le_rfl
 
+/--
+@isnad1 id=measurab.0h2v.s3.63053462c75f from=translated src=- shape=9aef741c vocab=49fd30c4
+-/
 theorem measurable_finiteIntervalMaximal (S : Finset RealInterval) (f : ℝ → ℂ) :
     Measurable (finiteIntervalMaximal S f) := by
   apply Measurable.biSup (↑S : Set RealInterval) S.countable_toSet
@@ -215,7 +249,9 @@ theorem measurable_finiteIntervalMaximal (S : Finset RealInterval) (f : ℝ → 
   by_cases hx : x ∈ I.carrier <;> simp [hx]
 
 /-- Normalized averages increase with the exponent.  The proof uses the
-probability measure obtained by dividing the interval measure by its length.-/
+probability measure obtained by dividing the interval measure by its length.
+@isnad1 id=le.1h3v.s5.177f81bf1141 from=translated src=- shape=14953303 vocab=9762f3d9
+-/
 theorem localAverage_one_le (g : L0Infinity) (I : RealInterval) {p : ℝ} (hp : 1 ≤ p) :
     localAverage 1 g I ≤ localAverage p g I := by
   let μ : Measure ℝ := (ENNReal.ofReal I.length)⁻¹ • volume.restrict I.carrier
@@ -231,6 +267,9 @@ theorem localAverage_one_le (g : L0Infinity) (I : RealInterval) {p : ℝ} (hp : 
   exact eLpNorm'_le_eLpNorm'_of_exponent_le (by norm_num) hp μ
     g.measurable_toFun.aestronglyMeasurable
 
+/--
+@isnad1 id=le.1h4v.s5.32923df0625d from=translated src=- shape=b81a611a vocab=bd3baca7
+-/
 theorem sparseForm_one_le (f : ℝ → ℂ) (g : L0Infinity) (S : Set RealInterval)
     {p : ℝ} (hp : 1 ≤ p) : sparseForm 1 f g S ≤ sparseForm p f g S := by
   apply ENNReal.tsum_le_tsum
@@ -239,13 +278,18 @@ theorem sparseForm_one_le (f : ℝ → ℂ) (g : L0Infinity) (S : Set RealInterv
   exact mul_le_mul_of_nonneg_left (localAverage_one_le g I.1 hp)
     (mul_nonneg I.1.length_pos.le (localAverage_nonneg 1 f I.1))
 
-/-- Exponent transfer costs no constant.-/
+/-- Exponent transfer costs no constant.
+@isnad1 id=hasspars.2h3v.s4.1f5a6906dd52 from=translated src=- shape=0f14cc1c vocab=53ec9baa
+-/
 theorem hasSparseOnePBound_of_one {C p : ℝ} {T : TestOperator}
     (hp : 1 ≤ p) (hT : HasSparseOnePBound C 1 T) : HasSparseOnePBound C p T := by
   intro f g
   obtain ⟨S, hS, hb⟩ := hT f g
   exact ⟨S, hS, hb.trans (mul_le_mul' le_rfl (sparseForm_one_le f g S hp))⟩
 
+/--
+@isnad1 id=issparse.0h0v.s4.e3763b9496d9 from=translated src=- shape=c0c1ed43 vocab=3d541a9a
+-/
 theorem isSparse_empty : IsSparse (1 / 4) (∅ : Set RealInterval) := by
   refine ⟨by norm_num, by norm_num, fun _ ↦ ∅, ?_, ?_, ?_, ?_⟩
   · simp
@@ -257,7 +301,9 @@ theorem isSparse_empty : IsSparse (1 / 4) (∅ : Set RealInterval) := by
 
 /-- A finite laminar stopping theorem transfers to the full centered
 operator.  Three grids cost `3`, the radius enclosure costs `8`, and
-selecting a finite approximation to half the pairing costs `2`.-/
+selecting a finite approximation to half the pairing costs `2`.
+@isnad1 id=hasspars.1h1v.s7.26d95b842821 from=translated src=- shape=0696a6a5 vocab=c1a7d1a6
+-/
 theorem hasSparseOneOneBound_centered_of_finite_laminar
     {K : ℝ}
     (hfinite : ∀ (S : Finset RealInterval) (f g : L0Infinity),

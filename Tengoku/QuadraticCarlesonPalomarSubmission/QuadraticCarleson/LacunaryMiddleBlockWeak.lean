@@ -32,7 +32,9 @@ set_option autoImplicit false
 
 /-- A weak bound for the finite quadratic-Hilbert modulation block transfers
 to the genuine smooth low-kernel block. The extra constant is exactly the
-Hardy--Littlewood boundary contribution.-/
+Hardy--Littlewood boundary contribution.
+@isnad1 id=hasexten.4h7v.s7.a40525873c6b from=translated src=- shape=0757ef51 vocab=df15bc04
+-/
 theorem hasExtendedWeakL1Bound_frozenBlockMaxEnorm
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ) {AH : ℝ}
@@ -66,7 +68,9 @@ def HasLogSquaredFrozenHilbertBlockWeakBounds
     (frozenBlockHilbertMaxEnorm lacunaryAmplitude f k (B k) c τ)
 
 /-- A logarithm-squared finite quadratic-Hilbert estimate implies the exact
-frozen low-kernel hypothesis needed by the Kalton assembly.-/
+frozen low-kernel hypothesis needed by the Kalton assembly.
+@isnad1 id=haslogsq.3h4v.s6.1607611c6d8c from=translated src=- shape=285ce716 vocab=02ec6dc3
+-/
 theorem logSquaredFrozenBlockWeakBounds_of_hilbert
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {C : ℝ}

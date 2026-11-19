@@ -20,7 +20,9 @@ open KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
-/-- Finite linearity of an actual finite-range kernel on integrable inputs.-/
+/-- Finite linearity of an actual finite-range kernel on integrable inputs.
+@isnad1 id=eq.1h5v.s6.bdde80061a6d from=translated src=- shape=4251f203 vocab=a12b742b
+-/
 theorem FiniteRangeKernel.applyIntegral_finsetSum
     {α : Type*} (K : FiniteRangeKernel) (T : Finset α) (b : α → ℝ → ℂ)
     (hb : ∀ a ∈ T, Integrable (b a)) (x : ℝ) :
@@ -30,6 +32,9 @@ theorem FiniteRangeKernel.applyIntegral_finsetSum
   simp_rw [Finset.mul_sum]
   exact integral_finsetSum _ (fun a ha ↦ K.integrable_row_mul (hb a ha) x)
 
+/--
+@isnad1 id=eq.0h8v.s6.4f9e4fd3454b from=translated src=- shape=ed8e0318 vocab=adcbe8f6
+-/
 theorem krauseLaceyLocalizedPiece_eq_applyIntegral_intervalBadInput
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (I : RealInterval) (x : ℝ) :
@@ -48,7 +53,9 @@ theorem krauseLaceyLocalizedPiece_eq_applyIntegral_intervalBadInput
 
 /-- A fixed-scale endpoint with one bounded input per parent.  This is the
 same support-disjoint argument as the common-input endpoint, with no loss
-from the number of parents.-/
+from the number of parents.
+@isnad1 id=le.4h5v.s7.c6b48046db14 from=translated src=- shape=9d577dbe vocab=b733718a
+-/
 theorem norm_krauseLaceyFixedScaleLocalizedSum_variable_le
     (j : ℤ) (S : Finset RealInterval) (b : RealInterval → ℝ → ℂ)
     {M : ℝ} (hM : 0 ≤ M) (hb : ∀ I ∈ S, ∀ t, ‖b I t‖ ≤ M)
@@ -89,7 +96,9 @@ noncomputable def energyStandardSourceParentInput
   ∑ s ∈ R, if I ∈ N s then intervalBadInput S f I₀ k₀ s scale I x else 0
 
 /-- Singleton-fibre form of the source-gap packing: every regrouped parent
-input is pointwise dominated by the original input, with no gap factor.-/
+input is pointwise dominated by the original input, with no gap factor.
+@isnad1 id=le.5h10v.s8.4a2ea1c6f109 from=translated src=- shape=5f47957b vocab=648c9dce
+-/
 theorem norm_energyStandardSourceParentInput_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ)
@@ -138,6 +147,9 @@ theorem norm_energyStandardSourceParentInput_le
       · simp [NI, hmem]
     _ ≤ _ := hpack
 
+/--
+@isnad1 id=integrab.1h8v.s6.011c8db38e82 from=translated src=- shape=cfac6765 vocab=fd92a8ff
+-/
 theorem integrable_energyStandardSourceParentInput
     (S : Finset RealInterval) {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (scale : RealInterval → ℤ)
@@ -153,6 +165,9 @@ theorem integrable_energyStandardSourceParentInput
   · simp only [hIs, ite_eq_right]
     exact integrable_zero ℝ ℂ volume
 
+/--
+@isnad1 id=eq.0h8v.s5.4487a50dbf16 from=translated src=- shape=ecfaacf2 vocab=263fc117
+-/
 theorem centralThird_indicator_energyStandardSourceParentInput
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (R : Finset ℤ) (N : ℤ → Finset RealInterval)
@@ -165,7 +180,9 @@ theorem centralThird_indicator_energyStandardSourceParentInput
     simp [energyStandardSourceParentInput, intervalBadInput, hx]
 
 /-- The regrouped input has the same local mass bound as a single source
-bad piece.  Disjointness across source gaps removes any gap-count loss.-/
+bad piece.  Disjointness across source gaps removes any gap-count loss.
+@isnad1 id=le.6h9v.s8.8f2d70078645 from=translated src=- shape=d2c4109d vocab=8cc8208a
+-/
 theorem integral_norm_energyStandardSourceParentInput_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -229,7 +246,9 @@ noncomputable def energyStandardRegroupedSourceAction
 
 /-- Uniform fixed-physical-scale `L∞` endpoint for the regrouped source
 action.  The source-gap count is absent: it was eliminated pointwise before
-the fixed-scale support argument.-/
+the fixed-scale support argument.
+@isnad1 id=le.6h10v.s8.4dbf5bb2be58 from=translated src=- shape=dcd165b8 vocab=5c486406
+-/
 theorem norm_energyStandardRegroupedSourceAction_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ j : ℤ)
     (scale : RealInterval → ℤ)
@@ -268,6 +287,9 @@ theorem norm_energyStandardRegroupedSourceAction_le
   · exact hscaleU
   · exact hdisj
 
+/--
+@isnad1 id=eq.0h8v.s7.e409d8dd004f from=translated src=- shape=b4e670c9 vocab=9178f786
+-/
 theorem energyStandardFixedPhysicalSourceAction_reindex
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (R : Finset ℤ) (N : ℤ → Finset RealInterval)
@@ -311,7 +333,9 @@ theorem energyStandardFixedPhysicalSourceAction_reindex
 
 /-- At one fixed physical scale, the source's outer gap sum is exactly the
 single regrouped action.  This is finite kernel linearity; no estimate and no
-triangle inequality is used.-/
+triangle inequality is used.
+@isnad1 id=eq.2h9v.s7.cef186a181e8 from=translated src=- shape=65ebb67c vocab=940ba46a
+-/
 theorem energyStandardFixedPhysicalSourceAction_eq_regrouped
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -384,7 +408,9 @@ theorem energyStandardFixedPhysicalSourceAction_eq_regrouped
 /-- The source-faithful fixed-scale endpoint for a single regrouped parent.
 Unlike the preliminary global-`L∞` estimate above, this uses only the
 stopping-time average on the ambient interval.  The factor eight is exactly
-the ratio between the parent length `2^j` and the kernel radius `2^(j-3)`.-/
+the ratio between the parent length `2^j` and the kernel radius `2^(j-3)`.
+@isnad1 id=le.6h10v.s8.b6d1bc10b260 from=translated src=- shape=e9b7815e vocab=7b0f9e2b
+-/
 theorem norm_energyStandardRegroupedSourcePiece_le_localAverage
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -439,7 +465,9 @@ theorem norm_energyStandardRegroupedSourcePiece_le_localAverage
 /-- At one fixed physical scale, the complete scalar-standard source sum is
 bounded by the local stopping average, with no loss in the number of source
 gaps or parents.  Equal-length laminar parents have disjoint carriers, so at
-most one regrouped output is nonzero at each point.-/
+most one regrouped output is nonzero at each point.
+@isnad1 id=le.5h9v.s8.3a93a674e4f2 from=translated src=- shape=6e20fd40 vocab=f5265779
+-/
 theorem norm_energyStandardRegroupedSourceAction_le_localAverage
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -505,7 +533,9 @@ theorem norm_energyStandardRegroupedSourceAction_le_localAverage
 
 /-- Source-faithful fixed-physical-scale `L∞` estimate in the original
 outer-gap presentation.  Exact regrouping transfers the preceding local
-average bound without any triangle-inequality loss.-/
+average bound without any triangle-inequality loss.
+@isnad1 id=le.5h9v.s8.ef4372aebc77 from=translated src=- shape=5c1c82b3 vocab=70409f1c
+-/
 theorem norm_energyStandardFixedPhysicalSourceAction_le_localAverage
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)

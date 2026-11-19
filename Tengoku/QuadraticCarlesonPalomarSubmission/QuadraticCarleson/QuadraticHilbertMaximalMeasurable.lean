@@ -36,6 +36,9 @@ def quadraticHilbertIntegrand
     (lam : ℝ) (f : ℝ → ℂ) (x t : ℝ) : ℂ :=
   f (x - t) * phase (lam * t ^ 2) / (t : ℂ)
 
+/--
+@isnad1 id=integrab.2h4v.s6.a517d748a753 from=translated src=- shape=a52bd81f vocab=b8df312d
+-/
 theorem integrableOn_quadraticHilbertTail
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
@@ -53,6 +56,9 @@ theorem integrableOn_quadraticHilbertTail
   dsimp only [quadraticHilbertIntegrand]
   field_simp
 
+/--
+@isnad1 id=eq.2h4v.s7.7eb230ff1803 from=translated src=- shape=9eee33c1 vocab=ec6ca388
+-/
 theorem quadraticHilbertTruncation_eq_oneSidedTails
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
@@ -95,6 +101,9 @@ theorem quadraticHilbertTruncation_eq_oneSidedTails
   rw [hset]
   exact setIntegral_union hdis measurableSet_Ioi hleft hright
 
+/--
+@isnad1 id=continuo.2h4v.s6.f64fd88fd316 from=translated src=- shape=f63c7aca vocab=cb45a4d9
+-/
 theorem continuousAt_quadraticHilbertTruncation_radius
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
@@ -139,6 +148,9 @@ theorem continuousAt_quadraticHilbertTruncation_radius
   filter_upwards [Ioi_mem_nhds hε] with δ hδ
   exact quadraticHilbertTruncation_eq_oneSidedTails lam hδ hf x
 
+/--
+@isnad1 id=continuo.1h3v.s7.1de25cdd0dd2 from=translated src=- shape=7535f107 vocab=c4f7ce00
+-/
 theorem continuous_quadraticHilbertTruncation_positiveRadii
     (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
@@ -148,6 +160,9 @@ theorem continuous_quadraticHilbertTruncation_positiveRadii
   exact (continuousAt_quadraticHilbertTruncation_radius
     lam ε.2 hf x).comp continuousAt_subtype_val
 
+/--
+@isnad1 id=continuo.1h3v.s7.25e590710114 from=translated src=- shape=6bbe2bac vocab=d5092de3
+-/
 theorem continuous_enorm_quadraticHilbertTruncation_positiveRadii
     (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
@@ -158,9 +173,15 @@ theorem continuous_enorm_quadraticHilbertTruncation_positiveRadii
 def densePositiveRadii : Set {ε : ℝ // 0 < ε} :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose
 
+/--
+@isnad1 id=countabl.0h0v.s4.a95296e8374f from=translated src=- shape=3e6b51dd vocab=42d6dcf1
+-/
 theorem countable_densePositiveRadii : densePositiveRadii.Countable :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.1
 
+/--
+@isnad1 id=dense.0h0v.s5.f3693fd38f1d from=translated src=- shape=3e6b51dd vocab=0e319996
+-/
 theorem dense_densePositiveRadii : Dense densePositiveRadii :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.2
 
@@ -168,6 +189,9 @@ def countableQuadraticHilbertMaximalTruncation
     (lam : ℝ) (f : ℝ → ℂ) (x : ℝ) : ENNReal :=
   ⨆ ε : densePositiveRadii, ‖quadraticHilbertTrunc lam ε.1.1 f x‖ₑ
 
+/--
+@isnad1 id=eq.1h3v.s5.3322316f2228 from=translated src=- shape=60451e1c vocab=7e377f78
+-/
 theorem countableQuadraticHilbertMaximalTruncation_eq
     (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     countableQuadraticHilbertMaximalTruncation lam f x =
@@ -176,6 +200,9 @@ theorem countableQuadraticHilbertMaximalTruncation_eq
   exact dense_densePositiveRadii.ciSup'
     (continuous_enorm_quadraticHilbertTruncation_positiveRadii lam hf x)
 
+/--
+@isnad1 id=measurab.1h3v.s4.aa6a1705e0c9 from=translated src=- shape=414bc316 vocab=c3cbdebb
+-/
 theorem measurable_quadraticHilbertTrunc
     (lam ε : ℝ) {f : ℝ → ℂ} (hf : Measurable f) :
     Measurable (quadraticHilbertTrunc lam ε f) := by
@@ -186,6 +213,9 @@ theorem measurable_quadraticHilbertTrunc
   exact (hm.stronglyMeasurable.integral_prod_right
     (ν := volume.restrict {t : ℝ | ε < |t|})).measurable
 
+/--
+@isnad1 id=measurab.1h2v.s4.d72199f39242 from=translated src=- shape=e8169009 vocab=00c75052
+-/
 theorem measurable_countableQuadraticHilbertMaximalTruncation
     (lam : ℝ) {f : ℝ → ℂ} (hf : Measurable f) :
     Measurable (countableQuadraticHilbertMaximalTruncation lam f) := by
@@ -195,7 +225,9 @@ theorem measurable_countableQuadraticHilbertMaximalTruncation
   exact (measurable_quadraticHilbertTrunc lam ε.1.1 hf).enorm
 
 /-- The genuine supremum over every positive real truncation radius is
-measurable for any measurable integrable input.-/
+measurable for any measurable integrable input.
+@isnad1 id=measurab.2h2v.s5.e3e5bcf2aa0d from=translated src=- shape=d31072d9 vocab=b401c5d7
+-/
 theorem measurable_quadraticHilbertMaximalTruncation
     (lam : ℝ) {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     Measurable (quadraticHilbertMaximalTruncation lam f) := by

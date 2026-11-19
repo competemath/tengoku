@@ -28,7 +28,9 @@ open PositivePrincipalValueEndpoints
 set_option autoImplicit false
 
 /-- The established stopping recursion turns the one-node good-part input
-into sparse domination for a concrete localized shifted tail.-/
+into sparse domination for a concrete localized shifted tail.
+@isnad1 id=hasspars.5h8v.s6.8169ba8981d7 from=translated src=- shape=83cd93d5 vocab=b5a3c8cf
+-/
 theorem hasSparseOnePBound_localizedTail_of_oneNodeGoodPart
     {A p : ℝ} (hA : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)
@@ -43,7 +45,9 @@ theorem hasSparseOnePBound_localizedTail_of_oneNodeGoodPart
     hA hp hp2 ell₀ topScale shift maxDepth q₀ S hS hell
 
 /-- Localized-tail sparse domination through the genuine `p`-mass stopping
-recursion.-/
+recursion.
+@isnad1 id=hasspars.5h8v.s6.c685b332326a from=translated src=- shape=83cd93d5 vocab=26078c6e
+-/
 theorem hasSparseOnePBound_localizedTail_of_oneNodePStoppingGoodPart
     {A p : ℝ} (hA : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)
@@ -58,7 +62,9 @@ theorem hasSparseOnePBound_localizedTail_of_oneNodePStoppingGoodPart
     hA hp hp2.le ell₀ topScale shift maxDepth q₀ S hS hell
 
 /-- The paper-facing lacunary principal-value endpoint conditional on exactly
-the native unit-modulation positive dyadic-suffix sparse estimate.-/
+the native unit-modulation positive dyadic-suffix sparse estimate.
+@isnad1 id=ex.1h1v.s7.50c25561b5a8 from=translated src=- shape=c04912af vocab=1b48052e
+-/
 theorem lacunary_principalValue_endpoint_of_nativePositiveSuffix
     {C : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
@@ -74,7 +80,9 @@ theorem lacunary_principalValue_endpoint_of_nativePositiveSuffix
 
 /-- Paper-facing endpoint obtained from the genuine p-stopping one-node
 estimate, with the source-external low-starting suffix range isolated as a
-separate hypothesis.-/
+separate hypothesis.
+@isnad1 id=ex.2h2v.s7.2cd7dc45a4ab from=translated src=- shape=bfba0c0a vocab=c7f8ae9f
+-/
 theorem lacunary_principalValue_endpoint_of_oneNodePStoppingGoodPart_and_low
     {A D : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hlow : HasNativeUnitLowPositiveSuffixSparseBound D) :

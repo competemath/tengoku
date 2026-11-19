@@ -39,6 +39,9 @@ noncomputable def energyStandardPhysicalLayer
     (scale : RealInterval → ℤ) (j : ℤ) : Finset RealInterval :=
   (energyStandardIntervals S f I₀ k₀ s scale).filter fun I ↦ scale I + 2 = j
 
+/--
+@isnad1 id=le.0h7v.s5.134fa2908535 from=translated src=- shape=820f4fa9 vocab=88b9d5cc
+-/
 theorem energyStandardPhysicalLayer_subset
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (j : ℤ) :
@@ -46,6 +49,9 @@ theorem energyStandardPhysicalLayer_subset
       energyStandardIntervals S f I₀ k₀ s scale :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=eq.1h8v.s5.be68836eb205 from=translated src=- shape=d68de3fc vocab=722ba541
+-/
 theorem physical_eq_of_mem_energyStandardPhysicalLayer
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ : RealInterval} {k₀ s : ℤ}
     {scale : RealInterval → ℤ} {j : ℤ} {I : RealInterval}
@@ -53,6 +59,9 @@ theorem physical_eq_of_mem_energyStandardPhysicalLayer
     scale I + 2 = j :=
   (Finset.mem_filter.mp hI).2
 
+/--
+@isnad1 id=eq.1h8v.s6.8de6f44787d4 from=translated src=- shape=e6eb2677 vocab=94fcb7d2
+-/
 theorem length_eq_zpow_of_mem_energyStandardPhysicalLayer
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ : RealInterval} {k₀ s : ℤ}
     {scale : RealInterval → ℤ} {j : ℤ} {I : RealInterval}
@@ -63,14 +72,18 @@ theorem length_eq_zpow_of_mem_energyStandardPhysicalLayer
   rw [he.2.1, physical_eq_of_mem_energyStandardPhysicalLayer hI]
 
 /-- Membership in the source-gap set, in the additive form most convenient
-for preserving the lower physical scale `k₀ + s`.-/
+for preserving the lower physical scale `k₀ + s`.
+@isnad1 id=iff.0h3v.s5.c1f26c752ff6 from=translated src=- shape=2d785199 vocab=75efefa2
+-/
 theorem mem_standardSourceGaps_iff {k₀ j s : ℤ} :
     s ∈ standardSourceGaps k₀ j ↔ 0 ≤ s ∧ k₀ + s ≤ j := by
   simp only [standardSourceGaps, Finset.mem_Icc]
   omega
 
 /-- An inhabited standard layer with a nonnegative gap automatically lies in
-the paper's exact source-gap range.-/
+the paper's exact source-gap range.
+@isnad1 id=mem.2h8v.s6.99d006c5f362 from=translated src=- shape=377d043e vocab=8bc7b2b1
+-/
 theorem mem_standardSourceGaps_of_mem_energyStandardPhysicalLayer
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ : RealInterval} {k₀ s j : ℤ}
     {scale : RealInterval → ℤ} {I : RealInterval} (hs : 0 ≤ s)
@@ -85,7 +98,9 @@ theorem mem_standardSourceGaps_of_mem_energyStandardPhysicalLayer
   omega
 
 /-- Hence a nonnegative gap outside `0 ≤ s ≤ j-k₀` contributes no
-interval at physical exponent `j`.-/
+interval at physical exponent `j`.
+@isnad1 id=eq.2h7v.s5.1d1017b6e58b from=translated src=- shape=e72d36b6 vocab=3cc23322
+-/
 theorem energyStandardPhysicalLayer_eq_empty_of_nonneg_not_mem
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s j : ℤ)
     (scale : RealInterval → ℤ) (hs : 0 ≤ s)
@@ -97,7 +112,9 @@ theorem energyStandardPhysicalLayer_eq_empty_of_nonneg_not_mem
 
 /-- Every scalar-standard collection at a fixed gap is exactly the disjoint
 sum of its physical layers.  The target scale set is finite because it is the
-image of the ambient finite interval family.-/
+image of the ambient finite interval family.
+@isnad1 id=eq.0h8v.s6.6cf0a39220e0 from=translated src=- shape=3ba35e4a vocab=2e330aee
+-/
 theorem sum_energyStandardPhysicalLayer_eq
     {E : Type*} [AddCommMonoid E]
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
@@ -112,7 +129,9 @@ theorem sum_energyStandardPhysicalLayer_eq
         (Finset.mem_filter.mp hI).1, rfl⟩) _
 
 /-- The power cutoff on an eligible standard interval is exactly the lower
-cutoff on its physical exponent.-/
+cutoff on its physical exponent.
+@isnad1 id=iff.1h8v.s6.31e820056797 from=translated src=- shape=4bcf1fd2 vocab=d950b4dd
+-/
 theorem zpow_cutoff_iff_of_mem_energyStandardIntervals
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ : RealInterval} {k₀ s ell : ℤ}
     {scale : RealInterval → ℤ} {I : RealInterval}
@@ -123,7 +142,9 @@ theorem zpow_cutoff_iff_of_mem_energyStandardIntervals
   exact zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)
 
 /-- Exact physical-layer recombination with a moving lower cutoff.  The
-orientation is `ell ≤ j`: large spatial scales survive the tail.-/
+orientation is `ell ≤ j`: large spatial scales survive the tail.
+@isnad1 id=eq.0h9v.s7.faede25e27a2 from=translated src=- shape=a8fb4885 vocab=66ec9e90
+-/
 theorem sum_energyStandardPhysicalLayer_tail_eq
     {E : Type*} [AddCommMonoid E]
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s ell : ℤ)
@@ -163,7 +184,9 @@ theorem sum_energyStandardPhysicalLayer_tail_eq
     _ = _ := Finset.sum_fiberwise_of_maps_to hmaps _
 
 /-- The preceding abstract recombination specializes to the actual localized
-standard tail at one gap.-/
+standard tail at one gap.
+@isnad1 id=eq.0h8v.s6.486b5b010544 from=translated src=- shape=20da1b6f vocab=ba7b92cb
+-/
 theorem badLengthTailAction_energyStandardIntervals_eq_physicalLayers
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (ell : ℤ) (x : ℝ) :
@@ -202,7 +225,9 @@ noncomputable def energyStandardPhysicalLayerAction
     (fun s ↦ energyStandardPhysicalLayer S f I₀ k₀ s scale j) x
 
 /-- The fixed-scale interpolation theorem applies directly to the exact
-physical layers, with no extra selection hypotheses.-/
+physical layers, with no extra selection hypotheses.
+@isnad1 id=le.6h7v.s8.57a8356cb63b from=translated src=- shape=290da32f vocab=34261af4
+-/
 theorem eLpNorm_energyStandardPhysicalLayerAction_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)
@@ -224,7 +249,9 @@ theorem eLpNorm_energyStandardPhysicalLayerAction_le
     (fun _ _ I hI ↦ physical_eq_of_mem_energyStandardPhysicalLayer hI) hq
 
 /-- Reversing the gap coordinate sends `0 ≤ s ≤ j-k₀` bijectively to
-the original bad-input exponent range `k₀ ≤ ℓ ≤ j`.-/
+the original bad-input exponent range `k₀ ≤ ℓ ≤ j`.
+@isnad1 id=eq.0h4v.s6.002ec7a474b7 from=translated src=- shape=ebde20fc vocab=8ad0b6b7
+-/
 theorem sum_standardSourceGaps_eq_sum_sourceLevels
     {E : Type*} [AddCommMonoid E] (k₀ j : ℤ) (F : ℤ → ℤ → E) :
     (∑ s ∈ standardSourceGaps k₀ j, F s (j - s)) =
@@ -246,7 +273,9 @@ theorem sum_standardSourceGaps_eq_sum_sourceLevels
     omega
 
 /-- Fixed physical action written with the original bad-input exponent
-`ℓ ∈ [k₀,j]`, rather than the gap `s = j-ℓ`.-/
+`ℓ ∈ [k₀,j]`, rather than the gap `s = j-ℓ`.
+@isnad1 id=eq.0h7v.s6.33bd04d99190 from=translated src=- shape=255bfae8 vocab=e9973aa8
+-/
 theorem energyStandardPhysicalLayerAction_eq_sourceLevels
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (j : ℤ) (x : ℝ) :
@@ -276,6 +305,9 @@ noncomputable def standardSourceGapSupport
     (S : Finset RealInterval) (k₀ : ℤ) (scale : RealInterval → ℤ) : Finset ℤ :=
   (standardPhysicalScaleSupport S scale).biUnion fun j ↦ standardSourceGaps k₀ j
 
+/--
+@isnad1 id=le.1h4v.s5.49b536f9f130 from=translated src=- shape=56819406 vocab=28652a66
+-/
 theorem nonneg_of_mem_standardSourceGapSupport
     {S : Finset RealInterval} {k₀ s : ℤ} {scale : RealInterval → ℤ}
     (hs : s ∈ standardSourceGapSupport S k₀ scale) : 0 ≤ s := by
@@ -293,7 +325,9 @@ noncomputable def energyStandardPhysicalTailAction
 /-- Exact global recombination: summing the original standard physical tails
 over every represented nonnegative gap equals summing first by physical
 exponent.  The right side therefore has exactly the fixed-`j` functions used
-by the source interpolation estimate.-/
+by the source interpolation estimate.
+@isnad1 id=eq.0h7v.s5.18f9e7cb3b0b from=translated src=- shape=ff55b098 vocab=7cbf234a
+-/
 theorem sum_badLengthTailAction_energyStandardIntervals_eq_physicalTail
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (ell : ℤ) (x : ℝ) :
@@ -337,7 +371,9 @@ theorem sum_badLengthTailAction_energyStandardIntervals_eq_physicalTail
       exact Finset.sum_congr rfl fun j _ ↦ rfl
 
 /-- The global physical-tail recombination with both indices in the literal
-source orientation: `ell ≤ j` outside and `k₀ ≤ ℓ ≤ j` inside.-/
+source orientation: `ell ≤ j` outside and `k₀ ≤ ℓ ≤ j` inside.
+@isnad1 id=eq.0h7v.s6.203fdf38dd70 from=translated src=- shape=aff89692 vocab=a28f5019
+-/
 theorem energyStandardPhysicalTailAction_eq_sourceLevels
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (ell : ℤ) (x : ℝ) :

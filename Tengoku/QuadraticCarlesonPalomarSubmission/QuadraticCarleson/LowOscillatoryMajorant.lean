@@ -31,7 +31,9 @@ set_option autoImplicit false
 noncomputable def positiveLowDecay (D ℓ x : ℝ) : ℝ :=
   min (1 / x) (D * ℓ / x ^ 2)
 
-/-- The low-oscillatory majorant is integrable beyond a positive atom scale.-/
+/-- The low-oscillatory majorant is integrable beyond a positive atom scale.
+@isnad1 id=integrab.2h2v.s5.745fc8eec38f from=translated src=- shape=cfb2d48a vocab=32a37e3b
+-/
 theorem integrableOn_positiveLowDecay_Ioi (D ℓ : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     IntegrableOn (positiveLowDecay D ℓ) (Ioi ℓ) := by
   have hpow : IntegrableOn (fun x : ℝ ↦ x ^ (-2 : ℝ)) (Ioi ℓ) :=
@@ -58,7 +60,9 @@ theorem integrableOn_positiveLowDecay_Ioi (D ℓ : ℝ) (hD : 1 ≤ D) (hℓ : 0
       rw [Real.rpow_neg hx0.le, Real.rpow_two]
       ring
 
-/-- Exact evaluation of the positive-half-line logarithmic majorant.-/
+/-- Exact evaluation of the positive-half-line logarithmic majorant.
+@isnad1 id=eq.2h2v.s6.ea796723e0ed from=translated src=- shape=5911c6b2 vocab=4415f773
+-/
 theorem integral_positiveLowDecay_Ioi (D ℓ : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     ∫ x in Ioi ℓ, positiveLowDecay D ℓ x = Real.log D + 1 := by
   have hDℓ : 0 < D * ℓ := mul_pos (zero_lt_one.trans_le hD) hℓ
@@ -111,7 +115,9 @@ theorem integral_positiveLowDecay_Ioi (D ℓ : ℝ) (hD : 1 ≤ D) (hℓ : 0 < �
 noncomputable def lowDecayMajorant (D ℓ z x : ℝ) : ℝ :=
   min (1 / |x - z|) (D * ℓ / |x - z| ^ 2)
 
-/-- On the right of the center, the radial majorant is its positive form.-/
+/-- On the right of the center, the radial majorant is its positive form.
+@isnad1 id=eq.2h3v.s6.b29089cd4918 from=translated src=- shape=487ca494 vocab=60431ee2
+-/
 theorem integral_lowDecayMajorant_Ioi (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     ∫ x in Ioi (z + ℓ), lowDecayMajorant D ℓ z x = Real.log D + 1 := by
   have hpres := measurePreserving_add_right (volume : Measure ℝ) z
@@ -134,7 +140,9 @@ theorem integral_lowDecayMajorant_Ioi (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 <
         abs_of_pos hx0]
     _ = Real.log D + 1 := integral_positiveLowDecay_Ioi D ℓ hD hℓ
 
-/-- Reflection gives the same logarithmic mass on the left of the center.-/
+/-- Reflection gives the same logarithmic mass on the left of the center.
+@isnad1 id=eq.2h3v.s6.b9e5fdfa7672 from=translated src=- shape=2c8d221e vocab=9092d6e7
+-/
 theorem integral_lowDecayMajorant_Iio (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     ∫ x in Iio (z - ℓ), lowDecayMajorant D ℓ z x = Real.log D + 1 := by
   have hpres := measurePreserving_add_right (volume : Measure ℝ) z
@@ -166,7 +174,9 @@ theorem integral_lowDecayMajorant_Iio (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 <
     _ = Real.log D + 1 := integral_positiveLowDecay_Ioi D ℓ hD hℓ
 
 /-- The complement of the interval of radius `ℓ` consists of its two open
-tails.-/
+tails.
+@isnad1 id=eq.0h2v.s5.7a93142d6c77 from=translated src=- shape=0335c75a vocab=23c11d99
+-/
 theorem compl_centeredInterval_radius (z ℓ : ℝ) :
     (Icc (z - ℓ) (z + ℓ))ᶜ = Iio (z - ℓ) ∪ Ioi (z + ℓ) := by
   ext x
@@ -175,7 +185,9 @@ theorem compl_centeredInterval_radius (z ℓ : ℝ) :
 
 /-- Exact logarithmic mass of the low-oscillatory majorant away from an atom.
 This is the scalar integral used in the paper's estimate preceding the
-lacunary middle-range decomposition.-/
+lacunary middle-range decomposition.
+@isnad1 id=eq.2h3v.s6.3c70ece28097 from=translated src=- shape=13a992ad vocab=8967982c
+-/
 theorem integral_lowDecayMajorant_compl (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     ∫ x in (Icc (z - ℓ) (z + ℓ))ᶜ, lowDecayMajorant D ℓ z x =
       2 * (Real.log D + 1) := by
@@ -245,7 +257,9 @@ theorem integral_lowDecayMajorant_compl (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0
     integral_lowDecayMajorant_Ioi D ℓ z hD hℓ]
   ring
 
-/-- Integrability accompanying the exact logarithmic-mass formula.-/
+/-- Integrability accompanying the exact logarithmic-mass formula.
+@isnad1 id=integrab.2h3v.s6.c5a81c3289e5 from=translated src=- shape=0bdd5607 vocab=e8a7efe5
+-/
 theorem integrableOn_lowDecayMajorant_compl
     (D ℓ z : ℝ) (hD : 1 ≤ D) (hℓ : 0 < ℓ) :
     IntegrableOn (lowDecayMajorant D ℓ z) (Icc (z - ℓ) (z + ℓ))ᶜ := by
@@ -285,7 +299,9 @@ theorem integrableOn_lowDecayMajorant_compl
 
 /-- With the paper's choice `D = 2^(2B)`, the logarithmic mass is bounded by
 an explicit constant times `B + 1`.  This is the precise scalar content of
-the displayed `≲ B` estimate (including the harmless `B = 0` case).-/
+the displayed `≲ B` estimate (including the harmless `B = 0` case).
+@isnad1 id=le.1h3v.s7.5a754f0ba64e from=translated src=- shape=c0a5f994 vocab=5c74bcc5
+-/
 theorem integral_lowDecayMajorant_two_pow_le (B : ℕ) (ℓ z : ℝ) (hℓ : 0 < ℓ) :
     ∫ x in (Icc (z - ℓ) (z + ℓ))ᶜ,
         lowDecayMajorant ((2 : ℝ) ^ (2 * B)) ℓ z x ≤
@@ -304,7 +320,9 @@ theorem integral_lowDecayMajorant_two_pow_le (B : ℕ) (ℓ z : ℝ) (hℓ : 0 <
 
 /-- A measurable nonnegative function dominated by the paper's dyadic
 low-oscillatory majorant has the required `O(B)` integral.  This packages the
-scalar calculation in the form used for each Calderón--Zygmund bad atom.-/
+scalar calculation in the form used for each Calderón--Zygmund bad atom.
+@isnad1 id=le.5h5v.s8.868d0cdf7bdb from=translated src=- shape=c08f0bf8 vocab=a51d8e71
+-/
 theorem integral_le_four_mul_succ_of_le_lowDecayMajorant
     (F : ℝ → ℝ) (A ℓ z : ℝ) (B : ℕ)
     (hA : 0 ≤ A) (hℓ : 0 < ℓ)

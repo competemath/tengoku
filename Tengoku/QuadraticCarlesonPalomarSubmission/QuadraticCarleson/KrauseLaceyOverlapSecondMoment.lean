@@ -21,6 +21,9 @@ open KrauseLaceyGenerationLayers
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.1h2v.s7.9e23ed9b08ce from=translated src=- shape=2096c650 vocab=3d85978e
+-/
 theorem overlapCount_sq_le_two_sum_descendant_counts
     (A : Finset RealInterval)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun I J ↦
@@ -66,6 +69,9 @@ theorem overlapCount_sq_le_two_sum_descendant_counts
     _ = _ := by
       simp only [overlapCount_cast_eq_sum_indicator, Finset.sum_filter, v]
 
+/--
+@isnad1 id=le.3h2v.s7.5d9b7f9e145d from=translated src=- shape=9b116335 vocab=491e35f5
+-/
 theorem lintegral_overlapCount_sq_le
     (A : Finset RealInterval) (Λ : ℝ) (hΛ : 0 ≤ Λ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun I J ↦
@@ -93,7 +99,9 @@ theorem lintegral_overlapCount_sq_le
         mul_assoc]
 
 /-- The discarded family's counting-function second moment is
-exponentially small for the concrete canonical active family.-/
+exponentially small for the concrete canonical active family.
+@isnad1 id=le.3h8v.s8.d7e97cd9be18 from=translated src=- shape=4b728d12 vocab=6c95d728
+-/
 theorem lintegral_active_removed_overlap_sq_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ)
     (scale : RealInterval → ℤ)

@@ -34,19 +34,31 @@ noncomputable section
 def ordinaryHilbertMultiplier (ξ : ℝ) : ℂ :=
   -((Real.pi : ℂ) * Complex.I) * (Real.sign ξ : ℂ)
 
+/--
+@isnad1 id=measurab.0h0v.s2.a80752595feb from=translated src=- shape=e3d48bcb vocab=5b40c355
+-/
 theorem measurable_real_sign : Measurable Real.sign := by
   unfold Real.sign
   exact Measurable.ite (measurableSet_lt measurable_id measurable_const) measurable_const
     (Measurable.ite (measurableSet_lt measurable_const measurable_id)
       measurable_const measurable_const)
 
+/--
+@isnad1 id=measurab.0h0v.s2.a01f8e96dcb9 from=translated src=- shape=54c8eceb vocab=adca2687
+-/
 theorem measurable_ordinaryHilbertMultiplier :
     Measurable ordinaryHilbertMultiplier :=
   measurable_const.mul (Complex.measurable_ofReal.comp measurable_real_sign)
 
+/--
+@isnad1 id=le.0h1v.s4.52b2faf7ba6c from=translated src=- shape=38becc55 vocab=3a3a0cea
+-/
 theorem norm_real_sign_le_one (ξ : ℝ) : ‖Real.sign ξ‖ ≤ 1 := by
   rcases Real.sign_apply_eq ξ with h | h | h <;> rw [h] <;> norm_num
 
+/--
+@isnad1 id=le.0h1v.s3.34cc5ed5039d from=translated src=- shape=1036feda vocab=dadc4065
+-/
 theorem norm_ordinaryHilbertMultiplier_le (ξ : ℝ) :
     ‖ordinaryHilbertMultiplier ξ‖ ≤ Real.pi := by
   unfold ordinaryHilbertMultiplier
@@ -58,7 +70,9 @@ theorem norm_ordinaryHilbertMultiplier_le (ξ : ℝ) :
 /-- Test-function form of the already-proved distributional identity
 `𝓕(p.v. 1/x) = -π i sign`.  This explicitly identifies the pointwise
 multiplier used below with the two half-line integrals defining the project's
-`signTemperedDistribution`.-/
+`signTemperedDistribution`.
+@isnad1 id=eq.0h1v.s9.4cb9507b5f23 from=translated src=- shape=57437138 vocab=2b3d0dd3
+-/
 theorem fourier_principalValueOneDiv_apply_eq_multiplier_halfLines
     (φ : 𝓢(ℝ, ℂ)) :
     (𝓕 principalValueOneDiv) φ =
@@ -93,6 +107,9 @@ theorem fourier_principalValueOneDiv_apply_eq_multiplier_halfLines
 def fourierL2Representative (f : Lp (α := ℝ) ℂ 2) : ℝ → ℂ :=
   ⇑(Lp.fourierTransformₗᵢ ℝ ℂ f)
 
+/--
+@isnad1 id=memlp.0h1v.s8.62e74958994a from=translated src=- shape=db80459c vocab=94ba6b87
+-/
 theorem memLp_fourierL2Representative (f : Lp (α := ℝ) ℂ 2) :
     MemLp (fourierL2Representative f) 2 volume :=
   Lp.memLp (Lp.fourierTransformₗᵢ ℝ ℂ f)
@@ -100,6 +117,9 @@ theorem memLp_fourierL2Representative (f : Lp (α := ℝ) ℂ 2) :
 def multipliedFourierRepresentative (f : Lp (α := ℝ) ℂ 2) : ℝ → ℂ :=
   fun ξ ↦ ordinaryHilbertMultiplier ξ * fourierL2Representative f ξ
 
+/--
+@isnad1 id=memlp.0h1v.s8.50cfc6130083 from=translated src=- shape=db80459c vocab=a1bfbcfb
+-/
 theorem memLp_ordinaryHilbertMultiplier_mul_fourier
     (f : Lp (α := ℝ) ℂ 2) :
     MemLp (multipliedFourierRepresentative f) 2 volume := by
@@ -125,6 +145,9 @@ def ordinaryHilbertTransformL2 (f : Lp (α := ℝ) ℂ 2) :
     Lp (α := ℝ) ℂ 2 :=
   (Lp.fourierTransformₗᵢ ℝ ℂ).symm (ordinaryHilbertMultiplierL2 f)
 
+/--
+@isnad1 id=le.0h1v.s8.7da8b6c584f1 from=translated src=- shape=77d373db vocab=7dae3851
+-/
 theorem eLpNorm_multipliedFourierRepresentative_le
     (f : Lp (α := ℝ) ℂ 2) :
     eLpNorm (multipliedFourierRepresentative f) 2 volume ≤
@@ -136,6 +159,9 @@ theorem eLpNorm_multipliedFourierRepresentative_le
   exact mul_le_mul_of_nonneg_right (norm_ordinaryHilbertMultiplier_le ξ)
     (norm_nonneg _)
 
+/--
+@isnad1 id=eq.0h1v.s8.7810756187a9 from=translated src=- shape=77d373db vocab=74cb68fa
+-/
 theorem eLpNorm_multipliedFourierRepresentative_eq
     (f : Lp (α := ℝ) ℂ 2 volume) :
     eLpNorm (multipliedFourierRepresentative f) 2 volume =
@@ -161,6 +187,9 @@ theorem eLpNorm_multipliedFourierRepresentative_eq
       rw [← ofReal_norm]
       simp [Real.pi_pos.le]
 
+/--
+@isnad1 id=le.0h1v.s12.b16d0c448371 from=translated src=- shape=270995b5 vocab=140cc9e0
+-/
 theorem enorm_ordinaryHilbertMultiplierL2_le (f : Lp (α := ℝ) ℂ 2) :
     ‖ordinaryHilbertMultiplierL2 f‖ₑ ≤
       ENNReal.ofReal Real.pi * ‖f‖ₑ := by
@@ -177,12 +206,18 @@ theorem enorm_ordinaryHilbertMultiplierL2_le (f : Lp (α := ℝ) ℂ 2) :
       rw [← Lp.enorm_toLp (memLp_fourierL2Representative f), heq]
     _ = _ := by simp
 
+/--
+@isnad1 id=le.0h1v.s9.ad7589e95b33 from=translated src=- shape=20faaaf2 vocab=ee8b4759
+-/
 theorem norm_ordinaryHilbertMultiplierL2_le (f : Lp (α := ℝ) ℂ 2) :
     ‖ordinaryHilbertMultiplierL2 f‖ ≤ Real.pi * ‖f‖ := by
   have h := enorm_ordinaryHilbertMultiplierL2_le f
   have hreal := (ENNReal.toReal_le_toReal (by finiteness) (by finiteness)).2 h
   simpa [ENNReal.toReal_mul, ENNReal.toReal_ofReal Real.pi_pos.le] using hreal
 
+/--
+@isnad1 id=eq.0h1v.s9.5eca41c02d67 from=translated src=- shape=47e53e95 vocab=090705a4
+-/
 theorem norm_ordinaryHilbertMultiplierL2_eq (f : Lp (α := ℝ) ℂ 2 volume) :
     ‖ordinaryHilbertMultiplierL2 f‖ = Real.pi * ‖f‖ := by
   have henorm : ‖ordinaryHilbertMultiplierL2 f‖ₑ =
@@ -202,6 +237,9 @@ theorem norm_ordinaryHilbertMultiplierL2_eq (f : Lp (α := ℝ) ℂ 2 volume) :
   have hreal := congrArg ENNReal.toReal henorm
   simpa [ENNReal.toReal_mul, ENNReal.toReal_ofReal Real.pi_pos.le] using hreal
 
+/--
+@isnad1 id=le.0h1v.s9.289068f1825e from=translated src=- shape=20faaaf2 vocab=0ec1a96d
+-/
 theorem norm_ordinaryHilbertTransformL2_le (f : Lp (α := ℝ) ℂ 2) :
     ‖ordinaryHilbertTransformL2 f‖ ≤ Real.pi * ‖f‖ := by
   rw [ordinaryHilbertTransformL2]
@@ -209,6 +247,9 @@ theorem norm_ordinaryHilbertTransformL2_le (f : Lp (α := ℝ) ℂ 2) :
   rw [(Lp.fourierTransformₗᵢ ℝ ℂ).symm.norm_map]
   exact norm_ordinaryHilbertMultiplierL2_le f
 
+/--
+@isnad1 id=eq.0h1v.s9.0d71c826b816 from=translated src=- shape=47e53e95 vocab=c292cc15
+-/
 theorem norm_ordinaryHilbertTransformL2_eq (f : Lp (α := ℝ) ℂ 2 volume) :
     ‖ordinaryHilbertTransformL2 f‖ = Real.pi * ‖f‖ := by
   rw [ordinaryHilbertTransformL2]
@@ -216,6 +257,9 @@ theorem norm_ordinaryHilbertTransformL2_eq (f : Lp (α := ℝ) ℂ 2 volume) :
   rw [(Lp.fourierTransformₗᵢ ℝ ℂ).symm.norm_map,
     norm_ordinaryHilbertMultiplierL2_eq]
 
+/--
+@isnad1 id=eventual.0h2v.s10.7e351c7b4206 from=translated src=- shape=e3f4d599 vocab=ebfef668
+-/
 theorem multipliedFourierRepresentative_add_ae
     (f g : Lp (α := ℝ) ℂ 2 volume) :
     multipliedFourierRepresentative (f + g) =ᵐ[volume]
@@ -234,6 +278,9 @@ theorem multipliedFourierRepresentative_add_ae
   simp only [Pi.add_apply]
   ring
 
+/--
+@isnad1 id=eventual.0h2v.s12.9a5ea168463b from=translated src=- shape=96cdcce1 vocab=5d581dcc
+-/
 theorem multipliedFourierRepresentative_smul_ae
     (c : ℂ) (f : Lp (α := ℝ) ℂ 2 volume) :
     multipliedFourierRepresentative (c • f) =ᵐ[volume]
@@ -251,6 +298,9 @@ theorem multipliedFourierRepresentative_smul_ae
   simp only [Pi.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s11.d31345fe9279 from=translated src=- shape=b7b3312b vocab=5a291b4e
+-/
 theorem ordinaryHilbertMultiplierL2_add (f g : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertMultiplierL2 (f + g) =
       ordinaryHilbertMultiplierL2 f + ordinaryHilbertMultiplierL2 g := by
@@ -269,6 +319,9 @@ theorem ordinaryHilbertMultiplierL2_add (f g : Lp (α := ℝ) ℂ 2 volume) :
       MemLp.toLp_add (memLp_ordinaryHilbertMultiplier_mul_fourier f)
         (memLp_ordinaryHilbertMultiplier_mul_fourier g)
 
+/--
+@isnad1 id=eq.0h2v.s13.65f73ec2e17f from=translated src=- shape=6076b93c vocab=83b4ec4c
+-/
 theorem ordinaryHilbertMultiplierL2_smul (c : ℂ)
     (f : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertMultiplierL2 (c • f) = c • ordinaryHilbertMultiplierL2 f := by
@@ -283,12 +336,18 @@ theorem ordinaryHilbertMultiplierL2_smul (c : ℂ)
     _ = c • ordinaryHilbertMultiplierL2 f :=
       MemLp.toLp_const_smul c (memLp_ordinaryHilbertMultiplier_mul_fourier f)
 
+/--
+@isnad1 id=eq.0h2v.s11.a8e522c5e215 from=translated src=- shape=b7b3312b vocab=51b8a812
+-/
 theorem ordinaryHilbertTransformL2_add (f g : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertTransformL2 (f + g) =
       ordinaryHilbertTransformL2 f + ordinaryHilbertTransformL2 g := by
   unfold ordinaryHilbertTransformL2
   rw [ordinaryHilbertMultiplierL2_add, map_add]
 
+/--
+@isnad1 id=eq.0h2v.s13.65138dfdf41e from=translated src=- shape=6076b93c vocab=ffd41083
+-/
 theorem ordinaryHilbertTransformL2_smul (c : ℂ)
     (f : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertTransformL2 (c • f) = c • ordinaryHilbertTransformL2 f := by
@@ -308,17 +367,25 @@ def ordinaryHilbertTransformL2CLM :
   ordinaryHilbertTransformL2LinearMap.mkContinuous Real.pi
     norm_ordinaryHilbertTransformL2_le
 
+/--
+@isnad1 id=eq.0h1v.s12.fb22b8991bd9 from=translated src=- shape=ff25544a vocab=19b7053a
+-/
 @[simp] theorem ordinaryHilbertTransformL2CLM_apply
     (f : Lp (α := ℝ) ℂ 2) :
     ordinaryHilbertTransformL2CLM f = ordinaryHilbertTransformL2 f := rfl
 
+/--
+@isnad1 id=le.0h0v.s11.eee0e8fbfd64 from=translated src=- shape=248419a8 vocab=9ea6e6c3
+-/
 theorem norm_ordinaryHilbertTransformL2CLM_le :
     ‖ordinaryHilbertTransformL2CLM‖ ≤ Real.pi :=
   LinearMap.mkContinuous_norm_le (f := ordinaryHilbertTransformL2LinearMap)
     Real.pi_pos.le norm_ordinaryHilbertTransformL2_le
 
 /-- Fourier transforming the constructed Hilbert operator recovers exactly
-the canonical multiplier class.-/
+the canonical multiplier class.
+@isnad1 id=eq.0h1v.s12.db8cf54e6c3b from=translated src=- shape=68c8f38a vocab=8d4bd0fe
+-/
 theorem fourier_ordinaryHilbertTransformL2
     (f : Lp (α := ℝ) ℂ 2 volume) :
     Lp.fourierTransformₗᵢ ℝ ℂ (ordinaryHilbertTransformL2 f) =
@@ -326,7 +393,9 @@ theorem fourier_ordinaryHilbertTransformL2
   unfold ordinaryHilbertTransformL2
   exact (Lp.fourierTransformₗᵢ ℝ ℂ).apply_symm_apply _
 
-/-- Representative-level form of the multiplier identity.-/
+/-- Representative-level form of the multiplier identity.
+@isnad1 id=eventual.0h1v.s12.30c3d4963b2f from=translated src=- shape=1cfe954c vocab=3e8cfbac
+-/
 theorem coe_fourier_ordinaryHilbertTransformL2_ae
     (f : Lp (α := ℝ) ℂ 2 volume) :
     (⇑(Lp.fourierTransformₗᵢ ℝ ℂ (ordinaryHilbertTransformL2 f)) : ℝ → ℂ)
@@ -334,6 +403,9 @@ theorem coe_fourier_ordinaryHilbertTransformL2_ae
   rw [fourier_ordinaryHilbertTransformL2]
   exact MemLp.coeFn_toLp (memLp_ordinaryHilbertMultiplier_mul_fourier f)
 
+/--
+@isnad1 id=eq.1h1v.s5.560d1f7def2f from=translated src=- shape=b8145760 vocab=951c1c4f
+-/
 theorem ordinaryHilbertMultiplier_sq {ξ : ℝ} (hξ : ξ ≠ 0) :
     ordinaryHilbertMultiplier ξ * ordinaryHilbertMultiplier ξ =
       -((Real.pi : ℂ) ^ 2) := by
@@ -344,6 +416,9 @@ theorem ordinaryHilbertMultiplier_sq {ξ : ℝ} (hξ : ξ ≠ 0) :
     rw [neg_sq, mul_pow, Complex.I_sq]
     ring
 
+/--
+@isnad1 id=eventual.0h1v.s8.bba8773bbef4 from=translated src=- shape=890364dd vocab=d7b1483e
+-/
 theorem multipliedFourierRepresentative_hilbert_ae
     (f : Lp (α := ℝ) ℂ 2 volume) :
     multipliedFourierRepresentative (ordinaryHilbertTransformL2 f) =ᵐ[volume]
@@ -359,6 +434,9 @@ theorem multipliedFourierRepresentative_hilbert_ae
   simp only [Pi.smul_apply, smul_eq_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s13.a66ebb557a82 from=translated src=- shape=c58bbe5c vocab=3d4fc36c
+-/
 theorem ordinaryHilbertMultiplierL2_hilbert
     (f : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertMultiplierL2 (ordinaryHilbertTransformL2 f) =
@@ -382,7 +460,9 @@ theorem ordinaryHilbertMultiplierL2_hilbert
       rw [heq]
 
 /-- With the project's unnormalized kernel `p.v. (1/x)`, the `L²` Hilbert
-operator squares to `-π²` times the identity.-/
+operator squares to `-π²` times the identity.
+@isnad1 id=eq.0h1v.s12.95444735f761 from=translated src=- shape=ef206381 vocab=42246c21
+-/
 theorem ordinaryHilbertTransformL2_sq
     (f : Lp (α := ℝ) ℂ 2 volume) :
     ordinaryHilbertTransformL2 (ordinaryHilbertTransformL2 f) =

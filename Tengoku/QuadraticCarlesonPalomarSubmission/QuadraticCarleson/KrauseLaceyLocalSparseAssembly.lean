@@ -42,7 +42,9 @@ analytic estimate is assumed.
 
 The first recursive term remains the actual good-collection pairing.  Its
 replacement by the desired sparse form is exactly the remaining local
-oscillatory estimate in the Krause--Lacey proof.-/
+oscillatory estimate in the Krause--Lacey proof.
+@isnad1 id=and.15h10v.s10.3c7726e80608 from=translated src=- shape=5c4f4d72 vocab=ede85825
+-/
 theorem local_good_nonstandard_sparse_stopping_step
     {S : Finset RealInterval} {f g : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (hg : Measurable g) (hgi : Integrable g)
@@ -110,7 +112,9 @@ theorem local_good_nonstandard_sparse_stopping_step
 
 /-- The finite positive global tail is reduced, with no change in its
 physical lower cutoff, to the three localized maximal tails that feed the
-local stopping theorem above.  This reduction contains no classifier.-/
+local stopping theorem above.  This reduction contains no classifier.
+@isnad1 id=ex.1h6v.s7.9e2b218d6f58 from=translated src=- shape=fb6febbe vocab=e25ebb64
+-/
 theorem exists_three_shift_localized_tail_reduction
     (f : L0Infinity) (k₀ s topScale : ℤ) (depths : Finset ℕ) (maxDepth : ℕ)
     (hdepths : ∀ depth ∈ depths, depth ≤ maxDepth) :

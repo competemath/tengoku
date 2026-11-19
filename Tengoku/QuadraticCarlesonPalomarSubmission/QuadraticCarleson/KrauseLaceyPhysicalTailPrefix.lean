@@ -21,12 +21,18 @@ open KrauseLaceyStoppingExtraction
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.1h2v.s4.26ece9602194 from=translated src=- shape=ee69e874 vocab=18da39c3
+-/
 theorem length_le_of_carrier_subset_physical {I J : RealInterval}
     (h : I.carrier ⊆ J.carrier) : I.length ≤ J.length := by
   have he := (Ioc_subset_Ioc_iff I.left_lt_right).mp h
   dsimp [RealInterval.length]
   linarith [he.1, he.2]
 
+/--
+@isnad1 id=le.6h4v.s7.035152240304 from=translated src=- shape=bd06ff9d vocab=7e37f6f5
+-/
 theorem carrier_subset_of_generationIndex_le_at_point
     {N : Finset RealInterval}
     (hlam : Set.Pairwise (↑N : Set RealInterval) fun J K ↦
@@ -44,7 +50,9 @@ theorem carrier_subset_of_generationIndex_le_at_point
   · exact (Set.disjoint_left.mp hd hxI hxJ).elim
 
 /-- The actual covering chain determines a regenerated prefix cutoff
-for every physical length threshold.-/
+for every physical length threshold.
+@isnad1 id=ex.1h3v.s6.b26c982846e9 from=translated src=- shape=3324f2fa vocab=7ff7e55f
+-/
 theorem exists_generation_cutoff_for_length
     (N : Finset RealInterval)
     (hlam : Set.Pairwise (↑N : Set RealInterval) fun J K ↦
@@ -73,6 +81,9 @@ noncomputable def generationPrefixNormMax
     (N : Finset RealInterval) (v : RealInterval → ℂ) : ℝ :=
   ⨆ n : Fin (N.card + 1), ‖∑ i ∈ Finset.range n.val, ∑ I ∈ generation N i, v I‖
 
+/--
+@isnad1 id=le.2h4v.s7.4a29bc46486e from=translated src=- shape=83689941 vocab=98ee47f1
+-/
 theorem norm_lengthTail_le_two_generationPrefixNormMax
     (N : Finset RealInterval)
     (hlam : Set.Pairwise (↑N : Set RealInterval) fun J K ↦

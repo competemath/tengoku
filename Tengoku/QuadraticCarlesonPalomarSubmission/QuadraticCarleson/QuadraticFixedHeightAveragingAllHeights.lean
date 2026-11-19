@@ -21,7 +21,9 @@ open scoped ENNReal NNReal
 namespace QuadraticCarleson
 
 /-- A finite family of bounded interval-supported kernels is pointwise
-controlled by a finite centered maximal operator.-/
+controlled by a finite centered maximal operator.
+@isnad1 id=le.5h6v.s7.70385ca4f27d from=translated src=- shape=7e2f6772 vocab=45fddfdb
+-/
 theorem finiteConvolutionMaximal_le_centered {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {L : ℝ} (hL : 0 ≤ L) (hbound : ∀ i t, ‖κ i t‖ ≤ L / r i)
@@ -58,6 +60,9 @@ theorem finiteConvolutionMaximal_le_centered {N : ℕ}
         lintegral_selectedAverageKernel_mul r (fun _ ↦ i) hfm.enorm]
     _ ≤ _ := mul_le_mul' le_rfl (le_iSup (fun i ↦ centeredAverage (r i) (fun t ↦ ‖f t‖ₑ) x) i)
 
+/--
+@isnad1 id=le.5h5v.s8.d11070847acb from=translated src=- shape=59c54a02 vocab=791c687b
+-/
 theorem finiteConvolutionMaximal_sq_lintegral_le_interval_bound {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {L : ℝ} (hL : 0 ≤ L) (hbound : ∀ i t, ‖κ i t‖ ≤ L / r i)
@@ -81,6 +86,9 @@ theorem finiteConvolutionMaximal_sq_lintegral_le_interval_bound {N : ℕ}
       congr 2
       ring
 
+/--
+@isnad1 id=le.1h3v.s5.a0665bd8378f from=translated src=- shape=e835fa13 vocab=ba6fcf93
+-/
 theorem norm_fixedHeightQuadraticKernel_le
     (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) (t : ℝ) :
     ‖fixedHeightQuadraticKernel lam height hlam t‖ ≤
@@ -95,6 +103,9 @@ theorem norm_fixedHeightQuadraticKernel_le
       exact add_le_add (norm_positiveDyadicAmplitude_le _ t) (norm_positiveDyadicAmplitude_le _ (-t))
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.2h3v.s5.a8de090df8cf from=translated src=- shape=b5489184 vocab=37265780
+-/
 theorem fixedHeightQuadraticKernel_eq_zero_of_radius_lt
     (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) (t : ℝ)
     (ht : fixedHeightRadius lam height hlam < |t|) : fixedHeightQuadraticKernel lam height hlam t = 0 := by
@@ -104,7 +115,9 @@ theorem fixedHeightQuadraticKernel_eq_zero_of_radius_lt
     exact (not_lt_of_ge ht.le) hs.2
   simp only [fixedHeightQuadraticKernel, hz, Complex.ofReal_zero, zero_mul]
 
-/-- A uniform nonoscillatory bound, used only to include the lowest height.-/
+/-- A uniform nonoscillatory bound, used only to include the lowest height.
+@isnad1 id=le.2h4v.s8.d0c7141a3625 from=translated src=- shape=bb9a8e9b vocab=774061da
+-/
 theorem finite_fixedHeightQuadraticKernel_maximal_sq_bound
     (n height : ℕ) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, lam i ≠ 0)
     {f : ℝ → ℂ} (hf : MemLp f 2) :
@@ -126,7 +139,9 @@ theorem finite_fixedHeightQuadraticKernel_maximal_sq_bound
 
 /-- Fixed-height quadratic finite maximal `L²` decay for every natural height
 and every finite family of arbitrary nonzero real modulations. There are no
-analytic hypotheses beyond `MemLp f 2`.-/
+analytic hypotheses beyond `MemLp f 2`.
+@isnad1 id=le.2h4v.s8.d1ac043dd5b9 from=translated src=- shape=6c386979 vocab=b203056a
+-/
 theorem finite_fixedHeightQuadraticKernel_maximal_sq_decay_all_heights
     (n height : ℕ) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, lam i ≠ 0)
     {f : ℝ → ℂ} (hf : MemLp f 2) :

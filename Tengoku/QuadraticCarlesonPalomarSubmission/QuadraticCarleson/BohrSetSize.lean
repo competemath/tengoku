@@ -41,7 +41,9 @@ private theorem bohrRightCell_subset {k a : ℕ} {ρ : ℝ}
     exact (min_le_left _ _).trans (by nlinarith)
 
 /-- A lower size bound at every sufficiently large frequency, obtained from
-disjoint right halves of the interior integer cells.-/
+disjoint right halves of the interior integer cells.
+@isnad1 id=le.3h2v.s6.f05582b44be4 from=translated src=- shape=0cbdfc9b vocab=ac836a2a
+-/
 theorem bohrSet_volume_real_ge {k : ℕ} {ρ : ℝ}
     (hk : 100 ≤ k) (hρ0 : 0 ≤ ρ) (hρ : ρ ≤ 1) :
     ρ / 8 ≤ volume.real (bohrSet k ρ) := by
@@ -115,7 +117,9 @@ private theorem bohrSet_subset_integerCover {k : ℕ} {ρ : ℝ}
     nlinarith
 
 /-- Covering by the `k + 1` nearby-integer intervals gives a uniform upper
-bound at every positive natural frequency.-/
+bound at every positive natural frequency.
+@isnad1 id=le.3h2v.s6.71a8fc9966f9 from=translated src=- shape=e84d6ea5 vocab=bbab2f04
+-/
 theorem bohrSet_volume_real_le {k : ℕ} {ρ : ℝ}
     (hk : 0 < k) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1 / 10) :
     volume.real (bohrSet k ρ) ≤ 4 * ρ := by
@@ -149,7 +153,9 @@ theorem bohrSet_volume_real_le {k : ℕ} {ρ : ℝ}
 
 /-- The comparability stated immediately after the paper's Bohr-set
 definition, with explicit absolute constants. The paper's radius range
-`0 < ρ < 1/100` is contained in the range proved here.-/
+`0 < ρ < 1/100` is contained in the range proved here.
+@isnad1 id=and.3h2v.s6.56a0fe6d811b from=translated src=- shape=309ae31a vocab=bbab2f04
+-/
 theorem bohrSet_volume_real_comparable {k : ℕ} {ρ : ℝ}
     (hk : 100 ≤ k) (hρ0 : 0 < ρ) (hρ : ρ < 1 / 10) :
     ρ / 8 ≤ volume.real (bohrSet k ρ) ∧ volume.real (bohrSet k ρ) ≤ 4 * ρ :=

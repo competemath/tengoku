@@ -33,7 +33,9 @@ noncomputable def paperLowCZKernel
   paperLowOscillatoryKernel lam hlam B (x - y)
 
 /-- The interval point and its center are at most twice as far apart from an
-observation point outside the triple interval.-/
+observation point outside the triple interval.
+@isnad1 id=le.3h4v.s6.f290d0a2adb6 from=translated src=- shape=10af918b vocab=2cc6e249
+-/
 theorem distance_interval_point_le_two_center_distance
     {z R x y : ℝ} (hR : 0 < R)
     (hx : x ∉ tripleCenteredInterval z R)
@@ -50,7 +52,9 @@ theorem distance_interval_point_le_two_center_distance
   linarith
 
 /-- Subtracting a point of the segment between `x-y` and `x-z` from `x`
-produces a point of the segment between `y` and `z`.-/
+produces a point of the segment between `y` and `z`.
+@isnad1 id=mem.1h4v.s5.63fbc93a15dd from=translated src=- shape=50259a54 vocab=482bbb79
+-/
 theorem sub_mem_uIcc_of_mem_sub_uIcc {x y z u : ℝ}
     (hu : u ∈ uIcc (x - y) (x - z)) :
     x - u ∈ uIcc y z := by
@@ -62,7 +66,9 @@ theorem sub_mem_uIcc_of_mem_sub_uIcc {x y z u : ℝ}
     constructor <;> linarith
 
 /-- Every point of the mean-value segment remains at least one quarter of
-`|x-y|` away from zero.-/
+`|x-y|` away from zero.
+@isnad1 id=le.4h5v.s6.6428adc35027 from=translated src=- shape=49dea2f7 vocab=72235181
+-/
 theorem quarter_distance_le_abs_of_mem_kernel_segment
     {z R x y u : ℝ} (hR : 0 < R)
     (hx : x ∉ tripleCenteredInterval z R)
@@ -93,6 +99,9 @@ height `B`.-/
 noncomputable def lowKernelCZConstant (B : ℕ) : ℝ :=
   16 * lowKernelDerivativeConstant * (2 : ℝ) ^ (2 * B)
 
+/--
+@isnad1 id=le.0h1v.s3.1178e7c95219 from=translated src=- shape=b9369acb vocab=27088264
+-/
 theorem lowKernelCZConstant_nonneg (B : ℕ) :
     0 ≤ lowKernelCZConstant B := by
   unfold lowKernelCZConstant
@@ -100,7 +109,9 @@ theorem lowKernelCZConstant_nonneg (B : ℕ) :
     (mul_nonneg (by norm_num) lowKernelDerivativeConstant_nonneg) (by positivity)
 
 /-- The paper's low convolution kernel satisfies the precise Lipschitz
-kernel-difference estimate required by the cancellative bad-part lemma.-/
+kernel-difference estimate required by the cancellative bad-part lemma.
+@isnad1 id=le.4h6v.s7.f6261e8442c3 from=translated src=- shape=ddbc86ac vocab=0eab87cc
+-/
 theorem paperLowCZKernel_sub_center_norm_le
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {z R x y : ℝ} (hR : 0 < R)
@@ -171,7 +182,9 @@ theorem paperLowCZKernel_sub_center_norm_le
       ring
 
 /-- Integrated `L¹` estimate for a mean-zero atom acted on by the paper's
-low kernel, outside the triple of its supporting interval.-/
+low kernel, outside the triple of its supporting interval.
+@isnad1 id=le.6h5v.s8.0c5bc49c361b from=translated src=- shape=d2dcb96e vocab=a76bd647
+-/
 theorem integral_norm_paperLowCZKernel_le
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) (z R : ℝ)

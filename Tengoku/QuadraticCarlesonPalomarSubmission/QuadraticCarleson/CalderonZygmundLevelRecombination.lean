@@ -48,7 +48,9 @@ def partialLevelAtom (A : ℕ → ℝ) (f : ℝ → ℂ)
       ⨍ y in centeredInterval z R, partialLevelRestricted A f s y)
 
 /-- At each point, the disjoint magnitude restrictions have exactly one
-nonzero term and sum to `f`.-/
+nonzero term and sum to `f`.
+@isnad1 id=hassum.3h3v.s6.e60f2035cf7e from=translated src=- shape=45c32129 vocab=7322da90
+-/
 theorem hasSum_levelRestricted_apply
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -69,6 +71,9 @@ theorem hasSum_levelRestricted_apply
   rw [heq]
   exact hasSum_ite_eq k (f x)
 
+/--
+@isnad1 id=eq.3h3v.s6.8177b05f8d07 from=translated src=- shape=b9e0faab vocab=0fc4b13e
+-/
 theorem tsum_levelRestricted_apply
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -76,6 +81,9 @@ theorem tsum_levelRestricted_apply
     (∑' k, levelRestricted A f k x) = f x :=
   (hasSum_levelRestricted_apply hA0 hA hcofinal f x).tsum_eq
 
+/--
+@isnad1 id=eventual.3h2v.s6.70dd86f88f5a from=translated src=- shape=93076a6d vocab=e3b87da3
+-/
 theorem ae_tsum_levelRestricted_eq
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -85,7 +93,9 @@ theorem ae_tsum_levelRestricted_eq
   exact tsum_levelRestricted_apply hA0 hA hcofinal f x
 
 /-- Finite sums commute with the interval average under precisely the local
-integrability of their summands.-/
+integrability of their summands.
+@isnad1 id=eq.1h5v.s6.1dd1f8b11036 from=translated src=- shape=42e18373 vocab=5ef97cbc
+-/
 theorem setAverage_partialLevelRestricted
     {A : ℕ → ℝ} {f : ℝ → ℂ} (s : Finset ℕ) (z R : ℝ)
     (hfi : ∀ k ∈ s, IntegrableOn (levelRestricted A f k) (centeredInterval z R)) :
@@ -95,7 +105,9 @@ theorem setAverage_partialLevelRestricted
     (setAverage_finsetSum (s := centeredInterval z R) (t := s) hfi)
 
 /-- No infinite-series hypothesis is needed for the exact finite atom
-recombination identity.-/
+recombination identity.
+@isnad1 id=eq.1h5v.s6.45e1a264a356 from=translated src=- shape=8d31ed1e vocab=7859c673
+-/
 theorem finset_sum_levelAtom_eq_partialLevelAtom
     {A : ℕ → ℝ} {f : ℝ → ℂ} (s : Finset ℕ) (z R : ℝ)
     (hfi : ∀ k ∈ s, IntegrableOn (levelRestricted A f k) (centeredInterval z R)) :
@@ -111,7 +123,9 @@ theorem finset_sum_levelAtom_eq_partialLevelAtom
 
 /-- Local integrability of `f` is enough to commute the countable magnitude
 partition with the interval integral.  Absolute convergence is supplied by
-the disjoint measurable partition rather than assumed separately.-/
+the disjoint measurable partition rather than assumed separately.
+@isnad1 id=hassum.5h4v.s7.4c5f9216776c from=translated src=- shape=f7dc95c7 vocab=ccb83ac3
+-/
 theorem hasSum_setIntegral_levelRestricted
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -144,7 +158,9 @@ theorem hasSum_setIntegral_levelRestricted
   exact hsum
 
 /-- Countable magnitude-level averages sum to the average of `f`; no
-summability assumption beyond local integrability of `f` is required.-/
+summability assumption beyond local integrability of `f` is required.
+@isnad1 id=hassum.5h4v.s7.2ae6cee1c6e1 from=translated src=- shape=b11bfcb5 vocab=f31c56c9
+-/
 theorem hasSum_levelAverage
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -156,6 +172,9 @@ theorem hasSum_levelAverage
     (volume.real (centeredInterval z R))⁻¹
   simpa [levelAverage, setAverage_eq] using hsum
 
+/--
+@isnad1 id=eq.5h4v.s7.ab45d9d5a3b9 from=translated src=- shape=f6025639 vocab=8cd91215
+-/
 theorem tsum_levelAverage
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -165,7 +184,9 @@ theorem tsum_levelAverage
   (hasSum_levelAverage hA0 hA hcofinal hf z R hfi).tsum_eq
 
 /-- The level atoms form a convergent series whose sum is exactly the
-ordinary centered atom.-/
+ordinary centered atom.
+@isnad1 id=hassum.5h5v.s7.1044778c50e1 from=translated src=- shape=a64a61fa vocab=940358db
+-/
 theorem hasSum_levelAtom_apply
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -178,6 +199,9 @@ theorem hasSum_levelAtom_apply
     simpa [levelAtom, centeredAtom, hx] using hrestr.sub havg
   · simp [levelAtom, centeredAtom, hx]
 
+/--
+@isnad1 id=eq.5h5v.s7.eb1acfa63741 from=translated src=- shape=d45a9072 vocab=06b94e50
+-/
 theorem tsum_levelAtom_apply
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -186,6 +210,9 @@ theorem tsum_levelAtom_apply
     (∑' k, levelAtom A f k z R x) = centeredAtom f z R x :=
   (hasSum_levelAtom_apply hA0 hA hcofinal hf z R hfi x).tsum_eq
 
+/--
+@isnad1 id=eventual.5h4v.s7.88b7e8a59ad2 from=translated src=- shape=34e7e5ba vocab=ec571841
+-/
 theorem ae_tsum_levelAtom_eq_centeredAtom
     {A : ℕ → ℝ} (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -209,26 +236,41 @@ abbrev fullPartialLevelAtom (f : ℝ → ℂ) (s : Finset ℕ) (z R : ℝ) : ℝ
 abbrev lacunaryPartialLevelAtom (f : ℝ → ℂ) (s : Finset ℕ) (z R : ℝ) : ℝ → ℂ :=
   partialLevelAtom lacunaryAmplitude f s z R
 
+/--
+@isnad1 id=eq.0h2v.s5.8529dd77e5e7 from=translated src=- shape=0d51925f vocab=b4849a33
+-/
 theorem tsum_fullLevelRestricted_apply (f : ℝ → ℂ) (x : ℝ) :
     (∑' k, levelRestricted fullAmplitude f k x) = f x :=
   tsum_levelRestricted_apply (fullAmplitude_pos 0).le strictMono_fullAmplitude
     fullAmplitude_cofinal f x
 
+/--
+@isnad1 id=eq.0h2v.s5.c4ab02be64f5 from=translated src=- shape=0d51925f vocab=6ccc044f
+-/
 theorem tsum_lacunaryLevelRestricted_apply (f : ℝ → ℂ) (x : ℝ) :
     (∑' k, levelRestricted lacunaryAmplitude f k x) = f x :=
   tsum_levelRestricted_apply (lacunaryAmplitude_pos 0).le strictMono_lacunaryAmplitude
     lacunaryAmplitude_cofinal f x
 
+/--
+@isnad1 id=eventual.0h1v.s5.82bda6ce7a69 from=translated src=- shape=9599df8e vocab=7d5bf5be
+-/
 theorem ae_tsum_fullLevelRestricted_eq (f : ℝ → ℂ) :
     (∑' k, levelRestricted fullAmplitude f k ·) =ᵐ[volume] f :=
   ae_tsum_levelRestricted_eq (fullAmplitude_pos 0).le strictMono_fullAmplitude
     fullAmplitude_cofinal f
 
+/--
+@isnad1 id=eventual.0h1v.s5.52a36ca39d3c from=translated src=- shape=9599df8e vocab=d877d7a5
+-/
 theorem ae_tsum_lacunaryLevelRestricted_eq (f : ℝ → ℂ) :
     (∑' k, levelRestricted lacunaryAmplitude f k ·) =ᵐ[volume] f :=
   ae_tsum_levelRestricted_eq (lacunaryAmplitude_pos 0).le strictMono_lacunaryAmplitude
     lacunaryAmplitude_cofinal f
 
+/--
+@isnad1 id=eq.1h4v.s6.5a1a957951f7 from=translated src=- shape=b3b0371b vocab=2efd7c47
+-/
 theorem setAverage_fullPartialLevelRestricted {f : ℝ → ℂ} (hf : Measurable f)
     (s : Finset ℕ) (z R : ℝ) :
     (⨍ x in centeredInterval z R, fullPartialLevelRestricted f s x) =
@@ -237,6 +279,9 @@ theorem setAverage_fullPartialLevelRestricted {f : ℝ → ℂ} (hf : Measurable
   intro k _
   exact integrableOn_levelRestricted hf (fullAmplitude_pos k).le z R
 
+/--
+@isnad1 id=eq.1h4v.s6.f50f5df1b540 from=translated src=- shape=b3b0371b vocab=a858587d
+-/
 theorem setAverage_lacunaryPartialLevelRestricted {f : ℝ → ℂ} (hf : Measurable f)
     (s : Finset ℕ) (z R : ℝ) :
     (⨍ x in centeredInterval z R, lacunaryPartialLevelRestricted f s x) =
@@ -245,6 +290,9 @@ theorem setAverage_lacunaryPartialLevelRestricted {f : ℝ → ℂ} (hf : Measur
   intro k _
   exact integrableOn_levelRestricted hf (lacunaryAmplitude_pos k).le z R
 
+/--
+@isnad1 id=eq.1h4v.s5.df4be9a87973 from=translated src=- shape=df04ad75 vocab=c754c93e
+-/
 theorem finset_sum_fullLevelAtom_eq {f : ℝ → ℂ} (hf : Measurable f)
     (s : Finset ℕ) (z R : ℝ) :
     (∑ k ∈ s, fullLevelAtom f k z R) = fullPartialLevelAtom f s z R := by
@@ -252,6 +300,9 @@ theorem finset_sum_fullLevelAtom_eq {f : ℝ → ℂ} (hf : Measurable f)
   intro k _
   exact integrableOn_levelRestricted hf (fullAmplitude_pos k).le z R
 
+/--
+@isnad1 id=eq.1h4v.s5.721e55f3a972 from=translated src=- shape=df04ad75 vocab=fe79b544
+-/
 theorem finset_sum_lacunaryLevelAtom_eq {f : ℝ → ℂ} (hf : Measurable f)
     (s : Finset ℕ) (z R : ℝ) :
     (∑ k ∈ s, lacunaryLevelAtom f k z R) = lacunaryPartialLevelAtom f s z R := by
@@ -259,6 +310,9 @@ theorem finset_sum_lacunaryLevelAtom_eq {f : ℝ → ℂ} (hf : Measurable f)
   intro k _
   exact integrableOn_levelRestricted hf (lacunaryAmplitude_pos k).le z R
 
+/--
+@isnad1 id=eq.2h3v.s6.81e4af062983 from=translated src=- shape=2876ba66 vocab=94485ae0
+-/
 theorem tsum_fullLevelAverage {f : ℝ → ℂ} (hf : Measurable f) (z R : ℝ)
     (hfi : IntegrableOn f (centeredInterval z R)) :
     (∑' k, levelAverage fullAmplitude f k z R) =
@@ -266,6 +320,9 @@ theorem tsum_fullLevelAverage {f : ℝ → ℂ} (hf : Measurable f) (z R : ℝ)
   tsum_levelAverage (fullAmplitude_pos 0).le strictMono_fullAmplitude
     fullAmplitude_cofinal hf z R hfi
 
+/--
+@isnad1 id=eq.2h3v.s6.8b1f19be8ff9 from=translated src=- shape=2876ba66 vocab=246b6d01
+-/
 theorem tsum_lacunaryLevelAverage {f : ℝ → ℂ} (hf : Measurable f) (z R : ℝ)
     (hfi : IntegrableOn f (centeredInterval z R)) :
     (∑' k, levelAverage lacunaryAmplitude f k z R) =
@@ -273,24 +330,36 @@ theorem tsum_lacunaryLevelAverage {f : ℝ → ℂ} (hf : Measurable f) (z R : �
   tsum_levelAverage (lacunaryAmplitude_pos 0).le strictMono_lacunaryAmplitude
     lacunaryAmplitude_cofinal hf z R hfi
 
+/--
+@isnad1 id=eq.2h4v.s6.54156c0b7b1c from=translated src=- shape=37519422 vocab=31e9226c
+-/
 theorem tsum_fullLevelAtom_apply {f : ℝ → ℂ} (hf : Measurable f) (z R : ℝ)
     (hfi : IntegrableOn f (centeredInterval z R)) (x : ℝ) :
     (∑' k, fullLevelAtom f k z R x) = centeredAtom f z R x :=
   tsum_levelAtom_apply (fullAmplitude_pos 0).le strictMono_fullAmplitude
     fullAmplitude_cofinal hf z R hfi x
 
+/--
+@isnad1 id=eq.2h4v.s6.a455eb3ff85f from=translated src=- shape=37519422 vocab=fcf426b3
+-/
 theorem tsum_lacunaryLevelAtom_apply {f : ℝ → ℂ} (hf : Measurable f) (z R : ℝ)
     (hfi : IntegrableOn f (centeredInterval z R)) (x : ℝ) :
     (∑' k, lacunaryLevelAtom f k z R x) = centeredAtom f z R x :=
   tsum_levelAtom_apply (lacunaryAmplitude_pos 0).le strictMono_lacunaryAmplitude
     lacunaryAmplitude_cofinal hf z R hfi x
 
+/--
+@isnad1 id=eventual.2h3v.s6.5f461ea8fac5 from=translated src=- shape=b8901ae6 vocab=82fcb289
+-/
 theorem ae_tsum_fullLevelAtom_eq_centeredAtom {f : ℝ → ℂ} (hf : Measurable f)
     (z R : ℝ) (hfi : IntegrableOn f (centeredInterval z R)) :
     (∑' k, fullLevelAtom f k z R ·) =ᵐ[volume] centeredAtom f z R :=
   ae_tsum_levelAtom_eq_centeredAtom (fullAmplitude_pos 0).le strictMono_fullAmplitude
     fullAmplitude_cofinal hf z R hfi
 
+/--
+@isnad1 id=eventual.2h3v.s6.74ba30b235d8 from=translated src=- shape=b8901ae6 vocab=a517dd10
+-/
 theorem ae_tsum_lacunaryLevelAtom_eq_centeredAtom {f : ℝ → ℂ} (hf : Measurable f)
     (z R : ℝ) (hfi : IntegrableOn f (centeredInterval z R)) :
     (∑' k, lacunaryLevelAtom f k z R ·) =ᵐ[volume] centeredAtom f z R :=

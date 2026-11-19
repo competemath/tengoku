@@ -30,12 +30,18 @@ noncomputable def lowAtomMajorant (B : ℕ) (b : ℝ → ℂ) (z R x : ℝ) : �
     ENNReal.ofReal (lowKernelBadAtomConstant * ∫ y, ‖b y‖) *
       ENNReal.ofReal (lowDecayMajorant ((2 : ℝ) ^ (2 * B)) (3 * R / 2) z x)) x
 
+/--
+@isnad1 id=measurab.0h4v.s4.2dec3370a45c from=translated src=- shape=8f028913 vocab=fdaf83f1
+-/
 theorem measurable_lowAtomMajorant (B : ℕ) (b : ℝ → ℂ) (z R : ℝ) :
     Measurable (lowAtomMajorant B b z R) := by
   unfold lowAtomMajorant lowDecayMajorant tripleCenteredInterval
   apply Measurable.indicator _ measurableSet_Icc.compl
   fun_prop
 
+/--
+@isnad1 id=le.1h4v.s6.521449da6733 from=translated src=- shape=04548d93 vocab=1f2f3a0e
+-/
 theorem lintegral_lowAtomMajorant_le (B : ℕ) (b : ℝ → ℂ) (z R : ℝ) (hR : 0 < R) :
     (∫⁻ x, lowAtomMajorant B b z R x) ≤
       ENNReal.ofReal (4 * (B + 1 : ℝ) * lowKernelBadAtomConstant) *
@@ -65,6 +71,9 @@ theorem lintegral_lowAtomMajorant_le (B : ℕ) (b : ℝ → ℂ) (z R : ℝ) (hR
   congr 1
   ring
 
+/--
+@isnad1 id=le.4h7v.s6.bd753b619792 from=translated src=- shape=8297fa31 vocab=9ea9221a
+-/
 theorem paperLowBadAtomMaximal_levelAtom_le_majorant
     (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) {z R x : ℝ} (hR : 0 < R)
@@ -89,11 +98,17 @@ noncomputable def lowLevelMajorant {ι : Type*} (B : ℕ) (A : ℕ → ℝ) (f :
     (k : ℕ) (z R : ι → ℝ) (x : ℝ) : ℝ≥0∞ :=
   ∑' i, lowAtomMajorant B (levelAtom A f k (z i) (R i)) (z i) (R i) x
 
+/--
+@isnad1 id=measurab.0h7v.s5.c15e60ec608d from=translated src=- shape=8b4af472 vocab=bb751135
+-/
 theorem measurable_lowLevelMajorant {ι : Type*} [Countable ι]
     (B : ℕ) (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (z R : ι → ℝ) :
     Measurable (lowLevelMajorant B A f k z R) :=
   Measurable.tsum (fun i ↦ measurable_lowAtomMajorant B _ (z i) (R i))
 
+/--
+@isnad1 id=le.4h7v.s7.28ada7a5d994 from=translated src=- shape=467b84e7 vocab=17186589
+-/
 theorem lintegral_lowLevelMajorant_le {ι : Type*} [Countable ι]
     (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -121,6 +136,9 @@ noncomputable def fullLowMajorant {ι : Type*} (f : ℝ → ℂ) (z R : ι → �
     (x : ℝ) : ℝ≥0∞ :=
   ∑' k : ℕ, lowLevelMajorant (fullHighCutoff k) fullAmplitude f k z R x
 
+/--
+@isnad1 id=measurab.0h4v.s4.95ce1539f7c8 from=translated src=- shape=5fc1f142 vocab=fb164429
+-/
 theorem measurable_fullLowMajorant {ι : Type*} [Countable ι]
     (f : ℝ → ℂ) (z R : ι → ℝ) : Measurable (fullLowMajorant f z R) :=
   Measurable.tsum (fun k ↦ measurable_lowLevelMajorant (fullHighCutoff k) _ _ k z R)
@@ -128,9 +146,15 @@ theorem measurable_fullLowMajorant {ι : Type*} [Countable ι]
 noncomputable def fullLowEndpointConstant : ℝ≥0∞ :=
   ENNReal.ofReal (1280 * lowKernelBadAtomConstant)
 
+/--
+@isnad1 id=lt.0h0v.s3.cf945cd4bc6d from=translated src=- shape=f463f024 vocab=eeb4682e
+-/
 theorem fullLowEndpointConstant_lt_top : fullLowEndpointConstant < ∞ := by
   exact ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=le.3h4v.s7.180bcb0d446c from=translated src=- shape=a8572c1e vocab=37fcb75b
+-/
 theorem lintegral_fullLowMajorant_le_orlicz {ι : Type*} [Countable ι]
     {f : ℝ → ℂ} (hf : Measurable f) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
     (hdisj : Pairwise (Disjoint on fun i ↦ centeredInterval (z i) (R i))) :

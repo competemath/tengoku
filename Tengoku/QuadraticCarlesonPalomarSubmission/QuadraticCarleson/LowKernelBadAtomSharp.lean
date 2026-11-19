@@ -30,20 +30,31 @@ set_option autoImplicit false
 noncomputable def lowKernelBadAtomConstant : ℝ :=
   max 2 (32 * lowKernelDerivativeConstant)
 
+/--
+@isnad1 id=le.0h0v.s3.b98503e0b471 from=translated src=- shape=ff3a10fc vocab=770c2166
+-/
 theorem lowKernelBadAtomConstant_nonneg :
     0 ≤ lowKernelBadAtomConstant := by
   exact le_trans (by norm_num) (le_max_left 2 (32 * lowKernelDerivativeConstant))
 
+/--
+@isnad1 id=le.0h0v.s3.207ae6eef378 from=translated src=- shape=ff3a10fc vocab=e5f758de
+-/
 theorem two_le_lowKernelBadAtomConstant :
     2 ≤ lowKernelBadAtomConstant :=
   le_max_left _ _
 
+/--
+@isnad1 id=le.0h0v.s4.3744625a92d5 from=translated src=- shape=e4de06d0 vocab=5faa43aa
+-/
 theorem thirtytwo_mul_deriv_le_lowKernelBadAtomConstant :
     32 * lowKernelDerivativeConstant ≤ lowKernelBadAtomConstant :=
   le_max_right _ _
 
 /-- The uncancelled size estimate for the low kernel on an atom interval.
-It is uniform in both `lam` and `B`.-/
+It is uniform in both `lam` and `B`.
+@isnad1 id=le.4h6v.s7.bf0f1aebdd1c from=translated src=- shape=cf29d736 vocab=ad4714f2
+-/
 theorem norm_setIntegral_paperLowCZKernel_le_size
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) {z R x : ℝ}
@@ -88,7 +99,9 @@ theorem norm_setIntegral_paperLowCZKernel_le_size
       rw [integral_const_mul]
 
 /-- Cancellation and the derivative estimate give the inverse-square member
-of the sharp minimum.-/
+of the sharp minimum.
+@isnad1 id=le.6h6v.s8.e8a105f34f06 from=translated src=- shape=df323407 vocab=3b2612ea
+-/
 theorem norm_setIntegral_paperLowCZKernel_le_cancellation
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) {z R x : ℝ}
@@ -121,7 +134,9 @@ theorem norm_setIntegral_paperLowCZKernel_le_cancellation
 
 /-- Sharp pointwise bad-atom estimate.  Its right-hand side is independent
 of `lam`, so it is also a common pointwise majorant for any modulation
-supremum.-/
+supremum.
+@isnad1 id=le.6h6v.s8.285255a3e418 from=translated src=- shape=6d7e6e0c vocab=09a681f7
+-/
 theorem norm_setIntegral_paperLowCZKernel_le_lowDecayMajorant
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) {z R x : ℝ}
@@ -177,7 +192,9 @@ theorem norm_setIntegral_paperLowCZKernel_le_lowDecayMajorant
           (mul_le_mul_of_nonneg_right
             thirtytwo_mul_deriv_le_lowKernelBadAtomConstant hA) hfactor
 
-/-- Enlarging the atom scale only enlarges the low-decay majorant.-/
+/-- Enlarging the atom scale only enlarges the low-decay majorant.
+@isnad1 id=le.2h5v.s5.fe5137254ead from=translated src=- shape=3f1ff053 vocab=0e6930ea
+-/
 theorem lowDecayMajorant_mono_length
     {D ℓ₁ ℓ₂ z x : ℝ} (hD : 0 ≤ D) (hℓ : ℓ₁ ≤ ℓ₂) :
     lowDecayMajorant D ℓ₁ z x ≤ lowDecayMajorant D ℓ₂ z x := by
@@ -187,7 +204,9 @@ theorem lowDecayMajorant_mono_length
     (mul_le_mul_of_nonneg_left hℓ hD) (sq_nonneg |x - z|)
 
 /-- The sharp integrated estimate outside the triple interval.  The
-constant is absolute and the estimate is uniform in `lam`.-/
+constant is absolute and the estimate is uniform in `lam`.
+@isnad1 id=le.6h5v.s8.084593ae00f9 from=translated src=- shape=6bf25ebd vocab=f82ca9c5
+-/
 theorem integral_norm_paperLowCZKernel_le_sharp
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     (f : ℝ → ℂ) (z R : ℝ)

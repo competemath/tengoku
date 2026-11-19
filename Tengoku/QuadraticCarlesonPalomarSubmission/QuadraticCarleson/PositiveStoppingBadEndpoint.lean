@@ -14,6 +14,9 @@ open CalderonZygmundDyadicStopping CalderonZygmundStoppingIntervals
 open PositiveEndpointOptimization PositiveLevelIntegration
 open PositiveHighHeightEstimate PositiveLowFullEstimate OscillatoryReduction
 
+/--
+@isnad1 id=le.4h4v.s7.cf4835e467df from=translated src=- shape=a618f89f vocab=eea8d693
+-/
 theorem fullHighMajorant_sq_lintegral_le_orlicz
     {ι : Type*} [Countable ι] {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -62,12 +65,18 @@ theorem fullHighMajorant_sq_lintegral_le_orlicz
   unfold fullHighEndpointConstant
   ring
 
+/--
+@isnad1 id=le.1h1v.s6.42767c0899e9 from=translated src=- shape=5f2e3a8c vocab=739c4272
+-/
 theorem tsum_stoppingLength_le_lintegral_norm {f : ℝ → ℂ} (hfi : Integrable f) :
     (∑' c : stoppingCell f, ENNReal.ofReal (stoppingLength c)) ≤ ∫⁻ x, ‖f x‖ₑ := by
   have h := tsum_volume_stoppingCell_le_lintegral_norm hfi
   simp_rw [← centeredInterval_eq_stoppingInterval, volume_centeredStoppingInterval] at h
   simpa only [ofReal_norm] using h
 
+/--
+@isnad1 id=le.0h1v.s6.2612845b1243 from=translated src=- shape=742bf246 vocab=a1828325
+-/
 theorem lintegral_norm_le_full_orlicz (f : ℝ → ℂ) :
     (∫⁻ x, ‖f x‖ₑ) ≤ ∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 1 ‖f x‖) := by
   apply lintegral_mono
@@ -81,12 +90,18 @@ theorem lintegral_norm_le_full_orlicz (f : ℝ → ℂ) :
 noncomputable def stoppingBadOscillatoryConstant : ℝ≥0∞ :=
   5 + 2 * fullLowEndpointConstant + 4 * fullHighEndpointConstant
 
+/--
+@isnad1 id=lt.0h0v.s3.d030e386d3b9 from=translated src=- shape=f463f024 vocab=2a8658af
+-/
 theorem stoppingBadOscillatoryConstant_lt_top : stoppingBadOscillatoryConstant < ∞ := by
   unfold stoppingBadOscillatoryConstant
   exact ENNReal.add_lt_top.mpr ⟨ENNReal.add_lt_top.mpr ⟨by finiteness,
     ENNReal.mul_lt_top (by finiteness) fullLowEndpointConstant_lt_top⟩,
     ENNReal.mul_lt_top (by finiteness) fullHighEndpointConstant_lt_top⟩
 
+/--
+@isnad1 id=le.1h1v.s6.535616346ef7 from=translated src=- shape=95878ce2 vocab=c683f06b
+-/
 theorem half_levelSet_measure_le_two_lintegral {F : ℝ → ℝ≥0∞} (hF : Measurable F) :
     volume {x | (1/2 : ℝ≥0∞) < F x} ≤ 2 * ∫⁻ x, F x := by
   have hm := mul_meas_ge_le_lintegral (μ := volume) hF (1/2)
@@ -97,6 +112,9 @@ theorem half_levelSet_measure_le_two_lintegral {F : ℝ → ℝ≥0∞} (hF : Me
       rw [← mul_assoc, one_div, ENNReal.mul_inv_cancel (by norm_num) (by finiteness), one_mul]
     _ ≤ _ := mul_le_mul' le_rfl hm
 
+/--
+@isnad1 id=le.1h1v.s7.4ff21f3a994a from=translated src=- shape=05248028 vocab=9c0b9cb9
+-/
 theorem half_levelSet_measure_le_four_sq_lintegral {F : ℝ → ℝ≥0∞} (hF : Measurable F) :
     volume {x | (1/2 : ℝ≥0∞) < F x} ≤ 4 * ∫⁻ x, F x ^ 2 := by
   have hm := mul_meas_ge_le_lintegral (μ := volume) (hF.pow_const 2) ((1/2 : ℝ≥0∞)^2)
@@ -109,7 +127,9 @@ theorem half_levelSet_measure_le_four_sq_lintegral {F : ℝ → ℝ≥0∞} (hF 
     _ ≤ _ := mul_le_mul' le_rfl hm
 
 /-- The normalized full-real oscillatory endpoint bound for the actual
-canonical bad part. No decomposition or operator identity is assumed.-/
+canonical bad part. No decomposition or operator identity is assumed.
+@isnad1 id=le.2h1v.s7.dd0720f05c65 from=translated src=- shape=6c8cb695 vocab=3fe1ab10
+-/
 theorem stoppingBadPart_oscillatory_levelSet_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     volume {x | 1 < paperOscillatoryMaximal (stoppingBadPart f) x} ≤

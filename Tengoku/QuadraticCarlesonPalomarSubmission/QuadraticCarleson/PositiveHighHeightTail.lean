@@ -21,6 +21,9 @@ open scoped ENNReal NNReal Function
 namespace QuadraticCarleson
 namespace PositiveHighHeightEstimate
 
+/--
+@isnad1 id=iff.0h2v.s5.38c43b27ec3d from=translated src=- shape=4539bffd vocab=13a96747
+-/
 theorem highHeight_iff_exists (B r : ℕ) : B < r ↔ ∃ n : ℕ, r = B + n + 1 := by
   constructor
   · intro h
@@ -28,6 +31,9 @@ theorem highHeight_iff_exists (B r : ℕ) : B < r ↔ ∃ n : ℕ, r = B + n + 1
   · rintro ⟨n, rfl⟩
     omega
 
+/--
+@isnad1 id=eq.1h3v.s6.0a43c115458b from=translated src=- shape=e16a24d0 vocab=59e99064
+-/
 theorem highHeight_oscillatoryScaleIndex_eq (lam : ℝ) (hlam : lam ≠ 0) (B n : ℕ) :
     oscillatoryScaleIndex lam (B + n + 1) hlam =
       oscillatoryScaleIndex lam 0 hlam + (B : ℤ) + (n : ℤ) + 1 := by
@@ -36,7 +42,9 @@ theorem highHeight_oscillatoryScaleIndex_eq (lam : ℝ) (hlam : lam ≠ 0) (B n 
   ring
 
 /-- Countable Minkowski in L² for measurable extended nonnegative functions.
-No summability assumption is needed: an infinite right side remains valid.-/
+No summability assumption is needed: an infinite right side remains valid.
+@isnad1 id=le.1h2v.s6.c802168cfaf1 from=translated src=- shape=e7535c7e vocab=705abd1c
+-/
 theorem eLpNorm_tsum_two_le {ι : Type*} [Countable ι]
     (F : ι → ℝ → ℝ≥0∞) (hF : ∀ i, Measurable (F i)) :
     eLpNorm (fun x ↦ ∑' i, F i x) 2 ≤ ∑' i, eLpNorm (F i) 2 := by
@@ -68,6 +76,9 @@ theorem eLpNorm_tsum_two_le {ι : Type*} [Countable ι]
 noncomputable def highHeightDecayRatio : ℝ≥0∞ :=
   ENNReal.ofReal ((2 : ℝ) ^ (-(1 : ℝ) / 10))
 
+/--
+@isnad1 id=lt.0h0v.s3.3394e0f4d090 from=translated src=- shape=ffdda526 vocab=6a453b8b
+-/
 theorem highHeightDecayRatio_lt_one : highHeightDecayRatio < 1 := by
   rw [highHeightDecayRatio, ENNReal.ofReal_lt_one]
   exact Real.rpow_lt_one_of_one_lt_of_neg (by norm_num) (by norm_num)
@@ -76,12 +87,18 @@ noncomputable def highHeightTailConstant : ℝ≥0∞ :=
   ENNReal.ofReal fixedHeightL2DecayConstant * highHeightDecayRatio *
     (1 - highHeightDecayRatio)⁻¹
 
+/--
+@isnad1 id=lt.0h0v.s3.47bd60af5d31 from=translated src=- shape=f463f024 vocab=187cbb9f
+-/
 theorem highHeightTailConstant_lt_top : highHeightTailConstant < ∞ := by
   unfold highHeightTailConstant
   apply ENNReal.mul_lt_top
     (ENNReal.mul_lt_top (by finiteness) (highHeightDecayRatio_lt_one.trans (by simp)))
   exact ENNReal.inv_lt_top.mpr (tsub_pos_iff_lt.mpr highHeightDecayRatio_lt_one)
 
+/--
+@isnad1 id=eq.0h2v.s7.1a46f63ce5bf from=translated src=- shape=ca6cfb1f vocab=5edc12eb
+-/
 theorem fixedHeightDecay_highHeight_factor (B n : ℕ) :
     ENNReal.ofReal (fixedHeightL2DecayConstant * (2 : ℝ) ^ (-((B + n + 1 : ℕ) : ℝ) / 10)) =
       ENNReal.ofReal fixedHeightL2DecayConstant *
@@ -97,6 +114,9 @@ theorem fixedHeightDecay_highHeight_factor (B n : ℕ) :
     ENNReal.ofReal_mul (by positivity), ENNReal.ofReal_pow (by positivity)]
   simp only [highHeightDecayRatio, mul_assoc]
 
+/--
+@isnad1 id=eq.0h1v.s7.01758721bbdb from=translated src=- shape=46cca3ab vocab=98702f5d
+-/
 theorem tsum_fixedHeightDecay_highHeight (B : ℕ) :
     (∑' n : ℕ, ENNReal.ofReal (fixedHeightL2DecayConstant *
       (2 : ℝ) ^ (-((B + n + 1 : ℕ) : ℝ) / 10))) =
@@ -109,6 +129,9 @@ theorem tsum_fixedHeightDecay_highHeight (B : ℕ) :
 noncomputable def highHeightMajorant (B : ℕ) (b : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ∑' n : ℕ, paperFixedHeightQuadraticMaximal (B + n + 1) b x
 
+/--
+@isnad1 id=measurab.1h2v.s6.d788eee87fa0 from=translated src=- shape=3f6cf7fe vocab=8988a8b9
+-/
 theorem measurable_highHeightMajorant (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     Measurable (highHeightMajorant B b) :=
   Measurable.tsum (fun _ ↦ measurable_paperFixedHeightQuadraticMaximal _ hb)
@@ -116,6 +139,9 @@ theorem measurable_highHeightMajorant (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 
 set_option maxHeartbeats 800000 in
 -- Elaborating the countable Minkowski specialization unfolds the concrete
 -- real-modulation supremum and its height-dependent kernel several times.
+/--
+@isnad1 id=le.1h2v.s7.2a22d86a6ee7 from=translated src=- shape=000aaf53 vocab=8ab73987
+-/
 theorem highHeightMajorant_eLpNorm_le (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     eLpNorm (highHeightMajorant B b) 2 ≤ highHeightTailConstant *
       ENNReal.ofReal ((2 : ℝ) ^ (-(B : ℝ) / 10)) * eLpNorm b 2 := by
@@ -137,6 +163,9 @@ noncomputable def paperHighHeightTail (B : ℕ) (b : ℝ → ℂ) (x : ℝ) : �
       (dyadicPsi (oscillatoryScaleIndex lam.val (B + n + 1) lam.property) t : ℂ) *
         phase (lam.val * t ^ 2)‖ₑ
 
+/--
+@isnad1 id=le.0h3v.s4.5c12ca43a737 from=translated src=- shape=64964b48 vocab=de10542a
+-/
 theorem paperHighHeightTail_le_majorant (B : ℕ) (b : ℝ → ℂ) (x : ℝ) :
     paperHighHeightTail B b x ≤ highHeightMajorant B b x := by
   apply iSup_le
@@ -148,6 +177,9 @@ theorem paperHighHeightTail_le_majorant (B : ℕ) (b : ℝ → ℂ) (x : ℝ) :
     (dyadicPsi (oscillatoryScaleIndex μ.val (B + n + 1) μ.property) t : ℂ) *
       phase (μ.val * t ^ 2)‖ₑ) lam
 
+/--
+@isnad1 id=le.1h2v.s7.48a4bedbf5f1 from=translated src=- shape=000aaf53 vocab=61ff70fa
+-/
 theorem paperHighHeightTail_eLpNorm_le (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     eLpNorm (paperHighHeightTail B b) 2 ≤ highHeightTailConstant *
       ENNReal.ofReal ((2 : ℝ) ^ (-(B : ℝ) / 10)) * eLpNorm b 2 := by

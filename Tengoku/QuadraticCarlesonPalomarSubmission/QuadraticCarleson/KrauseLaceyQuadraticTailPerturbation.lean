@@ -28,7 +28,9 @@ def finitePieceErrorMajorant
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ∑ n ∈ Finset.range N, ‖u n x - v n x‖ₑ
 
-/-- The scalar error majorant is measurable when the two sequences are.-/
+/-- The scalar error majorant is measurable when the two sequences are.
+@isnad1 id=measurab.2h3v.s5.97fceff95595 from=translated src=- shape=92c098ca vocab=60b41d64
+-/
 theorem measurable_finitePieceErrorMajorant
     {N : ℕ} {u v : ℕ → ℝ → ℂ}
     (hu : ∀ n, Measurable (u n)) (hv : ∀ n, Measurable (v n)) :
@@ -51,7 +53,9 @@ private theorem enorm_sum_Ico_sub_le_errorMajorant
       exact bot_le
     _ = finitePieceErrorMajorant N u v x := rfl
 
-/-- A single finite tail changes by at most the sum of all piecewise errors.-/
+/-- A single finite tail changes by at most the sum of all piecewise errors.
+@isnad1 id=le.1h5v.s6.a013214c1df0 from=translated src=- shape=19afdf91 vocab=1a90a5bb
+-/
 theorem enorm_finitePieceTail_le_finitePieceTail_add_errorMajorant
     (N n : ℕ) (u v : ℕ → ℝ → ℂ) (x : ℝ) (hn : n ≤ N) :
     ‖finitePieceTail N u n x‖ₑ ≤
@@ -68,7 +72,9 @@ theorem enorm_finitePieceTail_le_finitePieceTail_add_errorMajorant
     (enorm_sum_Ico_sub_le_errorMajorant N n u v x))
 
 /-- Pointwise stability of the finite tail maximal function under a change of
-the individual pieces.-/
+the individual pieces.
+@isnad1 id=le.0h4v.s5.3bf4b0ff38d3 from=translated src=- shape=94e588d5 vocab=279beb1a
+-/
 theorem finitePieceTailMax_le_finitePieceTailMax_add_errorMajorant
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (x : ℝ) :
     finitePieceTailMax N u x ≤
@@ -84,7 +90,9 @@ theorem finitePieceTailMax_le_finitePieceTailMax_add_errorMajorant
         (f := fun m ↦ ‖finitePieceTail N v m x‖ₑ) hn)
       le_rfl)
 
-/-- The perturbation estimate in its expanded form.-/
+/-- The perturbation estimate in its expanded form.
+@isnad1 id=le.0h4v.s6.570681d0e1e6 from=translated src=- shape=83dbaf4f vocab=61b57369
+-/
 theorem finitePieceTailMax_le_finitePieceTailMax_add_sum_enorm_sub
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (x : ℝ) :
     finitePieceTailMax N u x ≤ finitePieceTailMax N v x +
@@ -93,7 +101,9 @@ theorem finitePieceTailMax_le_finitePieceTailMax_add_sum_enorm_sub
     (finitePieceTailMax_le_finitePieceTailMax_add_errorMajorant N u v x)
 
 /-- The version of the perturbation estimate supplied by an arbitrary scalar
-error majorant.-/
+error majorant.
+@isnad1 id=le.1h5v.s5.4a52399f7d6f from=translated src=- shape=f6b95a55 vocab=279beb1a
+-/
 theorem finitePieceTailMax_le_finitePieceTailMax_add_of_error_majorant
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (E : ℝ → ℝ≥0∞) (x : ℝ)
     (hE : finitePieceErrorMajorant N u v x ≤ E x) :
@@ -122,7 +132,9 @@ private theorem ennreal_add_sq_le_four_sum_sq (a b : ℝ≥0∞) :
 /-- An `L²` transfer principle: an `L²` tail estimate for `v` and an `L²`
 estimate for a measurable scalar error majorant give an `L²` estimate for
 `u`.  The deliberately harmless factor `4` avoids any finiteness side
-conditions on extended nonnegative values.-/
+conditions on extended nonnegative values.
+@isnad1 id=le.4h6v.s7.c4eac06aac84 from=translated src=- shape=39c5cb50 vocab=3d620fc1
+-/
 theorem finitePieceTailMax_sq_lintegral_le_of_error_majorant
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (E : ℝ → ℝ≥0∞)
     (hEmeas : Measurable E)
@@ -150,7 +162,9 @@ theorem finitePieceTailMax_sq_lintegral_le_of_error_majorant
 /-- Almost-everywhere form of the `L²` tail transfer principle.  This is the
 natural interface when the individual pieces are represented by `L²`
 functions and their projection/remainder decomposition holds only almost
-everywhere.-/
+everywhere.
+@isnad1 id=le.4h6v.s7.5a135cd58897 from=translated src=- shape=b0618abd vocab=3aa5531e
+-/
 theorem finitePieceTailMax_sq_lintegral_le_of_ae_bound
     (N : ℕ) (u v : ℕ → ℝ → ℂ) (E : ℝ → ℝ≥0∞)
     (hEmeas : AEMeasurable E volume)
@@ -175,7 +189,9 @@ theorem finitePieceTailMax_sq_lintegral_le_of_ae_bound
     _ ≤ 4 * (B + C) := by gcongr
 
 /-- The preceding transfer principle specialized to the explicit finite sum
-of piecewise projection errors.-/
+of piecewise projection errors.
+@isnad1 id=le.4h5v.s7.a21bfeac03df from=translated src=- shape=40a9d4c2 vocab=3d620fc1
+-/
 theorem finitePieceTailMax_sq_lintegral_le_of_piecewise_error
     (N : ℕ) (u v : ℕ → ℝ → ℂ)
     (hu : ∀ n, Measurable (u n)) (hvpieces : ∀ n, Measurable (v n))

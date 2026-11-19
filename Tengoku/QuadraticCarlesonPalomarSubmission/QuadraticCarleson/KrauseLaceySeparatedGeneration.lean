@@ -20,6 +20,9 @@ set_option autoImplicit false
 
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=le.2h2v.s6.07ec64e21db4 from=translated src=- shape=8661284d vocab=b6e410f2
+-/
 theorem sum_intervalLength_le_of_disjoint
     (S : Finset RealInterval) (I : RealInterval)
     (hdisj : Set.Pairwise (↑S) (Disjoint on RealInterval.carrier))
@@ -49,7 +52,9 @@ noncomputable def krauseLaceyCollectionAction
     (b : RealInterval → ℝ → ℂ) (x : ℝ) : ℂ :=
   ∑ I ∈ S, krauseLaceyLocalizedPiece 1 (scale I) I (b I) x
 
-/-- Exact finite linearity of the cross pairing against a collection.-/
+/-- Exact finite linearity of the cross pairing against a collection.
+@isnad1 id=eq.2h6v.s8.7b4d690be691 from=translated src=- shape=9f6726d7 vocab=670a5b5a
+-/
 theorem integral_localizedPiece_cross_collection
     (S : Finset RealInterval) (scale : RealInterval → ℤ)
     (b : RealInterval → ℝ → ℂ) (k : ℤ) (I : RealInterval)
@@ -64,7 +69,9 @@ theorem integral_localizedPiece_cross_collection
     integrable_krauseLaceyLocalizedPiece_crossPairing (scale J) k I J hf (hb J hJ))
 
 /-- The localized two-piece kernel decay is `384 D² / |I|²` when
-expressed in the source's parent interval length.-/
+expressed in the source's parent interval length.
+@isnad1 id=le.5h6v.s8.dd1dad08ab62 from=translated src=- shape=ea519cf6 vocab=48449674
+-/
 theorem krauseLaceyLocalizedPiece_crossPairing_le_length
     (j k : ℤ) (hj : 1 ≤ j) (hjk : j + 3 ≤ k) (I J : RealInterval)
     (hscale : I.length = (2 : ℝ) ^ (k + 2))
@@ -81,7 +88,9 @@ theorem krauseLaceyLocalizedPiece_crossPairing_le_length
   rwa [hc] at h
 
 /-- The separated-generation bound after summing the small intervals.
-Their number never appears: disjoint length packing supplies the bound.-/
+Their number never appears: disjoint length packing supplies the bound.
+@isnad1 id=le.8h7v.s9.ff5b0256b144 from=translated src=- shape=0147e919 vocab=f9e9af9f
+-/
 theorem krauseLaceyLocalizedPiece_cross_collection_le
     (S : Finset RealInterval) (scale : RealInterval → ℤ)
     (b : RealInterval → ℝ → ℂ) (k : ℤ) (I : RealInterval)
@@ -119,7 +128,9 @@ theorem krauseLaceyLocalizedPiece_cross_collection_le
     _ = _ := by dsimp [m]; field_simp
 
 /-- The large generation's length lower bound converts the previous
-estimate to the geometric `2^(-u)` factor used in KL18 (4.20).-/
+estimate to the geometric `2^(-u)` factor used in KL18 (4.20).
+@isnad1 id=le.9h8v.s9.2c70606e0438 from=translated src=- shape=223fa059 vocab=f9e9af9f
+-/
 theorem krauseLaceyLocalizedPiece_cross_collection_le_generation
     (S : Finset RealInterval) (scale : RealInterval → ℤ)
     (b : RealInterval → ℝ → ℂ) (k u : ℤ) (I : RealInterval)
@@ -143,7 +154,9 @@ theorem krauseLaceyLocalizedPiece_cross_collection_le_generation
     (integral_nonneg fun _ ↦ norm_nonneg _)
 
 /-- Disjoint parent intervals make the actual localized cross pairing
-vanish exactly, independently of any cancellation in the input.-/
+vanish exactly, independently of any cancellation in the input.
+@isnad1 id=eq.3h6v.s7.02ff01ef83f3 from=translated src=- shape=25bbf38d vocab=6e2d979e
+-/
 theorem integral_localizedPiece_cross_eq_zero_of_disjoint
     (j k : ℤ) (I J : RealInterval) (f g : ℝ → ℂ)
     (hI : I.length = (2 : ℝ) ^ (k + 2))
@@ -160,6 +173,9 @@ theorem integral_localizedPiece_cross_eq_zero_of_disjoint
     · rw [krauseLaceyLocalizedPiece_eq_zero_of_notMem 1 k I f hI hx, zero_mul]
   simp_rw [hz, integral_zero]
 
+/--
+@isnad1 id=eq.5h6v.s8.1d434c1033fc from=translated src=- shape=3e04a6c2 vocab=283d8a29
+-/
 theorem integral_localizedPiece_cross_collection_eq_filter
     (T : Finset RealInterval) (scale : RealInterval → ℤ)
     (b : RealInterval → ℝ → ℂ) (k : ℤ) (I : RealInterval)
@@ -186,7 +202,9 @@ theorem integral_localizedPiece_cross_collection_eq_filter
 
 /-- The genuine separated-generation cross term: length decay of the
 large generation times its actual total restricted input mass. The small
-generation enters only through disjointness and its local mass bound.-/
+generation enters only through disjointness and its local mass bound.
+@isnad1 id=le.10h7v.s9.b524a9c77fbb from=translated src=- shape=830d1644 vocab=bdbe6420
+-/
 theorem krauseLaceyCollectionAction_crossPairing_le_generation
     (S T : Finset RealInterval) (scale : RealInterval → ℤ)
     (a b : RealInterval → ℝ → ℂ) (u : ℤ)

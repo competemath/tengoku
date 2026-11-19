@@ -24,7 +24,9 @@ namespace KrauseLaceyBadScale
 set_option autoImplicit false
 
 /-- A single localized positive quadratic piece has the direct energy bound
-from a unit-window mass bound and a total local mass bound.-/
+from a unit-window mass bound and a total local mass bound.
+@isnad1 id=le.5h4v.s8.5daa208c9fa1 from=translated src=- shape=638eac81 vocab=544f9807
+-/
 theorem localizedEnergy_le_of_localUnitMass_and_localMass
     (k : ℤ) (I : RealInterval) (hscale : I.length = (2 : ℝ) ^ (k + 2))
     {b : ℝ → ℂ} (hb : Integrable b) {M : ℝ} (_hM : 0 ≤ M)
@@ -80,7 +82,9 @@ theorem localizedEnergy_le_of_localUnitMass_and_localMass
 
 /-- The same estimate with the scale-gap substitution used in the direct
 quadratic argument.  Here the local mass constant is `A 2^(k+2-s)`, while
-the output interval has length `2^(k+2)`.-/
+the output interval has length `2^(k+2)`.
+@isnad1 id=le.5h5v.s8.1ef8f1e57776 from=translated src=- shape=c3772915 vocab=f4360616
+-/
 theorem localizedEnergy_le_of_gap_localMass
     (k s : ℤ) (I : RealInterval) (hscale : I.length = (2 : ℝ) ^ (k + 2))
     {b : ℝ → ℂ} (hb : Integrable b) {A : ℝ} (hA : 0 ≤ A)

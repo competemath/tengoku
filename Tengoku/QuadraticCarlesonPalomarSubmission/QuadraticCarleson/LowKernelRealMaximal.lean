@@ -39,7 +39,9 @@ def paperLowBadAtomMaximal (B : ℕ) (f : ℝ → ℂ) (z R x : ℝ) : ℝ≥0�
       paperLowCZKernel lam.1 lam.2 B x y * f y‖
 
 /-- The sharp bad-atom majorant controls the genuine supremum over all
-nonzero real modulations pointwise off the triple interval.-/
+nonzero real modulations pointwise off the triple interval.
+@isnad1 id=le.5h5v.s8.31f5a3c34909 from=translated src=- shape=2aa1d8b0 vocab=6f937d6c
+-/
 theorem paperLowBadAtomMaximal_le_lowDecayMajorant
     (B : ℕ) (f : ℝ → ℂ) {z R x : ℝ}
     (hR : 0 < R)
@@ -64,7 +66,9 @@ theorem paperLowBadAtomMaximal_le_lowDecayMajorant
 /-- Integrated `O(B + 1)` bound for the genuine real-modulation supremum of
 one cancellative bad atom.  No measurability assumption on the supremum is
 needed: the Lebesgue outer integral is bounded by the common measurable
-majorant.-/
+majorant.
+@isnad1 id=le.4h4v.s8.dda838501cbf from=translated src=- shape=cb83b53a vocab=0d81d4f4
+-/
 theorem lintegral_paperLowBadAtomMaximal_le_sharp
     (B : ℕ) (f : ℝ → ℂ) (z R : ℝ)
     (hR : 0 < R)
@@ -152,7 +156,9 @@ open CalderonZygmundLevelAtoms
 open PositiveEndpointOptimization PositiveLevelIntegration
 
 /-- The genuine real-modulation maximal estimate for one magnitude-level
-atom, with its mass written as a global `L¹` mass.-/
+atom, with its mass written as a global `L¹` mass.
+@isnad1 id=le.3h6v.s7.4e9ddf3f5d76 from=translated src=- shape=4319a3d3 vocab=2e6d121b
+-/
 theorem lintegral_paperLowBadAtomMaximal_levelAtom_le
     (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ℝ) (hR : 0 < R) :
@@ -187,7 +193,9 @@ theorem lintegral_paperLowBadAtomMaximal_levelAtom_le
       ring
 
 /-- Summing over a countable disjoint family gives the exact levelwise
-`O(B + 1)` estimate for the genuine real-modulation suprema.-/
+`O(B + 1)` estimate for the genuine real-modulation suprema.
+@isnad1 id=le.4h7v.s7.ee79e7fca7c8 from=translated src=- shape=35f51345 vocab=ca9b2fca
+-/
 theorem tsum_lintegral_paperLowBadAtomMaximal_levelAtom_le
     {ι : Type*} [Countable ι]
     (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
@@ -241,6 +249,9 @@ theorem tsum_lintegral_paperLowBadAtomMaximal_levelAtom_le
       change ENNReal.ofReal C * (2 * G) = _ * G
       rw [← mul_assoc, hcoef]
 
+/--
+@isnad1 id=le.3h6v.s7.2a33466a69fc from=translated src=- shape=cefbf33f vocab=837845d8
+-/
 theorem tsum_lintegral_paperLowBadAtomMaximal_fullLevelAtom_le
     {ι : Type*} [Countable ι]
     (B : ℕ) {f : ℝ → ℂ} (hf : Measurable f) (k : ℕ)
@@ -257,6 +268,9 @@ theorem tsum_lintegral_paperLowBadAtomMaximal_fullLevelAtom_le
     tsum_lintegral_paperLowBadAtomMaximal_levelAtom_le
       B hf (fullAmplitude_pos k).le z R hR hdisj
 
+/--
+@isnad1 id=le.3h6v.s7.24bcea661847 from=translated src=- shape=cefbf33f vocab=87cdf86f
+-/
 theorem tsum_lintegral_paperLowBadAtomMaximal_lacunaryLevelAtom_le
     {ι : Type*} [Countable ι]
     (B : ℕ) {f : ℝ → ℂ} (hf : Measurable f) (k : ℕ)

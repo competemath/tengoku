@@ -33,7 +33,9 @@ local instance : DecidableEq RealInterval := Classical.decEq _
 
 /-- A fixed partial action is additive over disjoint output
 subcollections; the grouped inputs remain those formed from the ambient
-family `S`.-/
+family `S`.
+@isnad1 id=eq.1h7v.s6.a7cff4fdb616 from=translated src=- shape=4feb9214 vocab=287cc38e
+-/
 theorem offsetLocalizedActionOn_union
     (S L E : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell s : ℤ) (hLE : Disjoint L E) :
@@ -47,7 +49,9 @@ theorem offsetLocalizedActionOn_union
   exact Finset.sum_union (Finset.disjoint_filter_filter hLE)
 
 /-- The genuine maximal offset tail is subadditive over disjoint output
-subcollections.-/
+subcollections.
+@isnad1 id=le.1h8v.s6.1318b0e1bf90 from=translated src=- shape=0e029196 vocab=6464adc7
+-/
 theorem offsetTailMaximalOn_union_le
     (S L E : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell₀ s : ℤ) (hLE : Disjoint L E) (x : ℝ) :
@@ -72,7 +76,9 @@ theorem offsetTailMaximalOn_union_le
           ‖offsetLocalizedActionOn S E scale f q.1 s x‖ₑ) ⟨ell, hell⟩)
 
 /-- The positive pairing inherits the union subadditivity.  Only
-measurability of the exceptional summand is needed to split its lintegral.-/
+measurability of the exceptional summand is needed to split its lintegral.
+@isnad1 id=le.2h8v.s8.89dc12e748cd from=translated src=- shape=45642264 vocab=65fb2678
+-/
 theorem lintegral_offsetTailMaximalOn_union_le
     (S L E : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell₀ s : ℤ) (h : ℝ → ℂ) (hLE : Disjoint L E)
@@ -100,7 +106,9 @@ theorem lintegral_offsetTailMaximalOn_union_le
           (fun x ↦ offsetTailMaximalOn S L scale f ell₀ s x * ‖h x‖ₑ) hE)
 
 /-- The regular/exceptions split supplies the disjointness required by the
-preceding union lemmas.-/
+preceding union lemmas.
+@isnad1 id=disjoint.0h4v.s4.6bdb18e45b3d from=translated src=- shape=bbd570d0 vocab=f9358ec2
+-/
 theorem directRegular_disjoint_exceptional
     (S : Finset RealInterval) (g : ℝ → ℂ) (p Λ : ℝ) :
     Disjoint (directRegularIntervals S g p Λ)
@@ -109,7 +117,9 @@ theorem directRegular_disjoint_exceptional
   exact Finset.sdiff_disjoint
 
 /-- Exact direct threshold subadditivity, specialized to the author's
-regular/exceptional output partition.-/
+regular/exceptional output partition.
+@isnad1 id=le.1h8v.s8.05cff9b9a00b from=translated src=- shape=440525c8 vocab=173b007b
+-/
 theorem lintegral_offsetTailMaximalOn_directRegular_exceptional_le
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f g : ℝ → ℂ)
     (p Λ : ℝ) (ell₀ s : ℤ)
@@ -141,7 +151,9 @@ theorem lintegral_offsetTailMaximalOn_directRegular_exceptional_le
 
 /-- The high half of the direct threshold proof, now directly instantiated
 with the concrete positive pairing estimate.  Projection work may provide a
-separate boxed `L²` estimate for the regular term.-/
+separate boxed `L²` estimate for the regular term.
+@isnad1 id=le.2h7v.s8.2c965f4cd6a6 from=translated src=- shape=46da6c23 vocab=91141ee6
+-/
 theorem lintegral_offsetTailMaximalOn_exceptional_le_mass_average
     (S E : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (h : ℝ → ℂ) (hh : Integrable h) (ell₀ s : ℤ)
@@ -154,7 +166,9 @@ theorem lintegral_offsetTailMaximalOn_exceptional_le_mass_average
 
 /-- At the author's exceptional threshold, the maximal exceptional roots
 occupy exactly the offset-decay fraction of the available `p`-mass.  This is
-the packing input for the high half of the threshold argument.-/
+the packing input for the high half of the threshold argument.
+@isnad1 id=le.4h6v.s7.0c3da8a9d9dd from=translated src=- shape=74c02166 vocab=b5d19716
+-/
 theorem directMaximalExceptional_length_le_directQuadratic_threshold
     {S : Finset RealInterval} {g : ℝ → ℂ} {p V : ℝ} {I₀ : RealInterval}
     (n : ℕ) (hgp : Integrable (fun x ↦ ‖g x‖ ^ p))
@@ -177,7 +191,9 @@ theorem directMaximalExceptional_length_le_directQuadratic_threshold
 /-- Numeric threshold closure with the genuine direct split kept as a
 separate hypothesis.  The `hlow` premise is precisely the boxed L²
 truncation estimate supplied by the projection step; `hhigh` is obtained
-from the preceding exceptional pairing and maximal-exceptional packing.-/
+from the preceding exceptional pairing and maximal-exceptional packing.
+@isnad1 id=le.7h9v.s8.4f90abe94261 from=translated src=- shape=391de0d7 vocab=1b39faa0
+-/
 theorem direct_threshold_closure_of_boxed_lowL2
     {ι : Type*} [DecidableEq ι] (P : Finset ι → ℝ) (S L E : Finset ι)
     {C p V : ℝ} (n : ℕ) (hC : 0 ≤ C) (hV : 0 ≤ V)

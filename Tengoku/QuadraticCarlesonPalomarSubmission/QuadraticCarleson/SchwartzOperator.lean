@@ -28,6 +28,9 @@ the principal-value kernel.-/
 noncomputable def schwartzFlipTranslate (f : 𝓢(ℝ, ℂ)) (x : ℝ) : 𝓢(ℝ, ℂ) :=
   (schwartzReflection f).compSubConstCLM ℂ x
 
+/--
+@isnad1 id=eq.0h3v.s7.043ceecd0870 from=translated src=- shape=fc922fe5 vocab=71c0a829
+-/
 @[simp]
 theorem schwartzFlipTranslate_apply (f : 𝓢(ℝ, ℂ)) (x y : ℝ) :
     schwartzFlipTranslate f x y = f (x - y) := by
@@ -40,7 +43,9 @@ noncomputable def quadraticHilbertSchwartz
   quadraticKernelDistribution modulation (schwartzFlipTranslate f x)
 
 /-- The distributional action has exactly the paper's symmetrically truncated
-integrals before passage to the principal-value limit.-/
+integrals before passage to the principal-value limit.
+@isnad1 id=eq.0h4v.s6.d498978006d1 from=translated src=- shape=87ad6c5f vocab=fad76845
+-/
 theorem quadraticKernelTruncationAction_flipTranslate
     (modulation ε : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     quadraticKernelTruncationAction modulation ε (schwartzFlipTranslate f x) =
@@ -53,7 +58,9 @@ theorem quadraticKernelTruncationAction_flipTranslate
   ring
 
 /-- On every Schwartz function, the canonical distributional definition is
-the ordinary symmetric principal value stated in the paper.-/
+the ordinary symmetric principal value stated in the paper.
+@isnad1 id=hasquadr.0h3v.s6.0a1786dc8baa from=translated src=- shape=bf209be2 vocab=5a347abc
+-/
 theorem hasQuadraticPrincipalValue_schwartz
     (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     HasQuadraticPrincipalValue modulation f x
@@ -67,6 +74,9 @@ theorem hasQuadraticPrincipalValue_schwartz
 noncomputable def dyadicModulation (n : ℤ) : ℝ :=
   (2 : ℝ) ^ n
 
+/--
+@isnad1 id=lt.0h1v.s3.0faf4b4165ca from=translated src=- shape=b9369acb vocab=136c3177
+-/
 theorem dyadicModulation_pos (n : ℤ) : 0 < dyadicModulation n := by
   exact zpow_pos (by norm_num) n
 
@@ -81,12 +91,18 @@ noncomputable def lacunaryQuadraticCarlesonSchwartz
   ⨆ n : ℤ, ENNReal.ofReal
     ‖quadraticHilbertSchwartz (dyadicModulation n) f x‖
 
+/--
+@isnad1 id=le.0h3v.s5.bca1a503e7f8 from=translated src=- shape=dbd06f2a vocab=15f2aa52
+-/
 theorem quadraticHilbertSchwartz_le_quadraticCarlesonSchwartz
     (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     ENNReal.ofReal ‖quadraticHilbertSchwartz modulation f x‖ ≤
       quadraticCarlesonSchwartz f x :=
   le_iSup (fun a : ℝ ↦ ENNReal.ofReal ‖quadraticHilbertSchwartz a f x‖) modulation
 
+/--
+@isnad1 id=le.0h3v.s5.3d59cdb07560 from=translated src=- shape=107ad01c vocab=3df4e6d3
+-/
 theorem quadraticHilbertSchwartz_le_lacunaryQuadraticCarlesonSchwartz
     (n : ℤ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     ENNReal.ofReal ‖quadraticHilbertSchwartz (dyadicModulation n) f x‖ ≤
@@ -94,7 +110,9 @@ theorem quadraticHilbertSchwartz_le_lacunaryQuadraticCarlesonSchwartz
   le_iSup (fun m : ℤ ↦
     ENNReal.ofReal ‖quadraticHilbertSchwartz (dyadicModulation m) f x‖) n
 
-/-- The lacunary operator is pointwise dominated by the full operator.-/
+/-- The lacunary operator is pointwise dominated by the full operator.
+@isnad1 id=le.0h2v.s5.4f733862fe58 from=translated src=- shape=f6d375f0 vocab=799f744b
+-/
 theorem lacunaryQuadraticCarlesonSchwartz_le
     (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     lacunaryQuadraticCarlesonSchwartz f x ≤ quadraticCarlesonSchwartz f x := by

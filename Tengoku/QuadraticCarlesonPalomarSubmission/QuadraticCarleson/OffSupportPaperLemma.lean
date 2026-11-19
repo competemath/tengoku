@@ -20,7 +20,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- The first branch of the paper's lemma, including the literal maximum in
-its error bound, for the genuine principal-value action.-/
+its error bound, for the genuine principal-value action.
+@isnad1 id=le.2h4v.s7.fe3c195185b1 from=translated src=- shape=f12bec40 vocab=3fae667f
+-/
 theorem quadraticHilbertSchwartz_wavePacket_sub_main_le {lam s t x : ℝ}
     (ht : 0 < t) (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
     ‖quadraticHilbertSchwartz lam (wavePacketSchwartz s t ht) x -
@@ -30,7 +32,9 @@ theorem quadraticHilbertSchwartz_wavePacket_sub_main_le {lam s t x : ℝ}
   exact offSupportKernelAction_sub_main_le ht hx
 
 /-- The second branch at every order and both signs of nonzero modulation,
-with a constant independent of modulation, center, length, and evaluation point.-/
+with a constant independent of modulation, center, length, and evaluation point.
+@isnad1 id=le.3h5v.s7.b0fc45ad1906 from=translated src=- shape=3844c5a0 vocab=44209522
+-/
 theorem quadraticHilbertSchwartz_wavePacket_norm_le_all_orders (k : ℕ)
     {lam s t x : ℝ} (hlam : lam ≠ 0) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -44,7 +48,9 @@ theorem quadraticHilbertSchwartz_wavePacket_norm_le_all_orders (k : ℕ)
 /-- A direct entry point for both displayed estimates in the paper's first
 lemma of Section 3. The constants are uniform in every interval and modulation;
 the rapid-decay constant may depend only on the order and the fixed initial bump.
-The first estimate also holds at zero modulation.-/
+The first estimate also holds at zero modulation.
+@isnad1 id=ex.0h1v.s8.6a7d0907f46f from=translated src=- shape=a6363eff vocab=3fae667f
+-/
 theorem offSupportPaperLemma (k : ℕ) :
     ∃ Ck : ℝ, 0 ≤ Ck ∧ ∀ (lam s t x : ℝ) (ht : 0 < t),
       x ∉ Icc (s - t / 2) (s + t / 2) →

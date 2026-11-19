@@ -29,7 +29,9 @@ noncomputable section
 
 local instance : DecidableEq RealInterval := Classical.decEq _
 
-/-- Fixed-shift families from different depths cannot share an interval.-/
+/-- Fixed-shift families from different depths cannot share an interval.
+@isnad1 id=disjoint.1h6v.s5.2bfb9f0a6896 from=translated src=- shape=7beb04ac vocab=acaaa28e
+-/
 theorem finiteOneShiftFamily_disjoint_of_ne_depth
     (topScale : ℤ) (shift : Fin 3) {depth depth' : ℕ} (hne : depth ≠ depth')
     (E E' : Finset ℤ) :
@@ -44,7 +46,9 @@ theorem finiteOneShiftFamily_disjoint_of_ne_depth
   exact hne (finiteShiftGridInterval_global_injective topScale heq).1
 
 /-- At one depth, families belonging to distinct members of the three-grid
-decomposition cannot share an interval.-/
+decomposition cannot share an interval.
+@isnad1 id=disjoint.1h6v.s5.76fb1e1335d2 from=translated src=- shape=bdba4377 vocab=acaaa28e
+-/
 theorem finiteOneShiftFamily_disjoint_of_ne_shift
     (topScale : ℤ) (depth : ℕ) {shift shift' : Fin 3} (hne : shift ≠ shift')
     (E E' : Finset ℤ) :
@@ -58,6 +62,9 @@ theorem finiteOneShiftFamily_disjoint_of_ne_shift
   have heq := hrepr.symm.trans hrepr'
   exact hne (finiteShiftGridInterval_global_injective topScale heq).2.1
 
+/--
+@isnad1 id=pairwise.0h3v.s5.1b7591bebc83 from=translated src=- shape=4ae8fe9c vocab=24399d93
+-/
 theorem finiteOneShiftFamily_pairwiseDisjoint_depths
     (topScale : ℤ) (shift : Fin 3) (E : ℕ → Finset ℤ) :
     Pairwise fun depth depth' : ℕ ↦
@@ -66,6 +73,9 @@ theorem finiteOneShiftFamily_pairwiseDisjoint_depths
   intro depth depth' hne
   exact finiteOneShiftFamily_disjoint_of_ne_depth topScale shift hne _ _
 
+/--
+@isnad1 id=pairwise.0h3v.s5.6dc0239f8c0d from=translated src=- shape=4e07581a vocab=24399d93
+-/
 theorem finiteOneShiftFamily_pairwiseDisjoint_shifts
     (topScale : ℤ) (depth : ℕ) (E : Finset ℤ) :
     Pairwise fun shift shift' : Fin 3 ↦
@@ -75,7 +85,9 @@ theorem finiteOneShiftFamily_pairwiseDisjoint_shifts
   exact finiteOneShiftFamily_disjoint_of_ne_shift topScale depth hne E E
 
 /-- Expanding the finite multiscale family gives a sum over depths with no
-multiplicity, since different depths contain different interval objects.-/
+multiplicity, since different depths contain different interval objects.
+@isnad1 id=eq.0h6v.s6.a48e86a45ba5 from=translated src=- shape=e3541e85 vocab=792d242b
+-/
 theorem sum_finiteOneShiftMultiscaleFamily
     {M : Type*} [AddCommMonoid M]
     (topScale : ℤ) (depths : Finset ℕ) (E : ℕ → Finset ℤ) (shift : Fin 3)
@@ -90,7 +102,9 @@ theorem sum_finiteOneShiftMultiscaleFamily
   exact finiteOneShiftFamily_disjoint_of_ne_depth topScale shift hne _ _
 
 /-- The genuine localized tail action over a finite one-shift multiscale
-family is exactly the corresponding sum of fixed-scale localized actions.-/
+family is exactly the corresponding sum of fixed-scale localized actions.
+@isnad1 id=eq.0h7v.s7.1ed7495c0349 from=translated src=- shape=9ae81fa2 vocab=117e7b76
+-/
 theorem localizedTailAction_finiteOneShiftMultiscaleFamily
     (topScale ell : ℤ) (depths : Finset ℕ) (E : ℕ → Finset ℤ)
     (shift : Fin 3) (f : ℝ → ℂ) (x : ℝ) :
@@ -130,7 +144,9 @@ theorem localizedTailAction_finiteOneShiftMultiscaleFamily
     rw [finiteShiftGridInterval_length_eq_scale, hscale, ite_eq_right hcut]
 
 /-- Summing the three fixed-scale grid pieces recovers the localized sum on
-the full central-third partition, with no duplicated interval.-/
+the full central-third partition, with no duplicated interval.
+@isnad1 id=eq.0h6v.s5.b9693882fa2c from=translated src=- shape=27b2e5b7 vocab=1da4003d
+-/
 theorem sum_fixedScaleLocalizedSum_finiteOneShiftFamily
     (topScale j : ℤ) (depth : ℕ) (E : Finset ℤ)
     (f : ℝ → ℂ) (x : ℝ) :
@@ -148,7 +164,9 @@ theorem sum_fixedScaleLocalizedSum_finiteOneShiftFamily
   exact finiteOneShiftFamily_disjoint_of_ne_shift topScale depth hne E E
 
 /-- When the central thirds cover the input, the sum of the three concrete
-grid actions is exactly the genuine fixed-scale quadratic convolution.-/
+grid actions is exactly the genuine fixed-scale quadratic convolution.
+@isnad1 id=eq.1h5v.s7.1346e5897da9 from=translated src=- shape=58bca55e vocab=33e05fc0
+-/
 theorem sum_fixedScaleLocalizedSum_eq_globalConvolution
     (f : L0Infinity) (topScale : ℤ) (depth : ℕ) (E : Finset ℤ)
     (hinput : krauseLaceyFixedScaleInput
@@ -177,7 +195,9 @@ theorem sum_fixedScaleLocalizedSum_eq_globalConvolution
 /-- The sum of the three finite multiscale tail actions is the exact finite
 positive-half dyadic convolution tail.  This is the operator-level bridge
 from the three-grid forest to the positive-half smooth-truncation
-approximants; the negative half is obtained separately by reflection.-/
+approximants; the negative half is obtained separately by reflection.
+@isnad1 id=eq.1h6v.s8.f9e04f8b96e8 from=translated src=- shape=b516a2f0 vocab=a3bb4e38
+-/
 theorem sum_localizedTailAction_eq_finite_globalTail
     (f : L0Infinity) (topScale ell : ℤ) (depths : Finset ℕ)
     (E : ℕ → Finset ℤ)
@@ -209,7 +229,9 @@ theorem sum_localizedTailAction_eq_finite_globalTail
 finite set of depths there are concrete support-covering interval families,
 each one-shift family lies inside its canonical parent-closed forest, and the
 sum of the three local tail actions is exactly the finite positive-half
-dyadic tail.-/
+dyadic tail.
+@isnad1 id=ex.1h6v.s8.4e82bbd3eae2 from=translated src=- shape=3c687660 vocab=549a33ae
+-/
 theorem exists_threeShiftForests_globalTail
     (f : L0Infinity) (topScale ell : ℤ) (depths : Finset ℕ)
     (maxDepth : ℕ) (hdepths : ∀ depth ∈ depths, depth ≤ maxDepth)
@@ -239,7 +261,9 @@ theorem exists_threeShiftForests_globalTail
 /-- One choice of the three localized families works simultaneously for every
 physical lower cutoff and every observation point.  This is the form needed
 for the maximal truncation; the covering families depend only on the compact
-support of `f`, not on the cutoff or the point.-/
+support of `f`, not on the cutoff or the point.
+@isnad1 id=ex.1h4v.s8.2a931b4a9218 from=translated src=- shape=9ada67d2 vocab=549a33ae
+-/
 theorem exists_threeShiftForests_globalTail_all_thresholds
     (f : L0Infinity) (topScale : ℤ) (depths : Finset ℕ)
     (maxDepth : ℕ) (hdepths : ∀ depth ∈ depths, depth ≤ maxDepth) :

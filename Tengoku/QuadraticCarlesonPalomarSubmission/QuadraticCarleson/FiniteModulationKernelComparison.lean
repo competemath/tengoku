@@ -62,6 +62,9 @@ noncomputable def finiteQuadraticDyadicBlock
     (lam : ℝ) (j : ℤ) (B : ℕ) (f : ℝ → ℂ) (x : ℝ) : ℂ :=
   ∫ y, lowOscillatoryKernel lam B (fun r ↦ j + (r : ℤ)) (x - y) * f y
 
+/--
+@isnad1 id=integrab.0h1v.s5.7303c5fa1868 from=translated src=- shape=5cae27e5 vocab=fcc0a784
+-/
 theorem L0Infinity.integrable (f : L0Infinity) : Integrable f := by
   have hcompact : IsCompact (tsupport f) := f.hasCompactSupport_toFun
   have hfinite : volume (tsupport f) < ∞ := hcompact.measure_lt_top
@@ -72,7 +75,9 @@ theorem L0Infinity.integrable (f : L0Infinity) : Integrable f := by
     (Filter.Eventually.of_forall hC)
 
 /-- An average at an arbitrary positive real radius is controlled by twice
-the rational-radius maximal function used in the project.-/
+the rational-radius maximal function used in the project.
+@isnad1 id=le.1h3v.s5.d336ba82b07a from=translated src=- shape=61f545b8 vocab=ecd212b0
+-/
 theorem centeredAverage_le_two_mul_centeredHardyLittlewoodMaximal
     {r : ℝ} (hr : 0 < r) (g : ℝ → ℝ≥0∞) (x : ℝ) :
     centeredAverage r g x ≤ 2 * centeredHardyLittlewoodMaximal g x := by
@@ -116,6 +121,9 @@ theorem centeredAverage_le_two_mul_centeredHardyLittlewoodMaximal
       exact mul_le_mul' le_rfl
         (le_iSup (fun q' : PositiveRational ↦ centeredAverage (q' : ℝ) g x) q)
 
+/--
+@isnad1 id=eq.2h3v.s5.eee5b26b5661 from=translated src=- shape=0066df9b vocab=5d4e6829
+-/
 theorem cutoffBoundaryKernel_eq_zero_of_abs_le
     (lam : ℝ) {ρ t : ℝ} (hρ : 0 < ρ) (ht : |t| ≤ ρ) :
     cutoffBoundaryKernel lam ρ t = 0 := by
@@ -130,6 +138,9 @@ theorem cutoffBoundaryKernel_eq_zero_of_abs_le
       dyadicCutoff_eq_one harg]
     simp
 
+/--
+@isnad1 id=eq.2h3v.s5.3e1fe0a6c548 from=translated src=- shape=61f0a2b8 vocab=bcad9644
+-/
 theorem cutoffBoundaryKernel_eq_zero_of_two_mul_le_abs
     (lam : ℝ) {ρ t : ℝ} (hρ : 0 < ρ) (ht : 2 * ρ ≤ |t|) :
     cutoffBoundaryKernel lam ρ t = 0 := by
@@ -148,6 +159,9 @@ theorem cutoffBoundaryKernel_eq_zero_of_two_mul_le_abs
     dyadicCutoff_eq_zero harg]
   simp
 
+/--
+@isnad1 id=le.1h3v.s5.60cc8e49f0aa from=translated src=- shape=c9f3ae80 vocab=9969d137
+-/
 theorem cutoffBoundaryKernel_norm_le
     (lam : ℝ) {ρ t : ℝ} (hρ : 0 < ρ) :
     ‖cutoffBoundaryKernel lam ρ t‖ ≤ 1 / ρ := by
@@ -171,6 +185,9 @@ theorem cutoffBoundaryKernel_norm_le
           div_le_div_of_nonneg_right (dyadicCutoff_le_one _) (abs_nonneg _)
         _ ≤ 1 / ρ := one_div_le_one_div_of_le hρ hρt.le
 
+/--
+@isnad1 id=measurab.0h2v.s3.2fc264e50196 from=translated src=- shape=30e1f344 vocab=cc8e09bc
+-/
 theorem measurable_sharpQuadraticTailKernel (lam ε : ℝ) :
     Measurable (sharpQuadraticTailKernel lam ε) := by
   have hp : Continuous (fun t : ℝ ↦ phase (lam * t ^ 2)) := by
@@ -181,6 +198,9 @@ theorem measurable_sharpQuadraticTailKernel (lam ε : ℝ) :
   · exact hp.measurable.div (Complex.measurable_ofReal.comp measurable_id)
   · exact measurable_const
 
+/--
+@isnad1 id=le.1h3v.s5.7f690eb5e883 from=translated src=- shape=c9f3ae80 vocab=419e7fc3
+-/
 theorem sharpQuadraticTailKernel_norm_le
     (lam : ℝ) {ε t : ℝ} (hε : 0 < ε) :
     ‖sharpQuadraticTailKernel lam ε t‖ ≤ 1 / ε := by
@@ -195,6 +215,9 @@ theorem sharpQuadraticTailKernel_norm_le
   · rw [sharpQuadraticTailKernel, ite_eq_right ht]
     simpa using one_div_nonneg.mpr hε.le
 
+/--
+@isnad1 id=measurab.0h2v.s3.99a4d0a69f5b from=translated src=- shape=30e1f344 vocab=eddc91a5
+-/
 theorem measurable_cutoffBoundaryKernel (lam ρ : ℝ) :
     Measurable (cutoffBoundaryKernel lam ρ) := by
   have hp : Measurable (fun t : ℝ ↦ phase (lam * t ^ 2)) := by
@@ -222,7 +245,9 @@ private theorem integrable_kernel_mul
   · exact Filter.Eventually.of_forall (fun y ↦ hbound (x - y))
 
 /-- The convolution-oriented truncation is exactly the truncation already
-defined in `Definitions`.-/
+defined in `Definitions`.
+@isnad1 id=eq.0h4v.s4.5d3af6ef4b8a from=translated src=- shape=ad0cd6c3 vocab=37d04020
+-/
 theorem quadraticHilbertConvolutionTrunc_eq_quadraticHilbertTrunc
     (lam ε : ℝ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticHilbertConvolutionTrunc lam ε f x =
@@ -243,6 +268,9 @@ theorem quadraticHilbertConvolutionTrunc_eq_quadraticHilbertTrunc
     _ = ∫ t in s, f (x - t) * phase (lam * t ^ 2) / (t : ℂ) :=
       integral_indicator hs
 
+/--
+@isnad1 id=le.1h2v.s5.8426026f7cf6 from=translated src=- shape=96e8e429 vocab=4f5b178e
+-/
 theorem cutoffBoundaryKernel_support_subset
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     support (cutoffBoundaryKernel lam ρ) ⊆ closedBall 0 (2 * ρ) := by
@@ -252,7 +280,9 @@ theorem cutoffBoundaryKernel_support_subset
   exact ht (cutoffBoundaryKernel_eq_zero_of_two_mul_le_abs lam hρ (le_of_not_ge h))
 
 /-- Each smooth-to-sharp cutoff error contributes at most eight copies of the
-project's measurable centered maximal function.-/
+project's measurable centered maximal function.
+@isnad1 id=le.2h4v.s7.cea63ad6f9a4 from=translated src=- shape=1193b1b0 vocab=885770f1
+-/
 theorem cutoffBoundaryOperator_enorm_le_maximal
     (lam : ℝ) {ρ : ℝ} (hρ : 0 < ρ) (f : ℝ → ℂ) (hf : Measurable f) (x : ℝ) :
     ‖∫ y, cutoffBoundaryKernel lam ρ (x - y) * f y‖ₑ ≤
@@ -319,7 +349,9 @@ private theorem dyadic_block_innerRadius_le_outerRadius (j : ℤ) (B : ℕ) :
   omega
 
 /-- Exact kernel algebra behind the comparison: the smooth dyadic block is
-two sharp tails plus the two explicitly defined boundary errors.-/
+two sharp tails plus the two explicitly defined boundary errors.
+@isnad1 id=eq.0h4v.s8.d30962fc9cf2 from=translated src=- shape=fa0cb28c vocab=e1e4d8a9
+-/
 theorem lowOscillatoryKernel_consecutive_eq_truncations_add_boundaries
     (lam : ℝ) (j : ℤ) (B : ℕ) (t : ℝ) :
     lowOscillatoryKernel lam B (fun r ↦ j + (r : ℤ)) t =
@@ -370,7 +402,9 @@ theorem lowOscillatoryKernel_consecutive_eq_truncations_add_boundaries
       <;> norm_num <;> ring
 
 /-- Operator-level exact decomposition of a consecutive smooth dyadic block
-into two sharp truncations and two cutoff boundary errors.-/
+into two sharp truncations and two cutoff boundary errors.
+@isnad1 id=eq.1h5v.s8.52448c2dc6ed from=translated src=- shape=563c161a vocab=abcf6337
+-/
 theorem finiteQuadraticDyadicBlock_eq_truncations_add_boundaries
     (lam : ℝ) (j : ℤ) (B : ℕ) {f : ℝ → ℂ} (hfi : Integrable f) (x : ℝ) :
     finiteQuadraticDyadicBlock lam j B f x =
@@ -453,7 +487,9 @@ theorem finiteQuadraticDyadicBlock_eq_truncations_add_boundaries
 /-- The exact paper-facing pointwise comparison, with explicit constants.
 The factor `16` is `8` for each of the two transition annuli; the factor `8`
 comes from comparing an arbitrary real radius with the project's countable
-rational-radius maximal operator.-/
+rational-radius maximal operator.
+@isnad1 id=le.2h5v.s7.602d2dbc9299 from=translated src=- shape=fd0e2811 vocab=70b14e94
+-/
 theorem finiteQuadraticDyadicBlock_enorm_le_maximalTruncation_add_maximal
     (lam : ℝ) (j : ℤ) (B : ℕ) {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -498,6 +534,9 @@ noncomputable def paperLowDyadicOperator
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (f : L0Infinity) (x : ℝ) : ℂ :=
   ∫ y, paperLowOscillatoryKernel lam hlam B (x - y) * f y
 
+/--
+@isnad1 id=eq.1h3v.s5.7da7023ad506 from=translated src=- shape=064f3882 vocab=c42f0625
+-/
 theorem paperLowOscillatoryKernel_eq_consecutive
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (t : ℝ) :
     paperLowOscillatoryKernel lam hlam B t =
@@ -508,6 +547,9 @@ theorem paperLowOscillatoryKernel_eq_consecutive
   intro r hr
   rw [oscillatoryScaleIndex_eq_add lam r hlam]
 
+/--
+@isnad1 id=eq.1h4v.s5.c197ac5bd6ce from=translated src=- shape=215aa837 vocab=5e9c16df
+-/
 theorem paperLowDyadicOperator_eq_finiteQuadraticDyadicBlock
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     paperLowDyadicOperator lam hlam B f x =
@@ -519,7 +561,9 @@ theorem paperLowDyadicOperator_eq_finiteQuadraticDyadicBlock
     rw [paperLowOscillatoryKernel_eq_consecutive])
 
 /-- Concrete specialization of the pointwise comparison to the exact
-frequency-dependent dyadic block used in the positive proof.-/
+frequency-dependent dyadic block used in the positive proof.
+@isnad1 id=le.1h4v.s7.fbf19f229218 from=translated src=- shape=1ed5f34f vocab=46514ed0
+-/
 theorem paperLowDyadicOperator_enorm_le_maximalTruncation_add_maximal
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     ‖paperLowDyadicOperator lam hlam B f x‖ₑ ≤

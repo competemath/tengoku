@@ -33,6 +33,9 @@ noncomputable def nonstandardSignedEnergyBudget
   (311040 * positiveDyadicAmplitudeBound ^ 2 * intervalL1Average f I₀ *
     (2 : ℝ) ^ (-s)) * ∫ x, ‖f x‖
 
+/--
+@isnad1 id=le.0h3v.s4.159ecd22c1f1 from=translated src=- shape=57407fd0 vocab=b32e10da
+-/
 theorem nonstandardSignedEnergyBudget_nonneg (f : ℝ → ℂ) (I₀ : RealInterval) (s : ℤ) :
     0 ≤ nonstandardSignedEnergyBudget f I₀ s := by
   unfold nonstandardSignedEnergyBudget
@@ -40,7 +43,9 @@ theorem nonstandardSignedEnergyBudget_nonneg (f : ℝ → ℂ) (I₀ : RealInter
   positivity [intervalL1Average_nonneg f I₀]
 
 /-- Every signed sum of the actual minimal generations has the uniform
-`2^(-s)` energy decay. This discharges, rather than assumes, the RM input.-/
+`2^(-s)` energy decay. This discharges, rather than assumes, the RM input.
+@isnad1 id=hassigne.6h6v.s8.faeae7144476 from=translated src=- shape=835eed60 vocab=d615fd71
+-/
 theorem hasSignedSumSquareBound_nonstandardGenerations
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -74,6 +79,9 @@ noncomputable def nonstandardGenerationPrefixMaximal
       krauseLaceyCollectionAction (generation (nonstandardIntervals S f I₀ k₀ s scale) i)
         scale (fun I ↦ badScaleInput S f I₀ k₀ (scale I + 2 - s)) x‖
 
+/--
+@isnad1 id=eventual.1h6v.s6.6ad4dccde21f from=translated src=- shape=f9f30246 vocab=b9db73d7
+-/
 theorem nonstandardGenerationPrefixMaximal_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ) :
@@ -92,6 +100,9 @@ theorem nonstandardGenerationPrefixMaximal_ae_eq
   congr 1
   exact Finset.sum_congr rfl fun i hi ↦ (hx i).symm
 
+/--
+@isnad1 id=memlp.1h6v.s6.f2d90bd57e98 from=translated src=- shape=c67bd2fe vocab=c91ceceb
+-/
 theorem memLp_nonstandardGenerationPrefixMaximal
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ) :
@@ -99,6 +110,9 @@ theorem memLp_nonstandardGenerationPrefixMaximal
   (memLp_congr_ae (nonstandardGenerationPrefixMaximal_ae_eq S f hf I₀ k₀ s scale)).mpr
     (memLp_finitePrefixMaximal _ _)
 
+/--
+@isnad1 id=le.6h6v.s8.7dea1d6f5e23 from=translated src=- shape=24de1641 vocab=b127c5b5
+-/
 theorem integral_nonstandardGenerationPrefixMaximal_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -116,6 +130,9 @@ theorem integral_nonstandardGenerationPrefixMaximal_sq_le
   exact integral_finitePrefixMaximal_sq_le_log2 _ _
     (hasSignedSumSquareBound_nonstandardGenerations hf I₀ k₀ s hk₀ hs scale hlam hparent hsub)
 
+/--
+@isnad1 id=le.6h6v.s8.a0121e550359 from=translated src=- shape=5d485a63 vocab=4fa9c6d2
+-/
 theorem eLpNorm_nonstandardGenerationPrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)
@@ -132,7 +149,9 @@ theorem eLpNorm_nonstandardGenerationPrefixMaximal_le
   exact hasSignedSumSquareBound_nonstandardGenerations hf I₀ k₀ s hk₀ hs scale hlam hparent hsub
 
 /-- A completely concrete finite shifted-grid application: only the
-integrable input and the source's numeric scale restrictions remain.-/
+integrable input and the source's numeric scale restrictions remain.
+@isnad1 id=other.3h7v.s7.bb43519ee757 from=translated src=- shape=4eb892aa vocab=0ec2780a
+-/
 theorem completeFiniteShiftGridTree_nonstandardPrefix_eLpNorm_le
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ)
     (f : ℝ → ℂ) (hf : Integrable f) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s) :

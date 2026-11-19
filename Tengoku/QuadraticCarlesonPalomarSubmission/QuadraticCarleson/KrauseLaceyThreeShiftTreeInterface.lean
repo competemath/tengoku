@@ -30,7 +30,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- Every represented descendant interval lies inside the represented root.-/
+/-- Every represented descendant interval lies inside the represented root.
+@isnad1 id=le.1h5v.s6.374b0d9a8637 from=translated src=- shape=15eccb9c vocab=520dfb3b
+-/
 theorem finiteShiftGridInterval_subset_root
     (topScale : ℤ) (shift : Fin 3) {depth : ℕ} {q q₀ : ℤ}
     (haddr : q₀ * (2 : ℤ) ^ depth ≤ q ∧
@@ -92,7 +94,9 @@ theorem finiteShiftGridInterval_subset_root
               ring
 
 /-- At fixed largest scale and shift, the depth/address representation of a
-grid interval is unique.-/
+grid interval is unique.
+@isnad1 id=and.1h6v.s5.cc28205051f9 from=translated src=- shape=ea2eb466 vocab=cafdb8e4
+-/
 theorem finiteShiftGridInterval_injective
     (topScale : ℤ) (shift : Fin 3) {depth depth' : ℕ} {q q' : ℤ}
     (h : finiteShiftGridInterval topScale shift depth q =
@@ -123,7 +127,9 @@ theorem finiteShiftGridInterval_injective
 
 /-- The grid label, depth, and address are jointly unique, even when the two
 representations initially come from different members of the three-grid
-family.-/
+family.
+@isnad1 id=and.1h7v.s5.72809502bab0 from=translated src=- shape=cf608017 vocab=cafdb8e4
+-/
 theorem finiteShiftGridInterval_global_injective
     (topScale : ℤ) {shift shift' : Fin 3} {depth depth' : ℕ} {q q' : ℤ}
     (h : finiteShiftGridInterval topScale shift depth q =
@@ -171,6 +177,9 @@ noncomputable def finiteShiftGridDepth
     (Classical.choose h).1
   else 0
 
+/--
+@isnad1 id=eq.0h4v.s4.f9652a8aeab7 from=translated src=- shape=11af222c vocab=baea30a0
+-/
 theorem finiteShiftGridDepth_interval
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     finiteShiftGridDepth topScale shift
@@ -189,6 +198,9 @@ noncomputable def finiteShiftGridScale
     (topScale : ℤ) (shift : Fin 3) (I : RealInterval) : ℤ :=
   topScale - finiteShiftGridDepth topScale shift I
 
+/--
+@isnad1 id=eq.0h4v.s5.a70aa32bf63f from=translated src=- shape=8c54b13f vocab=b14cf0e8
+-/
 theorem finiteShiftGridInterval_length_eq_scale
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     (finiteShiftGridInterval topScale shift depth q).length =
@@ -203,7 +215,9 @@ theorem finiteShiftGridInterval_length_eq_scale
   rw [zpow_sub₀ (by norm_num : (2 : ℝ) ≠ 0), zpow_natCast]
 
 /-- Every interval of a complete finite shifted-grid tree is contained in
-its root interval.-/
+its root interval.
+@isnad1 id=le.1h5v.s5.a070d45462cf from=translated src=- shape=282e9722 vocab=8e72620e
+-/
 theorem completeFiniteShiftGridTree_subset_root
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ) :
     ∀ I ∈ completeFiniteShiftGridTree topScale shift maxDepth q₀,
@@ -217,7 +231,9 @@ theorem completeFiniteShiftGridTree_subset_root
 /-- Every interval belongs to the complete tree below its canonical
 depth-zero ancestor whenever that tree is retained at least to the interval's
 depth.  The ancestor address is Euclidean division by `2 ^ depth`; this is
-valid for negative addresses as well.-/
+valid for negative addresses as well.
+@isnad1 id=mem.1h5v.s6.89bfd3ce78cb from=translated src=- shape=096d1b22 vocab=73c1141e
+-/
 theorem finiteShiftGridInterval_mem_completeAncestorTree_of_le
     (topScale : ℤ) (shift : Fin 3) (maxDepth depth : ℕ) (q : ℤ)
     (hdepth : depth ≤ maxDepth) :
@@ -247,7 +263,9 @@ theorem finiteShiftGridInterval_mem_completeAncestorTree_of_le
       _ = (q / D + 1) * D - 1 := by ring
 
 /-- Every interval has a canonical depth-zero ancestor, obtained by Euclidean
-division of its address, and belongs to the corresponding complete tree.-/
+division of its address, and belongs to the corresponding complete tree.
+@isnad1 id=mem.0h4v.s5.8c20b6b40dc6 from=translated src=- shape=c2719f73 vocab=9e88e2ab
+-/
 theorem finiteShiftGridInterval_mem_completeAncestorTree
     (topScale : ℤ) (shift : Fin 3) (depth : ℕ) (q : ℤ) :
     finiteShiftGridInterval topScale shift depth q ∈
@@ -257,7 +275,9 @@ theorem finiteShiftGridInterval_mem_completeAncestorTree
     topScale shift depth depth q le_rfl
 
 /-- A complete finite shifted-grid tree inherits the laminar geometry of
-its ambient translated dyadic grid.-/
+its ambient translated dyadic grid.
+@isnad1 id=pairwise.0h4v.s6.192c2db84daf from=translated src=- shape=463f4cfd vocab=a8678202
+-/
 theorem completeFiniteShiftGridTree_laminar
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ) :
     Set.Pairwise
@@ -271,7 +291,9 @@ theorem completeFiniteShiftGridTree_laminar
   exact finiteShiftGridInterval_laminar topScale shift depth q depth' q'
 
 /-- Every member of the concrete tree has exactly the source scale relation
-for the recovered kernel label.-/
+for the recovered kernel label.
+@isnad1 id=eq.1h5v.s6.233b053a9f34 from=translated src=- shape=e7adfbc4 vocab=60f5afe3
+-/
 theorem completeFiniteShiftGridTree_length_eq_scale
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ) :
     ∀ I ∈ completeFiniteShiftGridTree topScale shift maxDepth q₀,
@@ -282,7 +304,9 @@ theorem completeFiniteShiftGridTree_length_eq_scale
   exact finiteShiftGridInterval_length_eq_scale topScale shift depth q
 
 /-- The complete finite shifted-grid tree has the literal dyadic parents
-required by the actual bad-scale mass estimate.-/
+required by the actual bad-scale mass estimate.
+@isnad1 id=hasdyadi.0h4v.s4.0be78a00f6fe from=translated src=- shape=248ecabf vocab=e875215f
+-/
 theorem completeFiniteShiftGridTree_hasDyadicParents
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ) :
     KrauseLaceyBadScale.HasDyadicParents
@@ -315,7 +339,9 @@ theorem completeFiniteShiftGridTree_hasDyadicParents
 
 /-- The abstract one-step stopping theorem applies directly to every
 concrete complete shifted-grid tree: none of its geometric hypotheses remain
-to be supplied by a caller.-/
+to be supplied by a caller.
+@isnad1 id=other.4h7v.s9.d016efcc11eb from=translated src=- shape=5a4aa1f1 vocab=eecd9ef6
+-/
 theorem completeFiniteShiftGridTree_stopping_step
     (ell₀ topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ)
     {f g : ℝ → ℂ} (hf : Measurable f) (hg : Measurable g)

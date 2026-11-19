@@ -33,7 +33,9 @@ noncomputable abbrev energyNonstandardSourceTailMaximal :=
   nonstandardSourceTailMaximal
 
 /-- Nonnegativity of the finite-family physical maximal operator is
-independent of scale identities, stopping geometry, and classification.-/
+independent of scale identities, stopping geometry, and classification.
+@isnad1 id=le.0h8v.s5.2ca16c6834a7 from=translated src=- shape=849643d2 vocab=cacebcf4
+-/
 theorem badLengthTailMaximal_nonneg_unrestricted
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (x : ℝ) :
@@ -53,6 +55,9 @@ theorem badLengthTailMaximal_nonneg_unrestricted
       exact norm_nonneg _
   exact (norm_nonneg _).trans (le_ciSup hb (0 : ℤ))
 
+/--
+@isnad1 id=le.2h8v.s7.1a9775f72ed5 from=translated src=- shape=cbf98414 vocab=cf719040
+-/
 theorem norm_localizedBadPiece_le_mass_of_scale
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -75,6 +80,9 @@ theorem norm_localizedBadPiece_le_mass_of_scale
   rw [hscale, krauseLacey_scale_eq_eight_mul_radius]
   ring
 
+/--
+@isnad1 id=le.2h8v.s7.bb60e0df909d from=translated src=- shape=6a3c03d0 vocab=21bf4005
+-/
 theorem badLengthTailMaximal_le_massMajorant_of_scale
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -99,6 +107,9 @@ theorem badLengthTailMaximal_le_massMajorant_of_scale
       (hscale I hI) hx]
     simp
 
+/--
+@isnad1 id=le.3h8v.s8.36aecf7072ee from=translated src=- shape=f4fa8a50 vocab=a145a158
+-/
 theorem lintegral_badLengthTail_pairing_le_sum_local_averages_of_scale
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -150,6 +161,9 @@ theorem lintegral_badLengthTail_pairing_le_sum_local_averages_of_scale
       (mul_nonneg (mul_nonneg (by norm_num) positiveDyadicAmplitudeBound_nonneg)
         (intervalBadMass_nonneg S f I₀ k₀ s scale I)) (intervalL1Average_nonneg g I))).symm
 
+/--
+@isnad1 id=le.7h9v.s8.533de7bfe2b1 from=translated src=- shape=dc1d8b7f vocab=fc41bc36
+-/
 theorem lintegral_badLengthTail_pairing_le_of_averages_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -183,7 +197,9 @@ theorem lintegral_badLengthTail_pairing_le_of_averages_le
       (mul_nonneg (mul_nonneg (by norm_num) positiveDyadicAmplitudeBound_nonneg) hG)
 
 /-- Exact equality with the all-integer maximal function: the scalar
-family already lies above the source's lower physical scale `k₀ + s`.-/
+family already lies above the source's lower physical scale `k₀ + s`.
+@isnad1 id=eq.2h7v.s7.146dd0ee6108 from=translated src=- shape=aaf193c6 vocab=5ef19a84
+-/
 theorem energyNonstandardSourceTailMaximal_eq_badLengthTailMaximal
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -199,7 +215,9 @@ theorem energyNonstandardSourceTailMaximal_eq_badLengthTailMaximal
     f I₀ k₀ s scale hlam N hn)
 
 /-- The source physical-suffix pairing retains the exact local averages
-and restricted bad-input masses.-/
+and restricted bad-input masses.
+@isnad1 id=le.4h8v.s8.f4549cd43b3a from=translated src=- shape=4393ab85 vocab=a441bfff
+-/
 theorem lintegral_energyNonstandard_pairing_le_sum_local_averages
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -215,7 +233,9 @@ theorem lintegral_energyNonstandard_pairing_le_sum_local_averages
     (fun I hI ↦ (Finset.mem_filter.mp (Finset.mem_filter.mp (hN hI)).1).2.1)
 
 /-- The scalar near family inherits the predicate-independent `L¹`
-pairing estimate through actual mass packing, uniformly in the gap.-/
+pairing estimate through actual mass packing, uniformly in the gap.
+@isnad1 id=le.6h9v.s8.f03645ee7ead from=translated src=- shape=806a4629 vocab=86c8534b
+-/
 theorem lintegral_energyNonstandard_pairing_le_of_averages_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -233,7 +253,9 @@ theorem lintegral_energyNonstandard_pairing_le_of_averages_le
     (fun I hI ↦ (Finset.mem_filter.mp (Finset.mem_filter.mp (hN hI)).1).2.1) hG hgavg
 
 /-- On the actual two-function good family, the required `L¹` averages
-follow from the stopping construction itself.-/
+follow from the stopping construction itself.
+@isnad1 id=le.4h7v.s8.ab8956e95321 from=translated src=- shape=85f4a891 vocab=f512ddc0
+-/
 theorem lintegral_energyNonstandard_good_pairing_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -256,7 +278,9 @@ theorem lintegral_energyNonstandard_good_pairing_le
 /-- Quantitative threshold interpolation for the scalar near family,
 using the genuine source-oriented physical suffix maximum. The local
 p-mass condition on the test function is explicit; it is not inferred
-from merely an L¹ stopping condition.-/
+from merely an L¹ stopping condition.
+@isnad1 id=le.14h11v.s9.3ef6a22c0e87 from=translated src=- shape=aa42e832 vocab=0b052757
+-/
 theorem lintegral_energyNonstandard_pairing_le_threshold
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f)
     (hg : Measurable g) (hgi : Integrable g) {p a G : ℝ}

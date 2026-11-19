@@ -14,6 +14,9 @@ open CalderonZygmundDyadicStopping HilbertPrincipalValueClosure
 set_option autoImplicit false
 set_option maxHeartbeats 800000
 
+/--
+@isnad1 id=le.1h1v.s7.2ea5e5c33c18 from=translated src=- shape=4c2af4b7 vocab=414d4cdc
+-/
 theorem lintegral_sq_enorm_stoppingGoodPart_le {f : ℝ → ℂ} (hf : Integrable f) :
     (∫⁻ x, ‖stoppingGoodPart f x‖ₑ ^ 2) ≤ 5 * ∫⁻ x, ‖f x‖ₑ := by
   have h := ENNReal.ofReal_le_ofReal (integral_sq_norm_stoppingGoodPart_le_five_l1 hf)
@@ -23,6 +26,9 @@ theorem lintegral_sq_enorm_stoppingGoodPart_le {f : ℝ → ℂ} (hf : Integrabl
     ofReal_integral_eq_lintegral_ofReal hf.norm (ae_of_all _ fun x ↦ norm_nonneg _)] at h
   simpa only [ENNReal.ofReal_ofNat, ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm] using h
 
+/--
+@isnad1 id=le.1h1v.s7.66ee3c54c84e from=translated src=- shape=5c26881f vocab=583a472d
+-/
 theorem lintegral_sq_enorm_goodHilbert_le {f : ℝ → ℂ} (hf : Integrable f) :
     (∫⁻ x, ‖measurableStoppingGoodHilbertRepresentative f hf x‖ₑ ^ 2) ≤
       ENNReal.ofReal Real.pi ^ 2 * (5 * ∫⁻ x, ‖f x‖ₑ) := by
@@ -41,6 +47,9 @@ theorem lintegral_sq_enorm_goodHilbert_le {f : ℝ → ℂ} (hf : Integrable f) 
       rw [mul_pow, enorm_stoppingGoodPartL2_sq_eq_lintegral hf]
     _ ≤ _ := mul_le_mul' le_rfl (lintegral_sq_enorm_stoppingGoodPart_le hf)
 
+/--
+@isnad1 id=le.1h1v.s6.475dc5b4e7a2 from=translated src=- shape=a418efa5 vocab=c7c024f6
+-/
 theorem volume_maximal_gt_one_le_sq {g : ℝ → ℝ≥0∞} (hg : Measurable g) :
     volume {x | 1 < centeredHardyLittlewoodMaximal g x} ≤ 32 * ∫⁻ x, g x ^ 2 := by
   have hsub : {x | 1 < centeredHardyLittlewoodMaximal g x} ⊆
@@ -60,19 +69,30 @@ noncomputable def normalizedWeakConstant : ℝ :=
   160 * (Real.pi ^ 2 + 1) + 96 + 2 * (32 / 3 + 128)
 noncomputable def hilbertWeakConstant : ℝ := normalizedThreshold * normalizedWeakConstant
 
+/--
+@isnad1 id=lt.0h0v.s3.452a94bd8c80 from=translated src=- shape=ff3a10fc vocab=7a153105
+-/
 theorem normalizedThreshold_pos : 0 < normalizedThreshold := by
   unfold normalizedThreshold
   positivity
 
+/--
+@isnad1 id=le.0h0v.s3.0bf2e05c39ea from=translated src=- shape=ff3a10fc vocab=061db382
+-/
 theorem normalizedWeakConstant_nonneg : 0 ≤ normalizedWeakConstant := by
   unfold normalizedWeakConstant
   positivity
 
+/--
+@isnad1 id=le.0h0v.s3.ee3468079571 from=translated src=- shape=ff3a10fc vocab=2077cdc0
+-/
 theorem hilbertWeakConstant_nonneg : 0 ≤ hilbertWeakConstant :=
   mul_nonneg normalizedThreshold_pos.le normalizedWeakConstant_nonneg
 
 /-- The Calderón–Zygmund decomposition at height one, now using the proved
-Cotlar inequality for the good part and the proved bad-part estimate.-/
+Cotlar inequality for the good part and the proved bad-part estimate.
+@isnad1 id=le.2h1v.s7.d1e04741fa00 from=translated src=- shape=f7248993 vocab=eb8fb8ed
+-/
 theorem normalized_weak_bound {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     volume {x | ENNReal.ofReal normalizedThreshold < quadraticHilbertMaximalTruncation 0 f x} ≤
       ENNReal.ofReal normalizedWeakConstant * ∫⁻ x, ‖f x‖ₑ := by
@@ -136,7 +156,9 @@ theorem normalized_weak_bound {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integ
       ring
 
 /-- Unconditional weak `(1,1)` for the supremum over every positive sharp
-ordinary Hilbert truncation, on every measurable integrable input.-/
+ordinary Hilbert truncation, on every measurable integrable input.
+@isnad1 id=le.3h2v.s7.a2b514881d9e from=translated src=- shape=607febc9 vocab=6dd7d9f4
+-/
 theorem ordinaryHilbertMaximal_weak_bound {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) {a : ℝ} (ha : 0 < a) :
     ENNReal.ofReal a * volume {x | ENNReal.ofReal a < quadraticHilbertMaximalTruncation 0 f x} ≤
@@ -173,6 +195,9 @@ theorem ordinaryHilbertMaximal_weak_bound {f : ℝ → ℂ}
         ← ENNReal.ofReal_mul normalizedThreshold_pos.le]
       rfl
 
+/--
+@isnad1 id=hasunifo.0h0v.s1.c96cdfe0557f from=translated src=- shape=49959d42 vocab=f04e0091
+-/
 theorem hasUniformZeroHilbertMaximalWeakBound :
     PositiveFullOperatorEndpoint.HasUniformZeroHilbertMaximalWeakBound hilbertWeakConstant := by
   refine ⟨hilbertWeakConstant_nonneg, fun f hf hfi ↦ ?_⟩
@@ -182,12 +207,17 @@ theorem hasUniformZeroHilbertMaximalWeakBound :
   exact ordinaryHilbertMaximal_weak_bound hf hfi ha
 
 /-- Discharges the exact classical interface used by the principal-value
-closure and the positive quadratic endpoint theorems.-/
+closure and the positive quadratic endpoint theorems.
+@isnad1 id=hasunifo.0h0v.s1.1ba7cb13a0e5 from=translated src=- shape=87ceb31f vocab=4685b36d
+-/
 theorem hasUniformHilbertMaximalWeakBound :
     HasUniformHilbertMaximalWeakBound (ENNReal.ofReal hilbertWeakConstant) :=
   PositivePrincipalValueEndpoints.uniformHilbertMaximalWeakBound_of_all_integrable
     hasUniformZeroHilbertMaximalWeakBound
 
+/--
+@isnad1 id=eventual.0h1v.s5.7a1d00f6521c from=translated src=- shape=a709ebd3 vocab=e7eb6aa0
+-/
 theorem ae_forall_real_exists_quadraticPrincipalValue (f : L0Infinity) :
     ∀ᵐ x, ∀ lam : ℝ, ∃ z : ℂ, HasQuadraticPrincipalValue lam f x z :=
   HilbertPrincipalValueClosure.ae_forall_real_exists_quadraticPrincipalValue
@@ -196,7 +226,9 @@ theorem ae_forall_real_exists_quadraticPrincipalValue (f : L0Infinity) :
 open PositivePrincipalValueEndpoints
 
 /-- The full-modulation principal-value endpoint, with its last ordinary
-Hilbert hypothesis discharged by the unconditional weak theorem.-/
+Hilbert hypothesis discharged by the unconditional weak theorem.
+@isnad1 id=ex.0h0v.s7.7b334c37f33c from=translated src=- shape=b2ef0b34 vocab=d13a4f4d
+-/
 theorem full_principalValue_endpoint :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
       (∀ᵐ x, ∀ lam : ℝ,
@@ -207,7 +239,9 @@ theorem full_principalValue_endpoint :
   PositivePrincipalValueEndpoints.full_principalValue_endpoint hasUniformHilbertMaximalWeakBound
 
 /-- The lacunary principal-value endpoint now needs only the independent
-individual frozen-block estimate; no ordinary Hilbert hypothesis remains.-/
+individual frozen-block estimate; no ordinary Hilbert hypothesis remains.
+@isnad1 id=ex.1h1v.s7.1516bdccd334 from=translated src=- shape=c04912af vocab=6e4e9333
+-/
 theorem lacunary_principalValue_endpoint
     {CB : ℝ} (hB : LacunaryOscillatoryScaling.HasUniformL0LogSquaredFrozenBlockWeakBounds CB) :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,

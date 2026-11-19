@@ -26,9 +26,15 @@ noncomputable def overlapPrunedFamily (A : Finset RealInterval) (M : ℕ) :
     Finset RealInterval :=
   A.filter fun I ↦ ∃ x ∈ I.carrier, overlapCount A x ≤ M
 
+/--
+@isnad1 id=le.0h2v.s4.24f2374fb956 from=translated src=- shape=c77b2321 vocab=50b2b5c8
+-/
 theorem overlapPrunedFamily_subset (A : Finset RealInterval) (M : ℕ) :
     overlapPrunedFamily A M ⊆ A := Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.2h3v.s5.c50558e727ec from=translated src=- shape=53b0edf6 vocab=3c35ca94
+-/
 theorem removed_interval_subset_highOverlap
     {A : Finset RealInterval} {M : ℕ} {I : RealInterval}
     (hI : I ∈ A) (hremoved : I ∉ overlapPrunedFamily A M) :
@@ -39,7 +45,9 @@ theorem removed_interval_subset_highOverlap
 
 /-- The retained overlap is genuinely bounded everywhere. A smallest
 retained interval through a point transfers the whole covering chain to
-its witness point of low original overlap.-/
+its witness point of low original overlap.
+@isnad1 id=le.1h3v.s6.1efa9596a756 from=translated src=- shape=f461c18d vocab=6d8565e3
+-/
 theorem overlapCount_overlapPrunedFamily_le
     (A : Finset RealInterval) (M : ℕ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -69,6 +77,9 @@ theorem overlapCount_overlapPrunedFamily_le
       ⟨(Finset.mem_filter.mp (Finset.mem_filter.mp hJ).1).1, hsub J hJ hyI⟩
   exact (Finset.card_le_card hFy).trans hycount
 
+/--
+@isnad1 id=eq.0h2v.s5.9d0f055fef28 from=translated src=- shape=60cc09c1 vocab=e13f776d
+-/
 theorem overlapCount_cast_eq_sum_indicator (A : Finset RealInterval) (x : ℝ) :
     (overlapCount A x : ℝ≥0∞) =
       ∑ I ∈ A, I.carrier.indicator (fun _ ↦ (1 : ℝ≥0∞)) x := by
@@ -78,11 +89,17 @@ theorem overlapCount_cast_eq_sum_indicator (A : Finset RealInterval) (x : ℝ) :
   intro I hI
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=measurab.0h1v.s4.def65a2ebefd from=translated src=- shape=dce07db3 vocab=4fe171f0
+-/
 theorem measurable_overlapCount_cast (A : Finset RealInterval) :
     Measurable (fun x ↦ (overlapCount A x : ℝ≥0∞)) := by
   simp_rw [overlapCount_cast_eq_sum_indicator]
   exact Finset.measurable_sum _ fun I _ ↦ measurable_const.indicator I.measurableSet_carrier
 
+/--
+@isnad1 id=eq.0h1v.s5.e59c4c69b212 from=translated src=- shape=c5fac03d vocab=9a9b6e8b
+-/
 theorem lintegral_overlapCount_cast (A : Finset RealInterval) :
     (∫⁻ x, (overlapCount A x : ℝ≥0∞)) = ENNReal.ofReal (∑ I ∈ A, I.length) := by
   simp_rw [overlapCount_cast_eq_sum_indicator]
@@ -96,7 +113,9 @@ theorem lintegral_overlapCount_cast (A : Finset RealInterval) :
   exact (ENNReal.ofReal_sum_of_nonneg fun I _ ↦ I.length_pos.le).symm
 
 /-- The exact first-moment exceptional-set bound. The stronger
-exponential tail at the paper's cutoff is a separate remaining estimate.-/
+exponential tail at the paper's cutoff is a separate remaining estimate.
+@isnad1 id=le.0h2v.s6.0ebb3a9f002e from=translated src=- shape=677a4b7a vocab=3251c0cb
+-/
 theorem volume_highOverlap_le
     (A : Finset RealInterval) (M : ℕ) :
     volume {x | M < overlapCount A x} ≤
@@ -110,6 +129,9 @@ theorem volume_highOverlap_le
   change (M + 1 : ℝ≥0∞) ≤ (overlapCount A x : ℝ≥0∞)
   exact_mod_cast (show M + 1 ≤ overlapCount A x by omega)
 
+/--
+@isnad1 id=le.3h9v.s7.dd86980ec26a from=translated src=- shape=b87730cb vocab=9b3be760
+-/
 theorem volume_active_highOverlap_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -124,7 +146,9 @@ theorem volume_active_highOverlap_le
     (sum_activeBadIntervals_length_le f I₀ k₀ s scale hlam N hN K hsub)) _
 
 /-- Outside the actual high-overlap exceptional set, pruning leaves
-every fixed weighted operator sum unchanged.-/
+every fixed weighted operator sum unchanged.
+@isnad1 id=eq.2h10v.s7.02aff639a11b from=translated src=- shape=858b9ed1 vocab=174ec96b
+-/
 theorem sum_weighted_localizedBadPiece_eq_pruned_of_lowOverlap
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -145,7 +169,9 @@ theorem sum_weighted_localizedBadPiece_eq_pruned_of_lowOverlap
     (Finset.mem_filter.mp (hN (Finset.mem_filter.mp hI).1)).2.1 hnot, mul_zero]
 
 /-- The actual pruned family's maximal-prefix bound now has no assumed
-overlap estimate: the concrete pruning construction supplies it.-/
+overlap estimate: the concrete pruning construction supplies it.
+@isnad1 id=le.7h9v.s8.1213324270df from=translated src=- shape=7bf9da9a vocab=9230f4f3
+-/
 theorem eLpNorm_prunedActivePrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 3 ≤ k₀) (hs : 0 ≤ s)

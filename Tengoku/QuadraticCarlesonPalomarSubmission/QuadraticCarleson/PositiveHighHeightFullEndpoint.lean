@@ -28,9 +28,15 @@ open CalderonZygmundLevelAtoms PositiveLevelIntegration PositiveEndpointOptimiza
 
 def fullHighCutoff (k : ℕ) : ℕ := 20 * 2 ^ k
 
+/--
+@isnad1 id=eq.0h1v.s4.b117b8dd2227 from=translated src=- shape=a5289d56 vocab=3f5c6d43
+-/
 theorem cast_fullHighCutoff (k : ℕ) : (fullHighCutoff k : ℝ) = fullCutoff 20 k := by
   simp [fullHighCutoff, fullCutoff, dyadicScale]
 
+/--
+@isnad1 id=lt.0h1v.s3.c8556cc5819b from=translated src=- shape=8a62b088 vocab=750e5232
+-/
 theorem fullHighCutoff_pos (k : ℕ) : 0 < fullHighCutoff k := by
   unfold fullHighCutoff
   positivity
@@ -38,10 +44,16 @@ theorem fullHighCutoff_pos (k : ℕ) : 0 < fullHighCutoff k := by
 noncomputable def fullHighPrefactorSeries : ℝ≥0∞ :=
   ∑' k : ℕ, ENNReal.ofReal (highFrequencyPrefactor (1 / 10) (fullAmplitude k) (fullCutoff 20 k))
 
+/--
+@isnad1 id=lt.0h0v.s3.8dba2b7bcbb5 from=translated src=- shape=f463f024 vocab=44f7360e
+-/
 theorem fullHighPrefactorSeries_lt_top : fullHighPrefactorSeries < ∞ := by
   exact (summable_fullHighFrequencyPrefactor (β := 1 / 10) (C := 20)
     (by norm_num) (by norm_num)).tsum_ofReal_lt_top
 
+/--
+@isnad1 id=eq.0h1v.s7.e1d07aba8dae from=translated src=- shape=01f6b236 vocab=602b45b8
+-/
 theorem fullHighPrefactor_eq (k : ℕ) :
     4 * fullAmplitude k * (2 : ℝ) ^ (-((fullHighCutoff k : ℕ) : ℝ) / 5) /
       fullCutoff 20 k =
@@ -56,6 +68,9 @@ theorem fullHighPrefactor_eq (k : ℕ) :
   unfold highFrequencyPrefactor
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.80019ea317c7 from=translated src=- shape=bfe02f3c vocab=db0e5a9f
+-/
 theorem tsum_fullHighPrefactor :
     (∑' k : ℕ, ENNReal.ofReal (4 * fullAmplitude k *
       (2 : ℝ) ^ (-((fullHighCutoff k : ℕ) : ℝ) / 5) / fullCutoff 20 k)) =
@@ -67,6 +82,9 @@ theorem tsum_fullHighPrefactor :
 noncomputable def fullHighEndpointConstant : ℝ≥0∞ :=
   highHeightTailConstant ^ 2 * (4 * fullHighPrefactorSeries) * 80
 
+/--
+@isnad1 id=lt.0h0v.s3.e97cfd4c21d0 from=translated src=- shape=f463f024 vocab=68ce7f33
+-/
 theorem fullHighEndpointConstant_lt_top : fullHighEndpointConstant < ∞ := by
   unfold fullHighEndpointConstant
   exact ENNReal.mul_lt_top
@@ -74,7 +92,9 @@ theorem fullHighEndpointConstant_lt_top : fullHighEndpointConstant < ∞ := by
       (ENNReal.mul_lt_top (by finiteness) fullHighPrefactorSeries_lt_top)) (by finiteness)
 
 /-- The actual high contribution, with the full-operator amplitude and
-cutoff choices, satisfies the paper's `L log L` level-set bound.-/
+cutoff choices, satisfies the paper's `L log L` level-set bound.
+@isnad1 id=le.4h4v.s7.3cba78d5a92b from=translated src=- shape=24efcb81 vocab=87e0b0c3
+-/
 theorem fullHighContribution_levelSet_le_orlicz
     {ι : Type*} [Countable ι] {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (z R : ι → ℝ) (hR : ∀ i, 0 < R i)

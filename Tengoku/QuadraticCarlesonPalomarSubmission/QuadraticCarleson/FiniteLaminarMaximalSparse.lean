@@ -29,7 +29,9 @@ def AverageSeparated (f : ℝ → ℂ) (R : Finset RealInterval) : Prop :=
     10 * intervalL1Average f I < intervalL1Average f J
 
 /-- An actual principal family, together with its covering and average
-separation invariants.  No sparse or stopping-tree existence is assumed.-/
+separation invariants.  No sparse or stopping-tree existence is assumed.
+@isnad1 id=ex.1h2v.s7.4e85e1b52589 from=translated src=- shape=c4adbec4 vocab=b1cdb089
+-/
 theorem exists_principal_family (S : Finset RealInterval) (f : ℝ → ℂ)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
       I.carrier ⊆ J.carrier ∨ J.carrier ⊆ I.carrier ∨ Disjoint I.carrier J.carrier) :
@@ -81,7 +83,9 @@ theorem exists_principal_family (S : Finset RealInterval) (f : ℝ → ℂ)
         exact (hS ⟨J, hJ⟩).elim
 
 /-- The constructed average separation implies the complete stopping-tree
-separation invariant, and hence actual sparse major subsets.-/
+separation invariant, and hence actual sparse major subsets.
+@isnad1 id=issparse.3h2v.s7.eb41a3f997cc from=translated src=- shape=40be0511 vocab=baecb456
+-/
 theorem isSparse_of_averageSeparated (R : Finset RealInterval) (f : ℝ → ℂ)
     (hf : Integrable f) (hsep : AverageSeparated f R)
     (hlam : Set.Pairwise (↑R : Set RealInterval) fun I J ↦
@@ -103,6 +107,9 @@ theorem isSparse_of_averageSeparated (R : Finset RealInterval) (f : ℝ → ℂ)
         (mem_badDescendants_iff.mpr ⟨hJ, hsub, Or.inl (hsep I hI J hJ hIJ hsub)⟩)))
     · exact Or.inl hdis
 
+/--
+@isnad1 id=eq.0h2v.s4.e7687497918a from=translated src=- shape=70e7c5ca vocab=afe6e3d4
+-/
 theorem localAverage_one_eq_intervalL1Average (f : ℝ → ℂ) (I : RealInterval) :
     localAverage 1 f I = intervalL1Average f I := by
   simp [localAverage, intervalL1Average]
@@ -116,6 +123,9 @@ def finiteLaminarMaximal (S : Finset RealInterval) (f : ℝ → ℂ) (x : ℝ) :
 def sparseAveragingFunction (R : Finset RealInterval) (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ∑ I ∈ R, I.carrier.indicator (fun _ ↦ ENNReal.ofReal (localAverage 1 f I)) x
 
+/--
+@isnad1 id=le.1h4v.s6.25559f2a082d from=translated src=- shape=7429cc71 vocab=d6792c02
+-/
 theorem finiteLaminarMaximal_le_of_cover
     (S R : Finset RealInterval) (f : ℝ → ℂ)
     (hcover : ∀ J ∈ S, ∃ I ∈ R, J.carrier ⊆ I.carrier ∧
@@ -142,7 +152,9 @@ theorem finiteLaminarMaximal_le_of_cover
         ENNReal.ofReal_le_ofReal havg
     _ ≤ _ := mul_le_mul' le_rfl hpoint
 
-/-- Pointwise sparse domination with universal constant ten.-/
+/-- Pointwise sparse domination with universal constant ten.
+@isnad1 id=ex.2h2v.s7.663d0e09a7e4 from=translated src=- shape=bef77f64 vocab=79a25658
+-/
 theorem exists_sparse_pointwise_domination (S : Finset RealInterval) (f : ℝ → ℂ)
     (hf : Integrable f)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -154,7 +166,9 @@ theorem exists_sparse_pointwise_domination (S : Finset RealInterval) (f : ℝ �
     finiteLaminarMaximal_le_of_cover S R f hcover⟩
 
 /-- Integrating the positive sparse averaging function gives exactly the
-project's `(1,1)` sparse form.-/
+project's `(1,1)` sparse form.
+@isnad1 id=eq.1h3v.s7.41169e62feb4 from=translated src=- shape=44583acb vocab=4a2ce5fd
+-/
 theorem lintegral_sparseAveragingFunction_mul_enorm
     (R : Finset RealInterval) (f g : ℝ → ℂ) (hg : Integrable g) :
     (∫⁻ x, sparseAveragingFunction R f x * ‖g x‖ₑ) =
@@ -196,7 +210,9 @@ theorem lintegral_sparseAveragingFunction_mul_enorm
         (I.length * localAverage 1 f I * localAverage 1 g I)).symm
 
 /-- Sparse domination of the finite laminar maximal pairing, with a universal
-constant ten and the actual constructed subfamily.-/
+constant ten and the actual constructed subfamily.
+@isnad1 id=ex.1h3v.s8.4f742ff68cc9 from=translated src=- shape=db929cfb vocab=509fcec6
+-/
 theorem exists_sparse_domination_finiteLaminarMaximal
     (S : Finset RealInterval) (f g : L0Infinity)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

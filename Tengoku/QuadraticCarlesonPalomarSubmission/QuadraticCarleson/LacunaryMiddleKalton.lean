@@ -37,6 +37,9 @@ noncomputable def lacunaryFrozenMainOutput
     (f : ℝ → ℂ) (B : ℕ → ℕ) (c : ℕ) (x : ℝ) : ℝ≥0∞ :=
   ∑' k : ℕ, ⨆ τ : ℤ, frozenBlockMaxEnorm lacunaryAmplitude f k (B k) c τ x
 
+/--
+@isnad1 id=measurab.1h3v.s4.22c3a07fd97d from=translated src=- shape=430a9e58 vocab=8eab154a
+-/
 theorem measurable_lacunaryFrozenMainOutput
     {f : ℝ → ℂ} (hf : Measurable f) (B : ℕ → ℕ) (c : ℕ) :
     Measurable (lacunaryFrozenMainOutput f B c) :=
@@ -52,7 +55,9 @@ def HasIndividualFrozenBlockWeakBounds
     (W k τ) (frozenBlockMaxEnorm lacunaryAmplitude f k (B k) c τ)
 
 /-- All countable assembly is now applied to the genuine frozen outputs.
-There is no summability, boundedness, or assembly-identity hypothesis.-/
+There is no summability, boundedness, or assembly-identity hypothesis.
+@isnad1 id=le.3h5v.s7.5c8d10cbf665 from=translated src=- shape=64f89515 vocab=bae69ea2
+-/
 theorem lacunaryFrozenMainOutput_compl_levelSet_mul_le
     {f : ℝ → ℂ} (hf : Measurable f) {B : ℕ → ℕ} {c : ℕ} {W : ℕ → ℤ → ℝ}
     (hblock : HasIndividualFrozenBlockWeakBounds f B c W)
@@ -72,6 +77,9 @@ theorem lacunaryFrozenMainOutput_compl_levelSet_mul_le
     (measurable_lacunaryFrozenMainOutput hf B c))] at h
   exact h
 
+/--
+@isnad1 id=le.2h4v.s6.c2679b646a41 from=translated src=- shape=421a2eee vocab=190208cc
+-/
 theorem lacunaryFrozenMainOutput_compl_levelSet_one_le
     {f : ℝ → ℂ} (hf : Measurable f) {B : ℕ → ℕ} {c : ℕ} {W : ℕ → ℤ → ℝ}
     (hblock : HasIndividualFrozenBlockWeakBounds f B c W) :
@@ -82,7 +90,9 @@ theorem lacunaryFrozenMainOutput_compl_levelSet_one_le
     lacunaryFrozenMainOutput_compl_levelSet_mul_le hf hblock (by norm_num : (0 : ℝ) < 1)
 
 /-- The global normalized bound includes the canonical stopping set with
-its proved L¹ cost.-/
+its proved L¹ cost.
+@isnad1 id=le.3h4v.s7.0905d6c2ee4f from=translated src=- shape=ba09e83a vocab=1119abbe
+-/
 theorem lacunaryFrozenMainOutput_levelSet_one_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {W : ℕ → ℤ → ℝ}
@@ -101,7 +111,9 @@ theorem lacunaryFrozenMainOutput_levelSet_one_le
       (lacunaryFrozenMainOutput_compl_levelSet_one_le hf hblock))
 
 /-- With a finite weighted budget, finiteness of the genuine level sum on
-the exceptional-set complement is a conclusion of Kalton.-/
+the exceptional-set complement is a conclusion of Kalton.
+@isnad1 id=eventual.3h4v.s6.5fd965b8d8bf from=translated src=- shape=3af83cd8 vocab=fbaef96e
+-/
 theorem ae_lacunaryFrozenMainOutput_lt_top_compl
     {f : ℝ → ℂ} (hf : Measurable f) {B : ℕ → ℕ} {c : ℕ} {W : ℕ → ℤ → ℝ}
     (hblock : HasIndividualFrozenBlockWeakBounds f B c W)
@@ -130,6 +142,9 @@ noncomputable def frozenBlockLogWeakConstant
   (C * paperLog 1 (B k : ℝ) ^ 2) *
     ∫ x, ‖frozenBlockInput lacunaryAmplitude f k (B k) c τ x‖
 
+/--
+@isnad1 id=eq.3h6v.s7.eed08cc8b6e7 from=translated src=- shape=ede4d097 vocab=bfb79cfd
+-/
 theorem ofReal_frozenBlockLogWeakConstant
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (B : ℕ → ℕ) (c : ℕ) {C : ℝ} (hC : 0 ≤ C) (k : ℕ) (τ : ℤ) :
@@ -141,6 +156,9 @@ theorem ofReal_frozenBlockLogWeakConstant
       (integrable_frozenBlockInput hf hfi (lacunaryAmplitude_pos k).le (B k) c τ)]
   rfl
 
+/--
+@isnad1 id=hasindiv.3h4v.s6.c41c87b26e5f from=translated src=- shape=07e0c905 vocab=83c37832
+-/
 theorem individualFrozenBlockWeakBounds_of_logSquared
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {C : ℝ}
@@ -160,6 +178,9 @@ noncomputable def frozenLogSquaredMassBudget
     (paperLog 1 ((k : ℝ) + 2) * paperLog 1 (B k : ℝ) ^ 2) *
       ∑' τ : ℤ, frozenBlockInputL1Mass lacunaryAmplitude f k (B k) c τ
 
+/--
+@isnad1 id=eq.3h4v.s6.21c0ec6f4daa from=translated src=- shape=656d2efa vocab=7669777a
+-/
 theorem paperBlockBudget_frozenBlockLogWeakConstant
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (B : ℕ → ℕ) (c : ℕ) {C : ℝ} (hC : 0 ≤ C) :
@@ -176,7 +197,9 @@ theorem paperBlockBudget_frozenBlockLogWeakConstant
   ring
 
 /-- The paper's concrete frozen-block Kalton budget inequality, conditional
-only on the explicitly stated individual finite-block weak estimate.-/
+only on the explicitly stated individual finite-block weak estimate.
+@isnad1 id=le.4h5v.s7.90cfe7900c3c from=translated src=- shape=60c22358 vocab=ee0814d5
+-/
 theorem lacunaryFrozenMainOutput_compl_levelSet_mul_le_logSquaredMass
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {C : ℝ}
@@ -191,6 +214,9 @@ theorem lacunaryFrozenMainOutput_compl_levelSet_mul_le_logSquaredMass
   rw [paperBlockBudget_frozenBlockLogWeakConstant hf hfi B c hblock.1] at h
   simpa only [mul_assoc] using h
 
+/--
+@isnad1 id=le.3h4v.s7.68ccb0e86258 from=translated src=- shape=332ba4d9 vocab=ee0814d5
+-/
 theorem lacunaryFrozenMainOutput_compl_levelSet_one_le_logSquaredMass
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {C : ℝ}
@@ -202,6 +228,9 @@ theorem lacunaryFrozenMainOutput_compl_levelSet_one_le_logSquaredMass
     lacunaryFrozenMainOutput_compl_levelSet_mul_le_logSquaredMass hf hfi hblock
       (by norm_num : (0 : ℝ) < 1)
 
+/--
+@isnad1 id=le.3h4v.s7.c031a3489ab2 from=translated src=- shape=dc74b4ad vocab=1419ffe0
+-/
 theorem lacunaryFrozenMainOutput_levelSet_one_le_logSquaredMass
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} {c : ℕ} {C : ℝ}

@@ -34,7 +34,9 @@ set_option autoImplicit false
 
 /-- A source-normalized same-scale correlation estimate for a smooth
 positive-annular amplitude.  The constant `P` controls the product amplitude
-and `P/R` controls its derivative.-/
+and `P/R` controls its derivative.
+@isnad1 id=le.7h6v.s8.29b0b2c5e457 from=translated src=- shape=4db9a5cf vocab=edd18dfd
+-/
 theorem krauseLacey_sameScaleCorrelation_le
     {R P : ℝ} (hR : 0 < R) (hP : 0 ≤ P)
     {p p' : ℝ → ℂ} (hp : ∀ t, HasDerivAt p (p' t) t) (hp' : Continuous p')
@@ -138,7 +140,9 @@ theorem krauseLacey_sameScaleCorrelation_le
 positive-half dyadic amplitude.  Here `R = 2^(j-1)` is the proved outer
 support radius.  The explicit cutoff constant is finite and was constructed
 from cutoff smoothness and compact support in
-`QuadraticFixedHeightAveragingAmplitude`.-/
+`QuadraticFixedHeightAveragingAmplitude`.
+@isnad1 id=other.0h3v.s8.6db878ae050f from=translated src=- shape=5a1311a6 vocab=5b74f12c
+-/
 theorem krauseLacey_positiveDyadicCorrelation_le (j : ℤ) (x y : ℝ) :
     let R := (2 : ℝ) ^ (j - 1)
     ‖∫ t, annularQuadraticKernel (positiveDyadicAmplitude j) 1 (x - t) *
@@ -220,7 +224,9 @@ theorem krauseLacey_positiveDyadicCorrelation_le (j : ℤ) (x y : ℝ) :
 /-- Adapter from the sharp two-region KL18 correlation estimate to the
 project's integrable quadratic majorant.  Its small parameter is the exact
 relative diagonal width `u = 1/(2R)`, so the resulting `TT*` mass is
-`O(D²/R)`, as in the source's `2^(-k)` estimate.-/
+`O(D²/R)`, as in the source's `2^(-k)` estimate.
+@isnad1 id=other.0h3v.s7.4da88438a779 from=translated src=- shape=3773456f vocab=1b9c89a4
+-/
 theorem krauseLacey_positiveDyadicCorrelation_le_projectMajorant
     (j : ℤ) (x y : ℝ) :
     let R := (2 : ℝ) ^ (j - 1)
@@ -268,7 +274,9 @@ theorem krauseLacey_positiveDyadicCorrelation_le_projectMajorant
 /-- The first `L²` consequence of KL18 (2.4): a concrete degree-two
 positive-half dyadic convolution has squared `L²` norm `O(R⁻¹)`, hence
 operator norm `O(R⁻¹/²)`.  This is the oscillatory endpoint used in the
-interpolation step of Proposition 4.1.-/
+interpolation step of Proposition 4.1.
+@isnad1 id=other.1h2v.s8.23bc15874775 from=translated src=- shape=ba222f2f vocab=259dadf8
+-/
 theorem krauseLacey_positiveDyadicConvolution_sq_lintegral_le
     (j : ℤ) {f : ℝ → ℂ} (hf : MemLp f 2) :
     let R := (2 : ℝ) ^ (j - 1)
@@ -325,7 +333,9 @@ theorem krauseLacey_positiveDyadicConvolution_sq_lintegral_le
         field_simp]
 
 /-- Exact adapter between KL18's convolution orientation in display (3.2)
-and the project's convolution orientation used by the `TT*` theorem.-/
+and the project's convolution orientation used by the `TT*` theorem.
+@isnad1 id=eq.0h4v.s6.873a87f1f3cd from=translated src=- shape=76ccef27 vocab=d7df121b
+-/
 theorem krauseLaceyLocalizedPiece_eq_positiveDyadicConvolution
     (j : ℤ) (I : RealInterval) (f : ℝ → ℂ) (x : ℝ) :
     krauseLaceyLocalizedPiece 1 j I f x =
@@ -359,7 +369,9 @@ noncomputable def krauseLaceyFixedScaleInput
   ∑ I ∈ S, I.centralThird.indicator f x
 
 /-- At a fixed scale, the sum of KL18 localized pieces is exactly one genuine
-dyadic convolution applied to the sum of central-third restrictions.-/
+dyadic convolution applied to the sum of central-third restrictions.
+@isnad1 id=eq.1h4v.s7.6f58b4481938 from=translated src=- shape=2ffe5303 vocab=2bc9e5f7
+-/
 theorem krauseLaceyFixedScaleLocalizedSum_eq_convolution
     (j : ℤ) (S : Finset RealInterval) {f : ℝ → ℂ} (hf : MemLp f 2)
     (x : ℝ) :
@@ -398,6 +410,9 @@ theorem krauseLaceyFixedScaleLocalizedSum_eq_convolution
       simp only [krauseLaceyFixedScaleInput, Finset.mul_sum]
     _ = _ := rfl
 
+/--
+@isnad1 id=memlp.1h2v.s7.47950cf04fd9 from=translated src=- shape=f4101a43 vocab=97e801ed
+-/
 theorem memLp_krauseLaceyFixedScaleInput
     (S : Finset RealInterval) {f : ℝ → ℂ} (hf : MemLp f 2) :
     MemLp (krauseLaceyFixedScaleInput S f) 2 := by
@@ -418,7 +433,9 @@ theorem memLp_krauseLaceyFixedScaleInput
       exact (MeasureTheory.MemLp.indicator I.measurableSet_centralThird hf).add ih
 
 /-- Disjoint central thirds prevent any multiplicity loss in the fixed-scale
-input assembled from the shifted dyadic grid.-/
+input assembled from the shifted dyadic grid.
+@isnad1 id=le.1h3v.s6.5a20762403cc from=translated src=- shape=e7b0e7ba vocab=210e2e96
+-/
 theorem norm_krauseLaceyFixedScaleInput_le
     (S : Finset RealInterval) (f : ℝ → ℂ)
     (hdisj : Set.Pairwise (↑S : Set RealInterval)
@@ -453,7 +470,9 @@ theorem norm_krauseLaceyFixedScaleInput_le
 
 /-- Fixed-scale finite-collection form of the KL18 oscillatory `L²` input.
 It is an unconditional consequence of (2.4); no maximal or sparse estimate is
-assumed.-/
+assumed.
+@isnad1 id=other.1h3v.s8.766ebe8377dc from=translated src=- shape=bda613f1 vocab=9bd67e9e
+-/
 theorem krauseLaceyFixedScaleLocalizedSum_sq_lintegral_le
     (j : ℤ) (S : Finset RealInterval) {f : ℝ → ℂ} (hf : MemLp f 2) :
     let R := (2 : ℝ) ^ (j - 1)
@@ -468,7 +487,9 @@ theorem krauseLaceyFixedScaleLocalizedSum_sq_lintegral_le
 
 /-- The fixed-scale oscillatory `L²` estimate in the form used in KL18
 Proposition 4.1: a pairwise-disjoint grid collection costs no multiplicity
-factor.-/
+factor.
+@isnad1 id=other.2h3v.s8.40fb72602aec from=translated src=- shape=e49f4533 vocab=e048bb73
+-/
 theorem krauseLaceyFixedScaleLocalizedSum_sq_lintegral_le_of_disjoint
     (j : ℤ) (S : Finset RealInterval) {f : ℝ → ℂ} (hf : MemLp f 2)
     (hdisj : Set.Pairwise (↑S : Set RealInterval)
@@ -490,7 +511,9 @@ theorem krauseLaceyFixedScaleLocalizedSum_sq_lintegral_le_of_disjoint
 
 /-- The localized operator in KL18 display (3.2) inherits the concrete
 fixed-scale squared-`L²` decay.  The right side retains the exact central-third
-restriction, ready for the disjoint-grid summation in Proposition 4.1.-/
+restriction, ready for the disjoint-grid summation in Proposition 4.1.
+@isnad1 id=other.1h3v.s8.5d867a9513f7 from=translated src=- shape=b50d3497 vocab=4f168eee
+-/
 theorem krauseLaceyLocalizedPiece_sq_lintegral_le
     (j : ℤ) (I : RealInterval) {f : ℝ → ℂ} (hf : MemLp f 2) :
     let R := (2 : ℝ) ^ (j - 1)

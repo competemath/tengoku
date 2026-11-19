@@ -37,6 +37,9 @@ noncomputable def interpolationHigh (f : α → E) (a : ℝ) (x : α) : E :=
 noncomputable def interpolationLow (f : α → E) (a : ℝ) (x : α) : E :=
   if ‖f x‖ ≤ a then f x else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.da5c44d8f923 from=translated src=- shape=3952886c vocab=79c21850
+-/
 lemma interpolationHigh_add_low (f : α → E) (a : ℝ) :
     interpolationHigh f a + interpolationLow f a = f := by
   funext x
@@ -44,17 +47,26 @@ lemma interpolationHigh_add_low (f : α → E) (a : ℝ) :
   · simp [interpolationHigh, interpolationLow, hx, not_le.mpr hx]
   · simp [interpolationHigh, interpolationLow, hx, le_of_not_gt hx]
 
+/--
+@isnad1 id=le.1h5v.s5.f5e5765af3e9 from=translated src=- shape=de3c0fc0 vocab=f0bcb863
+-/
 lemma norm_interpolationLow_le (f : α → E) {a : ℝ} (ha : 0 ≤ a) (x : α) :
     ‖interpolationLow f a x‖ ≤ a := by
   by_cases hx : ‖f x‖ ≤ a
   · simpa [interpolationLow, hx]
   · simp [interpolationLow, hx, ha]
 
+/--
+@isnad1 id=eq.0h5v.s6.64dd96c32a5e from=translated src=- shape=7b15b5ce vocab=8c6c14a8
+-/
 lemma enorm_interpolationHigh (f : α → E) (a : ℝ) (x : α) :
     ‖interpolationHigh f a x‖ₑ =
       if a < ‖f x‖ then ‖f x‖ₑ else 0 := by
   by_cases hx : a < ‖f x‖ <;> simp [interpolationHigh, hx]
 
+/--
+@isnad1 id=strongly.1h4v.s6.2131553ab728 from=translated src=- shape=e3811027 vocab=02265c44
+-/
 lemma stronglyMeasurable_interpolationHigh
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
     {f : α → E} (hf : StronglyMeasurable f) (a : ℝ) :
@@ -75,7 +87,9 @@ variable {α E : Type*} [MeasurableSpace α] [NormedAddCommGroup E]
 /-- The distributional estimate at the heart of the `L²`--`L∞`
 Marcinkiewicz interpolation argument.  No interpolation result is assumed:
 the proof is the source truncation, the `L∞` endpoint on the low part, and
-Chebyshev applied to the high part.-/
+Chebyshev applied to the high part.
+@isnad1 id=le.7h8v.s9.34a043e0415a from=translated src=- shape=9f1e450d vocab=a0dcb8a7
+-/
 theorem measure_norm_operator_gt_le_twoInfinity_tail
     (T : (α → E) → (α → E))
     (hadd : ∀ g h, T (g + h) = T g + T h)
@@ -141,7 +155,9 @@ variable {α E : Type*} [MeasurableSpace α] [NormedAddCommGroup E]
 
 /-- Exact evaluation of the integrated high-tail term in the special
 `L²`--`L∞` interpolation argument.  The proof applies layer cake to the
-measure having density `‖f‖²`; this is the Tonelli step in the usual proof.-/
+measure having density `‖f‖²`; this is the Tonelli step in the usual proof.
+@isnad1 id=eq.3h6v.s8.cfa12ea35aec from=translated src=- shape=eca9c183 vocab=1a67532b
+-/
 theorem twoInfinity_high_tail_layercake
     (f : α → E) (hf : StronglyMeasurable f)
     {q MTop : ℝ} (hq : 2 < q) (hMTop : 0 < MTop) :
@@ -242,7 +258,9 @@ private lemma twoInfinity_weight_identity {q t : ℝ} (ht : 0 < t) :
 /-- Marcinkiewicz interpolation between strong `L²` and pointwise `L∞`,
 specialized to the finite exponents `q > 2`.  The conclusion is stated for
 the `q`-th power integral, with the explicit constant produced by the direct
-layer-cake proof.-/
+layer-cake proof.
+@isnad1 id=le.7h8v.s9.e65ed9e82ec3 from=translated src=- shape=480efaf0 vocab=8dcf9054
+-/
 theorem lintegral_norm_rpow_operator_le_twoInfinity
     (T : (α → E) → (α → E))
     (hadd : ∀ g h, T (g + h) = T g + T h)

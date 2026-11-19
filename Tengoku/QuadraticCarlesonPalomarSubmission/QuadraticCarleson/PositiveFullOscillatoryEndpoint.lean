@@ -22,17 +22,26 @@ open PositiveEndpointOptimization PositiveLevelIntegration
 open PositiveHighHeightEstimate PositiveLowFullEstimate OscillatoryReduction
 open PositiveStoppingBadEstimate PositiveGoodOscillatory
 
+/--
+@isnad1 id=eq.0h1v.s5.8b73c53a921f from=translated src=- shape=da93758f vocab=e127b2a2
+-/
 theorem stoppingGoodPart_add_stoppingBadPart (f : ℝ → ℂ) :
     stoppingGoodPart f + stoppingBadPart f = f := by
   funext x
   simp [Pi.add_apply, stoppingBadPart]
 
+/--
+@isnad1 id=integrab.2h1v.s6.39e55791b520 from=translated src=- shape=3ee3b192 vocab=9d6bc711
+-/
 theorem integrable_stoppingGoodPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) : Integrable (stoppingGoodPart f) := by
   convert hfi.sub (integrable_stoppingBadPart hf hfi) using 1
   funext x
   simp [Pi.sub_apply, stoppingBadPart]
 
+/--
+@isnad1 id=le.2h3v.s7.6cc57ca3b4f8 from=translated src=- shape=b4e69a8c vocab=c2dc1754
+-/
 theorem paperOscillatoryMaximal_add_le {f g : ℝ → ℂ}
     (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     paperOscillatoryMaximal (f+g) x ≤ paperOscillatoryMaximal f x +
@@ -45,6 +54,9 @@ theorem paperOscillatoryMaximal_add_le {f g : ℝ → ℂ}
     (le_iSup (fun μ : {μ : ℝ // μ ≠ 0} ↦ ‖paperOscillatoryAction μ.1 μ.2 f x‖ₑ) lam)
     (le_iSup (fun μ : {μ : ℝ // μ ≠ 0} ↦ ‖paperOscillatoryAction μ.1 μ.2 g x‖ₑ) lam)
 
+/--
+@isnad1 id=le.2h2v.s6.1cbecb67dfc5 from=translated src=- shape=19646c72 vocab=a33c9ede
+-/
 theorem paperOscillatoryMaximal_le_good_add_bad {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     paperOscillatoryMaximal f x ≤ paperOscillatoryMaximal (stoppingGoodPart f) x +
@@ -56,7 +68,9 @@ theorem paperOscillatoryMaximal_le_good_add_bad {f : ℝ → ℂ}
       (integrable_stoppingBadPart hf hfi) x
 
 /-- An outer-measure rule which only requires the two majorants to be
-measurable; the operator itself may be an uncountable supremum.-/
+measurable; the operator itself may be an uncountable supremum.
+@isnad1 id=le.3h4v.s7.e833e6c12490 from=translated src=- shape=cd8d4988 vocab=438dc3cc
+-/
 theorem outerLevelSet_le_of_exceptional_majorants {F L H : ℝ → ℝ≥0∞}
     (E : Set ℝ) (hL : Measurable L) (hH : Measurable H)
     (hp : ∀ x, x ∉ E → F x ≤ L x + H x) :
@@ -84,12 +98,18 @@ theorem outerLevelSet_le_of_exceptional_majorants {F L H : ℝ → ℝ≥0∞}
 noncomputable def stoppingBadHalfConstant : ℝ≥0∞ :=
   5 + 4 * fullLowEndpointConstant + 16 * fullHighEndpointConstant
 
+/--
+@isnad1 id=lt.0h0v.s3.21823478c305 from=translated src=- shape=f463f024 vocab=bf5d91af
+-/
 theorem stoppingBadHalfConstant_lt_top : stoppingBadHalfConstant < ∞ := by
   unfold stoppingBadHalfConstant
   exact ENNReal.add_lt_top.mpr ⟨ENNReal.add_lt_top.mpr ⟨by finiteness,
     ENNReal.mul_lt_top (by finiteness) fullLowEndpointConstant_lt_top⟩,
     ENNReal.mul_lt_top (by finiteness) fullHighEndpointConstant_lt_top⟩
 
+/--
+@isnad1 id=le.2h1v.s7.856347be649f from=translated src=- shape=6cdd15ff vocab=1f282684
+-/
 theorem stoppingBadPart_half_levelSet_le_orlicz {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) :
     volume {x | (1/2 : ℝ≥0∞) < paperOscillatoryMaximal (stoppingBadPart f) x} ≤
@@ -144,6 +164,9 @@ theorem stoppingBadPart_half_levelSet_le_orlicz {f : ℝ → ℂ}
   unfold stoppingBadHalfConstant
   ring
 
+/--
+@isnad1 id=le.1h1v.s7.b21f8bf897db from=translated src=- shape=39a0b0c3 vocab=f01e67ce
+-/
 theorem stoppingGoodPart_half_levelSet_le_orlicz {f : ℝ → ℂ}
     (hfi : Integrable f) :
     volume {x | (1/2 : ℝ≥0∞) < paperOscillatoryMaximal (stoppingGoodPart f) x} ≤
@@ -166,13 +189,18 @@ theorem stoppingGoodPart_half_levelSet_le_orlicz {f : ℝ → ℂ}
 noncomputable def fullOscillatoryEndpointConstant : ℝ≥0∞ :=
   4 * stoppingGoodOscillatoryConstant + stoppingBadHalfConstant
 
+/--
+@isnad1 id=lt.0h0v.s3.2fa2317c2cc2 from=translated src=- shape=f463f024 vocab=0774caa6
+-/
 theorem fullOscillatoryEndpointConstant_lt_top : fullOscillatoryEndpointConstant < ∞ :=
   ENNReal.add_lt_top.mpr ⟨ENNReal.mul_lt_top (by finiteness)
     stoppingGoodOscillatoryConstant_lt_top, stoppingBadHalfConstant_lt_top⟩
 
 /-- The actual all-height, full-real oscillatory maximal operator satisfies
 the normalized `L log₁ L` endpoint estimate for every measurable integrable
-input. All decomposition and analytic estimates are proved, not supplied.-/
+input. All decomposition and analytic estimates are proved, not supplied.
+@isnad1 id=le.2h1v.s7.ee55513d805e from=translated src=- shape=7196ad56 vocab=c832b9d8
+-/
 theorem paperOscillatoryMaximal_levelSet_le_orlicz {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) :
     volume {x | 1 < paperOscillatoryMaximal f x} ≤ fullOscillatoryEndpointConstant *
@@ -195,6 +223,9 @@ theorem paperOscillatoryMaximal_levelSet_le_orlicz {f : ℝ → ℂ}
   unfold fullOscillatoryEndpointConstant
   ring
 
+/--
+@isnad1 id=le.0h1v.s6.9021a62a920a from=translated src=- shape=e509f0b7 vocab=c17138e3
+-/
 theorem paperOscillatoryMaximal_L0Infinity_levelSet_le_orlicz (f : L0Infinity) :
     volume {x | 1 < paperOscillatoryMaximal f x} ≤ fullOscillatoryEndpointConstant *
       ∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 1 ‖f x‖) :=

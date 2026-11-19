@@ -47,7 +47,9 @@ def HasUniformFiniteRadiusQuadraticSparseBound (A : ℝ) : Prop :=
           A * holderConjugate p
 
 /-- The uniform individual Krause--Lacey estimate supplies exactly the
-finite-family hypothesis for every paper modulation block.-/
+finite-family hypothesis for every paper modulation block.
+@isnad1 id=finitesp.1h4v.s5.ee097a28e8f4 from=translated src=- shape=7d7c92ca vocab=267da548
+-/
 theorem finiteRadiusQuadraticHilbertBlockFamily_sparseHypothesis
     {A : ℝ} (hA : HasUniformFiniteRadiusQuadraticSparseBound A)
     (B : ℕ) (τ : ℤ)
@@ -65,7 +67,9 @@ theorem finiteRadiusQuadraticHilbertBlockFamily_sparseHypothesis
       (dyadicModulation_pos (modulationBlockIndex B τ j)).ne' s).2 p hp hp2
 
 /-- The family cardinality in the abstract sparse lemma is literally the
-paper's block length `B`.-/
+paper's block length `B`.
+@isnad1 id=eq.0h2v.s3.d7d69b6ab976 from=translated src=- shape=ba82d358 vocab=73c3ca05
+-/
 theorem finiteRadiusQuadraticHilbertBlockFamily_cardinality
     (B : ℕ) (τ : ℤ) : (Q B τ).card = B :=
   card_Q B τ

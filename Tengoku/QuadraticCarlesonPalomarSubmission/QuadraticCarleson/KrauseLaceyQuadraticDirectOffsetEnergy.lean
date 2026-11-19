@@ -25,7 +25,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- Applying the localized piece after restricting its input to the same
-central third does not change the output.-/
+central third does not change the output.
+@isnad1 id=eq.0h3v.s5.111be981e912 from=translated src=- shape=abadb733 vocab=f9c82936
+-/
 theorem krauseLaceyLocalizedPiece_indicator_centralThird
     (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) :
     krauseLaceyLocalizedPiece 1 k I (I.centralThird.indicator b) =
@@ -38,7 +40,9 @@ theorem krauseLaceyLocalizedPiece_indicator_centralThird
   simp only [Set.indicator_indicator, Set.inter_self]
 
 /-- Consequently the genuine squared energy is unchanged by repeating the
-central-third restriction.-/
+central-third restriction.
+@isnad1 id=eq.0h3v.s4.2517ceea708f from=translated src=- shape=e0e6ed32 vocab=7c714e87
+-/
 theorem localizedEnergy_indicator_centralThird
     (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) :
     localizedEnergy k I (I.centralThird.indicator b) = localizedEnergy k I b := by
@@ -47,7 +51,9 @@ theorem localizedEnergy_indicator_centralThird
 
 /-- The actual interval-dependent fixed-offset input has the exact
 `2^{-s}` one-piece energy gain.  This is the per-output input to the smooth
-annular square-function argument.-/
+annular square-function argument.
+@isnad1 id=le.7h6v.s8.b99243eef0d6 from=translated src=- shape=fa01520b vocab=8666e9de
+-/
 theorem localizedEnergy_offsetGroupedInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

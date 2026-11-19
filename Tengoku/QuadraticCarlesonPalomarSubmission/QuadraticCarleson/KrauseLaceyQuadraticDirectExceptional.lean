@@ -43,12 +43,18 @@ def directRegularIntervals (S : Finset RealInterval) (g : ℝ → ℂ)
   classical
   exact S \ directExceptionalIntervals S g p Λ
 
+/--
+@isnad1 id=iff.0h5v.s6.bfc956ed0e06 from=translated src=- shape=7be43e48 vocab=900d9a91
+-/
 theorem mem_directExceptionalIntervals_iff
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ} {I : RealInterval} :
     I ∈ directExceptionalIntervals S g p Λ ↔
       I ∈ S ∧ Λ * I.length < ∫ x in I.carrier, ‖g x‖ ^ p := by
   simp [directExceptionalIntervals]
 
+/--
+@isnad1 id=iff.0h5v.s6.579613810af1 from=translated src=- shape=4f1a9ded vocab=2fc0fcf3
+-/
 theorem mem_directMaximalExceptionalIntervals_iff
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ} {I : RealInterval} :
     I ∈ directMaximalExceptionalIntervals S g p Λ ↔
@@ -57,6 +63,9 @@ theorem mem_directMaximalExceptionalIntervals_iff
   classical
   simp [directMaximalExceptionalIntervals]
 
+/--
+@isnad1 id=iff.0h5v.s6.d092eba80f6e from=translated src=- shape=65a2771a vocab=9af64e84
+-/
 theorem mem_directRegularIntervals_iff
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ} {I : RealInterval} :
     I ∈ directRegularIntervals S g p Λ ↔ I ∈ S ∧
@@ -72,7 +81,9 @@ theorem mem_directRegularIntervals_iff
     exact ⟨hI, fun hE ↦ not_lt.mpr hmass hE.2⟩
 
 /-- The threshold split is an exact disjoint partition of the selected
-interval indices.-/
+interval indices.
+@isnad1 id=eq.0h4v.s4.10c776eca0dc from=translated src=- shape=19e97ace vocab=a7b13780
+-/
 theorem directRegular_union_exceptional
     (S : Finset RealInterval) (g : ℝ → ℂ) (p Λ : ℝ) :
     directRegularIntervals S g p Λ ∪ directExceptionalIntervals S g p Λ = S := by
@@ -87,6 +98,9 @@ theorem directRegular_union_exceptional
           (S ∩ directExceptionalIntervals S g p Λ) := by rw [hinter]
     _ = S := Finset.sdiff_union_inter S (directExceptionalIntervals S g p Λ)
 
+/--
+@isnad1 id=le.0h4v.s4.d5569b0e2647 from=translated src=- shape=26a1461f vocab=aa8e48eb
+-/
 theorem directMaximalExceptionalIntervals_subset
     (S : Finset RealInterval) (g : ℝ → ℂ) (p Λ : ℝ) :
     directMaximalExceptionalIntervals S g p Λ ⊆ S := by
@@ -107,7 +121,9 @@ private theorem direct_interval_eq_of_subset_of_length_le {I J : RealInterval}
   cases J
   simp_all
 
-/-- Every exceptional selected interval lies in a maximal exceptional one.-/
+/-- Every exceptional selected interval lies in a maximal exceptional one.
+@isnad1 id=ex.1h5v.s5.8ca9f52e41d5 from=translated src=- shape=e996526e vocab=2fc0fcf3
+-/
 theorem directExceptional_subset_maximal
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ} {I : RealInterval}
     (hI : I ∈ directExceptionalIntervals S g p Λ) :
@@ -123,7 +139,9 @@ theorem directExceptional_subset_maximal
     (hmax K (Finset.mem_filter.mpr ⟨hK, hJ'.2.trans hJK⟩))).symm
 
 /-- Maximal exceptional intervals are spatially disjoint in a laminar
-selected family.-/
+selected family.
+@isnad1 id=pairwise.1h4v.s7.5374b465344a from=translated src=- shape=8f22e24e vocab=a7610162
+-/
 theorem directMaximalExceptionalIntervals_pairwiseDisjoint
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -193,7 +211,9 @@ private theorem sum_integral_rpow_on_disjoint_le
     _ = ∫ x in I₀.carrier, ‖g x‖ ^ p := by
       rw [integral_indicator I₀.measurableSet_carrier]
 
-/-- The maximal exceptional intervals pack by the global `p`-mass.-/
+/-- The maximal exceptional intervals pack by the global `p`-mass.
+@isnad1 id=le.5h6v.s7.bcf59d546565 from=translated src=- shape=5a6ceac1 vocab=d7fe6561
+-/
 theorem directMaximalExceptionalIntervals_length_le
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ V : ℝ} {I₀ : RealInterval}
     (hΛ : 0 < Λ) (hgp : Integrable (fun x ↦ ‖g x‖ ^ p))
@@ -223,7 +243,9 @@ theorem directMaximalExceptionalIntervals_length_le
 /-- Abstract direct pairing closure.  `P A` is the pairing contribution of a
 subcollection `A`; its structural estimate is supplied separately by the
 future direct `U_s` construction.  The theorem records exactly the final
-low/high threshold arithmetic, with no reference to the older split.-/
+low/high threshold arithmetic, with no reference to the older split.
+@isnad1 id=le.7h11v.s8.5287b2b2edcc from=translated src=- shape=946d7374 vocab=c6e23864
+-/
 theorem directQuadratic_pairing_threshold_closure
     {ι : Type*} (P : Finset ι → ℝ) (S L E : Finset ι)
     {C p delta A Λ V : ℝ} (hC : 0 ≤ C) (hV : 0 ≤ V)
@@ -244,7 +266,9 @@ theorem directQuadratic_pairing_threshold_closure
       ring
 
 /-- The preceding closure at the exact direct choices
-`δ=2^{-s/2}`, `A=δ^{-2}`, `Λ=δ^{-(p-1)}`.-/
+`δ=2^{-s/2}`, `A=δ^{-2}`, `Λ=δ^{-(p-1)}`.
+@isnad1 id=le.5h9v.s8.0e455793113d from=translated src=- shape=dfacad18 vocab=5880feb9
+-/
 theorem directQuadratic_pairing_threshold_closure_at_scale
     {ι : Type*} (P : Finset ι → ℝ) (S L E : Finset ι)
     {C p V : ℝ} (s : ℕ) (hC : 0 ≤ C) (hV : 0 ≤ V)

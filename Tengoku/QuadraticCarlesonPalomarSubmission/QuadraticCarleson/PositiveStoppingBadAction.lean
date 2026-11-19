@@ -16,6 +16,9 @@ open CalderonZygmundDyadicStopping CalderonZygmundStoppingIntervals
 open PositiveEndpointOptimization PositiveHighHeightEstimate PositiveLowFullEstimate
 open OscillatoryReduction
 
+/--
+@isnad1 id=lt.3h3v.s7.70298efee727 from=translated src=- shape=7cfd6c55 vocab=a21bb3b1
+-/
 theorem tsum_lintegral_enorm_highPass_stoppingLevels_lt_top
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
@@ -39,7 +42,9 @@ theorem tsum_lintegral_enorm_highPass_stoppingLevels_lt_top
       (ENNReal.mul_lt_top (by finiteness) hfi.hasFiniteIntegral)))
 
 /-- This is an actual integral/series interchange, not a supplied assembly
-identity. It holds at every point and every nonzero real modulation.-/
+identity. It holds at every point and every nonzero real modulation.
+@isnad1 id=eq.3h3v.s6.692b73b663cd from=translated src=- shape=f5d1ed96 vocab=bd39041c
+-/
 theorem paperOscillatoryAction_stoppingBadPart_eq_tsum
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
@@ -57,6 +62,9 @@ theorem paperOscillatoryAction_stoppingBadPart_eq_tsum
     (fun k ↦ (integrable_highPassKernel_mul lam hlam (integrable_stoppingLevelBadPart hf hfi k) x).1)
     (tsum_lintegral_enorm_highPass_stoppingLevels_lt_top hf hfi lam hlam x).ne
 
+/--
+@isnad1 id=eq.2h4v.s8.ed3eb5627967 from=translated src=- shape=0ac54227 vocab=705c24d6
+-/
 theorem paperOscillatoryAction_eq_low_add_high {b : ℝ → ℂ} (hb : Integrable b)
     (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
     paperOscillatoryAction lam hlam b x =
@@ -69,7 +77,9 @@ theorem paperOscillatoryAction_eq_low_add_high {b : ℝ → ℂ} (hb : Integrabl
     (hs.sum_add_tsum_nat_add (B+1)).symm
 
 /-- Pointwise domination by precisely the already-estimated finite low
-heights and strict high tail, with the canonical stopping interval family.-/
+heights and strict high tail, with the canonical stopping interval family.
+@isnad1 id=le.2h2v.s6.09a76443d564 from=translated src=- shape=386ed06c vocab=367a9f09
+-/
 theorem paperOscillatoryMaximal_stoppingBadPart_le_low_add_high
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     paperOscillatoryMaximal (stoppingBadPart f) x ≤

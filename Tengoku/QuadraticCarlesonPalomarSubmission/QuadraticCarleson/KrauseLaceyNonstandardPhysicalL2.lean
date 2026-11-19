@@ -26,12 +26,18 @@ noncomputable def badRemovedEnergyBudget (f : ℝ → ℂ) (I₀ : RealInterval)
   badPieceUniformBound f I₀ ^ 2 *
     (2 * (1 + (2 : ℝ) ^ (s : ℤ)) ^ 2 * ((1 / 2 : ℝ) ^ (8 * (s + 1)) * I₀.length))
 
+/--
+@isnad1 id=le.0h3v.s4.ede5ff5d3af6 from=translated src=- shape=57407fd0 vocab=73e22f4b
+-/
 theorem badRemovedEnergyBudget_nonneg (f : ℝ → ℂ) (I₀ : RealInterval) (s : ℕ) :
     0 ≤ badRemovedEnergyBudget f I₀ s := by
   have hI := I₀.length_pos
   unfold badRemovedEnergyBudget
   positivity
 
+/--
+@isnad1 id=eq.0h3v.s7.75804e44d0e1 from=translated src=- shape=4a163950 vocab=27d06c2a
+-/
 theorem ofReal_badRemovedEnergyBudget (f : ℝ → ℂ) (I₀ : RealInterval) (s : ℕ) :
     ENNReal.ofReal (badRemovedEnergyBudget f I₀ s) =
       ENNReal.ofReal (badPieceUniformBound f I₀) ^ 2 *
@@ -41,6 +47,9 @@ theorem ofReal_badRemovedEnergyBudget (f : ℝ → ℂ) (I₀ : RealInterval) (s
   simp (disch := positivity) only [badRemovedEnergyBudget, ENNReal.ofReal_mul,
     ENNReal.ofReal_pow, ENNReal.ofReal_div_of_pos, ENNReal.ofReal_one, ENNReal.ofReal_ofNat]
 
+/--
+@isnad1 id=le.4h7v.s8.cc790def0e7b from=translated src=- shape=fe8afad5 vocab=7da14d2d
+-/
 theorem eLpNorm_removed_badLengthTailMaximal_le_sqrt
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (scale : RealInterval → ℤ)
@@ -59,6 +68,9 @@ theorem eLpNorm_removed_badLengthTailMaximal_le_sqrt
     Real.sq_sqrt (badRemovedEnergyBudget_nonneg f I₀ s), ofReal_badRemovedEnergyBudget]
   exact eLpNorm_removed_badLengthTailMaximal_sq_le hf I₀ k₀ s scale hlam hsub N hN
 
+/--
+@isnad1 id=eq.1h10v.s6.ba796a6ccfbc from=translated src=- shape=3baaaead vocab=9499d86d
+-/
 theorem badLengthTailAction_eq_pruned_add_removed
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -74,6 +86,9 @@ theorem badLengthTailAction_eq_pruned_add_removed
   rw [← Finset.sum_sdiff (overlapPrunedFamily_subset _ M)]
   ring
 
+/--
+@isnad1 id=le.2h9v.s7.520b8d766132 from=translated src=- shape=6bfe88fa vocab=4dfc39bd
+-/
 theorem badLengthTailMaximal_le_pruned_add_removed
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -103,7 +118,9 @@ theorem badLengthTailMaximal_le_pruned_add_removed
 
 /-- The actual unrestricted finite nonstandard physical maximal operator
 now has its complete quantitative `L²` estimate. The first term decays
-like `(s+1)2^(-s/2)` and the second like `2^(-3s)`, with explicit constants.-/
+like `(s+1)2^(-s/2)` and the second like `2^(-3s)`, with explicit constants.
+@isnad1 id=le.6h7v.s8.5faa2999f62f from=translated src=- shape=4eebd1f4 vocab=ce63e09f
+-/
 theorem eLpNorm_nonstandard_badLengthTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)

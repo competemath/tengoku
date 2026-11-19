@@ -23,10 +23,16 @@ noncomputable section
 
 def scaleDecayRatio (q : ℝ) : ℝ := (2 : ℝ) ^ (-1 / (5 * q))
 
+/--
+@isnad1 id=le.1h1v.s4.1c9f18b83387 from=translated src=- shape=a8dc2df9 vocab=0897337a
+-/
 theorem scaleDecayRatio_nonneg {q : ℝ} (hq : 0 < q) :
     0 ≤ scaleDecayRatio q := by
   exact (Real.rpow_nonneg (by norm_num) _)
 
+/--
+@isnad1 id=lt.1h1v.s4.15fd7a0282d1 from=translated src=- shape=3965f485 vocab=f9bc86cf
+-/
 theorem scaleDecayRatio_lt_one {q : ℝ} (hq : 0 < q) :
     scaleDecayRatio q < 1 := by
   unfold scaleDecayRatio
@@ -35,6 +41,9 @@ theorem scaleDecayRatio_lt_one {q : ℝ} (hq : 0 < q) :
   · have h : 0 < (1 : ℝ) / (5 * q) := by positivity
     convert neg_lt_zero.mpr h using 1 <;> ring
 
+/--
+@isnad1 id=le.4h3v.s6.e8e948bf9914 from=translated src=- shape=35d22d1e vocab=5604d48c
+-/
 theorem finite_scale_decay_sum_le_of_gap {r δ : ℝ} (hr : 0 ≤ r) (hr1 : r < 1)
     (hδ : 0 < δ) (hgap : δ ≤ 1 - r) (N : ℕ) :
     (Finset.sum (Finset.range N) (fun s ↦ r ^ s)) ≤ 1 / δ := by
@@ -49,6 +58,9 @@ theorem finite_scale_decay_sum_le_of_gap {r δ : ℝ} (hr : 0 ≤ r) (hr1 : r < 
     _ ≤ δ⁻¹ := (inv_le_inv₀ hδ' hδ).mpr hden
     _ = 1 / δ := by rw [one_div]
 
+/--
+@isnad1 id=le.4h2v.s6.cb85ddee090b from=translated src=- shape=f39b434b vocab=fe548543
+-/
 theorem scale_decay_sum_le_of_gap {r δ : ℝ} (hr : 0 ≤ r) (hr1 : r < 1)
     (hδ : 0 < δ) (hgap : δ ≤ 1 - r) :
     (∑' s : ℕ, r ^ s) ≤ 1 / δ := by
@@ -56,6 +68,9 @@ theorem scale_decay_sum_le_of_gap {r δ : ℝ} (hr : 0 ≤ r) (hr1 : r < 1)
   have hδ' : 0 < 1 - r := sub_pos.mpr hr1
   simpa only [one_div] using (inv_le_inv₀ hδ' hδ).mpr hgap
 
+/--
+@isnad1 id=le.4h3v.s7.602c08b53f60 from=translated src=- shape=550948eb vocab=a7bdb361
+-/
 theorem finite_scale_decay_sum_le_twenty_mul_q {q r : ℝ} (hq : 2 ≤ q)
     (hr : 0 ≤ r) (hr1 : r < 1) (hgap : 1 / (20 * q) ≤ 1 - r) (N : ℕ) :
     (Finset.sum (Finset.range N) (fun s ↦ r ^ s)) ≤ 20 * q := by
@@ -66,6 +81,9 @@ theorem finite_scale_decay_sum_le_twenty_mul_q {q r : ℝ} (hq : 2 ≤ q)
     _ ≤ 1 / (1 / (20 * q)) := h
     _ = 20 * q := by field_simp
 
+/--
+@isnad1 id=le.4h2v.s7.43d006289680 from=translated src=- shape=8f73e148 vocab=6cdfc75e
+-/
 theorem scale_decay_sum_le_twenty_mul_q {q r : ℝ} (hq : 2 ≤ q)
     (hr : 0 ≤ r) (hr1 : r < 1) (hgap : 1 / (20 * q) ≤ 1 - r) :
     (∑' s : ℕ, r ^ s) ≤ 20 * q := by
@@ -76,12 +94,18 @@ theorem scale_decay_sum_le_twenty_mul_q {q r : ℝ} (hq : 2 ≤ q)
     _ ≤ 1 / (1 / (20 * q)) := h
     _ = 20 * q := by field_simp
 
+/--
+@isnad1 id=le.2h1v.s5.52a5112538a0 from=translated src=- shape=536e06c9 vocab=9cb85eee
+-/
 theorem holderConjugate_ge_two {p : ℝ} (hp : 1 < p) (hp2 : p ≤ 2) :
     2 ≤ holderConjugate p := by
   rw [holderConjugate]
   apply (le_div_iff₀ (sub_pos.mpr hp)).2
   nlinarith
 
+/--
+@isnad1 id=le.5h2v.s7.dd98912141d9 from=translated src=- shape=422fd177 vocab=6a40ed88
+-/
 theorem scale_decay_sum_le_twenty_mul_holderConjugate {p r : ℝ}
     (hp : 1 < p) (hp2 : p ≤ 2) (hr : 0 ≤ r) (hr1 : r < 1)
     (hgap : 1 / (20 * holderConjugate p) ≤ 1 - r) :
@@ -89,18 +113,27 @@ theorem scale_decay_sum_le_twenty_mul_holderConjugate {p r : ℝ}
   exact scale_decay_sum_le_twenty_mul_q (holderConjugate_ge_two hp hp2)
     hr hr1 hgap
 
+/--
+@isnad1 id=le.2h1v.s6.3159178c160d from=translated src=- shape=4c567131 vocab=dfb94fc1
+-/
 theorem scaleDecayRatio_sum_le_twenty_mul_q_of_gap {q : ℝ} (hq : 2 ≤ q)
     (hgap : 1 / (20 * q) ≤ 1 - scaleDecayRatio q) :
     (∑' s : ℕ, (scaleDecayRatio q) ^ s) ≤ 20 * q := by
   exact scale_decay_sum_le_twenty_mul_q hq (scaleDecayRatio_nonneg (by linarith))
     (scaleDecayRatio_lt_one (by linarith)) hgap
 
+/--
+@isnad1 id=le.2h2v.s6.e4bf512085b9 from=translated src=- shape=95373983 vocab=f31f773f
+-/
 theorem finite_scaleDecayRatio_sum_le_twenty_mul_q_of_gap {q : ℝ} (hq : 2 ≤ q)
     (hgap : 1 / (20 * q) ≤ 1 - scaleDecayRatio q) (N : ℕ) :
     (Finset.sum (Finset.range N) (fun s ↦ (scaleDecayRatio q) ^ s)) ≤ 20 * q := by
   exact finite_scale_decay_sum_le_twenty_mul_q hq
     (scaleDecayRatio_nonneg (by linarith)) (scaleDecayRatio_lt_one (by linarith)) hgap N
 
+/--
+@isnad1 id=le.1h1v.s6.9292868d37d1 from=translated src=- shape=dbad305e vocab=410e4a59
+-/
 theorem scaleDecayRatio_gap {q : ℝ} (hq : 2 ≤ q) :
     1 / (20 * q) ≤ 1 - scaleDecayRatio q := by
   have hq0 : 0 < q := lt_of_lt_of_le (by norm_num) hq
@@ -149,14 +182,23 @@ theorem scaleDecayRatio_gap {q : ℝ} (hq : 2 ≤ q) :
   rw [he]
   linarith [hexp]
 
+/--
+@isnad1 id=le.1h1v.s5.e240271e74bd from=translated src=- shape=4eaa9962 vocab=fa131f9c
+-/
 theorem scaleDecayRatio_sum_le_twenty_mul_q {q : ℝ} (hq : 2 ≤ q) :
     (∑' s : ℕ, (scaleDecayRatio q) ^ s) ≤ 20 * q :=
   scaleDecayRatio_sum_le_twenty_mul_q_of_gap hq (scaleDecayRatio_gap hq)
 
+/--
+@isnad1 id=le.1h2v.s5.b83e7a2551fe from=translated src=- shape=e4122f89 vocab=9c4568fe
+-/
 theorem finite_scaleDecayRatio_sum_le_twenty_mul_q {q : ℝ} (hq : 2 ≤ q) (N : ℕ) :
     (Finset.sum (Finset.range N) (fun s ↦ (scaleDecayRatio q) ^ s)) ≤ 20 * q :=
   finite_scaleDecayRatio_sum_le_twenty_mul_q_of_gap hq (scaleDecayRatio_gap hq) N
 
+/--
+@isnad1 id=le.2h1v.s6.44a6680a504a from=translated src=- shape=2ff3a6f6 vocab=6be9729e
+-/
 theorem scaleDecayRatio_sum_le_twenty_mul_holderConjugate {p : ℝ}
     (hp : 1 < p) (hp2 : p ≤ 2) :
     (∑' s : ℕ, (scaleDecayRatio (holderConjugate p)) ^ s) ≤

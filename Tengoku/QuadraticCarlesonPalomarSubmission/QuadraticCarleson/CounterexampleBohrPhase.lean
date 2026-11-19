@@ -26,7 +26,9 @@ set_option autoImplicit false
 
 /-- Every point of the paper's translated Bohr set carries a dyadic phase-sum
 witness.  The exponent inequalities record exactly the logarithmic window in
-which that modulation was selected.-/
+which that modulation was selected.
+@isnad1 id=ex.2h3v.s8.7234a33426a7 from=translated src=- shape=8ef0f7c2 vocab=64f9ec94
+-/
 theorem paperTranslatedBohrSet_phase_witness {N : ℕ} {L x : ℝ}
     (hN : 100 ≤ N) (hx : x ∈ paperTranslatedBohrSet N L) :
     ∃ (k : ℤ) (n : ℕ),
@@ -63,6 +65,9 @@ def paperPhaseWitnessSet (N : ℕ) (L : ℝ) : Set ℝ :=
     Real.log N / (4 * N) ≤
       ‖harmonicPhaseSum N k.toNat ((2 ^ n : ℕ) : ℤ) (x - k)‖}
 
+/--
+@isnad1 id=le.1h2v.s4.1b7bf99b373b from=translated src=- shape=f9377891 vocab=ca45219b
+-/
 theorem paperTranslatedBohrSet_subset_phaseWitnessSet {N : ℕ} {L : ℝ}
     (hN : 100 ≤ N) :
     paperTranslatedBohrSet N L ⊆ paperPhaseWitnessSet N L := by
@@ -70,7 +75,9 @@ theorem paperTranslatedBohrSet_subset_phaseWitnessSet {N : ℕ} {L : ℝ}
   exact paperTranslatedBohrSet_phase_witness hN hx
 
 /-- Consequently the model phase-sum level set has measure bounded below by
-an explicit positive multiple of `N`.-/
+an explicit positive multiple of `N`.
+@isnad1 id=le.2h2v.s7.ce7e00f80043 from=translated src=- shape=7b33fa04 vocab=3a66c761
+-/
 theorem paperPhaseWitnessSet_volume_real_ge {N : ℕ} {L : ℝ}
     (hN : 100 ≤ N) (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L) :
     (N : ℝ) / (30720 * ((2 : ℝ) ^ 100 + 1)) ≤

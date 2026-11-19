@@ -37,7 +37,9 @@ noncomputable section
 
 /-- The operational finite sparse-maximal hypothesis used by the lacunary
 block, with the explicit universal constant proved in
-`FiniteSparseMaximalProof`.-/
+`FiniteSparseMaximalProof`.
+@isnad1 id=hasfinit.0h0v.s1.b1d80b3697c4 from=translated src=- shape=49959d42 vocab=d8616561
+-/
 theorem hasFiniteSparseMaximalWeakBound :
     HasFiniteSparseMaximalWeakBound finiteSparseMaximalUniversalConstant := by
   refine ⟨finiteSparseMaximalUniversalConstant_pos.le, ?_⟩
@@ -45,7 +47,9 @@ theorem hasFiniteSparseMaximalWeakBound :
   exact finiteSparseMaximal_hasWeakOneOneBound T A hT
 
 /-- The individual Krause--Lacey sparse bound now unconditionally supplies
-the logarithm-squared frozen-block estimate.-/
+the logarithm-squared frozen-block estimate.
+@isnad1 id=hasunifo.1h1v.s5.c64de80395e2 from=translated src=- shape=4cd459c6 vocab=226912fe
+-/
 theorem hasUniformL0LogSquaredFrozenBlockWeakBounds
     {A : ℝ} (hKL : HasUniformFiniteRadiusQuadraticSparseBound A) :
     HasUniformL0LogSquaredFrozenBlockWeakBounds
@@ -56,7 +60,9 @@ theorem hasUniformL0LogSquaredFrozenBlockWeakBounds
 /-- Strongest currently unconditional downstream lacunary theorem: after
 discharging the finite sparse-maximal lemma, only the genuine individual
 Krause--Lacey sparse theorem and the ordinary Hilbert maximal theorem remain
-as analytic inputs.-/
+as analytic inputs.
+@isnad1 id=ex.2h2v.s7.f2ee9972b463 from=translated src=- shape=959274d3 vocab=ee8ec87f
+-/
 theorem lacunary_principalValue_endpoint
     {CH : ℝ≥0∞}
     (hH : HilbertPrincipalValueClosure.HasUniformHilbertMaximalWeakBound CH)

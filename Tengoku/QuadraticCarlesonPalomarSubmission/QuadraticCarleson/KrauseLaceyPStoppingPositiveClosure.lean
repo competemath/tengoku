@@ -32,7 +32,9 @@ noncomputable def pStoppingSparseAtom (p : ℝ) (f g : ℝ → ℂ)
 
 /-- The public p-stopping atom is exactly the summand of the ambient sparse
 form.  This lets a recursive p-stopping witness be assembled without ever
-returning to the old `L¹` monitor interface.-/
+returning to the old `L¹` monitor interface.
+@isnad1 id=eq.0h4v.s5.37277b16b8d5 from=translated src=- shape=519046c8 vocab=7d5fc920
+-/
 theorem sparseForm_finset_pStoppingAtom (p : ℝ) (f g : ℝ → ℂ)
     (R : Finset RealInterval) :
     sparseForm p f g (↑R : Set RealInterval) =
@@ -76,6 +78,9 @@ def HasOneNodePStoppingGoodPartPairingBound (A : ℝ) : Prop :=
         (goodCollection S f (pStoppingMonitor g p (lt_trans zero_lt_one hp)) I) f x * ‖g x‖ₑ) ≤
         ENNReal.ofReal (A * holderConjugate p) * pStoppingSparseAtom p f g I
 
+/--
+@isnad1 id=le.7h11v.s7.9c24cd918b1b from=translated src=- shape=c285b81d vocab=32bd7f4f
+-/
 theorem pStopping_good_part_pairing
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)
@@ -92,7 +97,9 @@ theorem pStopping_good_part_pairing
 
 /-- One exact recursive p-stopping step with the local term closed by the
 new interface.  This is the induction step needed for the finite tree/forest
-closure; recursive children retain the same monitor convention.-/
+closure; recursive children retain the same monitor convention.
+@isnad1 id=le.7h11v.s8.b5002e571c29 from=translated src=- shape=7ad12afa vocab=d2b83b52
+-/
 theorem pStopping_one_step_pairing_bound
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)
@@ -358,7 +365,9 @@ private theorem exists_pStopping_recursive_sparse_bound_of_root_mem
               rw [pStopping_sparseForm_insert_biUnion p f g I C R' hRdisj hIB]
               rw [mul_add, Finset.mul_sum]
 
-/-- Recursive p-stopping closure for one complete shifted dyadic tree.-/
+/-- Recursive p-stopping closure for one complete shifted dyadic tree.
+@isnad1 id=ex.5h10v.s8.51dbdb5b3123 from=translated src=- shape=3406aabc vocab=fef90cea
+-/
 theorem exists_pStopping_recursive_sparse_bound
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)
@@ -539,7 +548,9 @@ private theorem pStopping_localizedTailMaximal_le_sum_rootSubfamilies
     ell
 
 /-- The p-stopping tree recursion extends to any finite forest in a single
-shifted grid, with the same sparse density and coefficient.-/
+shifted grid, with the same sparse density and coefficient.
+@isnad1 id=ex.5h10v.s7.fc5b7d7f7cf2 from=translated src=- shape=bc904e6e vocab=d3eecbe2
+-/
 theorem exists_pStopping_recursive_sparse_bound_forest
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)
@@ -654,7 +665,9 @@ theorem exists_pStopping_recursive_sparse_bound_forest
         sparseForm p f g (↑Rall : Set RealInterval) := by
       rw [hforms, Finset.mul_sum]
 
-/-- Operator-facing form of the one-tree p-stopping closure.-/
+/-- Operator-facing form of the one-tree p-stopping closure.
+@isnad1 id=hasspars.5h8v.s6.0e14679cadbb from=translated src=- shape=85e1265f vocab=26078c6e
+-/
 theorem hasSparseOnePBound_localizedTailMaximalTestOperator_of_pStopping_tree
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)
@@ -695,7 +708,9 @@ theorem hasSparseOnePBound_localizedTailMaximalTestOperator_of_pStopping_tree
     rw [hzero, norm_zero, ENNReal.ofReal_zero]
     exact bot_le
 
-/-- Operator-facing form of the finite-forest p-stopping closure.-/
+/-- Operator-facing form of the finite-forest p-stopping closure.
+@isnad1 id=hasspars.5h8v.s6.218fbd192c2b from=translated src=- shape=14216b0b vocab=455f0ef0
+-/
 theorem hasSparseOnePBound_localizedTailMaximalTestOperator_of_pStopping_forest
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p ≤ 2)

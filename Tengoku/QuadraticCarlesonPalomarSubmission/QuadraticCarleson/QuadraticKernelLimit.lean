@@ -28,6 +28,9 @@ noncomputable def quadraticKernelTruncationAction
     (SchwartzMap.smulLeftCLM ℂ
       (fun y : ℝ ↦ phase (modulation * y ^ 2)) f)
 
+/--
+@isnad1 id=eq.0h3v.s7.60ec06786cb7 from=translated src=- shape=fe4c1f98 vocab=3f1c99e3
+-/
 theorem quadraticKernelTruncationAction_eq_integral
     (modulation ε : ℝ) (f : 𝓢(ℝ, ℂ)) :
     quadraticKernelTruncationAction modulation ε f =
@@ -38,7 +41,9 @@ theorem quadraticKernelTruncationAction_eq_integral
       (quadraticPhase_hasTemperateGrowth modulation), smul_eq_mul]
 
 /-- The distributional quadratic kernel agrees with the limit of ordinary
-symmetric truncations as the deleted radius tends to zero from above.-/
+symmetric truncations as the deleted radius tends to zero from above.
+@isnad1 id=tendsto.0h2v.s8.472bc8d19391 from=translated src=- shape=3f79d002 vocab=5c1b1996
+-/
 theorem tendsto_quadraticKernelTruncationAction
     (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) :
     Tendsto (fun ε : ℝ ↦ quadraticKernelTruncationAction modulation ε f)

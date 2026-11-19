@@ -39,6 +39,9 @@ def directScaleInput
     (k s : ℤ) (x : ℝ) : ℂ :=
   ∑ I ∈ A.filter (fun I ↦ scale I = k), offsetGroupedInput S scale f I s x
 
+/--
+@isnad1 id=integrab.0h6v.s5.1d60d3e4409b from=translated src=- shape=2fcf488f vocab=5239b953
+-/
 theorem integrable_directScaleInput
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -48,6 +51,9 @@ theorem integrable_directScaleInput
   intro I hI
   exact integrable_offsetGroupedInput S scale f I s
 
+/--
+@isnad1 id=memlp.0h6v.s6.b18ee156b29f from=translated src=- shape=1ef4ff10 vocab=9d0d31ef
+-/
 theorem memLp_two_directScaleInput
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -59,7 +65,9 @@ theorem memLp_two_directScaleInput
 
 /-- A scale absent from the retained interval family has identically zero
 assembled input.  This lets later residue estimates ignore absent scales
-without imposing the scale-gap hypothesis on them.-/
+without imposing the scale-gap hypothesis on them.
+@isnad1 id=eq.1h6v.s6.dafaf1e02c1e from=translated src=- shape=664d7275 vocab=7ecf3f68
+-/
 theorem directScaleInput_eq_zero_of_not_mem_image
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (k s : ℤ) (hk : k ∉ A.image scale) :
@@ -72,7 +80,9 @@ theorem directScaleInput_eq_zero_of_not_mem_image
     (Finset.mem_filter.mp hI).2⟩)).elim
 
 /-- At one fixed scale the literal sum of localized outputs is exactly the
-quadratic convolution of the assembled scale input.-/
+quadratic convolution of the assembled scale input.
+@isnad1 id=eq.0h6v.s5.9c6120f4a766 from=translated src=- shape=74afd6d3 vocab=857d3fbe
+-/
 theorem directScaleOutput_eq_quadraticScaleOutput
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -127,7 +137,9 @@ theorem directScaleOutput_eq_quadraticScaleOutput
         (quadraticScaleKernel_two_zpow k (x - t))
 
 /-- Same-scale central thirds are disjoint, so assembling the scale input
-introduces no pointwise multiplicity.-/
+introduces no pointwise multiplicity.
+@isnad1 id=le.4h7v.s7.c6c3bc152f53 from=translated src=- shape=7b4aaf34 vocab=f0f422a7
+-/
 theorem norm_directScaleInput_le_smallestScaleInput
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -177,7 +189,9 @@ theorem norm_directScaleInput_le_smallestScaleInput
     exact norm_nonneg _
 
 /-- The assembled input inherits the paper's unit-window mass estimate at
-the lower input scale `k-s`.-/
+the lower input scale `k-s`.
+@isnad1 id=le.7h8v.s8.6bf78d670295 from=translated src=- shape=40e38388 vocab=bbc69988
+-/
 theorem integral_unitWindow_norm_directScaleInput_le
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -242,6 +256,9 @@ theorem integral_unitWindow_norm_directScaleInput_le
       congr 2
       ring
 
+/--
+@isnad1 id=le.7h8v.s8.79298a56b215 from=translated src=- shape=e23c5c55 vocab=d5aaacd9
+-/
 theorem centeredUnitMass_directScaleInput_le
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -259,7 +276,9 @@ theorem centeredUnitMass_directScaleInput_le
     hA hlam scale hscale f hs hgap hM hmass x
 
 /-- The `L¹` mass of one assembled scale input is bounded by the sum of
-the masses of its interval pieces.-/
+the masses of its interval pieces.
+@isnad1 id=le.0h6v.s6.10be0bd49786 from=translated src=- shape=056ef5fa vocab=8390b00d
+-/
 theorem integral_norm_directScaleInput_le_sum
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -284,7 +303,9 @@ theorem integral_norm_directScaleInput_le_sum
     _ = _ := rfl
 
 /-- Across all actual output scales, the assembled inputs still use at most
-the total mass beneath the root interval.-/
+the total mass beneath the root interval.
+@isnad1 id=le.5h6v.s8.7ebcf35b29f6 from=translated src=- shape=f0e1e0af vocab=5b0389ba
+-/
 theorem sum_integral_norm_directScaleInput_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -309,7 +330,9 @@ theorem sum_integral_norm_directScaleInput_le_root
         hA hlam scale hscale f hs I₀ hsub
 
 /-- Restricting to any finite initial segment of one residue class cannot
-increase the total `L¹` input mass beyond the mass under the root interval.-/
+increase the total `L¹` input mass beyond the mass under the root interval.
+@isnad1 id=le.5h8v.s8.5b91f7637c1e from=translated src=- shape=4adfcd9c vocab=f592856c
+-/
 theorem sum_range_integral_norm_directScaleInput_residue_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -373,7 +396,9 @@ theorem sum_range_integral_norm_directScaleInput_residue_le_root
         hA hlam scale hscale f hs I₀ hsub
 
 /-- The canonical `L²` fixed-scale output is the `L²` representative of
-the same genuine quadratic convolution used by the remainder theorem.-/
+the same genuine quadratic convolution used by the remainder theorem.
+@isnad1 id=eventual.0h6v.s8.31e49088872d from=translated src=- shape=76b9ddbd vocab=a89cd82a
+-/
 theorem offsetOutputScaleLp_ae_eq_quadraticScaleOutput
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -384,7 +409,9 @@ theorem offsetOutputScaleLp_ae_eq_quadraticScaleOutput
   exact congrFun (directScaleOutput_eq_quadraticScaleOutput S A scale f k s) x
 
 /-- Exact `L²` projection-error identity for the actual direct fixed-scale
-output.  The right side is the explicit convolution by `r_{2^k}`.-/
+output.  The right side is the explicit convolution by `r_{2^k}`.
+@isnad1 id=eq.1h6v.s10.57c40c102584 from=translated src=- shape=1c58addb vocab=937e65b0
+-/
 theorem offsetOutputScaleLp_sub_annularProjectionL2_eq_remainderOutputL2
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     {k : ℤ} (hk : 0 ≤ k) (s : ℤ) :

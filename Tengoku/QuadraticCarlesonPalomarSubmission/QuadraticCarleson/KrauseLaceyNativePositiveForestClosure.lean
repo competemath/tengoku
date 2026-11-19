@@ -108,7 +108,9 @@ private theorem localizedTailMaximal_le_sum_rootSubfamilies
 
 /-- The checked one-tree recursion extends to an arbitrary finite forest in
 one shifted grid.  The sparse witness is the disjoint union of the rootwise
-witnesses, so neither its `1 / 4` density nor its coefficient is degraded.-/
+witnesses, so neither its `1 / 4` density nor its coefficient is degraded.
+@isnad1 id=ex.5h10v.s7.ced9456e068e from=translated src=- shape=78ac365c vocab=2643b213
+-/
 theorem exists_recursive_sparse_bound_forest
     {A p : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)
@@ -225,7 +227,9 @@ theorem exists_recursive_sparse_bound_forest
         sparseForm p f g (↑Rall : Set RealInterval) := by
       rw [hforms, Finset.mul_sum]
 
-/-- Operator-facing form of the finite-forest closure.-/
+/-- Operator-facing form of the finite-forest closure.
+@isnad1 id=hasspars.5h8v.s6.0ef00de3ea07 from=translated src=- shape=b28508d4 vocab=76470a3e
+-/
 theorem hasSparseOnePBound_localizedTailMaximalTestOperator_of_forest
     {A p : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)

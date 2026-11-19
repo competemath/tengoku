@@ -36,13 +36,18 @@ open QuadraticCarleson.LacunaryMiddleRange
 noncomputable def verySmallWeight (B : ℕ) (m j : ℤ) : ℝ :=
   (2 : ℝ) ^ ((B : ℝ) + (m : ℝ) / 2 + (j : ℝ))
 
+/--
+@isnad1 id=lt.0h3v.s4.6d1663640e8e from=translated src=- shape=b7159f71 vocab=9ce4923b
+-/
 theorem verySmallWeight_pos (B : ℕ) (m j : ℤ) :
     0 < verySmallWeight B m j := by
   unfold verySmallWeight
   positivity
 
 /-- The author's exact half-open atom convention introduces at most a factor
-`2` when the actual atom length is replaced by its lower dyadic scale.-/
+`2` when the actual atom length is replaced by its lower dyadic scale.
+@isnad1 id=le.1h6v.s6.6f62a846aa30 from=translated src=- shape=bcd187ea vocab=763eb43f
+-/
 theorem modulationWeight_mul_atomLength_le_two_mul_verySmallWeight
     {ι : Type*} {length : ι → ℝ} {I : ι} {j : ℤ}
     (hI : I ∈ QuadraticCarleson.dyadicAtomScaleClass length j)
@@ -72,6 +77,9 @@ def verySmallModulations (B c : ℕ) (j : ℤ) : Set ℤ :=
 def verySmallCutoff (B c : ℕ) (j : ℤ) : ℤ :=
   -(c : ℤ) - 2 * (B : ℤ) - 2 * j
 
+/--
+@isnad1 id=iff.0h4v.s4.1e6c2d2e7f1f from=translated src=- shape=bb8c892d vocab=7b67f5e6
+-/
 theorem mem_verySmallModulations_iff {B c : ℕ} {j m : ℤ} :
     m ∈ verySmallModulations B c j ↔ m ≤ verySmallCutoff B c j := by
   simp only [verySmallModulations, mem_ofPred_eq, mem_L, verySmallCutoff]
@@ -102,11 +110,17 @@ noncomputable def verySmallModulationsEquivNat (B c : ℕ) (j : ℤ) :
 noncomputable def verySmallGeometricRatio : ℝ :=
   (2 : ℝ) ^ (-(1 : ℝ) / 2)
 
+/--
+@isnad1 id=le.0h0v.s3.067d38467c3e from=translated src=- shape=ff3a10fc vocab=0ba7e36b
+-/
 theorem verySmallGeometricRatio_nonneg :
     0 ≤ verySmallGeometricRatio := by
   unfold verySmallGeometricRatio
   positivity
 
+/--
+@isnad1 id=lt.0h0v.s3.c09a87fdd6ca from=translated src=- shape=ffdda526 vocab=548f9dea
+-/
 theorem verySmallGeometricRatio_lt_one :
     verySmallGeometricRatio < 1 := by
   unfold verySmallGeometricRatio
@@ -116,6 +130,9 @@ theorem verySmallGeometricRatio_lt_one :
 noncomputable def verySmallGeometricConstant : ℝ :=
   (1 - verySmallGeometricRatio)⁻¹
 
+/--
+@isnad1 id=le.0h0v.s3.958387d57fa2 from=translated src=- shape=ff3a10fc vocab=57dc2863
+-/
 theorem verySmallGeometricConstant_nonneg :
     0 ≤ verySmallGeometricConstant := by
   unfold verySmallGeometricConstant
@@ -125,11 +142,17 @@ theorem verySmallGeometricConstant_nonneg :
 noncomputable def verySmallSupportSlack (c : ℕ) : ℝ :=
   (2 : ℝ) ^ (-(c : ℝ) / 2)
 
+/--
+@isnad1 id=lt.0h1v.s3.2678eddea931 from=translated src=- shape=b9369acb vocab=17d8be35
+-/
 theorem verySmallSupportSlack_pos (c : ℕ) :
     0 < verySmallSupportSlack c := by
   unfold verySmallSupportSlack
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.761519a26e25 from=translated src=- shape=a311c14d vocab=fcafbbd1
+-/
 theorem verySmallSupportSlack_le_one (c : ℕ) :
     verySmallSupportSlack c ≤ 1 := by
   unfold verySmallSupportSlack
@@ -138,7 +161,9 @@ theorem verySmallSupportSlack_le_one (c : ℕ) :
   linarith
 
 /-- At distance `n` below the endpoint, the very-small weight is the endpoint
-slack times the `n`th power of the geometric ratio.-/
+slack times the `n`th power of the geometric ratio.
+@isnad1 id=eq.0h4v.s5.e321a6196ff3 from=translated src=- shape=74fdee1b vocab=1bd0dc0f
+-/
 theorem verySmallWeight_cutoff_sub (B c : ℕ) (j : ℤ) (n : ℕ) :
     verySmallWeight B (verySmallCutoff B c j - (n : ℤ)) j =
       verySmallSupportSlack c * verySmallGeometricRatio ^ n := by
@@ -161,12 +186,18 @@ modulation half-line.-/
 noncomputable def restrictedVerySmallWeight (B c : ℕ) (j m : ℤ) : ℝ :=
   (verySmallModulations B c j).indicator (fun m ↦ verySmallWeight B m j) m
 
+/--
+@isnad1 id=le.0h4v.s4.a6849220af37 from=translated src=- shape=d0043143 vocab=96feaeb3
+-/
 theorem restrictedVerySmallWeight_nonneg (B c : ℕ) (j m : ℤ) :
     0 ≤ restrictedVerySmallWeight B c j m := by
   by_cases hm : m ∈ verySmallModulations B c j
   · simp [restrictedVerySmallWeight, hm, (verySmallWeight_pos B m j).le]
   · simp [restrictedVerySmallWeight, hm]
 
+/--
+@isnad1 id=summable.0h3v.s4.e8b834b616f6 from=translated src=- shape=45cea534 vocab=9ccb700b
+-/
 theorem summable_restrictedVerySmallWeight (B c : ℕ) (j : ℤ) :
     Summable (restrictedVerySmallWeight B c j) := by
   have hgeom : Summable (fun n : ℕ ↦ verySmallGeometricRatio ^ n) :=
@@ -201,7 +232,9 @@ theorem summable_restrictedVerySmallWeight (B c : ℕ) (j : ℤ) :
     rw [hz]
     exact summable_zero
 
-/-- Exact fixed-`j` geometric sum, including the support-slack factor.-/
+/-- Exact fixed-`j` geometric sum, including the support-slack factor.
+@isnad1 id=eq.0h3v.s5.11b669e1aa45 from=translated src=- shape=30a32406 vocab=8183e787
+-/
 theorem tsum_restrictedVerySmallWeight (B c : ℕ) (j : ℤ) :
     ∑' m : ℤ, restrictedVerySmallWeight B c j m =
       verySmallSupportSlack c * verySmallGeometricConstant := by
@@ -229,7 +262,9 @@ theorem tsum_restrictedVerySmallWeight (B c : ℕ) (j : ℤ) :
         verySmallGeometricRatio_lt_one]
       rfl
 
-/-- Uniform fixed-`j` bound by an absolute geometric constant.-/
+/-- Uniform fixed-`j` bound by an absolute geometric constant.
+@isnad1 id=le.0h3v.s4.26359f263335 from=translated src=- shape=21c9268f vocab=e369258d
+-/
 theorem tsum_restrictedVerySmallWeight_le (B c : ℕ) (j : ℤ) :
     ∑' m : ℤ, restrictedVerySmallWeight B c j m ≤
       verySmallGeometricConstant := by
@@ -238,7 +273,9 @@ theorem tsum_restrictedVerySmallWeight_le (B c : ℕ) (j : ℤ) :
     (verySmallSupportSlack_le_one c)
 
 /-- ENNReal form of the fixed-`j` estimate, used in the unconditional Tonelli
-argument below.-/
+argument below.
+@isnad1 id=le.0h3v.s4.a6b495e3bf41 from=translated src=- shape=69d6e674 vocab=2aeda76b
+-/
 theorem tsum_ofReal_restrictedVerySmallWeight_le (B c : ℕ) (j : ℤ) :
     ∑' m : ℤ, ENNReal.ofReal (restrictedVerySmallWeight B c j m) ≤
       ENNReal.ofReal verySmallGeometricConstant := by
@@ -249,7 +286,9 @@ theorem tsum_ofReal_restrictedVerySmallWeight_le (B c : ℕ) (j : ℤ) :
 
 /-- Tonelli consequence for arbitrary nonnegative atom-scale coefficients.
 No summability assumption is needed because the statement takes values in
-`ℝ≥0∞`.-/
+`ℝ≥0∞`.
+@isnad1 id=le.0h3v.s6.110fc8020f80 from=translated src=- shape=8af86dc1 vocab=c0247988
+-/
 theorem tsum_tsum_verySmall_le (B c : ℕ) (a : ℤ → ENNReal) :
     ∑' m : ℤ, ∑' j : ℤ,
         ENNReal.ofReal (restrictedVerySmallWeight B c j m) * a j ≤

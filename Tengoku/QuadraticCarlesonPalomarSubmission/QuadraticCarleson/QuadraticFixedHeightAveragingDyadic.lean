@@ -24,11 +24,16 @@ namespace QuadraticCarleson
 noncomputable def fixedHeightRadius (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) : ℝ :=
   (2 : ℝ) ^ (oscillatoryScaleIndex lam height hlam - 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.fb45fd7ebe17 from=translated src=- shape=3eeb2d46 vocab=92e03093
+-/
 theorem fixedHeightRadius_pos (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     0 < fixedHeightRadius lam height hlam := zpow_pos (by norm_num) _
 
 /-- The exact scale choice gives the common quadratic height interval
-`[2^(2h)/4, 2^(2h)]` for the outer annular radius.-/
+`[2^(2h)/4, 2^(2h)]` for the outer annular radius.
+@isnad1 id=and.1h2v.s7.b116276439e8 from=translated src=- shape=f4c55c1a vocab=27b2d28f
+-/
 theorem fixedHeightRadius_height {lam : ℝ} (hlam : 0 < lam) (height : ℕ) :
     (2 : ℝ) ^ (2 * height) / 4 ≤ lam * fixedHeightRadius lam height hlam.ne' ^ 2 ∧
       lam * fixedHeightRadius lam height hlam.ne' ^ 2 ≤ 4 * ((2 : ℝ) ^ (2 * height) / 4) := by
@@ -62,7 +67,9 @@ noncomputable def positiveFixedHeightQuadraticKernel
 
 /-- Concrete finite positive-modulation estimate with an explicit small
 parameter. No amplitude, derivative, support, or correlation hypothesis is
-left to its caller.-/
+left to its caller.
+@isnad1 id=le.5h5v.s8.c1aabfefe98a from=translated src=- shape=bafab0ef vocab=43c53e58
+-/
 theorem finite_positiveFixedHeightQuadraticKernel_maximal_sq_lintegral_le
     (n height : ℕ) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, 0 < lam i)
     {u : ℝ} (hu : 0 < u) (hu1 : u ≤ 1)
@@ -85,7 +92,9 @@ theorem finite_positiveFixedHeightQuadraticKernel_maximal_sq_lintegral_le
     (fun i ↦ norm_positiveDyadicAmplitudeDerivative_le _) hf
 
 /-- A dyadic small parameter admissible at every positive oscillation height.
-It gives a deliberately nonoptimal but strictly exponential decay rate.-/
+It gives a deliberately nonoptimal but strictly exponential decay rate.
+@isnad1 id=le.1h1v.s7.6b07ca6937b1 from=translated src=- shape=862c031e vocab=5ce83074
+-/
 theorem fixedHeight_dyadic_decay_parameter (height : ℕ) (hh : 1 ≤ height) :
     1 ≤ ((2 : ℝ) ^ (2 * height) / 4) * (1 / (2 : ℝ) ^ ((height - 1) / 5)) ^ 5 := by
   have hexp : 5 * ((height - 1) / 5) + 2 ≤ 2 * height := by omega
@@ -102,7 +111,9 @@ theorem fixedHeight_dyadic_decay_parameter (height : ℕ) (hh : 1 ≤ height) :
   exact (one_le_div (by positivity)).mpr hp
 
 /-- The actual positive-half dyadic fixed-height finite maximal `L²` decay
-estimate, with no unproved analytic hypotheses.-/
+estimate, with no unproved analytic hypotheses.
+@isnad1 id=le.3h4v.s8.ffa57a8d7c5c from=translated src=- shape=4e26494b vocab=fef96dd4
+-/
 theorem finite_positiveFixedHeightQuadraticKernel_maximal_sq_decay
     (n height : ℕ) (hh : 1 ≤ height) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, 0 < lam i)
     {f : ℝ → ℂ} (hf : MemLp f 2) :

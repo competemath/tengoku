@@ -21,7 +21,9 @@ open scoped ENNReal NNReal ContDiff
 
 namespace QuadraticCarleson
 
-/-- Exact dilation law for the dyadic difference quotient in the paper.-/
+/-- Exact dilation law for the dyadic difference quotient in the paper.
+@isnad1 id=eq.0h2v.s6.b3edcaf92ab5 from=translated src=- shape=23feabf1 vocab=5d5e6dec
+-/
 theorem dyadicPsi_dilation (j : ℤ) (t : ℝ) :
     dyadicPsi j t = (2⁻¹ : ℝ) ^ j * dyadicPsi 0 ((2⁻¹ : ℝ) ^ j * t) := by
   have hc : (2⁻¹ : ℝ) ^ j ≠ 0 := zpow_ne_zero _ (by norm_num)
@@ -41,6 +43,9 @@ theorem dyadicPsi_dilation (j : ℤ) (t : ℝ) :
 noncomputable def positiveDyadicBase (t : ℝ) : ℂ :=
   if 0 < t then (dyadicPsi 0 t : ℂ) else 0
 
+/--
+@isnad1 id=contdiff.0h0v.s5.e7aebd5fab4e from=translated src=- shape=352d7a74 vocab=bd20942e
+-/
 theorem positiveDyadicBase_smooth : ContDiff ℝ ∞ positiveDyadicBase := by
   apply contDiff_iff_contDiffAt.mpr
   intro t
@@ -65,6 +70,9 @@ theorem positiveDyadicBase_smooth : ContDiff ℝ ∞ positiveDyadicBase := by
   have hz := dyadicPsi_eq_zero_of_abs_le habs
   simp [positiveDyadicBase, hz]
 
+/--
+@isnad1 id=le.0h0v.s5.6e02dcd8492d from=translated src=- shape=6758b511 vocab=9a086d10
+-/
 theorem positiveDyadicBase_support_subset :
     Function.support positiveDyadicBase ⊆ Icc (1 / 8 : ℝ) (1 / 2) := by
   intro t ht
@@ -78,14 +86,22 @@ theorem positiveDyadicBase_support_subset :
   norm_num [abs_of_pos hpos] at h
   exact ⟨h.1.le, h.2.le⟩
 
+/--
+@isnad1 id=hascompa.0h0v.s3.6a238ef527a9 from=translated src=- shape=54c8eceb vocab=05c7576b
+-/
 theorem positiveDyadicBase_hasCompactSupport : HasCompactSupport positiveDyadicBase :=
   HasCompactSupport.of_support_subset_isCompact isCompact_Icc positiveDyadicBase_support_subset
 
+/--
+@isnad1 id=continuo.0h0v.s6.a11caa57b1a0 from=translated src=- shape=9a8f392b vocab=92b18847
+-/
 theorem continuous_deriv_positiveDyadicBase : Continuous (deriv positiveDyadicBase) := by
   have h2 : ContDiff ℝ 2 positiveDyadicBase := positiveDyadicBase_smooth.of_le (by norm_num)
   exact h2.differentiable_deriv_two.continuous
 
-/-- A single finite constant bounds the fixed amplitude and its derivative.-/
+/-- A single finite constant bounds the fixed amplitude and its derivative.
+@isnad1 id=ex.0h0v.s6.1f1c0c8f0219 from=translated src=- shape=f09236c9 vocab=baaf6961
+-/
 theorem exists_positiveDyadicBase_bound : ∃ D : ℝ, 0 ≤ D ∧
     (∀ t, ‖positiveDyadicBase t‖ ≤ D) ∧ (∀ t, ‖deriv positiveDyadicBase t‖ ≤ D) := by
   have hc : Continuous positiveDyadicBase := positiveDyadicBase_smooth.continuous
@@ -101,12 +117,21 @@ theorem exists_positiveDyadicBase_bound : ∃ D : ℝ, 0 ≤ D ∧
 
 noncomputable def positiveDyadicAmplitudeBound : ℝ := Classical.choose exists_positiveDyadicBase_bound
 
+/--
+@isnad1 id=le.0h0v.s3.fa5324d120ab from=translated src=- shape=ff3a10fc vocab=351fb529
+-/
 theorem positiveDyadicAmplitudeBound_nonneg : 0 ≤ positiveDyadicAmplitudeBound :=
   (Classical.choose_spec exists_positiveDyadicBase_bound).1
 
+/--
+@isnad1 id=le.0h1v.s3.2e8eea759a12 from=translated src=- shape=1036feda vocab=6182952d
+-/
 theorem norm_positiveDyadicBase_le (t : ℝ) : ‖positiveDyadicBase t‖ ≤ positiveDyadicAmplitudeBound :=
   (Classical.choose_spec exists_positiveDyadicBase_bound).2.1 t
 
+/--
+@isnad1 id=le.0h1v.s5.cda38c4b3dd0 from=translated src=- shape=68ae7430 vocab=df455809
+-/
 theorem norm_deriv_positiveDyadicBase_le (t : ℝ) :
     ‖deriv positiveDyadicBase t‖ ≤ positiveDyadicAmplitudeBound :=
   (Classical.choose_spec exists_positiveDyadicBase_bound).2.2 t
@@ -118,6 +143,9 @@ noncomputable def positiveDyadicAmplitude (j : ℤ) (t : ℝ) : ℂ :=
 noncomputable def positiveDyadicAmplitudeDerivative (j : ℤ) (t : ℝ) : ℂ :=
   (((2⁻¹ : ℝ) ^ j : ℝ) : ℂ) ^ 2 * deriv positiveDyadicBase ((2⁻¹ : ℝ) ^ j * t)
 
+/--
+@isnad1 id=eq.0h2v.s5.0dd273a44e4a from=translated src=- shape=5df72834 vocab=6c101e74
+-/
 theorem positiveDyadicAmplitude_eq (j : ℤ) (t : ℝ) :
     positiveDyadicAmplitude j t = if 0 < t then (dyadicPsi j t : ℂ) else 0 := by
   have hc : 0 < (2⁻¹ : ℝ) ^ j := zpow_pos (by norm_num) j
@@ -129,6 +157,9 @@ theorem positiveDyadicAmplitude_eq (j : ℤ) (t : ℝ) :
     rfl
   · simp
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.02f538c4588b from=translated src=- shape=d0f726c2 vocab=00417fef
+-/
 theorem hasDerivAt_positiveDyadicAmplitude (j : ℤ) (t : ℝ) :
     HasDerivAt (positiveDyadicAmplitude j) (positiveDyadicAmplitudeDerivative j t) t := by
   have h : HasDerivAt positiveDyadicBase (deriv positiveDyadicBase ((2⁻¹ : ℝ) ^ j * t))
@@ -139,12 +170,17 @@ theorem hasDerivAt_positiveDyadicAmplitude (j : ℤ) (t : ℝ) :
   simp only [positiveDyadicAmplitudeDerivative, id_eq, mul_one, Complex.real_smul]
   ring
 
+/--
+@isnad1 id=continuo.0h1v.s4.5d3f746fc2ff from=translated src=- shape=7000f90d vocab=84a7de6f
+-/
 theorem continuous_positiveDyadicAmplitudeDerivative (j : ℤ) :
     Continuous (positiveDyadicAmplitudeDerivative j) := by
   exact continuous_const.mul
     (continuous_deriv_positiveDyadicBase.comp (continuous_const.mul continuous_id))
 
-/-- The normalization relating the dilation and the outer annular radius.-/
+/-- The normalization relating the dilation and the outer annular radius.
+@isnad1 id=eq.0h1v.s6.8951524cc8b0 from=translated src=- shape=3a861f51 vocab=5efd2295
+-/
 theorem dyadicDilation_mul_radius (j : ℤ) :
     (2⁻¹ : ℝ) ^ j * (2 : ℝ) ^ (j - 1) = 1 / 2 := by
   rw [inv_zpow, ← zpow_neg, ← zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
@@ -152,7 +188,9 @@ theorem dyadicDilation_mul_radius (j : ℤ) :
   ring_nf
   norm_num
 
-/-- Exact positive-annular support at outer radius `2^(j-1)`.-/
+/-- Exact positive-annular support at outer radius `2^(j-1)`.
+@isnad1 id=le.0h1v.s6.4f0a38ae6030 from=translated src=- shape=2f12834b vocab=43ffc81c
+-/
 theorem positiveDyadicAmplitude_support_subset (j : ℤ) :
     Function.support (positiveDyadicAmplitude j) ⊆
       Icc ((2 : ℝ) ^ (j - 1) / 4) ((2 : ℝ) ^ (j - 1)) := by
@@ -172,7 +210,9 @@ theorem positiveDyadicAmplitude_support_subset (j : ℤ) :
     norm_num
   exact ⟨by rw [hid]; exact h.1.le, h.2.le⟩
 
-/-- The concrete uniform amplitude bound required by the annular theorem.-/
+/-- The concrete uniform amplitude bound required by the annular theorem.
+@isnad1 id=le.0h2v.s5.c877d5e7e0f2 from=translated src=- shape=062b8009 vocab=3ec79add
+-/
 theorem norm_positiveDyadicAmplitude_le (j : ℤ) (t : ℝ) :
     ‖positiveDyadicAmplitude j t‖ ≤ positiveDyadicAmplitudeBound / (2 : ℝ) ^ (j - 1) := by
   have hc : 0 < (2⁻¹ : ℝ) ^ j := zpow_pos (by norm_num) j
@@ -191,7 +231,9 @@ theorem norm_positiveDyadicAmplitude_le (j : ℤ) (t : ℝ) :
       mul_le_mul_of_nonneg_right hcle hD
     _ = _ := by ring
 
-/-- The concrete uniform derivative bound required by the annular theorem.-/
+/-- The concrete uniform derivative bound required by the annular theorem.
+@isnad1 id=le.0h2v.s6.e45a9c35c280 from=translated src=- shape=3742abb0 vocab=c1b00509
+-/
 theorem norm_positiveDyadicAmplitudeDerivative_le (j : ℤ) (t : ℝ) :
     ‖positiveDyadicAmplitudeDerivative j t‖ ≤
       positiveDyadicAmplitudeBound / ((2 : ℝ) ^ (j - 1)) ^ 2 := by

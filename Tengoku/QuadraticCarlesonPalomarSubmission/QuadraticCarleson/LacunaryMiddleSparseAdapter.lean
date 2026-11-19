@@ -42,6 +42,9 @@ noncomputable section
 def modulationBlockIndex (B : ℕ) (τ : ℤ) (j : Fin (Q B τ).card) : ℤ :=
   ((Q B τ).equivFin.symm j).1
 
+/--
+@isnad1 id=mem.0h3v.s4.6193e8378204 from=translated src=- shape=22d5853f vocab=388129d9
+-/
 theorem modulationBlockIndex_mem (B : ℕ) (τ : ℤ) (j : Fin (Q B τ).card) :
     modulationBlockIndex B τ j ∈ Q B τ :=
   ((Q B τ).equivFin.symm j).2
@@ -54,6 +57,9 @@ def finiteRadiusQuadraticHilbertBlockFamily
   fun j ↦ finiteRadiusQuadraticHilbertMaxTestOperator
     (dyadicModulation (modulationBlockIndex B τ j)) s
 
+/--
+@isnad1 id=issublin.0h4v.s5.c5ae9fdd8d4a from=translated src=- shape=3bdd7b41 vocab=a61806a2
+-/
 theorem finiteRadiusQuadraticHilbertBlockFamily_isSublinear
     (B : ℕ) (τ : ℤ) (s : Finset densePositiveRadii)
     (j : Fin (Q B τ).card) :
@@ -61,7 +67,9 @@ theorem finiteRadiusQuadraticHilbertBlockFamily_isSublinear
   finiteRadiusQuadraticHilbertMaxTestOperator_isSublinear _ _
 
 /-- The finite sparse-family maximum dominates the exact finite-radius
-frozen block pointwise.-/
+frozen block pointwise.
+@isnad1 id=le.0h7v.s5.fe94c4345213 from=translated src=- shape=abc91001 vocab=d9dffc3d
+-/
 theorem finiteRadiusFrozenBlockHilbertMaxEnorm_le_finiteMax
     (f : L0Infinity) (k B c : ℕ) (τ : ℤ)
     (s : Finset densePositiveRadii) (x : ℝ) :
@@ -103,7 +111,9 @@ theorem finiteRadiusFrozenBlockHilbertMaxEnorm_le_finiteMax
 
 /-- An ordinary weak `(1,1)` estimate for the indexed finite maximum gives
 the extended-valued weak estimate for the exact finite-radius frozen block,
-with its true `L¹` mass.-/
+with its true `L¹` mass.
+@isnad1 id=hasexten.2h7v.s6.d4e05cc40019 from=translated src=- shape=e84b6a1e vocab=22ae1e73
+-/
 theorem hasExtendedWeakL1Bound_finiteRadiusFrozenBlock_of_hasWeakOneOneBound
     (f : L0Infinity) (k B c : ℕ) (τ : ℤ)
     (s : Finset densePositiveRadii) {D : ℝ} (hD : 0 ≤ D)
@@ -145,7 +155,9 @@ theorem hasExtendedWeakL1Bound_finiteRadiusFrozenBlock_of_hasWeakOneOneBound
 
 /-- If the same finite-maximal weak constant is available for every finite
 radius subset, then the genuine all-radius frozen block has exactly that
-constant times its true `L¹` mass.-/
+constant times its true `L¹` mass.
+@isnad1 id=hasexten.2h6v.s6.9fac7f85b1cc from=translated src=- shape=19edd5bb vocab=2731146a
+-/
 theorem hasExtendedWeakL1Bound_frozenBlockHilbertMaxEnorm_of_uniform_finiteRadii
     (f : L0Infinity) (k B c : ℕ) (τ : ℤ) {D : ℝ} (hD : 0 ≤ D)
     (hweak : ∀ s : Finset densePositiveRadii,
@@ -161,7 +173,9 @@ theorem hasExtendedWeakL1Bound_frozenBlockHilbertMaxEnorm_of_uniform_finiteRadii
     f k B c τ s hD (hweak s)
 
 /-- The same conclusion on the complement of the fivefold exceptional set,
-which is the exact measure used by the paper's Kalton assembly.-/
+which is the exact measure used by the paper's Kalton assembly.
+@isnad1 id=hasexten.2h6v.s6.363327f55cc2 from=translated src=- shape=eb33b635 vocab=28b89309
+-/
 theorem hasExtendedWeakL1Bound_frozenBlockHilbertMaxEnorm_restrict_of_uniform_finiteRadii
     (f : L0Infinity) (k B c : ℕ) (τ : ℤ) {D : ℝ} (hD : 0 ≤ D)
     (hweak : ∀ s : Finset densePositiveRadii,

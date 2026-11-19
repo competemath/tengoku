@@ -15,6 +15,9 @@ open CalderonZygmundDyadicStopping CalderonZygmundStoppingIntervals
 open CalderonZygmundLevelAtoms PositiveHighHeightEstimate
 open LacunaryMiddleRangeSummation
 
+/--
+@isnad1 id=eq.0h5v.s7.648952b428d3 from=translated src=- shape=f2d647f0 vocab=a7ef3a16
+-/
 theorem enorm_stoppingScaleLevelBadPart_eq_tsum_atoms
     (A : ℕ → ℝ) (f : ℝ → ℂ) (j : ℤ) (k : ℕ) (x : ℝ) :
     ‖stoppingScaleLevelBadPart A f j k x‖ₑ =
@@ -39,7 +42,9 @@ theorem enorm_stoppingScaleLevelBadPart_eq_tsum_atoms
     simp [stoppingScaleLevelBadPart_eq_zero_of_notMem A hx, hz]
 
 /-- The coefficient used in the arithmetic block-packing lemma is exactly
-the L¹ mass of the genuine canonical `b_{j,k}`.-/
+the L¹ mass of the genuine canonical `b_{j,k}`.
+@isnad1 id=eq.1h4v.s7.bad3b2e445d8 from=translated src=- shape=8125755a vocab=d28205cb
+-/
 theorem lintegral_enorm_stoppingScaleLevelBadPart_eq_atomScaleMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (j : ℤ) (k : ℕ) :
     (∫⁻ x, ‖stoppingScaleLevelBadPart A f j k x‖ₑ) =
@@ -60,6 +65,9 @@ theorem lintegral_enorm_stoppingScaleLevelBadPart_eq_atomScaleMass
   intro c
   by_cases hc : c ∈ dyadicAtomScaleClass stoppingLength j <;> simp [hc]
 
+/--
+@isnad1 id=eq.2h4v.s7.e70e749faef7 from=translated src=- shape=adcbcde7 vocab=57ef35b1
+-/
 theorem lintegral_enorm_stoppingScaleLevelBadPart_eq_atomScaleIntegralMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (j : ℤ) {k : ℕ} (hAk : 0 ≤ A k) :
     (∫⁻ x, ‖stoppingScaleLevelBadPart A f j k x‖ₑ) =
@@ -74,7 +82,9 @@ theorem lintegral_enorm_stoppingScaleLevelBadPart_eq_atomScaleIntegralMass
     (Filter.Eventually.of_forall fun x ↦ norm_nonneg _)
 
 /-- The existing disjoint-residue block packing now applies directly to
-the actual canonical scale-sliced atoms, with no supplied atom family.-/
+the actual canonical scale-sliced atoms, with no supplied atom family.
+@isnad1 id=le.4h6v.s7.fe583ffe8319 from=translated src=- shape=0b5c1a3e vocab=348cb42d
+-/
 theorem tsum_sparseBlock_stoppingScaleLevelBadPart_mass_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) {k : ℕ} (hAk : 0 ≤ A k)
     (B c : ℕ) (hB : 0 < B) (hc : 2*c ≤ 5*B) (ρ : ℤ) :

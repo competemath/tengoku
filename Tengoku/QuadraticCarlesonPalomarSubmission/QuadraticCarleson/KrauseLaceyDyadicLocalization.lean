@@ -44,9 +44,15 @@ set_option autoImplicit false
 def RealInterval.centralThird (I : RealInterval) : Set ℝ :=
   Ioc ((2 * I.left + I.right) / 3) ((I.left + 2 * I.right) / 3)
 
+/--
+@isnad1 id=measurab.0h1v.s2.770eb1f9d764 from=translated src=- shape=1a6c1393 vocab=1ef9d0a8
+-/
 theorem RealInterval.measurableSet_centralThird (I : RealInterval) :
     MeasurableSet I.centralThird := measurableSet_Ioc
 
+/--
+@isnad1 id=le.0h1v.s3.71c53dfb3e5f from=translated src=- shape=ffc59986 vocab=7df8d619
+-/
 theorem RealInterval.centralThird_subset_carrier (I : RealInterval) :
     I.centralThird ⊆ I.carrier := by
   intro x hx
@@ -65,7 +71,9 @@ noncomputable def krauseLaceyLocalizedPiece
     I.centralThird.indicator f (x - y)
 
 /-- At the source scale relation `|I| = 2^(j+2)`, the outer radius of the
-project's one-sided dyadic amplitude is exactly `|I|/8`.-/
+project's one-sided dyadic amplitude is exactly `|I|/8`.
+@isnad1 id=eq.0h1v.s6.e31db9021ac5 from=translated src=- shape=cf53bb64 vocab=e0fd04a3
+-/
 theorem krauseLacey_scale_eq_eight_mul_radius (j : ℤ) :
     (2 : ℝ) ^ (j + 2) = 8 * (2 : ℝ) ^ (j - 1) := by
   rw [show j + 2 = (j - 1) + 3 by ring,
@@ -78,7 +86,9 @@ localizing the input to the central third makes the scale-`j` piece supported
 on `I` whenever `|I| = 2^(j+2)`.
 
 The statement is pointwise and needs no integrability hypothesis: outside
-`I` the integrand vanishes identically.-/
+`I` the integrand vanishes identically.
+@isnad1 id=eq.2h5v.s6.d6d0bfa78565 from=translated src=- shape=3ef7a416 vocab=eea74a8f
+-/
 theorem krauseLaceyLocalizedPiece_eq_zero_of_notMem
     (lam : ℝ) (j : ℤ) (I : RealInterval) (f : ℝ → ℂ)
     (hscale : I.length = (2 : ℝ) ^ (j + 2))
@@ -117,7 +127,9 @@ theorem krauseLaceyLocalizedPiece_eq_zero_of_notMem
     _ = 0 := by simp
 
 /-- Set-theoretic support formulation of the preceding exact pointwise
-localization.-/
+localization.
+@isnad1 id=le.1h4v.s6.e2915cc5b67c from=translated src=- shape=dcfbd335 vocab=e8769488
+-/
 theorem krauseLaceyLocalizedPiece_support_subset
     (lam : ℝ) (j : ℤ) (I : RealInterval) (f : ℝ → ℂ)
     (hscale : I.length = (2 : ℝ) ^ (j + 2)) :
@@ -134,6 +146,9 @@ noncomputable def krauseLaceySignedLocalizedPiece
   ∫ y, (dyadicPsi j y : ℂ) * phase (lam * y ^ 2) *
     I.centralThird.indicator f (x - y)
 
+/--
+@isnad1 id=eq.2h5v.s6.2c79e58dae81 from=translated src=- shape=3ef7a416 vocab=9ef1c59d
+-/
 theorem krauseLaceySignedLocalizedPiece_eq_zero_of_notMem
     (lam : ℝ) (j : ℤ) (I : RealInterval) (f : ℝ → ℂ)
     (hscale : I.length = (2 : ℝ) ^ (j + 2))
@@ -174,6 +189,9 @@ theorem krauseLaceySignedLocalizedPiece_eq_zero_of_notMem
       simp
     _ = 0 := by simp
 
+/--
+@isnad1 id=le.1h4v.s6.07dabaf5cc2a from=translated src=- shape=dcfbd335 vocab=8b72a108
+-/
 theorem krauseLaceySignedLocalizedPiece_support_subset
     (lam : ℝ) (j : ℤ) (I : RealInterval) (f : ℝ → ℂ)
     (hscale : I.length = (2 : ℝ) ^ (j + 2)) :
@@ -187,10 +205,16 @@ proof of Krause--Lacey Lemma 3.5.-/
 noncomputable def intervalL1Average (f : ℝ → ℂ) (I : RealInterval) : ℝ :=
   I.length⁻¹ * ∫ x in I.carrier, ‖f x‖
 
+/--
+@isnad1 id=le.0h2v.s4.e152fe1553c4 from=translated src=- shape=67b19932 vocab=30241d60
+-/
 theorem intervalL1Average_nonneg (f : ℝ → ℂ) (I : RealInterval) :
     0 ≤ intervalL1Average f I := by
   exact mul_nonneg (inv_nonneg.mpr I.length_pos.le) (integral_nonneg fun _ ↦ norm_nonneg _)
 
+/--
+@isnad1 id=eq.0h2v.s5.4cdef9ce3a58 from=translated src=- shape=877c7453 vocab=d129f9cb
+-/
 theorem intervalL1Average_mul_length (f : ℝ → ℂ) (I : RealInterval) :
     intervalL1Average f I * I.length = ∫ x in I.carrier, ‖f x‖ := by
   rw [intervalL1Average]
@@ -201,7 +225,9 @@ argument.  Pairwise-disjoint children whose `L¹` average exceeds ten times
 the parent's occupy at most one tenth of the parent.
 
 Maximality and dyadic provenance are what supply disjointness in the source;
-the estimate itself only uses that disjointness and containment.-/
+the estimate itself only uses that disjointness and containment.
+@isnad1 id=le.4h5v.s7.22f10bb9d6be from=translated src=- shape=48137a81 vocab=00a7babe
+-/
 theorem krauseLacey_stoppingChildren_length_le_tenth
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval)
     (f : ℝ → ℂ)
@@ -261,7 +287,9 @@ theorem krauseLacey_stoppingChildren_length_le_tenth
 /-- The exact two-function packing estimate in the stopping recursion for
 Krause--Lacey Lemma 3.5.  A child is stopped when either input average is more
 than ten times its parent average.  The two exceptional subfamilies each cost
-at most `|I|/10`, hence all stopping children cost at most `|I|/5`.-/
+at most `|I|/10`, hence all stopping children cost at most `|I|/5`.
+@isnad1 id=le.5h6v.s8.91111862bc94 from=translated src=- shape=921e7624 vocab=00a7babe
+-/
 theorem krauseLacey_stoppingChildren_length_le_fifth
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval)
     (f g : ℝ → ℂ)
@@ -311,6 +339,9 @@ def krauseLaceyStoppingMajorSubset
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval) : Set ℝ :=
   I.carrier \ (⋃ i ∈ s, (J i).carrier)
 
+/--
+@isnad1 id=measurab.0h4v.s4.b9e8ec099d42 from=translated src=- shape=98bbbdee vocab=2374a4b6
+-/
 theorem measurableSet_krauseLaceyStoppingMajorSubset
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval) :
     MeasurableSet (krauseLaceyStoppingMajorSubset s J I) := by
@@ -320,7 +351,9 @@ theorem measurableSet_krauseLaceyStoppingMajorSubset
 /-- The quantitative invariant of the KL18 sparse recursion: the stopping
 children consume at most one fifth of their parent, so the retained major
 subset has measure at least `4|I|/5`.  This is stronger than the source's
-declared `1/4` sparse convention.-/
+declared `1/4` sparse convention.
+@isnad1 id=le.5h6v.s8.3b709ddd733c from=translated src=- shape=f35bdf25 vocab=141229d5
+-/
 theorem krauseLacey_stoppingMajorSubset_measure_ge_four_fifths
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval)
     (f g : ℝ → ℂ)
@@ -364,7 +397,9 @@ theorem krauseLacey_stoppingMajorSubset_measure_ge_four_fifths
   linarith
 
 /-- In particular, every step of this recursion meets the approved KL18
-`1/4` major-subset density, with considerable slack.-/
+`1/4` major-subset density, with considerable slack.
+@isnad1 id=le.5h6v.s8.1ab1b200b65c from=translated src=- shape=f35bdf25 vocab=141229d5
+-/
 theorem krauseLacey_stoppingMajorSubset_measure_ge_quarter
     {ι : Type*} (s : Finset ι) (J : ι → RealInterval) (I : RealInterval)
     (f g : ℝ → ℂ)
@@ -389,7 +424,9 @@ larger's stopping children.  For a dyadic grid this follows from nesting and
 maximal selection.  Unlike an assumption of sparse domination, it is purely
 the structural invariant of the recursive construction.  The quantitative
 major-subset estimate is derived above from the actual threshold-ten average
-test.-/
+test.
+@isnad1 id=issparse.6h4v.s8.0e5b1aaeec40 from=translated src=- shape=fcf5b624 vocab=f581114e
+-/
 theorem krauseLacey_finiteStoppingTree_isSparse
     (S : Finset RealInterval) (children : RealInterval → Finset RealInterval)
     (f g : ℝ → ℂ) (hf : Integrable f) (hg : Integrable g)

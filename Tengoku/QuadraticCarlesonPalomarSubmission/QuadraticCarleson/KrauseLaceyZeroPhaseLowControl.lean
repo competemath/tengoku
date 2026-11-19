@@ -29,7 +29,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- Reverse direction of the sharp/smooth cutoff comparison.  The difference
-is exactly the already controlled compact transition kernel.-/
+is exactly the already controlled compact transition kernel.
+@isnad1 id=le.3h3v.s7.9bc30165ee1d from=translated src=- shape=b943a517 vocab=c5f84c80
+-/
 theorem smoothQuadraticHighPass_enorm_le_hilbertTrunc_add_maximal
     {ρ : ℝ} (hρ : 0 < ρ) {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
@@ -47,7 +49,9 @@ theorem smoothQuadraticHighPass_enorm_le_hilbertTrunc_add_maximal
     (cutoffBoundaryOperator_enorm_le_maximal 0 hρ f hf x))
 
 /-- The two finite-block definitions used by the low comparison and by the
-sharp-truncation adapter agree exactly.-/
+sharp-truncation adapter agree exactly.
+@isnad1 id=eq.1h5v.s6.3ff4bd71be26 from=translated src=- shape=d26c6373 vocab=74e20505
+-/
 theorem finiteFullDyadicTail_succ_eq_finiteQuadraticDyadicBlock
     (lam : ℝ) (j : ℤ) (B : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicTail lam j (B + 1) f x =
@@ -59,7 +63,9 @@ theorem finiteFullDyadicTail_succ_eq_finiteQuadraticDyadicBlock
   simp only [annularQuadraticKernel, Finset.sum_mul]
 
 /-- A single phase-zero suffix is controlled by the genuine ordinary Hilbert
-maximal truncation and the common cutoff-boundary maximal error.-/
+maximal truncation and the common cutoff-boundary maximal error.
+@isnad1 id=le.3h5v.s8.4296be1c8a7a from=translated src=- shape=6155764f vocab=11795349
+-/
 theorem finiteFullDyadicSuffix_zero_enorm_le_hilbertMaximal_add_maximal
     (j : ℤ) (N m : ℕ) {f : ℝ → ℂ}
     (hfm : Measurable f) (hfi : Integrable f) (hf2 : MemLp f 2) (x : ℝ) :
@@ -77,7 +83,9 @@ theorem finiteFullDyadicSuffix_zero_enorm_le_hilbertMaximal_add_maximal
       0 (j + (m : ℤ)) (N - m - 1) hfm hfi x
 
 /-- The finite maximum over all phase-zero suffixes has the same pointwise
-bound as each individual suffix; no cardinality factor is introduced.-/
+bound as each individual suffix; no cardinality factor is introduced.
+@isnad1 id=le.3h4v.s7.8cbde7a6c3dd from=translated src=- shape=88c9dc17 vocab=efb4c130
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_zero_le_hilbertMaximal_add_maximal
     (j : ℤ) (N : ℕ) {f : ℝ → ℂ}
     (hfm : Measurable f) (hfi : Integrable f) (hf2 : MemLp f 2) (x : ℝ) :
@@ -95,7 +103,9 @@ theorem coe_finiteFullDyadicSuffixMaxNNNorm_zero_le_hilbertMaximal_add_maximal
 /-- Complete pointwise control of an all-low unit-quadratic suffix maximum.
 The phase-zero part is paid once through the ordinary maximal Hilbert
 transform, and the two cutoff errors are paid through one centered maximal
-function.-/
+function.
+@isnad1 id=le.4h4v.s8.fe14327e55c0 from=translated src=- shape=7bcedf89 vocab=ced0c709
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_one_low_le_hilbertMaximal_add_maximal
     {j : ℤ} {N : ℕ} (htop : j + (N : ℤ) ≤ 1)
     {f : ℝ → ℂ} (hfm : Measurable f) (hfi : Integrable f)

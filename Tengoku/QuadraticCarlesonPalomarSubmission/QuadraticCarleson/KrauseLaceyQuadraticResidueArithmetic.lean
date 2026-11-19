@@ -22,6 +22,9 @@ The numerator is nonnegative because `r ≤ 6`.-/
 def firstResidueIndex (r : Fin 7) (q : ℕ) : ℕ :=
   (q + 6 - (r : ℕ)) / 7
 
+/--
+@isnad1 id=iff.0h3v.s4.0295230a67bc from=translated src=- shape=763286b3 vocab=413970a9
+-/
 theorem firstResidueIndex_le_iff
     (r : Fin 7) (q n : ℕ) :
     firstResidueIndex r q ≤ n ↔
@@ -31,7 +34,9 @@ theorem firstResidueIndex_le_iff
   omega
 
 /-- A lower scale cutoff inside one residue class is literally a finite
-interval of natural indices.-/
+interval of natural indices.
+@isnad1 id=eq.0h3v.s5.96aae35189d6 from=translated src=- shape=3785ce82 vocab=5b656979
+-/
 theorem range_filter_residueScale_ge
     (r : Fin 7) (q N : ℕ) :
     (Finset.range N).filter (fun n ↦ (q : ℤ) ≤ residueScale r n) =
@@ -42,7 +47,9 @@ theorem range_filter_residueScale_ge
   tauto
 
 /-- Hence every truncated sum in a fixed residue class is one of the
-ordinary suffixes used by the annular maximal-tail theorem.-/
+ordinary suffixes used by the annular maximal-tail theorem.
+@isnad1 id=eq.0h5v.s6.55d433268ed4 from=translated src=- shape=30dc7661 vocab=540fc716
+-/
 theorem sum_filter_residueScale_ge_eq_Ico
     {E : Type*} [AddCommMonoid E] (u : ℕ → E)
     (r : Fin 7) (q N : ℕ) :
@@ -52,7 +59,9 @@ theorem sum_filter_residueScale_ge_eq_Ico
   rw [range_filter_residueScale_ge]
 
 /-- The cutoff sum is therefore represented by a tail whose starting index
-always lies in `0, ..., N`, including the empty-tail case.-/
+always lies in `0, ..., N`, including the empty-tail case.
+@isnad1 id=eq.0h5v.s6.cc1af61d3147 from=translated src=- shape=c0f759a5 vocab=a11c96f6
+-/
 theorem sum_filter_residueScale_ge_eq_finitePieceTail
     (u : ℕ → ℝ → ℂ) (r : Fin 7) (q N : ℕ) (x : ℝ) :
     ∑ n ∈ (Finset.range N).filter
@@ -70,7 +79,9 @@ theorem sum_filter_residueScale_ge_eq_finitePieceTail
       Finset.Ico_self]
 
 /-- Each residue-class cutoff is pointwise bounded by the corresponding
-finite annular tail maximum.-/
+finite annular tail maximum.
+@isnad1 id=le.0h5v.s6.efd5a7cf8818 from=translated src=- shape=e3753798 vocab=80fb3df9
+-/
 theorem enorm_sum_filter_residueScale_ge_le_tailMax
     (u : ℕ → ℝ → ℂ) (r : Fin 7) (q N : ℕ) (x : ℝ) :
     ‖∑ n ∈ (Finset.range N).filter

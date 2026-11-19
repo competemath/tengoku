@@ -26,16 +26,23 @@ def identityYoungFunction : YoungFunction where
   map_zero := rfl
   identity_or_superlinear := Or.inl (fun _ _ ↦ rfl)
 
+/--
+@isnad1 id=eq.0h1v.s3.5c72ff9c1e0f from=translated src=- shape=29edb2d9 vocab=59e8172c
+-/
 @[simp] theorem identityYoungFunction_apply (t : ℝ) : identityYoungFunction t = t := rfl
 
-/-- Every fixed number of the paper's iterated logarithms tends to infinity.-/
+/-- Every fixed number of the paper's iterated logarithms tends to infinity.
+@isnad1 id=tendsto.0h1v.s3.831ea62cd1fa from=translated src=- shape=74931b86 vocab=1d1aed78
+-/
 theorem tendsto_paperLog_atTop (n : ℕ) : Tendsto (paperLog n) atTop atTop := by
   induction n with
   | zero => exact tendsto_id
   | succ n ih =>
       exact Real.tendsto_log_atTop.comp (tendsto_atTop_add_const_left atTop 10 ih)
 
-/-- Linear growth is little-o of the negative endpoint growth.-/
+/-- Linear growth is little-o of the negative endpoint growth.
+@isnad1 id=growsslo.0h0v.s1.e9719471e274 from=translated src=- shape=49959d42 vocab=2a29ab11
+-/
 theorem identityYoungFunction_growsSlowerThanEndpoint :
     GrowsSlowerThanEndpoint identityYoungFunction := by
   have hlog : (fun _ : ℝ ↦ (1 : ℝ)) =o[atTop] (paperLog 2) :=
@@ -45,7 +52,9 @@ theorem identityYoungFunction_growsSlowerThanEndpoint :
   simpa only [GrowsSlowerThanEndpoint, identityYoungFunction_apply, mul_one] using hmul
 
 /-- The usual `α · |{T f > α}| ≤ C ‖f‖₁` bound implies the modular
-estimate for the identity Young function, with the same constant.-/
+estimate for the identity Young function, with the same constant.
+@isnad1 id=hasfunct.1h1v.s7.5550c06f94ec from=translated src=- shape=45894206 vocab=7ca99651
+-/
 theorem hasFunctionPhiModularEstimate_identity_of_weakOneOne
     {T : L0Infinity → ℝ → ℝ≥0∞}
     (hweak : ∃ C : ℝ, 0 < C ∧ ∀ (f : L0Infinity) (α : ℝ), 0 < α →
@@ -66,7 +75,9 @@ theorem hasFunctionPhiModularEstimate_identity_of_weakOneOne
   simpa only [mul_left_comm] using h
 
 /-- The concrete lacunary quadratic operator is not of weak type `(1,1)`
-on the paper's bounded compactly supported measurable test domain.-/
+on the paper's bounded compactly supported measurable test domain.
+@isnad1 id=not.0h0v.s7.a7cb0baaf37a from=translated src=- shape=b7c714a5 vocab=6b651611
+-/
 theorem lacunaryQuadraticCarlesonL0_not_weakOneOne :
     ¬∃ C : ℝ, 0 < C ∧ ∀ (f : L0Infinity) (α : ℝ), 0 < α →
       ENNReal.ofReal α * volume {x | ENNReal.ofReal α <
@@ -78,7 +89,9 @@ theorem lacunaryQuadraticCarlesonL0_not_weakOneOne :
   exact (hasFunctionPhiModularEstimate_iff identityYoungFunction lacunaryL0Operator).mp
     (hasFunctionPhiModularEstimate_identity_of_weakOneOne hweak)
 
-/-- The full real-modulation quadratic operator likewise fails weak `(1,1)`.-/
+/-- The full real-modulation quadratic operator likewise fails weak `(1,1)`.
+@isnad1 id=not.0h0v.s7.7409cbedc678 from=translated src=- shape=b7c714a5 vocab=e4fd02d8
+-/
 theorem quadraticCarlesonL0_not_weakOneOne :
     ¬∃ C : ℝ, 0 < C ∧ ∀ (f : L0Infinity) (α : ℝ), 0 < α →
       ENNReal.ofReal α * volume {x | ENNReal.ofReal α < quadraticCarlesonL0 f x} ≤

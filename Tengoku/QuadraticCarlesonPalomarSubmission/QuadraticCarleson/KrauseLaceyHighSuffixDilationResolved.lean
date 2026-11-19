@@ -31,7 +31,9 @@ def dilatedHighSuffixFamily {N : ℕ} (B : ℕ) (a : Fin N → ℝ)
     (finiteFullDyadicSuffixMaxOperator 1 1 (B + 1))
 
 /-- Neither the positive dilation nor the number of scales changes the
-verified high-scale sparse constant.-/
+verified high-scale sparse constant.
+@isnad1 id=hasspars.3h3v.s6.3f07539617fd from=translated src=- shape=7d451368 vocab=130ba490
+-/
 theorem hasSparseOnePBound_dilatedHighSuffix
     (B : ℕ) (a : ℝ) (ha : 0 < a) {p : ℝ}
     (hp : 1 < p) (hp2 : p < 2) :
@@ -44,7 +46,9 @@ theorem hasSparseOnePBound_dilatedHighSuffix
 
 /-- Every finite collection of positive dilations satisfies the complete
 sparse-maximal hypothesis with one universal constant, including the empty
-family.-/
+family.
+@isnad1 id=finitesp.1h3v.s5.e67329e44154 from=translated src=- shape=5f1d2e38 vocab=f33194e0
+-/
 theorem finiteSparseMaximalHypothesis_dilatedHighSuffixFamily
     {N : ℕ} (B : ℕ) (a : Fin N → ℝ) (ha : ∀ i, 0 < a i) :
     FiniteSparseMaximalHypothesis (dilatedHighSuffixFamily B a ha)
@@ -64,7 +68,9 @@ theorem finiteSparseMaximalHypothesis_dilatedHighSuffixFamily
 
 /-- The actual finite maximum of the dilated high suffix operators has the
 paper's logarithmic-squared weak bound, uniformly in both cutoffs and all
-positive dilation parameters.-/
+positive dilation parameters.
+@isnad1 id=hasweako.1h3v.s6.b974f37b4a41 from=translated src=- shape=4de66d23 vocab=8db94cda
+-/
 theorem hasWeakOneOneBound_dilatedHighSuffixFamily
     {N : ℕ} (B : ℕ) (a : Fin N → ℝ) (ha : ∀ i, 0 < a i) :
     HasWeakOneOneBound

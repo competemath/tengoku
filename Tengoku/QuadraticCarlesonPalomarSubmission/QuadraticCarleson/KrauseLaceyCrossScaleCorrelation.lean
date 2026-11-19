@@ -19,7 +19,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- Two positively supported, separated annuli have a uniformly
-nonstationary quadratic correlation phase.-/
+nonstationary quadratic correlation phase.
+@isnad1 id=le.9h7v.s8.f11ecab47246 from=translated src=- shape=de5012db vocab=edd18dfd
+-/
 theorem krauseLacey_twoScaleCorrelation_le
     {r R P : ℝ} (hr : 0 < r) (hR : 0 < R) (hrR : r ≤ R / 8) (hP : 0 ≤ P)
     {p p' : ℝ → ℂ} (hp : ∀ t, HasDerivAt p (p' t) t) (hp' : Continuous p')
@@ -94,7 +96,9 @@ theorem krauseLacey_twoScaleCorrelation_le
     simp
 
 /-- Uniform two-scale decay for two concrete smooth positive-annular
-amplitudes, retaining the additional small-radius gain.-/
+amplitudes, retaining the additional small-radius gain.
+@isnad1 id=le.14h9v.s9.4bea0d82adb6 from=translated src=- shape=0e2837d2 vocab=9297c144
+-/
 theorem annularQuadraticKernel_correlation_le_separated
     {a a' b b' : ℝ → ℂ} {r R D : ℝ}
     (hr : 0 < r) (hR : 0 < R) (hrR : r ≤ R / 8) (hD : 0 ≤ D)
@@ -168,7 +172,9 @@ theorem annularQuadraticKernel_correlation_le_separated
   simpa only [p, hconst] using h
 
 /-- KL18 (2.6), proved for the project's actual positive dyadic quadratic
-kernel. The scale gap is three and the small index is at least one.-/
+kernel. The scale gap is three and the small index is at least one.
+@isnad1 id=other.2h4v.s8.08f84d10652b from=translated src=- shape=6d9920db vocab=eef6940d
+-/
 theorem krauseLacey_crossScalePositiveDyadicCorrelation_le
     (j k : ℤ) (hj : 1 ≤ j) (hjk : j + 3 ≤ k) (x y : ℝ) :
     let R := (2 : ℝ) ^ (k - 1)

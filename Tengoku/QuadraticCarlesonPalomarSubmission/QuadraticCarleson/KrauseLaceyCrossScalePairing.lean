@@ -19,6 +19,9 @@ set_option autoImplicit false
 
 namespace FiniteRangeKernel
 
+/--
+@isnad1 id=integrab.1h4v.s7.1259ab22e764 from=translated src=- shape=dafc88b5 vocab=92f73671
+-/
 theorem integrable_mixedComposition_integrand (K L : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     Integrable (fun z : ℝ × ℝ ↦ K x z.1 * L z.1 z.2 * g z.2)
@@ -31,7 +34,9 @@ theorem integrable_mixedComposition_integrand (K L : FiniteRangeKernel)
   dsimp only [Function.uncurry]
   ring
 
-/-- Exact mixed composition; all Fubini integrability is derived.-/
+/-- Exact mixed composition; all Fubini integrability is derived.
+@isnad1 id=eq.1h4v.s6.e651f2d84bb6 from=translated src=- shape=a970ce9a vocab=23a13a18
+-/
 theorem applyIntegral_comp_eq_mixed (K L : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     K.applyIntegral (L.applyIntegral g) x =
@@ -51,7 +56,9 @@ theorem applyIntegral_comp_eq_mixed (K L : FiniteRangeKernel)
     _ = ∫ y, ∫ t, K x t * L t y * g y := hswap
     _ = _ := by simp_rw [integral_mul_const]
 
-/-- The mixed composition norm is bounded by its genuine mixed kernel.-/
+/-- The mixed composition norm is bounded by its genuine mixed kernel.
+@isnad1 id=le.3h5v.s7.97675228e71d from=translated src=- shape=e1dc46ed vocab=125a0467
+-/
 theorem norm_applyIntegral_comp_le (K L : FiniteRangeKernel)
     {g : ℝ → ℂ} (hg : Integrable g) {C : ℝ} (_hC : 0 ≤ C)
     (hbound : ∀ x y, ‖∫ t, K x t * L t y‖ ≤ C) (x : ℝ) :
@@ -71,7 +78,9 @@ theorem norm_applyIntegral_comp_le (K L : FiniteRangeKernel)
     _ = _ := integral_const_mul _ _
 
 /-- An actual two-operator cross pairing, controlled by the mixed
-adjoint kernel and the two `L¹` masses.-/
+adjoint kernel and the two `L¹` masses.
+@isnad1 id=le.4h5v.s8.739bec18f117 from=translated src=- shape=077850a6 vocab=36516255
+-/
 theorem norm_crossPairing_le (K L : FiniteRangeKernel)
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g)
     {C : ℝ} (hC : 0 ≤ C)
@@ -126,10 +135,16 @@ noncomputable def krauseLaceyPositiveKernel (j : ℤ) : FiniteRangeKernel where
       exact (not_lt_of_ge hs.2) ht
     simp [annularQuadraticKernel, hz]
 
+/--
+@isnad1 id=eq.0h3v.s4.a08ec15fbec3 from=translated src=- shape=ddf97322 vocab=87fcd273
+-/
 @[simp] theorem krauseLaceyPositiveKernel_apply (j : ℤ) (x t : ℝ) :
     krauseLaceyPositiveKernel j x t =
       annularQuadraticKernel (positiveDyadicAmplitude j) 1 (x - t) := rfl
 
+/--
+@isnad1 id=le.2h4v.s7.e77d60e5fc46 from=translated src=- shape=52353123 vocab=d006d019
+-/
 theorem krauseLaceyPositiveKernel_mixed_adjoint_le
     (j k : ℤ) (hj : 1 ≤ j) (hjk : j + 3 ≤ k) (x y : ℝ) :
     ‖∫ t, conj (krauseLaceyPositiveKernel k t x) * krauseLaceyPositiveKernel j t y‖ ≤
@@ -157,7 +172,9 @@ theorem krauseLaceyPositiveKernel_mixed_adjoint_le
   · positivity
 
 /-- The separated-scale localized cross term used in KL18 (4.20).
-The two masses are the actual restricted inputs, not assumed budgets.-/
+The two masses are the actual restricted inputs, not assumed budgets.
+@isnad1 id=le.4h6v.s8.2bce89d9e26d from=translated src=- shape=8bff6e4a vocab=8c366e4f
+-/
 theorem krauseLaceyLocalizedPiece_crossPairing_le
     (j k : ℤ) (hj : 1 ≤ j) (hjk : j + 3 ≤ k) (I J : RealInterval)
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) :
@@ -176,6 +193,9 @@ theorem krauseLaceyLocalizedPiece_crossPairing_le
     integral_indicator I.measurableSet_centralThird,
     integral_indicator J.measurableSet_centralThird] using h
 
+/--
+@isnad1 id=integrab.1h3v.s6.508cedcecfc4 from=translated src=- shape=471c1478 vocab=bdd5e7ee
+-/
 theorem integrable_krauseLaceyLocalizedPiece (j : ℤ) (I : RealInterval)
     {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (krauseLaceyLocalizedPiece 1 j I f) := by
@@ -185,6 +205,9 @@ theorem integrable_krauseLaceyLocalizedPiece (j : ℤ) (I : RealInterval)
   filter_upwards with x
   exact (krauseLaceyLocalizedPiece_eq_positiveDyadicConvolution j I f x).symm
 
+/--
+@isnad1 id=integrab.2h6v.s7.76c016920f30 from=translated src=- shape=b0fbd5b4 vocab=8bda74bd
+-/
 theorem integrable_krauseLaceyLocalizedPiece_crossPairing
     (j k : ℤ) (I J : RealInterval)
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) :

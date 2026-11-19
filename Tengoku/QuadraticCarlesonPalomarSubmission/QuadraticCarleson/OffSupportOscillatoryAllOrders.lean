@@ -17,7 +17,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
-/-- Every weighted packet derivative admits arbitrary-order oscillatory decay.-/
+/-- Every weighted packet derivative admits arbitrary-order oscillatory decay.
+@isnad1 id=le.3h7v.s7.7915fc7de432 from=translated src=- shape=e6c62aca vocab=192357eb
+-/
 theorem offSupportWeightedAction_norm_le_all_orders (k r q : ℕ) {lam s t x : ℝ}
     (hlam : lam ≠ 0) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -34,7 +36,9 @@ theorem offSupportWeightedAction_norm_le_all_orders (k r q : ℕ) {lam s t x : �
     (fun r q ↦ offSupportWeightedAction_norm_le_zero r q ht hx)
     (fun r q ↦ offSupportWeightedAction_norm_le_step r q hlam ht hx) k r q
 
-/-- The full rapid-decay branch of the paper's off-support wave-packet lemma.-/
+/-- The full rapid-decay branch of the paper's off-support wave-packet lemma.
+@isnad1 id=le.3h5v.s7.0627999d91b9 from=translated src=- shape=ab9bc839 vocab=fbf489a9
+-/
 theorem offSupportOscillatoryAction_norm_le_all_orders (k : ℕ) {lam s t x : ℝ}
     (hlam : lam ≠ 0) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -45,7 +49,9 @@ theorem offSupportOscillatoryAction_norm_le_all_orders (k : ℕ) {lam s t x : �
     offSupportWeightedAction_norm_le_all_orders k 0 1 hlam ht hx
 
 /-- An explicit universal constant for each order, independent of every
-modulation, interval, and off-support evaluation point.-/
+modulation, interval, and off-support evaluation point.
+@isnad1 id=ex.0h1v.s7.fe0a3a02fe6f from=translated src=- shape=f2d43c7c vocab=4c80b8c8
+-/
 theorem offSupportOscillatoryAction_rapid_decay (k : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (lam s t x : ℝ), lam ≠ 0 → 0 < t →
       x ∉ Icc (s - t / 2) (s + t / 2) →

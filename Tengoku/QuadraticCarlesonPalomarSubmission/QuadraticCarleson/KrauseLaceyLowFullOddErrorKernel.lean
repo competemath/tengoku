@@ -28,7 +28,9 @@ def finiteLowFullPhaseErrorKernel (j : ℤ) (n : ℕ) (t : ℝ) : ℂ :=
 /-- The finite low-block phase error is continuous.  This is made explicit
 rather than left to automation: every dyadic amplitude is smooth, coercion
 from `ℝ` to `ℂ` is continuous, and finite sums and products preserve
-continuity.-/
+continuity.
+@isnad1 id=continuo.0h2v.s4.09b1190180af from=translated src=- shape=c503242f vocab=8f5f632e
+-/
 theorem continuous_finiteLowFullPhaseErrorKernel (j : ℤ) (n : ℕ) :
     Continuous (finiteLowFullPhaseErrorKernel j n) := by
   have hsum : Continuous (fun t : ℝ ↦
@@ -42,12 +44,17 @@ theorem continuous_finiteLowFullPhaseErrorKernel (j : ℤ) (n : ℕ) :
     fun_prop
   exact hsum.mul hphase
 
+/--
+@isnad1 id=measurab.0h2v.s3.a8040dc8bc45 from=translated src=- shape=c503242f vocab=67b57943
+-/
 theorem measurable_finiteLowFullPhaseErrorKernel (j : ℤ) (n : ℕ) :
     Measurable (finiteLowFullPhaseErrorKernel j n) :=
   (continuous_finiteLowFullPhaseErrorKernel j n).measurable
 
 /-- If every scale in the block is at most zero, the phase-error kernel is
-supported in the fixed ball of radius `1/2`.-/
+supported in the fixed ball of radius `1/2`.
+@isnad1 id=le.1h2v.s6.84298d492db8 from=translated src=- shape=e0ea8103 vocab=4d03e3da
+-/
 theorem finiteLowFullPhaseErrorKernel_support_subset
     {j : ℤ} {n : ℕ} (htop : j + (n : ℤ) ≤ 1) :
     support (finiteLowFullPhaseErrorKernel j n) ⊆
@@ -82,7 +89,9 @@ theorem finiteLowFullPhaseErrorKernel_support_subset
 
 /-- Telescoping of the full odd amplitudes removes the apparent factor `n`:
 the unit quadratic phase error is bounded by `4π|t|` for every block
-length.-/
+length.
+@isnad1 id=le.0h3v.s5.3bdbc4ea1b9b from=translated src=- shape=1fe6ea58 vocab=fd9b9515
+-/
 theorem finiteLowFullPhaseErrorKernel_norm_le_abs
     (j : ℤ) (n : ℕ) (t : ℝ) :
     ‖finiteLowFullPhaseErrorKernel j n t‖ ≤ 4 * Real.pi * |t| := by
@@ -128,7 +137,9 @@ theorem finiteLowFullPhaseErrorKernel_norm_le_abs
       _ = 4 * Real.pi * |t| := by field_simp; ring
 
 /-- On a genuinely low block the phase-error kernel has a uniform global
-bound, independent of both its starting scale and its length.-/
+bound, independent of both its starting scale and its length.
+@isnad1 id=le.1h3v.s5.3408d31f6d28 from=translated src=- shape=d5d4115d vocab=829eba37
+-/
 theorem finiteLowFullPhaseErrorKernel_norm_le
     {j : ℤ} {n : ℕ} (htop : j + (n : ℤ) ≤ 1) (t : ℝ) :
     ‖finiteLowFullPhaseErrorKernel j n t‖ ≤ 4 * Real.pi := by
@@ -147,7 +158,9 @@ theorem finiteLowFullPhaseErrorKernel_norm_le
     positivity
 
 /-- Convolution with the complete low-scale phase error is controlled by a
-fixed multiple of the centered Hardy--Littlewood maximal function.-/
+fixed multiple of the centered Hardy--Littlewood maximal function.
+@isnad1 id=le.2h4v.s7.f6c0c6a02931 from=translated src=- shape=3350a592 vocab=8692f7bb
+-/
 theorem finiteLowFullPhaseErrorOperator_enorm_le_maximal
     {j : ℤ} {n : ℕ} (htop : j + (n : ℤ) ≤ 1)
     {f : ℝ → ℂ} (hf : Measurable f) (x : ℝ) :

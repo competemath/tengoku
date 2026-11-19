@@ -24,7 +24,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- Raising the first allowed scale reduces the smooth suffix maximum.-/
+/-- Raising the first allowed scale reduces the smooth suffix maximum.
+@isnad1 id=le.1h5v.s4.c125d9f2be30 from=translated src=- shape=69a72501 vocab=9f8fb40d
+-/
 theorem dyadicSmoothHighPassMaxEnorm_antitone_start
     (lam : ℝ) {i j : ℤ} (hij : i ≤ j) (f : L0Infinity) (x : ℝ) :
     dyadicSmoothHighPassMaxEnorm lam j f x ≤
@@ -42,7 +44,9 @@ theorem dyadicSmoothHighPassMaxEnorm_antitone_start
     ‖smoothQuadraticHighPass lam ((2 : ℝ) ^ (i + (r : ℤ) - 3)) f x‖ₑ) n
 
 /-- Upward rounding of a normalized radius at least `1/8` starts in the
-high range of the checked Krause--Lacey estimate.-/
+high range of the checked Krause--Lacey estimate.
+@isnad1 id=le.2h1v.s6.59507b6a5917 from=translated src=- shape=804ed2b9 vocab=c08df01a
+-/
 theorem one_le_roundedScale {ρ : ℝ} (hρ : 0 < ρ) (hmin : 1 / 8 ≤ ρ) :
     1 ≤ dyadicFloorScale ρ hρ + 4 := by
   have hpow : (2 : ℝ) ^ (-3 : ℤ) <
@@ -53,7 +57,9 @@ theorem one_le_roundedScale {ρ : ℝ} (hρ : 0 < ρ) (hmin : 1 / 8 ≤ ρ) :
   have hidx := (zpow_lt_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mp hpow
   omega
 
-/-- Every such rounded cutoff is already one of the allowed high cutoffs.-/
+/-- Every such rounded cutoff is already one of the allowed high cutoffs.
+@isnad1 id=le.2h3v.s6.8d2ef0141fe1 from=translated src=- shape=b8d6eca1 vocab=0ddf4720
+-/
 theorem enorm_roundedSmooth_le_highMax {ρ : ℝ} (hρ : 0 < ρ)
     (hmin : 1 / 8 ≤ ρ) (f : L0Infinity) (x : ℝ) :
     ‖smoothQuadraticHighPass 1 (dyadicCeilRadius ρ hρ) f x‖ₑ ≤

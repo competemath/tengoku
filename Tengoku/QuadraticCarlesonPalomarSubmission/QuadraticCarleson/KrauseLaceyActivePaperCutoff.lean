@@ -22,12 +22,18 @@ set_option autoImplicit false
 /-- A literal natural-number cutoff of the paper's required asymptotic size.-/
 def activeOverlapCutoff (s : ℕ) : ℕ := (s + 1) * (1 + 2 ^ s)
 
+/--
+@isnad1 id=le.0h1v.s5.93dea4db7d2a from=translated src=- shape=517a814f vocab=0348bf3b
+-/
 theorem activeOverlapCutoff_le (s : ℕ) :
     activeOverlapCutoff s ≤ 2 * (s + 1) * 2 ^ s := by
   have hpow : 1 ≤ (2 : ℕ) ^ s := Nat.one_le_pow s 2 (by omega)
   unfold activeOverlapCutoff
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s5.b4cbbb0ae7d6 from=translated src=- shape=0e2963ef vocab=0348bf3b
+-/
 theorem activeOverlapCutoff_le_pow (s : ℕ) :
     activeOverlapCutoff s ≤ 2 ^ (2 * s + 1) := by
   have hs : s + 1 ≤ (2 : ℕ) ^ s := by
@@ -42,6 +48,9 @@ theorem activeOverlapCutoff_le_pow (s : ℕ) :
     _ ≤ (2 : ℕ) ^ s * 2 ^ (s + 1) := Nat.mul_le_mul hs ht
     _ = _ := by rw [← pow_add]; congr 1; omega
 
+/--
+@isnad1 id=le.0h1v.s5.fb1bdcddc4bf from=translated src=- shape=de3fa9a7 vocab=e0da3644
+-/
 theorem log2_activeOverlapCutoff_le (s : ℕ) :
     Nat.log2 (activeOverlapCutoff s) ≤ 2 * s + 1 := by
   have h := Nat.log_mono_right (b := 2) (activeOverlapCutoff_le_pow s)
@@ -49,7 +58,9 @@ theorem log2_activeOverlapCutoff_le (s : ℕ) :
 
 /-- At the concrete source-size cutoff, the actual pruned maximal prefix
 has an explicit linear-in-`s` logarithmic factor. No packing or overlap
-estimate is supplied as a hypothesis.-/
+estimate is supplied as a hypothesis.
+@isnad1 id=le.6h8v.s8.a20bd045494e from=translated src=- shape=f7e50df2 vocab=858de714
+-/
 theorem eLpNorm_paperPrunedActivePrefixMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (s : ℕ) (hk₀ : 3 ≤ k₀)

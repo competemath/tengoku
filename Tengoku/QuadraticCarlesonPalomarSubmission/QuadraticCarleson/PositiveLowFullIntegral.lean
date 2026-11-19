@@ -27,6 +27,9 @@ namespace PositiveLowFullEstimate
 open CalderonZygmundLevelAtoms LowKernelLevelSummation
 open PositiveEndpointOptimization PositiveLevelIntegration PositiveHighHeightEstimate
 
+/--
+@isnad1 id=le.1h3v.s5.8b023edbd99b from=translated src=- shape=cfcec9ce vocab=9cb36c98
+-/
 theorem paperLowOscillatoryKernel_norm_le_global
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) (t : ℝ) :
     ‖paperLowOscillatoryKernel lam hlam B t‖ ≤ 8 * Real.sqrt |lam| := by
@@ -44,6 +47,9 @@ theorem paperLowOscillatoryKernel_norm_le_global
   apply (div_le_iff₀ ht0).mpr
   nlinarith
 
+/--
+@isnad1 id=eq.1h8v.s6.f9f0046bf7b6 from=translated src=- shape=76fd3288 vocab=61899454
+-/
 theorem integral_paperLowCZKernel_mul_levelAtom_eq_setIntegral
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ}
     (k : ℕ) (z R x : ℝ) :
@@ -57,6 +63,9 @@ theorem integral_paperLowCZKernel_mul_levelAtom_eq_setIntegral
   · simp [hy]
   · simp [hy, levelAtom_eq_zero_of_not_mem hy]
 
+/--
+@isnad1 id=lt.5h9v.s7.346f00f34e53 from=translated src=- shape=17801e66 vocab=65a3eb57
+-/
 theorem tsum_lintegral_enorm_paperLowCZKernel_mul_levelAtom_lt_top
     {ι : Type*} [Countable ι] {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
@@ -94,6 +103,9 @@ theorem tsum_lintegral_enorm_paperLowCZKernel_mul_levelAtom_lt_top
     ((tsum_atomL1Mass_le_two_mul_global_level_mass hf hAk z R hdisj).trans_lt
       (ENNReal.mul_lt_top (by finiteness) hmass))
 
+/--
+@isnad1 id=eq.5h9v.s8.238fd8b03611 from=translated src=- shape=5a88d1f4 vocab=edfbb4e7
+-/
 theorem integral_paperLowCZKernel_mul_disjointLevelAtomSum
     {ι : Type*} [Countable ι] {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
@@ -117,6 +129,9 @@ theorem integral_paperLowCZKernel_mul_disjointLevelAtomSum
 noncomputable def paperLowLevelMaximal (B : ℕ) (b : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ lam : {lam : ℝ // lam ≠ 0}, ‖∫ y, paperLowCZKernel lam.1 lam.2 B x y * b y‖ₑ
 
+/--
+@isnad1 id=le.4h8v.s7.8244a2dccc1a from=translated src=- shape=b0325f2b vocab=1e676fdc
+-/
 theorem paperLowLevelMaximal_disjointLevelAtomSum_le
     {ι : Type*} [Countable ι] (B : ℕ) {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) {k : ℕ} (hAk : 0 ≤ A k)

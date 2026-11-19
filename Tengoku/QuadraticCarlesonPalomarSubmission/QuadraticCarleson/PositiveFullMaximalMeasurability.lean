@@ -27,6 +27,9 @@ kernels. At zero, field division gives the removable value zero.-/
 def quadraticDifferenceKernel (lam t : ℝ) : ℂ :=
   (phase (lam * t ^ 2) - 1) / (t : ℂ)
 
+/--
+@isnad1 id=le.0h2v.s5.5c1bfe03df1e from=translated src=- shape=0b0c3c40 vocab=db224d6a
+-/
 theorem quadraticDifferenceKernel_norm_le_linear (lam t : ℝ) :
     ‖quadraticDifferenceKernel lam t‖ ≤ 2 * Real.pi * |lam| * |t| := by
   by_cases ht : t = 0
@@ -38,18 +41,26 @@ theorem quadraticDifferenceKernel_norm_le_linear (lam t : ℝ) :
     rw [abs_mul, abs_pow] at hp
     simpa only [pow_two, mul_assoc] using hp
 
+/--
+@isnad1 id=measurab.0h1v.s3.52323f49c47e from=translated src=- shape=9bb0b988 vocab=0ec9896f
+-/
 theorem measurable_quadraticDifferenceKernel (lam : ℝ) :
     Measurable (quadraticDifferenceKernel lam) := by
   unfold quadraticDifferenceKernel phase
   fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s4.bb28ef770b53 from=translated src=- shape=a4c439d3 vocab=4f48e7ab
+-/
 theorem continuous_quadraticDifferenceKernel_modulation (t : ℝ) :
     Continuous (fun lam ↦ quadraticDifferenceKernel lam t) := by
   unfold quadraticDifferenceKernel phase
   fun_prop
 
 /-- A bound uniform in the spatial variable, suitable for an integrable
-input and a bounded neighborhood of any modulation.-/
+input and a bounded neighborhood of any modulation.
+@isnad1 id=le.0h2v.s5.36a4731a240f from=translated src=- shape=44a7ce5a vocab=b1a1521c
+-/
 theorem quadraticDifferenceKernel_norm_le (lam t : ℝ) :
     ‖quadraticDifferenceKernel lam t‖ ≤ 2 * Real.pi * |lam| + 2 := by
   have hC : 0 ≤ 2 * Real.pi * |lam| := by positivity
@@ -71,6 +82,9 @@ theorem quadraticDifferenceKernel_norm_le (lam t : ℝ) :
 def quadraticDifferenceIntegral (lam : ℝ) (f : L0Infinity) (x : ℝ) : ℂ :=
   ∫ t, f (x - t) * quadraticDifferenceKernel lam t
 
+/--
+@isnad1 id=integrab.0h3v.s6.f5f19ca38b1a from=translated src=- shape=aabeb017 vocab=acdda518
+-/
 theorem integrable_quadraticDifference_row (lam : ℝ) (f : L0Infinity) (x : ℝ) :
     Integrable (fun t ↦ f (x - t) * quadraticDifferenceKernel lam t) := by
   have hi := (f.integrable.comp_sub_left x).bdd_mul
@@ -79,7 +93,9 @@ theorem integrable_quadraticDifference_row (lam : ℝ) (f : L0Infinity) (x : ℝ
   simpa only [mul_comm] using hi
 
 /-- After removing the singular ordinary Hilbert kernel, the integral is
-continuous in every real modulation, including zero.-/
+continuous in every real modulation, including zero.
+@isnad1 id=continuo.0h2v.s4.7086ad8cc3f8 from=translated src=- shape=65872797 vocab=da7eab53
+-/
 theorem continuous_quadraticDifferenceIntegral_modulation (f : L0Infinity) (x : ℝ) :
     Continuous (fun lam ↦ quadraticDifferenceIntegral lam f x) := by
   apply continuous_iff_continuousAt.mpr
@@ -105,7 +121,9 @@ theorem continuous_quadraticDifferenceIntegral_modulation (f : L0Infinity) (x : 
     exact (continuous_const.mul (continuous_quadraticDifferenceKernel_modulation t)).continuousAt
 
 /-- Exact subtraction removes the singularity before any principal-value
-limit is taken.-/
+limit is taken.
+@isnad1 id=eq.1h4v.s6.eac75144d669 from=translated src=- shape=76ce8b20 vocab=133c40a3
+-/
 theorem quadraticHilbertTrunc_eq_zero_add_difference
     (lam : ℝ) {ε : ℝ} (hε : 0 < ε) (f : L0Infinity) (x : ℝ) :
     quadraticHilbertTrunc lam ε f x = quadraticHilbertTrunc 0 ε f x +
@@ -122,7 +140,9 @@ theorem quadraticHilbertTrunc_eq_zero_add_difference
   ring
 
 /-- Truncating an integrable difference kernel at the origin tends to its
-ordinary integral along the complete positive-radius filter.-/
+ordinary integral along the complete positive-radius filter.
+@isnad1 id=tendsto.0h3v.s6.1b7ea83b3588 from=translated src=- shape=545a1e08 vocab=b925c199
+-/
 theorem tendsto_quadraticDifference_truncations (lam : ℝ) (f : L0Infinity) (x : ℝ) :
     Tendsto (fun ε : ℝ ↦
       ∫ t in {t : ℝ | ε < |t|}, f (x - t) * quadraticDifferenceKernel lam t)
@@ -152,7 +172,9 @@ theorem tendsto_quadraticDifference_truncations (lam : ℝ) (f : L0Infinity) (x 
   exact hlim.congr' (Eventually.of_forall fun ε ↦ (hsplit ε).symm)
 
 /-- Every ordinary Hilbert principal value acquires exactly the integrable
-regular difference when the real quadratic modulation is inserted.-/
+regular difference when the real quadratic modulation is inserted.
+@isnad1 id=hasquadr.1h4v.s5.d8d28818c3b5 from=translated src=- shape=b1b4e062 vocab=467047fa
+-/
 theorem hasQuadraticPrincipalValue_zero_add_difference
     (lam : ℝ) {f : L0Infinity} {x : ℝ} {z : ℂ}
     (hz : HasQuadraticPrincipalValue 0 f x z) :
@@ -163,7 +185,9 @@ theorem hasQuadraticPrincipalValue_zero_add_difference
   exact (quadraticHilbertTrunc_eq_zero_add_difference lam hε f x).symm
 
 /-- At a point possessing the ordinary Hilbert PV, the actual quadratic PV
-representative depends continuously on all real modulations.-/
+representative depends continuously on all real modulations.
+@isnad1 id=continuo.1h3v.s5.cfb782403c33 from=translated src=- shape=70f17893 vocab=77282035
+-/
 theorem continuous_principalValueRepresentative_modulation_of_zeroPV
     {f : L0Infinity} {x : ℝ} {z : ℂ}
     (hz : HasQuadraticPrincipalValue 0 f x z) :
@@ -177,7 +201,9 @@ theorem continuous_principalValueRepresentative_modulation_of_zeroPV
   exact continuous_const.add (continuous_quadraticDifferenceIntegral_modulation f x)
 
 /-- One common conull set supports continuous dependence on the complete
-real modulation parameter, rather than merely separate a.e. assertions.-/
+real modulation parameter, rather than merely separate a.e. assertions.
+@isnad1 id=eventual.0h1v.s5.73c522b73a26 from=translated src=- shape=9e79698b vocab=7972db58
+-/
 theorem ae_continuous_principalValueRepresentative_modulation (f : L0Infinity) :
     ∀ᵐ x, Continuous (fun lam : ℝ ↦ principalValueRepresentative lam f x) := by
   filter_upwards [HilbertMaximalWeakResolved.ae_forall_real_exists_quadraticPrincipalValue f]
@@ -186,7 +212,9 @@ theorem ae_continuous_principalValueRepresentative_modulation (f : L0Infinity) :
   exact continuous_principalValueRepresentative_modulation_of_zeroPV hz
 
 /-- The actual full real supremum agrees almost everywhere with its rational
-subsupremum. Density is used only after continuity holds on a common set.-/
+subsupremum. Density is used only after continuity holds on a common set.
+@isnad1 id=eventual.0h1v.s5.6eeeb49289fc from=translated src=- shape=a95986ed vocab=9f23e8e7
+-/
 theorem fullPrincipalValueMaximal_ae_eq_rationalSup (f : L0Infinity) :
     fullPrincipalValueMaximal f =ᵐ[volume]
       (fun x ↦ ⨆ q : ℚ, ENNReal.ofReal ‖principalValueRepresentative (q : ℝ) f x‖) := by
@@ -198,7 +226,9 @@ theorem fullPrincipalValueMaximal_ae_eq_rationalSup (f : L0Infinity) :
   simpa only [fullPrincipalValueMaximal, iSup_subtype, iSup_range] using hsup.symm
 
 /-- The genuine PV norm has the measurable fixed-modulation truncation
-limsup as an almost-everywhere equal representative.-/
+limsup as an almost-everywhere equal representative.
+@isnad1 id=aemeasur.0h2v.s4.44b57e5e9f48 from=translated src=- shape=d6b5cf04 vocab=f39a8c3f
+-/
 theorem aemeasurable_principalValueRepresentative_norm (lam : ℝ) (f : L0Infinity) :
     AEMeasurable (fun x ↦ ENNReal.ofReal ‖principalValueRepresentative lam f x‖) volume := by
   apply (measurable_quadraticHilbertL0Limsup lam f).aemeasurable.congr
@@ -207,7 +237,9 @@ theorem aemeasurable_principalValueRepresentative_norm (lam : ℝ) (f : L0Infini
   exact quadraticHilbertL0Limsup_eq_of_principalValue lam f x _ (hx lam)
 
 /-- The complete real-modulation PV supremum is measurable modulo a null
-set. Its definition and its real modulation set are unchanged.-/
+set. Its definition and its real modulation set are unchanged.
+@isnad1 id=aemeasur.0h1v.s3.eeb37ff767c0 from=translated src=- shape=e5ddffd4 vocab=7858066b
+-/
 theorem aemeasurable_fullPrincipalValueMaximal (f : L0Infinity) :
     AEMeasurable (fullPrincipalValueMaximal f) volume := by
   have hrat : AEMeasurable
@@ -216,13 +248,18 @@ theorem aemeasurable_fullPrincipalValueMaximal (f : L0Infinity) :
   exact hrat.congr (fullPrincipalValueMaximal_ae_eq_rationalSup f).symm
 
 /-- The full real supremum of the original truncation limsups has the same
-measurability conclusion through its established common-set PV identity.-/
+measurability conclusion through its established common-set PV identity.
+@isnad1 id=aemeasur.0h1v.s3.a5da6e026f18 from=translated src=- shape=e5ddffd4 vocab=cc3e7897
+-/
 theorem aemeasurable_quadraticCarlesonL0 (f : L0Infinity) :
     AEMeasurable (quadraticCarlesonL0 f) volume :=
   (aemeasurable_fullPrincipalValueMaximal f).congr
     (fullPrincipalValueMaximal_ae_eq
       HilbertMaximalWeakResolved.hasUniformHilbertMaximalWeakBound f)
 
+/--
+@isnad1 id=aemeasur.0h1v.s3.bae422ccdb4b from=translated src=- shape=e5ddffd4 vocab=28279767
+-/
 theorem aemeasurable_lacunaryPrincipalValueMaximal (f : L0Infinity) :
     AEMeasurable (lacunaryPrincipalValueMaximal f) volume :=
   (measurable_lacunaryQuadraticCarlesonL0 f).aemeasurable.congr

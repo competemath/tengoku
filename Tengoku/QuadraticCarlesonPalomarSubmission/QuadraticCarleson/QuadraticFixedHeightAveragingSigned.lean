@@ -16,6 +16,9 @@ open scoped ENNReal NNReal ComplexConjugate
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=le.0h2v.s6.cbab2b38674d from=translated src=- shape=5f4d4362 vocab=843b1dec
+-/
 theorem ennreal_add_sq_le (a b : ℝ≥0∞) : (a + b) ^ 2 ≤ 2 * (a ^ 2 + b ^ 2) := by
   by_cases ha : a = ⊤
   · subst a
@@ -28,6 +31,9 @@ theorem ennreal_add_sq_le (a b : ℝ≥0∞) : (a + b) ^ 2 ≤ 2 * (a ^ 2 + b ^ 
   exact_mod_cast (show ((a : ℝ) + (b : ℝ)) ^ 2 ≤ 2 * ((a : ℝ) ^ 2 + (b : ℝ) ^ 2) by
     nlinarith [sq_nonneg ((a : ℝ) - (b : ℝ))])
 
+/--
+@isnad1 id=le.3h3v.s7.93d172e264c6 from=translated src=- shape=d1531b87 vocab=c0fa0adb
+-/
 theorem lintegral_sq_le_of_le_add {F G H : ℝ → ℝ≥0∞}
     (hF : Measurable F) (hG : Measurable G) (h : ∀ x, H x ≤ F x + G x) :
     (∫⁻ x, H x ^ 2) ≤ 2 * ((∫⁻ x, F x ^ 2) + ∫⁻ x, G x ^ 2) := by
@@ -40,7 +46,9 @@ theorem lintegral_sq_le_of_le_add {F G H : ℝ → ℝ≥0∞}
       rw [lintegral_const_mul' _ _ (by norm_num), lintegral_add_left (hF.pow_const 2) _]
 
 /-- Continuous compactly supported kernels can be integrated against any
-`L²` input at every point, not only almost everywhere.-/
+`L²` input at every point, not only almost everywhere.
+@isnad1 id=integrab.3h3v.s7.660c44655fdb from=translated src=- shape=6acb035a vocab=a3a61bdb
+-/
 theorem integrable_convolution_row_of_memLp {κ f : ℝ → ℂ}
     (hc : Continuous κ) (hs : HasCompactSupport κ) (hf : MemLp f 2) (x : ℝ) :
     Integrable (fun t ↦ κ (x - t) * f t) := by
@@ -48,6 +56,9 @@ theorem integrable_convolution_row_of_memLp {κ f : ℝ → ℂ}
   exact hloc.integrable_smul_left_of_hasCompactSupport
     (hc.comp (continuous_const.sub continuous_id)) (hs.comp_homeomorph (Homeomorph.subLeft x))
 
+/--
+@isnad1 id=eq.0h4v.s5.9a4ce6059154 from=translated src=- shape=34b2a6f4 vocab=8e07dfa5
+-/
 theorem finiteConvolutionMaximal_reflect {N : ℕ} (κ : Fin N → ℝ → ℂ)
     (f : ℝ → ℂ) (x : ℝ) :
     finiteConvolutionMaximal (fun i t ↦ κ i (-t)) f x =
@@ -64,6 +75,9 @@ theorem finiteConvolutionMaximal_reflect {N : ℕ} (κ : Fin N → ℝ → ℂ)
       congr 2
       ring
 
+/--
+@isnad1 id=eq.0h4v.s6.0bb222f38627 from=translated src=- shape=858e3342 vocab=791a0083
+-/
 theorem finiteConvolutionMaximal_conj {N : ℕ} (κ : Fin N → ℝ → ℂ)
     (f : ℝ → ℂ) (x : ℝ) :
     finiteConvolutionMaximal (fun i t ↦ conj (κ i t)) f x =
@@ -79,6 +93,9 @@ theorem finiteConvolutionMaximal_conj {N : ℕ} (κ : Fin N → ℝ → ℂ)
   rw [heq]
   simp only [← ofReal_norm, RCLike.norm_conj]
 
+/--
+@isnad1 id=le.5h5v.s7.5f2d18f801f0 from=translated src=- shape=c5d1e4ee vocab=2aa4ad5d
+-/
 theorem finiteConvolutionMaximal_sub_le {N : ℕ} (κ η : Fin N → ℝ → ℂ)
     (hcκ : ∀ i, Continuous (κ i)) (hsκ : ∀ i, HasCompactSupport (κ i))
     (hcη : ∀ i, Continuous (η i)) (hsη : ∀ i, HasCompactSupport (η i))
@@ -98,7 +115,9 @@ theorem finiteConvolutionMaximal_sub_le {N : ℕ} (κ η : Fin N → ℝ → ℂ
     (le_iSup (fun i ↦ ‖∫ t, η i (x - t) * f t‖ₑ) i))
 
 /-- Passing from a positive spatial half to its odd extension costs only a
-fixed factor in the squared maximal bound.-/
+fixed factor in the squared maximal bound.
+@isnad1 id=le.5h4v.s8.4470c4493eef from=translated src=- shape=0d4a486f vocab=cda307c1
+-/
 theorem finiteConvolutionMaximal_sub_reflect_sq_bound {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (hc : ∀ i, Continuous (κ i)) (hs : ∀ i, HasCompactSupport (κ i))
     (C : ℝ≥0∞)
@@ -129,7 +148,9 @@ theorem finiteConvolutionMaximal_sub_reflect_sq_bound {N : ℕ}
     _ = _ := by rw [lintegral_neg_eq_self (fun x ↦ ‖f x‖ₑ ^ 2)]; ring
 
 /-- A family in which each kernel is either a chosen kernel or its complex
-conjugate is controlled by two maximal outputs.-/
+conjugate is controlled by two maximal outputs.
+@isnad1 id=le.1h5v.s7.0e55a0a15182 from=translated src=- shape=9c9e1b81 vocab=ce8f2872
+-/
 theorem finiteConvolutionMaximal_eq_or_conj_le {N : ℕ}
     (κ τ : Fin N → ℝ → ℂ)
     (hτ : ∀ i, τ i = κ i ∨ τ i = fun t ↦ conj (κ i t)) (f : ℝ → ℂ) (x : ℝ) :
@@ -146,6 +167,9 @@ theorem finiteConvolutionMaximal_eq_or_conj_le {N : ℕ}
     rw [finiteConvolutionMaximal_conj] at h
     exact h.trans (le_add_left le_rfl)
 
+/--
+@isnad1 id=le.5h5v.s9.f8900b5c8d3f from=translated src=- shape=037b2767 vocab=854d542e
+-/
 theorem finiteConvolutionMaximal_eq_or_conj_sq_bound {N : ℕ}
     (κ τ : Fin N → ℝ → ℂ) (hκ : ∀ i, Measurable (κ i))
     (hτ : ∀ i, τ i = κ i ∨ τ i = fun t ↦ conj (κ i t)) (C : ℝ≥0∞)
@@ -167,7 +191,9 @@ theorem finiteConvolutionMaximal_eq_or_conj_sq_bound {N : ℕ}
       mul_le_mul' le_rfl (add_le_add (hbound f hf) (hbound _ hfc))
     _ = _ := by simp_rw [hnorm]; ring
 
-/-- Remove a measurable-representative condition from finite maximal bounds.-/
+/-- Remove a measurable-representative condition from finite maximal bounds.
+@isnad1 id=le.2h4v.s8.ea65b22a3c60 from=translated src=- shape=cf1a2dfa vocab=51e7127a
+-/
 theorem finiteConvolutionMaximal_bound_of_measurable_memLp {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (C : ℝ≥0∞)
     (hbound : ∀ f : ℝ → ℂ, Measurable f → MemLp f 2 →
@@ -185,7 +211,9 @@ theorem finiteConvolutionMaximal_bound_of_measurable_memLp {N : ℕ}
     rw [hx]
   exact (hbound g hgm hg).trans_eq (congrArg (fun v ↦ C * v) hint)
 
-/-- The positive one-sided amplitude recovers the full odd dyadic quotient.-/
+/-- The positive one-sided amplitude recovers the full odd dyadic quotient.
+@isnad1 id=eq.0h2v.s4.3be9ae1693ad from=translated src=- shape=aac72c70 vocab=ece5285f
+-/
 theorem dyadicPsi_eq_positive_sub_reflect (j : ℤ) (t : ℝ) :
     (dyadicPsi j t : ℂ) = positiveDyadicAmplitude j t - positiveDyadicAmplitude j (-t) := by
   rcases lt_trichotomy t 0 with ht | ht | ht
@@ -202,6 +230,9 @@ theorem dyadicPsi_eq_positive_sub_reflect (j : ℤ) (t : ℝ) :
 noncomputable def fixedHeightQuadraticKernel (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) (t : ℝ) : ℂ :=
   (dyadicPsi (oscillatoryScaleIndex lam height hlam) t : ℂ) * phase (lam * t ^ 2)
 
+/--
+@isnad1 id=eq.1h3v.s5.49e608a734b5 from=translated src=- shape=4aeede8b vocab=312b5c7c
+-/
 theorem fixedHeightQuadraticKernel_eq_positive_sub_reflect
     (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) (t : ℝ) :
     fixedHeightQuadraticKernel lam height hlam t =
@@ -212,6 +243,9 @@ theorem fixedHeightQuadraticKernel_eq_positive_sub_reflect
   simp only [neg_sq]
   ring
 
+/--
+@isnad1 id=continuo.1h2v.s5.af157290d009 from=translated src=- shape=deab8f17 vocab=5d011cb7
+-/
 theorem continuous_positiveFixedHeightQuadraticKernel
     (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     Continuous (positiveFixedHeightQuadraticKernel lam height hlam) := by
@@ -220,6 +254,9 @@ theorem continuous_positiveFixedHeightQuadraticKernel
   unfold positiveFixedHeightQuadraticKernel annularQuadraticKernel phase
   fun_prop
 
+/--
+@isnad1 id=hascompa.1h2v.s4.c64898fde440 from=translated src=- shape=deab8f17 vocab=f216c1bc
+-/
 theorem hasCompactSupport_positiveFixedHeightQuadraticKernel
     (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     HasCompactSupport (positiveFixedHeightQuadraticKernel lam height hlam) := by
@@ -231,6 +268,9 @@ theorem hasCompactSupport_positiveFixedHeightQuadraticKernel
   intro hz
   exact ht (by simp [positiveFixedHeightQuadraticKernel, annularQuadraticKernel, hz])
 
+/--
+@isnad1 id=continuo.1h2v.s5.b5a34baa535c from=translated src=- shape=deab8f17 vocab=1e4524fe
+-/
 theorem continuous_fixedHeightQuadraticKernel (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     Continuous (fixedHeightQuadraticKernel lam height hlam) := by
   have hc := continuous_positiveFixedHeightQuadraticKernel lam height hlam
@@ -238,7 +278,9 @@ theorem continuous_fixedHeightQuadraticKernel (lam : ℝ) (height : ℕ) (hlam :
   funext t
   exact fixedHeightQuadraticKernel_eq_positive_sub_reflect lam height hlam t
 
-/-- Full spatially signed dyadic finite maximal decay for positive modulations.-/
+/-- Full spatially signed dyadic finite maximal decay for positive modulations.
+@isnad1 id=le.3h4v.s8.ae709c54c591 from=translated src=- shape=4e26494b vocab=e63ff63a
+-/
 theorem finite_fixedHeightQuadraticKernel_positive_maximal_sq_decay
     (n height : ℕ) (hh : 1 ≤ height) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, 0 < lam i)
     {f : ℝ → ℂ} (hf : MemLp f 2) :
@@ -266,19 +308,26 @@ theorem finite_fixedHeightQuadraticKernel_positive_maximal_sq_decay
   congr 2
   ring
 
-/-- The oscillatory scale depends on the modulation's absolute value.-/
+/-- The oscillatory scale depends on the modulation's absolute value.
+@isnad1 id=eq.1h2v.s4.78857b8b856f from=translated src=- shape=89d3ed2a vocab=5090f73b
+-/
 theorem oscillatoryScaleIndex_abs (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     oscillatoryScaleIndex lam height hlam =
       oscillatoryScaleIndex |lam| height (abs_ne_zero.mpr hlam) := by
   apply oscillatoryScaleIndex_unique |lam| height (abs_ne_zero.mpr hlam)
   simpa only [OscillatoryScaleSpec, abs_abs] using oscillatoryScaleIndex_spec lam height hlam
 
+/--
+@isnad1 id=eq.0h1v.s5.462875c81513 from=translated src=- shape=c7368a4d vocab=8fa1c8dd
+-/
 theorem fixedHeight_conj_phase (s : ℝ) : conj (phase s) = phase (-s) := by
   have h := (phase_sub_eq_mul_conj 0 s).symm
   simpa only [zero_sub, phase_zero, one_mul] using h
 
 /-- Every nonzero signed modulation gives either the absolute-modulation
-kernel or its complex conjugate.-/
+kernel or its complex conjugate.
+@isnad1 id=or.1h2v.s6.7f43a637a5dc from=translated src=- shape=03590f3b vocab=0c801a9b
+-/
 theorem fixedHeightQuadraticKernel_eq_or_conj_abs (lam : ℝ) (height : ℕ) (hlam : lam ≠ 0) :
     fixedHeightQuadraticKernel lam height hlam =
         fixedHeightQuadraticKernel |lam| height (abs_ne_zero.mpr hlam) ∨
@@ -302,7 +351,9 @@ theorem fixedHeightQuadraticKernel_eq_or_conj_abs (lam : ℝ) (height : ℕ) (hl
 /-- The actual fixed-height finite-modulation maximal `L²` decay theorem for
 the full signed dyadic kernel and arbitrary nonzero real modulations. Every
 analytic hypothesis has been discharged; only the input's `L²` membership and
-positive oscillation height remain.-/
+positive oscillation height remain.
+@isnad1 id=le.3h4v.s8.db38b869f586 from=translated src=- shape=522fb35a vocab=b203056a
+-/
 theorem finite_fixedHeightQuadraticKernel_maximal_sq_decay
     (n height : ℕ) (hh : 1 ≤ height) (lam : Fin (n + 1) → ℝ) (hlam : ∀ i, lam i ≠ 0)
     {f : ℝ → ℂ} (hf : MemLp f 2) :

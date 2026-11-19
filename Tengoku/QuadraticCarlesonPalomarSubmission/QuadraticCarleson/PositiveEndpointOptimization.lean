@@ -38,6 +38,9 @@ def InMagnitudeLevel (A : ℕ → ℝ) (k : ℕ) (t : ℝ) : Prop :=
   if k = 0 then 0 ≤ t ∧ t ≤ A 0
   else A (k - 1) < t ∧ t ≤ A k
 
+/--
+@isnad1 id=le.2h3v.s5.5f70e8775ba9 from=translated src=- shape=efd96327 vocab=11fb1ddc
+-/
 theorem InMagnitudeLevel.nonneg {A : ℕ → ℝ} {k : ℕ} {t : ℝ}
     (hA : ∀ j, 0 ≤ A j) (h : InMagnitudeLevel A k t) : 0 ≤ t := by
   by_cases hk : k = 0
@@ -46,12 +49,17 @@ theorem InMagnitudeLevel.nonneg {A : ℕ → ℝ} {k : ℕ} {t : ℝ}
   · simp only [InMagnitudeLevel, hk] at h
     exact (hA (k - 1)).trans h.1.le
 
+/--
+@isnad1 id=lt.2h3v.s5.1f180551d6e3 from=translated src=- shape=1f9c2e7e vocab=2ab5c0aa
+-/
 theorem InMagnitudeLevel.lower {A : ℕ → ℝ} {k : ℕ} {t : ℝ}
     (hk : k ≠ 0) (h : InMagnitudeLevel A k t) : A (k - 1) < t := by
   simp only [InMagnitudeLevel, hk] at h
   exact h.1
 
-/-- All iterated paper logarithms are nonnegative on nonnegative inputs.-/
+/-- All iterated paper logarithms are nonnegative on nonnegative inputs.
+@isnad1 id=le.1h2v.s4.275a8f072360 from=translated src=- shape=696abc3b vocab=8b690a8a
+-/
 theorem paperLog_nonnegative (n : ℕ) {t : ℝ} (ht : 0 ≤ t) :
     0 ≤ paperLog n t := by
   induction n with
@@ -61,7 +69,9 @@ theorem paperLog_nonnegative (n : ℕ) {t : ℝ} (ht : 0 ≤ t) :
       exact Real.log_nonneg (by linarith)
 
 /-- Monotonicity of the shifted iterated logarithms on the half-line used in
-the endpoint estimates.-/
+the endpoint estimates.
+@isnad1 id=le.2h3v.s5.d800871c671e from=translated src=- shape=c50dee1e vocab=8b690a8a
+-/
 theorem paperLog_mono {n : ℕ} {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
     paperLog n s ≤ paperLog n t := by
   have ht : 0 ≤ t := hs.trans hst
@@ -86,12 +96,21 @@ noncomputable def fullAmplitude (k : ℕ) : ℝ :=
 /-- The full-operator cutoff `B_k = C 2^k`.-/
 noncomputable def fullCutoff (C : ℝ) (k : ℕ) : ℝ := C * dyadicScale k
 
+/--
+@isnad1 id=lt.0h1v.s3.0c4b68a77bfb from=translated src=- shape=b9369acb vocab=40dbad00
+-/
 theorem dyadicScale_pos (k : ℕ) : 0 < dyadicScale k := by
   simp [dyadicScale]
 
+/--
+@isnad1 id=lt.0h1v.s3.ef1c91fd0f4b from=translated src=- shape=b9369acb vocab=47e6c1a0
+-/
 theorem fullAmplitude_pos (k : ℕ) : 0 < fullAmplitude k := by
   exact Real.exp_pos _
 
+/--
+@isnad1 id=eq.0h1v.s5.c4ed2316a35a from=translated src=- shape=1a785f4c vocab=ca6aa08b
+-/
 theorem fullAmplitude_eq_two_pow (k : ℕ) :
     fullAmplitude k = (2 : ℝ) ^ (2 ^ k : ℕ) := by
   rw [fullAmplitude, ← Real.exp_log (by positivity : (0 : ℝ) < 2 ^ (2 ^ k : ℕ)),
@@ -100,11 +119,16 @@ theorem fullAmplitude_eq_two_pow (k : ℕ) :
   norm_num [dyadicScale]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.39cff79ce252 from=translated src=- shape=4f1de72d vocab=f9714403
+-/
 theorem dyadicScale_succ (k : ℕ) : dyadicScale (k + 1) = 2 * dyadicScale k := by
   simp [dyadicScale, pow_succ, mul_comm]
 
 /-- A point in a nonzero full-operator magnitude level pays for its cutoff by
-one copy of the paper's `log₁`.-/
+one copy of the paper's `log₁`.
+@isnad1 id=le.3h3v.s6.9e1e2b52db1d from=translated src=- shape=fcfa6967 vocab=af77671c
+-/
 theorem fullCutoff_le_paperLog_one_of_mem
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : k ≠ 0)
     (ht : InMagnitudeLevel fullAmplitude k t) :
@@ -122,6 +146,9 @@ theorem fullCutoff_le_paperLog_one_of_mem
   simpa [mul_assoc, mul_left_comm, mul_comm] using
     mul_le_mul_of_nonneg_left hd hC
 
+/--
+@isnad1 id=le.3h3v.s6.9e7d5f463f0f from=translated src=- shape=4fbf0bec vocab=af77671c
+-/
 theorem fullWeightedLevel_le_orlicz
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : k ≠ 0)
     (ht : InMagnitudeLevel fullAmplitude k t) :
@@ -130,12 +157,17 @@ theorem fullWeightedLevel_le_orlicz
   exact (mul_le_mul_of_nonneg_right
     (fullCutoff_le_paperLog_one_of_mem hC hk ht) ht0).trans_eq (by ring)
 
+/--
+@isnad1 id=le.1h1v.s4.952f94108658 from=translated src=- shape=57dc5e8e vocab=8b690a8a
+-/
 theorem one_le_paperLog_one {t : ℝ} (ht : 0 ≤ t) : 1 ≤ paperLog 1 t := by
   rw [paperLog_succ, paperLog_zero, Real.le_log_iff_exp_le (by linarith)]
   have hexp : Real.exp 1 < 10 := Real.exp_one_lt_d9.trans (by norm_num)
   exact hexp.le.trans (by linarith)
 
-/-- The same full endpoint conversion including the bottom magnitude band.-/
+/-- The same full endpoint conversion including the bottom magnitude band.
+@isnad1 id=le.2h3v.s6.3c4375a9d1e0 from=translated src=- shape=9304d83c vocab=af77671c
+-/
 theorem fullWeightedLevel_le_orlicz_all
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C)
     (ht : InMagnitudeLevel fullAmplitude k t) :
@@ -161,12 +193,21 @@ noncomputable def lacunaryAmplitude (k : ℕ) : ℝ :=
 noncomputable def lacunaryCutoff (C : ℝ) (k : ℕ) : ℝ :=
   C * lacunaryScale k
 
+/--
+@isnad1 id=lt.0h1v.s3.c7ce241d8aea from=translated src=- shape=b9369acb vocab=954a910c
+-/
 theorem lacunaryScale_pos (k : ℕ) : 0 < lacunaryScale k := by
   exact Real.exp_pos _
 
+/--
+@isnad1 id=lt.0h1v.s3.89f1c1c775e1 from=translated src=- shape=b9369acb vocab=d8fc5549
+-/
 theorem lacunaryAmplitude_pos (k : ℕ) : 0 < lacunaryAmplitude k := by
   exact Real.exp_pos _
 
+/--
+@isnad1 id=eq.0h1v.s5.47fd15a8688e from=translated src=- shape=1a785f4c vocab=cd1ecb95
+-/
 theorem lacunaryScale_eq_two_pow (k : ℕ) :
     lacunaryScale k = (2 : ℝ) ^ (2 ^ k : ℕ) := by
   rw [lacunaryScale, ← Real.exp_log (by positivity : (0 : ℝ) < 2 ^ (2 ^ k : ℕ)),
@@ -175,6 +216,9 @@ theorem lacunaryScale_eq_two_pow (k : ℕ) :
   norm_num [dyadicScale]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.50aa9750db87 from=translated src=- shape=79411451 vocab=01290bcd
+-/
 theorem lacunaryAmplitude_eq_two_pow (k : ℕ) :
     lacunaryAmplitude k = (2 : ℝ) ^ (2 ^ (2 ^ k) : ℕ) := by
   rw [lacunaryAmplitude, lacunaryScale_eq_two_pow,
@@ -184,12 +228,21 @@ theorem lacunaryAmplitude_eq_two_pow (k : ℕ) :
   norm_num
   ring
 
+/--
+@isnad1 id=lt.0h0v.s5.ce8630457e4e from=translated src=- shape=63c521e8 vocab=26a59d5f
+-/
 theorem half_lt_log_two : (1 / 2 : ℝ) < Real.log 2 := by
   linarith [Real.log_two_gt_d9]
 
+/--
+@isnad1 id=le.0h1v.s3.02a523047fdf from=translated src=- shape=b9369acb vocab=3946071a
+-/
 theorem dyadicScale_ge_one (k : ℕ) : 1 ≤ dyadicScale k := by
   exact one_le_pow₀ (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s4.f9f35bc3d549 from=translated src=- shape=4a73b625 vocab=57eb504e
+-/
 theorem dyadicScale_ge_nat_succ (k : ℕ) : (k : ℝ) + 1 ≤ dyadicScale k := by
   induction k with
   | zero => simp [dyadicScale]
@@ -199,7 +252,9 @@ theorem dyadicScale_ge_nat_succ (k : ℕ) : (k : ℝ) + 1 ≤ dyadicScale k := b
       nlinarith [dyadicScale_ge_one k]
 
 /-- The first shifted logarithm at the bottom of a lacunary level already
-sees the exponent `log 2 * 2^(2^(k-1))`.-/
+sees the exponent `log 2 * 2^(2^(k-1))`.
+@isnad1 id=le.2h2v.s5.ba55b5e04a1a from=translated src=- shape=e91a8891 vocab=ee0d924f
+-/
 theorem paperLog_one_lacunary_lower
     {t : ℝ} {k : ℕ} (hk : k ≠ 0)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -211,7 +266,9 @@ theorem paperLog_one_lacunary_lower
 
 /-- At a nontrivial lacunary magnitude level, `log₂` dominates the dyadic
 index scale.  The factor `8` only absorbs the shift from `k` to `k-1` and the
-fact that `log 2 > 1/2`.-/
+fact that `log 2 > 1/2`.
+@isnad1 id=le.2h2v.s5.81144291f7bd from=translated src=- shape=80d06492 vocab=075d5381
+-/
 theorem dyadicScale_le_eight_mul_paperLog_two_of_mem
     {t : ℝ} {k : ℕ} (hk : 2 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -251,6 +308,9 @@ theorem dyadicScale_le_eight_mul_paperLog_two_of_mem
       _ ≤ 10 + paperLog 1 t := by linarith
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.324de3c5af44 from=translated src=- shape=4d8e755d vocab=f73de76e
+-/
 theorem dyadicScale_sq_le_sixtyfour_mul_paperLog_two_sq_of_mem
     {t : ℝ} {k : ℕ} (hk : 2 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -261,13 +321,18 @@ theorem dyadicScale_sq_le_sixtyfour_mul_paperLog_two_sq_of_mem
   have hs := mul_self_le_mul_self (dyadicScale_pos k).le h
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s3.8bfdacbbf78b from=translated src=- shape=b9369acb vocab=8389dc7f
+-/
 theorem lacunaryScale_ge_one (k : ℕ) : 1 ≤ lacunaryScale k := by
   rw [← Real.exp_zero]
   apply Real.exp_le_exp.mpr
   exact mul_nonneg (half_lt_log_two.le.trans' (by norm_num)) (dyadicScale_pos k).le
 
 /-- The logarithmic loss of a block of `B_k` lacunary modulations is at most
-linear in `2^k`.-/
+linear in `2^k`.
+@isnad1 id=le.1h2v.s5.c3e033975034 from=translated src=- shape=0ffbd17e vocab=8ffe7d7a
+-/
 theorem paperLog_one_lacunaryCutoff_le
     {C : ℝ} (hC : 0 ≤ C) (k : ℕ) :
     paperLog 1 (lacunaryCutoff C k) ≤
@@ -303,7 +368,9 @@ theorem paperLog_one_lacunaryCutoff_le
           nlinarith [dyadicScale_ge_one k]
 
 /-- Consequently, the `log₁(B_k)^2` factor in the lacunary high-frequency
-estimate is absorbed by `log₂(t)^2` on `F_k`.-/
+estimate is absorbed by `log₂(t)^2` on `F_k`.
+@isnad1 id=le.3h3v.s7.472d1a1f1595 from=translated src=- shape=a966d870 vocab=d9343a5c
+-/
 theorem paperLog_one_lacunaryCutoff_sq_le_paperLog_two_sq_of_mem
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : 2 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -326,7 +393,9 @@ theorem paperLog_one_lacunaryCutoff_sq_le_paperLog_two_sq_of_mem
     _ = 64 * (paperLog 1 C + 1) ^ 2 * paperLog 2 t ^ 2 := by ring
 
 /-- Three iterated logarithms of a value in the `k`th lacunary band retain a
-linear amount of the level index.-/
+linear amount of the level index.
+@isnad1 id=le.2h2v.s6.fb30592941a9 from=translated src=- shape=0aa8907b vocab=53b62160
+-/
 theorem sub_three_mul_log_two_le_paperLog_three_of_mem
     {t : ℝ} {k : ℕ} (hk : 6 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -356,7 +425,9 @@ theorem sub_three_mul_log_two_le_paperLog_three_of_mem
 
 /-- The fourth iterated logarithm supplies Kalton's additional
 `log₁(k+2)` loss.  This is the last numerical step behind the paper's
-`L(log₂ L)^2 log₄ L` weight.-/
+`L(log₂ L)^2 log₄ L` weight.
+@isnad1 id=le.2h2v.s6.c3f1715dcbf0 from=translated src=- shape=f0934bae vocab=e9b70e74
+-/
 theorem paperLog_one_index_le_two_mul_paperLog_four_of_mem
     {t : ℝ} {k : ℕ} (hk : 6 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -391,7 +462,9 @@ theorem paperLog_one_index_le_two_mul_paperLog_four_of_mem
   convert hlog using 1 <;> ring
 
 /-- Complete pointwise conversion of the lacunary low-frequency loss on a
-magnitude band into the paper's endpoint Orlicz weight.-/
+magnitude band into the paper's endpoint Orlicz weight.
+@isnad1 id=le.3h3v.s7.0499e843ab51 from=translated src=- shape=74727ff0 vocab=bd68a5ed
+-/
 theorem lacunaryLowWeight_le_orlicz_of_mem
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : 6 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -424,7 +497,9 @@ theorem lacunaryLowWeight_le_orlicz_of_mem
         (t * paperLog 2 t ^ 2 * paperLog 4 t) := by ring
 
 /-- The corresponding pointwise conversion for the lacunary high-frequency
-second factor.-/
+second factor.
+@isnad1 id=le.3h3v.s7.97a9e4ba361f from=translated src=- shape=effc4252 vocab=d9343a5c
+-/
 theorem lacunaryHighWeight_le_orlicz_of_mem
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : 2 ≤ k)
     (ht : InMagnitudeLevel lacunaryAmplitude k t) :
@@ -434,13 +509,18 @@ theorem lacunaryHighWeight_le_orlicz_of_mem
   have h := paperLog_one_lacunaryCutoff_sq_le_paperLog_two_sq_of_mem hC hk ht
   exact (mul_le_mul_of_nonneg_right h ht0).trans_eq (by ring)
 
+/--
+@isnad1 id=le.1h1v.s4.319b52997f2f from=translated src=- shape=eed96abc vocab=ca02afaf
+-/
 theorem dyadicScale_le_thirtytwo {k : ℕ} (hk : k < 6) :
     dyadicScale k ≤ 32 := by
   interval_cases k <;> norm_num [dyadicScale]
 
 /-- The first six lacunary levels contribute only a fixed multiple of `L¹`.
 Together with `lacunaryLowWeight_le_orlicz_of_mem`, this accounts for every
-magnitude band.-/
+magnitude band.
+@isnad1 id=le.3h3v.s7.e658b7d57a18 from=translated src=- shape=86a43d93 vocab=3b05fdf5
+-/
 theorem lacunaryLowWeight_smallLevel_le_L1
     {C t : ℝ} {k : ℕ} (hC : 0 ≤ C) (hk : k < 6) (ht : 0 ≤ t) :
     paperLog 1 ((k : ℝ) + 2) *
@@ -477,6 +557,9 @@ noncomputable def highFrequencyPrefactor
     (β : ℝ) (A B : ℝ) : ℝ :=
   Real.exp (-2 * β * Real.log 2 * B) * A / B
 
+/--
+@isnad1 id=le.2h3v.s5.057a08a3d8e4 from=translated src=- shape=f22e4838 vocab=2a52d810
+-/
 theorem highFrequencyPrefactor_nonneg
     {β A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     0 ≤ highFrequencyPrefactor β A B := by
@@ -484,7 +567,9 @@ theorem highFrequencyPrefactor_nonneg
 
 /-- For the full-operator choices, the high-frequency prefactor is bounded by
 a genuinely geometric sequence as soon as `C` is chosen with `2 β C > 1`.
-This is the numerical optimization hidden in the paper's `C = O(1)`.-/
+This is the numerical optimization hidden in the paper's `C = O(1)`.
+@isnad1 id=le.2h3v.s7.246be3b273ee from=translated src=- shape=81753064 vocab=b7a0b0d7
+-/
 theorem fullHighFrequencyPrefactor_le_geometric
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) (k : ℕ) :
     highFrequencyPrefactor β (fullAmplitude k) (fullCutoff C k) ≤
@@ -516,6 +601,9 @@ theorem fullHighFrequencyPrefactor_le_geometric
           nlinarith
     _ = Real.exp (-((2 * β * C - 1) * Real.log 2) * (k : ℝ)) := rfl
 
+/--
+@isnad1 id=summable.2h2v.s6.5d1c06ba9bff from=translated src=- shape=9b67cbee vocab=d4c5e125
+-/
 theorem summable_fullHighFrequencyPrefactor
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) :
     Summable (fun k : ℕ ↦
@@ -529,6 +617,9 @@ theorem summable_fullHighFrequencyPrefactor
       (mul_nonneg (zero_le_one.trans hC) (dyadicScale_pos k).le))
     (fun k ↦ fullHighFrequencyPrefactor_le_geometric hC hdecay k)
 
+/--
+@isnad1 id=le.1h2v.s5.1d55ad15cd47 from=translated src=- shape=c694e89a vocab=fc52d79a
+-/
 theorem one_le_paperLog_one_lacunaryCutoff
     {C : ℝ} (hC : 0 ≤ C) (k : ℕ) :
     1 ≤ paperLog 1 (lacunaryCutoff C k) := by
@@ -540,7 +631,9 @@ theorem one_le_paperLog_one_lacunaryCutoff
   linarith
 
 /-- The lacunary high-frequency prefactor has the same geometric majorant.
-Its denominator is the paper's rebalanced `log₁(B_k)^2`.-/
+Its denominator is the paper's rebalanced `log₁(B_k)^2`.
+@isnad1 id=le.2h3v.s7.8a745b4fbb06 from=translated src=- shape=82315c2e vocab=e298b382
+-/
 theorem lacunaryHighFrequencyPrefactor_le_geometric
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) (k : ℕ) :
     Real.exp (-2 * β * Real.log 2 * lacunaryCutoff C k) * lacunaryAmplitude k /
@@ -585,6 +678,9 @@ theorem lacunaryHighFrequencyPrefactor_le_geometric
           nlinarith
     _ = Real.exp (-((2 * β * C - 1) * Real.log 2) * (k : ℝ)) := rfl
 
+/--
+@isnad1 id=summable.2h2v.s7.787b2583f786 from=translated src=- shape=390af148 vocab=b673d2b5
+-/
 theorem summable_lacunaryHighFrequencyPrefactor
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) :
     Summable (fun k : ℕ ↦
@@ -599,7 +695,9 @@ theorem summable_lacunaryHighFrequencyPrefactor
       (mul_nonneg (Real.exp_pos _).le (lacunaryAmplitude_pos k).le) (sq_nonneg _))
     (fun k ↦ lacunaryHighFrequencyPrefactor_le_geometric hC hdecay k)
 
-/-- Explicit finite bound for the full high-frequency scalar series.-/
+/-- Explicit finite bound for the full high-frequency scalar series.
+@isnad1 id=le.2h2v.s7.03f29da2c48d from=translated src=- shape=65f77645 vocab=d952a075
+-/
 theorem tsum_fullHighFrequencyPrefactor_le
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) :
     ∑' k : ℕ, highFrequencyPrefactor β (fullAmplitude k) (fullCutoff C k) ≤
@@ -626,7 +724,9 @@ theorem tsum_fullHighFrequencyPrefactor_le
           exact (Real.exp_lt_one_iff.mpr (neg_neg_of_pos hδ))
     _ = (1 - Real.exp (-((2 * β * C - 1) * Real.log 2)))⁻¹ := rfl
 
-/-- Explicit finite bound for the lacunary high-frequency scalar series.-/
+/-- Explicit finite bound for the lacunary high-frequency scalar series.
+@isnad1 id=le.2h2v.s7.299b058714bf from=translated src=- shape=f32858df vocab=c0846cf8
+-/
 theorem tsum_lacunaryHighFrequencyPrefactor_le
     {β C : ℝ} (hC : 1 ≤ C) (hdecay : 1 < 2 * β * C) :
     ∑' k : ℕ, Real.exp (-2 * β * Real.log 2 * lacunaryCutoff C k) *
@@ -656,7 +756,9 @@ theorem tsum_lacunaryHighFrequencyPrefactor_le
     _ = (1 - Real.exp (-((2 * β * C - 1) * Real.log 2)))⁻¹ := rfl
 
 /-- Finite-sum form of the full-operator conversion for scalar samples lying
-in their corresponding magnitude bands.-/
+in their corresponding magnitude bands.
+@isnad1 id=le.2h3v.s6.c5ab79433b2e from=translated src=- shape=f6ff4b4f vocab=a0a452d7
+-/
 theorem sum_fullCutoff_mul_le_sum_orlicz
     {C : ℝ} (hC : 0 ≤ C) (s : Finset ℕ) (mass : ℕ → ℝ)
     (hlevel : ∀ k ∈ s, InMagnitudeLevel fullAmplitude k (mass k)) :
@@ -670,7 +772,9 @@ theorem sum_fullCutoff_mul_le_sum_orlicz
     _ = 4 * C * ∑ k ∈ s, mass k * paperLog 1 (mass k) := by
           rw [Finset.mul_sum]
 
-/-- Finite-sum form of the lacunary high-frequency weight conversion.-/
+/-- Finite-sum form of the lacunary high-frequency weight conversion.
+@isnad1 id=le.3h3v.s7.f40c08cd51d6 from=translated src=- shape=afc8841e vocab=dc56b64b
+-/
 theorem sum_lacunaryHighWeight_le_sum_orlicz
     {C : ℝ} (hC : 0 ≤ C) (s : Finset ℕ) (mass : ℕ → ℝ)
     (hlevel : ∀ k ∈ s, InMagnitudeLevel lacunaryAmplitude k (mass k))
@@ -690,7 +794,9 @@ theorem sum_lacunaryHighWeight_le_sum_orlicz
 
 /-- Finite-sum form of the complete lacunary low-frequency conversion.  The
 six initial bands are deliberately omitted: in the analytic proof they are a
-finite `L¹` contribution.-/
+finite `L¹` contribution.
+@isnad1 id=le.3h3v.s8.eb08781bd03d from=translated src=- shape=c4b76104 vocab=720ecda6
+-/
 theorem sum_lacunaryLowWeight_le_sum_orlicz
     {C : ℝ} (hC : 0 ≤ C) (s : Finset ℕ) (mass : ℕ → ℝ)
     (hlevel : ∀ k ∈ s, InMagnitudeLevel lacunaryAmplitude k (mass k))

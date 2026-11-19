@@ -17,14 +17,18 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
-/-- A point beyond the outer support radius contributes no dyadic piece.-/
+/-- A point beyond the outer support radius contributes no dyadic piece.
+@isnad1 id=eq.1h2v.s5.ec3e786ca2ae from=translated src=- shape=ef978198 vocab=1095cc83
+-/
 theorem dyadicPsi_eq_zero_of_zpow_le {j : ℤ} {t : ℝ}
     (ht : (2 : ℝ) ^ (j - 1) ≤ |t|) : dyadicPsi j t = 0 := by
   by_contra h
   exact (not_lt_of_ge ht) (dyadicPsi_support_subset j h).2
 
 /-- Beyond the outer radius, the cutoff remaining in the telescoped
-one-sided sum vanishes exactly.-/
+one-sided sum vanishes exactly.
+@isnad1 id=eq.1h2v.s6.8a6372bcec37 from=translated src=- shape=028f55ca vocab=97130528
+-/
 theorem dyadicCutoff_lowerEndpoint_eq_zero {j : ℤ} {t : ℝ}
     (ht : (2 : ℝ) ^ (j - 1) ≤ |t|) :
     dyadicCutoff ((2⁻¹ : ℝ) ^ (j - 1) * t) = 0 := by
@@ -39,7 +43,9 @@ theorem dyadicCutoff_lowerEndpoint_eq_zero {j : ℤ} {t : ℝ}
   exact (by norm_num : (1 / 2 : ℝ) ≤ 1).trans hm
 
 /-- Every nonzero spatial point admits a lower scale at which the
-telescoping cutoff vanishes and below which every dyadic piece is zero.-/
+telescoping cutoff vanishes and below which every dyadic piece is zero.
+@isnad1 id=ex.1h1v.s6.aa3c26d12479 from=translated src=- shape=4a0c7109 vocab=93895756
+-/
 theorem exists_dyadicPsi_lower_cutoff {t : ℝ} (ht : t ≠ 0) :
     ∃ j₀ : ℤ, dyadicCutoff ((2⁻¹ : ℝ) ^ (j₀ - 1) * t) = 0 ∧
       ∀ j : ℤ, j < j₀ → dyadicPsi j t = 0 := by
@@ -52,7 +58,9 @@ theorem exists_dyadicPsi_lower_cutoff {t : ℝ} (ht : t ≠ 0) :
     (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mpr (by omega)
   exact hpow.trans hn.1
 
-/-- The exact dyadic decomposition of `1 / t` over all integer scales.-/
+/-- The exact dyadic decomposition of `1 / t` over all integer scales.
+@isnad1 id=hassum.1h1v.s5.f4fd5658a5bb from=translated src=- shape=c1b69af7 vocab=05483240
+-/
 theorem hasSum_dyadicPsi {t : ℝ} (ht : t ≠ 0) :
     HasSum (fun j : ℤ ↦ dyadicPsi j t) (1 / t) := by
   obtain ⟨j₀, hcutoff, hzero⟩ := exists_dyadicPsi_lower_cutoff ht
@@ -73,7 +81,9 @@ theorem hasSum_dyadicPsi {t : ℝ} (ht : t ≠ 0) :
   simpa only [Function.comp_def, hcutoff, sub_zero] using
     hasSum_dyadicPsi_add_nat j₀ ht
 
-/-- The paper's bilateral dyadic series is the Hilbert kernel away from zero.-/
+/-- The paper's bilateral dyadic series is the Hilbert kernel away from zero.
+@isnad1 id=eq.1h1v.s5.fdcfdd296a00 from=translated src=- shape=c3d9d957 vocab=6c6292a7
+-/
 theorem tsum_dyadicPsi {t : ℝ} (ht : t ≠ 0) :
     (∑' j : ℤ, dyadicPsi j t) = 1 / t :=
   (hasSum_dyadicPsi ht).tsum_eq

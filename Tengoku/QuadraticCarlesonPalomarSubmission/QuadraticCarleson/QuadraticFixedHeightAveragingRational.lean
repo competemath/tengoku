@@ -27,19 +27,31 @@ def signedSquareModulation (negative : Bool) (r : ℝ) : ℝ :=
 def signedRationalSquareModulation (negative : Bool) (q : ℚ) : ℚ :=
   if negative then -(q ^ 2) else q ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s4.f40e5e4e3f8d from=translated src=- shape=5bdbe414 vocab=5bcbc962
+-/
 theorem coe_signedRationalSquareModulation (negative : Bool) (q : ℚ) :
     (signedRationalSquareModulation negative q : ℝ) =
       signedSquareModulation negative (q : ℝ) := by
   cases negative <;> simp [signedSquareModulation, signedRationalSquareModulation]
 
+/--
+@isnad1 id=eq.0h2v.s4.be48b77993f1 from=translated src=- shape=86fdcb3f vocab=3ed59a8e
+-/
 theorem abs_signedSquareModulation (negative : Bool) (r : ℝ) :
     |signedSquareModulation negative r| = r ^ 2 := by
   cases negative <;> simp [signedSquareModulation, abs_of_nonneg (sq_nonneg r)]
 
+/--
+@isnad1 id=ne.1h2v.s4.ec17062f27aa from=translated src=- shape=82fa56c8 vocab=f6a38188
+-/
 theorem signedRationalSquareModulation_ne_zero (negative : Bool)
     {q : ℚ} (hq : q ≠ 0) : signedRationalSquareModulation negative q ≠ 0 := by
   cases negative <;> simpa [signedRationalSquareModulation] using pow_ne_zero 2 hq
 
+/--
+@isnad1 id=continuo.0h1v.s4.e5655a0745f7 from=translated src=- shape=8735051e vocab=da0b9cd7
+-/
 theorem continuous_signedSquareModulation (negative : Bool) :
     Continuous (signedSquareModulation negative) := by
   cases negative
@@ -48,6 +60,9 @@ theorem continuous_signedSquareModulation (negative : Bool) :
   · change Continuous (fun r : ℝ ↦ -(r ^ 2))
     fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s4.66c1e0e9bc6a from=translated src=- shape=56f75aac vocab=1ae851a8
+-/
 theorem signedSquareModulation_sqrt_abs (lam : ℝ) :
     signedSquareModulation (decide (lam < 0)) (Real.sqrt |lam|) = lam := by
   unfold signedSquareModulation
@@ -56,6 +71,9 @@ theorem signedSquareModulation_sqrt_abs (lam : ℝ) :
   · simp [hl, abs_of_neg hl]
   · simp [hl, abs_of_nonneg (le_of_not_gt hl)]
 
+/--
+@isnad1 id=oscillat.2h4v.s7.7bd4c89620d6 from=translated src=- shape=3d30dd70 vocab=b1290cb1
+-/
 theorem oscillatoryScaleSpec_signedSquareModulation (negative : Bool)
     (height : ℕ) (j : ℤ) {r : ℝ} (hr : 0 ≤ r)
     (hscale : (2 : ℝ) ^ height ≤ (2 : ℝ) ^ j * r ∧
@@ -68,6 +86,9 @@ noncomputable def rationalFixedHeightQuadraticMaximal
   countableConvolutionMaximal (fun n ↦ fixedHeightQuadraticKernel
     (rationalModulationSequence n) height (rationalModulationSequence_ne_zero n)) f
 
+/--
+@isnad1 id=le.1h4v.s7.8cd998e01795 from=translated src=- shape=49c5d6ad vocab=b943ec8f
+-/
 theorem fixedHeightQuadratic_integral_rational_le
     (height : ℕ) (q : ℚ) (hq : q ≠ 0) (f : ℝ → ℂ) (x : ℝ) :
     ‖∫ t, fixedHeightQuadraticKernel (q : ℝ) height
@@ -80,7 +101,9 @@ theorem fixedHeightQuadratic_integral_rational_le
   simpa only [rationalFixedHeightQuadraticMaximal, countableConvolutionMaximal, hn] using h
 
 /-- On either signed modulation band, rational roots strictly inside the band
-control every point of the half-open band, with its lower endpoint included.-/
+control every point of the half-open band, with its lower endpoint included.
+@isnad1 id=le.3h6v.s8.c5863cebf3cb from=translated src=- shape=6c005090 vocab=c033a512
+-/
 theorem fixedScale_signedSquare_integral_enorm_le_rational
     (height : ℕ) (j : ℤ) (negative : Bool) {r : ℝ} (hr : 0 < r)
     (hscale : (2 : ℝ) ^ height ≤ (2 : ℝ) ^ j * r ∧
@@ -129,7 +152,9 @@ theorem fixedScale_signedSquare_integral_enorm_le_rational
   exact closure_minimal hsub hclosed (Ico_subset_closure_rational_Ioo hab hmem)
 
 /-- Every real nonzero modulation is controlled by the explicitly enumerated
-rational modulations, without assuming continuity of the scale selector.-/
+rational modulations, without assuming continuity of the scale selector.
+@isnad1 id=le.2h4v.s7.99c2ee1f636d from=translated src=- shape=23ad8b9f vocab=e1a33179
+-/
 theorem fixedHeightQuadratic_integral_enorm_le_rational
     (height : ℕ) (lam : ℝ) (hlam : lam ≠ 0)
     {f : ℝ → ℂ} (hf : LocallyIntegrable f) (x : ℝ) :

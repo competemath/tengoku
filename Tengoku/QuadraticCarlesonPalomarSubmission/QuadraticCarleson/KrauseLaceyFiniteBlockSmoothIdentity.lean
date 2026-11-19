@@ -22,6 +22,9 @@ set_option autoImplicit false
 
 noncomputable section
 
+/--
+@isnad1 id=eq.1h5v.s7.577584d28560 from=translated src=- shape=7b9e205a vocab=e4f3c5ae
+-/
 theorem finiteQuadraticDyadicBlock_eq_smoothHighPass_sub
     (lam : ℝ) (j : ℤ) (B : ℕ) {f : ℝ → ℂ} (hfi : Integrable f) (x : ℝ) :
     finiteQuadraticDyadicBlock lam j B f x =
@@ -34,6 +37,9 @@ theorem finiteQuadraticDyadicBlock_eq_smoothHighPass_sub
       (zpow_pos (by norm_num : (0 : ℝ) < 2) _) hfi]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.130e69b08010 from=translated src=- shape=e78edc7c vocab=92095733
+-/
 theorem paperLowDyadicOperator_eq_smoothHighPass_sub
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) (f : L0Infinity) (x : ℝ) :
     paperLowDyadicOperator lam hlam B f x =

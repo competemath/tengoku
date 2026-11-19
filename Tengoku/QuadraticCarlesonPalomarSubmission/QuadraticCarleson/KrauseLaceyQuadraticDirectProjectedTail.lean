@@ -31,6 +31,9 @@ noncomputable section
 
 local instance : DecidableEq RealInterval := Classical.decEq _
 
+/--
+@isnad1 id=le.0h2v.s9.f8edf201588c from=translated src=- shape=ec2e2452 vocab=9e040b5b
+-/
 theorem norm_annularProjectionL2_le
     (j : ℤ) (v : Lp (α := ℝ) ℂ 2 volume) :
     ‖annularProjectionL2 j v‖ ≤ ‖v‖ := by
@@ -64,10 +67,16 @@ def scaledAnnularKernelSchwartz (j : ℤ) : 𝓢(ℝ, ℂ) :=
 def scaledAnnularKernel (j : ℤ) : ℝ → ℂ :=
   scaledAnnularKernelSchwartz j
 
+/--
+@isnad1 id=integrab.0h1v.s5.39e9a6ca93ec from=translated src=- shape=5cae27e5 vocab=beaf2ff4
+-/
 theorem integrable_scaledAnnularKernel (j : ℤ) :
     Integrable (scaledAnnularKernel j) volume :=
   (scaledAnnularKernelSchwartz j).integrable
 
+/--
+@isnad1 id=eq.0h2v.s5.fa50c60fe5c5 from=translated src=- shape=9ab52306 vocab=4bcbddf5
+-/
 theorem fourier_scaledAnnularKernel (j : ℤ) (ξ : ℝ) :
     𝓕 (scaledAnnularKernel j) ξ = scaledAnnularFrequencyCutoff j ξ := by
   change 𝓕 (⇑(scaledAnnularKernelSchwartz j)) ξ = _
@@ -79,11 +88,17 @@ theorem fourier_scaledAnnularKernel (j : ℤ) (ξ : ℝ) :
 def scaledAnnularKernelBound (j : ℤ) : ℝ :=
   SchwartzMap.seminorm ℂ 0 0 (scaledAnnularKernelSchwartz j)
 
+/--
+@isnad1 id=le.0h1v.s3.af0fd15c71a3 from=translated src=- shape=b9369acb vocab=f7a67eba
+-/
 theorem scaledAnnularKernelBound_nonneg (j : ℤ) :
     0 ≤ scaledAnnularKernelBound j := by
   unfold scaledAnnularKernelBound
   positivity
 
+/--
+@isnad1 id=le.0h2v.s3.3e8fa9e8b489 from=translated src=- shape=c126dd82 vocab=493f229e
+-/
 theorem norm_scaledAnnularKernel_le (j : ℤ) (x : ℝ) :
     ‖scaledAnnularKernel j x‖ ≤ scaledAnnularKernelBound j := by
   exact SchwartzMap.norm_le_seminorm ℂ (scaledAnnularKernelSchwartz j) x
@@ -91,6 +106,9 @@ theorem norm_scaledAnnularKernel_le (j : ℤ) (x : ℝ) :
 def annularKernelConvolution (j : ℤ) (f : ℝ → ℂ) (x : ℝ) : ℂ :=
   ∫ y, scaledAnnularKernel j (x - y) * f y
 
+/--
+@isnad1 id=eq.0h3v.s6.6a881e4aa60e from=translated src=- shape=79935f21 vocab=88b633cd
+-/
 theorem annularKernelConvolution_eq_convolution
     (j : ℤ) (f : ℝ → ℂ) (x : ℝ) :
     annularKernelConvolution j f x =
@@ -101,6 +119,9 @@ theorem annularKernelConvolution_eq_convolution
   simp only [ContinuousLinearMap.mul_apply']
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.41d522d0c0de from=translated src=- shape=2c930462 vocab=7b5306d3
+-/
 theorem integrable_annularKernelConvolution
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume) :
     Integrable (annularKernelConvolution j f) volume := by
@@ -110,6 +131,9 @@ theorem integrable_annularKernelConvolution
   filter_upwards with x
   exact (annularKernelConvolution_eq_convolution j f x).symm
 
+/--
+@isnad1 id=le.1h3v.s6.3d94efd75480 from=translated src=- shape=ea1000ea vocab=86c58027
+-/
 theorem norm_annularKernelConvolution_le
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume) (x : ℝ) :
     ‖annularKernelConvolution j f x‖ ≤
@@ -136,6 +160,9 @@ theorem norm_annularKernelConvolution_le
         (norm_scaledAnnularKernel_le j (x - y)) (norm_nonneg _)
     _ = _ := integral_const_mul _ _
 
+/--
+@isnad1 id=memlp.1h2v.s6.863fe87251b4 from=translated src=- shape=9ac17755 vocab=e581a52f
+-/
 theorem memLp_two_annularKernelConvolution
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume) :
     MemLp (annularKernelConvolution j f) 2 volume := by
@@ -153,6 +180,9 @@ theorem memLp_two_annularKernelConvolution
   have hi := hconv.norm.bdd_mul hconv.norm.aestronglyMeasurable hbound'
   simpa only [pow_two] using hi
 
+/--
+@isnad1 id=eq.1h3v.s6.3ac79c1530de from=translated src=- shape=59120567 vocab=006b51fe
+-/
 theorem fourier_annularKernelConvolution
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume) (ξ : ℝ) :
     𝓕 (annularKernelConvolution j f) ξ =
@@ -166,6 +196,9 @@ theorem fourier_annularKernelConvolution
     fourier_scaledAnnularKernel]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s8.5d8aa02cd892 from=translated src=- shape=b65dc1b2 vocab=08bcf8e2
+-/
 theorem annularProjectionL2_eq_toLp_annularKernelConvolution
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume)
     (hf₂ : MemLp f 2 volume) :
@@ -189,6 +222,9 @@ theorem annularProjectionL2_eq_toLp_annularKernelConvolution
   unfold annularFourierMultiplier
   rw [hfourier]
 
+/--
+@isnad1 id=eventual.2h2v.s8.91da6b275f2c from=translated src=- shape=54f9dc6d vocab=1af372aa
+-/
 theorem annularProjectionL2_ae_eq_annularKernelConvolution
     (j : ℤ) {f : ℝ → ℂ} (hf : Integrable f volume)
     (hf₂ : MemLp f 2 volume) :
@@ -217,7 +253,9 @@ def projectedOffsetResidueOutput
 
 /-- The genuine fixed-output-scale `L²` representative is also integrable.
 This is inherited from the finite sum of the localized `L¹` outputs, not
-from any finite-measure support shortcut.-/
+from any finite-measure support shortcut.
+@isnad1 id=integrab.0h6v.s8.fec24b526ea9 from=translated src=- shape=d5100067 vocab=ebb468e7
+-/
 theorem integrable_offsetOutputScaleLp_toFun
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -234,7 +272,9 @@ theorem integrable_offsetOutputScaleLp_toFun
 
 /-- Every projected actual scale output has an integrable representative.
 The proof realizes the multiplier as convolution with its Schwartz inverse
-Fourier kernel.-/
+Fourier kernel.
+@isnad1 id=integrab.0h7v.s6.5f3736eb6e82 from=translated src=- shape=b0e13dae vocab=020c3d41
+-/
 theorem integrable_projectedOffsetResidueOutput
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (n : ℕ) :
@@ -254,7 +294,9 @@ theorem integrable_projectedOffsetResidueOutput
     annularResiduePiece, offsetScaleFamily, Lp.toLp_coeFn] using hae.symm
 
 /-- Consequently the finite total required by the concrete annular-tail
-theorem is integrable.-/
+theorem is integrable.
+@isnad1 id=integrab.0h7v.s6.02047be47d90 from=translated src=- shape=e3c8e679 vocab=e9f72828
+-/
 theorem integrable_projectedOffsetResidueTotal
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -267,7 +309,9 @@ theorem integrable_projectedOffsetResidueTotal
 
 /-- The fully concrete cardinality-free maximal-tail estimate for one of
 the seven residue classes, before replacing projected energies by the
-unprojected fixed-scale energies.-/
+unprojected fixed-scale energies.
+@isnad1 id=le.0h7v.s8.1cc098d71a62 from=translated src=- shape=b1c71310 vocab=d27594f2
+-/
 theorem projectedOffsetResidueTailMax_sq_lintegral_le_projectedSum
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -283,13 +327,18 @@ theorem projectedOffsetResidueTailMax_sq_lintegral_le_projectedSum
 
 /-! ## Replacement by the concrete fixed-scale energy -/
 
+/--
+@isnad1 id=eq.0h1v.s9.fa940ef3a5da from=translated src=- shape=67b96d53 vocab=88aac0a5
+-/
 theorem lintegral_enorm_sq_coe_Lp
     (w : Lp (α := ℝ) ℂ 2 volume) :
     (∫⁻ x, ‖w x‖ₑ ^ 2) = ENNReal.ofReal (‖w‖ ^ 2) := by
   rw [← eLpNorm_two_sq_lintegral, ← Lp.enorm_def w,
     ENNReal.ofReal_pow (norm_nonneg w), ofReal_norm]
 
-/-- Annular projection is contractive on the square integral.-/
+/-- Annular projection is contractive on the square integral.
+@isnad1 id=le.0h7v.s8.b4275b72d4dc from=translated src=- shape=0fefdb68 vocab=10976ada
+-/
 theorem lintegral_enorm_sq_projectedOffsetResidueOutput_le
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (n : ℕ) :
@@ -305,7 +354,9 @@ theorem lintegral_enorm_sq_projectedOffsetResidueOutput_le
     (norm_annularProjectionL2_le (residueScale r n) w) 2
 
 /-- A scale absent from the retained output family gives the zero `L²`
-fixed-scale output.-/
+fixed-scale output.
+@isnad1 id=eq.1h6v.s9.20f23317e0cc from=translated src=- shape=affd0f97 vocab=3435428b
+-/
 theorem offsetOutputScaleLp_eq_zero_of_not_mem_image
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) (hk : k ∉ A.image scale) :
@@ -318,7 +369,9 @@ theorem offsetOutputScaleLp_eq_zero_of_not_mem_image
 
 /-- Restricting an injectively enumerated residue class to finitely many
 indices cannot have more fixed-scale energy than the complete finite set of
-scales occurring in `A`.-/
+scales occurring in `A`.
+@isnad1 id=le.0h7v.s9.44f56637ec30 from=translated src=- shape=a48bb894 vocab=cb0e0080
+-/
 theorem sum_range_norm_offsetOutputScaleLp_residue_le_allScales
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -374,7 +427,9 @@ theorem sum_range_norm_offsetOutputScaleLp_residue_le_allScales
         ‖offsetOutputScaleLp S A scale f k s‖ ^ 2 := by rfl
 
 /-- The sum of the projected residue energies is bounded by the genuine
-fixed-scale square sum over all scales occurring in `A`.-/
+fixed-scale square sum over all scales occurring in `A`.
+@isnad1 id=le.0h7v.s8.1640452e8056 from=translated src=- shape=8810bbce vocab=2f9505d2
+-/
 theorem sum_lintegral_projectedOffsetResidueOutput_le_allScales
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -401,7 +456,9 @@ theorem sum_lintegral_projectedOffsetResidueOutput_le_allScales
           S A scale f r s N)
 
 /-- The concrete projected maximal tail in each of the seven residue
-classes is controlled by the actual all-scale output energy.-/
+classes is controlled by the actual all-scale output energy.
+@isnad1 id=le.0h7v.s8.6aa38aaf575d from=translated src=- shape=5a07663d vocab=438c9e65
+-/
 theorem projectedOffsetResidueTailMax_sq_lintegral_le_allScales
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (r : Fin 7) (s : ℤ) (N : ℕ) :
@@ -419,7 +476,9 @@ theorem projectedOffsetResidueTailMax_sq_lintegral_le_allScales
 
 /-- Final root-mass form of the projected maximal-tail estimate.  It is
 uniform in the retained output subcollection `A ⊆ S`, in the residue class,
-and in the finite truncation length.-/
+and in the finite truncation length.
+@isnad1 id=le.8h9v.s9.c3cfba45cb73 from=translated src=- shape=d5098e22 vocab=22dc9595
+-/
 theorem projectedOffsetResidueTailMax_sq_lintegral_le_root_mass
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -448,7 +507,9 @@ theorem projectedOffsetResidueTailMax_sq_lintegral_le_root_mass
       (sum_norm_offsetOutputScaleLp_sq_le_root_mass hA hlam scale hscale
         f hs hM hmass I₀ hsub hgap)) bot_le
 
-/-- The simultaneous form for all seven separated residue classes.-/
+/-- The simultaneous form for all seven separated residue classes.
+@isnad1 id=le.0h6v.s8.ada4e97484a1 from=translated src=- shape=a3c752f7 vocab=00e4df8c
+-/
 theorem sum_projectedOffsetResidueTailMax_sq_lintegral_le_allScales
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (s : ℤ) (N : ℕ) :
@@ -472,7 +533,9 @@ theorem sum_projectedOffsetResidueTailMax_sq_lintegral_le_allScales
         S A scale f r s N
     _ = _ := by simp
 
-/-- Root-mass closure of the simultaneous seven-residue estimate.-/
+/-- Root-mass closure of the simultaneous seven-residue estimate.
+@isnad1 id=le.8h8v.s9.111e7bd75c34 from=translated src=- shape=1ba4a260 vocab=46bcbabc
+-/
 theorem sum_projectedOffsetResidueTailMax_sq_lintegral_le_root_mass
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

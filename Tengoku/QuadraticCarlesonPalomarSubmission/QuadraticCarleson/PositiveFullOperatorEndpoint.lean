@@ -33,7 +33,9 @@ open KaltonPaperApplication
 set_option autoImplicit false
 
 /-- The canonical cofinal limsup is no larger than the supremum over every
-positive truncation radius.-/
+positive truncation radius.
+@isnad1 id=le.0h3v.s4.28644c40fbad from=translated src=- shape=333fbebc vocab=bbb0f83a
+-/
 theorem quadraticHilbertL0Limsup_le_maximalTruncation
     (lam : ℝ) (f : L0Infinity) (x : ℝ) :
     quadraticHilbertL0Limsup lam f x ≤
@@ -48,7 +50,9 @@ theorem quadraticHilbertL0Limsup_le_maximalTruncation
 
 /-- The full real-modulation principal-value limsup is pointwise controlled
 by the proved oscillatory part, the ordinary Hilbert maximal truncation, and
-the elementary Hardy--Littlewood error.  The zero modulation is included.-/
+the elementary Hardy--Littlewood error.  The zero modulation is included.
+@isnad1 id=le.0h2v.s6.af50db4cf374 from=translated src=- shape=206b5542 vocab=f545fd12
+-/
 theorem quadraticCarlesonL0_le_oscillatory_add_hilbert_add_maximal
     (f : L0Infinity) (x : ℝ) :
     quadraticCarlesonL0 f x ≤
@@ -85,10 +89,16 @@ theorem quadraticCarlesonL0_le_oscillatory_add_hilbert_add_maximal
 
 noncomputable def maximalErrorConstantReal : ℝ := 8 + 8 * Real.pi
 
+/--
+@isnad1 id=lt.0h0v.s3.f7632d564adc from=translated src=- shape=ff3a10fc vocab=1fe37187
+-/
 theorem maximalErrorConstantReal_pos : 0 < maximalErrorConstantReal := by
   unfold maximalErrorConstantReal
   positivity
 
+/--
+@isnad1 id=eq.0h0v.s2.25c8dfb6bdcb from=translated src=- shape=4b736592 vocab=79b9792e
+-/
 theorem ofReal_maximalErrorConstantReal :
     ENNReal.ofReal maximalErrorConstantReal = maximalErrorConstant := by
   unfold maximalErrorConstantReal maximalErrorConstant
@@ -96,6 +106,9 @@ theorem ofReal_maximalErrorConstantReal :
     ENNReal.ofReal_mul (by norm_num : (0 : ℝ) ≤ 8)]
   norm_num
 
+/--
+@isnad1 id=le.1h1v.s5.832739e96884 from=translated src=- shape=a8c8ec2d vocab=4b2fd340
+-/
 theorem paperLog_one_two_mul_le_two_mul {t : ℝ} (ht : 0 ≤ t) :
     paperLog 1 (2 * t) ≤ 2 * paperLog 1 t := by
   simp only [paperLog_succ, paperLog_zero]
@@ -110,6 +123,9 @@ theorem paperLog_one_two_mul_le_two_mul {t : ℝ} (ht : 0 ≤ t) :
       · exact hpoly
     _ = 2 * Real.log (10 + t) := by rw [Real.log_pow]; norm_num
 
+/--
+@isnad1 id=le.0h1v.s7.854f3ec513ac from=translated src=- shape=9342c150 vocab=b19ee11f
+-/
 theorem scaled_half_fullOrlicz_lintegral_le
     (f : ℝ → ℂ) :
     (∫⁻ x, ENNReal.ofReal
@@ -134,7 +150,9 @@ theorem scaled_half_fullOrlicz_lintegral_le
 
 /-- Threshold-one full-operator endpoint, reduced only to a uniform ordinary
 Hilbert maximal weak constant.  This is the exact classical input proved in
-`HilbertMaximalWeakOneOne`; it is not an assumption about the target operator.-/
+`HilbertMaximalWeakOneOne`; it is not an assumption about the target operator.
+@isnad1 id=le.2h2v.s8.9897b30d21e0 from=translated src=- shape=a2707cd7 vocab=eb9f2ad9
+-/
 theorem quadraticCarlesonL0_levelSet_one_le_orlicz_of_hilbertWeak
     (f : L0Infinity) {CH : ℝ} (hCH : 0 ≤ CH)
     (hH : HasExtendedWeakL1Bound volume
@@ -254,6 +272,9 @@ theorem quadraticCarlesonL0_levelSet_one_le_orlicz_of_hilbertWeak
         (mul_le_mul' le_rfl (lintegral_norm_le_full_orlicz f)))
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.0h5v.s6.1f04c9f33910 from=translated src=- shape=7532835b vocab=3da9a6c1
+-/
 theorem quadraticHilbertL0TruncNorm_smul
     (lam : ℝ) (c : ℂ) (f : L0Infinity) (m : ℕ) (x : ℝ) :
     quadraticHilbertL0TruncNorm lam (L0Infinity.smul c f) m x =
@@ -265,6 +286,9 @@ theorem quadraticHilbertL0TruncNorm_smul
   rw [hs, norm_mul,
     ENNReal.ofReal_mul (norm_nonneg c), ofReal_norm]
 
+/--
+@isnad1 id=eq.0h4v.s6.67fc00eed785 from=translated src=- shape=f0f88a71 vocab=bd5d1f56
+-/
 theorem quadraticHilbertL0Limsup_smul
     (lam : ℝ) (c : ℂ) (f : L0Infinity) (x : ℝ) :
     quadraticHilbertL0Limsup lam (L0Infinity.smul c f) x =
@@ -273,6 +297,9 @@ theorem quadraticHilbertL0Limsup_smul
   simp_rw [quadraticHilbertL0TruncNorm_smul]
   exact ENNReal.limsup_const_mul_of_ne_top (by finiteness)
 
+/--
+@isnad1 id=eq.0h3v.s6.37769695fab9 from=translated src=- shape=8aaaaecc vocab=c034018b
+-/
 theorem quadraticCarlesonL0_smul
     (c : ℂ) (f : L0Infinity) (x : ℝ) :
     quadraticCarlesonL0 (L0Infinity.smul c f) x =
@@ -284,14 +311,23 @@ theorem quadraticCarlesonL0_smul
 noncomputable def normalizedL0Input (α : ℝ) (f : L0Infinity) : L0Infinity :=
   L0Infinity.smul (α : ℂ)⁻¹ f
 
+/--
+@isnad1 id=eq.0h3v.s4.405ad6ba5a31 from=translated src=- shape=99701056 vocab=60d08b78
+-/
 @[simp] theorem normalizedL0Input_apply (α : ℝ) (f : L0Infinity) (x : ℝ) :
     normalizedL0Input α f x = normalizedOscillatoryInput α f x := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.b80eaa682752 from=translated src=- shape=ae84e2ba vocab=5ab89d3a
+-/
 theorem norm_normalizedL0Input {α : ℝ} (hα : 0 < α)
     (f : L0Infinity) (x : ℝ) :
     ‖normalizedL0Input α f x‖ = ‖f x‖ / α :=
   norm_normalizedOscillatoryInput hα f x
 
+/--
+@isnad1 id=eq.1h3v.s5.feaaa2f847bd from=translated src=- shape=cc9144ee vocab=495f0e99
+-/
 theorem quadraticCarlesonL0_normalizedInput
     {α : ℝ} (hα : 0 < α) (f : L0Infinity) (x : ℝ) :
     quadraticCarlesonL0 (normalizedL0Input α f) x =
@@ -303,6 +339,9 @@ theorem quadraticCarlesonL0_normalizedInput
       ENNReal.ofReal_inv_of_pos hα]
   rw [hc, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s5.58d84824837c from=translated src=- shape=ea49cd1e vocab=54325dcd
+-/
 theorem quadraticCarlesonL0_levelSet_eq_normalized
     {α : ℝ} (hα : 0 < α) (f : L0Infinity) :
     {x | ENNReal.ofReal α < quadraticCarlesonL0 f x} =
@@ -325,7 +364,9 @@ def HasUniformZeroHilbertMaximalWeakBound (CH : ℝ) : Prop :=
       (quadraticHilbertMaximalTruncation 0 g)
 
 /-- The paper's arbitrary-threshold full `L log₁ L` estimate, conditional
-only on the exact uniform ordinary Hilbert maximal theorem.-/
+only on the exact uniform ordinary Hilbert maximal theorem.
+@isnad1 id=le.2h3v.s7.28f7c378a3e9 from=translated src=- shape=c6f4b5f2 vocab=cedf61a3
+-/
 theorem quadraticCarlesonL0_levelSet_le_scaled_orlicz_of_hilbertWeak
     {CH : ℝ} (hH : HasUniformZeroHilbertMaximalWeakBound CH)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :

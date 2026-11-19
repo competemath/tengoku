@@ -126,6 +126,9 @@ private theorem locallyIntegrable_finiteRadiusSmoothHighPassMaxTestOperator
                 (norm_nonneg _)
             _ = _ := integral_const_mul _ _
 
+/--
+@isnad1 id=hasunifo.1h1v.s4.79f84df10bae from=translated src=- shape=f450f117 vocab=e476abd4
+-/
 theorem hasUniformFiniteRadiusSmoothSparseBound_of_positiveSuffix
     {A : ℝ} (hA : HasUniformPositiveSuffixSmoothSparseBound A) :
     HardyLittlewoodBoundaryControl.HasUniformFiniteRadiusSmoothSparseBound (2 * A) := by

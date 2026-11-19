@@ -23,6 +23,9 @@ noncomputable def stoppingLevelBadPart (f : ℝ → ℂ) (k : ℕ) : ℝ → ℂ
   disjointLevelAtomSum fullAmplitude f k
     (stoppingCenter (f := f)) (stoppingLength (f := f))
 
+/--
+@isnad1 id=eq.1h4v.s5.f8a3d6ff6f50 from=translated src=- shape=5ec92cd2 vocab=9b819d23
+-/
 theorem stoppingLevelBadPart_eq_atom_of_mem {f : ℝ → ℂ}
     (c : stoppingCell f) {x : ℝ} (hx : x ∈ c.1.interval (rootLength f)) (k : ℕ) :
     stoppingLevelBadPart f k x =
@@ -34,6 +37,9 @@ theorem stoppingLevelBadPart_eq_atom_of_mem {f : ℝ → ℂ}
   exact levelAtom_eq_zero_of_other_mem centeredStoppingIntervals_pairwiseDisjoint hdc
     (by simpa only [centeredInterval_eq_stoppingInterval] using hx)
 
+/--
+@isnad1 id=eq.1h3v.s4.d569b84ea84a from=translated src=- shape=08c612ee vocab=a3e17041
+-/
 theorem stoppingLevelBadPart_eq_zero_of_notMem {f : ℝ → ℂ} {x : ℝ}
     (hx : x ∉ stoppingBadUnion f) (k : ℕ) : stoppingLevelBadPart f k x = 0 := by
   unfold stoppingLevelBadPart disjointLevelAtomSum
@@ -44,6 +50,9 @@ theorem stoppingLevelBadPart_eq_zero_of_notMem {f : ℝ → ℂ} {x : ℝ}
     exact fun hc ↦ hx (mem_iUnion.mpr ⟨c, hc⟩)
   simp only [hz, tsum_zero]
 
+/--
+@isnad1 id=hassum.2h2v.s6.44d26ffa36a5 from=translated src=- shape=0d134374 vocab=873b5ed2
+-/
 theorem hasSum_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) (x : ℝ) :
     HasSum (fun k ↦ stoppingLevelBadPart f k x) (stoppingBadPart f x) := by
@@ -61,15 +70,24 @@ theorem hasSum_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f)
     rw [stoppingBadPart, stoppingGoodPart_eq_of_notMem hx, sub_self]
     exact hasSum_zero
 
+/--
+@isnad1 id=eq.2h2v.s6.b38a34b10883 from=translated src=- shape=031f83ca vocab=8092c271
+-/
 theorem tsum_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) (x : ℝ) :
     (∑' k, stoppingLevelBadPart f k x) = stoppingBadPart f x :=
   (hasSum_stoppingLevelBadPart hf hfi x).tsum_eq
 
+/--
+@isnad1 id=measurab.1h2v.s4.97f3192d6437 from=translated src=- shape=6676bc14 vocab=026e396d
+-/
 theorem measurable_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f) (k : ℕ) :
     Measurable (stoppingLevelBadPart f k) :=
   measurable_disjointLevelAtomSum hf k _ _
 
+/--
+@isnad1 id=measurab.2h1v.s5.63577213fa9e from=translated src=- shape=24c7770f vocab=d98f974c
+-/
 theorem measurable_stoppingBadPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) : Measurable (stoppingBadPart f) := by
   have heq : stoppingBadPart f = fun x ↦ ∑' k, stoppingLevelBadPart f k x :=
@@ -77,6 +95,9 @@ theorem measurable_stoppingBadPart {f : ℝ → ℂ} (hf : Measurable f)
   rw [heq]
   exact Measurable.tsum (measurable_stoppingLevelBadPart hf)
 
+/--
+@isnad1 id=le.1h2v.s6.a668052b650f from=translated src=- shape=6f244a56 vocab=83d85abb
+-/
 theorem lintegral_enorm_stoppingLevelBadPart_le {f : ℝ → ℂ}
     (hf : Measurable f) (k : ℕ) :
     (∫⁻ x, ‖stoppingLevelBadPart f k x‖ₑ) ≤
@@ -98,6 +119,9 @@ theorem lintegral_enorm_stoppingLevelBadPart_le {f : ℝ → ℂ}
   exact tsum_atomL1Mass_le_two_mul_global_level_mass hf (fullAmplitude_pos k).le
     _ _ centeredStoppingIntervals_pairwiseDisjoint
 
+/--
+@isnad1 id=eq.1h1v.s6.b4b909a41739 from=translated src=- shape=f43e44ed vocab=2e8aa478
+-/
 theorem tsum_fullMagnitudeLevelL1Mass {f : ℝ → ℂ} (hf : Measurable f) :
     (∑' k, magnitudeLevelL1Mass volume fullAmplitude f k) = ∫⁻ x, ‖f x‖ₑ := by
   unfold magnitudeLevelL1Mass
@@ -107,11 +131,17 @@ theorem tsum_fullMagnitudeLevelL1Mass {f : ℝ → ℂ} (hf : Measurable f) :
       fullAmplitude_cofinal f]
   simp only [Measure.restrict_univ, ofReal_norm]
 
+/--
+@isnad1 id=le.1h1v.s7.5dd19cf676eb from=translated src=- shape=9bfd1d88 vocab=5247fab5
+-/
 theorem tsum_lintegral_enorm_stoppingLevelBadPart_le {f : ℝ → ℂ} (hf : Measurable f) :
     (∑' k, ∫⁻ x, ‖stoppingLevelBadPart f k x‖ₑ) ≤ 2 * ∫⁻ x, ‖f x‖ₑ := by
   have hs := ENNReal.tsum_le_tsum (lintegral_enorm_stoppingLevelBadPart_le hf)
   rwa [ENNReal.tsum_mul_left, tsum_fullMagnitudeLevelL1Mass hf] at hs
 
+/--
+@isnad1 id=integrab.2h2v.s6.2ffc704e5c00 from=translated src=- shape=f47665d2 vocab=b7fd2a81
+-/
 theorem integrable_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) (k : ℕ) : Integrable (stoppingLevelBadPart f k) := by
   refine ⟨(measurable_stoppingLevelBadPart hf k).aestronglyMeasurable, ?_⟩
@@ -119,6 +149,9 @@ theorem integrable_stoppingLevelBadPart {f : ℝ → ℂ} (hf : Measurable f)
   exact (tsum_lintegral_enorm_stoppingLevelBadPart_le hf).trans_lt
     (ENNReal.mul_lt_top (by finiteness) hfi.hasFiniteIntegral)
 
+/--
+@isnad1 id=integrab.2h1v.s6.1846ad50f83e from=translated src=- shape=3ee3b192 vocab=d98f974c
+-/
 theorem integrable_stoppingBadPart {f : ℝ → ℂ} (hf : Measurable f)
     (hfi : Integrable f) : Integrable (stoppingBadPart f) := by
   refine ⟨(measurable_stoppingBadPart hf hfi).aestronglyMeasurable, ?_⟩

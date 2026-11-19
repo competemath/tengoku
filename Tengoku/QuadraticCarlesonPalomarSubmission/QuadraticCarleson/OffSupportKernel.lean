@@ -30,7 +30,9 @@ noncomputable def offSupportKernelAction (modulation s t x : ℝ) : ℂ :=
   ∫ u : ℝ, (wavePacket s t u : ℂ) *
     phase (modulation * (x - u) ^ 2) / ((x - u : ℝ) : ℂ)
 
-/-- The same action in the kernel variable used in the paper.-/
+/-- The same action in the kernel variable used in the paper.
+@isnad1 id=eq.0h4v.s6.7bf17ec85d23 from=translated src=- shape=b85ca20a vocab=e2a32e4e
+-/
 theorem offSupportKernelAction_eq_integral_kernel_variable
     (modulation s t x : ℝ) :
     offSupportKernelAction modulation s t x =
@@ -45,7 +47,9 @@ theorem offSupportKernelAction_eq_integral_kernel_variable
   dsimp only [F]
   ring_nf
 
-/-- The normalization `e(a)=exp(2πia)` is `2π`-Lipschitz.-/
+/-- The normalization `e(a)=exp(2πia)` is `2π`-Lipschitz.
+@isnad1 id=le.0h2v.s5.c1ab50c48006 from=translated src=- shape=509845c2 vocab=4bb668a6
+-/
 theorem norm_phase_sub_phase_le (a b : ℝ) :
     ‖phase a - phase b‖ ≤ 2 * Real.pi * |a - b| := by
   have hid : phase a = phase b * phase (a - b) := by
@@ -66,7 +70,9 @@ theorem norm_phase_sub_phase_le (a b : ℝ) :
       rw [Real.norm_eq_abs, abs_mul, abs_mul, abs_of_nonneg (by positivity),
         abs_of_nonneg Real.pi_pos.le]
 
-/-- Points in the support of the packet are at most `t/4` from its centre.-/
+/-- Points in the support of the packet are at most `t/4` from its centre.
+@isnad1 id=le.2h3v.s6.f0210742c3d1 from=translated src=- shape=3bae2118 vocab=8d4ee33c
+-/
 theorem abs_sub_center_le_of_wavePacket_ne_zero {s t u : ℝ} (ht : 0 < t)
     (hu : wavePacket s t u ≠ 0) : |u - s| ≤ t / 4 := by
   have hsupp := wavePacket_support ht hu
@@ -74,7 +80,9 @@ theorem abs_sub_center_le_of_wavePacket_ne_zero {s t u : ℝ} (ht : 0 < t)
   constructor <;> linarith [hsupp.1, hsupp.2]
 
 /-- If `x` lies outside the interval of centre `s` and length `t`, its
-distance from the centre is at least half the length.-/
+distance from the centre is at least half the length.
+@isnad1 id=le.2h3v.s6.cd343adcd00c from=translated src=- shape=893c72a1 vocab=ed8650f6
+-/
 theorem half_length_le_abs_sub_center {s t x : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) : t / 2 ≤ |x - s| := by
   rw [mem_Icc, not_and_or] at hx
@@ -87,7 +95,9 @@ theorem half_length_le_abs_sub_center {s t x : ℝ} (ht : 0 < t)
     · linarith
 
 /-- On the packet support, the kernel variable `x-u` stays at least half as
-far from zero as the centre variable `x-s`.-/
+far from zero as the centre variable `x-s`.
+@isnad1 id=le.3h4v.s7.a7848c7a4ddc from=translated src=- shape=4fd34ddf vocab=17dfeb44
+-/
 theorem half_abs_sub_center_le_abs_sub {s t x u : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2))
     (hu : wavePacket s t u ≠ 0) : |x - s| / 2 ≤ |x - u| := by
@@ -100,7 +110,9 @@ theorem half_abs_sub_center_le_abs_sub {s t x u : ℝ} (ht : 0 < t)
   linarith
 
 /-- The zero-fold case of the oscillatory estimate in the paper.  It is also
-the uniform off-support size bound for the kernel action.-/
+the uniform off-support size bound for the kernel action.
+@isnad1 id=le.2h4v.s6.438748d935ed from=translated src=- shape=6e4a8c51 vocab=a7af6420
+-/
 theorem offSupportKernelAction_norm_le {modulation s t x : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
     ‖offSupportKernelAction modulation s t x‖ ≤ 2 / |x - s| := by
@@ -220,7 +232,9 @@ private theorem kernel_difference_bound {modulation s t x u : ℝ} (ht : 0 < t)
 absolute constant.  This is the paper's
 `e(λ(x-c_Q)²)/(x-c_Q) + O(max{|λ|ℓ_Q, ℓ_Q/|x-c_Q|²})`.
 
-The value `7` is inessential; the paper suppresses it in `O(·)` notation.-/
+The value `7` is inessential; the paper suppresses it in `O(·)` notation.
+@isnad1 id=le.2h4v.s7.17b329a4581a from=translated src=- shape=ffe72989 vocab=8f973265
+-/
 theorem offSupportKernelAction_sub_main_le {modulation s t x : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
     ‖offSupportKernelAction modulation s t x -

@@ -35,7 +35,9 @@ theorem eq_of_common_subinterval_of_length_eq
       (hKJ ⟨K.left_lt_right, le_rfl⟩)
 
 /-- All active intervals above the grouped base scale satisfy the exact
-local `2^s` packing estimate, uniformly over arbitrary subcollections.-/
+local `2^s` packing estimate, uniformly over arbitrary subcollections.
+@isnad1 id=le.5h8v.s8.fa5553f90d8a from=translated src=- shape=fa0e4456 vocab=829d450d
+-/
 theorem sum_active_aboveBase_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -78,7 +80,9 @@ theorem sum_active_aboveBase_length_le
 
 /-- The base-scale pieces have one fixed parent length, so laminarity
 alone makes them disjoint. Tiny stopping cells are not charged their
-parent's length in this exceptional grouped scale.-/
+parent's length in this exceptional grouped scale.
+@isnad1 id=le.4h8v.s7.bc2ea91251c9 from=translated src=- shape=a5184bcc vocab=6c223927
+-/
 theorem sum_baseScale_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -101,7 +105,9 @@ theorem sum_baseScale_length_le
   · exact hd
 
 /-- The genuine active family is Carleson with constant `1 + 2^s`.
-Neither a packing estimate nor an operator bound is an input.-/
+Neither a packing estimate nor an operator bound is an input.
+@isnad1 id=le.3h8v.s7.5f6647afdd26 from=translated src=- shape=9bd6220a vocab=89fcca5d
+-/
 theorem sum_activeBadIntervals_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -129,7 +135,9 @@ theorem sum_activeBadIntervals_length_le
   dsimp only [A] at heq
   linarith
 
-/-- Local Carleson packing in the form used by overlap pruning.-/
+/-- Local Carleson packing in the form used by overlap pruning.
+@isnad1 id=le.2h8v.s7.b2735fb5a554 from=translated src=- shape=e89393c2 vocab=2b69829d
+-/
 theorem sum_activeBadIntervals_descendants_length_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)

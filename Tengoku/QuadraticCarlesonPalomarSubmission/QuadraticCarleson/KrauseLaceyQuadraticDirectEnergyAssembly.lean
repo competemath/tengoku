@@ -24,7 +24,9 @@ noncomputable section
 local instance : DecidableEq RealInterval := Classical.decEq _
 
 /-- In a laminar dyadic family, distinct intervals with one common scale
-are disjoint.-/
+are disjoint.
+@isnad1 id=pairwise.2h3v.s7.bec812e8ca5d from=translated src=- shape=0a29789b vocab=b596a839
+-/
 theorem sameScale_carriers_pairwiseDisjoint
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -46,7 +48,9 @@ theorem sameScale_carriers_pairwiseDisjoint
   · exact (hne (interval_eq_of_carrier_subset_of_length_le hsub hlen.le).symm).elim
   · exact hdis
 
-/-- Exact dyadic lengths turn carrier inclusion into scale monotonicity.-/
+/-- Exact dyadic lengths turn carrier inclusion into scale monotonicity.
+@isnad1 id=le.4h4v.s6.a49e3a58a167 from=translated src=- shape=f1e3aef9 vocab=896b3eee
+-/
 theorem scale_le_of_carrier_subset
     {S : Finset RealInterval} (scale : RealInterval → ℤ)
     (hscale : ∀ J ∈ S, J.length = (2 : ℝ) ^ (scale J + 2))
@@ -61,7 +65,9 @@ theorem scale_le_of_carrier_subset
     (zpow_le_zpow_iff_right₀ (by norm_num : (1 : ℝ) < 2)).mp hlen
   omega
 
-/-- Every scale occurring below a selected root is at most the root scale.-/
+/-- Every scale occurring below a selected root is at most the root scale.
+@isnad1 id=le.3h4v.s6.e793fb87f99d from=translated src=- shape=449ef3f5 vocab=33c79a15
+-/
 theorem mem_image_selectedSubintervals_scale_le
     {S : Finset RealInterval} (scale : RealInterval → ℤ)
     (hscale : ∀ J ∈ S, J.length = (2 : ℝ) ^ (scale J + 2))
@@ -73,7 +79,9 @@ theorem mem_image_selectedSubintervals_scale_le
   exact scale_le_of_carrier_subset scale hscale hI hJ'.1 hJ'.2
 
 /-- Restricting a scale input to an output interval's central third can
-only lower its mass, and the scale input is pointwise dominated by `f`.-/
+only lower its mass, and the scale input is pointwise dominated by `f`.
+@isnad1 id=le.1h5v.s7.228a876a18c9 from=translated src=- shape=48d501f7 vocab=73ea43d8
+-/
 theorem integral_centralThird_norm_smallestScaleInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -96,7 +104,9 @@ theorem integral_centralThird_norm_smallestScaleInput_le
         (Filter.Eventually.of_forall fun x ↦ norm_nonneg (f x))
         I.centralThird_subset_carrier.eventuallyLE
 
-/-- A unit window sees at most three interval lengths of one scale.-/
+/-- A unit window sees at most three interval lengths of one scale.
+@isnad1 id=le.5h7v.s8.6c7589b161ab from=translated src=- shape=8be9abbb vocab=e2274273
+-/
 theorem localUnitMass_smallestScaleInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -150,7 +160,9 @@ theorem localUnitMass_smallestScaleInput_le
     _ = 3 * M * (2 : ℝ) ^ (m + 2) := rfl
 
 /-- The direct partition pieces satisfy the quadratic one-piece energy
-estimate with the exact gap gain `2^{-s}`.-/
+estimate with the exact gap gain `2^{-s}`.
+@isnad1 id=le.7h7v.s8.a22c989e66c9 from=translated src=- shape=4242552f vocab=0d063786
+-/
 theorem localizedEnergy_smallestScaleInput_le
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

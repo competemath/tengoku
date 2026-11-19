@@ -22,6 +22,9 @@ open FiniteLaminarMaximalSparse
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=hasspars.0h0v.s4.61d306233368 from=translated src=- shape=5ad26cac vocab=9e4c22c8
+-/
 theorem hasSparseOneOneBound_centeredHardyLittlewoodBoundaryOperator :
     HasSparseOnePBound 480 1 centeredHardyLittlewoodBoundaryOperator := by
   have h := hasSparseOneOneBound_centered_of_finite_laminar (K := 10) ?_
@@ -32,6 +35,9 @@ theorem hasSparseOneOneBound_centeredHardyLittlewoodBoundaryOperator :
   refine ⟨↑R, hR, ?_⟩
   simpa only [finiteIntervalMaximal, ENNReal.ofReal_ofNat] using hb
 
+/--
+@isnad1 id=hasspars.1h1v.s4.860dddad16d7 from=translated src=- shape=c4953515 vocab=8d9decdd
+-/
 theorem hasSparseOnePBound_centeredHardyLittlewoodBoundaryOperator
     {p : ℝ} (hp : 1 ≤ p) :
     HasSparseOnePBound 480 p centeredHardyLittlewoodBoundaryOperator :=

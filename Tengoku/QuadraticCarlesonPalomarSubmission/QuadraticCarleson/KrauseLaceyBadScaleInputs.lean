@@ -32,16 +32,25 @@ noncomputable def badScaleInput (S : Finset RealInterval) (f : ℝ → ℂ)
     (I₀ : RealInterval) (k₀ ℓ : ℤ) (x : ℝ) : ℂ :=
   ∑ J ∈ badScaleCells S f I₀ k₀ ℓ, J.carrier.indicator f x
 
+/--
+@isnad1 id=le.0h5v.s5.5b2812947c19 from=translated src=- shape=f11dd16e vocab=314ca9d5
+-/
 theorem badScaleCells_subset (S : Finset RealInterval) (f : ℝ → ℂ)
     (I₀ : RealInterval) (k₀ ℓ : ℤ) :
     badScaleCells S f I₀ k₀ ℓ ⊆ stoppingChildren S f 0 I₀ :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.1h6v.s5.4be8e4530704 from=translated src=- shape=0efe7253 vocab=dbdd2944
+-/
 theorem length_le_of_mem_badScaleCells
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ J : RealInterval} {k₀ ℓ : ℤ}
     (hJ : J ∈ badScaleCells S f I₀ k₀ ℓ) : J.length ≤ (2 : ℝ) ^ ℓ :=
   (le_max_right _ _).trans_eq (Finset.mem_filter.mp hJ).2
 
+/--
+@isnad1 id=pairwise.1h5v.s7.0a527c89581f from=translated src=- shape=b07011ad vocab=4919fbc3
+-/
 theorem badScaleCells_pairwiseDisjoint
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ ℓ : ℤ)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -52,6 +61,9 @@ theorem badScaleCells_pairwiseDisjoint
   exact stoppingChildren_pairwiseDisjoint f 0 I₀ hlam
     (badScaleCells_subset S f I₀ k₀ ℓ hJ) (badScaleCells_subset S f I₀ k₀ ℓ hK) hne
 
+/--
+@isnad1 id=le.1h3v.s6.d94a8253ff50 from=translated src=- shape=806f4998 vocab=432f36b6
+-/
 theorem norm_sum_carrier_indicator_le (T : Finset RealInterval) (f : ℝ → ℂ)
     (hdisj : Set.Pairwise (↑T) (Disjoint on RealInterval.carrier)) (x : ℝ) :
     ‖∑ J ∈ T, J.carrier.indicator f x‖ ≤ ‖f x‖ := by
@@ -71,16 +83,25 @@ theorem norm_sum_carrier_indicator_le (T : Finset RealInterval) (f : ℝ → ℂ
     rw [Finset.sum_eq_zero hz, norm_zero]
     exact norm_nonneg _
 
+/--
+@isnad1 id=measurab.1h5v.s4.de5fbece918d from=translated src=- shape=f6c8440f vocab=738496b8
+-/
 theorem measurable_badScaleInput (S : Finset RealInterval) {f : ℝ → ℂ}
     (hf : Measurable f) (I₀ : RealInterval) (k₀ ℓ : ℤ) :
     Measurable (badScaleInput S f I₀ k₀ ℓ) := by
   exact Finset.measurable_sum _ (fun J _ ↦ hf.indicator J.measurableSet_carrier)
 
+/--
+@isnad1 id=integrab.1h5v.s6.b43c60b7befa from=translated src=- shape=ade784e6 vocab=a81b05f5
+-/
 theorem integrable_badScaleInput (S : Finset RealInterval) {f : ℝ → ℂ}
     (hf : Integrable f) (I₀ : RealInterval) (k₀ ℓ : ℤ) :
     Integrable (badScaleInput S f I₀ k₀ ℓ) := by
   exact integrable_finsetSum _ (fun J _ ↦ hf.indicator J.measurableSet_carrier)
 
+/--
+@isnad1 id=le.1h6v.s6.329b06b6344d from=translated src=- shape=306ab44c vocab=10ef6140
+-/
 theorem norm_badScaleInput_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ ℓ : ℤ)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -96,7 +117,9 @@ def HasDyadicParents (S : Finset RealInterval) (I₀ : RealInterval) : Prop :=
     J.carrier ⊆ K.carrier ∧ J.length < K.length ∧ K.length ≤ 2 * J.length
 
 /-- Maximality and the actual dyadic parent give the upper mass bound
-on each selected bad interval. It is not an additional stopping hypothesis.-/
+on each selected bad interval. It is not an additional stopping hypothesis.
+@isnad1 id=le.4h4v.s7.6d83b846591c from=translated src=- shape=e89ec3b2 vocab=edac1f2d
+-/
 theorem stoppingChild_mass_le
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ J : RealInterval}
     (hf : Integrable f) (hparent : HasDyadicParents S I₀)
@@ -125,7 +148,9 @@ theorem stoppingChild_mass_le
     _ = _ := by ring
 
 /-- The actual bad-scale input inherits the controlled averages on every
-interval of the constructed good collection.-/
+interval of the constructed good collection.
+@isnad1 id=le.4h6v.s7.a8161501a761 from=translated src=- shape=676d24ec vocab=9a0e4af1
+-/
 theorem badScaleInput_localMass_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ ℓ : ℤ)
@@ -151,7 +176,9 @@ theorem badScaleInput_localMass_le
 
 /-- A local window sees only children inside the window expanded by their
 maximum length. Disjointness then turns upper child masses into a local
-mass bound, without any pointwise bound on `f`.-/
+mass bound, without any pointwise bound on `f`.
+@isnad1 id=le.7h6v.s8.89a8fc4dea4d from=translated src=- shape=279ee47d vocab=deabe2b1
+-/
 theorem integral_window_sum_indicators_le
     (T : Finset RealInterval) {f : ℝ → ℂ} (hf : Integrable f)
     (hdisj : Set.Pairwise (↑T) (Disjoint on RealInterval.carrier))
@@ -211,7 +238,9 @@ theorem integral_window_sum_indicators_le
     _ = _ := by dsimp [E, RealInterval.length]; ring
 
 /-- The source local-mass estimate (4.4), here on the precise unit window
-needed by the diagonal kernel. It follows from the actual stopping parents.-/
+needed by the diagonal kernel. It follows from the actual stopping parents.
+@isnad1 id=le.5h6v.s8.992c05bbe799 from=translated src=- shape=34236940 vocab=6cca6286
+-/
 theorem badScaleInput_unitWindowMass_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ ℓ : ℤ) (hℓ : 0 ≤ ℓ)
@@ -234,6 +263,9 @@ theorem badScaleInput_unitWindowMass_le
   have hnonneg := intervalL1Average_nonneg f I₀
   nlinarith
 
+/--
+@isnad1 id=ex.1h6v.s5.1e46762c0eeb from=translated src=- shape=5f544fdc vocab=72fc2287
+-/
 theorem exists_mem_badScaleCells_of_ne_zero
     {S : Finset RealInterval} {f : ℝ → ℂ} {I₀ : RealInterval} {k₀ ℓ : ℤ} {x : ℝ}
     (hx : badScaleInput S f I₀ k₀ ℓ x ≠ 0) :
@@ -244,7 +276,9 @@ theorem exists_mem_badScaleCells_of_ne_zero
   intro J hJ
   exact indicator_of_notMem (fun hxJ ↦ hn ⟨J, hJ, hxJ⟩) f
 
-/-- Different actual bad scales have disjoint spatial supports.-/
+/-- Different actual bad scales have disjoint spatial supports.
+@isnad1 id=eq.3h7v.s6.fc28183aeb40 from=translated src=- shape=6fd854e5 vocab=0455b6e5
+-/
 theorem badScale_indices_eq_of_ne_zero
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun J K ↦
@@ -269,7 +303,9 @@ noncomputable def intervalBadInput
   I.centralThird.indicator (badScaleInput S f I₀ k₀ (scale I + 2 - s))
 
 /-- There is no overlap multiplicity in the actual interval bad inputs,
-even across different dyadic scales.-/
+even across different dyadic scales.
+@isnad1 id=eq.7h9v.s7.a4b833685248 from=translated src=- shape=ede367c8 vocab=2b2d1c3e
+-/
 theorem intervalBadInput_unique_of_ne_zero
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -291,7 +327,9 @@ theorem intervalBadInput_unique_of_ne_zero
   · exact Set.disjoint_left.mp hdisj (I.centralThird_subset_carrier hi.1)
       (J.centralThird_subset_carrier hj.1)
 
-/-- Pointwise no-loss packing for all actual restricted bad inputs.-/
+/-- Pointwise no-loss packing for all actual restricted bad inputs.
+@isnad1 id=le.3h8v.s7.5e8d771169eb from=translated src=- shape=4da8cb18 vocab=8493a7ca
+-/
 theorem sum_norm_intervalBadInput_le
     {S : Finset RealInterval} (f : ℝ → ℂ)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -318,7 +356,9 @@ theorem sum_norm_intervalBadInput_le
     rw [Finset.sum_eq_zero (fun I hI ↦ by rw [hz I hI, norm_zero])]
     exact norm_nonneg _
 
-/-- Exact no-loss mass packing for all actual interval bad inputs.-/
+/-- Exact no-loss mass packing for all actual interval bad inputs.
+@isnad1 id=le.4h7v.s8.55e84dd29680 from=translated src=- shape=f7590f46 vocab=c90d88a3
+-/
 theorem sum_intervalBadInput_mass_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -341,7 +381,9 @@ theorem sum_intervalBadInput_mass_le
     (sum_norm_intervalBadInput_le f I₀ k₀ s scale hlam N hN hlen)
 
 /-- The same no-loss packing holds locally for an arbitrary collection of
-descendants, even when their parent intervals overlap across scales.-/
+descendants, even when their parent intervals overlap across scales.
+@isnad1 id=le.5h8v.s8.391e34340e08 from=translated src=- shape=f98ee569 vocab=c90d88a3
+-/
 theorem sum_intervalBadInput_mass_le_local
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)

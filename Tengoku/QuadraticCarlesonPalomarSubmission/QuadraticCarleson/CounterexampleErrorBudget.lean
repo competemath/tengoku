@@ -32,7 +32,9 @@ private theorem nat_le_two_pow (N : ℕ) : N ≤ 2 ^ N := by
       rw [pow_succ]
       omega
 
-/-- The first packet scale already beats the reciprocal linear scale.-/
+/-- The first packet scale already beats the reciprocal linear scale.
+@isnad1 id=le.0h1v.s4.7c87225f581f from=translated src=- shape=58f76493 vocab=916036ae
+-/
 theorem nat_mul_packetScale_one_le_one (N : ℕ) :
     (N : ℝ) * packetScale N 1 ≤ 1 := by
   have hpow : (N : ℝ) ≤ (2 : ℝ) ^ N := by
@@ -58,7 +60,9 @@ private theorem eventually_log_cube_dominates_oscillatory_constant :
 
 /-- With the explicit amplitude and height, all analytic errors eventually
 fit below the gap between the proved `1/4` main-term constant and the chosen
-`1/8` operator level.-/
+`1/8` operator level.
+@isnad1 id=eventual.0h0v.s7.eb54d0df0dcd from=translated src=- shape=d61359a6 vocab=580ede8f
+-/
 theorem eventually_paper_negative_endpoint_error_budget :
     ∀ᶠ N : ℕ in atTop,
       14 * paperAmplitude N / N + 28 * packetScale N 1 +

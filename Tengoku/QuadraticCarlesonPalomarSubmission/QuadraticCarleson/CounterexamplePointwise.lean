@@ -52,7 +52,9 @@ private theorem sum_Icc_split_at {N k : ℕ} (hk : k ≤ N) (f : ℕ → ℂ) :
     omega
 
 /-- The full normalized off-support packet sum splits exactly at the translate
-index selected by the Bohr witness.-/
+index selected by the Bohr witness.
+@isnad1 id=eq.2h4v.s8.d189928377ab from=translated src=- shape=5fc6f826 vocab=1ece3736
+-/
 theorem counterexampleOffSupportSum_split
     {N : ℕ} {k : ℤ} (hN : 20 ≤ N) (hk : k ∈ paperBohrIndices N)
     (modulation x : ℝ) :
@@ -68,7 +70,9 @@ theorem counterexampleOffSupportSum_split
 the genuine pointwise lower bound for the canonical lacunary operator.
 
 The inequality is later discharged by the paper's choice
-`A = c₀ log N`, with an explicit sufficiently small `c₀`.-/
+`A = c₀ log N`, with an explicit sufficiently small `c₀`.
+@isnad1 id=ex.5h5v.s8.32336639dd40 from=translated src=- shape=2256ac61 vocab=a5cad7cc
+-/
 theorem paperTranslatedBohrSet_pointwise_of_error_budget
     {N : ℕ} {L A c : ℝ}
     (hN : 100 ≤ N) (hA : 0 < A) (hLA : (2 : ℝ) ^ L = A)

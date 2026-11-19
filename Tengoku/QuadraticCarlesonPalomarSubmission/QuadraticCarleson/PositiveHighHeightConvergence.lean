@@ -22,6 +22,9 @@ open scoped ENNReal NNReal Function
 namespace QuadraticCarleson
 namespace PositiveHighHeightEstimate
 
+/--
+@isnad1 id=memlp.1h2v.s6.be0619d3fdaa from=translated src=- shape=bb3bf327 vocab=bc6139f7
+-/
 theorem memLp_highHeightMajorant (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     MemLp (highHeightMajorant B b) 2 := by
   refine ⟨(measurable_highHeightMajorant B hb).aestronglyMeasurable,
@@ -29,6 +32,9 @@ theorem memLp_highHeightMajorant (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
   exact ENNReal.mul_lt_top
     (ENNReal.mul_lt_top highHeightTailConstant_lt_top (by finiteness)) hb.eLpNorm_lt_top
 
+/--
+@isnad1 id=eventual.1h2v.s6.983af77999d9 from=translated src=- shape=417a3eed vocab=ce7b8e8d
+-/
 theorem ae_highHeightMajorant_lt_top (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     ∀ᵐ x, highHeightMajorant B b x < ∞ := by
   have hnorm := (memLp_highHeightMajorant B hb).eLpNorm_lt_top
@@ -39,7 +45,9 @@ theorem ae_highHeightMajorant_lt_top (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2
   simpa only [ENNReal.pow_lt_top_iff, OfNat.ofNat_ne_zero, or_false] using hx
 
 /-- Absolute convergence holds outside one null set simultaneously for all
-nonzero real modulation parameters.-/
+nonzero real modulation parameters.
+@isnad1 id=eventual.1h2v.s7.d6bbb7410710 from=translated src=- shape=5ddc5016 vocab=20378992
+-/
 theorem ae_summable_norm_highHeightIntegrals (B : ℕ) {b : ℝ → ℂ} (hb : MemLp b 2) :
     ∀ᵐ x, ∀ lam : {lam : ℝ // lam ≠ 0}, Summable (fun n : ℕ ↦
       ‖∫ t, b (x - t) *
@@ -57,7 +65,9 @@ theorem ae_summable_norm_highHeightIntegrals (B : ℕ) {b : ℝ → ℂ} (hb : M
       phase (μ.val * t ^ 2)‖ₑ) lam
 
 /-- For the actual level atoms, one exceptional null set works for every
-magnitude level and every real modulation at once.-/
+magnitude level and every real modulation at once.
+@isnad1 id=eventual.5h6v.s8.549f968628bf from=translated src=- shape=92cee204 vocab=f6eeacf0
+-/
 theorem ae_summable_norm_highHeightLevelAtomIntegrals
     {ι : Type*} [Countable ι] {A : ℕ → ℝ} (hA : ∀ k, 0 ≤ A k)
     (B : ℕ → ℕ) {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)

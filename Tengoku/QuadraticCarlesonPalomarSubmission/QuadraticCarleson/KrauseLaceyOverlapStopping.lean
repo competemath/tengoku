@@ -25,9 +25,15 @@ attribute [local instance] Classical.propDecidable
 noncomputable def maximalIntervals (A : Finset RealInterval) : Finset RealInterval :=
   A.filter fun I ↦ ∀ J ∈ A, I.carrier ⊆ J.carrier → J = I
 
+/--
+@isnad1 id=le.0h1v.s4.960a5d6539b4 from=translated src=- shape=76c97b8b vocab=6e1bb1b4
+-/
 theorem maximalIntervals_subset (A : Finset RealInterval) : maximalIntervals A ⊆ A :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=ex.1h2v.s5.b4e4bfb131eb from=translated src=- shape=8a2b69dc vocab=bb6b5539
+-/
 theorem exists_maximalInterval_containing {A : Finset RealInterval} {I : RealInterval}
     (hI : I ∈ A) : ∃ J ∈ maximalIntervals A, I.carrier ⊆ J.carrier := by
   let F := A.filter fun J ↦ I.carrier ⊆ J.carrier
@@ -39,6 +45,9 @@ theorem exists_maximalInterval_containing {A : Finset RealInterval} {I : RealInt
   exact (interval_eq_of_carrier_subset_of_length_le hJK
     (hmax K (Finset.mem_filter.mpr ⟨hK, hj.2.trans hJK⟩))).symm
 
+/--
+@isnad1 id=pairwise.1h1v.s6.d87fb5d2e55b from=translated src=- shape=f93c6813 vocab=3f48e261
+-/
 theorem maximalIntervals_pairwiseDisjoint {A : Finset RealInterval}
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
       J.carrier ⊆ K.carrier ∨ K.carrier ⊆ J.carrier ∨ Disjoint J.carrier K.carrier) :
@@ -55,10 +64,16 @@ theorem maximalIntervals_pairwiseDisjoint {A : Finset RealInterval}
 noncomputable def overlapStoppingIntervals (A : Finset RealInterval) (M : ℕ) :=
   maximalIntervals (A \ overlapPrunedFamily A M)
 
+/--
+@isnad1 id=le.0h2v.s4.9afc94008ccd from=translated src=- shape=c77b2321 vocab=d3d0ed3d
+-/
 theorem overlapStoppingIntervals_subset (A : Finset RealInterval) (M : ℕ) :
     overlapStoppingIntervals A M ⊆ A :=
   (maximalIntervals_subset _).trans Finset.sdiff_subset
 
+/--
+@isnad1 id=le.1h3v.s5.9fc708d18bff from=translated src=- shape=4c895689 vocab=cd8ec318
+-/
 theorem overlapStoppingIntervals_subset_highOverlap
     {A : Finset RealInterval} {M : ℕ} {I : RealInterval}
     (hI : I ∈ overlapStoppingIntervals A M) :
@@ -66,6 +81,9 @@ theorem overlapStoppingIntervals_subset_highOverlap
   have hi := Finset.mem_sdiff.mp (maximalIntervals_subset _ hI)
   exact removed_interval_subset_highOverlap hi.1 hi.2
 
+/--
+@isnad1 id=le.1h2v.s7.4ca8262f0871 from=translated src=- shape=68810bbb vocab=c51a6a2f
+-/
 theorem highOverlap_subset_biUnion_overlapStoppingIntervals
     (A : Finset RealInterval) (M : ℕ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -98,6 +116,9 @@ theorem highOverlap_subset_biUnion_overlapStoppingIntervals
     (Finset.mem_sdiff.mpr ⟨hi.1, hremoved⟩)
   exact Set.mem_iUnion.mpr ⟨J, Set.mem_iUnion.mpr ⟨hJ, hIJ hi.2⟩⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.e122599d4eb4 from=translated src=- shape=cbdc7f77 vocab=c51a6a2f
+-/
 theorem highOverlap_eq_biUnion_overlapStoppingIntervals
     (A : Finset RealInterval) (M : ℕ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -109,6 +130,9 @@ theorem highOverlap_eq_biUnion_overlapStoppingIntervals
   obtain ⟨hI, hx⟩ := Set.mem_iUnion.mp hx
   exact overlapStoppingIntervals_subset_highOverlap hI hx
 
+/--
+@isnad1 id=pairwise.1h2v.s6.b2edaf6011f6 from=translated src=- shape=500e31f7 vocab=262ec061
+-/
 theorem overlapStoppingIntervals_pairwiseDisjoint
     (A : Finset RealInterval) (M : ℕ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -120,7 +144,9 @@ theorem overlapStoppingIntervals_pairwiseDisjoint
 
 /-- A maximal removed interval has at most `M` strict covering ancestors.
 The smallest strict ancestor, if any, must survive the pruning and
-provides the low-overlap witness for the whole ancestor chain.-/
+provides the low-overlap witness for the whole ancestor chain.
+@isnad1 id=le.2h3v.s7.7c41ff799a65 from=translated src=- shape=eee3f234 vocab=79844a1c
+-/
 theorem strictAncestors_card_le_of_mem_overlapStoppingIntervals
     {A : Finset RealInterval} {M : ℕ} {I : RealInterval}
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -153,7 +179,9 @@ theorem strictAncestors_card_le_of_mem_overlapStoppingIntervals
         (hj.2.1 ⟨I.left_lt_right, le_rfl⟩) (hk.2.1 ⟨I.left_lt_right, le_rfl⟩)).elim
   exact (Finset.card_le_card hsub).trans hlow
 
-/-- The local counting function loses at most one block of ancestors.-/
+/-- The local counting function loses at most one block of ancestors.
+@isnad1 id=le.3h4v.s7.b8f6e2de736b from=translated src=- shape=11765c40 vocab=2729760a
+-/
 theorem overlapCount_le_descendants_add_of_mem_overlapStoppingIntervals
     {A : Finset RealInterval} {M : ℕ} {I : RealInterval}
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦

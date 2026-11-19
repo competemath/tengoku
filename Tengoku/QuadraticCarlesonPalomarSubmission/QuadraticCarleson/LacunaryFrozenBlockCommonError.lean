@@ -28,7 +28,9 @@ set_option autoImplicit false
 
 /-- The exact frozen-block weak hypothesis follows from the finite-family
 estimate and a single `48 M` comparison error.  No positivity of the block
-size is required: `paperLog 1 B ≥ 1` holds also for the empty block.-/
+size is required: `paperLog 1 B ≥ 1` holds also for the empty block.
+@isnad1 id=haslogsq.3h5v.s7.d6096c3ad605 from=translated src=- shape=abca0862 vocab=c3603b44
+-/
 theorem hasLogSquaredFrozenBlockWeakBounds_of_common_error
     (f : L0Infinity) (B : ℕ → ℕ) (c : ℕ) {D : ℝ} (hD : 0 ≤ D)
     (T : (k : ℕ) → (τ : ℤ) → Fin (Q (B k) τ).card → TestOperator)

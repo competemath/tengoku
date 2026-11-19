@@ -26,6 +26,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h4v.s4.f544844f710b from=translated src=- shape=63300181 vocab=a55565f0
+-/
 @[simp]
 theorem offSupportOscillatoryAction_eq_offSupportKernelAction
     (modulation s t x : ℝ) :
@@ -34,7 +37,9 @@ theorem offSupportOscillatoryAction_eq_offSupportKernelAction
   rfl
 
 /-- The rigorously proved two-fold integration-by-parts estimate, restated
-for the ordinary kernel action used in the stationary/oscillatory split.-/
+for the ordinary kernel action used in the stationary/oscillatory split.
+@isnad1 id=le.3h4v.s7.bc5722afdd2a from=translated src=- shape=19421895 vocab=f11ab865
+-/
 theorem offSupportKernelAction_oscillatory_norm_le
     {modulation s t x : ℝ} (hmod : 0 < modulation) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -46,7 +51,9 @@ theorem offSupportKernelAction_oscillatory_norm_le
 
 /-- If the translated Schwartz function vanishes on a genuine neighbourhood
 of the singularity, its canonical distributional quadratic Hilbert transform
-is the corresponding ordinary integral.-/
+is the corresponding ordinary integral.
+@isnad1 id=eq.2h4v.s7.ad9a50082461 from=translated src=- shape=de91ba2e vocab=1745f709
+-/
 theorem quadraticHilbertSchwartz_eq_integral_of_zero_near
     (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) {r : ℝ} (hr : 0 < r)
     (hzero : ∀ y : ℝ, |y| < r → f (x - y) = 0) :
@@ -70,13 +77,18 @@ noncomputable def wavePacketSchwartz (s t : ℝ) (ht : 0 < t) : 𝓢(ℝ, ℂ) :
   ((wavePacket_hasCompactSupport s ht).comp_left Complex.ofReal_zero).toSchwartzMap
     (Complex.ofRealCLM.contDiff.comp (contDiff_wavePacket s t))
 
+/--
+@isnad1 id=eq.1h3v.s6.63b0b8f2302d from=translated src=- shape=0e941ab9 vocab=617c4fb9
+-/
 @[simp]
 theorem wavePacketSchwartz_apply (s t : ℝ) (ht : 0 < t) (u : ℝ) :
     wavePacketSchwartz s t ht u = wavePacket s t u :=
   rfl
 
 /-- Away from the packet interval, the canonical principal value is exactly
-the ordinary action estimated in the paper's off-support lemma.-/
+the ordinary action estimated in the paper's off-support lemma.
+@isnad1 id=eq.2h4v.s6.9ab6c6b205a3 from=translated src=- shape=95449e6b vocab=d443e460
+-/
 theorem quadraticHilbertSchwartz_wavePacket_eq_offSupportKernelAction
     {modulation s t x : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -97,7 +109,9 @@ theorem quadraticHilbertSchwartz_wavePacket_eq_offSupportKernelAction
     rw [hyid] at hsep
     linarith
 
-/-- The quadratic transform is additive in its Schwartz input.-/
+/-- The quadratic transform is additive in its Schwartz input.
+@isnad1 id=eq.0h4v.s7.fd4eac83c3a1 from=translated src=- shape=d1e09688 vocab=75776c60
+-/
 theorem quadraticHilbertSchwartz_add (modulation : ℝ) (f g : 𝓢(ℝ, ℂ)) (x : ℝ) :
     quadraticHilbertSchwartz modulation (f + g) x =
       quadraticHilbertSchwartz modulation f x + quadraticHilbertSchwartz modulation g x := by
@@ -108,7 +122,9 @@ theorem quadraticHilbertSchwartz_add (modulation : ℝ) (f g : 𝓢(ℝ, ℂ)) (
     simp only [schwartzFlipTranslate_apply, add_apply]
   rw [hflip, map_add]
 
-/-- Finite additivity in the form needed for the wave-packet superposition.-/
+/-- Finite additivity in the form needed for the wave-packet superposition.
+@isnad1 id=eq.0h5v.s7.6aa27a861735 from=translated src=- shape=8a9b3409 vocab=d1452350
+-/
 theorem quadraticHilbertSchwartz_finset_sum {ι : Type*} (s : Finset ι)
     (f : ι → 𝓢(ℝ, ℂ)) (modulation x : ℝ) :
     quadraticHilbertSchwartz modulation (∑ i ∈ s, f i) x =
@@ -127,7 +143,9 @@ theorem quadraticHilbertSchwartz_finset_sum {ι : Type*} (s : Finset ι)
         quadraticHilbertSchwartz_add, ih]
 
 /-- The bundled counterexample is exactly the normalized finite sum of its
-bundled wave packets.-/
+bundled wave packets.
+@isnad1 id=eq.0h1v.s7.c8665b415a39 from=translated src=- shape=a0dfb097 vocab=a65629aa
+-/
 theorem counterexampleSchwartz_eq_wavePacketSchwartz_sum (N : ℕ) :
     counterexampleSchwartz N =
       (N : ℝ)⁻¹ • ∑ j ∈ Finset.Icc 1 N,
@@ -143,7 +161,9 @@ theorem counterexampleSchwartz_eq_wavePacketSchwartz_sum (N : ℕ) :
   rw [Complex.ofReal_inv, Complex.ofReal_natCast]
 
 /-- At a point outside every packet interval, the canonical transform of the
-counterexample is the normalized finite sum of ordinary off-support actions.-/
+counterexample is the normalized finite sum of ordinary off-support actions.
+@isnad1 id=eq.1h3v.s6.02c212bda87b from=translated src=- shape=54d0e7a3 vocab=9732b776
+-/
 theorem quadraticHilbertSchwartz_counterexample_eq_offSupport_sum
     (N : ℕ) (modulation x : ℝ)
     (hx : ∀ j ∈ Finset.Icc 1 N, x ∉ packetInterval N j) :

@@ -32,10 +32,16 @@ namespace QuadraticCarleson
 def dyadicBohrUnion (M B : ℕ) (c : ℝ) : Set ℝ :=
   ⋃ j ∈ Finset.range B, bohrSet (2 ^ (M + j)) c
 
+/--
+@isnad1 id=measurab.0h3v.s3.517767a3059a from=translated src=- shape=c675a99a vocab=741e3733
+-/
 theorem measurableSet_dyadicBohrUnion (M B : ℕ) (c : ℝ) :
     MeasurableSet (dyadicBohrUnion M B c) :=
   Finset.measurableSet_biUnion _ fun _ _ => measurableSet_bohrSet _ _
 
+/--
+@isnad1 id=le.0h3v.s6.fe540872dd12 from=translated src=- shape=f96eb10f vocab=623fd476
+-/
 theorem dyadicBohrUnion_subset_Ico (M B : ℕ) (c : ℝ) :
     dyadicBohrUnion M B c ⊆ Ico (1 / 4 : ℝ) (1 / 2 : ℝ) := by
   apply iUnion₂_subset
@@ -43,7 +49,9 @@ theorem dyadicBohrUnion_subset_Ico (M B : ℕ) (c : ℝ) :
   exact bohrSet_subset_Ico _ _
 
 /-- The finite-family second-moment inequality, obtained by applying
-Cauchy–Schwarz to the sum of indicators and the indicator of their union.-/
+Cauchy–Schwarz to the sum of indicators and the indicator of their union.
+@isnad1 id=le.2h5v.s7.b76269251227 from=translated src=- shape=488f7d3d vocab=f52f71f4
+-/
 theorem sum_measure_sq_le_union_mul_sum_inter {α ι : Type*} [MeasurableSpace α]
     (μ : Measure α) (s : Finset ι) (E : ι → Set α)
     (hE : ∀ i, MeasurableSet (E i)) (hfin : ∀ i, μ (E i) ≠ ∞) :
@@ -84,7 +92,9 @@ theorem sum_measure_sq_le_union_mul_sum_inter {α ι : Type*} [MeasurableSpace �
   simpa only [pow_two, mul_comm] using hcs
 
 /-- The ratio form of the finite-family second-moment lower bound displayed
-in the paper. A zero denominator is harmless under Lean's division convention.-/
+in the paper. A zero denominator is harmless under Lean's division convention.
+@isnad1 id=le.2h5v.s7.2bcaa5dc039e from=translated src=- shape=ab9f8832 vocab=3d530d20
+-/
 theorem sum_measure_sq_div_sum_inter_le_union {α ι : Type*} [MeasurableSpace α]
     (μ : Measure α) (s : Finset ι) (E : ι → Set α)
     (hE : ∀ i, MeasurableSet (E i)) (hfin : ∀ i, μ (E i) ≠ ∞) :
@@ -129,7 +139,9 @@ private theorem bohrCell_subset {n j : ℕ} {c : ℝ}
     exact (min_le_left _ _).trans (by nlinarith)
 
 /-- An explicit single-set lower bound at frequencies divisible by four.
-Only the right-hand half of each Bohr interval is needed.-/
+Only the right-hand half of each Bohr interval is needed.
+@isnad1 id=le.3h2v.s6.ac4ee2c6d486 from=translated src=- shape=00cf26b7 vocab=bbab2f04
+-/
 theorem bohrSet_four_mul_volume_real_ge {n : ℕ} {c : ℝ}
     (hn : 0 < n) (hc0 : 0 ≤ c) (hc : c ≤ 1) :
     c / 4 ≤ volume.real (bohrSet (4 * n) c) := by
@@ -170,7 +182,9 @@ theorem bohrSet_four_mul_volume_real_ge {n : ℕ} {c : ℝ}
       measureReal_mono hsub
         (measure_ne_top_of_subset (bohrSet_subset_Ico (4 * n) c) (by simp))
 
-/-- A uniform lower bound for every dyadic frequency at least four.-/
+/-- A uniform lower bound for every dyadic frequency at least four.
+@isnad1 id=le.3h2v.s6.b0bbfbcf114d from=translated src=- shape=6c5c1329 vocab=f0789539
+-/
 theorem bohrSet_dyadic_volume_real_ge {a : ℕ} {c : ℝ}
     (ha : 2 ≤ a) (hc0 : 0 ≤ c) (hc : c ≤ 1) :
     c / 4 ≤ volume.real (bohrSet (2 ^ a) c) := by
@@ -222,7 +236,9 @@ private theorem sum_dyadicGcdRatio_last_le (M B : ℕ) :
   rw [heq, div_le_one (by positivity)]
   exact sum_two_pow_le B
 
-/-- The dyadic gcd correction has only linear total mass in the block length.-/
+/-- The dyadic gcd correction has only linear total mass in the block length.
+@isnad1 id=le.0h2v.s7.d4659b1507b8 from=translated src=- shape=1c43b8ec vocab=2e6bd60c
+-/
 theorem sum_dyadic_gcd_ratio_le (M B : ℕ) :
     (∑ i ∈ Finset.range B, ∑ j ∈ Finset.range B,
       (Nat.gcd (2 ^ (M + i)) (2 ^ (M + j)) : ℝ) /
@@ -238,7 +254,9 @@ theorem sum_dyadic_gcd_ratio_le (M B : ℕ) :
       dyadicGcdRatio_self, Nat.cast_add, Nat.cast_one]
     linarith
 
-/-- The quantitative second-moment bound used in the paper's Bohr-union proof.-/
+/-- The quantitative second-moment bound used in the paper's Bohr-union proof.
+@isnad1 id=le.2h3v.s7.c79f9609ab22 from=translated src=- shape=f27bbb43 vocab=f7e6e61d
+-/
 theorem dyadicBohr_second_moment_le (M B : ℕ) {c : ℝ}
     (hc0 : 0 ≤ c) (hc : c < 1 / 10) :
     (∑ i ∈ Finset.range B, ∑ j ∈ Finset.range B,
@@ -268,7 +286,9 @@ theorem dyadicBohr_second_moment_le (M B : ℕ) {c : ℝ}
   nlinarith [mul_le_mul_of_nonneg_left hgcd hc0, sq_nonneg ((B : ℝ) * c)]
 
 /-- The paper's Bohr-union lower bound, with threshold `M ≥ 2` and absolute
-constant `1/768`. The theorem holds on the larger radius range `0 < c < 1/10`.-/
+constant `1/768`. The theorem holds on the larger radius range `0 < c < 1/10`.
+@isnad1 id=le.4h3v.s7.0d2ac5cc0ae0 from=translated src=- shape=a135a3c2 vocab=680d8651
+-/
 theorem dyadicBohrUnion_volume_real_ge {M B : ℕ} {c : ℝ}
     (hM : 2 ≤ M) (hB : 0 < B) (hc0 : 0 < c) (hc : c < 1 / 10) :
     ((B : ℝ) * c) ^ 2 / (768 * (((B : ℝ) * c) ^ 2 + (B : ℝ) * c)) ≤
@@ -300,7 +320,9 @@ theorem dyadicBohrUnion_volume_real_ge {M B : ℕ} {c : ℝ}
   nlinarith [sq_nonneg (S - t / 4)]
 
 /-- Explicit meaning of the paper's uniform lower bound: if `Bc ≥ a > 0`,
-the measure is at least `a / (768 (a+1))`, independently of `M,B,c`.-/
+the measure is at least `a / (768 (a+1))`, independently of `M,B,c`.
+@isnad1 id=le.5h4v.s7.3649a0c500cb from=translated src=- shape=a95f6877 vocab=4e0ecac0
+-/
 theorem dyadicBohrUnion_volume_real_ge_uniform {M B : ℕ} {c a : ℝ}
     (hM : 2 ≤ M) (hB : 0 < B) (ha : 0 < a)
     (hac : a ≤ (B : ℝ) * c) (hc : c < 1 / 10) :
@@ -316,7 +338,9 @@ theorem dyadicBohrUnion_volume_real_ge_uniform {M B : ℕ} {c a : ℝ}
     _ ≤ volume.real (dyadicBohrUnion M B c) := dyadicBohrUnion_volume_real_ge hM hB hc0 hc
 
 /-- In particular, a radius at least the reciprocal of the block length
-gives the absolute lower bound `1/1536`.-/
+gives the absolute lower bound `1/1536`.
+@isnad1 id=le.4h3v.s6.a547316545ef from=translated src=- shape=028e9025 vocab=e61e0388
+-/
 theorem dyadicBohrUnion_volume_real_ge_of_inv_le {M B : ℕ} {c : ℝ}
     (hM : 2 ≤ M) (hB : 0 < B) (hcB : (B : ℝ)⁻¹ ≤ c) (hc : c < 1 / 10) :
     (1 : ℝ) / 1536 ≤ volume.real (dyadicBohrUnion M B c) := by
@@ -333,6 +357,9 @@ dyadic exponent: `M ≤ log₂(2^n) < M+B`.-/
 def dyadicBohrLogUnion (M B c : ℝ) : Set ℝ :=
   ⋃ n : ℕ, ⋃ (_ : M ≤ (n : ℝ) ∧ (n : ℝ) < M + B), bohrSet (2 ^ n) c
 
+/--
+@isnad1 id=measurab.0h3v.s3.44ac1f3704d6 from=translated src=- shape=eae19870 vocab=cf2ac626
+-/
 theorem measurableSet_dyadicBohrLogUnion (M B c : ℝ) :
     MeasurableSet (dyadicBohrLogUnion M B c) := by
   apply MeasurableSet.iUnion
@@ -340,7 +367,9 @@ theorem measurableSet_dyadicBohrLogUnion (M B c : ℝ) :
   exact MeasurableSet.iUnion fun _ => measurableSet_bohrSet _ _
 
 /-- The exponent-window definition is exactly the paper's base-two
-logarithmic condition, with its positive-natural convention on exponents.-/
+logarithmic condition, with its positive-natural convention on exponents.
+@isnad1 id=iff.1h4v.s6.94eb815cd11a from=translated src=- shape=8c4b8099 vocab=1ff19585
+-/
 theorem mem_dyadicBohrLogUnion_iff {M B c x : ℝ} (hM : 0 < M) :
     x ∈ dyadicBohrLogUnion M B c ↔
       ∃ n : ℕ, 0 < n ∧ Real.logb 2 (2 ^ n : ℝ) ∈ Ico M (M + B) ∧
@@ -356,13 +385,18 @@ theorem mem_dyadicBohrLogUnion_iff {M B c x : ℝ} (hM : 0 < M) :
   · rintro ⟨n, hn, hlogn, hx⟩
     exact mem_iUnion₂.mpr ⟨n, by simpa only [hlog, Set.mem_Ico] using hlogn, hx⟩
 
+/--
+@isnad1 id=le.0h3v.s6.ce16001e7cd0 from=translated src=- shape=907d8298 vocab=a0731e31
+-/
 theorem dyadicBohrLogUnion_subset_Ico (M B c : ℝ) :
     dyadicBohrLogUnion M B c ⊆ Ico (1 / 4 : ℝ) (1 / 2 : ℝ) := by
   apply iUnion₂_subset
   intro n _
   exact bohrSet_subset_Ico _ _
 
-/-- An integer block inside an arbitrary real logarithmic window.-/
+/-- An integer block inside an arbitrary real logarithmic window.
+@isnad1 id=le.2h3v.s5.a205a7f426cd from=translated src=- shape=90177292 vocab=44a761f6
+-/
 theorem dyadicBohrUnion_ceil_floor_subset {M B c : ℝ} (hM : 0 ≤ M) (hB : 0 ≤ B) :
     dyadicBohrUnion ⌈M⌉₊ ⌊B⌋₊ c ⊆ dyadicBohrLogUnion M B c := by
   intro x hx
@@ -379,7 +413,9 @@ theorem dyadicBohrUnion_ceil_floor_subset {M B c : ℝ} (hM : 0 ≤ M) (hB : 0 �
   · linarith
 
 /-- The Bohr-union proposition for real logarithmic endpoints and lengths.
-Rounding the endpoints costs at most a factor of two in the absolute constant.-/
+Rounding the endpoints costs at most a factor of two in the absolute constant.
+@isnad1 id=le.4h3v.s7.67b9730253d6 from=translated src=- shape=857f751f vocab=464262dc
+-/
 theorem dyadicBohrLogUnion_volume_real_ge {M B c : ℝ}
     (hM : 2 ≤ M) (hB : 1 ≤ B) (hc0 : 0 < c) (hc : c < 1 / 10) :
     (B * c) ^ 2 / (1536 * ((B * c) ^ 2 + B * c)) ≤
@@ -409,7 +445,9 @@ theorem dyadicBohrLogUnion_volume_real_ge {M B c : ℝ}
     _ ≤ volume.real (dyadicBohrLogUnion M B c) := hmono
 
 /-- The uniform version for real logarithmic windows, valid with any fixed
-positive lower bound `a` for the product `Bc`.-/
+positive lower bound `a` for the product `Bc`.
+@isnad1 id=le.5h4v.s7.8022a2fc0103 from=translated src=- shape=94cb3504 vocab=b9f0fcfd
+-/
 theorem dyadicBohrLogUnion_volume_real_ge_uniform {M B c a : ℝ}
     (hM : 2 ≤ M) (hB : 1 ≤ B) (ha : 0 < a)
     (hac : a ≤ B * c) (hc : c < 1 / 10) :
@@ -426,7 +464,9 @@ theorem dyadicBohrLogUnion_volume_real_ge_uniform {M B c a : ℝ}
       dyadicBohrLogUnion_volume_real_ge hM hB hc0 hc
 
 /-- The real-window lower bound in the extended nonnegative real codomain
-of Lebesgue measure.-/
+of Lebesgue measure.
+@isnad1 id=le.4h3v.s7.2f487710764d from=translated src=- shape=10508d9b vocab=2c5b287f
+-/
 theorem dyadicBohrLogUnion_volume_ge {M B c : ℝ}
     (hM : 2 ≤ M) (hB : 1 ≤ B) (hc0 : 0 < c) (hc : c < 1 / 10) :
     ENNReal.ofReal ((B * c) ^ 2 / (1536 * ((B * c) ^ 2 + B * c))) ≤

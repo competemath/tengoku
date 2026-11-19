@@ -17,12 +17,16 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
-/-- A nondegenerate real interval has a point in its carrier.-/
+/-- A nondegenerate real interval has a point in its carrier.
+@isnad1 id=nonempty.0h1v.s2.539a15ce6461 from=translated src=- shape=1a6c1393 vocab=f83678db
+-/
 theorem RealInterval.carrier_nonempty (I : RealInterval) : I.carrier.Nonempty := by
   exact Set.nonempty_Ioc.mpr I.left_lt_right
 
 /-- Sparse families living in pairwise-disjoint spatial regions can be
-united without changing the sparse density.-/
+united without changing the sparse density.
+@isnad1 id=issparse.3h4v.s6.631f2079eb44 from=translated src=- shape=af8f8935 vocab=c378f0aa
+-/
 theorem IsSparse.iUnion_of_disjoint_carriers
     {ι : Type*} [Nonempty ι] {η : ℝ}
     (F : ι → Set RealInterval) (U : ι → Set ℝ)

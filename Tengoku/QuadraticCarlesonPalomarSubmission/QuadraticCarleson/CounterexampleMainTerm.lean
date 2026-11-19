@@ -36,6 +36,9 @@ noncomputable def paperMainTermIndices (N : ℕ) (L : ℝ) : Finset (ℤ × ℕ)
     ({k} : Finset ℤ) ×ˢ
       Finset.Ico ⌈(N : ℝ) * k + L⌉₊ ⌈(N : ℝ) * k + L + N⌉₊
 
+/--
+@isnad1 id=iff.0h4v.s6.5d77fb2f5e1c from=translated src=- shape=8779c9f5 vocab=ef0f8c11
+-/
 @[simp] theorem mem_paperMainTermIndices {N : ℕ} {L : ℝ} {k : ℤ} {n : ℕ} :
     (k, n) ∈ paperMainTermIndices N L ↔
       k ∈ paperBohrIndices N ∧
@@ -44,7 +47,9 @@ noncomputable def paperMainTermIndices (N : ℕ) (L : ℝ) : Finset (ℤ × ℕ)
   simp [paperMainTermIndices, Nat.ceil_le, Nat.lt_ceil]
 
 /-- Distinct translate indices have disjoint exponent windows.  Thus the
-pair-indexed supremum does not introduce two truncations for one exponent.-/
+pair-indexed supremum does not introduce two truncations for one exponent.
+@isnad1 id=eq.3h5v.s6.d630fb9509ff from=translated src=- shape=2a18b2cb vocab=f1c93bf9
+-/
 theorem paperMainTermIndices_unique_translate {N n : ℕ} {L : ℝ} {k l : ℤ}
     (hN : 0 < N) (hk : (k, n) ∈ paperMainTermIndices N L)
     (hl : (l, n) ∈ paperMainTermIndices N L) : k = l := by
@@ -60,7 +65,9 @@ theorem paperMainTermIndices_unique_translate {N n : ℕ} {L : ℝ} {k l : ℤ}
 
 /-- The exact window recovers the truncation index by a floor.  In particular,
 the lower summation index `k + 1` is strictly above `(n - L) / N`, including
-when that quotient is itself an integer.-/
+when that quotient is itself an integer.
+@isnad1 id=eq.2h4v.s6.440e5711c966 from=translated src=- shape=6ad093d9 vocab=28f3d869
+-/
 theorem paperMainTermIndices_floor_eq {N n : ℕ} {L : ℝ} {k : ℤ}
     (hN : 0 < N) (hk : (k, n) ∈ paperMainTermIndices N L) :
     ⌊((n : ℝ) - L) / N⌋ = k := by
@@ -74,7 +81,9 @@ theorem paperMainTermIndices_floor_eq {N n : ℕ} {L : ℝ} {k : ℤ}
     nlinarith
 
 /-- Under the window-start assumption the exponents are at least two, hence
-in particular positive as required by the paper's convention for `ℕ`.-/
+in particular positive as required by the paper's convention for `ℕ`.
+@isnad1 id=le.2h4v.s6.6a6e6bbfd930 from=translated src=- shape=d1740742 vocab=8b7aa0a0
+-/
 theorem paperMainTermIndices_exponent_ge_two {N n : ℕ} {L : ℝ} {k : ℤ}
     (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L)
     (hk : (k, n) ∈ paperMainTermIndices N L) : 2 ≤ n := by
@@ -90,9 +99,15 @@ noncomputable def paperMainTermSup (N : ℕ) (L x : ℝ) : ℝ :=
   ↑((paperMainTermIndices N L).sup fun p =>
     ‖harmonicPhaseSum N p.1.toNat ((2 ^ p.2 : ℕ) : ℤ) (x - p.1)‖₊)
 
+/--
+@isnad1 id=le.0h3v.s4.88b7ab6876b2 from=translated src=- shape=877de13a vocab=8cca4202
+-/
 theorem paperMainTermSup_nonneg (N : ℕ) (L x : ℝ) : 0 ≤ paperMainTermSup N L x :=
   NNReal.coe_nonneg _
 
+/--
+@isnad1 id=le.1h5v.s6.f316468ca72c from=translated src=- shape=13c7b012 vocab=f3289011
+-/
 theorem norm_harmonicPhaseSum_le_paperMainTermSup {N n : ℕ} {L x : ℝ} {k : ℤ}
     (hk : (k, n) ∈ paperMainTermIndices N L) :
     ‖harmonicPhaseSum N k.toNat ((2 ^ n : ℕ) : ℤ) (x - k)‖ ≤
@@ -101,7 +116,9 @@ theorem norm_harmonicPhaseSum_le_paperMainTermSup {N n : ℕ} {L x : ℝ} {k : �
     ‖harmonicPhaseSum N p.1.toNat ((2 ^ p.2 : ℕ) : ℤ) (x - p.1)‖₊) hk)
 
 /-- At an admissible translate the sum is literally evaluated at the ambient
-point `x`: its denominator is `x - j` and its phase is `phase (2 * 2^n * j * x)`.-/
+point `x`: its denominator is `x - j` and its phase is `phase (2 * 2^n * j * x)`.
+@isnad1 id=eq.2h5v.s7.d90dba21d175 from=translated src=- shape=99c6f262 vocab=08e1e4c7
+-/
 theorem harmonicPhaseSum_paperMainTerm_eq {N n : ℕ} {L x : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hk : (k, n) ∈ paperMainTermIndices N L) :
     harmonicPhaseSum N k.toNat ((2 ^ n : ℕ) : ℤ) (x - k) =
@@ -112,6 +129,9 @@ theorem harmonicPhaseSum_paperMainTerm_eq {N n : ℕ} {L x : ℝ} {k : ℤ}
   have hkcastR : (k.toNat : ℝ) = k := by exact_mod_cast hkcastZ
   simp [harmonicPhaseSum, hkcastR]
 
+/--
+@isnad1 id=measurab.0h2v.s3.0ac7bd8c7c66 from=translated src=- shape=03beec24 vocab=6ae2b013
+-/
 theorem measurable_paperMainTermSup (N : ℕ) (L : ℝ) :
     Measurable (paperMainTermSup N L) := by
   have hsum (p : ℤ × ℕ) : Measurable fun x : ℝ =>
@@ -134,12 +154,17 @@ theorem measurable_paperMainTermSup (N : ℕ) (L : ℝ) :
 def paperMainTermLevelSet (N : ℕ) (L a : ℝ) : Set ℝ :=
   {x | a ≤ paperMainTermSup N L x}
 
+/--
+@isnad1 id=measurab.0h3v.s3.01a174a412fa from=translated src=- shape=772b82c8 vocab=3afbf772
+-/
 theorem measurableSet_paperMainTermLevelSet (N : ℕ) (L a : ℝ) :
     MeasurableSet (paperMainTermLevelSet N L a) :=
   measurableSet_le measurable_const (measurable_paperMainTermSup N L)
 
 /-- A positive level is reached exactly when one of the finitely many actual
-dyadic sums reaches it.-/
+dyadic sums reaches it.
+@isnad1 id=iff.1h4v.s6.0d7ea16174b7 from=translated src=- shape=eade8b2d vocab=8c9d0edc
+-/
 theorem mem_paperMainTermLevelSet_iff {N : ℕ} {L a x : ℝ} (ha : 0 < a) :
     x ∈ paperMainTermLevelSet N L a ↔
       ∃ (k : ℤ) (n : ℕ), (k, n) ∈ paperMainTermIndices N L ∧
@@ -160,6 +185,9 @@ theorem mem_paperMainTermLevelSet_iff {N : ℕ} {L a x : ℝ} (ha : 0 < a) :
   · rintro ⟨k, n, hkn, hval⟩
     exact ⟨(k, n), hkn, hval⟩
 
+/--
+@isnad1 id=le.1h2v.s5.c7d6202bd27c from=translated src=- shape=3b7100c0 vocab=8ad4c0de
+-/
 theorem paperTranslatedBohrSet_subset_mainTermLevelSet {N : ℕ} {L : ℝ}
     (hN : 100 ≤ N) :
     paperTranslatedBohrSet N L ⊆
@@ -171,7 +199,9 @@ theorem paperTranslatedBohrSet_subset_mainTermLevelSet {N : ℕ} {L : ℝ}
     (mem_paperMainTermIndices.mpr ⟨hk, hnlo, hnhi⟩))
 
 /-- The translated Bohr set lies inside the bounded spatial interval used
-below; no further restriction is imposed on the full supremum.-/
+below; no further restriction is imposed on the full supremum.
+@isnad1 id=le.1h2v.s5.3bc8875c8080 from=translated src=- shape=f7bfb024 vocab=fa809751
+-/
 theorem paperTranslatedBohrSet_subset_Icc {N : ℕ} {L : ℝ} (hN : 100 ≤ N) :
     paperTranslatedBohrSet N L ⊆ Icc (0 : ℝ) ((N : ℝ) + 1) := by
   intro x hx
@@ -182,7 +212,9 @@ theorem paperTranslatedBohrSet_subset_Icc {N : ℕ} {L : ℝ} (hN : 100 ≤ N) :
   exact ⟨by linarith [hbohr.1.1], by linarith [hbohr.1.2]⟩
 
 /-- The paper's explicit linear lower bound for the full main-term level set,
-stated in extended-real Lebesgue measure so that no finiteness is assumed.-/
+stated in extended-real Lebesgue measure so that no finiteness is assumed.
+@isnad1 id=le.2h2v.s7.e2f3bd039e57 from=translated src=- shape=2ba64285 vocab=943d5382
+-/
 theorem paperMainTermLevelSet_volume_ge {N : ℕ} {L : ℝ}
     (hN : 100 ≤ N) (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L) :
     ENNReal.ofReal ((N : ℝ) / (30720 * ((2 : ℝ) ^ 100 + 1))) ≤
@@ -196,7 +228,9 @@ theorem paperMainTermLevelSet_volume_ge {N : ℕ} {L : ℝ}
     _ ≤ _ := measure_mono (paperTranslatedBohrSet_subset_mainTermLevelSet hN)
 
 /-- The same linear bound in real-valued measure, already attained inside
-`[0, N + 1]`.  Its coefficient is `δ = 1 / (30720 * (2^100 + 1)) > 0`.-/
+`[0, N + 1]`.  Its coefficient is `δ = 1 / (30720 * (2^100 + 1)) > 0`.
+@isnad1 id=le.2h2v.s7.f16b12c99727 from=translated src=- shape=54e0859d vocab=2bf52342
+-/
 theorem paperMainTermLevelSet_local_volume_real_ge {N : ℕ} {L : ℝ}
     (hN : 100 ≤ N) (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L) :
     (N : ℝ) / (30720 * ((2 : ℝ) ^ 100 + 1)) ≤

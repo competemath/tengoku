@@ -34,6 +34,9 @@ set_option autoImplicit false
 
 noncomputable section
 
+/--
+@isnad1 id=continuo.1h2v.s5.c60746553af8 from=translated src=- shape=c6427bc2 vocab=f8f355eb
+-/
 theorem continuous_paperLowOscillatoryKernel
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) :
     Continuous (paperLowOscillatoryKernel lam hlam B) := by
@@ -45,7 +48,9 @@ theorem continuous_paperLowOscillatoryKernel
   · unfold phase
     fun_prop
 
-/-- A level atom has zero set integral on its defining interval.-/
+/-- A level atom has zero set integral on its defining interval.
+@isnad1 id=eq.0h5v.s5.91a7636c3280 from=translated src=- shape=05348c3f vocab=300f0749
+-/
 theorem setIntegral_levelAtom_eq_zero
     {A : ℕ → ℝ} {f : ℝ → ℂ} (k : ℕ) (z R : ℝ) :
     ∫ y in centeredInterval z R, levelAtom A f k z R y = 0 := by
@@ -60,7 +65,9 @@ theorem setIntegral_levelAtom_eq_zero
   rw [hind, integral_levelAtom_eq_zero]
 
 /-- Since a level atom is supported on its defining interval, its set and
-global `L¹` masses agree.-/
+global `L¹` masses agree.
+@isnad1 id=eq.0h5v.s6.36b769003ecb from=translated src=- shape=7b78efe2 vocab=b1917a06
+-/
 theorem setIntegral_norm_levelAtom_eq_integral
     {A : ℕ → ℝ} {f : ℝ → ℂ} (k : ℕ) (z R : ℝ) :
     (∫ y in centeredInterval z R, ‖levelAtom A f k z R y‖) =
@@ -74,7 +81,9 @@ theorem setIntegral_norm_levelAtom_eq_integral
   · simp [hy, levelAtom_eq_zero_of_not_mem hy]
 
 /-- Off the triple interval, multiplication by the low kernel preserves
-integrability of a level atom on its supporting interval.-/
+integrability of a level atom on its supporting interval.
+@isnad1 id=integrab.5h8v.s7.5d47bcf3b9d9 from=translated src=- shape=c2b3784b vocab=868f6e89
+-/
 theorem integrableOn_paperLowCZKernel_mul_levelAtom
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
@@ -118,7 +127,9 @@ theorem integrableOn_paperLowCZKernel_mul_levelAtom
   rw [norm_mul]
   exact mul_le_mul_of_nonneg_right hkernel (norm_nonneg (b y))
 
-/-- The norm of the parameterized level-atom output is measurable.-/
+/-- The norm of the parameterized level-atom output is measurable.
+@isnad1 id=aestrong.2h7v.s6.cca82fd5865f from=translated src=- shape=048c1b8e vocab=f62a3656
+-/
 theorem aestronglyMeasurable_norm_setIntegral_paperLowCZKernel_levelAtom
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
@@ -137,7 +148,9 @@ theorem aestronglyMeasurable_norm_setIntegral_paperLowCZKernel_levelAtom
     (ν := volume.restrict (centeredInterval z R))).norm.aestronglyMeasurable
 
 /-- Paper-facing levelwise low-kernel estimate for an arbitrary countable
-pairwise-disjoint family of centered intervals.-/
+pairwise-disjoint family of centered intervals.
+@isnad1 id=le.5h8v.s8.6dbd95bb56ab from=translated src=- shape=d8847aa0 vocab=f59208ae
+-/
 theorem tsum_integral_norm_paperLowCZKernel_levelAtom_le
     {ι : Type*} [Countable ι]
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
@@ -223,6 +236,9 @@ theorem tsum_integral_norm_paperLowCZKernel_levelAtom_le
 
 /-! ### Full and lacunary magnitude levels -/
 
+/--
+@isnad1 id=le.4h7v.s8.f55d2aec0076 from=translated src=- shape=5c7cc53a vocab=039f8644
+-/
 theorem tsum_integral_norm_paperLowCZKernel_fullLevelAtom_le
     {ι : Type*} [Countable ι]
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)
@@ -241,6 +257,9 @@ theorem tsum_integral_norm_paperLowCZKernel_fullLevelAtom_le
     tsum_integral_norm_paperLowCZKernel_levelAtom_le
       hlam B hf (fullAmplitude_pos k).le z R hR hdisj
 
+/--
+@isnad1 id=le.4h7v.s8.6892d5385fb0 from=translated src=- shape=5c7cc53a vocab=15263786
+-/
 theorem tsum_integral_norm_paperLowCZKernel_lacunaryLevelAtom_le
     {ι : Type*} [Countable ι]
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ)

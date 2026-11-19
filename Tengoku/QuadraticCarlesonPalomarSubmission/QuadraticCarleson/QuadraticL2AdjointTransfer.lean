@@ -20,7 +20,9 @@ open scoped ENNReal NNReal ComplexConjugate
 namespace QuadraticCarleson
 
 /-- Cauchy--Schwarz for the actual complex integral pairing, in squared
-extended-moment form.-/
+extended-moment form.
+@isnad1 id=le.2h2v.s8.ed556955def1 from=translated src=- shape=ba39b277 vocab=e49b3aae
+-/
 theorem enorm_integral_pairing_sq_le {f g : ℝ → ℂ}
     (hf : Measurable f) (hg : Measurable g) :
     ‖∫ x, f x * conj (g x)‖ₑ ^ 2 ≤
@@ -47,6 +49,9 @@ theorem enorm_integral_pairing_sq_le {f g : ℝ → ℂ}
 
 namespace FiniteRangeKernel
 
+/--
+@isnad1 id=integrab.1h2v.s6.08709349478a from=translated src=- shape=b20e845b vocab=1d6809e8
+-/
 theorem integrable_energy (K : FiniteRangeKernel)
     {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (fun t ↦ ‖K.applyIntegral f t‖ ^ 2) := by
@@ -60,7 +65,9 @@ theorem integrable_energy (K : FiniteRangeKernel)
     (norm_nonneg (K.applyIntegral f t))
   nlinarith
 
-/-- The output second moment is exactly its self-pairing.-/
+/-- The output second moment is exactly its self-pairing.
+@isnad1 id=eq.1h2v.s7.768c494490d7 from=translated src=- shape=4ab7e124 vocab=e4aec009
+-/
 theorem sq_lintegral_eq_enorm_pairing (K : FiniteRangeKernel)
     {f : ℝ → ℂ} (hf : Integrable f) :
     (∫⁻ t, ‖K.applyIntegral f t‖ₑ ^ 2) =
@@ -77,7 +84,9 @@ theorem sq_lintegral_eq_enorm_pairing (K : FiniteRangeKernel)
   rw [ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm]
 
 /-- A bound for the integral adjoint implies the same second-moment bound for
-the forward integral operator on measurable integrable tests.-/
+the forward integral operator on measurable integrable tests.
+@isnad1 id=le.3h3v.s8.6a5a2f349784 from=translated src=- shape=aaea97a6 vocab=769f4bfd
+-/
 theorem sq_lintegral_bound_of_adjoint (K : FiniteRangeKernel) (A : ℝ≥0∞)
     (hbound : ∀ g : ℝ → ℂ, Measurable g → Integrable g →
       (∫⁻ t, ‖K.adjoint.applyIntegral g t‖ₑ ^ 2) ≤ A * ∫⁻ t, ‖g t‖ₑ ^ 2)
@@ -112,7 +121,9 @@ theorem sq_lintegral_bound_of_adjoint (K : FiniteRangeKernel) (A : ℝ≥0∞)
 
 /-- Any uniform positive quadratic-form majorant for the correlation gives
 the corresponding forward `L²` estimate. This version accommodates the sum
-of the near-diagonal and off-diagonal averaging majorants.-/
+of the near-diagonal and off-diagonal averaging majorants.
+@isnad1 id=le.3h3v.s8.92e1f1e06c78 from=translated src=- shape=a63f9a89 vocab=d47c975d
+-/
 theorem sq_lintegral_le_of_correlation_form_bound_memLp
     (K : FiniteRangeKernel) (A : ℝ≥0∞)
     (hbound : ∀ g : ℝ → ℝ≥0∞, Measurable g →
@@ -127,7 +138,9 @@ theorem sq_lintegral_le_of_correlation_form_bound_memLp
   exact (K.adjoint_energy_le_correlation_enorm hhi).trans (hbound _ hhm.enorm)
 
 /-- The symmetric correlation-kernel majorant controls the actual forward
-operator on every measurable `L²` input.-/
+operator on every measurable `L²` input.
+@isnad1 id=le.6h6v.s8.f993c960cbf5 from=translated src=- shape=acee7b9d vocab=fe927d16
+-/
 theorem sq_lintegral_le_of_selectedAverageKernel_memLp {N : ℕ}
     (K : FiniteRangeKernel) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {σ : ℝ → Fin N} (hσ : Measurable σ) (C : ℝ≥0∞) (hC : C ≠ ⊤)
@@ -143,7 +156,9 @@ theorem sq_lintegral_le_of_selectedAverageKernel_memLp {N : ℕ}
   exact K.adjoint_sq_lintegral_le_of_selectedAverageKernel r hr hσ C hC hbound hhm hhi
 
 /-- The integral action depends only on the almost-everywhere class of the
-input, pointwise at every output location.-/
+input, pointwise at every output location.
+@isnad1 id=eq.1h3v.s5.db9bdce99249 from=translated src=- shape=20f00f84 vocab=f4f57d94
+-/
 theorem applyIntegral_congr_ae (K : FiniteRangeKernel) {f g : ℝ → ℂ}
     (hfg : f =ᵐ[volume] g) : K.applyIntegral f = K.applyIntegral g := by
   funext x
@@ -151,7 +166,9 @@ theorem applyIntegral_congr_ae (K : FiniteRangeKernel) {f g : ℝ → ℂ}
   filter_upwards [hfg] with t ht
   rw [ht]
 
-/-- Remove the measurable-representative condition from an `L²` estimate.-/
+/-- Remove the measurable-representative condition from an `L²` estimate.
+@isnad1 id=le.2h3v.s8.0691278ba0c3 from=translated src=- shape=e6aca952 vocab=f85f7683
+-/
 theorem sq_lintegral_bound_of_measurable_memLp (K : FiniteRangeKernel) (A : ℝ≥0∞)
     (hbound : ∀ g : ℝ → ℂ, Measurable g → MemLp g 2 →
       (∫⁻ t, ‖K.applyIntegral g t‖ₑ ^ 2) ≤ A * ∫⁻ t, ‖g t‖ₑ ^ 2)
@@ -169,7 +186,9 @@ theorem sq_lintegral_bound_of_measurable_memLp (K : FiniteRangeKernel) (A : ℝ�
   exact (hbound g hgm hg).trans_eq (congrArg (fun v ↦ A * v) hint)
 
 /-- The full operator-level `L²` conclusion from a correlation quadratic-form
-bound. The input has exactly the `MemLp f 2` hypothesis.-/
+bound. The input has exactly the `MemLp f 2` hypothesis.
+@isnad1 id=le.2h3v.s8.2eae7a12a470 from=translated src=- shape=5b701e85 vocab=d47c975d
+-/
 theorem sq_lintegral_le_of_correlation_form_bound
     (K : FiniteRangeKernel) (A : ℝ≥0∞)
     (hbound : ∀ g : ℝ → ℝ≥0∞, Measurable g →
@@ -181,7 +200,9 @@ theorem sq_lintegral_le_of_correlation_form_bound
   exact K.sq_lintegral_le_of_correlation_form_bound_memLp A hbound hgm hg
 
 /-- The full forward operator bound from a symmetric selected-radius
-correlation majorant, with no extra measurability or `L¹` input hypotheses.-/
+correlation majorant, with no extra measurability or `L¹` input hypotheses.
+@isnad1 id=le.5h6v.s8.15befdb8814b from=translated src=- shape=765a5b6d vocab=fe927d16
+-/
 theorem sq_lintegral_le_of_selectedAverageKernel {N : ℕ}
     (K : FiniteRangeKernel) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {σ : ℝ → Fin N} (hσ : Measurable σ) (C : ℝ≥0∞) (hC : C ≠ ⊤)

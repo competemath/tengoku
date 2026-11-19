@@ -45,7 +45,9 @@ private theorem packetScale_lt_half {N j : ℕ} (hN : 100 ≤ N) (hj : 1 ≤ j) 
   exact hpow
 
 /-- Distance to a packet on the left of the translate, retaining the integer
-separation from its centre.-/
+separation from its centre.
+@isnad1 id=le.4h4v.s7.bf7fa3202df6 from=translated src=- shape=0987621f vocab=df7ece38
+-/
 theorem packetPoint_abs_sub_left_ge
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -64,7 +66,9 @@ theorem packetPoint_abs_sub_left_ge
     linarith [hτ.1, hjR]
 
 /-- Distance to a packet on the right of the translate, retaining the integer
-separation from its centre.-/
+separation from its centre.
+@isnad1 id=le.4h4v.s7.b13f0a253cdc from=translated src=- shape=0c70d4f4 vocab=df7ece38
+-/
 theorem packetPoint_abs_sub_right_ge
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -84,7 +88,9 @@ theorem packetPoint_abs_sub_right_ge
     linarith [hτ.2, hjR]
 
 /-- Equivalent right-hand estimate written with the full integer separation
-from `k`, rather than separation from the next centre.-/
+from `k`, rather than separation from the next centre.
+@isnad1 id=le.4h4v.s7.71317b176ee5 from=translated src=- shape=00c961ac vocab=df7ece38
+-/
 theorem packetPoint_abs_sub_right_ge' {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
     (hτ : τ ∈ Ico (1 / 4 : ℝ) (1 / 2 : ℝ))
@@ -104,7 +110,9 @@ theorem packetPoint_abs_sub_right_ge' {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
   rw [hsubnext] at h
   linarith
 
-/-- Every packet centre is at least a quarter away from an admissible point.-/
+/-- Every packet centre is at least a quarter away from an admissible point.
+@isnad1 id=le.3h4v.s7.d5b2b07df5ea from=translated src=- shape=770fc5f1 vocab=9640d618
+-/
 theorem packetPoint_abs_sub_ge_quarter
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -119,7 +127,9 @@ theorem packetPoint_abs_sub_ge_quarter
     linarith
 
 /-- The admissible point is strictly farther from every packet centre than the
-corresponding packet half-length.-/
+corresponding packet half-length.
+@isnad1 id=not.4h4v.s7.0b807d17ca19 from=translated src=- shape=5b2c41b7 vocab=9b0d575c
+-/
 theorem packetPoint_not_mem_packetInterval
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -146,7 +156,9 @@ theorem packetPoint_not_mem_packetInterval
   linarith
 
 /-- Every admissible point lies off all packet intervals in the truncated
-family.-/
+family.
+@isnad1 id=not.4h4v.s7.b3f8bda397e4 from=translated src=- shape=a1395852 vocab=9b0d575c
+-/
 theorem packetPoint_not_mem_any_packetInterval
     {N : ℕ} {k : ℤ} {τ : ℝ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -155,7 +167,9 @@ theorem packetPoint_not_mem_any_packetInterval
   intro j hj
   exact packetPoint_not_mem_packetInterval hN hk hτ hj
 
-/-- In particular, every wave packet vanishes at an admissible point.-/
+/-- In particular, every wave packet vanishes at an admissible point.
+@isnad1 id=eq.4h4v.s7.f84b3c58f468 from=translated src=- shape=00716440 vocab=d1caf1f8
+-/
 theorem packetPoint_wavePacket_eq_zero
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)
@@ -167,7 +181,9 @@ theorem packetPoint_wavePacket_eq_zero
   exact packetPoint_not_mem_packetInterval hN hk hτ hj
     (wavePacket_support_subset_packetInterval N j hne)
 
-/-- The support formulation of the same off-packet statement.-/
+/-- The support formulation of the same off-packet statement.
+@isnad1 id=not.4h4v.s7.40878a849e87 from=translated src=- shape=16e95c4b vocab=1bc40d40
+-/
 theorem packetPoint_not_mem_wavePacket_support
     {N : ℕ} {k : ℤ} {τ : ℝ} {j : ℕ}
     (hN : 100 ≤ N) (hk : k ∈ paperBohrIndices N)

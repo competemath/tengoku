@@ -67,16 +67,25 @@ namespace PaperTheorems
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=not.1h1v.s3.46986a2463c9 from=translated src=- shape=2d03b771 vocab=6aacf454
+-/
 theorem lacunary_sub_log2_modular_failure
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi) :
     ¬HasFunctionPhiModularEstimate Phi lacunaryPrincipalValueMaximal := by
   exact QuadraticCarleson.PaperTheorems.lacunary_sub_log2_modular_failure Phi hPhi
 
+/--
+@isnad1 id=not.1h1v.s3.975b8dd03e15 from=translated src=- shape=2d03b771 vocab=8f5e76b3
+-/
 theorem full_sub_log2_modular_failure
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi) :
     ¬HasFunctionPhiModularEstimate Phi fullPrincipalValueMaximal := by
   exact QuadraticCarleson.PaperTheorems.full_sub_log2_modular_failure Phi hPhi
 
+/--
+@isnad1 id=ex.0h0v.s7.c9334a9b50ad from=translated src=- shape=b2ef0b34 vocab=cf2eb80e
+-/
 theorem full_LlogL_endpoint :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
       (∀ᵐ x, ∀ lam : ℝ,
@@ -86,6 +95,9 @@ theorem full_LlogL_endpoint :
           K * ∫⁻ x, ENNReal.ofReal ((‖f x‖ / α) * paperLog 1 (‖f x‖ / α)) := by
   exact QuadraticCarleson.PaperTheorems.full_LlogL_endpoint
 
+/--
+@isnad1 id=ex.0h0v.s7.5f6bb18a0239 from=translated src=- shape=4c8e40fa vocab=30b65ff3
+-/
 theorem lacunary_log2_squared_log4_endpoint :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
       (∀ᵐ x, ∀ m : ℤ, HasQuadraticPrincipalValue (dyadicModulation m) f x

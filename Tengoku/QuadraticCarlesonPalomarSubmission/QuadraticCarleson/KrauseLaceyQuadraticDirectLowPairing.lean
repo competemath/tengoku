@@ -40,7 +40,9 @@ def directQuadraticTailEnergyConstant (M : ℝ) : ℝ≥0∞ :=
           Real.sqrt (3 * M)) ^ 2 * 8))
 
 /-- Exact extraction of the common `t * V` factor from the explicit
-projected-plus-remainder energy.-/
+projected-plus-remainder energy.
+@isnad1 id=eq.3h3v.s8.23f7a30a3bad from=translated src=- shape=4dd9f6fc vocab=50839bd1
+-/
 theorem directQuadraticTailEnergy_eq_constant_mul
     {M t V : ℝ} (hM : 0 ≤ M) (ht : 0 ≤ t) (hV : 0 ≤ V) :
     1372 *
@@ -98,7 +100,9 @@ theorem directQuadraticTailEnergy_eq_constant_mul
   ring
 
 /-- The genuine direct-tail `L²` estimate with its scale-independent
-constant and its exact dyadic/root-mass factor separated.-/
+constant and its exact dyadic/root-mass factor separated.
+@isnad1 id=le.10h9v.s9.e255b0976791 from=translated src=- shape=891faa4d vocab=f8f98645
+-/
 theorem eLpNorm_offsetTailMaximalOn_le_factored
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -150,7 +154,9 @@ theorem eLpNorm_offsetTailMaximalOn_le_factored
 
 /-- The factored direct-tail estimate for an arbitrary output subcollection.
 The former frequency-radius premise is discharged by deleting the outputs
-whose grouped input is identically zero.-/
+whose grouped input is identically zero.
+@isnad1 id=le.9h9v.s8.c57d12032a08 from=translated src=- shape=d0be5745 vocab=7b7423c2
+-/
 theorem eLpNorm_offsetTailMaximalOn_le_factored_of_nonnegative_scales
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -191,7 +197,9 @@ theorem eLpNorm_offsetTailMaximalOn_le_factored_of_nonnegative_scales
   exact h
 
 /-- The square root of the integer dyadic scale factor is exactly the
-paper's real scale parameter `directQuadraticDelta`.-/
+paper's real scale parameter `directQuadraticDelta`.
+@isnad1 id=eq.1h2v.s6.c000f0a47a21 from=translated src=- shape=70b87b06 vocab=d915cc5b
+-/
 theorem ennreal_dyadic_mass_rpow_half_eq_delta
     (n : ℕ) {V : ℝ} (hV : 0 ≤ V) :
     (ENNReal.ofReal ((2 : ℝ) ^ (-(n : ℤ)) * V)) ^ (1 / 2 : ℝ) =
@@ -208,7 +216,9 @@ theorem ennreal_dyadic_mass_rpow_half_eq_delta
   ring
 
 /-- Low-truncation Holder with a fixed extended-nonnegative constant in
-front of the normalized `L²` estimate.-/
+front of the normalized `L²` estimate.
+@isnad1 id=le.10h7v.s8.c0a331a43992 from=translated src=- shape=065073d0 vocab=f1bc24da
+-/
 theorem lintegral_pairing_interpolationLow_ennreal_le_normalized_mul
     {U : ℝ → ℝ≥0∞} {g : ℝ → ℂ} (hUmeas : AEMeasurable U volume)
     (hg : Measurable g) (hgi : Integrable g) {C : ℝ≥0∞}
@@ -252,7 +262,9 @@ theorem lintegral_pairing_interpolationLow_ennreal_le_normalized_mul
       rw [mul_assoc, halg]
 
 /-- The low half of the author's direct fixed-offset argument for the
-genuine localized maximal tail, at `A = delta⁻²`.-/
+genuine localized maximal tail, at `A = delta⁻²`.
+@isnad1 id=le.14h12v.s9.57965df21634 from=translated src=- shape=a86330a0 vocab=ce7f2aaf
+-/
 theorem lintegral_offsetTailMaximalOn_interpolationLow_le_directQuadratic
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -333,7 +345,9 @@ theorem lintegral_offsetTailMaximalOn_interpolationLow_le_directQuadratic
         directQuadratic_low_threshold_identity]
 
 /-- The same paper-facing low estimate with no per-offset gap premise.  It is
-the form used when summing over the arbitrary finite set `offsetSet`.-/
+the form used when summing over the arbitrary finite set `offsetSet`.
+@isnad1 id=le.13h12v.s9.f24e09706a99 from=translated src=- shape=0ecb6601 vocab=1d0b6bc2
+-/
 theorem lintegral_offsetTailMaximalOn_interpolationLow_le_directQuadratic_of_nonnegative_scales
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -410,7 +424,9 @@ theorem lintegral_offsetTailMaximalOn_interpolationLow_le_directQuadratic_of_non
 
 /-- The genuine direct localized tail paired with the low truncation of the
 testing function.  The right side is exactly the square root of the checked
-projected-plus-remainder energy times the standard low-truncation factor.-/
+projected-plus-remainder energy times the standard low-truncation factor.
+@isnad1 id=other.13h12v.s10.6b56cce3f97e from=translated src=- shape=be3f1e4d vocab=4b6bea65
+-/
 theorem lintegral_offsetTailMaximalOn_interpolationLow_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

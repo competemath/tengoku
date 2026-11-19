@@ -19,6 +19,9 @@ open scoped SchwartzMap
 
 namespace QuadraticCarleson
 
+/--
+@isnad1 id=hastempe.0h1v.s5.1ea6a7047525 from=translated src=- shape=445ff312 vocab=84c0d503
+-/
 theorem quadraticPhase_hasTemperateGrowth (modulation : ℝ) :
     (fun y : ℝ => phase (modulation * y ^ 2)).HasTemperateGrowth := by
   rw [show (fun y : ℝ => phase (modulation * y ^ 2)) =
@@ -33,6 +36,9 @@ noncomputable def quadraticKernelDistribution (modulation : ℝ) : 𝓢'(ℝ, �
   TemperedDistribution.smulLeftCLM ℂ
     (fun y : ℝ => phase (modulation * y ^ 2)) principalValueOneDiv
 
+/--
+@isnad1 id=eq.0h2v.s10.1d64081eb15f from=translated src=- shape=42cdf611 vocab=0026d5e2
+-/
 theorem quadraticKernelDistribution_apply (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) :
     quadraticKernelDistribution modulation f =
       principalValueOneDiv

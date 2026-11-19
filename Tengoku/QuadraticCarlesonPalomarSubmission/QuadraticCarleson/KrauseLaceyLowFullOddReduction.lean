@@ -26,7 +26,9 @@ set_option autoImplicit false
 
 noncomputable section
 
-/-- The complete odd dyadic quadratic kernel is continuous.-/
+/-- The complete odd dyadic quadratic kernel is continuous.
+@isnad1 id=continuo.0h2v.s5.cc69da245dd6 from=translated src=- shape=d719e3e2 vocab=b2cd5b7f
+-/
 theorem continuous_fullDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     Continuous
       (annularQuadraticKernel (fun t ↦ (dyadicPsi j t : ℂ)) lam) := by
@@ -35,7 +37,9 @@ theorem continuous_fullDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
   fun_prop
 
 /-- The complete odd dyadic quadratic kernel is compactly supported in its
-natural symmetric annulus.-/
+natural symmetric annulus.
+@isnad1 id=hascompa.0h2v.s4.e40e04360216 from=translated src=- shape=d719e3e2 vocab=3d8a3d86
+-/
 theorem hasCompactSupport_fullDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     HasCompactSupport
       (annularQuadraticKernel (fun t ↦ (dyadicPsi j t : ℂ)) lam) := by
@@ -54,7 +58,9 @@ theorem hasCompactSupport_fullDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
 
 /-- A finite full-odd tail is the convolution with the finite sum of its
 one-scale kernels.  This is the exact finite interchange needed before the
-unit phase can be compared with phase zero.-/
+unit phase can be compared with phase zero.
+@isnad1 id=eq.1h5v.s7.4d68274e19d9 from=translated src=- shape=7464852e vocab=549dc88b
+-/
 theorem finiteFullDyadicTail_eq_integral_kernelSum
     (lam : ℝ) (j : ℤ) (n : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicTail lam j n f x =
@@ -75,7 +81,9 @@ theorem finiteFullDyadicTail_eq_integral_kernelSum
 
 /-- The complete unit-phase full-odd tail differs from its zero-phase
 Hilbert counterpart by convolution with the explicitly controlled phase-error
-kernel.-/
+kernel.
+@isnad1 id=eq.1h4v.s7.9b07d9d90e10 from=translated src=- shape=406a159b vocab=ca66c227
+-/
 theorem finiteFullDyadicTail_one_sub_zero_eq_errorIntegral
     (j : ℤ) (n : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicTail 1 j n f x - finiteFullDyadicTail 0 j n f x =
@@ -103,7 +111,9 @@ theorem finiteFullDyadicTail_one_sub_zero_eq_errorIntegral
 
 /-- Every complete low unit-phase tail is pointwise controlled by the
 corresponding phase-zero Hilbert tail plus a fixed Hardy--Littlewood maximal
-error, uniformly in the number of scales.-/
+error, uniformly in the number of scales.
+@isnad1 id=le.3h4v.s8.fb6725d0de98 from=translated src=- shape=63bb13eb vocab=e6f551bd
+-/
 theorem finiteFullDyadicTail_one_enorm_le_zero_add_maximal
     {j : ℤ} {n : ℕ} (htop : j + (n : ℤ) ≤ 1)
     {f : ℝ → ℂ} (hfm : Measurable f) (hf : MemLp f 2) (x : ℝ) :
@@ -122,7 +132,9 @@ theorem finiteFullDyadicTail_one_enorm_le_zero_add_maximal
     (finiteLowFullPhaseErrorOperator_enorm_le_maximal htop hfm x))
 
 /-- The same comparison in the moving-lower-cutoff suffix orientation used by
-the Krause--Lacey maximal operator.-/
+the Krause--Lacey maximal operator.
+@isnad1 id=le.4h5v.s8.f2140feb09c9 from=translated src=- shape=f0ce9e18 vocab=572f5d60
+-/
 theorem finiteFullDyadicSuffix_one_enorm_le_zero_add_maximal
     {j : ℤ} {N m : ℕ} (hm : m ≤ N) (htop : j + (N : ℤ) ≤ 1)
     {f : ℝ → ℂ} (hfm : Measurable f) (hf : MemLp f 2) (x : ℝ) :
@@ -138,7 +150,9 @@ theorem finiteFullDyadicSuffix_one_enorm_le_zero_add_maximal
   · exact hf
 
 /-- Taking the maximum over all moving lower cutoffs costs no additional
-factor because the same maximal-function error controls every suffix.-/
+factor because the same maximal-function error controls every suffix.
+@isnad1 id=le.3h4v.s7.3b4a7a7d8919 from=translated src=- shape=1cad4fe8 vocab=59d30215
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_one_le_zero_add_maximal
     {j : ℤ} {N : ℕ} (htop : j + (N : ℤ) ≤ 1)
     {f : ℝ → ℂ} (hfm : Measurable f) (hf : MemLp f 2) (x : ℝ) :

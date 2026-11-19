@@ -39,6 +39,9 @@ instance : CoeFun NonnegativeOperator (fun _ ↦ L0Infinity → ℝ → ℝ≥0�
 def operatorLevelSet (T : NonnegativeOperator) (f : L0Infinity) (α : ℝ) : Set ℝ :=
   {x | ENNReal.ofReal α < T f x}
 
+/--
+@isnad1 id=measurab.0h3v.s3.a14eb6c5bba6 from=translated src=- shape=29d48da2 vocab=882272d9
+-/
 theorem measurableSet_operatorLevelSet (T : NonnegativeOperator) (f : L0Infinity) (α : ℝ) :
     MeasurableSet (operatorLevelSet T f α) :=
   measurableSet_lt measurable_const (T.measurable_toFun f)
@@ -48,10 +51,16 @@ on `L0Infinity` is established below.-/
 noncomputable def modularMass (Φ : YoungFunction) (f : L0Infinity) (α : ℝ) : ℝ :=
   ∫ x : ℝ, Φ (‖f x‖ / α)
 
+/--
+@isnad1 id=le.1h3v.s4.fa6a7f0c9e60 from=translated src=- shape=84b307a1 vocab=6f648ed5
+-/
 theorem modularMass_nonneg (Φ : YoungFunction) (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
     0 ≤ modularMass Φ f α :=
   integral_nonneg (fun _x ↦ Φ.nonneg (div_nonneg (norm_nonneg _) hα.le))
 
+/--
+@isnad1 id=measurab.1h3v.s5.f15308664d8d from=translated src=- shape=afa782ae vocab=5416edd3
+-/
 theorem measurable_modularIntegrand (Φ : YoungFunction) (f : L0Infinity)
     {α : ℝ} (hα : 0 < α) : Measurable (fun x : ℝ ↦ Φ (‖f x‖ / α)) := by
   have he : Continuous (fun t : ℝ ↦ Φ (max t 0)) :=
@@ -60,6 +69,9 @@ theorem measurable_modularIntegrand (Φ : YoungFunction) (f : L0Infinity)
   have hm := he.measurable.comp (f.measurable_toFun.norm.div_const α)
   simpa only [Function.comp_def, max_eq_left (div_nonneg (norm_nonneg _) hα.le)] using hm
 
+/--
+@isnad1 id=integrab.1h3v.s6.e3288c25072e from=translated src=- shape=13edad20 vocab=b20cc323
+-/
 theorem integrable_modularIntegrand (Φ : YoungFunction) (f : L0Infinity)
     {α : ℝ} (hα : 0 < α) : Integrable (fun x : ℝ ↦ Φ (‖f x‖ / α)) := by
   let g : ℝ → ℝ := fun x ↦ Φ (‖f x‖ / α)
@@ -79,6 +91,9 @@ theorem integrable_modularIntegrand (Φ : YoungFunction) (f : L0Infinity)
     (measurable_modularIntegrand Φ f hα).aestronglyMeasurable
     (Eventually.of_forall hbound)
 
+/--
+@isnad1 id=eq.1h3v.s5.206803b300b9 from=translated src=- shape=25022c74 vocab=70e27733
+-/
 theorem ofReal_modularMass_eq_lintegral (Φ : YoungFunction) (f : L0Infinity)
     {α : ℝ} (hα : 0 < α) :
     ENNReal.ofReal (modularMass Φ f α) =
@@ -96,7 +111,9 @@ def HasPhiModularEstimate (Φ : YoungFunction) (T : NonnegativeOperator) : Prop 
 
 /-- A modular estimate passes from an operator to every pointwise smaller
 operator.  This is the abstract step behind the paper's phrase “and therefore
-the full operator as well”: the full supremum dominates the lacunary one.-/
+the full operator as well”: the full supremum dominates the lacunary one.
+@isnad1 id=hasphimo.2h3v.s4.e7ae27a57de9 from=translated src=- shape=b20a333b vocab=2197ecb1
+-/
 theorem HasPhiModularEstimate.of_pointwise_le
     (Φ : YoungFunction) (S T : NonnegativeOperator)
     (hST : ∀ f x, S f x ≤ T f x)
@@ -108,6 +125,9 @@ theorem HasPhiModularEstimate.of_pointwise_le
   intro x hx
   exact hx.trans_le (hST f x)
 
+/--
+@isnad1 id=iff.0h2v.s6.ee3febfd3c2d from=translated src=- shape=55cba871 vocab=31708419
+-/
 theorem hasPhiModularEstimate_iff_real (Φ : YoungFunction) (T : NonnegativeOperator) :
     HasPhiModularEstimate Φ T ↔
       ∃ C : ℝ, 0 < C ∧ ∀ (f : L0Infinity) (α : ℝ), 0 < α →
@@ -120,7 +140,9 @@ theorem hasPhiModularEstimate_iff_real (Φ : YoungFunction) (T : NonnegativeOper
       ENNReal.ofReal_mul hC.le] using h f α hα
 
 /-- A modular sequence of size `o(N)` cannot coexist with a level-set
-measure bounded below by a positive multiple of `N` under a modular estimate.-/
+measure bounded below by a positive multiple of `N` under a modular estimate.
+@isnad1 id=not.4h5v.s6.564632230a6d from=translated src=- shape=6c167a22 vocab=c40cd2f5
+-/
 theorem not_hasPhiModularEstimate_of_sequence (Φ : YoungFunction) (T : NonnegativeOperator)
     (f : ℕ → L0Infinity) (α : ℕ → ℝ)
     (hα : ∀ᶠ N in atTop, 0 < α N)
@@ -157,6 +179,9 @@ noncomputable def scaleL0Infinity (a : ℝ) (f : L0Infinity) : L0Infinity where
   hasCompactSupport_toFun := f.hasCompactSupport_toFun.comp_left
     (g := fun z : ℂ ↦ a • z) (smul_zero a)
 
+/--
+@isnad1 id=eq.0h3v.s5.2b5921d42d90 from=translated src=- shape=e0e75aa8 vocab=f6f7bb45
+-/
 @[simp] theorem scaleL0Infinity_apply (a : ℝ) (f : L0Infinity) (x : ℝ) :
     scaleL0Infinity a f x = a • f x := rfl
 
@@ -165,6 +190,9 @@ def NonnegativeOperator.PositivelyHomogeneous (T : NonnegativeOperator) : Prop :
   ∀ (a : ℝ), 0 < a → ∀ (f : L0Infinity) (x : ℝ),
     T (scaleL0Infinity a f) x = ENNReal.ofReal a * T f x
 
+/--
+@isnad1 id=eq.1h3v.s5.1dac9ba613f7 from=translated src=- shape=2ba6d955 vocab=841be40e
+-/
 theorem modularMass_scale_inv (Φ : YoungFunction) (f : L0Infinity)
     {α : ℝ} (hα : 0 < α) :
     modularMass Φ (scaleL0Infinity α⁻¹ f) 1 = modularMass Φ f α := by
@@ -177,7 +205,9 @@ theorem modularMass_scale_inv (Φ : YoungFunction) (f : L0Infinity)
   ring
 
 /-- Dividing the input by the testing height transports its strict level
-set exactly to height one, without requiring finite operator values.-/
+set exactly to height one, without requiring finite operator values.
+@isnad1 id=eq.2h3v.s5.f9cfd62f67d8 from=translated src=- shape=61b62916 vocab=7aa5f865
+-/
 theorem operatorLevelSet_scale_inv (T : NonnegativeOperator)
     (hT : T.PositivelyHomogeneous) (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
     operatorLevelSet T (scaleL0Infinity α⁻¹ f) 1 = operatorLevelSet T f α := by
@@ -194,7 +224,9 @@ theorem operatorLevelSet_scale_inv (T : NonnegativeOperator)
 
 /-- The sequence criterion also supplies the normalized witnesses in the
 paper: for every positive `κ`, a test function has modular mass less than
-`κ` times the measure of its strict level set at height one.-/
+`κ` times the measure of its strict level set at height one.
+@isnad1 id=ex.6h6v.s7.21751bdd51f1 from=translated src=- shape=c50adb10 vocab=4629b6a0
+-/
 theorem exists_unit_modular_witness_of_sequence (Φ : YoungFunction) (T : NonnegativeOperator)
     (hT : T.PositivelyHomogeneous) (f : ℕ → L0Infinity) (α : ℕ → ℝ)
     (hα : ∀ᶠ N in atTop, 0 < α N)
@@ -227,11 +259,17 @@ factor. This factor is essential when normalizing a lower-bound height.-/
 noncomputable def scaledCounterexampleModular (Φ : YoungFunction) (a : ℝ) (N : ℕ) : ℝ :=
   ∫ x : ℝ, Φ (a * ((N : ℝ) * ‖counterexample N x‖ / Real.log (N : ℝ)))
 
+/--
+@isnad1 id=eq.1h3v.s6.2f9e104bd9b6 from=translated src=- shape=e8ea51ce vocab=966945aa
+-/
 theorem scaledCounterexampleModular_eq (Φ : YoungFunction) (a : ℝ) {N : ℕ} (hN : 0 < N) :
     scaledCounterexampleModular Φ a N =
       ∫ x : ℝ, Φ (a * (packetSum N x / Real.log (N : ℝ))) := by
   simp only [scaledCounterexampleModular, scaled_counterexample_eq_packetSum hN]
 
+/--
+@isnad1 id=le.5h4v.s7.f37fe95f8c76 from=translated src=- shape=45d4fed7 vocab=5e05b43f
+-/
 theorem scaledCounterexampleModular_le_secant (Φ : YoungFunction) {a : ℝ} (ha : 0 < a)
     {C : ℝ} (hC : 0 < C) (hbound : ∀ x, baseBump x ≤ C)
     {N : ℕ} (hN : 0 < N) (hlog : 1 ≤ Real.log (N : ℝ)) :
@@ -265,7 +303,9 @@ theorem scaledCounterexampleModular_le_secant (Φ : YoungFunction) {a : ℝ} (ha
     _ = _ := by rw [integral_const_mul, integral_div, packetSum_integral]; ring
 
 /-- Fixed scalar factors preserve modular smallness. No doubling or
-regularity assumption on the Young function beyond its definition is used.-/
+regularity assumption on the Young function beyond its definition is used.
+@isnad1 id=islittle.2h2v.s5.7cf42b5b695f from=translated src=- shape=5c2bb414 vocab=6f3d9736
+-/
 theorem scaledCounterexampleModular_isLittleO (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) {a : ℝ} (ha : 0 < a) :
     scaledCounterexampleModular Φ a =o[atTop] (fun N : ℕ ↦ (N : ℝ)) := by
@@ -302,12 +342,18 @@ positive constant exposed.-/
 noncomputable def counterexampleHeight (c : ℝ) (N : ℕ) : ℝ :=
   c * Real.log (N : ℝ) / (N : ℝ)
 
+/--
+@isnad1 id=eventual.1h1v.s5.b31b1a05d940 from=translated src=- shape=acd22abb vocab=74da9bfc
+-/
 theorem eventually_counterexampleHeight_pos {c : ℝ} (hc : 0 < c) :
     ∀ᶠ N : ℕ in atTop, 0 < counterexampleHeight c N := by
   filter_upwards [eventually_ge_atTop 2] with N hN
   have hNr : (1 : ℝ) < (N : ℝ) := by exact_mod_cast (lt_of_lt_of_le (by norm_num : 1 < 2) hN)
   exact div_pos (mul_pos hc (Real.log_pos hNr)) (by linarith)
 
+/--
+@isnad1 id=eq.0h3v.s4.bc9994d742c4 from=translated src=- shape=62e8644d vocab=81deb96f
+-/
 theorem modularMass_counterexample_height (Φ : YoungFunction) (c : ℝ) (N : ℕ) :
     modularMass Φ (counterexampleL0Infinity N) (counterexampleHeight c N) =
       scaledCounterexampleModular Φ c⁻¹ N := by
@@ -319,6 +365,9 @@ theorem modularMass_counterexample_height (Φ : YoungFunction) (c : ℝ) (N : �
   simp only [div_eq_mul_inv, mul_inv_rev, inv_inv]
   ring
 
+/--
+@isnad1 id=islittle.2h2v.s5.90614f35b4f9 from=translated src=- shape=294f68f6 vocab=fd7a79b0
+-/
 theorem modularMass_counterexample_height_isLittleO (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) {c : ℝ} (hc : 0 < c) :
     (fun N ↦ modularMass Φ (counterexampleL0Infinity N) (counterexampleHeight c N))
@@ -327,7 +376,9 @@ theorem modularMass_counterexample_height_isLittleO (Φ : YoungFunction)
     scaledCounterexampleModular_isLittleO Φ hΦ (inv_pos.mpr hc)
 
 /-- Halving the height turns the paper's non-strict lower level set into
-the strict level set appearing in a modular estimate.-/
+the strict level set appearing in a modular estimate.
+@isnad1 id=eventual.1h2v.s6.35367b3bf06f from=translated src=- shape=1f9d0eb8 vocab=e56be046
+-/
 theorem counterexample_nonstrict_level_subset (T : NonnegativeOperator) {c : ℝ}
     (hc : 0 < c) :
     ∀ᶠ N : ℕ in atTop,
@@ -346,7 +397,9 @@ theorem counterexample_nonstrict_level_subset (T : NonnegativeOperator) {c : ℝ
 
 /-- The exact remaining analytic input for modular failure: the paper's
 counterexample has a non-strict lower level set of measure at least `δN`
-at height `c log(N)/N`. This theorem does not assert that input.-/
+at height `c log(N)/N`. This theorem does not assert that input.
+@isnad1 id=not.4h4v.s6.d45dcac737d2 from=translated src=- shape=2f0dda23 vocab=10e62f54
+-/
 theorem not_hasPhiModularEstimate_of_counterexample_lower_bound (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) (T : NonnegativeOperator)
     {c δ : ℝ} (hc : 0 < c) (hδ : 0 < δ)
@@ -361,7 +414,9 @@ theorem not_hasPhiModularEstimate_of_counterexample_lower_bound (Φ : YoungFunct
   exact hl.trans (measure_mono hs)
 
 /-- The normalized `f_κ` conclusion, conditional only on the operator's
-positive homogeneity and the still-separate analytic lower bound.-/
+positive homogeneity and the still-separate analytic lower bound.
+@isnad1 id=ex.6h5v.s7.62e038101950 from=translated src=- shape=4d533b4c vocab=99f71a0a
+-/
 theorem exists_unit_modular_witness_of_counterexample_lower_bound (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) (T : NonnegativeOperator)
     (hT : T.PositivelyHomogeneous) {c δ : ℝ} (hc : 0 < c) (hδ : 0 < δ)

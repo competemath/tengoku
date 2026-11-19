@@ -22,7 +22,9 @@ set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
 /-- Restricting a scalar-standard collection to one physical tail retains the
-exact scale lower bound encoded by the actual length cutoff.-/
+exact scale lower bound encoded by the actual length cutoff.
+@isnad1 id=le.2h9v.s7.a585c57547e9 from=translated src=- shape=9824743c vocab=fe29a35f
+-/
 theorem scale_le_of_mem_energyStandard_physicalTail
     {S : Finset RealInterval} {f : ℝ → ℂ} (I₀ : RealInterval) (k₀ s ell : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval)
@@ -41,7 +43,9 @@ theorem scale_le_of_mem_energyStandard_physicalTail
 /-- The actual physical tail has a uniform scalar-standard *diagonal* energy
 bound.  Its constant is independent of `N.card` and of the number of scales.
 This is the precise far-energy aggregation available before cross-scale
-signed-sum control is supplied.-/
+signed-sum control is supplied.
+@isnad1 id=le.4h8v.s8.8a21c058aae5 from=translated src=- shape=4c4cc859 vocab=67a51b93
+-/
 theorem sum_energyStandard_physicalTail_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s ell : ℤ) (scale : RealInterval → ℤ)

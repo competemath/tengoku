@@ -21,9 +21,15 @@ noncomputable section
 
 namespace L0Infinity
 
+/--
+@isnad1 id=eq.1h3v.s5.f93c6839a43a from=translated src=- shape=2f3ede0a vocab=b117c709
+-/
 @[simp] theorem dilate_add (a : ℝ) (ha : 0 < a) (f g : L0Infinity) :
     dilate a ha (add f g) = add (dilate a ha f) (dilate a ha g) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.6836a6775871 from=translated src=- shape=24fb9736 vocab=d12003b8
+-/
 @[simp] theorem dilate_smul (a : ℝ) (ha : 0 < a) (c : ℂ) (f : L0Infinity) :
     dilate a ha (smul c f) = smul c (dilate a ha f) := rfl
 
@@ -34,7 +40,9 @@ namespace SparseDilationRegularity
 open KrauseLaceySparseDilation
 
 /-- Spatial dilation preserves the exact sublinearity requirements used by
-the finite sparse-maximal theorem.-/
+the finite sparse-maximal theorem.
+@isnad1 id=issublin.2h2v.s4.700cb421c0d3 from=translated src=- shape=819ce0cb vocab=ae8e8017
+-/
 theorem isSublinear_dilatedOperator (a : ℝ) (ha : 0 < a)
     {T : TestOperator} (hT : IsSublinear T) :
     IsSublinear (dilatedOperator a ha T) := by
@@ -46,21 +54,27 @@ theorem isSublinear_dilatedOperator (a : ℝ) (ha : 0 < a)
     simpa only [dilatedOperator, L0Infinity.dilate_smul] using
       hT.2 c (L0Infinity.dilate a ha f) (a * x)
 
-/-- Taking an absolute value commutes exactly with the operator dilation.-/
+/-- Taking an absolute value commutes exactly with the operator dilation.
+@isnad1 id=eq.1h2v.s4.e2714633c231 from=translated src=- shape=653b245c vocab=649512dc
+-/
 @[simp] theorem absoluteValue_dilatedOperator (a : ℝ) (ha : 0 < a)
     (T : TestOperator) :
     absoluteValueOperator (dilatedOperator a ha T) =
       dilatedOperator a ha (absoluteValueOperator T) := rfl
 
 /-- Continuity of each original output gives continuity of each dilated
-output by composition with multiplication by the dilation factor.-/
+output by composition with multiplication by the dilation factor.
+@isnad1 id=continuo.2h3v.s6.5ccd80f21dc7 from=translated src=- shape=2b2d47e3 vocab=c16fc72b
+-/
 theorem continuous_dilatedOperator (a : ℝ) (ha : 0 < a)
     {T : TestOperator} (hT : ∀ f : L0Infinity, Continuous (T f))
     (f : L0Infinity) : Continuous (dilatedOperator a ha T f) :=
   (hT (L0Infinity.dilate a ha f)).comp (continuous_const.mul continuous_id)
 
 /-- The continuity available for the concrete finite suffix maximum supplies
-the local-integrability clause of the finite sparse-maximal hypothesis.-/
+the local-integrability clause of the finite sparse-maximal hypothesis.
+@isnad1 id=locallyi.2h3v.s6.ab90fcce6bc1 from=translated src=- shape=d0371cd6 vocab=6412c21f
+-/
 theorem locallyIntegrable_dilatedOperator_of_continuous (a : ℝ) (ha : 0 < a)
     {T : TestOperator} (hT : ∀ f : L0Infinity, Continuous (T f))
     (f : L0Infinity) : LocallyIntegrable (dilatedOperator a ha T f) volume :=

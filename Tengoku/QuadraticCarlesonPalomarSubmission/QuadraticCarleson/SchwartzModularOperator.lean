@@ -26,6 +26,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=measurab.0h3v.s6.7949b3bd16f2 from=translated src=- shape=2b1deacb vocab=6e115c8c
+-/
 theorem measurable_quadraticHilbertTrunc (modulation ε : ℝ) (f : 𝓢(ℝ, ℂ)) :
     Measurable (quadraticHilbertTrunc modulation ε f) := by
   have hm : Measurable (fun p : ℝ × ℝ ↦
@@ -36,23 +39,34 @@ theorem measurable_quadraticHilbertTrunc (modulation ε : ℝ) (f : 𝓢(ℝ, �
     (ν := volume.restrict {t : ℝ | ε < |t|})).measurable
 
 /-- The distributional principal value is a pointwise limit of measurable
-functions, for the precise one-sided symmetric truncation filter.-/
+functions, for the precise one-sided symmetric truncation filter.
+@isnad1 id=measurab.0h2v.s5.954059521872 from=translated src=- shape=9b0a9678 vocab=841db2d1
+-/
 theorem measurable_quadraticHilbertSchwartz (modulation : ℝ) (f : 𝓢(ℝ, ℂ)) :
     Measurable (quadraticHilbertSchwartz modulation f) := by
   apply measurable_of_tendsto_metrizable' (𝓝[>] (0 : ℝ))
     (fun ε ↦ measurable_quadraticHilbertTrunc modulation ε f)
   exact tendsto_pi_nhds.mpr (fun x ↦ hasQuadraticPrincipalValue_schwartz modulation f x)
 
+/--
+@isnad1 id=measurab.0h1v.s4.bc013f2825ef from=translated src=- shape=5774d397 vocab=ad34f66b
+-/
 theorem measurable_lacunaryQuadraticCarlesonSchwartz (f : 𝓢(ℝ, ℂ)) :
     Measurable (lacunaryQuadraticCarlesonSchwartz f) := by
   exact Measurable.iSup (fun n : ℤ ↦
     (measurable_quadraticHilbertSchwartz (dyadicModulation n) f).norm.ennreal_ofReal)
 
+/--
+@isnad1 id=eq.0h3v.s8.87127dc7ae1e from=translated src=- shape=83348678 vocab=9e959159
+-/
 theorem schwartzFlipTranslate_real_smul (a : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     schwartzFlipTranslate (a • f) x = a • schwartzFlipTranslate f x := by
   ext y
   simp only [schwartzFlipTranslate_apply, smul_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.96ce65ab8982 from=translated src=- shape=699753f6 vocab=d4cd56df
+-/
 theorem quadraticHilbertSchwartz_real_smul (modulation a : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     quadraticHilbertSchwartz modulation (a • f) x =
       a • quadraticHilbertSchwartz modulation f x := by
@@ -61,7 +75,9 @@ theorem quadraticHilbertSchwartz_real_smul (modulation a : ℝ) (f : 𝓢(ℝ, �
   exact ContinuousLinearMap.map_smul_of_tower (quadraticKernelDistribution modulation) a _
 
 /-- Exact scalar homogeneity retains infinite suprema and also covers
-negative and zero real scalars through their absolute value.-/
+negative and zero real scalars through their absolute value.
+@isnad1 id=eq.0h3v.s7.8fb62efaa188 from=translated src=- shape=a0d4c797 vocab=3f013d4b
+-/
 theorem lacunaryQuadraticCarlesonSchwartz_real_smul (a : ℝ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     lacunaryQuadraticCarlesonSchwartz (a • f) x =
       ENNReal.ofReal |a| * lacunaryQuadraticCarlesonSchwartz f x := by
@@ -88,6 +104,9 @@ def SchwartzNonnegativeOperator.PositivelyHomogeneous (T : SchwartzNonnegativeOp
   ∀ a : ℝ, 0 < a → ∀ (f : 𝓢(ℝ, ℂ)) (x : ℝ),
     T (a • f) x = ENNReal.ofReal a * T f x
 
+/--
+@isnad1 id=positive.0h0v.s1.426360200140 from=translated src=- shape=49959d42 vocab=8a9aade2
+-/
 theorem lacunarySchwartzOperator_positivelyHomogeneous :
     lacunarySchwartzOperator.PositivelyHomogeneous := by
   intro a ha f x
@@ -104,6 +123,9 @@ noncomputable def compactSchwartzToL0Infinity (f : 𝓢(ℝ, ℂ))
   bounded_toFun := ⟨SchwartzMap.seminorm ℂ 0 0 f, fun x ↦ f.norm_le_seminorm ℂ x⟩
   hasCompactSupport_toFun := hf
 
+/--
+@isnad1 id=eq.1h2v.s7.959c865e0bce from=translated src=- shape=a69fdbea vocab=9875317f
+-/
 @[simp] theorem compactSchwartzToL0Infinity_apply (f : 𝓢(ℝ, ℂ))
     (hf : HasCompactSupport (f : ℝ → ℂ)) (x : ℝ) :
     compactSchwartzToL0Infinity f hf x = f x := rfl
@@ -111,6 +133,9 @@ noncomputable def compactSchwartzToL0Infinity (f : 𝓢(ℝ, ℂ))
 def schwartzOperatorLevelSet (T : SchwartzNonnegativeOperator) (f : 𝓢(ℝ, ℂ))
     (α : ℝ) : Set ℝ := {x | ENNReal.ofReal α < T f x}
 
+/--
+@isnad1 id=measurab.0h3v.s5.8e3b7942b10e from=translated src=- shape=e20bad6d vocab=c40c2114
+-/
 theorem measurableSet_schwartzOperatorLevelSet (T : SchwartzNonnegativeOperator)
     (f : 𝓢(ℝ, ℂ)) (α : ℝ) : MeasurableSet (schwartzOperatorLevelSet T f α) :=
   measurableSet_lt measurable_const (T.measurable_toFun f)
@@ -125,16 +150,25 @@ def HasSchwartzPhiModularEstimate (Φ : YoungFunction) (T : SchwartzNonnegativeO
     ∀ α : ℝ, 0 < α → volume (schwartzOperatorLevelSet T f α) ≤
       ENNReal.ofReal C * ∫⁻ x : ℝ, ENNReal.ofReal (Φ (‖f x‖ / α))
 
+/--
+@isnad1 id=le.1h3v.s5.ffd9cdb50acd from=translated src=- shape=73042340 vocab=2727e4aa
+-/
 theorem schwartzModularMass_nonneg (Φ : YoungFunction) (f : 𝓢(ℝ, ℂ))
     {α : ℝ} (hα : 0 < α) : 0 ≤ schwartzModularMass Φ f α :=
   integral_nonneg (fun _x ↦ Φ.nonneg (div_nonneg (norm_nonneg _) hα.le))
 
+/--
+@isnad1 id=eq.2h3v.s7.502757e92e0a from=translated src=- shape=d2512570 vocab=a7d2daaa
+-/
 theorem ofReal_schwartzModularMass_eq_lintegral (Φ : YoungFunction) (f : 𝓢(ℝ, ℂ))
     (hf : HasCompactSupport (f : ℝ → ℂ)) {α : ℝ} (hα : 0 < α) :
     ENNReal.ofReal (schwartzModularMass Φ f α) =
       ∫⁻ x : ℝ, ENNReal.ofReal (Φ (‖f x‖ / α)) :=
   ofReal_modularMass_eq_lintegral Φ (compactSchwartzToL0Infinity f hf) hα
 
+/--
+@isnad1 id=iff.0h2v.s7.37fb4c822ca6 from=translated src=- shape=8c196d18 vocab=369bf6de
+-/
 theorem hasSchwartzPhiModularEstimate_iff_real (Φ : YoungFunction)
     (T : SchwartzNonnegativeOperator) :
     HasSchwartzPhiModularEstimate Φ T ↔
@@ -148,7 +182,9 @@ theorem hasSchwartzPhiModularEstimate_iff_real (Φ : YoungFunction)
   · simpa only [← ofReal_schwartzModularMass_eq_lintegral Φ f hf hα,
       ENNReal.ofReal_mul hC.le] using h f hf α hα
 
-/-- Abstract contradiction on the exact smooth compact-support test class.-/
+/-- Abstract contradiction on the exact smooth compact-support test class.
+@isnad1 id=not.5h5v.s7.2bf26dccea22 from=translated src=- shape=ebc36d61 vocab=abc4ed5b
+-/
 theorem not_hasSchwartzPhiModularEstimate_of_sequence (Φ : YoungFunction)
     (T : SchwartzNonnegativeOperator) (f : ℕ → 𝓢(ℝ, ℂ))
     (hf : ∀ N, HasCompactSupport (f N : ℝ → ℂ)) (α : ℕ → ℝ)
@@ -175,6 +211,9 @@ theorem not_hasSchwartzPhiModularEstimate_of_sequence (Φ : YoungFunction)
   obtain ⟨N, hN⟩ := hfalse.exists
   exact hN
 
+/--
+@isnad1 id=eq.1h3v.s7.91fb2157954e from=translated src=- shape=27305b4d vocab=0786aeac
+-/
 theorem schwartzModularMass_real_smul_inv (Φ : YoungFunction) (f : 𝓢(ℝ, ℂ))
     {α : ℝ} (hα : 0 < α) :
     schwartzModularMass Φ (α⁻¹ • f) 1 = schwartzModularMass Φ f α := by
@@ -186,6 +225,9 @@ theorem schwartzModularMass_real_smul_inv (Φ : YoungFunction) (f : 𝓢(ℝ, �
   congr 1
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.3898e259e42b from=translated src=- shape=9ce1f76f vocab=7ebcf00a
+-/
 theorem schwartzOperatorLevelSet_real_smul_inv (T : SchwartzNonnegativeOperator)
     (hT : T.PositivelyHomogeneous) (f : 𝓢(ℝ, ℂ)) {α : ℝ} (hα : 0 < α) :
     schwartzOperatorLevelSet T (α⁻¹ • f) 1 = schwartzOperatorLevelSet T f α := by
@@ -199,10 +241,16 @@ theorem schwartzOperatorLevelSet_real_smul_inv (T : SchwartzNonnegativeOperator)
     (c := ENNReal.ofReal α⁻¹ * T f x) hzero ENNReal.ofReal_ne_top
   simpa only [ENNReal.ofReal_one, mul_one, ← mul_assoc, hcancel, one_mul] using h.symm
 
+/--
+@isnad1 id=hascompa.0h1v.s6.8cb2d4620200 from=translated src=- shape=a86d2ef9 vocab=baf1dcf0
+-/
 theorem counterexampleSchwartz_hasCompactSupport (N : ℕ) :
     HasCompactSupport (counterexampleSchwartz N : ℝ → ℂ) :=
   counterexample_hasCompactSupport N
 
+/--
+@isnad1 id=hascompa.1h2v.s8.928399871894 from=translated src=- shape=22e1ee90 vocab=8bc38bd0
+-/
 theorem hasCompactSupport_schwartz_real_smul (a : ℝ) (f : 𝓢(ℝ, ℂ))
     (hf : HasCompactSupport (f : ℝ → ℂ)) :
     HasCompactSupport (a • f : 𝓢(ℝ, ℂ)) := by
@@ -211,7 +259,9 @@ theorem hasCompactSupport_schwartz_real_smul (a : ℝ) (f : 𝓢(ℝ, ℂ))
 
 /-- Every positive `κ` admits a unit-height witness taken explicitly from
 the normalized sequence. The conclusion uses the nonnegative integral,
-and neither the operator values nor the level-set measure must be finite.-/
+and neither the operator values nor the level-set measure must be finite.
+@isnad1 id=ex.7h6v.s9.9e6d3dc14bb3 from=translated src=- shape=2b13c768 vocab=1e68f96c
+-/
 theorem exists_unit_schwartz_modular_witness_of_sequence (Φ : YoungFunction)
     (T : SchwartzNonnegativeOperator) (hT : T.PositivelyHomogeneous)
     (f : ℕ → 𝓢(ℝ, ℂ)) (hf : ∀ N, HasCompactSupport (f N : ℝ → ℂ))
@@ -247,6 +297,9 @@ theorem exists_unit_schwartz_modular_witness_of_sequence (Φ : YoungFunction)
     _ = ENNReal.ofReal κ * ENNReal.ofReal (δ * (N : ℝ)) := ENNReal.ofReal_mul hκ.le
     _ ≤ ENNReal.ofReal κ * volume (schwartzOperatorLevelSet T (f N) (α N)) := by gcongr
 
+/--
+@isnad1 id=islittle.2h2v.s5.52aef19187cd from=translated src=- shape=294f68f6 vocab=ef8a86d2
+-/
 theorem schwartzModularMass_counterexample_height_isLittleO (Φ : YoungFunction)
     (hΦ : GrowsSlowerThanEndpoint Φ) {c : ℝ} (hc : 0 < c) :
     (fun N ↦ schwartzModularMass Φ (counterexampleSchwartz N) (counterexampleHeight c N))
@@ -254,7 +307,9 @@ theorem schwartzModularMass_counterexample_height_isLittleO (Φ : YoungFunction)
   modularMass_counterexample_height_isLittleO Φ hΦ hc
 
 /-- The remaining lower bound has precisely the paper's non-strict level,
-height, and linear-in-`N` measure, now for the actual lacunary operator.-/
+height, and linear-in-`N` measure, now for the actual lacunary operator.
+@isnad1 id=not.4h3v.s6.4791456f27d0 from=translated src=- shape=e303635a vocab=8d4995f7
+-/
 theorem not_hasSchwartzPhiModularEstimate_lacunary_of_counterexample_lower_bound
     (Φ : YoungFunction) (hΦ : GrowsSlowerThanEndpoint Φ)
     {c δ : ℝ} (hc : 0 < c) (hδ : 0 < δ)
@@ -281,7 +336,9 @@ theorem not_hasSchwartzPhiModularEstimate_lacunary_of_counterexample_lower_bound
 
 /-- The paper's witnesses are normalized members of the actual
 `counterexampleSchwartz` family. Halving the given analytic height ensures
-the required strict level `> 1`. The lower bound remains a hypothesis.-/
+the required strict level `> 1`. The lower bound remains a hypothesis.
+@isnad1 id=ex.5h4v.s9.5374f83a100d from=translated src=- shape=6edb4db0 vocab=380142ef
+-/
 theorem exists_normalized_counterexampleSchwartz_modular_witness
     (Φ : YoungFunction) (hΦ : GrowsSlowerThanEndpoint Φ)
     {c δ : ℝ} (hc : 0 < c) (hδ : 0 < δ)
@@ -319,7 +376,9 @@ theorem exists_normalized_counterexampleSchwartz_modular_witness
       (schwartzModularMass_counterexample_height_isLittleO Φ hΦ (half_pos hc)) hδ hs hκ
 
 /-- The explicit `f_κ` conclusion for every `κ > 0`; the paper's
-restriction `κ < 1` is unnecessary for this implication.-/
+restriction `κ < 1` is unnecessary for this implication.
+@isnad1 id=ex.5h4v.s8.48445d14b515 from=translated src=- shape=541fa769 vocab=14cba659
+-/
 theorem exists_unit_schwartz_modular_witness_lacunary_of_counterexample_lower_bound
     (Φ : YoungFunction) (hΦ : GrowsSlowerThanEndpoint Φ)
     {c δ : ℝ} (hc : 0 < c) (hδ : 0 < δ)
@@ -336,7 +395,9 @@ theorem exists_unit_schwartz_modular_witness_lacunary_of_counterexample_lower_bo
 
 /-- Any independently defined ambient operator agreeing on smooth compact
 inputs inherits the restricted estimate. This is a compatibility theorem,
-not a definition of an extension by arbitrary values.-/
+not a definition of an extension by arbitrary values.
+@isnad1 id=hasschwa.2h3v.s6.31fdece586be from=translated src=- shape=52345e42 vocab=86ae4e6d
+-/
 theorem HasPhiModularEstimate.schwartz_restriction (Φ : YoungFunction)
     (T : NonnegativeOperator) (S : SchwartzNonnegativeOperator)
     (hagree : ∀ (f : 𝓢(ℝ, ℂ)) (hf : HasCompactSupport (f : ℝ → ℂ)) (x : ℝ),
@@ -354,7 +415,9 @@ theorem HasPhiModularEstimate.schwartz_restriction (Φ : YoungFunction)
     hest (compactSchwartzToL0Infinity f hf) α hα
 
 /-- Failure of the restricted estimate prevents a compatible ambient
-operator from satisfying the paper's modular estimate.-/
+operator from satisfying the paper's modular estimate.
+@isnad1 id=not.2h3v.s6.9e5e513b7f2f from=translated src=- shape=b4b90c9a vocab=86ae4e6d
+-/
 theorem not_hasPhiModularEstimate_of_schwartz_restriction (Φ : YoungFunction)
     (T : NonnegativeOperator) (S : SchwartzNonnegativeOperator)
     (hagree : ∀ (f : 𝓢(ℝ, ℂ)) (hf : HasCompactSupport (f : ℝ → ℂ)) (x : ℝ),

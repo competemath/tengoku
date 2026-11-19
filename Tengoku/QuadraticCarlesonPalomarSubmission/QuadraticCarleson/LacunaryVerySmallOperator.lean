@@ -41,12 +41,17 @@ set_option autoImplicit false
 noncomputable def lowSupportRadius (B : ℕ) (m : ℤ) : ℝ :=
   (2 : ℝ) ^ B / Real.sqrt (dyadicModulation m)
 
+/--
+@isnad1 id=lt.0h2v.s4.052146e11857 from=translated src=- shape=0d4521f5 vocab=b7ddc8f7
+-/
 theorem lowSupportRadius_pos (B : ℕ) (m : ℤ) :
     0 < lowSupportRadius B m := by
   unfold lowSupportRadius
   exact div_pos (by positivity) (Real.sqrt_pos.2 (dyadicModulation_pos m))
 
-/-- The square root of the dyadic modulation is its half-integer real power.-/
+/-- The square root of the dyadic modulation is its half-integer real power.
+@isnad1 id=eq.0h1v.s5.cd45cca242e5 from=translated src=- shape=d7602a48 vocab=d27a1bed
+-/
 theorem sqrt_dyadicModulation (m : ℤ) :
     Real.sqrt (dyadicModulation m) = (2 : ℝ) ^ ((m : ℝ) / 2) := by
   rw [dyadicModulation, Real.sqrt_eq_rpow, ← Real.rpow_intCast]
@@ -55,7 +60,9 @@ theorem sqrt_dyadicModulation (m : ℤ) :
   ring
 
 /-- Multiplication by `2^m` converts the support radius into the square-root
-frequency factor occurring in the paper.-/
+frequency factor occurring in the paper.
+@isnad1 id=eq.0h2v.s6.3b4e670933ff from=translated src=- shape=fe3a6a22 vocab=73383e5e
+-/
 theorem dyadicModulation_mul_lowSupportRadius (B : ℕ) (m : ℤ) :
     dyadicModulation m * lowSupportRadius B m =
       (2 : ℝ) ^ ((B : ℝ) + (m : ℝ) / 2) := by
@@ -77,7 +84,9 @@ theorem dyadicModulation_mul_lowSupportRadius (B : ℕ) (m : ℤ) :
       rw [Real.rpow_add (by norm_num : (0 : ℝ) < 2)]
 
 /-- In the paper's very-small range, an atom is shorter than the outer
-support radius of the low kernel.-/
+support radius of the low kernel.
+@isnad1 id=lt.3h5v.s6.65ca26b67bd3 from=translated src=- shape=eb145db5 vocab=00179272
+-/
 theorem atomLength_lt_lowSupportRadius_of_mem_L
     {c B : ℕ} (hB : 0 < B) {m j : ℤ} (hj : j ∈ LacunaryMiddleRange.L B c m)
     {R : ℝ} (hscale : (2 : ℝ) ^ j ≤ R ∧ R < (2 : ℝ) ^ (j + 1)) :
@@ -115,7 +124,9 @@ theorem atomLength_lt_lowSupportRadius_of_mem_L
   exact (lt_div_iff₀ hsqrt).2 hmain
 
 /-- The expanded support interval has length at most three outer radii in
-the very-small range.-/
+the very-small range.
+@isnad1 id=le.3h5v.s7.03632bebd0a1 from=translated src=- shape=6b6e279b vocab=c1f7a913
+-/
 theorem expandedLength_le_three_mul_lowSupportRadius
     {c B : ℕ} (hB : 0 < B) {m j : ℤ} (hj : j ∈ LacunaryMiddleRange.L B c m)
     {R : ℝ} (hscale : (2 : ℝ) ^ j ≤ R ∧ R < (2 : ℝ) ^ (j + 1)) :
@@ -123,7 +134,9 @@ theorem expandedLength_le_three_mul_lowSupportRadius
   linarith [atomLength_lt_lowSupportRadius_of_mem_L hB hj hscale]
 
 /-- The product of the cancellation size and the support length is exactly
-controlled by the paper's very-small weight.-/
+controlled by the paper's very-small weight.
+@isnad1 id=le.3h5v.s7.27ddc6949bd0 from=translated src=- shape=db504257 vocab=a22a35f7
+-/
 theorem verySmallCancellationCoefficient_le
     {c B : ℕ} (hB : 0 < B) {m j : ℤ} (hj : j ∈ LacunaryMiddleRange.L B c m)
     {R : ℝ} (hscale : (2 : ℝ) ^ j ≤ R ∧ R < (2 : ℝ) ^ (j + 1)) :
@@ -161,7 +174,9 @@ theorem verySmallCancellationCoefficient_le
 /-- If `x` lies outside the interval obtained by adding an outer radius `D`
 to both sides of `I`, then it is more than `D` from every point of `I`.
 The half-open convention supplies the required strict inequality at both
-endpoints.-/
+endpoints.
+@isnad1 id=lt.4h5v.s6.a88dd375ca37 from=translated src=- shape=c995fbdd vocab=9d065013
+-/
 theorem radius_lt_distance_of_not_mem_expanded
     {z R D x y : ℝ} (hR : 0 < R) (hD : 0 < D)
     (hx : x ∉ centeredInterval z (2 * D + R))
@@ -178,7 +193,9 @@ theorem radius_lt_distance_of_not_mem_expanded
     linarith [hy.2]
 
 /-- Outside the expanded interval, the actual low kernel is identically zero
-on the atom interval.-/
+on the atom interval.
+@isnad1 id=eq.3h6v.s6.1f72ef118d15 from=translated src=- shape=b826fd46 vocab=77e98f5b
+-/
 theorem paperLowCZKernel_eq_zero_of_not_mem_expanded
     (B : ℕ) (m : ℤ) {z R x y : ℝ} (hR : 0 < R)
     (hx : x ∉ centeredInterval z (2 * lowSupportRadius B m + R))
@@ -201,7 +218,9 @@ theorem paperLowCZKernel_eq_zero_of_not_mem_expanded
   exact (not_lt_of_ge hmul.le) hs
 
 /-- Hence the genuine low-kernel action on one level atom is supported in
-the explicitly expanded interval.-/
+the explicitly expanded interval.
+@isnad1 id=eq.2h8v.s6.a8db8cc68034 from=translated src=- shape=2aad48e3 vocab=409c8643
+-/
 theorem integral_paperLowCZKernel_levelAtom_eq_zero_of_not_mem_expanded
     {A : ℕ → ℝ} {f : ℝ → ℂ} (k B : ℕ) (m : ℤ)
     {z R x : ℝ} (hR : 0 < R)
@@ -216,7 +235,9 @@ theorem integral_paperLowCZKernel_levelAtom_eq_zero_of_not_mem_expanded
 
 /-- Raw integrated very-small estimate.  The first factor is exactly the
 pointwise cancellation bound, and the second is the length of the only
-interval on which the output can be nonzero.-/
+interval on which the output can be nonzero.
+@isnad1 id=le.3h7v.s8.6bb5fb758b0f from=translated src=- shape=384e90a3 vocab=3d6ff30a
+-/
 theorem lintegral_enorm_paperLowCZKernel_levelAtom_compl_fivefold_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k B : ℕ} (hAk : 0 ≤ A k) (m : ℤ)
@@ -268,7 +289,9 @@ theorem lintegral_enorm_paperLowCZKernel_levelAtom_compl_fivefold_le
     _ = _ := rfl
 
 /-- Paper-facing atomwise estimate in the very-small range, now expressed
-with the exact summable weight `2^(B+m/2+j)`.-/
+with the exact summable weight `2^(B+m/2+j)`.
+@isnad1 id=le.6h9v.s8.837ceaeaed6a from=translated src=- shape=d602a40e vocab=32828803
+-/
 theorem lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) {m j : ℤ}
@@ -321,7 +344,9 @@ theorem lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le
         (verySmallWeight_pos B m j).le
 
 /-- Strong fixed-scale family form, retaining the actual atom mass rather
-than replacing it by the whole magnitude-level mass.-/
+than replacing it by the whole magnitude-level mass.
+@isnad1 id=le.6h10v.s8.b25d6e43a64c from=translated src=- shape=32ffac56 vocab=3b62f558
+-/
 theorem tsum_lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le_atomMass
     {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
@@ -352,7 +377,9 @@ theorem tsum_lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le_atomMass
 
 /-- Summing the very-small estimate over a disjoint family of atoms in one
 fixed spatial scale costs only the standard factor two from centering the
-atoms.-/
+atoms.
+@isnad1 id=le.7h10v.s8.09a9733191aa from=translated src=- shape=68176d9a vocab=436156e6
+-/
 theorem tsum_lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le
     {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
@@ -411,7 +438,9 @@ theorem tsum_lintegral_enorm_paperLowCZKernel_levelAtom_verySmall_le
     _ = _ := rfl
 
 /-- The preceding estimate applied to the actual canonical stopping cells in
-one exact dyadic scale class.  No auxiliary interval family is assumed.-/
+one exact dyadic scale class.  No auxiliary interval family is assumed.
+@isnad1 id=le.4h7v.s8.cf6acc9c9e20 from=translated src=- shape=c90fc8a8 vocab=7c1dd833
+-/
 theorem tsum_canonicalScaleCells_verySmall_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) {m j : ℤ}
@@ -448,7 +477,9 @@ noncomputable def canonicalScaleVerySmallOutputMass
           levelAtom A f k (stoppingCenter I.1) (stoppingLength I.1) y‖ₑ
 
 /-- The canonical scale slice is literally the disjoint atom sum indexed by
-the stopping cells in that exact scale class.-/
+the stopping cells in that exact scale class.
+@isnad1 id=eq.0h5v.s7.aa897d97e0db from=translated src=- shape=4fef23a0 vocab=d4a080e5
+-/
 theorem stoppingScaleLevelBadPart_eq_scaleDisjointLevelAtomSum
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (j : ℤ) (x : ℝ) :
     stoppingScaleLevelBadPart A f j k x =
@@ -466,7 +497,9 @@ theorem stoppingScaleLevelBadPart_eq_scaleDisjointLevelAtomSum
       levelAtom A f k (stoppingCenter I) (stoppingLength I) x)]
 
 /-- The low-kernel action on one canonical scale is exactly the sum of its
-genuine atom actions.-/
+genuine atom actions.
+@isnad1 id=eq.3h7v.s8.73b3eaba5950 from=translated src=- shape=8dc6cfe1 vocab=1cb13466
+-/
 theorem integral_paperLowCZKernel_stoppingScaleLevelBadPart_eq_tsum_cells
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k B : ℕ} (hAk : 0 ≤ A k) (m j : ℤ) (x : ℝ) :
@@ -503,6 +536,9 @@ noncomputable def canonicalScaleLowActionEnorm
         (dyadicModulation m) (dyadicModulation_pos m).ne' B x y *
       stoppingScaleLevelBadPart A f j k y‖ₑ
 
+/--
+@isnad1 id=measurab.1h6v.s5.d57ad7800ec0 from=translated src=- shape=917db6f4 vocab=b63fe5f5
+-/
 theorem measurable_canonicalScaleLowActionEnorm
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B : ℕ) (m j : ℤ) :
@@ -536,7 +572,9 @@ noncomputable def canonicalScaleLowActionMass
 
 /-- Passing from individual atom complements to the global exceptional-set
 complement and summing the exact atom identity bounds the actual scale
-output by `canonicalScaleVerySmallOutputMass`.-/
+output by `canonicalScaleVerySmallOutputMass`.
+@isnad1 id=le.3h6v.s6.f2e3385fcbb2 from=translated src=- shape=0373e6f9 vocab=76ab8bf8
+-/
 theorem canonicalScaleLowActionMass_le_outputMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k B : ℕ} (hAk : 0 ≤ A k) (m j : ℤ) :
@@ -600,7 +638,9 @@ noncomputable def canonicalScaleAtomL1Mass
       (∫ x, ‖levelAtom A f k (stoppingCenter I) (stoppingLength I) x‖)) j
 
 /-- The fixed `(m,j)` canonical output is bounded by the paper's weight times
-the mass actually present at scale `j`.-/
+the mass actually present at scale `j`.
+@isnad1 id=le.4h7v.s6.da4523acc836 from=translated src=- shape=3ded0438 vocab=5ac74426
+-/
 theorem canonicalScaleVerySmallOutputMass_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) {m j : ℤ}
@@ -632,7 +672,9 @@ noncomputable def restrictedCanonicalVerySmallOutputMass
     (fun j ↦ canonicalScaleVerySmallOutputMass A f k B m j) j
 
 /-- Termwise comparison with the nonnegative weight used by the already
-verified geometric Tonelli lemma.-/
+verified geometric Tonelli lemma.
+@isnad1 id=le.3h7v.s6.75f1a0fd6720 from=translated src=- shape=7d3af97d vocab=0434e0e3
+-/
 theorem restrictedCanonicalVerySmallOutputMass_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) (m j : ℤ) :
@@ -651,7 +693,9 @@ theorem restrictedCanonicalVerySmallOutputMass_le
     simp [restrictedCanonicalVerySmallOutputMass, restrictedVerySmallWeight, hj, hm]
 
 /-- Summation over all lacunary modulations and all atom scales.  This is the
-paper's complete very-small double sum for one magnitude level.-/
+paper's complete very-small double sum for one magnitude level.
+@isnad1 id=le.3h5v.s7.66476e466bea from=translated src=- shape=4236a0eb vocab=272f8ba4
+-/
 theorem tsum_tsum_restrictedCanonicalVerySmallOutputMass_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) :
@@ -689,7 +733,9 @@ theorem tsum_tsum_restrictedCanonicalVerySmallOutputMass_le
     _ = _ := by rw [mul_assoc]
 
 /-- The exact half-open scale partition loses no atom mass; only the standard
-factor two from subtracting the atom average remains.-/
+factor two from subtracting the atom average remains.
+@isnad1 id=le.2h3v.s6.50294441c18d from=translated src=- shape=dad61d46 vocab=e140ed3d
+-/
 theorem tsum_canonicalScaleAtomL1Mass_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) :
@@ -702,7 +748,9 @@ theorem tsum_canonicalScaleAtomL1Mass_le
     _ _ centeredStoppingIntervals_pairwiseDisjoint
 
 /-- Final geometric summation of the genuine very-small contribution for one
-magnitude level, expressed directly in terms of that level's `L¹` mass.-/
+magnitude level, expressed directly in terms of that level's `L¹` mass.
+@isnad1 id=le.3h5v.s6.dfb9923b74f9 from=translated src=- shape=25749b84 vocab=eb6278c4
+-/
 theorem tsum_tsum_restrictedCanonicalVerySmallOutputMass_le_levelMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) :
@@ -747,6 +795,9 @@ noncomputable def restrictedCanonicalScaleLowActionMass
   (LacunaryMiddleRange.L B c m).indicator
     (fun j ↦ canonicalScaleLowActionMass A f k B m j) j
 
+/--
+@isnad1 id=le.3h7v.s6.92cd892ea774 from=translated src=- shape=1c614407 vocab=670922ea
+-/
 theorem restrictedCanonicalScaleLowActionMass_le_outputMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k B c : ℕ} (hAk : 0 ≤ A k) (m j : ℤ) :
@@ -760,7 +811,9 @@ theorem restrictedCanonicalScaleLowActionMass_le_outputMass
       restrictedCanonicalVerySmallOutputMass, hj]
 
 /-- The paper's full very-small double sum now controls the genuine
-low-kernel scale outputs outside the global exceptional set.-/
+low-kernel scale outputs outside the global exceptional set.
+@isnad1 id=le.4h5v.s7.0904ab270660 from=translated src=- shape=3c8e6e77 vocab=5a0fc421
+-/
 theorem tsum_tsum_restrictedCanonicalScaleLowActionMass_le_levelMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) :
@@ -787,6 +840,9 @@ noncomputable def restrictedCanonicalScaleLowActionEnorm
   (LacunaryMiddleRange.L B c m).indicator
     (fun j ↦ canonicalScaleLowActionEnorm A f k B m j x) j
 
+/--
+@isnad1 id=measurab.1h7v.s5.bf55b616a1a3 from=translated src=- shape=9a7b880c vocab=edcfc15d
+-/
 theorem measurable_restrictedCanonicalScaleLowActionEnorm
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (m j : ℤ) :
@@ -798,6 +854,9 @@ theorem measurable_restrictedCanonicalScaleLowActionEnorm
   · simp only [indicator_of_notMem hj]
     exact measurable_const
 
+/--
+@isnad1 id=eq.0h7v.s6.7b894440cac2 from=translated src=- shape=fb5fbb9c vocab=4dac904b
+-/
 theorem lintegral_restrictedCanonicalScaleLowActionEnorm_compl
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) (m j : ℤ) :
     (∫⁻ x in (fivefoldExceptionalSet
@@ -817,12 +876,18 @@ noncomputable def verySmallLowContributionAtLevel
   ∑' m : ℤ, ∑' j : ℤ,
     restrictedCanonicalScaleLowActionEnorm A f k B c m j x
 
+/--
+@isnad1 id=measurab.1h5v.s5.c8fc2f979823 from=translated src=- shape=8a2ced52 vocab=318e6824
+-/
 theorem measurable_verySmallLowContributionAtLevel
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) : Measurable (verySmallLowContributionAtLevel A f k B c) :=
   Measurable.tsum (fun m ↦ Measurable.tsum fun j ↦
     measurable_restrictedCanonicalScaleLowActionEnorm hf k B c m j)
 
+/--
+@isnad1 id=eq.1h5v.s6.3a302c661b73 from=translated src=- shape=084a403f vocab=9bdb5491
+-/
 theorem lintegral_verySmallLowContributionAtLevel_compl_eq
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) :
@@ -842,6 +907,9 @@ theorem lintegral_verySmallLowContributionAtLevel_compl_eq
   exact tsum_congr fun j ↦
     lintegral_restrictedCanonicalScaleLowActionEnorm_compl A f k B c m j
 
+/--
+@isnad1 id=le.4h5v.s7.33520016c926 from=translated src=- shape=21e7b3c2 vocab=d5c7f532
+-/
 theorem lintegral_verySmallLowContributionAtLevel_compl_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k c B : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) :
@@ -861,6 +929,9 @@ noncomputable def lacunaryVerySmallLowContribution
   ∑' k : ℕ,
     verySmallLowContributionAtLevel lacunaryAmplitude f k (B k) c x
 
+/--
+@isnad1 id=measurab.1h3v.s4.5cc02c40820e from=translated src=- shape=430a9e58 vocab=d65055ce
+-/
 theorem measurable_lacunaryVerySmallLowContribution
     {f : ℝ → ℂ} (hf : Measurable f) (B : ℕ → ℕ) (c : ℕ) :
     Measurable (lacunaryVerySmallLowContribution f B c) :=
@@ -869,7 +940,9 @@ theorem measurable_lacunaryVerySmallLowContribution
 
 /-- Complete `L¹` estimate for the actual very-small lacunary contribution
 outside the global fivefold exceptional set.  The bound is uniform in the
-positive cutoff sequence `B_k`.-/
+positive cutoff sequence `B_k`.
+@isnad1 id=le.3h3v.s7.1b89a5fdfd26 from=translated src=- shape=9fb36a49 vocab=58ac3e7b
+-/
 theorem lintegral_lacunaryVerySmallLowContribution_compl_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) :

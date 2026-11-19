@@ -27,11 +27,17 @@ noncomputable def activeBadIntervals
     (scale : RealInterval → ℤ) (N : Finset RealInterval) : Finset RealInterval :=
   N.filter fun I ↦ ∃ x, intervalBadInput S f I₀ k₀ s scale I x ≠ 0
 
+/--
+@isnad1 id=le.0h7v.s5.b12f9aa7094a from=translated src=- shape=2d8f1543 vocab=54e26b13
+-/
 theorem activeBadIntervals_subset
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) :
     activeBadIntervals S f I₀ k₀ s scale N ⊆ N := Finset.filter_subset _ _
 
+/--
+@isnad1 id=eq.1h8v.s6.7a5e98675cf1 from=translated src=- shape=f67526bb vocab=6d21f39c
+-/
 theorem localizedBadPiece_eq_zero_of_inactive
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (I : RealInterval)
@@ -46,7 +52,9 @@ theorem localizedBadPiece_eq_zero_of_inactive
   simp only [hzero, mul_zero, integral_zero]
 
 /-- Deletion preserves every fixed coefficient choice, not merely the
-unweighted sum.-/
+unweighted sum.
+@isnad1 id=eq.0h9v.s7.79b0c2787a60 from=translated src=- shape=5d35aca6 vocab=474bf09b
+-/
 theorem sum_weighted_localizedBadPiece_eq_active
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (c : RealInterval → ℂ) (x : ℝ) :
@@ -62,7 +70,9 @@ theorem sum_weighted_localizedBadPiece_eq_active
     fun h ↦ hn (Finset.mem_filter.mpr ⟨hI, h⟩)
   rw [localizedBadPiece_eq_zero_of_inactive S f I₀ k₀ s scale I hi x, mul_zero]
 
-/-- In particular, every physical length-threshold sum is unchanged.-/
+/-- In particular, every physical length-threshold sum is unchanged.
+@isnad1 id=eq.0h9v.s7.56255b9085fa from=translated src=- shape=724aa0c6 vocab=e1a4fece
+-/
 theorem sum_lengthTail_localizedBadPiece_eq_active
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (ell : ℤ) (x : ℝ) :
@@ -77,7 +87,9 @@ theorem sum_lengthTail_localizedBadPiece_eq_active
       (fun I ↦ if (2 : ℝ) ^ ell ≤ I.length then 1 else 0) x
 
 /-- Original generation-prefix sums are preserved when only inactive
-terms are deleted; this does not identify newly recomputed layer labels.-/
+terms are deleted; this does not identify newly recomputed layer labels.
+@isnad1 id=eq.0h9v.s7.e05f2d112358 from=translated src=- shape=d375587d vocab=3d8c7000
+-/
 theorem sum_generationPrefix_localizedBadPiece_eq_active
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) (N : Finset RealInterval) (n : ℕ) (x : ℝ) :
@@ -92,7 +104,9 @@ theorem sum_generationPrefix_localizedBadPiece_eq_active
       (fun I ↦ if generationIndex N I < n then 1 else 0) x
 
 /-- An active good interval meets a genuine selected bad cell, which
-must lie inside it by laminarity and the definition of the good family.-/
+must lie inside it by laminarity and the definition of the good family.
+@isnad1 id=ex.3h7v.s7.b545ff799832 from=translated src=- shape=cda60728 vocab=84a59a39
+-/
 theorem exists_badScaleCell_subset_of_active
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)
@@ -115,7 +129,9 @@ theorem exists_badScaleCell_subset_of_active
   · exact (Set.disjoint_left.mp hd (I.centralThird_subset_carrier hi.1) hxJ).elim
 
 /-- Above the grouped base scale, activity charges the full parent
-length to a literal contained stopping cell with the exact `2^s` ratio.-/
+length to a literal contained stopping cell with the exact `2^s` ratio.
+@isnad1 id=ex.4h7v.s7.6b66f4825af2 from=translated src=- shape=a922dccf vocab=47e4e03d
+-/
 theorem exists_chargedCell_of_active_above_base
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ)

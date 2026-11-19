@@ -177,7 +177,9 @@ decay as `j` moves left from `k`; after the counterexample normalization their
 total contribution is `O(1 / (N A²))`, uniformly in the witness `(k,n)`.
 
 The harmless explicit factor `128` consists of `64`, coming from
-`|x-j| ≥ τ ≥ 1/4`, and the finite geometric-series bound `2`.-/
+`|x-j| ≥ τ ≥ 1/4`, and the finite geometric-series bound `2`.
+@isnad1 id=le.5h6v.s8.beb2ae70bb4f from=translated src=- shape=c2125962 vocab=61c3cc33
+-/
 theorem paperOscillatoryPacketSum_norm_le
     {N n : ℕ} {L A τ : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hkn : (k, n) ∈ paperMainTermIndices N L)

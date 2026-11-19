@@ -34,7 +34,9 @@ inside a complete finite shifted-grid tree.
 The energy estimate uses the exact gap hypothesis `0 ≤ k + 2 - s`.
 The stopping constant is explicitly the source constant `10` multiplying
 the parent `f` average.  The external tail cutoff is imposed later when
-these one-piece estimates are summed.-/
+these one-piece estimates are summed.
+@isnad1 id=le.3h8v.s8.92f190755477 from=translated src=- shape=b361a113 vocab=801569e0
+-/
 theorem localizedEnergy_completeFiniteShiftGridTree_goodCollection_le
     (topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ)
     (f : L0Infinity)

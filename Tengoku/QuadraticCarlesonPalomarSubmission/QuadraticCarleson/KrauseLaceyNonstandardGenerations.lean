@@ -22,6 +22,9 @@ open KrauseLaceyStoppingExtraction KrauseLaceyGenerationLayers
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=memlp.1h3v.s6.f1de1c516624 from=translated src=- shape=5f080ef2 vocab=a3b6b890
+-/
 theorem memLp_localizedPiece_of_integrable (k : ℤ) (I : RealInterval)
     {b : ℝ → ℂ} (hb : Integrable b) : MemLp (krauseLaceyLocalizedPiece 1 k I b) 2 := by
   apply (memLp_two_iff_integrable_sq_norm
@@ -34,11 +37,17 @@ noncomputable def localizedPieceLp (k : ℤ) (I : RealInterval)
     (b : ℝ → ℂ) (hb : Integrable b) : Lp ℂ 2 (volume : Measure ℝ) :=
   (memLp_localizedPiece_of_integrable k I hb).toLp (krauseLaceyLocalizedPiece 1 k I b)
 
+/--
+@isnad1 id=eventual.1h3v.s8.759e05598f8d from=translated src=- shape=49b6813e vocab=60f495f9
+-/
 theorem localizedPieceLp_ae_eq (k : ℤ) (I : RealInterval)
     (b : ℝ → ℂ) (hb : Integrable b) :
     localizedPieceLp k I b hb =ᵐ[volume] krauseLaceyLocalizedPiece 1 k I b :=
   (memLp_localizedPiece_of_integrable k I hb).coeFn_toLp
 
+/--
+@isnad1 id=eq.1h3v.s8.c3d4f06cb94e from=translated src=- shape=1f918a7e vocab=87779767
+-/
 theorem norm_localizedPieceLp_sq (k : ℤ) (I : RealInterval)
     (b : ℝ → ℂ) (hb : Integrable b) :
     ‖localizedPieceLp k I b hb‖ ^ 2 = ∫ x, ‖krauseLaceyLocalizedPiece 1 k I b x‖ ^ 2 := by
@@ -47,6 +56,9 @@ theorem norm_localizedPieceLp_sq (k : ℤ) (I : RealInterval)
   filter_upwards [localizedPieceLp_ae_eq k I b hb] with x hx
   rw [hx]
 
+/--
+@isnad1 id=eq.5h6v.s8.19150812c63e from=translated src=- shape=000b384d vocab=e8ce77f9
+-/
 theorem inner_localizedPieceLp_eq_zero_of_disjoint
     (j k : ℤ) (I J : RealInterval) (f g : ℝ → ℂ)
     (hf : Integrable f) (hg : Integrable g)
@@ -69,6 +81,9 @@ theorem inner_localizedPieceLp_eq_zero_of_disjoint
   rw [integral_congr_ae hzero]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s7.54a8e62f6df8 from=translated src=- shape=b2d5bee8 vocab=b9e386c4
+-/
 theorem norm_sum_sq_eq_sum_of_inner_zero
     {ι E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (S : Finset ι) (v : ι → E)
@@ -101,7 +116,9 @@ noncomputable def nonstandardGenerationLp
     badPieceLp S f hf I₀ k₀ s scale I
 
 /-- The generation is a.e. equal to its actual finite integral-operator
-sum; the `Lp` representative has not changed the mathematical output.-/
+sum; the `Lp` representative has not changed the mathematical output.
+@isnad1 id=eventual.1h7v.s8.ca071dc68767 from=translated src=- shape=efcb19ba vocab=ad1cba0d
+-/
 theorem nonstandardGenerationLp_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ) (n : ℕ) :
@@ -124,7 +141,9 @@ theorem nonstandardGenerationLp_ae_eq
   exact Finset.sum_congr rfl hx
 
 /-- Disjointness of the actual minimal layer gives exact orthogonality,
-so its squared norm is the sum of the genuine individual energies.-/
+so its squared norm is the sum of the genuine individual energies.
+@isnad1 id=eq.2h7v.s8.e24b06d4b4e0 from=translated src=- shape=27c0bd6a vocab=f181c2de
+-/
 theorem norm_nonstandardGenerationLp_sq_eq
     {S : Finset RealInterval} (f : ℝ → ℂ) (hf : Integrable f) (I₀ : RealInterval)
     (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -151,7 +170,9 @@ theorem norm_nonstandardGenerationLp_sq_eq
       (hdisj hI hJ hne)
 
 /-- Each actual nonstandard generation has the derived diagonal energy
-bound, uniformly in the number of its intervals and their scales.-/
+bound, uniformly in the number of its intervals and their scales.
+@isnad1 id=le.5h7v.s9.21495632c0f9 from=translated src=- shape=44f2f491 vocab=47a44770
+-/
 theorem norm_nonstandardGenerationLp_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)

@@ -36,6 +36,9 @@ local instance : DecidableEq RealInterval := Classical.decEq _
 private def sparseAtom (p : ℝ) (f g : ℝ → ℂ) (I : RealInterval) : ℝ≥0∞ :=
   ENNReal.ofReal (I.length * localAverage 1 f I * localAverage p g I)
 
+/--
+@isnad1 id=eq.0h4v.s5.1213b84a7cd2 from=translated src=- shape=519046c8 vocab=50353879
+-/
 theorem sparseForm_finset (p : ℝ) (f g : ℝ → ℂ)
     (S : Finset RealInterval) :
     sparseForm p f g (↑S : Set RealInterval) = ∑ I ∈ S, sparseAtom p f g I := by
@@ -339,6 +342,9 @@ private theorem exists_recursive_sparse_bound_of_root_mem
 on each selected child.  This is the form used for the depth-zero roots of a
 three-shift forest, which need not themselves occur in the localized input
 family. -/
+/--
+@isnad1 id=ex.5h10v.s8.2d04b166f801 from=translated src=- shape=8ff10f8e vocab=2f24dedd
+-/
 theorem exists_recursive_sparse_bound
     {A p : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)
@@ -452,6 +458,9 @@ noncomputable def localizedTailMaximalTestOperator
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval) : TestOperator :=
   fun f x ↦ ((localizedTailMaximal ell₀ scale S f x).toReal : ℂ)
 
+/--
+@isnad1 id=hasspars.5h8v.s6.8169ba8981d7 from=translated src=- shape=83cd93d5 vocab=b5a3c8cf
+-/
 theorem hasSparseOnePBound_localizedTailMaximalTestOperator_of_tree
     {A p : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2)

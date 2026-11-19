@@ -33,7 +33,9 @@ noncomputable section
 local instance : DecidableEq RealInterval := Classical.decEq _
 
 /-- Finite grouped inputs are integrable.  This is the input-side finiteness
-needed to distribute the positive pairing over output intervals.-/
+needed to distribute the positive pairing over output intervals.
+@isnad1 id=integrab.0h5v.s5.9c18acaa6712 from=translated src=- shape=107f88a0 vocab=798abb5c
+-/
 theorem integrable_offsetGroupedInput
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (I : RealInterval) (s : ℤ) :
@@ -62,7 +64,9 @@ theorem integrable_offsetGroupedInput
 
 /-- A tail at a fixed cutoff is bounded by the positive sum of *all* its
 localized pieces.  In particular, no cost is paid for the number of possible
-cutoffs in the definition of `offsetTailMaximal`.-/
+cutoffs in the definition of `offsetTailMaximal`.
+@isnad1 id=le.0h7v.s7.b7daf19080ad from=translated src=- shape=ab00dc75 vocab=028a6668
+-/
 theorem enorm_offsetLocalizedActionOn_le_sum_enorm_piece
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell s : ℤ) (x : ℝ) :
@@ -85,7 +89,9 @@ theorem enorm_offsetLocalizedActionOn_le_sum_enorm_piece
       exact bot_le
 
 /-- Positive majorization of the genuine (possibly infinite-indexed)
-maximal tail by a finite sum.-/
+maximal tail by a finite sum.
+@isnad1 id=le.0h7v.s6.a034624a02e1 from=translated src=- shape=53358260 vocab=bacfe6f9
+-/
 theorem offsetTailMaximalOn_le_sum_enorm_piece
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell₀ s : ℤ) (x : ℝ) :
@@ -97,7 +103,9 @@ theorem offsetTailMaximalOn_le_sum_enorm_piece
   rintro ⟨ell, hell⟩
   exact enorm_offsetLocalizedActionOn_le_sum_enorm_piece S A scale f ell s x
 
-/-- The grouped input is identically zero outside the output central third.-/
+/-- The grouped input is identically zero outside the output central third.
+@isnad1 id=eq.1h6v.s5.701e66fc54c0 from=translated src=- shape=25979479 vocab=1e452956
+-/
 theorem offsetGroupedInput_eq_zero_of_notMem_centralThird
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (I : RealInterval) (s : ℤ) {x : ℝ} (hx : x ∉ I.centralThird) :
@@ -109,7 +117,9 @@ theorem offsetGroupedInput_eq_zero_of_notMem_centralThird
 
 /-- The elementary kernel-size estimate for one direct offset piece.  The
 factor `8` is exactly the ratio between the parent length and the positive
-annular outer radius.-/
+annular outer radius.
+@isnad1 id=le.1h6v.s7.e3c495cb97c3 from=translated src=- shape=d9a32208 vocab=18934b8a
+-/
 theorem norm_offsetLocalizedPiece_le_mass_of_scale
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (I : RealInterval) (s : ℤ)
@@ -148,7 +158,9 @@ theorem norm_offsetLocalizedPiece_le_mass_of_scale
   ring
 
 /-- A kernel-size/support majorant for the true offset maximal tail on an
-arbitrary output subcollection.-/
+arbitrary output subcollection.
+@isnad1 id=le.1h7v.s7.f66e9c6a7bcf from=translated src=- shape=3c5fd558 vocab=15d173b1
+-/
 theorem offsetTailMaximalOn_le_massMajorant_of_scale
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (ell₀ s : ℤ) (hscale : ∀ I ∈ A,
@@ -191,7 +203,9 @@ theorem offsetTailMaximalOn_le_massMajorant_of_scale
 
 /-- The direct positive pairing estimate for one fixed offset and an
 arbitrary output subcollection.  The proof uses only the localized kernel
-size bound, its support in `I`, and Tonelli for a finite sum.-/
+size bound, its support in `I`, and Tonelli for a finite sum.
+@isnad1 id=le.2h7v.s8.2c965f4cd6a6 from=translated src=- shape=46da6c23 vocab=91141ee6
+-/
 theorem lintegral_offsetTailMaximalOn_pairing_le_sum_local_averages
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (h : ℝ → ℂ) (hh : Integrable h) (ell₀ s : ℤ)
@@ -261,7 +275,9 @@ theorem lintegral_offsetTailMaximalOn_pairing_le_sum_local_averages
 
 /-- The nonnegative pairing form of the preceding structural reduction.
 The right hand side is still an integral of a finite positive sum, which is
-often the most convenient form before applying Tonelli to each summand.-/
+often the most convenient form before applying Tonelli to each summand.
+@isnad1 id=le.0h7v.s7.2e8d53de7b0d from=translated src=- shape=1eb62492 vocab=a235891c
+-/
 theorem lintegral_offsetTailMaximalOn_mul_le_lintegral_sum_piece
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : ℝ → ℂ)
     (ell₀ s : ℤ) (h : ℝ → ℝ≥0∞) :
@@ -273,7 +289,9 @@ theorem lintegral_offsetTailMaximalOn_mul_le_lintegral_sum_piece
   exact mul_le_mul' (offsetTailMaximalOn_le_sum_enorm_piece S A scale f ell₀ s x) le_rfl
 
 /-- A finite positive pairing can be distributed over its localized pieces
-once their measurability is known.-/
+once their measurability is known.
+@isnad1 id=eq.1h6v.s7.5ff86ffe0c62 from=translated src=- shape=1eae98fb vocab=1a5e32c2
+-/
 theorem lintegral_sum_enorm_piece_mul
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (s : ℤ) (h : ℝ → ℝ≥0∞) (hh : Measurable h) :
@@ -300,7 +318,9 @@ theorem lintegral_sum_enorm_piece_mul
 the elementary per-piece kernel-size/Tonelli estimate; its conclusion has
 the paper's mass times local-`L¹` average form and is valid for every finite
 subcollection `T`.  No decomposition, packing, or maximal-tail theorem is
-used in this reduction.-/
+used in this reduction.
+@isnad1 id=le.2h8v.s8.eadcf88d1346 from=translated src=- shape=77554322 vocab=9823ef4a
+-/
 theorem lintegral_offsetTailMaximalOn_mul_le_mass_average_sum
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (ell₀ s : ℤ) (h : ℝ → ℂ) (hh : Measurable fun x ↦ ‖h x‖ₑ)
@@ -329,7 +349,9 @@ theorem lintegral_offsetTailMaximalOn_mul_le_mass_average_sum
 
 /-- The restricted mass statement needed when a fixed offset is tested on
 an exceptional root: central-third restriction cannot increase the grouped
-input's `L¹` mass.-/
+input's `L¹` mass.
+@isnad1 id=le.0h5v.s6.7904a95f19b8 from=translated src=- shape=7376a79c vocab=721c5576
+-/
 theorem integral_norm_offsetGroupedInput_le_carrier
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (I : RealInterval) (s : ℤ) :
@@ -349,7 +371,9 @@ theorem integral_norm_offsetGroupedInput_le_carrier
 /-- Fixed-offset mass is controlled by the disjoint-region masses which
 generated it.  This form is stable when the output family is replaced by an
 arbitrary subcollection: the regions are still those of the ambient family
-`S`, rather than a newly formed partition.-/
+`S`, rather than a newly formed partition.
+@isnad1 id=le.0h5v.s7.cce0e18684a9 from=translated src=- shape=6ef009d5 vocab=81d60be6
+-/
 theorem integral_norm_offsetGroupedInput_le_sum_region_mass
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (I : RealInterval) (s : ℤ) :
@@ -391,7 +415,9 @@ theorem integral_norm_offsetGroupedInput_le_sum_region_mass
 /-- The preceding fixed-offset mass estimate summed over any retained output
 subcollection.  It is the mass-sum form used for a maximal exceptional root;
 the right side explicitly records every ambient smallest-region contribution,
-so changing `A` never changes the partition.-/
+so changing `A` never changes the partition.
+@isnad1 id=le.0h5v.s7.db9b8bb34c2f from=translated src=- shape=1bc0ab4b vocab=81d60be6
+-/
 theorem sum_integral_norm_offsetGroupedInput_le_sum_region_mass
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (s : ℤ) :

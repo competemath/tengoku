@@ -25,7 +25,9 @@ open LacunaryOscillatoryScaling
 set_option autoImplicit false
 
 /-- Pointwise reduction of the actual canonical lacunary principal-value
-limsup on the paper's entire test domain. No PV-existence hypothesis occurs.-/
+limsup on the paper's entire test domain. No PV-existence hypothesis occurs.
+@isnad1 id=le.0h2v.s6.6cba5a654db9 from=translated src=- shape=206b5542 vocab=7f38684e
+-/
 theorem lacunaryQuadraticCarlesonL0_le_oscillatory_add_hilbert_add_maximal
     (f : L0Infinity) (x : ℝ) :
     lacunaryQuadraticCarlesonL0 f x ≤
@@ -42,7 +44,9 @@ theorem lacunaryQuadraticCarlesonL0_le_oscillatory_add_hilbert_add_maximal
     ‖paperOscillatoryAction (dyadicModulation m) (dyadicModulation_pos m).ne' f x‖ₑ) m
 
 /-- A single ordinary Hilbert PV supplies every lacunary quadratic PV at
-the same point. The converse follows already from modulation `2^0 = 1`.-/
+the same point. The converse follows already from modulation `2^0 = 1`.
+@isnad1 id=iff.0h2v.s5.201548fda00c from=translated src=- shape=7accf0f3 vocab=6c1a3f35
+-/
 theorem forall_lacunary_principalValue_iff_hilbert (f : L0Infinity) (x : ℝ) :
     (∀ m : ℤ, ∃ z : ℂ, HasQuadraticPrincipalValue (dyadicModulation m) f x z) ↔
       ∃ z : ℂ, HasQuadraticPrincipalValue 0 f x z := by
@@ -54,6 +58,9 @@ theorem forall_lacunary_principalValue_iff_hilbert (f : L0Infinity) (x : ℝ) :
     exact (exists_quadraticPrincipalValue_iff_hilbert
       (dyadicModulation m) (dyadicModulation_pos m).ne' f x).mpr h
 
+/--
+@isnad1 id=eq.1h3v.s5.801f3707d563 from=translated src=- shape=48a3cdef vocab=85a15e10
+-/
 theorem centeredHardyLittlewoodMaximal_const_mul_of_ne_top
     (g : ℝ → ℝ≥0∞) {c : ℝ≥0∞} (hc : c ≠ ∞) (x : ℝ) :
     centeredHardyLittlewoodMaximal (fun y ↦ c * g y) x =
@@ -62,6 +69,9 @@ theorem centeredHardyLittlewoodMaximal_const_mul_of_ne_top
   simp_rw [lintegral_const_mul' _ _ hc, div_eq_mul_inv, mul_assoc]
   exact (ENNReal.mul_iSup _ _).symm
 
+/--
+@isnad1 id=le.1h3v.s7.2a629f4c321a from=translated src=- shape=dcdbf65c vocab=96a19b6b
+-/
 theorem scaled_centeredHardyLittlewoodMaximal_weak_bound
     (g : ℝ → ℝ≥0∞) {c : ℝ≥0∞} (hc : c ≠ ∞) (a : ℝ≥0∞) :
     a * volume {x | a < c * centeredHardyLittlewoodMaximal g x} ≤
@@ -71,6 +81,9 @@ theorem scaled_centeredHardyLittlewoodMaximal_weak_bound
   rw [lintegral_const_mul' _ _ hc] at h
   simpa only [mul_assoc] using h
 
+/--
+@isnad1 id=le.1h2v.s7.a70d5e701c36 from=translated src=- shape=7cf4def5 vocab=47ad42de
+-/
 theorem lintegral_scaled_norm_le_lacunaryOrlicz
     (f : ℝ → ℂ) {α : ℝ} (hα : 0 < α) :
     (∫⁻ x, ENNReal.ofReal (‖f x‖ / α)) ≤
@@ -83,6 +96,9 @@ theorem lintegral_scaled_norm_le_lacunaryOrlicz
   simpa only [mul_one, mul_assoc] using
     mul_le_mul_of_nonneg_left (one_le_lacunaryEndpointFactor ht) ht
 
+/--
+@isnad1 id=eq.1h2v.s6.ea83f090de87 from=translated src=- shape=f0447b22 vocab=4aee2255
+-/
 theorem lintegral_scaled_norm_eq (f : ℝ → ℂ) {α : ℝ} (hα : 0 < α) :
     (∫⁻ x, ENNReal.ofReal (‖f x‖ / α)) =
       (ENNReal.ofReal α)⁻¹ * ∫⁻ x, ‖f x‖ₑ := by
@@ -90,6 +106,9 @@ theorem lintegral_scaled_norm_eq (f : ℝ → ℂ) {α : ℝ} (hα : 0 < α) :
     mul_comm _ (ENNReal.ofReal α)⁻¹]
   exact lintegral_const_mul' _ _ (ENNReal.inv_ne_top.mpr (ENNReal.ofReal_pos.mpr hα).ne')
 
+/--
+@isnad1 id=le.1h2v.s8.eb6808e8d663 from=translated src=- shape=168c4580 vocab=0006026d
+-/
 theorem maximalError_levelSet_third_le_scaled_orlicz
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
     volume {x | ENNReal.ofReal (α / 3) <
@@ -116,12 +135,18 @@ theorem maximalError_levelSet_third_le_scaled_orlicz
 noncomputable def lacunaryRemainderEndpointConstant (C : ℝ) : ℝ≥0∞ :=
   81 * lacunaryScaledEndpointConstant C + 12 * maximalErrorConstant
 
+/--
+@isnad1 id=lt.0h1v.s3.27a90a8db77a from=translated src=- shape=d551a7c0 vocab=e7c662d5
+-/
 theorem lacunaryRemainderEndpointConstant_lt_top (C : ℝ) :
     lacunaryRemainderEndpointConstant C < ∞ := by
   exact ENNReal.add_lt_top.mpr
     ⟨ENNReal.mul_lt_top (by finiteness) (lacunaryScaledEndpointConstant_lt_top C),
       ENNReal.mul_lt_top (by finiteness) maximalErrorConstant_lt_top⟩
 
+/--
+@isnad1 id=le.2h3v.s7.50d0f5c70fa2 from=translated src=- shape=363b76da vocab=50c23a7f
+-/
 theorem lacunaryOscillatory_levelSet_third_le_scaled_orlicz
     {C : ℝ} (hblock : HasUniformL0LogSquaredFrozenBlockWeakBounds C)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :
@@ -148,7 +173,9 @@ theorem lacunaryOscillatory_levelSet_third_le_scaled_orlicz
 
 /-- The full lacunary L0 operator at arbitrary threshold, with only the
 literal ordinary Hilbert maximal level set left unestimated. The oscillatory
-and Hardy--Littlewood terms are already bounded by the exact source modular.-/
+and Hardy--Littlewood terms are already bounded by the exact source modular.
+@isnad1 id=le.2h3v.s7.e8dfdbdaab10 from=translated src=- shape=cc28c3d3 vocab=8ac1ac3b
+-/
 theorem lacunaryQuadraticCarlesonL0_levelSet_le_hilbert_remainder_add_scaled_orlicz
     {C : ℝ} (hblock : HasUniformL0LogSquaredFrozenBlockWeakBounds C)
     (f : L0Infinity) {α : ℝ} (hα : 0 < α) :

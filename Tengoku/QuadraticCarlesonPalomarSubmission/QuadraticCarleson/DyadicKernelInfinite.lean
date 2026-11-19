@@ -24,7 +24,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- The shrinking dyadic argument in the telescoping numerator tends to
-zero.-/
+zero.
+@isnad1 id=tendsto.0h2v.s6.afa19bb967bc from=translated src=- shape=935756f9 vocab=0403469d
+-/
 theorem tendsto_dyadicCutoffArgument_add_nat_zero (j : ℤ) (t : ℝ) :
     Tendsto
       (fun n : ℕ ↦ (2⁻¹ : ℝ) ^ (j + (n : ℤ) - 1) * t)
@@ -42,7 +44,9 @@ theorem tendsto_dyadicCutoffArgument_add_nat_zero (j : ℤ) (t : ℝ) :
   · simp
 
 /-- At every nonzero point the positive-height dyadic kernel sequence has
-finite support.-/
+finite support.
+@isnad1 id=hasfinit.0h2v.s4.757a2f6616e4 from=translated src=- shape=2956edac vocab=15291d77
+-/
 theorem hasFiniteSupport_dyadicPsi_add_nat (j : ℤ) (t : ℝ) :
     HasFiniteSupport (fun r : ℕ ↦ dyadicPsi (j + (r : ℤ)) t) := by
   have hp : Tendsto (fun n : ℕ ↦ (2 : ℝ) ^ n) atTop atTop :=
@@ -65,12 +69,17 @@ theorem hasFiniteSupport_dyadicPsi_add_nat (j : ℤ) (t : ℝ) :
   simpa only [HasFiniteSupport, support, ne_eq,
     compl_ofPred] using hzcofinite
 
+/--
+@isnad1 id=summable.0h2v.s4.960eaf400902 from=translated src=- shape=48a59845 vocab=24d8b2dc
+-/
 theorem summable_dyadicPsi_add_nat (j : ℤ) (t : ℝ) :
     Summable (fun r : ℕ ↦ dyadicPsi (j + (r : ℤ)) t) :=
   summable_of_hasFiniteSupport (hasFiniteSupport_dyadicPsi_add_nat j t)
 
 /-- The infinite positive-height dyadic sum is the exact high-pass part of
-`1/t`.-/
+`1/t`.
+@isnad1 id=hassum.1h2v.s6.0116ff6e671f from=translated src=- shape=17be7106 vocab=85c699c9
+-/
 theorem hasSum_dyadicPsi_add_nat (j : ℤ) {t : ℝ} (ht : t ≠ 0) :
     HasSum (fun r : ℕ ↦ dyadicPsi (j + (r : ℤ)) t)
       ((1 - dyadicCutoff ((2⁻¹ : ℝ) ^ (j - 1) * t)) / t) := by
@@ -95,12 +104,17 @@ theorem hasSum_dyadicPsi_add_nat (j : ℤ) {t : ℝ} (ht : t ≠ 0) :
   · funext n
     rw [sum_dyadicPsi_consecutive j n ht]
 
+/--
+@isnad1 id=eq.1h2v.s6.bc88d5b87d4b from=translated src=- shape=224bd1b2 vocab=fc0e8368
+-/
 theorem tsum_dyadicPsi_add_nat (j : ℤ) {t : ℝ} (ht : t ≠ 0) :
     (∑' r : ℕ, dyadicPsi (j + (r : ℤ)) t) =
       (1 - dyadicCutoff ((2⁻¹ : ℝ) ^ (j - 1) * t)) / t :=
   (hasSum_dyadicPsi_add_nat j ht).tsum_eq
 
-/-- Specialization to the paper's selected oscillatory scales.-/
+/-- Specialization to the paper's selected oscillatory scales.
+@isnad1 id=hassum.2h2v.s6.a1cfe656220a from=translated src=- shape=1b43c0b4 vocab=ee6cb745
+-/
 theorem hasSum_dyadicPsi_oscillatoryScaleIndex
     (lam : ℝ) (hlam : lam ≠ 0) {t : ℝ} (ht : t ≠ 0) :
     HasSum (fun r : ℕ ↦ dyadicPsi (oscillatoryScaleIndex lam r hlam) t)
@@ -127,7 +141,9 @@ noncomputable def paperNonoscillatoryKernel
       phase (lam * t ^ 2)
 
 /-- Exact pointwise decomposition of the quadratically modulated Hilbert
-kernel into its complementary low-pass and oscillatory pieces.-/
+kernel into its complementary low-pass and oscillatory pieces.
+@isnad1 id=eq.1h2v.s6.1881bc349467 from=translated src=- shape=0c452ee2 vocab=1b2b143a
+-/
 theorem paperNonoscillatoryKernel_add_paperOscillatoryKernel
     (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     paperNonoscillatoryKernel lam hlam t +
@@ -143,7 +159,9 @@ theorem paperNonoscillatoryKernel_add_paperOscillatoryKernel
 
 /-- The paper's complex-valued height kernels telescope pointwise to the
 high-pass oscillatory kernel.  At `t = 0` both sides use their canonical zero
-extension.-/
+extension.
+@isnad1 id=hassum.1h2v.s6.2991e2978c06 from=translated src=- shape=441fc4db vocab=6486af8f
+-/
 theorem hasSum_selectedDyadicQuadraticKernel
     (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     HasSum
@@ -173,6 +191,9 @@ theorem hasSum_selectedDyadicQuadraticKernel
     simpa only [paperOscillatoryKernel] using
       hc.mul_right (phase (lam * t ^ 2))
 
+/--
+@isnad1 id=eq.1h2v.s6.04de79bd277f from=translated src=- shape=00088ffe vocab=b8344d7f
+-/
 theorem tsum_selectedDyadicQuadraticKernel
     (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     (∑' r : ℕ,
@@ -181,7 +202,9 @@ theorem tsum_selectedDyadicQuadraticKernel
   (hasSum_selectedDyadicQuadraticKernel lam hlam t).tsum_eq
 
 /-- Equivalent form saying that the height series is the full quadratic
-Hilbert kernel minus the complementary low-pass kernel.-/
+Hilbert kernel minus the complementary low-pass kernel.
+@isnad1 id=hassum.1h2v.s6.6a61f2388d4a from=translated src=- shape=0dc119a1 vocab=7e546dac
+-/
 theorem hasSum_selectedDyadicQuadraticKernel_eq_full_sub_low
     (lam : ℝ) (hlam : lam ≠ 0) (t : ℝ) :
     HasSum

@@ -32,6 +32,9 @@ def quadraticTTStarPhase (lam μ x y t : ℝ) : ℝ :=
 def quadraticTTStarSlope (lam μ x y t : ℝ) : ℝ :=
   2 * ((lam - μ) * t + μ * y - lam * x)
 
+/--
+@isnad1 id=hasderiv.0h5v.s5.ae0692f2e040 from=translated src=- shape=1ba2beab vocab=56d01f1d
+-/
 theorem hasDerivAt_quadraticTTStarPhase (lam μ x y t : ℝ) :
     HasDerivAt (quadraticTTStarPhase lam μ x y)
       (quadraticTTStarSlope lam μ x y t) t := by
@@ -40,6 +43,9 @@ theorem hasDerivAt_quadraticTTStarPhase (lam μ x y t : ℝ) :
   dsimp [quadraticTTStarSlope]
   ring
 
+/--
+@isnad1 id=hasderiv.0h5v.s6.dabafe70e4d3 from=translated src=- shape=d393676f vocab=41a52069
+-/
 theorem hasDerivAt_quadraticTTStarSlope (lam μ x y t : ℝ) :
     HasDerivAt (quadraticTTStarSlope lam μ x y) (2 * (lam - μ)) t := by
   unfold quadraticTTStarSlope
@@ -47,12 +53,18 @@ theorem hasDerivAt_quadraticTTStarSlope (lam μ x y t : ℝ) :
     ((((hasDerivAt_id t).const_mul (lam - μ)).add_const (μ * y)).sub_const
       (lam * x)).const_mul 2
 
+/--
+@isnad1 id=eq.0h5v.s7.b3d59f263e28 from=translated src=- shape=c754eb99 vocab=dd55f8c8
+-/
 theorem quadraticTTStarPhase_eq_polynomial (lam μ x y t : ℝ) :
     quadraticTTStarPhase lam μ x y t =
       (lam - μ) * t ^ 2 + 2 * (μ * y - lam * x) * t + (lam * x ^ 2 - μ * y ^ 2) := by
   unfold quadraticTTStarPhase
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.824316ae7129 from=translated src=- shape=036b632c vocab=4486d4d9
+-/
 theorem quadraticTTStarSlope_eq_center {lam μ : ℝ} (h : lam ≠ μ) (x y t : ℝ) :
     quadraticTTStarSlope lam μ x y t =
       2 * (lam - μ) * (t - (lam * x - μ * y) / (lam - μ)) := by
@@ -61,7 +73,9 @@ theorem quadraticTTStarSlope_eq_center {lam μ : ℝ} (h : lam ≠ μ) (x y t : 
   ring
 
 /-- The quadratic exceptional set is exactly one closed interval, for either
-ordering or sign of the two modulations.-/
+ordering or sign of the two modulations.
+@isnad1 id=eq.1h5v.s7.ae87066f3450 from=translated src=- shape=7f7d4372 vocab=f86fbf9f
+-/
 theorem quadraticTTStarSlope_sublevel_eq_Icc {lam μ : ℝ} (h : lam ≠ μ)
     (x y η : ℝ) :
     {t | |quadraticTTStarSlope lam μ x y t| ≤ η} =
@@ -74,7 +88,9 @@ theorem quadraticTTStarSlope_sublevel_eq_Icc {lam μ : ℝ} (h : lam ≠ μ)
   constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith
 
 /-- Exact exceptional-set measure, the `c = 2` form of the geometric step
-in (6.8). Intersecting with the amplitude support can only reduce this value.-/
+in (6.8). Intersecting with the amplitude support can only reduce this value.
+@isnad1 id=eq.1h5v.s6.b4a90dd7c68d from=translated src=- shape=000c2c4e vocab=d4e4edc4
+-/
 theorem volume_quadraticTTStarSlope_sublevel {lam μ : ℝ} (h : lam ≠ μ)
     (x y η : ℝ) :
     volume {t | |quadraticTTStarSlope lam μ x y t| ≤ η} =
@@ -83,6 +99,9 @@ theorem volume_quadraticTTStarSlope_sublevel {lam μ : ℝ} (h : lam ≠ μ)
   congr 1
   ring
 
+/--
+@isnad1 id=le.1h6v.s6.cb225608acf8 from=translated src=- shape=3ab289aa vocab=97cdf187
+-/
 theorem volume_quadraticTTStarSlope_sublevel_inter_le {lam μ : ℝ} (h : lam ≠ μ)
     (x y η : ℝ) (s : Set ℝ) :
     volume (s ∩ {t | |quadraticTTStarSlope lam μ x y t| ≤ η}) ≤
@@ -91,7 +110,9 @@ theorem volume_quadraticTTStarSlope_sublevel_inter_le {lam μ : ℝ} (h : lam �
   exact measure_mono inter_subset_right
 
 /-- When the modulations agree, the slope is constant and is nonzero away
-from the spatial diagonal.-/
+from the spatial diagonal.
+@isnad1 id=eq.0h4v.s5.e3496f99edca from=translated src=- shape=eba38bcc vocab=b677df0d
+-/
 theorem quadraticTTStarSlope_same_modulation (lam x y t : ℝ) :
     quadraticTTStarSlope lam lam x y t = 2 * lam * (y - x) := by
   unfold quadraticTTStarSlope
@@ -101,11 +122,17 @@ theorem quadraticTTStarSlope_same_modulation (lam x y t : ℝ) :
 noncomputable def quadraticExponential (a b c t : ℝ) : ℂ :=
   Complex.exp (((a * t ^ 2 + b * t + c : ℝ) : ℂ) * Complex.I)
 
+/--
+@isnad1 id=eq.0h4v.s4.f435fd91becd from=translated src=- shape=8d6aa99b vocab=4975072a
+-/
 @[simp]
 theorem norm_quadraticExponential (a b c t : ℝ) :
     ‖quadraticExponential a b c t‖ = 1 := by
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.e9566075c3db from=translated src=- shape=6c76e979 vocab=0d78c1db
+-/
 theorem hasDerivAt_quadraticExponential (a b c t : ℝ) :
     HasDerivAt (quadraticExponential a b c)
       ((((2 * a * t + b : ℝ) : ℂ) * Complex.I) * quadraticExponential a b c t) t := by
@@ -119,7 +146,9 @@ theorem hasDerivAt_quadraticExponential (a b c t : ℝ) :
     dsimp [quadraticExponential]
     ring)
 
-/-- This identifies the angular normalization with exactly the `TT*` phase.-/
+/-- This identifies the angular normalization with exactly the `TT*` phase.
+@isnad1 id=eq.0h5v.s7.34c70b586996 from=translated src=- shape=27c53674 vocab=3752d754
+-/
 theorem phase_quadraticTTStar_eq (lam μ x y t : ℝ) :
     phase (quadraticTTStarPhase lam μ x y t) =
       quadraticExponential (2 * Real.pi * (lam - μ))
@@ -136,7 +165,9 @@ theorem phase_quadraticTTStar_eq (lam μ x y t : ℝ) :
 
 The right side uses only an amplitude bound, a derivative bound, the length
 of the interval, and a lower bound on the phase derivative. It applies on
-each of the at most two complementary intervals of the exceptional set.-/
+each of the at most two complementary intervals of the exceptional set.
+@isnad1 id=le.9h10v.s8.30d44003e27d from=translated src=- shape=0e3267fb vocab=e0dfd049
+-/
 theorem norm_integral_quadraticExponential_mul_le
     (a b c l r : ℝ) (hlr : l ≤ r) {p p' : ℝ → ℂ}
     (hp : ∀ t ∈ Icc l r, HasDerivAt p (p' t) t)
@@ -234,7 +265,9 @@ theorem norm_integral_quadraticExponential_mul_le
 
 /-- The contribution of the small-derivative region, with arbitrary measurable
 or nonmeasurable support restriction. This is the first integral in the final
-split of the proof of Lemma 6.2, now with an exact constant.-/
+split of the proof of Lemma 6.2, now with an exact constant.
+@isnad1 id=le.4h8v.s7.ce0fbd5c76c9 from=translated src=- shape=2e7e03cd vocab=7b1d14d7
+-/
 theorem norm_integral_quadraticTTStar_sublevel_le
     {lam μ : ℝ} (h : lam ≠ μ) (x y : ℝ) {η P : ℝ}
     (hη : 0 ≤ η) (hP : 0 ≤ P) (s : Set ℝ) (p : ℝ → ℂ)
@@ -256,7 +289,9 @@ theorem norm_integral_quadraticTTStar_sublevel_le
     _ = _ := by rw [ENNReal.toReal_ofReal (div_nonneg hη (abs_nonneg _))]
 
 /-- In the nearly equal modulation case, spatial separation prevents a
-stationary point throughout the amplitude support.-/
+stationary point throughout the amplitude support.
+@isnad1 id=le.3h6v.s7.d46d7812f07f from=translated src=- shape=fdf1280b vocab=5f52f96a
+-/
 theorem quadraticTTStarSlope_lower_bound_near_modulations
     {lam μ x y t R : ℝ} (hlam : 0 ≤ lam)
     (ht : |t - y| ≤ R)
@@ -277,7 +312,9 @@ theorem quadraticTTStarSlope_lower_bound_near_modulations
 
 /-- The complementary-interval cancellation estimate in the paper's exact
 phase normalization. No restriction on the ordering or sign of modulations
-is needed once a lower bound on the slope has been established.-/
+is needed once a lower bound on the slope has been established.
+@isnad1 id=le.9h11v.s8.b7ed50ddecfd from=translated src=- shape=bb8f4530 vocab=a9406a6c
+-/
 theorem norm_integral_quadraticTTStar_mul_le
     (lam μ x y l r : ℝ) (hlr : l ≤ r) {p p' : ℝ → ℂ}
     (hp : ∀ t ∈ Icc l r, HasDerivAt p (p' t) t)
@@ -307,7 +344,9 @@ theorem norm_integral_quadraticTTStar_mul_le
 /-- A global quadratic cancellation estimate, including the stationary point.
 The freely chosen threshold `δ` balances the exceptional interval against
 the two nonstationary intervals. This quantitative form is sufficient for
-power decay; no general van der Corput or Stein--Wainger theorem is assumed.-/
+power decay; no general van der Corput or Stein--Wainger theorem is assumed.
+@isnad1 id=le.9h10v.s8.cfcea2d09056 from=translated src=- shape=de070db9 vocab=e0dfd049
+-/
 theorem norm_integral_quadraticExponential_mul_le_split
     {a : ℝ} (ha : a ≠ 0) (b c l r : ℝ) (hlr : l ≤ r) {p p' : ℝ → ℂ}
     (hp : ∀ t ∈ Icc l r, HasDerivAt p (p' t) t)

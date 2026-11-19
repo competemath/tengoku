@@ -33,6 +33,9 @@ noncomputable def stoppingScaleLevelBadPart (A : ℕ → ℝ) (f : ℝ → ℂ)
     (dyadicAtomScaleClass (stoppingLength (f := f)) j).indicator
       (fun c ↦ levelAtom A f k (stoppingCenter c) (stoppingLength c) x) c
 
+/--
+@isnad1 id=eq.1h5v.s5.59d0789f5bbc from=translated src=- shape=50990a19 vocab=33d6015d
+-/
 theorem canonicalLevelBadPart_eq_atom_of_mem (A : ℕ → ℝ) {f : ℝ → ℂ}
     (c : stoppingCell f) {x : ℝ} (hx : x ∈ c.1.interval (rootLength f)) (k : ℕ) :
     canonicalLevelBadPart A f k x =
@@ -44,6 +47,9 @@ theorem canonicalLevelBadPart_eq_atom_of_mem (A : ℕ → ℝ) {f : ℝ → ℂ}
   exact levelAtom_eq_zero_of_other_mem centeredStoppingIntervals_pairwiseDisjoint hdc
     (by simpa only [centeredInterval_eq_stoppingInterval] using hx)
 
+/--
+@isnad1 id=eq.1h6v.s6.ea486b33e309 from=translated src=- shape=4633f71c vocab=fce3c1ab
+-/
 theorem stoppingScaleLevelBadPart_eq_atom_of_mem (A : ℕ → ℝ) {f : ℝ → ℂ}
     (c : stoppingCell f) {x : ℝ} (hx : x ∈ c.1.interval (rootLength f)) (j : ℤ) (k : ℕ) :
     stoppingScaleLevelBadPart A f j k x =
@@ -58,6 +64,9 @@ theorem stoppingScaleLevelBadPart_eq_atom_of_mem (A : ℕ → ℝ) {f : ℝ → 
     (by simpa only [centeredInterval_eq_stoppingInterval] using hx)
   by_cases hd : d ∈ dyadicAtomScaleClass stoppingLength j <;> simp [hd, hz]
 
+/--
+@isnad1 id=eq.1h4v.s5.285ad29b7b9a from=translated src=- shape=f17c1a2f vocab=542fd9f4
+-/
 theorem canonicalLevelBadPart_eq_zero_of_notMem (A : ℕ → ℝ) {f : ℝ → ℂ} {x : ℝ}
     (hx : x ∉ stoppingBadUnion f) (k : ℕ) : canonicalLevelBadPart A f k x = 0 := by
   have hz (c : stoppingCell f) :
@@ -67,6 +76,9 @@ theorem canonicalLevelBadPart_eq_zero_of_notMem (A : ℕ → ℝ) {f : ℝ → �
     exact fun hc ↦ hx (mem_iUnion.mpr ⟨c, hc⟩)
   simp only [canonicalLevelBadPart, disjointLevelAtomSum, hz, tsum_zero]
 
+/--
+@isnad1 id=eq.1h5v.s5.f5adbf6f339b from=translated src=- shape=426987d8 vocab=b16d62eb
+-/
 theorem stoppingScaleLevelBadPart_eq_zero_of_notMem (A : ℕ → ℝ) {f : ℝ → ℂ} {x : ℝ}
     (hx : x ∉ stoppingBadUnion f) (j : ℤ) (k : ℕ) :
     stoppingScaleLevelBadPart A f j k x = 0 := by
@@ -78,7 +90,9 @@ theorem stoppingScaleLevelBadPart_eq_zero_of_notMem (A : ℕ → ℝ) {f : ℝ �
   simp [stoppingScaleLevelBadPart, hz]
 
 /-- Every point sees at most one spatial scale, since canonical cells are
-literally disjoint and every positive length belongs to one scale class.-/
+literally disjoint and every positive length belongs to one scale class.
+@isnad1 id=ex.0h4v.s5.9f8f76bfe1b1 from=translated src=- shape=6e1d777a vocab=874ae2ef
+-/
 theorem stoppingScaleLevelBadPart_eq_single_scale (A : ℕ → ℝ) (f : ℝ → ℂ)
     (k : ℕ) (x : ℝ) : ∃ j₀ : ℤ, ∀ j : ℤ,
     stoppingScaleLevelBadPart A f j k x =
@@ -99,16 +113,25 @@ theorem stoppingScaleLevelBadPart_eq_single_scale (A : ℕ → ℝ) (f : ℝ →
     simp only [stoppingScaleLevelBadPart_eq_zero_of_notMem A hx,
       canonicalLevelBadPart_eq_zero_of_notMem A hx, ite_self]
 
+/--
+@isnad1 id=hassum.0h4v.s5.8ea4ec7bd3d8 from=translated src=- shape=8f5aa8e2 vocab=0b306657
+-/
 theorem hasSum_stoppingScaleLevelBadPart (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (x : ℝ) :
     HasSum (fun j : ℤ ↦ stoppingScaleLevelBadPart A f j k x) (canonicalLevelBadPart A f k x) := by
   obtain ⟨j₀, hj₀⟩ := stoppingScaleLevelBadPart_eq_single_scale A f k x
   simp_rw [hj₀]
   exact hasSum_ite_eq j₀ _
 
+/--
+@isnad1 id=eq.0h4v.s5.64e29a349d3e from=translated src=- shape=1e12aafa vocab=9cce9b8e
+-/
 theorem tsum_stoppingScaleLevelBadPart (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (x : ℝ) :
     (∑' j : ℤ, stoppingScaleLevelBadPart A f j k x) = canonicalLevelBadPart A f k x :=
   (hasSum_stoppingScaleLevelBadPart A f k x).tsum_eq
 
+/--
+@isnad1 id=eq.0h4v.s6.8b88987db326 from=translated src=- shape=f5618425 vocab=b4525e88
+-/
 theorem tsum_enorm_stoppingScaleLevelBadPart (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (x : ℝ) :
     (∑' j : ℤ, ‖stoppingScaleLevelBadPart A f j k x‖ₑ) = ‖canonicalLevelBadPart A f k x‖ₑ := by
   classical
@@ -119,6 +142,9 @@ theorem tsum_enorm_stoppingScaleLevelBadPart (A : ℕ → ℝ) (f : ℝ → ℂ)
   · intro j hj
     simp [hj]
 
+/--
+@isnad1 id=pairwise.0h3v.s5.df921105638a from=translated src=- shape=96585c7f vocab=be8463ab
+-/
 theorem pairwiseDisjoint_support_stoppingScaleLevelBadPart
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) :
     Pairwise (Disjoint on fun j : ℤ ↦ Function.support (stoppingScaleLevelBadPart A f j k)) := by
@@ -134,6 +160,9 @@ theorem pairwiseDisjoint_support_stoppingScaleLevelBadPart
     exact hxl (by rw [hj₀ l, ite_eq_right h])
   exact hjl (hj.trans hl.symm)
 
+/--
+@isnad1 id=measurab.1h4v.s4.c32b19429389 from=translated src=- shape=24699812 vocab=e00cc42a
+-/
 theorem measurable_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (j : ℤ) (k : ℕ) : Measurable (stoppingScaleLevelBadPart A f j k) := by
   apply Measurable.tsum
@@ -143,11 +172,16 @@ theorem measurable_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
   · simp only [indicator_of_notMem hc]
     exact measurable_const
 
+/--
+@isnad1 id=measurab.1h3v.s4.3e5cb7df2c51 from=translated src=- shape=402bf8dc vocab=6a137c7d
+-/
 theorem measurable_canonicalLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (k : ℕ) : Measurable (canonicalLevelBadPart A f k) :=
   measurable_disjointLevelAtomSum hf k _ _
 
-/-- Exact L¹ mass packing across spatial scales; there is no overlap loss.-/
+/-- Exact L¹ mass packing across spatial scales; there is no overlap loss.
+@isnad1 id=eq.1h3v.s7.4f0c001775c9 from=translated src=- shape=7c92da0f vocab=c1bcc00e
+-/
 theorem tsum_lintegral_enorm_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (k : ℕ) :
     (∑' j : ℤ, ∫⁻ x, ‖stoppingScaleLevelBadPart A f j k x‖ₑ) =
@@ -155,6 +189,9 @@ theorem tsum_lintegral_enorm_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : �
   rw [← lintegral_tsum (fun j ↦ (measurable_stoppingScaleLevelBadPart hf j k).enorm.aemeasurable)]
   simp only [tsum_enorm_stoppingScaleLevelBadPart]
 
+/--
+@isnad1 id=le.2h3v.s6.d34d8ca08f27 from=translated src=- shape=ca95e168 vocab=917b1c0a
+-/
 theorem lintegral_enorm_canonicalLevelBadPart_le {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) {k : ℕ} (hAk : 0 ≤ A k) :
     (∫⁻ x, ‖canonicalLevelBadPart A f k x‖ₑ) ≤
@@ -176,6 +213,9 @@ theorem lintegral_enorm_canonicalLevelBadPart_le {A : ℕ → ℝ} {f : ℝ → 
   exact tsum_atomL1Mass_le_two_mul_global_level_mass hf hAk
     _ _ centeredStoppingIntervals_pairwiseDisjoint
 
+/--
+@isnad1 id=integrab.3h3v.s6.47fc6e7a8223 from=translated src=- shape=52cda70e vocab=241a1e25
+-/
 theorem integrable_canonicalLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) {k : ℕ} (hAk : 0 ≤ A k) :
     Integrable (canonicalLevelBadPart A f k) := by
@@ -187,6 +227,9 @@ theorem integrable_canonicalLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     lintegral_mono_set (μ := volume) (f := fun x ↦ ‖f x‖ₑ)
       (subset_univ (magnitudeLevelSet A f k))
 
+/--
+@isnad1 id=integrab.3h4v.s6.1d2a8749f543 from=translated src=- shape=83e1e804 vocab=4f23c1ee
+-/
 theorem integrable_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (j : ℤ) {k : ℕ} (hAk : 0 ≤ A k) :
     Integrable (stoppingScaleLevelBadPart A f j k) := by
@@ -195,6 +238,9 @@ theorem integrable_stoppingScaleLevelBadPart {A : ℕ → ℝ} {f : ℝ → ℂ}
   rw [tsum_lintegral_enorm_stoppingScaleLevelBadPart hf]
   exact (integrable_canonicalLevelBadPart hf hfi hAk).hasFiniteIntegral
 
+/--
+@isnad1 id=eq.0h3v.s5.b3bc36c4ad65 from=translated src=- shape=eb8205b6 vocab=0f4c40d9
+-/
 theorem tsum_stoppingScaleLevelBadPart_full (f : ℝ → ℂ) (k : ℕ) (x : ℝ) :
     (∑' j : ℤ, stoppingScaleLevelBadPart fullAmplitude f j k x) = stoppingLevelBadPart f k x :=
   tsum_stoppingScaleLevelBadPart fullAmplitude f k x
@@ -202,11 +248,17 @@ theorem tsum_stoppingScaleLevelBadPart_full (f : ℝ → ℂ) (k : ℕ) (x : ℝ
 noncomputable def lacunaryStoppingLevelBadPart (f : ℝ → ℂ) (k : ℕ) : ℝ → ℂ :=
   canonicalLevelBadPart lacunaryAmplitude f k
 
+/--
+@isnad1 id=eq.0h3v.s5.f3c87d8f0914 from=translated src=- shape=eb8205b6 vocab=4743e57a
+-/
 theorem tsum_stoppingScaleLevelBadPart_lacunary (f : ℝ → ℂ) (k : ℕ) (x : ℝ) :
     (∑' j : ℤ, stoppingScaleLevelBadPart lacunaryAmplitude f j k x) =
       lacunaryStoppingLevelBadPart f k x :=
   tsum_stoppingScaleLevelBadPart lacunaryAmplitude f k x
 
+/--
+@isnad1 id=hassum.5h3v.s7.7aeaecfe2019 from=translated src=- shape=81e87b58 vocab=917d7258
+-/
 theorem hasSum_canonicalLevelBadPart {A : ℕ → ℝ}
     (hA0 : 0 ≤ A 0) (hA : StrictMono A)
     (hcofinal : ∀ t : ℝ, 0 ≤ t → ∃ k, t ≤ A k)
@@ -226,6 +278,9 @@ theorem hasSum_canonicalLevelBadPart {A : ℕ → ℝ}
     rw [stoppingBadPart, stoppingGoodPart_eq_of_notMem hx, sub_self]
     exact hasSum_zero
 
+/--
+@isnad1 id=hassum.2h2v.s6.2cbe178159d5 from=translated src=- shape=0d134374 vocab=d5b090bc
+-/
 theorem hasSum_lacunaryStoppingLevelBadPart {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     HasSum (fun k ↦ lacunaryStoppingLevelBadPart f k x) (stoppingBadPart f x) :=
@@ -233,7 +288,9 @@ theorem hasSum_lacunaryStoppingLevelBadPart {f : ℝ → ℂ}
     lacunaryAmplitude_cofinal hf hfi x
 
 /-- Summing both the exact spatial slices and the lacunary magnitude
-levels loses only the usual atom mass factor two.-/
+levels loses only the usual atom mass factor two.
+@isnad1 id=le.1h1v.s7.1cbfa3d08f99 from=translated src=- shape=27cd67b0 vocab=aa22596d
+-/
 theorem tsum_lacunary_scale_level_L1Mass_le {f : ℝ → ℂ} (hf : Measurable f) :
     (∑' k : ℕ, ∑' j : ℤ, ∫⁻ x, ‖stoppingScaleLevelBadPart lacunaryAmplitude f j k x‖ₑ) ≤
       2 * ∫⁻ x, ‖f x‖ₑ := by

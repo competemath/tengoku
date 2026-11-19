@@ -87,6 +87,9 @@ def fullDyadicTailSupEnorm
     (lam : ℝ) (j : ℤ) (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ n : ℕ, ‖finiteFullDyadicTail lam j n f x‖ₑ
 
+/--
+@isnad1 id=continuo.0h2v.s4.4649b8904441 from=translated src=- shape=81a8c335 vocab=b83e9f96
+-/
 theorem continuous_positiveDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     Continuous (annularQuadraticKernel (positiveDyadicAmplitude j) lam) := by
   have ha : Continuous (positiveDyadicAmplitude j) :=
@@ -95,6 +98,9 @@ theorem continuous_positiveDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
   unfold annularQuadraticKernel phase
   fun_prop
 
+/--
+@isnad1 id=hascompa.0h2v.s4.e890e6917285 from=translated src=- shape=81a8c335 vocab=8c7f7286
+-/
 theorem hasCompactSupport_positiveDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
     HasCompactSupport (annularQuadraticKernel (positiveDyadicAmplitude j) lam) := by
   apply HasCompactSupport.of_support_subset_isCompact
@@ -106,7 +112,9 @@ theorem hasCompactSupport_positiveDyadicQuadraticKernel (lam : ℝ) (j : ℤ) :
   exact ht (by simp [annularQuadraticKernel, hz])
 
 /-- The phase is even, so the odd dyadic amplitude is literally the positive
-kernel minus its spatial reflection.-/
+kernel minus its spatial reflection.
+@isnad1 id=eq.0h3v.s5.18511eee2660 from=translated src=- shape=509fccfa vocab=66604005
+-/
 theorem fullDyadicKernel_eq_positive_sub_reflect (lam : ℝ) (j : ℤ) (t : ℝ) :
     annularQuadraticKernel (fun u ↦ (dyadicPsi j u : ℂ)) lam t =
       annularQuadraticKernel (positiveDyadicAmplitude j) lam t -
@@ -120,7 +128,9 @@ theorem fullDyadicKernel_eq_positive_sub_reflect (lam : ℝ) (j : ℤ) (t : ℝ)
   ring
 
 /-- Reflection of the positive kernel is the positive operator on the
-reflected input at the reflected observation point.-/
+reflected input at the reflected observation point.
+@isnad1 id=eq.0h4v.s6.4dfd2da89ae2 from=translated src=- shape=8506103e vocab=88859174
+-/
 theorem reflectedPositiveDyadicConvolution
     (lam : ℝ) (j : ℤ) (f : ℝ → ℂ) (x : ℝ) :
     (∫ y, annularQuadraticKernel (positiveDyadicAmplitude j) lam (-(x - y)) * f y) =
@@ -139,7 +149,9 @@ theorem reflectedPositiveDyadicConvolution
       congr 2
       ring
 
-/-- Exact one-scale identity restoring the negative spatial half.-/
+/-- Exact one-scale identity restoring the negative spatial half.
+@isnad1 id=eq.1h4v.s6.1a9753499b77 from=translated src=- shape=436c076c vocab=09b32fa2
+-/
 theorem fullDyadicConvolution_eq_positive_sub_reflect
     (lam : ℝ) (j : ℤ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     fullDyadicConvolution lam j f x =
@@ -163,7 +175,9 @@ theorem fullDyadicConvolution_eq_positive_sub_reflect
   rw [← sub_mul, ← fullDyadicKernel_eq_positive_sub_reflect]
 
 /-- Exact finite-tail identity.  This is the deterministic justification for
-using only the positive spatial half in the local KL argument.-/
+using only the positive spatial half in the local KL argument.
+@isnad1 id=eq.1h5v.s6.57937b536976 from=translated src=- shape=1dd2c8e1 vocab=04b40686
+-/
 theorem finiteFullDyadicTail_eq_positive_sub_reflect
     (lam : ℝ) (j : ℤ) (n : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicTail lam j n f x =
@@ -175,6 +189,9 @@ theorem finiteFullDyadicTail_eq_positive_sub_reflect
   intro r hr
   exact fullDyadicConvolution_eq_positive_sub_reflect lam (j + (r : ℤ)) hf x
 
+/--
+@isnad1 id=le.1h5v.s7.0de726167b86 from=translated src=- shape=115c85f3 vocab=43868048
+-/
 theorem norm_finiteFullDyadicTail_le_positive_add_reflect
     (lam : ℝ) (j : ℤ) (n : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     ‖finiteFullDyadicTail lam j n f x‖ ≤
@@ -185,7 +202,9 @@ theorem norm_finiteFullDyadicTail_le_positive_add_reflect
 
 /-- The maximum of the full odd-kernel tails is pointwise controlled by the
 positive-half maximum and its reflected-input copy.  The estimate is uniform
-in the number of scales.-/
+in the number of scales.
+@isnad1 id=le.1h5v.s7.aaf3fbd75c20 from=translated src=- shape=0cbf1903 vocab=151872c7
+-/
 theorem finiteFullDyadicTailMaxNNNorm_le_positive_add_reflect
     (lam : ℝ) (j : ℤ) (N : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicTailMaxNNNorm lam j N f x ≤
@@ -208,6 +227,9 @@ theorem finiteFullDyadicTailMaxNNNorm_le_positive_add_reflect
         (Finset.le_sup (f := fun m ↦
           ‖finitePositiveDyadicTail lam j m (fun y ↦ f (-y)) (-x)‖₊) hn)
 
+/--
+@isnad1 id=eq.1h6v.s6.55b4987569dc from=translated src=- shape=426f0e24 vocab=605586e6
+-/
 theorem finiteFullDyadicSuffix_eq_positive_sub_reflect
     (lam : ℝ) (j : ℤ) (N m : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicSuffix lam j N m f x =
@@ -217,7 +239,9 @@ theorem finiteFullDyadicSuffix_eq_positive_sub_reflect
     lam (j + (m : ℤ)) (N - m) hf x
 
 /-- Reflection control in the exact suffix orientation of the KL maximal
-physical-truncation operator.-/
+physical-truncation operator.
+@isnad1 id=le.1h5v.s7.2600a1561e62 from=translated src=- shape=0cbf1903 vocab=b86042d9
+-/
 theorem finiteFullDyadicSuffixMaxNNNorm_le_positive_add_reflect
     (lam : ℝ) (j : ℤ) (N : ℕ) {f : ℝ → ℂ} (hf : MemLp f 2) (x : ℝ) :
     finiteFullDyadicSuffixMaxNNNorm lam j N f x ≤
@@ -245,7 +269,9 @@ theorem finiteFullDyadicSuffixMaxNNNorm_le_positive_add_reflect
 
 /-- The finite full tails exhaust the actual smooth high-pass convolution.
 Compact support of the test input is used in the underlying operator-level
-sum/integral theorem, so this is not a merely formal kernel identity.-/
+sum/integral theorem, so this is not a merely formal kernel identity.
+@isnad1 id=hassum.0h4v.s6.695d6484bd8a from=translated src=- shape=63606bc8 vocab=fc9b0fb5
+-/
 theorem hasSum_fullDyadicConvolution_add_nat
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     HasSum (fun r : ℕ ↦ fullDyadicConvolution lam (j + (r : ℤ)) f x)
@@ -255,6 +281,9 @@ theorem hasSum_fullDyadicConvolution_add_nat
     KrauseLaceySharpSmoothAdapter.hasSum_dyadicQuadraticConvolutions_add_nat
       lam j f x
 
+/--
+@isnad1 id=tendsto.0h4v.s6.ade50a4252db from=translated src=- shape=44593988 vocab=e7057c30
+-/
 theorem tendsto_finiteFullDyadicTail_atTop
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     Tendsto (fun n : ℕ ↦ finiteFullDyadicTail lam j n f x) atTop
@@ -265,7 +294,9 @@ theorem tendsto_finiteFullDyadicTail_atTop
 
 /-- The genuine smooth high-pass value is controlled by the supremum of its
 finite odd-kernel approximants.  This is the pointwise limit bridge used when
-passing a uniform finite sparse estimate to the actual operator.-/
+passing a uniform finite sparse estimate to the actual operator.
+@isnad1 id=le.0h4v.s6.a2af20e6b54c from=translated src=- shape=bf279acc vocab=4d764787
+-/
 theorem smoothQuadraticHighPass_enorm_le_fullDyadicTailSupEnorm
     (lam : ℝ) (j : ℤ) (f : L0Infinity) (x : ℝ) :
     ‖KrauseLaceySharpSmoothAdapter.smoothQuadraticHighPass

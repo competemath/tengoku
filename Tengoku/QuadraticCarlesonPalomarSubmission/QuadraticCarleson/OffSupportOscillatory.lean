@@ -38,6 +38,9 @@ noncomputable def wavePacketDeriv (s t u : ℝ) : ℝ :=
 noncomputable def wavePacketSecondDeriv (s t u : ℝ) : ℝ :=
   t⁻¹ * (iteratedDeriv 2 baseBump ((u - s) / t) * t⁻¹ * t⁻¹)
 
+/--
+@isnad1 id=hasderiv.1h3v.s5.146b1386dba1 from=translated src=- shape=464804fb vocab=11c58c63
+-/
 theorem hasDerivAt_wavePacket (s : ℝ) {t : ℝ} (_ht : t ≠ 0) (u : ℝ) :
     HasDerivAt (wavePacket s t) (wavePacketDeriv s t u) u := by
   unfold wavePacket wavePacketDeriv
@@ -45,6 +48,9 @@ theorem hasDerivAt_wavePacket (s : ℝ) {t : ℝ} (_ht : t ≠ 0) (u : ℝ) :
     ((baseBump_smooth.differentiable (by simp) ((u - s) / t)).hasDerivAt.comp u
       ((hasDerivAt_id u).sub_const s |>.div_const t) |>.const_mul t⁻¹)
 
+/--
+@isnad1 id=hasderiv.1h3v.s5.b4cb1ce2667f from=translated src=- shape=464804fb vocab=7c58d28a
+-/
 theorem hasDerivAt_wavePacketDeriv (s : ℝ) {t : ℝ} (_ht : t ≠ 0) (u : ℝ) :
     HasDerivAt (wavePacketDeriv s t) (wavePacketSecondDeriv s t u) u := by
   unfold wavePacketDeriv wavePacketSecondDeriv
@@ -58,6 +64,9 @@ theorem hasDerivAt_wavePacketDeriv (s : ℝ) {t : ℝ} (_ht : t ≠ 0) (u : ℝ)
     ((hdiff ((u - s) / t)).hasDerivAt.comp u
       ((hasDerivAt_id u).sub_const s |>.div_const t) |>.mul_const t⁻¹ |>.const_mul t⁻¹)
 
+/--
+@isnad1 id=hasderiv.0h3v.s7.f96a923015ca from=translated src=- shape=8e7e21a7 vocab=087f80cc
+-/
 theorem hasDerivAt_quadraticPhase (modulation x u : ℝ) :
     HasDerivAt (fun v : ℝ ↦ phase (modulation * (x - v) ^ 2))
       (((-(4 * Real.pi * modulation * (x - u)) : ℝ) : ℂ) * Complex.I *
@@ -291,6 +300,9 @@ private theorem twofold_integration_by_parts
     _ = ∫ u in l..r, ibpAmplitude1Deriv modulation x p p' p'' u *
         phase (modulation * (x - u) ^ 2) := rfl
 
+/--
+@isnad1 id=continuo.0h2v.s4.74b0a837ffbb from=translated src=- shape=443e0365 vocab=566ea571
+-/
 theorem continuous_wavePacketDeriv (s t : ℝ) : Continuous (wavePacketDeriv s t) := by
   have hderiv : Continuous (deriv baseBump) := by
     simpa only [iteratedDeriv_one] using
@@ -298,6 +310,9 @@ theorem continuous_wavePacketDeriv (s t : ℝ) : Continuous (wavePacketDeriv s t
   unfold wavePacketDeriv
   fun_prop
 
+/--
+@isnad1 id=continuo.0h2v.s4.5e5e2964197d from=translated src=- shape=443e0365 vocab=815c71f4
+-/
 theorem continuous_wavePacketSecondDeriv (s t : ℝ) :
     Continuous (wavePacketSecondDeriv s t) := by
   have hderiv : Continuous (iteratedDeriv 2 baseBump) :=
@@ -305,52 +320,79 @@ theorem continuous_wavePacketSecondDeriv (s t : ℝ) :
   unfold wavePacketSecondDeriv
   fun_prop
 
+/--
+@isnad1 id=eq.0h0v.s5.c008f0d99d92 from=translated src=- shape=14b2ac9e vocab=cc4a7a41
+-/
 theorem baseBump_neg_third_eq_zero : baseBump (-1 / 3) = 0 := by
   rw [← notMem_support]
   rw [baseBump, baseBumpData.support_normed_eq]
   simp [baseBumpData]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.070eeab60f20 from=translated src=- shape=7ed1bc26 vocab=893af5ce
+-/
 theorem baseBump_third_eq_zero : baseBump (1 / 3) = 0 := by
   rw [← notMem_support]
   rw [baseBump, baseBumpData.support_normed_eq]
   simp [baseBumpData]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.0028f5d64569 from=translated src=- shape=1a402ea7 vocab=d40c5899
+-/
 theorem deriv_baseBump_neg_third_eq_zero : deriv baseBump (-1 / 3) = 0 := by
   apply deriv_of_notMem_tsupport
   rw [baseBump, baseBumpData.tsupport_normed_eq]
   simp [baseBumpData]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.cddf84b3b11c from=translated src=- shape=47eaf33c vocab=a3da4f9b
+-/
 theorem deriv_baseBump_third_eq_zero : deriv baseBump (1 / 3) = 0 := by
   apply deriv_of_notMem_tsupport
   rw [baseBump, baseBumpData.tsupport_normed_eq]
   simp [baseBumpData]
   norm_num
 
+/--
+@isnad1 id=eq.1h2v.s5.872859462efb from=translated src=- shape=205a3360 vocab=8fd69211
+-/
 theorem wavePacket_left_third_eq_zero (s : ℝ) {t : ℝ} (ht : t ≠ 0) :
     wavePacket s t (s - t / 3) = 0 := by
   rw [wavePacket, show (s - t / 3 - s) / t = -1 / 3 by field_simp; ring,
     baseBump_neg_third_eq_zero, mul_zero]
 
+/--
+@isnad1 id=eq.1h2v.s5.2ee7a24c1462 from=translated src=- shape=205a3360 vocab=827f5fe2
+-/
 theorem wavePacket_right_third_eq_zero (s : ℝ) {t : ℝ} (ht : t ≠ 0) :
     wavePacket s t (s + t / 3) = 0 := by
   rw [wavePacket, show (s + t / 3 - s) / t = 1 / 3 by field_simp; ring,
     baseBump_third_eq_zero, mul_zero]
 
+/--
+@isnad1 id=eq.1h2v.s5.fae398fd6dcb from=translated src=- shape=205a3360 vocab=532d864f
+-/
 theorem wavePacketDeriv_left_third_eq_zero (s : ℝ) {t : ℝ} (ht : t ≠ 0) :
     wavePacketDeriv s t (s - t / 3) = 0 := by
   rw [wavePacketDeriv, show (s - t / 3 - s) / t = -1 / 3 by field_simp; ring,
     deriv_baseBump_neg_third_eq_zero]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.23b545bde719 from=translated src=- shape=205a3360 vocab=5b773399
+-/
 theorem wavePacketDeriv_right_third_eq_zero (s : ℝ) {t : ℝ} (ht : t ≠ 0) :
     wavePacketDeriv s t (s + t / 3) = 0 := by
   rw [wavePacketDeriv, show (s + t / 3 - s) / t = 1 / 3 by field_simp; ring,
     deriv_baseBump_third_eq_zero]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.b722a639dc84 from=translated src=- shape=cfbcc0d0 vocab=cea56451
+-/
 theorem integral_abs_wavePacketDeriv (s : ℝ) {t : ℝ} (ht : 0 < t) :
     ∫ u : ℝ, |wavePacketDeriv s t u| =
       t⁻¹ * ∫ v : ℝ, |deriv baseBump v| := by
@@ -365,6 +407,9 @@ theorem integral_abs_wavePacketDeriv (s : ℝ) {t : ℝ} (ht : 0 < t) :
   rw [hscale]
   field_simp [ht.ne']
 
+/--
+@isnad1 id=eq.1h2v.s6.2e4a6fb1bf30 from=translated src=- shape=2c6435b3 vocab=bacb6f88
+-/
 theorem integral_abs_wavePacketSecondDeriv (s : ℝ) {t : ℝ} (ht : 0 < t) :
     ∫ u : ℝ, |wavePacketSecondDeriv s t u| =
       t⁻¹ ^ 2 * ∫ v : ℝ, |iteratedDeriv 2 baseBump v| := by
@@ -405,6 +450,9 @@ private theorem integrable_abs_wavePacketSecondDeriv (s : ℝ) {t : ℝ} (ht : 0
     exact hp.deriv
   exact (continuous_wavePacketSecondDeriv s t).abs.integrable_of_hasCompactSupport hs.abs
 
+/--
+@isnad1 id=le.2h3v.s6.cd343adcd00c from=translated src=- shape=893c72a1 vocab=ed8650f6
+-/
 theorem half_length_le_abs_center {s t x : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) : t / 2 ≤ |x - s| := by
   rw [mem_Icc, not_and_or] at hx
@@ -412,6 +460,9 @@ theorem half_length_le_abs_center {s t x : ℝ} (ht : 0 < t)
   · rw [abs_of_nonpos] <;> linarith
   · rw [abs_of_nonneg] <;> linarith
 
+/--
+@isnad1 id=le.3h4v.s7.318c1f5892fe from=translated src=- shape=362f70ae vocab=e2146ef3
+-/
 theorem third_interval_separation {s t x u : ℝ} (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2))
     (hu : u ∈ uIcc (s - t / 3) (s + t / 3)) :
@@ -452,7 +503,9 @@ private theorem norm_oscillatoryCoeff (modulation : ℝ) (hmod : 0 < modulation)
     abs_of_nonneg (by norm_num : (0 : ℝ) ≤ 4), abs_of_nonneg Real.pi_pos.le,
     abs_of_pos hmod]
 
-/-- The corrected twice-integrated identity for the fixed wave packet.-/
+/-- The corrected twice-integrated identity for the fixed wave packet.
+@isnad1 id=eq.3h4v.s7.bc51d564566f from=translated src=- shape=8b426f8c vocab=03d3bf56
+-/
 theorem offSupportOscillatoryAction_eq_twiceIntegrated
     {modulation s t x : ℝ} (hmod : 0 < modulation) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :
@@ -562,7 +615,9 @@ private theorem norm_ibpAmplitude1Deriv_le
 
 /-- The `k = 2` oscillatory off-support estimate used in equation (3.2).
 All constants are uniform in the interval, evaluation point, and positive
-modulation.-/
+modulation.
+@isnad1 id=le.3h4v.s7.c9fef3075dd8 from=translated src=- shape=19421895 vocab=96b33885
+-/
 theorem offSupportOscillatoryAction_norm_le
     {modulation s t x : ℝ} (hmod : 0 < modulation) (ht : 0 < t)
     (hx : x ∉ Icc (s - t / 2) (s + t / 2)) :

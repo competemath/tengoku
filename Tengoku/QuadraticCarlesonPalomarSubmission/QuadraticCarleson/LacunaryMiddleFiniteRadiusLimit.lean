@@ -43,7 +43,9 @@ def finiteRadiusFrozenBlockHilbertMaxEnorm
       (frozenBlockInput A f k B c τ) x‖ₑ
 
 /-- Finite radius sets form a pointwise directed family: two approximants
-are both dominated by the approximant on their union.-/
+are both dominated by the approximant on their union.
+@isnad1 id=directed.0h6v.s6.23255da84207 from=translated src=- shape=2673619f vocab=12af7b69
+-/
 theorem directed_finiteRadiusFrozenBlockHilbertMaxEnorm
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) (τ : ℤ) :
     Directed (fun F G : ℝ → ENNReal ↦ ∀ x, F x ≤ G x)
@@ -72,7 +74,9 @@ theorem directed_finiteRadiusFrozenBlockHilbertMaxEnorm
             (frozenBlockInput A f k B c τ) x‖ₑ) hm)
 
 /-- The directed supremum of the finite-radius frozen blocks is exactly the
-genuine finite-modulation block with every positive real truncation radius.-/
+genuine finite-modulation block with every positive real truncation radius.
+@isnad1 id=eq.3h7v.s7.8a5b93c84508 from=translated src=- shape=1041767c vocab=28b98fad
+-/
 theorem iSup_finiteRadiusFrozenBlockHilbertMaxEnorm_eq
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ) (x : ℝ) :
@@ -137,7 +141,9 @@ theorem iSup_finiteRadiusFrozenBlockHilbertMaxEnorm_eq
               (frozenBlockInput A f k B c τ) x‖ₑ) hm
 
 /-- A weak estimate uniform over all finite truncation-radius subsets passes
-to the exact all-radius frozen block with no constant loss.-/
+to the exact all-radius frozen block with no constant loss.
+@isnad1 id=hasexten.4h8v.s6.ce8ba09d1912 from=translated src=- shape=7151cbbb vocab=7471f4f1
+-/
 theorem hasExtendedWeakL1Bound_frozenBlockHilbertMaxEnorm_of_finiteRadii
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ)

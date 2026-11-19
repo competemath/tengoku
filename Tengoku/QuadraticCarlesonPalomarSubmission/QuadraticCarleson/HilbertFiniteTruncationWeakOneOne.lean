@@ -33,6 +33,9 @@ noncomputable section
 def annularHilbertKernel (ε R t : ℝ) : ℂ :=
   if ε < |t| ∧ |t| ≤ R then 1 / (t : ℂ) else 0
 
+/--
+@isnad1 id=measurab.0h2v.s3.b6365e18b3b0 from=translated src=- shape=30e1f344 vocab=53842497
+-/
 theorem measurable_annularHilbertKernel (ε R : ℝ) :
     Measurable (annularHilbertKernel ε R) := by
   apply Measurable.ite
@@ -41,6 +44,9 @@ theorem measurable_annularHilbertKernel (ε R : ℝ) :
   · exact measurable_const.div (Complex.measurable_ofReal.comp measurable_id)
   · exact measurable_const
 
+/--
+@isnad1 id=le.0h2v.s4.3d448183a1df from=translated src=- shape=23ec7661 vocab=2d77278f
+-/
 theorem annularHilbertKernel_support_subset {ε R : ℝ} :
     Function.support (annularHilbertKernel ε R) ⊆ Icc (-R) R := by
   intro t ht
@@ -50,6 +56,9 @@ theorem annularHilbertKernel_support_subset {ε R : ℝ} :
   · exact abs_le.mp h.2
   · exact False.elim (ht rfl)
 
+/--
+@isnad1 id=le.1h3v.s5.6d0e08f8cce8 from=translated src=- shape=c1851981 vocab=069a1703
+-/
 theorem norm_annularHilbertKernel_le {ε R : ℝ} (hε : 0 < ε) (t : ℝ) :
     ‖annularHilbertKernel ε R t‖ ≤ 1 / ε := by
   rw [annularHilbertKernel]
@@ -62,6 +71,9 @@ theorem norm_annularHilbertKernel_le {ε R : ℝ} (hε : 0 < ε) (t : ℝ) :
     simpa only [one_div] using one_div_le_one_div_of_le hε h.1.le
   · simpa using one_div_nonneg.mpr hε.le
 
+/--
+@isnad1 id=integrab.1h2v.s5.7cdac024b3e6 from=translated src=- shape=125a2d40 vocab=7228860d
+-/
 theorem integrable_annularHilbertKernel {ε R : ℝ} (hε : 0 < ε) :
     Integrable (annularHilbertKernel ε R) := by
   apply (integrableOn_iff_integrable_of_support_subset
@@ -72,7 +84,9 @@ theorem integrable_annularHilbertKernel {ε R : ℝ} (hε : 0 < ε) :
 
 /-- A convenient explicit upper bound for the `L¹` mass of the annular
 Hilbert kernel.  (The exact mass is logarithmic, but this elementary bound
-is enough for a fixed finite truncation.)-/
+is enough for a fixed finite truncation.)
+@isnad1 id=le.2h2v.s6.ccd7e94f50bb from=translated src=- shape=3d80881d vocab=9819a3ab
+-/
 theorem integral_norm_annularHilbertKernel_le {ε R : ℝ} (hε : 0 < ε)
     (hR : 0 ≤ R) :
     (∫ t, ‖annularHilbertKernel ε R t‖) ≤ 2 * R / ε := by
@@ -101,6 +115,9 @@ a convolution.-/
 def annularHilbertTruncation (ε R : ℝ) (f : ℝ → ℂ) : ℝ → ℂ :=
   annularHilbertKernel ε R ⋆[ContinuousLinearMap.mul ℂ ℂ] f
 
+/--
+@isnad1 id=integrab.2h3v.s6.f55594048165 from=translated src=- shape=1e2e868c vocab=01bbae7a
+-/
 theorem integrable_annularHilbertTruncation {ε R : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (annularHilbertTruncation ε R f) :=
@@ -108,7 +125,9 @@ theorem integrable_annularHilbertTruncation {ε R : ℝ} (hε : 0 < ε)
     (ContinuousLinearMap.mul ℂ ℂ) hf
 
 /-- Young's `L¹ * L¹ → L¹` inequality for the finite annular Hilbert
-truncation, with the exact kernel mass on the right.-/
+truncation, with the exact kernel mass on the right.
+@isnad1 id=le.2h3v.s7.cffe8e64f4d3 from=translated src=- shape=2a0daf8a vocab=3952ed72
+-/
 theorem integral_norm_annularHilbertTruncation_le {ε R : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) :
     (∫ x, ‖annularHilbertTruncation ε R f x‖) ≤
@@ -140,6 +159,9 @@ theorem integral_norm_annularHilbertTruncation_le {ε R : ℝ} (hε : 0 < ε)
       simpa using integral_convolution (ContinuousLinearMap.lsmul ℝ ℝ) hk hg
     _ = (∫ t, ‖annularHilbertKernel ε R t‖) * (∫ x, ‖f x‖) := rfl
 
+/--
+@isnad1 id=integrab.2h3v.s7.ed660e6bf8df from=translated src=- shape=21008003 vocab=c7dfae9c
+-/
 theorem integrableOn_zeroHilbertTail {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     IntegrableOn (fun t ↦ f (x - t) / (t : ℂ)) {t : ℝ | ε < |t|} := by
@@ -157,7 +179,9 @@ theorem integrableOn_zeroHilbertTail {ε : ℝ} (hε : 0 < ε)
   simpa only [div_eq_mul_inv, one_mul, mul_one, mul_comm] using hi
 
 /-- Concrete weak `(1,1)` estimate for one finite annular Hilbert
-truncation.-/
+truncation.
+@isnad1 id=le.3h4v.s7.b8272ef8a1bf from=translated src=- shape=4f0da1f9 vocab=af82588c
+-/
 theorem weak_one_one_annularHilbertTruncation {ε R α : ℝ}
     (hε : 0 < ε) (_hα : 0 ≤ α) {f : ℝ → ℂ} (hf : Integrable f) :
     α * volume.real {x | α ≤ ‖annularHilbertTruncation ε R f x‖} ≤
@@ -170,7 +194,9 @@ theorem weak_one_one_annularHilbertTruncation {ε R α : ℝ}
         (integrable_annularHilbertTruncation hε hf).norm α
     _ ≤ _ := integral_norm_annularHilbertTruncation_le hε hf
 
-/-- Fully explicit finite-truncation weak `(1,1)` estimate.-/
+/-- Fully explicit finite-truncation weak `(1,1)` estimate.
+@isnad1 id=le.4h4v.s7.e6568fb522fd from=translated src=- shape=41c89ed0 vocab=a9337789
+-/
 theorem weak_one_one_annularHilbertTruncation_explicit {ε R α : ℝ}
     (hε : 0 < ε) (hR : 0 ≤ R) (hα : 0 ≤ α)
     {f : ℝ → ℂ} (hf : Integrable f) :
@@ -197,6 +223,9 @@ noncomputable def finiteZeroHilbertTruncationDifferenceMax {N : ℕ}
   ↑(Finset.univ.sup fun i ↦
     ‖quadraticHilbertTrunc 0 (ε i) f x - quadraticHilbertTrunc 0 (R i) f x‖₊)
 
+/--
+@isnad1 id=le.0h6v.s5.fd966192dd4d from=translated src=- shape=7335d30c vocab=76965c16
+-/
 theorem norm_annularHilbertTruncation_le_finiteMax {N : ℕ}
     (ε R : Fin N → ℝ) (f : ℝ → ℂ) (x : ℝ) (i : Fin N) :
     ‖annularHilbertTruncation (ε i) (R i) f x‖ ≤
@@ -207,6 +236,9 @@ theorem norm_annularHilbertTruncation_le_finiteMax {N : ℕ}
     (f := fun j ↦ ‖annularHilbertTruncation (ε j) (R j) f x‖₊)
     (Finset.mem_univ i)
 
+/--
+@isnad1 id=le.0h5v.s5.3935f475d860 from=translated src=- shape=bc81ae3f vocab=328d806c
+-/
 theorem finiteAnnularHilbertMax_le_sum {N : ℕ} (ε R : Fin N → ℝ)
     (f : ℝ → ℂ) (x : ℝ) :
     finiteAnnularHilbertMax ε R f x ≤
@@ -230,6 +262,9 @@ theorem finiteAnnularHilbertMax_le_sum {N : ℕ} (ε R : Fin N → ℝ)
       NNReal.coe_le_coe.mpr hnn
     _ = _ := by simp
 
+/--
+@isnad1 id=integrab.2h4v.s6.a5dc7a28ea9b from=translated src=- shape=d41d7e05 vocab=e6c9010c
+-/
 theorem integrable_finiteAnnularHilbertMax {N : ℕ} (ε R : Fin N → ℝ)
     (hε : ∀ i, 0 < ε i) {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (finiteAnnularHilbertMax ε R f) := by
@@ -252,7 +287,9 @@ theorem integrable_finiteAnnularHilbertMax {N : ℕ} (ε R : Fin N → ℝ)
 
 /-- A concrete weak `(1,1)` estimate for a finite maximum of finite annular
 truncations.  Unlike the full maximal Hilbert theorem, this statement follows
-only from `L¹` convolution and has the exact sum of the kernel masses.-/
+only from `L¹` convolution and has the exact sum of the kernel masses.
+@isnad1 id=le.3h5v.s7.3053c75e8dba from=translated src=- shape=e10eb47e vocab=c941551e
+-/
 theorem weak_one_one_finiteAnnularHilbertMax {N : ℕ} (ε R : Fin N → ℝ)
     (hε : ∀ i, 0 < ε i) {α : ℝ} (_hα : 0 ≤ α)
     {f : ℝ → ℂ} (hf : Integrable f) :
@@ -287,7 +324,9 @@ theorem weak_one_one_finiteAnnularHilbertMax {N : ℕ} (ε R : Fin N → ℝ)
       exact integral_norm_annularHilbertTruncation_le (hε i) hf
     _ = _ := by rw [Finset.sum_mul]
 
-/-- Explicit version of the finite-maximal estimate.-/
+/-- Explicit version of the finite-maximal estimate.
+@isnad1 id=le.4h5v.s7.93d40a44cf1f from=translated src=- shape=22ea06c8 vocab=ca48b58a
+-/
 theorem weak_one_one_finiteAnnularHilbertMax_explicit {N : ℕ}
     (ε R : Fin N → ℝ) (hε : ∀ i, 0 < ε i) (hR : ∀ i, 0 ≤ R i)
     {α : ℝ} (hα : 0 ≤ α) {f : ℝ → ℂ} (hf : Integrable f) :

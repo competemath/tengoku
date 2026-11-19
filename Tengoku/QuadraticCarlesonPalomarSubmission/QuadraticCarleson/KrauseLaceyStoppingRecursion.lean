@@ -39,6 +39,9 @@ noncomputable def localizedTailMaximal
     (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ ell : {ell : ℤ // ell₀ ≤ ell}, ‖localizedTailAction scale S f ell.1 x‖ₑ
 
+/--
+@isnad1 id=measurab.1h3v.s4.064cf911bc57 from=translated src=- shape=b8428017 vocab=37bac9c1
+-/
 theorem measurable_localizedPiece
     (j : ℤ) (I : RealInterval) {f : ℝ → ℂ} (hf : Measurable f) :
     Measurable (krauseLaceyLocalizedPiece 1 j I f) := by
@@ -56,6 +59,9 @@ theorem measurable_localizedPiece
   simpa only [one_mul, Function.comp_def, Pi.mul_apply]
     using hi.measurable
 
+/--
+@isnad1 id=measurab.1h4v.s4.9e7116e74a8c from=translated src=- shape=5e48d9ce vocab=e9a27cf4
+-/
 theorem measurable_localizedTailAction
     (scale : RealInterval → ℤ) (S : Finset RealInterval) {f : ℝ → ℂ}
     (hf : Measurable f) (ell : ℤ) : Measurable (localizedTailAction scale S f ell) := by
@@ -67,6 +73,9 @@ theorem measurable_localizedTailAction
   · simp only [ite_eq_right he]
     exact measurable_const
 
+/--
+@isnad1 id=measurab.1h4v.s4.d4e383f074c5 from=translated src=- shape=be70d823 vocab=88f28776
+-/
 theorem measurable_localizedTailMaximal
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     {f : ℝ → ℂ} (hf : Measurable f) :
@@ -74,7 +83,9 @@ theorem measurable_localizedTailMaximal
   Measurable.iSup fun ell ↦ (measurable_localizedTailAction scale S hf ell.1).enorm
 
 /-- Restricting the input to a parent interval does not change any of its
-localized descendants. This is an exact integral identity.-/
+localized descendants. This is an exact integral identity.
+@isnad1 id=eq.1h5v.s5.8e4f11f2b19f from=translated src=- shape=0f4fdb6c vocab=f5ddd00b
+-/
 theorem localizedPiece_indicator_parent
     (j : ℤ) (I K : RealInterval) (f : ℝ → ℂ)
     (hIK : I.carrier ⊆ K.carrier) (x : ℝ) :
@@ -88,6 +99,9 @@ theorem localizedPiece_indicator_parent
     simp only [indicator_of_mem hy, indicator_of_mem hyK]
   · simp only [indicator_of_notMem hy]
 
+/--
+@isnad1 id=eq.1h6v.s5.2390c033a01f from=translated src=- shape=7d24fbe1 vocab=926df608
+-/
 theorem localizedTailMaximal_indicator_parent
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (f : ℝ → ℂ) (K : RealInterval) (hsub : ∀ I ∈ S, I.carrier ⊆ K.carrier) (x : ℝ) :
@@ -102,7 +116,9 @@ theorem localizedTailMaximal_indicator_parent
   rw [localizedPiece_indicator_parent (scale I) I K f (hsub I hI)]
 
 /-- The support of every maximal recursive child contribution is genuinely
-contained in that child, by the proved annular-kernel localization.-/
+contained in that child, by the proved annular-kernel localization.
+@isnad1 id=eq.3h6v.s6.3fe58788e6d2 from=translated src=- shape=c409d6cc vocab=04ae64f1
+-/
 theorem localizedTailMaximal_eq_zero_of_notMem
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (f : ℝ → ℂ) (K : RealInterval)
@@ -118,7 +134,9 @@ theorem localizedTailMaximal_eq_zero_of_notMem
     simp only [hz, ite_self]
   simp only [localizedTailMaximal, htail, enorm_zero, iSup_const]
 
-/-- The exact complex-valued decomposition at each truncation threshold.-/
+/-- The exact complex-valued decomposition at each truncation threshold.
+@isnad1 id=eq.1h7v.s7.8f0ffefa57bd from=translated src=- shape=25992dc8 vocab=e6488a14
+-/
 theorem localizedTailAction_eq_good_add_children
     (scale : RealInterval → ℤ) {S : Finset RealInterval} (f g : ℝ → ℂ)
     (I : RealInterval)
@@ -133,7 +151,9 @@ theorem localizedTailAction_eq_good_add_children
 
 /-- The actual localized maximal partial sums satisfy the stopping
 recursion pointwise. No cardinality factor or local analytic estimate is
-introduced in passing from the exact sum identity to the supremum.-/
+introduced in passing from the exact sum identity to the supremum.
+@isnad1 id=le.1h7v.s7.8d87295f2d48 from=translated src=- shape=818b0347 vocab=346aa33d
+-/
 theorem localizedTailMaximal_le_good_add_children
     (ell₀ : ℤ) (scale : RealInterval → ℤ) {S : Finset RealInterval}
     (f g : ℝ → ℂ) (I : RealInterval)
@@ -158,7 +178,9 @@ theorem localizedTailMaximal_le_good_add_children
 
 /-- The genuine bilinear recursion used immediately after the source's
 maximal-child selection. Its first term still requires KL18 Lemma 3.5;
-that analytic conclusion is not inserted as an assumption here.-/
+that analytic conclusion is not inserted as an assumption here.
+@isnad1 id=le.3h6v.s8.472a7612a7f2 from=translated src=- shape=e773e3fd vocab=34fe4881
+-/
 theorem localizedTailMaximal_pairing_le_good_add_children
     (ell₀ : ℤ) (scale : RealInterval → ℤ) {S : Finset RealInterval}
     {f g : ℝ → ℂ} (hf : Measurable f) (hg : Measurable g) (I : RealInterval)
@@ -189,7 +211,9 @@ theorem localizedTailMaximal_pairing_le_good_add_children
 operator: a constructed sparse root/children family, verified bounded
 averages on the good collection, exact child locality, and the genuine
 bilinear recursion. The pending KL18 local oscillatory estimate is precisely
-the first pairing on the right of the final component.-/
+the first pairing on the right of the final component.
+@isnad1 id=and.7h6v.s9.8157e55e50e1 from=translated src=- shape=b3329def vocab=93b5216e
+-/
 theorem finite_localized_stopping_step
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     {f g : ℝ → ℂ} (hf : Measurable f) (hg : Measurable g)

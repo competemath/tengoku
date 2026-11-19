@@ -25,6 +25,9 @@ namespace QuadraticCarleson
 noncomputable def annularQuadraticKernel (a : ℝ → ℂ) (lam t : ℝ) : ℂ :=
   a t * phase (lam * t ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s5.7ae3cd415b1b from=translated src=- shape=1f3722c1 vocab=a3dbf254
+-/
 theorem phase_sub_eq_mul_conj (s t : ℝ) : phase (s - t) = phase s * conj (phase t) := by
   unfold phase
   rw [← Complex.exp_conj, ← Complex.exp_add]
@@ -34,7 +37,9 @@ theorem phase_sub_eq_mul_conj (s t : ℝ) : phase (s - t) = phase s * conj (phas
   ring
 
 /-- The correlation of the modulated kernels has exactly the quadratic
-phase from `QuadraticTTStar`, with the product of the two amplitudes.-/
+phase from `QuadraticTTStar`, with the product of the two amplitudes.
+@isnad1 id=eq.0h7v.s7.2ba5287cfdc1 from=translated src=- shape=98eaecb1 vocab=26e454ca
+-/
 theorem annularQuadraticKernel_mul_conj (a b : ℝ → ℂ) (lam μ x y t : ℝ) :
     annularQuadraticKernel a lam (x - t) * conj (annularQuadraticKernel b μ (y - t)) =
       (a (x - t) * conj (b (y - t))) * phase (quadraticTTStarPhase lam μ x y t) := by
@@ -44,7 +49,9 @@ theorem annularQuadraticKernel_mul_conj (a b : ℝ → ℂ) (lam μ x y t : ℝ)
 
 /-- The ordered-scale annular correlation estimate. All amplitude-product
 bounds and derivative bounds required by the oscillatory theorem are derived
-here from the two individual annular amplitude estimates.-/
+here from the two individual annular amplitude estimates.
+@isnad1 id=le.22h13v.s9.f38ccfd7eba0 from=translated src=- shape=95fc4134 vocab=cf96f35d
+-/
 theorem annularQuadraticKernel_correlation_le_ordered
     {a a' b b' : ℝ → ℂ} {R S H D u lam μ : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hRS : R ≤ S) (hH : 0 < H) (hD : 0 ≤ D)
@@ -123,7 +130,9 @@ theorem annularQuadraticKernel_correlation_le_ordered
   simpa only [quadraticFixedHeightMajorant, hPR, abs_sub_comm y x, p] using h
 
 /-- Conjugate symmetry of the whole-line correlation, without any extra
-integrability hypothesis.-/
+integrability hypothesis.
+@isnad1 id=eq.0h2v.s7.dcc96db02410 from=translated src=- shape=b6bedf99 vocab=29c6867f
+-/
 theorem norm_integral_mul_conj_symm (f g : ℝ → ℂ) :
     ‖∫ t, f t * conj (g t)‖ = ‖∫ t, g t * conj (f t)‖ := by
   calc
@@ -137,7 +146,9 @@ theorem norm_integral_mul_conj_symm (f g : ℝ → ℂ) :
     _ = _ := RCLike.norm_conj _
 
 /-- Symmetric two-scale form of the fixed-height annular correlation bound.
-Positivity of both modulations follows from their common positive height.-/
+Positivity of both modulations follows from their common positive height.
+@isnad1 id=le.21h13v.s9.61e5f566454c from=translated src=- shape=df9a1a12 vocab=3ff6b31a
+-/
 theorem annularQuadraticKernel_correlation_le
     {a a' b b' : ℝ → ℂ} {R S H D u lam μ : ℝ}
     (hR : 0 < R) (hS : 0 < S) (hH : 0 < H) (hD : 0 ≤ D)
@@ -168,7 +179,9 @@ theorem annularQuadraticKernel_correlation_le
 
 /-- A complete finite maximal theorem for smooth positive-annular quadratic
 kernels at one common height. The concrete dyadic specialization supplies
-the displayed amplitude estimates from the fixed cutoff.-/
+the displayed amplitude estimates from the fixed cutoff.
+@isnad1 id=le.13h9v.s9.e1fcd8e03522 from=translated src=- shape=30b3d114 vocab=e9ddc8ac
+-/
 theorem finite_annularQuadraticKernel_maximal_sq_lintegral_le
     (n : ℕ) (a a' : Fin (n + 1) → ℝ → ℂ) (r lam : Fin (n + 1) → ℝ)
     {H D u : ℝ} (hr : ∀ i, 0 < r i) (hH : 0 < H) (hD : 0 ≤ D)

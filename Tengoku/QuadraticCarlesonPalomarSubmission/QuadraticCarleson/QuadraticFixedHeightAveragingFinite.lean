@@ -24,7 +24,9 @@ namespace QuadraticCarleson
 namespace FiniteRangeKernel
 
 /-- The actual linearized operator estimate resulting from the precise
-near-diagonal and off-diagonal quadratic kernel majorant.-/
+near-diagonal and off-diagonal quadratic kernel majorant.
+@isnad1 id=le.6h7v.s8.bcd6f0fc05dd from=translated src=- shape=6b1a3f47 vocab=f4e2ab1d
+-/
 theorem sq_lintegral_le_of_quadraticFixedHeightMajorant {N : ℕ}
     (K : FiniteRangeKernel) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {σ : ℝ → Fin N} (hσ : Measurable σ) {B u : ℝ} (hB : 0 ≤ B) (hu : 0 < u)
@@ -55,6 +57,9 @@ noncomputable def finiteConvolutionMaximal {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ i : Fin N, ‖∫ t, κ i (x - t) * f t‖ₑ
 
+/--
+@isnad1 id=measurab.2h3v.s5.5e6a734c7e45 from=translated src=- shape=2c6e1a92 vocab=70ae5f60
+-/
 theorem measurable_finiteConvolutionMaximal {N : ℕ}
     (κ : Fin N → ℝ → ℂ) (hκ : ∀ i, Measurable (κ i))
     {f : ℝ → ℂ} (hf : Measurable f) : Measurable (finiteConvolutionMaximal κ f) := by
@@ -65,7 +70,9 @@ theorem measurable_finiteConvolutionMaximal {N : ℕ}
   exact hm.stronglyMeasurable.integral_prod_right'.measurable.enorm
 
 /-- Measurable finite linearization turns the concrete fixed-height kernel
-correlation estimate into the maximal second-moment estimate.-/
+correlation estimate into the maximal second-moment estimate.
+@isnad1 id=le.8h6v.s9.b17d6046c135 from=translated src=- shape=671bacdc vocab=8dc490ef
+-/
 theorem finiteConvolutionMaximal_sq_lintegral_le_of_quadraticFixedHeightMajorant_measurable
     (n : ℕ) (κ : Fin (n + 1) → ℝ → ℂ)
     (hc : ∀ i, Continuous (κ i)) (hs : ∀ i, HasCompactSupport (κ i))
@@ -94,7 +101,9 @@ theorem finiteConvolutionMaximal_sq_lintegral_le_of_quadraticFixedHeightMajorant
       simpa only [FiniteRangeKernel.correlation, hK] using hcorrelation (σ x) (σ y) x y
 
 /-- Almost-everywhere input equality gives pointwise equality of every
-finite maximal convolution output.-/
+finite maximal convolution output.
+@isnad1 id=eq.1h4v.s5.8119bf641986 from=translated src=- shape=6fc87363 vocab=bce940e1
+-/
 theorem finiteConvolutionMaximal_congr_ae {N : ℕ}
     (κ : Fin N → ℝ → ℂ) {f g : ℝ → ℂ} (hfg : f =ᵐ[volume] g) :
     finiteConvolutionMaximal κ f = finiteConvolutionMaximal κ g := by
@@ -109,7 +118,9 @@ theorem finiteConvolutionMaximal_congr_ae {N : ℕ}
 /-- The finite-modulation maximal consequence of the fixed-height quadratic
 correlation majorant, for arbitrary `L²` inputs and with a constant independent
 of the finite family. The annular correlation hypothesis is explicit here,
-pending its concrete dyadic-cutoff instantiation.-/
+pending its concrete dyadic-cutoff instantiation.
+@isnad1 id=le.7h6v.s9.fd50902796fc from=translated src=- shape=4751b2fc vocab=ec805d11
+-/
 theorem finiteConvolutionMaximal_sq_lintegral_le_of_quadraticFixedHeightMajorant
     (n : ℕ) (κ : Fin (n + 1) → ℝ → ℂ)
     (hc : ∀ i, Continuous (κ i)) (hs : ∀ i, HasCompactSupport (κ i))

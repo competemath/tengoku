@@ -23,6 +23,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h1v.s5.bfa4bd173986 from=translated src=- shape=40757b00 vocab=8fa1c8dd
+-/
 theorem phase_neg (a : ℝ) : phase (-a) = conj (phase a) := by
   rw [phase, phase, ← Complex.exp_conj]
   congr 1
@@ -30,6 +33,9 @@ theorem phase_neg (a : ℝ) : phase (-a) = conj (phase a) := by
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.462875c81513 from=translated src=- shape=c7368a4d vocab=8fa1c8dd
+-/
 theorem conj_phase (a : ℝ) : conj (phase a) = phase (-a) :=
   (phase_neg a).symm
 
@@ -44,7 +50,9 @@ private theorem dyadic_quadratic_phase_expand (n j : ℕ) (x : ℝ) :
   rw [harg, phase_add, phase_add, phase_int, mul_one]
 
 /-- Exact complex identity between the stationary kernel main term and a
-unit phase times the conjugate of the Bohr harmonic sum.-/
+unit phase times the conjugate of the Bohr harmonic sum.
+@isnad1 id=eq.2h5v.s8.8164de342d7c from=translated src=- shape=5853086d vocab=bab2b690
+-/
 theorem stationaryKernelMain_eq_phase_mul_conj_harmonicPhaseSum
     {N n : ℕ} {L x : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hk : (k, n) ∈ paperMainTermIndices N L) :
@@ -65,7 +73,9 @@ theorem stationaryKernelMain_eq_phase_mul_conj_harmonicPhaseSum
   ring
 
 /-- In particular the stationary kernel sum has exactly the norm controlled
-from below on the translated Bohr set.-/
+from below on the translated Bohr set.
+@isnad1 id=eq.2h5v.s7.138d7994e5d5 from=translated src=- shape=a63bd7e7 vocab=3955d1c9
+-/
 theorem norm_stationaryKernelMain_eq_harmonicPhaseSum
     {N n : ℕ} {L x : ℝ} {k : ℤ}
     (hN : 100 ≤ N) (hk : (k, n) ∈ paperMainTermIndices N L) :

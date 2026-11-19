@@ -37,6 +37,9 @@ noncomputable def intervals
     I.length = (2 : ℝ) ^ (scale I + 2) ∧ k₀ ≤ scale I + 2 - s ∧
       IsEnergyNonstandard (scale I) I (badScaleInput S f I₀ k₀ (scale I + 2 - s))
 
+/--
+@isnad1 id=eq.0h6v.s5.fa3b134ae22a from=translated src=- shape=71019a9e vocab=ee92318a
+-/
 theorem intervals_eq_energyNonstandardIntervals
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) :
@@ -51,12 +54,18 @@ theorem intervals_eq_energyNonstandardIntervals
     obtain ⟨hg, hlen, hgap⟩ := Finset.mem_filter.mp he
     exact Finset.mem_filter.mpr ⟨hg, hlen, hgap, hn⟩
 
+/--
+@isnad1 id=le.0h6v.s5.fd4f412f34a4 from=translated src=- shape=a41cfead vocab=784e94d5
+-/
 theorem intervals_subset
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ s : ℤ)
     (scale : RealInterval → ℤ) : intervals S f I₀ k₀ s scale ⊆ S := by
   intro I hI
   exact (Finset.mem_filter.mp (Finset.mem_filter.mp hI).1).1
 
+/--
+@isnad1 id=eq.6h8v.s8.aed595c9ed6b from=translated src=- shape=c24f829f vocab=9f1f4aea
+-/
 theorem inner_badPieceLp_eq_zero_of_scale_eq
     {S : Finset RealInterval} (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -78,7 +87,9 @@ theorem inner_badPieceLp_eq_zero_of_scale_eq
   exact inner_localizedPieceLp_eq_zero_of_disjoint _ _ _ _ _ _ _ _ hlenI hlenJ hd
 
 /-- Sum of the absolute actual pairings over every separated smaller
-interval. The result is uniform in the size and depth of the collection.-/
+interval. The result is uniform in the size and depth of the collection.
+@isnad1 id=le.6h8v.s8.d972daa11094 from=translated src=- shape=768fc28b vocab=2d7735cc
+-/
 theorem sum_nonstandard_crossPairing_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ)
@@ -149,6 +160,9 @@ theorem sum_nonstandard_crossPairing_le
       mul_le_mul_of_nonneg_left hmass (mul_nonneg hC hm)
     _ = _ := by field_simp; ring
 
+/--
+@isnad1 id=le.7h8v.s9.238d7529ca8f from=translated src=- shape=3321342d vocab=5e794437
+-/
 theorem sum_nonstandard_crossPairing_le_decay
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -177,7 +191,9 @@ theorem sum_nonstandard_crossPairing_le_decay
   simpa only [div_eq_mul_inv] using
     mul_le_mul_of_nonneg_right hc (intervalBadMass_nonneg S f I₀ k₀ s scale I)
 
-/-- The actual `L²` cross row inherits the proved oscillatory kernel decay.-/
+/-- The actual `L²` cross row inherits the proved oscillatory kernel decay.
+@isnad1 id=le.7h8v.s9.203c83d195f0 from=translated src=- shape=09b8461a vocab=7750c149
+-/
 theorem sum_abs_inner_badPieceLp_le_decay
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -198,6 +214,9 @@ theorem sum_abs_inner_badPieceLp_le_decay
   intro J hJ
   exact abs_inner_localizedPieceLp_le_crossPairing _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=le.9h8v.s12.ea4ed96e6aa6 from=translated src=- shape=5c41f189 vocab=270bf7cc
+-/
 theorem norm_signed_badPieceLp_sq_le_of_residue
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -257,7 +276,9 @@ theorem norm_signed_badPieceLp_sq_le_of_residue
     _ = _ := by dsimp [E, m]; ring
 
 /-- The full signed-sum estimate is uniform in both the number of
-intervals and the number of actual generations.-/
+intervals and the number of actual generations.
+@isnad1 id=le.8h8v.s12.cfe3ff9fd18f from=translated src=- shape=f560796e vocab=c8898603
+-/
 theorem norm_signed_badPieceLp_sq_le_mass
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)
@@ -303,6 +324,9 @@ theorem norm_signed_badPieceLp_sq_le_mass
       dsimp [C]
       ring
 
+/--
+@isnad1 id=le.8h8v.s12.c1c16a35b77d from=translated src=- shape=b324dfa0 vocab=e0d0004d
+-/
 theorem norm_signed_badPieceLp_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)

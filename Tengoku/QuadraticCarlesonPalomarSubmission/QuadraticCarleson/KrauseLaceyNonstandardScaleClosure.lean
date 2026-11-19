@@ -35,12 +35,17 @@ noncomputable section
 def nonstandardScaleWeight (s : ℕ) : ℝ :=
   ((s + 1 : ℕ) : ℝ) ^ 2 * (2 : ℝ) ^ (-(s : ℝ))
 
+/--
+@isnad1 id=lt.0h1v.s3.8227245f5e24 from=translated src=- shape=b9369acb vocab=d2bf50b8
+-/
 theorem nonstandardScaleWeight_pos (s : ℕ) :
     0 < nonstandardScaleWeight s := by
   unfold nonstandardScaleWeight
   positivity
 
-/-- A deliberately roomy universal polynomial/exponential comparison.-/
+/-- A deliberately roomy universal polynomial/exponential comparison.
+@isnad1 id=le.0h1v.s6.d8d52613e5ce from=translated src=- shape=f0082a9e vocab=ad3e4bb6
+-/
 theorem sq_succ_le_sixtyFour_mul_rpow_four_fifths (s : ℕ) :
     (((s + 1 : ℕ) : ℝ) ^ 2) ≤
       64 * (2 : ℝ) ^ ((4 : ℝ) * s / 5) := by
@@ -75,6 +80,9 @@ theorem sq_succ_le_sixtyFour_mul_rpow_four_fifths (s : ℕ) :
             norm_num
             ring
 
+/--
+@isnad1 id=le.0h1v.s5.07956c1acc0f from=translated src=- shape=69feeb86 vocab=9181ca1c
+-/
 theorem nonstandardScaleWeight_le (s : ℕ) :
     nonstandardScaleWeight s ≤ 64 * (2 : ℝ) ^ (-(s : ℝ) / 5) := by
   have h := sq_succ_le_sixtyFour_mul_rpow_four_fifths s
@@ -92,7 +100,9 @@ theorem nonstandardScaleWeight_le (s : ℕ) :
       ring
 
 /-- The source weight is controlled by the concrete ratio already summed in
-`KrauseLaceyScaleSummation`, with a universal factor eight.-/
+`KrauseLaceyScaleSummation`, with a universal factor eight.
+@isnad1 id=le.1h2v.s6.4ba01df23ecf from=translated src=- shape=54e886ff vocab=772f2088
+-/
 theorem nonstandardScaleWeight_rpow_le_scaleDecayRatio
     {q : ℝ} (hq : 2 ≤ q) (s : ℕ) :
     nonstandardScaleWeight s ^ (1 / q) ≤
@@ -124,6 +134,9 @@ theorem nonstandardScaleWeight_rpow_le_scaleDecayRatio
       congr 2
       field_simp
 
+/--
+@isnad1 id=le.1h2v.s6.1bc69e7ec41d from=translated src=- shape=cad91257 vocab=a9553776
+-/
 theorem finite_sum_nonstandardScaleWeight_rpow_le
     {q : ℝ} (hq : 2 ≤ q) (N : ℕ) :
     (∑ s ∈ Finset.range N, nonstandardScaleWeight s ^ (1 / q)) ≤ 160 * q := by
@@ -143,11 +156,17 @@ theorem finite_sum_nonstandardScaleWeight_rpow_le
 def nonstandardScaleThreshold (a p : ℝ) (s : ℕ) : ℝ :=
   a * nonstandardScaleWeight s ^ (-1 / p)
 
+/--
+@isnad1 id=lt.2h3v.s5.2139a16e8b99 from=translated src=- shape=b4e35a70 vocab=c6e2e426
+-/
 theorem nonstandardScaleThreshold_pos {a p : ℝ} (ha : 0 < a) (hp : 0 < p) (s : ℕ) :
     0 < nonstandardScaleThreshold a p s := by
   unfold nonstandardScaleThreshold
   exact mul_pos ha (Real.rpow_pos_of_pos (nonstandardScaleWeight_pos s) _)
 
+/--
+@isnad1 id=eq.2h3v.s7.a8d0a7fa4ca8 from=translated src=- shape=79a030db vocab=541a47b6
+-/
 theorem sqrt_weight_mul_threshold_rpow
     {a p : ℝ} (ha : 0 < a) (hp : 0 < p) (s : ℕ) :
     Real.sqrt (nonstandardScaleWeight s) *
@@ -156,6 +175,9 @@ theorem sqrt_weight_mul_threshold_rpow
   simpa only [nonstandardScaleThreshold] using
     sqrt_mul_threshold_rpow ha (nonstandardScaleWeight_pos s) hp
 
+/--
+@isnad1 id=eq.2h3v.s6.febeedf9f7e7 from=translated src=- shape=c07388a3 vocab=c76fce98
+-/
 theorem threshold_rpow_one_sub
     {a p : ℝ} (ha : 0 < a) (hp : 0 < p) (s : ℕ) :
     nonstandardScaleThreshold a p s ^ (1 - p) =
@@ -163,6 +185,9 @@ theorem threshold_rpow_one_sub
   simpa only [nonstandardScaleThreshold] using
     positive_threshold_rpow_one_sub ha (nonstandardScaleWeight_pos s) hp
 
+/--
+@isnad1 id=eq.1h1v.s5.f36ad725a448 from=translated src=- shape=686704cc vocab=366aacb9
+-/
 theorem one_div_holderConjugate_eq {p : ℝ} (hp : 1 < p) :
     1 / holderConjugate p = (p - 1) / p := by
   rw [holderConjugate]

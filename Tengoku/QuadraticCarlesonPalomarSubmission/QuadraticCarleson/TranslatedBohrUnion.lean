@@ -25,6 +25,9 @@ namespace QuadraticCarleson
 def integerTranslate (k : ℤ) (E : Set ℝ) : Set ℝ :=
   (fun x : ℝ => x - k) ⁻¹' E
 
+/--
+@isnad1 id=iff.0h3v.s5.0e6b5074a8db from=translated src=- shape=be1b691d vocab=7cd4897d
+-/
 theorem mem_integerTranslate_iff {k : ℤ} {E : Set ℝ} {x : ℝ} :
     x ∈ integerTranslate k E ↔ ∃ y ∈ E, x = (k : ℝ) + y := by
   constructor
@@ -33,21 +36,32 @@ theorem mem_integerTranslate_iff {k : ℤ} {E : Set ℝ} {x : ℝ} :
   · rintro ⟨y, hy, rfl⟩
     simpa [integerTranslate] using hy
 
+/--
+@isnad1 id=measurab.1h2v.s4.b7286351301a from=translated src=- shape=87feec25 vocab=b9ac2150
+-/
 theorem measurableSet_integerTranslate {k : ℤ} {E : Set ℝ}
     (hE : MeasurableSet E) : MeasurableSet (integerTranslate k E) :=
   hE.preimage (measurable_id.sub measurable_const)
 
+/--
+@isnad1 id=eq.0h2v.s5.8db71a850501 from=translated src=- shape=17015c33 vocab=bbf846bf
+-/
 @[simp]
 theorem volume_integerTranslate (k : ℤ) (E : Set ℝ) :
     volume (integerTranslate k E) = volume E := by
   simp [integerTranslate, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h2v.s4.56dcbafa2851 from=translated src=- shape=d0974c2d vocab=7c17cf5c
+-/
 @[simp]
 theorem volume_real_integerTranslate (k : ℤ) (E : Set ℝ) :
     volume.real (integerTranslate k E) = volume.real E := by
   simp [measureReal_def]
 
-/-- Integer translates of sets supported in `[1/4,1/2)` do not overlap.-/
+/-- Integer translates of sets supported in `[1/4,1/2)` do not overlap.
+@isnad1 id=disjoint.3h4v.s7.011ff263671f from=translated src=- shape=c153566a vocab=3c8ee2f1
+-/
 theorem integerTranslate_disjoint {k l : ℤ} {E F : Set ℝ}
     (hkl : k ≠ l) (hE : E ⊆ Ico (1 / 4 : ℝ) (1 / 2 : ℝ))
     (hF : F ⊆ Ico (1 / 4 : ℝ) (1 / 2 : ℝ)) :
@@ -66,6 +80,9 @@ theorem integerTranslate_disjoint {k l : ℤ} {E F : Set ℝ}
 def translatedDyadicBohrUnion (I : Finset ℤ) (M : ℤ → ℝ) (B c : ℝ) : Set ℝ :=
   ⋃ k ∈ I, integerTranslate k (dyadicBohrLogUnion (M k) B c)
 
+/--
+@isnad1 id=measurab.0h4v.s4.e359c2ac463a from=translated src=- shape=7f9f8959 vocab=e1e05cc5
+-/
 theorem measurableSet_translatedDyadicBohrUnion
     (I : Finset ℤ) (M : ℤ → ℝ) (B c : ℝ) :
     MeasurableSet (translatedDyadicBohrUnion I M B c) :=
@@ -73,7 +90,9 @@ theorem measurableSet_translatedDyadicBohrUnion
     measurableSet_integerTranslate (measurableSet_dyadicBohrLogUnion _ _ _)
 
 /-- The measure of a finite union of these translates is exactly the sum
-of the unshifted measures.-/
+of the unshifted measures.
+@isnad1 id=eq.0h4v.s5.720bba65a59c from=translated src=- shape=968c1fbb vocab=409b42f6
+-/
 theorem translatedDyadicBohrUnion_volume_real_eq_sum
     (I : Finset ℤ) (M : ℤ → ℝ) (B c : ℝ) :
     volume.real (translatedDyadicBohrUnion I M B c) =
@@ -97,7 +116,9 @@ theorem translatedDyadicBohrUnion_volume_real_eq_sum
       simp only [volume_real_integerTranslate]
 
 /-- Quantitative measure lower bound, linear in the number of integer
-indices, whenever each logarithmic window starts at least at exponent two.-/
+indices, whenever each logarithmic window starts at least at exponent two.
+@isnad1 id=le.5h5v.s7.c6fe8f8842c2 from=translated src=- shape=893c70a4 vocab=ed5c73ce
+-/
 theorem translatedDyadicBohrUnion_volume_real_ge
     (I : Finset ℤ) (M : ℤ → ℝ) {B c a : ℝ}
     (hM : ∀ k ∈ I, 2 ≤ M k) (hB : 1 ≤ B) (ha : 0 < a)
@@ -118,10 +139,16 @@ integer ceiling and floor. For `N ≥ 20`, all these integers are positive.-/
 noncomputable def paperBohrIndices (N : ℕ) : Finset ℤ :=
   Finset.Icc ⌈3 * (N : ℝ) / 5⌉ ⌊7 * (N : ℝ) / 10⌋
 
+/--
+@isnad1 id=iff.0h2v.s6.3206a44fad93 from=translated src=- shape=8c642c4c vocab=4be33eef
+-/
 theorem mem_paperBohrIndices {N : ℕ} {k : ℤ} :
     k ∈ paperBohrIndices N ↔ 3 * (N : ℝ) / 5 ≤ k ∧ (k : ℝ) ≤ 7 * (N : ℝ) / 10 := by
   simp only [paperBohrIndices, Finset.mem_Icc, Int.ceil_le, Int.le_floor]
 
+/--
+@isnad1 id=lt.2h2v.s5.b978040ac516 from=translated src=- shape=0eea6a13 vocab=4c406414
+-/
 theorem paperBohrIndices_pos {N : ℕ} {k : ℤ} (hN : 20 ≤ N)
     (hk : k ∈ paperBohrIndices N) : 0 < k := by
   have hN' : (20 : ℝ) ≤ N := by exact_mod_cast hN
@@ -129,7 +156,9 @@ theorem paperBohrIndices_pos {N : ℕ} {k : ℤ} (hN : 20 ≤ N)
   have hk0 : (0 : ℝ) < k := by linarith
   exact_mod_cast hk0
 
-/-- A concrete index count sufficient for the paper's `|E_N| ≳ N` estimate.-/
+/-- A concrete index count sufficient for the paper's `|E_N| ≳ N` estimate.
+@isnad1 id=le.1h1v.s5.4bba123d0196 from=translated src=- shape=917184b6 vocab=9dc16a1a
+-/
 theorem paperBohrIndices_card_ge {N : ℕ} (hN : 20 ≤ N) :
     (N : ℝ) / 20 ≤ (paperBohrIndices N).card := by
   have hN' : (20 : ℝ) ≤ N := by exact_mod_cast hN
@@ -147,7 +176,9 @@ theorem paperBohrIndices_card_ge {N : ℕ} (hN : 20 ≤ N) :
   linarith
 
 /-- The specialized linear estimate on the paper's index interval, still
-allowing arbitrary logarithmic windows and any fixed lower bound on `Bc`.-/
+allowing arbitrary logarithmic windows and any fixed lower bound on `Bc`.
+@isnad1 id=le.6h5v.s7.a18a8bdca303 from=translated src=- shape=020bcfe6 vocab=e947f995
+-/
 theorem translatedDyadicBohrUnion_paperIndices_volume_real_ge
     {N : ℕ} (M : ℤ → ℝ) {B c a : ℝ}
     (hN : 20 ≤ N) (hM : ∀ k ∈ paperBohrIndices N, 2 ≤ M k)
@@ -169,7 +200,9 @@ def paperTranslatedBohrSet (N : ℕ) (L : ℝ) : Set ℝ :=
 
 /-- The explicit form of `|E_N| ≳ N` used in the negative endpoint proof.
 The hypothesis on `L` says that even the first logarithmic window starts
-at exponent two; it is enough to check this at the left endpoint `3N/5`.-/
+at exponent two; it is enough to check this at the left endpoint `3N/5`.
+@isnad1 id=le.2h2v.s7.d504bf69bdb8 from=translated src=- shape=7b33fa04 vocab=dd4d8eed
+-/
 theorem paperTranslatedBohrSet_volume_real_ge {N : ℕ} {L : ℝ}
     (hN : 20 ≤ N) (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L) :
     (N : ℝ) / (30720 * ((2 : ℝ) ^ 100 + 1)) ≤ volume.real (paperTranslatedBohrSet N L) := by

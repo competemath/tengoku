@@ -33,16 +33,24 @@ set_option autoImplicit false
 noncomputable def verySmallL1Constant : ℝ≥0∞ :=
   ENNReal.ofReal (6 * lowKernelDerivativeConstant * verySmallGeometricConstant)
 
+/--
+@isnad1 id=lt.0h0v.s3.7bbce2ded5f3 from=translated src=- shape=f463f024 vocab=c7c69bc0
+-/
 theorem verySmallL1Constant_lt_top : verySmallL1Constant < ∞ := ENNReal.ofReal_lt_top
 
 /-- Including the fivefold stopping-set cost.-/
 noncomputable def verySmallEndpointConstant : ℝ≥0∞ := 5 + verySmallL1Constant
 
+/--
+@isnad1 id=lt.0h0v.s3.50280df771ad from=translated src=- shape=f463f024 vocab=bae5a458
+-/
 theorem verySmallEndpointConstant_lt_top : verySmallEndpointConstant < ∞ :=
   ENNReal.add_lt_top.mpr ⟨by finiteness, verySmallL1Constant_lt_top⟩
 
 /-- The exceptional set is the actual canonical stopping family, not an
-arbitrary family with an assumed packing bound.-/
+arbitrary family with an assumed packing bound.
+@isnad1 id=le.1h1v.s7.0f238f04908c from=translated src=- shape=5af98155 vocab=069862a9
+-/
 theorem volume_canonicalFivefoldExceptionalSet_le {f : ℝ → ℂ} (hfi : Integrable f) :
     volume (fivefoldExceptionalSet (stoppingCenter (f := f)) stoppingLength) ≤
       5 * ∫⁻ x, ‖f x‖ₑ := by
@@ -53,7 +61,9 @@ theorem volume_canonicalFivefoldExceptionalSet_le {f : ℝ → ℂ} (hfi : Integ
     tsum_volume_stoppingCell_le_lintegral_norm hfi
 
 /-- Chebyshev on precisely the complement where the proved L¹ estimate
-applies. This bound is uniform in every positive cutoff sequence.-/
+applies. This bound is uniform in every positive cutoff sequence.
+@isnad1 id=le.3h4v.s7.6c85778948fd from=translated src=- shape=3193ca28 vocab=5b251311
+-/
 theorem lacunaryVerySmallLowContribution_compl_levelSet_mul_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) (a : ℝ≥0∞) :
@@ -76,7 +86,9 @@ theorem lacunaryVerySmallLowContribution_compl_levelSet_mul_le
 
 /-- The global threshold estimate keeps the normalized stopping-set cost
 explicit. No scaling identity for the nonlinear stopping decomposition is
-assumed.-/
+assumed.
+@isnad1 id=le.3h4v.s7.7eb156d73c27 from=translated src=- shape=ae7fa9e3 vocab=f69413b1
+-/
 theorem lacunaryVerySmallLowContribution_levelSet_mul_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) (a : ℝ≥0∞) :
@@ -100,7 +112,9 @@ theorem lacunaryVerySmallLowContribution_levelSet_mul_le
     _ = _ := by ring
 
 /-- The paper's normalized very-small weak-(1,1) estimate, including the
-entire fivefold exceptional set.-/
+entire fivefold exceptional set.
+@isnad1 id=le.3h3v.s7.fb02a898e121 from=translated src=- shape=b6dcfddc vocab=f41d9223
+-/
 theorem lacunaryVerySmallLowContribution_levelSet_one_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) :
@@ -110,7 +124,9 @@ theorem lacunaryVerySmallLowContribution_levelSet_one_le
     lacunaryVerySmallLowContribution_levelSet_mul_le hf hfi hB c 1
 
 /-- For positive finite thresholds, the exceptional-set and Markov costs
-are respectively `5` and `C/a`.-/
+are respectively `5` and `C/a`.
+@isnad1 id=le.5h4v.s7.73006181fa38 from=translated src=- shape=0e4a68df vocab=8e5a1d7f
+-/
 theorem lacunaryVerySmallLowContribution_levelSet_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ)
@@ -128,7 +144,9 @@ theorem lacunaryVerySmallLowContribution_levelSet_le
     _ = _ := by rw [ENNReal.mul_inv_cancel ha hat, mul_one]; rfl
 
 /-- In the range of thresholds below one, the fixed normalized decomposition
-also has the usual uniform weak-(1,1) bound.-/
+also has the usual uniform weak-(1,1) bound.
+@isnad1 id=le.4h4v.s7.d5e2b2fea382 from=translated src=- shape=20fef030 vocab=f41d9223
+-/
 theorem lacunaryVerySmallLowContribution_levelSet_mul_le_of_le_one
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ)
@@ -139,14 +157,18 @@ theorem lacunaryVerySmallLowContribution_levelSet_mul_le_of_le_one
   apply mul_le_mul' _ le_rfl
   exact add_le_add (by simpa only [mul_one] using mul_le_mul' le_rfl ha) le_rfl
 
-/-- The normalized source-domain specialization.-/
+/-- The normalized source-domain specialization.
+@isnad1 id=le.1h3v.s7.2854bb7e0d08 from=translated src=- shape=683b8adc vocab=80ad4044
+-/
 theorem lacunaryVerySmallLowContribution_L0Infinity_levelSet_one_le
     (f : L0Infinity) {B : ℕ → ℕ} (hB : ∀ k, 0 < B k) (c : ℕ) :
     volume {x | 1 < lacunaryVerySmallLowContribution f B c x} ≤
       verySmallEndpointConstant * ∫⁻ x, ‖f x‖ₑ :=
   lacunaryVerySmallLowContribution_levelSet_one_le f.measurable_toFun f.integrable hB c
 
-/-- The paper's exact cutoff `B_k = 20 · 2^(2^k)` needs no further hypotheses.-/
+/-- The paper's exact cutoff `B_k = 20 · 2^(2^k)` needs no further hypotheses.
+@isnad1 id=le.2h2v.s7.5cda32c0b899 from=translated src=- shape=d400b108 vocab=3bccc2c5
+-/
 theorem paperLacunaryVerySmallLowContribution_levelSet_one_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (c : ℕ) :
     volume {x | 1 < lacunaryVerySmallLowContribution f

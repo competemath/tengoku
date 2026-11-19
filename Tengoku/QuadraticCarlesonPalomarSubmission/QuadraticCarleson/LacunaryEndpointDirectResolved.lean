@@ -22,7 +22,9 @@ open PositivePrincipalValueEndpoints
 set_option autoImplicit false
 
 /-- The sharper lacunary modular bound, including simultaneous existence of
-the genuine principal values, with no outstanding analytic hypothesis.-/
+the genuine principal values, with no outstanding analytic hypothesis.
+@isnad1 id=ex.0h0v.s7.c2669c74e918 from=translated src=- shape=4c8e40fa vocab=572751fb
+-/
 theorem lacunary_principalValue_endpoint :
     ∃ K : ℝ≥0∞, K < ∞ ∧ ∀ f : L0Infinity,
       (∀ᵐ x, ∀ m : ℤ, HasQuadraticPrincipalValue (dyadicModulation m) f x

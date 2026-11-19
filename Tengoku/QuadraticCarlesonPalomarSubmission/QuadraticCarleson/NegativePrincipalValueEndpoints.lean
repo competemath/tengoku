@@ -19,7 +19,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- Almost-everywhere equal operator outputs have the same strict level-set
-outer measures; no extra measurability structure is required.-/
+outer measures; no extra measurability structure is required.
+@isnad1 id=eq.1h4v.s6.d008679d1fb5 from=translated src=- shape=db240f21 vocab=2f74a06f
+-/
 theorem functionOperatorLevelSet_measure_congr_ae
     {T S : L0Infinity → ℝ → ℝ≥0∞} {f : L0Infinity}
     (hTS : T f =ᵐ[volume] S f) (α : ℝ) :
@@ -31,7 +33,9 @@ theorem functionOperatorLevelSet_measure_congr_ae
   rw [hx]
 
 /-- The source modular bound is unchanged under a.e. replacement of each
-operator output.-/
+operator output.
+@isnad1 id=hasfunct.2h3v.s5.4b20270638b2 from=translated src=- shape=63c94417 vocab=cc3f1a97
+-/
 theorem HasFunctionPhiModularEstimate.congr_ae
     {Phi : YoungFunction} {T S : L0Infinity → ℝ → ℝ≥0∞}
     (hT : HasFunctionPhiModularEstimate Phi T)
@@ -41,6 +45,9 @@ theorem HasFunctionPhiModularEstimate.congr_ae
   rw [← functionOperatorLevelSet_measure_congr_ae (hTS f) α]
   exact hbound f α hα
 
+/--
+@isnad1 id=iff.1h3v.s5.7699b1a48a12 from=translated src=- shape=bce271ed vocab=cc3f1a97
+-/
 theorem hasFunctionPhiModularEstimate_congr_ae
     (Phi : YoungFunction) {T S : L0Infinity → ℝ → ℝ≥0∞}
     (hTS : ∀ f, T f =ᵐ[volume] S f) :
@@ -51,20 +58,26 @@ namespace NegativePrincipalValueEndpoints
 
 open PositivePrincipalValueEndpoints
 
-/-- Unconditional common-conull-set identification for the lacunary supremum.-/
+/-- Unconditional common-conull-set identification for the lacunary supremum.
+@isnad1 id=eventual.0h1v.s4.52c9676e2011 from=translated src=- shape=1b1fd463 vocab=1a36802c
+-/
 theorem lacunaryPrincipalValueMaximal_ae_eq (f : L0Infinity) :
     lacunaryPrincipalValueMaximal f =ᵐ[volume] lacunaryQuadraticCarlesonL0 f :=
   PositivePrincipalValueEndpoints.lacunaryPrincipalValueMaximal_ae_eq
     HilbertMaximalWeakResolved.hasUniformHilbertMaximalWeakBound f
 
-/-- Unconditional common-conull-set identification for the full real supremum.-/
+/-- Unconditional common-conull-set identification for the full real supremum.
+@isnad1 id=eventual.0h1v.s4.158ae1bdacb7 from=translated src=- shape=1b1fd463 vocab=329a1cdd
+-/
 theorem fullPrincipalValueMaximal_ae_eq (f : L0Infinity) :
     fullPrincipalValueMaximal f =ᵐ[volume] quadraticCarlesonL0 f :=
   PositivePrincipalValueEndpoints.fullPrincipalValueMaximal_ae_eq
     HilbertMaximalWeakResolved.hasUniformHilbertMaximalWeakBound f
 
 /-- The negative headline for exactly the lacunary principal-value operator
-occurring in the positive endpoint theorem.-/
+occurring in the positive endpoint theorem.
+@isnad1 id=not.1h1v.s3.942b29ee45bf from=translated src=- shape=2d03b771 vocab=f4339b06
+-/
 theorem lacunary_not_hasPhiModularEstimate
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi) :
     ¬HasFunctionPhiModularEstimate Phi lacunaryPrincipalValueMaximal := by
@@ -74,7 +87,9 @@ theorem lacunary_not_hasPhiModularEstimate
     ((hasFunctionPhiModularEstimate_iff Phi lacunaryL0Operator).mp hlim)
 
 /-- The full-real-modulation negative conclusion for exactly the same
-principal-value operator as in the positive full endpoint.-/
+principal-value operator as in the positive full endpoint.
+@isnad1 id=not.1h1v.s3.95c938a324a5 from=translated src=- shape=2d03b771 vocab=90b0fe5a
+-/
 theorem full_not_hasPhiModularEstimate
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi) :
     ¬HasFunctionPhiModularEstimate Phi fullPrincipalValueMaximal := by
@@ -83,7 +98,9 @@ theorem full_not_hasPhiModularEstimate
     (hPV.congr_ae fullPrincipalValueMaximal_ae_eq)
 
 /-- The source's unit-level lacunary witness, with its printed `0 < κ < 1`
-range and the genuine principal-value maximal operator.-/
+range and the genuine principal-value maximal operator.
+@isnad1 id=ex.2h2v.s6.79c9de1ceec9 from=translated src=- shape=34a26d2f vocab=20e35bd0
+-/
 theorem lacunary_exists_paper_modular_witness
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi)
     {kappa : ℝ} (hkappa : 0 < kappa ∧ kappa < 1) :
@@ -99,7 +116,9 @@ theorem lacunary_exists_paper_modular_witness
   simpa only [operatorLevelSet, ENNReal.ofReal_one, lacunaryL0Operator] using hf
 
 /-- The same source witness statement for the full real-modulation
-principal-value operator.-/
+principal-value operator.
+@isnad1 id=ex.2h2v.s6.3e30f0533bab from=translated src=- shape=34a26d2f vocab=c966238b
+-/
 theorem full_exists_paper_modular_witness
     (Phi : YoungFunction) (hPhi : GrowsSlowerThanEndpoint Phi)
     {kappa : ℝ} (hkappa : 0 < kappa ∧ kappa < 1) :

@@ -27,12 +27,18 @@ noncomputable section
 the positive-scale block beginning at scale `1`.-/
 def unitScaleSplitLength (j : ℤ) : ℕ := (1 - j).toNat
 
+/--
+@isnad1 id=eq.1h1v.s5.cdce637a352e from=translated src=- shape=696f4acc vocab=5a946a9c
+-/
 theorem add_unitScaleSplitLength (j : ℤ) (hj : j ≤ 1) :
     j + (unitScaleSplitLength j : ℤ) = 1 := by
   unfold unitScaleSplitLength
   rw [Int.toNat_of_nonneg (sub_nonneg.mpr hj)]
   omega
 
+/--
+@isnad1 id=le.2h2v.s5.11103ed52af7 from=translated src=- shape=30962278 vocab=ba235382
+-/
 theorem unitScaleSplitLength_le {j : ℤ} {N : ℕ}
     (hj : j ≤ 1) (hreach : 1 ≤ j + (N : ℤ)) :
     unitScaleSplitLength j ≤ N := by
@@ -42,7 +48,9 @@ theorem unitScaleSplitLength_le {j : ℤ} {N : ℕ}
   exact_mod_cast (show (unitScaleSplitLength j : ℤ) ≤ (N : ℤ) by omega)
 
 /-- A consecutive full-dyadic tail splits exactly after any prescribed
-number of terms.-/
+number of terms.
+@isnad1 id=eq.0h6v.s5.832ed0c36ebf from=translated src=- shape=293d79d2 vocab=06570c3a
+-/
 theorem finiteFullDyadicTail_add
     (lam : ℝ) (j : ℤ) (a b : ℕ) (f : ℝ → ℂ) (x : ℝ) :
     finiteFullDyadicTail lam j (a + b) f x =
@@ -58,7 +66,9 @@ theorem finiteFullDyadicTail_add
 
 /-- Splitting the available scale interval at `L ≤ N` bounds its moving
 suffix maximum by the two suffix maxima on the resulting consecutive
-subintervals.  The estimate has no dependence on either cardinality.-/
+subintervals.  The estimate has no dependence on either cardinality.
+@isnad1 id=le.1h6v.s6.09d55ddb0aaf from=translated src=- shape=94b44fef vocab=08ba985e
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_le_split
     (lam : ℝ) (j : ℤ) {N L : ℕ} (hLN : L ≤ N)
     (f : ℝ → ℂ) (x : ℝ) :
@@ -109,7 +119,9 @@ theorem coe_finiteFullDyadicSuffixMaxNNNorm_le_split
 
 /-- In the crossing case, choose the split length so that the second block
 starts at dyadic scale `1`.  The first block is then controlled entirely by
-the phase-zero Hilbert term and the common maximal-function errors.-/
+the phase-zero Hilbert term and the common maximal-function errors.
+@isnad1 id=le.5h5v.s8.9f906f2bac6c from=translated src=- shape=10ab2073 vocab=6e17407e
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_one_le_lowControl_add_high
     {j : ℤ} {N L : ℕ} (hLN : L ≤ N) (hscale : j + (L : ℤ) = 1)
     {f : ℝ → ℂ} (hfm : Measurable f) (hfi : Integrable f)
@@ -141,7 +153,9 @@ theorem coe_finiteFullDyadicSuffixMaxNNNorm_one_le_lowControl_add_high
       rw [hscale]
 
 /-- Canonical form of the crossing-scale estimate, with the split length
-computed from the starting scale.-/
+computed from the starting scale.
+@isnad1 id=le.5h4v.s8.6db72bf7ca6d from=translated src=- shape=50e3e5e2 vocab=730ade8a
+-/
 theorem coe_finiteFullDyadicSuffixMaxNNNorm_one_le_canonicalLowControl_add_high
     {j : ℤ} {N : ℕ} (hj : j ≤ 1) (hreach : 1 ≤ j + (N : ℤ))
     {f : ℝ → ℂ} (hfm : Measurable f) (hfi : Integrable f)

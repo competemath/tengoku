@@ -28,7 +28,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- The regular output subcollection at one offset is controlled by the sum
-of the direct quadratic low estimate and the positive high estimate.-/
+of the direct quadratic low estimate and the positive high estimate.
+@isnad1 id=other.12h11v.s9.1f1cb31db795 from=translated src=- shape=bc201bd5 vocab=47f2d765
+-/
 theorem lintegral_directRegular_offsetTailMaximalOn_le_low_add_high
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -126,7 +128,9 @@ theorem lintegral_directRegular_offsetTailMaximalOn_le_low_add_high
 
 /-- The complete regular/exceptional decomposition at one fixed offset.
 The first two terms are the regular low/high bounds, while the final term is
-the packing bound for the exceptional output family.-/
+the packing bound for the exceptional output family.
+@isnad1 id=le.17h13v.s9.378fe6f37a04 from=translated src=- shape=626cba58 vocab=588fa581
+-/
 theorem lintegral_offsetTailMaximalOn_le_oneOffset_directQuadratic
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -182,7 +186,9 @@ theorem lintegral_offsetTailMaximalOn_le_oneOffset_directQuadratic
   exact hsplit.trans (add_le_add hregular hexception)
 
 /-- Integrating the exact finite offset reconstruction costs only the sum of
-the individual offset pairings.-/
+the individual offset pairings.
+@isnad1 id=le.2h5v.s8.b8304b52249a from=translated src=- shape=b2caf4d7 vocab=ce89520d
+-/
 theorem lintegral_localizedTailMaximal_le_sum_offsetPairings
     {S : Finset RealInterval} (scale : RealInterval → ℤ)
     (f g : L0Infinity) (ell₀ : ℤ)
@@ -219,7 +225,9 @@ theorem lintegral_localizedTailMaximal_le_sum_offsetPairings
       lintegral_finsetSum' O hmeas
 
 /-- Finite offset reconstruction with the complete direct quadratic estimate
-inserted at every nonnegative offset.-/
+inserted at every nonnegative offset.
+@isnad1 id=le.17h12v.s9.f97d1e031ea3 from=translated src=- shape=18af1598 vocab=2db656c4
+-/
 theorem lintegral_localizedTailMaximal_le_sum_oneOffset_directQuadratic
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -266,7 +274,9 @@ theorem lintegral_localizedTailMaximal_le_sum_oneOffset_directQuadratic
         hgavg)
 
 /-- The common real mass-decay term in the offset estimates sums to the
-paper's `20 * p'` geometric-series factor.-/
+paper's `20 * p'` geometric-series factor.
+@isnad1 id=le.4h3v.s7.daca16583188 from=translated src=- shape=c12f5752 vocab=76dbc645
+-/
 theorem sum_ofReal_directQuadraticDelta_rpow_mul_le
     {p V : ℝ} (hp : 1 < p) (hp2 : p ≤ 2) (hV : 0 ≤ V)
     (O : Finset ℤ) (hO : ∀ s ∈ O, 0 ≤ s) :
@@ -296,7 +306,9 @@ theorem sum_ofReal_directQuadraticDelta_rpow_mul_le
       exact mul_le_mul_of_nonneg_right hgeom hV
 
 /-- The reconstructed localized maximal-tail pairing, with all offsets summed
-and the geometric series replaced by the paper's `20 * p'` bound.-/
+and the geometric series replaced by the paper's `20 * p'` bound.
+@isnad1 id=le.17h12v.s9.f05d20ad7ed2 from=translated src=- shape=d8d02587 vocab=fcba5cb0
+-/
 theorem lintegral_localizedTailMaximal_le_directQuadratic_geometric
     {S : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

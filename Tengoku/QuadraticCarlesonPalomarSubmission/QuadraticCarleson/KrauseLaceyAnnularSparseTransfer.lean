@@ -30,7 +30,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- Sparse domination transfers through the actual norm-input comparison,
-with its proved annular coefficient `24`, and no radius-cardinality loss.-/
+with its proved annular coefficient `24`, and no radius-cardinality loss.
+@isnad1 id=hasspars.4h5v.s6.755172b1f2ff from=translated src=- shape=cb2a1823 vocab=f88370fe
+-/
 theorem hasSparseOnePBound_finiteSmoothMax_of_dyadic_and_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) {C D p : ℝ}
     (hC : 0 ≤ C) (hD : 0 ≤ D)
@@ -60,6 +62,9 @@ theorem hasSparseOnePBound_finiteSmoothMax_of_dyadic_and_boundary
     rw [ENNReal.ofReal_add hC (mul_nonneg (by norm_num) hD), add_mul]
     exact add_le_add le_rfl (mul_le_mul' le_rfl hRS)
 
+/--
+@isnad1 id=hasspars.4h5v.s6.f760baddcf97 from=translated src=- shape=c7aaaa23 vocab=40a84c95
+-/
 theorem hasSparseOnePBound_finiteSmoothMax_of_positiveSuffix_and_boundary
     (lam : ℝ) (s : Finset PositiveSmoothRadius) {C D p : ℝ}
     (hC : 0 ≤ C) (hD : 0 ≤ D)
@@ -81,7 +86,9 @@ def HasNativeUnitPositiveSuffixSparseBound (C : ℝ) : Prop :=
       (finitePositiveDyadicSuffixMaxOperator 1 j N)
 
 /-- The actual annular comparison extends native integer-dyadic unit-phase
-suffix bounds to every finite positive smooth-radius family.-/
+suffix bounds to every finite positive smooth-radius family.
+@isnad1 id=hasunitf.3h2v.s6.099575b3969f from=translated src=- shape=0691cd1e vocab=b084e041
+-/
 theorem hasUnitFiniteSmoothSparseBound_of_native_and_boundary
     {C D : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) (hD : 0 ≤ D)
     (hboundary : HasSparseOnePBound D 1 centeredHardyLittlewoodBoundaryOperator) :
@@ -96,7 +103,9 @@ theorem hasUnitFiniteSmoothSparseBound_of_native_and_boundary
   nlinarith
 
 /-- Paper-facing all-nonzero smooth hypothesis from native unit suffixes and
-the ordinary maximal-average sparse theorem.-/
+the ordinary maximal-average sparse theorem.
+@isnad1 id=hasunifo.3h2v.s6.5143bd4f0e7c from=translated src=- shape=0691cd1e vocab=04ce801c
+-/
 theorem hasUniformFiniteRadiusSmoothSparseBound_of_native_and_boundary
     {C D : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) (hD : 0 ≤ D)
     (hboundary : HasSparseOnePBound D 1 centeredHardyLittlewoodBoundaryOperator) :
@@ -106,7 +115,9 @@ theorem hasUniformFiniteRadiusSmoothSparseBound_of_native_and_boundary
 
 /-- The ordinary maximal-average input is now fully discharged.  Native
 positive-unit integer-dyadic suffixes control arbitrary finite smooth radii;
-the explicit extra universal constant is `24 * 480 = 11520`.-/
+the explicit extra universal constant is `24 * 480 = 11520`.
+@isnad1 id=hasunitf.1h1v.s5.f86edbf4da0e from=translated src=- shape=6e0e21fa vocab=ee9bad8f
+-/
 theorem hasUnitFiniteSmoothSparseBound_of_native
     {C : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) :
     HasUnitFiniteSmoothSparseBound (2 * C + 11520) := by
@@ -117,7 +128,9 @@ theorem hasUnitFiniteSmoothSparseBound_of_native
 
 /-- This closes the scale-offset and nonzero-modulation adapter without any
 annular-comparison, maximal-sparse, negative-sign, or dilation premise.
-The only remaining input is the native positive-unit KL suffix theorem.-/
+The only remaining input is the native positive-unit KL suffix theorem.
+@isnad1 id=hasunifo.1h1v.s5.bcc483c5aaeb from=translated src=- shape=6e0e21fa vocab=0bcb342d
+-/
 theorem hasUniformFiniteRadiusSmoothSparseBound_of_native
     {C : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) :
     HasUniformFiniteRadiusSmoothSparseBound (2 * C + 11520) :=
@@ -125,7 +138,9 @@ theorem hasUniformFiniteRadiusSmoothSparseBound_of_native
     (hasUnitFiniteSmoothSparseBound_of_native hC)
 
 /-- Compatibility with the older native interface, which unnecessarily
-quantifies over every modulation: only its `lam = 1` component is used.-/
+quantifies over every modulation: only its `lam = 1` component is used.
+@isnad1 id=hasnativ.1h1v.s2.2709dcfe624e from=translated src=- shape=6321fd23 vocab=4e085bda
+-/
 theorem hasNativeUnitPositiveSuffixSparseBound_of_native_allModulations
     {C : ℝ}
     (hC : KrauseLaceyScaleOffsetBridge.HasNativePositiveDyadicSuffixSparseBound C) :
@@ -134,6 +149,9 @@ theorem hasNativeUnitPositiveSuffixSparseBound_of_native_allModulations
   intro p hp hp2 j N
   exact hC.2 1 j p hp hp2 N
 
+/--
+@isnad1 id=hasunits.1h1v.s5.0fdbfbfe9c2e from=translated src=- shape=6e0e21fa vocab=cb1f2681
+-/
 theorem hasUnitScaleOffsetSmoothSparseBound_of_native
     {C : ℝ} (hC : HasNativeUnitPositiveSuffixSparseBound C) :
     HasUnitScaleOffsetSmoothSparseBound (2 * C + 11520) := by

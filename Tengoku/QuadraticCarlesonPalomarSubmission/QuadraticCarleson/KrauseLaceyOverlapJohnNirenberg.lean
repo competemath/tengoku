@@ -21,6 +21,9 @@ open KrauseLaceyStoppingExtraction KrauseLaceyGenerationLayers
 set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
+/--
+@isnad1 id=eq.1h2v.s6.2f406c8d7d8b from=translated src=- shape=e4ed2deb vocab=700c4e8e
+-/
 theorem sum_volume_overlapStoppingIntervals
     (A : Finset RealInterval) (M : ℕ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun J K ↦
@@ -32,7 +35,9 @@ theorem sum_volume_overlapStoppingIntervals
       (fun I _ ↦ I.measurableSet_carrier)]
   simp only [RealInterval.volume_carrier]
 
-/-- Subfamilies inherit the literal local Carleson packing bound.-/
+/-- Subfamilies inherit the literal local Carleson packing bound.
+@isnad1 id=le.2h4v.s6.3e20973f2020 from=translated src=- shape=19d6b31c vocab=02398b2d
+-/
 theorem local_length_packing_mono
     {A B : Finset RealInterval} {Λ : ℝ} (hBA : B ⊆ A)
     (hpack : ∀ K : RealInterval,
@@ -45,7 +50,9 @@ theorem local_length_packing_mono
     (fun I _ _ ↦ I.length_pos.le)
 
 /-- Finite John--Nirenberg in exact block form. The ratio is the actual
-Carleson constant divided by the block length.-/
+Carleson constant divided by the block length.
+@isnad1 id=le.3h5v.s8.0f7e9438b441 from=translated src=- shape=0b8247cc vocab=d9738603
+-/
 theorem volume_overlap_blocks_le
     (t : ℕ) (A : Finset RealInterval) (K : RealInterval) (M : ℕ) (Λ : ℝ)
     (hlam : Set.Pairwise (↑A : Set RealInterval) fun I J ↦
@@ -119,7 +126,9 @@ theorem volume_overlap_blocks_le
           ENNReal.ofReal K.length := by rw [pow_succ, mul_assoc]
 
 /-- The usual dyadic exponential decay, with an explicit block-size
-condition and no analytic overlap hypothesis.-/
+condition and no analytic overlap hypothesis.
+@isnad1 id=le.4h5v.s8.f8655d697d86 from=translated src=- shape=4a5d6b38 vocab=d9738603
+-/
 theorem volume_overlap_blocks_le_half_pow
     (t : ℕ) (A : Finset RealInterval) (K : RealInterval) (M : ℕ) (Λ : ℝ)
     (hblock : 2 * Λ ≤ M + 1)

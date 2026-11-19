@@ -36,12 +36,17 @@ def HasExtendedWeakL1Bound {X : Type*} [MeasurableSpace X]
 noncomputable def blockSupremum {X ι : Type*} (F : ι → X → ℝ≥0∞) (x : X) : ℝ≥0∞ :=
   ⨆ τ, F τ x
 
+/--
+@isnad1 id=measurab.1h3v.s5.cfc93b150032 from=translated src=- shape=f8987389 vocab=d293bd9f
+-/
 theorem measurable_blockSupremum {X ι : Type*} [MeasurableSpace X] [Countable ι]
     {F : ι → X → ℝ≥0∞} (hF : ∀ τ, Measurable (F τ)) :
     Measurable (blockSupremum F) := Measurable.iSup hF
 
 /-- The countable supremum costs only the sum of the individual weak
-constants. No pointwise boundedness of that supremum is assumed.-/
+constants. No pointwise boundedness of that supremum is assumed.
+@isnad1 id=hasexten.2h5v.s6.3a0eabf9ecd7 from=translated src=- shape=234f96f8 vocab=1988b73a
+-/
 theorem hasExtendedWeakL1Bound_blockSupremum
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ι → X → ℝ≥0∞} {A : ι → ℝ}
@@ -68,17 +73,29 @@ theorem hasExtendedWeakL1Bound_blockSupremum
 noncomputable def capOutput {X : Type*} (F : X → ℝ≥0∞) (M : ℕ) (x : X) : ℝ :=
   (min (M : ℝ≥0∞) (F x)).toReal
 
+/--
+@isnad1 id=measurab.1h3v.s4.53cd8979fbb6 from=translated src=- shape=94cbc3a0 vocab=80dbd949
+-/
 theorem measurable_capOutput {X : Type*} [MeasurableSpace X]
     {F : X → ℝ≥0∞} (hF : Measurable F) (M : ℕ) : Measurable (capOutput F M) :=
   (measurable_const.min hF).ennreal_toReal
 
+/--
+@isnad1 id=le.0h4v.s4.074501098567 from=translated src=- shape=54699102 vocab=64c95fdb
+-/
 theorem capOutput_nonneg {X : Type*} (F : X → ℝ≥0∞) (M : ℕ) (x : X) :
     0 ≤ capOutput F M x := ENNReal.toReal_nonneg
 
+/--
+@isnad1 id=eq.0h4v.s5.a23ac26753c1 from=translated src=- shape=09e1ff5a vocab=b69228a0
+-/
 theorem ofReal_capOutput {X : Type*} (F : X → ℝ≥0∞) (M : ℕ) (x : X) :
     ENNReal.ofReal (capOutput F M x) = min (M : ℝ≥0∞) (F x) :=
   ENNReal.ofReal_toReal (ne_top_of_le_ne_top (by finiteness) (min_le_left _ _))
 
+/--
+@isnad1 id=hasweakl.1h5v.s5.9a8cc25676f0 from=translated src=- shape=7557ebfd vocab=81cc584f
+-/
 theorem hasWeakL1Bound_capOutput {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {F : X → ℝ≥0∞} {A : ℝ}
     (hweak : HasExtendedWeakL1Bound μ A F) (M : ℕ) :
@@ -98,6 +115,9 @@ noncomputable def finiteCapSequence {X : Type*}
     (F : ℕ → X → ℝ≥0∞) (N M k : ℕ) (x : X) : ℝ :=
   if k < N then capOutput (F k) M x else 0
 
+/--
+@isnad1 id=measurab.1h5v.s5.aa8ae0a17fdc from=translated src=- shape=f79d35f4 vocab=c4516925
+-/
 theorem measurable_finiteCapSequence {X : Type*} [MeasurableSpace X]
     {F : ℕ → X → ℝ≥0∞} (hF : ∀ k, Measurable (F k)) (N M k : ℕ) :
     Measurable (finiteCapSequence F N M k) := by
@@ -107,6 +127,9 @@ theorem measurable_finiteCapSequence {X : Type*} [MeasurableSpace X]
   · simpa only [ite_eq_right hk] using
       (measurable_const : Measurable (fun _ : X ↦ (0 : ℝ)))
 
+/--
+@isnad1 id=le.0h6v.s5.9919c2d9b9d0 from=translated src=- shape=583a1c10 vocab=ed583d6c
+-/
 theorem finiteCapSequence_nonneg {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (N M k : ℕ) (x : X) : 0 ≤ finiteCapSequence F N M k x := by
   unfold finiteCapSequence
@@ -114,6 +137,9 @@ theorem finiteCapSequence_nonneg {X : Type*} (F : ℕ → X → ℝ≥0∞)
   · exact capOutput_nonneg _ _ _
   · exact le_rfl
 
+/--
+@isnad1 id=summable.0h5v.s5.2d4a61ee4d23 from=translated src=- shape=f8d1ea96 vocab=afb00115
+-/
 theorem summable_finiteCapSequence {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (N M : ℕ) (x : X) : Summable (fun k ↦ finiteCapSequence F N M k x) := by
   apply summable_of_ne_finset_zero (s := Finset.range N)
@@ -121,6 +147,9 @@ theorem summable_finiteCapSequence {X : Type*} (F : ℕ → X → ℝ≥0∞)
   simp only [Finset.mem_range] at hk
   simp only [finiteCapSequence, ite_eq_right hk]
 
+/--
+@isnad1 id=hasweakl.1h7v.s5.ae9fed4c760d from=translated src=- shape=e10d27a0 vocab=819ddcbf
+-/
 theorem hasWeakL1Bound_finiteCapSequence {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {F : ℕ → X → ℝ≥0∞} {A : ℕ → ℝ}
     (hweak : ∀ k, HasExtendedWeakL1Bound μ (A k) (F k)) (N M k : ℕ) :
@@ -138,6 +167,9 @@ noncomputable def partialCap {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (N M : ℕ) (x : X) : ℝ≥0∞ :=
   ∑ k ∈ Finset.range N, min (M : ℝ≥0∞) (F k x)
 
+/--
+@isnad1 id=eq.0h5v.s5.45c57c0bfea3 from=translated src=- shape=b757c134 vocab=9b45c469
+-/
 theorem ofReal_tsum_finiteCapSequence {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (N M : ℕ) (x : X) :
     ENNReal.ofReal (∑' k, finiteCapSequence F N M k x) = partialCap F N M x := by
@@ -151,7 +183,9 @@ theorem ofReal_tsum_finiteCapSequence {X : Type*} (F : ℕ → X → ℝ≥0∞)
 
 /-- Pointwise summability and measurability of the approximants are proved
 above, so this invokes the existing countable Kalton theorem without an
-additional convergence hypothesis.-/
+additional convergence hypothesis.
+@isnad1 id=le.4h7v.s7.42405d9bccd0 from=translated src=- shape=88ef911f vocab=a524fd51
+-/
 theorem partialCap_levelSet_mul_le_paperLog
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {F : ℕ → X → ℝ≥0∞} {A : ℕ → ℝ}
@@ -174,11 +208,17 @@ theorem partialCap_levelSet_mul_le_paperLog
   rw [hs]
   exact h.2 a ha
 
+/--
+@isnad1 id=monotone.0h4v.s4.78bb02a0a838 from=translated src=- shape=c61050fa vocab=b9b35a04
+-/
 theorem monotone_partialCap_levels {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (M : ℕ) (x : X) : Monotone (fun N ↦ partialCap F N M x) := by
   intro N N' hN
   exact Finset.sum_le_sum_of_subset (Finset.range_mono hN)
 
+/--
+@isnad1 id=monotone.0h4v.s4.30e6e1a8d2cd from=translated src=- shape=340d64cb vocab=b9b35a04
+-/
 theorem monotone_partialCap_cap {X : Type*} (F : ℕ → X → ℝ≥0∞)
     (N : ℕ) (x : X) : Monotone (fun M ↦ partialCap F N M x) := by
   intro M M' hM
@@ -186,6 +226,9 @@ theorem monotone_partialCap_cap {X : Type*} (F : ℕ → X → ℝ≥0∞)
   intro k hk
   exact min_le_min_right _ (Nat.cast_le.mpr hM)
 
+/--
+@isnad1 id=tendsto.0h4v.s5.6614e8d72cd2 from=translated src=- shape=fd1e1a80 vocab=0c4476b8
+-/
 theorem tendsto_partialCap {X : Type*} (F : ℕ → X → ℝ≥0∞) (N : ℕ) (x : X) :
     Tendsto (fun M ↦ partialCap F N M x) atTop
       (𝓝 (∑ k ∈ Finset.range N, F k x)) := by
@@ -195,7 +238,9 @@ theorem tendsto_partialCap {X : Type*} (F : ℕ → X → ℝ≥0∞) (N : ℕ) 
     ENNReal.tendsto_nat_nhds_top.min (tendsto_const_nhds (x := F k x))
 
 /-- Exact recovery of every strict level set, even where the series diverges
-to infinity. Both approximation parameters are natural numbers.-/
+to infinity. Both approximation parameters are natural numbers.
+@isnad1 id=eq.0h3v.s6.f4792bacd22e from=translated src=- shape=561eb2fe vocab=97d36bf3
+-/
 theorem tsum_levelSet_eq_iUnion_partialCap {X : Type*}
     (F : ℕ → X → ℝ≥0∞) (a : ℝ≥0∞) :
     {x | a < ∑' k, F k x} = ⋃ N : ℕ, ⋃ M : ℕ, {x | a < partialCap F N M x} := by
@@ -217,7 +262,9 @@ theorem tsum_levelSet_eq_iUnion_partialCap {X : Type*}
 
 /-- Countable Kalton summation for the genuine extended-real sum. This
 removes the pointwise-summability requirement by an explicit monotone passage
-from the already checked countable theorem on finite-cap approximants.-/
+from the already checked countable theorem on finite-cap approximants.
+@isnad1 id=hasexten.3h4v.s7.bd986a105dd1 from=translated src=- shape=3d2ca0e9 vocab=7ba0eff5
+-/
 theorem hasExtendedWeakL1Bound_tsum_paperLog
     {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {F : ℕ → X → ℝ≥0∞} {A : ℕ → ℝ}
@@ -252,13 +299,18 @@ theorem hasExtendedWeakL1Bound_tsum_paperLog
 noncomputable def paperBlockOutput {X ι : Type*} (F : ℕ → ι → X → ℝ≥0∞)
     (x : X) : ℝ≥0∞ := ∑' k, blockSupremum (F k) x
 
+/--
+@isnad1 id=measurab.1h3v.s5.6c2b1ab2e530 from=translated src=- shape=e0a587cb vocab=26228541
+-/
 theorem measurable_paperBlockOutput {X ι : Type*} [MeasurableSpace X] [Countable ι]
     {F : ℕ → ι → X → ℝ≥0∞} (hF : ∀ k τ, Measurable (F k τ)) :
     Measurable (paperBlockOutput F) :=
   Measurable.tsum fun k ↦ measurable_blockSupremum (hF k)
 
 /-- Countable union in the block parameter, then Kalton in the magnitude
-level, with precisely the paper's `log₁(k+2)` weight and constant 24.-/
+level, with precisely the paper's `log₁(k+2)` weight and constant 24.
+@isnad1 id=hasexten.4h5v.s7.f185161ee851 from=translated src=- shape=26c4895e vocab=338fc546
+-/
 theorem hasExtendedWeakL1Bound_paperBlockOutput
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -275,7 +327,9 @@ theorem hasExtendedWeakL1Bound_paperBlockOutput
     (fun k ↦ hasExtendedWeakL1Bound_blockSupremum (hweak k) (hrow k)) hA
 
 /-- Distribution form ready for the actual block operators. The measure
-space can already be restricted to the stopping exceptional-set complement.-/
+space can already be restricted to the stopping exceptional-set complement.
+@isnad1 id=le.5h6v.s8.bb9ed6b8146a from=translated src=- shape=8d48218d vocab=60c551eb
+-/
 theorem paperBlockOutput_levelSet_mul_le
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -290,6 +344,9 @@ theorem paperBlockOutput_levelSet_mul_le
         paperLog 1 ((k : ℝ) + 2) * ∑' τ, A k τ) :=
   (hasExtendedWeakL1Bound_paperBlockOutput hF hweak hrow hA).2 a ha
 
+/--
+@isnad1 id=le.4h5v.s8.7d9a38d30f89 from=translated src=- shape=822aa0e5 vocab=60c551eb
+-/
 theorem paperBlockOutput_levelSet_one_le
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -305,7 +362,9 @@ theorem paperBlockOutput_levelSet_one_le
     paperBlockOutput_levelSet_mul_le hF hweak hrow hA (by norm_num : (0 : ℝ) < 1)
 
 /-- Existing real-valued weak bounds feed the extended-output formulation
-without a new analytic estimate.-/
+without a new analytic estimate.
+@isnad1 id=hasexten.1h4v.s5.74771ec2b78f from=translated src=- shape=2796d5b0 vocab=6b38689d
+-/
 theorem hasExtendedWeakL1Bound_ofReal
     {X : Type*} [MeasurableSpace X] {μ : Measure X} {A : ℝ} {F : X → ℝ}
     (hweak : HasWeakL1Bound μ A F) :
@@ -314,6 +373,9 @@ theorem hasExtendedWeakL1Bound_ofReal
   intro a ha
   simpa only [ENNReal.ofReal_lt_ofReal_iff_of_nonneg ha.le] using hweak.2 a ha
 
+/--
+@isnad1 id=le.0h1v.s5.66050bac54d8 from=translated src=- shape=9e1ae135 vocab=368896f8
+-/
 theorem paperOuterWeight_one_le (k : ℕ) : 1 ≤ paperLog 1 ((k : ℝ) + 2) := by
   rw [paper_outer_weight_eq, ← Real.exp_le_exp,
     Real.exp_log (by have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg k; linarith)]
@@ -329,7 +391,9 @@ noncomputable def paperBlockBudget {ι : Type*} (A : ℕ → ι → ℝ) : ℝ�
     ∑' τ, ENNReal.ofReal (A k τ)
 
 /-- Finiteness of the explicit nonnegative budget proves both row
-summability and outer weighted summability.-/
+summability and outer weighted summability.
+@isnad1 id=and.2h2v.s6.fa386624723a from=translated src=- shape=7655774f vocab=c2d67e9f
+-/
 theorem summability_of_paperBlockBudget_ne_top
     {ι : Type*} {A : ℕ → ι → ℝ} (hA : ∀ k τ, 0 ≤ A k τ)
     (hbudget : paperBlockBudget A ≠ ∞) :
@@ -362,7 +426,9 @@ theorem summability_of_paperBlockBudget_ne_top
 
 /-- The unrestricted paper-form estimate. All summability needed for Kalton
 is derived from the budget when finite; an infinite right side is handled
-directly. Only the individual block weak bounds are hypotheses.-/
+directly. Only the individual block weak bounds are hypotheses.
+@isnad1 id=le.3h6v.s7.8d0c1aaea018 from=translated src=- shape=5187df43 vocab=3430adce
+-/
 theorem paperBlockOutput_levelSet_mul_le_budget
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -386,6 +452,9 @@ theorem paperBlockOutput_levelSet_mul_le_budget
   rw [ENNReal.ofReal_mul (le_trans zero_le_one (paperOuterWeight_one_le k)),
     ENNReal.ofReal_tsum_of_nonneg (hA k) (hrow k)]
 
+/--
+@isnad1 id=le.2h5v.s6.f8cc1fc6517b from=translated src=- shape=4f6180c8 vocab=9a49fa19
+-/
 theorem paperBlockOutput_levelSet_one_le_budget
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -396,7 +465,9 @@ theorem paperBlockOutput_levelSet_one_le_budget
     paperBlockOutput_levelSet_mul_le_budget hF hweak (by norm_num : (0 : ℝ) < 1)
 
 /-- Direct interface for the real-valued nonnegative block outputs used in
-the existing weak-L¹ estimates. No extra summability hypothesis is needed.-/
+the existing weak-L¹ estimates. No extra summability hypothesis is needed.
+@isnad1 id=le.2h5v.s7.52c0fdaba692 from=translated src=- shape=3d8f66ed vocab=126c1756
+-/
 theorem realBlockOutput_levelSet_one_le_budget
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ} {A : ℕ → ι → ℝ}
@@ -408,7 +479,9 @@ theorem realBlockOutput_levelSet_one_le_budget
     (fun k τ ↦ hasExtendedWeakL1Bound_ofReal (hweak k τ))
 
 /-- A finite distribution-function bound excludes infinite output on a set
-of positive measure, without assuming output finiteness beforehand.-/
+of positive measure, without assuming output finiteness beforehand.
+@isnad1 id=eventual.1h4v.s5.b8a48336b23a from=translated src=- shape=ae514c05 vocab=6fcddf0b
+-/
 theorem HasExtendedWeakL1Bound.ae_lt_top
     {X : Type*} [MeasurableSpace X] {μ : Measure X} {A : ℝ} {F : X → ℝ≥0∞}
     (hweak : HasExtendedWeakL1Bound μ A F) : ∀ᵐ x ∂μ, F x < ∞ := by
@@ -439,6 +512,9 @@ theorem HasExtendedWeakL1Bound.ae_lt_top
   apply ae_iff.mpr
   simpa only [not_lt_top_iff] using hzero
 
+/--
+@isnad1 id=eventual.3h5v.s6.bac200eb0c46 from=translated src=- shape=501c16c4 vocab=88e3db57
+-/
 theorem ae_paperBlockOutput_lt_top
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}
@@ -451,7 +527,9 @@ theorem ae_paperBlockOutput_lt_top
   exact (hasExtendedWeakL1Bound_paperBlockOutput hF hweak hrow hsum).ae_lt_top
 
 /-- In particular, the real-valued magnitude-level series is genuinely
-summable almost everywhere; this is a conclusion, not an input assumption.-/
+summable almost everywhere; this is a conclusion, not an input assumption.
+@isnad1 id=eventual.3h5v.s6.1d0e47bcbd4d from=translated src=- shape=ccf8e9c3 vocab=2c43a3e8
+-/
 theorem ae_summable_blockSupremum_toReal
     {X ι : Type*} [MeasurableSpace X] [Countable ι] {μ : Measure X}
     {F : ℕ → ι → X → ℝ≥0∞} {A : ℕ → ι → ℝ}

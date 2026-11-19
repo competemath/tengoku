@@ -30,7 +30,9 @@ set_option autoImplicit false
 
 abbrev SparseResidue := Fin sparseModulus.toNat
 
-/-- A complete finite residue system for the source modulus.-/
+/-- A complete finite residue system for the source modulus.
+@isnad1 id=existsun.0h1v.s4.7a4e3f6c38cd from=translated src=- shape=d563b92e vocab=ae49400a
+-/
 theorem existsUnique_sparseResidue (τ : ℤ) :
     ∃! ρ : SparseResidue, τ ≡ (ρ.val : ℤ) [ZMOD sparseModulus] := by
   have hM : 0 < sparseModulus := by norm_num [sparseModulus]
@@ -54,7 +56,9 @@ theorem existsUnique_sparseResidue (τ : ℤ) :
     have hcast : (σ.val : ℤ) = (ρ.val : ℤ) := hσmod.symm.trans hρ.symm
     exact_mod_cast hcast
 
-/-- Each block belongs to exactly one of the finitely many sparse classes.-/
+/-- Each block belongs to exactly one of the finitely many sparse classes.
+@isnad1 id=eq.0h2v.s5.7d6438e53e9b from=translated src=- shape=e8d97704 vocab=571c8862
+-/
 theorem sum_sparseResidue_indicator (τ : ℤ) (a : ℝ≥0∞) :
     (∑ ρ : SparseResidue, if τ ≡ (ρ.val : ℤ) [ZMOD sparseModulus] then a else 0) = a := by
   obtain ⟨ρ, hρ, huniq⟩ := existsUnique_sparseResidue τ
@@ -65,13 +69,18 @@ theorem sum_sparseResidue_indicator (τ : ℤ) (a : ℝ≥0∞) :
     simp only [ite_eq_right hnot]
   · simp
 
+/--
+@isnad1 id=eq.0h6v.s5.2d8754d80380 from=translated src=- shape=3aa87e6a vocab=ea3f9413
+-/
 theorem sum_sparseFrozenBlockInputL1Mass_eq
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) (τ : ℤ) :
     (∑ ρ : SparseResidue, sparseFrozenBlockInputL1Mass A f k B c (ρ.val : ℤ) τ) =
       frozenBlockInputL1Mass A f k B c τ :=
   sum_sparseResidue_indicator τ _
 
-/-- Exact interchange of the finite residue sum and the countable block sum.-/
+/-- Exact interchange of the finite residue sum and the countable block sum.
+@isnad1 id=eq.0h5v.s6.991c5e57d8d2 from=translated src=- shape=516e5c1d vocab=5b429ce6
+-/
 theorem tsum_frozenBlockInputL1Mass_eq_sum_residues
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) :
     (∑' τ : ℤ, frozenBlockInputL1Mass A f k B c τ) =
@@ -83,15 +92,23 @@ theorem tsum_frozenBlockInputL1Mass_eq_sum_residues
 /-- Factor two from subtracting atom averages, times the exact residue count.-/
 noncomputable def frozenMassPackingConstant : ℝ≥0∞ := 2 * (sparseModulus.toNat : ℝ≥0∞)
 
+/--
+@isnad1 id=eq.0h0v.s3.c9abc34ff7c2 from=translated src=- shape=ffdda526 vocab=7d8f8971
+-/
 theorem frozenMassPackingConstant_eq : frozenMassPackingConstant = 20000000000 := by
   norm_num [frozenMassPackingConstant, sparseModulus, Int.toNat]
 
+/--
+@isnad1 id=lt.0h0v.s3.6bcff44a5f0a from=translated src=- shape=f463f024 vocab=3de0ac6b
+-/
 theorem frozenMassPackingConstant_lt_top : frozenMassPackingConstant < ∞ := by
   rw [frozenMassPackingConstant_eq]
   finiteness
 
 /-- No sparse residue classes are discarded: their complete finite sum gives
-the actual all-block input-mass packing bound.-/
+the actual all-block input-mass packing bound.
+@isnad1 id=le.4h5v.s6.45f20f772a22 from=translated src=- shape=01e1e84d vocab=c3cc75df
+-/
 theorem tsum_frozenBlockInputL1Mass_le_levelMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k B c : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) (hc : 2 * c ≤ 5 * B) :
@@ -108,7 +125,9 @@ theorem tsum_frozenBlockInputL1Mass_le_levelMass
         frozenMassPackingConstant]
       ring
 
-/-- Collapse the complete block budget to the actual magnitude-level masses.-/
+/-- Collapse the complete block budget to the actual magnitude-level masses.
+@isnad1 id=le.3h3v.s7.3262e3db2601 from=translated src=- shape=3b859d67 vocab=1deb0d9e
+-/
 theorem frozenLogSquaredMassBudget_le_levelMass
     {f : ℝ → ℂ} (hf : Measurable f) {B : ℕ → ℕ} {c : ℕ}
     (hB : ∀ k, 0 < B k) (hc : ∀ k, 2 * c ≤ 5 * B k) :
@@ -128,15 +147,23 @@ theorem frozenLogSquaredMassBudget_le_levelMass
 noncomputable def frozenMiddleOrliczConstant : ℝ≥0∞ :=
   frozenMassPackingConstant * ENNReal.ofReal (lacunaryLowLevelConstant 20)
 
+/--
+@isnad1 id=lt.0h0v.s3.0d466f683493 from=translated src=- shape=f463f024 vocab=75a3f01e
+-/
 theorem frozenMiddleOrliczConstant_lt_top : frozenMiddleOrliczConstant < ∞ :=
   ENNReal.mul_lt_top frozenMassPackingConstant_lt_top ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=le.0h0v.s4.7865f6c32f57 from=translated src=- shape=cf0a9d99 vocab=3431b773
+-/
 theorem lacunaryLowLevelConstant_twenty_nonneg : 0 ≤ lacunaryLowLevelConstant 20 := by
   exact add_nonneg (lacunarySmallLevelConstant_nonneg (by norm_num))
     (mul_nonneg (by norm_num) (sq_nonneg _))
 
 /-- Exact paper cutoff and complete sparse residue sum, with no assumed
-summability or assumed final Orlicz inequality.-/
+summability or assumed final Orlicz inequality.
+@isnad1 id=le.2h2v.s7.bbdebeafef74 from=translated src=- shape=063984e7 vocab=3b604f86
+-/
 theorem frozenLogSquaredMassBudget_paperCutoff_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) {c : ℕ}
     (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k) :
@@ -153,7 +180,9 @@ theorem frozenLogSquaredMassBudget_paperCutoff_le_orlicz
   simpa only [frozenMiddleOrliczConstant, mul_assoc] using h
 
 /-- The support convention `C₀ = 1` corresponds to `c = 0` and requires no
-additional geometric hypothesis.-/
+additional geometric hypothesis.
+@isnad1 id=le.1h1v.s6.d2fcaf483052 from=translated src=- shape=fb8bfc5e vocab=3b604f86
+-/
 theorem frozenLogSquaredMassBudget_paperCutoff_zero_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) :
     frozenLogSquaredMassBudget f lacunaryHighCutoff 0 ≤
@@ -161,6 +190,9 @@ theorem frozenLogSquaredMassBudget_paperCutoff_zero_le_orlicz
         ∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 2 ‖f x‖ ^ 2 * paperLog 4 ‖f x‖) :=
   frozenLogSquaredMassBudget_paperCutoff_le_orlicz hf (by intro k; omega)
 
+/--
+@isnad1 id=lt.3h2v.s7.a30e1ae2c5b9 from=translated src=- shape=2adad41a vocab=18d1e854
+-/
 theorem frozenLogSquaredMassBudget_paperCutoff_lt_top
     {f : ℝ → ℂ} (hf : Measurable f) {c : ℕ}
     (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -171,7 +203,9 @@ theorem frozenLogSquaredMassBudget_paperCutoff_lt_top
     (ENNReal.mul_lt_top frozenMiddleOrliczConstant_lt_top horlicz)
 
 /-- Kalton's actual frozen main output has the final lacunary Orlicz bound,
-conditional only on the individual finite-block weak estimate.-/
+conditional only on the individual finite-block weak estimate.
+@isnad1 id=le.5h4v.s8.fc818ceec52e from=translated src=- shape=2d83a133 vocab=0af7c529
+-/
 theorem lacunaryFrozenMainOutput_paperCutoff_compl_levelSet_mul_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -186,6 +220,9 @@ theorem lacunaryFrozenMainOutput_paperCutoff_compl_levelSet_mul_le_orlicz
   simpa only [mul_assoc] using mul_le_mul' (le_refl (24 * ENNReal.ofReal C))
     (frozenLogSquaredMassBudget_paperCutoff_le_orlicz hf hc)
 
+/--
+@isnad1 id=le.4h3v.s8.7203c210ea7c from=translated src=- shape=098bd2d0 vocab=0af7c529
+-/
 theorem lacunaryFrozenMainOutput_paperCutoff_compl_levelSet_one_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -199,6 +236,9 @@ theorem lacunaryFrozenMainOutput_paperCutoff_compl_levelSet_one_le_orlicz
     lacunaryFrozenMainOutput_paperCutoff_compl_levelSet_mul_le_orlicz hf hfi hc hblock
       (by norm_num : (0 : ℝ) < 1)
 
+/--
+@isnad1 id=le.0h1v.s7.0f0ef70e17cc from=translated src=- shape=ab6a4d2c vocab=93b19df6
+-/
 theorem lintegral_enorm_le_lacunaryOrlicz (f : ℝ → ℂ) :
     (∫⁻ x, ‖f x‖ₑ) ≤
       ∫⁻ x, ENNReal.ofReal (‖f x‖ * paperLog 2 ‖f x‖ ^ 2 * paperLog 4 ‖f x‖) := by
@@ -212,7 +252,9 @@ theorem lintegral_enorm_le_lacunaryOrlicz (f : ℝ → ℂ) :
       (norm_nonneg (f x))
 
 /-- The canonical fivefold exceptional set is included, with its explicit
-mass cost absorbed into the same Orlicz modular.-/
+mass cost absorbed into the same Orlicz modular.
+@isnad1 id=le.4h3v.s8.a6be6907f514 from=translated src=- shape=f488f5f9 vocab=adcf4809
+-/
 theorem lacunaryFrozenMainOutput_paperCutoff_levelSet_one_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {c : ℕ} {C : ℝ} (hc : ∀ k, 2 * c ≤ 5 * lacunaryHighCutoff k)
@@ -229,7 +271,9 @@ theorem lacunaryFrozenMainOutput_paperCutoff_levelSet_one_le_orlicz
 
 /-- A completely specified geometric convention: no additional assumption on
 the scale/block arrangement remains. The individual-block analytic input is
-still displayed explicitly.-/
+still displayed explicitly.
+@isnad1 id=le.3h2v.s8.4950ebd8dc54 from=translated src=- shape=acdc85e2 vocab=adcf4809
+-/
 theorem lacunaryFrozenMainOutput_paperCutoff_zero_levelSet_one_le_orlicz
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) {C : ℝ}
     (hblock : HasLogSquaredFrozenBlockWeakBounds f lacunaryHighCutoff 0 C) :

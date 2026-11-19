@@ -25,7 +25,9 @@ set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
 /-- Direct interpolation of one output function between a pointwise bound
-and its squared `L²` mass.-/
+and its squared `L²` mass.
+@isnad1 id=le.3h4v.s7.801055e57fcd from=translated src=- shape=06bbe0ed vocab=cd4b4c29
+-/
 theorem lintegral_enorm_rpow_le_linf_mul_sq
     {E : Type*} [NormedAddCommGroup E] [MeasurableSpace E] [BorelSpace E]
     (F : ℝ → E) {M q : ℝ} (hM : 0 ≤ M) (hq : 2 ≤ q)
@@ -58,7 +60,9 @@ private theorem eLpNorm_two_sq_lintegral_source {E : Type*} [ENorm E]
   norm_num
 
 /-- The `Lp`-valued squared estimate transferred to the actual pointwise
-fixed-physical-scale source action.-/
+fixed-physical-scale source action.
+@isnad1 id=le.5h8v.s8.3c56a65a3445 from=translated src=- shape=30e3aee7 vocab=142ac46f
+-/
 theorem energyStandardFixedPhysicalSourceAction_sq_lintegral_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -83,7 +87,9 @@ theorem energyStandardFixedPhysicalSourceAction_sq_lintegral_le
       hf I₀ k₀ j scale hlam hsub R N hN hfixed)
 
 /-- Fixed-scale `L²`--`L∞` interpolation for the actual scalar-standard
-source action, before specializing the source-gap range.-/
+source action, before specializing the source-gap range.
+@isnad1 id=le.6h9v.s9.feb98bb4451d from=translated src=- shape=3038fa91 vocab=66cb7a30
+-/
 theorem energyStandardFixedPhysicalSourceAction_rpow_lintegral_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -111,7 +117,9 @@ theorem energyStandardFixedPhysicalSourceAction_rpow_lintegral_le
     (energyStandardFixedPhysicalSourceAction_sq_lintegral_le
       hf I₀ k₀ j scale hlam hsub R N hN hfixed) (by positivity)
 
-/-- Norm form of the fixed-scale interpolation estimate.-/
+/-- Norm form of the fixed-scale interpolation estimate.
+@isnad1 id=le.6h9v.s9.3f568be3b4dd from=translated src=- shape=56cc3a99 vocab=884f75aa
+-/
 theorem eLpNorm_energyStandardFixedPhysicalSourceAction_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -141,7 +149,9 @@ theorem eLpNorm_energyStandardFixedPhysicalSourceAction_le
     (one_div_nonneg.mpr hq0.le)
 
 /-- The same squared pointwise-output estimate with the paper's exact source
-gap range `0 ≤ s ≤ j-k₀`, hence exactly one factor `j`.-/
+gap range `0 ≤ s ≤ j-k₀`, hence exactly one factor `j`.
+@isnad1 id=le.7h7v.s8.fed22d5cc7c9 from=translated src=- shape=50d1e25e vocab=df0fc836
+-/
 theorem energyStandardFixedPhysicalSourceAction_sq_lintegral_le_j_mul
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)
@@ -169,7 +179,9 @@ theorem energyStandardFixedPhysicalSourceAction_sq_lintegral_le_j_mul
       hf I₀ k₀ j hk₀ hk₀j scale hlam hsub N hN hfixed)
 
 /-- The precise source fixed-scale interpolation estimate: the local-average
-`L∞` endpoint and the `j 2⁻j` squared `L²` endpoint are both visible.-/
+`L∞` endpoint and the `j 2⁻j` squared `L²` endpoint are both visible.
+@isnad1 id=le.8h8v.s9.5a78ea68692e from=translated src=- shape=7ffc0409 vocab=2683618f
+-/
 theorem energyStandardFixedPhysicalSourceAction_rpow_lintegral_le_j_mul
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)
@@ -200,7 +212,9 @@ theorem energyStandardFixedPhysicalSourceAction_rpow_lintegral_le_j_mul
     (energyStandardFixedPhysicalSourceAction_sq_lintegral_le_j_mul
       hf I₀ k₀ j hk₀ hk₀j scale hlam hsub N hN hfixed) (by positivity)
 
-/-- `L^q` norm form of the exact source-gap estimate.-/
+/-- `L^q` norm form of the exact source-gap estimate.
+@isnad1 id=le.8h8v.s9.9ee6e8d9a073 from=translated src=- shape=5c7ad6a4 vocab=b6ecd3c0
+-/
 theorem eLpNorm_energyStandardFixedPhysicalSourceAction_le_j_mul
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)

@@ -60,6 +60,9 @@ noncomputable def smul (c : ℂ) (f : L0Infinity) : L0Infinity where
   hasCompactSupport_toFun := by
     exact f.hasCompactSupport_toFun.comp_left (mul_zero c)
 
+/--
+@isnad1 id=eq.0h3v.s4.71b9bf69d711 from=translated src=- shape=c2976164 vocab=a852ad5a
+-/
 @[simp] theorem smul_apply (c : ℂ) (f : L0Infinity) (x : ℝ) :
     smul c f x = c * f x := rfl
 
@@ -86,16 +89,28 @@ def RealInterval.carrier (I : RealInterval) : Set ℝ := Ioc I.left I.right
 /-- Lebesgue length of an interval.-/
 def RealInterval.length (I : RealInterval) : ℝ := I.right - I.left
 
+/--
+@isnad1 id=lt.0h1v.s3.1ffb6557a430 from=translated src=- shape=b9369acb vocab=32580006
+-/
 theorem RealInterval.length_pos (I : RealInterval) : 0 < I.length := by
   exact sub_pos.mpr I.left_lt_right
 
+/--
+@isnad1 id=measurab.0h1v.s2.ca46ff5d6ec6 from=translated src=- shape=1a6c1393 vocab=d53d9d39
+-/
 theorem RealInterval.measurableSet_carrier (I : RealInterval) :
     MeasurableSet I.carrier := measurableSet_Ioc
 
+/--
+@isnad1 id=eq.0h1v.s4.c19d95564506 from=translated src=- shape=2d2ddd72 vocab=7ba692f4
+-/
 @[simp] theorem RealInterval.volume_carrier (I : RealInterval) :
     volume I.carrier = ENNReal.ofReal I.length := by
   simp [RealInterval.carrier, RealInterval.length, Real.volume_Ioc]
 
+/--
+@isnad1 id=eq.0h1v.s4.863e25ce8668 from=translated src=- shape=587bb475 vocab=f7605f30
+-/
 @[simp] theorem RealInterval.volume_carrier_toReal (I : RealInterval) :
     (volume I.carrier).toReal = I.length := by
   rw [RealInterval.volume_carrier, ENNReal.toReal_ofReal I.length_pos.le]
@@ -120,7 +135,9 @@ def IsSparse (η : ℝ) (S : Set RealInterval) : Prop :=
 
 This is what justifies the paper's unqualified sum over a sparse family.  The
 proof uses the major subsets: they are measurable, pairwise disjoint, and
-have strictly positive measure in the s-finite Lebesgue measure space.-/
+have strictly positive measure in the s-finite Lebesgue measure space.
+@isnad1 id=countabl.1h2v.s3.1674d777a711 from=translated src=- shape=b7133ed0 vocab=d914819c
+-/
 theorem IsSparse.countable {η : ℝ} {S : Set RealInterval} (hS : IsSparse η S) :
     S.Countable := by
   rcases hS with ⟨hη, -, E, hEmeas, -, hEdisj, hEsize⟩
@@ -142,12 +159,18 @@ noncomputable def sparseForm (p : ℝ) (f g : ℝ → ℂ) (S : Set RealInterval
   ∑' I : {I : RealInterval // I ∈ S},
     ENNReal.ofReal (I.1.length * localAverage 1 f I.1 * localAverage p g I.1)
 
+/--
+@isnad1 id=le.0h3v.s4.84c6c8bf5b08 from=translated src=- shape=1f9ba2d6 vocab=4f2ba287
+-/
 theorem localAverage_nonneg (p : ℝ) (f : ℝ → ℂ) (I : RealInterval) :
     0 ≤ localAverage p f I := by
   apply Real.rpow_nonneg
   exact mul_nonneg (inv_nonneg.mpr I.length_pos.le)
     (MeasureTheory.integral_nonneg fun x ↦ Real.rpow_nonneg (norm_nonneg (f x)) p)
 
+/--
+@isnad1 id=le.0h4v.s4.48ab0fe5a8ca from=translated src=- shape=effcc421 vocab=8b909271
+-/
 theorem sparseForm_nonneg (p : ℝ) (f g : ℝ → ℂ) (S : Set RealInterval) :
     0 ≤ sparseForm p f g S := by
   exact bot_le
@@ -158,6 +181,9 @@ measurability theorem for the supremum.-/
 noncomputable def intervalMaximalAverage (p : ℝ) (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ I : RealInterval, ⨆ _ : x ∈ I.carrier, ENNReal.ofReal (localAverage p f I)
 
+/--
+@isnad1 id=le.1h4v.s5.c0ce1c756d66 from=translated src=- shape=e4c155df vocab=6cb044b4
+-/
 theorem ofReal_localAverage_le_intervalMaximalAverage (p : ℝ) (f : ℝ → ℂ)
     (I : RealInterval) {x : ℝ} (hx : x ∈ I.carrier) :
     ENNReal.ofReal (localAverage p f I) ≤ intervalMaximalAverage p f x := by
@@ -166,7 +192,9 @@ theorem ofReal_localAverage_le_intervalMaximalAverage (p : ℝ) (f : ℝ → ℂ
 /-- The basic sparse embedding used in Lemma `l:weak11sparse`:
 the sparse form is controlled by the integral of the two interval maximal
 averages.  This is the exact consequence of the disjoint major subsets in
-the definition of sparseness.-/
+the definition of sparseness.
+@isnad1 id=le.1h5v.s6.bf93097df20b from=translated src=- shape=54a8a3b0 vocab=d8cd76ac
+-/
 theorem sparseForm_le_lintegral_intervalMaximalAverage {p η : ℝ}
     {S : Set RealInterval} (hS : IsSparse η S) (f g : ℝ → ℂ) :
     sparseForm p f g S ≤ ENNReal.ofReal η⁻¹ *
@@ -247,6 +275,9 @@ noncomputable def operatorPairing (T : TestOperator) (f g : L0Infinity) : ℂ :=
 noncomputable def absoluteValueOperator (T : TestOperator) : TestOperator :=
   fun f x ↦ (‖T f x‖ : ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s4.fd63afdac644 from=translated src=- shape=fd5af979 vocab=1548a892
+-/
 @[simp] theorem absoluteValueOperator_apply (T : TestOperator) (f : L0Infinity) (x : ℝ) :
     absoluteValueOperator T f x = (‖T f x‖ : ℂ) := rfl
 
@@ -257,6 +288,9 @@ def HasSparseOnePBound (C p : ℝ) (T : TestOperator) : Prop :=
     ∃ S : Set RealInterval, IsSparse (1 / 4) S ∧
       ENNReal.ofReal ‖operatorPairing T f g‖ ≤ ENNReal.ofReal C * sparseForm p f g S
 
+/--
+@isnad1 id=hasspars.2h4v.s4.c0c695bb66d3 from=translated src=- shape=8019a7c9 vocab=53ec9baa
+-/
 theorem HasSparseOnePBound.mono {C D p : ℝ} {T : TestOperator}
     (h : HasSparseOnePBound C p T) (hCD : C ≤ D) : HasSparseOnePBound D p T := by
   intro f g
@@ -274,7 +308,9 @@ noncomputable def sparseOnePNorm (p : ℝ) (T : TestOperator) : ℝ :=
 /-- Any constant strictly above the sparse norm is admissible.
 
 The boundedness premise is essential over `ℝ`: without it, `sInf ∅ = 0`
-would make an operator with no sparse bound appear to have norm zero.-/
+would make an operator with no sparse bound appear to have norm zero.
+@isnad1 id=hasspars.2h3v.s4.9a044eb91ea5 from=translated src=- shape=707ef3fc vocab=e54347a9
+-/
 theorem hasSparseOnePBound_of_sparseOnePNorm_lt {C p : ℝ} {T : TestOperator}
     (hbounded : IsSparseOnePBounded p T) (hC : sparseOnePNorm p T < C) :
     HasSparseOnePBound C p T := by
@@ -284,6 +320,9 @@ theorem hasSparseOnePBound_of_sparseOnePNorm_lt {C p : ℝ} {T : TestOperator}
   obtain ⟨K, hKmem, hKlt⟩ := exists_lt_of_csInf_lt hconstants hC
   exact hKmem.2.mono hKlt.le
 
+/--
+@isnad1 id=le.1h2v.s4.12580d5da712 from=translated src=- shape=4073e6f3 vocab=d1da83b3
+-/
 theorem sparseOnePNorm_nonneg {p : ℝ} {T : TestOperator}
     (hbounded : IsSparseOnePBounded p T) : 0 ≤ sparseOnePNorm p T := by
   rcases hbounded with ⟨C, hCnonneg, hC⟩
@@ -295,6 +334,9 @@ theorem sparseOnePNorm_nonneg {p : ℝ} {T : TestOperator}
 /-- Hölder's conjugate exponent `p'`.-/
 noncomputable def holderConjugate (p : ℝ) : ℝ := p / (p - 1)
 
+/--
+@isnad1 id=holderco.1h1v.s4.a845b45afd50 from=translated src=- shape=c807ce13 vocab=388967bb
+-/
 theorem holderConjugate_spec {p : ℝ} (hp : 1 < p) :
     p.HolderConjugate (holderConjugate p) := by
   exact (Real.holderConjugate_iff_eq_conjExponent hp).2 rfl
@@ -303,7 +345,9 @@ theorem holderConjugate_spec {p : ℝ} (hp : 1 < p) :
 according to the value of the linearizing index `j(x)`.
 
 Applied to `a j = |E'_j|`, this is precisely
-`∑_j |E'_j|^(1/r) ≤ |E'|^(1/r) N^(1/r')`, after using disjointness.-/
+`∑_j |E'_j|^(1/r) ≤ |E'|^(1/r) N^(1/r')`, after using disjointness.
+@isnad1 id=le.2h3v.s7.07a90f1e5432 from=translated src=- shape=f4f9b881 vocab=67a935ea
+-/
 theorem sum_rpow_one_div_le {N : ℕ} (a : Fin N → ℝ) (ha : ∀ j, 0 ≤ a j)
     {r : ℝ} (hr : 1 < r) :
     ∑ j, (a j) ^ (1 / r) ≤
@@ -318,7 +362,9 @@ theorem sum_rpow_one_div_le {N : ℕ} (a : Fin N → ℝ) (ha : ∀ j, 0 ≤ a j
   simpa [holderConjugate] using h
 
 /-- The measure-theoretic specialization of `sum_rpow_one_div_le` used for
-the pairwise disjoint sets `E'_j` in the paper.-/
+the pairwise disjoint sets `E'_j` in the paper.
+@isnad1 id=le.5h4v.s8.3c23bf1a93c7 from=translated src=- shape=a03c2c3b vocab=b3468228
+-/
 theorem sum_measureReal_rpow_one_div_le {N : ℕ} (E : Fin N → Set ℝ) (F : Set ℝ)
     (hEmeas : ∀ j, MeasurableSet (E j))
     (hEdisj : Pairwise fun i j ↦ Disjoint (E i) (E j))
@@ -346,27 +392,45 @@ noncomputable def logarithmicP (L : ℝ) : ℝ := L / (L - 2)
 /-- The paper's explicit exponent `r = L / (L - 3)`.-/
 noncomputable def logarithmicR (L : ℝ) : ℝ := L / (L - 3)
 
+/--
+@isnad1 id=lt.1h1v.s4.4057eb1a345b from=translated src=- shape=35bd48ee vocab=ee0e17b1
+-/
 theorem one_lt_logarithmicP {L : ℝ} (hL : 4 < L) : 1 < logarithmicP L := by
   rw [logarithmicP, lt_div_iff₀ (by linarith : 0 < L - 2)]
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.5465f73750e4 from=translated src=- shape=3965f485 vocab=ee0e17b1
+-/
 theorem logarithmicP_lt_two {L : ℝ} (hL : 4 < L) : logarithmicP L < 2 := by
   rw [logarithmicP, div_lt_iff₀ (by linarith : 0 < L - 2)]
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.0e583fc6a8e0 from=translated src=- shape=7d3b5169 vocab=c6107b1d
+-/
 theorem logarithmicP_lt_logarithmicR {L : ℝ} (hL : 4 < L) :
     logarithmicP L < logarithmicR L := by
   rw [logarithmicP, logarithmicR, div_lt_div_iff₀ (by linarith : 0 < L - 2)
     (by linarith : 0 < L - 3)]
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.2531c7bc1d4f from=translated src=- shape=35bd48ee vocab=28cb03b5
+-/
 theorem one_lt_logarithmicR {L : ℝ} (hL : 4 < L) : 1 < logarithmicR L := by
   exact (one_lt_logarithmicP hL).trans (logarithmicP_lt_logarithmicR hL)
 
+/--
+@isnad1 id=le.1h1v.s4.84507341b716 from=translated src=- shape=97c35add vocab=5c58440a
+-/
 theorem logarithmicR_le_four {L : ℝ} (hL : 4 < L) : logarithmicR L ≤ 4 := by
   rw [logarithmicR, div_le_iff₀ (by linarith : 0 < L - 3)]
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s5.fadfd71ffb71 from=translated src=- shape=9eb43dc0 vocab=e7196672
+-/
 theorem holderConjugate_logarithmicP {L : ℝ} (hL : 4 < L) :
     holderConjugate (logarithmicP L) = L / 2 := by
   have h2 : L - 2 ≠ 0 := by linarith
@@ -374,6 +438,9 @@ theorem holderConjugate_logarithmicP {L : ℝ} (hL : 4 < L) :
   field_simp [h2]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.43a5a14be5cc from=translated src=- shape=9eb43dc0 vocab=dc8d4b01
+-/
 theorem holderConjugate_logarithmicR {L : ℝ} (hL : 4 < L) :
     holderConjugate (logarithmicR L) = L / 3 := by
   have h3 : L - 3 ≠ 0 := by linarith
@@ -381,6 +448,9 @@ theorem holderConjugate_logarithmicR {L : ℝ} (hL : 4 < L) :
   field_simp [h3]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.70793094ba28 from=translated src=- shape=10d0b1bb vocab=31d1c5e7
+-/
 theorem logarithmicR_div_sub_logarithmicP {L : ℝ} (hL : 4 < L) :
     logarithmicR L / (logarithmicR L - logarithmicP L) = L - 2 := by
   have h2 : L - 2 ≠ 0 := by linarith
@@ -398,6 +468,9 @@ noncomputable def finiteSparseFactor (N : ℕ) (p r : ℝ) : ℝ :=
   holderConjugate p * r ^ (1 / holderConjugate r) *
     (r / (r - p)) ^ (1 / p) * (N : ℝ) ^ (1 / holderConjugate r)
 
+/--
+@isnad1 id=le.1h1v.s5.e49266c61daf from=translated src=- shape=19e070a0 vocab=f68c8914
+-/
 theorem logarithmicR_rpow_le_four {L : ℝ} (hL : 4 < L) :
     logarithmicR L ^ (1 / holderConjugate (logarithmicR L)) ≤ 4 := by
   have hexponent : 1 / holderConjugate (logarithmicR L) ≤ 1 := by
@@ -407,6 +480,9 @@ theorem logarithmicR_rpow_le_four {L : ℝ} (hL : 4 < L) :
   exact (Real.rpow_le_self_of_one_le (one_lt_logarithmicR hL).le hexponent).trans
     (logarithmicR_le_four hL)
 
+/--
+@isnad1 id=le.1h1v.s6.1324dcd46e57 from=translated src=- shape=e4c0f693 vocab=9952ad77
+-/
 theorem logarithmic_gap_rpow_le {L : ℝ} (hL : 4 < L) :
     (logarithmicR L / (logarithmicR L - logarithmicP L)) ^
         (1 / logarithmicP L) ≤ L := by
@@ -418,6 +494,9 @@ theorem logarithmic_gap_rpow_le {L : ℝ} (hL : 4 < L) :
     linarith
   exact (Real.rpow_le_self_of_one_le (by linarith : 1 ≤ L - 2) hexponent).trans (by linarith)
 
+/--
+@isnad1 id=le.2h2v.s6.5feb4660d158 from=translated src=- shape=e813e849 vocab=0ae327f6
+-/
 theorem nat_rpow_logarithmicR_conjugate_le {N : ℕ} {L : ℝ} (hL : 4 < L)
     (hN : (N : ℝ) ≤ Real.exp L) :
     (N : ℝ) ^ (1 / holderConjugate (logarithmicR L)) ≤ Real.exp 3 := by
@@ -436,7 +515,9 @@ theorem nat_rpow_logarithmicR_conjugate_le {N : ℕ} {L : ℝ} (hL : 4 < L)
       field_simp [hL0]
 
 /-- The paper's proposed values of `p` and `r` really give the claimed
-quadratic logarithmic loss, with an explicit absolute constant.-/
+quadratic logarithmic loss, with an explicit absolute constant.
+@isnad1 id=le.2h2v.s6.2d80201239f0 from=translated src=- shape=c477d5b7 vocab=6de87eb0
+-/
 theorem finiteSparseFactor_logarithmic_le {N : ℕ} {L : ℝ} (hL : 4 < L)
     (hN : (N : ℝ) ≤ Real.exp L) :
     finiteSparseFactor N (logarithmicP L) (logarithmicR L) ≤
@@ -478,13 +559,18 @@ theorem finiteSparseFactor_logarithmic_le {N : ℕ} {L : ℝ} (hL : 4 < L)
             (mul_nonneg (mul_nonneg hLhalf (by norm_num)) hLnonneg)
     _ = 2 * Real.exp 3 * L ^ 2 := by ring
 
+/--
+@isnad1 id=lt.1h1v.s5.6370877cabbf from=translated src=- shape=b6efe7f2 vocab=2fa7f54e
+-/
 theorem four_lt_paperLog_one {N : ℕ} (hN : 54 ≤ N) : 4 < paperLog 1 N := by
   rw [paperLog_succ, paperLog_zero, Real.lt_log_iff_exp_lt (by positivity : (0 : ℝ) < 10 + N)]
   exact Behrend.exp_four_lt.trans_le (by exact_mod_cast (show 64 ≤ 10 + N by omega))
 
 /-- High-cardinality specialization of the preceding optimization, in the
 paper's own `log₁` notation.  The finitely many smaller cardinalities are
-absorbed into the absolute implicit constant in the analytic argument.-/
+absorbed into the absolute implicit constant in the analytic argument.
+@isnad1 id=le.1h1v.s6.38e85f698eb5 from=translated src=- shape=e1c095ba vocab=f45da8b2
+-/
 theorem finiteSparseFactor_paperLog_le {N : ℕ} (hN : 54 ≤ N) :
     finiteSparseFactor N (logarithmicP (paperLog 1 N))
         (logarithmicR (paperLog 1 N)) ≤
@@ -498,15 +584,24 @@ once `paperLog 1 N ≥ 5` and handles the finitely many smaller cardinalities
 without a separate hypothesis.-/
 noncomputable def safeLogScale (N : ℕ) : ℝ := max 5 (paperLog 1 N)
 
+/--
+@isnad1 id=le.0h1v.s4.4780c756292b from=translated src=- shape=8388ba16 vocab=cc0f37d8
+-/
 theorem one_le_paperLog_one (N : ℕ) : 1 ≤ paperLog 1 N := by
   rw [paperLog_succ, paperLog_zero, Real.le_log_iff_exp_le (by positivity : (0 : ℝ) < 10 + N)]
   refine Real.exp_one_lt_three.le.trans ?_
   have hN : (0 : ℝ) ≤ N := Nat.cast_nonneg N
   linarith
 
+/--
+@isnad1 id=lt.0h1v.s3.806621b5e8e5 from=translated src=- shape=b9369acb vocab=24baaa9d
+-/
 theorem four_lt_safeLogScale (N : ℕ) : 4 < safeLogScale N := by
   exact (by norm_num : (4 : ℝ) < 5) |>.trans_le (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h1v.s3.62cfba1e404b from=translated src=- shape=b55a211a vocab=7ec7e60b
+-/
 theorem nat_cast_le_exp_safeLogScale (N : ℕ) :
     (N : ℝ) ≤ Real.exp (safeLogScale N) := by
   calc
@@ -516,6 +611,9 @@ theorem nat_cast_le_exp_safeLogScale (N : ℕ) :
     _ ≤ Real.exp (safeLogScale N) :=
       Real.exp_le_exp.mpr (le_max_right 5 (paperLog 1 N))
 
+/--
+@isnad1 id=le.0h1v.s5.2bd205e318cc from=translated src=- shape=7c291ffd vocab=7ed2d031
+-/
 theorem safeLogScale_le_five_mul (N : ℕ) :
     safeLogScale N ≤ 5 * paperLog 1 N := by
   rw [safeLogScale]
@@ -525,7 +623,9 @@ theorem safeLogScale_le_five_mul (N : ℕ) :
 
 /-- The paper's finite-dimensional optimization, now valid for every family
 cardinality.  The harmless truncation of the logarithmic scale only changes
-the absolute constant.-/
+the absolute constant.
+@isnad1 id=le.0h1v.s6.ce4808084883 from=translated src=- shape=2befd384 vocab=92b01a76
+-/
 theorem finiteSparseFactor_paperLog_le_all (N : ℕ) :
     finiteSparseFactor N (logarithmicP (safeLogScale N))
         (logarithmicR (safeLogScale N)) ≤
@@ -550,6 +650,9 @@ theorem finiteSparseFactor_paperLog_le_all (N : ℕ) :
 noncomputable def finiteMax {N : ℕ} (T : Fin N → TestOperator) (f : L0Infinity) (x : ℝ) : ℝ :=
   ↑(Finset.univ.sup fun j ↦ ‖T j f x‖₊)
 
+/--
+@isnad1 id=le.0h5v.s4.5dc7bbc16cbf from=translated src=- shape=63bd752f vocab=1e2ce51f
+-/
 theorem le_finiteMax {N : ℕ} (T : Fin N → TestOperator) (f : L0Infinity) (x : ℝ)
     (j : Fin N) : ‖T j f x‖ ≤ finiteMax T f x := by
   change ↑‖T j f x‖₊ ≤ ↑(Finset.univ.sup fun k ↦ ‖T k f x‖₊)
@@ -558,7 +661,9 @@ theorem le_finiteMax {N : ℕ} (T : Fin N → TestOperator) (f : L0Infinity) (x 
   exact_mod_cast h
 
 /-- A nonempty finite maximum is attained.  This is the pointwise content
-behind the paper's linearizing index `j(x)`.-/
+behind the paper's linearizing index `j(x)`.
+@isnad1 id=ex.1h4v.s5.33ff484d1faf from=translated src=- shape=4b3d3f87 vocab=7a9e6086
+-/
 theorem exists_norm_eq_finiteMax {N : ℕ} (hN : 0 < N) (T : Fin N → TestOperator)
     (f : L0Infinity) (x : ℝ) : ∃ j : Fin N, ‖T j f x‖ = finiteMax T f x := by
   let j₀ : Fin N := ⟨0, hN⟩
@@ -576,6 +681,9 @@ noncomputable def maximizingIndex {N : ℕ} (hN : 0 < N) (T : Fin N → TestOper
     (f : L0Infinity) (x : ℝ) : Fin N :=
   (exists_norm_eq_finiteMax hN T f x).choose
 
+/--
+@isnad1 id=eq.1h4v.s5.f8f99fbfe080 from=translated src=- shape=5fb67241 vocab=c0712471
+-/
 @[simp] theorem norm_maximizingIndex_eq_finiteMax {N : ℕ} (hN : 0 < N)
     (T : Fin N → TestOperator) (f : L0Infinity) (x : ℝ) :
     ‖T (maximizingIndex hN T f x) f x‖ = finiteMax T f x :=
@@ -587,6 +695,9 @@ wrapping actually takes place there.-/
 def cyclicFin (n k : ℕ) : Fin (n + 1) :=
   ⟨k % (n + 1), Nat.mod_lt _ (Nat.succ_pos n)⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.69d53f0a2085 from=translated src=- shape=0553190f vocab=6786fb9d
+-/
 theorem cyclicFin_eq_of_le (n k : ℕ) (hk : k ≤ n) :
     cyclicFin n k = ⟨k, Nat.lt_succ_of_le hk⟩ := by
   ext
@@ -598,6 +709,9 @@ def IsPointwiseMaximizer {X : Type*} (n : ℕ) (F : Fin (n + 1) → X → ℂ)
     (x : X) (k : ℕ) : Prop :=
   ∀ i, ‖F i x‖ ≤ ‖F (cyclicFin n k) x‖
 
+/--
+@isnad1 id=ex.0h4v.s5.fb07421754af from=translated src=- shape=390289fb vocab=c1afb55e
+-/
 theorem exists_pointwiseMaximizer {X : Type*} (n : ℕ) (F : Fin (n + 1) → X → ℂ)
     (x : X) : ∃ k ≤ n, IsPointwiseMaximizer n F x k := by
   classical
@@ -623,6 +737,9 @@ noncomputable def measurableMaximizingIndex {X : Type*} (n : ℕ)
     exact ⟨Nat.findGreatest (IsPointwiseMaximizer n F x) n,
       Nat.lt_succ_of_le (Nat.findGreatest_le n)⟩
 
+/--
+@isnad1 id=le.0h5v.s5.771be08f4fa9 from=translated src=- shape=caaa3f61 vocab=efeca09c
+-/
 theorem measurableMaximizingIndex_isMax {X : Type*} (n : ℕ)
     (F : Fin (n + 1) → X → ℂ) (x : X) (i : Fin (n + 1)) :
     ‖F i x‖ ≤ ‖F (measurableMaximizingIndex n F x) x‖ := by
@@ -637,7 +754,9 @@ theorem measurableMaximizingIndex_isMax {X : Type*} (n : ℕ)
   simpa only [IsPointwiseMaximizer, hcyclic] using hchosen i
 
 /-- The measurable selector genuinely attains the finite supremum of the
-pointwise norms.-/
+pointwise norms.
+@isnad1 id=eq.0h4v.s7.b934be5b2ba0 from=translated src=- shape=0483221d vocab=2d59e6df
+-/
 theorem norm_measurableMaximizingIndex_eq_sup {X : Type*} (n : ℕ)
     (F : Fin (n + 1) → X → ℂ) (x : X) :
     ‖F (measurableMaximizingIndex n F x) x‖₊ =
@@ -650,7 +769,9 @@ theorem norm_measurableMaximizingIndex_eq_sup {X : Type*} (n : ℕ)
     exact_mod_cast measurableMaximizingIndex_isMax n F x i
 
 /-- For a nonempty family of test operators, the measurable selector
-linearizes `finiteMax` pointwise.-/
+linearizes `finiteMax` pointwise.
+@isnad1 id=eq.0h4v.s6.fdd323b9c808 from=translated src=- shape=a331ae27 vocab=4d409ec3
+-/
 theorem finiteMax_eq_norm_measurableMaximizingIndex (n : ℕ)
     (T : Fin (n + 1) → TestOperator) (f : L0Infinity) (x : ℝ) :
     finiteMax T f x =
@@ -661,7 +782,9 @@ theorem finiteMax_eq_norm_measurableMaximizingIndex (n : ℕ)
     (norm_measurableMaximizingIndex_eq_sup n (fun i y ↦ T i f y) x).symm
 
 /-- A finite family of measurable functions admits a measurable choice of a
-pointwise maximizing index.-/
+pointwise maximizing index.
+@isnad1 id=measurab.1h3v.s6.0e30289936c4 from=translated src=- shape=fbb241cc vocab=fb395ce4
+-/
 theorem measurable_measurableMaximizingIndex {X : Type*} [MeasurableSpace X] (n : ℕ)
     (F : Fin (n + 1) → X → ℂ) (hF : ∀ i, Measurable (F i)) :
     Measurable (measurableMaximizingIndex n F) := by
@@ -696,6 +819,9 @@ def HasWeakOneOneBound (C : ℝ) (T : L0Infinity → ℝ → ℝ) : Prop :=
     ENNReal.ofReal a * volume {x | a < T f x} ≤
       ENNReal.ofReal C * ∫⁻ x, ‖f x‖ₑ
 
+/--
+@isnad1 id=hasweako.2h3v.s4.18ddfd3b4c48 from=translated src=- shape=72f58f4c vocab=c1b56f5c
+-/
 theorem HasWeakOneOneBound.mono {C D : ℝ} {T : L0Infinity → ℝ → ℝ}
     (h : HasWeakOneOneBound C T) (hCD : C ≤ D) : HasWeakOneOneBound D T := by
   intro f a ha
@@ -718,7 +844,9 @@ def FiniteSparseMaximalHypothesis {N : ℕ} (T : Fin N → TestOperator) (A : �
             sparseOnePNorm p (absoluteValueOperator (T j)) ≤ A * holderConjugate p
 
 /-- Operational form of the sparse-norm hypothesis: a sparse collection can
-be extracted with any positive slack above `A p'`.-/
+be extracted with any positive slack above `A p'`.
+@isnad1 id=hasspars.4h6v.s6.efc8573033fb from=translated src=- shape=e357a01a vocab=0492da25
+-/
 theorem FiniteSparseMaximalHypothesis.hasSparseOnePBound_add {N : ℕ}
     {T : Fin N → TestOperator} {A p ε : ℝ} (h : FiniteSparseMaximalHypothesis T A)
     (hp : 1 < p) (hp2 : p < 2) (j : Fin N) (hε : 0 < ε) :
@@ -736,12 +864,16 @@ def weak11sparseStatement : Prop :=
     FiniteSparseMaximalHypothesis T A →
       weakOneOneNorm (finiteMax T) ≤ K * A * (paperLog 1 N) ^ 2
 
-/-- The finite maximum dominates every member of the family pointwise.-/
+/-- The finite maximum dominates every member of the family pointwise.
+@isnad1 id=le.0h5v.s4.5dc7bbc16cbf from=translated src=- shape=63bd752f vocab=1e2ce51f
+-/
 theorem norm_le_finiteMax {N : ℕ} (T : Fin N → TestOperator) (f : L0Infinity) (x : ℝ)
     (j : Fin N) : ‖T j f x‖ ≤ finiteMax T f x :=
   le_finiteMax T f x j
 
-/-- The paper's `log₁ N` is positive, hence its square is nonnegative.-/
+/-- The paper's `log₁ N` is positive, hence its square is nonnegative.
+@isnad1 id=le.0h1v.s5.36b8cbd7b458 from=translated src=- shape=1c645e5b vocab=55c049d3
+-/
 theorem paperLog_one_sq_nonneg (N : ℕ) : 0 ≤ (paperLog 1 N) ^ 2 := sq_nonneg _
 
 end QuadraticCarleson

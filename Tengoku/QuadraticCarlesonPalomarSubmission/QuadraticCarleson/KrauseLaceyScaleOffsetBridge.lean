@@ -75,6 +75,9 @@ def HasScaleOffsetAnnularComparison (V : ComparisonFamily) : Prop :=
 /- The source proof is expected to instantiate `V` with the annular
 comparison maximal operator and prove its sparse bound from the
 Hardy--Littlewood bound. -/
+/--
+@isnad1 id=hasspars.6h6v.s6.efaa0b69f21d from=translated src=- shape=030c7b61 vocab=0a6dd26f
+-/
 theorem hasSparseOnePBound_scaleOffset_of_native_and_comparison
     {C D : ℝ} {V : ComparisonFamily}
     (hC : HasNativePositiveDyadicSuffixSparseBound C)
@@ -104,6 +107,9 @@ theorem hasSparseOnePBound_scaleOffset_of_native_and_comparison
 
 /- The bridge to the dilation adapter is immediate once the annular premise is
 proved.  The constant is preserved by dilation and the comparison costs `D`.
+-/
+/--
+@isnad1 id=hasunits.3h3v.s5.c379bd139ae6 from=translated src=- shape=f20e6f17 vocab=b48271c3
 -/
 theorem hasUnitScaleOffsetSmoothSparseBound_of_native_and_comparison
     {C D : ℝ} {V : ComparisonFamily}

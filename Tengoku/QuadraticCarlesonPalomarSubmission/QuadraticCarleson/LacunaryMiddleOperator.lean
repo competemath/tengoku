@@ -56,7 +56,9 @@ def frozenBlockErrorInput
     stoppingScaleLevelBadPart A f j k x
 
 /-- Exact source identity
-`∑_{j∈S} b_{j,k} = ∑_{j∈R} b_{j,k} + Err`.-/
+`∑_{j∈S} b_{j,k} = ∑_{j∈R} b_{j,k} + Err`.
+@isnad1 id=eq.1h8v.s6.0184bdaa5d88 from=translated src=- shape=a18b8d2a vocab=1135c5f9
+-/
 theorem middleRangeInput_eq_frozenBlockInput_add_error
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) {τ m : ℤ}
     (hm : m ∈ Q B τ) (x : ℝ) :
@@ -68,6 +70,9 @@ theorem middleRangeInput_eq_frozenBlockInput_add_error
   rw [← Finset.sum_sdiff hsub]
   ring
 
+/--
+@isnad1 id=measurab.1h6v.s5.6441afc652b7 from=translated src=- shape=b11e43ee vocab=50813e1e
+-/
 theorem measurable_middleRangeInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (m : ℤ) :
@@ -76,6 +81,9 @@ theorem measurable_middleRangeInput
   exact Finset.measurable_fun_sum (S B c m) fun j _ ↦
     measurable_stoppingScaleLevelBadPart hf j k
 
+/--
+@isnad1 id=measurab.1h6v.s5.b7ce0d96d94b from=translated src=- shape=b11e43ee vocab=0adc5c3c
+-/
 theorem measurable_frozenBlockInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (τ : ℤ) :
@@ -84,6 +92,9 @@ theorem measurable_frozenBlockInput
   exact Finset.measurable_fun_sum (R B c τ) fun j _ ↦
     measurable_stoppingScaleLevelBadPart hf j k
 
+/--
+@isnad1 id=measurab.1h7v.s5.2b93d69de1eb from=translated src=- shape=d1afdaa3 vocab=5688710d
+-/
 theorem measurable_frozenBlockErrorInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (τ m : ℤ) :
@@ -92,6 +103,9 @@ theorem measurable_frozenBlockErrorInput
   exact (Finset.measurable_fun_sum (R B c τ \ S B c m) fun j _ ↦
     measurable_stoppingScaleLevelBadPart hf j k).neg
 
+/--
+@isnad1 id=integrab.3h6v.s6.d8c40081c94c from=translated src=- shape=ad5fe9c2 vocab=6a4989cd
+-/
 theorem integrable_middleRangeInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (m : ℤ) :
@@ -100,6 +114,9 @@ theorem integrable_middleRangeInput
   exact integrable_finsetSum _ fun j _ ↦
     integrable_stoppingScaleLevelBadPart hf hfi j hAk
 
+/--
+@isnad1 id=integrab.3h6v.s6.f697fb9d052a from=translated src=- shape=ad5fe9c2 vocab=1b368161
+-/
 theorem integrable_frozenBlockInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ) :
@@ -108,6 +125,9 @@ theorem integrable_frozenBlockInput
   exact integrable_finsetSum _ fun j _ ↦
     integrable_stoppingScaleLevelBadPart hf hfi j hAk
 
+/--
+@isnad1 id=integrab.3h7v.s6.7a14cbb132d5 from=translated src=- shape=ccff59e8 vocab=c4d3192f
+-/
 theorem integrable_frozenBlockErrorInput
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ m : ℤ) :
@@ -151,6 +171,9 @@ noncomputable def frozenBlockHilbertMaxEnorm
     quadraticHilbertMaximalTruncation (dyadicModulation m)
       (frozenBlockInput A f k B c τ) x
 
+/--
+@isnad1 id=measurab.1h7v.s5.10448f77fc92 from=translated src=- shape=d1afdaa3 vocab=66e47b11
+-/
 theorem measurable_frozenBlockLowAction
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (τ m : ℤ) :
@@ -168,6 +191,9 @@ theorem measurable_frozenBlockLowAction
     exact hK.mul ((measurable_frozenBlockInput hf k B c τ).comp measurable_snd)
   exact hjoint.stronglyMeasurable.integral_prod_right.measurable
 
+/--
+@isnad1 id=measurab.1h6v.s5.cae84f2851b6 from=translated src=- shape=0091c0d6 vocab=ea9a6021
+-/
 theorem measurable_frozenBlockMaxEnorm
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (τ : ℤ) :
@@ -186,6 +212,9 @@ theorem measurable_frozenBlockMaxEnorm
       exact (hterm m).sup ih
   exact hsup (Q B τ)
 
+/--
+@isnad1 id=measurab.3h6v.s6.3b5b28933e70 from=translated src=- shape=842e4800 vocab=7b3efc93
+-/
 theorem measurable_frozenBlockHilbertMaxEnorm
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ) :
@@ -210,7 +239,9 @@ theorem measurable_frozenBlockHilbertMaxEnorm
   exact hsup (Q B τ)
 
 /-- Every genuine output in a modulation block is bounded by that block's
-finite maximum.-/
+finite maximum.
+@isnad1 id=le.1h8v.s6.cd8017583eab from=translated src=- shape=7f97b4f2 vocab=70a85210
+-/
 theorem frozenBlockLowAction_enorm_le_max
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) {τ m : ℤ}
     (hm : m ∈ Q B τ) (x : ℝ) :
@@ -222,7 +253,9 @@ theorem frozenBlockLowAction_enorm_le_max
 /-- One frozen low-kernel output is controlled by the corresponding
 maximally truncated quadratic Hilbert transform plus the elementary
 Hardy--Littlewood boundary term.  This is the exact analytic reduction used
-before the finite-modulation sparse estimate in the paper.-/
+before the finite-modulation sparse estimate in the paper.
+@isnad1 id=le.3h8v.s7.6988f8cc4cb0 from=translated src=- shape=63017706 vocab=c989baf7
+-/
 theorem frozenBlockLowAction_enorm_le_hilbertMax_add_maximal
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ m : ℤ) (x : ℝ) :
@@ -241,7 +274,9 @@ theorem frozenBlockLowAction_enorm_le_hilbertMax_add_maximal
     paperLowOscillatoryKernel_eq_consecutive] using h
 
 /-- Taking the finite maximum over the whole modulation block preserves the
-same comparison, with a single Hardy--Littlewood term.-/
+same comparison, with a single Hardy--Littlewood term.
+@isnad1 id=le.3h7v.s7.3e47b305aa55 from=translated src=- shape=74eb5efd vocab=9b52157b
+-/
 theorem frozenBlockMaxEnorm_le_hilbertMax_add_maximal
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ : ℤ) (x : ℝ) :
@@ -259,7 +294,9 @@ theorem frozenBlockMaxEnorm_le_hilbertMax_add_maximal
       (frozenBlockInput A f k B c τ) x) hm
 
 /-- Applying the genuine low kernel preserves the exact frozen-range
-recombination identity.-/
+recombination identity.
+@isnad1 id=eq.4h8v.s7.7721ca15fea7 from=translated src=- shape=75b2c287 vocab=efa3b836
+-/
 theorem middleRangeLowAction_eq_frozenBlockLowAction_add_error
     (A : ℕ → ℝ) {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) {τ m : ℤ}
@@ -288,7 +325,9 @@ theorem middleRangeLowAction_eq_frozenBlockLowAction_add_error
   ring
 
 /-- A canonical scale in the too-large alternative has identically zero
-low-kernel action outside the global fivefold stopping set.-/
+low-kernel action outside the global fivefold stopping set.
+@isnad1 id=eq.5h8v.s7.497c26944b41 from=translated src=- shape=2a58082c vocab=e8ce95a7
+-/
 theorem canonicalScaleLowAction_eq_zero_of_tooLarge
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k B c : ℕ} (hAk : 0 ≤ A k) {m j : ℤ}
@@ -317,7 +356,9 @@ theorem canonicalScaleLowAction_eq_zero_of_tooLarge
   simp only [hzero, tsum_zero]
 
 /-- The genuine action on the signed error is the negative finite sum of
-the genuine scale actions.-/
+the genuine scale actions.
+@isnad1 id=eq.3h8v.s7.002d8c1e6233 from=translated src=- shape=f7a43125 vocab=0eb83732
+-/
 theorem frozenBlockErrorLowAction_eq_neg_sum
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (B c : ℕ) (τ m : ℤ) (x : ℝ) :
@@ -351,7 +392,9 @@ theorem frozenBlockErrorLowAction_eq_neg_sum
 
 /-- Pointwise, the whole frozen-range error outside the exceptional set is
 dominated by the genuine very-small triangle majorant at that magnitude
-level. The too-large alternative has disappeared exactly by support.-/
+level. The too-large alternative has disappeared exactly by support.
+@isnad1 id=le.4h8v.s7.585d0aad7168 from=translated src=- shape=03040536 vocab=e525db8a
+-/
 theorem enorm_frozenBlockErrorLowAction_le_verySmall
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) {B c : ℕ} {τ m : ℤ}
@@ -395,7 +438,9 @@ def frozenBlockInputL1Mass
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k B c : ℕ) (τ : ℤ) : ENNReal :=
   ∫⁻ x, ‖frozenBlockInput A f k B c τ x‖ₑ
 
-/-- Triangle inequality for one frozen block, before sparse packing.-/
+/-- Triangle inequality for one frozen block, before sparse packing.
+@isnad1 id=le.1h6v.s6.a5e9758caa69 from=translated src=- shape=b61caf7a vocab=4268ca51
+-/
 theorem frozenBlockInputL1Mass_le_scale_sum
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k B c : ℕ) (τ : ℤ) :
@@ -424,7 +469,9 @@ def sparseFrozenBlockInputL1Mass
     frozenBlockInputL1Mass A f k B c τ else 0
 
 /-- The disjoint frozen scale ranges in a fixed sparse residue class lose no
-mass beyond the standard factor two from the centered atoms.-/
+mass beyond the standard factor two from the centered atoms.
+@isnad1 id=le.4h6v.s7.44342fc5d518 from=translated src=- shape=9bad648c vocab=daa309e1
+-/
 theorem tsum_sparseFrozenBlockInputL1Mass_le_levelMass
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k B c : ℕ} (hAk : 0 ≤ A k) (hB : 0 < B) (hc : 2 * c ≤ 5 * B)

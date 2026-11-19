@@ -22,7 +22,9 @@ set_option autoImplicit false
 
 /-- For finitely many Hilbert-space vectors, some choice of signs has
 squared norm at least the sum of their squared norms. This is the finite
-random-sign argument, proved deterministically from the parallelogram law.-/
+random-sign argument, proved deterministically from the parallelogram law.
+@isnad1 id=ex.0h4v.s7.71020a20113c from=translated src=- shape=d2153f5b vocab=8acca93b
+-/
 theorem exists_signs_sum_norm_sq_le
     {ι E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (s : Finset ι) (v : ι → E) :
@@ -79,7 +81,9 @@ noncomputable def blockSum {E : Type*} [AddCommMonoid E]
     (N l q : ℕ) (v : ℕ → E) : E := ∑ i ∈ dyadicBlock N l q, v i
 
 /-- Signed block sums are genuine signed sums of the original sequence;
-quotient-index blocks partition the finite index set exactly.-/
+quotient-index blocks partition the finite index set exactly.
+@isnad1 id=eq.0h5v.s7.52f719e20696 from=translated src=- shape=e5673ae7 vocab=138afd8b
+-/
 theorem sum_signed_blocks_eq
     {E : Type*} [AddCommGroup E] [Module ℝ E]
     (N l : ℕ) (c : ℕ → ℝ) (v : ℕ → E) :
@@ -95,7 +99,9 @@ theorem sum_signed_blocks_eq
   simp [Finset.mem_range.mpr hq]
 
 /-- A single dyadic generation has square energy bounded by the same
-signed-sum constant, with no loss in the number of blocks.-/
+signed-sum constant, with no loss in the number of blocks.
+@isnad1 id=le.1h5v.s6.2b81cdb5f1f8 from=translated src=- shape=1c9c23ba vocab=c7688836
+-/
 theorem sum_norm_sq_blocks_le_signedBound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (N l : ℕ) (v : ℕ → E) {B : ℝ} (hB : HasSignedSumSquareBound N v B) :
@@ -109,9 +115,15 @@ theorem sum_norm_sq_blocks_le_signedBound
 noncomputable def coarsePrefix (N n l : ℕ) : Finset ℕ :=
   (Finset.range N).filter fun i ↦ i / 2 ^ l < n / 2 ^ l
 
+/--
+@isnad1 id=eq.0h2v.s6.07b0f138d2c8 from=translated src=- shape=4e104519 vocab=c7fb0f71
+-/
 theorem div_pow_succ (n l : ℕ) : n / 2 ^ (l + 1) = (n / 2 ^ l) / 2 := by
   rw [pow_succ, Nat.div_div_eq_div_mul]
 
+/--
+@isnad1 id=le.0h3v.s5.29f62fb0daf6 from=translated src=- shape=5ddff514 vocab=7452c63e
+-/
 theorem coarsePrefix_succ_subset (N n l : ℕ) :
     coarsePrefix N n (l + 1) ⊆ coarsePrefix N n l := by
   intro i hi
@@ -121,7 +133,9 @@ theorem coarsePrefix_succ_subset (N n l : ℕ) :
   omega
 
 /-- Each adjacent pair of coarse prefixes differs by either no indices or
-exactly one dyadic block. This is the finite binary-prefix decomposition.-/
+exactly one dyadic block. This is the finite binary-prefix decomposition.
+@isnad1 id=eq.0h3v.s7.e10da2517107 from=translated src=- shape=aef7091e vocab=6be099f8
+-/
 theorem coarsePrefix_sdiff_eq
     (N n l : ℕ) :
     coarsePrefix N n l \ coarsePrefix N n (l + 1) =
@@ -138,7 +152,9 @@ theorem coarsePrefix_sdiff_eq
   · simp only [Finset.mem_filter]
     tauto
 
-/-- The prefix sums telescope over their binary quotient scales.-/
+/-- The prefix sums telescope over their binary quotient scales.
+@isnad1 id=eq.2h5v.s7.d37596f026b7 from=translated src=- shape=75b03957 vocab=d17f96b0
+-/
 theorem prefixSum_eq_sum_differences
     {E : Type*} [AddCommGroup E] (N n d : ℕ) (hn : n ≤ N) (hd : n < 2 ^ (d + 1))
     (v : ℕ → E) :
@@ -155,7 +171,9 @@ theorem prefixSum_eq_sum_differences
   rw [Finset.sum_range_sub', hzero, hlast, Finset.sum_empty, sub_zero]
 
 /-- The energy of one binary-prefix increment is bounded by the energy
-of its whole generation.-/
+of its whole generation.
+@isnad1 id=le.1h5v.s7.3476f81edce8 from=translated src=- shape=683c2731 vocab=23dd8aa1
+-/
 theorem norm_sq_prefix_difference_le
     {E : Type*} [NormedAddCommGroup E] (N n l : ℕ) (hn : n ≤ N) (v : ℕ → E) :
     ‖(∑ i ∈ coarsePrefix N n l, v i) -
@@ -174,7 +192,9 @@ theorem norm_sq_prefix_difference_le
       (Finset.mem_range.mpr hq)
 
 /-- The pointwise binary-prefix estimate: only `d + 1` generations are
-needed, so Cauchy--Schwarz costs exactly `d + 1`.-/
+needed, so Cauchy--Schwarz costs exactly `d + 1`.
+@isnad1 id=le.2h5v.s7.68dad2538a91 from=translated src=- shape=7ee06a4b vocab=b647c09c
+-/
 theorem norm_sq_prefix_le_dyadicEnergy
     {E : Type*} [NormedAddCommGroup E]
     (N n d : ℕ) (hn : n ≤ N) (hd : n < 2 ^ (d + 1)) (v : ℕ → E) :
@@ -207,6 +227,9 @@ variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 noncomputable def finitePrefixMaximal (N : ℕ) (v : ℕ → Lp ℂ 2 μ) (x : X) : ℝ :=
   ⨆ n : Fin (N + 1), ‖∑ i ∈ Finset.range n.val, v i x‖
 
+/--
+@isnad1 id=le.0h5v.s7.659c20fb44a7 from=translated src=- shape=f62b8fe6 vocab=fe1704f1
+-/
 theorem finitePrefixMaximal_nonneg (N : ℕ) (v : ℕ → Lp ℂ 2 μ) (x : X) :
     0 ≤ finitePrefixMaximal N v x := by
   have h := le_ciSup (Set.finite_range
@@ -214,10 +237,16 @@ theorem finitePrefixMaximal_nonneg (N : ℕ) (v : ℕ → Lp ℂ 2 μ) (x : X) :
     (0 : Fin (N + 1))
   simpa [finitePrefixMaximal] using h
 
+/--
+@isnad1 id=eq.0h3v.s9.0f69d6ea6c99 from=translated src=- shape=44cd7efc vocab=4607dd88
+-/
 theorem integral_sq_norm_Lp (u : Lp ℂ 2 μ) :
     (∫ x, ‖u x‖ ^ 2 ∂μ) = ‖u‖ ^ 2 := by
   simpa only [real_inner_self_eq_norm_sq] using (L2.inner_def (𝕜 := ℝ) u u).symm
 
+/--
+@isnad1 id=integrab.0h6v.s8.6ab7e603c7e8 from=translated src=- shape=426087c4 vocab=9c1f3b57
+-/
 theorem integrable_sq_norm_blockSum (N l q : ℕ) (v : ℕ → Lp ℂ 2 μ) :
     Integrable (fun x ↦ ‖blockSum N l q (fun i ↦ v i x)‖ ^ 2) μ := by
   have h := (memLp_two_iff_integrable_sq_norm (Lp.aestronglyMeasurable
@@ -227,6 +256,9 @@ theorem integrable_sq_norm_blockSum (N l q : ℕ) (v : ℕ → Lp ℂ 2 μ) :
   simp only [blockSum] at *
   simp only [hx, Finset.sum_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.dcaebe3baa76 from=translated src=- shape=31ddf6f9 vocab=b6f28aa9
+-/
 theorem integral_sq_norm_blockSum (N l q : ℕ) (v : ℕ → Lp ℂ 2 μ) :
     (∫ x, ‖blockSum N l q (fun i ↦ v i x)‖ ^ 2 ∂μ) = ‖blockSum N l q v‖ ^ 2 := by
   rw [← integral_sq_norm_Lp]
@@ -235,6 +267,9 @@ theorem integral_sq_norm_blockSum (N l q : ℕ) (v : ℕ → Lp ℂ 2 μ) :
   simp only [blockSum] at *
   simp only [hx, Finset.sum_apply]
 
+/--
+@isnad1 id=aemeasur.0h4v.s7.7a4b0d65077b from=translated src=- shape=a574b16a vocab=87e16853
+-/
 theorem aemeasurable_finitePrefixMaximal (N : ℕ) (v : ℕ → Lp ℂ 2 μ) :
     AEMeasurable (finitePrefixMaximal N v) μ := by
   apply AEMeasurable.iSup
@@ -243,7 +278,9 @@ theorem aemeasurable_finitePrefixMaximal (N : ℕ) (v : ℕ → Lp ℂ 2 μ) :
     (fun i _ ↦ Lp.aestronglyMeasurable (v i))).norm.aemeasurable
 
 /-- All prefix maxima are controlled by one common finite square-energy
-majorant, so no choice of a spatially varying sign sequence is used.-/
+majorant, so no choice of a spatially varying sign sequence is used.
+@isnad1 id=le.1h6v.s9.8c1768badedb from=translated src=- shape=ad132d1d vocab=bd380bcf
+-/
 theorem finitePrefixMaximal_sq_le (N d : ℕ) (hd : N < 2 ^ (d + 1))
     (v : ℕ → Lp ℂ 2 μ) (x : X) :
     finitePrefixMaximal N v x ^ 2 ≤
@@ -256,7 +293,9 @@ theorem finitePrefixMaximal_sq_le (N d : ℕ) (hd : N < 2 ^ (d + 1))
   exact norm_sq_prefix_le_dyadicEnergy N n.val d (by omega)
     ((show n.val ≤ N by omega).trans_lt hd) (fun i ↦ v i x)
 
-/-- Integrability of the square of the actual finite maximal partial sum.-/
+/-- Integrability of the square of the actual finite maximal partial sum.
+@isnad1 id=integrab.1h5v.s8.800ae34b7c3b from=translated src=- shape=4edd808d vocab=0e31da5b
+-/
 theorem integrable_finitePrefixMaximal_sq (N d : ℕ) (hd : N < 2 ^ (d + 1))
     (v : ℕ → Lp ℂ 2 μ) :
     Integrable (fun x ↦ finitePrefixMaximal N v x ^ 2) μ := by
@@ -270,7 +309,9 @@ theorem integrable_finitePrefixMaximal_sq (N d : ℕ) (hd : N < 2 ^ (d + 1))
 
 /-- Finite Rademacher--Menshov with an explicit constant and explicit
 prefix order. A bound `B` on every constant signed sum gives squared maximal
-`L²` norm at most `(d + 1)² B` whenever `N < 2^(d+1)`.-/
+`L²` norm at most `(d + 1)² B` whenever `N < 2^(d+1)`.
+@isnad1 id=le.2h6v.s9.3fecaad4dfcc from=translated src=- shape=ee0ec87c vocab=c83a331c
+-/
 theorem integral_finitePrefixMaximal_sq_le
     (N d : ℕ) (hd : N < 2 ^ (d + 1)) (v : ℕ → Lp ℂ 2 μ)
     {B : ℝ} (hB : HasSignedSumSquareBound N v B) :
@@ -298,7 +339,9 @@ theorem integral_finitePrefixMaximal_sq_le
     _ = _ := by simp; ring
 
 /-- The finite Rademacher--Menshov estimate with its logarithmic loss
-written using the binary logarithm, including `N = 0`.-/
+written using the binary logarithm, including `N = 0`.
+@isnad1 id=le.1h5v.s9.b85fcd2ff99a from=translated src=- shape=70f65c8a vocab=b97d3309
+-/
 theorem integral_finitePrefixMaximal_sq_le_log2
     (N : ℕ) (v : ℕ → Lp ℂ 2 μ)
     {B : ℝ} (hB : HasSignedSumSquareBound N v B) :
@@ -307,6 +350,9 @@ theorem integral_finitePrefixMaximal_sq_le_log2
   simpa only [Nat.log2_eq_log_two, Nat.succ_eq_add_one] using
     Nat.lt_pow_succ_log_self (by decide : 1 < 2) N
 
+/--
+@isnad1 id=memlp.0h4v.s8.a8a9afe238dc from=translated src=- shape=58cf5c56 vocab=ad41900b
+-/
 theorem memLp_finitePrefixMaximal (N : ℕ) (v : ℕ → Lp ℂ 2 μ) :
     MemLp (finitePrefixMaximal N v) 2 μ := by
   apply (memLp_two_iff_integrable_sq
@@ -315,7 +361,9 @@ theorem memLp_finitePrefixMaximal (N : ℕ) (v : ℕ → Lp ℂ 2 μ) :
   simpa only [Nat.log2_eq_log_two, Nat.succ_eq_add_one] using
     Nat.lt_pow_succ_log_self (by decide : 1 < 2) N
 
-/-- An extended-norm version of the same squared estimate.-/
+/-- An extended-norm version of the same squared estimate.
+@isnad1 id=le.1h5v.s9.d62af2dc156f from=translated src=- shape=eb97d9a6 vocab=8c6a3153
+-/
 theorem eLpNorm_finitePrefixMaximal_sq_le_log2
     (N : ℕ) (v : ℕ → Lp ℂ 2 μ)
     {B : ℝ} (hB : HasSignedSumSquareBound N v B) :
@@ -342,7 +390,9 @@ theorem eLpNorm_finitePrefixMaximal_sq_le_log2
   exact ENNReal.ofReal_le_ofReal (integral_finitePrefixMaximal_sq_le_log2 N v hB)
 
 /-- The norm form of KL18's finite Rademacher--Menshov lemma, with the
-universal constant equal to one for the binary-logarithm normalization.-/
+universal constant equal to one for the binary-logarithm normalization.
+@isnad1 id=le.2h5v.s9.1df9ad5fcebc from=translated src=- shape=b997b127 vocab=8c6a3153
+-/
 theorem eLpNorm_finitePrefixMaximal_le_log2
     (N : ℕ) (v : ℕ → Lp ℂ 2 μ)
     {A : ℝ} (hA : 0 ≤ A) (hB : HasSignedSumSquareBound N v (A ^ 2)) :

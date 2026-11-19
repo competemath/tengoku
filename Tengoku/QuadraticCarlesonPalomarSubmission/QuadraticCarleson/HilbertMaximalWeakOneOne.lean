@@ -41,6 +41,9 @@ noncomputable section
 def zeroHilbertIntegrand (f : ℝ → ℂ) (x t : ℝ) : ℂ :=
   f (x - t) / (t : ℂ)
 
+/--
+@isnad1 id=eq.2h3v.s7.e80a937ed098 from=translated src=- shape=34e40470 vocab=59f1ec7a
+-/
 theorem zeroHilbertTruncation_eq_oneSidedTails {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     quadraticHilbertTrunc 0 ε f x =
@@ -85,6 +88,9 @@ theorem zeroHilbertTruncation_eq_oneSidedTails {ε : ℝ} (hε : 0 < ε)
   simpa only [zeroHilbertIntegrand] using
     setIntegral_union hdis measurableSet_Ioi hleft hright
 
+/--
+@isnad1 id=continuo.2h3v.s6.546464cd7c1d from=translated src=- shape=c6dda8ae vocab=cb45a4d9
+-/
 theorem continuousAt_zeroHilbertTruncation_radius {ε : ℝ} (hε : 0 < ε)
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     ContinuousAt (fun δ : ℝ ↦ quadraticHilbertTrunc 0 δ f x) ε := by
@@ -129,6 +135,9 @@ theorem continuousAt_zeroHilbertTruncation_radius {ε : ℝ} (hε : 0 < ε)
   filter_upwards [Ioi_mem_nhds hε] with δ hδ
   exact zeroHilbertTruncation_eq_oneSidedTails hδ hf x
 
+/--
+@isnad1 id=continuo.1h2v.s7.30187c78adfe from=translated src=- shape=1f3cecec vocab=c4f7ce00
+-/
 theorem continuous_zeroHilbertTruncation_positiveRadii
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
@@ -138,6 +147,9 @@ theorem continuous_zeroHilbertTruncation_positiveRadii
   exact (continuousAt_zeroHilbertTruncation_radius ε.2 hf x).comp
     continuousAt_subtype_val
 
+/--
+@isnad1 id=continuo.1h2v.s7.b913e504f55d from=translated src=- shape=55d367e9 vocab=d5092de3
+-/
 theorem continuous_enorm_zeroHilbertTruncation_positiveRadii
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
@@ -148,9 +160,15 @@ theorem continuous_enorm_zeroHilbertTruncation_positiveRadii
 def densePositiveRadii : Set {ε : ℝ // 0 < ε} :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose
 
+/--
+@isnad1 id=countabl.0h0v.s4.eb4f4afca413 from=translated src=- shape=3e6b51dd vocab=99b78414
+-/
 theorem countable_densePositiveRadii : densePositiveRadii.Countable :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.1
 
+/--
+@isnad1 id=dense.0h0v.s5.004d137b369b from=translated src=- shape=3e6b51dd vocab=21ea2389
+-/
 theorem dense_densePositiveRadii : Dense densePositiveRadii :=
   (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.2
 
@@ -158,6 +176,9 @@ theorem dense_densePositiveRadii : Dense densePositiveRadii :=
 def countableZeroHilbertMaximalTruncation (f : ℝ → ℂ) (x : ℝ) : ℝ≥0∞ :=
   ⨆ ε : densePositiveRadii, ‖quadraticHilbertTrunc 0 ε.1.1 f x‖ₑ
 
+/--
+@isnad1 id=eq.1h2v.s5.2ad93b13b440 from=translated src=- shape=f3e4a7f2 vocab=6ef6b72a
+-/
 theorem countableZeroHilbertMaximalTruncation_eq
     {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
     countableZeroHilbertMaximalTruncation f x =
@@ -166,6 +187,9 @@ theorem countableZeroHilbertMaximalTruncation_eq
   exact dense_densePositiveRadii.ciSup'
     (continuous_enorm_zeroHilbertTruncation_positiveRadii hf x)
 
+/--
+@isnad1 id=measurab.0h1v.s3.296769091acb from=translated src=- shape=cb4e3f99 vocab=66ff9499
+-/
 theorem measurable_countableZeroHilbertMaximalTruncation
     (f : L0Infinity) : Measurable (countableZeroHilbertMaximalTruncation f) := by
   let _ := countable_densePositiveRadii.toEncodable
@@ -173,7 +197,9 @@ theorem measurable_countableZeroHilbertMaximalTruncation
   intro ε
   exact (measurable_quadraticHilbertTrunc_l0 0 ε.1.1 f).enorm
 
-/-- Measurability of the genuine supremum over all positive real radii.-/
+/-- Measurability of the genuine supremum over all positive real radii.
+@isnad1 id=measurab.0h1v.s4.7ee57cea0cbf from=translated src=- shape=27a9b626 vocab=179bacac
+-/
 theorem measurable_zeroHilbertMaximalTruncation (f : L0Infinity) :
     Measurable (quadraticHilbertMaximalTruncation 0 f) := by
   rw [← funext (countableZeroHilbertMaximalTruncation_eq f.integrable)]
@@ -185,13 +211,18 @@ theorem measurable_zeroHilbertMaximalTruncation (f : L0Infinity) :
 def ordinaryHilbertKernel (x y : ℝ) : ℂ :=
   1 / ((x - y : ℝ) : ℂ)
 
+/--
+@isnad1 id=measurab.0h0v.s4.cf8c2a3fab32 from=translated src=- shape=934dc132 vocab=c7aed0a9
+-/
 theorem measurable_ordinaryHilbertKernel :
     Measurable (Function.uncurry ordinaryHilbertKernel) := by
   exact measurable_const.div
     (Complex.measurable_ofReal.comp (measurable_fst.sub measurable_snd))
 
 /-- The ordinary kernel has the Lipschitz regularity required by the existing
-one-dimensional bad-atom estimate, with the explicit constant two.-/
+one-dimensional bad-atom estimate, with the explicit constant two.
+@isnad1 id=le.3h4v.s7.012746d4546a from=translated src=- shape=bbe9430b vocab=bbfc101a
+-/
 theorem ordinaryHilbertKernel_sub_center_norm_le {x z R y : ℝ}
     (hR : 0 < R) (hx : x ∉ tripleCenteredInterval z R)
     (hy : y ∈ centeredInterval z R) :
@@ -234,7 +265,9 @@ theorem ordinaryHilbertKernel_sub_center_norm_le {x z R y : ℝ}
       exact le_of_eq (by ring)
 
 /-- Outside the triple interval the ordinary Hilbert kernel times an
-integrable interval atom is integrable.-/
+integrable interval atom is integrable.
+@isnad1 id=integrab.3h4v.s7.d3d1852f0faa from=translated src=- shape=e726da9a vocab=834348da
+-/
 theorem integrableOn_ordinaryHilbertKernel_mul_atom
     {b : ℝ → ℂ} {z R x : ℝ} (hR : 0 < R)
     (hx : x ∉ tripleCenteredInterval z R)
@@ -262,7 +295,9 @@ theorem integrableOn_ordinaryHilbertKernel_mul_atom
   exact hb.bdd_mul hmeas hbound
 
 /-- Integrated cancellation estimate for the ordinary Hilbert kernel acting
-on a mean-zero atom supported on a finite interval.-/
+on a mean-zero atom supported on a finite interval.
+@isnad1 id=le.4h3v.s8.9dc23befd481 from=translated src=- shape=30d763d3 vocab=d8aa8f0c
+-/
 theorem integral_norm_ordinaryHilbertKernel_atom_le
     (b : ℝ → ℂ) (z R : ℝ) (hR : 0 < R)
     (hb : IntegrableOn b (centeredInterval z R))
@@ -309,7 +344,9 @@ theorem integral_norm_ordinaryHilbertKernel_atom_le
 /-- If the sharp truncation radius does not reach an interval, then on an
 atom supported in that interval the truncation is exactly the full ordinary
 Hilbert-kernel action.  This identifies the range already controlled by
-cancellation; only radii meeting the interval create boundary pieces.-/
+cancellation; only radii meeting the interval create boundary pieces.
+@isnad1 id=eq.2h5v.s7.c1bccf824049 from=translated src=- shape=a1bd56b1 vocab=884f3c7b
+-/
 theorem zeroHilbertTruncation_eq_ordinaryKernel_atom_of_radius_lt
     {b : ℝ → ℂ} {z R x ε : ℝ}
     (hsupp : ∀ y ∉ centeredInterval z R, b y = 0)
@@ -345,7 +382,9 @@ theorem zeroHilbertTruncation_eq_ordinaryKernel_atom_of_radius_lt
 
 /-- A sharp ordinary truncation has the elementary size bound `1 / ε`
 against any integrable input.  Unlike the finite-annular estimate, the
-constant is independent of an outer radius.-/
+constant is independent of an outer radius.
+@isnad1 id=le.2h3v.s6.f69a561cf3a1 from=translated src=- shape=0811f26c vocab=cfb5b4e6
+-/
 theorem norm_zeroHilbertTruncation_le_inv_mul_integral_norm
     {b : ℝ → ℂ} (hb : Integrable b) {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
     ‖quadraticHilbertTrunc 0 ε b x‖ ≤
@@ -374,6 +413,9 @@ theorem norm_zeroHilbertTruncation_le_inv_mul_integral_norm
         (sharpQuadraticTailKernel_norm_le 0 hε) (norm_nonneg _)
     _ = _ := integral_const_mul _ _
 
+/--
+@isnad1 id=eq.1h2v.s6.ebbcb3cfa77e from=translated src=- shape=8aa59967 vocab=beb0ea93
+-/
 theorem ofReal_inv_mul_eq_four_mul_div_four_mul {ε : ℝ} (hε : 0 < ε)
     (m : ℝ≥0∞) :
     ENNReal.ofReal (1 / ε) * m =
@@ -390,7 +432,9 @@ theorem ofReal_inv_mul_eq_four_mul_div_four_mul {ε : ℝ} (hε : 0 < ε)
     _ = 4 * (4⁻¹ * (ENNReal.ofReal ε)⁻¹ * m) := by ac_rfl
 
 /-- If an interval of length at most `ε` contains a point within `ε` of
-`x`, then the whole interval lies in the centered ball of radius `2ε`.-/
+`x`, then the whole interval lies in the centered ball of radius `2ε`.
+@isnad1 id=le.3h5v.s6.8fa1a8c6d5ae from=translated src=- shape=5f8a8cdb vocab=ad89d077
+-/
 theorem centeredInterval_subset_closedBall_two_mul_of_near
     {z R x ε y₀ : ℝ} (hy₀ : y₀ ∈ centeredInterval z R)
     (hy₀x : |x - y₀| ≤ ε) (hRε : R ≤ ε) :
@@ -413,7 +457,9 @@ theorem centeredInterval_subset_closedBall_two_mul_of_near
     _ ≤ 2 * ε := by linarith
 
 /-- Pointwise monotonicity of the centered Hardy--Littlewood maximal
-operator.-/
+operator.
+@isnad1 id=le.1h3v.s4.b480c41165a2 from=translated src=- shape=b2a24dd6 vocab=4730f253
+-/
 theorem centeredHardyLittlewoodMaximal_mono_pointwise
     {u v : ℝ → ℝ≥0∞} (huv : ∀ y, u y ≤ v y) (x : ℝ) :
     centeredHardyLittlewoodMaximal u x ≤
@@ -432,7 +478,9 @@ def IsTruncationBoundary (x ε : ℝ) (s : Set ℝ) : Prop :=
 
 /-- For an interval-supported function, a cell not crossed by the sharp
 boundary contributes either zero (the interval is wholly deleted) or its
-complete ordinary-kernel integral (the interval is wholly retained).-/
+complete ordinary-kernel integral (the interval is wholly retained).
+@isnad1 id=or.2h5v.s6.b7503b3a3e0f from=translated src=- shape=fb1d0c20 vocab=f6d5b3b9
+-/
 theorem zeroHilbertTruncation_eq_zero_or_full_of_not_boundary
     {b : ℝ → ℂ} {z R x ε : ℝ}
     (hsupp : ∀ y ∉ centeredInterval z R, b y = 0)
@@ -478,7 +526,9 @@ theorem zeroHilbertTruncation_eq_zero_or_full_of_not_boundary
 
 /-- For an interval lying outside its triple, a sharp radial boundary that
 crosses the interval must pass through the interval at one of the two points
-`x - ε` or `x + ε`.-/
+`x - ε` or `x + ε`.
+@isnad1 id=or.3h4v.s6.9f6dbce168c1 from=translated src=- shape=2d9112c2 vocab=b57dd816
+-/
 theorem truncationBoundary_centeredInterval_mem_left_or_right
     {z R x ε : ℝ} (hR : 0 < R)
     (hx : x ∉ tripleCenteredInterval z R)
@@ -511,7 +561,9 @@ theorem truncationBoundary_centeredInterval_mem_left_or_right
     constructor <;> linarith
 
 /-- Outside the tripled interval, if the deleted truncation ball meets the
-interval, then the truncation radius is strictly larger than its length.-/
+interval, then the truncation radius is strictly larger than its length.
+@isnad1 id=lt.3h5v.s5.21d59f603614 from=translated src=- shape=b74da001 vocab=2c6f6ee2
+-/
 theorem centeredInterval_length_lt_radius_of_notMem_triple_of_near
     {z R x ε y : ℝ} (hy : y ∈ centeredInterval z R)
     (hnear : |x - y| ≤ ε) (hx : x ∉ tripleCenteredInterval z R) :
@@ -528,7 +580,9 @@ theorem centeredInterval_length_lt_radius_of_notMem_triple_of_near
 /-- A large-radius truncation of an interval-supported input is controlled
 by the centered Hardy--Littlewood maximal function as soon as the deleted
 ball meets the interval.  This is the analytic estimate for a boundary
-cell; combinatorially there are at most two such cells at a fixed radius.-/
+cell; combinatorially there are at most two such cells at a fixed radius.
+@isnad1 id=le.6h6v.s7.3366ebf81b15 from=translated src=- shape=5a6a08ae vocab=76b11bfd
+-/
 theorem enorm_zeroHilbertTruncation_le_eight_maximal_of_interval_near
     {b : ℝ → ℂ} (hb : Integrable b) {z R x ε y₀ : ℝ}
     (hsupp : ∀ y ∉ centeredInterval z R, b y = 0)
@@ -582,10 +636,16 @@ def stoppingCellLength (f : ℝ → ℂ) (c : stoppingCell f) : ℝ :=
 def stoppingCellCenter (f : ℝ → ℂ) (c : stoppingCell f) : ℝ :=
   ((c.1.index : ℝ) + 1 / 2) * stoppingCellLength f c
 
+/--
+@isnad1 id=lt.0h2v.s4.e6dabb4fe680 from=translated src=- shape=5fcc27e0 vocab=c5ddd58a
+-/
 theorem stoppingCellLength_pos (f : ℝ → ℂ) (c : stoppingCell f) :
     0 < stoppingCellLength f c :=
   dyadicLength_pos rootLength_pos c.1.depth
 
+/--
+@isnad1 id=eq.0h2v.s4.d90c490dddbd from=translated src=- shape=cac91076 vocab=887b128c
+-/
 theorem stoppingCell_interval_eq_centeredInterval (f : ℝ → ℂ)
     (c : stoppingCell f) :
     c.1.interval (rootLength f) =
@@ -607,7 +667,9 @@ def stoppingBoundaryCells (f : ℝ → ℂ) (x ε : ℝ) : Set (stoppingCell f) 
   {c | IsTruncationBoundary x ε (c.1.interval (rootLength f))}
 
 /-- Pairwise disjointness implies that at most one stopping cell can contain
-a prescribed point.-/
+a prescribed point.
+@isnad1 id=subsingl.0h2v.s5.6071530c9211 from=translated src=- shape=9bcd30da vocab=76b9353e
+-/
 theorem stoppingCells_containing_subsingleton (f : ℝ → ℂ) (y : ℝ) :
     Set.Subsingleton
       {c : stoppingCell f | y ∈ c.1.interval (rootLength f)} := by
@@ -616,7 +678,9 @@ theorem stoppingCells_containing_subsingleton (f : ℝ → ℂ) (y : ℝ) :
   exact Set.disjoint_left.1 (stoppingCell_pairwiseDisjoint hcd) hc hd
 
 /-- Outside the union of tripled stopping cells, every cell cut by the sharp
-truncation boundary contains one of the two boundary points.-/
+truncation boundary contains one of the two boundary points.
+@isnad1 id=le.1h3v.s6.1301a65ad2c8 from=translated src=- shape=03175fe0 vocab=bf540b57
+-/
 theorem stoppingBoundaryCells_subset_endpointCells (f : ℝ → ℂ) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) :
     stoppingBoundaryCells f x ε ⊆
@@ -637,7 +701,9 @@ theorem stoppingBoundaryCells_subset_endpointCells (f : ℝ → ℂ) {x ε : ℝ
   exact hend
 
 /-- Every boundary stopping cell outside the tripled exceptional union is
-shorter than the active truncation radius.-/
+shorter than the active truncation radius.
+@isnad1 id=lt.2h4v.s5.bbc6d6c2cd11 from=translated src=- shape=2423f4ca vocab=c4fed2d6
+-/
 theorem stoppingBoundaryCell_length_lt_radius (f : ℝ → ℂ) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) {c : stoppingCell f}
     (hc : c ∈ stoppingBoundaryCells f x ε) :
@@ -654,7 +720,9 @@ theorem stoppingBoundaryCell_length_lt_radius (f : ℝ → ℂ) {x ε : ℝ}
 /-- At a fixed center and radius, outside the enlarged exceptional set there
 are at most two boundary cells: one through `x - ε` and one through `x + ε`.
 This is the exact one-dimensional boundary combinatorics used in the maximal
-bad-part estimate.-/
+bad-part estimate.
+@isnad1 id=and.1h3v.s5.6b586861ad48 from=translated src=- shape=216fa6fe vocab=47775a31
+-/
 theorem stoppingBoundaryCells_finite_and_ncard_le_two (f : ℝ → ℂ) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) :
     (stoppingBoundaryCells f x ε).Finite ∧
@@ -682,11 +750,17 @@ theorem stoppingBoundaryCells_finite_and_ncard_le_two (f : ℝ → ℂ) {x ε : 
       ((Set.ncard_le_one hrightSub.finite).2 hrightSub)
     _ = 2 := by norm_num
 
+/--
+@isnad1 id=measurab.0h1v.s3.81dbf2458c18 from=translated src=- shape=47a19bcc vocab=0757e773
+-/
 theorem measurableSet_stoppingTripleBadUnion (f : ℝ → ℂ) :
     MeasurableSet (stoppingTripleBadUnion f) := by
   let _ := Encodable.ofCountable (stoppingCell f)
   exact MeasurableSet.iUnion (fun _ ↦ measurableSet_Icc)
 
+/--
+@isnad1 id=eq.0h2v.s6.0630ba837ef7 from=translated src=- shape=133c7334 vocab=d47c22fb
+-/
 theorem volume_triple_stoppingCell (f : ℝ → ℂ) (c : stoppingCell f) :
     volume (tripleCenteredInterval (stoppingCellCenter f c)
       (stoppingCellLength f c)) =
@@ -701,7 +775,9 @@ theorem volume_triple_stoppingCell (f : ℝ → ℂ) (c : stoppingCell f) :
   norm_num
 
 /-- The union of the tripled stopping cells has measure at most three times
-the global `L¹` mass.  Disjointness is used only before tripling.-/
+the global `L¹` mass.  Disjointness is used only before tripling.
+@isnad1 id=le.1h1v.s6.fbb9bb8b0dc0 from=translated src=- shape=31fdd661 vocab=3928152f
+-/
 theorem volume_stoppingTripleBadUnion_le_lintegral_norm {f : ℝ → ℂ}
     (hf : Integrable f) :
     volume (stoppingTripleBadUnion f) ≤
@@ -724,6 +800,9 @@ theorem volume_stoppingTripleBadUnion_le_lintegral_norm {f : ℝ → ℂ}
       gcongr
       exact tsum_volume_stoppingCell_le_lintegral_norm hf
 
+/--
+@isnad1 id=lt.1h1v.s6.e7e7d09b9cb6 from=translated src=- shape=007a2f36 vocab=fc0ba870
+-/
 theorem volume_stoppingTripleBadUnion_lt_top {f : ℝ → ℂ}
     (hf : Integrable f) : volume (stoppingTripleBadUnion f) < ∞ := by
   apply (volume_stoppingTripleBadUnion_le_lintegral_norm hf).trans_lt
@@ -757,10 +836,16 @@ noncomputable def stoppingBoundaryTruncationMajorant
     if c ∈ stoppingBoundaryCells f x ε then
       ‖quadraticHilbertTrunc 0 ε (stoppingHilbertBadAtom f c) x‖ₑ else 0
 
+/--
+@isnad1 id=measurab.1h2v.s4.0bcd47f0fd5b from=translated src=- shape=18ab115e vocab=68fef79f
+-/
 theorem measurable_stoppingHilbertBadAtom {f : ℝ → ℂ} (hf : Measurable f)
     (c : stoppingCell f) : Measurable (stoppingHilbertBadAtom f c) :=
   (hf.sub measurable_const).indicator measurableSet_Ico
 
+/--
+@isnad1 id=integrab.1h2v.s6.f0cf5b9e28bd from=translated src=- shape=060c6bdf vocab=3b10a2b0
+-/
 theorem integrable_stoppingHilbertBadAtom {f : ℝ → ℂ} (hf : Integrable f)
     (c : stoppingCell f) : Integrable (stoppingHilbertBadAtom f c) := by
   apply IntegrableOn.integrable_indicator
@@ -768,6 +853,9 @@ theorem integrable_stoppingHilbertBadAtom {f : ℝ → ℂ} (hf : Integrable f)
       (integrableOn_const (volume_stoppingCell_interval_lt_top c).ne)
   · exact measurableSet_stoppingCell_interval c
 
+/--
+@isnad1 id=eq.0h2v.s5.5a76cfbedda6 from=translated src=- shape=8860fb93 vocab=c76ca3b2
+-/
 theorem integral_stoppingHilbertBadAtom_eq_zero {f : ℝ → ℂ}
     (c : stoppingCell f) : ∫ x, stoppingHilbertBadAtom f c x = 0 := by
   rw [stoppingHilbertBadAtom,
@@ -775,6 +863,9 @@ theorem integral_stoppingHilbertBadAtom_eq_zero {f : ℝ → ℂ}
   exact setAverage_sub_setAverage
     (volume_stoppingCell_interval_lt_top c).ne f
 
+/--
+@isnad1 id=aestrong.1h2v.s6.9000fbd7d3bb from=translated src=- shape=b77b7fc7 vocab=35d7fd36
+-/
 theorem aestronglyMeasurable_stoppingFullKernelAction {f : ℝ → ℂ}
     (hf : Measurable f) (c : stoppingCell f) :
     AEStronglyMeasurable
@@ -814,6 +905,9 @@ theorem aestronglyMeasurable_stoppingFullKernelAction {f : ℝ → ℂ}
   rw [← heq]
   exact hout
 
+/--
+@isnad1 id=integrab.2h2v.s7.df60f9122219 from=translated src=- shape=5e68c069 vocab=7c04f683
+-/
 theorem integrableOn_stoppingFullKernelAction_compl_triple {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) (c : stoppingCell f) :
     IntegrableOn
@@ -856,6 +950,9 @@ theorem integrableOn_stoppingFullKernelAction_compl_triple {f : ℝ → ℂ}
       hreg
     simpa only [z, R, b, A] using hbound.trans_eq (by ring)
 
+/--
+@isnad1 id=le.1h2v.s7.c80f11d10935 from=translated src=- shape=e8126787 vocab=55476b0f
+-/
 theorem integral_norm_stoppingHilbertBadAtom_le {f : ℝ → ℂ}
     (hf : Integrable f) (c : stoppingCell f) :
     (∫ x, ‖stoppingHilbertBadAtom f c x‖) ≤
@@ -891,12 +988,17 @@ theorem integral_norm_stoppingHilbertBadAtom_le {f : ℝ → ℂ}
       add_le_add le_rfl hnormavg
     _ = 2 * ∫ x in I, ‖f x‖ := by ring
 
+/--
+@isnad1 id=measurab.1h1v.s4.ed410e085644 from=translated src=- shape=7b940848 vocab=24352b27
+-/
 theorem measurable_stoppingHilbertBadAtomNormSum {f : ℝ → ℂ}
     (hf : Measurable f) : Measurable (stoppingHilbertBadAtomNormSum f) := by
   let _ := Encodable.ofCountable (stoppingCell f)
   exact Measurable.tsum fun c ↦ (measurable_stoppingHilbertBadAtom hf c).enorm
 
-/-- ENNReal form of the single-atom `L¹` estimate.-/
+/-- ENNReal form of the single-atom `L¹` estimate.
+@isnad1 id=le.1h2v.s7.4df3b15f6dc1 from=translated src=- shape=c6b144eb vocab=c0637f24
+-/
 theorem lintegral_enorm_stoppingHilbertBadAtom_le {f : ℝ → ℂ}
     (hf : Integrable f) (c : stoppingCell f) :
     (∫⁻ x, ‖stoppingHilbertBadAtom f c x‖ₑ) ≤
@@ -925,7 +1027,9 @@ theorem lintegral_enorm_stoppingHilbertBadAtom_le {f : ℝ → ℂ}
   exact ENNReal.ofReal_le_ofReal (integral_norm_stoppingHilbertBadAtom_le hf c)
 
 /-- The complete pointwise norm sum of the canonical bad atoms has `L¹`
-mass at most twice that of the original input.-/
+mass at most twice that of the original input.
+@isnad1 id=le.1h1v.s7.9fc87701951d from=translated src=- shape=1405f812 vocab=b95ffdcf
+-/
 theorem lintegral_stoppingHilbertBadAtomNormSum_le {f : ℝ → ℂ}
     (hf : Integrable f) :
     (∫⁻ x, stoppingHilbertBadAtomNormSum f x) ≤
@@ -951,7 +1055,9 @@ theorem lintegral_stoppingHilbertBadAtomNormSum_le {f : ℝ → ℂ}
       mul_le_mul' le_rfl (setLIntegral_le_lintegral _ _)
 
 /-- The countable sum of canonical stopping atoms is an honest integrable
-function.-/
+function.
+@isnad1 id=integrab.2h1v.s6.a91be854b8ae from=translated src=- shape=ab32781c vocab=1f2afeb8
+-/
 theorem integrable_tsum_stoppingHilbertBadAtom {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) :
     Integrable (fun x ↦ ∑' c : stoppingCell f, stoppingHilbertBadAtom f c x) := by
@@ -970,7 +1076,9 @@ theorem integrable_tsum_stoppingHilbertBadAtom {f : ℝ → ℂ}
 
 /-- Exact pointwise recombination of the canonical stopping atoms with the
 ordinary Calderón--Zygmund bad part.  Pairwise disjointness makes the series
-pointwise finite, so this identity needs no convergence hypothesis.-/
+pointwise finite, so this identity needs no convergence hypothesis.
+@isnad1 id=eq.0h2v.s5.863976172fa0 from=translated src=- shape=6648b131 vocab=dc04b3b1
+-/
 theorem tsum_stoppingHilbertBadAtom_eq_sub_stoppingGoodPart
     (f : ℝ → ℂ) (x : ℝ) :
     (∑' c : stoppingCell f, stoppingHilbertBadAtom f c x) =
@@ -996,7 +1104,9 @@ theorem tsum_stoppingHilbertBadAtom_eq_sub_stoppingGoodPart
     exact tsum_zero
 
 /-- The kernel-weighted stopping-atom series is absolutely integrable at
-every positive sharp truncation radius.-/
+every positive sharp truncation radius.
+@isnad1 id=lt.2h3v.s7.8a66c132f1ef from=translated src=- shape=f8fe77e9 vocab=82cb68a7
+-/
 theorem tsum_lintegral_enorm_sharpKernel_mul_stoppingAtom_lt_top
     {f : ℝ → ℂ} (hfi : Integrable f) {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
     (∑' c : stoppingCell f, ∫⁻ y,
@@ -1037,7 +1147,9 @@ theorem tsum_lintegral_enorm_sharpKernel_mul_stoppingAtom_lt_top
       (ENNReal.mul_lt_top (by norm_num) hfi.hasFiniteIntegral)))
 
 /-- A genuine countable integral/series interchange for sharp ordinary
-Hilbert truncations of the complete stopping bad part.-/
+Hilbert truncations of the complete stopping bad part.
+@isnad1 id=eq.3h3v.s7.f857964da9cd from=translated src=- shape=bd9a5e59 vocab=8b98d0f2
+-/
 theorem zeroHilbertTruncation_tsum_stoppingHilbertBadAtom_eq_tsum
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
@@ -1063,7 +1175,9 @@ theorem zeroHilbertTruncation_tsum_stoppingHilbertBadAtom_eq_tsum
     (tsum_lintegral_enorm_sharpKernel_mul_stoppingAtom_lt_top hfi hε x).ne
 
 /-- Exact sharp-truncation recombination in the usual `f - good` form of
-the Calderón--Zygmund decomposition.-/
+the Calderón--Zygmund decomposition.
+@isnad1 id=eq.3h3v.s6.bd71bdcacb80 from=translated src=- shape=db8e2b53 vocab=bf739b19
+-/
 theorem zeroHilbertTruncation_sub_stoppingGoodPart_eq_tsum
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
@@ -1080,7 +1194,9 @@ theorem zeroHilbertTruncation_sub_stoppingGoodPart_eq_tsum
 
 /-- Weak `(1,1)` bound for the single maximal function that controls every
 boundary-cell sum.  The threshold is written in the naturally scaled form
-to avoid any finiteness side condition on an arbitrary ENNReal threshold.-/
+to avoid any finiteness side condition on an arbitrary ENNReal threshold.
+@isnad1 id=le.1h2v.s7.a7bc000fa80b from=translated src=- shape=629531f7 vocab=e62d7842
+-/
 theorem stoppingHilbertBadAtomNormSum_boundaryMaximal_weak_bound
     {f : ℝ → ℂ} (hf : Integrable f) (a : ℝ≥0∞) :
     (16 * a) * volume {x | 16 * a <
@@ -1112,7 +1228,9 @@ theorem stoppingHilbertBadAtomNormSum_boundaryMaximal_weak_bound
 
 /-- Large truncation radii acting on one stopping atom are bounded by its
 local `L¹` mass divided by the radius.  This is the size estimate used for
-the at-most-two boundary cells in the maximal bad-part argument.-/
+the at-most-two boundary cells in the maximal bad-part argument.
+@isnad1 id=le.2h4v.s7.54275aa21b3e from=translated src=- shape=a559d13d vocab=5229aad0
+-/
 theorem norm_zeroHilbertTruncation_stoppingAtom_le
     {f : ℝ → ℂ} (hf : Integrable f) (c : stoppingCell f)
     {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
@@ -1129,7 +1247,9 @@ theorem norm_zeroHilbertTruncation_stoppingAtom_le
       exact one_div_nonneg.mpr hε.le
     _ = _ := by ring
 
-/-- Stopping-cell specialization of the boundary-cell maximal estimate.-/
+/-- Stopping-cell specialization of the boundary-cell maximal estimate.
+@isnad1 id=le.5h5v.s7.d08c02fd5418 from=translated src=- shape=a38ec23a vocab=e866ccaa
+-/
 theorem enorm_zeroHilbertTruncation_stoppingAtom_le_eight_maximal
     {f : ℝ → ℂ} (hf : Integrable f) (c : stoppingCell f)
     {x ε y₀ : ℝ} (hε : 0 < ε)
@@ -1152,7 +1272,9 @@ theorem enorm_zeroHilbertTruncation_stoppingAtom_le_eight_maximal
 
 /-- A boundary stopping atom outside the tripled exceptional union obeys
 the Hardy--Littlewood maximal estimate with no separate radius assumption:
-the geometry forces its cell length to be smaller than the radius.-/
+the geometry forces its cell length to be smaller than the radius.
+@isnad1 id=le.3h4v.s7.8ec245ec22bb from=translated src=- shape=fa9a6623 vocab=b9154e43
+-/
 theorem enorm_zeroHilbertTruncation_boundaryStoppingAtom_le_eight_maximal
     {f : ℝ → ℂ} (hf : Integrable f) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) {c : stoppingCell f}
@@ -1168,7 +1290,9 @@ theorem enorm_zeroHilbertTruncation_boundaryStoppingAtom_le_eight_maximal
 
 /-- The sum of all boundary-cell truncations is controlled by a single
 Hardy--Littlewood maximal function.  The constant `16` is `8` from the
-single-cell size estimate times the sharp count of at most two cells.-/
+single-cell size estimate times the sharp count of at most two cells.
+@isnad1 id=le.3h4v.s7.874d917f5472 from=translated src=- shape=e0d3622b vocab=67933c23
+-/
 theorem sum_enorm_zeroHilbertTruncation_boundaryStoppingAtoms_le
     {f : ℝ → ℂ} (hf : Integrable f) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) (s : Finset (stoppingCell f))
@@ -1218,7 +1342,9 @@ theorem sum_enorm_zeroHilbertTruncation_boundaryStoppingAtoms_le
       ring
 
 /-- Countable formulation of the boundary estimate.  The defining `tsum`
-is exactly the finite sum over the at-most-two boundary cells.-/
+is exactly the finite sum over the at-most-two boundary cells.
+@isnad1 id=le.2h3v.s6.7aeb4243754f from=translated src=- shape=f7f61a58 vocab=b364831f
+-/
 theorem stoppingBoundaryTruncationMajorant_le
     {f : ℝ → ℂ} (hf : Integrable f) {x ε : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) :
@@ -1243,6 +1369,9 @@ theorem stoppingBoundaryTruncationMajorant_le
   exact sum_enorm_zeroHilbertTruncation_boundaryStoppingAtoms_le hf hx s
     (fun c hc ↦ hs c |>.mp hc)
 
+/--
+@isnad1 id=eq.1h4v.s6.16ecc5041f56 from=translated src=- shape=13cd0312 vocab=5622e8e7
+-/
 theorem zeroHilbertTruncation_stoppingAtom_eq_of_radius_lt
     {f : ℝ → ℂ} (c : stoppingCell f) {x ε : ℝ}
     (hε : ε < |x - stoppingCellCenter f c| - stoppingCellLength f c / 2) :
@@ -1256,7 +1385,9 @@ theorem zeroHilbertTruncation_stoppingAtom_eq_of_radius_lt
     simp [stoppingHilbertBadAtom, hy]
   · exact hε
 
-/-- Exact stopping-cell specialization of the nonboundary dichotomy.-/
+/-- Exact stopping-cell specialization of the nonboundary dichotomy.
+@isnad1 id=or.1h4v.s6.a5d60164916a from=translated src=- shape=dbd6882d vocab=8057bd0a
+-/
 theorem zeroHilbertTruncation_stoppingAtom_eq_zero_or_full_of_not_boundary
     {f : ℝ → ℂ} (c : stoppingCell f) {x ε : ℝ}
     (hc : c ∉ stoppingBoundaryCells f x ε) :
@@ -1275,7 +1406,9 @@ theorem zeroHilbertTruncation_stoppingAtom_eq_zero_or_full_of_not_boundary
 /-- Global pointwise bad-part majorization outside the tripled stopping
 exceptional set.  Complete nonboundary cells are paid for by the
 cancellation majorant, while the at-most-two boundary cells are paid for by
-one Hardy--Littlewood maximal function.-/
+one Hardy--Littlewood maximal function.
+@isnad1 id=le.4h3v.s7.be7af438f0f8 from=translated src=- shape=1e39f613 vocab=678ee8b6
+-/
 theorem enorm_zeroHilbertTruncation_badPart_le_fullKernel_add_boundary
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {x ε : ℝ} (hε : 0 < ε) (hx : x ∉ stoppingTripleBadUnion f) :
@@ -1316,7 +1449,9 @@ theorem enorm_zeroHilbertTruncation_badPart_le_fullKernel_add_boundary
 
 /-- Off the tripled stopping cell, every truncation radius no larger than the
 cell length misses the cell.  Thus all such sharp truncations collapse to the
-single full-kernel action controlled by cancellation.-/
+single full-kernel action controlled by cancellation.
+@isnad1 id=eq.2h4v.s6.45598c539dfc from=translated src=- shape=666131ab vocab=1fc1b849
+-/
 theorem zeroHilbertTruncation_stoppingAtom_eq_of_le_length_of_notMem_triple
     {f : ℝ → ℂ} (c : stoppingCell f) {x ε : ℝ}
     (hx : x ∉ tripleCenteredInterval (stoppingCellCenter f c)
@@ -1340,7 +1475,9 @@ def stoppingAtomSmallRadiusMaximal (f : ℝ → ℂ) (c : stoppingCell f)
 
 /-- Off the tripled cell, the entire small-radius supremum is exactly one
 full-kernel value.  In particular, no maximal-operator theorem is needed for
-this portion of the bad atom.-/
+this portion of the bad atom.
+@isnad1 id=eq.1h3v.s6.5e796d6f7ac0 from=translated src=- shape=42ab3cce vocab=87e20470
+-/
 theorem stoppingAtomSmallRadiusMaximal_eq_of_notMem_triple
     (f : ℝ → ℂ) (c : stoppingCell f) {x : ℝ}
     (hx : x ∉ tripleCenteredInterval (stoppingCellCenter f c)
@@ -1364,7 +1501,9 @@ theorem stoppingAtomSmallRadiusMaximal_eq_of_notMem_triple
       ‖quadraticHilbertTrunc 0 ε.1 (stoppingHilbertBadAtom f c) x‖ₑ) ε₀
 
 /-- The canonical stopping atom satisfies the ordinary Hilbert off-support
-estimate with a completely explicit constant.-/
+estimate with a completely explicit constant.
+@isnad1 id=le.1h2v.s7.c5c4d2b780ec from=translated src=- shape=859b96cc vocab=4e8a5560
+-/
 theorem integral_norm_ordinaryHilbertKernel_stoppingAtom_le
     {f : ℝ → ℂ} (hf : Integrable f) (c : stoppingCell f) :
     ∫ x in (tripleCenteredInterval (stoppingCellCenter f c)
@@ -1403,7 +1542,9 @@ theorem integral_norm_ordinaryHilbertKernel_stoppingAtom_le
     _ = _ := by ring
 
 /-- ENNReal version of the off-triple cancellation estimate for one stopping
-atom.-/
+atom.
+@isnad1 id=le.2h2v.s8.a225890e6593 from=translated src=- shape=59e0175a vocab=7d19c8d3
+-/
 theorem lintegral_enorm_ordinaryHilbertKernel_stoppingAtom_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (c : stoppingCell f) :
@@ -1441,6 +1582,9 @@ theorem lintegral_enorm_ordinaryHilbertKernel_stoppingAtom_le
   exact ENNReal.ofReal_le_ofReal
     (integral_norm_ordinaryHilbertKernel_stoppingAtom_le hfi c)
 
+/--
+@isnad1 id=aemeasur.1h1v.s4.b5dc2a14ddf3 from=translated src=- shape=7c62e3c3 vocab=10430ef6
+-/
 theorem aemeasurable_stoppingFullKernelMajorant {f : ℝ → ℂ}
     (hf : Measurable f) : AEMeasurable (stoppingFullKernelMajorant f) := by
   let _ := Encodable.ofCountable (stoppingCell f)
@@ -1448,7 +1592,9 @@ theorem aemeasurable_stoppingFullKernelMajorant {f : ℝ → ℂ}
     (aestronglyMeasurable_stoppingFullKernelAction hf c).enorm
 
 /-- The complete full-kernel majorant has the summed cancellation bound on
-the complement of the global tripled stopping union.-/
+the complement of the global tripled stopping union.
+@isnad1 id=le.2h1v.s7.cf714e92f1ef from=translated src=- shape=32ed9597 vocab=abb51d0b
+-/
 theorem lintegral_stoppingFullKernelMajorant_compl_triple_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     (∫⁻ x in (stoppingTripleBadUnion f)ᶜ, stoppingFullKernelMajorant f x) ≤
@@ -1478,7 +1624,9 @@ theorem lintegral_stoppingFullKernelMajorant_compl_triple_le
       mul_le_mul' le_rfl (setLIntegral_le_lintegral _ _)
 
 /-- Markov's inequality applied to the summed full-kernel cancellation
-majorant outside the global exceptional set.-/
+majorant outside the global exceptional set.
+@isnad1 id=le.2h2v.s7.9474525588ec from=translated src=- shape=76818434 vocab=8646f337
+-/
 theorem stoppingFullKernelMajorant_weak_bound
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (a : ℝ≥0∞) :
     a * volume {x | x ∉ stoppingTripleBadUnion f ∧
@@ -1504,7 +1652,9 @@ theorem stoppingFullKernelMajorant_weak_bound
     _ ≤ _ := lintegral_stoppingFullKernelMajorant_compl_triple_le hf hfi
 
 /-- Uniform pointwise bad-part estimate after taking the supremum over every
-positive sharp truncation radius.-/
+positive sharp truncation radius.
+@isnad1 id=le.3h2v.s7.cd3254df62a0 from=translated src=- shape=eab2cac2 vocab=61f4370b
+-/
 theorem quadraticHilbertMaximalTruncation_badPart_le
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) {x : ℝ}
     (hx : x ∉ stoppingTripleBadUnion f) :
@@ -1522,7 +1672,9 @@ theorem quadraticHilbertMaximalTruncation_badPart_le
 /-- The complete stopping bad part satisfies a genuine uniform weak
 `(1,1)` estimate outside the tripled stopping intervals.  The threshold is
 scaled as `32a`: `16a` is assigned to each of the full-kernel and boundary
-majorants.-/
+majorants.
+@isnad1 id=le.2h2v.s8.932da4972484 from=translated src=- shape=e198a99c vocab=6290a607
+-/
 theorem quadraticHilbertMaximalTruncation_badPart_weak_bound
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (a : ℝ≥0∞) :
     (32 * a) * volume {x | x ∉ stoppingTripleBadUnion f ∧
@@ -1582,7 +1734,9 @@ theorem quadraticHilbertMaximalTruncation_badPart_weak_bound
 
 /-- At the normalization height of the stopping decomposition, the bad-part
 weak estimate holds on all of `ℝ`.  The first term pays for the tripled
-stopping intervals and the second is the off-triple cancellation estimate.-/
+stopping intervals and the second is the off-triple cancellation estimate.
+@isnad1 id=le.2h1v.s8.e1a97337d999 from=translated src=- shape=6b05626b vocab=a64f9105
+-/
 theorem quadraticHilbertMaximalTruncation_badPart_weak_bound_one
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
     32 * volume {x | 32 < quadraticHilbertMaximalTruncation 0
@@ -1624,7 +1778,9 @@ theorem quadraticHilbertMaximalTruncation_badPart_weak_bound_one
 /-! ## Fourier `L²` input for the good-part Cotlar argument -/
 
 /-- The stopping good part belongs to `L²`; this is the exact input space
-of the Fourier realization of the ordinary Hilbert transform.-/
+of the Fourier realization of the ordinary Hilbert transform.
+@isnad1 id=memlp.1h1v.s6.5b33f536a86f from=translated src=- shape=669ddec9 vocab=39f1089b
+-/
 theorem memLp_two_stoppingGoodPart {f : ℝ → ℂ} (hf : Integrable f) :
     MemLp (stoppingGoodPart f) 2 :=
   (memLp_two_iff_integrable_sq_norm
@@ -1642,6 +1798,9 @@ noncomputable def stoppingGoodHilbertL2Representative
     (f : ℝ → ℂ) (hf : Integrable f) : ℝ → ℂ :=
   ⇑(ordinaryHilbertTransformL2 (stoppingGoodPartL2 f hf))
 
+/--
+@isnad1 id=aestrong.1h1v.s6.1dee7ee50157 from=translated src=- shape=87751cb9 vocab=b5d741b7
+-/
 theorem aestronglyMeasurable_stoppingGoodHilbertL2Representative
     {f : ℝ → ℂ} (hf : Integrable f) :
     AEStronglyMeasurable (stoppingGoodHilbertL2Representative f hf) := by
@@ -1651,13 +1810,18 @@ theorem aestronglyMeasurable_stoppingGoodHilbertL2Representative
 
 /-- The Fourier Hilbert transform of the stopping good part has the sharp
 operator-norm bound.  A Cotlar inequality relating the sharp truncations to
-this representative is the remaining maximal-`L²` bridge.-/
+this representative is the remaining maximal-`L²` bridge.
+@isnad1 id=le.1h1v.s9.d0bb6352a0bd from=translated src=- shape=91609a33 vocab=a4f42fe8
+-/
 theorem norm_stoppingGoodHilbertL2_le
     {f : ℝ → ℂ} (hf : Integrable f) :
     ‖ordinaryHilbertTransformL2 (stoppingGoodPartL2 f hf)‖ ≤
       Real.pi * ‖stoppingGoodPartL2 f hf‖ :=
   norm_ordinaryHilbertTransformL2_le (stoppingGoodPartL2 f hf)
 
+/--
+@isnad1 id=eq.1h1v.s11.fa61dbc3aa89 from=translated src=- shape=6403f8cf vocab=4eada061
+-/
 theorem eLpNorm_stoppingGoodHilbertL2Representative_eq_enorm
     {f : ℝ → ℂ} (hf : Integrable f) :
     eLpNorm (stoppingGoodHilbertL2Representative f hf) 2 =
@@ -1667,6 +1831,9 @@ theorem eLpNorm_stoppingGoodHilbertL2Representative_eq_enorm
   exact (Lp.enorm_def
     (ordinaryHilbertTransformL2 (stoppingGoodPartL2 f hf))).symm
 
+/--
+@isnad1 id=eq.1h1v.s11.053152fd6b60 from=translated src=- shape=26018778 vocab=e00ec02b
+-/
 theorem enorm_stoppingGoodPartL2_sq_eq_lintegral
     {f : ℝ → ℂ} (hf : Integrable f) :
     ‖stoppingGoodPartL2 f hf‖ₑ ^ 2 =
@@ -1674,6 +1841,9 @@ theorem enorm_stoppingGoodPartL2_sq_eq_lintegral
   unfold stoppingGoodPartL2
   rw [Lp.enorm_toLp (memLp_two_stoppingGoodPart hf), eLpNorm_two_sq_lintegral]
 
+/--
+@isnad1 id=le.1h1v.s12.81788f74e71e from=translated src=- shape=37f2d426 vocab=9172296d
+-/
 theorem enorm_stoppingGoodHilbertL2_le
     {f : ℝ → ℂ} (hf : Integrable f) :
     ‖ordinaryHilbertTransformL2 (stoppingGoodPartL2 f hf)‖ₑ ≤
@@ -1691,12 +1861,17 @@ def cotlarSharpHilbertKernel (r t : ℝ) : ℝ :=
 def cotlarConjugatePoissonKernel (r t : ℝ) : ℝ :=
   t / (t ^ 2 + r ^ 2)
 
+/--
+@isnad1 id=eq.1h2v.s4.2b0d6cda61b6 from=translated src=- shape=8468f64e vocab=e5ec42f2
+-/
 theorem cotlarSharpHilbertKernel_eq_zero_of_abs_le {r t : ℝ}
     (ht : |t| ≤ r) : cotlarSharpHilbertKernel r t = 0 := by
   simp [cotlarSharpHilbertKernel, not_lt.mpr ht]
 
 /-- Off the truncation ball the sharp kernel differs from the conjugate
-Poisson kernel by the explicit cubic-decay error.-/
+Poisson kernel by the explicit cubic-decay error.
+@isnad1 id=eq.2h2v.s6.3d1611c154f1 from=translated src=- shape=17dc8eb8 vocab=97b9b724
+-/
 theorem cotlarSharp_sub_conjugatePoisson_eq {r t : ℝ}
     (hr : 0 ≤ r) (ht : r < |t|) :
     cotlarSharpHilbertKernel r t - cotlarConjugatePoissonKernel r t =
@@ -1710,7 +1885,9 @@ theorem cotlarSharp_sub_conjugatePoisson_eq {r t : ℝ}
   field_simp
   ring
 
-/-- The off-ball Poisson comparison error has cubic decay.-/
+/-- The off-ball Poisson comparison error has cubic decay.
+@isnad1 id=le.2h2v.s6.5edd676e1f5c from=translated src=- shape=12c9898c vocab=9bfb8e21
+-/
 theorem abs_cotlarSharp_sub_conjugatePoisson_le {r t : ℝ}
     (hr : 0 ≤ r) (ht : r < |t|) :
     |cotlarSharpHilbertKernel r t - cotlarConjugatePoissonKernel r t| ≤
@@ -1723,7 +1900,9 @@ theorem abs_cotlarSharp_sub_conjugatePoisson_le {r t : ℝ}
   nlinarith [abs_nonneg t, sq_nonneg r, sq_abs t]
 
 /-- On the deleted ball the conjugate Poisson kernel has the natural
-`1/r` size.-/
+`1/r` size.
+@isnad1 id=le.2h2v.s5.0904be3bb0b0 from=translated src=- shape=e509d7a1 vocab=954df20f
+-/
 theorem abs_cotlarConjugatePoissonKernel_le_inv {r t : ℝ}
     (hr : 0 < r) (ht : |t| ≤ r) :
     |cotlarConjugatePoissonKernel r t| ≤ 1 / r := by
@@ -1736,6 +1915,9 @@ theorem abs_cotlarConjugatePoissonKernel_le_inv {r t : ℝ}
 def cotlarPoissonErrorMajorant (r t : ℝ) : ℝ :=
   if |t| ≤ r then 1 / r else r ^ 2 / |t| ^ 3
 
+/--
+@isnad1 id=le.1h2v.s5.646084c5c24f from=translated src=- shape=d6106c8e vocab=aef698e0
+-/
 theorem abs_cotlarSharp_sub_conjugatePoisson_le_majorant {r t : ℝ}
     (hr : 0 < r) :
     |cotlarSharpHilbertKernel r t - cotlarConjugatePoissonKernel r t| ≤
@@ -1748,6 +1930,9 @@ theorem abs_cotlarSharp_sub_conjugatePoisson_le_majorant {r t : ℝ}
     simp only [cotlarPoissonErrorMajorant, ht, ↓reduceIte]
     exact abs_cotlarSharp_sub_conjugatePoisson_le hr.le htr
 
+/--
+@isnad1 id=le.1h2v.s4.a3403aca52c0 from=translated src=- shape=334a1355 vocab=b8ee2401
+-/
 theorem cotlarPoissonErrorMajorant_nonneg {r t : ℝ} (hr : 0 ≤ r) :
     0 ≤ cotlarPoissonErrorMajorant r t := by
   unfold cotlarPoissonErrorMajorant
@@ -1755,6 +1940,9 @@ theorem cotlarPoissonErrorMajorant_nonneg {r t : ℝ} (hr : 0 ≤ r) :
   · positivity
   · positivity
 
+/--
+@isnad1 id=measurab.0h1v.s3.d2d6f4521eab from=translated src=- shape=f736e2c1 vocab=2e35934d
+-/
 theorem measurable_cotlarPoissonErrorMajorant (r : ℝ) :
     Measurable (cotlarPoissonErrorMajorant r) := by
   unfold cotlarPoissonErrorMajorant
@@ -1763,6 +1951,9 @@ theorem measurable_cotlarPoissonErrorMajorant (r : ℝ) :
   · exact measurable_const
   · exact measurable_const.div (measurable_id.abs.pow_const 3)
 
+/--
+@isnad1 id=measurab.0h1v.s3.aa3b43148fa3 from=translated src=- shape=f736e2c1 vocab=2df79fdb
+-/
 theorem measurable_cotlarConjugatePoissonKernel (r : ℝ) :
     Measurable (cotlarConjugatePoissonKernel r) := by
   unfold cotlarConjugatePoissonKernel
@@ -1774,17 +1965,25 @@ this normalization makes the Fourier multiplier comparison with
 def cotlarPoissonKernel (r t : ℝ) : ℝ :=
   r / (t ^ 2 + r ^ 2)
 
+/--
+@isnad1 id=le.1h2v.s4.8a55c8a32216 from=translated src=- shape=334a1355 vocab=85865b14
+-/
 theorem cotlarPoissonKernel_nonneg {r t : ℝ} (hr : 0 ≤ r) :
     0 ≤ cotlarPoissonKernel r t := by
   unfold cotlarPoissonKernel
   positivity
 
+/--
+@isnad1 id=measurab.0h1v.s3.a3f04a1aa5e2 from=translated src=- shape=f736e2c1 vocab=743413ef
+-/
 theorem measurable_cotlarPoissonKernel (r : ℝ) :
     Measurable (cotlarPoissonKernel r) := by
   unfold cotlarPoissonKernel
   exact measurable_const.div (measurable_id.pow_const 2 |>.add measurable_const)
 
-/-- Every point outside the ball of radius `r` lies in a dyadic shell.-/
+/-- Every point outside the ball of radius `r` lies in a dyadic shell.
+@isnad1 id=ex.2h2v.s6.2161997dbf7c from=translated src=- shape=fb65452d vocab=f6d757c5
+-/
 theorem exists_nat_dyadic_shell {r t : ℝ} (hr : 0 < r) (ht : r < |t|) :
     ∃ n : ℕ, (2 : ℝ) ^ n * r ≤ |t| ∧ |t| < (2 : ℝ) ^ (n + 1) * r := by
   have hratio : 1 ≤ |t| / r := by
@@ -1795,7 +1994,9 @@ theorem exists_nat_dyadic_shell {r t : ℝ} (hr : 0 < r) (ht : r < |t|) :
   · exact (le_div_iff₀ hr).1 hn
   · exact (div_lt_iff₀ hr).1 hn'
 
-/-- On a dyadic shell the Poisson kernel has the expected quadratic decay.-/
+/-- On a dyadic shell the Poisson kernel has the expected quadratic decay.
+@isnad1 id=le.2h3v.s6.4105584f50fc from=translated src=- shape=58b0f8a8 vocab=1172541b
+-/
 theorem cotlarPoissonKernel_le_dyadic_shell {r t : ℝ} (hr : 0 < r)
     {n : ℕ} (hn : (2 : ℝ) ^ n * r ≤ |t|) :
     cotlarPoissonKernel r t ≤ (1 / 4 : ℝ) ^ n / r := by
@@ -1820,7 +2021,9 @@ theorem cotlarPoissonKernel_le_dyadic_shell {r t : ℝ} (hr : 0 < r)
     _ = (1 / 4 : ℝ) ^ n / r := by
       simp [div_eq_mul_inv, mul_inv_rev, mul_comm]
 
-/-- On the same shell the sharp-to-conjugate-Poisson error has cubic decay.-/
+/-- On the same shell the sharp-to-conjugate-Poisson error has cubic decay.
+@isnad1 id=le.3h3v.s6.54fe226b3ec4 from=translated src=- shape=d3905e86 vocab=4be4b156
+-/
 theorem cotlarPoissonErrorMajorant_le_dyadic_shell {r t : ℝ} (hr : 0 < r)
     (ht : r < |t|) {n : ℕ} (hn : (2 : ℝ) ^ n * r ≤ |t|) :
     cotlarPoissonErrorMajorant r t ≤ (1 / 8 : ℝ) ^ n / r := by
@@ -1849,6 +2052,9 @@ noncomputable def cotlarDyadicBallSeries (q : ℝ) (r t : ℝ) : ℝ≥0∞ :=
   ∑' n : ℕ, if |t| ≤ (2 : ℝ) ^ (n + 1) * r
     then ENNReal.ofReal (q ^ n / r) else 0
 
+/--
+@isnad1 id=measurab.0h2v.s3.13c67d8e8a64 from=translated src=- shape=30e1f344 vocab=deb094a4
+-/
 theorem measurable_cotlarDyadicBallSeries (q r : ℝ) :
     Measurable (cotlarDyadicBallSeries q r) := by
   unfold cotlarDyadicBallSeries
@@ -1860,7 +2066,9 @@ theorem measurable_cotlarDyadicBallSeries (q r : ℝ) :
   · exact measurable_const
 
 /-- Outside its central ball, the Poisson kernel is bounded by the dyadic
-ball series with ratio `1/4`.-/
+ball series with ratio `1/4`.
+@isnad1 id=le.2h2v.s5.b618554e99cf from=translated src=- shape=7448086d vocab=56a06861
+-/
 theorem ofReal_cotlarPoissonKernel_le_dyadicBallSeries {r t : ℝ}
     (hr : 0 < r) (ht : r < |t|) :
     ENNReal.ofReal (cotlarPoissonKernel r t) ≤
@@ -1879,7 +2087,9 @@ theorem ofReal_cotlarPoissonKernel_le_dyadicBallSeries {r t : ℝ}
     exact ENNReal.summable.le_tsum' n)
 
 /-- Outside its central ball, the sharp-to-Poisson error is bounded by the
-faster dyadic ball series with ratio `1/8`.-/
+faster dyadic ball series with ratio `1/8`.
+@isnad1 id=le.2h2v.s5.43a3d4c9a23d from=translated src=- shape=7448086d vocab=2edcb9fa
+-/
 theorem ofReal_cotlarPoissonErrorMajorant_le_dyadicBallSeries {r t : ℝ}
     (hr : 0 < r) (ht : r < |t|) :
     ENNReal.ofReal (cotlarPoissonErrorMajorant r t) ≤
@@ -1899,7 +2109,9 @@ theorem ofReal_cotlarPoissonErrorMajorant_le_dyadicBallSeries {r t : ℝ}
     exact ENNReal.summable.le_tsum' n)
 
 /-- A constant multiple of the mass of a centered ball is controlled by the
-centered Hardy--Littlewood maximal function, uniformly in its real radius.-/
+centered Hardy--Littlewood maximal function, uniformly in its real radius.
+@isnad1 id=le.2h4v.s6.0c0ffb4d5555 from=translated src=- shape=946f2db1 vocab=a040be6a
+-/
 theorem ofReal_div_mul_lintegral_closedBall_le_maximal
     {C ρ : ℝ} (hC : 0 ≤ C) (hρ : 0 < ρ) (G : ℝ → ℝ≥0∞) (x : ℝ) :
     ENNReal.ofReal (C / ρ) * (∫⁻ y in Metric.closedBall x ρ, G y) ≤
@@ -1930,7 +2142,9 @@ theorem ofReal_div_mul_lintegral_closedBall_le_maximal
 /-- Integrating the dyadic ball series against a measurable nonnegative
 function is controlled by the centered maximal operator.  The coefficient
 series is displayed explicitly so that the two geometric ratios needed for
-Cotlar can be evaluated separately.-/
+Cotlar can be evaluated separately.
+@isnad1 id=le.3h4v.s7.0dfb03d0beb9 from=translated src=- shape=106dcf48 vocab=c299475b
+-/
 theorem lintegral_cotlarDyadicBallSeries_mul_le_maximal
     {q r : ℝ} (hq : 0 ≤ q) (hr : 0 < r) {G : ℝ → ℝ≥0∞}
     (hG : Measurable G) (x : ℝ) :
@@ -2000,6 +2214,9 @@ theorem lintegral_cotlarDyadicBallSeries_mul_le_maximal
         measurable_const measurable_const).aemeasurable
     · exact hG.aemeasurable
 
+/--
+@isnad1 id=le.2h3v.s6.37c98b188c95 from=translated src=- shape=21e7e3d6 vocab=c523c73f
+-/
 theorem lintegral_cotlarDyadicBallSeries_quarter_le_maximal
     {r : ℝ} (hr : 0 < r) {G : ℝ → ℝ≥0∞} (hG : Measurable G) (x : ℝ) :
     (∫⁻ y, cotlarDyadicBallSeries (1 / 4) r (x - y) * G y) ≤
@@ -2027,6 +2244,9 @@ theorem lintegral_cotlarDyadicBallSeries_quarter_le_maximal
     norm_num
   simpa only [hsum] using h
 
+/--
+@isnad1 id=le.2h3v.s7.496dd439f5ed from=translated src=- shape=7ff1f8f4 vocab=fe048fb9
+-/
 theorem lintegral_cotlarDyadicBallSeries_eighth_le_maximal
     {r : ℝ} (hr : 0 < r) {G : ℝ → ℝ≥0∞} (hG : Measurable G) (x : ℝ) :
     (∫⁻ y, cotlarDyadicBallSeries (1 / 8) r (x - y) * G y) ≤
@@ -2059,12 +2279,18 @@ theorem lintegral_cotlarDyadicBallSeries_eighth_le_maximal
 def cotlarCentralBallMajorant (r t : ℝ) : ℝ≥0∞ :=
   if |t| ≤ r then ENNReal.ofReal (1 / r) else 0
 
+/--
+@isnad1 id=measurab.0h1v.s3.09e8da939cfc from=translated src=- shape=9bb0b988 vocab=357510fd
+-/
 theorem measurable_cotlarCentralBallMajorant (r : ℝ) :
     Measurable (cotlarCentralBallMajorant r) := by
   unfold cotlarCentralBallMajorant
   exact Measurable.ite (measurableSet_le measurable_id.abs measurable_const)
     measurable_const measurable_const
 
+/--
+@isnad1 id=le.2h3v.s6.ec114f70f1d7 from=translated src=- shape=05eef7a7 vocab=33026943
+-/
 theorem lintegral_cotlarCentralBallMajorant_mul_le_maximal
     {r : ℝ} (hr : 0 < r) {G : ℝ → ℝ≥0∞} (_hG : Measurable G) (x : ℝ) :
     (∫⁻ y, cotlarCentralBallMajorant r (x - y) * G y) ≤
@@ -2088,6 +2314,9 @@ theorem lintegral_cotlarCentralBallMajorant_mul_le_maximal
   convert ofReal_div_mul_lintegral_closedBall_le_maximal
       (C := (1 : ℝ)) (ρ := r) (by norm_num) hr G x using 1 <;> norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.b11b1b3d97b7 from=translated src=- shape=fbeb01d5 vocab=ebed8608
+-/
 theorem ofReal_cotlarPoissonKernel_le_radialMajorant {r t : ℝ} (hr : 0 < r) :
     ENNReal.ofReal (cotlarPoissonKernel r t) ≤
       cotlarCentralBallMajorant r t + cotlarDyadicBallSeries (1 / 4) r t := by
@@ -2104,6 +2333,9 @@ theorem ofReal_cotlarPoissonKernel_le_radialMajorant {r t : ℝ} (hr : 0 < r) :
     exact (ofReal_cotlarPoissonKernel_le_dyadicBallSeries hr htr).trans (by
       simp [cotlarCentralBallMajorant, ht])
 
+/--
+@isnad1 id=le.1h2v.s5.480591224440 from=translated src=- shape=fbeb01d5 vocab=03ce660a
+-/
 theorem ofReal_cotlarPoissonErrorMajorant_le_radialMajorant
     {r t : ℝ} (hr : 0 < r) :
     ENNReal.ofReal (cotlarPoissonErrorMajorant r t) ≤
@@ -2116,7 +2348,9 @@ theorem ofReal_cotlarPoissonErrorMajorant_le_radialMajorant
 
 /-- Radial Poisson kernels are dominated, after convolution, by the centered
 Hardy--Littlewood maximal operator.  The harmless constant `20` comes from a
-central ball and the dyadic quadratic tail.-/
+central ball and the dyadic quadratic tail.
+@isnad1 id=le.2h3v.s6.6d56cec53092 from=translated src=- shape=eec803b5 vocab=f94a1e69
+-/
 theorem lintegral_ofReal_cotlarPoissonKernel_mul_le_maximal
     {r : ℝ} (hr : 0 < r) {G : ℝ → ℝ≥0∞} (hG : Measurable G) (x : ℝ) :
     (∫⁻ y, ENNReal.ofReal (cotlarPoissonKernel r (x - y)) * G y) ≤
@@ -2141,7 +2375,9 @@ theorem lintegral_ofReal_cotlarPoissonKernel_mul_le_maximal
     _ = 20 * centeredHardyLittlewoodMaximal G x := by ring
 
 /-- The complete sharp-to-conjugate-Poisson comparison error has the same
-radial maximal domination, with the faster cubic-tail constant `44/3`.-/
+radial maximal domination, with the faster cubic-tail constant `44/3`.
+@isnad1 id=le.2h3v.s6.d2e6ac74c791 from=translated src=- shape=7d68f682 vocab=d4e53d74
+-/
 theorem lintegral_ofReal_cotlarPoissonErrorMajorant_mul_le_maximal
     {r : ℝ} (hr : 0 < r) {G : ℝ → ℝ≥0∞} (hG : Measurable G) (x : ℝ) :
     (∫⁻ y, ENNReal.ofReal (cotlarPoissonErrorMajorant r (x - y)) * G y) ≤
@@ -2183,7 +2419,9 @@ noncomputable def cotlarSharpPoissonErrorAction
     cotlarConjugatePoissonKernel r (x - y) : ℝ) : ℂ) * g y
 
 /-- The sharp-to-Poisson convolution error is pointwise controlled by the
-Hardy--Littlewood maximal function of `‖g‖`.-/
+Hardy--Littlewood maximal function of `‖g‖`.
+@isnad1 id=le.2h3v.s7.f57303f5c745 from=translated src=- shape=db67e20b vocab=e1899f63
+-/
 theorem enorm_cotlarSharpPoissonErrorAction_le_maximal
     {r : ℝ} (hr : 0 < r) {g : ℝ → ℂ} (hg : Measurable g) (x : ℝ) :
     ‖cotlarSharpPoissonErrorAction r g x‖ₑ ≤
@@ -2216,6 +2454,9 @@ total mass is `π`.-/
 noncomputable def cotlarPoissonAction (r : ℝ) (g : ℝ → ℂ) (x : ℝ) : ℂ :=
   ∫ y, (cotlarPoissonKernel r (x - y) : ℂ) * g y
 
+/--
+@isnad1 id=le.2h3v.s7.4957bb5236bf from=translated src=- shape=d8c081d3 vocab=7cb38b3f
+-/
 theorem enorm_cotlarPoissonAction_le_maximal
     {r : ℝ} (hr : 0 < r) {g : ℝ → ℂ} (hg : Measurable g) (x : ℝ) :
     ‖cotlarPoissonAction r g x‖ₑ ≤
@@ -2232,7 +2473,9 @@ theorem enorm_cotlarPoissonAction_le_maximal
     _ ≤ _ := lintegral_ofReal_cotlarPoissonKernel_mul_le_maximal hr hg.enorm x
 
 /-- The conjugate Poisson kernel is uniformly bounded at fixed positive
-radius.-/
+radius.
+@isnad1 id=le.1h2v.s5.184c15be230c from=translated src=- shape=f0e451de vocab=3098c9ec
+-/
 theorem abs_cotlarConjugatePoissonKernel_le_half_inv {r t : ℝ} (hr : 0 < r) :
     |cotlarConjugatePoissonKernel r t| ≤ 1 / (2 * r) := by
   have hden : 0 < t ^ 2 + r ^ 2 := by positivity
@@ -2241,6 +2484,9 @@ theorem abs_cotlarConjugatePoissonKernel_le_half_inv {r t : ℝ} (hr : 0 < r) :
     div_le_div_iff₀ hden h2r]
   nlinarith [sq_nonneg (|t| - r), sq_abs t]
 
+/--
+@isnad1 id=eq.1h2v.s4.d1c4d514b6ae from=translated src=- shape=5d5d48bb vocab=9f1691b6
+-/
 theorem sharpQuadraticTailKernel_zero_eq_cotlarSharp
     {r t : ℝ} (hr : 0 < r) :
     sharpQuadraticTailKernel 0 r t = (cotlarSharpHilbertKernel r t : ℂ) := by
@@ -2254,7 +2500,9 @@ noncomputable def cotlarConjugatePoissonAction
   ∫ y, (cotlarConjugatePoissonKernel r (x - y) : ℂ) * g y
 
 /-- Exact sharp-kernel decomposition into the conjugate Poisson action and
-the controlled radial error.-/
+the controlled radial error.
+@isnad1 id=eq.3h3v.s6.0331d49f5eb3 from=translated src=- shape=d761555f vocab=71505404
+-/
 theorem quadraticHilbertTrunc_zero_eq_conjugatePoisson_add_error
     {r : ℝ} (hr : 0 < r) {g : ℝ → ℂ} (hg : Measurable g)
     (hgi : Integrable g) (x : ℝ) :
@@ -2310,6 +2558,9 @@ theorem quadraticHilbertTrunc_zero_eq_conjugatePoisson_add_error
 
 /-! ## Linear recombination needed after the Cotlar estimate -/
 
+/--
+@isnad1 id=eq.3h4v.s7.ba6578692e6f from=translated src=- shape=04e0de87 vocab=c264b96f
+-/
 theorem zeroHilbertTruncation_add {f g : ℝ → ℂ}
     (hf : Integrable f) (hg : Integrable g) {ε : ℝ} (hε : 0 < ε) (x : ℝ) :
     quadraticHilbertTrunc 0 ε (f + g) x =
@@ -2325,7 +2576,9 @@ theorem zeroHilbertTruncation_add {f g : ℝ → ℂ}
   ring
 
 /-- Sublinearity of the genuine supremum over all positive sharp truncation
-radii.-/
+radii.
+@isnad1 id=le.2h3v.s7.a664ec3582c9 from=translated src=- shape=eedda9a6 vocab=4a64922c
+-/
 theorem quadraticHilbertMaximalTruncation_zero_add_le
     {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     quadraticHilbertMaximalTruncation 0 (f + g) x ≤
@@ -2342,6 +2595,9 @@ theorem quadraticHilbertMaximalTruncation_zero_add_le
     (le_iSup (fun r : {r : ℝ // 0 < r} ↦
       ‖quadraticHilbertTrunc 0 r g x‖ₑ) ε)
 
+/--
+@isnad1 id=eq.0h4v.s5.79a65b7ca671 from=translated src=- shape=15710fd7 vocab=aed5be41
+-/
 theorem zeroHilbertTruncation_const_mul (c : ℂ) (f : ℝ → ℂ)
     (ε x : ℝ) :
     quadraticHilbertTrunc 0 ε (fun y ↦ c * f y) x =
@@ -2353,7 +2609,9 @@ theorem zeroHilbertTruncation_const_mul (c : ℂ) (f : ℝ → ℂ)
   simp only [zero_mul, phase_zero, mul_one]
   ring
 
-/-- Exact homogeneity of the genuine zero-modulation maximal truncation.-/
+/-- Exact homogeneity of the genuine zero-modulation maximal truncation.
+@isnad1 id=eq.0h3v.s6.bb16e0cc45ab from=translated src=- shape=2d0d96ff vocab=ac72c4ff
+-/
 theorem quadraticHilbertMaximalTruncation_zero_const_mul
     (c : ℂ) (f : ℝ → ℂ) (x : ℝ) :
     quadraticHilbertMaximalTruncation 0 (fun y ↦ c * f y) x =
@@ -2362,6 +2620,9 @@ theorem quadraticHilbertMaximalTruncation_zero_const_mul
   simp_rw [zeroHilbertTruncation_const_mul, enorm_mul]
   rw [ENNReal.mul_iSup]
 
+/--
+@isnad1 id=integrab.2h1v.s6.07da638c73c5 from=translated src=- shape=842c6eaf vocab=fb78ba29
+-/
 theorem integrable_stoppingBadDifference {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) :
     Integrable (fun x ↦ f x - stoppingGoodPart f x) := by
@@ -2369,6 +2630,9 @@ theorem integrable_stoppingBadDifference {f : ℝ → ℂ}
   filter_upwards with x
   exact (tsum_stoppingHilbertBadAtom_eq_sub_stoppingGoodPart f x)
 
+/--
+@isnad1 id=integrab.2h1v.s6.39e55791b520 from=translated src=- shape=3ee3b192 vocab=9d6bc711
+-/
 theorem integrable_stoppingGoodPart_for_hilbert {f : ℝ → ℂ}
     (hf : Measurable f) (hfi : Integrable f) : Integrable (stoppingGoodPart f) := by
   have hb := integrable_stoppingBadDifference hf hfi
@@ -2378,6 +2642,9 @@ theorem integrable_stoppingGoodPart_for_hilbert {f : ℝ → ℂ}
   simp only [Pi.sub_apply]
   ring
 
+/--
+@isnad1 id=measurab.1h1v.s4.783c718f42b8 from=translated src=- shape=95abb765 vocab=dbe06a59
+-/
 theorem measurable_stoppingGoodPart_of_measurable {f : ℝ → ℂ}
     (hf : Measurable f) : Measurable (stoppingGoodPart f) := by
   let _ := Encodable.ofCountable (stoppingCell f)
@@ -2396,17 +2663,26 @@ noncomputable def measurableStoppingGoodHilbertRepresentative
   (aestronglyMeasurable_stoppingGoodHilbertL2Representative hf).aemeasurable.mk
     (stoppingGoodHilbertL2Representative f hf)
 
+/--
+@isnad1 id=measurab.1h1v.s5.1676a2851d58 from=translated src=- shape=2ebb2b42 vocab=d4add567
+-/
 theorem measurable_measurableStoppingGoodHilbertRepresentative
     {f : ℝ → ℂ} (hf : Integrable f) :
     Measurable (measurableStoppingGoodHilbertRepresentative f hf) :=
   (aestronglyMeasurable_stoppingGoodHilbertL2Representative hf).aemeasurable.measurable_mk
 
+/--
+@isnad1 id=eventual.1h1v.s6.0e06e6a301f9 from=translated src=- shape=0585491c vocab=78ce2c40
+-/
 theorem ae_eq_measurableStoppingGoodHilbertRepresentative
     {f : ℝ → ℂ} (hf : Integrable f) :
     stoppingGoodHilbertL2Representative f hf =ᵐ[volume]
       measurableStoppingGoodHilbertRepresentative f hf :=
   (aestronglyMeasurable_stoppingGoodHilbertL2Representative hf).aemeasurable.ae_eq_mk
 
+/--
+@isnad1 id=le.2h3v.s7.eeb3c6517845 from=translated src=- shape=9fa2445f vocab=b24d9d35
+-/
 theorem enorm_cotlarPoissonAction_stoppingGoodHilbert_le_maximal
     {f : ℝ → ℂ} (hf : Integrable f) {r : ℝ} (hr : 0 < r) (x : ℝ) :
     ‖cotlarPoissonAction r
@@ -2418,7 +2694,9 @@ theorem enorm_cotlarPoissonAction_stoppingGoodHilbert_le_maximal
 
 /-- Cotlar reduction for the actual stopping good part: only the conjugate
 Poisson action remains, while the sharp-kernel error is already controlled
-by the centered maximal function.-/
+by the centered maximal function.
+@isnad1 id=le.3h3v.s7.c7ecaff3cdf2 from=translated src=- shape=511a61bf vocab=8c3a1dee
+-/
 theorem enorm_quadraticHilbertTrunc_stoppingGoodPart_le_conjugatePoisson
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {r : ℝ} (hr : 0 < r) (x : ℝ) :
@@ -2434,7 +2712,9 @@ theorem enorm_quadraticHilbertTrunc_stoppingGoodPart_le_conjugatePoisson
       (measurable_stoppingGoodPart_of_measurable hf) x) _)
 
 /-- Exact good/bad maximal recombination for the canonical stopping
-decomposition.-/
+decomposition.
+@isnad1 id=le.2h2v.s6.ceb17ba43a3e from=translated src=- shape=67608a1f vocab=a0a87c59
+-/
 theorem quadraticHilbertMaximalTruncation_zero_le_good_add_bad
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) (x : ℝ) :
     quadraticHilbertMaximalTruncation 0 f x ≤
@@ -2456,7 +2736,9 @@ theorem quadraticHilbertMaximalTruncation_zero_le_good_add_bad
       (integrable_stoppingBadDifference hf hfi) x
 
 /-- The small-radius portion of a stopping atom's maximal truncation obeys
-the same integrated off-triple cancellation bound.-/
+the same integrated off-triple cancellation bound.
+@isnad1 id=le.1h2v.s7.d421017b94af from=translated src=- shape=d164fbd3 vocab=5b8868c2
+-/
 theorem integral_toReal_stoppingAtomSmallRadiusMaximal_le
     {f : ℝ → ℂ} (hf : Integrable f) (c : stoppingCell f) :
     ∫ x in (tripleCenteredInterval (stoppingCellCenter f c)
@@ -2476,7 +2758,9 @@ theorem integral_toReal_stoppingAtomSmallRadiusMaximal_le
 
 /-- The local `L¹` masses on all canonical stopping cells form a summable
 family.  Their sum is at most the global `L¹` mass because the stopping
-cells are pairwise disjoint.-/
+cells are pairwise disjoint.
+@isnad1 id=summable.1h1v.s6.afbffb4b3a41 from=translated src=- shape=a419255a vocab=1f1ff53b
+-/
 theorem summable_stoppingCell_normMass {f : ℝ → ℂ} (hf : Integrable f) :
     Summable (fun c : stoppingCell f ↦
       ∫ x in c.1.interval (rootLength f), ‖f x‖) := by
@@ -2486,7 +2770,9 @@ theorem summable_stoppingCell_normMass {f : ℝ → ℂ} (hf : Integrable f) :
 
 /-- Summing the ordinary-kernel cancellation estimate over the complete
 canonical stopping family costs only the global `L¹` mass.  This is the
-global bad-part estimate away from the triple of each atom's own cell.-/
+global bad-part estimate away from the triple of each atom's own cell.
+@isnad1 id=le.1h1v.s7.1f7b57ef8650 from=translated src=- shape=387ae18f vocab=5ef8e6cc
+-/
 theorem tsum_integral_norm_ordinaryHilbertKernel_stoppingAtom_le
     {f : ℝ → ℂ} (hf : Integrable f) :
     (∑' c : stoppingCell f,
@@ -2537,7 +2823,9 @@ theorem tsum_integral_norm_ordinaryHilbertKernel_stoppingAtom_le
       exact mul_le_mul_of_nonneg_left hbad_le (by norm_num)
 
 /-- Globally over all stopping cells, the small-radius maximal pieces retain
-the uniform cancellation bound.-/
+the uniform cancellation bound.
+@isnad1 id=le.1h1v.s7.772ca3d9c7c9 from=translated src=- shape=5d23fbd7 vocab=106cd6ff
+-/
 theorem tsum_integral_toReal_stoppingAtomSmallRadiusMaximal_le
     {f : ℝ → ℂ} (hf : Integrable f) :
     (∑' c : stoppingCell f,

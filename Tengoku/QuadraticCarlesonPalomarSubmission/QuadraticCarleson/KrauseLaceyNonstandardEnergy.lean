@@ -51,12 +51,18 @@ noncomputable def nonstandardIntervals
     I.length = (2 : ℝ) ^ (scale I + 2) ∧ k₀ ≤ scale I + 2 - s ∧
       IsNonstandard (scale I) I (badScaleInput S f I₀ k₀ (scale I + 2 - s))
 
+/--
+@isnad1 id=le.0h6v.s5.4da30baa4b34 from=translated src=- shape=a41cfead vocab=5c87f5e7
+-/
 theorem nonstandardIntervals_subset (S : Finset RealInterval) (f : ℝ → ℂ)
     (I₀ : RealInterval) (k₀ s : ℤ) (scale : RealInterval → ℤ) :
     nonstandardIntervals S f I₀ k₀ s scale ⊆ S := by
   intro I hI
   exact (Finset.mem_filter.mp (Finset.mem_filter.mp hI).1).1
 
+/--
+@isnad1 id=le.1h3v.s7.a5fae3f37434 from=translated src=- shape=619a1693 vocab=2965ae81
+-/
 theorem localUnitMass_le (I : RealInterval) {b : ℝ → ℂ} (hb : Integrable b) (x : ℝ) :
     localUnitMass I b x ≤ ∫ t in Icc (x - 1 / 2) (x + 1 / 2), ‖b t‖ := by
   apply integral_mono (hb.indicator I.measurableSet_centralThird).norm.integrableOn
@@ -64,6 +70,9 @@ theorem localUnitMass_le (I : RealInterval) {b : ℝ → ℂ} (hb : Integrable b
   intro t
   exact norm_indicator_le_norm_self _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.f72c103f2235 from=translated src=- shape=cbba8c43 vocab=d308908c
+-/
 theorem integral_sq_localizedPiece_eq_norm_pairing
     (k : ℤ) (I : RealInterval) (b : ℝ → ℂ) :
     (∫ x, ‖krauseLaceyLocalizedPiece 1 k I b x‖ ^ 2) =
@@ -75,7 +84,9 @@ theorem integral_sq_localizedPiece_eq_norm_pairing
 
 /-- A bound on the actual adjoint action controls the energy of the
 localized piece. The integral identity, integrability, and null-set handling
-are all proved here.-/
+are all proved here.
+@isnad1 id=le.3h4v.s7.79739166c485 from=translated src=- shape=4bd37195 vocab=8704a72a
+-/
 theorem integral_sq_localizedPiece_le_of_adjoint_bound
     (k : ℤ) (I : RealInterval) {b : ℝ → ℂ} (hb : Integrable b)
     {H : ℝ} (hH : 0 ≤ H)
@@ -117,7 +128,9 @@ theorem integral_sq_localizedPiece_le_of_adjoint_bound
       simp only [c, norm_indicator_eq_indicator_norm, integral_indicator I.measurableSet_centralThird]
 
 /-- The diagonal estimate for an actual nonstandard bad piece. The
-`2^(-s)` gain is derived from its literal bad-scale index.-/
+`2^(-s)` gain is derived from its literal bad-scale index.
+@isnad1 id=le.7h7v.s8.e7922792f609 from=translated src=- shape=a6af9cc3 vocab=88feecd4
+-/
 theorem nonstandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ k s : ℤ)
@@ -156,7 +169,9 @@ theorem nonstandard_badPiece_diagonalEnergy_le
       field_simp <;> ring
 
 /-- The full diagonal energy has no dependence on the number of intervals
-or physical scales. The actual restricted-input mass packing supplies it.-/
+or physical scales. The actual restricted-input mass packing supplies it.
+@isnad1 id=le.6h7v.s8.ac69ec3973ae from=translated src=- shape=0540a4f3 vocab=fb90484a
+-/
 theorem sum_nonstandard_badPiece_diagonalEnergy_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s : ℤ) (hk₀ : 0 ≤ k₀) (scale : RealInterval → ℤ)

@@ -9,7 +9,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- Expose the three sparse witnesses arising from three operator bounds.
-No union of the three families is asserted here.-/
+No union of the three families is asserted here.
+@isnad1 id=ex.4h10v.s8.3d05ab481ea5 from=translated src=- shape=16c21f77 vocab=ba36ddfe
+-/
 theorem exists_three_sparseBounds_of_pairing_le_three
     {C₁ C₂ C₃ p : ℝ} {T T₁ T₂ T₃ : TestOperator}
     (hdom : ∀ f g : L0Infinity,
@@ -39,7 +41,9 @@ For the given test functions, choose whichever of the three sparse forms is
 largest.  Its family remains `1 / 4`-sparse, and the sum of the three
 coefficients absorbs the other two forms.  Thus no geometric union, and in
 particular no false disjointness assertion about the three shifted grids, is
-needed.-/
+needed.
+@isnad1 id=hasspars.7h8v.s7.41508bdee622 from=translated src=- shape=42b3c3c8 vocab=f4126eb6
+-/
 theorem hasSparseOnePBound_of_pairing_le_three
     {C₁ C₂ C₃ p : ℝ} {T T₁ T₂ T₃ : TestOperator}
     (hC₁ : 0 ≤ C₁) (hC₂ : 0 ≤ C₂) (hC₃ : 0 ≤ C₃)

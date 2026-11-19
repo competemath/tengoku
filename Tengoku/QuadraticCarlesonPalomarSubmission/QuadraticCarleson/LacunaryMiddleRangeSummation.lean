@@ -44,7 +44,9 @@ set_option autoImplicit false
 noncomputable section
 
 /-- A uniformly bounded nonnegative coefficient sums over one modulation
-block with the exact factor `B`.-/
+block with the exact factor `B`.
+@isnad1 id=le.1h4v.s6.667287f42447 from=translated src=- shape=ecd5bcdc vocab=0f62cfe5
+-/
 theorem sum_Q_le (B : ℕ) (τ : ℤ) (a : ℤ → ENNReal) (M : ENNReal)
     (ha : ∀ m ∈ Q B τ, a m ≤ M) :
     ∑ m ∈ Q B τ, a m ≤ (B : ENNReal) * M := by
@@ -53,7 +55,9 @@ theorem sum_Q_le (B : ℕ) (τ : ℤ) (a : ℤ → ENNReal) (M : ENNReal)
       exact Finset.sum_le_sum fun m hm ↦ ha m hm
     _ = (B : ENNReal) * M := by simp [card_Q]
 
-/-- The analogous finite-sum consequence of the paper's `#R ≤ 5B` bound.-/
+/-- The analogous finite-sum consequence of the paper's `#R ≤ 5B` bound.
+@isnad1 id=le.3h5v.s7.235b21169761 from=translated src=- shape=afb44bfa vocab=708fac72
+-/
 theorem sum_R_le_five_mul
     (B c : ℕ) (τ : ℤ) (hB : 0 < B) (hc : 2 * c ≤ 5 * B)
     (a : ℤ → ENNReal) (M : ENNReal)
@@ -89,7 +93,9 @@ theorem eq_of_mem_R_of_same_sparse_residue
   exact hdis hj hj'
 
 /-- Fixed-scale form of sparse disjointness, expressed as an unconditional
-countable sum.-/
+countable sum.
+@isnad1 id=le.2h5v.s6.a69246bdb368 from=translated src=- shape=36e743c7 vocab=933f1c70
+-/
 theorem tsum_sparse_membership_le
     (B c : ℕ) (hB : 0 < B) (hc : 2 * c ≤ 5 * B)
     (ρ j : ℤ) (A : ENNReal) :
@@ -111,7 +117,9 @@ theorem tsum_sparse_membership_le
     simp [hnot]
 
 /-- Countable sparse packing: the frozen block masses in one residue class
-are bounded by the total atom-scale mass.-/
+are bounded by the total atom-scale mass.
+@isnad1 id=le.2h4v.s6.b61c0425fcae from=translated src=- shape=5e881940 vocab=fb843593
+-/
 theorem tsum_sparseBlockMass_le
     (B c : ℕ) (hB : 0 < B) (hc : 2 * c ≤ 5 * B)
     (ρ : ℤ) (a : ℤ → ENNReal) :
@@ -143,7 +151,9 @@ def atomScaleMass {ι : Type*}
   ∑' I : ι, (QuadraticCarleson.dyadicAtomScaleClass length j).indicator w I
 
 /-- Tonelli plus uniqueness of the half-open dyadic scale gives an exact
-partition of arbitrary nonnegative atom mass.-/
+partition of arbitrary nonnegative atom mass.
+@isnad1 id=eq.1h3v.s5.f3b82c0caa97 from=translated src=- shape=f28d8872 vocab=9aeab8e8
+-/
 theorem tsum_atomScaleMass_eq
     {ι : Type*} [Countable ι]
     (length : ι → ℝ) (hlength : ∀ I, 0 < length I)
@@ -166,7 +176,9 @@ theorem tsum_atomScaleMass_eq
 
 /-- Sparse middle blocks pack directly into the total mass of an arbitrary
 countable atom family, with scales determined by the exact half-open
-convention.-/
+convention.
+@isnad1 id=le.3h6v.s6.8f96a15269f1 from=translated src=- shape=b1bd998c vocab=dc67e323
+-/
 theorem tsum_sparseBlock_atomScaleMass_le
     {ι : Type*} [Countable ι]
     (B c : ℕ) (hB : 0 < B) (hc : 2 * c ≤ 5 * B)

@@ -36,7 +36,9 @@ noncomputable section
 
 /-- The one-node good-part estimate implies sparse domination of the actual
 finite unit-phase positive dyadic suffix maximum.  The factor `3` is exactly
-the cost of the three shifted grids.-/
+the cost of the three shifted grids.
+@isnad1 id=hasspars.4h4v.s6.9ec0356e56a0 from=translated src=- shape=88c02251 vocab=9ae36253
+-/
 theorem hasSparseOnePBound_finitePositiveDyadicSuffixMaxOperator_of_oneNodeGoodPart
     {A p : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2) (j : ℤ) (hj : 1 ≤ j) (N : ℕ) :
@@ -134,7 +136,9 @@ theorem hasSparseOnePBound_finitePositiveDyadicSuffixMaxOperator_of_oneNodeGoodP
 
 /-- Genuine `p`-monitor version of the three-shift suffix closure.  The
 testing function remains `g`, but every recursive stopping family is selected
-using the local `p`-mass monitor.-/
+using the local `p`-mass monitor.
+@isnad1 id=hasspars.4h4v.s6.eabec68b0d42 from=translated src=- shape=88c02251 vocab=5bd399ea
+-/
 theorem hasSparseOnePBound_finitePositiveDyadicSuffixMaxOperator_of_oneNodePStoppingGoodPart
     {A p : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hp : 1 < p) (hp2 : p < 2) (j : ℤ) (hj : 1 ≤ j) (N : ℕ) :
@@ -239,7 +243,9 @@ def HasNativeUnitHighPositiveSuffixSparseBound (C : ℝ) : Prop :=
       (finitePositiveDyadicSuffixMaxOperator 1 j N)
 
 /-- The direct high-scale one-node estimate closes every finite high positive
-suffix, with the factor `3` from the shifted grids.-/
+suffix, with the factor `3` from the shifted grids.
+@isnad1 id=hasnativ.1h1v.s4.7448e8a01320 from=translated src=- shape=f450f117 vocab=f8e55ddf
+-/
 theorem hasNativeUnitHighPositiveSuffixSparseBound_of_oneNodeGoodPart
     {A : ℝ} (hlocal : HasOneNodeGoodPartPairingBound A) :
     HasNativeUnitHighPositiveSuffixSparseBound (3 * A) := by
@@ -251,7 +257,9 @@ theorem hasNativeUnitHighPositiveSuffixSparseBound_of_oneNodeGoodPart
   convert h using 1 <;> ring
 
 /-- The genuine `p`-monitor one-node estimate closes all high positive
-suffixes, with only the three-shift factor.-/
+suffixes, with only the three-shift factor.
+@isnad1 id=hasnativ.1h1v.s4.580e9017b09d from=translated src=- shape=f450f117 vocab=5a961078
+-/
 theorem hasNativeUnitHighPositiveSuffixSparseBound_of_oneNodePStoppingGoodPart
     {A : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A) :
     HasNativeUnitHighPositiveSuffixSparseBound (3 * A) := by
@@ -270,7 +278,9 @@ def HasNativeUnitLowPositiveSuffixSparseBound (C : ℝ) : Prop :=
       (finitePositiveDyadicSuffixMaxOperator 1 j N)
 
 /-- High- and low-starting suffix estimates combine into the existing
-all-integer native suffix interface without changing its statement.-/
+all-integer native suffix interface without changing its statement.
+@isnad1 id=hasnativ.2h2v.s4.33c73780269e from=translated src=- shape=264b6a55 vocab=7985933b
+-/
 theorem hasNativeUnitPositiveSuffixSparseBound_of_high_and_low
     {C D : ℝ} (hhigh : HasNativeUnitHighPositiveSuffixSparseBound C)
     (hlow : HasNativeUnitLowPositiveSuffixSparseBound D) :
@@ -285,7 +295,9 @@ theorem hasNativeUnitPositiveSuffixSparseBound_of_high_and_low
       (mul_le_mul_of_nonneg_right (le_add_of_nonneg_left hhigh.1) hp'.le)
 
 /-- Complete all-scale suffix adapter from the genuine p-stopping one-node
-estimate and the explicitly isolated low-starting suffix estimate.-/
+estimate and the explicitly isolated low-starting suffix estimate.
+@isnad1 id=hasnativ.2h2v.s5.742f9d3d8bfc from=translated src=- shape=a44a8bd6 vocab=edb149a6
+-/
 theorem hasNativeUnitPositiveSuffixSparseBound_of_oneNodePStoppingGoodPart_and_low
     {A D : ℝ} (hlocal : HasOneNodePStoppingGoodPartPairingBound A)
     (hlow : HasNativeUnitLowPositiveSuffixSparseBound D) :

@@ -42,15 +42,24 @@ interface.-/
 def directQuadraticOneNodeConstant : ℝ :=
   20 * directQuadraticNormalizedCoefficient.toReal
 
+/--
+@isnad1 id=ne.0h0v.s2.b894dd39555c from=translated src=- shape=f463f024 vocab=aad554f7
+-/
 theorem directQuadraticNormalizedCoefficient_ne_top :
     directQuadraticNormalizedCoefficient ≠ ∞ := by
   unfold directQuadraticNormalizedCoefficient directQuadraticTailEnergyConstant
   finiteness
 
+/--
+@isnad1 id=le.0h0v.s3.02e3a8b87112 from=translated src=- shape=ff3a10fc vocab=c84b75c3
+-/
 theorem directQuadraticOneNodeConstant_nonneg :
     0 ≤ directQuadraticOneNodeConstant := by
   exact mul_nonneg (by norm_num) ENNReal.toReal_nonneg
 
+/--
+@isnad1 id=eq.0h0v.s4.0385c5cf33d0 from=translated src=- shape=f36aa17a vocab=baf7e7dc
+-/
 theorem ofReal_directQuadraticOneNodeConstant :
     ENNReal.ofReal directQuadraticOneNodeConstant =
       20 * directQuadraticNormalizedCoefficient := by
@@ -60,7 +69,9 @@ theorem ofReal_directQuadraticOneNodeConstant :
   norm_num
 
 /-- Every integer-valued label on a finite collection has a natural strict
-upper bound.-/
+upper bound.
+@isnad1 id=ex.0h2v.s5.bbdaa5e5066a from=translated src=- shape=dcfa5852 vocab=f7940cdd
+-/
 theorem exists_nat_strictUpperBound_finset_int
     (S : Finset RealInterval) (scale : RealInterval → ℤ) :
     ∃ N : ℕ, ∀ I ∈ S, scale I < N := by
@@ -78,7 +89,9 @@ theorem exists_nat_strictUpperBound_finset_int
 
 /-- A localized quadratic piece depends only on the almost-everywhere class
 of its input.  Translation of the exceptional null set is justified by
-Lebesgue invariance.-/
+Lebesgue invariance.
+@isnad1 id=eq.1h5v.s5.535e7fcf3c52 from=translated src=- shape=9b3acfd1 vocab=689f1235
+-/
 theorem krauseLaceyLocalizedPiece_congr_ae
     {f g : ℝ → ℂ} (hfg : f =ᵐ[volume] g)
     (j : ℤ) (I : RealInterval) (x : ℝ) :
@@ -94,7 +107,9 @@ theorem krauseLaceyLocalizedPiece_congr_ae
   · simp only [Set.indicator_of_notMem hmem]
 
 /-- The localized maximal tail also depends only on the almost-everywhere
-class of its input.-/
+class of its input.
+@isnad1 id=eq.1h6v.s5.c5c2644f1a8c from=translated src=- shape=7524a778 vocab=57829d69
+-/
 theorem localizedTailMaximal_congr_ae
     {f g : ℝ → ℂ} (hfg : f =ᵐ[volume] g)
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
@@ -112,6 +127,9 @@ theorem localizedTailMaximal_congr_ae
     exact krauseLaceyLocalizedPiece_congr_ae hfg (scale I) I x
   · simp [hlen]
 
+/--
+@isnad1 id=eq.0h4v.s5.011deb60d9d3 from=translated src=- shape=1d095a05 vocab=599c6d7a
+-/
 theorem localizedTailMaximal_zero
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (x : ℝ) :
@@ -122,7 +140,9 @@ theorem localizedTailMaximal_zero
 
 /-- A zero positive local `L^p` average means that the function vanishes
 almost everywhere on that interval.  The conclusion is phrased using the
-root restriction needed by the direct quadratic estimate.-/
+root restriction needed by the direct quadratic estimate.
+@isnad1 id=eventual.2h3v.s6.63039e735385 from=translated src=- shape=c4a076fa vocab=3a872937
+-/
 theorem intervalRestrictionL0Infinity_ae_eq_zero_of_localAverage_eq_zero
     (g : L0Infinity) (I : RealInterval) {p : ℝ} (hp : 0 < p)
     (havg : localAverage p g I = 0) :
@@ -153,7 +173,9 @@ theorem intervalRestrictionL0Infinity_ae_eq_zero_of_localAverage_eq_zero
     I.measurableSet_carrier hgzero
 
 /-- If the root `L¹` average vanishes, every localized descendant tail is
-identically zero.-/
+identically zero.
+@isnad1 id=eq.2h6v.s6.38dd0b7cc829 from=translated src=- shape=d1d6a40b vocab=831596eb
+-/
 theorem localizedTailMaximal_eq_zero_of_rootAverage_eq_zero
     (ell₀ : ℤ) (scale : RealInterval → ℤ) (S : Finset RealInterval)
     (f : L0Infinity) (I : RealInterval)
@@ -174,7 +196,9 @@ theorem localizedTailMaximal_eq_zero_of_rootAverage_eq_zero
     _ = 0 := localizedTailMaximal_zero ell₀ scale S x
 
 /-- The checked direct quadratic estimate supplies the required one-node
-pairing whenever the two root averages are positive.-/
+pairing whenever the two root averages are positive.
+@isnad1 id=le.8h10v.s8.7752aa6acde8 from=translated src=- shape=1c23184b vocab=02f0ab37
+-/
 theorem pStopping_good_part_pairing_directQuadratic_of_pos_averages
     {p : ℝ} (hp : 1 < p) (hp2 : p ≤ 2)
     (ell₀ topScale : ℤ) (shift : Fin 3) (maxDepth : ℕ) (q₀ : ℤ)
@@ -377,7 +401,9 @@ theorem pStopping_good_part_pairing_directQuadratic_of_pos_averages
   ring
 
 /-- The direct quadratic argument supplies the complete one-node estimate,
-including the two normalization-degenerate zero-average cases.-/
+including the two normalization-degenerate zero-average cases.
+@isnad1 id=hasoneno.0h0v.s1.69fa0bc32e2f from=translated src=- shape=49959d42 vocab=de5c5a4f
+-/
 theorem hasOneNodePStoppingGoodPartPairingBound_directQuadratic :
     HasOneNodePStoppingGoodPartPairingBound
       directQuadraticOneNodeConstant := by

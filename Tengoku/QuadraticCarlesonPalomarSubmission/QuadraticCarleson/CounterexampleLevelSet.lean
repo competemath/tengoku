@@ -28,16 +28,24 @@ set_option autoImplicit false
 noncomputable def negativeEndpointDelta : ℝ :=
   1 / (30720 * ((2 : ℝ) ^ 100 + 1))
 
+/--
+@isnad1 id=lt.0h0v.s3.c772d9ac107f from=translated src=- shape=ff3a10fc vocab=39a67ba6
+-/
 theorem negativeEndpointDelta_pos : 0 < negativeEndpointDelta := by
   unfold negativeEndpointDelta
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s4.e22fc31b4e55 from=translated src=- shape=4106c742 vocab=5c09f93e
+-/
 theorem dyadicModulation_natCast (n : ℕ) :
     dyadicModulation (n : ℤ) = (2 : ℝ) ^ n := by
   simp [dyadicModulation]
 
 /-- A single dyadic fixed-modulation lower bound is inherited by the
-lacunary supremum.-/
+lacunary supremum.
+@isnad1 id=le.0h3v.s5.f001f13b63da from=translated src=- shape=f1d3d39f vocab=526218df
+-/
 theorem fixed_dyadic_le_lacunaryQuadraticCarlesonSchwartz
     (n : ℕ) (f : 𝓢(ℝ, ℂ)) (x : ℝ) :
     ENNReal.ofReal ‖quadraticHilbertSchwartz ((2 : ℝ) ^ n) f x‖ ≤
@@ -46,7 +54,9 @@ theorem fixed_dyadic_le_lacunaryQuadraticCarlesonSchwartz
   exact quadraticHilbertSchwartz_le_lacunaryQuadraticCarlesonSchwartz (n : ℤ) f x
 
 /-- Pointwise dyadic witnesses on the paper's set imply its inclusion in the
-actual lacunary level set.-/
+actual lacunary level set.
+@isnad1 id=le.1h3v.s6.58764598f54a from=translated src=- shape=55dec8f0 vocab=35b45607
+-/
 theorem paperTranslatedBohrSet_subset_lacunaryLevelSet_of_pointwise
     {N : ℕ} {L c : ℝ}
     (hpoint : ∀ x ∈ paperTranslatedBohrSet N L, ∃ n : ℕ,
@@ -63,7 +73,9 @@ theorem paperTranslatedBohrSet_subset_lacunaryLevelSet_of_pointwise
 
 /-- The full linear-in-`N` analytic level-set estimate follows from the
 pointwise packet estimate on `E_N`.  The coefficient is the same explicit
-positive constant already obtained from the Bohr second-moment argument.-/
+positive constant already obtained from the Bohr second-moment argument.
+@isnad1 id=le.3h3v.s7.f7c28f1e6703 from=translated src=- shape=1731bb65 vocab=4d39e72b
+-/
 theorem lacunary_counterexample_level_volume_ge_of_pointwise
     {N : ℕ} {L c : ℝ} (hN : 100 ≤ N)
     (hL : 2 ≤ 3 * (N : ℝ) ^ 2 / 5 + L)

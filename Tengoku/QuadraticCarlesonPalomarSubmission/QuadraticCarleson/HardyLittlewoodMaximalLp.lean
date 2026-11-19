@@ -22,6 +22,9 @@ namespace QuadraticCarleson
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h2v.s6.c693279f630b from=translated src=- shape=80c73bbe vocab=f0d19ab7
+-/
 theorem lintegral_rpow_Ioo_zero
     {p t : ℝ} (hp : 1 < p) (ht : 0 < t) :
     (∫⁻ a in Ioo (0 : ℝ) t, ENNReal.ofReal (a ^ (p - 2))) =
@@ -42,7 +45,9 @@ theorem lintegral_rpow_Ioo_zero
   ring
 
 /-- The inner scalar integral produced after exchanging the layer-cake
-integral with the spatial integral.-/
+integral with the spatial integral.
+@isnad1 id=eq.2h2v.s7.fb7d0531ce73 from=translated src=- shape=c7087ca0 vocab=e0ac05da
+-/
 theorem lintegral_rpow_half_level_indicator
     {p : ℝ} (hp : 1 < p) (v : ℝ≥0∞) (hv : v ≠ ∞) :
     (∫⁻ a in Ioi (0 : ℝ),
@@ -75,6 +80,9 @@ theorem lintegral_rpow_half_level_indicator
   rw [heq]
   exact lintegral_rpow_Ioo_zero hp (mul_pos (by norm_num) hvpos)
 
+/--
+@isnad1 id=eq.2h2v.s7.bb85e3c86b0a from=translated src=- shape=aa1018dd vocab=e0ac05da
+-/
 theorem lintegral_rpow_half_level_indicator_mul
     {p : ℝ} (hp : 1 < p) (v : ℝ≥0∞) (hv : v ≠ ∞) :
     (∫⁻ a in Ioi (0 : ℝ),
@@ -90,7 +98,9 @@ theorem lintegral_rpow_half_level_indicator_mul
   simp_rw [hid]
   rw [lintegral_mul_const' v _ hv, lintegral_rpow_half_level_indicator hp v hv]
 
-/-- Algebraic normalization of the scalar factor in the strong-type proof.-/
+/-- Algebraic normalization of the scalar factor in the strong-type proof.
+@isnad1 id=eq.2h2v.s7.519b3fa7a0b0 from=translated src=- shape=e821b728 vocab=e3483e3b
+-/
 theorem rpow_half_level_factor_mul
     {p : ℝ} (hp : 1 < p) (v : ℝ≥0∞) (hv : v ≠ ∞) :
     ENNReal.ofReal ((2 * v.toReal) ^ (p - 1) / (p - 1)) * v =
@@ -114,7 +124,9 @@ theorem rpow_half_level_factor_mul
 
 /-- Tonelli converts the localized high-value contribution into the exact
 `p`th moment. Pointwise finiteness is the only extra condition needed to use
-`toReal` in the scalar calculation.-/
+`toReal` in the scalar calculation.
+@isnad1 id=eq.3h2v.s7.e91522b63a5e from=translated src=- shape=370a09c9 vocab=8b9cad7d
+-/
 theorem lintegral_rpow_high_value_tails
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) (hfinite : ∀ y, f y ≠ ∞)
     {p : ℝ} (hp : 1 < p) :
@@ -172,13 +184,18 @@ theorem lintegral_rpow_high_value_tails
 noncomputable def centeredHardyLittlewoodRpowConstant (p : ℝ) : ℝ :=
   8 * p * ((2 : ℝ) ^ (p - 1) / (p - 1))
 
+/--
+@isnad1 id=lt.1h1v.s4.855941ae4791 from=translated src=- shape=35bd48ee vocab=fe4c68d8
+-/
 theorem centeredHardyLittlewoodRpowConstant_pos {p : ℝ} (hp : 1 < p) :
     0 < centeredHardyLittlewoodRpowConstant p := by
   unfold centeredHardyLittlewoodRpowConstant
   positivity
 
 /-- Uniform strong `L^p` estimate for each finite-value truncation of the
-genuine centered maximal function.-/
+genuine centered maximal function.
+@isnad1 id=le.3h3v.s6.8c340ee6c615 from=translated src=- shape=51e8dba2 vocab=daae2e54
+-/
 theorem centeredHardyLittlewoodMaximal_truncated_rpow_lintegral_le
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) (hfinite : ∀ y, f y ≠ ∞)
     {p : ℝ} (hp : 1 < p) (n : ℕ) :
@@ -276,7 +293,9 @@ theorem centeredHardyLittlewoodMaximal_truncated_rpow_lintegral_le
       ring
 
 /-- Increasing finite truncations recover an extended nonnegative real
-power whenever the exponent is positive.-/
+power whenever the exponent is positive.
+@isnad1 id=eq.1h2v.s5.429f2dfd04a9 from=translated src=- shape=f3068273 vocab=fa34c872
+-/
 theorem iSup_min_nat_rpow (v : ℝ≥0∞) {p : ℝ} (hp : 1 ≤ p) :
     (⨆ n : ℕ, (min v (n : ℝ≥0∞)) ^ p) = v ^ p := by
   have hp0 : 0 < p := zero_lt_one.trans_le hp
@@ -305,7 +324,9 @@ theorem iSup_min_nat_rpow (v : ℝ≥0∞) {p : ℝ} (hp : 1 ≤ p) :
           le_iSup (fun n : ℕ ↦ (min v (n : ℝ≥0∞)) ^ p) n
 
 /-- Strong `L^p` estimate for the genuine centered rational-radius maximal
-operator, for every real exponent `p > 1`.-/
+operator, for every real exponent `p > 1`.
+@isnad1 id=le.3h2v.s6.885bad2279b2 from=translated src=- shape=4a0c9a91 vocab=414faa56
+-/
 theorem centeredHardyLittlewoodMaximal_rpow_lintegral_le
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) (hfinite : ∀ y, f y ≠ ∞)
     {p : ℝ} (hp : 1 < p) :

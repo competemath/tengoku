@@ -26,7 +26,9 @@ set_option autoImplicit false
 attribute [local instance] Classical.propDecidable
 
 /-- Pointwise no-loss packing simultaneously over finitely many source gaps
-at one physical output scale.-/
+at one physical output scale.
+@isnad1 id=le.4h9v.s8.5dc1f6552087 from=translated src=- shape=39381363 vocab=8493a7ca
+-/
 theorem sum_norm_intervalBadInput_over_gaps_le
     {S : Finset RealInterval} (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ)
@@ -84,7 +86,9 @@ theorem sum_norm_intervalBadInput_over_gaps_le
     exact norm_nonneg _
 
 /-- The corresponding integral packing.  This is the source-gap version of
-the bad-input mass estimate and is independent of `R.card`.-/
+the bad-input mass estimate and is independent of `R.card`.
+@isnad1 id=le.5h8v.s8.4a86413d6a26 from=translated src=- shape=e227764f vocab=c90d88a3
+-/
 theorem sum_intervalBadInput_mass_over_gaps_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (scale : RealInterval → ℤ)
@@ -124,7 +128,9 @@ theorem sum_intervalBadInput_mass_over_gaps_le
       (sum_norm_intervalBadInput_over_gaps_le f I₀ k₀ scale hlam R N hNS hscale j hfixed)
 
 /-- Scalar-standard diagonal energy summed over every selected source gap at
-a fixed physical scale.  There is no gap-count loss at this stage.-/
+a fixed physical scale.  There is no gap-count loss at this stage.
+@isnad1 id=le.5h8v.s8.b34b7a2063c4 from=translated src=- shape=e17ed873 vocab=c6023a48
+-/
 theorem sum_energyStandard_fixedPhysical_diagonalEnergy_over_gaps_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -188,6 +194,9 @@ noncomputable def energyStandardFixedPhysicalSourceAction
   ∑ s ∈ R, ∑ I ∈ N s, krauseLaceyLocalizedPiece 1 (scale I) I
     (badScaleInput S f I₀ k₀ (scale I + 2 - s)) x
 
+/--
+@isnad1 id=eventual.1h7v.s8.0978d73c89b3 from=translated src=- shape=f02708bb vocab=394c8de8
+-/
 theorem energyStandardFixedPhysicalSourceLp_ae_eq
     (S : Finset RealInterval) (f : ℝ → ℂ) (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (scale : RealInterval → ℤ)
@@ -227,6 +236,9 @@ theorem energyStandardFixedPhysicalSourceLp_ae_eq
   intro s hs
   exact hx s hs
 
+/--
+@isnad1 id=eq.4h8v.s9.956ccaeb7281 from=translated src=- shape=884bfb5e vocab=f4323f5c
+-/
 theorem norm_energyStandard_fixedPhysical_layer_sq_eq
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ s j : ℤ) (scale : RealInterval → ℤ)
@@ -256,7 +268,9 @@ theorem norm_energyStandard_fixedPhysical_layer_sq_eq
     exact inner_localizedPieceLp_eq_zero_of_disjoint _ _ _ _ _ _ _ _ hlenI hlenJ hd
 
 /-- The paper's finite-Cauchy step.  The source-gap cardinality appears
-exactly once, while the diagonal energy is aggregated before that step.-/
+exactly once, while the diagonal energy is aggregated before that step.
+@isnad1 id=le.5h8v.s9.da99f4ae1253 from=translated src=- shape=15e47753 vocab=4a46530a
+-/
 theorem norm_energyStandardFixedPhysicalSourceLp_sq_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (scale : RealInterval → ℤ)
@@ -304,7 +318,9 @@ noncomputable abbrev standardSourceGaps (k₀ j : ℤ) : Finset ℤ := Finset.Ic
 
 /-- With `1 ≤ k₀ ≤ j`, the finite Cauchy factor for the source gaps is at
 most `j`.  This is the single visible `j` in the scalar-standard squared
-`L²` estimate.-/
+`L²` estimate.
+@isnad1 id=le.7h7v.s9.6b676011eb93 from=translated src=- shape=d34f879d vocab=2bf786cd
+-/
 theorem norm_energyStandardFixedPhysicalSourceLp_sq_le_j_mul
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ j : ℤ) (hk₀ : 1 ≤ k₀) (hk₀j : k₀ ≤ j)

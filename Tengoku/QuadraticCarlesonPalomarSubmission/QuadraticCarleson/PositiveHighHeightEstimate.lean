@@ -30,6 +30,9 @@ noncomputable def disjointLevelAtomSum {ι : Type*}
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (z R : ι → ℝ) (x : ℝ) : ℂ :=
   ∑' i, levelAtom A f k (z i) (R i) x
 
+/--
+@isnad1 id=eq.3h9v.s6.ea626f72a8fc from=translated src=- shape=9a17cec7 vocab=345070e6
+-/
 theorem levelAtom_eq_zero_of_other_mem {ι : Type*}
     {A : ℕ → ℝ} {f : ℝ → ℂ} {k : ℕ} {z R : ι → ℝ}
     (hdisj : Pairwise (Disjoint on fun i ↦ centeredInterval (z i) (R i)))
@@ -39,7 +42,9 @@ theorem levelAtom_eq_zero_of_other_mem {ι : Type*}
   intro hxj
   exact Set.disjoint_left.mp (hdisj hji) hxj hx
 
-/-- Disjointness makes the atom sum pointwise a single atom or zero.-/
+/-- Disjointness makes the atom sum pointwise a single atom or zero.
+@isnad1 id=eq.2h8v.s6.62cd77c8b45b from=translated src=- shape=61fa1b5a vocab=9940d790
+-/
 theorem map_disjointLevelAtomSum {ι : Type*}
     (A : ℕ → ℝ) (f : ℝ → ℂ) (k : ℕ) (z R : ι → ℝ)
     (hdisj : Pairwise (Disjoint on fun i ↦ centeredInterval (z i) (R i)))
@@ -58,11 +63,17 @@ theorem map_disjointLevelAtomSum {ι : Type*}
       exact levelAtom_eq_zero_of_not_mem (fun hi ↦ hx ⟨i, hi⟩)
     simp [disjointLevelAtomSum, hz, hΦ]
 
+/--
+@isnad1 id=measurab.1h6v.s5.bda31bc85673 from=translated src=- shape=cdfaf4cf vocab=c8ba0c66
+-/
 theorem measurable_disjointLevelAtomSum {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     (k : ℕ) (z R : ι → ℝ) : Measurable (disjointLevelAtomSum A f k z R) := by
   exact Measurable.tsum (fun i ↦ measurable_levelAtom hf k (z i) (R i))
 
+/--
+@isnad1 id=le.3h5v.s7.bf7fe482cdaa from=translated src=- shape=b7715dbb vocab=ca13d5c8
+-/
 theorem lintegral_sq_enorm_levelAtom_le
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) {z R : ℝ} (hR : 0 < R) :
@@ -87,7 +98,9 @@ theorem lintegral_sq_enorm_levelAtom_le
         (Filter.Eventually.of_forall fun x ↦ norm_nonneg (levelAtom A f k z R x))
 
 /-- Countable disjoint summation loses no overlap constant. The atom L²
-estimate becomes `‖b_k‖₂² ≤ 4 A_k ∫_{F_k}|f|`.-/
+estimate becomes `‖b_k‖₂² ≤ 4 A_k ∫_{F_k}|f|`.
+@isnad1 id=le.4h6v.s7.b95ed42fd48f from=translated src=- shape=48ee70c7 vocab=ba63e918
+-/
 theorem disjointLevelAtomSum_sq_lintegral_le {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -113,6 +126,9 @@ theorem disjointLevelAtomSum_sq_lintegral_le {ι : Type*} [Countable ι]
       congr 2
       ring
 
+/--
+@isnad1 id=memlp.5h6v.s7.29a8d9df5bc0 from=translated src=- shape=4d9a3a25 vocab=efd18802
+-/
 theorem memLp_disjointLevelAtomSum {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -133,7 +149,9 @@ theorem memLp_disjointLevelAtomSum {ι : Type*} [Countable ι]
   exact ENNReal.rpow_lt_top_of_nonneg (by norm_num) hs.ne
 
 /-- The high-height input estimate invokes the genuine, unrestricted
-real-parameter maximal L² theorem, not a supplied oscillatory hypothesis.-/
+real-parameter maximal L² theorem, not a supplied oscillatory hypothesis.
+@isnad1 id=le.5h7v.s8.af204e08b3f9 from=translated src=- shape=105fe8d4 vocab=df214288
+-/
 theorem fixedHeight_disjointLevelAtomSum_eLpNorm_le {ι : Type*} [Countable ι]
     {A : ℕ → ℝ} {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {k : ℕ} (hAk : 0 ≤ A k) (z R : ι → ℝ) (hR : ∀ i, 0 < R i)

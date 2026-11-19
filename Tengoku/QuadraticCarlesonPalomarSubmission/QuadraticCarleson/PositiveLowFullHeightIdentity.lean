@@ -23,6 +23,9 @@ namespace PositiveLowFullEstimate
 
 open CalderonZygmundLevelAtoms PositiveEndpointOptimization PositiveHighHeightEstimate
 
+/--
+@isnad1 id=integrab.2h4v.s6.ae606d477a9d from=translated src=- shape=7f925c5e vocab=da16434b
+-/
 theorem integrable_fixedHeightQuadraticKernel_mul_locallyIntegrable
     {b : ℝ → ℂ} (hb : LocallyIntegrable b) (r : ℕ) (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
     Integrable (fun t ↦ fixedHeightQuadraticKernel lam r hlam (x - t) * b t) := by
@@ -45,6 +48,9 @@ theorem integrable_fixedHeightQuadraticKernel_mul_locallyIntegrable
   dsimp only [j]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.c57427c44f7b from=translated src=- shape=1e60614f vocab=747d534d
+-/
 theorem integral_paperLowCZKernel_eq_sum_fixedHeights
     {b : ℝ → ℂ} (hb : LocallyIntegrable b) (B : ℕ) (lam : ℝ) (hlam : lam ≠ 0) (x : ℝ) :
     (∫ y, paperLowCZKernel lam hlam B x y * b y) =
@@ -68,6 +74,9 @@ noncomputable def paperFullLowHeightContribution {ι : Type*} (f : ℝ → ℂ)
       ∫ t, disjointLevelAtomSum fullAmplitude f k z R (x - t) *
         (dyadicPsi (oscillatoryScaleIndex lam.1 r lam.2) t : ℂ) * phase (lam.1 * t ^ 2)‖ₑ
 
+/--
+@isnad1 id=eq.4h5v.s7.b19b9eb9cc69 from=translated src=- shape=6d83422a vocab=5cd17f11
+-/
 theorem paperFullLowContribution_eq_heightContribution
     {ι : Type*} [Countable ι] {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (z R : ι → ℝ) (hR : ∀ i, 0 < R i)
@@ -84,7 +93,9 @@ theorem paperFullLowContribution_eq_heightContribution
       (by norm_num : (1 : ℝ≥0∞) ≤ 2))]
 
 /-- Full low-oscillation endpoint estimate in the paper's exact height and
-convolution conventions, with the exceptional family length left explicit.-/
+convolution conventions, with the exceptional family length left explicit.
+@isnad1 id=le.4h4v.s8.528cd56f8cd0 from=translated src=- shape=ab5ce7f7 vocab=4a70ec84
+-/
 theorem paperFullLowHeightContribution_levelSet_le_length_add_orlicz
     {ι : Type*} [Countable ι] {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     (z R : ι → ℝ) (hR : ∀ i, 0 < R i)

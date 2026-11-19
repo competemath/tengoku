@@ -32,29 +32,50 @@ noncomputable def dyadicCutoffData : ContDiffBump (0 : ℝ) :=
 
 noncomputable def dyadicCutoff : ℝ → ℝ := dyadicCutoffData
 
+/--
+@isnad1 id=contdiff.0h0v.s5.dcd4f08c70d9 from=translated src=- shape=3cea26be vocab=aaa32779
+-/
 theorem dyadicCutoff_smooth : ContDiff ℝ ∞ dyadicCutoff := by
   exact dyadicCutoffData.contDiff
 
+/--
+@isnad1 id=even.0h0v.s2.e2be5f41eb9c from=translated src=- shape=e3d48bcb vocab=ffc1f00d
+-/
 theorem dyadicCutoff_even : Function.Even dyadicCutoff := by
   intro x
   exact dyadicCutoffData.neg x
 
+/--
+@isnad1 id=le.0h1v.s3.5d6af0170a83 from=translated src=- shape=8a62b088 vocab=de6bdf80
+-/
 theorem dyadicCutoff_nonneg (x : ℝ) : 0 ≤ dyadicCutoff x := by
   exact dyadicCutoffData.nonneg
 
+/--
+@isnad1 id=le.0h1v.s3.3380a1c7e14e from=translated src=- shape=b14ee516 vocab=de6bdf80
+-/
 theorem dyadicCutoff_le_one (x : ℝ) : dyadicCutoff x ≤ 1 := by
   exact dyadicCutoffData.le_one
 
+/--
+@isnad1 id=eq.1h1v.s5.f8fb5ad8d735 from=translated src=- shape=7f1c967e vocab=5e6c5eab
+-/
 theorem dyadicCutoff_eq_one {x : ℝ} (hx : |x| ≤ 1 / 4) :
     dyadicCutoff x = 1 := by
   apply dyadicCutoffData.one_of_mem_closedBall
   simpa [dyadicCutoffData, Metric.mem_closedBall, Real.dist_eq] using hx
 
+/--
+@isnad1 id=eq.1h1v.s5.bc051b7fdc52 from=translated src=- shape=f3a39d87 vocab=5e6c5eab
+-/
 theorem dyadicCutoff_eq_zero {x : ℝ} (hx : 1 / 2 ≤ |x|) :
     dyadicCutoff x = 0 := by
   apply dyadicCutoffData.zero_of_le_dist
   simpa [dyadicCutoffData, Real.dist_eq] using hx
 
+/--
+@isnad1 id=le.0h0v.s5.6dfe75c2ba91 from=translated src=- shape=8a2e394f vocab=bb25e8fd
+-/
 theorem dyadicCutoff_support_subset :
     support dyadicCutoff ⊆ Ioo (-1 / 2 : ℝ) (1 / 2) := by
   change support (dyadicCutoffData : ℝ → ℝ) ⊆ _
@@ -70,14 +91,23 @@ noncomputable def dyadicPsi (j : ℤ) (t : ℝ) : ℝ :=
   if t = 0 then 0 else
     (dyadicCutoff (2⁻¹ ^ j * t) - dyadicCutoff (2⁻¹ ^ (j - 1) * t)) / t
 
+/--
+@isnad1 id=eq.1h2v.s6.1b422ed9e918 from=translated src=- shape=6e90dd64 vocab=30e9b409
+-/
 theorem dyadicPsi_eq_quotient {j : ℤ} {t : ℝ} (ht : t ≠ 0) :
     dyadicPsi j t =
       (dyadicCutoff (2⁻¹ ^ j * t) - dyadicCutoff (2⁻¹ ^ (j - 1) * t)) / t := by
   simp [dyadicPsi, ht]
 
+/--
+@isnad1 id=eq.0h1v.s4.136721b17af1 from=translated src=- shape=9b4d794a vocab=f2c7690b
+-/
 theorem dyadicPsi_zero (j : ℤ) : dyadicPsi j 0 = 0 := by
   simp [dyadicPsi]
 
+/--
+@isnad1 id=eq.1h2v.s5.06a848dbebf8 from=translated src=- shape=da25ebf4 vocab=1095cc83
+-/
 theorem dyadicPsi_eq_zero_of_abs_le {j : ℤ} {t : ℝ}
     (ht : |t| ≤ 2 ^ (j - 3 : ℤ)) : dyadicPsi j t = 0 := by
   by_cases ht0 : t = 0
@@ -117,6 +147,9 @@ theorem dyadicPsi_eq_zero_of_abs_le {j : ℤ} {t : ℝ}
     rw [dyadicCutoff_eq_one hscale, dyadicCutoff_eq_one hscale']
     simp
 
+/--
+@isnad1 id=contdiff.0h2v.s5.bcbb79376d13 from=translated src=- shape=5c9e953d vocab=dde1c750
+-/
 theorem dyadicPsi_contDiffAt (j : ℤ) (t : ℝ) :
     ContDiffAt ℝ ∞ (dyadicPsi j) t := by
   by_cases ht : t = 0
@@ -140,11 +173,17 @@ theorem dyadicPsi_contDiffAt (j : ℤ) (t : ℝ) :
     filter_upwards [isOpen_compl_singleton.mem_nhds ht] with u hu
     exact dyadicPsi_eq_quotient hu
 
+/--
+@isnad1 id=contdiff.0h1v.s5.92d3bc54d619 from=translated src=- shape=1e5679e5 vocab=6cc1830f
+-/
 theorem dyadicPsi_smooth : ∀ j : ℤ, ContDiff ℝ ∞ (dyadicPsi j) := by
   intro j
   rw [contDiff_iff_contDiffAt]
   exact dyadicPsi_contDiffAt j
 
+/--
+@isnad1 id=le.0h1v.s6.eea5760ffcf3 from=translated src=- shape=cffde610 vocab=082b03ce
+-/
 theorem dyadicPsi_support_subset (j : ℤ) :
     support (dyadicPsi j) ⊆ {t : ℝ | 2 ^ (j - 3 : ℤ) < |t| ∧
       |t| < 2 ^ (j - 1 : ℤ)} := by
@@ -192,6 +231,9 @@ theorem dyadicPsi_support_subset (j : ℤ) :
     exact ht hzero
   exact ⟨hinner, houter⟩
 
+/--
+@isnad1 id=odd.0h1v.s3.c5d28090fd64 from=translated src=- shape=8735051e vocab=b8a6f759
+-/
 theorem dyadicPsi_odd (j : ℤ) : Function.Odd (dyadicPsi j) := by
   intro t
   by_cases ht : t = 0
@@ -243,7 +285,9 @@ private theorem oscillatoryScaleSpec_unique {lam : ℝ} {r : ℕ} {j k : ℤ}
     exact (not_lt_of_ge (hdouble.trans hcomp)) hk.2
 
 /-- The dyadic scale required by the paper exists and is unique whenever the
-quadratic modulation parameter is nonzero.-/
+quadratic modulation parameter is nonzero.
+@isnad1 id=existsun.1h2v.s4.feb5382eda71 from=translated src=- shape=1c4501b3 vocab=2e6cf422
+-/
 theorem existsUnique_oscillatoryScaleSpec (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
     ∃! j : ℤ, OscillatoryScaleSpec lam r j := by
   have ha : 0 < Real.sqrt |lam| := Real.sqrt_pos.2 (abs_pos.mpr hlam)
@@ -268,16 +312,24 @@ that fact is supplied.-/
 noncomputable def oscillatoryScaleIndex (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) : ℤ :=
   Classical.choose (existsUnique_oscillatoryScaleSpec lam r hlam)
 
+/--
+@isnad1 id=oscillat.1h2v.s4.7d7f0d2469b2 from=translated src=- shape=da0c5712 vocab=6c98f395
+-/
 theorem oscillatoryScaleIndex_spec (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
     OscillatoryScaleSpec lam r (oscillatoryScaleIndex lam r hlam) :=
   (Classical.choose_spec (existsUnique_oscillatoryScaleSpec lam r hlam)).1
 
+/--
+@isnad1 id=eq.2h3v.s4.a3d7c94fd0dd from=translated src=- shape=ec24f9ca vocab=264cf9d4
+-/
 theorem oscillatoryScaleIndex_unique (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0)
     {j : ℤ} (hj : OscillatoryScaleSpec lam r j) :
     j = oscillatoryScaleIndex lam r hlam :=
   oscillatoryScaleSpec_unique hj (oscillatoryScaleIndex_spec lam r hlam)
 
-/-- Successive oscillation heights select successive dyadic spatial scales.-/
+/-- Successive oscillation heights select successive dyadic spatial scales.
+@isnad1 id=eq.1h2v.s5.022401b68785 from=translated src=- shape=5d284a93 vocab=d1de87bb
+-/
 theorem oscillatoryScaleIndex_succ (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
     oscillatoryScaleIndex lam (r + 1) hlam =
       oscillatoryScaleIndex lam r hlam + 1 := by
@@ -293,7 +345,9 @@ theorem oscillatoryScaleIndex_succ (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
     (oscillatoryScaleIndex_spec lam (r + 1) hlam) hnext
 
 /-- An explicit affine description of all selected scales relative to height
-zero.-/
+zero.
+@isnad1 id=eq.1h2v.s5.bfc36bd888b1 from=translated src=- shape=4e584ea4 vocab=59e99064
+-/
 theorem oscillatoryScaleIndex_eq_add (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
     oscillatoryScaleIndex lam r hlam =
       oscillatoryScaleIndex lam 0 hlam + r := by
@@ -305,7 +359,9 @@ theorem oscillatoryScaleIndex_eq_add (lam : ℝ) (r : ℕ) (hlam : lam ≠ 0) :
       ring
 
 /-- A selected dyadic piece lives at normalized radius between fixed
-constants at its oscillation height.-/
+constants at its oscillation height.
+@isnad1 id=and.2h3v.s7.ef3e06bfee77 from=translated src=- shape=68035d4d vocab=24242010
+-/
 theorem dyadicPsi_oscillatoryScaleIndex_support_normalized
     {lam : ℝ} (hlam : lam ≠ 0) (r : ℕ) {t : ℝ}
     (ht : t ∈ support (dyadicPsi (oscillatoryScaleIndex lam r hlam))) :
@@ -349,6 +405,9 @@ noncomputable def lowOscillatoryKernel (lam : ℝ) (B : ℕ) (J : ℕ → ℤ) (
   ∑ r ∈ Finset.range (B + 1),
     (dyadicPsi (J r) t : ℂ) * phase (lam * t ^ 2)
 
+/--
+@isnad1 id=eq.1h4v.s6.9591aad4b309 from=translated src=- shape=99e6d8e0 vocab=c5370930
+-/
 theorem lowOscillatoryKernel_eq_zero_of_not_mem_supports
     (lam : ℝ) (B : ℕ) (J : ℕ → ℤ) (t : ℝ)
     (ht : ∀ r ∈ Finset.range (B + 1), t ∉ support (dyadicPsi (J r))) :
@@ -360,6 +419,9 @@ theorem lowOscillatoryKernel_eq_zero_of_not_mem_supports
     simpa [Function.support] using ht r hr
   simp [hψ]
 
+/--
+@isnad1 id=le.0h3v.s6.af0cd63bd334 from=translated src=- shape=8b55a262 vocab=1e6c9c07
+-/
 theorem lowOscillatoryKernel_support_subset (lam : ℝ) (B : ℕ) (J : ℕ → ℤ) :
     support (lowOscillatoryKernel lam B J) ⊆
       ⋃ r ∈ Finset.range (B + 1), support (dyadicPsi (J r)) := by
@@ -372,6 +434,9 @@ theorem lowOscillatoryKernel_support_subset (lam : ℝ) (B : ℕ) (J : ℕ → �
   apply hnot
   exact Set.mem_iUnion.2 ⟨r, Set.mem_iUnion.2 ⟨hr, hmem⟩⟩
 
+/--
+@isnad1 id=le.1h2v.s5.aba99861ef77 from=translated src=- shape=3530cb55 vocab=9d231870
+-/
 theorem norm_dyadicPsi_le (j : ℤ) {t : ℝ} (ht : t ≠ 0) :
     |dyadicPsi j t| ≤ 2 / |t| := by
   rw [dyadicPsi_eq_quotient ht, abs_div]
@@ -395,6 +460,9 @@ theorem norm_dyadicPsi_le (j : ℤ) {t : ℝ} (ht : t ≠ 0) :
       _ ≤ 2 := by linarith
   exact (div_le_div_of_nonneg_right hnum (abs_nonneg _))
 
+/--
+@isnad1 id=le.1h4v.s6.1628fa5010da from=translated src=- shape=587aa588 vocab=a31bafd8
+-/
 theorem lowOscillatoryKernel_norm_le {lam : ℝ} {B : ℕ} {J : ℕ → ℤ}
     {t : ℝ} (ht : t ≠ 0) :
     ‖lowOscillatoryKernel lam B J t‖ ≤ (B + 1 : ℝ) * (2 / |t|) := by
@@ -413,6 +481,9 @@ theorem lowOscillatoryKernel_norm_le {lam : ℝ} {B : ℕ} {J : ℕ → ℤ}
     _ = (B + 1 : ℝ) * (2 / |t|) := by
       simp [Finset.sum_const, Nat.cast_add, Nat.cast_one]
 
+/--
+@isnad1 id=le.0h3v.s7.3c240f9bbb56 from=translated src=- shape=783c69f4 vocab=1a68275b
+-/
 theorem lowOscillatoryKernel_support_annulus_subset (lam : ℝ) (B : ℕ) (J : ℕ → ℤ) :
     support (lowOscillatoryKernel lam B J) ⊆
       ⋃ r ∈ Finset.range (B + 1),
@@ -424,7 +495,9 @@ theorem lowOscillatoryKernel_support_annulus_subset (lam : ℝ) (B : ℕ) (J : �
   exact Set.mem_iUnion₂.2 ⟨r, hr, dyadicPsi_support_subset (J r) hrt⟩
 
 /-- Consecutive dyadic pieces telescope exactly.  This is the cancellation
-behind the uniform size estimate for the finite low-oscillation kernel.-/
+behind the uniform size estimate for the finite low-oscillation kernel.
+@isnad1 id=eq.1h3v.s7.90469fa0d7ae from=translated src=- shape=4b09c058 vocab=3d8036fc
+-/
 theorem sum_dyadicPsi_consecutive (j : ℤ) (n : ℕ) {t : ℝ} (ht : t ≠ 0) :
     ∑ r ∈ Finset.range n, dyadicPsi (j + (r : ℤ)) t =
       (dyadicCutoff ((2⁻¹ : ℝ) ^ (j + (n : ℤ) - 1) * t) -
@@ -443,7 +516,9 @@ noncomputable def paperLowOscillatoryKernel
   lowOscillatoryKernel lam B (fun r ↦ oscillatoryScaleIndex lam r hlam) t
 
 /-- The finite low-oscillation kernel is one telescoping cutoff difference
-times the common quadratic phase.-/
+times the common quadratic phase.
+@isnad1 id=eq.2h3v.s7.8c6c3035c428 from=translated src=- shape=73ec1fb5 vocab=123b153c
+-/
 theorem paperLowOscillatoryKernel_eq_cutoffDifference
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     paperLowOscillatoryKernel lam hlam B t =
@@ -470,13 +545,18 @@ theorem paperLowOscillatoryKernel_eq_cutoffDifference
   push_cast
   ring_nf
 
+/--
+@isnad1 id=le.2h3v.s6.79d5a87a5c69 from=translated src=- shape=161aa1c6 vocab=732ca7c7
+-/
 theorem paperLowOscillatoryKernel_norm_le
     {lam : ℝ} (hlam : lam ≠ 0) {B : ℕ} {t : ℝ} (ht : t ≠ 0) :
     ‖paperLowOscillatoryKernel lam hlam B t‖ ≤ (B + 1 : ℝ) * (2 / |t|) := by
   exact lowOscillatoryKernel_norm_le ht
 
 /-- The sharp size estimate stated in the paper, independent of the number of
-included heights.-/
+included heights.
+@isnad1 id=le.2h3v.s5.dc93ab9a0a9e from=translated src=- shape=b865c9cd vocab=4b76684b
+-/
 theorem paperLowOscillatoryKernel_norm_le_inv_abs
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) {t : ℝ} (ht : t ≠ 0) :
     ‖paperLowOscillatoryKernel lam hlam B t‖ ≤ 1 / |t| := by
@@ -499,6 +579,9 @@ theorem paperLowOscillatoryKernel_norm_le_inv_abs
     constructor <;> linarith
   exact div_le_div_of_nonneg_right hnum (abs_nonneg t)
 
+/--
+@isnad1 id=le.1h3v.s5.4a8b2908aed7 from=translated src=- shape=cd1e18d4 vocab=86555abd
+-/
 theorem paperLowOscillatoryKernel_mul_norm_le_one
     {lam : ℝ} (hlam : lam ≠ 0) (B : ℕ) (t : ℝ) :
     ‖(t : ℂ) * paperLowOscillatoryKernel lam hlam B t‖ ≤ 1 := by
@@ -511,6 +594,9 @@ theorem paperLowOscillatoryKernel_mul_norm_le_one
           (paperLowOscillatoryKernel_norm_le_inv_abs hlam B ht) (abs_nonneg t)
       _ = 1 := by field_simp
 
+/--
+@isnad1 id=le.1h2v.s7.15a85b66006c from=translated src=- shape=14db63ca vocab=405ae6cc
+-/
 theorem paperLowOscillatoryKernel_support_annulus_subset
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) :
     support (paperLowOscillatoryKernel lam hlam B) ⊆
@@ -523,7 +609,9 @@ theorem paperLowOscillatoryKernel_support_annulus_subset
 
 /-- The normalized support observation used in the lacunary positive proof:
 `K_{λ,B}` is supported where `|t|√|λ|` lies between an absolute
-constant and `2^B`.-/
+constant and `2^B`.
+@isnad1 id=le.1h2v.s6.f75c9a1c28db from=translated src=- shape=e1f3f9e2 vocab=aca64948
+-/
 theorem paperLowOscillatoryKernel_support_normalized
     (lam : ℝ) (hlam : lam ≠ 0) (B : ℕ) :
     support (paperLowOscillatoryKernel lam hlam B) ⊆

@@ -21,7 +21,9 @@ open scoped ENNReal NNReal
 namespace QuadraticCarleson.FiniteRangeKernel
 
 /-- A spatial truncation outside the finite range does not change the integral
-action at the chosen point. No integrability assumption is necessary here.-/
+action at the chosen point. No integrability assumption is necessary here.
+@isnad1 id=eq.1h4v.s5.b42abd586e00 from=translated src=- shape=c0c3b8ad vocab=1cd7fd31
+-/
 theorem applyIntegral_indicator_Icc_eq (K : FiniteRangeKernel) (f : ℝ → ℂ)
     (x n : ℝ) (hn : |x| + K.radius ≤ n) :
     K.applyIntegral ((Icc (-n) n).indicator f) x = K.applyIntegral f x := by
@@ -38,7 +40,9 @@ theorem applyIntegral_indicator_Icc_eq (K : FiniteRangeKernel) (f : ℝ → ℂ)
     simp
 
 /-- A uniform second-moment bound on integrable measurable tests extends to
-every measurable locally integrable input.-/
+every measurable locally integrable input.
+@isnad1 id=le.3h3v.s8.8afd72b9fee7 from=translated src=- shape=a67d5c1d vocab=63ea1978
+-/
 theorem sq_lintegral_bound_of_integrable (K : FiniteRangeKernel) (A : ℝ≥0∞)
     (hbound : ∀ g : ℝ → ℂ, Measurable g → Integrable g →
       (∫⁻ t, ‖K.applyIntegral g t‖ₑ ^ 2) ≤ A * ∫⁻ t, ‖g t‖ₑ ^ 2)
@@ -77,7 +81,9 @@ theorem sq_lintegral_bound_of_integrable (K : FiniteRangeKernel) (A : ℝ≥0∞
     (Filter.Eventually.of_forall henergy).frequently)
 
 /-- The symmetric averaging majorant gives the adjoint estimate on all
-measurable `L²` functions, with no `L¹` restriction.-/
+measurable `L²` functions, with no `L¹` restriction.
+@isnad1 id=le.6h6v.s8.4a8500930c05 from=translated src=- shape=c2989f82 vocab=f3d3c357
+-/
 theorem adjoint_sq_lintegral_le_of_selectedAverageKernel_memLp {N : ℕ}
     (K : FiniteRangeKernel) (r : Fin N → ℝ) (hr : ∀ i, 0 < r i)
     {σ : ℝ → Fin N} (hσ : Measurable σ) (C : ℝ≥0∞) (hC : C ≠ ⊤)

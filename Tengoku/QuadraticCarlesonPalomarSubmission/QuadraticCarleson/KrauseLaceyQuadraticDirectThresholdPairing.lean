@@ -22,7 +22,9 @@ set_option autoImplicit false
 
 /-- Holder together with the pointwise low truncation estimate.  This is the
 `L²` half of the direct threshold argument, independent of the particular
-maximal operator.-/
+maximal operator.
+@isnad1 id=le.6h4v.s8.99e874c4d9c5 from=translated src=- shape=6bf616fa vocab=49b0bd75
+-/
 theorem lintegral_pairing_interpolationLow_le
     {U g : ℝ → ℂ} (hU : AEMeasurable U volume)
     (hg : Measurable g) (hgi : Integrable g) {a p : ℝ}
@@ -44,7 +46,9 @@ theorem lintegral_pairing_interpolationLow_le
 
 /-- The same low-truncation Holder estimate for a nonnegative
 extended-real-valued maximal function.  This is the form needed by
-`offsetTailMaximalOn`, whose values are already norms.-/
+`offsetTailMaximalOn`, whose values are already norms.
+@isnad1 id=le.6h4v.s8.be120e0592e4 from=translated src=- shape=4f3372ef vocab=49b0bd75
+-/
 theorem lintegral_pairing_interpolationLow_ennreal_le
     {U : ℝ → ℝ≥0∞} {g : ℝ → ℂ} (hU : AEMeasurable U volume)
     (hg : Measurable g) (hgi : Integrable g) {a p : ℝ}
@@ -65,7 +69,9 @@ theorem lintegral_pairing_interpolationLow_ennreal_le
       (eLpNorm_interpolationLow_le_rpow g ha hp hp2 hg)
 
 /-- The elementary real identity which turns the low Holder factor into the
-source expression `δ A^{1-p/2} V`.-/
+source expression `δ A^{1-p/2} V`.
+@isnad1 id=eq.2h3v.s7.6b10c011cbad from=translated src=- shape=ff0cec6d vocab=baf4a9e8
+-/
 theorem sqrt_mul_rpow_mul_sqrt
     {A V p : ℝ} (hA : 0 < A) (hV : 0 ≤ V) :
     Real.sqrt V * (A ^ (2 - p) * V) ^ (1 / 2 : ℝ) =
@@ -82,7 +88,9 @@ theorem sqrt_mul_rpow_mul_sqrt
 
 /-- The low part of the direct proof in its normalized form.  If `U` has
 `L²` size at most `δ √V` and `g` has `p`-mass at most `V`, then truncating
-at `A` costs exactly `δ A^{1-p/2} V`.-/
+at `A` costs exactly `δ A^{1-p/2} V`.
+@isnad1 id=le.10h6v.s8.c8dce1e706ff from=translated src=- shape=088fa5b1 vocab=f1bc24da
+-/
 theorem lintegral_pairing_interpolationLow_le_normalized
     {U g : ℝ → ℂ} (hUmeas : AEMeasurable U volume)
     (hg : Measurable g) (hgi : Integrable g) {a p delta V : ℝ}
@@ -115,7 +123,9 @@ theorem lintegral_pairing_interpolationLow_le_normalized
       ring
 
 /-- The high part of the direct proof: the local-average pairing estimate
-turns the high truncation into the factor `A^{1-p}`.-/
+turns the high truncation into the factor `A^{1-p}`.
+@isnad1 id=le.13h11v.s9.dd6d788c3c6a from=translated src=- shape=0dc18c6f vocab=042a4af2
+-/
 theorem lintegral_nonstandard_pairing_interpolationHigh_le
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f)
     (hg : Measurable g) (hgi : Integrable g) {a p G : ℝ}
@@ -139,7 +149,9 @@ theorem lintegral_nonstandard_pairing_interpolationHigh_le
     exact intervalL1Average_interpolationHigh_le hg hgi ha hp hgp I (hgavg I hI)
 
 /-- At `A = δ^{-2}`, the high threshold factor is exactly
-`δ^{p-1}` after multiplication by the exceptional-average cutoff.-/
+`δ^{p-1}` after multiplication by the exceptional-average cutoff.
+@isnad1 id=eq.0h2v.s6.d4f44ca871bf from=translated src=- shape=5799b0b6 vocab=a19a5925
+-/
 theorem directQuadratic_high_pairing_factor
     {p : ℝ} (s : ℕ) :
     directQuadraticLowThreshold s ^ (1 - p) *
@@ -148,7 +160,9 @@ theorem directQuadratic_high_pairing_factor
   directQuadratic_high_threshold_identity p s
 
 /-- At `A = δ^{-2}`, the normalized low term is exactly the same offset
-decay as the high term.-/
+decay as the high term.
+@isnad1 id=eq.0h2v.s6.3490914c6e17 from=translated src=- shape=007ae44f vocab=4fa44e15
+-/
 theorem directQuadratic_low_pairing_factor
     {p : ℝ} (s : ℕ) :
     directQuadraticDelta s *
@@ -157,7 +171,9 @@ theorem directQuadratic_low_pairing_factor
   directQuadratic_low_threshold_identity p s
 
 /-- The normalized low pairing at the author's choice
-`A = (2^{-s/2})^{-2}`.-/
+`A = (2^{-s/2})^{-2}`.
+@isnad1 id=le.8h5v.s8.f24f8f7c02e1 from=translated src=- shape=423ec092 vocab=8645d5f1
+-/
 theorem lintegral_pairing_interpolationLow_le_directQuadratic
     {U g : ℝ → ℂ} (hUmeas : AEMeasurable U volume)
     (hg : Measurable g) (hgi : Integrable g) {p V : ℝ} (s : ℕ)
@@ -184,7 +200,9 @@ theorem lintegral_pairing_interpolationLow_le_directQuadratic
       rw [directQuadratic_low_threshold_identity]
 
 /-- The high local-average pairing at the author's simultaneous choice
-`A = δ^{-2}`, `Λ = δ^{-(p-1)}`.-/
+`A = δ^{-2}`, `Λ = δ^{-(p-1)}`.
+@isnad1 id=le.11h9v.s9.329cef898f80 from=translated src=- shape=c911ab41 vocab=07ce479b
+-/
 theorem lintegral_nonstandard_pairing_interpolationHigh_le_directQuadratic
     {S : Finset RealInterval} {f g : ℝ → ℂ} (hf : Integrable f)
     (hg : Measurable g) (hgi : Integrable g) {p : ℝ}

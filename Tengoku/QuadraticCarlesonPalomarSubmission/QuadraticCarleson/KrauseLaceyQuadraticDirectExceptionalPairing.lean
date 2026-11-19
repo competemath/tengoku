@@ -33,7 +33,9 @@ noncomputable section
 local instance : DecidableEq RealInterval := Classical.decEq _
 
 /-- Every bounded compactly supported test function has globally integrable
-positive real powers of its norm.-/
+positive real powers of its norm.
+@isnad1 id=integrab.1h2v.s5.8dea2c7dabdd from=translated src=- shape=092dff35 vocab=eea4ea52
+-/
 theorem L0Infinity.integrable_norm_rpow_direct
     (f : L0Infinity) {p : ℝ} (hp : 0 < p) :
     Integrable (fun x ↦ ‖f x‖ ^ p) := by
@@ -64,13 +66,18 @@ def selectedInside (S : Finset RealInterval) (Q : RealInterval) :
   classical
   exact S.filter fun J ↦ J.carrier ⊆ Q.carrier
 
+/--
+@isnad1 id=iff.0h3v.s5.125d1841be87 from=translated src=- shape=b246c418 vocab=945bafca
+-/
 theorem mem_selectedInside_iff
     {S : Finset RealInterval} {Q J : RealInterval} :
     J ∈ selectedInside S Q ↔ J ∈ S ∧ J.carrier ⊆ Q.carrier := by
   simp [selectedInside]
 
 /-- Passing to all selected intervals inside `Q` does not change the
-smallest-selected region of an interval already contained in `Q`.-/
+smallest-selected region of an interval already contained in `Q`.
+@isnad1 id=eq.1h3v.s4.07ff6e65876f from=translated src=- shape=e30f56ae vocab=4ac02981
+-/
 theorem smallestSelectedRegion_selectedInside_eq
     (S : Finset RealInterval) (Q J : RealInterval)
     (hJQ : J.carrier ⊆ Q.carrier) :
@@ -90,7 +97,9 @@ theorem smallestSelectedRegion_selectedInside_eq
     exact hmin H (mem_selectedInside_iff.mp hHin).1 hHJ hHJsub
 
 /-- For an output interval inside `Q`, restricting the ambient selected
-family to `Q` leaves the fixed-offset grouped input unchanged.-/
+family to `Q` leaves the fixed-offset grouped input unchanged.
+@isnad1 id=eq.1h6v.s5.64139bfa2cd2 from=translated src=- shape=fdb59562 vocab=a45e4906
+-/
 theorem offsetGroupedInput_selectedInside_eq
     (S : Finset RealInterval) (Q I : RealInterval)
     (scale : RealInterval → ℤ) (f : ℝ → ℂ) (s : ℤ)
@@ -119,7 +128,9 @@ theorem offsetGroupedInput_selectedInside_eq
 
 /-- The fixed-offset masses of any output subcollection contained in `Q`
 are bounded by the `f`-mass of `Q`.  The smallest-region partition remains
-the one formed by the original ambient family `S`.-/
+the one formed by the original ambient family `S`.
+@isnad1 id=le.5h6v.s8.2fa91b7539a4 from=translated src=- shape=ab70347d vocab=86ef3b50
+-/
 theorem sum_offsetGroupedInput_mass_le_interval
     {S A : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -165,7 +176,9 @@ theorem sum_offsetGroupedInput_mass_le_interval
             (hAQ I (Finset.mem_filter.mp hI).1)]
     _ ≤ ∫ x in Q.carrier, ‖f x‖ := hmass
 
-/-- The same local mass bound with the artificial scale fibers removed.-/
+/-- The same local mass bound with the artificial scale fibers removed.
+@isnad1 id=le.5h6v.s8.3b10cf72d06b from=translated src=- shape=298fbc41 vocab=8761e054
+-/
 theorem sum_offsetGroupedInput_mass_le_interval_unfibered
     {S A : Finset RealInterval}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -196,6 +209,9 @@ def exceptionalBelow (S : Finset RealInterval) (g : ℝ → ℂ)
   exact (directExceptionalIntervals S g p Λ).filter fun I ↦
     I.carrier ⊆ Q.carrier
 
+/--
+@isnad1 id=iff.0h6v.s5.04472437c9a8 from=translated src=- shape=fd69879e vocab=31eae942
+-/
 theorem mem_exceptionalBelow_iff
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ}
     {Q I : RealInterval} :
@@ -205,7 +221,9 @@ theorem mem_exceptionalBelow_iff
   simp [exceptionalBelow]
 
 /-- The exceptional descendants of distinct maximal exceptional intervals
-are disjoint as finite index sets.-/
+are disjoint as finite index sets.
+@isnad1 id=pairwise.1h4v.s6.624d7a133c2e from=translated src=- shape=73b690e8 vocab=a01e7763
+-/
 theorem exceptionalBelow_pairwiseDisjoint
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -228,7 +246,9 @@ theorem exceptionalBelow_pairwiseDisjoint
     (hsubQ hx) (hsubR hx)
 
 /-- Every exceptional interval belongs to the descendants of a maximal
-exceptional interval, and conversely.-/
+exceptional interval, and conversely.
+@isnad1 id=eq.0h4v.s5.38a2d44bd445 from=translated src=- shape=1aa1faa7 vocab=aa1f8f85
+-/
 theorem biUnion_exceptionalBelow_maximal
     (S : Finset RealInterval) (g : ℝ → ℂ) (p Λ : ℝ) :
     (directMaximalExceptionalIntervals S g p Λ).biUnion
@@ -245,7 +265,9 @@ theorem biUnion_exceptionalBelow_maximal
       ⟨Q, hQ, mem_exceptionalBelow_iff.mpr ⟨hI, hIQ⟩⟩
 
 /-- The fixed-offset input mass of all exceptional outputs is bounded by
-the sum of the `f`-masses of their maximal exceptional roots.-/
+the sum of the `f`-masses of their maximal exceptional roots.
+@isnad1 id=le.3h7v.s7.18069b400a6d from=translated src=- shape=1ba3f959 vocab=2d40016c
+-/
 theorem sum_exceptional_offsetGroupedInput_mass_le_maximal_roots
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ : ℝ}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -281,7 +303,9 @@ theorem sum_exceptional_offsetGroupedInput_mass_le_maximal_roots
 
 /-- Combining the localized mass estimate with average control on the
 maximal exceptional roots converts their packing into fixed-offset input
-mass decay.-/
+mass decay.
+@isnad1 id=le.6h9v.s8.06d170901d88 from=translated src=- shape=fe13553d vocab=1387ef51
+-/
 theorem sum_exceptional_offsetGroupedInput_mass_le_of_packing
     {S : Finset RealInterval} {g : ℝ → ℂ} {p Λ F L : ℝ}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -319,7 +343,9 @@ theorem sum_exceptional_offsetGroupedInput_mass_le_of_packing
 
 /-- The full positive pairing of the exceptional output family.  Uniform
 `L¹` averages of the test function and of `f` on maximal exceptional roots,
-together with root packing, give the expected packing-sized contribution.-/
+together with root packing, give the expected packing-sized contribution.
+@isnad1 id=le.8h11v.s8.26ee941ecec2 from=translated src=- shape=38b77036 vocab=c720ff4f
+-/
 theorem lintegral_exceptional_offsetTailMaximalOn_le_of_packing
     {S : Finset RealInterval} {g : L0Infinity} {p Λ F G L : ℝ}
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -386,7 +412,9 @@ theorem lintegral_exceptional_offsetTailMaximalOn_le_of_packing
 
 /-- The exceptional contribution at the author's exact threshold
 `Λ = δ^{-(p-1)}`.  The global `p`-mass supplies the maximal-root packing,
-so the result has the desired `δ^{p-1}` decay.-/
+so the result has the desired `δ^{p-1}` decay.
+@isnad1 id=le.10h12v.s9.aa44cd7d5e6f from=translated src=- shape=94d8cc7a vocab=e9e9e790
+-/
 theorem lintegral_exceptional_offsetTailMaximalOn_le_directQuadratic
     {S : Finset RealInterval} {g : L0Infinity} {p F G V : ℝ}
     (n : ℕ) (hgp : Integrable (fun x ↦ ‖g x‖ ^ p))
@@ -417,7 +445,9 @@ theorem lintegral_exceptional_offsetTailMaximalOn_le_directQuadratic
 /-- Direct high-truncation pairing on a regular output subcollection.  This
 is the `(**)` half of the author's proof, with no standard/nonstandard
 classification: the local `p`-mass cutoff supplies `a^(1-p) G`, and the
-ambient partition supplies the total `f`-mass.-/
+ambient partition supplies the total `f`-mass.
+@isnad1 id=le.10h11v.s9.ec58ebad7156 from=translated src=- shape=20fc2972 vocab=5daae3f5
+-/
 theorem lintegral_offsetTailMaximalOn_interpolationHigh_le
     {S A : Finset RealInterval} {g : L0Infinity} {a p G : ℝ}
     (ha : 0 < a) (hp : 1 < p) (hG : 0 ≤ G)
@@ -489,7 +519,9 @@ theorem lintegral_offsetTailMaximalOn_interpolationHigh_le
       rfl
 
 /-- The regular high-truncation term at the author's simultaneous choices
-`A = δ⁻²` and `Λ = δ^{-(p-1)}`.-/
+`A = δ⁻²` and `Λ = δ^{-(p-1)}`.
+@isnad1 id=le.5h8v.s8.43275c8ab670 from=translated src=- shape=fdecdac9 vocab=8407abfb
+-/
 theorem lintegral_regular_offsetTailMaximalOn_interpolationHigh_le_directQuadratic
     {S : Finset RealInterval} {g : L0Infinity} {p : ℝ}
     (n : ℕ) (hp : 1 < p)

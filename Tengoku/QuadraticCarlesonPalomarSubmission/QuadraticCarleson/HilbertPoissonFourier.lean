@@ -35,13 +35,18 @@ noncomputable section
 def poissonSpectralKernel (r ξ : ℝ) : ℂ :=
   Complex.exp ((-2 * Real.pi * r * |ξ| : ℝ) : ℂ)
 
+/--
+@isnad1 id=continuo.0h1v.s4.3992d96b30ef from=translated src=- shape=9bb0b988 vocab=5efb89d3
+-/
 theorem continuous_poissonSpectralKernel (r : ℝ) :
     Continuous (poissonSpectralKernel r) := by
   unfold poissonSpectralKernel
   fun_prop
 
 /-- The Poisson semigroup multiplier is integrable for every positive
-radius.  This is the elementary two-half-line exponential estimate.-/
+radius.  This is the elementary two-half-line exponential estimate.
+@isnad1 id=integrab.1h1v.s5.1bcfdc43e42f from=translated src=- shape=b07cb5a9 vocab=ea28a33e
+-/
 theorem integrable_poissonSpectralKernel {r : ℝ} (hr : 0 < r) :
     Integrable (poissonSpectralKernel r) := by
   have hpos : IntegrableOn
@@ -63,6 +68,9 @@ theorem integrable_poissonSpectralKernel {r : ℝ} (hr : 0 < r) :
       have hξ' : 0 < ξ := hξ
       simp [poissonSpectralKernel, abs_of_pos hξ']) measurableSet_Ioi
 
+/--
+@isnad1 id=memlp.1h1v.s6.31591d853054 from=translated src=- shape=f6ee69ef vocab=9a2021b0
+-/
 theorem memLp_two_poissonSpectralKernel {r : ℝ} (hr : 0 < r) :
     MemLp (poissonSpectralKernel r) 2 := by
   rw [memLp_two_iff_integrable_sq_norm
@@ -79,7 +87,9 @@ theorem memLp_two_poissonSpectralKernel {r : ℝ} (hr : 0 < r) :
     rw [Real.norm_of_nonneg (sq_nonneg _)]
     nlinarith [norm_nonneg (poissonSpectralKernel r ξ)]
 
-/-- The spectral kernel has the expected explicit `L¹` mass.-/
+/-- The spectral kernel has the expected explicit `L¹` mass.
+@isnad1 id=eq.1h1v.s6.aae8aa80b822 from=translated src=- shape=ea36d0ae vocab=6bdc4195
+-/
 theorem integral_norm_poissonSpectralKernel {r : ℝ} (hr : 0 < r) :
     ∫ ξ : ℝ, ‖poissonSpectralKernel r ξ‖ = 1 / (Real.pi * r) := by
   have hpos := integral_exp_mul_Ioi (a := -2 * Real.pi * r)
@@ -119,7 +129,9 @@ private theorem negativeHalfExponent_re {r w : ℝ} :
   simp [negativeHalfExponent]
 
 /-- The elementary transform computation underlying the Poisson semigroup.
-The normalization is Mathlib's `exp (-2π i x ξ)` convention.-/
+The normalization is Mathlib's `exp (-2π i x ξ)` convention.
+@isnad1 id=eq.1h2v.s5.75e3d5319275 from=translated src=- shape=c9a80934 vocab=c407c9f2
+-/
 theorem fourier_poissonSpectralKernel {r : ℝ} (hr : 0 < r) (w : ℝ) :
     𝓕 (poissonSpectralKernel r) w =
       ((cotlarPoissonKernel r w / Real.pi : ℝ) : ℂ) := by
@@ -205,6 +217,9 @@ multiplier both have mass one.-/
 def normalizedPoissonKernel (r x : ℝ) : ℂ :=
   ((cotlarPoissonKernel r x / Real.pi : ℝ) : ℂ)
 
+/--
+@isnad1 id=integrab.1h1v.s5.2288739a77b0 from=translated src=- shape=77bdae96 vocab=0eb928e3
+-/
 theorem integrable_cotlarPoissonKernel {r : ℝ} (hr : 0 < r) :
     Integrable (cotlarPoissonKernel r) := by
   have hr0 : r⁻¹ ≠ 0 := inv_ne_zero (ne_of_gt hr)
@@ -219,18 +234,26 @@ theorem integrable_cotlarPoissonKernel {r : ℝ} (hr : 0 < r) :
   field_simp [ne_of_gt hr, hden]
   ring
 
+/--
+@isnad1 id=integrab.1h1v.s5.b03f5d2ef79f from=translated src=- shape=b07cb5a9 vocab=598624b1
+-/
 theorem integrable_normalizedPoissonKernel {r : ℝ} (hr : 0 < r) :
     Integrable (normalizedPoissonKernel r) := by
   exact ((integrable_cotlarPoissonKernel hr).mul_const Real.pi⁻¹).ofReal.congr
     (ae_of_all _ fun x ↦ by simp [normalizedPoissonKernel, div_eq_mul_inv])
 
+/--
+@isnad1 id=eq.1h1v.s5.efe8739583cf from=translated src=- shape=08b30be9 vocab=c101e835
+-/
 theorem fourier_poissonSpectralKernel_eq_normalized {r : ℝ} (hr : 0 < r) :
     𝓕 (poissonSpectralKernel r) = normalizedPoissonKernel r := by
   funext w
   exact fourier_poissonSpectralKernel hr w
 
 /-- Fourier inversion turns the preceding elementary half-line computation
-into the usual Poisson multiplier formula.-/
+into the usual Poisson multiplier formula.
+@isnad1 id=eq.1h2v.s5.8da95e40bce8 from=translated src=- shape=3979cb1a vocab=c101e835
+-/
 theorem fourier_normalizedPoissonKernel {r : ℝ} (hr : 0 < r) (ξ : ℝ) :
     𝓕 (normalizedPoissonKernel r) ξ = poissonSpectralKernel r ξ := by
   have htransform : Integrable (𝓕 (poissonSpectralKernel r)) := by
@@ -248,6 +271,9 @@ conjugate-Poisson kernel.-/
 def conjugatePoissonSpectralKernel (r ξ : ℝ) : ℂ :=
   -Complex.I * (Real.sign ξ : ℂ) * poissonSpectralKernel r ξ
 
+/--
+@isnad1 id=integrab.1h1v.s5.c6bb66b937a1 from=translated src=- shape=b07cb5a9 vocab=245188dd
+-/
 theorem integrable_conjugatePoissonSpectralKernel {r : ℝ} (hr : 0 < r) :
     Integrable (conjugatePoissonSpectralKernel r) := by
   have hm : AEStronglyMeasurable (fun ξ : ℝ ↦ -Complex.I * (Real.sign ξ : ℂ)) :=
@@ -293,7 +319,9 @@ private theorem inv_I_mul_add_real (r x : ℝ) :
   ring_nf
 
 /-- The conjugate-Poisson kernel has an absolutely integrable *spectral*
-representation even though the spatial kernel itself is not in `L¹`.-/
+representation even though the spatial kernel itself is not in `L¹`.
+@isnad1 id=eq.1h2v.s5.5f8d872631dc from=translated src=- shape=c9a80934 vocab=a86859fc
+-/
 theorem fourierInv_conjugatePoissonSpectralKernel {r : ℝ} (hr : 0 < r) (x : ℝ) :
     𝓕⁻ (conjugatePoissonSpectralKernel r) x =
       ((cotlarConjugatePoissonKernel r x / Real.pi : ℝ) : ℂ) := by
@@ -383,6 +411,9 @@ noncomputable def cotlarShiftedSpectralAction
   (Real.pi : ℂ) * ∫ ξ : ℝ,
     conjugatePoissonSpectralKernel r ξ * 𝓕 (fun z ↦ g (z + x)) ξ
 
+/--
+@isnad1 id=eq.2h3v.s6.7343b269220c from=translated src=- shape=c0977d54 vocab=b6d25922
+-/
 theorem cotlarConjugatePoissonAction_eq_shiftedSpectral
     {r : ℝ} (hr : 0 < r) {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     cotlarConjugatePoissonAction r g x =
@@ -441,6 +472,9 @@ theorem cotlarConjugatePoissonAction_eq_shiftedSpectral
             (fun z ↦ g (z + x)) ξ
       simpa only [smul_eq_mul, mul_comm] using hswap
 
+/--
+@isnad1 id=eq.0h3v.s6.5ae161e3332d from=translated src=- shape=7a5847ea vocab=9a021e85
+-/
 theorem fourier_comp_add_right_real (g : ℝ → ℂ) (x ξ : ℝ) :
     𝓕 (fun z ↦ g (z + x)) ξ =
       Real.fourierChar (x * ξ) • 𝓕 g ξ := by
@@ -464,6 +498,9 @@ noncomputable def cotlarHilbertSpectralAction
     (poissonSpectralKernel r ξ *
       HilbertL2Fourier.ordinaryHilbertMultiplier ξ * 𝓕 g ξ)
 
+/--
+@isnad1 id=eq.0h2v.s4.6d8b5bf1d000 from=translated src=- shape=5f86423c vocab=208ef237
+-/
 theorem pi_mul_conjugatePoissonSpectralKernel (r ξ : ℝ) :
     (Real.pi : ℂ) * conjugatePoissonSpectralKernel r ξ =
       poissonSpectralKernel r ξ *
@@ -474,7 +511,9 @@ theorem pi_mul_conjugatePoissonSpectralKernel (r ξ : ℝ) :
 
 /-- Exact absolutely convergent Fourier intertwining on every `L¹` input:
 conjugate-Poisson convolution equals the inverse spectral action obtained by
-Poisson damping the ordinary Hilbert multiplier.-/
+Poisson damping the ordinary Hilbert multiplier.
+@isnad1 id=eq.2h3v.s6.6bf9143f6688 from=translated src=- shape=c0977d54 vocab=a18f777c
+-/
 theorem cotlarConjugatePoissonAction_eq_hilbertSpectral
     {r : ℝ} (hr : 0 < r) {g : ℝ → ℂ} (hg : Integrable g) (x : ℝ) :
     cotlarConjugatePoissonAction r g x =
@@ -490,7 +529,9 @@ theorem cotlarConjugatePoissonAction_eq_hilbertSpectral
   ring
 
 /-- The preceding Fourier intertwining specialized to the canonical stopping
-good part used in the Cotlar reduction.-/
+good part used in the Cotlar reduction.
+@isnad1 id=eq.3h3v.s6.15c84641e7d2 from=translated src=- shape=466539c0 vocab=13ec612f
+-/
 theorem cotlarConjugatePoissonAction_stoppingGoodPart_eq_hilbertSpectral
     {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f)
     {r : ℝ} (hr : 0 < r) (x : ℝ) :

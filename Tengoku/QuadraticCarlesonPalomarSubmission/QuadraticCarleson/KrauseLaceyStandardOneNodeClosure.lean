@@ -75,6 +75,9 @@ private theorem norm_energyStandardPhysicalTailAction_le_sum
       · intro j hj hnot
         exact norm_nonneg _
 
+/--
+@isnad1 id=le.0h6v.s5.a88d8633a932 from=translated src=- shape=09cb95d0 vocab=4c5a3588
+-/
 theorem energyStandardPhysicalTailMaximal_nonneg
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (x : ℝ) :
@@ -88,6 +91,9 @@ theorem energyStandardPhysicalTailMaximal_nonneg
     exact norm_energyStandardPhysicalTailAction_le_sum S f I₀ k₀ scale ell x
   exact (norm_nonneg _).trans (le_ciSup hb ⟨k₀, le_rfl⟩)
 
+/--
+@isnad1 id=le.0h6v.s5.57118cea9c4b from=translated src=- shape=792043a1 vocab=9f43839a
+-/
 theorem energyStandardPhysicalTailMaximal_le_sum
     (S : Finset RealInterval) (f : ℝ → ℂ) (I₀ : RealInterval) (k₀ : ℤ)
     (scale : RealInterval → ℤ) (x : ℝ) :
@@ -100,7 +106,9 @@ theorem energyStandardPhysicalTailMaximal_le_sum
 
 /-- The checked fixed-scale standard estimates imply the source's uniform
 maximal-tail `L^q` estimate.  There is no cardinality loss: the factor `40*q`
-is the already proved geometric scale sum.-/
+is the already proved geometric scale sum.
+@isnad1 id=le.5h6v.s8.06b63db9881f from=translated src=- shape=12dbad36 vocab=7b171797
+-/
 theorem eLpNorm_energyStandardPhysicalTailMaximal_le
     {S : Finset RealInterval} {f : ℝ → ℂ} (hf : Integrable f)
     (I₀ : RealInterval) (k₀ : ℤ) (hk₀ : 3 ≤ k₀)

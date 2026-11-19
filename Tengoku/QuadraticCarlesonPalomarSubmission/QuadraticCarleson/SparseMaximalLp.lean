@@ -25,7 +25,9 @@ namespace QuadraticCarleson
 set_option autoImplicit false
 
 /-- The interval `L^p` maximal average has the expected strong `L^r` bound
-whenever `1 < r / p`. The constant is explicit and uniform in the input.-/
+whenever `1 < r / p`. The constant is explicit and uniform in the input.
+@isnad1 id=le.2h3v.s7.b739aab316d4 from=translated src=- shape=b7524d03 vocab=2de9a8b0
+-/
 theorem intervalMaximalAverage_rpow_lintegral_le
     (p r : ℝ) (hp : 0 < p) (hpr : p < r) (f : L0Infinity) :
     (∫⁻ x, intervalMaximalAverage p f x ^ r) ≤
@@ -78,18 +80,26 @@ theorem intervalMaximalAverage_rpow_lintegral_le
 noncomputable def intervalAverageMajorant (p : ℝ) (f : L0Infinity) (x : ℝ) : ℝ≥0∞ :=
   (4 * centeredHardyLittlewoodMaximal (fun y ↦ ‖f y‖ₑ ^ p) x) ^ (1 / p)
 
+/--
+@isnad1 id=measurab.0h2v.s3.af2a2c492fe0 from=translated src=- shape=ded0e42c vocab=750ca48d
+-/
 theorem measurable_intervalAverageMajorant (p : ℝ) (f : L0Infinity) :
     Measurable (intervalAverageMajorant p f) := by
   apply ENNReal.continuous_rpow_const.measurable.comp
   exact measurable_const.mul (measurable_centeredHardyLittlewoodMaximal
     (ENNReal.continuous_rpow_const.measurable.comp f.measurable_toFun.enorm))
 
+/--
+@isnad1 id=le.1h3v.s4.d6d62a3d67ae from=translated src=- shape=2e54489f vocab=59e29a8c
+-/
 theorem intervalMaximalAverage_le_intervalAverageMajorant
     {p : ℝ} (hp : 0 < p) (f : L0Infinity) (x : ℝ) :
     intervalMaximalAverage p f x ≤ intervalAverageMajorant p f x :=
   intervalMaximalAverage_le_centeredHardyLittlewoodMaximal_rpow p hp f x
 
-/-- Strong moment bound for the measurable majorant itself.-/
+/-- Strong moment bound for the measurable majorant itself.
+@isnad1 id=le.2h3v.s7.98f99913cf2c from=translated src=- shape=3ab7add2 vocab=735c752f
+-/
 theorem intervalAverageMajorant_rpow_lintegral_le
     (p r : ℝ) (hp : 0 < p) (hpr : p < r) (f : L0Infinity) :
     (∫⁻ x, intervalAverageMajorant p f x ^ r) ≤
@@ -122,7 +132,9 @@ theorem intervalAverageMajorant_rpow_lintegral_le
   field_simp
 
 /-- Hölder embedding of a sparse form into the two measurable maximal
-majorants. This is the analytic middle line of Lemma `l:weak11sparse`.-/
+majorants. This is the analytic middle line of Lemma `l:weak11sparse`.
+@isnad1 id=le.3h6v.s7.6785f0de7f0d from=translated src=- shape=ea4b5930 vocab=92010256
+-/
 theorem sparseForm_le_lintegral_majorants_holder
     {p r η : ℝ} {S : Set RealInterval} (hS : IsSparse η S)
     (hp : 0 < p) (hr : 1 < r) (f g : L0Infinity) :
@@ -140,6 +152,9 @@ theorem sparseForm_le_lintegral_majorants_holder
     (measurable_intervalAverageMajorant 1 f).aemeasurable
     (measurable_intervalAverageMajorant p g).aemeasurable
 
+/--
+@isnad1 id=lt.1h1v.s4.5cb80d8fe0fe from=translated src=- shape=35bd48ee vocab=54545d2f
+-/
 theorem one_lt_holderConjugate_of_one_lt {r : ℝ} (hr : 1 < r) :
     1 < holderConjugate r := by
   unfold holderConjugate
@@ -147,7 +162,9 @@ theorem one_lt_holderConjugate_of_one_lt {r : ℝ} (hr : 1 < r) :
   linarith
 
 /-- The fully quantified global sparse-form estimate obtained by combining
-the maximal-function comparison, Hölder, and both strong maximal bounds.-/
+the maximal-function comparison, Hölder, and both strong maximal bounds.
+@isnad1 id=le.4h6v.s8.ef63db744f51 from=translated src=- shape=0dfe7f39 vocab=0f153dc5
+-/
 theorem sparseForm_le_strong_maximal_factors
     {p r η : ℝ} {S : Set RealInterval} (hS : IsSparse η S)
     (hp : 0 < p) (hr : 1 < r) (hpr : p < r) (f g : L0Infinity) :

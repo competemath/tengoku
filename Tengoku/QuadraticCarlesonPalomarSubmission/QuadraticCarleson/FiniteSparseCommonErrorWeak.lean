@@ -23,7 +23,9 @@ set_option autoImplicit false
 
 /-- A pointwise error of `48 M f` adds only `384 ‖f‖₁` to the weak constant.
 The proof uses the level split at `a / 2` and `a / 96`, retaining the exact
-input mass and requiring no additional measurability of the dominated output.-/
+input mass and requiring no additional measurability of the dominated output.
+@isnad1 id=hasexten.3h5v.s7.61634c2b3ac9 from=translated src=- shape=4375a460 vocab=0f626293
+-/
 theorem hasExtendedWeakL1Bound_of_finiteMax_add_fortyEight_maximal
     {N : ℕ} (T : Fin N → TestOperator) {C : ℝ} (hC : 0 ≤ C)
     (hweak : HasWeakOneOneBound C (finiteMax T))

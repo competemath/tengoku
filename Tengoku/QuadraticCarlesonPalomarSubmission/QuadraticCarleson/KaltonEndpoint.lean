@@ -53,6 +53,9 @@ def HasWeakL1Bound {α : Type*} [MeasurableSpace α] (μ : Measure α)
   0 ≤ A ∧ ∀ a : ℝ, 0 < a →
     ENNReal.ofReal a * μ {x | a < f x} ≤ ENNReal.ofReal A
 
+/--
+@isnad1 id=le.2h5v.s6.2d3f921c8069 from=translated src=- shape=2f8fba65 vocab=16f1c4f0
+-/
 theorem HasWeakL1Bound.measure_le {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {A : ℝ} {f : α → ℝ} (hf : HasWeakL1Bound μ A f)
     {a : ℝ} (ha : 0 < a) :
@@ -62,11 +65,17 @@ theorem HasWeakL1Bound.measure_le {α : Type*} [MeasurableSpace α]
     (Or.inl ENNReal.ofReal_ne_top)).2
   simpa [mul_comm] using hf.2 a ha
 
+/--
+@isnad1 id=ne.2h5v.s6.b821474085a3 from=translated src=- shape=328db6f2 vocab=9dc037e3
+-/
 theorem HasWeakL1Bound.measure_ne_top {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {A : ℝ} {f : α → ℝ} (hf : HasWeakL1Bound μ A f)
     {a : ℝ} (ha : 0 < a) : μ {x | a < f x} ≠ ∞ := by
   exact ne_top_of_le_ne_top ENNReal.ofReal_ne_top (hf.measure_le ha)
 
+/--
+@isnad1 id=le.2h5v.s6.edd967294868 from=translated src=- shape=6d0e183e vocab=4f1e6f6c
+-/
 theorem HasWeakL1Bound.measureReal_le {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {A : ℝ} {f : α → ℝ} (hf : HasWeakL1Bound μ A f)
     {a : ℝ} (ha : 0 < a) : μ.real {x | a < f x} ≤ A / a := by
@@ -76,6 +85,9 @@ theorem HasWeakL1Bound.measureReal_le {α : Type*} [MeasurableSpace α]
   rw [ENNReal.toReal_ofReal (div_nonneg hf.1 ha.le)] at h'
   exact h'
 
+/--
+@isnad1 id=hasweakl.2h5v.s5.02ba7defd59d from=translated src=- shape=6d42837c vocab=a93abc94
+-/
 theorem HasWeakL1Bound.mono {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {A B : ℝ} {f : α → ℝ} (hf : HasWeakL1Bound μ A f)
     (hAB : A ≤ B) : HasWeakL1Bound μ B f := by
@@ -84,6 +96,9 @@ theorem HasWeakL1Bound.mono {α : Type*} [MeasurableSpace α]
   intro a ha
   exact (hf.2 a ha).trans (ENNReal.ofReal_le_ofReal hAB)
 
+/--
+@isnad1 id=le.2h6v.s6.e72928d72fdf from=translated src=- shape=cb63e46f vocab=caf6e6a5
+-/
 theorem HasWeakL1Bound.restrict_measureReal_le_two_div
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {A : ℝ} {f : α → ℝ}
     (hf : HasWeakL1Bound μ A f) (s : Set α) {t : ℝ} (ht : 0 < t) :
@@ -114,7 +129,9 @@ theorem HasWeakL1Bound.restrict_measureReal_le_two_div
 
 /-- Restricted-integral estimate used in Kalton's proof.  The cutoff
 `q = 2A/m` is chosen so that the constant part of the layer-cake integral is
-exactly `2A`.-/
+exactly `2A`.
+@isnad1 id=le.10h7v.s8.a043da62b7ae from=translated src=- shape=a7b4c534 vocab=009569d4
+-/
 theorem integralOn_le_of_weakL1Bound
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {A m M : ℝ} {f : α → ℝ} {s : Set α}
@@ -224,26 +241,36 @@ zero-based Lean index corresponding to the paper index `k = i+1`.-/
 noncomputable def kaltonWeight (i : ℕ) : ℝ :=
   1 + Real.log (i + 1 : ℝ)
 
+/--
+@isnad1 id=le.0h1v.s3.4f414ce99a71 from=translated src=- shape=b9369acb vocab=964b7510
+-/
 theorem kaltonWeight_nonneg (i : ℕ) : 0 ≤ kaltonWeight i := by
   unfold kaltonWeight
   have hi : (0 : ℝ) ≤ (i : ℝ) := Nat.cast_nonneg i
   have hlog : 0 ≤ Real.log ((i : ℝ) + 1) := Real.log_nonneg (by linarith)
   linarith
 
+/--
+@isnad1 id=le.0h1v.s3.aa830bd58294 from=translated src=- shape=b9369acb vocab=964b7510
+-/
 theorem kaltonWeight_one_le (i : ℕ) : 1 ≤ kaltonWeight i := by
   unfold kaltonWeight
   have hi : (1 : ℝ) ≤ (i : ℝ) + 1 := by norm_num
   exact le_add_of_nonneg_right (Real.log_nonneg hi)
 
 /-- The weight occurring in the quadratic-Carleson source after translating
-its `log₁` notation literally.-/
+its `log₁` notation literally.
+@isnad1 id=eq.0h1v.s5.9e3be5bfe2f5 from=translated src=- shape=e50df7e8 vocab=41b38053
+-/
 theorem paper_outer_weight_eq (i : ℕ) :
     paperLog 1 ((i : ℝ) + 2) = Real.log ((i : ℝ) + 12) := by
   simp [paperLog]
   ring_nf
 
 /-- Kalton's weight is bounded by twice the paper's outer weight.  The factor
-two keeps separate the two logarithm conventions in the cited arguments.-/
+two keeps separate the two logarithm conventions in the cited arguments.
+@isnad1 id=le.0h1v.s5.3e4680625cf4 from=translated src=- shape=798ff0fb vocab=754099a8
+-/
 theorem kaltonWeight_le_two_paperLog (i : ℕ) :
     kaltonWeight i ≤ 2 * paperLog 1 ((i : ℝ) + 2) := by
   rw [paper_outer_weight_eq]
@@ -267,16 +294,24 @@ theorem kaltonWeight_le_two_paperLog (i : ℕ) :
 noncomputable def entropySummand (S A : ℝ) : ℝ :=
   if A = 0 then 0 else A * Real.log (S / A)
 
+/--
+@isnad1 id=eq.0h1v.s4.f5ea2218d01c from=translated src=- shape=1d838610 vocab=cc280685
+-/
 theorem entropySummand_zero (S : ℝ) : entropySummand S 0 = 0 := by
   simp [entropySummand]
 
+/--
+@isnad1 id=eq.1h2v.s5.05ba67be0727 from=translated src=- shape=129480d8 vocab=898cedb7
+-/
 theorem entropySummand_eq {S A : ℝ} (hA : A ≠ 0) :
     entropySummand S A = A * Real.log (S / A) := by
   simp [entropySummand, hA]
 
 /-- The elementary pointwise estimate behind Kalton's Lemma 3.5.  We use
 `q_i = (i+1)⁻²`; the inequality is the tangent bound
-`-x log x ≤ 1-x`, applied to `x = (A/S)/q_i`.-/
+`-x log x ≤ 1-x`, applied to `x = (A/S)/q_i`.
+@isnad1 id=le.2h3v.s7.178fafd80c67 from=translated src=- shape=692c28be vocab=dcf0718e
+-/
 theorem entropySummand_le_index {S A : ℝ} (i : ℕ)
     (hS : 0 < S) (hA : 0 ≤ A) :
     entropySummand S A ≤
@@ -320,6 +355,9 @@ theorem entropySummand_le_index {S A : ℝ} (i : ℕ)
   ring_nf at hscaled ⊢
   linarith
 
+/--
+@isnad1 id=le.0h1v.s6.81704dc678f9 from=translated src=- shape=fb54de1f vocab=2b7ed023
+-/
 theorem sum_fin_inv_sq_le_two (n : ℕ) :
     (∑ i : Fin n, (((i : ℝ) + 1) ^ 2)⁻¹) ≤ 2 := by
   have aux : ∀ m : ℕ,
@@ -356,7 +394,9 @@ theorem sum_fin_inv_sq_le_two (n : ℕ) :
       linarith
 
 /-- Kalton's entropy budget is controlled by his exact finite index weight.
-This is the finite form of the scalar reduction in Theorem 3.6.-/
+This is the finite form of the scalar reduction in Theorem 3.6.
+@isnad1 id=other.1h2v.s6.6be6318a4c85 from=translated src=- shape=95744d78 vocab=27c16fd2
+-/
 theorem sum_entropySummand_le_kaltonWeight {n : ℕ} (A : Fin n → ℝ)
     (hA : ∀ i, 0 ≤ A i) :
     let S := ∑ i, A i
@@ -414,7 +454,9 @@ theorem sum_entropySummand_le_kaltonWeight {n : ℕ} (A : Fin n → ℝ)
 The proof follows Theorem 3.4: remove the union of the high-value sets,
 integrate on the remaining part of a level set, and use the layer-cake bound.
 The entropy-to-index conversion is the preceding formal version of Theorem
-3.6.-/
+3.6.
+@isnad1 id=hasweakl.4h5v.s7.465f4636603c from=translated src=- shape=055db8f5 vocab=11e645cb
+-/
 theorem hasWeakL1Bound_finset_sum_of_pos
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {n : ℕ}
     (f : Fin n → α → ℝ) (A : Fin n → ℝ)
@@ -591,7 +633,9 @@ theorem hasWeakL1Bound_finset_sum_of_pos
 
 /-- Finite Kalton inequality on an arbitrary measure space.  Zero individual
 weak bounds are handled by positive regularization and passage to the exact
-endpoint; they are not excluded by an extra hypothesis.-/
+endpoint; they are not excluded by an extra hypothesis.
+@isnad1 id=hasweakl.3h5v.s7.9c47fd129c05 from=translated src=- shape=566909ad vocab=b46e1a45
+-/
 theorem hasWeakL1Bound_finset_sum
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {n : ℕ}
     (f : Fin n → α → ℝ) (A : Fin n → ℝ)
@@ -669,7 +713,9 @@ theorem hasWeakL1Bound_finset_sum
 
 /-- The finite estimate in the logarithmic convention used by the source
 paper.  The factor `24 = 12 · 2` displays the explicit comparison with
-Kalton's original `1 + log (i+1)` weight.-/
+Kalton's original `1 + log (i+1)` weight.
+@isnad1 id=hasweakl.3h5v.s7.045ad0e7f854 from=translated src=- shape=70737561 vocab=1ff8e37c
+-/
 theorem hasWeakL1Bound_finset_sum_paperLog
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {n : ℕ}
     (f : Fin n → α → ℝ) (A : Fin n → ℝ)
@@ -697,7 +743,9 @@ theorem hasWeakL1Bound_finset_sum_paperLog
 /-- Countable form recorded by Lie, obtained exactly as in the source paper:
 apply the finite estimate to partial sums and then use continuity from below of
 measure.  Pointwise summability names the real-valued infinite sum and rules
-out the non-summable convention `tsum = 0`.-/
+out the non-summable convention `tsum = 0`.
+@isnad1 id=hasweakl.5h4v.s7.fa54fc02d167 from=translated src=- shape=a060888c vocab=c6c35f7d
+-/
 theorem hasWeakL1Bound_tsum
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     (f : ℕ → α → ℝ) (A : ℕ → ℝ)
@@ -768,7 +816,9 @@ theorem hasWeakL1Bound_tsum
       (Or.inl ENNReal.ofReal_ne_top)).1 hmeasure
 
 /-- Countable endpoint inequality in precisely the source paper's outer
-`log₁(k+2) = log(k+12)` convention.-/
+`log₁(k+2) = log(k+12)` convention.
+@isnad1 id=hasweakl.5h4v.s7.97d0c86854e4 from=translated src=- shape=a9db8f12 vocab=190656a4
+-/
 theorem hasWeakL1Bound_tsum_paperLog
     {α : Type*} [MeasurableSpace α] {μ : Measure α}
     (f : ℕ → α → ℝ) (A : ℕ → ℝ)

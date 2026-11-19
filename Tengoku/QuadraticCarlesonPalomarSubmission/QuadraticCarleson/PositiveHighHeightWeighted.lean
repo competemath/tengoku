@@ -23,14 +23,23 @@ namespace PositiveHighHeightEstimate
 
 open CalderonZygmundLevelAtoms PositiveLevelIntegration
 
+/--
+@isnad1 id=eq.0h1v.s5.6008cc511a62 from=translated src=- shape=9892137c vocab=328c3fb8
+-/
 theorem ennreal_sqrt_sq (a : ℝ≥0∞) : (a ^ (1 / 2 : ℝ)) ^ 2 = a := by
   rw [← ENNReal.rpow_mul_natCast]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s5.599f95ca7b2e from=translated src=- shape=205bfd91 vocab=328c3fb8
+-/
 theorem ennreal_sq_sqrt (a : ℝ≥0∞) : (a ^ 2) ^ (1 / 2 : ℝ) = a := by
   rw [← ENNReal.rpow_natCast_mul]
   norm_num
 
+/--
+@isnad1 id=le.0h2v.s7.b831aad3ae5a from=translated src=- shape=eecab4cf vocab=033c7f4b
+-/
 theorem tsum_sqrt_mul_sq_le (a b : ℕ → ℝ≥0∞) :
     (∑' k, a k ^ (1 / 2 : ℝ) * b k ^ (1 / 2 : ℝ)) ^ 2 ≤
       (∑' k, a k) * ∑' k, b k := by
@@ -42,6 +51,9 @@ theorem tsum_sqrt_mul_sq_le (a b : ℕ → ℝ≥0∞) :
   have hp := pow_le_pow_left₀ bot_le h 2
   simpa only [mul_pow, ennreal_sqrt_sq] using hp
 
+/--
+@isnad1 id=eq.3h4v.s8.971c32365da9 from=translated src=- shape=cf11b1d2 vocab=eaa47735
+-/
 theorem weighted_level_factor (A d W : ℝ) (hA : 0 ≤ A) (hd : 0 ≤ d)
     (hW : 0 < W) (M : ℝ≥0∞) :
     ENNReal.ofReal d * (ENNReal.ofReal (4 * A) * M) ^ (1 / 2 : ℝ) =
@@ -63,6 +75,9 @@ theorem weighted_level_factor (A d W : ℝ) (hA : 0 ≤ A) (hd : 0 ≤ d)
       rw [← mul_assoc, hc, mul_assoc]
     _ = _ := ENNReal.mul_rpow_of_nonneg _ _ (by norm_num)
 
+/--
+@isnad1 id=le.3h4v.s8.db47175cf6fc from=translated src=- shape=5d624728 vocab=177c8884
+-/
 theorem weighted_level_sum_sq_le (A d W : ℕ → ℝ) (M : ℕ → ℝ≥0∞)
     (hA : ∀ k, 0 ≤ A k) (hd : ∀ k, 0 ≤ d k) (hW : ∀ k, 0 < W k) :
     (∑' k, ENNReal.ofReal (d k) * (ENNReal.ofReal (4 * A k) * M k) ^ (1 / 2 : ℝ)) ^ 2 ≤
@@ -73,7 +88,9 @@ theorem weighted_level_sum_sq_le (A d W : ℕ → ℝ) (M : ℕ → ℝ≥0∞)
   exact tsum_sqrt_mul_sq_le _ _
 
 /-- The paper's high level-set estimate for genuine atoms and arbitrary
-positive weights, using the proved quadratic decay exponent `1/10`.-/
+positive weights, using the proved quadratic decay exponent `1/10`.
+@isnad1 id=le.6h7v.s8.f0051e260cb2 from=translated src=- shape=f27aa034 vocab=ac3a1c69
+-/
 theorem paperHighContribution_disjointLevelAtoms_weighted_levelSet_le
     {ι : Type*} [Countable ι] {A : ℕ → ℝ} (hA : ∀ k, 0 ≤ A k)
     (B : ℕ → ℕ) (W : ℕ → ℝ) (hW : ∀ k, 0 < W k)

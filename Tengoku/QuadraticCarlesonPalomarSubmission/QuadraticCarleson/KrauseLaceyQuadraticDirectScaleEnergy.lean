@@ -41,7 +41,9 @@ noncomputable def offsetOutputScaleLp
     offsetLocalizedPieceLp S scale f I s
 
 /-- The `L²` representative is a.e. the literal finite sum of localized
-integrals.-/
+integrals.
+@isnad1 id=eventual.0h6v.s8.5f01de139f97 from=translated src=- shape=f4f02218 vocab=8055f9d6
+-/
 theorem offsetOutputScaleLp_ae_eq
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -64,7 +66,9 @@ theorem offsetOutputScaleLp_ae_eq
   exact Finset.sum_congr rfl (hx ·)
 
 /-- Equal output scales have disjoint carriers inside every retained ambient
-subcollection.-/
+subcollection.
+@isnad1 id=pairwise.3h4v.s7.41dc58605196 from=translated src=- shape=3d1764f8 vocab=b596a839
+-/
 theorem outputScale_pairwiseDisjoint
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -80,7 +84,9 @@ theorem outputScale_pairwiseDisjoint
     (Finset.mem_filter.mpr ⟨hA (Finset.mem_filter.mp hJ).1,
       (Finset.mem_filter.mp hJ).2⟩) hne
 
-/-- Exact spatial orthogonality of two distinct same-scale direct outputs.-/
+/-- Exact spatial orthogonality of two distinct same-scale direct outputs.
+@isnad1 id=eq.6h8v.s8.438fa45dd87e from=translated src=- shape=6a172661 vocab=50aa95f1
+-/
 theorem inner_offsetLocalizedPieceLp_eq_zero_of_sameScale
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -101,7 +107,9 @@ theorem inner_offsetLocalizedPieceLp_eq_zero_of_sameScale
   · exact outputScale_pairwiseDisjoint hA hlam scale hscale k hI hJ hne
 
 /-- Same-scale spatial orthogonality identifies the squared `L²` norm with
-the finite sum of the genuine one-piece energies.-/
+the finite sum of the genuine one-piece energies.
+@isnad1 id=eq.3h6v.s8.621980b63515 from=translated src=- shape=389f22bf vocab=47aeab05
+-/
 theorem norm_offsetOutputScaleLp_sq_eq_sum_localizedEnergy
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -122,7 +130,9 @@ theorem norm_offsetOutputScaleLp_sq_eq_sum_localizedEnergy
   · intro I hI J hJ hne
     exact inner_offsetLocalizedPieceLp_eq_zero_of_sameScale hA hlam scale hscale f k s hI hJ hne
 
-/-- Summing the direct one-piece bounds on a fixed output scale.-/
+/-- Summing the direct one-piece bounds on a fixed output scale.
+@isnad1 id=le.7h7v.s9.be1c7eaf7460 from=translated src=- shape=b0af0c7e vocab=9591e108
+-/
 theorem norm_offsetOutputScaleLp_sq_le_sum_energy_bounds
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -144,7 +154,9 @@ theorem norm_offsetOutputScaleLp_sq_le_sum_energy_bounds
     (hA (Finset.mem_filter.mp hI).1) (hgap I hI)
 
 /-- The summed energy bounds retain an exact ambient-region mass expansion,
-valid for every output subcollection `A`.-/
+valid for every output subcollection `A`.
+@isnad1 id=le.0h6v.s7.46731ed9e79e from=translated src=- shape=552fd6db vocab=81d60be6
+-/
 theorem sum_offsetGroupedInput_mass_region_bound
     (S A : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (k s : ℤ) :
@@ -158,7 +170,9 @@ theorem sum_offsetGroupedInput_mass_region_bound
     (A.filter (fun I ↦ scale I = k)) scale f s
 
 /-- At one output scale, the central thirds of the retained outputs are
-pairwise disjoint.-/
+pairwise disjoint.
+@isnad1 id=pairwise.3h4v.s7.61eefce7f39f from=translated src=- shape=74bb982d vocab=f540d1e0
+-/
 theorem outputScale_centralThird_pairwiseDisjoint
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -172,7 +186,9 @@ theorem outputScale_centralThird_pairwiseDisjoint
     I.centralThird_subset_carrier J.centralThird_subset_carrier
 
 /-- The fixed-offset masses of all outputs at one common scale are bounded
-by the corresponding ambient smallest-region scale input.-/
+by the corresponding ambient smallest-region scale input.
+@isnad1 id=le.4h6v.s8.4211dfd21917 from=translated src=- shape=2a91e30a vocab=780aaa36
+-/
 theorem sum_integral_norm_offsetGroupedInput_fixedScale_le
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -237,7 +253,9 @@ theorem sum_integral_norm_offsetGroupedInput_fixedScale_le
             exact norm_nonneg _
     _ = _ := by rfl
 
-/-- A nonoccurring smallest-region scale contributes exactly zero.-/
+/-- A nonoccurring smallest-region scale contributes exactly zero.
+@isnad1 id=eq.1h4v.s5.ba06c8aed78e from=translated src=- shape=aec550f5 vocab=bccfd6ff
+-/
 theorem smallestScaleInput_eq_zero_of_not_mem_image
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (m : ℤ) (hm : m ∉ S.image scale) :
@@ -252,7 +270,9 @@ theorem smallestScaleInput_eq_zero_of_not_mem_image
 
 /-- Summing the preceding fixed-scale inequality over all actual output
 scales costs no multiplicity: translation `k ↦ k - s` is injective, and
-scales absent from the ambient selected family contribute zero.-/
+scales absent from the ambient selected family contribute zero.
+@isnad1 id=le.5h6v.s8.c6b041cf272c from=translated src=- shape=abad9f2b vocab=86ef3b50
+-/
 theorem sum_integral_norm_offsetGroupedInput_allScales_le_root
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦
@@ -314,7 +334,9 @@ theorem sum_integral_norm_offsetGroupedInput_allScales_le_root
           exact sum_integral_norm_smallestScaleInput_le hlam scale hsub f
 
 /-- The offset input is supported on its output interval's central third, so
-the local mass occurring in the one-piece energy estimate is its full mass.-/
+the local mass occurring in the one-piece energy estimate is its full mass.
+@isnad1 id=eq.0h5v.s6.032972b0a3c5 from=translated src=- shape=ce736a49 vocab=3716b3de
+-/
 theorem integral_centralThird_norm_offsetGroupedInput_eq
     (S : Finset RealInterval) (scale : RealInterval → ℤ) (f : L0Infinity)
     (I : RealInterval) (s : ℤ) :
@@ -341,7 +363,9 @@ theorem integral_centralThird_norm_offsetGroupedInput_eq
 
 /-- The global fixed-offset square-sum energy bound follows by combining
 same-scale orthogonality, the concrete one-piece estimate, and the preceding
-ambient mass closure.-/
+ambient mass closure.
+@isnad1 id=le.8h7v.s9.3b9e505aaac0 from=translated src=- shape=c0666d58 vocab=5ba92fa0
+-/
 theorem sum_norm_offsetOutputScaleLp_sq_le_root_mass
     {S A : Finset RealInterval} (hA : A ⊆ S)
     (hlam : Set.Pairwise (↑S : Set RealInterval) fun I J ↦

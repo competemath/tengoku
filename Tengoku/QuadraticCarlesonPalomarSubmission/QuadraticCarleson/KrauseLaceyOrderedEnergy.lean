@@ -14,6 +14,9 @@ namespace QuadraticCarleson.KrauseLaceyOrderedEnergy
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h5v.s7.e447f6e2d9ed from=translated src=- shape=ba4e5fbe vocab=7056c73d
+-/
 theorem sum_abs_inner_eq_diagonal_add_crossRows
     {ι E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (S : Finset ι) (v : ι → E) (rank : ι → ℤ)
@@ -61,6 +64,9 @@ theorem sum_abs_inner_eq_diagonal_add_crossRows
       rw [hdiag]
       ring
 
+/--
+@isnad1 id=le.2h6v.s8.a13360e276f4 from=translated src=- shape=98159029 vocab=abd323b4
+-/
 theorem signed_sum_sq_le_diagonal_add_crossRows
     {ι E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (S : Finset ι) (v : ι → E) (rank : ι → ℤ)
