@@ -1,0 +1,1 @@
+-- MagicSquaresFieldsLean: a factory bundle (data/intake/magic-squares-fields-lean). This file only marks the library for Tengoku/All.lean.
