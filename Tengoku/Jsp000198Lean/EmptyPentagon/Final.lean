@@ -24,7 +24,9 @@ def InB (P : Fin 5 → Point) (M : Point) (j : Fin 5) (q : Point) : Prop :=
   0 < orient M (P j) q ∧ orient M (P (j + 1)) q < 0 ∧ orient (P j) (P (j + 1)) q < 0 ∧
     orient (P (j - 1)) (P j) q < 0 ∧ orient (P (j + 1)) (P (j + 2)) q < 0
 
-/-- Indexed general position for a five-point family of `S` with pairwise distinct entries.-/
+/-- Indexed general position for a five-point family of `S` with pairwise distinct entries.
+@isnad1 id=indexedg.16h6v.s7.9dccf6937ae7 from=translated src=- shape=ec3ad6bd vocab=9592fed2
+-/
 theorem indexedGP_vec5 (S : Finset Point) (hgp : GeneralPosition S) (a b c d e : Point)
     (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S) (hd : d ∈ S) (he : e ∈ S) (hab : a ≠ b) (hac : a ≠ c)
     (had : a ≠ d) (hae : a ≠ e) (hbc : b ≠ c) (hbd : b ≠ d) (hbe : b ≠ e) (hcd : c ≠ d)
@@ -40,7 +42,9 @@ theorem indexedGP_vec5 (S : Finset Point) (hgp : GeneralPosition S) (a b c d e :
   exact fun x y z hxy hxz hyz =>
     hgp _ (hmem x) _ (hmem y) _ (hmem z) (hinj.ne hxy) (hinj.ne hxz) (hinj.ne hyz)
 
-/-- A point of the region `B j` is none of the five pentagon vertices.-/
+/-- A point of the region `B j` is none of the five pentagon vertices.
+@isnad1 id=ne.2h5v.s7.ad0d157fb405 from=translated src=- shape=38dd517d vocab=52060e34
+-/
 theorem ne_vertex_of_inB (P : Fin 5 → Point)
     (hccw : ∀ a b : Fin 5, b ≠ a → b ≠ a + 1 → 0 < orient (P a) (P (a + 1)) (P b))
     (M : Point) (j : Fin 5) (q : Point) (h : InB P M j q) (k : Fin 5) : q ≠ P k := by
@@ -75,7 +79,9 @@ theorem ne_vertex_of_inB (P : Fin 5 → Point)
 /-- Five points `M, U, V, A, B, C` with `A, B, C` beyond the edge `U → V`, seen from `M` in the
 order "before `U`", "between `U` and `V`", "past `V`", and with `A` strictly left of `B → C`,
 give the counterclockwise pentagon `V, U, A, B, C`; if every other point of `S` is strictly left
-of `U → V`, that pentagon is an empty convex polygon of `S`.-/
+of `U → V`, that pentagon is an empty convex polygon of `S`.
+@isnad1 id=ex.17h7v.s8.0747997ef3fb from=translated src=- shape=8392a63b vocab=136efaaf
+-/
 theorem empty_pentagon_of_wedge_triple (S : Finset Point) (hgp : GeneralPosition S)
     (M U V A B C : Point) (hMS : M ∈ S) (hUS : U ∈ S) (hVS : V ∈ S) (hAS : A ∈ S) (hBS : B ∈ S)
     (hCS : C ∈ S) (h1 : 0 < orient U V M) (h2 : orient M U A < 0) (h3 : orient U V A < 0)
@@ -277,7 +283,9 @@ theorem empty_pentagon_of_wedge_triple (S : Finset Point) (hgp : GeneralPosition
 /-- Harborth's final case: the four points of `S` outside the pentagon lie one each in the four
 consecutive regions `B (i-1), B i, B (i+1), B (i+2)`. Then `{Q (i-1), Q i, Q (i+1), P i, P (i+1)}`
 (if `Q (i-1)` is strictly left of `Q i → Q (i+1)`) or `{Q i, Q (i+1), Q (i+2), P (i+1), P (i+2)}`
-(otherwise) is an empty convex pentagon.-/
+(otherwise) is an empty convex pentagon.
+@isnad1 id=ex.12h8v.s9.581549a2a39c from=translated src=- shape=d0dcbc94 vocab=44f7275a
+-/
 theorem final_case (S : Finset Point) (hgp : GeneralPosition S) (P : Fin 5 → Point)
     (hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

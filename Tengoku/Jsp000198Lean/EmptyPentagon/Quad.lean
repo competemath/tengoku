@@ -17,7 +17,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Beam
 noncomputable section
 namespace Horton
 
-/-- The open half-plane strictly left of the directed line through `u` and `v` is convex.-/
+/-- The open half-plane strictly left of the directed line through `u` and `v` is convex.
+@isnad1 id=convex.0h2v.s5.bb46012f2064 from=translated src=- shape=c8701fa7 vocab=e9b496d0
+-/
 theorem convex_strict_halfplane (u v : Point) : Convex ℝ {q : Point | 0 < orient u v q} := by
   intro x hx y hy a b ha hb hab
   have hx' : 0 < orient u v x := hx
@@ -57,7 +59,9 @@ theorem eq_of_mem_convexHull_insert_of_orient_zero (p q z : Point) (hz : orient 
     simpa using hr
 
 /-- Three vertices of a convex-independent set strictly on one side of the line through two
-points of its hull form, together with those two points, a set in convex position.-/
+points of its hull form, together with those two points, a set in convex position.
+@isnad1 id=convexin.13h6v.s9.6fea45e7806b from=translated src=- shape=d755e327 vocab=17041e8c
+-/
 theorem convexIndependent_line_five (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (a b c p q : Point) (ha : a ∈ V) (hb : b ∈ V) (hc : c ∈ V)
@@ -124,14 +128,18 @@ theorem convexIndependent_line_five (V : Finset Point)
     exact hpq (eq_of_mem_convexHull_insert_of_orient_zero p q p hpp _ (fun x hx => hx) q
       (convexHull_mono hsub hmem) hqq).symm
 
-/-- Orientation along the affine line through `a` and `b`.-/
+/-- Orientation along the affine line through `a` and `b`.
+@isnad1 id=eq.0h5v.s6.987a01c914ea from=translated src=- shape=4f0f71d9 vocab=aba42576
+-/
 theorem orient_add_smul (u v a b : Point) (s : ℝ) :
     orient u v (a + s • (b - a)) = (1 - s) * orient u v a + s * orient u v b := by
   simp only [orient, Prod.fst_add, Prod.snd_add, Prod.smul_fst, Prod.smul_snd, Prod.fst_sub,
     Prod.snd_sub, smul_eq_mul]
   ring
 
-/-- The diagonals of a counterclockwise convex quadrilateral cross.-/
+/-- The diagonals of a counterclockwise convex quadrilateral cross.
+@isnad1 id=ex.4h4v.s6.0ac72b3a7e95 from=translated src=- shape=b068d5e7 vocab=008afd9d
+-/
 theorem exists_diagonal_crossing (w1 w2 w3 w4 : Point)
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)
     (h4 : 0 < orient w4 w1 w2) :
@@ -175,7 +183,9 @@ theorem exists_diagonal_crossing (w1 w2 w3 w4 : Point)
   · rw [openSegment_eq_image']
     exact ⟨s, ⟨hs0, hs1⟩, hs.symm⟩
 
-/-- A line cannot separate the vertices of a convex quadrilateral alternately.-/
+/-- A line cannot separate the vertices of a convex quadrilateral alternately.
+@isnad1 id=false.5h6v.s6.311cfecb8efb from=translated src=- shape=352e917d vocab=997aa3b2
+-/
 theorem not_alternating (w1 w2 w3 w4 z1 z2 : Point)
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)
     (h4 : 0 < orient w4 w1 w2)
@@ -193,7 +203,9 @@ theorem not_alternating (w1 w2 w3 w4 z1 z2 : Point)
   rw [hX] at e2
   exact lt_asymm e1 e2
 
-/-- A nonvanishing orientation forces its three points to be pairwise distinct.-/
+/-- A nonvanishing orientation forces its three points to be pairwise distinct.
+@isnad1 id=and.1h3v.s5.ba07288c0230 from=translated src=- shape=4362d778 vocab=289b8093
+-/
 theorem ne_of_orient_ne_zero {u v x : Point} (h : orient u v x ≠ 0) :
     u ≠ v ∧ u ≠ x ∧ v ≠ x := by
   refine ⟨fun e => h ?_, fun e => h ?_, fun e => h ?_⟩
@@ -202,7 +214,9 @@ theorem ne_of_orient_ne_zero {u v x : Point} (h : orient u v x ≠ 0) :
   · rw [← e, orient_right_self]
 
 /-- A point of a closed counterclockwise triangle lies in every closed half-plane containing the
-three vertices.-/
+three vertices.
+@isnad1 id=le.7h6v.s6.a040201b4862 from=translated src=- shape=821dbd6a vocab=ca6b5f36
+-/
 theorem orient_nonneg_of_triangle (a b c u v y : Point) (habc : 0 < orient a b c)
     (ha : 0 ≤ orient a b y) (hb : 0 ≤ orient b c y) (hc : 0 ≤ orient c a y)
     (hu : 0 ≤ orient u v a) (hv : 0 ≤ orient u v b) (hw : 0 ≤ orient u v c) :
@@ -215,7 +229,9 @@ theorem orient_nonneg_of_triangle (a b c u v y : Point) (habc : 0 < orient a b c
   rw [mul_zero, key]
   exact add_nonneg (add_nonneg (mul_nonneg hb hu) (mul_nonneg hc hv)) (mul_nonneg ha hw)
 
-/-- A point outside a counterclockwise convex quadrilateral differs from its vertices.-/
+/-- A point outside a counterclockwise convex quadrilateral differs from its vertices.
+@isnad1 id=and.5h5v.s7.88de8998bc73 from=translated src=- shape=cd020b41 vocab=997aa3b2
+-/
 theorem ne_vertices_of_outside (w1 w2 w3 w4 y : Point)
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)
     (h4 : 0 < orient w4 w1 w2)
@@ -226,7 +242,9 @@ theorem ne_vertices_of_outside (w1 w2 w3 w4 y : Point)
 
 /-- A point of the cone at an interior point `z` through consecutive vertices `w1, w2` of a
 counterclockwise convex quadrilateral that lies outside the closed quadrilateral is strictly
-beyond the side `w1 w2`.-/
+beyond the side `w1 w2`.
+@isnad1 id=lt.8h6v.s7.f08df9ef82e8 from=translated src=- shape=8bec6407 vocab=997aa3b2
+-/
 theorem orient_neg_of_mem_cone (w1 w2 w3 w4 z y : Point)
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)
     (h4 : 0 < orient w4 w1 w2)
@@ -249,13 +267,17 @@ theorem orient_neg_of_mem_cone (w1 w2 w3 w4 z y : Point)
       (not_le.mpr h)
   · exact absurd (key w4 w1 hz.2.2.2.le (orient_right_self _ _).ge h4.le) (not_le.mpr h)
 
-/-- Indexed general position of an injective five-tuple drawn from a set in general position.-/
+/-- Indexed general position of an injective five-tuple drawn from a set in general position.
+@isnad1 id=indexedg.3h2v.s5.ff5cba61d999 from=translated src=- shape=75e8060e vocab=df77df5a
+-/
 theorem indexedGP_of_generalPosition (S : Finset Point) (hgp : GeneralPosition S)
     (p : Fin 5 → Point) (hmem : ∀ i, p i ∈ S) (hinj : Function.Injective p) : IndexedGP p :=
   fun i j k hij hik hjk =>
     hgp _ (hmem i) _ (hmem j) _ (hmem k) (hinj.ne hij) (hinj.ne hik) (hinj.ne hjk)
 
-/-- A five-tuple of pairwise distinct points is injective.-/
+/-- A five-tuple of pairwise distinct points is injective.
+@isnad1 id=injectiv.10h5v.s6.f0728bef9874 from=translated src=- shape=875db622 vocab=fc903298
+-/
 theorem injective_vec5 {a b c d e : Point} (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hae : a ≠ e)
     (hbc : b ≠ c) (hbd : b ≠ d) (hbe : b ≠ e) (hcd : c ≠ d) (hce : c ≠ e) (hde : d ≠ e) :
     Function.Injective ![a, b, c, d, e] := by
@@ -264,7 +286,9 @@ theorem injective_vec5 {a b c d e : Point} (hab : a ≠ b) (hac : a ≠ c) (had 
 
 /-- Cone covering for a counterclockwise convex quadrilateral with an interior point `z`: a
 point `y` outside the closed quadrilateral lies in one of the four cones at `z` through
-consecutive vertices, strictly beyond the corresponding side.-/
+consecutive vertices, strictly beyond the corresponding side.
+@isnad1 id=or.7h6v.s8.b1a209821fcc from=translated src=- shape=79d22789 vocab=a6b9ddb8
+-/
 theorem cone_cover4 (w1 w2 w3 w4 z y : Point)
     (hgp : GeneralPosition ({w1, w2, w3, w4, z, y} : Finset Point))
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)

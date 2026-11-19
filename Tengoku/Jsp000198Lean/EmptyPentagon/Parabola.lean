@@ -12,7 +12,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Forces
 noncomputable section
 namespace Horton
 
-/-- Points on the parabola `y = x^2` with distinct abscissae are in general position.-/
+/-- Points on the parabola `y = x^2` with distinct abscissae are in general position.
+@isnad1 id=ex.0h1v.s4.2f0aff7414d6 from=translated src=- shape=18d5a375 vocab=df3172bd
+-/
 theorem exists_generalPosition_card (n : ℕ) :
     ∃ S : Finset Point, S.card = n ∧ GeneralPosition S := by
   have hinj : Function.Injective (fun i : ℕ => (((i : ℝ), (i : ℝ) ^ 2) : Point)) := by
@@ -37,7 +39,9 @@ theorem exists_generalPosition_card (n : ℕ) :
     exact mul_ne_zero (mul_ne_zero (sub_ne_zero.mpr hij.symm) (sub_ne_zero.mpr hik.symm))
       (sub_ne_zero.mpr hjk.symm)
 
-/-- A forced empty `k`-gon needs at least `k` points.-/
+/-- A forced empty `k`-gon needs at least `k` points.
+@isnad1 id=le.1h2v.s3.90bc7560ebc2 from=translated src=- shape=37236ace vocab=2fd4ae14
+-/
 theorem ForcesEmptyKGon.le {k n : ℕ} (h : ForcesEmptyKGon k n) : k ≤ n := by
   obtain ⟨S, hS, hgen⟩ := exists_generalPosition_card n
   obtain ⟨V, hV, hVS⟩ := h S hS hgen

@@ -30,33 +30,57 @@ abbrev Point := ℝ × ℝ
 def orient (a b c : Point) : ℝ :=
   (b.1 - a.1) * (c.2 - a.2) - (b.2 - a.2) * (c.1 - a.1)
 
+/--
+@isnad1 id=eq.0h2v.s4.4c1e1aa3667e from=translated src=- shape=bd2a8fb1 vocab=442b288b
+-/
 @[simp] theorem orient_self_left (a b : Point) : orient a a b = 0 := by
   simp [orient]
 
+/--
+@isnad1 id=eq.0h2v.s4.842c110ab6fe from=translated src=- shape=f5a3d3ad vocab=442b288b
+-/
 @[simp] theorem orient_self_right (a b : Point) : orient a b b = 0 := by
   unfold orient
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.551304447668 from=translated src=- shape=52ed7545 vocab=442b288b
+-/
 @[simp] theorem orient_self_outer (a b : Point) : orient a b a = 0 := by
   simp [orient]
 
+/--
+@isnad1 id=eq.0h3v.s4.a93bd110d9c4 from=translated src=- shape=f2c75b05 vocab=62c424ef
+-/
 theorem orient_swap (a b c : Point) : orient b a c = -orient a b c := by
   unfold orient
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.3179c07ce131 from=translated src=- shape=e17bed85 vocab=442b288b
+-/
 theorem orient_cycle (a b c : Point) : orient b c a = orient a b c := by
   unfold orient
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.5b662c322f03 from=translated src=- shape=04d76633 vocab=62c424ef
+-/
 theorem orient_swap_right (a b c : Point) : orient a c b = -orient a b c := by
   unfold orient
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.4bd43b8de4d8 from=translated src=- shape=5405271b vocab=30f3af15
+-/
 theorem orient_add (a b c x : Point) :
     orient a b x + orient b c x + orient c a x = orient a b c := by
   unfold orient
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.75722d2fb86f from=translated src=- shape=eeca7bef vocab=2bbc8d2e
+-/
 theorem orient_eq_zero_of_collinear {a b c : Point}
     (h : Collinear ℝ ({a, b, c} : Set Point)) : orient a b c = 0 := by
   obtain ⟨v, hv⟩ := (collinear_iff_of_mem (k := ℝ)
@@ -67,11 +91,16 @@ theorem orient_eq_zero_of_collinear {a b c : Point}
     Prod.smul_fst, Prod.smul_snd, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=not.1h3v.s6.8b1cc54dd14d from=translated src=- shape=75f835be vocab=2bbc8d2e
+-/
 theorem not_collinear_of_orient_ne_zero {a b c : Point}
     (h : orient a b c ≠ 0) : ¬Collinear ℝ ({a, b, c} : Set Point) :=
   fun hc => h (orient_eq_zero_of_collinear hc)
 
-/-- Consistent positive orientations put a point in the triangle's convex hull.-/
+/-- Consistent positive orientations put a point in the triangle's convex hull.
+@isnad1 id=mem.4h4v.s7.424cd6cf8617 from=translated src=- shape=a4eeb11c vocab=80344ce0
+-/
 theorem mem_triangle_of_orient_pos {a b c x : Point}
     (habc : 0 < orient a b c) (habx : 0 < orient a b x)
     (hbcx : 0 < orient b c x) (hcax : 0 < orient c a x) :
@@ -109,7 +138,9 @@ theorem mem_triangle_of_orient_pos {a b c x : Point}
   exact hrepr ▸ hc
 
 /-- Strict orientation inequalities put a point in the actual topological
-interior of the triangle, not merely its closed convex hull.-/
+interior of the triangle, not merely its closed convex hull.
+@isnad1 id=mem.4h4v.s7.249e06f08801 from=translated src=- shape=92d49e51 vocab=1079872f
+-/
 theorem mem_interior_triangle_of_orient_pos {a b c x : Point}
     (habc : 0 < orient a b c) (habx : 0 < orient a b x)
     (hbcx : 0 < orient b c x) (hcax : 0 < orient c a x) :
@@ -132,6 +163,9 @@ def GeneralPosition (P : Set Point) : Prop :=
   ∀ a ∈ P, ∀ b ∈ P, ∀ c ∈ P,
     a ≠ b → a ≠ c → b ≠ c → ¬Collinear ℝ ({a, b, c} : Set Point)
 
+/--
+@isnad1 id=generalp.2h2v.s4.7eee024c5427 from=translated src=- shape=49f84804 vocab=3fcf32c6
+-/
 theorem GeneralPosition.mono {P Q : Set Point} (h : GeneralPosition P)
     (hQP : Q ⊆ P) : GeneralPosition Q := by
   intro a ha b hb c hc hab hac hbc
@@ -144,6 +178,9 @@ structure EmptyConvex (P S : Set Point) : Prop where
   convexIndependent : ConvexIndependent ℝ ((↑) : S → Point)
   empty : ∀ x ∈ P, x ∈ interior (convexHull ℝ S) → x ∈ S
 
+/--
+@isnad1 id=emptycon.2h3v.s4.12293ee1ab7b from=translated src=- shape=5676e106 vocab=3cb796e0
+-/
 theorem EmptyConvex.vertices_subset {P S T : Set Point}
     (h : EmptyConvex P S) (hTS : T ⊆ S) : EmptyConvex P T := by
   refine ⟨hTS.trans h.subset, h.convexIndependent.mono hTS, ?_⟩
@@ -152,10 +189,16 @@ theorem EmptyConvex.vertices_subset {P S T : Set Point}
   exact (convexIndependent_set_iff_inter_convexHull_subset.mp
     h.convexIndependent) T hTS ⟨hxS, interior_subset hxT⟩
 
+/--
+@isnad1 id=emptycon.3h3v.s5.ba7d138e354d from=translated src=- shape=c181cf6a vocab=3cb796e0
+-/
 theorem EmptyConvex.ambient_subset {P Q S : Set Point}
     (h : EmptyConvex P S) (hQP : Q ⊆ P) (hSQ : S ⊆ Q) : EmptyConvex Q S :=
   ⟨hSQ, h.convexIndependent, fun x hx => h.empty x (hQP hx)⟩
 
+/--
+@isnad1 id=mem.6h6v.s7.3dcfa7fc95d5 from=translated src=- shape=e190c56e vocab=bcfd74fa
+-/
 theorem EmptyConvex.triangle_empty {P S : Set Point} (h : EmptyConvex P S)
     {a b c x : Point} (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S)
     (hx : x ∈ P) (htri : x ∈ interior (convexHull ℝ ({a, b, c} : Set Point))) :
@@ -169,6 +212,9 @@ theorem EmptyConvex.triangle_empty {P S : Set Point} (h : EmptyConvex P S)
 def HasEmptyKGon (k : ℕ) (P : Finset Point) : Prop :=
   ∃ S : Finset Point, S.card = k ∧ EmptyConvex (P : Set Point) (S : Set Point)
 
+/--
+@isnad1 id=hasempty.2h3v.s4.989b71f0db5f from=translated src=- shape=0cd0eb78 vocab=bd7d6a04
+-/
 theorem HasEmptyKGon.of_le {k m : ℕ} {P : Finset Point}
     (h : HasEmptyKGon m P) (hkm : k ≤ m) : HasEmptyKGon k P := by
   obtain ⟨S, hS, hSP⟩ := h

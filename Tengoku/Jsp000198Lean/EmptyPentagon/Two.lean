@@ -25,7 +25,9 @@ namespace Horton
 
 /-- Five points of `S` in convex position (all ten orientations positive for the cyclic order
 `a, b, c, d, e`) such that every other point of `S` lies weakly beyond one of the five edge lines
-give an empty convex pentagon of `S`.-/
+give an empty convex pentagon of `S`.
+@isnad1 id=ex.16h6v.s8.f95081891893 from=translated src=- shape=db182bdd vocab=12196b93
+-/
 theorem pent5_of_signs (S : Finset Point) (a b c d e : Point)
     (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S) (hd : d ∈ S) (he : e ∈ S)
     (n012 : 0 < orient a b c) (n013 : 0 < orient a b d) (n014 : 0 < orient a b e)
@@ -107,7 +109,9 @@ def RegAll (A B C D E M Q S3 Z : Point) : Prop :=
     (RegA M D E C A Z ∧ RDig A D E M Q S3 Z) ∨ (RegA M E A D B Z ∧ RDig A D E M Q S3 Z)
 
 set_option maxHeartbeats 2000000 in
-/-- Each outer point of a region other than `B i` satisfies its nine-fact digest.-/
+/-- Each outer point of a region other than `B i` satisfies its nine-fact digest.
+@isnad1 id=regall.91h10v.s9.4b0a9ebf0ff0 from=translated src=- shape=83c9db5c vocab=68640903
+-/
 theorem regAll_of_reg (S : Finset Point) (hgp : GeneralPosition S)
     (A B C D E M Q S3 Z : Point)
     (mA : A ∈ S) (mB : B ∈ S) (mC : C ∈ S) (mD : D ∈ S) (mE : E ∈ S) (mM : M ∈ S) (mQ : Q ∈ S) (mS3 : S3 ∈ S) (mZ : Z ∈ S)
@@ -396,7 +400,9 @@ theorem regAll_of_reg (S : Finset Point) (hgp : GeneralPosition S)
 
 set_option maxHeartbeats 2000000 in
 /-- Harborth two-point case, both outer points beyond the line `Q → S3` (with `Z`
-the one seen first from `S3`).-/
+the one seen first from `S3`).
+@isnad1 id=ex.107h11v.s10.8acf1ef8f088 from=translated src=- shape=349066b9 vocab=82d9cb5a
+-/
 theorem two_RR (S : Finset Point) (hgp : GeneralPosition S)
     (A B C D E M Q S3 Z W : Point)
     (mA : A ∈ S) (mB : B ∈ S) (mC : C ∈ S) (mD : D ∈ S) (mE : E ∈ S) (mM : M ∈ S) (mQ : Q ∈ S) (mS3 : S3 ∈ S) (mZ : Z ∈ S) (mW : W ∈ S)
@@ -1093,7 +1099,9 @@ theorem two_RR (S : Finset Point) (hgp : GeneralPosition S)
 
 set_option maxHeartbeats 2000000 in
 /-- Harborth two-point case, both outer points on the left of `Q → S3` (with `Z`
-the one seen last from `S3`).-/
+the one seen last from `S3`).
+@isnad1 id=ex.107h11v.s10.53cb7bb559f3 from=translated src=- shape=ab386797 vocab=82d9cb5a
+-/
 theorem two_LL (S : Finset Point) (hgp : GeneralPosition S)
     (A B C D E M Q S3 Z W : Point)
     (mA : A ∈ S) (mB : B ∈ S) (mC : C ∈ S) (mD : D ∈ S) (mE : E ∈ S) (mM : M ∈ S) (mQ : Q ∈ S) (mS3 : S3 ∈ S) (mZ : Z ∈ S) (mW : W ∈ S)
@@ -1856,7 +1864,9 @@ theorem two_LL (S : Finset Point) (hgp : GeneralPosition S)
     · exact Or.inr (Or.inr (Or.inl (le_of_lt q2sY)))
 
 set_option maxHeartbeats 2000000 in
-/-- Harborth two-point case, the outer point `Z` right of `Q → S3` and `W` left.-/
+/-- Harborth two-point case, the outer point `Z` right of `Q → S3` and `W` left.
+@isnad1 id=ex.105h11v.s10.1bbac05d4f70 from=translated src=- shape=d5dec905 vocab=845ef453
+-/
 theorem two_MX (S : Finset Point) (hgp : GeneralPosition S)
     (A B C D E M Q S3 Z W : Point)
     (mA : A ∈ S) (mB : B ∈ S) (mC : C ∈ S) (mD : D ∈ S) (mE : E ∈ S) (mM : M ∈ S) (mQ : Q ∈ S) (mS3 : S3 ∈ S) (mZ : Z ∈ S) (mW : W ∈ S)
@@ -2203,7 +2213,9 @@ set_option maxHeartbeats 4000000 in
 `Q, S3` in the region `B i` (with `Q` at least as close to the edge line as `S3`, and `S3` beyond
 the tent `P i, Q, P (i+1)`), and two further points `X, Y` lying in regions other than `B i`;
 if `X` and `Y` share a region, the farther one lies beyond the tent of the closer one. Then `S`
-has an empty convex pentagon.-/
+has an empty convex pentagon.
+@isnad1 id=ex.17h8v.s10.a0fdd50f11d7 from=translated src=- shape=3969c3f3 vocab=a6b3176e
+-/
 theorem two_case (S : Finset Point) (hgp : GeneralPosition S) (P : Fin 5 → Point)
     (hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

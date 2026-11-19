@@ -18,7 +18,9 @@ namespace Horton
 strictly inside; the line `z1 → z2` has `v1` strictly on its right and `v2, v3` strictly on its
 left. Then every point `y` in general position outside the closed triangle lies in the cone at
 `z1` through `v3, v1` beyond the edge `v3 v1`, or in the cone at `z2` through `v1, v2` beyond
-the edge `v1 v2`, or in the strip beyond `v2 v3` right of `z1 → v3` and left of `z2 → v2`.-/
+the edge `v1 v2`, or in the strip beyond `v2 v3` right of `z1 → v3` and left of `z2 → v2`.
+@isnad1 id=or.9h6v.s8.b5f9e8f2fbcb from=translated src=- shape=4c9dc809 vocab=07e68ac5
+-/
 theorem cover_332 (v1 v2 v3 z1 z2 y : Point)
     (hgp1 : IndexedGP ![v1, v2, v3, z1, y]) (hgp2 : IndexedGP ![v1, v2, v3, z2, y])
     (ht : 0 < orient v1 v2 v3)

@@ -16,7 +16,9 @@ noncomputable section
 namespace Horton
 
 /-- A member of a convex-independent set in general position cannot see three other members
-in cyclic (all counterclockwise) order: it would lie strictly inside their triangle.-/
+in cyclic (all counterclockwise) order: it would lie strictly inside their triangle.
+@isnad1 id=false.11h5v.s7.563cc083d9d5 from=translated src=- shape=d644bb8e vocab=5d86bb85
+-/
 theorem not_cyclic_of_convexIndependent (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) (o a b c : Point)
     (ho : o ∈ V) (ha : a ∈ V) (hb : b ∈ V) (hc : c ∈ V)
@@ -32,7 +34,9 @@ theorem not_cyclic_of_convexIndependent (V : Finset Point)
     (interior_subset hmem) hV
 
 /-- Three members `w2, w3, w4` of a convex-independent set in general position, seen in
-counterclockwise angular order from a fourth member `w1`, give a counterclockwise 4-cycle.-/
+counterclockwise angular order from a fourth member `w1`, give a counterclockwise 4-cycle.
+@isnad1 id=and.9h5v.s7.b0f5e6c8001e from=translated src=- shape=6dfb0300 vocab=d873ab04
+-/
 theorem ccw_cycle_of_angular_order (V : Finset Point) (hgp : GeneralPosition V)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) (w1 w2 w3 w4 : Point)
     (h1 : w1 ∈ V) (h2 : w2 ∈ V) (h3 : w3 ∈ V) (h4 : w4 ∈ V)
@@ -51,7 +55,9 @@ theorem ccw_cycle_of_angular_order (V : Finset Point) (hgp : GeneralPosition V)
     rw [e]
     exact h124
 
-/-- A convex-independent 4-set in general position can be labelled counterclockwise.-/
+/-- A convex-independent 4-set in general position can be labelled counterclockwise.
+@isnad1 id=ex.3h1v.s7.f72cb6efbaca from=translated src=- shape=84eb1213 vocab=81e69250
+-/
 theorem exists_cyclic_labeling4 (V : Finset Point) (hcard : V.card = 4) (hgp : GeneralPosition V)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) :
     ∃ w1 w2 w3 w4 : Point, ({w1, w2, w3, w4} : Finset Point) = V ∧
@@ -131,7 +137,9 @@ theorem exists_cyclic_labeling4 (V : Finset Point) (hcard : V.card = 4) (hgp : G
     exact absurd hV (fun hV => not_cyclic_of_convexIndependent V hV o a b c hoV haV hbV hcV
       hoa hob hoc pab pbc pca)
 
-/-- A 3-set in general position can be labelled counterclockwise.-/
+/-- A 3-set in general position can be labelled counterclockwise.
+@isnad1 id=ex.2h1v.s6.b93c173f50b3 from=translated src=- shape=d3a5671b vocab=d258007d
+-/
 theorem exists_ccw_triangle (V : Finset Point) (hcard : V.card = 3) (hgp : GeneralPosition V) :
     ∃ v1 v2 v3 : Point, ({v1, v2, v3} : Finset Point) = V ∧ 0 < orient v1 v2 v3 := by
   obtain ⟨a, b, c, hab, hac, hbc, hV⟩ := Finset.card_eq_three.mp hcard

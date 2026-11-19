@@ -20,7 +20,9 @@ namespace Horton
 
 /-- Harborth's second front case: some point of `S` lies in the wedge beyond edge `i` and
 strictly left of the next edge line `P (i+1) → P (i+2)`.  Taking such a point closest to the
-edge line `i` yields the empty convex pentagon `{P i, R, P (i+1), P (i+2), M}`.-/
+edge line `i` yields the empty convex pentagon `{P i, R, P (i+1), P (i+2), M}`.
+@isnad1 id=ex.11h5v.s9.6ea8d02ff54b from=translated src=- shape=6203028c vocab=85afae4a
+-/
 theorem front_case2 (S : Finset Point) (hgp : GeneralPosition S) (P : Fin 5 → Point)
     (hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

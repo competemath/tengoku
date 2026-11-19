@@ -31,10 +31,15 @@ namespace Horton
 def hullVertices (S : Finset Point) : Finset Point :=
   S.filter (fun p => p ∈ (convexHull ℝ (S : Set Point)).extremePoints ℝ)
 
+/--
+@isnad1 id=le.0h1v.s4.8e86afd81196 from=translated src=- shape=76c97b8b vocab=bfd005a1
+-/
 theorem hullVertices_subset (S : Finset Point) : hullVertices S ⊆ S :=
   Finset.filter_subset _ _
 
-/-- As a set, the hull vertices are exactly the extreme points of the hull.-/
+/-- As a set, the hull vertices are exactly the extreme points of the hull.
+@isnad1 id=eq.0h1v.s6.8fb7f52984b3 from=translated src=- shape=f804c1b1 vocab=26ec5e49
+-/
 theorem coe_hullVertices (S : Finset Point) :
     ((hullVertices S : Finset Point) : Set Point) =
       (convexHull ℝ (S : Set Point)).extremePoints ℝ := by
@@ -46,7 +51,9 @@ theorem coe_hullVertices (S : Finset Point) :
   · intro h
     exact ⟨Finset.mem_coe.mp (extremePoints_convexHull_subset h), h⟩
 
-/-- Finite Krein–Milman: the hull vertices span the same convex hull.-/
+/-- Finite Krein–Milman: the hull vertices span the same convex hull.
+@isnad1 id=eq.0h1v.s7.7b0fef7475db from=translated src=- shape=62fdf5b6 vocab=99178bb0
+-/
 theorem convexHull_hullVertices (S : Finset Point) :
     convexHull ℝ ((hullVertices S : Finset Point) : Set Point) = convexHull ℝ (S : Set Point) := by
   rw [coe_hullVertices]
@@ -61,7 +68,9 @@ theorem convexHull_hullVertices (S : Finset Point) :
         hclosed.closure_eq.symm
     _ = convexHull ℝ (S : Set Point) := hKM
 
-/-- Hull vertices are in convex position.-/
+/-- Hull vertices are in convex position.
+@isnad1 id=convexin.0h1v.s6.891b49ada3cb from=translated src=- shape=79e299b0 vocab=993fc62e
+-/
 theorem convexIndependent_hullVertices (S : Finset Point) :
     ConvexIndependent ℝ (fun x : ((hullVertices S : Finset Point) : Set Point) => (x : Point)) := by
   have h := (convex_convexHull ℝ (S : Set Point)).convexIndependent_extremePoints
@@ -69,7 +78,9 @@ theorem convexIndependent_hullVertices (S : Finset Point) :
   rw [coe_hullVertices]
   exact h
 
-/-- Three points of a segment have vanishing orientation.-/
+/-- Three points of a segment have vanishing orientation.
+@isnad1 id=eq.3h5v.s6.4c35f2ae8d64 from=translated src=- shape=49efddae vocab=5e0ecce2
+-/
 theorem orient_eq_zero_of_mem_segment (a b x y z : Point) (hx : x ∈ segment ℝ a b)
     (hy : y ∈ segment ℝ a b) (hz : z ∈ segment ℝ a b) : orient x y z = 0 := by
   rw [segment_eq_image'] at hx hy hz
@@ -80,7 +91,9 @@ theorem orient_eq_zero_of_mem_segment (a b x y z : Point) (hx : x ∈ segment �
     Prod.snd_sub, smul_eq_mul]
   ring
 
-/-- In general position, a point of `S` distinct from `x, y ∈ S` is not in the segment `[x, y]`.-/
+/-- In general position, a point of `S` distinct from `x, y ∈ S` is not in the segment `[x, y]`.
+@isnad1 id=false.7h4v.s7.abc5449547c2 from=translated src=- shape=a845eb36 vocab=261a288c
+-/
 theorem not_mem_convexHull_pair_of_generalPosition (S : Finset Point) (hgp : GeneralPosition S)
     (x y p : Point) (hx : x ∈ S) (hy : y ∈ S) (hp : p ∈ S) (hpx : p ≠ x) (hpy : p ≠ y)
     (h : p ∈ convexHull ℝ ({x, y} : Set Point)) : False := by
@@ -93,7 +106,9 @@ theorem not_mem_convexHull_pair_of_generalPosition (S : Finset Point) (hgp : Gen
       (orient_eq_zero_of_mem_segment x y x y p (left_mem_segment ℝ x y)
         (right_mem_segment ℝ x y) h)
 
-/-- Carathéodory in the plane: a point of the hull of a finite set lies in a triangle of it.-/
+/-- Carathéodory in the plane: a point of the hull of a finite set lies in a triangle of it.
+@isnad1 id=ex.1h2v.s7.4bf43e29a058 from=translated src=- shape=153a4e98 vocab=a0d97f4b
+-/
 theorem exists_triangle_of_mem_convexHull (T : Finset Point) (p : Point)
     (hp : p ∈ convexHull ℝ (T : Set Point)) :
     ∃ a ∈ T, ∃ b ∈ T, ∃ c ∈ T, p ∈ convexHull ℝ ({a, b, c} : Set Point) := by
@@ -123,7 +138,9 @@ theorem exists_triangle_of_mem_convexHull (T : Finset Point) (p : Point)
       convexHull_mono (by simp) hpt⟩
 
 /-- A point of `S` in a positively oriented triangle of `S`, distinct from its vertices, is
-strictly inside it (general position).-/
+strictly inside it (general position).
+@isnad1 id=mem.13h5v.s8.2bc506d4d03a from=translated src=- shape=2e063cf9 vocab=50e42510
+-/
 theorem mem_interior_triangle_of_generalPosition (S : Finset Point) (hgp : GeneralPosition S)
     (a b c p : Point) (ha : a ∈ S) (hb : b ∈ S) (hc : c ∈ S) (hp : p ∈ S)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) (hpa : p ≠ a) (hpb : p ≠ b) (hpc : p ≠ c)
@@ -136,7 +153,9 @@ theorem mem_interior_triangle_of_generalPosition (S : Finset Point) (hgp : Gener
   exact mem_interior_triangle_of_orient_pos a b c p habc g1 g2 g3
 
 /-- In general position, every non-vertex point of `S` is strictly inside the hull of the
-vertices.-/
+vertices.
+@isnad1 id=mem.3h2v.s7.57a861e8fa75 from=translated src=- shape=4dfd24f5 vocab=fc9d851f
+-/
 theorem mem_interior_hullVertices_of_not_mem (S : Finset Point) (hgp : GeneralPosition S)
     (p : Point) (hp : p ∈ S) (hnot : p ∉ hullVertices S) :
     p ∈ interior (convexHull ℝ ((hullVertices S : Finset Point) : Set Point)) := by
@@ -178,7 +197,9 @@ theorem mem_interior_hullVertices_of_not_mem (S : Finset Point) (hgp : GeneralPo
         hpa hpb hpc hpos hpabc
   exact interior_mono (convexHull_mono (by simp [Set.insert_subset_iff, ha, hb, hc])) hint
 
-/-- In general position a set of at least three points has at least three hull vertices.-/
+/-- In general position a set of at least three points has at least three hull vertices.
+@isnad1 id=le.2h1v.s4.5e3482f9d965 from=translated src=- shape=3c264e64 vocab=eb0c29ef
+-/
 theorem three_le_card_hullVertices (S : Finset Point) (hgp : GeneralPosition S)
     (h3 : 3 ≤ S.card) : 3 ≤ (hullVertices S).card := by
   by_contra hlt

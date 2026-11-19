@@ -29,7 +29,9 @@ namespace Prize.Horton
 open Prize.Geometry
 
 /-- Passing to an initial segment in increasing horizontal order preserves
-the absence of empty polygons. Points removed to its right cannot fill a hole.-/
+the absence of empty polygons. Points removed to its right cannot fill a hole.
+@isnad1 id=le.4h4v.s6.bc9aabd8e28d from=translated src=- shape=672c2cc5 vocab=1b4cd174
+-/
 theorem IsHorton.prefix_emptyConvex_card_le_six {depth N : ℕ} {p : ℕ → Point}
     (hh : IsHorton depth p) (hx : ∀ i, (p i).1 = i) (hN : N ≤ 2 ^ depth)
     {V : Finset Point} (he : EmptyConvex (p '' Set.Iio N) (V : Set Point)) :
@@ -60,7 +62,9 @@ theorem IsHorton.prefix_emptyConvex_card_le_six {depth N : ℕ} {p : ℕ → Poi
   exact he.empty _ (Set.mem_image_of_mem p hiN) hxHull
 
 /-- For every prescribed cardinality there is an integer-coordinate point set
-in general position with no empty convex seven-gon.-/
+in general position with no empty convex seven-gon.
+@isnad1 id=ex.0h1v.s6.84c14429a8a2 from=translated src=- shape=d867ea6b vocab=9559b0b4
+-/
 theorem horton_no_empty_seven (N : ℕ) :
     ∃ P : Finset Point, P.card = N ∧ GeneralPosition (P : Set Point) ∧
       ¬HasEmptyKGon 7 P ∧
@@ -93,7 +97,9 @@ theorem horton_no_empty_seven (N : ℕ) :
     · simpa only [Int.ofNat_eq_natCast, Int.cast_natCast] using hx i
     · exact hz
 
-/-- The same configurations exclude every larger empty convex polygon.-/
+/-- The same configurations exclude every larger empty convex polygon.
+@isnad1 id=ex.1h2v.s6.abef61cd49be from=translated src=- shape=0f302d5d vocab=5e476f72
+-/
 theorem horton_no_empty_k_gon (N k : ℕ) (hk : 7 ≤ k) :
     ∃ P : Finset Point, P.card = N ∧ GeneralPosition (P : Set Point) ∧
       ¬HasEmptyKGon k P ∧
@@ -101,6 +107,9 @@ theorem horton_no_empty_k_gon (N k : ℕ) (hk : 7 ≤ k) :
   obtain ⟨P, hcard, hgp, hno, hint⟩ := horton_no_empty_seven N
   exact ⟨P, hcard, hgp, fun hp => hno (hp.of_le hk), hint⟩
 
+/--
+@isnad1 id=not.1h2v.s4.e1bad77869eb from=translated src=- shape=b0b664e7 vocab=4db90034
+-/
 theorem no_finite_threshold {k : ℕ} (hk : 7 ≤ k) : ∀ N, ¬ForcesEmptyKGon N k := by
   intro N hN
   obtain ⟨P, hcard, hgp, hno, _⟩ := horton_no_empty_k_gon N k hk

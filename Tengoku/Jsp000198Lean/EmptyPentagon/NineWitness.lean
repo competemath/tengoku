@@ -39,7 +39,9 @@ abbrev HasInnerPoint (I : Finset (Fin 9)) : Prop :=
 /-- The witness points embedded in the real plane.-/
 def nineReal (i : Fin 9) : Point := ((ninePoints i).1, (ninePoints i).2)
 
-/-- The real orientation of embedded witness points is the cast integer orientation.-/
+/-- The real orientation of embedded witness points is the cast integer orientation.
+@isnad1 id=eq.0h3v.s5.e79fe91acd7e from=translated src=- shape=095e24dc vocab=cc5927da
+-/
 theorem orient_nineReal (i j k : Fin 9) :
     orient (nineReal i) (nineReal j) (nineReal k) =
       (orientZ (ninePoints i) (ninePoints j) (ninePoints k) : ℝ) := by
@@ -47,13 +49,17 @@ theorem orient_nineReal (i j k : Fin 9) :
   push_cast
   ring
 
-/-- The nine integer points are pairwise distinct.-/
+/-- The nine integer points are pairwise distinct.
+@isnad1 id=injectiv.0h0v.s3.21829fd8be76 from=translated src=- shape=6dd1bb2f vocab=02a5a503
+-/
 theorem ninePoints_injective : Function.Injective ninePoints := by
   intro i j hij
   revert i j
   decide +kernel
 
-/-- The embedded witness points are pairwise distinct.-/
+/-- The embedded witness points are pairwise distinct.
+@isnad1 id=injectiv.0h0v.s3.5ef3eb77c78e from=translated src=- shape=bfe16b09 vocab=406b4342
+-/
 theorem nineReal_injective : Function.Injective nineReal := by
   intro i j hij
   apply ninePoints_injective
@@ -61,18 +67,24 @@ theorem nineReal_injective : Function.Injective nineReal := by
   simp only [nineReal] at h1 h2
   exact Prod.ext (by exact_mod_cast h1) (by exact_mod_cast h2)
 
-/-- No three of the nine integer points are collinear.-/
+/-- No three of the nine integer points are collinear.
+@isnad1 id=ne.3h3v.s6.ceb17f9867f0 from=translated src=- shape=cdae9c03 vocab=ae9f14ff
+-/
 theorem orientZ_ninePoints_ne_zero : ∀ i j k : Fin 9, i ≠ j → i ≠ k → j ≠ k →
     orientZ (ninePoints i) (ninePoints j) (ninePoints k) ≠ 0 := by
   decide +kernel
 
-/-- Every five-element index set is certified non-empty or non-convex.-/
+/-- Every five-element index set is certified non-empty or non-convex.
+@isnad1 id=or.1h1v.s4.0fdf6c0e9234 from=translated src=- shape=ee5942ad vocab=a03d5872
+-/
 theorem five_subset_certificate : ∀ I : Finset (Fin 9), I.card = 5 →
     HasInnerVertex I ∨ HasInnerPoint I := by
   decide +kernel
 
 /-- Harborth's bound is sharp: some nine points in general position have no empty convex
-pentagon.-/
+pentagon.
+@isnad1 id=not.0h0v.s3.b382519ea852 from=translated src=- shape=90d9b386 vocab=a325f057
+-/
 theorem not_forcesEmptyKGon_five_nine : ¬ ForcesEmptyKGon 5 9 := by
   intro h
   set S : Finset Point := Finset.univ.image nineReal with hS

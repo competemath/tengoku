@@ -19,18 +19,24 @@ namespace Horton
 def interiorPoints (S V : Finset Point) : Finset Point :=
   S.filter (fun p => p ∈ interior (convexHull ℝ (V : Set Point)))
 
-/-- Reversing the directed line negates the orientation.-/
+/-- Reversing the directed line negates the orientation.
+@isnad1 id=eq.0h3v.s4.88660e26735f from=translated src=- shape=f2c75b05 vocab=d04c39b3
+-/
 theorem orient_swap_line (u v x : Point) : orient v u x = -orient u v x := by
   unfold orient; ring
 
-/-- A convex-independent vertex is never strictly inside the hull of the vertex set.-/
+/-- A convex-independent vertex is never strictly inside the hull of the vertex set.
+@isnad1 id=not.2h2v.s7.e7af3f543f85 from=translated src=- shape=e8f4e226 vocab=8ee90f8d
+-/
 theorem not_mem_interior_of_convexIndependent (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (a : Point) (ha : a ∈ V) : a ∉ interior (convexHull ℝ (V : Set Point)) :=
   fun h => Set.disjoint_left.mp (disjoint_interior_extremePoints _) h
     (mem_extremePoints_of_convexIndependent V hV a ha)
 
-/-- The open half-plane to the left of the directed line through `u` and `v` is convex.-/
+/-- The open half-plane to the left of the directed line through `u` and `v` is convex.
+@isnad1 id=convex.0h2v.s5.bb46012f2064 from=translated src=- shape=c8701fa7 vocab=e9b496d0
+-/
 theorem convex_open_halfplane (u v : Point) : Convex ℝ {q : Point | 0 < orient u v q} := by
   intro x hx y hy a b ha hb hab
   have hx' : 0 < orient u v x := hx
@@ -70,7 +76,9 @@ theorem eq_of_mem_convexHull_insert_of_orient_eq_zero (p q z : Point) (hz : orie
     simpa using hr
 
 /-- Lemma C (descent step): two interior points `p ≠ q` with three vertices strictly left of the
-line `p q` yield a convex pentagon with at least two fewer interior points.-/
+line `p q` yield a convex pentagon with at least two fewer interior points.
+@isnad1 id=ex.6h4v.s8.fe86fbae5b2d from=translated src=- shape=d445aa18 vocab=ef8da894
+-/
 theorem descent_step (S : Finset Point) (V : Finset Point)
     (hVS : V ⊆ S) (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (p q : Point) (hp : p ∈ interiorPoints S V) (hq : q ∈ interiorPoints S V) (hpq : p ≠ q)
@@ -210,7 +218,9 @@ theorem descent_step (S : Finset Point) (V : Finset Point)
     omega
 
 /-- Harborth's descent: if `S` (in general position) contains a convex pentagon, it contains one
-with at most one point of `S` strictly inside.-/
+with at most one point of `S` strictly inside.
+@isnad1 id=ex.2h1v.s7.865239853ff4 from=translated src=- shape=77e3a78c vocab=ab29e4f2
+-/
 theorem exists_convex_pentagon_few_interior (S : Finset Point) (hgp : GeneralPosition S)
     (hex : ∃ V : Finset Point, V ⊆ S ∧ V.card = 5 ∧
       ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) :

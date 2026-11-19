@@ -12,7 +12,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- A convex-independent vertex is an extreme point of the convex hull of the vertex set.-/
+/-- A convex-independent vertex is an extreme point of the convex hull of the vertex set.
+@isnad1 id=mem.2h2v.s7.b977364c18db from=translated src=- shape=dbf0d19a vocab=d72baea3
+-/
 theorem mem_extremePoints_of_convexIndependent (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (a : Point) (ha : a ∈ V) :
@@ -63,7 +65,9 @@ theorem mem_extremePoints_of_convexIndependent (V : Finset Point)
       Set.sdiff_eq_empty.mp (Set.not_nonempty_iff_eq_empty.mp hne)
     exact convexHull_min hsub (convex_singleton a) hx₁
 
-/-- A point collinear with two distinct points lies on the line through them.-/
+/-- A point collinear with two distinct points lies on the line through them.
+@isnad1 id=ex.2h3v.s6.f673b0c89ff3 from=translated src=- shape=ccbff6d6 vocab=e2722bb9
+-/
 theorem exists_eq_add_smul_of_orient_eq_zero (a b p : Point) (hab : a ≠ b)
     (hcol : orient a b p = 0) : ∃ t : ℝ, p = a + t • (b - a) := by
   unfold orient at hcol
@@ -89,7 +93,9 @@ theorem exists_eq_add_smul_of_orient_eq_zero (a b p : Point) (hab : a ≠ b)
       field_simp
       linear_combination hcol
 
-/-- A convex-independent vertex is never in the hull of finitely many other hull points.-/
+/-- A convex-independent vertex is never in the hull of finitely many other hull points.
+@isnad1 id=not.4h3v.s8.437525ee2afe from=translated src=- shape=4d481e94 vocab=cb36138d
+-/
 theorem not_mem_convexHull_of_convexIndependent (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (a : Point) (ha : a ∈ V) (T : Finset Point)
@@ -103,7 +109,9 @@ theorem not_mem_convexHull_of_convexIndependent (V : Finset Point)
     inter_extremePoints_subset_extremePoints_of_subset hsub ⟨h, hext⟩
   exact haT (Finset.mem_coe.mp (extremePoints_convexHull_subset hT'))
 
-/-- The line through two convex-independent vertices meets the hull only in their segment.-/
+/-- The line through two convex-independent vertices meets the hull only in their segment.
+@isnad1 id=mem.6h4v.s7.daf3e482322c from=translated src=- shape=43078311 vocab=fea412cf
+-/
 theorem mem_segment_of_collinear_of_mem_convexHull (V : Finset Point)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)))
     (a b : Point) (ha : a ∈ V) (hb : b ∈ V) (hab : a ≠ b) (p : Point)

@@ -20,22 +20,30 @@ noncomputable section
 open Classical
 namespace Horton
 
-/-- Reversing the three arguments of an orientation negates it.-/
+/-- Reversing the three arguments of an orientation negates it.
+@isnad1 id=eq.0h3v.s4.41754ee71d79 from=translated src=- shape=64bb8237 vocab=d04c39b3
+-/
 theorem orient_rev (a b c : Point) : orient c b a = -orient a b c := by
   unfold orient; ring
 
-/-- The three-term Grassmann–Plücker product identity for orientations sharing a base point.-/
+/-- The three-term Grassmann–Plücker product identity for orientations sharing a base point.
+@isnad1 id=eq.0h5v.s6.9be27c94fe8e from=translated src=- shape=f4cc6353 vocab=f35b5064
+-/
 theorem orient_mul_add (p w x y z : Point) :
     orient p x z * orient p w y = orient p x y * orient p w z + orient p w x * orient p y z := by
   unfold orient; ring
 
-/-- The four-point cocycle identity for orientations.-/
+/-- The four-point cocycle identity for orientations.
+@isnad1 id=eq.0h4v.s5.cb246653018e from=translated src=- shape=3c5e45df vocab=63834ca7
+-/
 theorem orient_cocycle (a b c d : Point) :
     orient a c d = orient b c d - orient a b c + orient a b d := by
   unfold orient; ring
 
 /-- Among finitely many points strictly left of the directed line `p → w`, one comes first in
-the counterclockwise angular order around `p`.-/
+the counterclockwise angular order around `p`.
+@isnad1 id=ex.5h4v.s6.f8f00beb7c79 from=translated src=- shape=98e763e0 vocab=3b59b1fb
+-/
 theorem exists_angular_first (S : Finset Point) (hgp : GeneralPosition S) (p w : Point)
     (hpS : p ∈ S) (C : Finset Point) (hCS : C ⊆ S) (hCne : C.Nonempty)
     (hleft : ∀ z ∈ C, 0 < orient p w z) :
@@ -83,7 +91,9 @@ theorem exists_angular_first (S : Finset Point) (hgp : GeneralPosition S) (p w :
   · exact hpos
 
 /-- A counterclockwise pentagon each of whose outside points is cut off by some line yields an
-empty convex pentagon.-/
+empty convex pentagon.
+@isnad1 id=ex.4h2v.s8.f4b82d709858 from=translated src=- shape=fbfa91b0 vocab=afbf8aa5
+-/
 theorem emptyPentagon_of_data (S : Finset Point) (W : Fin 5 → Point)
     (hinj : Function.Injective W) (hWS : ∀ k, W k ∈ S)
     (hccw : ∀ k j : Fin 5, j ≠ k → j ≠ k + 1 → 0 < orient (W k) (W (k + 1)) (W j))
@@ -108,7 +118,9 @@ points of `S` closest to the line `A B` inside the wedge of that edge (all wedge
 the neighbouring edge lines and, apart from `Q`, beyond the tent `A, Q, B`), and `T` lies
 strictly right of `Q → R`.  Then `S` contains the counterclockwise empty pentagon
 `T, R, Q, A, U`, where `U` is the first point of the wedge of the previous edge met when the
-ray `T → A` turns counterclockwise about `T`.-/
+ray `T → A` turns counterclockwise about `T`.
+@isnad1 id=ex.30h8v.s9.0492349b4d7f from=translated src=- shape=07c3e0ef vocab=41075a2a
+-/
 theorem third_pentagon (S : Finset Point) (hgp : GeneralPosition S) (M A B Am Q R T : Point)
     (hMS : M ∈ S) (hAS : A ∈ S) (hBS : B ∈ S) (hAmS : Am ∈ S) (hQS : Q ∈ S) (hRS : R ∈ S)
     (hTS : T ∈ S)
@@ -473,13 +485,17 @@ theorem third_pentagon (S : Finset Point) (hgp : GeneralPosition S) (M A B Am Q 
     · exact hgp A hAS B hBS q hqS hAB (Ne.symm hqA) (Ne.symm hqB) hab
     · exact hqM (hMuniq q hqS hma hab h4)
 
-/-- Swapping the two coordinates reverses every orientation.-/
+/-- Swapping the two coordinates reverses every orientation.
+@isnad1 id=eq.0h3v.s4.f0ccf7edc6a8 from=translated src=- shape=69c6eeac vocab=ddc64bff
+-/
 theorem orient_swapCoords (a b c : Point) :
     orient (Prod.swap a) (Prod.swap b) (Prod.swap c) = -orient a b c := by
   simp only [orient, Prod.fst_swap, Prod.snd_swap]
   ring
 
-/-- Membership in the coordinate-swapped image of a finite set.-/
+/-- Membership in the coordinate-swapped image of a finite set.
+@isnad1 id=iff.0h2v.s6.e2defc82dfa6 from=translated src=- shape=70f80823 vocab=1dc32e87
+-/
 theorem mem_image_swap (S : Finset Point) (z : Point) :
     z ∈ S.image Prod.swap ↔ Prod.swap z ∈ S := by
   constructor
@@ -489,7 +505,9 @@ theorem mem_image_swap (S : Finset Point) (z : Point) :
   · intro h
     exact Finset.mem_image.mpr ⟨Prod.swap z, h, Prod.swap_swap z⟩
 
-/-- General position is preserved by swapping the two coordinates.-/
+/-- General position is preserved by swapping the two coordinates.
+@isnad1 id=generalp.1h1v.s4.f59068213174 from=translated src=- shape=0a9ae6e1 vocab=2d65c3e7
+-/
 theorem generalPosition_image_swap (S : Finset Point) (hgp : GeneralPosition S) :
     GeneralPosition (S.image Prod.swap) := by
   intro a ha b hb c hc hab hac hbc
@@ -508,7 +526,9 @@ third-closest points of `S` in the wedge beyond edge `i` (all wedge points lie b
 neighbouring edge lines and, apart from `Q`, beyond the tent `P i, Q, P (i+1)`). Then `S` has an
 empty convex pentagon: `{T, S3, Q, P i, U}` with `U` the first point of `B (i-1) ∪ {P (i-1)}` met
 when the ray `T → P i` rotates counterclockwise about `T`, if `T` is strictly right of `Q → S3`;
-mirror otherwise.-/
+mirror otherwise.
+@isnad1 id=ex.22h7v.s11.03eab06921fa from=translated src=- shape=6c9b87ef vocab=354f6d47
+-/
 theorem third_case (S : Finset Point) (hgp : GeneralPosition S) (P : Fin 5 → Point)
     (_hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

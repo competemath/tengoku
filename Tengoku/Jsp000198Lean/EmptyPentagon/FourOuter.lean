@@ -16,12 +16,16 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.TriangleInterior
 noncomputable section
 namespace Horton
 
-/-- A nonzero orientation forces its three points to be pairwise distinct.-/
+/-- A nonzero orientation forces its three points to be pairwise distinct.
+@isnad1 id=and.1h3v.s5.ba07288c0230 from=translated src=- shape=4362d778 vocab=289b8093
+-/
 theorem ne_of_orient_ne_zero (a b c : Point) (h : orient a b c ≠ 0) :
     a ≠ b ∧ a ≠ c ∧ b ≠ c := by
   refine ⟨?_, ?_, ?_⟩ <;> intro h' <;> subst h' <;> apply h <;> unfold orient <;> ring
 
-/-- Five pairwise distinct points give an injective `Fin 5`-indexed family.-/
+/-- Five pairwise distinct points give an injective `Fin 5`-indexed family.
+@isnad1 id=injectiv.10h5v.s6.f0728bef9874 from=translated src=- shape=875db622 vocab=fc903298
+-/
 theorem injective_vec5 (a b c d e : Point) (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)
     (hae : a ≠ e) (hbc : b ≠ c) (hbd : b ≠ d) (hbe : b ≠ e) (hcd : c ≠ d) (hce : c ≠ e)
     (hde : d ≠ e) : Function.Injective ![a, b, c, d, e] := by
@@ -29,14 +33,18 @@ theorem injective_vec5 (a b c d e : Point) (hab : a ≠ b) (hac : a ≠ c) (had 
   fin_cases i <;> fin_cases j <;> first | rfl | (exfalso; simp at hij; tauto)
 
 /-- General position of `S` restricts to indexed general position of any injective family
-of five points of `S`.-/
+of five points of `S`.
+@isnad1 id=indexedg.3h2v.s5.ff5cba61d999 from=translated src=- shape=75e8060e vocab=df77df5a
+-/
 theorem indexedGP_of_injective (S : Finset Point) (hgp : GeneralPosition S) (p : Fin 5 → Point)
     (hp : ∀ i : Fin 5, p i ∈ S) (hinj : Function.Injective p) : IndexedGP p :=
   fun i j k hij hik hjk ↦
     hgp _ (hp i) _ (hp j) _ (hp k) (hinj.ne hij) (hinj.ne hik) (hinj.ne hjk)
 
 /-- Two hull vertices `ya ≠ yb` of `H` lying in the same cone at `z` through the ccw edge
-`va → vb`, strictly beyond that edge, together with `z, va, vb` form a convex pentagon.-/
+`va → vb`, strictly beyond that edge, together with `z, va, vb` form a convex pentagon.
+@isnad1 id=ex.15h7v.s9.c8dfe5a66726 from=translated src=- shape=b86c60c8 vocab=e61e3bcc
+-/
 theorem beam_of_same_cone (S : Finset Point) (hgp : GeneralPosition S) (H : Finset Point)
     (hHS : H ⊆ S) (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point)))
     (va vb z ya yb : Point) (hva : va ∈ S) (hvb : vb ∈ S) (hzS : z ∈ S)
@@ -89,7 +97,9 @@ theorem beam_of_same_cone (S : Finset Point) (hgp : GeneralPosition S) (H : Fins
 /-- Bonnice's `(4,3,1)` argument: at least four hull vertices `H` of `S`, an inner
 counterclockwise triangle `v1 v2 v3` with a point `z` strictly inside, all four points inside the
 hull of `H` and no vertex of `H` in the closed inner triangle. Then `S` contains five points in
-convex position.-/
+convex position.
+@isnad1 id=ex.12h6v.s9.62734f8e4574 from=translated src=- shape=6e47665d vocab=ea5d7376
+-/
 theorem convex_pentagon_of_four_outer (S : Finset Point) (hgp : GeneralPosition S)
     (H : Finset Point) (hHS : H ⊆ S)
     (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point))) (h4 : 4 ≤ H.card)

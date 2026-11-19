@@ -14,7 +14,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.TriangleInterior
 noncomputable section
 namespace Horton
 
-/-- A triangle with one interior point has no empty convex quadrilateral.-/
+/-- A triangle with one interior point has no empty convex quadrilateral.
+@isnad1 id=not.0h0v.s3.1f8221c9857b from=translated src=- shape=90d9b386 vocab=a325f057
+-/
 theorem not_forcesEmptyKGon_four_four : ¬ ForcesEmptyKGon 4 4 := by
   intro h
   set S : Finset Point := {((0 : ℝ), (0 : ℝ)), (4, 0), (0, 4), (1, 1)} with hS

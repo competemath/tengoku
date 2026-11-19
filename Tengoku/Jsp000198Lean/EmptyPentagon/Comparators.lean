@@ -17,7 +17,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- The orientation determinant vanishes exactly on collinear triples.-/
+/-- The orientation determinant vanishes exactly on collinear triples.
+@isnad1 id=iff.0h3v.s7.68e3fab2abc3 from=translated src=- shape=0cb529c7 vocab=652205b7
+-/
 theorem orient_eq_zero_iff_collinear (a b c : Point) :
     orient a b c = 0 ↔ Collinear ℝ ({a, b, c} : Set Point) := by
   have ha : a ∈ ({a, b, c} : Set Point) := by simp
@@ -71,7 +73,9 @@ theorem orient_eq_zero_iff_collinear (a b c : Point) :
     simp only [vadd_eq_add, Prod.fst_add, Prod.snd_add, Prod.smul_fst, Prod.smul_snd, smul_eq_mul]
     ring
 
-/-- General position is the usual "no three collinear" condition.-/
+/-- General position is the usual "no three collinear" condition.
+@isnad1 id=iff.0h1v.s7.0a11b54c9a20 from=translated src=- shape=d7783907 vocab=df47bec0
+-/
 theorem generalPosition_iff_not_collinear (S : Finset Point) :
     GeneralPosition S ↔ ∀ a ∈ S, ∀ b ∈ S, ∀ c ∈ S, a ≠ b → a ≠ c → b ≠ c →
       ¬ Collinear ℝ ({a, b, c} : Set Point) := by

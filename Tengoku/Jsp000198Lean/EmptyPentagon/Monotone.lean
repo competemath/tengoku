@@ -13,7 +13,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.HullVertex
 noncomputable section
 namespace Horton
 
-/-- Removing a hull vertex preserves emptiness of every polygon of the remaining points.-/
+/-- Removing a hull vertex preserves emptiness of every polygon of the remaining points.
+@isnad1 id=forcesem.1h2v.s4.89f2cd93bb8b from=translated src=- shape=cab7a955 vocab=be8f345e
+-/
 theorem forcesEmptyKGon_succ (k n : ℕ) (h : ForcesEmptyKGon k n) :
     ForcesEmptyKGon k (n + 1) := by
   intro S hcard hgp
@@ -32,14 +34,18 @@ theorem forcesEmptyKGon_succ (k n : ℕ) (h : ForcesEmptyKGon k n) :
     exact hp V hVS
   · exact hVempty q (Finset.mem_erase.mpr ⟨hqp, hqS⟩) hqV
 
-/-- Upward closure of the forcing property.-/
+/-- Upward closure of the forcing property.
+@isnad1 id=forcesem.2h3v.s4.b22680e76955 from=translated src=- shape=847200ad vocab=2fd4ae14
+-/
 theorem forcesEmptyKGon_of_le {k m n : ℕ} (h : ForcesEmptyKGon k m) (hmn : m ≤ n) :
     ForcesEmptyKGon k n := by
   induction n, hmn using Nat.le_induction with
   | base => exact h
   | succ n _ ih => exact forcesEmptyKGon_succ k n ih
 
-/-- Downward closure of the non-forcing property.-/
+/-- Downward closure of the non-forcing property.
+@isnad1 id=not.2h3v.s4.4a9684b0ab73 from=translated src=- shape=b3088134 vocab=2fd4ae14
+-/
 theorem not_forcesEmptyKGon_of_le {k m n : ℕ} (h : ¬ ForcesEmptyKGon k m) (hnm : n ≤ m) :
     ¬ ForcesEmptyKGon k n :=
   fun h' => h (forcesEmptyKGon_of_le h' hnm)

@@ -16,6 +16,9 @@ namespace Prize.Horton
 
 open Prize.Geometry
 
+/--
+@isnad1 id=uppervis.7h5v.s7.8c80d789ae48 from=translated src=- shape=362432ff vocab=3a11d745
+-/
 theorem TriangleEmpty.even_upperVisible {depth : ℕ} {p : ℕ → Point} {S : Finset ℕ}
     (he : TriangleEmpty (depth + 1) p S) (hh : IsHorton (depth + 1) p)
     (hS : ∀ i ∈ S, i < 2 ^ (depth + 1))
@@ -44,6 +47,9 @@ theorem TriangleEmpty.even_upperVisible {depth : ℕ} {p : ℕ → Point} {S : F
   have heq := he _ haS _ hbS _ hcS _ htB' htri
   omega
 
+/--
+@isnad1 id=lowervis.7h5v.s7.340faaecb1c9 from=translated src=- shape=362432ff vocab=de32d2e9
+-/
 theorem TriangleEmpty.odd_lowerVisible {depth : ℕ} {p : ℕ → Point} {S : Finset ℕ}
     (he : TriangleEmpty (depth + 1) p S) (hh : IsHorton (depth + 1) p)
     (hS : ∀ i ∈ S, i < 2 ^ (depth + 1))
@@ -79,7 +85,9 @@ theorem TriangleEmpty.odd_lowerVisible {depth : ℕ} {p : ℕ → Point} {S : Fi
   have heq := he _ hbS _ haS _ hcS _ htB' htri
   omega
 
-/-- Every selection with empty triangles in a Horton configuration has at most six indices.-/
+/-- Every selection with empty triangles in a Horton configuration has at most six indices.
+@isnad1 id=le.3h3v.s6.286d5dc9854d from=translated src=- shape=069d1fa7 vocab=1a7d3d4f
+-/
 theorem IsHorton.triangleEmpty_card_le_six {depth : ℕ} {p : ℕ → Point}
     (hh : IsHorton depth p) {S : Finset ℕ} (hS : ∀ i ∈ S, i < 2 ^ depth)
     (he : TriangleEmpty depth p S) : S.card ≤ 6 := by
@@ -116,7 +124,9 @@ theorem IsHorton.triangleEmpty_card_le_six {depth : ℕ} {p : ℕ → Point}
       have hc1 := ih hh.odd h1 (he.child (by decide : 1 < 2))
       omega
 
-/-- Geometric consequence of the recursive separation conditions.-/
+/-- Geometric consequence of the recursive separation conditions.
+@isnad1 id=le.3h3v.s6.fff6793f7121 from=translated src=- shape=80c7cf98 vocab=21fc7905
+-/
 theorem IsHorton.emptyConvex_card_le_six {depth : ℕ} {p : ℕ → Point}
     (hh : IsHorton depth p) (hinj : Set.InjOn p (Set.Iio (2 ^ depth)))
     {V : Finset Point}

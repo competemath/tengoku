@@ -15,6 +15,9 @@ namespace Prize.Horton
 
 open Prize.Geometry
 
+/--
+@isnad1 id=not.5h4v.s6.9c0dc7c7490b from=translated src=- shape=25127146 vocab=b21fbf2c
+-/
 theorem IsHorton.not_upperVisible_even_indices {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b : ℕ}
     (hab : a < b) (hb : b < 2 ^ (depth + 1))
@@ -25,6 +28,9 @@ theorem IsHorton.not_upperVisible_even_indices {depth : ℕ} {p : ℕ → Point}
   rw [ha, hb']
   exact h.not_upperVisible_even (by omega) (by omega)
 
+/--
+@isnad1 id=not.7h5v.s7.fddc230d6a03 from=translated src=- shape=dd23a7e0 vocab=b21fbf2c
+-/
 theorem IsHorton.not_upperVisible_odd_odd_even {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c : ℕ}
     (hab : a < b) (hbc : b < c) (hc : c < 2 ^ (depth + 1))
@@ -42,6 +48,9 @@ theorem IsHorton.not_upperVisible_odd_odd_even {depth : ℕ} {p : ℕ → Point}
   rw [orient_swap_right] at hn
   linarith
 
+/--
+@isnad1 id=not.7h5v.s7.bb073b46e810 from=translated src=- shape=dd23a7e0 vocab=b21fbf2c
+-/
 theorem IsHorton.not_upperVisible_even_odd_odd {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c : ℕ}
     (hab : a < b) (hbc : b < c) (hc : c < 2 ^ (depth + 1))
@@ -59,6 +68,9 @@ theorem IsHorton.not_upperVisible_even_odd_odd {depth : ℕ} {p : ℕ → Point}
   rw [orient_swap_right, ← orient_cycle (p a) (p b) (p c)] at hn
   linarith
 
+/--
+@isnad1 id=and.11h6v.s7.30a0d865c6b0 from=translated src=- shape=54e591df vocab=b21fbf2c
+-/
 theorem IsHorton.upper_four_all_odd {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c d : ℕ}
     (hab : a < b) (hbc : b < c) (hcd : c < d) (hd : d < 2 ^ (depth + 1))
@@ -92,7 +104,9 @@ theorem IsHorton.upper_four_all_odd {depth : ℕ} {p : ℕ → Point}
       h.not_upperVisible_odd_odd_even hab (by omega) hd ha hb hd0 vad
   omega
 
-/-- Four pairwise upper-visible points cannot occur in a Horton configuration.-/
+/-- Four pairwise upper-visible points cannot occur in a Horton configuration.
+@isnad1 id=false.11h6v.s6.29465c37914c from=translated src=- shape=4701e092 vocab=e91ca64c
+-/
 theorem IsHorton.not_upper_four {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {a b c d : ℕ}
     (hab : a < b) (hbc : b < c) (hcd : c < d) (hd : d < 2 ^ depth)
@@ -118,6 +132,9 @@ theorem IsHorton.not_upper_four {depth : ℕ} {p : ℕ → Point}
     · exact upperVisible_odd (by simpa only [← hb, ← hd'] using vbd)
     · exact upperVisible_odd (by simpa only [← hc, ← hd'] using vcd)
 
+/--
+@isnad1 id=not.5h4v.s6.b87337c42344 from=translated src=- shape=25127146 vocab=3d0ce76e
+-/
 theorem IsHorton.not_lowerVisible_odd_indices {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b : ℕ}
     (hab : a < b) (hb : b < 2 ^ (depth + 1))
@@ -128,6 +145,9 @@ theorem IsHorton.not_lowerVisible_odd_indices {depth : ℕ} {p : ℕ → Point}
   rw [ha, hb']
   exact h.not_lowerVisible_odd (by omega) (by omega)
 
+/--
+@isnad1 id=not.7h5v.s7.853b4026525b from=translated src=- shape=dd23a7e0 vocab=3d0ce76e
+-/
 theorem IsHorton.not_lowerVisible_even_even_odd {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c : ℕ}
     (hab : a < b) (hbc : b < c) (hc : c < 2 ^ (depth + 1))
@@ -145,6 +165,9 @@ theorem IsHorton.not_lowerVisible_even_even_odd {depth : ℕ} {p : ℕ → Point
   rw [orient_swap_right] at hn
   linarith
 
+/--
+@isnad1 id=not.7h5v.s7.014b9ae33bb8 from=translated src=- shape=dd23a7e0 vocab=3d0ce76e
+-/
 theorem IsHorton.not_lowerVisible_odd_even_even {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c : ℕ}
     (hab : a < b) (hbc : b < c) (hc : c < 2 ^ (depth + 1))
@@ -162,6 +185,9 @@ theorem IsHorton.not_lowerVisible_odd_even_even {depth : ℕ} {p : ℕ → Point
   rw [orient_swap_right, ← orient_cycle (p a) (p b) (p c)] at hn
   linarith
 
+/--
+@isnad1 id=and.11h6v.s7.77f1a69ca802 from=translated src=- shape=54e591df vocab=3d0ce76e
+-/
 theorem IsHorton.lower_four_all_even {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b c d : ℕ}
     (hab : a < b) (hbc : b < c) (hcd : c < d) (hd : d < 2 ^ (depth + 1))
@@ -195,6 +221,9 @@ theorem IsHorton.lower_four_all_even {depth : ℕ} {p : ℕ → Point}
       h.not_lowerVisible_even_even_odd hab (by omega) hd ha hb hd1 vad
   omega
 
+/--
+@isnad1 id=false.11h6v.s6.f3b13807eba6 from=translated src=- shape=4701e092 vocab=d388e46a
+-/
 theorem IsHorton.not_lower_four {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {a b c d : ℕ}
     (hab : a < b) (hbc : b < c) (hcd : c < d) (hd : d < 2 ^ depth)
@@ -220,6 +249,9 @@ theorem IsHorton.not_lower_four {depth : ℕ} {p : ℕ → Point}
     · exact lowerVisible_even (by simpa only [← hb, ← hd'] using vbd)
     · exact lowerVisible_even (by simpa only [← hc, ← hd'] using vcd)
 
+/--
+@isnad1 id=le.3h3v.s6.2c6649d429fc from=translated src=- shape=421674a1 vocab=99dca3a4
+-/
 theorem IsHorton.upperVisible_card_le_three {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {S : Finset ℕ} (hS : ∀ i ∈ S, i < 2 ^ depth)
     (hv : ∀ a ∈ S, ∀ b ∈ S, a < b → UpperVisible p a b) : S.card ≤ 3 := by
@@ -238,6 +270,9 @@ theorem IsHorton.upperVisible_card_le_three {depth : ℕ} {p : ℕ → Point}
     (hv _ (hm 1) _ (hm 3) (ho (by decide)))
     (hv _ (hm 2) _ (hm 3) (ho (by decide)))
 
+/--
+@isnad1 id=le.3h3v.s6.7ee91fce138e from=translated src=- shape=421674a1 vocab=86dcac71
+-/
 theorem IsHorton.lowerVisible_card_le_three {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {S : Finset ℕ} (hS : ∀ i ∈ S, i < 2 ^ depth)
     (hv : ∀ a ∈ S, ∀ b ∈ S, a < b → LowerVisible p a b) : S.card ≤ 3 := by

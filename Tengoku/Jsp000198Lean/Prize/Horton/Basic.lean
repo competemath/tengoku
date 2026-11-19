@@ -36,18 +36,30 @@ def IsHorton : ℕ → (ℕ → Point) → Prop
       (∀ i j t : ℕ, i < j → j < 2 ^ depth → t < 2 ^ depth →
         orient (p (2 * i + 1)) (p (2 * j + 1)) (p (2 * t)) < 0)
 
+/--
+@isnad1 id=ishorton.1h2v.s4.e421891f6fd0 from=translated src=- shape=f22628ca vocab=39672b7a
+-/
 theorem IsHorton.even {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) : IsHorton depth (evenPoints p) := h.1
 
+/--
+@isnad1 id=ishorton.1h2v.s4.3c2d609d533a from=translated src=- shape=f22628ca vocab=10639d2c
+-/
 theorem IsHorton.odd {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) : IsHorton depth (oddPoints p) := h.2.1
 
+/--
+@isnad1 id=lt.4h5v.s7.4672489c324b from=translated src=- shape=b2bd9a7d vocab=e971a080
+-/
 theorem IsHorton.above {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {i j t : ℕ}
     (hij : i < j) (hj : j < 2 ^ depth) (ht : t < 2 ^ depth) :
     0 < orient (p (2 * i)) (p (2 * j)) (p (2 * t + 1)) :=
   h.2.2.1 i j t hij hj ht
 
+/--
+@isnad1 id=lt.4h5v.s7.c8559c529693 from=translated src=- shape=ed1d15fc vocab=e971a080
+-/
 theorem IsHorton.below {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {i j t : ℕ}
     (hij : i < j) (hj : j < 2 ^ depth) (ht : t < 2 ^ depth) :
@@ -62,18 +74,27 @@ def UpperVisible (p : ℕ → Point) (i j : ℕ) : Prop :=
 def LowerVisible (p : ℕ → Point) (i j : ℕ) : Prop :=
   ∀ t : ℕ, i < t → t < j → 0 ≤ orient (p i) (p j) (p t)
 
+/--
+@isnad1 id=uppervis.1h3v.s6.d046c6a73aec from=translated src=- shape=a46f8404 vocab=41e2222c
+-/
 theorem upperVisible_odd {p : ℕ → Point} {i j : ℕ}
     (h : UpperVisible p (2 * i + 1) (2 * j + 1)) :
     UpperVisible (oddPoints p) i j := by
   intro t hit htj
   exact h (2 * t + 1) (by omega) (by omega)
 
+/--
+@isnad1 id=lowervis.1h3v.s5.15013e62eb3a from=translated src=- shape=a01b80fc vocab=5b465dea
+-/
 theorem lowerVisible_even {p : ℕ → Point} {i j : ℕ}
     (h : LowerVisible p (2 * i) (2 * j)) :
     LowerVisible (evenPoints p) i j := by
   intro t hit htj
   exact h (2 * t) (by omega) (by omega)
 
+/--
+@isnad1 id=not.3h4v.s6.c8d42e42bbb1 from=translated src=- shape=de796575 vocab=3ceffef2
+-/
 theorem IsHorton.not_upperVisible_even {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {i j : ℕ}
     (hij : i < j) (hj : j < 2 ^ depth) :
@@ -83,6 +104,9 @@ theorem IsHorton.not_upperVisible_even {depth : ℕ} {p : ℕ → Point}
   have hn := hv (2 * i + 1) (by omega) (by omega)
   exact (not_lt_of_ge hn) hp
 
+/--
+@isnad1 id=not.3h4v.s6.a6d7e3cd8b9d from=translated src=- shape=73645810 vocab=8de2d0c0
+-/
 theorem IsHorton.not_lowerVisible_odd {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {i j : ℕ}
     (hij : i < j) (hj : j < 2 ^ depth) :

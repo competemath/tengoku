@@ -16,13 +16,17 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Signs
 noncomputable section
 namespace Horton
 
-/-- The orientation is invariant under the reverse cyclic rotation of its arguments.-/
+/-- The orientation is invariant under the reverse cyclic rotation of its arguments.
+@isnad1 id=eq.0h3v.s4.5dee5a12a2ec from=translated src=- shape=04cb69ef vocab=289b8093
+-/
 theorem orient_rot (a b c : Point) : orient a b c = orient c a b := by
   unfold orient; ring
 
 /-- Harborth's ear case: if the unique interior point `M` of a counterclockwise pentagon lies in
 the ear triangle `P i, P (i+1), P (i+2)`, then `{P i, M, P (i+2), P (i+3), P (i+4)}` is an empty
-convex pentagon of `S`.-/
+convex pentagon of `S`.
+@isnad1 id=ex.7h4v.s9.1d35697fa2fc from=translated src=- shape=ec591549 vocab=7aaad166
+-/
 theorem ear_case (S : Finset Point) (P : Fin 5 → Point) (hinj : Function.Injective P)
     (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

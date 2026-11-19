@@ -12,7 +12,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- The orientation is affine in its third argument: it is compatible with convex combinations.-/
+/-- The orientation is affine in its third argument: it is compatible with convex combinations.
+@isnad1 id=eq.1h6v.s6.4ef5f474c0d0 from=translated src=- shape=8d3e4c9f vocab=3ccabf62
+-/
 theorem orient_smul_add (u v x y : Point) (a b : ℝ) (hab : a + b = 1) :
     orient u v (a • x + b • y) = a * orient u v x + b * orient u v y := by
   have hb : b = 1 - a := by linarith
@@ -20,7 +22,9 @@ theorem orient_smul_add (u v x y : Point) (a b : ℝ) (hab : a + b = 1) :
   simp only [orient, Prod.fst_add, Prod.snd_add, Prod.smul_fst, Prod.smul_snd, smul_eq_mul]
   ring
 
-/-- The closed half-plane to the left of the directed line through `u` and `v` is convex.-/
+/-- The closed half-plane to the left of the directed line through `u` and `v` is convex.
+@isnad1 id=convex.0h2v.s5.5f8c92b0bde5 from=translated src=- shape=c8701fa7 vocab=dcc6eba9
+-/
 theorem convex_halfplane (u v : Point) : Convex ℝ {q : Point | 0 ≤ orient u v q} := by
   intro x hx y hy a b ha hb hab
   show 0 ≤ orient u v (a • x + b • y)
@@ -28,7 +32,9 @@ theorem convex_halfplane (u v : Point) : Convex ℝ {q : Point | 0 ≤ orient u 
   exact add_nonneg (mul_nonneg ha hx) (mul_nonneg hb hy)
 
 /-- A closed half-plane bounded by the line through two distinct points contains the convex hull
-of every set it contains, and no point on or beyond its boundary line is interior to that hull.-/
+of every set it contains, and no point on or beyond its boundary line is interior to that hull.
+@isnad1 id=not.3h4v.s7.682a19b5f97c from=translated src=- shape=0710ec2c vocab=9b89ef12
+-/
 theorem not_mem_interior_convexHull_of_halfplane (V : Finset Point) (u v p : Point)
     (huv : u ≠ v) (hV : ∀ x ∈ V, 0 ≤ orient u v x) (hp : orient u v p ≤ 0) :
     p ∉ interior (convexHull ℝ (V : Set Point)) := by
@@ -64,7 +70,9 @@ theorem not_mem_interior_convexHull_of_halfplane (V : Finset Point) (u v p : Poi
   rw [hcalc] at hkey
   nlinarith
 
-/-- Vertices each separated from the others by a supporting line are convex independent.-/
+/-- Vertices each separated from the others by a supporting line are convex independent.
+@isnad1 id=convexin.1h1v.s7.ae22ca525498 from=translated src=- shape=c2cb6883 vocab=c0496a84
+-/
 theorem convexIndependent_of_separated (V : Finset Point)
     (h : ∀ v ∈ V, ∃ u ∈ V, ∃ w ∈ V, u ≠ w ∧ orient u w v < 0 ∧
       ∀ x ∈ V, x ≠ v → 0 ≤ orient u w x) :
@@ -76,7 +84,9 @@ theorem convexIndependent_of_separated (V : Finset Point)
     convexHull_min (fun x hx => hsep x (Finset.mem_coe.mp hx.1) hx.2) (convex_halfplane u w)
   exact absurd (hsub hmem) (not_le.mpr hneg)
 
-/-- A member lying in the convex hull of three other members destroys convex independence.-/
+/-- A member lying in the convex hull of three other members destroys convex independence.
+@isnad1 id=not.8h5v.s7.a879012ab459 from=translated src=- shape=e4bff432 vocab=f7cdcabc
+-/
 theorem not_convexIndependent_of_mem_convexHull_triple (V : Finset Point) (a b c p : Point)
     (ha : a ∈ V) (hb : b ∈ V) (hc : c ∈ V) (hp : p ∈ V)
     (hpa : p ≠ a) (hpb : p ≠ b) (hpc : p ≠ c)

@@ -20,7 +20,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Case342
 noncomputable section
 namespace Horton
 
-/-- Convex independence is inherited by subsets.-/
+/-- Convex independence is inherited by subsets.
+@isnad1 id=convexin.2h2v.s7.7f870db64d32 from=translated src=- shape=447b8d3f vocab=a4a8cc21
+-/
 theorem convexIndependent_of_subset (V W : Finset Point) (hWV : W ⊆ V)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) :
     ConvexIndependent ℝ (fun x : (W : Set Point) => (x : Point)) := by
@@ -30,7 +32,9 @@ theorem convexIndependent_of_subset (V W : Finset Point) (hWV : W ⊆ V)
   exact hV x (hc hx) (convexHull_mono (Set.sdiff_subset_sdiff_left hc) hmem)
 
 /-- A point strictly inside the hull of `Q` is strictly left of every line through two points
-that supports `Q` on its left.-/
+that supports `Q` on its left.
+@isnad1 id=lt.3h4v.s7.5e162da65051 from=translated src=- shape=2b433fa7 vocab=17638ae3
+-/
 theorem orient_pos_of_mem_interior (Q : Finset Point) (u v z : Point) (huv : u ≠ v)
     (hQ : ∀ x ∈ Q, 0 ≤ orient u v x)
     (hz : z ∈ interior (convexHull ℝ (Q : Set Point))) :
@@ -39,7 +43,9 @@ theorem orient_pos_of_mem_interior (Q : Finset Point) (u v z : Point) (huv : u �
   exact not_mem_interior_convexHull_of_halfplane Q u v z huv hQ (not_lt.mp h) hz
 
 /-- Erdős–Szekeres for pentagons (Kalbfleisch–Kalbfleisch–Stanton 1970, Bonnice 1974): any nine
-points in general position contain five in convex position.-/
+points in general position contain five in convex position.
+@isnad1 id=ex.2h1v.s6.e7c23fd5c632 from=translated src=- shape=ea6484f1 vocab=13d99865
+-/
 theorem exists_convex_pentagon (S : Finset Point) (h9 : 9 ≤ S.card) (hgp : GeneralPosition S) :
     ∃ V : Finset Point, V ⊆ S ∧ V.card = 5 ∧
       ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point)) := by

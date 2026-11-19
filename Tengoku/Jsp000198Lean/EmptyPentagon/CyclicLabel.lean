@@ -14,13 +14,17 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.TriangleInterior
 noncomputable section
 namespace Horton
 
-/-- A strictly positive orientation forces the three points to be pairwise distinct.-/
+/-- A strictly positive orientation forces the three points to be pairwise distinct.
+@isnad1 id=and.1h3v.s5.e9687e53c67a from=translated src=- shape=8bf63cb6 vocab=997aa3b2
+-/
 theorem ne_of_orient_pos (a b c : Point) (h : 0 < orient a b c) :
     a ≠ b ∧ a ≠ c ∧ b ≠ c := by
   refine ⟨?_, ?_, ?_⟩ <;> rintro rfl <;> unfold orient at h <;> nlinarith
 
 /-- Transitivity of the angular order around a base point `o` for points weakly above `o`
-(the middle point `r` being lexicographically above `o`).-/
+(the middle point `r` being lexicographically above `o`).
+@isnad1 id=lt.6h4v.s6.054621d5a70f from=translated src=- shape=c9e1f056 vocab=dda46284
+-/
 theorem orient_pos_trans (o q r s : Point) (hq : o.2 ≤ q.2) (hs : o.2 ≤ s.2)
     (hr : o.2 < r.2 ∨ (o.2 = r.2 ∧ o.1 < r.1)) (hqs : orient o q s ≠ 0)
     (h1 : 0 < orient o q r) (h2 : 0 < orient o r s) : 0 < orient o q s := by
@@ -43,7 +47,9 @@ theorem orient_pos_trans (o q r s : Point) (hq : o.2 ≤ q.2) (hs : o.2 ≤ s.2)
     nlinarith [mul_nonneg (sub_nonneg.mpr hq) (sub_pos.mpr hr1).le]
 
 /-- In a convex-independent set in general position, three points seen in counterclockwise
-angular order `b, c, d` from a fourth member `a` are themselves counterclockwise.-/
+angular order `b, c, d` from a fourth member `a` are themselves counterclockwise.
+@isnad1 id=lt.9h5v.s7.ca3751cfdd3c from=translated src=- shape=e6165350 vocab=d873ab04
+-/
 theorem orient_pos_of_angular_order (V : Finset Point) (hgp : GeneralPosition V)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) (a b c d : Point)
     (ha : a ∈ V) (hb : b ∈ V) (hc : c ∈ V) (hd : d ∈ V)
@@ -67,7 +73,9 @@ theorem orient_pos_of_angular_order (V : Finset Point) (hgp : GeneralPosition V)
   · exact hpos
 
 /-- A convex-independent 5-set in general position can be labelled counterclockwise: every
-directed edge `P i → P (i+1)` sees the other three vertices strictly on its left.-/
+directed edge `P i → P (i+1)` sees the other three vertices strictly on its left.
+@isnad1 id=ex.3h1v.s8.7e0830943e72 from=translated src=- shape=eb95e22b vocab=dd92337b
+-/
 theorem exists_cyclic_labeling (V : Finset Point) (hcard : V.card = 5) (hgp : GeneralPosition V)
     (hV : ConvexIndependent ℝ (fun x : (V : Set Point) => (x : Point))) :
     ∃ P : Fin 5 → Point, Function.Injective P ∧ (∀ i, P i ∈ V) ∧

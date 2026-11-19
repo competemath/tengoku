@@ -21,12 +21,16 @@ namespace Horton
 
 /-! ### Elementary orientation tools -/
 
-/-- The three-term Grassmann–Plücker product identity for orientations sharing a base point.-/
+/-- The three-term Grassmann–Plücker product identity for orientations sharing a base point.
+@isnad1 id=eq.0h5v.s6.9be27c94fe8e from=translated src=- shape=f4cc6353 vocab=f35b5064
+-/
 theorem second_mul_add (p w x y z : Point) :
     orient p x z * orient p w y = orient p x y * orient p w z + orient p w x * orient p y z := by
   unfold orient; ring
 
-/-- A positive orientation forces its three arguments to be pairwise distinct.-/
+/-- A positive orientation forces its three arguments to be pairwise distinct.
+@isnad1 id=and.1h3v.s5.e9687e53c67a from=translated src=- shape=8bf63cb6 vocab=997aa3b2
+-/
 theorem second_ne_of_orient_pos (a b c : Point) (h : 0 < orient a b c) :
     a ≠ b ∧ a ≠ c ∧ b ≠ c := by
   refine ⟨?_, ?_, ?_⟩ <;> rintro rfl
@@ -37,7 +41,9 @@ theorem second_ne_of_orient_pos (a b c : Point) (h : 0 < orient a b c) :
 /-! ### Angular extremes around a pivot -/
 
 /-- Among finitely many points strictly left of the directed line `p → w`, one comes first in
-the counterclockwise angular order around `p`.-/
+the counterclockwise angular order around `p`.
+@isnad1 id=ex.5h4v.s6.f8f00beb7c79 from=translated src=- shape=98e763e0 vocab=3b59b1fb
+-/
 theorem second_angular_first (S : Finset Point) (hgp : GeneralPosition S) (p w : Point)
     (hpS : p ∈ S) (C : Finset Point) (hCS : C ⊆ S) (hCne : C.Nonempty)
     (hleft : ∀ z ∈ C, 0 < orient p w z) :
@@ -85,7 +91,9 @@ theorem second_angular_first (S : Finset Point) (hgp : GeneralPosition S) (p w :
   · exact hpos
 
 /-- Among finitely many points strictly right of the directed line `p → w`, one comes last in
-the counterclockwise angular order around `p`.-/
+the counterclockwise angular order around `p`.
+@isnad1 id=ex.5h4v.s6.3556b96e606b from=translated src=- shape=598f8c4d vocab=3b59b1fb
+-/
 theorem second_angular_last (S : Finset Point) (hgp : GeneralPosition S) (p w : Point)
     (hpS : p ∈ S) (C : Finset Point) (hCS : C ⊆ S) (hCne : C.Nonempty)
     (hright : ∀ z ∈ C, orient p w z < 0) :
@@ -134,7 +142,9 @@ theorem second_angular_last (S : Finset Point) (hgp : GeneralPosition S) (p w : 
     omega
 
 /-- A counterclockwise pentagon each of whose outside points is cut off by some line yields an
-empty convex pentagon of `S`.-/
+empty convex pentagon of `S`.
+@isnad1 id=ex.4h2v.s8.f4b82d709858 from=translated src=- shape=fbfa91b0 vocab=afbf8aa5
+-/
 theorem second_emptyPentagon_of_data (S : Finset Point) (W : Fin 5 → Point)
     (hinj : Function.Injective W) (hWS : ∀ k, W k ∈ S)
     (hccw : ∀ k j : Fin 5, j ≠ k → j ≠ k + 1 → 0 < orient (W k) (W (k + 1)) (W j))
@@ -156,7 +166,9 @@ theorem second_emptyPentagon_of_data (S : Finset Point) (W : Fin 5 → Point)
 /-! ### The two key sign facts for the closest wedge point -/
 
 /-- A wedge point `z` no closer to the line `A B` than `Q` and strictly right of `Q → A` lies
-strictly left of `B → Q`.-/
+strictly left of `B → Q`.
+@isnad1 id=lt.2h4v.s5.42df2b4d5d21 from=translated src=- shape=5c141807 vocab=ca6b5f36
+-/
 theorem second_key_right (A B Q z : Point) (hzQ : orient A B z ≤ orient A B Q)
     (hz : orient Q A z < 0) : 0 < orient B Q z := by
   have h4 := orient_four_identity A B Q z
@@ -164,7 +176,9 @@ theorem second_key_right (A B Q z : Point) (hzQ : orient A B z ≤ orient A B Q)
   linarith
 
 /-- A wedge point `z` no closer to the line `A B` than `Q` and strictly right of `B → Q` lies
-strictly right of `A → Q`.-/
+strictly right of `A → Q`.
+@isnad1 id=lt.2h4v.s5.d173db8c041b from=translated src=- shape=9b0f2dd8 vocab=ca6b5f36
+-/
 theorem second_key_left (A B Q z : Point) (hzQ : orient A B z ≤ orient A B Q)
     (hz : orient B Q z < 0) : orient A Q z < 0 := by
   have h4 := orient_four_identity A B Q z
@@ -173,7 +187,9 @@ theorem second_key_left (A B Q z : Point) (hzQ : orient A B z ≤ orient A B Q)
 /-! ### The two pentagons -/
 
 /-- The counterclockwise empty pentagon `A, Q, R, B, M` of Harborth's second-point case, where
-`R` is the angularly first wedge point right of `Q → A` as seen from `B`.-/
+`R` is the angularly first wedge point right of `Q → A` as seen from `B`.
+@isnad1 id=ex.17h6v.s8.73ae99b54772 from=translated src=- shape=4ff0d1e2 vocab=797c4d02
+-/
 theorem second_pentagon_right (S : Finset Point) (hgp : GeneralPosition S) (M A B Q R : Point)
     (hMS : M ∈ S) (hAS : A ∈ S) (hBS : B ∈ S) (hQS : Q ∈ S) (hRS : R ∈ S)
     (cMAB : 0 < orient M A B)
@@ -312,7 +328,9 @@ theorem second_pentagon_right (S : Finset Point) (hgp : GeneralPosition S) (M A 
   · exact absurd (hMuniq q hqS h1 hab h2) hqM
 
 /-- The counterclockwise empty pentagon `A, R, Q, B, M` of Harborth's second-point case, where
-`R` is the angularly last wedge point right of `B → Q` as seen from `A`.-/
+`R` is the angularly last wedge point right of `B → Q` as seen from `A`.
+@isnad1 id=ex.17h6v.s8.c66fa648f23d from=translated src=- shape=60969f71 vocab=797c4d02
+-/
 theorem second_pentagon_left (S : Finset Point) (hgp : GeneralPosition S) (M A B Q R : Point)
     (hMS : M ∈ S) (hAS : A ∈ S) (hBS : B ∈ S) (hQS : Q ∈ S) (hRS : R ∈ S)
     (cMAB : 0 < orient M A B)
@@ -456,7 +474,9 @@ theorem second_pentagon_left (S : Finset Point) (hgp : GeneralPosition S) (M A B
 two neighbouring edge lines (no front point); `Q` is a wedge point closest to the edge line;
 another wedge point `R` lies strictly right of `Q → P i` or strictly right of `P (i+1) → Q`.
 Then `S` has an empty convex pentagon (`{P i, Q, R', P (i+1), M}` or `{P i, R', Q, P (i+1), M}`
-for a closest such `R'`).-/
+for a closest such `R'`).
+@isnad1 id=ex.15h6v.s10.bb226546804e from=translated src=- shape=32209ad7 vocab=354f6d47
+-/
 theorem second_case (S : Finset Point) (hgp : GeneralPosition S) (P : Fin 5 → Point)
     (hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))

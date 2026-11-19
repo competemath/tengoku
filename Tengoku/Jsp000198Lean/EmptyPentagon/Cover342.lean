@@ -20,7 +20,9 @@ counterclockwise, `z1, z2` strictly inside, the line `z1 → z2` has `w1, w2` st
 and `w3, w4` strictly on its left. Every point `y` in general position outside the closed
 quadrilateral lies in the cone at `z2` through `w2, w3` beyond side `w2 w3`, or in the cone at
 `z1` through `w4, w1` beyond side `w4 w1`, or in the strip beyond `w3 w4` (right of `z1 → w4`,
-left of `z2 → w3`), or in the strip beyond `w1 w2` (right of `z2 → w2`, left of `z1 → w1`).-/
+left of `z2 → w3`), or in the strip beyond `w1 w2` (right of `z2 → w2`, left of `z1 → w1`).
+@isnad1 id=or.12h7v.s9.e8790aa494f8 from=translated src=- shape=a6eabd70 vocab=a6b9ddb8
+-/
 theorem cover_342 (w1 w2 w3 w4 z1 z2 y : Point)
     (hgp : GeneralPosition ({w1, w2, w3, w4, z1, z2, y} : Finset Point))
     (h1 : 0 < orient w1 w2 w3) (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1)

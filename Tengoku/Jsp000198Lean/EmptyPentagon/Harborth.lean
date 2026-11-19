@@ -16,7 +16,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Core
 noncomputable section
 namespace Horton
 
-/-- Harborth (1978): every ten points in general position contain an empty convex pentagon.-/
+/-- Harborth (1978): every ten points in general position contain an empty convex pentagon.
+@isnad1 id=forcesem.0h0v.s3.fc5c0fc75c37 from=translated src=- shape=6d6f5044 vocab=a325f057
+-/
 theorem forcesEmptyKGon_five_ten : ForcesEmptyKGon 5 10 := by
   intro S hcard hgp
   have hex := exists_convex_pentagon S (by omega) hgp

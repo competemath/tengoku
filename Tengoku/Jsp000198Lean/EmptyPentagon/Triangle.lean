@@ -14,7 +14,9 @@ noncomputable section
 namespace Horton
 
 /-- In a triangle `{u, w, v}` with `orient u w v < 0`, the line through `u` and `w` separates
-`v` from the remaining vertices, which lie on that line.-/
+`v` from the remaining vertices, which lie on that line.
+@isnad1 id=ex.5h4v.s7.1235cbe5609b from=translated src=- shape=038dcfdf vocab=00eb70a9
+-/
 theorem separated_of_orient_neg (V : Finset Point) (u w v : Point) (hu : u ∈ V) (hw : w ∈ V)
     (huw : u ≠ w) (h : orient u w v < 0) (hV : ∀ x ∈ V, x = u ∨ x = w ∨ x = v) :
     ∃ u' ∈ V, ∃ w' ∈ V, u' ≠ w' ∧ orient u' w' v < 0 ∧
@@ -25,7 +27,9 @@ theorem separated_of_orient_neg (V : Finset Point) (u w v : Point) (hu : u ∈ V
   · exact le_of_eq (by unfold orient; ring)
   · exact absurd rfl hxv
 
-/-- Three points in general position form an empty convex triangle.-/
+/-- Three points in general position form an empty convex triangle.
+@isnad1 id=forcesem.0h0v.s3.4828a927911b from=translated src=- shape=6d6f5044 vocab=a325f057
+-/
 theorem forcesEmptyKGon_three_three : ForcesEmptyKGon 3 3 := by
   intro S hcard hgp
   obtain ⟨a, b, c, hab, hac, hbc, rfl⟩ := Finset.card_eq_three.mp hcard

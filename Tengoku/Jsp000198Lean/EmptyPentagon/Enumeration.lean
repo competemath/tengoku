@@ -42,8 +42,14 @@ def tri : Nat → Fin 5 × Fin 5 × Fin 5
   | 0 => (0, 1, 2) | 1 => (0, 1, 3) | 2 => (0, 2, 3) | 3 => (1, 2, 3) | 4 => (0, 1, 4)
   | 5 => (0, 2, 4) | 6 => (1, 2, 4) | 7 => (0, 3, 4) | 8 => (1, 3, 4) | _ => (2, 3, 4)
 
+/--
+@isnad1 id=lt.0h3v.s5.4cd054945abc from=translated src=- shape=3e7febd4 vocab=dad177f4
+-/
 theorem idx_lt (i j k : Fin 5) : idx i j k < 10 := Nat.mod_lt _ (by decide)
 
+/--
+@isnad1 id=eq.2h3v.s6.c84577c5b234 from=translated src=- shape=cb1a0590 vocab=02db4457
+-/
 theorem tri_idx : ∀ i j k : Fin 5, i < j → j < k → tri (idx i j k) = (i, j, k) := by decide
 
 /-- Extend a sign function known on sorted triples to all triples by alternation.-/
@@ -64,6 +70,9 @@ def mk10 (b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 : Bool) : Nat → Bool
   | 0 => b0 | 1 => b1 | 2 => b2 | 3 => b3 | 4 => b4
   | 5 => b5 | 6 => b6 | 7 => b7 | 8 => b8 | 9 => b9 | _ => false
 
+/--
+@isnad1 id=eq.0h4v.s6.1e2f6997794c from=translated src=- shape=67204245 vocab=35f952d2
+-/
 theorem mk10_encode_idx (σ : Fin 5 → Fin 5 → Fin 5 → Bool) (i j k : Fin 5) :
     mk10 (encode σ 0) (encode σ 1) (encode σ 2) (encode σ 3) (encode σ 4) (encode σ 5)
       (encode σ 6) (encode σ 7) (encode σ 8) (encode σ 9) (idx i j k) = encode σ (idx i j k) := by
@@ -71,6 +80,9 @@ theorem mk10_encode_idx (σ : Fin 5 → Fin 5 → Fin 5 → Bool) (i j k : Fin 5
   generalize idx i j k = t at h ⊢
   interval_cases t <;> rfl
 
+/--
+@isnad1 id=eq.5h4v.s7.09429032b033 from=translated src=- shape=de4672d4 vocab=12520c97
+-/
 theorem ofBits_encode (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     (h1 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ j i k = !σ i j k)
     (h2 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ i k j = !σ i j k)
@@ -103,6 +115,9 @@ theorem ofBits_encode (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     simp only [h2 k i j hik.symm hjk.symm hij, Bool.not_not, h1 i k j hik hij hjk.symm,
       h2 i j k hij hik hjk]
 
+/--
+@isnad1 id=eq.0h1v.s6.3085b5ebaf4b from=translated src=- shape=ba6c67e3 vocab=729411d7
+-/
 theorem ofBits_mk10 (σ : Fin 5 → Fin 5 → Fin 5 → Bool) :
     ofBits (mk10 (encode σ 0) (encode σ 1) (encode σ 2) (encode σ 3) (encode σ 4) (encode σ 5)
       (encode σ 6) (encode σ 7) (encode σ 8) (encode σ 9)) = ofBits (encode σ) := by
@@ -148,6 +163,9 @@ def check (v : Nat → Bool) : Bool :=
 
 def allBools (f : Bool → Bool) : Bool := f true && f false
 
+/--
+@isnad1 id=eq.1h2v.s4.b102a4c5182d from=translated src=- shape=b573fe26 vocab=ad3f818f
+-/
 theorem allBools_true {f : Bool → Bool} (h : allBools f = true) (b : Bool) : f b = true := by
   simp only [allBools, Bool.and_eq_true] at h
   cases b
@@ -155,12 +173,18 @@ theorem allBools_true {f : Bool → Bool} (h : allBools f = true) (b : Bool) : f
   · exact h.1
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=eq.0h0v.s5.b8fca470b2ff from=translated src=- shape=1026adda vocab=fb0d04ca
+-/
 theorem core :
     (allBools fun b0 => allBools fun b1 => allBools fun b2 => allBools fun b3 =>
       allBools fun b4 => allBools fun b5 => allBools fun b6 => allBools fun b7 =>
       allBools fun b8 => allBools fun b9 => check (mk10 b0 b1 b2 b3 b4 b5 b6 b7 b8 b9)) = true := by
   decide
 
+/--
+@isnad1 id=eq.0h10v.s5.3335de726a13 from=translated src=- shape=18e6c2eb vocab=524937c9
+-/
 theorem check_mk10 (b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 : Bool) :
     check (mk10 b0 b1 b2 b3 b4 b5 b6 b7 b8 b9) = true :=
   allBools_true (allBools_true (allBools_true (allBools_true (allBools_true (allBools_true
@@ -169,6 +193,9 @@ theorem check_mk10 (b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 : Bool) :
 
 /-! ### Bridges between the Boolean checkers and the propositions -/
 
+/--
+@isnad1 id=eq.9h5v.s8.c28f25a70180 from=translated src=- shape=0e3bf83f vocab=c2fc16df
+-/
 theorem forb4_false (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     (h1 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ j i k = !σ i j k)
     (h2 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ i k j = !σ i j k) (a b c d : Fin 5)
@@ -185,6 +212,9 @@ theorem forb4_false (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
   revert x y z w
   decide
 
+/--
+@isnad1 id=eq.13h6v.s8.efb1235db25d from=translated src=- shape=2f21fdee vocab=973465d8
+-/
 theorem forb5_false (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     (h1 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ j i k = !σ i j k)
     (h2 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ i k j = !σ i j k) (a b c d e : Fin 5)
@@ -206,6 +236,9 @@ theorem forb5_false (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
   revert x y z w u t
   decide
 
+/--
+@isnad1 id=eq.1h1v.s5.d58f38339871 from=translated src=- shape=1370babd vocab=cd864de9
+-/
 theorem consistentB_of (σ : Fin 5 → Fin 5 → Fin 5 → Bool) (hσ : Consistent σ) :
     consistentB (ofBits (encode σ)) = true := by
   obtain ⟨h1, h2, h4, h5⟩ := hσ
@@ -220,6 +253,9 @@ theorem consistentB_of (σ : Fin 5 → Fin 5 → Fin 5 → Bool) (hσ : Consiste
         (h5 _ _ _ _ _ (by decide) (by decide) (by decide) (by decide) (by decide) (by decide)
         (by decide) (by decide) (by decide) (by decide))
 
+/--
+@isnad1 id=quadcert.13h6v.s8.e7df10b848ed from=translated src=- shape=a92e78d4 vocab=dcfca068
+-/
 theorem quadCert_of (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     (h1 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ j i k = !σ i j k)
     (h2 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ i k j = !σ i j k)
@@ -235,7 +271,9 @@ theorem quadCert_of (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
   tauto
 
 /-- Every consistent abstract order type on five indices contains an empty convex
-quadrilateral certificate.-/
+quadrilateral certificate.
+@isnad1 id=ex.1h1v.s7.9827d30c509a from=translated src=- shape=467df6cc vocab=d3033d10
+-/
 theorem exists_quadCert (σ : Fin 5 → Fin 5 → Fin 5 → Bool) (hσ : Consistent σ) :
     ∃ i j k l m : Fin 5, i ≠ j ∧ i ≠ k ∧ i ≠ l ∧ i ≠ m ∧ j ≠ k ∧ j ≠ l ∧ j ≠ m ∧
       k ≠ l ∧ k ≠ m ∧ l ≠ m ∧ QuadCert σ i j k l m := by

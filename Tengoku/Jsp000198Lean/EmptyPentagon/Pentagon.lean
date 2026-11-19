@@ -13,27 +13,39 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Certificate
 noncomputable section
 namespace Horton
 
-/-- The orientation is invariant under cyclic rotation of its arguments.-/
+/-- The orientation is invariant under cyclic rotation of its arguments.
+@isnad1 id=eq.0h3v.s4.fb6ac0e43daf from=translated src=- shape=8c14c8b7 vocab=289b8093
+-/
 theorem orient_cyc (a b c : Point) : orient a b c = orient b c a := by
   unfold orient; ring
 
-/-- Swapping the last two arguments negates the orientation.-/
+/-- Swapping the last two arguments negates the orientation.
+@isnad1 id=eq.0h3v.s4.d649bc266ec0 from=translated src=- shape=04d76633 vocab=d04c39b3
+-/
 theorem orient_swap (a b c : Point) : orient a c b = -orient a b c := by
   unfold orient; ring
 
-/-- The orientation vanishes when the third point equals the first.-/
+/-- The orientation vanishes when the third point equals the first.
+@isnad1 id=eq.0h2v.s4.2cb7dcd4cdba from=translated src=- shape=52ed7545 vocab=289b8093
+-/
 theorem orient_self_left (a b : Point) : orient a b a = 0 := by
   unfold orient; ring
 
-/-- The orientation vanishes when the third point equals the second.-/
+/-- The orientation vanishes when the third point equals the second.
+@isnad1 id=eq.0h2v.s4.59e0d3782358 from=translated src=- shape=f5a3d3ad vocab=289b8093
+-/
 theorem orient_self_right (a b : Point) : orient a b b = 0 := by
   unfold orient; ring
 
-/-- The orientation vanishes when the first two points coincide.-/
+/-- The orientation vanishes when the first two points coincide.
+@isnad1 id=eq.0h2v.s4.143ab1928fc0 from=translated src=- shape=bd2a8fb1 vocab=289b8093
+-/
 theorem orient_self_pair (a c : Point) : orient a a c = 0 := by
   unfold orient; ring
 
-/-- A counterclockwise-labelled pentagon is convex independent.-/
+/-- A counterclockwise-labelled pentagon is convex independent.
+@isnad1 id=convexin.2h1v.s8.f0fc92c3440f from=translated src=- shape=e33ad4ff vocab=0911311b
+-/
 theorem convexIndependent_of_ccw (P : Fin 5 → Point) (hinj : Function.Injective P)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j)) :
     ConvexIndependent ℝ (fun x : ((Finset.univ.image P : Finset Point) : Set Point) => (x : Point)) := by
@@ -74,7 +86,9 @@ theorem convexIndependent_of_ccw (P : Fin 5 → Point) (hinj : Function.Injectiv
       exact h.le
 
 /-- A counterclockwise pentagon of `S` with no point of `S` strictly inside is an empty convex
-polygon of `S`.-/
+polygon of `S`.
+@isnad1 id=emptycon.4h2v.s8.d40d4595d60b from=translated src=- shape=033d3b43 vocab=d8aabdf0
+-/
 theorem emptyConvexPolygon_of_ccw (S : Finset Point) (P : Fin 5 → Point)
     (hinj : Function.Injective P) (hPS : ∀ i, P i ∈ S)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))
@@ -83,7 +97,9 @@ theorem emptyConvexPolygon_of_ccw (S : Finset Point) (P : Fin 5 → Point)
     EmptyConvexPolygon S (Finset.univ.image P) :=
   ⟨Finset.image_subset_iff.mpr fun i _ => hPS i, convexIndependent_of_ccw P hinj hccw, hempty⟩
 
-/-- A point strictly inside a counterclockwise pentagon is strictly left of every edge.-/
+/-- A point strictly inside a counterclockwise pentagon is strictly left of every edge.
+@isnad1 id=lt.2h3v.s8.ac0855351950 from=translated src=- shape=a7d59ddb vocab=c7ab0a46
+-/
 theorem orient_edge_pos_of_mem_interior (P : Fin 5 → Point) (M : Point)
     (hM : M ∈ interior (convexHull ℝ ((Finset.univ.image P : Finset Point) : Set Point)))
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j)) (i : Fin 5) :

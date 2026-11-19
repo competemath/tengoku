@@ -12,13 +12,17 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- Four-point cofactor identity for planar orientations.-/
+/-- Four-point cofactor identity for planar orientations.
+@isnad1 id=eq.0h4v.s5.951cc3f455ee from=translated src=- shape=2d14bc2d vocab=63834ca7
+-/
 theorem orient_four_identity (a b c d : Point) :
     orient b c d - orient a c d + orient a b d - orient a b c = 0 := by
   unfold orient
   ring
 
-/-- Three-term Grassmann–Plücker identity for planar orientations.-/
+/-- Three-term Grassmann–Plücker identity for planar orientations.
+@isnad1 id=eq.0h5v.s6.95f871d99d02 from=translated src=- shape=f1e94a14 vocab=f382bfd9
+-/
 theorem orient_plucker (a b c d e : Point) :
     orient a b c * orient a d e - orient a b d * orient a c e + orient a b e * orient a c d = 0 := by
   unfold orient

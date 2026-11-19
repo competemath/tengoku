@@ -17,7 +17,9 @@ namespace Horton
 
 /-- Wedge partition: a point of general position outside a counterclockwise pentagon `P` with
 interior point `M` lies beyond some edge `i`, between the rays from `M` through `P i` and
-`P (i+1)`.-/
+`P (i+1)`.
+@isnad1 id=ex.5h3v.s9.b4a8d448560a from=translated src=- shape=cde391f7 vocab=c7ab0a46
+-/
 theorem exists_wedge (P : Fin 5 → Point) (M R : Point)
     (hccw : ∀ i j : Fin 5, j ≠ i → j ≠ i + 1 → 0 < orient (P i) (P (i + 1)) (P j))
     (hM : M ∈ interior (convexHull ℝ ((Finset.univ.image P : Finset Point) : Set Point)))

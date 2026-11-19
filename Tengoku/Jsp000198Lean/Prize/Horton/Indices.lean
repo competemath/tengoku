@@ -19,6 +19,9 @@ open Prize.Geometry
 def childIndices (S : Finset ℕ) (b : ℕ) : Finset ℕ :=
   (S.filter fun i => i % 2 = b).image fun i => i / 2
 
+/--
+@isnad1 id=iff.1h3v.s6.77ec477c5d84 from=translated src=- shape=23b8de78 vocab=c200fa61
+-/
 theorem mem_childIndices {S : Finset ℕ} {b i : ℕ} (hb : b < 2) :
     i ∈ childIndices S b ↔ 2 * i + b ∈ S := by
   simp only [childIndices, Finset.mem_image, Finset.mem_filter]
@@ -29,6 +32,9 @@ theorem mem_childIndices {S : Finset ℕ} {b i : ℕ} (hb : b < 2) :
   · intro hi
     exact ⟨2 * i + b, ⟨hi, by omega⟩, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.68f98823411f from=translated src=- shape=42b55b4a vocab=461ce5f6
+-/
 theorem card_childIndices (S : Finset ℕ) (b : ℕ) :
     (childIndices S b).card = (S.filter fun i => i % 2 = b).card := by
   apply Finset.card_image_iff.mpr
@@ -38,6 +44,9 @@ theorem card_childIndices (S : Finset ℕ) (b : ℕ) :
   dsimp at heq hi' hj'
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.5fa890886c4a from=translated src=- shape=428f24fa vocab=7af570a5
+-/
 theorem card_children (S : Finset ℕ) :
     (childIndices S 0).card + (childIndices S 1).card = S.card := by
   rw [card_childIndices, card_childIndices]
@@ -49,6 +58,9 @@ theorem card_children (S : Finset ℕ) :
   rw [heq]
   exact Finset.card_filter_add_card_filter_not (fun i => i % 2 = 0)
 
+/--
+@isnad1 id=lt.3h4v.s6.bcdb25c688b2 from=translated src=- shape=5520e157 vocab=4ef5bae1
+-/
 theorem childIndices_bound {S : Finset ℕ} {depth b : ℕ} (hb : b < 2)
     (hS : ∀ i ∈ S, i < 2 ^ (depth + 1)) :
     ∀ i ∈ childIndices S b, i < 2 ^ depth := by
@@ -63,6 +75,9 @@ def TriangleEmpty (depth : ℕ) (p : ℕ → Point) (S : Finset ℕ) : Prop :=
   ∀ a ∈ S, ∀ b ∈ S, ∀ c ∈ S, ∀ t < 2 ^ depth,
     p t ∈ interior (convexHull ℝ ({p a, p b, p c} : Set Point)) → t = a ∨ t = b ∨ t = c
 
+/--
+@isnad1 id=triangle.2h4v.s6.e2296365abd7 from=translated src=- shape=b461419a vocab=91bf03b5
+-/
 theorem TriangleEmpty.child {depth : ℕ} {p : ℕ → Point} {S : Finset ℕ}
     (h : TriangleEmpty (depth + 1) p S) {r : ℕ} (hr : r < 2) :
     TriangleEmpty depth (fun i => p (2 * i + r)) (childIndices S r) := by

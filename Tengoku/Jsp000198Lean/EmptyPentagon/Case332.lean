@@ -18,7 +18,9 @@ noncomputable section
 namespace Horton
 
 /-- Normalised form of Bonnice's `(3,3,2)` case: the line `z1 → z2` has the vertex `v1` strictly
-on its right and the two vertices `v2, v3` strictly on its left.-/
+on its right and the two vertices `v2, v3` strictly on its left.
+@isnad1 id=ex.21h7v.s9.cae54db98253 from=translated src=- shape=45fe09c8 vocab=ea5d7376
+-/
 theorem case_332_core (S : Finset Point) (hgp : GeneralPosition S)
     (H : Finset Point) (hHS : H ⊆ S)
     (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point))) (h3 : 3 ≤ H.card)
@@ -151,7 +153,9 @@ theorem case_332_core (S : Finset Point) (hgp : GeneralPosition S)
 
 /-- Bonnice's `(3,3,2)` case: at least three hull vertices `H`, an inner counterclockwise triangle
 with two points strictly inside, everything inside the hull of `H`, no vertex of `H` in the closed
-inner triangle. Then `S` contains five points in convex position.-/
+inner triangle. Then `S` contains five points in convex position.
+@isnad1 id=ex.15h7v.s9.c4aa8fd44536 from=translated src=- shape=99503873 vocab=ea5d7376
+-/
 theorem case_332 (S : Finset Point) (hgp : GeneralPosition S)
     (H : Finset Point) (hHS : H ⊆ S)
     (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point))) (h3 : 3 ≤ H.card)

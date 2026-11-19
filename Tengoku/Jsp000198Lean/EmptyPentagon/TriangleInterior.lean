@@ -18,7 +18,9 @@ noncomputable section
 namespace Horton
 
 /-- Positive cyclic side orientations characterize points strictly inside a triangle.
-Proof reused verbatim from the sibling JSP-000198 Horton campaign (same definitions).-/
+Proof reused verbatim from the sibling JSP-000198 Horton campaign (same definitions).
+@isnad1 id=mem.4h4v.s7.875a672d8b90 from=translated src=- shape=92d49e51 vocab=205a1b0f
+-/
 theorem mem_interior_triangle_of_orient_pos (a b c p : Point)
     (habc : 0 < orient a b c) (habp : 0 < orient a b p)
     (hbcp : 0 < orient b c p) (hcap : 0 < orient c a p) :

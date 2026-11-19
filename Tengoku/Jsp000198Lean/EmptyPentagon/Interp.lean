@@ -17,7 +17,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- Orientation is affine in its last argument.-/
+/-- Orientation is affine in its last argument.
+@isnad1 id=eq.1h8v.s7.f4d418ee5934 from=translated src=- shape=4793b447 vocab=3ccabf62
+-/
 theorem orient_affine_comb (u v a b c : Point) (α β γ : ℝ) (h : α + β + γ = 1) :
     orient u v (α • a + β • b + γ • c) =
       α * orient u v a + β * orient u v b + γ * orient u v c := by
@@ -26,7 +28,9 @@ theorem orient_affine_comb (u v a b c : Point) (α β γ : ℝ) (h : α + β + �
   simp only [orient, Prod.smul_fst, Prod.smul_snd, Prod.fst_add, Prod.snd_add, smul_eq_mul]
   ring
 
-/-- A strict orientation certificate yields strictly positive barycentric coordinates.-/
+/-- A strict orientation certificate yields strictly positive barycentric coordinates.
+@isnad1 id=ex.4h4v.s7.405fea073a5c from=translated src=- shape=913dac07 vocab=120dcb8f
+-/
 theorem barycentric_of_orient_pos (a b c p : Point) (habc : 0 < orient a b c)
     (h1 : 0 < orient a b p) (h2 : 0 < orient b c p) (h3 : 0 < orient c a p) :
     ∃ α β γ : ℝ, 0 < α ∧ 0 < β ∧ 0 < γ ∧ α + β + γ = 1 ∧ p = α • a + β • b + γ • c := by
@@ -46,7 +50,9 @@ theorem barycentric_of_orient_pos (a b c p : Point) (habc : 0 < orient a b c)
       simp only [orient]
       ring
 
-/-- Points of a closed triangle are nonnegative barycentric combinations of its vertices.-/
+/-- Points of a closed triangle are nonnegative barycentric combinations of its vertices.
+@isnad1 id=ex.1h4v.s8.d8c85eea7738 from=translated src=- shape=1beff70a vocab=eef16efe
+-/
 theorem exists_barycentric_of_mem_convexHull_triangle (a b c p : Point)
     (hp : p ∈ convexHull ℝ ({a, b, c} : Set Point)) :
     ∃ α β γ : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 ≤ γ ∧ α + β + γ = 1 ∧ p = α • a + β • b + γ • c := by
@@ -60,7 +66,9 @@ theorem exists_barycentric_of_mem_convexHull_triangle (a b c p : Point)
   · linear_combination huw + w * hst
   · simp only [smul_add, mul_smul, add_assoc]
 
-/-- A point of a closed triangle avoiding its three edge lines is strictly inside it.-/
+/-- A point of a closed triangle avoiding its three edge lines is strictly inside it.
+@isnad1 id=and.5h4v.s7.0d176312755f from=translated src=- shape=ce17bf23 vocab=5b1c12f6
+-/
 theorem orient_pos_of_mem_convexHull_triangle (a b c p : Point) (habc : 0 < orient a b c)
     (hp : p ∈ convexHull ℝ ({a, b, c} : Set Point))
     (h1 : orient a b p ≠ 0) (h2 : orient b c p ≠ 0) (h3 : orient c a p ≠ 0) :

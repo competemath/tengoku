@@ -27,7 +27,9 @@ namespace Horton
 set_option maxHeartbeats 1000000 in
 /-- Harborth's core case analysis: a ten-point set in general position containing a
 counterclockwise convex pentagon `P` with at most one point of `S` strictly inside it has an
-empty convex pentagon.-/
+empty convex pentagon.
+@isnad1 id=ex.6h2v.s8.ed3e1e802c4e from=translated src=- shape=419c80b6 vocab=a227e7d6
+-/
 theorem exists_empty_pentagon_of_few_interior (S : Finset Point) (hcard : S.card = 10)
     (hgp : GeneralPosition S) (P : Fin 5 → Point) (hinj : Function.Injective P)
     (hPS : ∀ i, P i ∈ S)

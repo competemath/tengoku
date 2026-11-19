@@ -18,7 +18,9 @@ namespace Horton
 reference line `v → w`, and let `u, z` be points of the hull of `H` on the closed near side of
 that line and off the line `ya yb`. Then `u` and `z` lie strictly on the same side of the line
 `ya yb` (the line through two hull vertices meets the hull only in their segment, which is
-strictly beyond the reference line).-/
+strictly beyond the reference line).
+@isnad1 id=lt.12h7v.s8.ac08e6da09e8 from=translated src=- shape=117e88de vocab=bde83338
+-/
 theorem same_side_of_hull_chord (H : Finset Point)
     (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point)))
     (ya yb : Point) (hya : ya ∈ H) (hyb : yb ∈ H) (hne : ya ≠ yb) (v w : Point)

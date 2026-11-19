@@ -12,7 +12,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Definitions
 noncomputable section
 namespace Horton
 
-/-- A point of minimal abscissa is never interior to the convex hull of a subset.-/
+/-- A point of minimal abscissa is never interior to the convex hull of a subset.
+@isnad1 id=ex.1h1v.s7.f913ffc90dfe from=translated src=- shape=cc15068a vocab=f5f4ab30
+-/
 theorem exists_hull_vertex (S : Finset Point) (hS : S.Nonempty) :
     ∃ p ∈ S, ∀ T : Finset Point, T ⊆ S →
       p ∉ interior (convexHull ℝ (T : Set Point)) := by

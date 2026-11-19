@@ -15,6 +15,9 @@ namespace Prize.Horton
 
 open Prize.Geometry
 
+/--
+@isnad1 id=lt.7h5v.s7.233aba1a822d from=translated src=- shape=2890d6ae vocab=73b74c14
+-/
 theorem IsHorton.above_indices {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b t : ℕ}
     (hab : a < b) (hb : b < 2 ^ (depth + 1)) (ht : t < 2 ^ (depth + 1))
@@ -27,6 +30,9 @@ theorem IsHorton.above_indices {depth : ℕ} {p : ℕ → Point}
   rw [ha, hb', ht']
   exact h.above (by omega) (by omega) (by omega)
 
+/--
+@isnad1 id=lt.7h5v.s7.a5aba1875526 from=translated src=- shape=c5c157a7 vocab=73b74c14
+-/
 theorem IsHorton.below_indices {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton (depth + 1) p) {a b t : ℕ}
     (hab : a < b) (hb : b < 2 ^ (depth + 1)) (ht : t < 2 ^ (depth + 1))
@@ -39,6 +45,9 @@ theorem IsHorton.below_indices {depth : ℕ} {p : ℕ → Point}
   rw [ha, hb', ht']
   exact h.below (by omega) (by omega) (by omega)
 
+/--
+@isnad1 id=ne.4h5v.s6.a116486957c3 from=translated src=- shape=362cd687 vocab=b203ab84
+-/
 theorem IsHorton.orient_ne_zero_sorted {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {a b c : ℕ}
     (hab : a < b) (hbc : b < c) (hc : c < 2 ^ depth) :
@@ -84,6 +93,9 @@ theorem IsHorton.orient_ne_zero_sorted {depth : ℕ} {p : ℕ → Point}
         (by omega) (by omega) (by omega)
       simpa only [oddPoints, ← ha, ← hb, ← hc'] using hn
 
+/--
+@isnad1 id=ne.7h5v.s6.b90fe6c9ec25 from=translated src=- shape=c15d3be4 vocab=b203ab84
+-/
 theorem IsHorton.orient_ne_zero_of_lt {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {a b c : ℕ}
     (_ha : a < 2 ^ depth) (hb : b < 2 ^ depth) (hc : c < 2 ^ depth)
@@ -101,6 +113,9 @@ theorem IsHorton.orient_ne_zero_of_lt {depth : ℕ} {p : ℕ → Point}
       rw [orient_cycle (p c) (p a) (p b)]
       exact h.orient_ne_zero_sorted hca hab hb
 
+/--
+@isnad1 id=ne.7h5v.s6.716c3b483c21 from=translated src=- shape=bd6b148d vocab=b203ab84
+-/
 theorem IsHorton.orient_ne_zero {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) {a b c : ℕ}
     (ha : a < 2 ^ depth) (hb : b < 2 ^ depth) (hc : c < 2 ^ depth)
@@ -113,7 +128,9 @@ theorem IsHorton.orient_ne_zero {depth : ℕ} {p : ℕ → Point}
     rw [orient_swap, hz] at hn
     exact hn (neg_zero)
 
-/-- The separation conditions imply the usual no-three-collinear property.-/
+/-- The separation conditions imply the usual no-three-collinear property.
+@isnad1 id=generalp.1h2v.s5.f377b5a042fa from=translated src=- shape=f7a18f46 vocab=b783e331
+-/
 theorem IsHorton.generalPosition {depth : ℕ} {p : ℕ → Point}
     (h : IsHorton depth p) : GeneralPosition (p '' Set.Iio (2 ^ depth)) := by
   rintro a ⟨i, hi, rfl⟩ b ⟨j, hj, rfl⟩ c ⟨k, hk, rfl⟩ hij hik hjk

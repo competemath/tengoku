@@ -23,18 +23,24 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Harborth
 noncomputable section
 namespace Horton
 
-/-- `h(3) = 3`: three points force an empty triangle, and no smaller number does.-/
+/-- `h(3) = 3`: three points force an empty triangle, and no smaller number does.
+@isnad1 id=iff.0h1v.s4.9a38cb9a0018 from=translated src=- shape=f23a884c vocab=2fd4ae14
+-/
 theorem forces_empty_triangle_iff (n : ℕ) : ForcesEmptyKGon 3 n ↔ 3 ≤ n :=
   ⟨fun h ↦ h.le, fun h ↦ forcesEmptyKGon_of_le forcesEmptyKGon_three_three h⟩
 
-/-- `h(4) = 5`: five points force an empty convex quadrilateral, and no smaller number does.-/
+/-- `h(4) = 5`: five points force an empty convex quadrilateral, and no smaller number does.
+@isnad1 id=iff.0h1v.s4.e813e79c40c6 from=translated src=- shape=f23a884c vocab=2fd4ae14
+-/
 theorem forces_empty_quadrilateral_iff (n : ℕ) : ForcesEmptyKGon 4 n ↔ 5 ≤ n := by
   refine ⟨fun h ↦ ?_, fun h ↦ forcesEmptyKGon_of_le forcesEmptyKGon_four_five h⟩
   by_contra hn
   exact not_forcesEmptyKGon_of_le not_forcesEmptyKGon_four_four (by omega) h
 
 /-- `h(5) = 10` (Harborth 1978): ten points force an empty convex pentagon, and no smaller
-number does.-/
+number does.
+@isnad1 id=iff.0h1v.s4.db5bcac26de3 from=translated src=- shape=f23a884c vocab=2fd4ae14
+-/
 theorem forces_empty_pentagon_iff (n : ℕ) : ForcesEmptyKGon 5 n ↔ 10 ≤ n := by
   constructor
   · intro h

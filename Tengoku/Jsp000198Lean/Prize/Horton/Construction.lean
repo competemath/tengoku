@@ -17,6 +17,9 @@ namespace Prize.Horton
 
 open Prize.Geometry
 
+/--
+@isnad1 id=ishorton.3h4v.s6.46df3c6b7f7a from=translated src=- shape=efa58194 vocab=7b9dcbef
+-/
 theorem IsHorton.map {depth : ℕ} {p : ℕ → Point} (h : IsHorton depth p)
     (f : Point → Point) {r : ℝ} (hr : 0 < r)
     (hf : ∀ a b c, orient (f a) (f b) (f c) = r * orient a b c) :
@@ -35,6 +38,9 @@ theorem IsHorton.map {depth : ℕ} {p : ℕ → Point} (h : IsHorton depth p)
 /-- Double the horizontal coordinate and translate.-/
 def stretch (dx dy : ℝ) (a : Point) : Point := (2 * a.1 + dx, a.2 + dy)
 
+/--
+@isnad1 id=eq.0h5v.s5.26a26a0a5d52 from=translated src=- shape=a39599dd vocab=af4fb410
+-/
 theorem orient_stretch (dx dy : ℝ) (a b c : Point) :
     orient (stretch dx dy a) (stretch dx dy b) (stretch dx dy c) = 2 * orient a b c := by
   simp only [orient, stretch]
@@ -44,27 +50,45 @@ theorem orient_stretch (dx dy : ℝ) (a b c : Point) :
 def liftPoints (p : ℕ → Point) (C : ℝ) (i : ℕ) : Point :=
   ((i : ℝ), (p (i / 2)).2 + (i % 2 : ℕ) * C)
 
+/--
+@isnad1 id=eq.0h3v.s4.caed482cfd19 from=translated src=- shape=094b8e6b vocab=019f980d
+-/
 @[simp] theorem liftPoints_x (p : ℕ → Point) (C : ℝ) (i : ℕ) :
     (liftPoints p C i).1 = i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.806f3bc05900 from=translated src=- shape=124b31a7 vocab=3877a455
+-/
 @[simp] theorem liftPoints_even (p : ℕ → Point) (C : ℝ) (i : ℕ) :
     liftPoints p C (2 * i) = (((2 * i : ℕ) : ℝ), (p i).2) := by
   simp [liftPoints]
 
+/--
+@isnad1 id=eq.0h3v.s6.b11ad8fb9d14 from=translated src=- shape=1159c4dd vocab=c00df157
+-/
 @[simp] theorem liftPoints_odd (p : ℕ → Point) (C : ℝ) (i : ℕ) :
     liftPoints p C (2 * i + 1) = (((2 * i + 1 : ℕ) : ℝ), (p i).2 + C) := by
   simp [liftPoints, Nat.add_div]
 
+/--
+@isnad1 id=eq.1h2v.s5.15bd7ca45a06 from=translated src=- shape=b90c1b8b vocab=c0f43344
+-/
 theorem liftPoints_even_stretch {p : ℕ → Point} (hx : ∀ i, (p i).1 = i) (C : ℝ) :
     evenPoints (liftPoints p C) = fun i => stretch 0 0 (p i) := by
   funext i
   simp [evenPoints, liftPoints_even, stretch, hx]
 
+/--
+@isnad1 id=eq.1h2v.s5.2f5785154f9d from=translated src=- shape=9268b15e vocab=565b6491
+-/
 theorem liftPoints_odd_stretch {p : ℕ → Point} (hx : ∀ i, (p i).1 = i) (C : ℝ) :
     oddPoints (liftPoints p C) = fun i => stretch 1 C (p i) := by
   funext i
   simp [oddPoints, liftPoints_odd, stretch, hx]
 
+/--
+@isnad1 id=eq.0h5v.s7.b1ac155798ee from=translated src=- shape=66ddef07 vocab=f64dc378
+-/
 theorem orient_lift_even_even_odd (p : ℕ → Point) (C : ℝ) (i j t : ℕ) :
     orient (liftPoints p C (2 * i)) (liftPoints p C (2 * j))
         (liftPoints p C (2 * t + 1)) =
@@ -74,6 +98,9 @@ theorem orient_lift_even_even_odd (p : ℕ → Point) (C : ℝ) (i j t : ℕ) :
     Nat.cast_mul, Nat.cast_ofNat, Nat.cast_one]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.63a11d224dfd from=translated src=- shape=80204864 vocab=f64dc378
+-/
 theorem orient_lift_odd_odd_even (p : ℕ → Point) (C : ℝ) (i j t : ℕ) :
     orient (liftPoints p C (2 * i + 1)) (liftPoints p C (2 * j + 1))
         (liftPoints p C (2 * t)) =
@@ -84,7 +111,9 @@ theorem orient_lift_odd_odd_even (p : ℕ → Point) (C : ℝ) (i j t : ℕ) :
   ring
 
 /-- One sufficiently large integer vertical shift satisfies all separation
-inequalities in the next finite configuration simultaneously.-/
+inequalities in the next finite configuration simultaneously.
+@isnad1 id=ex.0h2v.s8.bce57df0be01 from=translated src=- shape=bdc5fd0c vocab=31ebd456
+-/
 theorem exists_lift_separation (depth : ℕ) (p : ℕ → Point) :
     ∃ C : ℕ,
       (∀ i j t : ℕ, i < j → j < 2 ^ depth → t < 2 ^ depth →
@@ -131,7 +160,9 @@ theorem exists_lift_separation (depth : ℕ) (p : ℕ → Point) :
     change B i j t - 2 * ((j : ℝ) - i) * C < 0
     linarith
 
-/-- Horton configurations of every recursive depth exist with integer coordinates.-/
+/-- Horton configurations of every recursive depth exist with integer coordinates.
+@isnad1 id=ex.0h1v.s5.1938182575cc from=translated src=- shape=3d78c100 vocab=ca715919
+-/
 theorem exists_horton_integer (depth : ℕ) :
     ∃ p : ℕ → Point, IsHorton depth p ∧ (∀ i, (p i).1 = i) ∧
       (∀ i, ∃ z : ℤ, (p i).2 = z) := by

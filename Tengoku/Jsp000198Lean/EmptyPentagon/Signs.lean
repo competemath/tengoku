@@ -50,29 +50,43 @@ def impHoldsAll (hyps : List Lit) (concl : Lit) : Bool :=
 def LitHolds (p : Fin 5 → Point) (l : Lit) : Prop :=
   (0 < orient (p l.1) (p l.2.1) (p l.2.2.1)) ↔ l.2.2.2 = true
 
-/-- A positive orientation gives a positive literal.-/
+/-- A positive orientation gives a positive literal.
+@isnad1 id=litholds.1h4v.s6.47dd890792da from=translated src=- shape=269a2602 vocab=96ed25e5
+-/
 theorem litHolds_pos (p : Fin 5 → Point) (i j k : Fin 5) (h : 0 < orient (p i) (p j) (p k)) :
     LitHolds p (i, j, k, true) :=
   ⟨fun _ => rfl, fun _ => h⟩
 
-/-- A negative orientation gives a negative literal.-/
+/-- A negative orientation gives a negative literal.
+@isnad1 id=litholds.1h4v.s6.dc5b59f6d57e from=translated src=- shape=ee4daa13 vocab=68ac0e43
+-/
 theorem litHolds_neg (p : Fin 5 → Point) (i j k : Fin 5) (h : orient (p i) (p j) (p k) < 0) :
     LitHolds p (i, j, k, false) :=
   ⟨fun h' => absurd h' (not_lt.2 h.le), fun h' => Bool.noConfusion h'⟩
 
-/-- No hypotheses to discharge.-/
+/-- No hypotheses to discharge.
+@isnad1 id=litholds.1h2v.s4.0427a3b45f38 from=translated src=- shape=b433b1cf vocab=dee798d3
+-/
 theorem litHolds_nil (p : Fin 5 → Point) : ∀ l ∈ ([] : List Lit), LitHolds p l :=
   fun _ h => nomatch h
 
-/-- Discharge the hypotheses of a sign implication one literal at a time.-/
+/-- Discharge the hypotheses of a sign implication one literal at a time.
+@isnad1 id=litholds.3h4v.s5.eb47873f22c2 from=translated src=- shape=7478dd7b vocab=635de4e5
+-/
 theorem litHolds_cons {p : Fin 5 → Point} {l : Lit} {ls : List Lit} (h : LitHolds p l)
     (hs : ∀ l' ∈ ls, LitHolds p l') : ∀ l' ∈ l :: ls, LitHolds p l' :=
   List.forall_mem_cons.2 ⟨h, hs⟩
 
+/--
+@isnad1 id=iff.0h1v.s7.121a81cd82fb from=translated src=- shape=13b9a694 vocab=ce5ced6f
+-/
 theorem litDistinct_iff (l : Lit) :
     litDistinct l = true ↔ l.1 ≠ l.2.1 ∧ l.1 ≠ l.2.2.1 ∧ l.2.1 ≠ l.2.2.1 := by
   simp only [litDistinct, Bool.and_eq_true, bne_iff_ne, ne_eq, and_assoc]
 
+/--
+@isnad1 id=eq.3h2v.s7.ba008087adda from=translated src=- shape=276668e8 vocab=fa77c7a8
+-/
 theorem litB_ofBits_encode (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
     (h1 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ j i k = !σ i j k)
     (h2 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → σ i k j = !σ i j k)
@@ -80,17 +94,26 @@ theorem litB_ofBits_encode (σ : Fin 5 → Fin 5 → Fin 5 → Bool)
   obtain ⟨h12, h13, h23⟩ := (litDistinct_iff l).1 hd
   simp only [litB, ofBits_encode σ h1 h2 _ _ _ h12 h13 h23]
 
+/--
+@isnad1 id=iff.0h2v.s4.06978eabd73e from=translated src=- shape=21969e0a vocab=64ac3192
+-/
 theorem litB_orientSign_iff (p : Fin 5 → Point) (l : Lit) :
     litB (orientSign p) l = true ↔ LitHolds p l := by
   obtain ⟨i, j, k, b⟩ := l
   cases b <;> simp [litB, LitHolds, orientSign]
 
+/--
+@isnad1 id=and.1h2v.s5.cd95d5cba34d from=translated src=- shape=926de6eb vocab=8bdc47cd
+-/
 theorem impHoldsAll_distinct (hyps : List Lit) (concl : Lit)
     (hall : impHoldsAll hyps concl = true) :
     (∀ l ∈ hyps, litDistinct l = true) ∧ litDistinct concl = true := by
   simp only [impHoldsAll, Bool.and_eq_true, List.all_eq_true] at hall
   exact hall.1
 
+/--
+@isnad1 id=eq.1h12v.s5.c158dbca3ac0 from=translated src=- shape=beb07fc4 vocab=b9b0324e
+-/
 theorem impCheck_of_impHoldsAll (hyps : List Lit) (concl : Lit)
     (hall : impHoldsAll hyps concl = true) (b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 : Bool) :
     impCheck hyps concl (mk10 b0 b1 b2 b3 b4 b5 b6 b7 b8 b9) = true := by
@@ -100,7 +123,9 @@ theorem impCheck_of_impHoldsAll (hyps : List Lit) (concl : Lit)
     b6) b7) b8) b9
 
 /-- A sign implication verified on all consistent abstract sign vectors holds for real points in
-general position.-/
+general position.
+@isnad1 id=litholds.3h3v.s5.58dfa2db485b from=translated src=- shape=9f9d152d vocab=d74479ba
+-/
 theorem sign_imp (hyps : List Lit) (concl : Lit) (hall : impHoldsAll hyps concl = true)
     (p : Fin 5 → Point) (hgp : IndexedGP p) (hh : ∀ l ∈ hyps, LitHolds p l) :
     LitHolds p concl := by
@@ -120,13 +145,17 @@ theorem sign_imp (hyps : List Lit) (concl : Lit) (hall : impHoldsAll hyps concl 
     exact absurd hf (by decide)
   · exact h
 
-/-- Convenience form of `sign_imp` with a positive conclusion.-/
+/-- Convenience form of `sign_imp` with a positive conclusion.
+@isnad1 id=lt.3h5v.s6.5ec057f2c6d6 from=translated src=- shape=46b64856 vocab=24b165e6
+-/
 theorem sign_imp_pos (hyps : List Lit) (i j k : Fin 5)
     (hall : impHoldsAll hyps (i, j, k, true) = true) (p : Fin 5 → Point) (hgp : IndexedGP p)
     (hh : ∀ l ∈ hyps, LitHolds p l) : 0 < orient (p i) (p j) (p k) :=
   (sign_imp hyps (i, j, k, true) hall p hgp hh).2 rfl
 
-/-- Convenience form of `sign_imp` with a negative conclusion.-/
+/-- Convenience form of `sign_imp` with a negative conclusion.
+@isnad1 id=lt.3h5v.s6.da38dba08eb4 from=translated src=- shape=f5bb7120 vocab=3717d320
+-/
 theorem sign_imp_neg (hyps : List Lit) (i j k : Fin 5)
     (hall : impHoldsAll hyps (i, j, k, false) = true) (p : Fin 5 → Point) (hgp : IndexedGP p)
     (hh : ∀ l ∈ hyps, LitHolds p l) : orient (p i) (p j) (p k) < 0 := by

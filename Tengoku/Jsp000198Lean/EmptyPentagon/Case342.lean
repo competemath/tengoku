@@ -18,7 +18,9 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.FourOuter
 noncomputable section
 namespace Horton
 
-/-- The vertices of a counterclockwise convex quadrilateral are in convex position.-/
+/-- The vertices of a counterclockwise convex quadrilateral are in convex position.
+@isnad1 id=convexin.4h4v.s8.65ff405aaeba from=translated src=- shape=6bae7cc9 vocab=02f7d093
+-/
 theorem convexIndependent_quad (w1 w2 w3 w4 : Point) (h1 : 0 < orient w1 w2 w3)
     (h2 : 0 < orient w2 w3 w4) (h3 : 0 < orient w3 w4 w1) (h4 : 0 < orient w4 w1 w2) :
     ConvexIndependent ℝ
@@ -64,7 +66,9 @@ theorem convexIndependent_quad (w1 w2 w3 w4 : Point) (h1 : 0 < orient w1 w2 w3)
     · exact absurd rfl hxv
 
 /-- A point strictly inside a counterclockwise convex quadrilateral and off the diagonal line
-`w1 w3` lies in the closed quadrilateral.-/
+`w1 w3` lies in the closed quadrilateral.
+@isnad1 id=mem.7h5v.s7.ee2eaa5de38b from=translated src=- shape=9608d950 vocab=5b1c12f6
+-/
 theorem mem_convexHull_quad (w1 w2 w3 w4 z : Point) (h1 : 0 < orient w1 w2 w3)
     (h3 : 0 < orient w3 w4 w1) (hd : orient w1 w3 z ≠ 0) (k1 : 0 < orient w1 w2 z)
     (k2 : 0 < orient w2 w3 z) (k3 : 0 < orient w3 w4 z) (k4 : 0 < orient w4 w1 z) :
@@ -84,7 +88,9 @@ theorem mem_convexHull_quad (w1 w2 w3 w4 z : Point) (h1 : 0 < orient w1 w2 w3)
     tauto
 
 /-- The `1–3` split: the first three vertices of a counterclockwise convex quadrilateral lie
-strictly left of the line `p → q` through two points of the closed quadrilateral.-/
+strictly left of the line `p → q` through two points of the closed quadrilateral.
+@isnad1 id=ex.21h7v.s9.fdf88f3983fd from=translated src=- shape=1c9ef327 vocab=49c6c6d7
+-/
 theorem five_of_line_split (S : Finset Point) (v1 v2 v3 v4 p q : Point)
     (h1 : 0 < orient v1 v2 v3) (h2 : 0 < orient v2 v3 v4) (h3 : 0 < orient v3 v4 v1)
     (h4 : 0 < orient v4 v1 v2) (hv1 : v1 ∈ S) (hv2 : v2 ∈ S) (hv3 : v3 ∈ S) (hpS : p ∈ S)
@@ -115,7 +121,9 @@ theorem five_of_line_split (S : Finset Point) (v1 v2 v3 v4 p q : Point)
       h12 h13 h23 hph' hqh' hpq k1 k2 k3
 
 /-- Normalised form of Bonnice's `(3,4,2)` case: the line `z1 → z2` has the vertices `w1, w2`
-strictly on its right and `w3, w4` strictly on its left.-/
+strictly on its right and `w3, w4` strictly on its left.
+@isnad1 id=ex.33h8v.s10.038655b72a6d from=translated src=- shape=94068a53 vocab=e61e3bcc
+-/
 theorem case_342_core (S : Finset Point) (hgp : GeneralPosition S) (H : Finset Point)
     (hHS : H ⊆ S) (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point)))
     (h3 : 3 ≤ H.card) (w1 w2 w3 w4 z1 z2 : Point) (hw1 : w1 ∈ S) (hw2 : w2 ∈ S) (hw3 : w3 ∈ S)
@@ -244,7 +252,9 @@ theorem case_342_core (S : Finset Point) (hgp : GeneralPosition S) (H : Finset P
 
 /-- Bonnice's `(3,4,2)` case: at least three hull vertices `H`, an inner counterclockwise convex
 quadrilateral with two points strictly inside, everything inside the hull of `H`, no vertex of `H`
-in the closed inner quadrilateral. Then `S` contains five points in convex position.-/
+in the closed inner quadrilateral. Then `S` contains five points in convex position.
+@isnad1 id=ex.19h8v.s9.664a1eb3bb32 from=translated src=- shape=aa20f985 vocab=ea5d7376
+-/
 theorem case_342 (S : Finset Point) (hgp : GeneralPosition S)
     (H : Finset Point) (hHS : H ⊆ S)
     (hH : ConvexIndependent ℝ (fun x : (H : Set Point) => (x : Point))) (h3 : 3 ≤ H.card)

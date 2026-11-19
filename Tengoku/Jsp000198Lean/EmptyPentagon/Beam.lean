@@ -15,13 +15,17 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Pentagon
 noncomputable section
 namespace Horton
 
-/-- Extend a discharged hypothesis list of a sign implication by further literals.-/
+/-- Extend a discharged hypothesis list of a sign implication by further literals.
+@isnad1 id=litholds.3h4v.s6.b5e383ce8c6e from=translated src=- shape=a0d92f39 vocab=197e0015
+-/
 theorem litHolds_append {p : Fin 5 → Point} {l₁ l₂ : List Lit} (h₁ : ∀ l ∈ l₁, LitHolds p l)
     (h₂ : ∀ l ∈ l₂, LitHolds p l) : ∀ l ∈ l₁ ++ l₂, LitHolds p l :=
   List.forall_mem_append.2 ⟨h₁, h₂⟩
 
 /-- The line `p u → p w` separates `p v` from the other points of the image of `p`, given the
-strict signs at `p v` and at the two remaining points `p a`, `p b`.-/
+strict signs at `p v` and at the two remaining points `p a`, `p b`.
+@isnad1 id=ex.6h6v.s8.2ee7baba1e34 from=translated src=- shape=02606bad vocab=2f955c45
+-/
 theorem separated_of_signs (p : Fin 5 → Point) (hinj : Function.Injective p) (u w v a b : Fin 5)
     (huw : u ≠ w) (hcover : ∀ i : Fin 5, i = u ∨ i = w ∨ i = v ∨ i = a ∨ i = b)
     (hneg : orient (p u) (p w) (p v) < 0) (ha : 0 < orient (p u) (p w) (p a))
@@ -63,7 +67,9 @@ set_option maxHeartbeats 400000 in
 /-- Bonnice's beam lemma (corrected): `p 0 = z`, `p 1 = v1`, `p 2 = v3` counterclockwise; `p 3`,
 `p 4` lie in the cone at `z` through `v1, v3`, strictly beyond the line `v1 v3`, and the line
 through `p 3, p 4` leaves `z, v1, v3` strictly on one side. Then the five points are in convex
-position.-/
+position.
+@isnad1 id=convexin.11h1v.s9.8177f85f1719 from=translated src=- shape=613998b9 vocab=b1dde414
+-/
 theorem convexIndependent_beam (p : Fin 5 → Point) (hgp : IndexedGP p)
     (hinj : Function.Injective p) (hz : 0 < orient (p 0) (p 1) (p 2))
     (h3a : 0 < orient (p 0) (p 1) (p 3)) (h3b : 0 < orient (p 0) (p 3) (p 2))
@@ -145,7 +151,9 @@ theorem convexIndependent_beam (p : Fin 5 → Point) (hgp : IndexedGP p)
 
 /-- Cone covering: `p 0 = v1, p 1 = v2, p 2 = v3` counterclockwise, `p 3 = z` strictly inside,
 `p 4 = y` outside the closed triangle. Then `y` lies in one of the three cones at `z` through
-consecutive vertices, strictly beyond the corresponding edge line.-/
+consecutive vertices, strictly beyond the corresponding edge line.
+@isnad1 id=or.6h1v.s10.6b8b5e1543d0 from=translated src=- shape=a6c5a48c vocab=2d113c9d
+-/
 theorem cone_cover (p : Fin 5 → Point) (hgp : IndexedGP p)
     (ht : 0 < orient (p 0) (p 1) (p 2))
     (hz1 : 0 < orient (p 0) (p 1) (p 3)) (hz2 : 0 < orient (p 1) (p 2) (p 3))
@@ -223,7 +231,9 @@ theorem cone_cover (p : Fin 5 → Point) (hgp : IndexedGP p)
 /-- Strip pentagon: `p 0 = z1`, `p 1 = z2`, `p 2 = v2`, `p 3 = v3`, `p 4 = y`, where the line
 `z1 → z2` has `v2, v3` strictly on its left, `z1, z2` are strictly left of `v2 → v3`, and `y`
 lies strictly beyond `v2 v3`, right of `z1 → v3` and left of `z2 → v2`. Then
-`{z1, z2, v2, y, v3}` is in convex position.-/
+`{z1, z2, v2, y, v3}` is in convex position.
+@isnad1 id=convexin.9h1v.s9.12412661d529 from=translated src=- shape=c6e02916 vocab=6a603261
+-/
 theorem convexIndependent_strip (p : Fin 5 → Point) (hgp : IndexedGP p)
     (hinj : Function.Injective p)
     (hv2 : 0 < orient (p 0) (p 1) (p 2)) (hv3 : 0 < orient (p 0) (p 1) (p 3))

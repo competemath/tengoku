@@ -15,22 +15,30 @@ import Tengoku.Jsp000198Lean.EmptyPentagon.Enumeration
 noncomputable section
 namespace Horton
 
-/-- Swapping the first two arguments of `orient` negates it.-/
+/-- Swapping the first two arguments of `orient` negates it.
+@isnad1 id=eq.0h3v.s4.88660e26735f from=translated src=- shape=f2c75b05 vocab=d04c39b3
+-/
 theorem orient_swap_left (a b c : Point) : orient b a c = -orient a b c := by
   unfold orient
   ring
 
-/-- Swapping the last two arguments of `orient` negates it.-/
+/-- Swapping the last two arguments of `orient` negates it.
+@isnad1 id=eq.0h3v.s4.d649bc266ec0 from=translated src=- shape=04d76633 vocab=d04c39b3
+-/
 theorem orient_swap_right (a b c : Point) : orient a c b = -orient a b c := by
   unfold orient
   ring
 
-/-- The orientation vanishes when the third point equals the first.-/
+/-- The orientation vanishes when the third point equals the first.
+@isnad1 id=eq.0h2v.s4.2cb7dcd4cdba from=translated src=- shape=52ed7545 vocab=289b8093
+-/
 theorem orient_left_self (a b : Point) : orient a b a = 0 := by
   unfold orient
   ring
 
-/-- The orientation vanishes when the third point equals the second.-/
+/-- The orientation vanishes when the third point equals the second.
+@isnad1 id=eq.0h2v.s4.59e0d3782358 from=translated src=- shape=f5a3d3ad vocab=289b8093
+-/
 theorem orient_right_self (a b : Point) : orient a b b = 0 := by
   unfold orient
   ring
@@ -43,24 +51,32 @@ def orientSign (p : Fin 5 → Point) (i j k : Fin 5) : Bool :=
 def IndexedGP (p : Fin 5 → Point) : Prop :=
   ∀ i j k : Fin 5, i ≠ j → i ≠ k → j ≠ k → orient (p i) (p j) (p k) ≠ 0
 
-/-- A `true` sign is a strictly positive orientation.-/
+/-- A `true` sign is a strictly positive orientation.
+@isnad1 id=iff.0h4v.s5.0d31972c1fe6 from=translated src=- shape=1622735b vocab=ddbf8833
+-/
 theorem orientSign_true_iff (p : Fin 5 → Point) (i j k : Fin 5) :
     orientSign p i j k = true ↔ 0 < orient (p i) (p j) (p k) :=
   decide_eq_true_iff
 
-/-- A `false` sign is a nonpositive orientation.-/
+/-- A `false` sign is a nonpositive orientation.
+@isnad1 id=iff.0h4v.s5.ed77b299dab6 from=translated src=- shape=6ac7f450 vocab=8a374858
+-/
 theorem orientSign_false_iff (p : Fin 5 → Point) (i j k : Fin 5) :
     orientSign p i j k = false ↔ orient (p i) (p j) (p k) ≤ 0 := by
   simp [orientSign]
 
-/-- In general position a `false` sign is a strictly negative orientation.-/
+/-- In general position a `false` sign is a strictly negative orientation.
+@isnad1 id=iff.4h4v.s6.6a8e45935297 from=translated src=- shape=3360fbbc vocab=4635430f
+-/
 theorem orientSign_false_iff_neg {p : Fin 5 → Point} (hgp : IndexedGP p) (i j k : Fin 5)
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
     orientSign p i j k = false ↔ orient (p i) (p j) (p k) < 0 := by
   rw [orientSign_false_iff]
   exact ⟨fun h => lt_of_le_of_ne h (hgp i j k hij hik hjk), le_of_lt⟩
 
-/-- Equality of the signs of two nonzero reals is the sign of their product.-/
+/-- Equality of the signs of two nonzero reals is the sign of their product.
+@isnad1 id=and.2h2v.s7.426e8fcc8afb from=translated src=- shape=6ded84d3 vocab=d52f964a
+-/
 theorem beq_decide_pos_iff {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) :
     ((decide (0 < x) == decide (0 < y)) = true ↔ 0 < x * y) ∧
       ((decide (0 < x) == decide (0 < y)) = false ↔ x * y < 0) := by
@@ -74,7 +90,9 @@ theorem beq_decide_pos_iff {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) :
   · have h := mul_pos hx hy
     simp [hx, hy, h, h.not_gt]
 
-/-- Inequality of the signs of two nonzero reals is the negativity of their product.-/
+/-- Inequality of the signs of two nonzero reals is the negativity of their product.
+@isnad1 id=and.2h2v.s7.327bdf5a66e5 from=translated src=- shape=f0fec5f9 vocab=f8db4853
+-/
 theorem bne_decide_pos_iff {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) :
     ((decide (0 < x) != decide (0 < y)) = true ↔ x * y < 0) ∧
       ((decide (0 < x) != decide (0 < y)) = false ↔ 0 < x * y) := by
@@ -88,7 +106,9 @@ theorem bne_decide_pos_iff {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) :
   · have h := mul_pos hx hy
     simp [hx, hy, h, h.not_gt]
 
-/-- Alternation in the first two indices, for pairwise distinct indices.-/
+/-- Alternation in the first two indices, for pairwise distinct indices.
+@isnad1 id=eq.4h4v.s6.792fe83358c2 from=translated src=- shape=4a9b0679 vocab=6e406dc3
+-/
 theorem orientSign_swap_left {p : Fin 5 → Point} (hgp : IndexedGP p) (i j k : Fin 5)
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
     orientSign p j i k = !orientSign p i j k := by
@@ -99,7 +119,9 @@ theorem orientSign_swap_left {p : Fin 5 → Point} (hgp : IndexedGP p) (i j k : 
   · simp [h, h.not_gt]
   · simp [h, h.not_gt]
 
-/-- Alternation in the last two indices, for pairwise distinct indices.-/
+/-- Alternation in the last two indices, for pairwise distinct indices.
+@isnad1 id=eq.4h4v.s6.761b090e560b from=translated src=- shape=4f583734 vocab=6e406dc3
+-/
 theorem orientSign_swap_right {p : Fin 5 → Point} (hgp : IndexedGP p) (i j k : Fin 5)
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
     orientSign p i k j = !orientSign p i j k := by
@@ -110,7 +132,9 @@ theorem orientSign_swap_right {p : Fin 5 → Point} (hgp : IndexedGP p) (i j k :
   · simp [h, h.not_gt]
   · simp [h, h.not_gt]
 
-/-- The four-point forbidden sign pattern never occurs for real orientations.-/
+/-- The four-point forbidden sign pattern never occurs for real orientations.
+@isnad1 id=not.7h5v.s7.086943e0a38f from=translated src=- shape=373b4600 vocab=6e406dc3
+-/
 theorem orientSign_not_forb4 {p : Fin 5 → Point} (hgp : IndexedGP p) (a b c d : Fin 5)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hbc : b ≠ c) (hbd : b ≠ d)
     (hcd : c ≠ d) :
@@ -131,7 +155,9 @@ theorem orientSign_not_forb4 {p : Fin 5 → Point} (hgp : IndexedGP p) (a b c d 
     have e4 := (orientSign_false_iff_neg hgp a b d hab had hbd).1 hd
     linarith
 
-/-- The five-point forbidden sign pattern never occurs for real orientations.-/
+/-- The five-point forbidden sign pattern never occurs for real orientations.
+@isnad1 id=not.11h6v.s7.71acb149b33c from=translated src=- shape=f08c555e vocab=3ccdb4b4
+-/
 theorem orientSign_not_forb5 {p : Fin 5 → Point} (hgp : IndexedGP p) (a b c d e : Fin 5)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hae : a ≠ e) (hbc : b ≠ c) (hbd : b ≠ d)
     (hbe : b ≠ e) (hcd : c ≠ d) (hce : c ≠ e) (hde : d ≠ e) :
@@ -164,7 +190,9 @@ theorem orientSign_not_forb5 {p : Fin 5 → Point} (hgp : IndexedGP p) (a b c d 
     have e3 := (beq_decide_pos_iff n5 n6).2.1 h2.symm
     linarith
 
-/-- The orientation sign vector of a configuration in general position is consistent.-/
+/-- The orientation sign vector of a configuration in general position is consistent.
+@isnad1 id=consiste.1h1v.s3.3d206893b775 from=translated src=- shape=278a475f vocab=8fb335cb
+-/
 theorem consistent_orientSign {p : Fin 5 → Point} (hgp : IndexedGP p) :
     Consistent (orientSign p) :=
   ⟨fun i j k hij hik hjk => orientSign_swap_left hgp i j k hij hik hjk,
@@ -174,7 +202,9 @@ theorem consistent_orientSign {p : Fin 5 → Point} (hgp : IndexedGP p) :
       orientSign_not_forb5 hgp a b c d e hab hac had hae hbc hbd hbe hcd hce hde⟩
 
 /-- A quadrilateral certificate on an injective enumeration of `S` in general position yields an
-empty convex quadrilateral in `S`.-/
+empty convex quadrilateral in `S`.
+@isnad1 id=ex.15h7v.s7.cf23a21dd1d6 from=translated src=- shape=4f312c8a vocab=e5e47af8
+-/
 theorem exists_emptyConvexPolygon_of_quadCert (S : Finset Point) (p : Fin 5 → Point)
     (hinj : Function.Injective p) (hgp : IndexedGP p) (hmem : ∀ i, p i ∈ S)
     (hsurj : ∀ q ∈ S, ∃ i, p i = q) (i j k l m : Fin 5) (hij : i ≠ j) (hik : i ≠ k)
@@ -256,7 +286,9 @@ theorem exists_emptyConvexPolygon_of_quadCert (S : Finset Point) (p : Fin 5 → 
     · exact hV k l hkl c5.le c6.le (orient_left_self _ _).ge (orient_right_self _ _).ge h
     · exact hV l i hil.symm (orient_right_self _ _).ge c7.le c8.le (orient_left_self _ _).ge h
 
-/-- Every five points in general position contain an empty convex quadrilateral.-/
+/-- Every five points in general position contain an empty convex quadrilateral.
+@isnad1 id=forcesem.0h0v.s3.4c4048e63aec from=translated src=- shape=6d6f5044 vocab=a325f057
+-/
 theorem forcesEmptyKGon_four_five : ForcesEmptyKGon 4 5 := by
   intro S hS hgp
   have hcard : Fintype.card S = 5 := by simp [hS]
