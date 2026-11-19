@@ -74,6 +74,9 @@ variable {r : ℕ} {c : VecSeq n N} {B : VecSeq n N → VecSeq n N → VecSeq n 
   {Bk : ℕ → ℝ} (h : IterHyp n N r c B A A' Bk)
 include h
 
+/--
+@isnad1 id=vmem.2h10v.s5.e20f5c4f047d from=translated src=- shape=0d3d448d vocab=858e02ee
+-/
 lemma iter_mem (k : ℕ) (hk : r ≤ k) : ∀ p, VMem n N k (iter c B p)
   | 0 => vmem_zero _
   | p + 1 => (h.c_mem k).add (h.B_mem k hk _ _ (iter_mem k hk p) (iter_mem k hk p))
@@ -82,7 +85,9 @@ variable {ρ : ℝ} (hρ : 0 < ρ) (hA : 4 * A * ρ ≤ 1 / 4) (hA' : 4 * A' * �
   (hc : 4 * vecNormSq n N r c ≤ ρ)
 include hρ hA hc
 
-/-- The iterates stay in the ball `‖v‖²_(r) ≤ ρ`.-/
+/-- The iterates stay in the ball `‖v‖²_(r) ≤ ρ`.
+@isnad1 id=le.4h10v.s7.8c79583bf217 from=translated src=- shape=df783c8b vocab=04682a8f
+-/
 lemma iter_ball : ∀ p, vecNormSq n N r (iter c B p) ≤ ρ
   | 0 => by rw [iter, vecNormSq_zero]; exact hρ.le
   | p + 1 => by
@@ -99,7 +104,9 @@ lemma iter_ball : ∀ p, vecNormSq n N r (iter c B p) ≤ ρ
     nlinarith
 
 omit hρ hc in
-/-- One step contracts squared `H^r` distances by `1/4`.-/
+/-- One step contracts squared `H^r` distances by `1/4`.
+@isnad1 id=le.4h11v.s8.1a62930d22e7 from=translated src=- shape=f888fb5c vocab=d04c8eab
+-/
 lemma iter_contract_step (p q : ℕ)
     (hp : vecNormSq n N r (iter c B p) ≤ ρ) (hq : vecNormSq n N r (iter c B q) ≤ ρ) :
     vecNormSq n N r (iter c B (p + 1) - iter c B (q + 1)) ≤
@@ -129,7 +136,9 @@ lemma iter_contract_step (p q : ℕ)
     exact mul_le_mul_of_nonneg_right this hd0
   nlinarith
 
-/-- Iterated contraction: `d(vᵖ⁺ʲ, vᵠ⁺ʲ) ≤ 4⁻ʲ d(vᵖ, vᵠ)`.-/
+/-- Iterated contraction: `d(vᵖ⁺ʲ, vᵠ⁺ʲ) ≤ 4⁻ʲ d(vᵖ, vᵠ)`.
+@isnad1 id=le.4h12v.s8.42e6651ea3c3 from=translated src=- shape=a4ba1170 vocab=6681791c
+-/
 lemma iter_contract (p q : ℕ) : ∀ j : ℕ,
     vecNormSq n N r (iter c B (p + j) - iter c B (q + j)) ≤
       (1 / 4) ^ j * vecNormSq n N r (iter c B p - iter c B q)
@@ -146,7 +155,9 @@ lemma iter_contract (p q : ℕ) : ∀ j : ℕ,
           exact mul_le_mul_of_nonneg_left ih (by norm_num)
       _ = (1 / 4) ^ (j + 1) * vecNormSq n N r (iter c B p - iter c B q) := by ring
 
-/-- Uniform Cauchy bound: for `P ≤ p, q`, `d(vᵖ, vᵠ) ≤ 4⁻ᴾ ρ`.-/
+/-- Uniform Cauchy bound: for `P ≤ p, q`, `d(vᵖ, vᵠ) ≤ 4⁻ᴾ ρ`.
+@isnad1 id=le.6h12v.s8.fb8105e24aef from=translated src=- shape=d3b43d99 vocab=f95c4106
+-/
 lemma iter_cauchy_bound (P p q : ℕ) (hp : P ≤ p) (hq : P ≤ q) :
     vecNormSq n N r (iter c B p - iter c B q) ≤ (1 / 4) ^ P * ρ := by
   -- reduce to the case `p ≤ q` by symmetry
@@ -170,7 +181,9 @@ lemma iter_cauchy_bound (P p q : ℕ) (hp : P ≤ p) (hq : P ≤ q) :
   · have := key q p hq hqp
     rwa [← vecNormSq_neg, neg_sub] at this
 
-/-- The iterates are Cauchy in `H^r`.-/
+/-- The iterates are Cauchy in `H^r`.
+@isnad1 id=ex.5h10v.s7.5026182c7537 from=translated src=- shape=4fb8f647 vocab=3713f573
+-/
 lemma iter_cauchy (ε : ℝ) (hε : 0 < ε) :
     ∃ P, ∀ p ≥ P, ∀ q ≥ P, vecNormSq n N r (iter c B p - iter c B q) ≤ ε := by
   obtain ⟨P, hP⟩ := exists_pow_lt_of_lt_one (div_pos hε hρ) (by norm_num : (1 : ℝ) / 4 < 1)
@@ -181,7 +194,9 @@ lemma iter_cauchy (ε : ℝ) (hε : 0 < ε) :
     _ = ε := div_mul_cancel₀ ε hρ.ne'
 
 include hA' in
-/-- The iterates are bounded in every `H^k`, `k ≥ r` (induction on `k`).-/
+/-- The iterates are bounded in every `H^k`, `k ≥ r` (induction on `k`).
+@isnad1 id=ex.6h10v.s7.59e593664be6 from=translated src=- shape=3ba72b27 vocab=04682a8f
+-/
 lemma iter_bounded (k : ℕ) (hk : r ≤ k) : ∃ M : ℝ, ∀ p, vecNormSq n N k (iter c B p) ≤ M := by
   induction k, hk using Nat.le_induction with
   | base => exact ⟨ρ, iter_ball h hρ hA hc⟩
@@ -233,7 +248,9 @@ end
 /-- **The abstract Günther fixed-point theorem.** Under `IterHyp` and the smallness conditions,
 there is `v` in every `H^k` with `v = c + B v v`, `‖v‖²_(r) ≤ ρ`, and `v` satisfies any predicate
 `P` that holds at `0`, is preserved by `v ↦ c + B v v`, and is closed under coefficientwise
-limits.-/
+limits.
+@isnad1 id=ex.5h13v.s8.ce313750c227 from=translated src=- shape=7ccd0883 vocab=24db6f86
+-/
 theorem exists_fixed_point {r : ℕ} {c : VecSeq n N} {B : VecSeq n N → VecSeq n N → VecSeq n N}
     {A A' : ℝ} {Bk : ℕ → ℝ} (h : IterHyp n N r c B A A' Bk)
     {ρ : ℝ} (hρ : 0 < ρ) (hA : 4 * A * ρ ≤ 1 / 4) (hA' : 4 * A' * ρ ≤ 1 / 2)

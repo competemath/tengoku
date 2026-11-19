@@ -38,18 +38,29 @@ def laplacianCoeff (a : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) : ℂ :=
 def resolventCoeff (a : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) : ℂ :=
   a m / ((1 + ∑ i : Fin n, ((m i : ℝ) ^ 2) : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s6.447d802952b8 from=translated src=- shape=9654e93e vocab=b587cb98
+-/
 lemma weight_one (m : Fin n → ℤ) : weight n 1 m = 1 + ∑ i : Fin n, ((m i : ℝ) ^ 2) := by
   unfold weight; simp
 
+/--
+@isnad1 id=lt.0h2v.s6.56cb995611fd from=translated src=- shape=5088375e vocab=483eb74c
+-/
 lemma one_add_sum_sq_pos (m : Fin n → ℤ) : 0 < 1 + ∑ i : Fin n, ((m i : ℝ) ^ 2) := by
   positivity
 
+/--
+@isnad1 id=eq.0h3v.s5.beecc1373a57 from=translated src=- shape=0d22d641 vocab=96976dd3
+-/
 lemma norm_resolventCoeff (a : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) :
     ‖resolventCoeff a m‖ = ‖a m‖ / weight n 1 m := by
   unfold resolventCoeff
   rw [norm_div, weight_one, Complex.norm_real, Real.norm_of_nonneg (one_add_sum_sq_pos m).le]
 
-/-- Weighted-norm identity: `weight (s+2) · |(I+Δ)⁻¹ a|² = weight s · |a|²` termwise.-/
+/-- Weighted-norm identity: `weight (s+2) · |(I+Δ)⁻¹ a|² = weight s · |a|²` termwise.
+@isnad1 id=eq.0h4v.s6.d7f9b3a442fd from=translated src=- shape=8e078169 vocab=3222ad72
+-/
 lemma weight_norm_resolventCoeff_sq (s : ℝ) (a : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) :
     weight n (s + 2) m * ‖resolventCoeff a m‖ ^ 2 = weight n s m * ‖a m‖ ^ 2 := by
   rw [norm_resolventCoeff, div_pow, show (s + 2 : ℝ) = s + 1 + 1 by ring,
@@ -57,19 +68,25 @@ lemma weight_norm_resolventCoeff_sq (s : ℝ) (a : (Fin n → ℤ) → ℂ) (m :
   have h := (weight_pos (n := n) 1 m).ne'
   field_simp
 
-/-- `(I + Δ)⁻¹ : ℓ²_(s) → ℓ²_(s+2)`.-/
+/-- `(I + Δ)⁻¹ : ℓ²_(s) → ℓ²_(s+2)`.
+@isnad1 id=memsobol.1h3v.s5.6fc168ec29f8 from=translated src=- shape=5e5d7d6d vocab=ec14b2fa
+-/
 lemma memSobolev_resolventCoeff {s : ℝ} {a : (Fin n → ℤ) → ℂ} (ha : MemSobolev n s a) :
     MemSobolev n (s + 2) (resolventCoeff a) := by
   unfold MemSobolev at *
   simpa only [weight_norm_resolventCoeff_sq] using ha
 
-/-- `(I + Δ)⁻¹` is an isometry `ℓ²_(s) → ℓ²_(s+2)`.-/
+/-- `(I + Δ)⁻¹` is an isometry `ℓ²_(s) → ℓ²_(s+2)`.
+@isnad1 id=eq.0h3v.s5.2e68c733135d from=translated src=- shape=f6c3e530 vocab=1dabd89d
+-/
 lemma sobolevNormSq_resolventCoeff (s : ℝ) (a : (Fin n → ℤ) → ℂ) :
     sobolevNormSq n (s + 2) (resolventCoeff a) = sobolevNormSq n s a := by
   unfold sobolevNormSq
   simp only [weight_norm_resolventCoeff_sq]
 
-/-- Termwise bound for the Laplacian: `weight s · |Δa|² ≤ weight (s+2) · |a|²`.-/
+/-- Termwise bound for the Laplacian: `weight s · |Δa|² ≤ weight (s+2) · |a|²`.
+@isnad1 id=le.0h4v.s6.c7ea25f4cfe4 from=translated src=- shape=1b0865f1 vocab=5a38496d
+-/
 lemma weight_norm_laplacianCoeff_sq_le (s : ℝ) (a : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) :
     weight n s m * ‖laplacianCoeff a m‖ ^ 2 ≤ weight n (s + 2) m * ‖a m‖ ^ 2 := by
   unfold laplacianCoeff
@@ -85,13 +102,18 @@ lemma weight_norm_laplacianCoeff_sq_le (s : ℝ) (a : (Fin n → ℤ) → ℂ) (
           (1 + ∑ i : Fin n, ((m i : ℝ) ^ 2)) * ‖a m‖ ^ 2) := by gcongr
     _ = _ := by ring
 
-/-- `Δ : ℓ²_(s+2) → ℓ²_(s)`.-/
+/-- `Δ : ℓ²_(s+2) → ℓ²_(s)`.
+@isnad1 id=memsobol.1h3v.s5.5f385243344f from=translated src=- shape=d89fa8d3 vocab=2dc4a995
+-/
 lemma memSobolev_laplacianCoeff {s : ℝ} {a : (Fin n → ℤ) → ℂ}
     (ha : MemSobolev n (s + 2) a) : MemSobolev n s (laplacianCoeff a) := by
   unfold MemSobolev at *
   exact Summable.of_nonneg_of_le (fun m => mul_nonneg (weight_nonneg _ _) (sq_nonneg _))
     (fun m => weight_norm_laplacianCoeff_sq_le s a m) ha
 
+/--
+@isnad1 id=le.1h3v.s5.67bc7e29695f from=translated src=- shape=cbd93692 vocab=a931e580
+-/
 lemma sobolevNormSq_laplacianCoeff_le {s : ℝ} {a : (Fin n → ℤ) → ℂ}
     (ha : MemSobolev n (s + 2) a) :
     sobolevNormSq n s (laplacianCoeff a) ≤ sobolevNormSq n (s + 2) a := by

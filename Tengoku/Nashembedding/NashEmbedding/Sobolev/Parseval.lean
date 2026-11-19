@@ -41,7 +41,9 @@ local instance : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
 local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (IsProbabilityMeasure AddCircle.haarAddCircle)
 
-/-- The volume measure on the unit torus is the product of the Haar measures on `ℝ/ℤ`.-/
+/-- The volume measure on the unit torus is the product of the Haar measures on `ℝ/ℤ`.
+@isnad1 id=eq.0h1v.s6.1373b9be8269 from=translated src=- shape=161e228b vocab=48fd7bc0
+-/
 lemma volume_unitAddTorus :
     (volume : Measure (UnitAddTorus (Fin n)))
       = Measure.pi fun _ : Fin n => AddCircle.haarAddCircle := rfl

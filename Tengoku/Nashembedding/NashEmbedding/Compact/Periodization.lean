@@ -44,22 +44,30 @@ variable {N : ℕ}
 
 /-! ## B. Positivity of the quadratic form is open -/
 
-/-- The quadratic form written as a double sum.-/
+/-- The quadratic form written as a double sum.
+@isnad1 id=eq.0h3v.s6.72844bef5021 from=translated src=- shape=f761deef vocab=258605f9
+-/
 lemma quadForm_eq_sum (M : Matrix (Fin N) (Fin N) ℝ) (x : Fin N → ℝ) :
     x ⬝ᵥ M.mulVec x = ∑ i, ∑ j, x i * M i j * x j := by
   simp [dotProduct, mulVec, Finset.mul_sum, mul_assoc]
 
-/-- The quadratic form is homogeneous of degree `2`.-/
+/-- The quadratic form is homogeneous of degree `2`.
+@isnad1 id=eq.0h4v.s7.6adbeb064e13 from=translated src=- shape=0371efd3 vocab=b61e4ac0
+-/
 lemma quadForm_smul (M : Matrix (Fin N) (Fin N) ℝ) (t : ℝ) (x : Fin N → ℝ) :
     (t • x) ⬝ᵥ M.mulVec (t • x) = t ^ 2 * (x ⬝ᵥ M.mulVec x) := by
   simp [mulVec_smul, smul_dotProduct, dotProduct_smul, smul_eq_mul]; ring
 
-/-- The quadratic form is additive in the matrix.-/
+/-- The quadratic form is additive in the matrix.
+@isnad1 id=eq.0h4v.s7.fda137f05d4f from=translated src=- shape=cf6539ca vocab=118f9de9
+-/
 lemma quadForm_add (M D : Matrix (Fin N) (Fin N) ℝ) (x : Fin N → ℝ) :
     x ⬝ᵥ (M + D).mulVec x = x ⬝ᵥ M.mulVec x + x ⬝ᵥ D.mulVec x := by
   simp [add_mulVec, dotProduct_add]
 
-/-- Crude bound for the quadratic form on the unit ball.-/
+/-- Crude bound for the quadratic form on the unit ball.
+@isnad1 id=le.1h3v.s7.abce163424b4 from=translated src=- shape=44778eb9 vocab=c9d5381a
+-/
 lemma abs_quadForm_le (M : Matrix (Fin N) (Fin N) ℝ) {x : Fin N → ℝ} (hx : ‖x‖ ≤ 1) :
     |x ⬝ᵥ M.mulVec x| ≤ (N : ℝ) ^ 2 * ‖M‖ := by
   have hxi : ∀ i, |x i| ≤ 1 := fun i => by
@@ -80,14 +88,18 @@ lemma abs_quadForm_le (M : Matrix (Fin N) (Fin N) ℝ) {x : Fin N → ℝ} (hx :
           _ = ‖M‖ := by ring
     _ = (N : ℝ) ^ 2 * ‖M‖ := by simp [Finset.sum_const, nsmul_eq_mul]; ring
 
-/-- The quadratic form of a fixed matrix is continuous.-/
+/-- The quadratic form of a fixed matrix is continuous.
+@isnad1 id=continuo.0h2v.s6.789c2d0a6b65 from=translated src=- shape=39bc1f96 vocab=5d002383
+-/
 lemma continuous_quadForm (M : Matrix (Fin N) (Fin N) ℝ) :
     Continuous fun x : Fin N → ℝ => x ⬝ᵥ M.mulVec x := by
   simp only [quadForm_eq_sum]
   fun_prop
 
 /-- **B1.** The set of real matrices with positive quadratic form is open
-  (minimum over the unit sphere is continuous in `A`).-/
+  (minimum over the unit sphere is continuous in `A`).
+@isnad1 id=isopen.0h1v.s6.576457976f8e from=translated src=- shape=4bd7f9fe vocab=cec1a4ce
+-/
 theorem isOpen_quadForm_pos :
     IsOpen {A : Matrix (Fin N) (Fin N) ℝ | ∀ x, x ≠ 0 → 0 < x ⬝ᵥ A.mulVec x} := by
   apply Metric.isOpen_iff.mpr
@@ -128,7 +140,9 @@ theorem isOpen_quadForm_pos :
   rw [hxu, quadForm_smul]
   positivity
 
-/-- **B2.** A symmetric matrix with positive quadratic form is positive definite.-/
+/-- **B2.** A symmetric matrix with positive quadratic form is positive definite.
+@isnad1 id=posdef.2h2v.s6.82066f35fd60 from=translated src=- shape=6d87785f vocab=045331ea
+-/
 theorem posDef_of_isSymm_of_quadForm_pos {A : Matrix (Fin N) (Fin N) ℝ} (hA : A.IsSymm)
     (hpos : ∀ x, x ≠ 0 → 0 < x ⬝ᵥ A.mulVec x) : A.PosDef := by
   refine Matrix.posDef_iff_dotProduct_mulVec.mpr ⟨?_, fun x hx => by simpa using hpos x hx⟩
@@ -136,7 +150,9 @@ theorem posDef_of_isSymm_of_quadForm_pos {A : Matrix (Fin N) (Fin N) ℝ} (hA : 
   rw [Matrix.conjTranspose_eq_transpose_of_trivial]
   exact hA
 
-/-- Evaluation of a matrix entry is smooth.-/
+/-- Evaluation of a matrix entry is smooth.
+@isnad1 id=contdiff.0h3v.s5.14470ded7bc3 from=translated src=- shape=9c489506 vocab=f2f1fd52
+-/
 lemma contDiff_matrix_entry (i j : Fin N) :
     ContDiff ℝ ∞ fun A : Matrix (Fin N) (Fin N) ℝ => A i j :=
   (contDiff_apply ℝ ℝ j).comp (contDiff_apply ℝ (Fin N → ℝ) i)
@@ -146,17 +162,25 @@ def symmetrize (A : Matrix (Fin N) (Fin N) ℝ) : Matrix (Fin N) (Fin N) ℝ :=
   (1 / 2 : ℝ) • (A + Aᵀ)
 
 /-- **B3.** `symmetrize A` is symmetric, equals `A` when `A` is symmetric, has the same
-  quadratic form as `A`, and `symmetrize` is smooth.-/
+  quadratic form as `A`, and `symmetrize` is smooth.
+@isnad1 id=issymm.0h2v.s4.ef6d7499269a from=translated src=- shape=68adebca vocab=f9743279
+-/
 theorem symmetrize_isSymm (A : Matrix (Fin N) (Fin N) ℝ) : (symmetrize A).IsSymm := by
   show (symmetrize A)ᵀ = symmetrize A
   simp [symmetrize, Matrix.transpose_add, add_comm]
 
+/--
+@isnad1 id=eq.1h2v.s4.e0939984852c from=translated src=- shape=af0f0f90 vocab=f9743279
+-/
 theorem symmetrize_eq_self {A : Matrix (Fin N) (Fin N) ℝ} (hA : A.IsSymm) : symmetrize A = A := by
   rw [symmetrize, hA.eq]
   ext i j
   simp
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.03f1a44f9df2 from=translated src=- shape=a8b1a27e vocab=67555665
+-/
 theorem quadForm_symmetrize (A : Matrix (Fin N) (Fin N) ℝ) (x : Fin N → ℝ) :
     x ⬝ᵥ (symmetrize A).mulVec x = x ⬝ᵥ A.mulVec x := by
   rw [quadForm_eq_sum, quadForm_eq_sum]
@@ -170,6 +194,9 @@ theorem quadForm_symmetrize (A : Matrix (Fin N) (Fin N) ℝ) (x : Fin N → ℝ)
     (f := fun i j => x j * A j i * x i)]
   ring
 
+/--
+@isnad1 id=contdiff.0h1v.s5.8c9319d57143 from=translated src=- shape=3263bcd1 vocab=c396288b
+-/
 theorem contDiff_symmetrize :
     ContDiff ℝ ∞ (symmetrize : Matrix (Fin N) (Fin N) ℝ → Matrix (Fin N) (Fin N) ℝ) := by
   refine contDiff_pi.2 fun i => contDiff_pi.2 fun j => ?_
@@ -187,13 +214,17 @@ def openCube (N : ℕ) : Set (Fin N → ℝ) := {x | ∀ j, |x j| < Real.pi}
 def periodicExtR (N : ℕ) (φ : (Fin N → ℝ) → ℝ) (x : Fin N → ℝ) : ℝ :=
   (periodicExtension N (fun y => (φ y : ℂ)) x).re
 
-/-- **C1.** `periodicExtR` is `2πℤᴺ`-periodic.-/
+/-- **C1.** `periodicExtR` is `2πℤᴺ`-periodic.
+@isnad1 id=isperiod.0h2v.s3.82385eac5f8d from=translated src=- shape=86138e83 vocab=aafa8686
+-/
 theorem periodicExtR_isPeriodic2Pi (φ : (Fin N → ℝ) → ℝ) :
     IsPeriodic2Pi (periodicExtR N φ) := by
   intro x k
   simp [periodicExtR, periodicExtension_isPeriodic2Pi _ x k]
 
-/-- **C2.** `periodicExtR` of a compactly supported smooth function is smooth.-/
+/-- **C2.** `periodicExtR` of a compactly supported smooth function is smooth.
+@isnad1 id=contdiff.2h2v.s7.af9e5ce9bb98 from=translated src=- shape=94fc5cf6 vocab=e0816621
+-/
 theorem periodicExtR_contDiff {φ : (Fin N → ℝ) → ℝ} (hφ : ContDiff ℝ ∞ φ)
     (hsupp : HasCompactSupport φ) : ContDiff ℝ ∞ (periodicExtR N φ) := by
   have h1 : ContDiff ℝ ∞ fun y : Fin N → ℝ => (φ y : ℂ) := Complex.ofRealCLM.contDiff.comp hφ
@@ -201,7 +232,9 @@ theorem periodicExtR_contDiff {φ : (Fin N → ℝ) → ℝ} (hφ : ContDiff ℝ
     hsupp.comp_left (g := fun r : ℝ => (r : ℂ)) (by simp)
   exact Complex.reCLM.contDiff.comp (periodicExtension_contDiff h1 h2)
 
-/-- **C3.** If `φ` is supported in the open cube, `periodicExtR φ = φ` on the closed cube.-/
+/-- **C3.** If `φ` is supported in the open cube, `periodicExtR φ = φ` on the closed cube.
+@isnad1 id=eq.2h3v.s6.a8d8eb2a463a from=translated src=- shape=c5fa40ad vocab=cc1085ad
+-/
 theorem periodicExtR_eq_self_of_mem {φ : (Fin N → ℝ) → ℝ} (hsupp : ∀ x, φ x ≠ 0 → x ∈ openCube N)
     {x : Fin N → ℝ} (hx : ∀ j, |x j| ≤ Real.pi) : periodicExtR N φ x = φ x := by
   have h : periodicExtension N (fun y => (φ y : ℂ)) x = (φ x : ℂ) := by
@@ -232,7 +265,9 @@ theorem periodicExtR_eq_self_of_mem {φ : (Fin N → ℝ) → ℝ} (hsupp : ∀ 
       simp [hzero]
   simp [periodicExtR, h]
 
-/-- **C4.** Every point is congruent mod `2πℤᴺ` to a point of the closed cube.-/
+/-- **C4.** Every point is congruent mod `2πℤᴺ` to a point of the closed cube.
+@isnad1 id=ex.0h2v.s5.f4ea7a715734 from=translated src=- shape=5cbb9d30 vocab=820d038d
+-/
 theorem exists_periodicShift_mem_cube (x : Fin N → ℝ) :
     ∃ k : Fin N → ℤ, ∀ j, |(x + periodicShift N k) j| ≤ Real.pi := by
   refine ⟨fun j => -round (x j / (2 * Real.pi)), fun j => ?_⟩
@@ -252,7 +287,9 @@ def periodicMatrixExt (N : ℕ) (G : (Fin N → ℝ) → Matrix (Fin N) (Fin N) 
     (x : Fin N → ℝ) : Matrix (Fin N) (Fin N) ℝ :=
   1 + Matrix.of fun i j => periodicExtR N (fun y => (G y - 1) i j) x
 
-/-- `periodicMatrixExt` is `2πℤᴺ`-periodic (entrywise, from C1).-/
+/-- `periodicMatrixExt` is `2πℤᴺ`-periodic (entrywise, from C1).
+@isnad1 id=isperiod.0h2v.s4.5138f7e28308 from=translated src=- shape=856dbb65 vocab=52b45af4
+-/
 theorem periodicMatrixExt_isPeriodic2Pi (G : (Fin N → ℝ) → Matrix (Fin N) (Fin N) ℝ) :
     IsPeriodic2Pi (periodicMatrixExt N G) := by
   intro x k
@@ -260,7 +297,9 @@ theorem periodicMatrixExt_isPeriodic2Pi (G : (Fin N → ℝ) → Matrix (Fin N) 
   simp only [periodicMatrixExt, Matrix.add_apply, Matrix.of_apply]
   rw [periodicExtR_isPeriodic2Pi (fun y => (G y - 1) i j) x k]
 
-/-- **C5.** Smooth periodic, for smooth `G` with `G - 1` compactly supported.-/
+/-- **C5.** Smooth periodic, for smooth `G` with `G - 1` compactly supported.
+@isnad1 id=smoothpe.2h2v.s7.6fb66f2ab276 from=translated src=- shape=566312e7 vocab=9508383c
+-/
 theorem periodicMatrixExt_smoothPeriodic {G : (Fin N → ℝ) → Matrix (Fin N) (Fin N) ℝ}
     (hG : ContDiff ℝ ∞ G) (hsupp : HasCompactSupport fun y => G y - 1) :
     SmoothPeriodic (periodicMatrixExt N G) := by
@@ -274,7 +313,9 @@ theorem periodicMatrixExt_smoothPeriodic {G : (Fin N → ℝ) → Matrix (Fin N)
     contDiff_pi.2 fun i => contDiff_pi.2 fun j => hentry i j
   exact contDiff_const.add hmat
 
-/-- **C6.** Agreement with `G` on the closed cube when `G - 1` is supported in the open cube.-/
+/-- **C6.** Agreement with `G` on the closed cube when `G - 1` is supported in the open cube.
+@isnad1 id=eq.2h3v.s7.1cfc44b2bb80 from=translated src=- shape=44cf5f01 vocab=7fea18d6
+-/
 theorem periodicMatrixExt_eq_of_mem {G : (Fin N → ℝ) → Matrix (Fin N) (Fin N) ℝ}
     (hsupp : ∀ y, G y - 1 ≠ 0 → y ∈ openCube N) {x : Fin N → ℝ} (hx : ∀ j, |x j| ≤ Real.pi) :
     periodicMatrixExt N G x = G x := by
@@ -289,7 +330,9 @@ theorem periodicMatrixExt_eq_of_mem {G : (Fin N → ℝ) → Matrix (Fin N) (Fin
 
 /-- **C7.** Positive-definiteness everywhere, from positive-definiteness of `G`: by C4,
   `x + 2πk` lies in the closed cube for some `k`, so by periodicity (C1) and C6,
-  `periodicMatrixExt G x = periodicMatrixExt G (x + 2πk) = G (x + 2πk)`, which is PD.-/
+  `periodicMatrixExt G x = periodicMatrixExt G (x + 2πk) = G (x + 2πk)`, which is PD.
+@isnad1 id=posdef.2h3v.s7.452e9ab15131 from=translated src=- shape=52f6d23d vocab=e80ab4c6
+-/
 theorem periodicMatrixExt_posDef {G : (Fin N → ℝ) → Matrix (Fin N) (Fin N) ℝ}
     (hsupp : ∀ y, G y - 1 ≠ 0 → y ∈ openCube N) (hG : ∀ y, (G y).PosDef) (x : Fin N → ℝ) :
     (periodicMatrixExt N G x).PosDef := by
@@ -303,7 +346,9 @@ theorem periodicMatrixExt_posDef {G : (Fin N → ℝ) → Matrix (Fin N) (Fin N)
 
 /-! ## D. Bilinear forms on `EuclideanSpace ℝ (Fin N)` as matrices -/
 
-/-- Expansion of a vector of `EuclideanSpace ℝ (Fin N)` in the standard basis.-/
+/-- Expansion of a vector of `EuclideanSpace ℝ (Fin N)` in the standard basis.
+@isnad1 id=eq.0h2v.s7.7e6db821397f from=translated src=- shape=642a6df9 vocab=51d53279
+-/
 lemma euclideanSpace_eq_sum_single (a : EuclideanSpace ℝ (Fin N)) :
     a = ∑ i, a i • EuclideanSpace.single i (1 : ℝ) := by
   ext j
@@ -314,7 +359,9 @@ def formMatrix (B : EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpace ℝ (Fin
     Matrix (Fin N) (Fin N) ℝ :=
   Matrix.of fun i j => B (EuclideanSpace.single i 1) (EuclideanSpace.single j 1)
 
-/-- **D1.** Evaluation: `B a b = a ⬝ᵥ (formMatrix B).mulVec b`.-/
+/-- **D1.** Evaluation: `B a b = a ⬝ᵥ (formMatrix B).mulVec b`.
+@isnad1 id=eq.0h4v.s11.5f7228cea685 from=translated src=- shape=c0f2e664 vocab=4eb713ed
+-/
 theorem formMatrix_apply (B : EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpace ℝ (Fin N) →L[ℝ] ℝ)
     (a b : EuclideanSpace ℝ (Fin N)) :
     B a b = (⇑a : Fin N → ℝ) ⬝ᵥ (formMatrix B).mulVec (⇑b : Fin N → ℝ) := by
@@ -324,7 +371,9 @@ theorem formMatrix_apply (B : EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpac
     mul_left_comm]
   rw [Finset.sum_comm]
 
-/-- **D2.** A symmetric positive-definite form has a positive-definite matrix.-/
+/-- **D2.** A symmetric positive-definite form has a positive-definite matrix.
+@isnad1 id=posdef.2h2v.s12.f969812fc530 from=translated src=- shape=fe3ce146 vocab=e3fcbd44
+-/
 theorem formMatrix_posDef (B : EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpace ℝ (Fin N) →L[ℝ] ℝ)
     (hsymm : ∀ a b, B a b = B b a) (hpos : ∀ a, a ≠ 0 → 0 < B a a) :
     (formMatrix B).PosDef := by
@@ -339,7 +388,9 @@ theorem formMatrix_posDef (B : EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpa
     rw [formMatrix_apply] at h
     simpa using h
 
-/-- **D3.** `formMatrix` is smooth (it is linear).-/
+/-- **D3.** `formMatrix` is smooth (it is linear).
+@isnad1 id=contdiff.0h1v.s10.5cf74819a83c from=translated src=- shape=b5c0ea18 vocab=dbfc9056
+-/
 theorem contDiff_formMatrix :
     ContDiff ℝ ∞ (formMatrix : (EuclideanSpace ℝ (Fin N) →L[ℝ] EuclideanSpace ℝ (Fin N) →L[ℝ] ℝ) →
       Matrix (Fin N) (Fin N) ℝ) := by
@@ -350,14 +401,18 @@ theorem contDiff_formMatrix :
 
 /-! ## E. The Gram identity from `Realizes` -/
 
-/-- Expansion of a vector of `ℝⁿ` in the standard basis.-/
+/-- Expansion of a vector of `ℝⁿ` in the standard basis.
+@isnad1 id=eq.0h2v.s6.c99ddec68ae9 from=translated src=- shape=4d5023dd vocab=20cac815
+-/
 lemma pi_eq_sum_single {n : ℕ} (a : Fin n → ℝ) : a = ∑ i, a i • (Pi.single i 1 : Fin n → ℝ) := by
   funext j
   simp [Pi.single_apply, Finset.sum_apply]
 
 /-- **E.** If `v` realizes `g`, then `Dv(x) a ⬝ᵥ Dv(x) b = a ⬝ᵥ g(x).mulVec b` for all
   directions `a b` (no differentiability hypothesis is needed: if `v` is not
-  differentiable at `x` both sides vanish).-/
+  differentiable at `x` both sides vanish).
+@isnad1 id=eq.1h7v.s10.6f55304c3310 from=translated src=- shape=f3a2a71c vocab=4ce2d70a
+-/
 theorem realizes_fderiv_dot {n q : ℕ} {v : (Fin n → ℝ) → (Fin q → ℝ)}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} (hv : Realizes v g) (x a b : Fin n → ℝ) :
     (fderiv ℝ v x a) ⬝ᵥ (fderiv ℝ v x b) = a ⬝ᵥ (g x).mulVec b := by

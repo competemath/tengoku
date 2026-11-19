@@ -56,6 +56,9 @@ noncomputable def mt3BConstSq (n : Nat) (k : Nat) (r : Real) : Real :=
 
 /-! ## Basic properties of constants -/
 
+/--
+@isnad1 id=le.1h1v.s4.5edf27d29dd6 from=translated src=- shape=7f2e781e vocab=36d5f94c
+-/
 lemma mt3BStar_nonneg {k : ℕ} (hk : 1 ≤ k) : 0 ≤ mt3BStar k :=
   mul_nonneg ( mul_nonneg ( by norm_num ) ( sq_nonneg _ ) ) ( sub_nonneg.mpr ( by exact le_trans ( by norm_num ) ( Real.rpow_le_rpow_of_exponent_le ( by norm_num ) ( show ( 2 * k - 1 : ℝ ) ≥ 1 by linarith [ show ( k : ℝ ) ≥ 1 by norm_cast ] ) ) ) )
 
@@ -65,6 +68,9 @@ lemma mt3BStar_nonneg {k : ℕ} (hk : 1 ≤ k) : 0 ≤ mt3BStar k :=
 For k ≥ 1 and |ρ| ≤ 1/(2k), we have (1+ρ)^k ≤ 2.
     Proof: For ρ < 0, (1+ρ) ∈ (0,1] so (1+ρ)^k ≤ 1 ≤ 2.
     For ρ ≥ 0, use (1+ρ) ≤ exp(ρ), so (1+ρ)^k ≤ exp(kρ) ≤ exp(1/2) < 2.
+-/
+/--
+@isnad1 id=le.2h2v.s6.083632db1a3f from=translated src=- shape=3128c40b vocab=d4fd57b5
 -/
 lemma one_add_pow_le_two {k : ℕ} (hk : 1 ≤ k) {ρ : ℝ}
     (hρ : |ρ| ≤ 1 / (2 * (k : ℝ))) :
@@ -83,6 +89,9 @@ lemma one_add_pow_le_two {k : ℕ} (hk : 1 ≤ k) {ρ : ℝ}
 Case B of the refined weight inequality:
     If `∑ j_l² ≤ ∑ i_l² / (64 * k²)`, then
     `weight n k (i + j) ≤ 2 * weight n k i`.
+-/
+/--
+@isnad1 id=le.2h4v.s7.b29e42d0fdf7 from=translated src=- shape=5c2b051a vocab=6900f366
 -/
 lemma refined_weight_case_b {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ)
     (hsmall : ∑ l, (j l : ℝ) ^ 2 ≤ ∑ l, (i l : ℝ) ^ 2 / (64 * (k : ℝ) ^ 2)) :
@@ -119,6 +128,9 @@ lemma refined_weight_case_b {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ)
 The refined weight inequality for integer exponents k ≥ 1:
     `weight n k (i+j) ≤ 2·(weight n k i + weight n k j)
        + B*_k·(weight n (k-1) i · weight n 1 j + weight n 1 i · weight n (k-1) j)`
+-/
+/--
+@isnad1 id=le.1h4v.s7.5bfa5be566dd from=translated src=- shape=ae0c2525 vocab=1fea8d20
 -/
 lemma refined_weight_ineq {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ) :
     weight n (k : ℝ) (i + j) ≤
@@ -176,6 +188,9 @@ lemma refined_weight_ineq {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ) :
 /-
 The half-power form: take square roots of the refined weight inequality.
 -/
+/--
+@isnad1 id=le.1h4v.s8.45b7930a93e6 from=translated src=- shape=39bc47f8 vocab=2bec45d6
+-/
 lemma refined_weight_half {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ) :
     weight n ((k : ℝ) / 2) (i + j) ≤
       Real.sqrt 2 * (weight n ((k : ℝ) / 2) i + weight n ((k : ℝ) / 2) j) +
@@ -201,7 +216,9 @@ lemma refined_weight_half {k : ℕ} (hk : 1 ≤ k) (i j : Fin n → ℤ) :
 
 /-! ## Phase 1b: weighted ℓ²_(r) → ℓ¹ via Cauchy–Schwarz -/
 
-/-- Summability of the weighted norm sum `∑ w^{1/2}_j · ‖b_j‖`.-/
+/-- Summability of the weighted norm sum `∑ w^{1/2}_j · ‖b_j‖`.
+@isnad1 id=summable.3h3v.s6.5e80543e3227 from=translated src=- shape=4184c639 vocab=d03df2f9
+-/
 lemma summable_weighted_norm {r : ℝ} (hn : 0 < n) (hr : 1 + (n : ℝ) / 2 < r)
     {b : (Fin n → ℤ) → ℂ} (hb : MemSobolev n r b) :
     Summable (fun j => weight n (1 / 2 : ℝ) j * ‖b j‖) := by
@@ -215,7 +232,9 @@ lemma summable_weighted_norm {r : ℝ} (hn : 0 < n) (hr : 1 + (n : ℝ) / 2 < r)
   · convert this using 2 ; norm_num [ abs_of_nonneg, weight_nonneg ]
 
 /-- Phase 1b (squared form):
-    `(∑ w^{1/2}_j |b_j|)² ≤ L²_r · ‖b‖²_{(r)}`-/
+    `(∑ w^{1/2}_j |b_j|)² ≤ L²_r · ‖b‖²_{(r)}`
+@isnad1 id=le.3h3v.s7.acb130f0ce26 from=translated src=- shape=69caea34 vocab=b323eea8
+-/
 lemma tsum_weighted_norm_sq_le {r : ℝ} (hn : 0 < n) (hr : 1 + (n : ℝ) / 2 < r)
     {b : (Fin n → ℤ) → ℂ} (hb : MemSobolev n r b) :
     (∑' j, weight n (1 / 2 : ℝ) j * ‖b j‖) ^ 2 ≤
@@ -260,6 +279,9 @@ lemma tsum_weighted_norm_sq_le {r : ℝ} (hn : 0 < n) (hr : 1 + (n : ℝ) / 2 < 
 /-
 Young bound for S1: ∑ (α^k ⊛ |b|)² ≤ (∑|b|)² · ‖a‖²_{(k)}
 -/
+/--
+@isnad1 id=and.5h5v.s8.0308f8d0a320 from=translated src=- shape=79f2f220 vocab=6c750d38
+-/
 lemma mt3_young_S1
     {n : ℕ} (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r)
     {k : ℕ} (hkr : r ≤ (k : ℝ))
@@ -303,6 +325,9 @@ lemma mt3_young_S1
 /-
 Young bound for S2: ∑ (|a| ⊛ β^k)² ≤ (∑|a|)² · ‖b‖²_{(k)}
 -/
+/--
+@isnad1 id=and.5h5v.s8.a09bfacd28e5 from=translated src=- shape=77db00c6 vocab=6c750d38
+-/
 lemma mt3_young_S2
     {n : ℕ} (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r)
     {k : ℕ} (hkr : r ≤ (k : ℝ))
@@ -329,6 +354,9 @@ lemma mt3_young_S2
 
 /-
 Young bound for S3: ∑ (α^{k-1} ⊛ β^1)² ≤ (∑ w^{1/2}|b|)² · ‖a‖²_{(k-1)}
+-/
+/--
+@isnad1 id=and.5h5v.s9.2d28655d656b from=translated src=- shape=5a5751a2 vocab=4173b287
 -/
 lemma mt3_young_S3
     {n : ℕ} (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r)
@@ -377,6 +405,9 @@ lemma mt3_young_S3
 /-
 Young bound for S4: ∑ (α^1 ⊛ β^{k-1})² ≤ (∑ w^{1/2}|a|)² · ‖b‖²_{(k-1)}
 -/
+/--
+@isnad1 id=and.5h5v.s9.edfe44abb2a9 from=translated src=- shape=742dfcc4 vocab=4173b287
+-/
 lemma mt3_young_S4
     {n : ℕ} (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r)
     {k : ℕ} (hkr : r ≤ (k : ℝ))
@@ -405,6 +436,9 @@ lemma mt3_young_S4
 
 /-
 Unsquared pointwise bound: weight^{k/2}_m · ‖c_m‖ ≤ √2·(S1+S2) + √B*·(S3+S4).
+-/
+/--
+@isnad1 id=le.6h6v.s9.9cc79750ee15 from=translated src=- shape=9160c81c vocab=195950fd
 -/
 lemma mt3_unsquared_bound {k : ℕ} (hk : 1 ≤ k)
     (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r) (hkr : r ≤ (k : ℝ))
@@ -497,6 +531,9 @@ lemma mt3_unsquared_bound {k : ℕ} (hk : 1 ≤ k)
 /-
 Squared pointwise bound derived from the unsquared version.
 -/
+/--
+@isnad1 id=le.6h6v.s9.e9691ff6292d from=translated src=- shape=6353c73f vocab=8bd8d96f
+-/
 lemma mt3_pointwise_sq_bound {k : ℕ} (hk : 1 ≤ k)
     (hn : 0 < n) {r : ℝ} (hr : 1 + (n : ℝ) / 2 < r) (hkr : r ≤ (k : ℝ))
     {a b : (Fin n → ℤ) → ℂ}
@@ -522,6 +559,9 @@ lemma mt3_pointwise_sq_bound {k : ℕ} (hk : 1 ≤ k)
 
 /-! ## Main theorems -/
 
+/--
+@isnad1 id=and.5h5v.s8.91dd7f7b3899 from=translated src=- shape=da07b748 vocab=855d558d
+-/
 theorem third_multiplication_theorem_seq
     {n : Nat} (hn : 0 < n) {r : Real} (hr : 1 + (n : Real) / 2 < r)
     {k : Nat} (hkr : r ≤ (k : Real))
@@ -613,6 +653,9 @@ theorem third_multiplication_theorem_seq
       · exact ha.mono ( by linarith );
       · grind +suggestions
 
+/--
+@isnad1 id=and.5h5v.s7.f316d606ab09 from=translated src=- shape=cacade6f vocab=3c8aceea
+-/
 theorem third_multiplication_theorem
     {n : Nat} (hn : 0 < n) {r : Real} (hr : 1 + (n : Real) / 2 < r)
     {k : Nat} (hkr : r ≤ (k : Real))

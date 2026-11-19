@@ -75,6 +75,9 @@ def periodicExtension (n : ℕ) (φ : (Fin n → ℝ) → ℂ) (x : Fin n → �
 /-
 `periodicExtension n φ` is `2πℤⁿ`-periodic for any `φ`.
 -/
+/--
+@isnad1 id=isperiod.0h2v.s3.26e0ecfcc895 from=translated src=- shape=3901c309 vocab=15c5fcdb
+-/
 lemma periodicExtension_isPeriodic2Pi (φ : (Fin n → ℝ) → ℂ) :
     IsPeriodic2Pi (periodicExtension n φ) := by
   unfold periodicExtension; intro x k; symm; simp +decide [ IsPeriodic2Pi, periodicShift ] ;
@@ -84,6 +87,9 @@ lemma periodicExtension_isPeriodic2Pi (φ : (Fin n → ℝ) → ℂ) :
 
 /-
 For `φ ∈ C^∞_c(ℝⁿ; ℂ)`, `periodicExtension n φ` is `C^∞`.
+-/
+/--
+@isnad1 id=contdiff.2h2v.s7.f3df3c8b5ca2 from=translated src=- shape=77dc7d32 vocab=fac8bddd
 -/
 lemma periodicExtension_contDiff {φ : (Fin n → ℝ) → ℂ}
     (hsmooth : ContDiff ℝ ∞ φ) (hsupp : HasCompactSupport φ) :
@@ -140,6 +146,9 @@ If `φ` has compact support and pointwise non-negative real part, then
     compact-support hypothesis guarantees summability of the locally finite
     sum defining `periodicExtension`.
 -/
+/--
+@isnad1 id=le.2h3v.s6.18a2e287a3bd from=translated src=- shape=a52b47c9 vocab=e2462006
+-/
 lemma periodicExtension_re_nonneg {φ : (Fin n → ℝ) → ℂ}
     (hsupp : HasCompactSupport φ) (hnn : ∀ x, 0 ≤ (φ x).re) :
     ∀ y, 0 ≤ (periodicExtension n φ y).re := by
@@ -153,6 +162,9 @@ lemma periodicExtension_re_nonneg {φ : (Fin n → ℝ) → ℂ}
 If `φ` has compact support and pointwise zero imaginary part (e.g.\ `φ`
     is `Complex.ofReal ∘ ψ` for real-valued `ψ`), then
     `periodicExtension n φ` has pointwise zero imaginary part.
+-/
+/--
+@isnad1 id=eq.2h3v.s6.e770511bda86 from=translated src=- shape=7921446b vocab=3ec96f1c
 -/
 lemma periodicExtension_im_zero {φ : (Fin n → ℝ) → ℂ}
     (hsupp : HasCompactSupport φ) (him : ∀ x, (φ x).im = 0) :
@@ -171,10 +183,16 @@ lemma periodicExtension_im_zero {φ : (Fin n → ℝ) → ℂ}
 def partialDeriv (j : Fin n) (g : (Fin n → ℝ) → ℂ) (θ : Fin n → ℝ) : ℂ :=
   fderiv ℝ g θ (Pi.single j 1)
 
+/--
+@isnad1 id=contdiff.1h3v.s7.da4cfa8c7261 from=translated src=- shape=125bc0a9 vocab=e35c8566
+-/
 lemma partialDeriv_contDiff {g : (Fin n → ℝ) → ℂ} (hg : ContDiff ℝ ∞ g) (j : Fin n) :
     ContDiff ℝ ∞ (partialDeriv j g) :=
   (hg.fderiv_right infty_add_one_le).clm_apply contDiff_const
 
+/--
+@isnad1 id=isperiod.1h3v.s4.baad802ff9c1 from=translated src=- shape=7780bfc2 vocab=3f69aa29
+-/
 lemma partialDeriv_isPeriodic2Pi {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2Pi g) (j : Fin n) :
     IsPeriodic2Pi (partialDeriv j g) := by
   intro x k
@@ -182,6 +200,9 @@ lemma partialDeriv_isPeriodic2Pi {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodi
   have h : (fun y => g (y + periodicShift n k)) = g := funext fun y => hper y k
   rw [← fderiv_comp_add_right (periodicShift n k), h]
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.0b154dd6a4f6 from=translated src=- shape=7dd961a2 vocab=95084fa0
+-/
 lemma hasDerivAt_fourierExp_update (c : Fin n → ℤ) (θ : Fin n → ℝ) (j : Fin n) :
     HasDerivAt (fun t : ℝ => fourierExp n c (Function.update θ j t))
       (Complex.I * (c j : ℂ) * fourierExp n c θ) (θ j) := by
@@ -192,12 +213,18 @@ lemma hasDerivAt_fourierExp_update (c : Fin n → ℤ) (θ : Fin n → ℝ) (j :
     | rfl
     | (simp only [Pi.add_apply, id_eq]; push_cast; ring))
 
+/--
+@isnad1 id=eq.0h4v.s9.132258d93abe from=translated src=- shape=3cfeedb3 vocab=0ce7d380
+-/
 lemma fderiv_fourierExp_single (c : Fin n → ℤ) (θ : Fin n → ℝ) (j : Fin n) :
     fderiv ℝ (fourierExp n c) θ (Pi.single j 1) = Complex.I * (c j : ℂ) * fourierExp n c θ := by
   have hd : HasFDerivAt (fourierExp n c) (fderiv ℝ (fourierExp n c) θ) θ :=
     ((fourierExp_contDiff c).differentiable infty_ne_zero θ).hasFDerivAt
   exact (hasDerivAt_update_of_hasFDerivAt hd j).unique (hasDerivAt_fourierExp_update c θ j)
 
+/--
+@isnad1 id=isperiod.0h2v.s3.2e0dcdcc2a88 from=translated src=- shape=40fd07b7 vocab=f8dfb0d6
+-/
 lemma fourierExp_isPeriodic2Pi (c : Fin n → ℤ) : IsPeriodic2Pi (fourierExp n c) := by
   intro x k
   unfold fourierExp periodicShift
@@ -217,7 +244,9 @@ lemma fourierExp_isPeriodic2Pi (c : Fin n → ℤ) : IsPeriodic2Pi (fourierExp n
     exact Complex.exp_int_mul_two_pi_mul_I _
   rw [h2, mul_one]
 
-/-- The product rule evaluated in direction `eⱼ`.-/
+/-- The product rule evaluated in direction `eⱼ`.
+@isnad1 id=eq.1h5v.s9.1dadece8173e from=translated src=- shape=ba67c9f3 vocab=238f7c9d
+-/
 lemma fderiv_mul_fourierExp_single {g : (Fin n → ℝ) → ℂ} (hg : ContDiff ℝ ∞ g)
     (c : Fin n → ℤ) (θ : Fin n → ℝ) (j : Fin n) :
     fderiv ℝ (fun θ => g θ * fourierExp n c θ) θ (Pi.single j 1)
@@ -234,7 +263,9 @@ lemma fderiv_mul_fourierExp_single {g : (Fin n → ℝ) → ℂ} (hg : ContDiff 
 
 /-! ## Integration by parts on the period cube -/
 
-/-- The shift by `2π` in the `j`-th slot of `insertNth`.-/
+/-- The shift by `2π` in the `j`-th slot of `insertNth`.
+@isnad1 id=eq.0h3v.s8.9472e983e1b9 from=translated src=- shape=0692582e vocab=97b12db4
+-/
 lemma insertNth_two_pi_eq {k : ℕ} (j : Fin (k+1)) (x : Fin k → ℝ) :
     (j.insertNth (2 * π) x : Fin (k+1) → ℝ)
       = j.insertNth 0 x + periodicShift (k+1) (Pi.single j 1) := by
@@ -245,7 +276,9 @@ lemma insertNth_two_pi_eq {k : ℕ} (j : Fin (k+1)) (x : Fin k → ℝ) :
     simp [periodicShift, Fin.succAbove_ne j i']
 
 /-- **Integration by parts on the period cube.** For smooth `2πℤⁿ`-periodic `g`,
-`∫ ∂ⱼg · e_c = -(i cⱼ) ∫ g · e_c` over `[0,2π]ⁿ`.-/
+`∫ ∂ⱼg · e_c = -(i cⱼ) ∫ g · e_c` over `[0,2π]ⁿ`.
+@isnad1 id=eq.2h4v.s10.24415a0b4c67 from=translated src=- shape=f76a9d58 vocab=e8a8400d
+-/
 theorem integral_partialDeriv_mul_fourierExp {k : ℕ} {g : (Fin (k+1) → ℝ) → ℂ}
     (hg : ContDiff ℝ ∞ g) (hper : IsPeriodic2Pi g) (c : Fin (k+1) → ℤ) (j : Fin (k+1)) :
     ∫ θ in Set.Icc (0 : Fin (k+1) → ℝ) (2 * π • (1 : Fin (k+1) → ℝ)),
@@ -329,7 +362,9 @@ theorem integral_partialDeriv_mul_fourierExp {k : ℕ} {g : (Fin (k+1) → ℝ) 
   rw [hB'] at key
   linear_combination key
 
-/-- `∂ⱼ` acts on standard Fourier coefficients as multiplication by `i mⱼ`.-/
+/-- `∂ⱼ` acts on standard Fourier coefficients as multiplication by `i mⱼ`.
+@isnad1 id=eq.3h4v.s7.128bdb3dcd7e from=translated src=- shape=6927597b vocab=4e4adbc8
+-/
 theorem stdFourierCoeff_partialDeriv (hn : 0 < n) {g : (Fin n → ℝ) → ℂ}
     (hg : ContDiff ℝ ∞ g) (hper : IsPeriodic2Pi g) (j : Fin n) (m : Fin n → ℤ) :
     stdFourierCoeff n (partialDeriv j g) m = Complex.I * (m j : ℂ) * stdFourierCoeff n g m := by
@@ -345,11 +380,17 @@ theorem stdFourierCoeff_partialDeriv (hn : 0 < n) {g : (Fin n → ℝ) → ℂ}
 def laplacian (g : (Fin n → ℝ) → ℂ) : (Fin n → ℝ) → ℂ :=
   fun θ => ∑ j, partialDeriv j (partialDeriv j g) θ
 
+/--
+@isnad1 id=contdiff.1h2v.s7.63141d70774f from=translated src=- shape=cf1704de vocab=a8d07060
+-/
 lemma laplacian_contDiff {g : (Fin n → ℝ) → ℂ} (hg : ContDiff ℝ ∞ g) :
     ContDiff ℝ ∞ (laplacian g) := by
   unfold laplacian
   exact ContDiff.sum fun j _ => partialDeriv_contDiff (partialDeriv_contDiff hg j) j
 
+/--
+@isnad1 id=isperiod.1h2v.s4.fac2185074fd from=translated src=- shape=83e8f33d vocab=3ff2bb68
+-/
 lemma laplacian_isPeriodic2Pi {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2Pi g) :
     IsPeriodic2Pi (laplacian g) := by
   intro x k
@@ -357,18 +398,27 @@ lemma laplacian_isPeriodic2Pi {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2P
   exact Finset.sum_congr rfl fun j _ =>
     partialDeriv_isPeriodic2Pi (partialDeriv_isPeriodic2Pi hper j) j x k
 
+/--
+@isnad1 id=contdiff.1h3v.s7.c96fd4821298 from=translated src=- shape=53f9ff0a vocab=019cec10
+-/
 lemma laplacian_iterate_contDiff {g : (Fin n → ℝ) → ℂ} (hg : ContDiff ℝ ∞ g) (N : ℕ) :
     ContDiff ℝ ∞ (laplacian^[N] g) := by
   induction N with
   | zero => simpa
   | succ N ih => rw [Function.iterate_succ_apply']; exact laplacian_contDiff ih
 
+/--
+@isnad1 id=isperiod.1h3v.s4.15b8207735b2 from=translated src=- shape=d7cf53c1 vocab=2bd110ce
+-/
 lemma laplacian_iterate_isPeriodic2Pi {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2Pi g) (N : ℕ) :
     IsPeriodic2Pi (laplacian^[N] g) := by
   induction N with
   | zero => simpa
   | succ N ih => rw [Function.iterate_succ_apply']; exact laplacian_isPeriodic2Pi ih
 
+/--
+@isnad1 id=eq.1h5v.s6.382094651ccf from=translated src=- shape=f144e134 vocab=d8947b64
+-/
 lemma stdFourierCoeff_finset_sum {ι : Type*} (s : Finset ι) (g : ι → (Fin n → ℝ) → ℂ)
     (hg : ∀ i ∈ s, Continuous (g i)) (m : Fin n → ℤ) :
     stdFourierCoeff n (fun θ => ∑ i ∈ s, g i θ) m = ∑ i ∈ s, stdFourierCoeff n (g i) m := by
@@ -378,7 +428,9 @@ lemma stdFourierCoeff_finset_sum {ι : Type*} (s : Finset ι) (g : ι → (Fin n
     ((hg i hi).mul (fourierExp_contDiff _).continuous).continuousOn.integrableOn_compact
       isCompact_Icc), Finset.mul_sum]
 
-/-- `Δ` acts on standard Fourier coefficients as multiplication by `-|m|²`.-/
+/-- `Δ` acts on standard Fourier coefficients as multiplication by `-|m|²`.
+@isnad1 id=eq.3h3v.s7.c835cfb0bd80 from=translated src=- shape=da743347 vocab=7b168652
+-/
 theorem stdFourierCoeff_laplacian (hn : 0 < n) {g : (Fin n → ℝ) → ℂ}
     (hg : ContDiff ℝ ∞ g) (hper : IsPeriodic2Pi g) (m : Fin n → ℤ) :
     stdFourierCoeff n (laplacian g) m
@@ -392,6 +444,9 @@ theorem stdFourierCoeff_laplacian (hn : 0 < n) {g : (Fin n → ℝ) → ℂ}
   refine Finset.sum_congr rfl fun j _ => ?_
   linear_combination ((m j : ℂ) ^ 2 * stdFourierCoeff n g m) * Complex.I_sq
 
+/--
+@isnad1 id=eq.3h4v.s7.fa885c8fc5cb from=translated src=- shape=620cb9d6 vocab=9c47f165
+-/
 theorem stdFourierCoeff_laplacian_iterate (hn : 0 < n) {g : (Fin n → ℝ) → ℂ}
     (hg : ContDiff ℝ ∞ g) (hper : IsPeriodic2Pi g) (N : ℕ) (m : Fin n → ℤ) :
     stdFourierCoeff n (laplacian^[N] g) m
@@ -405,6 +460,9 @@ theorem stdFourierCoeff_laplacian_iterate (hn : 0 < n) {g : (Fin n → ℝ) → 
 
 /-! ## The trivial sup bound -/
 
+/--
+@isnad1 id=eq.0h1v.s7.371ae0aa6ed3 from=translated src=- shape=e2225cb3 vocab=7197a034
+-/
 lemma volume_real_periodCube :
     volume.real (Set.Icc (0 : Fin n → ℝ) (2 * π • (1 : Fin n → ℝ))) = (2 * π) ^ n := by
   rw [measureReal_def, Real.volume_Icc_pi]
@@ -413,7 +471,9 @@ lemma volume_real_periodCube :
   simp only [h, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
   rw [ENNReal.toReal_pow, ENNReal.toReal_ofReal (by positivity)]
 
-/-- A sup bound on the period cube bounds all standard Fourier coefficients.-/
+/-- A sup bound on the period cube bounds all standard Fourier coefficients.
+@isnad1 id=le.1h4v.s7.4bfd89c63826 from=translated src=- shape=64f0a48d vocab=f582aceb
+-/
 lemma norm_stdFourierCoeff_le {g : (Fin n → ℝ) → ℂ} {M : ℝ}
     (hM : ∀ θ ∈ Set.Icc (0 : Fin n → ℝ) (2 * π • (1 : Fin n → ℝ)), ‖g θ‖ ≤ M)
     (m : Fin n → ℤ) : ‖stdFourierCoeff n g m‖ ≤ M := by
@@ -435,7 +495,9 @@ lemma norm_stdFourierCoeff_le {g : (Fin n → ℝ) → ℂ} {M : ℝ}
 /-! ## Smooth periodic Fourier coefficients -/
 
 /-- Standard Fourier coefficients of a smooth `2πℤⁿ`-periodic function
-    decay faster than any polynomial.-/
+    decay faster than any polynomial.
+@isnad1 id=ex.3h3v.s7.23da230e20a6 from=translated src=- shape=fe87f3b7 vocab=ee0ba828
+-/
 lemma stdFourierCoeff_rapid_decay (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
     (hsmooth : ContDiff ℝ ∞ f) (hper : IsPeriodic2Pi f) (N : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ m : Fin n → ℤ,
@@ -487,6 +549,9 @@ lemma stdFourierCoeff_rapid_decay (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
 If a sequence has polynomial decay of every order, it belongs to
     `MemSobolev n s` for every `s ∈ ℝ`.
 -/
+/--
+@isnad1 id=memsobol.2h3v.s6.5ab3f2fa893e from=translated src=- shape=86661bba vocab=83b8b3c6
+-/
 lemma memSobolev_of_rapid_decay (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
     (h : ∀ N : ℕ, ∃ C : ℝ, 0 < C ∧ ∀ m, ‖a m‖ ≤ C * weight n (-(N / 2 : ℝ)) m)
     (s : ℝ) : MemSobolev n s a := by
@@ -524,14 +589,22 @@ lemma memSobolev_of_rapid_decay (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
 def toUnitTorus (n : ℕ) (x : Fin n → ℝ) : UnitAddTorus (Fin n) :=
   fun i => ((x i : ℝ) : AddCircle (1 : ℝ))
 
+/--
+@isnad1 id=isopenqu.0h1v.s5.a149bc1d59c2 from=translated src=- shape=19f6a8fe vocab=29895dbd
+-/
 lemma toUnitTorus_isOpenQuotientMap : IsOpenQuotientMap (toUnitTorus n) :=
   IsOpenQuotientMap.piMap (fun _ => QuotientAddGroup.isOpenQuotientMap_mk)
 
+/--
+@isnad1 id=continuo.0h1v.s5.a075c33c5076 from=translated src=- shape=19f6a8fe vocab=e53f0fb0
+-/
 lemma continuous_toUnitTorus : Continuous (toUnitTorus n) :=
   toUnitTorus_isOpenQuotientMap.continuous
 
 /-- Every point of `ℝⁿ` differs from the `Quotient.out` representative of its image by an
-integer vector.-/
+integer vector.
+@isnad1 id=ex.0h2v.s5.fd7d67dbd1fb from=translated src=- shape=3b65df94 vocab=4d3792a6
+-/
 lemma exists_out_toUnitTorus_eq (x : Fin n → ℝ) :
     ∃ k : Fin n → ℤ, ∀ i, Quotient.out (toUnitTorus n x i) = x i - k i := by
   have h : ∀ i, ∃ k : ℤ, Quotient.out (toUnitTorus n x i) = x i - k := by
@@ -546,7 +619,9 @@ lemma exists_out_toUnitTorus_eq (x : Fin n → ℝ) :
   choose k hk using h
   exact ⟨k, hk⟩
 
-/-- `mFourier` at `toUnitTorus ((2π)⁻¹ • θ)` is `fourierExp n m θ`.-/
+/-- `mFourier` at `toUnitTorus ((2π)⁻¹ • θ)` is `fourierExp n m θ`.
+@isnad1 id=eq.0h3v.s7.c93cafa7a486 from=translated src=- shape=2ff52a82 vocab=49255805
+-/
 lemma mFourier_toUnitTorus (m : Fin n → ℤ) (θ : Fin n → ℝ) :
     UnitAddTorus.mFourier m (toUnitTorus n ((2 * π)⁻¹ • θ)) = fourierExp n m θ := by
   show ∏ i, fourier (m i) (((((2 * π)⁻¹ • θ) i : ℝ)) : AddCircle (1:ℝ)) = _
@@ -565,6 +640,9 @@ lemma mFourier_toUnitTorus (m : Fin n → ℤ) (θ : Fin n → ℝ) :
 def toUnitTorusFun (n : ℕ) (f : (Fin n → ℝ) → ℂ) (z : UnitAddTorus (Fin n)) : ℂ :=
   f (fun i => 2 * π * Quotient.out (z i))
 
+/--
+@isnad1 id=eq.1h3v.s6.b92fe9d3ee86 from=translated src=- shape=86c8c948 vocab=7cfbd493
+-/
 lemma toUnitTorusFun_toUnitTorus {f : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2Pi f)
     (x : Fin n → ℝ) :
     toUnitTorusFun n f (toUnitTorus n x) = f ((2 * π) • x) := by
@@ -580,6 +658,9 @@ lemma toUnitTorusFun_toUnitTorus {f : (Fin n → ℝ) → ℂ} (hper : IsPeriodi
 
 /-! ## The torus integral as a cube integral -/
 
+/--
+@isnad1 id=measurep.0h1v.s7.e1eb911866c7 from=translated src=- shape=9db5d038 vocab=32a7a566
+-/
 lemma measurePreserving_toUnitTorus :
     MeasurePreserving (toUnitTorus n)
       (volume.restrict (Set.pi Set.univ fun _ : Fin n => Set.Ioc (0 : ℝ) 1))
@@ -597,12 +678,18 @@ lemma measurePreserving_toUnitTorus :
   rw [← Measure.restrict_pi_pi, ← volume_pi] at h2
   exact h2
 
+/--
+@isnad1 id=eq.1h2v.s8.eb4081e9440a from=translated src=- shape=193191aa vocab=5f193c09
+-/
 lemma integral_toUnitTorus (G : UnitAddTorus (Fin n) → ℂ) (hG : Continuous G) :
     ∫ z, G z ∂(Measure.pi fun _ : Fin n => AddCircle.haarAddCircle)
       = ∫ x in Set.pi Set.univ (fun _ : Fin n => Set.Ioc (0 : ℝ) 1), G (toUnitTorus n x) := by
   rw [← measurePreserving_toUnitTorus.map_eq,
     integral_map continuous_toUnitTorus.aemeasurable hG.aestronglyMeasurable]
 
+/--
+@isnad1 id=eq.0h2v.s8.3365a8622c6d from=translated src=- shape=b385a3df vocab=e46da79e
+-/
 lemma integral_Ioc_cube_eq_Icc (h : (Fin n → ℝ) → ℂ) :
     ∫ y in Set.pi Set.univ (fun _ : Fin n => Set.Ioc (0 : ℝ) (2 * π)), h y
       = ∫ y in Set.Icc (0 : Fin n → ℝ) (2 * π • (1 : Fin n → ℝ)), h y := by
@@ -618,7 +705,9 @@ lemma integral_Ioc_cube_eq_Icc (h : (Fin n → ℝ) → ℂ) :
 
 /-! ## Translation invariance of the period-cube integral for periodic functions -/
 
-/-- Additivity of `fourierExp` in the point variable.-/
+/-- Additivity of `fourierExp` in the point variable.
+@isnad1 id=eq.0h4v.s6.e7463ad60eec from=translated src=- shape=698f81de vocab=8f656495
+-/
 lemma fourierExp_add_point (c : Fin n → ℤ) (a b : Fin n → ℝ) :
     fourierExp n c (a + b) = fourierExp n c a * fourierExp n c b := by
   unfold fourierExp
@@ -631,7 +720,9 @@ lemma fourierExp_add_point (c : Fin n → ℤ) (a b : Fin n → ℝ) :
   refine Finset.sum_congr rfl fun i _ => ?_
   ring
 
-/-- Translating the domain of a set integral over a box.-/
+/-- Translating the domain of a set integral over a box.
+@isnad1 id=eq.0h5v.s8.6e1c7ba2567a from=translated src=- shape=b38d1b0f vocab=dbe5393f
+-/
 lemma integral_Icc_comp_add_right (h : (Fin n → ℝ) → ℂ) (a b c : Fin n → ℝ) :
     ∫ x in Set.Icc b c, h (x + a) = ∫ x in Set.Icc (b + a) (c + a), h x := by
   rw [← integral_indicator measurableSet_Icc, ← integral_indicator measurableSet_Icc]
@@ -645,7 +736,9 @@ lemma integral_Icc_comp_add_right (h : (Fin n → ℝ) → ℂ) (a b c : Fin n �
   simp_rw [hind]
   exact integral_add_right_eq_self _ a
 
-/-- Integers witnessing equality in `AddCircle 1`.-/
+/-- Integers witnessing equality in `AddCircle 1`.
+@isnad1 id=ex.1h2v.s6.1c692522ddba from=translated src=- shape=cd4741b1 vocab=603dee49
+-/
 lemma exists_int_of_coe_eq {x y : ℝ} (h : ((x : ℝ) : AddCircle (1 : ℝ)) = (y : AddCircle (1:ℝ))) :
     ∃ k : ℤ, y = x + k := by
   rw [QuotientAddGroup.eq, AddSubgroup.mem_zmultiples_iff] at h
@@ -654,7 +747,9 @@ lemma exists_int_of_coe_eq {x y : ℝ} (h : ((x : ℝ) : AddCircle (1 : ℝ)) = 
   simp only [zsmul_eq_mul, mul_one] at hk
   linarith
 
-/-- The descent of a translate is the translate of the descent.-/
+/-- The descent of a translate is the translate of the descent.
+@isnad1 id=eq.1h4v.s7.cb80d48d93ca from=translated src=- shape=d896117e vocab=729e52c3
+-/
 lemma toUnitTorusFun_comp_add {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2Pi g)
     (a : Fin n → ℝ) (z : UnitAddTorus (Fin n)) :
     toUnitTorusFun n (fun θ => g (θ + a)) z
@@ -686,6 +781,9 @@ lemma toUnitTorusFun_comp_add {g : (Fin n → ℝ) → ℂ} (hper : IsPeriodic2P
 /-
 A smooth `2πℤⁿ`-periodic function lies in `MemSobolevDistrib n s` for
     every `s ∈ ℝ`.
+-/
+/--
+@isnad1 id=memsobol.3h3v.s6.b532cf5d600b from=translated src=- shape=d31fafa5 vocab=083b6ffa
 -/
 lemma smooth_periodic_memSobolevDistrib (hn : 0 < n)
     {f : (Fin n → ℝ) → ℂ} (hsmooth : ContDiff ℝ ∞ f)

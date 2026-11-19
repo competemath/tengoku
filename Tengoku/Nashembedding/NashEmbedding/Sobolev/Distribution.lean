@@ -69,6 +69,9 @@ variable {n : ℕ}
 The complex conjugate of a Fourier exponential equals the exponential at
 the negated frequency: `conj(eₘ(θ)) = e_{-m}(θ)`.
 -/
+/--
+@isnad1 id=eq.0h3v.s6.9cd4f6de125a from=translated src=- shape=c33e55f5 vocab=5574d28d
+-/
 lemma starRingEnd_fourierExp (m : Fin n → ℤ) (θ : Fin n → ℝ) :
     starRingEnd ℂ (fourierExp n m θ) = fourierExp n (-m) θ := by
   unfold fourierExp;
@@ -79,6 +82,9 @@ lemma starRingEnd_fourierExp (m : Fin n → ℤ) (θ : Fin n → ℝ) :
 /-
 Orthogonality of Fourier exponentials on `[0, 2π]ⁿ`:
 `∫_{[0,2π]^n} eₘ(θ) · conj(e_{m₀}(θ)) dθ = (2π)^n δ_{m,m₀}`.
+-/
+/--
+@isnad1 id=eq.0h3v.s8.c7102e4f4759 from=translated src=- shape=1e3435d9 vocab=43e6b68e
 -/
 lemma fourierExp_inner_eq (m m₀ : Fin n → ℤ) :
     ∫ θ in Set.Icc (0 : Fin n → ℝ) (2 * π • (1 : Fin n → ℝ)),
@@ -123,6 +129,9 @@ lemma fourierExp_inner_eq (m m₀ : Fin n → ℤ) :
 Fourier synthesis `ǎ(θ) = ∑ aₘ eₘ(θ)` with `conj(e_{m₀}(θ))` over
 `[0, 2π]ⁿ` recovers `(2π)ⁿ · a_{m₀}`.
 -/
+/--
+@isnad1 id=eq.1h3v.s8.dbdc9afa740d from=translated src=- shape=8a2ae2e6 vocab=875aed7f
+-/
 lemma fourierSynthesis_inner
     {a : (Fin n → ℤ) → ℂ} (ha : Summable (fun m => ‖a m‖))
     (m₀ : Fin n → ℤ) :
@@ -166,6 +175,9 @@ def stdFourierCoeff (n : ℕ) (f : (Fin n → ℝ) → ℂ) (m : Fin n → ℤ) 
 Fourier coefficients of the synthesis `ǎ = ∑ aₘ eₘ` recover `a`:
 `stdFourierCoeff(ǎ)_m = a_m`. This is the key identity `ι ∘ ε = id`.
 -/
+/--
+@isnad1 id=eq.1h3v.s5.0d257771fa3e from=translated src=- shape=8bd9a374 vocab=39ffeae4
+-/
 theorem stdFourierCoeff_fourierSynthesis
     {a : (Fin n → ℤ) → ℂ} (ha : Summable (fun m => ‖a m‖))
     (m : Fin n → ℤ) :
@@ -204,7 +216,9 @@ def seqToDual (n : ℕ) (a : (Fin n → ℤ) → ℂ) : TrigPolyDual n :=
   Finsupp.linearCombination ℂ (fun m => a (-m))
 
 /-- `fourierCoeffDistrib` and `seqToDual` are inverses (forward direction):
-`fourierCoeffDistrib (seqToDual a) = a`.-/
+`fourierCoeffDistrib (seqToDual a) = a`.
+@isnad1 id=eq.0h2v.s4.c3e88e079552 from=translated src=- shape=2b3b408a vocab=2d9baf4a
+-/
 lemma fourierCoeffDistrib_seqToDual (a : (Fin n → ℤ) → ℂ) :
     fourierCoeffDistrib (seqToDual n a) = a := by
   ext m
@@ -213,6 +227,9 @@ lemma fourierCoeffDistrib_seqToDual (a : (Fin n → ℤ) → ℂ) :
 /-
 `fourierCoeffDistrib` and `seqToDual` are inverses (backward direction):
 `seqToDual (fourierCoeffDistrib φ) = φ`.
+-/
+/--
+@isnad1 id=eq.0h2v.s3.1909191244b7 from=translated src=- shape=6ddf6d3e vocab=a19be7e0
 -/
 lemma seqToDual_fourierCoeffDistrib (φ : TrigPolyDual n) :
     seqToDual n (fourierCoeffDistrib φ) = φ := by
@@ -245,12 +262,16 @@ def sobolevNormSqDistrib (n : ℕ) (s : ℝ) (φ : TrigPolyDual n) : ℝ :=
 
 /-! ## Continuous inclusion -/
 
-/-- For `t ≥ s`, the inclusion `H^t ⊆ H^s` holds.-/
+/-- For `t ≥ s`, the inclusion `H^t ⊆ H^s` holds.
+@isnad1 id=memsobol.2h4v.s4.824d6639b6ae from=translated src=- shape=062c98a2 vocab=474dfb07
+-/
 lemma MemSobolevDistrib.mono {s t : ℝ} {φ : TrigPolyDual n}
     (hφ : MemSobolevDistrib n t φ) (hst : s ≤ t) : MemSobolevDistrib n s φ :=
   MemSobolev.mono hφ hst
 
-/-- For `s ≤ t`, `‖φ‖²_{(s)} ≤ ‖φ‖²_{(t)}`.-/
+/-- For `s ≤ t`, `‖φ‖²_{(s)} ≤ ‖φ‖²_{(t)}`.
+@isnad1 id=le.2h4v.s4.9b8d2576c95d from=translated src=- shape=c619702b vocab=156ef4db
+-/
 lemma sobolevNormSqDistrib_mono {s t : ℝ} {φ : TrigPolyDual n}
     (hφ : MemSobolevDistrib n t φ) (hst : s ≤ t) :
     sobolevNormSqDistrib n s φ ≤ sobolevNormSqDistrib n t φ :=
@@ -266,6 +287,9 @@ subsequence converging in `H^s`.
 The proof factors through the Fourier coefficient isomorphisms:
 `H^t ≅ ℓ²_(t) ↪ ℓ²_(s) ≅ H^s`, where the middle map is compact by the
 coefficient-side Rellich compactness lemma (`compactInclusion_lp_weighted`).
+-/
+/--
+@isnad1 id=ex.3h4v.s7.99ec2be8a2b2 from=translated src=- shape=1931683f vocab=4318b2bb
 -/
 theorem rellich_compactness_dist {s t : ℝ} (hst : s < t)
     (φseq : ℕ → TrigPolyDual n)
@@ -298,7 +322,9 @@ def integrationEmbed (n : ℕ) (f : (Fin n → ℝ) → ℂ) : TrigPolyDual n :=
   seqToDual n (stdFourierCoeff n f)
 
 /-- The Fourier coefficients of the integration embedding are the standard
-Fourier coefficients: `(ι(f))^ = f̂`.-/
+Fourier coefficients: `(ι(f))^ = f̂`.
+@isnad1 id=eq.0h2v.s4.3bac055aa794 from=translated src=- shape=597aef3d vocab=35196913
+-/
 lemma fourierCoeffDistrib_integrationEmbed (f : (Fin n → ℝ) → ℂ) :
     fourierCoeffDistrib (integrationEmbed n f) = stdFourierCoeff n f :=
   fourierCoeffDistrib_seqToDual _
@@ -307,7 +333,9 @@ lemma fourierCoeffDistrib_integrationEmbed (f : (Fin n → ℝ) → ℂ) :
 
 /-- **Sobolev embedding: factorization.** For `2s > n` and `a ∈ ℓ²_(s+k)`,
 the Fourier coefficients of the Fourier synthesis recover `a`:
-`stdFourierCoeff(ǎ) = a`, i.e., `ι(ε(a)) = a` in `X_n^*`.-/
+`stdFourierCoeff(ǎ) = a`, i.e., `ι(ε(a)) = a` in `X_n^*`.
+@isnad1 id=eq.3h5v.s6.f4fb61985179 from=translated src=- shape=9418ee38 vocab=5636d8dc
+-/
 theorem sobolev_embedding_factorization
     {s : ℝ} {k : ℕ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
     {a : (Fin n → ℤ) → ℂ} (ha : MemSobolev n (s + k) a) (m : Fin n → ℤ) :
@@ -320,6 +348,9 @@ theorem sobolev_embedding_factorization
 `φ ∈ H^{s+k}`, we have `ι(ε(φ)) = φ` in `X_n^*`, where `ε(φ)` is the
 Fourier synthesis of `φ̂` and `ι` is the integration embedding.
 -/
+/--
+@isnad1 id=eq.3h4v.s6.b3c97fe328f2 from=translated src=- shape=fc617e86 vocab=2a1c9442
+-/
 theorem sobolev_embedding_factorization_dist
     {s : ℝ} {k : ℕ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
     {φ : TrigPolyDual n} (hφ : MemSobolevDistrib n (s + k) φ) :
@@ -330,7 +361,9 @@ theorem sobolev_embedding_factorization_dist
   all_goals rfl
 
 /-- **Sobolev embedding: linearity.** The Fourier synthesis map
-`a ↦ ǎ` is linear.-/
+`a ↦ ǎ` is linear.
+@isnad1 id=eq.2h4v.s7.4ec1f046391c from=translated src=- shape=bc15b081 vocab=c9230448
+-/
 theorem sobolev_embedding_linear_add
     {a b : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖))
@@ -340,7 +373,9 @@ theorem sobolev_embedding_linear_add
       fourierSynthesis n a θ + fourierSynthesis n b θ :=
   fourierSynthesis_add ha hb θ
 
-/-- **Sobolev embedding: scalar multiplication.**-/
+/-- **Sobolev embedding: scalar multiplication.**
+@isnad1 id=eq.1h4v.s6.30e2f03051fd from=translated src=- shape=00220cf1 vocab=4a23f04d
+-/
 theorem sobolev_embedding_linear_smul
     {a : (Fin n → ℤ) → ℂ} (c : ℂ)
     (ha : Summable (fun m => ‖a m‖))
@@ -349,7 +384,9 @@ theorem sobolev_embedding_linear_smul
   fourierSynthesis_smul c ha θ
 
 /-- **Sobolev embedding: periodicity.** The Fourier synthesis is `2π`-periodic
-in each variable.-/
+in each variable.
+@isnad1 id=eq.1h4v.s6.a8fc0f10dac1 from=translated src=- shape=8b94aaec vocab=a37ab4fc
+-/
 theorem sobolev_embedding_periodic
     {a : (Fin n → ℤ) → ℂ} (ha : Summable (fun m => ‖a m‖))
     (θ : Fin n → ℝ) (j : Fin n) :
@@ -358,7 +395,9 @@ theorem sobolev_embedding_periodic
   fourierSynthesis_periodic ha θ j
 
 /-- **Sobolev embedding: injectivity.** If the Fourier synthesis vanishes
-identically, then the coefficient sequence is zero.-/
+identically, then the coefficient sequence is zero.
+@isnad1 id=eq.2h2v.s6.3c7eaca16291 from=translated src=- shape=95db832b vocab=cf11d458
+-/
 theorem sobolev_embedding_injective
     {a : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖))

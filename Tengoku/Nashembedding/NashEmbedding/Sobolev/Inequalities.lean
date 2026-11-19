@@ -32,6 +32,9 @@ variable {n : ℕ}
 Quasi-triangle inequality for `sobolevNormSqDistrib`:
     `‖a - c‖_{H^s_*}^2 ≤ 2 ‖a - b‖_{H^s_*}^2 + 2 ‖b - c‖_{H^s_*}^2`.
 -/
+/--
+@isnad1 id=le.2h5v.s8.f2dc37038e4b from=translated src=- shape=6be0f348 vocab=18c89ff5
+-/
 lemma sobolevNormSqDistrib_triangle (s : ℝ) (a b c : TrigPolyDual n)
     (hab : MemSobolevDistrib n s (a - b)) (hbc : MemSobolevDistrib n s (b - c)) :
     sobolevNormSqDistrib n s (a - c) ≤
@@ -67,6 +70,9 @@ lemma sobolevNormSqDistrib_triangle (s : ℝ) (a b c : TrigPolyDual n)
 
 /-
 `MemSobolevDistrib` is closed under subtraction.
+-/
+/--
+@isnad1 id=memsobol.2h4v.s6.d8e6a2474fcf from=translated src=- shape=a63c5f88 vocab=1edd7e28
 -/
 lemma MemSobolevDistrib.sub {s : ℝ} {a b : TrigPolyDual n}
     (ha : MemSobolevDistrib n s a) (hb : MemSobolevDistrib n s b) :
@@ -174,7 +180,9 @@ private lemma seqToDual_sub (a b : (Fin n → ℤ) → ℂ) :
 `ι(f + g) = ι(f) + ι(g)`. Continuity is needed to give Bochner-integral
 additivity of the integrands `f · e_{-m}` and `g · e_{-m}` on the compact
 period cube `[0, 2π]ⁿ`. Without integrability the unconditional identity
-is false — see the section header.-/
+is false — see the section header.
+@isnad1 id=eq.2h3v.s7.fe28b91e9b1b from=translated src=- shape=e1b6bd03 vocab=e56f5a3b
+-/
 lemma integrationEmbed_add {f g : (Fin n → ℝ) → ℂ}
     (hf : Continuous f) (hg : Continuous g) :
     integrationEmbed n (fun x => f x + g x)
@@ -188,7 +196,9 @@ lemma integrationEmbed_add {f g : (Fin n → ℝ) → ℂ}
   exact seqToDual_add _ _
 
 /-- `integrationEmbed` distributes over subtraction on continuous functions:
-`ι(f - g) = ι(f) - ι(g)`. Companion of `integrationEmbed_add`; same caveat.-/
+`ι(f - g) = ι(f) - ι(g)`. Companion of `integrationEmbed_add`; same caveat.
+@isnad1 id=eq.2h3v.s7.29d77fbd4659 from=translated src=- shape=e1b6bd03 vocab=dad83b54
+-/
 lemma integrationEmbed_sub {f g : (Fin n → ℝ) → ℂ}
     (hf : Continuous f) (hg : Continuous g) :
     integrationEmbed n (fun x => f x - g x)

@@ -69,7 +69,9 @@ If `a ∈ ℓ²_(s+k)`, `2s > n`, and `|α| ≤ k`, then `m ↦ (im)^α aₘ ∈
 -/
 
 /-- **Fourier synthesis: 2π-periodicity.** The Fourier synthesis `ǎ` is
-`2π`-periodic in each variable.-/
+`2π`-periodic in each variable.
+@isnad1 id=eq.1h4v.s6.a8fc0f10dac1 from=translated src=- shape=8b94aaec vocab=a37ab4fc
+-/
 theorem fourierSynthesis_periodic
     {a : (Fin n → ℤ) → ℂ} (ha : Summable (fun m => ‖a m‖))
     (θ : Fin n → ℝ) (j : Fin n) :
@@ -80,6 +82,9 @@ theorem fourierSynthesis_periodic
 
 /-
 **Fourier synthesis: linearity.** The map `a ↦ ǎ` is linear.
+-/
+/--
+@isnad1 id=eq.2h4v.s7.4ec1f046391c from=translated src=- shape=bc15b081 vocab=c9230448
 -/
 theorem fourierSynthesis_add
     {a b : (Fin n → ℤ) → ℂ}
@@ -93,6 +98,9 @@ theorem fourierSynthesis_add
   · exact .of_norm <| by simpa [ norm_fourierExp ] using ha;
   · exact .of_norm <| by simpa [ norm_fourierExp ] using hb
 
+/--
+@isnad1 id=eq.1h4v.s6.30e2f03051fd from=translated src=- shape=00220cf1 vocab=4a23f04d
+-/
 theorem fourierSynthesis_smul
     {a : (Fin n → ℤ) → ℂ} (c : ℂ)
     (ha : Summable (fun m => ‖a m‖))
@@ -104,6 +112,9 @@ theorem fourierSynthesis_smul
 /-
 **Fourier synthesis: injectivity.** If `ǎ = 0` then `a = 0`, provided
 `a ∈ ℓ¹`.
+-/
+/--
+@isnad1 id=eq.2h2v.s6.3c7eaca16291 from=translated src=- shape=95db832b vocab=cf11d458
 -/
 theorem fourierSynthesis_injective
     {a : (Fin n → ℤ) → ℂ}

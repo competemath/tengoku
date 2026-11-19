@@ -40,6 +40,9 @@ which tends to 0 when `s < t`.
 When `s < t`, the weight ratio `(1 + |m|²)^{(s-t)/2}` tends to 0
 as `m` varies over `Fin n → ℤ` and `|m| → ∞`.
 -/
+/--
+@isnad1 id=tendsto.1h3v.s6.bd30d3454713 from=translated src=- shape=8ba27f08 vocab=91572b4c
+-/
 lemma weight_tendsto_zero_of_lt {s t : ℝ} (hst : s < t) :
     Filter.Tendsto (fun m : Fin n → ℤ => weight n ((s - t) / 2) m)
       (Filter.cofinite) (nhds 0) := by
@@ -65,6 +68,9 @@ then there exists a subsequence converging in the `ℓ²_(s)` norm.
 More precisely: if `sobolevNormSq n t (a k) ≤ 1` for all `k`,
 then there exist a function `φ : ℕ → ℕ` (strictly monotone) and
 a limit `b` such that `sobolevNormSq n s (a (φ k) - b) → 0`.
+-/
+/--
+@isnad1 id=ex.3h4v.s6.4445966c07b7 from=translated src=- shape=0361c712 vocab=ab54bce0
 -/
 theorem compactInclusion_lp_weighted {s t : ℝ} (hst : s < t)
     (a : ℕ → (Fin n → ℤ) → ℂ)

@@ -41,7 +41,9 @@ variable {n : ℕ}
 /-! ## Rapid decay of coefficients -/
 
 /-- Coefficients of smooth periodic functions are rapidly decaying
-(`stdFourierCoeff_rapid_decay` + `memSobolev_of_rapid_decay`).-/
+(`stdFourierCoeff_rapid_decay` + `memSobolev_of_rapid_decay`).
+@isnad1 id=israpidd.3h2v.s6.c2671bb033ec from=translated src=- shape=96602185 vocab=86f448eb
+-/
 theorem isRapidDecay_stdFourierCoeff (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
     (hsmooth : ContDiff ℝ ∞ f) (hper : IsPeriodic2Pi f) :
     IsRapidDecay n (stdFourierCoeff n f) := fun s =>
@@ -51,7 +53,9 @@ theorem isRapidDecay_stdFourierCoeff (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
 
 /-! ## Products, derivatives, the Laplacian -/
 
-/-- `stdFourierCoeff_partialDeriv` as an equality of sequences.-/
+/-- `stdFourierCoeff_partialDeriv` as an equality of sequences.
+@isnad1 id=eq.3h3v.s7.f28d4973b6dc from=translated src=- shape=26b87992 vocab=449fb527
+-/
 theorem stdFourierCoeff_partialDeriv' (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
     (hf : ContDiff ℝ ∞ f) (hper : IsPeriodic2Pi f) (j : Fin n) :
     stdFourierCoeff n (partialDeriv j f) = partialCoeff j (stdFourierCoeff n f) := by
@@ -59,7 +63,9 @@ theorem stdFourierCoeff_partialDeriv' (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
   exact stdFourierCoeff_partialDeriv hn hf hper j m
 
 /-- `∂ⱼ∂ⱼ` on coefficients is multiplication by `-mⱼ²`; summing over `j`,
-`L = ∑ⱼ ∂ⱼ²` corresponds to `-laplacianCoeff`.-/
+`L = ∑ⱼ ∂ⱼ²` corresponds to `-laplacianCoeff`.
+@isnad1 id=eq.3h2v.s7.cd1a1ab3c1c8 from=translated src=- shape=c62f564d vocab=6a947cc3
+-/
 theorem stdFourierCoeff_sumSqDeriv (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
     (hf : ContDiff ℝ ∞ f) (hper : IsPeriodic2Pi f) :
     stdFourierCoeff n (fun x => ∑ k, partialDeriv k (partialDeriv k f) x)
@@ -71,7 +77,9 @@ theorem stdFourierCoeff_sumSqDeriv (hn : 0 < n) {f : (Fin n → ℝ) → ℂ}
   push_cast
   ring
 
-/-- Real-valued functions have `conjReflect`-fixed coefficients.-/
+/-- Real-valued functions have `conjReflect`-fixed coefficients.
+@isnad1 id=eq.2h2v.s6.bc81becfba39 from=translated src=- shape=5782edd6 vocab=833d8bb4
+-/
 theorem conjReflect_stdFourierCoeff_of_real {f : (Fin n → ℝ) → ℂ} (hf : Continuous f)
     (hreal : ∀ x, (f x).im = 0) : conjReflect (stdFourierCoeff n f) = stdFourierCoeff n f := by
   funext m
@@ -87,12 +95,18 @@ theorem conjReflect_stdFourierCoeff_of_real {f : (Fin n → ℝ) → ℂ} (hf : 
 
 /-! ## Linearity of synthesis -/
 
+/--
+@isnad1 id=eq.2h3v.s6.c83c138455c7 from=translated src=- shape=b8d36fdd vocab=c9230448
+-/
 lemma fourierSynthesis_add' {a b : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖)) (hb : Summable (fun m => ‖b m‖)) :
     fourierSynthesis n (fun m => a m + b m) = fun θ => fourierSynthesis n a θ + fourierSynthesis n b θ := by
   funext θ
   exact fourierSynthesis_add ha hb θ
 
+/--
+@isnad1 id=eq.2h3v.s6.8a71f9fe3578 from=translated src=- shape=b8d36fdd vocab=c44ccacd
+-/
 lemma fourierSynthesis_sub {a b : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖)) (hb : Summable (fun m => ‖b m‖)) :
     fourierSynthesis n (fun m => a m - b m) = fun θ => fourierSynthesis n a θ - fourierSynthesis n b θ := by
@@ -103,6 +117,9 @@ lemma fourierSynthesis_sub {a b : (Fin n → ℤ) → ℂ}
   · exact .of_norm <| by simpa [norm_fourierExp] using ha
   · exact .of_norm <| by simpa [norm_fourierExp] using hb
 
+/--
+@isnad1 id=eq.0h3v.s5.019010529f45 from=translated src=- shape=b96cf9d1 vocab=e5667a68
+-/
 lemma fourierSynthesis_const_mul (c : ℂ) (a : (Fin n → ℤ) → ℂ) :
     fourierSynthesis n (fun m => c * a m) = fun θ => c * fourierSynthesis n a θ := by
   funext θ
@@ -110,6 +127,9 @@ lemma fourierSynthesis_const_mul (c : ℂ) (a : (Fin n → ℤ) → ℂ) :
   rw [← tsum_mul_left]
   exact tsum_congr fun m => by ring
 
+/--
+@isnad1 id=eq.0h2v.s5.02ad64de22f6 from=translated src=- shape=1166e1ae vocab=02c00b83
+-/
 lemma fourierSynthesis_neg (a : (Fin n → ℤ) → ℂ) :
     fourierSynthesis n (fun m => -a m) = fun θ => -fourierSynthesis n a θ := by
   funext θ
@@ -117,6 +137,9 @@ lemma fourierSynthesis_neg (a : (Fin n → ℤ) → ℂ) :
   rw [← tsum_neg]
   exact tsum_congr fun m => by ring
 
+/--
+@isnad1 id=eq.1h4v.s6.8081237c130f from=translated src=- shape=ca033db1 vocab=d8560d23
+-/
 lemma fourierSynthesis_finset_sum {ι : Type*} (S : Finset ι) {a : ι → (Fin n → ℤ) → ℂ}
     (ha : ∀ i ∈ S, Summable (fun m => ‖a i m‖)) :
     fourierSynthesis n (fun m => ∑ i ∈ S, a i m) = fun θ => ∑ i ∈ S, fourierSynthesis n (a i) θ := by
@@ -130,35 +153,61 @@ lemma fourierSynthesis_finset_sum {ι : Type*} (S : Finset ι) {a : ι → (Fin 
 
 /-! ## Closure of rapid decay -/
 
+/--
+@isnad1 id=israpidd.0h1v.s3.321e3847c0af from=translated src=- shape=edfd68f7 vocab=00b7b8c7
+-/
 lemma isRapidDecay_zero : IsRapidDecay n (fun _ => (0 : ℂ)) := fun s => memSobolev_zero s
 
+/--
+@isnad1 id=israpidd.2h3v.s5.9593520c41b8 from=translated src=- shape=6c043433 vocab=d2e471ae
+-/
 lemma IsRapidDecay.add {a b : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) (hb : IsRapidDecay n b) :
     IsRapidDecay n (fun m => a m + b m) := fun s => (ha s).add (hb s)
 
+/--
+@isnad1 id=israpidd.2h3v.s5.d484e1cab4e5 from=translated src=- shape=6c043433 vocab=e169ccfe
+-/
 lemma IsRapidDecay.sub {a b : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) (hb : IsRapidDecay n b) :
     IsRapidDecay n (fun m => a m - b m) := fun s => (ha s).sub (hb s)
 
+/--
+@isnad1 id=israpidd.1h2v.s4.a50216133bff from=translated src=- shape=463fb8d7 vocab=340c9cb5
+-/
 lemma IsRapidDecay.neg {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) :
     IsRapidDecay n (fun m => -a m) := fun s => (ha s).neg
 
+/--
+@isnad1 id=israpidd.1h3v.s5.71e2470efad0 from=translated src=- shape=dc5e3649 vocab=65025b7b
+-/
 lemma IsRapidDecay.const_mul {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) (c : ℂ) :
     IsRapidDecay n (fun m => c * a m) := fun s => (ha s).smul c
 
+/--
+@isnad1 id=israpidd.1h4v.s5.9ab21818c170 from=translated src=- shape=5e4d3a64 vocab=1d733d5a
+-/
 lemma IsRapidDecay.finset_sum {ι : Type*} (S : Finset ι) {a : ι → (Fin n → ℤ) → ℂ}
     (ha : ∀ i ∈ S, IsRapidDecay n (a i)) : IsRapidDecay n (fun m => ∑ i ∈ S, a i m) :=
   fun s => MemSobolev.finset_sum S fun i hi => ha i hi s
 
+/--
+@isnad1 id=israpidd.1h2v.s4.cbad3f4b5505 from=translated src=- shape=1883ffc1 vocab=b1c38b67
+-/
 lemma IsRapidDecay.resolventCoeff {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) :
     IsRapidDecay n (resolventCoeff a) := by
   intro s
   have := memSobolev_resolventCoeff (ha (s - 2))
   simpa using this
 
+/--
+@isnad1 id=israpidd.1h2v.s4.c0df6f23100a from=translated src=- shape=1883ffc1 vocab=5f1a9539
+-/
 lemma IsRapidDecay.laplacianCoeff {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) :
     IsRapidDecay n (laplacianCoeff a) := fun s => memSobolev_laplacianCoeff (ha (s + 2))
 
 /-- Convolution of rapidly decaying sequences is rapidly decaying (MT2 at every level
-`s > n/2`, then monotonicity).-/
+`s > n/2`, then monotonicity).
+@isnad1 id=israpidd.3h3v.s5.c9d57cff8342 from=translated src=- shape=70adf2c2 vocab=27ef1625
+-/
 lemma IsRapidDecay.seqConv (hn : 0 < n) {a b : (Fin n → ℤ) → ℂ}
     (ha : IsRapidDecay n a) (hb : IsRapidDecay n b) : IsRapidDecay n (seqConv a b) := by
   intro s

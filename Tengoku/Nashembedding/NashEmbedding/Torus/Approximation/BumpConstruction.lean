@@ -40,10 +40,16 @@ namespace NashEmbedding
 /-- Radius `ρ := π / (2√n + 1)`; then `ρ √n < π/2` for every `n`.-/
 def bumpRadius (n : ℕ) : ℝ := π / (2 * Real.sqrt n + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.7214b96b2bb4 from=translated src=- shape=b9369acb vocab=dddee17a
+-/
 lemma bumpRadius_pos (n : ℕ) : 0 < bumpRadius n := by
   unfold bumpRadius
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s5.233a96131cca from=translated src=- shape=9fb95c50 vocab=e55e90ce
+-/
 lemma bumpRadius_mul_sqrt_lt (n : ℕ) : bumpRadius n * Real.sqrt n < π / 2 := by
   unfold bumpRadius
   have h : 0 ≤ Real.sqrt n := Real.sqrt_nonneg _
@@ -57,23 +63,47 @@ def bump1D (n : ℕ) : ContDiffBump (0 : ℝ) :=
 /-- The basic bump as a function `ℝ → ℝ`.-/
 def eta (n : ℕ) : ℝ → ℝ := fun t => bump1D n t
 
+/--
+@isnad1 id=contdiff.0h1v.s5.6c1895ad6cda from=translated src=- shape=1e5679e5 vocab=86defcff
+-/
 lemma eta_contDiff (n : ℕ) : ContDiff ℝ ∞ (eta n) := (bump1D n).contDiff
 
+/--
+@isnad1 id=continuo.0h1v.s4.eeba30c22a03 from=translated src=- shape=8735051e vocab=d1d67f7b
+-/
 lemma eta_continuous (n : ℕ) : Continuous (eta n) := (eta_contDiff n).continuous
 
+/--
+@isnad1 id=hascompa.0h1v.s3.a3e08d23a72d from=translated src=- shape=8735051e vocab=f383bf62
+-/
 lemma eta_hasCompactSupport (n : ℕ) : HasCompactSupport (eta n) := (bump1D n).hasCompactSupport
 
+/--
+@isnad1 id=le.0h2v.s4.7e32da37336f from=translated src=- shape=787c1379 vocab=26244229
+-/
 lemma eta_nonneg (n : ℕ) (t : ℝ) : 0 ≤ eta n t := (bump1D n).nonneg
 
+/--
+@isnad1 id=eq.0h1v.s4.988fc8bfeed4 from=translated src=- shape=9b4d794a vocab=631a6297
+-/
 lemma eta_zero (n : ℕ) : eta n 0 = 1 :=
   (bump1D n).one_of_mem_closedBall (by simp [bump1D]; linarith [bumpRadius_pos n])
 
+/--
+@isnad1 id=eq.1h2v.s4.73fac300b2a1 from=translated src=- shape=cceac275 vocab=5b721f62
+-/
 lemma eta_eq_zero_of_le {n : ℕ} {t : ℝ} (ht : bumpRadius n ≤ |t|) : eta n t = 0 :=
   (bump1D n).zero_of_le_dist (by simpa [bump1D, Real.dist_eq] using ht)
 
+/--
+@isnad1 id=eq.0h1v.s4.3f829b3594e5 from=translated src=- shape=574ff4a1 vocab=5d56c203
+-/
 lemma eta_support (n : ℕ) : Function.support (eta n) = Metric.ball 0 (bumpRadius n) :=
   (bump1D n).support_eq
 
+/--
+@isnad1 id=lt.1h2v.s4.e053a06a8e26 from=translated src=- shape=9ff83638 vocab=2422208f
+-/
 lemma abs_lt_of_eta_ne_zero {n : ℕ} {t : ℝ} (h : eta n t ≠ 0) : |t| < bumpRadius n := by
   by_contra hc
   exact h (eta_eq_zero_of_le (not_lt.mp hc))
@@ -84,12 +114,21 @@ def etaMass (n : ℕ) : ℝ := ∫ t, eta n t ^ 2
 /-- `∫ η'²`.-/
 def etaDerivMass (n : ℕ) : ℝ := ∫ t, deriv (eta n) t ^ 2
 
+/--
+@isnad1 id=continuo.0h1v.s5.7a44b525e264 from=translated src=- shape=e0044010 vocab=bbdf974b
+-/
 lemma deriv_eta_continuous (n : ℕ) : Continuous (deriv (eta n)) :=
   (eta_contDiff n).continuous_deriv NashEmbedding.Sobolev.one_le_infty
 
+/--
+@isnad1 id=hascompa.0h1v.s5.155ca13b1410 from=translated src=- shape=e0044010 vocab=d17c20b7
+-/
 lemma deriv_eta_hasCompactSupport (n : ℕ) : HasCompactSupport (deriv (eta n)) :=
   (eta_hasCompactSupport n).deriv
 
+/--
+@isnad1 id=lt.0h1v.s3.2148a0c3d8f6 from=translated src=- shape=b9369acb vocab=5524759b
+-/
 lemma etaMass_pos (n : ℕ) : 0 < etaMass n := by
   unfold etaMass
   apply Continuous.integral_pos_of_hasCompactSupport_nonneg_nonzero (x := 0)
@@ -98,6 +137,9 @@ lemma etaMass_pos (n : ℕ) : 0 < etaMass n := by
   · intro t; positivity
   · simp [eta_zero]
 
+/--
+@isnad1 id=lt.0h1v.s3.dc063f9cd664 from=translated src=- shape=b9369acb vocab=88e39bcf
+-/
 lemma etaDerivMass_pos (n : ℕ) : 0 < etaDerivMass n := by
   unfold etaDerivMass
   -- some point has nonzero derivative, else η would be constant
@@ -121,11 +163,20 @@ lemma etaDerivMass_pos (n : ℕ) : 0 < etaDerivMass n := by
 /-- The dilated bump `η(βt)`.-/
 def dil (n : ℕ) (β : ℝ) : ℝ → ℝ := fun t => eta n (β * t)
 
+/--
+@isnad1 id=contdiff.0h2v.s5.822ef54af7f9 from=translated src=- shape=7d730dac vocab=80c20661
+-/
 lemma dil_contDiff (n : ℕ) (β : ℝ) : ContDiff ℝ ∞ (dil n β) :=
   (eta_contDiff n).comp (contDiff_const.mul contDiff_id)
 
+/--
+@isnad1 id=continuo.0h2v.s4.400555faffd2 from=translated src=- shape=03beec24 vocab=e128ca0c
+-/
 lemma dil_continuous (n : ℕ) (β : ℝ) : Continuous (dil n β) := (dil_contDiff n β).continuous
 
+/--
+@isnad1 id=hascompa.1h2v.s4.5e25b4d89818 from=translated src=- shape=6d6243bd vocab=de052dbb
+-/
 lemma dil_hasCompactSupport (n : ℕ) {β : ℝ} (hβ : 0 < β) : HasCompactSupport (dil n β) := by
   have h : dil n β = eta n ∘ (Homeomorph.mulLeft₀ β hβ.ne') := by
     funext t; simp [dil, Homeomorph.mulLeft₀]
@@ -142,24 +193,39 @@ lemma dil_hasCompactSupport (n : ℕ) {β : ℝ} (hβ : 0 < β) : HasCompactSupp
   rw [h]
   exact (eta_hasCompactSupport n).comp_homeomorph _
 
+/--
+@isnad1 id=lt.2h3v.s5.565e00e2df83 from=translated src=- shape=8b5e44c7 vocab=1edd0b56
+-/
 lemma abs_lt_of_dil_ne_zero {n : ℕ} {β t : ℝ} (hβ : 1 ≤ β) (h : dil n β t ≠ 0) :
     |t| < bumpRadius n := by
   have h1 := abs_lt_of_eta_ne_zero h
   rw [abs_mul, abs_of_pos (by linarith : (0:ℝ) < β)] at h1
   nlinarith [abs_nonneg t]
 
+/--
+@isnad1 id=eq.0h3v.s6.3a28532f6f58 from=translated src=- shape=db73b14e vocab=31bb9536
+-/
 lemma deriv_dil (n : ℕ) (β : ℝ) (t : ℝ) :
     deriv (dil n β) t = β * deriv (eta n) (β * t) := by
   unfold dil
   rw [deriv_comp_mul_left, smul_eq_mul]
 
+/--
+@isnad1 id=continuo.0h2v.s5.c57ce1946f7c from=translated src=- shape=1b134737 vocab=832f0890
+-/
 lemma deriv_dil_continuous (n : ℕ) (β : ℝ) : Continuous (deriv (dil n β)) :=
   (dil_contDiff n β).continuous_deriv NashEmbedding.Sobolev.one_le_infty
 
+/--
+@isnad1 id=hascompa.1h2v.s5.4938d6247165 from=translated src=- shape=9e9d6eba vocab=940dffd2
+-/
 lemma deriv_dil_hasCompactSupport (n : ℕ) {β : ℝ} (hβ : 0 < β) :
     HasCompactSupport (deriv (dil n β)) :=
   (dil_hasCompactSupport n hβ).deriv
 
+/--
+@isnad1 id=eq.1h2v.s6.68af90f5da0a from=translated src=- shape=986301e6 vocab=38685e32
+-/
 lemma integral_dil_sq (n : ℕ) {β : ℝ} (hβ : 0 < β) :
     ∫ t, dil n β t ^ 2 = etaMass n / β := by
   unfold dil etaMass
@@ -167,6 +233,9 @@ lemma integral_dil_sq (n : ℕ) {β : ℝ} (hβ : 0 < β) :
   try simp only at h
   rw [h, abs_of_pos (inv_pos.mpr hβ), smul_eq_mul, inv_mul_eq_div]
 
+/--
+@isnad1 id=eq.1h2v.s6.9e645040e4e7 from=translated src=- shape=3b823112 vocab=7849e53f
+-/
 lemma integral_deriv_dil_sq (n : ℕ) {β : ℝ} (hβ : 0 < β) :
     ∫ t, deriv (dil n β) t ^ 2 = β * etaDerivMass n := by
   simp_rw [deriv_dil]
@@ -177,6 +246,9 @@ lemma integral_deriv_dil_sq (n : ℕ) {β : ℝ} (hβ : 0 < β) :
   unfold etaDerivMass
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s6.262e7af0b2fa from=translated src=- shape=0df8703e vocab=cfa25797
+-/
 lemma integral_dil_mul_deriv (n : ℕ) {β : ℝ} (hβ : 0 < β) :
     ∫ t, dil n β t * deriv (dil n β) t = 0 := by
   have hd : Differentiable ℝ (dil n β) := (dil_contDiff n β).differentiable NashEmbedding.Sobolev.infty_ne_zero
@@ -201,21 +273,33 @@ variable {n : ℕ}
 /-- The product bump `ψ_β(y) = ∏ₖ η(βₖ yₖ)`.-/
 def prodBump (n : ℕ) (β : Fin n → ℝ) (y : Fin n → ℝ) : ℝ := ∏ k, dil n (β k) (y k)
 
+/--
+@isnad1 id=contdiff.0h2v.s6.ce826427a0d6 from=translated src=- shape=4cc4ef16 vocab=eda13eeb
+-/
 lemma prodBump_contDiff (β : Fin n → ℝ) : ContDiff ℝ ∞ (prodBump n β) := by
   have h : prodBump n β = ∏ k : Fin n, (fun y : Fin n → ℝ => dil n (β k) (y k)) := by
     funext y; simp [prodBump, Finset.prod_apply]
   rw [h]
   exact contDiff_prod' fun k _ => (dil_contDiff n (β k)).comp (contDiff_apply ℝ ℝ k)
 
+/--
+@isnad1 id=continuo.0h2v.s5.1fa69a6fdfde from=translated src=- shape=f752e92b vocab=cf717234
+-/
 lemma prodBump_continuous (β : Fin n → ℝ) : Continuous (prodBump n β) :=
   (prodBump_contDiff β).continuous
 
+/--
+@isnad1 id=lt.2h4v.s5.a4e1eb546992 from=translated src=- shape=f91b550c vocab=356248e6
+-/
 lemma abs_lt_of_prodBump_ne_zero {β : Fin n → ℝ} (hβ : ∀ k, 1 ≤ β k) {y : Fin n → ℝ}
     (h : prodBump n β y ≠ 0) (k : Fin n) : |y k| < bumpRadius n := by
   unfold prodBump at h
   rw [Finset.prod_ne_zero_iff] at h
   exact abs_lt_of_dil_ne_zero (hβ k) (h k (Finset.mem_univ k))
 
+/--
+@isnad1 id=hascompa.1h2v.s5.ce410f175477 from=translated src=- shape=d55c2aa8 vocab=9680acc1
+-/
 lemma prodBump_hasCompactSupport {β : Fin n → ℝ} (hβ : ∀ k, 1 ≤ β k) :
     HasCompactSupport (prodBump n β) := by
   apply HasCompactSupport.intro (isCompact_Icc (a := -(bumpRadius n • (1 : Fin n → ℝ)))
@@ -232,6 +316,9 @@ the dilated bump itself otherwise.-/
 def factor (n : ℕ) (β : Fin n → ℝ) (i k : Fin n) : ℝ → ℝ :=
   if k = i then deriv (dil n (β k)) else dil n (β k)
 
+/--
+@isnad1 id=eq.0h5v.s6.2932277d7c52 from=translated src=- shape=427cd299 vocab=2507d0f8
+-/
 lemma prodBump_update (β : Fin n → ℝ) (y : Fin n → ℝ) (i : Fin n) (t : ℝ) :
     prodBump n β (Function.update y i t)
       = dil n (β i) t * ∏ k ∈ Finset.univ.erase i, dil n (β k) (y k) := by
@@ -243,6 +330,9 @@ lemma prodBump_update (β : Fin n → ℝ) (y : Fin n → ℝ) (i : Fin n) (t : 
   refine Finset.prod_congr rfl fun k hk => ?_
   rw [Function.update_of_ne (Finset.ne_of_mem_erase hk)]
 
+/--
+@isnad1 id=eq.0h4v.s8.ae550a3cd6c5 from=translated src=- shape=3ce1c8aa vocab=88a428c8
+-/
 lemma fderiv_prodBump_single (β : Fin n → ℝ) (y : Fin n → ℝ) (i : Fin n) :
     fderiv ℝ (prodBump n β) y (Pi.single i 1) = ∏ k, factor n β i k (y k) := by
   have hd : HasFDerivAt (prodBump n β) (fderiv ℝ (prodBump n β) y) y :=
@@ -265,7 +355,9 @@ lemma fderiv_prodBump_single (β : Fin n → ℝ) (y : Fin n → ℝ) (i : Fin n
 def gram (χ : (Fin n → ℝ) → ℝ) (i j : Fin n) : ℝ :=
   ∫ x, fderiv ℝ χ x (Pi.single i 1) * fderiv ℝ χ x (Pi.single j 1)
 
-/-- The Gram matrix of the product bump is diagonal with explicit entries.-/
+/-- The Gram matrix of the product bump is diagonal with explicit entries.
+@isnad1 id=eq.1h4v.s6.d10dc9ade6fa from=translated src=- shape=3f640c4b vocab=362b9863
+-/
 theorem gram_prodBump {β : Fin n → ℝ} (hβ : ∀ k, 0 < β k) (i j : Fin n) :
     gram (prodBump n β) i j
       = if i = j then β i * etaDerivMass n * ∏ k ∈ Finset.univ.erase i, etaMass n / β k
@@ -296,19 +388,31 @@ theorem gram_prodBump {β : Fin n → ℝ} (hβ : ∀ k, 0 < β k) (i j : Fin n)
 def rotBump (n : ℕ) (β : Fin n → ℝ) (M : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) : ℝ :=
   prodBump n β (M.mulVec x)
 
+/--
+@isnad1 id=eq.0h2v.s11.9560fd367d04 from=translated src=- shape=f648d896 vocab=7cd58e3b
+-/
 lemma mulVec_eq_clm (M : Matrix (Fin n) (Fin n) ℝ) :
     (fun x : Fin n → ℝ => M.mulVec x)
       = ⇑(LinearMap.toContinuousLinearMap (Matrix.mulVecLin M)) := by
   funext x; simp
 
+/--
+@isnad1 id=contdiff.0h2v.s7.a5cee2d17cdf from=translated src=- shape=5f76a2dc vocab=2885d68b
+-/
 lemma mulVec_contDiff (M : Matrix (Fin n) (Fin n) ℝ) :
     ContDiff ℝ ∞ (fun x : Fin n → ℝ => M.mulVec x) := by
   rw [mulVec_eq_clm]; exact ContinuousLinearMap.contDiff _
 
+/--
+@isnad1 id=contdiff.0h3v.s6.79f9ce18d8c7 from=translated src=- shape=5ae714c4 vocab=845c9ef5
+-/
 lemma rotBump_contDiff (β : Fin n → ℝ) (M : Matrix (Fin n) (Fin n) ℝ) :
     ContDiff ℝ ∞ (rotBump n β M) :=
   (prodBump_contDiff β).comp (mulVec_contDiff M)
 
+/--
+@isnad1 id=eq.0h5v.s9.5e551f9f599a from=translated src=- shape=d9c19f34 vocab=230d2459
+-/
 lemma fderiv_rotBump_single (β : Fin n → ℝ) (M : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ)
     (i : Fin n) :
     fderiv ℝ (rotBump n β M) x (Pi.single i 1)
@@ -331,10 +435,16 @@ lemma fderiv_rotBump_single (β : Fin n → ℝ) (M : Matrix (Fin n) (Fin n) ℝ
   refine Finset.sum_congr rfl fun k _ => ?_
   rw [map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=ne.1h2v.s5.53574e6c772e from=translated src=- shape=91328e78 vocab=2c6bf32f
+-/
 lemma det_ne_zero_of_abs_det_eq_one {M : Matrix (Fin n) (Fin n) ℝ} (hdet : |M.det| = 1) :
     M.det ≠ 0 := by
   intro h; rw [h, abs_zero] at hdet; exact zero_ne_one hdet
 
+/--
+@isnad1 id=integrab.3h3v.s7.67f974c2da60 from=translated src=- shape=8c3551f9 vocab=154f90ed
+-/
 lemma integrable_comp_mulVec {M : Matrix (Fin n) (Fin n) ℝ} (hdet : |M.det| = 1)
     {G : (Fin n → ℝ) → ℝ} (hG : Continuous G) (hGi : Integrable G) :
     Integrable (fun x => G (M.mulVec x)) := by
@@ -345,6 +455,9 @@ lemma integrable_comp_mulVec {M : Matrix (Fin n) (Fin n) ℝ} (hdet : |M.det| = 
     (Matrix.toLin' M).continuous_of_finiteDimensional.aemeasurable).mp h2
   simpa [Function.comp_def, Matrix.toLin'_apply] using h3
 
+/--
+@isnad1 id=eq.2h3v.s7.86a18bdb1314 from=translated src=- shape=379c7d1c vocab=681210e6
+-/
 lemma integral_comp_mulVec {M : Matrix (Fin n) (Fin n) ℝ} (hdet : |M.det| = 1)
     {G : (Fin n → ℝ) → ℝ} (hG : Continuous G) :
     ∫ x, G (M.mulVec x) = ∫ y, G y := by
@@ -361,14 +474,22 @@ lemma integral_comp_mulVec {M : Matrix (Fin n) (Fin n) ℝ} (hdet : |M.det| = 1)
 def prodBumpPD (n : ℕ) (β : Fin n → ℝ) (k : Fin n) (y : Fin n → ℝ) : ℝ :=
   fderiv ℝ (prodBump n β) y (Pi.single k 1)
 
+/--
+@isnad1 id=continuo.0h3v.s5.d1e8e1f56d4a from=translated src=- shape=78034465 vocab=d067c19f
+-/
 lemma prodBumpPD_continuous (β : Fin n → ℝ) (k : Fin n) : Continuous (prodBumpPD n β k) :=
   ((prodBump_contDiff β).continuous_fderiv NashEmbedding.Sobolev.infty_ne_zero).clm_apply continuous_const
 
+/--
+@isnad1 id=hascompa.1h3v.s5.709c6c2df2e3 from=translated src=- shape=5c1e0285 vocab=4721ae34
+-/
 lemma prodBumpPD_hasCompactSupport {β : Fin n → ℝ} (hβ : ∀ k, 1 ≤ β k) (k : Fin n) :
     HasCompactSupport (prodBumpPD n β k) :=
   (prodBump_hasCompactSupport hβ).fderiv_apply ℝ _
 
-/-- Gram of the rotated bump: `Gram_χ = Mᵀ Gram_ψ M`, with `Gram_ψ` diagonal.-/
+/-- Gram of the rotated bump: `Gram_χ = Mᵀ Gram_ψ M`, with `Gram_ψ` diagonal.
+@isnad1 id=eq.2h5v.s7.64006531ea90 from=translated src=- shape=26fc072d vocab=f71853a4
+-/
 theorem gram_rotBump {β : Fin n → ℝ} (hβ : ∀ k, 1 ≤ β k) {M : Matrix (Fin n) (Fin n) ℝ}
     (hdet : |M.det| = 1) (i j : Fin n) :
     gram (rotBump n β M) i j
@@ -414,6 +535,9 @@ theorem gram_rotBump {β : Fin n → ℝ} (hβ : ∀ k, 1 ≤ β k) {M : Matrix 
 
 /-! ## Amplitude -/
 
+/--
+@isnad1 id=eq.1h5v.s7.2548087031c3 from=translated src=- shape=3e89fd0b vocab=d91db3d3
+-/
 lemma gram_const_mul {χ : (Fin n → ℝ) → ℝ} (hχ : Differentiable ℝ χ) (A : ℝ) (i j : Fin n) :
     gram (fun x => A * χ x) i j = A ^ 2 * gram χ i j := by
   unfold gram
@@ -429,15 +553,24 @@ section Orthogonal
 variable {U : Matrix (Fin n) (Fin n) ℝ} (hU : U ∈ Matrix.unitaryGroup (Fin n) ℝ)
 include hU
 
+/--
+@isnad1 id=eq.1h2v.s7.36924a16be85 from=translated src=- shape=3bee8345 vocab=5b8e702a
+-/
 lemma mul_transpose_eq_one_of_unitary : U * Uᵀ = 1 := by
   have h := Matrix.mem_unitaryGroup_iff.mp hU
   rwa [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_eq_transpose_of_trivial] at h
 
+/--
+@isnad1 id=eq.1h3v.s7.e463e7e491fd from=translated src=- shape=fb03872d vocab=621505d9
+-/
 lemma row_sq_sum_of_unitary (i : Fin n) : ∑ k, U i k ^ 2 = 1 := by
   have h := congrFun (congrFun (mul_transpose_eq_one_of_unitary hU) i) i
   simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.one_apply_eq] at h
   simpa [sq] using h
 
+/--
+@isnad1 id=eq.1h2v.s7.6cdbb518bbf1 from=translated src=- shape=cd7dca5b vocab=2af86916
+-/
 lemma abs_det_transpose_of_unitary : |Uᵀ.det| = 1 := by
   rw [Matrix.det_transpose]
   have h := Matrix.det_of_mem_unitary hU
@@ -446,6 +579,9 @@ lemma abs_det_transpose_of_unitary : |Uᵀ.det| = 1 := by
     simpa using this
   rcases mul_self_eq_one_iff.mp h2 with h3 | h3 <;> simp [h3]
 
+/--
+@isnad1 id=eq.1h3v.s7.4355a3859898 from=translated src=- shape=63058090 vocab=d41af407
+-/
 lemma sum_sq_transpose_mulVec_of_unitary (x : Fin n → ℝ) :
     ∑ k, (Uᵀ.mulVec x) k ^ 2 = ∑ j, x j ^ 2 := by
   have h1 : (Uᵀ.mulVec x) ⬝ᵥ (Uᵀ.mulVec x) = x ⬝ᵥ x := by
@@ -453,7 +589,9 @@ lemma sum_sq_transpose_mulVec_of_unitary (x : Fin n → ℝ) :
       mul_transpose_eq_one_of_unitary hU, Matrix.one_mulVec]
   simpa [dotProduct, sq] using h1
 
-/-- Row-wise Cauchy–Schwarz: `∑ₖ |Uᵢₖ| |Uⱼₖ| ≤ 1`.-/
+/-- Row-wise Cauchy–Schwarz: `∑ₖ |Uᵢₖ| |Uⱼₖ| ≤ 1`.
+@isnad1 id=le.1h4v.s7.4f56fce30cb2 from=translated src=- shape=9bf921c0 vocab=1dbdba65
+-/
 lemma sum_abs_mul_abs_le_one_of_unitary (i j : Fin n) : ∑ k, |U i k| * |U j k| ≤ 1 := by
   have hcs := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ (fun k => |U i k|) (fun k => |U j k|)
   simp only [sq_abs] at hcs
@@ -467,7 +605,9 @@ end Orthogonal
 set_option maxHeartbeats 800000 in
 /-- **Bump with prescribed Gram matrix up to `K`.** For every real PSD matrix `B` and every
 `K > 0` there is a `C^∞` compactly supported `χ` with `supp χ ⊂ (-π,π)ⁿ` and
-`|∫ ∂ᵢχ ∂ⱼχ − Bᵢⱼ| ≤ K` for all `i, j`.-/
+`|∫ ∂ᵢχ ∂ⱼχ − Bᵢⱼ| ≤ K` for all `i, j`.
+@isnad1 id=ex.2h3v.s7.4f2fcaf959e4 from=translated src=- shape=21078678 vocab=d2672675
+-/
 theorem exists_bump_gram_approx {B : Matrix (Fin n) (Fin n) ℝ} (hB : B.PosSemidef)
     {K : ℝ} (hK : 0 < K) :
     ∃ χ : (Fin n → ℝ) → ℝ, ContDiff ℝ ∞ χ ∧ HasCompactSupport χ ∧

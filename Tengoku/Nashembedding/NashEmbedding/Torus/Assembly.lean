@@ -36,7 +36,9 @@ variable {n N : ℕ}
 
 /-! ## `hSize` and Theorem A's residual -/
 
-/-- `hSize` as a sum of `sobolevNormSqDistrib` of integration embeddings.-/
+/-- `hSize` as a sum of `sobolevNormSqDistrib` of integration embeddings.
+@isnad1 id=eq.0h2v.s6.63216c271283 from=translated src=- shape=c1138b15 vocab=65692e08
+-/
 lemma hSize_eq_sum_sobolevNormSqDistrib (h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ) :
     hSize n h = ∑ i, ∑ j, sobolevNormSqDistrib n (bLevel n)
       (integrationEmbed n (fun x => ((h x i j : ℝ) : ℂ))) := by
@@ -49,11 +51,17 @@ lemma hSize_eq_sum_sobolevNormSqDistrib (h : (Fin n → ℝ) → Matrix (Fin n) 
 def gramMetric (u : (Fin n → ℝ) → (Fin N → ℝ)) : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ :=
   fun x i j => pderiv i u x ⬝ᵥ pderiv j u x
 
+/--
+@isnad1 id=issymm.0h4v.s4.75e6c3f78347 from=translated src=- shape=82bed1fb vocab=b80d9576
+-/
 lemma gramMetric_symm (u : (Fin n → ℝ) → (Fin N → ℝ)) (x : Fin n → ℝ) :
     (gramMetric u x).IsSymm := by
   ext i j
   simp [gramMetric, transpose_apply, dotProduct_comm]
 
+/--
+@isnad1 id=smoothpe.1h3v.s6.2769cb7336ac from=translated src=- shape=05ef7f03 vocab=69ca21df
+-/
 lemma gramMetric_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u) :
     SmoothPeriodic (gramMetric u) := by
   refine ⟨?_, ?_⟩
@@ -65,7 +73,9 @@ lemma gramMetric_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : 
     rw [isPeriodic2Pi_pderiv hu.periodic i x k, isPeriodic2Pi_pderiv hu.periodic j x k]
 
 /-- The Gram matrix of a free map is positive definite (its first partials are linearly
-independent at every point).-/
+independent at every point).
+@isnad1 id=posdef.1h4v.s5.ead546b8a41c from=translated src=- shape=0c34b674 vocab=5dbf6f13
+-/
 lemma gramMetric_posDef_of_free {u : (Fin n → ℝ) → (Fin N → ℝ)} (hfree : IsFree u) (x : Fin n → ℝ) :
     (gramMetric u x).PosDef := by
   refine Matrix.PosDef.of_dotProduct_mulVec_pos ?_ ?_
@@ -96,11 +106,16 @@ lemma gramMetric_posDef_of_free {u : (Fin n → ℝ) → (Fin N → ℝ)} (hfree
     rw [hstar, hR, ← hL]
     exact lt_of_le_of_ne hnn fun h => hw0 (dotProduct_self_eq_zero.mp h.symm)
 
+/--
+@isnad1 id=isposdef.2h3v.s6.8027609931e5 from=translated src=- shape=493327b1 vocab=70821b3a
+-/
 lemma gramMetric_isPosDefSmoothMetric {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u)
     (hfree : IsFree u) : IsPosDefSmoothMetric (gramMetric u) :=
   ⟨gramMetric_smoothPeriodic hu, gramMetric_posDef_of_free hfree⟩
 
-/-- `u` realizes its own Gram matrix.-/
+/-- `u` realizes its own Gram matrix.
+@isnad1 id=realizes.0h3v.s4.08a8ad66add1 from=translated src=- shape=b21a38b2 vocab=d27a5206
+-/
 lemma realizes_gramMetric (u : (Fin n → ℝ) → (Fin N → ℝ)) : Realizes u
     (gramMetric u) := fun _ _ _ => rfl
 
@@ -149,7 +164,9 @@ private lemma exists_le_of_continuous_periodic {f : (Fin n → ℝ) → ℝ}
   exact le_trans (le_trans (le_abs_self _) (by rwa [Real.norm_eq_abs] at hbd)) (le_max_left _ _)
 
 /-- For a positive-definite smooth metric `g` and a smooth periodic symmetric `g₀`, some
-`g - δ • g₀` with `δ > 0` is still a positive-definite smooth metric.-/
+`g - δ • g₀` with `δ > 0` is still a positive-definite smooth metric.
+@isnad1 id=ex.3h3v.s7.cfe46eafed92 from=translated src=- shape=81a9ce03 vocab=25e38642
+-/
 theorem exists_delta_posDef_sub {g g₀ : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (hg : IsPosDefSmoothMetric g) (hg₀ : SmoothPeriodic g₀) (hsymm : ∀ x, (g₀ x).IsSymm) :
     ∃ δ : ℝ, 0 < δ ∧ IsPosDefSmoothMetric (g - δ • g₀) := by

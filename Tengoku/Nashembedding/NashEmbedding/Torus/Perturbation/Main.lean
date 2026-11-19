@@ -59,6 +59,9 @@ def frame (u : (Fin n → ℝ) → (Fin N → ℝ)) : FrameIdx n → (Fin n → 
 /-- A map is *free* if its frame is linearly independent at every point.-/
 def IsFree (u : (Fin n → ℝ) → (Fin N → ℝ)) : Prop := IsPointwiseLinIndep (frame u)
 
+/--
+@isnad1 id=smoothpe.1h4v.s7.3661117abb01 from=translated src=- shape=61e38272 vocab=ed53aa37
+-/
 lemma frame_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u) :
     ∀ k, SmoothPeriodic (frame u k)
   | Sum.inl i => hu.pderiv i
@@ -77,6 +80,9 @@ def dualA (u : (Fin n → ℝ) → (Fin N → ℝ)) (i : Fin n) : (Fin n → ℝ
 /-- Base Sobolev level `r = ⌊n/2⌋ + 4`, so that `n/2 + 3 < r`.-/
 def bLevel (n : ℕ) : ℕ := n / 2 + 4
 
+/--
+@isnad1 id=lt.0h1v.s5.8667db1496ab from=translated src=- shape=2018cbd7 vocab=dab5e4d1
+-/
 lemma bLevel_gt (n : ℕ) : 1 + (n : ℝ) / 2 < (bLevel n : ℝ) - 2 := by
   unfold bLevel
   have h : ((n / 2 : ℕ) : ℝ) ≥ (n : ℝ) / 2 - 1 / 2 := by
@@ -111,10 +117,16 @@ structure GuntherData.Real (d : GuntherData n N) : Prop where
   b_real : ∀ p q, VReal (d.b p q)
   h_real : ∀ p q, conjReflect (d.h p q) = d.h p q
 
+/--
+@isnad1 id=smoothpe.2h4v.s7.25337e12f7ce from=translated src=- shape=44916b15 vocab=6ef424d1
+-/
 lemma dualA_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u)
     (hfree : IsFree u) (i : Fin n) : SmoothPeriodic (dualA u i) :=
   dualFrame_smoothPeriodic hfree (frame_smoothPeriodic hu) _
 
+/--
+@isnad1 id=smoothpe.2h5v.s7.24b622310c1a from=translated src=- shape=4003a687 vocab=53a7fbe0
+-/
 lemma dualB_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u)
     (hfree : IsFree u) (p q : Fin n) : SmoothPeriodic (dualB u p q) := by
   unfold dualB
@@ -122,6 +134,9 @@ lemma dualB_smoothPeriodic {u : (Fin n → ℝ) → (Fin N → ℝ)} (hu : Smoot
   · exact dualFrame_smoothPeriodic hfree (frame_smoothPeriodic hu) _
   · exact ⟨contDiff_const, fun _ _ => rfl⟩
 
+/--
+@isnad1 id=smooth.4h4v.s6.dbf9c27afc18 from=translated src=- shape=5cc86345 vocab=b4043a2f
+-/
 lemma bData_smooth (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u₀)
     (hfree : IsFree u₀) {h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} (hh : SmoothPeriodic h) :
     (bData n u₀ h).Smooth where
@@ -134,6 +149,9 @@ lemma bData_smooth (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu
       simp [hh.periodic x k]
     exact isRapidDecay_stdFourierCoeff hn hs hp k
 
+/--
+@isnad1 id=real.3h4v.s6.e43ee9641486 from=translated src=- shape=5251d7c1 vocab=894f5bb3
+-/
 lemma bData_real {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u₀)
     (hfree : IsFree u₀) {h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} (hh : SmoothPeriodic h) :
     (bData n u₀ h).Real where
@@ -147,7 +165,9 @@ lemma bData_real {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriod
 
 /-! ## Smallness: the constant term -/
 
-/-- Multiplication by a scalar sequence, at level `s` with `2s > n` (MT2 componentwise).-/
+/-- Multiplication by a scalar sequence, at level `s` with `2s > n` (MT2 componentwise).
+@isnad1 id=le.4h5v.s6.f0ebad7ba555 from=translated src=- shape=c6ed56ef vocab=2f60f4e2
+-/
 lemma vecNormSq_smulSeq_le (hn : 0 < n) {s : ℝ} (hs : (n : ℝ) < 2 * s) {f : Seq n}
     (hf : MemSobolev n s f) {a : VecSeq n N} (ha : VMem n N s a) :
     vecNormSq n N s (smulSeq f a) ≤ mt2Const n s * sobolevNormSq n s f * vecNormSq n N s a := by
@@ -158,10 +178,16 @@ lemma vecNormSq_smulSeq_le (hn : 0 < n) {s : ℝ} (hs : (n : ℝ) < 2 * s) {f : 
     _ = mt2Const n s * sobolevNormSq n s f * ∑ α, sobolevNormSq n s (a α) := by
         rw [Finset.mul_sum]
 
+/--
+@isnad1 id=vmem.4h5v.s6.f47de54cb0a2 from=translated src=- shape=eb36cd1f vocab=99ca8757
+-/
 lemma vmem_smulSeq (hn : 0 < n) {s : ℝ} (hs : (n : ℝ) < 2 * s) {f : Seq n}
     (hf : MemSobolev n s f) {a : VecSeq n N} (ha : VMem n N s a) : VMem n N s (smulSeq f a) :=
   fun α => (second_multiplication_theorem_seq hn hs hf (ha α)).1
 
+/--
+@isnad1 id=le.0h2v.s4.21fe2541f53d from=translated src=- shape=787c1379 vocab=d9fc819f
+-/
 lemma mt2Const_nonneg (n : ℕ) (s : ℝ) : 0 ≤ mt2Const n s := by
   unfold mt2Const sobolevEmbedConstSq
   exact mul_nonneg (mul_nonneg (by norm_num) (by positivity)) (tsum_nonneg fun _ => weight_nonneg _ _)
@@ -171,6 +197,9 @@ def cConst (n N : ℕ) (u₀ : (Fin n → ℝ) → (Fin N → ℝ)) : ℝ :=
   (pairs n).card * (mt2Const n (bLevel n) / 4)
     * ∑ pq ∈ pairs n, vecNormSq n N (bLevel n) (vcoeff n (dualB u₀ pq.1 pq.2))
 
+/--
+@isnad1 id=le.0h3v.s4.7c5a068142cf from=translated src=- shape=aaabd1d5 vocab=fa743820
+-/
 lemma cConst_nonneg (u₀ : (Fin n → ℝ) → (Fin N → ℝ)) : 0 ≤ cConst n N u₀ := by
   unfold cConst
   have h1 : 0 ≤ mt2Const n (bLevel n) := mt2Const_nonneg n _
@@ -178,7 +207,9 @@ lemma cConst_nonneg (u₀ : (Fin n → ℝ) → (Fin N → ℝ)) : 0 ≤ cConst 
     Finset.sum_nonneg fun _ _ => vecNormSq_nonneg _ _
   positivity
 
-/-- `‖c‖²_(r) ≤ cConst · hSize h`.-/
+/-- `‖c‖²_(r) ≤ cConst · hSize h`.
+@isnad1 id=le.4h4v.s7.a47f3804a7cf from=translated src=- shape=bcb90403 vocab=68c83a35
+-/
 lemma gC_bound (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u₀)
     (hfree : IsFree u₀) {h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} (hh : SmoothPeriodic h) :
     vecNormSq n N (bLevel n) (gC (bData n u₀ h)) ≤ cConst n N u₀ * hSize n h := by
@@ -236,6 +267,9 @@ lemma gC_bound (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : S
         rw [← Finset.mul_sum]
         ring
 
+/--
+@isnad1 id=le.0h2v.s4.031a3c728d00 from=translated src=- shape=9d3be7fe vocab=8ec60003
+-/
 lemma hSize_nonneg (h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ) : 0 ≤ hSize n h :=
   Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sobolevNormSq_nonneg _ _
 
@@ -339,8 +373,14 @@ private lemma conjReflect_Ub {v : VecSeq n N} (hv : VReal v) (i j : Fin n) :
 
 /-! ## Realness is preserved by the iteration -/
 
+/--
+@isnad1 id=vreal.0h2v.s5.4e0a31b82879 from=translated src=- shape=887242f4 vocab=312f6a96
+-/
 lemma vreal_zero : VReal (0 : VecSeq n N) := fun _ => by funext m; simp [conjReflect]
 
+/--
+@isnad1 id=vreal.2h4v.s6.60e86d27217c from=translated src=- shape=a7eadc1c vocab=e3482aeb
+-/
 lemma vreal_gT {d : GuntherData n N} (hd : d.Real) {v : VecSeq n N} (hv : VReal v) :
     VReal (gC d + gB d v v) := by
   have hhalf : (starRingEnd ℂ) (1 / 2 : ℂ) = 1 / 2 := by rw [map_div₀, map_one, map_ofNat]
@@ -377,6 +417,9 @@ lemma vreal_gT {d : GuntherData n N} (hd : d.Real) {v : VecSeq n N} (hv : VReal 
       (hd.b_real pq.1 pq.2 α)) m
   rw [hform, conjReflect_add, conjReflect_neg', hs1, conjReflect_add, conjReflect_neg', hs2, hs3]
 
+/--
+@isnad1 id=vreal.2h4v.s6.e1d9aa898b5a from=translated src=- shape=0ed50e32 vocab=aca43e28
+-/
 lemma vreal_of_tendsto {u : ℕ → VecSeq n N} {a : VecSeq n N} (hu : ∀ p, VReal (u p))
     (hlim : ∀ α m, Tendsto (fun p => u p α m) atTop (𝓝 (a α m))) : VReal a := by
   intro α
@@ -417,18 +460,30 @@ def Wfun (n : ℕ) (u₀ : (Fin n → ℝ) → (Fin N → ℝ)) (h : (Fin n → 
   fun x => -(∑ i, Ftil n v i x • dualA u₀ i x)
     + ∑ pq ∈ pairs n, ((1 / 2 : ℝ) * (Util n v pq.1 pq.2 x - h x pq.1 pq.2)) • dualB u₀ pq.1 pq.2 x
 
+/--
+@isnad1 id=smoothpe.3h4v.s5.50a2a78cd399 from=translated src=- shape=96731a08 vocab=b55afa61
+-/
 lemma Ftil_smoothPeriodic (hn : 0 < n) {v : VecSeq n N} (hv : VRapid n N v) (hr : VReal v)
     (i : Fin n) : SmoothPeriodic (Ftil n v i) :=
   ssynth_smoothPeriodic hn (isRapidDecay_Fb hn hv i)
 
+/--
+@isnad1 id=smoothpe.3h5v.s5.431faf010c65 from=translated src=- shape=8bff4bf5 vocab=4a8e5dd4
+-/
 lemma Util_smoothPeriodic (hn : 0 < n) {v : VecSeq n N} (hv : VRapid n N v) (hr : VReal v)
     (i j : Fin n) : SmoothPeriodic (Util n v i j) :=
   ssynth_smoothPeriodic hn (isRapidDecay_Ub hn hv i j)
 
+/--
+@isnad1 id=eq.2h5v.s5.3d040f6ffb98 from=translated src=- shape=8e80ab85 vocab=8f5f46b9
+-/
 lemma Util_symm (hn : 0 < n) {v : VecSeq n N} (hv : VRapid n N v) (i j : Fin n) :
     Util n v i j = Util n v j i := by
   unfold Util; rw [Ub_symm hn hv i j]
 
+/--
+@isnad1 id=smoothpe.6h5v.s7.a0d990677b60 from=translated src=- shape=a016a625 vocab=a0e71c99
+-/
 lemma Wfun_smoothPeriodic (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hu : SmoothPeriodic u₀)
     (hfree : IsFree u₀) {h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} (hh : SmoothPeriodic h)
     {v : VecSeq n N} (hv : VRapid n N v) (hr : VReal v) :
@@ -458,7 +513,9 @@ lemma Wfun_smoothPeriodic (hn : 0 < n) {u₀ : (Fin n → ℝ) → (Fin N → �
 
 /-! ## The ansatz from the dual frame -/
 
-/-- `W · ∂ᵢu₀ = -F̃ᵢ`.-/
+/-- `W · ∂ᵢu₀ = -F̃ᵢ`.
+@isnad1 id=eq.1h7v.s7.e428582cdf4e from=translated src=- shape=febda177 vocab=abe01fee
+-/
 lemma Wfun_dot_pderiv {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hfree : IsFree u₀)
     (h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ) (v : VecSeq n N) (i : Fin n) (x : Fin n → ℝ) :
     Wfun n u₀ h v x ⬝ᵥ pderiv i u₀ x = -Ftil n v i x := by
@@ -477,7 +534,9 @@ lemma Wfun_dot_pderiv {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hfree : IsFr
     Finset.mem_univ, ite_true]
   rw [Finset.sum_eq_zero (fun pq hpq => by rw [hB pq hpq, mul_zero]), add_zero]
 
-/-- `W · ∂ₚ∂_q u₀ = ½(Ũ_{pq} - h_{pq})` for `p ≤ q`.-/
+/-- `W · ∂ₚ∂_q u₀ = ½(Ũ_{pq} - h_{pq})` for `p ≤ q`.
+@isnad1 id=eq.2h8v.s7.623a7f94709c from=translated src=- shape=d9279dff vocab=27bf89dc
+-/
 lemma Wfun_dot_pderiv_pderiv {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hfree : IsFree u₀)
     (h : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ) (v : VecSeq n N) {p q : Fin n} (hpq : p ≤ q)
     (x : Fin n → ℝ) :
@@ -501,7 +560,9 @@ lemma Wfun_dot_pderiv_pderiv {u₀ : (Fin n → ℝ) → (Fin N → ℝ)} (hfree
   rw [Finset.sum_ite_eq' (pairs n) (p, q)]
   simp [hmem]
 
-/-- `∂ᵢ(-f) = -∂ᵢf` for smooth scalar `f`.-/
+/-- `∂ᵢ(-f) = -∂ᵢf` for smooth scalar `f`.
+@isnad1 id=eq.0h3v.s6.2a8a3fe940ec from=translated src=- shape=8083f581 vocab=a5214882
+-/
 lemma pderiv_neg (f : (Fin n → ℝ) → ℝ) (i : Fin n) :
     pderiv i (fun y => -f y) = fun y => -pderiv i f y := by
   funext y

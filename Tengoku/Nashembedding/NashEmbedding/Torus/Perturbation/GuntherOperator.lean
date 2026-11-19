@@ -83,18 +83,26 @@ def lower (n N : ℕ) (r k : ℕ) (v w : VecSeq n N) : ℝ :=
 def top (n N : ℕ) (r k : ℕ) (v w : VecSeq n N) : ℝ :=
   vecNormSq n N k v * vecNormSq n N r w + vecNormSq n N r v * vecNormSq n N k w
 
+/--
+@isnad1 id=le.0h6v.s5.17edcf1f57e3 from=translated src=- shape=d3dc63a5 vocab=aa3a6abb
+-/
 lemma lower_nonneg (r k : ℕ) (v w : VecSeq n N) : 0 ≤ lower n N r k v w := by
   unfold lower
   have h := vecNormSq_nonneg (n := n) (N := N)
   exact add_nonneg (add_nonneg (mul_nonneg (h _ _) (h _ _)) (mul_nonneg (h _ _) (h _ _)))
     (mul_nonneg (h _ _) (h _ _))
 
+/--
+@isnad1 id=le.0h6v.s5.444ef38d7bea from=translated src=- shape=d3dc63a5 vocab=5fa386ff
+-/
 lemma top_nonneg (r k : ℕ) (v w : VecSeq n N) : 0 ≤ top n N r k v w := by
   unfold top
   have h := vecNormSq_nonneg (n := n) (N := N)
   exact add_nonneg (mul_nonneg (h _ _) (h _ _)) (mul_nonneg (h _ _) (h _ _))
 
-/-- For `k ≥ r`, `lower_k ≤ 3 top_k`… we only need: `‖v‖²_(r)‖w‖²_(r) ≤ top_k`.-/
+/-- For `k ≥ r`, `lower_k ≤ 3 top_k`… we only need: `‖v‖²_(r)‖w‖²_(r) ≤ top_k`.
+@isnad1 id=le.3h6v.s6.a7c498482308 from=translated src=- shape=d6a5d785 vocab=1573fd89
+-/
 lemma vecNormSq_mul_le_top {r k : ℕ} (hk : r ≤ k) {v w : VecSeq n N}
     (hv : VMem n N k v) (hw : VMem n N k w) :
     vecNormSq n N r v * vecNormSq n N r w ≤ top n N r k v w := by
@@ -106,7 +114,9 @@ lemma vecNormSq_mul_le_top {r k : ℕ} (hk : r ≤ k) {v w : VecSeq n N}
   have hwk : 0 ≤ vecNormSq n N ((k : ℕ) : ℝ) w := vecNormSq_nonneg _ _
   nlinarith
 
-/-- Monotonicity of the lower bucket in `k` (for `r ≤ k`).-/
+/-- Monotonicity of the lower bucket in `k` (for `r ≤ k`).
+@isnad1 id=le.3h6v.s6.d95773a50004 from=translated src=- shape=14a92d13 vocab=fd0b06b5
+-/
 lemma lower_mono {r k : ℕ} (hk : r ≤ k) {v w : VecSeq n N}
     (hv : VMem n N (k + 1 : ℕ) v) (hw : VMem n N (k + 1 : ℕ) w) :
     lower n N r k v w ≤ lower n N r (k + 1) v w := by
@@ -124,7 +134,9 @@ lemma lower_mono {r k : ℕ} (hk : r ≤ k) {v w : VecSeq n N}
   have hw0 : 0 ≤ vecNormSq n N ((r : ℕ) : ℝ) w := vecNormSq_nonneg _ _
   nlinarith
 
-/-- `top_k ≤ lower_{k+1}`.-/
+/-- `top_k ≤ lower_{k+1}`.
+@isnad1 id=le.0h6v.s5.fadfe9459675 from=translated src=- shape=4aa410ea vocab=9960f4cf
+-/
 lemma top_le_lower_succ (r k : ℕ) (v w : VecSeq n N) :
     top n N r k v w ≤ lower n N r (k + 1) v w := by
   unfold top lower
@@ -143,6 +155,9 @@ structure IsDerivOp (D : VecSeq n N → VecSeq n N) (d : ℕ) : Prop where
   bound : ∀ (s : ℝ) (v : VecSeq n N), VMem n N (s + d) v →
     vecNormSq n N s (D v) ≤ vecNormSq n N (s + d) v
 
+/--
+@isnad1 id=isderivo.0h2v.s4.103ae8433984 from=translated src=- shape=f2f692f5 vocab=b4e6d5a3
+-/
 lemma isDerivOp_id : IsDerivOp (n := n) (N := N) id 0 := by
   refine ⟨fun v w => rfl, ?_, ?_⟩
   · intro s v hv
@@ -150,6 +165,9 @@ lemma isDerivOp_id : IsDerivOp (n := n) (N := N) id 0 := by
   · intro s v _
     simp
 
+/--
+@isnad1 id=isderivo.0h3v.s4.39a626b75313 from=translated src=- shape=d1207f26 vocab=a84e81be
+-/
 lemma isDerivOp_vpartial (i : Fin n) : IsDerivOp (vpartial (N := N) i) 1 := by
   refine ⟨?_, ?_, ?_⟩
   · intro v w
@@ -166,6 +184,9 @@ lemma isDerivOp_vpartial (i : Fin n) : IsDerivOp (vpartial (N := N) i) 1 := by
     have := sobolevNormSq_partialCoeff_le h i
     simpa [vpartial] using this
 
+/--
+@isnad1 id=isderivo.0h2v.s3.0b084439f799 from=translated src=- shape=02a63885 vocab=424d43da
+-/
 lemma isDerivOp_vlap : IsDerivOp (vlap (n := n) (N := N)) 2 := by
   refine ⟨?_, ?_, ?_⟩
   · intro v w
@@ -185,6 +206,9 @@ lemma isDerivOp_vlap : IsDerivOp (vlap (n := n) (N := N)) 2 := by
     rw [he]
     simpa using hb
 
+/--
+@isnad1 id=isderivo.2h6v.s5.79a009d796ed from=translated src=- shape=00125e9e vocab=422e4583
+-/
 lemma IsDerivOp.comp {D₁ D₂ : VecSeq n N → VecSeq n N} {d₁ d₂ : ℕ}
     (h₁ : IsDerivOp D₁ d₁) (h₂ : IsDerivOp D₂ d₂) : IsDerivOp (fun v => D₁ (D₂ v)) (d₁ + d₂) := by
   have hcast : ∀ s : ℝ, s + ((d₁ + d₂ : ℕ) : ℝ) = (s + (d₂ : ℝ)) + (d₁ : ℝ) := by
@@ -205,6 +229,9 @@ lemma IsDerivOp.comp {D₁ D₂ : VecSeq n N → VecSeq n N} {d₁ d₂ : ℕ}
           h₂.bound (s + (d₁ : ℝ)) v (by rw [add_right_comm]; exact hv)
       _ = vecNormSq n N ((s + (d₂ : ℝ)) + (d₁ : ℝ)) v := by rw [add_right_comm]
 
+/--
+@isnad1 id=isderivo.0h4v.s4.2a53872ca5d8 from=translated src=- shape=752e2a3f vocab=93b93d5b
+-/
 lemma isDerivOp_vpartial_vpartial (i j : Fin n) :
     IsDerivOp (fun v : VecSeq n N => vpartial i (vpartial j v)) 2 :=
   (isDerivOp_vpartial i).comp (isDerivOp_vpartial j)
@@ -240,6 +267,9 @@ structure VecTame (n N r : ℕ) (Q : VecSeq n N → VecSeq n N → VecSeq n N) (
 
 /-! ### Combinators -/
 
+/--
+@isnad1 id=scalarta.2h9v.s7.b9788bda55a4 from=translated src=- shape=122ed786 vocab=4e9eb810
+-/
 lemma ScalarTame.add {r : ℕ} {Q₁ Q₂ : VecSeq n N → VecSeq n N → Seq n} {A₁ A₂ : ℝ} {B₁ B₂ : ℕ → ℝ}
     (h₁ : ScalarTame n N r Q₁ A₁ B₁) (h₂ : ScalarTame n N r Q₂ A₂ B₂) :
     ScalarTame n N r (fun v w m => Q₁ v w m + Q₂ v w m) (2 * (A₁ + A₂)) (fun k => 2 * (B₁ k + B₂ k)) := by
@@ -269,6 +299,9 @@ lemma ScalarTame.add {r : ℕ} {Q₁ Q₂ : VecSeq n N → VecSeq n N → Seq n}
     rw [e₁ m, e₂ m]
     ring
 
+/--
+@isnad1 id=scalarta.1h7v.s6.72c154e8e09e from=translated src=- shape=e01c96e4 vocab=b8aceeaf
+-/
 lemma ScalarTame.const_mul {r : ℕ} {Q : VecSeq n N → VecSeq n N → Seq n} {A' : ℝ} {Bk : ℕ → ℝ}
     (h : ScalarTame n N r Q A' Bk) (c : ℝ) :
     ScalarTame n N r (fun v w m => (c : ℂ) * Q v w m) (c ^ 2 * A') (fun k => c ^ 2 * Bk k) := by
@@ -297,6 +330,9 @@ lemma ScalarTame.const_mul {r : ℕ} {Q : VecSeq n N → VecSeq n N → Seq n} {
     rw [e m]
     ring
 
+/--
+@isnad1 id=scalarta.1h6v.s5.177cd8aee592 from=translated src=- shape=27ed75da vocab=eaa957b7
+-/
 lemma ScalarTame.neg {r : ℕ} {Q : VecSeq n N → VecSeq n N → Seq n} {A' : ℝ} {Bk : ℕ → ℝ}
     (h : ScalarTame n N r Q A' Bk) : ScalarTame n N r (fun v w m => -Q v w m) A' Bk := by
   refine ⟨h.A'_nonneg, h.Bk_nonneg, ?_, ?_, ?_, ?_⟩
@@ -318,6 +354,9 @@ lemma ScalarTame.neg {r : ℕ} {Q : VecSeq n N → VecSeq n N → Seq n} {A' : �
     rw [e m]
     ring
 
+/--
+@isnad1 id=scalarta.1h8v.s7.4bb9a5f01963 from=translated src=- shape=919b85f1 vocab=fc406d20
+-/
 lemma ScalarTame.finset_sum {ι : Type*} {r : ℕ} (S : Finset ι)
     {Q : ι → VecSeq n N → VecSeq n N → Seq n} {A' : ι → ℝ} {Bk : ι → ℕ → ℝ}
     (h : ∀ i ∈ S, ScalarTame n N r (Q i) (A' i) (Bk i)) :
@@ -352,6 +391,9 @@ lemma ScalarTame.finset_sum {ι : Type*} {r : ℕ} (S : Finset ι)
     rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl e
 
+/--
+@isnad1 id=vectame.2h9v.s7.dbf145e1ac6a from=translated src=- shape=af11bdcd vocab=ac37649c
+-/
 lemma VecTame.add {r : ℕ} {Q₁ Q₂ : VecSeq n N → VecSeq n N → VecSeq n N} {A₁ A₂ : ℝ} {B₁ B₂ : ℕ → ℝ}
     (h₁ : VecTame n N r Q₁ A₁ B₁) (h₂ : VecTame n N r Q₂ A₂ B₂) :
     VecTame n N r (fun v w => Q₁ v w + Q₂ v w) (2 * (A₁ + A₂)) (fun k => 2 * (B₁ k + B₂ k)) := by
@@ -371,6 +413,9 @@ lemma VecTame.add {r : ℕ} {Q₁ Q₂ : VecSeq n N → VecSeq n N → VecSeq n 
     rw [h₁.sub_right v w w' hv hw hw', h₂.sub_right v w w' hv hw hw']
     abel
 
+/--
+@isnad1 id=vectame.1h6v.s6.f276813302d2 from=translated src=- shape=e20e3f01 vocab=32356342
+-/
 lemma VecTame.neg {r : ℕ} {Q : VecSeq n N → VecSeq n N → VecSeq n N} {A' : ℝ} {Bk : ℕ → ℝ}
     (h : VecTame n N r Q A' Bk) : VecTame n N r (fun v w => -Q v w) A' Bk := by
   refine ⟨h.A'_nonneg, h.Bk_nonneg, ?_, ?_, ?_, ?_⟩
@@ -386,6 +431,9 @@ lemma VecTame.neg {r : ℕ} {Q : VecSeq n N → VecSeq n N → VecSeq n N} {A' :
     rw [h.sub_right v w w' hv hw hw']
     abel
 
+/--
+@isnad1 id=vectame.1h8v.s7.7d0be09191d8 from=translated src=- shape=299b4182 vocab=c3c69bc6
+-/
 lemma VecTame.finset_sum {ι : Type*} {r : ℕ} (S : Finset ι)
     {Q : ι → VecSeq n N → VecSeq n N → VecSeq n N} {A' : ι → ℝ} {Bk : ι → ℕ → ℝ}
     (h : ∀ i ∈ S, VecTame n N r (Q i) (A' i) (Bk i)) :
@@ -426,7 +474,9 @@ def smulLowConst (n N r : ℕ) (a : VecSeq n N) (A' : ℝ) (Bk : ℕ → ℝ) (k
     * (Bk k + Bk (k - 1) + 3 * A' + 3 * Bk r + 1)
 
 /-- **Multiplication by a fixed rapidly decaying sequence preserves tameness.** Uses
-`third_multiplication_theorem_seq` at level `k` with `r' = r` (needs `1 + n/2 < r`).-/
+`third_multiplication_theorem_seq` at level `k` with `r' = r` (needs `1 + n/2 < r`).
+@isnad1 id=vectame.4h7v.s7.f70c47988913 from=translated src=- shape=70c90bc6 vocab=e06cbc71
+-/
 theorem ScalarTame.smulSeq (hn : 0 < n) {r : ℕ} (hr : 1 + (n : ℝ) / 2 < r)
     {Q : VecSeq n N → VecSeq n N → Seq n} {A' : ℝ} {Bk : ℕ → ℝ}
     (h : ScalarTame n N r Q A' Bk) (a : VecSeq n N) (ha : ∀ k : ℕ, VMem n N k a) :
@@ -636,7 +686,9 @@ def baseLowConst (n N r : ℕ) (k : ℕ) : ℝ := N * mt3BConstSq n (k - 2) ((r 
 /-- **The base tame estimate.** For derivative operators `D₁, D₂` of orders `d₁, d₂ ≤ 2`,
 `Q v w := R (D₁ v · D₂ w)` is tame at base level `r` whenever `1 + n/2 < r - 2`.
 Proof: `‖R x‖²_(k) = ‖x‖²_(k-2)`, then MT3 at level `k - 2` with `r' = r - 2` on each of the
-`N` products, `‖∑ α, xα‖² ≤ N ∑ ‖xα‖²`, and `‖Dᵢ v‖²_(s) ≤ ‖v‖²_(s + dᵢ) ≤ ‖v‖²_(s+2)`.-/
+`N` products, `‖∑ α, xα‖² ≤ N ∑ ‖xα‖²`, and `‖Dᵢ v‖²_(s) ≤ ‖v‖²_(s + dᵢ) ≤ ‖v‖²_(s+2)`.
+@isnad1 id=scalarta.6h7v.s7.aa2161c44273 from=translated src=- shape=06ed4efd vocab=e2e9be35
+-/
 theorem scalarTame_resolvent_dotConv (hn : 0 < n) {r : ℕ} (hr : 1 + (n : ℝ) / 2 < (r : ℝ) - 2)
     {D₁ D₂ : VecSeq n N → VecSeq n N} {d₁ d₂ : ℕ} (h₁ : IsDerivOp D₁ d₁) (h₂ : IsDerivOp D₂ d₂)
     (hd₁ : d₁ ≤ 2) (hd₂ : d₂ ≤ 2) :
@@ -932,6 +984,9 @@ structure GuntherData.Smooth (d : GuntherData n N) : Prop where
 def FbTop (n N r : ℕ) : ℝ := baseTopConst n N r
 def FbLow (n N r : ℕ) (k : ℕ) : ℝ := baseLowConst n N r k
 
+/--
+@isnad1 id=scalarta.2h4v.s6.1455b174a78a from=translated src=- shape=aa21a96c vocab=f3646b81
+-/
 theorem scalarTame_Fb (hn : 0 < n) {r : ℕ} (hr : 1 + (n : ℝ) / 2 < (r : ℝ) - 2) (i : Fin n) :
     ScalarTame n N r (Fb i) (FbTop n N r) (FbLow n N r) := by
   exact (scalarTame_resolvent_dotConv (N := N) hn hr isDerivOp_vlap (isDerivOp_vpartial i)
@@ -943,6 +998,9 @@ def UbTop (n N r : ℕ) : ℝ := 2 * (2 * (baseTopConst n N r + 4 * baseTopConst
 def UbLow (n N r : ℕ) (k : ℕ) : ℝ := 2 * (2 * (baseLowConst n N r k + 4 * baseLowConst n N r k)
   + 4 * (n * (n * baseLowConst n N r k)))
 
+/--
+@isnad1 id=scalarta.2h5v.s6.0836f45e0449 from=translated src=- shape=35396062 vocab=7db10bd0
+-/
 theorem scalarTame_Ub (hn : 0 < n) {r : ℕ} (hr : 1 + (n : ℝ) / 2 < (r : ℝ) - 2) (i j : Fin n) :
     ScalarTame n N r (Ub i j) (UbTop n N r) (UbLow n N r) := by
   have h1 := scalarTame_resolvent_dotConv (N := N) hn hr (isDerivOp_vpartial i)
@@ -991,6 +1049,9 @@ def gBLow (n N r : ℕ) (d : GuntherData n N) (k : ℕ) : ℝ :=
     + (pairs n).card * ∑ pq ∈ pairs n,
         smulLowConst n N r (d.b pq.1 pq.2) ((1 / 2) ^ 2 * UbTop n N r) (fun k => (1 / 2) ^ 2 * UbLow n N r k) k)
 
+/--
+@isnad1 id=vmem.3h5v.s6.8050334dffbd from=translated src=- shape=b5ddbd0c vocab=157b580b
+-/
 lemma gC_mem (hn : 0 < n) {r : ℕ} (hr : 1 + (n : ℝ) / 2 < r) (d : GuntherData n N) (hd : d.Smooth) :
     ∀ k : ℕ, VMem n N k (gC d) := by
   intro k

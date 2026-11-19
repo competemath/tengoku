@@ -24,7 +24,9 @@ namespace NashEmbedding
 
 /-- Bridge lemma for the Mathlib v4.31 pin, where `Matrix` is a `def` (no longer `abbrev`).
 `rw`'s syntactic matching no longer sees through Matrix, but `apply`/`exact`/`refine`
-unify up to defeq — so a term-mode bridge closes the gap. Mirrors `continuous_matrix`.-/
+unify up to defeq — so a term-mode bridge closes the gap. Mirrors `continuous_matrix`.
+@isnad1 id=contdiff.1h2v.s7.1398b64b956d from=translated src=- shape=697fec95 vocab=f2f1fd52
+-/
 @[fun_prop]
 theorem contDiff_matrix {n : ℕ} {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (h : ∀ i j, ContDiff ℝ ∞ fun x => g x i j) : ContDiff ℝ ∞ g :=
@@ -34,6 +36,9 @@ theorem contDiff_matrix {n : ℕ} {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n
 
 /-
 (i) Sum: if `g₁, g₂` are realizable, so is `g₁ + g₂`.
+-/
+/--
+@isnad1 id=isrealiz.2h3v.s6.e83ca08098e5 from=translated src=- shape=3b50df16 vocab=51cc38c2
 -/
 theorem realizable_sum {n : ℕ}
     {g₁ g₂ : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
@@ -67,6 +72,9 @@ theorem realizable_sum {n : ℕ}
 /-
 (ii) Non-negative scaling: if `g` is realizable and `t ≥ 0`, then `t • g` is realizable.
 -/
+/--
+@isnad1 id=isrealiz.2h3v.s6.24c73509e842 from=translated src=- shape=4584cd56 vocab=116b2460
+-/
 theorem realizable_nonneg_smul {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} {t : ℝ}
     (hg : IsRealizable g) (ht : 0 ≤ t) :
@@ -92,6 +100,9 @@ theorem realizable_nonneg_smul {n : ℕ}
 /-
 (iii) Translation: if `g` is realizable and `y ∈ ℝⁿ`, then `τ_y g` is realizable.
 -/
+/--
+@isnad1 id=isrealiz.1h3v.s5.3e47db756191 from=translated src=- shape=6a14170b vocab=4f024939
+-/
 theorem realizable_translate {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} {y : Fin n → ℝ}
     (hg : IsRealizable g) :
@@ -112,6 +123,9 @@ theorem realizable_translate {n : ℕ}
 /-
 (iv) Finite positive combinations of translates.
 -/
+/--
+@isnad1 id=isrealiz.2h5v.s7.078a273ab3c0 from=translated src=- shape=066edec9 vocab=20281803
+-/
 theorem realizable_finComb {n M : ℕ}
     {g : Fin M → (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     {t : Fin M → ℝ} {y : Fin M → (Fin n → ℝ)}
@@ -130,6 +144,9 @@ theorem realizable_finComb {n M : ℕ}
 
 /-
 Injective realization forces positive definiteness (Lemma 1.7).
+-/
+/--
+@isnad1 id=isposdef.1h2v.s4.223388825616 from=translated src=- shape=6e2c5eb6 vocab=aec0cffb
 -/
 theorem injRealizable_posDef {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
@@ -180,6 +197,9 @@ theorem injRealizable_posDef {n : ℕ}
 /-
 Helper: partial derivative of concat projects to partial derivative of first component.
 -/
+/--
+@isnad1 id=eq.2h8v.s8.900093cdc39e from=translated src=- shape=517d1d40 vocab=17dd3e20
+-/
 lemma partialDeriv_concat_castAdd {n N₁ N₂ : ℕ}
     {u₁ : (Fin n → ℝ) → (Fin N₁ → ℝ)} {u₂ : (Fin n → ℝ) → (Fin N₂ → ℝ)}
     (hd₁ : ContDiff ℝ ∞ u₁) (hd₂ : ContDiff ℝ ∞ u₂)
@@ -197,6 +217,9 @@ lemma partialDeriv_concat_castAdd {n N₁ N₂ : ℕ}
 /-
 Helper: linear independence is preserved by Fin.append (projecting to first component).
 -/
+/--
+@isnad1 id=linearin.1h5v.s7.1dfb80798e27 from=translated src=- shape=9be3960e vocab=d6ffe6d8
+-/
 lemma linearIndependent_of_append_proj {n N₁ N₂ : ℕ}
     {f₁ : Fin n → Fin N₁ → ℝ} {f₂ : Fin n → Fin N₂ → ℝ}
     (hli : LinearIndependent ℝ f₁) :
@@ -209,6 +232,9 @@ lemma linearIndependent_of_append_proj {n N₁ N₂ : ℕ}
 
 /-
 Helper: partial derivative of concat equals Fin.append of partial derivatives.
+-/
+/--
+@isnad1 id=eq.2h7v.s8.483309fe46cc from=translated src=- shape=8c47ec07 vocab=ad2ee2ca
 -/
 lemma partialDeriv_concat {n N₁ N₂ : ℕ}
     {u₁ : (Fin n → ℝ) → (Fin N₁ → ℝ)} {u₂ : (Fin n → ℝ) → (Fin N₂ → ℝ)}
@@ -231,6 +257,9 @@ lemma partialDeriv_concat {n N₁ N₂ : ℕ}
 /-
 Promotion lemma (Lemma 1.8): if `g₁` is injectively realizable and `g₂`
   is realizable, then `g₁ + g₂` is injectively realizable.
+-/
+/--
+@isnad1 id=isinjrea.2h3v.s6.31d2141d122b from=translated src=- shape=7526d1c3 vocab=a5db26f3
 -/
 theorem injRealizable_promotion {n : ℕ}
     {g₁ g₂ : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
@@ -269,6 +298,9 @@ theorem injRealizable_promotion {n : ℕ}
 /-
 The flat metric is a positive-definite smooth metric.
 -/
+/--
+@isnad1 id=isposdef.0h1v.s2.05875072bae5 from=translated src=- shape=9d44d080 vocab=948eb2f8
+-/
 theorem flatMetric_isPosDefSmoothMetric {n : ℕ} :
     IsPosDefSmoothMetric (flatMetric n) := by
       constructor;
@@ -279,6 +311,9 @@ theorem flatMetric_isPosDefSmoothMetric {n : ℕ} :
 
 /-
 The flat-torus embedding is smooth and 2πℤⁿ-periodic.
+-/
+/--
+@isnad1 id=smoothpe.0h1v.s7.55f88a4ed3c2 from=translated src=- shape=fa5c9e9e vocab=17d205ea
 -/
 theorem flatTorusEmb_smoothPeriodic {n : ℕ} :
     SmoothPeriodic (flatTorusEmb n) := by
@@ -293,6 +328,9 @@ theorem flatTorusEmb_smoothPeriodic {n : ℕ} :
 
 /-
 The flat-torus embedding is an injective embedding.
+-/
+/--
+@isnad1 id=isinject.0h1v.s4.8db0cf590557 from=translated src=- shape=1883c0f1 vocab=b3998bee
 -/
 theorem flatTorusEmb_isInjectiveEmbedding {n : ℕ} :
     IsInjectiveEmbedding (flatTorusEmb n) := by
@@ -354,6 +392,9 @@ theorem flatTorusEmb_isInjectiveEmbedding {n : ℕ} :
 /-
 The flat-torus embedding injectively realizes the flat metric.
 -/
+/--
+@isnad1 id=isinjrea.0h1v.s2.30a4ec5dad66 from=translated src=- shape=9d44d080 vocab=abc36f9a
+-/
 theorem flatTorusEmb_injRealizes {n : ℕ} :
     IsInjRealizable (flatMetric n) := by
       exact ⟨ _, _, flatTorusEmb_isInjectiveEmbedding, fun x i j => by
@@ -383,6 +424,9 @@ theorem flatTorusEmb_injRealizes {n : ℕ} :
 /-
 (i) Sum of positive-definite smooth metrics is positive-definite.
 -/
+/--
+@isnad1 id=isposdef.2h3v.s6.2ed7ad957a43 from=translated src=- shape=3b50df16 vocab=e0c3bfd5
+-/
 theorem posDefSmoothMetric_add {n : ℕ}
     {g g' : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (hg : IsPosDefSmoothMetric g) (hg' : IsPosDefSmoothMetric g') :
@@ -404,6 +448,9 @@ theorem posDefSmoothMetric_add {n : ℕ}
 
 /-
 (ii) Positive scaling of positive-definite smooth metric is positive-definite.
+-/
+/--
+@isnad1 id=isposdef.2h3v.s6.895a5ee163de from=translated src=- shape=4584cd56 vocab=738a0608
 -/
 theorem posDefSmoothMetric_pos_smul {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ} {t : ℝ}
@@ -434,6 +481,9 @@ Stability under C⁰ perturbation (Lemma 1.12).
   statement `h : ℝⁿ → Sym_n(ℝ)`.
 -/
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=ex.1h2v.s7.4f231be21435 from=translated src=- shape=c458d9dd vocab=26ed7f09
+-/
 theorem posDefSmoothMetric_stability {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (hg : IsPosDefSmoothMetric g) :

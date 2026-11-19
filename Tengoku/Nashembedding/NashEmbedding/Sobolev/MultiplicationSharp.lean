@@ -65,6 +65,9 @@ noncomputable def mt2Const (n : ℕ) (s : ℝ) : ℝ :=
 The half-power weight inequality:
 `(1 + |i+j|²)^{s/2} ≤ 2^s · ((1+|i|²)^{s/2} + (1+|j|²)^{s/2})` for `s ≥ 0`.
 -/
+/--
+@isnad1 id=le.1h4v.s7.89740a9ba79a from=translated src=- shape=bf23a4c5 vocab=06292aed
+-/
 lemma half_power_weight_ineq {s : ℝ} (hs : 0 ≤ s) (i j : Fin n → ℤ) :
     weight n (s / 2) (i + j) ≤
       (2 : ℝ) ^ s * (weight n (s / 2) i + weight n (s / 2) j) := by
@@ -97,6 +100,9 @@ lemma half_power_weight_ineq {s : ℝ} (hs : 0 ≤ s) (i j : Fin n → ℤ) :
 /-
 `weight n s m = weight n (s/2) m * weight n (s/2) m`.
 -/
+/--
+@isnad1 id=eq.0h3v.s6.16b68e6e102c from=translated src=- shape=22412304 vocab=ee86a0e0
+-/
 lemma weight_half_mul (s : ℝ) (m : Fin n → ℤ) :
     weight n s m = weight n (s / 2) m * weight n (s / 2) m := by
   convert weight_mul _ _ m;
@@ -112,6 +118,9 @@ Summability of `‖a m‖^2` when `a ∈ ℓ²_{(s)}` and `s ≥ 0`.
 Summability of the convolution at each point when both sequences
 are in `ℓ²_{(s)}` and `2s > n`.
 -/
+/--
+@isnad1 id=summable.4h5v.s7.1e0716d3e88a from=translated src=- shape=77324fa1 vocab=adcf97c4
+-/
 lemma seqConv_summable {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
     {a b : (Fin n → ℤ) → ℂ} (ha : MemSobolev n s a) (hb : MemSobolev n s b)
     (m : Fin n → ℤ) : Summable (fun i => a i * b (m - i)) := by
@@ -123,6 +132,9 @@ lemma seqConv_summable {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
 Squared norm through half-weight:
 `sobolevNormSq n s a = ∑' m, (weight n (s/2) m * ‖a m‖) ^ 2`.
 -/
+/--
+@isnad1 id=eq.0h3v.s6.227dedd0a986 from=translated src=- shape=a2d7bfb8 vocab=328a541c
+-/
 lemma sobolevNormSq_half_weight (s : ℝ) (a : (Fin n → ℤ) → ℂ) :
     sobolevNormSq n s a = ∑' m, (weight n (s / 2) m * ‖a m‖) ^ 2 := by
   exact tsum_congr fun m => by rw [ mul_pow, weight_half_mul ] ; ring;
@@ -131,6 +143,9 @@ lemma sobolevNormSq_half_weight (s : ℝ) (a : (Fin n → ℤ) → ℂ) :
 
 /-
 Summability of the α⋅|b| convolution term at each point.
+-/
+/--
+@isnad1 id=summable.3h5v.s7.25a70e4f189f from=translated src=- shape=68b5937f vocab=b985dc37
 -/
 lemma summable_alpha_abs_b {s : ℝ} (hs : 0 ≤ s)
     {a b : (Fin n → ℤ) → ℂ}
@@ -156,6 +171,9 @@ lemma summable_alpha_abs_b {s : ℝ} (hs : 0 ≤ s)
 /-
 Summability of the |a|⋅β convolution term at each point.
 -/
+/--
+@isnad1 id=summable.3h5v.s7.bcc995a3fea0 from=translated src=- shape=35a72ff6 vocab=b985dc37
+-/
 lemma summable_abs_a_beta {s : ℝ} (hs : 0 ≤ s)
     {a b : (Fin n → ℤ) → ℂ}
     (ha_l1 : Summable (fun m => ‖a m‖)) (hb : MemSobolev n s b)
@@ -175,6 +193,9 @@ lemma summable_abs_a_beta {s : ℝ} (hs : 0 ≤ s)
 
 /-
 Unsquared pointwise bound: weight n (s/2) m * ‖seqConv a b m‖ ≤ 2^s * (T1 + T2).
+-/
+/--
+@isnad1 id=le.5h5v.s8.58c725d208ca from=translated src=- shape=65ab1af7 vocab=3701836e
 -/
 lemma seqConv_unsquared_bound {s : ℝ} (hs : 0 ≤ s)
     {a b : (Fin n → ℤ) → ℂ}
@@ -210,6 +231,9 @@ lemma seqConv_unsquared_bound {s : ℝ} (hs : 0 ≤ s)
 /-
 Pointwise bound (squared version).
 -/
+/--
+@isnad1 id=le.5h5v.s8.3ff658378bad from=translated src=- shape=f433881d vocab=3701836e
+-/
 lemma seqConv_pointwise_bound {s : ℝ} (hs : 0 ≤ s)
     {a b : (Fin n → ℤ) → ℂ}
     (ha_l1 : Summable (fun m => ‖a m‖))
@@ -232,6 +256,9 @@ lemma seqConv_pointwise_bound {s : ℝ} (hs : 0 ≤ s)
 Young + embedding bound for the α ⊛ |b| term:
 `∑' m, (∑' i, α_i * ‖b (m-i)‖)^2 ≤ C²·‖b‖²·‖a‖²`
 where α_i = weight n (s/2) i * ‖a i‖.
+-/
+/--
+@isnad1 id=and.4h4v.s8.9ca44dd3bb8f from=translated src=- shape=beb3bd2b vocab=301dcb7c
 -/
 lemma young_alpha_b_bound {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
     {a b : (Fin n → ℤ) → ℂ}
@@ -266,6 +293,9 @@ Young + embedding bound for the |a| ⊛ β term:
 `∑' m, (∑' i, ‖a i‖ * β_{m-i})^2 ≤ C²·‖a‖²·‖b‖²`
 where β_j = weight n (s/2) j * ‖b j‖.
 -/
+/--
+@isnad1 id=and.4h4v.s8.5ef1fc5e4f37 from=translated src=- shape=cfc30234 vocab=301dcb7c
+-/
 lemma young_a_beta_bound {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
     {a b : (Fin n → ℤ) → ℂ}
     (ha : MemSobolev n s a) (hb : MemSobolev n s b) :
@@ -291,6 +321,9 @@ lemma young_a_beta_bound {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
 For `2s > n > 0`, if `a, b ∈ ℓ²_{(s)}(ℤⁿ)`, then
 `seqConv a b ∈ ℓ²_{(s)}(ℤⁿ)` with norm bound
 `‖a⊛b‖²_{(s)} ≤ mt2Const n s · ‖a‖²_{(s)} · ‖b‖²_{(s)}`.
+-/
+/--
+@isnad1 id=and.4h4v.s6.793521f65e98 from=translated src=- shape=ab20797f vocab=99c8e827
 -/
 theorem second_multiplication_theorem_seq
     {n : ℕ} {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)
@@ -318,6 +351,9 @@ theorem second_multiplication_theorem_seq
 
 /-
 **Second Sobolev multiplication theorem (distribution side).**
+-/
+/--
+@isnad1 id=and.4h4v.s6.205371b8ee56 from=translated src=- shape=1cb5a1bb vocab=6f3998a3
 -/
 theorem second_multiplication_theorem
     {n : ℕ} {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s)

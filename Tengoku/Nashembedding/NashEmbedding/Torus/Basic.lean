@@ -56,7 +56,9 @@ structure IsPosDefSmoothMetric {n : ℕ}
   smoothPeriodic : SmoothPeriodic g
   posDef : ∀ x, (g x).PosDef
 
-/-- Every positive-definite smooth metric is a smooth metric.-/
+/-- Every positive-definite smooth metric is a smooth metric.
+@isnad1 id=issmooth.1h2v.s4.c746c498b277 from=translated src=- shape=6e2c5eb6 vocab=685798ab
+-/
 lemma IsPosDefSmoothMetric.toIsSmoothMetric {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (hg : IsPosDefSmoothMetric g) : IsSmoothMetric g :=
@@ -120,7 +122,9 @@ def IsInjRealizable {n : ℕ}
   ∃ (N : ℕ) (u : (Fin n → ℝ) → (Fin N → ℝ)),
     IsInjectiveEmbedding u ∧ Realizes u g
 
-/-- Every injectively realizable metric is realizable.-/
+/-- Every injectively realizable metric is realizable.
+@isnad1 id=isrealiz.1h2v.s4.8b22067b2922 from=translated src=- shape=6e2c5eb6 vocab=106e8a1e
+-/
 lemma IsInjRealizable.toIsRealizable {n : ℕ}
     {g : (Fin n → ℝ) → Matrix (Fin n) (Fin n) ℝ}
     (hg : IsInjRealizable g) : IsRealizable g :=

@@ -42,6 +42,9 @@ def pderiv {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (i : Fin n) (f : (Fin n → ℝ) → V) (x : Fin n → ℝ) : V :=
   fderiv ℝ f x (Pi.single i 1)
 
+/--
+@isnad1 id=eq.0h4v.s6.63652ed3397b from=translated src=- shape=63cfbbca vocab=a0f4ec22
+-/
 lemma pderiv_eq_partialDeriv {N : ℕ} (i : Fin n) (u : (Fin n → ℝ) → (Fin N → ℝ)) :
     pderiv i u = partialDeriv i u := rfl
 
@@ -52,13 +55,17 @@ def sumSqDeriv {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 /-! ## Calculus leaves -/
 
-/-- `∂ᵢ` preserves smoothness.-/
+/-- `∂ᵢ` preserves smoothness.
+@isnad1 id=contdiff.1h4v.s7.67efa0f8032b from=translated src=- shape=79dc06cc vocab=52efd93b
+-/
 lemma pderiv_contDiff {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) (i : Fin n) :
     ContDiff ℝ ∞ (pderiv i f) :=
   (hf.fderiv_right (by simp)).clm_apply contDiff_const
 
-/-- Symmetry of second partials (Schwarz/Clairaut) for smooth maps.-/
+/-- Symmetry of second partials (Schwarz/Clairaut) for smooth maps.
+@isnad1 id=eq.1h5v.s7.87eeecc2da4f from=translated src=- shape=2398b36d vocab=52efd93b
+-/
 lemma pderiv_comm {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) (i j : Fin n) :
     pderiv i (pderiv j f) = pderiv j (pderiv i f) := by
@@ -77,7 +84,9 @@ lemma pderiv_comm {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     second_derivative_symmetric (f := f) (f' := fderiv ℝ f)
       (fun y => (hfd y).hasFDerivAt) (hgd x).hasFDerivAt (Pi.single i 1) (Pi.single j 1)
 
-/-- Linearity: `∂ᵢ` of a finite sum of smooth maps.-/
+/-- Linearity: `∂ᵢ` of a finite sum of smooth maps.
+@isnad1 id=eq.1h7v.s7.e3cfc69b03aa from=translated src=- shape=efbcf286 vocab=8daf27c2
+-/
 lemma pderiv_finset_sum {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {ι : Type*} (s : Finset ι) {f : ι → (Fin n → ℝ) → V}
     (hf : ∀ k ∈ s, ContDiff ℝ ∞ (f k)) (i : Fin n) (x : Fin n → ℝ) :
@@ -86,7 +95,9 @@ lemma pderiv_finset_sum {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
   rw [fderiv_fun_sum (fun k hk => ((hf k hk).differentiable (by simp)) x)]
   simp [pderiv]
 
-/-- `∂ᵢ` of a sum of smooth maps.-/
+/-- `∂ᵢ` of a sum of smooth maps.
+@isnad1 id=eq.2h6v.s8.b83f93c85939 from=translated src=- shape=e60b6905 vocab=be7d97fa
+-/
 lemma pderiv_add {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f g : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     (i : Fin n) (x : Fin n → ℝ) :
@@ -95,7 +106,9 @@ lemma pderiv_add {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
   rw [fderiv_fun_add (hf.differentiable (by simp) x) (hg.differentiable (by simp) x)]
   simp [pderiv]
 
-/-- `∂ᵢ` of a difference of smooth maps.-/
+/-- `∂ᵢ` of a difference of smooth maps.
+@isnad1 id=eq.2h6v.s8.fcc338994d2a from=translated src=- shape=e60b6905 vocab=7848eb34
+-/
 lemma pderiv_sub {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f g : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     (i : Fin n) (x : Fin n → ℝ) :
@@ -104,7 +117,9 @@ lemma pderiv_sub {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
   rw [fderiv_fun_sub (hf.differentiable (by simp) x) (hg.differentiable (by simp) x)]
   simp [pderiv]
 
-/-- `∂ᵢ` of a scalar multiple.-/
+/-- `∂ᵢ` of a scalar multiple.
+@isnad1 id=eq.1h6v.s8.d17cb15dbe44 from=translated src=- shape=a9903123 vocab=95e20656
+-/
 lemma pderiv_const_smul {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) (c : ℝ) (i : Fin n) (x : Fin n → ℝ) :
     pderiv i (fun y => c • f y) x = c • pderiv i f x := by
@@ -112,7 +127,9 @@ lemma pderiv_const_smul {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
   rw [fderiv_fun_const_smul (hf.differentiable (by simp) x) c]
   simp [pderiv]
 
-/-- The dot product of smooth `ℝᴺ`-valued maps is smooth.-/
+/-- The dot product of smooth `ℝᴺ`-valued maps is smooth.
+@isnad1 id=contdiff.2h4v.s8.07b76e590e8d from=translated src=- shape=528aeb7b vocab=ab07e0c8
+-/
 lemma contDiff_dotProduct {N : ℕ} {u v : (Fin n → ℝ) → (Fin N → ℝ)}
     (hu : ContDiff ℝ ∞ u) (hv : ContDiff ℝ ∞ v) :
     ContDiff ℝ ∞ (fun y => u y ⬝ᵥ v y) := by
@@ -122,13 +139,17 @@ lemma contDiff_dotProduct {N : ℕ} {u v : (Fin n → ℝ) → (Fin N → ℝ)}
   simp only [dotProduct]
   exact ContDiff.sum (fun k _ => (hcomp hu k).mul (hcomp hv k))
 
-/-- `L` preserves smoothness.-/
+/-- `L` preserves smoothness.
+@isnad1 id=contdiff.1h3v.s7.6ba722f25630 from=translated src=- shape=d702b1c5 vocab=50508581
+-/
 lemma sumSqDeriv_contDiff {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {f : (Fin n → ℝ) → V} (hf : ContDiff ℝ ∞ f) : ContDiff ℝ ∞ (sumSqDeriv f) := by
   unfold sumSqDeriv
   exact ContDiff.sum (fun k _ => pderiv_contDiff (pderiv_contDiff hf k) k)
 
-/-- Product rule for the Euclidean dot product of smooth `ℝᴺ`-valued maps.-/
+/-- Product rule for the Euclidean dot product of smooth `ℝᴺ`-valued maps.
+@isnad1 id=eq.2h6v.s8.af76b09d9d25 from=translated src=- shape=62f110ff vocab=759f6a91
+-/
 lemma pderiv_dotProduct {N : ℕ} {u v : (Fin n → ℝ) → (Fin N → ℝ)}
     (hu : ContDiff ℝ ∞ u) (hv : ContDiff ℝ ∞ v) (i : Fin n) (x : Fin n → ℝ) :
     pderiv i (fun y => u y ⬝ᵥ v y) x = pderiv i u x ⬝ᵥ v x + u x ⬝ᵥ pderiv i v x := by
@@ -159,7 +180,9 @@ lemma pderiv_dotProduct {N : ℕ} {u v : (Fin n → ℝ) → (Fin N → ℝ)}
 /-! ## Günther's identity -/
 
 /-- **Günther's identity** (sum-of-squares form). For smooth `v : ℝⁿ → ℝᴺ`,
-`L(vᵢ·vⱼ) = ∂ᵢ(Lv·vⱼ) + ∂ⱼ(Lv·vᵢ) − 2 Lv·vᵢⱼ + 2 ∑ₖ vᵢₖ·vⱼₖ`, where `L = ∑ₖ ∂ₖ²`.-/
+`L(vᵢ·vⱼ) = ∂ᵢ(Lv·vⱼ) + ∂ⱼ(Lv·vᵢ) − 2 Lv·vᵢⱼ + 2 ∑ₖ vᵢₖ·vⱼₖ`, where `L = ∑ₖ ∂ₖ²`.
+@isnad1 id=eq.1h6v.s10.f4cc4f90181f from=translated src=- shape=41ea4cc0 vocab=291b1b47
+-/
 theorem gunther_identity {N : ℕ} {v : (Fin n → ℝ) → (Fin N → ℝ)} (hv : ContDiff ℝ ∞ v)
     (i j : Fin n) (x : Fin n → ℝ) :
     sumSqDeriv (fun y => pderiv i v y ⬝ᵥ pderiv j v y) x =

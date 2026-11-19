@@ -52,13 +52,17 @@ def IsRapidDecay (n : ℕ) (a : (Fin n → ℤ) → ℂ) : Prop :=
 
 /-! ## Elementary consequences of rapid decay -/
 
-/-- Rapid decay implies absolute summability (when `n ≥ 1`).-/
+/-- Rapid decay implies absolute summability (when `n ≥ 1`).
+@isnad1 id=summable.2h2v.s5.fd2a0a34c075 from=translated src=- shape=498fe5d5 vocab=bb387c8d
+-/
 lemma IsRapidDecay.summable_norm (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
     (ha : IsRapidDecay n a) : Summable (fun m => ‖a m‖) := by
   have h : (0 : ℝ) < n := by exact_mod_cast hn
   exact summable_norm_of_memSobolev hn (by linarith : (n : ℝ) < 2 * (n : ℝ)) (ha n)
 
-/-- The formal derivative of a rapidly decaying sequence is rapidly decaying.-/
+/-- The formal derivative of a rapidly decaying sequence is rapidly decaying.
+@isnad1 id=israpidd.1h3v.s4.6aaf02ae1b53 from=translated src=- shape=d0abb76c vocab=b99de2de
+-/
 lemma IsRapidDecay.partialCoeff {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a)
     (j : Fin n) : IsRapidDecay n (partialCoeff j a) := by
   intro s
@@ -176,7 +180,9 @@ private lemma summable_weight_mul_norm (hn : 0 < n) {a : (Fin n → ℤ) → ℂ
 
 /-! ## B1: regularity of Fourier synthesis -/
 
-/-- **B1 (smoothness).** The Fourier synthesis of a rapidly decaying sequence is `C^∞`.-/
+/-- **B1 (smoothness).** The Fourier synthesis of a rapidly decaying sequence is `C^∞`.
+@isnad1 id=contdiff.2h2v.s6.f9be67c326a8 from=translated src=- shape=ac4aab71 vocab=5a2850f8
+-/
 theorem fourierSynthesis_contDiff (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
     (ha : IsRapidDecay n a) :
     ContDiff ℝ ∞ (fourierSynthesis n a) := by
@@ -207,7 +213,9 @@ theorem fourierSynthesis_contDiff (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
 /-- **B1 (periodicity).** The Fourier synthesis of any coefficient sequence is
 `2πℤⁿ`-periodic (the `IsPeriodic2Pi` form of `fourierSynthesis_periodic`); no
 summability is needed since each term `eₘ` is periodic and `tsum` respects
-termwise equality.-/
+termwise equality.
+@isnad1 id=isperiod.0h2v.s3.f07773b40b26 from=translated src=- shape=3901c309 vocab=c93f95b5
+-/
 theorem fourierSynthesis_isPeriodic2Pi {a : (Fin n → ℤ) → ℂ} :
     IsPeriodic2Pi (fourierSynthesis n a) := by
   intro x k
@@ -215,7 +223,9 @@ theorem fourierSynthesis_isPeriodic2Pi {a : (Fin n → ℤ) → ℂ} :
   rw [fourierExp_isPeriodic2Pi m x k]
 
 /-- **B1 (derivatives).** Partial derivatives of the synthesis are syntheses of the
-formal derivative coefficients: `∂ⱼ ǎ = (partialCoeff j a)ˇ`.-/
+formal derivative coefficients: `∂ⱼ ǎ = (partialCoeff j a)ˇ`.
+@isnad1 id=eq.2h3v.s5.03fcf1dca458 from=translated src=- shape=5e47fe14 vocab=eef80b87
+-/
 theorem partialDeriv_fourierSynthesis (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
     (ha : IsRapidDecay n a) (j : Fin n) :
     partialDeriv j (fourierSynthesis n a) = fourierSynthesis n (partialCoeff j a) := by
@@ -231,7 +241,9 @@ theorem partialDeriv_fourierSynthesis (hn : 0 < n) {a : (Fin n → ℤ) → ℂ}
 
 /-- Round trip: the standard Fourier coefficients of the synthesis of a rapidly
 decaying sequence recover the sequence (specialisation of
-`stdFourierCoeff_fourierSynthesis`).-/
+`stdFourierCoeff_fourierSynthesis`).
+@isnad1 id=eq.2h3v.s5.e4420a3d25b5 from=translated src=- shape=0c34c267 vocab=3e805c6a
+-/
 theorem stdFourierCoeff_fourierSynthesis_of_rapidDecay (hn : 0 < n)
     {a : (Fin n → ℤ) → ℂ} (ha : IsRapidDecay n a) (m : Fin n → ℤ) :
     stdFourierCoeff n (fourierSynthesis n a) m = a m :=
@@ -270,7 +282,9 @@ private lemma summable_norm_prod_shear {a b : (Fin n → ℤ) → ℂ}
     ha.mul_of_nonneg hb (fun _ => norm_nonneg _) (fun _ => norm_nonneg _)
   exact ((shearEquiv n).symm.summable_iff).mpr hmul
 
-/-- **B2.** For `a, b ∈ ℓ¹(ℤⁿ)`, `(a ∗ b)ˇ = ǎ · b̌` pointwise.-/
+/-- **B2.** For `a, b ∈ ℓ¹(ℤⁿ)`, `(a ∗ b)ˇ = ǎ · b̌` pointwise.
+@isnad1 id=eq.2h4v.s6.17706bf201b6 from=translated src=- shape=667d0a6e vocab=75b3b2b0
+-/
 theorem fourierSynthesis_seqConv {a b : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖)) (hb : Summable (fun m => ‖b m‖))
     (θ : Fin n → ℝ) :
@@ -304,7 +318,9 @@ theorem fourierSynthesis_seqConv {a b : (Fin n → ℤ) → ℂ}
   rw [seqConv, ← tsum_mul_right]
 
 /-- The convolution of two `ℓ¹` sequences is `ℓ¹` (Young `ℓ¹ ∗ ℓ¹ ⊂ ℓ¹`), so B2 can be
-iterated.-/
+iterated.
+@isnad1 id=summable.2h3v.s6.71f4e40767a1 from=translated src=- shape=410cb24a vocab=eab29b5e
+-/
 lemma summable_norm_seqConv {a b : (Fin n → ℤ) → ℂ}
     (ha : Summable (fun m => ‖a m‖)) (hb : Summable (fun m => ‖b m‖)) :
     Summable (fun m => ‖seqConv a b m‖) := by

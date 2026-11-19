@@ -33,6 +33,9 @@ variable {n : ℕ}
 /-
 The series `∑_{m ∈ ℤⁿ} (1 + |m|²)^{-s}` converges when `2s > n`.
 -/
+/--
+@isnad1 id=summable.2h2v.s6.52af8dbbb729 from=translated src=- shape=394b7a6f vocab=822e7a6b
+-/
 theorem summable_weight_neg {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s) :
     Summable (fun m : Fin n → ℤ => weight n (-s) m) := by
   -- AM–GM bounds the n-dimensional weight `(1 + |m|²)^{-s}` above by a product
@@ -88,6 +91,9 @@ theorem summable_weight_neg {s : ℝ} (hn : 0 < n) (hs : (n : ℝ) < 2 * s) :
 **Cauchy–Schwarz for Sobolev sequences.** If `2s > n` and `a ∈ ℓ²_(s)`,
 then `∑ |aₘ|` converges, i.e., `a ∈ ℓ¹(ℤⁿ)`.
 -/
+/--
+@isnad1 id=summable.3h3v.s6.292e93c8c4ee from=translated src=- shape=a36954f3 vocab=29aaa5b9
+-/
 theorem summable_norm_of_memSobolev {s : ℝ} (hn : 0 < n)
     (hs : (n : ℝ) < 2 * s)
     {a : (Fin n → ℤ) → ℂ} (ha : MemSobolev n s a) :
@@ -104,6 +110,9 @@ theorem summable_norm_of_memSobolev {s : ℝ} (hn : 0 < n)
 /-
 **Cauchy–Schwarz bound.** If `2s > n` and `a ∈ ℓ²_(s)`, then
 `(∑ |aₘ|)² ≤ (∑ (1+|m|²)^{-s}) · ‖a‖²_(s)`.
+-/
+/--
+@isnad1 id=le.3h3v.s7.3eb5611cb95f from=translated src=- shape=80e690fc vocab=f67465fe
 -/
 theorem tsum_norm_sq_le {s : ℝ} (hn : 0 < n)
     (hs : (n : ℝ) < 2 * s)
@@ -134,6 +143,9 @@ theorem tsum_norm_sq_le {s : ℝ} (hn : 0 < n)
 If `∑ |aₘ| < ∞`, the Fourier series `∑ aₘ eₘ(θ)` converges
 absolutely and uniformly on `ℝⁿ`.
 -/
+/--
+@isnad1 id=hassum.1h3v.s7.6c7f073dd774 from=translated src=- shape=4803a6a2 vocab=676723aa
+-/
 theorem hasSum_fourierSeries
     {a : (Fin n → ℤ) → ℂ} (ha : Summable (fun m => ‖a m‖))
     (θ : Fin n → ℝ) :
@@ -143,6 +155,9 @@ theorem hasSum_fourierSeries
 
 /-
 Under ℓ¹ summability, the Fourier series defines a continuous function.
+-/
+/--
+@isnad1 id=continuo.1h2v.s6.4d5583c02dd0 from=translated src=- shape=1e3c4b9b vocab=85616cc9
 -/
 theorem continuous_fourierSeries
     {a : (Fin n → ℤ) → ℂ}
@@ -156,6 +171,9 @@ theorem continuous_fourierSeries
 
 /-
 The sup norm of the Fourier series is bounded by the ℓ¹ norm.
+-/
+/--
+@isnad1 id=le.1h3v.s6.ff18fc3eb0a8 from=translated src=- shape=18d49f53 vocab=6f372488
 -/
 theorem sup_norm_fourierSeries_le
     {a : (Fin n → ℤ) → ℂ}

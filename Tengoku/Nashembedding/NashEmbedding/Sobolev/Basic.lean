@@ -38,14 +38,23 @@ sum of squares of coordinates, viewed as real numbers.-/
 def weight (n : ℕ) (s : ℝ) (m : Fin n → ℤ) : ℝ :=
   (1 + ∑ i : Fin n, ((m i : ℝ) ^ 2)) ^ s
 
+/--
+@isnad1 id=lt.0h3v.s4.8dee5d116ae6 from=translated src=- shape=92b7a827 vocab=eec9e88a
+-/
 lemma weight_pos (s : ℝ) (m : Fin n → ℤ) : 0 < weight n s m := by
   exact Real.rpow_pos_of_pos ( add_pos_of_pos_of_nonneg zero_lt_one ( Finset.sum_nonneg fun _ _ => sq_nonneg _ ) ) _
 
+/--
+@isnad1 id=le.0h3v.s4.02f85463f65a from=translated src=- shape=92b7a827 vocab=226895ef
+-/
 lemma weight_nonneg (s : ℝ) (m : Fin n → ℤ) : 0 ≤ weight n s m :=
   le_of_lt (weight_pos s m)
 
 /-
 The base of the weight is always ≥ 1.
+-/
+/--
+@isnad1 id=le.0h2v.s6.71c7f1aba326 from=translated src=- shape=5088375e vocab=3c127a83
 -/
 lemma one_le_weight_base (m : Fin n → ℤ) :
     1 ≤ 1 + ∑ i : Fin n, ((m i : ℝ) ^ 2) := by
@@ -54,11 +63,17 @@ lemma one_le_weight_base (m : Fin n → ℤ) :
 /-
 `weight n 0 m = 1` for all `m`.
 -/
+/--
+@isnad1 id=eq.0h2v.s4.76ac2861b205 from=translated src=- shape=2881fab0 vocab=e14648a2
+-/
 lemma weight_zero (m : Fin n → ℤ) : weight n 0 m = 1 := by
   unfold weight; norm_num;
 
 /-
 `weight n s m * weight n t m = weight n (s + t) m`.
+-/
+/--
+@isnad1 id=eq.0h4v.s5.6b9c9e5a7f2c from=translated src=- shape=340e1a6a vocab=395e7222
 -/
 lemma weight_mul (s t : ℝ) (m : Fin n → ℤ) :
     weight n s m * weight n t m = weight n (s + t) m := by
@@ -68,12 +83,18 @@ lemma weight_mul (s t : ℝ) (m : Fin n → ℤ) :
 /-
 For `s ≤ t`, `weight n s m ≤ weight n t m`.
 -/
+/--
+@isnad1 id=le.1h4v.s4.ab4389336569 from=translated src=- shape=075e166c vocab=226895ef
+-/
 lemma weight_mono {s t : ℝ} (hst : s ≤ t) (m : Fin n → ℤ) :
     weight n s m ≤ weight n t m := by
   exact Real.rpow_le_rpow_of_exponent_le ( one_le_weight_base m ) hst
 
 /-
 For `s ≤ 0`, `weight n s m ≤ 1`.
+-/
+/--
+@isnad1 id=le.1h3v.s5.b79c520adb2c from=translated src=- shape=3d8e1f14 vocab=226895ef
 -/
 lemma weight_le_one_of_nonpos {s : ℝ} (hs : s ≤ 0) (m : Fin n → ℤ) :
     weight n s m ≤ 1 := by
@@ -97,12 +118,18 @@ def sobolevInner (n : ℕ) (s : ℝ) (a b : (Fin n → ℤ) → ℂ) : ℂ :=
 /-
 If `a ∈ ℓ²_(t)` and `s ≤ t`, then `a ∈ ℓ²_(s)`.
 -/
+/--
+@isnad1 id=memsobol.2h4v.s4.354a8287a045 from=translated src=- shape=bf85b5a5 vocab=0541ffe9
+-/
 lemma MemSobolev.mono {s t : ℝ} {a : (Fin n → ℤ) → ℂ}
     (ha : MemSobolev n t a) (hst : s ≤ t) : MemSobolev n s a := by
   exact .of_nonneg_of_le ( fun _ => by exact mul_nonneg ( weight_nonneg s _ ) ( sq_nonneg _ ) ) ( fun m => by exact mul_le_mul_of_nonneg_right ( weight_mono hst m ) ( sq_nonneg _ ) ) ha
 
 /-
 Sobolev norm monotonicity: if `s ≤ t` then `‖a‖²_(s) ≤ ‖a‖²_(t)`.
+-/
+/--
+@isnad1 id=le.2h4v.s5.c6f595f02d56 from=translated src=- shape=1a3cd302 vocab=fbac2e46
 -/
 lemma sobolevNormSq_mono {s t : ℝ} {a : (Fin n → ℤ) → ℂ}
     (ha : MemSobolev n t a) (hst : s ≤ t) :
@@ -111,13 +138,24 @@ lemma sobolevNormSq_mono {s t : ℝ} {a : (Fin n → ℤ) → ℂ}
 
 /-! ## Smoothness helpers -/
 
+/--
+@isnad1 id=ne.0h0v.s4.cb98d4320f82 from=translated src=- shape=8dfd8052 vocab=11f7191b
+-/
 lemma infty_ne_zero : (∞ : WithTop ℕ∞) ≠ 0 := by simp
 
+/--
+@isnad1 id=le.0h0v.s4.78cbb6115a8f from=translated src=- shape=fc228040 vocab=a197a3df
+-/
 lemma one_le_infty : (1 : WithTop ℕ∞) ≤ ∞ := by exact_mod_cast le_top
 
+/--
+@isnad1 id=le.0h0v.s5.c57111b2c942 from=translated src=- shape=74f7ad57 vocab=4c767879
+-/
 lemma infty_add_one_le : (∞ : WithTop ℕ∞) + 1 ≤ ∞ := by simp
 
-/-- Directional derivative along a coordinate as a one-variable derivative.-/
+/-- Directional derivative along a coordinate as a one-variable derivative.
+@isnad1 id=hasderiv.1h6v.s8.3a01cb2e80f2 from=translated src=- shape=cb63efcc vocab=9a3d72c0
+-/
 lemma hasDerivAt_update_of_hasFDerivAt
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     {F : (Fin n → ℝ) → V} {F' : (Fin n → ℝ) →L[ℝ] V}
@@ -137,12 +175,18 @@ def fourierExp (n : ℕ) (m : Fin n → ℤ) (θ : Fin n → ℝ) : ℂ :=
 /-
 `|eₘ(θ)| = 1` for all `m` and `θ`.
 -/
+/--
+@isnad1 id=eq.0h3v.s4.d88655218944 from=translated src=- shape=36da4e2e vocab=c7146eca
+-/
 lemma norm_fourierExp (m : Fin n → ℤ) (θ : Fin n → ℝ) :
     ‖fourierExp n m θ‖ = 1 := by
   unfold fourierExp; norm_num [ Complex.norm_exp ] ;
 
 /-
 `eₘ` is `2π`-periodic in each coordinate.
+-/
+/--
+@isnad1 id=eq.0h4v.s5.4daf48900b8c from=translated src=- shape=3c67959f vocab=92c4bbc5
 -/
 lemma fourierExp_add_two_pi (m : Fin n → ℤ) (θ : Fin n → ℝ) (j : Fin n) :
     fourierExp n m (Function.update θ j (θ j + 2 * π)) = fourierExp n m θ := by
@@ -151,6 +195,9 @@ lemma fourierExp_add_two_pi (m : Fin n → ℤ) (θ : Fin n → ℝ) (j : Fin n)
   rw [ Finset.sum_eq_add_sum_sdiff_singleton_of_mem ( Finset.mem_univ j ) ] ; ring;
   rw [ Finset.sum_congr rfl fun x hx => by aesop ] ; norm_num ; ring
 
+/--
+@isnad1 id=contdiff.0h2v.s6.5a7e7a0c9ec7 from=translated src=- shape=7158e2f7 vocab=35145ef4
+-/
 lemma fourierExp_contDiff (c : Fin n → ℤ) : ContDiff ℝ ∞ (fourierExp n c) := by
   unfold fourierExp
   have h1 : ContDiff ℝ ∞ (fun θ : Fin n → ℝ => ∑ j, (c j : ℝ) * θ j) := by fun_prop

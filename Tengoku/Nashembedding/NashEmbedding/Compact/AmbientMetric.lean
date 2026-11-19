@@ -58,7 +58,9 @@ variable {E E' : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [Finite
 def pinv (L : E →L[ℝ] E') : E' →L[ℝ] E :=
   (ContinuousLinearMap.inverse (L.adjoint ∘L L)) ∘L L.adjoint
 
-/-- **L1.** The adjoint is smooth (it is a linear isometry equivalence).-/
+/-- **L1.** The adjoint is smooth (it is a linear isometry equivalence).
+@isnad1 id=contdiff.0h2v.s11.68f6eedb84e4 from=translated src=- shape=bb4aae86 vocab=b9584a6f
+-/
 theorem contDiff_adjoint :
     ContDiff ℝ ∞ (fun L : E →L[ℝ] E' => L.adjoint) := by
   have h1 : CompleteSpace E := FiniteDimensional.complete ℝ E
@@ -73,7 +75,9 @@ theorem contDiff_adjoint :
     exact le_of_eq (ContinuousLinearMap.adjoint (𝕜 := ℝ) (E := E) (F := E') |>.norm_map L)
   exact (f.mkContinuous 1 hb).contDiff
 
-/-- **L2.** For injective `L`, `L† ∘ L` is invertible.-/
+/-- **L2.** For injective `L`, `L† ∘ L` is invertible.
+@isnad1 id=isinvert.1h3v.s11.0efda3207709 from=translated src=- shape=80818cb8 vocab=63eba807
+-/
 theorem isInvertible_adjoint_comp_self {L : E →L[ℝ] E'} (hL : Injective L) :
     (L.adjoint ∘L L).IsInvertible := by
   have h1 : CompleteSpace E := FiniteDimensional.complete ℝ E
@@ -92,13 +96,17 @@ theorem isInvertible_adjoint_comp_self {L : E →L[ℝ] E'} (hL : Injective L) :
       ((LinearMap.injective_iff_surjective).1 (LinearMap.ker_eq_bot.mp hker))
   exact ⟨ContinuousLinearEquiv.ofBijective (L.adjoint ∘L L) hker hrange, rfl⟩
 
-/-- **L3.** `pinv` is a left inverse on injective maps.-/
+/-- **L3.** `pinv` is a left inverse on injective maps.
+@isnad1 id=eq.1h3v.s9.13b67065a075 from=translated src=- shape=96c3749f vocab=d4d796b1
+-/
 theorem pinv_comp {L : E →L[ℝ] E'} (hL : Injective L) :
     pinv L ∘L L = ContinuousLinearMap.id ℝ E := by
   have h := isInvertible_adjoint_comp_self hL
   rw [pinv, ContinuousLinearMap.comp_assoc, h.inverse_comp_self]
 
-/-- **L4.** `pinv` is smooth at injective maps.-/
+/-- **L4.** `pinv` is smooth at injective maps.
+@isnad1 id=contdiff.1h3v.s9.06186baf4b30 from=translated src=- shape=5301e85e vocab=26c0a8fd
+-/
 theorem contDiffAt_pinv {L : E →L[ℝ] E'} (hL : Injective L) :
     ContDiffAt ℝ ∞ (pinv : (E →L[ℝ] E') → (E' →L[ℝ] E)) L := by
   have h1 : CompleteSpace E := FiniteDimensional.complete ℝ E
@@ -144,7 +152,9 @@ def tcoord (I : ModelWithCorners ℝ E H) [IsManifold I ∞ M] (x₀ x : M) : E 
 
 omit [FiniteDimensional ℝ E] in
 /-- **L6.** The differential in tangent coordinates at `x₀` is smooth near `x₀`
-  (`ContMDiffAt.mfderiv_const`).-/
+  (`ContMDiffAt.mfderiv_const`).
+@isnad1 id=contmdif.1h7v.s10.634114a92c64 from=translated src=- shape=b550b562 vocab=745ca75c
+-/
 theorem contMDiffAt_inTangentCoordinates_mfderiv {u : M → E'} (hu : ContMDiff I 𝓘(ℝ, E') ∞ u)
     (x₀ : M) :
     ContMDiffAt I 𝓘(ℝ, E →L[ℝ] E') ∞
@@ -153,7 +163,9 @@ theorem contMDiffAt_inTangentCoordinates_mfderiv {u : M → E'} (hu : ContMDiff 
 
 omit [FiniteDimensional ℝ E] in
 /-- **L7.** The metric, read in the trivialization at `x₀`, is smooth near `x₀`
-  (unfold `g.contMDiff` with `contMDiffAt_section`).-/
+  (unfold `g.contMDiff` with `contMDiffAt_section`).
+@isnad1 id=contmdif.0h6v.s13.8d4f3899ddbd from=translated src=- shape=8860a8be vocab=b28faa9d
+-/
 theorem contMDiffAt_metric_trivialization
     (g : ContMDiffRiemannianMetric I ∞ E (TangentSpace I : M → Type _)) (x₀ : M) :
     ContMDiffAt I 𝓘(ℝ, E →L[ℝ] E →L[ℝ] ℝ) ∞

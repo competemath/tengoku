@@ -36,14 +36,18 @@ variable {n N : ℕ} {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-! ## Smoothness of determinants and inverses, entrywise -/
 
-/-- If every entry of a matrix-valued function is smooth, so is its determinant.-/
+/-- If every entry of a matrix-valued function is smooth, so is its determinant.
+@isnad1 id=contdiff.1h3v.s7.d2cb3f884cdd from=translated src=- shape=117ea209 vocab=aa757f87
+-/
 lemma det_contDiff {M : (Fin n → ℝ) → Matrix ι ι ℝ}
     (hM : ∀ i j, ContDiff ℝ ∞ (fun x => M x i j)) :
     ContDiff ℝ ∞ (fun x => (M x).det) := by
   simp only [det_apply']
   exact ContDiff.sum fun σ _ => contDiff_const.mul (contDiff_prod fun i _ => hM (σ i) i)
 
-/-- If every entry of a matrix-valued function is smooth, so is every entry of its adjugate.-/
+/-- If every entry of a matrix-valued function is smooth, so is every entry of its adjugate.
+@isnad1 id=contdiff.1h5v.s7.939f94499508 from=translated src=- shape=f678fe19 vocab=5a10cfc9
+-/
 lemma adjugate_contDiff {M : (Fin n → ℝ) → Matrix ι ι ℝ}
     (hM : ∀ i j, ContDiff ℝ ∞ (fun x => M x i j)) (i j : ι) :
     ContDiff ℝ ∞ (fun x => (M x).adjugate i j) := by
@@ -54,7 +58,9 @@ lemma adjugate_contDiff {M : (Fin n → ℝ) → Matrix ι ι ℝ}
   · simp only [updateRow_ne hab]; exact hM a b
 
 /-- If every entry of a matrix-valued function is smooth and the determinant never vanishes,
-every entry of the (nonsingular) inverse is smooth.-/
+every entry of the (nonsingular) inverse is smooth.
+@isnad1 id=contdiff.2h5v.s7.487ae73a0d7e from=translated src=- shape=8b51f1bc vocab=9bd40ff1
+-/
 lemma inv_contDiff {M : (Fin n → ℝ) → Matrix ι ι ℝ}
     (hM : ∀ i j, ContDiff ℝ ∞ (fun x => M x i j)) (hdet : ∀ x, (M x).det ≠ 0) (i j : ι) :
     ContDiff ℝ ∞ (fun x => (M x)⁻¹ i j) := by
@@ -75,7 +81,9 @@ def gramMatrix (e : ι → (Fin n → ℝ) → (Fin N → ℝ)) (x : Fin n → �
 def IsPointwiseLinIndep (e : ι → (Fin n → ℝ) → (Fin N → ℝ)) : Prop :=
   ∀ x, LinearIndependent ℝ (fun i => e i x)
 
-/-- The Gram determinant of a pointwise linearly independent family never vanishes.-/
+/-- The Gram determinant of a pointwise linearly independent family never vanishes.
+@isnad1 id=ne.1h5v.s5.dd6d315bc6c5 from=translated src=- shape=cdc50eb5 vocab=c4d54d7e
+-/
 lemma gramMatrix_det_ne_zero {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : IsPointwiseLinIndep e) (x : Fin n → ℝ) : (gramMatrix e x).det ≠ 0 := by
   rw [← isUnit_iff_ne_zero, ← isUnit_iff_isUnit_det, ← mulVec_injective_iff_isUnit]
@@ -101,6 +109,9 @@ lemma gramMatrix_det_ne_zero {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
   exact sub_eq_zero.mp (hker _ this)
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=contdiff.1h6v.s8.f904fafb9a2b from=translated src=- shape=7a835440 vocab=c21b4aa2
+-/
 lemma gramMatrix_contDiff {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : ∀ i, ContDiff ℝ ∞ (e i)) (i j : ι) :
     ContDiff ℝ ∞ (fun x => gramMatrix e x i j) := by
@@ -110,6 +121,9 @@ lemma gramMatrix_contDiff {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
       ((contDiff_apply (𝕜 := ℝ) (E := ℝ) k).comp (he j))
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h6v.s6.bf1b24771a3d from=translated src=- shape=d7a602c8 vocab=d6475f7b
+-/
 lemma gramMatrix_periodic {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : ∀ i, IsPeriodic2Pi (e i)) (x : Fin n → ℝ) (k : Fin n → ℤ) :
     gramMatrix e (x + periodicShift n k) = gramMatrix e x := by
@@ -122,7 +136,9 @@ lemma gramMatrix_periodic {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
 def dualFrame (e : ι → (Fin n → ℝ) → (Fin N → ℝ)) (i : ι) (x : Fin n → ℝ) : Fin N → ℝ :=
   ∑ j, (gramMatrix e x)⁻¹ i j • e j x
 
-/-- Duality: `d i x ⬝ᵥ e j x = δᵢⱼ`.-/
+/-- Duality: `d i x ⬝ᵥ e j x = δᵢⱼ`.
+@isnad1 id=eq.1h7v.s6.336c7d33ffcb from=translated src=- shape=e7eafda9 vocab=25ee2781
+-/
 theorem dualFrame_dotProduct {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : IsPointwiseLinIndep e) (i j : ι) (x : Fin n → ℝ) :
     dualFrame e i x ⬝ᵥ e j x = if i = j then 1 else 0 := by
@@ -133,6 +149,9 @@ theorem dualFrame_dotProduct {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
   rw [← h1, dualFrame, sum_dotProduct]
   simp only [smul_dotProduct, smul_eq_mul, gramMatrix]
 
+/--
+@isnad1 id=contdiff.2h5v.s8.9c69d5725de4 from=translated src=- shape=2cdca271 vocab=b23fca40
+-/
 theorem dualFrame_contDiff {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : IsPointwiseLinIndep e) (hs : ∀ i, ContDiff ℝ ∞ (e i)) (i : ι) :
     ContDiff ℝ ∞ (dualFrame e i) := by
@@ -140,11 +159,17 @@ theorem dualFrame_contDiff {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
   exact ContDiff.sum fun j _ =>
     (inv_contDiff (gramMatrix_contDiff hs) (gramMatrix_det_ne_zero he) i j).smul (hs j)
 
+/--
+@isnad1 id=isperiod.1h5v.s5.6ed9cd76d678 from=translated src=- shape=bffca0d9 vocab=ed2d12ae
+-/
 theorem dualFrame_periodic {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (hp : ∀ i, IsPeriodic2Pi (e i)) (i : ι) : IsPeriodic2Pi (dualFrame e i) := by
   intro x k
   simp only [dualFrame, gramMatrix_periodic hp x k, hp _ x k]
 
+/--
+@isnad1 id=smoothpe.2h5v.s7.698629c736aa from=translated src=- shape=3e048d61 vocab=a0c687e0
+-/
 theorem dualFrame_smoothPeriodic {e : ι → (Fin n → ℝ) → (Fin N → ℝ)}
     (he : IsPointwiseLinIndep e) (hsp : ∀ i, SmoothPeriodic (e i)) (i : ι) :
     SmoothPeriodic (dualFrame e i) :=

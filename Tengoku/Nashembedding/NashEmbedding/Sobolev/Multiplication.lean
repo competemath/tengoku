@@ -67,6 +67,9 @@ The base of the weight satisfies a submultiplicative triangle inequality:
 /-
 Translation invariance: `∑' m, f(m - i) = ∑' m, f(m)`.
 -/
+/--
+@isnad1 id=eq.1h3v.s6.dd47492df050 from=translated src=- shape=e4ef3286 vocab=39fcf067
+-/
 lemma tsum_sub_shift
     {f : (Fin n → ℤ) → ℝ} (hf : Summable f) (i : Fin n → ℤ) :
     ∑' m, f (m - i) = ∑' m, f m := by
@@ -77,6 +80,9 @@ lemma tsum_sub_shift
 
 /-
 Summability of the convolution at each point (for non-negative real sequences).
+-/
+/--
+@isnad1 id=summable.4h4v.s7.584d8876c079 from=translated src=- shape=660d80c0 vocab=106ef97c
 -/
 lemma conv_abs_summable
     {f g : (Fin n → ℤ) → ℝ}
@@ -91,6 +97,9 @@ lemma conv_abs_summable
 **Young's convolution inequality** for ℓ¹ ⊛ ℓ² on `ℤⁿ`.
 If `f ∈ ℓ¹` and `g ∈ ℓ²` are non-negative, then `f ⊛ g ∈ ℓ²` with
 `‖f ⊛ g‖_{ℓ²}² ≤ ‖f‖_{ℓ¹}² · ‖g‖_{ℓ²}²`.
+-/
+/--
+@isnad1 id=and.4h3v.s8.92446534aadc from=translated src=- shape=accdf4f7 vocab=0f3d1abb
 -/
 theorem young_conv_sq_bound
     {f g : (Fin n → ℤ) → ℝ}
@@ -206,7 +215,9 @@ def smoothMulDistrib (n : ℕ) (b : (Fin n → ℤ) → ℂ) (φ : TrigPolyDual 
   seqToDual n (fun m => ∑' i, b i * fourierCoeffDistrib φ (m - i))
 
 /-- The Fourier coefficients of the product distribution are the convolution
-of `b` with the Fourier coefficients of `φ`.-/
+of `b` with the Fourier coefficients of `φ`.
+@isnad1 id=eq.0h3v.s6.9b768f68888a from=translated src=- shape=06cc33ce vocab=fe3e2f93
+-/
 lemma fourierCoeffDistrib_smoothMulDistrib (b : (Fin n → ℤ) → ℂ) (φ : TrigPolyDual n) :
     fourierCoeffDistrib (smoothMulDistrib n b φ) =
       fun m => ∑' i, b i * fourierCoeffDistrib φ (m - i) :=

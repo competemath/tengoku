@@ -35,6 +35,9 @@ def partialCoeff (j : Fin n) (b : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) :
 /-
 Norm bound for partial coefficients.
 -/
+/--
+@isnad1 id=eq.0h4v.s5.311b6079eaa5 from=translated src=- shape=0f88f64d vocab=9a3bec45
+-/
 lemma norm_partialCoeff (j : Fin n) (b : (Fin n → ℤ) → ℂ) (m : Fin n → ℤ) :
     ‖partialCoeff j b m‖ = |(m j : ℝ)| * ‖b m‖ := by
   unfold partialCoeff; norm_num;
@@ -44,6 +47,9 @@ lemma norm_partialCoeff (j : Fin n) (b : (Fin n → ℤ) → ℂ) (m : Fin n →
 Under absolute summability of `b` and `m ↦ |mⱼ| |bₘ|`,
 the function `θ ↦ ∑' m, b m * eₘ(θ)` has partial derivative in direction `j`
 equal to `∑' m, i mⱼ bₘ eₘ(θ)` at each `θ`.
+-/
+/--
+@isnad1 id=hasderiv.3h4v.s7.7a99cd21f0e3 from=translated src=- shape=33ba7890 vocab=ad9b8978
 -/
 theorem hasDerivAt_fourierSeries_partial
     (hn : 0 < n)
