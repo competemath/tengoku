@@ -1,0 +1,1 @@
+-- Nashembedding: a factory bundle (data/intake/nashembedding). This file only marks the library for Tengoku/All.lean.
