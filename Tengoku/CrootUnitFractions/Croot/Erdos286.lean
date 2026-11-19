@@ -22,7 +22,9 @@ namespace Croot
 
 open Real Finset Filter
 
-/-- A set of integers in `(0, U]` has reciprocal sum at least `#S / U`.-/
+/-- A set of integers in `(0, U]` has reciprocal sum at least `#S / U`.
+@isnad1 id=le.2h2v.s6.0d771c3de33f from=translated src=- shape=afff4ef6 vocab=04648126
+-/
 lemma card_div_le_recipSum {S : Finset ℕ} {U : ℕ} (hU : 0 < U) (h : ∀ m ∈ S, 0 < m ∧ m ≤ U) :
     (S.card : ℝ) / U ≤ ((recipSum S : ℚ) : ℝ) := by
   have hU' : (0 : ℝ) < U := by exact_mod_cast hU
@@ -37,13 +39,17 @@ lemma card_div_le_recipSum {S : Finset ℕ} {U : ℕ} (hU : 0 < U) (h : ∀ m �
         push_cast
         exact one_div_le_one_div_of_le h0 h1
 
-/-- `recipSum` of an injective image.-/
+/-- `recipSum` of an injective image.
+@isnad1 id=eq.1h2v.s5.c3185aec3831 from=translated src=- shape=91c5ff54 vocab=aa42483e
+-/
 lemma recipSum_image {T : Finset ℕ} {f : ℕ → ℕ} (hf : Function.Injective f) :
     recipSum (T.image f) = ∑ t ∈ T, (1 : ℚ) / (f t : ℕ) := by
   rw [recipSum, Finset.sum_image (fun a _ b _ h => hf h)]
 
 /-- The count adjustment: a representation from `croot_upper` with `ε = 1/1000` can be turned
-into one with exactly `k` terms, for every `k ∈ [c N, c (N+1))`, `c = e - 1 + 1/1000`.-/
+into one with exactly `k` terms, for every `k ∈ [c N, c (N+1))`, `c = e - 1 + 1/1000`.
+@isnad1 id=ex.5h3v.s8.c351f11be893 from=translated src=- shape=6a267049 vocab=035a4b15
+-/
 lemma exists_card_eq_of_croot {N k : ℕ} {X : Finset ℕ}
     (hX : X ⊆ Ioc N ⌊(Real.exp 1 + 1 / 1000) * N⌋₊) (hXs : recipSum X = 1)
     (hN : 1000 ≤ N)
@@ -227,7 +233,9 @@ lemma exists_card_eq_of_croot {N k : ℕ} {X : Finset ℕ}
         obtain ⟨⟨h1, h2⟩, -⟩ := hT' t ht
         omega
 
-/-- The cast of `recipSum` to `ℝ` is the real sum of reciprocals.-/
+/-- The cast of `recipSum` to `ℝ` is the real sum of reciprocals.
+@isnad1 id=eq.0h1v.s5.69e04e3e37d7 from=translated src=- shape=e2e1bb0e vocab=866f5259
+-/
 lemma recipSum_cast_real (S : Finset ℕ) :
     ((recipSum S : ℚ) : ℝ) = ∑ n ∈ S, (1 : ℝ) / n := by
   rw [recipSum, Rat.cast_sum]
@@ -235,7 +243,9 @@ lemma recipSum_cast_real (S : Finset ℕ) :
   rfl
 
 /-- For all large `k` there is an interval of width exactly `(e - 1) k` containing `k` distinct
-positive integers whose reciprocals sum to `1`.-/
+positive integers whose reciprocals sum to `1`.
+@isnad1 id=eventual.0h0v.s7.a64a72b97832 from=translated src=- shape=eca36565 vocab=e68297e5
+-/
 theorem erdos_286_zero : ∀ᶠ k : ℕ in atTop, ∃ a b : ℝ, b - a = (Real.exp 1 - 1) * k ∧
     ∃ S : Finset ℕ, S.card = k ∧ 0 ∉ S ∧ ∑ n ∈ S, (1 : ℝ) / n = 1 ∧
       ∀ n ∈ S, (n : ℝ) ∈ Set.Icc a b := by
@@ -282,7 +292,9 @@ theorem erdos_286_zero : ∀ᶠ k : ℕ in atTop, ∃ a b : ℝ, b - a = (Real.e
 /-- **Erdős Problem #286 in the erdosproblems.com phrasing** (the statement of
 `Erdos286.erdos_286` in google-deepmind/formal-conjectures, with `answer(True)`): for all large
 `k` there is an interval of width `(e - 1 + o(1)) k` containing `k` distinct positive integers
-whose reciprocals sum to `1`.  Here even `o ≡ 0` works (`erdos_286_zero`).-/
+whose reciprocals sum to `1`.  Here even `o ≡ 0` works (`erdos_286_zero`).
+@isnad1 id=ex.0h0v.s7.936f73527c09 from=translated src=- shape=22e04133 vocab=9ad7a60f
+-/
 theorem erdos_286 : ∃ o : ℕ → ℝ, Tendsto o atTop (nhds 0) ∧
     ∀ᶠ k : ℕ in atTop, ∃ a b : ℝ, b - a = (Real.exp 1 - 1 + o k) * k ∧
       ∃ S : Finset ℕ, S.card = k ∧ 0 ∉ S ∧ ∑ n ∈ S, (1 : ℝ) / n = 1 ∧
@@ -292,7 +304,9 @@ theorem erdos_286 : ∃ o : ℕ → ℝ, Tendsto o atTop (nhds 0) ∧
   obtain ⟨a, b, hab, hS⟩ := hk
   exact ⟨a, b, by rw [hab]; ring, hS⟩
 
-/-- The same statement in the literal form `answer(True) ↔ …` used by formal-conjectures.-/
+/-- The same statement in the literal form `answer(True) ↔ …` used by formal-conjectures.
+@isnad1 id=iff.0h0v.s7.e8d29fc7c226 from=translated src=- shape=54b456a8 vocab=9ad7a60f
+-/
 theorem erdos_286_iff : True ↔ ∃ o : ℕ → ℝ, Tendsto o atTop (nhds 0) ∧
     ∀ᶠ k : ℕ in atTop, ∃ a b : ℝ, b - a = (Real.exp 1 - 1 + o k) * k ∧
       ∃ S : Finset ℕ, S.card = k ∧ 0 ∉ S ∧ ∑ n ∈ S, (1 : ℝ) / n = 1 ∧

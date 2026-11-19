@@ -44,6 +44,9 @@ namespace P1
 
 /-! ## Arithmetic facts about pp-smoothness -/
 
+/--
+@isnad1 id=ppsmooth.2h2v.s4.0a2e3158be48 from=translated src=- shape=10d9f64c vocab=b1211571
+-/
 lemma ppSmooth_prime {y r : ℕ} (hr : r.Prime) (hry : r ≤ y) : PPSmooth y r := by
   intro q hq
   rw [hr.primeFactors, Finset.mem_singleton] at hq
@@ -51,6 +54,9 @@ lemma ppSmooth_prime {y r : ℕ} (hr : r.Prime) (hry : r ≤ y) : PPSmooth y r :
   rw [hr.factorization_self, pow_one]
   exact hry
 
+/--
+@isnad1 id=ppsmooth.2h3v.s5.3c845a5b4270 from=translated src=- shape=db47ab5f vocab=c75efb19
+-/
 lemma ppSmooth_primePow {y p a : ℕ} (hp : p.Prime) (h : p ^ a ≤ y) : PPSmooth y (p ^ a) := by
   intro q hq
   have hqprime := Nat.prime_of_mem_primeFactors hq
@@ -61,11 +67,17 @@ lemma ppSmooth_primePow {y p a : ℕ} (hp : p.Prime) (h : p ^ a ≤ y) : PPSmoot
   rw [hqprime.factorization_pow, Finsupp.single_eq_same]
   exact h
 
+/--
+@isnad1 id=ppsmooth.5h3v.s5.8e7218edd601 from=translated src=- shape=53cddba7 vocab=5696a809
+-/
 lemma ppSmooth_mul_of_coprime {y a b : ℕ} (ha : PPSmooth y a) (hb : PPSmooth y b) (ha0 : a ≠ 0)
     (hb0 : b ≠ 0) (hab : Nat.Coprime a b) : PPSmooth y (a * b) := by
   rw [← hab.lcm_eq_mul]
   exact ppSmooth_of_dvd_lcmUpto (Nat.lcm_dvd (ha.dvd_lcmUpto ha0) (hb.dvd_lcmUpto hb0))
 
+/--
+@isnad1 id=not.4h3v.s6.0f635a7e325f from=translated src=- shape=a619a2d9 vocab=1c1baf8e
+-/
 lemma not_ppSmooth_primePow_mul {p a c : ℕ} (hp : p.Prime) (ha : 0 < a) (hc : c ≠ 0)
     (hpc : ¬ p ∣ c) : ¬ PPSmooth (p ^ a - 1) (p ^ a * c) := by
   intro h
@@ -82,6 +94,9 @@ lemma not_ppSmooth_primePow_mul {p a c : ℕ} (hp : p.Prime) (ha : 0 < a) (hc : 
   have : 1 ≤ p ^ a := Nat.one_le_pow _ _ hp.pos
   omega
 
+/--
+@isnad1 id=ppsmooth.3h3v.s5.d97812d23f1a from=translated src=- shape=cfefc8d9 vocab=f93cac49
+-/
 lemma ppSmooth_sub_one_of_not_dvd {p a v : ℕ} (hp : p.Prime) (h : PPSmooth (p ^ a) v)
     (hv : ¬ p ∣ v) : PPSmooth (p ^ a - 1) v := by
   intro q hq
@@ -97,12 +112,18 @@ lemma ppSmooth_sub_one_of_not_dvd {p a v : ℕ} (hp : p.Prime) (h : PPSmooth (p 
     exact hqp ((Nat.prime_dvd_prime_iff_eq hqprime hp).1 (hqprime.dvd_of_dvd_pow this))
   omega
 
+/--
+@isnad1 id=ex.2h2v.s6.6e8eddbc033e from=translated src=- shape=843bd28a vocab=c1367550
+-/
 lemma exists_primePow_eq_of_not_ppSmooth {t n : ℕ} (h : PPSmooth t n)
     (h' : ¬ PPSmooth (t - 1) n) : ∃ p ∈ n.primeFactors, p ^ n.factorization p = t := by
   simp only [PPSmooth, not_forall, not_le, exists_prop] at h'
   obtain ⟨p, hp, hlt⟩ := h'
   exact ⟨p, hp, le_antisymm (h p hp) (by omega)⟩
 
+/--
+@isnad1 id=le.1h1v.s5.ede9dd50091e from=translated src=- shape=fbae486a vocab=476cd8f3
+-/
 lemma card_primeFactors_le_log {s : ℕ} (hs : 0 < s) :
     (s.primeFactors.card : ℝ) ≤ Real.log s / Real.log 2 := by
   have h1 : 2 ^ s.primeFactors.card ≤ ∏ p ∈ s.primeFactors, p :=
@@ -115,9 +136,15 @@ lemma card_primeFactors_le_log {s : ℕ} (hs : 0 < s) :
 
 /-! ## Reciprocal sums -/
 
+/--
+@isnad1 id=eq.0h1v.s5.69e04e3e37d7 from=translated src=- shape=e2e1bb0e vocab=866f5259
+-/
 lemma recipSum_cast (S : Finset ℕ) : (recipSum S : ℝ) = ∑ n ∈ S, (1 : ℝ) / n := by
   simp [recipSum]
 
+/--
+@isnad1 id=le.2h2v.s5.4029ab746891 from=translated src=- shape=0476bc9b vocab=04648126
+-/
 lemma recipSum_le_card_div {S : Finset ℕ} {N : ℕ} (hN : 0 < N) (h : ∀ n ∈ S, N < n) :
     (recipSum S : ℝ) ≤ S.card / N := by
   rw [recipSum_cast]
@@ -128,6 +155,9 @@ lemma recipSum_le_card_div {S : Finset ℕ} {N : ℕ} (hN : 0 < N) (h : ∀ n �
         exact_mod_cast (h n hn).le
     _ = S.card / N := by rw [Finset.sum_const, nsmul_eq_mul]; ring
 
+/--
+@isnad1 id=le.1h3v.s5.4b365843d1f9 from=translated src=- shape=3f48f576 vocab=2c1dba79
+-/
 lemma card_multiples_Ioc_le {N M q : ℕ} (hq : 0 < q) :
     ((Ioc N M).filter (fun n => q ∣ n)).card ≤ M / q - N / q := by
   calc ((Ioc N M).filter (fun n => q ∣ n)).card
@@ -143,6 +173,9 @@ lemma card_multiples_Ioc_le {N M q : ℕ} (hq : 0 < q) :
     _ ≤ (Ioc (N / q) (M / q)).card := Finset.card_image_le
     _ = M / q - N / q := Nat.card_Ioc _ _
 
+/--
+@isnad1 id=le.2h3v.s6.cb7b2201f9ef from=translated src=- shape=2e5105d6 vocab=70ed27be
+-/
 lemma card_multiples_Ioc_le_real {N M q : ℕ} (hq : 0 < q) (hNM : N ≤ M) :
     (((Ioc N M).filter (fun n => q ∣ n)).card : ℝ) ≤ ((M : ℝ) - N) / q + 1 := by
   have h1 := card_multiples_Ioc_le (N := N) (M := M) hq
@@ -163,9 +196,15 @@ open Classical in
 /-- The elements of `(N, M]` that are not `Q`-pp-smooth.-/
 noncomputable def bigPP (N M Q : ℕ) : Finset ℕ := (Ioc N M).filter (fun n => ¬ PPSmooth Q n)
 
+/--
+@isnad1 id=iff.0h4v.s5.78948d7c181b from=translated src=- shape=dfbc0943 vocab=b166c4f0
+-/
 lemma mem_bigPP {N M Q n : ℕ} : n ∈ bigPP N M Q ↔ n ∈ Ioc N M ∧ ¬ PPSmooth Q n := by
   rw [bigPP, Finset.mem_filter]
 
+/--
+@isnad1 id=le.3h3v.s7.e1b38aee26e1 from=translated src=- shape=55b4abea vocab=794f31b6
+-/
 lemma recipSum_bigPP_le {N M Q : ℕ} (hN : 0 < N) (hNM : N ≤ M) (hM : M ≤ 3 * N) :
     (recipSum (bigPP N M Q) : ℝ) ≤
       2 * ∑ q ∈ (Ioc Q (3 * N)).filter IsPrimePow, (1 : ℝ) / q +
@@ -236,6 +275,9 @@ lemma recipSum_bigPP_le {N M Q : ℕ} (hN : 0 < N) (hNM : N ≤ M) (hM : M ≤ 3
       · exact Finset.sum_congr rfl fun q _ => by ring
       · ring
 
+/--
+@isnad1 id=le.6h3v.s8.a9880795f3c8 from=translated src=- shape=079867db vocab=ffd1a776
+-/
 lemma recipSum_bigPP_ge {N M Q : ℕ} (hN : 0 < N) (hlogN : 0 < Real.log N) (hQN : Q ≤ N)
     (hM27 : (27 / 10 : ℝ) * N ≤ M) (hM3 : (M : ℝ) ≤ 3 * N)
     (hprime : (N : ℝ) / (5 * Real.log N) ≤
@@ -285,6 +327,9 @@ def ClearInv (N M Q : ℕ) (D₀ : Finset ℕ) (B : ℝ) (t : ℕ) (D : Finset �
     PPSmooth t (recipSum (Ioc N M \ D)).den ∧
     (recipSum D : ℝ) ≤ (recipSum D₀ : ℝ) + (((Ioc t Q).filter IsPrimePow).card : ℝ) * B
 
+/--
+@isnad1 id=clearinv.0h4v.s4.89a744d79c87 from=translated src=- shape=0f7f206c vocab=7bd37808
+-/
 lemma clearInv_base {N M Q : ℕ} {B : ℝ} : ClearInv N M Q (bigPP N M Q) B Q (bigPP N M Q) := by
   refine ⟨subset_rfl, fun n hn => (mem_bigPP.1 hn).1, fun n hn => (mem_bigPP.1 hn).2, ?_, ?_⟩
   · apply ppSmooth_den_recipSum
@@ -297,6 +342,9 @@ lemma clearInv_base {N M Q : ℕ} {B : ℝ} : ClearInv N M Q (bigPP N M Q) B Q (
       omega
   · simp
 
+/--
+@isnad1 id=clearinv.3h7v.s6.cb213534e3e6 from=translated src=- shape=6893d42c vocab=26415a28
+-/
 lemma clearInv_sub_one {N M Q t : ℕ} {D₀ D : Finset ℕ} {B : ℝ} (hB : 0 ≤ B)
     (hInv : ClearInv N M Q D₀ B t D) (hsm : PPSmooth (t - 1) (recipSum (Ioc N M \ D)).den) :
     ClearInv N M Q D₀ B (t - 1) D := by
@@ -309,6 +357,9 @@ lemma clearInv_sub_one {N M Q t : ℕ} {D₀ D : Finset ℕ} {B : ℝ} (hB : 0 �
       ((Ioc (t - 1) Q).filter IsPrimePow).card := by exact_mod_cast hc
   linarith [mul_le_mul_of_nonneg_right hc' hB]
 
+/--
+@isnad1 id=ex.2h6v.s6.b51c1c015ae2 from=translated src=- shape=52c25703 vocab=46570c7a
+-/
 lemma clear_all {N M Q y₁ : ℕ} {D₀ : Finset ℕ} {B : ℝ}
     (hstep : ∀ t D, y₁ < t → t ≤ Q → ClearInv N M Q D₀ B t D →
       ∃ D', ClearInv N M Q D₀ B (t - 1) D')
@@ -327,6 +378,9 @@ lemma clear_all {N M Q y₁ : ℕ} {D₀ : Finset ℕ} {B : ℝ}
 
 /-! ## The analytic input of one elimination step -/
 
+/--
+@isnad1 id=ex.17h6v.s10.e23ee324db49 from=translated src=- shape=8ae1cbdb vocab=14709a6f
+-/
 lemma exists_s_R {N M t y₁ p : ℕ} {x₀ : ℝ}
     (hprimes : ∀ x : ℝ, x₀ ≤ x → x / (5 * Real.log x) ≤
       (((Ioc ⌊x⌋₊ ⌊(27 / 10 : ℝ) * x⌋₊).filter Nat.Prime).card : ℝ))
@@ -488,6 +542,9 @@ lemma exists_s_R {N M t y₁ p : ℕ} {x₀ : ℝ}
 
 /-! ## One elimination step -/
 
+/--
+@isnad1 id=ex.16h9v.s10.48bf65793dc9 from=translated src=- shape=ea96fae8 vocab=bc52bb74
+-/
 lemma step_main {N M Q y₁ t : ℕ} {D₀ D : Finset ℕ} {x₀ B : ℝ}
     (hprimes : ∀ x : ℝ, x₀ ≤ x → x / (5 * Real.log x) ≤
       (((Ioc ⌊x⌋₊ ⌊(27 / 10 : ℝ) * x⌋₊).filter Nat.Prime).card : ℝ))
@@ -664,6 +721,9 @@ lemma step_main {N M Q y₁ t : ℕ} {D₀ D : Finset ℕ} {x₀ B : ℝ}
 
 /-! ## Asymptotic bookkeeping -/
 
+/--
+@isnad1 id=eventual.0h1v.s7.5eda25e7515c from=translated src=- shape=1f597065 vocab=e43b7702
+-/
 lemma eventually_L_conds (x₀ : ℝ) : ∀ᶠ L : ℝ in atTop,
     1 ≤ L ∧ x₀ ≤ L ^ 4 / 4 ∧ 2 ≤ L ^ 4 / 4 ∧
     L ^ (39 / 10 : ℝ) ≤ L ^ 4 / (80 * Real.log L) - 18 * L - 1 := by
@@ -696,6 +756,9 @@ lemma eventually_L_conds (x₀ : ℝ) : ∀ᶠ L : ℝ in atTop,
     nlinarith [mul_le_mul_of_nonneg_left hlog' hv.le]
   exact ⟨by linarith, by linarith, by linarith, by linarith⟩
 
+/--
+@isnad1 id=eventual.0h0v.s5.9d904a9b8a16 from=translated src=- shape=97c130d8 vocab=2fac33d6
+-/
 lemma eventually_three_log_pow_lt : ∀ᶠ x : ℝ in atTop, 3 * Real.log x ^ 4 < x := by
   have h := (Real.isLittleO_pow_log_id_atTop (n := 4)).bound (show (0 : ℝ) < 1 / 4 by norm_num)
   filter_upwards [h, eventually_gt_atTop 0] with x hx hx0
@@ -703,6 +766,9 @@ lemma eventually_three_log_pow_lt : ∀ᶠ x : ℝ in atTop, 3 * Real.log x ^ 4 
   rw [abs_of_nonneg (by positivity), abs_of_pos hx0] at hx
   linarith
 
+/--
+@isnad1 id=eventual.0h1v.s8.76ac3292b2c6 from=translated src=- shape=fac4354f vocab=a13f2b44
+-/
 lemma eventually_t_conds (x₀ : ℝ) : ∀ᶠ t : ℕ in atTop,
     4 ≤ t ∧ 3 * Real.log t ^ 4 < t ∧ 1 ≤ Real.log t ∧ x₀ ≤ Real.log t ^ 4 / 4 ∧
     2 ≤ Real.log t ^ 4 / 4 ∧
@@ -715,6 +781,9 @@ lemma eventually_t_conds (x₀ : ℝ) : ∀ᶠ t : ℕ in atTop,
     eventually_ge_atTop 4] with t h1 h2 h3
   exact ⟨h3, h2, h1.1, h1.2.1, h1.2.2.1, h1.2.2.2⟩
 
+/--
+@isnad1 id=tendsto.0h0v.s5.73b7cd406e05 from=translated src=- shape=59f7bc4d vocab=e07a643a
+-/
 lemma tendsto_div_log_pow_four : Tendsto (fun x : ℝ => x / Real.log x ^ 4) atTop atTop := by
   have h : Tendsto (fun x : ℝ => Real.log x ^ 4 / x) atTop (nhds 0) := by
     simpa using (Real.isLittleO_pow_log_id_atTop (n := 4)).tendsto_div_nhds_zero
@@ -726,6 +795,9 @@ lemma tendsto_div_log_pow_four : Tendsto (fun x : ℝ => x / Real.log x ^ 4) atT
     tendsto_nhdsWithin_iff.2 ⟨h, hpos⟩
   exact h'.inv_tendsto_nhdsGT_zero.congr (fun x => by simp [inv_div])
 
+/--
+@isnad1 id=eventual.0h5v.s8.903ef178aac2 from=translated src=- shape=4399b99b vocab=694b4618
+-/
 lemma eventually_N_conds (ε x₀ x₁ : ℝ) (y₀ T₀ : ℕ) : ∀ᶠ N : ℕ in atTop,
     12 ≤ N ∧ x₀ ≤ (N : ℝ) ∧ x₁ ≤ (N : ℝ) ∧ 48 / ε ≤ Real.log N ∧
     x₁ ≤ (N : ℝ) / Real.log N ^ 4 ∧ 24 / ε ≤ Real.log ((N : ℝ) / Real.log N ^ 4) ∧
@@ -749,6 +821,9 @@ end P1
 /-! ## Proposition 1 -/
 
 open P1 in
+/--
+@isnad1 id=eventual.1h1v.s7.5f068d893a31 from=translated src=- shape=830a31b2 vocab=0976495a
+-/
 theorem prop1 (ε : ℝ) (hε : 0 < ε) : ∀ᶠ N : ℕ in atTop, ∀ M : ℕ,
     Real.exp 1 * N ≤ M → (M : ℝ) ≤ Real.exp 1 * N + 3 →
     ∃ D ⊆ Ioc N M, (recipSum D : ℝ) ≤ ε ∧ 1 / (20 * Real.log N) ≤ (recipSum D : ℝ) ∧

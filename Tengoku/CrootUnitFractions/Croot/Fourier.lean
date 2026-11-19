@@ -26,6 +26,9 @@ noncomputable def eC (t : ℝ) : ℂ := Complex.exp (2 * Real.pi * Complex.I * t
 
 /-! ### Basic properties of `eC` -/
 
+/--
+@isnad1 id=eq.0h2v.s4.f5e54e40372e from=translated src=- shape=0438c7a3 vocab=611ce678
+-/
 lemma eC_add (s t : ℝ) : eC (s + t) = eC s * eC t := by
   unfold eC
   rw [← Complex.exp_add]
@@ -33,9 +36,15 @@ lemma eC_add (s t : ℝ) : eC (s + t) = eC s * eC t := by
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.46dc655be79c from=translated src=- shape=1ac31801 vocab=41838295
+-/
 lemma eC_zero : eC 0 = 1 := by
   simp [eC]
 
+/--
+@isnad1 id=iff.0h1v.s4.def232e67065 from=translated src=- shape=e0a93ec6 vocab=b02c58e3
+-/
 lemma eC_eq_one_iff (t : ℝ) : eC t = 1 ↔ ∃ n : ℤ, t = n := by
   unfold eC
   rw [Complex.exp_eq_one_iff]
@@ -50,18 +59,30 @@ lemma eC_eq_one_iff (t : ℝ) : eC t = 1 ↔ ∃ n : ℤ, t = n := by
   · rintro ⟨n, rfl⟩
     exact ⟨n, by push_cast; ring⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.8598bf378439 from=translated src=- shape=85dfed03 vocab=b02c58e3
+-/
 lemma eC_intCast (n : ℤ) : eC n = 1 := (eC_eq_one_iff _).2 ⟨n, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.8c3a44b532f8 from=translated src=- shape=0cfb200e vocab=819c821a
+-/
 lemma norm_eC (t : ℝ) : ‖eC t‖ = 1 := by
   unfold eC
   have : (2 * (π : ℂ) * I * (t : ℂ)) = ((2 * π * t : ℝ) : ℂ) * I := by push_cast; ring
   rw [this, Complex.norm_exp_ofReal_mul_I]
 
+/--
+@isnad1 id=eq.0h1v.s5.9a219fc8e2a2 from=translated src=- shape=14de6f63 vocab=70c13790
+-/
 lemma eC_re (t : ℝ) : (eC t).re = Real.cos (2 * π * t) := by
   unfold eC
   have : (2 * (π : ℂ) * I * (t : ℂ)) = ((2 * π * t : ℝ) : ℂ) * I := by push_cast; ring
   rw [this, Complex.exp_ofReal_mul_I_re]
 
+/--
+@isnad1 id=eq.0h3v.s5.8b5d987e1c75 from=translated src=- shape=b60f948b vocab=eeb46362
+-/
 lemma eC_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ) :
     eC (∑ i ∈ s, f i) = ∏ i ∈ s, eC (f i) := by
   unfold eC
@@ -70,6 +91,9 @@ lemma eC_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ) :
   push_cast
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h2v.s5.3d14626ac8a2 from=translated src=- shape=0193b439 vocab=012edb69
+-/
 lemma eC_nat_mul (n : ℕ) (t : ℝ) : eC (n * t) = eC t ^ n := by
   unfold eC
   rw [← Complex.exp_nat_mul]
@@ -77,7 +101,9 @@ lemma eC_nat_mul (n : ℕ) (t : ℝ) : eC (n * t) = eC t ^ n := by
   push_cast
   ring
 
-/-- `1 + e(θ) = e(θ/2) · 2 cos(π θ)`.-/
+/-- `1 + e(θ) = e(θ/2) · 2 cos(π θ)`.
+@isnad1 id=eq.0h1v.s6.7ceba8ee1555 from=translated src=- shape=fa939cd7 vocab=feb9e794
+-/
 lemma one_add_eC (θ : ℝ) :
     1 + eC θ = eC (θ / 2) * ((2 * Real.cos (π * θ) : ℝ) : ℂ) := by
   have h1 : ((2 * Real.cos (π * θ) : ℝ) : ℂ) =
@@ -96,16 +122,24 @@ lemma one_add_eC (θ : ℝ) :
     ring
   rw [e1, e2, Complex.exp_zero, add_comm]
 
+/--
+@isnad1 id=eq.0h1v.s5.30339844f6a0 from=translated src=- shape=1143180e vocab=e1cf7102
+-/
 lemma norm_one_add_eC (θ : ℝ) : ‖1 + eC θ‖ = 2 * |Real.cos (π * θ)| := by
   rw [one_add_eC, norm_mul, norm_eC, one_mul, Complex.norm_real, Real.norm_eq_abs, abs_mul,
     abs_two]
 
+/--
+@isnad1 id=le.0h1v.s4.e875e9f6493d from=translated src=- shape=3f40b302 vocab=9e28ad0f
+-/
 lemma norm_one_add_eC_le_two (θ : ℝ) : ‖1 + eC θ‖ ≤ 2 := by
   calc ‖1 + eC θ‖ ≤ ‖(1 : ℂ)‖ + ‖eC θ‖ := norm_add_le _ _
     _ = 2 := by rw [norm_one, norm_eC]; norm_num
 
 /-- `cos (π u) ≤ 1 - 4 u²` for `0 ≤ u ≤ 1/2`: Taylor bound for `u ≤ 3/10`, and
-`cos (π u) = sin (π (1/2 - u)) ≤ π (1/2 - u)` for `u ≥ 3/10`.-/
+`cos (π u) = sin (π (1/2 - u)) ≤ π (1/2 - u)` for `u ≥ 3/10`.
+@isnad1 id=le.2h1v.s6.b253c07ae462 from=translated src=- shape=3cbeb86d vocab=231ec4bb
+-/
 lemma cos_pi_mul_le (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1 / 2) :
     Real.cos (π * u) ≤ 1 - 4 * u ^ 2 := by
   have hpi1 := Real.pi_gt_d2
@@ -140,7 +174,9 @@ lemma cos_pi_mul_le (u : ℝ) (h0 : 0 ≤ u) (h1 : u ≤ 1 / 2) :
       mul_nonneg (by linarith) (by linarith)
     nlinarith
 
-/-- If `θ` is at distance `≥ δ` from every integer, then `‖1 + e(θ)‖ ≤ 2 (1 - 4 δ²)`.-/
+/-- If `θ` is at distance `≥ δ` from every integer, then `‖1 + e(θ)‖ ≤ 2 (1 - 4 δ²)`.
+@isnad1 id=le.2h2v.s6.792524be60e8 from=translated src=- shape=c511ba5f vocab=0e4f72e4
+-/
 lemma norm_one_add_eC_le_of_far (θ δ : ℝ) (hδ : 0 ≤ δ) (hfar : ∀ j : ℤ, δ ≤ |θ - j|) :
     ‖1 + eC θ‖ ≤ 2 * (1 - 4 * δ ^ 2) := by
   obtain ⟨j, hj⟩ : ∃ j : ℤ, |θ - j| ≤ 1 / 2 := ⟨round θ, abs_sub_round θ⟩
@@ -162,6 +198,9 @@ lemma norm_one_add_eC_le_of_far (θ δ : ℝ) (hδ : 0 ≤ δ) (hfar : ∀ j : �
 
 /-! ### Integrality and the window sum -/
 
+/--
+@isnad1 id=ex.1h2v.s5.69eba766fa37 from=translated src=- shape=07b0b8dc vocab=1537ee99
+-/
 lemma recipSum_mul_natCast_int (Z : Finset ℕ) (P : ℕ) (hZ : ∀ m ∈ Z, m ∣ P) :
     ∃ z : ℤ, recipSum Z * P = z := by
   refine ⟨∑ m ∈ Z, ((P / m : ℕ) : ℤ), ?_⟩
@@ -171,7 +210,9 @@ lemma recipSum_mul_natCast_int (Z : Finset ℕ) (P : ℕ) (hZ : ∀ m ∈ Z, m �
   ring
 
 open scoped Classical in
-/-- A complete geometric sum over a window of `P` consecutive integers.-/
+/-- A complete geometric sum over a window of `P` consecutive integers.
+@isnad1 id=eq.1h3v.s6.1cba2278d444 from=translated src=- shape=f7392982 vocab=272a3c45
+-/
 lemma sum_Ico_eC (r : ℝ) (P : ℕ) (hr : eC (P * r) = 1) (h₀ : ℤ) :
     ∑ h ∈ Finset.Ico h₀ (h₀ + P), eC ((h : ℝ) * r) =
       if ∃ k : ℤ, r = k then (P : ℂ) else 0 := by
@@ -212,7 +253,9 @@ lemma sum_Ico_eC (r : ℝ) (P : ℕ) (hr : eC (P * r) = 1) (h₀ : ℤ) :
 
 -- `hP` is part of the fixed statement but not needed (for `P = 0` both sides vanish).
 open scoped Classical in
-/-- The counting identity, over any window of `P` consecutive integers.-/
+/-- The counting identity, over any window of `P` consecutive integers.
+@isnad1 id=eq.3h4v.s7.2fcc6706a4d7 from=translated src=- shape=41903f5f vocab=0194dff5
+-/
 theorem fourier_count (Y : Finset ℕ) (P : ℕ) (hP : 0 < P) (hY : ∀ m ∈ Y, 0 < m ∧ m ∣ P)
     (x : ℚ) (hx : ∃ z : ℤ, x * P = z) (h₀ : ℤ) :
     ∑ h ∈ Finset.Ico h₀ (h₀ + P), eC (-((h : ℝ) * (x : ℝ))) * ∏ m ∈ Y, (1 + eC ((h : ℝ) / m)) =
@@ -256,13 +299,17 @@ theorem fourier_count (Y : Finset ℕ) (P : ℕ) (hP : 0 < P) (hY : ∀ m ∈ Y,
   · rw [ite_eq_left (hiff.2 hc), ite_eq_left hc, mul_one]
   · rw [ite_eq_right (fun h' => hc (hiff.1 h')), ite_eq_right hc, mul_zero]
 
-/-- The `h = 0` term.-/
+/-- The `h = 0` term.
+@isnad1 id=eq.0h2v.s6.e496c1d8af20 from=translated src=- shape=bf06e36d vocab=5152703f
+-/
 theorem term_zero (Y : Finset ℕ) (x : ℚ) :
     eC (-(((0 : ℤ) : ℝ) * (x : ℝ))) * ∏ m ∈ Y, (1 + eC (((0 : ℤ) : ℝ) / m)) = (2 : ℂ) ^ Y.card := by
   simp only [Int.cast_zero, zero_mul, neg_zero, zero_div, eC_zero, one_mul, Finset.prod_const]
   norm_num
 
-/-- Terms with small `|h|` have nonnegative real part.-/
+/-- Terms with small `|h|` have nonnegative real part.
+@isnad1 id=le.2h3v.s7.231e86bef24f from=translated src=- shape=3ee77d32 vocab=42611808
+-/
 theorem re_term_nonneg (Y : Finset ℕ) (x : ℚ) (h : ℤ)
     (hY : ∀ m ∈ Y, 0 < m ∧ 2 * |(h : ℝ)| ≤ m)
     (hsmall : |(h : ℝ) * ((recipSum Y : ℝ) / 2 - (x : ℝ))| ≤ 1 / 4) :
@@ -297,7 +344,9 @@ theorem re_term_nonneg (Y : Finset ℕ) (x : ℚ) (h : ℤ)
     apply mul_nonneg (by norm_num)
     apply Real.cos_nonneg_of_neg_pi_div_two_le_of_le <;> nlinarith [Real.pi_pos]
 
-/-- Norm bound: factors with `h/m` at distance `≥ δ` from every integer save `1 - 4 δ²`.-/
+/-- Norm bound: factors with `h/m` at distance `≥ δ` from every integer save `1 - 4 δ²`.
+@isnad1 id=le.4h5v.s8.cbce9754369b from=translated src=- shape=afd64735 vocab=88734d4b
+-/
 theorem norm_term_le (Y J : Finset ℕ) (hJ : J ⊆ Y) (x : ℚ) (h : ℤ) (δ : ℝ) (hδ : 0 ≤ δ)
     (hδ' : δ ≤ 1 / 2) (hfar : ∀ m ∈ J, ∀ j : ℤ, δ ≤ |(h : ℝ) / m - j|) :
     ‖eC (-((h : ℝ) * (x : ℝ))) * ∏ m ∈ Y, (1 + eC ((h : ℝ) / m))‖ ≤

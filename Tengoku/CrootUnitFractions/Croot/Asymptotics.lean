@@ -20,13 +20,21 @@ namespace AsymAux
 
 /-! ### Generic eventual bounds along `ℕ` -/
 
+/--
+@isnad1 id=eventual.1h2v.s5.3580cb828b6a from=translated src=- shape=5ccc07e1 vocab=d214ac1a
+-/
 lemma ev_rpow_ge {s : ℝ} (hs : 0 < s) (C : ℝ) : ∀ᶠ M : ℕ in atTop, C ≤ (M : ℝ) ^ s :=
   tendsto_natCast_atTop_atTop.eventually ((tendsto_rpow_atTop hs).eventually_ge_atTop C)
 
+/--
+@isnad1 id=eventual.0h1v.s4.f3863b71187f from=translated src=- shape=e8d442b5 vocab=2b74225b
+-/
 lemma ev_log_ge (C : ℝ) : ∀ᶠ M : ℕ in atTop, C ≤ Real.log (M : ℝ) :=
   tendsto_natCast_atTop_atTop.eventually (Real.tendsto_log_atTop.eventually_ge_atTop C)
 
-/-- `(log M)^n ≤ c M^s` eventually, for any `s > 0` and `c > 0`.-/
+/-- `(log M)^n ≤ c M^s` eventually, for any `s > 0` and `c > 0`.
+@isnad1 id=eventual.2h3v.s6.39109c6ba23f from=translated src=- shape=42b1b3d3 vocab=48b6f6e5
+-/
 lemma ev_log_pow_le (n : ℕ) {s : ℝ} (hs : 0 < s) {c : ℝ} (hc : 0 < c) :
     ∀ᶠ M : ℕ in atTop, Real.log (M : ℝ) ^ n ≤ c * (M : ℝ) ^ s := by
   have h : ∀ᶠ x : ℝ in atTop, Real.log x ^ n ≤ c * x ^ s := by
@@ -43,27 +51,42 @@ lemma ev_log_pow_le (n : ℕ) {s : ℝ} (hs : 0 < s) {c : ℝ} (hc : 0 < c) :
 
 /-! ### Numerical facts about logarithms -/
 
+/--
+@isnad1 id=le.0h0v.s5.eabc06892f07 from=translated src=- shape=63c521e8 vocab=78a65fa7
+-/
 lemma log_two_ge_half : (1 : ℝ) / 2 ≤ Real.log 2 := by
   have h := Real.one_sub_inv_le_log_of_pos (show (0 : ℝ) < 2 by norm_num)
   have h2 : (1 : ℝ) - 2⁻¹ = 1 / 2 := by norm_num
   linarith
 
+/--
+@isnad1 id=le.0h0v.s4.ac90dfe8523a from=translated src=- shape=3c26ae4f vocab=766ac740
+-/
 lemma log_two_le_one : Real.log 2 ≤ 1 := by
   have h := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 2 by norm_num)
   linarith
 
+/--
+@isnad1 id=le.0h0v.s4.c91a9f3af892 from=translated src=- shape=3c26ae4f vocab=766ac740
+-/
 lemma log_four_le_three : Real.log 4 ≤ 3 := by
   have h := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 4 by norm_num)
   linarith
 
 /-! ### The individual clauses of `prop2_eventually`, for a real variable `x` -/
 
+/--
+@isnad1 id=lt.2h1v.s7.4804d473ba17 from=translated src=- shape=e8eb10ad vocab=a4334a53
+-/
 lemma clause2 {x : ℝ} (hx : 0 < x) (hL : 2 ≤ Real.log x) :
     2 * x ^ (3 / 4 : ℝ) < x ^ (3 / 4 : ℝ) * Real.log x ^ 4 := by
   have h1 : 0 < x ^ (3 / 4 : ℝ) := Real.rpow_pos_of_pos hx _
   have h2 : (2 : ℝ) ^ 4 ≤ Real.log x ^ 4 := pow_le_pow_left₀ (by norm_num) hL 4
   nlinarith [mul_le_mul_of_nonneg_left h2 h1.le]
 
+/--
+@isnad1 id=lt.2h1v.s6.f04f3d1b97bc from=translated src=- shape=45ee034c vocab=210cda99
+-/
 lemma clause3 {x : ℝ} (hx : 0 < x) (h4 : 3 ≤ x ^ (1 / 4 : ℝ)) :
     x ^ (3 / 4 : ℝ) < x / 2 := by
   have e : x ^ (3 / 4 : ℝ) * x ^ (1 / 4 : ℝ) = x := by
@@ -71,7 +94,9 @@ lemma clause3 {x : ℝ} (hx : 0 < x) (h4 : 3 ≤ x ^ (1 / 4 : ℝ)) :
   have h1 : 0 < x ^ (3 / 4 : ℝ) := Real.rpow_pos_of_pos hx _
   nlinarith [mul_le_mul_of_nonneg_left h4 h1.le]
 
-/-- Clause 4: written with `w = x^{1/420}`, it reduces to `12 (log x)^4 ≤ w`.-/
+/-- Clause 4: written with `w = x^{1/420}`, it reduces to `12 (log x)^4 ≤ w`.
+@isnad1 id=le.6h2v.s8.524d65c1e364 from=translated src=- shape=ce27a3c9 vocab=5a31136b
+-/
 lemma clause4 {x y : ℝ} (hx : 0 < x) (hy0 : 0 ≤ y) (hy : y ≤ x ^ (1 / 5 : ℝ))
     (hL : 1 ≤ Real.log x) (hw1 : 1 ≤ x ^ (1 / 420 : ℝ))
     (hkey : Real.log x ^ 4 ≤ 1 / 12 * x ^ (1 / 420 : ℝ)) :
@@ -99,12 +124,17 @@ lemma clause4 {x y : ℝ} (hx : 0 < x) (hy0 : 0 ≤ y) (hy : y ≤ x ^ (1 / 5 : 
     _ ≤ w ^ 399 * (w / 2) := mul_le_mul_of_nonneg_left (by linarith) (by positivity)
     _ = w ^ 400 / 2 := by ring
 
+/--
+@isnad1 id=le.3h2v.s7.10f1a539654a from=translated src=- shape=b2b9b06b vocab=5c9d27ef
+-/
 lemma clause5 {x η : ℝ} (hx : 0 < x) (hη : 0 < η) (h3 : x ^ (3 / 4 : ℝ) < x / 2) :
     x ^ (3 / 4 : ℝ) / ((1 + η) * x) ≤ 1 / 2 := by
   rw [div_le_iff₀ (by positivity)]
   nlinarith [mul_pos hη hx]
 
-/-- Clause 6, via Chebyshev's lower bound `ψ(u) ≥ (u - 1) log 2 - log (u + 2)`.-/
+/-- Clause 6, via Chebyshev's lower bound `ψ(u) ≥ (u - 1) log 2 - log (u + 2)`.
+@isnad1 id=lt.3h1v.s7.015dc9d35d3d from=translated src=- shape=d7d3456d vocab=cebc5ae8
+-/
 lemma clause6 {x : ℝ} (hx : 0 < x) (hu : 12 ≤ x ^ (1 / 5 : ℝ))
     (hlog : Real.log x ≤ 1 / 4 * x ^ (1 / 5 : ℝ)) :
     2 * x ^ (3 / 4 : ℝ) < (Nat.lcmUpto ⌊x ^ (1 / 5 : ℝ)⌋₊ : ℝ) := by
@@ -130,7 +160,9 @@ lemma clause6 {x : ℝ} (hx : 0 < x) (hu : 12 ≤ x ^ (1 / 5 : ℝ))
     mul_nonneg (by linarith) (by linarith)
   linarith
 
-/-- The algebraic core of clause 7 (with `r = x^{1/20}`).-/
+/-- The algebraic core of clause 7 (with `r = x^{1/20}`).
+@isnad1 id=le.9h6v.s8.481c1e196a9e from=translated src=- shape=4a7b6fd0 vocab=5c9d27ef
+-/
 lemma clause7_core {x L D η cG B : ℝ} (hx : 0 < x) (hη : 0 < η) (hη1 : η ≤ 1) (hcG : 0 < cG)
     (hB : 0 < B) (hL : 1 ≤ L) (hD0 : 0 < D) (hD : D ≤ 27 * L ^ 3 * B)
     (hr : 216 * B / cG ≤ x ^ (1 / 20 : ℝ)) :
@@ -165,7 +197,9 @@ lemma clause7_core {x L D η cG B : ℝ} (hx : 0 < x) (hη : 0 < η) (hη1 : η 
     _ = 4 * cG * r ^ 5 * L ^ 4 := by ring
 
 /-- Clause 7: `log (2 P) ≤ log 2 + ψ(M^{1/5}) ≤ 8 M^{1/5}`, while the exponent is
-`≥ cG M^{1/4} (log M)^4 / D` with `D ≤ 27 (log M)^3 B`.-/
+`≥ cG M^{1/4} (log M)^4 / D` with `D ≤ 27 (log M)^3 B`.
+@isnad1 id=le.8h4v.s9.cff55202f8bd from=translated src=- shape=0a63118d vocab=b8d1048b
+-/
 lemma clause7 {η cG : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) (hcG : 0 < cG) {B : ℕ} (hB : 0 < B)
     {M : ℕ} (hM : 0 < M) (hL : 4 ≤ Real.log M) (hr : 216 * B / cG ≤ (M : ℝ) ^ (1 / 20 : ℝ))
     (hu1 : 1 ≤ (M : ℝ) ^ (1 / 5 : ℝ)) :
@@ -217,7 +251,9 @@ end AsymAux
 
 open AsymAux
 
-/-- All "for `M` large" facts used in the proof of Proposition 2.-/
+/-- All "for `M` large" facts used in the proof of Proposition 2.
+@isnad1 id=eventual.4h3v.s10.aea6038365cf from=translated src=- shape=c6c201d3 vocab=cabce5e5
+-/
 lemma prop2_eventually (η : ℝ) (hη : 0 < η) (hη1 : η ≤ 1) (cG : ℝ) (hcG : 0 < cG) (B : ℕ)
     (hB : 0 < B) : ∀ᶠ M : ℕ in atTop,
     0 < M ∧
@@ -249,7 +285,9 @@ lemma prop2_eventually (η : ℝ) (hη : 0 < η) (hη1 : η ≤ 1) (cG : ℝ) (h
     Nat.le_floor ?_⟩
   exact_mod_cast (show (2 : ℝ) ≤ (M : ℝ) ^ (1 / 5 : ℝ) by linarith)
 
-/-- The residual `x` produced by Proposition 1 is not too small for Proposition 2.-/
+/-- The residual `x` produced by Proposition 1 is not too small for Proposition 2.
+@isnad1 id=eventual.0h0v.s6.89ac7c95c8aa from=translated src=- shape=5f9f71cd vocab=3a381712
+-/
 lemma main_eventually : ∀ᶠ N : ℕ in atTop,
     1 / (N : ℝ) + (N : ℝ) ^ (-(1 / 21 : ℝ)) ≤ 1 / (20 * Real.log N) := by
   filter_upwards [eventually_ge_atTop 3,

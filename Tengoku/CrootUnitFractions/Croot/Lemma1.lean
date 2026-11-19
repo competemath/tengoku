@@ -49,7 +49,9 @@ section Fourier
 
 variable {n : ℕ} [NeZero n]
 
-/-- An additive character turns finite sums into products.-/
+/-- An additive character turns finite sums into products.
+@isnad1 id=eq.0h4v.s7.23352fcbcb25 from=translated src=- shape=8bcf87ad vocab=18e5c1c7
+-/
 lemma stdAddChar_sum {ι : Type*} [DecidableEq ι] (T : Finset ι) (f : ι → ZMod n) :
     ZMod.stdAddChar (∑ i ∈ T, f i) = ∏ i ∈ T, ZMod.stdAddChar (f i) := by
   induction T using Finset.induction_on with
@@ -58,7 +60,9 @@ lemma stdAddChar_sum {ι : Type*} [DecidableEq ι] (T : Finset ι) (f : ι → Z
     rw [Finset.sum_insert ha, Finset.prod_insert ha, AddChar.map_add_eq_mul, ih]
 
 /-- Fourier criterion: if every nontrivial frequency `h` gives a product of norm at most
-`2^|R| / n`, then every residue class is a subset sum of the `u i`.-/
+`2^|R| / n`, then every residue class is a subset sum of the `u i`.
+@isnad1 id=ex.1h5v.s7.03615d619ced from=translated src=- shape=cca1259d vocab=32e26c6c
+-/
 theorem exists_subset_sum_of_norm_prod_le {ι : Type*} [DecidableEq ι] (R : Finset ι)
     (u : ι → ZMod n)
     (hbound : ∀ h : ZMod n, h ≠ 0 →
@@ -111,7 +115,9 @@ theorem exists_subset_sum_of_norm_prod_le {ι : Type*} [DecidableEq ι] (R : Fin
     nlinarith
   linarith
 
-/-- `‖1 + e(x/n)‖² ≤ 4 - 16 (t/n)²`, where `t` is the least absolute residue of `x`.-/
+/-- `‖1 + e(x/n)‖² ≤ 4 - 16 (t/n)²`, where `t` is the least absolute residue of `x`.
+@isnad1 id=le.0h2v.s7.d14aafe366fe from=translated src=- shape=1c203c7c vocab=c7ead6f5
+-/
 lemma norm_one_add_stdAddChar_sq_le (x : ZMod n) :
     ‖1 + ZMod.stdAddChar x‖ ^ 2 ≤ 4 - 16 * ((x.valMinAbs : ℝ) / n) ^ 2 := by
   set t := x.valMinAbs with ht
@@ -152,6 +158,9 @@ end Fourier
 
 /-! ### Step 2: few primes of size `≥ y` divide a nonzero integer -/
 
+/--
+@isnad1 id=le.4h3v.s6.2fd55a375d9f from=translated src=- shape=1569a71b vocab=2ff4dbd9
+-/
 lemma pow_card_le_of_primes_dvd (A : Finset ℕ) (y : ℝ) (hy : 0 ≤ y)
     (hA : ∀ a ∈ A, a.Prime ∧ y ≤ a) (z : ℤ) (hz : z ≠ 0) (hdvd : ∀ a ∈ A, (a : ℤ) ∣ z) :
     y ^ A.card ≤ |(z : ℝ)| := by
@@ -168,7 +177,9 @@ lemma pow_card_le_of_primes_dvd (A : Finset ℕ) (y : ℝ) (hy : 0 ≤ y)
   _ ≤ (z.natAbs : ℝ) := by exact_mod_cast h2
   _ = |(z : ℝ)| := by rw [Nat.cast_natAbs, Int.cast_abs]
 
-/-- The pigeonhole step: few `r` have `|r t_r|` small.-/
+/-- The pigeonhole step: few `r` have `|r t_r|` small.
+@isnad1 id=le.7h7v.s8.c8fc9acb275f from=translated src=- shape=d1ab44d0 vocab=3cc8c9b8
+-/
 lemma card_bad_le (n H : ℕ) (hH0 : 0 < H) (hHn : H < n)
     (R : Finset ℕ) (y : ℝ) (hy : 1 ≤ y) (hR : ∀ r ∈ R, r.Prime ∧ y ≤ r)
     (t : ℕ → ℤ) (ht : ∀ r ∈ R, (n : ℤ) ∣ r * t r - H)
@@ -269,6 +280,9 @@ lemma card_bad_le (n H : ℕ) (hH0 : 0 < H) (hHn : H < n)
 
 /-! ### Step 3: elementary inequalities for large `w` -/
 
+/--
+@isnad1 id=le.1h1v.s7.e198cb487b04 from=translated src=- shape=a4cd2f2d vocab=e624faf6
+-/
 lemma ineq_bad (w : ℝ) (hw : 10 ≤ w) :
     (2 * (w ^ 28 + 1) + 1) * (2 * w ^ 10) ≤ w ^ 39 / 2 := by
   have h10 : 0 < w ^ 10 := by positivity
@@ -284,6 +298,9 @@ lemma ineq_bad (w : ℝ) (hw : 10 ≤ w) :
   rw [this]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s7.2108df7cb3ee from=translated src=- shape=7dc4f34d vocab=d46e17f2
+-/
 lemma ineq_good (w : ℝ) (hw : 10 ≤ w) :
     2 * w ^ 10 ≤ (w ^ 39 / 2) * (4 / (9 * w ^ 24)) := by
   have hw0 : 0 < w := by linarith
@@ -299,6 +316,9 @@ lemma ineq_good (w : ℝ) (hw : 10 ≤ w) :
   have h10 : 0 < w ^ 10 := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.b7da1a57a5fa from=translated src=- shape=16377d62 vocab=b32629dc
+-/
 lemma ineq_exp (w : ℝ) (hw : 10 ≤ w) : w ^ 28 + 2 ≤ Real.exp (w ^ 10) := by
   have h := Real.pow_div_factorial_le_exp (w ^ 10) (by positivity) 3
   have hf : ((Nat.factorial 3 : ℕ) : ℝ) = 6 := by norm_num [Nat.factorial]
@@ -309,6 +329,9 @@ lemma ineq_exp (w : ℝ) (hw : 10 ≤ w) : w ^ 28 + 2 ≤ Real.exp (w ^ 10) := b
   have h28 : 1 ≤ w ^ 28 := one_le_pow₀ (by linarith)
   nlinarith [mul_le_mul_of_nonneg_right h2 (by positivity : (0 : ℝ) ≤ w ^ 28)]
 
+/--
+@isnad1 id=le.1h1v.s5.f2507f04a320 from=translated src=- shape=b4541e08 vocab=fc3fcf5f
+-/
 lemma ineq_e (w : ℝ) (hw : 10 ≤ w) : Real.exp 1 ≤ w ^ 40 / 4 := by
   have h := Real.exp_one_lt_three
   have : (10 : ℝ) ^ 40 ≤ w ^ 40 := pow_le_pow_left₀ (by norm_num) hw 40
@@ -317,6 +340,9 @@ lemma ineq_e (w : ℝ) (hw : 10 ≤ w) : Real.exp 1 ≤ w ^ 40 / 4 := by
 
 /-! ### Step 4: the bound on each nontrivial Fourier coefficient -/
 
+/--
+@isnad1 id=le.5h4v.s8.601e0853d5a6 from=translated src=- shape=b625cce3 vocab=0a728ffb
+-/
 theorem norm_prod_le (n : ℕ) [NeZero n] (w : ℝ) (hw : 10 ≤ w)
     (hn_exp : (n : ℝ) = Real.exp (w ^ 10))
     (R : Finset ℕ) (hR : ∀ r ∈ R, r.Prime ∧ ¬ r ∣ n ∧ w ^ 40 / 4 ≤ r ∧ (r : ℝ) ≤ 3 * w ^ 40)
@@ -457,6 +483,9 @@ end Lemma1Aux
 
 /-! ### Step 5: Croot's Lemma 1 -/
 
+/--
+@isnad1 id=eventual.0h0v.s7.d2f98996e55c from=translated src=- shape=3a970129 vocab=e149c6da
+-/
 theorem lemma1 : ∀ᶠ n : ℕ in atTop, ∀ R : Finset ℕ,
     (∀ r ∈ R, r.Prime ∧ ¬ r ∣ n ∧ (Real.log n) ^ 4 / 4 ≤ r ∧ (r : ℝ) ≤ 3 * (Real.log n) ^ 4) →
     (Real.log n) ^ (39 / 10 : ℝ) ≤ R.card →

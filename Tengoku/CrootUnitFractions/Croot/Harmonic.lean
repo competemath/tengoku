@@ -17,18 +17,24 @@ namespace Croot
 
 open Real Finset
 
-/-- Peeling off the top point of `(N, M + 1]`.-/
+/-- Peeling off the top point of `(N, M + 1]`.
+@isnad1 id=eq.1h2v.s6.4bb3032e4837 from=translated src=- shape=ee325c13 vocab=4464a26b
+-/
 lemma recipSum_Ioc_succ {N M : ℕ} (h : N ≤ M) :
     recipSum (Ioc N (M + 1)) = recipSum (Ioc N M) + 1 / ((M : ℚ) + 1) := by
   rw [recipSum, Finset.sum_Ioc_succ_top h, recipSum]
   push_cast
   ring
 
-/-- `(N, M]` is empty when `M ≤ N`.-/
+/-- `(N, M]` is empty when `M ≤ N`.
+@isnad1 id=eq.1h2v.s4.cd1726816580 from=translated src=- shape=0aa77184 vocab=909699b0
+-/
 lemma recipSum_Ioc_of_le {N M : ℕ} (h : M ≤ N) : recipSum (Ioc N M) = 0 := by
   rw [Finset.Ioc_eq_empty_of_le h, recipSum_empty]
 
-/-- `1/(x+1) ≤ log (x+1) - log x` for `x > 0` (from `log t ≤ t - 1` at `t = x/(x+1)`).-/
+/-- `1/(x+1) ≤ log (x+1) - log x` for `x > 0` (from `log t ≤ t - 1` at `t = x/(x+1)`).
+@isnad1 id=le.1h1v.s6.c4be07f7a83e from=translated src=- shape=d5c29791 vocab=5d2b6371
+-/
 lemma one_div_add_one_le_log_sub {x : ℝ} (hx : 0 < x) :
     1 / (x + 1) ≤ Real.log (x + 1) - Real.log x := by
   have h := Real.log_le_sub_one_of_pos (show 0 < x / (x + 1) by positivity)
@@ -36,7 +42,9 @@ lemma one_div_add_one_le_log_sub {x : ℝ} (hx : 0 < x) :
   have e : x / (x + 1) - 1 = -(1 / (x + 1)) := by field_simp; ring
   linarith
 
-/-- `log (x+1) - log x ≤ 1/x` for `x > 0` (from `log t ≤ t - 1` at `t = (x+1)/x`).-/
+/-- `log (x+1) - log x ≤ 1/x` for `x > 0` (from `log t ≤ t - 1` at `t = (x+1)/x`).
+@isnad1 id=le.1h1v.s5.9d5bda0c73dd from=translated src=- shape=541b7232 vocab=5d2b6371
+-/
 lemma log_add_one_sub_log_le {x : ℝ} (hx : 0 < x) :
     Real.log (x + 1) - Real.log x ≤ 1 / x := by
   have h := Real.log_le_sub_one_of_pos (show 0 < (x + 1) / x by positivity)
@@ -44,7 +52,9 @@ lemma log_add_one_sub_log_le {x : ℝ} (hx : 0 < x) :
   have e : (x + 1) / x - 1 = 1 / x := by field_simp; ring
   linarith
 
-/-- `∑_{n=N+1}^{M} 1/n ≤ log (M/N)`.-/
+/-- `∑_{n=N+1}^{M} 1/n ≤ log (M/N)`.
+@isnad1 id=le.2h2v.s5.98e84cc12fe0 from=translated src=- shape=9b03699b vocab=320933d0
+-/
 theorem recipSum_Ioc_le_log {N M : ℕ} (hN : 1 ≤ N) (hNM : N ≤ M) :
     ((recipSum (Ioc N M) : ℚ) : ℝ) ≤ Real.log ((M : ℝ) / N) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast hN
@@ -61,7 +71,9 @@ theorem recipSum_Ioc_le_log {N M : ℕ} (hN : 1 ≤ N) (hNM : N ≤ M) :
     push_cast
     linarith
 
-/-- `log ((M+1)/(N+1)) ≤ ∑_{n=N+1}^{M} 1/n`.-/
+/-- `log ((M+1)/(N+1)) ≤ ∑_{n=N+1}^{M} 1/n`.
+@isnad1 id=le.1h2v.s6.b32cc8c98a5d from=translated src=- shape=c48b9896 vocab=6ea6abf6
+-/
 theorem log_le_recipSum_Ioc {N M : ℕ} (hNM : N ≤ M) :
     Real.log (((M : ℝ) + 1) / ((N : ℝ) + 1)) ≤ ((recipSum (Ioc N M) : ℚ) : ℝ) := by
   have hN0 : (0 : ℝ) < (N : ℝ) + 1 := by positivity
@@ -77,7 +89,9 @@ theorem log_le_recipSum_Ioc {N M : ℕ} (hNM : N ≤ M) :
     rw [Real.log_div (by positivity) hN0.ne']
     linarith
 
-/-- The harmonic block starting after `N`.-/
+/-- The harmonic block starting after `N`.
+@isnad1 id=ex.1h1v.s7.1f2daa9d5a98 from=translated src=- shape=65234b18 vocab=1e2ee71f
+-/
 theorem exists_harmonic_block {N : ℕ} (hN : 1 ≤ N) : ∃ M : ℕ, N < M ∧
     1 ≤ recipSum (Ioc N M) ∧ recipSum (Ioc N M) < 1 + 1 / (M : ℚ) ∧
     Real.exp 1 * N ≤ M ∧ (M : ℝ) ≤ Real.exp 1 * N + 3 := by

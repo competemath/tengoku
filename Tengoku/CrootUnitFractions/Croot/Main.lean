@@ -32,7 +32,9 @@ namespace Croot
 
 open Real Finset Filter
 
-/-- The denominator of `1 - q` divides that of `q`.-/
+/-- The denominator of `1 - q` divides that of `q`.
+@isnad1 id=dvd.0h1v.s4.545c8ecce5d2 from=translated src=- shape=48d9f9ac vocab=5ef216fa
+-/
 lemma den_one_sub_dvd (q : ℚ) : (1 - q).den ∣ q.den := by
   have hq : (q.den : ℚ) ≠ 0 := by exact_mod_cast q.den_ne_zero
   have key : 1 - q = (((q.den : ℤ) - q.num : ℤ) : ℚ) / ((q.den : ℤ) : ℚ) := by
@@ -45,7 +47,9 @@ lemma den_one_sub_dvd (q : ℚ) : (1 - q).den ∣ q.den := by
 
 /-- **Croot's theorem** (the case `r = 1` of the Main Theorem of [Croot 2001], with an `o(1)`
 error term): for every `ε > 0` and every sufficiently large `N` there is a finite set of
-(distinct) integers in `(N, (e + ε) N]` whose reciprocals sum to `1`.-/
+(distinct) integers in `(N, (e + ε) N]` whose reciprocals sum to `1`.
+@isnad1 id=eventual.1h1v.s6.421c9b6790e5 from=translated src=- shape=28a21aa8 vocab=181c4849
+-/
 theorem croot_upper (ε : ℝ) (hε : 0 < ε) : ∀ᶠ N : ℕ in atTop,
     ∃ X ⊆ Ioc N ⌊(Real.exp 1 + ε) * N⌋₊, recipSum X = 1 := by
   have he : 0 < Real.exp 1 := Real.exp_pos 1
@@ -132,7 +136,9 @@ theorem croot_upper (ε : ℝ) (hε : 0 < ε) : ∀ᶠ N : ℕ in atTop,
     ring
 
 /-- The trivial lower bound: if distinct integers in `(N, U]` have reciprocal sum `1`, then
-`U ≥ e N`.-/
+`U ≥ e N`.
+@isnad1 id=le.3h3v.s6.2f1039d80eb4 from=translated src=- shape=42b308d6 vocab=745c7226
+-/
 theorem croot_lower {N U : ℕ} (hN : 1 ≤ N) {X : Finset ℕ} (hX : X ⊆ Ioc N U)
     (h : recipSum X = 1) : Real.exp 1 * N ≤ U := by
   have hNU : N ≤ U := by
@@ -163,7 +169,9 @@ noncomputable def shortestEnd (N : ℕ) : ℕ :=
   sInf {U : ℕ | ∃ X ⊆ Finset.Ioc N U, recipSum X = 1}
 
 /-- **Answer to JSP-000243 / Erdős–Graham**: the shortest interval `(N, U]` containing distinct
-integers whose reciprocals sum to one has `U ~ e N`, i.e. width `(e - 1 + o(1)) N`.-/
+integers whose reciprocals sum to one has `U ~ e N`, i.e. width `(e - 1 + o(1)) N`.
+@isnad1 id=tendsto.0h0v.s5.018da8ceeb32 from=translated src=- shape=d278c8ab vocab=396a5334
+-/
 theorem tendsto_shortestEnd :
     Tendsto (fun N : ℕ => (shortestEnd N : ℝ) / N) atTop (nhds (Real.exp 1)) := by
   rw [tendsto_order]
@@ -196,7 +204,9 @@ def Admissible (X : Finset ℕ) : Prop := X.Nonempty ∧ (∀ x ∈ X, 2 ≤ x) 
 /-- `x_max / x_min ≤ C` for the finite set `X`.-/
 def RatioLE (X : Finset ℕ) (C : ℝ) : Prop := ∀ a ∈ X, ∀ b ∈ X, (a : ℝ) ≤ C * b
 
-/-- For every `ε > 0` there are infinitely many admissible sets with `x_max / x_min ≤ e + ε`.-/
+/-- For every `ε > 0` there are infinitely many admissible sets with `x_max / x_min ≤ e + ε`.
+@isnad1 id=infinite.1h1v.s5.7d5334ca9156 from=translated src=- shape=f52f676c vocab=8dde30a9
+-/
 theorem infinite_admissible_ratio_le (ε : ℝ) (hε : 0 < ε) :
     {X : Finset ℕ | Admissible X ∧ RatioLE X (Real.exp 1 + ε)}.Infinite := by
   -- the maps `X ↦ max X` is unbounded on this family
@@ -234,11 +244,15 @@ theorem infinite_admissible_ratio_le (ε : ℝ) (hε : 0 < ε) :
   exact hunb (hfin.image _).bddAbove
 
 /-- **Erdős–Graham, question 1**: there are infinitely many sets `2 ≤ x₁ < ⋯ < x_k` with
-`∑ 1/xᵢ = 1` and `x_k / x₁` bounded.-/
+`∑ 1/xᵢ = 1` and `x_k / x₁` bounded.
+@isnad1 id=ex.0h0v.s4.cff20a319f76 from=translated src=- shape=b3ab30b4 vocab=3f26fc4d
+-/
 theorem erdos_graham_q1 : ∃ C : ℝ, {X : Finset ℕ | Admissible X ∧ RatioLE X C}.Infinite :=
   ⟨Real.exp 1 + 1, infinite_admissible_ratio_le 1 one_pos⟩
 
-/-- Only finitely many admissible sets have `x_max / x_min ≤ e - ε` (the "trivial" bound).-/
+/-- Only finitely many admissible sets have `x_max / x_min ≤ e - ε` (the "trivial" bound).
+@isnad1 id=finite.1h1v.s5.17f9859e1efb from=translated src=- shape=f52f676c vocab=9cbf613a
+-/
 theorem finite_admissible_ratio_le (ε : ℝ) (hε : 0 < ε) :
     {X : Finset ℕ | Admissible X ∧ RatioLE X (Real.exp 1 - ε)}.Finite := by
   have he : 0 < Real.exp 1 := Real.exp_pos 1
@@ -285,6 +299,9 @@ abbrev AdmSet : Type := {X : Finset ℕ // Admissible X}
 noncomputable def AdmSet.ratio (X : AdmSet) : ℝ :=
   (X.1.max' X.2.1 : ℝ) / (X.1.min' X.2.1 : ℝ)
 
+/--
+@isnad1 id=iff.0h2v.s4.26f2df96693c from=translated src=- shape=f5f8978f vocab=9081e857
+-/
 lemma AdmSet.ratio_le_iff (X : AdmSet) (C : ℝ) : X.ratio ≤ C ↔ RatioLE X.1 C := by
   have hmin2 : 2 ≤ X.1.min' X.2.1 := X.2.2.1 _ (Finset.min'_mem _ _)
   have hmin_pos : (0 : ℝ) < X.1.min' X.2.1 := by
@@ -311,7 +328,9 @@ lemma AdmSet.ratio_le_iff (X : AdmSet) (C : ℝ) : X.ratio ≤ C ↔ RatioLE X.1
     exact h _ (Finset.max'_mem _ _) _ (Finset.min'_mem _ _)
 
 /-- **Erdős–Graham, question 2**: `liminf x_k / x₁ = e`, the `liminf` being taken over all
-admissible sets `{x₁ < ⋯ < x_k}` (along the cofinite filter).-/
+admissible sets `{x₁ < ⋯ < x_k}` (along the cofinite filter).
+@isnad1 id=eq.0h0v.s4.8fa73633cf96 from=translated src=- shape=d6656034 vocab=4b6d41f5
+-/
 theorem liminf_ratio_eq_exp_one :
     Filter.liminf AdmSet.ratio Filter.cofinite = Real.exp 1 := by
   have hpos : ∀ X : AdmSet, 0 ≤ X.ratio := fun X => by unfold AdmSet.ratio; positivity

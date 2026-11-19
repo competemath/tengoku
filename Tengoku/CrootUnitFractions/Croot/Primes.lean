@@ -23,7 +23,9 @@ namespace Croot
 
 open Real Finset Filter
 
-/-- For every `n` and every `ε > 0`, eventually `(log x) ^ n ≤ ε √x`.-/
+/-- For every `n` and every `ε > 0`, eventually `(log x) ^ n ≤ ε √x`.
+@isnad1 id=eventual.1h2v.s5.ce57adffa881 from=translated src=- shape=dd8703da vocab=3c9717bf
+-/
 lemma eventually_log_pow_le_mul_sqrt (n : ℕ) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ x : ℝ in atTop, Real.log x ^ n ≤ ε * √x := by
   have h := (isLittleO_log_rpow_rpow_atTop (n : ℝ) (by norm_num : (0 : ℝ) < 1 / 2)).bound hε
@@ -37,7 +39,9 @@ lemma eventually_log_pow_le_mul_sqrt (n : ℕ) {ε : ℝ} (hε : 0 < ε) :
   rw [e1, e2] at hx'
   exact hx'
 
-/-- For large `x` there are at least `x / (5 log x)` primes in `(x, 2.7 x]`.-/
+/-- For large `x` there are at least `x / (5 log x)` primes in `(x, 2.7 x]`.
+@isnad1 id=eventual.0h0v.s6.c5743163777a from=translated src=- shape=1e28843f vocab=34d77cd3
+-/
 theorem eventually_card_primes_Ioc_ge : ∀ᶠ x : ℝ in atTop,
     x / (5 * Real.log x) ≤
       (((Ioc ⌊x⌋₊ ⌊(27 / 10 : ℝ) * x⌋₊).filter Nat.Prime).card : ℝ) := by
@@ -105,7 +109,9 @@ theorem eventually_card_primes_Ioc_ge : ∀ᶠ x : ℝ in atTop,
   rw [div_le_iff₀ (by linarith)]
   linarith [hsum, hdiff, hc1, hc2]
 
-/-- For large `x` the number of prime powers in `[1, x]` is at most `4 x / log x`.-/
+/-- For large `x` the number of prime powers in `[1, x]` is at most `4 x / log x`.
+@isnad1 id=eventual.0h0v.s6.bd55cf41071a from=translated src=- shape=6b4121ed vocab=9f13eded
+-/
 theorem eventually_card_primePow_le : ∀ᶠ x : ℝ in atTop,
     (((Icc 1 ⌊x⌋₊).filter IsPrimePow).card : ℝ) ≤ 4 * x / Real.log x := by
   filter_upwards [eventually_ge_atTop (2 : ℝ),
@@ -186,7 +192,9 @@ theorem eventually_card_primePow_le : ∀ᶠ x : ℝ in atTop,
       4 * x / Real.log x := by ring
   linarith [hπ', hrest, key, e2]
 
-/-- Dyadic-block bound for reciprocal sums of prime powers.-/
+/-- Dyadic-block bound for reciprocal sums of prime powers.
+@isnad1 id=ex.0h0v.s6.c72c79c13cd1 from=translated src=- shape=40a8b963 vocab=07a15475
+-/
 lemma exists_sum_inv_primePow_Ioc_le : ∃ A₀ : ℕ, ∀ A B : ℕ, A₀ ≤ A → A ≤ B →
     ∑ q ∈ (Ioc A B).filter IsPrimePow, (1 : ℝ) / q ≤
       12 * (Real.log B - Real.log A + 2) / Real.log A := by
@@ -300,7 +308,9 @@ lemma exists_sum_inv_primePow_Ioc_le : ∃ A₀ : ℕ, ∀ A B : ℕ, A₀ ≤ A
           mul_le_mul_of_nonneg_right (by linarith) (mul_nonneg hu hlA.le)
         linarith [h2, h3, h4]
 
-/-- The reciprocal sum of the prime powers in `(N / (log N)^4, 3 N]` tends to `0`.-/
+/-- The reciprocal sum of the prime powers in `(N / (log N)^4, 3 N]` tends to `0`.
+@isnad1 id=tendsto.0h0v.s6.ae8d67f5b5ef from=translated src=- shape=7e963b82 vocab=c21ca305
+-/
 theorem tendsto_sum_inv_primePow_Ioc :
     Tendsto (fun N : ℕ => ∑ q ∈ (Ioc ⌊(N : ℝ) / (Real.log N) ^ 4⌋₊ (3 * N)).filter IsPrimePow,
       (1 : ℝ) / q) atTop (nhds 0) := by

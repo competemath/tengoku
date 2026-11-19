@@ -31,7 +31,9 @@ namespace CoreAux
 
 /-! ### Counting helpers -/
 
-/-- `Ω(m) ≤ log₂ m`.-/
+/-- `Ω(m) ≤ log₂ m`.
+@isnad1 id=le.1h1v.s5.1e703cb3c2d3 from=translated src=- shape=796069dc vocab=2fd3bb18
+-/
 lemma sum_factorization_le_log (m : ℕ) (hm : m ≠ 0) :
     ∑ p ∈ m.primeFactors, m.factorization p ≤ Nat.log 2 m := by
   apply Nat.le_log_of_pow_le one_lt_two
@@ -45,6 +47,9 @@ lemma sum_factorization_le_log (m : ℕ) (hm : m ≠ 0) :
         exact Nat.pow_le_pow_left (Nat.prime_of_mem_primeFactors hp).two_le _
     _ = m := hprod
 
+/--
+@isnad1 id=le.0h1v.s4.a3d29c3c294b from=translated src=- shape=b6900626 vocab=f247cfef
+-/
 lemma card_primeFactors_le_log (m : ℕ) : m.primeFactors.card ≤ Nat.log 2 m := by
   rcases Nat.eq_zero_or_pos m with h0 | hpos
   · subst h0; simp
@@ -56,6 +61,9 @@ lemma card_primeFactors_le_log (m : ℕ) : m.primeFactors.card ≤ Nat.log 2 m :
         exact hpp.factorization_pos_of_dvd hpos.ne' (Nat.dvd_of_mem_primeFactors hp)
     _ ≤ Nat.log 2 m := sum_factorization_le_log m hpos.ne'
 
+/--
+@isnad1 id=le.1h1v.s4.4c9072d2eecf from=translated src=- shape=be53984c vocab=02ad7583
+-/
 lemma card_ppDivs_le (m : ℕ) (hm : m ≠ 0) : (ppDivs m).card ≤ Nat.log 2 m := by
   have hsub : ppDivs m ⊆ m.primeFactors.biUnion
       (fun p => (Finset.Icc 1 (m.factorization p)).image (fun j => p ^ j)) := by
@@ -80,6 +88,9 @@ lemma card_ppDivs_le (m : ℕ) (hm : m ≠ 0) : (ppDivs m).card ≤ Nat.log 2 m 
         simp
     _ ≤ Nat.log 2 m := sum_factorization_le_log m hm
 
+/--
+@isnad1 id=le.1h2v.s6.19e1f5712319 from=translated src=- shape=65dffd92 vocab=c68a6682
+-/
 lemma card_cofSet_le (B m : ℕ) (hm : m ≠ 0) :
     (cofSet B m).card ≤ (Nat.log 2 m + 2) ^ 3 * B := by
   unfold cofSet
@@ -97,7 +108,9 @@ lemma card_cofSet_le (B m : ℕ) (hm : m ≠ 0) :
 
 end CoreAux
 
-/-- Few `n` can give the same `m`.-/
+/-- Few `n` can give the same `m`.
+@isnad1 id=le.1h3v.s7.4acf146fb2f8 from=translated src=- shape=a6b715ad vocab=b1d9fdb9
+-/
 theorem card_fiber_le (B m : ℕ) (hm : 0 < m) (S : Finset ℕ) :
     (S.filter (fun n => n ∣ m ∧ m / n ∈ cofSet B m)).card ≤ (Nat.log 2 m + 2) ^ 3 * B := by
   refine le_trans ?_ (CoreAux.card_cofSet_le B m hm.ne')
@@ -111,7 +124,9 @@ theorem card_fiber_le (B m : ℕ) (hm : 0 < m) (S : Finset ℕ) :
     rw [← Nat.div_div_self ha.2.1 hm.ne', ← Nat.div_div_self hb.2.1 hm.ne', hab]
 
 /-- A finite set of positive `y`-pp-smooth integers containing, for every prime `p ≤ y`, a
-multiple of `p ^ ⌊log_p y⌋` has least common multiple `lcm(1, …, y)`.-/
+multiple of `p ^ ⌊log_p y⌋` has least common multiple `lcm(1, …, y)`.
+@isnad1 id=eq.2h2v.s6.09eea4582807 from=translated src=- shape=fc79bc06 vocab=013229b5
+-/
 theorem lcm_eq_lcmUpto (C : Finset ℕ) (y : ℕ) (hC : ∀ m ∈ C, 0 < m ∧ PPSmooth y m)
     (hfull : ∀ p : ℕ, p.Prime → p ≤ y → ∃ m ∈ C, p ^ Nat.log p y ∣ m) :
     C.lcm id = Nat.lcmUpto y := by
@@ -137,7 +152,9 @@ theorem lcm_eq_lcmUpto (C : Finset ℕ) (y : ℕ) (hC : ∀ m ∈ C, 0 < m ∧ P
       exact Nat.zero_le _
 
 /-- Far-point lemma: if all elements of `C` are multiples of `n > 2W` and `W < |h|`,
-`|h| + W < lcm C`, then some `m ∈ C` has no multiple within distance `< W` of `h`.-/
+`|h| + W < lcm C`, then some `m ∈ C` has no multiple within distance `< W` of `h`.
+@isnad1 id=ex.7h4v.s7.3cc5f48176c5 from=translated src=- shape=1be56e47 vocab=74723637
+-/
 theorem exists_far (C : Finset ℕ) (n : ℕ) (W : ℝ) (h : ℤ) (hne : C.Nonempty)
     (_hpos : ∀ m ∈ C, 0 < m) (hdiv : ∀ m ∈ C, n ∣ m) (_hW : 0 ≤ W) (hn : 2 * W < n)
     (hh1 : W < |(h : ℝ)|) (hh2 : |(h : ℝ)| + W < ((C.lcm id : ℕ) : ℝ)) :
@@ -193,6 +210,9 @@ namespace CoreAux
 
 /-! ### Analytic helpers -/
 
+/--
+@isnad1 id=eventual.0h0v.s4.3ff81052a970 from=translated src=- shape=a449e134 vocab=a562ec64
+-/
 lemma eventually_ten_log_le_sqrt : ∀ᶠ x : ℝ in atTop, 10 * Real.log x ≤ Real.sqrt x := by
   have h := (isLittleO_log_rpow_atTop (show (0:ℝ) < 1 / 2 by norm_num)).bound
     (show (0:ℝ) < 1 / 10 by norm_num)
@@ -201,7 +221,9 @@ lemma eventually_ten_log_le_sqrt : ∀ᶠ x : ℝ in atTop, 10 * Real.log x ≤ 
     abs_of_nonneg (Real.rpow_nonneg (by linarith) _), ← Real.sqrt_eq_rpow] at hx
   linarith
 
-/-- Supply of primes in `(x, 2.7 x]` avoiding a small exceptional set.-/
+/-- Supply of primes in `(x, 2.7 x]` avoiding a small exceptional set.
+@isnad1 id=ex.0h0v.s6.6768f36234c3 from=translated src=- shape=ea4acc38 vocab=6de4807c
+-/
 lemma exists_prime_avoid : ∃ x₀ : ℝ, 0 ≤ x₀ ∧ ∀ x : ℝ, x₀ ≤ x → ∀ E : Finset ℕ,
     ((E.card : ℝ)) ^ 2 ≤ x → ∃ ℓ : ℕ, ℓ.Prime ∧ x < ℓ ∧ (ℓ : ℝ) ≤ 27 / 10 * x ∧ ℓ ∉ E := by
   obtain ⟨x₀, hx₀⟩ := Filter.eventually_atTop.1
@@ -236,6 +258,9 @@ lemma exists_prime_avoid : ∃ x₀ : ℝ, 0 ≤ x₀ ∧ ∀ x : ℝ, x₀ ≤ 
     have h2' : (ℓ : ℝ) ≤ (⌊(27 / 10 : ℝ) * x⌋₊ : ℝ) := by exact_mod_cast h2
     linarith
 
+/--
+@isnad1 id=eventual.1h1v.s6.c5b32c567eaf from=translated src=- shape=7d6dda40 vocab=ed599c50
+-/
 lemma eventually_log_pow_le (c : ℝ) (hc : 0 < c) :
     ∀ᶠ x : ℝ in atTop, Real.log x ^ 8 ≤ c * x ^ ((1 : ℝ) / 20) := by
   have h := (isLittleO_log_rpow_rpow_atTop (8 : ℝ) (show (0:ℝ) < 1 / 20 by norm_num)).bound hc
@@ -248,6 +273,9 @@ lemma eventually_log_pow_le (c : ℝ) (hc : 0 < c) :
   rw [h8] at hx
   exact hx
 
+/--
+@isnad1 id=le.1h1v.s5.2e3da3a73214 from=translated src=- shape=bbbbebff vocab=078a0c09
+-/
 lemma natLog2_le (n : ℕ) (hn : n ≠ 0) : (Nat.log 2 n : ℝ) ≤ 2 * Real.log n := by
   have h1 : 2 ^ Nat.log 2 n ≤ n := Nat.pow_log_le_self 2 hn
   have h2 : (2 : ℝ) ^ Nat.log 2 n ≤ n := by exact_mod_cast h1
@@ -257,6 +285,9 @@ lemma natLog2_le (n : ℕ) (hn : n ≠ 0) : (Nat.log 2 n : ℝ) ≤ 2 * Real.log
   have h5 : (0:ℝ) ≤ Nat.log 2 n := Nat.cast_nonneg _
   nlinarith
 
+/--
+@isnad1 id=ex.3h3v.s6.357007829fef from=translated src=- shape=98a39cf2 vocab=e869e818
+-/
 lemma exists_k_not_dvd {p : ℕ} (hp : p.Prime) {t η : ℝ} (ht : 0 ≤ t) (hηt : 2 ≤ η * t) :
     ∃ k : ℕ, 1 ≤ k ∧ ¬ p ∣ k ∧ t < k ∧ (k : ℝ) ≤ (1 + η) * t := by
   have h1 := Nat.lt_floor_add_one t
@@ -274,6 +305,9 @@ lemma exists_k_not_dvd {p : ℕ} (hp : p.Prime) {t η : ℝ} (ht : 0 ≤ t) (hη
 
 /-! ### Arithmetic helpers -/
 
+/--
+@isnad1 id=ppsmooth.3h3v.s4.0c308c97c6d2 from=translated src=- shape=987e0c3f vocab=5696a809
+-/
 lemma ppSmooth_mul_coprime {y a b : ℕ} (hab : Nat.Coprime a b) (ha : PPSmooth y a)
     (hb : PPSmooth y b) : PPSmooth y (a * b) := by
   intro q hq
@@ -295,16 +329,25 @@ lemma ppSmooth_mul_coprime {y a b : ℕ} (hab : Nat.Coprime a b) (ha : PPSmooth 
           (Nat.dvd_of_mem_primeFactors hqb))
     rw [ha0, zero_add]; exact hb q hqb
 
+/--
+@isnad1 id=ppsmooth.2h2v.s4.0a2e3158be48 from=translated src=- shape=10d9f64c vocab=b1211571
+-/
 lemma ppSmooth_prime {y ℓ : ℕ} (hℓ : ℓ.Prime) (hℓy : ℓ ≤ y) : PPSmooth y ℓ := by
   intro q hq
   rw [hℓ.primeFactors, Finset.mem_singleton] at hq
   subst hq
   rw [hℓ.factorization_self, pow_one]; exact hℓy
 
+/--
+@isnad1 id=ppsmooth.1h2v.s3.68e73f87bdcd from=translated src=- shape=fb521639 vocab=d7063ea7
+-/
 lemma ppSmooth_of_le {y k : ℕ} (hk : k ≤ y) : PPSmooth y k := by
   intro q hq
   exact (Nat.ordProj_le q (Nat.mem_primeFactors.1 hq).2.2).trans hk
 
+/--
+@isnad1 id=ppsmooth.2h3v.s5.3c845a5b4270 from=translated src=- shape=db47ab5f vocab=c75efb19
+-/
 lemma ppSmooth_prime_pow {y p a : ℕ} (hp : p.Prime) (hpa : p ^ a ≤ y) : PPSmooth y (p ^ a) := by
   intro q hq
   have hqp := Nat.prime_of_mem_primeFactors hq
@@ -314,9 +357,15 @@ lemma ppSmooth_prime_pow {y p a : ℕ} (hp : p.Prime) (hpa : p ^ a ≤ y) : PPSm
   rw [hp.factorization_pow, Finsupp.single_eq_same]
   exact hpa
 
+/--
+@isnad1 id=coprime.2h3v.s4.783ee91bdbd6 from=translated src=- shape=f52eebef vocab=4b0fb090
+-/
 lemma cop_mul {a b c : ℕ} (h1 : Nat.Coprime a c) (h2 : Nat.Coprime b c) :
     Nat.Coprime (a * b) c := Nat.coprime_mul_iff_left.2 ⟨h1, h2⟩
 
+/--
+@isnad1 id=and.20h7v.s9.234a3604636c from=translated src=- shape=e97e642f vocab=58902f33
+-/
 lemma core_arith {B y n p ℓ₁ ℓ₂ k : ℕ} (hn : 0 < n) (hsm : PPSmooth y n)
     (hrough : ∀ q, q.Prime → q ≤ B → ¬ q ∣ n) (hp : p.Prime)
     (hℓ₁ : ℓ₁.Prime) (hℓ₂ : ℓ₂.Prime) (hℓ₁n : ¬ ℓ₁ ∣ n) (hℓ₂n : ¬ ℓ₂ ∣ n)
@@ -402,6 +451,9 @@ lemma core_arith {B y n p ℓ₁ ℓ₂ k : ℕ} (hn : 0 < n) (hsm : PPSmooth y 
   · rw [hm_eq]; exact Dvd.intro (n' * ℓ₁ * ℓ₂ * k) (by ring)
   · rw [hdiv]; exact hmem
 
+/--
+@isnad1 id=and.6h4v.s8.bb54ae6e804c from=translated src=- shape=80650eeb vocab=b2d07434
+-/
 lemma core_W_bounds {u L D W : ℝ} (hu0 : 0 < u) (hL1 : 1 ≤ L) (hD_lo : u ^ 30 * L ^ 4 < D)
     (hD_hi : D ≤ 2 * L ^ 4 * u ^ 38) (hWD : W * D = u ^ 40) (hWpos : 0 < W) :
     u ^ 2 ≤ 2 * L ^ 4 * W ∧ W < u ^ 10 := by
@@ -419,6 +471,9 @@ lemma core_W_bounds {u L D W : ℝ} (hu0 : 0 < u) (hL1 : 1 ≤ L) (hD_lo : u ^ 3
     have h3 : W ≤ W * L ^ 4 := le_mul_of_one_le_right hWpos.le (one_le_pow₀ hL1)
     linarith
 
+/--
+@isnad1 id=and.12h7v.s8.4ce59761776f from=translated src=- shape=b9c84837 vocab=5c9d27ef
+-/
 lemma core_s_bounds {η x₀ b u L W s : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) (hx₀ : 0 ≤ x₀)
     (hb : 0 ≤ b) (hu0 : 0 < u) (hL1 : 1 ≤ L)
     (hC : 117 * (x₀ + b + 16) ^ 2 * L ^ 8 ≤ η * u ^ 2)
@@ -450,6 +505,9 @@ lemma core_s_bounds {η x₀ b u L W s : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) (
       nlinarith [hW_hi]
     exact le_of_pow_le_pow_left₀ two_ne_zero (by positivity) h1
 
+/--
+@isnad1 id=le.8h7v.s8.aa0e8d61ce59 from=translated src=- shape=f1373154 vocab=72589b2f
+-/
 lemma core_n_le_M {η x₀ b u L : ℝ} {n M : ℕ} (hη1 : η ≤ 1) (hx₀ : 0 ≤ x₀) (hb : 0 ≤ b)
     (hu1 : 1 ≤ u) (hL1 : 1 ≤ L) (hC : 117 * (x₀ + b + 16) ^ 2 * L ^ 8 ≤ η * u ^ 2)
     (hn2 : (n : ℝ) ≤ 2 * (u ^ 30 * L ^ 4)) (hM : (M : ℝ) = u ^ 40) : n ≤ M := by
@@ -470,6 +528,9 @@ lemma core_n_le_M {η x₀ b u L : ℝ} {n M : ℕ} (hη1 : η ≤ 1) (hx₀ : 0
       _ = u ^ 40 := by ring
   exact_mod_cast this
 
+/--
+@isnad1 id=le.4h3v.s6.66b425c8da23 from=translated src=- shape=5d800038 vocab=11c79e7d
+-/
 lemma card_pf_sq_le {n M : ℕ} {L : ℝ} (hn0 : 0 < n) (hnM : n ≤ M) (hLM : Real.log M ≤ L)
     (hL1 : 1 ≤ L) : (((n.primeFactors.card + 2 : ℕ) : ℝ)) ^ 2 ≤ 16 * L ^ 2 := by
   have hnR : (0:ℝ) < n := by exact_mod_cast hn0
@@ -482,7 +543,9 @@ lemma card_pf_sq_le {n M : ℕ} {L : ℝ} (hn0 : 0 < n) (hnM : n ≤ M) (hLM : R
         pow_le_pow_left₀ (Nat.cast_nonneg _) h4 2
     _ = 16 * L ^ 2 := by ring
 
-/-- Choice of the two auxiliary primes `ℓ₁ ∈ (10s/27, s]` and `ℓ₂ ∈ (s²/ℓ₁, 2.7 s²/ℓ₁]`.-/
+/-- Choice of the two auxiliary primes `ℓ₁ ∈ (10s/27, s]` and `ℓ₂ ∈ (s²/ℓ₁, 2.7 s²/ℓ₁]`.
+@isnad1 id=ex.5h4v.s9.cff036998ab6 from=translated src=- shape=82462e13 vocab=718c74c8
+-/
 lemma core_two_primes {x₀ s : ℝ}
     (hprime : ∀ x : ℝ, x₀ ≤ x → ∀ E : Finset ℕ, ((E.card : ℝ)) ^ 2 ≤ x →
       ∃ ℓ : ℕ, ℓ.Prime ∧ x < ℓ ∧ (ℓ : ℝ) ≤ 27 / 10 * x ∧ ℓ ∉ E)
@@ -535,7 +598,9 @@ lemma core_two_primes {x₀ s : ℝ}
       _ = 27 / 10 * (s * s) := by field_simp
 
 /-- The deterministic construction behind `core_exists`, with all "`M` large" facts as
-hypotheses. Here `u = M^{1/40}`, `L = log M`, `y = ⌊u^8⌋`.-/
+hypotheses. Here `u = M^{1/40}`, `L = log M`, `y = ⌊u^8⌋`.
+@isnad1 id=ex.19h9v.s9.20404afdda0e from=translated src=- shape=a7be69c3 vocab=47ae9062
+-/
 lemma core_det {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) {x₀ : ℝ} (hx₀ : 0 ≤ x₀)
     (hprime : ∀ x : ℝ, x₀ ≤ x → ∀ E : Finset ℕ, ((E.card : ℝ)) ^ 2 ≤ x →
       ∃ ℓ : ℕ, ℓ.Prime ∧ x < ℓ ∧ (ℓ : ℝ) ≤ 27 / 10 * x ∧ ℓ ∉ E)
@@ -641,7 +706,9 @@ lemma core_det {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) {x₀ : ℝ} (hx₀ :
 
 end CoreAux
 
-/-- Construction of the core elements.-/
+/-- Construction of the core elements.
+@isnad1 id=eventual.2h1v.s9.c0076d736614 from=translated src=- shape=094830b6 vocab=ca09ea0d
+-/
 theorem core_exists (η : ℝ) (hη : 0 < η) (hη1 : η ≤ 1) : ∀ᶠ M : ℕ in atTop,
     ∀ n : ℕ, (M : ℝ) ^ (3 / 4 : ℝ) * (Real.log M) ^ 4 < n →
       (n : ℝ) ≤ 2 * ((M : ℝ) ^ (3 / 4 : ℝ) * (Real.log M) ^ 4) →

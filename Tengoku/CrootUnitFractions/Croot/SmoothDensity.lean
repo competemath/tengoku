@@ -448,7 +448,9 @@ private lemma card_core {N0 B y b0 : ℕ} (T : Finset ℕ)
         rfl
     _ ≤ _ := by exact_mod_cast Finset.card_le_card hsub
 
-/-- `y`-pp-smooth, `B`-rough integers in `(X, 2X]` with `X = M^{3/4} (log M)^4`.-/
+/-- `y`-pp-smooth, `B`-rough integers in `(X, 2X]` with `X = M^{3/4} (log M)^4`.
+@isnad1 id=ex.0h1v.s9.c339a89f7e6a from=translated src=- shape=6db1edc2 vocab=0a847a11
+-/
 theorem card_smoothRough_ge (B : ℕ) : ∃ c : ℝ, 0 < c ∧ ∀ᶠ M : ℕ in atTop,
     c * ((M : ℝ) ^ (3 / 4 : ℝ) * (Real.log M) ^ 4) ≤
       (((Ioc ⌊(M : ℝ) ^ (3 / 4 : ℝ) * (Real.log M) ^ 4⌋₊
@@ -587,7 +589,9 @@ theorem card_smoothRough_ge (B : ℕ) : ∃ c : ℝ, 0 < c ∧ ∀ᶠ M : ℕ in
     _ ≤ _ := hcore
     _ ≤ _ := by exact_mod_cast Finset.card_le_card hsub
 
-/-- `y`-pp-smooth integers in `(M, (1+η) M]` have reciprocal mass `≥ κ η`.-/
+/-- `y`-pp-smooth integers in `(M, (1+η) M]` have reciprocal mass `≥ κ η`.
+@isnad1 id=ex.0h0v.s7.83ba54f7c8eb from=translated src=- shape=bf31cb19 vocab=d696eeaa
+-/
 theorem mass_smooth_ge : ∃ κ : ℝ, 0 < κ ∧ ∀ η : ℝ, 0 < η → η ≤ 1 → ∀ᶠ M : ℕ in atTop,
     κ * η ≤ ((recipSum ((Ioc M ⌊(1 + η) * M⌋₊).filter
       (PPSmooth ⌊(M : ℝ) ^ (1 / 5 : ℝ)⌋₊)) : ℚ) : ℝ) := by

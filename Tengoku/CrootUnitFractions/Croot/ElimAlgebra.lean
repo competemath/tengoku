@@ -18,7 +18,9 @@ namespace Croot
 
 open Finset
 
-/-- If `x * L` is an integer divisible by `q` (with `L, q > 0`), then `(x / q).den ∣ L`.-/
+/-- If `x * L` is an integer divisible by `q` (with `L, q > 0`), then `(x / q).den ∣ L`.
+@isnad1 id=dvd.4h4v.s6.c741437e16ec from=translated src=- shape=e251e74f vocab=83effa59
+-/
 lemma den_div_dvd_of_mul_eq {x : ℚ} {L q : ℕ} (hL : 0 < L) (hq : 0 < q) {W : ℤ}
     (hW : x * L = W) (hqW : (q : ℤ) ∣ W) : (x / q).den ∣ L := by
   obtain ⟨W', rfl⟩ := hqW
@@ -36,7 +38,9 @@ lemma den_div_dvd_of_mul_eq {x : ℚ} {L q : ℕ} (hL : 0 < L) (hq : 0 < q) {W :
   rw [hx]
   exact_mod_cast h
 
-/-- Algebraic elimination step.-/
+/-- Algebraic elimination step.
+@isnad1 id=dvd.8h6v.s9.042afe75201f from=translated src=- shape=626f789f vocab=c563508b
+-/
 theorem den_sub_sum_dvd {p a : ℕ} (hp : p.Prime) (_ha : 0 < a) {x : ℚ} {v' : ℕ}
     (hden : x.den = p ^ a * v') (hv' : ¬ p ∣ v') {s : ℕ} (hs : 0 < s) (hps : ¬ p ∣ s)
     {R' : Finset ℕ} (hR' : ∀ r ∈ R', r.Prime ∧ r ≠ p)

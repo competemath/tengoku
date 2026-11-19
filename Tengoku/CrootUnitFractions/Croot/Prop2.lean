@@ -25,7 +25,9 @@ open Real Finset Filter
 
 /-! ## Greedy filling -/
 
-/-- Greedy filling: adding elements `> M` one at a time we can land in `[T, T + 1/M)`.-/
+/-- Greedy filling: adding elements `> M` one at a time we can land in `[T, T + 1/M)`.
+@isnad1 id=ex.3h4v.s7.41289fc1bdf1 from=translated src=- shape=d679fd23 vocab=769e96bc
+-/
 lemma greedy_fill (M : ℕ) (F0 : Finset ℕ) (hF0 : ∀ m ∈ F0, M < m) (b T : ℚ)
     (hb : b ≤ T) (htot : T ≤ b + recipSum F0) :
     ∃ F ⊆ F0, T ≤ b + recipSum F ∧ b + recipSum F < T + 1 / ((M : ℚ) + 1) := by
@@ -55,6 +57,9 @@ lemma greedy_fill (M : ℕ) (F0 : Finset ℕ) (hF0 : ∀ m ∈ F0, M < m) (b T :
 
 /-! ## Small auxiliary facts -/
 
+/--
+@isnad1 id=le.1h2v.s6.5f8984e475e9 from=translated src=- shape=65f8214d vocab=3e7b6b4e
+-/
 lemma abs_le_of_mem_window {P : ℕ} {h : ℤ} (hh : h ∈ Finset.Ico (-((P / 2 : ℕ) : ℤ))
     (-((P / 2 : ℕ) : ℤ) + P)) : |(h : ℝ)| ≤ (P : ℝ) / 2 := by
   rw [Finset.mem_Ico] at hh
@@ -73,18 +78,26 @@ lemma abs_le_of_mem_window {P : ℕ} {h : ℤ} (hh : h ∈ Finset.Ico (-((P / 2 
   rw [abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=mem.1h1v.s6.f16d472ebe5d from=translated src=- shape=1474cce3 vocab=f1cf0da2
+-/
 lemma zero_mem_window {P : ℕ} (hP : 0 < P) :
     (0 : ℤ) ∈ Finset.Ico (-((P / 2 : ℕ) : ℤ)) (-((P / 2 : ℕ) : ℤ) + P) := by
   rw [Finset.mem_Ico]
   have : P / 2 < P := Nat.div_lt_self hP (by norm_num)
   constructor <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s6.bd23df658584 from=translated src=- shape=5bd7f68c vocab=546fd2bf
+-/
 lemma card_window (P : ℕ) :
     (Finset.Ico (-((P / 2 : ℕ) : ℤ)) (-((P / 2 : ℕ) : ℤ) + P)).card = P := by
   rw [Int.card_Ico]
   simp
 
-/-- A set of integers `> M` has reciprocal sum at most `#S / M`.-/
+/-- A set of integers `> M` has reciprocal sum at most `#S / M`.
+@isnad1 id=le.2h2v.s5.4029ab746891 from=translated src=- shape=0476bc9b vocab=04648126
+-/
 lemma recipSum_le_card_div {S : Finset ℕ} {M : ℕ} (hM : 0 < M) (h : ∀ m ∈ S, M < m) :
     ((recipSum S : ℚ) : ℝ) ≤ S.card / M := by
   have hM' : (0 : ℝ) < M := by exact_mod_cast hM
@@ -98,7 +111,9 @@ lemma recipSum_le_card_div {S : Finset ℕ} {M : ℕ} (hM : 0 < M) (h : ∀ m �
     _ = S.card / M := by rw [Finset.sum_const, nsmul_eq_mul]; ring
 
 /-- If a finite sum of complex numbers equals `P * c` with `c` a natural number and the sum of
-the real parts is positive, then `c > 0`.-/
+the real parts is positive, then `c > 0`.
+@isnad1 id=lt.2h5v.s6.355feb9b42c6 from=translated src=- shape=2f04dd73 vocab=7e0c14f6
+-/
 lemma pos_of_sum_eq_mul {ι : Type*} (s : Finset ι) (f : ι → ℂ) (P c : ℕ)
     (h : ∑ i ∈ s, f i = (P : ℂ) * (c : ℂ)) (hpos : 0 < ∑ i ∈ s, (f i).re) : 0 < c := by
   have h2 := congrArg Complex.re h
@@ -114,6 +129,9 @@ lemma pos_of_sum_eq_mul {ι : Type*} (s : Finset ι) (f : ι → ℂ) (P c : ℕ
 /-! ## The proposition -/
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=ex.2h1v.s7.0afe20bb6885 from=translated src=- shape=74d1e565 vocab=94b54c8e
+-/
 theorem prop2 (η : ℝ) (hη : 0 < η) (hη1 : η ≤ 1) : ∃ c : ℝ, 0 < c ∧ ∀ᶠ M : ℕ in atTop,
     ∀ x : ℚ, (M : ℝ) ^ (-(1 / 21 : ℝ)) ≤ x → (x : ℝ) ≤ c →
       PPSmooth ⌊(M : ℝ) ^ (1 / 5 : ℝ)⌋₊ x.den →

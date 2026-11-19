@@ -27,11 +27,15 @@ namespace Croot
 
 open Real Finset Filter
 
-/-- A positive integer `n ≤ y` is `y`-pp-smooth.-/
+/-- A positive integer `n ≤ y` is `y`-pp-smooth.
+@isnad1 id=ppsmooth.2h2v.s4.5acee6d224c1 from=translated src=- shape=ff871f09 vocab=d7063ea7
+-/
 lemma ppSmooth_of_le {y n : ℕ} (hn : n ≠ 0) (h : n ≤ y) : PPSmooth y n := fun p _ =>
   (Nat.le_of_dvd (Nat.pos_of_ne_zero hn) (Nat.ordProj_dvd n p)).trans h
 
-/-- Multiplying a `y`-pp-smooth number by a new prime `P ≤ y` keeps it `y`-pp-smooth.-/
+/-- Multiplying a `y`-pp-smooth number by a new prime `P ≤ y` keeps it `y`-pp-smooth.
+@isnad1 id=ppsmooth.5h3v.s5.ead47a8ad66d from=translated src=- shape=d53bb34d vocab=6a27a703
+-/
 lemma PPSmooth.prime_mul {y s P : ℕ} (h : PPSmooth y s) (hs : s ≠ 0) (hP : P.Prime)
     (hPy : P ≤ y) (hPs : ¬ P ∣ s) : PPSmooth y (P * s) := by
   intro r hr
@@ -46,7 +50,9 @@ lemma PPSmooth.prime_mul {y s P : ℕ} (h : PPSmooth y s) (hs : s ≠ 0) (hP : P
     rw [hP.factorization, Finsupp.single_apply, ite_eq_right (Ne.symm hrP), zero_add]
     exact h r hr
 
-/-- Base case of the construction: for `1/4 ≤ Z ≤ y/3` take `1` or a power of `2` or `3`.-/
+/-- Base case of the construction: for `1/4 ≤ Z ≤ y/3` take `1` or a power of `2` or `3`.
+@isnad1 id=ex.3h3v.s7.9dcedd9046f5 from=translated src=- shape=c73e84c0 vocab=68a0156e
+-/
 lemma exists_ppSmooth_base {y p : ℕ} (hp : p.Prime) {Z : ℝ} (hZ1 : 1 / 4 ≤ Z)
     (hZ2 : Z ≤ (y : ℝ) / 3) :
     ∃ s : ℕ, Z ≤ s ∧ (s : ℝ) ≤ 4 * Z ∧ PPSmooth y s ∧ ¬ p ∣ s ∧
@@ -93,7 +99,9 @@ lemma exists_ppSmooth_base {y p : ℕ} (hp : p.Prime) {Z : ℝ} (hZ1 : 1 / 4 ≤
       exact hq3
 
 /-- The recursive construction, by induction on the finite set `T` of available primes in
-`(y/3, y]`: each prime of `T` is used at most once, which keeps the exact prime powers `≤ y`.-/
+`(y/3, y]`: each prime of `T` is used at most once, which keeps the exact prime powers `≤ y`.
+@isnad1 id=ex.5h4v.s7.8d5294128f40 from=translated src=- shape=4f66d1ac vocab=f61c5f34
+-/
 lemma exists_ppSmooth_aux {y p : ℕ} (hp : p.Prime) (hy : 9 ≤ y) :
     ∀ T : Finset ℕ, (∀ P ∈ T, P.Prime ∧ (y : ℝ) / 3 < P ∧ P ≤ y ∧ P ≠ p) →
     ∀ Z : ℝ, 1 / 4 ≤ Z → Z ≤ ((y : ℝ) / 3) ^ (T.card + 1) →
@@ -159,7 +167,9 @@ lemma exists_ppSmooth_aux {y p : ℕ} (hp : p.Prime) (hy : 9 ≤ y) :
         · exact Or.inl (Finset.mem_insert_of_mem h')
         · exact Or.inr h'
 
-/-- For every `m`, eventually `m ≤ x / (5 log x)`.-/
+/-- For every `m`, eventually `m ≤ x / (5 log x)`.
+@isnad1 id=eventual.0h1v.s5.5699e37e842a from=translated src=- shape=777c11b9 vocab=fa24f983
+-/
 lemma eventually_natCast_le_div_log (m : ℕ) :
     ∀ᶠ x : ℝ in atTop, (m : ℝ) ≤ x / (5 * Real.log x) := by
   have hc : (0 : ℝ) < 1 / (5 * ((m : ℝ) + 1)) := by positivity
@@ -178,7 +188,9 @@ lemma eventually_natCast_le_div_log (m : ℕ) :
   rw [le_div_iff₀ (by positivity)]
   linarith
 
-/-- For every `m`, eventually there are at least `m` primes in `(⌊10 y / 27⌋, y] ⊆ (y/3, y]`.-/
+/-- For every `m`, eventually there are at least `m` primes in `(⌊10 y / 27⌋, y] ⊆ (y/3, y]`.
+@isnad1 id=eventual.0h1v.s6.a5405f6a17fa from=translated src=- shape=b7e6f18b vocab=79593174
+-/
 lemma eventually_card_primes_third_ge (m : ℕ) : ∀ᶠ y : ℕ in atTop,
     m ≤ ((Ioc ⌊(10 / 27 : ℝ) * y⌋₊ y).filter Nat.Prime).card := by
   have ht : Tendsto (fun y : ℕ => (10 / 27 : ℝ) * y) atTop atTop :=
@@ -192,7 +204,9 @@ lemma eventually_card_primes_third_ge (m : ℕ) : ∀ᶠ y : ℕ in atTop,
   exact_mod_cast this
 
 /-- Existence of `y`-pp-smooth numbers in `[Z, 4 Z]` coprime to a given prime, for
-`1/4 ≤ Z ≤ y ^ k` (any fixed exponent `k`) and all large `y`.-/
+`1/4 ≤ Z ≤ y ^ k` (any fixed exponent `k`) and all large `y`.
+@isnad1 id=eventual.0h1v.s6.07992f2c8b03 from=translated src=- shape=563f7e20 vocab=b3e7836b
+-/
 theorem exists_ppSmooth_coprime_pow (k : ℕ) : ∀ᶠ y : ℕ in atTop, ∀ p : ℕ, p.Prime →
     ∀ Z : ℝ, 1 / 4 ≤ Z → Z ≤ (y : ℝ) ^ k →
       ∃ s : ℕ, Z ≤ s ∧ (s : ℝ) ≤ 4 * Z ∧ PPSmooth y s ∧ ¬ p ∣ s := by
@@ -224,7 +238,9 @@ theorem exists_ppSmooth_coprime_pow (k : ℕ) : ∀ᶠ y : ℕ in atTop, ∀ p :
   exact ⟨s, h1, h2, h3, h4⟩
 
 /-- For large `y`, every prime `p` and every real `Z` with `1/4 ≤ Z ≤ y ^ 12`, there is a
-`y`-pp-smooth `s` with `Z ≤ s ≤ 4 Z` and `p ∤ s`.-/
+`y`-pp-smooth `s` with `Z ≤ s ≤ 4 Z` and `p ∤ s`.
+@isnad1 id=eventual.0h0v.s6.cf88e1cffd83 from=translated src=- shape=0b1d4b09 vocab=b3e7836b
+-/
 theorem exists_ppSmooth_coprime : ∀ᶠ y : ℕ in atTop, ∀ p : ℕ, p.Prime → ∀ Z : ℝ, 1 / 4 ≤ Z →
     Z ≤ (y : ℝ) ^ 12 → ∃ s : ℕ, Z ≤ s ∧ (s : ℝ) ≤ 4 * Z ∧ PPSmooth y s ∧ ¬ p ∣ s :=
   exists_ppSmooth_coprime_pow 12
