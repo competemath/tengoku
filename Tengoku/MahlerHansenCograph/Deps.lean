@@ -1,0 +1,1 @@
+-- MahlerHansenCograph: a factory bundle (data/intake/mahler-hansen-cograph). This file only marks the library for Tengoku/All.lean.
