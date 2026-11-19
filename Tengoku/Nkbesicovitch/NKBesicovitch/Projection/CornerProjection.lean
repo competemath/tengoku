@@ -27,7 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
-/-- The corner-fiber projection bound from the exact outer marginal.-/
+/-- The corner-fiber projection bound from the exact outer marginal.
+@isnad1 id=le.4h10v.s9.89997bf1b360 from=translated src=- shape=e84338d1 vocab=2d6d5e9d
+-/
 theorem mul_volume_projection_cornerFiber_le {a b c κ u : ℝ} (hab : a ≠ b)
     (hua : u ≠ a) {D₀ D₁ : Set (CornerCoordinates m)} (hD₀ : MeasurableSet D₀)
     (τ : ℝ≥0∞) (hτ : ∀ p ∈ D₁,
@@ -47,7 +49,9 @@ theorem mul_volume_projection_cornerFiber_le {a b c κ u : ℝ} (hab : a ≠ b)
     _ ≤ ∫⁻ y, f y := mul_meas_ge_le_lintegral hf τ
     _ = _ := lintegral_cornerOuterDensity_at_code a b c κ u hD₀ z
 
-/-- The same bound applies to the Borel positive first-line family.-/
+/-- The same bound applies to the Borel positive first-line family.
+@isnad1 id=le.4h10v.s9.ad934e66de83 from=translated src=- shape=e84338d1 vocab=f3b3c282
+-/
 theorem mul_volume_projection_positiveCornerFiber_le {a b c κ u : ℝ} (hab : a ≠ b)
     (hua : u ≠ a) {D₀ D₁ : Set (CornerCoordinates m)} (hD₀ : MeasurableSet D₀)
     (τ : ℝ≥0∞) (hτ : ∀ p ∈ D₁,

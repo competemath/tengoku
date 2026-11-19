@@ -31,6 +31,9 @@ variable {m : ℕ}
 /-- The half-mass deletion threshold for `r` selected projections of size at most `N`.-/
 noncomputable def pairThreshold (v N : ℝ≥0∞) (r : ℕ) : ℝ≥0∞ := (v / 2) / (r * N ^ 2)
 
+/--
+@isnad1 id=eq.3h3v.s6.a71935543764 from=translated src=- shape=0293fe68 vocab=0edc98ed
+-/
 theorem pairThreshold_budget (v : ℝ≥0∞) {N : ℝ≥0∞} (hN0 : N ≠ 0) (hN : N ≠ ∞)
     {r : ℕ} (hr : r ≠ 0) : r * pairThreshold v N r * N ^ 2 = v / 2 := by
   calc
@@ -39,6 +42,9 @@ theorem pairThreshold_budget (v : ℝ≥0∞) {N : ℝ≥0∞} (hN0 : N ≠ 0) (
       (mul_ne_zero (Nat.cast_ne_zero.mpr hr) (pow_ne_zero _ hN0))
       (ENNReal.mul_ne_top (ENNReal.natCast_ne_top r) (ENNReal.pow_ne_top hN))
 
+/--
+@isnad1 id=lt.5h3v.s5.d80c22cdbd66 from=translated src=- shape=88128103 vocab=d138068f
+-/
 theorem pairThreshold_toReal_pos {v N : ℝ≥0∞} (hv0 : v ≠ 0) (hv : v ≠ ∞)
     (hN0 : N ≠ 0) (hN : N ≠ ∞) {r : ℕ} (hr : r ≠ 0) :
     0 < (pairThreshold v N r).toReal := by
@@ -49,6 +55,9 @@ theorem pairThreshold_toReal_pos {v N : ℝ≥0∞} (hv0 : v ≠ 0) (hv : v ≠ 
     ENNReal.toReal_natCast, ENNReal.toReal_ofNat]
   positivity
 
+/--
+@isnad1 id=le.6h5v.s10.14b9a458f320 from=translated src=- shape=af0852a2 vocab=3d340f63
+-/
 theorem sq_volume_le_pairThreshold (a : ℝ) {G : Set (Line m)} (hG : MeasurableSet G)
     (hGb : IsBounded G) {N : ℝ≥0∞} (hN0 : N ≠ 0) (hN : N ≠ ∞)
     (haN : volume (atHeight a '' G) ≤ N) {r : ℕ} (hr : r ≠ 0) :
@@ -68,6 +77,9 @@ theorem sq_volume_le_pairThreshold (a : ℝ) {G : Set (Line m)} (hG : Measurable
       rw [← (eq_div_iff (two_ne_zero : (2 : ℝ) ≠ 0)).mp hb]
       ring
 
+/--
+@isnad1 id=ex.5h5v.s7.6c0ab81affe9 from=translated src=- shape=3645dc2f vocab=b8741c89
+-/
 theorem exists_uniform_pairJacobian {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     {Γ : Finset ℝ} (hΓ : Γ.Nonempty) (hta : ∀ t ∈ Γ, t ≠ a) (htb : ∀ t ∈ Γ, t ≠ b) :
     ∃ q : ℝ, 0 < q ∧ ∀ t ∈ Γ, q ≤

@@ -36,6 +36,9 @@ noncomputable def weightedPlaneKernel (V : Submodule ℝ E) (a : ℝ) (A N : ℕ
     ENNReal.ofReal (((1 + ‖x + w‖ ^ 2) ^ A)⁻¹) *
       ENNReal.ofReal (((1 + ‖a • (x + w - z)‖ ^ 2) ^ N)⁻¹)
 
+/--
+@isnad1 id=measurab.0h6v.s6.76829dc948f2 from=translated src=- shape=3e1337bb vocab=788c9d19
+-/
 theorem measurable_weightedPlaneKernel (V : Submodule ℝ E) (a : ℝ) (A N : ℕ) (x : E) :
     Measurable (weightedPlaneKernel V a A N x) := by
   apply Measurable.const_mul
@@ -72,7 +75,9 @@ private lemma weightedPlaneKernel_sub_eq_aux (V : Submodule ℝ E) (a : ℝ) (A 
     abel
   rw [h₂, h₁]
 
-/-- The positive plane kernel is comparable under tangential and smoothing-scale shifts.-/
+/-- The positive plane kernel is comparable under tangential and smoothing-scale shifts.
+@isnad1 id=le.2h9v.s9.10e5a668bbe9 from=translated src=- shape=5e3a9c50 vocab=13f33940
+-/
 theorem weightedPlaneKernel_sub_le (V : Submodule ℝ E) (a : ℝ) (A N : ℕ)
     (x z : E) (w₀ : V) (hw₀ : ‖w₀‖ ≤ 1) (e : E) (he : ‖a • e‖ ≤ 1) :
     weightedPlaneKernel V a A N x z ≤

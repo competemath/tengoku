@@ -38,7 +38,9 @@ private theorem inv_one_add_norm_sub_pow_le {E : Type*} [NormedAddCommGroup E]
 variable {m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin (m + 1))) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin (m + 1))))ᗮ)
 
-/-- Translations inside the support ball preserve rapid decay at distant transverse points.-/
+/-- Translations inside the support ball preserve rapid decay at distant transverse points.
+@isnad1 id=ex.0h6v.s17.5b9e0dd9d708 from=translated src=- shape=59564a48 vocab=64b683b9
+-/
 theorem exists_lintegral_enorm_dilation_sub_frame_tail
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (L N : ℕ) :
     ∃ C : ℝ≥0, ∀ R : ℝ≥0, ∀ a : ℝ, ∀ ha : 0 < a, 1 ≤ a → ∀ u : Rotations (m + 1),

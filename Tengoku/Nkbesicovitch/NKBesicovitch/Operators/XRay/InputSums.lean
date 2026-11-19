@@ -27,6 +27,9 @@ namespace NKBesicovitch.XRay
 
 variable {m : ℕ} {ι : Type*} [Countable ι]
 
+/--
+@isnad1 id=le.2h7v.s7.8a34b5bf99b9 from=translated src=- shape=a5f66d6c vocab=cd06dba8
+-/
 theorem localXRay_le_tsum {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
     {F : ι → EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞} (hF : ∀ i, Measurable (F i))
     (w : ι → ℝ≥0) (h : ∀ z, f z ≤ ∑' i, (w i : ℝ≥0∞) * F i z)
@@ -41,6 +44,9 @@ theorem localXRay_le_tsum {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
   funext i
   exact lintegral_const_mul' _ _ ENNReal.coe_ne_top
 
+/--
+@isnad1 id=le.7h8v.s10.a2ec9b52cc44 from=translated src=- shape=b7eb4c93 vocab=959fefca
+-/
 theorem mixedNorm_localXRay_le_tsum
     {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
     {F : ι → EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞} (hF : ∀ i, Measurable (F i))

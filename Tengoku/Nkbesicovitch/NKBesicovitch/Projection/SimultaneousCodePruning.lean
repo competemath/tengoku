@@ -33,9 +33,15 @@ noncomputable def retainedCodePairs (a b : ℝ) (c : ι → ℝ) (I : Finset ι)
     codeDensity a b (c i) W (pairCode a b (c i) p) / 2 ≤
       codeDensity a b (c i) E (pairCode a b (c i) p)}
 
+/--
+@isnad1 id=le.0h8v.s5.0a5730508192 from=translated src=- shape=70f8b424 vocab=c58efb4c
+-/
 theorem retainedCodePairs_subset (a b : ℝ) (c : ι → ℝ) (I : Finset ι)
     (W E : Set (PairCoordinates m)) : retainedCodePairs a b c I W E ⊆ E := inter_subset_left
 
+/--
+@isnad1 id=and.2h10v.s7.7d96a8344aa7 from=translated src=- shape=303125bb vocab=6ff1c958
+-/
 theorem codeDensity_bounds_of_mem_retainedCodePairs {a b : ℝ} {c : ι → ℝ} {I : Finset ι}
     {W E : Set (PairCoordinates m)} {p : PairCoordinates m}
     (hp : p ∈ retainedCodePairs a b c I W E) {i : ι} (hi : i ∈ I) :
@@ -51,6 +57,9 @@ theorem codeDensity_bounds_of_mem_retainedCodePairs {a b : ℝ} {c : ι → ℝ}
         codeDensity a b (c i) E (pairCode a b (c i) p) := add_le_add h.2 h.2
     _ = _ := (two_mul _).symm
 
+/--
+@isnad1 id=measurab.2h8v.s8.ca58b46cd0e4 from=translated src=- shape=9ce69427 vocab=7275065c
+-/
 theorem measurableSet_retainedCodePairs (a b : ℝ) (c : ι → ℝ) (I : Finset ι)
     {W E : Set (PairCoordinates m)} (hW : MeasurableSet W) (hE : MeasurableSet E) :
     MeasurableSet (retainedCodePairs a b c I W E) := by
@@ -63,6 +72,9 @@ theorem measurableSet_retainedCodePairs (a b : ℝ) (c : ι → ℝ) (I : Finset
   exact (measurableSet_lt measurable_const hDW).inter
     (measurableSet_le (hDW.div_const 2) hDE)
 
+/--
+@isnad1 id=le.0h8v.s7.2d19a68e9dc2 from=translated src=- shape=5d14d0b7 vocab=db0902f2
+-/
 theorem sdiff_retainedCodePairs_subset (a b : ℝ) (c : ι → ℝ) (I : Finset ι)
     (W E : Set (PairCoordinates m)) :
     W \ retainedCodePairs a b c I W E ⊆ (W \ E) ∪
@@ -82,6 +94,9 @@ theorem sdiff_retainedCodePairs_subset (a b : ℝ) (c : ι → ℝ) (I : Finset 
         h (mem_iUnion.mpr ⟨i, mem_iUnion.mpr ⟨hi, hp.1, Or.inr hlt⟩⟩)
   · exact Or.inl ⟨hp.1, hpE⟩
 
+/--
+@isnad1 id=le.4h8v.s11.33c8a46c5158 from=translated src=- shape=e8cd94c9 vocab=658458ab
+-/
 theorem volume_sdiff_retainedCodePairs_le {a b : ℝ} (hab : a ≠ b)
     (c : ι → ℝ) (I : Finset ι) {W E : Set (PairCoordinates m)}
     (hW : MeasurableSet W) (hE : MeasurableSet E) (hEW : E ⊆ W) :

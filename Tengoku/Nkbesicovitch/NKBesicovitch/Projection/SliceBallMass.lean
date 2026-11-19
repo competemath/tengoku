@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=continuo.2h2v.s9.e29cff112231 from=translated src=- shape=bff273d3 vocab=b364ab5f
+-/
 theorem continuous_volume_inter_closedBall [Nonempty (Fin m)] {S : Set (EuclideanSpace ℝ (Fin m))}
     (hS : MeasurableSet S) (hfin : volume S ≠ ∞) :
     Continuous (fun r : ℝ ↦ volume (S ∩ closedBall 0 r)) := by
@@ -56,6 +59,9 @@ noncomputable def sliceBallMass (a : ℝ) (G : Set (Line m)) (R : ℝ)
     (y : EuclideanSpace ℝ (Fin m)) (t : I) : ℝ≥0∞ :=
   volume (lineAt a y ⁻¹' G ∩ closedBall 0 (R * (t : ℝ)))
 
+/--
+@isnad1 id=measurab.1h5v.s7.a0717c9afb47 from=translated src=- shape=e1b5cb8b vocab=4ec8ecb0
+-/
 theorem measurable_sliceBallMass (a R : ℝ) {G : Set (Line m)} (hG : MeasurableSet G) (t : I) :
     Measurable (fun y ↦ sliceBallMass a G R y t) := by
   have hs : MeasurableSet {p : Line m | lineAt a p.1 p.2 ∈ G ∧ p.2 ∈ closedBall 0 (R * (t : ℝ))} :=
@@ -63,6 +69,9 @@ theorem measurable_sliceBallMass (a R : ℝ) {G : Set (Line m)} (hG : Measurable
       (measurableSet_closedBall.preimage measurable_snd)
   exact measurable_measure_prodMk_left (ν := (volume : Measure (EuclideanSpace ℝ (Fin m)))) hs
 
+/--
+@isnad1 id=monotone.1h5v.s5.6a03612ccc31 from=translated src=- shape=43f7ee92 vocab=8ba0eb86
+-/
 theorem monotone_sliceBallMass (a : ℝ) (G : Set (Line m)) {R : ℝ} (hR : 0 ≤ R)
     (y : EuclideanSpace ℝ (Fin m)) :
     Monotone (sliceBallMass a G R y) := by
@@ -70,6 +79,9 @@ theorem monotone_sliceBallMass (a : ℝ) (G : Set (Line m)) {R : ℝ} (hR : 0 �
   exact measure_mono (inter_subset_inter_right _
     (closedBall_subset_closedBall (mul_le_mul_of_nonneg_left hst hR)))
 
+/--
+@isnad1 id=continuo.2h5v.s7.359cc6f4a39f from=translated src=- shape=e902302e vocab=ac240149
+-/
 theorem continuous_sliceBallMass [Nonempty (Fin m)] (a R : ℝ)
     {G : Set (Line m)} (hG : MeasurableSet G) (hGb : IsBounded G) (y : EuclideanSpace ℝ (Fin m)) :
     Continuous (sliceBallMass a G R y) := by
@@ -78,6 +90,9 @@ theorem continuous_sliceBallMass [Nonempty (Fin m)] (a R : ℝ)
     (fun ξ hξ ↦ ⟨lineAt a y ξ, hξ, rfl⟩)
   exact (continuous_volume_inter_closedBall hs hb.measure_lt_top.ne).comp (by fun_prop)
 
+/--
+@isnad1 id=eq.0h5v.s5.0a68fc08922d from=translated src=- shape=9f7db024 vocab=bb43e929
+-/
 theorem sliceBallMass_zero [Nonempty (Fin m)] (a R : ℝ) (G : Set (Line m))
     (y : EuclideanSpace ℝ (Fin m)) :
     sliceBallMass a G R y 0 = 0 := by
@@ -86,6 +101,9 @@ theorem sliceBallMass_zero [Nonempty (Fin m)] (a R : ℝ) (G : Set (Line m))
   rw [mul_zero, closedBall_zero]
   exact measure_mono_null inter_subset_right (measure_singleton _)
 
+/--
+@isnad1 id=eq.1h5v.s6.ed11e2d3e897 from=translated src=- shape=9dcbe899 vocab=3f0a5767
+-/
 theorem sliceBallMass_one (a R : ℝ) {G : Set (Line m)}
     (hR : ∀ g ∈ G, ‖g.2‖ ≤ R) (y : EuclideanSpace ℝ (Fin m)) :
     sliceBallMass a G R y 1 = sliceMultiplicity a G y := by

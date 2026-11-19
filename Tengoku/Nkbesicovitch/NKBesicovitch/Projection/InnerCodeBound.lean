@@ -30,6 +30,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.22h15v.s10.b527017062da from=translated src=- shape=17bf1a04 vocab=dfbace41
+-/
 theorem pair_threshold_le_codeDensity_power {a b c β C M : ℝ}
     (hab : a ≠ b) (hc : c ≠ 0) (hβ : 1 < β) (hβ2 : β ≤ 2) (hC : 0 < C)
     (Γ : Finset ℝ)

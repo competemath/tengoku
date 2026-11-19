@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι : Type*}
 
+/--
+@isnad1 id=ex.13h14v.s12.5562acad63d6 from=translated src=- shape=8f4adb67 vocab=bae79cc8
+-/
 theorem exists_corner_witness {a b c κ : ℝ} (hab : a ≠ b) (hca : c ≠ a) (hκ : κ ≠ 0)
     (u : ι → ℝ) (I : Finset ι) (hua : ∀ i ∈ I, u i ≠ a)
     {G : Set (Line m)} (hGb : IsBounded G) {D : Set (CornerCoordinates m)}

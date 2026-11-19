@@ -27,7 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
-/-- The exact, division-free form of the supplied manuscript's pair-fiber projection bound.-/
+/-- The exact, division-free form of the supplied manuscript's pair-fiber projection bound.
+@isnad1 id=le.6h9v.s9.2b4a73d0d821 from=translated src=- shape=094a1472 vocab=d1fba562
+-/
 theorem mul_volume_projection_pairFiber_le {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) {W₀ W₁ : Set (PairCoordinates m)}
     (hW₀ : MeasurableSet W₀) (ℓ : ℝ≥0∞)

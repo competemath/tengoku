@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι : Type*}
 
+/--
+@isnad1 id=other.7h11v.s12.708c8b671ee9 from=translated src=- shape=da86d1ee vocab=b5fc9580
+-/
 theorem exists_denseCorner_code {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     (u : ι → ℝ) (I : Finset ι) (hua : ∀ i ∈ I, u i ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D)

@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.3h7v.s10.5f2c293ff427 from=translated src=- shape=b2b0ce02 vocab=c5b4fd82
+-/
 theorem mul_volume_pairCode_image_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (E : Set (PairCoordinates m))
     (R : ℝ) (hR : ∀ z ∈ pairCode a b c '' E, R ≤ (codeDensity a b c W z).toReal) :
@@ -39,6 +42,9 @@ theorem mul_volume_pairCode_image_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
       mul_meas_ge_le_lintegral (measurable_codeDensity a b c hW) (ENNReal.ofReal R)
     _ = _ := lintegral_codeDensity hab c hW
 
+/--
+@isnad1 id=ne.5h7v.s10.701062d2cebc from=translated src=- shape=69a80c16 vocab=49358b59
+-/
 theorem volume_pairCode_image_ne_top_of_density_lower_bound {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (hWfin : volume W ≠ ∞)
     (E : Set (PairCoordinates m)) {R : ℝ} (hRpos : 0 < R)
@@ -48,6 +54,9 @@ theorem volume_pairCode_image_ne_top_of_density_lower_bound {a b : ℝ} (hab : a
   intro he
   exact h (ENNReal.mul_eq_top.mpr (Or.inl ⟨(ENNReal.ofReal_pos.mpr hRpos).ne', he⟩))
 
+/--
+@isnad1 id=le.5h7v.s11.78d0c1523860 from=translated src=- shape=92fcce55 vocab=6b3b114b
+-/
 theorem volume_pairCode_image_toReal_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (hWfin : volume W ≠ ∞)
     (E : Set (PairCoordinates m)) {R : ℝ} (hRpos : 0 < R)
@@ -57,7 +66,9 @@ theorem volume_pairCode_image_toReal_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
   rw [ENNReal.toReal_mul, ENNReal.toReal_ofReal hRpos.le] at h
   exact (le_div_iff₀ hRpos).mpr (by simpa only [mul_comm] using h)
 
-/-- The code-image estimate from the first application of the old projection bound.-/
+/-- The code-image estimate from the first application of the old projection bound.
+@isnad1 id=other.22h15v.s11.83eff4b18d63 from=translated src=- shape=5f757317 vocab=ba3c0764
+-/
 theorem volume_pairCode_image_le_of_retained_density {a b c β C M : ℝ}
     (hab : a ≠ b) (hc : c ≠ 0) (hβ : 1 < β) (hβ2 : β ≤ 2) (hC : 0 < C) (hMpos : 0 < M)
     (Γ : Finset ℝ)

@@ -27,7 +27,9 @@ namespace NKBesicovitch.XRay
 variable {n m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Only the normal projection of an ambient translation affects the integrated kernel.-/
+/-- Only the normal projection of an ambient translation affects the integrated kernel.
+@isnad1 id=eq.0h8v.s17.d6847151eb07 from=translated src=- shape=a57b6c6a vocab=51b2122c
+-/
 theorem lintegral_sub_frame (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) (u : Rotations n)
     (x : EuclideanSpace ℝ (Fin m)) (z : EuclideanSpace ℝ (Fin n)) :
     (∫⁻ t : ℝ, f (Unitary.linearIsometryEquiv u
@@ -53,7 +55,9 @@ theorem lintegral_sub_frame (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) (u :
   exact lintegral_sub_right_eq_self (fun t : ℝ ↦ f (Unitary.linearIsometryEquiv u
     (e (x - q.1, t)))) q.2
 
-/-- Bounded translations preserve arbitrary spatial decay of absolute projected kernels.-/
+/-- Bounded translations preserve arbitrary spatial decay of absolute projected kernels.
+@isnad1 id=ex.0h7v.s16.324496b327ee from=translated src=- shape=2bf3c62a vocab=307d49b0
+-/
 theorem exists_lintegral_enorm_sub_frame_le (ψ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (N : ℕ) (R : ℝ≥0) :
     ∃ C : ℝ≥0, ∀ u : Rotations n, ∀ x : EuclideanSpace ℝ (Fin m),

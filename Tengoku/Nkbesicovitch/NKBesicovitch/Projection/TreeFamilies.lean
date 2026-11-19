@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m J : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=ex.10h10v.s12.c63cfb9576b2 from=translated src=- shape=7eb2458e vocab=294bd502
+-/
 theorem exists_stopping_families (T : CornerTree m β J) (hJ : 0 < J)
     {G : Set (Line m)} (S : CompanionSystem G T.times)
     {V : ℝ≥0∞} (hVpos : 0 < V) (hVfin : V ≠ ∞) (hVeq : volume S.centers * S.η = V)

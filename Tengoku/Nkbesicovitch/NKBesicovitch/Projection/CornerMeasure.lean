@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=measurep.0h1v.s10.9d4f59f28b63 from=translated src=- shape=326cf6c6 vocab=98bf7919
+-/
 theorem measurePreserving_swap_middle :
     MeasurePreserving (fun p : CornerCoordinates m ↦ ((p.1.1, p.2.1), (p.1.2, p.2.2)))
       volume volume := by
@@ -52,6 +55,9 @@ theorem measurePreserving_swap_middle :
 def cornerToFirst (a : ℝ) (p : CornerCoordinates m) : CornerCoordinates m :=
   (cornerFirst a p, (p.1.2, p.2.2))
 
+/--
+@isnad1 id=measurep.0h2v.s10.2739161a2f0d from=translated src=- shape=48dcd0a6 vocab=8cef5d4a
+-/
 theorem measurePreserving_cornerToFirst (a : ℝ) :
     MeasurePreserving (cornerToFirst (m := m) a) volume volume := by
   have hline := measurePreserving_lineCoordinates (m := m) a
@@ -64,9 +70,15 @@ theorem measurePreserving_cornerToFirst (a : ℝ) :
     Measure.volume_eq_prod] using (hline.prod hi).comp
       (measurePreserving_swap_middle.comp (hinv.prod hi))
 
+/--
+@isnad1 id=eq.0h3v.s4.00a45e8f58dd from=translated src=- shape=72544f21 vocab=0861f000
+-/
 theorem codeJacobian_comm (a b : ℝ) : codeJacobian m a b = codeJacobian m b a := by
   simp [codeJacobian, abs_sub_comm]
 
+/--
+@isnad1 id=measurep.1h5v.s11.5cfbf57532bc from=translated src=- shape=0b09908a vocab=d67a5000
+-/
 theorem measurePreserving_cornerFiber {a b : ℝ} (hab : a ≠ b) (v w : EuclideanSpace ℝ (Fin m)) :
     MeasurePreserving (fun p : Line m ↦
       (v + (b - a) • p.1 - b • p.2, w + (a - b) • p.2)) volume
@@ -101,6 +113,9 @@ theorem measurePreserving_cornerFiber {a b : ℝ} (hab : a ≠ b) (v w : Euclide
 def cornerCodeCoordinates (a b c κ : ℝ) (p : CornerCoordinates m) : CornerCoordinates m :=
   (cornerFirst a p, ((cornerLast b p).1, cornerCode a b c κ p))
 
+/--
+@isnad1 id=eq.0h4v.s8.2cd59d4de146 from=translated src=- shape=75f2472d vocab=7ad1edd1
+-/
 theorem cornerLast_fst_eq (a b : ℝ) (p : CornerCoordinates m) :
     (cornerLast b p).1 =
       atHeight a (cornerFirst a p) + (b - a) • p.1.2 - b • p.2.2 := by
@@ -108,11 +123,17 @@ theorem cornerLast_fst_eq (a b : ℝ) (p : CornerCoordinates m) :
   unfold cornerLast lineAt atHeight
   module
 
+/--
+@isnad1 id=continuo.0h5v.s8.46fa3d69417d from=translated src=- shape=cf0abafa vocab=cdb8acbb
+-/
 theorem continuous_cornerCodeCoordinates (a b c κ : ℝ) :
     Continuous (cornerCodeCoordinates (m := m) a b c κ) := by
   unfold cornerCodeCoordinates cornerCode cornerFirst cornerLast lineAt atHeight
   fun_prop
 
+/--
+@isnad1 id=measurep.1h5v.s11.9a7b450676bb from=translated src=- shape=d48e6c7f vocab=d5eab19f
+-/
 theorem measurePreserving_cornerCodeCoordinates {a b : ℝ} (hab : a ≠ b) (c κ : ℝ) :
     MeasurePreserving (cornerCodeCoordinates (m := m) a b c κ) volume
       (codeJacobian m a b ^ 2 • volume) := by
@@ -132,6 +153,9 @@ theorem measurePreserving_cornerCodeCoordinates {a b : ℝ} (hab : a ≠ b) (c �
   simpa [Function.comp_def, cornerToFirst, cornerLast_fst_eq a b] using
     hs.comp (measurePreserving_cornerToFirst a)
 
+/--
+@isnad1 id=measurep.1h5v.s11.6a790119685a from=translated src=- shape=d3823876 vocab=55f0b266
+-/
 theorem measurePreserving_cornerCodeCoordinates_assoc {a b : ℝ} (hab : a ≠ b) (c κ : ℝ) :
     MeasurePreserving (fun p : CornerCoordinates m ↦
       ((cornerFirst a p, (cornerLast b p).1), cornerCode a b c κ p)) volume

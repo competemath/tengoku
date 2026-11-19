@@ -24,6 +24,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m J : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=ex.2h5v.s8.d35747bc12da from=translated src=- shape=4b64882f vocab=e915229f
+-/
 theorem exists_stopping_threshold (T : CornerTree m β J) (hJ : 0 < J)
     {c : ℝ} (hc : 0 < c) :
     ∃ N₀ : ℝ, 1 ≤ N₀ ∧ ∀ N, N₀ ≤ N →

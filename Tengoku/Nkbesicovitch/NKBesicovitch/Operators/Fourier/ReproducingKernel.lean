@@ -28,7 +28,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- A smooth Fourier cutoff reproduces every Schwartz function supported in its inner ball.-/
+/-- A smooth Fourier cutoff reproduces every Schwartz function supported in its inner ball.
+@isnad1 id=eq.3h5v.s12.74d6310c5348 from=translated src=- shape=32e08783 vocab=436c47bd
+-/
 theorem convolution_normalizedDilation_eq_self (φ f : 𝓢(E, ℂ)) {R a : ℝ} (ha : 0 < a)
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ R → 𝓕 φ ξ = 1)
     (hf : tsupport (𝓕 f : 𝓢(E, ℂ)) ⊆ closedBall 0 (a * R)) :
@@ -45,7 +47,9 @@ theorem convolution_normalizedDilation_eq_self (φ f : 𝓢(E, ℂ)) {R a : ℝ}
   · rw [image_eq_zero_of_notMem_tsupport hξ, mul_zero]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
-/-- Every normalized Schwartz dilation admits a uniformly scaled polynomial majorant.-/
+/-- Every normalized Schwartz dilation admits a uniformly scaled polynomial majorant.
+@isnad1 id=ex.0h3v.s8.f3b956299e5f from=translated src=- shape=357cdf1e vocab=999800ba
+-/
 theorem exists_norm_normalizedDilation_le (φ : 𝓢(E, ℂ)) (N : ℕ) :
     ∃ C : ℝ≥0, ∀ (a : ℝ) (ha : 0 < a) (x : E),
       ‖normalizedDilation a ha φ x‖ ≤
@@ -62,7 +66,9 @@ theorem exists_norm_normalizedDilation_le (φ : 𝓢(E, ℂ)) (N : ℕ) :
     ← div_eq_mul_inv, le_div_iff₀ (by positivity)]
   nlinarith [mul_le_mul_of_nonneg_left hg (pow_nonneg ha.le (Module.finrank ℝ E))]
 
-/-- A bandlimited input is bounded pointwise by convolution with a positive polynomial profile.-/
+/-- A bandlimited input is bounded pointwise by convolution with a positive polynomial profile.
+@isnad1 id=le.4h8v.s10.81bd97242f87 from=translated src=- shape=74ea4aee vocab=875a1b18
+-/
 theorem enorm_le_polynomial_convolution (φ f : 𝓢(E, ℂ)) {R a : ℝ} (ha : 0 < a)
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ R → 𝓕 φ ξ = 1)
     (hf : tsupport (𝓕 f : 𝓢(E, ℂ)) ⊆ closedBall 0 (a * R)) {N : ℕ} {C : ℝ≥0}

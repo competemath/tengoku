@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {v : E}
 
+/--
+@isnad1 id=le.2h5v.s7.b5a82f10ed62 from=translated src=- shape=2678ddc4 vocab=4fc9ca46
+-/
 theorem support_lineIntegrand_subset_interval {f : E → ℝ≥0∞} {R : ℝ}
     (hs : Function.support f ⊆ closedBall 0 R) (hv : ‖v‖ = 1) (x : E) :
     Function.support (fun t : ℝ ↦ f (x + t • v)) ⊆
@@ -42,6 +45,9 @@ theorem support_lineIntegrand_subset_interval {f : E → ℝ≥0∞} {R : ℝ}
   have h := abs_le.mp (hi.trans hn)
   constructor <;> linarith
 
+/--
+@isnad1 id=le.3h6v.s7.53f2e385fcee from=translated src=- shape=f8ef25ea vocab=477352ce
+-/
 theorem lintegral_line_le_of_support_bound {f : E → ℝ≥0∞} {R : ℝ}
     (hs : Function.support f ⊆ closedBall 0 R) {C : ℝ≥0∞} (hC : ∀ x, f x ≤ C)
     (hv : ‖v‖ = 1) (x : E) :
@@ -55,7 +61,9 @@ theorem lintegral_line_le_of_support_bound {f : E → ℝ≥0∞} {R : ℝ}
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- Tonelli bounds an integrated convolution by the absolute kernel integrated along the curve.-/
+/-- Tonelli bounds an integrated convolution by the absolute kernel integrated along the curve.
+@isnad1 id=le.3h4v.s8.dd6893d6fde7 from=translated src=- shape=db0de4c5 vocab=db5c6976
+-/
 theorem enorm_integral_convolution_le {f g : E → ℂ} {γ : ℝ → E}
     (hf : Measurable f) (hg : Measurable g) (hγ : Measurable γ) :
     ‖∫ t : ℝ, (g ⋆[ContinuousLinearMap.lsmul ℂ ℂ] f) (γ t)‖ₑ ≤
@@ -71,7 +79,9 @@ theorem enorm_integral_convolution_le {f g : E → ℂ} {γ : ℝ → E}
   intro z
   rw [lintegral_mul_const (‖f z‖ₑ) (f := fun t : ℝ ↦ ‖g (γ t - z)‖ₑ) (by fun_prop), mul_comm]
 
-/-- A uniform absolute-kernel bound on the input support controls the integrated convolution.-/
+/-- A uniform absolute-kernel bound on the input support controls the integrated convolution.
+@isnad1 id=le.4h5v.s8.c311667f43ce from=translated src=- shape=4dfa65b5 vocab=9a8cb1ae
+-/
 theorem enorm_integral_convolution_le_of_support {f g : E → ℂ} {γ : ℝ → E}
     (hf : Measurable f) (hg : Measurable g) (hγ : Measurable γ) {K : ℝ≥0∞}
     (hK : ∀ z ∈ Function.support f, (∫⁻ t : ℝ, ‖g (γ t - z)‖ₑ) ≤ K) :
@@ -88,7 +98,9 @@ theorem enorm_integral_convolution_le_of_support {f g : E → ℂ} {γ : ℝ →
       rw [lintegral_mul_const _ hf.enorm, eLpNorm_one_eq_lintegral_enorm]
       exact mul_comm _ _
 
-/-- Smoothing costs only the kernel mass in the uniform line-integral bound.-/
+/-- Smoothing costs only the kernel mass in the uniform line-integral bound.
+@isnad1 id=le.5h7v.s8.5dd8b6164536 from=translated src=- shape=a289ae7c vocab=55c0662f
+-/
 theorem lintegral_line_lconvolution_le {f g : E → ℝ≥0∞} (hf : Measurable f) (hg : Measurable g)
     {R : ℝ} (hs : Function.support f ⊆ closedBall 0 R) {C : ℝ≥0∞} (hC : ∀ x, f x ≤ C)
     (hv : ‖v‖ = 1) (x : E) :
@@ -104,7 +116,9 @@ theorem lintegral_line_lconvolution_le {f g : E → ℝ≥0∞} (hf : Measurable
   rw [lintegral_mul_const _ hg]
   ac_rfl
 
-/-- Absolute values of a signed smoothed line integral obey the positive convolution bound.-/
+/-- Absolute values of a signed smoothed line integral obey the positive convolution bound.
+@isnad1 id=le.5h7v.s9.ce114e441c21 from=translated src=- shape=df9bf446 vocab=af353462
+-/
 theorem enorm_line_convolution_le {f g : E → ℂ} (hf : Measurable f) (hg : Measurable g)
     {R : ℝ} (hs : Function.support f ⊆ closedBall 0 R) {C : ℝ≥0∞}
     (hC : ∀ x, ‖f x‖ₑ ≤ C) (hv : ‖v‖ = 1) (x : E) :

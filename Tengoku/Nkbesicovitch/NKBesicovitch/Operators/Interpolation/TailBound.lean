@@ -35,7 +35,9 @@ private theorem inv_sq_mul_rpow (t : ℝ) (ht : 0 < t) (p : ℝ) :
 
 variable {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
 
-/-- Integrating a squared-tail distribution bound yields the full `p`-moment bound.-/
+/-- Integrating a squared-tail distribution bound yields the full `p`-moment bound.
+@isnad1 id=le.5h9v.s8.468c49d9e30c from=translated src=- shape=51db3197 vocab=4a025c80
+-/
 theorem lintegral_enorm_rpow_le_of_sq_tail (μ : Measure X) (ν : Measure Y)
     {f : X → ℂ} (hf : Measurable f) {g : Y → ℂ} (hg : AEStronglyMeasurable g ν)
     {p c : ℝ} (hp : 2 < p) (hc : 0 < c) (K : ℝ≥0)

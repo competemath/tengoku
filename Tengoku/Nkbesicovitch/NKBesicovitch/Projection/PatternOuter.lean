@@ -44,6 +44,9 @@ def OuterBound (P : CornerPattern m β) (C : ℝ) : Prop :=
       ((volume D).toReal / (2 * P.outer.card * N.toReal * R.toReal)) ^ (β / (β - 1)) ≤
         C * (N.toReal * Q₀.toReal)
 
+/--
+@isnad1 id=outerbou.4h4v.s9.6e7ddaf905e8 from=translated src=- shape=d91aa814 vocab=a2f73473
+-/
 theorem outerBound_of_input_bound (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2)
     {C₀ : ℝ} (hC₀ : 0 < C₀)
     (hOuter : ∀ G : Set (Line m), MeasurableSet G → IsBounded G →
@@ -65,12 +68,18 @@ theorem outerBound_of_input_bound (P : CornerPattern m β) (hβ : 1 < β) (hβ2 
     simpa only [one_pow, mul_one] using h
   exact rpow_conjugate_le_of_rpow_le hβ hA.le (by positivity) (by positivity) hpower
 
+/--
+@isnad1 id=outerbou.2h5v.s4.7bf1ce0c60ff from=translated src=- shape=3409366e vocab=82f98672
+-/
 theorem OuterBound.mono {P : CornerPattern m β} {C C' : ℝ} (h : P.OuterBound C)
     (hC : C ≤ C') : P.OuterBound C' := by
   intro G hGb hM N R hN₀ hN hR₀ hR hcN huN D hD hDG hpos W E hDW hDE Q₀ hQ₀ hQ himage
   exact (h G hGb hM N R hN₀ hN hR₀ hR hcN huN D hD hDG hpos W E hDW hDE Q₀ hQ₀ hQ himage).trans
     (mul_le_mul_of_nonneg_right hC (by positivity))
 
+/--
+@isnad1 id=ex.2h3v.s5.e82230eacd55 from=translated src=- shape=99e5e536 vocab=253e52f9
+-/
 theorem exists_outer_constant (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2) :
     ∃ C : ℝ, 0 < C ∧ P.OuterBound C := by
   obtain ⟨C₀, hC₀, hOuter, _⟩ := P.exists_input_constant

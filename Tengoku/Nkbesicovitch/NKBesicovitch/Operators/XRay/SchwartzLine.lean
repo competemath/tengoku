@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {v : E}
 
+/--
+@isnad1 id=le.1h5v.s10.416466edc329 from=translated src=- shape=ee4275cf vocab=f95ab59a
+-/
 theorem norm_schwartz_add_normal_le (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ))
     (y : (ℝ ∙ v)ᗮ) (t : ℝ) :
     ‖f ((y : E) + t • v)‖ ≤
@@ -43,12 +46,18 @@ theorem norm_schwartz_add_normal_le (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ))
     _ ≤ _ := add_le_add (f.norm_le_seminorm ℝ _)
       ((mul_le_mul_of_nonneg_right hn (norm_nonneg _)).trans (f.norm_pow_mul_le_seminorm ℝ 2 _))
 
+/--
+@isnad1 id=integrab.1h4v.s9.ee6a3864389c from=translated src=- shape=b67f6c53 vocab=baf7beca
+-/
 theorem integrable_schwartz_normalLine (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) (y : (ℝ ∙ v)ᗮ) :
     Integrable (fun t : ℝ ↦ f ((y : E) + t • v)) :=
   (integrable_inv_one_add_sq.const_mul _).mono'
     (f.continuous.comp (by fun_prop)).aestronglyMeasurable
     (ae_of_all _ (norm_schwartz_add_normal_le hv f y))
 
+/--
+@isnad1 id=continuo.1h3v.s9.a4636d8bd4d4 from=translated src=- shape=097ed768 vocab=5fba0bcf
+-/
 theorem continuous_lineIntegral (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) :
     Continuous (fun y : (ℝ ∙ v)ᗮ ↦ ∫ t : ℝ, f ((y : E) + t • v)) := by
   apply continuous_of_dominated
@@ -63,7 +72,9 @@ theorem continuous_lineIntegral (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) :
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- Integration along a line preserves the Schwartz class in the normal displacement.-/
+/-- Integration along a line preserves the Schwartz class in the normal displacement.
+@isnad1 id=ex.1h3v.s11.1307379f3b37 from=translated src=- shape=ec3a250d vocab=0116955b
+-/
 theorem exists_schwartz_lineIntegral (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) :
     ∃ g : 𝓢((ℝ ∙ v)ᗮ, ℂ), ∀ y, g y = ∫ t : ℝ, f ((y : E) + t • v) := by
   let r : 𝓢((ℝ ∙ v)ᗮ, ℂ) := SchwartzMap.compCLMOfAntilipschitz ℂ
@@ -77,7 +88,9 @@ theorem exists_schwartz_lineIntegral (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) :
   exact (integrable_lineIntegral hv f.integrable).fourierInv_fourier_eq
     (hr ▸ r.integrable) (continuous_lineIntegral hv f).continuousAt
 
-/-- Plancherel on the normal hyperplane converts line integrals to Fourier restriction.-/
+/-- Plancherel on the normal hyperplane converts line integrals to Fourier restriction.
+@isnad1 id=eq.1h3v.s11.df16d54d4814 from=translated src=- shape=bb20c64f vocab=a9cfc79a
+-/
 theorem integral_norm_sq_lineIntegral (hv : ‖v‖ = 1) (f : 𝓢(E, ℂ)) :
     (∫ y : (ℝ ∙ v)ᗮ, ‖∫ t : ℝ, f ((y : E) + t • v)‖ ^ 2) =
       ∫ ξ : (ℝ ∙ v)ᗮ, ‖𝓕 f (ξ : E)‖ ^ 2 := by

@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h7v.s5.27601c2f4a0a from=translated src=- shape=0d7a75dd vocab=eb3d7252
+-/
 theorem support_cornerOuterDensity_subset {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     (D : Set (CornerCoordinates m)) :
     Function.support (cornerOuterDensity a b c κ u D) ⊆ cornerOuterData a b c κ u '' D := by
@@ -39,6 +42,9 @@ theorem support_cornerOuterDensity_subset {a b c κ u : ℝ} (hab : a ≠ b) (hu
     D.indicator (1 : CornerCoordinates m → ℝ≥0∞) (cornerFromOuter a b c κ u yz s) = 0
   simp [Set.indicator_of_notMem, hz]
 
+/--
+@isnad1 id=le.4h9v.s10.9e8022449aa5 from=translated src=- shape=ec5ba0ef vocab=e7a9702b
+-/
 theorem volume_low_cornerOuterDensity_le {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) {S : Set (Line m)}
     (hS : cornerOuterData a b c κ u '' D ⊆ S) (τ : ℝ≥0∞) :
@@ -51,7 +57,9 @@ theorem volume_low_cornerOuterDensity_le {a b c κ u : ℝ} (hab : a ≠ b) (hua
   exact setLIntegral_lt_le_mul_measure (measurable_cornerOuterDensity a b c κ u hD)
     ((support_cornerOuterDensity_subset hab hua D).trans hS) τ
 
-/-- A product bound using the first-line projection and the allowed inner-pair codes.-/
+/-- A product bound using the first-line projection and the allowed inner-pair codes.
+@isnad1 id=le.5h10v.s11.50de69c3c5ae from=translated src=- shape=698e3d5f vocab=e17879db
+-/
 theorem volume_low_cornerOuterDensity_le_mul {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) {G : Set (Line m)}
     (hDG : D ⊆ cornerFamily a b G) {B : Set (EuclideanSpace ℝ (Fin m))}

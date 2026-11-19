@@ -30,6 +30,9 @@ noncomputable def cornerOuterCoordinates (a b c κ u : ℝ)
     (p : CornerCoordinates m) : CornerCoordinates m :=
   (cornerOuterData a b c κ u p, ((cornerFirst a p).2, (cornerLast b p).1))
 
+/--
+@isnad1 id=measurep.0h2v.s10.8a279054b796 from=translated src=- shape=18aeba2d vocab=6c066cc9
+-/
 theorem measurePreserving_cornerOuterPermutation (u : ℝ) :
     MeasurePreserving (fun p : CornerCoordinates m ↦
       ((atHeight u p.1, p.2.2), (p.1.2, p.2.1))) volume volume := by
@@ -43,6 +46,9 @@ theorem measurePreserving_cornerOuterPermutation (u : ℝ) :
     Measure.volume_eq_prod] using
     measurePreserving_swap_middle.comp ((hi.prod hswap).comp (hinv.prod hi))
 
+/--
+@isnad1 id=measurep.0h2v.s9.86e437c448f6 from=translated src=- shape=a33ff958 vocab=86b3d95b
+-/
 theorem measurePreserving_sub_smul_second (A : ℝ) :
     MeasurePreserving (fun p : Line m ↦ (p.1, p.2 - A • p.1)) volume volume := by
   change MeasurePreserving _ (volume.prod volume) (volume.prod volume)
@@ -51,6 +57,9 @@ theorem measurePreserving_sub_smul_second (A : ℝ) :
     (by fun_prop) (ae_of_all _ fun y ↦ ?_)
   simpa [sub_eq_add_neg] using map_add_right_eq_self volume (-(A • y))
 
+/--
+@isnad1 id=measurep.2h6v.s11.865153b0616f from=translated src=- shape=8c16b285 vocab=97f588e7
+-/
 theorem measurePreserving_cornerOuterCoordinates {a b c κ u : ℝ}
     (hab : a ≠ b) (hua : u ≠ a) :
     MeasurePreserving (cornerOuterCoordinates (m := m) a b c κ u) volume
@@ -73,6 +82,9 @@ noncomputable def cornerFromOuter (a b c κ u : ℝ) (yz s : Line m) : CornerCoo
   cornerFromCode a b c κ (lineAt u yz.1 s.1) s.2
     (cornerOuterCoefficient a c κ u • yz.1 + yz.2)
 
+/--
+@isnad1 id=eq.2h7v.s6.8d5648742caa from=translated src=- shape=83d4c1c4 vocab=ab38874b
+-/
 theorem cornerFromOuter_cornerOuterCoordinates {a b c κ u : ℝ}
     (hab : a ≠ b) (hua : u ≠ a) (p : CornerCoordinates m) :
     cornerFromOuter a b c κ u (cornerOuterCoordinates a b c κ u p).1
@@ -80,16 +92,25 @@ theorem cornerFromOuter_cornerOuterCoordinates {a b c κ u : ℝ}
   simp only [cornerFromOuter, cornerOuterCoordinates, cornerOuterData_eq hua]
   rw [lineAt_atHeight, add_sub_cancel, cornerFromCode_cornerCode hab]
 
+/--
+@isnad1 id=eq.2h8v.s5.52f6e02ce49b from=translated src=- shape=ceb89183 vocab=d01f97c1
+-/
 theorem cornerOuterData_cornerFromOuter {a b c κ u : ℝ} (hab : a ≠ b)
     (hua : u ≠ a) (yz s : Line m) :
     cornerOuterData a b c κ u (cornerFromOuter a b c κ u yz s) = yz := by
   simp [cornerFromOuter, cornerOuterData_cornerFromCode hab hua, atHeight_lineAt]
 
+/--
+@isnad1 id=measurab.0h6v.s8.da60205e8527 from=translated src=- shape=9d7366c8 vocab=e8153adc
+-/
 theorem measurable_cornerFromOuter (a b c κ u : ℝ) :
     Measurable (fun p : CornerCoordinates m ↦ cornerFromOuter a b c κ u p.1 p.2) := by
   unfold cornerFromOuter cornerFromCode lineAt atHeight
   fun_prop
 
+/--
+@isnad1 id=eq.3h7v.s10.d6a29ae130c7 from=translated src=- shape=3438eddd vocab=6f23a270
+-/
 theorem lintegral_cornerOuterDensity {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) :
     (∫⁻ yz, cornerOuterDensity a b c κ u D yz) = volume D := by
@@ -116,6 +137,9 @@ theorem lintegral_cornerOuterDensity {a b c κ u : ℝ} (hab : a ≠ b) (hua : u
       rw [cornerFromOuter_cornerOuterCoordinates hab hua]
     _ = volume D := lintegral_indicator_one hD
 
+/--
+@isnad1 id=eq.2h9v.s6.5d2f9895b7ca from=translated src=- shape=a72e3ff8 vocab=175dc4dd
+-/
 theorem cornerOuterDensity_inter_preimage {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     (D : Set (CornerCoordinates m)) (B : Set (Line m)) (yz : Line m) :
     cornerOuterDensity a b c κ u (D ∩ cornerOuterData a b c κ u ⁻¹' B) yz =
@@ -144,6 +168,9 @@ theorem cornerOuterDensity_inter_preimage {a b c κ u : ℝ} (hab : a ≠ b) (hu
       simp [Set.indicator, cornerOuterData_cornerFromOuter hab hua, hB]
     simp [hz]
 
+/--
+@isnad1 id=eq.4h8v.s10.3c8807b357e4 from=translated src=- shape=15e2019d vocab=9ccaad18
+-/
 theorem setLIntegral_cornerOuterDensity {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D)
     {B : Set (Line m)} (hB : MeasurableSet B) :

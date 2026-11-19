@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι : Type*}
 
+/--
+@isnad1 id=le.2h5v.s5.eee6bce9eb41 from=translated src=- shape=492a1360 vocab=7d1b6d75
+-/
 theorem support_pairDensity_subset_image {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     (W : Set (PairCoordinates m)) :
     Function.support (pairDensity a s t W) ⊆ pairProjections a s t '' W := by
@@ -37,6 +40,9 @@ theorem support_pairDensity_subset_image {a s t : ℝ} (hs : s ≠ a) (ht : t �
     exact h ⟨_, hw, pairProjections_pairFromData hs ht (w, yz)⟩
   exact hyz (by simp [pairDensity, Set.indicator_of_notMem, hz])
 
+/--
+@isnad1 id=le.4h7v.s10.308e552235cc from=translated src=- shape=c1ebb7ac vocab=017cd2ec
+-/
 theorem mul_volume_pairProjections_image_le {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {W E : Set (PairCoordinates m)} (hW : MeasurableSet W) (ℓ : ℝ≥0∞)
     (hℓ : ∀ p ∈ E, ℓ ≤ pairDensity a s t W (pairProjections a s t p)) :
@@ -51,6 +57,9 @@ theorem mul_volume_pairProjections_image_le {a s t : ℝ} (hs : s ≠ a) (ht : t
       mul_meas_ge_le_lintegral (measurable_pairDensity a s t hW) ℓ
     _ = _ := lintegral_pairDensity hs ht hW
 
+/--
+@isnad1 id=le.4h7v.s10.b970eb07af86 from=translated src=- shape=49b8e159 vocab=29702449
+-/
 theorem volume_low_pairDensity_le_of_image_subset {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) {S : Set (Line m)}
     (hS : pairProjections a s t '' W ⊆ S) (ℓ : ℝ≥0∞) :
@@ -61,6 +70,9 @@ theorem volume_low_pairDensity_le_of_image_subset {a s t : ℝ} (hs : s ≠ a) (
   exact setLIntegral_lt_le_mul_measure (measurable_pairDensity a s t hW)
     ((support_pairDensity_subset_image hs ht W).trans hS) ℓ
 
+/--
+@isnad1 id=le.4h9v.s10.921b1c1c4b8d from=translated src=- shape=48d3897c vocab=7bb44242
+-/
 theorem volume_sdiff_densePairs_le_of_image_subset (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
@@ -77,6 +89,9 @@ theorem volume_sdiff_densePairs_le_of_image_subset (a : ℝ) (s t : ι → ℝ) 
     _ ≤ _ := Finset.sum_le_sum fun i hi ↦
       volume_low_pairDensity_le_of_image_subset (hs i hi) (ht i hi) hW (hS i hi) ℓ
 
+/--
+@isnad1 id=le.4h9v.s10.9f05e2eec278 from=translated src=- shape=1bbae6ee vocab=ab2c6e1e
+-/
 theorem volume_sdiff_densePairs_le_of_image_bound (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (ℓ P : ℝ≥0∞)

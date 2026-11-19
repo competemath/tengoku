@@ -24,6 +24,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=other.20h15v.s9.2fe3d6acadbd from=translated src=- shape=c4452b69 vocab=f27d5588
+-/
 theorem normalized_corner_bound {q c₀ c₁ d K C L N V η D R r : ℝ}
     (hq : 1 < q) (hc₀ : 0 < c₀) (hc₁ : 0 ≤ c₁) (hd : 0 < d)
     (hK : 0 < K) (hC : 0 ≤ C) (hL : 0 < L) (hN : 1 ≤ N)

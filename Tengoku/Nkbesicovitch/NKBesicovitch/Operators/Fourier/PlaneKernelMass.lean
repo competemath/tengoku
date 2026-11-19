@@ -39,7 +39,9 @@ private lemma lintegral_polynomial_smul_aux (a : ℝ) (ha : 0 < a) (N : ℕ) :
     Measure.map_addHaar_smul volume ha.ne', lintegral_smul_measure]
   rw [abs_of_pos (by positivity), ENNReal.ofReal_inv_of_pos (pow_pos ha _), smul_eq_mul]
 
-/-- The mass of a weighted plane kernel is independent of the positive dilation scale.-/
+/-- The mass of a weighted plane kernel is independent of the positive dilation scale.
+@isnad1 id=eq.1h6v.s10.a44ffcb9719f from=translated src=- shape=8faa1ce8 vocab=ba2e3657
+-/
 theorem lintegral_weightedPlaneKernel (V : Submodule ℝ E) (a : ℝ) (ha : 0 < a)
     (A N : ℕ) (x : E) :
     (∫⁻ z, weightedPlaneKernel V a A N x z) =
@@ -59,7 +61,9 @@ theorem lintegral_weightedPlaneKernel (V : Submodule ℝ E) (a : ℝ) (ha : 0 < 
         ∫⁻ z : E, ENNReal.ofReal (((1 + ‖z‖ ^ 2) ^ N)⁻¹)) := by ac_rfl
     _ = _ := by rw [ENNReal.mul_inv_cancel h₀ ENNReal.ofReal_ne_top, one_mul]
 
-/-- A translated plane has no more polynomial weight mass than the plane through the origin.-/
+/-- A translated plane has no more polynomial weight mass than the plane through the origin.
+@isnad1 id=le.0h4v.s10.6d956a50b9ae from=translated src=- shape=8398f395 vocab=b71bf2bd
+-/
 theorem lintegral_inv_weight_affine_le (V : Submodule ℝ E) (A : ℕ) (x : E) :
     (∫⁻ w : V, ENNReal.ofReal (((1 + ‖x + w‖ ^ 2) ^ A)⁻¹)) ≤
       ∫⁻ w : V, ENNReal.ofReal (((1 + ‖w‖ ^ 2) ^ A)⁻¹) := by
@@ -91,7 +95,9 @@ private lemma lintegral_inv_weight_euclidean_ne_top_aux (d N : ℕ) (hN : d < 2 
   rw [show -(2 * (N : ℝ)) / 2 = -(N : ℝ) by ring,
     Real.rpow_neg (by positivity), Real.rpow_natCast]
 
-/-- Sufficient polynomial decay gives a finite kernel mass uniform in direction and translation.-/
+/-- Sufficient polynomial decay gives a finite kernel mass uniform in direction and translation.
+@isnad1 id=ex.2h4v.s10.46d99617442d from=translated src=- shape=5b4eb5f0 vocab=0b45c1b7
+-/
 theorem exists_lintegral_weightedPlaneKernel_le {n k A N : ℕ} (hA : k < 2 * A) (hN : n < 2 * N) :
     ∃ C : ℝ≥0, ∀ (V : Grassmannian n k) (a : ℝ), 0 < a →
       ∀ x, (∫⁻ z, weightedPlaneKernel V.val a A N x z) ≤ C := by

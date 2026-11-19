@@ -49,7 +49,9 @@ private theorem norm_sub_cutoff_smul_le (θ : ContDiffBump (0 : ℂ)) (z : ℂ) 
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- Smooth amplitude truncation preserves support and separates the high-amplitude tail.-/
+/-- Smooth amplitude truncation preserves support and separates the high-amplitude tail.
+@isnad1 id=ex.2h3v.s9.3012aa851e09 from=translated src=- shape=fdcc2e54 vocab=1dbb64b9
+-/
 theorem exists_schwartz_amplitude_decomposition (f : 𝓢(E, ℂ))
     (hf : HasCompactSupport (f : E → ℂ)) {t : ℝ} (ht : 0 < t) :
     ∃ g h : 𝓢(E, ℂ), f = g + h ∧ support (g : E → ℂ) ⊆ support (f : E → ℂ) ∧

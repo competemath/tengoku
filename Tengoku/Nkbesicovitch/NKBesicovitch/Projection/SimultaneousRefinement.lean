@@ -30,16 +30,25 @@ noncomputable def densePairs (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (W : Set (PairCoordinates m)) (ℓ : ℝ≥0∞) : Set (PairCoordinates m) :=
   W ∩ ⋂ i ∈ I, {p | ℓ ≤ pairDensity a (s i) (t i) W (pairProjections a (s i) (t i) p)}
 
+/--
+@isnad1 id=le.0h8v.s5.a9fdf9c5dd5c from=translated src=- shape=9e10da4c vocab=ecbd73c5
+-/
 theorem densePairs_subset (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (W : Set (PairCoordinates m)) (ℓ : ℝ≥0∞) : densePairs a s t I W ℓ ⊆ W :=
   inter_subset_left
 
+/--
+@isnad1 id=le.2h10v.s6.18140f0685d9 from=translated src=- shape=a7690b08 vocab=af9ac20e
+-/
 theorem le_pairDensity_of_mem_densePairs {a : ℝ} {s t : ι → ℝ} {I : Finset ι}
     {W : Set (PairCoordinates m)} {ℓ : ℝ≥0∞} {p : PairCoordinates m}
     (hp : p ∈ densePairs a s t I W ℓ) {i : ι} (hi : i ∈ I) :
     ℓ ≤ pairDensity a (s i) (t i) W (pairProjections a (s i) (t i) p) :=
   mem_iInter.mp (mem_iInter.mp hp.2 i) hi
 
+/--
+@isnad1 id=measurab.1h8v.s8.a89338f6b929 from=translated src=- shape=6219a354 vocab=8f8cce88
+-/
 theorem measurableSet_densePairs (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (ℓ : ℝ≥0∞) :
     MeasurableSet (densePairs a s t I W ℓ) := by
@@ -47,6 +56,9 @@ theorem measurableSet_densePairs (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     measurableSet_le measurable_const ((measurable_pairDensity a (s i) (t i) hW).comp
       (continuous_pairProjections a (s i) (t i)).measurable))
 
+/--
+@isnad1 id=le.0h8v.s6.d20f8af6cdbf from=translated src=- shape=caa4447c vocab=cfd78097
+-/
 theorem sdiff_densePairs_subset (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (W : Set (PairCoordinates m)) (ℓ : ℝ≥0∞) :
     W \ densePairs a s t I W ℓ ⊆
@@ -59,6 +71,9 @@ theorem sdiff_densePairs_subset (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
   exact le_of_not_gt fun hlt ↦
     h (mem_iUnion.mpr ⟨i, mem_iUnion.mpr ⟨hi, hp.1, hlt⟩⟩)
 
+/--
+@isnad1 id=le.4h9v.s10.afe796e48178 from=translated src=- shape=21f6c7b4 vocab=56e2f6f8
+-/
 theorem volume_sdiff_densePairs_le (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
@@ -74,6 +89,9 @@ theorem volume_sdiff_densePairs_le (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
       measure_biUnion_finset_le I _
     _ ≤ _ := Finset.sum_le_sum fun i hi ↦ volume_low_pairDensity_le (hs i hi) (ht i hi) hW hWG ℓ
 
+/--
+@isnad1 id=le.6h10v.s10.42a6b9e55483 from=translated src=- shape=cde33721 vocab=fd10bc2f
+-/
 theorem volume_sdiff_densePairs_le_card (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
@@ -90,6 +108,9 @@ theorem volume_sdiff_densePairs_le_card (a : ℝ) (s t : ι → ℝ) (I : Finset
       exact mul_le_mul le_rfl (mul_le_mul (hsN i hi) (htN i hi) bot_le bot_le) bot_le bot_le
     _ = _ := by simp [nsmul_eq_mul, mul_assoc]
 
+/--
+@isnad1 id=le.6h10v.s11.4d0430ed9441 from=translated src=- shape=6bd03139 vocab=46c34767
+-/
 theorem volume_le_volume_densePairs_add (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
@@ -102,6 +123,9 @@ theorem volume_le_volume_densePairs_add (a : ℝ) (s t : ι → ℝ) (I : Finset
   exact h.trans (add_le_add le_rfl
     (volume_sdiff_densePairs_le_card a s t I hs ht hW hWG ℓ N hsN htN))
 
+/--
+@isnad1 id=le.8h10v.s12.9ebf985c7e93 from=translated src=- shape=f3edff04 vocab=ade8c711
+-/
 theorem half_volume_le_volume_densePairs (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)

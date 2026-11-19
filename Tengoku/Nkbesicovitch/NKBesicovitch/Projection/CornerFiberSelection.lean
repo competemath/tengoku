@@ -28,12 +28,18 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.1h8v.s5.f2661d1cda83 from=translated src=- shape=7d22b1d9 vocab=9db0ee43
+-/
 theorem cornerFiber_mono (a b c κ : ℝ) {D₀ D₁ : Set (CornerCoordinates m)}
     (hD : D₁ ⊆ D₀) (z : EuclideanSpace ℝ (Fin m)) :
     cornerFiber a b c κ D₁ z ⊆ cornerFiber a b c κ D₀ z := by
   rintro g ⟨x, hx⟩
   exact ⟨x, hD hx⟩
 
+/--
+@isnad1 id=le.1h7v.s6.d31eb7dc3b7f from=translated src=- shape=73eabfbe vocab=36320e8c
+-/
 theorem cornerDensity_mono (a b c κ : ℝ) {D₀ D₁ : Set (CornerCoordinates m)}
     (hD : D₁ ⊆ D₀) : cornerDensity a b c κ D₁ ≤ cornerDensity a b c κ D₀ := by
   intro z
@@ -42,15 +48,24 @@ theorem cornerDensity_mono (a b c κ : ℝ) {D₀ D₁ : Set (CornerCoordinates 
   intro p
   exact indicator_le_indicator_of_subset hD (fun _ ↦ bot_le) _
 
+/--
+@isnad1 id=isbounde.1h4v.s7.29a8f77a8533 from=translated src=- shape=f185822b vocab=e1b10f37
+-/
 theorem isBounded_cornerFamily (a b : ℝ) {G : Set (Line m)} (hG : IsBounded G) :
     IsBounded (cornerFamily a b G) := by
   apply (hG.prod (hG.image_snd.prod hG.image_snd)).subset
   intro p hp
   exact ⟨hp.2.1, ⟨cornerFirst a p, hp.1, rfl⟩, ⟨cornerLast b p, hp.2.2, rfl⟩⟩
 
+/--
+@isnad1 id=ne.1h4v.s10.cc09b73fbe85 from=translated src=- shape=1c11ba45 vocab=5b298b2c
+-/
 theorem volume_cornerFamily_ne_top (a b : ℝ) {G : Set (Line m)} (hG : IsBounded G) :
     volume (cornerFamily a b G) ≠ ∞ := (isBounded_cornerFamily a b hG).measure_lt_top.ne
 
+/--
+@isnad1 id=ne.5h8v.s8.179b96c6c400 from=translated src=- shape=a435e8d8 vocab=25bd5940
+-/
 theorem cornerDensity_ne_top {a b κ : ℝ} (hab : a ≠ b) (hκ : κ ≠ 0) (c : ℝ)
     {G : Set (Line m)} {D : Set (CornerCoordinates m)} (hD : MeasurableSet D)
     (hDG : D ⊆ cornerFamily a b G) (hG : IsBounded G) (z : EuclideanSpace ℝ (Fin m)) :
@@ -62,7 +77,9 @@ theorem cornerDensity_ne_top {a b κ : ℝ} (hab : a ≠ b) (hκ : κ ≠ 0) (c 
       (ENNReal.mul_ne_top (parallelMultiplicity_ne_top hG) hF))
     (cornerDensity_le_cornerFiber hab hκ c hD hDG z)
 
-/-- Half the total mass yields half the original density on a positive corner-code fiber.-/
+/-- Half the total mass yields half the original density on a positive corner-code fiber.
+@isnad1 id=ex.7h7v.s12.a013c47fa1d6 from=translated src=- shape=b063af22 vocab=d3a16584
+-/
 theorem exists_good_corner_code {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     {D₀ D₁ : Set (CornerCoordinates m)} (hD₀ : MeasurableSet D₀) (hD₁ : MeasurableSet D₁)
     (hD : D₁ ⊆ D₀) (hpos : 0 < volume D₀) (hfin : volume D₀ ≠ ∞)

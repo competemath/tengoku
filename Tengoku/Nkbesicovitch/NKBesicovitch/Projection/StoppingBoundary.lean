@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.4h7v.s10.85d1e4bf9d21 from=translated src=- shape=3e807aad vocab=76babbfa
+-/
 theorem volume_pairProjections_le_square {a s t N : ℝ} (hN : 0 ≤ N)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G)
     (hs : volume (atHeight s '' G) ≤ ENNReal.ofReal N)
@@ -42,11 +45,17 @@ theorem volume_pairProjections_le_square {a s t N : ℝ} (hN : 0 ≤ N)
     _ ≤ ENNReal.ofReal N * ENNReal.ofReal N := mul_le_mul hs ht bot_le bot_le
     _ = _ := by rw [← ENNReal.ofReal_mul hN, Real.rpow_two, pow_two]
 
+/--
+@isnad1 id=eq.1h3v.s6.de0d94653243 from=translated src=- shape=f2f06244 vocab=7b970a01
+-/
 theorem stopping_density_mul_image_ennreal (V : ℝ≥0∞) {N ρ : ℝ} (hN : 0 < N) :
     (V * ENNReal.ofReal (N ^ (-2 + ρ))) * ENNReal.ofReal (N ^ (2 - ρ)) = V := by
   rw [mul_assoc, ← ENNReal.ofReal_mul (Real.rpow_nonneg hN.le _), ← Real.rpow_add hN]
   simp only [show (-2 + ρ) + (2 - ρ) = 0 by ring, Real.rpow_zero, ENNReal.ofReal_one, mul_one]
 
+/--
+@isnad1 id=lt.5h5v.s7.4eeca44feca1 from=translated src=- shape=21598b46 vocab=3fb01927
+-/
 theorem root_density_threshold {c j L N V : ℝ} (hc : 0 ≤ c) (hL : 1 ≤ L) (hN : 0 < N)
     (hV : c * L ^ (2 : ℝ) * N ^ (-1 : ℝ) ≤ V) (hlarge : j < c * N ^ (96 : ℝ)) :
     j * N < V * N ^ (98 : ℝ) := by
@@ -66,6 +75,9 @@ theorem root_density_threshold {c j L N V : ℝ} (hc : 0 ≤ c) (hL : 1 ≤ L) (
       rw [mul_assoc, ← Real.rpow_add hN]; norm_num
     _ ≤ V * N ^ (98 : ℝ) := mul_le_mul_of_nonneg_right hV (Real.rpow_nonneg hN.le _)
 
+/--
+@isnad1 id=lt.3h3v.s6.5f2dae362c1d from=translated src=- shape=f244ad7b vocab=5c9d27ef
+-/
 theorem root_threshold {c j N : ℝ} (hc : 0 < c) (hN : 1 ≤ N)
     (hj : (j + 1) / c ≤ N) : j < c * N ^ (96 : ℝ) := by
   have hj' : j + 1 ≤ c * N := by
@@ -75,11 +87,17 @@ theorem root_threshold {c j N : ℝ} (hc : 0 < c) (hN : 1 ≤ N)
       (by norm_num : (1 : ℝ) ≤ 96)
   exact (by linarith : j < c * N).trans_le (mul_le_mul_of_nonneg_left hpow hc.le)
 
+/--
+@isnad1 id=ex.1h2v.s6.e2fb2d6e3d75 from=translated src=- shape=12211345 vocab=b2d07434
+-/
 theorem exists_root_threshold {c : ℝ} (hc : 0 < c) (j : ℝ) :
     ∃ N₀ : ℝ, 1 ≤ N₀ ∧ ∀ N, N₀ ≤ N → j < c * N ^ (96 : ℝ) :=
   ⟨max 1 ((j + 1) / c), le_max_left _ _, fun _ hN ↦
     root_threshold hc ((le_max_left _ _).trans hN) ((le_max_right _ _).trans hN)⟩
 
+/--
+@isnad1 id=eq.8h11v.s9.73d71f2e066c from=translated src=- shape=0c77257e vocab=f781bce6
+-/
 theorem root_lowPairs_eq {a s t c L N : ℝ} (hc : 0 ≤ c) (hL : 1 ≤ L) (hN : 1 ≤ N)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G)
     {V : ℝ≥0∞} (hVfin : V ≠ ∞) (hV : c * L ^ (2 : ℝ) * N ^ (-1 : ℝ) ≤ V.toReal)

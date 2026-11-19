@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι : Type*}
 
+/--
+@isnad1 id=other.11h11v.s12.878707bc7738 from=translated src=- shape=793cd6e9 vocab=96cbd175
+-/
 theorem exists_densePair_code {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (t : ι → ℝ) (I : Finset ι) (hta : ∀ i ∈ I, t i ≠ a) (htb : ∀ i ∈ I, t i ≠ b)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)

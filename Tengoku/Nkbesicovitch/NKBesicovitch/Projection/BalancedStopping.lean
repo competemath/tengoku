@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=and.6h5v.s8.d139c8545812 from=translated src=- shape=c6873503 vocab=47d3fe9b
+-/
 theorem balanced_pair_mass_bounds {L L₀ r N η : ℝ} (hL : 0 ≤ L) (hr : 0 < r) (hN : 0 < N)
     (hlower : L / 2 ≤ L₀) (hupper : L₀ ≤ L) (hη : η = L / (2 * r * N)) :
     (1 / (4 * r)) * L ^ (2 : ℝ) * N ^ (-1 : ℝ) ≤ L₀ * η ∧
@@ -47,6 +50,9 @@ theorem balanced_pair_mass_bounds {L L₀ r N η : ℝ} (hL : 0 ≤ L) (hr : 0 <
         rw [hη, Real.rpow_two, Real.rpow_neg_one]
         field_simp
 
+/--
+@isnad1 id=ex.6h4v.s12.343835d7a7b5 from=translated src=- shape=e43b4b5e vocab=123f2984
+-/
 theorem exists_balanced_stopping_data [Nonempty (Fin m)] (Γ : Finset ℝ) (hΓ : Γ.Nonempty)
     {G : Set (Line m)} (hG : MeasurableSet G) (hGb : IsBounded G) (hGpos : 0 < volume G)
     {N : ℝ} (hN : 0 < N) (hπ : ∀ t ∈ Γ, volume (atHeight t '' G) ≤ ENNReal.ofReal N) :

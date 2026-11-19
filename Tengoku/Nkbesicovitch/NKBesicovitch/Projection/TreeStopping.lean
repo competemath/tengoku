@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m J : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=ex.12h10v.s12.4c4e20ba05c5 from=translated src=- shape=b2434d85 vocab=e2b73d9e
+-/
 theorem exists_stopping_node (T : CornerTree m β J) (hJ : 0 < J)
     {G : Set (Line m)} (W : T.Node → Set (PairCoordinates m))
     (hW : ∀ v, MeasurableSet (W v)) (hWG : ∀ v, W v ⊆ pairFamily (T.a v) G)

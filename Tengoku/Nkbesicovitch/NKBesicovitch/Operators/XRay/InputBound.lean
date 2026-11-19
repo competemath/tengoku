@@ -31,6 +31,9 @@ namespace NKBesicovitch.XRay
 variable {m : ℕ} {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
     {Ξ : Set (EuclideanSpace ℝ (Fin m))} {q r : ℝ≥0∞}
 
+/--
+@isnad1 id=le.7h7v.s11.fb6457c9b097 from=translated src=- shape=4bf75328 vocab=d76cf6e9
+-/
 theorem mixedNorm_localXRay_le_superlevel_sums (hf : Measurable f)
     (hΞ : MeasurableSet Ξ) (hq : 1 ≤ q) (hr : 1 ≤ r) (hqfin : q ≠ ∞) (hrfin : r ≠ ∞)
     {C : ℝ≥0∞} {e : ℝ}
@@ -64,6 +67,9 @@ theorem mixedNorm_localXRay_le_superlevel_sums (hf : Measurable f)
       rw [ENNReal.tsum_mul_left, ENNReal.summable.tsum_sum ENNReal.summable]
       rfl
 
+/--
+@isnad1 id=ex.11h8v.s11.d0082f6e1103 from=translated src=- shape=c460b145 vocab=2d49b4a1
+-/
 theorem exists_normalized_bound_of_indicator {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hKfin : volume K ≠ ∞) (hΞ : MeasurableSet Ξ)
     (hq : 1 ≤ q) (hr : 1 ≤ r) (hqfin : q ≠ ∞) (hrfin : r ≠ ∞)

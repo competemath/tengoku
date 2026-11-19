@@ -27,7 +27,9 @@ namespace NKBesicovitch.XRay
 variable {n m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- A bound with separate transverse decay and an integrable line-parameter factor.-/
+/-- A bound with separate transverse decay and an integrable line-parameter factor.
+@isnad1 id=ex.0h6v.s16.eb4d2fbfdae5 from=translated src=- shape=b29e7b3c vocab=5794acbb
+-/
 theorem exists_norm_frameLineIntegrand_le (ψ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) (N : ℕ) :
     ∃ C : ℝ≥0, ∀ u : Rotations n, ∀ x : EuclideanSpace ℝ (Fin m), ∀ t : ℝ,
       ‖ψ (Unitary.linearIsometryEquiv u
@@ -61,7 +63,9 @@ theorem exists_norm_frameLineIntegrand_le (ψ : 𝓢(EuclideanSpace ℝ (Fin n),
     _ ≤ (1 + ‖z‖) ^ (N + 2) * ‖ψ z‖ := mul_le_mul_of_nonneg_right hw (norm_nonneg _)
     _ ≤ C := hψ
 
-/-- Absolute projected kernels have arbitrary polynomial decay uniformly over directions.-/
+/-- Absolute projected kernels have arbitrary polynomial decay uniformly over directions.
+@isnad1 id=ex.0h6v.s16.3dea771e4eb1 from=translated src=- shape=b258cd3e vocab=76166e6f
+-/
 theorem exists_integral_norm_frameLineIntegrand_le
     (ψ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) (N : ℕ) :
     ∃ C : ℝ≥0, ∀ u : Rotations n, ∀ x : EuclideanSpace ℝ (Fin m),
@@ -82,7 +86,9 @@ theorem exists_integral_norm_frameLineIntegrand_le
 variable (w : sphere (0 : EuclideanSpace ℝ (Fin (m + 1))) 1)
   (c : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (w : EuclideanSpace ℝ (Fin (m + 1))))ᗮ)
 
-/-- Dilated absolute projected kernels obey the expected `a^m (1 + a |x|)⁻ᴺ` bound.-/
+/-- Dilated absolute projected kernels obey the expected `a^m (1 + a |x|)⁻ᴺ` bound.
+@isnad1 id=ex.0h5v.s17.b6c4d7a13dad from=translated src=- shape=9e656958 vocab=33031667
+-/
 theorem exists_integral_norm_frameLineIntegrand_dilation_le
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (N : ℕ) :
     ∃ C : ℝ≥0, ∀ a : ℝ, ∀ ha : 0 < a, ∀ u : Rotations (m + 1),
@@ -98,7 +104,9 @@ theorem exists_integral_norm_frameLineIntegrand_dilation_le
   simpa only [norm_smul, Real.norm_of_nonneg ha.le, mul_assoc, mul_comm, mul_left_comm] using
     mul_le_mul_of_nonneg_left (hC u (a • x)) (pow_nonneg ha.le m)
 
-/-- Outside the unit transverse ball, kernel tails decay by any prescribed frequency power.-/
+/-- Outside the unit transverse ball, kernel tails decay by any prescribed frequency power.
+@isnad1 id=ex.0h6v.s17.09cf8b527e6b from=translated src=- shape=b74c1cee vocab=33031667
+-/
 theorem exists_integral_norm_frameLineIntegrand_dilation_tail
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (L N : ℕ) :
     ∃ C : ℝ≥0, ∀ a : ℝ, ∀ ha : 0 < a, 1 ≤ a → ∀ u : Rotations (m + 1),

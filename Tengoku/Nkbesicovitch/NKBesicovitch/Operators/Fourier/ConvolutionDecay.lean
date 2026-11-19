@@ -28,6 +28,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.1h5v.s12.379c4e714bd3 from=translated src=- shape=2aa016d3 vocab=4bf8d326
+-/
 theorem convolution_normalizedDilation_eq (φ f : 𝓢(E, ℂ)) (a : ℝ) (ha : 0 < a) (x : E) :
     SchwartzMap.convolution (ContinuousLinearMap.lsmul ℂ ℂ) (normalizedDilation a ha φ) f x =
       ∫ y : E, φ y * f (x - a⁻¹ • y) := by
@@ -65,7 +68,9 @@ private lemma weighted_convolution_integrand_le_aux (φ f : 𝓢(E, ℂ)) (A : �
       convert! mul_le_mul_of_nonneg_left hs
         (show 0 ≤ 2 ^ A * (1 + ‖y‖ ^ 2) ^ A * ‖φ y‖ by positivity) using 1 <;> ring
 
-/-- Smooth approximations have polynomial spatial decay uniformly in the dilation scale.-/
+/-- Smooth approximations have polynomial spatial decay uniformly in the dilation scale.
+@isnad1 id=ex.0h4v.s12.772e8a8bee05 from=translated src=- shape=fc8c6e80 vocab=8842c78c
+-/
 theorem exists_norm_convolution_normalizedDilation_le (φ f : 𝓢(E, ℂ)) (A : ℕ) :
     ∃ C : ℝ≥0, ∀ (a : ℝ) (ha : 0 < a), 1 ≤ a → ∀ x : E,
       ‖SchwartzMap.convolution (ContinuousLinearMap.lsmul ℂ ℂ)

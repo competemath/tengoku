@@ -21,6 +21,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.10h9v.s8.71c60f98cb98 from=translated src=- shape=bb7b96b9 vocab=c8334674
+-/
 theorem corner_mass_lower_bound {c d L N V η D : ℝ}
     (hd : 0 ≤ d) (hL : 0 < L) (hN : 1 ≤ N) (hV : 0 ≤ V) (hη : 0 ≤ η)
     {J i : ℕ} (hJ : 0 < J) (hi : i ≤ J)
@@ -56,6 +59,9 @@ theorem corner_mass_lower_bound {c d L N V η D : ℝ}
     _ = (V * N ^ (-stoppingAlpha J i)) * η / 2 := by ring
     _ ≤ _ := hD
 
+/--
+@isnad1 id=le.2h5v.s7.061287aaec40 from=translated src=- shape=460f8fd4 vocab=ee86aa4d
+-/
 theorem parent_threshold_upper_bound {c L N V ρ : ℝ} (hN : 0 < N)
     (hVupper : V ≤ c * L ^ (2 : ℝ) * N ^ (-1 : ℝ)) :
     N * (V * N ^ (-2 + ρ)) ≤ c * L ^ (2 : ℝ) * N ^ (-2 + ρ) := by

@@ -57,6 +57,9 @@ def StoppingCornerBounds (P : CornerPattern m β) (K C : ℝ) : Prop :=
             (-(β / (β - 1)))))) ^ (β / (β - 1)) ≤
           C * (N * (V.toReal * N ^ (-2 + stoppingRho J i)))
 
+/--
+@isnad1 id=stopping.3h5v.s5.79a2194d6800 from=translated src=- shape=25c86eef vocab=75213979
+-/
 theorem stoppingCornerBounds_of_bounds (P : CornerPattern m β) {K C : ℝ}
     (hK : 0 < K) (hrefine : P.RefinementBound K) (houter : P.OuterBound C) :
     P.StoppingCornerBounds K C := by
@@ -91,6 +94,9 @@ theorem stoppingCornerBounds_of_bounds (P : CornerPattern m β) {K C : ℝ}
     simpa only [ENNReal.toReal_mul, ENNReal.toReal_ofReal hNpos.le,
       ENNReal.toReal_ofReal hR.le, ENNReal.toReal_ofReal (Real.rpow_nonneg hNpos.le _)] using h
 
+/--
+@isnad1 id=ex.2h3v.s6.f011e376f6f4 from=translated src=- shape=58fddf2c vocab=67e88512
+-/
 theorem exists_stopping_corner_constants (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2) :
     ∃ K C : ℝ, 0 < K ∧ 0 < C ∧ P.StoppingCornerBounds K C := by
   obtain ⟨K, hK, hrefine⟩ := P.exists_refinement_constant hβ hβ2

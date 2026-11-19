@@ -27,6 +27,9 @@ variable {E H : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
   [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
+/--
+@isnad1 id=eq.0h3v.s8.638b07947299 from=translated src=- shape=e4278c6a vocab=baae469d
+-/
 theorem lintegral_enorm_sq_fourier (f : 𝓢(E, H)) :
     (∫⁻ ξ, ‖𝓕 f ξ‖ₑ ^ 2) = ∫⁻ x, ‖f x‖ₑ ^ 2 := by
   have h := congrArg ENNReal.ofReal f.integral_norm_sq_fourier
@@ -36,6 +39,9 @@ theorem lintegral_enorm_sq_fourier (f : 𝓢(E, H)) :
       (by norm_num)) (ae_of_all _ fun x ↦ sq_nonneg _)] at h
   simpa only [ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm] using h
 
+/--
+@isnad1 id=eq.0h3v.s8.9fcf69fa92c8 from=translated src=- shape=bbbd050f vocab=2107d2ce
+-/
 theorem eLpNorm_fourier_two (f : 𝓢(E, H)) :
     eLpNorm (𝓕 f : 𝓢(E, H)) 2 volume = eLpNorm f 2 volume := by
   simp only [eLpNorm_eq_lintegral_rpow_enorm_toReal (by norm_num : (2 : ℝ≥0∞) ≠ 0)

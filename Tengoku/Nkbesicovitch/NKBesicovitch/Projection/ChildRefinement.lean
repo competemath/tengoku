@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι κ : Type*}
 
+/--
+@isnad1 id=ex.2h9v.s11.48d7ba21833e from=translated src=- shape=d96e2ebd vocab=d3bca2a5
+-/
 theorem exists_common_concentrated_pairs (a : ℝ) (s t : ι → ℝ) (I : Finset ι)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (δ P : ℝ≥0∞)
     (hchild : ∀ i ∈ I, ∃ E : Set (PairCoordinates m), MeasurableSet E ∧ E ⊆ W ∧
@@ -57,6 +60,9 @@ theorem exists_common_concentrated_pairs (a : ℝ) (s t : ι → ℝ) (I : Finse
     _ ≤ ∑ _i ∈ I, δ := Finset.sum_le_sum fun i hi ↦ (hE i hi).2.2.1
     _ = _ := by simp [nsmul_eq_mul]
 
+/--
+@isnad1 id=le.0h4v.s11.a68f29227837 from=translated src=- shape=60b39b46 vocab=a9d65a23
+-/
 theorem volume_sdiff_le_add_sdiff (W E F : Set (PairCoordinates m)) :
     volume (W \ F) ≤ volume (W \ E) + volume (E \ F) := by
   have hsub : W \ F ⊆ (W \ E) ∪ (E \ F) := by
@@ -66,7 +72,9 @@ theorem volume_sdiff_le_add_sdiff (W E F : Set (PairCoordinates m)) :
     · exact Or.inl ⟨hp.1, hE⟩
   exact (measure_mono hsub).trans (measure_union_le _ _)
 
-/-- The three child families, with one total deletion budget and all density bounds.-/
+/-- The three child families, with one total deletion budget and all density bounds.
+@isnad1 id=ex.5h14v.s11.72aa5fa372ae from=translated src=- shape=0790d700 vocab=111fbd29
+-/
 theorem exists_refined_child_pairs {a b : ℝ} (hab : a ≠ b)
     (s t : ι → ℝ) (I : Finset ι) (c : κ → ℝ) (K : Finset κ)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)

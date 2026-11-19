@@ -46,6 +46,9 @@ def RefinementBound (P : CornerPattern m β) (K : ℝ) : Prop :=
             ENNReal.ofReal (K * V.toReal *
               (V.toReal * N ^ (-2 + stoppingRho J i - 200 / J)) ^ (-(β / (β - 1))))
 
+/--
+@isnad1 id=refineme.1h4v.s4.bd7148170a12 from=translated src=- shape=8669b42e vocab=172049b4
+-/
 theorem refinementBound_of_codeImageBound (P : CornerPattern m β) {K : ℝ}
     (hcode : P.CodeImageBound K) : P.RefinementBound K := by
   intro G hGb hM W hW hWG V hV₀ hV hWV N hN J i hJ hi hlarge hchild
@@ -69,6 +72,9 @@ theorem refinementBound_of_codeImageBound (P : CornerPattern m β) {K : ℝ}
     hcode G hGb hM W E₁ E₂ E₃ hW hE₁ hE₂ hWG hE₁W (hE₂E₁.trans hE₁W)
       _ hℓ hdense hretain u hu
 
+/--
+@isnad1 id=ex.2h3v.s5.f63a5a2d1d1a from=translated src=- shape=99e5e536 vocab=17891ed3
+-/
 theorem exists_refinement_constant (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2) :
     ∃ K : ℝ, 0 < K ∧ P.RefinementBound K := by
   obtain ⟨K, hK, hcode⟩ := P.exists_code_image_constant hβ hβ2

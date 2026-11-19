@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h4v.s6.c942d5d0bc3d from=translated src=- shape=9208dfd5 vocab=0d0766df
+-/
 theorem lintegral_sq_le_measure_mul_lintegral_sq {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {f : X → ℝ≥0∞} (hf : Measurable f) {s : Set X}
     (hs : Function.support f ⊆ s) :
@@ -45,6 +48,9 @@ theorem lintegral_sq_le_measure_mul_lintegral_sq {X : Type*} [MeasurableSpace X]
   rw [setLIntegral_eq_of_support_subset hs] at hsq
   exact hsq.trans (mul_le_mul le_rfl (setLIntegral_le_lintegral _ _) bot_le bot_le)
 
+/--
+@isnad1 id=le.0h3v.s5.251acf1fe5e0 from=translated src=- shape=4008d836 vocab=3a1ad309
+-/
 theorem support_sliceMultiplicity_subset (a : ℝ) (G : Set (Line m)) :
     Function.support (sliceMultiplicity a G) ⊆ atHeight a '' G := by
   intro w hw
@@ -52,7 +58,9 @@ theorem support_sliceMultiplicity_subset (a : ℝ) (G : Set (Line m)) :
   refine ⟨lineAt a w ξ, hξ, ?_⟩
   simp [atHeight_lineAt]
 
-/-- The Cauchy–Schwarz lower bound for intrinsic incidence pairs, without division.-/
+/-- The Cauchy–Schwarz lower bound for intrinsic incidence pairs, without division.
+@isnad1 id=le.1h3v.s10.389f3a0752d0 from=translated src=- shape=dc6fd083 vocab=1e40aa04
+-/
 theorem sq_volume_le_projection_mul_pairMass (a : ℝ) {G : Set (Line m)}
     (hG : MeasurableSet G) :
     volume G ^ 2 ≤ volume (atHeight a '' G) * volume (pairFamily a G) := by
@@ -60,6 +68,9 @@ theorem sq_volume_le_projection_mul_pairMass (a : ℝ) {G : Set (Line m)}
   exact lintegral_sq_le_measure_mul_lintegral_sq (measurable_sliceMultiplicity a hG)
     (support_sliceMultiplicity_subset a G)
 
+/--
+@isnad1 id=lt.2h3v.s10.56fcbb657510 from=translated src=- shape=00097ff3 vocab=16be85ba
+-/
 theorem volume_pairFamily_pos (a : ℝ) {G : Set (Line m)} (hG : MeasurableSet G)
     (hpos : 0 < volume G) : 0 < volume (pairFamily a G) := by
   apply pos_iff_ne_zero.mpr

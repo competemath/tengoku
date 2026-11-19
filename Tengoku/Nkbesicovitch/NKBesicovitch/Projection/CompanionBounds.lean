@@ -24,6 +24,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=ex.7h5v.s12.9b28dd0bc25f from=translated src=- shape=303e3f08 vocab=4365ff6b
+-/
 theorem exists_companionSystem_of_card_le {m : ℕ} [Nonempty (Fin m)] (Γ : Finset ℝ)
     (hΓ : Γ.Nonempty) {H : ℝ} (hH : (Γ.card : ℝ) ≤ H)
     {G : Set (Line m)} (hG : MeasurableSet G) (hGb : IsBounded G) (hGpos : 0 < volume G)

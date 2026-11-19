@@ -25,6 +25,9 @@ open scoped ENNReal Topology
 
 namespace NKBesicovitch.Hausdorff
 
+/--
+@isnad1 id=eq.1h2v.s5.f69799c551dd from=translated src=- shape=7eef4a83 vocab=7c3a5655
+-/
 theorem dimH_eq_of_isBesicovitch_self {n : ℕ} {E : Set (EuclideanSpace ℝ (Fin n))}
     (hB : IsBesicovitch n E) : dimH E = n := by
   obtain ⟨a, ha⟩ := hB ⊤ (by simp)

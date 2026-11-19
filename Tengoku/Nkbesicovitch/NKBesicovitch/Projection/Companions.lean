@@ -34,19 +34,31 @@ noncomputable def companionRadius (a : ℝ) (G : Set (Line m)) (R : ℝ) (η : �
 noncomputable def companions (a : ℝ) (G : Set (Line m)) (R : ℝ) (η : ℝ≥0∞) : Set (Line m) :=
   G ∩ {g | ‖g.2‖ ≤ companionRadius a G R η (atHeight a g)}
 
+/--
+@isnad1 id=measurab.2h5v.s7.2671208bd4fd from=translated src=- shape=5abb3d40 vocab=1be31988
+-/
 theorem measurable_companionRadius (a : ℝ) {G : Set (Line m)} (hG : MeasurableSet G)
     {R : ℝ} (hR : 0 ≤ R) (η : ℝ≥0∞) : Measurable (companionRadius a G R η) :=
   measurable_const.mul ((measurable_fiberCutoff (measurable_sliceBallMass a R hG)
     (monotone_sliceBallMass a G hR) η).subtype_val)
 
+/--
+@isnad1 id=measurab.2h5v.s7.f6a0b130de58 from=translated src=- shape=9e0135d1 vocab=ea6404b0
+-/
 theorem measurableSet_companions (a : ℝ) {G : Set (Line m)} (hG : MeasurableSet G)
     {R : ℝ} (hR : 0 ≤ R) (η : ℝ≥0∞) : MeasurableSet (companions a G R η) :=
   hG.inter (measurableSet_le (by fun_prop)
     ((measurable_companionRadius a hG hR η).comp (by unfold atHeight; fun_prop)))
 
+/--
+@isnad1 id=le.0h5v.s4.abf0ab33228d from=translated src=- shape=c582fa9a vocab=eff63968
+-/
 theorem companions_subset (a : ℝ) (G : Set (Line m)) (R : ℝ) (η : ℝ≥0∞) :
     companions a G R η ⊆ G := inter_subset_left
 
+/--
+@isnad1 id=eq.0h6v.s5.ba15e7d2cbbe from=translated src=- shape=be1a2885 vocab=78df6040
+-/
 theorem sliceMultiplicity_companions_eq_sliceBallMass (a R : ℝ) (G : Set (Line m))
     (η : ℝ≥0∞) (y : EuclideanSpace ℝ (Fin m)) :
     sliceMultiplicity a (companions a G R η) y =
@@ -58,7 +70,9 @@ theorem sliceMultiplicity_companions_eq_sliceBallMass (a R : ℝ) (G : Set (Line
     mem_closedBall, dist_zero_right, atHeight_lineAt, sub_self, zero_smul, add_zero]
   rfl
 
-/-- Each sufficiently large original slice fiber has exactly the chosen companion mass.-/
+/-- Each sufficiently large original slice fiber has exactly the chosen companion mass.
+@isnad1 id=eq.5h6v.s8.6b2f90de8568 from=translated src=- shape=1eb7ae35 vocab=1d679944
+-/
 theorem sliceMultiplicity_companions [Nonempty (Fin m)] (a : ℝ)
     {G : Set (Line m)} (hG : MeasurableSet G) (hGb : IsBounded G) {R : ℝ} (hR : 0 ≤ R)
     (hbound : ∀ g ∈ G, ‖g.2‖ ≤ R) (η : ℝ≥0∞) (y : EuclideanSpace ℝ (Fin m))
@@ -68,7 +82,9 @@ theorem sliceMultiplicity_companions [Nonempty (Fin m)] (a : ℝ)
     (continuous_sliceBallMass a R hG hGb y) (sliceBallMass_zero a R G y)
   rwa [sliceBallMass_one a R hbound]
 
-/-- Every bounded Borel family in positive dimension admits Borel companions of target mass.-/
+/-- Every bounded Borel family in positive dimension admits Borel companions of target mass.
+@isnad1 id=ex.2h4v.s8.1db5c4883070 from=translated src=- shape=9d1fecb3 vocab=46f15d7c
+-/
 theorem exists_companions [Nonempty (Fin m)] (a : ℝ) {G : Set (Line m)}
     (hG : MeasurableSet G) (hGb : IsBounded G) (η : ℝ≥0∞) :
     ∃ C : Set (Line m), MeasurableSet C ∧ C ⊆ G ∧

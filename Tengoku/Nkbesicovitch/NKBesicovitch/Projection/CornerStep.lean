@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.21h16v.s12.c69c958c64e7 from=translated src=- shape=0416bb7c vocab=9ea21bec
+-/
 theorem corner_threshold_le_parent_bound {a b c κ β C M N : ℝ}
     (hab : a ≠ b) (hca : c ≠ a) (hκ : κ ≠ 0)
     (hβ : 1 < β) (hβ2 : β ≤ 2) (hC : 0 < C) (hMpos : 0 < M) (Γ : Finset ℝ)

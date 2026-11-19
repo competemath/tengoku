@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.CornerPattern
 
 variable {m : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=ex.0h3v.s10.95f525857cb9 from=translated src=- shape=b00b79cb vocab=0e0e891a
+-/
 theorem exists_input_constant (P : CornerPattern m β) :
     ∃ C : ℝ, 0 < C ∧
       (∀ G : Set (Line m), MeasurableSet G → IsBounded G → (volume G).toReal ≤
@@ -53,6 +56,9 @@ theorem exists_input_constant (P : CornerPattern m β) :
       (mul_le_mul_of_nonneg_right hCiC (Real.rpow_nonneg ENNReal.toReal_nonneg _))
       (Real.rpow_nonneg ENNReal.toReal_nonneg _))
 
+/--
+@isnad1 id=ex.0h3v.s7.bfb5fa55b1a7 from=translated src=- shape=68e79c2c vocab=c4fd3117
+-/
 theorem exists_innerJacobian_lower_bound (P : CornerPattern m β) :
     ∃ q : ℝ, 0 < q ∧ ∀ u ∈ P.outer, ∀ t ∈ P.inner u, q ≤
       (ENNReal.ofReal |(((P.a - P.b) /

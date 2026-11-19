@@ -46,7 +46,9 @@ private lemma exists_lintegral_plane_le_plateMaximal_aux {n k A : ℕ} {R : ℝ}
     (fun y : EuclideanSpace ℝ (Fin n) ↦ (1 + ‖y‖ ^ 2) ^ A).HasTemperateGrowth)] using
       h.trans (mul_le_mul_right hd (B : ℝ≥0∞))
 
-/-- Polynomial weights let local plate averages control full integrals of bandlimited inputs.-/
+/-- Polynomial weights let local plate averages control full integrals of bandlimited inputs.
+@isnad1 id=ex.2h4v.s13.1af943327e67 from=translated src=- shape=03cd8430 vocab=72388972
+-/
 theorem exists_lintegral_plane_le_plateMaximal_of_bandlimited {n k A : ℕ}
     (hA : k < 2 * A) (R : ℝ) (hR : 0 < R) :
     ∃ C : ℝ≥0, ∀ (a : ℝ), 0 < a → ∀ f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ),

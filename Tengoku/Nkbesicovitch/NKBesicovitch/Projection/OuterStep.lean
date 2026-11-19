@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.26h16v.s12.7299fd34a58f from=translated src=- shape=252ef788 vocab=81e4e145
+-/
 theorem corner_mass_bound_of_code_images {a b c κ β C M : ℝ}
     (hab : a ≠ b) (hca : c ≠ a) (hκ : κ ≠ 0)
     (hβ : 1 < β) (hβ2 : β ≤ 2) (hC : 0 < C) (hMpos : 0 < M)

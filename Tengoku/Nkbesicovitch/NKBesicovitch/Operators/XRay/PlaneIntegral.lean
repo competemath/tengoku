@@ -30,7 +30,9 @@ namespace NKBesicovitch.XRay
 variable {n m k : ℕ} (v : Metric.sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Signed integration on a full flag plane equals lower-dimensional integration of the X-ray.-/
+/-- Signed integration on a full flag plane equals lower-dimensional integration of the X-ray.
+@isnad1 id=eq.0h9v.s17.446695b45962 from=translated src=- shape=2575769a vocab=023de261
+-/
 theorem integral_flagDirection_eq (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (u : Rotations n) (V : Grassmannian m k) (a : EuclideanSpace ℝ (Fin m) × ℝ) :
     (∫ z : (flagDirection (norm_eq_of_mem_sphere v) b (u, V)).val,

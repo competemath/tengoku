@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι κ : Type*}
 
+/--
+@isnad1 id=le.5h6v.s8.61955a5569b9 from=translated src=- shape=a9c46bce vocab=4d834caa
+-/
 theorem child_pruning_budget_ennreal {N : ℝ} (hN : 1 ≤ N)
     {V : ℝ≥0∞} (hV : V ≠ ∞) (r k : ℕ) {J i : ℕ} (hJ : 0 < J) (hi : i < J)
     (hlarge : 4 * (1 + 2 * (k : ℝ)) * r ≤ N ^ (1 / (J : ℝ) ^ 2)) :
@@ -49,7 +52,9 @@ theorem child_pruning_budget_ennreal {N : ℝ} (hN : 1 ≤ N)
   exact child_pruning_budget hN ENNReal.toReal_nonneg (Nat.cast_nonneg r) (Nat.cast_nonneg k)
     hJ hi hlarge
 
-/-- The concrete stopping parameters produce child families losing at most half the parent quota.-/
+/-- The concrete stopping parameters produce child families losing at most half the parent quota.
+@isnad1 id=other.10h15v.s11.a326fa4ee743 from=translated src=- shape=64dd1e0f vocab=7cedc1a9
+-/
 theorem exists_refined_child_pairs_half_parent {a b N : ℝ} (hab : a ≠ b) (hN : 1 ≤ N)
     (s t : ι → ℝ) (I : Finset ι) (c : κ → ℝ) (K : Finset κ)
     (hs : ∀ i ∈ I, s i ≠ a) (ht : ∀ i ∈ I, t i ≠ a)

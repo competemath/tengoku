@@ -25,6 +25,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=ne.4h4v.s6.c434aaaa10d3 from=translated src=- shape=b56b87a5 vocab=f9976434
+-/
 theorem dualTime_ne_self {a b c t : ℝ} (hc : c ≠ 0) (hta : t ≠ a) (htb : t ≠ b)
     (ht : t ≠ b + (b - a) / c) : dualTime a b c t ≠ t := by
   intro h
@@ -36,6 +39,9 @@ theorem dualTime_ne_self {a b c t : ℝ} (hc : c ≠ 0) (hta : t ≠ a) (htb : t
   have ht' : t - b = (b - a) / c := (eq_div_iff hc).mpr (by nlinarith [he])
   exact ht (by linarith)
 
+/--
+@isnad1 id=ex.5h6v.s6.348c2e1cd854 from=translated src=- shape=fc0990f1 vocab=c6c4fa66
+-/
 theorem exists_cornerPattern {Γ : Finset ℝ} (hΓ : Γ.Nonempty)
     (hEstimate : HasProjectionEstimate m β Γ) (a b c : ℝ)
     (hba : b ≠ a) (hca : c ≠ a) (hcb : c ≠ b) :

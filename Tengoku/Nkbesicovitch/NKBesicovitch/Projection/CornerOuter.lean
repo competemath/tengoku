@@ -29,11 +29,17 @@ variable {m : ℕ}
 noncomputable def cornerOuterData (a b c κ u : ℝ) (p : CornerCoordinates m) : Line m :=
   (atHeight u (cornerFirst a p), pairCode b a (cornerInnerCoefficient a c κ u) (cornerInner b p))
 
+/--
+@isnad1 id=continuo.0h6v.s7.7a8d8a0b29a6 from=translated src=- shape=16b99ff3 vocab=0ccdb024
+-/
 theorem continuous_cornerOuterData (a b c κ u : ℝ) :
     Continuous (cornerOuterData (m := m) a b c κ u) := by
   unfold cornerOuterData cornerInner pairCode cornerFirst lineAt atHeight
   fun_prop
 
+/--
+@isnad1 id=eq.1h7v.s7.fa7de90b905f from=translated src=- shape=c3bb0c45 vocab=42933933
+-/
 theorem cornerOuterData_eq {a b c κ u : ℝ} (hua : u ≠ a) (p : CornerCoordinates m) :
     cornerOuterData a b c κ u p = (atHeight u (cornerFirst a p),
       cornerCode a b c κ p - cornerOuterCoefficient a c κ u • atHeight u (cornerFirst a p)) := by
@@ -43,6 +49,9 @@ theorem cornerOuterData_eq {a b c κ u : ℝ} (hua : u ≠ a) (p : CornerCoordin
     rw [cornerCode_eq_outer_add_inner hua]
     module
 
+/--
+@isnad1 id=eq.2h9v.s7.758fe503e834 from=translated src=- shape=f549f170 vocab=b1401a03
+-/
 theorem cornerOuterData_cornerFromCode {a b c κ u : ℝ} (hab : a ≠ b) (hua : u ≠ a)
     (g : Line m) (x z : EuclideanSpace ℝ (Fin m)) :
     cornerOuterData a b c κ u (cornerFromCode a b c κ g x z) =
@@ -56,6 +65,9 @@ noncomputable def cornerOuterDensity (a b c κ u : ℝ) (D : Set (CornerCoordina
     D.indicator 1 (cornerFromCode a b c κ (lineAt u yz.1 p.1) p.2
       (cornerOuterCoefficient a c κ u • yz.1 + yz.2))
 
+/--
+@isnad1 id=measurab.1h7v.s8.35ce2aebc9df from=translated src=- shape=ee8b9bb8 vocab=ace1846a
+-/
 theorem measurable_cornerOuterDensity (a b c κ u : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) : Measurable (cornerOuterDensity a b c κ u D) := by
   have hf : Measurable (fun p : Line m × Line m ↦ D.indicator (1 : CornerCoordinates m → ℝ≥0∞)
@@ -64,6 +76,9 @@ theorem measurable_cornerOuterDensity (a b c κ u : ℝ) {D : Set (CornerCoordin
     (measurable_const.indicator hD).comp (by unfold cornerFromCode lineAt atHeight; fun_prop)
   exact measurable_const.mul hf.lintegral_prod_right'
 
+/--
+@isnad1 id=eq.1h9v.s9.67f5d1ce9fe2 from=translated src=- shape=f0c4c825 vocab=8116d4a5
+-/
 theorem cornerOuterDensity_at_code (a b c κ u : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) (y z : EuclideanSpace ℝ (Fin m)) :
     cornerOuterDensity a b c κ u D (y, z - cornerOuterCoefficient a c κ u • y) =
@@ -75,7 +90,9 @@ theorem cornerOuterDensity_at_code (a b c κ u : ℝ) {D : Set (CornerCoordinate
   simp only [add_sub_cancel]
   rw [Measure.volume_eq_prod, lintegral_prod _ hf.aemeasurable]
 
-/-- The exact outer marginal identity, at every corner-code value.-/
+/-- The exact outer marginal identity, at every corner-code value.
+@isnad1 id=eq.1h8v.s9.f12de60f4cd1 from=translated src=- shape=24e30f3c vocab=67d1460d
+-/
 theorem lintegral_cornerOuterDensity_at_code (a b c κ u : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) (z : EuclideanSpace ℝ (Fin m)) :
     (∫⁻ y, cornerOuterDensity a b c κ u D

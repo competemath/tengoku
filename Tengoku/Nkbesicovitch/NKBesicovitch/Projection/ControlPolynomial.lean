@@ -24,6 +24,9 @@ the selectable-scheme interface.
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=eq.2h5v.s8.89fb751c3ecf from=translated src=- shape=d773583d vocab=b6614ae3
+-/
 theorem controlCoefficient_scaled (m n : ℕ) (β : ℝ) {x A : ℝ}
     (hx : 0 < x) (hA : 0 < A) :
     controlCoefficient m β (x / 100) (A * (100 / x) ^ n) =
@@ -47,6 +50,9 @@ private theorem stopping_monomial_aux (q e : ℝ) {B l c₀ c₁ d : ℝ} (hB : 
   rw [← Real.rpow_add_one hB.ne', Real.mul_rpow (by positivity) (by positivity),
     ← Real.rpow_mul hB.le]
 
+/--
+@isnad1 id=ex.1h2v.s7.6f5e28eaee60 from=translated src=- shape=02c18586 vocab=2c627975
+-/
 theorem exists_integer_power_bound_monomial {K : ℝ} (hK : 0 < K) (e : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∃ n : ℕ, 0 < n ∧ ∀ x : ℝ, 0 < x → x ≤ 1 →
       K * (100 / x) ^ e ≤ C * x⁻¹ ^ n := by
@@ -58,7 +64,9 @@ theorem exists_integer_power_bound_monomial {K : ℝ} (hK : 0 < K) (e : ℝ) :
     simpa only [Real.rpow_natCast] using Real.rpow_le_rpow_of_exponent_le hy he
   simpa only [div_eq_mul_inv, mul_pow, mul_assoc] using mul_le_mul_of_nonneg_left hpow hK.le
 
-/-- A uniform integer-power bound for the stopping coefficient after the scheme substitution.-/
+/-- A uniform integer-power bound for the stopping coefficient after the scheme substitution.
+@isnad1 id=ex.5h8v.s7.c2f6b66d78a3 from=translated src=- shape=7ceae022 vocab=da1e276b
+-/
 theorem exists_polynomial_bound_controlledStoppingConstant (m n : ℕ) {L : ℕ} (hL : 0 < L)
     (β : ℝ) {A c₀ c₁ d : ℝ} (hA : 0 < A) (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d) :
     ∃ C : ℝ, 0 < C ∧ ∃ N : ℕ, 0 < N ∧ ∀ x : ℝ, 0 < x → x ≤ 1 →

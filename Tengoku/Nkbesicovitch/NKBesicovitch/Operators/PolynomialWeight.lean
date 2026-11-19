@@ -25,7 +25,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
-/-- Polynomial weights of a sum are bounded by the product of the two weights.-/
+/-- Polynomial weights of a sum are bounded by the product of the two weights.
+@isnad1 id=le.0h4v.s7.bfdabb12798f from=translated src=- shape=47b4dd62 vocab=0cd0e9c0
+-/
 theorem one_add_norm_sq_pow_add_le {E : Type*} [NormedAddCommGroup E] (x y : E) (A : ℕ) :
     (1 + ‖x + y‖ ^ 2) ^ A ≤ 2 ^ A * (1 + ‖x‖ ^ 2) ^ A * (1 + ‖y‖ ^ 2) ^ A := by
   have h : 1 + ‖x + y‖ ^ 2 ≤ 2 * (1 + ‖x‖ ^ 2) * (1 + ‖y‖ ^ 2) := by
@@ -34,7 +36,9 @@ theorem one_add_norm_sq_pow_add_le {E : Type*} [NormedAddCommGroup E] (x y : E) 
     nlinarith [sq_nonneg (‖x‖ - ‖y‖), mul_nonneg (sq_nonneg ‖x‖) (sq_nonneg ‖y‖)]
   simpa only [mul_pow] using pow_le_pow_left₀ (by positivity) h A
 
-/-- Translating an inverse polynomial weight increases it by at most a polynomial factor.-/
+/-- Translating an inverse polynomial weight increases it by at most a polynomial factor.
+@isnad1 id=le.0h4v.s7.7c7f6baab33f from=translated src=- shape=6c7130df vocab=b60daa08
+-/
 theorem inv_one_add_norm_sq_pow_add_le {E : Type*} [NormedAddCommGroup E] (x y : E) (A : ℕ) :
     ((1 + ‖x + y‖ ^ 2) ^ A)⁻¹ ≤
       (2 ^ A * (1 + ‖x‖ ^ 2) ^ A) * ((1 + ‖y‖ ^ 2) ^ A)⁻¹ := by
@@ -44,7 +48,9 @@ theorem inv_one_add_norm_sq_pow_add_le {E : Type*} [NormedAddCommGroup E] (x y :
   apply (div_le_div_iff₀ (by positivity) (by positivity)).mpr
   simpa only [one_mul] using h
 
-/-- Inverse polynomial decay of degree above the dimension is in every finite `Lᵖ`, `p ≥ 1`.-/
+/-- Inverse polynomial decay of degree above the dimension is in every finite `Lᵖ`, `p ≥ 1`.
+@isnad1 id=memlp.2h4v.s7.579369e1e6af from=translated src=- shape=e0c617fb vocab=8991c83e
+-/
 theorem memLp_inv_one_add_norm_pow {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (μ : Measure E) [μ.IsAddHaarMeasure] {N : ℕ} (hN : finrank ℝ E < N)

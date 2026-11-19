@@ -28,7 +28,9 @@ namespace NKBesicovitch.XRay
 variable {n m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Scalar change of variables along a rotated line, with arbitrary integrand.-/
+/-- Scalar change of variables along a rotated line, with arbitrary integrand.
+@isnad1 id=eq.1h9v.s16.016a830dc238 from=translated src=- shape=a1bd20ca vocab=8e4f461f
+-/
 theorem integral_comp_smul_frame {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     (a : ℝ) (ha : 0 < a) (f : EuclideanSpace ℝ (Fin n) → F) (u : Rotations n)
     (x : EuclideanSpace ℝ (Fin m)) :
@@ -48,7 +50,9 @@ theorem integral_comp_smul_frame {F : Type*} [NormedAddCommGroup F] [NormedSpace
       (normalCoordinatesWithBasis (norm_eq_of_mem_sphere v) b (a • x, t)))) a (hR := ha.le)
   simpa only [Module.finrank_self, pow_one, smul_eq_mul] using hi
 
-/-- The exact change of variables for a normalized dilated Schwartz kernel.-/
+/-- The exact change of variables for a normalized dilated Schwartz kernel.
+@isnad1 id=eq.1h8v.s12.b5b2a610b8ca from=translated src=- shape=fb20eba9 vocab=7e3d55d2
+-/
 theorem frameLineIntegral_normalizedDilation (a : ℝ) (ha : 0 < a)
     (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) (u : Rotations n)
     (x : EuclideanSpace ℝ (Fin m)) :
@@ -58,7 +62,9 @@ theorem frameLineIntegral_normalizedDilation (a : ℝ) (ha : 0 < a)
     Fintype.card_fin, integral_smul]
   rw [integral_comp_smul_frame v b a ha, smul_smul]
 
-/-- The same scaling identity holds for the integral of the absolute kernel.-/
+/-- The same scaling identity holds for the integral of the absolute kernel.
+@isnad1 id=eq.1h8v.s16.b2862a981d88 from=translated src=- shape=dfcd3c88 vocab=a76c032e
+-/
 theorem integral_norm_frameLineIntegrand_normalizedDilation (a : ℝ) (ha : 0 < a)
     (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) (u : Rotations n)
     (x : EuclideanSpace ℝ (Fin m)) :

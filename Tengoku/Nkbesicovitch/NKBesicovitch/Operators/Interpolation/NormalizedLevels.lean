@@ -27,6 +27,9 @@ namespace NKBesicovitch
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} {f : X → ℝ≥0∞}
 
+/--
+@isnad1 id=le.2h4v.s6.74b4d116ff0e from=translated src=- shape=bc9a5641 vocab=3a59855e
+-/
 theorem lintegral_rpow_le_one_of_eLpNorm_le_one {p : ℝ} (hp : 0 < p)
     (hnorm : eLpNorm f (ENNReal.ofReal p) μ ≤ 1) : (∫⁻ x, f x ^ p ∂μ) ≤ 1 := by
   have h := ENNReal.rpow_le_rpow hnorm hp.le
@@ -34,6 +37,9 @@ theorem lintegral_rpow_le_one_of_eLpNorm_le_one {p : ℝ} (hp : 0 < p)
     ENNReal.ofReal_ne_top, enorm_eq_self, ENNReal.toReal_ofReal hp.le, ← ENNReal.rpow_mul,
     one_div_mul_cancel hp.ne', ENNReal.rpow_one, ENNReal.one_rpow] using h
 
+/--
+@isnad1 id=le.4h5v.s6.433f2709b1cb from=translated src=- shape=dee16265 vocab=b7b23fee
+-/
 theorem measure_superlevel_le_of_normalized_eLpNorm (hf : Measurable f) {p t : ℝ}
     (hp : 0 < p) (ht : 0 < t) (hnorm : eLpNorm f (ENNReal.ofReal p) μ ≤ 1) :
     μ {x | ENNReal.ofReal t ≤ f x} ≤ ENNReal.ofReal t ^ (-p) := by

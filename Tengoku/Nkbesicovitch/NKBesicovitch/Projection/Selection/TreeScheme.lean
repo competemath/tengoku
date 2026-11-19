@@ -46,6 +46,9 @@ variable {m D L J : ℕ} [Nonempty (Fin m)] {β γ : ℝ}
 
 include S
 
+/--
+@isnad1 id=nonempty.3h8v.s8.a2003f8f8e76 from=translated src=- shape=dc0dc896 vocab=bb3fdb19
+-/
 theorem exists_scheme_of_depth (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 0 < J)
     (hγ : let q := β / (β - 1)
       (2 * q + 3 * q ^ 2 - 2 + (200 * q ^ 2 + 2 * q) / J) / (q + 2 * q ^ 2 - 2) ≤ γ) :
@@ -86,6 +89,9 @@ theorem exists_scheme_of_depth (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 0 < J)
         (polynomial_constant_mono hIunit hIpos hC.le (le_max_right _ _) (le_max_right _ _))
         (Real.rpow_nonneg ENNReal.toReal_nonneg _)) (Real.rpow_nonneg ENNReal.toReal_nonneg _))
 
+/--
+@isnad1 id=ex.3h6v.s6.e28bd9eed6c3 from=translated src=- shape=ec41dda3 vocab=8f0d69d5
+-/
 theorem corner_improvement (hβ : 1 < β) (hβ2 : β ≤ 2) (hγ : cornerUpdate β < γ) :
     ∃ D' L' : ℕ, Nonempty (SelectableProjectionScheme m γ D' L') := by
   obtain ⟨J, hJ, hdepth⟩ := exists_depth_for_corner_update hβ hγ

@@ -28,7 +28,9 @@ namespace NKBesicovitch.XRay
 variable {n m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Each polynomially weighted X-ray fiber is Schwartz with the same Fourier radius as the input.-/
+/-- Each polynomially weighted X-ray fiber is Schwartz with the same Fourier radius as the input.
+@isnad1 id=ex.1h8v.s12.0c6d5e348e01 from=translated src=- shape=c3add67d vocab=fedfc891
+-/
 theorem exists_weighted_schwartz_frameLineIntegral_bandlimited
     (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) {R : ℝ}
     (hf : tsupport (𝓕 f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) ⊆ closedBall 0 R)

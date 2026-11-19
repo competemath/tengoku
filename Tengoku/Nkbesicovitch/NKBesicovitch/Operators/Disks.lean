@@ -26,6 +26,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=eq.1h5v.s9.9d44c4f3a062 from=translated src=- shape=4c437b09 vocab=79add6ac
+-/
 theorem diskAverage_indicator_eq_one (V : Grassmannian n k) (a : EuclideanSpace ℝ (Fin n))
     {E : Set (EuclideanSpace ℝ (Fin n))} (h : unitDisk V.val a ⊆ E) :
     diskAverage (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) V a = 1 := by
@@ -41,7 +44,9 @@ theorem diskAverage_indicator_eq_one (V : Grassmannian n k) (a : EuclideanSpace 
   exact ENNReal.div_self (Metric.measure_closedBall_pos volume _ (by norm_num)).ne'
     measure_closedBall_lt_top.ne
 
-/-- The disk maximal function of a Besicovitch-set indicator is at least one in every direction.-/
+/-- The disk maximal function of a Besicovitch-set indicator is at least one in every direction.
+@isnad1 id=le.1h4v.s5.33a0ce7ccd92 from=translated src=- shape=fcbbda55 vocab=3d962707
+-/
 theorem one_le_diskMaximal_indicator {E : Set (EuclideanSpace ℝ (Fin n))} (h : IsBesicovitch k E)
     (V : Grassmannian n k) : 1 ≤ diskMaximal (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) V := by
   obtain ⟨a, ha⟩ := isBesicovitch_iff_unitDisk_subset.mp h V.val V.property

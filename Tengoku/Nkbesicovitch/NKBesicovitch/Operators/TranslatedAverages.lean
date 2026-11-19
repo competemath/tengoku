@@ -45,7 +45,9 @@ private lemma lintegral_mul_translate_average_eq_aux {f K : G → ℝ≥0∞}
   · exact ((hf.comp (measurable_snd.add measurable_fst)).mul
       (hK.comp measurable_snd)).aemeasurable
 
-/-- A kernel with bounded variation on an averaging set pairs boundedly with local averages.-/
+/-- A kernel with bounded variation on an averaging set pairs boundedly with local averages.
+@isnad1 id=le.7h7v.s8.1f8779d31136 from=translated src=- shape=d84598fd vocab=fe324947
+-/
 theorem lintegral_mul_le_of_translated_averages {f K : G → ℝ≥0∞}
     (hf : Measurable f) (hK : Measurable K) {S : Set G} (hS : MeasurableSet S)
     (hS₀ : μ S ≠ 0) (hSfin : μ S ≠ ∞) {C : ℝ≥0} {M : ℝ≥0∞}

@@ -28,6 +28,9 @@ noncomputable def controlledStoppingThreshold (m L J : ℕ) (r H : ℝ) : ℝ :=
   max 1 (max ((r⁻¹ ^ (2 * m) + 1) / (1 / (4 * H)))
     ((max 1 (4 * (1 + 2 * (L : ℝ)) * (L * L))) ^ (J : ℝ) ^ 2))
 
+/--
+@isnad1 id=and.4h9v.s8.91fcb981d7c8 from=translated src=- shape=c2f1cb62 vocab=7298d19e
+-/
 theorem CornerTree.stopping_threshold_of_controlled {m L J : ℕ} {β r C H N : ℝ}
     (T : CornerTree m β J) (hJ : 0 < J) (hH : 0 < H)
     (hcontrol : ∀ v h, (T.pattern v h).IsControlled r C L)
@@ -53,6 +56,9 @@ theorem CornerTree.stopping_threshold_of_controlled {m L J : ℕ} {β r C H N : 
     exact (mul_le_mul hfactor hchildren (by positivity) (by positivity)).trans
       (child_pruning_threshold hJ ((le_max_right _ _).trans ((le_max_right _ _).trans hN)))
 
+/--
+@isnad1 id=ex.1h4v.s6.9e9eeb03f18e from=translated src=- shape=d5b21241 vocab=e620edf6
+-/
 theorem exists_polynomial_bound_controlledStoppingThreshold (m L J : ℕ) {H : ℝ}
     (hH : 0 < H) :
     ∃ C : ℝ, 0 < C ∧ ∃ B : ℕ, 0 < B ∧ ∀ x : ℝ, 0 < x → x ≤ 1 →

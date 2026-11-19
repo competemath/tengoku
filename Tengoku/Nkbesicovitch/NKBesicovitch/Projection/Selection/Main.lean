@@ -24,6 +24,9 @@ public section
 
 namespace NKBesicovitch.Projection.Selection
 
+/--
+@isnad1 id=ex.1h2v.s4.d4986a79760c from=translated src=- shape=9bb9aaea vocab=ed0fff2b
+-/
 theorem exists_selectableProjectionScheme (m : ℕ) [Nonempty (Fin m)]
     {β : ℝ} (hβ : projectionExponent < β) :
     ∃ D L : ℕ, Nonempty (SelectableProjectionScheme m β D L) := by

@@ -26,6 +26,9 @@ open scoped ENNReal NNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=le.2h9v.s11.512492b1d4df from=translated src=- shape=cf9bd7f2 vocab=988483df
+-/
 theorem weightedPlaneKernel_sub_le_of_mem_plate {n k : ℕ} (V : Grassmannian n k)
     (a : ℝ) (ha : 0 < a) (A N : ℕ) (x z t : EuclideanSpace ℝ (Fin n))
     (ht : t ∈ plate a⁻¹ V.val 0) :
@@ -40,7 +43,9 @@ theorem weightedPlaneKernel_sub_le_of_mem_plate {n k : ℕ} (V : Grassmannian n 
   simpa only [add_sub_cancel] using
     weightedPlaneKernel_sub_le V.val a A N x z ⟨w, hw'.1⟩ hw'.2 (t - w) he
 
-/-- Weighted plane kernels pair with arbitrary inputs with a scale-independent plate bound.-/
+/-- Weighted plane kernels pair with arbitrary inputs with a scale-independent plate bound.
+@isnad1 id=ex.2h4v.s10.7b21ed1c6467 from=translated src=- shape=5174d82a vocab=02500dc8
+-/
 theorem exists_lintegral_mul_weightedPlaneKernel_le {n k A N : ℕ}
     (hA : k < 2 * A) (hN : n < 2 * N) :
     ∃ C : ℝ≥0, ∀ (V : Grassmannian n k) (a : ℝ), 0 < a →

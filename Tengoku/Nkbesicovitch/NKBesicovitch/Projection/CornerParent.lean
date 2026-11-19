@@ -33,6 +33,9 @@ noncomputable def cornerParentSliceMass (a b c κ : ℝ) (D : Set (CornerCoordin
   ∫⁻ w, D.indicator 1
     (cornerFromCode a b c κ (lineAt a w ((c - a)⁻¹ • (y - w))) x z)
 
+/--
+@isnad1 id=eq.1h9v.s8.89ea51f9a8eb from=translated src=- shape=95a1a9e6 vocab=7f01d2b9
+-/
 theorem cornerParent_cornerFromCode_positions {a c : ℝ} (hca : c ≠ a) (b κ : ℝ)
     (w y x z : EuclideanSpace ℝ (Fin m)) :
     cornerParent a (cornerFromCode a b c κ (lineAt a w ((c - a)⁻¹ • (y - w))) x z) =
@@ -41,6 +44,9 @@ theorem cornerParent_cornerFromCode_positions {a c : ℝ} (hca : c ≠ a) (b κ 
   rw [atHeight_lineAt_of_positions hca.symm]
   simp [atHeight, pairFromData, lineAt]
 
+/--
+@isnad1 id=eq.2h7v.s9.871e24035b04 from=translated src=- shape=0b0ffa02 vocab=da056bbb
+-/
 theorem cornerDensity_eq_parentSlices {a c : ℝ} (hca : c ≠ a) (b κ : ℝ)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) (z : EuclideanSpace ℝ (Fin m)) :
     cornerDensity a b c κ D z = codeJacobian m a b *

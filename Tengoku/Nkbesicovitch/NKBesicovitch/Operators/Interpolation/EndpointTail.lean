@@ -46,7 +46,9 @@ private theorem eLpNorm_two_sq_le_tail (f h : 𝓢(E, ℂ)) {t : ℝ}
   · simp only [hzero x (le_of_not_gt hx), enorm_zero, zero_pow (by norm_num : (2 : ℕ) ≠ 0),
       zero_le]
 
-/-- The `L²` and bounded-input endpoints control every output superlevel set by an input tail.-/
+/-- The `L²` and bounded-input endpoints control every output superlevel set by an input tail.
+@isnad1 id=le.7h9v.s11.01dc52e4206e from=translated src=- shape=a0590a3a vocab=26a4542d
+-/
 theorem measure_norm_gt_le_of_endpoints (T : 𝓢(E, ℂ) →+ (Y → ℂ)) (μ : Measure Y)
     {s : Set E} {A : ℝ≥0∞} {B : ℝ} (hB : 0 < B)
     (hmeas : ∀ f, AEStronglyMeasurable (T f) μ)

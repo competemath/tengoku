@@ -61,6 +61,9 @@ def StoppingNodeBound (P : CornerPattern m β) (c₀ c₁ d C : ℝ) : Prop :=
       L ≤ C * N ^ ((2 * q + 3 * q ^ 2 - 2 + (200 * q ^ 2 + 2 * q) / J) /
         (q + 2 * q ^ 2 - 2))
 
+/--
+@isnad1 id=other.7h8v.s8.fe9cf3ccdcbf from=translated src=- shape=034162de vocab=0d0e03f9
+-/
 theorem stoppingNodeBound_of_cornerBounds (P : CornerPattern m β) (hβ : 1 < β)
     {c₀ c₁ d K C₀ : ℝ} (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d)
     (hK : 0 < K) (hC₀ : 0 < C₀) (hcorners : P.StoppingCornerBounds K C₀) :
@@ -85,6 +88,9 @@ theorem stoppingNodeBound_of_cornerBounds (P : CornerPattern m β) (hβ : 1 < β
   exact normalized_corner_bound hq hc₀ hc₁.le hd hK hC₀.le hL hN hVreal
     ENNReal.toReal_nonneg hR hr hJ hi.le hVlower hVupper hηlower hD le_rfl houter
 
+/--
+@isnad1 id=stopping.2h8v.s5.948b75742756 from=translated src=- shape=3b3d954b vocab=1983615c
+-/
 theorem StoppingNodeBound.mono {P : CornerPattern m β} {c₀ c₁ d C C' : ℝ}
     (h : P.StoppingNodeBound c₀ c₁ d C) (hC : C ≤ C') : P.StoppingNodeBound c₀ c₁ d C' := by
   dsimp only [StoppingNodeBound]
@@ -94,6 +100,9 @@ theorem StoppingNodeBound.mono {P : CornerPattern m β} {c₀ c₁ d C C' : ℝ}
     L N hL hN hVlower hVupper hηlower htimes J i hJ hi hlarge U hU hUP hparent hQ hchild).trans
       (mul_le_mul_of_nonneg_right hC (Real.rpow_nonneg (zero_le_one.trans hN) _))
 
+/--
+@isnad1 id=ex.5h6v.s6.76ebc05d3ccd from=translated src=- shape=5fe582a6 vocab=f92796c2
+-/
 theorem exists_stopping_node_constant (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2)
     {c₀ c₁ d : ℝ} (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d) :
     ∃ C : ℝ, 0 < C ∧ P.StoppingNodeBound c₀ c₁ d C := by

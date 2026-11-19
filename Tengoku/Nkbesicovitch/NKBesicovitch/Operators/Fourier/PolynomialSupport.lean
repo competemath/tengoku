@@ -28,7 +28,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- Multiplication by a real linear coordinate does not enlarge closed Fourier support.-/
+/-- Multiplication by a real linear coordinate does not enlarge closed Fourier support.
+@isnad1 id=le.0h3v.s10.d851daa18aab from=translated src=- shape=7c9c06db vocab=9379d76a
+-/
 theorem tsupport_fourier_smulLeftCLM_inner_subset (f : 𝓢(E, ℂ)) (v : E) :
     tsupport (𝓕 (smulLeftCLM ℂ (inner ℝ · v) f) : 𝓢(E, ℂ)) ⊆ tsupport (𝓕 f : 𝓢(E, ℂ)) := by
   have hc : -(2 * Real.pi * Complex.I) ≠ 0 := by simp [Real.pi_ne_zero]
@@ -68,7 +70,9 @@ private lemma tsupport_fourier_smulLeftCLM_one_add_norm_sq_subset (f : 𝓢(E, �
   simp only [Function.mem_support, add_apply, sum_apply, hf, hi, Finset.sum_const_zero,
     add_zero, ne_eq, not_true_eq_false] at hξ
 
-/-- The polynomial weights used in the terminal step do not enlarge closed Fourier support.-/
+/-- The polynomial weights used in the terminal step do not enlarge closed Fourier support.
+@isnad1 id=le.0h3v.s10.df1d85010f19 from=translated src=- shape=61c78530 vocab=f6fe31de
+-/
 theorem tsupport_fourier_smulLeftCLM_one_add_norm_sq_pow_subset (f : 𝓢(E, ℂ)) (A : ℕ) :
     tsupport (𝓕 (smulLeftCLM ℂ (fun x : E ↦ (1 + ‖x‖ ^ 2) ^ A) f) : 𝓢(E, ℂ)) ⊆
       tsupport (𝓕 f : 𝓢(E, ℂ)) := by

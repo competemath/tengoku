@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ex.13h9v.s11.cf4ab91fc4e2 from=translated src=- shape=28fdb7f8 vocab=02ddf888
+-/
 theorem exists_pair_witness {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0) (Γ : Finset ℝ)
     (hta : ∀ t ∈ Γ, t ≠ a) (htb : ∀ t ∈ Γ, t ≠ b) {G : Set (Line m)}
     (hG : MeasurableSet G) (hGb : IsBounded G) (hGpos : 0 < volume G)

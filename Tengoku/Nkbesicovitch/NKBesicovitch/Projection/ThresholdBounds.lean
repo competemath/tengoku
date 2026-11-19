@@ -21,6 +21,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.8h9v.s8.e94e9cd63979 from=translated src=- shape=de4d07ab vocab=2fba42a9
+-/
 theorem inner_code_size_bound {q K c L N V R ρ J : ℝ}
     (hq : 1 < q) (hK : 0 ≤ K) (hc : 0 < c) (hL : 0 < L) (hN : 0 < N) (hV : 0 < V)
     (hVlower : c * L ^ (2 : ℝ) * N ^ (-1 : ℝ) ≤ V)
@@ -55,6 +58,9 @@ theorem inner_code_size_bound {q K c L N V R ρ J : ℝ}
       ring
     _ = _ := by rw [hNp]
 
+/--
+@isnad1 id=le.8h10v.s9.794846be396f from=translated src=- shape=9af51594 vocab=2fba42a9
+-/
 theorem outer_threshold_lower_bound {q A B L N D R r ρ J : ℝ}
     (hA : 0 ≤ A) (hB : 0 < B) (hL : 0 < L) (hN : 0 < N) (hR : 0 < R) (hr : 0 < r)
     (hD : A * L ^ (3 : ℝ) * N ^ (-2 - 2 / J) ≤ D)

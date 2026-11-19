@@ -28,6 +28,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.XRay
 
+/--
+@isnad1 id=ex.2h5v.s10.7b17eeb827a1 from=translated src=- shape=a3c5adc7 vocab=58a6a515
+-/
 theorem exists_restricted_bound_of_scheme {m D L : ℕ} {β : ℝ}
     (S : Selection.SelectableProjectionScheme m β D L) (hβ : 0 ≤ β) (hβ2 : β ≤ 2) :
     ∃ C : ℝ, 0 < C ∧ ∃ K : ℕ, 2 < K ∧
@@ -57,6 +60,9 @@ theorem exists_restricted_bound_of_scheme {m D L : ℕ} {β : ℝ}
         (volume E).toReal ^ β) := mul_le_mul_of_nonneg_left hmass (by positivity)
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.2h2v.s10.a527b0258b9d from=translated src=- shape=86082f0a vocab=35c8e564
+-/
 theorem exists_restricted_bound (m : ℕ) [Nonempty (Fin m)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :
     ∃ C : ℝ, 0 < C ∧ ∃ K : ℕ, 2 < K ∧

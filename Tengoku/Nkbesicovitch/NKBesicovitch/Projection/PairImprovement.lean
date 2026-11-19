@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=hasproje.8h6v.s7.d5fd1d2fffb9 from=translated src=- shape=332d8966 vocab=1db7b4f1
+-/
 theorem HasProjectionEstimate.pair_improvement {β a b c : ℝ} {Γ : Finset ℝ}
     (hEst : HasProjectionEstimate m β Γ) (hβ : 1 < β) (hβ2 : β ≤ 2)
     (hΓ : Γ.Nonempty) (hab : a ≠ b) (hc : c ≠ 0)
@@ -65,7 +68,9 @@ theorem HasProjectionEstimate.pair_improvement {β a b c : ℝ} {Γ : Finset ℝ
     (pairThreshold_budget _ hNpos.ne' hN hr).le R q hR hq hqt
     (sq_volume_le_pairThreshold a hG hGb hNpos.ne' hN haN hr)
 
-/-- One pair improvement of the two-slice seed gives the classical exponent `7/4`.-/
+/-- One pair improvement of the two-slice seed gives the classical exponent `7/4`.
+@isnad1 id=hasproje.0h1v.s6.10cb8e176c4e from=translated src=- shape=276faecf vocab=85075bbb
+-/
 theorem hasProjectionEstimate_seven_four :
     HasProjectionEstimate m (7 / 4) {0, 1, 2, 3, 3 / 2} := by
   have hseed := hasProjectionEstimate_twoSlice (m := m) (s := 2) (t := 3) (by norm_num)

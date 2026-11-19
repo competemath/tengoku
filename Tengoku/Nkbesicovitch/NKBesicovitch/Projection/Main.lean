@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ex.1h2v.s4.55c180b5bff3 from=translated src=- shape=794ff2dc vocab=ad74eaf3
+-/
 theorem exists_hasProjectionEstimate [Nonempty (Fin m)] {β : ℝ} (hβ : projectionExponent < β) :
     ∃ Γ : Finset ℝ, Γ.Nonempty ∧ HasProjectionEstimate m β Γ := by
   apply of_corner_improvement

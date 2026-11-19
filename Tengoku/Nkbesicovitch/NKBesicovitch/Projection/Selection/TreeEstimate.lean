@@ -31,6 +31,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 variable {m D L J : ℕ} [Nonempty (Fin m)] {β : ℝ}
   (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=other.3h6v.s10.8e4145a1ce4e from=translated src=- shape=129f3ed5 vocab=a694e182
+-/
 theorem exists_tree_normalized_constants (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 0 < J) :
     let q := β / (β - 1)
     ∃ C : ℝ, 0 < C ∧ ∃ B : ℕ, 0 < B ∧
@@ -60,6 +63,9 @@ theorem exists_tree_normalized_constants (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 
   exact hbound _ hx hx₁ T (Nat.cast_le.mpr hcard) hcontrol G hG hGb hM N hN
     (fun t ht ↦ hπ t (htimes ht))
 
+/--
+@isnad1 id=ex.3h8v.s10.d77ba5a65cae from=translated src=- shape=9cbdb979 vocab=c538daea
+-/
 theorem exists_tree_projection_constants_of_le (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 0 < J)
     {γ : ℝ} (hγ : let q := β / (β - 1)
       (2 * q + 3 * q ^ 2 - 2 + (200 * q ^ 2 + 2 * q) / J) / (q + 2 * q ^ 2 - 2) ≤ γ) :
@@ -80,6 +86,9 @@ theorem exists_tree_projection_constants_of_le (hβ : 1 < β) (hβ2 : β ≤ 2) 
   exact (hbound I hI hIunit hIpos q₀ hq σ hσ F hF hFb hM N hN hπ).trans
     (mul_le_mul_of_nonneg_left (Real.rpow_le_rpow_of_exponent_le hN hγ) (by positivity))
 
+/--
+@isnad1 id=other.3h6v.s10.95d0c9a6bb64 from=translated src=- shape=ac1cc218 vocab=c538daea
+-/
 theorem exists_tree_projection_constants (hβ : 1 < β) (hβ2 : β ≤ 2) (hJ : 0 < J) :
     let q := β / (β - 1)
     let γ := (2 * q + 3 * q ^ 2 - 2 + (200 * q ^ 2 + 2 * q) / J) / (q + 2 * q ^ 2 - 2)

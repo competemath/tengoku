@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.1h8v.s6.8f86203b8243 from=translated src=- shape=d55501af vocab=04e9fa27
+-/
 theorem parentCorners_sdiff_inner_preimage_subset {a b : ℝ}
     {G₀ A B : Set (Line m)} {U W : Set (PairCoordinates m)}
     (hU : U ⊆ companionPairs a G₀ A) :
@@ -36,6 +39,9 @@ theorem parentCorners_sdiff_inner_preimage_subset {a b : ℝ}
   refine ⟨h.2, ⟨⟨?_, hp.1.2⟩, hp.2⟩⟩
   simpa only [first_cornerInner, first_cornerParent] using h.1
 
+/--
+@isnad1 id=le.6h9v.s11.fb690decb33d from=translated src=- shape=0a3840da vocab=7923262e
+-/
 theorem volume_parentCorners_sdiff_inner_preimage_le (a b : ℝ)
     {G₀ A B : Set (Line m)} (hG₀ : MeasurableSet G₀) (hA : MeasurableSet A)
     (hB : MeasurableSet B) {U W : Set (PairCoordinates m)}
@@ -50,7 +56,9 @@ theorem volume_parentCorners_sdiff_inner_preimage_le (a b : ℝ)
       ((measurableSet_companionPairs b hG₀ hB).diff hW) ηₐ
         (fun p hp ↦ hηₐ _ hp.1.1)
 
-/-- The retained corner mass plus the cost of bad inner pairs covers the parent lift.-/
+/-- The retained corner mass plus the cost of bad inner pairs covers the parent lift.
+@isnad1 id=le.8h10v.s11.99f36d198036 from=translated src=- shape=192c9974 vocab=bbd01596
+-/
 theorem parent_mass_le_retained_corner_mass_add (a b : ℝ)
     {G₀ A B : Set (Line m)} (hG₀ : MeasurableSet G₀) (hA : MeasurableSet A)
     (hB : MeasurableSet B) {U W : Set (PairCoordinates m)} (hU : MeasurableSet U)
@@ -65,7 +73,9 @@ theorem parent_mass_le_retained_corner_mass_add (a b : ℝ)
     (add_le_add le_rfl
       (volume_parentCorners_sdiff_inner_preimage_le a b hG₀ hA hB hUP hW ηₐ hηₐ))
 
-/-- A small enough inner-pair deletion preserves half the initial lifted parent mass.-/
+/-- A small enough inner-pair deletion preserves half the initial lifted parent mass.
+@isnad1 id=le.10h10v.s12.ba72ab761e9f from=translated src=- shape=2f6b21f2 vocab=5a9a7857
+-/
 theorem half_parent_mass_le_retained_corner_mass (a b : ℝ)
     {G₀ A B : Set (Line m)} (hG₀ : MeasurableSet G₀) (hA : MeasurableSet A)
     (hB : MeasurableSet B) {U W : Set (PairCoordinates m)} (hU : MeasurableSet U)

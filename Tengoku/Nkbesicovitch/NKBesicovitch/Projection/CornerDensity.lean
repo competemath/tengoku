@@ -47,6 +47,9 @@ noncomputable def positiveCornerFiber (a b c κ : ℝ) (D : Set (CornerCoordinat
     (z : EuclideanSpace ℝ (Fin m)) : Set (Line m) := Function.support
       (cornerFirstDensity a b c κ D z)
 
+/--
+@isnad1 id=measurab.1h7v.s8.a613bafd2ae1 from=translated src=- shape=b9a8884a vocab=9e14be29
+-/
 theorem measurable_cornerFirstDensity (a b c κ : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) (z : EuclideanSpace ℝ (Fin m)) : Measurable
       (cornerFirstDensity a b c κ D z) := by
@@ -55,11 +58,17 @@ theorem measurable_cornerFirstDensity (a b c κ : ℝ) {D : Set (CornerCoordinat
     (measurable_const.indicator hD).comp (by unfold cornerFromCode lineAt atHeight; fun_prop)
   exact h.lintegral_prod_right'
 
+/--
+@isnad1 id=measurab.1h7v.s8.ba354e4e7091 from=translated src=- shape=96f0d623 vocab=be168d63
+-/
 theorem measurableSet_positiveCornerFiber (a b c κ : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) (z : EuclideanSpace ℝ (Fin m)) : MeasurableSet
       (positiveCornerFiber a b c κ D z) :=
   measurableSet_support (measurable_cornerFirstDensity a b c κ hD z)
 
+/--
+@isnad1 id=le.0h7v.s5.02921f524194 from=translated src=- shape=8078fc35 vocab=66545996
+-/
 theorem positiveCornerFiber_subset (a b c κ : ℝ) (D : Set (CornerCoordinates m))
     (z : EuclideanSpace ℝ (Fin m)) :
     positiveCornerFiber a b c κ D z ⊆ cornerFiber a b c κ D z := by
@@ -68,6 +77,9 @@ theorem positiveCornerFiber_subset (a b c κ : ℝ) (D : Set (CornerCoordinates 
   have hx : ∀ x, cornerFromCode a b c κ g x z ∉ D := fun x hx ↦ h ⟨x, hx⟩
   exact hg (by simp [cornerFirstDensity, Set.indicator_of_notMem, hx])
 
+/--
+@isnad1 id=measurab.1h6v.s7.86faefcfb35b from=translated src=- shape=69d5fec2 vocab=2ad22921
+-/
 theorem measurable_cornerDensity (a b c κ : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) : Measurable (cornerDensity a b c κ D) := by
   have h : Measurable (fun p : (Line m × EuclideanSpace ℝ (Fin m)) × EuclideanSpace ℝ (Fin m) ↦
@@ -75,6 +87,9 @@ theorem measurable_cornerDensity (a b c κ : ℝ) {D : Set (CornerCoordinates m)
     (measurable_const.indicator hD).comp (by unfold cornerFromCode lineAt atHeight; fun_prop)
   exact measurable_const.mul h.lintegral_prod_left'
 
+/--
+@isnad1 id=eq.1h7v.s9.e3b7e037c2d1 from=translated src=- shape=4c6c48b6 vocab=d7a59924
+-/
 theorem cornerDensity_eq_lintegral (a b c κ : ℝ) {D : Set (CornerCoordinates m)}
     (hD : MeasurableSet D) (z : EuclideanSpace ℝ (Fin m)) :
     cornerDensity a b c κ D z =
@@ -85,6 +100,9 @@ theorem cornerDensity_eq_lintegral (a b c κ : ℝ) {D : Set (CornerCoordinates 
   unfold cornerDensity cornerFirstDensity
   rw [Measure.volume_eq_prod, lintegral_prod _ h.aemeasurable]
 
+/--
+@isnad1 id=eq.2h6v.s10.6ed20c6e7383 from=translated src=- shape=9e035b1b vocab=21e4cac1
+-/
 theorem lintegral_cornerDensity {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) :
     (∫⁻ z, cornerDensity a b c κ D z) = volume D := by
@@ -111,6 +129,9 @@ theorem lintegral_cornerDensity {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
       rw [cornerFromCode_cornerCode hab]
     _ = volume D := lintegral_indicator_one hD
 
+/--
+@isnad1 id=iff.1h8v.s6.55c8c9bb30ef from=translated src=- shape=52832b3a vocab=3229d3af
+-/
 theorem mem_cornerFiber_iff {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     (D : Set (CornerCoordinates m)) (g : Line m) (z : EuclideanSpace ℝ (Fin m)) :
     g ∈ cornerFiber a b c κ D z ↔
@@ -123,6 +144,9 @@ theorem mem_cornerFiber_iff {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     refine ⟨(cornerLast b p).1, ?_⟩
     rwa [cornerFromCode_cornerCode hab]
 
+/--
+@isnad1 id=le.1h8v.s5.c4228132c208 from=translated src=- shape=1a0273b9 vocab=767578cb
+-/
 theorem cornerFiber_subset (a b c κ : ℝ) {G : Set (Line m)} {D : Set (CornerCoordinates m)}
     (hDG : D ⊆ cornerFamily a b G) (z : EuclideanSpace ℝ (Fin m)) :
       cornerFiber a b c κ D z ⊆ G := by

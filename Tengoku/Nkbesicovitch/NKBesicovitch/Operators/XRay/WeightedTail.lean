@@ -36,7 +36,9 @@ private lemma polynomial_weight_decay_le (r : ℝ) (hr : 0 ≤ r) (A N : ℕ) :
 variable {m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin (m + 1))) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin (m + 1))))ᗮ)
 
-/-- Polynomial weights cost a bounded local factor and an arbitrarily decaying tail.-/
+/-- Polynomial weights cost a bounded local factor and an arbitrarily decaying tail.
+@isnad1 id=ex.0h8v.s15.9c215bc7c6d3 from=translated src=- shape=b3d554bf vocab=74582145
+-/
 theorem exists_norm_weighted_frameLineIntegral_dilation_le
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (A L N : ℕ) (R : ℝ≥0) :
     ∃ B C : ℝ≥0, ∀ a : ℝ, ∀ ha : 0 < a, 1 ≤ a →

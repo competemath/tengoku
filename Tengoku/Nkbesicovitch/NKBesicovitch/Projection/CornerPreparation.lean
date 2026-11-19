@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ex.17h11v.s12.ec0949c38587 from=translated src=- shape=7e83125d vocab=b03ce44c
+-/
 theorem exists_corners_of_parent_and_child (a b : ℝ) {G₀ A B G : Set (Line m)}
     (hG₀ : MeasurableSet G₀) (hA : MeasurableSet A) (hB : MeasurableSet B)
     (hG₀G : G₀ ⊆ G) (hAG : A ⊆ G) (hBG : B ⊆ G)

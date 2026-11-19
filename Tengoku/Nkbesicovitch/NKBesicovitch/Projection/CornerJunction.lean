@@ -33,20 +33,32 @@ def cornerParentCoordinates (a : ℝ) (p : CornerCoordinates m) :
 def cornerFromParent (a : ℝ) (p : PairCoordinates m) (ξ : EuclideanSpace ℝ (Fin m)) :
     CornerCoordinates m := (lineAt a p.1 p.2.1, (p.2.2, ξ))
 
+/--
+@isnad1 id=eq.0h3v.s5.3b223de799b4 from=translated src=- shape=1749a32e vocab=8dbe2344
+-/
 theorem cornerFromParent_cornerParentCoordinates (a : ℝ) (p : CornerCoordinates m) :
     cornerFromParent a (cornerParentCoordinates a p).1 (cornerParentCoordinates a p).2 = p := by
   simp [cornerFromParent, cornerParentCoordinates, cornerParent, lineAt_atHeight]
 
+/--
+@isnad1 id=eq.0h4v.s4.d2aab6dc6860 from=translated src=- shape=1af3aca1 vocab=ffe375a3
+-/
 theorem cornerParent_cornerFromParent (a : ℝ) (p : PairCoordinates m)
     (ξ : EuclideanSpace ℝ (Fin m)) : cornerParent a (cornerFromParent a p ξ) = p := by
   simp [cornerParent, cornerFromParent, atHeight, lineAt]
 
+/--
+@isnad1 id=measurab.0h2v.s8.e8a4b60b43d9 from=translated src=- shape=ba4abe17 vocab=3be37ab2
+-/
 theorem measurable_cornerFromParent (a : ℝ) :
     Measurable (fun p : PairCoordinates m × EuclideanSpace ℝ (Fin m) ↦
       cornerFromParent a p.1 p.2) := by
   unfold cornerFromParent lineAt
   fun_prop
 
+/--
+@isnad1 id=measurep.0h2v.s10.f630e92ad51d from=translated src=- shape=e32e5a13 vocab=ec844355
+-/
 theorem measurePreserving_cornerParentCoordinates (a : ℝ) :
     MeasurePreserving (cornerParentCoordinates (m := m) a) volume volume := by
   have hline : MeasurePreserving (lineCoordinates (m := m) a).symm volume volume :=

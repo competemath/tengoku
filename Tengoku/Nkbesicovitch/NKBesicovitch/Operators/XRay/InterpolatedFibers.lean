@@ -25,6 +25,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.XRay
 
+/--
+@isnad1 id=le.11h10v.s10.a8aea796f965 from=translated src=- shape=26362041 vocab=8719f093
+-/
 theorem interpolate_mixedNorm_fiberBlock {m K : ℕ} {β C V a r θ : ℝ}
     (hK : 0 < K) (hβ : 1 < β) (hC : 0 ≤ C) (hV : 0 ≤ V)
     {F : Set (Line m)} (hF : MeasurableSet F)

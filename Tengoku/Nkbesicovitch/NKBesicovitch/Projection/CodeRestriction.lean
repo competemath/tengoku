@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=eq.1h7v.s6.b0d7f926f145 from=translated src=- shape=90a78339 vocab=dcbb7ab9
+-/
 theorem codeDensity_inter_preimage {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     (W : Set (PairCoordinates m)) (B : Set (EuclideanSpace ℝ (Fin m)))
     (z : EuclideanSpace ℝ (Fin m)) :
@@ -45,6 +48,9 @@ theorem codeDensity_inter_preimage {a b : ℝ} (hab : a ≠ b) (c : ℝ)
         pairCode_pairFromCode hab, hz, and_false, Set.notMem_empty]
     simp only [codeDensity, he, measure_empty, mul_zero]
 
+/--
+@isnad1 id=eq.3h6v.s10.19d8d95fc890 from=translated src=- shape=15db62b5 vocab=5def6f33
+-/
 theorem setLIntegral_codeDensity {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     {B : Set (EuclideanSpace ℝ (Fin m))} (hB : MeasurableSet B) :
@@ -54,6 +60,9 @@ theorem setLIntegral_codeDensity {a b : ℝ} (hab : a ≠ b) (c : ℝ)
   exact lintegral_codeDensity hab c
     (hW.inter (hB.preimage (by unfold pairCode lineAt atHeight; fun_prop)))
 
+/--
+@isnad1 id=eq.2h7v.s7.93fd3258caf3 from=translated src=- shape=d2aa5685 vocab=32ceb960
+-/
 theorem codeDensity_add_sdiff (a b c : ℝ) {W E : Set (PairCoordinates m)}
     (hE : MeasurableSet E) (hEW : E ⊆ W) (z : EuclideanSpace ℝ (Fin m)) :
     codeDensity a b c E z + codeDensity a b c (W \ E) z = codeDensity a b c W z := by

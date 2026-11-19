@@ -32,6 +32,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] {m : ℕ}
     {p q r : ℝ≥0∞}
 
+/--
+@isnad1 id=ex.3h8v.s11.5052adb52cd7 from=translated src=- shape=6d9632e4 vocab=fd2bc9e9
+-/
 theorem exists_cap_bound_of_chart
     (hmodel : ∀ K : Set (EuclideanSpace ℝ (Fin m) × ℝ), IsBounded K →
       ∀ Ξ : Set (EuclideanSpace ℝ (Fin m)), MeasurableSet Ξ → IsBounded Ξ →
@@ -74,6 +77,9 @@ theorem exists_cap_bound_of_chart
       D = ENNReal.ofReal D.toReal := (ENNReal.ofReal_toReal hD).symm
       _ ≤ ENNReal.ofReal (D.toReal + 1) := ENNReal.ofReal_le_ofReal (by linarith)) _
 
+/--
+@isnad1 id=ex.4h6v.s10.41d37fb1bfce from=translated src=- shape=efedf695 vocab=19c9ab3b
+-/
 theorem exists_spherical_bound_of_chart [Fact (Module.finrank ℝ E = m + 1)]
     (hmodel : ∀ K : Set (EuclideanSpace ℝ (Fin m) × ℝ), IsBounded K →
       ∀ Ξ : Set (EuclideanSpace ℝ (Fin m)), MeasurableSet Ξ → IsBounded Ξ →
@@ -111,7 +117,9 @@ theorem exists_spherical_bound_of_chart [Fact (Module.finrank ℝ E = m + 1)]
       rw [← Finset.sum_mul, ENNReal.ofReal_sum_of_nonneg (fun v _ ↦ (hC v).le)]
     _ ≤ _ := mul_le_mul_left (ENNReal.ofReal_le_ofReal (by linarith)) _
 
-/-- The strong geometric X-ray estimate at every strictly supercritical projection exponent.-/
+/-- The strong geometric X-ray estimate at every strictly supercritical projection exponent.
+@isnad1 id=ex.2h3v.s8.62f883513cf2 from=translated src=- shape=33782a1b vocab=303880d1
+-/
 theorem exists_sphericalXRayNorm_bound (m : ℕ) [Nonempty (Fin m)]
     [Fact (Module.finrank ℝ E = m + 1)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :

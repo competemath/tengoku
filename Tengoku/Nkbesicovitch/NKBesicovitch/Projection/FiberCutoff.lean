@@ -34,6 +34,9 @@ variable {X : Type*}
 noncomputable def fiberCutoff (F : X → I → ℝ≥0∞) (η : ℝ≥0∞) (x : X) : I :=
   sSup {t | F x t < η}
 
+/--
+@isnad1 id=measurab.2h3v.s6.b76acd420259 from=translated src=- shape=046abd62 vocab=40cade1c
+-/
 theorem measurable_fiberCutoff [MeasurableSpace X] {F : X → I → ℝ≥0∞}
     (hF : ∀ t, Measurable (fun x ↦ F x t)) (hmono : ∀ x, Monotone (F x)) (η : ℝ≥0∞) :
     Measurable (fiberCutoff F η) := by
@@ -61,7 +64,9 @@ theorem measurable_fiberCutoff [MeasurableSpace X] {F : X → I → ℝ≥0∞}
   exact MeasurableSet.iUnion fun q ↦ MeasurableSet.iUnion fun hq ↦
     MeasurableSet.iUnion fun _ ↦ measurableSet_lt (hF ⟨q, hq⟩) measurable_const
 
-/-- The measurable cutoff has exactly the target mass, including the endpoint targets.-/
+/-- The measurable cutoff has exactly the target mass, including the endpoint targets.
+@isnad1 id=eq.4h4v.s6.424268ac9a62 from=translated src=- shape=e8550179 vocab=3447d14e
+-/
 theorem apply_fiberCutoff {F : X → I → ℝ≥0∞} {x : X} (hmono : Monotone (F x))
     (hcont : Continuous (F x)) (hzero : F x 0 = 0) {η : ℝ≥0∞} (hη : η ≤ F x 1) :
     F x (fiberCutoff F η x) = η := by

@@ -49,6 +49,9 @@ def CodeImageBound (P : CornerPattern m β) (K : ℝ) : Prop :=
       ∀ u ∈ P.outer, volume (pairCode P.b P.a (cornerInnerCoefficient P.a P.c P.κ u) '' E₃) ≤
         ENNReal.ofReal (K * (volume W).toReal * ℓ.toReal ^ (-(β / (β - 1))))
 
+/--
+@isnad1 id=codeimag.6h5v.s10.0f946ae03a66 from=translated src=- shape=d0068280 vocab=ba880259
+-/
 theorem codeImageBound_of_input_bound (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2)
     {C q : ℝ} (hC : 0 < C) (hq : 0 < q)
     (hInner : ∀ u ∈ P.outer, ∀ G : Set (Line m), MeasurableSet G → IsBounded G →
@@ -75,6 +78,9 @@ theorem codeImageBound_of_input_bound (P : CornerPattern m β) (hβ : 1 < β) (h
   rw [← ENNReal.ofReal_toReal himagefin]
   exact ENNReal.ofReal_le_ofReal hreal
 
+/--
+@isnad1 id=codeimag.2h5v.s4.4c462080b76e from=translated src=- shape=3409366e vocab=8122664e
+-/
 theorem CodeImageBound.mono {P : CornerPattern m β} {K K' : ℝ} (h : P.CodeImageBound K)
     (hK : K ≤ K') : P.CodeImageBound K' := by
   intro G hGb hM W E₁ E₂ E₃ hW hE₁ hE₂ hWG hE₁W hE₂W ℓ hℓ hdense hretain u hu
@@ -83,6 +89,9 @@ theorem CodeImageBound.mono {P : CornerPattern m β} {K K' : ℝ} (h : P.CodeIma
     (mul_le_mul_of_nonneg_right hK ENNReal.toReal_nonneg)
     (Real.rpow_nonneg ENNReal.toReal_nonneg _))
 
+/--
+@isnad1 id=ex.2h3v.s5.f387df2d65ad from=translated src=- shape=99e5e536 vocab=ed1e7898
+-/
 theorem exists_code_image_constant (P : CornerPattern m β) (hβ : 1 < β) (hβ2 : β ≤ 2) :
     ∃ K : ℝ, 0 < K ∧ P.CodeImageBound K := by
   obtain ⟨C, hC, _, hInner⟩ := P.exists_input_constant

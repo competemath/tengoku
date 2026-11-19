@@ -29,7 +29,9 @@ namespace NKBesicovitch.XRay
 variable {m : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin (m + 1))) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin (m + 1))))ᗮ)
 
-/-- A fixed smoothing kernel gives arbitrary spatial decay, controlled by the input one-norm.-/
+/-- A fixed smoothing kernel gives arbitrary spatial decay, controlled by the input one-norm.
+@isnad1 id=ex.0h6v.s15.ee95c0154d93 from=translated src=- shape=60e5244e vocab=dc3613bf
+-/
 theorem exists_enorm_frameLineIntegral_convolution_le
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (N : ℕ) (R : ℝ≥0) :
     ∃ C : ℝ≥0, ∀ f : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ),
@@ -45,7 +47,9 @@ theorem exists_enorm_frameLineIntegral_convolution_le
   intro z hz
   exact hC u x z (by simpa only [mem_closedBall, dist_zero_right] using hs hz)
 
-/-- Smoothed line integrals have arbitrary frequency and spatial decay outside the support ball.-/
+/-- Smoothed line integrals have arbitrary frequency and spatial decay outside the support ball.
+@isnad1 id=ex.0h6v.s15.f3ad9b05e9ba from=translated src=- shape=2cb7ad4a vocab=abe155d4
+-/
 theorem exists_enorm_frameLineIntegral_dilation_tail
     (ψ : 𝓢(EuclideanSpace ℝ (Fin (m + 1)), ℂ)) (L N : ℕ) :
     ∃ C : ℝ≥0, ∀ R : ℝ≥0, ∀ a : ℝ, ∀ ha : 0 < a, 1 ≤ a →

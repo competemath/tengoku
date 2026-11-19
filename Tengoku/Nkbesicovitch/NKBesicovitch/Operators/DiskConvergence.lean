@@ -29,7 +29,9 @@ namespace NKBesicovitch
 variable {n k : ℕ} {f : ℕ → EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
   {g : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
 
-/-- Uniformly bounded pointwise convergence implies convergence of each disk average.-/
+/-- Uniformly bounded pointwise convergence implies convergence of each disk average.
+@isnad1 id=tendsto.3h6v.s7.720976ff989c from=translated src=- shape=e2403e02 vocab=a6e31991
+-/
 theorem tendsto_diskAverage_of_bounded (hf : ∀ j, Measurable (f j))
     (hb : ∀ j x, f j x ≤ 1) (hg : ∀ x, Tendsto (fun j ↦ f j x) atTop (𝓝 (g x)))
     (V : Grassmannian n k) (a : EuclideanSpace ℝ (Fin n)) :
@@ -44,6 +46,9 @@ theorem tendsto_diskAverage_of_bounded (hf : ∀ j, Measurable (f j))
   exact (ENNReal.continuous_div_const _
     (measure_closedBall_pos volume _ zero_lt_one).ne').continuousAt.tendsto.comp h
 
+/--
+@isnad1 id=le.4h6v.s7.d436409d7a6d from=translated src=- shape=3e92ab0e vocab=075986e1
+-/
 theorem diskMaximal_rpow_le_liminf_of_tendsto (hf : ∀ j, Measurable (f j))
     (hb : ∀ j x, f j x ≤ 1) (hg : ∀ x, Tendsto (fun j ↦ f j x) atTop (𝓝 (g x)))
     {p : ℝ} (hp : 0 < p) (V : Grassmannian n k) :

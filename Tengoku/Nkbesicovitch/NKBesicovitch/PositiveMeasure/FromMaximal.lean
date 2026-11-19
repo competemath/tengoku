@@ -26,7 +26,9 @@ open scoped ENNReal NNReal
 
 namespace NKBesicovitch
 
-/-- A uniform disk maximal estimate for open indicators gives a quantitative volume lower bound.-/
+/-- A uniform disk maximal estimate for open indicators gives a quantitative volume lower bound.
+@isnad1 id=le.4h6v.s9.0b4c3753afcf from=translated src=- shape=37182f31 vocab=4b28470c
+-/
 theorem le_volume_of_diskMaximal_bound {n k : ℕ} (μ : Measure (Grassmannian n k))
     [IsProbabilityMeasure μ] {p : ℝ} (hp : 0 ≤ p) {C : ℝ≥0} (hC : 0 < C)
     (hmax : ∀ U : Set (EuclideanSpace ℝ (Fin n)), IsOpen U →

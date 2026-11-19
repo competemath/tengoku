@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m J : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=other.11h8v.s11.4769b571a452 from=translated src=- shape=e078a115 vocab=d502ddb4
+-/
 theorem large_normalized_bound_of_stoppingNodeBounds [Nonempty (Fin m)] (T : CornerTree m β J)
     (hJ : 0 < J) {H C : ℝ} (hH : (T.times.card : ℝ) ≤ H)
     (hbound : ∀ v h, (T.pattern v h).StoppingNodeBound (1 / (4 * H)) (1 / 2) (1 / (2 * H)) C)

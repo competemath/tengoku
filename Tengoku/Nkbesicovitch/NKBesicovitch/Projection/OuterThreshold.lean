@@ -31,6 +31,9 @@ variable {m : ℕ} {ι : Type*}
 noncomputable def cornerThreshold (v N R : ℝ≥0∞) (r : ℕ) : ℝ≥0∞ :=
   (v / 2) / (r * N * R)
 
+/--
+@isnad1 id=eq.5h4v.s7.35c352cd382a from=translated src=- shape=eaa7c3f1 vocab=dc780e37
+-/
 theorem cornerThreshold_budget (v : ℝ≥0∞) {N R : ℝ≥0∞}
     (hN₀ : N ≠ 0) (hN : N ≠ ∞) (hR₀ : R ≠ 0) (hR : R ≠ ∞) {r : ℕ} (hr : r ≠ 0) :
     r * cornerThreshold v N R r * N * R = v / 2 := by
@@ -39,6 +42,9 @@ theorem cornerThreshold_budget (v : ℝ≥0∞) {N R : ℝ≥0∞}
     _ = _ := ENNReal.div_mul_cancel
       (mul_ne_zero (mul_ne_zero (Nat.cast_ne_zero.mpr hr) hN₀) hR₀) (by finiteness)
 
+/--
+@isnad1 id=lt.7h4v.s6.a5ff3d89f802 from=translated src=- shape=050e2659 vocab=95e7f968
+-/
 theorem cornerThreshold_toReal_pos {v N R : ℝ≥0∞}
     (hv₀ : v ≠ 0) (hv : v ≠ ∞) (hN₀ : N ≠ 0) (hN : N ≠ ∞)
     (hR₀ : R ≠ 0) (hR : R ≠ ∞) {r : ℕ} (hr : r ≠ 0) :
@@ -51,12 +57,18 @@ theorem cornerThreshold_toReal_pos {v N R : ℝ≥0∞}
     ENNReal.toReal_ofNat, ENNReal.toReal_natCast]
   positivity
 
+/--
+@isnad1 id=eq.0h4v.s6.cb1891473d52 from=translated src=- shape=339f8ffd vocab=2ab34dd7
+-/
 theorem cornerThreshold_toReal (v N R : ℝ≥0∞) (r : ℕ) :
     (cornerThreshold v N R r).toReal = v.toReal / (2 * r * N.toReal * R.toReal) := by
   simp only [cornerThreshold, ENNReal.toReal_div, ENNReal.toReal_mul,
     ENNReal.toReal_ofNat, ENNReal.toReal_natCast]
   simp only [div_div, mul_assoc]
 
+/--
+@isnad1 id=le.2h9v.s7.ce9caae7895b from=translated src=- shape=4ca564c5 vocab=9dd6ce28
+-/
 theorem cornerOuterData_image_subset_prod (a b c κ u : ℝ)
     {D : Set (CornerCoordinates m)} {G : Set (Line m)} (hDG : D ⊆ cornerFamily a b G)
     {E : Set (PairCoordinates m)} (hE : ∀ p ∈ D, cornerInner b p ∈ E) :
@@ -65,6 +77,9 @@ theorem cornerOuterData_image_subset_prod (a b c κ u : ℝ)
   rintro yz ⟨p, hp, rfl⟩
   exact ⟨⟨cornerFirst a p, (hDG hp).1, rfl⟩, ⟨cornerInner b p, hE p hp, rfl⟩⟩
 
+/--
+@isnad1 id=le.6h7v.s10.cea3888c6632 from=translated src=- shape=88b0c1d3 vocab=99afc9a6
+-/
 theorem sum_cornerThreshold_mul_volume_le (v : ℝ≥0∞) {N R : ℝ≥0∞}
     (hN₀ : N ≠ 0) (hN : N ≠ ∞) (hR₀ : R ≠ 0) (hR : R ≠ ∞)
     (I : Finset ι) (hI : I.Nonempty) (S : ι → Set (Line m))

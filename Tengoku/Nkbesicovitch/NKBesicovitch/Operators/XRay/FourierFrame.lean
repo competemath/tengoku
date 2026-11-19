@@ -36,6 +36,9 @@ noncomputable def frameLineIntegral (f : EuclideanSpace ℝ (Fin n) → ℂ) (u 
   ∫ t : ℝ, f (Unitary.linearIsometryEquiv u
     (normalCoordinatesWithBasis (norm_eq_of_mem_sphere v) b (x, t)))
 
+/--
+@isnad1 id=integrab.0h7v.s16.524b34d92dce from=translated src=- shape=0f6b1df3 vocab=d8df8124
+-/
 theorem integrable_frameLineIntegrand (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (u : Rotations n) (x : EuclideanSpace ℝ (Fin m)) :
     Integrable (fun t : ℝ ↦ f (Unitary.linearIsometryEquiv u
@@ -59,10 +62,16 @@ noncomputable def frameLineIntegralLinearMap :
     funext z
     simp only [frameLineIntegral, smul_apply, Pi.smul_apply, RingHom.id_apply, integral_smul]
 
+/--
+@isnad1 id=eq.0h5v.s15.59643c78636c from=translated src=- shape=8a311d55 vocab=6cdee941
+-/
 @[simp] theorem frameLineIntegralLinearMap_apply (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) :
     frameLineIntegralLinearMap v b f =
       fun z : Rotations n × EuclideanSpace ℝ (Fin m) ↦ frameLineIntegral v b f z.1 z.2 := rfl
 
+/--
+@isnad1 id=measurab.1h5v.s14.b61c73a23c12 from=translated src=- shape=69e997ac vocab=07cf7454
+-/
 theorem measurable_frameLineIntegral {f : EuclideanSpace ℝ (Fin n) → ℂ}
     (hf : Measurable f) :
     Measurable (fun z : Rotations n × EuclideanSpace ℝ (Fin m) ↦
@@ -75,6 +84,9 @@ theorem measurable_frameLineIntegral {f : EuclideanSpace ℝ (Fin n) → ℂ}
         ((continuous_snd.comp continuous_fst).prodMk continuous_snd))).measurable
   exact hm.stronglyMeasurable.integral_prod_right'.measurable
 
+/--
+@isnad1 id=eq.1h7v.s16.296d3fbb1a1d from=translated src=- shape=300d681f vocab=1c7886cd
+-/
 theorem fourier_frameLineIntegral {f : EuclideanSpace ℝ (Fin n) → ℂ} (hf : Integrable f)
     (u : Rotations n) (ξ : EuclideanSpace ℝ (Fin m)) :
     𝓕 (frameLineIntegral v b f u) ξ =
@@ -90,6 +102,9 @@ theorem fourier_frameLineIntegral {f : EuclideanSpace ℝ (Fin n) → ℂ} (hf :
   rw [he, Real.fourier_comp_linearIsometry, fourier_lineIntegral (norm_eq_of_mem_sphere v) hi,
     Real.fourier_comp_linearIsometry]
 
+/--
+@isnad1 id=ex.0h6v.s12.cc5b32c185f5 from=translated src=- shape=1a2a240d vocab=50b189db
+-/
 theorem exists_schwartz_frameLineIntegral (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (u : Rotations n) :
     ∃ g : 𝓢(EuclideanSpace ℝ (Fin m), ℂ), ∀ x, g x = frameLineIntegral v b f u x := by
@@ -101,6 +116,9 @@ theorem exists_schwartz_frameLineIntegral (f : 𝓢(EuclideanSpace ℝ (Fin n), 
   simpa only [F, SchwartzMap.compCLMOfContinuousLinearEquiv_apply, Function.comp_apply,
     LinearIsometryEquiv.coe_coe, frameLineIntegral, normalCoordinatesWithBasis_apply] using hg (b x)
 
+/--
+@isnad1 id=eq.0h6v.s16.0456abe8b0ce from=translated src=- shape=a97576e6 vocab=a0f7d467
+-/
 theorem lintegral_enorm_sq_frameLineIntegral (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (u : Rotations n) :
     (∫⁻ x, ‖frameLineIntegral v b f u x‖ₑ ^ 2) =

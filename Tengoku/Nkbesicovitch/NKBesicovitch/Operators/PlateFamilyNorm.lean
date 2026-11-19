@@ -24,7 +24,9 @@ open scoped ENNReal NNReal
 
 namespace NKBesicovitch
 
-/-- A uniform diagonal plate bound also bounds the joint norm of a measurable family.-/
+/-- A uniform diagonal plate bound also bounds the joint norm of a measurable family.
+@isnad1 id=le.4h9v.s9.638bbcfa5de8 from=translated src=- shape=0c902df3 vocab=fdda5943
+-/
 theorem eLpNorm_plateMaximal_family_le {X : Type*} [MeasurableSpace X]
     (μ : Measure X) {n k : ℕ} (ν : Measure (Grassmannian n k)) {δ : ℝ} {p : ℝ≥0∞}
     (hp : p ≠ 0) (hpfin : p ≠ ∞) (C : ℝ≥0)

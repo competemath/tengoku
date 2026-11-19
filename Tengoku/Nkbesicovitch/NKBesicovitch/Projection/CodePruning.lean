@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h3v.s6.de57e398815c from=translated src=- shape=0f322b7a vocab=66db083f
+-/
 theorem le_two_mul_of_add_eq_of_lt_half {x y z : ℝ≥0∞} (hadd : x + y = z)
     (hhalf : x < z / 2) : z ≤ 2 * y := by
   have hx : x ≠ ∞ := ne_top_of_lt hhalf
@@ -40,6 +43,9 @@ theorem le_two_mul_of_add_eq_of_lt_half {x y z : ℝ≥0∞} (hadd : x + y = z)
     _ ≤ y + y := add_le_add hxy le_rfl
     _ = _ := (two_mul y).symm
 
+/--
+@isnad1 id=eq.2h5v.s10.73955181a322 from=translated src=- shape=30d97500 vocab=f88f38a3
+-/
 theorem volume_zero_codeDensity {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) :
     volume (W ∩ {p | codeDensity a b c W (pairCode a b c p) = 0}) = 0 := by
@@ -52,7 +58,9 @@ theorem volume_zero_codeDensity {a b : ℝ} (hab : a ≠ b) (c : ℝ)
       setLIntegral_congr_fun hZ (fun _ hz ↦ hz)
     _ = 0 := lintegral_zero
 
-/-- Bad retained-to-original density ratios cost at most twice the deleted pair mass.-/
+/-- Bad retained-to-original density ratios cost at most twice the deleted pair mass.
+@isnad1 id=le.4h6v.s11.77f4b33aa1e5 from=translated src=- shape=93a8ae87 vocab=4d8200ec
+-/
 theorem volume_codeDensity_lt_half_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W E : Set (PairCoordinates m)} (hW : MeasurableSet W) (hE : MeasurableSet E)
     (hEW : E ⊆ W) :
@@ -73,7 +81,9 @@ theorem volume_codeDensity_lt_half_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
       rw [lintegral_const_mul _ (measurable_codeDensity a b c (hW.diff hE)),
         lintegral_codeDensity hab c (hW.diff hE)]
 
-/-- Adding the zero-density codes does not increase the deletion bound.-/
+/-- Adding the zero-density codes does not increase the deletion bound.
+@isnad1 id=le.4h6v.s11.f9aa6239338b from=translated src=- shape=3000561c vocab=4d8200ec
+-/
 theorem volume_bad_codeDensity_le {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W E : Set (PairCoordinates m)} (hW : MeasurableSet W) (hE : MeasurableSet E)
     (hEW : E ⊆ W) :

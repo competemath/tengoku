@@ -60,6 +60,9 @@ private theorem exists_tree_coefficient_bound (m n L J : ℕ) (β : ℝ)
       _ ≤ _ := mul_le_mul ((le_max_right _ _).trans (le_max_right _ _))
         (pow_le_pow_right₀ hxinv (by omega : m + 2 * B₂ ≤ B)) (by positivity) hC₀
 
+/--
+@isnad1 id=other.6h7v.s10.3f96c82c4476 from=translated src=- shape=63873c26 vocab=eaf2734b
+-/
 theorem exists_polynomial_normalized_tree_bound {m L J : ℕ} [Nonempty (Fin m)]
     (n : ℕ) {β A H : ℝ} (hβ : 1 < β) (hβ2 : β ≤ 2) (hL : 0 < L) (hJ : 0 < J)
     (hA : 0 < A) (hH : 0 < H) :

@@ -30,7 +30,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- All three exponents in the proved X-ray estimate may be increased by a common factor.-/
+/-- All three exponents in the proved X-ray estimate may be increased by a common factor.
+@isnad1 id=ex.2h3v.s8.82bdead862e5 from=translated src=- shape=d66eb726 vocab=7e3129e3
+-/
 theorem exists_sphericalXRayNorm_bound_scaled (m : ℕ) [Nonempty (Fin m)]
     [Fact (Module.finrank ℝ E = m + 1)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :

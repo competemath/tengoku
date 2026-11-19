@@ -28,7 +28,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- A Schwartz kernel with Fourier transform one on the unit ball and zero outside radius two.-/
+/-- A Schwartz kernel with Fourier transform one on the unit ball and zero outside radius two.
+@isnad1 id=ex.0h1v.s9.3c3bfd9dde73 from=translated src=- shape=f22fa8c9 vocab=9c5353b3
+-/
 theorem exists_lowFrequencyKernel : ∃ φ : 𝓢(E, ℂ),
     (∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) ∧ (∀ ξ : E, 2 ≤ ‖ξ‖ → 𝓕 φ ξ = 0) ∧
       ∀ ξ : E, ‖𝓕 φ ξ‖ ≤ 1 := by
@@ -49,7 +51,9 @@ theorem exists_lowFrequencyKernel : ∃ φ : 𝓢(E, ℂ),
     change ‖θ ξ • (1 : ℂ)‖ ≤ 1
     simpa only [norm_smul, norm_one, mul_one, Real.norm_of_nonneg θ.nonneg] using θ.le_one
 
-/-- The difference of two successive kernel dilations vanishes at frequencies below one.-/
+/-- The difference of two successive kernel dilations vanishes at frequencies below one.
+@isnad1 id=eq.2h3v.s9.00c9c4fbf9d5 from=translated src=- shape=1b0762f4 vocab=3f81b59e
+-/
 theorem fourier_dilation_sub_eq_zero_of_norm_lt (φ : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) {ξ : E} (hξ : ‖ξ‖ < 1) :
     𝓕 (normalizedDilation 2 two_pos φ - φ) ξ = 0 := by
@@ -60,7 +64,9 @@ theorem fourier_dilation_sub_eq_zero_of_norm_lt (φ : 𝓢(E, ℂ))
   rw [norm_smul, Real.norm_of_nonneg (by positivity)]
   linarith [norm_nonneg ξ]
 
-/-- The same annular kernel has no frequencies of norm at least four.-/
+/-- The same annular kernel has no frequencies of norm at least four.
+@isnad1 id=eq.2h3v.s9.e8091e8a4fe0 from=translated src=- shape=e9fb0eb7 vocab=97a0b899
+-/
 theorem fourier_dilation_sub_eq_zero_of_le_norm (φ : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, 2 ≤ ‖ξ‖ → 𝓕 φ ξ = 0) {ξ : E} (hξ : 4 ≤ ‖ξ‖) :
     𝓕 (normalizedDilation 2 two_pos φ - φ) ξ = 0 := by
@@ -71,7 +77,9 @@ theorem fourier_dilation_sub_eq_zero_of_le_norm (φ : 𝓢(E, ℂ))
   rw [norm_smul, Real.norm_of_nonneg (by positivity)]
   linarith
 
-/-- A dilated kernel has its closed Fourier support inside the correspondingly dilated ball.-/
+/-- A dilated kernel has its closed Fourier support inside the correspondingly dilated ball.
+@isnad1 id=le.2h4v.s8.662ae81c9ec1 from=translated src=- shape=527a81a0 vocab=2899c176
+-/
 theorem tsupport_fourier_normalizedDilation_subset (ψ : 𝓢(E, ℂ)) {R : ℝ}
     (hψ : ∀ ξ : E, R ≤ ‖ξ‖ → 𝓕 ψ ξ = 0) (a : ℝ) (ha : 0 < a) :
     tsupport (𝓕 (normalizedDilation a ha ψ) : 𝓢(E, ℂ)) ⊆ closedBall 0 (a * R) := by

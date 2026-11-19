@@ -29,6 +29,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.1h7v.s10.d9bc8211b647 from=translated src=- shape=ef6c399b vocab=ab8450bf
+-/
 theorem lintegral_mul_weightedPlaneKernel (V : Submodule ℝ E) (a : ℝ) (A N : ℕ)
     (x : E) {f : E → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ z, f z * weightedPlaneKernel V a A N x z) =
@@ -60,7 +63,9 @@ private lemma enorm_inv_weight_smulLeftCLM_aux (f : 𝓢(E, ℂ)) (A : ℕ) (z :
     ← ENNReal.ofReal_mul (by positivity), inv_mul_cancel₀ (by positivity),
     ENNReal.ofReal_one, one_mul]
 
-/-- A reproducing formula bounds a full plane integral by the associated positive kernel pairing.-/
+/-- A reproducing formula bounds a full plane integral by the associated positive kernel pairing.
+@isnad1 id=le.4h10v.s11.db8f0242ba2c from=translated src=- shape=88e8aaac vocab=90f166d5
+-/
 theorem lintegral_plane_le_weightedPlaneKernel (φ f : 𝓢(E, ℂ)) {R a : ℝ} (ha : 0 < a)
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ R → 𝓕 φ ξ = 1)
     (hf : tsupport (𝓕 f : 𝓢(E, ℂ)) ⊆ closedBall 0 (a * R)) {N : ℕ} {C : ℝ≥0}

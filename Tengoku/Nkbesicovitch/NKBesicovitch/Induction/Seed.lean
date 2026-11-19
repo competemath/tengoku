@@ -29,6 +29,9 @@ namespace NKBesicovitch.Induction
 
 variable {n k : ℕ} {δ p : ℝ} {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
 
+/--
+@isnad1 id=le.3h6v.s9.3f016d5f9ff1 from=translated src=- shape=42fad62e vocab=8dda756a
+-/
 theorem plateMaximal_rpow_le_ball_volume (hδ : 0 < δ) (hp : 1 ≤ p)
     (hf : Measurable f) (V : Grassmannian n k) :
     plateMaximal δ f V ^ p ≤
@@ -44,6 +47,9 @@ theorem plateMaximal_rpow_le_ball_volume (hδ : 0 < δ) (hp : 1 ≤ p)
   rw [div_eq_mul_inv, mul_comm]
   exact mul_le_mul' (ENNReal.inv_le_inv.mpr hvol) (setLIntegral_le_lintegral _ _)
 
+/--
+@isnad1 id=le.3h6v.s9.e1f6215581e2 from=translated src=- shape=4fd14e26 vocab=c2a8e618
+-/
 theorem plateMaximal_le_ball_volume (hδ : 0 < δ) (hp : 1 ≤ p)
     (hf : Measurable f) (V : Grassmannian n k) :
     plateMaximal δ f V ≤

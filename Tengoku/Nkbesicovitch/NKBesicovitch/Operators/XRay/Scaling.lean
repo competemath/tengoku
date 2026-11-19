@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 variable {m : ℕ} {Ξ : Set (EuclideanSpace ℝ (Fin m))} {p q r : ℝ≥0∞}
     {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)} {C : ℝ≥0∞}
 
+/--
+@isnad1 id=le.0h6v.s9.c08227538762 from=translated src=- shape=ac7e98c8 vocab=31571307
+-/
 theorem mixedNorm_localXRay_const_mul_le (c : ℝ≥0)
     (f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞) :
     mixedNorm ((Prod.snd ⁻¹' Ξ).indicator
@@ -46,6 +49,9 @@ theorem mixedNorm_localXRay_const_mul_le (c : ℝ≥0)
   rw [heq]
   exact mixedNorm_const_mul_le c _
 
+/--
+@isnad1 id=le.5h9v.s10.2934b2b1d7e4 from=translated src=- shape=92487719 vocab=4f60aa8a
+-/
 theorem mixedNorm_localXRay_le_of_eLpNorm_le
     (hbound : ∀ f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞, Measurable f →
       Function.support f ⊆ K → eLpNorm f p volume ≤ 1 →
@@ -84,6 +90,9 @@ theorem mixedNorm_localXRay_le_of_eLpNorm_le
     _ ≤ c * C := mul_le_mul_right (hbound g hg hsupportg hgnorm) _
     _ = _ := mul_comm _ _
 
+/--
+@isnad1 id=le.5h8v.s10.5eea511c9f3e from=translated src=- shape=e6907e99 vocab=3b0046d6
+-/
 theorem mixedNorm_localXRay_bound_of_normalized (hC : C ≠ 0) (hCfin : C ≠ ∞)
     (hbound : ∀ f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞, Measurable f →
       Function.support f ⊆ K → eLpNorm f p volume ≤ 1 →

@@ -28,7 +28,9 @@ namespace NKBesicovitch.XRay
 variable {n m k : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Signed flag-plane integrals of bandlimited functions admit translation-uniform majorants.-/
+/-- Signed flag-plane integrals of bandlimited functions admit translation-uniform majorants.
+@isnad1 id=ex.2h7v.s14.061433b9b1ce from=translated src=- shape=26116634 vocab=ff987314
+-/
 theorem exists_enorm_integral_flag_le_plateMaximal {A : ℕ} (hA : k < 2 * A)
     (R : ℝ) (hR : 0 < R) :
     ∃ C : ℝ≥0, ∀ (a : ℝ), 0 < a → ∀ f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ),

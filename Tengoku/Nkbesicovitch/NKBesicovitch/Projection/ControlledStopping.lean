@@ -31,6 +31,9 @@ noncomputable def controlledStoppingConstant (m L : ℕ) (β r C c₀ c₁ d : �
   let A := (c₀ * d / 2) / (2 * L * (B * c₀ ^ (1 - q)))
   (B * c₁ / A ^ q) ^ (1 / (q + 2 * q ^ 2 - 2))
 
+/--
+@isnad1 id=lt.6h8v.s6.6b4014502043 from=translated src=- shape=6ae2a705 vocab=1ce05e5f
+-/
 theorem controlledStoppingConstant_pos (m : ℕ) {L : ℕ} (hL : 0 < L) (β : ℝ)
     {r C c₀ c₁ d : ℝ} (hr : 0 < r) (hC : 0 < C) (hc₀ : 0 < c₀)
     (hc₁ : 0 < c₁) (hd : 0 < d) : 0 < controlledStoppingConstant m L β r C c₀ c₁ d := by
@@ -42,6 +45,9 @@ namespace CornerPattern.IsControlled
 
 variable {m L : ℕ} {β r C : ℝ} {P : CornerPattern m β}
 
+/--
+@isnad1 id=stopping.6h9v.s6.ba68b224c23f from=translated src=- shape=45e308db vocab=83fd9c8a
+-/
 theorem stoppingNodeBound (h : P.IsControlled r C L) (hβ : 1 < β) (hβ2 : β ≤ 2)
     {c₀ c₁ d : ℝ} (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d) :
     P.StoppingNodeBound c₀ c₁ d (controlledStoppingConstant m L β r C c₀ c₁ d) := by

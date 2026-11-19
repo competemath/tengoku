@@ -29,6 +29,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=eq.0h6v.s16.da85c1a90d1c from=translated src=- shape=2b8637ed vocab=fb4da491
+-/
 theorem diskAverage_rotate (u : Rotations n) (V : Grassmannian n k)
     (a : EuclideanSpace ℝ (Fin n)) (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     diskAverage f (Grassmannian.rotate u V) (Unitary.linearIsometryEquiv u a) =
@@ -52,6 +55,9 @@ theorem diskAverage_rotate (u : Rotations n) (V : Grassmannian n k)
   change f (Unitary.linearIsometryEquiv u a + Unitary.linearIsometryEquiv u w) = _
   rw [← map_add, Function.comp_apply]
 
+/--
+@isnad1 id=eq.0h5v.s15.d93f1513c8ae from=translated src=- shape=e2c323d7 vocab=def34c78
+-/
 theorem diskMaximal_rotate (u : Rotations n) (V : Grassmannian n k)
     (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     diskMaximal f (Grassmannian.rotate u V) =

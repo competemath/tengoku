@@ -32,6 +32,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ex.5h4v.s10.b645bf459b73 from=translated src=- shape=584546b2 vocab=50c597a9
+-/
 theorem exists_normalized_corner_improvement [Nonempty (Fin m)]
     {β β' : ℝ} (hβ : 1 < β) (hβ2 : β ≤ 2) (hgap : cornerUpdate β < β')
     {Γ : Finset ℝ} (hΓ : Γ.Nonempty) (hEstimate : HasProjectionEstimate m β Γ) :

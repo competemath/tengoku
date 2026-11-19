@@ -28,6 +28,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=le.1h4v.s12.d8cc981baaef from=translated src=- shape=38bda9a8 vocab=64b64345
+-/
 theorem eLpNorm_schwartz_convolution_two_le (f ψ : 𝓢(E, ℂ)) (B : ℝ≥0)
     (hB : ∀ ξ, ‖𝓕 ψ ξ‖ₑ ≤ B) :
     eLpNorm (SchwartzMap.convolution (ContinuousLinearMap.lsmul ℂ ℂ) ψ f) 2 volume ≤

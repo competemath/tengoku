@@ -28,7 +28,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
-/-- Positivity lets the full signed integral control the normalized unit-disk average.-/
+/-- Positivity lets the full signed integral control the normalized unit-disk average.
+@isnad1 id=le.1h5v.s13.ca9e3db26555 from=translated src=- shape=f14a57b6 vocab=aabc7c3d
+-/
 theorem diskAverage_ofReal_le_enorm_integral (f : 𝓢(EuclideanSpace ℝ (Fin n), ℝ))
     (hf : ∀ x, 0 ≤ f x) (V : Grassmannian n k) (a : EuclideanSpace ℝ (Fin n)) :
     diskAverage (fun x ↦ ENNReal.ofReal (f x)) V a ≤

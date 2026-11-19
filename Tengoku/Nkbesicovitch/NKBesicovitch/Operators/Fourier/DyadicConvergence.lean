@@ -30,7 +30,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- At each fixed frequency, sufficiently large dyadic cutoffs reproduce the input exactly.-/
+/-- At each fixed frequency, sufficiently large dyadic cutoffs reproduce the input exactly.
+@isnad1 id=eventual.1h4v.s12.20e62c322d25 from=translated src=- shape=526ef0f3 vocab=fa3771f6
+-/
 theorem eventually_fourier_convolution_dyadic_eq (φ f : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (ξ : E) :
     ∀ᶠ N : ℕ in atTop, 𝓕 (SchwartzMap.convolution (ContinuousLinearMap.lsmul ℂ ℂ)
@@ -40,7 +42,9 @@ theorem eventually_fourier_convolution_dyadic_eq (φ f : 𝓢(E, ℂ))
   rw [norm_smul, Real.norm_of_nonneg (by positivity), ← div_eq_inv_mul]
   exact (div_le_one (pow_pos two_pos N)).mpr hN
 
-/-- The Fourier errors of bounded smooth cutoffs converge to zero in the one-norm.-/
+/-- The Fourier errors of bounded smooth cutoffs converge to zero in the one-norm.
+@isnad1 id=tendsto.2h3v.s12.a8d7aae6e269 from=translated src=- shape=68376963 vocab=ec3d2f6e
+-/
 theorem tendsto_integral_norm_fourier_convolution_dyadic_sub (φ f : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (hbound : ∀ ξ : E, ‖𝓕 φ ξ‖ ≤ 1) :
     Tendsto (fun N : ℕ ↦ ∫ ξ : E,
@@ -66,7 +70,9 @@ theorem tendsto_integral_norm_fourier_convolution_dyadic_sub (φ f : 𝓢(E, ℂ
     filter_upwards [eventually_fourier_convolution_dyadic_eq φ f hφ ξ] with N hN
     simp only [hN, sub_self, norm_zero]
 
-/-- The smooth dyadic approximations of a Schwartz input converge uniformly on the whole space.-/
+/-- The smooth dyadic approximations of a Schwartz input converge uniformly on the whole space.
+@isnad1 id=tendstou.2h3v.s12.ffbd6be3caa0 from=translated src=- shape=91cc62f0 vocab=6f342393
+-/
 theorem tendstoUniformly_convolution_dyadic (φ f : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (hbound : ∀ ξ : E, ‖𝓕 φ ξ‖ ≤ 1) :
     TendstoUniformly (fun N : ℕ ↦ (SchwartzMap.convolution (ContinuousLinearMap.lsmul ℂ ℂ)

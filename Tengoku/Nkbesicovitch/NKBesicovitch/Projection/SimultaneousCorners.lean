@@ -30,16 +30,25 @@ noncomputable def denseCorners (a b c κ : ℝ) (u : ι → ℝ) (I : Finset ι)
     (D : Set (CornerCoordinates m)) (τ : ℝ≥0∞) : Set (CornerCoordinates m) :=
   D ∩ ⋂ i ∈ I, {p | τ ≤ cornerOuterDensity a b c κ (u i) D (cornerOuterData a b c κ (u i) p)}
 
+/--
+@isnad1 id=le.0h10v.s5.6fb98cd9d249 from=translated src=- shape=512d131e vocab=2e91f3c1
+-/
 theorem denseCorners_subset (a b c κ : ℝ) (u : ι → ℝ) (I : Finset ι)
     (D : Set (CornerCoordinates m)) (τ : ℝ≥0∞) : denseCorners a b c κ u I D τ ⊆ D :=
   inter_subset_left
 
+/--
+@isnad1 id=le.2h12v.s6.fd1a31b14f33 from=translated src=- shape=172eb311 vocab=21aa384a
+-/
 theorem le_cornerOuterDensity_of_mem_denseCorners {a b c κ : ℝ} {u : ι → ℝ} {I : Finset ι}
     {D : Set (CornerCoordinates m)} {τ : ℝ≥0∞} {p : CornerCoordinates m}
     (hp : p ∈ denseCorners a b c κ u I D τ) {i : ι} (hi : i ∈ I) :
     τ ≤ cornerOuterDensity a b c κ (u i) D (cornerOuterData a b c κ (u i) p) :=
   mem_iInter.mp (mem_iInter.mp hp.2 i) hi
 
+/--
+@isnad1 id=measurab.1h10v.s8.03f7785a538d from=translated src=- shape=6f3a554e vocab=f6766c70
+-/
 theorem measurableSet_denseCorners (a b c κ : ℝ) (u : ι → ℝ) (I : Finset ι)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) (τ : ℝ≥0∞) :
     MeasurableSet (denseCorners a b c κ u I D τ) :=
@@ -47,6 +56,9 @@ theorem measurableSet_denseCorners (a b c κ : ℝ) (u : ι → ℝ) (I : Finset
     ((measurable_cornerOuterDensity a b c κ (u i) hD).comp
       (continuous_cornerOuterData a b c κ (u i)).measurable))
 
+/--
+@isnad1 id=le.0h10v.s6.ed0460ab2ea6 from=translated src=- shape=91ec17c2 vocab=c3052edf
+-/
 theorem sdiff_denseCorners_subset (a b c κ : ℝ) (u : ι → ℝ) (I : Finset ι)
     (D : Set (CornerCoordinates m)) (τ : ℝ≥0∞) :
     D \ denseCorners a b c κ u I D τ ⊆
@@ -59,6 +71,9 @@ theorem sdiff_denseCorners_subset (a b c κ : ℝ) (u : ι → ℝ) (I : Finset 
   change τ ≤ cornerOuterDensity a b c κ (u i) D (cornerOuterData a b c κ (u i) p)
   exact le_of_not_gt fun hlt ↦ h (mem_iUnion.mpr ⟨i, mem_iUnion.mpr ⟨hi, hp.1, hlt⟩⟩)
 
+/--
+@isnad1 id=le.4h11v.s10.a3792eb1a0ae from=translated src=- shape=31c2eabd vocab=f25aa02d
+-/
 theorem volume_sdiff_denseCorners_le {a b c κ : ℝ} (hab : a ≠ b)
     (u : ι → ℝ) (I : Finset ι) (hua : ∀ i ∈ I, u i ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) (τ : ℝ≥0∞) (S : ι → Set (Line m))
@@ -74,6 +89,9 @@ theorem volume_sdiff_denseCorners_le {a b c κ : ℝ} (hab : a ≠ b)
     _ ≤ _ := Finset.sum_le_sum fun i hi ↦
       volume_low_cornerOuterDensity_le hab (hua i hi) hD (hS i hi) τ
 
+/--
+@isnad1 id=le.6h11v.s12.91f99e83e109 from=translated src=- shape=d6212619 vocab=c25dc633
+-/
 theorem half_volume_le_volume_denseCorners {a b c κ : ℝ} (hab : a ≠ b)
     (u : ι → ℝ) (I : Finset ι) (hua : ∀ i ∈ I, u i ≠ a)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) (hfin : volume D ≠ ∞)

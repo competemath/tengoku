@@ -27,6 +27,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.XRay
 
+/--
+@isnad1 id=ex.2h2v.s9.dc29bf15b3f0 from=translated src=- shape=c0c656e1 vocab=d3281b3d
+-/
 theorem exists_normalized_mixedNorm_bound (m : ℕ) [Nonempty (Fin m)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :
     ∃ Q : ℕ, 2 < Q ∧ ∀ K : Set (EuclideanSpace ℝ (Fin m) × ℝ), IsBounded K →

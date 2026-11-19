@@ -50,7 +50,9 @@ private theorem exists_xray_scale {p ρ : ℝ} (hp : 0 < p) (hρ : 0 < ρ) (a : 
   refine ⟨s, le_max_left _ _, (div_le_iff₀ hp).mp htwo, ?_⟩
   simpa only [mul_left_comm] using (div_le_iff₀ (mul_pos hρ hp)).mp ha
 
-/-- A fixed subcritical gain ratio is available beyond every required displacement exponent.-/
+/-- A fixed subcritical gain ratio is available beyond every required displacement exponent.
+@isnad1 id=ex.1h4v.s8.3ce869b36929 from=translated src=- shape=a68e7c0b vocab=95fe3d98
+-/
 theorem exists_sphericalXRayNorm_bound_ratio {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (m : ℕ) [Nonempty (Fin m)] [Fact (Module.finrank ℝ E = m + 1)]

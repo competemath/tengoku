@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=eq.0h4v.s11.b25232b17771 from=translated src=- shape=6acbc4ab vocab=9c70f774
+-/
 theorem atHeight_image_preimage_lineCoordinates (a t : ℝ) (G : Set (Line m)) :
     atHeight t '' (lineCoordinates a ⁻¹' G) = atHeight (t + a) '' G := by
   ext y
@@ -39,6 +42,9 @@ theorem atHeight_image_preimage_lineCoordinates (a t : ℝ) (G : Set (Line m)) :
     simp only [lineCoordinates_symm_apply, atHeight, add_smul]
     module
 
+/--
+@isnad1 id=eq.0h3v.s11.a9303dc6af5c from=translated src=- shape=e6b6e50b vocab=9c8076f1
+-/
 theorem parallelMultiplicity_preimage_lineCoordinates (a : ℝ) (G : Set (Line m)) :
     parallelMultiplicity (lineCoordinates a ⁻¹' G) = parallelMultiplicity G := by
   unfold parallelMultiplicity
@@ -51,10 +57,16 @@ theorem parallelMultiplicity_preimage_lineCoordinates (a : ℝ) (G : Set (Line m
       sub_eq_add_neg, neg_smul]
   rw [hs, measure_preimage_add_right]
 
+/--
+@isnad1 id=eq.0h4v.s11.6c2b32532f3a from=translated src=- shape=c613b4b2 vocab=98637644
+-/
 theorem sliceSize_preimage_lineCoordinates (a : ℝ) (Γ : Finset ℝ) (G : Set (Line m)) :
     sliceSize Γ (lineCoordinates a ⁻¹' G) = sliceSize (Γ.image (· + a)) G := by
   simp only [sliceSize, Finset.iSup_finset_image, atHeight_image_preimage_lineCoordinates]
 
+/--
+@isnad1 id=hasproje.1h4v.s5.95282f338a84 from=translated src=- shape=614c4dd9 vocab=943675db
+-/
 theorem HasProjectionEstimate.translate {β : ℝ} {Γ : Finset ℝ}
     (h : HasProjectionEstimate m β Γ) (a : ℝ) :
     HasProjectionEstimate m β (Γ.image (· + a)) := by
@@ -70,7 +82,9 @@ theorem HasProjectionEstimate.translate {β : ℝ} {Γ : Finset ℝ}
   simpa only [hmass, parallelMultiplicity_preimage_lineCoordinates,
     sliceSize_preimage_lineCoordinates] using hbound _ hF hFb
 
-/-- A finite height pattern can be translated away from any finite forbidden set.-/
+/-- A finite height pattern can be translated away from any finite forbidden set.
+@isnad1 id=ex.0h2v.s5.004fb7195144 from=translated src=- shape=e50de959 vocab=7eb797d9
+-/
 theorem exists_translate_avoiding (Γ F : Finset ℝ) :
     ∃ a : ℝ, ∀ t ∈ Γ.image (· + a), t ∉ F := by
   classical

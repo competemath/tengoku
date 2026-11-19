@@ -44,7 +44,9 @@ private lemma tendsto_bump_mul_one_sub_pow_aux {n : ℕ}
     (show 1 - t < 1 by linarith [ht.1])
   simpa only [sub_zero, mul_one] using hb.mul ((tendsto_const_nhds (x := (1 : ℝ))).sub hp)
 
-/-- Every open indicator is a pointwise limit of dominated positive Schwartz functions.-/
+/-- Every open indicator is a pointwise limit of dominated positive Schwartz functions.
+@isnad1 id=ex.1h2v.s9.6a92a41f504b from=translated src=- shape=292204da vocab=785e48b9
+-/
 theorem exists_schwartz_tendsto_indicator {n : ℕ} {U : Set (EuclideanSpace ℝ (Fin n))}
     (hU : IsOpen U) :
     ∃ f : ℕ → 𝓢(EuclideanSpace ℝ (Fin n), ℝ),

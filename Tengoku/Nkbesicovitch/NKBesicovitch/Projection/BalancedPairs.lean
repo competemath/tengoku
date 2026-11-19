@@ -31,16 +31,25 @@ variable {m : ℕ}
 def companionPairs (a : ℝ) (G₀ C : Set (Line m)) : Set (PairCoordinates m) :=
   {p | lineAt a p.1 p.2.1 ∈ G₀ ∧ lineAt a p.1 p.2.2 ∈ C}
 
+/--
+@isnad1 id=measurab.2h4v.s8.a2c01dc98ae1 from=translated src=- shape=35c0f82c vocab=81388c6e
+-/
 theorem measurableSet_companionPairs (a : ℝ) {G₀ C : Set (Line m)}
     (hG₀ : MeasurableSet G₀) (hC : MeasurableSet C) :
     MeasurableSet (companionPairs a G₀ C) :=
   (hG₀.preimage (by unfold lineAt; fun_prop)).inter
     (hC.preimage (by unfold lineAt; fun_prop))
 
+/--
+@isnad1 id=le.2h5v.s5.9f7444c68d8a from=translated src=- shape=3ff3c4a4 vocab=9354418f
+-/
 theorem companionPairs_subset_pairFamily (a : ℝ) {G₀ C G : Set (Line m)}
     (hG₀ : G₀ ⊆ G) (hC : C ⊆ G) : companionPairs a G₀ C ⊆ pairFamily a G :=
   fun _ hp ↦ ⟨hG₀ hp.1, hC hp.2⟩
 
+/--
+@isnad1 id=eq.2h4v.s10.f6b60dfc5912 from=translated src=- shape=31fd8e9f vocab=0775543c
+-/
 theorem volume_companionPairs (a : ℝ) {G₀ C : Set (Line m)}
     (hG₀ : MeasurableSet G₀) (hC : MeasurableSet C) :
     volume (companionPairs a G₀ C) =
@@ -52,7 +61,9 @@ theorem volume_companionPairs (a : ℝ) {G₀ C : Set (Line m)}
   rw [Measure.volume_eq_prod, Measure.prod_prod]
   rfl
 
-/-- Balanced companion pairs have an exact intrinsic mass.-/
+/-- Balanced companion pairs have an exact intrinsic mass.
+@isnad1 id=eq.3h5v.s10.58433a05dc5a from=translated src=- shape=a2064bf2 vocab=07ab098e
+-/
 theorem volume_companionPairs_of_constant_mass (a : ℝ) {G₀ C : Set (Line m)}
     (hG₀ : MeasurableSet G₀) (hC : MeasurableSet C) (η : ℝ≥0∞)
     (hη : ∀ y ∈ atHeight a '' G₀, sliceMultiplicity a C y = η) :
@@ -69,7 +80,9 @@ theorem volume_companionPairs_of_constant_mass (a : ℝ) {G₀ C : Set (Line m)}
       lintegral_mul_const η (measurable_sliceMultiplicity a hG₀)
     _ = _ := by rw [lintegral_sliceMultiplicity a hG₀]
 
-/-- All the selected heights admit companions with the same exact pair mass.-/
+/-- All the selected heights admit companions with the same exact pair mass.
+@isnad1 id=ex.4h5v.s11.b1db42b638db from=translated src=- shape=82341424 vocab=ab086149
+-/
 theorem exists_balanced_pairs [Nonempty (Fin m)] (Γ : Finset ℝ) {G : Set (Line m)}
     (hG : MeasurableSet G) (hGb : IsBounded G) (η N : ℝ≥0∞)
     (hN : ∀ a ∈ Γ, volume (atHeight a '' G) ≤ N)

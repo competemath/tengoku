@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m J : ℕ} {β : ℝ}
 
+/--
+@isnad1 id=other.3h4v.s10.aebeff317423 from=translated src=- shape=a67f06d9 vocab=1663cb45
+-/
 theorem exists_large_normalized_bound [Nonempty (Fin m)] (T : CornerTree m β J)
     (hJ : 0 < J) (hβ : 1 < β) (hβ2 : β ≤ 2) :
     let q := β / (β - 1)

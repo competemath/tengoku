@@ -28,6 +28,9 @@ namespace NKBesicovitch.XRay
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=ex.2h7v.s10.79e3918a6233 from=translated src=- shape=ac3fbee9 vocab=5fb141ca
+-/
 theorem exists_unitInterval_bound_of_local
     {Ξ : Set (EuclideanSpace ℝ (Fin m))} {p q r : ℝ≥0∞}
     (hlocal : ∀ K : Set (EuclideanSpace ℝ (Fin m) × ℝ), IsBounded K →
@@ -54,6 +57,9 @@ theorem exists_unitInterval_bound_of_local
   rw [mixedNorm_unitInterval_eq_localXRay hf a]
   simpa only [eLpNorm_vertical_translate hf a] using hbound _ hm hs
 
+/--
+@isnad1 id=ex.2h2v.s9.ce00f50f4615 from=translated src=- shape=6cc8057d vocab=94120970
+-/
 theorem exists_chartXRay_mixedNorm_bound (m : ℕ) [Nonempty (Fin m)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :
     ∃ Q : ℕ, 2 < Q ∧ ∀ K : Set (EuclideanSpace ℝ (Fin m) × ℝ), IsBounded K →

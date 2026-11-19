@@ -31,12 +31,18 @@ variable {m : ℕ}
 def parentCorners (a b : ℝ) (U : Set (PairCoordinates m)) (B : Set (Line m)) :
     Set (CornerCoordinates m) := {p | cornerParent a p ∈ U ∧ cornerLast b p ∈ B}
 
+/--
+@isnad1 id=measurab.2h5v.s8.81620686ddfa from=translated src=- shape=675028a3 vocab=83cbdfae
+-/
 theorem measurableSet_parentCorners (a b : ℝ) {U : Set (PairCoordinates m)}
     (hU : MeasurableSet U) {B : Set (Line m)} (hB : MeasurableSet B) :
     MeasurableSet (parentCorners a b U B) :=
   (hU.preimage (by unfold cornerParent atHeight; fun_prop)).inter
     (hB.preimage (by unfold cornerLast lineAt atHeight; fun_prop))
 
+/--
+@isnad1 id=eq.2h5v.s11.f17336bbfa2a from=translated src=- shape=0ff3e107 vocab=0ded52f3
+-/
 theorem volume_parentCorners (a b : ℝ) {U : Set (PairCoordinates m)}
     (hU : MeasurableSet U) {B : Set (Line m)} (hB : MeasurableSet B) :
     volume (parentCorners a b U B) =
@@ -72,7 +78,9 @@ theorem volume_parentCorners (a b : ℝ) {U : Set (PairCoordinates m)}
       simp only [cornerParent_cornerFromParent, hp, false_and]
     rw [hs, measure_empty]
 
-/-- Every retained parent has exactly the prescribed mass of last companions.-/
+/-- Every retained parent has exactly the prescribed mass of last companions.
+@isnad1 id=eq.3h6v.s11.fb800a29cd30 from=translated src=- shape=9acf2051 vocab=3ea4a071
+-/
 theorem volume_parentCorners_of_constant_mass (a b : ℝ) {U : Set (PairCoordinates m)}
     (hU : MeasurableSet U) {B : Set (Line m)} (hB : MeasurableSet B) (η : ℝ≥0∞)
     (hη : ∀ p ∈ U, sliceMultiplicity b B (atHeight b (lineAt a p.1 p.2.1)) = η) :
@@ -82,6 +90,9 @@ theorem volume_parentCorners_of_constant_mass (a b : ℝ) {U : Set (PairCoordina
     _ = ∫⁻ _p in U, η := setLIntegral_congr_fun hU hη
     _ = _ := by simp [mul_comm]
 
+/--
+@isnad1 id=eq.1h7v.s6.2ea2e06cd5b1 from=translated src=- shape=8d1a8638 vocab=d94a4c98
+-/
 theorem parentCorners_eq_inter {a b : ℝ} {U : Set (PairCoordinates m)}
     {G₀ A B : Set (Line m)} (hU : U ⊆ companionPairs a G₀ A) :
     parentCorners a b U B = companionCorners a b G₀ A B ∩ cornerParent a ⁻¹' U := by

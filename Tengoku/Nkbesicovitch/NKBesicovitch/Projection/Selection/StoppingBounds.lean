@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=ex.5h8v.s8.e0b7d4684d71 from=translated src=- shape=e8a940f0 vocab=d93ac198
+-/
 theorem exists_node_stopping_constants (hβ : 1 < β) (hβ2 : β ≤ 2)
     {c₀ c₁ d : ℝ} (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d) :
     ∃ C : ℝ, 0 < C ∧ ∃ N : ℕ, 0 < N ∧
@@ -48,7 +51,9 @@ theorem exists_node_stopping_constants (hβ : 1 < β) (hβ2 : β ≤ 2)
   exact ((S.nodePattern_isControlled hI hIunit hIpos hq hp).stoppingNodeBound
     hβ hβ2 hc₀ hc₁ hd).mono (hbound _ hx hx1)
 
-/-- Selected trees whose every internal node has one common polynomial stopping bound.-/
+/-- Selected trees whose every internal node has one common polynomial stopping bound.
+@isnad1 id=ex.5h8v.s8.7d46c0aad293 from=translated src=- shape=cebcbb83 vocab=ce6bff9c
+-/
 theorem exists_tree_stopping_constants (hβ : 1 < β) (hβ2 : β ≤ 2)
     {c₀ c₁ d : ℝ} (hc₀ : 0 < c₀) (hc₁ : 0 < c₁) (hd : 0 < d) :
     ∃ C : ℝ, 0 < C ∧ ∃ N : ℕ, 0 < N ∧

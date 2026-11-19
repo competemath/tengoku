@@ -29,7 +29,9 @@ namespace NKBesicovitch
 variable {E Y : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] [MeasurableSpace Y]
 
-/-- The moment form of interpolation between the two-norm and bounded-input endpoints.-/
+/-- The moment form of interpolation between the two-norm and bounded-input endpoints.
+@isnad1 id=le.7h9v.s11.ba6814df3f01 from=translated src=- shape=81823e08 vocab=9b82f7bd
+-/
 theorem lintegral_enorm_rpow_le_of_endpoints (T : 𝓢(E, ℂ) →+ (Y → ℂ)) (μ : Measure Y)
     {s : Set E} (A : ℝ≥0) {B p : ℝ} (hB : 0 < B) (hp : 2 < p)
     (hmeas : ∀ f, AEStronglyMeasurable (T f) μ)
@@ -56,7 +58,9 @@ theorem lintegral_enorm_rpow_le_of_endpoints (T : 𝓢(E, ℂ) →+ (Y → ℂ))
   rw [ENNReal.coe_toNNReal hK] at h
   simpa only [K, mul_assoc, mul_comm, mul_left_comm] using h
 
-/-- A finite interpolation constant uniform over operators and their two-norm constants.-/
+/-- A finite interpolation constant uniform over operators and their two-norm constants.
+@isnad1 id=ex.2h5v.s11.1f31e343750e from=translated src=- shape=b852d841 vocab=a0e13729
+-/
 theorem exists_eLpNorm_bound_of_endpoints (μ : Measure Y) {B p : ℝ} (hB : 0 < B) (hp : 2 < p) :
     ∃ C : ℝ≥0, ∀ T : 𝓢(E, ℂ) →+ (Y → ℂ), ∀ A : ℝ≥0, ∀ s : Set E,
       (∀ f, AEStronglyMeasurable (T f) μ) →
@@ -83,7 +87,9 @@ theorem exists_eLpNorm_bound_of_endpoints (μ : Measure Y) {B p : ℝ} (hB : 0 <
   rw [ENNReal.coe_rpow_of_nonneg _ hpinv, ENNReal.coe_toNNReal hD]
   simpa only [div_eq_mul_inv, one_mul] using h
 
-/-- A half-derivative two-norm gain interpolates to a `1/p`-derivative gain.-/
+/-- A half-derivative two-norm gain interpolates to a `1/p`-derivative gain.
+@isnad1 id=ex.2h6v.s11.7fd13f705dba from=translated src=- shape=49fbee73 vocab=2072eb5a
+-/
 theorem exists_eLpNorm_decay_of_endpoints (μ : Measure Y) {B p : ℝ}
     (hB : 0 < B) (hp : 2 < p) (K : ℝ≥0) :
     ∃ C : ℝ≥0, ∀ a : ℝ, 0 < a → ∀ T : 𝓢(E, ℂ) →+ (Y → ℂ), ∀ s : Set E,

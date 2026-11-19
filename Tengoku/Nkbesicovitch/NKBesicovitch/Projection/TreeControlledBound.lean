@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection.CornerTree
 
 variable {m L J : ℕ} {β r A C H : ℝ}
 
+/--
+@isnad1 id=other.10h11v.s10.7d2fde26ea67 from=translated src=- shape=4fe7047d vocab=d3c002db
+-/
 theorem normalized_bound_of_controlled [Nonempty (Fin m)] (T : CornerTree m β J)
     (hJ : 0 < J) (hβ : 1 < β) (hH : (T.times.card : ℝ) ≤ H)
     (hcontrol : ∀ v h, (T.pattern v h).IsControlled r A L)

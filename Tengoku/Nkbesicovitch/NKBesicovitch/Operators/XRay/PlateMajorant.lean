@@ -30,7 +30,9 @@ namespace NKBesicovitch.XRay
 variable {n m k : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
   (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
-/-- Full-plane integrals of bandlimited signed X-ray fibers have uniform plate majorants.-/
+/-- Full-plane integrals of bandlimited signed X-ray fibers have uniform plate majorants.
+@isnad1 id=ex.2h7v.s14.4f42a03f031f from=translated src=- shape=227c3ce7 vocab=bfd3a0c0
+-/
 theorem exists_lintegral_frameLineIntegral_le_plateMaximal {A : ℕ} (hA : k < 2 * A)
     (R : ℝ) (hR : 0 < R) :
     ∃ C : ℝ≥0, ∀ (a : ℝ), 0 < a → ∀ f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ),

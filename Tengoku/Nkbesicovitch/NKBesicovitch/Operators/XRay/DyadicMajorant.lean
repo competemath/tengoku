@@ -58,7 +58,9 @@ private lemma convolution_fourier_radius_aux (ψ f : 𝓢(EuclideanSpace ℝ (Fi
   rw [fourier_normalizedDilation] at he
   rw [he, zero_mul]
 
-/-- Every signed full-plane integral is bounded by the same measurable dyadic majorant.-/
+/-- Every signed full-plane integral is bounded by the same measurable dyadic majorant.
+@isnad1 id=ex.4h7v.s14.ab7c635b5404 from=translated src=- shape=474628f0 vocab=1ab32421
+-/
 theorem exists_enorm_integral_flag_le_dyadicFrameMajorant {A : ℕ} (hA : k < 2 * A)
     (φ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ))
     (hφ : ∀ ξ, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (houter : ∀ ξ, 2 ≤ ‖ξ‖ → 𝓕 φ ξ = 0)

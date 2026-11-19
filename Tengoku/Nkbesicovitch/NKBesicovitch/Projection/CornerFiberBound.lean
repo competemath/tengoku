@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h9v.s9.1ecac349a84c from=translated src=- shape=2a5bec6e vocab=69079aa3
+-/
 theorem cornerFirstDensity_le_parallelFiber {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     {G : Set (Line m)} {D : Set (CornerCoordinates m)} (hDG : D ⊆ cornerFamily a b G)
     (z : EuclideanSpace ℝ (Fin m)) (g : Line m) :
@@ -43,6 +46,9 @@ theorem cornerFirstDensity_le_parallelFiber {a b : ℝ} (hab : a ≠ b) (c κ : 
     exact le_rfl
   · simp [Set.indicator_of_notMem hx]
 
+/--
+@isnad1 id=eventual.3h8v.s9.7825051216fa from=translated src=- shape=822f8d5d vocab=4d56b3dc
+-/
 theorem cornerFirstDensity_ae_le_parallelMultiplicity {a b κ : ℝ} (hab : a ≠ b)
     (hκ : κ ≠ 0) (c : ℝ) {G : Set (Line m)} {D : Set (CornerCoordinates m)}
     (hDG : D ⊆ cornerFamily a b G) (z : EuclideanSpace ℝ (Fin m)) :
@@ -53,7 +59,9 @@ theorem cornerFirstDensity_ae_le_parallelMultiplicity {a b κ : ℝ} (hab : a �
         (fun ξ : EuclideanSpace ℝ (Fin m) ↦ volume {x : EuclideanSpace ℝ (Fin m) | (x, ξ) ∈ G}))
   exact h.mono fun g hg ↦ (cornerFirstDensity_le_parallelFiber hab c κ hDG z g).trans hg
 
-/-- The corner density controls the size of a Borel first-line family on each code fiber.-/
+/-- The corner density controls the size of a Borel first-line family on each code fiber.
+@isnad1 id=le.4h8v.s9.5734b8e6d6d2 from=translated src=- shape=f77bd60d vocab=b689fec3
+-/
 theorem cornerDensity_le_positiveCornerFiber {a b κ : ℝ} (hab : a ≠ b) (hκ : κ ≠ 0) (c : ℝ)
     {G : Set (Line m)} {D : Set (CornerCoordinates m)} (hD : MeasurableSet D)
     (hDG : D ⊆ cornerFamily a b G) (z : EuclideanSpace ℝ (Fin m)) :
@@ -63,6 +71,9 @@ theorem cornerDensity_le_positiveCornerFiber {a b κ : ℝ} (hab : a ≠ b) (hκ
   exact mul_le_mul le_rfl (lintegral_le_mul_measure_of_ae_le (Subset.rfl)
     (cornerFirstDensity_ae_le_parallelMultiplicity hab hκ c hDG z)) bot_le bot_le
 
+/--
+@isnad1 id=le.4h8v.s9.7e3b936ab47d from=translated src=- shape=f77bd60d vocab=477ecba6
+-/
 theorem cornerDensity_le_cornerFiber {a b κ : ℝ} (hab : a ≠ b) (hκ : κ ≠ 0) (c : ℝ)
     {G : Set (Line m)} {D : Set (CornerCoordinates m)} (hD : MeasurableSet D)
     (hDG : D ⊆ cornerFamily a b G) (z : EuclideanSpace ℝ (Fin m)) :

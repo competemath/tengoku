@@ -33,6 +33,9 @@ private lemma fiber_scale_cancel {a β : ℝ} (ha : 0 < a) :
   congr 1
   ring
 
+/--
+@isnad1 id=le.10h8v.s10.ec9575c2b1f2 from=translated src=- shape=f671f156 vocab=6acb1e1e
+-/
 theorem mixedNorm_fiberBlock_rpow_le_of_restricted {m K : ℕ} {β C V a r : ℝ}
     (hβ : 1 < β) (hβ2 : β ≤ 2) (hK : 0 < K) (hC : 0 ≤ C) (hV : 0 ≤ V)
     {F : Set (Line m)} (hF : MeasurableSet F) (hFb : IsBounded F)
@@ -76,7 +79,9 @@ theorem mixedNorm_fiberBlock_rpow_le_of_restricted {m K : ℕ} {β C V a r : ℝ
         _ = ((a / 2) ^ (β - 2) * a ^ (2 - β)) * C * V ^ β := by ring
         _ = _ := by rw [fiber_scale_cancel ha]
 
-/-- A mixed-norm bound uniform over all parallel-fiber scales.-/
+/-- A mixed-norm bound uniform over all parallel-fiber scales.
+@isnad1 id=ex.2h2v.s10.122107e165a6 from=translated src=- shape=a4e064a9 vocab=36d03188
+-/
 theorem exists_restricted_mixedNorm_fiberBlock_bound (m : ℕ) [Nonempty (Fin m)] {β : ℝ}
     (hβ : projectionExponent < β) (hβ2 : β ≤ 2) :
     ∃ C : ℝ, 0 < C ∧ ∃ K : ℕ, 2 < K ∧

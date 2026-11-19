@@ -31,6 +31,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s6.d8cb343f9e20 from=translated src=- shape=6b9534f5 vocab=8309d1e3
+-/
 theorem diskMaximal_add_right (y : EuclideanSpace ℝ (Fin n)) (V : Grassmannian n k)
     (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     diskMaximal (fun x ↦ f (x + y)) V = diskMaximal f V := by
@@ -41,6 +44,9 @@ theorem diskMaximal_add_right (y : EuclideanSpace ℝ (Fin n)) (V : Grassmannian
     (fun a ↦ (∫⁻ w in closedBall (0 : V.val) 1, f (a + w)) /
       volume (closedBall (0 : V.val) 1))
 
+/--
+@isnad1 id=le.2h7v.s8.03df49c237fe from=translated src=- shape=ac7e9902 vocab=5e543e34
+-/
 theorem diskAverage_ofReal_le_diskMaximal_bump (θ : ContDiffBump (0 : EuclideanSpace ℝ (Fin n)))
     (hθ : 2 ≤ θ.rIn) (f : EuclideanSpace ℝ (Fin n) → ℝ) (V : Grassmannian n k)
     (a : EuclideanSpace ℝ (Fin n)) {y : EuclideanSpace ℝ (Fin n)} (hy : y ∈ ball a 1) :
@@ -65,6 +71,9 @@ theorem diskAverage_ofReal_le_diskMaximal_bump (θ : ContDiffBump (0 : Euclidean
   rw [hd]
   exact le_iSup (fun a ↦ diskAverage (fun x ↦ ENNReal.ofReal (θ (x - y) * f x)) V a) a
 
+/--
+@isnad1 id=le.2h6v.s10.1ec116404739 from=translated src=- shape=be484892 vocab=3490fc38
+-/
 theorem diskMaximal_ofReal_rpow_le_lintegral_bump
     (θ : ContDiffBump (0 : EuclideanSpace ℝ (Fin n))) (hθ : 2 ≤ θ.rIn)
     (f : EuclideanSpace ℝ (Fin n) → ℝ) {p : ℝ} (hp : 0 < p) (V : Grassmannian n k) :

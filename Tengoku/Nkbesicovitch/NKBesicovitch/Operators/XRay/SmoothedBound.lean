@@ -41,7 +41,9 @@ private theorem enorm_le_eLpNorm_top {f : EuclideanSpace ℝ (Fin n) → ℂ}
   have hd := Measure.dense_of_ae (μ := volume) (ae_le_eLpNormEssSup (f := f))
   simpa only [hc.closure_eq, mem_ofPred_eq, eLpNorm_exponent_top] using hd x
 
-/-- A pointwise bound uniform over all rotated lines.-/
+/-- A pointwise bound uniform over all rotated lines.
+@isnad1 id=le.1h9v.s14.671bb772b42f from=translated src=- shape=5479197b vocab=a973d15e
+-/
 theorem enorm_frameLineIntegral_convolution_le
     (f ψ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) {R : ℝ}
     (hs : Function.support (f : EuclideanSpace ℝ (Fin n) → ℂ) ⊆ closedBall 0 R)
@@ -56,7 +58,9 @@ theorem enorm_frameLineIntegral_convolution_le
   exact (Unitary.linearIsometryEquiv u).norm_map (v : EuclideanSpace ℝ (Fin n)) |>.trans
     (norm_eq_of_mem_sphere v)
 
-/-- A pointwise real bound for applying the bounded-input interpolation endpoint.-/
+/-- A pointwise real bound for applying the bounded-input interpolation endpoint.
+@isnad1 id=le.3h10v.s14.9b74c7b5fced from=translated src=- shape=9c4d3168 vocab=b91a4e0a
+-/
 theorem norm_frameLineIntegral_convolution_le_of_bound
     (f ψ : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) {R : ℝ≥0}
     (hs : Function.support (f : EuclideanSpace ℝ (Fin n) → ℂ) ⊆ closedBall 0 R)

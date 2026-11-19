@@ -27,7 +27,9 @@ namespace NKBesicovitch
 
 variable {X : Type*} [MeasurableSpace X] (μ : Measure X)
 
-/-- The weighted squared-tail integral is exactly the `p`-moment divided by `p - 2`.-/
+/-- The weighted squared-tail integral is exactly the `p`-moment divided by `p - 2`.
+@isnad1 id=eq.2h4v.s8.8e36469818f6 from=translated src=- shape=decc3c45 vocab=533efdbc
+-/
 theorem lintegral_sq_tail_mul_rpow {f : X → ℂ} (hf : Measurable f) {p : ℝ} (hp : 2 < p) :
     (∫⁻ t in Ioi (0 : ℝ), (∫⁻ x in {x | t < ‖f x‖}, ‖f x‖ₑ ^ 2 ∂μ) *
       ENNReal.ofReal (t ^ (p - 3))) =
@@ -47,7 +49,9 @@ theorem lintegral_sq_tail_mul_rpow {f : X → ℂ} (hf : Measurable f) {p : ℝ}
   rw [h, ← mul_assoc, ENNReal.inv_mul_cancel
     (ENNReal.ofReal_pos.mpr (by linarith : 0 < p - 2)).ne' ENNReal.ofReal_ne_top, one_mul]
 
-/-- Scaling the layer-cake threshold by a positive constant scales the moment by its `p`th power.-/
+/-- Scaling the layer-cake threshold by a positive constant scales the moment by its `p`th power.
+@isnad1 id=eq.3h5v.s7.d6d8961e98f3 from=translated src=- shape=85b835a0 vocab=17bd1c28
+-/
 theorem lintegral_enorm_rpow_eq_scaled_tail {f : X → ℂ} (hf : AEStronglyMeasurable f μ)
     {p c : ℝ} (hp : 0 < p) (hc : 0 < c) :
     (∫⁻ x, ‖f x‖ₑ ^ p ∂μ) =

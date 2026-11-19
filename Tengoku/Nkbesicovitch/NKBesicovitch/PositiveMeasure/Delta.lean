@@ -27,7 +27,9 @@ namespace NKBesicovitch
 variable {n k : ℕ}
 
 /-- An open set containing every directional disk has plate maximal value at least one
-at all sufficiently small positive scales, separately in each direction.-/
+at all sufficiently small positive scales, separately in each direction.
+@isnad1 id=ex.2h4v.s6.a61bc21b39c5 from=translated src=- shape=26b77cfb vocab=002ce8b3
+-/
 theorem exists_scale_one_le_plateMaximal {U : Set (EuclideanSpace ℝ (Fin n))} (hU : IsOpen U)
     (hB : IsBesicovitch k U) (V : Grassmannian n k) :
     ∃ δ₀ > 0, ∀ δ ∈ Ioc (0 : ℝ) δ₀,

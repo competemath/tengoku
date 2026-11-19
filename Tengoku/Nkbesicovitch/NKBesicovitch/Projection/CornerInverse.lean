@@ -30,10 +30,16 @@ noncomputable def cornerFromCode (a b c κ : ℝ) (g : Line m) (x z : EuclideanS
   let ξ₂ := (b - a)⁻¹ • (x + b • ξ₃ - atHeight a g)
   (lineAt a (atHeight a g) ξ₂, (g.2, ξ₃))
 
+/--
+@isnad1 id=eq.0h8v.s5.e234400c4250 from=translated src=- shape=aa9ad5bd vocab=866103a8
+-/
 theorem first_cornerFromCode (a b c κ : ℝ) (g : Line m) (x z : EuclideanSpace ℝ (Fin m)) :
     cornerFirst a (cornerFromCode a b c κ g x z) = g := by
   simp [cornerFirst, cornerFromCode, atHeight_lineAt, lineAt_atHeight]
 
+/--
+@isnad1 id=eq.1h8v.s7.34a751f817db from=translated src=- shape=019b5ef9 vocab=b3d7ef76
+-/
 theorem last_cornerFromCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     (g : Line m) (x z : EuclideanSpace ℝ (Fin m)) :
     cornerLast b (cornerFromCode a b c κ g x z) =
@@ -42,6 +48,9 @@ theorem last_cornerFromCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
   rw [atHeight_lineAt, smul_smul, mul_inv_cancel₀ (sub_ne_zero.mpr hab.symm), one_smul]
   simp [lineAt]
 
+/--
+@isnad1 id=eq.1h8v.s5.dd73cd0f65d3 from=translated src=- shape=3e309e4a vocab=5639fc96
+-/
 theorem cornerCode_cornerFromCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     (g : Line m) (x z : EuclideanSpace ℝ (Fin m)) : cornerCode a b c κ
       (cornerFromCode a b c κ g x z) = z := by
@@ -50,6 +59,9 @@ theorem cornerCode_cornerFromCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
   rw [smul_smul, mul_inv_cancel₀ (sub_ne_zero.mpr hab), one_smul]
   module
 
+/--
+@isnad1 id=eq.1h6v.s5.05fcee577799 from=translated src=- shape=1988ace8 vocab=a8abaede
+-/
 theorem cornerFromCode_cornerCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
     (p : CornerCoordinates m) :
     cornerFromCode a b c κ (cornerFirst a p) (cornerLast b p).1 (cornerCode a b c κ p) = p := by
@@ -66,6 +78,9 @@ theorem cornerFromCode_cornerCode {a b : ℝ} (hab : a ≠ b) (c κ : ℝ)
   rw [h₃, h₂, atHeight_cornerFirst, lineAt_atHeight]
   rfl
 
+/--
+@isnad1 id=continuo.0h5v.s8.59032a3d6377 from=translated src=- shape=9c1eeb13 vocab=d345f372
+-/
 theorem continuous_cornerFromCode (a b c κ : ℝ) :
     Continuous (fun p : Line m × (EuclideanSpace ℝ (Fin m) × EuclideanSpace ℝ (Fin m)) ↦
       cornerFromCode a b c κ p.1 p.2.1 p.2.2) := by

@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.22h12v.s12.54c94337b1f9 from=translated src=- shape=172ed470 vocab=c811b6b5
+-/
 theorem volume_le_pair_step {a b c β C : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hβ : 1 < β) (hβ2 : β ≤ 2) (hC : 0 < C) (Γ : Finset ℝ)
     (hOld : ∀ F : Set (Line m), MeasurableSet F → IsBounded F → (volume F).toReal ≤

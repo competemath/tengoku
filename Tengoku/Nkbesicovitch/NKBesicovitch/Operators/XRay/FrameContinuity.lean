@@ -46,7 +46,9 @@ private lemma norm_frameLineIntegrand_le_aux (f : 𝓢(EuclideanSpace ℝ (Fin n
     _ ≤ _ := add_le_add (f.norm_le_seminorm ℝ y)
       ((mul_le_mul_of_nonneg_right hn (norm_nonneg _)).trans (f.norm_pow_mul_le_seminorm ℝ 2 y))
 
-/-- Signed line integrals of Schwartz inputs are jointly continuous in frame and displacement.-/
+/-- Signed line integrals of Schwartz inputs are jointly continuous in frame and displacement.
+@isnad1 id=continuo.0h5v.s14.42dc3524292b from=translated src=- shape=9fe5f9f5 vocab=7c103803
+-/
 theorem continuous_frameLineIntegral (f : 𝓢(EuclideanSpace ℝ (Fin n), ℂ)) :
     Continuous (fun z : Rotations n × EuclideanSpace ℝ (Fin m) ↦
       frameLineIntegral v b f z.1 z.2) := by

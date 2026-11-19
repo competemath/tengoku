@@ -30,7 +30,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [NormedAddCommGroup F] [InnerProductSpace ℝ F]
   [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F]
 
-/-- One integrable function bounds all smooth approximations on a fixed full affine plane.-/
+/-- One integrable function bounds all smooth approximations on a fixed full affine plane.
+@isnad1 id=ex.0h6v.s12.0d162089a632 from=translated src=- shape=49cabf6e vocab=4a47efc4
+-/
 theorem exists_integrable_bound_convolution_normalizedDilation_affine (φ f : 𝓢(E, ℂ))
     (e : F →ₗᵢ[ℝ] E) (x : E) :
     ∃ g : F → ℝ, Integrable g volume ∧ ∀ (a : ℝ) (ha : 0 < a), 1 ≤ a → ∀ y : F,
@@ -53,7 +55,9 @@ theorem exists_integrable_bound_convolution_normalizedDilation_affine (φ f : �
   rw [e.norm_map] at h
   simpa only [mul_assoc] using mul_le_mul_of_nonneg_left h C.coe_nonneg
 
-/-- Signed integrals of smooth dyadic approximations converge on every full affine plane.-/
+/-- Signed integrals of smooth dyadic approximations converge on every full affine plane.
+@isnad1 id=tendsto.2h6v.s12.dd8021cf7326 from=translated src=- shape=f4cc6d45 vocab=6ee98eca
+-/
 theorem tendsto_integral_convolution_dyadic_affine (φ f : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (hbound : ∀ ξ : E, ‖𝓕 φ ξ‖ ≤ 1)
     (e : F →ₗᵢ[ℝ] E) (x : E) :

@@ -30,6 +30,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] {v : E}
 
+/--
+@isnad1 id=integrab.2h3v.s10.efc7d4c8f084 from=translated src=- shape=da410fc3 vocab=3874610f
+-/
 theorem integrable_lineIntegral (hv : ‖v‖ = 1) {f : E → ℂ} (hf : Integrable f) :
     Integrable (fun y : (ℝ ∙ v)ᗮ ↦ ∫ t : ℝ, f ((y : E) + t • v)) := by
   have hi := ((measurePreserving_normalCoordinates hv).integrable_comp_emb
@@ -37,7 +40,9 @@ theorem integrable_lineIntegral (hv : ‖v‖ = 1) {f : E → ℂ} (hf : Integra
   rw [Measure.volume_eq_prod] at hi
   simpa only [Function.comp_def, normalCoordinates_apply] using hi.integral_prod_left
 
-/-- The Fourier-slice identity, with arclength along a unit normal.-/
+/-- The Fourier-slice identity, with arclength along a unit normal.
+@isnad1 id=eq.2h4v.s10.77e400dad77a from=translated src=- shape=92acefcd vocab=ad9731c4
+-/
 theorem fourier_lineIntegral (hv : ‖v‖ = 1) {f : E → ℂ} (hf : Integrable f)
     (ξ : (ℝ ∙ v)ᗮ) :
     𝓕 (fun y : (ℝ ∙ v)ᗮ ↦ ∫ t : ℝ, f ((y : E) + t • v)) ξ = 𝓕 f (ξ : E) := by

@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h10v.s8.44b04a6042ed from=translated src=- shape=f4cc5eef vocab=0972f7fe
+-/
 theorem mul_cornerParentSliceMass_le_parentDensity {a c : ℝ} (hca : c ≠ a) (b κ : ℝ)
     {D : Set (CornerCoordinates m)} {W : Set (PairCoordinates m)}
     (hDW : ∀ p ∈ D, cornerParent a p ∈ W) (z y x : EuclideanSpace ℝ (Fin m)) :
@@ -43,6 +46,9 @@ theorem mul_cornerParentSliceMass_le_parentDensity {a c : ℝ} (hca : c ≠ a) (
     exact le_rfl
   · simp [Set.indicator_of_notMem hp]
 
+/--
+@isnad1 id=le.5h12v.s8.6ff21a36b43a from=translated src=- shape=f5933b48 vocab=46905046
+-/
 theorem mul_cornerParentSliceMass_le_parallelIndicator {a b c κ : ℝ}
     (hab : a ≠ b) (hca : c ≠ a) {D : Set (CornerCoordinates m)} {G : Set (Line m)}
     (hDG : D ⊆ cornerFamily a b G) {W : Set (PairCoordinates m)}
@@ -67,6 +73,9 @@ theorem mul_cornerParentSliceMass_le_parallelIndicator {a b c κ : ℝ}
       fun hw ↦ he ⟨w, hw⟩
     simp [cornerParentSliceMass, Set.indicator_of_notMem, hz]
 
+/--
+@isnad1 id=le.2h8v.s8.26c813036356 from=translated src=- shape=753d1c88 vocab=514da8d1
+-/
 theorem support_lintegral_cornerParentSliceMass_subset {a c : ℝ} (hca : c ≠ a) (b κ : ℝ)
     {D : Set (CornerCoordinates m)} {G : Set (Line m)} (hDG : D ⊆ cornerFamily a b G)
     (z : EuclideanSpace ℝ (Fin m)) :
@@ -82,7 +91,9 @@ theorem support_lintegral_cornerParentSliceMass_subset {a c : ℝ} (hca : c ≠ 
     exact h ⟨_, hg, atHeight_lineAt_of_positions hca.symm w y⟩
   exact hy (by simp [cornerParentSliceMass, Set.indicator_of_notMem, hz])
 
-/-- The second corner-fiber bound, with the exact Jacobian and one projection size.-/
+/-- The second corner-fiber bound, with the exact Jacobian and one projection size.
+@isnad1 id=le.7h10v.s9.7bc58fbce5ee from=translated src=- shape=d2930fe9 vocab=5002931c
+-/
 theorem cornerDensity_le_parentDensity_bound {a b c κ : ℝ}
     (hab : a ≠ b) (hca : c ≠ a) (hκ : κ ≠ 0)
     {D : Set (CornerCoordinates m)} (hD : MeasurableSet D) {G : Set (Line m)}

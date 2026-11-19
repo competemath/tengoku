@@ -29,7 +29,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
-/-- A bump bounded by one gives at most the norm of restriction to its support ball.-/
+/-- A bump bounded by one gives at most the norm of restriction to its support ball.
+@isnad1 id=le.0h5v.s9.67f9007e7ce3 from=translated src=- shape=f5e61749 vocab=6ce24b97
+-/
 theorem eLpNorm_bump_mul_le_ball (θ : ContDiffBump (0 : EuclideanSpace ℝ (Fin n)))
     (f : EuclideanSpace ℝ (Fin n) → ℝ) (y : EuclideanSpace ℝ (Fin n)) (p : ℝ≥0∞) :
     eLpNorm (fun x ↦ θ (x - y) * f x) p volume ≤
@@ -46,7 +48,9 @@ theorem eLpNorm_bump_mul_le_ball (θ : ContDiffBump (0 : EuclideanSpace ℝ (Fin
       simpa only [mem_ball, not_lt, dist_eq_norm, sub_zero] using hx)
     rw [hθ, zero_mul, enorm_zero, indicator_of_notMem hx]
 
-/-- Averaging smooth localizations costs at most the volume of the bump's support ball.-/
+/-- Averaging smooth localizations costs at most the volume of the bump's support ball.
+@isnad1 id=le.2h4v.s10.83bea55e9d10 from=translated src=- shape=f9490d7b vocab=b2ff292e
+-/
 theorem lintegral_eLpNorm_bump_mul_rpow_le
     (θ : ContDiffBump (0 : EuclideanSpace ℝ (Fin n)))
     {f : EuclideanSpace ℝ (Fin n) → ℝ} (hf : Measurable f) {p : ℝ≥0} (hp : 0 < p) :

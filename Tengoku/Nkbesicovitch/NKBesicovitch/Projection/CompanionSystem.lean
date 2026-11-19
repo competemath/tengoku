@@ -40,6 +40,9 @@ structure CompanionSystem (G : Set (Line m)) (Γ : Finset ℝ) where
   companion_subset : ∀ t ∈ Γ, companion t ⊆ G
   slice_eq : ∀ t ∈ Γ, ∀ g ∈ centers, sliceMultiplicity t (companion t) (atHeight t g) = η
 
+/--
+@isnad1 id=ex.6h4v.s12.f0e6947b565e from=translated src=- shape=9da03e78 vocab=4365ff6b
+-/
 theorem exists_companionSystem [Nonempty (Fin m)] (Γ : Finset ℝ) (hΓ : Γ.Nonempty)
     {G : Set (Line m)} (hG : MeasurableSet G) (hGb : IsBounded G) (hGpos : 0 < volume G)
     {N : ℝ} (hN : 0 < N) (hπ : ∀ t ∈ Γ, volume (atHeight t '' G) ≤ ENNReal.ofReal N) :

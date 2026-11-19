@@ -30,6 +30,9 @@ namespace NKBesicovitch
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} {f : X → ℝ≥0∞}
 
+/--
+@isnad1 id=le.2h5v.s7.d79c7bd3796d from=translated src=- shape=4551d45f vocab=24e311e2
+-/
 theorem sum_small_superlevel_measures_le {K : Set X} (hK : Function.support f ⊆ K)
     {e : ℝ} (he : 0 ≤ e) :
     (∑' j : ℕ, ENNReal.ofReal ((1 / 2 : ℝ) ^ j) *
@@ -68,6 +71,9 @@ private lemma large_dyadic_weight_eq (p e : ℝ) (j : ℕ) :
     _ = 2 * ((2 : ℝ≥0∞) ^ j * (2 ^ (-p * e)) ^ j) := by ring
     _ = _ := by rw [← mul_pow, hbase]
 
+/--
+@isnad1 id=le.4h5v.s8.fef4694b663f from=translated src=- shape=1568a31a vocab=46946a88
+-/
 theorem sum_large_superlevel_measures_le (hf : Measurable f) {p e : ℝ}
     (hp : 0 < p) (he : 0 ≤ e) (hnorm : eLpNorm f (ENNReal.ofReal p) μ ≤ 1) :
     (∑' j : ℕ, ENNReal.ofReal ((2 : ℝ) ^ (j + 1)) *
@@ -83,6 +89,9 @@ theorem sum_large_superlevel_measures_le (hf : Measurable f) {p e : ℝ}
   exact (mul_le_mul_right hpow (ENNReal.ofReal ((2 : ℝ) ^ (j + 1)))).trans_eq
     (large_dyadic_weight_eq p e j)
 
+/--
+@isnad1 id=ex.4h5v.s8.b82ffce23e3d from=translated src=- shape=8f1ab7f3 vocab=c30276c8
+-/
 theorem exists_input_level_sum_constant {K : Set X} (hKfin : μ K ≠ ∞) {p e : ℝ}
     (hp : 0 < p) (he : 0 < e) (hpe : 1 < p * e) :
     ∃ D : ℝ, 0 < D ∧ ∀ f : X → ℝ≥0∞, Measurable f → Function.support f ⊆ K →

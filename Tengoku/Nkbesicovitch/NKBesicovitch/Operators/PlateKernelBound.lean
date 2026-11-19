@@ -26,7 +26,9 @@ open scoped ENNReal NNReal
 
 namespace NKBesicovitch
 
-/-- A kernel comparable under plate-sized translations is controlled by the plate maximum.-/
+/-- A kernel comparable under plate-sized translations is controlled by the plate maximum.
+@isnad1 id=le.4h7v.s10.7ed4015e401b from=translated src=- shape=25fa7470 vocab=d8c40480
+-/
 theorem lintegral_mul_le_plateMaximal {n k : ℕ} {δ : ℝ} (hδ : 0 < δ)
     (V : Grassmannian n k) {f K : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     (hf : Measurable f) (hK : Measurable K) {C : ℝ≥0}

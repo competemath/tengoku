@@ -28,6 +28,9 @@ namespace NKBesicovitch
 
 variable {X : Type*}
 
+/--
+@isnad1 id=le.1h3v.s7.b304fb579d79 from=translated src=- shape=46ac5c74 vocab=3efc0483
+-/
 theorem le_small_dyadic_sum (f : X → ℝ≥0∞) (x : X) (hx : f x ≤ 1) :
     f x ≤ ∑' j : ℕ, ENNReal.ofReal ((1 / 2 : ℝ) ^ j) *
       {y | ENNReal.ofReal ((1 / 2 : ℝ) ^ j / 2) ≤ f y}.indicator (fun _ ↦ (1 : ℝ≥0∞)) x := by
@@ -43,6 +46,9 @@ theorem le_small_dyadic_sum (f : X → ℝ≥0∞) (x : X) (hx : f x ≤ 1) :
   rw [indicator_of_mem hm, mul_one] at hterm
   exact hj'.trans hterm
 
+/--
+@isnad1 id=le.1h3v.s7.e1b0331acdb0 from=translated src=- shape=54350569 vocab=d62b10cc
+-/
 theorem le_large_dyadic_sum (f : X → ℝ≥0∞) (x : X) (hx : 1 ≤ f x) :
     f x ≤ ∑' j : ℕ, ENNReal.ofReal ((2 : ℝ) ^ (j + 1)) *
       {y | ENNReal.ofReal ((2 : ℝ) ^ j) ≤ f y}.indicator (fun _ ↦ (1 : ℝ≥0∞)) x := by
@@ -69,6 +75,9 @@ theorem le_large_dyadic_sum (f : X → ℝ≥0∞) (x : X) (hx : 1 ≤ f x) :
   rw [indicator_of_mem hm, mul_one] at hterm
   exact hu.trans hterm
 
+/--
+@isnad1 id=le.0h3v.s8.bbcbb22fff24 from=translated src=- shape=f60b7208 vocab=9a764fd5
+-/
 theorem le_dyadic_superlevel_sums (f : X → ℝ≥0∞) (x : X) :
     f x ≤ (∑' j : ℕ, ENNReal.ofReal ((1 / 2 : ℝ) ^ j) *
       {y | ENNReal.ofReal ((1 / 2 : ℝ) ^ j / 2) ≤ f y}.indicator (fun _ ↦ (1 : ℝ≥0∞)) x) +

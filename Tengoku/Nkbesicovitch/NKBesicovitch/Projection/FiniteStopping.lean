@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ} {ι : Type*}
 
+/--
+@isnad1 id=ex.1h11v.s11.2feff81def74 from=translated src=- shape=30940e44 vocab=302ddfd5
+-/
 theorem exists_deepest_uniform_node (I : Finset ι) (level : ι → ℕ) (J : ℕ)
     (a s t : ι → ℝ) (W : ι → Set (PairCoordinates m)) (Q δ : ℕ → ℝ≥0∞)
     (hroot : ∃ v ∈ I, level v < J ∧
@@ -49,7 +52,9 @@ theorem exists_deepest_uniform_node (I : Finset ι) (level : ι → ℕ) (J : �
   intro hmass
   exact (not_le_of_gt hvw) (hmax w (Finset.mem_filter.mpr ⟨hw, hwJ, hmass⟩))
 
-/-- Choose a low-density parent whose next-level nodes all admit concentrated subsets.-/
+/-- Choose a low-density parent whose next-level nodes all admit concentrated subsets.
+@isnad1 id=ex.8h12v.s12.e233d792f337 from=translated src=- shape=b4f008d8 vocab=91e06a8f
+-/
 theorem exists_uniform_node_concentrated_children (I : Finset ι) (level : ι → ℕ) (J : ℕ)
     (a s t : ι → ℝ) (W : ι → Set (PairCoordinates m)) (Q δ P : ℕ → ℝ≥0∞)
     (hW : ∀ v ∈ I, MeasurableSet (W v))

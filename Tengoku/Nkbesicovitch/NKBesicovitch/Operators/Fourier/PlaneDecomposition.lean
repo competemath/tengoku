@@ -30,7 +30,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [NormedAddCommGroup F] [InnerProductSpace ℝ F]
   [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F]
 
-/-- Signed full-plane integration is bounded by its low-frequency and annular pieces.-/
+/-- Signed full-plane integration is bounded by its low-frequency and annular pieces.
+@isnad1 id=le.2h6v.s13.3bc086e351bc from=translated src=- shape=d523c595 vocab=62e45803
+-/
 theorem enorm_integral_affine_le_dyadic_sum (φ f : 𝓢(E, ℂ))
     (hφ : ∀ ξ : E, ‖ξ‖ ≤ 1 → 𝓕 φ ξ = 1) (hbound : ∀ ξ : E, ‖𝓕 φ ξ‖ ≤ 1)
     (e : F →ₗᵢ[ℝ] E) (x : E) :
