@@ -25,7 +25,9 @@ nonvanishing, high multiplicity, and an explicit degree bound.
 
 omit [Fintype F] in
 /-- Constraint-system assembly, retaining the outer-degree information
-needed for the auxiliary-polynomial degree estimate.-/
+needed for the auxiliary-polynomial degree estimate.
+@isnad1 id=ex.6h11v.s9.a73d553f38fd from=translated src=- shape=cba8db1b vocab=63b3583b
+-/
 theorem stepanovAuxiliary_exists_of_constraintSystem_with_degree
     {m q D M u K G : ℕ} {f g : Polynomial F}
     (hf0 : f ≠ 0)

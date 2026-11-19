@@ -60,7 +60,9 @@ makes the corresponding auxiliary polynomial nonzero, and Lemma 6.51
 gives multiplicity at least `M` at every good point.
 
 This is the main assembly theorem for the linear-system half of
-Lemma 6.52.-/
+Lemma 6.52.
+@isnad1 id=ex.3h8v.s8.2e36e09eaa2b from=translated src=- shape=aed69d94 vocab=36032b96
+-/
 theorem stepanovAuxiliary_exists_of_constraintSystem
     {m q D M : ℕ} {f g : Polynomial F}
     (hf : f ≠ 0)

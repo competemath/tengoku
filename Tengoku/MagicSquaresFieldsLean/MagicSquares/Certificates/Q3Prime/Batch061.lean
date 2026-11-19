@@ -1035,9 +1035,15 @@ def q3Batch061 : List Q3Step := [
   .witness ⟨93014, 2308, 88558, 117894, 1, 61676, 7406, 54966, 102320⟩
 ]
 
+/--
+@isnad1 id=eq.0h0v.s3.8ba30c368474 from=translated src=- shape=801679d3 vocab=08371aa4
+-/
 theorem q3Batch061_checked : Q3Step.checkFrom 249859 q3Batch061 = true := by
   decide +kernel
 
+/--
+@isnad1 id=q3covere.0h0v.s3.afb31f14a287 from=translated src=- shape=6d6f5044 vocab=68deb83d
+-/
 theorem q3Batch061_covered : Q3Covered 249859 253955 :=
   q3Covered_of_check q3Batch061_checked (by decide)
 

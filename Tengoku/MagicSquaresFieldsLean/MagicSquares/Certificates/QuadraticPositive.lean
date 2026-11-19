@@ -7,7 +7,9 @@ set_option maxHeartbeats 0
 
 namespace MagicSquares.Certificates
 
-/-- An explicit center-zero square of cubes over the field of order 49.-/
+/-- An explicit center-zero square of cubes over the field of order 49.
+@isnad1 id=ismagico.0h0v.s9.52cf7e0bdb32 from=translated src=- shape=5a5174db vocab=5a604e5b
+-/
 theorem cube_witness_49 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨3, 2⟩ : Field49)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -20,7 +22,9 @@ abbrev Field121 := QuadraticAlgebra (ZMod 11) 2 0
 instance : Fact (Nat.Prime 11) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 11, r ^ 2 ≠ 2 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 121.-/
+/-- An explicit center-zero square of cubes over the field of order 121.
+@isnad1 id=ismagico.0h0v.s9.eb825a1218e0 from=translated src=- shape=7c8a98c4 vocab=49317074
+-/
 theorem cube_witness_121 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨3, 0⟩ : Field121)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -33,7 +37,9 @@ abbrev Field169 := QuadraticAlgebra (ZMod 13) 2 0
 instance : Fact (Nat.Prime 13) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 13, r ^ 2 ≠ 2 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 169.-/
+/-- An explicit center-zero square of cubes over the field of order 169.
+@isnad1 id=ismagico.0h0v.s9.7f1171e1e255 from=translated src=- shape=7c8a98c4 vocab=49317074
+-/
 theorem cube_witness_169 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨5, 5⟩ : Field169)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -46,7 +52,9 @@ abbrev Field289 := QuadraticAlgebra (ZMod 17) 3 0
 instance : Fact (Nat.Prime 17) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 17, r ^ 2 ≠ 3 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 289.-/
+/-- An explicit center-zero square of cubes over the field of order 289.
+@isnad1 id=ismagico.0h0v.s9.4fb924fb5081 from=translated src=- shape=7c8a98c4 vocab=37eb4f89
+-/
 theorem cube_witness_289 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨3, 0⟩ : Field289)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -59,7 +67,9 @@ abbrev Field361 := QuadraticAlgebra (ZMod 19) 2 0
 instance : Fact (Nat.Prime 19) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 19, r ^ 2 ≠ 2 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 361.-/
+/-- An explicit center-zero square of cubes over the field of order 361.
+@isnad1 id=ismagico.0h0v.s9.fbdbd79fe5e2 from=translated src=- shape=7c8a98c4 vocab=49317074
+-/
 theorem cube_witness_361 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨0, 2⟩ : Field361)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -72,7 +82,9 @@ abbrev Field529 := QuadraticAlgebra (ZMod 23) 5 0
 instance : Fact (Nat.Prime 23) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 23, r ^ 2 ≠ 5 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 529.-/
+/-- An explicit center-zero square of cubes over the field of order 529.
+@isnad1 id=ismagico.0h0v.s9.a39bced490c3 from=translated src=- shape=7c8a98c4 vocab=697a6be5
+-/
 theorem cube_witness_529 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨3, 0⟩ : Field529)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -85,7 +97,9 @@ abbrev Field841 := QuadraticAlgebra (ZMod 29) 2 0
 instance : Fact (Nat.Prime 29) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 29, r ^ 2 ≠ 2 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 841.-/
+/-- An explicit center-zero square of cubes over the field of order 841.
+@isnad1 id=ismagico.0h0v.s9.6bb36a1b05df from=translated src=- shape=7c8a98c4 vocab=49317074
+-/
 theorem cube_witness_841 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨3, 0⟩ : Field841)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -98,7 +112,9 @@ abbrev Field961 := QuadraticAlgebra (ZMod 31) 3 0
 instance : Fact (Nat.Prime 31) := ⟨by decide⟩
 instance : Fact (∀ r : ZMod 31, r ^ 2 ≠ 3 + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 961.-/
+/-- An explicit center-zero square of cubes over the field of order 961.
+@isnad1 id=ismagico.0h0v.s9.b71308a5ab57 from=translated src=- shape=7c8a98c4 vocab=37eb4f89
+-/
 theorem cube_witness_961 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨7, 1⟩ : Field961)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩
@@ -111,7 +127,9 @@ theorem cube_witness_961 :
 abbrev Field625 := QuadraticAlgebra Field25 ⟨0, 1⟩ 0
 instance : Fact (∀ r : Field25, r ^ 2 ≠ ⟨0, 1⟩ + 0 * r) := ⟨by decide +kernel⟩
 
-/-- An explicit center-zero square of cubes over the field of order 625.-/
+/-- An explicit center-zero square of cubes over the field of order 625.
+@isnad1 id=ismagico.0h0v.s11.031056589bf8 from=translated src=- shape=1a7fe73b vocab=c962fe0f
+-/
 theorem cube_witness_625 :
     IsMagicOfPowers 3 (Square3.centerZero (⟨⟨3, 2⟩, ⟨3, 1⟩⟩ : Field625)) := by
   refine ⟨Square3.centerZero_isMagic _, by unfold Square3.PairwiseDistinct; decide +kernel, ?_⟩

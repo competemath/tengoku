@@ -36,12 +36,17 @@ noncomputable def orbitProduct
     (m : ℕ) (ζ : F) (A : Polynomial F) : Polynomial F :=
   ∏ j ∈ Finset.range m, orbitFactor ζ A j
 
+/--
+@isnad1 id=eq.0h3v.s5.0157901d9a35 from=translated src=- shape=26e5eae9 vocab=13eb4d06
+-/
 @[simp]
 theorem orbitFactor_zero (ζ : F) (A : Polynomial F) :
     orbitFactor ζ A 0 = A := by
   simp [orbitFactor]
 
-/-- Composing one orbit factor with `X ↦ ζX` advances the exponent by one.-/
+/-- Composing one orbit factor with `X ↦ ζX` advances the exponent by one.
+@isnad1 id=eq.0h4v.s7.c9afa35d75fb from=translated src=- shape=7b73ce7f vocab=44c88d20
+-/
 theorem orbitFactor_comp_scale
     (ζ : F) (A : Polynomial F) (j : ℕ) :
     (orbitFactor ζ A j).comp (C ζ * X) =
@@ -49,7 +54,9 @@ theorem orbitFactor_comp_scale
   simp [orbitFactor, Polynomial.comp_assoc, pow_succ]
   ring_nf
 
-/-- The orbit is periodic after `m` steps when `ζ^m = 1`.-/
+/-- The orbit is periodic after `m` steps when `ζ^m = 1`.
+@isnad1 id=eq.1h4v.s5.aa0a3b44118a from=translated src=- shape=86f5c142 vocab=527390f9
+-/
 theorem orbitFactor_period
     {m : ℕ} {ζ : F} (hζ : IsPrimitiveRoot ζ m)
     (A : Polynomial F) :
@@ -58,7 +65,9 @@ theorem orbitFactor_period
 
 /-- A range product whose last value agrees with its first value is
 unchanged by shifting all indices by one, provided the first value is
-nonzero.-/
+nonzero.
+@isnad1 id=eq.2h3v.s6.de5e3bce627d from=translated src=- shape=82e269aa vocab=825b8f9f
+-/
 theorem prod_range_shift_eq
     {M : Type*} [CommMonoidWithZero M] [IsRightCancelMulZero M]
     (m : ℕ) (f : ℕ → M)
@@ -79,7 +88,9 @@ theorem prod_range_shift_eq
   exact mul_right_cancel₀ h0 hmul
 
 /-- The orbit product is invariant under scaling the variable by a
-primitive root of unity.-/
+primitive root of unity.
+@isnad1 id=eq.1h4v.s7.427986dc6713 from=translated src=- shape=d0f7c6e2 vocab=ff70edf1
+-/
 theorem orbitProduct_scale_invariant
     {m : ℕ} {ζ : F}
     (hζ : IsPrimitiveRoot ζ m)
@@ -105,7 +116,9 @@ theorem orbitProduct_scale_invariant
             exact orbitFactor_comp_scale ζ A j
       _ = ∏ j ∈ Finset.range m, orbitFactor ζ A j := hshift
 
-/-- Therefore the orbit product is a polynomial in `X^m`.-/
+/-- Therefore the orbit product is a polynomial in `X^m`.
+@isnad1 id=ex.2h4v.s7.44741e927d77 from=translated src=- shape=0c7a627f vocab=a0780f95
+-/
 theorem orbitProduct_exists_comp_X_pow
     {m : ℕ} {ζ : F}
     (hm : 0 < m)
@@ -117,7 +130,9 @@ theorem orbitProduct_exists_comp_X_pow
     (F := F) hm hζ (orbitProduct_scale_invariant (F := F) hζ A)
 
 /-- A coarse degree estimate for the orbit product:
-`deg orbitProduct ≤ m * deg A`.-/
+`deg orbitProduct ≤ m * deg A`.
+@isnad1 id=le.0h4v.s5.428c5e2b1c54 from=translated src=- shape=23705840 vocab=3355c366
+-/
 theorem orbitProduct_natDegree_le
     (m : ℕ) (ζ : F) (A : Polynomial F) :
     (orbitProduct m ζ A).natDegree ≤ m * A.natDegree := by

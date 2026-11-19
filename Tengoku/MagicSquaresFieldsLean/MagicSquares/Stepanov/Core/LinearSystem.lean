@@ -26,7 +26,9 @@ then its kernel contains a nonzero vector.
 
 This is the formal version of the sentence on LN97 p. 307 saying that
 `S < A` homogeneous linear equations in `A` coefficients have a
-nontrivial solution.-/
+nontrivial solution.
+@isnad1 id=ex.1h4v.s9.44afbfefb932 from=translated src=- shape=605994ec vocab=3586ac14
+-/
 theorem exists_ne_zero_mem_ker_of_lt
     {A S : ℕ}
     (hSA : S < A)

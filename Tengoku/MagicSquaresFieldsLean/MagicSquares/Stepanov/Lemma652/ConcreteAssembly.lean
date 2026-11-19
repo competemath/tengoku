@@ -33,7 +33,9 @@ concrete coefficient-constraint map.
 -/
 
 /-- Concrete Stepanov auxiliary-polynomial existence theorem with the
-literal coefficient count.-/
+literal coefficient count.
+@isnad1 id=ex.9h14v.s9.aac31354b5c2 from=translated src=- shape=63f872e7 vocab=7e776202
+-/
 theorem ln97_6_52_of_derivativeData_and_quotientIndependence
     {m r u D M Emax N K G : ℕ}
     {f g B : Polynomial F}

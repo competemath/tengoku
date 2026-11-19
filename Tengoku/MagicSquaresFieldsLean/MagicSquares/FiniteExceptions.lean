@@ -18,7 +18,9 @@ namespace MagicSquares
 /-- An explicit (deliberately nonoptimal) uniform bound of order `n^16`.-/
 def powerExceptionBound (n : ℕ) : ℕ := (10 * n ^ 8 + 10) ^ 2
 
-/-- The Section 14 constant is uniformly bounded in terms of the exponent.-/
+/-- The Section 14 constant is uniformly bounded in terms of the exponent.
+@isnad1 id=le.2h2v.s5.7c949bb16413 from=translated src=- shape=5c7b8f05 vocab=fd3e26dd
+-/
 theorem centerOneC1_le_eight_pow {n d : ℕ} (hn : 0 < n) (hdn : d ≤ n) :
     centerOneC1 d ≤ 8 * (n : ℝ) ^ 8 := by
   have hpow : (d : ℝ) ^ 8 ≤ (n : ℝ) ^ 8 := by
@@ -30,7 +32,9 @@ theorem centerOneC1_le_eight_pow {n d : ℕ} (hn : 0 < n) (hdn : d ≤ n) :
   nlinarith
 
 /-- Above the explicit bound, the exact numerical hypothesis of
-Theorem 14.1 holds for every possible power index.-/
+Theorem 14.1 holds for every possible power index.
+@isnad1 id=lt.3h3v.s6.b90038bb8775 from=translated src=- shape=a06670d9 vocab=6385c6cb
+-/
 theorem centerOne_power_inequality_of_bound {n d q : ℕ}
     (hn : 0 < n) (hdn : d ≤ n) (hq : powerExceptionBound n < q) :
     9 * (d : ℝ) ^ 8 < (q : ℝ) - centerOneC1 d * Real.sqrt (q : ℝ) := by

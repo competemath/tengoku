@@ -15,7 +15,9 @@ local instance fastDecidablePrime (n : ℕ) : Decidable n.Prime := Nat.decidable
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [DecidableEq F] in
-/-- Explicit positive certificates cover every other odd prime below 1037.-/
+/-- Explicit positive certificates cover every other odd prime below 1037.
+@isnad1 id=not.1h1v.s10.2b8982bdadb0 from=translated src=- shape=434101c9 vocab=a26fe117
+-/
 theorem not_cubeParker_of_card_prime_witness
     (hq : Fintype.card F ∈ ([11, 17, 23, 29, 41, 47, 53, 59, 71, 73, 83, 89, 97, 101, 103, 107, 109, 113, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997, 1009, 1013, 1019, 1021, 1031, 1033] : List ℕ)) : ¬ IsNParker F 3 := by
   simp only [List.mem_cons, List.not_mem_nil, or_false] at hq

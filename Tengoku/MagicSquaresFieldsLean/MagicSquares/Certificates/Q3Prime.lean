@@ -546,10 +546,14 @@ private theorem q3CoverageLevel7_0 : Q3Covered 3 553739 :=
 
 /-- Exhaustive positive prime-field coverage below the analytic square bound.
 Every integer in this residue class has a kernel-checked proper divisor,
-is a known exception, or has nine checked square roots.-/
+is a known exception, or has nine checked square roots.
+@isnad1 id=q3covere.0h0v.s3.636e500af994 from=translated src=- shape=6d6f5044 vocab=68deb83d
+-/
 theorem q3Prime_covered : Q3Covered 3 553739 := q3CoverageLevel7_0
 
-/-- The full positive prime-field branch below 553736.-/
+/-- The full positive prime-field branch below 553736.
+@isnad1 id=not.4h1v.s6.de602ae96932 from=translated src=- shape=5aa33f1c vocab=f7b45869
+-/
 theorem not_squareParker_of_prime_card_q3 {F : Type*} [Field F] [Fintype F]
     (hp : (Fintype.card F).Prime) (hq : Fintype.card F < 553736)
     (hm : Fintype.card F % 4 = 3) (he : Fintype.card F ∉ q3Exceptions) :

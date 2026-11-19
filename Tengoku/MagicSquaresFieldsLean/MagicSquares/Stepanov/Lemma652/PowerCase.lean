@@ -19,7 +19,9 @@ This wrapper retains `QuotientPowerIndependent` as an explicit input.
 and the numerical hypotheses, including the translated case.
 -/
 
-/-- Concrete Lemma-6.52 assembly when `g=f^s`.-/
+/-- Concrete Lemma-6.52 assembly when `g=f^s`.
+@isnad1 id=ex.11h12v.s10.99bbf4f32161 from=translated src=- shape=e6efc362 vocab=6cf06a2c
+-/
 theorem ln97_6_52_of_power_and_quotientIndependence
     {m r u D M K N G : ℕ}
     {f B : Polynomial F}

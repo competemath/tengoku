@@ -35,7 +35,9 @@ noncomputable def quotientPowerRelationPolynomial
 omit [Fintype F] [DecidableEq F] in
 /-- Mapping the ordinary relation polynomial to `AdjoinRoot (X^q)`
 gives exactly the quotient relation used in
-`QuotientPowerIndependent`.-/
+`QuotientPowerIndependent`.
+@isnad1 id=eq.0h5v.s12.ab9af7978b9c from=translated src=- shape=e4d0dc65 vocab=e47318fa
+-/
 theorem mk_relationPolynomial
     {m q : ℕ}
     (a : Fin m → Polynomial F)
@@ -50,7 +52,9 @@ theorem mk_relationPolynomial
 
 omit [Fintype F] [DecidableEq F] in
 /-- A quotient relation is equivalent to divisibility of its ordinary
-representative by `X^q`.-/
+representative by `X^q`.
+@isnad1 id=iff.0h5v.s12.c594c03cc90c from=translated src=- shape=21cd93d0 vocab=5ebe3a68
+-/
 theorem quotientRelation_iff_X_pow_dvd
     {m q : ℕ}
     (a : Fin m → Polynomial F)

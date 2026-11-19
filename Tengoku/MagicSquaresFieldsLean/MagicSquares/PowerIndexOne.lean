@@ -6,7 +6,9 @@ namespace MagicSquares
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
-/-- If the exponent is coprime to `q-1`, every field element is a power.-/
+/-- If the exponent is coprime to `q-1`, every field element is a power.
+@isnad1 id=isnthpow.2h3v.s5.8e92d78ee954 from=translated src=- shape=e3c8ed0d vocab=ff1932b8
+-/
 theorem isNthPower_of_powerIndex_eq_one {n : ℕ} (hn : 0 < n)
     (hd : powerIndex n (Fintype.card F) = 1) (x : F) : IsNthPower n x := by
   rw [isNthPower_iff_zero_or_pow_eq_one hn, hd, Nat.div_one]
@@ -14,7 +16,9 @@ theorem isNthPower_of_powerIndex_eq_one {n : ℕ} (hn : 0 < n)
   · exact Or.inl hx
   · exact Or.inr (FiniteField.pow_card_sub_one_eq_one x hx)
 
-/-- With trivial power index, avoiding seven collision parameters suffices.-/
+/-- With trivial power index, avoiding seven collision parameters suffices.
+@isnad1 id=ex.4h2v.s6.606ef607af2a from=translated src=- shape=6c0b142c vocab=638ecd92
+-/
 theorem exists_magic_of_powers_of_powerIndex_eq_one {n : ℕ} (hn : 0 < n)
     (hodd : ringChar F ≠ 2) (hq : 7 < Fintype.card F)
     (hd : powerIndex n (Fintype.card F) = 1) :

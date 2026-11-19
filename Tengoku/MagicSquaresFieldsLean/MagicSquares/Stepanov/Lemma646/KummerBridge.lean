@@ -45,7 +45,9 @@ theorem eq_zero_of_adjoinRoot_X_pow_eq_zero_of_natDegree_lt
 polynomial whose total degree is `< q` is an actual polynomial relation.
 
 This is intended for the first-block relation in Lemma 6.46 after its
-degree bound has been established.-/
+degree bound has been established.
+@isnad1 id=eq.2h3v.s10.a90a6a9c996d from=translated src=- shape=0058de25 vocab=7d3e7b61
+-/
 theorem actual_relation_of_quotient_relation
     {q : ℕ} (P : Polynomial F)
     (hdeg : P.natDegree < q)

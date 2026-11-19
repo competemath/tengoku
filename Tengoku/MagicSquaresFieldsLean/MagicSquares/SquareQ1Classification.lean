@@ -14,7 +14,9 @@ open Certificates
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [DecidableEq F] in
-/-- All seven positive cases below the center-zero square bound.-/
+/-- All seven positive cases below the center-zero square bound.
+@isnad1 id=not.1h1v.s6.331eac873ca1 from=translated src=- shape=4da35102 vocab=b3d1e8b4
+-/
 theorem not_squareParker_of_card_q1_witness
     (hq : Fintype.card F ∈ ([29, 37, 41, 49, 53, 61, 73] : List ℕ)) : ¬ IsParker F := by
   simp only [List.mem_cons, List.not_mem_nil, or_false] at hq

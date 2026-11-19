@@ -21,7 +21,9 @@ in Lemma 6.46 explicit and reusable.
 omit [Fintype F] in
 /-- If every `a_i` has degree at most `D` and `deg g ≤ G`, then the
 ordinary first-block relation has degree at most
-`D + (m-1)G`.-/
+`D + (m-1)G`.
+@isnad1 id=le.2h6v.s6.6baa2ebf826e from=translated src=- shape=2b14c8ab vocab=a0b3c936
+-/
 theorem quotientPowerRelationPolynomial_natDegree_le
     {m D G : ℕ}
     (a : Fin m → Polynomial F)

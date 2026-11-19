@@ -23,7 +23,9 @@ combines them into the exact degree conclusion.
 -/
 
 /-- Contracting the root-of-unity orbit product by `m` does not increase
-the original degree of `A`.-/
+the original degree of `A`.
+@isnad1 id=le.2h4v.s6.168073776d78 from=translated src=- shape=3417b33f vocab=fae64c7d
+-/
 theorem orbitProduct_contract_natDegree_le
     {m : ℕ} {ζ : F}
     (hm : 0 < m)
@@ -57,7 +59,9 @@ theorem orbitProduct_contract_natDegree_le
 
 /-- The form used literally on LN97 p. 302: if `deg A ≤ m-1`, then the
 polynomial obtained after writing the orbit product as a polynomial in
-`Y^m` also has degree at most `m-1`.-/
+`Y^m` also has degree at most `m-1`.
+@isnad1 id=le.3h4v.s6.324f7943c5c2 from=translated src=- shape=a412e461 vocab=251be331
+-/
 theorem orbitProduct_contract_natDegree_le_pred
     {m : ℕ} {ζ : F}
     (hm : 0 < m)

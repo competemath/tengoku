@@ -18,7 +18,9 @@ private theorem q3_extension_grid : ∀ p ∈ Finset.range 83, ∀ n ∈ Finset.
   decide +kernel
 
 /-- Every prime power in the remaining residue class is either prime or
-one of eighteen extension-field orders (sixteen positive, two exceptional).-/
+one of eighteen extension-field orders (sixteen positive, two exceptional).
+@isnad1 id=or.3h1v.s7.d7684714913e from=translated src=- shape=7d3f25d5 vocab=9fe07714
+-/
 theorem q3_prime_power_coverage {q : ℕ} (hq : q < 553736)
     (hpp : IsPrimePow q) (hm : q % 4 = 3) :
     q.Prime ∨ q ∈ ([27, 243, 343, 1331, 2187, 6859, 12167, 16807, 19683, 29791,

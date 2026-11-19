@@ -36,6 +36,9 @@ noncomputable def constraintSystemGoodFinset
   exact Finset.univ.filter sys.good
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.0h9v.s6.b2b17bd183f6 from=translated src=- shape=48a138bf vocab=d80d85b2
+-/
 @[simp]
 theorem mem_constraintSystemGoodFinset
     {m q D M : ℕ} {f g : Polynomial F}
@@ -46,7 +49,9 @@ theorem mem_constraintSystemGoodFinset
   simp [constraintSystemGoodFinset]
 
 /-- Direct multiplicity-count consequence of the abstract Lemma 6.52
-constraint system.-/
+constraint system.
+@isnad1 id=ex.7h11v.s8.28d382414496 from=translated src=- shape=cdded33c vocab=131f993f
+-/
 theorem constraintSystem_good_card_mul_le
     {m q D M u K G : ℕ} {f g : Polynomial F}
     (hf0 : f ≠ 0)
@@ -77,7 +82,9 @@ theorem constraintSystem_good_card_mul_le
     exact hmult c ((mem_constraintSystemGoodFinset sys c).mp hc)
   · exact hdeg
 
-/-- Division form of the same estimate.-/
+/-- Division form of the same estimate.
+@isnad1 id=ex.7h11v.s8.4558647809ff from=translated src=- shape=c4e12a92 vocab=da7eb10f
+-/
 theorem constraintSystem_good_card_le
     {m q D M u K G : ℕ} {f g : Polynomial F}
     (hf0 : f ≠ 0)

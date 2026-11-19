@@ -1035,9 +1035,15 @@ def q3Batch072 : List Q3Step := [
   .factor 3
 ]
 
+/--
+@isnad1 id=eq.0h0v.s3.2e8faa4c7b4d from=translated src=- shape=801679d3 vocab=89c72eae
+-/
 theorem q3Batch072_checked : Q3Step.checkFrom 294915 q3Batch072 = true := by
   decide +kernel
 
+/--
+@isnad1 id=q3covere.0h0v.s3.e721c592966b from=translated src=- shape=6d6f5044 vocab=68deb83d
+-/
 theorem q3Batch072_covered : Q3Covered 294915 299011 :=
   q3Covered_of_check q3Batch072_checked (by decide)
 

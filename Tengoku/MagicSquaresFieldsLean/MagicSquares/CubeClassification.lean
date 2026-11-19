@@ -31,7 +31,9 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
 omit [DecidableEq F] in
 /-- Positive certificates for all extension fields with nontrivial cube index
-below the analytic bound, apart from the two certified exceptions.-/
+below the analytic bound, apart from the two certified exceptions.
+@isnad1 id=not.1h1v.s6.4c0a27f765de from=translated src=- shape=5e9836c3 vocab=a26fe117
+-/
 theorem not_cubeParker_of_card_extension_witness
     (hq : Fintype.card F ∈ ([49, 121, 169, 289, 361, 529, 625, 841, 961] : List ℕ)) : ¬ IsNParker F 3 := by
   simp only [List.mem_cons, List.not_mem_nil, or_false] at hq

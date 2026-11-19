@@ -6,7 +6,9 @@ namespace MagicSquares
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
-/-- **Lemma 12.1.** The sign obstruction expressed in terms of the power index.-/
+/-- **Lemma 12.1.** The sign obstruction expressed in terms of the power index.
+@isnad1 id=iff.2h2v.s6.80a6f14647c9 from=translated src=- shape=a029351f vocab=9eff8556
+-/
 theorem isNthPower_neg_one_iff_powerIndex_dvd_half {n : ℕ} (hn : 0 < n)
     (hodd : ringChar F ≠ 2) :
     IsNthPower n (-1 : F) ↔ powerIndex n (Fintype.card F) ∣ (Fintype.card F - 1) / 2 := by

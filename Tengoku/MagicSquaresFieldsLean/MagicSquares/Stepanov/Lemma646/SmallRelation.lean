@@ -22,7 +22,9 @@ precisely what is needed when the relation can reach or exceed degree
 
 omit [Fintype F] in
 /-- Quotient vanishing becomes an ordinary polynomial identity under
-the explicit degree envelope `D + (m-1)G < q`.-/
+the explicit degree envelope `D + (m-1)G < q`.
+@isnad1 id=eq.4h7v.s12.24fcdac48518 from=translated src=- shape=1db63929 vocab=ff5d379a
+-/
 theorem quotient_relation_polynomial_eq_zero_of_degree_range
     {m q D G : ℕ}
     (a : Fin m → Polynomial F)

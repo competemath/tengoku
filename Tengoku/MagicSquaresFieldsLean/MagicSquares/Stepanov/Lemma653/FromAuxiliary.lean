@@ -19,7 +19,9 @@ consequence in the exact shape needed before the book substitutes its
 specific choices of `u` and `M`.
 -/
 
-/-- Raw set estimate from an auxiliary polynomial.-/
+/-- Raw set estimate from an auxiliary polynomial.
+@isnad1 id=le.3h6v.s7.a70523d3d6f1 from=translated src=- shape=0aebd877 vocab=a1f365c1
+-/
 theorem stepanovT_card_mul_le_of_auxiliary
     (B g h : Polynomial F)
     (M D : ℕ)
@@ -32,7 +34,9 @@ theorem stepanovT_card_mul_le_of_auxiliary
       (F := F) B g h M hM hmult)
     hdeg
 
-/-- Division form of the raw estimate.-/
+/-- Division form of the raw estimate.
+@isnad1 id=le.3h6v.s7.11668069da5f from=translated src=- shape=9c050748 vocab=b04a0dd5
+-/
 theorem stepanovT_card_le_div_of_auxiliary
     (B g h : Polynomial F)
     (M D : ℕ)

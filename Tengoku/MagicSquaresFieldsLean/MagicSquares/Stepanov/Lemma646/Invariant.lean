@@ -38,7 +38,9 @@ operation.
 
 /-- If a polynomial is invariant under scaling its variable by a
 primitive `m`th root of unity, every coefficient in a degree not
-divisible by `m` is zero.-/
+divisible by `m` is zero.
+@isnad1 id=eq.3h5v.s7.84c50bb11c6a from=translated src=- shape=47768e61 vocab=1e89b7ac
+-/
 theorem coeff_eq_zero_of_primitiveRoot_scale_invariant
     {m n : ℕ} {ζ : F} {B : Polynomial F}
     (hζ : IsPrimitiveRoot ζ m)
@@ -56,7 +58,9 @@ theorem coeff_eq_zero_of_primitiveRoot_scale_invariant
     simpa using hc
   exact hpow hzpow
 
-/-- The support formulation of the preceding lemma.-/
+/-- The support formulation of the preceding lemma.
+@isnad1 id=dvd.3h5v.s7.fb0e3ec35a73 from=translated src=- shape=7caade5b vocab=d0432dc7
+-/
 theorem support_dvd_of_primitiveRoot_scale_invariant
     {m : ℕ} {ζ : F} {B : Polynomial F}
     (hζ : IsPrimitiveRoot ζ m)
@@ -76,7 +80,9 @@ More precisely, if `m > 0`, then
     expand F m (contract m B) = B.
 
 Since `expand F m G = G.comp (X^m)`, this is exactly the statement that
-there exists `G` with `B(X) = G(X^m)`.-/
+there exists `G` with `B(X) = G(X^m)`.
+@isnad1 id=eq.3h4v.s8.27949ef7b8c3 from=translated src=- shape=27f67201 vocab=33809d22
+-/
 theorem expand_contract_eq_of_primitiveRoot_scale_invariant
     {m : ℕ} {ζ : F} {B : Polynomial F}
     (hm : 0 < m)
@@ -98,7 +104,9 @@ theorem expand_contract_eq_of_primitiveRoot_scale_invariant
     simpa using hz.symm
 
 /-- The explicit existence form matching the sentence in LN97:
-`B` can be expressed as a polynomial in `Y^m`.-/
+`B` can be expressed as a polynomial in `Y^m`.
+@isnad1 id=ex.3h4v.s8.7a2afd5dc2c3 from=translated src=- shape=7b83d608 vocab=46b15508
+-/
 theorem exists_comp_X_pow_of_primitiveRoot_scale_invariant
     {m : ℕ} {ζ : F} {B : Polynomial F}
     (hm : 0 < m)
@@ -115,7 +123,9 @@ theorem exists_comp_X_pow_of_primitiveRoot_scale_invariant
 /-- The contraction has exactly the expected degree scaling.
 
 This will convert LN97's bound `deg B ≤ m(m-1)` into
-`deg G ≤ m-1` once the orbit product `B` has been constructed.-/
+`deg G ≤ m-1` once the orbit product `B` has been constructed.
+@isnad1 id=eq.3h4v.s8.dcdf4eb3bd0e from=translated src=- shape=a90d9a8f vocab=516d297a
+-/
 theorem natDegree_contract_mul_eq_of_primitiveRoot_scale_invariant
     {m : ℕ} {ζ : F} {B : Polynomial F}
     (hm : 0 < m)
