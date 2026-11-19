@@ -32,26 +32,41 @@ noncomputable def cornerOuterCoefficient (a c κ u : ℝ) : ℝ := κ * (c - a) 
 /-- The scalar parameter for the inner pair code.-/
 noncomputable def cornerInnerCoefficient (a c κ u : ℝ) : ℝ := κ * (u - c) / (u - a)
 
+/--
+@isnad1 id=ne.3h4v.s5.1e8248394958 from=translated src=- shape=0d166799 vocab=6c63ce5e
+-/
 theorem cornerInnerCoefficient_ne_zero {a c κ u : ℝ} (hκ : κ ≠ 0)
     (hua : u ≠ a) (huc : u ≠ c) : cornerInnerCoefficient a c κ u ≠ 0 :=
   div_ne_zero (mul_ne_zero hκ (sub_ne_zero.mpr huc)) (sub_ne_zero.mpr hua)
 
+/--
+@isnad1 id=ne.3h4v.s5.15d98fba9447 from=translated src=- shape=57a46fea vocab=0eced670
+-/
 theorem cornerOuterCoefficient_ne_zero {a c κ u : ℝ} (hκ : κ ≠ 0)
     (hca : c ≠ a) (hua : u ≠ a) : cornerOuterCoefficient a c κ u ≠ 0 :=
   div_ne_zero (mul_ne_zero hκ (sub_ne_zero.mpr hca)) (sub_ne_zero.mpr hua)
 
+/--
+@isnad1 id=eq.1h4v.s5.26655a6ecc52 from=translated src=- shape=5e5f8ce1 vocab=e624852e
+-/
 theorem corner_coefficients_sum {a c κ u : ℝ} (hua : u ≠ a) :
     cornerOuterCoefficient a c κ u + cornerInnerCoefficient a c κ u = κ := by
   unfold cornerOuterCoefficient cornerInnerCoefficient
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h4v.s5.3e7fde91f42b from=translated src=- shape=87f12f31 vocab=77e026a6
+-/
 theorem corner_coefficients_weighted_sum {a c κ u : ℝ} (hua : u ≠ a) :
     cornerOuterCoefficient a c κ u * u + cornerInnerCoefficient a c κ u * a = κ * c := by
   unfold cornerOuterCoefficient cornerInnerCoefficient
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h6v.s8.eb91bb5c3e7f from=translated src=- shape=9cc7765e vocab=4e98a0a9
+-/
 theorem corner_projection_identity {a c κ u : ℝ} (hua : u ≠ a) (g : Line m) :
     κ • atHeight c g = cornerOuterCoefficient a c κ u • atHeight u g +
       cornerInnerCoefficient a c κ u • atHeight a g := by
@@ -63,7 +78,9 @@ theorem corner_projection_identity {a c κ u : ℝ} (hua : u ≠ a) (g : Line m)
       module
     _ = _ := by module
 
-/-- On a corner-code fiber, the outer position determines the inner-pair code.-/
+/-- On a corner-code fiber, the outer position determines the inner-pair code.
+@isnad1 id=eq.1h7v.s7.5c6efbc2d2ad from=translated src=- shape=b57864b8 vocab=2e3c3f40
+-/
 theorem cornerCode_eq_outer_add_inner {a b c κ u : ℝ} (hua : u ≠ a)
     (p : CornerCoordinates m) : cornerCode a b c κ p =
       cornerOuterCoefficient a c κ u • atHeight u (cornerFirst a p) +

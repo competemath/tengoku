@@ -28,6 +28,9 @@ namespace NKBesicovitch.Hausdorff
 
 variable {n k : ℕ} {U : Set (EuclideanSpace ℝ (Fin n))}
 
+/--
+@isnad1 id=le.1h6v.s15.8a298d0b6473 from=translated src=- shape=d1c07a02 vocab=a27589bc
+-/
 theorem disk_integral_mul_normal_volume_le (hU : MeasurableSet U)
     (V : Grassmannian n k) (a : EuclideanSpace ℝ (Fin n)) (δ : ℝ) :
     (∫⁻ v in closedBall (0 : V.val) 1, U.indicator (fun _ ↦ (1 : ℝ≥0∞)) (a + v)) *
@@ -58,6 +61,9 @@ theorem disk_integral_mul_normal_volume_le (hU : MeasurableSet U)
       · simp [f, hx]
     _ ≤ _ := lintegral_mono_set (orthogonal_cylinder_subset_plate V.val a δ)
 
+/--
+@isnad1 id=le.1h5v.s15.81c5452b4394 from=translated src=- shape=a8b3d0ed vocab=1221e80c
+-/
 theorem volume_plate_le_two_pow_mul (V : Grassmannian n k)
     (a : EuclideanSpace ℝ (Fin n)) {δ : ℝ} (hδ : δ ≤ 1) :
     volume (plate δ V.val a) ≤ (2 : ℝ≥0∞) ^ k * volume (closedBall (0 : V.val) 1) *
@@ -69,7 +75,9 @@ theorem volume_plate_le_two_pow_mul (V : Grassmannian n k)
     simp [V.property]
   rwa [he] at h
 
-/-- A disk portion is controlled by the plate maximal function of its thickening.-/
+/-- A disk portion is controlled by the plate maximal function of its thickening.
+@isnad1 id=le.3h6v.s7.1f24be56c802 from=translated src=- shape=1ebc9d21 vocab=001cb1b5
+-/
 theorem diskAverage_indicator_le_plateMaximal (hU : MeasurableSet U)
     (V : Grassmannian n k) (a : EuclideanSpace ℝ (Fin n)) {δ : ℝ}
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) :

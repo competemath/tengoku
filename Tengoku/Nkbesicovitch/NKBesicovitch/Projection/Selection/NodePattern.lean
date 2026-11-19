@@ -33,6 +33,9 @@ variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 noncomputable def labelIndex (σ : Fin D → ℝ) (t : ℝ) : Fin L :=
   if h : ∃ i, S.time σ i = t then h.choose else ⟨0, S.label_pos⟩
 
+/--
+@isnad1 id=eq.1h7v.s6.e8362204ed24 from=translated src=- shape=c32f9456 vocab=c522ebd0
+-/
 theorem time_labelIndex {σ : Fin D → ℝ} {t : ℝ}
     (ht : t ∈ Finset.univ.image (S.time σ)) : S.time σ (S.labelIndex σ t) = t := by
   have h : ∃ i, S.time σ i = t := by
@@ -41,6 +44,9 @@ theorem time_labelIndex {σ : Fin D → ℝ} {t : ℝ}
   simp only [labelIndex, dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=and.6h12v.s7.e2dfb1afcaae from=translated src=- shape=bda71b63 vocab=ce91980f
+-/
 theorem node_outer_ne {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -53,6 +59,9 @@ theorem node_outer_ne {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0
   have ht := cornerOuterTimes_spec (S.cornerNodeParameters_outer_time_mem hI hIunit hIpos hδ hp i)
   exact ⟨dist_pos.mp (hr.trans_le ht.2.1), dist_pos.mp (hr.trans_le ht.2.2.1)⟩
 
+/--
+@isnad1 id=and.7h13v.s8.6ff251535ea1 from=translated src=- shape=0ace5c55 vocab=3860a8c9
+-/
 theorem node_inner_ne {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -67,6 +76,9 @@ theorem node_inner_ne {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0
   have hne := dualPairParameters_ne hIpos hIfin h.2
   exact ⟨hne.1, hne.2.1, hne.2.2.2.2.symm⟩
 
+/--
+@isnad1 id=hasproje.5h11v.s7.b704f202868a from=translated src=- shape=409cdc18 vocab=688dc5f5
+-/
 theorem node_outer_hasProjectionEstimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -79,6 +91,9 @@ theorem node_outer_hasProjectionEstimate {I : Set ℝ} (hI : MeasurableSet I)
     by positivity, fun G hG hGb ↦
       S.cornerNodeParameters_outer_estimate hI hIunit hIpos hδ hp hG hGb⟩
 
+/--
+@isnad1 id=hasproje.5h12v.s7.8e73fd68ef3f from=translated src=- shape=c0c4c8e0 vocab=388035c8
+-/
 theorem node_inner_hasProjectionEstimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}

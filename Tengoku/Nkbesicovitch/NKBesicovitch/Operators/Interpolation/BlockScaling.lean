@@ -23,6 +23,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=le.5h8v.s8.411a2deca80c from=translated src=- shape=3ea88d84 vocab=bb979513
+-/
 theorem normalize_dyadic_block_bound {N A S : ℝ≥0∞} {s B t u v : ℝ}
     (hs : 0 ≤ s) (hB : 0 ≤ B) (hu : 0 ≤ u) (hv : 0 ≤ v)
     (h : ENNReal.ofReal (s / 2) * N ≤ A * ENNReal.ofReal (s / 2) ^ u *

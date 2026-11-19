@@ -35,6 +35,9 @@ def pairData (a s t : ℝ) (p : PairCoordinates m) : PairCoordinates m :=
 def pairProjections (a s t : ℝ) (p : PairCoordinates m) : Line m :=
   (pairData a s t p).2
 
+/--
+@isnad1 id=eq.0h5v.s6.db344102b7df from=translated src=- shape=fb716cd6 vocab=34ce8a98
+-/
 theorem pairProjections_eq (a s t : ℝ) (p : PairCoordinates m) :
     pairProjections a s t p =
       (atHeight s (lineAt a p.1 p.2.1), atHeight t (lineAt a p.1 p.2.2)) := by
@@ -44,16 +47,25 @@ theorem pairProjections_eq (a s t : ℝ) (p : PairCoordinates m) :
 noncomputable def pairFromData (a s t : ℝ) (p : PairCoordinates m) : PairCoordinates m :=
   (p.1, ((s - a)⁻¹ • (p.2.1 - p.1), (t - a)⁻¹ • (p.2.2 - p.1)))
 
+/--
+@isnad1 id=eq.2h5v.s5.fcd3e5838dab from=translated src=- shape=f89a5db6 vocab=38f8e6c7
+-/
 theorem pairFromData_pairData {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     (p : PairCoordinates m) : pairFromData a s t (pairData a s t p) = p := by
   simp [pairFromData, pairData, smul_smul, inv_mul_cancel₀ (sub_ne_zero.mpr hs),
     inv_mul_cancel₀ (sub_ne_zero.mpr ht)]
 
+/--
+@isnad1 id=eq.2h5v.s5.554ef2905db8 from=translated src=- shape=f89a5db6 vocab=38f8e6c7
+-/
 theorem pairData_pairFromData {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     (p : PairCoordinates m) : pairData a s t (pairFromData a s t p) = p := by
   simp [pairFromData, pairData, smul_smul, mul_inv_cancel₀ (sub_ne_zero.mpr hs),
     mul_inv_cancel₀ (sub_ne_zero.mpr ht)]
 
+/--
+@isnad1 id=eq.2h5v.s5.0da72abf4d7b from=translated src=- shape=16b19328 vocab=c391d4ad
+-/
 theorem pairProjections_pairFromData {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     (p : PairCoordinates m) : pairProjections a s t (pairFromData a s t p) = p.2 :=
   congrArg Prod.snd (pairData_pairFromData hs ht p)
@@ -62,18 +74,30 @@ theorem pairProjections_pairFromData {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
 noncomputable def pairJacobian (m : ℕ) (a s t : ℝ) : ℝ≥0∞ :=
   ENNReal.ofReal |((s - a) ^ m)⁻¹| * ENNReal.ofReal |((t - a) ^ m)⁻¹|
 
+/--
+@isnad1 id=continuo.0h4v.s7.214a4f981eff from=translated src=- shape=91cb3c49 vocab=22d50dfd
+-/
 theorem continuous_pairData (a s t : ℝ) : Continuous (pairData (m := m) a s t) := by
   unfold pairData
   fun_prop
 
+/--
+@isnad1 id=continuo.0h4v.s7.30e34edd650e from=translated src=- shape=ebcfe9f3 vocab=73a3e637
+-/
 theorem continuous_pairProjections (a s t : ℝ) :
     Continuous (pairProjections (m := m) a s t) :=
   (continuous_pairData a s t).snd
 
+/--
+@isnad1 id=continuo.0h4v.s7.e3ec9e76a831 from=translated src=- shape=91cb3c49 vocab=c46dbba7
+-/
 theorem continuous_pairFromData (a s t : ℝ) : Continuous (pairFromData (m := m) a s t) := by
   unfold pairFromData
   fun_prop
 
+/--
+@isnad1 id=measurep.2h4v.s11.c7fc5417ebc2 from=translated src=- shape=2365190c vocab=903e1f51
+-/
 theorem measurePreserving_pairData {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a) :
     MeasurePreserving (pairData (m := m) a s t) volume (pairJacobian m a s t • volume) := by
   change MeasurePreserving (fun p : PairCoordinates m ↦

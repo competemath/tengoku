@@ -46,6 +46,9 @@ private theorem scale_power_le_aux (n : ℕ) {s : ℝ} (hs : 0 ≤ s)
       gcongr
     _ = _ := by rw [ENNReal.mul_rpow_of_nonneg _ _ hs]; ac_rfl
 
+/--
+@isnad1 id=le.4h5v.s9.ce92f0d27e95 from=translated src=- shape=ab128378 vocab=c8e4cabe
+-/
 theorem volume_thickening_ball_le_cost {n : ℕ} {s : ℝ} (hs : 0 ≤ s)
     (x : EuclideanSpace ℝ (Fin n)) {δ r : ℝ≥0} (hδ : 0 < δ)
     (hr : δ / 2 ≤ r) (hrδ : r ≤ δ) :
@@ -67,6 +70,9 @@ theorem volume_thickening_ball_le_cost {n : ℕ} {s : ℝ} (hs : 0 ≤ s)
     ENNReal.ofReal_coe_nnreal]
   simpa only [ENNReal.coe_mul, ENNReal.coe_ofNat, mul_assoc, mul_comm, mul_left_comm] using h
 
+/--
+@isnad1 id=le.3h6v.s10.cffb893ed592 from=translated src=- shape=2f89e801 vocab=bc86f0d0
+-/
 theorem volume_thickening_ball_union_le_cost {n : ℕ} {s : ℝ} (hs : 0 ≤ s)
     (x : ℕ → EuclideanSpace ℝ (Fin n)) (r : ℕ → ℝ≥0) (I : Set ℕ)
     {δ : ℝ≥0} (hδ : 0 < δ) (hr : ∀ i ∈ I, δ / 2 ≤ r i ∧ r i ≤ δ) :

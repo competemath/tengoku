@@ -25,6 +25,9 @@ open MeasureTheory Set
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.2h4v.s5.183b1edc7721 from=translated src=- shape=998a4335 vocab=fb289c23
+-/
 theorem codeJacobian_toReal_le_of_separated (m : ℕ) {a b r : ℝ} (hr : 0 < r)
     (hab : r ≤ dist a b) : (codeJacobian m a b).toReal ≤ r⁻¹ ^ m := by
   rw [codeJacobian, ENNReal.toReal_ofReal (abs_nonneg _), abs_inv, abs_pow,
@@ -32,6 +35,9 @@ theorem codeJacobian_toReal_le_of_separated (m : ℕ) {a b r : ℝ} (hr : 0 < r)
   exact pow_le_pow_left₀ (inv_nonneg.mpr dist_nonneg)
     ((inv_le_inv₀ (hr.trans_le hab) hr).mpr hab) m
 
+/--
+@isnad1 id=le.5h6v.s10.287caddaac50 from=translated src=- shape=a701bd8f vocab=138b650e
+-/
 theorem volume_toReal_le_two_slice_of_separated {m : ℕ} {a b r N : ℝ}
     (hr : 0 < r) (hab : r ≤ dist a b) (hN : 0 ≤ N) (G : Set (Line m))
     (ha : volume (atHeight a '' G) ≤ ENNReal.ofReal N)
@@ -48,6 +54,9 @@ theorem volume_toReal_le_two_slice_of_separated {m : ℕ} {a b r N : ℝ}
   simpa only [pow_two] using h.trans (mul_le_mul_of_nonneg_right
     (codeJacobian_toReal_le_of_separated m hr hab) (mul_self_nonneg N))
 
+/--
+@isnad1 id=le.3h5v.s6.3feb60ffb8b2 from=translated src=- shape=0cc6d6d0 vocab=e588fb41
+-/
 theorem pairJacobian_toReal_le_of_separated (m : ℕ) {a b c r : ℝ} (hr : 0 < r)
     (hab : r ≤ dist a b) (hac : r ≤ dist a c) :
     (pairJacobian m a b c).toReal ≤ r⁻¹ ^ (2 * m) := by
@@ -59,6 +68,9 @@ theorem pairJacobian_toReal_le_of_separated (m : ℕ) {a b c r : ℝ} (hr : 0 < 
       (codeJacobian_toReal_le_of_separated m hr hac) ENNReal.toReal_nonneg (by positivity)
     _ = _ := by rw [two_mul, pow_add]
 
+/--
+@isnad1 id=le.5h5v.s7.b2cef1868efe from=translated src=- shape=25957af8 vocab=c98cfb21
+-/
 theorem innerJacobian_toReal_ge_of_separated (m : ℕ) {a b d r : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hab : a ≠ b)
     (hr : 0 ≤ r) (hd : r ≤ dist b d) :

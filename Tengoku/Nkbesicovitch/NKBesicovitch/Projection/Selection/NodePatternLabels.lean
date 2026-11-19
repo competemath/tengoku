@@ -33,6 +33,9 @@ noncomputable def nodeChildTriple (a b c : ℝ)
   ((b, S.time (p.2.2 ij.1) ij.2),
     dualTime b a (cornerInnerCoefficient a c p.1 (S.time p.2.1 ij.1)) (S.time (p.2.2 ij.1) ij.2))
 
+/--
+@isnad1 id=measurab.4h11v.s7.e23fe423dbeb from=translated src=- shape=c6e74add vocab=ce5c4dba
+-/
 theorem measurable_nodeChildTriple {X : Type*} [MeasurableSpace X] {a b c : X → ℝ}
     {p : X → ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (hp : Measurable p)
@@ -48,6 +51,9 @@ noncomputable def nodeChildLabels
     (p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))) (q : ℝ × ℝ) : Fin L × Fin L :=
   (S.labelIndex p.2.1 q.1, S.labelIndex (p.2.2 (S.labelIndex p.2.1 q.1)) q.2)
 
+/--
+@isnad1 id=and.6h11v.s8.0229955c6822 from=translated src=- shape=eed05828 vocab=ad0b1156
+-/
 theorem nodeChildLabels_spec {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c : ℝ}
     (hbase : ((a, b), c) ∈ separatedTriples I ((volume I).toReal / 100))
@@ -59,6 +65,9 @@ theorem nodeChildLabels_spec {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I �
   obtain ⟨hu, ht⟩ := CornerPattern.mem_children.mp hq
   exact ⟨S.time_labelIndex hu, S.time_labelIndex ht⟩
 
+/--
+@isnad1 id=eq.6h11v.s8.5e40d879ea40 from=translated src=- shape=4f0a8551 vocab=37c252d2
+-/
 theorem nodeChildTriple_nodeChildLabels {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c : ℝ}
     (hbase : ((a, b), c) ∈ separatedTriples I ((volume I).toReal / 100))
@@ -70,6 +79,9 @@ theorem nodeChildTriple_nodeChildLabels {I : Set ℝ} (hI : MeasurableSet I)
   obtain ⟨hu, ht⟩ := S.nodeChildLabels_spec hI hIunit hIpos hbase hp hq
   simp only [nodeChildTriple, hu, ht]
 
+/--
+@isnad1 id=mem.6h11v.s8.63b3aca83560 from=translated src=- shape=4f2c1426 vocab=1bb63c92
+-/
 theorem nodePattern_times_subset {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c : ℝ}
     (hbase : ((a, b), c) ∈ separatedTriples I ((volume I).toReal / 100))

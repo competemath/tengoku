@@ -30,6 +30,9 @@ namespace NKBesicovitch.Induction
 
 variable {n m k : ℕ} {v : EuclideanSpace ℝ (Fin n)}
 
+/--
+@isnad1 id=mem.2h8v.s12.136f4db88101 from=translated src=- shape=9a0b7dda vocab=f88601e3
+-/
 theorem fst_mem_unitDisk_of_normalCoordinates_mem (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {a z : EuclideanSpace ℝ (Fin m) × ℝ}
@@ -46,6 +49,9 @@ theorem fst_mem_unitDisk_of_normalCoordinates_mem (hv : ‖v‖ = 1)
   rw [ContinuousLinearEquiv.symm_apply_apply, map_sub] at hnorm
   exact hnorm.trans hz.2
 
+/--
+@isnad1 id=le.1h8v.s12.af0dde5acb4f from=translated src=- shape=334dedd0 vocab=74289ff4
+-/
 theorem preimage_plate_normalCoordinates_subset (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (a : EuclideanSpace ℝ (Fin m) × ℝ) (δ : ℝ) :
@@ -62,6 +68,9 @@ theorem preimage_plate_normalCoordinates_subset (hv : ‖v‖ = 1)
   simp only [ContinuousLinearEquiv.symm_apply_apply, NNReal.coe_one, one_mul] at h
   exact h.trans_lt hdist
 
+/--
+@isnad1 id=mem.3h8v.s12.55a6adcff61c from=translated src=- shape=d0f28058 vocab=1caccd70
+-/
 theorem normalCoordinates_half_disk_mem (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {x : EuclideanSpace ℝ (Fin m)} (hx : x ∈ unitDisk V.val 0)
@@ -78,6 +87,9 @@ theorem normalCoordinates_half_disk_mem (hv : ‖v‖ = 1)
     mul_nonneg (sub_nonneg.mpr ht.1) (sub_nonneg.mpr ht.2),
     norm_nonneg (normalCoordinatesWithBasis hv b ((1 / 2 : ℝ) • x, t))]
 
+/--
+@isnad1 id=mem.4h9v.s12.62250d52c1fa from=translated src=- shape=e2f36d75 vocab=092f4d68
+-/
 theorem normalCoordinates_half_plate_mem (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {δ : ℝ} (hδ : 0 < δ) {x : EuclideanSpace ℝ (Fin m)} (hx : x ∈ plate δ V.val 0)

@@ -34,6 +34,9 @@ noncomputable def goodTimes (E : Set (EuclideanSpace ℝ (Fin m) × ℝ)) (N : �
     (g : Line m) : Set ℝ :=
   lineTimes E g ∩ {t | volume ((fun x ↦ (x, t)) ⁻¹' E) ≤ N}
 
+/--
+@isnad1 id=measurab.1h3v.s7.b269ba2f7eb2 from=translated src=- shape=e6e650e6 vocab=ea313458
+-/
 theorem measurableSet_goodTimes_family {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) (N : ℝ≥0∞) :
     MeasurableSet {p : Line m × ℝ | p.2 ∈ goodTimes E N p.1} := by
@@ -42,19 +45,31 @@ theorem measurableSet_goodTimes_family {E : Set (EuclideanSpace ℝ (Fin m) × �
   simpa only [goodTimes, mem_inter_iff, mem_ofPred_eq, ofPred_and] using
     (measurableSet_lineTimes_family hE).inter (measurableSet_le hm measurable_const)
 
+/--
+@isnad1 id=measurab.1h4v.s6.2877aa1a8d20 from=translated src=- shape=02f62d8d vocab=e4431dad
+-/
 theorem measurableSet_goodTimes {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) (N : ℝ≥0∞) (g : Line m) : MeasurableSet (goodTimes E N g) :=
   (measurableSet_goodTimes_family hE N).preimage (f := fun t ↦ (g, t)) (by fun_prop)
 
+/--
+@isnad1 id=le.0h4v.s5.b02bcced7cc3 from=translated src=- shape=d708313c vocab=885bb96f
+-/
 theorem goodTimes_subset_unit (E : Set (EuclideanSpace ℝ (Fin m) × ℝ)) (N : ℝ≥0∞)
     (g : Line m) : goodTimes E N g ⊆ Icc 0 1 :=
   inter_subset_left.trans inter_subset_left
 
+/--
+@isnad1 id=and.1h5v.s8.7a15d10ab541 from=translated src=- shape=07166666 vocab=fb7dc4b6
+-/
 theorem goodTimes_spec {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} {N : ℝ≥0∞}
     {g : Line m} {t : ℝ} (ht : t ∈ goodTimes E N g) :
     (atHeight t g, t) ∈ E ∧ volume ((fun x ↦ (x, t)) ⁻¹' E) ≤ N :=
   ⟨ht.1.2, ht.2⟩
 
+/--
+@isnad1 id=le.3h3v.s9.19519283e0da from=translated src=- shape=420bb95c vocab=c13988ee
+-/
 theorem volume_large_slices_le {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) {N : ℝ≥0∞} (hN : N ≠ 0) (hNfin : N ≠ ∞) :
     volume {t : ℝ | N < volume ((fun x ↦ (x, t)) ⁻¹' E)} ≤ volume E / N := by
@@ -69,6 +84,9 @@ theorem volume_large_slices_le {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
   intro t ht
   exact mem_ofPred_eq.mpr (mem_ofPred_eq.mp ht).le
 
+/--
+@isnad1 id=le.1h4v.s8.75cb95c67728 from=translated src=- shape=d3de94e0 vocab=b1b94c10
+-/
 theorem localXRay_indicator_le_goodTimes_add_largeSlices
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E) (N : ℝ≥0∞) (g : Line m) :
     localXRay (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) g.2 g.1 ≤
@@ -82,6 +100,9 @@ theorem localXRay_indicator_le_goodTimes_add_largeSlices
     · exact Or.inr (lt_of_not_ge h)
   exact (measure_mono hsubset).trans (measure_union_le _ _)
 
+/--
+@isnad1 id=le.3h4v.s8.c64923d384bb from=translated src=- shape=3d47926a vocab=18d12c73
+-/
 theorem localXRay_indicator_le_goodTimes_add {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) {N : ℝ≥0∞} (hN : N ≠ 0) (hNfin : N ≠ ∞) (g : Line m) :
     localXRay (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) g.2 g.1 ≤
@@ -111,6 +132,9 @@ private theorem half_le_volume_goodTimes_of_pos {E : Set (EuclideanSpace ℝ (Fi
     ring
   exact ENNReal.le_of_add_le_add_right ENNReal.ofReal_ne_top (hrhalf.trans_le h)
 
+/--
+@isnad1 id=eq.2h3v.s8.3f0f3d620b6e from=translated src=- shape=f0a44377 vocab=ca6190eb
+-/
 theorem volume_goodTimes_of_volume_zero {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) (hzero : volume E = 0) (g : Line m) :
     volume (goodTimes E 0 g) = volume (lineTimes E g) := by
@@ -124,7 +148,9 @@ theorem volume_goodTimes_of_volume_zero {E : Set (EuclideanSpace ℝ (Fin m) × 
   change (t ∈ goodTimes E 0 g) = (t ∈ lineTimes E g)
   simp only [goodTimes, mem_inter_iff, mem_ofPred_eq, ht, Pi.zero_apply, le_refl, and_true]
 
-/-- Every rich line retains half its time measure, also for ambient sets of volume zero.-/
+/-- Every rich line retains half its time measure, also for ambient sets of volume zero.
+@isnad1 id=le.4h4v.s9.7f915e1378c2 from=translated src=- shape=609cde21 vocab=af6260d2
+-/
 theorem half_le_volume_goodTimes {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) (hEfin : volume E ≠ ∞) {r : ℝ} (hr : 0 < r) {g : Line m}
     (hg : ENNReal.ofReal r ≤ localXRay (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) g.2 g.1) :

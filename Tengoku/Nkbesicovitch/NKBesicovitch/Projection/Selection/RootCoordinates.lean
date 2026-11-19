@@ -40,6 +40,9 @@ noncomputable def rootEquiv : (Fin (3 + Fintype.card (TreeCoordinate D L J)) →
         (MeasurableEquiv.finTwoArrow.prodCongr (MeasurableEquiv.funUnique Unit ℝ))).prodCongr
           (MeasurableEquiv.refl _)))
 
+/--
+@isnad1 id=measurep.0h3v.s9.f1a216e6bd86 from=translated src=- shape=0e100765 vocab=92a7e5c7
+-/
 theorem volume_preserving_rootEquiv : MeasurePreserving (rootEquiv D L J) volume volume := by
   have hroot := ((volume_preserving_finTwoArrow ℝ).prod
     (volume_preserving_funUnique Unit ℝ)).comp
@@ -49,6 +52,9 @@ theorem volume_preserving_rootEquiv : MeasurePreserving (rootEquiv D L J) volume
       (fun _ : (Fin 2 ⊕ Unit) ⊕ TreeCoordinate D L J ↦ ℝ))).comp
         (volume_measurePreserving_piCongrLeft (fun _ ↦ ℝ) (rootIndexEquiv D L J).symm)
 
+/--
+@isnad1 id=le.4h6v.s9.ccc6dbcd211a from=translated src=- shape=72538269 vocab=c46e9f31
+-/
 theorem rootEquiv_symm_bound {p : ((ℝ × ℝ) × ℝ) × (TreeCoordinate D L J → ℝ)} {C : ℝ}
     (ha : |p.1.1.1| ≤ C) (hb : |p.1.1.2| ≤ C) (hc : |p.1.2| ≤ C)
     (hσ : ∀ j, |p.2 j| ≤ C) (i : Fin (3 + Fintype.card (TreeCoordinate D L J))) :

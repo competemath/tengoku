@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.5h12v.s8.a3e8133b6503 from=translated src=- shape=0ea1e9cd vocab=d9a19b82
+-/
 theorem cornerNodeParameters_outer_coordinates_bound {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -39,6 +42,9 @@ theorem cornerNodeParameters_outer_coordinates_bound {I : Set ℝ} (hI : Measura
   exact S.coordinates_bound_of_measure_lower (measurableSet_cornerOuterTimes hI _ _ _ _ _)
     ((cornerOuterTimes_subset I _ _ _ _ _).trans hIunit) (by positivity) hp.1 hp.2.1 j
 
+/--
+@isnad1 id=le.5h13v.s8.614b92bea776 from=translated src=- shape=f349916c vocab=78217cca
+-/
 theorem cornerNodeParameters_inner_coordinates_bound {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -52,6 +58,9 @@ theorem cornerNodeParameters_inner_coordinates_bound {I : Set ℝ} (hI : Measura
     ((dualTimes_subset I _ _ _).trans hIunit) (by positivity)
     (cornerOuterTimes_spec hu).2.2.2 (hp.2.2 i) j
 
+/--
+@isnad1 id=le.7h12v.s10.8003fe503355 from=translated src=- shape=bcd5f821 vocab=72d75cb0
+-/
 theorem cornerNodeParameters_outer_estimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -66,6 +75,9 @@ theorem cornerNodeParameters_outer_estimate {I : Set ℝ} (hI : MeasurableSet I)
   exact S.estimate_of_measure_lower (measurableSet_cornerOuterTimes hI _ _ _ _ _)
     ((cornerOuterTimes_subset I _ _ _ _ _).trans hIunit) (by positivity) hp.1 hp.2.1 hG hGb
 
+/--
+@isnad1 id=le.7h13v.s10.92cb3b813a2a from=translated src=- shape=70b573ac vocab=b0b7951f
+-/
 theorem cornerNodeParameters_inner_estimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}

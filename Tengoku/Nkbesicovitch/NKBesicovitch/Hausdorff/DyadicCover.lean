@@ -25,6 +25,9 @@ open scoped ENNReal NNReal
 
 namespace NKBesicovitch.Hausdorff
 
+/--
+@isnad1 id=ne.1h1v.s6.37078e34e5c7 from=translated src=- shape=a52cb30d vocab=f8d50ba6
+-/
 theorem dyadic_rpow_tsum_ne_top {t : ℝ} (ht : 0 < t) :
     (∑' j : ℕ, (((1 / 2 : ℝ≥0) ^ j : ℝ≥0) : ℝ≥0∞) ^ t) ≠ ∞ := by
   have he (j : ℕ) : (((1 / 2 : ℝ≥0) ^ j : ℝ≥0) : ℝ≥0∞) ^ t =
@@ -34,6 +37,9 @@ theorem dyadic_rpow_tsum_ne_top {t : ℝ} (ht : 0 < t) :
   simp_rw [he]
   exact (tsum_geometric_lt_top.mpr (ENNReal.rpow_lt_one (by norm_num) ht)).ne
 
+/--
+@isnad1 id=ex.1h3v.s8.aa30c4514097 from=translated src=- shape=bcc496c4 vocab=9bfffcde
+-/
 theorem exists_dyadic_cover {n : ℕ} (x : ℕ → EuclideanSpace ℝ (Fin n))
     (r : ℕ → ℝ≥0) (hr : ∀ i, 0 < r i ∧ r i ≤ 1) :
     ∃ I : ℕ → Set ℕ, (∀ j i, i ∈ I j → (1 / 2 : ℝ≥0) ^ j / 2 ≤ r i ∧

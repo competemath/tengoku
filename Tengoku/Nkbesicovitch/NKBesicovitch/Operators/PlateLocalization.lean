@@ -31,6 +31,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ} {δ p : ℝ} {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
 
+/--
+@isnad1 id=le.2h7v.s11.5f2aa3e4039d from=translated src=- shape=50151589 vocab=755fa161
+-/
 theorem plateAverage_le_plateMaximal_ball (hδ : δ ≤ 1) (V : Grassmannian n k)
     (a : EuclideanSpace ℝ (Fin n)) {y : EuclideanSpace ℝ (Fin n)} (hy : y ∈ ball a 1) :
     (∫⁻ x in plate δ V.val a, f x) / volume (plate δ V.val a) ≤
@@ -51,6 +54,9 @@ theorem plateAverage_le_plateMaximal_ball (hδ : δ ≤ 1) (V : Grassmannian n k
   exact le_iSup (fun a ↦ (∫⁻ x in plate δ V.val a, (ball y 3).indicator f x) /
     volume (plate δ V.val a)) a
 
+/--
+@isnad1 id=le.2h6v.s9.6eb2bdfdbeac from=translated src=- shape=9c8842f3 vocab=d411f4c1
+-/
 theorem plateMaximal_rpow_le_lintegral_ball (hδ : δ ≤ 1) (hp : 0 < p)
     (V : Grassmannian n k) :
     plateMaximal δ f V ^ p ≤

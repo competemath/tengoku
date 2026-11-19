@@ -25,6 +25,9 @@ public section
 
 namespace NKBesicovitch.XRay
 
+/--
+@isnad1 id=le.8h9v.s8.7ae931b83d89 from=translated src=- shape=457f1b42 vocab=0014576e
+-/
 theorem collect_selection_losses {A B : ℕ} {c C t F Y V β : ℝ}
     (hc : 0 < c) (hC : 0 ≤ C) (ht : 0 < t) (ht₁ : t ≤ 1)
     (hY : 0 ≤ Y) (hV : 0 ≤ V) (hβ : β ≤ 2)

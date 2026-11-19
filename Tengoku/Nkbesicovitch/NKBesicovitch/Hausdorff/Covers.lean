@@ -29,6 +29,9 @@ namespace NKBesicovitch.Hausdorff
 
 variable {X : Type*} [MetricSpace X] [MeasurableSpace X] [BorelSpace X]
 
+/--
+@isnad1 id=ex.2h4v.s7.bbf250ee7e92 from=translated src=- shape=153b1041 vocab=b8e2e415
+-/
 theorem exists_diameter_cover_of_measure_zero {s : ℝ} {E : Set X}
     (hE : μH[s] E = 0) {ε : ℝ≥0∞} (hε : 0 < ε) :
     ∃ t : ℕ → Set X, E ⊆ ⋃ i, t i ∧ (∀ i, ediam (t i) ≤ 1 / 2) ∧
@@ -54,6 +57,9 @@ private theorem exists_larger_radius_aux {s : ℝ} (hs : 0 < s) {d : ℝ≥0} (h
     ((hcost.filter_mono nhdsWithin_le_nhds).and (Ioo_mem_nhdsGT hd)).exists
   exact ⟨r, hr, hr1, hc⟩
 
+/--
+@isnad1 id=ex.3h4v.s7.1a6476ed5b35 from=translated src=- shape=ed28f815 vocab=c909d987
+-/
 theorem exists_ball_cover_of_measure_zero [Nonempty X] {s : ℝ} (hs : 0 < s)
     {E : Set X} (hE : μH[s] E = 0) {ε : ℝ≥0∞} (hε : 0 < ε) :
     ∃ (x : ℕ → X) (r : ℕ → ℝ≥0), (∀ i, 0 < r i ∧ r i < 1) ∧

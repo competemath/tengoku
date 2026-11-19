@@ -47,6 +47,9 @@ structure IsControlled (P : CornerPattern m β) (r C : ℝ) (L : ℕ) : Prop whe
 
 namespace IsControlled
 
+/--
+@isnad1 id=le.1h6v.s5.34a6d01026ea from=translated src=- shape=afccc0fb vocab=acdb8ada
+-/
 theorem children_card (h : P.IsControlled r C L) : P.children.card ≤ L * L := by
   classical
   calc
@@ -56,19 +59,31 @@ theorem children_card (h : P.IsControlled r C L) : P.children.card ≤ L * L := 
     _ = P.outer.card * L := by simp
     _ ≤ L * L := Nat.mul_le_mul_right L h.outer_card
 
+/--
+@isnad1 id=le.1h6v.s5.f01e75741d2a from=translated src=- shape=3c389e55 vocab=c02ea2ee
+-/
 theorem codeJacobian_le (h : P.IsControlled r C L) :
     (codeJacobian m P.a P.b).toReal ≤ r⁻¹ ^ m :=
   codeJacobian_toReal_le_of_separated m h.radius_pos h.base_separation
 
+/--
+@isnad1 id=le.1h6v.s5.618285128b13 from=translated src=- shape=3c389e55 vocab=c02ea2ee
+-/
 theorem reverse_codeJacobian_le (h : P.IsControlled r C L) :
     (codeJacobian m P.b P.a).toReal ≤ r⁻¹ ^ m :=
   codeJacobian_toReal_le_of_separated m h.radius_pos
     (by simpa only [dist_comm] using h.base_separation)
 
+/--
+@isnad1 id=le.1h6v.s6.0e04dc4a2c18 from=translated src=- shape=3723a04a vocab=24816948
+-/
 theorem pairJacobian_le (h : P.IsControlled r C L) :
     (pairJacobian m P.a P.b P.c).toReal ≤ r⁻¹ ^ (2 * m) :=
   pairJacobian_toReal_le_of_separated m h.radius_pos h.base_separation h.base_c_separation
 
+/--
+@isnad1 id=le.3h8v.s7.73d2f962c256 from=translated src=- shape=fb772fc0 vocab=3c43747d
+-/
 theorem innerJacobian_ge (h : P.IsControlled r C L) {u t : ℝ}
     (hu : u ∈ P.outer) (ht : t ∈ P.inner u) :
     r ^ m ≤ (ENNReal.ofReal |(((P.a - P.b) /

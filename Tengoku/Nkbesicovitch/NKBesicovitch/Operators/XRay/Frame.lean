@@ -35,12 +35,18 @@ noncomputable def frameXRay (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) (u :
   ∫⁻ t : ℝ, f (Unitary.linearIsometryEquiv u
     (normalCoordinatesWithBasis (norm_eq_of_mem_sphere v) b (x, t)))
 
+/--
+@isnad1 id=measurab.1h6v.s12.333d3b5efd49 from=translated src=- shape=aab0bef8 vocab=b69b2f56
+-/
 theorem measurable_frameXRay {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     (hf : Measurable f) (u : Rotations n) : Measurable (frameXRay v b f u) := by
   have hm := (hf.comp (Unitary.linearIsometryEquiv u).continuous.measurable).comp
     (normalCoordinatesWithBasis (norm_eq_of_mem_sphere v) b).continuous.measurable
   exact hm.lintegral_prod_right' (ν := volume)
 
+/--
+@isnad1 id=le.1h7v.s12.d13ea43156a3 from=translated src=- shape=f5c8f36b vocab=77ad80c2
+-/
 theorem support_frameXRay_subset_closedBall {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     {R : ℝ} (hs : Function.support f ⊆ closedBall 0 R) (u : Rotations n) :
     Function.support (frameXRay v b f u) ⊆ closedBall 0 R := by
@@ -58,6 +64,9 @@ theorem support_frameXRay_subset_closedBall {f : EuclideanSpace ℝ (Fin n) → 
     exact hnorm.trans hpoint
   exact hx (by simp only [frameXRay, hzero, lintegral_zero])
 
+/--
+@isnad1 id=eq.1h7v.s15.5f6df915daac from=translated src=- shape=f8d96c01 vocab=66ec8273
+-/
 theorem eLpNorm_frameXRay {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     (hf : Measurable f) (u : Rotations n) (r : ℝ≥0∞) :
     eLpNorm (frameXRay v b f u) r volume =

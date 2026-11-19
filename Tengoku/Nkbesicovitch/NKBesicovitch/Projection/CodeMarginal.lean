@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=eq.1h4v.s7.3dea3d888262 from=translated src=- shape=ff3a0cdb vocab=6090e29d
+-/
 theorem lineAt_twoSlice {a t : ℝ} (hta : t ≠ a) (g : Line m) :
     lineAt a (atHeight a g) ((t - a)⁻¹ • (atHeight t g - atHeight a g)) = g := by
   have h : atHeight t g - atHeight a g = (t - a) • g.2 := by
@@ -34,6 +37,9 @@ theorem lineAt_twoSlice {a t : ℝ} (hta : t ≠ a) (g : Line m) :
     module
   rw [h, smul_smul, inv_mul_cancel₀ (sub_ne_zero.mpr hta), one_smul, lineAt_atHeight]
 
+/--
+@isnad1 id=eq.4h8v.s8.a464fa0b5ec4 from=translated src=- shape=0b0a8c44 vocab=911672b1
+-/
 theorem pairCode_pairFromData_dual {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) (w y z : EuclideanSpace ℝ (Fin m)) :
     pairCode a b c (pairFromData a t (dualTime a b c t)
@@ -53,6 +59,9 @@ theorem pairCode_pairFromData_dual {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0
     hy, hz, smul_smul, mul_inv_cancel₀ hB, one_smul]
   module
 
+/--
+@isnad1 id=eq.4h8v.s8.6c916550f73a from=translated src=- shape=d95e4604 vocab=432d8d1c
+-/
 theorem pairFromData_dual_eq_pairFromCode {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) (w y z : EuclideanSpace ℝ (Fin m)) :
     pairFromData a t (dualTime a b c t)
@@ -66,6 +75,9 @@ theorem pairFromData_dual_eq_pairFromCode {a b c t : ℝ} (hab : a ≠ b) (hc : 
   rw [pairCode_pairFromData_dual hab hc hta htb] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.4h7v.s8.e337f2a49db8 from=translated src=- shape=0d0a0bf1 vocab=dd84ea60
+-/
 theorem pairProjections_pairFromCode_dual {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) (g : Line m) (z : EuclideanSpace ℝ (Fin m)) :
     pairProjections a t (dualTime a b c t) (pairFromCode a b c g z) =
@@ -76,6 +88,9 @@ theorem pairProjections_pairFromCode_dual {a b c t : ℝ} (hab : a ≠ b) (hc : 
   rw [lineAt_twoSlice hta] at hp
   rw [← hp, pairProjections_pairFromData hta (dualTime_ne_base hab hc hta htb)]
 
+/--
+@isnad1 id=eq.4h5v.s7.06edc7d1f951 from=translated src=- shape=8d37281d vocab=e4924207
+-/
 theorem codeJacobian_dual {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) :
     ENNReal.ofReal |(((b - a) / (dualTime a b c t - a)) ^ m)⁻¹| *
@@ -84,6 +99,9 @@ theorem codeJacobian_dual {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     div_mul_cancel₀ _ (sub_ne_zero.mpr (dualTime_ne_base hab hc hta htb))]
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.1e68f9c35f7f from=translated src=- shape=8ba538dd vocab=c5a95f87
+-/
 theorem codeDensity_eq_twoSlice_lintegral {a b t : ℝ} (hta : t ≠ a)
     (c : ℝ) {W : Set (PairCoordinates m)} (hW : MeasurableSet W) (z : EuclideanSpace ℝ (Fin m)) :
     codeDensity a b c W z =
@@ -113,7 +131,9 @@ theorem codeDensity_eq_twoSlice_lintegral {a b t : ℝ} (hta : t ≠ a)
   simpa only [Measure.volume_eq_prod] using
     (lintegral_prod_symm' (μ := (volume : Measure (EuclideanSpace ℝ (Fin m)))) (ν := volume) f hf)
 
-/-- The exact marginal formula for the explicit density representatives, at every code value.-/
+/-- The exact marginal formula for the explicit density representatives, at every code value.
+@isnad1 id=eq.5h7v.s9.dfc93df2fce2 from=translated src=- shape=97f9f53b vocab=fac909e2
+-/
 theorem codeDensity_eq_marginal {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     (z : EuclideanSpace ℝ (Fin m)) :

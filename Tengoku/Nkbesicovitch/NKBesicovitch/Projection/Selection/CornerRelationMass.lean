@@ -26,6 +26,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.Projection.Selection
 
+/--
+@isnad1 id=eq.1h5v.s7.4bd2595dfe89 from=translated src=- shape=2a05403d vocab=420dcd1b
+-/
 theorem volume_cornerTimeRelation {I : Set ℝ} (hI : MeasurableSet I) (a b c δ : ℝ) :
     volume (cornerTimeRelation I a b c δ) =
       ∫⁻ u in separatedTimes I ![a, c] Finset.univ ((volume I).toReal / 100),
@@ -47,6 +50,9 @@ theorem volume_cornerTimeRelation {I : Set ℝ} (hI : MeasurableSet I) (a b c δ
       rw [hz, measure_empty]
   rw [he, lintegral_indicator (measurableSet_separatedTimes hI _ _ _)]
 
+/--
+@isnad1 id=le.5h5v.s8.e70d2a33f71e from=translated src=- shape=5442679d vocab=da3e2925
+-/
 theorem volume_corner_scalar_preimage_lower {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a c u : ℝ} (ha : a ∈ Icc 0 1) (hc : c ∈ Icc 0 1)
     (hu : u ∈ separatedTimes I ![a, c] Finset.univ ((volume I).toReal / 100)) (S : Set ℝ) :
@@ -64,6 +70,9 @@ theorem volume_corner_scalar_preimage_lower {I : Set ℝ} (hIunit : I ⊆ Icc 0 
     (ENNReal.ofReal_le_ofReal (corner_scalar_ratio_bounds ha hc (hIunit huI) hr hua huc).1)
     le_rfl zero_le zero_le
 
+/--
+@isnad1 id=le.8h5v.s8.0b015ce2bcbd from=translated src=- shape=ab6eab1e vocab=397c09a5
+-/
 theorem volume_cornerTimeRelation_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hc : c ∈ Icc 0 1)

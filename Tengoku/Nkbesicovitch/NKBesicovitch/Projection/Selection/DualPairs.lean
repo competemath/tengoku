@@ -31,10 +31,16 @@ noncomputable def dualPairParameters (I : Set ℝ) (a b : ℝ) : Set (ℝ × ℝ
   separatedPairs (separatedTimes I ![a, b] Finset.univ ((volume I).toReal / 100))
     ((volume I).toReal / 100)
 
+/--
+@isnad1 id=measurab.1h3v.s4.ab6842cd38e9 from=translated src=- shape=e8101926 vocab=40062d2f
+-/
 theorem measurableSet_dualPairParameters {I : Set ℝ} (hI : MeasurableSet I) (a b : ℝ) :
     MeasurableSet (dualPairParameters I a b) :=
   measurableSet_separatedPairs (measurableSet_separatedTimes hI _ _ _) _
 
+/--
+@isnad1 id=measurab.3h4v.s7.d5eb553a83cf from=translated src=- shape=33531a48 vocab=cc0e358a
+-/
 theorem measurableSet_dualPairParameters_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b : X → ℝ} (ha : Measurable a) (hb : Measurable b) :
     MeasurableSet {p : X × (ℝ × ℝ) |
@@ -47,6 +53,9 @@ theorem measurableSet_dualPairParameters_family {X : Type*} [MeasurableSpace X]
   exact measurableSet_separatedPairs_family
     (measurableSet_separatedTimes_family hI Finset.univ (fun i _ ↦ hbase i) hr) hr
 
+/--
+@isnad1 id=and.1h4v.s8.84f89fc1237d from=translated src=- shape=102d9b50 vocab=b01034c9
+-/
 theorem dualPairParameters_spec {I : Set ℝ} {a b : ℝ} {p : ℝ × ℝ}
     (hp : p ∈ dualPairParameters I a b) :
     p.1 ∈ I ∧ p.2 ∈ I ∧
@@ -58,6 +67,9 @@ theorem dualPairParameters_spec {I : Set ℝ} {a b : ℝ} {p : ℝ × ℝ}
   exact ⟨hs.1, ht.1, hs.2 0 (Finset.mem_univ _), hs.2 1 (Finset.mem_univ _),
     ht.2 0 (Finset.mem_univ _), ht.2 1 (Finset.mem_univ _), hp.2⟩
 
+/--
+@isnad1 id=and.3h4v.s7.aab0d89ba8e8 from=translated src=- shape=bdc7d4f8 vocab=8418d86f
+-/
 theorem dualPairParameters_ne {I : Set ℝ} (hIpos : 0 < volume I) (hIfin : volume I ≠ ∞)
     {a b : ℝ} {p : ℝ × ℝ} (hp : p ∈ dualPairParameters I a b) :
     p.1 ≠ a ∧ p.1 ≠ b ∧ p.2 ≠ a ∧ p.2 ≠ b ∧ p.1 ≠ p.2 := by
@@ -67,6 +79,9 @@ theorem dualPairParameters_ne {I : Set ℝ} (hIpos : 0 < volume I) (hIfin : volu
   exact ⟨dist_pos.mp (hr.trans_le hta), dist_pos.mp (hr.trans_le htb),
     dist_pos.mp (hr.trans_le hua), dist_pos.mp (hr.trans_le hub), dist_pos.mp (hr.trans_le htu)⟩
 
+/--
+@isnad1 id=le.2h3v.s7.7628e255e612 from=translated src=- shape=14677012 vocab=7dfd731c
+-/
 theorem half_square_le_volume_dualPairParameters {I : Set ℝ} (hI : MeasurableSet I)
     (hIfin : volume I ≠ ∞) (a b : ℝ) :
     ENNReal.ofReal ((volume I).toReal ^ 2 / 2) ≤ volume (dualPairParameters I a b) := by

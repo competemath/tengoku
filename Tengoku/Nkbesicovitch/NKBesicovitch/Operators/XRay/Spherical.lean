@@ -33,6 +33,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 noncomputable def sphericalXRayNorm (f : E → ℝ≥0∞) (q r : ℝ≥0∞) : ℝ≥0∞ :=
   eLpNorm (directionXRayNorm f r) q (volume : Measure E).toSphere
 
+/--
+@isnad1 id=le.5h9v.s12.d6b4c813f2ee from=translated src=- shape=0dc1a355 vocab=b108e079
+-/
 theorem eLpNorm_directionXRayNorm_slope_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     {A : Set (ℝ ∙ v)ᗮ} (hA : MeasurableSet A) {c : ℝ} (hc : 0 < c)
@@ -58,7 +61,9 @@ theorem eLpNorm_directionXRayNorm_slope_le (hv : ‖v‖ = 1)
     (norm_add_normal_le_of_inner_lower hv hc (hcap _ hξ))).trans_eq
       (ENNReal.ofReal_eq_coe_nnreal hcn)
 
-/-- A cap estimate with an explicit constant from sphere measure and arclength.-/
+/-- A cap estimate with an explicit constant from sphere measure and arclength.
+@isnad1 id=le.5h9v.s12.fa0e9dda6e3d from=translated src=- shape=7ee979da vocab=e5eee71a
+-/
 theorem eLpNorm_directionXRayNorm_cap_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     {A : Set (ℝ ∙ v)ᗮ} (hA : MeasurableSet A) {c : ℝ} (hc : 0 < c)

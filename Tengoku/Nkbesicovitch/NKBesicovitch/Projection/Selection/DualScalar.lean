@@ -27,6 +27,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.Projection.Selection
 
+/--
+@isnad1 id=measurab.4h5v.s6.bc3ef72c88e6 from=translated src=- shape=38a95b36 vocab=333eb5e0
+-/
 theorem measurable_dualTime {X : Type*} [MeasurableSpace X] {a b c t : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (ht : Measurable t) :
     Measurable (fun x ↦ dualTime (a x) (b x) (c x) (t x)) :=
@@ -35,28 +38,43 @@ theorem measurable_dualTime {X : Type*} [MeasurableSpace X] {a b c t : X → ℝ
 /-- The scalar making `t` and `u` dual heights for the base pair `(a,b)`.-/
 noncomputable def dualScalar (a b t u : ℝ) : ℝ := ((b - a) * (t - a) / (t - b)) / (u - a)
 
+/--
+@isnad1 id=measurab.4h5v.s6.84aba9bd0f19 from=translated src=- shape=38a95b36 vocab=8c277a71
+-/
 theorem measurable_dualScalar {X : Type*} [MeasurableSpace X] {a b t u : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (ht : Measurable t) (hu : Measurable u) :
     Measurable (fun x ↦ dualScalar (a x) (b x) (t x) (u x)) :=
   (((hb.sub ha).mul (ht.sub ha)).div (ht.sub hb)).div (hu.sub ha)
 
+/--
+@isnad1 id=ne.4h4v.s5.15869bb533fb from=translated src=- shape=809290c7 vocab=08b96e40
+-/
 theorem dualScalar_ne_zero {a b t u : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t ≠ b)
     (hua : u ≠ a) : dualScalar a b t u ≠ 0 :=
   div_ne_zero (div_ne_zero (mul_ne_zero (sub_ne_zero.mpr hab.symm) (sub_ne_zero.mpr hta))
     (sub_ne_zero.mpr htb)) (sub_ne_zero.mpr hua)
 
+/--
+@isnad1 id=eq.3h4v.s5.c8755f44eb9d from=translated src=- shape=9ec4be6f vocab=5425bbb6
+-/
 theorem dualTime_dualScalar {a b t u : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t ≠ b) :
     dualTime a b (dualScalar a b t u) t = u := by
   unfold dualTime dualScalar
   field_simp
   ring
 
+/--
+@isnad1 id=eq.4h4v.s5.90b2ea405acb from=translated src=- shape=ea037816 vocab=5425bbb6
+-/
 theorem dualScalar_dualTime {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0) (hta : t ≠ a)
     (htb : t ≠ b) : dualScalar a b t (dualTime a b c t) = c := by
   unfold dualScalar
   rw [dualTime_sub_base]
   field_simp
 
+/--
+@isnad1 id=injon.3h3v.s5.3d0efd37356b from=translated src=- shape=e7a87ee9 vocab=3caaf8e3
+-/
 theorem injOn_dualScalar {a b t : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t ≠ b) :
     InjOn (dualScalar a b t) {u | u ≠ a} := by
   intro u _ v _ h
@@ -65,6 +83,9 @@ theorem injOn_dualScalar {a b t : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t 
     _ = dualTime a b (dualScalar a b t v) t := congrArg (fun c ↦ dualTime a b c t) h
     _ = v := dualTime_dualScalar hab hta htb
 
+/--
+@isnad1 id=eq.4h4v.s6.c2bdf772676c from=translated src=- shape=7819658c vocab=b440dabf
+-/
 theorem image_dualScalar {a b t : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t ≠ b)
     {S : Set ℝ} (hS : ∀ u ∈ S, u ≠ a) :
     dualScalar a b t '' S = {c | c ≠ 0 ∧ dualTime a b c t ∈ S} := by
@@ -76,6 +97,9 @@ theorem image_dualScalar {a b t : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t 
   · rintro ⟨hc, ht'⟩
     exact ⟨dualTime a b c t, ht', dualScalar_dualTime hab hc hta htb⟩
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.2886ba771a0a from=translated src=- shape=8d75c9ca vocab=ae183a80
+-/
 theorem hasDerivAt_dualScalar (a b t : ℝ) {u : ℝ} (hua : u ≠ a) :
     HasDerivAt (dualScalar a b t) (-((b - a) * (t - a) / (t - b)) / (u - a) ^ 2) u := by
   unfold dualScalar
@@ -83,6 +107,9 @@ theorem hasDerivAt_dualScalar (a b t : ℝ) {u : ℝ} (hua : u ≠ a) :
     (hasDerivAt_const u ((b - a) * (t - a) / (t - b))).fun_div
       ((hasDerivAt_id u).sub_const a) (sub_ne_zero.mpr hua)
 
+/--
+@isnad1 id=eq.5h4v.s7.3e840ad8b7c1 from=translated src=- shape=c8981339 vocab=fc00eeba
+-/
 theorem volume_image_dualScalar {a b t : ℝ} (hab : a ≠ b) (hta : t ≠ a) (htb : t ≠ b)
     {S : Set ℝ} (hS : MeasurableSet S) (hSa : ∀ u ∈ S, u ≠ a) :
     volume (dualScalar a b t '' S) =

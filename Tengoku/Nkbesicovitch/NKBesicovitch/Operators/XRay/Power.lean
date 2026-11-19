@@ -28,6 +28,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {f : E → ℝ≥0∞} {t : ℝ}
 
+/--
+@isnad1 id=le.1h5v.s9.5b79119fbe80 from=translated src=- shape=90ef464a vocab=9e670be9
+-/
 theorem support_lineIntegrand_subset {R : ℝ}
     (hs : Function.support f ⊆ closedBall 0 R)
     (w : sphere (0 : E) 1) (y : (ℝ ∙ (w : E))ᗮ) :
@@ -44,6 +47,9 @@ theorem support_lineIntegrand_subset {R : ℝ}
 
 variable [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=le.3h6v.s10.a62813866ab6 from=translated src=- shape=66d0a962 vocab=3b6d9791
+-/
 theorem lineIntegral_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable f)
     (hs : Function.support f ⊆ closedBall 0 (R : ℝ))
     (w : sphere (0 : E) 1) (y : (ℝ ∙ (w : E))ᗮ) :
@@ -63,6 +69,9 @@ theorem lineIntegral_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable f)
 
 variable [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=le.3h6v.s8.23aded0b6492 from=translated src=- shape=bc9301af vocab=def022ac
+-/
 theorem directionXRayNorm_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable f)
     (hs : Function.support f ⊆ closedBall 0 (R : ℝ)) (w : sphere (0 : E) 1) (r : ℝ≥0∞) :
     directionXRayNorm f (r * ENNReal.ofReal t) w ^ t ≤
@@ -77,6 +86,9 @@ theorem directionXRayNorm_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable 
   exact ae_of_all _ fun y ↦ by
     simpa only [enorm_eq_self] using lineIntegral_rpow_le ht R hf hs w y
 
+/--
+@isnad1 id=le.3h6v.s8.2afe2c78b149 from=translated src=- shape=0263f727 vocab=39325c7b
+-/
 theorem sphericalXRayNorm_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable f)
     (hs : Function.support f ⊆ closedBall 0 (R : ℝ)) (q r : ℝ≥0∞) :
     sphericalXRayNorm f (q * ENNReal.ofReal t) (r * ENNReal.ofReal t) ^ t ≤
@@ -90,7 +102,9 @@ theorem sphericalXRayNorm_rpow_le (ht : 1 ≤ t) (R : ℝ≥0) (hf : Measurable 
   exact ae_of_all _ fun w ↦ by
     simpa only [enorm_eq_self] using directionXRayNorm_rpow_le ht R hf hs w r
 
-/-- A local mixed X-ray estimate holds at every common larger exponent scale.-/
+/-- A local mixed X-ray estimate holds at every common larger exponent scale.
+@isnad1 id=le.4h8v.s8.c5b05ddfa9da from=translated src=- shape=65f86da0 vocab=d54bdd57
+-/
 theorem sphericalXRayNorm_le_of_power (ht : 1 ≤ t) (R : ℝ≥0) {p q r A : ℝ≥0∞}
     (hbound : ∀ g : E → ℝ≥0∞, Measurable g →
       Function.support g ⊆ closedBall 0 (R : ℝ) →

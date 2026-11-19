@@ -34,22 +34,37 @@ def codeCoordinates (a b c : ℝ) (p : PairCoordinates m) : Line m × EuclideanS
 noncomputable def codeJacobian (m : ℕ) (a b : ℝ) : ℝ≥0∞ :=
   ENNReal.ofReal |((b - a) ^ m)⁻¹|
 
+/--
+@isnad1 id=ne.0h3v.s3.d29267564cec from=translated src=- shape=b198ea4e vocab=7b718588
+-/
 theorem codeJacobian_ne_top (m : ℕ) (a b : ℝ) : codeJacobian m a b ≠ ∞ :=
   ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=lt.1h3v.s4.e841e7495133 from=translated src=- shape=526d7cc1 vocab=5a41acd2
+-/
 theorem codeJacobian_pos {a b : ℝ} (hab : a ≠ b) : 0 < codeJacobian m a b :=
   ENNReal.ofReal_pos.mpr (abs_pos.mpr (inv_ne_zero (pow_ne_zero _ (sub_ne_zero.mpr hab.symm))))
 
+/--
+@isnad1 id=continuo.0h4v.s7.f4a1b3652ecb from=translated src=- shape=ff20c7a1 vocab=d646ee2f
+-/
 theorem continuous_codeCoordinates (a b c : ℝ) :
     Continuous (codeCoordinates (m := m) a b c) := by
   unfold codeCoordinates pairCode lineAt atHeight
   fun_prop
 
+/--
+@isnad1 id=continuo.0h4v.s7.9e845613afb5 from=translated src=- shape=0a015436 vocab=7987e54e
+-/
 theorem continuous_pairFromCode (a b c : ℝ) :
     Continuous (fun p : Line m × EuclideanSpace ℝ (Fin m) ↦ pairFromCode a b c p.1 p.2) := by
   unfold pairFromCode atHeight
   fun_prop
 
+/--
+@isnad1 id=measurep.1h4v.s11.1e7ffb2bf3af from=translated src=- shape=e06c0de2 vocab=6108374a
+-/
 theorem measurePreserving_codeCoordinates {a b : ℝ} (hab : a ≠ b) (c : ℝ) :
     MeasurePreserving (codeCoordinates (m := m) a b c) volume
       (codeJacobian m a b • volume) := by

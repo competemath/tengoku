@@ -24,6 +24,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=ex.7h6v.s9.a449b7f5b0e1 from=translated src=- shape=18db8b01 vocab=a2606f29
+-/
 theorem exists_interpolated_series_constant {C S : ℝ≥0∞} {B q β θ : ℝ}
     (hC : C ≠ ∞) (hS : S ≠ ∞) (hB : 0 < B) (hq : 0 < q) (hβ : 1 < β)
     (hθ : 0 ≤ θ) (hθ1 : θ < 1) :

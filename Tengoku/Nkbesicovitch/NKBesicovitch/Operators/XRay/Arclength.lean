@@ -31,6 +31,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.2h4v.s8.0bcb7a642f39 from=translated src=- shape=53b1297f vocab=48610ee2
+-/
 theorem lintegral_normalize_direction {f : E → ℝ≥0∞} (hf : Measurable f)
     {w : E} (hw : w ≠ 0) (x : E) :
     (∫⁻ s : ℝ, f (x + s • (‖w‖⁻¹ • w))) =

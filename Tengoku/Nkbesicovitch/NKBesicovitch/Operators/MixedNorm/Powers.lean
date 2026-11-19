@@ -24,6 +24,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=le.2h4v.s6.cf9d5114dec2 from=translated src=- shape=9de8560b vocab=61fd6bd0
+-/
 theorem lintegral_rpow_le_measure_mul {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {f : α → ℝ≥0∞} (hf : Measurable f) {t : ℝ} (ht : 1 ≤ t) :
     (∫⁻ x, f x ∂μ) ^ t ≤ μ univ ^ (t - 1) * ∫⁻ x, f x ^ t ∂μ := by

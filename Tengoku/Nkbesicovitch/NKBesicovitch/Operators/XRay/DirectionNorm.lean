@@ -31,6 +31,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {m : ℕ} {v : E}
 
+/--
+@isnad1 id=eq.1h7v.s12.4da60fd7af8e from=translated src=- shape=76f88fa6 vocab=53afe4a4
+-/
 theorem chartXRay_normalCoordinates (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (f : E → ℝ≥0∞)
     (ξ x : EuclideanSpace ℝ (Fin m)) :
@@ -49,6 +52,9 @@ noncomputable def directionXRayNorm (f : E → ℝ≥0∞) (r : ℝ≥0∞)
     (w : Metric.sphere (0 : E) 1) : ℝ≥0∞ :=
   eLpNorm (fun y : (ℝ ∙ (w : E))ᗮ ↦ ∫⁻ t : ℝ, f ((y : E) + t • (w : E))) r volume
 
+/--
+@isnad1 id=le.2h7v.s12.5f9347ba1485 from=translated src=- shape=90ba8ee8 vocab=23870fc1
+-/
 theorem eLpNorm_perpendicular_normalDirection_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     {f : E → ℝ≥0∞} (hf : Measurable f) (ξ : EuclideanSpace ℝ (Fin m)) (r : ℝ≥0∞) :

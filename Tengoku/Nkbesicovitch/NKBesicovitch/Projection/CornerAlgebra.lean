@@ -21,6 +21,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.10h8v.s8.e8c03606592a from=translated src=- shape=a6daafa3 vocab=e7bc5859
+-/
 theorem corner_threshold_bound_of_code_bound {β A D M N Q H τ : ℝ}
     (hβ : 1 < β) (hA : 0 ≤ A) (hD : 0 ≤ D) (hM : 0 < M) (hN : 0 ≤ N) (hQ : 0 ≤ Q)
     (hH : 0 < H) (hτ : 0 < τ)

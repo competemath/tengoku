@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=quasimea.2h5v.s9.0d578b72026b from=translated src=- shape=8d7d90b5 vocab=cd12caaa
+-/
 theorem quasiMeasurePreserving_codeSlope {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (z : EuclideanSpace ℝ (Fin m)) :
     Measure.QuasiMeasurePreserving (fun y : EuclideanSpace ℝ (Fin m) ↦
@@ -40,6 +43,9 @@ theorem quasiMeasurePreserving_codeSlope {a b c : ℝ} (hab : a ≠ b) (hc : c �
     (inv_ne_zero (sub_ne_zero.mpr hab.symm))
   simpa [Function.comp_def, sub_eq_add_neg, neg_smul] using h₃.comp (h₂.comp h₁)
 
+/--
+@isnad1 id=eventual.3h7v.s8.175d48661819 from=translated src=- shape=f3db05da vocab=75d7a925
+-/
 theorem codeSliceMass_ae_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G)
     (z : EuclideanSpace ℝ (Fin m)) : ∀ᵐ y, codeSliceMass a b c W z y ≤ parallelMultiplicity G := by
@@ -48,13 +54,18 @@ theorem codeSliceMass_ae_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (
       (fun ξ : EuclideanSpace ℝ (Fin m) ↦ volume {x : EuclideanSpace ℝ (Fin m) | (x, ξ) ∈ G}))
   exact h.mono fun y hy ↦ (codeSliceMass_le_parallelFiber hab c hWG z y).trans hy
 
+/--
+@isnad1 id=le.2h5v.s6.798fcf0e39ff from=translated src=- shape=abe659e0 vocab=e626b2fb
+-/
 theorem lintegral_le_mul_measure_of_ae_le {X : Type*} [MeasurableSpace X] {μ : Measure X}
     {f : X → ℝ≥0∞} {S : Set X} (hS : Function.support f ⊆ S) {C : ℝ≥0∞}
     (hC : ∀ᵐ x ∂μ, f x ≤ C) : (∫⁻ x, f x ∂μ) ≤ C * μ S := by
   rw [← setLIntegral_eq_of_support_subset hS]
   exact (lintegral_mono_ae (ae_restrict_of_ae hC)).trans_eq (setLIntegral_const S C)
 
-/-- The exact constant in the code-density upper bound from the basic pair argument.-/
+/-- The exact constant in the code-density upper bound from the basic pair argument.
+@isnad1 id=le.4h7v.s9.028abcd6a5d7 from=translated src=- shape=eb99b571 vocab=1e2d63de
+-/
 theorem codeDensity_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     (hWG : W ⊆ pairFamily a G) (z : EuclideanSpace ℝ (Fin m)) :
@@ -65,6 +76,9 @@ theorem codeDensity_le_parallelMultiplicity {a b c : ℝ} (hab : a ≠ b) (hc : 
     (support_codeSliceMass_subset hab c hWG z)
     (codeSliceMass_ae_le_parallelMultiplicity hab hc hWG z)) bot_le bot_le
 
+/--
+@isnad1 id=ne.5h7v.s7.6da933d68eef from=translated src=- shape=e6d99986 vocab=12197454
+-/
 theorem codeDensity_ne_top {a b c : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     (hWG : W ⊆ pairFamily a G) (hG : Bornology.IsBounded G) (z : EuclideanSpace ℝ (Fin m)) :

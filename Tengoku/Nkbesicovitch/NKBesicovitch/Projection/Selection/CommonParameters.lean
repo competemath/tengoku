@@ -31,11 +31,17 @@ variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 def commonLines (F : Set (Line m)) (I : Line m → Set ℝ) (σ : Fin D → ℝ) : Set (Line m) :=
   F ∩ {g | σ ∈ S.select (I g)}
 
+/--
+@isnad1 id=measurab.2h8v.s8.eea95db59935 from=translated src=- shape=420bb2ab vocab=4da7a52c
+-/
 theorem measurableSet_commonLines {F : Set (Line m)} (hF : MeasurableSet F)
     {I : Line m → Set ℝ} (hI : MeasurableSet {p : Line m × ℝ | p.2 ∈ I p.1})
     (σ : Fin D → ℝ) : MeasurableSet (S.commonLines F I σ) :=
   hF.inter (S.measurableSet_mem_select hI measurable_const)
 
+/--
+@isnad1 id=eq.2h7v.s10.4162209726b5 from=translated src=- shape=c2b89e1f vocab=ca722732
+-/
 theorem lintegral_volume_commonLines {F : Set (Line m)} (hF : MeasurableSet F)
     {I : Line m → Set ℝ} (hI : MeasurableSet {p : Line m × ℝ | p.2 ∈ I p.1}) :
     (∫⁻ σ, volume (S.commonLines F I σ)) = ∫⁻ g in F, volume (S.select (I g)) := by
@@ -65,6 +71,9 @@ theorem lintegral_volume_commonLines {F : Set (Line m)} (hF : MeasurableSet F)
           simp [R, hg]
         simp only [he, measure_empty, indicator_of_notMem hg]
 
+/--
+@isnad1 id=le.4h8v.s9.463dc697304c from=translated src=- shape=231a4e8c vocab=2738ed2f
+-/
 theorem support_volume_commonLines_subset {F : Set (Line m)} {I : Line m → Set ℝ}
     (hI : MeasurableSet {p : Line m × ℝ | p.2 ∈ I p.1})
     (hunit : ∀ g ∈ F, I g ⊆ Icc 0 1) {r : ℝ} (hr : 0 < r)
@@ -76,6 +85,9 @@ theorem support_volume_commonLines_subset {F : Set (Line m)} {I : Line m → Set
     hI.preimage (f := fun t ↦ (g, t)) (by fun_prop)
   exact S.select_subset_parameterBox hIg (hunit g hgF) hr (hmeasure g hgF) hgσ
 
+/--
+@isnad1 id=ex.6h8v.s11.847a8a5ef00d from=translated src=- shape=cc3eea01 vocab=3d006c35
+-/
 theorem exists_common_parameter {F : Set (Line m)} (hF : MeasurableSet F)
     (hFfin : volume F ≠ ∞) {I : Line m → Set ℝ}
     (hI : MeasurableSet {p : Line m × ℝ | p.2 ∈ I p.1})
@@ -108,6 +120,9 @@ theorem exists_common_parameter {F : Set (Line m)} (hF : MeasurableSet F)
     _ ≤ _ := setLIntegral_mono' hF (fun g hg ↦ S.volume_lower_of_measure_lower
       (hI.preimage (f := fun t ↦ (g, t)) (by fun_prop)) (hunit g hg) hr (hmeasure g hg))
 
+/--
+@isnad1 id=eq.1h6v.s7.5d59dac94738 from=translated src=- shape=56999c6a vocab=6bbe72c5
+-/
 theorem selection_fraction_eq {r : ℝ} (hr : 0 < r) :
     ENNReal.ofReal (S.lowerConstant * r ^ S.volumeExponent) / volume (S.parameterBox r) =
       ENNReal.ofReal ((S.lowerConstant / (2 * S.upperConstant) ^ D) *
@@ -118,7 +133,9 @@ theorem selection_fraction_eq {r : ℝ} (hr : 0 < r) :
   simp only [div_mul_eq_div_div, inv_pow, div_inv_eq_mul, pow_add]
   ring
 
-/-- One common parameter retains a polynomial fraction of the original line mass.-/
+/-- One common parameter retains a polynomial fraction of the original line mass.
+@isnad1 id=ex.6h8v.s11.3193a9a0e450 from=translated src=- shape=24aef05c vocab=8dc72595
+-/
 theorem exists_common_parameter_polynomial {F : Set (Line m)} (hF : MeasurableSet F)
     (hFfin : volume F ≠ ∞) {I : Line m → Set ℝ}
     (hI : MeasurableSet {p : Line m × ℝ | p.2 ∈ I p.1})

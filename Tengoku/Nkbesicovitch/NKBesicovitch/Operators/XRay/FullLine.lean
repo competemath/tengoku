@@ -34,12 +34,18 @@ variable {m : ℕ}
 noncomputable def chartXRay (f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞)
     (ξ x : EuclideanSpace ℝ (Fin m)) : ℝ≥0∞ := ∫⁻ t, f (x + t • ξ, t)
 
+/--
+@isnad1 id=measurab.1h2v.s7.62699f271577 from=translated src=- shape=5ee960e5 vocab=4c71d256
+-/
 theorem measurable_chartXRay {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
     (hf : Measurable f) : Measurable (fun g : Line m ↦ chartXRay f g.2 g.1) := by
   have h : Measurable (fun p : Line m × ℝ ↦ f (p.1.1 + p.2 • p.1.2, p.2)) :=
     hf.comp (by fun_prop)
   exact h.lintegral_prod_right'
 
+/--
+@isnad1 id=ex.1h2v.s7.f805ca49523b from=translated src=- shape=a2b9ae1b vocab=0e2aa051
+-/
 theorem exists_finite_unitInterval_cover {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hK : IsBounded K) :
     ∃ s : Finset ℝ, ∀ z ∈ K, ∃ a ∈ s, z.2 ∈ Icc a (a + 1) := by
@@ -53,6 +59,9 @@ theorem exists_finite_unitInterval_cover {K : Set (EuclideanSpace ℝ (Fin m) ×
   obtain ⟨has, hat⟩ := mem_iUnion.mp ha
   exact ⟨a, has, hat.1.le, hat.2.le⟩
 
+/--
+@isnad1 id=le.2h6v.s8.3191909a0589 from=translated src=- shape=f8949a7a vocab=0c6ebeb1
+-/
 theorem chartXRay_le_sum_unitIntervals {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞} (hsupport : Function.support f ⊆ K)
     {s : Finset ℝ} (hcover : ∀ z ∈ K, ∃ a ∈ s, z.2 ∈ Icc a (a + 1))
@@ -70,6 +79,9 @@ theorem chartXRay_le_sum_unitIntervals {K : Set (EuclideanSpace ℝ (Fin m) × �
   rw [tsum_fintype]
   exact Finset.sum_coe_sort s (fun a ↦ ∫⁻ t in Icc a (a + 1), f (x + t • ξ, t))
 
+/--
+@isnad1 id=le.8h7v.s10.cec61dcfb23f from=translated src=- shape=a52327b6 vocab=051f7d99
+-/
 theorem mixedNorm_chartXRay_le_sum_unitIntervals
     {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞} (hf : Measurable f)

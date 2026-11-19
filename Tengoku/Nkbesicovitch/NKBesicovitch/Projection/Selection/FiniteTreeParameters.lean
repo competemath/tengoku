@@ -40,6 +40,9 @@ noncomputable def finiteTreeTime (J : ℕ)
   S.treeTime J (TreeCoordinate.rootEquiv D L J σ).1 (TreeCoordinate.rootEquiv D L J σ).2
     ((Fintype.equivFin (TreeTimeLabel L J)).symm i)
 
+/--
+@isnad1 id=measurab.1h8v.s8.c3c5746ca049 from=translated src=- shape=5d2cc5cc vocab=475ae070
+-/
 theorem measurableSet_finiteTreeParameters_family (J : ℕ) {X : Type} [MeasurableSpace X]
     (I : X → Set ℝ) (hI : MeasurableSet {p : X × ℝ | p.2 ∈ I p.1}) :
     MeasurableSet {p : X × (Fin (3 + Fintype.card (TreeCoordinate D L J)) → ℝ) |
@@ -50,21 +53,33 @@ theorem measurableSet_finiteTreeParameters_family (J : ℕ) {X : Type} [Measurab
     (measurable_fst.prodMk ((TreeCoordinate.rootEquiv D L J).measurable.comp measurable_snd))
   simpa only [finiteTreeParameters, preimage, mem_ofPred_eq, ofPred_mem_eq] using h
 
+/--
+@isnad1 id=eq.0h7v.s9.4eb159c870bd from=translated src=- shape=197f3b4b vocab=a6c1851c
+-/
 theorem volume_finiteTreeParameters (I : Set ℝ) (J : ℕ) :
     volume (S.finiteTreeParameters I J) = volume (S.rootParameters I J) :=
   (TreeCoordinate.volume_preserving_rootEquiv D L J).measure_preimage_equiv _
 
+/--
+@isnad1 id=measurab.0h7v.s7.17ff32db079c from=translated src=- shape=92482145 vocab=e38e9358
+-/
 theorem measurable_finiteTreeTime (J : ℕ) (i : Fin (Fintype.card (TreeTimeLabel L J))) :
     Measurable (fun σ ↦ S.finiteTreeTime J σ i) :=
   S.measurable_treeTime J (TreeCoordinate.rootEquiv D L J).measurable.fst
     (TreeCoordinate.rootEquiv D L J).measurable.snd _
 
+/--
+@isnad1 id=mem.4h9v.s7.21a37d4a268d from=translated src=- shape=eb69a642 vocab=c97268fa
+-/
 theorem finiteTreeTime_mem {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) (J : ℕ) {σ : Fin (3 + Fintype.card (TreeCoordinate D L J)) → ℝ}
     (hσ : σ ∈ S.finiteTreeParameters I J) (i : Fin (Fintype.card (TreeTimeLabel L J))) :
     S.finiteTreeTime J σ i ∈ I :=
   S.treeTime_mem hI hIunit hIpos J hσ.1 hσ.2 _
 
+/--
+@isnad1 id=eq.0h7v.s10.9ee6e829e43d from=translated src=- shape=b75aeca0 vocab=ff6f79ab
+-/
 theorem image_finiteTreeTime (J : ℕ)
     (σ : Fin (3 + Fintype.card (TreeCoordinate D L J)) → ℝ) :
     Finset.univ.image (S.finiteTreeTime J σ) =
@@ -75,6 +90,9 @@ theorem image_finiteTreeTime (J : ℕ)
   rw [← Finset.image_image, Finset.image_univ_equiv]
   rfl
 
+/--
+@isnad1 id=ex.0h5v.s8.a61520a18257 from=translated src=- shape=b73ef2f2 vocab=7137d6ef
+-/
 theorem exists_finiteTree_coordinate_constant :
     ∃ C : ℝ, 1 ≤ C ∧ ∀ I : Set ℝ, MeasurableSet I → I ⊆ Icc 0 1 → 0 < volume I →
       ∀ J : ℕ, ∀ σ ∈ S.finiteTreeParameters I J, ∀ j,

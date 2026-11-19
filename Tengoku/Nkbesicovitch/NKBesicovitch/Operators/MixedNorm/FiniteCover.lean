@@ -29,6 +29,9 @@ namespace NKBesicovitch
 
 variable {X ι : Type*} [MeasurableSpace X] {μ : Measure X} {p : ℝ≥0∞}
 
+/--
+@isnad1 id=le.2h6v.s6.fe0f11831abf from=translated src=- shape=e949dd26 vocab=1ab1d8ff
+-/
 theorem eLpNorm_restrict_union_le (f : X → ℝ≥0∞) (A B : Set X)
     (hp : 1 ≤ p) (hpfin : p ≠ ∞) :
     eLpNorm f p (μ.restrict (A ∪ B)) ≤
@@ -41,7 +44,9 @@ theorem eLpNorm_restrict_union_le (f : X → ℝ≥0∞) (A B : Set X)
   exact (ENNReal.rpow_le_rpow (lintegral_union_le (fun x ↦ f x ^ p.toReal) A B) hinv).trans
     (ENNReal.rpow_add_le_add_rpow _ _ hinv (by simpa using inv_le_one_of_one_le₀ hreal))
 
-/-- Local norms on any finite cover control the global norm.-/
+/-- Local norms on any finite cover control the global norm.
+@isnad1 id=le.3h7v.s6.7498ba621c55 from=translated src=- shape=8686cf7c vocab=19494e93
+-/
 theorem eLpNorm_le_sum_restrict (f : X → ℝ≥0∞) (s : Finset ι) (A : ι → Set X)
     (hcover : ∀ x, ∃ i ∈ s, x ∈ A i) (hp : 1 ≤ p) (hpfin : p ≠ ∞) :
     eLpNorm f p μ ≤ ∑ i ∈ s, eLpNorm f p (μ.restrict (A i)) := by

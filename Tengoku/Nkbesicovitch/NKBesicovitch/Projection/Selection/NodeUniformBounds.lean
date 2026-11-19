@@ -29,6 +29,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=and.2h6v.s9.4da5c0c8b7e9 from=translated src=- shape=54420b98 vocab=f7c833b1
+-/
 theorem node_reservoir_constants_le {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) :
     S.upperConstant *
@@ -48,6 +51,9 @@ theorem node_reservoir_constants_le {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     mul_le_mul_of_nonneg_left
       (inv_pow_le_of_radius_pow_le hx (radius_pow_eight_le_inner_threshold hx.le hx1) _) hC⟩
 
+/--
+@isnad1 id=le.4h8v.s8.19719270b47c from=translated src=- shape=b3ce03b8 vocab=0d80d7ed
+-/
 theorem node_scalar_uniform_bound {I : Set ℝ} (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I)
     {q : (ℝ × ℝ) × ℝ} (hq : q ∈ separatedTriples I ((volume I).toReal / 100))
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -66,6 +72,9 @@ theorem node_scalar_uniform_bound {I : Set ℝ} (hIunit : I ⊆ Icc 0 1) (hIpos 
   exact hκ.trans ((pow_le_pow_right₀ hs (by omega : 3 ≤ 8 * S.boundExponent)).trans
     (le_mul_of_one_le_left (by positivity) S.one_le_upperConstant))
 
+/--
+@isnad1 id=le.4h11v.s8.f5504a656c87 from=translated src=- shape=37ae3c2e vocab=b4aaf6c0
+-/
 theorem node_outer_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c : ℝ}
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -76,6 +85,9 @@ theorem node_outer_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I
   exact (S.cornerNodeParameters_outer_coordinates_bound hI hIunit hIpos (by positivity) hp j).trans
     (S.node_reservoir_constants_le hIunit hIpos).1
 
+/--
+@isnad1 id=le.4h12v.s8.69e375cbd288 from=translated src=- shape=3bdf00de vocab=9b0f0f88
+-/
 theorem node_inner_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c : ℝ}
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -87,6 +99,9 @@ theorem node_inner_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I
     (by positivity) hp i j).trans
     (S.node_reservoir_constants_le hIunit hIpos).2
 
+/--
+@isnad1 id=le.6h11v.s10.28c4aa1ad253 from=translated src=- shape=7c7adbf5 vocab=9a8afab7
+-/
 theorem node_outer_uniform_estimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c : ℝ}
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -102,6 +117,9 @@ theorem node_outer_uniform_estimate {I : Set ℝ} (hI : MeasurableSet I)
       (mul_le_mul_of_nonneg_right (S.node_reservoir_constants_le hIunit hIpos).1
         (Real.rpow_nonneg ENNReal.toReal_nonneg _)) (Real.rpow_nonneg ENNReal.toReal_nonneg _))
 
+/--
+@isnad1 id=le.6h12v.s10.4acd8b875156 from=translated src=- shape=094575cc vocab=98cc943a
+-/
 theorem node_inner_uniform_estimate {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c : ℝ}
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}

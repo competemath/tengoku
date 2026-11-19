@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.2h5v.s6.b6b33ba1dbb7 from=translated src=- shape=3b9a0206 vocab=d93ec623
+-/
 theorem setLIntegral_lt_le_mul_measure {X : Type*} [MeasurableSpace X]
     {μ : Measure X} {f : X → ℝ≥0∞} (hf : Measurable f) {S : Set X}
     (hS : Function.support f ⊆ S) (ℓ : ℝ≥0∞) :
@@ -44,6 +47,9 @@ theorem setLIntegral_lt_le_mul_measure {X : Type*} [MeasurableSpace X]
       exact hx (hS h)
     simp [Set.indicator, hx, hz]
 
+/--
+@isnad1 id=le.4h7v.s10.b26c14cb5c52 from=translated src=- shape=8b815b16 vocab=a0626bd3
+-/
 theorem volume_low_pairDensity_le {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     (hWG : W ⊆ pairFamily a G) (ℓ : ℝ≥0∞) :

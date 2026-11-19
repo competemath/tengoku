@@ -118,6 +118,9 @@ noncomputable def graft (P : CornerPattern m β) (B : P.children → CornerTree 
     · exact hc z
     · exact (B u).child_c v _ z
 
+/--
+@isnad1 id=mem.6h7v.s8.71b2a7830196 from=translated src=- shape=b9181889 vocab=f8542d13
+-/
 theorem graft_times_subset (P : CornerPattern m β) (B : P.children → CornerTree m β J)
     (ha : ∀ u, (B u).a (B u).root = P.b)
     (hb : ∀ u, (B u).b (B u).root = u.val.2)
@@ -140,6 +143,9 @@ theorem graft_times_subset (P : CornerPattern m β) (B : P.children → CornerTr
     · exact hP t ht
     · exact hB u t ((B u).pattern_times_subset v (Nat.lt_of_succ_lt_succ h) ht)
 
+/--
+@isnad1 id=ex.4h6v.s7.598fb15e59aa from=translated src=- shape=1d2d5d0c vocab=d2acd94e
+-/
 theorem exists_of_patterns
     (hP : ∀ a b c : ℝ, b ≠ a → c ≠ a → c ≠ b →
       ∃ P : CornerPattern m β, P.a = a ∧ P.b = b ∧ P.c = c)

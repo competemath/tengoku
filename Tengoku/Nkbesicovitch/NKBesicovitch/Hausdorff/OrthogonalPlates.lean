@@ -29,6 +29,9 @@ namespace NKBesicovitch.Hausdorff
 
 variable {n : ℕ} (V : Submodule ℝ (EuclideanSpace ℝ (Fin n)))
 
+/--
+@isnad1 id=measurep.0h3v.s13.b1ddd5321228 from=translated src=- shape=c96f307f vocab=c92639f6
+-/
 theorem measurePreserving_orthogonal_add (a : EuclideanSpace ℝ (Fin n)) :
     MeasurePreserving (fun z : V × Vᗮ ↦ a + (z.1 : EuclideanSpace ℝ (Fin n)) + z.2)
       volume volume := by
@@ -37,6 +40,9 @@ theorem measurePreserving_orthogonal_add (a : EuclideanSpace ℝ (Fin n)) :
       (WithLp.volume_preserving_toLp V Vᗮ))
   simpa [Function.comp_def, Submodule.orthogonalDecomposition_symm_apply, add_assoc] using h
 
+/--
+@isnad1 id=and.2h5v.s13.c6c8770e8493 from=translated src=- shape=1be5aac7 vocab=d6f38bb1
+-/
 theorem orthogonal_components_mem_of_mem_plate {a x : EuclideanSpace ℝ (Fin n)}
     {δ : ℝ} (hδ : δ ≤ 1) (hx : x ∈ plate δ V a) :
     V.orthogonalProjectionOnto (x - a) ∈ closedBall 0 2 ∧
@@ -60,6 +66,9 @@ theorem orthogonal_components_mem_of_mem_plate {a x : EuclideanSpace ℝ (Fin n)
     exact (Vᗮ.norm_orthogonalProjectionOnto_apply_le _).trans_lt
       (by simpa only [dist_eq_norm] using hxy)
 
+/--
+@isnad1 id=le.0h4v.s13.ca3f8112e20b from=translated src=- shape=898013d6 vocab=92d2d50f
+-/
 theorem orthogonal_cylinder_subset_plate (a : EuclideanSpace ℝ (Fin n)) (δ : ℝ) :
     closedBall (0 : V) 1 ×ˢ ball (0 : Vᗮ) δ ⊆
       (fun z : V × Vᗮ ↦ a + (z.1 : EuclideanSpace ℝ (Fin n)) + z.2) ⁻¹' plate δ V a := by
@@ -68,6 +77,9 @@ theorem orthogonal_cylinder_subset_plate (a : EuclideanSpace ℝ (Fin n)) (δ : 
   · simpa [unitDisk, mem_closedBall_zero_iff] using And.intro v.property hv
   · simpa [dist_eq_norm, mem_ball_zero_iff] using hw
 
+/--
+@isnad1 id=le.1h4v.s13.ffcd8807ab91 from=translated src=- shape=0ad98dba vocab=92d2d50f
+-/
 theorem preimage_plate_subset_orthogonal_cylinder (a : EuclideanSpace ℝ (Fin n))
     {δ : ℝ} (hδ : δ ≤ 1) :
     (fun z : V × Vᗮ ↦ a + (z.1 : EuclideanSpace ℝ (Fin n)) + z.2) ⁻¹' plate δ V a ⊆
@@ -79,6 +91,9 @@ theorem preimage_plate_subset_orthogonal_cylinder (a : EuclideanSpace ℝ (Fin n
     Submodule.orthogonalProjectionOnto_apply_of_mem_orthogonal
       (show (v : EuclideanSpace ℝ (Fin n)) ∈ Vᗮᗮ by simp)] using h
 
+/--
+@isnad1 id=le.1h4v.s14.8778b92195ee from=translated src=- shape=bf1006e2 vocab=d9f88091
+-/
 theorem volume_plate_le_orthogonal_cylinder (a : EuclideanSpace ℝ (Fin n))
     {δ : ℝ} (hδ : δ ≤ 1) :
     volume (plate δ V a) ≤

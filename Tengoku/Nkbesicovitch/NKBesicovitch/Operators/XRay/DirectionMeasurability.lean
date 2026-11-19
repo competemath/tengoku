@@ -31,6 +31,9 @@ namespace NKBesicovitch.XRay
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.1h5v.s15.a848195b4439 from=translated src=- shape=ad316f48 vocab=83b005fd
+-/
 theorem directionXRayNorm_rotate {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     (hf : Measurable f) (r : ℝ≥0∞) (u : Rotations n)
     (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1) :

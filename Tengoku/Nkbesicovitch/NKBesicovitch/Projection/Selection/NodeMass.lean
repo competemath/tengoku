@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.5h11v.s8.097be422d5c2 from=translated src=- shape=b7370aa4 vocab=a852f82b
+-/
 theorem volume_node_outer_parameters_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ κ : ℝ} (hδ : 0 < δ)
     (hκ : κ ∈ cornerReservoir I a b c δ) :
@@ -39,6 +42,9 @@ theorem volume_node_outer_parameters_lower {I : Set ℝ} (hI : MeasurableSet I)
   exact S.volume_lower_of_measure_lower (measurableSet_cornerOuterTimes hI _ _ _ _ _)
     ((cornerOuterTimes_subset I _ _ _ _ _).trans hIunit) (by positivity) hκ
 
+/--
+@isnad1 id=le.6h13v.s8.5f1e68c13b12 from=translated src=- shape=6f0f84a9 vocab=2dd1dc3d
+-/
 theorem volume_node_inner_parameters_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ κ : ℝ} (hδ : 0 < δ)
     (hκ : κ ∈ cornerReservoir I a b c δ) {σ : Fin D → ℝ}
@@ -54,6 +60,9 @@ theorem volume_node_inner_parameters_lower {I : Set ℝ} (hI : MeasurableSet I)
   exact S.volume_lower_of_measure_lower (measurableSet_dualTimes hI _ _ _)
     ((dualTimes_subset I _ _ _).trans hIunit) (by positivity) (cornerOuterTimes_spec hu).2.2.2
 
+/--
+@isnad1 id=le.6h12v.s8.e3e6ee76cc32 from=translated src=- shape=d5e82152 vocab=a06caf33
+-/
 theorem volume_node_inner_product_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ κ : ℝ} (hδ : 0 < δ)
     (hκ : κ ∈ cornerReservoir I a b c δ) {σ : Fin D → ℝ}
@@ -74,6 +83,9 @@ theorem volume_node_inner_product_lower {I : Set ℝ} (hI : MeasurableSet I)
     _ ≤ _ := Finset.prod_le_prod (fun _ _ ↦ zero_le)
       (fun i _ ↦ S.volume_node_inner_parameters_lower hI hIunit hIpos hδ hκ hσ i)
 
+/--
+@isnad1 id=le.5h11v.s9.0784d3d63041 from=translated src=- shape=76163e91 vocab=e36eec54
+-/
 theorem volume_node_scalar_fiber_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ κ : ℝ} (hδ : 0 < δ)
     (hκ : κ ∈ cornerReservoir I a b c δ) :
@@ -100,6 +112,9 @@ theorem volume_node_scalar_fiber_lower {I : Set ℝ} (hI : MeasurableSet I)
         (fun σ hσ ↦ S.volume_node_inner_product_lower hI hIunit hIpos hδ hκ hσ)
     _ ≤ _ := setLIntegral_le_lintegral _ _
 
+/--
+@isnad1 id=le.8h10v.s9.4e64e05ce19d from=translated src=- shape=48919210 vocab=16feb6fb
+-/
 theorem volume_cornerNodeParameters_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hc : c ∈ Icc 0 1)

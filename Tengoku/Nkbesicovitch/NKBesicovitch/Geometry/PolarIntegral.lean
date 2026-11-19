@@ -29,6 +29,9 @@ namespace NKBesicovitch
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E] [Nontrivial E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.1h3v.s8.7853bf2051ea from=translated src=- shape=0a3cf90b vocab=1c8429fa
+-/
 theorem lintegral_polar (μ : Measure E) [μ.IsAddHaarMeasure]
     {f : E → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ x, f x ∂μ) = ∫⁻ w : sphere (0 : E) 1,
@@ -48,7 +51,9 @@ theorem lintegral_polar (μ : Measure E) [μ.IsAddHaarMeasure]
   rw [hx, lintegral_prod _ hg.aemeasurable] at he
   exact he
 
-/-- Removing one radial power accounts for the dimension drop of a hyperplane.-/
+/-- Removing one radial power accounts for the dimension drop of a hyperplane.
+@isnad1 id=eq.2h2v.s7.9b093aa3a2b4 from=translated src=- shape=41b37f91 vocab=c8840521
+-/
 theorem lintegral_volumeIoiPow_inv {m : ℕ} (hm : 0 < m)
     {f : Ioi (0 : ℝ) → ℝ≥0∞} (hf : Measurable f) :
     (∫⁻ r, (ENNReal.ofReal (r : ℝ))⁻¹ * f r ∂Measure.volumeIoiPow m) =

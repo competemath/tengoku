@@ -38,6 +38,9 @@ noncomputable def treeParameters (I : Set ℝ) :
         treeParameters I J
           (S.nodeChildTriple q.1.1 q.1.2 q.2 (TreeCoordinate.splitEquiv D L J σ).1 ij)}
 
+/--
+@isnad1 id=measurab.2h9v.s7.d55c62bc38ac from=translated src=- shape=d1621448 vocab=7f3a15f1
+-/
 theorem measurableSet_treeParameters_family (J : ℕ) {X : Type} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {q : X → (ℝ × ℝ) × ℝ} (hq : Measurable q) :
     MeasurableSet {p : X × (TreeCoordinate D L J → ℝ) |
@@ -66,6 +69,9 @@ theorem measurableSet_treeParameters_family (J : ℕ) {X : Type} [MeasurableSpac
       Function.comp_apply, ofPred_and, mem_inter_iff] using
       hr.inter (MeasurableSet.iInter hi)
 
+/--
+@isnad1 id=measurab.1h8v.s5.8eea8137e92b from=translated src=- shape=71a5fada vocab=79c53a78
+-/
 theorem measurableSet_treeParameters {I : Set ℝ} (hI : MeasurableSet I)
     (J : ℕ) (q : (ℝ × ℝ) × ℝ) : MeasurableSet (S.treeParameters I J q) := by
   have h := S.measurableSet_treeParameters_family J
@@ -80,10 +86,16 @@ noncomputable def treeStepParameters (I : Set ℝ) (J : ℕ) (q : (ℝ × ℝ) �
   {p | p.1 ∈ S.cornerNodeParameters I q.1.1 q.1.2 q.2 ((volume I).toReal / 100) ∧
     ∀ ij, p.2 ij ∈ S.treeParameters I J (S.nodeChildTriple q.1.1 q.1.2 q.2 p.1 ij)}
 
+/--
+@isnad1 id=eq.0h8v.s9.64ba4e331693 from=translated src=- shape=20143473 vocab=ac4d9dd4
+-/
 theorem treeParameters_succ (I : Set ℝ) (J : ℕ) (q : (ℝ × ℝ) × ℝ) :
     S.treeParameters I (J + 1) q =
       TreeCoordinate.splitEquiv D L J ⁻¹' S.treeStepParameters I J q := rfl
 
+/--
+@isnad1 id=measurab.1h8v.s7.737fc97350fa from=translated src=- shape=8be5f86c vocab=383436e0
+-/
 theorem measurableSet_treeStepParameters {I : Set ℝ} (hI : MeasurableSet I)
     (J : ℕ) (q : (ℝ × ℝ) × ℝ) : MeasurableSet (S.treeStepParameters I J q) := by
   have h := (S.measurableSet_treeParameters hI (J + 1) q).preimage

@@ -31,6 +31,9 @@ namespace NKBesicovitch.XRay
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] {v w : E}
 
+/--
+@isnad1 id=eq.1h5v.s12.b944f861743e from=translated src=- shape=9c7fbd53 vocab=d3bf7226
+-/
 theorem lintegral_transverseEquiv (hvw : ⟪v, w⟫_ℝ ≠ 0) (f : E → ℝ≥0∞)
     (x : (ℝ ∙ v)ᗮ) :
     (∫⁻ t : ℝ, f ((transverseEquiv hvw x : E) + t • w)) =
@@ -44,6 +47,9 @@ theorem lintegral_transverseEquiv (hvw : ⟪v, w⟫_ℝ ≠ 0) (f : E → ℝ≥
 
 variable [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=le.2h5v.s11.2d8caef9e7cd from=translated src=- shape=466babb6 vocab=9f3d8e0f
+-/
 theorem eLpNorm_perpendicular_le_transverse (hvw : ⟪v, w⟫_ℝ ≠ 0)
     {f : E → ℝ≥0∞} (hf : Measurable f) (p : ℝ≥0∞) :
     eLpNorm (fun y : (ℝ ∙ w)ᗮ ↦ ∫⁻ t : ℝ, f ((y : E) + t • w)) p volume ≤

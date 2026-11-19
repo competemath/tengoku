@@ -27,6 +27,9 @@ namespace NKBesicovitch.XRay
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {v w : E}
 
+/--
+@isnad1 id=injectiv.1h3v.s12.c41faeed3acd from=translated src=- shape=d74fc222 vocab=96381bb2
+-/
 theorem injective_transverseProjection (hvw : ⟪v, w⟫_ℝ ≠ 0) :
     Function.Injective ((ℝ ∙ w)ᗮ.orthogonalProjectionOnto.comp (ℝ ∙ v)ᗮ.subtypeL) := by
   apply (injective_iff_map_eq_zero _).mpr
@@ -41,6 +44,9 @@ theorem injective_transverseProjection (hvw : ⟪v, w⟫_ℝ ≠ 0) :
   apply Subtype.ext
   simpa only [hc0, zero_smul, Submodule.coe_zero] using hc.symm
 
+/--
+@isnad1 id=surjecti.1h3v.s12.cfe4fc47eb2f from=translated src=- shape=d74fc222 vocab=f31fbb01
+-/
 theorem surjective_transverseProjection (hvw : ⟪v, w⟫_ℝ ≠ 0) :
     Function.Surjective ((ℝ ∙ w)ᗮ.orthogonalProjectionOnto.comp (ℝ ∙ v)ᗮ.subtypeL) := by
   intro y
@@ -62,12 +68,21 @@ noncomputable def transverseEquiv (hvw : ⟪v, w⟫_ℝ ≠ 0) : (ℝ ∙ v)ᗮ 
       ⟨injective_transverseProjection hvw,
         surjective_transverseProjection hvw⟩).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.1h4v.s12.ebdd9176f046 from=translated src=- shape=639eab33 vocab=cc7f40d9
+-/
 theorem transverseEquiv_apply (hvw : ⟪v, w⟫_ℝ ≠ 0) (x : (ℝ ∙ v)ᗮ) :
     transverseEquiv hvw x = (ℝ ∙ w)ᗮ.orthogonalProjectionOnto x := rfl
 
+/--
+@isnad1 id=le.1h4v.s12.534f2e4f3220 from=translated src=- shape=5822d5d0 vocab=68b19e10
+-/
 theorem norm_transverseEquiv_le (hvw : ⟪v, w⟫_ℝ ≠ 0) (x : (ℝ ∙ v)ᗮ) :
     ‖transverseEquiv hvw x‖ ≤ ‖x‖ := (ℝ ∙ w)ᗮ.norm_orthogonalProjectionOnto_apply_le x
 
+/--
+@isnad1 id=mem.1h4v.s12.3ef1d466b2c9 from=translated src=- shape=28383066 vocab=940c615b
+-/
 theorem sub_transverseEquiv_mem_span (hvw : ⟪v, w⟫_ℝ ≠ 0) (x : (ℝ ∙ v)ᗮ) :
     (x : E) - transverseEquiv hvw x ∈ ℝ ∙ w := by
   simpa only [transverseEquiv_apply, coe_orthogonalProjectionOnto_apply,

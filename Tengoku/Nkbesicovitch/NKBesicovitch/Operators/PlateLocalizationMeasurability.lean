@@ -49,6 +49,9 @@ private theorem lowerSemicontinuous_plate_ball_indicator (δ R : ℝ)
   simp_rw [heq]
   exact hopen.lowerSemicontinuous_indicator bot_le
 
+/--
+@isnad1 id=lowersem.1h7v.s14.505f68a57e83 from=translated src=- shape=62b0c199 vocab=9c899b07
+-/
 theorem lowerSemicontinuous_plateAverage_ball_orbit (δ R : ℝ)
     (a : EuclideanSpace ℝ (Fin n)) (V : Grassmannian n k)
     {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞} (hf : Measurable f) :
@@ -79,7 +82,9 @@ theorem lowerSemicontinuous_plateAverage_ball_orbit (δ R : ℝ)
       by_cases hb : x ∈ ball z.2 R <;>
         simp only [indicator, hp, hb, ite_true, ite_false]
 
-/-- Localization is jointly Borel in the ball center and orthogonal frame.-/
+/-- Localization is jointly Borel in the ball center and orthogonal frame.
+@isnad1 id=measurab.1h6v.s14.ada7f3a66f76 from=translated src=- shape=370452ca vocab=7f92a1e0
+-/
 theorem measurable_plateMaximal_ball_orbit (δ R : ℝ) (V : Grassmannian n k)
     {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞} (hf : Measurable f) :
     Measurable (fun z : Rotations n × EuclideanSpace ℝ (Fin n) ↦

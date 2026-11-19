@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 
 variable {m : ℕ} {f : EuclideanSpace ℝ (Fin m) × ℝ → ℝ≥0∞}
 
+/--
+@isnad1 id=eq.1h5v.s8.0c547ca792a4 from=translated src=- shape=ff392d46 vocab=86f1cc28
+-/
 theorem lintegral_unitInterval_eq_localXRay (hf : Measurable f) (a : ℝ)
     (ξ x : EuclideanSpace ℝ (Fin m)) :
     (∫⁻ t in Icc a (a + 1), f (x + t • ξ, t)) =
@@ -48,6 +51,9 @@ theorem lintegral_unitInterval_eq_localXRay (hf : Measurable f) (a : ℝ)
   congr 2
   rw [add_smul, add_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s9.cc4b37c5c0f5 from=translated src=- shape=c9d0ec9d vocab=b225baf7
+-/
 theorem eLpNorm_vertical_translate (hf : Measurable f) (a : ℝ) (p : ℝ≥0∞) :
     eLpNorm (fun z : EuclideanSpace ℝ (Fin m) × ℝ ↦ f (z.1, a + z.2)) p volume =
       eLpNorm f p volume := by
@@ -58,6 +64,9 @@ theorem eLpNorm_vertical_translate (hf : Measurable f) (a : ℝ) (p : ℝ≥0∞
         (measurePreserving_add_left volume a)
   exact eLpNorm_comp_measurePreserving hf.aestronglyMeasurable hp
 
+/--
+@isnad1 id=eq.1h6v.s10.e276442a5c23 from=translated src=- shape=2c4737c1 vocab=60a49d5c
+-/
 theorem mixedNorm_unitInterval_eq_localXRay (hf : Measurable f) (a : ℝ)
     (Ξ : Set (EuclideanSpace ℝ (Fin m))) (q r : ℝ≥0∞) :
     mixedNorm ((Prod.snd ⁻¹' Ξ).indicator

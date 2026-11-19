@@ -25,6 +25,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.XRay
 
+/--
+@isnad1 id=le.8h6v.s10.52adc9db24eb from=translated src=- shape=9a546ba8 vocab=3a670fb1
+-/
 theorem mixedNorm_localXRay_le_double_sum {m : ℕ}
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E)
     {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : MeasurableSet Ξ) {B : ℝ} (hB : 0 < B)

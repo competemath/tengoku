@@ -34,6 +34,9 @@ namespace SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=eq.1h8v.s9.e132857347f4 from=translated src=- shape=1512d7e0 vocab=2ad01de3
+-/
 theorem volume_treeParameters_succ {I : Set ℝ} (hI : MeasurableSet I)
     (J : ℕ) (q : (ℝ × ℝ) × ℝ) :
     volume (S.treeParameters I (J + 1) q) =
@@ -61,6 +64,9 @@ theorem volume_treeParameters_succ {I : Set ℝ} (hI : MeasurableSet I)
         mem_empty_iff_false]
     rw [he, measure_empty]
 
+/--
+@isnad1 id=le.5h9v.s10.642527a289c0 from=translated src=- shape=77d4b579 vocab=b0f03772
+-/
 theorem volume_treeParameters_step_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) (J : ℕ) {B : ℝ≥0∞}
     (hB : ∀ q ∈ separatedTriples I ((volume I).toReal / 100),
@@ -85,7 +91,9 @@ private theorem tree_volume_power_aux (C C₀ x : ℝ) (A N K : ℕ) :
   simp only [Nat.mul_add, Nat.mul_one, pow_add, mul_pow, pow_mul]
   ring
 
-/-- Uniform polynomial parameter volume at every finite depth.-/
+/-- Uniform polynomial parameter volume at every finite depth.
+@isnad1 id=ex.0h6v.s8.4bc07a5abdb7 from=translated src=- shape=fa04ca63 vocab=96dde4c9
+-/
 theorem exists_tree_volume_constant (J : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ I : Set ℝ, MeasurableSet I → I ⊆ Icc 0 1 → 0 < volume I →
       ∀ q ∈ separatedTriples I ((volume I).toReal / 100),

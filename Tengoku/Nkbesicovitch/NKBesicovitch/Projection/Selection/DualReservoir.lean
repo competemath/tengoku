@@ -31,10 +31,16 @@ namespace NKBesicovitch.Projection.Selection
 noncomputable def dualReservoir (I : Set ℝ) (a b δ : ℝ) : Set ℝ :=
   {c | ENNReal.ofReal (δ * (volume I).toReal ^ 5 / 8000000) ≤ volume (dualTimes I a b c)}
 
+/--
+@isnad1 id=measurab.1h4v.s4.08dff75601ef from=translated src=- shape=18073f35 vocab=b4e969b2
+-/
 theorem measurableSet_dualReservoir {I : Set ℝ} (hI : MeasurableSet I) (a b δ : ℝ) :
     MeasurableSet (dualReservoir I a b δ) :=
   measurableSet_le measurable_const (measurable_volume_dualTimes hI a b)
 
+/--
+@isnad1 id=measurab.4h5v.s6.c422c301bad7 from=translated src=- shape=ee265c93 vocab=f71034e0
+-/
 theorem measurableSet_dualReservoir_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b δ : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hδ : Measurable δ) :
@@ -45,6 +51,9 @@ theorem measurableSet_dualReservoir_family {X : Type*} [MeasurableSpace X]
     (((hδ.mul (hL.pow_const 5)).div_const 8000000).ennreal_ofReal.comp measurable_fst)
     (measurable_volume_dualTimes_family hI ha hb)
 
+/--
+@isnad1 id=and.7h5v.s8.5e19ef5e9ea6 from=translated src=- shape=d4f4ceed vocab=07666d17
+-/
 theorem dualReservoir_scalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hδ : 0 < δ) (hab : δ ≤ dist a b) {c : ℝ} (hc : c ∈ dualReservoir I a b δ) :
@@ -57,6 +66,9 @@ theorem dualReservoir_scalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
   obtain ⟨t, ht⟩ := nonempty_of_measure_ne_zero hpos.ne'
   exact ⟨ht.1, dualTimeRelation_scalar_bounds hIunit hIpos ha hb hδ hab ht⟩
 
+/--
+@isnad1 id=ne.6h4v.s7.02467085b28d from=translated src=- shape=d49e8a5a vocab=7f4d6752
+-/
 theorem volume_dualReservoir_ne_top {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hδ : 0 < δ) (hab : δ ≤ dist a b) : volume (dualReservoir I a b δ) ≠ ∞ := by
@@ -65,6 +77,9 @@ theorem volume_dualReservoir_ne_top {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     fun _ hc ↦ abs_le.mp (dualReservoir_scalar_bounds hIunit hIpos ha hb hδ hab hc).2.2
   exact ne_top_of_le_ne_top (by simp) (measure_mono hsub)
 
+/--
+@isnad1 id=le.7h4v.s8.d6f19995569b from=translated src=- shape=909abdb9 vocab=3de1842d
+-/
 theorem lintegral_dualTimes_discarded_le {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) :
@@ -86,6 +101,9 @@ theorem lintegral_dualTimes_discarded_le {I : Set ℝ} (hI : MeasurableSet I)
   field_simp
   ring
 
+/--
+@isnad1 id=le.7h4v.s7.38fb3833e844 from=translated src=- shape=2b550c64 vocab=95444580
+-/
 theorem lintegral_dualTimes_retained_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) :
@@ -109,6 +127,9 @@ theorem lintegral_dualTimes_retained_lower {I : Set ℝ} (hI : MeasurableSet I)
       add_le_add le_rfl (lintegral_dualTimes_discarded_le hI hIunit hIpos ha hb hδ hab)
     _ = _ := add_comm _ _
 
+/--
+@isnad1 id=le.7h4v.s7.f151d90a53d0 from=translated src=- shape=4182f436 vocab=0f5066b3
+-/
 theorem volume_dualReservoir_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) :
@@ -127,7 +148,9 @@ theorem volume_dualReservoir_lower {I : Set ℝ} (hI : MeasurableSet I)
       rw [← setLIntegral_const]
       exact setLIntegral_mono measurable_const fun c _ ↦ measure_mono (dualTimes_subset I a b c)
 
-/-- The quantitative dual-pair reservoir, with explicit polynomial measure bounds.-/
+/-- The quantitative dual-pair reservoir, with explicit polynomial measure bounds.
+@isnad1 id=and.7h4v.s9.3ebfe5e0bb77 from=translated src=- shape=2e6a3f27 vocab=efbcb447
+-/
 theorem dualReservoir_spec {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b δ : ℝ} (ha : a ∈ I) (hb : b ∈ I)
     (hδ : 0 < δ) (hab : δ ≤ dist a b) :

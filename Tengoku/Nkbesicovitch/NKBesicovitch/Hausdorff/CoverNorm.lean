@@ -29,6 +29,9 @@ namespace NKBesicovitch.Hausdorff
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=le.2h5v.s9.6475bc8d26d0 from=translated src=- shape=e078fe7c vocab=5275b909
+-/
 theorem one_le_tsum_diskAverage_of_cover (U : ℕ → Set (EuclideanSpace ℝ (Fin n)))
     (hU : ∀ j, MeasurableSet (U j)) (V : Grassmannian n k)
     (a : EuclideanSpace ℝ (Fin n)) (hcover : unitDisk V.val a ⊆ ⋃ j, U j) :
@@ -53,6 +56,9 @@ theorem one_le_tsum_diskAverage_of_cover (U : ℕ → Set (EuclideanSpace ℝ (F
   rw [ENNReal.div_self hD hDf] at hdiv
   simpa only [diskAverage, div_eq_mul_inv, ENNReal.tsum_mul_right, D] using hdiv
 
+/--
+@isnad1 id=le.4h6v.s8.ab5e163135a8 from=translated src=- shape=2b76f579 vocab=da63a708
+-/
 theorem one_le_tsum_plateMaximal_of_cover (U : ℕ → Set (EuclideanSpace ℝ (Fin n)))
     (hU : ∀ j, MeasurableSet (U j)) (δ : ℕ → ℝ≥0)
     (hδ : ∀ j, 0 < δ j ∧ δ j ≤ 1) {E : Set (EuclideanSpace ℝ (Fin n))}

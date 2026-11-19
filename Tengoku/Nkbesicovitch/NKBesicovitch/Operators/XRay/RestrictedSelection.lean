@@ -27,6 +27,9 @@ namespace NKBesicovitch.XRay
 
 variable {m D L : ℕ} {β : ℝ} (S : Selection.SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.8h8v.s10.ec269013885b from=translated src=- shape=d9f0eb5f vocab=f395c485
+-/
 theorem restricted_selection_bound (hβ : 0 ≤ β) (hβ2 : β ≤ 2)
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E) (hEfin : volume E ≠ ∞)
     {F : Set (Line m)} (hF : MeasurableSet F) (hFb : IsBounded F) {r : ℝ} (hr : 0 < r)

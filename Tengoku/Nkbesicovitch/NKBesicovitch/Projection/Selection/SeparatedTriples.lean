@@ -30,6 +30,9 @@ namespace NKBesicovitch.Projection.Selection
 def separatedTriples (I : Set ℝ) (r : ℝ) : Set ((ℝ × ℝ) × ℝ) :=
   {p | p.1 ∈ separatedPairs I r ∧ p.2 ∈ separatedTimes I ![p.1.1, p.1.2] Finset.univ r}
 
+/--
+@isnad1 id=iff.0h3v.s7.08165bb16946 from=translated src=- shape=912abf0d vocab=4c9c3510
+-/
 theorem mem_separatedTriples {I : Set ℝ} {r : ℝ} {p : (ℝ × ℝ) × ℝ} :
     p ∈ separatedTriples I r ↔ p.1.1 ∈ I ∧ p.1.2 ∈ I ∧ p.2 ∈ I ∧
       r ≤ dist p.1.1 p.1.2 ∧ r ≤ dist p.1.1 p.2 ∧ r ≤ dist p.1.2 p.2 := by
@@ -38,6 +41,9 @@ theorem mem_separatedTriples {I : Set ℝ} {r : ℝ} {p : (ℝ × ℝ) × ℝ} :
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one, dist_comm,
     and_assoc, and_left_comm, and_comm]
 
+/--
+@isnad1 id=measurab.1h2v.s4.eb191161dac0 from=translated src=- shape=8bfcb9c0 vocab=a5eff357
+-/
 theorem measurableSet_separatedTriples {I : Set ℝ} (hI : MeasurableSet I) (r : ℝ) :
     MeasurableSet (separatedTriples I r) := by
   have he : separatedTriples I r = {p : (ℝ × ℝ) × ℝ | p.1.1 ∈ I ∧ p.1.2 ∈ I ∧ p.2 ∈ I ∧
@@ -51,6 +57,9 @@ theorem measurableSet_separatedTriples {I : Set ℝ} (hI : MeasurableSet I) (r :
         ((measurableSet_le measurable_const (measurable_fst.fst.dist measurable_snd)).inter
           (measurableSet_le measurable_const (measurable_fst.snd.dist measurable_snd))))))
 
+/--
+@isnad1 id=measurab.2h3v.s7.236fff92dfa6 from=translated src=- shape=4ea3353b vocab=c0c64805
+-/
 theorem measurableSet_separatedTriples_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {r : X → ℝ} (hr : Measurable r) :
     MeasurableSet {p : X × ((ℝ × ℝ) × ℝ) |
@@ -66,6 +75,9 @@ theorem measurableSet_separatedTriples_family {X : Type*} [MeasurableSpace X]
             (measurableSet_le (hr.comp measurable_fst)
               (measurable_snd.fst.snd.dist measurable_snd.snd))))))
 
+/--
+@isnad1 id=eq.1h2v.s7.4277f3fc086b from=translated src=- shape=3d855658 vocab=98a846f1
+-/
 theorem volume_separatedTriples {I : Set ℝ} (hI : MeasurableSet I) (r : ℝ) :
     volume (separatedTriples I r) =
       ∫⁻ p in separatedPairs I r, volume (separatedTimes I ![p.1, p.2] Finset.univ r) := by
@@ -87,6 +99,9 @@ theorem volume_separatedTriples {I : Set ℝ} (hI : MeasurableSet I) (r : ℝ) :
       rw [hz, measure_empty]
   rw [he, lintegral_indicator (measurableSet_separatedPairs hI r)]
 
+/--
+@isnad1 id=le.2h1v.s7.f8508590fbdc from=translated src=- shape=8a7deb93 vocab=1ed9793d
+-/
 theorem quarter_cube_le_volume_separatedTriples {I : Set ℝ} (hI : MeasurableSet I)
     (hIfin : volume I ≠ ∞) :
     ENNReal.ofReal ((volume I).toReal ^ 3 / 4) ≤

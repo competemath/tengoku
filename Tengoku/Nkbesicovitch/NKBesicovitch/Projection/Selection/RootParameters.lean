@@ -32,6 +32,9 @@ noncomputable def rootParameters (I : Set ℝ) (J : ℕ) :
   {p | p.1 ∈ separatedTriples I ((volume I).toReal / 100) ∧
     p.2 ∈ S.treeParameters I J p.1}
 
+/--
+@isnad1 id=measurab.1h8v.s7.f133593fc550 from=translated src=- shape=a0e09384 vocab=9b44e1d4
+-/
 theorem measurableSet_rootParameters_family (J : ℕ) {X : Type} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) :
     MeasurableSet {p : X × (((ℝ × ℝ) × ℝ) × (TreeCoordinate D L J → ℝ)) |
@@ -50,12 +53,18 @@ theorem measurableSet_rootParameters_family (J : ℕ) {X : Type} [MeasurableSpac
     ((measurable_fst.prodMk measurable_snd.fst).prodMk measurable_snd.snd)
   simpa only [rootParameters, preimage, mem_ofPred_eq, ofPred_and, mem_inter_iff] using hr.inter ht
 
+/--
+@isnad1 id=measurab.1h7v.s6.ea0d309cae78 from=translated src=- shape=25519896 vocab=b5e13acb
+-/
 theorem measurableSet_rootParameters {I : Set ℝ} (hI : MeasurableSet I) (J : ℕ) :
     MeasurableSet (S.rootParameters I J) := by
   have h := S.measurableSet_rootParameters_family J
     (X := Unit) (I := {p : Unit × ℝ | p.2 ∈ I}) (hI.preimage measurable_snd)
   exact h.preimage (f := fun p ↦ ((), p)) (by fun_prop)
 
+/--
+@isnad1 id=eq.1h7v.s8.dd9e9f416b19 from=translated src=- shape=f49c0b2d vocab=e2b46db1
+-/
 theorem volume_rootParameters {I : Set ℝ} (hI : MeasurableSet I) (J : ℕ) :
     volume (S.rootParameters I J) =
       ∫⁻ q in separatedTriples I ((volume I).toReal / 100), volume (S.treeParameters I J q) := by
@@ -75,7 +84,9 @@ theorem volume_rootParameters {I : Set ℝ} (hI : MeasurableSet I) (J : ℕ) :
         mem_empty_iff_false]
     rw [he, measure_empty]
 
-/-- The full selection exponent includes three root coordinates.-/
+/-- The full selection exponent includes three root coordinates.
+@isnad1 id=ex.0h6v.s8.6e5cf6607cdb from=translated src=- shape=21cad2b2 vocab=7b082ecf
+-/
 theorem exists_root_volume_constant (J : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ I : Set ℝ, MeasurableSet I → I ⊆ Icc 0 1 → 0 < volume I →
       ENNReal.ofReal (C * (volume I).toReal ^
@@ -96,6 +107,9 @@ theorem exists_root_volume_constant (J : ℕ) :
     rw [pow_add]
     ring
 
+/--
+@isnad1 id=nonempty.3h7v.s6.4063da9849ac from=translated src=- shape=1b4c0170 vocab=86534165
+-/
 theorem rootParameters_nonempty {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) (J : ℕ) : (S.rootParameters I J).Nonempty := by
   obtain ⟨C, hC, hbound⟩ := S.exists_root_volume_constant J

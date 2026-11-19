@@ -25,6 +25,9 @@ open scoped Topology
 
 namespace NKBesicovitch.Induction
 
+/--
+@isnad1 id=ex.1h2v.s6.3f216a5bf0f9 from=translated src=- shape=0e77ba83 vocab=26413e1c
+-/
 theorem exists_ratio_lt_criticalExponent {n k : ℕ}
     (h : (n : ℝ) < criticalExponent ^ (k - 1) + (k : ℝ)) :
     ∃ ρ ∈ Ioo 2 criticalExponent, (n : ℝ) < ρ ^ (k - 1) + (k : ℝ) := by
@@ -36,7 +39,9 @@ theorem exists_ratio_lt_criticalExponent {n k : ℕ}
   exact ⟨ρ, ⟨(le_max_left 2 l).trans_lt hlρ, hρp⟩,
     hs ⟨(le_max_right 2 l).trans_lt hlρ, hρp.trans hlu.2⟩⟩
 
-/-- A strictly supercritical projection exponent already suffices for every target dimension.-/
+/-- A strictly supercritical projection exponent already suffices for every target dimension.
+@isnad1 id=ex.1h2v.s7.c98416f191ad from=translated src=- shape=eaaea688 vocab=f1ee72c8
+-/
 theorem exists_projectionExponent_for_dimension {n k : ℕ}
     (h : (n : ℝ) < criticalExponent ^ (k - 1) + (k : ℝ)) :
     ∃ β ∈ Ioo projectionExponent 2,
@@ -53,7 +58,9 @@ theorem exists_projectionExponent_for_dimension {n k : ℕ}
   refine ⟨ρ / (ρ - 1), ⟨hβ, (div_lt_iff₀ hd).2 (by linarith [hρ.1])⟩, ?_⟩
   rwa [hi]
 
-/-- Every ratio strictly below the critical value leaves room for the strong-type loss.-/
+/-- Every ratio strictly below the critical value leaves room for the strong-type loss.
+@isnad1 id=ex.1h1v.s6.8ebead343c56 from=translated src=- shape=0359f2a2 vocab=f4cc2cf3
+-/
 theorem exists_projectionExponent_for_ratio {ρ : ℝ} (hρ : ρ ∈ Ioo 2 criticalExponent) :
     ∃ β ∈ Ioo projectionExponent 2, 1 < ρ * (β - 1) ∧ ρ * (β - 1) < β := by
   have hρ1 : 0 < ρ - 1 := by linarith [hρ.1]

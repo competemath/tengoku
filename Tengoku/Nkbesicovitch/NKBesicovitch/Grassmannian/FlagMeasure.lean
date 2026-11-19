@@ -39,6 +39,9 @@ noncomputable def flagDirection (hv : ‖v‖ = 1)
     (p : Rotations n × Grassmannian m k) : Grassmannian n (k + 1) :=
   rotate p.1 (normalLift hv b p.2)
 
+/--
+@isnad1 id=mem.1h6v.s11.e22a22e2b919 from=translated src=- shape=7edda44a vocab=702c6bc7
+-/
 theorem normal_mem_normalLift (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k) :
     v ∈ (normalLift hv b V).val := by
@@ -46,6 +49,9 @@ theorem normal_mem_normalLift (hv : ‖v‖ = 1)
   refine ⟨0, V.val.zero_mem, 1, ?_⟩
   simp only [normalCoordinatesWithBasis_apply, map_zero, Submodule.coe_zero, one_smul, zero_add]
 
+/--
+@isnad1 id=mem.1h6v.s16.f0668f2e7027 from=translated src=- shape=08dbb025 vocab=ab413ef5
+-/
 theorem rotated_normal_mem_flagDirection (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     (p : Rotations n × Grassmannian m k) :

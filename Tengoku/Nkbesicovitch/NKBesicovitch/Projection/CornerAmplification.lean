@@ -23,6 +23,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.6h8v.s9.b1579869177a from=translated src=- shape=723611de vocab=2fba42a9
+-/
 theorem corner_mass_power_bound {q A D L N τ ρ J : ℝ}
     (hq : 0 ≤ q) (hA : 0 < A) (hL : 0 < L) (hN : 0 < N)
     (hlower : A * L ^ (1 + 2 * q) *
@@ -38,6 +41,9 @@ theorem corner_mass_power_bound {q A D L N τ ρ J : ℝ}
       2 * q + 3 * q ^ 2 - 2 - ρ * (q ^ 2 - 1) + (200 * q ^ 2 + 2 * q) / J := by ring
   rwa [hLexp, hNexp] at h
 
+/--
+@isnad1 id=le.8h8v.s9.7661836e08de from=translated src=- shape=b31bb623 vocab=2fba42a9
+-/
 theorem corner_mass_power_bound_uniform {q A D L N τ ρ J : ℝ}
     (hq : 1 < q) (hA : 0 < A) (hD : 0 ≤ D) (hL : 0 < L) (hN : 1 ≤ N) (hρ : 0 ≤ ρ)
     (hlower : A * L ^ (1 + 2 * q) *
@@ -52,9 +58,15 @@ theorem corner_mass_power_bound_uniform {q A D L N τ ρ J : ℝ}
   have hsq : 0 ≤ q ^ 2 - 1 := by nlinarith
   exact add_le_add (sub_le_self _ (mul_nonneg hρ hsq)) le_rfl
 
+/--
+@isnad1 id=lt.1h1v.s6.b61576b57423 from=translated src=- shape=9476a705 vocab=5233fd79
+-/
 theorem corner_power_exponent_pos {q : ℝ} (hq : 1 < q) : 0 < q + 2 * q ^ 2 - 2 := by
   nlinarith [sq_nonneg (q - 1)]
 
+/--
+@isnad1 id=le.5h5v.s9.d2b48f2a9c2e from=translated src=- shape=e6a0db3d vocab=762a6581
+-/
 theorem corner_take_root {q K L N J : ℝ} (hq : 1 < q)
     (hK : 0 ≤ K) (hL : 0 ≤ L) (hN : 0 ≤ N)
     (hpower : L ^ (q + 2 * q ^ 2 - 2) ≤
@@ -67,6 +79,9 @@ theorem corner_take_root {q K L N J : ℝ} (hq : 1 < q)
   rw [Real.mul_rpow hK (Real.rpow_nonneg hN _), ← Real.rpow_mul hN] at h
   simpa only [div_eq_mul_inv, one_mul] using h
 
+/--
+@isnad1 id=le.8h8v.s9.742ea8a78c8d from=translated src=- shape=fa1260d7 vocab=2fba42a9
+-/
 theorem corner_amplification {q A D L N τ ρ J : ℝ}
     (hq : 1 < q) (hA : 0 < A) (hD : 0 ≤ D) (hL : 0 < L) (hN : 1 ≤ N) (hρ : 0 ≤ ρ)
     (hlower : A * L ^ (1 + 2 * q) *
@@ -78,7 +93,9 @@ theorem corner_amplification {q A D L N τ ρ J : ℝ}
   corner_take_root hq (div_nonneg hD (Real.rpow_nonneg hA.le _)) hL.le
     (zero_le_one.trans hN) (corner_mass_power_bound_uniform hq hA hD hL hN hρ hlower hupper)
 
-/-- The main term in the finite-depth exponent is exactly the rational corner update.-/
+/-- The main term in the finite-depth exponent is exactly the rational corner update.
+@isnad1 id=other.1h1v.s7.618db1262e7f from=translated src=- shape=69018d63 vocab=a368da32
+-/
 theorem corner_exponent_main_term {β : ℝ} (hβ : 1 < β) :
     let q := β / (β - 1)
     (2 * q + 3 * q ^ 2 - 2) / (q + 2 * q ^ 2 - 2) = cornerUpdate β := by

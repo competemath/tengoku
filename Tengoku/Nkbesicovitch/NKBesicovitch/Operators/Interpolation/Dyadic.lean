@@ -26,6 +26,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=ex.3h2v.s7.427f07374fdc from=translated src=- shape=bab882f4 vocab=d8b90f1e
+-/
 theorem exists_dyadic_scale {x B : ℝ} (hx : 0 < x) (hB : 0 < B) (hxB : x ≤ B) :
     ∃ n : ℕ, B * (1 / 2 : ℝ) ^ n / 2 < x ∧ x ≤ B * (1 / 2 : ℝ) ^ n := by
   obtain ⟨n, hn, hn'⟩ := exists_nat_pow_near_of_lt_one (div_pos hx hB)
@@ -36,6 +39,9 @@ theorem exists_dyadic_scale {x B : ℝ} (hx : 0 < x) (hB : 0 < B) (hxB : x ≤ B
     nlinarith
   · simpa only [mul_comm] using (div_le_iff₀ hB).mp hn'
 
+/--
+@isnad1 id=ex.3h2v.s7.7abc6ea05d5c from=translated src=- shape=496d12ff vocab=eaa47735
+-/
 theorem exists_dyadic_scale_ennreal {x : ℝ≥0∞} {B : ℝ} (hx : 0 < x) (hB : 0 < B)
     (hxB : x ≤ ENNReal.ofReal B) :
     ∃ n : ℕ, ENNReal.ofReal (B * (1 / 2 : ℝ) ^ n / 2) < x ∧

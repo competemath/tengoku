@@ -33,6 +33,9 @@ noncomputable def normalIsometry (e : E ≃ₗᵢ[ℝ] F) (v : E) : (ℝ ∙ v)�
     rw [map_orthogonal_equiv, map_span, Set.image_singleton]
     rfl))
 
+/--
+@isnad1 id=eq.0h5v.s12.91cddac8b88f from=translated src=- shape=391ae85a vocab=4e1acf8d
+-/
 theorem coe_normalIsometry (e : E ≃ₗᵢ[ℝ] F) (v : E) (x : (ℝ ∙ v)ᗮ) :
     (normalIsometry e v x : F) = e (x : E) := rfl
 

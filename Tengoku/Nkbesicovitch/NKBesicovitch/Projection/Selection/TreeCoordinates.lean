@@ -26,7 +26,9 @@ open MeasureTheory Set
 
 namespace NKBesicovitch.Projection.Selection
 
-/-- Currying a finite rectangular array preserves product measure.-/
+/-- Currying a finite rectangular array preserves product measure.
+@isnad1 id=measurep.0h3v.s8.5c63b6b308bb from=translated src=- shape=2cfa06ce vocab=dda227ad
+-/
 theorem volume_preserving_curry (ι κ X : Type*) [Fintype ι] [Fintype κ]
     [MeasureSpace X] [SigmaFinite (volume : Measure X)] :
     MeasurePreserving (MeasurableEquiv.curry ι κ X) volume volume := by
@@ -68,6 +70,9 @@ def nodeEquiv :
       ((MeasurableEquiv.sumPiEquivProdPi (fun _ ↦ ℝ)).trans
         ((MeasurableEquiv.refl _).prodCongr (MeasurableEquiv.curry (Fin L) (Fin D) ℝ))))
 
+/--
+@isnad1 id=measurep.0h2v.s9.e18069d66555 from=translated src=- shape=7cabfb90 vocab=7e2f49e5
+-/
 theorem volume_preserving_nodeEquiv : MeasurePreserving (nodeEquiv D L) volume volume := by
   have hi := ((MeasurePreserving.id (volume : Measure (Fin D → ℝ))).prod
     (volume_preserving_curry (Fin L) (Fin D) ℝ)).comp
@@ -84,6 +89,9 @@ def splitEquiv : (TreeCoordinate D L (J + 1) → ℝ) ≃ᵐ
     ((nodeEquiv D L).prodCongr
       (MeasurableEquiv.curry (Fin L × Fin L) (TreeCoordinate D L J) ℝ))
 
+/--
+@isnad1 id=measurep.0h3v.s10.84fb23cbd4a5 from=translated src=- shape=4ba6a23b vocab=89a0c46a
+-/
 theorem volume_preserving_splitEquiv :
     MeasurePreserving (splitEquiv D L J) volume volume := by
   exact ((volume_preserving_nodeEquiv D L).prod

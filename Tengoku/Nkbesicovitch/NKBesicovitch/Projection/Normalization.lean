@@ -30,6 +30,9 @@ namespace NKBesicovitch.Projection
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.3h5v.s7.cd8b40d21a75 from=translated src=- shape=21609280 vocab=72bdf000
+-/
 theorem restore_multiplicity {L M N C β : ℝ} (hM : 0 < M) (hN : 0 ≤ N)
     (h : (M⁻¹) ^ 2 * L ≤ C * (N / M) ^ β) :
     L ≤ C * M ^ (2 - β) * N ^ β := by
@@ -40,6 +43,9 @@ theorem restore_multiplicity {L M N C β : ℝ} (hM : 0 < M) (hN : 0 ≤ N)
       rw [Real.div_rpow hN hM.le, Real.rpow_sub hM, Real.rpow_two]
       ring
 
+/--
+@isnad1 id=le.5h5v.s10.bd7c853cd205 from=translated src=- shape=b583e816 vocab=20465f4a
+-/
 theorem volume_le_of_normalized [Nonempty (Fin m)] {β C : ℝ}
     {Γ : Finset ℝ} (hΓ : Γ.Nonempty) (hC : 0 ≤ C)
     (hbound : ∀ G : Set (Line m), MeasurableSet G → IsBounded G →
@@ -88,6 +94,9 @@ theorem volume_le_of_normalized [Nonempty (Fin m)] {β C : ℝ}
     ENNReal.toReal_ofReal (sq_nonneg _)] at h
   exact restore_multiplicity hM hN h
 
+/--
+@isnad1 id=hasproje.3h4v.s10.4a9356ea9699 from=translated src=- shape=45837685 vocab=9c28f8b7
+-/
 theorem hasProjectionEstimate_of_normalized [Nonempty (Fin m)] {β C : ℝ}
     {Γ : Finset ℝ} (hΓ : Γ.Nonempty) (hC : 0 < C)
     (hbound : ∀ G : Set (Line m), MeasurableSet G → IsBounded G →

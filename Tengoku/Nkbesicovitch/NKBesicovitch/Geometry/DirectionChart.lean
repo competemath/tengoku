@@ -29,6 +29,9 @@ namespace NKBesicovitch
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {v : E}
 
+/--
+@isnad1 id=le.1h3v.s8.243c6a283d9b from=translated src=- shape=620d206b vocab=222c3356
+-/
 theorem one_le_norm_add_normal (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) : 1 ≤ ‖(ξ : E) + v‖ := by
   have h := norm_normalCoordinates_sq hv ξ 1
   rw [normalCoordinates_apply, one_smul, one_pow] at h
@@ -41,20 +44,32 @@ noncomputable def normalDirection (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) : sph
     simpa only [mem_sphere, dist_zero_right, norm_smul, Real.norm_eq_abs,
       abs_inv, abs_of_nonneg (norm_nonneg _)] using inv_mul_cancel₀ hpos.ne'⟩
 
+/--
+@isnad1 id=eq.1h3v.s9.458ccad124d6 from=translated src=- shape=dd968c9e vocab=4a442013
+-/
 theorem coe_normalDirection (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) :
     (normalDirection hv ξ : E) = ‖(ξ : E) + v‖⁻¹ • ((ξ : E) + v) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.f9c3b53dcafd from=translated src=- shape=0a255005 vocab=375f917a
+-/
 theorem inner_normalDirection (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) :
     ⟪v, (normalDirection hv ξ : E)⟫_ℝ = ‖(ξ : E) + v‖⁻¹ := by
   simp only [coe_normalDirection, inner_smul_right, inner_add_right,
     mem_orthogonal_singleton_iff_inner_right.mp ξ.2, real_inner_self_eq_norm_sq, hv]
   simp
 
+/--
+@isnad1 id=lt.1h3v.s8.026d7051c129 from=translated src=- shape=4338e69e vocab=668d2143
+-/
 theorem inner_normalDirection_pos (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) :
     0 < ⟪v, (normalDirection hv ξ : E)⟫_ℝ := by
   rw [inner_normalDirection]
   exact inv_pos.mpr (zero_lt_one.trans_le (one_le_norm_add_normal hv ξ))
 
+/--
+@isnad1 id=eq.1h3v.s11.a24c5686b927 from=translated src=- shape=fe81f94a vocab=7499a97c
+-/
 theorem slope_normalDirection (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) :
     (⟪v, (normalDirection hv ξ : E)⟫_ℝ)⁻¹ •
       (ℝ ∙ v)ᗮ.orthogonalProjectionOnto (normalDirection hv ξ) = ξ := by
@@ -64,12 +79,18 @@ theorem slope_normalDirection (hv : ‖v‖ = 1) (ξ : (ℝ ∙ v)ᗮ) :
     orthogonalProjectionOnto_orthogonalComplement_singleton_eq_zero, add_zero,
     smul_smul, mul_inv_cancel₀ hpos.ne', one_smul]
 
+/--
+@isnad1 id=injectiv.1h2v.s7.fd666fbe3741 from=translated src=- shape=e9a694de vocab=0517b644
+-/
 theorem normalDirection_injective (hv : ‖v‖ = 1) : Function.Injective (normalDirection hv) := by
   intro ξ η h
   have h' := congrArg (fun w : sphere (0 : E) 1 ↦
     (⟪v, (w : E)⟫_ℝ)⁻¹ • (ℝ ∙ v)ᗮ.orthogonalProjectionOnto w) h
   simpa only [slope_normalDirection] using h'
 
+/--
+@isnad1 id=continuo.1h2v.s8.ad83995bdc22 from=translated src=- shape=e9a694de vocab=658e3a07
+-/
 theorem continuous_normalDirection (hv : ‖v‖ = 1) : Continuous (normalDirection hv) := by
   apply Continuous.subtype_mk
   apply Continuous.smul
@@ -77,6 +98,9 @@ theorem continuous_normalDirection (hv : ‖v‖ = 1) : Continuous (normalDirect
       (fun ξ ↦ (zero_lt_one.trans_le (one_le_norm_add_normal hv ξ)).ne')
   · exact continuous_subtype_val.add continuous_const
 
+/--
+@isnad1 id=eq.2h3v.s11.11f3caac2e28 from=translated src=- shape=acea2454 vocab=2b084795
+-/
 theorem normalDirection_slope (hv : ‖v‖ = 1) (w : sphere (0 : E) 1)
     (hw : 0 < ⟪v, (w : E)⟫_ℝ) :
     normalDirection hv ((⟪v, (w : E)⟫_ℝ)⁻¹ • (ℝ ∙ v)ᗮ.orthogonalProjectionOnto w) = w := by
@@ -90,6 +114,9 @@ theorem normalDirection_slope (hv : ‖v‖ = 1) (w : sphere (0 : E) 1)
     abs_inv, abs_of_pos hw,
     norm_eq_of_mem_sphere w, mul_one, inv_inv, smul_smul, mul_inv_cancel₀ hw.ne', one_smul]
 
+/--
+@isnad1 id=eq.1h2v.s8.7aef97c17965 from=translated src=- shape=8e6234e6 vocab=ad6096e1
+-/
 theorem range_normalDirection (hv : ‖v‖ = 1) :
     Set.range (normalDirection hv) = {w : sphere (0 : E) 1 | 0 < ⟪v, (w : E)⟫_ℝ} := by
   ext w
@@ -99,6 +126,9 @@ theorem range_normalDirection (hv : ‖v‖ = 1) :
   · intro hw
     exact ⟨_, normalDirection_slope hv w hw⟩
 
+/--
+@isnad1 id=le.3h4v.s8.10634004589d from=translated src=- shape=eebb5328 vocab=e607ffd2
+-/
 theorem norm_add_normal_le_of_inner_lower (hv : ‖v‖ = 1) {c : ℝ} (hc : 0 < c)
     {ξ : (ℝ ∙ v)ᗮ} (hξ : c ≤ ⟪v, (normalDirection hv ξ : E)⟫_ℝ) :
     ‖(ξ : E) + v‖ ≤ 1 / c := by
@@ -107,6 +137,9 @@ theorem norm_add_normal_le_of_inner_lower (hv : ‖v‖ = 1) {c : ℝ} (hc : 0 <
   have hmul := (le_div_iff₀ hn).mp hξ
   exact (le_div_iff₀ hc).mpr (by nlinarith)
 
+/--
+@isnad1 id=le.3h4v.s9.ff0b808409a9 from=translated src=- shape=20744b56 vocab=85834079
+-/
 theorem norm_slope_le_of_inner_lower (hv : ‖v‖ = 1) {c : ℝ} (hc : 0 < c)
     {ξ : (ℝ ∙ v)ᗮ} (hξ : c ≤ ⟪v, (normalDirection hv ξ : E)⟫_ℝ) : ‖ξ‖ ≤ 1 / c := by
   have hsq := norm_normalCoordinates_sq hv ξ 1
@@ -116,6 +149,9 @@ theorem norm_slope_le_of_inner_lower (hv : ‖v‖ = 1) {c : ℝ} (hc : 0 < c)
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=measurab.1h2v.s8.43a383df561e from=translated src=- shape=cb7832ed vocab=b68d7237
+-/
 theorem measurableEmbedding_normalDirection (hv : ‖v‖ = 1) :
     MeasurableEmbedding (normalDirection hv) :=
   (continuous_normalDirection hv).measurableEmbedding (normalDirection_injective hv)

@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=le.1h4v.s8.5f63d99d13c3 from=translated src=- shape=eb5e409b vocab=c0bc88fa
+-/
 theorem indicator_localXRay_le_tsum_richLines
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E)
     (Ξ : Set (EuclideanSpace ℝ (Fin m))) (g : Line m) :
@@ -54,6 +57,9 @@ theorem indicator_localXRay_le_tsum_richLines
   · rw [indicator_of_notMem hgξ]
     exact zero_le
 
+/--
+@isnad1 id=le.6h5v.s10.886addd32ca0 from=translated src=- shape=7f876285 vocab=c16cae2d
+-/
 theorem mixedNorm_localXRay_le_tsum_richLines
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E)
     {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : MeasurableSet Ξ)

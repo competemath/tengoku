@@ -30,6 +30,9 @@ namespace NKBesicovitch.Induction
 
 variable {n m k : ℕ} {v : EuclideanSpace ℝ (Fin n)}
 
+/--
+@isnad1 id=le.2h7v.s11.5b7c118a3b06 from=translated src=- shape=cf76d073 vocab=d7784bd3
+-/
 theorem half_pow_mul_volume_plate_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {δ : ℝ} (hδ : 0 < δ) :
@@ -50,6 +53,9 @@ theorem half_pow_mul_volume_plate_le (hv : ‖v‖ = 1)
   norm_num [ENNReal.ofReal_pow, ENNReal.ofReal_div_of_pos] at hvol ⊢
   exact hvol
 
+/--
+@isnad1 id=le.2h9v.s11.d5006c9bcba7 from=translated src=- shape=78db0afa vocab=d7784bd3
+-/
 theorem half_pow_mul_volume_plate_le_centers (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {δ : ℝ} (hδ : 0 < δ) (a : EuclideanSpace ℝ (Fin m)) (z : EuclideanSpace ℝ (Fin n)) :

@@ -34,23 +34,34 @@ def pairCode (a b c : ℝ) (p : PairCoordinates m) : EuclideanSpace ℝ (Fin m) 
 /-- The second slice height dual to `t` for this pair code.-/
 noncomputable def dualTime (a b c t : ℝ) : ℝ := a + (b - a) * (t - a) / (c * (t - b))
 
+/--
+@isnad1 id=eq.0h4v.s6.46eb3b761750 from=translated src=- shape=7cf11313 vocab=e215b0b8
+-/
 theorem dualTime_sub_base (a b c t : ℝ) :
     dualTime a b c t - a = (b - a) * (t - a) / (c * (t - b)) := by
   simp [dualTime]
 
+/--
+@isnad1 id=ne.4h4v.s5.c35ab5730889 from=translated src=- shape=3bedc7dd vocab=16634076
+-/
 theorem dualTime_ne_base {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0) (hta : t ≠ a)
     (htb : t ≠ b) : dualTime a b c t ≠ a := by
   rw [← sub_ne_zero, dualTime_sub_base]
   exact div_ne_zero (mul_ne_zero (sub_ne_zero.mpr hab.symm) (sub_ne_zero.mpr hta))
     (mul_ne_zero hc (sub_ne_zero.mpr htb))
 
+/--
+@isnad1 id=eq.4h4v.s6.5112d56d8845 from=translated src=- shape=c6d20899 vocab=e215b0b8
+-/
 theorem pairCode_dual_coefficient {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) :
     (b - a) / (dualTime a b c t - a) = c * (t - b) / (t - a) := by
   rw [dualTime_sub_base]
   field_simp
 
-/-- The code is determined by the two projections at dual heights.-/
+/-- The code is determined by the two projections at dual heights.
+@isnad1 id=eq.4h6v.s8.80854ee75618 from=translated src=- shape=9b358e27 vocab=7800abfa
+-/
 theorem pairCode_eq_dual_projections {a b c t : ℝ} (hab : a ≠ b) (hc : c ≠ 0)
     (hta : t ≠ a) (htb : t ≠ b) (p : PairCoordinates m) :
     pairCode a b c p =
@@ -78,10 +89,16 @@ noncomputable def pairFromCode (a b c : ℝ) (g : Line m) (z : EuclideanSpace �
     PairCoordinates m :=
   (atHeight a g, (g.2, (b - a)⁻¹ • (z - c • atHeight b g)))
 
+/--
+@isnad1 id=eq.0h6v.s6.5a0a4627ecc3 from=translated src=- shape=8e1f48df vocab=8124403c
+-/
 theorem first_pairFromCode (a b c : ℝ) (g : Line m) (z : EuclideanSpace ℝ (Fin m)) :
     lineAt a (pairFromCode a b c g z).1 (pairFromCode a b c g z).2.1 = g :=
   lineAt_atHeight a g
 
+/--
+@isnad1 id=eq.1h6v.s5.1254c6200712 from=translated src=- shape=e94f2a58 vocab=bceb50c4
+-/
 theorem pairCode_pairFromCode {a b : ℝ} (hab : a ≠ b) (c : ℝ) (g : Line m)
     (z : EuclideanSpace ℝ (Fin m)) :
     pairCode a b c (pairFromCode a b c g z) = z := by
@@ -91,6 +108,9 @@ theorem pairCode_pairFromCode {a b : ℝ} (hab : a ≠ b) (c : ℝ) (g : Line m)
     mul_inv_cancel₀ (sub_ne_zero.mpr hab.symm), one_smul]
   module
 
+/--
+@isnad1 id=eq.1h5v.s6.1a1453643f6c from=translated src=- shape=628c379b vocab=3c7cff4e
+-/
 theorem pairFromCode_pairCode {a b : ℝ} (hab : a ≠ b) (c : ℝ) (p : PairCoordinates m) :
     pairFromCode a b c (lineAt a p.1 p.2.1) (pairCode a b c p) = p := by
   change (atHeight a (lineAt a p.1 p.2.1),
@@ -104,6 +124,9 @@ def pairFiber (a b c : ℝ) (W : Set (PairCoordinates m)) (z : EuclideanSpace �
     (Line m) :=
   {g | pairFromCode a b c g z ∈ W}
 
+/--
+@isnad1 id=measurab.1h6v.s7.59dd58ad47a0 from=translated src=- shape=adfd3946 vocab=39bc28f0
+-/
 theorem measurableSet_pairFiber (a b c : ℝ) {W : Set (PairCoordinates m)}
     (hW : MeasurableSet W) (z : EuclideanSpace ℝ (Fin m)) : MeasurableSet
       (pairFiber a b c W z) := by
@@ -112,6 +135,9 @@ theorem measurableSet_pairFiber (a b c : ℝ) {W : Set (PairCoordinates m)}
     fun_prop
   exact hW.preimage hm.measurable
 
+/--
+@isnad1 id=iff.1h7v.s6.de7ffdd0ff69 from=translated src=- shape=afa43405 vocab=a0c62a02
+-/
 theorem mem_pairFiber_iff {a b : ℝ} (hab : a ≠ b) (c : ℝ) (W : Set (PairCoordinates m))
     (g : Line m) (z : EuclideanSpace ℝ (Fin m)) :
     g ∈ pairFiber a b c W z ↔ ∃ p ∈ W, lineAt a p.1 p.2.1 = g ∧ pairCode a b c p = z := by

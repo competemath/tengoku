@@ -28,6 +28,9 @@ namespace NKBesicovitch
 variable {X Y ι : Type*} [MeasurableSpace X] [MeasurableSpace Y] [Countable ι]
     {μ : Measure X} {ν : Measure Y} {p q r : ℝ≥0∞}
 
+/--
+@isnad1 id=eq.4h5v.s7.503fed3581b1 from=translated src=- shape=358e7119 vocab=f46b0ab8
+-/
 theorem eLpNorm_iSup_directed {f : ι → X → ℝ≥0∞} (hf : ∀ i, Measurable (f i))
     (hd : Directed (· ≤ ·) f) (hp : p ≠ 0) (hpfin : p ≠ ∞) :
     eLpNorm (fun x ↦ ⨆ i, f i x) p μ = ⨆ i, eLpNorm (f i) p μ := by
@@ -43,6 +46,9 @@ theorem eLpNorm_iSup_directed {f : ι → X → ℝ≥0∞} (hf : ∀ i, Measura
   rw [lintegral_iSup_directed_of_measurable (fun i ↦ (hf i).pow_const _) hd']
   exact (ENNReal.orderIsoRpow (1 / p.toReal) (one_div_pos.mpr hp0)).map_iSup _
 
+/--
+@isnad1 id=le.3h5v.s6.8cf109693218 from=translated src=- shape=20a43205 vocab=6247d731
+-/
 theorem eLpNorm_tsum_le {f : ι → X → ℝ≥0∞} (hf : ∀ i, Measurable (f i))
     (hp : 1 ≤ p) (hpfin : p ≠ ∞) :
     eLpNorm (fun x ↦ ∑' i, f i x) p μ ≤ ∑' i, eLpNorm (f i) p μ := by
@@ -62,6 +68,9 @@ theorem eLpNorm_tsum_le {f : ι → X → ℝ≥0∞} (hf : ∀ i, Measurable (f
   rw [heq]
   exact hsum.trans (le_iSup (fun t : Finset ι ↦ ∑ i ∈ t, eLpNorm (f i) p μ) s)
 
+/--
+@isnad1 id=le.5h8v.s7.63acad824aef from=translated src=- shape=b101b0bd vocab=1f27ee0b
+-/
 theorem mixedNorm_tsum_le [SFinite μ] {f : ι → X × Y → ℝ≥0∞}
     (hf : ∀ i, Measurable (f i)) (hq : 1 ≤ q) (hr : 1 ≤ r)
     (hqfin : q ≠ ∞) (hrfin : r ≠ ∞) :
@@ -76,6 +85,9 @@ theorem mixedNorm_tsum_le [SFinite μ] {f : ι → X × Y → ℝ≥0∞}
       (zero_lt_one.trans_le hr).ne' hrfin) hq hqfin
 
 omit [Countable ι] in
+/--
+@isnad1 id=le.5h9v.s7.6c781fb961d5 from=translated src=- shape=76d72fd8 vocab=1b53d075
+-/
 theorem mixedNorm_sum_le [SFinite μ] {f : ι → X × Y → ℝ≥0∞} (s : Finset ι)
     (hf : ∀ i ∈ s, Measurable (f i)) (hq : 1 ≤ q) (hr : 1 ≤ r)
     (hqfin : q ≠ ∞) (hrfin : r ≠ ∞) :

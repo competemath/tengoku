@@ -27,6 +27,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=ne.1h1v.s6.e184b0957afb from=translated src=- shape=1fe9f009 vocab=e1cd0e91
+-/
 theorem tsum_dyadic_rpow_ne_top {u : ℝ} (hu : 0 < u) :
     (∑' j : ℕ, ENNReal.ofReal ((1 / 2 : ℝ) ^ j) ^ u) ≠ ∞ := by
   have hpow (j : ℕ) : ENNReal.ofReal ((1 / 2 : ℝ) ^ j) ^ u =
@@ -38,6 +41,9 @@ theorem tsum_dyadic_rpow_ne_top {u : ℝ} (hu : 0 < u) :
   simp_rw [hpow]
   exact (tsum_geometric_lt_top.mpr (ENNReal.rpow_lt_one (by norm_num) hu)).ne
 
+/--
+@isnad1 id=ex.2h2v.s7.a0da44876dc7 from=translated src=- shape=6d1c27a0 vocab=177c8884
+-/
 theorem exists_double_dyadic_constant {u v : ℝ} (hu : 0 < u) (hv : 0 < v) :
     ∃ D : ℝ, 0 < D ∧ ∀ A : ℝ≥0∞,
       (∑' j : ℕ, ∑' l : ℕ, A * ENNReal.ofReal ((1 / 2 : ℝ) ^ j) ^ u *

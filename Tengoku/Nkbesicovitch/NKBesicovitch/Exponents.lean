@@ -59,13 +59,17 @@ private lemma criticalExponent_mem_aux :
   rw [hs, csSup_singleton]
   exact ⟨hp, he⟩
 
-/-- The critical exponent satisfies its defining cubic.-/
+/-- The critical exponent satisfies its defining cubic.
+@isnad1 id=eq.0h0v.s6.d31f5fc37aa1 from=translated src=- shape=3689bb02 vocab=0154f754
+-/
 theorem criticalExponent_cubic :
     criticalExponent ^ 3 - 2 * criticalExponent ^ 2 - 2 * criticalExponent + 2 = 0 :=
   criticalExponent_mem_aux.2
 
 /-- The exact rational bounds `2.481 < p_c < 2.482`.
-Decimal literals here denote exact rationals, not floating-point values.-/
+Decimal literals here denote exact rationals, not floating-point values.
+@isnad1 id=and.0h0v.s4.d4ad7dd1d5e2 from=translated src=- shape=fc8ed4a3 vocab=b371bc30
+-/
 theorem criticalExponent_bounds :
     2.481 < criticalExponent ∧ criticalExponent < 2.482 := by
   have hp := criticalExponent_mem_aux
@@ -77,7 +81,9 @@ theorem criticalExponent_bounds :
     have hm := strictMonoOn_cubic_aux.monotoneOn (by norm_num) hp.1 h
     norm_num [hp.2] at hm
 
-/-- The critical exponent is the unique root of this cubic between two and three.-/
+/-- The critical exponent is the unique root of this cubic between two and three.
+@isnad1 id=eq.2h1v.s7.1d0d9a7fa52a from=translated src=- shape=310f7df9 vocab=a623b419
+-/
 theorem criticalExponent_unique {p : ℝ} (hp : p ∈ Icc 2 3)
     (h : p ^ 3 - 2 * p ^ 2 - 2 * p + 2 = 0) : p = criticalExponent :=
   strictMonoOn_cubic_aux.injOn hp criticalExponent_mem_aux.1
@@ -86,7 +92,9 @@ theorem criticalExponent_unique {p : ℝ} (hp : p ∈ Icc 2 3)
 /-- The projection exponent corresponding to the critical X-ray ratio.-/
 noncomputable def projectionExponent : ℝ := criticalExponent / (criticalExponent - 1)
 
-/-- The projection exponent satisfies the corner fixed-point cubic.-/
+/-- The projection exponent satisfies the corner fixed-point cubic.
+@isnad1 id=eq.0h0v.s6.37842feb6570 from=translated src=- shape=df344acd vocab=d8a77fa6
+-/
 theorem projectionExponent_cubic : projectionExponent ^ 3 - 4 * projectionExponent + 2 = 0 := by
   have hp := criticalExponent_bounds
   have hn : criticalExponent - 1 ≠ 0 := by linarith
@@ -94,7 +102,9 @@ theorem projectionExponent_cubic : projectionExponent ^ 3 - 4 * projectionExpone
   field_simp
   nlinarith [criticalExponent_cubic]
 
-/-- The projection exponent lies strictly between one and two.-/
+/-- The projection exponent lies strictly between one and two.
+@isnad1 id=mem.0h0v.s4.e6013b256e9e from=translated src=- shape=48e903f7 vocab=727285e1
+-/
 theorem projectionExponent_mem : projectionExponent ∈ Ioo 1 2 := by
   have hp := criticalExponent_bounds
   have hn : 0 < criticalExponent - 1 := by linarith

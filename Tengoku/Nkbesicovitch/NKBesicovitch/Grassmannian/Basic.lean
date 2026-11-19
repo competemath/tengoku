@@ -38,6 +38,9 @@ noncomputable instance : TopologicalSpace (Grassmannian n k) :=
 
 noncomputable instance : MeasurableSpace (Grassmannian n k) := borel (Grassmannian n k)
 
+/--
+@isnad1 id=injectiv.0h2v.s8.f63ab82928d1 from=translated src=- shape=e39008af vocab=108d8bb9
+-/
 theorem projection_injective : Function.Injective (projection (n := n) (k := k)) := by
   intro V W h
   apply Subtype.ext

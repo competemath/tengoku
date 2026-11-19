@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=ex.5h9v.s8.ef22a0117975 from=translated src=- shape=e6136a69 vocab=990946c4
+-/
 theorem exists_controlled_cornerTree_of_mem_treeParameters {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))

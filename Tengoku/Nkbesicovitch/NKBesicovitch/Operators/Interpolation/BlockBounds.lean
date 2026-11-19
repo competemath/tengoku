@@ -27,6 +27,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=le.4h4v.s6.013614554bea from=translated src=- shape=12648d03 vocab=9968e030
+-/
 theorem le_geometric_mean {N A B : ℝ≥0∞} {θ : ℝ} (hA : N ≤ A) (hB : N ≤ B)
     (hθ : 0 ≤ θ) (hθ1 : θ ≤ 1) : N ≤ A ^ θ * B ^ (1 - θ) := by
   calc
@@ -36,6 +39,9 @@ theorem le_geometric_mean {N A B : ℝ≥0∞} {θ : ℝ} (hA : N ≤ A) (hB : N
     _ ≤ _ := mul_le_mul' (ENNReal.rpow_le_rpow hA hθ)
       (ENNReal.rpow_le_rpow hB (by linarith))
 
+/--
+@isnad1 id=le.5h5v.s7.3303ca5e0d5f from=translated src=- shape=c43a0987 vocab=52a4874b
+-/
 theorem interpolate_power_bounds {N A B : ℝ≥0∞} {q θ : ℝ}
     (hq : 0 < q) (hθ : 0 ≤ θ) (hθ1 : θ ≤ 1) (hA : N ^ q ≤ A) (hB : N ^ q ≤ B) :
     N ≤ A ^ (θ / q) * B ^ ((1 - θ) / q) := by
@@ -43,6 +49,9 @@ theorem interpolate_power_bounds {N A B : ℝ≥0∞} {q θ : ℝ}
   simpa only [ENNReal.mul_rpow_of_nonneg _ _ (one_div_pos.mpr hq).le,
     ← ENNReal.rpow_mul, mul_one_div_cancel hq.ne', ENNReal.rpow_one, mul_one_div] using h
 
+/--
+@isnad1 id=le.5h9v.s8.6853442ac9ac from=translated src=- shape=ae04e7be vocab=52a4874b
+-/
 theorem interpolate_block_bounds {N C V s a S : ℝ≥0∞} {q β θ : ℝ}
     (hq : 0 < q) (hθ : 0 ≤ θ) (hθ1 : θ ≤ 1)
     (hgeometry : N ^ q ≤ C * V ^ β)

@@ -28,6 +28,9 @@ namespace NKBesicovitch
 
 variable {n : ℕ} {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
 
+/--
+@isnad1 id=measurab.1h3v.s7.a89c674e19d7 from=translated src=- shape=7af752c1 vocab=29b155d8
+-/
 theorem measurable_ball_indicator (R : ℝ) (hf : Measurable f) :
     Measurable (fun z : EuclideanSpace ℝ (Fin n) × EuclideanSpace ℝ (Fin n) ↦
       (ball z.1 R).indicator f z.2) := by
@@ -36,6 +39,9 @@ theorem measurable_ball_indicator (R : ℝ) (hf : Measurable f) :
       continuous_const).measurableSet
   exact hm
 
+/--
+@isnad1 id=eq.1h3v.s10.d90b77785c6f from=translated src=- shape=9d970c4e vocab=c3c7e835
+-/
 theorem lintegral_lintegral_ball_indicator (R : ℝ) (hf : Measurable f) :
     (∫⁻ y, ∫⁻ x, (ball y R).indicator f x) =
       volume (ball (0 : EuclideanSpace ℝ (Fin n)) R) * ∫⁻ x, f x := by
@@ -50,6 +56,9 @@ theorem lintegral_lintegral_ball_indicator (R : ℝ) (hf : Measurable f) :
   simp_rw [hi]
   exact lintegral_const_mul _ hf
 
+/--
+@isnad1 id=eq.2h4v.s10.1e693c6a1c13 from=translated src=- shape=478a73c5 vocab=86a17225
+-/
 theorem lintegral_eLpNorm_ball_rpow (R : ℝ) (hf : Measurable f) {p : ℝ≥0} (hp : 0 < p) :
     (∫⁻ y, eLpNorm ((ball y R).indicator f) p volume ^ (p : ℝ)) =
       volume (ball (0 : EuclideanSpace ℝ (Fin n)) R) * eLpNorm f p volume ^ (p : ℝ) := by

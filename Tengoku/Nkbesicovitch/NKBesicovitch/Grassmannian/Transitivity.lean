@@ -23,6 +23,9 @@ namespace NKBesicovitch.Grassmannian
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=iff.0h2v.s3.c3cde5aa2d12 from=translated src=- shape=a96d7b02 vocab=fb8a6ec7
+-/
 theorem nonempty_iff : Nonempty (Grassmannian n k) ↔ k ≤ n := by
   constructor
   · rintro ⟨V⟩
@@ -39,6 +42,9 @@ noncomputable def isometry (V W : Grassmannian n k) : V.val ≃ₗᵢ[ℝ] W.val
     ((stdOrthonormalBasis ℝ W.val).reindex
       (finCongr (W.property.trans V.property.symm))).repr.symm
 
+/--
+@isnad1 id=ex.0h4v.s12.7f412af73ba1 from=translated src=- shape=73afdae0 vocab=2d392d02
+-/
 theorem exists_rotate_eq (V W : Grassmannian n k) : ∃ u : Rotations n, rotate u V = W := by
   let L : V.val →ₗᵢ[ℝ] EuclideanSpace ℝ (Fin n) :=
     W.val.subtypeₗᵢ.comp (isometry V W).toLinearIsometry

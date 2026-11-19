@@ -21,6 +21,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.5h4v.s7.7d6a1bd32e04 from=translated src=- shape=12340a71 vocab=e5e4c0da
+-/
 theorem rpow_conjugate_le_of_rpow_le {β C T B : ℝ} (hβ : 1 < β)
     (hC : 0 ≤ C) (hT : 0 ≤ T) (hB : 0 ≤ B) (hpower : T ^ β ≤ C * B ^ (β - 1)) :
     T ^ (β / (β - 1)) ≤ C ^ (1 / (β - 1)) * B := by
@@ -30,6 +33,9 @@ theorem rpow_conjugate_le_of_rpow_le {β C T B : ℝ} (hβ : 1 < β)
     ← Real.rpow_mul hB, mul_inv_cancel₀ hβpos.ne', Real.rpow_one] at h
   simpa only [div_eq_mul_inv, one_mul] using h
 
+/--
+@isnad1 id=le.6h10v.s7.f6716a7cb7a1 from=translated src=- shape=ec91c728 vocab=e5e4c0da
+-/
 theorem monomial_bound_of_auxiliary_power {q A D L N T l n u v : ℝ}
     (hq : 0 ≤ q) (hA : 0 < A) (hL : 0 < L) (hN : 0 < N)
     (hlower : A * L ^ l * N ^ n ≤ T) (hupper : T ^ q ≤ D * L ^ u * N ^ v) :
@@ -50,6 +56,9 @@ theorem monomial_bound_of_auxiliary_power {q A D L N T l n u v : ℝ}
       div_le_div_of_nonneg_right hdiv hLu.le
     _ = _ := by field_simp
 
+/--
+@isnad1 id=le.7h10v.s7.7dea3c9df345 from=translated src=- shape=4b6412c7 vocab=e5e4c0da
+-/
 theorem monomial_ratio_lower_bound {A B L N D R l n u v : ℝ}
     (hA : 0 ≤ A) (hB : 0 < B) (hL : 0 < L) (hN : 0 < N) (hR : 0 < R)
     (hD : A * L ^ l * N ^ n ≤ D) (hupper : R ≤ B * L ^ u * N ^ v) :
@@ -64,6 +73,9 @@ theorem monomial_ratio_lower_bound {A B L N D R l n u v : ℝ}
   exact (div_le_div_of_nonneg_left (by positivity) hR hupper).trans
     (div_le_div_of_nonneg_right hD hR.le)
 
+/--
+@isnad1 id=eq.3h5v.s7.119ef1b534da from=translated src=- shape=a3656f64 vocab=f04be908
+-/
 theorem inverse_density_threshold {β A a ℓ V : ℝ} (hA : 0 < A) (ha : 0 < a) (hℓ : 0 < ℓ) :
     V / (((a * ℓ) ^ β / A) ^ (1 / (β - 1))) =
       (A ^ (1 / (β - 1)) / a ^ (β / (β - 1))) * V * ℓ ^ (-(β / (β - 1))) := by

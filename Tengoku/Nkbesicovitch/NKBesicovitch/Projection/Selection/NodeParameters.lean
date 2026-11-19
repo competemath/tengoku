@@ -37,6 +37,9 @@ noncomputable def cornerNodeParameters (I : Set ℝ) (a b c δ : ℝ) :
   {p | p.1 ∈ cornerReservoir I a b c δ ∧ p.2.1 ∈ S.select (cornerOuterTimes I a b c δ p.1) ∧
     ∀ i, p.2.2 i ∈ S.select (dualTimes I b a (cornerInnerCoefficient a c p.1 (S.time p.2.1 i)))}
 
+/--
+@isnad1 id=measurab.4h11v.s8.e7c840ad9ba8 from=translated src=- shape=614507f8 vocab=866114d9
+-/
 theorem measurableSet_node_inner_times_family {X : Type} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b c : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (i : Fin L) :
@@ -55,6 +58,9 @@ theorem measurableSet_node_inner_times_family {X : Type} [MeasurableSpace X]
         (S.time p.1.2 i)), p.2))
     ((measurable_fst.fst.fst.prodMk (hcoef.comp measurable_fst)).prodMk measurable_snd)
 
+/--
+@isnad1 id=measurab.5h11v.s8.d9199ac0c3e0 from=translated src=- shape=eba959f4 vocab=48aad370
+-/
 theorem measurableSet_cornerNodeParameters_family {X : Type} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b c δ : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (hδ : Measurable δ) :
@@ -85,6 +91,9 @@ theorem measurableSet_cornerNodeParameters_family {X : Type} [MeasurableSpace X]
       ((measurable_pi_apply i).comp measurable_snd.snd.snd))
   simpa only [preimage_ofPred_eq, ← ofPred_forall] using h
 
+/--
+@isnad1 id=measurab.1h10v.s6.8f6484f3c0c9 from=translated src=- shape=afdf2f31 vocab=a5b738a5
+-/
 theorem measurableSet_cornerNodeParameters {I : Set ℝ} (hI : MeasurableSet I) (a b c δ : ℝ) :
     MeasurableSet (S.cornerNodeParameters I a b c δ) := by
   have h := S.measurableSet_cornerNodeParameters_family

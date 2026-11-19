@@ -24,6 +24,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=le.5h4v.s7.ace251c25c56 from=translated src=- shape=190d44ff vocab=e5e4c0da
+-/
 theorem lower_bound_of_density_power {β A T H : ℝ} (hβ : 1 < β) (hA : 0 < A)
     (hT : 0 ≤ T) (hH : 0 ≤ H) (hpower : T ≤ A * H ^ (β - 1)) :
     (T / A) ^ (1 / (β - 1)) ≤ H := by
@@ -31,6 +34,9 @@ theorem lower_bound_of_density_power {β A T H : ℝ} (hβ : 1 < β) (hA : 0 < A
   apply (Real.rpow_inv_le_iff_of_pos (div_nonneg hT hA.le) hH (sub_pos.mpr hβ)).mpr
   exact (div_le_iff₀ hA).mpr (by simpa only [mul_comm] using hpower)
 
+/--
+@isnad1 id=le.4h6v.s7.3ca3b8c0b237 from=translated src=- shape=812b72cb vocab=e7bc5859
+-/
 theorem pair_threshold_bound {β A M H q ℓ : ℝ} (hH : 0 < H) (hq : 0 < q) (hℓ : 0 < ℓ)
     (hseed : H ≤ A * M ^ (2 - β) * (H / (q * ℓ)) ^ β) :
     (q * ℓ) ^ β ≤ A * M ^ (2 - β) * H ^ (β - 1) := by
@@ -39,6 +45,9 @@ theorem pair_threshold_bound {β A M H q ℓ : ℝ} (hH : 0 < H) (hq : 0 < q) (h
   rw [Real.rpow_sub_one hH.ne', ← mul_div_assoc]
   exact (le_div_iff₀ hH).mpr (by simpa only [mul_comm H] using h)
 
+/--
+@isnad1 id=le.10h8v.s8.b82d45787588 from=translated src=- shape=ca10d9d7 vocab=e7bc5859
+-/
 theorem pair_threshold_bound_of_code_bound {β A D M N H q ℓ : ℝ}
     (hβ : 1 < β) (hA : 0 ≤ A) (hD : 0 ≤ D) (hM : 0 < M) (hN : 0 < N)
     (hH : 0 < H) (hq : 0 < q) (hℓ : 0 < ℓ)
@@ -57,6 +66,9 @@ theorem pair_threshold_bound_of_code_bound {β A D M N H q ℓ : ℝ}
       ring
     _ = _ := by rw [hMpow]
 
+/--
+@isnad1 id=le.8h8v.s8.55a6ad210686 from=translated src=- shape=c199dfc5 vocab=e7bc5859
+-/
 theorem pair_mass_power_bound {β K L M N R q ℓ : ℝ} (hβ : 0 ≤ β) (hL : 0 ≤ L)
     (hN : 0 < N) (hR : 0 < R) (hq : 0 < q) (hℓ : 0 < ℓ)
     (hmass : L ^ 2 ≤ R * ℓ * N ^ 3)
@@ -83,6 +95,9 @@ theorem pair_mass_power_bound {β K L M N R q ℓ : ℝ} (hβ : 0 ≤ β) (hL : 
       ring
     _ = _ := by rw [hNpow]
 
+/--
+@isnad1 id=le.6h5v.s8.6cc1c97db701 from=translated src=- shape=90de6b43 vocab=e7bc5859
+-/
 theorem pair_take_root {β K L M N : ℝ} (hβ : 0 < β) (hK : 0 ≤ K)
     (hL : 0 ≤ L) (hM : 0 ≤ M) (hN : 0 ≤ N)
     (hpower : L ^ (2 * β) ≤ K * M * N ^ (4 * β - 1)) :
@@ -96,6 +111,9 @@ theorem pair_take_root {β K L M N : ℝ} (hβ : 0 < β) (hK : 0 ≤ K)
   simpa only [Real.mul_rpow (mul_nonneg hK hM) (Real.rpow_nonneg hN _),
     Real.mul_rpow hK hM, ← Real.rpow_mul hN, he, one_div] using h
 
+/--
+@isnad1 id=le.13h10v.s8.72e72dfda210 from=translated src=- shape=2ef4c04a vocab=e7bc5859
+-/
 theorem pair_amplification {β A D L M N H R q ℓ : ℝ} (hβ : 1 < β)
     (hA : 0 ≤ A) (hD : 0 ≤ D) (hL : 0 ≤ L) (hM : 0 < M) (hN : 0 < N)
     (hH : 0 < H) (hR : 0 < R) (hq : 0 < q) (hℓ : 0 < ℓ)

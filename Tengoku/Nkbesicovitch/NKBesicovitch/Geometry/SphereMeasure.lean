@@ -29,10 +29,16 @@ namespace NKBesicovitch.Rotations
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=measurab.0h2v.s12.f8a8c2b8251a from=translated src=- shape=75c1144c vocab=7aa4d107
+-/
 theorem measurable_sphereOrbit (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1) :
     Measurable (fun u : Rotations n ↦ rotateSphere u v) :=
   (continuous_rotateSphere.comp (continuous_id.prodMk continuous_const)).measurable
 
+/--
+@isnad1 id=eq.0h3v.s15.f64175f8b264 from=translated src=- shape=f44ce535 vocab=e139c830
+-/
 theorem preimage_sphereCone_rotate (u : Rotations n)
     (s : Set (sphere (0 : EuclideanSpace ℝ (Fin n)) 1)) :
     (Unitary.linearIsometryEquiv u) ⁻¹' (Ioo (0 : ℝ) 1 • (Subtype.val '' s)) =
@@ -56,6 +62,9 @@ theorem preimage_sphereCone_rotate (u : Rotations n)
     exact (map_smul (Unitary.linearIsometryEquiv u) a
       (w : EuclideanSpace ℝ (Fin n))).symm
 
+/--
+@isnad1 id=measurep.0h2v.s12.018b1670bc32 from=translated src=- shape=e99838e6 vocab=20e77e9d
+-/
 theorem measurePreserving_rotateSphere (u : Rotations n) :
     MeasurePreserving (rotateSphere u)
       (volume : Measure (EuclideanSpace ℝ (Fin n))).toSphere

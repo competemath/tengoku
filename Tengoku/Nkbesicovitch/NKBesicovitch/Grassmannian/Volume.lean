@@ -24,7 +24,9 @@ open MeasureTheory Metric
 
 namespace NKBesicovitch.Grassmannian
 
-/-- Intrinsic centered ball volume depends only on the dimension and radius.-/
+/-- Intrinsic centered ball volume depends only on the dimension and radius.
+@isnad1 id=eq.0h4v.s14.fa9c94443510 from=translated src=- shape=91520acd vocab=841e3848
+-/
 theorem volume_closedBall (V : Grassmannian n k) (r : ℝ) :
     volume (closedBall (0 : V.val) r) =
       volume (closedBall (0 : EuclideanSpace ℝ (Fin k)) r) := by

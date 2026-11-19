@@ -54,19 +54,31 @@ variable {m : ℕ} {β : ℝ}
 noncomputable def children (P : CornerPattern m β) : Finset (ℝ × ℝ) :=
   P.outer.biUnion fun u ↦ (P.inner u).image fun t ↦ (u, t)
 
+/--
+@isnad1 id=iff.0h5v.s6.a40fc29b7c67 from=translated src=- shape=8e4c2f1c vocab=637112cf
+-/
 theorem mem_children {P : CornerPattern m β} {u t : ℝ} :
     (u, t) ∈ P.children ↔ u ∈ P.outer ∧ t ∈ P.inner u := by
   simp [children]
 
+/--
+@isnad1 id=nonempty.0h3v.s4.aded9a4eedca from=translated src=- shape=f4b7f807 vocab=46e7ebc3
+-/
 theorem children_nonempty (P : CornerPattern m β) : P.children.Nonempty := by
   obtain ⟨u, hu⟩ := P.outer_nonempty
   obtain ⟨t, ht⟩ := P.inner_nonempty u hu
   exact ⟨(u, t), mem_children.mpr ⟨hu, ht⟩⟩
 
+/--
+@isnad1 id=ne.1h4v.s5.00315e9c6c6b from=translated src=- shape=6d8eb8f8 vocab=96bd8845
+-/
 theorem innerCoefficient_ne_zero (P : CornerPattern m β) {u : ℝ} (hu : u ∈ P.outer) :
     cornerInnerCoefficient P.a P.c P.κ u ≠ 0 :=
   cornerInnerCoefficient_ne_zero P.κ_ne_zero (P.outer_ne_a u hu) (P.outer_ne_c u hu)
 
+/--
+@isnad1 id=ne.1h5v.s6.98735f38b2a3 from=translated src=- shape=a16618ee vocab=62b95456
+-/
 theorem child_dual_ne_base (P : CornerPattern m β) {u t : ℝ} (h : (u, t) ∈ P.children) :
     dualTime P.b P.a (cornerInnerCoefficient P.a P.c P.κ u) t ≠ P.b := by
   obtain ⟨hu, ht⟩ := mem_children.mp h
@@ -78,16 +90,31 @@ noncomputable def times (P : CornerPattern m β) : Finset ℝ :=
   insert P.a (insert P.b (insert P.c (P.outer ∪ P.children.biUnion fun p ↦
     {p.2, dualTime P.b P.a (cornerInnerCoefficient P.a P.c P.κ p.1) p.2})))
 
+/--
+@isnad1 id=mem.0h3v.s4.c597e8955fdb from=translated src=- shape=1aff97f9 vocab=3e051d92
+-/
 theorem a_mem_times (P : CornerPattern m β) : P.a ∈ P.times := by simp [times]
 
+/--
+@isnad1 id=mem.0h3v.s4.a1258d9a86d5 from=translated src=- shape=1aff97f9 vocab=c39d9a2b
+-/
 theorem b_mem_times (P : CornerPattern m β) : P.b ∈ P.times := by simp [times]
 
+/--
+@isnad1 id=mem.0h3v.s4.0fa9d3ba0ffa from=translated src=- shape=1aff97f9 vocab=204377b6
+-/
 theorem c_mem_times (P : CornerPattern m β) : P.c ∈ P.times := by simp [times]
 
+/--
+@isnad1 id=le.0h3v.s4.6e762d8450d5 from=translated src=- shape=024ebab9 vocab=d1556a43
+-/
 theorem outer_subset_times (P : CornerPattern m β) : P.outer ⊆ P.times := by
   intro u hu
   simp [times, hu]
 
+/--
+@isnad1 id=mem.1h5v.s5.cf18627f1722 from=translated src=- shape=6e9beb62 vocab=b02e1b34
+-/
 theorem inner_mem_times (P : CornerPattern m β) {u t : ℝ} (h : (u, t) ∈ P.children) :
     t ∈ P.times := by
   apply Finset.mem_insert_of_mem
@@ -95,6 +122,9 @@ theorem inner_mem_times (P : CornerPattern m β) {u t : ℝ} (h : (u, t) ∈ P.c
   apply Finset.mem_insert_of_mem
   exact Finset.mem_union_right _ (Finset.mem_biUnion.mpr ⟨(u, t), h, by simp⟩)
 
+/--
+@isnad1 id=mem.1h5v.s6.22e6be5e8e15 from=translated src=- shape=e001b5e1 vocab=7b2c6de4
+-/
 theorem dual_mem_times (P : CornerPattern m β) {u t : ℝ} (h : (u, t) ∈ P.children) :
     dualTime P.b P.a (cornerInnerCoefficient P.a P.c P.κ u) t ∈ P.times := by
   apply Finset.mem_insert_of_mem
@@ -102,6 +132,9 @@ theorem dual_mem_times (P : CornerPattern m β) {u t : ℝ} (h : (u, t) ∈ P.ch
   apply Finset.mem_insert_of_mem
   exact Finset.mem_union_right _ (Finset.mem_biUnion.mpr ⟨(u, t), h, by simp⟩)
 
+/--
+@isnad1 id=mem.7h5v.s7.5341e13e20df from=translated src=- shape=ab4a0234 vocab=fc0908f8
+-/
 theorem times_subset (P : CornerPattern m β) {I : Set ℝ}
     (ha : P.a ∈ I) (hb : P.b ∈ I) (hc : P.c ∈ I)
     (houter : ∀ u ∈ P.outer, u ∈ I)

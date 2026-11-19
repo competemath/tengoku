@@ -44,6 +44,9 @@ noncomputable def normalLift (hv : ‖v‖ = 1)
       (congrArg (fun z : EuclideanSpace ℝ (Fin m) × ℝ ↦ z.2) hxy)
   rw [LinearMap.finrank_range_of_inj hL, Module.finrank_prod, V.property, Module.finrank_self]
 
+/--
+@isnad1 id=iff.1h7v.s12.b7a735f14040 from=translated src=- shape=b76a64bc vocab=74c900e4
+-/
 theorem mem_normalLift_iff (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (z : EuclideanSpace ℝ (Fin n)) :
@@ -55,6 +58,9 @@ theorem mem_normalLift_iff (hv : ‖v‖ = 1)
   · rintro ⟨x, hx, t, h⟩
     exact ⟨(⟨x, hx⟩, t), h⟩
 
+/--
+@isnad1 id=iff.1h8v.s12.365b38db5133 from=translated src=- shape=a1d57821 vocab=74c900e4
+-/
 theorem normalCoordinates_mem_normalLift_iff (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (x : EuclideanSpace ℝ (Fin m)) (t : ℝ) :
@@ -67,6 +73,9 @@ theorem normalCoordinates_mem_normalLift_iff (hv : ‖v‖ = 1)
   · intro hx
     exact ⟨x, hx, t, rfl⟩
 
+/--
+@isnad1 id=eq.1h8v.s12.9f25a31b9cbd from=translated src=- shape=6104339b vocab=420ebd57
+-/
 theorem projection_normalLift_apply (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (x : EuclideanSpace ℝ (Fin m)) (t : ℝ) :
@@ -81,6 +90,9 @@ theorem projection_normalLift_apply (hv : ‖v‖ = 1)
     rw [inner_normalCoordinatesWithBasis, zero_mul, add_zero]
     exact V.val.starProjection_inner_eq_zero x y hy
 
+/--
+@isnad1 id=eq.1h6v.s12.0cb7f8b34175 from=translated src=- shape=d371b7ec vocab=54141313
+-/
 theorem projection_normalLift (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k) :
     (normalLift hv b V).projection = (normalCoordinatesWithBasis hv b).toContinuousLinearMap.comp
@@ -94,6 +106,9 @@ theorem projection_normalLift (hv : ‖v‖ = 1)
     ContinuousLinearEquiv.coe_coe, ContinuousLinearEquiv.symm_apply_apply,
     ContinuousLinearMap.id_apply] using projection_normalLift_apply hv b V x t
 
+/--
+@isnad1 id=continuo.1h5v.s10.e319e4b5a382 from=translated src=- shape=5217be30 vocab=4d0e290c
+-/
 theorem continuous_normalLift (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) : Continuous (normalLift hv b (k := k)) := by
   apply continuous_induced_rng.mpr

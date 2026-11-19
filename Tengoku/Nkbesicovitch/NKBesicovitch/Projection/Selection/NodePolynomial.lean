@@ -38,7 +38,9 @@ private theorem node_volume_power_aux (c x : ℝ) (A L : ℕ) :
   simp only [mul_pow, pow_add, pow_mul]
   ring
 
-/-- The explicit polynomial selection-volume exponent contributed by one corner node.-/
+/-- The explicit polynomial selection-volume exponent contributed by one corner node.
+@isnad1 id=ex.0h5v.s9.98d82a44f600 from=translated src=- shape=39ce4f61 vocab=2b93fe0b
+-/
 theorem exists_node_volume_constant {m D L : ℕ} {β : ℝ}
     (S : SelectableProjectionScheme m β D L) :
     ∃ C : ℝ, 0 < C ∧ ∀ I : Set ℝ, MeasurableSet I → I ⊆ Icc 0 1 → 0 < volume I →

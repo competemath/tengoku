@@ -31,10 +31,16 @@ noncomputable def cornerReservoir (I : Set ℝ) (a b c δ : ℝ) : Set ℝ :=
   {κ | ENNReal.ofReal (δ * (volume I).toReal ^ 7 / 320000000000) ≤
     volume (cornerOuterTimes I a b c δ κ)}
 
+/--
+@isnad1 id=measurab.1h5v.s4.775d81429605 from=translated src=- shape=0020bd03 vocab=e636208b
+-/
 theorem measurableSet_cornerReservoir {I : Set ℝ} (hI : MeasurableSet I) (a b c δ : ℝ) :
     MeasurableSet (cornerReservoir I a b c δ) :=
   measurableSet_le measurable_const (measurable_volume_cornerOuterTimes hI a b c δ)
 
+/--
+@isnad1 id=measurab.5h6v.s7.4416a27c0ce6 from=translated src=- shape=f3ace3fc vocab=2f7f50c1
+-/
 theorem measurableSet_cornerReservoir_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b c δ : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (hδ : Measurable δ) :
@@ -45,6 +51,9 @@ theorem measurableSet_cornerReservoir_family {X : Type*} [MeasurableSpace X]
     (((hδ.mul (hL.pow_const 7)).div_const 320000000000).ennreal_ofReal.comp measurable_fst)
     (measurable_volume_cornerOuterTimes_family hI ha hb hc hδ)
 
+/--
+@isnad1 id=and.8h6v.s8.6586b06f6256 from=translated src=- shape=b0ac64cb vocab=70557aa8
+-/
 theorem cornerReservoir_scalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hc : c ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) {κ : ℝ}
@@ -58,6 +67,9 @@ theorem cornerReservoir_scalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
   obtain ⟨u, hu⟩ := nonempty_of_measure_ne_zero hpos.ne'
   exact cornerTimeRelation_scalar_bounds hIunit hIpos ha hb hc hδ hab hu
 
+/--
+@isnad1 id=ne.7h5v.s7.dffbc1da3ffc from=translated src=- shape=f917f68e vocab=c34bf4cd
+-/
 theorem volume_cornerReservoir_ne_top {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hc : c ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) :
@@ -67,6 +79,9 @@ theorem volume_cornerReservoir_ne_top {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     fun _ hκ ↦ abs_le.mp (cornerReservoir_scalar_bounds hIunit hIpos ha hb hc hδ hab hκ).2.2
   exact ne_top_of_le_ne_top (by simp) (measure_mono hsub)
 
+/--
+@isnad1 id=le.8h5v.s8.c3e3532a06b5 from=translated src=- shape=eefbb449 vocab=da139b7b
+-/
 theorem lintegral_cornerOuterTimes_discarded_le {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hc : c ∈ Icc 0 1)
@@ -91,6 +106,9 @@ theorem lintegral_cornerOuterTimes_discarded_le {I : Set ℝ} (hI : MeasurableSe
   field_simp
   ring
 
+/--
+@isnad1 id=le.8h5v.s8.6cee57badffd from=translated src=- shape=d0551dac vocab=b9d44b66
+-/
 theorem lintegral_cornerOuterTimes_retained_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hc : c ∈ Icc 0 1)
@@ -115,6 +133,9 @@ theorem lintegral_cornerOuterTimes_retained_lower {I : Set ℝ} (hI : Measurable
       add_le_add le_rfl (lintegral_cornerOuterTimes_discarded_le hI hIunit hIpos ha hb hc hδ hab)
     _ = _ := add_comm _ _
 
+/--
+@isnad1 id=le.8h5v.s8.347646e81cf9 from=translated src=- shape=f247d925 vocab=21592599
+-/
 theorem volume_cornerReservoir_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ}
     (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1) (hc : c ∈ Icc 0 1)
@@ -136,7 +157,9 @@ theorem volume_cornerReservoir_lower {I : Set ℝ} (hI : MeasurableSet I)
       exact setLIntegral_mono measurable_const fun κ _ ↦
         measure_mono (cornerOuterTimes_subset I a b c δ κ)
 
-/-- A common scalar reservoir whose outer times each support an inner dual-pair reservoir.-/
+/-- A common scalar reservoir whose outer times each support an inner dual-pair reservoir.
+@isnad1 id=and.8h5v.s9.2b9c824dd16c from=translated src=- shape=b3aca7e6 vocab=5a87320f
+-/
 theorem cornerReservoir_spec {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (ha : a ∈ I) (hb : b ∈ I) (hc : c ∈ I)
     (hδ : 0 < δ) (hab : δ ≤ dist a b) :

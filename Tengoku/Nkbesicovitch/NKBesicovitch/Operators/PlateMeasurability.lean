@@ -28,7 +28,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
-/-- Membership of a fixed point in a rotated open plate is an open condition.-/
+/-- Membership of a fixed point in a rotated open plate is an open condition.
+@isnad1 id=isopen.0h6v.s13.4d2c9b83212a from=translated src=- shape=31748881 vocab=1e2f6ef5
+-/
 theorem isOpen_setOf_mem_plate_rotate (δ : ℝ) (a x : EuclideanSpace ℝ (Fin n))
     (V : Grassmannian n k) :
     IsOpen {u : Rotations n | x ∈ plate δ (Grassmannian.rotate u V).val a} := by
@@ -44,7 +46,9 @@ theorem isOpen_setOf_mem_plate_rotate (δ : ℝ) (a x : EuclideanSpace ℝ (Fin 
       EuclideanSpace ℝ (Fin n)) (x - a))
   exact (continuous_subtype_val.comp continuous_star).clm_apply continuous_const
 
-/-- Fatou's lemma applies to the moving open plate, with the input kept fixed.-/
+/-- Fatou's lemma applies to the moving open plate, with the input kept fixed.
+@isnad1 id=lowersem.1h6v.s13.d576fb5dcbac from=translated src=- shape=b7eae808 vocab=47701a56
+-/
 theorem lowerSemicontinuous_plate_average_orbit (δ : ℝ) (a : EuclideanSpace ℝ (Fin n))
     (V : Grassmannian n k) {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞} (hf : Measurable f) :
     LowerSemicontinuous (fun u : Rotations n ↦

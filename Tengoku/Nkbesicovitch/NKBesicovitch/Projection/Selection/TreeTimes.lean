@@ -58,10 +58,16 @@ noncomputable def treeTime : (J : ℕ) → ((ℝ × ℝ) × ℝ) →
       treeTime J (S.nodeChildTriple q.1.1 q.1.2 q.2 (TreeCoordinate.splitEquiv D L J σ).1 ij)
         ((TreeCoordinate.splitEquiv D L J σ).2 ij) i
 
+/--
+@isnad1 id=eq.0h9v.s6.55ab0d334c5d from=translated src=- shape=f0131582 vocab=20ba0577
+-/
 theorem treeTime_base (J : ℕ) (q : (ℝ × ℝ) × ℝ) (σ : TreeCoordinate D L J → ℝ) (i : Fin 3) :
     S.treeTime J q σ (TreeTimeLabel.base L J i) = ![q.1.1, q.1.2, q.2] i := by
   cases J <;> rfl
 
+/--
+@isnad1 id=measurab.2h10v.s6.2b19ee694aed from=translated src=- shape=71731e06 vocab=12c0cc90
+-/
 theorem measurable_treeTime (J : ℕ) {X : Type*} [MeasurableSpace X]
     {q : X → (ℝ × ℝ) × ℝ} {σ : X → TreeCoordinate D L J → ℝ}
     (hq : Measurable q) (hσ : Measurable σ) (i : TreeTimeLabel L J) :
@@ -83,6 +89,9 @@ theorem measurable_treeTime (J : ℕ) {X : Type*} [MeasurableSpace X]
     · exact ih (S.measurable_nodeChildTriple hq.fst.fst hq.fst.snd hq.snd hs.fst ij)
         ((measurable_pi_apply ij).comp hs.snd) i
 
+/--
+@isnad1 id=mem.5h10v.s7.b8eff5c9efe7 from=translated src=- shape=65869a38 vocab=ba50c773
+-/
 theorem treeTime_mem {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))
@@ -113,15 +122,24 @@ theorem treeTime_mem {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 
 noncomputable def treeTimes (J : ℕ) (q : (ℝ × ℝ) × ℝ) (σ : TreeCoordinate D L J → ℝ) : Finset ℝ :=
   Finset.univ.image (S.treeTime J q σ)
 
+/--
+@isnad1 id=iff.0h9v.s6.1c7d6a4c1702 from=translated src=- shape=43b310dc vocab=39dc56a2
+-/
 theorem mem_treeTimes {J : ℕ} {q : (ℝ × ℝ) × ℝ} {σ : TreeCoordinate D L J → ℝ} {t : ℝ} :
     t ∈ S.treeTimes J q σ ↔ ∃ i, S.treeTime J q σ i = t := by
   classical
   simp only [treeTimes, Finset.mem_image, Finset.mem_univ, true_and]
 
+/--
+@isnad1 id=mem.0h9v.s6.cba1ff9b2faa from=translated src=- shape=6ed9e31c vocab=9b7d337b
+-/
 theorem base_mem_treeTimes (J : ℕ) (q : (ℝ × ℝ) × ℝ) (σ : TreeCoordinate D L J → ℝ)
     (i : Fin 3) : ![q.1.1, q.1.2, q.2] i ∈ S.treeTimes J q σ :=
   S.mem_treeTimes.mpr ⟨TreeTimeLabel.base L J i, S.treeTime_base J q σ i⟩
 
+/--
+@isnad1 id=le.0h9v.s10.36e3ec974440 from=translated src=- shape=e81ab843 vocab=2d6cbad1
+-/
 theorem child_treeTimes_subset (J : ℕ) (q : (ℝ × ℝ) × ℝ)
     (σ : TreeCoordinate D L (J + 1) → ℝ) (ij : Fin L × Fin L) :
     S.treeTimes J (S.nodeChildTriple q.1.1 q.1.2 q.2 (TreeCoordinate.splitEquiv D L J σ).1 ij)
@@ -130,6 +148,9 @@ theorem child_treeTimes_subset (J : ℕ) (q : (ℝ × ℝ) × ℝ)
   obtain ⟨i, hi⟩ := S.mem_treeTimes.mp ht
   exact S.mem_treeTimes.mpr ⟨Sum.inr (ij, i), hi⟩
 
+/--
+@isnad1 id=mem.6h10v.s7.2643738debf6 from=translated src=- shape=503bee23 vocab=1b7a6fb9
+-/
 theorem treeTimes_subset {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))

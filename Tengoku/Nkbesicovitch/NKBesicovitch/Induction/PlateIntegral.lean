@@ -28,6 +28,9 @@ namespace NKBesicovitch.Induction
 
 variable {n m k : ℕ} {v : EuclideanSpace ℝ (Fin n)}
 
+/--
+@isnad1 id=le.2h9v.s12.1ead89f93d24 from=translated src=- shape=fb0ae19a vocab=ef828fca
+-/
 theorem lintegral_plate_normalLift_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (a : EuclideanSpace ℝ (Fin m) × ℝ) (δ : ℝ)
@@ -46,6 +49,9 @@ theorem lintegral_plate_normalLift_le (hv : ‖v‖ = 1)
       · simp only [Measure.restrict_univ]
       · exact (hf.comp (normalCoordinatesWithBasis hv b).continuous.measurable).aemeasurable
 
+/--
+@isnad1 id=le.3h9v.s13.abb8640de02b from=translated src=- shape=6f3bf80d vocab=e2c23db0
+-/
 theorem plateAverage_normalLift_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (a : EuclideanSpace ℝ (Fin m) × ℝ) {δ : ℝ} (hδ : 0 < δ)
@@ -65,7 +71,9 @@ theorem plateAverage_normalLift_le (hv : ‖v‖ = 1)
   ac_rfl
 
 /-- A lifted plate maximal function is controlled by the lower-dimensional
-X-ray maximal function.-/
+X-ray maximal function.
+@isnad1 id=le.3h8v.s11.355e72604b3d from=translated src=- shape=6b738a7e vocab=d68257b2
+-/
 theorem plateMaximal_normalLift_le (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     {δ : ℝ} (hδ : 0 < δ) {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞} (hf : Measurable f) :

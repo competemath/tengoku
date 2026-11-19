@@ -28,6 +28,9 @@ namespace NKBesicovitch.XRay
 
 variable {m D L : ℕ} {β : ℝ} (S : Selection.SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.3h11v.s8.c1835f7c64b5 from=translated src=- shape=06288b6b vocab=07c4c247
+-/
 theorem volume_projection_commonLines_goodTimes_le
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E)
     {F : Set (Line m)} {N : ℝ≥0∞} {r : ℝ} (hr : 0 < r)
@@ -48,6 +51,9 @@ theorem volume_projection_commonLines_goodTimes_le
   · rw [not_nonempty_iff_eq_empty.mp hG, image_empty, measure_empty]
     exact zero_le
 
+/--
+@isnad1 id=le.8h10v.s9.903d5b6709a2 from=translated src=- shape=b968a192 vocab=6c211e72
+-/
 theorem estimate_commonLines_goodTimes (hβ : 0 ≤ β) (hβ2 : β ≤ 2)
     {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)} (hE : MeasurableSet E)
     {F : Set (Line m)} (hF : MeasurableSet F) (hFb : IsBounded F)

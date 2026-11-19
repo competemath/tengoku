@@ -31,9 +31,15 @@ noncomputable def parameterBox (r : ℝ) : Set (Fin D → ℝ) :=
   Icc (fun _ ↦ -(S.upperConstant * r⁻¹ ^ S.boundExponent))
     (fun _ ↦ S.upperConstant * r⁻¹ ^ S.boundExponent)
 
+/--
+@isnad1 id=measurab.0h6v.s5.817f26604bbc from=translated src=- shape=3dd6bf44 vocab=b9d2d7df
+-/
 theorem measurableSet_parameterBox (r : ℝ) : MeasurableSet (S.parameterBox r) :=
   measurableSet_Icc
 
+/--
+@isnad1 id=le.4h7v.s6.026ffe368308 from=translated src=- shape=f05b9c1f vocab=2de56e4f
+-/
 theorem select_subset_parameterBox {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) {r : ℝ} (hr : 0 < r) (hmeasure : ENNReal.ofReal r ≤ volume I) :
     S.select I ⊆ S.parameterBox r := by
@@ -41,6 +47,9 @@ theorem select_subset_parameterBox {I : Set ℝ} (hI : MeasurableSet I)
   exact ⟨fun j ↦ (abs_le.mp (S.coordinates_bound_of_measure_lower hI hIunit hr hmeasure hσ j)).1,
     fun j ↦ (abs_le.mp (S.coordinates_bound_of_measure_lower hI hIunit hr hmeasure hσ j)).2⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.1157d93850d0 from=translated src=- shape=58f8bf45 vocab=91857074
+-/
 theorem volume_parameterBox {r : ℝ} (hr : 0 ≤ r) :
     volume (S.parameterBox r) =
       ENNReal.ofReal ((2 * S.upperConstant) ^ D * r⁻¹ ^ (S.boundExponent * D)) := by
@@ -52,11 +61,17 @@ theorem volume_parameterBox {r : ℝ} (hr : 0 ≤ r) :
   congr 1
   rw [← mul_assoc, mul_pow, ← pow_mul]
 
+/--
+@isnad1 id=lt.1h6v.s6.2b330d84d9c3 from=translated src=- shape=a13ee14f vocab=c9f39cc8
+-/
 theorem volume_parameterBox_pos {r : ℝ} (hr : 0 < r) : 0 < volume (S.parameterBox r) := by
   have hC : 0 < S.upperConstant := zero_lt_one.trans_le S.one_le_upperConstant
   rw [S.volume_parameterBox hr.le]
   exact ENNReal.ofReal_pos.mpr (by positivity)
 
+/--
+@isnad1 id=ne.1h6v.s6.3c843371f562 from=translated src=- shape=8873d519 vocab=6748794f
+-/
 theorem volume_parameterBox_ne_top {r : ℝ} (hr : 0 ≤ r) : volume (S.parameterBox r) ≠ ∞ := by
   rw [S.volume_parameterBox hr]
   exact ENNReal.ofReal_ne_top

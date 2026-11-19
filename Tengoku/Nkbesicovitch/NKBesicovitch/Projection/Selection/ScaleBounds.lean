@@ -24,6 +24,9 @@ bounded uniformly by `(100/x)^(8B)`.
 
 namespace NKBesicovitch.Projection.Selection
 
+/--
+@isnad1 id=le.1h1v.s6.6c605052732d from=translated src=- shape=cc6d2e51 vocab=d46e17f2
+-/
 theorem radius_pow_eight_le_outer_threshold {x : ℝ} (hx : 0 ≤ x) :
     (x / 100) ^ 8 ≤ x / 100 * x ^ 7 / 320000000000 := by
   calc
@@ -32,6 +35,9 @@ theorem radius_pow_eight_le_outer_threshold {x : ℝ} (hx : 0 ≤ x) :
       div_le_div_of_nonneg_left (pow_nonneg hx _) (by norm_num) (by norm_num)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.2h1v.s6.a4503b6756b2 from=translated src=- shape=04b739dd vocab=d46e17f2
+-/
 theorem radius_pow_eight_le_inner_threshold {x : ℝ} (hx : 0 ≤ x) (hx1 : x ≤ 1) :
     (x / 100) ^ 8 ≤ x / 100 * x ^ 5 / 8000000 := by
   calc
@@ -42,6 +48,9 @@ theorem radius_pow_eight_le_inner_threshold {x : ℝ} (hx : 0 ≤ x) (hx1 : x �
       div_le_div_of_nonneg_left (pow_nonneg hx _) (by norm_num) (by norm_num)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.2h3v.s6.8d243121779d from=translated src=- shape=51881821 vocab=2c627975
+-/
 theorem inv_pow_le_of_radius_pow_le {x τ : ℝ} (hx : 0 < x)
     (hτ : (x / 100) ^ 8 ≤ τ) (B : ℕ) : τ⁻¹ ^ B ≤ (100 / x) ^ (8 * B) := by
   have hr : 0 < (x / 100) ^ 8 := by positivity

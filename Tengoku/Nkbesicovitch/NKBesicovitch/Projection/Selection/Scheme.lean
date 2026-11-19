@@ -64,17 +64,26 @@ namespace SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=measurab.2h8v.s6.94821fa9871f from=translated src=- shape=501d37d4 vocab=0c8cd357
+-/
 theorem measurableSet_mem_select {X : Type} [MeasurableSpace X] {I : X → Set ℝ}
     (hI : MeasurableSet {p : X × ℝ | p.2 ∈ I p.1}) {σ : X → (Fin D → ℝ)}
     (hσ : Measurable σ) : MeasurableSet {x | σ x ∈ S.select (I x)} :=
   (S.measurable_select I hI).preimage (f := fun x ↦ (x, σ x)) (measurable_id.prodMk hσ)
 
+/--
+@isnad1 id=measurab.1h6v.s5.b9b0193a70da from=translated src=- shape=944047d2 vocab=8491f408
+-/
 theorem measurableSet_select {I : Set ℝ} (hI : MeasurableSet I) :
     MeasurableSet (S.select I) := by
   have h : MeasurableSet {p : Unit × (Fin D → ℝ) | p.2 ∈ S.select I} :=
     S.measurable_select (fun _ : Unit ↦ I) (hI.preimage measurable_snd)
   exact h.preimage (f := fun σ ↦ ((), σ)) (by fun_prop)
 
+/--
+@isnad1 id=nonempty.3h6v.s6.00651d608c27 from=translated src=- shape=0ac16262 vocab=7f18d079
+-/
 theorem select_nonempty {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) : (S.select I).Nonempty := by
   have hIfin : volume I ≠ ∞ := ne_top_of_le_ne_top (by simp) (measure_mono hIunit)
@@ -84,10 +93,16 @@ theorem select_nonempty {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc
   exact ((ENNReal.ofReal_pos.mpr (by positivity)).trans_le
     (S.volume_lower I hI hIunit hIpos)).ne'
 
+/--
+@isnad1 id=nonempty.0h6v.s5.edcf58865151 from=translated src=- shape=ee76c2a0 vocab=ced19673
+-/
 theorem times_nonempty (σ : Fin D → ℝ) : (Finset.univ.image (S.time σ)).Nonempty := by
   exact ⟨S.time σ ⟨0, S.label_pos⟩, Finset.mem_image.mpr ⟨⟨0, S.label_pos⟩,
     Finset.mem_univ _, rfl⟩⟩
 
+/--
+@isnad1 id=hasproje.4h7v.s7.9aed15ec47cb from=translated src=- shape=6b44fdad vocab=7103c248
+-/
 theorem hasProjectionEstimate {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {σ : Fin D → ℝ} (hσ : σ ∈ S.select I) :
     HasProjectionEstimate m β (Finset.univ.image (S.time σ)) := by

@@ -30,6 +30,9 @@ noncomputable def cornerTimeRelation (I : Set ℝ) (a b c δ : ℝ) : Set (ℝ �
   {p | p.1 ∈ separatedTimes I ![a, c] Finset.univ ((volume I).toReal / 100) ∧
     cornerInnerCoefficient a c p.2 p.1 ∈ dualReservoir I b a δ}
 
+/--
+@isnad1 id=measurab.1h5v.s4.27f3b718dd33 from=translated src=- shape=468cd64b vocab=68468288
+-/
 theorem measurableSet_cornerTimeRelation {I : Set ℝ} (hI : MeasurableSet I) (a b c δ : ℝ) :
     MeasurableSet (cornerTimeRelation I a b c δ) :=
   ((measurableSet_separatedTimes hI _ _ _).preimage measurable_fst).inter
@@ -37,6 +40,9 @@ theorem measurableSet_cornerTimeRelation {I : Set ℝ} (hI : MeasurableSet I) (a
       (measurable_cornerInnerCoefficient measurable_const measurable_const
         measurable_snd measurable_fst))
 
+/--
+@isnad1 id=measurab.5h6v.s7.ff65f72e6d0d from=translated src=- shape=c87554c8 vocab=abafd252
+-/
 theorem measurableSet_cornerTimeRelation_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) {a b c δ : X → ℝ}
     (ha : Measurable a) (hb : Measurable b) (hc : Measurable c) (hδ : Measurable δ) :
@@ -56,6 +62,9 @@ theorem measurableSet_cornerTimeRelation_family {X : Type*} [MeasurableSpace X]
         (measurable_fst.prodMk (measurable_cornerInnerCoefficient (ha.comp measurable_fst)
           (hc.comp measurable_fst) measurable_snd.snd measurable_snd.fst)))
 
+/--
+@isnad1 id=and.1h6v.s7.53d018483b59 from=translated src=- shape=0a48b7fd vocab=9c207043
+-/
 theorem cornerTimeRelation_spec {I : Set ℝ} {a b c δ : ℝ} {p : ℝ × ℝ}
     (hp : p ∈ cornerTimeRelation I a b c δ) :
     p.1 ∈ I ∧ (volume I).toReal / 100 ≤ dist p.1 a ∧
@@ -64,6 +73,9 @@ theorem cornerTimeRelation_spec {I : Set ℝ} {a b c δ : ℝ} {p : ℝ × ℝ}
   have hu := mem_separatedTimes.mp hp.1
   exact ⟨hu.1, hu.2 0 (Finset.mem_univ _), hu.2 1 (Finset.mem_univ _), hp.2⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.7025565cb6fe from=translated src=- shape=5818f70c vocab=88bf9057
+-/
 theorem cornerTimeRelation_section {I : Set ℝ} {a b c δ u : ℝ}
     (hu : u ∈ separatedTimes I ![a, c] Finset.univ ((volume I).toReal / 100)) :
     Prod.mk u ⁻¹' cornerTimeRelation I a b c δ =
@@ -71,6 +83,9 @@ theorem cornerTimeRelation_section {I : Set ℝ} {a b c δ u : ℝ}
   ext κ
   simp only [cornerTimeRelation, mem_preimage, mem_ofPred_eq, hu, true_and]
 
+/--
+@isnad1 id=and.8h6v.s8.4103936c6432 from=translated src=- shape=4c7f8fcd vocab=c8492aba
+-/
 theorem cornerTimeRelation_scalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {a b c δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hc : c ∈ Icc 0 1) (hδ : 0 < δ) (hab : δ ≤ dist a b) {p : ℝ × ℝ}

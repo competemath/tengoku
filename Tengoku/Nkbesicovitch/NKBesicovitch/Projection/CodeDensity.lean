@@ -30,6 +30,9 @@ noncomputable def codeDensity (a b c : ℝ) (W : Set (PairCoordinates m))
     (z : EuclideanSpace ℝ (Fin m)) : ℝ≥0∞ :=
   codeJacobian m a b * volume (pairFiber a b c W z)
 
+/--
+@isnad1 id=eq.1h6v.s9.6e85b8dd49ee from=translated src=- shape=7ec83b5d vocab=1674cfe4
+-/
 theorem codeDensity_eq_lintegral (a b c : ℝ) {W : Set (PairCoordinates m)}
     (hW : MeasurableSet W) (z : EuclideanSpace ℝ (Fin m)) :
     codeDensity a b c W z = codeJacobian m a b *
@@ -42,6 +45,9 @@ theorem codeDensity_eq_lintegral (a b c : ℝ) {W : Set (PairCoordinates m)}
   simp only [Set.indicator, pairFiber]
   rfl
 
+/--
+@isnad1 id=measurab.1h5v.s7.6cc0c2988df3 from=translated src=- shape=6444c142 vocab=09a0a851
+-/
 theorem measurable_codeDensity (a b c : ℝ) {W : Set (PairCoordinates m)}
     (hW : MeasurableSet W) : Measurable (codeDensity a b c W) := by
   have hf : Measurable (fun p : Line m × EuclideanSpace ℝ (Fin m) ↦
@@ -53,6 +59,9 @@ theorem measurable_codeDensity (a b c : ℝ) {W : Set (PairCoordinates m)}
   rw [he]
   exact measurable_const.mul (hf.lintegral_prod_left' (μ := volume))
 
+/--
+@isnad1 id=eq.2h5v.s10.c495dbb14c6c from=translated src=- shape=db9ac2e9 vocab=e546ecde
+-/
 theorem lintegral_codeDensity {a b : ℝ} (hab : a ≠ b) (c : ℝ)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) :
     (∫⁻ z, codeDensity a b c W z) = volume W := by

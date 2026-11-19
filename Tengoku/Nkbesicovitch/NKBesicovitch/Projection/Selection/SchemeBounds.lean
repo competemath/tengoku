@@ -26,6 +26,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.4h7v.s7.ca830bfc7ff4 from=translated src=- shape=7ad291a3 vocab=c2f32348
+-/
 theorem volume_lower_of_measure_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) {r : ℝ} (hr : 0 < r) (hmeasure : ENNReal.ofReal r ≤ volume I) :
     ENNReal.ofReal (S.lowerConstant * r ^ S.volumeExponent) ≤ volume (S.select I) := by
@@ -36,6 +39,9 @@ theorem volume_lower_of_measure_lower {I : Set ℝ} (hI : MeasurableSet I)
   exact ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_left
     (pow_le_pow_left₀ hr.le hrI _) S.lowerConstant_pos.le)
 
+/--
+@isnad1 id=le.5h9v.s7.ee91e5687ec9 from=translated src=- shape=99a92997 vocab=ab32d2f4
+-/
 theorem coordinates_bound_of_measure_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) {r : ℝ} (hr : 0 < r) (hmeasure : ENNReal.ofReal r ≤ volume I)
     {σ : Fin D → ℝ} (hσ : σ ∈ S.select I) (j : Fin D) :
@@ -48,6 +54,9 @@ theorem coordinates_bound_of_measure_lower {I : Set ℝ} (hI : MeasurableSet I)
       (pow_le_pow_left₀ (by positivity) (inv_anti₀ hr hrI) _)
       (zero_le_one.trans S.one_le_upperConstant))
 
+/--
+@isnad1 id=le.7h9v.s9.e3a5ee2fd46d from=translated src=- shape=329b6581 vocab=99ee220a
+-/
 theorem estimate_of_measure_lower {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) {r : ℝ} (hr : 0 < r) (hmeasure : ENNReal.ofReal r ≤ volume I)
     {σ : Fin D → ℝ} (hσ : σ ∈ S.select I) {G : Set (Line m)} (hG : MeasurableSet G)

@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=iscontro.5h8v.s8.07f15aafe0af from=translated src=- shape=ff191dcc vocab=dc8eed42
+-/
 theorem nodePattern_isControlled {I : Set ℝ} (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1)
     (hIpos : 0 < volume I) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))

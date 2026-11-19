@@ -28,7 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
-/-- Realization preserves any property satisfied by all selected node patterns.-/
+/-- Realization preserves any property satisfied by all selected node patterns.
+@isnad1 id=ex.5h11v.s9.dc8a0e09964e from=translated src=- shape=df407b2e vocab=7c5859ce
+-/
 theorem exists_cornerTree_of_mem_treeParameters_of_pattern_property {I : Set ℝ}
     (hI : MeasurableSet I) (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I)
     (F : CornerPattern m β → Prop)
@@ -81,7 +83,9 @@ theorem exists_cornerTree_of_mem_treeParameters_of_pattern_property {I : Set ℝ
     · exact hF q hq _ hσ.1
     · exact hBP u v (Nat.lt_of_succ_lt_succ h)
 
-/-- Realization of every selected parameter with no extra projection heights.-/
+/-- Realization of every selected parameter with no extra projection heights.
+@isnad1 id=ex.5h9v.s8.a0bff948063a from=translated src=- shape=4cbcd95e vocab=08210cf4
+-/
 theorem exists_cornerTree_of_mem_treeParameters {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))

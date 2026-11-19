@@ -30,6 +30,9 @@ noncomputable def pairDensity (a s t : ℝ) (W : Set (PairCoordinates m))
     (yz : Line m) : ℝ≥0∞ :=
   pairJacobian m a s t * ∫⁻ w, W.indicator 1 (pairFromData a s t (w, yz))
 
+/--
+@isnad1 id=measurab.1h5v.s7.3aff52665699 from=translated src=- shape=57f4648c vocab=e6de53c8
+-/
 theorem measurable_pairDensity (a s t : ℝ) {W : Set (PairCoordinates m)}
     (hW : MeasurableSet W) : Measurable (pairDensity a s t W) := by
   have hf : Measurable (fun p : PairCoordinates m ↦
@@ -37,6 +40,9 @@ theorem measurable_pairDensity (a s t : ℝ) {W : Set (PairCoordinates m)}
     (measurable_const.indicator hW).comp (continuous_pairFromData a s t).measurable
   exact measurable_const.mul (hf.lintegral_prod_left' (μ := volume))
 
+/--
+@isnad1 id=eq.3h5v.s10.a4a2e96e29ed from=translated src=- shape=6f4df14b vocab=6a6c0d68
+-/
 theorem lintegral_pairDensity {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W) :
     (∫⁻ yz, pairDensity a s t W yz) = volume W := by
@@ -63,6 +69,9 @@ theorem lintegral_pairDensity {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
       rw [pairFromData_pairData hs ht]
     _ = volume W := lintegral_indicator_one hW
 
+/--
+@isnad1 id=eq.2h7v.s6.64e98441c434 from=translated src=- shape=16b4b4c4 vocab=0097748f
+-/
 theorem pairDensity_inter_preimage {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     (W : Set (PairCoordinates m)) (B : Set (Line m)) (yz : Line m) :
     pairDensity a s t (W ∩ pairProjections a s t ⁻¹' B) yz =
@@ -85,6 +94,9 @@ theorem pairDensity_inter_preimage {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
       simp [Set.indicator, pairProjections_pairFromData hs ht, hB]
     simp [hz]
 
+/--
+@isnad1 id=eq.4h6v.s10.04daf4808147 from=translated src=- shape=6b92e888 vocab=607f34a6
+-/
 theorem setLIntegral_pairDensity {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {W : Set (PairCoordinates m)} (hW : MeasurableSet W)
     {B : Set (Line m)} (hB : MeasurableSet B) :
@@ -95,6 +107,9 @@ theorem setLIntegral_pairDensity {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
   exact lintegral_pairDensity hs ht
     (hW.inter (hB.preimage (continuous_pairProjections a s t).measurable))
 
+/--
+@isnad1 id=le.1h7v.s8.18b544cec9fb from=translated src=- shape=2fb7deb1 vocab=c50df5a1
+-/
 theorem pairDensity_le_projection (a s t : ℝ) {G : Set (Line m)}
     {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G) (yz : Line m) :
     pairDensity a s t W yz ≤ pairJacobian m a s t * volume (atHeight a '' G) := by
@@ -108,6 +123,9 @@ theorem pairDensity_le_projection (a s t : ℝ) {G : Set (Line m)}
     simp [Set.indicator_of_mem hw, Set.indicator_of_mem ha]
   · simp [Set.indicator_of_notMem hw]
 
+/--
+@isnad1 id=mem.2h7v.s6.6194535c6736 from=translated src=- shape=062af0c0 vocab=f1060630
+-/
 theorem pairProjections_mem_prod (a s t : ℝ) {G : Set (Line m)}
     {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G)
     {p : PairCoordinates m} (hp : p ∈ W) :
@@ -115,6 +133,9 @@ theorem pairProjections_mem_prod (a s t : ℝ) {G : Set (Line m)}
   rw [pairProjections_eq]
   exact ⟨⟨_, (hWG hp).1, rfl⟩, ⟨_, (hWG hp).2, rfl⟩⟩
 
+/--
+@isnad1 id=le.3h6v.s6.c71b81e7faa7 from=translated src=- shape=fd8cfa64 vocab=9fc06b97
+-/
 theorem support_pairDensity_subset {a s t : ℝ} (hs : s ≠ a) (ht : t ≠ a)
     {G : Set (Line m)} {W : Set (PairCoordinates m)} (hWG : W ⊆ pairFamily a G) :
     Function.support (pairDensity a s t W) ⊆ (atHeight s '' G) ×ˢ (atHeight t '' G) := by

@@ -26,6 +26,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s8.9fea57b7c04e from=translated src=- shape=0de7beba vocab=b16a9574
+-/
 theorem preimage_plate_add_right (a y : EuclideanSpace ℝ (Fin n))
     (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) (δ : ℝ) :
     (fun x ↦ x + y) ⁻¹' plate δ V (a + y) = plate δ V a := by
@@ -40,6 +43,9 @@ theorem preimage_plate_add_right (a y : EuclideanSpace ℝ (Fin n))
   simp only [mem_preimage, plate, mem_thickening_iff_infEDist_lt,
     infEDist_image (isometry_add_right y)]
 
+/--
+@isnad1 id=eq.0h7v.s12.01de40c4d001 from=translated src=- shape=ba98cffe vocab=5baef332
+-/
 theorem plateAverage_add_right (a y : EuclideanSpace ℝ (Fin n))
     (V : Grassmannian n k) (δ : ℝ) (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     (∫⁻ x in plate δ V.val (a + y), f x) / volume (plate δ V.val (a + y)) =
@@ -51,6 +57,9 @@ theorem plateAverage_add_right (a y : EuclideanSpace ℝ (Fin n))
   rw [preimage_plate_add_right] at hi hv
   rw [← hi, ← hv]
 
+/--
+@isnad1 id=eq.0h6v.s6.9d806e4fd285 from=translated src=- shape=1106cd08 vocab=85699883
+-/
 theorem plateMaximal_add_right (y : EuclideanSpace ℝ (Fin n)) (V : Grassmannian n k)
     (δ : ℝ) (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     plateMaximal δ (fun x ↦ f (x + y)) V = plateMaximal δ f V := by

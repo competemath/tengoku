@@ -34,6 +34,9 @@ noncomputable def richLines (E : Set (EuclideanSpace ℝ (Fin m) × ℝ))
     (Ξ : Set (EuclideanSpace ℝ (Fin m))) (r : ℝ) : Set (Line m) :=
   {g | g.2 ∈ Ξ ∧ ENNReal.ofReal r ≤ localXRay (E.indicator (fun _ ↦ (1 : ℝ≥0∞))) g.2 g.1}
 
+/--
+@isnad1 id=measurab.2h4v.s7.49f0bb1f9e0c from=translated src=- shape=0c66a0bc vocab=972aa325
+-/
 theorem measurableSet_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : MeasurableSet Ξ) (r : ℝ) :
     MeasurableSet (richLines E Ξ r) := by
@@ -42,6 +45,9 @@ theorem measurableSet_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
       (measurable_localXRay ((measurable_const (a := (1 : ℝ≥0∞))).indicator hE)))
   simpa only [richLines, preimage, ofPred_and] using h
 
+/--
+@isnad1 id=le.5h7v.s8.ff5d4dafa5b9 from=translated src=- shape=9bd81567 vocab=da25d916
+-/
 theorem norm_intercept_le_of_mem_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) {Ξ : Set (EuclideanSpace ℝ (Fin m))} {R A r : ℝ}
     (hR : ∀ p ∈ E, ‖p.1‖ ≤ R) (hA : ∀ ξ ∈ Ξ, ‖ξ‖ ≤ A) (hr : 0 < r)
@@ -66,7 +72,9 @@ theorem norm_intercept_le_of_mem_richLines {E : Set (EuclideanSpace ℝ (Fin m) 
   rw [← heq]
   exact (norm_sub_le _ _).trans (add_le_add hpoint hnorm)
 
-/-- One intercept ball works for every Borel subset of a fixed bounded support.-/
+/-- One intercept ball works for every Borel subset of a fixed bounded support.
+@isnad1 id=ex.2h3v.s8.d53df094ef41 from=translated src=- shape=7fb7c5c4 vocab=55855e62
+-/
 theorem exists_uniform_intercept_bound {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hK : IsBounded K) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : IsBounded Ξ) :
     ∃ R : ℝ, 0 < R ∧ ∀ E : Set (EuclideanSpace ℝ (Fin m) × ℝ), MeasurableSet E → E ⊆ K →
@@ -78,6 +86,9 @@ theorem exists_uniform_intercept_bound {K : Set (EuclideanSpace ℝ (Fin m) × �
   exact norm_intercept_le_of_mem_richLines hE
     (fun p hp ↦ hbound p.1 ⟨p, hEK hp, rfl⟩) hslopes hr hg
 
+/--
+@isnad1 id=isbounde.4h4v.s7.c7ae1e6f81c3 from=translated src=- shape=057676bf vocab=44496494
+-/
 theorem isBounded_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hE : MeasurableSet E) (hEb : IsBounded E) {Ξ : Set (EuclideanSpace ℝ (Fin m))}
     (hΞ : IsBounded Ξ) {r : ℝ} (hr : 0 < r) : IsBounded (richLines E Ξ r) := by
@@ -86,7 +97,9 @@ theorem isBounded_richLines {E : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (r := R)).prod hΞ).subset
     (hR E hE Subset.rfl r hr)
 
-/-- Every positive superlevel fiber has one common finite measure bound.-/
+/-- Every positive superlevel fiber has one common finite measure bound.
+@isnad1 id=ex.2h3v.s9.02aa6257eb62 from=translated src=- shape=c0211f65 vocab=c4f3fbd0
+-/
 theorem exists_uniform_fiber_bound {K : Set (EuclideanSpace ℝ (Fin m) × ℝ)}
     (hK : IsBounded K) {Ξ : Set (EuclideanSpace ℝ (Fin m))} (hΞ : IsBounded Ξ) :
     ∃ B : ℝ, 0 < B ∧ ∀ E : Set (EuclideanSpace ℝ (Fin m) × ℝ), MeasurableSet E → E ⊆ K →

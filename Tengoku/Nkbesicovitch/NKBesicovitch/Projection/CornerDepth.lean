@@ -22,6 +22,9 @@ public section
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=ex.2h2v.s8.dc3b4a8a3514 from=translated src=- shape=2cbc3090 vocab=630537c9
+-/
 theorem exists_corner_depth {q β' : ℝ} (hq : 1 < q)
     (hgap : (2 * q + 3 * q ^ 2 - 2) / (q + 2 * q ^ 2 - 2) < β') :
     ∃ J : ℕ, 0 < J ∧ ∀ j : ℕ, J ≤ j →
@@ -46,6 +49,9 @@ theorem exists_corner_depth {q β' : ℝ} (hq : 1 < q)
   rw [add_div, div_div, mul_comm (j : ℝ) A]
   linarith
 
+/--
+@isnad1 id=other.2h2v.s8.77a7b50995fb from=translated src=- shape=01f09a4e vocab=722fd904
+-/
 theorem exists_depth_for_corner_update {β β' : ℝ} (hβ : 1 < β)
     (hgap : cornerUpdate β < β') :
     let q := β / (β - 1)

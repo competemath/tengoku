@@ -28,6 +28,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=mem.5h12v.s7.a49f0d65fb8b from=translated src=- shape=68a5b7f0 vocab=13959302
+-/
 theorem cornerNodeParameters_outer_time_mem {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -40,6 +43,9 @@ theorem cornerNodeParameters_outer_time_mem {I : Set ℝ} (hI : MeasurableSet I)
   exact S.time_mem _ (measurableSet_cornerOuterTimes hI a b c δ p.1)
     ((cornerOuterTimes_subset I a b c δ p.1).trans hIunit) hO p.2.1 hp.2.1 i
 
+/--
+@isnad1 id=mem.5h13v.s8.a2afefd9cfa6 from=translated src=- shape=7b2bfd6f vocab=276a5cf6
+-/
 theorem cornerNodeParameters_inner_time_mem {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}
@@ -54,6 +60,9 @@ theorem cornerNodeParameters_inner_time_mem {I : Set ℝ} (hI : MeasurableSet I)
   exact S.time_mem _ (measurableSet_dualTimes hI _ _ _)
     ((dualTimes_subset I _ _ _).trans hIunit) hT _ (hp.2.2 i) j
 
+/--
+@isnad1 id=mem.6h13v.s8.1c6dbf22c0ce from=translated src=- shape=07cdabb2 vocab=28370ae1
+-/
 theorem cornerNodeParameters_child_triple {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) {a b c δ : ℝ} (hδ : 0 < δ) (hb : b ∈ I)
     {p : ℝ × ((Fin D → ℝ) × (Fin L → Fin D → ℝ))}

@@ -27,6 +27,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ}
 
+/--
+@isnad1 id=eq.0h7v.s17.6122d173febf from=translated src=- shape=29f91a93 vocab=61b39fd4
+-/
 theorem plateAverage_rotate (u : Rotations n) (a : EuclideanSpace ℝ (Fin n))
     (V : Grassmannian n k) (δ : ℝ) (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     (∫⁻ z in plate δ (Grassmannian.rotate u V).val (Unitary.linearIsometryEquiv u a), f z) /
@@ -42,6 +45,9 @@ theorem plateAverage_rotate (u : Rotations n) (a : EuclideanSpace ℝ (Fin n))
   rw [preimage_plate_rotate] at hi hvol
   rw [← hi, ← hvol]
 
+/--
+@isnad1 id=eq.0h6v.s15.d624fa01ee06 from=translated src=- shape=90b894a0 vocab=f96602e3
+-/
 theorem plateMaximal_rotate (u : Rotations n) (V : Grassmannian n k) (δ : ℝ)
     (f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞) :
     plateMaximal δ f (Grassmannian.rotate u V) =

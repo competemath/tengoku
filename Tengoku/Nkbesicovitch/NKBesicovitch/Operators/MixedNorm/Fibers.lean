@@ -29,6 +29,9 @@ namespace NKBesicovitch
 variable {X Y : Type*} [MeasurableSpace X] [MeasurableSpace Y]
     {μ : Measure X} {ν : Measure Y}
 
+/--
+@isnad1 id=le.5h5v.s7.1b8f1c52c5d8 from=translated src=- shape=8c872efd vocab=0045607d
+-/
 theorem lintegral_rpow_le_of_gap {f : Y → ℝ≥0∞} {a s : ℝ}
     (ha : 0 < a) (hs : 0 < s) (hs1 : s ≤ 1) (hfin : ∀ y, f y ≠ ∞)
     (hgap : ∀ y, f y = 0 ∨ ENNReal.ofReal a ≤ f y) :
@@ -56,6 +59,9 @@ theorem lintegral_rpow_le_of_gap {f : Y → ℝ≥0∞} {a s : ℝ}
   rw [← ENNReal.ofReal_mul (by positivity)]
   exact ENNReal.ofReal_le_ofReal hpow
 
+/--
+@isnad1 id=le.7h8v.s8.dbbc92fbfe1c from=translated src=- shape=b0aa46d9 vocab=b42369ce
+-/
 theorem mixedNorm_indicator_rpow_le_of_fiber_gap [SFinite μ] [SFinite ν]
     {F : Set (X × Y)} (hF : MeasurableSet F) {q r a : ℝ}
     (hq : 0 < q) (hr : 0 < r) (hqr : q / r ≤ 1) (ha : 0 < a)
@@ -67,6 +73,9 @@ theorem mixedNorm_indicator_rpow_le_of_fiber_gap [SFinite μ] [SFinite ν]
   rw [mixedNorm_indicator_rpow hF hq hr, Measure.prod_apply_symm hF]
   exact lintegral_rpow_le_of_gap ha (div_pos hq hr) hqr hfin hgap
 
+/--
+@isnad1 id=le.6h9v.s7.61f476acd104 from=translated src=- shape=49bd0c35 vocab=f753ab93
+-/
 theorem mixedNorm_indicator_rpow_le_of_fiber_upper
     {F : Set (X × Y)} (hF : MeasurableSet F) {Ξ : Set Y} (hΞ : MeasurableSet Ξ)
     (hsub : ∀ p ∈ F, p.2 ∈ Ξ) {q r : ℝ} (hq : 0 < q) (hr : 0 < r) {B : ℝ≥0∞}

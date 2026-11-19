@@ -28,6 +28,9 @@ namespace NKBesicovitch
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
+/--
+@isnad1 id=ex.0h1v.s8.5a1726203589 from=translated src=- shape=e9d7c7fd vocab=af950ea5
+-/
 theorem exists_finite_normal_cap_cover [FiniteDimensional ℝ E] :
     ∃ s : Finset (sphere (0 : E) 1), ∀ w : sphere (0 : E) 1,
       ∃ v ∈ s, (1 / 2 : ℝ) < ⟪(v : E), (w : E)⟫_ℝ := by
@@ -48,6 +51,9 @@ theorem exists_finite_normal_cap_cover [FiniteDimensional ℝ E] :
   obtain ⟨hvs, hvw⟩ := mem_iUnion.mp hv
   exact ⟨v, hvs, hvw⟩
 
+/--
+@isnad1 id=measurab.1h3v.s9.74650f103edd from=translated src=- shape=01f40327 vocab=91c65ba2
+-/
 theorem measurableSet_normalSlopes [MeasurableSpace E] [BorelSpace E]
     {v : E} (hv : ‖v‖ = 1) (c : ℝ) :
     MeasurableSet {ξ : (ℝ ∙ v)ᗮ | c ≤ ⟪v, (normalDirection hv ξ : E)⟫_ℝ} := by
@@ -55,12 +61,18 @@ theorem measurableSet_normalSlopes [MeasurableSpace E] [BorelSpace E]
   exact (continuous_const.inner (continuous_subtype_val.comp
     (continuous_normalDirection hv))).measurable
 
+/--
+@isnad1 id=isbounde.2h3v.s9.95de53c46324 from=translated src=- shape=dd4fc3aa vocab=1e7cbca7
+-/
 theorem isBounded_normalSlopes {v : E} (hv : ‖v‖ = 1) {c : ℝ} (hc : 0 < c) :
     IsBounded {ξ : (ℝ ∙ v)ᗮ | c ≤ ⟪v, (normalDirection hv ξ : E)⟫_ℝ} := by
   apply isBounded_closedBall.subset (t := closedBall (0 : (ℝ ∙ v)ᗮ) (1 / c))
   intro ξ hξ
   simpa only [mem_closedBall, dist_zero_right] using norm_slope_le_of_inner_lower hv hc hξ
 
+/--
+@isnad1 id=ex.0h1v.s10.10ec51b0cbcf from=translated src=- shape=9cd12a83 vocab=b9ab99f3
+-/
 theorem exists_finite_bounded_slope_cover [FiniteDimensional ℝ E] :
     ∃ s : Finset (sphere (0 : E) 1), ∀ w : sphere (0 : E) 1,
       ∃ v ∈ s, ∃ ξ : (ℝ ∙ (v : E))ᗮ,

@@ -37,10 +37,16 @@ def cornerFirst (a : ℝ) (p : CornerCoordinates m) : Line m :=
 def cornerLast (b : ℝ) (p : CornerCoordinates m) : Line m :=
   lineAt b (atHeight b p.1) p.2.2
 
+/--
+@isnad1 id=eq.0h3v.s5.56d4fae9bf32 from=translated src=- shape=fb9d7967 vocab=f725b943
+-/
 theorem atHeight_cornerFirst (a : ℝ) (p : CornerCoordinates m) :
     atHeight a (cornerFirst a p) = atHeight a p.1 := by
   simp [cornerFirst, atHeight_lineAt]
 
+/--
+@isnad1 id=eq.0h3v.s5.755ac4f1efdb from=translated src=- shape=fb9d7967 vocab=28abcb93
+-/
 theorem atHeight_cornerLast (b : ℝ) (p : CornerCoordinates m) :
     atHeight b (cornerLast b p) = atHeight b p.1 := by
   simp [cornerLast, atHeight_lineAt]
@@ -53,15 +59,27 @@ def cornerParent (a : ℝ) (p : CornerCoordinates m) : PairCoordinates m :=
 def cornerInner (b : ℝ) (p : CornerCoordinates m) : PairCoordinates m :=
   (atHeight b p.1, (p.1.2, p.2.2))
 
+/--
+@isnad1 id=eq.0h3v.s6.83ea94728c29 from=translated src=- shape=c6ac91aa vocab=459d993c
+-/
 theorem first_cornerParent (a : ℝ) (p : CornerCoordinates m) :
     lineAt a (cornerParent a p).1 (cornerParent a p).2.1 = p.1 := lineAt_atHeight a p.1
 
+/--
+@isnad1 id=eq.0h3v.s5.eb7d9bff1d24 from=translated src=- shape=2d6411c9 vocab=2d452068
+-/
 theorem second_cornerParent (a : ℝ) (p : CornerCoordinates m) :
     lineAt a (cornerParent a p).1 (cornerParent a p).2.2 = cornerFirst a p := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f394b2cee2ab from=translated src=- shape=c6ac91aa vocab=0dde5b3c
+-/
 theorem first_cornerInner (b : ℝ) (p : CornerCoordinates m) :
     lineAt b (cornerInner b p).1 (cornerInner b p).2.1 = p.1 := lineAt_atHeight b p.1
 
+/--
+@isnad1 id=eq.0h3v.s5.3dce7676ca91 from=translated src=- shape=2d6411c9 vocab=dc201127
+-/
 theorem second_cornerInner (b : ℝ) (p : CornerCoordinates m) :
     lineAt b (cornerInner b p).1 (cornerInner b p).2.2 = cornerLast b p := rfl
 
@@ -69,6 +87,9 @@ theorem second_cornerInner (b : ℝ) (p : CornerCoordinates m) :
 def cornerFamily (a b : ℝ) (G : Set (Line m)) : Set (CornerCoordinates m) :=
   {p | cornerFirst a p ∈ G ∧ p.1 ∈ G ∧ cornerLast b p ∈ G}
 
+/--
+@isnad1 id=measurab.1h4v.s8.d4307e83039c from=translated src=- shape=f185822b vocab=3e0aaa86
+-/
 theorem measurableSet_cornerFamily (a b : ℝ) {G : Set (Line m)} (hG : MeasurableSet G) :
     MeasurableSet (cornerFamily a b G) := by
   have h₁ : Continuous (cornerFirst (m := m) a) := by
@@ -80,10 +101,16 @@ theorem measurableSet_cornerFamily (a b : ℝ) {G : Set (Line m)} (hG : Measurab
   exact (hG.preimage h₁.measurable).inter
     ((hG.preimage measurable_fst).inter (hG.preimage h₃.measurable))
 
+/--
+@isnad1 id=mem.1h5v.s5.cf2ade12903d from=translated src=- shape=e4744c33 vocab=171fcd18
+-/
 theorem cornerParent_mem_pairFamily {a b : ℝ} {G : Set (Line m)}
     {p : CornerCoordinates m} (hp : p ∈ cornerFamily a b G) : cornerParent a p ∈ pairFamily a G :=
   ⟨by simpa only [first_cornerParent] using hp.2.1, hp.1⟩
 
+/--
+@isnad1 id=mem.1h5v.s5.b4c1aaf7c2e3 from=translated src=- shape=215aba16 vocab=52b67301
+-/
 theorem cornerInner_mem_pairFamily {a b : ℝ} {G : Set (Line m)}
     {p : CornerCoordinates m} (hp : p ∈ cornerFamily a b G) : cornerInner b p ∈ pairFamily b G :=
   ⟨by simpa only [first_cornerInner] using hp.2.1, hp.2.2⟩

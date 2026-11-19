@@ -26,6 +26,9 @@ open scoped ENNReal
 
 namespace NKBesicovitch.Projection.Selection
 
+/--
+@isnad1 id=and.6h5v.s8.ac1390c55e1a from=translated src=- shape=736d3918 vocab=df84fa55
+-/
 theorem dualScalar_bounds {I : Set ℝ} (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I)
     {a b δ : ℝ} (ha : a ∈ Icc 0 1) (hb : b ∈ Icc 0 1)
     (hab : δ ≤ dist a b) {p : ℝ × ℝ} (hp : p ∈ dualPairParameters I a b) :

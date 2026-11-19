@@ -25,6 +25,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.5h9v.s10.b043755c0260 from=translated src=- shape=2cba1ae1 vocab=b18e0ed3
+-/
 theorem nodePattern_times_subset_treeTimes {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))

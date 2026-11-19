@@ -59,6 +59,9 @@ noncomputable def normalLiftCoordinates (hv : ‖v‖ = 1)
   obtain ⟨x, hx, t, h⟩ := (mem_normalLift_iff hv b V z).mp z.2
   exact ⟨WithLp.toLp 2 (⟨x, hx⟩, t), Subtype.ext h⟩
 
+/--
+@isnad1 id=eq.1h7v.s15.56f55ec11ced from=translated src=- shape=06f14891 vocab=96757870
+-/
 theorem normalLiftCoordinates_apply (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (V : Grassmannian m k)
     (z : WithLp 2 (V.val × ℝ)) :

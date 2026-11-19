@@ -24,6 +24,9 @@ open scoped ENNReal Topology
 
 namespace NKBesicovitch
 
+/--
+@isnad1 id=lowersem.2h4v.s6.4c18adedb192 from=translated src=- shape=675e1e26 vocab=f10416ce
+-/
 theorem lowerSemicontinuous_lintegral {X Y : Type*} [TopologicalSpace X]
     [FirstCountableTopology X] [MeasurableSpace Y] {μ : Measure Y} {f : X → Y → ℝ≥0∞}
     (hm : ∀ x, AEMeasurable (f x) μ) (hl : ∀ y, LowerSemicontinuous (fun x ↦ f x y)) :

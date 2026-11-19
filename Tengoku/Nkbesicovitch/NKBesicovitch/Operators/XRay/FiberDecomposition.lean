@@ -29,6 +29,9 @@ namespace NKBesicovitch.XRay
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=eventual.2h4v.s9.07abf6a07a21 from=translated src=- shape=a7a195b8 vocab=27935ca5
+-/
 theorem indicator_le_tsum_fiberBlock_ae (F : Set (Line m)) {B : ℝ} (hB : 0 < B)
     (hupper : ∀ ξ, volume ((fun x ↦ (x, ξ)) ⁻¹' F) ≤ ENNReal.ofReal B)
     (ξ : EuclideanSpace ℝ (Fin m)) :
@@ -53,6 +56,9 @@ theorem indicator_le_tsum_fiberBlock_ae (F : Set (Line m)) {B : ℝ} (hB : 0 < B
     · rw [indicator_of_notMem hx]
       exact zero_le
 
+/--
+@isnad1 id=le.7h5v.s10.6b721ae12291 from=translated src=- shape=66c86d46 vocab=6447e75c
+-/
 theorem mixedNorm_indicator_le_tsum_fiberBlock {F : Set (Line m)} (hF : MeasurableSet F)
     {B : ℝ} (hB : 0 < B)
     (hupper : ∀ ξ, volume ((fun x ↦ (x, ξ)) ⁻¹' F) ≤ ENNReal.ofReal B)

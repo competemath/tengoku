@@ -33,11 +33,17 @@ section SlopeCone
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     [FiniteDimensional ℝ H] [MeasurableSpace H] [BorelSpace H] {A : Set H}
 
+/--
+@isnad1 id=measurab.1h2v.s7.6197bcc70109 from=translated src=- shape=754e50d9 vocab=3538b8bc
+-/
 theorem measurableSet_slopeCone (hA : MeasurableSet A) :
     MeasurableSet {z : H × ℝ | z.2 ∈ Ioo (0 : ℝ) 1 ∧ z.2⁻¹ • z.1 ∈ A} :=
   (measurableSet_Ioo.preimage measurable_snd).inter
     (hA.preimage (measurable_snd.inv.smul measurable_fst))
 
+/--
+@isnad1 id=le.1h2v.s8.91beefc9abc0 from=translated src=- shape=582d9960 vocab=b69806ab
+-/
 theorem volume_slopeCone_le (hA : MeasurableSet A) :
     volume {z : H × ℝ | z.2 ∈ Ioo (0 : ℝ) 1 ∧ z.2⁻¹ • z.1 ∈ A} ≤ volume A := by
   rw [Measure.volume_eq_prod, Measure.prod_apply_symm (measurableSet_slopeCone hA)]
@@ -71,6 +77,9 @@ end SlopeCone
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {v : E}
 
+/--
+@isnad1 id=le.1h3v.s12.e50466c758a9 from=translated src=- shape=6e3b8fdd vocab=51b8532d
+-/
 theorem normalDirection_cone_subset (hv : ‖v‖ = 1) (A : Set (ℝ ∙ v)ᗮ) :
     Ioo (0 : ℝ) 1 • (Subtype.val '' (normalDirection hv '' A)) ⊆
       normalCoordinates hv ''
@@ -91,6 +100,9 @@ theorem normalDirection_cone_subset (hv : ‖v‖ = 1) (A : Set (ℝ ∙ v)ᗮ) 
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=le.2h3v.s11.6c63a5b77864 from=translated src=- shape=00cfbbea vocab=9b90abbc
+-/
 theorem toSphere_normalDirection_image_le (hv : ‖v‖ = 1)
     {A : Set (ℝ ∙ v)ᗮ} (hA : MeasurableSet A) :
     (volume : Measure E).toSphere (normalDirection hv '' A) ≤
@@ -112,6 +124,9 @@ theorem toSphere_normalDirection_image_le (hv : ‖v‖ = 1)
       exact h.symm
     _ ≤ volume A := volume_slopeCone_le hA
 
+/--
+@isnad1 id=le.2h3v.s11.63879265b781 from=translated src=- shape=f83f6089 vocab=0ea93a72
+-/
 theorem toSphere_restrict_normalDirection_le (hv : ‖v‖ = 1)
     {A : Set (ℝ ∙ v)ᗮ} (hA : MeasurableSet A) :
     (volume : Measure E).toSphere.restrict (normalDirection hv '' A) ≤
@@ -125,7 +140,9 @@ theorem toSphere_restrict_normalDirection_le (hv : ‖v‖ = 1)
   exact toSphere_normalDirection_image_le hv
     ((hs.preimage (measurableEmbedding_normalDirection hv).measurable).inter hA)
 
-/-- Outer direction norms are controlled by the corresponding slope norms on each chart.-/
+/-- Outer direction norms are controlled by the corresponding slope norms on each chart.
+@isnad1 id=le.2h5v.s11.e1ac2cf78456 from=translated src=- shape=8536a74f vocab=120ab1e5
+-/
 theorem eLpNorm_toSphere_normalDirection_le (hv : ‖v‖ = 1)
     {A : Set (ℝ ∙ v)ᗮ} (hA : MeasurableSet A) (f : sphere (0 : E) 1 → ℝ≥0∞) (p : ℝ≥0∞) :
     eLpNorm f p ((volume : Measure E).toSphere.restrict (normalDirection hv '' A)) ≤

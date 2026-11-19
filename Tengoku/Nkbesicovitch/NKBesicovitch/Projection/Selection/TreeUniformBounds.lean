@@ -27,6 +27,9 @@ namespace NKBesicovitch.Projection.Selection.SelectableProjectionScheme
 
 variable {m D L : ℕ} {β : ℝ} (S : SelectableProjectionScheme m β D L)
 
+/--
+@isnad1 id=le.5h10v.s8.9e3f1439e959 from=translated src=- shape=c21494d2 vocab=756121db
+-/
 theorem tree_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) (J : ℕ) {q : (ℝ × ℝ) × ℝ}
     (hq : q ∈ separatedTriples I ((volume I).toReal / 100))
@@ -46,7 +49,9 @@ theorem tree_coordinates_uniform_bound {I : Set ℝ} (hI : MeasurableSet I)
     · exact ih (S.cornerNodeParameters_child_triple hI hIunit hIpos (by positivity)
         (mem_separatedTriples.mp hq).2.1 hσ.1 ij.1 ij.2) (hσ.2 ij) j
 
-/-- One positive polynomial coordinate constant works simultaneously at all depths.-/
+/-- One positive polynomial coordinate constant works simultaneously at all depths.
+@isnad1 id=ex.0h5v.s8.626b5ad958fa from=translated src=- shape=7e4ffcea vocab=8b06af25
+-/
 theorem exists_tree_coordinate_constant :
     ∃ C : ℝ, 1 ≤ C ∧ ∀ I : Set ℝ, MeasurableSet I → I ⊆ Icc 0 1 → 0 < volume I →
       ∀ (J : ℕ) q, q ∈ separatedTriples I ((volume I).toReal / 100) →

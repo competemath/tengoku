@@ -36,21 +36,33 @@ noncomputable def normalCoordinates (hv : ‖v‖ = 1) : ((ℝ ∙ v)ᗮ × ℝ)
         (LinearIsometryEquiv.refl ℝ (ℝ ∙ v)ᗮ)).trans
           (ℝ ∙ v).orthogonalDecomposition.symm)).toContinuousLinearEquiv)
 
+/--
+@isnad1 id=eq.1h4v.s12.149026a6ebc6 from=translated src=- shape=d69cdb5a vocab=797c000d
+-/
 theorem normalCoordinates_apply (hv : ‖v‖ = 1) (x : (ℝ ∙ v)ᗮ) (t : ℝ) :
     normalCoordinates hv (x, t) = (x : E) + t • v := by
   simp [normalCoordinates, add_comm]
 
+/--
+@isnad1 id=eq.1h4v.s12.431399269948 from=translated src=- shape=2bd7b2e3 vocab=e856e279
+-/
 theorem inner_normalCoordinates (hv : ‖v‖ = 1) (x : (ℝ ∙ v)ᗮ) (t : ℝ) :
     ⟪v, normalCoordinates hv (x, t)⟫_ℝ = t := by
   rw [normalCoordinates_apply, inner_add_right, inner_smul_right,
     mem_orthogonal_singleton_iff_inner_right.mp x.2, real_inner_self_eq_norm_sq, hv]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s12.139f6d937653 from=translated src=- shape=7b03e615 vocab=ca1f927f
+-/
 theorem normalCoordinates_symm_snd (hv : ‖v‖ = 1) (y : E) :
     ((normalCoordinates hv).symm y).2 = ⟪v, y⟫_ℝ := by
   obtain ⟨⟨x, t⟩, rfl⟩ := (normalCoordinates hv).surjective y
   rw [ContinuousLinearEquiv.symm_apply_apply, inner_normalCoordinates]
 
+/--
+@isnad1 id=eq.1h3v.s12.6c6e3519c44a from=translated src=- shape=e0c8812f vocab=8ab4b179
+-/
 theorem normalCoordinates_symm_fst (hv : ‖v‖ = 1) (y : E) :
     ((normalCoordinates hv).symm y).1 = (ℝ ∙ v)ᗮ.orthogonalProjectionOnto y := by
   obtain ⟨⟨x, t⟩, rfl⟩ := (normalCoordinates hv).surjective y
@@ -58,6 +70,9 @@ theorem normalCoordinates_symm_fst (hv : ‖v‖ = 1) (y : E) :
     orthogonalProjectionOnto_mem_subspace_eq_self,
     orthogonalProjectionOnto_orthogonalComplement_singleton_eq_zero, smul_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h4v.s12.d1106394e05a from=translated src=- shape=546f09ad vocab=b0e27eda
+-/
 theorem norm_normalCoordinates_sq (hv : ‖v‖ = 1) (x : (ℝ ∙ v)ᗮ) (t : ℝ) :
     ‖normalCoordinates hv (x, t)‖ ^ 2 = ‖x‖ ^ 2 + t ^ 2 := by
   rw [normalCoordinates_apply, norm_add_sq_real]
@@ -71,12 +86,18 @@ noncomputable def normalCoordinatesWithBasis {m : ℕ} (hv : ‖v‖ = 1)
   (b.toContinuousLinearEquiv.prodCongr (ContinuousLinearEquiv.refl ℝ ℝ)).trans
     (normalCoordinates hv)
 
+/--
+@isnad1 id=eq.1h6v.s11.d84fd620f87e from=translated src=- shape=816cb75b vocab=f7afd59f
+-/
 theorem normalCoordinatesWithBasis_apply {m : ℕ} (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     (x : EuclideanSpace ℝ (Fin m)) (t : ℝ) :
     normalCoordinatesWithBasis hv b (x, t) = (b x : E) + t • v :=
   normalCoordinates_apply hv (b x) t
 
+/--
+@isnad1 id=eq.1h8v.s11.0ce65cc44bf3 from=translated src=- shape=19ad56ed vocab=f6f4371d
+-/
 theorem inner_normalCoordinatesWithBasis {m : ℕ} (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ)
     (x y : EuclideanSpace ℝ (Fin m)) (t s : ℝ) :
@@ -90,6 +111,9 @@ theorem inner_normalCoordinatesWithBasis {m : ℕ} (hv : ‖v‖ = 1)
   change ⟪b x, b y⟫_ℝ + s * t = ⟪x, y⟫_ℝ + t * s
   rw [b.inner_map_map, mul_comm s t]
 
+/--
+@isnad1 id=le.1h5v.s10.8e0fe520cebe from=translated src=- shape=05e6c474 vocab=f789468b
+-/
 theorem norm_normalCoordinatesWithBasis_symm_fst_le {m : ℕ} (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) (z : E) :
     ‖((normalCoordinatesWithBasis hv b).symm z).1‖ ≤ ‖z‖ := by
@@ -99,6 +123,9 @@ theorem norm_normalCoordinatesWithBasis_symm_fst_le {m : ℕ} (hv : ‖v‖ = 1)
   rw [real_inner_self_eq_norm_sq, real_inner_self_eq_norm_sq] at h
   nlinarith [sq_nonneg t, norm_nonneg (normalCoordinatesWithBasis hv b (x, t))]
 
+/--
+@isnad1 id=lipschit.1h4v.s10.a8a082c38a49 from=translated src=- shape=59ee535a vocab=5087b48c
+-/
 theorem lipschitz_normalCoordinatesWithBasis_symm_fst {m : ℕ} (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) :
     LipschitzWith 1 (fun z ↦ ((normalCoordinatesWithBasis hv b).symm z).1) := by
@@ -109,6 +136,9 @@ theorem lipschitz_normalCoordinatesWithBasis_symm_fst {m : ℕ} (hv : ‖v‖ = 
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=measurep.1h2v.s12.d76bdcd26efa from=translated src=- shape=2e284758 vocab=d957b842
+-/
 theorem measurePreserving_normalCoordinates (hv : ‖v‖ = 1) :
     MeasurePreserving (normalCoordinates hv) volume volume := by
   let i := (LinearIsometryEquiv.withLpProdComm 2 ℝ (ℝ ∙ v)ᗮ ℝ).trans
@@ -116,6 +146,9 @@ theorem measurePreserving_normalCoordinates (hv : ‖v‖ = 1) :
       (LinearIsometryEquiv.refl ℝ (ℝ ∙ v)ᗮ)).trans (ℝ ∙ v).orthogonalDecomposition.symm)
   exact i.measurePreserving.comp (WithLp.volume_preserving_toLp (ℝ ∙ v)ᗮ ℝ)
 
+/--
+@isnad1 id=measurep.1h4v.s10.2bebe74a1218 from=translated src=- shape=bb7c22d1 vocab=1db4398e
+-/
 theorem measurePreserving_normalCoordinatesWithBasis {m : ℕ} (hv : ‖v‖ = 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ v)ᗮ) :
     MeasurePreserving (normalCoordinatesWithBasis hv b) volume volume := by

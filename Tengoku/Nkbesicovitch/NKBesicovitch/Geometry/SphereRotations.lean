@@ -32,17 +32,26 @@ noncomputable def rotateSphere (u : Rotations n)
     simpa only [mem_sphere, dist_zero_right, LinearIsometryEquiv.norm_map] using
       norm_eq_of_mem_sphere v⟩
 
+/--
+@isnad1 id=eq.0h2v.s13.09da0e14e1b9 from=translated src=- shape=0f4d42b5 vocab=43db5f8c
+-/
 theorem rotateSphere_one (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1) :
     rotateSphere 1 v = v := by
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s14.e9686d592344 from=translated src=- shape=84c0525e vocab=58b38cc2
+-/
 theorem rotateSphere_mul (u w : Rotations n)
     (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1) :
     rotateSphere (u * w) v = rotateSphere u (rotateSphere w v) := by
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=continuo.0h1v.s14.072cf13da6f9 from=translated src=- shape=690cb77f vocab=ac09f69e
+-/
 theorem continuous_rotateSphere :
     Continuous (fun p : Rotations n × sphere (0 : EuclideanSpace ℝ (Fin n)) 1 ↦
       rotateSphere p.1 p.2) := by
@@ -55,6 +64,9 @@ noncomputable instance : MulAction (Rotations n) (sphere (0 : EuclideanSpace ℝ
   one_smul := rotateSphere_one
   mul_smul := rotateSphere_mul
 
+/--
+@isnad1 id=ex.0h3v.s12.8f1720a2dd74 from=translated src=- shape=a2240199 vocab=43db5f8c
+-/
 theorem exists_rotateSphere_eq (v w : sphere (0 : EuclideanSpace ℝ (Fin n)) 1) :
     ∃ u : Rotations n, rotateSphere u v = w := by
   let ev : ℝ ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n))) :=

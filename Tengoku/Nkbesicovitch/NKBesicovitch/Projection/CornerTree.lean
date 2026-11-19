@@ -59,21 +59,36 @@ noncomputable def times (T : CornerTree m β J) : Finset ℝ :=
   Finset.univ.biUnion fun v ↦ {T.a v, T.b v, T.c v} ∪
     if h : T.level v < J then (T.pattern v h).times else ∅
 
+/--
+@isnad1 id=mem.0h5v.s5.921462474f5b from=translated src=- shape=f81c8c9c vocab=761272fd
+-/
 theorem a_mem_times (T : CornerTree m β J) (v : T.Node) : T.a v ∈ T.times := by
   classical
   exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
 
+/--
+@isnad1 id=mem.0h5v.s5.5f95bc56eae7 from=translated src=- shape=f81c8c9c vocab=e89764ea
+-/
 theorem b_mem_times (T : CornerTree m β J) (v : T.Node) : T.b v ∈ T.times := by
   classical
   exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
 
+/--
+@isnad1 id=mem.0h5v.s5.592dc311c7ae from=translated src=- shape=f81c8c9c vocab=430bcc64
+-/
 theorem c_mem_times (T : CornerTree m β J) (v : T.Node) : T.c v ∈ T.times := by
   classical
   exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _, Finset.mem_union_left _ (by simp)⟩
 
+/--
+@isnad1 id=nonempty.0h4v.s4.d0f10e514412 from=translated src=- shape=50dd11d9 vocab=c6921570
+-/
 theorem times_nonempty (T : CornerTree m β J) : T.times.Nonempty :=
   ⟨T.a T.root, T.a_mem_times T.root⟩
 
+/--
+@isnad1 id=le.1h5v.s5.b08d7b8185ca from=translated src=- shape=26bf2dd2 vocab=0c067767
+-/
 theorem pattern_times_subset (T : CornerTree m β J) (v : T.Node) (h : T.level v < J) :
     (T.pattern v h).times ⊆ T.times := by
   classical
@@ -81,6 +96,9 @@ theorem pattern_times_subset (T : CornerTree m β J) (v : T.Node) (h : T.level v
   exact Finset.mem_biUnion.mpr ⟨v, Finset.mem_univ _,
     Finset.mem_union_right _ (by simpa only [dite_eq_left h] using ht)⟩
 
+/--
+@isnad1 id=mem.5h6v.s7.1b12aef99642 from=translated src=- shape=4578d70b vocab=7d6c9af4
+-/
 theorem times_subset (T : CornerTree m β J) {I : Set ℝ}
     (ha : ∀ v, T.a v ∈ I) (hb : ∀ v, T.b v ∈ I) (hc : ∀ v, T.c v ∈ I)
     (hP : ∀ v h, ∀ t ∈ (T.pattern v h).times, t ∈ I) : ∀ t ∈ T.times, t ∈ I := by

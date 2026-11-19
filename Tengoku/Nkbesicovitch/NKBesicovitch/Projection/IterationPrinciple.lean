@@ -25,6 +25,9 @@ open scoped Topology
 
 namespace NKBesicovitch.Projection
 
+/--
+@isnad1 id=var.1h4v.s6.91fe8abf5163 from=translated src=- shape=817b6d41 vocab=2222d69c
+-/
 theorem of_corner_improvement {P : ℝ → Prop} (htwo : P 2)
     (himprove : ∀ {β γ : ℝ}, 1 < β → β ≤ 2 → P β → cornerUpdate β < γ → P γ)
     {β : ℝ} (hβ : projectionExponent < β) : P β := by

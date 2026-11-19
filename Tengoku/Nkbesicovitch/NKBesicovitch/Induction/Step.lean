@@ -33,6 +33,9 @@ namespace NKBesicovitch.Induction
 variable {n m k : ℕ} (v : sphere (0 : EuclideanSpace ℝ (Fin n)) 1)
     (b : EuclideanSpace ℝ (Fin m) ≃ₗᵢ[ℝ] (ℝ ∙ (v : EuclideanSpace ℝ (Fin n)))ᗮ)
 
+/--
+@isnad1 id=le.2h9v.s13.e13331c7aaeb from=translated src=- shape=d55da63a vocab=35b59416
+-/
 theorem plateMaximal_flagDirection_le {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
     (hf : Measurable f) {δ : ℝ} (hδ : 0 < δ) (u : Rotations n) (V : Grassmannian m k) :
     plateMaximal δ f (flagDirection (norm_eq_of_mem_sphere v) b (u, V)) ≤

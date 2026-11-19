@@ -28,6 +28,9 @@ namespace NKBesicovitch
 
 variable {n k : ℕ} {δ t : ℝ} {f : EuclideanSpace ℝ (Fin n) → ℝ≥0∞}
 
+/--
+@isnad1 id=le.3h6v.s10.e9d9535f6f8a from=translated src=- shape=316f797d vocab=8bbf8f37
+-/
 theorem plateAverage_rpow_le (hδ : 0 < δ) (ht : 1 ≤ t)
     (V : Submodule ℝ (EuclideanSpace ℝ (Fin n))) (a : EuclideanSpace ℝ (Fin n))
     (hf : Measurable f) :
@@ -48,6 +51,9 @@ theorem plateAverage_rpow_le (hδ : 0 < δ) (ht : 1 ≤ t)
   simpa only [eLpNorm_one_eq_lintegral_enorm, enorm_eq_self, μ,
     lintegral_smul_measure, smul_eq_mul, div_eq_mul_inv, mul_comm] using h
 
+/--
+@isnad1 id=le.3h6v.s6.57ce31eb0e12 from=translated src=- shape=3d0b208b vocab=bcfc3b27
+-/
 theorem plateMaximal_rpow_le (hδ : 0 < δ) (ht : 1 ≤ t) (hf : Measurable f)
     (V : Grassmannian n k) :
     plateMaximal δ f V ^ t ≤ plateMaximal δ (fun x ↦ f x ^ t) V := by
@@ -58,7 +64,9 @@ theorem plateMaximal_rpow_le (hδ : 0 < δ) (ht : 1 ≤ t) (hf : Measurable f)
   exact (plateAverage_rpow_le hδ ht V.val a hf).trans
     (le_iSup (fun a ↦ (∫⁻ x in plate δ V.val a, f x ^ t) / volume (plate δ V.val a)) a)
 
-/-- Increase both exponents without losing the thickness deficit.-/
+/-- Increase both exponents without losing the thickness deficit.
+@isnad1 id=le.5h10v.s9.35193b305dd3 from=translated src=- shape=4d17d287 vocab=795cc229
+-/
 theorem eLpNorm_plateMaximal_le_of_power (hδ : 0 < δ) (ht : 1 ≤ t)
     {p q A : ℝ≥0∞} {K : Set (EuclideanSpace ℝ (Fin n))}
     {ν : Measure (Grassmannian n k)}

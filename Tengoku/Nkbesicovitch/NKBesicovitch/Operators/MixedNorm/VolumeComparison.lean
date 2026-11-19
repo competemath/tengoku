@@ -40,6 +40,9 @@ private theorem volume_unitBall_eq (e : E ≃L[ℝ] F) :
     i.measurePreserving.measure_preimage
       (s := ball (0 : F) 1) measurableSet_ball.nullMeasurableSet
 
+/--
+@isnad1 id=le.1h3v.s9.4b9dce192250 from=translated src=- shape=61000df5 vocab=2cb74417
+-/
 theorem volume_le_map_of_norm_le (e : E ≃L[ℝ] F) (h : ∀ x, ‖e x‖ ≤ ‖x‖) :
     (volume : Measure F) ≤ (volume : Measure E).map e := by
   let c := ((volume : Measure E).map e).addHaarScalarFactor (volume : Measure F)
@@ -62,6 +65,9 @@ theorem volume_le_map_of_norm_le (e : E ≃L[ℝ] F) (h : ∀ x, ‖e x‖ ≤ �
   rw [Measure.smul_apply, ENNReal.smul_def, smul_eq_mul]
   simpa only [one_mul] using mul_le_mul_left hc (volume s)
 
+/--
+@isnad1 id=le.2h5v.s9.52bb8f1b286b from=translated src=- shape=362ca8da vocab=ad4c533d
+-/
 theorem eLpNorm_le_comp_of_norm_le (e : E ≃L[ℝ] F) (h : ∀ x, ‖e x‖ ≤ ‖x‖)
     {f : F → ℝ≥0∞} (hf : Measurable f) (p : ℝ≥0∞) :
     eLpNorm f p volume ≤ eLpNorm (f ∘ e) p volume :=

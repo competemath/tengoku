@@ -31,12 +31,18 @@ namespace NKBesicovitch.Projection.Selection
 noncomputable def twoSliceParameters (I : Set ℝ) : Set (ℝ × ℝ) :=
   separatedPairs I ((volume I).toReal / 100)
 
+/--
+@isnad1 id=measurab.1h2v.s6.9c2f584f37e2 from=translated src=- shape=2fd1f4f7 vocab=0b4789cd
+-/
 theorem measurableSet_twoSliceParameters_family {X : Type*} [MeasurableSpace X]
     {I : Set (X × ℝ)} (hI : MeasurableSet I) :
     MeasurableSet {p : X × (ℝ × ℝ) | p.2 ∈ twoSliceParameters {t | (p.1, t) ∈ I}} :=
   measurableSet_separatedPairs_family hI
     ((measurable_measure_prodMk_left (ν := volume) hI).ennreal_toReal.div_const 100)
 
+/--
+@isnad1 id=ne.3h2v.s6.115a11503492 from=translated src=- shape=693e637d vocab=75afee3e
+-/
 theorem twoSliceParameters_ne {I : Set ℝ} (hIpos : 0 < volume I) (hIfin : volume I ≠ ∞)
     {p : ℝ × ℝ} (hp : p ∈ twoSliceParameters I) : p.1 ≠ p.2 := by
   have hL := ENNReal.toReal_pos hIpos.ne' hIfin
@@ -45,6 +51,9 @@ theorem twoSliceParameters_ne {I : Set ℝ} (hIpos : 0 < volume I) (hIfin : volu
   rw [he, dist_self] at hsep
   linarith
 
+/--
+@isnad1 id=le.4h4v.s9.ac3ba4a04773 from=translated src=- shape=c1a886e3 vocab=d91c7ad0
+-/
 theorem volume_le_of_mem_twoSliceParameters {m : ℕ} {I : Set ℝ}
     (hIpos : 0 < volume I) (hIfin : volume I ≠ ∞) {p : ℝ × ℝ}
     (hp : p ∈ twoSliceParameters I) {G : Set (Line m)} (hGb : IsBounded G) :
@@ -70,7 +79,9 @@ theorem volume_le_of_mem_twoSliceParameters {m : ℕ} {I : Set ℝ}
   simpa only [pow_two] using h.trans
     (mul_le_mul hcoef hprod (by positivity) (by positivity))
 
-/-- The selectable two-slice seed, with an explicit parameter-volume and estimate constant.-/
+/-- The selectable two-slice seed, with an explicit parameter-volume and estimate constant.
+@isnad1 id=and.3h2v.s10.22379bf120c5 from=translated src=- shape=2eb7fe61 vocab=15152a16
+-/
 theorem twoSliceParameters_spec {m : ℕ} {I : Set ℝ} (hI : MeasurableSet I)
     (hIunit : I ⊆ Icc 0 1) (hIpos : 0 < volume I) :
     MeasurableSet (twoSliceParameters I) ∧
