@@ -48,6 +48,9 @@ inductive CotreeOn (G : SimpleGraph V) : Finset V → Prop
 
 variable {G : SimpleGraph V}
 
+/--
+@isnad1 id=iscograp.1h3v.s4.bc8f9b012521 from=translated src=- shape=ddee191a vocab=2a769ad3
+-/
 lemma isCograph_of_cotreeOn {U : Finset V} (h : CotreeOn G U) : IsCograph G U := by
   induction h with
   | empty =>
@@ -65,6 +68,9 @@ lemma isCograph_of_cotreeOn {U : Finset V} (h : CotreeOn G U) : IsCograph G U :=
   | completeJoin hAne hBne hAB hA hB ihA ihB =>
     exact isCograph_union_of_complete_join hAB ihA ihB
 
+/--
+@isnad1 id=cotreeon.1h3v.s4.aa51f04fc09b from=translated src=- shape=ddee191a vocab=2a769ad3
+-/
 lemma cotreeOn_of_isCograph {U : Finset V} (hU : IsCograph G U) : CotreeOn G U := by
   suffices ∀ n (W : Finset V), W.card = n → IsCograph G W → CotreeOn G W from
     this U.card U rfl hU
@@ -106,7 +112,9 @@ lemma cotreeOn_of_isCograph {U : Finset V} (hU : IsCograph G U) : CotreeOn G U :
         simpa [hcover] using this
 
 /-- Recursive union/join constructibility of an induced subgraph is equivalent
-to actual induced-`P4`-freeness of that vertex set.-/
+to actual induced-`P4`-freeness of that vertex set.
+@isnad1 id=iff.0h3v.s4.747c5024778d from=translated src=- shape=ad908040 vocab=2a769ad3
+-/
 lemma cotreeOn_iff_isCograph {U : Finset V} : CotreeOn G U ↔ IsCograph G U :=
   ⟨isCograph_of_cotreeOn, cotreeOn_of_isCograph⟩
 
@@ -114,6 +122,9 @@ lemma cotreeOn_iff_isCograph {U : Finset V} : CotreeOn G U ↔ IsCograph G U :=
 def CotreeConstructible (G : SimpleGraph V) : Prop :=
   CotreeOn G Finset.univ
 
+/--
+@isnad1 id=iff.0h2v.s4.5307744d846f from=translated src=- shape=0e29dda8 vocab=bfdeb14d
+-/
 lemma cotreeConstructible_iff_isCographGraph :
     CotreeConstructible G ↔ IsCographGraph G := by
   rw [CotreeConstructible, cotreeOn_iff_isCograph, isCographGraph_iff_univ]

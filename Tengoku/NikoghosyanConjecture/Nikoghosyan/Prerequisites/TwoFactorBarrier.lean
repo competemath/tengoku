@@ -55,6 +55,9 @@ noncomputable def negativePairs (G : SimpleGraph V) [DecidableRel G.Adj] :
   (univ : Finset (Finset V × Finset V)).filter
     fun p => Disjoint p.1 p.2 ∧ delta G p.1 p.2 < 0
 
+/--
+@isnad1 id=iff.0h3v.s6.3083c294191d from=translated src=- shape=9b2f4b0d vocab=f55c17c3
+-/
 lemma mem_negativePairs {p : Finset V × Finset V} :
     p ∈ negativePairs G ↔ Disjoint p.1 p.2 ∧ delta G p.1 p.2 < 0 := by
   simp [negativePairs]
@@ -71,6 +74,9 @@ structure ExtremalBarrier (G : SimpleGraph V) [DecidableRel G.Adj] where
   minT : ∀ S' T' : Finset V,
     Disjoint S' T' → delta G S' T' < 0 → S'.card = S.card → T.card ≤ T'.card
 
+/--
+@isnad1 id=nonempty.1h2v.s5.eae8782fefe2 from=translated src=- shape=f5b5ba11 vocab=4927e741
+-/
 lemma exists_extremalBarrier (hP : (negativePairs G).Nonempty) :
     Nonempty (ExtremalBarrier G) := by
   obtain ⟨p, hp, hmax⟩ :=
@@ -93,6 +99,9 @@ lemma exists_extremalBarrier (hP : (negativePairs G).Nonempty) :
         by simp [hcard, hqcard]⟩
     exact hmin (S', T') hmem
 
+/--
+@isnad1 id=not.1h4v.s6.3f658826c26c from=translated src=- shape=f6be4d86 vocab=dd05a923
+-/
 lemma ExtremalBarrier.not_neg_erase {B : ExtremalBarrier G} {t : V}
     (ht : t ∈ B.T) : ¬ delta G B.S (B.T.erase t) < 0 := by
   intro hneg
@@ -102,10 +111,16 @@ lemma ExtremalBarrier.not_neg_erase {B : ExtremalBarrier G} {t : V}
   have hlt : (B.T.erase t).card < B.T.card := card_erase_lt_of_mem ht
   exact (not_le_of_gt hlt) hle
 
+/--
+@isnad1 id=le.1h4v.s6.011083b19c81 from=translated src=- shape=8cdd84d9 vocab=edb46575
+-/
 lemma ExtremalBarrier.nonneg_erase {B : ExtremalBarrier G} {t : V}
     (ht : t ∈ B.T) : 0 ≤ delta G B.S (B.T.erase t) :=
   le_of_not_gt (B.not_neg_erase ht)
 
+/--
+@isnad1 id=not.1h4v.s6.dbf650000332 from=translated src=- shape=06a4cc38 vocab=cc4e7431
+-/
 lemma ExtremalBarrier.not_neg_insert {B : ExtremalBarrier G} {x : V}
     (hx : x ∉ B.S ∪ B.T) : ¬ delta G (insert x B.S) B.T < 0 := by
   intro hneg
@@ -117,12 +132,18 @@ lemma ExtremalBarrier.not_neg_insert {B : ExtremalBarrier G} {x : V}
   have : B.S.card < (insert x B.S).card := card_lt_card (ssubset_insert hxS)
   exact (not_le_of_gt this) hle
 
+/--
+@isnad1 id=le.1h4v.s6.ee89d379c729 from=translated src=- shape=af69d423 vocab=97166d6f
+-/
 lemma ExtremalBarrier.nonneg_insert {B : ExtremalBarrier G} {x : V}
     (hx : x ∉ B.S ∪ B.T) : 0 ≤ delta G (insert x B.S) B.T :=
   le_of_not_gt (B.not_neg_insert hx)
 
 /-! ## Barrier identities for `T.erase t` and `insert x S` -/
 
+/--
+@isnad1 id=eq.2h5v.s6.b687660b0501 from=translated src=- shape=d876932d vocab=2e2a80bc
+-/
 lemma remainder_erase_t {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T) :
     remainderVerts G S (T.erase t) = insert t (remainderVerts G S T) := by
@@ -152,15 +173,24 @@ lemma remainder_erase_t {S T : Finset V} {t : V}
       · exact hxST (mem_union.mpr (Or.inl hS))
       · exact hxST (mem_union.mpr (Or.inr (mem_erase.mp hTe).2))
 
+/--
+@isnad1 id=not.1h5v.s5.2cbdcea42c0d from=translated src=- shape=48a64ad5 vocab=6ba9fb06
+-/
 lemma t_not_mem_remainder {S T : Finset V} {t : V} (ht : t ∈ T) :
     t ∉ remainderVerts G S T := by
   simp [remainderVerts, ht]
 
+/--
+@isnad1 id=eq.1h3v.s5.e83cc0d3265d from=translated src=- shape=eff10069 vocab=7d526177
+-/
 lemma card_erase_t_int {T : Finset V} {t : V} (ht : t ∈ T) :
     ((T.erase t).card : ℤ) = (T.card : ℤ) - 1 := by
   have hpos : 1 ≤ T.card := Nat.succ_le_iff.mpr (card_pos.mpr ⟨t, ht⟩)
   rw [card_erase_of_mem ht, Nat.cast_sub hpos, Nat.cast_one]
 
+/--
+@isnad1 id=eq.1h5v.s6.1f7ec4c843b3 from=translated src=- shape=4b152a6b vocab=54bea60c
+-/
 lemma sum_degDelete_erase_int {S T : Finset V} {t : V} (ht : t ∈ T) :
     ∑ u ∈ T.erase t, (degDelete G S u : ℤ) =
       (∑ u ∈ T, (degDelete G S u : ℤ)) - (degDelete G S t : ℤ) := by
@@ -168,6 +198,9 @@ lemma sum_degDelete_erase_int {S T : Finset V} {t : V} (ht : t ∈ T) :
   have h := add_sum_erase (s := T) (f := f) ht
   exact eq_sub_of_add_eq (by simpa [add_comm] using h)
 
+/--
+@isnad1 id=eq.1h5v.s7.5505bbf3381a from=translated src=- shape=0d443295 vocab=9cbe62c7
+-/
 lemma delta_erase_t {S T : Finset V} {t : V} (ht : t ∈ T) :
     delta G S (T.erase t) =
       delta G S T + 2 - (degDelete G S t : ℤ)
@@ -178,6 +211,9 @@ lemma delta_erase_t {S T : Finset V} {t : V} (ht : t ∈ T) :
   rw [hcard, hsum]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.35c7344ebb23 from=translated src=- shape=667e5cba vocab=540b129d
+-/
 lemma degDelete_insert {S : Finset V} {x t : V} (hx : x ∉ S) :
     (degDelete G (insert x S) t : ℤ) =
       (degDelete G S t : ℤ) - if G.Adj t x then (1 : ℤ) else 0 := by
@@ -195,6 +231,9 @@ lemma degDelete_insert {S : Finset V} {x t : V} (hx : x ∉ S) :
       simp [mem_neighborFinset, hAdj]
     simp [degDelete, hset, hAdj, erase_eq_of_notMem hxN]
 
+/--
+@isnad1 id=eq.0h4v.s5.963f86fb4c4d from=translated src=- shape=0e5f8d11 vocab=4315ceee
+-/
 lemma orderedEdgeCount_singleton_right (A : Finset V) (x : V) :
     orderedEdgeCount G A {x} = (A.filter fun a => G.Adj a x).card := by
   have hprod :
@@ -215,6 +254,9 @@ lemma orderedEdgeCount_singleton_right (A : Finset V) (x : V) :
       exact mem_filter.mpr ⟨mem_product.mpr ⟨hf.1, hAB.2⟩, by simpa [hx] using hf.2⟩
   rw [orderedEdgeCount, hprod, card_product, card_singleton, mul_one]
 
+/--
+@isnad1 id=eq.1h5v.s6.e399ecce8689 from=translated src=- shape=900b3f75 vocab=ce47b2b2
+-/
 lemma sum_degDelete_insert_int {S T : Finset V} {x : V} (hx : x ∉ S) :
     ∑ t ∈ T, (degDelete G (insert x S) t : ℤ) =
       ∑ t ∈ T, (degDelete G S t : ℤ)
@@ -226,10 +268,16 @@ lemma sum_degDelete_insert_int {S T : Finset V} {x : V} (hx : x ∉ S) :
   rw [sum_congr rfl fun t _ => degDelete_insert (G := G) (t := t) hx,
     sum_sub_distrib, hpt]
 
+/--
+@isnad1 id=eq.1h3v.s5.0e5d3bd0a4c9 from=translated src=- shape=58802899 vocab=010d2344
+-/
 lemma card_insert_int {S : Finset V} {x : V} (hx : x ∉ S) :
     ((insert x S).card : ℤ) = (S.card : ℤ) + 1 := by
   simp [card_insert_of_notMem hx]
 
+/--
+@isnad1 id=eq.1h5v.s7.bdc1b772f908 from=translated src=- shape=a39abbcd vocab=849c8634
+-/
 lemma delta_insert_S {S T : Finset V} {x : V} (hx : x ∉ S) :
     delta G (insert x S) T =
       delta G S T + 2 - (orderedEdgeCount G T {x} : ℤ)
@@ -247,6 +295,9 @@ def MeetsVertex (S T : Finset V) (c : (Remain G S T).ConnectedComponent)
     (t : V) : Prop :=
   ∃ x ∈ componentVerts G S T c, G.Adj x t
 
+/--
+@isnad1 id=iff.0h6v.s6.3bec95ade856 from=translated src=- shape=819cc800 vocab=982da311
+-/
 lemma MeetsVertex_iff_attach_pos {S T : Finset V}
     (c : (Remain G S T).ConnectedComponent) {t : V} :
     MeetsVertex S T c t ↔
@@ -264,6 +315,9 @@ lemma MeetsVertex_iff_attach_pos {S T : Finset V}
     have ht : p.2 = t := mem_singleton.mp hprod.2
     exact ⟨p.1, hprod.1, by simpa [ht] using hp'.2⟩
 
+/--
+@isnad1 id=le.2h5v.s6.6547042e7376 from=translated src=- shape=e7a92c21 vocab=23fdb11e
+-/
 lemma remainder_subset_erase {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T) :
     remainderVerts G S T ⊆ remainderVerts G S (T.erase t) := by
@@ -276,6 +330,9 @@ noncomputable def oddMeetCount (G : SimpleGraph V) [DecidableRel G.Adj]
   ((univ : Finset (Remain G S T).ConnectedComponent).filter
     fun c => Odd (componentAttach G S T c) ∧ MeetsVertex S T c t).card
 
+/--
+@isnad1 id=le.0h5v.s5.bdaa8a525ad7 from=translated src=- shape=c43e0017 vocab=25c1a377
+-/
 lemma oddMeetCount_le_hCount (S T : Finset V) (t : V) :
     oddMeetCount G S T t ≤ hCount G S T := by
   classical
@@ -284,6 +341,9 @@ lemma oddMeetCount_le_hCount (S T : Finset V) (t : V) :
   have hc' := mem_filter.mp hc
   exact mem_filter.mpr ⟨hc'.1, hc'.2.1⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.4dcf7c7aea91 from=translated src=- shape=30ac852b vocab=31b3bd05
+-/
 lemma hCount_eq_oddMeet_add_persist (S T : Finset V) (t : V) :
     hCount G S T =
       oddMeetCount G S T t +
@@ -323,6 +383,9 @@ lemma hCount_eq_oddMeet_add_persist (S T : Finset V) (t : V) :
 abbrev RemainVert (S T : Finset V) :=
   {x : V // x ∈ ((S ∪ T : Finset V) : Set V)ᶜ}
 
+/--
+@isnad1 id=le.1h4v.s6.3cd8dd360d6d from=translated src=- shape=190167b7 vocab=604eea10
+-/
 lemma remainder_set_subset_erase {S T : Finset V} {t : V} (ht : t ∈ T) :
     ((S ∪ T : Finset V) : Set V)ᶜ ⊆ ((S ∪ T.erase t : Finset V) : Set V)ᶜ := by
   intro x hx
@@ -334,6 +397,9 @@ lemma remainder_set_subset_erase {S T : Finset V} {t : V} (ht : t ∈ T) :
   · exact mem_union.mpr (Or.inl hS)
   · exact mem_union.mpr (Or.inr (mem_erase.mp hTe).2)
 
+/--
+@isnad1 id=nonempty.0h5v.s6.26d84808a02f from=translated src=- shape=ae90735f vocab=1f75648d
+-/
 lemma componentVerts_nonempty {S T : Finset V}
     (c : (Remain G S T).ConnectedComponent) :
     (componentVerts G S T c).Nonempty := by
@@ -350,6 +416,9 @@ lemma eq_of_mem_componentVerts {S T : Finset V}
   have ⟨_, hd'⟩ := (mem_componentVerts_iff (c := d)).mp hd
   exact hc'.symm.trans hd'
 
+/--
+@isnad1 id=mem.2h7v.s7.22602b3f8476 from=translated src=- shape=76461f00 vocab=ee6e15e0
+-/
 lemma remain_adj_mem_component {S T : Finset V}
     {c : (Remain G S T).ConnectedComponent}
     {u v : RemainVert S T}
@@ -361,6 +430,9 @@ lemma remain_adj_mem_component {S T : Finset V}
     ⟨v.property,
       (ConnectedComponent.connectedComponentMk_eq_of_adj hadj).symm.trans hmk⟩
 
+/--
+@isnad1 id=mem.1h8v.s7.a80937e65a36 from=translated src=- shape=c950a3ef vocab=6a2fb52e
+-/
 lemma remain_walk_mem_component {S T : Finset V}
     {c : (Remain G S T).ConnectedComponent}
     {u v : RemainVert S T}
@@ -379,6 +451,9 @@ noncomputable def persistErase {S T : Finset V} {t : V} (ht : t ∈ T)
     (Remain G S (T.erase t)).ConnectedComponent :=
   c.map (G.induceHomOfLE (remainder_set_subset_erase ht)).toHom
 
+/--
+@isnad1 id=eq.2h6v.s7.24537b632b48 from=translated src=- shape=d36cb275 vocab=b5426c56
+-/
 lemma persistErase_mk {S T : Finset V} {t : V} (ht : t ∈ T)
     {x : V} (hx : x ∈ ((S ∪ T : Finset V) : Set V)ᶜ) :
     persistErase (G := G) ht ((Remain G S T).connectedComponentMk ⟨x, hx⟩) =
@@ -388,6 +463,9 @@ lemma persistErase_mk {S T : Finset V} {t : V} (ht : t ∈ T)
   rw [ConnectedComponent.map_mk]
   exact congrArg _ (Subtype.ext rfl)
 
+/--
+@isnad1 id=mem.2h7v.s6.93a91cfe4fbf from=translated src=- shape=2f73f81c vocab=41542147
+-/
 lemma mem_persistErase_of_mem_old {S T : Finset V} {t : V} (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent} {x : V}
     (hx : x ∈ componentVerts G S T c) :
@@ -400,6 +478,9 @@ lemma mem_persistErase_of_mem_old {S T : Finset V} {t : V} (ht : t ∈ T)
     simpa [hmk] using persistErase_mk (G := G) ht hxold
   exact (mem_componentVerts_iff).mpr ⟨hxnew, hcomp.symm⟩
 
+/--
+@isnad1 id=mem.5h8v.s8.aec5081019ba from=translated src=- shape=b0204dfe vocab=c5a8c203
+-/
 lemma persist_adj_mem_old {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent}
@@ -433,6 +514,9 @@ lemma persist_adj_mem_old {S T : Finset V} {t : V}
     ⟨hyold,
       (ConnectedComponent.connectedComponentMk_eq_of_adj hadjOld).symm.trans hxmk⟩
 
+/--
+@isnad1 id=mem.4h9v.s8.2b37c2c24dbb from=translated src=- shape=8f53a780 vocab=8affd4d7
+-/
 lemma persist_walk_mem_old {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent}
@@ -447,6 +531,9 @@ lemma persist_walk_mem_old {S T : Finset V} {t : V}
     exact persist_walk_mem_old hdis ht hnomeet
       (persist_adj_mem_old hdis ht hnomeet hu hadj) q
 
+/--
+@isnad1 id=eq.3h6v.s6.01bb4479c04c from=translated src=- shape=f64e6a13 vocab=e6a0283a
+-/
 lemma persistErase_support_eq {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent}
@@ -469,6 +556,9 @@ lemma persistErase_support_eq {S T : Finset V} {t : V}
     exact persist_walk_mem_old hdis ht hnomeet hy p
   · exact mem_persistErase_of_mem_old (G := G) ht
 
+/--
+@isnad1 id=injon.2h5v.s7.64594cb12d2a from=translated src=- shape=d781d013 vocab=25ac2b09
+-/
 lemma persistErase_injOn_nomet {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T) :
     Set.InjOn (persistErase (G := G) ht)
@@ -481,6 +571,9 @@ lemma persistErase_injOn_nomet {S T : Finset V} {t : V}
   obtain ⟨x, hx⟩ := componentVerts_nonempty (G := G) (S := S) (T := T) c
   exact eq_of_mem_componentVerts hx (hsup ▸ hx)
 
+/--
+@isnad1 id=eq.1h5v.s6.39d5fc144cdb from=translated src=- shape=7721d1ab vocab=62bd3533
+-/
 lemma orderedEdgeCount_union_right (A B C : Finset V) (hdis : Disjoint B C) :
     orderedEdgeCount G A (B ∪ C) =
       orderedEdgeCount G A B + orderedEdgeCount G A C := by
@@ -519,6 +612,9 @@ lemma orderedEdgeCount_union_right (A B C : Finset V) (hdis : Disjoint B C) :
     exact Finset.disjoint_left.1 hdis hB hC
   rw [hunion, card_union_of_disjoint hdis']
 
+/--
+@isnad1 id=eq.1h5v.s6.edef29a715e3 from=translated src=- shape=d4d9ac6b vocab=08e0b0e8
+-/
 lemma orderedEdgeCount_erase_add {A T : Finset V} {t : V} (ht : t ∈ T) :
     orderedEdgeCount G A T =
       orderedEdgeCount G A (T.erase t) + orderedEdgeCount G A {t} := by
@@ -532,6 +628,9 @@ lemma orderedEdgeCount_erase_add {A T : Finset V} {t : V} (ht : t ∈ T) :
       _ = orderedEdgeCount G A (T.erase t) + orderedEdgeCount G A {t} :=
           orderedEdgeCount_union_right (G := G) A (T.erase t) {t} hdis
 
+/--
+@isnad1 id=eq.3h6v.s6.69331059dc7c from=translated src=- shape=67d2ce26 vocab=e4ad457e
+-/
 lemma persistErase_attach_eq {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent}
@@ -546,6 +645,9 @@ lemma persistErase_attach_eq {S T : Finset V} {t : V}
   unfold componentAttach
   rw [hsup, orderedEdgeCount_erase_add (G := G) ht, hzero, add_zero]
 
+/--
+@isnad1 id=odd.4h6v.s7.f370dbef9298 from=translated src=- shape=4192a52e vocab=c87da711
+-/
 lemma persistErase_odd {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T)
     {c : (Remain G S T).ConnectedComponent}
@@ -556,7 +658,9 @@ lemma persistErase_odd {S T : Finset V} {t : V}
 
 /-- Non-meeting odd remainder components inject into odd components after
 returning `t`, so `h(S, T \ {t}) + h_t ≥ h(S,T)`. Oddness is attachment
-parity, not vertex-order parity.-/
+parity, not vertex-order parity.
+@isnad1 id=le.2h5v.s6.1332313a44c5 from=translated src=- shape=a4c320b5 vocab=ac2eec7e
+-/
 theorem hCount_erase_t_add_oddMeet_ge {S T : Finset V} {t : V}
     (hdis : Disjoint S T) (ht : t ∈ T) :
     hCount G S T ≤
@@ -586,6 +690,9 @@ theorem hCount_erase_t_add_oddMeet_ge {S T : Finset V} {t : V}
 
 /-! ## Support-preserving persistence after moving `x` into `S` -/
 
+/--
+@isnad1 id=le.0h4v.s6.04eafc154ad1 from=translated src=- shape=ee272e04 vocab=0f6ea2bf
+-/
 lemma remainder_set_subset_insert {S T : Finset V} {x : V} :
     ((insert x S ∪ T : Finset V) : Set V)ᶜ ⊆ ((S ∪ T : Finset V) : Set V)ᶜ := by
   intro y hy
@@ -596,6 +703,9 @@ lemma remainder_set_subset_insert {S T : Finset V} {x : V} :
   · exact hy' (mem_union.mpr (Or.inl (mem_insert_of_mem hS)))
   · exact hy' (mem_union.mpr (Or.inr hT))
 
+/--
+@isnad1 id=mem.2h6v.s6.df9309dcfbf9 from=translated src=- shape=127276e4 vocab=ed799a28
+-/
 lemma mem_insert_remainder {S T : Finset V} {x y : V}
     (hyU : y ∈ remainderVerts G S T) (hyx : y ≠ x) :
     y ∈ ((insert x S ∪ T : Finset V) : Set V)ᶜ := by
@@ -607,6 +717,9 @@ lemma mem_insert_remainder {S T : Finset V} {x y : V}
     · exact (mem_remainderVerts_iff (G := G)).1 hyU (mem_union.mpr (Or.inl hyS))
   · exact (mem_remainderVerts_iff (G := G)).1 hyU (mem_union.mpr (Or.inr hT))
 
+/--
+@isnad1 id=mem.2h7v.s7.7df45c88c33c from=translated src=- shape=48f5905e vocab=ddb3c455
+-/
 lemma mem_old_of_mem_insert_component {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c)
@@ -616,6 +729,9 @@ lemma mem_old_of_mem_insert_component {S T : Finset V} {x : V}
     (componentVerts_subset_remainder c hy)
     (fun h => hxc (by simpa [h] using hy))
 
+/--
+@isnad1 id=mem.3h8v.s8.ed09b2fb82ce from=translated src=- shape=dc60de92 vocab=e4db2a4e
+-/
 lemma insert_adj_mem_old {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (_hxc : x ∉ componentVerts G S T c)
@@ -645,6 +761,9 @@ lemma insert_adj_mem_old {S T : Finset V} {x : V}
     ⟨hvold,
       (ConnectedComponent.connectedComponentMk_eq_of_adj hadjOld).symm.trans humk⟩
 
+/--
+@isnad1 id=mem.2h9v.s8.77a1169c8296 from=translated src=- shape=5cc057c8 vocab=2f093983
+-/
 lemma insert_walk_mem_old {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c)
@@ -658,6 +777,9 @@ lemma insert_walk_mem_old {S T : Finset V} {x : V}
     exact insert_walk_mem_old hxc
       (insert_adj_mem_old hxc hu hadj) q
 
+/--
+@isnad1 id=reachabl.2h9v.s8.088612f4cb80 from=translated src=- shape=32040790 vocab=30b04be7
+-/
 lemma insert_reachable_of_old_walk {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c)
@@ -691,6 +813,9 @@ noncomputable def persistInsert {S T : Finset V} {x : V}
       mem_old_of_mem_insert_component (G := G) hxc
         (componentVerts_nonempty (G := G) (S := S) (T := T) c).choose_spec⟩
 
+/--
+@isnad1 id=eq.2h7v.s7.7fe9ae61ef69 from=translated src=- shape=b89959cd vocab=471ee263
+-/
 lemma persistInsert_eq_mk {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c)
@@ -713,6 +838,9 @@ lemma persistInsert_eq_mk {S T : Finset V} {x : V}
       ⟨y, mem_old_of_mem_insert_component hxc hy⟩ := Subtype.ext rfl
   exact ConnectedComponent.sound (this ▸ hnew)
 
+/--
+@isnad1 id=mem.2h7v.s7.7eb9353b66d2 from=translated src=- shape=596e2941 vocab=6870cd92
+-/
 lemma mem_persistInsert_of_mem_old {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c) {y : V}
@@ -722,6 +850,9 @@ lemma mem_persistInsert_of_mem_old {S T : Finset V} {x : V}
   exact (mem_componentVerts_iff).mpr
     ⟨mem_old_of_mem_insert_component (G := G) hxc hy, hmk.symm⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.982f3fc12861 from=translated src=- shape=41622740 vocab=6870cd92
+-/
 lemma persistInsert_support_eq {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c) :
@@ -744,6 +875,9 @@ lemma persistInsert_support_eq {S T : Finset V} {x : V}
     exact insert_walk_mem_old hxc hz p
   · exact mem_persistInsert_of_mem_old (G := G) hxc
 
+/--
+@isnad1 id=eq.1h6v.s6.07a5144a931f from=translated src=- shape=19121d6e vocab=1cf1013e
+-/
 lemma persistInsert_attach_eq {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c) :
@@ -752,6 +886,9 @@ lemma persistInsert_attach_eq {S T : Finset V} {x : V}
   unfold componentAttach
   rw [persistInsert_support_eq (G := G) hxc]
 
+/--
+@isnad1 id=odd.2h6v.s6.2f687267e3a4 from=translated src=- shape=7b708a33 vocab=0d4b3ac6
+-/
 lemma persistInsert_odd {S T : Finset V} {x : V}
     {c : (Remain G S T).ConnectedComponent}
     (hxc : x ∉ componentVerts G S T c)
@@ -760,7 +897,9 @@ lemma persistInsert_odd {S T : Finset V} {x : V}
   simpa [persistInsert_attach_eq (G := G) hxc] using hodd
 
 /-- Other old odd components persist after moving `x` into `S`, giving
-`h(S ∪ {x}, T) ≥ h(S,T) - 1`.-/
+`h(S ∪ {x}, T) ≥ h(S,T) - 1`.
+@isnad1 id=le.1h5v.s6.936a2177803c from=translated src=- shape=7fcbf2c1 vocab=53e5515b
+-/
 theorem hCount_insert_ge {S T : Finset V} {x : V} (_hxST : x ∉ S ∪ T) :
     hCount G S T ≤ hCount G (insert x S) T + 1 := by
   classical
@@ -817,6 +956,9 @@ theorem hCount_insert_ge {S T : Finset V} {x : V} (_hxST : x ∉ S ∪ T) :
     simp only [hCount, hunion, card_union_of_disjoint hdis]
   linarith [hle']
 
+/--
+@isnad1 id=le.2h5v.s6.036f1ce65e1c from=translated src=- shape=18cfd137 vocab=485dba16
+-/
 lemma oddMeetCount_le_degDelete {S T : Finset V} {t : V}
     (_hdis : Disjoint S T) (_ht : t ∈ T) :
     oddMeetCount G S T t ≤ degDelete G S t := by
@@ -850,6 +992,9 @@ lemma oddMeetCount_le_degDelete {S T : Finset V} {t : V}
     card_le_card_of_injOn f himg hinj
   simpa [oddMeetCount, degDelete, s] using hle
 
+/--
+@isnad1 id=eq.1h4v.s6.929a424fda2b from=translated src=- shape=cc8a0067 vocab=aced0f93
+-/
 lemma ExtremalBarrier.degDelete_eq_oddMeet (B : ExtremalBarrier G) {t : V}
     (ht : t ∈ B.T) :
     degDelete G B.S t = oddMeetCount G B.S B.T t := by
@@ -868,6 +1013,9 @@ lemma ExtremalBarrier.degDelete_eq_oddMeet (B : ExtremalBarrier G) {t : V}
     linarith [B.neg]
   exact Int.natCast_inj.mp this
 
+/--
+@isnad1 id=le.1h4v.s6.c28651dc4fcc from=translated src=- shape=4c975eaf vocab=74d2ac0b
+-/
 lemma ExtremalBarrier.attach_le_one (B : ExtremalBarrier G) {x : V}
     (hx : x ∉ B.S ∪ B.T) :
     orderedEdgeCount G B.T {x} ≤ 1 := by
@@ -883,6 +1031,9 @@ lemma ExtremalBarrier.attach_le_one (B : ExtremalBarrier G) {x : V}
     linarith [B.neg]
   exact_mod_cast this
 
+/--
+@isnad1 id=le.0h5v.s6.ebcef4e80d4f from=translated src=- shape=57f3e5cd vocab=aa6f0859
+-/
 lemma oddMeetCount_le_remainderNeighbors {S T : Finset V} {t : V} :
     oddMeetCount G S T t ≤
       (G.neighborFinset t ∩ remainderVerts G S T).card := by
@@ -912,6 +1063,9 @@ lemma oddMeetCount_le_remainderNeighbors {S T : Finset V} {t : V} :
   have hle := card_le_card himg
   simpa [oddMeetCount, s, hcard] using hle
 
+/--
+@isnad1 id=eq.1h4v.s6.65083f06b521 from=translated src=- shape=8332d10d vocab=49bd68f9
+-/
 lemma ExtremalBarrier.neighbor_T_eq_empty (B : ExtremalBarrier G) {t : V}
     (ht : t ∈ B.T) :
     G.neighborFinset t ∩ B.T = ∅ := by
@@ -927,6 +1081,9 @@ lemma ExtremalBarrier.neighbor_T_eq_empty (B : ExtremalBarrier G) {t : V}
     omega
   exact card_eq_zero.mp this
 
+/--
+@isnad1 id=not.2h5v.s6.54e616561500 from=translated src=- shape=2e8bafaf vocab=4d13f546
+-/
 lemma ExtremalBarrier.T_independent (B : ExtremalBarrier G) {t₁ t₂ : V}
     (ht₁ : t₁ ∈ B.T) (ht₂ : t₂ ∈ B.T) : ¬ G.Adj t₁ t₂ := by
   intro hadj
@@ -935,6 +1092,9 @@ lemma ExtremalBarrier.T_independent (B : ExtremalBarrier G) {t₁ t₂ : V}
   have hempty := B.neighbor_T_eq_empty ht₁
   simp [hempty] at this
 
+/--
+@isnad1 id=eq.1h4v.s6.3e7213fa3b77 from=translated src=- shape=2cab4d40 vocab=8494f206
+-/
 lemma ExtremalBarrier.remainderNeighbors_eq_oddMeet (B : ExtremalBarrier G)
     {t : V} (ht : t ∈ B.T) :
     (G.neighborFinset t ∩ remainderVerts G B.S B.T).card =
@@ -948,7 +1108,9 @@ lemma ExtremalBarrier.remainderNeighbors_eq_oddMeet (B : ExtremalBarrier G)
     simpa [hsplit, this] using heq
   exact this
 
-/-- At most one original neighbor of `t` lies in a given remainder component.-/
+/-- At most one original neighbor of `t` lies in a given remainder component.
+@isnad1 id=le.1h5v.s7.fc3ab6225832 from=translated src=- shape=9580dfa3 vocab=5152fd7b
+-/
 lemma ExtremalBarrier.one_neighbor_in_component (B : ExtremalBarrier G)
     {t : V} (ht : t ∈ B.T)
     (c : (Remain G B.S B.T).ConnectedComponent) :
@@ -1021,6 +1183,9 @@ lemma ExtremalBarrier.one_neighbor_in_component (B : ExtremalBarrier G)
     exact Nat.add_le_add_iff_left.mp this
   exact (not_le_of_gt (lt_of_lt_of_le (by decide : (1 : ℕ) < 2) h2)) hleN
 
+/--
+@isnad1 id=not.1h6v.s6.19d3aaf72f12 from=translated src=- shape=c5149ac6 vocab=b63ac8d8
+-/
 lemma remainder_disjoint_T {S T : Finset V}
     (c : (Remain G S T).ConnectedComponent) {x : V}
     (hx : x ∈ componentVerts G S T c) : x ∉ T := by
@@ -1029,7 +1194,9 @@ lemma remainder_disjoint_T {S T : Finset V}
     (mem_remainderVerts_iff (G := G)).1 hxU (mem_union.mpr (Or.inr hT))
 
 /-- Three matching D–T edges: attachment vertices are pairwise nonadjacent,
-because t1,d1,d2,t2 would induce a P4 isolated from t3.-/
+because t1,d1,d2,t2 would induce a P4 isolated from t3.
+@isnad1 id=not.16h10v.s8.8e6342851722 from=translated src=- shape=b9c1fa88 vocab=cc268e23
+-/
 lemma ExtremalBarrier.matching_attachments_not_adj
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {c : (Remain G B.S B.T).ConnectedComponent}
@@ -1185,6 +1352,9 @@ lemma ExtremalBarrier.eq_of_two_D_neighbors
     le_trans h2card (card_le_card hs)
   omega
 
+/--
+@isnad1 id=mem.1h5v.s6.7c78fed9cd19 from=translated src=- shape=63a0b062 vocab=f1390919
+-/
 lemma remain_mk_mem {S T : Finset V} {x : V}
     (hx : x ∈ remainderVerts G S T) :
     x ∈ componentVerts G S T
@@ -1192,6 +1362,9 @@ lemma remain_mk_mem {S T : Finset V} {x : V}
         ⟨x, by simpa [remainderVerts] using hx⟩) :=
   (mem_componentVerts_iff).mpr ⟨by simpa [remainderVerts] using hx, rfl⟩
 
+/--
+@isnad1 id=reachabl.2h7v.s7.fb00dd651b3c from=translated src=- shape=a54bf46a vocab=73c82612
+-/
 lemma remain_reachable_of_mem_component {S T : Finset V}
     {c : (Remain G S T).ConnectedComponent} {d1 d2 : V}
     (hd1 : d1 ∈ componentVerts G S T c)
@@ -1207,7 +1380,9 @@ lemma remain_reachable_of_mem_component {S T : Finset V}
 
 /-- Every original neighbour of `t` outside `S` lies in an odd old remainder
 component. An even component cannot contain such a neighbour: the chosen-neighbour
-injection from odd-meeting components is already of cardinality `degDelete`.-/
+injection from odd-meeting components is already of cardinality `degDelete`.
+@isnad1 id=not.2h5v.s7.76d146e82d71 from=translated src=- shape=9e5247f2 vocab=d0503d32
+-/
 lemma ExtremalBarrier.even_not_meet (B : ExtremalBarrier G) {t : V}
     (ht : t ∈ B.T)
     (c : (Remain G B.S B.T).ConnectedComponent)
@@ -1267,6 +1442,9 @@ lemma ExtremalBarrier.even_not_meet (B : ExtremalBarrier G) {t : V}
     simpa [card_erase_of_mem hxU] using hle
   omega
 
+/--
+@isnad1 id=iff.0h5v.s6.d08c63b3f204 from=translated src=- shape=555e9e6b vocab=41b2e00d
+-/
 lemma componentAttach_pos_iff_exists_meet {S T : Finset V}
     (c : (Remain G S T).ConnectedComponent) :
     0 < componentAttach G S T c ↔
@@ -1282,6 +1460,9 @@ lemma componentAttach_pos_iff_exists_meet {S T : Finset V}
       mem_filter.mpr ⟨mem_product.mpr ⟨hx, ht⟩, hadj⟩
     exact Finset.card_pos.mpr ⟨_, this⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.84727a68d466 from=translated src=- shape=70e07ea9 vocab=551d7cdf
+-/
 lemma ExtremalBarrier.even_attach_eq_zero (B : ExtremalBarrier G)
     (c : (Remain G B.S B.T).ConnectedComponent)
     (heven : Even (componentAttach G B.S B.T c)) :
@@ -1294,7 +1475,9 @@ lemma ExtremalBarrier.even_attach_eq_zero (B : ExtremalBarrier G)
 /-! ## Shortest-path chords and the three-edge bound -/
 
 /-- On a shortest walk, vertices at index distance at least two are nonadjacent.
-This is the generic Mathlib-style chord fact used by `Cograph.Basic`.-/
+This is the generic Mathlib-style chord fact used by `Cograph.Basic`.
+@isnad1 id=not.4h7v.s6.d4a903ad76bb from=translated src=- shape=e2a1d555 vocab=65bcb538
+-/
 lemma not_adj_getVert_of_length_eq_dist {W : Type*} {H : SimpleGraph W}
     {u w : W} {p : H.Walk u w}
     (hp : p.length = H.dist u w) {i j : ℕ}
@@ -1315,6 +1498,9 @@ lemma not_adj_getVert_of_length_eq_dist {W : Type*} {H : SimpleGraph W}
   have : H.dist u w ≤ q.length := dist_le q
   omega
 
+/--
+@isnad1 id=mem.1h9v.s7.b070795d9b0d from=translated src=- shape=7448d5c4 vocab=c58944d7
+-/
 lemma remain_getVert_mem_component {S T : Finset V}
     {c : (Remain G S T).ConnectedComponent}
     {u v : RemainVert S T} (p : (Remain G S T).Walk u v)
@@ -1322,6 +1508,9 @@ lemma remain_getVert_mem_component {S T : Finset V}
     (p.getVert n).val ∈ componentVerts G S T c :=
   remain_walk_mem_component hu (p.take n)
 
+/--
+@isnad1 id=eq.4h9v.s8.4e4f22e4cdcf from=translated src=- shape=c1be0d44 vocab=f40c792e
+-/
 lemma remain_path_getVert_val_inj {S T : Finset V}
     {u v : RemainVert S T} {p : (Remain G S T).Walk u v}
     (hp : p.IsPath) {i j : ℕ} (hi : i ≤ p.length) (hj : j ≤ p.length)
@@ -1329,11 +1518,17 @@ lemma remain_path_getVert_val_inj {S T : Finset V}
   hp.getVert_injOn (show i ∈ {k | k ≤ p.length} from hi)
     (show j ∈ {k | k ≤ p.length} from hj) (Subtype.ext heq)
 
+/--
+@isnad1 id=not.1h6v.s6.fa38be77b7e9 from=translated src=- shape=89bd910c vocab=b63ac8d8
+-/
 lemma mem_componentVerts_not_ST {S T : Finset V}
     {c : (Remain G S T).ConnectedComponent} {x : V}
     (hx : x ∈ componentVerts G S T c) : x ∉ S ∪ T :=
   (mem_remainderVerts_iff (G := G)).1 (componentVerts_subset_remainder c hx)
 
+/--
+@isnad1 id=ex.1h4v.s8.bbf4657d2dbe from=translated src=- shape=c70a6f96 vocab=6e612651
+-/
 lemma ExtremalBarrier.exists_three_matching
     (B : ExtremalBarrier G)
     {c : (Remain G B.S B.T).ConnectedComponent}
@@ -1396,7 +1591,9 @@ lemma ExtremalBarrier.exists_three_matching
 
 /-- Three distinct matching `D–T` edges cannot exist under `NoInducedP4UnionP1`.
 Attachment vertices have distance at most two; an edge among them isolates `t3`;
-a length-two path forces the middle vertex to be the third attachment.-/
+a length-two path forces the middle vertex to be the third attachment.
+@isnad1 id=false.16h10v.s8.10130c6010ff from=translated src=- shape=e9496a48 vocab=cc268e23
+-/
 lemma ExtremalBarrier.matching_three_edges_false
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {c : (Remain G B.S B.T).ConnectedComponent}
@@ -1605,6 +1802,9 @@ lemma ExtremalBarrier.matching_three_edges_false
           B.eq_of_two_D_neighbors ht3 hd3 hd2 hadj3 h32
         exact hneD23 this.symm
 
+/--
+@isnad1 id=le.1h4v.s6.cfb34c3b327d from=translated src=- shape=4cb2bac2 vocab=e7d21080
+-/
 lemma ExtremalBarrier.odd_attach_le_two
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     (c : (Remain G B.S B.T).ConnectedComponent) :
@@ -1617,6 +1817,9 @@ lemma ExtremalBarrier.odd_attach_le_two
   exact B.matching_three_edges_false hpat ht1 ht2 ht3 hneT12 hneT13 hneT23
     hd1 hd2 hd3 hneD12 hneD13 hneD23 hadj1 hadj2 hadj3
 
+/--
+@isnad1 id=le.1h4v.s6.9e6c44938dcf from=translated src=- shape=4cb2bac2 vocab=e7d21080
+-/
 lemma ExtremalBarrier.componentAttach_le_one
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     (c : (Remain G B.S B.T).ConnectedComponent) :
@@ -1632,6 +1835,9 @@ lemma ExtremalBarrier.componentAttach_le_one
       Nat.not_odd_iff_even.mp hodd
     simpa [B.even_attach_eq_zero c heven]
 
+/--
+@isnad1 id=eq.2h4v.s7.dae2064ac46b from=translated src=- shape=0be04c85 vocab=2aaabbd7
+-/
 lemma ExtremalBarrier.odd_attach_eq_one
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {c : (Remain G B.S B.T).ConnectedComponent}
@@ -1645,6 +1851,9 @@ lemma ExtremalBarrier.odd_attach_eq_one
 
 /-! ## Toughness cuts and host 2-factor existence -/
 
+/--
+@isnad1 id=eq.0h3v.s5.bee223e5e64a from=translated src=- shape=3860ca7a vocab=887c8570
+-/
 lemma ExtremalBarrier.internalEdgeCount_eq_zero (B : ExtremalBarrier G) :
     internalEdgeCount G B.T = 0 := by
   have hord : orderedEdgeCount G B.T B.T = 0 := by
@@ -1655,6 +1864,9 @@ lemma ExtremalBarrier.internalEdgeCount_eq_zero (B : ExtremalBarrier G) :
   have htwo := two_mul_internalEdgeCount (G := G) B.T
   omega
 
+/--
+@isnad1 id=eq.1h3v.s9.345245dc009e from=translated src=- shape=19e2aaac vocab=cee32ff0
+-/
 lemma ExtremalBarrier.sum_attach_div_two_eq_zero
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G) :
     (∑ c ∈ (univ : Finset (Remain G B.S B.T).ConnectedComponent),
@@ -1662,6 +1874,9 @@ lemma ExtremalBarrier.sum_attach_div_two_eq_zero
   refine sum_eq_zero fun c _ => Nat.div_eq_of_lt ?_
   exact Nat.lt_succ_iff.mpr (B.componentAttach_le_one hpat c)
 
+/--
+@isnad1 id=eq.1h3v.s6.80a232cfa528 from=translated src=- shape=18fe4a93 vocab=92c3c044
+-/
 lemma ExtremalBarrier.delta_eq_two_sub
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G) :
     delta G B.S B.T = 2 * ((B.S.card : ℤ) - (B.T.card : ℤ)) := by
@@ -1670,6 +1885,9 @@ lemma ExtremalBarrier.delta_eq_two_sub
   have hsum := B.sum_attach_div_two_eq_zero hpat
   simp [hΔ, hinter, hsum]
 
+/--
+@isnad1 id=lt.1h3v.s5.07d78f95699b from=translated src=- shape=e315df3a vocab=2f3b5169
+-/
 lemma ExtremalBarrier.card_T_gt_card_S
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G) :
     B.S.card < B.T.card := by
@@ -1679,6 +1897,9 @@ lemma ExtremalBarrier.card_T_gt_card_S
   have hZ : (B.S.card : ℤ) < (B.T.card : ℤ) := by linarith
   exact_mod_cast hZ
 
+/--
+@isnad1 id=nonempty.1h3v.s5.1330f013723f from=translated src=- shape=4c694a13 vocab=c558c285
+-/
 lemma ExtremalBarrier.T_nonempty (B : ExtremalBarrier G)
     (hpat : NoInducedP4UnionP1 G) : B.T.Nonempty :=
   card_pos.mp (lt_of_le_of_lt (Nat.zero_le _) (B.card_T_gt_card_S hpat))
@@ -1710,15 +1931,24 @@ lemma ExtremalBarrier.eq_T_of_meet
     le_trans h2 (card_le_card hs)
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.2f016949ff3a from=translated src=- shape=4a3e31ef vocab=8775387d
+-/
 lemma coe_univ_sdiff_eq_compl (S : Finset V) :
     ((univ \ S : Finset V) : Set V) = (S : Set V)ᶜ := by
   ext x
   simp
 
+/--
+@isnad1 id=mem.2h4v.s5.159a1a971c52 from=translated src=- shape=336ab2ef vocab=288b0fa5
+-/
 lemma mem_compl_of_mem_T {S T : Finset V} (hdis : Disjoint S T) {t : V}
     (ht : t ∈ T) : t ∈ (S : Set V)ᶜ :=
   fun hS => Finset.disjoint_left.1 hdis hS ht
 
+/--
+@isnad1 id=mem.1h5v.s6.a60e90d99077 from=translated src=- shape=0c8ee61b vocab=9f63a2a6
+-/
 lemma remainderVerts_to_remain {S T : Finset V} {x : V}
     (hx : x ∈ remainderVerts G S T) :
     x ∈ ((S ∪ T : Finset V) : Set V)ᶜ :=
@@ -1734,6 +1964,9 @@ def meetsStar (S T : Finset V) (t : V) (v : {x : V // x ∈ (S : Set V)ᶜ}) : P
         ((Remain G S T).connectedComponentMk
           ⟨v.val, remainderVerts_to_remain (G := G) hv⟩) t
 
+/--
+@isnad1 id=meetssta.4h6v.s7.e85bf431ae9e from=translated src=- shape=b8565b6c vocab=8c84f90a
+-/
 lemma ExtremalBarrier.adj_preserves_meetsStar
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {t : V} (ht : t ∈ B.T)
@@ -1783,6 +2016,9 @@ lemma ExtremalBarrier.adj_preserves_meetsStar
       refine Or.inr ⟨hwU, ?_⟩
       simpa [c, hmk] using hmeet
 
+/--
+@isnad1 id=meetssta.3h7v.s7.4b1f16868bb4 from=translated src=- shape=54ffb791 vocab=ebcd5627
+-/
 lemma ExtremalBarrier.walk_preserves_meetsStar
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {t : V} (ht : t ∈ B.T)
@@ -1795,6 +2031,9 @@ lemma ExtremalBarrier.walk_preserves_meetsStar
   | cons hadj q ih =>
     exact ih (B.adj_preserves_meetsStar hpat ht hadj hu)
 
+/--
+@isnad1 id=eq.4h5v.s7.8d193d4cd1c0 from=translated src=- shape=90b4e193 vocab=ddf41a97
+-/
 lemma ExtremalBarrier.T_eq_of_reachable
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     {t1 t2 : V} (ht1 : t1 ∈ B.T) (ht2 : t2 ∈ B.T)
@@ -1809,6 +2048,9 @@ lemma ExtremalBarrier.T_eq_of_reachable
   · exact ((mem_remainderVerts_iff (G := G)).1 hU
       (mem_union.mpr (Or.inr ht2))).elim
 
+/--
+@isnad1 id=le.1h3v.s5.1986ed47476c from=translated src=- shape=f2c09598 vocab=9e48cdce
+-/
 lemma ExtremalBarrier.componentCount_sdiff_ge_T
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G) :
     B.T.card ≤ componentCount G (univ \ B.S) := by
@@ -1828,6 +2070,9 @@ lemma ExtremalBarrier.componentCount_sdiff_ge_T
     rw [componentCount, coe_univ_sdiff_eq_compl, Nat.card_eq_fintype_card]
   simpa [hcoe, hcc] using hle
 
+/--
+@isnad1 id=false.3h3v.s5.580e52842943 from=translated src=- shape=3a55538c vocab=bfbe9e06
+-/
 lemma ExtremalBarrier.false_of_card_T_ge_two
     (B : ExtremalBarrier G) (hpat : NoInducedP4UnionP1 G)
     (htough : OneTough G) (hT : 2 ≤ B.T.card) : False := by

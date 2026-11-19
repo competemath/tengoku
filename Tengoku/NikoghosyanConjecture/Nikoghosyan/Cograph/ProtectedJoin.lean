@@ -40,12 +40,18 @@ noncomputable def originalSubwalkFactor_of_leftover {B : Finset V}
   let h := leftoverPieces_factor (B := B) p Q hQ
   ⟨h.choose, h.choose_spec.choose, h.choose_spec.choose_spec.1⟩
 
+/--
+@isnad1 id=not.2h5v.s6.a2b14a60c0f1 from=translated src=- shape=eafa963d vocab=aaf91c17
+-/
 lemma originalSubwalkFactor_of_leftover_pre_not_nil {B : Finset V}
     {p Q : GraphPath G} (hs : p.start ∈ B) (hQ : Q ∈ leftoverPieces B p) :
     ¬ (originalSubwalkFactor_of_leftover hQ).preWalk.Nil :=
   leftoverPieces_factor_ru_not_nil (B := B) hs hQ
     (originalSubwalkFactor_of_leftover hQ).factor
 
+/--
+@isnad1 id=other.1h5v.s7.585cb49e76f9 from=translated src=- shape=2794bc5c vocab=1700a45b
+-/
 lemma originalSubwalkFactor_of_leftover_seams {B : Finset V}
     {p Q : GraphPath G} (hQ : Q ∈ leftoverPieces B p) :
     let F := originalSubwalkFactor_of_leftover hQ
@@ -53,7 +59,9 @@ lemma originalSubwalkFactor_of_leftover_seams {B : Finset V}
       (F.sufWalk.Nil ∨ F.sufWalk.snd ∈ B) :=
   (leftoverPieces_factor (B := B) p Q hQ).choose_spec.choose_spec.2
 
-/-- First original edge of a leftover run that leaves `X`.-/
+/-- First original edge of a leftover run that leaves `X`.
+@isnad1 id=ex.2h4v.s6.4ba2155ba8f0 from=translated src=- shape=e9fc061a vocab=e0c7874c
+-/
 lemma exists_first_departure {Q : GraphPath G} {X : Finset V}
     (hs : Q.start ∈ X) (hf : Q.finish ∉ X) :
     ∃ u v : V, u ∈ X ∧ v ∉ X ∧ G.Adj u v ∧ s(u, v) ∈ Q.edges := by
@@ -106,6 +114,9 @@ open Nikoghosyan.GraphPath
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=nodup.0h4v.s4.1aa2c4bb007c from=translated src=- shape=7fe5d294 vocab=21ea1daa
+-/
 lemma leftoverPieces_nodup {B : Finset V} (p : GraphPath G) :
     (leftoverPieces B p).Nodup := by
   refine List.Pairwise.imp ?_ (leftoverPieces_pairwise (B := B) p)
@@ -115,6 +126,9 @@ lemma leftoverPieces_nodup {B : Finset V} (p : GraphPath G) :
   simp only [inter_self] at this
   exact (nonempty_iff_ne_empty.1 a.support_nonempty) this
 
+/--
+@isnad1 id=ex.1h5v.s7.25269b1d3fbf from=translated src=- shape=12bad0f2 vocab=c370a583
+-/
 lemma exists_two_leftover_in {A U0 : Finset V} {p : GraphPath G}
     (h2 : 2 ≤ (List.filter (fun Q => Q.start ∈ U0) (leftoverPieces A p)).length) :
     ∃ Q R, Q ∈ leftoverPieces A p ∧ R ∈ leftoverPieces A p ∧
@@ -141,7 +155,9 @@ lemma exists_two_leftover_in {A U0 : Finset V} {p : GraphPath G}
     have hn' : (Q :: Q :: rest).Nodup := by simpa [hl] using hn
     exact (List.nodup_cons.1 hn').1 (List.mem_cons.2 (Or.inl rfl))
 
-/-- Independent leftover starts inside a complete join all lie on one child.-/
+/-- Independent leftover starts inside a complete join all lie on one child.
+@isnad1 id=or.5h8v.s8.6bf3095b05fe from=translated src=- shape=181ca4b0 vocab=efb24d28
+-/
 lemma leftover_starts_in_one_join_side {A U0 X Y : Finset V}
     {p : GraphPath G}
     (hjoin : G.IsCompleteBetween (X : Set V) (Y : Set V))
@@ -178,7 +194,9 @@ lemma leftover_starts_in_one_join_side {A U0 X Y : Finset V}
       exact (hInd Q0 hQ0 Q hQ hs0 hsU hne (hjoin hX hsY).symm).elim
     · exact hY
 
-/-- Independent leftover finishes inside a complete join all lie on one child.-/
+/-- Independent leftover finishes inside a complete join all lie on one child.
+@isnad1 id=or.5h8v.s8.57132f2aec71 from=translated src=- shape=181ca4b0 vocab=63c8ff06
+-/
 lemma leftover_finishes_in_one_join_side {A U0 X Y : Finset V}
     {p : GraphPath G}
     (hjoin : G.IsCompleteBetween (X : Set V) (Y : Set V))
@@ -217,7 +235,9 @@ lemma leftover_finishes_in_one_join_side {A U0 X Y : Finset V}
     · exact hY
 
 /-- `X ≠ Z` join insertion: insert one leftover run into a first-departure
-edge of another, retained in the exact omit-run complement.-/
+edge of another, retained in the exact omit-run complement.
+@isnad1 id=ex.17h11v.s8.6308b8b2eba3 from=translated src=- shape=65b62216 vocab=05c1f945
+-/
 lemma exists_protectedAt_of_join_insert_XZ {U A U0 X Y : Finset V}
     (c : GraphCycle G) (_hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)
@@ -341,7 +361,9 @@ lemma exists_protectedAt_of_join_insert_XZ {U A U0 X Y : Finset V}
 
 /-- `X ≠ Z` wrapper: every leftover run of `U0` starts in `X` and finishes
 in `Y`, so any two leftover runs of `U0` supply the first-departure
-insertion.-/
+insertion.
+@isnad1 id=ex.12h9v.s8.0d2ff3bad194 from=translated src=- shape=360cd85b vocab=b9d0c42b
+-/
 lemma exists_protectedAt_of_join_insert_XZ_of_saving {U A U0 X Y : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)
@@ -366,7 +388,9 @@ lemma exists_protectedAt_of_join_insert_XZ_of_saving {U A U0 X Y : Finset V}
 retained dart lives on one leftover run, and a distinct leftover run
 with both ends in `X` is inserted across original complete-join seams.
 Both dart orientations use the same `X`-ended block; reverse is chosen
-only so the ordered seams match the unordered retained edge.-/
+only so the ordered seams match the unordered retained edge.
+@isnad1 id=ex.19h13v.s8.ba188dca96d6 from=translated src=- shape=078af5a1 vocab=05c1f945
+-/
 lemma exists_protectedAt_of_join_insert_YY {U A U0 X Y : Finset V}
     (c : GraphCycle G) (_hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)
@@ -486,7 +510,9 @@ lemma exists_protectedAt_of_join_insert_YY {U A U0 X Y : Finset V}
     exact hcloseU R.reverse (by simp) hd hsu hfv
 
 /-- Given a leftover `Y`–`Y` edge on one `U0`-run and at least two leftover
-runs in `U0` with both ends in `X`, insert the other `X`-ended run.-/
+runs in `U0` with both ends in `X`, insert the other `X`-ended run.
+@isnad1 id=ex.18h12v.s9.19be34f7f2f6 from=translated src=- shape=e3f9a11d vocab=b9d0c42b
+-/
 lemma exists_protectedAt_of_join_insert_YY_of_saving {U A U0 X Y : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)
@@ -516,7 +542,9 @@ lemma exists_protectedAt_of_join_insert_YY_of_saving {U A U0 X Y : Finset V}
     (hstartX R hR hRsU0) (hfinX R hR hRsU0) huY hvY hadjuv huvQ
 
 /-- Symmetric `X ≠ Z` wrapper: leftover runs of `U0` start in `Y` and
-finish in `X`.-/
+finish in `X`.
+@isnad1 id=ex.12h9v.s8.a02b2245a61d from=translated src=- shape=04d453d6 vocab=b9d0c42b
+-/
 lemma exists_protectedAt_of_join_insert_YX_of_saving {U A U0 X Y : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)
@@ -539,7 +567,9 @@ lemma exists_protectedAt_of_join_insert_YX_of_saving {U A U0 X Y : Finset V}
     hcoverYX hp hs hclose hedges hstay h2 hstartY hfinX
 
 /-- Symmetric `X = Z` wrapper along an actual leftover `X`–`X` edge, when
-both leftover ends lie in `Y`.-/
+both leftover ends lie in `Y`.
+@isnad1 id=ex.18h12v.s9.8c7147b70e98 from=translated src=- shape=704499c3 vocab=b9d0c42b
+-/
 lemma exists_protectedAt_of_join_insert_XX_of_saving {U A U0 X Y : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hU0 : U0 ⊆ U \ A)

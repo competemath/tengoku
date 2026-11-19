@@ -28,6 +28,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=mem.4h8v.s6.5f59923866d4 from=translated src=- shape=51a84b1d vocab=822dcfe3
+-/
 lemma walk_support_subset_of_no_cross {A B : Set V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {u w : V} (p : G.Walk u w) (hu : u ∈ A)
@@ -61,6 +64,9 @@ lemma walk_support_subset_of_no_cross {A B : Set V}
     · exact hu
     · exact ih hvA hsupp' x hxP
 
+/--
+@isnad1 id=mem.4h8v.s6.65caeca729c2 from=translated src=- shape=98403d5d vocab=822dcfe3
+-/
 lemma walk_support_subset_of_no_cross' {A B : Set V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {u w : V} (p : G.Walk u w) (hu : u ∈ B)
@@ -72,6 +78,9 @@ lemma walk_support_subset_of_no_cross' {A B : Set V}
     walk_support_subset_of_no_cross (A := B) (B := A) hsym p hu
       (fun x hx => (hsupp x hx).symm)
 
+/--
+@isnad1 id=le.3h5v.s6.841027ed334e from=translated src=- shape=3069b833 vocab=807650a7
+-/
 lemma GraphPath.support_subset_of_no_cross {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     (p : GraphPath G) (hstart : p.start ∈ A)
@@ -88,6 +97,9 @@ lemma GraphPath.support_subset_of_no_cross {A B : Finset V}
     (A := (A : Set V)) (B := (B : Set V))
     (fun a ha b hb => hnocross a ha b hb) p.walk hstart hwalk x hxL
 
+/--
+@isnad1 id=le.3h5v.s6.650511690baa from=translated src=- shape=29dcedfc vocab=807650a7
+-/
 lemma GraphPath.support_subset_of_no_cross' {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     (p : GraphPath G) (hstart : p.start ∈ B)
@@ -124,6 +136,9 @@ noncomputable def PathCover.unionDisjoint {A B : Finset V}
       · exact Finset.mem_union.mpr (Or.inl ((pcA.mem_iff x).2 ⟨p, hpA, hxp⟩))
       · exact Finset.mem_union.mpr (Or.inr ((pcB.mem_iff x).2 ⟨p, hpB, hxp⟩))
 
+/--
+@isnad1 id=eq.1h6v.s6.988e3a6cca16 from=translated src=- shape=9e0d2f3e vocab=8bd4a482
+-/
 lemma PathCover.unionDisjoint_card {A B : Finset V} (hdisj : Disjoint A B)
     (pcA : PathCover G A) (pcB : PathCover G B) :
     (PathCover.unionDisjoint hdisj pcA pcB).card = pcA.card + pcB.card := by
@@ -192,6 +207,9 @@ noncomputable def PathCover.splitRight {A B : Finset V}
       have hsupp : p.support ⊆ A ∪ B := pc.support_subset hp'
       exact GraphPath.support_subset_of_no_cross' hnocross p hstartB hsupp hxp
 
+/--
+@isnad1 id=eq.0h3v.s5.003d5dad9970 from=translated src=- shape=1d6d75b6 vocab=49c126ad
+-/
 lemma length_filter_add_not {α : Type*} (p : α → Bool) (l : List α) :
     (l.filter p).length + (l.filter fun x => !p x).length = l.length := by
   induction l with
@@ -201,6 +219,9 @@ lemma length_filter_add_not {α : Type*} (p : α → Bool) (l : List α) :
     · simp [ha]; omega
     · simp [ha]; omega
 
+/--
+@isnad1 id=eq.2h5v.s7.790f649d94a3 from=translated src=- shape=28f10794 vocab=247267c3
+-/
 lemma PathCover.card_split_add {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -226,7 +247,9 @@ lemma PathCover.card_split_add {A B : Finset V}
   have hlen := length_filter_add_not (fun p : GraphPath G => decide (p.start ∈ A)) pc.paths
   simpa [hB] using hlen
 
-/-- Path-cover numbers add over a disjoint union with no original cross edges.-/
+/-- Path-cover numbers add over a disjoint union with no original cross edges.
+@isnad1 id=eq.2h4v.s6.3c2599bad0a0 from=translated src=- shape=6aedcb54 vocab=e04b3f17
+-/
 lemma pathCoverNumber_disjoint_union {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) :
@@ -244,6 +267,9 @@ lemma pathCoverNumber_disjoint_union {A B : Finset V}
     have hadd := PathCover.card_split_add hdisj hnocross pc
     omega
 
+/--
+@isnad1 id=eq.3h5v.s6.6c1586e3e10d from=translated src=- shape=d57da36f vocab=f5106ed8
+-/
 lemma splitLeft_card_eq_of_min {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -256,6 +282,9 @@ lemma splitLeft_card_eq_of_min {A B : Finset V}
   have hsum := pathCoverNumber_disjoint_union hdisj hnocross
   omega
 
+/--
+@isnad1 id=eq.3h5v.s6.ef9d41d56206 from=translated src=- shape=bb9e6a93 vocab=cbce5852
+-/
 lemma splitRight_card_eq_of_min {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -269,7 +298,9 @@ lemma splitRight_card_eq_of_min {A B : Finset V}
   omega
 
 /-- Eligibility is componentwise on a no-cross partition: a vertex is eligible
-in the union if and only if it is eligible in the unique side that contains it.-/
+in the union if and only if it is eligible in the unique side that contains it.
+@isnad1 id=iff.2h5v.s6.fa3404f29b4a from=translated src=- shape=c1773326 vocab=bd8ebf29
+-/
 lemma eligible_disjoint_union_iff {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) {x : V} :
@@ -305,6 +336,9 @@ lemma eligible_disjoint_union_iff {A B : Finset V}
           pathCoverNumber_disjoint_union hdisj hnocross]
       · exact List.mem_append.mpr (Or.inr hp)
 
+/--
+@isnad1 id=eq.2h4v.s6.66cafda51472 from=translated src=- shape=79d0271e vocab=4f66388e
+-/
 lemma eligibleSet_disjoint_union {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) :
@@ -332,6 +366,9 @@ lemma eligibleSet_disjoint_union {A B : Finset V}
       exact ⟨mem_union.2 (Or.inr hxB.1),
         (eligible_disjoint_union_iff (G := G) hdisj hnocross).mpr (Or.inr hxB.2)⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.6515086af0c7 from=translated src=- shape=79d0271e vocab=1e35ad37
+-/
 lemma ineligibleSet_disjoint_union {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) :

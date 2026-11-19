@@ -40,6 +40,9 @@ def OneToughOn (G : SimpleGraph V) (J : Finset V) : Prop :=
       2 ≤ componentCount G (J \ S) →
         componentCount G (J \ S) ≤ S.card
 
+/--
+@isnad1 id=iff.0h2v.s4.e3ca2c439f0c from=translated src=- shape=6be09034 vocab=fe6d3b17
+-/
 lemma OneToughOn.univ_iff : OneToughOn G univ ↔ OneTough G := by
   constructor
   · intro h S h2
@@ -50,20 +53,32 @@ lemma OneToughOn.univ_iff : OneToughOn G univ ↔ OneTough G := by
 /-- Original vertices of an induced support, as a subtype.-/
 abbrev VertexSet (J : Finset V) := {x : V // x ∈ (J : Set V)}
 
+/--
+@isnad1 id=iff.0h4v.s7.73a292a03ca0 from=translated src=- shape=9e45b4cb vocab=f746fd01
+-/
 lemma mem_image_subtype_iff {J : Finset V} {S : Finset (VertexSet J)} {x : V} :
     x ∈ S.image Subtype.val ↔ ∃ hx : x ∈ (J : Set V), (⟨x, hx⟩ : VertexSet J) ∈ S := by
   simp [mem_image]
 
+/--
+@isnad1 id=eq.0h3v.s6.c2ba2ea0805e from=translated src=- shape=75fc7b3a vocab=4d7704fa
+-/
 lemma card_image_subtype (J : Finset V) (S : Finset (VertexSet J)) :
     (S.image Subtype.val).card = S.card :=
   card_image_of_injective S Subtype.val_injective
 
+/--
+@isnad1 id=le.0h3v.s6.3a4c9d102973 from=translated src=- shape=643c38a6 vocab=7028f058
+-/
 lemma image_subtype_subset (J : Finset V) (S : Finset (VertexSet J)) :
     S.image Subtype.val ⊆ J := by
   intro x hx
   obtain ⟨y, _, rfl⟩ := mem_image.1 hx
   exact y.property
 
+/--
+@isnad1 id=eq.1h3v.s7.a315da51730f from=translated src=- shape=93cec387 vocab=3f69e8dc
+-/
 lemma filter_subtype_image {J T : Finset V} (hT : T ⊆ J) :
     ((univ : Finset (VertexSet J)).filter fun x => x.val ∈ T).image Subtype.val = T := by
   ext x
@@ -76,6 +91,9 @@ lemma filter_subtype_image {J T : Finset V} (hT : T ⊆ J) :
     refine mem_image.2 ⟨⟨x, hxJ⟩, ?_, rfl⟩
     exact mem_filter.2 ⟨mem_univ _, hx⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.659c0cb4a5bd from=translated src=- shape=57aeb178 vocab=afaf2718
+-/
 lemma card_filter_subtype {J T : Finset V} (hT : T ⊆ J) :
     ((univ : Finset (VertexSet J)).filter fun x => x.val ∈ T).card = T.card := by
   rw [← card_image_subtype J, filter_subtype_image hT]
@@ -109,13 +127,18 @@ noncomputable def cutIso (J : Finset V) (S : Finset (VertexSet J)) :
     intro a b
     exact Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.8c6e74036146 from=translated src=- shape=d303bfbe vocab=71247b28
+-/
 lemma componentCount_cutIso (J : Finset V) (S : Finset (VertexSet J)) :
     componentCount (G.induce (J : Set V)) ((univ : Finset (VertexSet J)) \ S) =
       componentCount G (J \ S.image Subtype.val) := by
   simpa [componentCount] using
     Nat.card_congr (cutIso (G := G) J S).connectedComponentEquiv
 
-/-- `OneToughOn G J` is exactly `OneTough` of the induced graph on `J`.-/
+/-- `OneToughOn G J` is exactly `OneTough` of the induced graph on `J`.
+@isnad1 id=iff.0h3v.s6.8b9d3a4bb481 from=translated src=- shape=6aa89b10 vocab=0b6d8640
+-/
 lemma OneToughOn_iff_OneTough_induce (J : Finset V) :
     OneToughOn G J ↔ OneTough (G.induce (J : Set V)) := by
   constructor
@@ -144,7 +167,9 @@ lemma OneToughOn_iff_OneTough_induce (J : Finset V) :
 
 /-- If every vertex of `W` has an original neighbour in `U`, then every
 component of `G[U ∪ W]` meets `U`, so the inclusion map of components is
-surjective.-/
+surjective.
+@isnad1 id=le.1h4v.s6.b972eb3a359a from=translated src=- shape=48f974f1 vocab=7b70c72a
+-/
 lemma componentCount_union_le_of_adj {U W : Finset V}
     (h : ∀ w ∈ W, ∃ u ∈ U, G.Adj w u) :
     componentCount G (U ∪ W) ≤ componentCount G U := by
@@ -170,6 +195,9 @@ lemma componentCount_union_le_of_adj {U W : Finset V}
     inferInstance
   exact Nat.card_le_card_of_surjective f hf
 
+/--
+@isnad1 id=eq.3h5v.s6.5088de4fea43 from=translated src=- shape=019d2f26 vocab=8d3c42d2
+-/
 lemma union_sdiff_of_disjoint {H R S T : Finset V}
     (hHR : Disjoint H R) (hS : S ⊆ H) (hT : T ⊆ R) :
     (H ∪ R) \ (S ∪ T) = (H \ S) ∪ (R \ T) := by
@@ -193,11 +221,17 @@ lemma union_sdiff_of_disjoint {H R S T : Finset V}
       · exact (disjoint_right.1 hHR hxR (hS hxS')).elim
       · exact hxT hxT'
 
+/--
+@isnad1 id=disjoint.1h5v.s5.072f8321d757 from=translated src=- shape=47ae3103 vocab=cc1ace59
+-/
 lemma disjoint_sdiff_of_disjoint {H R S T : Finset V}
     (hHR : Disjoint H R) :
     Disjoint (H \ S) (R \ T) :=
   hHR.mono sdiff_subset sdiff_subset
 
+/--
+@isnad1 id=eq.1h4v.s6.de7bca545322 from=translated src=- shape=59c2c839 vocab=063828e5
+-/
 lemma inter_union_eq_of_subset_union {H R ST : Finset V}
     (hST : ST ⊆ H ∪ R) :
     ST = ST ∩ H ∪ ST ∩ R := by
@@ -213,11 +247,17 @@ lemma inter_union_eq_of_subset_union {H R ST : Finset V}
     · exact h.1
     · exact h.1
 
+/--
+@isnad1 id=disjoint.1h4v.s5.fcea8f60028c from=translated src=- shape=089e578f vocab=f26c93e9
+-/
 lemma disjoint_inter_of_disjoint {H R ST : Finset V}
     (hHR : Disjoint H R) :
     Disjoint (ST ∩ H) (ST ∩ R) :=
   hHR.mono inter_subset_right inter_subset_right
 
+/--
+@isnad1 id=eq.2h4v.s6.1179edf9792e from=translated src=- shape=14900d77 vocab=bec7aec2
+-/
 lemma card_cut_split {H R ST : Finset V}
     (hHR : Disjoint H R) (hST : ST ⊆ H ∪ R) :
     ST.card = (ST ∩ H).card + (ST ∩ R).card := by
@@ -226,6 +266,9 @@ lemma card_cut_split {H R ST : Finset V}
 
 /-! ### Path deletion bounds -/
 
+/--
+@isnad1 id=eq.0h3v.s4.9418addfc30d from=translated src=- shape=792fc85c vocab=ace545e8
+-/
 lemma pathCoverNumber_eq_one_of_path (p : GraphPath G) :
     pathCoverNumber G p.support = 1 := by
   have hle : pathCoverNumber G p.support ≤ 1 := by
@@ -234,6 +277,9 @@ lemma pathCoverNumber_eq_one_of_path (p : GraphPath G) :
   have hge := one_le_pathCoverNumber_of_nonempty (G := G) p.support_nonempty
   omega
 
+/--
+@isnad1 id=eq.0h3v.s4.58a005ac41ee from=translated src=- shape=792fc85c vocab=16ee5dd8
+-/
 lemma componentCount_eq_one_of_path (p : GraphPath G) :
     componentCount G p.support = 1 := by
   have hle := componentCount_le_pathCover_card (PathCover.ofPath p)
@@ -244,6 +290,9 @@ lemma componentCount_eq_one_of_path (p : GraphPath G) :
   have hpos : 0 < componentCount G p.support := Nat.card_pos
   omega
 
+/--
+@isnad1 id=and.0h3v.s5.fe8f04a56a8c from=translated src=- shape=f26d13ae vocab=8297e440
+-/
 lemma Eligible_of_path_ends (p : GraphPath G) :
     Eligible G p.support p.start ∧ Eligible G p.support p.finish := by
   have hmin : (PathCover.ofPath p).card = pathCoverNumber G p.support := by
@@ -252,7 +301,9 @@ lemma Eligible_of_path_ends (p : GraphPath G) :
     ⟨PathCover.ofPath p, hmin, p, List.mem_singleton.mpr rfl, Or.inr rfl⟩⟩
 
 /-- Deleting `T ⊆ R` from an original spanning path of `R` leaves at most
-`|T| + 1` components.-/
+`|T| + 1` components.
+@isnad1 id=le.1h4v.s6.3d617b4f40c0 from=translated src=- shape=5d0785df vocab=4fdedc32
+-/
 lemma componentCount_path_sdiff_le (p : GraphPath G) {T : Finset V}
     (hT : T ⊆ p.support) :
     componentCount G (p.support \ T) ≤ T.card + 1 := by
@@ -261,7 +312,9 @@ lemma componentCount_path_sdiff_le (p : GraphPath G) {T : Finset V}
   omega
 
 /-- Endpoint deletion: if `T` contains an endpoint of the path, the bound
-sharpens by one.-/
+sharpens by one.
+@isnad1 id=le.3h5v.s6.8c2cd02e7982 from=translated src=- shape=540bd7a5 vocab=499b6806
+-/
 lemma componentCount_path_sdiff_le_of_endpoint (p : GraphPath G) {T : Finset V}
     (hT : T ⊆ p.support) {x : V}
     (hxT : x ∈ T) (hxend : x = p.start ∨ x = p.finish) :

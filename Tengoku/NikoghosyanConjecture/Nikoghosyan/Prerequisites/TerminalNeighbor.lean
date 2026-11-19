@@ -46,10 +46,19 @@ namespace AllCographSides
 
 variable (P : AllCographSides G)
 
+/--
+@isnad1 id=le.0h3v.s5.e9d093e227a6 from=translated src=- shape=a7b495b4 vocab=aeb692e9
+-/
 lemma B_subset_K : P.B ⊆ P.B ∪ P.W := subset_union_left
 
+/--
+@isnad1 id=le.0h3v.s5.4dbea8af7b6a from=translated src=- shape=beb6ba0d vocab=aeb692e9
+-/
 lemma W_subset_K : P.W ⊆ P.B ∪ P.W := subset_union_right
 
+/--
+@isnad1 id=eq.0h3v.s5.29a08f89f2d5 from=translated src=- shape=ba9dcc82 vocab=a3fc0aac
+-/
 lemma K_sdiff_B : (P.B ∪ P.W) \ P.B = P.W := by
   ext x
   constructor
@@ -64,12 +73,17 @@ lemma K_sdiff_B : (P.B ∪ P.W) \ P.B = P.W := by
     intro hB
     exact disjoint_left.1 P.hdisjBW hB hx
 
+/--
+@isnad1 id=iff.0h4v.s6.0cf20ddb99a9 from=translated src=- shape=952fca86 vocab=2ac0b319
+-/
 lemma mem_W_iff_mem_K_sdiff_B {x : V} :
     x ∈ P.W ↔ x ∈ (P.B ∪ P.W) \ P.B := by
   rw [K_sdiff_B]
 
 /-- `u-a-b-v` is an original induced `P₄` from the stated complete and
-anticomplete interfaces.-/
+anticomplete interfaces.
+@isnad1 id=inducedp.5h7v.s6.fe0c500699d7 from=translated src=- shape=75af6258 vocab=ee29927b
+-/
 lemma inducedP4_uabv
     {u a b v : V} (hu : u ∈ P.U) (ha : a ∈ P.A) (hb : b ∈ P.B) (hv : v ∈ P.W)
     (hbv : G.Adj b v) : InducedP4 G u a b v := by
@@ -87,7 +101,9 @@ lemma inducedP4_uabv
   exact ⟨hUA, hUB, hUV, hAB, hAV, hBV, hadj_ua, hadj_ab, hbv,
     nadj_ub, nadj_uv, nadj_av⟩
 
-/-- Host neighbor condition on `W`, with no toughness premise.-/
+/-- Host neighbor condition on `W`, with no toughness premise.
+@isnad1 id=adj.6h6v.s6.2db32e520902 from=translated src=- shape=b75018d8 vocab=69723a17
+-/
 lemma adj_of_missing_B_neighbor (hpat : NoInducedP4UnionP1 G)
     {b v w : V} (hb : b ∈ P.B) (hv : v ∈ P.W) (hw : w ∈ P.W)
     (hbv : G.Adj b v) (hbw : ¬ G.Adj b w) : G.Adj v w := by
@@ -108,6 +124,9 @@ lemma adj_of_missing_B_neighbor (hpat : NoInducedP4UnionP1 G)
   · exact (nadj_wb hwb).elim
   · exact hwv.symm
 
+/--
+@isnad1 id=neighbor.1h3v.s5.cd849226a57b from=translated src=- shape=aa73d284 vocab=ec371855
+-/
 lemma neighborCondition_K (hpat : NoInducedP4UnionP1 G) :
     NeighborCondition (G := G) (P.B ∪ P.W) P.B := by
   intro b v w hb hv hw hbv hbw
@@ -117,7 +136,9 @@ lemma neighborCondition_K (hpat : NoInducedP4UnionP1 G) :
 
 end AllCographSides
 
-/-- Incomparable `B`-neighborhoods inside a cograph produce an induced `P₄`.-/
+/-- Incomparable `B`-neighborhoods inside a cograph produce an induced `P₄`.
+@isnad1 id=false.12h8v.s7.c36fb3213902 from=translated src=- shape=47dc8390 vocab=a5567fa6
+-/
 lemma not_incomparable_B_neighbors {K B : Finset V}
     (hK : IsCograph G K) (hB : Independent (G := G) B) (hBK : B ⊆ K)
     (hN : NeighborCondition (G := G) K B)
@@ -143,7 +164,9 @@ lemma not_incomparable_B_neighbors {K B : Finset V}
       hbv, hvw, hb'w.symm, hnbw, nadj_bb', nadj_vb'⟩
   exact hK hbK hvK hwK hb'K hp4
 
-/-- Neighborhoods of terminals inside `K \ B` are nested.-/
+/-- Neighborhoods of terminals inside `K \ B` are nested.
+@isnad1 id=or.6h6v.s7.ea1ff42ab9b4 from=translated src=- shape=299d7d26 vocab=39ac714e
+-/
 lemma neighborSet_nested {K B : Finset V}
     (hK : IsCograph G K) (hB : Independent (G := G) B) (hBK : B ⊆ K)
     (hN : NeighborCondition (G := G) K B)
@@ -168,7 +191,9 @@ lemma neighborSet_nested {K B : Finset V}
     hv1.1 hw1.1 hv1.2 hnb'v hw1.2 hnbw
 
 /-- Under the neighbor condition, a `B`–`(K \ B)` edge places every
-nonterminal of `K` in the same induced component as that edge.-/
+nonterminal of `K` in the same induced component as that edge.
+@isnad1 id=reachabl.6h7v.s7.b9da415749a5 from=translated src=- shape=2729ab1b vocab=5dcf5d4e
+-/
 lemma reachable_all_nonterminals_of_neighbor {K B : Finset V}
     (hN : NeighborCondition (G := G) K B) (hBK : B ⊆ K)
     {b v w : V} (hb : b ∈ B) (hv : v ∈ K \ B) (hw : w ∈ K \ B)
@@ -190,7 +215,9 @@ lemma reachable_all_nonterminals_of_neighbor {K B : Finset V}
     exact Adj.reachable this
 
 /-- The union of `support ∩ B` over a path cover of `K` is exactly `B`
-when `B ⊆ K`.-/
+when `B ⊆ K`.
+@isnad1 id=eq.1h5v.s6.9c8776933775 from=translated src=- shape=44f80dba vocab=8310e0d2
+-/
 lemma PathCover.biUnion_support_inter_eq {K B : Finset V} (pc : PathCover G K)
     (hBK : B ⊆ K) :
     (pc.paths.toFinset.biUnion fun p => p.support ∩ B) = B := by
@@ -205,7 +232,9 @@ lemma PathCover.biUnion_support_inter_eq {K B : Finset V} (pc : PathCover G K)
     exact mem_biUnion.2 ⟨p, List.mem_toFinset.2 hp, mem_inter.2 ⟨hxp, hx⟩⟩
 
 /-- Supports of distinct cover paths are disjoint, so their `B`-slices
-are disjoint.-/
+are disjoint.
+@isnad1 id=pairwise.0h5v.s6.aa8d3db3034b from=translated src=- shape=d87d654a vocab=81b57815
+-/
 lemma PathCover.pairwiseDisjoint_support_inter {K B : Finset V}
     (pc : PathCover G K) :
     (pc.paths.toFinset : Set (GraphPath G)).PairwiseDisjoint
@@ -218,17 +247,25 @@ lemma PathCover.pairwiseDisjoint_support_inter {K B : Finset V}
   exact disjoint_of_subset_left inter_subset_left
     (disjoint_of_subset_right inter_subset_left hd)
 
-/-- Sum of `(support ∩ B).card` over a path cover of `K` equals `|B|`.-/
+/-- Sum of `(support ∩ B).card` over a path cover of `K` equals `|B|`.
+@isnad1 id=eq.1h5v.s6.5f7cb8c03fbb from=translated src=- shape=09d91c88 vocab=3e96bb70
+-/
 lemma PathCover.sum_support_inter_card {K B : Finset V} (pc : PathCover G K)
     (hBK : B ⊆ K) :
     ∑ p ∈ pc.paths.toFinset, (p.support ∩ B).card = B.card := by
   have hdisj := pc.pairwiseDisjoint_support_inter (B := B)
   rw [← card_biUnion hdisj, pc.biUnion_support_inter_eq hBK]
 
+/--
+@isnad1 id=le.1h4v.s5.46ef4f884c6c from=translated src=- shape=902166f3 vocab=c9bcd905
+-/
 lemma IsTerminalPath.one_le_support_inter_card {B : Finset V} {p : GraphPath G}
     (h : IsTerminalPath (G := G) B p) : 1 ≤ (p.support ∩ B).card :=
   card_pos.mpr ⟨p.start, mem_inter.2 ⟨p.start_mem_support, h.1⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.49bd9465d127 from=translated src=- shape=4ef90c12 vocab=dee09d1f
+-/
 lemma PathCover.paths_toFinset_card {K : Finset V} (pc : PathCover G K) :
     pc.paths.toFinset.card = pc.card :=
   List.toFinset_card_of_nodup pc.nodup_paths
@@ -238,7 +275,9 @@ lemma PathCover.paths_toFinset_card {K : Finset V} (pc : PathCover G K) :
 `∑ (t(p) - 1) + q = |B|`. Each `t(p) - 1` counts the nonempty
 original-edge pieces of that path after deleting `B`, because `B` is
 independent so no two `B`-vertices are adjacent on a path, and both
-endpoints lie in `B`.-/
+endpoints lie in `B`.
+@isnad1 id=eq.2h5v.s6.80c763400b14 from=translated src=- shape=ca1493b9 vocab=de8929dc
+-/
 lemma PathCover.terminal_excess_add {K B : Finset V} (pc : PathCover G K)
     (hBK : B ⊆ K) (hterm : IsTerminalCover (G := G) B pc) :
     ∑ p ∈ pc.paths.toFinset, ((p.support ∩ B).card - 1) + pc.card =
@@ -264,7 +303,9 @@ lemma PathCover.terminal_excess_add {K B : Finset V} (pc : PathCover G K)
   exact Nat.sub_add_cancel hle
 
 /-- After deleting every terminal, every remaining induced component is
-`B`-free, so `z_B(K-B) = c(K \ B)`.-/
+`B`-free, so `z_B(K-B) = c(K \ B)`.
+@isnad1 id=eq.0h4v.s5.c7910aa318da from=translated src=- shape=a8ad90f5 vocab=babc095e
+-/
 lemma terminalComponentCount_eq_componentCount_sdiff_B {K B : Finset V} :
     terminalComponentCount (G := G) K B B = componentCount G (K \ B) := by
   unfold terminalComponentCount componentCount
@@ -274,13 +315,18 @@ lemma terminalComponentCount_eq_componentCount_sdiff_B {K B : Finset V} :
   unfold IsFreeComponent
   simp
 
+/--
+@isnad1 id=le.3h4v.s6.27156756c651 from=translated src=- shape=72bf0d37 vocab=093e1622
+-/
 lemma componentCount_sdiff_B_le_of_terminalHypothesis {K B : Finset V}
     (h : TerminalHypothesis (G := G) K B) (hBK : B ⊆ K) (hne : B.Nonempty) :
     componentCount G (K \ B) ≤ B.card - 1 := by
   have := h.2 B hBK hne
   rwa [terminalComponentCount_eq_componentCount_sdiff_B] at this
 
-/-- `RepairedTerminalHypothesis` on the original side `K = B ∪ W`.-/
+/-- `RepairedTerminalHypothesis` on the original side `K = B ∪ W`.
+@isnad1 id=repaired.2h3v.s6.05cffa4edfc1 from=translated src=- shape=4d92f882 vocab=b08a3cfd
+-/
 lemma repairedTerminalHypothesis_of_sides (P : AllCographSides G)
     (hpat : NoInducedP4UnionP1 G)
     (hterm : TerminalHypothesis (G := G) (P.B ∪ P.W) P.B) :

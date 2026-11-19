@@ -35,6 +35,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=le.0h4v.s6.327b8b658a9e from=translated src=- shape=c26aa959 vocab=9f6920e4
+-/
 lemma leftoverPieces_length_le (B : Finset V) (p : GraphPath G) :
     (leftoverPieces B p).length ≤
       (p.support ∩ B).card + if p.start ∈ B then 0 else 1 := by
@@ -107,31 +110,49 @@ lemma leftoverPieces_length_le (B : Finset V) (p : GraphPath G) :
         omega
       simpa [hsB] using this
 
+/--
+@isnad1 id=le.1h4v.s5.f476dc2d3421 from=translated src=- shape=05b27e6d vocab=e47da19f
+-/
 lemma leftoverPieces_length_le_of_start_mem {B : Finset V} {p : GraphPath G}
     (hs : p.start ∈ B) :
     (leftoverPieces B p).length ≤ (p.support ∩ B).card := by
   have h := leftoverPieces_length_le B p
   simpa [hs] using h
 
+/--
+@isnad1 id=mem.1h5v.s5.4fa0ddd9a705 from=translated src=- shape=10f89063 vocab=55b397b6
+-/
 lemma leftoverPieces_start_mem {B : Finset V} {p Q : GraphPath G}
     (hQ : Q ∈ leftoverPieces B p) : Q.start ∈ p.support :=
   leftoverPieces_support_subset p Q hQ Q.start_mem_support
 
+/--
+@isnad1 id=mem.1h5v.s5.1cda15310c0d from=translated src=- shape=10f89063 vocab=e78acbf6
+-/
 lemma leftoverPieces_finish_mem {B : Finset V} {p Q : GraphPath G}
     (hQ : Q ∈ leftoverPieces B p) : Q.finish ∈ p.support :=
   leftoverPieces_support_subset p Q hQ Q.finish_mem_support
 
+/--
+@isnad1 id=ne.2h5v.s6.2c070b576fb7 from=translated src=- shape=c6ff66cb vocab=3ba0a491
+-/
 lemma leftoverPieces_start_ne {B : Finset V} {p Q : GraphPath G}
     (hs : p.start ∈ B) (hQ : Q ∈ leftoverPieces B p) : Q.start ≠ p.start := by
   intro h
   exact Finset.disjoint_left.1 (leftoverPieces_disjoint_B p Q hQ)
     Q.start_mem_support (h ▸ hs)
 
+/--
+@isnad1 id=ispath.2h8v.s5.28d0d59eeca5 from=translated src=- shape=737f55e5 vocab=9c057622
+-/
 lemma isPath_of_isSubwalk {u v u' v' : V} {p : G.Walk u v} {q : G.Walk u' v'}
     (hq : q.IsPath) (h : p.IsSubwalk q) : p.IsPath := by
   rw [Walk.isPath_def] at hq ⊢
   exact hq.sublist (Walk.isSubwalk_iff_support_isInfix.1 h).sublist
 
+/--
+@isnad1 id=issubwal.1h3v.s6.82ad17b02d80 from=translated src=- shape=ce092908 vocab=78a2c99f
+-/
 lemma isSubwalk_trimStart (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimStart h).walk.IsSubwalk p.walk := by
   rw [Walk.isSubwalk_iff_support_isInfix]
@@ -140,6 +161,9 @@ lemma isSubwalk_trimStart (p : GraphPath G) (h : ¬ p.walk.Nil) :
   rw [ht]
   exact (List.tail_suffix p.walk.support).isInfix
 
+/--
+@isnad1 id=issubwal.1h3v.s6.36f7a645ee80 from=translated src=- shape=ce092908 vocab=786367bd
+-/
 lemma isSubwalk_trimFinish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimFinish h).walk.IsSubwalk p.walk := by
   rw [Walk.isSubwalk_iff_support_isInfix]
@@ -148,6 +172,9 @@ lemma isSubwalk_trimFinish (p : GraphPath G) (h : ¬ p.walk.Nil) :
   rw [hdl]
   exact (List.dropLast_prefix p.walk.support).isInfix
 
+/--
+@isnad1 id=issubwal.1h5v.s6.06a7661f2528 from=translated src=- shape=0e0e1fc8 vocab=20f6ab9c
+-/
 lemma leftoverPieces_isSubwalk {B : Finset V} (p : GraphPath G) :
     ∀ Q ∈ leftoverPieces B p, Q.walk.IsSubwalk p.walk := by
   refine Nat.strongRecOn (motive := fun n =>
@@ -188,10 +215,16 @@ lemma leftoverPieces_isSubwalk {B : Finset V} (p : GraphPath G) :
         exact (ih _ hlt (p.dropUntil hx) rfl Q hQ).trans
           (Walk.isSubwalk_dropUntil p.walk (mem_walk_support.1 hx))
 
+/--
+@isnad1 id=eq.1h4v.s6.81dcaf241669 from=translated src=- shape=9e7a4aa0 vocab=daac77aa
+-/
 lemma walk_eq_take_append_drop (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     p.walk = (p.takeUntil hx).walk.append (p.dropUntil hx).walk := by
   simp [takeUntil, dropUntil, Walk.take_spec]
 
+/--
+@isnad1 id=eq.1h7v.s5.d235dca1d500 from=translated src=- shape=b6ed1606 vocab=f390e153
+-/
 lemma penultimate_append_of_not_nil {u v w : V}
     (p : G.Walk u v) (q : G.Walk v w) (hq : ¬ q.Nil) :
     (p.append q).penultimate = q.penultimate := by
@@ -202,6 +235,9 @@ lemma penultimate_append_of_not_nil {u v w : V}
   simp only [Walk.penultimate, Walk.getVert_append, hlen]
   rw [ite_eq_right hnot, hsub]
 
+/--
+@isnad1 id=eq.1h7v.s5.a91ee27fa9ee from=translated src=- shape=a8a7f9a9 vocab=eff69110
+-/
 lemma snd_append_of_not_nil {u v w : V}
     (p : G.Walk u v) (q : G.Walk v w) (hp : ¬ p.Nil) :
     (p.append q).snd = p.snd := by
@@ -213,18 +249,27 @@ lemma snd_append_of_not_nil {u v w : V}
     have hv : p.getVert 1 = v := by simpa [hlen] using p.getVert_length
     simp [hlen, Walk.getVert_zero, hv]
 
+/--
+@isnad1 id=iff.2h7v.s5.6fb9b7bd29cb from=translated src=- shape=2506eb12 vocab=cca90c04
+-/
 lemma nil_copy {u v u' v' : V} (p : G.Walk u v) (hu : u = u') (hv : v = v') :
     (p.copy hu hv).Nil ↔ p.Nil := by
   subst hu
   subst hv
   simp
 
+/--
+@isnad1 id=eq.2h7v.s5.6e7f0e3cff0d from=translated src=- shape=83e56313 vocab=aba08869
+-/
 lemma penultimate_copy {u v u' v' : V} (p : G.Walk u v) (hu : u = u') (hv : v = v') :
     (p.copy hu hv).penultimate = p.penultimate := by
   subst hu
   subst hv
   simp
 
+/--
+@isnad1 id=eq.3h7v.s6.01c31c59bdc6 from=translated src=- shape=0a233487 vocab=95699ae1
+-/
 lemma tail_copy_eq_of_eq_cons {u v w : V}
     {q : G.Walk u w} {h : G.Adj u v} {r : G.Walk v w}
     (heq : q = Walk.cons h r) (hsnd : q.snd = v) :
@@ -237,7 +282,9 @@ lemma tail_copy_eq_of_eq_cons {u v w : V}
 factors as prefix `ru`, leftover run `Q`, suffix `rv`. The prefix is
 nil or its penultimate vertex lies in `B`; the suffix is nil or its
 first vertex after `Q.finish` lies in `B`. Recursive tails may start
-outside `B`, so both nil cases are retained.-/
+outside `B`, so both nil cases are retained.
+@isnad1 id=ex.1h5v.s7.f289f21ce9e5 from=translated src=- shape=7840582b vocab=bfe5ecd4
+-/
 lemma leftoverPieces_factor {B : Finset V} (p : GraphPath G) :
     ∀ Q ∈ leftoverPieces B p,
       ∃ (ru : G.Walk p.start Q.start) (rv : G.Walk Q.finish p.finish),
@@ -402,6 +449,9 @@ lemma leftoverPieces_factor {B : Finset V} (p : GraphPath G) :
             penultimate_append_of_not_nil (p.takeUntil hx).walk ru' hru_nn
           exact hpen ▸ hru'.resolve_left hru_nn
 
+/--
+@isnad1 id=not.3h7v.s7.414571484249 from=translated src=- shape=a3847a2f vocab=d75952bb
+-/
 lemma leftoverPieces_factor_ru_not_nil {B : Finset V} {p Q : GraphPath G}
     (hs : p.start ∈ B) (hQ : Q ∈ leftoverPieces B p)
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
@@ -409,6 +459,9 @@ lemma leftoverPieces_factor_ru_not_nil {B : Finset V} {p Q : GraphPath G}
   intro hnil
   exact leftoverPieces_start_ne hs hQ (Walk.Nil.eq hnil).symm
 
+/--
+@isnad1 id=ispath.1h6v.s6.4050002a5832 from=translated src=- shape=24215ca5 vocab=370c38f8
+-/
 lemma isPath_of_factor_left {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) : ru.IsPath := by
@@ -416,6 +469,9 @@ lemma isPath_of_factor_left {p Q : GraphPath G}
   rw [heq] at h
   exact (Walk.IsPath.of_append_left h).of_append_left
 
+/--
+@isnad1 id=ispath.1h6v.s6.6d57673cd276 from=translated src=- shape=d3795805 vocab=370c38f8
+-/
 lemma isPath_of_factor_right {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) : rv.IsPath := by
@@ -429,39 +485,66 @@ def ofWalk {u v : V} (w : G.Walk u v) (hw : w.IsPath) : GraphPath G where
   walk := w
   isPath := hw
 
+/--
+@isnad1 id=eq.1h5v.s5.663917b20313 from=translated src=- shape=75fdf713 vocab=2afbc286
+-/
 @[simp]
 lemma support_ofWalk {u v : V} (w : G.Walk u v) (hw : w.IsPath) :
     (ofWalk w hw).support = w.support.toFinset :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.426c6f0f3ee1 from=translated src=- shape=abc907ff vocab=ea8d47de
+-/
 @[simp] lemma ofWalk_start {u v : V} (w : G.Walk u v) (hw : w.IsPath) :
     (ofWalk w hw).start = u := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.88d783745f6d from=translated src=- shape=a82db485 vocab=27151d2d
+-/
 @[simp] lemma ofWalk_finish {u v : V} (w : G.Walk u v) (hw : w.IsPath) :
     (ofWalk w hw).finish = v := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.444ddf81abee from=translated src=- shape=3ba37924 vocab=974d4f85
+-/
 @[simp] lemma ofWalk_walk {u v : V} (w : G.Walk u v) (hw : w.IsPath) :
     (ofWalk w hw).walk = w := rfl
 
+/--
+@isnad1 id=adj.1h3v.s5.a4797d03a944 from=translated src=- shape=8e492746 vocab=7ae7f76a
+-/
 lemma adj_trimFinish_finish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     G.Adj (p.trimFinish h).finish p.finish :=
   p.walk.adj_penultimate h
 
+/--
+@isnad1 id=eq.1h5v.s5.c8f11c976331 from=translated src=- shape=72a05601 vocab=5b798984
+-/
 lemma walk_support_eq_singleton_of_nil {u v : V} {w : G.Walk u v}
     (h : w.Nil) : w.support = [u] :=
   (Walk.nil_iff_support_eq).1 h
 
+/--
+@isnad1 id=eq.1h5v.s5.164e01bde4e9 from=translated src=- shape=46bbda89 vocab=9fcc441e
+-/
 lemma walk_support_eq_cons_of_not_nil {u v : V} {w : G.Walk u v}
     (h : ¬ w.Nil) : w.support = u :: w.support.tail := by
   have ht := Walk.support_tail_of_not_nil w h
   simpa [ht] using (Walk.cons_support_tail (p := w) h).symm
 
+/--
+@isnad1 id=eq.1h6v.s7.631fd94eb0df from=translated src=- shape=1921c817 vocab=bdf4467a
+-/
 lemma mem_walk_concat_of_subwalk {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) :
     p.walk.support = ru.support ++ Q.walk.support.tail ++ rv.support.tail := by
   rw [heq, Walk.support_append, Walk.support_append]
 
+/--
+@isnad1 id=mem.1h7v.s7.419721972977 from=translated src=- shape=bab47042 vocab=71c11969
+-/
 lemma mem_concat_of_mem_Q_support {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     {x : V} (hx : x ∈ Q.walk.support) :
@@ -481,6 +564,9 @@ lemma mem_concat_of_mem_Q_support {p Q : GraphPath G}
     · exact List.mem_append.2 (Or.inl (List.mem_append.2 (Or.inl (Walk.end_mem_support ru))))
     · exact List.mem_append.2 (Or.inl (List.mem_append.2 (Or.inr htail)))
 
+/--
+@isnad1 id=eq.1h6v.s7.a9d59a803c81 from=translated src=- shape=75f81af7 vocab=1d081421
+-/
 lemma support_union_of_subwalk {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) :
@@ -520,6 +606,9 @@ lemma support_union_of_subwalk {p Q : GraphPath G}
         · exact hcat' (mem_concat_of_mem_Q_support (Walk.end_mem_support Q.walk))
         · exact hcat' (List.mem_append.2 (Or.inr htail))
 
+/--
+@isnad1 id=le.1h6v.s7.7ae41a5f53e6 from=translated src=- shape=1a640d7f vocab=d4a75c82
+-/
 lemma inter_ru_Q {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) :
@@ -554,6 +643,9 @@ lemma inter_ru_Q {p Q : GraphPath G}
     have : p.walk.support.count x = 1 := List.count_eq_one_of_mem hnod hxP
     omega
 
+/--
+@isnad1 id=le.1h6v.s7.f9dcb2684469 from=translated src=- shape=d9605e62 vocab=d4a75c82
+-/
 lemma inter_rv_Q {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) :
@@ -604,6 +696,9 @@ lemma inter_rv_Q {p Q : GraphPath G}
     have : p.walk.support.count x = 1 := List.count_eq_one_of_mem hnod hxP
     omega
 
+/--
+@isnad1 id=eq.1h6v.s7.9e210ec6a065 from=translated src=- shape=87c2d6dc vocab=827a9456
+-/
 lemma sdiff_eq_prefix_suffix {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) :
@@ -638,6 +733,9 @@ lemma sdiff_eq_prefix_suffix {p Q : GraphPath G}
         hrvQ (mem_inter.2 ⟨hrv, hQ⟩)
       exact hne (mem_singleton.1 this)
 
+/--
+@isnad1 id=disjoint.3h6v.s7.d0af79149d52 from=translated src=- shape=aa710803 vocab=e9c2438e
+-/
 lemma disjoint_trim_prefix_suffix {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv)
@@ -680,6 +778,9 @@ lemma disjoint_trim_prefix_suffix {p Q : GraphPath G}
   · intro hx
     exact (notMem_empty x hx).elim
 
+/--
+@isnad1 id=eq.2h6v.s7.d3f2799620d8 from=translated src=- shape=1cb40807 vocab=c677b589
+-/
 lemma support_trimFinish_ofWalk {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) (hru : ¬ ru.Nil) :
@@ -688,6 +789,9 @@ lemma support_trimFinish_ofWalk {p Q : GraphPath G}
   simpa [support_ofWalk, ofWalk_finish] using
     support_trimFinish (ofWalk ru (isPath_of_factor_left heq)) hru
 
+/--
+@isnad1 id=eq.2h6v.s7.5088797da945 from=translated src=- shape=c899a95d vocab=f3696db3
+-/
 lemma support_trimStart_ofWalk {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv) (hrv : ¬ rv.Nil) :
@@ -696,6 +800,9 @@ lemma support_trimStart_ofWalk {p Q : GraphPath G}
   simpa [support_ofWalk, ofWalk_start] using
     support_trimStart (ofWalk rv (isPath_of_factor_right heq)) hrv
 
+/--
+@isnad1 id=eq.1h5v.s5.ba6709f28de6 from=translated src=- shape=406543c8 vocab=ba99e94b
+-/
 lemma erase_eq_empty_of_nil {u v : V} {w : G.Walk u v} (h : w.Nil) :
     w.support.toFinset.erase v = ∅ := by
   have : w.support = [u] := walk_support_eq_singleton_of_nil h
@@ -705,7 +812,9 @@ lemma erase_eq_empty_of_nil {u v : V} {w : G.Walk u v} (h : w.Nil) :
 /-- Complementary original path of a leftover run of a path that starts in
 `A` and is closed by an original edge from finish to start. Both ends lie
 in `A`. If the suffix after `Q` is nil, the successor seam is the closing
-edge; otherwise it is the original successor of `Q.finish` in `p`.-/
+edge; otherwise it is the original successor of `Q.finish` in `p`.
+@isnad1 id=ex.3h5v.s7.e78190b5f06b from=translated src=- shape=972d4b9a vocab=a88d5658
+-/
 lemma exists_complement_of_leftover {A : Finset V} {p Q : GraphPath G}
     (hs : p.start ∈ A) (hQ : Q ∈ leftoverPieces A p)
     (hclose : G.Adj p.finish p.start) :
@@ -767,11 +876,17 @@ noncomputable def leftoverCoverOfPath (p : GraphPath G) (A : Finset V) :
     PathCover G (p.support \ A) :=
   (PathCover.ofPath p).leftoverCover (B := A)
 
+/--
+@isnad1 id=eq.0h4v.s5.425ea57dae0c from=translated src=- shape=69afc5af vocab=28cc0b3f
+-/
 lemma leftoverCoverOfPath_card (p : GraphPath G) (A : Finset V) :
     (leftoverCoverOfPath p A).card = (leftoverPieces A p).length := by
   simp [leftoverCoverOfPath, PathCover.leftoverCover, PathCover.ofPath,
     PathCover.card, List.length_flatMap]
 
+/--
+@isnad1 id=le.2h4v.s6.ba5c63a68828 from=translated src=- shape=6af763c1 vocab=9484ecbf
+-/
 lemma leftoverCoverOfPath_card_le {p : GraphPath G} {A : Finset V}
     (hs : p.start ∈ A) (hA : A ⊆ p.support) :
     (leftoverCoverOfPath p A).card ≤ A.card := by
@@ -779,6 +894,9 @@ lemma leftoverCoverOfPath_card_le {p : GraphPath G} {A : Finset V}
   have hinter : p.support ∩ A = A := inter_eq_right.2 hA
   simpa [leftoverCoverOfPath_card, hinter] using hlen
 
+/--
+@isnad1 id=eq.0h4v.s5.5076f7fc2e07 from=translated src=- shape=893e45e0 vocab=bac1434b
+-/
 lemma leftoverCoverOfPath_paths (p : GraphPath G) (A : Finset V) :
     (leftoverCoverOfPath p A).paths = leftoverPieces A p := by
   simp [leftoverCoverOfPath, PathCover.leftoverCover, PathCover.ofPath]
@@ -789,13 +907,18 @@ namespace Cograph
 
 open Nikoghosyan.GraphPath
 
+/--
+@isnad1 id=eq.1h3v.s4.a5abbac52091 from=translated src=- shape=1e1b82c0 vocab=59b2c508
+-/
 lemma toFinset_eq_of_perm {α : Type*} [DecidableEq α] {l₁ l₂ : List α}
     (h : l₁.Perm l₂) : l₁.toFinset = l₂.toFinset := by
   ext x
   simp [List.mem_toFinset, h.mem_iff]
 
 /-- Open the cycle at `x` so that the spanning path plus the original
-closing edge recover every edge of the prescribed cycle.-/
+closing edge recover every edge of the prescribed cycle.
+@isnad1 id=ex.1h4v.s7.23b7b38ae0d1 from=translated src=- shape=11cb10c4 vocab=259862dc
+-/
 lemma exists_spanning_path_from_with_edges (c : GraphCycle G) {x : V}
     (hx : x ∈ c.support) :
     ∃ p : GraphPath G,
@@ -838,7 +961,9 @@ lemma exists_spanning_path_from_with_edges (c : GraphCycle G) {x : V}
 
 /-- Deleting nonempty `A` from a fixed original cycle support yields an
 actual leftover path cover of the remainder, of cardinality `≤ |A|`, whose
-every path is a contiguous original subwalk of the opened cycle.-/
+every path is a contiguous original subwalk of the opened cycle.
+@isnad1 id=ex.3h5v.s8.c2a03d07eff9 from=translated src=- shape=49707fb5 vocab=8c58f634
+-/
 lemma exists_cycle_leftover_cover {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) :
@@ -866,7 +991,9 @@ lemma exists_cycle_leftover_cover {U A : Finset V}
       rwa [PathCover.cast_paths, leftoverCoverOfPath_paths] at hQ
     exact leftoverPieces_isSubwalk p Q hQ'
 
-/-- Under saturation the leftover cover is a minimum cover of `U \ A`.-/
+/-- Under saturation the leftover cover is a minimum cover of `U \ A`.
+@isnad1 id=ex.4h5v.s8.1586b1dad879 from=translated src=- shape=8727b98c vocab=db82a576
+-/
 lemma cycle_leftover_cover_min_of_saturated {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -888,7 +1015,9 @@ lemma cycle_leftover_cover_min_of_saturated {U A : Finset V}
 /-- From a leftover run of an opened original cycle, the complementary
 original path spans `U \ Q.support`, both ends lie in `A`, and both seams
 to `Q.start` / `Q.finish` are original edges of that opened path plus
-closing edge.-/
+closing edge.
+@isnad1 id=ex.8h8v.s7.2d9e2489ad35 from=translated src=- shape=3a49291b vocab=72f12af0
+-/
 lemma exists_complement_arc_of_mem_leftover {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)

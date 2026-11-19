@@ -64,29 +64,44 @@ noncomputable def deleteVertsCoeIsoInduce (H : SimpleGraph α) (Z : Set α) :
       change (x : α) ∉ Z ↔ Subgraph.topIso x ∈ Zᶜ
       simp [Subgraph.topIso, mem_compl_iff]
 
+/--
+@isnad1 id=eq.0h4v.s7.d0f7654310a7 from=translated src=- shape=e731f2c4 vocab=8b69230f
+-/
 lemma deleteVertsCoeIsoInduce_val (H : SimpleGraph α) (Z : Set α)
     (x : ((⊤ : H.Subgraph).deleteVerts Z).verts) :
     (deleteVertsCoeIsoInduce H Z x : α) = (x : α) := by
   simp [deleteVertsCoeIsoInduce, isoInduce, Subgraph.coeDeleteVertsIso,
     Subgraph.topIso]
 
+/--
+@isnad1 id=eq.0h6v.s6.3e0fe061e916 from=translated src=- shape=869445ff vocab=3b80bc8b
+-/
 lemma ncard_supp_iso {H : SimpleGraph α} {H' : SimpleGraph β}
     (φ : H ≃g H') (c : H.ConnectedComponent) :
     c.supp.ncard = (φ.connectedComponentEquiv c).supp.ncard :=
   ncard_congr' (ConnectedComponent.isoEquivSupp φ c)
 
+/--
+@isnad1 id=iff.0h6v.s6.d15549821e03 from=translated src=- shape=404b4e32 vocab=6c7452ee
+-/
 lemma mem_oddComponents_iso {H : SimpleGraph α} {H' : SimpleGraph β}
     (φ : H ≃g H') (c : H.ConnectedComponent) :
     c ∈ H.oddComponents ↔
       φ.connectedComponentEquiv c ∈ H'.oddComponents := by
   simp [oddComponents, ncard_supp_iso φ c]
 
+/--
+@isnad1 id=eq.0h5v.s5.bcd1c8ac211c from=translated src=- shape=92acb6ca vocab=62cb522e
+-/
 lemma ncard_oddComponents_iso [Finite α] [Finite β]
     {H : SimpleGraph α} {H' : SimpleGraph β} (φ : H ≃g H') :
     H.oddComponents.ncard = H'.oddComponents.ncard :=
   ncard_congr' (φ.connectedComponentEquiv.subtypeEquiv fun c =>
     mem_oddComponents_iso φ c)
 
+/--
+@isnad1 id=eq.0h3v.s6.3935cbf3f680 from=translated src=- shape=51f729cd vocab=aae3f406
+-/
 lemma ncard_oddComponents_deleteVerts [Finite α]
     (H : SimpleGraph α) (Z : Set α) :
     ((⊤ : H.Subgraph).deleteVerts Z).coe.oddComponents.ncard =
@@ -96,6 +111,9 @@ lemma ncard_oddComponents_deleteVerts [Finite α]
   haveI : Finite (Zᶜ : Set α) := inferInstance
   exact ncard_oddComponents_iso (deleteVertsCoeIsoInduce H Z)
 
+/--
+@isnad1 id=iff.0h3v.s4.c2383ac25555 from=translated src=- shape=b7a32215 vocab=066523a2
+-/
 lemma isTutteViolator_iff_signedDeficiency_pos [Finite α]
     (H : SimpleGraph α) (Z : Set α) :
     H.IsTutteViolator Z ↔ 0 < signedDeficiency H Z := by
@@ -107,6 +125,9 @@ lemma isTutteViolator_iff_signedDeficiency_pos [Finite α]
   · intro h
     exact Nat.cast_lt.mp (sub_pos.mp h)
 
+/--
+@isnad1 id=iff.0h3v.s4.ba7e7ed43e47 from=translated src=- shape=7bec5135 vocab=27e2c439
+-/
 lemma signedDeficiency_nonpos_iff_not_violator [Finite α]
     (H : SimpleGraph α) (Z : Set α) :
     signedDeficiency H Z ≤ 0 ↔ ¬ H.IsTutteViolator Z := by
@@ -120,12 +141,18 @@ variable {G : SimpleGraph V} [DecidableRel G.Adj]
 
 /-! ## Sufficiency: `Δ ≥ 0` on disjoint pairs yields a 2-factor -/
 
+/--
+@isnad1 id=le.1h3v.s6.de1bbe643850 from=translated src=- shape=e169fefb vocab=b1a25f0d
+-/
 lemma delta_canonical_nonneg_of_all
     (hΔ : ∀ S T : Finset V, Disjoint S T → 0 ≤ delta G S T)
     (Z : Set (GadgetVert G)) :
     0 ≤ delta G (originalS Z) (originalT Z) :=
   hΔ _ _ (disjoint_originalS_originalT Z)
 
+/--
+@isnad1 id=isspanni.1h3v.s4.a4d330bbcbc9 from=translated src=- shape=8eeb7aa9 vocab=8043d663
+-/
 lemma isSpanningDegreeTwo_common {F : G.Subgraph}
     (hF : IsSpanningDegreeTwo F) : Nikoghosyan.IsSpanningDegreeTwo F :=
   hF
@@ -136,6 +163,9 @@ def pairCut (S T : Finset V) : Set (GadgetVert G) :=
   {x | ∃ v ∈ S, ∃ b : Fin 2, x = .clone v b} ∪
     {x | ∃ v ∈ T, ∃ w, ∃ h : G.Adj v w, x = .port v w h}
 
+/--
+@isnad1 id=iff.0h6v.s6.4395861d73b6 from=translated src=- shape=01045a9b vocab=562cf655
+-/
 lemma clone_mem_pairCut_iff {S T : Finset V} {v : V} {b : Fin 2} :
     (GadgetVert.clone (G := G) v b ∈ pairCut (G := G) S T) ↔ v ∈ S := by
   constructor
@@ -148,6 +178,9 @@ lemma clone_mem_pairCut_iff {S T : Finset V} {v : V} {b : Fin 2} :
   · intro hv
     exact .inl ⟨v, hv, b, rfl⟩
 
+/--
+@isnad1 id=iff.1h6v.s6.40c74f4ed328 from=translated src=- shape=a8f4146c vocab=b7ebcda3
+-/
 lemma port_mem_pairCut_iff {S T : Finset V} {v w : V} {h : G.Adj v w} :
     (GadgetVert.port (G := G) v w h ∈ pairCut (G := G) S T) ↔ v ∈ T := by
   constructor
@@ -160,6 +193,9 @@ lemma port_mem_pairCut_iff {S T : Finset V} {v w : V} {h : G.Adj v w} :
   · intro hv
     exact .inr ⟨v, hv, w, h, rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.bd931c3fa946 from=translated src=- shape=35de549e vocab=c0791ade
+-/
 lemma hasSurvivingClone_pairCut {S T : Finset V} {v : V} :
     hasSurvivingClone (pairCut (G := G) S T) v ↔ v ∉ S := by
   constructor
@@ -170,6 +206,9 @@ lemma hasSurvivingClone_pairCut {S T : Finset V} {v : V} :
     intro hmem
     exact hv ((clone_mem_pairCut_iff (G := G) (T := T)).mp hmem)
 
+/--
+@isnad1 id=iff.0h5v.s5.df71e887bb91 from=translated src=- shape=b00adade vocab=dfd873b0
+-/
 lemma hasSurvivingPort_pairCut {S T : Finset V} {v : V} :
     hasSurvivingPort (pairCut (G := G) S T) v ↔ v ∉ T ∧ ∃ w, G.Adj v w := by
   constructor
@@ -180,12 +219,18 @@ lemma hasSurvivingPort_pairCut {S T : Finset V} {v : V} :
     exact ⟨w, hadj,
       fun hp => hvT ((port_mem_pairCut_iff (G := G) (S := S)).mp hp)⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.f3773a93e3a0 from=translated src=- shape=7c3a606e vocab=ee76b0de
+-/
 lemma classS_pairCut {S T : Finset V} {v : V} :
     classS (pairCut (G := G) S T) v ↔ v ∈ S := by
   unfold classS
   rw [hasSurvivingClone_pairCut (G := G) (T := T)]
   exact not_not
 
+/--
+@isnad1 id=iff.2h5v.s6.7ec1d35f78cb from=translated src=- shape=c8659548 vocab=032a00da
+-/
 lemma classT_pairCut_of_nonisolated {S T : Finset V}
     (hdis : Disjoint S T) (hn : ∀ x : V, ∃ w, G.Adj x w) {v : V} :
     classT (pairCut (G := G) S T) v ↔ v ∈ T := by
@@ -204,6 +249,9 @@ lemma classT_pairCut_of_nonisolated {S T : Finset V}
     · intro hP
       exact (hasSurvivingPort_pairCut (G := G) (S := S)).1 hP |>.1 hvT
 
+/--
+@isnad1 id=iff.1h5v.s6.c652a84578fc from=translated src=- shape=fb1f905a vocab=f3ef1b76
+-/
 lemma classU_pairCut_of_nonisolated {S T : Finset V}
     (hn : ∀ x : V, ∃ w, G.Adj x w) {v : V} :
     classU (pairCut (G := G) S T) v ↔ v ∉ S ∧ v ∉ T := by
@@ -216,11 +264,17 @@ lemma classU_pairCut_of_nonisolated {S T : Finset V}
     exact ⟨(hasSurvivingClone_pairCut (G := G) (T := T)).mpr hvS,
       (hasSurvivingPort_pairCut (G := G) (S := S)).mpr ⟨hvT, w, hw⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.4125a7a119f9 from=translated src=- shape=27a770e9 vocab=8eb2e861
+-/
 lemma originalS_pairCut (S T : Finset V) :
     originalS (pairCut (G := G) S T) = S := by
   refine Finset.ext fun v => ?_
   simp [mem_originalS_iff, classS_pairCut (G := G) (T := T)]
 
+/--
+@isnad1 id=eq.2h4v.s5.f3da39e66c9e from=translated src=- shape=1b2b31ea vocab=abd1f0d9
+-/
 lemma originalT_pairCut (S T : Finset V)
     (hdis : Disjoint S T) (hn : ∀ x : V, ∃ w, G.Adj x w) :
     originalT (pairCut (G := G) S T) = T := by
@@ -228,6 +282,9 @@ lemma originalT_pairCut (S T : Finset V)
   simp [mem_originalT_iff,
     classT_pairCut_of_nonisolated (G := G) hdis hn]
 
+/--
+@isnad1 id=eq.2h4v.s6.9d95c314d5f3 from=translated src=- shape=2bc83e6c vocab=db263eb2
+-/
 lemma canonicalCut_pairCut (S T : Finset V)
     (hdis : Disjoint S T) (hn : ∀ x : V, ∃ w, G.Adj x w) :
     canonicalCut (pairCut (G := G) S T) = pairCut (G := G) S T := by
@@ -235,6 +292,9 @@ lemma canonicalCut_pairCut (S T : Finset V)
     originalT_pairCut (G := G) S T hdis hn]
   rfl
 
+/--
+@isnad1 id=ex.1h4v.s5.28e3850829ab from=translated src=- shape=9d9a84fe vocab=4e38dc79
+-/
 lemma exists_adj_of_spanningDegreeTwo {F : G.Subgraph}
     (hF : IsSpanningDegreeTwo F) (v : V) : ∃ w, G.Adj v w := by
   have hpos : 0 < (F.neighborSet v).ncard := by
@@ -243,6 +303,9 @@ lemma exists_adj_of_spanningDegreeTwo {F : G.Subgraph}
   obtain ⟨w, hw⟩ := (ncard_pos (Set.toFinite (F.neighborSet v))).1 hpos
   exact ⟨w, F.adj_sub hw⟩
 
+/--
+@isnad1 id=ex.1h4v.s5.28e3850829ab from=translated src=- shape=9d9a84fe vocab=4e38dc79
+-/
 theorem nonisolated_of_spanningDegreeTwo {F : G.Subgraph}
     (hF : IsSpanningDegreeTwo F) : ∀ v : V, ∃ w, G.Adj v w :=
   exists_adj_of_spanningDegreeTwo (G := G) hF

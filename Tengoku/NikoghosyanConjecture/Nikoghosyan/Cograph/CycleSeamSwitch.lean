@@ -33,10 +33,16 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=not.1h5v.s5.1705abb00d19 from=translated src=- shape=026de826 vocab=3ba0a491
+-/
 lemma leftover_start_not_mem {A : Finset V} {p Q : GraphPath G}
     (hQ : Q ∈ leftoverPieces A p) : Q.start ∉ A :=
   Finset.disjoint_left.1 (leftoverPieces_disjoint_B p Q hQ) Q.start_mem_support
 
+/--
+@isnad1 id=not.1h5v.s5.a0828e36923e from=translated src=- shape=026de826 vocab=3d59f0b0
+-/
 lemma leftover_finish_not_mem {A : Finset V} {p Q : GraphPath G}
     (hQ : Q ∈ leftoverPieces A p) : Q.finish ∉ A :=
   Finset.disjoint_left.1 (leftoverPieces_disjoint_B p Q hQ) Q.finish_mem_support
@@ -53,6 +59,9 @@ def switchOpenStarts (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
         pieceAfter_start p hu hclose hne hv] using hadj)
     (disjoint_pieces p hu hclose hne hv hnv)
 
+/--
+@isnad1 id=eq.6h5v.s7.85ffae0e1438 from=translated src=- shape=6ec7535c vocab=ca02beab
+-/
 lemma switchOpenStarts_start (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u)
@@ -61,6 +70,9 @@ lemma switchOpenStarts_start (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
       (pieceBefore p hu hclose hne hv hnv).finish :=
   rfl
 
+/--
+@isnad1 id=eq.6h5v.s7.96e33757b6aa from=translated src=- shape=a5c1d285 vocab=6a0d7d62
+-/
 lemma switchOpenStarts_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u)
@@ -69,6 +81,9 @@ lemma switchOpenStarts_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
       (p.takeUntil hu).walk.penultimate := by
   simpa [switchOpenStarts, switchStarts_finish, pieceAfter_finish]
 
+/--
+@isnad1 id=eq.6h5v.s6.7c7f6d3307b9 from=translated src=- shape=71302ade vocab=384291b2
+-/
 lemma switchOpenStarts_support (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u)
@@ -77,6 +92,9 @@ lemma switchOpenStarts_support (p : GraphPath G) {u v : V} (hu : u ∈ p.support
   rw [switchOpenStarts, switchStarts_support]
   exact support_pieces_union p hu hclose hne hv hnv
 
+/--
+@isnad1 id=protecte.9h7v.s7.b7e96d24e3c3 from=translated src=- shape=60e518ee vocab=5fbd67fa
+-/
 lemma switchOpenStarts_ProtectedAt (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u)
@@ -101,6 +119,9 @@ lemma switchOpenStarts_ProtectedAt (p : GraphPath G) {u v : V}
   · exact hopen (hsub.1 (mem_AIncident_iff.1 h).1)
   · exact hopen (hsub.2 (mem_AIncident_iff.1 h).1)
 
+/--
+@isnad1 id=eq.6h5v.s7.a3b5724f2b73 from=translated src=- shape=b52ce08f vocab=6a0d7d62
+-/
 lemma switchOpenStarts_start_eq (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u)
@@ -110,7 +131,9 @@ lemma switchOpenStarts_start_eq (p : GraphPath G) {u v : V}
   simpa [switchOpenStarts_start p hu hclose hne hv hnv hadj] using
     pieceBefore_finish p hu hclose hne hv hnv
 
-/-- Coordinator leftover-predecessor interface, uniquely named.-/
+/-- Coordinator leftover-predecessor interface, uniquely named.
+@isnad1 id=eq.1h5v.s5.837618a17e58 from=translated src=- shape=ca221390 vocab=cce9d3b2
+-/
 lemma leftoverPred_takeUntil_walk_eq_self {u v : V} (w : G.Walk u v)
     (hw : w.IsPath) :
     w.takeUntil v w.end_mem_support = w := by
@@ -120,6 +143,9 @@ lemma leftoverPred_takeUntil_walk_eq_self {u v : V} (w : G.Walk u v)
   rw [hn.eq_nil, Walk.append_nil] at heq
   exact heq
 
+/--
+@isnad1 id=eq.2h6v.s7.b8ba646bd8c6 from=translated src=- shape=a02f3b2f vocab=aee19b4c
+-/
 lemma leftoverPred_takeUntil_walk_eq_factor_prefix {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (heq : p.walk = (ru.append Q.walk).append rv)
@@ -130,6 +156,9 @@ lemma leftoverPred_takeUntil_walk_eq_factor_prefix {p Q : GraphPath G}
   have hend := leftoverPred_takeUntil_walk_eq_self ru (isPath_of_factor_left heq)
   simpa only [takeUntil, heq, Walk.append_assoc] using htake.trans hend
 
+/--
+@isnad1 id=mem.2h5v.s6.1b661ca86d8b from=translated src=- shape=a0919512 vocab=2c1415af
+-/
 lemma leftoverPred_start_predecessor_mem {A : Finset V} {p Q : GraphPath G}
     (hs : p.start ∈ A) (hQ : Q ∈ leftoverPieces A p) :
     (p.takeUntil (leftoverPieces_start_mem hQ)).walk.penultimate ∈ A := by
@@ -138,6 +167,9 @@ lemma leftoverPred_start_predecessor_mem {A : Finset V} {p Q : GraphPath G}
   rw [leftoverPred_takeUntil_walk_eq_factor_prefix heq]
   exact hruA.resolve_left hru
 
+/--
+@isnad1 id=le.1h4v.s5.d014c705c3d2 from=translated src=- shape=941d0d9c vocab=cf4e3005
+-/
 lemma leftoverPred_takeUntil_support_subset (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) : (p.takeUntil hx).support ⊆ p.support := by
   intro y hy
@@ -145,6 +177,9 @@ lemma leftoverPred_takeUntil_support_subset (p : GraphPath G) {x : V}
     mem_union.2 (Or.inl hy)
   rwa [support_takeUntil_union_dropUntil] at this
 
+/--
+@isnad1 id=eq.2h8v.s6.ed613c48d93f from=translated src=- shape=9199441a vocab=3ed03c3c
+-/
 lemma leftoverPred_takeUntil_append_of_notMem_left {u v w x : V}
     (p : G.Walk u v) (q : G.Walk v w) (hxq : x ∈ q.support)
     (hxp : x ∉ p.support) :
@@ -156,6 +191,9 @@ lemma leftoverPred_takeUntil_append_of_notMem_left {u v w x : V}
   | cons =>
     grind [Walk.cons_append, Walk.takeUntil]
 
+/--
+@isnad1 id=eq.2h6v.s7.8bf1b7a2ad7a from=translated src=- shape=98c7b12c vocab=d03588a1
+-/
 lemma leftoverPred_takeUntil_of_dropLast {u v x : V} (w : G.Walk u v)
     (hnn : ¬ w.Nil) (hx : x ∈ w.dropLast.support) :
     w.dropLast.takeUntil x hx =
@@ -176,6 +214,9 @@ lemma leftoverPred_takeUntil_of_dropLast {u v x : V} (w : G.Walk u v)
     rw [show w.support = w.dropLast.support ++ [v] from hcat.symm]
   exact (List.take_append_of_le_length hk).symm
 
+/--
+@isnad1 id=eq.4h5v.s7.6757b338c725 from=translated src=- shape=cad886ab vocab=e75d52f1
+-/
 lemma leftoverPred_openAtStart_takeUntil_of_mem_dropUntil
     (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
@@ -195,6 +236,9 @@ lemma leftoverPred_openAtStart_takeUntil_of_mem_dropUntil
       hvW
   simpa [takeUntil, openAtStart, splice] using htake
 
+/--
+@isnad1 id=eq.3h5v.s7.e83bd61c8684 from=translated src=- shape=b1ee9951 vocab=79029150
+-/
 lemma leftoverPred_penultimate_takeUntil_of_mem_dropUntil
     (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hvD : v ∈ (p.dropUntil hu).support)
@@ -222,6 +266,9 @@ lemma leftoverPred_penultimate_takeUntil_of_mem_dropUntil
   simp_rw [hspec]
   exact (congrArg Walk.penultimate happend).trans hpen
 
+/--
+@isnad1 id=eq.3h5v.s7.f180bb829306 from=translated src=- shape=39705925 vocab=91df5667
+-/
 lemma leftoverPred_takeUntil_eq_trimFinish_takeUntil
     (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hnn : ¬ (p.takeUntil hu).walk.Nil)
@@ -241,6 +288,9 @@ lemma leftoverPred_takeUntil_eq_trimFinish_takeUntil
       (mem_walk_support.1 hvU)
   simpa [takeUntil, trimFinish] using hdrop.trans htake
 
+/--
+@isnad1 id=eq.5h5v.s8.f43fdbe5f6bd from=translated src=- shape=ac0c8a15 vocab=c00e7fad
+-/
 lemma leftoverPred_openAtStart_takeUntil_of_mem_trimFinish
     (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
@@ -308,6 +358,9 @@ lemma leftoverPred_openAtStart_takeUntil_of_mem_trimFinish
     exact (happend.trans (congrArg _ hcons))
   simpa [takeUntil, openAtStart, splice] using happend'
 
+/--
+@isnad1 id=mem.5h6v.s7.fc9ed1b7a88b from=translated src=- shape=5c3f4368 vocab=de7740c1
+-/
 lemma leftoverPred_openAtStart_predecessor_mem {A : Finset V}
     {p Q R : GraphPath G}
     (hs : p.start ∈ A) (hQ : Q ∈ leftoverPieces A p) (hR : R ∈ leftoverPieces A p)
@@ -376,10 +429,16 @@ lemma leftoverPred_openAtStart_predecessor_mem {A : Finset V}
       exact hpenD.symm
     simpa [hpen] using hpredR
 
+/--
+@isnad1 id=eq.0h3v.s5.3f7cb380f0ff from=translated src=- shape=882ea3f8 vocab=c72289b6
+-/
 lemma leftoverPred_reverse_edges (p : GraphPath G) :
     p.reverse.edges = p.edges := by
   simp [edges, reverse, Walk.edges_reverse, List.toFinset_reverse]
 
+/--
+@isnad1 id=eq.1h5v.s5.7b2bacfa5b49 from=translated src=- shape=138e3548 vocab=e66b2f23
+-/
 lemma leftoverPred_penultimate_reverse_eq_snd {u v : V} (w : G.Walk u v)
     (h : ¬ w.Nil) : w.reverse.penultimate = w.snd := by
   have hpos : 0 < w.length := Walk.not_nil_iff_lt_length.1 h
@@ -387,6 +446,9 @@ lemma leftoverPred_penultimate_reverse_eq_snd {u v : V} (w : G.Walk u v)
   have hsub : w.length - (w.length - 1) = 1 := by omega
   simp only [Walk.penultimate, Walk.snd, Walk.getVert_reverse, hlen, hsub]
 
+/--
+@isnad1 id=eq.1h4v.s6.a27949ce125f from=translated src=- shape=8eb5fa5b vocab=34884ce5
+-/
 lemma leftoverPred_takeUntil_reverse_eq (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) :
     (p.reverse.takeUntil (by simpa [support_reverse] using hx)).walk =
@@ -410,6 +472,9 @@ lemma leftoverPred_takeUntil_reverse_eq (p : GraphPath G) {x : V}
   simp only [takeUntil, dropUntil, reverse]
   convert htake.trans hend
 
+/--
+@isnad1 id=not.2h6v.s6.1c58e496c74e from=translated src=- shape=fcb6c4d6 vocab=15614154
+-/
 lemma leftoverPred_factor_rv_not_nil {p Q : GraphPath G}
     {ru : G.Walk p.start Q.start} {rv : G.Walk Q.finish p.finish}
     (_heq : p.walk = (ru.append Q.walk).append rv)
@@ -420,7 +485,9 @@ lemma leftoverPred_factor_rv_not_nil {p Q : GraphPath G}
 /-- Outgoing leftover seam along reverse: the predecessor of a leftover
 finish on `p.reverse` is the original suffix successor, which lies in `A`.
 Requires the suffix to be non-nil, i.e. the leftover does not end at
-`p.finish`.-/
+`p.finish`.
+@isnad1 id=mem.2h5v.s6.d55d121f8bf4 from=translated src=- shape=b1271f4d vocab=ecbb1c8f
+-/
 lemma leftoverPred_reverse_finish_predecessor_mem {A : Finset V}
     {p Q : GraphPath G} (hQ : Q ∈ leftoverPieces A p)
     (hneFin : Q.finish ≠ p.finish) :
@@ -456,7 +523,9 @@ lemma leftoverPred_reverse_finish_predecessor_mem {A : Finset V}
 
 /-- Transport of a predecessor-in-`A` certificate along `openAtStart`.
 If `v = p.start`, the opened incoming seam is the original closing edge,
-so the predecessor is `p.finish` (nil-suffix / closing-seam case).-/
+so the predecessor is `p.finish` (nil-suffix / closing-seam case).
+@isnad1 id=mem.7h6v.s7.1047aa6e593a from=translated src=- shape=1f06709d vocab=caff09fc
+-/
 lemma leftoverPred_openAtStart_predecessor_mem_of_pred {A : Finset V}
     (p : GraphPath G) {u v : V}
     (hu : u ∈ p.support) (hv : v ∈ p.support)
@@ -569,7 +638,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 /-- Adjacent leftover-run starts on an opened prescribed cycle yield a
 full-`U` original spanning path that is `ProtectedAt` the prescribed
 cycle, with both endpoints in `A`. Works for `|A| = 2` and for larger
-`A`. Distinctness follows from the cycle having order at least three.-/
+`A`. Distinctness follows from the cycle having order at least three.
+@isnad1 id=ex.9h8v.s8.cc90051da027 from=translated src=- shape=229552cb vocab=6401997b
+-/
 lemma exists_switchOpenStarts_of_adj_leftover_starts {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)
@@ -612,7 +683,9 @@ lemma exists_switchOpenStarts_of_adj_leftover_starts {U A : Finset V}
 
 /-- Same-sign full-cycle start switch from predecessor certificates,
 without requiring `p.start ∈ A`. Used for the reverse-orientation
-leftover-end branch.-/
+leftover-end branch.
+@isnad1 id=ex.13h8v.s8.5d63426e4378 from=translated src=- shape=6f3f75f7 vocab=e717f456
+-/
 lemma exists_switchOpenStarts_AA_of_preds {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U)
@@ -650,7 +723,9 @@ lemma exists_switchOpenStarts_AA_of_preds {U A : Finset V}
     omega
 
 /-- Reverse-orientation helper: open `p.reverse` at a leftover finish
-other than `p.finish`, then apply the predecessor-input callback.-/
+other than `p.finish`, then apply the predecessor-input callback.
+@isnad1 id=ex.10h8v.s8.d9b03f3da0e2 from=translated src=- shape=84ad83e5 vocab=6401997b
+-/
 lemma exists_switchOpenStarts_of_adj_leftover_ends_of_ne_finish {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)
@@ -700,7 +775,9 @@ full-`U` original spanning path that is `ProtectedAt` the prescribed
 cycle, with both endpoints in `A`. Reverse orientation of leftover
 incoming seams is derived from original outgoing seams; a nil suffix
 uses the actual closing edge. Distinctness follows from cycle order at
-least three. Works for `|A| = 2`.-/
+least three. Works for `|A| = 2`.
+@isnad1 id=ex.9h8v.s8.26c6754df52c from=translated src=- shape=eaae540d vocab=6401997b
+-/
 lemma exists_switchOpenStarts_of_adj_leftover_ends {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)

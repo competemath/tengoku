@@ -34,6 +34,9 @@ variable {G}
 def card {U : Finset V} (pc : PathCover G U) : ℕ :=
   pc.paths.length
 
+/--
+@isnad1 id=le.1h5v.s5.14537e11d73f from=translated src=- shape=fb74b64c vocab=f49ad07f
+-/
 lemma support_subset {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
     (hp : p ∈ pc.paths) : p.support ⊆ U := by
   intro x hx
@@ -62,11 +65,17 @@ noncomputable def singletons (U : Finset V) : PathCover G U where
       subst this
       exact Finset.mem_toList.1 hy
 
+/--
+@isnad1 id=eq.0h3v.s4.53c42bfd6a37 from=translated src=- shape=69af487c vocab=dfddab83
+-/
 @[simp]
 lemma singletons_card (U : Finset V) :
     (singletons (G := G) U).card = U.card := by
   simp [singletons, card]
 
+/--
+@isnad1 id=ex.0h3v.s5.9072101a90a8 from=translated src=- shape=6ea074f7 vocab=9316bac8
+-/
 lemma exists_singleton_cover (U : Finset V) :
     ∃ pc : PathCover G U, pc.card = U.card :=
   ⟨singletons U, singletons_card U⟩
@@ -79,23 +88,38 @@ The empty set has cover number zero.-/
 noncomputable def pathCoverNumber (U : Finset V) : ℕ :=
   sInf {n | ∃ pc : PathCover G U, pc.card = n}
 
+/--
+@isnad1 id=mem.0h3v.s5.55db0f0fff50 from=translated src=- shape=60051f8c vocab=731e4bb9
+-/
 lemma pathCoverNumber_mem (U : Finset V) :
     pathCoverNumber G U ∈ {n | ∃ pc : PathCover G U, pc.card = n} := by
   refine Nat.sInf_mem ?_
   exact ⟨U.card, PathCover.exists_singleton_cover (G := G) U⟩
 
+/--
+@isnad1 id=ex.0h3v.s5.c198159ccdb5 from=translated src=- shape=b0c3b6bb vocab=e96731e6
+-/
 lemma exists_min_pathCover (U : Finset V) :
     ∃ pc : PathCover G U, pc.card = pathCoverNumber G U :=
   pathCoverNumber_mem (G := G) U
 
+/--
+@isnad1 id=le.0h4v.s5.b4aa1f6ed390 from=translated src=- shape=3c5b9abf vocab=51b9b2ea
+-/
 lemma pathCoverNumber_le {U : Finset V} (pc : PathCover G U) :
     pathCoverNumber G U ≤ pc.card :=
   Nat.sInf_le ⟨pc, rfl⟩
 
+/--
+@isnad1 id=le.0h3v.s4.f5ce52d6b2cc from=translated src=- shape=4aa4d3f3 vocab=eab3a923
+-/
 lemma pathCoverNumber_le_card (U : Finset V) :
     pathCoverNumber G U ≤ U.card := by
   simpa using pathCoverNumber_le (G := G) (PathCover.singletons (G := G) U)
 
+/--
+@isnad1 id=eq.0h2v.s4.3b066b852584 from=translated src=- shape=0b62b1dd vocab=d38254cf
+-/
 lemma pathCoverNumber_empty : pathCoverNumber G ∅ = 0 := by
   have hle := pathCoverNumber_le_card (G := G) ∅
   simpa using hle
@@ -115,20 +139,32 @@ noncomputable def eligibleSet (U : Finset V) : Finset V :=
 noncomputable def ineligibleSet (U : Finset V) : Finset V :=
   U.filter fun x => ¬ Eligible G U x
 
+/--
+@isnad1 id=eq.0h3v.s5.0ee533ab16f1 from=translated src=- shape=88865eae vocab=ffac9d60
+-/
 lemma eligibleSet_union_ineligibleSet (U : Finset V) :
     eligibleSet G U ∪ ineligibleSet G U = U := by
   ext x
   simp [eligibleSet, ineligibleSet]
   tauto
 
+/--
+@isnad1 id=iff.0h4v.s5.dfb8fc4ade1d from=translated src=- shape=5b049d16 vocab=e9a14843
+-/
 lemma mem_eligibleSet_iff {U : Finset V} {x : V} :
     x ∈ eligibleSet G U ↔ x ∈ U ∧ Eligible G U x := by
   simp [eligibleSet]
 
+/--
+@isnad1 id=iff.0h4v.s5.f453487ee580 from=translated src=- shape=8822822e vocab=1f0666e4
+-/
 lemma mem_ineligibleSet_iff {U : Finset V} {x : V} :
     x ∈ ineligibleSet G U ↔ x ∈ U ∧ ¬ Eligible G U x := by
   simp [ineligibleSet]
 
+/--
+@isnad1 id=mem.1h4v.s5.2ef04d70be00 from=translated src=- shape=b68ab22e vocab=d9aee43d
+-/
 lemma Eligible.mem {U : Finset V} {x : V} (h : Eligible G U x) : x ∈ U := by
   obtain ⟨pc, _, p, hp, hx⟩ := h
   have : x ∈ p.support := by
@@ -137,12 +173,21 @@ lemma Eligible.mem {U : Finset V} {x : V} (h : Eligible G U x) : x ∈ U := by
     · exact p.finish_mem_support
   exact (pc.mem_iff x).2 ⟨p, hp, this⟩
 
+/--
+@isnad1 id=le.0h3v.s4.ef9ed7d87650 from=translated src=- shape=486dfc7e vocab=9424a008
+-/
 lemma eligibleSet_subset (U : Finset V) : eligibleSet G U ⊆ U :=
   filter_subset _ _
 
+/--
+@isnad1 id=le.0h3v.s4.bbb0b9dc9354 from=translated src=- shape=486dfc7e vocab=ef8136c9
+-/
 lemma ineligibleSet_subset (U : Finset V) : ineligibleSet G U ⊆ U :=
   filter_subset _ _
 
+/--
+@isnad1 id=disjoint.0h3v.s4.75901ad2f074 from=translated src=- shape=bd8359c7 vocab=3d8a6c62
+-/
 lemma disjoint_eligibleSet_ineligibleSet (U : Finset V) :
     Disjoint (eligibleSet G U) (ineligibleSet G U) := by
   rw [disjoint_iff_inter_eq_empty]

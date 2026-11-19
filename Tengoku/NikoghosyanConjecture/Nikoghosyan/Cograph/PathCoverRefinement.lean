@@ -36,6 +36,9 @@ private lemma path_support_card (p : GraphPath G) :
     p.support.card = p.walk.length + 1 := by
   simp [support, List.toFinset_card_of_nodup p.nodup_support, Walk.length_support]
 
+/--
+@isnad1 id=not.1h3v.s5.bf0a3b5ab1fa from=translated src=- shape=8d93043b vocab=00b7112b
+-/
 lemma not_nil_of_two_le_card (p : GraphPath G) (h : 2 ≤ p.support.card) :
     ¬ p.walk.Nil := by
   intro hn
@@ -52,6 +55,9 @@ def tailOfWalk : ∀ {u v : V} (p : G.Walk u v), p.IsPath → ¬ p.Nil → Graph
 def tail (p : GraphPath G) (h : ¬ p.walk.Nil) : GraphPath G :=
   tailOfWalk p.walk p.isPath h
 
+/--
+@isnad1 id=eq.1h3v.s5.f947dcfc4a8f from=translated src=- shape=42b40974 vocab=13734065
+-/
 lemma support_eq_insert_start_tail (p : GraphPath G) (h : ¬ p.walk.Nil) :
     p.support = insert p.start (p.tail h).support := by
   rcases p with ⟨u, v, walk, isPath⟩
@@ -60,6 +66,9 @@ lemma support_eq_insert_start_tail (p : GraphPath G) (h : ¬ p.walk.Nil) :
   | cons hadj q =>
     simp [tail, tailOfWalk, support]
 
+/--
+@isnad1 id=not.1h3v.s5.4e9bb533f365 from=translated src=- shape=84886e23 vocab=35597502
+-/
 lemma start_not_mem_tail_support (p : GraphPath G) (h : ¬ p.walk.Nil) :
     p.start ∉ (p.tail h).support := by
   rcases p with ⟨u, v, walk, isPath⟩
@@ -69,20 +78,32 @@ lemma start_not_mem_tail_support (p : GraphPath G) (h : ¬ p.walk.Nil) :
     have hq : u ∉ q.support := ((Walk.cons_isPath_iff hadj q).1 isPath).2
     simpa [tail, tailOfWalk, support] using hq
 
+/--
+@isnad1 id=disjoint.1h3v.s5.7c948b66ad96 from=translated src=- shape=5b6ff0f4 vocab=d57dfd9c
+-/
 lemma disjoint_singleton_start_tail (p : GraphPath G) (h : ¬ p.walk.Nil) :
     Disjoint (GraphPath.singleton (G := G) p.start).support (p.tail h).support := by
   rw [support_singleton, disjoint_singleton_left]
   exact start_not_mem_tail_support p h
 
+/--
+@isnad1 id=le.1h3v.s5.f655469095b0 from=translated src=- shape=593baa8f vocab=0d65d908
+-/
 lemma tail_support_subset (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.tail h).support ⊆ p.support := by
   rw [support_eq_insert_start_tail p h]
   exact subset_insert _ _
 
+/--
+@isnad1 id=le.0h3v.s5.620c02d18b18 from=translated src=- shape=0dda0c69 vocab=35918258
+-/
 lemma singleton_start_support_subset (p : GraphPath G) :
     (GraphPath.singleton (G := G) p.start).support ⊆ p.support := by
   simp [support_singleton, start_mem_support]
 
+/--
+@isnad1 id=iff.1h4v.s6.3e11584bf717 from=translated src=- shape=d1b42297 vocab=35597502
+-/
 lemma mem_support_iff_start_or_tail (p : GraphPath G) (h : ¬ p.walk.Nil) {x : V} :
     x ∈ p.support ↔ x = p.start ∨ x ∈ (p.tail h).support := by
   rw [support_eq_insert_start_tail p h, mem_insert]
@@ -91,6 +112,9 @@ end GraphPath
 
 namespace PathCover
 
+/--
+@isnad1 id=nodup.0h4v.s4.eb223a915501 from=translated src=- shape=104ffb4d vocab=d2cfaf98
+-/
 lemma nodup_paths {U : Finset V} (pc : PathCover G U) : pc.paths.Nodup := by
   refine List.Pairwise.imp ?_ pc.disjoint
   intro a b hdisj hab
@@ -99,6 +123,9 @@ lemma nodup_paths {U : Finset V} (pc : PathCover G U) : pc.paths.Nodup := by
   simp only [inter_self] at this
   exact (nonempty_iff_ne_empty.1 a.support_nonempty) this
 
+/--
+@isnad1 id=disjoint.4h5v.s6.086de7d50fbc from=translated src=- shape=9be3adb8 vocab=730e746b
+-/
 lemma pairwise_disjoint_of_mem_refinement {l : List (GraphPath G)}
     (h : l.Pairwise fun a b => Disjoint a.support b.support)
     {a b : GraphPath G} (ha : a ∈ l) (hb : b ∈ l) (hne : a ≠ b) :
@@ -113,6 +140,9 @@ lemma pairwise_disjoint_of_mem_refinement {l : List (GraphPath G)}
     · exact (h'.1 a ha').symm
     · exact ih h'.2 ha' hb' hne
 
+/--
+@isnad1 id=eq.0h3v.s5.003d5dad9970 from=translated src=- shape=1d6d75b6 vocab=49c126ad
+-/
 lemma length_filter_add_not {α : Type*} (p : α → Bool) (l : List α) :
     (l.filter p).length + (l.filter fun x => !p x).length = l.length := by
   induction l with
@@ -122,6 +152,9 @@ lemma length_filter_add_not {α : Type*} (p : α → Bool) (l : List α) :
     · simp [ha]; omega
     · simp [ha]; omega
 
+/--
+@isnad1 id=eq.2h3v.s5.a5e5c8fb8387 from=translated src=- shape=075e56d6 vocab=188a1cf5
+-/
 lemma filter_eq_singleton_of_nodup {α : Type*} [DecidableEq α] {a : α} :
     ∀ {l : List α}, a ∈ l → l.Nodup → l.filter (fun x => decide (x = a)) = [a]
   | [], h, _ => by cases h
@@ -137,6 +170,9 @@ lemma filter_eq_singleton_of_nodup {α : Type*} [DecidableEq α] {a : α} :
     · have hne : b ≠ a := fun hba => hn'.1 (hba ▸ ha)
       simp [hne, filter_eq_singleton_of_nodup ha hn'.2]
 
+/--
+@isnad1 id=eq.2h3v.s5.43f2b3dc37f3 from=translated src=- shape=81460e05 vocab=e633bec9
+-/
 lemma length_filter_ne_of_mem_nodup {α : Type*} [DecidableEq α] {a : α} {l : List α}
     (ha : a ∈ l) (hn : l.Nodup) :
     (l.filter fun x => decide (x ≠ a)).length = l.length - 1 := by
@@ -208,6 +244,9 @@ noncomputable def splitOne {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
         · exact (pc.mem_iff x).2
             ⟨p, hp, GraphPath.tail_support_subset p hnil hxq⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.1a7aa991a173 from=translated src=- shape=5343ac2b vocab=9d7346c8
+-/
 lemma splitOne_card {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
     (hp : p ∈ pc.paths) (h2 : 2 ≤ p.support.card) :
     (pc.splitOne hp h2).card = pc.card + 1 := by
@@ -224,9 +263,15 @@ lemma splitOne_card {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
   rw [← hfilter, hlen]
   omega
 
+/--
+@isnad1 id=eq.1h4v.s6.cfc04eb7ed93 from=translated src=- shape=643313cd vocab=6762b6cf
+-/
 lemma card_eq_of_all_singleton {U : Finset V} (pc : PathCover G U)
     (h : ∀ p ∈ pc.paths, p.support.card = 1) : pc.card = U.card := by
   let rec
+    /--
+    @isnad1 id=eq.3h4v.s7.48498c2643fb from=translated src=- shape=dae75bce vocab=b0b33c51
+    -/
     go : ∀ (l : List (GraphPath G)),
         l.Pairwise (fun a b => Disjoint a.support b.support) →
         (∀ p ∈ l, p.support.card = 1) →
@@ -282,6 +327,9 @@ lemma card_eq_of_all_singleton {U : Finset V} (pc : PathCover G U)
       omega
   simpa [PathCover.card] using go pc.paths pc.disjoint h U pc.mem_iff
 
+/--
+@isnad1 id=ex.1h4v.s6.a1bad1f458a9 from=translated src=- shape=93055a2f vocab=9fc59663
+-/
 lemma exists_two_le_support_of_card_lt {U : Finset V} (pc : PathCover G U)
     (h : pc.card < U.card) : ∃ p ∈ pc.paths, 2 ≤ p.support.card := by
   by_contra hnone
@@ -295,6 +343,9 @@ lemma exists_two_le_support_of_card_lt {U : Finset V} (pc : PathCover G U)
   have := pc.card_eq_of_all_singleton hall
   omega
 
+/--
+@isnad1 id=ex.1h4v.s6.09e43a630f96 from=translated src=- shape=bd7fb185 vocab=54a546a7
+-/
 lemma exists_succ_of_card_lt {U : Finset V} (pc : PathCover G U)
     (h : pc.card < U.card) : ∃ pc' : PathCover G U, pc'.card = pc.card + 1 := by
   obtain ⟨p, hp, h2⟩ := pc.exists_two_le_support_of_card_lt h
@@ -304,7 +355,9 @@ end PathCover
 
 /-- Every integer between the minimum path-cover number and the order is
 realized by an actual original-edge path cover, obtained by repeatedly splitting
-a non-singleton cover path along an original edge.-/
+a non-singleton cover path along an original edge.
+@isnad1 id=ex.2h4v.s5.13af2b1577a2 from=translated src=- shape=0243e685 vocab=6ccc2be0
+-/
 lemma exists_pathCover_card (U : Finset V) {n : ℕ}
     (hlo : pathCoverNumber G U ≤ n) (hhi : n ≤ U.card) :
     ∃ pc : PathCover G U, pc.card = n := by
@@ -327,6 +380,9 @@ lemma exists_pathCover_card (U : Finset V) {n : ℕ}
   obtain ⟨pc, hpc⟩ := this (n - pc0.card) le_rfl
   exact ⟨pc, hpc.trans hn⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.de42be2bd42f from=translated src=- shape=832078d6 vocab=d38254cf
+-/
 lemma pathCoverNumber_eq_zero_iff_refinement (U : Finset V) :
     pathCoverNumber G U = 0 ↔ U = ∅ := by
   constructor

@@ -36,11 +36,17 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=not.2h4v.s6.d622f7e3ea83 from=translated src=- shape=d2ab732d vocab=5363075e
+-/
 lemma takeUntil_not_nil_cyclePieces {p : GraphPath G} {x : V} (hx : x ∈ p.support)
     (hne : x ≠ p.start) : ¬ (p.takeUntil hx).walk.Nil := by
   intro h
   exact hne ((takeUntil_nil_iff p hx).1 h)
 
+/--
+@isnad1 id=eq.1h4v.s7.cf619cb3f15d from=translated src=- shape=891e492a vocab=12a7f3de
+-/
 lemma takeUntil_dropUntil_length_add (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) :
     (p.takeUntil hx).walk.length + (p.dropUntil hx).walk.length =
@@ -59,6 +65,9 @@ lemma takeUntil_dropUntil_length_add (p : GraphPath G) {x : V}
     omega
   omega
 
+/--
+@isnad1 id=eq.3h5v.s6.2d0fd398288d from=translated src=- shape=89315774 vocab=20eb081a
+-/
 lemma mem_eq_of_mem_takeUntil_dropUntil (p : GraphPath G) {x y : V}
     (hx : x ∈ p.support) (hyT : y ∈ (p.takeUntil hx).support)
     (hyD : y ∈ (p.dropUntil hx).support) : y = x := by
@@ -84,6 +93,9 @@ lemma mem_eq_of_mem_takeUntil_dropUntil (p : GraphPath G) {x y : V}
     mem_inter.2 ⟨hyT, hyD⟩
   simpa [hz, hzx] using hyI
 
+/--
+@isnad1 id=disjoint.2h4v.s6.ca1f784518ab from=translated src=- shape=b4b8d9c9 vocab=41b76965
+-/
 lemma disjoint_trimFinish_takeUntil_dropUntil (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) (hne : x ≠ p.start) :
     Disjoint
@@ -97,6 +109,9 @@ lemma disjoint_trimFinish_takeUntil_dropUntil (p : GraphPath G) {x : V}
   have hyne : y ≠ x := (mem_erase.1 hyT').1
   exact hyne (mem_eq_of_mem_takeUntil_dropUntil p hx hyTsup hyD)
 
+/--
+@isnad1 id=eq.2h4v.s6.a77c9f37c1fa from=translated src=- shape=a08dbd69 vocab=68129a41
+-/
 lemma support_trimFinish_takeUntil_union_dropUntil (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) (hne : x ≠ p.start) :
     ((p.takeUntil hx).trimFinish (takeUntil_not_nil_cyclePieces hx hne)).support ∪
@@ -131,17 +146,26 @@ def openAtStart (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (by simpa [dropUntil, takeUntil, trimFinish] using hclose)
     (disjoint_trimFinish_takeUntil_dropUntil p hu hne).symm
 
+/--
+@isnad1 id=eq.3h4v.s6.a9ab90b01a22 from=translated src=- shape=03b7cdfa vocab=106ec9f0
+-/
 lemma openAtStart_start (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start) :
     (openAtStart p hu hclose hne).start = u :=
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s6.40dac32ebb7b from=translated src=- shape=823bf9d4 vocab=c8fe662d
+-/
 lemma openAtStart_finish (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start) :
     (openAtStart p hu hclose hne).finish =
       (p.takeUntil hu).walk.penultimate :=
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s6.3ff81fc5ef72 from=translated src=- shape=aeff18a0 vocab=106ec9f0
+-/
 lemma openAtStart_support (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start) :
     (openAtStart p hu hclose hne).support = p.support := by
@@ -152,22 +176,34 @@ def incomingSeam (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (_hne : u ≠ p.start) : Sym2 V :=
   s((p.takeUntil hu).walk.penultimate, u)
 
+/--
+@isnad1 id=mem.1h3v.s6.2319a31b55e7 from=translated src=- shape=d5fd2f6e vocab=1ce9e5cc
+-/
 lemma last_edge_mem_cyclePieces (p : GraphPath G) (h : ¬ p.walk.Nil) :
     s(p.walk.penultimate, p.finish) ∈ p.edges :=
   mem_edges_iff.2 (p.walk.mk_penultimate_end_mem_edges h)
 
+/--
+@isnad1 id=mem.2h4v.s6.b5f4b955c4f1 from=translated src=- shape=6d18cb17 vocab=756f21b4
+-/
 lemma incomingSeam_mem_takeUntil (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (hne : u ≠ p.start) :
     incomingSeam p hu hne ∈ (p.takeUntil hu).edges := by
   simpa [incomingSeam, takeUntil] using
     last_edge_mem_cyclePieces (p.takeUntil hu) (takeUntil_not_nil_cyclePieces hu hne)
 
+/--
+@isnad1 id=ne.1h3v.s5.4c2d9a81dcf7 from=translated src=- shape=43eb647a vocab=d064cb18
+-/
 lemma penultimate_ne_finish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     p.walk.penultimate ≠ p.finish := by
   have hpos : 0 < p.walk.length := Walk.not_nil_iff_lt_length.1 h
   have hlt : p.walk.length - 1 < p.walk.length := by omega
   simpa [Walk.penultimate] using p.getVert_ne_finish_of_lt hlt
 
+/--
+@isnad1 id=not.2h4v.s6.7ee4114a000b from=translated src=- shape=e6bb0ac1 vocab=6eff7671
+-/
 lemma incomingSeam_not_mem_dropUntil (p : GraphPath G) {u : V}
     (hu : u ∈ p.support) (hne : u ≠ p.start) :
     incomingSeam p hu hne ∉ (p.dropUntil hu).edges := by
@@ -187,6 +223,9 @@ lemma incomingSeam_not_mem_dropUntil (p : GraphPath G) {u : V}
     mem_eq_of_mem_takeUntil_dropUntil p hu hpredT hpred
   exact (penultimate_ne_finish (p.takeUntil hu) hnn) (heq.trans (by simp [takeUntil]))
 
+/--
+@isnad1 id=le.3h4v.s6.5b544df46681 from=translated src=- shape=3e2d185c vocab=7a740698
+-/
 lemma openAtStart_edges_subset (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start) :
     (openAtStart p hu hclose hne).edges ⊆
@@ -221,6 +260,9 @@ lemma openAtStart_edges_subset (p : GraphPath G) {u : V} (hu : u ∈ p.support)
     · exact mem_union.2 (Or.inl (hsubT hT))
   · simpa [hcloseE] using mem_union.2 (Or.inr hs0)
 
+/--
+@isnad1 id=le.4h5v.s7.de64c0d9948f from=translated src=- shape=69a48469 vocab=2c941c6e
+-/
 lemma openAtStart_edges_subset_cycle (p : GraphPath G) {u : V}
     (hu : u ∈ p.support) (hclose : G.Adj p.finish p.start)
     (hne : u ≠ p.start) {c : GraphCycle G}
@@ -247,18 +289,27 @@ def pieceAfter (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hv : v ∈ (openAtStart p hu hclose hne).support) : GraphPath G :=
   (openAtStart p hu hclose hne).dropUntil hv
 
+/--
+@isnad1 id=eq.5h5v.s6.9ae9e1d9f931 from=translated src=- shape=29df0409 vocab=aed898c9
+-/
 lemma pieceBefore_start (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u) :
     (pieceBefore p hu hclose hne hv hnv).start = u := by
   simp [pieceBefore, trimFinish, takeUntil, openAtStart_start]
 
+/--
+@isnad1 id=eq.4h5v.s6.8649a4a2d22a from=translated src=- shape=7713a1dc vocab=c738c6f4
+-/
 lemma pieceAfter_start (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) :
     (pieceAfter p hu hclose hne hv).start = v := by
   simp [pieceAfter, dropUntil]
 
+/--
+@isnad1 id=eq.4h5v.s7.165722bd2b9a from=translated src=- shape=32f2a928 vocab=c1aec3de
+-/
 lemma pieceAfter_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) :
@@ -266,6 +317,9 @@ lemma pieceAfter_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
       (p.takeUntil hu).walk.penultimate := by
   simp [pieceAfter, dropUntil, openAtStart_finish]
 
+/--
+@isnad1 id=eq.5h5v.s7.21d9d31a2412 from=translated src=- shape=b49af9ed vocab=847128ff
+-/
 lemma pieceBefore_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u) :
@@ -273,6 +327,9 @@ lemma pieceBefore_finish (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
       ((openAtStart p hu hclose hne).takeUntil hv).walk.penultimate := by
   simp [pieceBefore, trimFinish]
 
+/--
+@isnad1 id=disjoint.5h5v.s6.c59c97d32dad from=translated src=- shape=fe17789d vocab=f9c30729
+-/
 lemma disjoint_pieces (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u) :
@@ -282,6 +339,9 @@ lemma disjoint_pieces (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     disjoint_trimFinish_takeUntil_dropUntil (openAtStart p hu hclose hne) hv
       (by simpa [openAtStart_start p hu hclose hne] using hnv)
 
+/--
+@isnad1 id=eq.5h5v.s7.2a7da8b5f3e9 from=translated src=- shape=d4714e4f vocab=3f340835
+-/
 lemma support_pieces_union (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u) :
@@ -292,6 +352,9 @@ lemma support_pieces_union (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
       hv (by simpa [openAtStart_start p hu hclose hne] using hnv)
   simpa [pieceBefore, pieceAfter, openAtStart_support p hu hclose hne] using h
 
+/--
+@isnad1 id=le.1h4v.s6.54121b35fb43 from=translated src=- shape=30115ee0 vocab=ba9c30c0
+-/
 lemma edges_takeUntil_subset_cyclePieces (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     (p.takeUntil hx).edges ⊆ p.edges := by
   intro e he
@@ -299,6 +362,9 @@ lemma edges_takeUntil_subset_cyclePieces (p : GraphPath G) {x : V} (hx : x ∈ p
     simpa [takeUntil] using Walk.isSubwalk_takeUntil p.walk (mem_walk_support.1 hx)
   exact mem_edges_iff.2 (hsub.edges_subset (mem_edges_iff.1 he))
 
+/--
+@isnad1 id=and.5h5v.s7.493c6f90cc62 from=translated src=- shape=4f803fc8 vocab=0b2af82b
+-/
 lemma pieces_edges_subset_open (p : GraphPath G) {u v : V} (hu : u ∈ p.support)
     (hclose : G.Adj p.finish p.start) (hne : u ≠ p.start)
     (hv : v ∈ (openAtStart p hu hclose hne).support) (hnv : v ≠ u) :

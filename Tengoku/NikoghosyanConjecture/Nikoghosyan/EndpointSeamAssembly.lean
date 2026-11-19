@@ -60,17 +60,26 @@ noncomputable def appendDisjoint {A B : Finset V} (hdisj : Disjoint A B)
       · exact mem_union.2 (Or.inl ((pcA.mem_iff x).2 ⟨p, hpA, hxp⟩))
       · exact mem_union.2 (Or.inr ((pcB.mem_iff x).2 ⟨p, hpB, hxp⟩))
 
+/--
+@isnad1 id=eq.1h6v.s6.be38c5aad927 from=translated src=- shape=9e0d2f3e vocab=46489531
+-/
 lemma appendDisjoint_card {A B : Finset V} (hdisj : Disjoint A B)
     (pcA : PathCover G A) (pcB : PathCover G B) :
     (appendDisjoint hdisj pcA pcB).card = pcA.card + pcB.card := by
   simp [appendDisjoint, PathCover.card, List.length_append]
 
+/--
+@isnad1 id=iff.1h7v.s6.477280ebcfb2 from=translated src=- shape=10cda5f2 vocab=95572487
+-/
 lemma appendDisjoint_mem_iff {A B : Finset V} (hdisj : Disjoint A B)
     (pcA : PathCover G A) (pcB : PathCover G B) {p : GraphPath G} :
     p ∈ (appendDisjoint hdisj pcA pcB).paths ↔
       p ∈ pcA.paths ∨ p ∈ pcB.paths := by
   simp [appendDisjoint, List.mem_append]
 
+/--
+@isnad1 id=and.1h5v.s6.786e2741d765 from=translated src=- shape=450d036b vocab=e245a813
+-/
 lemma endpoints_mem {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
     (hp : p ∈ pc.paths) : p.start ∈ U ∧ p.finish ∈ U :=
   ⟨pc.support_subset hp p.start_mem_support,
@@ -84,9 +93,15 @@ end PathCover
 noncomputable def vertexAt (A : Finset V) (i : Fin A.card) : V :=
   A.toList.get ⟨i.1, by simpa [A.length_toList] using i.2⟩
 
+/--
+@isnad1 id=mem.0h3v.s4.c5082e31af74 from=translated src=- shape=e125d370 vocab=1a4a1617
+-/
 lemma vertexAt_mem (A : Finset V) (i : Fin A.card) : vertexAt A i ∈ A :=
   mem_toList.1 (List.get_mem _ _)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.a46400b659a8 from=translated src=- shape=cff3e3d8 vocab=6b358e37
+-/
 lemma vertexAt_injective (A : Finset V) : Injective (vertexAt (A := A)) := by
   intro i j h
   have hnd : A.toList.Nodup := A.nodup_toList
@@ -100,6 +115,9 @@ lemma vertexAt_injective (A : Finset V) : Injective (vertexAt (A := A)) := by
   have hval : i.1 = j.1 := congrArg (fun t : Fin A.toList.length => t.1) hij
   exact Fin.ext hval
 
+/--
+@isnad1 id=ex.1h3v.s5.2f32bebd64f0 from=translated src=- shape=9af5dc5a vocab=1a4a1617
+-/
 lemma exists_vertexAt {A : Finset V} {a : V} (ha : a ∈ A) :
     ∃ i : Fin A.card, vertexAt A i = a := by
   have hmem : a ∈ A.toList := mem_toList.2 ha
@@ -112,20 +130,32 @@ noncomputable def pathAt {K : Finset V} (pc : PathCover G K) (i : Fin pc.card) :
     GraphPath G :=
   pc.paths.get ⟨i.1, by simpa [PathCover.card] using i.2⟩
 
+/--
+@isnad1 id=mem.0h5v.s5.f583654c1016 from=translated src=- shape=8a36d53e vocab=1da949f1
+-/
 lemma pathAt_mem {K : Finset V} (pc : PathCover G K) (i : Fin pc.card) :
     pathAt pc i ∈ pc.paths :=
   List.get_mem _ _
 
+/--
+@isnad1 id=le.0h5v.s5.ffbc2c94abd0 from=translated src=- shape=6a780278 vocab=ced8b8cb
+-/
 lemma pathAt_support_subset {K : Finset V} (pc : PathCover G K)
     (i : Fin pc.card) : (pathAt pc i).support ⊆ K :=
   pc.support_subset (pathAt_mem pc i)
 
+/--
+@isnad1 id=ex.1h5v.s6.ea0ad3d88827 from=translated src=- shape=c892a89c vocab=1da949f1
+-/
 lemma exists_pathAt {K : Finset V} (pc : PathCover G K) {p : GraphPath G}
     (hp : p ∈ pc.paths) : ∃ i : Fin pc.card, pathAt pc i = p := by
   obtain ⟨i, rfl⟩ := List.get_of_mem hp
   refine ⟨⟨i.1, by simpa [PathCover.card] using i.2⟩, ?_⟩
   simp [pathAt]
 
+/--
+@isnad1 id=disjoint.1h6v.s6.17bc1083129f from=translated src=- shape=441cbc55 vocab=20ce1250
+-/
 lemma pathAt_disjoint {K : Finset V} (pc : PathCover G K)
     {i j : Fin pc.card} (hij : i ≠ j) :
     Disjoint (pathAt pc i).support (pathAt pc j).support := by
@@ -141,6 +171,9 @@ lemma pathAt_disjoint {K : Finset V} (pc : PathCover G K)
 
 /-! ### Support-union cardinality -/
 
+/--
+@isnad1 id=le.1h3v.s5.216728b98e38 from=translated src=- shape=f0bf1e52 vocab=eb1484a5
+-/
 lemma card_supportUnion_ge_length {ps : List (GraphPath G)}
     (hdisj : ps.Pairwise fun p q => Disjoint p.support q.support) :
     ps.length ≤ (GraphPath.supportUnion ps).card := by
@@ -163,6 +196,9 @@ lemma card_supportUnion_ge_length {ps : List (GraphPath G)}
     rw [GraphPath.supportUnion_cons, hcard, List.length_cons]
     omega
 
+/--
+@isnad1 id=eq.0h4v.s5.e3f83377b0e8 from=translated src=- shape=63fcd27d vocab=188dd484
+-/
 lemma PathCover.supportUnion_eq {U : Finset V} (pc : PathCover G U) :
     GraphPath.supportUnion pc.paths = U := by
   ext x
@@ -174,11 +210,17 @@ lemma PathCover.supportUnion_eq {U : Finset V} (pc : PathCover G U) :
     obtain ⟨p, hp, hxp⟩ := (pc.mem_iff x).1 hx
     exact GraphPath.mem_supportUnion.2 ⟨p, hp, hxp⟩
 
+/--
+@isnad1 id=le.0h4v.s5.d3109dbd2b08 from=translated src=- shape=078b167b vocab=7b8db82e
+-/
 lemma PathCover.card_le_card {U : Finset V} (pc : PathCover G U) :
     pc.card ≤ U.card := by
   have hge := card_supportUnion_ge_length pc.disjoint
   simpa [PathCover.card, pc.supportUnion_eq] using hge
 
+/--
+@isnad1 id=iff.0h5v.s6.81fbb07ea57c from=translated src=- shape=7a7b2e47 vocab=eb23f943
+-/
 lemma mem_supportUnion_ofFn {n : ℕ} (f : Fin n → GraphPath G) {x : V} :
     x ∈ GraphPath.supportUnion (List.ofFn f) ↔
       ∃ i : Fin n, x ∈ (f i).support := by
@@ -199,14 +241,23 @@ def attachFinish (p : GraphPath G) (a : V) (hadj : G.Adj p.finish a)
   p.splice (GraphPath.singleton (G := G) a) hadj (by
     simpa [GraphPath.support_singleton] using (disjoint_singleton_right.2 ha))
 
+/--
+@isnad1 id=eq.2h4v.s5.9a53ef4a183d from=translated src=- shape=329a53b2 vocab=e87c3471
+-/
 lemma start_attachFinish (p : GraphPath G) (a : V) (hadj : G.Adj p.finish a)
     (ha : a ∉ p.support) : (attachFinish p a hadj ha).start = p.start :=
   GraphPath.start_splice p (GraphPath.singleton (G := G) a) hadj _
 
+/--
+@isnad1 id=eq.2h4v.s5.87f79576041b from=translated src=- shape=1dfce10a vocab=a3b05d09
+-/
 lemma finish_attachFinish (p : GraphPath G) (a : V) (hadj : G.Adj p.finish a)
     (ha : a ∉ p.support) : (attachFinish p a hadj ha).finish = a :=
   GraphPath.finish_splice p (GraphPath.singleton (G := G) a) hadj _
 
+/--
+@isnad1 id=eq.2h4v.s6.3432b2f99637 from=translated src=- shape=4da2a83d vocab=d3d7e94b
+-/
 lemma support_attachFinish (p : GraphPath G) (a : V) (hadj : G.Adj p.finish a)
     (ha : a ∉ p.support) :
     (attachFinish p a hadj ha).support = p.support ∪ {a} := by
@@ -219,6 +270,9 @@ namespace EndpointSeam
 
 variable {A K : Finset V}
 
+/--
+@isnad1 id=not.3h7v.s6.27582ed28277 from=translated src=- shape=8024da4b vocab=30219d7a
+-/
 lemma not_mem_path_of_disjoint (hAK : Disjoint A K) {a : V} (ha : a ∈ A)
     {p : GraphPath G} {pc : PathCover G K} (hp : p ∈ pc.paths) :
     a ∉ p.support :=
@@ -235,6 +289,9 @@ noncomputable def seamPath (pc : PathCover G K)
     (not_mem_path_of_disjoint hAK (vertexAt_mem A i)
       (pathAt_mem pc (i.cast hcard)))
 
+/--
+@isnad1 id=eq.3h6v.s7.013f0172e995 from=translated src=- shape=dc8ffe67 vocab=f508648c
+-/
 lemma seamPath_start (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -243,6 +300,9 @@ lemma seamPath_start (pc : PathCover G K)
       (pathAt pc (i.cast hcard)).start := by
   simp [seamPath, start_attachFinish]
 
+/--
+@isnad1 id=eq.3h6v.s7.290ae72f555f from=translated src=- shape=29ec708a vocab=59121d84
+-/
 lemma seamPath_finish (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -250,6 +310,9 @@ lemma seamPath_finish (pc : PathCover G K)
     (seamPath pc hcard hAK hseams i).finish = vertexAt A i := by
   simp [seamPath, finish_attachFinish]
 
+/--
+@isnad1 id=eq.3h6v.s7.41e54f73b77b from=translated src=- shape=906c73d3 vocab=21a7de1c
+-/
 lemma seamPath_support (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -264,12 +327,18 @@ noncomputable def seamList (pc : PathCover G K)
     List (GraphPath G) :=
   List.ofFn (seamPath pc hcard hAK hseams)
 
+/--
+@isnad1 id=eq.3h5v.s6.c6eed05bb695 from=translated src=- shape=fe069860 vocab=b87caf0c
+-/
 lemma length_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish) :
     (seamList pc hcard hAK hseams).length = A.card := by
   simp [seamList]
 
+/--
+@isnad1 id=eq.4h6v.s7.d48488109861 from=translated src=- shape=711e9bc4 vocab=3659d5c7
+-/
 lemma seamList_get (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -278,6 +347,9 @@ lemma seamList_get (pc : PathCover G K)
       seamPath pc hcard hAK hseams ⟨i, by simpa [length_seamList] using hi⟩ := by
   simp [seamList, List.get_ofFn]
 
+/--
+@isnad1 id=pairwise.3h5v.s7.101e93f7807f from=translated src=- shape=5c6fc73a vocab=7983c440
+-/
 lemma pairwise_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish) :
@@ -311,6 +383,9 @@ lemma pairwise_seamList (pc : PathCover G K)
       disjoint_union_right.2 ⟨disjoint_singleton_left.2 haiK,
         disjoint_singleton_left.2 (mt mem_singleton.1 ha)⟩⟩
 
+/--
+@isnad1 id=adj.4h6v.s7.6ef5b32c658c from=translated src=- shape=b322d475 vocab=c53839b3
+-/
 lemma hedges_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish) :
@@ -326,6 +401,9 @@ lemma hedges_seamList (pc : PathCover G K)
     (pathAt pc ((⟨i + 1, hi'⟩ : Fin A.card).cast hcard))
     (pathAt_mem pc _)).1
 
+/--
+@isnad1 id=ne.4h5v.s7.6c827845632c from=translated src=- shape=2c56e639 vocab=51ff3bfe
+-/
 lemma seamList_ne_nil (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -335,6 +413,9 @@ lemma seamList_ne_nil (pc : PathCover G K)
   simp [h] at hlen
   omega
 
+/--
+@isnad1 id=adj.4h5v.s7.1dd75e1daef6 from=translated src=- shape=971c156f vocab=bea3d274
+-/
 lemma hclose_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -363,6 +444,9 @@ lemma hclose_seamList (pc : PathCover G K)
     (pathAt pc ((⟨0, by omega⟩ : Fin A.card).cast hcard))
     (pathAt_mem pc _)).1
 
+/--
+@isnad1 id=eq.3h5v.s7.80d464a9c417 from=translated src=- shape=a91ce711 vocab=3e7dd629
+-/
 lemma supportUnion_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish) :
@@ -396,6 +480,9 @@ lemma supportUnion_seamList (pc : PathCover G K)
       rw [seamPath_support, ← hj]
       exact mem_union.2 (Or.inl hxp)
 
+/--
+@isnad1 id=le.4h5v.s7.404525a93374 from=translated src=- shape=2d3779ef vocab=a9b8a01a
+-/
 lemma three_le_supportUnion_seamList (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -427,6 +514,9 @@ noncomputable def assembledCycle (pc : PathCover G K)
     (hclose_seamList pc hcard hAK hseams hm)
     (three_le_supportUnion_seamList pc hcard hAK hseams hm)
 
+/--
+@isnad1 id=eq.4h5v.s7.c6f38f9091f8 from=translated src=- shape=6eab5a49 vocab=cbdc4fce
+-/
 lemma support_assembledCycle (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)
     (hseams : ∀ a ∈ A, ∀ p ∈ pc.paths, G.Adj a p.start ∧ G.Adj a p.finish)
@@ -440,7 +530,9 @@ end EndpointSeam
 /-- Generic original-edge endpoint-seam assembly. Inputs are an actual
 `PathCover` of `K` of cardinality `|A| ≥ 2` together with every original
 endpoint seam from `A`; the output is a genuine simple original cycle on
-exactly `A ∪ K`.-/
+exactly `A ∪ K`.
+@isnad1 id=ex.4h5v.s7.a45801576914 from=translated src=- shape=94c27f47 vocab=7fe9199c
+-/
 theorem exists_original_cycle_of_endpoint_seams
     {A K : Finset V} (pc : PathCover G K)
     (hcard : A.card = pc.card) (hAK : Disjoint A K)

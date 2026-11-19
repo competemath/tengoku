@@ -35,6 +35,9 @@ namespace Nikoghosyan
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable {G : SimpleGraph V}
 
+/--
+@isnad1 id=eq.2h3v.s5.7b7360ee661d from=translated src=- shape=1e629ce0 vocab=f4e74222
+-/
 lemma componentCount_eq_one_of_OneToughOn {J : Finset V}
     (h : OneToughOn G J) (hJ : J.Nonempty) :
     componentCount G J = 1 := by
@@ -50,7 +53,9 @@ lemma componentCount_eq_one_of_OneToughOn {J : Finset V}
   omega
 
 /-- Isolated insertion: no original edge from `x` into `U` adds one
-component.-/
+component.
+@isnad1 id=eq.2h4v.s6.88bc5330fb9e from=translated src=- shape=e1bc7f51 vocab=fd2537a2
+-/
 lemma componentCount_insert_of_no_cross {U : Finset V} {x : V}
     (hx : x ∉ U) (hnocross : ∀ u ∈ U, ¬ G.Adj x u) :
     componentCount G (insert x U) = componentCount G U + 1 := by
@@ -65,12 +70,18 @@ lemma componentCount_insert_of_no_cross {U : Finset V} {x : V}
   rw [hunion, Cograph.componentCount_union_of_no_cross (G := G) hdisj hnc,
     componentCount_singleton]
 
+/--
+@isnad1 id=eq.2h4v.s6.c6dd0d7ccc24 from=translated src=- shape=a7a291f3 vocab=fee73986
+-/
 lemma insert_sdiff_eq_union_singleton {H S : Finset V} {x : V}
     (hx : x ∉ H) (hS : S ⊆ H) :
     insert x H \ S = (H \ S) ∪ {x} := by
   have hxS : x ∉ S := fun h => hx (hS h)
   rw [insert_sdiff_of_notMem (s := H) hxS, insert_eq, union_comm]
 
+/--
+@isnad1 id=not.2h6v.s6.1a181d2da391 from=translated src=- shape=7789db1c vocab=9b8cac82
+-/
 lemma not_adj_sdiff_of_rowProfile_subset {H S : Finset V} {x : V}
     (hAS : rowProfile (G := G) H x ⊆ S) :
     ∀ y ∈ H \ S, ¬ G.Adj x y := by
@@ -80,6 +91,9 @@ lemma not_adj_sdiff_of_rowProfile_subset {H S : Finset V} {x : V}
     (mem_rowProfile_iff (G := G)).2 ⟨hyH, hadj⟩
   exact (mem_sdiff.1 hy).2 (hAS hyA)
 
+/--
+@isnad1 id=eq.3h5v.s6.2d0d033ebc41 from=translated src=- shape=e98b3050 vocab=10e12950
+-/
 lemma componentCount_host_remainder_eq_add_one {H S : Finset V} {x : V}
     (hx : x ∉ H) (hS : S ⊆ H)
     (hnocross : ∀ y ∈ H \ S, ¬ G.Adj x y) :
@@ -99,7 +113,9 @@ lemma componentCount_host_remainder_eq_add_one {H S : Finset V} {x : V}
 
 /-- Connectivity of `J = insert x H` forces the actual profile nonempty:
 an empty profile would make `x` isolated from the cycle support, so
-`c(J) = 2`.-/
+`c(J) = 2`.
+@isnad1 id=nonempty.2h4v.s6.514307ea7656 from=translated src=- shape=0c6ba032 vocab=7d71526a
+-/
 lemma rowProfile_nonempty_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
     (hJ : OneToughOn G (insert x c.support)) :
@@ -121,7 +137,9 @@ lemma rowProfile_nonempty_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
 
 /-- A tight container of the actual profile contradicts `OneToughOn` on
 `insert x H`: the remainder is a no-cross union with the isolated vertex
-`x`, so the component count increases by one.-/
+`x`, so the component count increases by one.
+@isnad1 id=ne.4h5v.s6.5d89956b8357 from=translated src=- shape=6446623f vocab=0815b0a4
+-/
 lemma not_tight_container_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
     {S : Finset V}
     (hx : x ∉ c.support)
@@ -142,6 +160,9 @@ lemma not_tight_container_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
   have hle := hJ S hTsub h2
   omega
 
+/--
+@isnad1 id=notightc.2h4v.s6.d5ef0caaa12c from=translated src=- shape=4c86de23 vocab=0e65b8ee
+-/
 theorem noTightContainer_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
     (hJ : OneToughOn G (insert x c.support)) :
@@ -151,7 +172,9 @@ theorem noTightContainer_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
 
 /-- 1-toughness of `J` forbids a unique original neighbour in `H`: the
 singleton profile would be a tight container of size one whose remainder
-is a no-cross union of a nonempty path with the isolated vertex `x`.-/
+is a no-cross union of a nonempty path with the isolated vertex `x`.
+@isnad1 id=le.2h4v.s6.71ad2c9b63f6 from=translated src=- shape=e87c8ad7 vocab=8584321a
+-/
 lemma two_le_card_rowProfile_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
     (hJ : OneToughOn G (insert x c.support)) :
@@ -190,7 +213,9 @@ lemma two_le_card_rowProfile_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
 /-- Manuscript one-vertex strict-cut obstruction, generic support form.
 The remainder `H \ A` is supplied as an actual cograph; this is the
 canonical antineighbourhood input and is not an extra graph hypothesis
-beyond the host forbidden-subgraph condition used to produce it.-/
+beyond the host forbidden-subgraph condition used to produce it.
+@isnad1 id=lt.3h4v.s6.6d903c621652 from=translated src=- shape=b7c0a5ec vocab=ed203183
+-/
 theorem strict_pathCover_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
     (hJ : OneToughOn G (insert x c.support))
@@ -211,6 +236,9 @@ theorem strict_pathCover_of_oneToughOn_cycle (c : GraphCycle G) {x : V}
   obtain ⟨S, hT, hAS⟩ := hiff.2 hSat
   exact not_tight_container_of_oneToughOn_cycle c hx hJ hT.1 hAS hT.2
 
+/--
+@isnad1 id=iscograp.2h4v.s7.f75a1704bc49 from=translated src=- shape=8bbc7925 vocab=17272eec
+-/
 lemma isCograph_sdiff_rowProfile_insert (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
     (hOn : ∀ ⦃a b c' d y : V⦄,
@@ -233,6 +261,9 @@ lemma isCograph_sdiff_rowProfile_insert (c : GraphCycle G) {x : V}
   rw [hconv] at ha hb hc hd hy
   exact hOn ha hb hc hd hy hp hya hyb hyc hyd
 
+/--
+@isnad1 id=lt.3h4v.s8.ef6f49d83496 from=translated src=- shape=543fd67e vocab=8a8eef3b
+-/
 theorem strict_pathCover_of_oneToughOn_cycle_of_host
     (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
@@ -251,6 +282,9 @@ theorem strict_pathCover_of_oneToughOn_cycle_of_host
   strict_pathCover_of_oneToughOn_cycle c hx hJ
     (isCograph_sdiff_rowProfile_insert c hx hOn)
 
+/--
+@isnad1 id=lt.3h4v.s6.cc08ad99b70c from=translated src=- shape=cca0e8ba vocab=b7ec115f
+-/
 theorem strict_pathCover_of_oneToughOn_cycle_of_NoInducedP4UnionP1
     (c : GraphCycle G) {x : V}
     (hx : x ∉ c.support)
@@ -263,7 +297,9 @@ theorem strict_pathCover_of_oneToughOn_cycle_of_NoInducedP4UnionP1
       hG hp hya hyb hyc hyd)
 
 /-- Host specialization: an original 1-tough graph with a genuine cycle
-spanning `univ.erase x`.-/
+spanning `univ.erase x`.
+@isnad1 id=lt.3h4v.s6.25c94a217119 from=translated src=- shape=be9ef54c vocab=be6c98d4
+-/
 theorem strict_pathCover_of_oneTough_erase (hG : OneTough G)
     (c : GraphCycle G) {x : V} (hc : c.support = univ.erase x)
     (hK : IsCograph G (c.support \ rowProfile (G := G) c.support x)) :
@@ -276,6 +312,9 @@ theorem strict_pathCover_of_oneTough_erase (hG : OneTough G)
     exact OneToughOn.univ_iff.2 hG
   exact strict_pathCover_of_oneToughOn_cycle c hx hJ hK
 
+/--
+@isnad1 id=eq.1h4v.s5.62d637a10a4d from=translated src=- shape=57b38098 vocab=af26cdaa
+-/
 lemma sdiff_rowProfile_eq_antineighbors {x : V}
     (H : Finset V) (hH : H = univ.erase x) :
     H \ rowProfile (G := G) H x = antineighbors G x := by
@@ -302,6 +341,9 @@ lemma sdiff_rowProfile_eq_antineighbors {x : V}
     intro hyA
     exact hnadj ((mem_rowProfile_iff (G := G)).1 hyA).2
 
+/--
+@isnad1 id=lt.3h4v.s6.78dd9a633521 from=translated src=- shape=b50107b9 vocab=45dbbff9
+-/
 theorem strict_pathCover_of_oneTough_erase_of_NoInducedP4UnionP1
     (hG : OneTough G) (hNP : NoInducedP4UnionP1 G)
     (c : GraphCycle G) {x : V} (hc : c.support = univ.erase x) :
@@ -314,7 +356,9 @@ theorem strict_pathCover_of_oneTough_erase_of_NoInducedP4UnionP1
 
 /-- Actual cycle splice through two distinct original neighbours of `x`
 that are the endpoints of an `H`-spanning path. Existence of that path
-is an input, not a conclusion of the strict-cut theorem.-/
+is an input, not a conclusion of the strict-cut theorem.
+@isnad1 id=ex.5h5v.s7.e41a5be50d46 from=translated src=- shape=be62d218 vocab=c1c91feb
+-/
 theorem exists_inserted_cycle_of_profile_ends (p : GraphPath G)
     (c : GraphCycle G) {x : V}
     (hp : p.support = c.support) (hx : x ∉ c.support)

@@ -33,7 +33,9 @@ open SimpleGraph
 
 variable {V : Type u}
 
-/-- A walk from a vertex of `T` to a vertex outside `T` has a leaving edge.-/
+/-- A walk from a vertex of `T` to a vertex outside `T` has a leaving edge.
+@isnad1 id=ex.2h6v.s6.5208eca2f766 from=translated src=- shape=f659c8ff vocab=5f27b66c
+-/
 lemma Walk.exists_leaving_edge {G : SimpleGraph V} {u w : V} {T : Set V}
     (p : G.Walk u w) (hu : u ∈ T) (hw : w ∉ T) :
     ∃ x y, x ∈ T ∧ y ∉ T ∧ G.Adj x y := by
@@ -50,9 +52,15 @@ variable [Fintype V] [DecidableEq V]
 /-- Nonneighbours of `v`, excluding `v` itself.-/
 def nonneighbors (G : SimpleGraph V) (v : V) : Set V := {w | w ≠ v ∧ ¬ G.Adj v w}
 
+/--
+@isnad1 id=iff.0h4v.s5.c6049a796c68 from=translated src=- shape=0a0dc33c vocab=c4e4fdaf
+-/
 lemma mem_nonneighbors {G : SimpleGraph V} {v w : V} :
     w ∈ nonneighbors G v ↔ w ≠ v ∧ ¬ G.Adj v w := Iff.rfl
 
+/--
+@isnad1 id=not.1h4v.s5.0fc7fb45f7e2 from=translated src=- shape=f2cc6daa vocab=c4e4fdaf
+-/
 lemma not_mem_nonneighbors_of_adj {G : SimpleGraph V} {v a : V} (ha : G.Adj v a) :
     a ∉ nonneighbors G v := fun h => h.2 ha
 
@@ -61,6 +69,9 @@ noncomputable def completeToBlock (G : SimpleGraph V) (v : V)
     (C : (G.induce (nonneighbors G v)).ConnectedComponent) : Finset V :=
   Finset.univ.filter fun a => G.Adj v a ∧ ∀ b ∈ componentVerts C, G.Adj a b
 
+/--
+@isnad1 id=iff.0h5v.s6.6a80ae8a5c6e from=translated src=- shape=24796815 vocab=a3f8a788
+-/
 lemma mem_completeToBlock {G : SimpleGraph V} {v a : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent} :
     a ∈ completeToBlock G v C ↔
@@ -69,7 +80,9 @@ lemma mem_completeToBlock {G : SimpleGraph V} {v a : V}
 
 /-- If a neighbour meets a nonneighbour-component, it is complete to that
 component: a boundary edge in the component would form an induced `P4`
-`v-a-x-y`.-/
+`v-a-x-y`.
+@isnad1 id=mem.3h5v.s6.cfb8cd037916 from=translated src=- shape=0c55d1b9 vocab=4ac91e94
+-/
 lemma completeToBlock_of_meets {G : SimpleGraph V} {v a : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent}
     (hC : IsCographGraph G) (ha : G.Adj v a)
@@ -110,7 +123,9 @@ lemma completeToBlock_of_meets {G : SimpleGraph V} {v a : V}
   exact hC _ _ _ _ hp4
 
 /-- A connected cograph of order at least two with a universal vertex is a
-nontrivial complete join `{v}` against the remainder.-/
+nontrivial complete join `{v}` against the remainder.
+@isnad1 id=ex.3h3v.s6.d694a09f94b4 from=translated src=- shape=06dba59c vocab=cab2c114
+-/
 lemma exists_complete_join_of_universal {G : SimpleGraph V} {v : V}
     (_hG : G.Connected) (hcard : 2 ≤ Fintype.card V) (hv : G.IsUniversal v) :
     ∃ A B : Finset V, A.Nonempty ∧ B.Nonempty ∧ Disjoint A B ∧ A ∪ B = Finset.univ ∧
@@ -136,13 +151,18 @@ lemma exists_complete_join_of_universal {G : SimpleGraph V} {v : V}
       simp [Finset.card_erase_of_mem (Finset.mem_univ v)]
     omega
 
+/--
+@isnad1 id=nonempty.0h4v.s4.da34829ab08a from=translated src=- shape=232c5536 vocab=b4c58b31
+-/
 lemma componentVerts_nonempty {G : SimpleGraph V} {s : Set V}
     (C : (G.induce s).ConnectedComponent) : (componentVerts C).Nonempty := by
   obtain ⟨x, hx⟩ := C.nonempty_supp
   exact ⟨x.1, ⟨x, hx, rfl⟩⟩
 
 /-- A neighbour outside `completeToBlock G v C` meets no vertex of that block;
-otherwise completeness would place it in the block.-/
+otherwise completeness would place it in the block.
+@isnad1 id=not.4h6v.s6.0c20ad48d8d0 from=translated src=- shape=98b0c487 vocab=4ac91e94
+-/
 lemma not_adj_to_block_of_not_mem_completeToBlock {G : SimpleGraph V} {v b : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent}
     (hC : IsCographGraph G) (hbN : G.Adj v b)
@@ -154,7 +174,9 @@ lemma not_adj_to_block_of_not_mem_completeToBlock {G : SimpleGraph V} {v b : V}
   exact hb this
 
 /-- A vertex of `A_i` is adjacent to every neighbour of `v` that is not in `A_i`.
-Otherwise a vertex of the block, followed by `a`, `v`, and `b`, is an induced `P4`.-/
+Otherwise a vertex of the block, followed by `a`, `v`, and `b`, is an induced `P4`.
+@isnad1 id=adj.4h6v.s6.5a616edd6404 from=translated src=- shape=50d4094c vocab=e5042991
+-/
 lemma adj_of_mem_completeToBlock_of_not_mem {G : SimpleGraph V} {v a b : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent}
     (hC : IsCographGraph G) (ha : a ∈ completeToBlock G v C) (hbN : G.Adj v b)
@@ -182,7 +204,9 @@ lemma adj_of_mem_completeToBlock_of_not_mem {G : SimpleGraph V} {v a b : V}
   exact hC _ _ _ _ hp4
 
 /-- In a connected graph, every nonneighbour-component has a nonempty
-complete-neighbour set.-/
+complete-neighbour set.
+@isnad1 id=nonempty.2h4v.s5.36400f350c8c from=translated src=- shape=18139715 vocab=8583b561
+-/
 lemma completeToBlock_nonempty {G : SimpleGraph V} {v : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent}
     (hG : G.Connected) (hC : IsCographGraph G) :
@@ -224,6 +248,9 @@ lemma completeToBlock_nonempty {G : SimpleGraph V} {v : V}
       exact (C.mem_supp_congr_adj this).mp hyC
     exact hzT hzC
 
+/--
+@isnad1 id=iff.0h3v.s4.839c8d0943c9 from=translated src=- shape=2cc19cd6 vocab=97be32a6
+-/
 lemma not_isUniversal_iff {G : SimpleGraph V} {v : V} :
     ¬ G.IsUniversal v ↔ (nonneighbors G v).Nonempty := by
   constructor
@@ -236,18 +263,26 @@ lemma not_isUniversal_iff {G : SimpleGraph V} {v : V} :
     intro hU
     exact hw.2 (hU hw.1.symm)
 
+/--
+@isnad1 id=mem.1h5v.s5.9900c6d5ba3d from=translated src=- shape=db3940de vocab=d36e2f4e
+-/
 lemma mem_nonneighbors_of_mem_componentVerts {G : SimpleGraph V} {v : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent} {x : V}
     (hx : x ∈ componentVerts C) : x ∈ nonneighbors G v :=
   componentVerts_subset C hx
 
+/--
+@isnad1 id=not.0h4v.s5.f15c00904eb8 from=translated src=- shape=bb4943af vocab=f5f6011d
+-/
 lemma not_mem_completeToBlock_self {G : SimpleGraph V} {v : V}
     {C : (G.induce (nonneighbors G v)).ConnectedComponent} :
     v ∉ completeToBlock G v C := by
   intro h
   exact (mem_completeToBlock.1 h).1.ne rfl
 
-/-- Distinct nonneighbour-components have no original edge between them.-/
+/-- Distinct nonneighbour-components have no original edge between them.
+@isnad1 id=not.3h7v.s6.668bf6d7f920 from=translated src=- shape=e3266454 vocab=17bf448c
+-/
 lemma not_adj_of_ne_component {G : SimpleGraph V} {s : Set V}
     {C D : (G.induce s).ConnectedComponent} (hCD : C ≠ D) {x y : V}
     (hx : x ∈ componentVerts C) (hy : y ∈ componentVerts D) : ¬ G.Adj x y := by
@@ -259,6 +294,9 @@ lemma not_adj_of_ne_component {G : SimpleGraph V} {s : Set V}
     exact hxC.symm.trans hmem
   exact not_adj_of_mem_other_component hxS hxD hy
 
+/--
+@isnad1 id=eq.2h6v.s6.f83474024940 from=translated src=- shape=9b88d973 vocab=58d23fcc
+-/
 lemma connectedComponent_eq_of_mem_componentVerts {G : SimpleGraph V} {s : Set V}
     {C D : (G.induce s).ConnectedComponent} {x : V}
     (hxC : x ∈ componentVerts C) (hxD : x ∈ componentVerts D) : C = D := by
@@ -267,7 +305,9 @@ lemma connectedComponent_eq_of_mem_componentVerts {G : SimpleGraph V} {s : Set V
   rw [ConnectedComponent.mem_supp_iff] at hC hD
   exact hC.symm.trans hD
 
-/-- The family of complete-neighbour blocks is nested.-/
+/-- The family of complete-neighbour blocks is nested.
+@isnad1 id=or.1h5v.s6.4da98471db15 from=translated src=- shape=2ed10fa5 vocab=a997732d
+-/
 lemma completeToBlock_nested {G : SimpleGraph V} {v : V}
     {C D : (G.induce (nonneighbors G v)).ConnectedComponent}
     (hCograph : IsCographGraph G) :
@@ -314,6 +354,9 @@ lemma completeToBlock_nested {G : SimpleGraph V} {v : V}
       not_bd := hay }
   exact hCograph _ _ _ _ hp4
 
+/--
+@isnad1 id=ex.2h3v.s6.bf0756e2191f from=translated src=- shape=d5a8ba67 vocab=63923300
+-/
 lemma exists_min_completeToBlock {G : SimpleGraph V} {v : V}
     (hv : ¬ G.IsUniversal v) (hCograph : IsCographGraph G) :
     ∃ C : (G.induce (nonneighbors G v)).ConnectedComponent,
@@ -337,7 +380,9 @@ lemma exists_min_completeToBlock {G : SimpleGraph V} {v : V}
       Finset.eq_of_subset_of_card_le hDC (by omega)
     simpa [this]
 
-/-- Non-universal vertex: a smallest complete-neighbour block is a join side.-/
+/-- Non-universal vertex: a smallest complete-neighbour block is a join side.
+@isnad1 id=ex.3h3v.s6.8b6ea21b8141 from=translated src=- shape=b8e04927 vocab=16dd04bf
+-/
 lemma exists_complete_join_of_not_universal {G : SimpleGraph V} {v : V}
     (hG : G.Connected) (hCograph : IsCographGraph G) (hv : ¬ G.IsUniversal v) :
     ∃ A B : Finset V, A.Nonempty ∧ B.Nonempty ∧ Disjoint A B ∧ A ∪ B = Finset.univ ∧
@@ -386,7 +431,9 @@ lemma exists_complete_join_of_not_universal {G : SimpleGraph V} {v : V}
   exact ⟨A, B, hAne, hBne, hdisj, hcover, hAB, hAcard, hBcard⟩
 
 /-- A finite connected cograph of order at least two is a nontrivial complete join
-of two nonempty strictly smaller induced subgraphs, using only original edges.-/
+of two nonempty strictly smaller induced subgraphs, using only original edges.
+@isnad1 id=ex.3h2v.s6.fe01441f9dc2 from=translated src=- shape=a8fa7ebc vocab=65b29ae7
+-/
 lemma exists_complete_join_of_connected_cograph {G : SimpleGraph V}
     (hG : G.Connected) (hCograph : IsCographGraph G) (hcard : 2 ≤ Fintype.card V) :
     ∃ A B : Finset V, A.Nonempty ∧ B.Nonempty ∧ Disjoint A B ∧ A ∪ B = Finset.univ ∧
@@ -400,7 +447,9 @@ lemma exists_complete_join_of_connected_cograph {G : SimpleGraph V}
   · exact exists_complete_join_of_not_universal hG hCograph hv
 
 /-- A nonempty disconnected graph splits as a disjoint union of a component and
-its nonempty complement, with no original cross edges.-/
+its nonempty complement, with no original cross edges.
+@isnad1 id=ex.1h2v.s6.1a045dbf728b from=translated src=- shape=1344bd62 vocab=1294190b
+-/
 lemma exists_disjoint_union_of_not_connected {G : SimpleGraph V} [Nonempty V]
     (hG : ¬ G.Connected) :
     ∃ A B : Finset V, A.Nonempty ∧ B.Nonempty ∧ Disjoint A B ∧ A ∪ B = Finset.univ ∧
@@ -459,10 +508,16 @@ lemma exists_disjoint_union_of_not_connected {G : SimpleGraph V} [Nonempty V]
 def finsetOfSubtype {s : Set V} (A : Finset s) : Finset V :=
   A.image Subtype.val
 
+/--
+@isnad1 id=eq.0h3v.s4.5ad31ec872a6 from=translated src=- shape=1774b837 vocab=41bc55ff
+-/
 lemma card_finsetOfSubtype {s : Set V} (A : Finset s) :
     (finsetOfSubtype A).card = A.card :=
   Finset.card_image_of_injective _ Subtype.val_injective
 
+/--
+@isnad1 id=eq.0h2v.s5.275d185c9a15 from=translated src=- shape=ad2d7310 vocab=ba44d9af
+-/
 lemma finsetOfSubtype_univ (U : Finset V) :
     finsetOfSubtype (Finset.univ : Finset (U : Set V)) = U := by
   ext x
@@ -473,10 +528,16 @@ lemma finsetOfSubtype_univ (U : Finset V) :
   · intro hx
     exact Finset.mem_image.mpr ⟨⟨x, hx⟩, Finset.mem_univ _, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.edbf3b0bba8d from=translated src=- shape=1c95b4bc vocab=f4648234
+-/
 lemma finsetOfSubtype_union {s : Set V} (A B : Finset s) :
     finsetOfSubtype (A ∪ B) = finsetOfSubtype A ∪ finsetOfSubtype B := by
   simp [finsetOfSubtype, Finset.image_union]
 
+/--
+@isnad1 id=disjoint.1h4v.s5.be9e12ea935b from=translated src=- shape=ab10b398 vocab=57c39332
+-/
 lemma disjoint_finsetOfSubtype {s : Set V} {A B : Finset s} (h : Disjoint A B) :
     Disjoint (finsetOfSubtype A) (finsetOfSubtype B) := by
   refine Finset.disjoint_left.2 ?_
@@ -487,19 +548,27 @@ lemma disjoint_finsetOfSubtype {s : Set V} {A B : Finset s} (h : Disjoint A B) :
   subst this
   exact Finset.disjoint_left.1 h ha hb
 
+/--
+@isnad1 id=le.0h3v.s5.17c429cd3ed2 from=translated src=- shape=e67d0359 vocab=77183290
+-/
 lemma subset_finsetOfSubtype {s : Set V} (A : Finset s) :
     finsetOfSubtype A ⊆ (s.toFinset) := by
   intro x hx
   obtain ⟨⟨y, hy⟩, _, rfl⟩ := Finset.mem_image.mp hx
   simpa [Set.mem_toFinset] using hy
 
+/--
+@isnad1 id=le.0h3v.s5.5b1d9c79ef60 from=translated src=- shape=44aa01a5 vocab=021a99a0
+-/
 lemma finsetOfSubtype_subset_of_coe (U : Finset V) (A : Finset (U : Set V)) :
     finsetOfSubtype A ⊆ U := by
   intro x hx
   obtain ⟨⟨y, hy⟩, _, rfl⟩ := Finset.mem_image.mp hx
   exact hy
 
-/-- Join split transported to an induced connected cograph on a finset.-/
+/-- Join split transported to an induced connected cograph on a finset.
+@isnad1 id=ex.3h3v.s7.43211160224e from=translated src=- shape=f4afaa06 vocab=6c75cfff
+-/
 lemma exists_complete_join_on {G : SimpleGraph V} {U : Finset V}
     (hU : IsCograph G U) (hconn : (G.induce (U : Set V)).Connected)
     (hcard : 2 ≤ U.card) :
@@ -533,7 +602,9 @@ lemma exists_complete_join_on {G : SimpleGraph V} {U : Finset V}
   · simpa [card_finsetOfSubtype, Fintype.card_coe] using hA0card
   · simpa [card_finsetOfSubtype, Fintype.card_coe] using hB0card
 
-/-- Disjoint-union split transported to a nonempty disconnected induced subgraph.-/
+/-- Disjoint-union split transported to a nonempty disconnected induced subgraph.
+@isnad1 id=ex.2h3v.s7.e3413e625102 from=translated src=- shape=3d4ea4cc vocab=37ff7855
+-/
 lemma exists_disjoint_union_on {G : SimpleGraph V} {U : Finset V}
     (hdisc : ¬ (G.induce (U : Set V)).Connected) (hne : U.Nonempty) :
     ∃ A B : Finset V, A ⊆ U ∧ B ⊆ U ∧ A.Nonempty ∧ B.Nonempty ∧

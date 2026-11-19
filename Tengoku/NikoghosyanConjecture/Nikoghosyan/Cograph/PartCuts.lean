@@ -37,23 +37,38 @@ noncomputable def dNonadjClass (U : Finset V) (x : V) : Finset V :=
   (eligibleSet G U).filter
     fun y => ¬ DistinctPathCompatible (G := G) U x y
 
+/--
+@isnad1 id=iff.0h5v.s5.e74dbe740542 from=translated src=- shape=c649e1eb vocab=9c34fd40
+-/
 lemma mem_dNonadjClass_iff {U : Finset V} {x y : V} :
     y ∈ dNonadjClass (G := G) U x ↔
       y ∈ eligibleSet G U ∧ ¬ DistinctPathCompatible (G := G) U x y := by
   simp [dNonadjClass]
 
+/--
+@isnad1 id=le.0h4v.s5.79319dba0046 from=translated src=- shape=db7b1f80 vocab=cd8aeedc
+-/
 lemma dNonadjClass_subset_eligible (U : Finset V) (x : V) :
     dNonadjClass (G := G) U x ⊆ eligibleSet G U :=
   filter_subset _ _
 
+/--
+@isnad1 id=not.0h4v.s4.a3981a7356a3 from=translated src=- shape=faffb756 vocab=7cc8d6c9
+-/
 lemma not_DistinctPathCompatible_self (U : Finset V) (x : V) :
     ¬ DistinctPathCompatible (G := G) U x x := fun h => h.1 rfl
 
+/--
+@isnad1 id=mem.1h4v.s5.f07e786d965d from=translated src=- shape=a32af2a9 vocab=d70b3461
+-/
 lemma mem_dNonadjClass_self {U : Finset V} {x : V}
     (hx : x ∈ eligibleSet G U) :
     x ∈ dNonadjClass (G := G) U x :=
   mem_dNonadjClass_iff.2 ⟨hx, not_DistinctPathCompatible_self (G := G) U x⟩
 
+/--
+@isnad1 id=mem.2h5v.s6.c7e9e4f6fcda from=translated src=- shape=2ab8f695 vocab=d70b3461
+-/
 lemma dNonadjClass_symm {U : Finset V} {x y : V}
     (hx : x ∈ eligibleSet G U)
     (h : y ∈ dNonadjClass (G := G) U x) :
@@ -61,6 +76,9 @@ lemma dNonadjClass_symm {U : Finset V} {x y : V}
   have hy := mem_dNonadjClass_iff.1 h
   exact mem_dNonadjClass_iff.2 ⟨hx, fun hD => hy.2 (DistinctPathCompatible.symm hD)⟩
 
+/--
+@isnad1 id=mem.6h6v.s7.246403a3a261 from=translated src=- shape=67322eff vocab=d644fb13
+-/
 lemma dNonadjClass_trans {U : Finset V} (hU : CotreeOn G U) {x y z : V}
     (hx : x ∈ eligibleSet G U) (hy : y ∈ eligibleSet G U)
     (hz : z ∈ eligibleSet G U)
@@ -72,6 +90,9 @@ lemma dNonadjClass_trans {U : Finset V} (hU : CotreeOn G U) {x y z : V}
   exact mem_dNonadjClass_iff.2
     ⟨hz, not_DistinctPathCompatible_trans_of_cotreeOn hU hx hy hz hxy' hyz'⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.0626c71dea4a from=translated src=- shape=88c542e1 vocab=31d5ef17
+-/
 lemma dNonadjClass_eq_eligible_of_le_one {U : Finset V} {x : V}
     (hp : pathCoverNumber G U ≤ 1) (hx : x ∈ eligibleSet G U) :
     dNonadjClass (G := G) U x = eligibleSet G U := by
@@ -83,6 +104,9 @@ lemma dNonadjClass_eq_eligible_of_le_one {U : Finset V} {x : V}
     exact mem_dNonadjClass_iff.2
       ⟨hy, not_DistinctPathCompatible_of_le_one (G := G) hp⟩
 
+/--
+@isnad1 id=eq.3h5v.s6.c594fc644362 from=translated src=- shape=ec9d5c05 vocab=c75bb28b
+-/
 lemma dNonadjClass_disjoint_union_left {A B : Finset V} {x : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -112,6 +136,9 @@ lemma dNonadjClass_disjoint_union_left {A B : Finset V} {x : V}
       (eligibleSet_subset (G := G) A hx)
       (eligibleSet_subset (G := G) A hyA.1) hD)
 
+/--
+@isnad1 id=eq.3h5v.s6.998ab352f743 from=translated src=- shape=5aca6fce vocab=c75bb28b
+-/
 lemma dNonadjClass_disjoint_union_right {A B : Finset V} {x : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -123,6 +150,9 @@ lemma dNonadjClass_disjoint_union_right {A B : Finset V} {x : V}
   have h := dNonadjClass_disjoint_union_left (G := G) hdisj' hnocross' hx
   simpa [union_comm] using h
 
+/--
+@isnad1 id=eq.6h5v.s6.c4ba44ac9524 from=translated src=- shape=66a58e6c vocab=293f8764
+-/
 lemma dNonadjClass_complete_join_dominant {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -156,6 +186,9 @@ def InOneComponent (U W : Finset V) : Prop :=
     ∀ {a b : V} (ha : a ∈ W) (hb : b ∈ W),
       (G.induce (U : Set V)).Reachable ⟨a, hW ha⟩ ⟨b, hW hb⟩
 
+/--
+@isnad1 id=inonecom.2h5v.s5.1c5cdb5ed7ad from=translated src=- shape=6abad093 vocab=3d3e5a0d
+-/
 lemma inOneComponent_mono {A B W : Finset V}
     (hAB : A ⊆ B) (h : InOneComponent (G := G) A W) :
     InOneComponent (G := G) B W := by
@@ -164,6 +197,9 @@ lemma inOneComponent_mono {A B W : Finset V}
   intro a b ha hb
   exact (hreach ha hb).map (induceIncl G hAB)
 
+/--
+@isnad1 id=reachabl.3h6v.s7.64ba29dc8ed5 from=translated src=- shape=0add76fe vocab=c8279c63
+-/
 lemma reachable_of_mem_graphPath {U : Finset V} (p : GraphPath G)
     (hsub : p.support ⊆ U) {x y : V}
     (hx : x ∈ p.support) (hy : y ∈ p.support) :
@@ -188,6 +224,9 @@ lemma reachable_of_mem_graphPath {U : Finset V} (p : GraphPath G)
     exact ⟨w.induce (U : Set V) hwU⟩
   exact hstartx.symm.trans hstarty
 
+/--
+@isnad1 id=ex.1h3v.s5.32a3b2bda271 from=translated src=- shape=ccb53482 vocab=13c15ab7
+-/
 lemma exists_spanning_path_of_pathCoverNumber_eq_one {U : Finset V}
     (h : pathCoverNumber G U = 1) :
     ∃ p : GraphPath G, p.support = U := by
@@ -211,6 +250,9 @@ lemma exists_spanning_path_of_pathCoverNumber_eq_one {U : Finset V}
     have : 2 ≤ pc.paths.length := by simp [hps]
     omega
 
+/--
+@isnad1 id=connecte.1h4v.s5.61511c6bcd35 from=translated src=- shape=efa5bd92 vocab=e3cc0c7d
+-/
 lemma connected_of_spanning_path {U : Finset V}
     (p : GraphPath G) (hp : p.support = U) :
     (G.induce (U : Set V)).Connected := by
@@ -227,6 +269,9 @@ lemma connected_of_spanning_path {U : Finset V}
   have hb' : (⟨b.val, hsub hb⟩ : (U : Set V)) = b := Subtype.ext rfl
   simpa [ha', hb'] using hR
 
+/--
+@isnad1 id=inonecom.3h4v.s5.5b1ba2a3cf9b from=translated src=- shape=709622f7 vocab=2b116e27
+-/
 lemma inOneComponent_of_connected {U W : Finset V}
     (hW : W ⊆ U) (hU : U.Nonempty)
     (hc : (G.induce (U : Set V)).Connected) :
@@ -238,12 +283,18 @@ lemma inOneComponent_of_connected {U W : Finset V}
     ((connected_iff (G.induce (U : Set V))).1 hc).1
   exact hpre ⟨a, hW ha⟩ ⟨b, hW hb⟩
 
+/--
+@isnad1 id=le.1h4v.s5.1829371ae862 from=translated src=- shape=28b9340a vocab=6e0e67fb
+-/
 lemma one_le_pathCoverNumber_of_mem_eligible {U : Finset V} {x : V}
     (hx : x ∈ eligibleSet G U) :
     1 ≤ pathCoverNumber G U :=
   one_le_pathCoverNumber_of_nonempty (G := G)
     ⟨x, eligibleSet_subset (G := G) U hx⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.d16b5af4d3b5 from=translated src=- shape=b8fe732a vocab=8708e80d
+-/
 lemma sdiff_union_right_ineligible {A B S : Finset V}
     (hdisj : Disjoint A B) (hS : S ⊆ A) :
     (A ∪ B) \ (S ∪ ineligibleSet G B) =
@@ -276,6 +327,9 @@ lemma sdiff_union_right_ineligible {A B S : Finset V}
       · exact Finset.disjoint_left.1 hdisj (hS hSz) hzB'
       · exact hzF hF
 
+/--
+@isnad1 id=eq.4h6v.s7.057f2b86cbad from=translated src=- shape=aa25e3b9 vocab=9f22d191
+-/
 lemma part_remainder_union_left {A B S : Finset V} {x : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -320,6 +374,9 @@ lemma part_remainder_union_left {A B S : Finset V} {x : V}
         · exact Finset.disjoint_left.1 hdisj (hPA hzP)
             (ineligibleSet_subset (G := G) B hF)
 
+/--
+@isnad1 id=eq.2h5v.s6.127891f451d6 from=translated src=- shape=18f106bb vocab=ae012f73
+-/
 lemma sdiff_union_dominant {A B S : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hS : S ⊆ A) :
@@ -343,6 +400,9 @@ lemma sdiff_union_dominant {A B S : Finset V}
     · exact Finset.disjoint_left.1 hdisj hzA hzB
     · exact hzS hS
 
+/--
+@isnad1 id=eq.7h6v.s7.18046193f6bf from=translated src=- shape=1ec9a30b vocab=09a47fdf
+-/
 lemma part_remainder_dominant {A B S : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -387,7 +447,9 @@ lemma part_remainder_dominant {A B S : Finset V} {x : V}
         · exact Finset.disjoint_left.1 hdisj (hPA hzP) hzB
       · exact hzS hS
 
-/-- If `p(U)=1`, the empty cut is a part-cut for the unique D-class `E(U)`.-/
+/-- If `p(U)=1`, the empty cut is a part-cut for the unique D-class `E(U)`.
+@isnad1 id=ex.2h4v.s7.9bec474153e0 from=translated src=- shape=04043710 vocab=3b85c02b
+-/
 lemma exists_partCut_of_eq_one {U : Finset V} {x : V}
     (hx : x ∈ eligibleSet G U) (hp : pathCoverNumber G U = 1) :
     ∃ S, S ⊆ ineligibleSet G U ∧
@@ -413,7 +475,9 @@ lemma exists_partCut_of_eq_one {U : Finset V} {x : V}
 
 /-- Actual part-cut certificate: an original-vertex set `S ⊆ F(U)` attaining
 the generic cut bound, with `(F(U) ∪ P_x) \ S` lying in one induced
-component of `U \ S`.-/
+component of `U \ S`.
+@isnad1 id=ex.2h4v.s6.c567e0220a22 from=translated src=- shape=bf6787a1 vocab=24eec671
+-/
 lemma exists_partCut_of_cotreeOn {U : Finset V} (hU : CotreeOn G U) {x : V}
     (hx : x ∈ eligibleSet G U) :
     ∃ S, S ⊆ ineligibleSet G U ∧
@@ -631,6 +695,9 @@ lemma exists_partCut_of_cotreeOn {U : Finset V} (hU : CotreeOn G U) {x : V}
           have hp1' : pathCoverNumber G (A ∪ B) = 1 := hp.trans hmax
           exact (hp1 (by omega)).elim
 
+/--
+@isnad1 id=ex.2h4v.s6.8f9fbdd67c15 from=translated src=- shape=bf6787a1 vocab=b34f086a
+-/
 lemma exists_partCut_of_isCograph {U : Finset V} (hU : IsCograph G U) {x : V}
     (hx : x ∈ eligibleSet G U) :
     ∃ S, S ⊆ ineligibleSet G U ∧
@@ -639,6 +706,9 @@ lemma exists_partCut_of_isCograph {U : Finset V} (hU : IsCograph G U) {x : V}
         ((ineligibleSet G U ∪ dNonadjClass (G := G) U x) \ S) :=
   exists_partCut_of_cotreeOn (cotreeOn_of_isCograph hU) hx
 
+/--
+@isnad1 id=ex.2h4v.s6.0821fb91e271 from=translated src=- shape=bf6787a1 vocab=5f3100cf
+-/
 lemma exists_partCut_of_canonical {U : Finset V}
     (hU : Nikoghosyan.IsCograph G U) {x : V}
     (hx : x ∈ eligibleSet G U) :
@@ -648,7 +718,9 @@ lemma exists_partCut_of_canonical {U : Finset V}
         ((ineligibleSet G U ∪ dNonadjClass (G := G) U x) \ S) :=
   exists_partCut_of_isCograph (isCograph_iff.2 hU) hx
 
-/-- The containment witness as an actual induced connected component.-/
+/-- The containment witness as an actual induced connected component.
+@isnad1 id=ex.2h4v.s7.b92831112700 from=translated src=- shape=6937affa vocab=1843f646
+-/
 lemma exists_component_of_inOneComponent {U W : Finset V}
     (hWne : W.Nonempty) (h : InOneComponent (G := G) U W) :
     ∃ C : (G.induce (U : Set V)).ConnectedComponent,
@@ -660,6 +732,9 @@ lemma exists_component_of_inOneComponent {U W : Finset V}
   intro y hy
   exact ⟨hW hy, ConnectedComponent.sound (hreach hy hx)⟩
 
+/--
+@isnad1 id=ex.2h4v.s8.e277d703a761 from=translated src=- shape=bf02bcea vocab=22b4236d
+-/
 lemma exists_partCut_component_of_canonical {U : Finset V}
     (hU : Nikoghosyan.IsCograph G U) {x : V}
     (hx : x ∈ eligibleSet G U) :

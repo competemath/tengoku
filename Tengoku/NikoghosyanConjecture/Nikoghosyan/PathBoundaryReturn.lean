@@ -52,6 +52,9 @@ namespace GraphPath
 def endsStraddle (e : Sym2 V) (U0 : Finset V) : Prop :=
   (∃ x ∈ e, x ∈ U0) ∧ (∃ y ∈ e, y ∉ U0)
 
+/--
+@isnad1 id=iff.0h4v.s5.e3294a1e89cd from=translated src=- shape=8a52f09b vocab=436fed03
+-/
 lemma endsStraddle_iff {a b : V} {U0 : Finset V} :
     endsStraddle s(a, b) U0 ↔ ((a ∈ U0) ≠ (b ∈ U0)) := by
   constructor
@@ -75,15 +78,24 @@ lemma endsStraddle_iff {a b : V} {U0 : Finset V} :
         exact hne (propext ⟨fun h => (ha h).elim, fun h => (hb h).elim⟩)
       exact ⟨⟨b, by simp, hb⟩, ⟨a, by simp, ha⟩⟩
 
+/--
+@isnad1 id=endsstra.2h4v.s5.5fbfb887a608 from=translated src=- shape=0dda5d74 vocab=436fed03
+-/
 lemma endsStraddle_of_outside_inside {a b : V} {U0 : Finset V}
     (ha : a ∉ U0) (hb : b ∈ U0) : endsStraddle s(a, b) U0 :=
   endsStraddle_iff.2 (fun heq => ha ((iff_of_eq heq).mpr hb))
 
+/--
+@isnad1 id=not.2h4v.s5.85292254bdca from=translated src=- shape=5ec51057 vocab=436fed03
+-/
 lemma not_endsStraddle_of_both {a b : V} {U0 : Finset V}
     (ha : a ∈ U0) (hb : b ∈ U0) : ¬ endsStraddle s(a, b) U0 := by
   intro h
   exact (endsStraddle_iff.1 h) (propext ⟨fun _ => hb, fun _ => ha⟩)
 
+/--
+@isnad1 id=not.2h4v.s5.13c6f5746679 from=translated src=- shape=ff546413 vocab=436fed03
+-/
 lemma not_endsStraddle_of_neither {a b : V} {U0 : Finset V}
     (ha : a ∉ U0) (hb : b ∉ U0) : ¬ endsStraddle s(a, b) U0 := by
   intro h
@@ -95,10 +107,16 @@ edges of the path, not all edges of `G`.-/
 noncomputable def boundaryEdges (p : GraphPath G) (U0 : Finset V) : Finset (Sym2 V) :=
   p.edges.filter fun e => endsStraddle e U0
 
+/--
+@isnad1 id=iff.0h5v.s6.18b9cd03d9b4 from=translated src=- shape=9465b0fb vocab=e4dc5103
+-/
 lemma mem_boundaryEdges_iff {p : GraphPath G} {U0 : Finset V} {e : Sym2 V} :
     e ∈ p.boundaryEdges U0 ↔ e ∈ p.edges ∧ endsStraddle e U0 := by
   simp [boundaryEdges]
 
+/--
+@isnad1 id=le.0h4v.s5.b8eb7b083cc7 from=translated src=- shape=0a1d83ed vocab=5ff417ec
+-/
 lemma boundaryEdges_subset_edges (p : GraphPath G) (U0 : Finset V) :
     p.boundaryEdges U0 ⊆ p.edges :=
   filter_subset _ _
@@ -109,18 +127,27 @@ noncomputable def crossingIndexSet (p : GraphPath G) (U0 : Finset V) : Finset �
   (Finset.range p.walk.length).filter fun i =>
     (p.walk.getVert i ∈ U0) ≠ (p.walk.getVert (i + 1) ∈ U0)
 
+/--
+@isnad1 id=iff.0h5v.s6.2ac631729035 from=translated src=- shape=0e578faa vocab=e8cf1952
+-/
 lemma mem_crossingIndexSet_iff {p : GraphPath G} {U0 : Finset V} {i : ℕ} :
     i ∈ p.crossingIndexSet U0 ↔
       i < p.walk.length ∧
         ((p.walk.getVert i ∈ U0) ≠ (p.walk.getVert (i + 1) ∈ U0)) := by
   simp [crossingIndexSet, mem_range]
 
+/--
+@isnad1 id=mem.1h4v.s6.73808f8f88cc from=translated src=- shape=52f57af2 vocab=457bd73e
+-/
 lemma crossingEdge_mem_edges (p : GraphPath G) {i : ℕ}
     (hi : i < p.walk.length) :
     s(p.walk.getVert i, p.walk.getVert (i + 1)) ∈ p.edges := by
   have hiE : i < p.walk.edges.length := by simpa [Walk.length_edges] using hi
   exact mem_edges_iff.2 (List.mem_iff_getElem.2 ⟨i, hiE, Walk.getElem_edges hiE⟩)
 
+/--
+@isnad1 id=injon.0h4v.s6.740931e7a220 from=translated src=- shape=a1241886 vocab=1cf48eca
+-/
 lemma injOn_crossingEdge (p : GraphPath G) (U0 : Finset V) :
     Set.InjOn (fun i => s(p.walk.getVert i, p.walk.getVert (i + 1)))
       (p.crossingIndexSet U0) := by
@@ -138,6 +165,9 @@ lemma injOn_crossingEdge (p : GraphPath G) (U0 : Finset V) :
     hinj hidx
   exact Fin.val_eq_of_eq hij
 
+/--
+@isnad1 id=eq.0h4v.s6.fc24edaaf328 from=translated src=- shape=391aec59 vocab=2bd87f05
+-/
 lemma image_crossingIndexSet (p : GraphPath G) (U0 : Finset V) :
     (p.crossingIndexSet U0).image
         (fun i => s(p.walk.getVert i, p.walk.getVert (i + 1))) =
@@ -161,12 +191,17 @@ lemma image_crossingIndexSet (p : GraphPath G) (U0 : Finset V) :
       exact endsStraddle_iff.1 this
     refine mem_image.2 ⟨i, mem_crossingIndexSet_iff.2 ⟨hiL, hxor⟩, hpair.symm⟩
 
-/-- Crossing indices are in bijection with actual boundary walk edges.-/
+/-- Crossing indices are in bijection with actual boundary walk edges.
+@isnad1 id=eq.0h4v.s5.a77f98a63aef from=translated src=- shape=37a08f20 vocab=944f0a97
+-/
 theorem card_crossingIndexSet (p : GraphPath G) (U0 : Finset V) :
     (p.crossingIndexSet U0).card = (p.boundaryEdges U0).card := by
   rw [← p.image_crossingIndexSet U0]
   exact (Finset.card_image_of_injOn (p.injOn_crossingEdge U0)).symm
 
+/--
+@isnad1 id=not.3h5v.s7.08b03db350be from=translated src=- shape=33162d3e vocab=69bf5bb3
+-/
 lemma no_entering_imp_succ_not_mem {p : GraphPath G} {U0 : Finset V}
     (hno : ∀ i < p.walk.length,
       ¬ (p.walk.getVert i ∉ U0 ∧ p.walk.getVert (i + 1) ∈ U0))
@@ -176,7 +211,9 @@ lemma no_entering_imp_succ_not_mem {p : GraphPath G} {U0 : Finset V}
   exact hno j hj ⟨hj0, hj1⟩
 
 /-- After a true→false transition, the membership word never returns if
-there is no false→true transition.-/
+there is no false→true transition.
+@isnad1 id=not.5h6v.s7.3b698388e400 from=translated src=- shape=a5b0e5ee vocab=d3aec92a
+-/
 lemma getVert_not_mem_U0_of_ge {p : GraphPath G} {U0 : Finset V} {i k : ℕ}
     (hno : ∀ j < p.walk.length,
       ¬ (p.walk.getVert j ∉ U0 ∧ p.walk.getVert (j + 1) ∈ U0))
@@ -196,6 +233,9 @@ lemma getVert_not_mem_U0_of_ge {p : GraphPath G} {U0 : Finset V} {i k : ℕ}
   rw [ht]
   exact hshift (k - (i + 1)) (by omega)
 
+/--
+@isnad1 id=and.2h5v.s7.2e797b80c367 from=translated src=- shape=8f923280 vocab=e8cf1952
+-/
 lemma crossing_subset_leaving_of_no_entering {p : GraphPath G} {U0 : Finset V}
     (hno : ∀ i < p.walk.length,
       ¬ (p.walk.getVert i ∉ U0 ∧ p.walk.getVert (i + 1) ∈ U0))
@@ -211,7 +251,9 @@ lemma crossing_subset_leaving_of_no_entering {p : GraphPath G} {U0 : Finset V}
     exact (hxor (propext ⟨fun h => (hin h).elim, fun h => (hsucc h).elim⟩)).elim
 
 /-- With no entering dart, a path that starts in `U0` has at most one
-crossing index.-/
+crossing index.
+@isnad1 id=le.2h4v.s7.2e5ba62170ee from=translated src=- shape=dc55ccdd vocab=be9ff0ff
+-/
 theorem card_crossingIndexSet_le_one_of_no_entering (p : GraphPath G)
     (U0 : Finset V) (_hs : p.start ∈ U0)
     (hno : ∀ i < p.walk.length,
@@ -238,7 +280,9 @@ theorem card_crossingIndexSet_le_one_of_no_entering (p : GraphPath G)
     exact (this hiIn).elim
 
 /-- If `p` starts in `U0` and has at least two actual boundary walk edges,
-an entering dart exists.-/
+an entering dart exists.
+@isnad1 id=ex.2h4v.s7.11707038b760 from=translated src=- shape=bd9bd931 vocab=efa77b09
+-/
 theorem exists_enteringIndex (p : GraphPath G) (U0 : Finset V)
     (hs : p.start ∈ U0) (h2 : 2 ≤ (p.boundaryEdges U0).card) :
     ∃ i, i < p.walk.length ∧
@@ -253,6 +297,9 @@ theorem exists_enteringIndex (p : GraphPath G) (U0 : Finset V)
       p.card_crossingIndexSet_le_one_of_no_entering U0 hs hno
   omega
 
+/--
+@isnad1 id=ne.2h5v.s6.2477cc12d4ce from=translated src=- shape=d461ab1b vocab=4360c22b
+-/
 lemma entering_ne_start (p : GraphPath G) {U0 : Finset V} {i : ℕ}
     (hs : p.start ∈ U0) (hi0 : p.walk.getVert i ∉ U0) :
     p.walk.getVert i ≠ p.start := by
@@ -260,13 +307,18 @@ lemma entering_ne_start (p : GraphPath G) {U0 : Finset V} {i : ℕ}
   rw [heq] at hi0
   exact hi0 hs
 
+/--
+@isnad1 id=ne.1h4v.s5.b3d41ec5921e from=translated src=- shape=a36f6767 vocab=425eced3
+-/
 lemma entering_ne_finish (p : GraphPath G) {i : ℕ}
     (hi : i < p.walk.length) :
     p.walk.getVert i ≠ p.finish :=
   p.getVert_ne_finish_of_lt hi
 
 /-- Derive the actual `PrefixEdgeFactor` at the entering dart. The tail
-differs from both endpoints of `p`.-/
+differs from both endpoints of `p`.
+@isnad1 id=ex.2h4v.s8.ab5e1e976340 from=translated src=- shape=456a9449 vocab=7dd6e751
+-/
 theorem exists_enteringFactor (p : GraphPath G) (U0 : Finset V)
     (hs : p.start ∈ U0) (h2 : 2 ≤ (p.boundaryEdges U0).card) :
     ∃ (i : ℕ) (F : PrefixEdgeFactor p (p.walk.getVert i) (p.walk.getVert (i + 1))),
@@ -286,12 +338,17 @@ namespace PrefixEdgeFactor
 
 variable {p : GraphPath G} {a x : V}
 
-/-- The selected entering edge is an actual boundary walk edge.-/
+/-- The selected entering edge is an actual boundary walk edge.
+@isnad1 id=mem.2h7v.s6.6098236fe440 from=translated src=- shape=cb7dbd53 vocab=6846673d
+-/
 lemma old_mem_boundaryEdges (F : PrefixEdgeFactor p a x) (U0 : Finset V)
     (ha : a ∉ U0) (hx : x ∈ U0) :
     s(a, x) ∈ p.boundaryEdges U0 :=
   mem_boundaryEdges_iff.2 ⟨F.old_mem_edges, endsStraddle_of_outside_inside ha hx⟩
 
+/--
+@isnad1 id=not.3h7v.s6.2b23e88642d0 from=translated src=- shape=5863dd3a vocab=7407a79b
+-/
 lemma new_not_mem_boundaryEdges (F : PrefixEdgeFactor p a x) (U0 : Finset V)
     (hyx : G.Adj p.start x) (hy : p.start ∈ U0) (hx : x ∈ U0) :
     s(p.start, x) ∉ (F.rotate hyx).boundaryEdges U0 := by
@@ -300,7 +357,9 @@ lemma new_not_mem_boundaryEdges (F : PrefixEdgeFactor p a x) (U0 : Finset V)
 
 /-- After rotating an entering dart `a → x` across the original chord
 `y—x` with `y, x ∈ U0` and `a ∉ U0`, the actual boundary finset loses
-exactly the selected edge `a—x`. The new chord is internal to `U0`.-/
+exactly the selected edge `a—x`. The new chord is internal to `U0`.
+@isnad1 id=eq.4h7v.s6.bb96b7ba39c2 from=translated src=- shape=a19ffa55 vocab=9452e9e5
+-/
 theorem boundaryEdges_rotate (F : PrefixEdgeFactor p a x) (U0 : Finset V)
     (hyx : G.Adj p.start x) (_ha : a ∉ U0) (hx : x ∈ U0) (hy : p.start ∈ U0) :
     (F.rotate hyx).boundaryEdges U0 = (p.boundaryEdges U0).erase s(a, x) := by
@@ -315,17 +374,25 @@ theorem boundaryEdges_rotate (F : PrefixEdgeFactor p a x) (U0 : Finset V)
   · rintro ⟨hne, ⟨hmem, hstr⟩⟩
     exact ⟨Or.inl ⟨hne, hmem⟩, hstr⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.f473fd6c64de from=translated src=- shape=a8ed591e vocab=2a4e7a3f
+-/
 lemma rotate_start_eq_tail (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) :
     (F.rotate hyx).start = a :=
   F.rotate_start hyx
 
+/--
+@isnad1 id=eq.1h6v.s5.ffc0e0ecda3d from=translated src=- shape=79d72c83 vocab=f0ce4c4b
+-/
 lemma rotate_finish_eq_old (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) :
     (F.rotate hyx).finish = p.finish :=
   F.rotate_finish hyx
 
-/-- The gained chord `y—x` has both ends in `U0`.-/
+/-- The gained chord `y—x` has both ends in `U0`.
+@isnad1 id=and.3h7v.s7.7eb5debec935 from=translated src=- shape=86b12f92 vocab=e217e9dc
+-/
 lemma new_edge_internalU0 (F : PrefixEdgeFactor p a x) (U0 : Finset V)
     (hyx : G.Adj p.start x) (hy : p.start ∈ U0) (hx : x ∈ U0) :
     p.start ∈ U0 ∧ x ∈ U0 ∧ s(p.start, x) ∈ (F.rotate hyx).edges :=
@@ -335,7 +402,9 @@ lemma new_edge_internalU0 (F : PrefixEdgeFactor p a x) (U0 : Finset V)
 `Y`–`X` edge `y—x`. The new start is the original-`A` tail, the finish
 and support are unchanged, original-`A` protection is preserved, and the
 boundary finset at `U0` loses exactly `a—x`. `Y` and `X` lie outside
-`A`. This does not construct the entering dart on an arbitrary path.-/
+`A`. This does not construct the entering dart on an arbitrary path.
+@isnad1 id=and.8h9v.s8.292edaebcf21 from=translated src=- shape=72d4ef8b vocab=7fd86aab
+-/
 theorem returnRotate_spec (F : PrefixEdgeFactor p a x)
     {U0 A : Finset V} (hyx : G.Adj p.start x)
     (haU : a ∉ U0) (hxU : x ∈ U0) (hyU : p.start ∈ U0)
@@ -357,7 +426,9 @@ theorem returnRotate_spec (F : PrefixEdgeFactor p a x)
     F.new_edge_mem_rotate hyx, not_endsStraddle_of_both hyU hxU⟩
 
 /-- Complete-join form: `y ∈ Y`, `x ∈ X`, and every `Y`–`X` pair is an
-original edge. The join hypothesis is an operation input.-/
+original edge. The join hypothesis is an operation input.
+@isnad1 id=other.10h11v.s8.fc11013f10f5 from=translated src=- shape=7f593866 vocab=f6770ce0
+-/
 theorem returnRotate_of_completeJoin (F : PrefixEdgeFactor p a x)
     {U0 A X Y : Finset V}
     (hyY : p.start ∈ Y) (hxX : x ∈ X)
@@ -383,7 +454,9 @@ end PrefixEdgeFactor
 produce the entering factor and apply prefix rotation across an original
 `Y`–`X` complete-join chord. The maps sending an entering dart to
 `A` / `X` are operation inputs that G2 must derive from the cycle
-boundary.-/
+boundary.
+@isnad1 id=ex.10h8v.s9.eea63d7b2942 from=translated src=- shape=353e069b vocab=baa46a95
+-/
 theorem exists_returnRotate (p : GraphPath G) (U0 : Finset V)
     (hs : p.start ∈ U0) (h2 : 2 ≤ (p.boundaryEdges U0).card)
     {A X Y : Finset V} {c : GraphCycle G}

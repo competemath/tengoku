@@ -45,13 +45,22 @@ namespace GraphCycle
 def edges (c : GraphCycle G) : Finset (Sym2 V) :=
   c.walk.edges.toFinset
 
+/--
+@isnad1 id=iff.0h4v.s6.c094e045d9ca from=translated src=- shape=235ddb0e vocab=29ec9c78
+-/
 lemma mem_edges_iff {c : GraphCycle G} {e : Sym2 V} :
     e ∈ c.edges ↔ e ∈ c.walk.edges := by
   simp [edges]
 
+/--
+@isnad1 id=eq.0h3v.s5.801160cf05fb from=translated src=- shape=882ea3f8 vocab=8348cf98
+-/
 lemma edges_reverse (c : GraphCycle G) : c.reverse.edges = c.edges := by
   simp [edges, reverse, Walk.edges_reverse, List.toFinset_reverse]
 
+/--
+@isnad1 id=eq.1h4v.s5.a2295ddd4eef from=translated src=- shape=30115ee0 vocab=e82d520b
+-/
 lemma edges_rotateTo_eq (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.rotateTo hu).edges = c.edges :=
   c.edges_rotateTo hu
@@ -60,22 +69,37 @@ lemma edges_rotateTo_eq (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
 def incidentEdges (c : GraphCycle G) (v : V) : Finset (Sym2 V) :=
   c.edges.filter fun e => v ∈ e
 
+/--
+@isnad1 id=iff.0h5v.s6.ab39496fd312 from=translated src=- shape=03ff94c4 vocab=45c80057
+-/
 lemma mem_incidentEdges_iff {c : GraphCycle G} {v : V} {e : Sym2 V} :
     e ∈ c.incidentEdges v ↔ e ∈ c.edges ∧ v ∈ e := by
   simp [incidentEdges]
 
+/--
+@isnad1 id=eq.1h5v.s5.9da8e75b955c from=translated src=- shape=71151d36 vocab=819ecd5a
+-/
 lemma incidentEdges_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support)
     (v : V) : (c.rotateTo hu).incidentEdges v = c.incidentEdges v := by
   simp [incidentEdges, c.edges_rotateTo_eq hu]
 
+/--
+@isnad1 id=eq.0h4v.s5.c0963d78fa8d from=translated src=- shape=b00cd2e7 vocab=869499b0
+-/
 lemma incidentEdges_reverse (c : GraphCycle G) (v : V) :
     c.reverse.incidentEdges v = c.incidentEdges v := by
   simp [incidentEdges, c.edges_reverse]
 
+/--
+@isnad1 id=not.1h4v.s6.d63604d5527e from=translated src=- shape=cd361067 vocab=a17d50ce
+-/
 lemma rotateTo_not_nil (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     ¬ (c.rotateTo hu).walk.Nil :=
   (c.rotateTo hu).isCycle.not_nil
 
+/--
+@isnad1 id=eq.1h4v.s6.32cd7d471449 from=translated src=- shape=80796052 vocab=7a5f08c9
+-/
 lemma succAt_eq_snd (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     c.succAt hu = (c.rotateTo hu).walk.snd :=
   rfl
@@ -90,44 +114,71 @@ def openAt (c : GraphCycle G) {u : V} (hu : u ∈ c.support) : GraphPath G where
   walk := (c.rotateTo hu).walk.tail
   isPath := (c.rotateTo hu).isCycle.isPath_tail
 
+/--
+@isnad1 id=eq.1h4v.s5.701df55ed0f3 from=translated src=- shape=faf5d93b vocab=7238267f
+-/
 lemma openAt_start (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.openAt hu).start = c.succAt hu :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.b7bad3920b3f from=translated src=- shape=6616a1e9 vocab=a8d99489
+-/
 lemma openAt_finish (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.openAt hu).finish = u :=
   rfl
 
+/--
+@isnad1 id=ne.1h4v.s5.96f0afea46ac from=translated src=- shape=5cde55e5 vocab=e23e32ca
+-/
 lemma openAt_start_ne_finish (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.openAt hu).start ≠ (c.openAt hu).finish :=
   c.succAt_ne hu
 
+/--
+@isnad1 id=eq.1h4v.s7.84de7c8c5f4c from=translated src=- shape=152c2084 vocab=013659eb
+-/
 lemma rotateTo_cons_eq (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.rotateTo hu).walk =
       Walk.cons ((c.rotateTo hu).walk.adj_snd (c.rotateTo_not_nil hu))
         (c.openAt hu).walk :=
   ((c.rotateTo hu).walk.cons_tail_eq (c.rotateTo_not_nil hu)).symm
 
+/--
+@isnad1 id=eq.1h4v.s6.dd9226621553 from=translated src=- shape=de24812e vocab=3fe94152
+-/
 lemma openAt_length (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.openAt hu).walk.length = (c.rotateTo hu).walk.length - 1 :=
   Walk.length_tail (c.rotateTo hu).walk
 
+/--
+@isnad1 id=le.1h4v.s6.1a9e9e2e1d93 from=translated src=- shape=207d24a4 vocab=3ccf6419
+-/
 lemma two_le_openAt_length (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     2 ≤ (c.openAt hu).walk.length := by
   have hlen : 3 ≤ (c.rotateTo hu).walk.length := (c.rotateTo hu).three_le_length
   have := c.openAt_length hu
   omega
 
+/--
+@isnad1 id=not.1h4v.s6.2fc56a401607 from=translated src=- shape=6f3cb08f vocab=6b617941
+-/
 lemma openAt_not_nil (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     ¬ (c.openAt hu).walk.Nil :=
   Walk.not_nil_iff_lt_length.2
     (lt_of_lt_of_le (by decide : (0 : ℕ) < 2) (c.two_le_openAt_length hu))
 
+/--
+@isnad1 id=le.1h4v.s5.e2e57d311ecd from=translated src=- shape=379261a4 vocab=520a91d7
+-/
 lemma three_le_openAt_card (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     3 ≤ (c.openAt hu).support.card := by
   have : 2 ≤ (c.openAt hu).walk.length := c.two_le_openAt_length hu
   simpa [GraphPath.card_support] using Nat.add_le_add_right this 1
 
+/--
+@isnad1 id=mem.1h4v.s6.cc4f6acaa0d3 from=translated src=- shape=bba6eb32 vocab=f7264662
+-/
 lemma first_cycle_edge_mem (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     s(u, c.succAt hu) ∈ c.edges := by
   have hnil := c.rotateTo_not_nil hu
@@ -136,6 +187,9 @@ lemma first_cycle_edge_mem (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
       List.mem_toFinset.2 ((c.rotateTo hu).walk.mk_start_snd_mem_edges hnil)
   simpa [c.edges_rotateTo_eq hu] using hrot
 
+/--
+@isnad1 id=not.1h4v.s6.47599cc57e4b from=translated src=- shape=eaa6998b vocab=41bcfa4d
+-/
 lemma first_not_mem_openAt (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     s(u, c.succAt hu) ∉ (c.openAt hu).edges := by
   have hnil := c.rotateTo_not_nil hu
@@ -148,6 +202,9 @@ lemma first_not_mem_openAt (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   simp [GraphPath.edges, openAt, start_rotateTo, succAt_eq_snd, List.mem_toFinset]
   exact hnin
 
+/--
+@isnad1 id=eq.1h4v.s6.0a758dc8bb58 from=translated src=- shape=4f4935f7 vocab=fe63bde4
+-/
 lemma edges_eq_insert_openAt (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     c.edges = insert s(u, c.succAt hu) (c.openAt hu).edges := by
   have hnil := c.rotateTo_not_nil hu
@@ -170,6 +227,9 @@ lemma edges_eq_insert_openAt (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   rw [heq] at hrot
   simpa [c.edges_rotateTo_eq hu] using hrot
 
+/--
+@isnad1 id=eq.2h6v.s5.25fce9443b8c from=translated src=- shape=bafeedc0 vocab=3700c919
+-/
 lemma penultimate_cons_of_not_nil {u v w : V} (h : G.Adj u v) (q : G.Walk v w)
     (hq : ¬ q.Nil) : (Walk.cons h q).penultimate = q.penultimate := by
   have hpos : 0 < q.length := Walk.not_nil_iff_lt_length.1 hq
@@ -180,6 +240,9 @@ lemma penultimate_cons_of_not_nil {u v w : V} (h : G.Adj u v) (q : G.Walk v w)
   rw [hsucc, Walk.getVert_cons_succ]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.05ecdf14a605 from=translated src=- shape=9a0b0f3b vocab=3385abd2
+-/
 lemma penultimate_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (c.rotateTo hu).walk.penultimate = (c.openAt hu).walk.penultimate := by
   have hnil := c.rotateTo_not_nil hu
@@ -187,6 +250,9 @@ lemma penultimate_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     ((c.rotateTo hu).walk.adj_snd hnil) (c.openAt hu).walk (c.openAt_not_nil hu)
   exact (congrArg Walk.penultimate (c.rotateTo_cons_eq hu)).trans h
 
+/--
+@isnad1 id=mem.1h4v.s6.ee6eabde9caf from=translated src=- shape=f939bc7b vocab=607a7f3d
+-/
 lemma pred_edge_mem (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     s((c.openAt hu).walk.penultimate, u) ∈ c.edges := by
   have hlast := GraphPath.last_edge_mem (c.openAt hu) (c.openAt_not_nil hu)
@@ -195,11 +261,17 @@ lemma pred_edge_mem (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   rw [c.edges_eq_insert_openAt hu]
   exact mem_insert_of_mem this
 
+/--
+@isnad1 id=ne.1h4v.s6.7150ab18a3f6 from=translated src=- shape=55cfb15c vocab=6cd061fe
+-/
 lemma succ_ne_pred (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     c.succAt hu ≠ (c.openAt hu).walk.penultimate := by
   have h := (c.rotateTo hu).isCycle.snd_ne_penultimate
   simpa [succAt_eq_snd, c.penultimate_rotateTo hu] using h
 
+/--
+@isnad1 id=ne.1h4v.s6.fe345ff23b64 from=translated src=- shape=8e487959 vocab=c863d248
+-/
 lemma first_ne_pred_edge (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     s(u, c.succAt hu) ≠ s((c.openAt hu).walk.penultimate, u) := by
   intro heq
@@ -208,7 +280,9 @@ lemma first_ne_pred_edge (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   · exact (c.succ_ne_pred hu) h2
 
 /-- Exact two incident original cycle-edges at any vertex of a genuine
-simple cycle of order at least three.-/
+simple cycle of order at least three.
+@isnad1 id=eq.1h4v.s6.073fabc16626 from=translated src=- shape=39931db2 vocab=3c84cfdb
+-/
 theorem incidentEdges_eq (c : GraphCycle G) {v : V} (hv : v ∈ c.support) :
     c.incidentEdges v =
       {s(v, c.succAt hv), s((c.openAt hv).walk.penultimate, v)} := by
@@ -235,11 +309,17 @@ theorem incidentEdges_eq (c : GraphCycle G) {v : V} (hv : v ∈ c.support) :
     · refine ⟨Or.inr ?_, by simp⟩
       simpa [hfin] using GraphPath.last_edge_mem (c.openAt hv) (c.openAt_not_nil hv)
 
+/--
+@isnad1 id=eq.1h4v.s5.9569c2d0058b from=translated src=- shape=cf8bd61d vocab=a4c5a4f4
+-/
 theorem incidentEdges_card (c : GraphCycle G) {v : V} (hv : v ∈ c.support) :
     (c.incidentEdges v).card = 2 := by
   rw [c.incidentEdges_eq hv]
   exact card_pair (c.first_ne_pred_edge hv)
 
+/--
+@isnad1 id=le.0h4v.s5.26ba16c724b3 from=translated src=- shape=69af219d vocab=53855d41
+-/
 lemma incidentEdges_subset_edges (c : GraphCycle G) (v : V) :
     c.incidentEdges v ⊆ c.edges := by
   intro e he
@@ -249,10 +329,16 @@ end GraphCycle
 
 namespace GraphPath
 
+/--
+@isnad1 id=iff.0h5v.s5.003798961410 from=translated src=- shape=866e60a6 vocab=4f203b4d
+-/
 lemma ProtectedAt.reverse_cycle {p : GraphPath G} {c : GraphCycle G}
     {A : Finset V} : p.ProtectedAt c.reverse A ↔ p.ProtectedAt c A := by
   simp [ProtectedAt, GraphCycle.reverse, Walk.edges_reverse, List.toFinset_reverse]
 
+/--
+@isnad1 id=le.2h6v.s6.86d9928f2a0b from=translated src=- shape=ddb1a269 vocab=0459c865
+-/
 lemma ProtectedAt.incidentEdges_subset_cycle {p : GraphPath G}
     {c : GraphCycle G} {A : Finset V} (h : p.ProtectedAt c A) {v : V}
     (hv : v ∈ A) : p.incidentEdges v ⊆ c.incidentEdges v := by
@@ -263,7 +349,9 @@ lemma ProtectedAt.incidentEdges_subset_cycle {p : GraphPath G}
 /-- Internal `A`-vertices of a spanning protected path have incident
 walk-edges exactly equal to the two incident edges of the prescribed
 cycle. Path order at least three is inherited from the genuine cycle,
-not from a stronger graph-degree hypothesis.-/
+not from a stronger graph-degree hypothesis.
+@isnad1 id=eq.6h6v.s6.3a3d7b65d4ec from=translated src=- shape=0139226c vocab=4d8233de
+-/
 theorem incidentEdges_eq_cycle_of_internal_protected
     (p : GraphPath G) (c : GraphCycle G) {A : Finset V}
     (hsup : p.support = c.support) (hA : A ⊆ p.support)
@@ -281,7 +369,9 @@ theorem incidentEdges_eq_cycle_of_internal_protected
 
 /-- An endpoint of a spanning protected path that lies in `A` is incident
 to exactly one prescribed cycle edge. Completeness of `A` to all other
-vertices is not assumed.-/
+vertices is not assumed.
+@isnad1 id=and.5h6v.s7.40ef313bcd52 from=translated src=- shape=ceaf28bf vocab=9d332e06
+-/
 theorem incidentEdges_card_endpoint_protected
     (p : GraphPath G) (c : GraphCycle G) {A : Finset V}
     (hsup : p.support = c.support) (_hA : A ⊆ p.support)
@@ -304,7 +394,9 @@ counts of a spanning protected path. The new start `a` is an endpoint
 and loses exactly the old dart `a—x`. Every other vertex of `A` keeps
 its incident walk-edge set. Protection is asserted only at the original
 set `A`; it is not asserted at any enlarged set containing the old
-`Y`-endpoint. The factorization already supplies `a ≠ finish`.-/
+`Y`-endpoint. The factorization already supplies `a ≠ finish`.
+@isnad1 id=and.7h8v.s8.4adce084e243 from=translated src=- shape=ce62db0e vocab=cf79390a
+-/
 theorem protected_exact_of_rotate {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x)
     (c : GraphCycle G) {A : Finset V}

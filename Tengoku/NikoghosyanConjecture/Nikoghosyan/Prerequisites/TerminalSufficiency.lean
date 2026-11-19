@@ -34,6 +34,9 @@ namespace Nikoghosyan
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=ne.1h3v.s5.deb4501436b9 from=translated src=- shape=701f37a7 vocab=b2b3fe1a
+-/
 lemma GraphPath.start_ne_finish_of_two_le_card (p : GraphPath G)
     (h : 2 ≤ p.support.card) : p.start ≠ p.finish := by
   intro heq
@@ -42,6 +45,9 @@ lemma GraphPath.start_ne_finish_of_two_le_card (p : GraphPath G)
   have : p.support.card = 1 := by rw [hs, card_singleton]
   omega
 
+/--
+@isnad1 id=and.1h5v.s5.5984c247816c from=translated src=- shape=1661fb45 vocab=833a6c71
+-/
 lemma mem_of_spanningPathCompatible {U : Finset V} {x y : V}
     (h : SpanningPathCompatible (G := G) U x y) : x ∈ U ∧ y ∈ U := by
   obtain ⟨_, p, hp, hends⟩ := h
@@ -53,6 +59,9 @@ lemma mem_of_spanningPathCompatible {U : Finset V} {x y : V}
     · simpa [hf, hp] using p.finish_mem_support
     · simpa [hs, hp] using p.start_mem_support
 
+/--
+@isnad1 id=ex.3h4v.s5.4e448ff1cbc4 from=translated src=- shape=bad972e3 vocab=58381590
+-/
 lemma exists_spanningPathCompatible_of_eligible {U : Finset V} {x : V}
     (h2 : 2 ≤ U.card) (hp : pathCoverNumber G U = 1)
     (hE : Eligible G U x) :
@@ -69,6 +78,9 @@ lemma exists_spanningPathCompatible_of_eligible {U : Finset V} {x : V}
     refine ⟨?_, p, hpU, Or.inr ⟨rfl, hf⟩⟩
     simpa [hf] using hne.symm
 
+/--
+@isnad1 id=isfreeco.1h6v.s6.916ca029c8bb from=translated src=- shape=77b4983e vocab=235bf5e6
+-/
 lemma IsFreeComponent_of_B_subset {K B S : Finset V}
     (hB : B ⊆ S)
     (C : (G.induce ((K \ S : Finset V) : Set V)).ConnectedComponent) :
@@ -76,6 +88,9 @@ lemma IsFreeComponent_of_B_subset {K B S : Finset V}
   have hBS : B \ S = ∅ := sdiff_eq_empty_iff_subset.2 hB
   simp [IsFreeComponent, hBS]
 
+/--
+@isnad1 id=eq.1h5v.s5.e84e7224b463 from=translated src=- shape=0284cb89 vocab=65951038
+-/
 lemma terminalComponentCount_eq_of_B_subset {K B S : Finset V}
     (hB : B ⊆ S) :
     terminalComponentCount (G := G) K B S = componentCount G (K \ S) := by
@@ -83,6 +98,9 @@ lemma terminalComponentCount_eq_of_B_subset {K B S : Finset V}
   refine Nat.card_congr ?_
   exact Equiv.subtypeUnivEquiv (fun C => IsFreeComponent_of_B_subset (G := G) hB C)
 
+/--
+@isnad1 id=eq.1h5v.s6.398dc4b9971a from=translated src=- shape=15d4b5b2 vocab=137a88ec
+-/
 lemma connectedComponentMk_eq_of_mem_componentFinset' {U : Finset V}
     {C : (G.induce (U : Set V)).ConnectedComponent} {x : V}
     (hx : x ∈ componentFinset G U C) :
@@ -91,7 +109,9 @@ lemma connectedComponentMk_eq_of_mem_componentFinset' {U : Finset V}
   exact hC
 
 /-- If every surviving terminal lies in one actual remainder component,
-then `z_B(K-S) ≥ c(K-S) - 1`.-/
+then `z_B(K-S) ≥ c(K-S) - 1`.
+@isnad1 id=le.2h6v.s6.551866801d25 from=translated src=- shape=d0a44445 vocab=f7fa392f
+-/
 lemma terminalComponentCount_ge_pred_of_inOne {K B S W : Finset V}
     (hIn : Cograph.InOneComponent (G := G) (K \ S) W)
     (hB : B \ S ⊆ W) :
@@ -147,6 +167,9 @@ lemma terminalComponentCount_ge_pred_of_inOne {K B S W : Finset V}
       Nat.sub_le _ _
     simpa [hz] using hcpos
 
+/--
+@isnad1 id=ex.7h4v.s7.9ab47248e97d from=translated src=- shape=586f8bd7 vocab=3558f5aa
+-/
 lemma exists_B_ended_spanning_path {K B : Finset V}
     (h2 : 2 ≤ K.card) (hcog : IsCograph G K)
     (hconn : (G.induce (K : Set V)).Connected)
@@ -250,7 +273,9 @@ lemma exists_B_ended_spanning_path {K B : Finset V}
     omega
 
 /-- Host specialization: a connected traceable original side `K = B ∪ W`
-with original 1-toughness has a `B`-ended spanning path.-/
+with original 1-toughness has a `B`-ended spanning path.
+@isnad1 id=ex.3h3v.s7.9889d833be4c from=translated src=- shape=9fcd5dd6 vocab=110344ed
+-/
 lemma exists_B_ended_spanning_path_of_sides (P : AllCographSides G)
     (htough : OneTough G)
     (hconn : (G.induce ((P.B ∪ P.W : Finset V) : Set V)).Connected)

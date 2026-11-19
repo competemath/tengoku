@@ -39,6 +39,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 def bothEndsIn (e : Sym2 V) (B : Finset V) : Prop :=
   ∀ x ∈ e, x ∈ B
 
+/--
+@isnad1 id=iff.0h4v.s5.b68c3712013d from=translated src=- shape=96659ea8 vocab=f252788f
+-/
 lemma bothEndsIn_iff {u v : V} {B : Finset V} :
     bothEndsIn s(u, v) B ↔ u ∈ B ∧ v ∈ B := by
   constructor
@@ -53,18 +56,27 @@ lemma bothEndsIn_iff {u v : V} {B : Finset V} :
 def NoConsecutive (B : Finset V) (p : GraphPath G) : Prop :=
   ∀ e ∈ p.edges, ¬ bothEndsIn e B
 
+/--
+@isnad1 id=le.1h3v.s5.9909bdbeace1 from=translated src=- shape=76713032 vocab=5422ccbc
+-/
 lemma edges_trimStart_subset (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimStart h).edges ⊆ p.edges := by
   intro e he
   exact mem_edges_iff.2
     ((isSubwalk_trimStart p h).edges_subset (mem_edges_iff.1 he))
 
+/--
+@isnad1 id=le.1h3v.s5.c715a9c6b5f4 from=translated src=- shape=76713032 vocab=eada0451
+-/
 lemma edges_trimFinish_subset (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimFinish h).edges ⊆ p.edges := by
   intro e he
   exact mem_edges_iff.2
     ((isSubwalk_trimFinish p h).edges_subset (mem_edges_iff.1 he))
 
+/--
+@isnad1 id=le.1h4v.s6.17bfc5351278 from=translated src=- shape=30115ee0 vocab=6f467c60
+-/
 lemma edges_dropUntil_subset (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     (p.dropUntil hx).edges ⊆ p.edges := by
   intro e he
@@ -72,47 +84,71 @@ lemma edges_dropUntil_subset (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     ((Walk.isSubwalk_dropUntil p.walk (mem_walk_support.1 hx)).edges_subset
       (mem_edges_iff.1 he))
 
+/--
+@isnad1 id=noconsec.2h5v.s5.dbb548a98e37 from=translated src=- shape=4889c081 vocab=507641f5
+-/
 lemma NoConsecutive_of_edges_subset {B : Finset V} {p q : GraphPath G}
     (hsub : q.edges ⊆ p.edges) (hno : NoConsecutive B p) :
     NoConsecutive B q :=
   fun e he => hno e (hsub he)
 
+/--
+@isnad1 id=mem.1h3v.s6.a23b8218967a from=translated src=- shape=3d769706 vocab=a3bd6d91
+-/
 lemma first_edge_mem (p : GraphPath G) (h : ¬ p.walk.Nil) :
     s(p.start, p.walk.snd) ∈ p.edges := by
   obtain ⟨w, hadj, q, hwalk⟩ := Walk.not_nil_iff.1 h
   rw [mem_edges_iff, hwalk, Walk.edges_cons, Walk.snd_cons]
   exact List.mem_cons_self
 
+/--
+@isnad1 id=not.3h4v.s6.64362919d544 from=translated src=- shape=b5e04e8e vocab=36be223b
+-/
 lemma snd_not_mem_of_NoConsecutive {B : Finset V} {p : GraphPath G}
     (h : ¬ p.walk.Nil) (hs : p.start ∈ B) (hno : NoConsecutive B p) :
     p.walk.snd ∉ B := by
   intro hsnd
   exact hno _ (first_edge_mem p h) (bothEndsIn_iff.2 ⟨hs, hsnd⟩)
 
+/--
+@isnad1 id=eq.2h4v.s6.403e1a643df7 from=translated src=- shape=537f5b16 vocab=7bfa98d8
+-/
 lemma edges_concatAdj {x : V} (p : GraphPath G) (h : G.Adj p.finish x)
     (hx : x ∉ p.support) :
     (p.concatAdj h hx).edges = p.edges ∪ {s(p.finish, x)} := by
   ext e
   simp [edges, concatAdj, Walk.edges_concat, List.concat_eq_append]
 
+/--
+@isnad1 id=eq.2h4v.s6.caddadade7ef from=translated src=- shape=e8e9b18e vocab=c76359fe
+-/
 lemma edges_consAdj {x : V} (p : GraphPath G) (h : G.Adj x p.start)
     (hx : x ∉ p.support) :
     (p.consAdj h hx).edges = p.edges ∪ {s(x, p.start)} := by
   ext e
   simp [edges, consAdj, Walk.edges_cons]
 
+/--
+@isnad1 id=eq.2h4v.s7.0bc51bd8af59 from=translated src=- shape=c6f495d0 vocab=0100f62b
+-/
 lemma edges_splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).edges = p.edges ∪ q.edges ∪ {s(p.finish, q.start)} := by
   ext e
   simp [edges, splice, Walk.edges_append, Walk.edges_cons]
 
+/--
+@isnad1 id=le.1h5v.s6.18285005944d from=translated src=- shape=616e7e22 vocab=97501198
+-/
 lemma leftover_edges_subset {B : Finset V} (p : GraphPath G) {Q : GraphPath G}
     (hQ : Q ∈ leftoverPieces B p) : Q.edges ⊆ p.edges := by
   intro e he
   exact mem_edges_iff.2
     ((leftoverPieces_isSubwalk p Q hQ).edges_subset (mem_edges_iff.1 he))
 
+/--
+@isnad1 id=mem.2h5v.s6.f2b719070206 from=translated src=- shape=7281af74 vocab=802f841a
+-/
 lemma last_edge_mem_ofWalk {u v : V} (w : G.Walk u v) (hw : w.IsPath)
     (h : ¬ w.Nil) :
     s((ofWalk w hw).trimFinish h |>.finish, v) ∈ (ofWalk w hw).edges := by
@@ -120,18 +156,26 @@ lemma last_edge_mem_ofWalk {u v : V} (w : G.Walk u v) (hw : w.IsPath)
     Walk.mk_penultimate_end_mem_edges h
   simpa [edges, ofWalk, trimFinish] using List.mem_toFinset.2 this
 
+/--
+@isnad1 id=mem.1h8v.s6.2c812245b708 from=translated src=- shape=7ec8aa08 vocab=87a7fc7e
+-/
 lemma mem_edges_append_left {u v w : V} {p : G.Walk u v} {q : G.Walk v w}
     {e : Sym2 V} (he : e ∈ p.edges) : e ∈ (p.append q).edges := by
   rw [Walk.edges_append, List.mem_append]
   exact Or.inl he
 
+/--
+@isnad1 id=mem.1h8v.s6.527bd0cbf8a5 from=translated src=- shape=4096120b vocab=87a7fc7e
+-/
 lemma mem_edges_append_right {u v w : V} {p : G.Walk u v} {q : G.Walk v w}
     {e : Sym2 V} (he : e ∈ q.edges) : e ∈ (p.append q).edges := by
   rw [Walk.edges_append, List.mem_append]
   exact Or.inr he
 
 /-- Complement of a leftover run, with exported original-edge subset of the
-opened path plus its closing edge, and both seams among those edges.-/
+opened path plus its closing edge, and both seams among those edges.
+@isnad1 id=ex.3h5v.s8.900daf17ef40 from=translated src=- shape=3b27758b vocab=5822fee1
+-/
 lemma exists_complement_of_leftover_edges {A : Finset V} {p Q : GraphPath G}
     (hs : p.start ∈ A) (hQ : Q ∈ leftoverPieces A p)
     (hclose : G.Adj p.finish p.start) :
@@ -233,7 +277,9 @@ lemma exists_complement_of_leftover_edges {A : Finset V} {p Q : GraphPath G}
       exact mem_union.2 (Or.inl hfirst)
 
 /-- Exact leftover-run count when the path starts in `B`, finishes outside
-`B`, and has no consecutive `B`–`B` edge. No independence of `B` in `G`.-/
+`B`, and has no consecutive `B`–`B` edge. No independence of `B` in `G`.
+@isnad1 id=eq.3h4v.s6.b26b48188803 from=translated src=- shape=963fd3ac vocab=7ce343d1
+-/
 lemma leftoverPieces_length_eq_of_start_mem_finish_not {B : Finset V}
     {p : GraphPath G} (hs : p.start ∈ B) (hf : p.finish ∉ B)
     (hno : NoConsecutive B p) :
@@ -358,7 +404,9 @@ open Nikoghosyan.GraphPath
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 /-- Opened-cycle leftover cover has cardinality `|A|` when the opened path
-starts in `A`, finishes outside `A`, and has no consecutive `A`–`A` edge.-/
+starts in `A`, finishes outside `A`, and has no consecutive `A`–`A` edge.
+@isnad1 id=ex.7h6v.s7.711ff273f7b8 from=translated src=- shape=7c3475da vocab=eecee506
+-/
 lemma exists_cycle_leftover_card_eq {U A : Finset V}
     (c : GraphCycle G) (_hc : c.support = U)
     (hA : A ⊆ U) (_hAne : A.Nonempty)

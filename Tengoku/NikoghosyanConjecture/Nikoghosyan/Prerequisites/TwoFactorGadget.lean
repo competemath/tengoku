@@ -57,9 +57,15 @@ def GadgetAdj : GadgetVert G → GadgetVert G → Prop
   | .port v w _, .port v' w' _ => v = w' ∧ w = v'
   | .clone _ _, .clone _ _ => False
 
+/--
+@isnad1 id=gadgetad.1h4v.s4.decf1c3dec5d from=translated src=- shape=12d257ce vocab=f77590ce
+-/
 lemma gadgetAdj_symm {x y : GadgetVert G} : GadgetAdj G x y → GadgetAdj G y x := by
   cases x <;> cases y <;> intro h <;> simp_all [GadgetAdj]
 
+/--
+@isnad1 id=not.0h3v.s3.40060b8b49eb from=translated src=- shape=442a6e2b vocab=f77590ce
+-/
 lemma gadgetAdj_irrefl (x : GadgetVert G) : ¬ GadgetAdj G x x := by
   cases x with
   | clone => simp [GadgetAdj]
@@ -82,22 +88,40 @@ def gadget : SimpleGraph (GadgetVert G) where
 
 variable {G}
 
+/--
+@isnad1 id=iff.1h6v.s5.7850b3d47285 from=translated src=- shape=afd3d8a2 vocab=2f2aeb3b
+-/
 @[simp] lemma gadget_adj_clone_port {v v' w : V} {b : Fin 2} {h : G.Adj v' w} :
     (gadget G).Adj (.clone v b) (.port v' w h) ↔ v = v' := Iff.rfl
 
+/--
+@isnad1 id=iff.1h6v.s5.d02d0361c64c from=translated src=- shape=c1f4dcb2 vocab=2f2aeb3b
+-/
 @[simp] lemma gadget_adj_port_clone {v v' w : V} {b : Fin 2} {h : G.Adj v' w} :
     (gadget G).Adj (.port v' w h) (.clone v b) ↔ v = v' := Iff.rfl
 
+/--
+@isnad1 id=iff.2h6v.s5.3aeb13f8bbc0 from=translated src=- shape=2a01c7fe vocab=7702ccb6
+-/
 @[simp] lemma gadget_adj_port_port {v w v' w' : V} {h : G.Adj v w} {h' : G.Adj v' w'} :
     (gadget G).Adj (.port v w h) (.port v' w' h') ↔ v = w' ∧ w = v' := Iff.rfl
 
+/--
+@isnad1 id=not.0h6v.s5.0106a23a5a21 from=translated src=- shape=779ca434 vocab=2bc45987
+-/
 @[simp] lemma not_gadget_adj_clone_clone {v v' : V} {b b' : Fin 2} :
     ¬ (gadget G).Adj (.clone v b) (.clone v' b') := by
   simp [gadget, GadgetAdj]
 
+/--
+@isnad1 id=adj.1h4v.s5.c71d8d7cd513 from=translated src=- shape=16f9f8a1 vocab=84d64b5b
+-/
 lemma gadget_adj_mate {v w : V} (h : G.Adj v w) :
     (gadget G).Adj (.port v w h) (.port w v h.symm) := by simp
 
+/--
+@isnad1 id=iff.0h5v.s5.7d25ffa6bd21 from=translated src=- shape=8dda9cbc vocab=2f2aeb3b
+-/
 lemma clone_adj_iff {v : V} {b : Fin 2} {x : GadgetVert G} :
     (gadget G).Adj (.clone v b) x ↔ ∃ w, ∃ h : G.Adj v w, x = .port v w h := by
   cases x with
@@ -112,6 +136,9 @@ lemma clone_adj_iff {v : V} {b : Fin 2} {x : GadgetVert G} :
         cases hv
         exact rfl
 
+/--
+@isnad1 id=iff.1h5v.s6.03013ed82aee from=translated src=- shape=85c99437 vocab=2f2aeb3b
+-/
 lemma port_adj_iff {v w : V} {h : G.Adj v w} {x : GadgetVert G} :
     (gadget G).Adj (.port v w h) x ↔
       (∃ b : Fin 2, x = .clone v b) ∨ ∃ h' : G.Adj w v, x = .port w v h' := by
@@ -173,16 +200,25 @@ noncomputable def twoNbr (F : G.Subgraph) (v : V)
     rw [Set.ncard_eq_toFinset_card' (F.neighborSet v), Set.toFinset_card] at h
     exact h)).symm
 
+/--
+@isnad1 id=mem.1h5v.s7.d43ef262af23 from=translated src=- shape=a4018ac3 vocab=078faef7
+-/
 lemma twoNbr_apply_mem (F : G.Subgraph) (v : V)
     (h : (F.neighborSet v).ncard = 2) (b : Fin 2) :
     (twoNbr F v h b : V) ∈ F.neighborSet v :=
   (twoNbr F v h b).property
 
+/--
+@isnad1 id=eq.1h5v.s7.f739af92c9e8 from=translated src=- shape=e4bfe494 vocab=d3a11445
+-/
 lemma twoNbr_apply_symm (F : G.Subgraph) (v : V)
     (h : (F.neighborSet v).ncard = 2) (w : F.neighborSet v) :
     twoNbr F v h ((twoNbr F v h).symm w) = w :=
   Equiv.apply_symm_apply _ _
 
+/--
+@isnad1 id=eq.1h5v.s7.b6ff3a4352fb from=translated src=- shape=b8ad8e16 vocab=d3a11445
+-/
 lemma twoNbr_symm_apply (F : G.Subgraph) (v : V)
     (h : (F.neighborSet v).ncard = 2) (b : Fin 2) :
     (twoNbr F v h).symm (twoNbr F v h b) = b :=
@@ -200,6 +236,9 @@ noncomputable def factorPartner (F : G.Subgraph)
       else
         .port w v hvw.symm
 
+/--
+@isnad1 id=adj.1h4v.s5.476bce150ebb from=translated src=- shape=4513991d vocab=9a11ac26
+-/
 lemma factorPartner_adj (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) (x : GadgetVert G) :
     (gadget G).Adj x (factorPartner F hdeg x) := by
@@ -210,12 +249,18 @@ lemma factorPartner_adj (F : G.Subgraph)
       · simp [factorPartner, hF]
       · simp [factorPartner, hF]
 
+/--
+@isnad1 id=eq.1h5v.s7.3a41c917633f from=translated src=- shape=df4f150f vocab=d5027692
+-/
 lemma factorPartner_clone (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) (v : V) (b : Fin 2) :
     factorPartner F hdeg (.clone v b) =
       .port v (twoNbr F v (hdeg v) b : V)
         (F.adj_sub (twoNbr_apply_mem F v (hdeg v) b)) := rfl
 
+/--
+@isnad1 id=eq.3h5v.s7.78fa28139689 from=translated src=- shape=b1ece617 vocab=b924fa23
+-/
 lemma factorPartner_port_of_mem (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) {v w : V} (hvw : G.Adj v w)
     (hF : w ∈ F.neighborSet v) :
@@ -223,12 +268,18 @@ lemma factorPartner_port_of_mem (F : G.Subgraph)
       .clone v ((twoNbr F v (hdeg v)).symm ⟨w, hF⟩) := by
   simp [factorPartner, hF]
 
+/--
+@isnad1 id=eq.3h5v.s6.9cd8212029b7 from=translated src=- shape=8e283c96 vocab=14b7bf13
+-/
 lemma factorPartner_port_of_notMem (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) {v w : V} (hvw : G.Adj v w)
     (hF : w ∉ F.neighborSet v) :
     factorPartner F hdeg (.port v w hvw) = .port w v hvw.symm := by
   simp [factorPartner, hF]
 
+/--
+@isnad1 id=involuti.1h3v.s5.dd65abdb486d from=translated src=- shape=1ddf589d vocab=3ceea7e3
+-/
 lemma factorPartner_involutive (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) :
     Function.Involutive (factorPartner F hdeg) := by
@@ -260,6 +311,9 @@ noncomputable def matchingFromDegreeTwo (F : G.Subgraph)
     change y = factorPartner F hdeg x at h
     rw [h, factorPartner_involutive F hdeg x]⟩
 
+/--
+@isnad1 id=isperfec.1h3v.s5.223ad7494615 from=translated src=- shape=1042e0f3 vocab=0f5e1524
+-/
 theorem matchingFromDegreeTwo_isPerfectMatching (F : G.Subgraph)
     (hdeg : ∀ v, (F.neighborSet v).ncard = 2) :
     (matchingFromDegreeTwo F hdeg).IsPerfectMatching := by
@@ -270,12 +324,17 @@ theorem matchingFromDegreeTwo_isPerfectMatching (F : G.Subgraph)
   exact hy
 
 /-- One direction of the gadget reduction: a spanning original degree-two
-subgraph produces a perfect matching of the two-clone gadget.-/
+subgraph produces a perfect matching of the two-clone gadget.
+@isnad1 id=ex.1h3v.s5.cdc6564905f5 from=translated src=- shape=071b80a1 vocab=ff1bedde
+-/
 theorem exists_gadget_perfectMatching_of_spanningDegreeTwo {F : G.Subgraph}
     (hF : IsSpanningDegreeTwo F) :
     ∃ M : Subgraph (gadget G), M.IsPerfectMatching :=
   ⟨matchingFromDegreeTwo F hF.2, matchingFromDegreeTwo_isPerfectMatching F hF.2⟩
 
+/--
+@isnad1 id=ex.1h5v.s6.1bb6281957fc from=translated src=- shape=d60168da vocab=ff447f22
+-/
 lemma clone_matched_to_own_port {M : Subgraph (gadget G)}
     (hM : M.IsPerfectMatching) (v : V) (b : Fin 2) :
     ∃ w, ∃ h : G.Adj v w, M.Adj (.clone v b) (.port v w h) := by
@@ -283,6 +342,9 @@ lemma clone_matched_to_own_port {M : Subgraph (gadget G)}
   obtain ⟨w, h, rfl⟩ := clone_adj_iff.mp (M.adj_sub hx)
   exact ⟨w, h, hx⟩
 
+/--
+@isnad1 id=or.2h5v.s6.9297a29ce9a1 from=translated src=- shape=0f7c320a vocab=ff447f22
+-/
 lemma port_partner_cases {M : Subgraph (gadget G)} (hM : M.IsPerfectMatching)
     {v w : V} (hvw : G.Adj v w) :
     (∃ b : Fin 2, M.Adj (.port v w hvw) (.clone v b)) ∨
@@ -292,14 +354,23 @@ lemma port_partner_cases {M : Subgraph (gadget G)} (hM : M.IsPerfectMatching)
   · exact .inl ⟨b, hx⟩
   · exact .inr ⟨h', hx⟩
 
+/--
+@isnad1 id=adj.1h5v.s5.481ea1dc637b from=translated src=- shape=41ed81c5 vocab=9b86ef09
+-/
 lemma gadgetSubgraph_adj_comm {M : Subgraph (gadget G)} {x y : GadgetVert G}
     (h : M.Adj x y) : M.Adj y x :=
   M.symm.symm x y h
 
+/--
+@isnad1 id=ne.1h6v.s5.080836558962 from=translated src=- shape=482ecaab vocab=1e284464
+-/
 lemma not_clone_eq_port {v w w' : V} {b : Fin 2} {h : G.Adj w w'} :
     (GadgetVert.clone v b : GadgetVert G) ≠ .port w w' h := by
   intro h'; cases h'
 
+/--
+@isnad1 id=ex.3h5v.s6.61f7a1a0254e from=translated src=- shape=55c9abef vocab=ff447f22
+-/
 lemma locally_matched_of_not_mate {M : Subgraph (gadget G)}
     (hM : M.IsPerfectMatching) {v w : V} (hvw : G.Adj v w)
     (hne : ∀ h' : G.Adj w v, ¬ M.Adj (.port v w hvw) (.port w v h')) :
@@ -308,6 +379,9 @@ lemma locally_matched_of_not_mate {M : Subgraph (gadget G)}
   · exact h
   · exact (hne h' hm).elim
 
+/--
+@isnad1 id=iff.2h5v.s6.bbcb1342ca00 from=translated src=- shape=ec75c0a1 vocab=e16c0917
+-/
 lemma locally_matched_symm {M : Subgraph (gadget G)} (hM : M.IsPerfectMatching)
     {v w : V} (hvw : G.Adj v w) :
     (∃ b : Fin 2, M.Adj (.port v w hvw) (.clone v b)) ↔
@@ -340,6 +414,9 @@ def degreeTwoFromMatching (M : Subgraph (gadget G)) (hM : M.IsPerfectMatching) :
     obtain ⟨b', hb'⟩ := (locally_matched_symm hM hvw).mp ⟨b, hb⟩
     exact ⟨hvw.symm, b', hb'⟩⟩
 
+/--
+@isnad1 id=ne.5h6v.s6.f955a91c91f6 from=translated src=- shape=2168f13d vocab=ff447f22
+-/
 lemma clones_match_distinct_ports {M : Subgraph (gadget G)}
     (hM : M.IsPerfectMatching) (v : V) :
     ∀ {w0 w1 : V} {h0 : G.Adj v w0} {h1 : G.Adj v w1},
@@ -354,6 +431,9 @@ lemma clones_match_distinct_ports {M : Subgraph (gadget G)}
   injection (hx0.trans hx1.symm) with _ hbit
   exact (Fin.zero_ne_one hbit).elim
 
+/--
+@isnad1 id=isspanni.1h3v.s5.92d8273e0ba8 from=translated src=- shape=c7b1a328 vocab=7fadfb9f
+-/
 theorem exists_spanningDegreeTwo_of_gadget_perfectMatching
     {M : Subgraph (gadget G)} (hM : M.IsPerfectMatching) :
     IsSpanningDegreeTwo (degreeTwoFromMatching M hM) := by
@@ -392,7 +472,9 @@ theorem exists_spanningDegreeTwo_of_gadget_perfectMatching
     (hcard.symm.trans_le (Set.ncard_le_ncard hsup))
 
 /-- A graph has a spanning degree-two subgraph if and only if its two-clone
-gadget has a perfect matching.-/
+gadget has a perfect matching.
+@isnad1 id=iff.0h2v.s5.1e73f5e11696 from=translated src=- shape=af2e293b vocab=ff1bedde
+-/
 theorem gadget_perfectMatching_iff_spanningDegreeTwo :
     (∃ M : Subgraph (gadget G), M.IsPerfectMatching) ↔
       ∃ F : G.Subgraph, IsSpanningDegreeTwo F := by

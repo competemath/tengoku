@@ -32,6 +32,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=eq.0h3v.s5.da2974c923af from=translated src=- shape=f52c0117 vocab=d64e7eb1
+-/
 lemma eligibleSet_eq_sdiff_ineligible (U : Finset V) :
     eligibleSet G U = U \ ineligibleSet G U := by
   ext x
@@ -50,6 +53,9 @@ lemma eligibleSet_eq_sdiff_ineligible (U : Finset V) :
       exact h.mp hnotF hxU
     exact (mem_eligibleSet_iff (G := G)).2 ⟨hxU, hE⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.1662ad16ce9f from=translated src=- shape=437b5198 vocab=31c2ed24
+-/
 lemma sdiff_erase_eq_sdiff_of_mem {s t : Finset V} {a : V} (ha : a ∈ t) :
     s.erase a \ t.erase a = s \ t := by
   ext x
@@ -66,6 +72,9 @@ lemma sdiff_erase_eq_sdiff_of_mem {s t : Finset V} {a : V} (ha : a ∈ t) :
     have hne : x ≠ a := fun h => hxt (h ▸ ha)
     exact mem_sdiff.2 ⟨mem_erase.2 ⟨hne, hxs⟩, fun h => hxt (mem_erase.1 h).2⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.c2508f8d3a49 from=translated src=- shape=ee4d1211 vocab=bf48793a
+-/
 lemma erase_sdiff_comm (s t : Finset V) (a : V) :
     s.erase a \ t = (s \ t).erase a := by
   ext x
@@ -79,6 +88,9 @@ lemma erase_sdiff_comm (s t : Finset V) (a : V) :
     have hxs := mem_sdiff.1 hxL.2
     exact mem_sdiff.2 ⟨mem_erase.2 ⟨hxL.1, hxs.1⟩, hxs.2⟩
 
+/--
+@isnad1 id=le.0h4v.s5.c20b833ef7f4 from=translated src=- shape=c7a0b36c vocab=ddbc12c3
+-/
 lemma subset_erase_ineligible {U : Finset V} {f : V} :
     (ineligibleSet G U).erase f ⊆ U.erase f := by
   intro x hx
@@ -86,7 +98,9 @@ lemma subset_erase_ineligible {U : Finset V} {f : V} :
   exact mem_erase.2 ⟨hxF.1, ineligibleSet_subset (G := G) U hxF.2⟩
 
 /-- Generic single-vertex common-F deletion, conditional on the numerical
-F-cut identity of the original carrier.-/
+F-cut identity of the original carrier.
+@isnad1 id=and.2h4v.s7.4ec0b7ac352e from=translated src=- shape=22a28ccb vocab=8e8c6e93
+-/
 lemma ineligible_deletion_erase {U : Finset V} {f : V}
     (hf : f ∈ ineligibleSet G U)
     (hfcut : componentCount G (U \ ineligibleSet G U) =
@@ -202,7 +216,9 @@ lemma ineligible_deletion_erase {U : Finset V} {f : V}
 
 /-- Iterate common-F deletion over an arbitrary subset of the original
 ineligible set. The exact `F` equality after each step places the remaining
-deleted vertices in the new ineligible set.-/
+deleted vertices in the new ineligible set.
+@isnad1 id=and.2h4v.s7.e1779f8b7106 from=translated src=- shape=9a5b80a3 vocab=298e2ab1
+-/
 lemma ineligible_deletion_sdiff {U C : Finset V}
     (hC : C ⊆ ineligibleSet G U)
     (hfcut : componentCount G (U \ ineligibleSet G U) =
@@ -239,6 +255,9 @@ lemma ineligible_deletion_sdiff {U C : Finset V}
     · rw [hEq]
       simpa using hfcutC
 
+/--
+@isnad1 id=and.2h4v.s6.8c439d9f3b86 from=translated src=- shape=a208cacd vocab=12c9e97b
+-/
 lemma ineligible_deletion_erase_of_cotreeOn {U : Finset V} {f : V}
     (hU : CotreeOn G U) (hf : f ∈ ineligibleSet G U) :
     pathCoverNumber G (U.erase f) = pathCoverNumber G U + 1 ∧
@@ -247,6 +266,9 @@ lemma ineligible_deletion_erase_of_cotreeOn {U : Finset V} {f : V}
   let h := ineligible_deletion_erase hf (componentCount_sdiff_ineligibleSet_eq hU)
   ⟨h.1, h.2.1, h.2.2.1⟩
 
+/--
+@isnad1 id=and.2h4v.s6.906bd147c076 from=translated src=- shape=67018691 vocab=f9afcae6
+-/
 lemma ineligible_deletion_sdiff_of_cotreeOn {U C : Finset V}
     (hU : CotreeOn G U) (hC : C ⊆ ineligibleSet G U) :
     pathCoverNumber G (U \ C) = pathCoverNumber G U + C.card ∧
@@ -255,6 +277,9 @@ lemma ineligible_deletion_sdiff_of_cotreeOn {U C : Finset V}
   let h := ineligible_deletion_sdiff hC (componentCount_sdiff_ineligibleSet_eq hU)
   ⟨h.1, h.2.1, h.2.2.1⟩
 
+/--
+@isnad1 id=and.2h4v.s6.a40905f221be from=translated src=- shape=a208cacd vocab=33aed1b5
+-/
 lemma ineligible_deletion_erase_of_isCograph {U : Finset V} {f : V}
     (hU : IsCograph G U) (hf : f ∈ ineligibleSet G U) :
     pathCoverNumber G (U.erase f) = pathCoverNumber G U + 1 ∧
@@ -262,6 +287,9 @@ lemma ineligible_deletion_erase_of_isCograph {U : Finset V} {f : V}
     ineligibleSet G (U.erase f) = (ineligibleSet G U).erase f :=
   ineligible_deletion_erase_of_cotreeOn (cotreeOn_of_isCograph hU) hf
 
+/--
+@isnad1 id=and.2h4v.s6.ac3e7bf8944f from=translated src=- shape=67018691 vocab=efc2aca8
+-/
 lemma ineligible_deletion_sdiff_of_isCograph {U C : Finset V}
     (hU : IsCograph G U) (hC : C ⊆ ineligibleSet G U) :
     pathCoverNumber G (U \ C) = pathCoverNumber G U + C.card ∧
@@ -269,7 +297,9 @@ lemma ineligible_deletion_sdiff_of_isCograph {U C : Finset V}
     ineligibleSet G (U \ C) = ineligibleSet G U \ C :=
   ineligible_deletion_sdiff_of_cotreeOn (cotreeOn_of_isCograph hU) hC
 
-/-- Canonical flattened `Nikoghosyan.IsCograph` specialization.-/
+/-- Canonical flattened `Nikoghosyan.IsCograph` specialization.
+@isnad1 id=and.2h4v.s6.8c8ab2e3c6af from=translated src=- shape=a208cacd vocab=9adde38e
+-/
 lemma ineligible_deletion_erase_of_canonical {U : Finset V} {f : V}
     (hU : Nikoghosyan.IsCograph G U) (hf : f ∈ ineligibleSet G U) :
     pathCoverNumber G (U.erase f) = pathCoverNumber G U + 1 ∧
@@ -277,6 +307,9 @@ lemma ineligible_deletion_erase_of_canonical {U : Finset V} {f : V}
     ineligibleSet G (U.erase f) = (ineligibleSet G U).erase f :=
   ineligible_deletion_erase_of_isCograph (isCograph_iff.2 hU) hf
 
+/--
+@isnad1 id=and.2h4v.s6.99367d9bcbca from=translated src=- shape=67018691 vocab=c88f64a0
+-/
 lemma ineligible_deletion_sdiff_of_canonical {U C : Finset V}
     (hU : Nikoghosyan.IsCograph G U) (hC : C ⊆ ineligibleSet G U) :
     pathCoverNumber G (U \ C) = pathCoverNumber G U + C.card ∧

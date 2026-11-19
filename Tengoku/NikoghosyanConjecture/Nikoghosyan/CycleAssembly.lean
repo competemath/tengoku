@@ -24,9 +24,15 @@ variable {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=nodup.0h3v.s5.0dc8e236b7f1 from=translated src=- shape=19bd6867 vocab=914eba15
+-/
 lemma support_nodup (p : GraphPath G) : p.walk.support.Nodup :=
   (Walk.isPath_def _).1 p.isPath
 
+/--
+@isnad1 id=eq.0h3v.s5.467fb69803a5 from=translated src=- shape=0bb5e01e vocab=af55185f
+-/
 lemma card_support (p : GraphPath G) : p.support.card = p.walk.length + 1 := by
   simp [support, List.toFinset_card_of_nodup p.support_nodup, Walk.length_support]
 
@@ -44,23 +50,34 @@ def splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
     exact Finset.disjoint_left.1 hd
       (List.mem_toFinset.2 hxp) (List.mem_toFinset.2 hxq)
 
+/--
+@isnad1 id=eq.2h4v.s6.216263716173 from=translated src=- shape=d39e50e6 vocab=eee652c2
+-/
 @[simp]
 lemma support_splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).support = p.support ∪ q.support := by
   simp [splice, GraphPath.support, Walk.support_append, Walk.support_cons]
 
+/--
+@isnad1 id=eq.2h4v.s6.2e3bbb4ac2e8 from=translated src=- shape=5a68a923 vocab=df19d7a5
+-/
 lemma reverse_splice_start (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).reverse.start = q.finish :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.8790c81cc9a2 from=translated src=- shape=7a6d4c1c vocab=df19d7a5
+-/
 lemma reverse_splice_finish (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).reverse.finish = p.start :=
   rfl
 
-/-- If a path contains the chord between its endpoints, it is a single edge.-/
+/-- If a path contains the chord between its endpoints, it is a single edge.
+@isnad1 id=eq.1h3v.s6.86a016a8a1cc from=translated src=- shape=fc2a7b80 vocab=bb16ef80
+-/
 lemma length_eq_one_of_mem_edges_start_finish :
     ∀ (p : GraphPath G), s(p.start, p.finish) ∈ p.walk.edges → p.walk.length = 1 := by
   intro p he
@@ -109,6 +126,9 @@ def toCycle (p : GraphPath G) (h : G.Adj p.finish p.start)
       rwa [Walk.reverse_concat]
     exact (Walk.isCycle_reverse).1 this
 
+/--
+@isnad1 id=eq.2h3v.s5.56c55b4a7dc2 from=translated src=- shape=bf797c66 vocab=05900eff
+-/
 @[simp]
 lemma support_toCycle (p : GraphPath G) (h : G.Adj p.finish p.start)
     (h3 : 3 ≤ p.support.card) :
@@ -119,6 +139,9 @@ end GraphPath
 
 namespace GraphCycle
 
+/--
+@isnad1 id=ishamilt.1h3v.s5.9e5aa7839357 from=translated src=- shape=e03e121f vocab=416cf8d8
+-/
 lemma isHamiltonianCycle_of_support_eq_univ (c : GraphCycle G)
     (h : c.support = univ) : c.walk.IsHamiltonianCycle := by
   rw [Walk.isHamiltonianCycle_iff_isCycle_and_length_eq]
@@ -127,6 +150,9 @@ lemma isHamiltonianCycle_of_support_eq_univ (c : GraphCycle G)
   have hcard : c.support.card = Fintype.card V := by simp [h]
   exact hlen.trans hcard
 
+/--
+@isnad1 id=ishamilt.1h3v.s5.92c37293fce5 from=translated src=- shape=fbd55cb1 vocab=24ead44d
+-/
 lemma isHamiltonian_of_support_eq_univ (c : GraphCycle G)
     (h : c.support = univ) : G.IsHamiltonian := by
   intro _
@@ -135,7 +161,9 @@ lemma isHamiltonian_of_support_eq_univ (c : GraphCycle G)
 end GraphCycle
 
 /-- Under order at least three, Mathlib Hamiltonicity is equivalent to the
-existence of a genuine spanning original-edge cycle.-/
+existence of a genuine spanning original-edge cycle.
+@isnad1 id=iff.1h2v.s5.14de47cf132d from=translated src=- shape=54985360 vocab=dc7a761b
+-/
 lemma isHamiltonian_iff_exists_spanning_graphCycle
     (hord : 3 ≤ Fintype.card V) :
     G.IsHamiltonian ↔ ∃ c : GraphCycle G, c.support = univ := by
@@ -153,16 +181,25 @@ lemma isHamiltonian_iff_exists_spanning_graphCycle
 def IsSpanningDegreeTwo (F : G.Subgraph) : Prop :=
   F.IsSpanning ∧ ∀ v : V, (F.neighborSet v).ncard = 2
 
+/--
+@isnad1 id=eq.0h4v.s5.8deaf2254d33 from=translated src=- shape=6a35fe9a vocab=28aa7969
+-/
 lemma spanningCoe_neighborSet (F : G.Subgraph) (v : V) :
     F.spanningCoe.neighborSet v = F.neighborSet v :=
   rfl
 
+/--
+@isnad1 id=iscycles.1h3v.s5.800f0cdbc2ed from=translated src=- shape=7d1bc9a4 vocab=33784523
+-/
 lemma isCycles_of_degree_two {F : G.Subgraph}
     (hdeg : ∀ v : V, (F.neighborSet v).ncard = 2) :
     F.spanningCoe.IsCycles := by
   intro v _
   simpa [spanningCoe_neighborSet] using hdeg v
 
+/--
+@isnad1 id=nonempty.1h4v.s5.1ac9785abd13 from=translated src=- shape=552c5196 vocab=5faaf49f
+-/
 lemma neighborSet_nonempty_of_degree_two {F : G.Subgraph}
     (hdeg : ∀ v : V, (F.neighborSet v).ncard = 2) (v : V) :
     (F.neighborSet v).Nonempty := by
@@ -171,10 +208,16 @@ lemma neighborSet_nonempty_of_degree_two {F : G.Subgraph}
     exact two_pos
   exact (Set.ncard_pos (Set.toFinite _)).1 hpos
 
+/--
+@isnad1 id=nonempty.0h3v.s4.a3c4261c1ee0 from=translated src=- shape=628ae653 vocab=a4a1a47d
+-/
 lemma connectedComponent_supp_nonempty (c : G.ConnectedComponent) :
     c.supp.Nonempty :=
   c.ind fun v => ⟨v, by simp [ConnectedComponent.mem_supp_iff]⟩
 
+/--
+@isnad1 id=disjoint.1h4v.s6.c7be697e8011 from=translated src=- shape=8010fbbc vocab=de3af2a7
+-/
 lemma connectedComponent_disjoint_supp {c d : G.ConnectedComponent} (h : c ≠ d) :
     Disjoint c.supp d.supp := by
   rw [Set.disjoint_iff]
@@ -183,6 +226,9 @@ lemma connectedComponent_disjoint_supp {c d : G.ConnectedComponent} (h : c ≠ d
   simp [ConnectedComponent.mem_supp_iff] at hx
   rw [← hx.1, hx.2]
 
+/--
+@isnad1 id=disjoint.4h6v.s6.23fd782ed17c from=translated src=- shape=26dfce4c vocab=964b2517
+-/
 lemma pairwise_disjoint_of_mem {α} {s : α → Finset V} {l : List α}
     (h : l.Pairwise fun a b => Disjoint (s a) (s b))
     {a b : α} (ha : a ∈ l) (hb : b ∈ l) (hne : a ≠ b) :
@@ -197,6 +243,9 @@ lemma pairwise_disjoint_of_mem {α} {s : α → Finset V} {l : List α}
     · exact (h'.1 a ha').symm
     · exact ih h'.2 ha' hb' hne
 
+/--
+@isnad1 id=ex.1h4v.s6.53c4cacce044 from=translated src=- shape=58b3ab6b vocab=4ac6e111
+-/
 lemma exists_graphCycle_of_component (F : G.Subgraph)
     (hdeg : ∀ v : V, (F.neighborSet v).ncard = 2)
     (c : F.spanningCoe.ConnectedComponent) :
@@ -224,6 +273,9 @@ noncomputable def graphCycleOfComponent (F : G.Subgraph)
     (c : F.spanningCoe.ConnectedComponent) : GraphCycle G :=
   Classical.choose (exists_graphCycle_of_component F hdeg c)
 
+/--
+@isnad1 id=iff.1h5v.s6.30a5608dbf6f from=translated src=- shape=206478c1 vocab=82b351a7
+-/
 lemma mem_graphCycleOfComponent_support (F : G.Subgraph)
     (hdeg : ∀ v : V, (F.neighborSet v).ncard = 2)
     (c : F.spanningCoe.ConnectedComponent) {x : V} :
@@ -287,9 +339,15 @@ def toSubgraph (F : CycleFactor G) : G.Subgraph where
     match h with
     | ⟨c, hc, hadj⟩ => ⟨c, hc, hadj.symm⟩⟩
 
+/--
+@isnad1 id=isspanni.0h3v.s4.169c2457b116 from=translated src=- shape=8d5d1bfe vocab=8e3b5274
+-/
 lemma toSubgraph_isSpanning (F : CycleFactor G) : F.toSubgraph.IsSpanning :=
   fun _ => trivial
 
+/--
+@isnad1 id=eq.0h4v.s5.ec415ad662fb from=translated src=- shape=db0ee793 vocab=915f3866
+-/
 lemma toSubgraph_ncard_eq_two (F : CycleFactor G) (x : V) :
     (F.toSubgraph.neighborSet x).ncard = 2 := by
   obtain ⟨c, hc, hx⟩ := F.mem_iff x
@@ -311,12 +369,18 @@ lemma toSubgraph_ncard_eq_two (F : CycleFactor G) (x : V) :
   rw [hneigh]
   exact Walk.IsCycle.ncard_neighborSet_toSubgraph_eq_two c.isCycle hxL
 
+/--
+@isnad1 id=isspanni.0h3v.s4.6743ceb7386c from=translated src=- shape=8d5d1bfe vocab=396a7105
+-/
 lemma toSubgraph_isSpanningDegreeTwo (F : CycleFactor G) :
     IsSpanningDegreeTwo F.toSubgraph :=
   ⟨F.toSubgraph_isSpanning, F.toSubgraph_ncard_eq_two⟩
 
 end CycleFactor
 
+/--
+@isnad1 id=iff.0h2v.s4.7ec9d0a38303 from=translated src=- shape=09ea99e4 vocab=b4dae605
+-/
 lemma exists_cycleFactor_iff_spanningDegreeTwo :
     Nonempty (CycleFactor G) ↔ ∃ F : G.Subgraph, IsSpanningDegreeTwo F := by
   constructor
@@ -325,6 +389,9 @@ lemma exists_cycleFactor_iff_spanningDegreeTwo :
   · intro ⟨F, hF⟩
     exact ⟨CycleFactor.ofSpanningDegreeTwo hF⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s4.33fd1ec8bd8e from=translated src=- shape=e7a5d21f vocab=b4dae605
+-/
 lemma exists_cycleFactor_of_spanningDegreeTwo {F : G.Subgraph}
     (hF : IsSpanningDegreeTwo F) : Nonempty (CycleFactor G) :=
   ⟨CycleFactor.ofSpanningDegreeTwo hF⟩

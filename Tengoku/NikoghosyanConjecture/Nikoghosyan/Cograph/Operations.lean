@@ -26,7 +26,9 @@ open SimpleGraph
 
 variable {V : Type u} {G : SimpleGraph V}
 
-/-- No `G`-edge runs between the two sides of a partition with no cross edges.-/
+/-- No `G`-edge runs between the two sides of a partition with no cross edges.
+@isnad1 id=mem.4h6v.s6.44fed8c76c7e from=translated src=- shape=00ab5c2a vocab=29cd263a
+-/
 lemma mem_of_adj_of_no_cross {A B : Set V} {a b : V}
     (hcover : A ∪ B = Set.univ) (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (ha : a ∈ A) (hadj : G.Adj a b) : b ∈ A := by
@@ -37,6 +39,9 @@ lemma mem_of_adj_of_no_cross {A B : Set V} {a b : V}
   · exact h
   · exact (hnocross a ha b h hadj).elim
 
+/--
+@isnad1 id=mem.4h6v.s6.a6baad04a98b from=translated src=- shape=b9413eed vocab=29cd263a
+-/
 lemma mem_of_adj_of_no_cross' {A B : Set V} {a b : V}
     (hcover : A ∪ B = Set.univ) (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (ha : a ∈ B) (hadj : G.Adj a b) : b ∈ B := by
@@ -46,7 +51,9 @@ lemma mem_of_adj_of_no_cross' {A B : Set V} {a b : V}
     mem_of_adj_of_no_cross (A := B) (B := A) (by simpa [Set.union_comm] using hcover)
       hsym ha hadj
 
-/-- An induced `P4` cannot meet both sides of a disjoint union.-/
+/-- An induced `P4` cannot meet both sides of a disjoint union.
+@isnad1 id=or.3h8v.s7.b130154cf01e from=translated src=- shape=8e8fa124 vocab=1cc0e16c
+-/
 lemma inducedP4_subset_of_disjoint_union {A B : Set V} {a b c d : V}
     (hcover : A ∪ B = Set.univ) (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (hp : InducedP4 G a b c d) : ({a, b, c, d} : Set V) ⊆ A ∨ ({a, b, c, d} : Set V) ⊆ B := by
@@ -74,7 +81,9 @@ lemma inducedP4_subset_of_disjoint_union {A B : Set V} {a b c d : V}
     have hdB : d ∈ B := mem_of_adj_of_no_cross' hcover hnocross hcB hcd
     rcases hx' with rfl | rfl | rfl | rfl <;> assumption
 
-/-- Disjoint union preserves `P4`-freeness.-/
+/-- Disjoint union preserves `P4`-freeness.
+@isnad1 id=iscograp.4h4v.s6.ef5606016fff from=translated src=- shape=8289bf99 vocab=9931f214
+-/
 lemma isCographOn_disjoint_union {A B : Set V}
     (hcover : A ∪ B = Set.univ) (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (hA : IsCographOn G A) (hB : IsCographOn G B) : IsCographGraph G := by
@@ -83,6 +92,9 @@ lemma isCographOn_disjoint_union {A B : Set V}
   · exact hA (hA' (by simp)) (hA' (by simp)) (hA' (by simp)) (hA' (by simp)) hp
   · exact hB (hB' (by simp)) (hB' (by simp)) (hB' (by simp)) (hB' (by simp)) hp
 
+/--
+@isnad1 id=iscograp.5h4v.s6.7a37f6200325 from=translated src=- shape=3d227e19 vocab=125ce2b1
+-/
 lemma isCographGraph_disjoint_union [Fintype V] {A B : Finset V} [DecidableEq V]
     (_hdisj : Disjoint A B) (hcover : A ∪ B = Finset.univ)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -99,7 +111,9 @@ lemma isCographGraph_disjoint_union [Fintype V] {A B : Finset V} [DecidableEq V]
     exact hnocross a ha b hb
 
 /-- Adjacent pairs among the four vertices of an induced `P4` are exactly the three
-path edges.-/
+path edges.
+@isnad1 id=or.5h8v.s7.2582eb62fd5d from=translated src=- shape=da0c0637 vocab=35de61df
+-/
 lemma inducedP4_adj_mem_path_edges [DecidableEq V] {a b c d x y : V}
     (hp : InducedP4 G a b c d)
     (hx : x ∈ ({a, b, c, d} : Finset V)) (hy : y ∈ ({a, b, c, d} : Finset V))
@@ -131,6 +145,9 @@ lemma inducedP4_adj_mem_path_edges [DecidableEq V] {a b c d x y : V}
     · exact Or.inr (Or.inr (Sym2.eq_swap))
     · exact (hne rfl).elim
 
+/--
+@isnad1 id=eq.1h6v.s6.cc6e12c67403 from=translated src=- shape=00a873a3 vocab=b90c1cdb
+-/
 lemma card_p4_path_edges [DecidableEq V] {a b c d : V} (hp : InducedP4 G a b c d) :
     ({s(a, b), s(b, c), s(c, d)} : Finset (Sym2 V)).card = 3 := by
   have h1 : s(a, b) ≠ s(b, c) := by
@@ -156,7 +173,9 @@ lemma card_p4_path_edges [DecidableEq V] {a b c d : V} (hp : InducedP4 G a b c d
     · exact hp.ne_bd h'
   simp [h1, h2, h3]
 
-/-- Complete join of a covering partition preserves `P4`-freeness.-/
+/-- Complete join of a covering partition preserves `P4`-freeness.
+@isnad1 id=iscograp.4h4v.s5.3252c48bf3fc from=translated src=- shape=388dbc58 vocab=5e990db9
+-/
 lemma isCographGraph_complete_join [DecidableEq V] {A B : Set V}
     (hcover : A ∪ B = Set.univ) (hAB : G.IsCompleteBetween A B)
     (hA : IsCographOn G A) (hB : IsCographOn G B) : IsCographGraph G := by
@@ -404,7 +423,9 @@ lemma isCographGraph_complete_join [DecidableEq V] {A B : Set V}
           exact (hxd this.symm).elim
     exact hp.not_adj_other_three hxquad hother
 
-/-- Complete join of finset parts preserves `P4`-freeness.-/
+/-- Complete join of finset parts preserves `P4`-freeness.
+@isnad1 id=iscograp.4h4v.s5.be7312722898 from=translated src=- shape=c1d1f1c8 vocab=17bec588
+-/
 lemma isCographGraph_complete_join_finset [Fintype V] [DecidableEq V] {A B : Finset V}
     (hcover : A ∪ B = Finset.univ) (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hA : IsCograph G A) (hB : IsCograph G B) : IsCographGraph G :=
@@ -418,7 +439,9 @@ lemma isCographGraph_complete_join_finset [Fintype V] [DecidableEq V] {A B : Fin
         simpa [Finset.mem_union] using this) hAB hA hB
 
 /-- Following a `G`-edge from `A` cannot land in `B` if there are no cross edges;
-if the other end already lies in `A ∪ B`, it therefore lies in `A`.-/
+if the other end already lies in `A ∪ B`, it therefore lies in `A`.
+@isnad1 id=mem.4h6v.s6.e33317cedf25 from=translated src=- shape=b0788362 vocab=32e1feea
+-/
 lemma mem_of_adj_of_no_cross_of_mem {A B : Set V} {a b : V}
     (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (ha : a ∈ A) (hbAB : b ∈ A ∨ b ∈ B) (hadj : G.Adj a b) : b ∈ A := by
@@ -426,6 +449,9 @@ lemma mem_of_adj_of_no_cross_of_mem {A B : Set V} {a b : V}
   · exact hbA
   · exact (hnocross a ha b hbB hadj).elim
 
+/--
+@isnad1 id=mem.4h6v.s6.9d7bd4cc4fa9 from=translated src=- shape=9ec4929f vocab=32e1feea
+-/
 lemma mem_of_adj_of_no_cross_of_mem' {A B : Set V} {a b : V}
     (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (ha : a ∈ B) (hbAB : b ∈ A ∨ b ∈ B) (hadj : G.Adj a b) : b ∈ B := by
@@ -434,7 +460,9 @@ lemma mem_of_adj_of_no_cross_of_mem' {A B : Set V} {a b : V}
   have hbBA : b ∈ B ∨ b ∈ A := hbAB.symm
   exact mem_of_adj_of_no_cross_of_mem (A := B) (B := A) hsym ha hbBA hadj
 
-/-- An induced `P4` contained in `A ∪ B` cannot meet both sides of a no-cross partition.-/
+/-- An induced `P4` contained in `A ∪ B` cannot meet both sides of a no-cross partition.
+@isnad1 id=or.3h8v.s7.2c27dc42b3e1 from=translated src=- shape=cf54600e vocab=1bdb1da6
+-/
 lemma inducedP4_subset_of_no_cross {A B : Set V} {a b c d : V}
     (hmem : ({a, b, c, d} : Set V) ⊆ A ∪ B)
     (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
@@ -471,7 +499,9 @@ lemma inducedP4_subset_of_no_cross {A B : Set V} {a b c d : V}
       mem_of_adj_of_no_cross_of_mem' hnocross hcB (mem4 (by simp)) hcd
     rcases hx' with rfl | rfl | rfl | rfl <;> assumption
 
-/-- Disjoint union of two `P4`-free sets remains `P4`-free on the union.-/
+/-- Disjoint union of two `P4`-free sets remains `P4`-free on the union.
+@isnad1 id=iscograp.3h4v.s5.37a3d746c286 from=translated src=- shape=2cb2ad56 vocab=a641c05b
+-/
 lemma isCographOn_union_of_no_cross {A B : Set V}
     (hnocross : ∀ x ∈ A, ∀ y ∈ B, ¬ G.Adj x y)
     (hA : IsCographOn G A) (hB : IsCographOn G B) : IsCographOn G (A ∪ B) := by
@@ -485,6 +515,9 @@ lemma isCographOn_union_of_no_cross {A B : Set V}
   · exact hA (hA' (by simp)) (hA' (by simp)) (hA' (by simp)) (hA' (by simp)) hp
   · exact hB (hB' (by simp)) (hB' (by simp)) (hB' (by simp)) (hB' (by simp)) hp
 
+/--
+@isnad1 id=iscograp.3h4v.s6.88a6e23dd506 from=translated src=- shape=984668a0 vocab=50ec322d
+-/
 lemma isCograph_union_of_no_cross [DecidableEq V] {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     (hA : IsCograph G A) (hB : IsCograph G B) : IsCograph G (A ∪ B) := by
@@ -492,7 +525,9 @@ lemma isCograph_union_of_no_cross [DecidableEq V] {A B : Finset V}
   exact isCographOn_union_of_no_cross (A := (A : Set V)) (B := (B : Set V))
     (fun a ha b hb => hnocross a ha b hb) hA hB
 
-/-- Complete join of two `P4`-free sets remains `P4`-free on the union.-/
+/-- Complete join of two `P4`-free sets remains `P4`-free on the union.
+@isnad1 id=iscograp.3h4v.s5.53214f8f038c from=translated src=- shape=92912e9f vocab=db55e44e
+-/
 lemma isCographOn_union_of_complete_join [DecidableEq V] {A B : Set V}
     (hAB : G.IsCompleteBetween A B)
     (hA : IsCographOn G A) (hB : IsCographOn G B) : IsCographOn G (A ∪ B) := by
@@ -533,6 +568,9 @@ lemma isCographOn_union_of_complete_join [DecidableEq V] {A B : Set V}
       (by simpa [B', Set.mem_preimage] using hd) (inducedP4_induce hp)
   exact isCographGraph_complete_join (A := A') (B := B') hcover hABon hA' hB'
 
+/--
+@isnad1 id=iscograp.3h4v.s5.8502a9ab20f6 from=translated src=- shape=b3738803 vocab=a4784e3d
+-/
 lemma isCograph_union_of_complete_join [DecidableEq V] {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hA : IsCograph G A) (hB : IsCograph G B) : IsCograph G (A ∪ B) := by

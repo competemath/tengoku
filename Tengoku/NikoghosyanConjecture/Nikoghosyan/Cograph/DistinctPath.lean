@@ -32,12 +32,18 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=mem.1h4v.s5.bfd8201010d1 from=translated src=- shape=3cc7f0fc vocab=a0de8220
+-/
 lemma endpoint_mem_support {p : GraphPath G} {x : V}
     (hx : x = p.start ∨ x = p.finish) : x ∈ p.support := by
   rcases hx with hx | hx
   · rw [hx]; exact p.start_mem_support
   · rw [hx]; exact p.finish_mem_support
 
+/--
+@isnad1 id=ex.4h6v.s7.51918dd486e6 from=translated src=- shape=cf53991a vocab=b2be4c67
+-/
 lemma exists_third_path {U : Finset V} (pc : PathCover G U)
     {p q : GraphPath G} (hp : p ∈ pc.paths) (hq : q ∈ pc.paths)
     (hne : p ≠ q) (h3 : 3 ≤ pc.card) :
@@ -55,6 +61,9 @@ lemma exists_third_path {U : Finset V} (pc : PathCover G U)
   have hr0 := List.mem_filter.1 hr1.1
   exact ⟨r, hr0.1, of_decide_eq_true hr0.2, of_decide_eq_true hr1.2⟩
 
+/--
+@isnad1 id=ex.7h9v.s7.072a60bed8a9 from=translated src=- shape=ad07d3f4 vocab=923d3127
+-/
 lemma exists_deleteVertex_keepDistinct {U : Finset V}
     (pc : PathCover G U) {x y f : V} {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -80,6 +89,9 @@ lemma exists_deleteVertex_keepDistinct {U : Finset V}
   exact Finset.disjoint_left.1
     (PathCover.pairwise_disjoint_of_mem pc.disjoint hp hq hne) hyP hyQ
 
+/--
+@isnad1 id=ex.8h9v.s8.a9b66156b3fa from=translated src=- shape=c27c3fab vocab=6be22fe4
+-/
 lemma exists_deleteFinset_keepDistinct {U S : Finset V}
     (pc : PathCover G U) (hS : S ⊆ U) {x y : V} {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -121,7 +133,9 @@ lemma exists_deleteFinset_keepDistinct {U S : Finset V}
     · rw [PathCover.cast_paths]; exact hq2
 
 /-- Reverse `D` inheritance on a dominant complete join: deleting `B` never
-merges old cover paths.-/
+merges old cover paths.
+@isnad1 id=distinct.5h6v.s6.778e32279120 from=translated src=- shape=a9a7e7f3 vocab=35c9fbc7
+-/
 lemma DistinctPathCompatible_of_dominant {A B : Finset V} {x y : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -151,6 +165,9 @@ lemma DistinctPathCompatible_of_dominant {A B : Finset V} {x y : V}
   · rw [PathCover.cast_paths]; exact hp'
   · rw [PathCover.cast_paths]; exact hq'
 
+/--
+@isnad1 id=ex.6h9v.s8.f63e4559b6c7 from=translated src=- shape=db34625b vocab=7592d9aa
+-/
 lemma exists_orientStart_marked_keepOther {A U : Finset V} {x y : V}
     (pc : PathCover G U) {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -189,6 +206,9 @@ lemma exists_orientStart_marked_keepOther {A U : Finset V} {x y : V}
         exact ⟨(hend p hp).2, (hend p hp).1⟩
       · exact hend s hspc
 
+/--
+@isnad1 id=ex.10h11v.s8.662d3bef4123 from=translated src=- shape=27914b5c vocab=8ca501d6
+-/
 lemma exists_marked_splice_two_through_avoid {A B U : Finset V} {b x y : V}
     {p qy : GraphPath G}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -235,7 +255,9 @@ lemma exists_marked_splice_two_through_avoid {A B U : Finset V} {b x y : V}
 
 /-- Dominant-child construction preserving two distinct marks: the `x`-chain
 is always the left splice operand, the `y`-path is never the merge partner,
-and before each insertion the cover has at least three paths.-/
+and before each insertion the cover has at least three paths.
+@isnad1 id=ex.4h6v.s7.a3b21a4edc4e from=translated src=- shape=d331dd5e vocab=1b661b16
+-/
 lemma exists_pathCover_complete_join_dominant_twoMarked {A B : Finset V}
     {x y : V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -333,6 +355,9 @@ lemma exists_pathCover_complete_join_dominant_twoMarked {A B : Finset V}
   exact aux B.card ∅ pc0' p0o q0o (empty_subset B) (by simp) hcard0
     hp0' hq0' hne0o hstart0 hy0 hend0'
 
+/--
+@isnad1 id=distinct.6h6v.s6.90d085df70ac from=translated src=- shape=e60c3a9f vocab=474a3329
+-/
 lemma DistinctPathCompatible_of_dominant_left {A B : Finset V} {x y : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -350,7 +375,9 @@ lemma DistinctPathCompatible_of_dominant_left {A B : Finset V} {x y : V}
     omega
   exact ⟨hD.1, pc, hmin, p, hp, q, hqP, hne, hx, hy⟩
 
-/-- Saturated complete join with excess `q ≥ 2`: `D(U) = D(A)` as relations.-/
+/-- Saturated complete join with excess `q ≥ 2`: `D(U) = D(A)` as relations.
+@isnad1 id=iff.5h6v.s6.96269878c8e1 from=translated src=- shape=0d9ea070 vocab=474a3329
+-/
 lemma DistinctPathCompatible_complete_join_dominant_iff {A B : Finset V}
     {x y : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
@@ -362,6 +389,9 @@ lemma DistinctPathCompatible_complete_join_dominant_iff {A B : Finset V}
   ⟨DistinctPathCompatible_of_dominant hAne hBne hAB hdom,
     DistinctPathCompatible_of_dominant_left hAne hBne hAB hdom hq⟩
 
+/--
+@isnad1 id=eq.5h4v.s6.228f12732ae5 from=translated src=- shape=98e94b41 vocab=f3af29d8
+-/
 lemma distinctPathGraph_complete_join_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -374,6 +404,9 @@ lemma distinctPathGraph_complete_join_dominant {A B : Finset V}
 
 /-! Disjoint-union `D` completeness. -/
 
+/--
+@isnad1 id=distinct.3h6v.s6.8e3b377db889 from=translated src=- shape=e2b335dc vocab=34ae20b0
+-/
 lemma DistinctPathCompatible_union_left {A B : Finset V} {x y : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -388,6 +421,9 @@ lemma DistinctPathCompatible_union_left {A B : Finset V} {x y : V}
   refine ⟨hne, pc, hmin, p, List.mem_append.mpr (Or.inl hp),
     q, List.mem_append.mpr (Or.inl hq), hpq, hx, hy⟩
 
+/--
+@isnad1 id=distinct.3h6v.s6.74fd24829b8a from=translated src=- shape=53862dc6 vocab=34ae20b0
+-/
 lemma DistinctPathCompatible_union_right {A B : Finset V} {x y : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -402,6 +438,9 @@ lemma DistinctPathCompatible_union_right {A B : Finset V} {x y : V}
   refine ⟨hne, pc, hmin, p, List.mem_append.mpr (Or.inr hp),
     q, List.mem_append.mpr (Or.inr hq), hpq, hx, hy⟩
 
+/--
+@isnad1 id=distinct.4h6v.s6.ef00bf9413b8 from=translated src=- shape=37ad5e73 vocab=ab763c9b
+-/
 lemma DistinctPathCompatible_union_cross {A B : Finset V} {x y : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -429,6 +468,9 @@ lemma DistinctPathCompatible_union_cross {A B : Finset V} {x y : V}
   exact ⟨hne, pc, hmin, p, List.mem_append.mpr (Or.inl hp),
     q, List.mem_append.mpr (Or.inr hq), hpq, hxend, hyend⟩
 
+/--
+@isnad1 id=distinct.5h6v.s6.103387aa524b from=translated src=- shape=40a6c40e vocab=34ae20b0
+-/
 lemma DistinctPathCompatible_union_of_left {A B : Finset V} {x y : V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -466,12 +508,18 @@ lemma DistinctPathCompatible_union_of_left {A B : Finset V} {x y : V}
   exact ⟨hne, PathCover.splitLeft hdisj hnocross pc, hminA, p, hpL, q, hqL,
     hpq, hx, hy⟩
 
+/--
+@isnad1 id=distinct.1h5v.s5.d3df10211399 from=translated src=- shape=7f8958b1 vocab=7cc8d6c9
+-/
 lemma DistinctPathCompatible.symm {U : Finset V} {x y : V}
     (h : DistinctPathCompatible (G := G) U x y) :
     DistinctPathCompatible (G := G) U y x := by
   obtain ⟨hne, pc, hpc, p, hp, q, hq, hpq, hx, hy⟩ := h
   exact ⟨hne.symm, pc, hpc, q, hq, p, hp, hpq.symm, hy, hx⟩
 
+/--
+@isnad1 id=not.1h5v.s5.28c10ac76af3 from=translated src=- shape=ff0d5e7b vocab=35d67b1a
+-/
 lemma not_DistinctPathCompatible_of_le_one {U : Finset V} {x y : V}
     (h : pathCoverNumber G U ≤ 1) :
     ¬ DistinctPathCompatible (G := G) U x y := by
@@ -481,13 +529,18 @@ lemma not_DistinctPathCompatible_of_le_one {U : Finset V} {x y : V}
   rw [hbot] at hadj
   exact hadj.elim
 
+/--
+@isnad1 id=eligible.1h4v.s5.a1a133d14f3d from=translated src=- shape=8e5dcc4f vocab=e9a14843
+-/
 lemma eligible_mem_of_mem_eligibleSet {U : Finset V} {x : V}
     (hx : x ∈ eligibleSet G U) : Eligible G U x :=
   (mem_eligibleSet_iff (G := G)).1 hx |>.2
 
 /-- On a cotree carrier, D-nonadjacency is transitive on eligible vertices.
 Thus the complementary relation of D on E(U) is a complete multipartite
-graph whose parts are the D-nonadjacent classes.-/
+graph whose parts are the D-nonadjacent classes.
+@isnad1 id=not.6h6v.s6.bc709d97db9e from=translated src=- shape=0595f29a vocab=5c674932
+-/
 lemma not_DistinctPathCompatible_trans_of_cotreeOn {U : Finset V}
     (hU : CotreeOn G U) {x y z : V}
     (hx : x ∈ eligibleSet G U) (hy : y ∈ eligibleSet G U)
@@ -629,6 +682,9 @@ lemma not_DistinctPathCompatible_trans_of_cotreeOn {U : Finset V}
         have hp1 : pathCoverNumber G (A ∪ B) = 1 := hp.trans hmax
         exact not_DistinctPathCompatible_of_le_one (by omega)
 
+/--
+@isnad1 id=not.6h6v.s6.e2d7dc815180 from=translated src=- shape=0595f29a vocab=0efb2004
+-/
 lemma not_DistinctPathCompatible_trans_of_isCograph {U : Finset V}
     (hU : IsCograph G U) {x y z : V}
     (hx : x ∈ eligibleSet G U) (hy : y ∈ eligibleSet G U)
@@ -639,6 +695,9 @@ lemma not_DistinctPathCompatible_trans_of_isCograph {U : Finset V}
   not_DistinctPathCompatible_trans_of_cotreeOn (cotreeOn_of_isCograph hU)
     hx hy hz hxy hyz
 
+/--
+@isnad1 id=not.6h6v.s6.13e334156c25 from=translated src=- shape=0595f29a vocab=13fbda86
+-/
 lemma not_DistinctPathCompatible_trans_of_canonical {U : Finset V}
     (hU : Nikoghosyan.IsCograph G U) {x y z : V}
     (hx : x ∈ eligibleSet G U) (hy : y ∈ eligibleSet G U)

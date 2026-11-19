@@ -27,11 +27,17 @@ def liftDeleteWalk {v : V} {x y : {w : V // w ≠ v}}
     (p : (deleteGraph G v).Walk x y) : G.Walk x.1 y.1 :=
   p.map (Embedding.induce (G := G) (deleteSet v)).toHom
 
+/--
+@isnad1 id=ispath.1h6v.s6.8d435854b30e from=translated src=- shape=d5e12faf vocab=918d4b84
+-/
 lemma liftDeleteWalk_isPath {v : V} {x y : {w : V // w ≠ v}}
     {p : (deleteGraph G v).Walk x y} (hp : p.IsPath) :
     (liftDeleteWalk p).IsPath :=
   hp.map (Embedding.induce (G := G) (deleteSet v)).injective
 
+/--
+@isnad1 id=not.0h6v.s6.542b1783f62d from=translated src=- shape=68af31e9 vocab=1ba20121
+-/
 lemma not_mem_support_liftDeleteWalk {v : V} {x y : {w : V // w ≠ v}}
     (p : (deleteGraph G v).Walk x y) : v ∉ (liftDeleteWalk p).support := by
   intro hv
@@ -47,14 +53,23 @@ def cycleThroughVertex {v : V} {x y : {w : V // w ≠ v}}
     (p : G.Walk x.1 y.1) : G.Walk v v :=
   Walk.cons hx (p.concat hy.symm)
 
+/--
+@isnad1 id=not.1h6v.s5.dfcd8031ece9 from=translated src=- shape=7ec6927d vocab=3cb184bf
+-/
 lemma not_nil_concat {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :
     ¬ (p.concat h).Nil := by
   cases p <;> simp [Walk.concat]
 
+/--
+@isnad1 id=eq.1h6v.s5.6b24cd5b1a1a from=translated src=- shape=938396d4 vocab=5e06a156
+-/
 lemma penultimate_concat {u v w : V} (p : G.Walk u v) (h : G.Adj v w) :
     (p.concat h).penultimate = v := by
   simp [Walk.penultimate, Walk.concat_eq_append, Walk.getVert_append']
 
+/--
+@isnad1 id=iscycle.5h6v.s7.b4ef68151621 from=translated src=- shape=42104e31 vocab=6674acc2
+-/
 lemma cycleThroughVertex_isCycle {v : V} {x y : {w : V // w ≠ v}}
     (hx : G.Adj v x.1) (hy : G.Adj v y.1)
     {p : G.Walk x.1 y.1} (hp : p.IsPath) (hv : v ∉ p.support) (hne : x.1 ≠ y.1) :
@@ -69,6 +84,9 @@ lemma cycleThroughVertex_isCycle {v : V} {x y : {w : V // w ≠ v}}
     · exact x.property h2
     · exact hne h2
 
+/--
+@isnad1 id=eq.3h6v.s7.c07ae0098116 from=translated src=- shape=cec20fe4 vocab=ff8cff79
+-/
 lemma cycleThroughVertex_firstDart {v : V} {x y : {w : V // w ≠ v}}
     (hx : G.Adj v x.1) (hy : G.Adj v y.1) (p : G.Walk x.1 y.1)
     (h : ¬ (cycleThroughVertex hx hy p).Nil) :
@@ -76,6 +94,9 @@ lemma cycleThroughVertex_firstDart {v : V} {x y : {w : V // w ≠ v}}
   apply Dart.ext
   simp [Walk.firstDart, cycleThroughVertex]
 
+/--
+@isnad1 id=eq.3h6v.s7.d13a82f930dd from=translated src=- shape=b0bad73e vocab=f26283c5
+-/
 lemma cycleThroughVertex_lastDart {v : V} {x y : {w : V // w ≠ v}}
     (hx : G.Adj v x.1) (hy : G.Adj v y.1) (p : G.Walk x.1 y.1)
     (h : ¬ (cycleThroughVertex hx hy p).Nil) :
@@ -87,7 +108,9 @@ lemma cycleThroughVertex_lastDart {v : V} {x y : {w : V // w ≠ v}}
   simp [Walk.lastDart, hpen]
 
 /-- Unequal colors from `v` into one `G - v` component give a simple cycle
-through `v` whose two incident edges at `v` have those unequal colors.-/
+through `v` whose two incident edges at `v` have those unequal colors.
+@isnad1 id=ex.4h7v.s7.9656133c3817 from=translated src=- shape=c296aa50 vocab=08005e43
+-/
 theorem exists_cycle_of_bichromatic_component (c : EdgeColoring G C) (v : V)
     (x y : {w : V // w ≠ v}) (hx : G.Adj v x.1) (hy : G.Adj v y.1)
     (hreach : (deleteGraph G v).Reachable x y)
@@ -111,6 +134,9 @@ theorem exists_cycle_of_bichromatic_component (c : EdgeColoring G C) (v : V)
   · rw [cycleThroughVertex_lastDart]
     exact (c.color_symm hy).symm
 
+/--
+@isnad1 id=not.2h5v.s5.97915751ba1b from=translated src=- shape=8fe0769e vocab=bf48f649
+-/
 lemma not_mem_dropLast_end {u v : V} {p : G.Walk u v}
     (hp : p.IsPath) (hnil : ¬ p.Nil) : v ∉ p.dropLast.support := by
   intro hv
@@ -127,7 +153,9 @@ lemma not_mem_dropLast_end {u v : V} {p : G.Walk u v}
   omega
 
 /-- The two neighbours of `v` on a genuine cycle through `v` are reachable
-in `G - v` along the remainder of the cycle.-/
+in `G - v` along the remainder of the cycle.
+@isnad1 id=ex.1h4v.s7.1db0e56f4667 from=translated src=- shape=8f0e2537 vocab=2ac889e9
+-/
 theorem reachable_in_delete_of_cycle {v : V} {w : G.Walk v v}
     (hcyc : w.IsCycle) :
     ∃ (x y : {z : V // z ≠ v}),
@@ -156,7 +184,9 @@ theorem reachable_in_delete_of_cycle {v : V} {w : G.Walk v v}
     exact qind.reachable
 
 /-- Unequal incident colors at `v` on a genuine cycle through `v` give two
-neighbours of `v` in one `G - v` component with those unequal colors.-/
+neighbours of `v` in one `G - v` component with those unequal colors.
+@isnad1 id=ex.2h6v.s7.8e3de4472240 from=translated src=- shape=70a8b895 vocab=08005e43
+-/
 theorem exists_bichromatic_component_of_cycle (c : EdgeColoring G C) {v : V}
     (w : G.Walk v v) (hcyc : w.IsCycle)
     (hcol : c.dartColor (w.firstDart hcyc.not_nil) ≠
@@ -173,7 +203,9 @@ theorem exists_bichromatic_component_of_cycle (c : EdgeColoring G C) {v : V}
   exact fun h => hcol (hfirst.trans (h.trans hlast.symm))
 
 /-- Cycle form of splitting is equivalent to monochromatic attachment into
-every component of `G - v`.-/
+every component of `G - v`.
+@isnad1 id=iff.0h5v.s5.df612077dd3a from=translated src=- shape=09db0499 vocab=6a4b4a48
+-/
 theorem splittingVertex_iff_cycleSplittingVertex (c : EdgeColoring G C) (v : V) :
     SplittingVertex c v ↔ CycleSplittingVertex c v := by
   constructor

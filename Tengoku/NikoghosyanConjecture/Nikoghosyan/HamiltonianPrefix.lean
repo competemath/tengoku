@@ -47,16 +47,25 @@ def NoInducedP4UnionP1On (G : SimpleGraph V) (J : Finset V) : Prop :=
     x ≠ a → x ≠ b → x ≠ c → x ≠ d →
       G.Adj x a ∨ G.Adj x b ∨ G.Adj x c ∨ G.Adj x d
 
+/--
+@isnad1 id=noinduce.2h4v.s5.3911b8461bfb from=translated src=- shape=a77a430f vocab=70ea86ab
+-/
 lemma NoInducedP4UnionP1On.mono {J K : Finset V}
     (h : NoInducedP4UnionP1On G K) (hJK : J ⊆ K) :
     NoInducedP4UnionP1On G J :=
   fun _ _ _ _ _ ha hb hc hd hx hp hxa hxb hxc hxd =>
     h (hJK ha) (hJK hb) (hJK hc) (hJK hd) (hJK hx) hp hxa hxb hxc hxd
 
+/--
+@isnad1 id=noinduce.1h3v.s4.49555a5f0aa2 from=translated src=- shape=3ddb96de vocab=1b8681fb
+-/
 lemma NoInducedP4UnionP1On.of_global (h : NoInducedP4UnionP1 G) (J : Finset V) :
     NoInducedP4UnionP1On G J :=
   fun _ _ _ _ _ _ _ _ _ _ hp hxa hxb hxc hxd => h hp hxa hxb hxc hxd
 
+/--
+@isnad1 id=le.1h5v.s5.4e838592ecbb from=translated src=- shape=d686b7b2 vocab=71a6b8ad
+-/
 lemma rowProfile_subset_of_subset {H H' : Finset V} {v : V}
     (h : H ⊆ H') :
     rowProfile (G := G) H v ⊆ rowProfile (G := G) H' v := by
@@ -64,6 +73,9 @@ lemma rowProfile_subset_of_subset {H H' : Finset V} {v : V}
   have hx' := (mem_rowProfile_iff (G := G)).1 hx
   exact (mem_rowProfile_iff (G := G)).2 ⟨h hx'.1, hx'.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.cc2aaf74a791 from=translated src=- shape=5441be3b vocab=6be154df
+-/
 lemma insert_union_right {x : V} {s t : Finset V} :
     insert x (s ∪ t) = s ∪ insert x t := by
   ext y
@@ -79,6 +91,9 @@ def prefixTake (p : GraphPath G) (n : ℕ) : GraphPath G where
   walk := p.walk.take n
   isPath := p.isPath.take n
 
+/--
+@isnad1 id=le.0h4v.s5.6be20e347833 from=translated src=- shape=3c3ab55f vocab=5cfcb6cf
+-/
 lemma support_prefixTake_subset (p : GraphPath G) (n : ℕ) :
     (p.prefixTake n).support ⊆ p.support := by
   intro y hy
@@ -88,25 +103,39 @@ lemma support_prefixTake_subset (p : GraphPath G) (n : ℕ) :
     simpa [Walk.support_take] using List.take_subset (n + 1) p.walk.support
   exact List.mem_toFinset.2 (this hy')
 
+/--
+@isnad1 id=eq.1h4v.s6.f7fd7bb0b34f from=translated src=- shape=b3087f18 vocab=006a020b
+-/
 lemma length_prefixTake_of_le (p : GraphPath G) {n : ℕ}
     (hn : n ≤ p.walk.length) :
     (p.prefixTake n).walk.length = n := by
   simp [prefixTake, Walk.take_length, hn]
 
+/--
+@isnad1 id=eq.0h4v.s5.c203634d4126 from=translated src=- shape=eca9f2c7 vocab=ade6b3b9
+-/
 lemma finish_prefixTake (p : GraphPath G) (n : ℕ) :
     (p.prefixTake n).finish = p.walk.getVert n :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.165bd35b576d from=translated src=- shape=5fe058ff vocab=138d2bb5
+-/
 lemma start_prefixTake (p : GraphPath G) (n : ℕ) :
     (p.prefixTake n).start = p.start :=
   rfl
 
+/--
+@isnad1 id=mem.0h4v.s5.04b09ff1e64f from=translated src=- shape=3af14ac8 vocab=ad64fd7c
+-/
 lemma getVert_mem_path_support (p : GraphPath G) (i : ℕ) :
     p.walk.getVert i ∈ p.support :=
   List.mem_toFinset.2 (Walk.getVert_mem_support p.walk i)
 
 /-- `getVert` is injective on `0, …, length`. Capped indices past
-`walk.length` are excluded.-/
+`walk.length` are excluded.
+@isnad1 id=eq.3h5v.s6.36efeda899db from=translated src=- shape=68e659d6 vocab=0825013a
+-/
 lemma getVert_injective_of_le_length (p : GraphPath G) {i j : ℕ}
     (hi : i ≤ p.walk.length) (hj : j ≤ p.walk.length)
     (heq : p.walk.getVert i = p.walk.getVert j) : i = j := by
@@ -123,6 +152,9 @@ lemma getVert_injective_of_le_length (p : GraphPath G) {i j : ℕ}
     rw [List.get_eq_getElem, List.get_eq_getElem, ← hiE, ← hjE, heq]
   exact congrArg Fin.val (hinj this)
 
+/--
+@isnad1 id=iff.1h5v.s6.df98c3f1b022 from=translated src=- shape=65c9bc1c vocab=a1f4430e
+-/
 lemma mem_support_prefixTake (p : GraphPath G) {n : ℕ}
     (hn : n ≤ p.walk.length) {y : V} :
     y ∈ (p.prefixTake n).support ↔ ∃ i ≤ n, p.walk.getVert i = y := by
@@ -149,6 +181,9 @@ lemma mem_support_prefixTake (p : GraphPath G) {n : ℕ}
       exact hmem
     simpa [prefixTake, GraphPath.support] using this
 
+/--
+@isnad1 id=eq.0h3v.s5.ceb12ec1660c from=translated src=- shape=f4b1abca vocab=accc532a
+-/
 lemma support_prefixTake_zero (p : GraphPath G) :
     (p.prefixTake 0).support = {p.start} := by
   ext y
@@ -164,6 +199,9 @@ lemma support_prefixTake_zero (p : GraphPath G) :
     exact (p.mem_support_prefixTake (Nat.zero_le _)).2
       ⟨0, le_rfl, Walk.getVert_zero p.walk⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.ae9e1d08b235 from=translated src=- shape=d454e727 vocab=47db6eb7
+-/
 lemma support_prefixTake_length (p : GraphPath G) :
     (p.prefixTake p.walk.length).support = p.support := by
   ext y
@@ -175,7 +213,9 @@ lemma support_prefixTake_length (p : GraphPath G) :
     obtain ⟨i, rfl, hi⟩ := (Walk.mem_support_iff_exists_getVert).1 hy'
     exact (p.mem_support_prefixTake le_rfl).2 ⟨i, hi, rfl⟩
 
-/-- The next original vertex after a proper prefix is new.-/
+/-- The next original vertex after a proper prefix is new.
+@isnad1 id=not.1h4v.s6.93e934d8751b from=translated src=- shape=b9315761 vocab=a086170c
+-/
 lemma next_not_mem_prefixTake (p : GraphPath G) {n : ℕ}
     (hn : n < p.walk.length) :
     p.walk.getVert (n + 1) ∉ (p.prefixTake n).support := by
@@ -186,6 +226,9 @@ lemma next_not_mem_prefixTake (p : GraphPath G) {n : ℕ}
       (Nat.succ_le_of_lt hn) heq
   omega
 
+/--
+@isnad1 id=eq.1h4v.s6.ed6f37a85e3d from=translated src=- shape=d0789cd9 vocab=fb2d5966
+-/
 lemma support_prefixTake_succ (p : GraphPath G) {n : ℕ}
     (hn : n < p.walk.length) :
     (p.prefixTake (n + 1)).support =
@@ -207,6 +250,9 @@ lemma support_prefixTake_succ (p : GraphPath G) {n : ℕ}
 
 end GraphPath
 
+/--
+@isnad1 id=ne.1h3v.s5.1130d5a3185f from=translated src=- shape=701f37a7 vocab=b2b3fe1a
+-/
 lemma start_ne_finish_of_three_le_card (p : GraphPath G)
     (h : 3 ≤ p.support.card) : p.start ≠ p.finish := by
   intro heq
@@ -217,7 +263,9 @@ lemma start_ne_finish_of_three_le_card (p : GraphPath G)
   omega
 
 /-- Every actual prefix of `r` is 1-tough with the INITIAL cycle, using
-the INITIAL row hypotheses. No later-row or prefix-toughness assumption.-/
+the INITIAL row hypotheses. No later-row or prefix-toughness assumption.
+@isnad1 id=onetough.3h5v.s7.6371f0044f29 from=translated src=- shape=72bbb978 vocab=b77f895c
+-/
 lemma oneToughOn_of_prefixTake (c : GraphCycle G) (r : GraphPath G)
     (hdisj : Disjoint c.support r.support)
     (hrow : ∀ v ∈ r.support,
@@ -230,7 +278,9 @@ lemma oneToughOn_of_prefixTake (c : GraphCycle G) (r : GraphPath G)
     (fun v hv => hrow v (r.support_prefixTake_subset n hv))
 
 /-- The current remainder after deleting the actual current profile of
-the next vertex is a cograph, including previously inserted vertices.-/
+the next vertex is a cograph, including previously inserted vertices.
+@isnad1 id=iscograp.2h4v.s6.128f6319ee97 from=translated src=- shape=48d5ce6f vocab=0bfca254
+-/
 lemma isCograph_current_remainder (γ : GraphCycle G) {x : V}
     (hx : x ∉ γ.support)
     (hOn : NoInducedP4UnionP1On G (insert x γ.support)) :
@@ -239,7 +289,9 @@ lemma isCograph_current_remainder (γ : GraphCycle G) {x : V}
 
 /-- Current-row strict cut: `OneToughOn` of the next host plus the
 derived current remainder cograph. The profile is computed on the
-current cycle support, not only on the initial Hamiltonian block.-/
+current cycle support, not only on the initial Hamiltonian block.
+@isnad1 id=lt.3h4v.s6.091e49089770 from=translated src=- shape=65baefad vocab=1aa28f43
+-/
 theorem strict_pathCover_of_current_remainder (γ : GraphCycle G) {x : V}
     (hx : x ∉ γ.support)
     (hJ : OneToughOn G (insert x γ.support))
@@ -264,7 +316,9 @@ def ProfileEndedSpanningPath (G : SimpleGraph V) : Prop :=
 
 /-- Conditional one-vertex splice: the named rule plus the checked
 elementary cycle insertion. Distinct path ends are derived from the
-cycle-support order. This is not `prof:cor:insertion`.-/
+cycle-support order. This is not `prof:cor:insertion`.
+@isnad1 id=ex.4h4v.s6.fd603cb61f72 from=translated src=- shape=30ab821f vocab=ab28b2c9
+-/
 theorem exists_inserted_cycle_of_profileEndedSpanningPath
     (hRule : ProfileEndedSpanningPath G)
     (c : GraphCycle G) {x : V}
@@ -284,7 +338,9 @@ theorem exists_inserted_cycle_of_profileEndedSpanningPath
 insertion rule. At each index the current `OneToughOn` is derived from
 the INITIAL cycle and the real prefix, and the current remainder
 cograph is derived from the host forbidden-pattern hypothesis on the
-whole union. This is not manuscript `prof:thm:prefix`.-/
+whole union. This is not manuscript `prof:thm:prefix`.
+@isnad1 id=ex.5h5v.s7.b12e8f2a3b8e from=translated src=- shape=40367df5 vocab=40935c04
+-/
 theorem exists_cycle_of_prefixTake_of_profileEndedSpanningPath
     (hRule : ProfileEndedSpanningPath G)
     (c : GraphCycle G) (r : GraphPath G)
@@ -357,7 +413,9 @@ theorem exists_cycle_of_prefixTake_of_profileEndedSpanningPath
     simpa [hinsert] using hγ'
 
 /-- Conditional composition over the full original path. Not
-`prof:thm:prefix`.-/
+`prof:thm:prefix`.
+@isnad1 id=ex.4h4v.s7.18cabfc57ca3 from=translated src=- shape=f33dc4bc vocab=2dbd774f
+-/
 theorem exists_cycle_union_of_profileEndedSpanningPath
     (hRule : ProfileEndedSpanningPath G)
     (c : GraphCycle G) (r : GraphPath G)
@@ -373,6 +431,9 @@ theorem exists_cycle_union_of_profileEndedSpanningPath
   refine ⟨γ, ?_⟩
   simpa [r.support_prefixTake_length] using hγ
 
+/--
+@isnad1 id=ex.4h4v.s7.ead0db5f8c40 from=translated src=- shape=bbc56ac5 vocab=d799b756
+-/
 theorem exists_cycle_union_of_profileEndedSpanningPath_of_global
     (hRule : ProfileEndedSpanningPath G)
     (c : GraphCycle G) (r : GraphPath G)

@@ -33,11 +33,17 @@ open Nikoghosyan.GraphPath
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=le.1h6v.s6.9e9706aeb7ec from=translated src=- shape=e2e5617f vocab=a0eee1f1
+-/
 lemma support_subset_of_sdiff {U A : Finset V} (pc : PathCover G (U \ A))
     {Q : GraphPath G} (hQ : Q ∈ pc.paths) :
     Q.support ⊆ U :=
   (pc.support_subset hQ).trans sdiff_subset
 
+/--
+@isnad1 id=disjoint.1h5v.s5.fb51c421844d from=translated src=- shape=d30d37d4 vocab=7e510f37
+-/
 lemma disjoint_of_complement {U : Finset V} {Q r : GraphPath G}
     (hr : r.support = U \ Q.support) :
     Disjoint Q.support r.support := by
@@ -46,12 +52,18 @@ lemma disjoint_of_complement {U : Finset V} {Q r : GraphPath G}
   have hx' : x ∈ U \ Q.support := by simpa [hr] using hxR
   exact (mem_sdiff.1 hx').2 hxQ
 
+/--
+@isnad1 id=eq.2h5v.s6.53c0ef686788 from=translated src=- shape=10658540 vocab=c4e32487
+-/
 lemma union_of_complement {U : Finset V} {Q r : GraphPath G}
     (hr : r.support = U \ Q.support) (hQ : Q.support ⊆ U) :
     Q.support ∪ r.support = U := by
   rw [hr]
   exact union_sdiff_of_subset hQ
 
+/--
+@isnad1 id=ne.2h6v.s6.fd87fabc1871 from=translated src=- shape=6be0ee81 vocab=6cd2bd8a
+-/
 lemma ne_complement_start {U : Finset V} {Q r : GraphPath G} {b : V}
     (hr : r.support = U \ Q.support) (hbQ : b ∈ Q.support) :
     b ≠ r.start := by
@@ -60,6 +72,9 @@ lemma ne_complement_start {U : Finset V} {Q r : GraphPath G} {b : V}
   have hb' : b ∈ U \ Q.support := by simpa [hr] using hbR
   exact (mem_sdiff.1 hb').2 hbQ
 
+/--
+@isnad1 id=ne.2h6v.s6.d6d79cbd195f from=translated src=- shape=6be0ee81 vocab=7d1b3f1f
+-/
 lemma ne_complement_finish {U : Finset V} {Q r : GraphPath G} {b : V}
     (hr : r.support = U \ Q.support) (hbQ : b ∈ Q.support) :
     b ≠ r.finish := by
@@ -68,6 +83,9 @@ lemma ne_complement_finish {U : Finset V} {Q r : GraphPath G} {b : V}
   have hb' : b ∈ U \ Q.support := by simpa [hr] using hbR
   exact (mem_sdiff.1 hb').2 hbQ
 
+/--
+@isnad1 id=eq.1h3v.s5.c3f183e594b2 from=translated src=- shape=38d3c260 vocab=f3470725
+-/
 lemma support_card_eq_one_of_not_two {Q : GraphPath G}
     (h2 : ¬ 2 ≤ Q.support.card) : Q.support.card = 1 := by
   have hpos : 1 ≤ Q.support.card := by
@@ -75,6 +93,9 @@ lemma support_card_eq_one_of_not_two {Q : GraphPath G}
     exact Nat.succ_le_succ (Nat.zero_le _)
   omega
 
+/--
+@isnad1 id=nil.1h3v.s5.ed356e56f8f3 from=translated src=- shape=bfa58fb3 vocab=49a8d959
+-/
 lemma nil_of_support_card_eq_one {Q : GraphPath G}
     (h1 : Q.support.card = 1) : Q.walk.Nil := by
   have hlen : Q.walk.length = 0 := by
@@ -83,7 +104,9 @@ lemma nil_of_support_card_eq_one {Q : GraphPath G}
   exact Walk.length_eq_zero_iff.1 hlen
 
 /-- Splice a leftover singleton `Q = {b}` to `r.reverse` along the
-predecessor original seam.-/
+predecessor original seam.
+@isnad1 id=ex.6h7v.s7.50c681c759b8 from=translated src=- shape=cd2c673e vocab=0c5569fa
+-/
 lemma spanning_of_singleton_leftover {U A : Finset V} {Q r : GraphPath G} {b : V}
     (h1 : Q.support.card = 1) (hbQ : b ∈ Q.support)
     (hr : r.support = U \ Q.support) (hQU : Q.support ⊆ U)
@@ -122,7 +145,9 @@ lemma spanning_of_singleton_leftover {U A : Finset V} {Q r : GraphPath G} {b : V
   exact hR0
 
 /-- Local `Q`-path from `b` to `Q.start`, spliced to `r.reverse` along the
-predecessor original seam. The resulting `U`-path ends at `r.start ∈ A`.-/
+predecessor original seam. The resulting `U`-path ends at `r.start ∈ A`.
+@isnad1 id=ex.7h8v.s7.26385d402204 from=translated src=- shape=ca2e25fb vocab=af095697
+-/
 lemma spanning_of_pred_seam {U A : Finset V} {Q r q : GraphPath G} {b : V}
     (hq : q.support = Q.support) (hstq : q.start = b)
     (hfinq : q.finish = Q.start)
@@ -157,7 +182,9 @@ lemma spanning_of_pred_seam {U A : Finset V} {Q r q : GraphPath G} {b : V}
   exact hR0
 
 /-- Local `Q`-path from `b` to `Q.finish`, spliced to `r` along the
-successor original seam. The resulting `U`-path ends at `r.finish ∈ A`.-/
+successor original seam. The resulting `U`-path ends at `r.finish ∈ A`.
+@isnad1 id=ex.7h8v.s7.61aa57e1ef5e from=translated src=- shape=73dfd89e vocab=af095697
+-/
 lemma spanning_of_succ_seam {U A : Finset V} {Q r q : GraphPath G} {b : V}
     (hq : q.support = Q.support) (hstq : q.start = b)
     (hfinq : q.finish = Q.finish)
@@ -190,7 +217,9 @@ lemma spanning_of_succ_seam {U A : Finset V} {Q r q : GraphPath G} {b : V}
 
 /-- From `b ∈ U \ S_A`, the saturated leftover cover of the opened cycle
 supplies an original spanning `U`-path from `b` into `A`. No external
-cover, complement, or local-eligibility certificate is assumed.-/
+cover, complement, or local-eligibility certificate is assumed.
+@isnad1 id=ex.6h6v.s6.64cc39471b43 from=translated src=- shape=3ea2fb0c vocab=e825e282
+-/
 lemma exists_spanning_from_sdiff_container {U A : Finset V} {b : V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -220,7 +249,9 @@ lemma exists_spanning_from_sdiff_container {U A : Finset V} {b : V}
     exact spanning_of_singleton_leftover (A := A) h1 hbQ hr hQU hpred rstartA
 
 /-- Forward neighbourhood: every vertex of `U \ S_A` is `R(U)`-adjacent
-to `A`.-/
+to `A`.
+@isnad1 id=le.5h5v.s6.a7321520e4a3 from=translated src=- shape=36ebef5a vocab=7e7b2ac2
+-/
 lemma sdiff_container_subset_spanningPathNeighbors {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -236,7 +267,9 @@ lemma sdiff_container_subset_spanningPathNeighbors {U A : Finset V}
     ⟨hbU, a, haA, spanningPathCompatible_symm hR⟩
 
 /-- Manuscript `prof:prop:endpoints`: on an actual original cycle support,
-with nonempty saturated `A` and cograph remainder, `N_R(A) = U \ S_A`.-/
+with nonempty saturated `A` and cograph remainder, `N_R(A) = U \ S_A`.
+@isnad1 id=eq.5h5v.s6.7f37dbae7cc7 from=translated src=- shape=dd5a8cc8 vocab=7e7b2ac2
+-/
 lemma spanningPathNeighbors_eq_sdiff_container {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -250,7 +283,9 @@ lemma spanningPathNeighbors_eq_sdiff_container {U A : Finset V}
   · exact sdiff_container_subset_spanningPathNeighbors c hc hA hAne hK hSat
 
 /-- No original spanning `A`–`B` path and saturation of `A` force
-`B ⊆ S_A`.-/
+`B ⊆ S_A`.
+@isnad1 id=le.7h6v.s7.0f2fd280943c from=translated src=- shape=40b6c2d3 vocab=e825e282
+-/
 lemma subset_canonicalContainer_of_no_spanning {U A B : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -273,7 +308,9 @@ lemma subset_canonicalContainer_of_no_spanning {U A B : Finset V}
 /-- Manuscript `prof:prop:incompatible`: if there is no original spanning
 `U`-path with one end in `A` and the other in `B`, and at least one of
 the two profiles is saturated, then both are saturated and
-`S_A = S_B`. The sets `A,B` need not be disjoint.-/
+`S_A = S_B`. The sets `A,B` need not be disjoint.
+@isnad1 id=and.9h6v.s7.aee4ac17f42a from=translated src=- shape=e46abf8e vocab=e825e282
+-/
 lemma incompatible_saturated_profiles {U A B : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)

@@ -45,6 +45,9 @@ namespace EdgeColoring
 
 variable (c : EdgeColoring G C)
 
+/--
+@isnad1 id=eq.2h6v.s5.ea371eab5cde from=translated src=- shape=2775051e vocab=b709b24d
+-/
 lemma color_proof {u v : V} (h h' : G.Adj u v) : c.color h = c.color h' :=
   congrArg c.color (Subsingleton.elim h h')
 
@@ -52,9 +55,15 @@ lemma color_proof {u v : V} (h h' : G.Adj u v) : c.color h = c.color h' :=
 def dartColor (d : G.Dart) : C :=
   c.color d.adj
 
+/--
+@isnad1 id=eq.0h5v.s5.8e7dfe3b80ef from=translated src=- shape=bc87aa46 vocab=4834c231
+-/
 lemma dartColor_symm (d : G.Dart) : c.dartColor d.symm = c.dartColor d :=
   (c.color_symm d.adj).symm
 
+/--
+@isnad1 id=eq.1h6v.s5.010d3ab0010f from=translated src=- shape=5d744983 vocab=a93f138e
+-/
 lemma dartColor_eq_of_edge {d e : G.Dart} (h : d.edge = e.edge) :
     c.dartColor d = c.dartColor e := by
   obtain rfl | rfl := (dart_edge_eq_iff d e).1 h
@@ -68,6 +77,9 @@ noncomputable def usedColors : Finset C :=
     (univ : Finset V).biUnion fun w =>
       if h : G.Adj u w then {c.color h} else ∅
 
+/--
+@isnad1 id=mem.1h6v.s5.024e4af2abc9 from=translated src=- shape=6afc96c3 vocab=63e3ee81
+-/
 lemma mem_usedColors_color {u v : V} (h : G.Adj u v) : c.color h ∈ c.usedColors := by
   rw [usedColors, mem_biUnion]
   refine ⟨u, mem_univ u, ?_⟩
@@ -75,6 +87,9 @@ lemma mem_usedColors_color {u v : V} (h : G.Adj u v) : c.color h ∈ c.usedColor
   refine ⟨v, mem_univ v, ?_⟩
   simp [h]
 
+/--
+@isnad1 id=mem.0h5v.s5.ef200d239b52 from=translated src=- shape=13396a61 vocab=adf5717c
+-/
 lemma mem_usedColors_dartColor (d : G.Dart) : c.dartColor d ∈ c.usedColors :=
   c.mem_usedColors_color d.adj
 
@@ -120,19 +135,31 @@ def CycleSplittingVertex (c : EdgeColoring G C) (v : V) : Prop :=
     c.dartColor ((w.rotate v hv).firstDart (hcyc.rotate hv).not_nil) =
       c.dartColor ((w.rotate v hv).lastDart (hcyc.rotate hv).not_nil)
 
+/--
+@isnad1 id=not.1h6v.s5.87b651318d3c from=translated src=- shape=751e3dca vocab=9a80b433
+-/
 lemma isProperlyColored_not_nil {u : V} {w : G.Walk u u} {c : EdgeColoring G C}
     (h : IsProperlyColored w c) : ¬ w.Nil :=
   h.1.not_nil
 
+/--
+@isnad1 id=le.1h6v.s5.02590fb37991 from=translated src=- shape=2497072a vocab=6d6cb452
+-/
 lemma isProperlyColored_three_le_length {u : V} {w : G.Walk u u} {c : EdgeColoring G C}
     (h : IsProperlyColored w c) : 3 ≤ w.length :=
   h.1.three_le_length
 
+/--
+@isnad1 id=splittin.1h5v.s5.a5d8c66a76d6 from=translated src=- shape=e33f2898 vocab=26befd5b
+-/
 lemma SplittingVertex.of_not_adj (c : EdgeColoring G C) (v : V)
     (h : ∀ w : V, ¬ G.Adj v w) : SplittingVertex c v := by
   intro x y hx _hy
   exact (h x.1 hx).elim
 
+/--
+@isnad1 id=splittin.1h5v.s5.55e94bc9f57b from=translated src=- shape=5f67198e vocab=20143710
+-/
 lemma SplittingVertex.of_edgeless (c : EdgeColoring G C)
     (h : G = ⊥) (v : V) : SplittingVertex c v :=
   SplittingVertex.of_not_adj c v (by intro w hw; simp [h] at hw)

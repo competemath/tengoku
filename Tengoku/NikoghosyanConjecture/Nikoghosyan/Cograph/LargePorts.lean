@@ -44,6 +44,9 @@ def edgePath {a b : V} (h : G.Adj a b) : GraphPath G :=
     simp [p, GraphPath.support_singleton, h.ne]
   p.consAdj hadj hmem
 
+/--
+@isnad1 id=eq.1h4v.s5.49f3e4f3a6d5 from=translated src=- shape=87cda286 vocab=439de584
+-/
 lemma support_edgePath {a b : V} (h : G.Adj a b) :
     (edgePath h).support = {a, b} := by
   simp [edgePath, GraphPath.support_consAdj, GraphPath.support_singleton]
@@ -102,6 +105,9 @@ noncomputable def edgeSingletonsCover {U : Finset V} {a b : V}
         subst hw'
         exact mem_of_mem_erase (mem_of_mem_erase (mem_toList.1 hz))
 
+/--
+@isnad1 id=eq.3h5v.s6.5410bf2d3610 from=translated src=- shape=223f9b98 vocab=f1ed9656
+-/
 lemma edgeSingletonsCover_card {U : Finset V} {a b : V}
     (ha : a ∈ U) (hb : b ∈ U) (hadj : G.Adj a b) :
     (edgeSingletonsCover (G := G) ha hb hadj).card = U.card - 1 := by
@@ -119,6 +125,9 @@ lemma edgeSingletonsCover_card {U : Finset V} {a b : V}
     card_erase_of_mem ha]
   omega
 
+/--
+@isnad1 id=le.3h5v.s6.1ef8b228b5ad from=translated src=- shape=db82ab14 vocab=d81b4157
+-/
 lemma pathCoverNumber_le_card_sub_one_of_adj {U : Finset V} {a b : V}
     (ha : a ∈ U) (hb : b ∈ U) (hadj : G.Adj a b) :
     pathCoverNumber G U ≤ U.card - 1 :=
@@ -126,6 +135,9 @@ lemma pathCoverNumber_le_card_sub_one_of_adj {U : Finset V} {a b : V}
     (edgeSingletonsCover (G := G) ha hb hadj)).trans_eq
     (edgeSingletonsCover_card (G := G) ha hb hadj)
 
+/--
+@isnad1 id=not.3h5v.s5.5bd9ead79819 from=translated src=- shape=be79c4f3 vocab=9a6a12a9
+-/
 lemma not_adj_of_pathCoverNumber_eq_card {U : Finset V}
     (h : pathCoverNumber G U = U.card) {a b : V}
     (ha : a ∈ U) (hb : b ∈ U) : ¬ G.Adj a b := by
@@ -134,12 +146,18 @@ lemma not_adj_of_pathCoverNumber_eq_card {U : Finset V}
   have hpos : 1 ≤ U.card := Nat.succ_le_of_lt (card_pos.2 ⟨a, ha⟩)
   omega
 
+/--
+@isnad1 id=eligible.2h4v.s5.ca41bc2b7225 from=translated src=- shape=f5c00be4 vocab=17c6f08d
+-/
 lemma eligible_of_singletons_min {U : Finset V} {x : V} (hx : x ∈ U)
     (hmin : (PathCover.singletons (G := G) U).card = pathCoverNumber G U) :
     Eligible G U x := by
   refine ⟨PathCover.singletons (G := G) U, hmin, GraphPath.singleton x, ?_, Or.inl rfl⟩
   exact List.mem_map.2 ⟨x, mem_toList.2 hx, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.2d180bb3b178 from=translated src=- shape=81c63e9f vocab=c95747d0
+-/
 lemma ineligibleSet_eq_empty_of_pathCoverNumber_eq_card {U : Finset V}
     (h : pathCoverNumber G U = U.card) :
     ineligibleSet G U = ∅ := by
@@ -155,6 +173,9 @@ lemma ineligibleSet_eq_empty_of_pathCoverNumber_eq_card {U : Finset V}
   · intro hz
     exact (notMem_empty z hz).elim
 
+/--
+@isnad1 id=nonempty.1h3v.s4.b61b16e890b1 from=translated src=- shape=db0dd163 vocab=ade05bf1
+-/
 lemma nonempty_of_two_le_componentCount {U : Finset V}
     (h : 2 ≤ componentCount G U) : U.Nonempty := by
   by_contra hne
@@ -173,6 +194,9 @@ noncomputable def rootComp (U : Finset V) {x : V} (hx : x ∈ U) :
     (complInduce (G := G) U).ConnectedComponent :=
   (complInduce (G := G) U).connectedComponentMk ⟨x, hx⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.691aeee3418c from=translated src=- shape=9aa0b335 vocab=7f5ba17f
+-/
 lemma rootComp_eq {U : Finset V} {x : V} (hx hy : x ∈ U) :
     rootComp (G := G) U hx = rootComp (G := G) U hy := by
   simp [rootComp]
@@ -182,6 +206,9 @@ noncomputable def rootChild (U : Finset V)
     (C : (complInduce (G := G) U).ConnectedComponent) : Finset V :=
   U.filter fun x => ∃ hx : x ∈ U, rootComp (G := G) U hx = C
 
+/--
+@isnad1 id=iff.0h5v.s6.0da85c89f872 from=translated src=- shape=1da376d5 vocab=b405d797
+-/
 lemma mem_rootChild_iff {U : Finset V} {x : V}
     {C : (complInduce (G := G) U).ConnectedComponent} :
     x ∈ rootChild (G := G) U C ↔ ∃ hx : x ∈ U, rootComp (G := G) U hx = C := by
@@ -191,15 +218,24 @@ lemma mem_rootChild_iff {U : Finset V} {x : V}
   · intro ⟨hx, hC⟩
     exact mem_filter.2 ⟨hx, ⟨hx, hC⟩⟩
 
+/--
+@isnad1 id=le.0h4v.s5.117e254c7735 from=translated src=- shape=90636979 vocab=42fd802c
+-/
 lemma rootChild_subset (U : Finset V)
     (C : (complInduce (G := G) U).ConnectedComponent) :
     rootChild (G := G) U C ⊆ U :=
   filter_subset _ _
 
+/--
+@isnad1 id=mem.1h4v.s5.659aa45ab214 from=translated src=- shape=f9ecd353 vocab=556788b4
+-/
 lemma mem_rootChild_self {U : Finset V} {x : V} (hx : x ∈ U) :
     x ∈ rootChild (G := G) U (rootComp (G := G) U hx) :=
   mem_rootChild_iff.2 ⟨hx, rfl⟩
 
+/--
+@isnad1 id=nonempty.0h4v.s5.fa7cde010df2 from=translated src=- shape=7d856e94 vocab=ca43bef0
+-/
 lemma rootChild_nonempty (U : Finset V)
     (C : (complInduce (G := G) U).ConnectedComponent) :
     (rootChild (G := G) U C).Nonempty := by
@@ -207,6 +243,9 @@ lemma rootChild_nonempty (U : Finset V)
   simp [rootComp]
   exact Quot.out_eq C
 
+/--
+@isnad1 id=disjoint.1h5v.s6.be9c8babff77 from=translated src=- shape=44fd6c2b vocab=c0d1f71a
+-/
 lemma disjoint_rootChild {U : Finset V}
     {C D : (complInduce (G := G) U).ConnectedComponent} (hCD : C ≠ D) :
     Disjoint (rootChild (G := G) U C) (rootChild (G := G) U D) := by
@@ -217,6 +256,9 @@ lemma disjoint_rootChild {U : Finset V}
   have : C = D := hC.symm.trans ((rootComp_eq (G := G) hx hx').trans hD)
   exact hCD this
 
+/--
+@isnad1 id=adj.3h7v.s6.5b55f6711c2d from=translated src=- shape=d7cca875 vocab=c8dddefb
+-/
 lemma adj_of_mem_distinct_rootChild {U : Finset V}
     {C D : (complInduce (G := G) U).ConnectedComponent} (hCD : C ≠ D)
     {x y : V}
@@ -236,6 +278,9 @@ lemma adj_of_mem_distinct_rootChild {U : Finset V}
     ConnectedComponent.sound (Adj.reachable hadj)
   exact hCD (hC.symm.trans (heq.trans hD))
 
+/--
+@isnad1 id=adj.3h6v.s6.0a7da95176e0 from=translated src=- shape=b409d50b vocab=c8dddefb
+-/
 lemma adj_mem_rootChild_not_mem {U : Finset V}
     {C : (complInduce (G := G) U).ConnectedComponent} {x y : V}
     (hx : x ∈ rootChild (G := G) U C) (hy : y ∈ U)
@@ -247,6 +292,9 @@ lemma adj_mem_rootChild_not_mem {U : Finset V}
   exact adj_of_mem_distinct_rootChild (G := G)
     (C := C) (D := rootComp (G := G) U hy) hCD hx hCy
 
+/--
+@isnad1 id=iscomple.1h5v.s6.d5a813206b51 from=translated src=- shape=547f89ef vocab=256946b8
+-/
 lemma isCompleteBetween_rootChildren {U : Finset V}
     {C D : (complInduce (G := G) U).ConnectedComponent} (hCD : C ≠ D) :
     G.IsCompleteBetween
@@ -254,7 +302,9 @@ lemma isCompleteBetween_rootChildren {U : Finset V}
       (rootChild (G := G) U D : Set V) :=
   fun {_} hx {_} hy => adj_of_mem_distinct_rootChild (G := G) hCD hx hy
 
-/-- A complement-walk that starts in a complete-join side stays in that side.-/
+/-- A complement-walk that starts in a complete-join side stays in that side.
+@isnad1 id=mem.3h8v.s7.181c0db0cf60 from=translated src=- shape=3694a6b0 vocab=6b95cf08
+-/
 lemma mem_left_of_compl_walk {U A B : Finset V}
     (hunion : A ∪ B = U)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -272,6 +322,9 @@ lemma mem_left_of_compl_walk {U A B : Finset V}
         · exact (hcompl.2 (hAB hx hB)).elim
       exact mem_left_of_compl_walk hunion hAB hmidA p
 
+/--
+@isnad1 id=mem.4h7v.s7.fe21fedbd293 from=translated src=- shape=3694a6b0 vocab=46d1bb64
+-/
 lemma mem_left_of_compl_reachable {U A B : Finset V}
     (hunion : A ∪ B = U)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -280,6 +333,9 @@ lemma mem_left_of_compl_reachable {U A B : Finset V}
     y.val ∈ A :=
   mem_left_of_compl_walk hunion hAB hx (Classical.choice hreach)
 
+/--
+@isnad1 id=ex.3h3v.s7.4c80976e693a from=translated src=- shape=76d54b02 vocab=4bdc84bf
+-/
 lemma exists_two_rootChildren {U : Finset V}
     (hcog : IsCograph G U)
     (hconn : (G.induce (U : Set V)).Connected)
@@ -300,6 +356,9 @@ lemma exists_two_rootChildren {U : Finset V}
     mem_left_of_compl_reachable (G := G) hcover hAB ha hreach
   exact (Finset.disjoint_left.1 hdisj) hbA hb
 
+/--
+@isnad1 id=connecte.7h8v.s7.06b6a1f9e151 from=translated src=- shape=12b3482d vocab=6164e6a9
+-/
 lemma induce_connected_of_meets_two_rootChildren {U W : Finset V}
     (hW : W ⊆ U) (hWne : W.Nonempty)
     {C D : (complInduce (G := G) U).ConnectedComponent} (hCD : C ≠ D)
@@ -354,6 +413,9 @@ lemma induce_connected_of_meets_two_rootChildren {U W : Finset V}
       adj_of_mem_distinct_rootChild (G := G) hxy hxC hyC
     exact Adj.reachable (by simpa [induce_adj] using hadj)
 
+/--
+@isnad1 id=ex.3h4v.s6.c76ba72179e8 from=translated src=- shape=cd41bd5d vocab=a21e3c58
+-/
 lemma exists_rootChild_superset {U W : Finset V}
     (hW : W ⊆ U) (hWne : W.Nonempty)
     (hcut : 2 ≤ componentCount G W) :
@@ -376,7 +438,9 @@ lemma exists_rootChild_superset {U W : Finset V}
   simpa [hsame] using mem_rootChild_self (G := G) hbU
 
 /-- For a large balanced part, survivors of `U \ P` lie in one root child `X`.
-The second root child of the connected block makes `Y = U \ X` nonempty.-/
+The second root child of the connected block makes `Y = U \ X` nonempty.
+@isnad1 id=ex.3h6v.s8.d2bfac8506a8 from=translated src=- shape=ba2e326a vocab=6899bb50
+-/
 lemma exists_assigned_rootChild {U P : Finset V}
     (hPsub : P ⊆ U)
     (hcut : 2 ≤ componentCount G (U \ P))
@@ -453,7 +517,9 @@ lemma exists_assigned_rootChild {U P : Finset V}
 
 /-- Hamiltonian cograph: `rNonadjClass U x = Q_x`. Extension is used only
 under full eligibility of the Hamiltonian parent together with an actual
-smaller critical-or-balanced certificate.-/
+smaller critical-or-balanced certificate.
+@isnad1 id=eq.3h5v.s5.85c35bae0b9d from=translated src=- shape=d4551b3e vocab=05c3ecde
+-/
 lemma rNonadjClass_eq_qxSet_of_hamiltonian {U : Finset V} {x : V}
     (hcog : IsCograph G U) (cyc : GraphCycle G) (hc : cyc.support = U)
     (hx : x ∈ U) :
@@ -486,6 +552,9 @@ lemma rNonadjClass_eq_qxSet_of_hamiltonian {U : Finset V} {x : V}
   exact rNonadjClass_eq_qxSet_of_extension hx fun y hy =>
     extension_iff_of_IH hx hy hKdata hpK hEall hpU
 
+/--
+@isnad1 id=eq.15h9v.s8.65099e17c85d from=translated src=- shape=c303c668 vocab=efcd7d1d
+-/
 lemma pathCoverNumber_eq_of_assigned {U P : Finset V}
     (hcog : IsCograph G U) (cyc : GraphCycle G) (hc : cyc.support = U)
     (hPsub : P ⊆ U)
@@ -549,6 +618,9 @@ lemma pathCoverNumber_eq_of_assigned {U P : Finset V}
   have hle' : pathCoverNumber G X ≤ Y.card := by omega
   exact le_antisymm hle' hge
 
+/--
+@isnad1 id=eq.3h5v.s6.c951c7ed888c from=translated src=- shape=178b61fb vocab=62774e16
+-/
 lemma union_erase_eq_erase {U A B : Finset V} {x : V}
     (hunion : A ∪ B = U) (hxA : x ∈ A) (hxB : x ∉ B) :
     B ∪ A.erase x = U.erase x := by
@@ -591,6 +663,9 @@ lemma eq_of_same_assigned_child {U : Finset V} {x y : V}
     (hbal.2.2 (x := y) (y := z) hy hzU).2 hzPy
   exact heqx.trans heqy.symm
 
+/--
+@isnad1 id=ex.7h6v.s8.f755606a7c4d from=translated src=- shape=915b9e6b vocab=bda68519
+-/
 lemma large_port_classification {U : Finset V}
     (hcog : IsCograph G U) (cyc : GraphCycle G) (hc : cyc.support = U)
     {x y : V} (hx : x ∈ U) (hy : y ∈ U)
@@ -845,6 +920,9 @@ lemma large_port_classification {U : Finset V}
       exact Or.inr
         (((hbal.2.2 (x := y) (y := z) hy hz).2 hzPy).symm.trans hPyB)
 
+/--
+@isnad1 id=eq.7h6v.s8.4d17e2b1f12b from=translated src=- shape=cc37c1a1 vocab=bda68519
+-/
 lemma at_most_one_nonsingleton_class {U : Finset V}
     (hcog : IsCograph G U) (cyc : GraphCycle G) (hc : cyc.support = U)
     (hnotK : ∀ (A B : Finset V),

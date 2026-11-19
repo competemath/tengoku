@@ -38,6 +38,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=iscograp.2h4v.s5.ee07a31afd20 from=translated src=- shape=a77a430f vocab=55f75bf7
+-/
 lemma IsCograph.subset {U W : Finset V}
     (hW : IsCograph G W) (hUW : U ⊆ W) : IsCograph G U :=
   fun _ _ _ _ ha hb hc hd => hW (hUW ha) (hUW hb) (hUW hc) (hUW hd)
@@ -46,18 +49,30 @@ lemma IsCograph.subset {U W : Finset V}
 noncomputable def rNonadjClass (U : Finset V) (x : V) : Finset V :=
   U.filter fun y => ¬ SpanningPathCompatible (G := G) U x y
 
+/--
+@isnad1 id=iff.0h5v.s5.37f4896ee604 from=translated src=- shape=3a6c3e30 vocab=e9b3f336
+-/
 lemma mem_rNonadjClass_iff {U : Finset V} {x y : V} :
     y ∈ rNonadjClass (G := G) U x ↔
       y ∈ U ∧ ¬ SpanningPathCompatible (G := G) U x y := by
   simp [rNonadjClass]
 
+/--
+@isnad1 id=le.0h4v.s5.9241617a70ff from=translated src=- shape=a532f79f vocab=a5aa06a7
+-/
 lemma rNonadjClass_subset (U : Finset V) (x : V) :
     rNonadjClass (G := G) U x ⊆ U :=
   filter_subset _ _
 
+/--
+@isnad1 id=not.0h4v.s4.30fe79171f32 from=translated src=- shape=faffb756 vocab=e793d211
+-/
 lemma not_SpanningPathCompatible_self (U : Finset V) (x : V) :
     ¬ SpanningPathCompatible (G := G) U x x := fun h => h.1 rfl
 
+/--
+@isnad1 id=mem.1h4v.s5.56077c254eec from=translated src=- shape=e26ae6f8 vocab=140c46c7
+-/
 lemma mem_rNonadjClass_self {U : Finset V} {x : V} (hx : x ∈ U) :
     x ∈ rNonadjClass (G := G) U x :=
   mem_rNonadjClass_iff.2 ⟨hx, not_SpanningPathCompatible_self (G := G) U x⟩
@@ -66,11 +81,17 @@ lemma mem_rNonadjClass_self {U : Finset V} {x : V} (hx : x ∈ U) :
 noncomputable def qxSet (U : Finset V) (x : V) : Finset V :=
   insert x (ineligibleSet G (U.erase x))
 
+/--
+@isnad1 id=iff.0h5v.s5.5f3d0826ab19 from=translated src=- shape=dad03d76 vocab=6d63f222
+-/
 lemma mem_qxSet_iff {U : Finset V} {x y : V} :
     y ∈ qxSet (G := G) U x ↔
       y = x ∨ y ∈ ineligibleSet G (U.erase x) := by
   simp [qxSet]
 
+/--
+@isnad1 id=eq.1h4v.s5.17d4bacb9ebc from=translated src=- shape=c327dc7d vocab=13c15ab7
+-/
 lemma pathCoverNumber_eq_one_of_support {U : Finset V}
     (p : GraphPath G) (hp : p.support = U) :
     pathCoverNumber G U = 1 := by
@@ -82,6 +103,9 @@ lemma pathCoverNumber_eq_one_of_support {U : Finset V}
   have hge := one_le_pathCoverNumber_of_nonempty (G := G) hne
   omega
 
+/--
+@isnad1 id=and.1h4v.s5.584e6ae27128 from=translated src=- shape=5d347e08 vocab=acf16f6a
+-/
 lemma Eligible_of_support_ends {U : Finset V} (p : GraphPath G)
     (hp : p.support = U) :
     Eligible G U p.start ∧ Eligible G U p.finish := by
@@ -95,6 +119,9 @@ lemma Eligible_of_support_ends {U : Finset V} (p : GraphPath G)
     exact List.mem_singleton.2 rfl
   exact Eligible.of_min_cover_endpoint pc hmin hmem
 
+/--
+@isnad1 id=ex.2h4v.s6.f60e5a6f0ba4 from=translated src=- shape=ae46cbb3 vocab=80404cae
+-/
 lemma exists_spanning_path_of_eligible_eq_one {U : Finset V} {y : V}
     (hp : pathCoverNumber G U = 1) (hE : Eligible G U y) :
     ∃ p : GraphPath G, p.support = U ∧ (p.start = y ∨ p.finish = y) := by
@@ -114,7 +141,9 @@ lemma exists_spanning_path_of_eligible_eq_one {U : Finset V} {y : V}
     simpa [this] using hzr
 
 /-- Delete an endpoint of a spanning `x`-`y` path; the remainder still
-spans the erased support and retains the surviving endpoint `y`.-/
+spans the erased support and retains the surviving endpoint `y`.
+@isnad1 id=ex.3h6v.s6.ccc619e3c9e5 from=translated src=- shape=416f9aa0 vocab=9c122712
+-/
 lemma exists_erase_endpoint_path {U : Finset V} {x y : V}
     (p : GraphPath G) (hp : p.support = U) (hxy : x ≠ y)
     (hends : (p.start = x ∧ p.finish = y) ∨ (p.start = y ∧ p.finish = x)) :
@@ -134,6 +163,9 @@ lemma exists_erase_endpoint_path {U : Finset V} {x y : V}
     · simpa [GraphPath.support_trimFinish, hf, hp]
     · simp [GraphPath.trimFinish, hs]
 
+/--
+@isnad1 id=eligible.1h5v.s5.003343664a16 from=translated src=- shape=d5c9335e vocab=d93feb0f
+-/
 lemma Eligible_erase_of_spanning {U : Finset V} {x y : V}
     (hR : SpanningPathCompatible (G := G) U x y) :
     Eligible G (U.erase x) y := by
@@ -144,6 +176,9 @@ lemma Eligible_erase_of_spanning {U : Finset V} {x y : V}
   · simpa [hs] using hE.1
   · simpa [hf] using hE.2
 
+/--
+@isnad1 id=eq.1h4v.s5.6725ae58be91 from=translated src=- shape=243694ad vocab=31c2ed24
+-/
 lemma sdiff_eq_erase_sdiff_erase {U S : Finset V} {x : V} (hxS : x ∈ S) :
     U \ S = U.erase x \ S.erase x := by
   ext z
@@ -156,7 +191,9 @@ lemma sdiff_eq_erase_sdiff_erase {U S : Finset V} {x : V} (hxS : x ∈ S) :
 
 /-- Generic both-endpoints cut bound: an actual spanning `x`-`y` path and a
 set containing both distinct ends leaves at most `|S| − 1` components.
-No cograph or toughness hypothesis is used.-/
+No cograph or toughness hypothesis is used.
+@isnad1 id=le.5h6v.s6.dfd2a5ddc996 from=translated src=- shape=0a2c0c16 vocab=9e187937
+-/
 lemma componentCount_sdiff_le_of_both_endpoints {U S : Finset V} {x y : V}
     (hS : S ⊆ U) (hx : x ∈ S) (hy : y ∈ S) (hxy : x ≠ y)
     (hR : SpanningPathCompatible (G := G) U x y) :
@@ -182,7 +219,9 @@ lemma componentCount_sdiff_le_of_both_endpoints {U S : Finset V} {x y : V}
   rw [hEq]
   omega
 
-/-- Attach an original edge at an endpoint of a spanning path of `K`.-/
+/-- Attach an original edge at an endpoint of a spanning path of `K`.
+@isnad1 id=spanning.3h6v.s5.00e72f46a844 from=translated src=- shape=dcd9dcbd vocab=530d96f4
+-/
 lemma SpanningPathCompatible_extend {K : Finset V} {x y z : V}
     (hR : SpanningPathCompatible (G := G) K z y)
     (hadj : G.Adj x z) (hx : x ∉ K) :
@@ -218,6 +257,9 @@ lemma SpanningPathCompatible_extend {K : Finset V} {x y z : V}
   · simpa [r, GraphPath.support_consAdj, hp]
   · simp [r, GraphPath.consAdj, hzy.2]
 
+/--
+@isnad1 id=le.2h4v.s6.4eb493888119 from=translated src=- shape=891db82f vocab=b636c253
+-/
 lemma pathCoverNumber_child_le_succ {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hp : pathCoverNumber G (A ∪ B) = 1) :
@@ -225,6 +267,9 @@ lemma pathCoverNumber_child_le_succ {A B : Finset V}
   have h := pathCoverNumber_complete_join_ge_sub hAB
   omega
 
+/--
+@isnad1 id=le.3h4v.s6.c828bd558672 from=translated src=- shape=74d38794 vocab=b636c253
+-/
 lemma pathCoverNumber_child_le_of_not_crit {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hp : pathCoverNumber G (A ∪ B) = 1)
@@ -233,7 +278,9 @@ lemma pathCoverNumber_child_le_of_not_crit {A B : Finset V}
   have hle := pathCoverNumber_child_le_succ hAB hp
   omega
 
-/-- Balanced nonempty-cut bound from full eligibility and `p = 1`.-/
+/-- Balanced nonempty-cut bound from full eligibility and `p = 1`.
+@isnad1 id=le.4h4v.s6.7560dda533c4 from=translated src=- shape=0f0d03da vocab=68ee1a2f
+-/
 lemma componentCount_sdiff_le_card_of_eligible_all {U S : Finset V}
     (hp : pathCoverNumber G U = 1)
     (hE : eligibleSet G U = U)
@@ -247,10 +294,16 @@ lemma componentCount_sdiff_le_card_of_eligible_all {U S : Finset V}
   have hpos : 1 ≤ S.card := Nat.succ_le_of_lt (card_pos.2 ⟨x, hxS⟩)
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.2e62fe51984f from=translated src=- shape=9ca527d8 vocab=65dad3fd
+-/
 lemma insert_erase_eq {U : Finset V} {x : V} (hx : x ∈ U) :
     insert x (U.erase x) = U :=
   insert_erase hx
 
+/--
+@isnad1 id=eq.1h4v.s6.a4d69ce26349 from=translated src=- shape=549d0e83 vocab=46444326
+-/
 lemma qxSet_sdiff {U : Finset V} {x : V} (hx : x ∈ U) :
     U \ qxSet (G := G) U x = U.erase x \ ineligibleSet G (U.erase x) := by
   ext z
@@ -263,12 +316,18 @@ lemma qxSet_sdiff {U : Finset V} {x : V} (hx : x ∈ U) :
     exact ⟨(mem_erase.1 hzK).2, fun h => h.elim
       (fun hzx => (mem_erase.1 hzK).1 hzx) hzF⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.cdef7434cd07 from=translated src=- shape=5f249802 vocab=7913e93b
+-/
 lemma card_qxSet {U : Finset V} {x : V} (hx : x ∈ U) :
     (qxSet (G := G) U x).card = (ineligibleSet G (U.erase x)).card + 1 := by
   have hxF : x ∉ ineligibleSet G (U.erase x) := fun h =>
     (mem_erase.1 ((ineligibleSet_subset (G := G) (U.erase x)) h)).1 rfl
   simp [qxSet, card_insert_of_notMem hxF]
 
+/--
+@isnad1 id=eq.3h4v.s6.038bb997ed8f from=translated src=- shape=6dcd7f2b vocab=eede5b12
+-/
 lemma componentCount_sdiff_qxSet_eq {U : Finset V} {x : V}
     (hx : x ∈ U) (hK : IsCograph G (U.erase x))
     (hpK : pathCoverNumber G (U.erase x) = 1) :
@@ -282,7 +341,9 @@ lemma componentCount_sdiff_qxSet_eq {U : Finset V} {x : V}
 
 /-- Original-adjacency label map: if every neighbour of an external
 vertex in `Rem` lies in one actual old component, then inserting that
-vertex cannot decrease the component count.-/
+vertex cannot decrease the component count.
+@isnad1 id=le.5h5v.s6.91073ed19e23 from=translated src=- shape=ea0bc7f1 vocab=cc97c1ef
+-/
 lemma componentCount_insert_ge_of_neighbors_in_one {Rem W : Finset V} {x : V}
     (hx : x ∉ Rem) (hW : W ⊆ Rem) (hWne : W.Nonempty)
     (hcomp : InOneComponent (G := G) Rem W)
@@ -351,7 +412,9 @@ lemma componentCount_insert_ge_of_neighbors_in_one {Rem W : Finset V} {x : V}
     Nat.card_le_card_of_surjective f hf
 
 /-- Cycle-opening: an original spanning cycle of order at least three
-makes every vertex an endpoint of a spanning original path.-/
+makes every vertex an endpoint of a spanning original path.
+@isnad1 id=ex.0h3v.s5.e802a5ab33f2 from=translated src=- shape=e126da8b vocab=d948953b
+-/
 lemma GraphCycle.exists_spanning_path (c : GraphCycle G) :
     ∃ p : GraphPath G, p.support = c.support ∧ G.Adj p.finish p.start := by
   have hnil : ¬ c.walk.Nil := c.isCycle.not_nil
@@ -364,6 +427,9 @@ lemma GraphCycle.exists_spanning_path (c : GraphCycle G) :
   simp [p, GraphPath.support, GraphCycle.support, hwalk, Walk.support_cons,
     insert_eq_of_mem (List.mem_toFinset.2 hstart)]
 
+/--
+@isnad1 id=eligible.2h5v.s5.c8e3771412ad from=translated src=- shape=45be4f1a vocab=71c7c924
+-/
 lemma eligible_of_cycle {U : Finset V} {x : V}
     (c : GraphCycle G) (hc : c.support = U) (hx : x ∈ U) :
     Eligible G U x := by
@@ -380,6 +446,9 @@ lemma eligible_of_cycle {U : Finset V} {x : V}
     exists_spanning_path_start_of_internal (U := U) r hrU hadj hx hxs hxf
   simpa [hstart] using (hmin_of p hp).1
 
+/--
+@isnad1 id=eq.1h4v.s5.e3ef41f8ae2f from=translated src=- shape=ae3d345d vocab=37b25226
+-/
 lemma eligibleSet_eq_of_cycle {U : Finset V}
     (c : GraphCycle G) (hc : c.support = U) :
     eligibleSet G U = U := by
@@ -422,6 +491,9 @@ def IsBalancedEndpoints (U : Finset V) : Prop :=
 def HamiltonEndpointsData (U : Finset V) : Prop :=
   IsCriticalEndpoints (G := G) U ∨ IsBalancedEndpoints (G := G) U
 
+/--
+@isnad1 id=iscritic.5h4v.s6.c507abf3627d from=translated src=- shape=2aac9fdf vocab=290408e3
+-/
 lemma critical_endpoints_of_join {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -438,17 +510,26 @@ lemma critical_endpoints_of_join {A B : Finset V}
   · intro x hx
     exact exists_critical_partCut hAne hBne hAB hcrit hA hx
 
+/--
+@isnad1 id=spanning.1h5v.s5.d9bccbe2abfd from=translated src=- shape=7f8958b1 vocab=e793d211
+-/
 lemma spanningPathCompatible_symm {U : Finset V} {x y : V}
     (h : SpanningPathCompatible (G := G) U x y) :
     SpanningPathCompatible (G := G) U y x := by
   obtain ⟨hne, p, hp, hends⟩ := h
   exact ⟨hne.symm, p, hp, hends.symm⟩
 
+/--
+@isnad1 id=iscomple.1h4v.s5.151a22c10649 from=translated src=- shape=2607f927 vocab=98846fd6
+-/
 lemma isCompleteBetween_symm {A B : Finset V}
     (h : G.IsCompleteBetween (A : Set V) (B : Set V)) :
     G.IsCompleteBetween (B : Set V) (A : Set V) :=
   fun {_} hb {_} ha => (h ha hb).symm
 
+/--
+@isnad1 id=eq.2h4v.s6.d09144661f10 from=translated src=- shape=e8066ea7 vocab=e5c49ed3
+-/
 lemma insert_erase_sdiff {U S : Finset V} {x : V}
     (hx : x ∈ U) (hxS : x ∉ S) :
     insert x (U.erase x \ S) = U \ S := by
@@ -464,6 +545,9 @@ lemma insert_erase_sdiff {U S : Finset V} {x : V}
     · exact Or.inl hzx
     · exact Or.inr ⟨⟨hzx, hzU⟩, hzS⟩
 
+/--
+@isnad1 id=mem.2h4v.s5.f4a4edb15d07 from=translated src=- shape=a62e5f7f vocab=4899491c
+-/
 lemma mem_eligibleSet_of_mem_not_ineligible {U : Finset V} {z : V}
     (hzU : z ∈ U) (hzF : z ∉ ineligibleSet G U) :
     z ∈ eligibleSet G U := by
@@ -471,6 +555,9 @@ lemma mem_eligibleSet_of_mem_not_ineligible {U : Finset V} {z : V}
     simpa [eligibleSet_union_ineligibleSet] using hzU
   exact (mem_union.1 this).resolve_right hzF
 
+/--
+@isnad1 id=eq.2h4v.s6.db0622cb9fa8 from=translated src=- shape=e5c8aacc vocab=1b406ab6
+-/
 lemma rNonadjClass_eq_qxSet_of_extension {U : Finset V} {x : V}
     (hx : x ∈ U)
     (hiff : ∀ y ∈ U.erase x,
@@ -500,7 +587,9 @@ lemma rNonadjClass_eq_qxSet_of_extension {U : Finset V} {x : V}
 
 /-- Sufficiency of the extension equivalence: an eligible vertex of `K`
 that is not R-adjacent to the deleted vertex yields a toughness
-contradiction from the inductive certificate of `K`.-/
+contradiction from the inductive certificate of `K`.
+@isnad1 id=false.7h5v.s6.d66fd7ec1d65 from=translated src=- shape=19920cd6 vocab=ddb6357e
+-/
 lemma false_of_eligible_not_extend {U : Finset V} {x y : V}
     (hx : x ∈ U)
     (hEy : Eligible G (U.erase x) y)
@@ -634,6 +723,9 @@ lemma false_of_eligible_not_extend {U : Finset V} {x y : V}
       rw [← hunion, hadd, hPx, hPK, add_comm]
     omega
 
+/--
+@isnad1 id=iff.6h5v.s6.5a79ff1cc3cd from=translated src=- shape=86f1236c vocab=ddb6357e
+-/
 lemma extension_iff_of_IH {U : Finset V} {x y : V}
     (hx : x ∈ U) (hy : y ∈ U.erase x)
     (hKdata : HamiltonEndpointsData (G := G) (U.erase x))
@@ -647,6 +739,9 @@ lemma extension_iff_of_IH {U : Finset V} {x y : V}
     by_contra hnot
     exact false_of_eligible_not_extend hx hEy hnot hKdata hpK hEall hpU
 
+/--
+@isnad1 id=iff.5h5v.s7.5d6290ad61a5 from=translated src=- shape=36d7e010 vocab=d5066dc9
+-/
 lemma class_coincidence_of_qx {U : Finset V}
     (hEall : eligibleSet G U = U)
     (hpU : pathCoverNumber G U = 1)
@@ -697,6 +792,9 @@ lemma class_coincidence_of_qx {U : Finset V}
           ⟨rNonadjClass_subset (G := G) U y hz, hRfalse⟩
     exact subset_antisymm hsub hsub'
 
+/--
+@isnad1 id=eq.3h4v.s6.2f1c6bf2cbc3 from=translated src=- shape=947110c3 vocab=75db0546
+-/
 lemma support_eq_pair_of_card_two {U : Finset V} (p : GraphPath G)
     (hp : p.support = U) (h2 : U.card = 2) (hne : p.start ≠ p.finish) :
     p.support = {p.start, p.finish} := by
@@ -708,6 +806,9 @@ lemma support_eq_pair_of_card_two {U : Finset V} (p : GraphPath G)
   have hsc : p.support.card = 2 := by simpa [hp] using h2
   exact (eq_of_subset_of_card_le hsub (by omega)).symm
 
+/--
+@isnad1 id=isbalanc.4h3v.s6.4e453388e1a8 from=translated src=- shape=7aaa67fc vocab=8e6cb51e
+-/
 lemma balanced_endpoints_of_card_two {U : Finset V}
     (hU : IsCograph G U)
     (hconn : (G.induce (U : Set V)).Connected)
@@ -800,7 +901,9 @@ lemma balanced_endpoints_of_card_two {U : Finset V}
       rfl
 
 /-- Strong induction on support order: every connected traceable cograph of
-order at least two carries a critical or balanced actual R-certificate.-/
+order at least two carries a critical or balanced actual R-certificate.
+@isnad1 id=hamilton.5h4v.s6.79a8194d97e9 from=translated src=- shape=310a3c11 vocab=d86be9b1
+-/
 lemma hamilton_endpoints_of_card (n : ℕ) :
     ∀ (U : Finset V), U.card = n →
       2 ≤ U.card →
@@ -871,6 +974,9 @@ lemma hamilton_endpoints_of_card (n : ℕ) :
         · have hcard2 : U.card = 2 := by omega
           exact Or.inr (balanced_endpoints_of_card_two hcog hconn hpU hcard2)
 
+/--
+@isnad1 id=hamilton.4h3v.s6.eb3cf1b65984 from=translated src=- shape=f38dfdda vocab=d86be9b1
+-/
 lemma hamilton_endpoints_of_traceable_cograph {U : Finset V}
     (h2 : 2 ≤ U.card)
     (hcog : IsCograph G U)
@@ -879,6 +985,9 @@ lemma hamilton_endpoints_of_traceable_cograph {U : Finset V}
     HamiltonEndpointsData (G := G) U :=
   hamilton_endpoints_of_card U.card U rfl h2 hcog hconn hpU
 
+/--
+@isnad1 id=hamilton.4h3v.s6.352adf8062ad from=translated src=- shape=f38dfdda vocab=804a8231
+-/
 lemma hamilton_endpoints_of_traceable_cograph_canonical {U : Finset V}
     (h2 : 2 ≤ U.card)
     (hcog : Nikoghosyan.IsCograph G U)
@@ -887,6 +996,9 @@ lemma hamilton_endpoints_of_traceable_cograph_canonical {U : Finset V}
     HamiltonEndpointsData (G := G) U :=
   hamilton_endpoints_of_traceable_cograph h2 (isCograph_iff.2 hcog) hconn hpU
 
+/--
+@isnad1 id=iff.3h5v.s6.8dad2d734716 from=translated src=- shape=294b39e9 vocab=7ab287c7
+-/
 lemma spanning_iff_distinct_classes_of_balanced {U : Finset V}
     (h : IsBalancedEndpoints (G := G) U) {x y : V}
     (hx : x ∈ U) (hy : y ∈ U) :
@@ -907,7 +1019,9 @@ lemma spanning_iff_distinct_classes_of_balanced {U : Finset V}
 /-- Specialization to an actual Hamiltonian cograph block of order at least
 three: opening the original spanning cycle makes every vertex eligible, so
 the block is balanced rather than critical, and the actual R classes cover
-`U` with class equality capturing incompatibility.-/
+`U` with class equality capturing incompatibility.
+@isnad1 id=and.2h4v.s6.87f1b1a55a73 from=translated src=- shape=400027e2 vocab=b0fbb7e7
+-/
 lemma hamiltonian_cograph_port {U : Finset V}
     (hcog : IsCograph G U) (c : GraphCycle G) (hc : c.support = U) :
     eligibleSet G U = U ∧
@@ -955,6 +1069,9 @@ lemma hamiltonian_cograph_port {U : Finset V}
   exact ⟨hE, hbal, fun (x y : V) (hx : x ∈ U) (hy : y ∈ U) (_ : x ≠ y) =>
     spanning_iff_distinct_classes_of_balanced (x := x) (y := y) hbal hx hy⟩
 
+/--
+@isnad1 id=and.2h4v.s6.5f30c701cfe6 from=translated src=- shape=400027e2 vocab=6ae5aacd
+-/
 lemma hamiltonian_cograph_port_canonical {U : Finset V}
     (hcog : Nikoghosyan.IsCograph G U) (c : GraphCycle G) (hc : c.support = U) :
     eligibleSet G U = U ∧
@@ -964,6 +1081,9 @@ lemma hamiltonian_cograph_port_canonical {U : Finset V}
             rNonadjClass (G := G) U x ≠ rNonadjClass (G := G) U y)) :=
   hamiltonian_cograph_port (isCograph_iff.2 hcog) c hc
 
+/--
+@isnad1 id=spanning.4h5v.s6.41b59ab93d19 from=translated src=- shape=27ef5479 vocab=7ab287c7
+-/
 lemma spanningPath_of_distinct_classes {U : Finset V} {x y : V}
     (h : IsBalancedEndpoints (G := G) U)
     (hx : x ∈ U) (hy : y ∈ U)
@@ -975,6 +1095,9 @@ lemma spanningPath_of_distinct_classes {U : Finset V} {x y : V}
     mem_rNonadjClass_iff.2 ⟨hy, hnot⟩
   exact hne ((hclass hx hy).2 hyQ)
 
+/--
+@isnad1 id=eq.2h4v.s5.d1f378ed2ce9 from=translated src=- shape=596b5f69 vocab=2872dd32
+-/
 lemma partCut_of_balanced {U : Finset V} {x : V}
     (h : IsBalancedEndpoints (G := G) U) (hx : x ∈ U) :
     componentCount G (U \ rNonadjClass (G := G) U x) =

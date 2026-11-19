@@ -36,6 +36,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=eq.4h4v.s6.c2d405cd5689 from=translated src=- shape=44f3d346 vocab=c094bc5d
+-/
 lemma pathCoverNumber_eq_one_of_critical {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -45,6 +48,9 @@ lemma pathCoverNumber_eq_one_of_critical {A B : Finset V}
   have h := pathCoverNumber_eq_sub_of_dominant hAne hBne hAB hdom
   omega
 
+/--
+@isnad1 id=eq.4h4v.s6.e94d2ff83ff0 from=translated src=- shape=a246bf90 vocab=a45281fc
+-/
 lemma eligibleSet_complete_join_critical {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -52,6 +58,9 @@ lemma eligibleSet_complete_join_critical {A B : Finset V}
     eligibleSet G (A ∪ B) = eligibleSet G A :=
   eligibleSet_complete_join_dominant hAne hBne hAB (by omega)
 
+/--
+@isnad1 id=eq.4h4v.s6.faf2394bd97a from=translated src=- shape=afe4b239 vocab=f3cbfc60
+-/
 lemma ineligibleSet_complete_join_critical {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -59,6 +68,9 @@ lemma ineligibleSet_complete_join_critical {A B : Finset V}
     ineligibleSet G (A ∪ B) = B ∪ ineligibleSet G A :=
   ineligibleSet_complete_join_dominant hAne hBne hAB (by omega)
 
+/--
+@isnad1 id=ex.6h9v.s8.4219eb66267f from=translated src=- shape=a0280a07 vocab=7592d9aa
+-/
 lemma exists_orientFinish_keepStart {A U : Finset V} {x y : V}
     (pc : PathCover G U) {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -97,6 +109,9 @@ lemma exists_orientFinish_keepStart {A U : Finset V} {x y : V}
         exact ⟨(hend q hq).2, (hend q hq).1⟩
       · exact hend s hspc
 
+/--
+@isnad1 id=eq.3h4v.s6.d3574e0aa185 from=translated src=- shape=45a9622a vocab=ea982279
+-/
 lemma insert_eq_of_sdiff_singleton {S B : Finset V} {b : V}
     (hS : S ⊆ B) (hb : b ∈ B \ S) (hcard : (B \ S).card = 1) :
     insert b S = B := by
@@ -116,6 +131,9 @@ lemma insert_eq_of_sdiff_singleton {S B : Finset V} {b : V}
       have hz' : z = w := mem_singleton.1 (hw ▸ hzBS)
       simpa [hz'.trans hb'.symm] using mem_insert_self b S
 
+/--
+@isnad1 id=eq.4h6v.s6.e27d5be61ae8 from=translated src=- shape=47881e18 vocab=dd627586
+-/
 lemma support_union_of_two {U : Finset V} (pc : PathCover G U)
     {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -158,6 +176,9 @@ lemma support_union_of_two {U : Finset V} (pc : PathCover G U)
         · exact mem_union.2 (Or.inr hzs)
         · exact mem_union.2 (Or.inl hzs)
 
+/--
+@isnad1 id=ex.9h11v.s8.b07bcfd51e4b from=translated src=- shape=ce507962 vocab=f739d46f
+-/
 lemma exists_last_splice_through {A B U : Finset V} {b x y : V}
     {p q : GraphPath G}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -177,7 +198,9 @@ lemma exists_last_splice_through {A B U : Finset V} {b x y : V}
   exact ⟨s, hs, hss.trans hstart, hsf.trans hfinish⟩
 
 /-- Forward assembly: a `D(A)` pair becomes a spanning `x`-`y` path of
-the critical join `A ∪ B`.-/
+the critical join `A ∪ B`.
+@isnad1 id=ex.3h6v.s6.6fd246a242ef from=translated src=- shape=80294240 vocab=f8113491
+-/
 lemma exists_spanning_path_of_critical_D {A B : Finset V} {x y : V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hcrit : pathCoverNumber G A = B.card + 1)
@@ -293,6 +316,9 @@ lemma exists_spanning_path_of_critical_D {A B : Finset V} {x y : V}
   exact aux B.card ∅ pc0' p0o q0o (empty_subset B) (by simp) hcard0
     hp0' hq0' hne0o hstart0 hy0 hend0'
 
+/--
+@isnad1 id=eq.2h4v.s6.2e122e9f75c9 from=translated src=- shape=cb0a2679 vocab=c37e85d5
+-/
 lemma erase_union_sdiff_erase {A B : Finset V} {b : V}
     (hdisj : Disjoint A B) (hb : b ∈ B) :
     (A ∪ B).erase b \ B.erase b = A := by
@@ -308,7 +334,9 @@ lemma erase_union_sdiff_erase {A B : Finset V} {b : V}
     intro hBe
     exact Finset.disjoint_left.1 hdisj hzA hBe.2
 
-/-- Reverse: a spanning `x`-`y` path of the critical join yields `D(A)`.-/
+/-- Reverse: a spanning `x`-`y` path of the critical join yields `D(A)`.
+@isnad1 id=distinct.5h6v.s6.0d956fec56d0 from=translated src=- shape=9b35d539 vocab=a9d902e0
+-/
 lemma DistinctPathCompatible_of_critical_spanning {A B : Finset V} {x y : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -429,6 +457,9 @@ lemma DistinctPathCompatible_of_critical_spanning {A B : Finset V} {x y : V}
   · rw [PathCover.cast_paths]; exact hp'
   · rw [PathCover.cast_paths]; exact hq'
 
+/--
+@isnad1 id=iff.4h6v.s6.f6a40e50ead2 from=translated src=- shape=c4ecad20 vocab=a9d902e0
+-/
 lemma SpanningPathCompatible_critical_iff {A B : Finset V} {x y : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -442,7 +473,9 @@ lemma SpanningPathCompatible_critical_iff {A B : Finset V} {x y : V}
       exists_spanning_path_of_critical_D hAB hcrit hD
     exact ⟨hD.1, r, hr, Or.inl ⟨hs, hf⟩⟩
 
-/-- Extend a D-part cut of the dominant child by the opposite side.-/
+/-- Extend a D-part cut of the dominant child by the opposite side.
+@isnad1 id=ex.6h5v.s7.44107d546987 from=translated src=- shape=a13ede6c vocab=f7cee824
+-/
 lemma exists_critical_partCut {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -509,6 +542,9 @@ lemma exists_critical_partCut {A B : Finset V} {x : V}
   refine ⟨S, hSsub, hSne, hcut', ?_⟩
   simpa [hW, hrem] using hmono
 
+/--
+@isnad1 id=ex.6h5v.s7.e301c09be7e8 from=translated src=- shape=a13ede6c vocab=35da8069
+-/
 lemma exists_critical_partCut_of_canonical {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))

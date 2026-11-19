@@ -40,6 +40,9 @@ noncomputable def leftoverCountIn {U : Finset V} (pc : PathCover G U)
     (U0 : Finset V) : ℕ :=
   (pc.paths.filter (fun Q => Q.start ∈ U0)).length
 
+/--
+@isnad1 id=eq.0h4v.s5.a82f246f1acc from=translated src=- shape=60393611 vocab=021a5ea4
+-/
 lemma leftoverCountIn_eq_card {U : Finset V} (pc : PathCover G U) :
     leftoverCountIn pc U = pc.card := by
   unfold leftoverCountIn
@@ -50,7 +53,9 @@ lemma leftoverCountIn_eq_card {U : Finset V} (pc : PathCover G U) :
 
 /-- No original edge between `U0` and the remainder of a no-cross union
 child. This is the inductive step that makes a saving subset an actual
-component of the original cover carrier.-/
+component of the original cover carrier.
+@isnad1 id=not.5h7v.s7.983e16e6a8d5 from=translated src=- shape=5637aa37 vocab=425a5106
+-/
 lemma noCross_of_union_child {U0 A B : Finset V}
     (hU0A : U0 ⊆ A)
     (hnocrossAB : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
@@ -71,6 +76,9 @@ noncomputable def actualFilteredCover {W U0 : Finset V}
   PathCover.splitLeft (disjoint_sdiff : Disjoint U0 (W \ U0)) hnocross
     (pc.cast (union_sdiff_of_subset hU0).symm)
 
+/--
+@isnad1 id=eq.2h5v.s7.0332f76255a5 from=translated src=- shape=0c8b2aaa vocab=c2d1b3fa
+-/
 lemma actualFilteredCover_paths {W U0 : Finset V}
     (hU0 : U0 ⊆ W)
     (hnocross : ∀ a ∈ U0, ∀ b ∈ W \ U0, ¬ G.Adj a b)
@@ -79,6 +87,9 @@ lemma actualFilteredCover_paths {W U0 : Finset V}
       pc.paths.filter (fun Q => Q.start ∈ U0) := by
   simp [actualFilteredCover, PathCover.splitLeft, PathCover.cast_paths]
 
+/--
+@isnad1 id=eq.2h5v.s6.16e7eeb2b46f from=translated src=- shape=9908dba9 vocab=c473a717
+-/
 lemma actualFilteredCover_card {W U0 : Finset V}
     (hU0 : U0 ⊆ W)
     (hnocross : ∀ a ∈ U0, ∀ b ∈ W \ U0, ¬ G.Adj a b)
@@ -87,7 +98,9 @@ lemma actualFilteredCover_card {W U0 : Finset V}
   simp [leftoverCountIn, PathCover.card, actualFilteredCover_paths hU0 hnocross pc]
 
 /-- Distinct cover-path starts inject into the carrier, so a cover cannot
-be larger than its vertex set.-/
+be larger than its vertex set.
+@isnad1 id=le.0h4v.s5.d3109dbd2b08 from=translated src=- shape=078b167b vocab=7b8db82e
+-/
 lemma card_le_of_pathCover {U : Finset V} (pc : PathCover G U) :
     pc.card ≤ U.card := by
   let starts := pc.paths.map (fun p => p.start)
@@ -107,6 +120,9 @@ lemma card_le_of_pathCover {U : Finset V} (pc : PathCover G U) :
   have hle : starts.toFinset.card ≤ U.card := card_le_card hsub
   simpa [PathCover.card, starts, List.length_map, hlen] using hle
 
+/--
+@isnad1 id=le.3h5v.s6.5deb18dac353 from=translated src=- shape=a195f1b2 vocab=296bf931
+-/
 lemma two_le_card_of_filtered {W U0 : Finset V}
     (hU0 : U0 ⊆ W)
     (hnocross : ∀ a ∈ U0, ∀ b ∈ W \ U0, ¬ G.Adj a b)
@@ -120,7 +136,9 @@ lemma two_le_card_of_filtered {W U0 : Finset V}
 /-- From a leftover cover of a nonempty `W` with `p(W) <` cover card,
 extract a connected induced subset `U0 ⊆ W` that is anticomplete to
 `W \ U0`, whose leftover-run count `q0` still strictly exceeds `p(U0)`,
-and therefore `q0 ≥ 2`.-/
+and therefore `q0 ≥ 2`.
+@isnad1 id=ex.2h4v.s7.4e5a5cf0741f from=translated src=- shape=b20437bc vocab=f820ed13
+-/
 lemma exists_saving_of_cover {W : Finset V} (hne : W.Nonempty)
     (pc : PathCover G W) (hp : pathCoverNumber G W < pc.card) :
     ∃ U0 : Finset V,
@@ -235,7 +253,9 @@ lemma exists_saving_of_cover {W : Finset V} (hne : W.Nonempty)
 /-- Opened-cycle leftover cover of `U \ A` under no consecutive `A`–`A`
 edge yields an actual connected saving component `U0` of `K = U \ A`:
 anticomplete to the rest of `K`, with an actual filtered leftover cover
-of `U0`, `p(U0) < q0`, `q0 ≥ 2`, and therefore `|U0| ≥ 2`.-/
+of `U0`, `p(U0) < q0`, `q0 ≥ 2`, and therefore `|U0| ≥ 2`.
+@isnad1 id=ex.9h6v.s8.f02047f6f004 from=translated src=- shape=c778b9a9 vocab=f0e34be1
+-/
 lemma exists_saving_component {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -280,7 +300,9 @@ lemma exists_saving_component {U A : Finset V}
 
 /-- A saving component of order at least two is an original complete join
 of two nonempty children. This is the legitimate root-join of the
-protected induction, derived from `q0 ≥ 2` and the filtered cover.-/
+protected induction, derived from `q0 ≥ 2` and the filtered cover.
+@isnad1 id=ex.3h3v.s7.43211160224e from=translated src=- shape=f4afaa06 vocab=6c75cfff
+-/
 lemma exists_complete_join_of_saving {U0 : Finset V}
     (hU0 : IsCograph G U0)
     (hconn : (G.induce (U0 : Set V)).Connected)
@@ -292,13 +314,18 @@ lemma exists_complete_join_of_saving {U0 : Finset V}
   exists_complete_join_on hU0 hconn h2
 
 /-- A complete-join child of a saving component is disjoint from original
-`A`, because it lives in `U \ A`.-/
+`A`, because it lives in `U \ A`.
+@isnad1 id=disjoint.2h5v.s6.e1a7161a4b21 from=translated src=- shape=4ae778f4 vocab=d1d21c81
+-/
 lemma disjoint_A_of_saving_child {U A U0 Y : Finset V}
     (hU0 : U0 ⊆ U \ A) (hY : Y ⊆ U0) : Disjoint A Y := by
   refine disjoint_left.2 ?_
   intro x hxA hxY
   exact (mem_sdiff.1 (hU0 (hY hxY))).2 hxA
 
+/--
+@isnad1 id=eq.0h4v.s5.5845c18eb761 from=translated src=- shape=c4b8a7ca vocab=b293ee9c
+-/
 lemma sdiff_sdiff_eq_sdiff_union (U A Y : Finset V) :
     (U \ A) \ Y = U \ (A ∪ Y) := by
   ext x
@@ -307,7 +334,9 @@ lemma sdiff_sdiff_eq_sdiff_union (U A Y : Finset V) :
 
 /-- Global cover-deletion bound: `p(K \ Y) ≤ p(K) + |Y| < |A| + |Y| = |A ∪ Y|`.
 No per-component path-count sum is used. `A` and `Y` are disjoint because
-`Y` lives in the remainder `U \ A`.-/
+`Y` lives in the remainder `U \ A`.
+@isnad1 id=lt.3h6v.s6.acd87555a2a0 from=translated src=- shape=f02e6058 vocab=e10070bd
+-/
 lemma pathCoverNumber_lt_of_delete_Y {U A U0 Y : Finset V}
     (hU0 : U0 ⊆ U \ A) (hY : Y ⊆ U0)
     (hstrict : pathCoverNumber G (U \ A) < A.card) :
@@ -324,7 +353,9 @@ lemma pathCoverNumber_lt_of_delete_Y {U A U0 Y : Finset V}
   omega
 
 /-- The remainder after deleting `A ∪ Y` inherits the cograph property
-from `U \ A`.-/
+from `U \ A`.
+@isnad1 id=iscograp.1h5v.s5.af115bc7a3cf from=translated src=- shape=01fba76b vocab=b631e6b8
+-/
 lemma isCograph_sdiff_union_Y {U A Y : Finset V}
     (hK : IsCograph G (U \ A)) :
     IsCograph G (U \ (A ∪ Y)) :=

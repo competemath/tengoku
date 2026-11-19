@@ -32,15 +32,27 @@ variable {G}
 def support (c : GraphCycle G) : Finset V :=
   c.walk.support.toFinset
 
+/--
+@isnad1 id=le.0h3v.s5.027fafe46484 from=translated src=- shape=9b43e02a vocab=815faf9b
+-/
 lemma three_le_length (c : GraphCycle G) : 3 ≤ c.walk.length :=
   c.isCycle.three_le_length
 
+/--
+@isnad1 id=mem.0h3v.s5.8d5cbdba20dc from=translated src=- shape=b9c081f1 vocab=ce8ba937
+-/
 lemma start_mem_support (c : GraphCycle G) : c.start ∈ c.support := by
   simp [support, Walk.start_mem_support]
 
+/--
+@isnad1 id=nonempty.0h3v.s4.c86102374c90 from=translated src=- shape=628ae653 vocab=67b37cf0
+-/
 lemma support_nonempty (c : GraphCycle G) : c.support.Nonempty :=
   ⟨c.start, c.start_mem_support⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.5a40ebe02349 from=translated src=- shape=86592f0a vocab=0255d152
+-/
 lemma card_support (c : GraphCycle G) : c.support.card = c.walk.length := by
   have htail := c.isCycle.support_nodup
   have hstart : c.start ∈ c.walk.support.tail :=
@@ -63,6 +75,9 @@ lemma card_support (c : GraphCycle G) : c.support.card = c.walk.length := by
       List.toFinset_card_of_nodup htail'
     simp [support, heq, hcard, hlen, hcwalk]
 
+/--
+@isnad1 id=le.0h3v.s4.a48f6327027f from=translated src=- shape=b0a7b0d1 vocab=ed0748af
+-/
 lemma three_le_card_support (c : GraphCycle G) : 3 ≤ c.support.card := by
   simpa [c.card_support] using c.three_le_length
 
@@ -72,6 +87,9 @@ def reverse (c : GraphCycle G) : GraphCycle G where
   walk := c.walk.reverse
   isCycle := c.isCycle.reverse
 
+/--
+@isnad1 id=eq.0h3v.s4.f2e70abf7990 from=translated src=- shape=b1e85df5 vocab=d7aa103e
+-/
 @[simp]
 lemma support_reverse (c : GraphCycle G) : c.reverse.support = c.support := by
   simp [reverse, support, Walk.support_reverse]
@@ -94,7 +112,9 @@ def card (F : CycleFactor G) : ℕ :=
 
 /-- A one-cycle factor is a genuine spanning original-edge cycle of order
 at least three. Mathlib's `IsHamiltonian` singleton convention is not used
-here.-/
+here.
+@isnad1 id=ex.1h3v.s6.b3549c97daff from=translated src=- shape=32bbe264 vocab=30732037
+-/
 lemma exists_hamiltonian_cycle_of_card_one (F : CycleFactor G) (hF : F.card = 1) :
     ∃ (a : V) (w : G.Walk a a), w.IsCycle ∧ w.support.toFinset = univ ∧
       3 ≤ Fintype.card V := by
@@ -120,7 +140,9 @@ lemma exists_hamiltonian_cycle_of_card_one (F : CycleFactor G) (hF : F.card = 1)
     have := c.three_le_card_support
     simpa [hsupp] using this
 
-/-- From any cycle factor, a factor of globally minimum cycle count exists.-/
+/-- From any cycle factor, a factor of globally minimum cycle count exists.
+@isnad1 id=ex.0h3v.s5.b98c0204fcf2 from=translated src=- shape=2fc391e3 vocab=4e52e1f1
+-/
 lemma exists_min_of_exists (F0 : CycleFactor G) :
     ∃ F : CycleFactor G,
       F.card ≤ F0.card ∧ ∀ F' : CycleFactor G, F.card ≤ F'.card := by

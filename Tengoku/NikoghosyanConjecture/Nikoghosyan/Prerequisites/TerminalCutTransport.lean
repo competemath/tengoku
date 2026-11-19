@@ -39,12 +39,21 @@ namespace AllCographSides
 
 variable (P : AllCographSides G)
 
+/--
+@isnad1 id=not.1h4v.s6.438f8c945713 from=translated src=- shape=ef1b61f4 vocab=2b0eced5
+-/
 lemma mem_A_not_mem_K {x : V} (hx : x ∈ P.A) : x ∉ P.B ∪ P.W :=
   disjoint_left.1 P.disjoint_A_K hx
 
+/--
+@isnad1 id=not.1h4v.s6.486a62b5302f from=translated src=- shape=ef1b61f4 vocab=6c42fb07
+-/
 lemma mem_U_not_mem_K {x : V} (hx : x ∈ P.U) : x ∉ P.B ∪ P.W :=
   disjoint_left.1 P.disjoint_U_K hx
 
+/--
+@isnad1 id=eq.1h4v.s6.535903e2c62a from=translated src=- shape=0cb509de vocab=237abf44
+-/
 lemma univ_sdiff_eq {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     univ \ S = P.A ∪ P.U ∪ ((P.B ∪ P.W) \ S) := by
   ext x
@@ -69,32 +78,48 @@ lemma univ_sdiff_eq {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
       · exact (disjoint_left.1 P.disjoint_U_K hU (hS hS')).elim
     · exact (mem_sdiff.1 hK).2 hS'
 
+/--
+@isnad1 id=le.1h4v.s6.8ecfdf06fefd from=translated src=- shape=5515f7d1 vocab=237abf44
+-/
 lemma subset_AU_union_Ksdiff {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     P.A ∪ P.U ⊆ univ \ S := by
   intro x hx
   rw [P.univ_sdiff_eq hS]
   exact mem_union.2 (Or.inl hx)
 
+/--
+@isnad1 id=connecte.0h3v.s6.7ace3309c1ed from=translated src=- shape=a838f987 vocab=ebbd388f
+-/
 lemma connected_AU :
     (G.induce ((P.A ∪ P.U : Finset V) : Set V)).Connected :=
   Cograph.induce_connected_of_completeJoin P.A_nonempty P.hUne P.hAU
 
+/--
+@isnad1 id=reachabl.2h5v.s7.67220049d354 from=translated src=- shape=a8d3af53 vocab=357ae855
+-/
 lemma reachable_AU {x y : V} (hx : x ∈ P.A ∪ P.U) (hy : y ∈ P.A ∪ P.U) :
     (G.induce ((P.A ∪ P.U : Finset V) : Set V)).Reachable
       ⟨x, hx⟩ ⟨y, hy⟩ :=
   P.connected_AU.preconnected ⟨x, hx⟩ ⟨y, hy⟩
 
-/-- Surviving `B` vertices attach to `A` by original complete-join edges.-/
+/-- Surviving `B` vertices attach to `A` by original complete-join edges.
+@isnad1 id=adj.3h6v.s6.95e267e3b273 from=translated src=- shape=ce8d82f6 vocab=d7a46a9a
+-/
 lemma adj_A_surviving_B {S : Finset V} {a b : V}
     (ha : a ∈ P.A) (hb : b ∈ P.B) (hbS : b ∉ S) : G.Adj a b :=
   P.hAB ha hb
 
+/--
+@isnad1 id=not.2h5v.s6.1d5b258afffd from=translated src=- shape=8a86b58e vocab=d484b2f6
+-/
 lemma W_anti_AU {w x : V} (hw : w ∈ P.W) (hx : x ∈ P.A ∪ P.U) : ¬ G.Adj w x := by
   rcases mem_union.1 hx with hA | hU
   · exact P.hWantiA w hw x hA
   · exact fun h => P.hUantiW x hU w hw h.symm
 
-/-- `A ∪ U` remains connected after deleting any `S ⊆ K`.-/
+/-- `A ∪ U` remains connected after deleting any `S ⊆ K`.
+@isnad1 id=connecte.1h4v.s6.4378be022fa9 from=translated src=- shape=53783946 vocab=6008d5f9
+-/
 lemma connected_AU_in_remainder {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     (G.induce ((P.A ∪ P.U : Finset V) : Set V)).Connected :=
   P.connected_AU
@@ -120,6 +145,9 @@ noncomputable def mixedComponent {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     P.subset_AU_union_Ksdiff hS (mem_union.2 (Or.inl P.A_nonempty.choose_spec))
   (G.induce ((univ \ S : Finset V) : Set V)).connectedComponentMk ⟨a, ha⟩
 
+/--
+@isnad1 id=eq.2h5v.s7.1c90c94ef851 from=translated src=- shape=61a58c0a vocab=a362e64a
+-/
 lemma mem_mixedComponent_of_AU {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {x : V} (hx : x ∈ P.A ∪ P.U) :
     (G.induce ((univ \ S : Finset V) : Set V)).connectedComponentMk
@@ -136,6 +164,9 @@ lemma mem_mixedComponent_of_AU {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
   rw [← hxEq, ← haEq]
   exact hR
 
+/--
+@isnad1 id=eq.3h5v.s7.00846ef35e5c from=translated src=- shape=47a2687b vocab=84ecc8c7
+-/
 lemma mem_mixedComponent_of_surviving_B {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {b : V} (hb : b ∈ P.B) (hbS : b ∉ S) :
     (G.induce ((univ \ S : Finset V) : Set V)).connectedComponentMk
@@ -157,11 +188,17 @@ lemma mem_mixedComponent_of_surviving_B {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     P.mem_mixedComponent_of_AU hS (mem_union.2 (Or.inl ha))
   convert (ConnectedComponent.connectedComponentMk_eq_of_adj hadj).trans hA
 
+/--
+@isnad1 id=mem.2h5v.s6.3cd11ed4a0aa from=translated src=- shape=634fabf8 vocab=64a9eb40
+-/
 lemma mem_remainder_of_Ksdiff {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {x : V} (hx : x ∈ (P.B ∪ P.W) \ S) : x ∈ univ \ S := by
   rw [P.univ_sdiff_eq hS]
   exact mem_union.2 (Or.inr hx)
 
+/--
+@isnad1 id=not.1h5v.s6.8ccb06f38b3c from=translated src=- shape=b3f8a16c vocab=e2749efc
+-/
 lemma not_mem_Ksdiff_of_AU {S : Finset V} {x : V}
     (hx : x ∈ P.A ∪ P.U) : x ∉ (P.B ∪ P.W) \ S := by
   intro hxK
@@ -170,7 +207,9 @@ lemma not_mem_Ksdiff_of_AU {S : Finset V} {x : V}
   · exact (disjoint_left.1 P.disjoint_A_K hA hxK').elim
   · exact (disjoint_left.1 P.disjoint_U_K hU hxK').elim
 
-/-- B-free remainder components of `K \ S` live in `W`.-/
+/-- B-free remainder components of `K \ S` live in `W`.
+@isnad1 id=le.1h5v.s7.b0016ecfb3ae from=translated src=- shape=f44775d7 vocab=c6a8baec
+-/
 lemma free_component_subset_W {S : Finset V}
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     (hC : IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C) :
@@ -189,6 +228,9 @@ lemma free_component_subset_W {S : Finset V}
   · exact (hxB hB).elim
   · exact hW
 
+/--
+@isnad1 id=not.3h7v.s7.c28476b4ca89 from=translated src=- shape=a0c15ff4 vocab=637cb149
+-/
 lemma not_adj_free_AU {S : Finset V}
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     (hC : IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C)
@@ -196,6 +238,9 @@ lemma not_adj_free_AU {S : Finset V}
     (hy : y ∈ P.A ∪ P.U) : ¬ G.Adj x y :=
   P.W_anti_AU (P.free_component_subset_W hC hx) hy
 
+/--
+@isnad1 id=mem.3h6v.s6.6d41e4602f40 from=translated src=- shape=63c2f340 vocab=cb09b2da
+-/
 lemma adj_mem_componentFinset {U : Finset V}
     {C : (G.induce (U : Set V)).ConnectedComponent} {x y : V}
     (hx : x ∈ componentFinset G U C) (hy : y ∈ U) (hadj : G.Adj x y) :
@@ -209,7 +254,9 @@ lemma adj_mem_componentFinset {U : Finset V}
     (ConnectedComponent.connectedComponentMk_eq_of_adj hadj').symm.trans hxC
   exact mem_filter.2 ⟨hy, ⟨hy, hyC⟩⟩
 
-/-- A walk in `G-S` that starts in a B-free `K \ S` component stays there.-/
+/-- A walk in `G-S` that starts in a B-free `K \ S` component stays there.
+@isnad1 id=mem.3h8v.s8.f18757a1601f from=translated src=- shape=1c543760 vocab=c81ca27d
+-/
 lemma free_walk_stays {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     (hC : IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C)
@@ -235,6 +282,9 @@ lemma free_walk_stays {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
       adj_mem_componentFinset (G := G) (U := (P.B ∪ P.W) \ S) hx hvKS hadjG
     exact ih hvC
 
+/--
+@isnad1 id=mem.4h7v.s8.f5a630a5c3d6 from=translated src=- shape=1c543760 vocab=94f84483
+-/
 lemma free_reachable_stays {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     (hC : IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C)
@@ -244,17 +294,26 @@ lemma free_reachable_stays {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     y.val ∈ componentFinset G ((P.B ∪ P.W) \ S) C :=
   P.free_walk_stays hS hC hx (Classical.choice hR)
 
+/--
+@isnad1 id=ex.0h4v.s6.bda2a43e7865 from=translated src=- shape=ab475b02 vocab=6a10661a
+-/
 lemma exists_mem_connectedComponent {U : Finset V}
     (C : (G.induce (U : Set V)).ConnectedComponent) :
     ∃ (x : V) (hx : x ∈ U),
       (G.induce (U : Set V)).connectedComponentMk ⟨x, hx⟩ = C :=
   C.ind fun z => ⟨z.1, z.2, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s6.d07da42e01d7 from=translated src=- shape=1ecde5ce vocab=c4636240
+-/
 lemma mem_componentFinset_mk {U : Finset V} {x : V} (hx : x ∈ U) :
     x ∈ componentFinset G U
       ((G.induce (U : Set V)).connectedComponentMk ⟨x, hx⟩) :=
   mem_filter.2 ⟨hx, ⟨hx, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.398dc4b9971a from=translated src=- shape=15d4b5b2 vocab=137a88ec
+-/
 lemma connectedComponentMk_eq_of_mem_componentFinset {U : Finset V}
     {C : (G.induce (U : Set V)).ConnectedComponent} {x : V}
     (hx : x ∈ componentFinset G U C) :
@@ -262,7 +321,9 @@ lemma connectedComponentMk_eq_of_mem_componentFinset {U : Finset V}
   obtain ⟨_, hC⟩ := (mem_filter.1 hx).2
   exact hC
 
-/-- A non-free `K \ S` component meets surviving `B` and joins the mixed blob.-/
+/-- A non-free `K \ S` component meets surviving `B` and joins the mixed blob.
+@isnad1 id=eq.3h5v.s8.397eb43fefca from=translated src=- shape=197b692e vocab=717977c6
+-/
 lemma mem_mixedComponent_of_not_free {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {x : V} (hx : x ∈ (P.B ∪ P.W) \ S)
     (hnot : ¬ IsFreeComponent (G := G) (P.B ∪ P.W) P.B S
@@ -316,10 +377,16 @@ noncomputable def remainderSum {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
   | .inl _ => P.mixedComponent hS
   | .inr C => C.1.map (P.induceIncl_Ksdiff_remainder hS)
 
+/--
+@isnad1 id=eq.1h5v.s8.d27f71401762 from=translated src=- shape=43ad3074 vocab=17b7461c
+-/
 lemma remainderSum_inl {S : Finset V} (hS : S ⊆ P.B ∪ P.W) (u : Unit) :
     P.remainderSum hS (.inl u) = P.mixedComponent hS :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.64f7f4acd5ab from=translated src=- shape=3eb888c6 vocab=94cf26d1
+-/
 lemma remainderSum_inr {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     (C : { C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent //
       IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C }) :
@@ -327,6 +394,9 @@ lemma remainderSum_inr {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
       C.1.map (P.induceIncl_Ksdiff_remainder hS) :=
   rfl
 
+/--
+@isnad1 id=eq.3h6v.s9.db5fc9b8b6d7 from=translated src=- shape=25ba844e vocab=9bda52ad
+-/
 lemma map_free_eq_mk {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     {x : V} (hxKS : x ∈ (P.B ∪ P.W) \ S)
@@ -339,6 +409,9 @@ lemma map_free_eq_mk {S : Finset V} (hS : S ⊆ P.B ∪ P.W)
   rw [ConnectedComponent.map_mk]
   rfl
 
+/--
+@isnad1 id=mem.2h6v.s8.c3ae31dfc1e8 from=translated src=- shape=3160fa77 vocab=0f5f0347
+-/
 lemma mem_componentFinset_of_eq {S : Finset V}
     {C : (G.induce (((P.B ∪ P.W) \ S : Finset V) : Set V)).ConnectedComponent}
     {x : V} (hxKS : x ∈ (P.B ∪ P.W) \ S)
@@ -347,6 +420,9 @@ lemma mem_componentFinset_of_eq {S : Finset V}
     x ∈ componentFinset G ((P.B ∪ P.W) \ S) C := by
   simpa [hxC] using (mem_componentFinset_mk (G := G) hxKS)
 
+/--
+@isnad1 id=bijectiv.1h4v.s8.3031299cb362 from=translated src=- shape=8fd9bf42 vocab=3b58e1c2
+-/
 lemma remainderSum_bijective {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     Function.Bijective (P.remainderSum hS) := by
   refine ⟨?inj, ?surj⟩
@@ -462,7 +538,9 @@ noncomputable def remainderComponentEquiv {S : Finset V}
           IsFreeComponent (G := G) (P.B ∪ P.W) P.B S C } :=
   (Equiv.ofBijective (P.remainderSum hS) (P.remainderSum_bijective hS)).symm
 
-/-- Actual host identity: `c(G-S) = 1 + z_B(K-S)` for every `S ⊆ K`.-/
+/-- Actual host identity: `c(G-S) = 1 + z_B(K-S)` for every `S ⊆ K`.
+@isnad1 id=eq.1h4v.s6.b94282446f3f from=translated src=- shape=302ddf1f vocab=e4cc9384
+-/
 lemma componentCount_remainder_eq {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
     componentCount G (univ \ S) =
       1 + terminalComponentCount (G := G) (P.B ∪ P.W) P.B S := by
@@ -477,6 +555,9 @@ lemma componentCount_remainder_eq {S : Finset V} (hS : S ⊆ P.B ∪ P.W) :
   simpa [componentCount, terminalComponentCount, Nat.card_sum, hunit,
     Nat.add_comm] using hcard
 
+/--
+@isnad1 id=eq.1h2v.s4.1c4e3ac10921 from=translated src=- shape=2b35bac0 vocab=768d801a
+-/
 lemma componentCount_univ_of_connected [Nonempty V] (h : G.Connected) :
     componentCount G univ = 1 := by
   have hss : Subsingleton G.ConnectedComponent :=
@@ -489,7 +570,9 @@ lemma componentCount_univ_of_connected [Nonempty V] (h : G.Connected) :
 /-- Original 1-toughness of `G` yields the strict terminal cut hypothesis
 on `K = B ∪ W`. The empty cut has `z = 0`. A nonempty cut with `z = 0`
 is numerically trivial. Positive `z` produces at least two actual
-remainder components, so the conditional tough bound applies.-/
+remainder components, so the conditional tough bound applies.
+@isnad1 id=terminal.1h3v.s5.e2c4b6719050 from=translated src=- shape=aa73d284 vocab=cd6a5892
+-/
 lemma terminalHypothesis_of_oneTough (htough : OneTough G) :
     TerminalHypothesis (G := G) (P.B ∪ P.W) P.B := by
   haveI : Nonempty V := ⟨P.A_nonempty.choose⟩
@@ -512,6 +595,9 @@ lemma terminalHypothesis_of_oneTough (htough : OneTough G) :
       have ht := htough S h2
       omega
 
+/--
+@isnad1 id=repaired.2h3v.s5.f1c29e96c8c4 from=translated src=- shape=877d9955 vocab=79c76ccd
+-/
 lemma repairedTerminalHypothesis_of_oneTough
     (hpat : NoInducedP4UnionP1 G) (htough : OneTough G) :
     RepairedTerminalHypothesis (G := G) (P.B ∪ P.W) P.B :=

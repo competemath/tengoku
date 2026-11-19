@@ -61,11 +61,16 @@ namespace InducedP4
 
 variable {G : SimpleGraph V} {a b c d : V}
 
+/--
+@isnad1 id=and.1h6v.s5.34aeab4e1d18 from=translated src=- shape=9bc8097f vocab=10cda62a
+-/
 lemma pairwise_ne (h : InducedP4 G a b c d) :
     a ≠ b ∧ a ≠ c ∧ a ≠ d ∧ b ≠ c ∧ b ≠ d ∧ c ≠ d :=
   ⟨h.ne_ab, h.ne_ac, h.ne_ad, h.ne_bc, h.ne_bd, h.ne_cd⟩
 
-/-- Reversing the path order yields another induced `P4`.-/
+/-- Reversing the path order yields another induced `P4`.
+@isnad1 id=inducedp.1h6v.s4.b0345eeb1c43 from=translated src=- shape=59dccae5 vocab=10cda62a
+-/
 lemma reverse (h : InducedP4 G a b c d) : InducedP4 G d c b a where
   ne_ab := h.ne_cd.symm
   ne_ac := h.ne_bd.symm
@@ -80,6 +85,9 @@ lemma reverse (h : InducedP4 G a b c d) : InducedP4 G d c b a where
   not_ad := (h.not_ad <| ·.symm)
   not_bd := (h.not_ac <| ·.symm)
 
+/--
+@isnad1 id=eq.1h6v.s6.622c95bfda56 from=translated src=- shape=2f015fa0 vocab=1dcb4bca
+-/
 lemma card_four [DecidableEq V] (h : InducedP4 G a b c d) :
     ({a, b, c, d} : Finset V).card = 4 := by
   have had : a ∉ ({b, c, d} : Finset V) := by simp [h.ne_ab, h.ne_ac, h.ne_ad]
@@ -87,11 +95,22 @@ lemma card_four [DecidableEq V] (h : InducedP4 G a b c d) :
   have hcd : c ∉ ({d} : Finset V) := by simp [h.ne_cd]
   simp [Finset.card_insert_of_notMem, had, hbd, hcd]
 
+/--
+@isnad1 id=adj.1h6v.s4.b4da234a4b7b from=translated src=- shape=8366f539 vocab=0f9153d5
+-/
 lemma adj_ab_of (h : InducedP4 G a b c d) : G.Adj a b := h.adj_ab
+/--
+@isnad1 id=adj.1h6v.s4.49cd1adf6d0f from=translated src=- shape=6542e54c vocab=0f9153d5
+-/
 lemma adj_bc_of (h : InducedP4 G a b c d) : G.Adj b c := h.adj_bc
+/--
+@isnad1 id=adj.1h6v.s4.76a473f6468b from=translated src=- shape=88a8116e vocab=0f9153d5
+-/
 lemma adj_cd_of (h : InducedP4 G a b c d) : G.Adj c d := h.adj_cd
 
-/-- No vertex of an induced `P4` is adjacent to the other three vertices.-/
+/-- No vertex of an induced `P4` is adjacent to the other three vertices.
+@isnad1 id=not.2h7v.s6.308ab9d0f590 from=translated src=- shape=71669604 vocab=0f9153d5
+-/
 lemma not_adj_other_three (h : InducedP4 G a b c d) {x : V}
     (hx : x = a ∨ x = b ∨ x = c ∨ x = d) :
     ¬ ((x ≠ a → G.Adj x a) ∧ (x ≠ b → G.Adj x b) ∧
@@ -124,10 +143,16 @@ def NoInducedP4UnionP1 (G : SimpleGraph V) : Prop :=
     x ≠ a → x ≠ b → x ≠ c → x ≠ d →
     G.Adj x a ∨ G.Adj x b ∨ G.Adj x c ∨ G.Adj x d
 
+/--
+@isnad1 id=iff.0h3v.s4.a5d937b79045 from=translated src=- shape=5528a77e vocab=f47fbb10
+-/
 lemma isCographOn_iff_isCograph {G : SimpleGraph V} {U : Finset V} :
     IsCographOn G U ↔ IsCograph G U :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.38b1a317f20e from=translated src=- shape=f5a701d4 vocab=c57e02d1
+-/
 lemma isCographGraph_iff_univ [Fintype V] {G : SimpleGraph V} :
     IsCographGraph G ↔ IsCograph G Finset.univ := by
   constructor
@@ -136,6 +161,9 @@ lemma isCographGraph_iff_univ [Fintype V] {G : SimpleGraph V} :
   · intro h a b c d hp
     exact h (Finset.mem_univ a) (Finset.mem_univ b) (Finset.mem_univ c) (Finset.mem_univ d) hp
 
+/--
+@isnad1 id=iff.0h2v.s3.31fbc6388a48 from=translated src=- shape=a378c66c vocab=4802c837
+-/
 lemma isCographGraph_iff_univ_set {G : SimpleGraph V} :
     IsCographGraph G ↔ IsCographOn G Set.univ := by
   constructor
@@ -144,25 +172,39 @@ lemma isCographGraph_iff_univ_set {G : SimpleGraph V} :
   · intro h a b c d hp
     exact h (Set.mem_univ a) (Set.mem_univ b) (Set.mem_univ c) (Set.mem_univ d) hp
 
-/-- Induced inheritance: subsets of a cograph vertex set remain cographs.-/
+/-- Induced inheritance: subsets of a cograph vertex set remain cographs.
+@isnad1 id=iscograp.2h4v.s5.53f48b011dda from=translated src=- shape=68aab49f vocab=548e8d5f
+-/
 lemma isCograph_mono {G : SimpleGraph V} {U W : Finset V}
     (hW : IsCograph G W) (hUW : U ⊆ W) : IsCograph G U :=
   fun _ _ _ _ ha hb hc hd hp =>
     hW (hUW ha) (hUW hb) (hUW hc) (hUW hd) hp
 
+/--
+@isnad1 id=iscograp.2h4v.s4.959c8ec3651d from=translated src=- shape=68aab49f vocab=afd2b974
+-/
 lemma isCographOn_mono {G : SimpleGraph V} {U W : Set V}
     (hW : IsCographOn G W) (hUW : U ⊆ W) : IsCographOn G U :=
   fun _ _ _ _ ha hb hc hd hp =>
     hW (hUW ha) (hUW hb) (hUW hc) (hUW hd) hp
 
+/--
+@isnad1 id=iscograp.1h3v.s4.82f8f3c2759f from=translated src=- shape=1b90ed26 vocab=f6a52d78
+-/
 lemma isCographOn_of_isCographGraph {G : SimpleGraph V} (h : IsCographGraph G) (U : Set V) :
     IsCographOn G U :=
   fun _ _ _ _ _ _ _ _ hp => h _ _ _ _ hp
 
+/--
+@isnad1 id=iscograp.1h3v.s4.95c8ec111283 from=translated src=- shape=1b90ed26 vocab=85cccb0a
+-/
 lemma isCograph_of_isCographGraph {G : SimpleGraph V} (h : IsCographGraph G) (U : Finset V) :
     IsCograph G U :=
   fun _ _ _ _ _ _ _ _ hp => h _ _ _ _ hp
 
+/--
+@isnad1 id=inducedp.1h7v.s6.92de82dde862 from=translated src=- shape=651d8e24 vocab=86a8749f
+-/
 lemma inducedP4_induce {G : SimpleGraph V} {s : Set V} {a b c d : s}
     (h : InducedP4 (G.induce s) a b c d) : InducedP4 G a.1 b.1 c.1 d.1 where
   ne_ab := by intro h'; exact h.ne_ab (Subtype.ext h')
@@ -178,6 +220,9 @@ lemma inducedP4_induce {G : SimpleGraph V} {s : Set V} {a b c d : s}
   not_ad := by simpa [induce_adj] using h.not_ad
   not_bd := by simpa [induce_adj] using h.not_bd
 
+/--
+@isnad1 id=inducedp.1h7v.s6.430c522f12d1 from=translated src=- shape=77db54c6 vocab=86a8749f
+-/
 lemma inducedP4_of_coe {G : SimpleGraph V} {s : Set V} {a b c d : s}
     (h : InducedP4 G a.1 b.1 c.1 d.1) : InducedP4 (G.induce s) a b c d where
   ne_ab := fun h' => h.ne_ab (congrArg Subtype.val h')
@@ -193,12 +238,17 @@ lemma inducedP4_of_coe {G : SimpleGraph V} {s : Set V} {a b c d : s}
   not_ad := by simpa [induce_adj] using h.not_ad
   not_bd := by simpa [induce_adj] using h.not_bd
 
-/-- Induced subgraphs of a cograph are cographs.-/
+/-- Induced subgraphs of a cograph are cographs.
+@isnad1 id=iscograp.1h3v.s4.46a6aa42957d from=translated src=- shape=220f91dc vocab=4b4b2027
+-/
 lemma isCographGraph_induce {G : SimpleGraph V} {s : Set V}
     (h : IsCographGraph G) : IsCographGraph (G.induce s) := by
   intro a b c d hp
   exact h a.1 b.1 c.1 d.1 (inducedP4_induce hp)
 
+/--
+@isnad1 id=iff.0h3v.s4.3d5fc41ce0c1 from=translated src=- shape=ba53e436 vocab=d925edfc
+-/
 lemma isCographOn_iff_isCographGraph_induce {G : SimpleGraph V} {s : Set V} :
     IsCographOn G s ↔ IsCographGraph (G.induce s) := by
   constructor
@@ -207,6 +257,9 @@ lemma isCographOn_iff_isCographGraph_induce {G : SimpleGraph V} {s : Set V} :
   · intro h a b c d ha hb hc hd hp
     exact h ⟨a, ha⟩ ⟨b, hb⟩ ⟨c, hc⟩ ⟨d, hd⟩ (inducedP4_of_coe hp)
 
+/--
+@isnad1 id=not.1h6v.s5.358d4307c644 from=translated src=- shape=55db8764 vocab=57fe83e7
+-/
 lemma not_inducedP4_of_card_lt [Fintype V] {G : SimpleGraph V}
     (hV : Fintype.card V < 4) (a b c d : V) : ¬ InducedP4 G a b c d := by
   intro hp
@@ -217,10 +270,16 @@ lemma not_inducedP4_of_card_lt [Fintype V] {G : SimpleGraph V}
     simpa [hp.card_four] using this
   omega
 
+/--
+@isnad1 id=iscograp.1h2v.s4.9b7e45d10ae6 from=translated src=- shape=c355691e vocab=eb2dadb1
+-/
 lemma isCographGraph_of_card_lt_four [Fintype V] {G : SimpleGraph V}
     (hV : Fintype.card V < 4) : IsCographGraph G :=
   fun a b c d => not_inducedP4_of_card_lt hV a b c d
 
+/--
+@isnad1 id=iscograp.1h2v.s4.a0ad1b4e81ec from=translated src=- shape=c355691e vocab=2a6e3a0c
+-/
 lemma isCographGraph_of_card_le_one [Fintype V] {G : SimpleGraph V}
     (hV : Fintype.card V ≤ 1) : IsCographGraph G :=
   isCographGraph_of_card_lt_four (lt_of_le_of_lt hV (by decide : (1 : ℕ) < 4))
@@ -229,7 +288,9 @@ lemma isCographGraph_of_card_le_one [Fintype V] {G : SimpleGraph V}
 
 variable {G : SimpleGraph V}
 
-/-- On a shortest `u–w` walk, vertices at index distance at least two are nonadjacent.-/
+/-- On a shortest `u–w` walk, vertices at index distance at least two are nonadjacent.
+@isnad1 id=not.4h7v.s6.d4a903ad76bb from=translated src=- shape=e2a1d555 vocab=65bcb538
+-/
 lemma not_adj_getVert_of_length_eq_dist {u w : V} {p : G.Walk u w}
     (hp : p.length = G.dist u w) {i j : ℕ}
     (hi : i ≤ p.length) (hj : j ≤ p.length) (hgap : i + 2 ≤ j) :
@@ -250,7 +311,9 @@ lemma not_adj_getVert_of_length_eq_dist {u w : V} {p : G.Walk u w}
   have : G.dist u w ≤ q.length := dist_le q
   omega
 
-/-- The first four vertices of a shortest path of length at least three induce a `P4`.-/
+/-- The first four vertices of a shortest path of length at least three induce a `P4`.
+@isnad1 id=inducedp.2h5v.s6.bdbc9707d450 from=translated src=- shape=28f14928 vocab=71bb3179
+-/
 lemma inducedP4_of_shortest_path {u w : V} {p : G.Walk u w}
     (hp : p.length = G.dist u w) (h3 : 3 ≤ p.length) :
     InducedP4 G (p.getVert 0) (p.getVert 1) (p.getVert 2) (p.getVert 3) := by
@@ -279,7 +342,9 @@ lemma inducedP4_of_shortest_path {u w : V} {p : G.Walk u w}
       not_bd := not_adj_getVert_of_length_eq_dist hp (hle 1 (by decide)) (hle 3 (by decide))
                   (by decide) }
 
-/-- A connected cograph has ordinary distance at most two.-/
+/-- A connected cograph has ordinary distance at most two.
+@isnad1 id=le.2h4v.s4.29d9852ba2b6 from=translated src=- shape=5eb25cbd vocab=819b7764
+-/
 lemma dist_le_two_of_connected_cograph (hG : G.Connected) (hC : IsCographGraph G)
     (u v : V) : G.dist u v ≤ 2 := by
   by_contra h
@@ -289,7 +354,9 @@ lemma dist_le_two_of_connected_cograph (hG : G.Connected) (hC : IsCographGraph G
     inducedP4_of_shortest_path hp (by omega)
   exact hC _ _ _ _ this
 
-/-- A connected cograph has extended diameter at most two.-/
+/-- A connected cograph has extended diameter at most two.
+@isnad1 id=le.2h2v.s4.2321e308039f from=translated src=- shape=398a625d vocab=23fd43b3
+-/
 lemma ediam_le_two_of_connected_cograph (hG : G.Connected) (hC : IsCographGraph G) :
     G.ediam ≤ 2 := by
   refine ediam_le_of_edist_le ?_
@@ -301,7 +368,9 @@ lemma ediam_le_two_of_connected_cograph (hG : G.Connected) (hC : IsCographGraph 
 
 /-! ## `P4 ∪ P1` domination and antineighborhoods -/
 
-/-- In a co-gem-free graph, every induced `P4` dominates every other vertex.-/
+/-- In a co-gem-free graph, every induced `P4` dominates every other vertex.
+@isnad1 id=or.3h7v.s6.0e612c87a14e from=translated src=- shape=fbbe1942 vocab=d44fd0cb
+-/
 lemma inducedP4_dominates_of_no_p4_union_p1 (h : NoInducedP4UnionP1 G)
     {a b c d x : V} (hp : InducedP4 G a b c d)
     (hx : x ≠ a ∧ x ≠ b ∧ x ≠ c ∧ x ≠ d) :
@@ -312,11 +381,16 @@ lemma inducedP4_dominates_of_no_p4_union_p1 (h : NoInducedP4UnionP1 G)
 def antineighborhood (G : SimpleGraph V) (v : V) : Set V :=
   {w | w ≠ v ∧ ¬ G.Adj v w}
 
+/--
+@isnad1 id=iff.0h4v.s5.f591962ceecc from=translated src=- shape=6cfaf33e vocab=127fd8d6
+-/
 lemma mem_antineighborhood {v w : V} :
     w ∈ antineighborhood G v ↔ w ≠ v ∧ ¬ G.Adj v w :=
   Iff.rfl
 
-/-- Every vertex antineighborhood of a co-gem-free graph is a cograph.-/
+/-- Every vertex antineighborhood of a co-gem-free graph is a cograph.
+@isnad1 id=iscograp.1h3v.s4.296b06e9ae50 from=translated src=- shape=d5566317 vocab=48b93c74
+-/
 lemma isCographOn_antineighborhood_of_no_p4_union_p1
     (h : NoInducedP4UnionP1 G) (v : V) :
     IsCographOn G (antineighborhood G v) := by
@@ -338,6 +412,9 @@ lemma isCographOn_antineighborhood_of_no_p4_union_p1
 def componentVerts {s : Set V} (C : (G.induce s).ConnectedComponent) : Set V :=
   Subtype.val '' (C.supp : Set s)
 
+/--
+@isnad1 id=iff.0h5v.s6.29236ef02c63 from=translated src=- shape=bc04740d vocab=ea5b7678
+-/
 lemma mem_componentVerts {s : Set V} {C : (G.induce s).ConnectedComponent} {x : V} :
     x ∈ componentVerts C ↔ ∃ hx : x ∈ s, (⟨x, hx⟩ : s) ∈ C.supp := by
   constructor
@@ -347,13 +424,18 @@ lemma mem_componentVerts {s : Set V} {C : (G.induce s).ConnectedComponent} {x : 
   · intro ⟨hx, hmem⟩
     exact ⟨⟨x, hx⟩, hmem, rfl⟩
 
+/--
+@isnad1 id=le.0h4v.s4.dc29f02c6653 from=translated src=- shape=294df098 vocab=74ddb968
+-/
 lemma componentVerts_subset {s : Set V} (C : (G.induce s).ConnectedComponent) :
     componentVerts C ⊆ s := by
   intro x hx
   obtain ⟨hx', _⟩ := (mem_componentVerts (C := C)).1 hx
   exact hx'
 
-/-- A vertex outside a component of `G.induce s` is `G`-nonadjacent to that component.-/
+/-- A vertex outside a component of `G.induce s` is `G`-nonadjacent to that component.
+@isnad1 id=not.3h6v.s6.76e368f929fb from=translated src=- shape=92a4cfca vocab=5f746d70
+-/
 lemma not_adj_of_mem_other_component {s : Set V}
     {C : (G.induce s).ConnectedComponent} {x y : V}
     (hx : x ∈ s) (hxC : (⟨x, hx⟩ : s) ∉ C.supp)
@@ -364,6 +446,9 @@ lemma not_adj_of_mem_other_component {s : Set V}
   have : (⟨x, hx⟩ : s) ∈ C.supp := (C.mem_supp_congr_adj this).mpr hyC
   exact hxC this
 
+/--
+@isnad1 id=ne.3h6v.s6.619385b136ce from=translated src=- shape=178317c6 vocab=ea5b7678
+-/
 lemma ne_of_mem_other_component {s : Set V}
     {C : (G.induce s).ConnectedComponent} {x y : V}
     (hx : x ∈ s) (hxC : (⟨x, hx⟩ : s) ∉ C.supp)
@@ -374,7 +459,9 @@ lemma ne_of_mem_other_component {s : Set V}
   exact hxC this
 
 /-- An induced `P4` inside one component of `G.induce s`, together with a vertex of
-another component, would be an induced `P4 ∪ P1`.-/
+another component, would be an induced `P4 ∪ P1`.
+@isnad1 id=iscograp.3h5v.s6.e25ff711303e from=translated src=- shape=6e8fdf5c vocab=a85da724
+-/
 lemma isCographOn_componentVerts_of_outside_vertex
     (h : NoInducedP4UnionP1 G) {s : Set V}
     (C : (G.induce s).ConnectedComponent) {x : V}
@@ -392,7 +479,9 @@ lemma isCographOn_componentVerts_of_outside_vertex
   · exact not_adj_of_mem_other_component hx hxC hc hxc'
   · exact not_adj_of_mem_other_component hx hxC hd hxd'
 
-/-- If `G.induce s` is disconnected, every one of its components induces a cograph.-/
+/-- If `G.induce s` is disconnected, every one of its components induces a cograph.
+@isnad1 id=iscograp.2h4v.s5.ace1199cc2a2 from=translated src=- shape=05af2365 vocab=5c8ebf67
+-/
 lemma isCographOn_componentVerts_of_not_preconnected
     (h : NoInducedP4UnionP1 G) {s : Set V}
     (hdisc : ¬ (G.induce s).Preconnected)

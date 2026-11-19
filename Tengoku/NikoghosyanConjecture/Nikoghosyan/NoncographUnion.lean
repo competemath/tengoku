@@ -32,12 +32,18 @@ variable {G : SimpleGraph V}
 
 /-! ### Component-count tools on finite unions -/
 
+/--
+@isnad1 id=onetough.0h2v.s4.7cce7c2bd0e3 from=translated src=- shape=31ef610d vocab=02cbbd92
+-/
 lemma OneToughOn.empty : OneToughOn G (∅ : Finset V) := by
   intro S hS h2
   have hSempty : S = ∅ := subset_empty.1 hS
   subst hSempty
   simp [componentCount_empty] at h2
 
+/--
+@isnad1 id=eq.2h3v.s5.bba0a247d9bd from=translated src=- shape=6e025001 vocab=697b7b23
+-/
 lemma componentCount_eq_one_of_connected {U : Finset V}
     (hU : U.Nonempty) (hc : (G.induce (U : Set V)).Connected) :
     componentCount G U = 1 := by
@@ -48,6 +54,9 @@ lemma componentCount_eq_one_of_connected {U : Finset V}
     hc.preconnected.subsingleton_connectedComponent
   exact Nat.card_eq_one_iff_unique.2 ⟨hss, hne⟩
 
+/--
+@isnad1 id=not.1h3v.s5.8ca7a52324f3 from=translated src=- shape=9b7b992d vocab=906626e5
+-/
 lemma not_connected_of_two_le_componentCount {U : Finset V}
     (h : 2 ≤ componentCount G U) :
     ¬ (G.induce (U : Set V)).Connected := by
@@ -60,16 +69,25 @@ lemma not_connected_of_two_le_componentCount {U : Finset V}
   have h1 := componentCount_eq_one_of_connected (G := G) hne hc
   omega
 
+/--
+@isnad1 id=eq.1h5v.s7.d69bdaf4a910 from=translated src=- shape=4b86253f vocab=48b6f898
+-/
 lemma induceIncl_apply {A B : Finset V} (hAB : A ⊆ B) (x : (A : Set V)) :
     induceIncl G hAB x = ⟨x.1, hAB x.2⟩ :=
   rfl
 
+/--
+@isnad1 id=reachabl.4h6v.s7.4a330adb64d6 from=translated src=- shape=22f34087 vocab=32378db9
+-/
 lemma reachable_of_induce_subset {A B : Finset V} (hAB : A ⊆ B) {x y : V}
     (hx : x ∈ A) (hy : y ∈ A)
     (h : (G.induce (A : Set V)).Reachable ⟨x, hx⟩ ⟨y, hy⟩) :
     (G.induce (B : Set V)).Reachable ⟨x, hAB hx⟩ ⟨y, hAB hy⟩ := by
   convert h.map (induceIncl G hAB) <;> rw [induceIncl_apply]
 
+/--
+@isnad1 id=reachabl.3h5v.s6.ad858fe2febd from=translated src=- shape=50e74fba vocab=d570c727
+-/
 lemma reachable_of_componentCount_eq_one {U : Finset V}
     (h : componentCount G U = 1) {x y : V} (hx : x ∈ U) (hy : y ∈ U) :
     (G.induce (U : Set V)).Reachable ⟨x, hx⟩ ⟨y, hy⟩ := by
@@ -77,6 +95,9 @@ lemma reachable_of_componentCount_eq_one {U : Finset V}
     (Nat.card_eq_one_iff_unique.1 h).1
   exact ConnectedComponent.exact (Subsingleton.elim _ _)
 
+/--
+@isnad1 id=iff.0h5v.s7.1da8fd52290c from=translated src=- shape=20fcd4ea vocab=c62b873d
+-/
 lemma mem_componentFinset_iff {U : Finset V} {x : V}
     {C : (G.induce (U : Set V)).ConnectedComponent} :
     x ∈ componentFinset G U C ↔
@@ -84,7 +105,9 @@ lemma mem_componentFinset_iff {U : Finset V} {x : V}
   simp [componentFinset]
 
 /-- A connected original cycle support that sits inside `U` is contained
-in a single induced component of `U`.-/
+in a single induced component of `U`.
+@isnad1 id=le.2h5v.s6.3a56d0c903b7 from=translated src=- shape=9cf4f447 vocab=ab7ce53f
+-/
 lemma cycle_support_subset_componentFinset (c : GraphCycle G) {U : Finset V}
     (hsub : c.support ⊆ U) {x : V} (hx : x ∈ c.support) :
     c.support ⊆
@@ -96,6 +119,9 @@ lemma cycle_support_subset_componentFinset (c : GraphCycle G) {U : Finset V}
   exact (reachable_of_induce_subset hsub hx hy
     (reachable_of_componentCount_eq_one (componentCount_cycle_eq_one c) hx hy)).symm
 
+/--
+@isnad1 id=le.0h5v.s5.c1915c470e48 from=translated src=- shape=c1583727 vocab=0a6f8691
+-/
 lemma componentCount_biUnion_le {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (f : ι → Finset V) :
     componentCount G (s.biUnion f) ≤ s.sum fun i => componentCount G (f i) := by
@@ -107,6 +133,9 @@ lemma componentCount_biUnion_le {ι : Type*} [DecidableEq ι]
     exact (componentCount_union_le G (f a) (s.biUnion f)).trans
       (Nat.add_le_add_left ih _)
 
+/--
+@isnad1 id=eq.0h5v.s5.08c55ac926c5 from=translated src=- shape=8dc97679 vocab=e201bc46
+-/
 lemma biUnion_sdiff {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (f : ι → Finset V) (S : Finset V) :
     s.biUnion f \ S = s.biUnion fun i => f i \ S := by
@@ -118,6 +147,9 @@ lemma biUnion_sdiff {ι : Type*} [DecidableEq ι]
   · intro ⟨i, hi, hxf, hxS⟩
     exact ⟨⟨i, hi, hxf⟩, hxS⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.4490e53a8b42 from=translated src=- shape=7b1e634e vocab=cb10d346
+-/
 lemma sdiff_eq_sdiff_inter_noncograph_union (A S : Finset V) :
     A \ S = A \ (S ∩ A) := by
   ext x
@@ -136,6 +168,9 @@ lemma eq_biUnion_inter {ι : Type*} [DecidableEq ι]
     obtain ⟨i, _, hx'⟩ := mem_biUnion.1 hx
     exact (mem_inter.1 hx').1
 
+/--
+@isnad1 id=pairwise.1h6v.s6.bd4b0121b893 from=translated src=- shape=63d69c32 vocab=6e329f6e
+-/
 lemma pairwiseDisjoint_inter_of_pairwise {ι : Type*} [DecidableEq ι]
     {c : ι → GraphCycle G}
     (hdisj : Pairwise fun i j => Disjoint (c i).support (c j).support)
@@ -144,6 +179,9 @@ lemma pairwiseDisjoint_inter_of_pairwise {ι : Type*} [DecidableEq ι]
   intro i hi j hj hij
   exact (hdisj hij).mono inter_subset_right inter_subset_right
 
+/--
+@isnad1 id=eq.2h6v.s6.42223c1c6b79 from=translated src=- shape=2b83d6e0 vocab=e90553e1
+-/
 lemma card_sum_inter_cycle_family {ι : Type*} [DecidableEq ι]
     (c : ι → GraphCycle G)
     (hdisj : Pairwise fun i j => Disjoint (c i).support (c j).support)
@@ -157,6 +195,9 @@ lemma card_sum_inter_cycle_family {ι : Type*} [DecidableEq ι]
 
 /-! ### Every selected noncograph cycle meets a genuine remainder cut -/
 
+/--
+@isnad1 id=nonempty.5h7v.s7.0f9ba74b8009 from=translated src=- shape=820e23a5 vocab=111f5390
+-/
 lemma selected_cycle_meets_cut {ι : Type*} [DecidableEq ι]
     (c : ι → GraphCycle G)
     (I : Finset ι) (hcof : NoInducedP4UnionP1 G)
@@ -192,7 +233,9 @@ lemma selected_cycle_meets_cut {ι : Type*} [DecidableEq ι]
 
 /-- Manuscript `lem:noncograph-union` on an arbitrary finite family of
 pairwise-disjoint original cycles whose supports are noncographs. Empty
-selected index sets are included and give the empty-support case.-/
+selected index sets are included and give the empty-support case.
+@isnad1 id=onetough.3h5v.s6.aa827359d4ae from=translated src=- shape=8893a378 vocab=82d62cd8
+-/
 theorem oneToughOn_of_noncograph_cycle_family
     {ι : Type*} [DecidableEq ι]
     (c : ι → GraphCycle G)
@@ -225,7 +268,9 @@ theorem oneToughOn_of_noncograph_cycle_family
   omega
 
 /-- Support-level form used by a genuine original cycle factor: the
-selected noncograph blocks induce a 1-tough original union.-/
+selected noncograph blocks induce a 1-tough original union.
+@isnad1 id=onetough.2h4v.s6.d04abc3a5fb6 from=translated src=- shape=60f18a7c vocab=1f86da1b
+-/
 theorem oneToughOn_selectedSupport_of_noncograph
     (F : CycleFactor G) (I : Finset (Fin F.card))
     (hcof : NoInducedP4UnionP1 G)
@@ -235,7 +280,9 @@ theorem oneToughOn_selectedSupport_of_noncograph
     oneToughOn_of_noncograph_cycle_family (c := F.getCycle)
       (fun i j hij => F.disjoint_getCycle hij) I hcof hnc
 
-/-- `OneTough` of the actual induced selected union.-/
+/-- `OneTough` of the actual induced selected union.
+@isnad1 id=onetough.2h4v.s7.141821b43fc3 from=translated src=- shape=a0e12ea6 vocab=4cd593db
+-/
 theorem oneTough_induce_of_selected_noncograph
     (F : CycleFactor G) (I : Finset (Fin F.card))
     (hcof : NoInducedP4UnionP1 G)
@@ -250,6 +297,9 @@ noncomputable def twoCycleBlocks (cH cD : GraphCycle G) : Bool → GraphCycle G
   | true => cH
   | false => cD
 
+/--
+@isnad1 id=pairwise.1h4v.s6.0b25352e9258 from=translated src=- shape=dfdbbb39 vocab=7513fd52
+-/
 lemma twoCycleBlocks_pairwise
     {cH cD : GraphCycle G} (hdisj : Disjoint cH.support cD.support) :
     Pairwise fun i j =>
@@ -260,12 +310,18 @@ lemma twoCycleBlocks_pairwise
   · exact hdisj.symm
   · exact hdisj
 
+/--
+@isnad1 id=eq.0h4v.s5.bce1c3d7e515 from=translated src=- shape=61a50dc7 vocab=95f7258d
+-/
 lemma twoCycleBlocks_support (cH cD : GraphCycle G) :
     (univ : Finset Bool).biUnion (fun b => (twoCycleBlocks cH cD b).support) =
       cH.support ∪ cD.support := by
   ext x
   simp [twoCycleBlocks, mem_union]
 
+/--
+@isnad1 id=not.2h5v.s5.1b5f11f9f2e4 from=translated src=- shape=326e14ff vocab=a66bd139
+-/
 lemma twoCycleBlocks_noncograph {cH cD : GraphCycle G}
     (hH : ¬ IsCograph G cH.support) (hD : ¬ IsCograph G cD.support) :
     ∀ b : Bool, ¬ IsCograph G (twoCycleBlocks cH cD b).support := by
@@ -275,7 +331,9 @@ lemma twoCycleBlocks_noncograph {cH cD : GraphCycle G}
   · simpa [twoCycleBlocks] using hH
 
 /-- Two actual pairwise-disjoint original noncograph cycles induce a
-1-tough union. This does not produce a Hamilton cycle of that union.-/
+1-tough union. This does not produce a Hamilton cycle of that union.
+@isnad1 id=onetough.4h4v.s6.32d26a5b413f from=translated src=- shape=10ffa400 vocab=4b794d36
+-/
 theorem oneToughOn_of_two_noncograph_cycles
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -290,6 +348,9 @@ theorem oneToughOn_of_two_noncograph_cycles
       (twoCycleBlocks_pairwise hdisj) (univ : Finset Bool) hcof hnc using 1
   exact (twoCycleBlocks_support cH cD).symm
 
+/--
+@isnad1 id=onetough.4h4v.s7.9435fdfe8400 from=translated src=- shape=4e78c3fe vocab=2d4fa7f6
+-/
 theorem oneTough_induce_of_two_noncograph_cycles
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)

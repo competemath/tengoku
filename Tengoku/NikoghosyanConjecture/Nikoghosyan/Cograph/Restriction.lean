@@ -33,6 +33,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 noncomputable def supportUnion (l : List (GraphPath G)) : Finset V :=
   (l.map GraphPath.support).foldr (· ∪ ·) ∅
 
+/--
+@isnad1 id=iff.0h4v.s6.ecd5927b3113 from=translated src=- shape=cfde4cea vocab=267a839d
+-/
 lemma mem_supportUnion_iff {l : List (GraphPath G)} {x : V} :
     x ∈ supportUnion l ↔ ∃ p ∈ l, x ∈ p.support := by
   induction l with
@@ -44,6 +47,9 @@ lemma mem_supportUnion_iff {l : List (GraphPath G)} {x : V} :
     rw [hfold, mem_union, ih]
     simp [List.mem_cons, or_comm, or_left_comm]
 
+/--
+@isnad1 id=le.1h5v.s6.236a1b5fa181 from=translated src=- shape=666b83d0 vocab=24e5111b
+-/
 lemma supportUnion_subset_of_covers {U : Finset V} (pc : PathCover G U)
     (l : List (GraphPath G)) (hl : ∀ p ∈ l, p ∈ pc.paths) :
     supportUnion l ⊆ U := by
@@ -51,6 +57,9 @@ lemma supportUnion_subset_of_covers {U : Finset V} (pc : PathCover G U)
   obtain ⟨p, hp, hxp⟩ := (mem_supportUnion_iff).1 hx
   exact pc.support_subset (hl p hp) hxp
 
+/--
+@isnad1 id=pairwise.1h4v.s6.ec2f60297ca4 from=translated src=- shape=ac1b90b0 vocab=48813b79
+-/
 lemma pairwise_filter {l : List (GraphPath G)} (P : GraphPath G → Bool)
     (h : l.Pairwise fun p q => Disjoint p.support q.support) :
     (l.filter P).Pairwise fun p q => Disjoint p.support q.support :=
@@ -63,6 +72,9 @@ noncomputable def ofPathList {U : Finset V} (l : List (GraphPath G))
   disjoint := hdisj
   mem_iff := hU
 
+/--
+@isnad1 id=eq.2h4v.s6.1247020e1b7b from=translated src=- shape=ebe8849b vocab=344f54fd
+-/
 lemma ofPathList_card {U : Finset V} (l : List (GraphPath G))
     (hdisj : l.Pairwise fun p q => Disjoint p.support q.support)
     (hU : ∀ x, x ∈ U ↔ ∃ p ∈ l, x ∈ p.support) :
@@ -74,10 +86,16 @@ noncomputable def selCover {U : Finset V} (pc : PathCover G U)
     (pairwise_filter P pc.disjoint)
     (fun x => (mem_supportUnion_iff (l := pc.paths.filter P) (x := x)))
 
+/--
+@isnad1 id=eq.0h5v.s6.cc9af5060584 from=translated src=- shape=d2059329 vocab=34edf5d6
+-/
 lemma selCover_card {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) :
     (selCover pc P).card = (pc.paths.filter P).length := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.87f7bbd51694 from=translated src=- shape=2d27d9a3 vocab=b8737bc4
+-/
 lemma supportUnion_filter_union {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) :
     supportUnion (pc.paths.filter P) ∪
@@ -100,6 +118,9 @@ lemma supportUnion_filter_union {U : Finset V} (pc : PathCover G U)
       exact mem_union.2 (Or.inr (mem_supportUnion_iff.2
         ⟨p, List.mem_filter.2 ⟨hp, hP'⟩, hxp⟩))
 
+/--
+@isnad1 id=disjoint.0h5v.s6.cb7b2f73b2d4 from=translated src=- shape=540eed60 vocab=1b212e70
+-/
 lemma supportUnion_filter_disjoint {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) :
     Disjoint (supportUnion (pc.paths.filter P))
@@ -125,6 +146,9 @@ lemma supportUnion_filter_disjoint {U : Finset V} (pc : PathCover G U)
   · intro hx
     exact (notMem_empty x hx).elim
 
+/--
+@isnad1 id=eq.0h5v.s6.124045a6b274 from=translated src=- shape=12df9baf vocab=c95b65b1
+-/
 lemma supportUnion_filter_sdiff {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) :
     supportUnion (pc.paths.filter fun p => !P p) =
@@ -185,12 +209,18 @@ noncomputable def replaceSel {U : Finset V} (pc : PathCover G U)
             (fun q hq => List.mem_of_mem_filter hq)
             ((pcL.mem_iff x).2 ⟨p, hpL, hxp⟩))
 
+/--
+@isnad1 id=eq.0h6v.s6.53911047138c from=translated src=- shape=1a3518c4 vocab=72120bb7
+-/
 lemma replaceSel_paths {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) (pcL : PathCover G (supportUnion (pc.paths.filter P))) :
     (replaceSel pc P pcL).paths =
       (pc.paths.filter fun p => !P p) ++ pcL.paths :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.84d0307fe6a7 from=translated src=- shape=4add09c9 vocab=cf85029b
+-/
 lemma replaceSel_card {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) (pcL : PathCover G (supportUnion (pc.paths.filter P))) :
     (replaceSel pc P pcL).card =
@@ -199,7 +229,9 @@ lemma replaceSel_card {U : Finset V} (pc : PathCover G U)
   rfl
 
 /-- Cover replacement: a cheaper cover of the selected supports would
-cheapen the original minimum cover.-/
+cheapen the original minimum cover.
+@isnad1 id=eq.1h5v.s6.c44fea5d6bd0 from=translated src=- shape=eeec5ee9 vocab=d61ce7d5
+-/
 lemma pathCoverNumber_selected {U : Finset V} (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
     pathCoverNumber G (supportUnion (pc.paths.filter P)) =
@@ -220,6 +252,9 @@ lemma pathCoverNumber_selected {U : Finset V} (pc : PathCover G U)
     pathCoverNumber_le (G := G) (replaceSel pc P pcL)
   omega
 
+/--
+@isnad1 id=le.1h5v.s6.39b19267588d from=translated src=- shape=6b8f2b9e vocab=7e30ccb4
+-/
 lemma eligibleSet_selected_subset {U : Finset V} (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
     eligibleSet G (supportUnion (pc.paths.filter P)) ⊆
@@ -240,6 +275,9 @@ lemma eligibleSet_selected_subset {U : Finset V} (pc : PathCover G U)
   have hEl : Eligible G U x := ⟨replaceSel pc P pcL, hcard, p, hp', hxend⟩
   exact mem_inter.2 ⟨(mem_eligibleSet_iff (G := G)).2 ⟨hEl.mem, hEl⟩, hxL⟩
 
+/--
+@isnad1 id=le.1h5v.s6.653bf8afac38 from=translated src=- shape=d94a995e vocab=df5f5586
+-/
 lemma ineligibleSet_selected_supset {U : Finset V} (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
     ineligibleSet G U ∩ supportUnion (pc.paths.filter P) ⊆
@@ -254,6 +292,9 @@ lemma ineligibleSet_selected_supset {U : Finset V} (pc : PathCover G U)
   have hxU := eligibleSet_selected_subset pc hpc P hxE
   exact hxF.2 ((mem_eligibleSet_iff (G := G)).1 (mem_inter.1 hxU).1).2
 
+/--
+@isnad1 id=ex.1h5v.s7.3ca573be7ddf from=translated src=- shape=d25edac9 vocab=08b8b72f
+-/
 lemma exists_pathCover_sdiff {U S : Finset V} (pc : PathCover G U)
     (hS : S ⊆ U) :
     ∃ pc' : PathCover G (U \ S),
@@ -287,12 +328,18 @@ lemma exists_pathCover_sdiff {U S : Finset V} (pc : PathCover G U)
         simpa [PathCover.deleteVertex] using hr)
       exact ⟨p, hp, hqr.trans (GraphPath.support_subset_of_mem_deleteVertex hr')⟩
 
+/--
+@isnad1 id=or.1h4v.s5.0cedfd64eb6c from=translated src=- shape=25a428b0 vocab=5eca4dec
+-/
 lemma mem_filter_bool_or {α : Type*} (P : α → Bool) {a : α} {l : List α}
     (ha : a ∈ l) : a ∈ l.filter P ∨ a ∈ l.filter fun x => !P x := by
   cases hP : P a
   · exact Or.inr (List.mem_filter.2 ⟨ha, by simp [hP]⟩)
   · exact Or.inl (List.mem_filter.2 ⟨ha, hP⟩)
 
+/--
+@isnad1 id=eq.0h5v.s6.a6d788ca720f from=translated src=- shape=c65cd14a vocab=5c2282ec
+-/
 lemma L_sdiff_F0_eq_eligible_inter {U : Finset V} (pc : PathCover G U)
     (P : GraphPath G → Bool) :
     supportUnion (pc.paths.filter P) \
@@ -319,6 +366,9 @@ lemma L_sdiff_F0_eq_eligible_inter {U : Finset V} (pc : PathCover G U)
     exact (disjoint_left.1 (disjoint_eligibleSet_ineligibleSet (G := G) U)
       (mem_inter.1 hz).1) (mem_inter.1 hF).1
 
+/--
+@isnad1 id=eq.0h5v.s6.3137179137b8 from=translated src=- shape=07e4d350 vocab=88c5078d
+-/
 lemma eligible_sdiff_eq_unselected_remainder {U : Finset V}
     (pc : PathCover G U) (P : GraphPath G → Bool) :
     eligibleSet G U \ supportUnion (pc.paths.filter P) =
@@ -344,6 +394,9 @@ lemma eligible_sdiff_eq_unselected_remainder {U : Finset V}
       exact h.mp hnotF hzUL.1
     exact mem_sdiff.2 ⟨(mem_eligibleSet_iff (G := G)).2 ⟨hzUL.1, hE⟩, hzUL.2⟩
 
+/--
+@isnad1 id=ex.2h4v.s7.105af0dbe1fc from=translated src=- shape=9080e620 vocab=6f4a4ad7
+-/
 lemma exists_remainder_cover_of_ineligible {U : Finset V}
     (hU : CotreeOn G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) :
@@ -372,6 +425,9 @@ lemma exists_remainder_cover_of_ineligible {U : Finset V}
     rw [PathCover.cast_paths] at hq
     exact hsup1 q hq
 
+/--
+@isnad1 id=lt.6h8v.s7.7ced0df041d3 from=translated src=- shape=e488c468 vocab=6b5b465a
+-/
 lemma componentCount_lt_of_adj_between_paths {W : Finset V}
     (pc : PathCover G W) {p q : GraphPath G}
     (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
@@ -436,6 +492,9 @@ lemma componentCount_lt_of_adj_between_paths {W : Finset V}
   simpa [componentCount, PathCover.card, Nat.card_eq_fintype_card,
     Fintype.card_fin] using hlt
 
+/--
+@isnad1 id=not.6h8v.s7.0562329177b7 from=translated src=- shape=6f6bbd64 vocab=820f690d
+-/
 lemma no_adj_of_card_eq_componentCount {W : Finset V}
     (pc : PathCover G W) (heq : pc.card = componentCount G W)
     {p q : GraphPath G} (hp : p ∈ pc.paths) (hq : q ∈ pc.paths)
@@ -445,6 +504,9 @@ lemma no_adj_of_card_eq_componentCount {W : Finset V}
   have := componentCount_lt_of_adj_between_paths pc hp hq hne ha hb hadj
   omega
 
+/--
+@isnad1 id=not.4h7v.s7.c66410031944 from=translated src=- shape=0107c59b vocab=01dfb5ab
+-/
 lemma no_cross_selected_remainder {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) {a b : V}
@@ -474,6 +536,9 @@ lemma no_cross_selected_remainder {U : Finset V} (hU : CotreeOn G U)
       exact (mem_sdiff.1 this).2 haL
   exact no_adj_of_card_eq_componentCount pc' hcomp hqa hqb hne haq hbq
 
+/--
+@isnad1 id=eq.2h5v.s6.c6885e7228d3 from=translated src=- shape=73727660 vocab=8f327737
+-/
 lemma componentCount_eligible_split {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -510,6 +575,9 @@ lemma componentCount_eligible_split {U : Finset V} (hU : CotreeOn G U)
   have h := componentCount_union_of_no_cross hdisj hnocross
   rwa [← hsplit] at h
 
+/--
+@isnad1 id=eq.2h5v.s6.09fc23e5d831 from=translated src=- shape=ab313960 vocab=37ce92fb
+-/
 lemma componentCount_selected_remainder {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -586,6 +654,9 @@ lemma componentCount_selected_remainder {U : Finset V} (hU : CotreeOn G U)
     simpa [hLF0] using this
   omega
 
+/--
+@isnad1 id=and.2h5v.s7.c1e765614c74 from=translated src=- shape=b011620b vocab=e56afcaf
+-/
 lemma restriction_of_min_cover {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -599,6 +670,9 @@ lemma restriction_of_min_cover {U : Finset V} (hU : CotreeOn G U)
     eligibleSet_selected_subset pc hpc P,
     ineligibleSet_selected_supset pc hpc P⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.056edbfad90d from=translated src=- shape=e78cb8fa vocab=982d1bcd
+-/
 lemma ineligibleSet_selected_eq {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -753,6 +827,9 @@ lemma ineligibleSet_selected_eq {U : Finset V} (hU : CotreeOn G U)
   have hvF : v ∈ F := hSinc hvS
   exact hvnotF hvF
 
+/--
+@isnad1 id=eq.2h5v.s6.58fa5dbe32d1 from=translated src=- shape=e78cb8fa vocab=71f5af00
+-/
 lemma eligibleSet_selected_eq {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -776,6 +853,9 @@ lemma eligibleSet_selected_eq {U : Finset V} (hU : CotreeOn G U)
     exact h.mp hxnotF hxL
   exact (mem_eligibleSet_iff (G := G)).2 ⟨hxL, hE⟩
 
+/--
+@isnad1 id=and.2h5v.s7.46c2ed9c597d from=translated src=- shape=51b770a3 vocab=7e78a0ac
+-/
 lemma restriction_eq_of_min_cover {U : Finset V} (hU : CotreeOn G U)
     (pc : PathCover G U) (hpc : pc.card = pathCoverNumber G U)
     (P : GraphPath G → Bool) :
@@ -789,6 +869,9 @@ lemma restriction_eq_of_min_cover {U : Finset V} (hU : CotreeOn G U)
     eligibleSet_selected_eq hU pc hpc P,
     ineligibleSet_selected_eq hU pc hpc P⟩
 
+/--
+@isnad1 id=and.2h5v.s7.a2d290610c49 from=translated src=- shape=51b770a3 vocab=126d4adb
+-/
 lemma restriction_eq_of_min_cover_of_isCograph {U : Finset V}
     (hU : IsCograph G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
@@ -800,6 +883,9 @@ lemma restriction_eq_of_min_cover_of_isCograph {U : Finset V}
       ineligibleSet G U ∩ supportUnion (pc.paths.filter P) :=
   restriction_eq_of_min_cover (cotreeOn_of_isCograph hU) pc hpc P
 
+/--
+@isnad1 id=and.2h5v.s7.ac11a8cd2071 from=translated src=- shape=51b770a3 vocab=b22ee143
+-/
 lemma restriction_eq_of_min_cover_of_canonical {U : Finset V}
     (hU : Nikoghosyan.IsCograph G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
@@ -811,6 +897,9 @@ lemma restriction_eq_of_min_cover_of_canonical {U : Finset V}
       ineligibleSet G U ∩ supportUnion (pc.paths.filter P) :=
   restriction_eq_of_min_cover_of_isCograph (isCograph_iff.2 hU) pc hpc P
 
+/--
+@isnad1 id=and.2h5v.s7.c685d8a50aed from=translated src=- shape=b011620b vocab=2d996af4
+-/
 lemma restriction_of_min_cover_of_isCograph {U : Finset V}
     (hU : IsCograph G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :
@@ -822,6 +911,9 @@ lemma restriction_of_min_cover_of_isCograph {U : Finset V}
       ineligibleSet G (supportUnion (pc.paths.filter P)) :=
   restriction_of_min_cover (cotreeOn_of_isCograph hU) pc hpc P
 
+/--
+@isnad1 id=and.2h5v.s7.0b39987aaa32 from=translated src=- shape=b011620b vocab=3a82f964
+-/
 lemma restriction_of_min_cover_of_canonical {U : Finset V}
     (hU : Nikoghosyan.IsCograph G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) (P : GraphPath G → Bool) :

@@ -31,6 +31,9 @@ variable {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=le.1h3v.s5.66ce8ba00792 from=translated src=- shape=dc859b4b vocab=b2b3fe1a
+-/
 lemma two_le_card_support_of_ne_ends {p : GraphPath G}
     (hne : p.start ≠ p.finish) : 2 ≤ p.support.card := by
   have hnil : ¬ p.walk.Nil := fun h => hne (p.isPath.nil_iff_eq.1 h)
@@ -41,6 +44,9 @@ lemma two_le_card_support_of_ne_ends {p : GraphPath G}
   have hcard := p.card_support
   omega
 
+/--
+@isnad1 id=le.2h4v.s6.3ec3ececa283 from=translated src=- shape=c22be15c vocab=f3c2e40b
+-/
 lemma three_le_card_insert_of_ne_ends {p : GraphPath G} {x : V}
     (hx : x ∉ p.support) (hne : p.start ≠ p.finish) :
     3 ≤ (insert x p.support).card := by
@@ -57,6 +63,9 @@ noncomputable def insertVertexCycle (p : GraphPath G) {x : V}
   (p.consAdj hs hx).toCycle hf (by
     simpa [support_consAdj] using three_le_card_insert_of_ne_ends hx hne)
 
+/--
+@isnad1 id=eq.4h4v.s6.c216e9e11959 from=translated src=- shape=a465e765 vocab=271d1765
+-/
 lemma support_insertVertexCycle (p : GraphPath G) {x : V}
     (hs : G.Adj x p.start) (hf : G.Adj p.finish x)
     (hx : x ∉ p.support) (hne : p.start ≠ p.finish) :
@@ -65,6 +74,9 @@ lemma support_insertVertexCycle (p : GraphPath G) {x : V}
     support_toCycle (p.consAdj hs hx) hf
       (by simpa [support_consAdj] using three_le_card_insert_of_ne_ends hx hne)
 
+/--
+@isnad1 id=le.4h4v.s6.3e5148071bee from=translated src=- shape=0aacda42 vocab=b897d0e2
+-/
 lemma three_le_card_support_insertVertexCycle (p : GraphPath G) {x : V}
     (hs : G.Adj x p.start) (hf : G.Adj p.finish x)
     (hx : x ∉ p.support) (hne : p.start ≠ p.finish) :
@@ -72,6 +84,9 @@ lemma three_le_card_support_insertVertexCycle (p : GraphPath G) {x : V}
   rw [support_insertVertexCycle]
   exact three_le_card_insert_of_ne_ends hx hne
 
+/--
+@isnad1 id=eq.4h4v.s6.d6432e47cc56 from=translated src=- shape=194116c0 vocab=050def00
+-/
 lemma card_support_insertVertexCycle (p : GraphPath G) {x : V}
     (hs : G.Adj x p.start) (hf : G.Adj p.finish x)
     (hx : x ∉ p.support) (hne : p.start ≠ p.finish) :
@@ -82,7 +97,9 @@ end GraphPath
 
 /-- Existence form of the elementary insertion: an original path with
 distinct endpoints adjacent to an outside vertex yields a genuine original
-cycle through that vertex.-/
+cycle through that vertex.
+@isnad1 id=ex.4h4v.s7.bc62b564e963 from=translated src=- shape=07d682a6 vocab=d2c398cd
+-/
 theorem exists_graphCycle_insert (p : GraphPath G) {x : V}
     (hs : G.Adj x p.start) (hf : G.Adj p.finish x)
     (hx : x ∉ p.support) (hne : p.start ≠ p.finish) :
@@ -95,7 +112,9 @@ theorem exists_graphCycle_insert (p : GraphPath G) {x : V}
     p.three_le_card_support_insertVertexCycle hs hf hx hne,
     p.card_support_insertVertexCycle hs hf hx hne⟩
 
-/-- If the input path spans `univ.erase x`, the inserted cycle is spanning.-/
+/-- If the input path spans `univ.erase x`, the inserted cycle is spanning.
+@isnad1 id=ex.4h4v.s6.0a6edac8118c from=translated src=- shape=207ec05a vocab=5490b5f7
+-/
 theorem exists_spanning_graphCycle_insert (p : GraphPath G) {x : V}
     (hp : p.support = univ.erase x)
     (hs : G.Adj x p.start) (hf : G.Adj p.finish x)

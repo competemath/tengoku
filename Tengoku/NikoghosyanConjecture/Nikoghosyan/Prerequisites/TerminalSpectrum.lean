@@ -28,6 +28,9 @@ namespace Nikoghosyan
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=le.3h5v.s6.052a8756b723 from=translated src=- shape=e4d356b2 vocab=1f0bf6d6
+-/
 lemma terminalCover_card_add_pathCoverNumber_le {K B : Finset V}
     (hBK : B ⊆ K) (hInd : Independent (G := G) B)
     {pc : PathCover G K} (hterm : IsTerminalCover (G := G) B pc) :
@@ -35,7 +38,9 @@ lemma terminalCover_card_add_pathCoverNumber_le {K B : Finset V}
   pathCoverNumber_add_le_card_B hBK hInd hterm
 
 /-- If a minimum `B`-terminal cover exists, the repaired interval is
-nonempty: `p(K) ≤ |B| - p(K \ B)`.-/
+nonempty: `p(K) ≤ |B| - p(K \ B)`.
+@isnad1 id=le.3h4v.s6.218b84ff0961 from=translated src=- shape=39325291 vocab=1f0bf6d6
+-/
 lemma pathCoverNumber_le_card_B_sub {K B : Finset V}
     (hBK : B ⊆ K) (hInd : Independent (G := G) B)
     (hmin : ∃ pc : PathCover G K,
@@ -45,6 +50,9 @@ lemma pathCoverNumber_le_card_B_sub {K B : Finset V}
   have hle := pathCoverNumber_add_le_card_B hBK hInd hterm
   omega
 
+/--
+@isnad1 id=ex.1h4v.s6.913ff553e2c9 from=translated src=- shape=72718e5e vocab=407a6cea
+-/
 lemma exists_terminalCover_card_pathCoverNumber {K B : Finset V}
     (hmin : ∃ pc : PathCover G K,
       pc.card = pathCoverNumber G K ∧ IsTerminalCover (G := G) B pc) :
@@ -54,7 +62,9 @@ lemma exists_terminalCover_card_pathCoverNumber {K B : Finset V}
 
 /-- Host capacities already give `p(K) ≤ m` and `p(W) ≤ |U|`. Choosing
 `q = max(p(K), m - |U|)` therefore lies in `[p(K), |B| - p(W)]` once a
-minimum `B`-terminal cover of `K = B ∪ W` exists.-/
+minimum `B`-terminal cover of `K = B ∪ W` exists.
+@isnad1 id=other.2h3v.s7.357ccc61e5f2 from=translated src=- shape=ae833bfc vocab=70a30638
+-/
 lemma q_max_mem_interval_of_sides (P : AllCographSides G)
     (htough : OneTough G)
     (hmin : ∃ pc : PathCover G (P.B ∪ P.W),

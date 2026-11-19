@@ -44,13 +44,22 @@ variable {G : SimpleGraph V}
 
 /-! ### Cycle indexing along `succAt` -/
 
+/--
+@isnad1 id=mem.0h4v.s5.19f6cfceb0e5 from=translated src=- shape=81d708d0 vocab=434b149c
+-/
 lemma getVert_mem_cycle_support (c : GraphCycle G) (i : ℕ) :
     c.walk.getVert i ∈ c.support :=
   List.mem_toFinset.2 (Walk.getVert_mem_support c.walk i)
 
+/--
+@isnad1 id=lt.0h3v.s5.e8627f22bcaa from=translated src=- shape=9b43e02a vocab=e41287ec
+-/
 lemma cycle_length_pos (c : GraphCycle G) : 0 < c.walk.length :=
   lt_of_lt_of_le (by decide : (0 : ℕ) < 3) c.three_le_length
 
+/--
+@isnad1 id=ex.1h4v.s6.bed684029742 from=translated src=- shape=4702591a vocab=62957314
+-/
 lemma exists_getVert_lt_length_of_mem_support (c : GraphCycle G) {x : V}
     (hx : x ∈ c.support) :
     ∃ i, i < c.walk.length ∧ c.walk.getVert i = x := by
@@ -63,6 +72,9 @@ lemma exists_getVert_lt_length_of_mem_support (c : GraphCycle G) {x : V}
     simpa [Walk.getVert_zero] using hxstart.symm
   · exact ⟨i, hlt, hiEq⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.b6bfa0e021fc from=translated src=- shape=a4429160 vocab=f2400c74
+-/
 lemma takeUntil_length_eq_getVert_index (c : GraphCycle G) {i : ℕ}
     (hi : i < c.walk.length) :
     (c.walk.takeUntil (c.walk.getVert i)
@@ -92,12 +104,18 @@ lemma takeUntil_length_eq_getVert_index (c : GraphCycle G) {i : ℕ}
   have hi_le : i ≤ c.walk.length - 1 := Nat.le_pred_of_lt hi
   exact c.isCycle.getVert_injOn' hp_le hi_le (hpu.trans rfl)
 
+/--
+@isnad1 id=eq.1h4v.s6.bdefff675669 from=translated src=- shape=88f1de0d vocab=d8c48da0
+-/
 lemma idxOf_getVert_eq (c : GraphCycle G) {i : ℕ}
     (hi : i < c.walk.length) :
     c.walk.support.idxOf (c.walk.getVert i) = i := by
   have hlen := takeUntil_length_eq_getVert_index c hi
   simpa [Walk.length_takeUntil] using hlen
 
+/--
+@isnad1 id=eq.2h8v.s5.b2534f842baf from=translated src=- shape=f9fe0199 vocab=359b7a17
+-/
 lemma getVert_copy {u u' v v' : V} (p : G.Walk u v)
     (hu : u = u') (hv : v = v') (n : ℕ) :
     (p.copy hu hv).getVert n = p.getVert n := by
@@ -105,6 +123,9 @@ lemma getVert_copy {u u' v v' : V} (p : G.Walk u v)
   subst hv
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.3a5af170a2e1 from=translated src=- shape=842f2fa7 vocab=caf055e1
+-/
 lemma dropUntil_getVert_succ (c : GraphCycle G) {i : ℕ}
     (hi : i < c.walk.length) :
     (c.walk.dropUntil (c.walk.getVert i)
@@ -115,7 +136,9 @@ lemma dropUntil_getVert_succ (c : GraphCycle G) {i : ℕ}
   have hidx := idxOf_getVert_eq c hi
   rw [Walk.dropUntil_eq_drop c.walk huW, getVert_copy, Walk.drop_getVert, hidx]
 
-/-- Opening `c` at `getVert i` exposes the next cycle vertex as `succAt`.-/
+/-- Opening `c` at `getVert i` exposes the next cycle vertex as `succAt`.
+@isnad1 id=eq.1h4v.s6.bd6dd60e257d from=translated src=- shape=decb983a vocab=cca2afdf
+-/
 lemma succAt_eq_getVert_succ (c : GraphCycle G) {i : ℕ}
     (hi : i < c.walk.length) :
     c.succAt (getVert_mem_cycle_support c i) = c.walk.getVert (i + 1) := by
@@ -149,6 +172,9 @@ lemma succAt_eq_getVert_succ (c : GraphCycle G) {i : ℕ}
 
 /-! ### Opening a cycle at a prescribed successor dart -/
 
+/--
+@isnad1 id=ex.1h4v.s6.ffe048c67a92 from=translated src=- shape=c76f0f31 vocab=8d63a719
+-/
 lemma exists_path_open_succ (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     ∃ p : GraphPath G,
       p.support = c.support ∧
@@ -167,6 +193,9 @@ lemma exists_path_open_succ (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   · simpa [p] using hw
   · simpa [p, hfin]
 
+/--
+@isnad1 id=le.1h4v.s5.059081b9e35a from=translated src=- shape=2719c4a9 vocab=ad1cfb3b
+-/
 lemma three_le_union_card (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support) :
     3 ≤ (cH.support ∪ cD.support).card := by
@@ -179,6 +208,9 @@ lemma three_le_union_card (cH cD : GraphCycle G)
 
 /-! ### Nonempty rows and cograph remainders -/
 
+/--
+@isnad1 id=ex.1h3v.s6.f1618f0b8fd9 from=translated src=- shape=9ac9b75d vocab=24c67bd3
+-/
 lemma exists_inducedP4_of_not_isCograph {U : Finset V}
     (h : ¬ IsCograph G U) :
     ∃ a b c d : V, a ∈ U ∧ b ∈ U ∧ c ∈ U ∧ d ∈ U ∧ InducedP4 G a b c d := by
@@ -186,6 +218,9 @@ lemma exists_inducedP4_of_not_isCograph {U : Finset V}
   push Not at h
   exact h
 
+/--
+@isnad1 id=ne.3h5v.s5.9c7a244c3242 from=translated src=- shape=2e253f9f vocab=41be604a
+-/
 lemma ne_of_mem_disjoint {A B : Finset V} {x y : V}
     (hdisj : Disjoint A B) (hx : x ∈ A) (hy : y ∈ B) : x ≠ y := by
   intro h
@@ -193,7 +228,9 @@ lemma ne_of_mem_disjoint {A B : Finset V} {x y : V}
   exact disjoint_left.1 hdisj hx hy
 
 /-- A missing `D`-row into a noncograph host `H` yields an induced
-`P₄ ∪ P₁` with the outside `D`-vertex.-/
+`P₄ ∪ P₁` with the outside `D`-vertex.
+@isnad1 id=nonempty.4h5v.s6.f58d77aa9c01 from=translated src=- shape=bf33ddc9 vocab=d6ab85c2
+-/
 lemma rowProfile_nonempty_of_not_cograph
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -222,6 +259,9 @@ lemma rowProfile_nonempty_of_not_cograph
   · exact hnone c hc h3
   · exact hnone d hd h4
 
+/--
+@isnad1 id=iscograp.3h5v.s6.ebc7ee69457a from=translated src=- shape=d3e46a27 vocab=e3eb1f11
+-/
 lemma isCograph_sdiff_rowProfile_of_pair
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -232,6 +272,9 @@ lemma isCograph_sdiff_rowProfile_of_pair
     (fun _ _ _ _ _ _ _ _ _ _ hp hxa hxb hxc hxd =>
       hpat hp hxa hxb hxc hxd)
 
+/--
+@isnad1 id=le.1h4v.s6.ad1afedde056 from=translated src=- shape=274b7417 vocab=df777406
+-/
 lemma pathCoverNumber_row_le
     (cH : GraphCycle G) {v : V}
     (hAne : (rowProfile (G := G) cH.support v).Nonempty) :
@@ -241,6 +284,9 @@ lemma pathCoverNumber_row_le
   Cograph.pathCoverNumber_sdiff_le_card_of_cycle (G := G) cH rfl
     (rowProfile_subset (G := G) cH.support v) hAne
 
+/--
+@isnad1 id=lt.2h4v.s6.fc70f350a2b9 from=translated src=- shape=2327fef8 vocab=cfbed595
+-/
 lemma strict_of_not_saturated
     (cH : GraphCycle G) {v : V}
     (hAne : (rowProfile (G := G) cH.support v).Nonempty)
@@ -256,6 +302,9 @@ lemma strict_of_not_saturated
 
 /-! ### Consecutive rows cannot span `H` under a no-union-cycle hypothesis -/
 
+/--
+@isnad1 id=not.5h7v.s7.897f4307821f from=translated src=- shape=8f1142fe vocab=5458ac9a
+-/
 lemma not_spanningPathCompatible_of_no_union_cycle
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -320,6 +369,9 @@ lemma not_spanningPathCompatible_of_no_union_cycle
     simp [GraphPath.support_assembleTwo, hp', hq]
   exact hnoC _ hspan
 
+/--
+@isnad1 id=not.5h7v.s7.e268a18bb0d1 from=translated src=- shape=bb1108ad vocab=5458ac9a
+-/
 lemma no_spanning_of_succAt
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -334,6 +386,9 @@ lemma no_spanning_of_succAt
 
 /-! ### Adjacent-row incompatibility along `succAt` -/
 
+/--
+@isnad1 id=and.6h5v.s7.5b78ce29a43f from=translated src=- shape=178e05fe vocab=b852236a
+-/
 lemma adjacent_rows_incompatible
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -371,6 +426,9 @@ lemma adjacent_rows_incompatible
       hSat hno
   exact ⟨hinc.2.1, hinc.2.2.1, hinc.2.2.2⟩
 
+/--
+@isnad1 id=and.6h5v.s7.06e1f15bc643 from=translated src=- shape=9139f387 vocab=47e09c93
+-/
 lemma saturated_getVert_of_start
     (cH c0 : GraphCycle G)
     (hdisj : Disjoint cH.support c0.support)
@@ -411,7 +469,9 @@ lemma saturated_getVert_of_start
 /-! ### Generic pair dichotomy -/
 
 /-- Common proper canonical tight container of a saturated gate, after
-propagation around `cD`.-/
+propagation around `cD`.
+@isnad1 id=ex.6h5v.s8.f29d97daf731 from=translated src=- shape=9e8d6692 vocab=665a431f
+-/
 lemma exists_common_canonical_container
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -498,7 +558,9 @@ lemma exists_common_canonical_container
 /-- Generic arbitrary-pair profile dichotomy: either every `D`-row into
 the noncograph host is strict, or every row is saturated and they share
 one common proper canonical tight container containing all attachments.
-No pair-toughness or spanning-pair premise is used.-/
+No pair-toughness or spanning-pair premise is used.
+@isnad1 id=or.4h4v.s8.680a2de0d281 from=translated src=- shape=0cb671fd vocab=602a46b0
+-/
 theorem pair_profile_dichotomy
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -552,6 +614,9 @@ theorem pair_profile_dichotomy
 
 /-! ### Minimum-factor derivation of the no-union-cycle hypothesis -/
 
+/--
+@isnad1 id=false.3h6v.s6.990cc775e133 from=translated src=- shape=9af89959 vocab=f8e1b3d0
+-/
 lemma not_exists_union_cycle_of_min (F : CycleFactor G)
     (hmin : ∀ F' : CycleFactor G, F.card ≤ F'.card)
     {i j : Fin F.card} (hij : i ≠ j)
@@ -566,7 +631,9 @@ lemma not_exists_union_cycle_of_min (F : CycleFactor G)
 /-- Scope-safe replacement used by `prop:normal-form`: on a globally
 minimum original-edge factor, any distinct pair with noncograph host
 block obeys the generic dichotomy. The no-union-cycle input is derived
-from group replacement, never from ambient non-Hamiltonicity.-/
+from group replacement, never from ambient non-Hamiltonicity.
+@isnad1 id=or.4h5v.s8.3456771a9a90 from=translated src=- shape=2d2494a7 vocab=48a701d8
+-/
 theorem pair_profile_dichotomy_of_min (F : CycleFactor G)
     (hmin : ∀ F' : CycleFactor G, F.card ≤ F'.card)
     (hpat : NoInducedP4UnionP1 G)
@@ -604,6 +671,9 @@ theorem pair_profile_dichotomy_of_min (F : CycleFactor G)
 
 /-! ### Spanning-pair specialisation: original toughness kills the gate -/
 
+/--
+@isnad1 id=eq.3h4v.s6.8e403c944df6 from=translated src=- shape=0e3400b1 vocab=1d9b218d
+-/
 lemma univ_sdiff_eq_union_of_spanning {H D S : Finset V}
     (hHD : H ∪ D = univ) (hS : S ⊆ H) (hdisj : Disjoint H D) :
     univ \ S = (H \ S) ∪ D := by
@@ -614,6 +684,9 @@ lemma univ_sdiff_eq_union_of_spanning {H D S : Finset V}
     _ = (H \ S) ∪ (D \ S) := union_sdiff_distrib _ _ _
     _ = (H \ S) ∪ D := by rw [hD]
 
+/--
+@isnad1 id=eq.3h5v.s7.4a368f75d265 from=translated src=- shape=ce441c9a vocab=f3f7cad1
+-/
 lemma componentCount_host_delete_eq_add_one
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -630,7 +703,9 @@ lemma componentCount_host_delete_eq_add_one
 
 /-- On a spanning two-cycle host, a common proper tight container of every
 `D`-row contradicts original `OneTough`. This counting identity is not
-asserted when further factor blocks remain.-/
+asserted when further factor blocks remain.
+@isnad1 id=false.7h5v.s7.af7f709eb652 from=translated src=- shape=a0927c26 vocab=db5c64e9
+-/
 theorem not_common_container_of_spanning_oneTough
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -665,7 +740,9 @@ theorem not_common_container_of_spanning_oneTough
 /-- Spanning two-cycle specialisation: original `OneTough` forces every
 `D`-row to be strict. Traceable-extension toughness of the union then
 follows the checked prefix-free argument. Hamiltonian insertion of the
-pair remains an explicit pending prerequisite.-/
+pair remains an explicit pending prerequisite.
+@isnad1 id=and.7h5v.s7.c02cee7c5765 from=translated src=- shape=e7126c28 vocab=9d0e87d3
+-/
 theorem all_rows_strict_of_spanning_oneTough
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -691,6 +768,9 @@ theorem all_rows_strict_of_spanning_oneTough
     exact (not_common_container_of_spanning_oneTough cH cD hdisj hHD hT
       hTgt.1 hTgt.2 hproper hsub).elim
 
+/--
+@isnad1 id=onetough.3h4v.s7.d078a6dd1bfe from=translated src=- shape=b7db614c vocab=ad9d2c8f
+-/
 theorem oneToughOn_of_all_rows_strict
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -717,7 +797,9 @@ theorem oneToughOn_of_all_rows_strict
     oneToughOn_of_traceable_extension cH r (by simpa [hr] using hdisj) hrow
 
 /-- Strict rows transfer to any actual traceable subset of the second block.
-Toughness is derived from the initial cycle and inherited rows.-/
+Toughness is derived from the initial cycle and inherited rows.
+@isnad1 id=onetough.4h5v.s7.779e50c50f38 from=translated src=- shape=66259b0d vocab=c6d18932
+-/
 theorem oneToughOn_of_traceable_subset_of_strict_rows
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)
@@ -737,7 +819,9 @@ theorem oneToughOn_of_traceable_subset_of_strict_rows
     (noTightContainer_iff_strict_pathCover_of_host cH r hd hv hAne hpat).2 hlt⟩
 
 /-- Manuscript `prof:prop:two-block`, on a SPANNING two-cycle host.
-The generic arbitrary-pair dichotomy remains a separate theorem.-/
+The generic arbitrary-pair dichotomy remains a separate theorem.
+@isnad1 id=and.6h4v.s7.104ad2d05bfc from=translated src=- shape=a2736a8a vocab=42d9e113
+-/
 theorem strict_profiles_of_spanning_two_cycles
     (cH cD : GraphCycle G)
     (hdisj : Disjoint cH.support cD.support)

@@ -34,11 +34,17 @@ variable {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=eq.2h4v.s6.81b0c9fadaf3 from=translated src=- shape=d5bb2023 vocab=f7bbe5b9
+-/
 lemma start_splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).start = p.start :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.ae7b167789e2 from=translated src=- shape=e22122a3 vocab=f7bbe5b9
+-/
 lemma finish_splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
     (hd : Disjoint p.support q.support) :
     (p.splice q h hd).finish = q.finish :=
@@ -48,15 +54,24 @@ lemma finish_splice (p q : GraphPath G) (h : G.Adj p.finish q.start)
 def supportUnion (ps : List (GraphPath G)) : Finset V :=
   ps.foldr (fun p s => p.support ∪ s) ∅
 
+/--
+@isnad1 id=eq.0h2v.s4.25f2af5da89b from=translated src=- shape=5eee99dc vocab=3c03478d
+-/
 @[simp]
 lemma supportUnion_nil : supportUnion (G := G) [] = ∅ :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.eeb38f1a2557 from=translated src=- shape=7dfe6335 vocab=ca635cab
+-/
 @[simp]
 lemma supportUnion_cons (p : GraphPath G) (ps : List (GraphPath G)) :
     supportUnion (p :: ps) = p.support ∪ supportUnion ps :=
   rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.b8b43539aa27 from=translated src=- shape=cfde4cea vocab=209f8e04
+-/
 lemma mem_supportUnion {ps : List (GraphPath G)} {x : V} :
     x ∈ supportUnion ps ↔ ∃ p ∈ ps, x ∈ p.support := by
   induction ps with
@@ -88,6 +103,9 @@ def assembleTwo (p q : GraphPath G)
     simpa [splice] using hback) (by
     simpa [support_splice] using h3)
 
+/--
+@isnad1 id=eq.4h4v.s6.994cfa5785df from=translated src=- shape=374da6c5 vocab=b57b1ea6
+-/
 @[simp]
 lemma support_assembleTwo (p q : GraphPath G)
     (hd : Disjoint p.support q.support)
@@ -98,7 +116,9 @@ lemma support_assembleTwo (p q : GraphPath G)
   simp [assembleTwo, support_toCycle, support_splice]
 
 /-- Left-fold splice of a tail onto an accumulator, as an existence lemma
-so that list induction is structural.-/
+so that list induction is structural.
+@isnad1 id=ex.4h4v.s8.70eca3dcadcd from=translated src=- shape=9b25e40e vocab=f8c74075
+-/
 lemma exists_spliceAcc (acc : GraphPath G) (rest : List (GraphPath G))
     (hdisj : ∀ q ∈ rest, Disjoint acc.support q.support)
     (hpw : rest.Pairwise fun p q => Disjoint p.support q.support)
@@ -163,6 +183,9 @@ lemma exists_spliceAcc (acc : GraphPath G) (rest : List (GraphPath G))
         simpa [List.getLast_cons] using hr2
     · simpa [acc', support_splice, supportUnion, union_assoc] using hr3
 
+/--
+@isnad1 id=ex.3h3v.s7.3ed6ce44b3e1 from=translated src=- shape=bc499371 vocab=8822cbb0
+-/
 lemma exists_spliceChain (ps : List (GraphPath G)) (hne : ps ≠ [])
     (hdisj : ps.Pairwise fun p q => Disjoint p.support q.support)
     (hedges : ∀ i (hi : i + 1 < ps.length),
@@ -231,6 +254,9 @@ noncomputable def assembleCycle (ps : List (GraphPath G))
     rw [hs]
     exact h3)
 
+/--
+@isnad1 id=eq.5h3v.s7.94c5e2732deb from=translated src=- shape=1c712b10 vocab=9af037bd
+-/
 @[simp]
 lemma support_assembleCycle (ps : List (GraphPath G))
     (h2 : 2 ≤ ps.length)
@@ -255,10 +281,16 @@ namespace CycleFactor
 def getCycle (F : CycleFactor G) (i : Fin F.card) : GraphCycle G :=
   F.cycles.get ⟨i.1, by simpa [CycleFactor.card] using i.2⟩
 
+/--
+@isnad1 id=mem.0h4v.s5.e64d261fe633 from=translated src=- shape=fc87c25b vocab=ffd607b9
+-/
 lemma getCycle_mem (F : CycleFactor G) (i : Fin F.card) :
     F.getCycle i ∈ F.cycles :=
   List.get_mem _ _
 
+/--
+@isnad1 id=disjoint.1h5v.s6.e7afe8ea87ee from=translated src=- shape=e2a5b917 vocab=f20537d5
+-/
 lemma disjoint_getCycle (F : CycleFactor G) {i j : Fin F.card} (hij : i ≠ j) :
     Disjoint (F.getCycle i).support (F.getCycle j).support := by
   have hi : i.1 < F.cycles.length := by simpa [CycleFactor.card] using i.2
@@ -279,6 +311,9 @@ noncomputable def selectedSupport (F : CycleFactor G) (s : Finset (Fin F.card)) 
     Finset V :=
   s.biUnion fun i => (F.getCycle i).support
 
+/--
+@isnad1 id=iff.0h5v.s6.c61c097d66ad from=translated src=- shape=9e7c2614 vocab=03ba707f
+-/
 lemma mem_selectedSupport {F : CycleFactor G} {s : Finset (Fin F.card)} {x : V} :
     x ∈ F.selectedSupport s ↔ ∃ i ∈ s, x ∈ (F.getCycle i).support := by
   simp [selectedSupport]
@@ -288,11 +323,17 @@ noncomputable def keptCycles (F : CycleFactor G) (s : Finset (Fin F.card)) :
     List (GraphCycle G) :=
   (univ (α := Fin F.card) \ s).toList.map F.getCycle
 
+/--
+@isnad1 id=eq.0h4v.s5.ad9ea5119b9a from=translated src=- shape=1e17683d vocab=5769494d
+-/
 lemma length_keptCycles (F : CycleFactor G) (s : Finset (Fin F.card)) :
     (F.keptCycles s).length = F.card - s.card := by
   simp [keptCycles, List.length_map, Finset.length_toList, card_sdiff,
     card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=pairwise.0h4v.s5.2da821a30306 from=translated src=- shape=68e33e5d vocab=81e99844
+-/
 lemma pairwise_keptCycles (F : CycleFactor G) (s : Finset (Fin F.card)) :
     (F.keptCycles s).Pairwise fun c d => Disjoint c.support d.support := by
   rw [keptCycles, List.pairwise_map]
@@ -300,11 +341,17 @@ lemma pairwise_keptCycles (F : CycleFactor G) (s : Finset (Fin F.card)) :
   intro i j hij
   exact F.disjoint_getCycle hij
 
+/--
+@isnad1 id=iff.0h5v.s6.d38a30f65473 from=translated src=- shape=909b01bd vocab=b3c9607d
+-/
 lemma mem_keptCycles {F : CycleFactor G} {s : Finset (Fin F.card)}
     {c : GraphCycle G} :
     c ∈ F.keptCycles s ↔ ∃ i ∉ s, F.getCycle i = c := by
   simp [keptCycles, mem_sdiff]
 
+/--
+@isnad1 id=disjoint.1h5v.s6.1615aae961c8 from=translated src=- shape=98b142b0 vocab=a8f91271
+-/
 lemma disjoint_kept_selected (F : CycleFactor G) (s : Finset (Fin F.card))
     {i : Fin F.card} (hi : i ∉ s) :
     Disjoint (F.getCycle i).support (F.selectedSupport s) := by
@@ -347,11 +394,17 @@ noncomputable def replaceGroup (F : CycleFactor G) (s : Finset (Fin F.card))
       refine List.mem_append.2 (Or.inl ?_)
       exact (mem_keptCycles (F := F) (s := s)).2 ⟨i, hi, rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.3aedde6ebe81 from=translated src=- shape=e3dbfe39 vocab=bb4bcd32
+-/
 lemma card_replaceGroup (F : CycleFactor G) (s : Finset (Fin F.card))
     (C : GraphCycle G) (hspan : C.support = F.selectedSupport s) :
     (F.replaceGroup s C hspan).card = F.card - s.card + 1 := by
   simp [replaceGroup, card, List.length_append, length_keptCycles]
 
+/--
+@isnad1 id=lt.2h5v.s6.084c647ea1b2 from=translated src=- shape=234657f6 vocab=d38a9ef7
+-/
 lemma card_replaceGroup_lt (F : CycleFactor G) {s : Finset (Fin F.card)}
     (C : GraphCycle G) (hspan : C.support = F.selectedSupport s)
     (h2 : 2 ≤ s.card) :
@@ -364,7 +417,9 @@ lemma card_replaceGroup_lt (F : CycleFactor G) {s : Finset (Fin F.card)}
 
 /-- A globally minimum original-edge cycle factor cannot admit a merger of
 `k ≥ 2` of its cycles into one original cycle spanning exactly their
-support union. The minimum is taken over ALL original-edge factors.-/
+support union. The minimum is taken over ALL original-edge factors.
+@isnad1 id=false.3h5v.s6.2ab07650e7dd from=translated src=- shape=c0ae20f8 vocab=d9fceecc
+-/
 lemma not_exists_merge_of_min (F : CycleFactor G)
     (hmin : ∀ F' : CycleFactor G, F.card ≤ F'.card)
     (s : Finset (Fin F.card)) (h2 : 2 ≤ s.card)
@@ -375,7 +430,9 @@ lemma not_exists_merge_of_min (F : CycleFactor G)
 
 /-- Two distinct factor cycles, each supplied with a spanning original path
 of its own support, joined by two actual original cross edges in cyclic
-order, assemble to one genuine original cycle on the support union.-/
+order, assemble to one genuine original cycle on the support union.
+@isnad1 id=ex.5h7v.s7.9f7670cfe981 from=translated src=- shape=acd2e0be vocab=9e265239
+-/
 lemma exists_assemble_two_blocks (F : CycleFactor G)
     {i j : Fin F.card} (hij : i ≠ j)
     (p q : GraphPath G)
@@ -398,6 +455,9 @@ lemma exists_assemble_two_blocks (F : CycleFactor G)
   refine ⟨GraphPath.assembleTwo p q hd hfwd hback h3, ?_⟩
   simp [GraphPath.support_assembleTwo, hp, hq]
 
+/--
+@isnad1 id=eq.0h5v.s6.08dcbb1f0347 from=translated src=- shape=fa49e41b vocab=b5d205cc
+-/
 lemma selectedSupport_pair (F : CycleFactor G) {i j : Fin F.card} :
     F.selectedSupport {i, j} =
       (F.getCycle i).support ∪ (F.getCycle j).support := by
@@ -432,6 +492,9 @@ noncomputable def replaceTwo (F : CycleFactor G)
         (F.exists_assemble_two_blocks hij p q hp hq hfwd hback)
       exact hC.trans (F.selectedSupport_pair).symm)
 
+/--
+@isnad1 id=eq.5h7v.s7.659dc334c6d9 from=translated src=- shape=267b7163 vocab=091a30ca
+-/
 lemma card_replaceTwo (F : CycleFactor G)
     {i j : Fin F.card} (hij : i ≠ j)
     (p q : GraphPath G)
@@ -461,7 +524,9 @@ lemma card_replaceTwo (F : CycleFactor G)
     _ = F.card - 1 := by omega
 
 /-- A globally minimum original-edge factor cannot admit a two-block original
-cycle assembly on distinct factor cycles.-/
+cycle assembly on distinct factor cycles.
+@isnad1 id=false.6h7v.s7.e37661a8f3d5 from=translated src=- shape=724f034e vocab=8b30a7ab
+-/
 lemma not_exists_two_block_merge_of_min (F : CycleFactor G)
     (hmin : ∀ F' : CycleFactor G, F.card ≤ F'.card)
     {i j : Fin F.card} (hij : i ≠ j)
@@ -490,7 +555,9 @@ def induceVal {s : Set V} : G.induce s →g G where
 
 /-- If `ab` were a bridge in a 1-tough graph of order at least three, a second
 neighbour of `a` would lie in a different component of `G-a` from `b`,
-violating the singleton cut.-/
+violating the singleton cut.
+@isnad1 id=not.3h4v.s5.292654ac99b7 from=translated src=- shape=413166b8 vocab=dc371b7f
+-/
 lemma OneTough.not_isBridge (h : OneTough G) (hord : 3 ≤ Fintype.card V)
     {a b : V} (hab : G.Adj a b) : ¬ G.IsBridge s(a, b) := by
   intro hbr

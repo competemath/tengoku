@@ -31,11 +31,17 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=adj.3h6v.s6.843d04405708 from=translated src=- shape=f2e86216 vocab=44f25b79
+-/
 lemma adj_of_completeBetween {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     {a b : V} (ha : a ∈ A) (hb : b ∈ B) : G.Adj a b :=
   hAB ha hb
 
+/--
+@isnad1 id=disjoint.1h4v.s5.3550ea1c7ca0 from=translated src=- shape=7eb6ad41 vocab=b1bff772
+-/
 lemma disjoint_of_completeBetween {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) : Disjoint A B := by
   rw [disjoint_iff_inter_eq_empty]
@@ -44,6 +50,9 @@ lemma disjoint_of_completeBetween {A B : Finset V}
   intro hxA hxB
   exact (hAB hxA hxB).ne rfl
 
+/--
+@isnad1 id=adj.4h6v.s6.cdae9e1351c0 from=translated src=- shape=bdd7be52 vocab=d047d6e9
+-/
 lemma splice_of_completeBetween {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (p q : GraphPath G) (hp : p.support ⊆ A) (hq : q.support ⊆ B)
@@ -58,6 +67,9 @@ def spliceJoin {A B : Finset V}
     (hd : Disjoint p.support q.support) : GraphPath G :=
   p.splice q (splice_of_completeBetween hAB p q hp hq hd) hd
 
+/--
+@isnad1 id=eq.4h6v.s7.786ec91c9931 from=translated src=- shape=1c151920 vocab=9d4acdf2
+-/
 lemma support_spliceJoin {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (p q : GraphPath G) (hp : p.support ⊆ A) (hq : q.support ⊆ B)
@@ -65,6 +77,9 @@ lemma support_spliceJoin {A B : Finset V}
     (spliceJoin hAB p q hp hq hd).support = p.support ∪ q.support :=
   GraphPath.support_splice _ _ _ _
 
+/--
+@isnad1 id=eq.4h6v.s6.bfbaefaa65cb from=translated src=- shape=bda88000 vocab=c64ca2f6
+-/
 lemma start_spliceJoin {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (p q : GraphPath G) (hp : p.support ⊆ A) (hq : q.support ⊆ B)
@@ -72,6 +87,9 @@ lemma start_spliceJoin {A B : Finset V}
     (spliceJoin hAB p q hp hq hd).start = p.start :=
   rfl
 
+/--
+@isnad1 id=eq.4h6v.s6.c91cdced051f from=translated src=- shape=39664f1b vocab=f350f859
+-/
 lemma finish_spliceJoin {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (p q : GraphPath G) (hp : p.support ⊆ A) (hq : q.support ⊆ B)
@@ -79,10 +97,16 @@ lemma finish_spliceJoin {A B : Finset V}
     (spliceJoin hAB p q hp hq hd).finish = q.finish :=
   rfl
 
+/--
+@isnad1 id=le.1h4v.s5.af47671a012f from=translated src=- shape=542be072 vocab=c1a4f4a4
+-/
 lemma singleton_support_subset {b : V} {B : Finset V} (hb : b ∈ B) :
     (GraphPath.singleton (G := G) b).support ⊆ B := by
   simp [GraphPath.support_singleton, hb]
 
+/--
+@isnad1 id=disjoint.3h6v.s6.9eed7807fe6b from=translated src=- shape=b229fcd9 vocab=5df21eb6
+-/
 lemma disjoint_support_of_subset_disjoint {A B : Finset V} {p q : GraphPath G}
     (hdisj : Disjoint A B) (hp : p.support ⊆ A) (hq : q.support ⊆ B) :
     Disjoint p.support q.support :=
@@ -90,7 +114,9 @@ lemma disjoint_support_of_subset_disjoint {A B : Finset V} {p q : GraphPath G}
 
 /-- Splice an `A`-ended path, a `B`-vertex, and another `A`-started path along
 original join edges. Interior vertices of the input paths may already lie in
-`A ∪ B`; only the outer endpoints are required to lie in `A`.-/
+`A ∪ B`; only the outer endpoints are required to lie in `A`.
+@isnad1 id=ex.7h7v.s7.774846c19566 from=translated src=- shape=9b6a8b56 vocab=7e81daaa
+-/
 lemma exists_spliceABA {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (p : GraphPath G) (b : V) (q : GraphPath G)
@@ -117,6 +143,9 @@ lemma exists_spliceABA {A B : Finset V}
   ext x
   simp [mid, GraphPath.support_splice, sb, GraphPath.support_singleton]
 
+/--
+@isnad1 id=ex.1h4v.s5.0ad0718fb01c from=translated src=- shape=9fdd72f4 vocab=23550a0f
+-/
 lemma PathCover.exists_singleton_of_card_one {U : Finset V}
     (pc : PathCover G U) (h : pc.card = 1) : ∃ p, pc.paths = [p] := by
   match hps : pc.paths with
@@ -127,6 +156,9 @@ lemma PathCover.exists_singleton_of_card_one {U : Finset V}
   | _ :: _ :: _ =>
     simp [PathCover.card, hps] at h
 
+/--
+@isnad1 id=le.5h4v.s6.8d4451a981c1 from=translated src=- shape=2ff204cf vocab=160c66e5
+-/
 lemma pathCoverNumber_complete_join_le_one {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -190,18 +222,27 @@ namespace PathCover
 def cast {U W : Finset V} (pc : PathCover G U) (h : U = W) : PathCover G W :=
   h ▸ pc
 
+/--
+@isnad1 id=eq.1h5v.s5.d7c6960adaa1 from=translated src=- shape=2a70f824 vocab=f35aaa11
+-/
 @[simp]
 lemma cast_card {U W : Finset V} (pc : PathCover G U) (h : U = W) :
     (pc.cast h).card = pc.card := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.91b17fcc52f8 from=translated src=- shape=01194d6f vocab=3d98dbcf
+-/
 @[simp]
 lemma cast_paths {U W : Finset V} (pc : PathCover G U) (h : U = W) :
     (pc.cast h).paths = pc.paths := by
   subst h
   rfl
 
+/--
+@isnad1 id=ex.1h4v.s6.d6d39d76fa03 from=translated src=- shape=93fab406 vocab=b2be4c67
+-/
 lemma exists_two_distinct {U : Finset V} (pc : PathCover G U)
     (h : 2 ≤ pc.card) :
     ∃ p q, p ∈ pc.paths ∧ q ∈ pc.paths ∧ p ≠ q := by
@@ -218,6 +259,9 @@ lemma exists_two_distinct {U : Finset V} (pc : PathCover G U)
     subst hpq
     exact (List.nodup_cons.1 hn).1 (List.mem_cons.2 (Or.inl rfl))
 
+/--
+@isnad1 id=eq.4h4v.s6.5407e3702f9d from=translated src=- shape=57490b4a vocab=e633bec9
+-/
 lemma length_filter_ne_two {α : Type*} [DecidableEq α] {a b : α} {l : List α}
     (ha : a ∈ l) (hb : b ∈ l) (hne : a ≠ b) (hn : l.Nodup) :
     ((l.filter fun x => decide (x ≠ a)).filter fun x => decide (x ≠ b)).length
@@ -255,6 +299,9 @@ noncomputable def erasePath {U : Finset V} (pc : PathCover G U)
         exact Finset.disjoint_left.1 this hxq hxp
       exact mem_sdiff.2 ⟨hxU, hxp⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.21e7ce4a8a9d from=translated src=- shape=fd37d0e5 vocab=62e94b57
+-/
 lemma erasePath_card {U : Finset V} (pc : PathCover G U) {p : GraphPath G}
     (hp : p ∈ pc.paths) :
     (pc.erasePath hp).card = pc.card - 1 := by
@@ -334,6 +381,9 @@ noncomputable def spliceTwoInsert {U : Finset V} (pc : PathCover G U)
         · exact mem_insert.2 (Or.inr ((pc.mem_iff x).2 ⟨p, hp, hxp⟩))
         · exact mem_insert.2 (Or.inr ((pc.mem_iff x).2 ⟨q, hq, hxq⟩))
 
+/--
+@isnad1 id=eq.5h8v.s7.65fa6f1d7148 from=translated src=- shape=1ffe92ef vocab=030f5d82
+-/
 lemma spliceTwoInsert_card {U : Finset V} (pc : PathCover G U)
     {p q : GraphPath G} (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
     (b : V) (hb : b ∉ U) (r : GraphPath G)
@@ -353,6 +403,9 @@ lemma spliceTwoInsert_card {U : Finset V} (pc : PathCover G U)
   rw [hlen]
   omega
 
+/--
+@isnad1 id=or.6h9v.s7.29e730546fab from=translated src=- shape=e1469c5b vocab=75f20e87
+-/
 lemma spliceTwoInsert_mem_paths {U : Finset V} (pc : PathCover G U)
     {p q : GraphPath G} (hp : p ∈ pc.paths) (hq : q ∈ pc.paths) (hne : p ≠ q)
     (b : V) (hb : b ∉ U) (r : GraphPath G)
@@ -370,6 +423,9 @@ lemma spliceTwoInsert_mem_paths {U : Finset V} (pc : PathCover G U)
 
 end PathCover
 
+/--
+@isnad1 id=ex.5h7v.s8.9640cbde1aa6 from=translated src=- shape=266acdc9 vocab=8ca501d6
+-/
 lemma exists_splice_two_through {A B U : Finset V} {b : V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (pc : PathCover G U) (h2 : 2 ≤ pc.card)
@@ -394,7 +450,9 @@ lemma exists_splice_two_through {A B U : Finset V} {b : V}
 
 /-- If `p(A) > |B|`, successively splice unused `B`-vertices between pairs of
 `A`-ended cover paths. The result is a cover of `A ∪ B` with
-`p(A) - |B|` paths, all still `A`-ended.-/
+`p(A) - |B|` paths, all still `A`-ended.
+@isnad1 id=ex.2h4v.s7.f1bfacc27100 from=translated src=- shape=26b55445 vocab=7e04216b
+-/
 lemma exists_pathCover_complete_join_dominant {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hdom : B.card < pathCoverNumber G A) :
@@ -469,6 +527,9 @@ lemma exists_pathCover_complete_join_dominant {A B : Finset V}
     exact hend0 p hp
   exact aux B.card ∅ pc0' (empty_subset B) (by simp) hcard0 hend0'
 
+/--
+@isnad1 id=ex.4h7v.s7.fb4549c24c72 from=translated src=- shape=c9cd0774 vocab=be30973d
+-/
 lemma exists_alternating_path :
     ∀ (n : ℕ) (A B : Finset V)
       (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -588,7 +649,9 @@ lemma exists_alternating_path :
           exact sdiff_subset hf'
 
 /-- Balanced complete join: `p(A) ≤ |B|` and `p(B) ≤ |A|` yield a spanning
-original-edge path of `A ∪ B` (including the order-two `K2` case).-/
+original-edge path of `A ∪ B` (including the order-two `K2` case).
+@isnad1 id=ex.5h4v.s6.532dfdd98ba4 from=translated src=- shape=5ac6b992 vocab=e0de6ff7
+-/
 lemma exists_complete_join_spanning_path {A B : Finset V}
     (hAne : A.Nonempty) (_hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -612,6 +675,9 @@ lemma exists_complete_join_spanning_path {A B : Finset V}
   obtain ⟨pcB, hB⟩ := exists_pathCover_card (G := G) B hMB hMBcard
   exact exists_alternating_path M A B hAB pcA pcB hA hB hMpos
 
+/--
+@isnad1 id=le.5h4v.s6.2ad9f838d66b from=translated src=- shape=75021fe7 vocab=bec75ad0
+-/
 lemma pathCoverNumber_complete_join_le_of_balanced {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -627,7 +693,9 @@ lemma pathCoverNumber_complete_join_le_of_balanced {A B : Finset V}
 
 /-- Close the balanced spanning path to a genuine original-edge cycle when
 the union has order at least three. The order-two complete join (`K2`) is
-excluded: it has a spanning path and no 3-cycle on those vertices.-/
+excluded: it has a spanning path and no 3-cycle on those vertices.
+@isnad1 id=ex.6h4v.s6.df29756a6957 from=translated src=- shape=58988dec vocab=e8ed706a
+-/
 lemma exists_complete_join_cycle {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -642,6 +710,9 @@ lemma exists_complete_join_cycle {A B : Finset V}
   refine ⟨r.toCycle hadj h3', ?_⟩
   simpa [GraphPath.support_toCycle] using hr
 
+/--
+@isnad1 id=le.1h4v.s6.4a931d6cabf9 from=translated src=- shape=753e7170 vocab=b636c253
+-/
 lemma pathCoverNumber_complete_join_ge_sub {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) :
     pathCoverNumber G A ≤ pathCoverNumber G (A ∪ B) + B.card := by
@@ -660,6 +731,9 @@ lemma pathCoverNumber_complete_join_ge_sub {A B : Finset V}
       exact ⟨Or.inl hxA, fun hxB => Finset.disjoint_left.1 hdisj hxA hxB⟩
   simpa [hEq] using h
 
+/--
+@isnad1 id=le.1h4v.s6.b51c9cba30b0 from=translated src=- shape=a2e61bef vocab=b636c253
+-/
 lemma pathCoverNumber_complete_join_ge_sub_symm {A B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) :
     pathCoverNumber G B ≤ pathCoverNumber G (A ∪ B) + A.card := by
@@ -667,6 +741,9 @@ lemma pathCoverNumber_complete_join_ge_sub_symm {A B : Finset V}
     fun {b} hb {a} ha => (hAB ha hb).symm
   simpa [union_comm] using pathCoverNumber_complete_join_ge_sub hBA
 
+/--
+@isnad1 id=false.2h4v.s5.90e8259886f4 from=translated src=- shape=9a76ed44 vocab=5b957b51
+-/
 lemma not_both_dominant {A B : Finset V}
     (hAdom : B.card < pathCoverNumber G A)
     (hBdom : A.card < pathCoverNumber G B) : False := by
@@ -676,7 +753,9 @@ lemma not_both_dominant {A B : Finset V}
 
 /-- Exact binary complete-join recurrence. Natural truncation of the child
 excesses is faithful inside this `max` with one; no traceability assumption
-is imposed on either child.-/
+is imposed on either child.
+@isnad1 id=eq.3h4v.s6.bfb2be34ed4b from=translated src=- shape=8209484c vocab=70e7feaf
+-/
 lemma pathCoverNumber_complete_join {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) :
@@ -734,6 +813,9 @@ lemma pathCoverNumber_complete_join {A B : Finset V}
     exact max_le h1
       (max_le (Nat.sub_le_iff_le_add.2 hA) (Nat.sub_le_iff_le_add.2 hB))
 
+/--
+@isnad1 id=and.2h5v.s6.f998ee62e870 from=translated src=- shape=48264501 vocab=afa2c464
+-/
 lemma Eligible.of_min_cover_endpoint {U : Finset V} (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) {p : GraphPath G}
     (hp : p ∈ pc.paths) :
@@ -741,7 +823,9 @@ lemma Eligible.of_min_cover_endpoint {U : Finset V} (pc : PathCover G U)
   ⟨⟨pc, hpc, p, hp, Or.inl rfl⟩, ⟨pc, hpc, p, hp, Or.inr rfl⟩⟩
 
 /-- Balanced complete join: some vertex of A and some vertex of B are
-eligible in A ∪ B, namely the ends of the spanning original-edge path.-/
+eligible in A ∪ B, namely the ends of the spanning original-edge path.
+@isnad1 id=ex.5h4v.s7.8083c900545e from=translated src=- shape=03a94c53 vocab=33639e33
+-/
 lemma exists_eligible_complete_join_of_balanced {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -766,7 +850,9 @@ lemma exists_eligible_complete_join_of_balanced {A B : Finset V}
   exact ⟨r.start, r.finish, hs, hf, hends.1, hends.2⟩
 
 /-- Dominant A-child: the constructed cover of A ∪ B is minimum and entirely
-A-ended. This is the numerical input to saturated-join eligibility on A.-/
+A-ended. This is the numerical input to saturated-join eligibility on A.
+@isnad1 id=ex.4h4v.s7.005451026a78 from=translated src=- shape=5d2322e6 vocab=0e826eca
+-/
 lemma exists_A_ended_min_cover_of_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))

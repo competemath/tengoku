@@ -39,6 +39,9 @@ def TerminalHypothesisSlack (K B : Finset V) (t : ℕ) : Prop :=
     ∀ S ⊆ K, S.Nonempty →
       terminalComponentCount (G := G) K B S ≤ S.card + t - 1
 
+/--
+@isnad1 id=iff.0h4v.s5.7ae77620f1fb from=translated src=- shape=8f93e191 vocab=1241fd32
+-/
 lemma terminalHypothesis_iff_slack_zero {K B : Finset V} :
     TerminalHypothesis (G := G) K B ↔
       TerminalHypothesisSlack (G := G) K B 0 := by
@@ -52,6 +55,9 @@ lemma terminalHypothesis_iff_slack_zero {K B : Finset V} :
     intro S hS hne
     simpa using h.2 S hS hne
 
+/--
+@isnad1 id=neighbor.2h5v.s5.2a710d94fe19 from=translated src=- shape=a343af0f vocab=0f22bb21
+-/
 lemma NeighborCondition.mono {K K' B : Finset V}
     (hN : NeighborCondition (G := G) K B) (hKK : K' ⊆ K) :
     NeighborCondition (G := G) K' B := by
@@ -62,11 +68,17 @@ lemma NeighborCondition.mono {K K' B : Finset V}
     mem_sdiff.2 ⟨hKK (mem_sdiff.1 hw).1, (mem_sdiff.1 hw).2⟩
   exact hN hb hvK hwK hbv hbw
 
+/--
+@isnad1 id=iscomple.2h5v.s6.666534272476 from=translated src=- shape=3bd47500 vocab=4be43745
+-/
 lemma isCompleteBetween_subset_left {A A' B : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) (hsub : A' ⊆ A) :
     G.IsCompleteBetween (A' : Set V) (B : Set V) :=
   fun {a} ha {b} hb => hAB (hsub ha) hb
 
+/--
+@isnad1 id=eq.2h4v.s6.9d7a284fa47a from=translated src=- shape=d3580e64 vocab=8d3c42d2
+-/
 lemma sdiff_union_union_eq_sdiff_left {X Y S : Finset V}
     (hdisj : Disjoint X Y) (_hS : S ⊆ X) :
     (X ∪ Y) \ (S ∪ Y) = X \ S := by
@@ -84,6 +96,9 @@ lemma sdiff_union_union_eq_sdiff_left {X Y S : Finset V}
     have hxY : x ∉ Y := fun hY => Finset.disjoint_left.1 hdisj hx.1 hY
     exact ⟨Or.inl hx.1, fun h => h.elim hx.2 hxY⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.c799a57baa03 from=translated src=- shape=3f212e12 vocab=8d3c42d2
+-/
 lemma sdiff_union_right_of_disjoint {X Y B S : Finset V}
     (hB : B ⊆ X) (hdisj : Disjoint X Y) :
     B \ (S ∪ Y) = B \ S := by
@@ -99,6 +114,9 @@ lemma sdiff_union_right_of_disjoint {X Y B S : Finset V}
     · exact hx.2 hS
     · exact Finset.disjoint_left.1 hdisj (hB hx.1) hY
 
+/--
+@isnad1 id=eq.3h6v.s6.fbe5939bcbe4 from=translated src=- shape=00bffefb vocab=ee8c9d83
+-/
 lemma terminalComponentCount_join_delete_right {X Y B S : Finset V}
     (hdisj : Disjoint X Y) (hB : B ⊆ X) (hS : S ⊆ X) :
     terminalComponentCount (G := G) (X ∪ Y) B (S ∪ Y) =
@@ -111,7 +129,9 @@ lemma terminalComponentCount_join_delete_right {X Y B S : Finset V}
   rw [hK, hB']
 
 /-- Actual weaker child cuts after deleting a join side `Y`:
-`z_B(X-S) ≤ |Y| + |S| - 1`.-/
+`z_B(X-S) ≤ |Y| + |S| - 1`.
+@isnad1 id=le.5h6v.s6.21f8b58460ca from=translated src=- shape=9e6f2517 vocab=0dc37d5b
+-/
 lemma terminalComponentCount_join_child_le {X Y B S : Finset V}
     (hYne : Y.Nonempty) (hdisj : Disjoint X Y) (hB : B ⊆ X) (hS : S ⊆ X)
     (hTH : TerminalHypothesis (G := G) (X ∪ Y) B) :
@@ -126,6 +146,9 @@ lemma terminalComponentCount_join_child_le {X Y B S : Finset V}
     card_union_of_disjoint (disjoint_of_subset_left hS hdisj)
   omega
 
+/--
+@isnad1 id=le.4h5v.s6.82310fb9ed5e from=translated src=- shape=62ed90fc vocab=cebf13db
+-/
 lemma terminalComponentCount_join_child_empty_le {X Y B : Finset V}
     (hYne : Y.Nonempty) (hdisj : Disjoint X Y) (hB : B ⊆ X)
     (hTH : TerminalHypothesis (G := G) (X ∪ Y) B) :
@@ -134,6 +157,9 @@ lemma terminalComponentCount_join_child_empty_le {X Y B : Finset V}
     terminalComponentCount_join_child_le (S := (∅ : Finset V))
       hYne hdisj hB (empty_subset X) hTH
 
+/--
+@isnad1 id=terminal.4h5v.s6.4ef68e2d4c9d from=translated src=- shape=2cbcc8ab vocab=f3254937
+-/
 lemma terminalHypothesisSlack_join_child {X Y B : Finset V}
     (hYne : Y.Nonempty) (hdisj : Disjoint X Y) (hB : B ⊆ X)
     (hTH : TerminalHypothesis (G := G) (X ∪ Y) B) :
@@ -143,6 +169,9 @@ lemma terminalHypothesisSlack_join_child {X Y B : Finset V}
     fun S hS _hne =>
       terminalComponentCount_join_child_le hYne hdisj hB hS hTH⟩
 
+/--
+@isnad1 id=false.4h7v.s6.72f9b3ab8ce8 from=translated src=- shape=0636c95a vocab=c22671bc
+-/
 lemma Independent.not_meets_both_completeJoin {X Y B : Finset V}
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
     (hInd : Independent (G := G) B)
@@ -150,6 +179,9 @@ lemma Independent.not_meets_both_completeJoin {X Y B : Finset V}
   hInd (mem_inter.1 hx).1 (mem_inter.1 hy).1
     (hAB (mem_inter.1 hx).2 (mem_inter.1 hy).2)
 
+/--
+@isnad1 id=or.3h5v.s6.65648e6705b4 from=translated src=- shape=47a2283d vocab=6fb18700
+-/
 lemma Independent.subset_join_side {X Y B : Finset V}
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
     (hInd : Independent (G := G) B) (hBK : B ⊆ X ∪ Y) :
@@ -173,7 +205,9 @@ lemma Independent.subset_join_side {X Y B : Finset V}
     · exact hbY
 
 /-- If every terminal is ineligible, the canonical F-cut plus
-`TerminalHypothesis` forces a negative path-cover number.-/
+`TerminalHypothesis` forces a negative path-cover number.
+@isnad1 id=not.4h4v.s6.a56671a66d58 from=translated src=- shape=d59837f4 vocab=9c3fae51
+-/
 lemma not_B_subset_ineligibleSet {K B : Finset V}
     (hK : IsCograph G K) (hBK : B ⊆ K) (hBne : B.Nonempty)
     (hTH : TerminalHypothesis (G := G) K B) :
@@ -192,7 +226,9 @@ lemma not_B_subset_ineligibleSet {K B : Finset V}
     one_le_pathCoverNumber_of_nonempty (G := G) (hBne.mono hBK)
   omega
 
-/-- A B-free complete-join child cannot be dominant.-/
+/-- A B-free complete-join child cannot be dominant.
+@isnad1 id=not.7h5v.s6.7adfc9aa0a9e from=translated src=- shape=5c201458 vocab=67e76d45
+-/
 lemma not_dominant_B_free_join_side {X Y B : Finset V}
     (hXne : X.Nonempty) (hYne : Y.Nonempty)
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
@@ -213,6 +249,9 @@ lemma not_dominant_B_free_join_side {X Y B : Finset V}
   exact not_B_subset_ineligibleSet (G := G) hKcog
     (hB.trans subset_union_left) hBne hTH hBF
 
+/--
+@isnad1 id=lt.8h5v.s6.82cc6c9d3ca2 from=translated src=- shape=a5675767 vocab=67e76d45
+-/
 lemma dominant_of_terminal_join {X Y B : Finset V}
     (hXne : X.Nonempty) (hYne : Y.Nonempty)
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
@@ -241,11 +280,17 @@ def PathCover.ofSupport (p : GraphPath G) {K : Finset V} (h : p.support = K) :
     PathCover G K :=
   (PathCover.ofPath p).cast h
 
+/--
+@isnad1 id=eq.1h4v.s5.b454120236da from=translated src=- shape=53305286 vocab=b7cb08e9
+-/
 lemma PathCover.ofSupport_card (p : GraphPath G) {K : Finset V}
     (h : p.support = K) :
     (PathCover.ofSupport p h).card = 1 := by
   simp [PathCover.ofSupport, PathCover.ofPath_card]
 
+/--
+@isnad1 id=istermin.3h5v.s6.8af78d42bb72 from=translated src=- shape=a13eec30 vocab=ef42c3de
+-/
 lemma PathCover.ofSupport_terminal {B K : Finset V} (p : GraphPath G)
     (h : p.support = K) (hs : p.start ∈ B) (hf : p.finish ∈ B) :
     IsTerminalCover (G := G) B (PathCover.ofSupport p h) := by
@@ -255,7 +300,9 @@ lemma PathCover.ofSupport_terminal {B K : Finset V} (p : GraphPath G)
   subst this
   exact ⟨hs, hf⟩
 
-/-- Traceable base packaged as a minimum `B`-terminal `PathCover`.-/
+/-- Traceable base packaged as a minimum `B`-terminal `PathCover`.
+@isnad1 id=ex.7h4v.s6.4cf6047fddc1 from=translated src=- shape=a958cbac vocab=514d4cbd
+-/
 lemma exists_min_terminalCover_of_pathCoverNumber_eq_one {K B : Finset V}
     (h2 : 2 ≤ K.card) (hcog : IsCograph G K)
     (hconn : (G.induce (K : Set V)).Connected)
@@ -269,6 +316,9 @@ lemma exists_min_terminalCover_of_pathCoverNumber_eq_one {K B : Finset V}
     PathCover.ofSupport_terminal p hpK hs hf⟩
   simpa [PathCover.ofSupport_card p hpK] using hp.symm
 
+/--
+@isnad1 id=ex.4h5v.s7.beb8606105ae from=translated src=- shape=4b47abf7 vocab=a4fbe543
+-/
 lemma exists_min_terminalCover_disjoint_union {A C B : Finset V}
     (hdisj : Disjoint A C)
     (hnocross : ∀ a ∈ A, ∀ b ∈ C, ¬ G.Adj a b)
@@ -288,7 +338,9 @@ lemma exists_min_terminalCover_disjoint_union {A C B : Finset V}
   · exact isTerminalCover_unionDisjoint hdisj pcA pcC hAterm hCterm
 
 /-- Splice every connector of a complete join through an already `B`-ended
-cover of the dominant child. Ends remain in `B`.-/
+cover of the dominant child. Ends remain in `B`.
+@isnad1 id=ex.4h5v.s7.27212331684a from=translated src=- shape=379ea56a vocab=ec262912
+-/
 lemma exists_terminalCover_splice_connectors {X Y B : Finset V}
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
     (hB : B ⊆ X)
@@ -368,6 +420,9 @@ lemma exists_terminalCover_splice_connectors {X Y B : Finset V}
     exact hend0 p hp
   exact aux Y.card ∅ pc0' (empty_subset Y) (by simp) hcard0 hterm0'
 
+/--
+@isnad1 id=ex.6h5v.s7.226eb48c94e4 from=translated src=- shape=b58736d2 vocab=cfc2b383
+-/
 lemma exists_min_terminalCover_complete_join {X Y B : Finset V}
     (hXne : X.Nonempty) (hYne : Y.Nonempty)
     (hAB : G.IsCompleteBetween (X : Set V) (Y : Set V))
@@ -383,14 +438,18 @@ lemma exists_min_terminalCover_complete_join {X Y B : Finset V}
   have hp := pathCoverNumber_eq_sub_of_dominant hXne hYne hAB hdom
   exact ⟨pc, hcard.trans hp.symm, hterm⟩
 
-/-- Empty carrier.-/
+/-- Empty carrier.
+@isnad1 id=ex.0h3v.s6.cd3ca7ca1d7e from=translated src=- shape=85e68562 vocab=a43be676
+-/
 lemma exists_min_terminalCover_empty (B : Finset V) :
     ∃ pc : PathCover G (∅ : Finset V),
       pc.card = pathCoverNumber G (∅ : Finset V) ∧
         IsTerminalCover (G := G) B pc :=
   pathCoverNumber_empty_terminal (G := G) B
 
-/-- Singleton `{b}` with `b ∈ B`.-/
+/-- Singleton `{b}` with `b ∈ B`.
+@isnad1 id=ex.1h4v.s6.52efa82801e1 from=translated src=- shape=9268ce6a vocab=5f811b18
+-/
 lemma exists_min_terminalCover_singleton {B : Finset V} {b : V} (hb : b ∈ B) :
     ∃ pc : PathCover G ({b} : Finset V),
       pc.card = pathCoverNumber G ({b} : Finset V) ∧

@@ -33,6 +33,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=le.2h4v.s5.a6242ef3727e from=translated src=- shape=bf0f8758 vocab=e39890fd
+-/
 lemma three_le_card_of_mem_ineligible {U : Finset V} {x : V}
     (hx : x ∈ ineligibleSet G U) (hp : pathCoverNumber G U = 1) :
     3 ≤ U.card := by
@@ -74,6 +77,9 @@ lemma three_le_card_of_mem_ineligible {U : Finset V} {x : V}
       · simpa [hpU] using hE.2
     exact (mem_ineligibleSet_iff (G := G)).1 hx |>.2 hEx
 
+/--
+@isnad1 id=ex.1h5v.s5.86696f94e941 from=translated src=- shape=efd9436b vocab=63d36dc2
+-/
 lemma exists_oriented_spanning {U : Finset V} {x y : V}
     (hR : SpanningPathCompatible (G := G) U x y) :
     ∃ q : GraphPath G, q.support = U ∧ q.start = x ∧ q.finish = y := by
@@ -85,12 +91,18 @@ lemma exists_oriented_spanning {U : Finset V} {x y : V}
     · simpa [GraphPath.reverse] using hf
     · simpa [GraphPath.reverse] using hs
 
+/--
+@isnad1 id=connecte.1h3v.s5.be84f1ad79a5 from=translated src=- shape=5a0fe993 vocab=aab2b2c9
+-/
 lemma connected_of_pathCoverNumber_eq_one {U : Finset V}
     (hp : pathCoverNumber G U = 1) :
     (G.induce (U : Set V)).Connected := by
   obtain ⟨p, hpU⟩ := exists_spanning_path_of_pathCoverNumber_eq_one (G := G) hp
   exact connected_of_spanning_path p hpU
 
+/--
+@isnad1 id=le.1h5v.s5.57e1e9e54482 from=translated src=- shape=939dd1d4 vocab=84d75d76
+-/
 lemma two_le_card_of_union_cycle {L D : Finset V}
     (c : GraphCycle G) (hc : c.support = D) :
     2 ≤ (L ∪ D).card := by
@@ -99,6 +111,9 @@ lemma two_le_card_of_union_cycle {L D : Finset V}
   exact le_trans (by decide : (2 : ℕ) ≤ 3)
     (h3.trans (card_le_card this))
 
+/--
+@isnad1 id=iff.0h3v.s4.2956032d656b from=translated src=- shape=395b201b vocab=b9b9bae8
+-/
 lemma one_le_pathCoverNumber_iff_nonempty (U : Finset V) :
     1 ≤ pathCoverNumber G U ↔ U.Nonempty := by
   constructor
@@ -113,7 +128,9 @@ lemma one_le_pathCoverNumber_iff_nonempty (U : Finset V) :
 /-- The `q = 1` form of the meets-nondominant calculation from
 `distinct_release`. The original helper demanded `2 ≤ p(J)` only because
 that lemma's ambient pair was a distinct-path pair; the equalities never
-used that lower bound.-/
+used that lower bound.
+@isnad1 id=false.13h8v.s7.280eced4a0ef from=translated src=- shape=93bdde7f vocab=e8d5ae3d
+-/
 lemma false_of_cycle_meets_nondominant_of_eq_one {L D X Y : Finset V} {h : V}
     (c : GraphCycle G)
     (hLD : Disjoint L D) (hc : c.support = D)
@@ -296,6 +313,9 @@ lemma false_of_cycle_meets_nondominant_of_eq_one {L D X Y : Finset V} {h : V}
     exact (mem_ineligibleSet_iff (G := G)).1 hhF |>.2
       ((mem_eligibleSet_iff (G := G)).1 this).2
 
+/--
+@isnad1 id=eq.1h5v.s7.b0ac9fd2d17e from=translated src=- shape=925177c9 vocab=0af69725
+-/
 lemma connectedComponent_map_induceIncl_left {A B : Finset V} {a : V}
     (ha : a ∈ A) :
     ((G.induce (A : Set V)).connectedComponentMk ⟨a, ha⟩).map
@@ -304,6 +324,9 @@ lemma connectedComponent_map_induceIncl_left {A B : Finset V} {a : V}
         ⟨a, mem_union.2 (Or.inl ha)⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.86371797736a from=translated src=- shape=f4edc5fe vocab=9bb2541d
+-/
 lemma connectedComponent_map_induceIncl_right {A B : Finset V} {b : V}
     (hb : b ∈ B) :
     ((G.induce (B : Set V)).connectedComponentMk ⟨b, hb⟩).map
@@ -312,6 +335,9 @@ lemma connectedComponent_map_induceIncl_right {A B : Finset V} {b : V}
         ⟨b, mem_union.2 (Or.inr hb)⟩ :=
   rfl
 
+/--
+@isnad1 id=le.6h6v.s6.3643ae58fc7c from=translated src=- shape=c0cdefbd vocab=367bf685
+-/
 lemma componentCount_union_le_sub_one_of_adj {A B : Finset V}
     (hdisj : Disjoint A B) (hAne : A.Nonempty) (hBne : B.Nonempty)
     {a b : V} (ha : a ∈ A) (hb : b ∈ B) (hadj : G.Adj a b) :
@@ -387,6 +413,9 @@ lemma componentCount_union_le_sub_one_of_adj {A B : Finset V}
   have hpos : 1 ≤ componentCount G A + componentCount G B := by omega
   omega
 
+/--
+@isnad1 id=not.6h6v.s6.a45836903388 from=translated src=- shape=32ade468 vocab=66ee1eb2
+-/
 lemma no_cross_of_componentCount_add {A B : Finset V}
     (hdisj : Disjoint A B) (hAne : A.Nonempty) (hBne : B.Nonempty)
     (heq : componentCount G (A ∪ B) = componentCount G A + componentCount G B) :
@@ -400,7 +429,9 @@ lemma no_cross_of_componentCount_add {A B : Finset V}
         ⟨(G.induce (A : Set V)).connectedComponentMk ⟨a, ha⟩⟩
   omega
 
-/-- Critical-join case of traceable release: `X` is the unique dominant child.-/
+/-- Critical-join case of traceable release: `X` is the unique dominant child.
+@isnad1 id=or.17h11v.s8.cb60abedbaf4 from=translated src=- shape=635dc01e vocab=d4c2cb29
+-/
 lemma traceable_release_of_critical {L D X Y : Finset V} {h u v : V}
     (c : GraphCycle G)
     (P : GraphPath G)
@@ -609,12 +640,18 @@ lemma traceable_release_of_critical {L D X Y : Finset V} {h u v : V}
       refine Or.inr ⟨Q, ?_, hsQ, hfQ⟩
       simpa [hcover] using hQ
 
+/--
+@isnad1 id=eq.0h4v.s5.23e7a81165d3 from=translated src=- shape=98d70519 vocab=b293ee9c
+-/
 lemma mem_union_sdiff_eq {L D P : Finset V} :
     (L ∪ D) \ P = (L \ P) ∪ (D \ P) := by
   ext z
   simp only [mem_sdiff, mem_union]
   tauto
 
+/--
+@isnad1 id=eq.1h3v.s5.92f1508c6a2a from=translated src=- shape=26f0dacb vocab=a85b2193
+-/
 lemma ineligibleSet_eq_empty_of_eligibleSet_eq {U : Finset V}
     (h : eligibleSet G U = U) : ineligibleSet G U = ∅ := by
   ext z
@@ -627,6 +664,9 @@ lemma ineligibleSet_eq_empty_of_eligibleSet_eq {U : Finset V}
   · intro hz
     exact (notMem_empty z hz).elim
 
+/--
+@isnad1 id=eq.1h3v.s6.018884f230c7 from=translated src=- shape=b6c0d3c9 vocab=ddcf06dd
+-/
 lemma card_supportUnion_eq_sum {l : List (GraphPath G)}
     (h : l.Pairwise fun p q => Disjoint p.support q.support) :
     (supportUnion l).card = (l.map (fun p => p.support.card)).sum := by
@@ -649,6 +689,9 @@ lemma card_supportUnion_eq_sum {l : List (GraphPath G)}
     rw [hfold, card_union_of_disjoint hd, ih hpw.2, List.map_cons]
     simp [List.sum_cons]
 
+/--
+@isnad1 id=eq.1h3v.s5.cb9fc7ceeaf0 from=translated src=- shape=58f9f170 vocab=9d7dbaf6
+-/
 lemma eligibleSet_eq_of_pathCoverNumber_eq_card {U : Finset V}
     (h : pathCoverNumber G U = U.card) : eligibleSet G U = U := by
   ext x
@@ -679,6 +722,9 @@ lemma eligibleSet_eq_of_pathCoverNumber_eq_card {U : Finset V}
     exact (mem_eligibleSet_iff (G := G)).2
       ⟨hxU, ⟨pc, (by simpa [h] using hpc), p, hp, Or.inl hs.symm⟩⟩
 
+/--
+@isnad1 id=not.2h5v.s5.500ca4f3204d from=translated src=- shape=37be21e3 vocab=5195da83
+-/
 lemma not_IsEndpoint_of_mem_ineligible {U : Finset V} {x : V}
     (pc : PathCover G U) (hmin : pc.card = pathCoverNumber G U)
     (hx : x ∈ ineligibleSet G U) : ¬ pc.IsEndpoint x := by
@@ -687,6 +733,9 @@ lemma not_IsEndpoint_of_mem_ineligible {U : Finset V} {x : V}
   have hE : Eligible G U x := ⟨pc, hmin, p, hp, hend⟩
   exact (mem_ineligibleSet_iff (G := G)).1 hx |>.2 hE
 
+/--
+@isnad1 id=ex.5h6v.s7.73fd86ff8239 from=translated src=- shape=e8e5f297 vocab=d880cbef
+-/
 lemma exists_pathCover_sdiff_ineligible_keepEndpoint
     {U C : Finset V} {x : V}
     (hU : Nikoghosyan.IsCograph G U)
@@ -742,6 +791,9 @@ lemma exists_pathCover_sdiff_ineligible_keepEndpoint
       omega
     · exact (PathCover.cast_IsEndpoint pc1 hEq).2 hend1
 
+/--
+@isnad1 id=ex.4h6v.s7.24ffb99d47ab from=translated src=- shape=177637a5 vocab=7400bd64
+-/
 lemma exists_edge_from_meet_to_miss {D : Finset V} (p : GraphPath G)
     {x y : V} (hx : x ∈ p.support) (hy : y ∈ p.support)
     (hxD : x ∈ D) (hyD : y ∉ D) :
@@ -770,6 +822,9 @@ lemma exists_edge_from_meet_to_miss {D : Finset V} (p : GraphPath G)
       · exact ⟨u0.val, v0.val, u0.property, v0.property, huD, hv0D, hadjG⟩
   exact this wReach hxD hyD
 
+/--
+@isnad1 id=le.4h6v.s7.e2351291355d from=translated src=- shape=b5db4fc7 vocab=b45340b0
+-/
 lemma path_support_subset_of_component {U D : Finset V}
     (hnocross : ∀ a ∈ D, ∀ b ∈ U \ D, ¬ G.Adj a b)
     (p : GraphPath G) (hsupp : p.support ⊆ U)
@@ -784,6 +839,9 @@ lemma path_support_subset_of_component {U D : Finset V}
   have hbU : b ∈ U \ D := mem_sdiff.2 ⟨hsupp hbP, hbD⟩
   exact hnocross a haD b hbU hadj
 
+/--
+@isnad1 id=eq.8h7v.s7.83227b3998b9 from=translated src=- shape=ae3b142a vocab=ffe6d86b
+-/
 lemma path_support_eq_of_component {U D : Finset V}
     (pc : PathCover G U)
     (hcard : pc.card = componentCount G U)
@@ -896,6 +954,9 @@ lemma path_support_eq_of_component {U D : Finset V}
       exact hp'.trans hq'.symm
     exact hne this
 
+/--
+@isnad1 id=ex.8h9v.s8.ae2d755bb13e from=translated src=- shape=739a8619 vocab=a0eee1f1
+-/
 lemma exists_surviving_distinct_paths
     {U S : Finset V} {a b : V}
     (pc : PathCover G U) (hS : S ⊆ U)
@@ -946,6 +1007,9 @@ lemma exists_surviving_distinct_paths
     · simpa [PathCover.cast_paths] using hp2
     · simpa [PathCover.cast_paths] using hq2
 
+/--
+@isnad1 id=eq.2h4v.s6.98fe22ecd0c6 from=translated src=- shape=df992f8c vocab=d64ce80b
+-/
 lemma erase_union_eq_of_mem_right {X Y : Finset V} {y : V}
     (hdisj : Disjoint X Y) (hy : y ∈ Y) :
     (X ∪ Y).erase y = X ∪ Y.erase y := by
@@ -965,6 +1029,9 @@ lemma erase_union_eq_of_mem_right {X Y : Finset V} {y : V}
     · exact mem_erase.2 ⟨(mem_erase.1 hzY).1,
         mem_union.2 (Or.inr (mem_erase.1 hzY).2)⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.70389b718ddf from=translated src=- shape=8bde16e1 vocab=248bd1bc
+-/
 lemma erase_union_eq_left_of_singleton {X : Finset V} {y : V}
     (hdisj : Disjoint X {y}) :
     (X ∪ ({y} : Finset V)).erase y = X := by
@@ -972,6 +1039,9 @@ lemma erase_union_eq_left_of_singleton {X : Finset V} {y : V}
   have h := erase_union_eq_of_mem_right hdisj hy
   simpa [erase_singleton, union_empty] using h
 
+/--
+@isnad1 id=eq.9h5v.s7.31649904a8fc from=translated src=- shape=aea8b22e vocab=2944ce67
+-/
 lemma rNonadjClass_eq_side_union_ineligible
     {X Y : Finset V} {y : V}
     (hXne : X.Nonempty) (hYne : Y.Nonempty)
@@ -1064,6 +1134,9 @@ lemma rNonadjClass_eq_side_union_ineligible
     rNonadjClass_eq_qxSet_of_extension hyJ hiff
   simpa [hQ, qxSet] using hins
 
+/--
+@isnad1 id=ex.10h9v.s8.43f0af394333 from=translated src=- shape=4af3d259 vocab=0a952245
+-/
 lemma exists_surviving_distinct_paths_ineligible
     {U S : Finset V} {a b : V}
     (hU : Nikoghosyan.IsCograph G U)
@@ -1143,6 +1216,9 @@ lemma exists_surviving_distinct_paths_ineligible
     · simpa [PathCover.cast_paths] using hp2
     · simpa [PathCover.cast_paths] using hq2
 
+/--
+@isnad1 id=le.1h4v.s6.db9093f38acf from=translated src=- shape=a27fcafe vocab=fe3c6397
+-/
 lemma find?_none_support_subset_D {p : GraphPath G} {D : Finset V}
     (h : p.walk.support.find? (fun x => decide (x ∉ D)) = none) :
     p.support ⊆ D := by
@@ -1152,6 +1228,9 @@ lemma find?_none_support_subset_D {p : GraphPath G} {D : Finset V}
     (List.find?_eq_none (p := fun x : V => decide (x ∉ D))).1 h z hzW
   simpa using hnot
 
+/--
+@isnad1 id=mem.4h6v.s7.310f9187283d from=translated src=- shape=ab6201a1 vocab=22f413c6
+-/
 lemma takeUntil_prefix_mem_D {p : GraphPath G} {D : Finset V} {z y : V}
     (h : p.walk.support.find? (fun x => decide (x ∉ D)) = some z)
     (hz : z ∈ p.support) (hy : y ∈ (p.takeUntil hz).support) (hne : y ≠ z) :
@@ -1166,6 +1245,9 @@ lemma takeUntil_prefix_mem_D {p : GraphPath G} {D : Finset V} {z y : V}
       hB hz hy hne
   simpa [mem_sdiff, mem_univ] using hnot
 
+/--
+@isnad1 id=le.6h5v.s7.b981e0b821b8 from=translated src=- shape=6c7068bf vocab=edf4b315
+-/
 lemma pathCoverNumber_sdiff_of_traceable_component
     {X D : Finset V}
     (hXcog : Nikoghosyan.IsCograph G X)
@@ -1473,7 +1555,9 @@ lemma pathCoverNumber_sdiff_of_traceable_component
       omega
     exact hle.trans (by omega)
 
-/-- A disconnected induced block of a complete join lies in one side.-/
+/-- A disconnected induced block of a complete join lies in one side.
+@isnad1 id=or.3h5v.s6.5d29636201ad from=translated src=- shape=17fc3737 vocab=18ecaa7e
+-/
 lemma subset_join_side_of_disconnected {A B W : Finset V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hW : W ⊆ A ∪ B)
@@ -1518,6 +1602,9 @@ lemma subset_join_side_of_disconnected {A B W : Finset V}
     ·       exact (notMem_empty z (by simpa [hAempty] using mem_inter.2 ⟨hz, hzA⟩)).elim
     · exact hzB
 
+/--
+@isnad1 id=le.6h5v.s6.f3dac29d807b from=translated src=- shape=2e8baa3e vocab=0206df05
+-/
 lemma three_le_card_of_three_mem {s : Finset V} {a b c : V}
     (ha : a ∈ s) (hb : b ∈ s) (hc : c ∈ s)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
@@ -1535,6 +1622,9 @@ lemma three_le_card_of_three_mem {s : Finset V} {a b c : V}
     · simp [mem_insert, mem_singleton, hab, hac]
   exact (by omega : 3 ≤ ({a, b, c} : Finset V).card).trans (card_le_card hsub)
 
+/--
+@isnad1 id=eq.2h4v.s6.2f919fb9c341 from=translated src=- shape=e75b51b0 vocab=8d3c42d2
+-/
 lemma sdiff_union_eq_sdiff_left_union {L D Px : Finset V}
     (hLD : Disjoint L D) (hP : Px ⊆ L) :
     (L ∪ D) \ Px = (L \ Px) ∪ D := by
@@ -1549,6 +1639,9 @@ lemma sdiff_union_eq_sdiff_left_union {L D Px : Finset V}
         (Finset.disjoint_left.1 hLD (hP hzP) hzD).elim⟩
   rw [hD]
 
+/--
+@isnad1 id=le.10h9v.s7.4efafc13795b from=translated src=- shape=9e26390f vocab=fe66a33a
+-/
 lemma componentCount_sdiff_le_sub_one_of_path_cycle
     {L D Px : Finset V} {u v : V}
     (hLD : Disjoint L D)
@@ -1624,6 +1717,9 @@ lemma componentCount_sdiff_le_sub_one_of_path_cycle
     simpa [hdecomp] using hle.trans (Nat.add_le_add hleL hleDc)
   omega
 
+/--
+@isnad1 id=le.10h9v.s7.afd6a4e59b85 from=translated src=- shape=1d76cf7a vocab=e9570ddc
+-/
 lemma Px_subset_L_of_partCut
     {L D Px : Finset V} {u v : V}
     (hLD : Disjoint L D)
@@ -1647,6 +1743,9 @@ lemma Px_subset_L_of_partCut
   have hpos : 1 ≤ Px.card := Nat.succ_le_of_lt (card_pos.2 ⟨u, huP⟩)
   omega
 
+/--
+@isnad1 id=and.11h9v.s8.800245754a6b from=translated src=- shape=148d6bf7 vocab=e33b7846
+-/
 lemma D_component_of_Px_subset_L
     {L D Px : Finset V} {u v : V}
     (hLD : Disjoint L D)
@@ -1697,6 +1796,9 @@ lemma D_component_of_Px_subset_L
     no_cross_of_componentCount_add hdisj hLPne hDne (by simpa using heq)
   exact ⟨hcLP, fun a ha b hb hadj => hnocross b hb a ha hadj.symm, hdecomp⟩
 
+/--
+@isnad1 id=false.24h12v.s8.c03d09be3667 from=translated src=- shape=3f2e4cbf vocab=995ee366
+-/
 lemma false_of_balanced_join_child
     {L D X Y Px : Finset V} {h u v : V}
     (c : GraphCycle G) (pL : GraphPath G)
@@ -1989,6 +2091,9 @@ lemma false_of_balanced_join_child
   exact (mem_ineligibleSet_iff (G := G)).1 hhF |>.2
     ((mem_eligibleSet_iff (G := G)).1 hhEL).2
 
+/--
+@isnad1 id=false.12h9v.s7.7a0811a94da0 from=translated src=- shape=e77c6404 vocab=d28d6d28
+-/
 lemma false_of_balanced_common_class
     {L D : Finset V} {h u v : V}
     (c : GraphCycle G) (pL : GraphPath G)
@@ -2067,6 +2172,9 @@ lemma false_of_balanced_common_class
       (isCompleteBetween_symm hAB0) hJcog hpL hpJ hE hhF hpLsup hs hf huv
       hbal rfl hhP huP hvP hPL hPge hcut hWB
 
+/--
+@isnad1 id=and.11h9v.s8.e91e05fd76df from=translated src=- shape=4c52a14f vocab=af76f4ad
+-/
 theorem traceable_release {L D : Finset V} {h u v : V}
     (c : GraphCycle G)
     (pL : GraphPath G)

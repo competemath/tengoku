@@ -33,6 +33,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=eq.1h3v.s5.93e02580dade from=translated src=- shape=68a34c3b vocab=99e27771
+-/
 lemma union_sdiff_eq_left_of_disjoint {A B : Finset V} (h : Disjoint A B) :
     (A ∪ B) \ B = A := by
   ext x
@@ -45,6 +48,9 @@ lemma union_sdiff_eq_left_of_disjoint {A B : Finset V} (h : Disjoint A B) :
   · intro hxA
     exact ⟨Or.inl hxA, fun hxB => Finset.disjoint_left.1 h hxA hxB⟩
 
+/--
+@isnad1 id=eq.4h4v.s6.91a4e5212f2d from=translated src=- shape=794f4914 vocab=a9fc3d29
+-/
 lemma pathCoverNumber_eq_sub_of_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -62,6 +68,9 @@ lemma pathCoverNumber_eq_sub_of_dominant {A B : Finset V}
     simp [Nat.sub_eq_zero_of_le hBnot, max_eq_right hq]
   exact hj.trans hmax
 
+/--
+@isnad1 id=eq.4h4v.s6.ac6853d189fb from=translated src=- shape=c286e226 vocab=454558de
+-/
 lemma pathCoverNumber_add_card_of_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -72,7 +81,9 @@ lemma pathCoverNumber_add_card_of_dominant {A B : Finset V}
   omega
 
 /-- No eligible vertex of a saturated join `A ∪ B` can lie in the
-non-dominant side `B`.-/
+non-dominant side `B`.
+@isnad1 id=false.6h5v.s6.ff12e16defeb from=translated src=- shape=2d7d2a92 vocab=0d840b57
+-/
 lemma not_eligible_mem_B_of_dominant {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -89,6 +100,9 @@ lemma not_eligible_mem_B_of_dominant {A B : Finset V} {x : V}
   rw [hEq] at hle
   omega
 
+/--
+@isnad1 id=mem.5h5v.s6.f0975221b40a from=translated src=- shape=3d4835ac vocab=0d840b57
+-/
 lemma eligible_mem_left_of_dominant {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -101,6 +115,9 @@ lemma eligible_mem_left_of_dominant {A B : Finset V} {x : V}
 
 namespace PathCover
 
+/--
+@isnad1 id=iff.1h6v.s5.e5dc09f05231 from=translated src=- shape=5dd493ac vocab=9bc52903
+-/
 lemma cast_IsEndpoint {U W : Finset V} (pc : PathCover G U) (h : U = W) {x : V} :
     (pc.cast h).IsEndpoint x ↔ pc.IsEndpoint x := by
   subst h
@@ -142,6 +159,9 @@ noncomputable def replacePath_sat {U : Finset V} (pc : PathCover G U)
         have hx' : x ∈ p.support := by rwa [← hr]
         exact (pc.mem_iff x).2 ⟨p, hp, hx'⟩
 
+/--
+@isnad1 id=eq.2h6v.s6.5d654c9092b1 from=translated src=- shape=3347f1a9 vocab=e4b074cc
+-/
 lemma replacePath_sat_card {U : Finset V} (pc : PathCover G U)
     {p : GraphPath G} (hp : p ∈ pc.paths) (r : GraphPath G)
     (hr : r.support = p.support) :
@@ -152,6 +172,9 @@ lemma replacePath_sat_card {U : Finset V} (pc : PathCover G U)
     List.length_nil]
   omega
 
+/--
+@isnad1 id=or.3h7v.s7.79aa5adb1e43 from=translated src=- shape=216ea912 vocab=c1128fa3
+-/
 lemma replacePath_sat_mem_paths {U : Finset V} (pc : PathCover G U)
     {p : GraphPath G} (hp : p ∈ pc.paths) (r : GraphPath G)
     (hr : r.support = p.support) {s : GraphPath G}
@@ -162,20 +185,31 @@ lemma replacePath_sat_mem_paths {U : Finset V} (pc : PathCover G U)
     exact Or.inr ⟨hs0.1, of_decide_eq_true hs0.2⟩
   · exact Or.inl (List.mem_singleton.1 hR)
 
+/--
+@isnad1 id=mem.2h6v.s6.c078ed8e378f from=translated src=- shape=e2a5ce0f vocab=c1128fa3
+-/
 lemma replacePath_sat_self_mem {U : Finset V} (pc : PathCover G U)
     {p : GraphPath G} (hp : p ∈ pc.paths) (r : GraphPath G)
     (hr : r.support = p.support) :
     r ∈ (pc.replacePath_sat hp r hr).paths :=
   List.mem_append.mpr (Or.inr (List.mem_singleton.2 rfl))
 
+/--
+@isnad1 id=eq.0h3v.s4.a5d1e8b1234c from=translated src=- shape=13ae0f74 vocab=c30c1ddf
+-/
 lemma GraphPath.start_reverse (p : GraphPath G) : p.reverse.start = p.finish :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.5911ed78d24e from=translated src=- shape=13ae0f74 vocab=c30c1ddf
+-/
 lemma GraphPath.finish_reverse (p : GraphPath G) : p.reverse.finish = p.start :=
   rfl
 
 /-- Iterate single-vertex deletion, keeping a prescribed surviving endpoint
-and paying at most one extra path per deleted vertex.-/
+and paying at most one extra path per deleted vertex.
+@isnad1 id=ex.3h6v.s7.58d116035b58 from=translated src=- shape=37badd04 vocab=bba20e67
+-/
 lemma exists_deleteFinset_keepEndpoint {U S : Finset V}
     (pc : PathCover G U) (hS : S ⊆ U) {x : V}
     (hx : pc.IsEndpoint x) (hxS : x ∉ S) :
@@ -206,6 +240,9 @@ lemma exists_deleteFinset_keepEndpoint {U S : Finset V}
       omega
     · exact (cast_IsEndpoint pc1 hEq).2 hend1
 
+/--
+@isnad1 id=ex.2h5v.s6.b5b2401e05d7 from=translated src=- shape=d9a7a78d vocab=b2be4c67
+-/
 lemma exists_other_path_sat {U : Finset V} (pc : PathCover G U)
     {p : GraphPath G} (_hp : p ∈ pc.paths) (h2 : 2 ≤ pc.card) :
     ∃ q, q ∈ pc.paths ∧ q ≠ p := by
@@ -217,7 +254,9 @@ lemma exists_other_path_sat {U : Finset V} (pc : PathCover G U)
   · exact ⟨p0, hp0, fun hp0p => h hp0p.symm⟩
 
 /-- Merge the marked `A`-ended chain on the left with another cover path
-through an unused `B`-vertex. The marked start is preserved.-/
+through an unused `B`-vertex. The marked start is preserved.
+@isnad1 id=ex.7h9v.s8.5b7be38ff65c from=translated src=- shape=5987b360 vocab=8ca501d6
+-/
 lemma exists_marked_splice_two_through {A B U : Finset V} {b x : V}
     {p : GraphPath G}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -249,7 +288,9 @@ lemma exists_marked_splice_two_through {A B U : Finset V} {b x : V}
 end PathCover
 
 /-- Deleting the non-dominant side from a witnessing minimum `U`-cover yields
-a minimum `A`-cover that retains every prescribed surviving endpoint.-/
+a minimum `A`-cover that retains every prescribed surviving endpoint.
+@isnad1 id=ex.5h5v.s6.2a307e84714e from=translated src=- shape=39b8c610 vocab=e26abe35
+-/
 lemma exists_min_cover_left_of_dominant_endpoint {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -277,6 +318,9 @@ lemma exists_min_cover_left_of_dominant_endpoint {A B : Finset V} {x : V}
     omega
   exact ⟨pcA, hmin, (PathCover.cast_IsEndpoint pc1 hEq).2 hend1⟩
 
+/--
+@isnad1 id=eligible.5h5v.s6.2c6d6268b579 from=translated src=- shape=fa48786b vocab=c66a5d9a
+-/
 lemma eligible_left_of_dominant {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -287,6 +331,9 @@ lemma eligible_left_of_dominant {A B : Finset V} {x : V}
   obtain ⟨p, hp, hx⟩ := hend
   exact ⟨pc, hpc, p, hp, hx⟩
 
+/--
+@isnad1 id=ex.3h7v.s7.a9c3332af635 from=translated src=- shape=225f3c8b vocab=3f85a262
+-/
 lemma exists_orientStart_marked {A U : Finset V} {x : V}
     (pc : PathCover G U) {p : GraphPath G} (hp : p ∈ pc.paths)
     (hx : x = p.start ∨ x = p.finish)
@@ -312,7 +359,9 @@ lemma exists_orientStart_marked {A U : Finset V} {x : V}
 
 /-- Dominant-child construction starting from a prescribed minimum `A`-cover
 endpoint: the marked chain is always the left splice operand, so its start
-survives every insertion.-/
+survives every insertion.
+@isnad1 id=ex.3h5v.s7.ffb55a4721b4 from=translated src=- shape=b4ae10e6 vocab=a3375c59
+-/
 lemma exists_pathCover_complete_join_dominant_marked {A B : Finset V} {x : V}
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hdom : B.card < pathCoverNumber G A)
@@ -399,6 +448,9 @@ lemma exists_pathCover_complete_join_dominant_marked {A B : Finset V} {x : V}
     exact hend0o q hq
   exact aux B.card ∅ pc0' p0o (empty_subset B) (by simp) hcard0 hp0' hstart0 hend0'
 
+/--
+@isnad1 id=eligible.5h5v.s6.6bff2183197a from=translated src=- shape=21a38054 vocab=c66a5d9a
+-/
 lemma eligible_of_dominant_left {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -412,6 +464,9 @@ lemma eligible_of_dominant_left {A B : Finset V} {x : V}
   obtain ⟨p, hp, hx⟩ := hend
   exact ⟨pc, hmin, p, hp, hx⟩
 
+/--
+@isnad1 id=iff.4h5v.s6.178dc19ca482 from=translated src=- shape=ef43aa86 vocab=c66a5d9a
+-/
 lemma eligible_complete_join_dominant_iff {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -421,7 +476,9 @@ lemma eligible_complete_join_dominant_iff {A B : Finset V} {x : V}
     eligible_of_dominant_left hAne hBne hAB hdom⟩
 
 /-- Saturated complete join: eligible vertices of the union are exactly the
-eligible vertices of the dominant child.-/
+eligible vertices of the dominant child.
+@isnad1 id=eq.4h4v.s6.035157e21eb1 from=translated src=- shape=8c12be52 vocab=cd1210a9
+-/
 lemma eligibleSet_complete_join_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -439,7 +496,9 @@ lemma eligibleSet_complete_join_dominant {A B : Finset V}
     exact (mem_eligibleSet_iff (G := G)).2 ⟨hEU.mem, hEU⟩
 
 /-- Saturated complete join: ineligible vertices are the whole non-dominant
-side together with the ineligible vertices of the dominant child.-/
+side together with the ineligible vertices of the dominant child.
+@isnad1 id=eq.4h4v.s6.80f9dc4f8015 from=translated src=- shape=2b4b033e vocab=6b843612
+-/
 lemma ineligibleSet_complete_join_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -467,6 +526,9 @@ lemma ineligibleSet_complete_join_dominant {A B : Finset V}
       intro hEU
       exact hxA.2 (eligible_left_of_dominant hAne hBne hAB hdom hEU)
 
+/--
+@isnad1 id=eq.4h4v.s6.3aeba85450f2 from=translated src=- shape=578e4d79 vocab=2614b8f7
+-/
 lemma sdiff_ineligibleSet_complete_join_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))

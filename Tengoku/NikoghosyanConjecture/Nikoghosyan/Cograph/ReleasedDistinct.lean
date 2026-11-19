@@ -34,6 +34,9 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=le.1h5v.s5.704868a574f0 from=translated src=- shape=80430d34 vocab=35d67b1a
+-/
 lemma two_le_pathCoverNumber_of_DistinctPathCompatible {U : Finset V} {x y : V}
     (h : DistinctPathCompatible (G := G) U x y) :
     2 ≤ pathCoverNumber G U := by
@@ -41,17 +44,26 @@ lemma two_le_pathCoverNumber_of_DistinctPathCompatible {U : Finset V} {x y : V}
   have : pathCoverNumber G U ≤ 1 := by omega
   exact not_DistinctPathCompatible_of_le_one this h
 
+/--
+@isnad1 id=iscomple.3h6v.s6.8503c6408f17 from=translated src=- shape=4c29cadb vocab=4be43745
+-/
 lemma isCompleteBetween_mono {A A' B B' : Finset V}
     (h : G.IsCompleteBetween (A : Set V) (B : Set V))
     (hA : A' ⊆ A) (hB : B' ⊆ B) :
     G.IsCompleteBetween (A' : Set V) (B' : Set V) :=
   fun {_} ha {_} hb => h (hA ha) (hB hb)
 
+/--
+@isnad1 id=iscograp.2h4v.s5.bcb78c09a613 from=translated src=- shape=a77a430f vocab=b58b5bf8
+-/
 lemma isCograph_canonical_subset {U W : Finset V}
     (hW : Nikoghosyan.IsCograph G W) (hUW : U ⊆ W) :
     Nikoghosyan.IsCograph G U :=
   isCograph_iff.1 ((isCograph_iff.2 hW).subset hUW)
 
+/--
+@isnad1 id=le.1h4v.s5.7f3ac8cf448f from=translated src=- shape=2d199b71 vocab=89c94c88
+-/
 lemma pathCoverNumber_union_le_of_disjoint {A B : Finset V}
     (hdisj : Disjoint A B) :
     pathCoverNumber G (A ∪ B) ≤
@@ -62,6 +74,9 @@ lemma pathCoverNumber_union_le_of_disjoint {A B : Finset V}
   have hcard := PathCover.unionDisjoint_card hdisj pcA pcB
   omega
 
+/--
+@isnad1 id=or.2h5v.s6.a64a7549933e from=translated src=- shape=158460e1 vocab=ae1468bd
+-/
 lemma GraphCycle.support_subset_of_no_cross {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     (c : GraphCycle G) (hsupp : c.support ⊆ A ∪ B) :
@@ -85,6 +100,9 @@ lemma GraphCycle.support_subset_of_no_cross {A B : Finset V}
       (A := (A : Set V)) (B := (B : Set V))
       (fun a ha b hb => hnocross a ha b hb) c.walk hB hwalk x hxW
 
+/--
+@isnad1 id=eq.0h4v.s5.62d74fd12425 from=translated src=- shape=63fcd27d vocab=c56ac4ab
+-/
 lemma supportUnion_eq_carrier {U : Finset V} (pc : PathCover G U) :
     supportUnion pc.paths = U := by
   ext x
@@ -96,6 +114,9 @@ lemma supportUnion_eq_carrier {U : Finset V} (pc : PathCover G U) :
     obtain ⟨p, hp, hxp⟩ := (pc.mem_iff x).1 hx
     exact (mem_supportUnion_iff (l := pc.paths) (x := x)).2 ⟨p, hp, hxp⟩
 
+/--
+@isnad1 id=eq.1h6v.s6.0ef4da9000dd from=translated src=- shape=bddc5856 vocab=c2b00a73
+-/
 lemma filter_unionDisjoint_left {A B : Finset V}
     (hdisj : Disjoint A B)
     (pcA : PathCover G A) (pcB : PathCover G B) :
@@ -111,6 +132,9 @@ lemma filter_unionDisjoint_left {A B : Finset V}
     exact (Finset.disjoint_left.1 hdisj (of_decide_eq_true hdec) hpB).elim
   simp [PathCover.unionDisjoint, List.filter_append, hA, hB]
 
+/--
+@isnad1 id=eq.3h6v.s6.405713662c3b from=translated src=- shape=9740772b vocab=56923291
+-/
 lemma eligibleSet_unionDisjoint_left {A B : Finset V}
     (hdisj : Disjoint A B)
     (hAcog : Nikoghosyan.IsCograph G (A ∪ B))
@@ -128,7 +152,9 @@ lemma eligibleSet_unionDisjoint_left {A B : Finset V}
   simpa [hP] using hrest.2.1
 
 /-- If a Hamiltonian attachment meets the nondominant child of a saturated
-complete join, the released ineligible vertex of `L` cannot lie in `E(J)`.-/
+complete join, the released ineligible vertex of `L` cannot lie in `E(J)`.
+@isnad1 id=false.14h8v.s7.bc4179a22790 from=translated src=- shape=511a6106 vocab=f2f0cfa5
+-/
 lemma false_of_cycle_meets_nondominant {L D X Y : Finset V} {h : V}
     (c : GraphCycle G)
     (hLD : Disjoint L D) (hc : c.support = D)
@@ -315,6 +341,9 @@ lemma false_of_cycle_meets_nondominant {L D X Y : Finset V} {h : V}
     exact (mem_ineligibleSet_iff (G := G)).1 hhF |>.2
       ((mem_eligibleSet_iff (G := G)).1 this).2
 
+/--
+@isnad1 id=and.4h5v.s6.1743fb15bee1 from=translated src=- shape=9070abcb vocab=e2a16be0
+-/
 lemma union_inter_eq_of_cycle_subset_left {L D X Y : Finset V}
     (hcover : X ∪ Y = L ∪ D) (_hLD : Disjoint L D)
     (hXY : Disjoint X Y) (hDX : D ⊆ X) :
@@ -349,7 +378,9 @@ lemma union_inter_eq_of_cycle_subset_left {L D X Y : Finset V}
       exact mem_union.2 (Or.inl (mem_inter.2 ⟨hzL, hzX⟩))
 
 /-- After the cycle is forced into the dominant child, the restricted
-instance on that child inherits every hypothesis of distinct-release.-/
+instance on that child inherits every hypothesis of distinct-release.
+@isnad1 id=and.15h10v.s8.8cde11876f46 from=translated src=- shape=418a4aa5 vocab=8f1151b4
+-/
 lemma restrict_hyps_of_dominant_cycle_subset {L D X Y : Finset V} {h u v : V}
     (c : GraphCycle G)
     (hLD : Disjoint L D) (hc : c.support = D)
@@ -468,6 +499,9 @@ lemma restrict_hyps_of_dominant_cycle_subset {L D X Y : Finset V} {h u v : V}
   exact ⟨hdisjLXD, hXeq, hXcan, hLXcan, hpLX, hhFLX, hhEX, hDuvLX, hqX, hYsub,
     hpLXgt⟩
 
+/--
+@isnad1 id=iff.0h6v.s5.18a07c117b35 from=translated src=- shape=6f05f8fc vocab=8fd983da
+-/
 lemma DistinctPathCompatible_union_comm {A B : Finset V} {x y : V} :
     DistinctPathCompatible (G := G) (A ∪ B) x y ↔
       DistinctPathCompatible (G := G) (B ∪ A) x y := by
@@ -479,14 +513,23 @@ lemma DistinctPathCompatible_union_comm {A B : Finset V} {x y : V} :
     have : B ∪ A = A ∪ B := union_comm _ _
     simpa [this] using h
 
+/--
+@isnad1 id=eq.0h4v.s5.a28058048da1 from=translated src=- shape=d872c34d vocab=8b4080b6
+-/
 lemma eligibleSet_union_comm (A B : Finset V) :
     eligibleSet G (A ∪ B) = eligibleSet G (B ∪ A) := by
   simp [union_comm]
 
+/--
+@isnad1 id=eq.0h4v.s5.dc2672ccb240 from=translated src=- shape=39f2997e vocab=def6e6f2
+-/
 lemma pathCoverNumber_union_comm (A B : Finset V) :
     pathCoverNumber G (A ∪ B) = pathCoverNumber G (B ∪ A) := by
   simp [union_comm]
 
+/--
+@isnad1 id=or.16h11v.s8.4ad9efa5b35e from=translated src=- shape=1217035b vocab=03dbb610
+-/
 lemma distinct_release_disconnected_side
     (n : ℕ)
     (ih : ∀ m < n, ∀ (L D : Finset V) (h u v : V) (c : GraphCycle G),
@@ -653,7 +696,9 @@ lemma distinct_release_disconnected_side
           have := DistinctPathCompatible_union_left hdisjAB hnocross hhvA
           simpa [hcover] using this)
 
-/-- Strong induction on `|L ∪ D|`.-/
+/-- Strong induction on `|L ∪ D|`.
+@isnad1 id=or.9h9v.s7.0656505aace6 from=translated src=- shape=981e4c8a vocab=9e568f86
+-/
 lemma distinct_release_of_card (n : ℕ) :
     ∀ (L D : Finset V) (h u v : V) (c : GraphCycle G),
       (L ∪ D).card = n →
@@ -794,6 +839,9 @@ lemma distinct_release_of_card (n : ℕ) :
           (fun b hb a ha hab => hnocross a ha b hb hab.symm)
           (by simpa [hcard] using hBcard) hDB
 
+/--
+@isnad1 id=or.8h8v.s7.bcc8e08aa1bd from=translated src=- shape=8b11f1d1 vocab=f489a157
+-/
 theorem distinct_release {L D : Finset V} {h u v : V}
     (c : GraphCycle G)
     (hLD : Disjoint L D)

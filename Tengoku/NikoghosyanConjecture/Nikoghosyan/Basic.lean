@@ -64,9 +64,15 @@ noncomputable def componentFinset (U : Finset V)
   U.filter fun x =>
     ∃ hx : x ∈ U, (G.induce (U : Set V)).connectedComponentMk ⟨x, hx⟩ = C
 
+/--
+@isnad1 id=eq.0h2v.s4.4ec222aab6f2 from=translated src=- shape=0b62b1dd vocab=cf970d8b
+-/
 lemma componentCount_empty : componentCount G ∅ = 0 := by
   simp [componentCount]
 
+/--
+@isnad1 id=eq.0h3v.s4.ad9d448f3703 from=translated src=- shape=9ba7a9f2 vocab=dab355ed
+-/
 lemma componentCount_singleton (v : V) : componentCount G {v} = 1 := by
   let s : Set V := ({v} : Finset V)
   haveI : Unique s :=
@@ -78,6 +84,9 @@ lemma componentCount_singleton (v : V) : componentCount G {v} = 1 := by
   haveI : Unique (G.induce s).ConnectedComponent := inferInstance
   simp [componentCount, s]
 
+/--
+@isnad1 id=eq.0h2v.s4.f148b3e16878 from=translated src=- shape=c7adc033 vocab=79d7c040
+-/
 lemma componentCount_univ :
     componentCount G univ = Nat.card G.ConnectedComponent := by
   rw [componentCount, Finset.coe_univ]
@@ -88,6 +97,9 @@ def induceIncl {A B : Finset V} (hAB : A ⊆ B) :
     G.induce (A : Set V) →g G.induce (B : Set V) :=
   (G.induceHomOfLE (fun _ hx => hAB hx)).toHom
 
+/--
+@isnad1 id=le.0h4v.s5.abd92a088ecd from=translated src=- shape=cab5c3f5 vocab=18d08dbb
+-/
 lemma componentCount_union_le (A B : Finset V) :
     componentCount G (A ∪ B) ≤ componentCount G A + componentCount G B := by
   let f : (G.induce (A : Set V)).ConnectedComponent ⊕
@@ -113,6 +125,9 @@ lemma componentCount_union_le (A B : Finset V) :
   simpa [componentCount, Nat.card_sum, Nat.card_eq_fintype_card] using
     Nat.card_le_card_of_surjective f hf
 
+/--
+@isnad1 id=le.0h4v.s5.bb11664bb951 from=translated src=- shape=dbd15af6 vocab=da743595
+-/
 lemma componentCount_insert_le (U : Finset V) (u : V) :
     componentCount G (insert u U) ≤ componentCount G U + 1 := by
   rw [insert_eq]
@@ -120,6 +135,9 @@ lemma componentCount_insert_le (U : Finset V) (u : V) :
   have hs := componentCount_singleton G u
   omega
 
+/--
+@isnad1 id=le.2h5v.s5.faf36aae965b from=translated src=- shape=6f78d60e vocab=a25998e0
+-/
 lemma componentCount_insert_of_adj {U : Finset V} {u w : V}
     (hw : w ∈ U) (hadj : G.Adj u w) :
     componentCount G (insert u U) ≤ componentCount G U := by
@@ -150,15 +168,24 @@ lemma componentCount_insert_of_adj {U : Finset V} {u w : V}
       simpa [this] using Reachable.rfl
   exact Nat.card_le_card_of_surjective f hf
 
+/--
+@isnad1 id=iscograp.2h4v.s5.bcb78c09a613 from=translated src=- shape=a77a430f vocab=b58b5bf8
+-/
 lemma IsCograph.subset {U W : Finset V} (hW : IsCograph G W) (hUW : U ⊆ W) :
     IsCograph G U := by
   intro a b c d ha hb hc hd
   exact hW (hUW ha) (hUW hb) (hUW hc) (hUW hd)
 
+/--
+@isnad1 id=iscograp.0h2v.s4.b8d75d53181b from=translated src=- shape=31ef610d vocab=9247ec3e
+-/
 lemma IsCograph.empty : IsCograph G ∅ := by
   intro a _ _ _ ha
   exact (notMem_empty a ha).elim
 
+/--
+@isnad1 id=iscograp.1h3v.s4.f94b6b269a31 from=translated src=- shape=29d3b2a0 vocab=5797cb93
+-/
 lemma NoInducedP4UnionP1.isCograph_antineighbors
     (h : NoInducedP4UnionP1 G) (v : V) :
     IsCograph G (antineighbors G v) := by
@@ -172,6 +199,9 @@ lemma NoInducedP4UnionP1.isCograph_antineighbors
     simp [ha'.2.2, hb'.2.2, hc'.2.2, hd'.2.2]
   exact hx <| h hp ha'.2.1.symm hb'.2.1.symm hc'.2.1.symm hd'.2.1.symm
 
+/--
+@isnad1 id=iscograp.2h4v.s6.b306a0894b0d from=translated src=- shape=abc09764 vocab=00dd4fd0
+-/
 lemma NoInducedP4UnionP1.isCograph_componentFinset
     (h : NoInducedP4UnionP1 G) {U : Finset V}
     (hdc : ¬ (G.induce (U : Set V)).Connected)
@@ -228,6 +258,9 @@ lemma NoInducedP4UnionP1.isCograph_componentFinset
     simp [nAdj haC, nAdj hbC, nAdj hcC, nAdj hdC]
   exact this <| h hp (hxne haC) (hxne hbC) (hxne hcC) (hxne hdC)
 
+/--
+@isnad1 id=connecte.1h2v.s4.655588bd0cad from=translated src=- shape=77d6c377 vocab=44452167
+-/
 lemma OneTough.connected [Nonempty V] (h : OneTough G) : G.Connected := by
   have hle : componentCount G univ ≤ 1 := by
     by_contra hlt
@@ -250,6 +283,9 @@ lemma OneTough.connected [Nonempty V] (h : OneTough G) : G.Connected := by
   exact ConnectedComponent.exact
     (Subsingleton.elim (G.connectedComponentMk u) (G.connectedComponentMk v))
 
+/--
+@isnad1 id=ne.2h3v.s5.9c35d1ecee27 from=translated src=- shape=e25b61c4 vocab=2ebf6b7f
+-/
 lemma OneTough.not_ncard_neighborSet_eq_one
     (h : OneTough G) (hord : 3 ≤ Fintype.card V) (v : V) :
     (G.neighborSet v).ncard ≠ 1 := by
@@ -311,6 +347,9 @@ lemma OneTough.not_ncard_neighborSet_eq_one
   have : componentCount G U ≤ 1 := by simpa [S] using hbound
   omega
 
+/--
+@isnad1 id=le.2h3v.s5.a18da0d0811e from=translated src=- shape=8ce159bf vocab=2ebf6b7f
+-/
 lemma OneTough.two_le_ncard_neighborSet
     (h : OneTough G) (hord : 3 ≤ Fintype.card V) (v : V) :
     2 ≤ (G.neighborSet v).ncard := by

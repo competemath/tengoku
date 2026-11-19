@@ -20,6 +20,9 @@ variable {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=iff.0h4v.s5.b31729799443 from=translated src=- shape=336c29e8 vocab=88d14ddd
+-/
 lemma mem_walk_support {p : GraphPath G} {x : V} :
     x ∈ p.support ↔ x ∈ p.walk.support := by
   simp [support]
@@ -36,10 +39,16 @@ def dropUntil (p : GraphPath G) {x : V} (hx : x ∈ p.support) : GraphPath G whe
   walk := p.walk.dropUntil x (mem_walk_support.1 hx)
   isPath := p.isPath.dropUntil _
 
+/--
+@isnad1 id=iff.1h4v.s6.8803a04a1c3f from=translated src=- shape=af9aa1b7 vocab=5363075e
+-/
 lemma takeUntil_nil_iff (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     (p.takeUntil hx).walk.Nil ↔ x = p.start := by
   rw [takeUntil, Walk.nil_takeUntil, eq_comm]
 
+/--
+@isnad1 id=iff.1h4v.s6.b79f517a456f from=translated src=- shape=e832c495 vocab=55c00700
+-/
 lemma dropUntil_nil_iff :
     ∀ (p : GraphPath G) {x : V} (hx : x ∈ p.support),
       (p.dropUntil hx).walk.Nil ↔ x = p.finish := by
@@ -51,6 +60,9 @@ lemma dropUntil_nil_iff :
     subst h
     exact (Walk.isPath_iff_nil).1 (p.dropUntil hx).isPath
 
+/--
+@isnad1 id=eq.1h4v.s6.01ea4cab8f08 from=translated src=- shape=f98f8aec vocab=524d607e
+-/
 lemma support_takeUntil_union_dropUntil (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     (p.takeUntil hx).support ∪ (p.dropUntil hx).support = p.support := by
   have hx' := mem_walk_support.1 hx
@@ -61,10 +73,16 @@ lemma support_takeUntil_union_dropUntil (p : GraphPath G) {x : V} (hx : x ∈ p.
   have hspec := Walk.take_spec p.walk hx'
   simpa [hspec] using happ.symm
 
+/--
+@isnad1 id=iff.0h3v.s5.2e490675bd76 from=translated src=- shape=320539ef vocab=eecade1d
+-/
 lemma nil_iff_start_eq_finish (p : GraphPath G) :
     p.walk.Nil ↔ p.start = p.finish :=
   p.isPath.nil_iff_eq
 
+/--
+@isnad1 id=eq.1h3v.s5.87a9d255867a from=translated src=- shape=b2ea41a4 vocab=600cf1d0
+-/
 lemma support_eq_singleton_of_nil (p : GraphPath G) (h : p.walk.Nil) :
     p.support = {p.start} := by
   have hlen : p.walk.length = 0 := (Walk.length_eq_zero_iff).2 h
@@ -91,6 +109,9 @@ def trimFinish (p : GraphPath G) (h : ¬ p.walk.Nil) : GraphPath G where
   walk := p.walk.dropLast
   isPath := p.isPath.dropLast
 
+/--
+@isnad1 id=eq.1h3v.s5.dc5af9480ba1 from=translated src=- shape=150858cb vocab=1db87d1b
+-/
 lemma support_trimStart (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimStart h).support = p.support.erase p.start := by
   have htail : p.walk.tail.support = p.walk.support.tail :=
@@ -110,6 +131,9 @@ lemma support_trimStart (p : GraphPath G) (h : ¬ p.walk.Nil) :
     have : y ∈ p.start :: p.walk.support.tail := by simpa [hcons] using hy
     exact (List.mem_cons.1 this).resolve_left hyne
 
+/--
+@isnad1 id=eq.1h3v.s5.b61dbdcd928f from=translated src=- shape=7b87e244 vocab=ee514eba
+-/
 lemma support_trimFinish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimFinish h).support = p.support.erase p.finish := by
   have hdl : p.walk.dropLast.support = p.walk.support.dropLast :=
@@ -140,10 +164,16 @@ lemma support_trimFinish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     have : y ∈ p.walk.support.dropLast ++ [p.finish] := by simpa [hcat] using hy
     exact (List.mem_append.1 this).resolve_right (by simp [hyne])
 
+/--
+@isnad1 id=eq.1h3v.s5.07db0acec528 from=translated src=- shape=4e7d769a vocab=dcb74228
+-/
 lemma trimStart_finish (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimStart h).finish = p.finish :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.5e65b2f4ee5b from=translated src=- shape=2cd8c428 vocab=4989b904
+-/
 lemma trimFinish_start (p : GraphPath G) (h : ¬ p.walk.Nil) :
     (p.trimFinish h).start = p.start :=
   rfl
@@ -165,16 +195,25 @@ noncomputable def deleteVertex (p : GraphPath G) (x : V) : List (GraphPath G) :=
   else
     [p]
 
+/--
+@isnad1 id=le.0h4v.s5.0572d35bbdc5 from=translated src=- shape=2ed6b598 vocab=9387125a
+-/
 lemma length_deleteVertex_le (p : GraphPath G) (x : V) :
     (p.deleteVertex x).length ≤ 2 := by
   unfold deleteVertex
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.1h4v.s5.39f93a9486f8 from=translated src=- shape=0e3ce69a vocab=670a60b7
+-/
 lemma length_deleteVertex_eq_one_of_not_mem (p : GraphPath G) {x : V}
     (hx : x ∉ p.support) :
     (p.deleteVertex x).length = 1 := by
   simp [deleteVertex, hx]
 
+/--
+@isnad1 id=le.1h4v.s5.c905c748cb13 from=translated src=- shape=fd3af583 vocab=dfdb9f55
+-/
 lemma length_deleteVertex_le_one_of_endpoint (p : GraphPath G) {x : V}
     (h : x = p.start ∨ x = p.finish) :
     (p.deleteVertex x).length ≤ 1 := by
@@ -184,6 +223,9 @@ lemma length_deleteVertex_le_one_of_endpoint (p : GraphPath G) {x : V}
   · simp [deleteVertex, h, finish_mem_support]
     split_ifs <;> simp
 
+/--
+@isnad1 id=not.2h4v.s5.38dbee1fc7f6 from=translated src=- shape=ce77fd6a vocab=2afaed1c
+-/
 lemma not_nil_of_internal {p : GraphPath G} {x : V}
     (hx : x ∈ p.support) (hs : x ≠ p.start) : ¬ p.walk.Nil := by
   intro h
@@ -191,12 +233,18 @@ lemma not_nil_of_internal {p : GraphPath G} {x : V}
     simpa [support_eq_singleton_of_nil p h] using hx
   exact hs this
 
+/--
+@isnad1 id=eq.3h4v.s6.34b964baa0c9 from=translated src=- shape=8c41463b vocab=dd8aea55
+-/
 lemma length_deleteVertex_eq_two_of_internal (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) (hs : x ≠ p.start) (hf : x ≠ p.finish) :
     (p.deleteVertex x).length = 2 := by
   have hnil : ¬ p.walk.Nil := not_nil_of_internal hx hs
   simp [deleteVertex, hx, hnil, hs, hf]
 
+/--
+@isnad1 id=le.1h4v.s6.3e516aaf8912 from=translated src=- shape=74eded37 vocab=34b59e99
+-/
 lemma inter_support_takeUntil_dropUntil_subset (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) :
     (p.takeUntil hx).support ∩ (p.dropUntil hx).support ⊆ {x} := by
@@ -242,6 +290,9 @@ lemma inter_support_takeUntil_dropUntil_subset (p : GraphPath G) {x : V}
         List.count_pos_iff.mpr hyTail
       omega
 
+/--
+@isnad1 id=disjoint.3h4v.s7.edf4ce8a7094 from=translated src=- shape=c7760a98 vocab=e4dc396c
+-/
 lemma disjoint_internal_pieces (p : GraphPath G) {x : V} (hx : x ∈ p.support)
     (hs : x ≠ p.start) (hf : x ≠ p.finish) :
     Disjoint
@@ -265,6 +316,9 @@ lemma disjoint_internal_pieces (p : GraphPath G) {x : V} (hx : x ∈ p.support)
     inter_support_takeUntil_dropUntil_subset p hx hy
   exact hyx (mem_singleton.1 this)
 
+/--
+@isnad1 id=eq.3h4v.s7.c3aec7873421 from=translated src=- shape=7d74040e vocab=0e0ded44
+-/
 lemma union_internal_pieces (p : GraphPath G) {x : V} (hx : x ∈ p.support)
     (hs : x ≠ p.start) (hf : x ≠ p.finish) :
     ((p.takeUntil hx).trimFinish
@@ -281,6 +335,9 @@ lemma union_internal_pieces (p : GraphPath G) {x : V} (hx : x ∈ p.support)
     p.support.erase x
   rw [← erase_union_distrib, support_takeUntil_union_dropUntil]
 
+/--
+@isnad1 id=iff.0h5v.s6.d817f0d42fb8 from=translated src=- shape=9df2d8bb vocab=eeda39dd
+-/
 lemma mem_deleteVertex_support_iff (p : GraphPath G) (x y : V) :
     (∃ q ∈ p.deleteVertex x, y ∈ q.support) ↔ y ∈ p.support.erase x := by
   constructor
@@ -341,12 +398,18 @@ lemma mem_deleteVertex_support_iff (p : GraphPath G) (x y : V) :
     · refine ⟨p, by simp, ?_⟩
       exact (mem_erase.1 hy).2
 
+/--
+@isnad1 id=le.1h5v.s5.7e183d873e80 from=translated src=- shape=2f7a19f8 vocab=a1bc572e
+-/
 lemma support_subset_of_mem_deleteVertex {p : GraphPath G} {x : V} {q : GraphPath G}
     (hq : q ∈ p.deleteVertex x) : q.support ⊆ p.support := by
   intro y hy
   have : y ∈ p.support.erase x := (mem_deleteVertex_support_iff p x y).1 ⟨q, hq, hy⟩
   exact mem_of_mem_erase this
 
+/--
+@isnad1 id=pairwise.0h4v.s5.8f5aa98b9b52 from=translated src=- shape=088a3b12 vocab=53d21bf6
+-/
 lemma pairwise_deleteVertex (p : GraphPath G) (x : V) :
     (p.deleteVertex x).Pairwise fun q r => Disjoint q.support r.support := by
   unfold deleteVertex
@@ -357,6 +420,9 @@ lemma pairwise_deleteVertex (p : GraphPath G) (x : V) :
   · simp [List.pairwise_cons, disjoint_internal_pieces p hx hs hf]
   · simp
 
+/--
+@isnad1 id=ex.2h5v.s6.c8d3f32b2bd1 from=translated src=- shape=3986c7d1 vocab=b57c9250
+-/
 lemma exists_mem_deleteVertex_endpoint (p : GraphPath G) {x y : V}
     (hy : y = p.start ∨ y = p.finish) (hne : y ≠ x) :
     ∃ q ∈ p.deleteVertex x, y = q.start ∨ y = q.finish := by
@@ -407,6 +473,9 @@ def distinctPathGraph (U : Finset V) : SimpleGraph V where
       ⟨pc, hpc, q, hq, p, hp, hne.symm, hy, hx⟩⟩⟩
   loopless := ⟨fun a h => h.1 rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.773ee8c5649c from=translated src=- shape=c6ee9209 vocab=539df52c
+-/
 lemma distinctPathGraph_eq_bot_of_pathCoverNumber_le_one {U : Finset V}
     (h : pathCoverNumber G U ≤ 1) : distinctPathGraph (G := G) U = ⊥ := by
   ext x y
@@ -443,6 +512,9 @@ def spanningPathGraph (U : Finset V) : SimpleGraph V where
       ⟨p, hp, hends.symm⟩⟩⟩
   loopless := ⟨fun a h => h.1 rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.e5eabccadce3 from=translated src=- shape=e6eaec80 vocab=a2746035
+-/
 lemma spanningPathGraph_eq_bot_of_card_le_one {U : Finset V} (hU : U.card ≤ 1) :
     spanningPathGraph (G := G) U = ⊥ := by
   ext x y
@@ -468,6 +540,9 @@ lemma spanningPathGraph_eq_bot_of_card_le_one {U : Finset V} (hU : U.card ≤ 1)
   · intro hAdj
     cases hAdj
 
+/--
+@isnad1 id=le.0h4v.s5.9038cccbe2fd from=translated src=- shape=3c5b9abf vocab=acc77944
+-/
 lemma componentCount_le_pathCover_card {U : Finset V} (pc : PathCover G U) :
     componentCount G U ≤ pc.card := by
   let f : Fin pc.paths.length → (G.induce (U : Set V)).ConnectedComponent := fun i =>
@@ -500,6 +575,9 @@ lemma componentCount_le_pathCover_card {U : Finset V} (pc : PathCover G U) :
   simpa [componentCount, PathCover.card, Nat.card_eq_fintype_card, Fintype.card_fin] using
     Nat.card_le_card_of_surjective f hf
 
+/--
+@isnad1 id=le.0h3v.s4.28741f02b905 from=translated src=- shape=a3d0c0d9 vocab=a3baa467
+-/
 lemma componentCount_le_pathCoverNumber (U : Finset V) :
     componentCount G U ≤ pathCoverNumber G U := by
   obtain ⟨pc, hpc⟩ := exists_min_pathCover (G := G) U
@@ -507,6 +585,9 @@ lemma componentCount_le_pathCoverNumber (U : Finset V) :
 
 namespace PathCover
 
+/--
+@isnad1 id=disjoint.4h5v.s6.086de7d50fbc from=translated src=- shape=9be3adb8 vocab=730e746b
+-/
 lemma pairwise_disjoint_of_mem {l : List (GraphPath G)}
     (h : l.Pairwise fun p q => Disjoint p.support q.support)
     {p q : GraphPath G} (hp : p ∈ l) (hq : q ∈ l) (hne : p ≠ q) :
@@ -524,6 +605,9 @@ lemma pairwise_disjoint_of_mem {l : List (GraphPath G)}
       · exact (h'.1 p hp).symm
       · exact ih h'.2 hp hq
 
+/--
+@isnad1 id=eq.1h4v.s6.1c7ab29cae13 from=translated src=- shape=62ae8ea9 vocab=b2878177
+-/
 lemma length_flatMap_deleteVertex_eq_of_forall_not_mem
     (l : List (GraphPath G)) (x : V)
     (h : ∀ p ∈ l, x ∉ p.support) :
@@ -537,6 +621,9 @@ lemma length_flatMap_deleteVertex_eq_of_forall_not_mem
     simp [List.flatMap_cons, List.length_append, Nat.add_comm,
       GraphPath.length_deleteVertex_eq_one_of_not_mem p hp, ih hps]
 
+/--
+@isnad1 id=le.1h4v.s6.53731d83042e from=translated src=- shape=2dfdbfbf vocab=731b23df
+-/
 lemma length_flatMap_deleteVertex_le {l : List (GraphPath G)} (x : V)
     (h : l.Pairwise fun p q => Disjoint p.support q.support) :
     (l.flatMap fun p => p.deleteVertex x).length ≤ l.length + 1 := by
@@ -560,6 +647,9 @@ lemma length_flatMap_deleteVertex_le {l : List (GraphPath G)} (x : V)
         ih h'.2
       omega
 
+/--
+@isnad1 id=le.2h4v.s6.0e45538dfc68 from=translated src=- shape=bb656495 vocab=af380a09
+-/
 lemma length_flatMap_deleteVertex_le_of_endpoint {l : List (GraphPath G)} {x : V}
     (h : l.Pairwise fun p q => Disjoint p.support q.support)
     (hep : ∃ p ∈ l, x = p.start ∨ x = p.finish) :
@@ -601,6 +691,9 @@ lemma length_flatMap_deleteVertex_le_of_endpoint {l : List (GraphPath G)} {x : V
         ih h'.2 ⟨q, hq, hxend⟩
       omega
 
+/--
+@isnad1 id=pairwise.1h4v.s6.cca7eb514d59 from=translated src=- shape=1cf8f516 vocab=0f5caa4d
+-/
 lemma pairwise_flatMap_deleteVertex {l : List (GraphPath G)} (x : V)
     (h : l.Pairwise fun p q => Disjoint p.support q.support) :
     (l.flatMap fun p => p.deleteVertex x).Pairwise
@@ -640,6 +733,9 @@ noncomputable def deleteVertex {U : Finset V} (pc : PathCover G U) (x : V) :
         (GraphPath.mem_deleteVertex_support_iff p x y).1 ⟨q, hqp, hyq⟩
       refine mem_erase.2 ⟨(mem_erase.1 hy').1, (pc.mem_iff y).2 ⟨p, hp, (mem_erase.1 hy').2⟩⟩
 
+/--
+@isnad1 id=le.0h5v.s5.c67c5224fdf3 from=translated src=- shape=48402708 vocab=cdb35a04
+-/
 lemma card_deleteVertex_le {U : Finset V} (pc : PathCover G U) (x : V) :
     (pc.deleteVertex x).card ≤ pc.card + 1 := by
   simpa [deleteVertex, card] using length_flatMap_deleteVertex_le x pc.disjoint
@@ -648,12 +744,18 @@ lemma card_deleteVertex_le {U : Finset V} (pc : PathCover G U) (x : V) :
 def IsEndpoint {U : Finset V} (pc : PathCover G U) (x : V) : Prop :=
   ∃ p ∈ pc.paths, x = p.start ∨ x = p.finish
 
+/--
+@isnad1 id=le.1h5v.s5.4f555c612718 from=translated src=- shape=297c2241 vocab=bf7915c1
+-/
 lemma card_deleteVertex_le_of_endpoint {U : Finset V} (pc : PathCover G U)
     {x : V} (h : pc.IsEndpoint x) :
     (pc.deleteVertex x).card ≤ pc.card := by
   simpa [deleteVertex, card] using
     length_flatMap_deleteVertex_le_of_endpoint pc.disjoint h
 
+/--
+@isnad1 id=eq.5h5v.s7.c587416baa85 from=translated src=- shape=ece0bf65 vocab=a8b4c5e0
+-/
 lemma length_flatMap_deleteVertex_eq_add_one_of_internal
     {l : List (GraphPath G)} {x : V}
     (h : l.Pairwise fun p q => Disjoint p.support q.support)
@@ -688,7 +790,9 @@ lemma length_flatMap_deleteVertex_eq_add_one_of_internal
 
 /-- If `x` lies on a path of this cover but is not an endpoint of that path,
 deletion splits that unique path into two pieces and increases the cover
-cardinality by exactly one.-/
+cardinality by exactly one.
+@isnad1 id=eq.2h5v.s6.0426f320d705 from=translated src=- shape=695fc6b8 vocab=af057a3d
+-/
 lemma card_deleteVertex_eq_add_one_of_internal {U : Finset V}
     (pc : PathCover G U) {x : V} (hx : x ∈ U)
     (h : ∀ p ∈ pc.paths, x ≠ p.start ∧ x ≠ p.finish) :
@@ -699,6 +803,9 @@ lemma card_deleteVertex_eq_add_one_of_internal {U : Finset V}
   simpa [deleteVertex, card] using
     length_flatMap_deleteVertex_eq_add_one_of_internal pc.disjoint hp hxp hs hf
 
+/--
+@isnad1 id=isendpoi.2h6v.s5.12f521dda326 from=translated src=- shape=e7b5287c vocab=02163e42
+-/
 lemma IsEndpoint_deleteVertex {U : Finset V} (pc : PathCover G U) {x y : V}
     (hy : pc.IsEndpoint y) (hne : y ≠ x) :
     (pc.deleteVertex x).IsEndpoint y := by
@@ -715,11 +822,17 @@ def ofPath (p : GraphPath G) : PathCover G p.support where
     intro x
     simp
 
+/--
+@isnad1 id=eq.0h3v.s5.fa30b0a30e09 from=translated src=- shape=41573a75 vocab=80a84e6b
+-/
 lemma ofPath_card (p : GraphPath G) : (ofPath p).card = 1 := by
   simp [ofPath, card]
 
 end PathCover
 
+/--
+@isnad1 id=le.0h4v.s5.1717139dd116 from=translated src=- shape=9445cfc3 vocab=7c5a4237
+-/
 lemma pathCoverNumber_erase_le (U : Finset V) (x : V) :
     pathCoverNumber G (U.erase x) ≤ pathCoverNumber G U + 1 := by
   obtain ⟨pc, hpc⟩ := exists_min_pathCover (G := G) U
@@ -727,6 +840,9 @@ lemma pathCoverNumber_erase_le (U : Finset V) (x : V) :
   have hcard := pc.card_deleteVertex_le x
   omega
 
+/--
+@isnad1 id=le.1h4v.s5.de39e37099f4 from=translated src=- shape=ec62d47b vocab=b76220e6
+-/
 lemma pathCoverNumber_erase_le_of_eligible {U : Finset V} {x : V}
     (h : Eligible G U x) :
     pathCoverNumber G (U.erase x) ≤ pathCoverNumber G U := by
@@ -735,6 +851,9 @@ lemma pathCoverNumber_erase_le_of_eligible {U : Finset V} {x : V}
   have hcard := pc.card_deleteVertex_le_of_endpoint ⟨p, hp, hx⟩
   omega
 
+/--
+@isnad1 id=le.1h4v.s5.f8f724a0e8b2 from=translated src=- shape=5a0d2058 vocab=a9e00b41
+-/
 lemma pathCoverNumber_sdiff_le (U X : Finset V) (hX : X ⊆ U) :
     pathCoverNumber G (U \ X) ≤ pathCoverNumber G U + X.card := by
   induction X using Finset.induction generalizing U with
@@ -753,6 +872,9 @@ lemma pathCoverNumber_sdiff_le (U X : Finset V) (hX : X ⊆ U) :
     have hcard : (insert x X).card = X.card + 1 := card_insert_of_notMem hx
     omega
 
+/--
+@isnad1 id=le.3h5v.s6.7ebe90194c76 from=translated src=- shape=30710508 vocab=03cfb7a2
+-/
 lemma pathCoverNumber_sdiff_le_of_eligible {U X : Finset V} (hX : X ⊆ U)
     {x : V} (hxX : x ∈ X) (hE : Eligible G U x) :
     pathCoverNumber G (U \ X) ≤ pathCoverNumber G U + X.card - 1 := by
@@ -769,11 +891,17 @@ lemma pathCoverNumber_sdiff_le_of_eligible {U X : Finset V} (hX : X ⊆ U)
   have hpos : 1 ≤ X.card := Nat.succ_le_of_lt (card_pos.2 ⟨x, hxX⟩)
   omega
 
+/--
+@isnad1 id=le.1h4v.s5.3542ccf74e09 from=translated src=- shape=c96399ed vocab=0bdf9e6b
+-/
 lemma componentCount_sdiff_le (U X : Finset V) (hX : X ⊆ U) :
     componentCount G (U \ X) ≤ pathCoverNumber G U + X.card :=
   (componentCount_le_pathCoverNumber (U \ X)).trans
     (pathCoverNumber_sdiff_le U X hX)
 
+/--
+@isnad1 id=le.0h4v.s5.be0f66e1a339 from=translated src=- shape=3a8c0d1d vocab=809957cb
+-/
 lemma componentCount_erase_le (U : Finset V) (x : V) :
     componentCount G (U.erase x) ≤ pathCoverNumber G U + 1 := by
   by_cases hx : x ∈ U
@@ -783,12 +911,18 @@ lemma componentCount_erase_le (U : Finset V) (x : V) :
     have h := componentCount_le_pathCoverNumber (G := G) U
     simpa [this] using h.trans (Nat.le_succ _)
 
+/--
+@isnad1 id=le.3h5v.s6.3e84604e0177 from=translated src=- shape=771bc02d vocab=11ad951e
+-/
 lemma componentCount_sdiff_le_of_eligible {U X : Finset V} (hX : X ⊆ U)
     {x : V} (hxX : x ∈ X) (hE : Eligible G U x) :
     componentCount G (U \ X) ≤ pathCoverNumber G U + X.card - 1 :=
   (componentCount_le_pathCoverNumber (U \ X)).trans
     (pathCoverNumber_sdiff_le_of_eligible hX hxX hE)
 
+/--
+@isnad1 id=le.1h4v.s5.2b031065f437 from=translated src=- shape=3671c937 vocab=5b2d0846
+-/
 lemma componentCount_erase_le_of_eligible {U : Finset V} {x : V}
     (hE : Eligible G U x) :
     componentCount G (U.erase x) ≤ pathCoverNumber G U := by
@@ -817,22 +951,34 @@ lemma eq_cut_bound_singleton_imp_ineligible {U : Finset V} {x : V}
     (by simpa [sdiff_singleton_eq_erase, card_singleton] using heq)
   simpa using this
 
+/--
+@isnad1 id=eligible.1h5v.s5.1dbdceb45a74 from=translated src=- shape=0c4d2f26 vocab=596656b3
+-/
 lemma DistinctPathCompatible.eligible_left {U : Finset V} {x y : V}
     (h : DistinctPathCompatible (G := G) U x y) : Eligible G U x := by
   obtain ⟨_, pc, hpc, p, hp, _, _, _, hx, _⟩ := h
   exact ⟨pc, hpc, p, hp, hx⟩
 
+/--
+@isnad1 id=eligible.1h5v.s5.66b4ba312673 from=translated src=- shape=d53ecf23 vocab=596656b3
+-/
 lemma DistinctPathCompatible.eligible_right {U : Finset V} {x y : V}
     (h : DistinctPathCompatible (G := G) U x y) : Eligible G U y := by
   obtain ⟨_, pc, hpc, _, _, q, hq, _, _, hy⟩ := h
   exact ⟨pc, hpc, q, hq, hy⟩
 
+/--
+@isnad1 id=and.1h5v.s5.93810a0c7ea6 from=translated src=- shape=7b2e29ae vocab=fc5a5af5
+-/
 lemma distinctPathGraph_adj_mem_eligibleSet {U : Finset V} {x y : V}
     (h : (distinctPathGraph (G := G) U).Adj x y) :
     x ∈ eligibleSet G U ∧ y ∈ eligibleSet G U :=
   ⟨(mem_eligibleSet_iff (G := G)).mpr ⟨h.eligible_left.mem, h.eligible_left⟩,
     (mem_eligibleSet_iff (G := G)).mpr ⟨h.eligible_right.mem, h.eligible_right⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.de42be2bd42f from=translated src=- shape=832078d6 vocab=d38254cf
+-/
 lemma pathCoverNumber_eq_zero_iff (U : Finset V) :
     pathCoverNumber G U = 0 ↔ U = ∅ := by
   constructor
@@ -847,6 +993,9 @@ lemma pathCoverNumber_eq_zero_iff (U : Finset V) :
     subst h
     exact pathCoverNumber_empty (G := G)
 
+/--
+@isnad1 id=le.1h3v.s4.43d9a05f13a5 from=translated src=- shape=04b9aa1d vocab=b9b9bae8
+-/
 lemma one_le_pathCoverNumber_of_nonempty {U : Finset V} (hU : U.Nonempty) :
     1 ≤ pathCoverNumber G U := by
   have : pathCoverNumber G U ≠ 0 := by
@@ -854,6 +1003,9 @@ lemma one_le_pathCoverNumber_of_nonempty {U : Finset V} (hU : U.Nonempty) :
     exact hU.ne_empty ((pathCoverNumber_eq_zero_iff (G := G) U).1 h)
   omega
 
+/--
+@isnad1 id=eligible.1h5v.s5.8f2377267905 from=translated src=- shape=0c4d2f26 vocab=3b757398
+-/
 lemma SpanningPathCompatible.eligible_left {U : Finset V} {x y : V}
     (h : SpanningPathCompatible (G := G) U x y) : Eligible G U x := by
   obtain ⟨_hne, p, hp, hends⟩ := h
@@ -873,6 +1025,9 @@ lemma SpanningPathCompatible.eligible_left {U : Finset V} {x y : V}
   refine ⟨PathCover.ofPath p, ?_, p, List.mem_singleton.mpr rfl, hxend⟩
   rw [PathCover.ofPath_card, le_antisymm hle hpos]
 
+/--
+@isnad1 id=eligible.1h5v.s5.37be68c85e05 from=translated src=- shape=d53ecf23 vocab=3b757398
+-/
 lemma SpanningPathCompatible.eligible_right {U : Finset V} {x y : V}
     (h : SpanningPathCompatible (G := G) U x y) : Eligible G U y := by
   obtain ⟨hne, p, hp, hends⟩ := h
@@ -880,6 +1035,9 @@ lemma SpanningPathCompatible.eligible_right {U : Finset V} {x y : V}
     ⟨hne.symm, p, hp, hends.symm⟩
   exact hsymm.eligible_left
 
+/--
+@isnad1 id=and.1h5v.s5.d0775d28be6a from=translated src=- shape=7b2e29ae vocab=2a258ef7
+-/
 lemma spanningPathGraph_adj_mem_eligibleSet {U : Finset V} {x y : V}
     (h : (spanningPathGraph (G := G) U).Adj x y) :
     x ∈ eligibleSet G U ∧ y ∈ eligibleSet G U :=
@@ -893,6 +1051,9 @@ noncomputable def distinctPathGraphOnEligible (U : Finset V) :
     SimpleGraph (eligibleSet G U : Set V) :=
   (distinctPathGraph (G := G) U).induce _
 
+/--
+@isnad1 id=iff.0h5v.s6.916e28a36c85 from=translated src=- shape=d02c6fa5 vocab=77bee01e
+-/
 lemma distinctPathGraphOnEligible_adj_iff {U : Finset V}
     {x y : (eligibleSet G U : Set V)} :
     (distinctPathGraphOnEligible (G := G) U).Adj x y ↔
@@ -904,12 +1065,18 @@ noncomputable def spanningPathGraphOnEligible (U : Finset V) :
     SimpleGraph (eligibleSet G U : Set V) :=
   (spanningPathGraph (G := G) U).induce _
 
+/--
+@isnad1 id=iff.0h5v.s6.d42c42cb9264 from=translated src=- shape=d02c6fa5 vocab=0646cae9
+-/
 lemma spanningPathGraphOnEligible_adj_iff {U : Finset V}
     {x y : (eligibleSet G U : Set V)} :
     (spanningPathGraphOnEligible (G := G) U).Adj x y ↔
       SpanningPathCompatible (G := G) U x.1 y.1 :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.eb56b66a33d2 from=translated src=- shape=970bcda6 vocab=c42b9c3b
+-/
 lemma distinctPathGraphOnEligible_eq_bot_of_pathCoverNumber_le_one {U : Finset V}
     (h : pathCoverNumber G U ≤ 1) :
     distinctPathGraphOnEligible (G := G) U = ⊥ := by
@@ -923,6 +1090,9 @@ lemma distinctPathGraphOnEligible_eq_bot_of_pathCoverNumber_le_one {U : Finset V
   · intro hAdj
     cases hAdj
 
+/--
+@isnad1 id=eq.1h3v.s6.44fadacd60dd from=translated src=- shape=b6e04aa9 vocab=563d4675
+-/
 lemma spanningPathGraphOnEligible_eq_bot_of_card_le_one {U : Finset V}
     (hU : U.card ≤ 1) :
     spanningPathGraphOnEligible (G := G) U = ⊥ := by

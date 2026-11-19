@@ -35,9 +35,15 @@ def unionList : List (Finset V) → Finset V
   | [] => ∅
   | a :: t => a ∪ unionList t
 
+/--
+@isnad1 id=eq.0h3v.s5.195878afb98c from=translated src=- shape=07756148 vocab=799c9cac
+-/
 lemma unionList_cons (a : Finset V) (t : List (Finset V)) :
     unionList (a :: t) = a ∪ unionList t := rfl
 
+/--
+@isnad1 id=le.1h3v.s5.ac222fe0578d from=translated src=- shape=e7a39bb1 vocab=bf708b0e
+-/
 lemma subset_unionList_of_mem {xs : List (Finset V)} {A : Finset V}
     (h : A ∈ xs) : A ⊆ unionList xs := by
   induction xs with
@@ -47,6 +53,9 @@ lemma subset_unionList_of_mem {xs : List (Finset V)} {A : Finset V}
     · exact subset_union_left
     · exact (ih h).trans subset_union_right
 
+/--
+@isnad1 id=disjoint.1h3v.s5.0a47a2260726 from=translated src=- shape=c2007085 vocab=8caf7904
+-/
 lemma disjoint_unionList_of_pairwise {A : Finset V} {t : List (Finset V)}
     (h : ∀ B ∈ t, Disjoint A B) : Disjoint A (unionList t) := by
   induction t with
@@ -56,6 +65,9 @@ lemma disjoint_unionList_of_pairwise {A : Finset V} {t : List (Finset V)}
     exact ⟨h B (List.mem_cons.2 (Or.inl rfl)),
       ih fun C hC => h C (List.mem_cons.2 (Or.inr hC))⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.e46b1bea2be7 from=translated src=- shape=d49d72c1 vocab=3296af70
+-/
 lemma mem_unionList_iff {xs : List (Finset V)} {x : V} :
     x ∈ unionList xs ↔ ∃ A ∈ xs, x ∈ A := by
   induction xs with
@@ -78,11 +90,17 @@ def PairwiseDisjointBlocks (xs : List (Finset V)) : Prop :=
 def PairwiseCompleteJoin (xs : List (Finset V)) : Prop :=
   ∀ A ∈ xs, ∀ B ∈ xs, A ≠ B → G.IsCompleteBetween (A : Set V) (B : Set V)
 
+/--
+@isnad1 id=and.1h3v.s5.b16d7c6194b5 from=translated src=- shape=e0c0bae6 vocab=2e831dd1
+-/
 lemma pairwiseDisjoint_cons {A : Finset V} {t : List (Finset V)}
     (h : PairwiseDisjointBlocks (A :: t)) :
     (∀ B ∈ t, Disjoint A B) ∧ PairwiseDisjointBlocks t :=
   List.pairwise_cons.1 h
 
+/--
+@isnad1 id=iscomple.4h4v.s6.455519efc44f from=translated src=- shape=7602abd4 vocab=b2059393
+-/
 lemma completeJoin_unionList {A : Finset V} {t : List (Finset V)}
     (hAne : A.Nonempty)
     (hdisj : ∀ B ∈ t, Disjoint A B)
@@ -99,11 +117,17 @@ lemma completeJoin_unionList {A : Finset V} {t : List (Finset V)}
   exact hcomp A (List.mem_cons.2 (Or.inl rfl)) B (List.mem_cons.2 (Or.inr hB))
     hAB ha hbB
 
+/--
+@isnad1 id=eq.1h3v.s6.73ce5304dcdd from=translated src=- shape=a66ba558 vocab=2aba7ff6
+-/
 lemma card_unionList_cons {A : Finset V} {t : List (Finset V)}
     (hdisj : ∀ B ∈ t, Disjoint A B) :
     (unionList (A :: t)).card = A.card + (unionList t).card := by
   rw [unionList_cons, card_union_of_disjoint (disjoint_unionList_of_pairwise hdisj)]
 
+/--
+@isnad1 id=nonempty.2h2v.s5.4b5915547795 from=translated src=- shape=e4f1988b vocab=ffb40614
+-/
 lemma unionList_nonempty_of {t : List (Finset V)}
     (htne : t ≠ []) (hne : ∀ B ∈ t, B.Nonempty) :
     (unionList t).Nonempty := by
@@ -117,17 +141,25 @@ lemma unionList_nonempty_of {t : List (Finset V)}
 noncomputable def maxChildExcess (U : Finset V) (xs : List (Finset V)) : ℕ :=
   xs.foldr (fun X acc => max (pathCoverNumber G X - (U.card - X.card)) acc) 0
 
+/--
+@isnad1 id=eq.0h5v.s6.3e1e366ceb41 from=translated src=- shape=6bc2ce6e vocab=0ce6a679
+-/
 lemma maxChildExcess_cons (U A : Finset V) (t : List (Finset V)) :
     maxChildExcess (G := G) U (A :: t) =
       max (pathCoverNumber G A - (U.card - A.card))
         (maxChildExcess (G := G) U t) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8292346afb3d from=translated src=- shape=6d225572 vocab=2010143c
+-/
 lemma max_tsub_distrib (a b c : ℕ) : max a b - c = max (a - c) (b - c) := by
   omega
 
 /-- If every block satisfies `|U| - |X| = |W| - |X| + k`, the excess list
-scales by truncated subtraction of `k`.-/
+scales by truncated subtraction of `k`.
+@isnad1 id=eq.1h6v.s6.fe4b25bab6fc from=translated src=- shape=8acb4425 vocab=fd132ef5
+-/
 lemma maxChildExcess_of_add_card {U W : Finset V} (k : ℕ) :
     ∀ xs : List (Finset V),
       (∀ X ∈ xs, U.card - X.card = (W.card - X.card) + k) →
@@ -143,6 +175,9 @@ lemma maxChildExcess_of_add_card {U W : Finset V} (k : ℕ) :
     simp only [maxChildExcess_cons, hcell,
       maxChildExcess_of_add_card k t ht, max_tsub_distrib]
 
+/--
+@isnad1 id=eq.1h4v.s6.5b4ff4225baa from=translated src=- shape=d3327475 vocab=c3b91a85
+-/
 lemma maxChildExcess_scale_union {A : Finset V} {t : List (Finset V)}
     (hdisj : ∀ B ∈ t, Disjoint A B) :
     maxChildExcess (G := G) (unionList (A :: t)) t =
@@ -154,6 +189,9 @@ lemma maxChildExcess_scale_union {A : Finset V} {t : List (Finset V)}
   have hle : X.card ≤ (unionList t).card := card_le_card hXsub
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.6af9ed0c13c9 from=translated src=- shape=61d0f464 vocab=7697d32e
+-/
 lemma pathCoverNumber_nary_singleton {A : Finset V} (hA : A.Nonempty) :
     pathCoverNumber G A =
       max 1 (maxChildExcess (G := G) A [A]) := by
@@ -161,6 +199,9 @@ lemma pathCoverNumber_nary_singleton {A : Finset V} (hA : A.Nonempty) :
     one_le_pathCoverNumber_of_nonempty (G := G) hA
   simp [maxChildExcess, hp]
 
+/--
+@isnad1 id=eq.6h4v.s7.2bf186f8106c from=translated src=- shape=b49ff5d2 vocab=eb056f9e
+-/
 lemma pathCoverNumber_nary_cons {A : Finset V} {t : List (Finset V)}
     (hA : A.Nonempty) (htne : t ≠ [])
     (hne : ∀ B ∈ t, B.Nonempty)
@@ -197,6 +238,9 @@ lemma pathCoverNumber_nary_cons {A : Finset V} {t : List (Finset V)}
     simp only [maxChildExcess_cons, hAex, hpBsub, hscale]
   simpa [hU] using hbin.trans hmax
 
+/--
+@isnad1 id=eq.4h3v.s6.d4d1dc50c7f3 from=translated src=- shape=91690c7d vocab=86f8cab7
+-/
 lemma pathCoverNumber_nary :
     ∀ (xs : List (Finset V)),
       xs ≠ [] →
@@ -221,6 +265,9 @@ lemma pathCoverNumber_nary :
     exact pathCoverNumber_nary_cons (hne A (by simp)) hrest_ne hne_rest
       hdisj hcomp hIH
 
+/--
+@isnad1 id=le.2h4v.s6.66e017f04f19 from=translated src=- shape=d6ff1aa9 vocab=a8051778
+-/
 lemma maxChildExcess_le_of_balanced {A : Finset V} {t : List (Finset V)}
     (hdisj : ∀ B ∈ t, Disjoint A B)
     (hbal : ∀ X ∈ t,
@@ -246,6 +293,9 @@ lemma maxChildExcess_le_of_balanced {A : Finset V} {t : List (Finset V)}
       exact max_le hcell (ih fun W hW => hmem W (List.mem_cons.2 (Or.inr hW)))
   exact hgen t (fun Z hZ => hZ)
 
+/--
+@isnad1 id=and.6h4v.s7.9e88d153254c from=translated src=- shape=2d392a32 vocab=20258f8b
+-/
 lemma pathCoverNumber_grouped_balanced {A : Finset V} {t : List (Finset V)}
     (hA : A.Nonempty) (htne : t ≠ [])
     (hne : ∀ B ∈ t, B.Nonempty)
@@ -274,6 +324,9 @@ lemma pathCoverNumber_grouped_balanced {A : Finset V} {t : List (Finset V)}
     exact max_le h1 hmaxB
   exact ⟨hpA', hpB⟩
 
+/--
+@isnad1 id=ex.7h4v.s7.4a94a2c4710b from=translated src=- shape=9b22ac5f vocab=d9154ce5
+-/
 lemma exists_nary_complete_join_cycle {A : Finset V} {t : List (Finset V)}
     (hA : A.Nonempty) (htne : t ≠ [])
     (hne : ∀ B ∈ t, B.Nonempty)
@@ -295,6 +348,9 @@ lemma exists_nary_complete_join_cycle {A : Finset V} {t : List (Finset V)}
   refine ⟨c, ?_⟩
   simpa [unionList_cons] using hc
 
+/--
+@isnad1 id=ex.6h4v.s7.e2cdcea90c48 from=translated src=- shape=ecda5291 vocab=e0c4df53
+-/
 lemma exists_nary_complete_join_spanning_path {A : Finset V} {t : List (Finset V)}
     (hA : A.Nonempty) (htne : t ≠ [])
     (hne : ∀ B ∈ t, B.Nonempty)

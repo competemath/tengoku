@@ -30,10 +30,16 @@ variable {G : SimpleGraph V}
 noncomputable def rowProfile (H : Finset V) (v : V) : Finset V :=
   H.filter fun x => G.Adj v x
 
+/--
+@isnad1 id=iff.0h5v.s5.aeb691aadf2f from=translated src=- shape=395e3153 vocab=f98b6eec
+-/
 lemma mem_rowProfile_iff {H : Finset V} {v x : V} :
     x ∈ rowProfile (G := G) H v ↔ x ∈ H ∧ G.Adj v x := by
   simp [rowProfile]
 
+/--
+@isnad1 id=le.0h4v.s5.da049ff4dfb4 from=translated src=- shape=a532f79f vocab=71a6b8ad
+-/
 lemma rowProfile_subset (H : Finset V) (v : V) :
     rowProfile (G := G) H v ⊆ H :=
   filter_subset _ _
@@ -45,12 +51,18 @@ def NoTightContainer (G : SimpleGraph V) (H A : Finset V) : Prop :=
       componentCount G (H \ S) = S.card →
         ¬ A ⊆ S
 
+/--
+@isnad1 id=not.1h4v.s5.9e30959b702a from=translated src=- shape=faae39dc vocab=fe9b8e62
+-/
 lemma NoTightContainer.not_exists {H A : Finset V}
     (h : NoTightContainer G H A) :
     ¬ ∃ S : Finset V, Cograph.Tight (G := G) H S ∧ A ⊆ S := by
   intro ⟨S, hT, hA⟩
   exact h S hT.1 hT.2 hA
 
+/--
+@isnad1 id=or.11h8v.s7.5b4454fd8ac9 from=translated src=- shape=2af4a004 vocab=d5180111
+-/
 lemma NoInducedP4UnionP1On_of {J : Finset V}
     (h : NoInducedP4UnionP1 G) :
     ∀ ⦃a b c d x : V⦄,
@@ -61,7 +73,9 @@ lemma NoInducedP4UnionP1On_of {J : Finset V}
   fun _ _ _ _ _ _ _ _ _ _ hp hxa hxb hxc hxd => h hp hxa hxb hxc hxd
 
 /-- An induced `P₄` in `H` minus the profile of an outside vertex `v`,
-together with `v`, would be an induced `P₄ ∪ P₁` in `H ∪ R`.-/
+together with `v`, would be an induced `P₄ ∪ P₁` in `H ∪ R`.
+@isnad1 id=iscograp.3h5v.s7.704eb2c7530e from=translated src=- shape=79a98e1f vocab=f82ad82b
+-/
 lemma isCograph_sdiff_rowProfile {H R : Finset V} {v : V}
     (hdisj : Disjoint H R) (hv : v ∈ R)
     (hOn : ∀ ⦃a b c d x : V⦄,
@@ -88,11 +102,17 @@ lemma isCograph_sdiff_rowProfile {H R : Finset V} {v : V}
       (mem_union.2 (Or.inl hC)) (mem_union.2 (Or.inl hD))
       (mem_union.2 (Or.inr hv)) hp (hne hA) (hne hB) (hne hC) (hne hD)
 
+/--
+@isnad1 id=eq.0h3v.s4.256bc55ac615 from=translated src=- shape=792fc85c vocab=8c4d068f
+-/
 lemma componentCount_cycle_eq_one (c : GraphCycle G) :
     componentCount G c.support = 1 := by
   obtain ⟨p, hp, _⟩ := Cograph.exists_spanning_path_from c c.start_mem_support
   simpa [hp] using componentCount_eq_one_of_path p
 
+/--
+@isnad1 id=le.2h4v.s5.3a42b15513d5 from=translated src=- shape=43356326 vocab=ec2e52ec
+-/
 lemma componentCount_cycle_sdiff_le (c : GraphCycle G) {S : Finset V}
     (hS : S ⊆ c.support) (hSne : S.Nonempty) :
     componentCount G (c.support \ S) ≤ S.card := by
@@ -109,7 +129,9 @@ lemma componentCount_cycle_sdiff_le (c : GraphCycle G) {S : Finset V}
 
 /-- Manuscript `prof:prop:traceable`, first assertion: the induced union of
 a genuine original cycle support and a disjoint original path support is
-1-tough on that union, given nonempty rows contained in no tight set.-/
+1-tough on that union, given nonempty rows contained in no tight set.
+@isnad1 id=onetough.2h4v.s6.6c34d9418860 from=translated src=- shape=1987f218 vocab=5b095993
+-/
 theorem oneToughOn_of_traceable_extension
     (c : GraphCycle G) (r : GraphPath G)
     (hdisj : Disjoint c.support r.support)
@@ -172,7 +194,9 @@ theorem oneToughOn_of_traceable_extension
           componentCount_union_le_of_adj hatt
         omega
 
-/-- `OneTough` of the actual induced union, via the support-cut bridge.-/
+/-- `OneTough` of the actual induced union, via the support-cut bridge.
+@isnad1 id=onetough.2h4v.s7.0ff6f04ae8b2 from=translated src=- shape=497b38c2 vocab=45afebb7
+-/
 theorem oneTough_induce_of_traceable_extension
     (c : GraphCycle G) (r : GraphPath G)
     (hdisj : Disjoint c.support r.support)
@@ -185,7 +209,9 @@ theorem oneTough_induce_of_traceable_extension
 
 /-- If the host support is induced-`(P₄ ∪ P₁)`-free, each remainder
 `H - A_v` is a cograph, and the no-tight-container hypothesis is
-equivalent to the strict path-cover inequality `p(H - A_v) < |A_v|`.-/
+equivalent to the strict path-cover inequality `p(H - A_v) < |A_v|`.
+@isnad1 id=iff.4h5v.s8.560a9352daf4 from=translated src=- shape=9149fa15 vocab=16298d9b
+-/
 theorem noTightContainer_iff_strict_pathCover
     (c : GraphCycle G) (r : GraphPath G) {v : V}
     (hdisj : Disjoint c.support r.support) (hv : v ∈ r.support)
@@ -227,6 +253,9 @@ theorem noTightContainer_iff_strict_pathCover
     have hlt' : pathCoverNumber G (H \ A) < A.card := hlt
     exact (lt_irrefl _ (heq' ▸ hlt'))
 
+/--
+@isnad1 id=iff.4h5v.s7.1d737f7bf274 from=translated src=- shape=7dc62d9f vocab=c9fbaf3a
+-/
 theorem noTightContainer_iff_strict_pathCover_of_host
     (c : GraphCycle G) (r : GraphPath G) {v : V}
     (hdisj : Disjoint c.support r.support) (hv : v ∈ r.support)

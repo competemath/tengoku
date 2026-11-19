@@ -30,11 +30,17 @@ open SimpleGraph Finset
 
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
+/--
+@isnad1 id=eq.0h3v.s4.c0b30bbab4bf from=translated src=- shape=9ba7a9f2 vocab=f7b26a52
+-/
 lemma pathCoverNumber_singleton (v : V) : pathCoverNumber G {v} = 1 := by
   have hle := pathCoverNumber_le_card (G := G) {v}
   have hge := one_le_pathCoverNumber_of_nonempty (G := G) (singleton_nonempty v)
   simpa [card_singleton] using (le_antisymm hle hge)
 
+/--
+@isnad1 id=eligible.0h3v.s4.8156b8b00b26 from=translated src=- shape=89910546 vocab=cd3941ab
+-/
 lemma eligible_singleton (v : V) : Eligible G {v} v := by
   let p := GraphPath.singleton (G := G) v
   have hp : p.support = {v} := GraphPath.support_singleton v
@@ -48,6 +54,9 @@ lemma eligible_singleton (v : V) : Eligible G {v} v := by
     exact List.mem_singleton.2 rfl
   exact ⟨pc, hmin, p, hmem, Or.inl rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.4a4a78bc3216 from=translated src=- shape=14ea159b vocab=04eaa301
+-/
 lemma eligibleSet_singleton (v : V) : eligibleSet G {v} = {v} := by
   ext x
   constructor
@@ -58,9 +67,15 @@ lemma eligibleSet_singleton (v : V) : eligibleSet G {v} = {v} := by
     rw [hx']
     exact (mem_eligibleSet_iff (G := G)).2 ⟨mem_singleton_self v, eligible_singleton v⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.2a45dd87eda1 from=translated src=- shape=22016cec vocab=8372840e
+-/
 lemma ineligibleSet_empty : ineligibleSet G (∅ : Finset V) = ∅ := by
   simp [ineligibleSet]
 
+/--
+@isnad1 id=eq.0h3v.s5.d42117479d95 from=translated src=- shape=a58a3714 vocab=0108f552
+-/
 lemma ineligibleSet_singleton (v : V) : ineligibleSet G {v} = ∅ := by
   ext x
   constructor
@@ -72,6 +87,9 @@ lemma ineligibleSet_singleton (v : V) : ineligibleSet G {v} = ∅ := by
   · intro hx
     exact (notMem_empty x hx).elim
 
+/--
+@isnad1 id=eq.2h3v.s5.bba0a247d9bd from=translated src=- shape=6e025001 vocab=697b7b23
+-/
 lemma componentCount_eq_one_of_connected {U : Finset V}
     (hU : U.Nonempty) (hc : (G.induce (U : Set V)).Connected) :
     componentCount G U = 1 := by
@@ -82,6 +100,9 @@ lemma componentCount_eq_one_of_connected {U : Finset V}
     hc.preconnected.subsingleton_connectedComponent
   exact Nat.card_eq_one_iff_unique.2 ⟨hss, hne⟩
 
+/--
+@isnad1 id=connecte.3h4v.s6.31fd39bb5649 from=translated src=- shape=e5fcf9ff vocab=b4446f56
+-/
 lemma induce_connected_of_completeJoin {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) :
@@ -111,6 +132,9 @@ lemma induce_connected_of_completeJoin {A B : Finset V}
         exact (Adj.reachable hz_to_a).trans ha_to_b.reachable
   exact (reach x).trans (reach y).symm
 
+/--
+@isnad1 id=eq.3h4v.s5.6a46cf12118f from=translated src=- shape=66e6c459 vocab=94f937a8
+-/
 lemma componentCount_complete_join {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V)) :
@@ -118,6 +142,9 @@ lemma componentCount_complete_join {A B : Finset V}
   componentCount_eq_one_of_connected (hAne.mono subset_union_left)
     (induce_connected_of_completeJoin hAne hBne hAB)
 
+/--
+@isnad1 id=mem.2h7v.s7.acf1bee92757 from=translated src=- shape=273f5d6d vocab=8a38b331
+-/
 lemma mem_left_of_induce_walk {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ A) :
@@ -131,6 +158,9 @@ lemma mem_left_of_induce_walk {A B : Finset V}
         · exact (hnocross x.val hx mid.val hB hadjG).elim
       exact mem_left_of_induce_walk hnocross hvA p
 
+/--
+@isnad1 id=mem.3h6v.s7.755e463fb7e8 from=translated src=- shape=273f5d6d vocab=5a7c278c
+-/
 lemma mem_left_of_induce_reachable {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ A)
@@ -138,6 +168,9 @@ lemma mem_left_of_induce_reachable {A B : Finset V}
     y.val ∈ A :=
   mem_left_of_induce_walk hnocross hx (Classical.choice hreach)
 
+/--
+@isnad1 id=reachabl.3h7v.s8.f002cd3bdce8 from=translated src=- shape=e325b08b vocab=6645cc3d
+-/
 lemma induce_reachable_of_mem_left_walk {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ A) (hy : y.val ∈ A)
@@ -157,6 +190,9 @@ lemma induce_reachable_of_mem_left_walk {A B : Finset V}
       have hrest := induce_reachable_of_mem_left_walk hnocross hvA hy q
       exact hfirst.trans hrest
 
+/--
+@isnad1 id=reachabl.4h6v.s8.ed73b509a3c8 from=translated src=- shape=2a818f59 vocab=3b375523
+-/
 lemma induce_reachable_of_mem_left {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ A) (hy : y.val ∈ A)
@@ -164,6 +200,9 @@ lemma induce_reachable_of_mem_left {A B : Finset V}
     (G.induce (A : Set V)).Reachable ⟨x.val, hx⟩ ⟨y.val, hy⟩ :=
   induce_reachable_of_mem_left_walk hnocross hx hy (Classical.choice hreach)
 
+/--
+@isnad1 id=mem.2h7v.s7.7043be3bdf6f from=translated src=- shape=74ef7e08 vocab=8a38b331
+-/
 lemma mem_right_of_induce_walk {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ B) :
@@ -177,6 +216,9 @@ lemma mem_right_of_induce_walk {A B : Finset V}
         · exact hB
       exact mem_right_of_induce_walk hnocross hvB p
 
+/--
+@isnad1 id=mem.3h6v.s7.6739659b6f27 from=translated src=- shape=74ef7e08 vocab=5a7c278c
+-/
 lemma mem_right_of_induce_reachable {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ B)
@@ -184,6 +226,9 @@ lemma mem_right_of_induce_reachable {A B : Finset V}
     y.val ∈ B :=
   mem_right_of_induce_walk hnocross hx (Classical.choice hreach)
 
+/--
+@isnad1 id=reachabl.3h7v.s8.9b248c69336f from=translated src=- shape=41467a21 vocab=6645cc3d
+-/
 lemma induce_reachable_of_mem_right_walk {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ B) (hy : y.val ∈ B)
@@ -203,6 +248,9 @@ lemma induce_reachable_of_mem_right_walk {A B : Finset V}
       have hrest := induce_reachable_of_mem_right_walk hnocross hvB hy q
       exact hfirst.trans hrest
 
+/--
+@isnad1 id=reachabl.4h6v.s8.b2ff59eb1be2 from=translated src=- shape=839810c5 vocab=3b375523
+-/
 lemma induce_reachable_of_mem_right {A B : Finset V}
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b)
     {x y : ((A ∪ B : Finset V) : Set V)} (hx : x.val ∈ B) (hy : y.val ∈ B)
@@ -210,6 +258,9 @@ lemma induce_reachable_of_mem_right {A B : Finset V}
     (G.induce (B : Set V)).Reachable ⟨x.val, hx⟩ ⟨y.val, hy⟩ :=
   induce_reachable_of_mem_right_walk hnocross hx hy (Classical.choice hreach)
 
+/--
+@isnad1 id=eq.2h4v.s6.6f72ab2abb9c from=translated src=- shape=6aedcb54 vocab=7737c286
+-/
 lemma componentCount_union_of_no_cross {A B : Finset V}
     (_hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) :
@@ -276,6 +327,9 @@ lemma componentCount_union_of_no_cross {A B : Finset V}
       Nat.card_le_card_of_injective g hg
   omega
 
+/--
+@isnad1 id=ex.5h5v.s6.af87372ceb44 from=translated src=- shape=db45658b vocab=65efac47
+-/
 lemma exists_spanning_path_start_of_internal {U : Finset V} {x : V}
     (r : GraphPath G) (hr : r.support = U)
     (hadj : G.Adj r.finish r.start)
@@ -349,6 +403,9 @@ lemma exists_spanning_path_start_of_internal {U : Finset V} {x : V}
       · exact mem_union.2 (Or.inl (by simpa [left] using hyD))
   simpa [p, GraphPath.support_splice, hr] using hunion
 
+/--
+@isnad1 id=eligible.6h5v.s6.1cac5457af96 from=translated src=- shape=a4847527 vocab=33639e33
+-/
 lemma eligible_of_complete_join_balanced {A B : Finset V} {x : V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -380,6 +437,9 @@ lemma eligible_of_complete_join_balanced {A B : Finset V} {x : V}
     exists_spanning_path_start_of_internal (U := A ∪ B) r hr hadj hx hxs hxf
   simpa [hstart] using (hmin_of p hp).1
 
+/--
+@isnad1 id=eq.5h4v.s6.bc6c8d0a7a85 from=translated src=- shape=40d5b94d vocab=2e466784
+-/
 lemma eligibleSet_complete_join_balanced {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -394,6 +454,9 @@ lemma eligibleSet_complete_join_balanced {A B : Finset V}
     exact (mem_eligibleSet_iff (G := G)).2
       ⟨hx, eligible_of_complete_join_balanced hAne hBne hAB hpA hpB hx⟩
 
+/--
+@isnad1 id=eq.5h4v.s6.daaf6ba10c5e from=translated src=- shape=130254a2 vocab=1a4e8353
+-/
 lemma ineligibleSet_complete_join_balanced {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -408,6 +471,9 @@ lemma ineligibleSet_complete_join_balanced {A B : Finset V}
   · intro hx
     exact (notMem_empty x hx).elim
 
+/--
+@isnad1 id=eq.4h4v.s6.edf4516ed24e from=translated src=- shape=47587c45 vocab=795cb693
+-/
 lemma card_ineligibleSet_complete_join_dominant {A B : Finset V}
     (hAne : A.Nonempty) (hBne : B.Nonempty)
     (hAB : G.IsCompleteBetween (A : Set V) (B : Set V))
@@ -428,6 +494,9 @@ lemma card_ineligibleSet_complete_join_dominant {A B : Finset V}
       exact (notMem_empty x hx).elim
   rw [hF, card_union_of_disjoint hdisjF]
 
+/--
+@isnad1 id=eq.2h4v.s6.6e0ec58d6e21 from=translated src=- shape=95f9f752 vocab=cdcec0f5
+-/
 lemma sdiff_ineligible_disjoint_union {A B : Finset V}
     (hdisj : Disjoint A B)
     (hnocross : ∀ a ∈ A, ∀ b ∈ B, ¬ G.Adj a b) :
@@ -470,7 +539,9 @@ lemma sdiff_ineligible_disjoint_union {A B : Finset V}
           (ineligibleSet_subset (G := G) A hA) hxB'
       · exact hxFB hB
 
-/-- Numerical F-cut identity on every cotree carrier.-/
+/-- Numerical F-cut identity on every cotree carrier.
+@isnad1 id=eq.1h3v.s5.368199e7ef09 from=translated src=- shape=32fb4b6e vocab=796c7ffc
+-/
 lemma componentCount_sdiff_ineligibleSet_eq {U : Finset V}
     (h : CotreeOn G U) :
     componentCount G (U \ ineligibleSet G U) =
@@ -544,6 +615,9 @@ lemma componentCount_sdiff_ineligibleSet_eq {U : Finset V}
         rw [hF, sdiff_empty, hp1, card_empty,
           componentCount_complete_join hAne hBne hAB]
 
+/--
+@isnad1 id=and.1h3v.s7.275d415b54c7 from=translated src=- shape=f37c8bb9 vocab=f2f9701d
+-/
 lemma ineligibleSet_is_largest_attaining_cut {U : Finset V}
     (h : CotreeOn G U) :
     componentCount G (U \ ineligibleSet G U) =
@@ -561,12 +635,18 @@ lemma ineligibleSet_is_largest_attaining_cut {U : Finset V}
   · intro X hX heq
     exact card_le_card (eq_cut_bound_imp_subset_ineligible hX heq)
 
+/--
+@isnad1 id=eq.1h3v.s6.06dd6e74075b from=translated src=- shape=e94c2103 vocab=9c6179fd
+-/
 lemma fcut_int_eq_zero {U : Finset V} (h : CotreeOn G U) :
     (componentCount G (U \ ineligibleSet G U) : ℤ) -
       (ineligibleSet G U).card - pathCoverNumber G U = 0 := by
   have h' := componentCount_sdiff_ineligibleSet_eq h
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.737abe48f1ff from=translated src=- shape=32fb4b6e vocab=566a6a5f
+-/
 lemma componentCount_sdiff_ineligibleSet_eq_of_isCograph {U : Finset V}
     (h : IsCograph G U) :
     componentCount G (U \ ineligibleSet G U) =
@@ -575,13 +655,18 @@ lemma componentCount_sdiff_ineligibleSet_eq_of_isCograph {U : Finset V}
 
 /-- Canonical flattened `Nikoghosyan.IsCograph` wrapper. The numerical identity
 is already proved on the structured predicate; this is API transport via
-`isCograph_iff.2`.-/
+`isCograph_iff.2`.
+@isnad1 id=eq.1h3v.s5.18e9623cfcf2 from=translated src=- shape=32fb4b6e vocab=f1a12319
+-/
 lemma componentCount_sdiff_ineligibleSet_eq_of_canonical {U : Finset V}
     (h : Nikoghosyan.IsCograph G U) :
     componentCount G (U \ ineligibleSet G U) =
       (ineligibleSet G U).card + pathCoverNumber G U :=
   componentCount_sdiff_ineligibleSet_eq_of_isCograph (isCograph_iff.2 h)
 
+/--
+@isnad1 id=and.1h3v.s7.1a07767fb0a9 from=translated src=- shape=f37c8bb9 vocab=9a0630db
+-/
 lemma ineligibleSet_is_largest_attaining_cut_of_isCograph {U : Finset V}
     (h : IsCograph G U) :
     componentCount G (U \ ineligibleSet G U) =
@@ -594,6 +679,9 @@ lemma ineligibleSet_is_largest_attaining_cut_of_isCograph {U : Finset V}
         X.card ≤ (ineligibleSet G U).card) :=
   ineligibleSet_is_largest_attaining_cut (cotreeOn_of_isCograph h)
 
+/--
+@isnad1 id=and.1h3v.s7.d27682cfd270 from=translated src=- shape=f37c8bb9 vocab=01d81ccc
+-/
 lemma ineligibleSet_is_largest_attaining_cut_of_canonical {U : Finset V}
     (h : Nikoghosyan.IsCograph G U) :
     componentCount G (U \ ineligibleSet G U) =

@@ -44,10 +44,16 @@ namespace GraphPath
 def edges (p : GraphPath G) : Finset (Sym2 V) :=
   p.walk.edges.toFinset
 
+/--
+@isnad1 id=iff.0h4v.s6.608b230d5756 from=translated src=- shape=4a6f1745 vocab=4390872a
+-/
 lemma mem_edges_iff {p : GraphPath G} {e : Sym2 V} :
     e ∈ p.edges ↔ e ∈ p.walk.edges := by
   simp [edges]
 
+/--
+@isnad1 id=mem.1h4v.s5.8b77272dddb4 from=translated src=- shape=60e91e7b vocab=92280fbf
+-/
 lemma edges_subset_edgeSet (p : GraphPath G) : ∀ e ∈ p.edges, e ∈ G.edgeSet := by
   intro e he
   exact p.walk.edges_subset_edgeSet (mem_edges_iff.1 he)
@@ -56,6 +62,9 @@ lemma edges_subset_edgeSet (p : GraphPath G) : ∀ e ∈ p.edges, e ∈ G.edgeSe
 def incidentEdges (p : GraphPath G) (b : V) : Finset (Sym2 V) :=
   p.edges.filter fun e => b ∈ e
 
+/--
+@isnad1 id=iff.0h5v.s6.8935679b8553 from=translated src=- shape=03ff94c4 vocab=437bb1f0
+-/
 lemma mem_incidentEdges_iff {p : GraphPath G} {b : V} {e : Sym2 V} :
     e ∈ p.incidentEdges b ↔ e ∈ p.edges ∧ b ∈ e := by
   simp [incidentEdges]
@@ -64,6 +73,9 @@ lemma mem_incidentEdges_iff {p : GraphPath G} {b : V} {e : Sym2 V} :
 def AIncident (p : GraphPath G) (A : Finset V) : Finset (Sym2 V) :=
   p.edges.filter fun e => ∃ b ∈ A, b ∈ e
 
+/--
+@isnad1 id=iff.0h5v.s6.4fe95f2760fb from=translated src=- shape=d0063190 vocab=5d69050f
+-/
 lemma mem_AIncident_iff {p : GraphPath G} {A : Finset V} {e : Sym2 V} :
     e ∈ p.AIncident A ↔ e ∈ p.edges ∧ ∃ b ∈ A, b ∈ e := by
   simp [AIncident]
@@ -85,35 +97,59 @@ namespace PrefixEdgeFactor
 
 variable {p : GraphPath G} {a x : V}
 
+/--
+@isnad1 id=ispath.0h6v.s5.bcb6a5221ced from=translated src=- shape=2699b5d8 vocab=8cc02847
+-/
 lemma prefix_isPath (F : PrefixEdgeFactor p a x) : F.preWalk.IsPath :=
   Walk.IsPath.of_append_left (q := Walk.cons F.oldAdj F.sufWalk)
     (by simpa [F.factor] using p.isPath)
 
+/--
+@isnad1 id=ispath.0h6v.s5.d9dff93d07b2 from=translated src=- shape=88844029 vocab=8a9c3dc9
+-/
 lemma suffix_cons_isPath (F : PrefixEdgeFactor p a x) :
     (Walk.cons F.oldAdj F.sufWalk).IsPath :=
   Walk.IsPath.of_append_right (p := F.preWalk)
     (by simpa [F.factor] using p.isPath)
 
+/--
+@isnad1 id=ispath.0h6v.s5.904025121977 from=translated src=- shape=e999a1db vocab=34217796
+-/
 lemma suffix_isPath (F : PrefixEdgeFactor p a x) : F.sufWalk.IsPath :=
   ((Walk.cons_isPath_iff F.oldAdj F.sufWalk).1 F.suffix_cons_isPath).1
 
+/--
+@isnad1 id=not.0h6v.s5.5beaa33bb148 from=translated src=- shape=1ae939b7 vocab=a36807e7
+-/
 lemma a_not_mem_suffix_support (F : PrefixEdgeFactor p a x) :
     a ∉ F.sufWalk.support :=
   ((Walk.cons_isPath_iff F.oldAdj F.sufWalk).1 F.suffix_cons_isPath).2
 
+/--
+@isnad1 id=eq.0h6v.s6.57a45a7bbfa2 from=translated src=- shape=8cd38ed4 vocab=b141cd48
+-/
 lemma support_append_eq (F : PrefixEdgeFactor p a x) :
     p.walk.support = F.preWalk.support ++ F.sufWalk.support := by
   simp [F.factor, Walk.support_append, Walk.support_cons]
 
+/--
+@isnad1 id=nodup.0h6v.s6.4af6aed07c90 from=translated src=- shape=dcd9d711 vocab=18e0e849
+-/
 lemma nodup_prefix_append_suffix (F : PrefixEdgeFactor p a x) :
     (F.preWalk.support ++ F.sufWalk.support).Nodup := by
   simpa [F.support_append_eq] using p.support_nodup
 
+/--
+@isnad1 id=not.1h7v.s6.0b3f18383e10 from=translated src=- shape=1aba93f9 vocab=8d153aa0
+-/
 lemma disjoint_prefix_suffix_list (F : PrefixEdgeFactor p a x)
     {v : V} (hvP : v ∈ F.preWalk.support) : v ∉ F.sufWalk.support := by
   intro hvS
   exact (List.nodup_append.1 F.nodup_prefix_append_suffix).2.2 v hvP v hvS rfl
 
+/--
+@isnad1 id=disjoint.0h6v.s6.71e871e40868 from=translated src=- shape=abc65375 vocab=a4379b32
+-/
 lemma disjoint_prefix_suffix (F : PrefixEdgeFactor p a x) :
     Disjoint F.preWalk.support.toFinset F.sufWalk.support.toFinset := by
   refine disjoint_left.2 ?_
@@ -121,44 +157,74 @@ lemma disjoint_prefix_suffix (F : PrefixEdgeFactor p a x) :
   exact F.disjoint_prefix_suffix_list (List.mem_toFinset.1 hvP)
     (List.mem_toFinset.1 hvS)
 
+/--
+@isnad1 id=not.0h6v.s5.c583eea96d79 from=translated src=- shape=4527cda1 vocab=5e3f5b39
+-/
 lemma x_not_mem_prefix_support (F : PrefixEdgeFactor p a x) :
     x ∉ F.preWalk.support := by
   intro hx
   exact F.disjoint_prefix_suffix_list hx (Walk.start_mem_support F.sufWalk)
 
+/--
+@isnad1 id=mem.0h6v.s5.9e20c3750629 from=translated src=- shape=d833485e vocab=5e3f5b39
+-/
 lemma start_mem_prefix (F : PrefixEdgeFactor p a x) :
     p.start ∈ F.preWalk.support :=
   Walk.start_mem_support F.preWalk
 
+/--
+@isnad1 id=mem.0h6v.s5.736bfbea8c3e from=translated src=- shape=439fc905 vocab=5e3f5b39
+-/
 lemma a_mem_prefix (F : PrefixEdgeFactor p a x) :
     a ∈ F.preWalk.support :=
   Walk.end_mem_support F.preWalk
 
+/--
+@isnad1 id=mem.0h6v.s5.421c7365231e from=translated src=- shape=132cdcc3 vocab=a36807e7
+-/
 lemma x_mem_suffix (F : PrefixEdgeFactor p a x) :
     x ∈ F.sufWalk.support :=
   Walk.start_mem_support F.sufWalk
 
+/--
+@isnad1 id=mem.0h6v.s5.1f23982b2389 from=translated src=- shape=b717d33a vocab=a36807e7
+-/
 lemma finish_mem_suffix (F : PrefixEdgeFactor p a x) :
     p.finish ∈ F.sufWalk.support :=
   Walk.end_mem_support F.sufWalk
 
+/--
+@isnad1 id=iff.0h6v.s5.0a62a88222a8 from=translated src=- shape=c71a7bf4 vocab=8269d146
+-/
 lemma prefix_nil_iff (F : PrefixEdgeFactor p a x) :
     F.preWalk.Nil ↔ p.start = a :=
   F.prefix_isPath.nil_iff_eq
 
+/--
+@isnad1 id=ne.1h6v.s5.bf321a942534 from=translated src=- shape=670b8da0 vocab=8269d146
+-/
 lemma a_ne_start_of_prefix_not_nil (F : PrefixEdgeFactor p a x)
     (h : ¬ F.preWalk.Nil) : a ≠ p.start := by
   intro heq
   exact h ((F.prefix_nil_iff).2 heq.symm)
 
+/--
+@isnad1 id=ne.0h6v.s5.65533c730922 from=translated src=- shape=65338bce vocab=560b62ef
+-/
 lemma a_ne_finish (F : PrefixEdgeFactor p a x) : a ≠ p.finish := by
   intro h
   subst h
   exact F.a_not_mem_suffix_support F.finish_mem_suffix
 
+/--
+@isnad1 id=ne.0h6v.s4.5d312e88e97e from=translated src=- shape=e1215208 vocab=ffdf5025
+-/
 lemma a_ne_x (F : PrefixEdgeFactor p a x) : a ≠ x :=
   F.oldAdj.ne
 
+/--
+@isnad1 id=ne.0h6v.s5.392076625088 from=translated src=- shape=2c18be52 vocab=ef4d6001
+-/
 lemma start_ne_x (F : PrefixEdgeFactor p a x) : p.start ≠ x := by
   intro h
   subst h
@@ -178,51 +244,84 @@ def suffixPath (F : PrefixEdgeFactor p a x) : GraphPath G where
   walk := F.sufWalk
   isPath := F.suffix_isPath
 
+/--
+@isnad1 id=eq.0h6v.s5.96bd2e3831d9 from=translated src=- shape=a2b9a51d vocab=483e3798
+-/
 lemma support_prefixPath (F : PrefixEdgeFactor p a x) :
     F.prefixPath.support = F.preWalk.support.toFinset :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.a92c1b5c8296 from=translated src=- shape=ede45606 vocab=04e8677f
+-/
 lemma support_suffixPath (F : PrefixEdgeFactor p a x) :
     F.suffixPath.support = F.sufWalk.support.toFinset :=
   rfl
 
+/--
+@isnad1 id=disjoint.0h6v.s5.c64a6084f9ef from=translated src=- shape=0f49ed53 vocab=a41513ff
+-/
 lemma disjoint_prefixPath_suffixPath (F : PrefixEdgeFactor p a x) :
     Disjoint F.prefixPath.support F.suffixPath.support := by
   simpa [support_prefixPath, support_suffixPath] using F.disjoint_prefix_suffix
 
+/--
+@isnad1 id=eq.0h6v.s6.b8225f5f8fbe from=translated src=- shape=9ae358b1 vocab=1ccd288f
+-/
 lemma support_eq_union (F : PrefixEdgeFactor p a x) :
     p.support = F.prefixPath.support ∪ F.suffixPath.support := by
   simp [GraphPath.support, prefixPath, suffixPath, F.support_append_eq,
     List.toFinset_append]
 
+/--
+@isnad1 id=eq.0h6v.s6.f57bb4a1d019 from=translated src=- shape=22bb9332 vocab=3726eaec
+-/
 lemma edges_eq (F : PrefixEdgeFactor p a x) :
     p.walk.edges = F.preWalk.edges ++ s(a, x) :: F.sufWalk.edges := by
   simp [F.factor, Walk.edges_append, Walk.edges_cons]
 
+/--
+@isnad1 id=nodup.0h6v.s6.1265d553b19b from=translated src=- shape=be3d2e45 vocab=c8ecec11
+-/
 lemma edges_nodup (F : PrefixEdgeFactor p a x) :
     (F.preWalk.edges ++ s(a, x) :: F.sufWalk.edges).Nodup := by
   simpa [F.edges_eq] using p.isPath.isTrail.edges_nodup
 
+/--
+@isnad1 id=not.0h6v.s5.6e5fb8f81d8d from=translated src=- shape=ff0de3ec vocab=6de99fdc
+-/
 lemma old_not_mem_prefix_edges (F : PrefixEdgeFactor p a x) :
     s(a, x) ∉ F.preWalk.edges := by
   have h := List.nodup_append.1 F.edges_nodup
   intro he
   exact h.2.2 _ he _ (by simp) rfl
 
+/--
+@isnad1 id=not.0h6v.s5.53a75088b836 from=translated src=- shape=3c2c6270 vocab=8aef4a91
+-/
 lemma old_not_mem_suffix_edges (F : PrefixEdgeFactor p a x) :
     s(a, x) ∉ F.sufWalk.edges := by
   have h := List.nodup_append.1 F.edges_nodup
   have hcons := List.nodup_cons.1 h.2.1
   exact hcons.1
 
+/--
+@isnad1 id=mem.0h6v.s5.e6b2a7eb3772 from=translated src=- shape=c860ef5f vocab=f16105c6
+-/
 lemma old_mem_edges (F : PrefixEdgeFactor p a x) :
     s(a, x) ∈ p.edges := by
   simp [edges, F.edges_eq]
 
+/--
+@isnad1 id=eq.0h6v.s7.d5c7b23021de from=translated src=- shape=e627d70c vocab=990afa18
+-/
 lemma edges_toFinset_eq (F : PrefixEdgeFactor p a x) :
     p.edges = F.preWalk.edges.toFinset ∪ insert s(a, x) F.sufWalk.edges.toFinset := by
   simp [edges, F.edges_eq, List.toFinset_append, List.toFinset_cons]
 
+/--
+@isnad1 id=eq.0h6v.s7.7225e197dfe1 from=translated src=- shape=793b4790 vocab=058ca55c
+-/
 lemma erase_old_eq (F : PrefixEdgeFactor p a x) :
     p.edges.erase s(a, x) =
       F.preWalk.edges.toFinset ∪ F.sufWalk.edges.toFinset := by
@@ -240,25 +339,40 @@ def rotate (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
   F.prefixPath.reverse.splice F.suffixPath hyx
     (by simpa [GraphPath.support_reverse] using F.disjoint_prefixPath_suffixPath)
 
+/--
+@isnad1 id=eq.1h6v.s5.f473fd6c64de from=translated src=- shape=a8ed591e vocab=2a4e7a3f
+-/
 lemma rotate_start (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).start = a :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.ffc0e0ecda3d from=translated src=- shape=79d72c83 vocab=f0ce4c4b
+-/
 lemma rotate_finish (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).finish = p.finish :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.dc53f53c8bda from=translated src=- shape=8ef28e9f vocab=455e512d
+-/
 lemma rotate_support (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).support = p.support := by
   simp [rotate, splice, GraphPath.support, GraphPath.reverse, prefixPath, suffixPath,
     Walk.support_append, Walk.support_cons, Walk.support_reverse, F.support_append_eq,
     List.toFinset_append, List.toFinset_reverse, union_comm]
 
+/--
+@isnad1 id=eq.1h6v.s6.10ce04cc7b76 from=translated src=- shape=1853ed19 vocab=fef5ebe2
+-/
 lemma rotate_walk_eq (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).walk =
       F.preWalk.reverse.append (Walk.cons hyx F.sufWalk) :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.154d17f9623f from=translated src=- shape=32e5fc37 vocab=11d2bb3e
+-/
 lemma rotate_edges_list (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).walk.edges =
       F.preWalk.reverse.edges ++ s(p.start, x) :: F.sufWalk.edges := by
@@ -266,7 +380,9 @@ lemma rotate_edges_list (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     Walk.edges_append, Walk.edges_cons]
 
 /-- Exact undirected edge identity: the rotated path drops the old dart
-`a—x` and gains the original chord `y—x`. No edge outside `G` is used.-/
+`a—x` and gains the original chord `y—x`. No edge outside `G` is used.
+@isnad1 id=eq.1h6v.s6.f03620379157 from=translated src=- shape=d6c7b435 vocab=57112019
+-/
 theorem rotate_edges (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).edges = p.edges.erase s(a, x) ∪ {s(p.start, x)} := by
   have hrev : F.preWalk.reverse.edges.toFinset = F.preWalk.edges.toFinset := by
@@ -278,15 +394,24 @@ theorem rotate_edges (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
   rw [hrot, F.erase_old_eq, insert_eq]
   simp [union_comm, union_left_comm, union_assoc]
 
+/--
+@isnad1 id=mem.2h7v.s6.880e64509d56 from=translated src=- shape=4e9967c1 vocab=94c6c8a0
+-/
 lemma rotate_edges_subset_edgeSet (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) :
     ∀ e ∈ (F.rotate hyx).edges, e ∈ G.edgeSet :=
   edges_subset_edgeSet (F.rotate hyx)
 
+/--
+@isnad1 id=mem.1h6v.s6.96b2dabe96bd from=translated src=- shape=92fa5a72 vocab=e217e9dc
+-/
 lemma new_edge_mem_rotate (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     s(p.start, x) ∈ (F.rotate hyx).edges := by
   simp [F.rotate_edges]
 
+/--
+@isnad1 id=not.2h6v.s6.3f546ee0c8e8 from=translated src=- shape=bf610a2b vocab=e217e9dc
+-/
 lemma old_not_mem_rotate_of_ne (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) (hne : s(a, x) ≠ s(p.start, x)) :
     s(a, x) ∉ (F.rotate hyx).edges := by
@@ -294,6 +419,9 @@ lemma old_not_mem_rotate_of_ne (F : PrefixEdgeFactor p a x)
 
 /-! ### Incidence accounting at an original designated set `A` -/
 
+/--
+@isnad1 id=not.2h7v.s5.41277579de8c from=translated src=- shape=caac0d71 vocab=68ca0ca7
+-/
 lemma not_mem_old_of_ne {b : V} (F : PrefixEdgeFactor p a x)
     (hba : b ≠ a) (hbx : b ≠ x) : b ∉ (s(a, x) : Sym2 V) := by
   intro hb
@@ -301,6 +429,9 @@ lemma not_mem_old_of_ne {b : V} (F : PrefixEdgeFactor p a x)
   · exact hba h
   · exact hbx h
 
+/--
+@isnad1 id=not.2h7v.s5.98d6c5a85a26 from=translated src=- shape=2eeb94f0 vocab=97eccb10
+-/
 lemma not_mem_new_of_ne {b : V} (F : PrefixEdgeFactor p a x)
     (hby : b ≠ p.start) (hbx : b ≠ x) : b ∉ (s(p.start, x) : Sym2 V) := by
   intro hb
@@ -310,7 +441,9 @@ lemma not_mem_new_of_ne {b : V} (F : PrefixEdgeFactor p a x)
 
 /-- At every vertex of `A` other than `a`, the incident path-edge set is
 unchanged. The hypotheses `a ∈ A` and `y, x ∉ A` force `b ≠ y` and
-`b ≠ x` automatically.-/
+`b ≠ x` automatically.
+@isnad1 id=eq.6h8v.s6.0393d32686e2 from=translated src=- shape=e43d3905 vocab=09636d13
+-/
 theorem incidentEdges_rotate_of_mem_A (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) {A : Finset V} {b : V}
     (hbA : b ∈ A) (_haA : a ∈ A) (hyA : p.start ∉ A) (hxA : x ∉ A)
@@ -332,7 +465,9 @@ theorem incidentEdges_rotate_of_mem_A (F : PrefixEdgeFactor p a x)
     exact F.not_mem_old_of_ne hba hbx hbe
 
 /-- At `a` the only change is losing the old dart `a—x`. The new chord
-`y—x` has no end in `A`, so it is not incident to `a`.-/
+`y—x` has no end in `A`, so it is not incident to `a`.
+@isnad1 id=eq.4h7v.s7.2b0eb8a4cc8c from=translated src=- shape=854a1639 vocab=15588729
+-/
 theorem incidentEdges_rotate_at_a (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) {A : Finset V}
     (haA : a ∈ A) (hyA : p.start ∉ A) (_hxA : x ∉ A) :
@@ -350,6 +485,9 @@ theorem incidentEdges_rotate_at_a (F : PrefixEdgeFactor p a x)
   · rintro ⟨⟨hmem, hae⟩, hne⟩
     exact ⟨Or.inl ⟨hne, hmem⟩, hae⟩
 
+/--
+@isnad1 id=not.2h7v.s6.628c0f1931e5 from=translated src=- shape=17a3b2c2 vocab=833117d2
+-/
 lemma new_not_AIncident (F : PrefixEdgeFactor p a x) {A : Finset V}
     (hyA : p.start ∉ A) (hxA : x ∉ A) :
     ¬ ∃ b ∈ A, b ∈ (s(p.start, x) : Sym2 V) := by
@@ -359,7 +497,9 @@ lemma new_not_AIncident (F : PrefixEdgeFactor p a x) {A : Finset V}
   · exact hxA (h ▸ hbA)
 
 /-- The `A`-incident edge set after rotation is the old `A`-incident set
-with `s(a,x)` removed. The new chord meets no vertex of `A`.-/
+with `s(a,x)` removed. The new chord meets no vertex of `A`.
+@isnad1 id=eq.4h7v.s7.1adf0472e7fc from=translated src=- shape=b86d7be9 vocab=c3c1e8fb
+-/
 theorem AIncident_rotate (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) {A : Finset V}
     (_haA : a ∈ A) (hyA : p.start ∉ A) (hxA : x ∉ A) :
@@ -377,7 +517,9 @@ theorem AIncident_rotate (F : PrefixEdgeFactor p a x)
 
 /-- If the old path's `A`-incidences are prescribed cycle edges, the
 rotated path remains protected at the original set `A`. Protection is
-not claimed at any enlarged set containing the old `Y`-endpoint.-/
+not claimed at any enlarged set containing the old `Y`-endpoint.
+@isnad1 id=protecte.5h8v.s6.2702552bdf30 from=translated src=- shape=8f4e2041 vocab=bb0cba54
+-/
 theorem protectedAt_rotate (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) {c : GraphCycle G} {A : Finset V}
     (haA : a ∈ A) (hyA : p.start ∉ A) (hxA : x ∉ A)
@@ -388,23 +530,34 @@ theorem protectedAt_rotate (F : PrefixEdgeFactor p a x)
     simpa [F.AIncident_rotate hyx haA hyA hxA] using he
   exact hP (mem_sdiff.1 he').1
 
+/--
+@isnad1 id=mem.2h7v.s6.e99818283081 from=translated src=- shape=2ef11994 vocab=a6322749
+-/
 lemma rotate_start_mem_A {A : Finset V} (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) (haA : a ∈ A) :
     (F.rotate hyx).start ∈ A := by
   simpa [F.rotate_start] using haA
 
+/--
+@isnad1 id=eq.1h6v.s5.ffc0e0ecda3d from=translated src=- shape=79d72c83 vocab=f0ce4c4b
+-/
 lemma rotate_finish_eq (F : PrefixEdgeFactor p a x) (hyx : G.Adj p.start x) :
     (F.rotate hyx).finish = p.finish :=
   F.rotate_finish hyx
 
 /-- Internal status of `a` on the original path: a non-nil prefix makes
 `a` distinct from the start, and disjointness of prefix/suffix makes `a`
-distinct from the finish.-/
+distinct from the finish.
+@isnad1 id=and.1h6v.s5.7dd2a3e7786f from=translated src=- shape=dac72129 vocab=daf3db59
+-/
 lemma a_internal_of_prefix_not_nil (F : PrefixEdgeFactor p a x)
     (h : ¬ F.preWalk.Nil) :
     a ≠ p.start ∧ a ≠ p.finish :=
   ⟨F.a_ne_start_of_prefix_not_nil h, F.a_ne_finish⟩
 
+/--
+@isnad1 id=ne.1h6v.s5.7915f2204793 from=translated src=- shape=9604e64e vocab=f0ce4c4b
+-/
 lemma rotate_start_ne_finish (F : PrefixEdgeFactor p a x)
     (hyx : G.Adj p.start x) :
     (F.rotate hyx).start ≠ (F.rotate hyx).finish := by
@@ -420,11 +573,17 @@ at `a` on `p`.-/
 def pathSucc (p : GraphPath G) {a : V} (ha : a ∈ p.support) (hne : a ≠ p.finish) : V :=
   (p.dropUntil ha).walk.snd
 
+/--
+@isnad1 id=not.2h4v.s6.83e007776bd1 from=translated src=- shape=d9d0e542 vocab=55c00700
+-/
 lemma dropUntil_not_nil (p : GraphPath G) {a : V} (ha : a ∈ p.support)
     (hne : a ≠ p.finish) : ¬ (p.dropUntil ha).walk.Nil := by
   intro h
   exact hne ((dropUntil_nil_iff p ha).1 h)
 
+/--
+@isnad1 id=ex.2h4v.s7.5d7f2016ad01 from=translated src=- shape=57d8aced vocab=cc5ca330
+-/
 lemma exists_cons_dropUntil (p : GraphPath G) {a : V} (ha : a ∈ p.support)
     (hne : a ≠ p.finish) :
     ∃ (h : G.Adj a (p.pathSucc ha hne)) (q : G.Walk (p.pathSucc ha hne) p.finish),
@@ -437,7 +596,9 @@ lemma exists_cons_dropUntil (p : GraphPath G) {a : V} (ha : a ∈ p.support)
   exact ⟨hadj, q, hcons⟩
 
 /-- Derive a factorization from the actual outgoing dart at a
-non-terminal vertex of `p`.-/
+non-terminal vertex of `p`.
+@isnad1 id=ex.2h4v.s6.89a8881bf480 from=translated src=- shape=46172662 vocab=da51209c
+-/
 theorem exists_factor_of_pathSucc (p : GraphPath G) {a : V} (ha : a ∈ p.support)
     (hne : a ≠ p.finish) :
     ∃ F : PrefixEdgeFactor p a (p.pathSucc ha hne), True := by
@@ -452,7 +613,9 @@ theorem exists_factor_of_pathSucc (p : GraphPath G) {a : V} (ha : a ∈ p.suppor
 
 /-- On an original path, `getVert` is injective on `0, …, length`.
 Indices `≥ length` are capped at the finish and must not be used to
-claim injectivity.-/
+claim injectivity.
+@isnad1 id=eq.3h5v.s6.36efeda899db from=translated src=- shape=68e659d6 vocab=0825013a
+-/
 lemma getVert_injective_of_le_length (p : GraphPath G) {i j : ℕ}
     (hi : i ≤ p.walk.length) (hj : j ≤ p.walk.length)
     (heq : p.walk.getVert i = p.walk.getVert j) : i = j := by
@@ -469,6 +632,9 @@ lemma getVert_injective_of_le_length (p : GraphPath G) {i j : ℕ}
     rw [List.get_eq_getElem, List.get_eq_getElem, ← hiE, ← hjE, heq]
   exact congrArg Fin.val (hinj this)
 
+/--
+@isnad1 id=ne.1h4v.s5.b3d41ec5921e from=translated src=- shape=a36f6767 vocab=425eced3
+-/
 lemma getVert_ne_finish_of_lt (p : GraphPath G) {i : ℕ}
     (hi : i < p.walk.length) : p.walk.getVert i ≠ p.finish := by
   intro h
@@ -477,6 +643,9 @@ lemma getVert_ne_finish_of_lt (p : GraphPath G) {i : ℕ}
     p.getVert_injective_of_le_length (le_of_lt hi) le_rfl (h.trans hfin.symm)
   omega
 
+/--
+@isnad1 id=eq.1h4v.s6.92a3899e8c1c from=translated src=- shape=97ba07ce vocab=6e7cc22d
+-/
 lemma idxOf_getVert (p : GraphPath G) {i : ℕ} (hi : i ≤ p.walk.length) :
     p.walk.support.idxOf (p.walk.getVert i) = i := by
   have hlt : i < p.walk.support.length := by
@@ -487,13 +656,18 @@ lemma idxOf_getVert (p : GraphPath G) {i : ℕ} (hi : i ≤ p.walk.length) :
   rw [← hget]
   exact List.get_idxOf p.support_nodup ⟨i, hlt⟩
 
+/--
+@isnad1 id=mem.0h4v.s5.04b09ff1e64f from=translated src=- shape=3af14ac8 vocab=ad64fd7c
+-/
 lemma getVert_mem_path_support (p : GraphPath G) (i : ℕ) :
     p.walk.getVert i ∈ p.support :=
   List.mem_toFinset.2 (Walk.getVert_mem_support p.walk i)
 
 /-- Derive a factorization from a strict index `i < p.walk.length`.
 The outgoing dart is the actual consecutive pair
-`(getVert i, getVert (i+1))`. Capped indices `≥ length` are excluded.-/
+`(getVert i, getVert (i+1))`. Capped indices `≥ length` are excluded.
+@isnad1 id=ex.1h4v.s7.f6e0b2a6e557 from=translated src=- shape=88a307e8 vocab=5a81b2b6
+-/
 theorem exists_factorAtIndex (p : GraphPath G) {i : ℕ} (hi : i < p.walk.length) :
     ∃ F : PrefixEdgeFactor p (p.walk.getVert i) (p.walk.getVert (i + 1)), True := by
   set a := p.walk.getVert i
@@ -521,7 +695,9 @@ theorem exists_factorAtIndex (p : GraphPath G) {i : ℕ} (hi : i < p.walk.length
 /-- If an undirected edge of `p` is presented together with the actual
 oriented index at which it occurs, the corresponding factorization
 exists. The undirected identity `s(u,v) = s(v,u)` does not by itself
-orient the dart: a swapped pair is a different index.-/
+orient the dart: a swapped pair is a different index.
+@isnad1 id=ex.1h4v.s7.732b81830fc5 from=translated src=- shape=49659db0 vocab=3c267713
+-/
 theorem exists_factor_of_getVert_edge (p : GraphPath G) {i : ℕ}
     (hi : i < p.walk.length) :
     ∃ F : PrefixEdgeFactor p (p.walk.getVert i) (p.walk.getVert (i + 1)),
@@ -549,6 +725,9 @@ def reverseFactor {p : GraphPath G} {a x : V} (F : PrefixEdgeFactor p a x) :
       Walk.cons_nil_append]
     rfl
 
+/--
+@isnad1 id=and.1h6v.s7.a6f0f0609cbb from=translated src=- shape=8a72eb4b vocab=d96cb00c
+-/
 lemma reverseFactor_rotate {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p a x) (hxy : G.Adj p.finish a) :
     ((reverseFactor F).rotate (by simpa [GraphPath.reverse] using hxy)).start = x ∧
@@ -567,17 +746,26 @@ def rotateAfterReorient {p : GraphPath G} {a x : V}
     GraphPath G :=
   F.rotate (by simpa [GraphPath.reverse] using hyx)
 
+/--
+@isnad1 id=eq.1h6v.s5.61e43f496d2d from=translated src=- shape=27594c69 vocab=2cdee438
+-/
 lemma rotateAfterReorient_start {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p.reverse a x) (hyx : G.Adj p.finish x) :
     (rotateAfterReorient F hyx).start = a :=
   F.rotate_start _
 
+/--
+@isnad1 id=eq.1h6v.s5.258d1f42bd05 from=translated src=- shape=a0bcc17f vocab=2cdee438
+-/
 lemma rotateAfterReorient_finish {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p.reverse a x) (hyx : G.Adj p.finish x) :
     (rotateAfterReorient F hyx).finish = p.start := by
   rw [rotateAfterReorient]
   exact F.rotate_finish (by simpa [GraphPath.reverse] using hyx)
 
+/--
+@isnad1 id=eq.1h6v.s5.1e5db8594723 from=translated src=- shape=f59367ba vocab=82c6991f
+-/
 lemma rotateAfterReorient_support {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p.reverse a x) (hyx : G.Adj p.finish x) :
     (rotateAfterReorient F hyx).support = p.support := by
@@ -585,6 +773,9 @@ lemma rotateAfterReorient_support {p : GraphPath G} {a x : V}
   simpa [GraphPath.support_reverse] using
     F.rotate_support (by simpa [GraphPath.reverse] using hyx)
 
+/--
+@isnad1 id=eq.1h6v.s6.abcece16213c from=translated src=- shape=ba0ddcdd vocab=c28d972f
+-/
 theorem rotateAfterReorient_edges {p : GraphPath G} {a x : V}
     (F : PrefixEdgeFactor p.reverse a x) (hyx : G.Adj p.finish x) :
     (rotateAfterReorient F hyx).edges =

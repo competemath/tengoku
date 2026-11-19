@@ -46,6 +46,9 @@ namespace GraphPath
 def bothEndsOutside (e : Sym2 V) (S : Finset V) : Prop :=
   ∀ x ∈ e, x ∉ S
 
+/--
+@isnad1 id=iff.0h4v.s5.37123042fa4d from=translated src=- shape=ba0b53ac vocab=a42479af
+-/
 lemma bothEndsOutside_iff {a b : V} {S : Finset V} :
     bothEndsOutside s(a, b) S ↔ a ∉ S ∧ b ∉ S := by
   constructor
@@ -56,12 +59,18 @@ lemma bothEndsOutside_iff {a b : V} {S : Finset V} :
     · exact ha
     · exact hb
 
+/--
+@isnad1 id=bothends.2h5v.s5.163d7b0f8a2e from=translated src=- shape=7c5ecd96 vocab=5db0d326
+-/
 lemma bothEndsOutside_of_support {p : GraphPath G} {S : Finset V} {e : Sym2 V}
     (he : e ∈ p.edges) (hd : Disjoint p.support S) :
     bothEndsOutside e S := by
   intro x hx
   exact disjoint_left.1 hd (mem_support_of_mem_edge he hx)
 
+/--
+@isnad1 id=not.1h4v.s5.74241160911d from=translated src=- shape=6593744b vocab=229a25de
+-/
 lemma not_bothEndsOutside_of_mem_edges {Q : GraphPath G} {e : Sym2 V}
     (he : e ∈ Q.edges) : ¬ bothEndsOutside e Q.support := by
   intro h
@@ -78,30 +87,51 @@ namespace OriginalSubwalkFactor
 
 variable {p Q : GraphPath G}
 
+/--
+@isnad1 id=ispath.0h5v.s5.5d8db90cc4e7 from=translated src=- shape=81698163 vocab=ef253961
+-/
 lemma mid_isPath (F : OriginalSubwalkFactor p Q) :
     (F.preWalk.append Q.walk).IsPath :=
   Walk.IsPath.of_append_left (by simpa [F.factor] using p.isPath)
 
+/--
+@isnad1 id=ispath.0h5v.s5.8ae3114b79ce from=translated src=- shape=b4384e4a vocab=31bc3524
+-/
 lemma preWalk_isPath (F : OriginalSubwalkFactor p Q) : F.preWalk.IsPath :=
   Walk.IsPath.of_append_left F.mid_isPath
 
+/--
+@isnad1 id=ispath.0h5v.s5.412f13bfe929 from=translated src=- shape=92229432 vocab=00f09bd0
+-/
 lemma sufWalk_isPath (F : OriginalSubwalkFactor p Q) : F.sufWalk.IsPath :=
   Walk.IsPath.of_append_right (by simpa [F.factor] using p.isPath)
 
+/--
+@isnad1 id=eq.0h5v.s6.554098e77717 from=translated src=- shape=65384fcd vocab=8f16d57d
+-/
 lemma support_cat (F : OriginalSubwalkFactor p Q) :
     p.walk.support =
       F.preWalk.support ++ Q.walk.support.tail ++ F.sufWalk.support.tail := by
   rw [F.factor, Walk.support_append, Walk.support_append]
 
+/--
+@isnad1 id=eq.0h5v.s6.f65657a3c394 from=translated src=- shape=63f9148c vocab=f42d7f47
+-/
 lemma edges_cat (F : OriginalSubwalkFactor p Q) :
     p.walk.edges = F.preWalk.edges ++ Q.walk.edges ++ F.sufWalk.edges := by
   rw [F.factor, Walk.edges_append, Walk.edges_append]
 
+/--
+@isnad1 id=eq.0h5v.s7.109f00b5d89c from=translated src=- shape=8316f557 vocab=5869f97e
+-/
 lemma edges_union (F : OriginalSubwalkFactor p Q) :
     p.edges =
       F.preWalk.edges.toFinset ∪ Q.edges ∪ F.sufWalk.edges.toFinset := by
   simp [edges, F.edges_cat, List.toFinset_append]
 
+/--
+@isnad1 id=not.1h5v.s6.6436216e5fd4 from=translated src=- shape=65baa061 vocab=b88070ef
+-/
 lemma pre_not_nil_of_start_not_mem (F : OriginalSubwalkFactor p Q)
     (h : p.start ∉ Q.support) : ¬ F.preWalk.Nil := by
   intro hnil
@@ -120,20 +150,32 @@ def prefixTrim (F : OriginalSubwalkFactor p Q) (hpre : ¬ F.preWalk.Nil) :
     GraphPath G :=
   (pathOfWalk F.preWalk F.preWalk_isPath).trimFinish hpre
 
+/--
+@isnad1 id=eq.1h5v.s5.0fea25535a27 from=translated src=- shape=6b75f744 vocab=e45dc415
+-/
 lemma prefixTrim_start (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) : (F.prefixTrim hpre).start = p.start :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.6e9bfdfbd032 from=translated src=- shape=b236f680 vocab=c4f138cf
+-/
 lemma prefixTrim_finish (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) :
     (F.prefixTrim hpre).finish = F.preWalk.penultimate :=
   rfl
 
+/--
+@isnad1 id=adj.1h5v.s5.9aa7d8e7387d from=translated src=- shape=15224693 vocab=dc1ad7c7
+-/
 lemma prefixTrim_adj (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) :
     G.Adj (F.prefixTrim hpre).finish Q.start :=
   F.preWalk.adj_penultimate hpre
 
+/--
+@isnad1 id=eq.1h5v.s6.605de7075a5c from=translated src=- shape=871df72c vocab=c0b551b9
+-/
 lemma support_prefixTrim (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) :
     (F.prefixTrim hpre).support = F.preWalk.support.toFinset.erase Q.start :=
@@ -143,31 +185,49 @@ def suffixTrim (F : OriginalSubwalkFactor p Q) (hsuf : ¬ F.sufWalk.Nil) :
     GraphPath G :=
   (pathOfWalk F.sufWalk F.sufWalk_isPath).trimStart hsuf
 
+/--
+@isnad1 id=eq.1h5v.s6.233cfeb10a05 from=translated src=- shape=f3c0e038 vocab=abde0847
+-/
 lemma suffixTrim_start (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) :
     (F.suffixTrim hsuf).start = F.sufWalk.snd :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.64300f631c6a from=translated src=- shape=d73321df vocab=7e0904e0
+-/
 lemma suffixTrim_finish (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) :
     (F.suffixTrim hsuf).finish = p.finish :=
   rfl
 
+/--
+@isnad1 id=adj.1h5v.s5.193e2a61cae9 from=translated src=- shape=cfff2036 vocab=75ecb458
+-/
 lemma suffixTrim_adj (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) :
     G.Adj Q.finish (F.suffixTrim hsuf).start :=
   F.sufWalk.adj_snd hsuf
 
+/--
+@isnad1 id=eq.1h5v.s6.712578aac935 from=translated src=- shape=2118c17b vocab=c0879209
+-/
 lemma support_suffixTrim (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) :
     (F.suffixTrim hsuf).support = F.sufWalk.support.toFinset.erase Q.finish :=
   support_trimStart (pathOfWalk F.sufWalk F.sufWalk_isPath) hsuf
 
+/--
+@isnad1 id=eq.1h5v.s5.164e01bde4e9 from=translated src=- shape=46bbda89 vocab=9fcc441e
+-/
 lemma support_cons_not_nil {u v : V} {w : G.Walk u v} (h : ¬ w.Nil) :
     w.support = u :: w.support.tail := by
   have ht := Walk.support_tail_of_not_nil w h
   simpa [ht] using (Walk.cons_support_tail (p := w) h).symm
 
+/--
+@isnad1 id=disjoint.2h5v.s6.64f8a65a3408 from=translated src=- shape=ef206b9c vocab=f8d212c1
+-/
 lemma disjoint_prefixTrim_suffixTrim (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hsuf : ¬ F.sufWalk.Nil) :
     Disjoint (F.prefixTrim hpre).support (F.suffixTrim hsuf).support := by
@@ -216,12 +276,18 @@ noncomputable def omitRunComplement (F : OriginalSubwalkFactor p Q)
       (by simpa [F.suffixTrim_finish hsuf, F.prefixTrim_start hpre] using hclose)
       (F.disjoint_prefixTrim_suffixTrim hpre hsuf).symm
 
+/--
+@isnad1 id=eq.3h5v.s6.ae3c479e02e8 from=translated src=- shape=bb9656b5 vocab=9671b2af
+-/
 lemma omitRunComplement_eq_prefix_of_nil (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     (hsuf : F.sufWalk.Nil) :
     F.omitRunComplement hpre hclose = F.prefixTrim hpre := by
   simp [omitRunComplement, hsuf]
 
+/--
+@isnad1 id=eq.3h5v.s7.65523decdf0f from=translated src=- shape=09866d9d vocab=e6e15c45
+-/
 lemma omitRunComplement_eq_splice_of_not_nil (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     (hsuf : ¬ F.sufWalk.Nil) :
@@ -231,6 +297,9 @@ lemma omitRunComplement_eq_splice_of_not_nil (F : OriginalSubwalkFactor p Q)
         (F.disjoint_prefixTrim_suffixTrim hpre hsuf).symm := by
   simp [omitRunComplement, hsuf]
 
+/--
+@isnad1 id=eq.2h5v.s7.c58c79b92d57 from=translated src=- shape=bee3402d vocab=722f1235
+-/
 lemma omitRunComplement_start (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).start =
@@ -241,6 +310,9 @@ lemma omitRunComplement_start (F : OriginalSubwalkFactor p Q)
   · simp [F.omitRunComplement_eq_splice_of_not_nil hpre hclose hsuf,
       suffixTrim, pathOfWalk, trimStart, splice, hsuf]
 
+/--
+@isnad1 id=eq.2h5v.s6.f2247986870d from=translated src=- shape=8abccca9 vocab=9a98e5f1
+-/
 lemma omitRunComplement_finish (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).finish = F.preWalk.penultimate := by
@@ -250,12 +322,18 @@ lemma omitRunComplement_finish (F : OriginalSubwalkFactor p Q)
   · rw [F.omitRunComplement_eq_splice_of_not_nil hpre hclose hsuf]
     rfl
 
+/--
+@isnad1 id=adj.2h5v.s6.419556ab2f9b from=translated src=- shape=2b1b6508 vocab=8adfff96
+-/
 lemma omitRunComplement_adj_left (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     G.Adj (F.omitRunComplement hpre hclose).finish Q.start := by
   rw [F.omitRunComplement_finish hpre hclose]
   exact F.prefixTrim_adj hpre
 
+/--
+@isnad1 id=adj.2h5v.s6.e8d4b65099f0 from=translated src=- shape=25320d3e vocab=8adfff96
+-/
 lemma omitRunComplement_adj_right (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     G.Adj Q.finish (F.omitRunComplement hpre hclose).start := by
@@ -271,6 +349,9 @@ lemma omitRunComplement_adj_right (F : OriginalSubwalkFactor p Q)
     rw [hst]
     exact F.suffixTrim_adj hsuf
 
+/--
+@isnad1 id=mem.4h6v.s7.6c13cc60dbe9 from=translated src=- shape=88fe6db6 vocab=f9e89455
+-/
 lemma omitRunComplement_start_mem_A (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     {A : Finset V} (hs : p.start ∈ A)
@@ -287,6 +368,9 @@ lemma omitRunComplement_start_mem_A (F : OriginalSubwalkFactor p Q)
     rw [hst, F.suffixTrim_start]
     exact hsufA.resolve_left hsuf
 
+/--
+@isnad1 id=mem.3h6v.s6.21a7e7f380a3 from=translated src=- shape=02632cb7 vocab=c54b8c1b
+-/
 lemma omitRunComplement_finish_mem_A (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     {A : Finset V} (hpreA : F.preWalk.penultimate ∈ A) :
@@ -294,6 +378,9 @@ lemma omitRunComplement_finish_mem_A (F : OriginalSubwalkFactor p Q)
   rw [F.omitRunComplement_finish hpre hclose]
   exact hpreA
 
+/--
+@isnad1 id=eq.1h3v.s6.6ef31e234328 from=translated src=- shape=e780aa96 vocab=e5cbac21
+-/
 lemma edges_eq_dropLast_concat_last (q : GraphPath G) (h : ¬ q.walk.Nil) :
     q.walk.edges =
       q.walk.edges.dropLast ++ [s(q.walk.penultimate, q.finish)] := by
@@ -312,6 +399,9 @@ lemma edges_eq_dropLast_concat_last (q : GraphPath G) (h : ¬ q.walk.Nil) :
   conv_lhs => rw [← hcat]
   rw [hlast]
 
+/--
+@isnad1 id=eq.1h3v.s6.99284d423f9e from=translated src=- shape=a2d11e06 vocab=fd687dbc
+-/
 lemma edges_trimFinish_erase (q : GraphPath G) (h : ¬ q.walk.Nil) :
     (q.trimFinish h).edges =
       q.edges.erase s(q.walk.penultimate, q.finish) := by
@@ -343,6 +433,9 @@ lemma edges_trimFinish_erase (q : GraphPath G) (h : ¬ q.walk.Nil) :
     exact List.mem_toFinset.2
       ((List.mem_append.1 heL).resolve_right (by simp [hne]))
 
+/--
+@isnad1 id=eq.1h3v.s6.8883b6cf50e1 from=translated src=- shape=1aa32ec7 vocab=63533907
+-/
 lemma edges_eq_cons_tail (q : GraphPath G) (h : ¬ q.walk.Nil) :
     q.walk.edges = s(q.start, q.walk.snd) :: q.walk.edges.tail := by
   have hpos := Walk.not_nil_iff_lt_length.1 h
@@ -357,6 +450,9 @@ lemma edges_eq_cons_tail (q : GraphPath G) (h : ¬ q.walk.Nil) :
   rw [← hcons, hhead]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.ad37be1f1884 from=translated src=- shape=e6993384 vocab=ec36763e
+-/
 lemma edges_trimStart_erase (q : GraphPath G) (h : ¬ q.walk.Nil) :
     (q.trimStart h).edges = q.edges.erase s(q.start, q.walk.snd) := by
   have hedges := edges_eq_cons_tail q h
@@ -379,12 +475,18 @@ lemma edges_trimStart_erase (q : GraphPath G) (h : ¬ q.walk.Nil) :
     rw [hedges] at heL
     exact List.mem_toFinset.2 ((List.mem_cons.1 heL).resolve_left hne)
 
+/--
+@isnad1 id=eq.1h5v.s7.640e9167bb7c from=translated src=- shape=63544e95 vocab=2556752a
+-/
 lemma edges_prefixTrim (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) :
     (F.prefixTrim hpre).edges =
       F.preWalk.edges.toFinset.erase s(F.preWalk.penultimate, Q.start) :=
   edges_trimFinish_erase (pathOfWalk F.preWalk F.preWalk_isPath) hpre
 
+/--
+@isnad1 id=eq.1h5v.s7.4dd406c587af from=translated src=- shape=d615e5e8 vocab=b59aa9d2
+-/
 lemma edges_suffixTrim (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) :
     (F.suffixTrim hsuf).edges =
@@ -401,12 +503,18 @@ noncomputable def retainedClosedEdges (q : GraphPath G) (S : Finset V)
     (hclose : G.Adj q.finish q.start) : Finset (Sym2 V) :=
   (closedEdges q hclose).filter fun e => bothEndsOutside e S
 
+/--
+@isnad1 id=eq.1h5v.s6.70897082faf4 from=translated src=- shape=fd5a7fab vocab=b351ec2c
+-/
 lemma suf_nil_edges (F : OriginalSubwalkFactor p Q) (hsuf : F.sufWalk.Nil) :
     F.sufWalk.edges.toFinset = ∅ := by
   have h0 : F.sufWalk.length = 0 := (Walk.length_eq_zero_iff).2 hsuf
   have hlen : F.sufWalk.edges.length = 0 := by simp [Walk.length_edges, h0]
   simp [List.length_eq_zero_iff.1 hlen]
 
+/--
+@isnad1 id=le.0h5v.s6.56e705cbccdf from=translated src=- shape=7eca2bfe vocab=30717d12
+-/
 lemma inter_pre_Q (F : OriginalSubwalkFactor p Q) :
     F.preWalk.support.toFinset ∩ Q.support ⊆ {Q.start} := by
   intro x hx
@@ -435,6 +543,9 @@ lemma inter_pre_Q (F : OriginalSubwalkFactor p Q) :
       List.count_eq_one_of_mem p.support_nodup hxG
     omega
 
+/--
+@isnad1 id=le.0h5v.s6.06c10b1b8a7d from=translated src=- shape=476e3e7a vocab=ec43cff5
+-/
 lemma inter_suf_Q (F : OriginalSubwalkFactor p Q) :
     F.sufWalk.support.toFinset ∩ Q.support ⊆ {Q.finish} := by
   intro x hx
@@ -476,6 +587,9 @@ lemma inter_suf_Q (F : OriginalSubwalkFactor p Q) :
       List.count_eq_one_of_mem p.support_nodup hxG
     omega
 
+/--
+@isnad1 id=not.1h5v.s6.7fcecbed0e66 from=translated src=- shape=5b8acf14 vocab=b88070ef
+-/
 lemma start_not_mem_Q_of_pre_not_nil (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) : p.start ∉ Q.support := by
   intro hQ
@@ -486,6 +600,9 @@ lemma start_not_mem_Q_of_pre_not_nil (F : OriginalSubwalkFactor p Q)
       ⟨List.mem_toFinset.2 (Walk.start_mem_support F.preWalk), hQ⟩)
   exact hne (mem_singleton.1 hxS)
 
+/--
+@isnad1 id=not.1h5v.s6.cb3e728ef7f0 from=translated src=- shape=518a42f5 vocab=8b6435eb
+-/
 lemma finish_not_mem_Q_of_suf_not_nil (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) : p.finish ∉ Q.support := by
   intro hQ
@@ -497,7 +614,9 @@ lemma finish_not_mem_Q_of_suf_not_nil (F : OriginalSubwalkFactor p Q)
   exact hne (mem_singleton.1 hxS)
 
 /-- `Q.start` always sits at the end of the prefix, so every vertex of
-`Q` appears in the concatenated support list.-/
+`Q` appears in the concatenated support list.
+@isnad1 id=mem.1h6v.s7.000a8f6d3403 from=translated src=- shape=3b4e3c2f vocab=524c737f
+-/
 lemma mem_concat_of_mem_Q_support (F : OriginalSubwalkFactor p Q) {x : V}
     (hx : x ∈ Q.support) :
     x ∈ F.preWalk.support ++ Q.walk.support.tail ++ F.sufWalk.support.tail := by
@@ -518,7 +637,9 @@ lemma mem_concat_of_mem_Q_support (F : OriginalSubwalkFactor p Q) {x : V}
         (Or.inl (List.mem_append.2 (Or.inl (Walk.end_mem_support F.preWalk))))
     · exact List.mem_append.2 (Or.inl (List.mem_append.2 (Or.inr htail)))
 
-/-- Exact three-piece support union of an actual contiguous factorization.-/
+/-- Exact three-piece support union of an actual contiguous factorization.
+@isnad1 id=eq.0h5v.s6.2c3f11319942 from=translated src=- shape=f968401f vocab=af124611
+-/
 lemma support_union_of_factor (F : OriginalSubwalkFactor p Q) :
     p.support = F.preWalk.support.toFinset ∪ Q.support ∪
       F.sufWalk.support.toFinset := by
@@ -559,13 +680,18 @@ lemma support_union_of_factor (F : OriginalSubwalkFactor p Q) :
         · exact hcat' (F.mem_concat_of_mem_Q_support Q.finish_mem_support)
         · exact hcat' (List.mem_append.2 (Or.inr htail))
 
+/--
+@isnad1 id=le.0h5v.s5.8fea272cb5ea from=translated src=- shape=ea012b82 vocab=65ba4b11
+-/
 lemma Q_support_subset (F : OriginalSubwalkFactor p Q) : Q.support ⊆ p.support := by
   intro x hx
   rw [F.support_union_of_factor]
   exact mem_union.2 (Or.inl (mem_union.2 (Or.inr hx)))
 
 /-- Unique-named support sdiff of this actual factorization. Named to
-avoid colliding with G2 `sdiff_eq_prefix_suffix`.-/
+avoid colliding with G2 `sdiff_eq_prefix_suffix`.
+@isnad1 id=eq.0h5v.s6.9a058fc28c1d from=translated src=- shape=2971f7e1 vocab=6a86effd
+-/
 lemma omitRun_sdiff_eq_prefix_suffix (F : OriginalSubwalkFactor p Q) :
     p.support \ Q.support =
       F.preWalk.support.toFinset.erase Q.start ∪
@@ -595,6 +721,9 @@ lemma omitRun_sdiff_eq_prefix_suffix (F : OriginalSubwalkFactor p Q) :
         hrvQ (mem_inter.2 ⟨hrv, hQ⟩)
       exact hne (mem_singleton.1 this)
 
+/--
+@isnad1 id=eq.1h5v.s5.ba6709f28de6 from=translated src=- shape=406543c8 vocab=ba99e94b
+-/
 lemma erase_end_of_nil {u v : V} {w : G.Walk u v} (h : w.Nil) :
     w.support.toFinset.erase v = ∅ := by
   have : w.support = [u] := (Walk.nil_iff_support_eq).1 h
@@ -604,7 +733,9 @@ lemma erase_end_of_nil {u v : V} {w : G.Walk u v} (h : w.Nil) :
 /-- Exact support identity of this actual complement construction,
 including nil suffix (the suffix erase is empty) and the singleton
 complement (the sdiff may be a singleton). Edge identity cannot identify
-the singleton support.-/
+the singleton support.
+@isnad1 id=eq.2h5v.s6.8ee7165da737 from=translated src=- shape=fbe50afd vocab=9f86afe4
+-/
 theorem omitRunComplement_support (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).support = p.support \ Q.support := by
@@ -631,12 +762,18 @@ theorem omitRunComplement_support (F : OriginalSubwalkFactor p Q)
       union_comm]
     exact hsd.symm
 
+/--
+@isnad1 id=disjoint.2h5v.s6.787845e020fa from=translated src=- shape=e27cb580 vocab=b52721fa
+-/
 lemma omitRunComplement_disjoint_block (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     Disjoint Q.support (F.omitRunComplement hpre hclose).support := by
   rw [F.omitRunComplement_support hpre hclose]
   exact Finset.disjoint_sdiff
 
+/--
+@isnad1 id=le.2h5v.s6.b7bc607edbb9 from=translated src=- shape=2f1ba386 vocab=72ed5c39
+-/
 lemma omitRunComplement_subset_host (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).support ⊆ p.support := by
@@ -644,7 +781,9 @@ lemma omitRunComplement_subset_host (F : OriginalSubwalkFactor p Q)
   exact sdiff_subset
 
 /-- Singleton complement: if the host-minus-block sdiff is a singleton,
-the actual constructed complement is that singleton path.-/
+the actual constructed complement is that singleton path.
+@isnad1 id=ex.3h5v.s7.70c181d69aec from=translated src=- shape=6d04c7d7 vocab=63c8eb9a
+-/
 theorem omitRunComplement_support_singleton (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     (hcard : (p.support \ Q.support).card = 1) :
@@ -654,19 +793,27 @@ theorem omitRunComplement_support_singleton (F : OriginalSubwalkFactor p Q)
   refine ⟨v, ?_, hv⟩
   rw [F.omitRunComplement_support hpre hclose, hv]
 
+/--
+@isnad1 id=mem.2h5v.s6.ddaa9c66fa6d from=translated src=- shape=18f2a424 vocab=fb8ba6f1
+-/
 lemma omitRunComplement_start_mem_support_sdiff (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).start ∈ p.support \ Q.support := by
   rw [← F.omitRunComplement_support hpre hclose]
   exact start_mem_support _
 
+/--
+@isnad1 id=mem.2h5v.s6.e019fc9f718b from=translated src=- shape=d4c1367d vocab=fb8ba6f1
+-/
 lemma omitRunComplement_finish_mem_support_sdiff (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).finish ∈ p.support \ Q.support := by
   rw [← F.omitRunComplement_support hpre hclose]
   exact finish_mem_support _
 
-/-- Constructed complement edges lie among the closed original edges.-/
+/-- Constructed complement edges lie among the closed original edges.
+@isnad1 id=le.2h5v.s6.4e385bfea90a from=translated src=- shape=ba0fe0e4 vocab=6953b284
+-/
 theorem omitRunComplement_edges_subset_closed (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).edges ⊆ closedEdges p hclose := by
@@ -708,6 +855,9 @@ theorem omitRunComplement_edges_subset_closed (F : OriginalSubwalkFactor p Q)
           (mem_singleton.1 hse)
       exact mem_union.2 (Or.inr (mem_singleton.2 this))
 
+/--
+@isnad1 id=bothends.2h6v.s6.e4edb0d7cc8b from=translated src=- shape=5f6e6eb2 vocab=bddf31b3
+-/
 lemma prefixTrim_bothOutside (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) {e : Sym2 V}
     (he : e ∈ (F.prefixTrim hpre).edges) :
@@ -737,6 +887,9 @@ lemma prefixTrim_bothOutside (F : OriginalSubwalkFactor p Q)
   rw [this] at he
   exact (mem_erase.1 he).1 heq
 
+/--
+@isnad1 id=bothends.2h6v.s6.0e40b2a50a0f from=translated src=- shape=100c88a1 vocab=a8e1dce5
+-/
 lemma suffixTrim_bothOutside (F : OriginalSubwalkFactor p Q)
     (hsuf : ¬ F.sufWalk.Nil) {e : Sym2 V}
     (he : e ∈ (F.suffixTrim hsuf).edges) :
@@ -766,6 +919,9 @@ lemma suffixTrim_bothOutside (F : OriginalSubwalkFactor p Q)
   rw [this] at he
   exact (mem_erase.1 he).1 heq
 
+/--
+@isnad1 id=bothends.3h6v.s6.d83ef6e6886f from=translated src=- shape=374a9fae vocab=637cce60
+-/
 theorem omitRunComplement_bothOutside (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
     {e : Sym2 V} (he : e ∈ (F.omitRunComplement hpre hclose).edges) :
@@ -792,7 +948,9 @@ theorem omitRunComplement_bothOutside (F : OriginalSubwalkFactor p Q)
         ⟨F.finish_not_mem_Q_of_suf_not_nil hsuf,
           F.start_not_mem_Q_of_pre_not_nil hpre⟩
 
-/-- Exact complement-edge identity.-/
+/-- Exact complement-edge identity.
+@isnad1 id=eq.2h5v.s6.5619cbcb02d4 from=translated src=- shape=d2385a8f vocab=5f4d4251
+-/
 theorem omitRunComplement_edges (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start) :
     (F.omitRunComplement hpre hclose).edges =
@@ -860,7 +1018,9 @@ theorem omitRunComplement_edges (F : OriginalSubwalkFactor p Q)
 
 /-- Another original run disjoint from `Q` has every walk edge retained
 in the actual complement. An ambient edge-subset of a prescribed cycle
-does not prove this converse.-/
+does not prove this converse.
+@isnad1 id=le.4h6v.s7.ed879c04f811 from=translated src=- shape=abcd585a vocab=47b03e05
+-/
 theorem mem_omitRunComplement_of_disjoint_run
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -875,7 +1035,9 @@ theorem mem_omitRunComplement_of_disjoint_run
   simpa [F.omitRunComplement_edges hpre hclose] using this
 
 /-- Every retained run edge occurs as an actual directed dart of the
-complement, so it admits a `PrefixEdgeFactor`.-/
+complement, so it admits a `PrefixEdgeFactor`.
+@isnad1 id=ex.5h7v.s8.7870e2c4eb10 from=translated src=- shape=c0d80ebc vocab=97364392
+-/
 theorem exists_factor_of_retained_run_edge
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -892,6 +1054,9 @@ theorem exists_factor_of_retained_run_edge
   refine ⟨i, hiL, ?_⟩
   exact (Walk.getElem_edges hiE).symm.trans hie
 
+/--
+@isnad1 id=ex.5h7v.s8.1c21f132df2e from=translated src=- shape=0c61a1be vocab=16d519ea
+-/
 theorem exists_PrefixEdgeFactor_of_retained_run_edge
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -911,7 +1076,9 @@ theorem exists_PrefixEdgeFactor_of_retained_run_edge
 /-- After inserting the omitted block into this actual complement at a
 retained dart, the support is the disjoint union of the complement with
 `Q`, hence equals the host support. Endpoints remain the complement
-endpoints (border `A` membership transports).-/
+endpoints (border `A` membership transports).
+@isnad1 id=eq.4h8v.s7.4075b8fe160f from=translated src=- shape=31786bbe vocab=eb2c438c
+-/
 theorem insertBlock_support_of_omitRunComplement
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -926,6 +1093,9 @@ theorem insertBlock_support_of_omitRunComplement
   have hQ : Q.support ⊆ p.support := F.Q_support_subset
   rw [hunion, hr, sdiff_union_self_eq_union, union_eq_left.2 hQ]
 
+/--
+@isnad1 id=eq.4h8v.s7.817ee86024bd from=translated src=- shape=966eb720 vocab=fa699f26
+-/
 lemma insertBlock_start_of_omitRunComplement
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -935,6 +1105,9 @@ lemma insertBlock_start_of_omitRunComplement
       (F.omitRunComplement hpre hclose).start :=
   Fac.insertBlock_start Q (F.omitRunComplement_disjoint_block hpre hclose) hs hf
 
+/--
+@isnad1 id=eq.4h8v.s7.960e74133f8f from=translated src=- shape=eb631cef vocab=fa699f26
+-/
 lemma insertBlock_finish_of_omitRunComplement
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -944,6 +1117,9 @@ lemma insertBlock_finish_of_omitRunComplement
       (F.omitRunComplement hpre hclose).finish :=
   Fac.insertBlock_finish Q (F.omitRunComplement_disjoint_block hpre hclose) hs hf
 
+/--
+@isnad1 id=mem.5h9v.s7.ea5a6d1649a4 from=translated src=- shape=8d404e89 vocab=b8cd593e
+-/
 lemma insertBlock_start_mem_A_of_omitRunComplement
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -954,6 +1130,9 @@ lemma insertBlock_start_mem_A_of_omitRunComplement
   simpa [Fac.insertBlock_start Q (F.omitRunComplement_disjoint_block hpre hclose) hs hf]
     using hA
 
+/--
+@isnad1 id=mem.5h9v.s7.ec96180f7e89 from=translated src=- shape=a8457898 vocab=b8cd593e
+-/
 lemma insertBlock_finish_mem_A_of_omitRunComplement
     (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) (hclose : G.Adj p.finish p.start)
@@ -968,7 +1147,9 @@ end OriginalSubwalkFactor
 
 /-- Cycle-filtered form: if the opened path plus its closing edge recovers
 the prescribed cycle, the complement edges are exactly the cycle edges
-with both ends outside `Q.support`.-/
+with both ends outside `Q.support`.
+@isnad1 id=eq.3h6v.s7.8ebe2c55489e from=translated src=- shape=6ee72f61 vocab=a6435be0
+-/
 theorem omitRunComplement_eq_cycle_filter
     {p Q : GraphPath G} (F : OriginalSubwalkFactor p Q)
     (hpre : ¬ F.preWalk.Nil) {c : GraphCycle G}

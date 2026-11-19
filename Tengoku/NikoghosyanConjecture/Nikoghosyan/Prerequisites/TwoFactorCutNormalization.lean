@@ -45,14 +45,23 @@ noncomputable def oddComponentCount (Z : Set V) : ℕ :=
 noncomputable def signedDeficiency (Z : Set V) : ℤ :=
   (oddComponentCount G Z : ℤ) - (Z.ncard : ℤ)
 
+/--
+@isnad1 id=le.0h3v.s5.24836dd69ba3 from=translated src=- shape=6d540ea2 vocab=96d14eda
+-/
 lemma subset_return_compl {Z : Set V} {z : V} : Zᶜ ⊆ (Z \ {z})ᶜ := by
   intro x hx
   simp only [mem_compl_iff, mem_sdiff, mem_singleton_iff] at hx ⊢
   exact fun h => hx h.1
 
+/--
+@isnad1 id=mem.0h3v.s5.33e0a49f084e from=translated src=- shape=7d370194 vocab=f062ef7d
+-/
 lemma z_mem_return_compl {Z : Set V} {z : V} : z ∈ (Z \ {z})ᶜ := by
   simp [mem_compl_iff, mem_sdiff]
 
+/--
+@isnad1 id=mem.2h4v.s5.dd08c59a96a7 from=translated src=- shape=c0905182 vocab=f062ef7d
+-/
 lemma mem_compl_of_mem_return_compl_ne {Z : Set V} {z x : V}
     (hx : x ∈ (Z \ {z})ᶜ) (hne : x ≠ z) : x ∈ Zᶜ := by
   intro hxz
@@ -63,6 +72,9 @@ def remainIncl (Z : Set V) (z : V) (v : {x // x ∈ Zᶜ}) :
     {x // x ∈ (Z \ {z})ᶜ} :=
   ⟨v.1, subset_return_compl v.2⟩
 
+/--
+@isnad1 id=injectiv.0h3v.s6.1601ea6e9c14 from=translated src=- shape=e489f57c vocab=85dfdfa8
+-/
 lemma remainIncl_injective (Z : Set V) (z : V) :
     Function.Injective (remainIncl Z z) := by
   intro a b h
@@ -72,6 +84,9 @@ lemma remainIncl_injective (Z : Set V) (z : V) :
 def returnedVert (Z : Set V) (z : V) : {x // x ∈ (Z \ {z})ᶜ} :=
   ⟨z, z_mem_return_compl⟩
 
+/--
+@isnad1 id=ne.1h4v.s6.818a1ee45854 from=translated src=- shape=6caf91e8 vocab=a29b0afd
+-/
 lemma remainIncl_ne_returned {Z : Set V} {z : V} (hz : z ∈ Z) (v : {x // x ∈ Zᶜ}) :
     remainIncl Z z v ≠ returnedVert Z z := by
   intro h
@@ -82,6 +97,9 @@ def remainHom (Z : Set V) (z : V) :
     G.induce Zᶜ →g G.induce (Z \ {z})ᶜ :=
   (G.induceHomOfLE (subset_return_compl (Z := Z) (z := z))).toHom
 
+/--
+@isnad1 id=reachabl.1h6v.s7.db3032be3f8f from=translated src=- shape=b0c605d1 vocab=a98e598d
+-/
 lemma reachable_remainIncl {Z : Set V} {z : V} {u v : {x // x ∈ Zᶜ}}
     (h : (G.induce Zᶜ).Reachable u v) :
     (G.induce (Z \ {z})ᶜ).Reachable
@@ -93,6 +111,9 @@ def neighborComponentSet (Z : Set V) (z : V) :
     Set (G.induce Zᶜ).ConnectedComponent :=
   {c | ∃ v : {x // x ∈ Zᶜ}, G.Adj z v ∧ (G.induce Zᶜ).connectedComponentMk v = c}
 
+/--
+@isnad1 id=iff.0h5v.s7.7fd46227a647 from=translated src=- shape=bc1fde8d vocab=e84751a7
+-/
 lemma mem_neighborComponentSet_iff {Z : Set V} {z : V}
     {c : (G.induce Zᶜ).ConnectedComponent} :
     c ∈ neighborComponentSet G Z z ↔
@@ -109,6 +130,9 @@ def mapRemainComp (Z : Set V) (z : V)
     (G.induce (Z \ {z})ᶜ).ConnectedComponent :=
   c.map (remainHom G Z z)
 
+/--
+@isnad1 id=eq.0h5v.s7.edc4cfcd4bad from=translated src=- shape=d8ac43b2 vocab=ecf4083d
+-/
 lemma mapRemainComp_mk {Z : Set V} {z : V} (v : {x // x ∈ Zᶜ}) :
     mapRemainComp G Z z ((G.induce Zᶜ).connectedComponentMk v) =
       (G.induce (Z \ {z})ᶜ).connectedComponentMk
@@ -120,6 +144,9 @@ def returnedComp (Z : Set V) (z : V) :
     (G.induce (Z \ {z})ᶜ).ConnectedComponent :=
   (G.induce (Z \ {z})ᶜ).connectedComponentMk (returnedVert Z z)
 
+/--
+@isnad1 id=adj.1h5v.s6.3e346d94e531 from=translated src=- shape=b4c0244c vocab=8975c1c3
+-/
 lemma adj_returned_remainIncl {Z : Set V} {z : V} {v : {x // x ∈ Zᶜ}} (h : G.Adj z v) :
     (G.induce (Z \ {z})ᶜ).Adj
       (returnedVert Z z) (remainIncl Z z v) :=
@@ -133,7 +160,9 @@ lemma eq_remainIncl_of_ne_z {Z : Set V} {z : V} (x : {w // w ∈ (Z \ {z})ᶜ})
   ext
   rfl
 
-/-- A walk in `G−(Z\{z})` that never visits `z` descends to `G−Z`.-/
+/-- A walk in `G−(Z\{z})` that never visits `z` descends to `G−Z`.
+@isnad1 id=reachabl.3h7v.s8.500ff5faec01 from=translated src=- shape=47b855da vocab=201c2deb
+-/
 lemma reachable_of_avoid_returned {Z : Set V} {z : V}
     {x y : {w // w ∈ (Z \ {z})ᶜ}}
     (p : (G.induce (Z \ {z})ᶜ).Walk x y)
@@ -156,6 +185,9 @@ lemma reachable_of_avoid_returned {Z : Set V} {z : V}
       exact hadj0.reachable.trans
         (reachable_of_avoid_returned (Z := Z) (z := z) q hq hw' hy)
 
+/--
+@isnad1 id=reachabl.1h7v.s8.f583dd595457 from=translated src=- shape=a3437751 vocab=3e8072cd
+-/
 lemma reachable_of_avoid_remainIncl {Z : Set V} {z : V} {u v : {x // x ∈ Zᶜ}}
     (p : (G.induce (Z \ {z})ᶜ).Walk
       (remainIncl Z z u) (remainIncl Z z v))
@@ -170,11 +202,16 @@ lemma reachable_of_avoid_remainIncl {Z : Set V} {z : V} {u v : {x // x ∈ Zᶜ}
     Subtype.ext rfl
   exact hu ▸ hv ▸ h
 
+/--
+@isnad1 id=not.1h3v.s4.eb5091a384ae from=translated src=- shape=0dc16bc7 vocab=051b728d
+-/
 lemma not_mem_tail_of_isPath_cons {α : Type*} {a : α} {l : List α}
     (h : (a :: l).Nodup) : a ∉ l :=
   (List.nodup_cons.mp h).1
 
-/-- `z` reaches `u` in `G−(Z\{z})` iff `u`'s old component meets `z`.-/
+/-- `z` reaches `u` in `G−(Z\{z})` iff `u`'s old component meets `z`.
+@isnad1 id=iff.1h5v.s7.4861c73c2c90 from=translated src=- shape=c505f324 vocab=00e8db29
+-/
 lemma reachable_returned_iff {Z : Set V} {z : V} (hz : z ∈ Z) (u : {x // x ∈ Zᶜ}) :
     (G.induce (Z \ {z})ᶜ).Reachable
         (returnedVert Z z)
@@ -214,6 +251,9 @@ lemma reachable_returned_iff {Z : Set V} {z : V} (hz : z ∈ Z) (u : {x // x ∈
     have h2 := reachable_remainIncl (G := G) (z := z) (ConnectedComponent.exact hw)
     exact h1.trans h2
 
+/--
+@isnad1 id=reachabl.2h5v.s7.fff5ba6c22bf from=translated src=- shape=9ddf57b3 vocab=00e8db29
+-/
 lemma reachable_returned_of_mem_neighbor {Z : Set V} {z : V} (hz : z ∈ Z)
     {u : {x // x ∈ Zᶜ}}
     (h : (G.induce Zᶜ).connectedComponentMk u ∈ neighborComponentSet G Z z) :
@@ -223,7 +263,9 @@ lemma reachable_returned_of_mem_neighbor {Z : Set V} {z : V} (hz : z ∈ Z)
   (reachable_returned_iff (G := G) hz u).mpr h
 
 /-- Two surviving vertices are joined after returning `z` iff they were
-already joined or both meet `z`.-/
+already joined or both meet `z`.
+@isnad1 id=iff.1h6v.s8.da49e0a28389 from=translated src=- shape=34c1ee40 vocab=443ec647
+-/
 lemma reachable_remainIncl_iff {Z : Set V} {z : V} (hz : z ∈ Z) (u v : {x // x ∈ Zᶜ}) :
     (G.induce (Z \ {z})ᶜ).Reachable
         (remainIncl Z z u)
@@ -250,6 +292,9 @@ lemma reachable_remainIncl_iff {Z : Set V} {z : V} (hz : z ∈ Z) (u v : {x // x
     · exact (reachable_returned_of_mem_neighbor (G := G) hz hu).symm.trans
         (reachable_returned_of_mem_neighbor (G := G) hz hv)
 
+/--
+@isnad1 id=iff.1h5v.s7.80078266942b from=translated src=- shape=8b5a7810 vocab=0799d6c3
+-/
 lemma mapRemainComp_eq_returned_iff {Z : Set V} {z : V} (hz : z ∈ Z)
     (c : (G.induce Zᶜ).ConnectedComponent) :
     mapRemainComp G Z z c = returnedComp G Z z ↔
@@ -259,6 +304,9 @@ lemma mapRemainComp_eq_returned_iff {Z : Set V} {z : V} (hz : z ∈ Z)
   rw [← hc, mapRemainComp_mk, returnedComp, ConnectedComponent.eq, reachable_comm]
   exact reachable_returned_iff G hz v
 
+/--
+@isnad1 id=eq.2h5v.s8.73e8497b6241 from=translated src=- shape=97da1288 vocab=a3c7eb4b
+-/
 lemma mapRemainComp_supp_of_not_mem {Z : Set V} {z : V} (hz : z ∈ Z)
     {c : (G.induce Zᶜ).ConnectedComponent}
     (hc : c ∉ neighborComponentSet G Z z) :
@@ -301,6 +349,9 @@ lemma mapRemainComp_supp_of_not_mem {Z : Set V} {z : V} (hz : z ∈ Z)
     have hc' : (G.induce Zᶜ).connectedComponentMk v = c := hv
     rw [ConnectedComponent.mem_supp_iff, ← hc', mapRemainComp_mk]
 
+/--
+@isnad1 id=eq.2h5v.s7.64e497cc6ec8 from=translated src=- shape=0fdf4a63 vocab=111fb768
+-/
 lemma mapRemainComp_ncard_of_not_mem {Z : Set V} {z : V} (hz : z ∈ Z)
     {c : (G.induce Zᶜ).ConnectedComponent}
     (hc : c ∉ neighborComponentSet G Z z) :
@@ -308,6 +359,9 @@ lemma mapRemainComp_ncard_of_not_mem {Z : Set V} {z : V} (hz : z ∈ Z)
   rw [mapRemainComp_supp_of_not_mem (G := G) hz hc,
       ncard_image_of_injective _ (remainIncl_injective Z z)]
 
+/--
+@isnad1 id=injon.1h4v.s7.b84dc3779c0f from=translated src=- shape=798e5f69 vocab=08da374a
+-/
 lemma mapRemainComp_injOn_not_mem {Z : Set V} {z : V} (hz : z ∈ Z) :
     InjOn (mapRemainComp G Z z) (neighborComponentSet G Z z)ᶜ := by
   intro c hc d hd hcd
@@ -335,6 +389,9 @@ lemma mapRemainComp_injOn_not_mem {Z : Set V} {z : V} (hz : z ∈ Z) :
   · have hc' : (G.induce Zᶜ).connectedComponentMk v = c := hv
     exact (hc (by simpa [hc'] using hmet)).elim
 
+/--
+@isnad1 id=eq.1h4v.s8.6a45e2beae0a from=translated src=- shape=0ca47c75 vocab=0b5ce0e0
+-/
 lemma returnedComp_supp {Z : Set V} {z : V} (hz : z ∈ Z) :
     (returnedComp G Z z).supp =
       insert (returnedVert Z z)
@@ -368,6 +425,9 @@ lemma returnedComp_supp {Z : Set V} {z : V} (hz : z ∈ Z) :
       rw [ConnectedComponent.mem_supp_iff, returnedComp, ConnectedComponent.eq]
       exact (reachable_returned_of_mem_neighbor (G := G) hz hmet).symm
 
+/--
+@isnad1 id=eq.0h3v.s6.7a82a996b484 from=translated src=- shape=f543a1c6 vocab=97c79ea8
+-/
 lemma ncard_iUnion_supp {W : Type*} [Fintype W] [DecidableEq W]
     {H : SimpleGraph W} [DecidableRel H.Adj]
     (s : Finset H.ConnectedComponent) :
@@ -382,6 +442,9 @@ lemma ncard_iUnion_supp {W : Type*} [Fintype W] [DecidableEq W]
   · intro a _ b _ hab
     exact disjoint_toFinset.mpr (pairwise_disjoint_supp_connectedComponent _ hab)
 
+/--
+@isnad1 id=eq.1h4v.s9.6556ef0b9cdc from=translated src=- shape=05865280 vocab=7b066029
+-/
 lemma returnedComp_ncard {Z : Set V} {z : V} (hz : z ∈ Z) :
     (returnedComp G Z z).supp.ncard =
       1 + ∑ c ∈ (neighborComponentSet G Z z).toFinset, c.supp.ncard := by
@@ -404,6 +467,9 @@ lemma returnedComp_ncard {Z : Set V} {z : V} (hz : z ∈ Z) :
     simp
   rw [hunion, ncard_iUnion_supp, add_comm]
 
+/--
+@isnad1 id=iff.1h4v.s7.e738e5172a29 from=translated src=- shape=22895dfa vocab=a6ffdd2c
+-/
 lemma returnedComp_odd_iff {Z : Set V} {z : V} (hz : z ∈ Z) :
     Odd (returnedComp G Z z).supp.ncard ↔
       Even (neighborComponentSet G Z z ∩ (G.induce Zᶜ).oddComponents).ncard := by
@@ -426,6 +492,9 @@ lemma returnedComp_odd_iff {Z : Set V} {z : V} (hz : z ∈ Z) :
     rw [add_comm, Nat.odd_add_one, Nat.not_odd_iff_even]
   rw [hsum, hparity, ← Nat.not_odd_iff_even, hodd, hcard, Nat.not_odd_iff_even]
 
+/--
+@isnad1 id=eq.1h4v.s8.4ef8bb8fd701 from=translated src=- shape=2339bba2 vocab=e0e32000
+-/
 lemma oddComponentCount_return_eq {Z : Set V} {z : V} (hz : z ∈ Z) :
     oddComponentCount G (Z \ {z}) =
       oddComponentCount G Z -
@@ -579,7 +648,9 @@ lemma oddComponentCount_return_eq {Z : Set V} {z : V} (hz : z ∈ Z) :
   rw [h1, hsub, hite]
 
 /-- Returning a vertex that meets at most two components of `G−Z` drops
-the odd-component count by at most one.-/
+the odd-component count by at most one.
+@isnad1 id=le.2h4v.s6.d8272904a607 from=translated src=- shape=9050bdaf vocab=0a656cab
+-/
 theorem oddComponentCount_return_le {Z : Set V} {z : V} (hz : z ∈ Z)
     (hmeet : (neighborComponentSet G Z z).ncard ≤ 2) :
     oddComponentCount G (Z \ {z}) + 1 ≥ oddComponentCount G Z := by
@@ -608,7 +679,9 @@ theorem oddComponentCount_return_le {Z : Set V} {z : V} (hz : z ∈ Z)
     omega
 
 /-- Signed deficiency cannot decrease when returning a vertex that meets
-at most two components of the deleted remainder.-/
+at most two components of the deleted remainder.
+@isnad1 id=le.2h4v.s6.8b4480f9fee1 from=translated src=- shape=6c5457c0 vocab=753e2db4
+-/
 theorem signedDeficiency_return_mono {Z : Set V} {z : V} (hz : z ∈ Z)
     (hmeet : (neighborComponentSet G Z z).ncard ≤ 2) :
     signedDeficiency G Z ≤ signedDeficiency G (Z \ {z}) := by
@@ -646,23 +719,34 @@ def classT (Z : Set (GadgetVert G)) (v : V) : Prop :=
 def classU (Z : Set (GadgetVert G)) (v : V) : Prop :=
   hasSurvivingClone Z v ∧ hasSurvivingPort Z v
 
+/--
+@isnad1 id=classs.1h4v.s5.1e076774a603 from=translated src=- shape=c78fa292 vocab=e4f51151
+-/
 lemma classS_of_not_clone (Z : Set (GadgetVert G)) {v : V}
     (h : ∀ b : Fin 2, GadgetVert.clone v b ∈ Z) : classS Z v := by
   intro ⟨b, hb⟩
   exact hb (h b)
 
+/--
+@isnad1 id=iff.1h5v.s6.606667b563e3 from=translated src=- shape=bcec4bed vocab=7fcd9396
+-/
 lemma gadget_adj_port_cases {v w : V} {hvw : G.Adj v w} {x : GadgetVert G} :
     (gadget G).Adj (.port v w hvw) x ↔
       (∃ b : Fin 2, x = .clone v b) ∨ ∃ h' : G.Adj w v, x = .port w v h' :=
   port_adj_iff
 
+/--
+@isnad1 id=iff.0h5v.s6.faf19ff4a945 from=translated src=- shape=580ff896 vocab=7fcd9396
+-/
 lemma gadget_adj_clone_cases {v : V} {b : Fin 2} {x : GadgetVert G} :
     (gadget G).Adj (.clone v b) x ↔
       ∃ w, ∃ h : G.Adj v w, x = .port v w h :=
   clone_adj_iff
 
 /-- A clone whose every incident port is deleted has no neighbour in the
-remainder, so returning it meets zero components.-/
+remainder, so returning it meets zero components.
+@isnad1 id=eq.2h5v.s7.eb14f050ae86 from=translated src=- shape=204ca57e vocab=3eadc5e2
+-/
 lemma neighborComponentSet_clone_of_no_port
     {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hZ : GadgetVert.clone v b ∈ Z)
@@ -677,11 +761,16 @@ lemma neighborComponentSet_clone_of_no_port
   · intro h
     exact h.elim
 
+/--
+@isnad1 id=eq.2h4v.s5.102f7d1adecb from=translated src=- shape=728a89a1 vocab=4cd5bd3e
+-/
 lemma port_eq_of_same_ends {v w : V} {h h' : G.Adj v w} :
     GadgetVert.port v w h = GadgetVert.port v w h' :=
   rfl
 
-/-- Returning a T-clone meets zero remainder components.-/
+/-- Returning a T-clone meets zero remainder components.
+@isnad1 id=eq.2h5v.s7.89bcbaa1dd40 from=translated src=- shape=7f081c02 vocab=6a131bfa
+-/
 lemma neighborComponentSet_clone_of_classT
     {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hZ : GadgetVert.clone v b ∈ Z) (hT : classT Z v) :
@@ -690,7 +779,9 @@ lemma neighborComponentSet_clone_of_classT
     by_contra hop
     exact hT.2 ⟨w, h, hop⟩)
 
-/-- A returned S-port meets at most one remainder component (its opposite port).-/
+/-- A returned S-port meets at most one remainder component (its opposite port).
+@isnad1 id=le.3h5v.s6.bade77d2aad9 from=translated src=- shape=e0ecc537 vocab=d832b818
+-/
 lemma neighborComponentSet_ncard_port_of_classS
     {Z : Set (GadgetVert G)} {v w : V} {hvw : G.Adj v w}
     (hZ : GadgetVert.port v w hvw ∈ Z)
@@ -740,7 +831,9 @@ lemma neighborComponentSet_ncard_port_of_classS
     simpa [heq]
 
 /-- Returning a missing U-clone meets at most one remainder component:
-all surviving ports of `v` lie in the component of a surviving clone.-/
+all surviving ports of `v` lie in the component of a surviving clone.
+@isnad1 id=le.2h5v.s6.07b096537c0d from=translated src=- shape=4c69c1bc vocab=d383ed19
+-/
 lemma neighborComponentSet_ncard_clone_of_classU
     {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hZ : GadgetVert.clone v b ∈ Z) (hU : classU Z v) :
@@ -765,6 +858,9 @@ lemma neighborComponentSet_ncard_clone_of_classU
 
 /-! ## U-port returns and finite cut normalization (interface §4) -/
 
+/--
+@isnad1 id=or.0h4v.s5.cdb7c671d634 from=translated src=- shape=a4d5cbdc vocab=8f11be3c
+-/
 lemma classSTU (Z : Set (GadgetVert G)) (v : V) :
     classS Z v ∨ classT Z v ∨ classU Z v := by
   by_cases hc : hasSurvivingClone Z v
@@ -773,6 +869,9 @@ lemma classSTU (Z : Set (GadgetVert G)) (v : V) :
     · exact .inr (.inl ⟨hc, hp⟩)
   · exact .inl hc
 
+/--
+@isnad1 id=not.1h4v.s5.7e6f8106ade5 from=translated src=- shape=80ab87c4 vocab=8f11be3c
+-/
 lemma not_classS_of_TU {Z : Set (GadgetVert G)} {v : V}
     (h : classT Z v ∨ classU Z v) : ¬ classS Z v := by
   intro hS
@@ -780,6 +879,9 @@ lemma not_classS_of_TU {Z : Set (GadgetVert G)} {v : V}
   · exact hS hT.1
   · exact hS hU.1
 
+/--
+@isnad1 id=not.1h4v.s5.bfe99a6ea343 from=translated src=- shape=80ab87c4 vocab=8f11be3c
+-/
 lemma not_classT_of_SU {Z : Set (GadgetVert G)} {v : V}
     (h : classS Z v ∨ classU Z v) : ¬ classT Z v := by
   intro hT
@@ -787,22 +889,34 @@ lemma not_classT_of_SU {Z : Set (GadgetVert G)} {v : V}
   · exact hS hT.1
   · exact hT.2 hU.2
 
+/--
+@isnad1 id=mem.1h5v.s5.fa35f1d4ea98 from=translated src=- shape=af67372e vocab=e4f51151
+-/
 lemma classS_clone_mem {Z : Set (GadgetVert G)} {v : V}
     (hS : classS Z v) (b : Fin 2) : GadgetVert.clone v b ∈ Z := by
   by_contra hb
   exact hS ⟨b, hb⟩
 
+/--
+@isnad1 id=mem.2h5v.s5.704a2b1d3147 from=translated src=- shape=c99e68fa vocab=08cfbb81
+-/
 lemma classT_port_mem {Z : Set (GadgetVert G)} {v : V}
     (hT : classT Z v) {w : V} (hvw : G.Adj v w) :
     GadgetVert.port v w hvw ∈ Z := by
   by_contra hp
   exact hT.2 ⟨w, hvw, hp⟩
 
+/--
+@isnad1 id=ex.1h4v.s5.e1f85cce973d from=translated src=- shape=f32ef970 vocab=de539286
+-/
 lemma exists_adj_of_classU {Z : Set (GadgetVert G)} {v : V}
     (hU : classU Z v) : ∃ w, G.Adj v w := by
   obtain ⟨w, h, _⟩ := hU.2
   exact ⟨w, h⟩
 
+/--
+@isnad1 id=disjoint.0h3v.s6.a8d6137223ae from=translated src=- shape=3ac8109b vocab=7ba02e69
+-/
 lemma disjoint_classS_classT (Z : Set (GadgetVert G)) :
     Disjoint {v | classS Z v} {v | classT Z v} := by
   rw [Set.disjoint_left]
@@ -810,7 +924,9 @@ lemma disjoint_classS_classT (Z : Set (GadgetVert G)) :
   exact hS hT.1
 
 /-- Surviving clones of a U-vertex lie in one remainder component, via the
-two-edge walk through a surviving own port (repeated endpoints allowed).-/
+two-edge walk through a surviving own port (repeated endpoints allowed).
+@isnad1 id=reachabl.3h6v.s7.917310491b91 from=translated src=- shape=13630310 vocab=debc3f4d
+-/
 lemma reachable_surviving_clones_of_classU
     {Z : Set (GadgetVert G)} {v : V} (hU : classU Z v)
     {b b' : Fin 2}
@@ -829,7 +945,9 @@ lemma reachable_surviving_clones_of_classU
   exact h1.reachable.trans h2.reachable
 
 /-- Returning a missing U-port meets at most two remainder components:
-the local surviving-clone gadget, and possibly the opposite port.-/
+the local surviving-clone gadget, and possibly the opposite port.
+@isnad1 id=le.3h5v.s6.b64e90694729 from=translated src=- shape=e0ecc537 vocab=38b81516
+-/
 lemma neighborComponentSet_ncard_port_of_classU
     {Z : Set (GadgetVert G)} {v w : V} {hvw : G.Adj v w}
     (_hZ : GadgetVert.port v w hvw ∈ Z) (hU : classU Z v) :
@@ -896,16 +1014,25 @@ structure CutInv (Z0 W : Set (GadgetVert G)) : Prop where
   keep_T_ports :
     ∀ v, classT Z0 v → ∀ {w : V} (hvw : G.Adj v w), GadgetVert.port v w hvw ∈ W
 
+/--
+@isnad1 id=cutinv.0h3v.s4.9af5c02d77b4 from=translated src=- shape=c5dc222d vocab=1b7e89fa
+-/
 lemma CutInv.refl (Z : Set (GadgetVert G)) : CutInv Z Z where
   subset := fun _ hx => hx
   keep_S_clones := fun v hS b => classS_clone_mem hS b
   keep_T_ports := fun v hT _ hvw => classT_port_mem hT hvw
 
+/--
+@isnad1 id=classs.2h5v.s5.2f692a5a0ff2 from=translated src=- shape=a4c71fff vocab=e3ec0993
+-/
 lemma classS_of_inv {Z0 W : Set (GadgetVert G)} {v : V}
     (h : CutInv Z0 W) (hS : classS Z0 v) : classS W v := by
   intro ⟨b, hb⟩
   exact hb (h.keep_S_clones v hS b)
 
+/--
+@isnad1 id=classt.2h5v.s5.20a790876780 from=translated src=- shape=a4c71fff vocab=9934e51a
+-/
 lemma classT_of_inv {Z0 W : Set (GadgetVert G)} {v : V}
     (h : CutInv Z0 W) (hT : classT Z0 v) : classT W v := by
   refine ⟨?_, ?_⟩
@@ -914,6 +1041,9 @@ lemma classT_of_inv {Z0 W : Set (GadgetVert G)} {v : V}
   · intro ⟨w, hvw, hp⟩
     exact hp (h.keep_T_ports v hT hvw)
 
+/--
+@isnad1 id=classu.2h5v.s5.4e646ba6a4ea from=translated src=- shape=a4c71fff vocab=e15d0c1a
+-/
 lemma classU_of_inv {Z0 W : Set (GadgetVert G)} {v : V}
     (h : CutInv Z0 W) (hU : classU Z0 v) : classU W v := by
   refine ⟨?_, ?_⟩
@@ -932,6 +1062,9 @@ def pendingSUPorts (Z0 W : Set (GadgetVert G)) : Set (GadgetVert G) :=
   {x | x ∈ W ∧ ∃ v w : V, ∃ h : G.Adj v w,
       x = .port v w h ∧ (classS Z0 v ∨ classU Z0 v)}
 
+/--
+@isnad1 id=eq.1h5v.s6.d398bd7a56c7 from=translated src=- shape=af1b4da0 vocab=166ba96b
+-/
 lemma pendingTUClones_sdiff {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hz : z ∈ pendingTUClones Z0 W) :
     pendingTUClones Z0 (W \ {z}) = pendingTUClones Z0 W \ {z} := by
@@ -943,6 +1076,9 @@ lemma pendingTUClones_sdiff {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
   · intro ⟨⟨hxW, h⟩, hne⟩
     exact ⟨⟨hxW, hne⟩, h⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.683dc652182c from=translated src=- shape=af1b4da0 vocab=0704aa73
+-/
 lemma pendingSUPorts_sdiff {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hz : z ∈ pendingSUPorts Z0 W) :
     pendingSUPorts Z0 (W \ {z}) = pendingSUPorts Z0 W \ {z} := by
@@ -954,6 +1090,9 @@ lemma pendingSUPorts_sdiff {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
   · intro ⟨⟨hxW, h⟩, hne⟩
     exact ⟨⟨hxW, hne⟩, h⟩
 
+/--
+@isnad1 id=eq.2h4v.s6.960ed20ceb57 from=translated src=- shape=9280bada vocab=8aae5722
+-/
 lemma sdiff_pending_eq {α : Type*} {W P : Set α} {z : α}
     (hzP : z ∈ P) (hPW : P ⊆ W) :
     (W \ {z}) \ (P \ {z}) = W \ P := by
@@ -966,6 +1105,9 @@ lemma sdiff_pending_eq {α : Type*} {W P : Set α} {z : α}
     have hxz : x ≠ z := fun h => hxP (h ▸ hzP)
     exact ⟨⟨hxW, hxz⟩, fun h => hxP h.1⟩
 
+/--
+@isnad1 id=cutinv.2h5v.s6.e31162c0ddd6 from=translated src=- shape=954d4292 vocab=e8d7da65
+-/
 lemma CutInv.return_TU_clone {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingTUClones Z0 W) :
     CutInv Z0 (W \ {z}) where
@@ -989,6 +1131,9 @@ lemma CutInv.return_TU_clone {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     obtain ⟨_, v', b', rfl, _⟩ := hz
     cases h
 
+/--
+@isnad1 id=cutinv.2h5v.s6.e51fc3fcad66 from=translated src=- shape=954d4292 vocab=0d9e06c1
+-/
 lemma CutInv.return_SU_port {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingSUPorts Z0 W) :
     CutInv Z0 (W \ {z}) where
@@ -1012,6 +1157,9 @@ lemma CutInv.return_SU_port {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     cases hv
     exact not_classT_of_SU hSU hT
 
+/--
+@isnad1 id=le.2h5v.s6.fe69afb38226 from=translated src=- shape=52b8dc33 vocab=4aa5884d
+-/
 lemma neighborComponentSet_ncard_pending_TU_clone
     {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingTUClones Z0 W) :
@@ -1024,6 +1172,9 @@ lemma neighborComponentSet_ncard_pending_TU_clone
   · exact (neighborComponentSet_ncard_clone_of_classU (Z := W) hzW
       (classU_of_inv hinv hU)).trans (by omega)
 
+/--
+@isnad1 id=le.2h5v.s6.1af4f0e21e59 from=translated src=- shape=52b8dc33 vocab=a6ee1dcc
+-/
 lemma neighborComponentSet_ncard_pending_SU_port
     {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingSUPorts Z0 W) :
@@ -1035,6 +1186,9 @@ lemma neighborComponentSet_ncard_pending_SU_port
   · exact neighborComponentSet_ncard_port_of_classU (Z := W) hzW
       (classU_of_inv hinv hU)
 
+/--
+@isnad1 id=le.2h5v.s6.26d56bdf1271 from=translated src=- shape=cf31efd3 vocab=975ca207
+-/
 lemma signedDeficiency_return_pending_TU_clone
     {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingTUClones Z0 W) :
@@ -1042,6 +1196,9 @@ lemma signedDeficiency_return_pending_TU_clone
   signedDeficiency_return_mono (G := gadget G) hz.1
     (neighborComponentSet_ncard_pending_TU_clone hinv hz)
 
+/--
+@isnad1 id=le.2h5v.s6.ce3bb05b3726 from=translated src=- shape=cf31efd3 vocab=75ba38b2
+-/
 lemma signedDeficiency_return_pending_SU_port
     {Z0 W : Set (GadgetVert G)} {z : GadgetVert G}
     (hinv : CutInv Z0 W) (hz : z ∈ pendingSUPorts Z0 W) :
@@ -1049,6 +1206,9 @@ lemma signedDeficiency_return_pending_SU_port
   signedDeficiency_return_mono (G := gadget G) hz.1
     (neighborComponentSet_ncard_pending_SU_port hinv hz)
 
+/--
+@isnad1 id=and.1h4v.s6.3dba136f5f15 from=translated src=- shape=68ae8db0 vocab=3559d9e9
+-/
 lemma stage_return_clones (Z0 : Set (GadgetVert G)) :
     ∀ W, CutInv Z0 W →
       signedDeficiency (gadget G) W ≤
@@ -1086,6 +1246,9 @@ lemma stage_return_clones (Z0 : Set (GadgetVert G)) :
       · simpa [hset] using hinv2
       · simpa [hset] using hempty
 
+/--
+@isnad1 id=and.1h4v.s6.7a9226ff63bf from=translated src=- shape=68ae8db0 vocab=c53a8596
+-/
 lemma stage_return_ports (Z0 : Set (GadgetVert G)) :
     ∀ W, CutInv Z0 W →
       signedDeficiency (gadget G) W ≤
@@ -1129,12 +1292,18 @@ def canonicalCut (Z : Set (GadgetVert G)) : Set (GadgetVert G) :=
   {x | ∃ v : V, ∃ b : Fin 2, x = .clone v b ∧ classS Z v} ∪
     {x | ∃ v w : V, ∃ h : G.Adj v w, x = .port v w h ∧ classT Z v}
 
+/--
+@isnad1 id=le.0h3v.s5.16a50217968e from=translated src=- shape=6df18472 vocab=746948cb
+-/
 lemma canonicalCut_subset (Z : Set (GadgetVert G)) : canonicalCut Z ⊆ Z := by
   intro x hx
   rcases hx with ⟨v, b, rfl, hS⟩ | ⟨v, w, h, rfl, hT⟩
   · exact classS_clone_mem hS b
   · exact classT_port_mem hT h
 
+/--
+@isnad1 id=eq.2h5v.s6.717636dfb1b7 from=translated src=- shape=3ee584b9 vocab=2add4bd1
+-/
 lemma pendingTUClones_empty_of_return_port {Z0 W : Set (GadgetVert G)}
     {z : GadgetVert G}
     (hempty : pendingTUClones Z0 W = ∅)
@@ -1151,6 +1320,9 @@ lemma pendingTUClones_empty_of_return_port {Z0 W : Set (GadgetVert G)}
   · intro h
     exact h.elim
 
+/--
+@isnad1 id=eq.1h4v.s6.47b8c7775cb4 from=translated src=- shape=aaeed1c8 vocab=6ec0f833
+-/
 lemma pendingTUClones_empty_after_ports {Z0 W : Set (GadgetVert G)}
     (hempty : pendingTUClones Z0 W = ∅) :
     pendingTUClones Z0 (W \ pendingSUPorts Z0 W) = ∅ := by
@@ -1201,7 +1373,9 @@ lemma eq_canonical_of_pending_empty {Z0 W : Set (GadgetVert G)}
     · exact hinv.keep_T_ports v hT h
 
 /-- Returning missing T/U clones then missing S/U ports yields the canonical
-cut `Z(S,T)`, and signed Tutte deficiency cannot decrease.-/
+cut `Z(S,T)`, and signed Tutte deficiency cannot decrease.
+@isnad1 id=and.0h3v.s7.88331fa46e75 from=translated src=- shape=3f016f3f vocab=1ab53240
+-/
 theorem gadget_normalize_cut (Z : Set (GadgetVert G)) :
     Disjoint {v | classS Z v} {v | classT Z v} ∧
     (∀ v, classU Z v → ∃ w, G.Adj v w) ∧
@@ -1226,6 +1400,9 @@ theorem gadget_normalize_cut (Z : Set (GadgetVert G)) :
 
 /-! ## Canonical remainder: membership and isolated T-clones -/
 
+/--
+@isnad1 id=iff.0h5v.s5.fd4192bb3bc3 from=translated src=- shape=90eccf70 vocab=7f7cb818
+-/
 lemma clone_mem_canonicalCut_iff {Z : Set (GadgetVert G)} {v : V} {b : Fin 2} :
     GadgetVert.clone v b ∈ canonicalCut Z ↔ classS Z v := by
   constructor
@@ -1238,6 +1415,9 @@ lemma clone_mem_canonicalCut_iff {Z : Set (GadgetVert G)} {v : V} {b : Fin 2} :
   · intro hS
     exact .inl ⟨v, b, rfl, hS⟩
 
+/--
+@isnad1 id=iff.1h5v.s5.c62ed3bd0377 from=translated src=- shape=44a53cfa vocab=f6e1841d
+-/
 lemma port_mem_canonicalCut_iff {Z : Set (GadgetVert G)} {v w : V}
     {hvw : G.Adj v w} :
     GadgetVert.port v w hvw ∈ canonicalCut Z ↔ classT Z v := by
@@ -1251,6 +1431,9 @@ lemma port_mem_canonicalCut_iff {Z : Set (GadgetVert G)} {v w : V}
   · intro hT
     exact .inr ⟨v, w, hvw, rfl, hT⟩
 
+/--
+@isnad1 id=not.2h6v.s6.f5012c7ac7b0 from=translated src=- shape=ec7cdd93 vocab=f57935b9
+-/
 lemma not_adj_remain_T_clone {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hT : classT Z v) {x : GadgetVert G} (hx : x ∉ canonicalCut Z) :
     ¬ (gadget G).Adj (.clone v b) x := by
@@ -1258,6 +1441,9 @@ lemma not_adj_remain_T_clone {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
   obtain ⟨w, hvw, rfl⟩ := (clone_adj_iff (G := G)).mp hadj
   exact hx ((port_mem_canonicalCut_iff (Z := Z)).mpr hT)
 
+/--
+@isnad1 id=eq.2h5v.s6.72f8262e763d from=translated src=- shape=d5cd1057 vocab=33de2900
+-/
 lemma reachable_isolated_eq {W : Type*} [DecidableEq W]
     {H : SimpleGraph W} [DecidableRel H.Adj] {s : Set W}
     {x y : {z // z ∈ s}}
@@ -1268,6 +1454,9 @@ lemma reachable_isolated_eq {W : Type*} [DecidableEq W]
   | nil => rfl
   | cons hadj _ => exact (hiso _ hadj).elim
 
+/--
+@isnad1 id=eq.1h5v.s8.5a5746d258ba from=translated src=- shape=d5b293c5 vocab=8fde14c9
+-/
 lemma T_clone_component_singleton {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hT : classT Z v) :
     (((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1309,6 +1498,9 @@ lemma T_clone_component_singleton {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     subst y
     simp [ConnectedComponent.mem_supp_iff]
 
+/--
+@isnad1 id=odd.1h5v.s7.a3fbb0955c58 from=translated src=- shape=9f9a8d6c vocab=2c4aa6b2
+-/
 lemma T_clone_component_odd {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
     (hT : classT Z v) :
     Odd ((((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1318,13 +1510,18 @@ lemma T_clone_component_odd {Z : Set (GadgetVert G)} {v : V} {b : Fin 2}
   rw [T_clone_component_singleton hT, ncard_singleton]
   exact odd_one
 
-/-- The two clones of a T-vertex are distinct remainder vertices.-/
+/-- The two clones of a T-vertex are distinct remainder vertices.
+@isnad1 id=ne.1h5v.s5.e78f18a617f7 from=translated src=- shape=a15440e7 vocab=4ccd5da6
+-/
 lemma T_clones_ne {v : V} {b b' : Fin 2} (h : b ≠ b') :
     GadgetVert.clone (G := G) v b ≠ .clone v b' := by
   intro hxy
   injection hxy with _ hb
   exact h hb
 
+/--
+@isnad1 id=eq.0h3v.s6.7c50c8173d7d from=translated src=- shape=5d483e37 vocab=3e6391f9
+-/
 lemma ncard_sClones (Z : Set (GadgetVert G)) :
     ({x : GadgetVert G | ∃ v : V, ∃ b : Fin 2, x = .clone v b ∧ classS Z v}).ncard =
       2 * {v | classS Z v}.ncard := by
@@ -1352,6 +1549,9 @@ lemma ncard_sClones (Z : Set (GadgetVert G)) :
   rw [ncard_eq_toFinset_card', Fintype.card_subtype]
   simp [Set.toFinset_ofPred]
 
+/--
+@isnad1 id=eq.0h3v.s6.6ab35a337ea0 from=translated src=- shape=d5f7aba7 vocab=e65c7a57
+-/
 lemma ncard_ports_of_vertex (v : V) :
     ({x : GadgetVert G | ∃ w : V, ∃ h : G.Adj v w, x = .port v w h}).ncard =
       G.degree v := by
@@ -1375,6 +1575,9 @@ lemma ncard_ports_of_vertex (v : V) :
       Nat.card_eq_fintype_card]
   simp [SimpleGraph.degree, neighborFinset, Fintype.card_coe]
 
+/--
+@isnad1 id=eq.0h3v.s7.c0ef3b2686c9 from=translated src=- shape=a31b6865 vocab=5d212ae6
+-/
 lemma ncard_tPorts (Z : Set (GadgetVert G)) :
     ({x : GadgetVert G | ∃ v w : V, ∃ h : G.Adj v w,
         x = .port v w h ∧ classT Z v}).ncard =
@@ -1417,6 +1620,9 @@ lemma ncard_tPorts (Z : Set (GadgetVert G)) :
   · intro a ha b hb hab
     exact disjoint_toFinset.mpr (hdisj a ha b hb hab)
 
+/--
+@isnad1 id=disjoint.0h3v.s7.3e5a07032014 from=translated src=- shape=2d02056c vocab=940112e6
+-/
 lemma disjoint_sClones_tPorts (Z : Set (GadgetVert G)) :
     Disjoint
       {x : GadgetVert G | ∃ v b, x = .clone v b ∧ classS Z v}
@@ -1427,6 +1633,9 @@ lemma disjoint_sClones_tPorts (Z : Set (GadgetVert G)) :
   obtain ⟨_, _, _, hport, _⟩ := hx'
   cases hport
 
+/--
+@isnad1 id=eq.0h3v.s7.690669612814 from=translated src=- shape=c45e1abc vocab=327c1e15
+-/
 lemma ncard_canonicalCut (Z : Set (GadgetVert G)) :
     (canonicalCut Z).ncard =
       2 * {v | classS Z v}.ncard +
@@ -1434,12 +1643,18 @@ lemma ncard_canonicalCut (Z : Set (GadgetVert G)) :
   simp only [canonicalCut]
   rw [ncard_union_eq (disjoint_sClones_tPorts Z), ncard_sClones, ncard_tPorts]
 
+/--
+@isnad1 id=not.2h5v.s5.20cbfeda9fdf from=translated src=- shape=1733d50a vocab=f3071fda
+-/
 lemma ST_port_not_mem_canonical {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) :
     GadgetVert.port s t hst ∉ canonicalCut Z := by
   intro h
   exact not_classT_of_SU (.inl hS) ((port_mem_canonicalCut_iff (Z := Z)).mp h)
 
+/--
+@isnad1 id=not.4h6v.s6.863b19001a3d from=translated src=- shape=7a0d8cdb vocab=036a4957
+-/
 lemma not_adj_remain_ST_port {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hT : classT Z t)
     {x : GadgetVert G} (hx : x ∉ canonicalCut Z) :
@@ -1451,6 +1666,9 @@ lemma not_adj_remain_ST_port {Z : Set (GadgetVert G)} {s t : V}
       (port_mem_canonicalCut_iff (Z := Z)).mpr hT
     exact hx this
 
+/--
+@isnad1 id=eq.3h5v.s8.4074ab029457 from=translated src=- shape=bc6911a6 vocab=9bf96d91
+-/
 lemma ST_port_component_singleton {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hT : classT Z t) :
     (((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1477,6 +1695,9 @@ lemma ST_port_component_singleton {Z : Set (GadgetVert G)} {s t : V}
     subst y
     simp [ConnectedComponent.mem_supp_iff]
 
+/--
+@isnad1 id=odd.3h5v.s7.5f255b2be9f8 from=translated src=- shape=0f52af1a vocab=b61f16e0
+-/
 lemma ST_port_component_odd {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hT : classT Z t) :
     Odd ((((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1484,6 +1705,9 @@ lemma ST_port_component_odd {Z : Set (GadgetVert G)} {s t : V}
   rw [ST_port_component_singleton hS hT, ncard_singleton]
   exact odd_one
 
+/--
+@isnad1 id=eq.4h6v.s7.824c6b96d22b from=translated src=- shape=c2c1966f vocab=edb33922
+-/
 lemma SS_port_only_remain_nbr {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hS' : classS Z t)
     {y : {z // z ∈ (canonicalCut Z)ᶜ}}
@@ -1495,6 +1719,9 @@ lemma SS_port_only_remain_nbr {Z : Set (GadgetVert G)} {s t : V}
     exact (y.property (hy ▸ this)).elim
   · exact hy.trans port_eq_of_same_ends
 
+/--
+@isnad1 id=adj.3h5v.s7.aab43f4ee95d from=translated src=- shape=3521e554 vocab=163a29f9
+-/
 lemma SS_ports_remain_adj {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hS' : classS Z t) :
     ((gadget G).induce (canonicalCut Z)ᶜ).Adj
@@ -1503,6 +1730,9 @@ lemma SS_ports_remain_adj {Z : Set (GadgetVert G)} {s t : V}
   rw [induce_adj]
   exact gadget_adj_mate hst
 
+/--
+@isnad1 id=eq.3h5v.s8.5e5feff06da9 from=translated src=- shape=4db0dab4 vocab=b03ce1cd
+-/
 lemma SS_port_component_pair {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hS' : classS Z t) :
     (((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1561,6 +1791,9 @@ lemma SS_port_component_pair {Z : Set (GadgetVert G)} {s t : V}
       rw [ConnectedComponent.mem_supp_iff, ConnectedComponent.eq]
       exact hadj.reachable.symm
 
+/--
+@isnad1 id=even.3h5v.s7.8843b7c83724 from=translated src=- shape=103d75e4 vocab=191831ab
+-/
 lemma SS_port_component_even {Z : Set (GadgetVert G)} {s t : V}
     {hst : G.Adj s t} (hS : classS Z s) (hS' : classS Z t) :
     Even ((((gadget G).induce (canonicalCut Z)ᶜ).connectedComponentMk
@@ -1580,18 +1813,27 @@ lemma SS_port_component_even {Z : Set (GadgetVert G)} {s t : V}
   rw [this]
   exact even_two
 
+/--
+@isnad1 id=not.1h5v.s5.5873da70cafc from=translated src=- shape=5a5325ed vocab=303f0dd3
+-/
 lemma U_clone_not_mem_canonical {Z : Set (GadgetVert G)} {v : V}
     {b : Fin 2} (hU : classU Z v) :
     GadgetVert.clone v b ∉ canonicalCut Z := by
   intro h
   exact not_classS_of_TU (.inr hU) ((clone_mem_canonicalCut_iff (Z := Z)).mp h)
 
+/--
+@isnad1 id=ex.1h4v.s6.5bf22f57869a from=translated src=- shape=752d3273 vocab=a071b989
+-/
 lemma U_surviving_port_not_mem_canonical {Z : Set (GadgetVert G)} {v : V}
     (hU : classU Z v) :
     ∃ w : V, ∃ h : G.Adj v w, GadgetVert.port v w h ∉ canonicalCut Z := by
   obtain ⟨w, h, hp⟩ := hU.2
   refine ⟨w, h, fun hmem => hp (canonicalCut_subset Z hmem)⟩
 
+/--
+@isnad1 id=reachabl.1h6v.s7.7159c173d7a0 from=translated src=- shape=3ae25ed2 vocab=9a2d2334
+-/
 lemma U_clones_remain_reachable {Z : Set (GadgetVert G)} {v : V}
     (hU : classU Z v) {b b' : Fin 2} :
     ((gadget G).induce (canonicalCut Z)ᶜ).Reachable

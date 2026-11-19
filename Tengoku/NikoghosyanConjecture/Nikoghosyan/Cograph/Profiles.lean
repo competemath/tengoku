@@ -49,30 +49,48 @@ noncomputable def canonicalContainer (U A : Finset V) : Finset V :=
 noncomputable def spanningPathNeighbors (U A : Finset V) : Finset V :=
   U.filter fun b => ∃ a ∈ A, SpanningPathCompatible (G := G) U a b
 
+/--
+@isnad1 id=iff.0h5v.s6.357afd63fa1d from=translated src=- shape=6a29fb0d vocab=6ab3c698
+-/
 lemma mem_spanningPathNeighbors_iff {U A : Finset V} {b : V} :
     b ∈ spanningPathNeighbors (G := G) U A ↔
       b ∈ U ∧ ∃ a ∈ A, SpanningPathCompatible (G := G) U a b := by
   simp [spanningPathNeighbors]
 
+/--
+@isnad1 id=eq.0h4v.s5.83368387cb13 from=translated src=- shape=2c957c63 vocab=77c992c0
+-/
 lemma canonicalContainer_eq {U A : Finset V} :
     canonicalContainer (G := G) U A = A ∪ ineligibleSet G (U \ A) :=
   rfl
 
+/--
+@isnad1 id=le.1h4v.s5.9b7f08d1448e from=translated src=- shape=042b1dfd vocab=b99bcf51
+-/
 lemma Tight.subset {U T : Finset V} (h : Tight (G := G) U T) : T ⊆ U := h.1
 
 lemma Tight.eq_card {U T : Finset V} (h : Tight (G := G) U T) :
     componentCount G (U \ T) = T.card := h.2
 
+/--
+@isnad1 id=le.1h4v.s5.1bc0a595d911 from=translated src=- shape=556a0ed0 vocab=7352be35
+-/
 lemma canonicalContainer_subset {U A : Finset V} (hA : A ⊆ U) :
     canonicalContainer (G := G) U A ⊆ U :=
   profileContainer_subset (G := G) hA
 
+/--
+@isnad1 id=mem.1h5v.s5.92d2057df398 from=translated src=- shape=1381fc58 vocab=fc6e199b
+-/
 lemma mem_canonicalContainer_of_mem_A {U A : Finset V} {x : V}
     (hx : x ∈ A) : x ∈ canonicalContainer (G := G) U A :=
   mem_union.2 (Or.inl hx)
 
 /-! ### Cycle rotation and opening at a prescribed vertex -/
 
+/--
+@isnad1 id=mem.1h4v.s5.8a715609affa from=translated src=- shape=a1a3b8c7 vocab=ebad12df
+-/
 lemma mem_walk_support_of_mem_cycle {c : GraphCycle G} {x : V}
     (hx : x ∈ c.support) : x ∈ c.walk.support :=
   List.mem_toFinset.mp (by simpa [GraphCycle.support] using hx)
@@ -84,6 +102,9 @@ noncomputable def rotateTo (c : GraphCycle G) {u : V}
   isCycle :=
     (Walk.isCycle_rotate (mem_walk_support_of_mem_cycle hu)).2 c.isCycle
 
+/--
+@isnad1 id=eq.1h4v.s5.42d6f6e0b36f from=translated src=- shape=941d0d9c vocab=2360ea9d
+-/
 lemma support_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (rotateTo c hu).support = c.support := by
   ext x
@@ -91,27 +112,44 @@ lemma support_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
   exact Walk.mem_support_rotate_iff (w := x) c.walk u
     (mem_walk_support_of_mem_cycle hu)
 
+/--
+@isnad1 id=eq.1h4v.s5.2cc229fd4a20 from=translated src=- shape=6616a1e9 vocab=c7fa79a0
+-/
 lemma start_rotateTo (c : GraphCycle G) {u : V} (hu : u ∈ c.support) :
     (rotateTo c hu).start = u :=
   rfl
 
+/--
+@isnad1 id=lt.0h3v.s5.e8627f22bcaa from=translated src=- shape=9b43e02a vocab=e41287ec
+-/
 lemma cycle_length_pos (c : GraphCycle G) : 0 < c.walk.length :=
   lt_of_lt_of_le (by decide : (0 : ℕ) < 3) c.three_le_length
 
 noncomputable def cycleSucc (c : GraphCycle G) : V :=
   c.walk.getVert 1
 
+/--
+@isnad1 id=adj.0h3v.s4.5d697e75d2d6 from=translated src=- shape=a0814ef3 vocab=7ef28048
+-/
 lemma adj_start_cycleSucc (c : GraphCycle G) : G.Adj c.start (cycleSucc c) := by
   simpa [cycleSucc, Walk.getVert_zero] using
     c.walk.adj_getVert_succ (cycle_length_pos c)
 
+/--
+@isnad1 id=mem.0h3v.s5.b072070bfe3b from=translated src=- shape=b9c081f1 vocab=8f6ac18a
+-/
 lemma cycleSucc_mem_support (c : GraphCycle G) : cycleSucc c ∈ c.support :=
   List.mem_toFinset.2 (Walk.getVert_mem_support c.walk 1)
 
+/--
+@isnad1 id=ne.0h3v.s4.aa2ffc48bc39 from=translated src=- shape=dbd44c32 vocab=de3f2e89
+-/
 lemma cycleSucc_ne_start (c : GraphCycle G) : cycleSucc c ≠ c.start :=
   (adj_start_cycleSucc c).ne.symm
 
-/-- Open the cycle so the resulting spanning path starts at `x`.-/
+/-- Open the cycle so the resulting spanning path starts at `x`.
+@isnad1 id=ex.1h4v.s6.1fe501a3bc2d from=translated src=- shape=d480014c vocab=7ff98141
+-/
 lemma exists_spanning_path_from (c : GraphCycle G) {x : V}
     (hx : x ∈ c.support) :
     ∃ p : GraphPath G, p.support = c.support ∧ p.start = x ∧
@@ -132,7 +170,9 @@ lemma exists_spanning_path_from (c : GraphCycle G) {x : V}
   · simp [p0, GraphPath.reverse, hx']
   · simpa [p0, GraphPath.reverse, hx'] using hadj.symm
 
-/-- Open the cycle so the resulting spanning path ends at `x`.-/
+/-- Open the cycle so the resulting spanning path ends at `x`.
+@isnad1 id=ex.1h4v.s6.e3733945703c from=translated src=- shape=0db0622a vocab=7ff98141
+-/
 lemma exists_spanning_path_to (c : GraphCycle G) {x : V}
     (hx : x ∈ c.support) :
     ∃ p : GraphPath G, p.support = c.support ∧ p.finish = x ∧
@@ -155,12 +195,18 @@ lemma exists_spanning_path_to (c : GraphCycle G) {x : V}
 
 /-! ### Numerical container from cycle opening and ProfileMaximum -/
 
+/--
+@isnad1 id=eq.1h4v.s5.d65497ee5244 from=translated src=- shape=c327dc7d vocab=7681a37e
+-/
 lemma pathCoverNumber_eq_one_of_cycle {U : Finset V}
     (c : GraphCycle G) (hc : c.support = U) :
     pathCoverNumber G U = 1 := by
   obtain ⟨p, hp, _⟩ := GraphCycle.exists_spanning_path c
   exact pathCoverNumber_eq_one_of_support p (hp.trans hc)
 
+/--
+@isnad1 id=le.3h5v.s6.7933351d0921 from=translated src=- shape=7d2ea464 vocab=b96c6ba5
+-/
 lemma pathCoverNumber_sdiff_le_card_of_cycle {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U) (hA : A ⊆ U) (hAne : A.Nonempty) :
     pathCoverNumber G (U \ A) ≤ A.card := by
@@ -171,6 +217,9 @@ lemma pathCoverNumber_sdiff_le_card_of_cycle {U A : Finset V}
   have hpos : 1 ≤ A.card := Nat.succ_le_of_lt (card_pos.2 ⟨a, haA⟩)
   omega
 
+/--
+@isnad1 id=saturate.5h6v.s6.d90d266dfc08 from=translated src=- shape=b34b8d6b vocab=c1502847
+-/
 lemma Saturated_of_tight_container {U A T : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) (hAT : A ⊆ T)
@@ -184,6 +233,9 @@ lemma Saturated_of_tight_container {U A T : Finset V}
   simp only [profileDelta, hT.2] at hle
   exact le_antisymm hpK (by omega)
 
+/--
+@isnad1 id=le.4h5v.s6.c5e22792448e from=translated src=- shape=03f0cd26 vocab=8031ce83
+-/
 lemma tight_container_subset_canonical {U A T : Finset V}
     (hAT : A ⊆ T) (hT : Tight (G := G) U T)
     (hK : IsCograph G (U \ A)) (hSat : Saturated (G := G) U A) :
@@ -195,6 +247,9 @@ lemma tight_container_subset_canonical {U A T : Finset V}
     simp [profileDelta, hSat', hT.2]
   exact profile_maximizer_subset_container hAT hT.1 hK hatt
 
+/--
+@isnad1 id=tight.4h4v.s6.9c414416e91e from=translated src=- shape=bf5a60d2 vocab=64a37959
+-/
 lemma canonicalContainer_tight_of_saturated {U A : Finset V}
     (hA : A ⊆ U) (hK : IsCograph G (U \ A))
     (hKne : (U \ A).Nonempty) (hSat : Saturated (G := G) U A) :
@@ -205,6 +260,9 @@ lemma canonicalContainer_tight_of_saturated {U A : Finset V}
   simp only [canonicalContainer, profileDelta, hSat'] at hatt ⊢
   omega
 
+/--
+@isnad1 id=lt.4h4v.s6.a06ba8f4c93b from=translated src=- shape=30fe9078 vocab=390d597c
+-/
 lemma canonicalContainer_proper_of_saturated {U A : Finset V}
     (hA : A ⊆ U) (hK : IsCograph G (U \ A))
     (hKne : (U \ A).Nonempty) (hSat : Saturated (G := G) U A) :
@@ -228,7 +286,9 @@ lemma eq_univ_of_sdiff_not_nonempty {U A : Finset V}
   hA.antisymm (sdiff_eq_empty_iff_subset.1 (not_nonempty_iff_eq_empty.1 h))
 
 /-- Manuscript `prof:prop:container`: a tight container of `A` exists if and
-only if `A` is saturated.-/
+only if `A` is saturated.
+@isnad1 id=iff.4h5v.s6.5706f714218b from=translated src=- shape=4941af77 vocab=dcd7fb77
+-/
 lemma canonical_saturated_container {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) (hK : IsCograph G (U \ A)) :
@@ -248,7 +308,9 @@ lemma canonical_saturated_container {U A : Finset V}
       exact (Nat.ne_of_gt (card_pos.2 hAne) this).elim
 
 /-- When `A` is saturated and `K` is nonempty, `S_A` is the unique largest
-proper tight container of `A`.-/
+proper tight container of `A`.
+@isnad1 id=and.4h4v.s6.b508ecd0bb76 from=translated src=- shape=f5ec440b vocab=40a35017
+-/
 lemma canonical_saturated_container_spec {U A : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty) (hK : IsCograph G (U \ A))
     (hSat : Saturated (G := G) U A) :
@@ -268,6 +330,9 @@ lemma canonical_saturated_container_spec {U A : Finset V}
     canonicalContainer_proper_of_saturated hA hK hKne hSat,
     fun T hT hAT => tight_container_subset_canonical hAT hT hK hSat⟩
 
+/--
+@isnad1 id=iff.4h5v.s6.bae4719137c2 from=translated src=- shape=4941af77 vocab=0534a90b
+-/
 lemma canonical_saturated_container_of_canonical {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty)
@@ -275,6 +340,9 @@ lemma canonical_saturated_container_of_canonical {U A : Finset V}
     (∃ T, Tight (G := G) U T ∧ A ⊆ T) ↔ Saturated (G := G) U A :=
   canonical_saturated_container c hc hA hAne (isCograph_iff.2 hK)
 
+/--
+@isnad1 id=and.4h4v.s6.8628c5b8c384 from=translated src=- shape=f5ec440b vocab=21fab055
+-/
 lemma canonical_saturated_container_spec_of_canonical {U A : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty)
     (hK : Nikoghosyan.IsCograph G (U \ A))
@@ -287,6 +355,9 @@ lemma canonical_saturated_container_spec_of_canonical {U A : Finset V}
 
 /-! ### Actual cover obtained by deleting `A` from a fixed cycle -/
 
+/--
+@isnad1 id=ex.3h5v.s7.82dd3544d9a6 from=translated src=- shape=484643fa vocab=0e572443
+-/
 lemma exists_cycle_delete_cover {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) :
@@ -339,6 +410,9 @@ lemma exists_cycle_delete_cover {U A : Finset V}
     exact hqr.trans (by
       simpa [htP] using GraphPath.support_subset_of_mem_deleteVertex hrt)
 
+/--
+@isnad1 id=ex.4h5v.s7.23d0587d9654 from=translated src=- shape=b13a37ae vocab=816dbf01
+-/
 lemma cycle_delete_cover_min_of_saturated {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) (hSat : Saturated (G := G) U A) :
@@ -356,11 +430,17 @@ lemma cycle_delete_cover_min_of_saturated {U A : Finset V}
 
 /-! ### Compatibility of an eligible vertex with an old end of `Q` -/
 
+/--
+@isnad1 id=spanning.1h3v.s5.69d6bc708135 from=translated src=- shape=0b76020c vocab=3c51024e
+-/
 lemma spanningPathCompatible_of_path (p : GraphPath G)
     (hne : p.start ≠ p.finish) :
     SpanningPathCompatible (G := G) p.support p.start p.finish :=
   ⟨hne, p, rfl, Or.inl ⟨rfl, rfl⟩⟩
 
+/--
+@isnad1 id=or.4h4v.s6.5e5333a400b1 from=translated src=- shape=2d58d972 vocab=1d814b86
+-/
 lemma exists_compatible_old_end {Q : GraphPath G} {b : V}
     (h2 : 2 ≤ Q.support.card) (hcog : IsCograph G Q.support)
     (hbE : Eligible G Q.support b) (hb : b ∈ Q.support) :
@@ -430,6 +510,9 @@ lemma exists_compatible_old_end {Q : GraphPath G} {b : V}
 
 /-! ### Reverse neighbourhood inclusion from the both-endpoints cut -/
 
+/--
+@isnad1 id=le.4h4v.s6.484401907d3b from=translated src=- shape=d177138e vocab=e992c673
+-/
 lemma spanningPathNeighbors_subset_sdiff_container {U A : Finset V}
     (hA : A ⊆ U) (hK : IsCograph G (U \ A))
     (hAne : A.Nonempty) (hSat : Saturated (G := G) U A) :
@@ -452,7 +535,9 @@ lemma spanningPathNeighbors_subset_sdiff_container {U A : Finset V}
     Nat.succ_le_of_lt (card_pos.2 ⟨a, haS⟩)
   omega
 
-/-- Opening `c` at its start produces a spanning path from `succ` to `start`.-/
+/-- Opening `c` at its start produces a spanning path from `succ` to `start`.
+@isnad1 id=ex.0h3v.s6.553e9ab9c299 from=translated src=- shape=db996ffd vocab=4a65a678
+-/
 lemma exists_spanning_path_succ (c : GraphCycle G) :
     ∃ p : GraphPath G, p.support = c.support ∧ p.start = cycleSucc c ∧
       p.finish = c.start ∧ G.Adj c.start (cycleSucc c) := by
@@ -468,10 +553,16 @@ lemma exists_spanning_path_succ (c : GraphCycle G) :
   simp [p, GraphPath.support, GraphCycle.support, hwalk, Walk.support_cons,
     insert_eq_of_mem (List.mem_toFinset.2 hstart)]
 
+/--
+@isnad1 id=ex.1h5v.s6.5001eb2b116a from=translated src=- shape=5254671f vocab=1a2bda91
+-/
 lemma exists_path_of_mem_cover {U : Finset V} (pc : PathCover G U) {x : V}
     (hx : x ∈ U) : ∃ p ∈ pc.paths, x ∈ p.support :=
   (pc.mem_iff x).1 hx
 
+/--
+@isnad1 id=spanning.2h5v.s5.4a16f0af1c38 from=translated src=- shape=746df685 vocab=f7ba7324
+-/
 lemma exists_spanning_from_cycle_succ {U : Finset V} {b : V}
     (c : GraphCycle G) (hc : c.support = U) (hbU : b ∈ U) :
     SpanningPathCompatible (G := G) U b
@@ -486,6 +577,9 @@ lemma exists_spanning_from_cycle_succ {U : Finset V} {b : V}
   · rw [hp, support_rotateTo, hc]
   · rw [hf, hstart]
 
+/--
+@isnad1 id=spanning.2h5v.s5.faee51dee2c9 from=translated src=- shape=eaff32f9 vocab=f23fa9f9
+-/
 lemma exists_spanning_from_cycle_pred {U : Finset V} {b : V}
     (c : GraphCycle G) (hc : c.support = U) (hbU : b ∈ U) :
     SpanningPathCompatible (G := G) U b
@@ -497,6 +591,9 @@ lemma exists_spanning_from_cycle_pred {U : Finset V} {b : V}
     (exists_spanning_from_cycle_succ c.reverse
       (by simpa [GraphCycle.support_reverse] using hc) hb')
 
+/--
+@isnad1 id=and.1h5v.s6.2cc5ee498cba from=translated src=- shape=0dc77e75 vocab=c070134a
+-/
 lemma eligible_of_mem_sdiff_container {U A : Finset V} {b : V}
     (hb : b ∈ U \ canonicalContainer (G := G) U A) :
     b ∈ U \ A ∧ Eligible G (U \ A) b := by
@@ -512,6 +609,9 @@ lemma eligible_of_mem_sdiff_container {U A : Finset V} {b : V}
     exact h.mp hbF hbK
   exact ⟨hbK, hE⟩
 
+/--
+@isnad1 id=eligible.5h6v.s6.bc8ad52ae4d4 from=translated src=- shape=98eb5918 vocab=7a6e30ff
+-/
 lemma restriction_eligible_on_selected_path {U : Finset V}
     (hU : IsCograph G U) (pc : PathCover G U)
     (hpc : pc.card = pathCoverNumber G U) {Q : GraphPath G}
@@ -557,7 +657,9 @@ lemma restriction_eligible_on_selected_path {U : Finset V}
   simpa [hQeq] using hQE
 
 /-- If a cycle neighbour of `b` lies in `A`, opening that original edge
-realises a spanning `U`-path from `b` into `A`.-/
+realises a spanning `U`-path from `b` into `A`.
+@isnad1 id=ex.3h6v.s6.c6bf61ba0d43 from=translated src=- shape=b216243e vocab=f23fa9f9
+-/
 lemma exists_spanning_of_cycle_neighbor_in_A {U A : Finset V} {b : V}
     (c : GraphCycle G) (hc : c.support = U)
     (hbU : b ∈ U)
@@ -570,7 +672,9 @@ lemma exists_spanning_of_cycle_neighbor_in_A {U A : Finset V} {b : V}
   · exact ⟨_, h, exists_spanning_from_cycle_pred c hc hbU⟩
 
 /-- Reorient a spanning path of `L` so that it starts at `b` and ends at the
-chosen old end `w`.-/
+chosen old end `w`.
+@isnad1 id=ex.1h5v.s5.86696f94e941 from=translated src=- shape=efd9436b vocab=63d36dc2
+-/
 lemma exists_oriented_path_from {L : Finset V} {b w : V}
     (hR : SpanningPathCompatible (G := G) L b w) :
     ∃ q : GraphPath G, q.support = L ∧ q.start = b ∧ q.finish = w := by
@@ -580,7 +684,9 @@ lemma exists_oriented_path_from {L : Finset V} {b w : V}
   · exact ⟨p.reverse, by simpa [GraphPath.support_reverse, hp],
       by simp [GraphPath.reverse, h.2], by simp [GraphPath.reverse, h.1]⟩
 
-/-- Attach an original A-seam at the surviving old end of a remainder path.-/
+/-- Attach an original A-seam at the surviving old end of a remainder path.
+@isnad1 id=spanning.3h6v.s5.5fcb52cb46f5 from=translated src=- shape=26bc4558 vocab=530d96f4
+-/
 lemma SpanningPathCompatible_attach_A {L : Finset V} {b w a : V}
     (hR : SpanningPathCompatible (G := G) L b w)
     (hadj : G.Adj w a) (haL : a ∉ L) :
@@ -597,6 +703,9 @@ lemma SpanningPathCompatible_attach_A {L : Finset V} {b w a : V}
     by simp [r, GraphPath.concatAdj]⟩⟩
   simpa [r, GraphPath.support_concatAdj, hq]
 
+/--
+@isnad1 id=iff.3h4v.s6.4108e4e5da7c from=translated src=- shape=0a4ffb42 vocab=5ffb3ddf
+-/
 lemma insert_sdiff_eq_of_mem {U L : Finset V} {a : V}
     (haU : a ∈ U) (haL : a ∉ L) (hLU : L ⊆ U) :
     insert a L = U ↔ L = U.erase a := by
@@ -625,7 +734,9 @@ lemma insert_sdiff_eq_of_mem {U L : Finset V} {a : V}
         exact Or.inr (by simpa [h] using this)
 
 /-- Every remaining path after deleting `A` from a cover whose every start
-is already `A`-adjacent keeps an original `A`-seam at its start.-/
+is already `A`-adjacent keeps an original `A`-seam at its start.
+@isnad1 id=ex.3h7v.s7.a2a85ebcd56d from=translated src=- shape=a40070a2 vocab=81ede511
+-/
 lemma deleteVertex_start_adj {U A : Finset V} (pc : PathCover G U) {f : V}
     (hfA : f ∈ A)
     (h : ∀ q ∈ pc.paths, ∃ a ∈ A, G.Adj a q.start) :
@@ -667,6 +778,9 @@ lemma deleteVertex_start_adj {U A : Finset V} (pc : PathCover G U) {f : V}
     subst hq'
     exact ⟨a, haA, hadj⟩
 
+/--
+@isnad1 id=ex.3h6v.s7.2da50003b1bf from=translated src=- shape=aed6dd6b vocab=29c9fedd
+-/
 lemma exists_delete_sdiff_start_adj {U S A : Finset V}
     (pc : PathCover G U) (hS : S ⊆ U)
     (h : ∀ q ∈ pc.paths, ∃ a ∈ A, G.Adj a q.start)
@@ -702,6 +816,9 @@ lemma exists_delete_sdiff_start_adj {U S A : Finset V}
       rw [PathCover.cast_paths] at hq
       exact hinv1 q hq
 
+/--
+@isnad1 id=ex.3h5v.s7.a5c8e452fe0e from=translated src=- shape=fe278607 vocab=0e572443
+-/
 lemma cycle_delete_cover_start_adj {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) (hAne : A.Nonempty) :
@@ -781,7 +898,9 @@ lemma cycle_delete_cover_start_adj {U A : Finset V}
     exact hinv1 q hq
 
 /-- Forward neighbourhood when an original cycle neighbour of `b` lies in
-`A`. This is the singleton-gap opening of `prof:prop:endpoints`.-/
+`A`. This is the singleton-gap opening of `prof:prop:endpoints`.
+@isnad1 id=mem.3h6v.s6.516f1ac2c97c from=translated src=- shape=cb21cfed vocab=acaf8fd7
+-/
 lemma sdiff_container_subset_spanningPathNeighbors_of_cycle_neighbor
     {U A : Finset V} {b : V}
     (c : GraphCycle G) (hc : c.support = U) (hbU : b ∈ U)
@@ -797,7 +916,9 @@ lemma sdiff_container_subset_spanningPathNeighbors_of_cycle_neighbor
 /-- Manuscript `prof:cor:containers`: coincidence of canonical containers.
 Both profiles are saturated, so each `S` is the unique largest tight
 container of its input; containment `B ⊆ S_A` makes `S_A` a tight
-container of `B`.-/
+container of `B`.
+@isnad1 id=eq.9h5v.s7.190dea4a4bbb from=translated src=- shape=b5992886 vocab=d579b742
+-/
 lemma coincidence_canonical_containers {U A B : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty) (hKA : IsCograph G (U \ A))
     (hB : B ⊆ U) (hBne : B.Nonempty) (hKB : IsCograph G (U \ B))
@@ -815,6 +936,9 @@ lemma coincidence_canonical_containers {U A B : Finset V}
     hTA.2.2 _ hTB.1 (hAin.trans hSAsubSB)
   exact subset_antisymm hSAsubSB hSBsubSA
 
+/--
+@isnad1 id=eq.9h5v.s7.f527e122c72b from=translated src=- shape=b5992886 vocab=6fd61217
+-/
 lemma coincidence_canonical_containers_of_canonical {U A B : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty)
     (hKA : Nikoghosyan.IsCograph G (U \ A))

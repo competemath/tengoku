@@ -36,7 +36,9 @@ open SimpleGraph Finset
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 /-- A path with both ends in `B` contributes at most `|support ∩ B| - 1`
-leftover runs. Consecutive `B`–`B` edges are allowed (no independence).-/
+leftover runs. Consecutive `B`–`B` edges are allowed (no independence).
+@isnad1 id=le.2h4v.s6.646fa338f547 from=translated src=- shape=1bda097c vocab=a5c26e8b
+-/
 lemma leftoverPieces_length_succ_le_of_both_ends {B : Finset V}
     (p : GraphPath G) (hs : p.start ∈ B) (hf : p.finish ∈ B) :
     (leftoverPieces B p).length + 1 ≤ (p.support ∩ B).card := by
@@ -134,7 +136,9 @@ open Nikoghosyan.GraphPath
 variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 /-- Deleting `A` from a spanning original `U`-path with both ends in `A`
-leaves at most `|A| - 1` leftover runs, hence `p(U \ A) < |A|`.-/
+leaves at most `|A| - 1` leftover runs, hence `p(U \ A) < |A|`.
+@isnad1 id=lt.5h5v.s6.b85dae0df40a from=translated src=- shape=8ae56b76 vocab=7969a2ec
+-/
 lemma pathCoverNumber_lt_of_spanning_AA {U A : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty)
     {p : GraphPath G} (hp : p.support = U)
@@ -152,6 +156,9 @@ lemma pathCoverNumber_lt_of_spanning_AA {U A : Finset V}
     simpa [PathCover.cast_card] using hcard
   omega
 
+/--
+@isnad1 id=lt.5h6v.s6.d232504bbbe8 from=translated src=- shape=3d6b6609 vocab=f836e5c0
+-/
 lemma pathCoverNumber_lt_of_spanningPathCompatible_AA {U A : Finset V}
     (hA : A ⊆ U) (hAne : A.Nonempty) {x y : V}
     (hx : x ∈ A) (hy : y ∈ A)
@@ -162,7 +169,9 @@ lemma pathCoverNumber_lt_of_spanningPathCompatible_AA {U A : Finset V}
     (by simpa [qst] using hx) (by simpa [qfin] using hy)
 
 /-- Opening `c` at `x` produces a spanning path from `x` to the forward
-successor, whose edges plus the dropped successor edge recover `c`.-/
+successor, whose edges plus the dropped successor edge recover `c`.
+@isnad1 id=ex.1h4v.s7.2cbd819f7272 from=translated src=- shape=902849b2 vocab=fd811109
+-/
 lemma exists_open_at_succ (c : GraphCycle G) {x : V} (hx : x ∈ c.support) :
     ∃ p : GraphPath G,
       p.support = c.support ∧ p.start = x ∧
@@ -209,7 +218,9 @@ lemma exists_open_at_succ (c : GraphCycle G) {x : V} (hx : x ∈ c.support) :
 
 /-- Base case of protected paths: the forward cycle successor of `a ∈ A`
 also lies in `A`, so deleting that original cycle edge yields a spanning
-`A`–`A` path whose remaining edges are exactly the other cycle edges.-/
+`A`–`A` path whose remaining edges are exactly the other cycle edges.
+@isnad1 id=ex.4h6v.s7.ba805bce624e from=translated src=- shape=901ec105 vocab=0c4bb315
+-/
 lemma exists_protected_of_succ_mem_A {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) {a : V} (haA : a ∈ A)
@@ -230,7 +241,9 @@ lemma exists_protected_of_succ_mem_A {U A : Finset V}
   · simpa [hs] using hedges
 
 /-- Symmetric base case using the reverse cycle, so the predecessor of
-`a` on `c` lies in `A`.-/
+`a` on `c` lies in `A`.
+@isnad1 id=ex.4h6v.s7.0bcac4a296f2 from=translated src=- shape=e815a10d vocab=fe16c60b
+-/
 lemma exists_protected_of_pred_mem_A {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) {a : V} (haA : a ∈ A)
@@ -261,7 +274,9 @@ lemma exists_protected_of_pred_mem_A {U A : Finset V}
     rw [this]
     exact toFinset_eq_of_perm hperm
 
-/-- Combined base case: some vertex of `A` has a cycle neighbour in `A`.-/
+/-- Combined base case: some vertex of `A` has a cycle neighbour in `A`.
+@isnad1 id=ex.4h6v.s8.cb46c15b8dfe from=translated src=- shape=02724bbc vocab=fe16c60b
+-/
 lemma exists_protected_of_cycle_neighbor_in_A {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) {a : V} (haA : a ∈ A)
@@ -278,7 +293,9 @@ lemma exists_protected_of_cycle_neighbor_in_A {U A : Finset V}
   · exact exists_protected_of_pred_mem_A c hc hA haA h
 
 /-- The A–A cycle-neighbour path is protected: every `A`-incident path
-edge is an original cycle edge.-/
+edge is an original cycle edge.
+@isnad1 id=ex.4h6v.s8.9a2b2ee1def8 from=translated src=- shape=db53e584 vocab=4d1dd564
+-/
 lemma exists_protectedAt_of_cycle_neighbor_in_A {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     (hA : A ⊆ U) {a : V} (haA : a ∈ A)
@@ -300,7 +317,9 @@ lemma exists_protectedAt_of_cycle_neighbor_in_A {U A : Finset V}
   simpa [hedges] using this
 
 /-- Adjacent leftover starts: full-`U` `ProtectedAt` path from the two
-whole cycle pieces, with both endpoints in `A`.-/
+whole cycle pieces, with both endpoints in `A`.
+@isnad1 id=ex.9h8v.s8.cc90051da027 from=translated src=- shape=229552cb vocab=6401997b
+-/
 lemma exists_protectedAt_of_adj_leftover_starts {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)
@@ -316,7 +335,9 @@ lemma exists_protectedAt_of_adj_leftover_starts {U A : Finset V}
     hQ hR hneQR hadj
 
 /-- Adjacent leftover finishes: full-`U` `ProtectedAt` path from the two
-whole cycle pieces of the reverse orientation, with both endpoints in `A`.-/
+whole cycle pieces of the reverse orientation, with both endpoints in `A`.
+@isnad1 id=ex.9h8v.s8.26c6754df52c from=translated src=- shape=eaae540d vocab=6401997b
+-/
 lemma exists_protectedAt_of_adj_leftover_ends {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)
@@ -333,7 +354,9 @@ lemma exists_protectedAt_of_adj_leftover_ends {U A : Finset V}
 
 /-- Combined same-sign leftover switch: adjacent leftover starts or
 adjacent leftover finishes both yield a full-`U` `ProtectedAt` path
-with both endpoints in `A`.-/
+with both endpoints in `A`.
+@isnad1 id=ex.8h8v.s8.5b4002ddaccd from=translated src=- shape=aa2e2144 vocab=6401997b
+-/
 lemma exists_protectedAt_of_adj_leftover_start_or_end {U A : Finset V}
     (c : GraphCycle G) (hc : c.support = U)
     {p : GraphPath G} (hp : p.support = U) (hs : p.start ∈ A)

@@ -34,10 +34,16 @@ variable {V : Type u} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 namespace GraphPath
 
+/--
+@isnad1 id=mem.1h4v.s5.276c2ec5ff07 from=translated src=- shape=63bd7ee4 vocab=c485761c
+-/
 lemma start_mem_takeUntil (p : GraphPath G) {x : V} (hx : x ∈ p.support) :
     p.start ∈ (p.takeUntil hx).support :=
   start_mem_support (p.takeUntil hx)
 
+/--
+@isnad1 id=not.2h4v.s6.f3295ceafce9 from=translated src=- shape=f43460d5 vocab=59f81844
+-/
 lemma start_not_mem_dropUntil (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) (hne : x ≠ p.start) :
     p.start ∉ (p.dropUntil hx).support := by
@@ -47,6 +53,9 @@ lemma start_not_mem_dropUntil (p : GraphPath G) {x : V}
     hinter (mem_inter.2 ⟨start_mem_takeUntil p hx, hst⟩)
   exact hne (mem_singleton.1 this).symm
 
+/--
+@isnad1 id=lt.2h4v.s6.3bd3378ea129 from=translated src=- shape=1fb2d3f2 vocab=ee3aa837
+-/
 lemma dropUntil_support_card_lt (p : GraphPath G) {x : V}
     (hx : x ∈ p.support) (hne : x ≠ p.start) :
     (p.dropUntil hx).support.card < p.support.card := by
@@ -59,6 +68,9 @@ lemma dropUntil_support_card_lt (p : GraphPath G) {x : V}
 
 def inB (B : Finset V) : V → Bool := fun x => decide (x ∈ B)
 
+/--
+@isnad1 id=and.1h5v.s6.445a5a4bc1f0 from=translated src=- shape=2cee4603 vocab=a2c9a3a2
+-/
 lemma mem_find?_B {B : Finset V} {p : GraphPath G} {b : V}
     (h : p.walk.support.find? (inB B) = some b) :
     b ∈ p.support ∧ b ∈ B := by
@@ -66,12 +78,18 @@ lemma mem_find?_B {B : Finset V} {p : GraphPath G} {b : V}
   have hb : b ∈ B := of_decide_eq_true (List.find?_some (p := inB B) h)
   exact ⟨(mem_walk_support (p := p)).2 hmem, hb⟩
 
+/--
+@isnad1 id=ne.2h5v.s6.9d884505c456 from=translated src=- shape=b5ede704 vocab=9c18f0b6
+-/
 lemma find?_B_ne_start {B : Finset V} {p : GraphPath G} {b : V}
     (hs : p.start ∉ B)
     (h : p.walk.support.find? (inB B) = some b) :
     b ≠ p.start :=
   fun hbs => hs (hbs ▸ (mem_find?_B (B := B) h).2)
 
+/--
+@isnad1 id=ex.2h5v.s6.dfcb546dd790 from=translated src=- shape=6a74a62c vocab=a2c9a3a2
+-/
 lemma find?_B_of_mem {B : Finset V} {p : GraphPath G} {x : V}
     (hx : x ∈ p.support) (hxB : x ∈ B) :
     ∃ b, p.walk.support.find? (inB B) = some b := by
@@ -88,6 +106,9 @@ noncomputable def firstB
     (h : p.walk.support.find? (fun x => decide (x ∈ B)) ≠ none) : V :=
   Classical.choose (Option.ne_none_iff_exists'.1 h)
 
+/--
+@isnad1 id=eq.1h4v.s6.7a28902720cc from=translated src=- shape=001f2f60 vocab=962b36f9
+-/
 lemma firstB_spec
     {V : Type u} [DecidableEq V] {G : SimpleGraph V}
     {B : Finset V} {p : GraphPath G}
@@ -148,18 +169,27 @@ decreasing_by
       exact Nat.succ_le_of_lt (Nat.pos_of_ne_zero (mt Walk.length_eq_zero_iff.1 hnn))
     omega
 
+/--
+@isnad1 id=eq.2h4v.s6.d1be56e096e3 from=translated src=- shape=b99ae242 vocab=2cb52554
+-/
 lemma leftoverPieces_of_start_mem_nil {B : Finset V} {p : GraphPath G}
     (hsB : p.start ∈ B) (hnil : p.walk.Nil) :
     leftoverPieces B p = [] := by
   rw [leftoverPieces.eq_def]
   simp [hsB, hnil]
 
+/--
+@isnad1 id=eq.2h4v.s6.f0a4fb4666ef from=translated src=- shape=8c09cb19 vocab=265f02ef
+-/
 lemma leftoverPieces_of_start_mem_cons {B : Finset V} {p : GraphPath G}
     (hsB : p.start ∈ B) (hnil : ¬ p.walk.Nil) :
     leftoverPieces B p = leftoverPieces B (p.trimStart hnil) := by
   rw [leftoverPieces.eq_def]
   simp [hsB, hnil]
 
+/--
+@isnad1 id=eq.2h4v.s6.8516270c32aa from=translated src=- shape=26d16233 vocab=0034bddf
+-/
 lemma leftoverPieces_of_not_mem_start_none {B : Finset V} {p : GraphPath G}
     (hs : p.start ∉ B)
     (h : p.walk.support.find? (fun x => decide (x ∈ B)) = none) :
@@ -167,6 +197,9 @@ lemma leftoverPieces_of_not_mem_start_none {B : Finset V} {p : GraphPath G}
   rw [leftoverPieces.eq_def]
   simp [hs, h]
 
+/--
+@isnad1 id=le.1h5v.s6.f38b6666cceb from=translated src=- shape=330da643 vocab=9a2fb8c6
+-/
 lemma leftoverPieces_support_subset {B : Finset V} (p : GraphPath G) :
     ∀ q ∈ leftoverPieces B p, q.support ⊆ p.support := by
   refine Nat.strongRecOn (motive := fun n =>
@@ -209,6 +242,9 @@ lemma leftoverPieces_support_subset {B : Finset V} (p : GraphPath G) :
         have hsub := ih _ hlt (p.dropUntil hx) rfl q hq
         exact hsub.trans (dropUntil_support_subset p hx)
 
+/--
+@isnad1 id=not.4h6v.s6.de39c40dbdd0 from=translated src=- shape=f8287be0 vocab=22f413c6
+-/
 lemma takeUntil_ne_first_not_mem_B {B : Finset V} {p : GraphPath G} {b y : V}
     (h : p.walk.support.find? (fun x => decide (x ∈ B)) = some b)
     (hx : b ∈ p.support) (hy : y ∈ (p.takeUntil hx).support) (hne : y ≠ b) :
@@ -273,6 +309,9 @@ lemma takeUntil_ne_first_not_mem_B {B : Finset V} {p : GraphPath G} {b y : V}
   have hfalse : decide (y ∈ B) = false := by simpa using hpre y hy_as
   exact Bool.false_ne_true (hfalse.symm.trans (decide_eq_true hyB))
 
+/--
+@isnad1 id=disjoint.1h5v.s5.3ba9818dd631 from=translated src=- shape=e8ff184f vocab=7adc7b25
+-/
 lemma leftoverPieces_disjoint_B {B : Finset V} (p : GraphPath G) :
     ∀ q ∈ leftoverPieces B p, Disjoint q.support B := by
   refine Nat.strongRecOn (motive := fun n =>
@@ -322,6 +361,9 @@ lemma leftoverPieces_disjoint_B {B : Finset V} (p : GraphPath G) :
           simpa [hn] using dropUntil_support_card_lt p hx hne
         exact ih _ hlt (p.dropUntil hx) rfl q hq
 
+/--
+@isnad1 id=ex.2h5v.s6.b46be68dffe2 from=translated src=- shape=837b4b38 vocab=01d3fec8
+-/
 lemma leftoverPieces_exists_of_mem {B : Finset V} (p : GraphPath G) {y : V}
     (hy : y ∈ p.support) (hyB : y ∉ B) :
     ∃ q ∈ leftoverPieces B p, y ∈ q.support := by
@@ -368,6 +410,9 @@ lemma leftoverPieces_exists_of_mem {B : Finset V} (p : GraphPath G) {y : V}
         obtain ⟨q, hq, hyq⟩ := ih _ hlt (p.dropUntil hx) rfl hyD hyB
         exact Or.inr ⟨q, hq, hyq⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.25bbd9c44acf from=translated src=- shape=c99b4dcd vocab=01d3fec8
+-/
 lemma leftoverPieces_mem_iff {B : Finset V} (p : GraphPath G) (y : V) :
     (∃ q ∈ leftoverPieces B p, y ∈ q.support) ↔ y ∈ p.support ∧ y ∉ B := by
   constructor
@@ -377,6 +422,9 @@ lemma leftoverPieces_mem_iff {B : Finset V} (p : GraphPath G) (y : V) :
   · intro ⟨hy, hyB⟩
     exact leftoverPieces_exists_of_mem p hy hyB
 
+/--
+@isnad1 id=pairwise.0h4v.s5.ddae8aa57ee5 from=translated src=- shape=5f15589c vocab=cd936e6d
+-/
 lemma leftoverPieces_pairwise {B : Finset V} (p : GraphPath G) :
     (leftoverPieces B p).Pairwise fun q r => Disjoint q.support r.support := by
   refine Nat.strongRecOn (motive := fun n =>
@@ -422,6 +470,9 @@ lemma leftoverPieces_pairwise {B : Finset V} (p : GraphPath G) :
         hinter (mem_inter.2 ⟨hyT, hyE.2⟩)
       exact hyne (mem_singleton.1 this)
 
+/--
+@isnad1 id=eq.3h4v.s6.cf0d0c44b021 from=translated src=- shape=1269cc12 vocab=ca1bef90
+-/
 lemma leftoverPieces_length_of_terminal {B : Finset V} {p : GraphPath G}
     (hInd : Independent (G := G) B)
     (hs : p.start ∈ B) (hf : p.finish ∈ B) :
@@ -513,6 +564,9 @@ lemma leftoverPieces_length_of_terminal {B : Finset V} {p : GraphPath G}
 
 end GraphPath
 
+/--
+@isnad1 id=eq.1h3v.s5.15f348278315 from=translated src=- shape=666702ea vocab=40544596
+-/
 lemma sum_map_eq_sum_toFinset {α : Type*} [DecidableEq α] {l : List α}
     (hn : l.Nodup) (f : α → ℕ) :
     (l.map f).sum = ∑ x ∈ l.toFinset, f x := by
@@ -525,6 +579,9 @@ lemma sum_map_eq_sum_toFinset {α : Type*} [DecidableEq α] {l : List α}
 
 namespace PathCover
 
+/--
+@isnad1 id=pairwise.1h4v.s6.3def969f919b from=translated src=- shape=dcd953d1 vocab=eabdd700
+-/
 lemma pairwise_flatMap_leftoverPieces {B : Finset V}
     {l : List (GraphPath G)}
     (h : l.Pairwise fun p q => Disjoint p.support q.support) :
@@ -564,6 +621,9 @@ noncomputable def leftoverCover {K B : Finset V} (pc : PathCover G K) :
       have hmem := (GraphPath.leftoverPieces_mem_iff (B := B) p y).1 ⟨q, hqp, hyq⟩
       exact mem_sdiff.2 ⟨(pc.mem_iff y).2 ⟨p, hp, hmem.1⟩, hmem.2⟩
 
+/--
+@isnad1 id=eq.3h5v.s6.8e79895d81fa from=translated src=- shape=1a148449 vocab=5c076408
+-/
 lemma leftoverCover_card {K B : Finset V} (pc : PathCover G K)
     (hBK : B ⊆ K) (hInd : Independent (G := G) B)
     (hterm : IsTerminalCover (G := G) B pc) :
@@ -596,7 +656,9 @@ end PathCover
 
 /-- Deleting independent terminals from an actual `B`-terminal cover of `K`
 yields an ordinary cover of `K \ B` of cardinality `|B| - q`, hence
-`q + p(K \ B) ≤ |B|`.-/
+`q + p(K \ B) ≤ |B|`.
+@isnad1 id=le.3h5v.s6.052a8756b723 from=translated src=- shape=e4d356b2 vocab=1f0bf6d6
+-/
 lemma pathCoverNumber_add_le_card_B {K B : Finset V}
     (hBK : B ⊆ K) (hInd : Independent (G := G) B)
     {pc : PathCover G K} (hterm : IsTerminalCover (G := G) B pc) :

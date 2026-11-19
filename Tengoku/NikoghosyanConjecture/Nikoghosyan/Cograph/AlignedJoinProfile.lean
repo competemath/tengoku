@@ -9,7 +9,9 @@ open Classical Finset
 variable {V : Type*} [Fintype V] [DecidableEq V] {G : SimpleGraph V}
 
 /-- One genuine eligible endpoint on `X` fixes the dominant side whenever
-the joined carrier needs at least two paths. No cycle or cograph is assumed.-/
+the joined carrier needs at least two paths. No cycle or cograph is assumed.
+@isnad1 id=and.6h5v.s7.5c301d1b3f56 from=translated src=- shape=2bace1e5 vocab=9554f634
+-/
 theorem aligned_join_profile_of_eligible {X Y : Finset V} {x : V}
     (hX : X.Nonempty) (hY : Y.Nonempty)
     (hXY : G.IsCompleteBetween (X : Set V) (Y : Set V))

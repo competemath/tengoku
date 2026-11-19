@@ -38,6 +38,9 @@ noncomputable def profileDelta (U A : Finset V) : ℤ :=
 noncomputable def profileContainer (U A : Finset V) : Finset V :=
   A ∪ ineligibleSet G (U \ A)
 
+/--
+@isnad1 id=eq.2h4v.s6.68a8a483f62f from=translated src=- shape=f3e4aaad vocab=d41ca743
+-/
 lemma sdiff_eq_nested_sdiff {A T U : Finset V} (hAT : A ⊆ T) (_hTU : T ⊆ U) :
     U \ T = (U \ A) \ (T \ A) := by
   ext x
@@ -48,6 +51,9 @@ lemma sdiff_eq_nested_sdiff {A T U : Finset V} (hAT : A ⊆ T) (_hTU : T ⊆ U) 
   · intro hx
     exact ⟨hx.1.1, fun hT => hx.2 ⟨hT, hx.1.2⟩⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.5f3bb98c2048 from=translated src=- shape=5d299d6c vocab=439620f0
+-/
 lemma card_eq_add_sdiff {A T : Finset V} (hAT : A ⊆ T) :
     T.card = A.card + (T \ A).card := by
   have hdisj : Disjoint A (T \ A) := disjoint_sdiff
@@ -55,6 +61,9 @@ lemma card_eq_add_sdiff {A T : Finset V} (hAT : A ⊆ T) :
   have := card_union_of_disjoint (s := A) (t := T \ A) hdisj
   simpa [hunion] using this
 
+/--
+@isnad1 id=le.2h5v.s6.b3865e6b8d6f from=translated src=- shape=c4d90fef vocab=f036d22d
+-/
 lemma profileDelta_le_of_nested {U A T : Finset V}
     (hAT : A ⊆ T) (hTU : T ⊆ U) :
     (componentCount G (U \ T) : ℤ) - (T.card : ℤ) ≤ profileDelta (G := G) U A := by
@@ -65,6 +74,9 @@ lemma profileDelta_le_of_nested {U A T : Finset V}
   simp only [profileDelta, hEq]
   omega
 
+/--
+@isnad1 id=le.1h4v.s5.d69bf73b7050 from=translated src=- shape=556a0ed0 vocab=afb278be
+-/
 lemma profileContainer_subset {U A : Finset V} (hA : A ⊆ U) :
     profileContainer (G := G) U A ⊆ U := by
   intro x hx
@@ -72,6 +84,9 @@ lemma profileContainer_subset {U A : Finset V} (hA : A ⊆ U) :
   · exact hA hA'
   · exact (mem_sdiff.1 (ineligibleSet_subset (G := G) (U \ A) hF)).1
 
+/--
+@isnad1 id=eq.1h4v.s6.11595580dc0d from=translated src=- shape=201e7a90 vocab=9457a5ca
+-/
 lemma sdiff_profileContainer {U A : Finset V} (hA : A ⊆ U) :
     U \ profileContainer (G := G) U A =
       (U \ A) \ ineligibleSet G (U \ A) := by
@@ -90,6 +105,9 @@ lemma sdiff_profileContainer {U A : Finset V} (hA : A ⊆ U) :
     simpa [profileContainer] using this
   simpa [hX] using hnested
 
+/--
+@isnad1 id=eq.1h4v.s6.a5f7b9e1ccb4 from=translated src=- shape=3fcc9289 vocab=d13b4a12
+-/
 lemma profileContainer_card {U A : Finset V} (_hA : A ⊆ U) :
     (profileContainer (G := G) U A).card =
       A.card + (ineligibleSet G (U \ A)).card := by
@@ -101,7 +119,9 @@ lemma profileContainer_card {U A : Finset V} (_hA : A ⊆ U) :
   simpa [profileContainer] using
     (card_union_of_disjoint (s := A) (t := ineligibleSet G (U \ A)) hdisj)
 
-/-- `T_A` attains `δ_A` on every nonempty cograph remainder.-/
+/-- `T_A` attains `δ_A` on every nonempty cograph remainder.
+@isnad1 id=eq.3h4v.s6.114c82244e0f from=translated src=- shape=689db2e2 vocab=ec9d3835
+-/
 lemma profileContainer_attains {U A : Finset V}
     (hA : A ⊆ U) (hK : IsCograph G (U \ A))
     (_hKne : (U \ A).Nonempty) :
@@ -114,6 +134,9 @@ lemma profileContainer_attains {U A : Finset V}
   simp only [profileDelta, hrem, hcard]
   omega
 
+/--
+@isnad1 id=eq.3h4v.s6.220e214e5f3e from=translated src=- shape=689db2e2 vocab=92a0f156
+-/
 lemma profileContainer_attains_of_canonical {U A : Finset V}
     (hA : A ⊆ U) (hK : Nikoghosyan.IsCograph G (U \ A))
     (hKne : (U \ A).Nonempty) :
@@ -122,7 +145,9 @@ lemma profileContainer_attains_of_canonical {U A : Finset V}
         profileDelta (G := G) U A :=
   profileContainer_attains hA (isCograph_iff.2 hK) hKne
 
-/-- Every maximizer is contained in `T_A`.-/
+/-- Every maximizer is contained in `T_A`.
+@isnad1 id=le.4h5v.s6.c82896efa99a from=translated src=- shape=5839b5a9 vocab=37e4a75e
+-/
 lemma profile_maximizer_subset_container {U A T : Finset V}
     (hAT : A ⊆ T) (hTU : T ⊆ U) (_hK : IsCograph G (U \ A))
     (hatt :
@@ -146,6 +171,9 @@ lemma profile_maximizer_subset_container {U A T : Finset V}
   · exact mem_union.2 (Or.inl hxA)
   · exact mem_union.2 (Or.inr (hXinc (mem_sdiff.2 ⟨hxT, hxA⟩)))
 
+/--
+@isnad1 id=le.4h5v.s6.c7d22395c5b7 from=translated src=- shape=5839b5a9 vocab=78b0388e
+-/
 lemma profile_maximizer_subset_container_of_canonical {U A T : Finset V}
     (hAT : A ⊆ T) (hTU : T ⊆ U) (hK : Nikoghosyan.IsCograph G (U \ A))
     (hatt :
@@ -155,7 +183,9 @@ lemma profile_maximizer_subset_container_of_canonical {U A T : Finset V}
   profile_maximizer_subset_container hAT hTU (isCograph_iff.2 hK) hatt
 
 /-- Packaged profile-scattering maximum: `δ_A` is the exact maximum of
-`c(U \ T) - |T|` over `A ⊆ T ⊆ U`, and `T_A` is the unique largest maximizer.-/
+`c(U \ T) - |T|` over `A ⊆ T ⊆ U`, and `T_A` is the unique largest maximizer.
+@isnad1 id=and.3h4v.s8.7cf268be0dea from=translated src=- shape=8dcb1e6d vocab=bfaceb97
+-/
 lemma profile_scattering_maximum {U A : Finset V}
     (hA : A ⊆ U) (hK : IsCograph G (U \ A)) (hKne : (U \ A).Nonempty) :
     (∀ T, A ⊆ T → T ⊆ U →
@@ -181,6 +211,9 @@ lemma profile_scattering_maximum {U A : Finset V}
     exact card_le_card
       (profile_maximizer_subset_container hAT hTU hK hatt)
 
+/--
+@isnad1 id=and.3h4v.s8.8ec18f4fdfa6 from=translated src=- shape=8dcb1e6d vocab=84614a38
+-/
 lemma profile_scattering_maximum_of_canonical {U A : Finset V}
     (hA : A ⊆ U) (hK : Nikoghosyan.IsCograph G (U \ A))
     (hKne : (U \ A).Nonempty) :
