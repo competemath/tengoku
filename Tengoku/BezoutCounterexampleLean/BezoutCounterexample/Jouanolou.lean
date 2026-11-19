@@ -43,7 +43,9 @@ variable {B : Type*} [CommRing B] {r : ℕ}
 /-- The Jouanolou relation `q_c = ∑ σᵢ cᵢ - 1`.-/
 def rel (c : Fin r → B) : MvPolynomial (Fin r) B := ∑ i, X i * C (c i)  - 1
 
-/-- `q_c = ∑ cᵢ σᵢ - 1`.-/
+/-- `q_c = ∑ cᵢ σᵢ - 1`.
+@isnad1 id=eq.0h3v.s8.0303e7efef7f from=translated src=- shape=06720a41 vocab=628be4fa
+-/
 lemma rel_eq (c : Fin r → B) : rel c = ∑ i, C (c i) * X i - 1 := by
   simp only [rel, mul_comm]
 
@@ -56,12 +58,21 @@ abbrev mk (c : Fin r → B) : MvPolynomial (Fin r) B →ₐ[B] J c := Ideal.Quot
 /-- The coordinates `σᵢ`.-/
 def σ (c : Fin r → B) (i : Fin r) : J c := mk c (X i)
 
+/--
+@isnad1 id=eq.0h3v.s9.5ab49eb6f163 from=translated src=- shape=65816cd8 vocab=29188e6e
+-/
 lemma mk_rel (c : Fin r → B) : mk c (rel c) = 0 :=
   Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _)
 
+/--
+@isnad1 id=eq.0h4v.s10.3233d4c71a3b from=translated src=- shape=9020ddf4 vocab=fbf1729f
+-/
 lemma mk_C (c : Fin r → B) (a : B) : mk c (C a) = algebraMap B (J c) a := by
   rw [← MvPolynomial.algebraMap_eq, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h3v.s9.2325ade24201 from=translated src=- shape=09cd6d4c vocab=7e2db6e6
+-/
 lemma algebraMap_eq_mk_comp_C (c : Fin r → B) :
     algebraMap B (J c) = (Ideal.Quotient.mk (Ideal.span {rel c})).comp C := by
   ext b
@@ -69,7 +80,9 @@ lemma algebraMap_eq_mk_comp_C (c : Fin r → B) :
     Ideal.Quotient.algebraMap_eq]
   rfl
 
-/-- The relation `∑ σᵢ cᵢ = 1` in `J_B(c)`.-/
+/-- The relation `∑ σᵢ cᵢ = 1` in `J_B(c)`.
+@isnad1 id=eq.0h3v.s9.93f6114a9c3a from=translated src=- shape=51b4abf5 vocab=62044e2c
+-/
 lemma sum_σ_mul (c : Fin r → B) : ∑ i, σ c i * algebraMap B (J c) (c i) = 1 := by
   have h1 : ∑ i, σ c i * algebraMap B (J c) (c i) = mk c (∑ i, X i * C (c i)) := by
     rw [map_sum]
@@ -78,12 +91,17 @@ lemma sum_σ_mul (c : Fin r → B) : ∑ i, σ c i * algebraMap B (J c) (c i) = 
     rw [rel, sub_add_cancel]
   rw [h1, h2, map_add, mk_rel, map_one, zero_add]
 
+/--
+@isnad1 id=eq.0h5v.s7.28f7e8277e45 from=translated src=- shape=5bafbee9 vocab=bc9ae6da
+-/
 lemma map_rel {D : Type*} [CommRing D] (f : B →+* D) (c : Fin r → B) :
     MvPolynomial.map f (rel c) = rel (f ∘ c) := by
   simp [rel]
 
 /-- `q_c` is a nonzerodivisor: its constant coefficient is `-1`, so it is a unit in the power
-series ring.-/
+series ring.
+@isnad1 id=eq.1h4v.s7.38c92d72ed19 from=translated src=- shape=cc2099fc vocab=3b07cc61
+-/
 lemma rel_nzd {D : Type*} [CommRing D] (c : Fin r → D) {p : MvPolynomial (Fin r) D}
     (h : p * rel c = 0) : p = 0 := by
   have hu : IsUnit ((rel c : MvPolynomial (Fin r) D) : MvPowerSeries (Fin r) D) := by
@@ -99,7 +117,9 @@ lemma rel_nzd {D : Type*} [CommRing D] (c : Fin r → D) {p : MvPolynomial (Fin 
   exact MvPolynomial.coe_injective (Fin r) D (h3.trans MvPolynomial.coe_zero.symm)
 
 /-- Multiplication by `0 ≠ b ∈ B` is injective on `J_B(c)` over a domain: from `b f = g q_c`,
-reduction modulo `b` gives `g ∈ b B[σ]`, and cancellation of `b` gives `f ∈ (q_c)`.-/
+reduction modulo `b` gives `g ∈ b B[σ]`, and cancellation of `b` gives `f ∈ (q_c)`.
+@isnad1 id=mem.2h5v.s9.b537a7713406 from=translated src=- shape=2494b0a4 vocab=8ff1e83c
+-/
 lemma C_mul_mem [IsDomain B] (c : Fin r → B) {b : B} (hb : b ≠ 0) {p : MvPolynomial (Fin r) B}
     (h : C b * p ∈ Ideal.span {rel c}) : p ∈ Ideal.span {rel c} := by
   obtain ⟨a, ha⟩ := Ideal.mem_span_singleton'.1 h
@@ -119,6 +139,9 @@ lemma C_mul_mem [IsDomain B] (c : Fin r → B) {b : B} (hb : b ≠ 0) {p : MvPol
   rw [mul_left_cancel₀ hCb this]
   exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _)
 
+/--
+@isnad1 id=eq.2h5v.s9.82ab123c6c2b from=translated src=- shape=3802550a vocab=b74de6e9
+-/
 lemma algebraMap_mul_eq_zero [IsDomain B] (c : Fin r → B) {b : B} (hb : b ≠ 0) {u : J c}
     (h : algebraMap B (J c) b * u = 0) : u = 0 := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective u
@@ -177,17 +200,29 @@ def map : J c →+* J (f ∘ c) :=
     rw [RingHom.comp_apply, map_mul, map_rel, map_mul,
       Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.mem_span_singleton_self _), mul_zero])
 
+/--
+@isnad1 id=eq.0h6v.s11.a4414dc567a0 from=translated src=- shape=361c7e4a vocab=64d2fa85
+-/
 lemma map_mk (p : MvPolynomial (Fin r) B) :
     map f c (Ideal.Quotient.mk _ p) = Ideal.Quotient.mk _ (MvPolynomial.map f p) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.c0ee8a4c6f79 from=translated src=- shape=b9750c73 vocab=b7e1614f
+-/
 lemma map_algebraMap (b : B) : map f c (algebraMap B (J c) b) = algebraMap B' (J (f ∘ c)) (f b) := by
   rw [IsScalarTower.algebraMap_apply B (MvPolynomial (Fin r) B), MvPolynomial.algebraMap_eq,
     Ideal.Quotient.algebraMap_eq, map_mk, map_C, IsScalarTower.algebraMap_apply B' (MvPolynomial (Fin r) B'),
     MvPolynomial.algebraMap_eq, Ideal.Quotient.algebraMap_eq]
 
+/--
+@isnad1 id=eq.0h6v.s9.69c58b536797 from=translated src=- shape=7cf94327 vocab=c2b79a1c
+-/
 lemma map_σ (i : Fin r) : map f c (σ c i) = σ (f ∘ c) i := by
   simp [σ, map_mk]
 
+/--
+@isnad1 id=surjecti.1h5v.s9.d2a3c7f0a5c3 from=translated src=- shape=8e8e8e15 vocab=e6206a83
+-/
 lemma map_surjective (hf : Function.Surjective f) : Function.Surjective (map f c) := by
   intro z
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective z
@@ -210,6 +245,9 @@ def mapAlgHom : J c →ₐ[B] J (algebraMap B B' ∘ c) :=
         MonoidHom.coe_coe]
       rw [map_algebraMap, ← IsScalarTower.algebraMap_apply] }
 
+/--
+@isnad1 id=eq.0h5v.s10.3c0c54f20f57 from=translated src=- shape=f89b8128 vocab=068507f6
+-/
 lemma mapAlgHom_σ (i : Fin r) : mapAlgHom B' c (σ c i) = σ (algebraMap B B' ∘ c) i :=
   map_σ _ _ i
 
@@ -217,7 +255,9 @@ end TensorProduct
 
 section Quotient
 
-/-- The kernel of the reduction `J_B(c) → J_{B/𝔞}(c̄)` is `𝔞 J_B(c)`.-/
+/-- The kernel of the reduction `J_B(c) → J_{B/𝔞}(c̄)` is `𝔞 J_B(c)`.
+@isnad1 id=eq.0h4v.s11.b9357e94fecf from=translated src=- shape=6abe8238 vocab=223e8d66
+-/
 lemma ker_map_quotient (c : Fin r → B) (𝔞 : Ideal B) :
     RingHom.ker (map (Ideal.Quotient.mk 𝔞) c) = 𝔞.map (algebraMap B (J c)) := by
   apply le_antisymm
@@ -258,12 +298,18 @@ def redHom : J c →+* J (Ideal.Quotient.mk (Ideal.span {b}) ∘ c) :=
       rw [RingHom.comp_apply, map_mul, map_rel, map_mul, Ideal.Quotient.eq_zero_iff_mem.2
         (Ideal.mem_span_singleton_self _), mul_zero])
 
+/--
+@isnad1 id=surjecti.0h4v.s12.56ac3a0ec8fa from=translated src=- shape=5d0d29ef vocab=d0149d76
+-/
 lemma redHom_surjective : Function.Surjective (redHom c b) := by
   intro z
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective z
   obtain ⟨q, rfl⟩ := MvPolynomial.map_surjective _ Ideal.Quotient.mk_surjective p
   exact ⟨Ideal.Quotient.mk _ q, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s12.b7b2fc2a0d02 from=translated src=- shape=6eb059b1 vocab=69889c82
+-/
 lemma ker_redHom : RingHom.ker (redHom c b) = Ideal.span {algebraMap B (J c) b} := by
   have h := ker_map_quotient c (Ideal.span {b})
   rw [Ideal.map_span, Set.image_singleton] at h
@@ -281,7 +327,9 @@ section Localization
 
 variable {B' : Type*} [CommRing B'] (c : Fin r → B)
 
-/-- Clearing denominators of a polynomial over a localization.-/
+/-- Clearing denominators of a polynomial over a localization.
+@isnad1 id=ex.0h5v.s9.6e887f7240e1 from=translated src=- shape=d44df1c4 vocab=2fd87ad2
+-/
 lemma exists_clear (M : Submonoid B) [Algebra B B'] [IsLocalization M B'] (p : MvPolynomial (Fin r) B') :
     ∃ (q : MvPolynomial (Fin r) B) (m : M),
       MvPolynomial.map (algebraMap B B') q = C (algebraMap B B' m) * p := by
@@ -291,7 +339,9 @@ lemma exists_clear (M : Submonoid B) [Algebra B B'] [IsLocalization M B'] (p : M
   simp only [MvPolynomial.algebraMap_def, map_C] at hq
   rw [← hq, mul_comm]
 
-/-- Polynomials killed by the localization map are killed by an element of `M`.-/
+/-- Polynomials killed by the localization map are killed by an element of `M`.
+@isnad1 id=ex.1h5v.s9.764ff463272a from=translated src=- shape=009f74c4 vocab=2fd87ad2
+-/
 lemma exists_kill (M : Submonoid B) [Algebra B B'] [IsLocalization M B'] {g : MvPolynomial (Fin r) B}
     (hg : MvPolynomial.map (algebraMap B B') g = 0) : ∃ m : M, C (m : B) * g = 0 := by
   let := MvPolynomial.algebraMvPolynomial (σ := Fin r) (R := B) (S := B')
@@ -301,7 +351,9 @@ lemma exists_kill (M : Submonoid B) [Algebra B B'] [IsLocalization M B'] {g : Mv
   exact ⟨⟨m, hm⟩, h⟩
 
 /-- **Lemma 3.1(1)**, localization: the formation of `J_B(c)` commutes with localization of `B`:
-`J_{M⁻¹B}(c')` is the localization of `J_B(c)` at the image of `M`.-/
+`J_{M⁻¹B}(c')` is the localization of `J_B(c)` at the image of `M`.
+@isnad1 id=islocali.0h5v.s10.ab4149bdb798 from=translated src=- shape=2c444b1e vocab=af53a3fc
+-/
 theorem isLocalization_map (M : Submonoid B) [Algebra B B'] [IsLocalization M B'] :
     @IsLocalization _ _ (M.map (algebraMap B (J c))) (J (algebraMap B B' ∘ c)) _
       (map (algebraMap B B') c).toAlgebra := by
@@ -361,6 +413,9 @@ def elimHom {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) :
 
 variable {c l}
 
+/--
+@isnad1 id=eq.1h7v.s8.8d7f8065740f from=translated src=- shape=ee291b65 vocab=b2ae95fa
+-/
 lemma elimHom_rel {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (c l) = u) :
     elimHom c l φ u (rel c) = 0 := by
   simp only [elimHom, rel, map_sub, map_sum, map_mul, eval₂Hom_X', eval₂Hom_C, RingHom.comp_apply,
@@ -372,6 +427,9 @@ lemma elimHom_rel {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (
     rw [mul_comm, ← mul_assoc, ← C_mul, Units.mul_inv, C_1, one_mul]
   rw [this]; ring
 
+/--
+@isnad1 id=eq.0h8v.s9.7f6f65429cde from=translated src=- shape=1c6545d8 vocab=233db5fc
+-/
 lemma elimHom_rename {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (p : MvPolynomial (Fin r) B) :
     elimHom c l φ u (rename l.succAbove p) = MvPolynomial.map φ p := by
   have : (elimHom c l φ u).comp (rename l.succAbove).toRingHom = MvPolynomial.map φ := by
@@ -380,7 +438,9 @@ lemma elimHom_rename {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (p : Mv
     · simp [elimHom, solveVals, Fin.insertNth_apply_succAbove]
   exact congrArg (fun f : MvPolynomial (Fin r) B →+* MvPolynomial (Fin r) L => f p) this
 
-/-- **Pseudo-division** by the Jouanolou relation, eliminating `σ_l`.-/
+/-- **Pseudo-division** by the Jouanolou relation, eliminating `σ_l`.
+@isnad1 id=ex.0h5v.s10.4308b1ff6d28 from=translated src=- shape=b97c1eba vocab=4be9bea7
+-/
 lemma exists_pseudo (p : MvPolynomial (Fin (r + 1)) B) :
     ∃ (N : ℕ) (q : MvPolynomial (Fin (r + 1)) B) (p₀ : MvPolynomial (Fin r) B),
       C (c l) ^ N * p = q * rel c + rename l.succAbove p₀ := by
@@ -419,10 +479,16 @@ def elim {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (c l) = u)
     obtain ⟨b, rfl⟩ := Ideal.mem_span_singleton'.1 ha
     rw [map_mul, elimHom_rel φ u hu, mul_zero])
 
+/--
+@isnad1 id=eq.1h8v.s11.cc55328f4d2a from=translated src=- shape=d8f2c3d1 vocab=dae0755d
+-/
 lemma elim_mk {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (c l) = u)
     (p : MvPolynomial (Fin (r + 1)) B) : elim φ u hu (Ideal.Quotient.mk _ p) = elimHom c l φ u p :=
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s10.bedc07f71d23 from=translated src=- shape=72d1051b vocab=e8cad92b
+-/
 lemma elim_algebraMap {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (c l) = u) (b : B) :
     elim φ u hu (algebraMap B (J c) b) = C (φ b) := by
   have : algebraMap B (J c) b = Ideal.Quotient.mk _ (C b) := by
@@ -430,6 +496,9 @@ lemma elim_algebraMap {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : 
       Ideal.Quotient.algebraMap_eq]
   rw [this, elim_mk]; simp [elimHom]
 
+/--
+@isnad1 id=eq.1h8v.s9.84084cdb3681 from=translated src=- shape=08ed1de9 vocab=87b7551b
+-/
 lemma elim_σ {L : Type*} [CommRing L] (φ : B →+* L) (u : Lˣ) (hu : φ (c l) = u) (j : Fin r) :
     elim φ u hu (σ c (l.succAbove j)) = X j := by
   show elim φ u hu (Ideal.Quotient.mk _ (X (l.succAbove j))) = _
@@ -446,13 +515,21 @@ def elimLoc : J c →+* LocP c l :=
   elim (algebraMap B (Localization.Away (c l)))
     (IsLocalization.Away.algebraMap_isUnit (c l)).unit rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.78fa2b044df9 from=translated src=- shape=bde4e7a3 vocab=b86930f3
+-/
 lemma elimLoc_algebraMap (b : B) :
     elimLoc c l (algebraMap B (J c) b) = C (algebraMap B (Localization.Away (c l)) b) :=
   elim_algebraMap _ _ _ b
 
+/--
+@isnad1 id=eq.0h5v.s9.9debe0f07ff2 from=translated src=- shape=4a36f131 vocab=661fa5f7
+-/
 lemma elimLoc_σ (j : Fin r) : elimLoc c l (σ c (l.succAbove j)) = X j := elim_σ _ _ _ j
 
-/-- Elements killed by the elimination map are killed by a power of `c_l`.-/
+/-- Elements killed by the elimination map are killed by a power of `c_l`.
+@isnad1 id=ex.1h5v.s11.1884ce488ef3 from=translated src=- shape=0c13e952 vocab=9c0178b4
+-/
 lemma exists_pow_mul_eq_zero_of_elimLoc {z : J c} (hz : elimLoc c l z = 0) :
     ∃ n : ℕ, algebraMap B (J c) (c l) ^ n * z = 0 := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective z
@@ -480,7 +557,9 @@ lemma exists_pow_mul_eq_zero_of_elimLoc {z : J c} (hz : elimLoc c l z = 0) :
   exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _)
 
 /-- **Lemma 3.1(2)**: eliminating `σ_l` gives `J_B(c)[1/c_l] ≅ B[1/c_l][σᵢ | i ≠ l]`, for any ring
-`B`: the elimination map `J_B(c) → B[1/c_l][σ_{≠l}]` is a localization at `c_l`.-/
+`B`: the elimination map `J_B(c) → B[1/c_l][σ_{≠l}]` is a localization at `c_l`.
+@isnad1 id=away.0h4v.s10.fd70e0bd923e from=translated src=- shape=4702a2d2 vocab=38e17530
+-/
 theorem isLocalization_elim (c : Fin (r + 1) → B) (l : Fin (r + 1)) :
     @IsLocalization.Away _ _ (algebraMap B (J c) (c l)) (LocP c l) _ (elimLoc c l).toAlgebra := by
   let : Algebra (J c) (LocP c l) := (elimLoc c l).toAlgebra
@@ -541,7 +620,9 @@ variable {c : Fin (r + 1) → B} {l : Fin (r + 1)}
 
 Proof: multiplication by the powers of `c_l` is injective on `J_B(c)` (`algebraMap_mul_eq_zero`),
 so `J_B(c) → J_B(c)[1/c_l]` is injective; by (2) the target is a polynomial ring over the domain
-`B[1/c_l]`.-/
+`B[1/c_l]`.
+@isnad1 id=isdomain.1h4v.s8.366151105c0a from=translated src=- shape=92748027 vocab=8ad9ce6b
+-/
 theorem isDomain [IsDomain B] (hl : c l ≠ 0) : IsDomain (J c) := by
   let : Algebra (J c) (LocP c l) := (elimLoc c l).toAlgebra
   have := isLocalization_elim c l
@@ -557,7 +638,9 @@ theorem isDomain [IsDomain B] (hl : c l ≠ 0) : IsDomain (J c) := by
     IsLocalization.injective (LocP c l) hnzd
   exact hinj.isDomain _
 
-/-- **Lemma 3.1(3)**: if `B` is a domain and `c_l ≠ 0`, then `B → J_B(c)` is injective.-/
+/-- **Lemma 3.1(3)**: if `B` is a domain and `c_l ≠ 0`, then `B → J_B(c)` is injective.
+@isnad1 id=injectiv.1h4v.s10.7a0c163bc577 from=translated src=- shape=c5d231a0 vocab=d29d79df
+-/
 lemma algebraMap_injective [IsDomain B] (hl : c l ≠ 0) :
     Function.Injective (algebraMap B (J c)) := by
   set L := Localization.Away (c l)
@@ -568,7 +651,9 @@ lemma algebraMap_injective [IsDomain B] (hl : c l ≠ 0) :
   rw [elimLoc_algebraMap, elimLoc_algebraMap] at h2
   exact hinjB (C_injective _ _ h2)
 
-/-- `𝔞 J_B(c)` is prime when `B/𝔞` is a domain and some `c_l ∉ 𝔞` (by (1) and (3)).-/
+/-- `𝔞 J_B(c)` is prime when `B/𝔞` is a domain and some `c_l ∉ 𝔞` (by (1) and (3)).
+@isnad1 id=isprime.1h5v.s10.61688986337d from=translated src=- shape=37b03c9e vocab=65e53f2b
+-/
 lemma isPrime_map (𝔞 : Ideal B) [𝔞.IsPrime] (hl : c l ∉ 𝔞) :
     (𝔞.map (algebraMap B (J c))).IsPrime := by
   rw [← ker_map_quotient]
@@ -588,6 +673,9 @@ variable {c : Fin (r + 1) → B} {l : Fin (r + 1)}
 def unitInv : MvPolynomial (Fin r) B →+* J c :=
   eval₂Hom (algebraMap B (J c)) (fun j => σ c (l.succAbove j))
 
+/--
+@isnad1 id=eq.1h6v.s10.9f98a16bf4fa from=translated src=- shape=c4a44e8d vocab=b3f9bbea
+-/
 lemma unitInv_elim (u : Bˣ) (hu : c l = u) (z : J c) :
     unitInv (l := l) (elim (RingHom.id B) u hu z) = z := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective z
@@ -627,13 +715,22 @@ def equivPoly (u : Bˣ) (hu : c l = u) : J c ≃+* MvPolynomial (Fin r) B :=
         rw [elim_σ])
     (RingHom.ext fun z => unitInv_elim u hu z)
 
+/--
+@isnad1 id=eq.1h6v.s11.f76f78fda557 from=translated src=- shape=21fdac91 vocab=0778dc0f
+-/
 lemma equivPoly_apply (u : Bˣ) (hu : c l = u) (z : J c) :
     equivPoly u hu z = elim (RingHom.id B) u hu z := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.77940d68d144 from=translated src=- shape=4e6cede7 vocab=62cab85b
+-/
 lemma equivPoly_algebraMap (u : Bˣ) (hu : c l = u) (b : B) :
     equivPoly u hu (algebraMap B (J c) b) = C b := by
   rw [equivPoly_apply, elim_algebraMap]; rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.757c41dc4392 from=translated src=- shape=3af342dd vocab=5af5226d
+-/
 lemma equivPoly_σ (u : Bˣ) (hu : c l = u) (j : Fin r) :
     equivPoly u hu (σ c (l.succAbove j)) = X j := by
   rw [equivPoly_apply, elim_σ]
@@ -645,7 +742,9 @@ end Unit
 /-- **Lemma 3.1(4)**: `J_B(c)` is formally smooth over `B`. The `B`-derivation
 `𝓔 = ∑ σᵢ ∂/∂σᵢ` of `P = B[σ]` satisfies `𝓔(q_c) = q_c + 1`, so it induces a map
 `Ω_{P/B} ⊗ J_B(c) → J_B(c)` sending `dq_c` to `1`; the conormal sequence is split exact, and the
-split-conormal criterion (Stacks, Tag 031J) applies.-/
+split-conormal criterion (Stacks, Tag 031J) applies.
+@isnad1 id=formally.0h3v.s7.572b9f18d567 from=translated src=- shape=d798f006 vocab=1dc0e73f
+-/
 theorem formallySmooth (c : Fin r → B) : Algebra.FormallySmooth B (J c) := by
   set P := MvPolynomial (Fin r) B
   have hrange : Ideal.span (Set.range fun _ : Fin 1 => rel c) = Ideal.span {rel c} := by
@@ -668,12 +767,16 @@ theorem formallySmooth (c : Fin r → B) : Algebra.FormallySmooth B (J c) := by
   have := formallySmooth_quotient_of_dual (R := B) (fun _ : Fin 1 => rel c) D hD
   exact Algebra.FormallySmooth.of_equiv (Ideal.quotientEquivAlgOfEq B hrange)
 
-/-- `J_B(c)` is of finite presentation over `B`.-/
+/-- `J_B(c)` is of finite presentation over `B`.
+@isnad1 id=finitepr.0h3v.s7.cce4f2eeac0c from=translated src=- shape=d798f006 vocab=7778e92f
+-/
 instance finitePresentation (c : Fin r → B) : Algebra.FinitePresentation B (J c) :=
   Algebra.FinitePresentation.quotient (Submodule.fg_span_singleton _)
 
 /-- **Lemma 3.1(4)**: if `B` is a smooth finitely generated `ℚ`-algebra, then so is `J_B(c)`:
-it is formally smooth and of finite presentation over `ℚ`.-/
+it is formally smooth and of finite presentation over `ℚ`.
+@isnad1 id=smooth.0h3v.s7.5ac990fda57e from=translated src=- shape=3d03de2a vocab=b2fb66a4
+-/
 theorem smooth [Algebra ℚ B] [Algebra.Smooth ℚ B] (c : Fin r → B) : Algebra.Smooth ℚ (J c) :=
   haveI := formallySmooth c
   haveI : Algebra.Smooth B (J c) := ⟨inferInstance, inferInstance⟩
@@ -690,7 +793,9 @@ variable {c : Fin (r + 1) → B} {l : Fin (r + 1)}
 
 Proof: `J_B(c)[1/c_l]` is a UFD by (2); `J_B(c)/c_l J_B(c) ≅ J_{B/c_l B}(c̄)` by (1), a domain by
 (3) since `c̄_m ≠ 0`; so `c_l` is a prime element of the Noetherian domain `J_B(c)` and Nagata's
-criterion applies.-/
+criterion applies.
+@isnad1 id=uniquefa.2h5v.s8.b704ff0bf288 from=translated src=- shape=c361e1ec vocab=07a15203
+-/
 theorem ufd [IsDomain B] [IsNoetherianRing B] [UniqueFactorizationMonoid B] (hl : Prime (c l))
     {m : Fin (r + 1)} (hm : ¬ c l ∣ c m) : UniqueFactorizationMonoid (J c) := by
   have hl0 := hl.ne_zero
@@ -755,6 +860,9 @@ def derivOfTsze (θ : S →+* TrivSqZeroExt S S) (hfst : ∀ s, (θ s).fst = s) 
     simp only [smul_eq_mul, MulOpposite.smul_eq_mul_unop, MulOpposite.unop_op]
     ring
 
+/--
+@isnad1 id=eq.1h3v.s8.b0aba53acc72 from=translated src=- shape=ae332a08 vocab=baad3ead
+-/
 @[simp] lemma derivOfTsze_apply (θ : S →+* TrivSqZeroExt S S) (hfst : ∀ s, (θ s).fst = s) (s : S) :
     derivOfTsze θ hfst s = (θ s).snd := rfl
 
@@ -788,6 +896,9 @@ def polyTsze (δ : Derivation ℚ B B) (v : Fin r → J c) :
   eval₂Hom (coefTsze c δ) (fun i => inl (σ c i) + inr (v i))
 
 set_option synthInstance.maxHeartbeats 200000 in
+/--
+@isnad1 id=eq.0h6v.s10.f3f98cc58b36 from=translated src=- shape=37b1a85b vocab=21546111
+-/
 lemma fst_polyTsze (δ : Derivation ℚ B B) (v : Fin r → J c) (p : MvPolynomial (Fin r) B) :
     (polyTsze c δ v p).fst = mk c p := by
   induction p using MvPolynomial.induction_on with
@@ -822,6 +933,9 @@ def liftDer (δ : Derivation ℚ B B) (v : Fin r → J c)
       obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective s
       rw [Ideal.Quotient.lift_mk, fst_polyTsze]; rfl)
 
+/--
+@isnad1 id=eq.1h6v.s11.975ebf253079 from=translated src=- shape=9466c3e6 vocab=8075a027
+-/
 lemma liftDer_algebraMap (δ : Derivation ℚ B B) (v : Fin r → J c) (hv) (b : B) :
     liftDer δ v hv (algebraMap B (J c) b) = algebraMap B (J c) (δ b) := by
   have : algebraMap B (J c) b = Ideal.Quotient.mk _ (C b) := by
@@ -830,6 +944,9 @@ lemma liftDer_algebraMap (δ : Derivation ℚ B B) (v : Fin r → J c) (hv) (b :
   rw [liftDer, derivOfTsze_apply, this, Ideal.Quotient.lift_mk]
   simp [polyTsze, coefTsze, Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.1h6v.s11.8db0cd094676 from=translated src=- shape=9cdf25a2 vocab=8075a027
+-/
 lemma liftDer_σ (δ : Derivation ℚ B B) (v : Fin r → J c) (hv) (i : Fin r) :
     liftDer δ v hv (σ c i) = v i := by
   rw [liftDer, derivOfTsze_apply, σ, mk, Ideal.Quotient.mkₐ_eq_mk, Ideal.Quotient.lift_mk]

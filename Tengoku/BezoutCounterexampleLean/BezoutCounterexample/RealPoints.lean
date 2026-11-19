@@ -44,10 +44,19 @@ def ofHom (φ : A →+* ℝ) : RealPt A := φ
 /-- The ring homomorphism underlying a real point.-/
 def toHom (z : RealPt A) : A →+* ℝ := z
 
+/--
+@isnad1 id=eq.0h3v.s6.f45b91b8c5aa from=translated src=- shape=e4acc332 vocab=5e2d122d
+-/
 @[simp] lemma ofHom_apply (φ : A →+* ℝ) (a : A) : ofHom φ a = φ a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.224debc952d4 from=translated src=- shape=77ee33a9 vocab=356a45b8
+-/
 @[simp] lemma toHom_apply (z : RealPt A) (a : A) : toHom z a = z a := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.1f92505d819c from=translated src=- shape=2bd411b8 vocab=70edf5a7
+-/
 @[ext] lemma ext {z w : RealPt A} (h : ∀ a, z a = w a) : z = w := DFunLike.ext _ _ h
 
 /-- The topology on real points: the coarsest topology for which every evaluation `z ↦ z a` is
@@ -55,9 +64,15 @@ continuous.-/
 instance : TopologicalSpace (RealPt A) :=
   TopologicalSpace.induced (fun z : RealPt A => (z : A → ℝ)) inferInstance
 
+/--
+@isnad1 id=continuo.0h2v.s5.38de5b6efeb7 from=translated src=- shape=1c69d0ee vocab=e0d26e55
+-/
 lemma continuous_eval (a : A) : Continuous fun z : RealPt A => z a :=
   (continuous_apply a).comp continuous_induced_dom
 
+/--
+@isnad1 id=iff.0h3v.s5.a90594f5d4ce from=translated src=- shape=84d541ed vocab=53fcb782
+-/
 lemma continuous_iff {X : Type*} [TopologicalSpace X] {g : X → RealPt A} :
     Continuous g ↔ ∀ a, Continuous fun t => g t a := by
   rw [continuous_induced_rng, continuous_pi_iff]
@@ -71,15 +86,26 @@ instance : T2Space (RealPt A) :=
 /-- The map `f^* : Spec(B)(ℝ) → Spec(A)(ℝ)`, `z ↦ z ∘ f`, induced by `f : A → B`.-/
 def comap (f : A →+* B) (z : RealPt B) : RealPt A := (toHom z).comp f
 
+/--
+@isnad1 id=eq.0h5v.s6.e2988946f3de from=translated src=- shape=2090cc22 vocab=c0eeb723
+-/
 @[simp] lemma comap_apply (f : A →+* B) (z : RealPt B) (a : A) : comap f z a = z (f a) := rfl
 
-/-- `f^*` is continuous.-/
+/-- `f^*` is continuous.
+@isnad1 id=continuo.0h3v.s5.71aa35c0ff27 from=translated src=- shape=e0bb3683 vocab=33d0d70e
+-/
 lemma continuous_comap (f : A →+* B) : Continuous (comap f) :=
   continuous_iff.2 fun a => continuous_eval (f a)
 
+/--
+@isnad1 id=eq.0h6v.s6.b7ef3d406850 from=translated src=- shape=b8d67859 vocab=53ff05e5
+-/
 lemma comap_comp (f : A →+* B) (g : B →+* C) (z : RealPt C) :
     comap (g.comp f) z = comap f (comap g z) := rfl
 
+/--
+@isnad1 id=isclosed.0h1v.s5.e23c7c12ffbf from=translated src=- shape=50d07a95 vocab=dc4d9647
+-/
 lemma isClosed_range_coe : IsClosed (range fun w : RealPt A => (w : A → ℝ)) := by
   have : range (fun w : RealPt A => (w : A → ℝ)) =
       {f : A → ℝ | f 1 = 1} ∩ (⋂ x : A, ⋂ y : A, {f | f (x + y) = f x + f y}) ∩
@@ -101,10 +127,15 @@ lemma isClosed_range_coe : IsClosed (range fun w : RealPt A => (w : A → ℝ)) 
   · exact isClosed_iInter fun x => isClosed_iInter fun y =>
       isClosed_eq (continuous_apply _) ((continuous_apply x).mul (continuous_apply y))
 
+/--
+@isnad1 id=isclosed.0h1v.s5.371efe31e83b from=translated src=- shape=c06405ab vocab=f8e18109
+-/
 lemma isClosedEmbedding_coe : IsClosedEmbedding (fun w : RealPt A => (w : A → ℝ)) :=
   ⟨⟨⟨rfl⟩, fun _ _ h => DFunLike.coe_injective h⟩, isClosed_range_coe⟩
 
-/-- A closed set of real points on which every function is bounded is compact.-/
+/-- A closed set of real points on which every function is bounded is compact.
+@isnad1 id=iscompac.2h2v.s6.c89d73e99e37 from=translated src=- shape=bc153d22 vocab=9334665c
+-/
 theorem isCompact_of_forall_bounded {K' : Set (RealPt A)} (hK' : IsClosed K')
     (hb : ∀ x : A, ∃ C : ℝ, ∀ w ∈ K', |w x| ≤ C) : IsCompact K' := by
   choose C hC using hb
@@ -121,7 +152,9 @@ theorem isCompact_of_forall_bounded {K' : Set (RealPt A)} (hK' : IsClosed K')
 
 /-- Boundedness propagates through generators: if `U` is generated over `A` by `s`, the elements
 of `s` are bounded on `K'`, and `K'` lies over a compact set `K`, then every element of `U` is
-bounded on `K'`.-/
+bounded on `K'`.
+@isnad1 id=ex.4h6v.s8.318a52ce8b29 from=translated src=- shape=0d298bb5 vocab=9f64e724
+-/
 theorem forall_bounded_of_gen {U : Type*} [CommRing U] [Algebra A U] {K : Set (RealPt A)}
     (hK : IsCompact K) {K' : Set (RealPt U)} (hmaps : ∀ w ∈ K', comap (algebraMap A U) w ∈ K)
     {s : Set U} (hgen : Algebra.adjoin A s = ⊤) (hs : ∀ y ∈ s, ∃ C : ℝ, ∀ w ∈ K', |w y| ≤ C)
@@ -158,6 +191,9 @@ omit [Algebra ℚ A] in
 def evalGens (z : RealPt A) : Fin m → ℝ := fun i => z (a i)
 
 omit [Algebra ℚ A] in
+/--
+@isnad1 id=continuo.0h3v.s5.b4c4fd82f07d from=translated src=- shape=cb4762da vocab=5caee4d9
+-/
 lemma continuous_evalGens : Continuous (evalGens a) :=
   continuous_pi fun i => continuous_eval (a i)
 
@@ -165,7 +201,9 @@ lemma continuous_evalGens : Continuous (evalGens a) :=
 def relZeroSet : Set (Fin m → ℝ) :=
   {p | ∀ P ∈ RingHom.ker (MvPolynomial.aeval (R := ℚ) a), MvPolynomial.aeval p P = 0}
 
-/-- Polynomials with rational coefficients are continuous functions on `ℝ^m`.-/
+/-- Polynomials with rational coefficients are continuous functions on `ℝ^m`.
+@isnad1 id=continuo.0h2v.s7.30d145df93cc from=translated src=- shape=74eb6c1c vocab=a6a41238
+-/
 lemma continuous_aeval_rat (P : MvPolynomial (Fin m) ℚ) :
     Continuous fun p : Fin m → ℝ => MvPolynomial.aeval p P := by
   have : (fun p : Fin m → ℝ => MvPolynomial.aeval p P) =
@@ -178,16 +216,23 @@ lemma continuous_aeval_rat (P : MvPolynomial (Fin m) ℚ) :
 /-- A real point, viewed as a `ℚ`-algebra homomorphism.-/
 def toAlgHom (z : RealPt A) : A →ₐ[ℚ] ℝ := (toHom z).toRatAlgHom
 
+/--
+@isnad1 id=eq.0h3v.s6.0c722b30b557 from=translated src=- shape=94697788 vocab=aa3b18ed
+-/
 @[simp] lemma toAlgHom_apply (z : RealPt A) (b : A) : toAlgHom z b = z b := rfl
 
-/-- The value of a real point at a polynomial expression in the `aᵢ`.-/
+/-- The value of a real point at a polynomial expression in the `aᵢ`.
+@isnad1 id=eq.0h5v.s8.aad5cbaedd8e from=translated src=- shape=29856fc8 vocab=f65825c2
+-/
 lemma apply_aeval (z : RealPt A) (P : MvPolynomial (Fin m) ℚ) :
     z (MvPolynomial.aeval a P) = MvPolynomial.aeval (evalGens a z) P := by
   exact MvPolynomial.comp_aeval_apply (R := ℚ) (f := a) (toAlgHom z) P
 
 variable {a}
 
-/-- Real points are determined by their values on generators.-/
+/-- Real points are determined by their values on generators.
+@isnad1 id=injectiv.1h3v.s7.be4dbacaa76e from=translated src=- shape=743b99fc vocab=259b1910
+-/
 lemma evalGens_injective (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
     Function.Injective (evalGens a) := by
   intro z w h
@@ -199,7 +244,9 @@ lemma evalGens_injective (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
   exact DFunLike.congr_fun this b
 
 /-- **Real points of a finitely generated `ℚ`-algebra.** If `A = ℚ[a₁, …, a_m]`, the map
-`z ↦ (z a₁, …, z a_m)` is a topological embedding.-/
+`z ↦ (z a₁, …, z a_m)` is a topological embedding.
+@isnad1 id=isembedd.1h3v.s8.7117b793910d from=translated src=- shape=743b99fc vocab=491f0c0c
+-/
 theorem isEmbedding_evalGens (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
     IsEmbedding (evalGens a) := by
   refine ⟨⟨le_antisymm (continuous_iff_le_induced.1 (continuous_evalGens a)) ?_⟩,
@@ -219,7 +266,9 @@ theorem isEmbedding_evalGens (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
     exact (continuous_aeval_rat P).comp continuous_induced_dom
   exact continuous_iff_le_induced.1 hcont
 
-/-- The image of `z ↦ (z a₁, …, z a_m)` is the real zero set of the relations among the `aᵢ`.-/
+/-- The image of `z ↦ (z a₁, …, z a_m)` is the real zero set of the relations among the `aᵢ`.
+@isnad1 id=eq.1h3v.s8.6112306ecd89 from=translated src=- shape=5d61d2ea vocab=ada2ec25
+-/
 theorem range_evalGens (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
     Set.range (evalGens a) = relZeroSet a := by
   have hsurj : Function.Surjective (MvPolynomial.aeval (R := ℚ) a) := by
@@ -244,7 +293,9 @@ theorem range_evalGens (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) :
     exact MvPolynomial.aeval_X (R := ℚ) p i
 
 /-- **Compactness criterion.** If `A = ℚ[a₁, …, a_m]`, a set of real points is compact if and only
-if it is closed and the generators `a₁, …, a_m` are bounded on it.-/
+if it is closed and the generators `a₁, …, a_m` are bounded on it.
+@isnad1 id=iff.1h4v.s8.47905063893b from=translated src=- shape=ed39a584 vocab=3f4619a9
+-/
 theorem isCompact_iff (hgen : Algebra.adjoin ℚ (Set.range a) = ⊤) (K : Set (RealPt A)) :
     IsCompact K ↔ IsClosed K ∧ ∀ i, ∃ C : ℝ, ∀ z ∈ K, |z (a i)| ≤ C := by
   constructor
@@ -296,7 +347,9 @@ def IsMonotoneSurjOn {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     (q : X → Y) (K' : Set X) (K : Set Y) : Prop :=
   ∃ h : Set.MapsTo q K' K, IsMonotoneSurjection (h.restrict q K' K)
 
-/-- The identity is a monotone surjection `K → K`.-/
+/-- The identity is a monotone surjection `K → K`.
+@isnad1 id=ismonoto.0h2v.s4.b6c4e825ab2c from=translated src=- shape=04604e93 vocab=8180eb6e
+-/
 lemma IsMonotoneSurjOn.id {X : Type*} [TopologicalSpace X] (K : Set X) :
     IsMonotoneSurjOn (fun z : X => z) K K := by
   refine ⟨mapsTo_id K, ⟨continuous_id.subtype_map _, fun w => ⟨w, rfl⟩, fun z => ?_⟩⟩

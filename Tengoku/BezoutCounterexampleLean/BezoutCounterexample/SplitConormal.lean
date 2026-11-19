@@ -24,7 +24,9 @@ variable {R P : Type*} [CommRing R] [CommRing P] [Algebra R P] {m : ℕ}
 
 /-- **Jacobian criterion with a dual system of derivations.** If `P` is formally smooth over `R`
 and `K = (r₁, …, r_m)` admits derivations `Dᵢ : P → P/K` with `Dᵢ rⱼ = δᵢⱼ`, then `P/K` is formally
-smooth over `R`.-/
+smooth over `R`.
+@isnad1 id=formally.1h5v.s9.300d7c823962 from=translated src=- shape=77ac6a3a vocab=693361ad
+-/
 theorem formallySmooth_quotient_of_dual [Algebra.FormallySmooth R P] (r : Fin m → P)
     (D : Fin m → Derivation R P (P ⧸ Ideal.span (Set.range r)))
     (hD : ∀ i j, D i (r j) = if i = j then 1 else 0) :

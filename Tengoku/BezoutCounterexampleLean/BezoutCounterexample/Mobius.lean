@@ -32,16 +32,22 @@ open Set Topology Matrix
 
 /-! ## The identities (2.1) -/
 
-/-- (2.1): `det M = -Δ`.-/
+/-- (2.1): `det M = -Δ`.
+@isnad1 id=eq.0h0v.s6.243d5f5160b7 from=translated src=- shape=b433547d vocab=05580af8
+-/
 theorem det_M : M.det = -Δ := by
   simp [M, Δ, Matrix.det_fin_two]
   ring
 
-/-- `(1 + x) + (1 - x) = 2`, a unit of `ℚ`.-/
+/-- `(1 + x) + (1 - x) = 2`, a unit of `ℚ`.
+@isnad1 id=eq.0h0v.s8.8e3f80a329dc from=translated src=- shape=b335ca02 vocab=b2f9e957
+-/
 theorem one_add_x_add_one_sub_x : (1 + x) + (1 - x) = (MvPolynomial.C (2 : ℚ) : A₀) := by
   rw [map_ofNat]; ring
 
-/-- (2.1): `(1 + x, y, 1 - x) = A₀`.-/
+/-- (2.1): `(1 + x, y, 1 - x) = A₀`.
+@isnad1 id=eq.0h0v.s8.1eca563aa641 from=translated src=- shape=c6f25376 vocab=44a53cc5
+-/
 theorem span_entries_M : (Ideal.span {1 + x, y, 1 - x} : Ideal A₀) = ⊤ := by
   rw [Ideal.eq_top_iff_one]
   have h2 : MvPolynomial.C (1 / 2 : ℚ) * (1 + x) + MvPolynomial.C (1 / 2 : ℚ) * (1 - x) =
@@ -54,7 +60,9 @@ theorem span_entries_M : (Ideal.span {1 + x, y, 1 - x} : Ideal A₀) = ⊤ := by
       (Ideal.mul_mem_left _ _ (Ideal.subset_span (by simp)))
   rwa [h2] at hmem
 
-/-- (2.1): `M² - 2M = Δ I₂`.-/
+/-- (2.1): `M² - 2M = Δ I₂`.
+@isnad1 id=eq.0h0v.s9.193428f91375 from=translated src=- shape=f9e5e491 vocab=6564741c
+-/
 theorem M_sq : M * M - (2 : A₀) • M = Δ • (1 : Matrix (Fin 2) (Fin 2) A₀) := by
   refine Matrix.ext fun i j => ?_
   fin_cases i <;> fin_cases j <;>
@@ -66,24 +74,37 @@ theorem M_sq : M * M - (2 : A₀) • M = Δ • (1 : Matrix (Fin 2) (Fin 2) A�
 and `b` for `x` and `y`.-/
 def Mreal (a b : ℝ) : Matrix (Fin 2) (Fin 2) ℝ := !![1 + a, b; b, 1 - a]
 
-/-- Evaluating (the image of) `M` at a real point gives `M(z x, z y)`.-/
+/-- Evaluating (the image of) `M` at a real point gives `M(z x, z y)`.
+@isnad1 id=eq.0h3v.s8.64de08bebc67 from=translated src=- shape=597070b7 vocab=6e2f0858
+-/
 theorem M_map (A : Type*) [CommRing A] (ι : A₀ →+* A) (z : A →+* ℝ) :
     (M.map ι).map z = Mreal (z (ι x)) (z (ι y)) := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [M, Mreal]
 
+/--
+@isnad1 id=eq.0h3v.s7.04306d4412f0 from=translated src=- shape=c78e4d9c vocab=6fd773e2
+-/
 lemma Mreal_mulVec (a b : ℝ) (w : Fin 2 → ℝ) :
     (Mreal a b).mulVec w = ![(1 + a) * w 0 + b * w 1, b * w 0 + (1 - a) * w 1] := by
   ext i
   fin_cases i <;> simp [Mreal, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h2v.s6.d800ed96a7aa from=translated src=- shape=694fcf9c vocab=1ac076ff
+-/
 theorem Mreal_det (a b : ℝ) : (Mreal a b).det = 1 - a ^ 2 - b ^ 2 := by
   simp [Mreal, Matrix.det_fin_two]; ring
 
+/--
+@isnad1 id=eq.0h2v.s5.ef79a9a4d830 from=translated src=- shape=07e2c022 vocab=7f2ad339
+-/
 theorem Mreal_trace (a b : ℝ) : (Mreal a b).trace = 2 := by
   simp [Mreal, Matrix.trace_fin_two]; ring
 
-/-- On the circle, `½ M(a, b)` is an idempotent (by (2.1)).-/
+/-- On the circle, `½ M(a, b)` is an idempotent (by (2.1)).
+@isnad1 id=isidempo.1h2v.s7.bac03cccde4b from=translated src=- shape=f28ecbc9 vocab=54e7f473
+-/
 theorem half_Mreal_idempotent {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) :
     IsIdempotentElem ((1 / 2 : ℝ) • Mreal a b) := by
   unfold IsIdempotentElem
@@ -91,6 +112,9 @@ theorem half_Mreal_idempotent {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) :
   fin_cases i <;> fin_cases j <;>
     simp [Mreal, Matrix.mul_apply, Fin.sum_univ_two] <;> nlinarith [hab]
 
+/--
+@isnad1 id=lt.1h1v.s6.19f0ed34a418 from=translated src=- shape=388c2e78 vocab=7044eccd
+-/
 lemma rank_pos_of_ne_zero {A : Matrix (Fin 2) (Fin 2) ℝ} (h : A ≠ 0) : 0 < A.rank := by
   rw [Nat.pos_iff_ne_zero]
   intro h0
@@ -100,7 +124,9 @@ lemma rank_pos_of_ne_zero {A : Matrix (Fin 2) (Fin 2) ℝ} (h : A ≠ 0) : 0 < A
   have := congrArg (fun f => f (Pi.single j 1) i) h0
   simpa [Matrix.mulVec_single] using this
 
-/-- On the circle, `½ M(a, b)` has rank one.-/
+/-- On the circle, `½ M(a, b)` has rank one.
+@isnad1 id=eq.1h2v.s7.c52bf6c21e3a from=translated src=- shape=a904749d vocab=35b35529
+-/
 theorem half_Mreal_rank {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) :
     ((1 / 2 : ℝ) • Mreal a b).rank = 1 := by
   set P := (1 / 2 : ℝ) • Mreal a b with hPdef
@@ -132,6 +158,9 @@ def lineBundle (X Y : K → ℝ) (z : K) : Submodule ℝ (Fin 2 → ℝ) :=
   LinearMap.range (Matrix.mulVecLin ((1 / 2 : ℝ) • Mreal (X z) (Y z)))
 
 omit [TopologicalSpace K] in
+/--
+@isnad1 id=iff.0h5v.s8.041196ca9838 from=translated src=- shape=7619e830 vocab=32f0576e
+-/
 lemma mem_lineBundle_iff {X Y : K → ℝ} {z : K} {w : Fin 2 → ℝ} :
     w ∈ lineBundle X Y z ↔ w ∈ Set.range (Mreal (X z) (Y z)).mulVec := by
   constructor
@@ -143,13 +172,17 @@ lemma mem_lineBundle_iff {X Y : K → ℝ} {z : K} {w : Fin 2 → ℝ} :
     norm_num
 
 omit [TopologicalSpace K] in
-/-- For `X² + Y² = 1`, every fibre `L_{X,Y}(z)` is a line.-/
+/-- For `X² + Y² = 1`, every fibre `L_{X,Y}(z)` is a line.
+@isnad1 id=eq.1h4v.s8.0ca63e83664d from=translated src=- shape=076580b7 vocab=ba004711
+-/
 theorem finrank_lineBundle {X Y : K → ℝ} (hXY : ∀ z, X z ^ 2 + Y z ^ 2 = 1) (z : K) :
     Module.finrank ℝ (lineBundle X Y z) = 1 :=
   half_Mreal_rank (hXY z)
 
 omit [TopologicalSpace K] in
-/-- The pullback of `L_{X,Y}` along `q : K' → K` is `L_{X ∘ q, Y ∘ q}`.-/
+/-- The pullback of `L_{X,Y}` along `q : K' → K` is `L_{X ∘ q, Y ∘ q}`.
+@isnad1 id=eq.0h6v.s6.96dd03ea0c01 from=translated src=- shape=cf56222a vocab=324dddde
+-/
 theorem lineBundle_comp {K' : Type*} (X Y : K → ℝ) (q : K' → K) (z : K') :
     lineBundle (X ∘ q) (Y ∘ q) z = lineBundle X Y (q z) := rfl
 
@@ -160,7 +193,9 @@ def IsOrientable (X Y : K → ℝ) : Prop :=
 
 /-- **The fibres form a line subbundle**: for continuous `X, Y` with `X² + Y² = 1`, every point
 has a neighbourhood on which `L_{X,Y}` has a continuous nowhere-zero section (one of the two
-columns of `M(X, Y)`; they cannot both vanish since `(1 + X) + (1 - X) = 2`).-/
+columns of `M(X, Y)`; they cannot both vanish since `(1 + X) + (1 - X) = 2`).
+@isnad1 id=ex.2h4v.s8.3e2cbd803391 from=translated src=- shape=a0c10faa vocab=df54575d
+-/
 theorem lineBundle_locally_trivial {X Y : K → ℝ} (hX : Continuous X) (hY : Continuous Y)
     (z₀ : K) : ∃ U ∈ 𝓝 z₀, ∃ v : K → Fin 2 → ℝ, Continuous v ∧
       ∀ z ∈ U, v z ≠ 0 ∧ v z ∈ lineBundle X Y z := by
@@ -193,7 +228,9 @@ end LineBundle
 
 /-! ## Linear algebra of `M(a, b)` on the circle -/
 
-/-- Two vectors in the image of `M(a,b)`, where `a² + b² = 1`, are parallel.-/
+/-- Two vectors in the image of `M(a,b)`, where `a² + b² = 1`, are parallel.
+@isnad1 id=eq.3h4v.s8.9e531791acd2 from=translated src=- shape=549675a8 vocab=b1933cde
+-/
 lemma cross_eq_zero_of_mem_range {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) {p q : Fin 2 → ℝ}
     (hp : p ∈ range (Mreal a b).mulVec) (hq : q ∈ range (Mreal a b).mulVec) :
     p 0 * q 1 - p 1 * q 0 = 0 := by
@@ -202,7 +239,9 @@ lemma cross_eq_zero_of_mem_range {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) {p q : Fi
   simp only [Mreal_mulVec, Matrix.cons_val_zero, Matrix.cons_val_one]
   linear_combination (-(w 0 * w' 1 - w 1 * w' 0)) * hab
 
-/-- If `p ≠ 0` and `p, q` are parallel, then `q` is a scalar multiple of `p`.-/
+/-- If `p ≠ 0` and `p, q` are parallel, then `q` is a scalar multiple of `p`.
+@isnad1 id=ex.2h2v.s7.bcfa9de30d4c from=translated src=- shape=bfc28232 vocab=fe66b49a
+-/
 lemma exists_smul_of_cross_eq_zero {p q : Fin 2 → ℝ} (hp : p ≠ 0)
     (h : p 0 * q 1 - p 1 * q 0 = 0) : ∃ t : ℝ, q = t • p := by
   by_cases h0 : p 0 = 0
@@ -242,6 +281,9 @@ lemma eq_or_eq_neg_of_mem_range {a b : ℝ} (hab : a ^ 2 + b ^ 2 = 1) {p q : Fin
   · left; simp
   · right; simp
 
+/--
+@isnad1 id=mem.1h3v.s7.5c37974727c1 from=translated src=- shape=2c657888 vocab=eab74e1c
+-/
 lemma smul_mem_range {A : Matrix (Fin 2) (Fin 2) ℝ} {p : Fin 2 → ℝ} (hp : p ∈ range A.mulVec)
     (c : ℝ) : c • p ∈ range A.mulVec := by
   obtain ⟨w, rfl⟩ := hp
@@ -255,7 +297,9 @@ compact space to a Hausdorff space, and let `X, Y : K → ℝ` be continuous wit
 
 Proof: normalize a section `v` to `u = v / ‖v‖`; `u` takes values in the two unit vectors of the
 line on each connected fibre, so it is constant there, `u = ū ∘ q`; `q` is closed, hence a
-quotient map, so `ū` is continuous.-/
+quotient map, so `ū` is continuous.
+@isnad1 id=isorient.5h5v.s7.ea689645192d from=translated src=- shape=a8590218 vocab=8e02f3f1
+-/
 theorem orientation_descent {K' K : Type*} [TopologicalSpace K'] [TopologicalSpace K]
     [CompactSpace K'] [T2Space K] {q : K' → K} (hq : IsMonotoneSurjection q)
     (X Y : K → ℝ) (_hX : Continuous X) (_hY : Continuous Y) (hXY : ∀ z, X z ^ 2 + Y z ^ 2 = 1)
@@ -309,7 +353,9 @@ theorem orientation_descent {K' K : Type*} [TopologicalSpace K'] [TopologicalSpa
     exact mem_lineBundle_iff.2 this
 
 /-- Lemma 2.1, equivalently: nonorientability pulls back along monotone surjections from compact
-spaces to Hausdorff spaces.-/
+spaces to Hausdorff spaces.
+@isnad1 id=not.5h5v.s7.86f3915e625b from=translated src=- shape=e03d6fe2 vocab=8e02f3f1
+-/
 theorem not_isOrientable_comp {K' K : Type*} [TopologicalSpace K'] [TopologicalSpace K]
     [CompactSpace K'] [T2Space K] {q : K' → K} (hq : IsMonotoneSurjection q)
     (X Y : K → ℝ) (hX : Continuous X) (hY : Continuous Y) (hXY : ∀ z, X z ^ 2 + Y z ^ 2 = 1)
@@ -323,7 +369,9 @@ theorem not_isOrientable_comp {K' K : Type*} [TopologicalSpace K'] [TopologicalS
 
 Proof: otherwise `q⁻¹(C) = F ∐ G` with `F, G` nonempty and closed; each (connected) fibre meets
 at most one of `F` and `G`, so the compact sets `q(F)` and `q(G)` are disjoint nonempty closed
-sets with union `C`.-/
+sets with union `C`.
+@isnad1 id=isconnec.3h4v.s5.eff40cd35a57 from=translated src=- shape=6f14af29 vocab=0d79093e
+-/
 theorem IsMonotoneSurjection.isConnected_preimage_of_isClosed {X Y : Type*} [TopologicalSpace X]
     [TopologicalSpace Y] [CompactSpace X] [T2Space Y] {q : X → Y} (hq : IsMonotoneSurjection q)
     {C : Set Y} (hC : IsClosed C) (hCc : IsConnected C) : IsConnected (q ⁻¹' C) := by
@@ -378,7 +426,9 @@ theorem IsMonotoneSurjection.isConnected_preimage_of_isClosed {X Y : Type*} [Top
 
 /-- The observation in the proof of Lemma 2.2: if `q : K' → K` is a monotone surjection from a
 compact space to a Hausdorff space and `C ⊆ K` is compact and connected, then `q⁻¹(C)` is
-connected.-/
+connected.
+@isnad1 id=isconnec.3h4v.s5.8825f0390a56 from=translated src=- shape=6f14af29 vocab=8b53cb12
+-/
 theorem IsMonotoneSurjection.isConnected_preimage {X Y : Type*} [TopologicalSpace X]
     [TopologicalSpace Y] [CompactSpace X] [T2Space Y] {q : X → Y} (hq : IsMonotoneSurjection q)
     {C : Set Y} (hC : IsCompact C) (hCc : IsConnected C) : IsConnected (q ⁻¹' C) :=
@@ -387,7 +437,9 @@ theorem IsMonotoneSurjection.isConnected_preimage {X Y : Type*} [TopologicalSpac
 /-- **Lemma 2.2** (`lem:monotone-composition`). A composite of monotone surjections between
 compact Hausdorff spaces is monotone. (Only the compactness of the source and the Hausdorff
 property of the other two spaces are used: apply the observation above to the connected fibres of
-`q₂`.)-/
+`q₂`.)
+@isnad1 id=ismonoto.2h5v.s5.157afea77b17 from=translated src=- shape=501a302a vocab=268a4a71
+-/
 theorem IsMonotoneSurjection.comp {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [TopologicalSpace Z] [CompactSpace X] [T2Space Y] [T2Space Z] {q₁ : X → Y} {q₂ : Y → Z}
     (h₂ : IsMonotoneSurjection q₂) (h₁ : IsMonotoneSurjection q₁) :
@@ -401,7 +453,9 @@ theorem IsMonotoneSurjection.comp {X Y Z : Type*} [TopologicalSpace X] [Topologi
 
 /-- Lemma 2.2 for restrictions: if `f : K'' → K'` and `g : K' → K` are monotone surjections,
 `K''` is compact and the ambient spaces of `K'` and `K` are Hausdorff, then `g ∘ f : K'' → K` is a
-monotone surjection.-/
+monotone surjection.
+@isnad1 id=ismonoto.3h8v.s6.e23ca39d3423 from=translated src=- shape=05153ee4 vocab=7828ec0b
+-/
 theorem IsMonotoneSurjOn.trans {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [TopologicalSpace Z] [T2Space Y] [T2Space Z] {f : X → Y} {g : Y → Z}
     {K'' : Set X} {K' : Set Y} {K : Set Z} (hK'' : IsCompact K'')
@@ -421,9 +475,15 @@ theorem IsMonotoneSurjOn.trans {X Y Z : Type*} [TopologicalSpace X] [Topological
 /-- The circle `K₀ = {z ∈ Spec(A₀)(ℝ) : z(Δ) = 0}`.-/
 def K₀ : Set (RealPt A₀) := {z | z Δ = 0}
 
+/--
+@isnad1 id=eq.0h1v.s7.f1fdebde886b from=translated src=- shape=1c0b7f96 vocab=fe1c6a7c
+-/
 lemma Δ_eval (z : RealPt A₀) : z Δ = z x ^ 2 + z y ^ 2 - 1 := by
   simp [Δ, map_sub, map_add, map_pow, map_one]
 
+/--
+@isnad1 id=eq.1h1v.s8.9e51785476d3 from=translated src=- shape=b685bd7a vocab=9d8846a8
+-/
 lemma K₀_circle {z : RealPt A₀} (hz : z ∈ K₀) : z x ^ 2 + z y ^ 2 = 1 := by
   have : z Δ = 0 := hz
   rw [Δ_eval] at this
@@ -433,10 +493,19 @@ lemma K₀_circle {z : RealPt A₀} (hz : z ∈ K₀) : z x ^ 2 + z y ^ 2 = 1 :=
 def evalPt (p : Fin 2 → ℝ) : RealPt A₀ :=
   RealPt.ofHom (MvPolynomial.aeval p : A₀ →ₐ[ℚ] ℝ).toRingHom
 
+/--
+@isnad1 id=eq.0h1v.s6.7e77057ed615 from=translated src=- shape=24d20296 vocab=7cf42fea
+-/
 @[simp] lemma evalPt_x (p : Fin 2 → ℝ) : evalPt p x = p 0 := by simp [evalPt, x]
 
+/--
+@isnad1 id=eq.0h1v.s6.124a8898e0fc from=translated src=- shape=24d20296 vocab=438e247f
+-/
 @[simp] lemma evalPt_y (p : Fin 2 → ℝ) : evalPt p y = p 1 := by simp [evalPt, y]
 
+/--
+@isnad1 id=continuo.0h0v.s6.5db6d837b25b from=translated src=- shape=e2b5be61 vocab=fe807245
+-/
 lemma continuous_evalPt : Continuous evalPt := by
   rw [RealPt.continuous_iff]
   intro q
@@ -447,7 +516,9 @@ lemma continuous_evalPt : Continuous evalPt := by
   rw [this]
   exact MvPolynomial.continuous_eval _
 
-/-- Every real point of `A₀` is determined by the images of `x` and `y`.-/
+/-- Every real point of `A₀` is determined by the images of `x` and `y`.
+@isnad1 id=eq.2h2v.s8.0c9a59b58fb7 from=translated src=- shape=96db82f2 vocab=84697e35
+-/
 lemma realPt_A₀_ext {z w : RealPt A₀} (hx : z x = w x) (hy : z y = w y) : z = w := by
   have : RealPt.toHom z = RealPt.toHom w := by
     apply MvPolynomial.ringHom_ext
@@ -462,6 +533,9 @@ lemma realPt_A₀_ext {z w : RealPt A₀} (hx : z x = w x) (hy : z y = w y) : z 
       · exact hy
   exact this
 
+/--
+@isnad1 id=eq.0h1v.s7.8867dfc71e00 from=translated src=- shape=bb8eea62 vocab=be3d334f
+-/
 lemma evalPt_eval (z : RealPt A₀) : evalPt ![z x, z y] = z :=
   realPt_A₀_ext (by simp) (by simp)
 
@@ -491,10 +565,15 @@ def K₀HomeomorphCircle : K₀ ≃ₜ unitCircle where
     simp only [unitCircle, mem_ofPred_eq] at this
     linarith
 
+/--
+@isnad1 id=eq.0h1v.s10.84a6cb233cc7 from=translated src=- shape=09c6ec9a vocab=b21ebcc6
+-/
 @[simp] lemma K₀HomeomorphCircle_apply (z : K₀) :
     (K₀HomeomorphCircle z : Fin 2 → ℝ) = ![z.1 x, z.1 y] := rfl
 
-/-- The circle `K₀` is compact.-/
+/-- The circle `K₀` is compact.
+@isnad1 id=iscompac.0h0v.s5.f654c88f494b from=translated src=- shape=545db28e vocab=8ffb1c92
+-/
 theorem isCompact_K₀ : IsCompact K₀ := by
   have hS : IsCompact unitCircle := by
     apply Metric.isCompact_of_isClosed_isBounded
@@ -510,7 +589,9 @@ theorem isCompact_K₀ : IsCompact K₀ := by
   exact K₀HomeomorphCircle.symm.compactSpace
 
 /-- The half-angle formula (2.2): for `(x,y) = (cos θ, sin θ)`,
-`M = 2 (cos(θ/2), sin(θ/2))ᵀ (cos(θ/2), sin(θ/2))`.-/
+`M = 2 (cos(θ/2), sin(θ/2))ᵀ (cos(θ/2), sin(θ/2))`.
+@isnad1 id=eq.0h1v.s7.e54a188ecc46 from=translated src=- shape=e3fdecf0 vocab=880730d5
+-/
 lemma Mreal_cos_sin (θ : ℝ) :
     Mreal (Real.cos θ) (Real.sin θ) =
       (2 : ℝ) • Matrix.vecMulVec ![Real.cos (θ / 2), Real.sin (θ / 2)]
@@ -524,6 +605,9 @@ lemma Mreal_cos_sin (θ : ℝ) :
   fin_cases i <;> fin_cases j <;>
     simp [Mreal, hc, hs] <;> nlinarith [h1]
 
+/--
+@isnad1 id=eq.0h3v.s8.127fdc225c74 from=translated src=- shape=d92f6bf5 vocab=9c3100ad
+-/
 lemma mulVec_two_vecMulVec (c s : ℝ) (u : Fin 2 → ℝ) :
     ((2 : ℝ) • Matrix.vecMulVec ![c, s] ![c, s]).mulVec u =
       (2 * (c * u 0 + s * u 1)) • ![c, s] := by
@@ -533,22 +617,37 @@ lemma mulVec_two_vecMulVec (c s : ℝ) (u : Fin 2 → ℝ) :
 /-- The point `(cos θ, sin θ)` of the circle, as a real point of `A₀`.-/
 def circlePt (θ : ℝ) : RealPt A₀ := evalPt ![Real.cos θ, Real.sin θ]
 
+/--
+@isnad1 id=eq.0h1v.s6.8cb79adc1930 from=translated src=- shape=7099d8a9 vocab=d540440c
+-/
 @[simp] lemma circlePt_x (θ : ℝ) : circlePt θ x = Real.cos θ := by
   simp [circlePt]
 
+/--
+@isnad1 id=eq.0h1v.s6.0f528bee00cd from=translated src=- shape=7099d8a9 vocab=88018921
+-/
 @[simp] lemma circlePt_y (θ : ℝ) : circlePt θ y = Real.sin θ := by
   simp [circlePt]
 
+/--
+@isnad1 id=mem.0h1v.s6.c6161527a7e0 from=translated src=- shape=44d305d3 vocab=d53f3bc9
+-/
 lemma circlePt_mem (θ : ℝ) : circlePt θ ∈ K₀ := by
   show circlePt θ Δ = 0
   rw [Δ_eval, circlePt_x, circlePt_y, Real.cos_sq_add_sin_sq]; ring
 
+/--
+@isnad1 id=continuo.0h0v.s5.b75123003b9f from=translated src=- shape=4b736592 vocab=9d5ad64b
+-/
 lemma continuous_circlePt : Continuous circlePt := by
   refine continuous_evalPt.comp (continuous_pi fun i => ?_)
   fin_cases i
   · simpa using Real.continuous_cos
   · simpa using Real.continuous_sin
 
+/--
+@isnad1 id=eq.0h0v.s5.1de33937bede from=translated src=- shape=aba72ab4 vocab=b15c5de3
+-/
 lemma circlePt_two_pi : circlePt (2 * Real.pi) = circlePt 0 :=
   realPt_A₀_ext (by simp) (by simp)
 
@@ -561,7 +660,9 @@ def Y₀ : K₀ → ℝ := fun z => z.1 y
 /-- **`L₀` is the Möbius line bundle, which is nonorientable**: a continuous nowhere-zero
 section, pulled back to `[0, 2π]`, would have the form `f(θ) (cos(θ/2), sin(θ/2))` for a
 continuous nowhere-zero function `f` with `f(2π) = -f(0)`, contradicting the intermediate value
-theorem.-/
+theorem.
+@isnad1 id=not.0h0v.s7.ce09ca74d3c6 from=translated src=- shape=9b7a4bfa vocab=46ae87d0
+-/
 theorem L₀_not_isOrientable : ¬ IsOrientable X₀ Y₀ := by
   rintro ⟨v, hvc, hv⟩
   let γ : ℝ → K₀ := fun θ => ⟨circlePt θ, circlePt_mem θ⟩
@@ -607,7 +708,9 @@ theorem L₀_not_isOrientable : ¬ IsOrientable X₀ Y₀ := by
     exact hf0 θ hθ
 
 /-- Nonorientability of `L_{a,b}` is preserved under pullback along a monotone surjection
-`K' → K` of compact sets of real points (Lemma 2.1, in the form used for (5.2)).-/
+`K' → K` of compact sets of real points (Lemma 2.1, in the form used for (5.2)).
+@isnad1 id=not.4h7v.s8.ed5cde7f06f8 from=translated src=- shape=d3f34224 vocab=3be731c5
+-/
 theorem not_isOrientable_pullback {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B)
     (a b : A) {K : Set (RealPt A)} {K' : Set (RealPt B)} (hK' : IsCompact K')
     (hmono : IsMonotoneSurjOn (RealPt.comap f) K' K) (hcirc : ∀ z ∈ K, z a ^ 2 + z b ^ 2 = 1)

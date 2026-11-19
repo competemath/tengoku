@@ -24,6 +24,9 @@ namespace Matrix
 def entryIdeal {R m n : Type*} [CommRing R] (F : Matrix m n R) : Ideal R :=
   Ideal.span (Set.range fun ij : m × n => F ij.1 ij.2)
 
+/--
+@isnad1 id=iff.0h5v.s6.92b53073e7a0 from=translated src=- shape=55a0ff8c vocab=cdef7300
+-/
 lemma entryIdeal_le_iff {R m n : Type*} [CommRing R] {F : Matrix m n R} {I : Ideal R} :
     entryIdeal F ≤ I ↔ ∀ i j, F i j ∈ I := by
   simp [entryIdeal, Ideal.span_le, Set.range_subset_iff]
@@ -38,16 +41,25 @@ abbrev HasSmithNormalForm {m n : ℕ} (F : Matrix (Fin m) (Fin n) R) : Prop :=
 abbrev IsElementaryDivisorDomain (R : Type*) [CommRing R] : Prop :=
   BezoutCounterexample.IsElementaryDivisorDomain R
 
+/--
+@isnad1 id=iff.0h4v.s7.4faabf6823ea from=translated src=- shape=5178b3b3 vocab=edfcc976
+-/
 theorem isSmithNormalForm_iff_chain {m n : ℕ} (D : Matrix (Fin m) (Fin n) R) :
     BezoutCounterexample.IsSmithNormalForm D ↔
       ∃ d : ℕ → R, (∀ i j, D i j = if (i : ℕ) = j then d i else 0) ∧
         ∀ k, k + 1 < min m n → d k ∣ d (k + 1) :=
   BezoutCounterexample.isSmithNormalForm_iff_chain D
 
+/--
+@isnad1 id=mem.2h8v.s7.1fc0ccd63b19 from=translated src=- shape=754e5855 vocab=9cd4611d
+-/
 theorem MatrixEquivalent.entry_mem {m n : ℕ} {F G : Matrix (Fin m) (Fin n) R}
     (h : MatrixEquivalent F G) (I : Ideal R) (hG : ∀ i j, G i j ∈ I) (i : Fin m) (j : Fin n) :
     F i j ∈ I := BezoutCounterexample.MatrixEquivalent.entry_mem h I hG i j
 
+/--
+@isnad1 id=eq.1h5v.s5.315b84d3dc32 from=translated src=- shape=d7afcb20 vocab=3be0dd59
+-/
 theorem MatrixEquivalent.entryIdeal_eq {m n : ℕ} {F G : Matrix (Fin m) (Fin n) R}
     (h : MatrixEquivalent F G) : entryIdeal F = entryIdeal G := by
   apply le_antisymm
@@ -60,6 +72,9 @@ theorem MatrixEquivalent.entryIdeal_eq {m n : ℕ} {F G : Matrix (Fin m) (Fin n)
     exact BezoutCounterexample.entry_mem_of_mul _ F _ (entryIdeal F)
       (fun i j => Ideal.subset_span ⟨(i, j), rfl⟩) i j
 
+/--
+@isnad1 id=isbezout.1h1v.s4.c1b2b23aa24e from=translated src=- shape=c612a321 vocab=d818be0c
+-/
 theorem IsElementaryDivisorDomain.isBezout (h : IsElementaryDivisorDomain R) : IsBezout R :=
   BezoutCounterexample.IsElementaryDivisorDomain.isBezout h
 
@@ -70,7 +85,9 @@ namespace IsBezout
 variable {R : Type*} [CommRing R] [IsBezout R] [IsCancelMulZero R]
 
 /-- Two elements of a Bézout domain are a common factor times coprime cofactors.
-This includes the case in which both elements vanish.-/
+This includes the case in which both elements vanish.
+@isnad1 id=ex.0h3v.s6.5b540b79dce6 from=translated src=- shape=52bcceaa vocab=72115da8
+-/
 theorem exists_eq_mul_isCoprime (a b : R) :
     ∃ d r s : R, a = d * r ∧ b = d * s ∧ IsCoprime r s := by
   by_cases hzero : a = 0 ∧ b = 0
@@ -96,7 +113,9 @@ namespace Matrix
 variable {R : Type*} [CommRing R] [IsBezout R] [IsCancelMulZero R]
 
 /-- Hermite reduction in size two: an invertible determinant-one left row operation
-makes the lower left entry zero. The first column is allowed to vanish.-/
+makes the lower left entry zero. The first column is allowed to vanish.
+@isnad1 id=ex.0h2v.s9.2d59e7c3b609 from=translated src=- shape=03d5032f vocab=217ca2fe
+-/
 theorem exists_det_one_mul_eq_upperTriangular (M : Matrix (Fin 2) (Fin 2) R) :
     ∃ (H : GL (Fin 2) R) (a b c : R),
       det (H : Matrix (Fin 2) (Fin 2) R) = 1 ∧
@@ -128,7 +147,9 @@ namespace Ideal
 
 variable {R : Type*} [CommRing R]
 
-/-- Three elements generate the unit ideal precisely when a linear combination is one.-/
+/-- Three elements generate the unit ideal precisely when a linear combination is one.
+@isnad1 id=iff.0h4v.s7.f8bd9369240a from=translated src=- shape=5472fb4e vocab=ab5be6f6
+-/
 theorem span_triple_eq_top_iff (a b c : R) :
     (span {a, b, c} : Ideal R) = ⊤ ↔ ∃ u v w : R, u * a + v * b + w * c = 1 := by
   rw [eq_top_iff_one, mem_span_insert]
@@ -152,7 +173,9 @@ variable {R : Type*} [CommRing R]
 
 open Matrix
 
-/-- An entirely first order formulation of Kaplansky's condition.-/
+/-- An entirely first order formulation of Kaplansky's condition.
+@isnad1 id=iff.0h1v.s8.c420fca87ff7 from=translated src=- shape=2e05b8e3 vocab=dce26fde
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_exists :
     KaplanskyCondition R ↔
       ∀ a b c : R, (∃ u v w : R, u * a + v * b + w * c = 1) →
@@ -173,13 +196,17 @@ def _root_.Tengoku.BezoutCounterexampleLean.KaplanskyConditionGCDUpToUnits (R : 
 
 namespace Tengoku.BezoutCounterexampleLean.KaplanskyCondition
 
-/-- For a normalized gcd, being a unit means literal equality to one.-/
+/-- For a normalized gcd, being a unit means literal equality to one.
+@isnad1 id=iff.0h3v.s6.c18c7bf03091 from=translated src=- shape=35dc034c vocab=1cea4d7e
+-/
 theorem gcd_eq_one_iff_isUnit [NormalizedGCDMonoid R] (a b : R) :
     gcd a b = 1 ↔ IsUnit (gcd a b) := by
   simpa only [normalize_gcd] using (normalize_eq_one (x := gcd a b))
 
 /-- The first-order Bézout identity is equivalent to Mathlib's ideal-theoretic
-Bézout property; the gcd axioms are supplied by `GCDMonoid`, not postulated anew.-/
+Bézout property; the gcd axioms are supplied by `GCDMonoid`, not postulated anew.
+@isnad1 id=iff.0h1v.s6.547007afb76f from=translated src=- shape=04acc7e1 vocab=1c9476d9
+-/
 theorem isBezout_iff_gcd_eq_sum [IsDomain R] [GCDMonoid R] :
     IsBezout R ↔ ∀ a b : R, ∃ x y : R, x * a + y * b = gcd a b := by
   constructor
@@ -201,19 +228,25 @@ theorem isBezout_iff_gcd_eq_sum [IsDomain R] [GCDMonoid R] :
 
 variable [IsDomain R] [IsBezout R]
 
-/-- A gcd of a triple generates exactly the ideal generated by that triple.-/
+/-- A gcd of a triple generates exactly the ideal generated by that triple.
+@isnad1 id=eq.0h4v.s6.7b25894ce02f from=translated src=- shape=455bb530 vocab=9893a553
+-/
 theorem span_triple_eq_span_gcd [GCDMonoid R] (a b c : R) :
     (Ideal.span {a, b, c} : Ideal R) = Ideal.span {gcd a (gcd b c)} := by
   rw [span_gcd a (gcd b c)]
   conv_rhs => rw [Ideal.span_insert, span_gcd b c]
   rw [Ideal.span_insert]
 
-/-- The exact gcd antecedent agrees with the existing primitive-triple condition.-/
+/-- The exact gcd antecedent agrees with the existing primitive-triple condition.
+@isnad1 id=iff.0h4v.s7.42eee714a4dd from=translated src=- shape=c59d5398 vocab=23de3920
+-/
 theorem span_triple_eq_top_iff_gcd_eq_one [NormalizedGCDMonoid R] (a b c : R) :
     (Ideal.span {a, b, c} : Ideal R) = ⊤ ↔ gcd a (gcd b c) = 1 := by
   rw [span_triple_eq_span_gcd, Ideal.span_singleton_eq_top, gcd_eq_one_iff_isUnit]
 
-/-- The CoqEAL gcd antecedent agrees with the primitive-triple condition.-/
+/-- The CoqEAL gcd antecedent agrees with the primitive-triple condition.
+@isnad1 id=iff.0h4v.s7.0779aaf8ac66 from=translated src=- shape=3701e025 vocab=443de32c
+-/
 theorem span_triple_eq_top_iff_associated_gcd_one [GCDMonoid R] (a b c : R) :
     (Ideal.span {a, b, c} : Ideal R) = ⊤ ↔ Associated (gcd a (gcd b c)) 1 := by
   rw [span_triple_eq_span_gcd, Ideal.span_singleton_eq_top, associated_one_iff_isUnit]
@@ -221,7 +254,9 @@ theorem span_triple_eq_top_iff_associated_gcd_one [GCDMonoid R] (a b c : R) :
 end Tengoku.BezoutCounterexampleLean.KaplanskyCondition
 
 /-- Over a Bézout domain the existing condition is exactly the normalized-gcd
-first-order condition requested by the authors.-/
+first-order condition requested by the authors.
+@isnad1 id=iff.0h1v.s5.026ef67003a3 from=translated src=- shape=6c04fe61 vocab=496688cc
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_gcd [IsDomain R] [IsBezout R] [NormalizedGCDMonoid R] :
     KaplanskyCondition R ↔ KaplanskyConditionGCD R := by
   simp only [KaplanskyCondition, KaplanskyConditionGCD,
@@ -229,21 +264,27 @@ theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_gcd [IsDo
     ← gcd_isUnit_iff, ← KaplanskyCondition.gcd_eq_one_iff_isUnit]
 
 /-- With an arbitrary choice of gcd, the existing condition is exactly the
-up-to-units condition used in Mörtberg's Coq formalization.-/
+up-to-units condition used in Mörtberg's Coq formalization.
+@isnad1 id=iff.0h1v.s5.094b7093d952 from=translated src=- shape=6c04fe61 vocab=8d7a7a38
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_gcdUpToUnits [IsDomain R] [IsBezout R] [GCDMonoid R] :
     KaplanskyCondition R ↔ KaplanskyConditionGCDUpToUnits R := by
   simp only [KaplanskyCondition, KaplanskyConditionGCDUpToUnits,
     KaplanskyCondition.span_triple_eq_top_iff_associated_gcd_one,
     associated_one_iff_isUnit, gcd_isUnit_iff]
 
-/-- The exact equality and up-to-units gcd formulations agree after normalization.-/
+/-- The exact equality and up-to-units gcd formulations agree after normalization.
+@isnad1 id=iff.0h1v.s5.a63c0a181bf2 from=translated src=- shape=6c04fe61 vocab=2ae4ff83
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyConditionGCD_iff_upToUnits
     [IsDomain R] [IsBezout R] [NormalizedGCDMonoid R] :
     KaplanskyConditionGCD R ↔ KaplanskyConditionGCDUpToUnits R :=
   kaplanskyCondition_iff_gcd.symm.trans kaplanskyCondition_iff_gcdUpToUnits
 
 /-- Failure of the exact first-order gcd condition exhibits a primitive triple
-for which every possible pair of Kaplansky coefficients fails.-/
+for which every possible pair of Kaplansky coefficients fails.
+@isnad1 id=iff.0h1v.s7.4917b0def799 from=translated src=- shape=f1e3ea26 vocab=794473ac
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.not_kaplanskyConditionGCD_iff [NormalizedGCDMonoid R] :
     ¬ KaplanskyConditionGCD R ↔
       ∃ a b c : R, gcd a (gcd b c) = 1 ∧
@@ -253,7 +294,9 @@ theorem _root_.Tengoku.BezoutCounterexampleLean.not_kaplanskyConditionGCD_iff [N
 
 namespace Matrix
 
-/-- The entry ideal of an upper triangular matrix of size two.-/
+/-- The entry ideal of an upper triangular matrix of size two.
+@isnad1 id=eq.0h4v.s8.12435ccb0b90 from=translated src=- shape=c94f41b2 vocab=2d8c046d
+-/
 theorem entryIdeal_upperTriangular (a b c : R) :
     entryIdeal !![a, b; 0, c] = (Ideal.span {a, b, c} : Ideal R) := by
   apply le_antisymm
@@ -270,7 +313,9 @@ theorem entryIdeal_upperTriangular (a b c : R) :
     · exact Ideal.subset_span ⟨(0, 1), rfl⟩
     · exact Ideal.subset_span ⟨(1, 1), rfl⟩
 
-/-- Bilinear evaluation of an upper triangular two by two matrix.-/
+/-- Bilinear evaluation of an upper triangular two by two matrix.
+@isnad1 id=eq.0h8v.s8.b484c5a5728f from=translated src=- shape=27517ed3 vocab=53703224
+-/
 theorem vecMul_upperTriangular_dotProduct (a b c p q s t : R) :
     ![p, q] ᵥ* !![a, b; 0, c] ⬝ᵥ ![s, t] =
       s * (p * a) + t * (p * b + q * c) := by
@@ -279,7 +324,9 @@ theorem vecMul_upperTriangular_dotProduct (a b c p q s t : R) :
   ring
 
 /-- An entry-primitive two by two matrix with Smith normal form has a bilinear
-unit witness. No domain or Bézout assumption is needed for this implication.-/
+unit witness. No domain or Bézout assumption is needed for this implication.
+@isnad1 id=ex.2h2v.s7.f9e5cd92e4ee from=translated src=- shape=f4eed6d4 vocab=d5a69bf5
+-/
 theorem HasSmithNormalForm.exists_vecMul_dotProduct_eq_one
     {M : Matrix (Fin 2) (Fin 2) R} (hSNF : HasSmithNormalForm M)
     (hM : entryIdeal M = ⊤) :
@@ -336,7 +383,9 @@ namespace Tengoku.BezoutCounterexampleLean.KaplanskyCondition
 variable [IsBezout R] [IsCancelMulZero R]
 
 /-- Kaplansky's condition supplies a bilinear unit witness for any entry-primitive
-two by two matrix over a Bézout domain.-/
+two by two matrix over a Bézout domain.
+@isnad1 id=ex.2h2v.s7.5f2d39ad7b47 from=translated src=- shape=a172afeb vocab=6d34123f
+-/
 theorem exists_vecMul_dotProduct_eq_one (h : KaplanskyCondition R)
     (M : Matrix (Fin 2) (Fin 2) R) (hM : Matrix.entryIdeal M = ⊤) :
     ∃ p q s t : R, ![p, q] ᵥ* M ⬝ᵥ ![s, t] = 1 := by
@@ -358,7 +407,9 @@ theorem exists_vecMul_dotProduct_eq_one (h : KaplanskyCondition R)
 end Tengoku.BezoutCounterexampleLean.KaplanskyCondition
 
 /-- Over a Bézout domain, Kaplansky's condition is equivalent to the bilinear
-unit-witness property for all entry-primitive two by two matrices.-/
+unit-witness property for all entry-primitive two by two matrices.
+@isnad1 id=iff.0h1v.s7.26b8e829c201 from=translated src=- shape=c88fd202 vocab=6d34123f
+-/
 theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_primitive_matrix [IsBezout R] [IsCancelMulZero R] :
     KaplanskyCondition R ↔
       ∀ M : Matrix (Fin 2) (Fin 2) R, Matrix.entryIdeal M = ⊤ →
@@ -373,7 +424,9 @@ theorem _root_.Tengoku.BezoutCounterexampleLean.kaplanskyCondition_iff_primitive
 namespace Matrix
 
 /-- Elementary divisor domains satisfy Kaplansky's condition, by the primitive
-matrix criterion over the Bézout domain supplied by Smith normal form.-/
+matrix criterion over the Bézout domain supplied by Smith normal form.
+@isnad1 id=kaplansk.1h1v.s3.91b355ec9f76 from=translated src=- shape=c612a321 vocab=f00ba8a7
+-/
 theorem IsElementaryDivisorDomain.kaplanskyCondition
     (h : IsElementaryDivisorDomain R) : KaplanskyCondition R := by
   have : IsDomain R := h.1
