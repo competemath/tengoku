@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1f7624eb97c2c5d627e0d43ca13abc003b227b11377e00862d820bc04b780b03",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "zanello-lc",
+ "lint_mode": "proposed",
+ "modules": 10,
+ "part": 1,
+ "theorems": 63
+}
