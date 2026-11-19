@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "0d397069234e44ce0fb6d906b6313d3b2daf6f1cf91c8526d1741016f5457327",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-nct",
+ "lint_mode": "proposed",
+ "modules": 29,
+ "part": 1,
+ "theorems": 3345
+}
