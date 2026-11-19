@@ -42,6 +42,9 @@ positive support without changing any weighted summand.-/
 def positiveSupport (S : Set ℕ) : Set ℕ :=
   {n | n ∈ S ∧ 0 < n}
 
+/--
+@isnad1 id=eq.0h2v.s3.cdce40b557a1 from=translated src=- shape=9e58e344 vocab=0bfb8996
+-/
 @[simp]
 theorem weightedSupportTerm_positiveSupport (S : Set ℕ) (n : ℕ) :
     weightedSupportTerm (positiveSupport S) n = weightedSupportTerm S n := by
@@ -53,6 +56,9 @@ theorem weightedSupportTerm_positiveSupport (S : Set ℕ) (n : ℕ) :
     · simp [weightedSupportTerm, positiveSupport, hnpos, hmem]
     · simp [weightedSupportTerm, positiveSupport, hmem]
 
+/--
+@isnad1 id=infinite.1h1v.s3.644edc242cdc from=translated src=- shape=6b9120e2 vocab=27c3e2a9
+-/
 theorem positiveSupport_infinite {S : Set ℕ} (hS : S.Infinite) :
     (positiveSupport S).Infinite := by
   have heq : positiveSupport S = S \ ({0} : Set ℕ) := by
@@ -126,6 +132,9 @@ def firstPrefixAbove : GapWord → ℕ → GapWord
       if bound < g then [g]
       else g :: firstPrefixAbove gs (bound - g)
 
+/--
+@isnad1 id=isprefix.0h2v.s3.dd54713be0d2 from=translated src=- shape=27653ef2 vocab=eb05e673
+-/
 theorem firstPrefixAbove_isPrefix (w : GapWord) (bound : ℕ) :
     (w.firstPrefixAbove bound).IsPrefix w := by
   induction w generalizing bound with
@@ -137,17 +146,25 @@ theorem firstPrefixAbove_isPrefix (w : GapWord) (bound : ℕ) :
       · rcases ih (bound - g) with ⟨tail, htail⟩
         exact ⟨tail, by simpa using congrArg (List.cons g) htail⟩
 
+/--
+@isnad1 id=le.0h2v.s3.1884d137918e from=translated src=- shape=930066f7 vocab=2cea3603
+-/
 theorem firstPrefixAbove_length_le (w : GapWord) (bound : ℕ) :
     (w.firstPrefixAbove bound).length ≤ w.length :=
   (firstPrefixAbove_isPrefix w bound).length_le
 
+/--
+@isnad1 id=positive.1h2v.s3.141594a18569 from=translated src=- shape=1e7ce620 vocab=195a0344
+-/
 theorem firstPrefixAbove_positive (w : GapWord) (bound : ℕ)
     (hpositive : w.Positive) : (w.firstPrefixAbove bound).Positive := by
   intro g hg
   exact hpositive g ((firstPrefixAbove_isPrefix w bound).mem hg)
 
 /-- If the full word crosses the target, the selected prefix crosses it
-strictly as well.-/
+strictly as well.
+@isnad1 id=lt.1h2v.s4.7438a906a1be from=translated src=- shape=8738bfe6 vocab=df6324aa
+-/
 theorem lt_span_firstPrefixAbove_of_lt_span (w : GapWord) (bound : ℕ)
     (hcross : bound < w.span) : bound < (w.firstPrefixAbove bound).span := by
   induction w generalizing bound with
@@ -168,7 +185,9 @@ theorem lt_span_firstPrefixAbove_of_lt_span (w : GapWord) (bound : ℕ)
           simpa only [GapWord.span] using ih (bound - g) htail
         omega
 
-/-- Minimal crossing overshoots the target by at most one gap.-/
+/-- Minimal crossing overshoots the target by at most one gap.
+@isnad1 id=le.1h3v.s5.0b7ed9033122 from=translated src=- shape=59e71070 vocab=512efae8
+-/
 theorem span_firstPrefixAbove_le_add (w : GapWord) (bound cap : ℕ)
     (hcap : ∀ g ∈ w, g ≤ cap) :
     (w.firstPrefixAbove bound).span ≤ bound + cap := by
@@ -190,6 +209,9 @@ theorem span_firstPrefixAbove_le_add (w : GapWord) (bound cap : ℕ)
           simpa only [GapWord.span] using ih (bound - g) htailcap
         omega
 
+/--
+@isnad1 id=le.0h2v.s3.09cc13bbd452 from=translated src=- shape=393de0b8 vocab=9afc10e1
+-/
 theorem span_firstPrefixAbove_le_span (w : GapWord) (bound : ℕ) :
     (w.firstPrefixAbove bound).span ≤ w.span := by
   let p := w.firstPrefixAbove bound
@@ -210,6 +232,9 @@ def firstPrefixAtLeast : GapWord → ℕ → GapWord
       if bound ≤ g then [g]
       else g :: firstPrefixAtLeast gs (bound - g)
 
+/--
+@isnad1 id=isprefix.0h2v.s3.d058cc8f075c from=translated src=- shape=27653ef2 vocab=1854a837
+-/
 theorem firstPrefixAtLeast_isPrefix (w : GapWord) (bound : ℕ) :
     (w.firstPrefixAtLeast bound).IsPrefix w := by
   induction w generalizing bound with
@@ -222,11 +247,17 @@ theorem firstPrefixAtLeast_isPrefix (w : GapWord) (bound : ℕ) :
         rcases ih (bound - g) with ⟨tail, htail⟩
         exact ⟨tail, by simpa using congrArg (List.cons g) htail⟩
 
+/--
+@isnad1 id=positive.1h2v.s3.29dde0fc1eaf from=translated src=- shape=1e7ce620 vocab=314fc590
+-/
 theorem firstPrefixAtLeast_positive (w : GapWord) (bound : ℕ)
     (hpositive : w.Positive) : (w.firstPrefixAtLeast bound).Positive := by
   intro g hg
   exact hpositive g ((firstPrefixAtLeast_isPrefix w bound).mem hg)
 
+/--
+@isnad1 id=le.1h2v.s4.651d4d168128 from=translated src=- shape=8738bfe6 vocab=cfcce286
+-/
 theorem span_firstPrefixAtLeast_ge (w : GapWord) (bound : ℕ)
     (hcross : bound ≤ w.span) :
     bound ≤ (w.firstPrefixAtLeast bound).span := by
@@ -248,6 +279,9 @@ theorem span_firstPrefixAtLeast_ge (w : GapWord) (bound : ℕ)
         simp only [GapWord.span] at hrec ⊢
         omega
 
+/--
+@isnad1 id=ne.2h2v.s4.9fba739f4e39 from=translated src=- shape=f2f1d17c vocab=95a2e258
+-/
 theorem firstPrefixAtLeast_ne_nil (w : GapWord) (bound : ℕ)
     (hbound : 0 < bound) (hcross : bound ≤ w.span) :
     w.firstPrefixAtLeast bound ≠ [] := by
@@ -257,6 +291,9 @@ theorem firstPrefixAtLeast_ne_nil (w : GapWord) (bound : ℕ)
   simp [GapWord.span] at hspan
   omega
 
+/--
+@isnad1 id=lt.2h3v.s5.8527f7c15dd5 from=translated src=- shape=50ae5f9c vocab=8f17992b
+-/
 theorem prefixSpan_firstPrefixAtLeast_lt (w : GapWord) (bound : ℕ)
     (hbound : 0 < bound) :
     ∀ r < (w.firstPrefixAtLeast bound).length,
@@ -285,6 +322,9 @@ theorem prefixSpan_firstPrefixAtLeast_lt (w : GapWord) (bound : ℕ)
             simp only [GapWord.prefixSpan] at hrec
             omega
 
+/--
+@isnad1 id=eq.0h2v.s4.bab4747a26e3 from=translated src=- shape=4c587ab3 vocab=dd7e04fa
+-/
 theorem firstPrefixAtLeast_append_drop (w : GapWord) (bound : ℕ) :
     w.firstPrefixAtLeast bound ++
         w.drop (w.firstPrefixAtLeast bound).length = w := by
@@ -306,6 +346,9 @@ def IsGreedyBlock (bound : ℕ) (block : GapWord) : Prop :=
   block ≠ [] ∧ bound ≤ span block ∧
     ∀ r < block.length, prefixSpan block r < bound
 
+/--
+@isnad1 id=isgreedy.2h2v.s4.fed39674a9d9 from=translated src=- shape=d30836ad vocab=6408e5c4
+-/
 theorem firstPrefixAtLeast_isGreedyBlock (w : GapWord) (bound : ℕ)
     (hbound : 0 < bound) (hcross : bound ≤ w.span) :
     IsGreedyBlock bound (w.firstPrefixAtLeast bound) := by
@@ -348,6 +391,9 @@ def GreedyDecomposition.Valid (w : GapWord) (bound : ℕ)
     (∀ block ∈ result.completed, IsGreedyBlock bound block) ∧
     result.remainder.span < bound
 
+/--
+@isnad1 id=valid.2h3v.s4.b47cc09fefbc from=translated src=- shape=5141cbde vocab=dfc1d51d
+-/
 theorem greedyDecomposeAux_valid (fuel : ℕ) (w : GapWord) (bound : ℕ)
     (hfuel : w.length ≤ fuel) (hbound : 0 < bound) :
     (greedyDecomposeAux fuel w bound).Valid w bound := by
@@ -395,6 +441,9 @@ theorem greedyDecomposeAux_valid (fuel : ℕ) (w : GapWord) (bound : ℕ)
       · rw [ite_eq_right (by simp [hbound, hcross])]
         exact ⟨by simp, by simp, Nat.lt_of_not_ge hcross⟩
 
+/--
+@isnad1 id=valid.1h2v.s4.4b4f71f3a0f6 from=translated src=- shape=c5fa6a4a vocab=d0707fcb
+-/
 theorem greedyDecompose_valid (w : GapWord) (bound : ℕ)
     (hbound : 0 < bound) :
     (greedyDecompose w bound).Valid w bound := by

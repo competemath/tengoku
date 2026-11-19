@@ -21,6 +21,9 @@ support reindexing lemmas do not introduce an import cycle.-/
 def natSequenceTerm (a : ℕ → ℕ) (n : ℕ) : ℝ :=
   (a n : ℝ) / (2 : ℝ) ^ a n
 
+/--
+@isnad1 id=summable.0h0v.s5.da5f7955c53a from=translated src=- shape=ac1dd1d0 vocab=c99e234f
+-/
 theorem summable_nat_weight :
     Summable (fun n : ℕ => (n : ℝ) / (2 : ℝ) ^ n) := by
   apply summable_of_ratio_norm_eventually_le (r := (3 : ℝ) / 4) (by norm_num)
@@ -36,6 +39,9 @@ theorem summable_nat_weight :
   push_cast
   nlinarith
 
+/--
+@isnad1 id=summable.0h1v.s4.ee762902ed72 from=translated src=- shape=0aac93ba vocab=6873da2d
+-/
 theorem summable_weightedSupportTerm (S : Set ℕ) :
     Summable (weightedSupportTerm S) := by
   apply summable_nat_weight.of_norm_bounded
@@ -45,11 +51,17 @@ theorem summable_weightedSupportTerm (S : Set ℕ) :
   · simp [weightedSupportTerm, hn]
   · simp [weightedSupportTerm, hn, hbase]
 
+/--
+@isnad1 id=eq.0h2v.s4.f451e733b5c1 from=translated src=- shape=2d003b69 vocab=6727bff6
+-/
 theorem natSequenceTerm_eq_weightedSupport_comp (a : ℕ → ℕ)
     (n : ℕ) :
     natSequenceTerm a n = weightedSupportTerm (Set.range a) (a n) := by
   simp [natSequenceTerm, weightedSupportTerm]
 
+/--
+@isnad1 id=hassum.1h1v.s5.64d5d77f0364 from=translated src=- shape=d0375c7b vocab=f7a652a5
+-/
 theorem hasSum_range_weightedSupport (a : ℕ → ℕ) (ha : StrictMono a) :
     HasSum (weightedSupportTerm (Set.range a))
       (∑' n : ℕ, natSequenceTerm a n) := by
@@ -71,12 +83,17 @@ theorem hasSum_range_weightedSupport (a : ℕ → ℕ) (ha : StrictMono a) :
     exact hs.hasSum.congr_fun fun n => (congrFun hcomp n).symm
   exact (ha.injective.hasSum_iff hzero).1 hsum
 
+/--
+@isnad1 id=infinite.1h1v.s4.25330ed6d07d from=translated src=- shape=0d5647d7 vocab=f4c4f5ef
+-/
 theorem range_infinite_of_strictMono (a : ℕ → ℕ) (ha : StrictMono a) :
     (Set.range a).Infinite := by
   exact Set.infinite_range_of_injective ha.injective
 
 /-- Superlinear growth forces the range to occupy less than any prescribed
-positive proportion of every sufficiently large dyadic block.-/
+positive proportion of every sufficiently large dyadic block.
+@isnad1 id=eventual.2h2v.s6.ddb836e9f07e from=translated src=- shape=04adf2e5 vocab=1f60b3dc
+-/
 theorem eventually_dyadicBlockCount_lt_of_growth (a : ℕ → ℕ)
     (hgrowth : Tendsto (fun n => (a n : ℝ) / (n + 1)) atTop atTop)
     (c : ℝ) (hc : 0 < c) :
