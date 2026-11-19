@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "369f543e81f6276e44b3d1f49424df727f59b801520bbf1e95bb30e01ae8cad3",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "flt-stickelberger",
+ "lint_mode": "proposed",
+ "modules": 6,
+ "part": 1,
+ "theorems": 18
+}
