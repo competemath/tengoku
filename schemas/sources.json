@@ -258,7 +258,22 @@
     "https://github.com/langlerangle/NashEmbedding",
     "https://github.com/JustinWick/erdos647",
     "https://github.com/GiulianoBasso/Grunbaum-lean",
-    "https://github.com/jiji7879/magic-squares-fields-lean"
+    "https://github.com/jiji7879/magic-squares-fields-lean",
+    "https://github.com/hanyi162013-Yihan/geometric-brascamp-lieb",
+    "https://github.com/batchatco/flt-stickelberger",
+    "https://github.com/MJ141592/weighted-chains-paper",
+    "https://github.com/cameronfreer/regularity-lemmata",
+    "https://github.com/sichen-wang/tuza-lean",
+    "https://github.com/ahaankallat/congruence-phenomena-lean",
+    "https://github.com/H0W4RD-dev/croot-unit-fractions",
+    "https://github.com/RuifengCao/sofa-formal",
+    "https://github.com/kay-akiyama/srg266-nonexistence-lean",
+    "https://github.com/afletcher22/Rank3KUM",
+    "https://github.com/SpencerWoolfson/biyoneda",
+    "https://github.com/yoshiyoyoyo44/erdos278",
+    "https://github.com/Janzert/nice-numbers-lean",
+    "https://github.com/Zelaron/bezout-counterexample-lean",
+    "https://github.com/GiulianoBasso/ProjectionConstants-lean"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -529,7 +544,22 @@
     "https://github.com/langlerangle/NashEmbedding": "Apache-2.0",
     "https://github.com/JustinWick/erdos647": "Apache-2.0",
     "https://github.com/GiulianoBasso/Grunbaum-lean": "Apache-2.0",
-    "https://github.com/jiji7879/magic-squares-fields-lean": "MIT"
+    "https://github.com/jiji7879/magic-squares-fields-lean": "MIT",
+    "https://github.com/hanyi162013-Yihan/geometric-brascamp-lieb": "Apache-2.0",
+    "https://github.com/batchatco/flt-stickelberger": "Apache-2.0",
+    "https://github.com/MJ141592/weighted-chains-paper": "Apache-2.0",
+    "https://github.com/cameronfreer/regularity-lemmata": "Apache-2.0",
+    "https://github.com/sichen-wang/tuza-lean": "MIT",
+    "https://github.com/ahaankallat/congruence-phenomena-lean": "Apache-2.0",
+    "https://github.com/H0W4RD-dev/croot-unit-fractions": "Apache-2.0",
+    "https://github.com/RuifengCao/sofa-formal": "Apache-2.0",
+    "https://github.com/kay-akiyama/srg266-nonexistence-lean": "Apache-2.0",
+    "https://github.com/afletcher22/Rank3KUM": "MIT",
+    "https://github.com/SpencerWoolfson/biyoneda": "Apache-2.0",
+    "https://github.com/yoshiyoyoyo44/erdos278": "MIT",
+    "https://github.com/Janzert/nice-numbers-lean": "MIT",
+    "https://github.com/Zelaron/bezout-counterexample-lean": "MIT",
+    "https://github.com/GiulianoBasso/ProjectionConstants-lean": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -2619,6 +2649,115 @@
       "commit": "d7efc54f0a8a7bda257319615f2b9ddb6bd81f95",
       "roots": [
         "MagicSquares"
+      ]
+    },
+    "geometric-brascamp-lieb": {
+      "repo": "https://github.com/hanyi162013-Yihan/geometric-brascamp-lieb",
+      "commit": "9155169a5ba8f7db77c01c446430e50c0daceb7d",
+      "roots": [
+        "GeometricBrascampLieb"
+      ]
+    },
+    "flt-stickelberger": {
+      "repo": "https://github.com/batchatco/flt-stickelberger",
+      "commit": "bd17273d2484bd70bef3d1b2e38bf233e502ba8c",
+      "roots": [
+        "Stickelberger"
+      ]
+    },
+    "weighted-chains-paper": {
+      "repo": "https://github.com/MJ141592/weighted-chains-paper",
+      "commit": "4813781abeaf9ed8f839aaaccd58733cc0f9cb69",
+      "roots": [
+        "WeightedChains",
+        "WeightedChainsPalomar"
+      ]
+    },
+    "regularity-lemmata": {
+      "repo": "https://github.com/cameronfreer/regularity-lemmata",
+      "commit": "8e24d2db2c11ee6ae9e61ad2d70a6c01c4303c90",
+      "roots": [
+        "RegularityLemmata",
+        "RegularityLemmataExamples",
+        "RegularityLemmataGates"
+      ]
+    },
+    "tuza-lean": {
+      "repo": "https://github.com/sichen-wang/tuza-lean",
+      "commit": "5cae999212a06418941fa9c909529a4ff38e1e5e",
+      "roots": [
+        "Tuza"
+      ]
+    },
+    "congruence-phenomena-lean": {
+      "repo": "https://github.com/ahaankallat/congruence-phenomena-lean",
+      "commit": "5a162bc172947b4d65138869ce1f91612609a2df",
+      "roots": [
+        "CongruenceTheory"
+      ]
+    },
+    "croot-unit-fractions": {
+      "repo": "https://github.com/H0W4RD-dev/croot-unit-fractions",
+      "commit": "c58a7d45114c3af27e6abb19dcfca9d82b49b4a1",
+      "roots": [
+        "Croot"
+      ]
+    },
+    "sofa-formal": {
+      "repo": "https://github.com/RuifengCao/sofa-formal",
+      "commit": "6abd1d31986fce7dfa7966a142b5ced5a3f5153f",
+      "roots": [
+        "Sofa",
+        "SofaSubmission"
+      ]
+    },
+    "srg266-nonexistence-lean": {
+      "repo": "https://github.com/kay-akiyama/srg266-nonexistence-lean",
+      "commit": "2ab79df2e924467f89f5ff561a1d15a536c56007",
+      "roots": [
+        "SRG266"
+      ]
+    },
+    "rank3kum": {
+      "repo": "https://github.com/afletcher22/Rank3KUM",
+      "commit": "27f8ea90b78c677f2a28b775e91907134f022842",
+      "roots": [
+        "Rank3KUM"
+      ]
+    },
+    "biyoneda": {
+      "repo": "https://github.com/SpencerWoolfson/biyoneda",
+      "commit": "09169de7677d69166374a1e8f81cf8a91e5063be",
+      "roots": [
+        "Biyoneda"
+      ]
+    },
+    "erdos278": {
+      "repo": "https://github.com/yoshiyoyoyo44/erdos278",
+      "commit": "66ff46ad30c302a0fcc19a2fb22d58a87eebf2cb",
+      "roots": [
+        "Erdos278"
+      ]
+    },
+    "nice-numbers-lean": {
+      "repo": "https://github.com/Janzert/nice-numbers-lean",
+      "commit": "28b958ea28f901ec37beffc61f5c8e9d20530cdf",
+      "roots": [
+        "NiceNumbers"
+      ]
+    },
+    "bezout-counterexample-lean": {
+      "repo": "https://github.com/Zelaron/bezout-counterexample-lean",
+      "commit": "9eda7550c5b8e890bcc2e987556331704a035800",
+      "roots": [
+        "BezoutCounterexample"
+      ]
+    },
+    "projectionconstants-lean": {
+      "repo": "https://github.com/GiulianoBasso/ProjectionConstants-lean",
+      "commit": "103de55445c5dd71ca313af6727ebfab16bc5328",
+      "roots": [
+        "ProjectionConstants"
       ]
     }
   },
