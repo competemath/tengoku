@@ -17,6 +17,9 @@ namespace HadwigerLean.Inseparability
 
 universe u
 
+/--
+@isnad1 id=le.2h6v.s7.8bb71d8249e5 from=translated src=- shape=dd86b432 vocab=9758c1c3
+-/
 theorem ciChildRootFin_terminal_of_starts
     {V : Type*} (p x : ℕ)
     (childRoot : Fin p → Fin 2 × Fin x → V)

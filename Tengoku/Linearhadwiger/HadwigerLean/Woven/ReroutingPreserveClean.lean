@@ -16,6 +16,9 @@ namespace HadwigerLean.Woven
 variable {I V : Type*} {G : SimpleGraph V}
   {P : IndexedPairs I V}
 
+/--
+@isnad1 id=eq.5h10v.s7.5d401a3134b9 from=translated src=- shape=d25b219a vocab=be475c8b
+-/
 theorem IndexedLinkage.clean_finish_of_supported_reroute
     (L₀ L : IndexedLinkage G P) (D J : Set V)
     (hOldClean : ∀ i v, v ∈ pathVertexSet (L₀.path i) →
@@ -40,6 +43,9 @@ theorem IndexedLinkage.clean_finish_of_supported_reroute
       exact pathVertexSet.finish_mem (L.path j)
     exact False.elim ((Set.disjoint_left.mp (L.disjoint hij)) hv hvjL)
 
+/--
+@isnad1 id=eq.5h10v.s7.55e8cfc12048 from=translated src=- shape=9817c56f vocab=be475c8b
+-/
 theorem IndexedLinkage.clean_start_of_supported_reroute
     (L₀ L : IndexedLinkage G P) (U J : Set V)
     (hOldClean : ∀ i v, v ∈ pathVertexSet (L₀.path i) →

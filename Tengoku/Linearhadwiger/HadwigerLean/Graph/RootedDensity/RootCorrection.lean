@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u
 
 /-- Common neighbors plus the noncommon root neighbors of an outside
-endpoint equal outside common neighbors plus all its other root neighbors.-/
+endpoint equal outside common neighbors plus all its other root neighbors.
+@isnad1 id=eq.0h5v.s8.eaaf2656e87b from=translated src=- shape=0869ce1e vocab=e6c3295a
+-/
 theorem common_add_rootCorrection_eq_outside_common_add_rootNeighbors
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

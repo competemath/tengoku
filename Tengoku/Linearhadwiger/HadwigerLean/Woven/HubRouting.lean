@@ -69,7 +69,9 @@ private theorem hubArrivalPairs_inside {m : ℕ}
   · exact Finset.mem_image.mpr ⟨slot (i,1), Finset.mem_univ _, rfl⟩
 
 /-- A rooted-linked hub routes every prescribed pairing of distinct
-arrivals, and the route interiors avoid all arrivals.-/
+arrivals, and the route interiors avoid all arrivals.
+@isnad1 id=ex.2h6v.s6.79c7f3044a56 from=translated src=- shape=7dc7ea94 vocab=f91557d6
+-/
 theorem exists_hub_arrival_routing {m : ℕ}
     (H : SimpleGraph W) (arrival : ι → W)
     (hinj : Function.Injective arrival)

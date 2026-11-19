@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- A clean disjoint fan from every prescribed root to a universal
-induced core transfers universality to the original root set.-/
+induced core transfers universality to the original root set.
+@isnad1 id=universa.5h8v.s8.0730623a50d1 from=translated src=- shape=ad702a59 vocab=dfe7e761
+-/
 theorem universalAt_of_universal_core_and_clean_fan
     {W : Type u} [Fintype W] {V : Type v} [Fintype V] [DecidableEq V]
     (H : SimpleGraph W) (G : SimpleGraph V) (J : Finset V)
@@ -49,7 +51,9 @@ theorem universalAt_of_universal_core_and_clean_fan
   exact hmodel
 
 /-- Any full disjoint fan can be trimmed at its first core hit, so its
-paths need not initially avoid the core.-/
+paths need not initially avoid the core.
+@isnad1 id=universa.4h8v.s7.c42a3bcdd49d from=translated src=- shape=34e016eb vocab=cbcc4ba2
+-/
 theorem universalAt_of_universal_core_and_full_fan
     {W : Type u} [Fintype W] {V : Type v} [Fintype V] [DecidableEq V]
     (H : SimpleGraph W) (G : SimpleGraph V) (J : Finset V)
@@ -68,7 +72,9 @@ theorem universalAt_of_universal_core_and_full_fan
     hfinish' hfirst'
 
 /-- A full fan indexed by any finite type transfers universality to its
-set of start vertices.-/
+set of start vertices.
+@isnad1 id=universa.3h8v.s6.2eed53f00dd2 from=translated src=- shape=8e1cd20e vocab=8df16948
+-/
 theorem universalAt_of_universal_core_and_full_fan_image
     {W : Type u} [Fintype W] {V : Type v} [Fintype V] [DecidableEq V]
     {ι : Type*} [Fintype ι]

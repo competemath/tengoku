@@ -11,6 +11,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u v
 
+/--
+@isnad1 id=universa.3h6v.s7.5b3375de3968 from=translated src=- shape=1c17e9d5 vocab=f3ae7593
+-/
 theorem universalAt_of_torso_of_model_lift
     {V : Type u} {W : Type v}
     [Fintype V] [DecidableEq V] [Fintype W]

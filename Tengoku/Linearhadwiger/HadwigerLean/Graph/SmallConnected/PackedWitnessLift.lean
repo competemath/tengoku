@@ -15,7 +15,9 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- A k-connected graph supported on singleton vertices of a packing
 quotient is an induced k-connected subgraph of the original graph, with
-the same vertex count.-/
+the same vertex count.
+@isnad1 id=ex.2h6v.s7.5e4b87378fd2 from=translated src=- shape=621c182f vocab=d35f4ec4
+-/
 theorem lift_uncovered_vertexConnected_witness
     (G : SimpleGraph V) (F : ConnectedBlockFamily G)
     (W : Type u) [Fintype W] (f : W ↪ F.Vertex)

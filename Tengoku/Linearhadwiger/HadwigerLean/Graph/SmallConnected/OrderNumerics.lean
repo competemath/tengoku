@@ -11,7 +11,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean
 
 /-- The degree cap and the block-size cap yield the advertised order
-constant. The proof keeps every factor explicit for later changes.-/
+constant. The proof keeps every factor explicit for later changes.
+@isnad1 id=le.7h5v.s8.0c6b4ef1e0ee from=translated src=- shape=9d777700 vocab=b2d07434
+-/
 theorem small_connected_order_numerical
     (r h t k L : ℝ)
     (hr : 0 ≤ r) (hh : 0 ≤ h) (ht : 0 < t)

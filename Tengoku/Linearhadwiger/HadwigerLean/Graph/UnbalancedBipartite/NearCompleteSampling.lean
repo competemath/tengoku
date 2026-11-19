@@ -19,11 +19,17 @@ def splitEmbeddingEquiv (T : Finset D) :
   (Equiv.embeddingCongr (Equiv.Set.sumCompl (T : Set D)).symm
     (Equiv.refl β)).trans Equiv.sumEmbeddingEquivSigmaEmbeddingRestricted
 
+/--
+@isnad1 id=eq.0h5v.s9.09e2d2071e99 from=translated src=- shape=52ee6e59 vocab=9e6f4cec
+-/
 theorem splitEmbeddingEquiv_fst (T : Finset D) (f : D ↪ β)
     (x : (T : Set D)) :
     (splitEmbeddingEquiv T f).1 x = f x.1 := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.64461cf69bab from=translated src=- shape=c1d66b4c vocab=64fe3555
+-/
 theorem splitEmbeddingEquiv_snd (T : Finset D) (f : D ↪ β)
     (x : ↥((T : Set D)ᶜ)) :
     ((splitEmbeddingEquiv T f).2 x).1 = f x.1 := by
@@ -59,7 +65,9 @@ noncomputable def restrictedEmbeddings [Fintype β]
   exact Finset.univ.filter (fun f => ∀ x ∈ T, f x ∈ C)
 
 /-- The number of completions of a fixed embedding on `T` depends only on
-its image size.-/
+its image size.
+@isnad1 id=eq.0h4v.s8.44683dfa6a7d from=translated src=- shape=7a7e0872 vocab=33fce561
+-/
 theorem card_embedding_completion [Fintype β]
     (T : Finset D) (g : ((T : Set D) ↪ β))
     [Fintype ↥((Set.range g)ᶜ)]
@@ -76,7 +84,9 @@ theorem card_embedding_completion [Fintype β]
   rw [hT]
 
 /-- Exact count of ordered injective samples with all designated positions
-inside `C`.-/
+inside `C`.
+@isnad1 id=eq.0h4v.s6.81678220b66b from=translated src=- shape=1bd45553 vocab=7eaad895
+-/
 theorem card_restrictedEmbeddings [Fintype β]
     (T : Finset D) (C : Finset β) :
     (restrictedEmbeddings T C).card =
@@ -109,7 +119,9 @@ theorem card_restrictedEmbeddings [Fintype β]
   norm_cast
 
 /-- The designated positions of a uniform ordered injective sample all lie
-in `C` with probability at most `(c/(z+1-k))^k`.-/
+in `C` with probability at most `(c/(z+1-k))^k`.
+@isnad1 id=le.1h4v.s6.59557c892ed5 from=translated src=- shape=5b211968 vocab=4ace5989
+-/
 theorem restrictedEmbeddings_ratio_le_power [Fintype β]
     (T : Finset D) (C : Finset β)
     (hd : Fintype.card D ≤ Fintype.card β) :
@@ -176,6 +188,9 @@ noncomputable def sampledBlock (Z : Finset V) (r ℓ : ℕ)
   classical
   exact Finset.univ.image (fun j : Fin ℓ => (f (i, j)).1)
 
+/--
+@isnad1 id=eq.0h3v.s4.5f94ba29454e from=translated src=- shape=bb918ce0 vocab=9119624e
+-/
 theorem card_blockPositions (r ℓ : ℕ) (i : Fin r) :
     (blockPositions r ℓ i).card = ℓ := by
   classical
@@ -184,7 +199,9 @@ theorem card_blockPositions (r ℓ : ℕ) (i : Fin r) :
   · intro j k h
     exact congrArg Prod.snd h
 
-/-- Each sampled block has exactly `ℓ` vertices.-/
+/-- Each sampled block has exactly `ℓ` vertices.
+@isnad1 id=eq.0h6v.s5.c65f6736de02 from=translated src=- shape=e8bb1a29 vocab=277b817d
+-/
 theorem sampledBlock_card (Z : Finset V) (r ℓ : ℕ)
     (f : (Fin r × Fin ℓ) ↪ (Z : Set V)) (i : Fin r) :
     (sampledBlock Z r ℓ f i).card = ℓ := by
@@ -196,7 +213,9 @@ theorem sampledBlock_card (Z : Finset V) (r ℓ : ℕ)
     have hh : (i, j) = (i, k) := f.injective (Subtype.ext h)
     exact congrArg Prod.snd hh
 
-/-- Every sampled block lies in the sampling reservoir.-/
+/-- Every sampled block lies in the sampling reservoir.
+@isnad1 id=le.0h6v.s5.056acd1b3884 from=translated src=- shape=8f995165 vocab=1c80a5e6
+-/
 theorem sampledBlock_subset (Z : Finset V) (r ℓ : ℕ)
     (f : (Fin r × Fin ℓ) ↪ (Z : Set V)) (i : Fin r) :
     sampledBlock Z r ℓ f i ⊆ Z := by
@@ -205,7 +224,9 @@ theorem sampledBlock_subset (Z : Finset V) (r ℓ : ℕ)
   obtain ⟨j, _, rfl⟩ := Finset.mem_image.mp hv
   exact (f (i, j)).property
 
-/-- Distinct sampled blocks are disjoint because the sample is injective.-/
+/-- Distinct sampled blocks are disjoint because the sample is injective.
+@isnad1 id=disjoint.1h7v.s6.2f46c6c5e440 from=translated src=- shape=dee832cf vocab=1f9ee1d1
+-/
 theorem sampledBlock_disjoint (Z : Finset V) (r ℓ : ℕ)
     (f : (Fin r × Fin ℓ) ↪ (Z : Set V)) (i j : Fin r) (hij : i ≠ j) :
     Disjoint (sampledBlock Z r ℓ f i) (sampledBlock Z r ℓ f j) := by
@@ -220,7 +241,9 @@ theorem sampledBlock_disjoint (Z : Finset V) (r ℓ : ℕ)
 end Blocks
 
 /-- Both the first-block and conditional second-block sampling reservoirs
-have denominator at least one quarter of the ambient order.-/
+have denominator at least one quarter of the ambient order.
+@isnad1 id=le.1h2v.s6.f415531ed94d from=translated src=- shape=de3100fa vocab=e32ddfcd
+-/
 theorem four_mul_reservoir_gap_ge_order
     (t n : ℕ) (ht : 3 ≤ t) :
     n ≤ 4 * (n / 3 + 1 - 2 * (n / (9 * t))) := by
@@ -252,7 +275,9 @@ noncomputable def reservoirNonNeighbors
   exact Finset.univ.filter (fun z => z.1 ≠ v ∧ ¬ G.Adj v z.1)
 
 /-- The exceptional set inside a reservoir is bounded by the complement
-degree in the full graph.-/
+degree in the full graph.
+@isnad1 id=le.0h4v.s6.35da1a3f0bfa from=translated src=- shape=e8d7a703 vocab=a8b748c0
+-/
 theorem card_reservoirNonNeighbors_le_compl_degree
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (v : V) :
@@ -272,7 +297,9 @@ theorem card_reservoirNonNeighbors_le_compl_degree
   exact hcard
 
 /-- A block is contained in the exceptional vertices exactly when it avoids
-`v` and has no edge to `v`.-/
+`v` and has no edge to `v`.
+@isnad1 id=iff.0h8v.s7.961e035cd493 from=translated src=- shape=e32b9400 vocab=07952077
+-/
 theorem sampledBlock_subset_reservoirNonNeighbors_iff
     (G : SimpleGraph V) (Z : Finset V) (r ℓ : ℕ)
     (f : (Fin r × Fin ℓ) ↪ (Z : Set V)) (i : Fin r) (v : V) :
@@ -312,7 +339,9 @@ theorem sampledBlock_subset_reservoirNonNeighbors_iff
 end ExceptionalVertices
 
 /-- For any fixed vertex, an injectively sampled block avoiding it and all
-its neighbors has the expected hypergeometric upper bound.-/
+its neighbors has the expected hypergeometric upper bound.
+@isnad1 id=le.1h7v.s8.315356aa09a9 from=translated src=- shape=6e1b32cc vocab=8a57d220
+-/
 theorem reservoirNonNeighbors_sample_ratio_le
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -353,7 +382,9 @@ theorem reservoirNonNeighbors_sample_ratio_le
   exact hratio.trans (pow_le_pow_left₀ (by positivity) hquot ℓ)
 
 /-- A low complement degree and a quarter-order sampling denominator give
-the `8q` one-vertex failure factor.-/
+the `8q` one-vertex failure factor.
+@isnad1 id=le.3h4v.s6.6f3739fb21ab from=translated src=- shape=b0b9366a vocab=f652c413
+-/
 theorem low_degree_ratio_le_eight_missing_fraction
     (n m d den : ℕ) (hn : 2 ≤ n) (hgap : n ≤ 4 * den)
     (hdegree : n * d ≤ 4 * m) :

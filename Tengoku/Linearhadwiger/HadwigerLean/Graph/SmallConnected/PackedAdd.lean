@@ -13,11 +13,17 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 variable {G : SimpleGraph V} (F : ConnectedBlockFamily G)
 
+/--
+@isnad1 id=le.1h4v.s5.9d98530270a7 from=translated src=- shape=0ffda8cb vocab=3df54915
+-/
 theorem ConnectedBlockFamily.block_subset_covered
     (B : Finset V) (hB : B ∈ F.blocks) : B ⊆ F.covered := by
   intro v hv
   exact Finset.mem_biUnion.mpr ⟨B, hB, hv⟩
 
+/--
+@isnad1 id=not.2h4v.s5.8d825fbdb12e from=translated src=- shape=2e6094d9 vocab=4634bad1
+-/
 theorem ConnectedBlockFamily.not_mem_blocks_of_disjoint_covered
     (H : Finset V) (hH : H.Nonempty)
     (hdisj : Disjoint H F.covered) : H ∉ F.blocks := by
@@ -52,12 +58,18 @@ noncomputable def ConnectedBlockFamily.add
           (F.block_subset_covered B hBF hvB)
       · exact F.disjoint B hBF C hCF hBC
 
+/--
+@isnad1 id=eq.2h4v.s6.53f0e982a6b0 from=translated src=- shape=a82230f1 vocab=d2512918
+-/
 theorem ConnectedBlockFamily.covered_add
     (H : Finset V) (hconn : (G.induce (H : Set V)).Connected)
     (hdisj : Disjoint H F.covered) :
     (F.add H hconn hdisj).covered = H ∪ F.covered := by
   simp [ConnectedBlockFamily.add, ConnectedBlockFamily.covered]
 
+/--
+@isnad1 id=eq.2h4v.s6.60c9d3200c72 from=translated src=- shape=ff5207e6 vocab=7f5ca945
+-/
 theorem ConnectedBlockFamily.blocks_card_add
     (H : Finset V) (hconn : (G.induce (H : Set V)).Connected)
     (hdisj : Disjoint H F.covered) :

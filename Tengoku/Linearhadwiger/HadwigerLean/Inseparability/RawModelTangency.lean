@@ -23,6 +23,9 @@ def ciFinalIndex (p x : ℕ) :
       finProdFinEquiv
         ((⟨4 * p, by omega⟩ : Fin (4 * p + 1)), r)
 
+/--
+@isnad1 id=eq.0h3v.s4.a70c60767ac4 from=translated src=- shape=f8546a6e vocab=5ca2929a
+-/
 theorem pathOwner_finalIndex (p x : ℕ)
     (z : CIRawIndex p x) :
     pathOwner p x (ciFinalIndex p x z) = z := by
@@ -33,6 +36,9 @@ theorem pathOwner_finalIndex (p x : ℕ)
   | inr r =>
       exact pathOwner_new_final p x r
 
+/--
+@isnad1 id=mem.1h6v.s7.8bdd1ef0423e from=translated src=- shape=fb29918f vocab=ae753185
+-/
 theorem ci_root_mem_assignedPaths
     {V : Type*} (p x : ℕ)
     (P : CIPathIndex p x → Set V)
@@ -46,6 +52,9 @@ theorem ci_root_mem_assignedPaths
     Set.mem_iUnion.mpr
       ⟨by simp [pathOwner_finalIndex],hFinalPath z⟩⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.c61e4bfe7bed from=translated src=- shape=a4b6b5ae vocab=b9231988
+-/
 theorem ci_assignedPaths_tangent
     {V : Type*} (p x : ℕ)
     (P : CIPathIndex p x → Set V)

@@ -20,18 +20,26 @@ def connectorParent {a : ℕ} (q : Fin (2 * a)) : Fin a :=
   if h : q.val < a then ⟨q.val, h⟩ else
     ⟨q.val - a, by have hq := q.isLt; omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.4e035ec6c156 from=translated src=- shape=6ddf6d3e vocab=c76b9f23
+-/
 @[simp] theorem connectorParent_first {a : ℕ} (i : Fin a) :
     connectorParent (firstConnector i) = i := by
   apply Fin.ext
   simp [connectorParent, firstConnector, i.isLt]
 
+/--
+@isnad1 id=eq.0h2v.s3.085b076c8b09 from=translated src=- shape=6ddf6d3e vocab=0cb07605
+-/
 @[simp] theorem connectorParent_second {a : ℕ} (i : Fin a) :
     connectorParent (secondConnector i) = i := by
   apply Fin.ext
   simp [connectorParent, secondConnector]
 
 /-- Minimum degree `4a` supplies two distinct starts per root, all avoiding
-the parent roots. The child sets may then be selected away from these starts.-/
+the parent roots. The child sets may then be selected away from these starts.
+@isnad1 id=ex.1h4v.s7.f7bdeb04b260 from=translated src=- shape=b7bf6c2f vocab=4af2c6f2
+-/
 theorem exists_parent_connector_starts
     (G : SimpleGraph V) [DecidableRel G.Adj] {a : ℕ}
     (root : Fin a → V)

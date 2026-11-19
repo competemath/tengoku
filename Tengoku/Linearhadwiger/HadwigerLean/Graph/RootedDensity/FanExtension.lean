@@ -9,7 +9,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u v
 
-/-- The finishes of vertex-disjoint paths are distinct.-/
+/-- The finishes of vertex-disjoint paths are distinct.
+@isnad1 id=injectiv.0h5v.s4.5a7d43d09e0e from=translated src=- shape=0715bc53 vocab=acc60065
+-/
 theorem IndexedLinkage.finish_injective
     {ι V : Type*} {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) : Function.Injective P.finish := by
@@ -64,7 +66,9 @@ def rootedMinor_extendAlongCleanLinkage
     exact Or.inr (pathVertexSet.start_mem (L.path i))
 
 /-- The same fan extension when the initial rooted model lives in an
-induced subgraph.-/
+induced subgraph.
+@isnad1 id=nonempty.3h7v.s7.6480d992d252 from=translated src=- shape=ac43fc2d vocab=6e19948a
+-/
 theorem rootedMinor_of_induced_rootedMinor_and_clean_fan
     {W : Type u} {V : Type v} {H : SimpleGraph W} {G : SimpleGraph V}
     {P : IndexedPairs W V} (L : IndexedLinkage G P)

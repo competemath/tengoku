@@ -12,7 +12,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- At a minimum-incidence nonuniversal massed pair, an exterior edge
-whose deletion preserves every shore condition forces the exact F.3 count.-/
+whose deletion preserves every shore condition forces the exact F.3 count.
+@isnad1 id=eq.7h8v.s8.f4fb5de9bf91 from=translated src=- shape=60a41d88 vocab=6646120d
+-/
 theorem floor_edge_tight_of_minimal_bad
     {W : Type v} [Fintype W] (H : SimpleGraph W)
     {V : Type u} [Fintype V] [DecidableEq V]

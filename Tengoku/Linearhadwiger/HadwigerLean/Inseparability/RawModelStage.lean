@@ -23,7 +23,9 @@ def ciStageIndexEquiv (p x : ℕ) :
       (Equiv.sumCongr finProdFinEquiv.symm (Equiv.refl (Fin x))))
 
 /-- Package an assembled raw model as a sequential stage once the
-chromatic, connectivity, and cardinality estimates have been proved.-/
+chromatic, connectivity, and cardinality estimates have been proved.
+@isnad1 id=nonempty.6h11v.s8.2e501a850540 from=translated src=- shape=9ca8ea44 vocab=7756089f
+-/
 theorem stageState_of_raw_model
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (p x k m coreBound : ℕ)

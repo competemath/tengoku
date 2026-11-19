@@ -45,7 +45,9 @@ private noncomputable def firstTarget (p : G.Path s t) (H : Finset V)
 
 /-- Trim each linkage path at its first vertex in `H`.  All starts and
 disjointness are preserved; the new path support is contained in the old
-one.-/
+one.
+@isnad1 id=ex.1h6v.s7.1e418a7b098b from=translated src=- shape=9106d1f7 vocab=86de8c73
+-/
 theorem IndexedLinkage.exists_trimFinishToSet (L : IndexedLinkage G P)
     (hH : ∀ i, P.finish i ∈ H) :
     ∃ (Q : IndexedPairs ι V) (M : IndexedLinkage G Q),
@@ -69,7 +71,9 @@ theorem IndexedLinkage.exists_trimFinishToSet (L : IndexedLinkage G P)
     fun i => (d i).support_subset, fun i v => (d i).only_target v⟩
 
 /-- If every vertex of `Z` starts a path, no path can meet `Z`
-except at its own start.-/
+except at its own start.
+@isnad1 id=eq.3h9v.s7.c16f51421116 from=translated src=- shape=1a00a3dd vocab=04be8ecb
+-/
 theorem IndexedLinkage.source_only_of_covered
     (L : IndexedLinkage G P) (Z : Finset V)
     (f : Z → ι) (hstart : ∀ z : Z, P.start (f z) = z.1)
@@ -85,7 +89,9 @@ theorem IndexedLinkage.source_only_of_covered
     exact False.elim ((Set.disjoint_left.mp (L.disjoint hi)) hv hz)
 
 /-- Trim every path at its last visit to `U`. Endpoints at the far side,
-disjointness, and path-support containment are preserved.-/
+disjointness, and path-support containment are preserved.
+@isnad1 id=ex.1h6v.s7.c2a67488ab79 from=translated src=- shape=55fc088c vocab=86de8c73
+-/
 theorem IndexedLinkage.exists_trimStartFromSet
     (L : IndexedLinkage G P) (U : Finset V)
     (hU : ∀ i, P.start i ∈ U) :

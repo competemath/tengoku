@@ -69,6 +69,9 @@ def hubRootSlot (a j : ℕ) : Fin a ↪ Fin (a + j) :=
 def hubTerminalSlot (a j : ℕ) : Fin j ↪ Fin (a + j) :=
   Fin.natAddEmb a
 
+/--
+@isnad1 id=ne.0h4v.s6.14930c23e99d from=translated src=- shape=d4624918 vocab=84cbc55a
+-/
 theorem hubRootSlot_ne_hubTerminalSlot (a j : ℕ)
     (i : Fin a) (k : Fin j) :
     hubRootSlot a j i ≠ hubTerminalSlot a j k := by
@@ -76,24 +79,35 @@ theorem hubRootSlot_ne_hubTerminalSlot (a j : ℕ)
   have heq := congrArg (finSumFinEquiv.symm : Fin (a+j) → Fin a ⊕ Fin j) h
   simpa [hubRootSlot, hubTerminalSlot] using heq
 
+/--
+@isnad1 id=eq.0h5v.s8.253fde754e69 from=translated src=- shape=98809941 vocab=b43f4ad4
+-/
 @[simp] theorem hubRoleMatching_root_proxy {a j : ℕ} {Z : Type*}
     (proxy : HubProxyRole a j ≃ Z) (i : Fin a) :
     hubRoleMatching proxy (hubRootSlot a j i,0) =
       Sum.inl (proxy (Sum.inl i)) := by
   simp [hubRoleMatching, proxyRoleMatching, hubRootSlot]
 
+/--
+@isnad1 id=eq.0h5v.s7.043ea8c65de8 from=translated src=- shape=dd289c2a vocab=8fdc45d1
+-/
 @[simp] theorem hubRoleMatching_root_residual {a j : ℕ} {Z : Type*}
     (proxy : HubProxyRole a j ≃ Z) (i : Fin a) :
     hubRoleMatching proxy (hubRootSlot a j i,1) = Sum.inr i := by
   simp [hubRoleMatching, proxyRoleMatching, hubRootSlot]
 
+/--
+@isnad1 id=eq.0h6v.s8.dec367b74e12 from=translated src=- shape=4c865d3f vocab=d5a20b39
+-/
 @[simp] theorem hubRoleMatching_terminal {a j : ℕ} {Z : Type*}
     (proxy : HubProxyRole a j ≃ Z) (k : Fin j) (b : Fin 2) :
     hubRoleMatching proxy (hubTerminalSlot a j k,b) =
       Sum.inl (proxy (Sum.inr (k,b))) := by
   simp [hubRoleMatching, proxyRoleMatching, hubTerminalSlot]
 
-/-- The first arrival of every matched pair is a proxy.-/
+/-- The first arrival of every matched pair is a proxy.
+@isnad1 id=ex.0h5v.s7.3fe415e7b5c6 from=translated src=- shape=97723f84 vocab=4ec537ba
+-/
 theorem hubRoleMatching_first_proxy {a j : ℕ} {Z : Type*}
     (proxy : HubProxyRole a j ≃ Z) (k : Fin (a + j)) :
     ∃ z : Z, hubRoleMatching proxy (k,0) = Sum.inl z := by

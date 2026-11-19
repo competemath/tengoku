@@ -17,7 +17,9 @@ variable {V ι : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
 /-- Injective starts, injective finishes, and disjoint start/finish ranges
-give disjoint indexed terminals.-/
+give disjoint indexed terminals.
+@isnad1 id=disjoint.3h3v.s6.8765db3a89c9 from=translated src=- shape=bc580640 vocab=58a5ae98
+-/
 theorem disjointTerminals_of_injective_ends
     (P : IndexedPairs ι V)
     (hs : Function.Injective P.start)
@@ -36,7 +38,9 @@ theorem disjointTerminals_of_injective_ends
   · exact hij (ht (hxi.symm.trans hxj))
 
 /-- Every vertex of a linkage mapped out of an induced graph still lies
-inside the inducing set.-/
+inside the inducing set.
+@isnad1 id=le.0h6v.s6.7e6861f68940 from=translated src=- shape=a8542652 vocab=55aebadc
+-/
 theorem IndexedLinkage.mapInduce_vertices_subset
     {S : Set V} {P : IndexedPairs ι S}
     (L : IndexedLinkage (G.induce S) P) :

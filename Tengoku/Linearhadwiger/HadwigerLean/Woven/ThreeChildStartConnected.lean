@@ -13,7 +13,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Vertex connectivity supplies the degree hypothesis for choosing two
-distinct neighboring starts per parent root.-/
+distinct neighboring starts per parent root.
+@isnad1 id=ex.2h5v.s7.dcad0d0561a4 from=translated src=- shape=5de3caea vocab=7c8eaea6
+-/
 theorem exists_parent_connector_starts_of_connected
     (G : SimpleGraph V) [DecidableRel G.Adj] {a κ : ℕ}
     (root : Fin a → V) (hconn : VertexConnected G κ)

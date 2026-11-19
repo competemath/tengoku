@@ -7,7 +7,9 @@ import Tengoku.Seed.Tactic
 namespace HadwigerLean
 
 /-- Deleting a left-side vertex preserves a bipartition and updates its
-part sizes and edge count exactly.-/
+part sizes and edge count exactly.
+@isnad1 id=other.3h5v.s8.e9bb681fc8ac from=translated src=- shape=6da8a750 vocab=7c2664e7
+-/
 theorem bipartite_vertex_deletion_data
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

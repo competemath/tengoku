@@ -13,7 +13,9 @@ namespace HadwigerLean.Theorem2
 
 /-- Sum the three one-step estimates used by the almost-perfect matching
 iteration. The quadratic error term is deliberately loose; the final proof
-has ample slack and does not need a finite arithmetic-series identity.-/
+has ample slack and does not need a finite arithmetic-series identity.
+@isnad1 id=le.8h9v.s8.d498aa3b9253 from=translated src=- shape=7b8d9d51 vocab=85d70999
+-/
 theorem finite_loss_recurrence
     (T : ℕ) (n z w : ℕ → ℝ) (N q a δ β : ℝ)
     (hN : 0 ≤ N) (hq : 0 ≤ q) (ha : 0 ≤ a) (hδ : 0 ≤ δ)

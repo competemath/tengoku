@@ -12,7 +12,9 @@ namespace HadwigerLean
 universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 /-- Positive minimum degree and low contraction loss force a touched
-vertex outside the contracted set.-/
+vertex outside the contracted set.
+@isnad1 id=nonempty.6h6v.s7.f57f2c2f1663 from=translated src=- shape=efb42971 vocab=9be0f28e
+-/
 theorem localR_nonempty
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) (p : ℕ) (hp : 0 < p)
@@ -47,7 +49,9 @@ theorem localR_nonempty
 
 /-- The local Section 8 inequalities give a `k`-connected induced subgraph
 inside the neighborhood of the contracted set, with order no larger than
-that neighborhood.-/
+that neighborhood.
+@isnad1 id=ex.10h7v.s8.d9950d57bcf2 from=translated src=- shape=65ed58b6 vocab=0a83b95d
+-/
 theorem local_connected_witness
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) (p k : ℕ)

@@ -100,7 +100,9 @@ noncomputable def starContractionMinorModel
   }
   exact M
 
-/-- The explicit star branch-set model witnesses the minor relation.-/
+/-- The explicit star branch-set model witnesses the minor relation.
+@isnad1 id=isminor.2h5v.s6.217a77305829 from=translated src=- shape=cb2f7d0c vocab=0224ccbb
+-/
 theorem starContractionGraph_isMinor
     (G : SimpleGraph V) (A X : Finset V)
     (hAX : Disjoint A X)
@@ -110,7 +112,9 @@ theorem starContractionGraph_isMinor
   ⟨starContractionMinorModel G A X hAX f hf⟩
 
 /-- A common neighbor assigned to either endpoint creates their edge in
-the star-contraction graph.-/
+the star-contraction graph.
+@isnad1 id=adj.4h8v.s7.65f4f4c29a0e from=translated src=- shape=a83ead8b vocab=0365876f
+-/
 theorem starContractionGraph_adj_of_common_assignment
     (G : SimpleGraph V) (A X : Finset V)
     (f : ↥(A : Set V) → ↥(X : Set V))
@@ -125,7 +129,9 @@ theorem starContractionGraph_adj_of_common_assignment
   · exact Or.inr ⟨h, hwx⟩
 
 /-- A missing edge after star contraction means every original common
-neighbor was assigned away from both endpoints.-/
+neighbor was assigned away from both endpoints.
+@isnad1 id=and.4h8v.s7.8d664b06507d from=translated src=- shape=7ff80055 vocab=0365876f
+-/
 theorem starContractionGraph_missing_avoids_common
     (G : SimpleGraph V) (A X : Finset V)
     (f : ↥(A : Set V) → ↥(X : Set V))
@@ -149,6 +155,9 @@ def starAssignmentFinset (A : Finset V)
     Finset (↥(A : Set V) → V) :=
   Fintype.piFinset C
 
+/--
+@isnad1 id=eq.0h3v.s6.293d2a73af88 from=translated src=- shape=fc0e25f3 vocab=158da649
+-/
 @[simp] theorem card_starAssignmentFinset
     (A : Finset V) (C : ↥(A : Set V) → Finset V) :
     (starAssignmentFinset A C).card =
@@ -156,6 +165,9 @@ def starAssignmentFinset (A : Finset V)
   classical
   simp [starAssignmentFinset]
 
+/--
+@isnad1 id=iff.0h4v.s7.8ba7fc5998fb from=translated src=- shape=bab0bf7a vocab=968f81a4
+-/
 @[simp] theorem mem_starAssignmentFinset
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (f : ↥(A : Set V) → V) :
@@ -171,7 +183,9 @@ def avoidPairChoices (A : Finset V)
   fun w => if w ∈ W then (C w).erase x |>.erase y else C w
 
 /-- Independent assignments avoiding two centers on `W` are counted by
-the product of the reduced local choice sets.-/
+the product of the reduced local choice sets.
+@isnad1 id=le.0h6v.s9.57ede723c4cb from=translated src=- shape=f262fcd9 vocab=b667ecdd
+-/
 theorem card_star_assignments_avoiding_pair_le_prod
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (W : Finset ↥(A : Set V)) (x y : V) :
@@ -200,7 +214,9 @@ theorem card_star_assignments_avoiding_pair_le_prod
     _ = _ := Fintype.card_piFinset _
 
 /-- At a common neighbor, excluding two distinct centers removes exactly
-two local choices.-/
+two local choices.
+@isnad1 id=eq.4h7v.s7.bc52032ab0c3 from=translated src=- shape=880cd80a vocab=49440d6c
+-/
 theorem card_avoidPairChoices_add_two
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (W : Finset ↥(A : Set V)) (x y : V) (hxy : x ≠ y)
@@ -216,7 +232,9 @@ theorem card_avoidPairChoices_add_two
   simp [avoidPairChoices, hw, Finset.card_erase_of_mem, hx, hy']
   omega
 
-/-- Outside the selected common-neighbor set, local choices are unchanged.-/
+/-- Outside the selected common-neighbor set, local choices are unchanged.
+@isnad1 id=eq.1h7v.s6.36f267790876 from=translated src=- shape=857ba51c vocab=bba4102c
+-/
 theorem avoidPairChoices_eq_of_not_mem
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (W : Finset ↥(A : Set V)) (x y : V)
@@ -225,7 +243,9 @@ theorem avoidPairChoices_eq_of_not_mem
   simp [avoidPairChoices, hw]
 
 /-- The ratio of choices avoiding two centers is bounded by a product of
-identical local failure factors.-/
+identical local failure factors.
+@isnad1 id=le.4h7v.s9.23f60fdc8ded from=translated src=- shape=0bb6716d vocab=06145ceb
+-/
 theorem card_star_assignments_avoiding_pair_le_factor
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (W : Finset ↥(A : Set V)) (x y : V) (hxy : x ≠ y)
@@ -294,7 +314,9 @@ theorem card_star_assignments_avoiding_pair_le_factor
       rw [Finset.prod_mul_distrib, ← hcardAll, hfactor]
     _ = _ := rfl
 
-/-- The exponential form of the independent-assignment failure bound.-/
+/-- The exponential form of the independent-assignment failure bound.
+@isnad1 id=le.4h7v.s9.9952afd60755 from=translated src=- shape=db18f6a6 vocab=cba8e0f3
+-/
 theorem card_star_assignments_avoiding_pair_le_exp
     (A : Finset V) (C : ↥(A : Set V) → Finset V)
     (W : Finset ↥(A : Set V)) (x y : V) (hxy : x ≠ y)
@@ -342,7 +364,9 @@ def starAssignedCenter (G : SimpleGraph V) [DecidableRel G.Adj]
     (fun w : ↥(A : Set V) => starNeighborChoices G X w.1) g.1).mp g.2 w
   exact ⟨g.1 w, (Finset.mem_inter.mp hg).2⟩
 
-/-- Every chosen assignment follows a graph edge.-/
+/-- Every chosen assignment follows a graph edge.
+@isnad1 id=adj.0h6v.s7.e4a81fdb9991 from=translated src=- shape=7eba2b90 vocab=ef7f07f7
+-/
 theorem starAssignedCenter_adj (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V)
     (g : ↥(starAssignmentFinset A
@@ -354,7 +378,9 @@ theorem starAssignedCenter_adj (G : SimpleGraph V) [DecidableRel G.Adj]
     (fun w : ↥(A : Set V) => starNeighborChoices G X w.1) g.1).mp g.2 w
   exact (G.mem_neighborFinset _ _).mp (Finset.mem_inter.mp hg).1
 
-/-- Each admissible tuple of neighbor choices produces a graph minor.-/
+/-- Each admissible tuple of neighbor choices produces a graph minor.
+@isnad1 id=isminor.1h5v.s7.81fec1d9f3d6 from=translated src=- shape=7b7a2869 vocab=46c220fb
+-/
 theorem starContractionGraph_isMinor_of_neighbor_assignment
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (hAX : Disjoint A X)
@@ -366,7 +392,9 @@ theorem starContractionGraph_isMinor_of_neighbor_assignment
     (starAssignedCenter G A X g) (starAssignedCenter_adj G A X g)
 
 /-- A missing contracted edge forces every selected common neighbor to
-avoid assigning itself to either endpoint.-/
+avoid assigning itself to either endpoint.
+@isnad1 id=and.4h9v.s9.f72a14caf057 from=translated src=- shape=c128c8c5 vocab=93f895ed
+-/
 theorem starAssignment_missing_avoids_common
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (x y : ↥(X : Set V)) (hxy : x ≠ y)
@@ -402,7 +430,9 @@ noncomputable def starMissingAssignments
     ¬ (starContractionGraph G A X
       (starAssignedCenter G A X g)).Adj x y)
 /-- The finite-sample version of the pair-failure probability estimate
-(C.6), before replacing the common-neighbor count by its lower bound.-/
+(C.6), before replacing the common-neighbor count by its lower bound.
+@isnad1 id=le.3h7v.s8.9852d3cfaec6 from=translated src=- shape=721b19c7 vocab=94a66071
+-/
 theorem card_star_assignments_missing_pair_le_exp
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (x y : ↥(X : Set V)) (hxy : x ≠ y)
@@ -449,7 +479,9 @@ theorem card_star_assignments_missing_pair_le_exp
   exact hcardR.trans hExp
 
 /-- Finite double counting: a uniform upper bound on each event's
-frequency gives an outcome with at most the same fraction of failures.-/
+frequency gives an outcome with at most the same fraction of failures.
+@isnad1 id=ex.2h6v.s7.cfaac6922f79 from=translated src=- shape=7a39b11f vocab=9cc95623
+-/
 theorem exists_outcome_with_few_failures
     {Ω E : Type*} [Fintype Ω] [DecidableEq Ω]
     [Fintype E] [DecidableEq E]
@@ -482,7 +514,9 @@ def starCommonNeighbors (G : SimpleGraph V) [DecidableRel G.Adj]
   exact Finset.univ.filter (fun w => G.Adj w.1 x.1 ∧ G.Adj w.1 y.1)
 
 /-- Equation (C.6) with an explicit lower bound on the number of common
-neighbors.-/
+neighbors.
+@isnad1 id=le.3h7v.s8.b326fc09c44f from=translated src=- shape=016efd4b vocab=d13333f2
+-/
 theorem card_star_assignments_missing_pair_le_exp_lower
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (x y : ↥(X : Set V)) (hxy : x ≠ y)
@@ -525,7 +559,9 @@ noncomputable def starMissingEdges
       (starAssignedCenter G A X g)).edgeFinset)
 
 /-- Averaging the fixed-pair estimate gives one contraction outcome with
-at most the predicted missing-edge fraction.-/
+at most the predicted missing-edge fraction.
+@isnad1 id=ex.3h5v.s8.7bc9ff1cd7fd from=translated src=- shape=c3ad2a34 vocab=bbbc2ae3
+-/
 theorem exists_star_assignment_with_few_missing_edges
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (s : ℕ) (hn : 2 ≤ X.card)
@@ -587,7 +623,9 @@ theorem exists_star_assignment_with_few_missing_edges
   simpa only [starMissingEdges, E, P, mul_comm] using hg
 
 /-- The counted missing center pairs are exactly the complement edges of
-the contracted graph.-/
+the contracted graph.
+@isnad1 id=eq.0h5v.s7.2b4e18c89327 from=translated src=- shape=d50777e0 vocab=18745808
+-/
 theorem starMissingEdges_card_eq_complement_edgeCount
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V)
@@ -606,7 +644,9 @@ theorem starMissingEdges_card_eq_complement_edgeCount
       SimpleGraph.compl_adj]
 
 /-- The random-contraction step of Appendix C, packaged as the existence
-of a minor with few missing edges.-/
+of a minor with few missing edges.
+@isnad1 id=ex.4h5v.s8.97642779f232 from=translated src=- shape=cb1246eb vocab=85ca1470
+-/
 theorem exists_star_contraction_minor_with_few_missing_edges
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (hAX : Disjoint A X)
@@ -629,7 +669,9 @@ theorem exists_star_contraction_minor_with_few_missing_edges
   exact hmissing
 
 /-- A vertex touching every branch of a clique-minor model gives one
-additional singleton branch.-/
+additional singleton branch.
+@isnad1 id=hascliqu.2h5v.s6.21f6d0acfd26 from=translated src=- shape=67c7bfd1 vocab=a9bf192f
+-/
 theorem hasCliqueMinor_succ_of_touched_model
     {n : ℕ} (G : SimpleGraph V)
     (M : MinorModel (SimpleGraph.completeGraph (Fin n)) G)
@@ -685,7 +727,9 @@ theorem hasCliqueMinor_succ_of_touched_model
         exact hij.ne (congrArg Fin.succ heq)
 
 /-- A complete star-contraction graph, together with a vertex adjacent
-to every center, yields one larger clique minor.-/
+to every center, yields one larger clique minor.
+@isnad1 id=hascliqu.5h6v.s8.9d01c6f24a69 from=translated src=- shape=cc804182 vocab=431e5095
+-/
 theorem hasCliqueMinor_succ_of_complete_star_assignment
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (hAX : Disjoint A X)
@@ -730,7 +774,9 @@ theorem hasCliqueMinor_succ_of_complete_star_assignment
     exact ⟨(e i).1, Or.inl rfl, hneighbor (e i).1 (e i).property⟩
 
 /-- Zero missing pairs means every two distinct centers are adjacent after
-star contraction.-/
+star contraction.
+@isnad1 id=adj.2h7v.s7.f43c1e5b84dc from=translated src=- shape=b4496d8f vocab=c76153e5
+-/
 theorem starContraction_complete_of_no_missing_edges
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V)
@@ -751,7 +797,9 @@ theorem starContraction_complete_of_no_missing_edges
   simp at hmem
 
 /-- If the expected number of missing pairs is below one, a complete
-star-contraction outcome exists and the vertex `v` extends it.-/
+star-contraction outcome exists and the vertex `v` extends it.
+@isnad1 id=hascliqu.9h7v.s8.73c49cb9ba58 from=translated src=- shape=5da842ac vocab=667d0c4a
+-/
 theorem hasCliqueMinor_of_star_pair_expect_lt_one
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (hAX : Disjoint A X)

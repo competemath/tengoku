@@ -66,7 +66,9 @@ def extendFromInduced
     exact Set.mem_insert (root i) (N.branch i)
 
 /-- All lifted model vertices are original roots or images of inner branch
-vertices.-/
+vertices.
+@isnad1 id=le.3h7v.s7.e4460c9e50e9 from=translated src=- shape=dac676f2 vocab=08bc2c5b
+-/
 theorem extendFromInduced_vertices_subset
     (M : RootedMinorModel (SimpleGraph.completeGraph (Fin a))
       (G.induce S) proxy)

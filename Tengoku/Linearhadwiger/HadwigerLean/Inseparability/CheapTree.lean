@@ -16,7 +16,9 @@ namespace Inseparability
 variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
-/-- The cheap-tree lemma of Section 7.2, in finite induced-set form.-/
+/-- The cheap-tree lemma of Section 7.2, in finite induced-set form.
+@isnad1 id=ex.2h3v.s7.d552f4637157 from=translated src=- shape=21b576a8 vocab=e41a5240
+-/
 theorem exists_cheap_tree
     (hconn : G.Connected) (S : Finset V) (hS : S.Nonempty) :
     ∃ Q T : Finset V,

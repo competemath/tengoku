@@ -10,7 +10,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean
 
-/-- Equation (8.5) after clearing the positive factor `k²`.-/
+/-- Equation (8.5) after clearing the positive factor `k²`.
+@isnad1 id=le.7h7v.s8.c4bac7084121 from=translated src=- shape=325fbfac vocab=2e594065
+-/
 theorem exceptional_set_numerical_bound
     (x y z N t k L : ℝ)
     (hx0 : 0 ≤ x) (hL : 0 ≤ L) (hk : 0 < k)

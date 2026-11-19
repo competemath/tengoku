@@ -18,6 +18,9 @@ noncomputable def sampledBadVertices
   exact Z.filter (fun v => v ∉ sampledBlock Z r ℓ f i ∧
     ∀ x ∈ sampledBlock Z r ℓ f i, ¬ G.Adj v x)
 
+/--
+@isnad1 id=eq.0h6v.s7.208b94c7ba1d from=translated src=- shape=929ac23c vocab=4d7abdcf
+-/
 theorem sum_sampledBadVertices_card
     (G : SimpleGraph V) [DecidableRel G.Adj] (Z : Finset V)
     (r ℓ : ℕ) (i : Fin r) :
@@ -37,7 +40,9 @@ theorem sum_sampledBadVertices_card
   simp only [sampledBlock_subset_reservoirNonNeighbors_iff]
 
 /-- The average number of reservoir vertices missed by a labelled block is
-bounded by the elementary `8q` factor.-/
+bounded by the elementary `8q` factor.
+@isnad1 id=le.4h6v.s8.860d1844c0b6 from=translated src=- shape=8bec52bb vocab=226df9f3
+-/
 theorem sum_sampledBadVertices_le
     (G : SimpleGraph V) [DecidableRel G.Adj] (Z : Finset V)
     (r ℓ : ℕ) (i : Fin r)
@@ -102,7 +107,9 @@ theorem sum_sampledBadVertices_le
     _ = (Fintype.card Ω : ℝ) * (Z.card : ℝ) * (8 * q) ^ ℓ := by
       simp only [Finset.sum_const_zero, Finset.sum_const, nsmul_eq_mul]
       ring
-/-- Finite Markov counting with the one-third threshold.-/
+/-- Finite Markov counting with the one-third threshold.
+@isnad1 id=le.2h3v.s7.a84ab862795f from=translated src=- shape=9992cd6f vocab=43bc1ab7
+-/
 theorem two_thirds_samples_good
     {Ω : Type*} [Fintype Ω] [DecidableEq Ω]
     (b : Ω → ℕ) (M : ℝ) (hM : 0 < M)
@@ -152,6 +159,9 @@ noncomputable def conditionalEmbeddings
       C (splitEmbeddingEquiv T f).1)
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.0h5v.s9.bb0342e719d4 from=translated src=- shape=96df768d vocab=79c6e0e1
+-/
 theorem card_conditionalEmbeddings
     (T : Finset D) (U : Finset (↥((T : Set D)ᶜ)))
     (C : ∀ g : ((T : Set D) ↪ β),
@@ -197,7 +207,9 @@ theorem card_conditionalEmbeddings
   ext f
   simp [restrictedEmbeddings, Q]
 
-/-- Uniform conditional bound after exposing the positions in `T`.-/
+/-- Uniform conditional bound after exposing the positions in `T`.
+@isnad1 id=le.2h6v.s8.64c5d6a588ac from=translated src=- shape=44e790a4 vocab=c647f196
+-/
 theorem card_conditionalEmbeddings_le_power
     (T : Finset D) (U : Finset (↥((T : Set D)ᶜ)))
     (C : ∀ g : ((T : Set D) ↪ β),
@@ -303,7 +315,9 @@ noncomputable def exceptionalAfterFirst
 end ExceptionalAfterFirst
 
 /-- The exceptional vertices after exposing a sampled block inject into the
-bad-vertex count used by the first-block averaging.-/
+bad-vertex count used by the first-block averaging.
+@isnad1 id=le.0h7v.s12.8bdde85215ca from=translated src=- shape=ee2de5f2 vocab=b7d54ed2
+-/
 theorem card_exceptionalAfterFirst_le_sampledBadVertices
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (r ℓ : ℕ)
@@ -355,7 +369,9 @@ theorem card_exceptionalAfterFirst_le_sampledBadVertices
     apply Subtype.ext
     apply Subtype.ext
     exact hab
-/-- The zero-mean case of the same finite Markov estimate.-/
+/-- The zero-mean case of the same finite Markov estimate.
+@isnad1 id=le.2h3v.s7.6426f1a7483d from=translated src=- shape=563dccbe vocab=e5617b51
+-/
 theorem two_thirds_samples_good_of_nonneg
     {Ω : Type*} [Fintype Ω] [DecidableEq Ω]
     (b : Ω → ℕ) (M : ℝ) (hM : 0 ≤ M)
@@ -385,7 +401,9 @@ theorem two_thirds_samples_good_of_nonneg
   simp only [Finset.card_univ]
   omega
 /-- At least two thirds of ordered samples expose a first block with few
-vertices having no neighbor in it.-/
+vertices having no neighbor in it.
+@isnad1 id=le.4h6v.s13.3b91a4c19d48 from=translated src=- shape=3039af8a vocab=870eb0e2
+-/
 theorem two_thirds_first_blocks_good
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (r ℓ : ℕ) (i : Fin r)
@@ -436,7 +454,9 @@ theorem two_thirds_first_blocks_good
           (show (0 : ℝ) ≤ (Fintype.card V : ℝ) - Z.card by linarith)]
   simpa only [b, M, q, mul_assoc] using
     two_thirds_samples_good_of_nonneg b M hM hbound
-/-- Elementary numeric slack in the second-block failure probability.-/
+/-- Elementary numeric slack in the second-block failure probability.
+@isnad1 id=le.1h1v.s5.58edfce3bd83 from=translated src=- shape=47568a72 vocab=45880164
+-/
 theorem twelve_mul_eight_pow_le_hundred_pow
     (ℓ : ℕ) (hℓ : 1 ≤ ℓ) : 12 * 8 ^ ℓ ≤ 100 ^ ℓ := by
   induction ℓ, hℓ using Nat.le_induction with
@@ -446,7 +466,9 @@ theorem twelve_mul_eight_pow_le_hundred_pow
     nlinarith [Nat.zero_le (100 ^ k)]
 
 /-- A good first block has conditional second-block failure at most
-`(100q)^(ℓ²)`.-/
+`(100q)^(ℓ²)`.
+@isnad1 id=le.6h5v.s7.49659d07c633 from=translated src=- shape=0cabea77 vocab=6a435dc2
+-/
 theorem good_first_conditional_rate_le
     (n den ℓ : ℕ) (c q : ℝ)
     (hℓ : 1 ≤ ℓ) (hq : 0 ≤ q) (hc : 0 ≤ c) (hn : 1 ≤ n)
@@ -483,6 +505,9 @@ def secondBlockPositions (r ℓ : ℕ) (i j : Fin r) (hij : i ≠ j) :
       exact hij (congrArg Prod.fst hp)⟩ :
       ↥((blockPositions r ℓ i : Set (Fin r × Fin ℓ))ᶜ)))
 
+/--
+@isnad1 id=eq.1h4v.s6.ac87e61b9f22 from=translated src=- shape=a51dacfd vocab=61ddb831
+-/
 theorem secondBlockPositions_card
     (r ℓ : ℕ) (i j : Fin r) (hij : i ≠ j) :
     (secondBlockPositions r ℓ i j hij).card = ℓ := by
@@ -504,6 +529,9 @@ noncomputable def truncatedExceptional
   exact if ((exceptionalAfterFirst G Z T g).card : ℝ) ≤ c then
     exceptionalAfterFirst G Z T g else ∅
 
+/--
+@isnad1 id=le.1h7v.s7.2bd1bdb0bdaf from=translated src=- shape=93d75b1a vocab=d3ee41e8
+-/
 theorem card_truncatedExceptional_le
     {D : Type*} [Fintype D] [DecidableEq D]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -517,7 +545,9 @@ theorem card_truncatedExceptional_le
   · simpa using hc
 
 /-- A graph-nonadjacent second block is contained in the exceptional
-vertices of the exposed first block.-/
+vertices of the exposed first block.
+@isnad1 id=mem.2h8v.s8.0f6a4e6ff604 from=translated src=- shape=3e8e6477 vocab=15f4b7ac
+-/
 theorem second_block_mem_conditionalEmbeddings
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (r ℓ : ℕ)
@@ -569,7 +599,9 @@ theorem second_block_mem_conditionalEmbeddings
     (f (j, k)).1
     (Finset.mem_image.mpr ⟨k, Finset.mem_univ _, rfl⟩) hadj.symm
 /-- The sample outcomes in which a good first block has no edge to a
-specified second block occupy at most the `(100q)^(ℓ²)` fraction.-/
+specified second block occupy at most the `(100q)^(ℓ²)` fraction.
+@isnad1 id=other.5h7v.s13.006fce59d355 from=translated src=- shape=cba9223c vocab=e81f7e38
+-/
 theorem good_pair_failure_count_le
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (r ℓ : ℕ) (i j : Fin r) (hij : i ≠ j)
@@ -658,7 +690,9 @@ theorem good_pair_failure_count_le
       ((conditionalEmbeddings T U C).card : ℝ)).trans hbound
 /-- A finite union bound and averaging: if at least two thirds of outcomes
 are good and each of `t` failures occupies at most a `p` fraction of good
-outcomes, then at least half avoid every failure when `6tp ≤ 1`.-/
+outcomes, then at least half avoid every failure when `6tp ≤ 1`.
+@isnad1 id=le.4h5v.s8.44f865808152 from=translated src=- shape=f6e7db63 vocab=206fa306
+-/
 theorem half_samples_avoid_all_failures
     {Ω J : Type*} [Fintype Ω] [DecidableEq Ω]
     [Fintype J] [DecidableEq J]
@@ -718,7 +752,9 @@ theorem half_samples_avoid_all_failures
     exact_mod_cast hresultR
   simpa [S, A, Finset.filter_filter, and_comm] using hresultN
 /-- If each of `2t` labels succeeds on at least half the samples, some
-sample has at least `t` successful labels.-/
+sample has at least `t` successful labels.
+@isnad1 id=ex.1h3v.s6.34313fb56fc1 from=translated src=- shape=8d759eec vocab=14607c65
+-/
 theorem exists_sample_with_half_successful_labels
     {Ω I : Type*} [Fintype Ω] [Nonempty Ω] [DecidableEq Ω]
     [Fintype I] [DecidableEq I]
@@ -773,6 +809,9 @@ def xBlockLabel (t : ℕ) (i : Fin (2 * t)) : Fin (3 * t) :=
 def yBlockLabel (t : ℕ) (j : Fin t) : Fin (3 * t) :=
   ⟨2 * t + j.1, by omega⟩
 
+/--
+@isnad1 id=ne.0h3v.s5.cd9d4f45e7bb from=translated src=- shape=f6d907ab vocab=c375945c
+-/
 theorem xBlockLabel_ne_yBlockLabel
     (t : ℕ) (i : Fin (2 * t)) (j : Fin t) :
     xBlockLabel t i ≠ yBlockLabel t j := by
@@ -781,7 +820,9 @@ theorem xBlockLabel_ne_yBlockLabel
   dsimp [xBlockLabel, yBlockLabel] at hh
   omega
 /-- For each first label, at least half of all disjoint block samples give
-it an edge to every second label.-/
+it an edge to every second label.
+@isnad1 id=other.5h5v.s9.8dcd89d3cf85 from=translated src=- shape=de0895c9 vocab=50c298d1
+-/
 theorem half_samples_first_block_crosses_all
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (t : ℕ) (ht : 3 ≤ t)
@@ -888,7 +929,9 @@ theorem half_samples_first_block_crosses_all
     hhalfLocal.trans (Nat.mul_le_mul_left 2 hcsub)
   simpa only [ℓ, n, ix, Ω] using hfin
 /-- Fix one disjoint-block outcome with at least `t` first blocks meeting
-every one of the `t` second blocks.-/
+every one of the `t` second blocks.
+@isnad1 id=other.5h4v.s9.78ee9c4b55ef from=translated src=- shape=f24c8629 vocab=50c298d1
+-/
 theorem exists_sample_with_many_crossing_blocks
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (t : ℕ) (ht : 3 ≤ t)
@@ -948,7 +991,9 @@ theorem exists_sample_with_many_crossing_blocks
       (Finset.univ.filter (fun i : Fin (2 * t) => Success i f)).card := by
     omega
   simpa only [Success, Ω, ℓ, n] using hh
-/-- Choose ordered distinct labels from a finite set with enough elements.-/
+/-- Choose ordered distinct labels from a finite set with enough elements.
+@isnad1 id=ex.1h3v.s5.7c2876c56264 from=translated src=- shape=4ba37331 vocab=5a24f44e
+-/
 theorem exists_label_embedding_in_finset
     {α : Type*} [DecidableEq α] (S : Finset α) (t : ℕ)
     (hcard : t ≤ S.card) :
@@ -961,7 +1006,9 @@ theorem exists_label_embedding_in_finset
   exact ⟨e, fun i => hsub (e₀ i).2⟩
 
 /-- The deterministic branch construction applied to a successful labelled
-block sample.-/
+block sample.
+@isnad1 id=hascliqu.6h5v.s9.c89444b682c1 from=translated src=- shape=7093ebd3 vocab=5a55e864
+-/
 theorem hasCliqueMinor_of_successful_sample
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (t : ℕ) (ht : 3 ≤ t) (Z : Finset V)
@@ -1079,7 +1126,9 @@ theorem hasCliqueMinor_of_successful_sample
     (by omega : 27 ≤ n) hqint hZ hgood ha hsub hdis
     hbudget hcross
 /-- Appendix C's near-complete auxiliary lemma, with all integer rounding
-made explicit.-/
+made explicit.
+@isnad1 id=hascliqu.3h3v.s7.5e2b81df271c from=translated src=- shape=99fce296 vocab=9e0ba464
+-/
 theorem hasCliqueMinor_of_near_complete_power_bound
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (t : ℕ) (ht : 3 ≤ t)

@@ -17,6 +17,9 @@ noncomputable def ciPieceOrderBound (t : ℕ) : ℕ :=
   Nat.ceil (((480 * 6400 : ℝ)^2) * (t : ℝ) *
     (Real.log (t : ℝ))^3)
 
+/--
+@isnad1 id=le.0h1v.s6.006803472384 from=translated src=- shape=e2703cb1 vocab=be6dcf7f
+-/
 theorem ciPieceOrderBound_ge (t : ℕ) :
     (480 * 6400 : ℝ)^2 * (t : ℝ) *
       (Real.log (t : ℝ))^3 ≤ (ciPieceOrderBound t : ℝ) := by
@@ -28,6 +31,9 @@ private theorem ci_log_one_le (t : ℕ) (ht : 3 ≤ t) :
     Real.log_le_log (by norm_num) (by exact_mod_cast ht)
   linarith [Real.log_three_gt_d9]
 
+/--
+@isnad1 id=le.1h1v.s6.d0913ff4369a from=translated src=- shape=06a3807f vocab=fb4af594
+-/
 theorem ciCoreBound_local_window
     (t : ℕ) (ht : 3 ≤ t) :
     ((3 * ciCoreBound (ciPieceOrderBound t)

@@ -11,7 +11,9 @@ universe u v
 
 /-- Disjoint root-to-proxy paths, each ending next to its assigned branch,
 turn an unrooted `H` model into a rooted one. The path supports must avoid
-all original branch sets.-/
+all original branch sets.
+@isnad1 id=nonempty.3h8v.s7.d10dcc521548 from=translated src=- shape=529ecc6a vocab=35760fb5
+-/
 theorem rootedMinor_of_minor_and_linkage
     {W : Type u} {V : Type v} {H : SimpleGraph W} {G : SimpleGraph V}
     {root : W → V} (M : MinorModel H G)

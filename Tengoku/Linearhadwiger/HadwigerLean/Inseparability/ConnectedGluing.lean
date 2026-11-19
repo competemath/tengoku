@@ -18,7 +18,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
 /-- A globally specified deletion inside a `k`-connected induced region is
-connected whenever fewer than `k` vertices are deleted.-/
+connected whenever fewer than `k` vertices are deleted.
+@isnad1 id=connecte.2h5v.s6.3cad6df20496 from=translated src=- shape=2d4e969a vocab=507fb1a5
+-/
 theorem connected_induce_sdiff_of_vertexConnected
     (A U : Finset V) (k : ℕ)
     (hA : VertexConnected (G.induce (A : Set V)) k)
@@ -55,7 +57,9 @@ theorem connected_induce_sdiff_of_vertexConnected
   exact hconn'
 
 /-- Two `k`-connected induced vertex sets with at least `k` common vertices
-have a `k`-connected induced union.-/
+have a `k`-connected induced union.
+@isnad1 id=vertexco.3h5v.s7.10d43054bc37 from=translated src=- shape=d93a7309 vocab=8987da25
+-/
 theorem vertexConnected_union_of_large_overlap
     (A B : Finset V) (k : ℕ)
     (hA : VertexConnected (G.induce (A : Set V)) k)

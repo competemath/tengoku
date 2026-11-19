@@ -17,7 +17,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
 /-- Two induced sets of chromatic number at most two can reuse a palette when
-there are no edges between them.-/
+there are no edges between them.
+@isnad1 id=le.3h4v.s7.f6701acca704 from=translated src=- shape=6ad5aa59 vocab=eb5a8398
+-/
 theorem chromatic_union_le_two_of_no_cross
     (A B : Finset V)
     (hA : chromatic (G.induce (A : Set V)) ≤ 2)

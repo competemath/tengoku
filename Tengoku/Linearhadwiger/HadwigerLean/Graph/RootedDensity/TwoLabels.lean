@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- Every 2-connected graph is universal for any two-label target at every
-prescribed pair of roots, independent of the density parameter.-/
+prescribed pair of roots, independent of the density parameter.
+@isnad1 id=rootedde.1h3v.s4.59cbedc2c970 from=translated src=- shape=a643179f vocab=73dd7fe3
+-/
 theorem rootedDensity_of_target_card_two
     {W : Type v} [Fintype W] (H : SimpleGraph W) (α : ℝ)
     (hh : Fintype.card W = 2) :

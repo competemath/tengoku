@@ -36,7 +36,9 @@ namespace PathExterior
 variable {V : Type u} [DecidableEq V] {G : SimpleGraph V} {s t : V}
   {p : G.Path s t} {H : Finset V}
 
-/-- Every path meeting H admits first and last hit exterior pieces.-/
+/-- Every path meeting H admits first and last hit exterior pieces.
+@isnad1 id=nonempty.1h6v.s5.8a7419f5d80b from=translated src=- shape=638cb9c9 vocab=063e106f
+-/
 theorem exists_of_hit (hhit : ∃ x ∈ H, x ∈ pathVertexSet p) :
     Nonempty (PathExterior p H) := by
   classical
@@ -110,7 +112,9 @@ noncomputable def innerPairs {V : Type*} [DecidableEq V]
   start := fun i => ⟨(L.exterior H i).first, (L.exterior H i).first_mem⟩
   finish := fun i => ⟨(L.exterior H i).last, (L.exterior H i).last_mem⟩
 
-/-- Inner terminal sets on different old paths remain disjoint.-/
+/-- Inner terminal sets on different old paths remain disjoint.
+@isnad1 id=disjoint.0h6v.s5.98a6df6813bf from=translated src=- shape=d2a60af1 vocab=bb12afd9
+-/
 theorem innerPairs_disjointTerminals
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -162,7 +166,9 @@ noncomputable def rerouteRegion
       pathVertexSet (L.exterior H ⟨i, hi⟩).tailPath
     else pathVertexSet (L.path i)
 
-/-- An outside vertex of a rerouted region lies on its original path.-/
+/-- An outside vertex of a rerouted region lies on its original path.
+@isnad1 id=mem.3h10v.s7.d2e79f8ca581 from=translated src=- shape=9e2edf15 vocab=ab1affc3
+-/
 theorem rerouteRegion_outside_old
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -181,7 +187,9 @@ theorem rerouteRegion_outside_old
     · exact (L.exterior H ⟨i, hi⟩).tailPath_subset hx
   · simpa only [rerouteRegion, dite_eq_right hi] using hx
 
-/-- A child vertex in a rerouted region lies on that path's inner piece.-/
+/-- A child vertex in a rerouted region lies on that path's inner piece.
+@isnad1 id=ex.4h10v.s9.596357b5b0f4 from=translated src=- shape=de5e917b vocab=a648e250
+-/
 theorem rerouteRegion_inside_inner
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -213,7 +221,9 @@ theorem rerouteRegion_inside_inner
 
 end IndexedLinkage
 /-- The union of two connected induced subgraphs that share a vertex is
-connected.-/
+connected.
+@isnad1 id=connecte.4h5v.s6.0f28311a1ce1 from=translated src=- shape=fe3c4437 vocab=36447108
+-/
 theorem connected_induce_union_of_common
     {V : Type*} {G : SimpleGraph V} {A B : Set V}
     (hA : (G.induce A).Connected) (hB : (G.induce B).Connected)
@@ -246,7 +256,9 @@ theorem connected_induce_union_of_common
   exact hx.trans hy.symm
 namespace IndexedPairs
 
-/-- Surjective reindexing preserves the complete terminal set.-/
+/-- Surjective reindexing preserves the complete terminal set.
+@isnad1 id=eq.1h5v.s5.7c7fe66c28f3 from=translated src=- shape=4d6e6dea vocab=6fc55b11
+-/
 theorem allTerminals_reindex_eq_of_surjective
     {ι κ V : Type*} (P : IndexedPairs ι V) (f : κ → ι)
     (hf : Function.Surjective f) :
@@ -262,7 +274,9 @@ end IndexedPairs
 
 namespace IndexedLinkage
 
-/-- Surjective reindexing preserves every vertex used by a linkage.-/
+/-- Surjective reindexing preserves every vertex used by a linkage.
+@isnad1 id=eq.1h7v.s6.d535f3c182fd from=translated src=- shape=89b1a934 vocab=61f5209d
+-/
 theorem vertices_reindex_eq_of_surjective
     {ι κ V : Type*} {G : SimpleGraph V} {P : IndexedPairs ι V}
     (L : IndexedLinkage G P) (f : κ ↪ ι)
@@ -280,7 +294,9 @@ end IndexedLinkage
 namespace Woven
 
 /-- Up-to-budget wovenness also works for an arbitrary finite index type
-+of terminal pairs.-/
++of terminal pairs.
+@isnad1 id=ex.4h7v.s7.8352e5f1c3a7 from=translated src=- shape=c6848628 vocab=b8fe36f5
+-/
 theorem for_fintype_index
     {V I : Type*} [Fintype I] {G : SimpleGraph V}
     {a b : ℕ} (hW : Woven G a b)
@@ -317,6 +333,9 @@ theorem for_fintype_index
     exact S.exact_intersection
 end Woven
 
+/--
+@isnad1 id=ex.3h5v.s5.b6ae992179a0 from=translated src=- shape=f5d5d27d vocab=29c38ae9
+-/
 theorem exists_path_in_connected_set
     {V : Type*} {G : SimpleGraph V} {s t : V} (C : Set V)
     (hC : (G.induce C).Connected) (hs : s ∈ C) (ht : t ∈ C) :
@@ -335,6 +354,9 @@ theorem exists_path_in_connected_set
 
 namespace IndexedLinkage
 
+/--
+@isnad1 id=connecte.2h9v.s8.6770afe1173e from=translated src=- shape=f62704fa vocab=4db61e01
+-/
 theorem rerouteRegion_connected
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -377,6 +399,9 @@ theorem rerouteRegion_connected
     rw [hregion]
     exact (L.path i : G.Walk (P.start i) (P.finish i)).connected_induce_support
 
+/--
+@isnad1 id=mem.0h9v.s6.d07c604c89ae from=translated src=- shape=6d75e517 vocab=204d21ca
+-/
 theorem rerouteRegion_start_mem
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -389,6 +414,9 @@ theorem rerouteRegion_start_mem
     exact Or.inl (Or.inl (pathVertexSet.start_mem _))
   · simpa only [rerouteRegion, dite_eq_right hi] using pathVertexSet.start_mem (L.path i)
 
+/--
+@isnad1 id=mem.0h9v.s6.1309265890c2 from=translated src=- shape=6d75e517 vocab=94088245
+-/
 theorem rerouteRegion_finish_mem
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -401,6 +429,9 @@ theorem rerouteRegion_finish_mem
     exact Or.inr (pathVertexSet.finish_mem _)
   · simpa only [rerouteRegion, dite_eq_right hi] using pathVertexSet.finish_mem (L.path i)
 
+/--
+@isnad1 id=disjoint.4h10v.s9.84e17746e106 from=translated src=- shape=2693c18c vocab=0caa93da
+-/
 theorem rerouteRegion_disjoint
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -427,7 +458,9 @@ theorem rerouteRegion_disjoint
       (L.rerouteRegion_outside_old H I hI k hxk hxH)
 
 /-- Once the child gives disjoint inner paths, each rerouting region
-contains a replacement path and the replacement paths are disjoint.-/
+contains a replacement path and the replacement paths are disjoint.
+@isnad1 id=ex.3h8v.s9.a9dbb5c6126e from=translated src=- shape=ee0ab2f4 vocab=a4db23a6
+-/
 theorem exists_rerouted_linkage
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -459,7 +492,9 @@ theorem exists_rerouted_linkage
   exact ⟨L', hps⟩
 end IndexedLinkage
 
-/-- Model support commutes with an injective graph-homomorphism image.-/
+/-- Model support commutes with an injective graph-homomorphism image.
+@isnad1 id=eq.1h8v.s6.70ceebc0d597 from=translated src=- shape=63d05077 vocab=a9058217
+-/
 theorem MinorModel.vertices_map
     {W V X : Type*} {H : SimpleGraph W} {G : SimpleGraph V}
     {J : SimpleGraph X} (M : MinorModel H G) (f : G →g J)
@@ -474,7 +509,9 @@ theorem MinorModel.vertices_map
     exact ⟨i, y, hy, rfl⟩
 
 /-- Forgetting the induced-subgraph subtype maps every linkage vertex
-to its original graph vertex.-/
+to its original graph vertex.
+@isnad1 id=eq.0h6v.s6.acbafb6fa323 from=translated src=- shape=394c86d0 vocab=61b09d6e
+-/
 theorem IndexedLinkage.vertices_mapInduce
     {ι V : Type*} {G : SimpleGraph V} {U : Set V}
     {P : IndexedPairs ι U} (L : IndexedLinkage (G.induce U) P) :
@@ -505,7 +542,9 @@ theorem IndexedLinkage.vertices_mapInduce
 
 namespace IndexedLinkage
 
-/-- The inner first/last hits are vertices of the old linkage.-/
+/-- The inner first/last hits are vertices of the old linkage.
+@isnad1 id=le.0h6v.s6.18e52cf773c9 from=translated src=- shape=8b733b94 vocab=f25d2154
+-/
 theorem innerPairs_terminals_subset_vertices
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {j : ℕ} {P : IndexedPairs (Fin j) V}
@@ -525,7 +564,9 @@ theorem innerPairs_terminals_subset_vertices
       (pathVertexSet.start_mem (L.exterior H i).tailPath)
 
 /-- A model confined to H and meeting the inner linkage only at old
-root/linkage vertices remains controlled after rerouting.-/
+root/linkage vertices remains controlled after rerouting.
+@isnad1 id=ex.5h11v.s9.5d1f7a18d278 from=translated src=- shape=d01e7bc6 vocab=96195759
+-/
 theorem exists_rerouted_linkage_controlled
     {V : Type*} [DecidableEq V]
     {G : SimpleGraph V} {a j : ℕ} {P : IndexedPairs (Fin j) V}

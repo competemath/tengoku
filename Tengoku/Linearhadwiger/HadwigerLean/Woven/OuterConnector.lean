@@ -30,6 +30,9 @@ noncomputable def finsetIntoComplement (Z A : Finset V)
   classical
   exact A.attach.image (complementEmbedding Z A hAZ)
 
+/--
+@isnad1 id=eq.1h3v.s5.ffd646cacc8d from=translated src=- shape=66995d0d vocab=7bd06bc3
+-/
 @[simp] theorem finsetIntoComplement_card (Z A : Finset V)
     (hAZ : Disjoint A Z) :
     (finsetIntoComplement Z A hAZ).card = A.card := by
@@ -38,6 +41,9 @@ noncomputable def finsetIntoComplement (Z A : Finset V)
   rw [Finset.card_image_of_injective _ (complementEmbedding Z A hAZ).injective]
   simp
 
+/--
+@isnad1 id=mem.2h4v.s7.fefd4aa1c544 from=translated src=- shape=e14eb46b vocab=933b1319
+-/
 theorem finsetIntoComplement_mem (Z A : Finset V)
     (hAZ : Disjoint A Z)
     {x : ↥((Z : Set V)ᶜ)}
@@ -49,7 +55,9 @@ theorem finsetIntoComplement_mem (Z A : Finset V)
   exact hval ▸ y.property
 
 /-- A sufficiently connected graph has 2a disjoint residual-to-hub
-connectors that avoid all proxy vertices.-/
+connectors that avoid all proxy vertices.
+@isnad1 id=ex.6h7v.s8.fcbf0feef04e from=translated src=- shape=525dca28 vocab=ada86874
+-/
 theorem exists_paired_connectors_avoiding
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z U H : Finset V) (a κ : ℕ)

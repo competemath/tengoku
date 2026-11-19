@@ -12,7 +12,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Finite Menger on the double-clone graph produces a full
-family of 2|Z| mutually vertex-disjoint clone-to-hub paths.-/
+family of 2|Z| mutually vertex-disjoint clone-to-hub paths.
+@isnad1 id=ex.4h5v.s7.e6056ee5179d from=translated src=- shape=af94469d vocab=e07577af
+-/
 theorem exists_double_clone_linkage
     (G : SimpleGraph V) (Z H : Finset V) (r : ℕ)
     (hconn : VertexConnected G r)

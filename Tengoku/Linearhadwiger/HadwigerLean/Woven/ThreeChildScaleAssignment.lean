@@ -29,7 +29,9 @@ private theorem scaleAssignment_first_val {a c : ℕ}
     ((scaleAssignment hscale q).1 : ℕ) = q.val / c := by
   rfl
 
-/-- The two connectors of every parent root enter different children.-/
+/-- The two connectors of every parent root enter different children.
+@isnad1 id=ne.2h3v.s8.a71808651664 from=translated src=- shape=1328c832 vocab=8e2f8f22
+-/
 theorem scaleAssignment_different_children {a c : ℕ}
     (hscale : 2 * a = 3 * c) (hc : 0 < c)
     (i : Fin a) :

@@ -36,12 +36,18 @@ def block : F.Vertex → Set V
   | .inl B => (B.1 : Set V)
   | .inr x => {x.1}
 
+/--
+@isnad1 id=connecte.0h4v.s5.bc9e18333cb6 from=translated src=- shape=9109bae0 vocab=a5374863
+-/
 theorem block_connected (i : F.Vertex) :
     (G.induce (F.block i)).Connected := by
   cases i with
   | inl B => exact F.connected B.1 B.2
   | inr x => simp [block]
 
+/--
+@isnad1 id=pairwise.0h3v.s6.a847286594cf from=translated src=- shape=dbf2b393 vocab=78906983
+-/
 theorem block_disjoint :
     Pairwise fun i j : F.Vertex => Disjoint (F.block i) (F.block j) := by
   intro i j hij
@@ -82,6 +88,9 @@ theorem block_disjoint :
           apply hij
           exact congrArg Sum.inr (Subtype.ext (hzx.symm.trans hzy))
 
+/--
+@isnad1 id=ex.0h4v.s5.f61e543a61c3 from=translated src=- shape=0c0822c4 vocab=2f132c0b
+-/
 theorem block_cover (v : V) : ∃ i : F.Vertex, v ∈ F.block i := by
   by_cases hv : v ∈ F.covered
   · obtain ⟨B, hBF, hvB⟩ := Finset.mem_biUnion.mp hv
@@ -98,6 +107,9 @@ def partition : ConnectedPartition G F.Vertex where
 /-- Simultaneously contract the family of connected blocks.-/
 def quotient : SimpleGraph F.Vertex := F.partition.touchingQuotient
 
+/--
+@isnad1 id=isminor.0h3v.s4.fcf1baa8fd4b from=translated src=- shape=ce44b802 vocab=3cbf03e7
+-/
 theorem quotient_isMinor : IsMinor F.quotient G := F.partition.isMinor
 
 end ConnectedBlockFamily

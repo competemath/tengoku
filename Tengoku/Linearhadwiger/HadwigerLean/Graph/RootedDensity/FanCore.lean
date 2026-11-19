@@ -33,7 +33,9 @@ def rootedMinorModel_restrictFullTarget
 
 /-- Universality of the induced core supplies a rooted model at the
 arrivals of a clean fan, even when the fan uses fewer than all target labels.
-The unused labels are assigned to additional core vertices.-/
+The unused labels are assigned to additional core vertices.
+@isnad1 id=nonempty.4h8v.s7.d26af4e76326 from=translated src=- shape=9e9d5438 vocab=a9b062dd
+-/
 theorem rootedMinor_of_universal_induced_and_clean_fan
     {W : Type u} [Fintype W] {V : Type v} [Fintype V] [DecidableEq V]
     (H : SimpleGraph W) (G : SimpleGraph V) (J : Finset V)

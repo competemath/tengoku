@@ -60,7 +60,9 @@ private theorem edgeIncidenceCount_union_of_no_cross
   rw [heq]
   simpa only [Nat.card_coe_set_eq] using Set.ncard_union_eq hdisj
 
-/-- The two roots of a massed pair lie in one connected component.-/
+/-- The two roots of a massed pair lie in one connected component.
+@isnad1 id=reachabl.2h5v.s5.b68983d1742b from=translated src=- shape=fdf0a6d1 vocab=75a0547e
+-/
 theorem reachable_two_roots_of_massed
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -212,7 +214,9 @@ theorem reachable_two_roots_of_massed
   nlinarith
 
 /-- A path between distinct vertices gives a rooted model of every
-two-label target whose root map takes values in those vertices.-/
+two-label target whose root map takes values in those vertices.
+@isnad1 id=nonempty.4h7v.s5.ff40a034e2cd from=translated src=- shape=368cd2f6 vocab=142c7d94
+-/
 theorem rooted_minor_of_two_reachable
     {V : Type u} {T : Type v}
     (G : SimpleGraph V) (H : SimpleGraph T)
@@ -296,7 +300,9 @@ theorem rooted_minor_of_two_reachable
       simpa [branch, hiNot] using hi
 
 /-- Every massed pair with at most two prescribed roots is universal for
-any finite target: the two-root edge case follows from reachability.-/
+any finite target: the two-root edge case follows from reachability.
+@isnad1 id=universa.2h6v.s5.47611094c976 from=translated src=- shape=8832ad04 vocab=521b67be
+-/
 theorem universalAt_of_massed_card_le_two
     {V : Type u} {W : Type v} [Fintype V] [DecidableEq V]
     [Fintype W] (G : SimpleGraph V) [DecidableRel G.Adj]

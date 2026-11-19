@@ -12,7 +12,9 @@ namespace HadwigerLean.RootedDensity
 universe u v w
 
 /-- Inducing a connected graph on a set already contained in a larger
-induced vertex set preserves its connectivity.-/
+induced vertex set preserves its connectivity.
+@isnad1 id=connecte.2h4v.s6.ffae98a01fbd from=translated src=- shape=f8349f6d vocab=74c368bd
+-/
 theorem connected_induce_inside_of_subset
     {V : Type v} (G : SimpleGraph V) (T C : Set V)
     (hCT : C ⊆ T) (hC : (G.induce C).Connected) :
@@ -36,7 +38,9 @@ theorem connected_induce_inside_of_subset
   exact hC.map e.toHom e.surjective
 
 /-- Every quotient block over `S` is connected inside the induced
-preimage of `S`.-/
+preimage of `S`.
+@isnad1 id=other.0h6v.s7.dc64857904f4 from=translated src=- shape=3cb7d651 vocab=a27e7c08
+-/
 theorem connected_partition_block_inside
     {V : Type v} [Fintype V] [DecidableEq V] {I : Type u} {G : SimpleGraph V}
     (P : ConnectedPartition G I) (S : Set I) (i : S) :

@@ -49,7 +49,9 @@ def newTerminals (p x : ℕ) (r : Fin x) :
     Finset (Fin ((4 * p + 1) * x)) :=
   Finset.univ.filter (fun k => pathOwner p x k = Sum.inr r)
 
-/-- Every path index belongs to exactly one old or new terminal group.-/
+/-- Every path index belongs to exactly one old or new terminal group.
+@isnad1 id=or.0h3v.s8.9a48b88c47c8 from=translated src=- shape=a49386c6 vocab=204cda04
+-/
 theorem path_index_has_unique_group (p x : ℕ)
     (k : Fin ((4 * p + 1) * x)) :
     (∃! z : Fin p × Fin x, k ∈ oldTerminals p x z.1 z.2) ∨
@@ -70,7 +72,9 @@ theorem path_index_has_unique_group (p x : ℕ)
         have heq : r = w := by simpa [newTerminals, h] using hw
         exact heq.symm
 
-/-- Distinct terminal groups are disjoint.-/
+/-- Distinct terminal groups are disjoint.
+@isnad1 id=disjoint.1h4v.s7.5eb104c78ddb from=translated src=- shape=b220742a vocab=8fa6a582
+-/
 theorem oldTerminals_disjoint (p x : ℕ)
     (z w : Fin p × Fin x) (hzw : z ≠ w) :
     Disjoint (oldTerminals p x z.1 z.2)
@@ -83,6 +87,9 @@ theorem oldTerminals_disjoint (p x : ℕ)
     (Finset.mem_filter.mp hkw).2
   exact hzw (Sum.inl.inj (hz.symm.trans hw))
 
+/--
+@isnad1 id=disjoint.1h4v.s7.e5937564a32e from=translated src=- shape=8519ab54 vocab=ea9248f3
+-/
 theorem newTerminals_disjoint (p x : ℕ)
     (r s : Fin x) (hrs : r ≠ s) :
     Disjoint (newTerminals p x r) (newTerminals p x s) := by
@@ -94,6 +101,9 @@ theorem newTerminals_disjoint (p x : ℕ)
     (Finset.mem_filter.mp hks).2
   exact hrs (Sum.inr.inj (hr.symm.trans hs))
 
+/--
+@isnad1 id=disjoint.0h4v.s7.3c5202fceb57 from=translated src=- shape=5724f4f4 vocab=6a3f29d7
+-/
 theorem oldTerminals_disjoint_newTerminals (p x : ℕ)
     (z : Fin p × Fin x) (r : Fin x) :
     Disjoint (oldTerminals p x z.1 z.2) (newTerminals p x r) := by
@@ -105,12 +115,16 @@ theorem oldTerminals_disjoint_newTerminals (p x : ℕ)
     (Finset.mem_filter.mp hkr).2
   exact Sum.inl_ne_inr (hz.symm.trans hr)
 
-/-- The first block of each old group carries its old tangent source.-/
+/-- The first block of each old group carries its old tangent source.
+@isnad1 id=eq.0h2v.s5.cd8e799f2d6d from=translated src=- shape=d3376b43 vocab=879c8159
+-/
 theorem blockOwner_old_start (p : ℕ) (i : Fin p) :
     blockOwner p ⟨i.val, by omega⟩ = Sum.inl i := by
   simp [blockOwner, i.isLt]
 
-/-- The even middle blocks carry first-half auxiliary-graph sources.-/
+/-- The even middle blocks carry first-half auxiliary-graph sources.
+@isnad1 id=eq.0h2v.s6.6ca33937355a from=translated src=- shape=62ce5408 vocab=746ab9b5
+-/
 theorem blockOwner_old_middle (p : ℕ) (i : Fin p) :
     blockOwner p ⟨p + 2 * i.val, by omega⟩ = Sum.inl i := by
   have h₀ : ¬ p + 2 * i.val < p := by omega
@@ -122,7 +136,9 @@ theorem blockOwner_old_middle (p : ℕ) (i : Fin p) :
   simp only []
   omega
 
-/-- The final old blocks carry old H3 sources.-/
+/-- The final old blocks carry old H3 sources.
+@isnad1 id=eq.0h2v.s6.aac2440af8ff from=translated src=- shape=d4aa576f vocab=19e6201e
+-/
 theorem blockOwner_old_final (p : ℕ) (i : Fin p) :
     blockOwner p ⟨3 * p + i.val, by omega⟩ = Sum.inl i := by
   have h₀ : ¬ 3 * p + i.val < p := by omega
@@ -134,7 +150,9 @@ theorem blockOwner_old_final (p : ℕ) (i : Fin p) :
   simp only []
   omega
 
-/-- Odd middle blocks carry the new branch with the same offset.-/
+/-- Odd middle blocks carry the new branch with the same offset.
+@isnad1 id=eq.0h2v.s6.923a69a20049 from=translated src=- shape=acb5679c vocab=52632c9d
+-/
 theorem blockOwner_new_middle (p : ℕ) (i : Fin p) :
     blockOwner p ⟨p + 2 * i.val + 1, by omega⟩ = Sum.inr () := by
   have h₀ : ¬ p + 2 * i.val + 1 < p := by omega
@@ -142,14 +160,18 @@ theorem blockOwner_new_middle (p : ℕ) (i : Fin p) :
   have h₂ : (p + 2 * i.val + 1 - p) % 2 ≠ 0 := by omega
   simp [blockOwner, h₀, h₁, h₂]
 
-/-- The last block carries the last source for every new branch.-/
+/-- The last block carries the last source for every new branch.
+@isnad1 id=eq.0h1v.s5.77144ee80bda from=translated src=- shape=8d232c44 vocab=c315fb22
+-/
 theorem blockOwner_new_final (p : ℕ) :
     blockOwner p ⟨4 * p, by omega⟩ = Sum.inr () := by
   have h₀ : ¬ 4 * p < p := by omega
   have h₁ : ¬ 4 * p < 3 * p := by omega
   have h₂ : ¬ 4 * p < 4 * p := by omega
   simp [blockOwner, h₀, h₁]
-/-- An old group owns exactly its three prescribed block numbers.-/
+/-- An old group owns exactly its three prescribed block numbers.
+@isnad1 id=iff.0h3v.s7.2159bc7f619a from=translated src=- shape=0ad852ff vocab=052572d8
+-/
 theorem blockOwner_eq_old_iff (p : ℕ) (k : Fin (4 * p + 1))
     (i : Fin p) :
     blockOwner p k = Sum.inl i ↔
@@ -182,7 +204,9 @@ theorem blockOwner_eq_old_iff (p : ℕ) (k : Fin (4 * p + 1))
     · have hk : k = ⟨3 * p + i.val, by omega⟩ := Fin.ext h
       rw [hk]
       exact blockOwner_old_final p i
-/-- A new group owns the odd middle blocks and the final block.-/
+/-- A new group owns the odd middle blocks and the final block.
+@isnad1 id=iff.0h2v.s7.eec90fe6b8ed from=translated src=- shape=944ee63c vocab=d060a6a4
+-/
 theorem blockOwner_eq_new_iff (p : ℕ) (k : Fin (4 * p + 1)) :
     blockOwner p k = Sum.inr () ↔
       (∃ i : Fin p, k.val = p + 2 * i.val + 1) ∨
@@ -232,36 +256,51 @@ private theorem pathOwner_eq_new_iff (p x : ℕ)
   | inr u =>
       change blockOwner p k.divNat = Sum.inr u at h
       simp [h]
-/-- Product-coordinate path indices realize the paper's three old slots.-/
+/-- Product-coordinate path indices realize the paper's three old slots.
+@isnad1 id=eq.0h4v.s8.c5ecb6c52b59 from=translated src=- shape=c91289dd vocab=38bf6cea
+-/
 theorem pathOwner_old_start (p x : ℕ) (i : Fin p) (r : Fin x) :
     pathOwner p x (finProdFinEquiv ((⟨i.val, by omega⟩ : Fin (4 * p + 1)), r)) =
       Sum.inl (i, r) := by
   simp [pathOwner, blockOwner_old_start]
 
+/--
+@isnad1 id=eq.0h4v.s8.c95b9c4d9722 from=translated src=- shape=1bc68ef4 vocab=f0bbde0f
+-/
 theorem pathOwner_old_middle (p x : ℕ) (i : Fin p) (r : Fin x) :
     pathOwner p x
       (finProdFinEquiv ((⟨p + 2 * i.val, by omega⟩ : Fin (4 * p + 1)), r)) =
       Sum.inl (i, r) := by
   simp [pathOwner, blockOwner_old_middle]
 
+/--
+@isnad1 id=eq.0h4v.s8.93b38f923f52 from=translated src=- shape=7b4e8ab6 vocab=0b53143c
+-/
 theorem pathOwner_old_final (p x : ℕ) (i : Fin p) (r : Fin x) :
     pathOwner p x
       (finProdFinEquiv ((⟨3 * p + i.val, by omega⟩ : Fin (4 * p + 1)), r)) =
       Sum.inl (i, r) := by
   simp [pathOwner, blockOwner_old_final]
 
-/-- Product-coordinate path indices realize the paper's new slots.-/
+/-- Product-coordinate path indices realize the paper's new slots.
+@isnad1 id=eq.0h4v.s8.a02e2ac2db02 from=translated src=- shape=56d10831 vocab=a395b2de
+-/
 theorem pathOwner_new_middle (p x : ℕ) (i : Fin p) (r : Fin x) :
     pathOwner p x
       (finProdFinEquiv (⟨p + 2 * i.val + 1, by omega⟩, r)) =
       Sum.inr r := by
   simp [pathOwner, blockOwner_new_middle]
 
+/--
+@isnad1 id=eq.0h3v.s8.80d9ebde666e from=translated src=- shape=c84ef0c1 vocab=1c89a264
+-/
 theorem pathOwner_new_final (p x : ℕ) (r : Fin x) :
     pathOwner p x (finProdFinEquiv (⟨4 * p, by omega⟩, r)) =
       Sum.inr r := by
   simp [pathOwner, blockOwner_new_final]
-/-- The old terminal group consists of exactly its three paper slots.-/
+/-- The old terminal group consists of exactly its three paper slots.
+@isnad1 id=eq.0h4v.s10.af7b1963fa5f from=translated src=- shape=344538b1 vocab=21e7f29d
+-/
 theorem oldTerminals_eq_three (p x : ℕ) (i : Fin p) (r : Fin x) :
     oldTerminals p x i r =
       { finProdFinEquiv ((⟨i.val, by omega⟩ : Fin (4 * p + 1)), r),
@@ -306,7 +345,9 @@ theorem oldTerminals_eq_three (p x : ℕ) (i : Fin p) (r : Fin x) :
     · exact pathOwner_old_middle p x i r
     · exact pathOwner_old_final p x i r
 
-/-- Each old terminal group has cardinality three.-/
+/-- Each old terminal group has cardinality three.
+@isnad1 id=eq.0h4v.s5.9d26c70c8aab from=translated src=- shape=3a8cf80b vocab=56996576
+-/
 theorem oldTerminals_card (p x : ℕ) (i : Fin p) (r : Fin x) :
     (oldTerminals p x i r).card = 3 := by
   rw [oldTerminals_eq_three]
@@ -342,7 +383,9 @@ theorem oldTerminals_card (p x : ℕ) (i : Fin p) (r : Fin x) :
     exact h₁₂ (congrArg Prod.fst (finProdFinEquiv.injective h))
   simp [hslot₀₁, hslot₀₂, hslot₁₂]
 /-- The new terminal group consists of one odd middle slot per old
-auxiliary graph and one final H3 slot.-/
+auxiliary graph and one final H3 slot.
+@isnad1 id=eq.0h3v.s10.5bec48f1f34d from=translated src=- shape=af5a6517 vocab=be66374a
+-/
 theorem newTerminals_eq (p x : ℕ) (r : Fin x) :
     newTerminals p x r =
       insert (finProdFinEquiv ((⟨4 * p, by omega⟩ : Fin (4 * p + 1)), r))
@@ -382,7 +425,9 @@ theorem newTerminals_eq (p x : ℕ) (r : Fin x) :
     · exact pathOwner_new_final p x r
     · exact pathOwner_new_middle p x i r
 
-/-- A new terminal group has `p+1` members.-/
+/-- A new terminal group has `p+1` members.
+@isnad1 id=eq.0h3v.s5.ca9ebe4b199e from=translated src=- shape=c86139f3 vocab=8cb0d889
+-/
 theorem newTerminals_card (p x : ℕ) (r : Fin x) :
     (newTerminals p x r).card = p + 1 := by
   rw [newTerminals_eq]

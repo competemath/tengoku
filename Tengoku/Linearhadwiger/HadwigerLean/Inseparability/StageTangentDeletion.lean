@@ -21,6 +21,9 @@ def StageState.tangentFinset
     (S : StageState G s k m coreBound) : Finset V :=
   Finset.univ.image S.root
 
+/--
+@isnad1 id=eq.0h7v.s5.9041b5b1bd6f from=translated src=- shape=9e9efcef vocab=64eb186e
+-/
 theorem StageState.tangentFinset_card
     (S : StageState G s k m coreBound) :
     S.tangentFinset.card = s := by
@@ -28,6 +31,9 @@ theorem StageState.tangentFinset_card
   simp [StageState.tangentFinset,
     Finset.card_image_of_injective _ S.root_injective]
 
+/--
+@isnad1 id=le.1h7v.s6.924b0dc2a44d from=translated src=- shape=dafc747f vocab=48848255
+-/
 theorem StageState.tangentFinset_subset_region
     (S : StageState G s k m coreBound)
     (hrootregion : ∀ i, S.root i ∈ S.region) :
@@ -36,6 +42,9 @@ theorem StageState.tangentFinset_subset_region
   obtain ⟨i,_,rfl⟩ := Finset.mem_image.mp hv
   exact hrootregion i
 
+/--
+@isnad1 id=disjoint.1h7v.s7.041ee2237967 from=translated src=- shape=9f96c5ed vocab=094b945f
+-/
 theorem StageState.model_disjoint_region_without_tangencies
     (S : StageState G s k m coreBound)
     (hrootregion : ∀ i, S.root i ∈ S.region) :
@@ -56,7 +65,9 @@ theorem StageState.model_disjoint_region_without_tangencies
   exact (Finset.mem_sdiff.mp hvR).2 hvD
 
 /-- The exact deletion package used before selecting the small connected
-pieces for the next stage.-/
+pieces for the next stage.
+@isnad1 id=and.2h8v.s8.fa779be64914 from=translated src=- shape=00f4538d vocab=eac58ce1
+-/
 theorem StageState.after_remove_tangencies
     (S : StageState G s k m coreBound)
     (hrootregion : ∀ i, S.root i ∈ S.region)

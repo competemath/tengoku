@@ -20,6 +20,9 @@ def sampledLeftVertices (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (v : V) : Finset V :=
   (A.erase v).filter (fun w => ∃ x ∈ X, G.Adj w x)
 
+/--
+@isnad1 id=disjoint.3h6v.s6.c9b9afcb9083 from=translated src=- shape=74ce3b49 vocab=7878a6cd
+-/
 theorem sampledLeftVertices_disjoint_neighbors
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B X : Finset V)
@@ -33,6 +36,9 @@ theorem sampledLeftVertices_disjoint_neighbors
     ((G.mem_neighborFinset v w).mp (hX hwX))
   exact (Set.disjoint_left.mp hG.disjoint) hwA' hwB
 
+/--
+@isnad1 id=ex.1h6v.s6.af7c3a1c18e7 from=translated src=- shape=bf631fda vocab=2b9cc13f
+-/
 theorem sampledLeftVertices_has_choice
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A X : Finset V) (v : V) :
@@ -41,7 +47,9 @@ theorem sampledLeftVertices_has_choice
   exact (Finset.mem_filter.mp hw).2
 
 /-- Every common neighbor of two sampled vertices, except the center,
-appears among the vertices eligible for the random star contraction.-/
+appears among the vertices eligible for the random star contraction.
+@isnad1 id=le.3h8v.s8.930bd3811ac2 from=translated src=- shape=75e2afc0 vocab=a107b594
+-/
 theorem common_neighbors_le_sampled_star_common
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B X : Finset V)
@@ -76,7 +84,9 @@ theorem common_neighbors_le_sampled_star_common
       (congrArg Subtype.val h)
   exact Finset.card_le_card_of_injective hf
 
-/-- The surviving bipartition classes cover the path-contraction graph.-/
+/-- The surviving bipartition classes cover the path-contraction graph.
+@isnad1 id=other.1h5v.s7.65d99f438bc2 from=translated src=- shape=68eea3d5 vocab=b7f5207e
+-/
 theorem twoNeighborContraction_class_cover
     (A B : Finset V) (hcover : A ∪ B = Finset.univ)
     (v u₂ : V) :

@@ -37,6 +37,9 @@ noncomputable def hubRoleFin {W : Type*} {a j : ℕ}
     HubProxyRole a j → W :=
   role ∘ (distinctRoleEquiv a j) ∘ (hubToDistinctRole a j)
 
+/--
+@isnad1 id=injectiv.1h4v.s6.9c56c17001bd from=translated src=- shape=10cce83a vocab=39684326
+-/
 theorem hubRoleFin_injective
     {W : Type*} {a j : ℕ}
     (role : Fin (a + 2 * j) → W)
@@ -65,6 +68,9 @@ noncomputable def hubProxyEquiv
     obtain ⟨q,-,rfl⟩ := Finset.mem_image.mp hw
     exact ⟨q,rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s8.92f9b311ede4 from=translated src=- shape=cf22f7d1 vocab=0fadb1ec
+-/
 @[simp] theorem hubProxyEquiv_apply
     {W : Type*} [Fintype W] [DecidableEq W] {a j : ℕ}
     (role : Fin (a + 2 * j) → W)
@@ -75,7 +81,9 @@ noncomputable def hubProxyEquiv
       hubRoleFin role q := by
   rfl
 
-/-- Hub proxy roots agree with the canonical normalized role roots.-/
+/-- Hub proxy roots agree with the canonical normalized role roots.
+@isnad1 id=eq.1h4v.s7.1ee0de4e865d from=translated src=- shape=396e7854 vocab=b4d85cb8
+-/
 theorem hubProxyRoots_eq_selectedRoots
     {W : Type*} [Fintype W] [DecidableEq W] {a j : ℕ}
     (role : Fin (a + 2 * j) → W)
@@ -88,7 +96,9 @@ theorem hubProxyRoots_eq_selectedRoots
   rw [hubProxyEquiv_apply]
   rfl
 
-/-- Hub proxy terminal pairs agree with the canonical normalized pairs.-/
+/-- Hub proxy terminal pairs agree with the canonical normalized pairs.
+@isnad1 id=eq.1h4v.s7.7ed230a8fe9a from=translated src=- shape=003b8168 vocab=67e1f466
+-/
 theorem hubProxyPairs_eq_selectedPairs
     {W : Type*} [Fintype W] [DecidableEq W] {a j : ℕ}
     (role : Fin (a + 2 * j) → W)
@@ -120,7 +130,9 @@ theorem hubProxyPairs_eq_selectedPairs
       rfl
 
 /-- A proxy woven solution in the normalized graph lifts back to the
-arbitrary original roots and terminal pairs.-/
+arbitrary original roots and terminal pairs.
+@isnad1 id=nonempty.4h8v.s9.55b05fd6b623 from=translated src=- shape=05218ed3 vocab=86884590
+-/
 theorem exists_original_solution_of_normalized_hub_proxy
     {V : Type*} [Fintype V] [DecidableEq V]
     {a j : ℕ}

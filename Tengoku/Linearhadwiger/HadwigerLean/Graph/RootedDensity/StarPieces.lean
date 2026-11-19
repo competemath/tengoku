@@ -20,16 +20,25 @@ universe u
 def starPiece {V : Type u} (F : SimpleGraph V) (z : V) : Set V :=
   (F.connectedComponentMk z).supp
 
+/--
+@isnad1 id=iff.0h4v.s4.c7db2aabd3bb from=translated src=- shape=80ce1090 vocab=3b59e1e1
+-/
 theorem mem_starPiece_iff
     {V : Type u} (F : SimpleGraph V) (v z : V) :
     v ∈ starPiece F z ↔ F.Reachable v z := by
   rw [starPiece, SimpleGraph.ConnectedComponent.mem_supp_iff,
     SimpleGraph.ConnectedComponent.eq]
 
+/--
+@isnad1 id=mem.0h3v.s4.0a23f249c436 from=translated src=- shape=57626d8f vocab=73fe9bf6
+-/
 theorem starPiece_self {V : Type u} (F : SimpleGraph V) (z : V) :
     z ∈ starPiece F z :=
   (mem_starPiece_iff F z z).2 (.refl z)
 
+/--
+@isnad1 id=connecte.1h4v.s5.9be837b0fbd4 from=translated src=- shape=7242248b vocab=0a82d801
+-/
 theorem starPiece_connected
     {V : Type u} (K F : SimpleGraph V) (hFK : F ≤ K)
     (z : V) :
@@ -38,6 +47,9 @@ theorem starPiece_connected
     (F.connectedComponentMk z).connected_toSimpleGraph
   exact hF.mono (fun _ _ h => hFK h)
 
+/--
+@isnad1 id=eq.4h5v.s6.f1ab6d2efecc from=translated src=- shape=90c26082 vocab=301b7501
+-/
 theorem starPiece_boundary_unique
     {V : Type u} (F : SimpleGraph V) (Z : Set V)
     (hUnique : ∀ v, ∃! z, z ∈ Z ∧ F.Reachable v z)
@@ -48,6 +60,9 @@ theorem starPiece_boundary_unique
   have hza : z = a := honly z ⟨hz,(mem_starPiece_iff F w z).1 hwp⟩
   exact hwa.trans hza.symm
 
+/--
+@isnad1 id=disjoint.4h5v.s6.33a66dbd415b from=translated src=- shape=97bd9fde vocab=c273df5b
+-/
 theorem starPiece_pairwise_disjoint
     {V : Type u} (F : SimpleGraph V) (Z : Set V)
     (hUnique : ∀ v, ∃! z, z ∈ Z ∧ F.Reachable v z)
@@ -62,6 +77,9 @@ theorem starPiece_pairwise_disjoint
     honly w ⟨hw,(mem_starPiece_iff F v w).1 hvw⟩
   exact hzw (hza.trans hwa.symm)
 
+/--
+@isnad1 id=ex.1h4v.s5.dc134f708706 from=translated src=- shape=b55d6582 vocab=301b7501
+-/
 theorem starPiece_cover
     {V : Type u} (F : SimpleGraph V) (Z : Set V)
     (hUnique : ∀ v, ∃! z, z ∈ Z ∧ F.Reachable v z) :
@@ -71,7 +89,9 @@ theorem starPiece_cover
   exact ⟨z,hz,(mem_starPiece_iff F v z).2 hvz⟩
 
 /-- In a graph containing the forest, a union of forest components
-whose distinguished boundary vertices form a clique is connected.-/
+whose distinguished boundary vertices form a clique is connected.
+@isnad1 id=connecte.3h5v.s6.bed5292ae6cf from=translated src=- shape=77e4febc vocab=a8e3fa83
+-/
 theorem starPiece_union_connected
     {V : Type u} (K F : SimpleGraph V) (R : Set V)
     (hFK : F ≤ K)
@@ -104,7 +124,9 @@ theorem starPiece_union_connected
         (hclique c hc z hz hcz)
       exact hconn.preconnected _ _
 
-/-- Removing one non-root component preserves torso connectivity.-/
+/-- Removing one non-root component preserves torso connectivity.
+@isnad1 id=connecte.4h6v.s7.61caa79127cd from=translated src=- shape=58948361 vocab=a8e3fa83
+-/
 theorem starPiece_delete_connected
     {V : Type u} (K F : SimpleGraph V) (Z : Set V)
     (hFK : F ≤ K)
@@ -131,7 +153,9 @@ theorem starPiece_delete_connected
   exact starPiece_union_connected K F R hFK center hR hcliqueR
 
 /-- The union of every forest piece except one equals the complement
-of that piece when each component has a unique adhesion vertex.-/
+of that piece when each component has a unique adhesion vertex.
+@isnad1 id=eq.2h4v.s6.8efe290dd94f from=translated src=- shape=678e9102 vocab=1cbfc8c5
+-/
 theorem starPiece_delete_eq_compl
     {V : Type u} (F : SimpleGraph V) (Z : Set V)
     (hUnique : ∀ v, ∃! z, z ∈ Z ∧ F.Reachable v z)
@@ -153,7 +177,9 @@ theorem starPiece_delete_eq_compl
     exact hvd (hzd ▸ hvz)
 
 /-- The connected complement of one non-root star piece is the
-branch left after deleting that hanging piece in the torso.-/
+branch left after deleting that hanging piece in the torso.
+@isnad1 id=connecte.6h6v.s6.4a116a035ab1 from=translated src=- shape=c289bb96 vocab=a05376a0
+-/
 theorem starPiece_complement_connected
     {V : Type u} (K F : SimpleGraph V) (Z : Set V)
     (hFK : F ≤ K)

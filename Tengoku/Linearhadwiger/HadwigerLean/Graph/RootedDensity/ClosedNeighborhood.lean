@@ -15,7 +15,9 @@ def closedNeighborhoodFinset
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) : Finset V :=
   insert v (G.neighborFinset v)
 
-/-- Closed-neighborhood order is center degree plus one.-/
+/-- Closed-neighborhood order is center degree plus one.
+@isnad1 id=eq.0h3v.s6.3e284a5473be from=translated src=- shape=6e8cb1c1 vocab=19af3caa
+-/
 theorem card_closedNeighborhoodFinset
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
@@ -25,7 +27,9 @@ theorem card_closedNeighborhoodFinset
     SimpleGraph.card_neighborFinset_eq_degree]
 
 /-- Every common neighbor of `v,w` is a neighbor of `w` inside the
-closed neighborhood of `v`.-/
+closed neighborhood of `v`.
+@isnad1 id=le.1h4v.s9.1c4873ad9019 from=translated src=- shape=ca8d3478 vocab=b9faee6e
+-/
 theorem card_commonNeighbors_le_degree_closedNeighborhood
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -55,7 +59,9 @@ theorem card_commonNeighbors_le_degree_closedNeighborhood
   exact Fintype.card_le_of_injective f f.injective
 
 /-- A center degree bound and common-neighbor bounds on every incident edge
-make its closed neighborhood uniformly dense in minimum degree.-/
+make its closed neighborhood uniformly dense in minimum degree.
+@isnad1 id=le.2h5v.s8.2855152ec824 from=translated src=- shape=0a8fff8d vocab=9dbf9893
+-/
 theorem min_degree_closedNeighborhood_of_commonNeighbors
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) (d : ℝ)

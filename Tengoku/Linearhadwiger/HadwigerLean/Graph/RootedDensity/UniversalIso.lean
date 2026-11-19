@@ -9,7 +9,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u v w
 
-/-- Move rooted universality across a graph isomorphism.-/
+/-- Move rooted universality across a graph isomorphism.
+@isnad1 id=universa.1h8v.s6.a192c9b8d8a2 from=translated src=- shape=25a384dc vocab=cd5e496e
+-/
 theorem UniversalAt.of_iso
     {V : Type u} {V' : Type v} {W : Type w}
     [Fintype V] [Fintype V'] [Fintype W]
@@ -51,7 +53,9 @@ theorem UniversalAt.of_iso
     exact (e.apply_symm_apply (root' i)).symm
   exact ⟨hM⟩
 
-/-- Full universality transfers across a graph isomorphism.-/
+/-- Full universality transfers across a graph isomorphism.
+@isnad1 id=universa.1h7v.s5.bf6c861d1af7 from=translated src=- shape=1804aa6c vocab=376ea220
+-/
 theorem Universal.of_iso
     {V : Type u} {V' : Type v} {W : Type w}
     [Fintype V] [Fintype V'] [Fintype W]

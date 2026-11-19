@@ -13,7 +13,9 @@ namespace HadwigerLean
 noncomputable def smallConnectedBlockSize (t k : ℕ) : ℕ :=
   Nat.ceil (10 * (Real.log (t : ℝ))^2 * (t : ℝ)^2 / (k : ℝ)^2) + 1
 
-/-- The block size is large enough for the packing exceptional-set estimate.-/
+/-- The block size is large enough for the packing exceptional-set estimate.
+@isnad1 id=le.1h2v.s7.8818feabc78e from=translated src=- shape=b888eaf5 vocab=725c4d9e
+-/
 theorem smallConnectedBlockSize_lower
     (t k : ℕ) (hk : 0 < k) :
     10 * (Real.log (t : ℝ))^2 * (t : ℝ)^2 ≤
@@ -30,7 +32,9 @@ theorem smallConnectedBlockSize_lower
   field_simp at hmul
   nlinarith
 
-/-- A constant-factor upper bound on the chosen block size.-/
+/-- A constant-factor upper bound on the chosen block size.
+@isnad1 id=le.3h2v.s7.da6019047d51 from=translated src=- shape=76fae6f9 vocab=b2706258
+-/
 theorem smallConnectedBlockSize_upper
     (t k : ℕ) (ht : 3 ≤ t) (hk : 0 < k)
     (hKT : (k : ℝ)^2 ≤ (t : ℝ)^2 * Real.log (t : ℝ)) :

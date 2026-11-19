@@ -30,7 +30,9 @@ private noncomputable def separabilityInducedPreimageIso
       exact e.map_rel_iff
   }
 
-/-- Chromatic separability is invariant under a graph isomorphism.-/
+/-- Chromatic separability is invariant under a graph isomorphism.
+@isnad1 id=chromati.1h6v.s5.6c880712ff94 from=translated src=- shape=d2e2ff7c vocab=cb3e08e9
+-/
 theorem chromaticSeparable_of_iso
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     {G : SimpleGraph V} {H : SimpleGraph W}

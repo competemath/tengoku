@@ -23,7 +23,9 @@ noncomputable def DoubleFan.vertexFinset (F : DoubleFan G Z H) :
     (F.path slot : G.Walk slot.1.1 (F.finish slot)).support.toFinset)
 
 /-- Each chordless fan path receives its own Boolean palette.
-The resulting induced graph uses at most four colors per source.-/
+The resulting induced graph uses at most four colors per source.
+@isnad1 id=le.1h5v.s8.3d24f3d18f82 from=translated src=- shape=7bcda8b8 vocab=f17136d2
+-/
 theorem DoubleFan.chromatic_vertexFinset_le_four_mul
     (F : DoubleFan G Z H)
     (hchord : ∀ slot,

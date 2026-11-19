@@ -16,7 +16,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Wovenness of an induced residual graph supplies an ambient rooted
 clique model on any distinct residual roots, with all branches still in
-the residual set.-/
+the residual set.
+@isnad1 id=ex.3h6v.s6.bf7646c42828 from=translated src=- shape=14ad6eb2 vocab=b693bd7d
+-/
 theorem residual_rooted_model_of_woven
     (hW : Woven (G.induce (U : Set V)) a b)
     (r : Fin a → V) (hr : Function.Injective r)

@@ -30,7 +30,9 @@ private def bipartiteCover {U : Type u} {W : Type v}
 
 /-- Every finite bipartite relation has the two-color matching device.
 The proof minimizes a vertex cover and applies Hall separately on its two
-color classes.-/
+color classes.
+@isnad1 id=nonempty.0h3v.s4.7a9f86512da0 from=translated src=- shape=61944b65 vocab=81f50c53
+-/
 theorem exists_twoColorMatching
     {U : Type u} {W : Type v} [Fintype U] [Fintype W]
     [DecidableEq U] [DecidableEq W]

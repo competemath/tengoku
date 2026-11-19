@@ -19,6 +19,9 @@ def ciCoefficient : ℕ := 943718400000000
 def ciChromaticBudget (t s : ℕ) : ℕ := ciCoefficient * t * (1 + s)
 def ciLocalChromatic (t s : ℕ) : ℕ := t * s
 
+/--
+@isnad1 id=and.4h5v.s9.3c88b3cb37d8 from=translated src=- shape=fe1dd23f vocab=b5284be5
+-/
 theorem ci_linear_stage_budgets
     (t s r x χ : ℕ)
     (ht : 3 ≤ t) (hx : x ≤ t) (hrx : r * x ≤ 3 * t)

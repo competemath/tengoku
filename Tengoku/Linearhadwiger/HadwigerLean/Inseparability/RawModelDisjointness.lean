@@ -46,6 +46,9 @@ def ciPrimitiveSet {V : Type u} (p x : ℕ)
   | .inl z => A.branch z
   | .inr (i,z) => (M i).branch z
 
+/--
+@isnad1 id=eq.0h8v.s6.9541cd90fef5 from=translated src=- shape=1ef011ba vocab=5a0d15ee
+-/
 theorem ciExtraPiece_eq_primitive {V : Type u} (p x : ℕ)
     {G : SimpleGraph V}
     (A : MinorModel (SimpleGraph.completeGraph (Fin p × Fin x)) G)
@@ -68,6 +71,9 @@ theorem ciExtraPiece_eq_primitive {V : Type u} (p x : ℕ)
   | inr r =>
       cases slot <;> rfl
 
+/--
+@isnad1 id=ex.1h4v.s6.f6227f773121 from=translated src=- shape=4b4dd228 vocab=357cc83e
+-/
 theorem ciExtraLabel_exists_of_mem
     (p x : ℕ)
     (z : Sum (Fin p × Fin x) (Fin x))
@@ -116,6 +122,9 @@ private theorem child_child_disjoint {V : Type u} (p x : ℕ)
     (Set.mem_iUnion.mpr ⟨z,hvI⟩)
     (Set.mem_iUnion.mpr ⟨w,hvJ⟩)
 
+/--
+@isnad1 id=disjoint.3h8v.s8.37f06f8550b0 from=translated src=- shape=5267dbbb vocab=3226dd3f
+-/
 theorem ciPrimitiveSet_disjoint
     {V : Type u} (p x : ℕ)
     {G : SimpleGraph V}

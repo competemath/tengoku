@@ -16,6 +16,9 @@ namespace HadwigerLean
 universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=le.0h3v.s6.ba3c424f49f8 from=translated src=- shape=f4e59e2d vocab=0d4c1147
+-/
 theorem contractedNeighborFinset_card_le_sum_degrees
     (G : SimpleGraph V) [DecidableRel G.Adj] (H : Finset V) :
     (contractedNeighborFinset G H).card ≤ ∑ v ∈ H, G.degree v := by
@@ -44,7 +47,9 @@ noncomputable def localRPrime (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) : Finset V := localR G H X ∩ S
 
 /-- Incidence and maximality estimates force the contracted neighborhood
-to have density at least `p/24`.-/
+to have density at least `p/24`.
+@isnad1 id=le.9h6v.s9.f0a9d2ed2af9 from=translated src=- shape=90b0b137 vocab=43788318
+-/
 theorem local_dense_neighborhood
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) (p : ℕ)

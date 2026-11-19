@@ -77,6 +77,9 @@ def replaceRootedBranch
       simpa using hroot
     · simpa [hji] using M.root_mem j
 
+/--
+@isnad1 id=lt.4h8v.s7.3e89b8a31d59 from=translated src=- shape=4f339719 vocab=18adb3c3
+-/
 theorem rootedModelOrder_replaceBranch_lt
     {V : Type u} {I : Type v}
     [Fintype V] [Fintype I] [DecidableEq I]
@@ -109,6 +112,9 @@ theorem rootedModelOrder_replaceBranch_lt
     rw [ite_eq_left rfl]
     exact Set.ncard_lt_ncard hproper
 
+/--
+@isnad1 id=false.5h8v.s7.d5a7a1e772e9 from=translated src=- shape=87dbfe7a vocab=bbd6bd95
+-/
 theorem minimal_rooted_model_no_trim
     {V : Type u} {I : Type v}
     [Fintype V] [Fintype I] [DecidableEq I]

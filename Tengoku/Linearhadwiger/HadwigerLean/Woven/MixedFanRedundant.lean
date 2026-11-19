@@ -150,7 +150,9 @@ noncomputable def pairedLinkageToRedundantFan
   }
 
 /-- Mixed Menger in the enlarged graph saturates every proxy and every
-paired auxiliary source.-/
+paired auxiliary source.
+@isnad1 id=ex.2h8v.s8.f5aac5751319 from=translated src=- shape=2faa51d2 vocab=1f9137c3
+-/
 theorem exists_paired_mixed_linkage
     (F : DoubleFan G Z H)
     (P : IndexedPairs (Fin a × Fin 2) V) (L : IndexedLinkage G P)

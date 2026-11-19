@@ -11,7 +11,9 @@ universe u v
 variable {V : Type u} {W : Type v} [Fintype V] [Fintype W]
   {G G' : SimpleGraph V} {H : SimpleGraph W} {X : Finset V}
 
-/-- Adding host edges preserves rooted universality.-/
+/-- Adding host edges preserves rooted universality.
+@isnad1 id=universa.2h6v.s5.27558a8b0615 from=translated src=- shape=11910603 vocab=55e150f6
+-/
 theorem UniversalAt.mono_graph
     (hGG' : G ≤ G') (h : UniversalAt G H X) :
     UniversalAt G' H X := by
@@ -20,7 +22,9 @@ theorem UniversalAt.mono_graph
   exact ⟨M.mono hGG'⟩
 
 /-- At a full-size root set, universality gives the actual rooted `H`
-model for any prescribed bijection from target labels to roots.-/
+model for any prescribed bijection from target labels to roots.
+@isnad1 id=nonempty.3h6v.s5.dcbf6d771b24 from=translated src=- shape=1cb1c055 vocab=52fcbf5a
+-/
 theorem UniversalAt.full
     (h : UniversalAt G H X) (root : W → V)
     (hinj : Function.Injective root)
@@ -60,7 +64,9 @@ theorem UniversalAt.full
     exact M.root_mem (f i)
 
 /-- No target edge can have both ends in an assignment to at most one
-root, so these partial rooted models use singleton branches.-/
+root, so these partial rooted models use singleton branches.
+@isnad1 id=universa.1h5v.s5.e409b892767d from=translated src=- shape=858f008e vocab=e616740f
+-/
 theorem UniversalAt.of_card_le_one
     (G : SimpleGraph V) (H : SimpleGraph W) (X : Finset V)
     (hX : X.card ≤ 1) : UniversalAt G H X := by

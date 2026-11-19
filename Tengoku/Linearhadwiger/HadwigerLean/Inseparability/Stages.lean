@@ -38,7 +38,9 @@ structure StageState {V : Type u} (G : SimpleGraph V)
       x ∈ core ∧ y ∈ core ∧ G.Adj x y
 
 /-- The zero stage uses an empty model and empty core, but still extracts the
-highly chromatic `k`-connected region required by the induction.-/
+highly chromatic `k`-connected region required by the induction.
+@isnad1 id=nonempty.3h4v.s6.2eac7676c672 from=translated src=- shape=fc58fb6d vocab=592ff2ca
+-/
 theorem exists_stage_zero
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (k m : ℕ)

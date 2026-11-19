@@ -22,6 +22,9 @@ private theorem neighbor_inter_card_as_sum
   rw [heq]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.2e69f1df8d35 from=translated src=- shape=fea4cdd7 vocab=076e76aa
+-/
 theorem cross_incidence_symm
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V) :
@@ -35,6 +38,9 @@ theorem cross_incidence_symm
   intro v hv
   simp [G.adj_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.e8be1dc1e881 from=translated src=- shape=501339bd vocab=d1f65196
+-/
 theorem inside_incidence_twice_edges
     (G : SimpleGraph V) [DecidableRel G.Adj] (H : Finset V) :
     (∑ v ∈ H, (G.neighborFinset v ∩ H).card) =
@@ -90,7 +96,9 @@ private theorem inside_external_incidence
               cross_incidence_symm]
 
 /-- Incidences into the trimmed set are paid for by twice the contraction
-loss and by the number of touched vertices that remain in that set.-/
+loss and by the number of touched vertices that remain in that set.
+@isnad1 id=le.2h5v.s7.0c9a9f3cdac9 from=translated src=- shape=6c839218 vocab=881cb17c
+-/
 theorem local_incidence_le_twice_loss_add_RPrime
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) (hHS : H ⊆ S) (hSX : Disjoint S X) :

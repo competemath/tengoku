@@ -26,7 +26,9 @@ private theorem support_adj_used
 
 /-- At every vertex of U, all supported edges have the same opposite
 endpoint, provided fan paths avoid U and each connector meets U only
-at its own start.-/
+at its own start.
+@isnad1 id=eq.5h12v.s8.d10343f215bc from=translated src=- shape=c3da5d5f vocab=c5c1f3b8
+-/
 theorem mixedSupportGraph_unique_neighbor_at_U
     (F : DoubleFan G Z H) (L : IndexedLinkage G P)
     (hfanU : ∀ slot v, v ∈ pathVertexSet (F.path slot) → v ∉ U)
@@ -61,7 +63,9 @@ theorem mixedSupportGraph_unique_neighbor_at_U
   exact hv.trans hw.symm
 
 /-- A vertex whose neighbor set is a singleton cannot occur internally
-on a simple path.-/
+on a simple path.
+@isnad1 id=or.3h7v.s6.1a9b40a99b16 from=translated src=- shape=35877832 vocab=939c9e70
+-/
 theorem path_support_U_only_endpoints
     {E : SimpleGraph V} (U : Finset V)
     (hunique : ∀ u ∈ U, ∀ v w, E.Adj u v → E.Adj u w → v = w)

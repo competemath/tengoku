@@ -22,11 +22,17 @@ noncomputable def ConnectedBlockFamily.singletonLift (H : Finset V) :
     | .inl _ => False
     | .inr x => x.1 ∈ H
 
+/--
+@isnad1 id=iff.0h5v.s7.40e3bd970309 from=translated src=- shape=dae58f27 vocab=a87a4135
+-/
 theorem ConnectedBlockFamily.mem_singletonLift_inr
     (H : Finset V) (x : {v : V // v ∉ F.covered}) :
     (Sum.inr x : F.Vertex) ∈ F.singletonLift H ↔ x.1 ∈ H := by
   simp [ConnectedBlockFamily.singletonLift]
 
+/--
+@isnad1 id=not.0h5v.s7.134a334a1673 from=translated src=- shape=7d3467cd vocab=39bebcf5
+-/
 theorem ConnectedBlockFamily.not_mem_singletonLift_inl
     (H : Finset V) (B : ↥(F.blocks : Set (Finset V))) :
     (Sum.inl B : F.Vertex) ∉ F.singletonLift H := by
@@ -86,12 +92,18 @@ noncomputable def ConnectedBlockFamily.singletonLiftIso
       exact (G.ne_of_adj hab) (congrArg (fun q : F.Vertex =>
         match q with | .inl _ => x.1 | .inr z => z.1) heq)
 
+/--
+@isnad1 id=connecte.2h4v.s6.cd40020bedbf from=translated src=- shape=91630d41 vocab=bd546de2
+-/
 theorem ConnectedBlockFamily.singletonLift_connected
     (H : Finset V) (hdisj : Disjoint H F.covered)
     (hconn : (G.induce (H : Set V)).Connected) :
     (F.quotient.induce (F.singletonLift H : Set F.Vertex)).Connected :=
   (F.singletonLiftIso H hdisj).connected_iff.mp hconn
 
+/--
+@isnad1 id=eq.1h4v.s5.e064af6105d8 from=translated src=- shape=a8691e61 vocab=b834e6b2
+-/
 theorem ConnectedBlockFamily.singletonLift_card
     (H : Finset V) (hdisj : Disjoint H F.covered) :
     (F.singletonLift H).card = H.card := by

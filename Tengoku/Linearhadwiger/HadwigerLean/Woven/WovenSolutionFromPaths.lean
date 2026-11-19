@@ -20,7 +20,9 @@ variable {V : Type*} {G : SimpleGraph V}
   {a j m : ℕ} {P : IndexedPairs (Fin m) V}
 
 /-- Reindex a disjoint linkage into root paths and terminal paths, then
-extend a residual rooted model along the root paths.-/
+extend a residual rooted model along the root paths.
+@isnad1 id=nonempty.4h11v.s8.9103d0ef4a91 from=translated src=- shape=6aa89b27 vocab=db78c51c
+-/
 theorem exists_woven_solution_of_partitioned_linkage
     (L : IndexedLinkage G P)
     (rootSlot : Fin a ↪ Fin m) (terminalSlot : Fin j ↪ Fin m)

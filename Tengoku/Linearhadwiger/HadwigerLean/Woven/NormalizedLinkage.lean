@@ -63,7 +63,9 @@ noncomputable def extendFromInduced
         exact (Set.disjoint_left.mp (L.disjoint hik)) hu hv
 
 /-- The lifted path vertices remain inside original terminals together
-with the image of the normalized linkage vertices.-/
+with the image of the normalized linkage vertices.
+@isnad1 id=le.4h7v.s7.6fcca15663b8 from=translated src=- shape=ec16a134 vocab=17cdce52
+-/
 theorem extendFromInduced_vertices_subset
     (L : IndexedLinkage (G.induce S) Q)
     (hP : P.DisjointTerminals)

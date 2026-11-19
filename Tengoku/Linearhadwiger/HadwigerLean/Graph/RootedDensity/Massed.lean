@@ -12,7 +12,9 @@ universe u
 variable {V : Type u} [Fintype V]
 
 /-- The real root-edge reserve follows from a linear density coefficient
-once there are at least two roots.-/
+once there are at least two roots.
+@isnad1 id=lt.2h2v.s5.c9aaef55a26b from=translated src=- shape=5cb0c1d3 vocab=17dff172
+-/
 theorem root_edge_reserve
     (h : ℕ) (hh : 2 ≤ h) (α : ℝ) (hα : (h : ℝ) ≤ α) :
     ((h + 1).choose 2 : ℝ) < α * (h : ℝ) := by

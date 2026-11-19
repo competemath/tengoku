@@ -20,7 +20,9 @@ def MassedUniversalPrinciple {W : Type v} [Fintype W]
     UniversalAt G H X
 
 /-- The structural assertion is immediate for target graphs of order at
-most one, independently of the massed-pair inequalities.-/
+most one, independently of the massed-pair inequalities.
+@isnad1 id=massedun.1h3v.s4.ea5f576c0e0a from=translated src=- shape=a643179f vocab=f6619449
+-/
 theorem massedUniversal_of_target_card_le_one
     {W : Type v} [Fintype W] (H : SimpleGraph W) (α : ℝ)
     (hh : Fintype.card W ≤ 1) :
@@ -29,7 +31,9 @@ theorem massedUniversal_of_target_card_le_one
   exact UniversalAt.of_card_le_one G H X (by omega)
 
 /-- The full-size conclusion supplies a model rooted at a prescribed
-injective target-to-host map.-/
+injective target-to-host map.
+@isnad1 id=nonempty.4h6v.s6.9b3d15bc53e3 from=translated src=- shape=92d162cd vocab=f0a6be0d
+-/
 theorem rootedMinor_of_rootedDensity
     {W : Type v} [Fintype W] (H : SimpleGraph W) (α : ℝ)
     (h : RootedDensityConclusion.{u,v} H α)

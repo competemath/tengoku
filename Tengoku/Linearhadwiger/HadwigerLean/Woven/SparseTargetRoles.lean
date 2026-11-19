@@ -25,7 +25,9 @@ def sparseSelectedPairs
 
 /-- A rooted model of a target containing a clique on the root labels and
 one independent adjacent label pair per terminal demand supplies a woven
-solution on the selected roles. Extra target edges are harmless.-/
+solution on the selected roles. Extra target edges are harmless.
+@isnad1 id=nonempty.3h9v.s7.bd59438f7b13 from=translated src=- shape=596b9001 vocab=c4bbfda3
+-/
 theorem exists_solution_of_sparse_target_model
     {H : SimpleGraph W} {G : SimpleGraph V} {role : W → V}
     (M : RootedMinorModel H G role)

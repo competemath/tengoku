@@ -17,6 +17,9 @@ def LowCut [DecidableEq V] (G : SimpleGraph V) (k : ℕ) : Prop :=
     (A \ B).Nonempty ∧
     (B \ A).Nonempty ∧
     (∀ ⦃x y : V⦄, x ∈ A → x ∉ B → y ∈ B → y ∉ A → ¬ G.Adj x y)
+/--
+@isnad1 id=lowcut.2h3v.s5.42b69cb160de from=translated src=- shape=8b09ae5b vocab=c3384a48
+-/
 theorem lowCut_of_not_vertexConnected [DecidableEq V]
     (G : SimpleGraph V) (k : ℕ) (horder : k < Fintype.card V)
     (hnot : ¬ VertexConnected G k) : LowCut G k := by

@@ -24,6 +24,9 @@ def ciNewMiddleIndex (p x : ℕ) (i : Fin p) (r : Fin x) :
     CIPathIndex p x :=
   finProdFinEquiv ((⟨p + 2 * i.val + 1, by omega⟩ : Fin (4 * p + 1)), r)
 
+/--
+@isnad1 id=ex.4h11v.s8.66e9b8c17e47 from=translated src=- shape=4a08143a vocab=80163505
+-/
 theorem ci_extra_piece_meets_assigned_path
     {V : Type*} (p x : ℕ) (G : SimpleGraph V)
     (oldRoot : Fin p × Fin x → V)

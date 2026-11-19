@@ -27,6 +27,9 @@ def mixedSupportGraph (F : DoubleFan G Z H) (L : IndexedLinkage G P) :
     SimpleGraph V :=
   G.deleteEdges (G.edgeSet \ mixedUsedEdges F L)
 
+/--
+@isnad1 id=le.0h8v.s6.c6ffda517f41 from=translated src=- shape=911ed454 vocab=ca77425b
+-/
 theorem mixedSupportGraph_le
     (F : DoubleFan G Z H) (L : IndexedLinkage G P) :
     mixedSupportGraph F L ≤ G :=

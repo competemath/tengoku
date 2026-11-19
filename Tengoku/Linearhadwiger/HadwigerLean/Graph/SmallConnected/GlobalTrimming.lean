@@ -14,7 +14,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- Degrees in a vertex set count its internal edges twice and its
-boundary edges once.-/
+boundary edges once.
+@isnad1 id=eq.0h3v.s7.e001be5fb8b5 from=translated src=- shape=af36221d vocab=1e939302
+-/
 theorem sum_degrees_on_eq_twice_inside_add_cross
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     (∑ v ∈ S, G.degree v) =
@@ -45,7 +47,9 @@ theorem sum_degrees_on_eq_twice_inside_add_cross
             rw [inside_incidence_twice_edges,
               cross_incidence_symm]
 
-/-- The original boundary form (8.2) of the trimming lemma.-/
+/-- The original boundary form (8.2) of the trimming lemma.
+@isnad1 id=ex.3h5v.s8.32bb6362a148 from=translated src=- shape=6ef72f0c vocab=45b34356
+-/
 theorem exists_trimmed_of_inside_cross_surplus
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) (r δ : ℝ) (hr : 2 < r) (hδ : 0 < δ)

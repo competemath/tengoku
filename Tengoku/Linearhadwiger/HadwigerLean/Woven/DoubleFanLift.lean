@@ -20,6 +20,9 @@ def doubleCloneLiftVertex (Z D : Finset V) (z : Z) (i : Fin 2)
     intro hz
     exact v.2 (hD (Finset.mem_erase.mpr ⟨hv,hz⟩))⟩
 
+/--
+@isnad1 id=eq.1h6v.s7.92058126244b from=translated src=- shape=8283d65c vocab=bd35d55d
+-/
 @[simp] theorem doubleCloneCollapse_liftVertex
     (Z D : Finset V) (z : Z) (i : Fin 2)
     (hD : Z.erase z.1 ⊆ D)
@@ -58,7 +61,9 @@ def doubleCloneLiftHom
         simp [doubleCloneLiftVertex, hy, doubleCloneOriginal]
 
 /-- The lift preserves the underlying original vertex of every
-vertex in a walk, and therefore is injective.-/
+vertex in a walk, and therefore is injective.
+@isnad1 id=injectiv.1h5v.s6.b2d75904f130 from=translated src=- shape=2ca527dd vocab=d238f1ec
+-/
 theorem doubleCloneLiftVertex_injective
     (Z D : Finset V) (z : Z) (i : Fin 2)
     (hD : Z.erase z.1 ⊆ D) :

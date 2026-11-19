@@ -12,7 +12,9 @@ namespace HadwigerLean
 namespace Woven
 
 /-- A nested induced graph is isomorphic to the graph induced on the
-image of its vertex set in the ambient graph.-/
+image of its vertex set in the ambient graph.
+@isnad1 id=eq.0h4v.s7.603bd6ad906e from=translated src=- shape=8615fbb8 vocab=367b2a5c
+-/
 theorem chromatic_nested_image
     {V : Type*} [Fintype V]
     (G : SimpleGraph V) (R : Set V) (S : Set R)
@@ -79,7 +81,9 @@ private theorem ambientFinset_chromatic {V : Type*} [Fintype V]
   exact chromatic_nested_image G R S
 
 /-- Two applications of chromatic separability yield three disjoint
-induced children, each losing at most two separation budgets.-/
+induced children, each losing at most two separation budgets.
+@isnad1 id=ex.2h4v.s8.8b9f8ba77209 from=translated src=- shape=11bc3ce4 vocab=32f40f92
+-/
 theorem three_chromatic_pieces_of_separation
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (Y : Finset V) (s : ℕ)

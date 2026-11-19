@@ -19,7 +19,9 @@ private theorem connected_induce_of_set_eq
   cases hAB
   exact hA
 /-- A connected central patch stays connected after attaching finitely
-many connected pieces which each meet that patch.-/
+many connected pieces which each meet that patch.
+@isnad1 id=connecte.3h6v.s7.70cb549d7f85 from=translated src=- shape=6be5e2df vocab=51d085de
+-/
 theorem connected_patch_union_finset
     {V : Type u} {J : Type v} [DecidableEq J]
     (G : SimpleGraph V) (C : Set V) (P : J → Set V)
@@ -100,7 +102,9 @@ private theorem mem_assignedPaths_iff
 branches, the disjoint indexed paths, and the central D patches. The
 hypotheses state disjointness only for elementary pieces; connectivity
 of each whole branch and the exact tangency to the future region are
-proved here.-/
+proved here.
+@isnad1 id=ex.13h13v.s9.81322957d6f4 from=translated src=- shape=5e9cab15 vocab=1bf8ce14
+-/
 theorem assemble_raw_rooted_clique_model
     {V : Type u} {I : Type v} {J K : Type*}
     [Fintype K] [DecidableEq I] [DecidableEq J]

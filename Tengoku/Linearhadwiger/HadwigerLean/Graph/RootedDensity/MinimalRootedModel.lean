@@ -21,6 +21,9 @@ noncomputable def rootedModelOrder
     (M : RootedMinorModel H G root) : ℕ :=
   ∑ i, (M.branch i).ncard
 
+/--
+@isnad1 id=ex.1h5v.s6.ad6e3acd0f08 from=translated src=- shape=2d2254e5 vocab=310b972d
+-/
 theorem exists_minimal_rooted_model
     {V : Type u} {I : Type v} [Fintype V] [Fintype I]
     {G : SimpleGraph V} {H : SimpleGraph I} {root : I → V}

@@ -13,7 +13,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- The neighborhood after contracting H has at most the sum of the
-degrees of vertices in H.-/
+degrees of vertices in H.
+@isnad1 id=le.0h4v.s6.a444dea53d18 from=translated src=- shape=9cd57dc4 vocab=59ff0db4
+-/
 theorem localR_card_le_degree_sum
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X : Finset V) :
@@ -25,7 +27,9 @@ theorem localR_card_le_degree_sum
       contractedNeighborFinset_card_le_sum_degrees G H
 
 /-- The low-degree condition on the trimmed residual set controls
-its contracted neighborhood.-/
+its contracted neighborhood.
+@isnad1 id=le.2h7v.s7.36cd363f3595 from=translated src=- shape=a28e3ddb vocab=dbf60a7f
+-/
 theorem localR_card_le_degree_cap
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (H X S : Finset V) (d : ℕ) (L : ℝ)

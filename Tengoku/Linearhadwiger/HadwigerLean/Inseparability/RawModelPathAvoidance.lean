@@ -14,6 +14,9 @@ an old or child model piece only when that piece belongs to its group.
 
 namespace HadwigerLean.Inseparability
 
+/--
+@isnad1 id=disjoint.7h13v.s9.50072ad092ed from=translated src=- shape=88fba811 vocab=bde615cc
+-/
 theorem ci_path_disjoint_wrong_extra_piece
     {V : Type*} (p x : ℕ) (G : SimpleGraph V)
     (oldRoot : Fin p × Fin x → V)

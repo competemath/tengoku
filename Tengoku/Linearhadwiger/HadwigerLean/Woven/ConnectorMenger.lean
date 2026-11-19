@@ -14,7 +14,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Vertex connectivity and two large endpoint sets yield the requested
-number of disjoint paths, allowing an endpoint to lie in both sets.-/
+number of disjoint paths, allowing an endpoint to lie in both sets.
+@isnad1 id=ex.4h6v.s6.d8361b5915dc from=translated src=- shape=8d82ad04 vocab=1ed61989
+-/
 theorem exists_disjoint_connectors_of_vertexConnected
     (G : SimpleGraph V) (A B : Finset V) (k m : ℕ)
     (hconn : VertexConnected G k) (hm : m ≤ k)

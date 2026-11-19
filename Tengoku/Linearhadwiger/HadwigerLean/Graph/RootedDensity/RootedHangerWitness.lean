@@ -17,6 +17,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u v
 
+/--
+@isnad1 id=ex.7h9v.s8.fe13d94c268a from=translated src=- shape=12db27eb vocab=b5b7005b
+-/
 theorem minimal_hanger_has_boundary_free_neighbor
     {V : Type u} {I : Type v}
     [Fintype V] [Fintype I] [DecidableEq I]

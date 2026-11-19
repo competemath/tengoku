@@ -32,7 +32,9 @@ structure RedundantFan (G : SimpleGraph V) (A B C : Finset V) where
 namespace RedundantFan
 
 /-- Any separator of `A ∪ C` from `B` has at least two exterior vertices
-for each source of `A` that it does not itself delete.-/
+for each source of `A` that it does not itself delete.
+@isnad1 id=le.1h7v.s6.c225361278c5 from=translated src=- shape=ae88f45c vocab=0aa8825d
+-/
 theorem cut_card (G : SimpleGraph V) (A B C Q : Finset V)
     (F : RedundantFan G A B C)
     (hsep : SetMenger.IsABSeparator G (A ∪ C) B Q) :
@@ -89,7 +91,9 @@ theorem cut_card (G : SimpleGraph V) (A B C Q : Finset V)
 end RedundantFan
 
 /-- Two redundant fans from disjoint source sets yield a vertex-disjoint
-path from every source to the common target.-/
+path from every source to the common target.
+@isnad1 id=ex.1h7v.s7.f5447196f2a2 from=translated src=- shape=a76283eb vocab=171a2829
+-/
 theorem exists_linkage_of_two_redundant_fans
     (G : SimpleGraph V) (A₁ A₂ B : Finset V)
     (hdis : Disjoint A₁ A₂)

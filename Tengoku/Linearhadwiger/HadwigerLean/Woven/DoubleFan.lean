@@ -42,7 +42,9 @@ end DoubleFan
 
 /-- The clone Menger construction gives two paths per source in
 the original graph whenever it is 3|Z|-connected and the hub
-contains at least 2|Z| vertices.-/
+contains at least 2|Z| vertices.
+@isnad1 id=nonempty.4h5v.s6.81fa3acc0ac1 from=translated src=- shape=2dd53188 vocab=a8601acd
+-/
 theorem exists_double_fan_of_vertexConnected
     (G : SimpleGraph V) (Z H : Finset V) (r : ℕ)
     (hconn : VertexConnected G r)

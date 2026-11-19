@@ -89,7 +89,9 @@ private theorem ci_child_new_in_base {V : Type u} (p x : ℕ)
 /-- Every edge of the enlarged clique has a witness in the nonpath
 pieces, with both endpoints in the proposed new core. The first
 stage is handled separately; this theorem uses a child for
-new-new adjacency.-/
+new-new adjacency.
+@isnad1 id=ex.4h10v.s8.10467569d3f4 from=translated src=- shape=a1b5af2e vocab=e7144272
+-/
 theorem ci_nonzero_stage_base_witness
     {V : Type u} (p x : ℕ) (hp : 0 < p)
     {G : SimpleGraph V}
@@ -146,7 +148,9 @@ theorem ci_nonzero_stage_base_witness
         b,ci_child_new_in_base p x A M C i s hb,
         hChildCore i (1,r) ha,hChildCore i (1,s) hb,hab⟩
 
-/-- Every selected old or child model piece is connected.-/
+/-- Every selected old or child model piece is connected.
+@isnad1 id=connecte.1h8v.s6.3b5b271147f2 from=translated src=- shape=535b62b6 vocab=812dde52
+-/
 theorem ci_extra_connected
     {V : Type u} (p x : ℕ)
     {G : SimpleGraph V}

@@ -48,7 +48,9 @@ noncomputable def connectedSetContractionOutsideIso
     exact connectedSetContraction_adj_some_some G H hconn x y
 
 /-- The quotient vertex has one neighbor for every outside vertex touched
-by the contracted set.-/
+by the contracted set.
+@isnad1 id=eq.1h3v.s8.9e7dcd675cb0 from=translated src=- shape=513950e9 vocab=9fbd9ea1
+-/
 theorem connectedSetContraction_degree_none
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -92,7 +94,9 @@ theorem connectedSetContraction_degree_none
   exact (Finset.card_image_of_injective T Subtype.val_injective).symm
 
 /-- Internal edges and duplicated outside incidences are exactly the
-simple-edge loss under connected-set contraction.-/
+simple-edge loss under connected-set contraction.
+@isnad1 id=eq.1h3v.s6.e9e657693f46 from=translated src=- shape=0b535e9f vocab=ee7f1108
+-/
 theorem connectedSetContraction_edgeCount_add_loss
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

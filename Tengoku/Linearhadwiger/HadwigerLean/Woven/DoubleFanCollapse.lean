@@ -13,7 +13,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- Every clone on a saturated disjoint path is its own start:
-all other clones start another disjoint path.-/
+all other clones start another disjoint path.
+@isnad1 id=eq.4h8v.s8.dde0c1792c73 from=translated src=- shape=51578012 vocab=65014bee
+-/
 theorem doubleClone_path_only_own_clone
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -38,7 +40,9 @@ theorem doubleClone_path_only_own_clone
       ((Set.disjoint_left.mp (L.disjoint (Ne.symm hlj))) hc hcl)
 
 /-- On each saturated clone path, collapsing copies is injective on
-the path's support.-/
+the path's support.
+@isnad1 id=eq.5h9v.s8.7782d77be494 from=translated src=- shape=d66b5ab9 vocab=20a19d89
+-/
 theorem doubleClone_collapse_injOn_path
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -112,7 +116,9 @@ def collapseClonePath
   exact doubleClone_collapse_injOn_path G Z H hdis P L hAB j
 
 /-- Support membership after collapsing a clone path is exactly the
-image of its clone support.-/
+image of its clone support.
+@isnad1 id=iff.2h8v.s8.23e96776a592 from=translated src=- shape=71be58b6 vocab=63de6e8b
+-/
 theorem mem_collapseClonePath_iff
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -128,7 +134,9 @@ theorem mem_collapseClonePath_iff
     SimpleGraph.Walk.support_map, List.mem_map]
 
 /-- Two collapsed clone paths can meet only at original cloned
-sources, because every exterior vertex has one private copy.-/
+sources, because every exterior vertex has one private copy.
+@isnad1 id=disjoint.3h8v.s8.c1f97c97ccc3 from=translated src=- shape=0a960f98 vocab=65701c6c
+-/
 theorem collapseClonePath_disjoint_outside
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -168,7 +176,9 @@ theorem collapseClonePath_disjoint_outside
     hcj (heq.symm ▸ hcl)
 
 /-- A collapsed path meets the cloned source set only at its
-own source vertex.-/
+own source vertex.
+@isnad1 id=eq.4h8v.s7.7727170a23cf from=translated src=- shape=a5bb0aa7 vocab=db5bef09
+-/
 theorem collapseClonePath_source_only
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -197,7 +207,9 @@ theorem collapseClonePath_source_only
     exact hcv.symm.trans (congrArg (doubleCloneCollapse Z) hown)
 
 /-- The end of each clone-to-hub Menger path collapses to an
-original vertex in the hub.-/
+original vertex in the hub.
+@isnad1 id=mem.2h7v.s7.dcd9e212a8f1 from=translated src=- shape=bc92cb64 vocab=7572457b
+-/
 theorem doubleClone_finish_mem_hub
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)

@@ -14,7 +14,9 @@ variable {W ι : Type*} [Fintype W] [DecidableEq W] [Fintype ι]
   {E : SimpleGraph W} {Q : IndexedPairs ι W}
 
 /-- A disjoint linkage with as many paths as source vertices uses every
-source exactly once.-/
+source exactly once.
+@isnad1 id=ex.3h7v.s6.4753f440a15a from=translated src=- shape=d49b96d4 vocab=446e148b
+-/
 theorem IndexedLinkage.start_surjective_of_card_eq
     (M : IndexedLinkage E Q) (A : Finset W)
     (hstart : ∀ i, Q.start i ∈ A)
@@ -32,7 +34,9 @@ theorem IndexedLinkage.start_surjective_of_card_eq
   obtain ⟨i, -, hi⟩ := Finset.mem_image.mp (heq ▸ hx)
   exact ⟨i,hi⟩
 
-/-- A saturated linkage path meets the source set only at its own start.-/
+/-- A saturated linkage path meets the source set only at its own start.
+@isnad1 id=eq.3h8v.s6.b9bae0dc5402 from=translated src=- shape=3eeec27c vocab=1a8d355b
+-/
 theorem IndexedLinkage.source_only_of_start_surjective
     (M : IndexedLinkage E Q) (A : Finset W)
     (hsurj : ∀ x ∈ A, ∃ i, Q.start i = x)
@@ -55,7 +59,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {P : IndexedPairs (Fin a × Fin 2) V}
 
 /-- Every old proxy and every auxiliary pair vertex is used as a start
-in the full mixed Menger linkage.-/
+in the full mixed Menger linkage.
+@isnad1 id=ex.2h9v.s8.96412b95b6b2 from=translated src=- shape=cbaebcd5 vocab=ec28d90a
+-/
 theorem pairedMixed_start_surjective
     (Q : IndexedPairs (Fin ((pairedFanLeftSet (a := a) Z).card +
         (pairedFanRightSet (V := V) (a := a)).card))

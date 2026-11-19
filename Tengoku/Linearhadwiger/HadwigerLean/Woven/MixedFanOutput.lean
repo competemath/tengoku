@@ -19,6 +19,9 @@ def pairedMixedSource : Z ⊕ Fin a → PairedFanVertex V a
   | .inl z => .inl z.1
   | .inr i => .inr i
 
+/--
+@isnad1 id=injectiv.0h3v.s5.74e6457eb8fb from=translated src=- shape=ffd4cc18 vocab=69224d83
+-/
 theorem pairedMixedSource_injective :
     Function.Injective (pairedMixedSource (Z := Z) (a := a)) := by
   intro x y h
@@ -35,6 +38,9 @@ theorem pairedMixedSource_injective :
       | inr j =>
           change Sum.inr i = Sum.inr j at h
           exact congrArg Sum.inr (Sum.inr_injective h)
+/--
+@isnad1 id=mem.0h4v.s6.c7c43ff5b491 from=translated src=- shape=5350c3e9 vocab=be593954
+-/
 theorem pairedMixedSource_mem (x : Z ⊕ Fin a) :
     pairedMixedSource x ∈
       pairedFanLeftSet (a := a) Z ∪
@@ -46,7 +52,9 @@ theorem pairedMixedSource_mem (x : Z ⊕ Fin a) :
       exact Finset.mem_union_right _ (mem_pairedFanRightSet i)
 
 /-- A full mixed linkage has a distinct path assigned to every proxy and
-every auxiliary pair source.-/
+every auxiliary pair source.
+@isnad1 id=ex.1h8v.s8.d90c209d42e6 from=translated src=- shape=656dcc4e vocab=a55fad16
+-/
 theorem pairedMixed_slot_index
     (Q : IndexedPairs (Fin ((pairedFanLeftSet (a := a) Z).card +
         (pairedFanRightSet (V := V) (a := a)).card))

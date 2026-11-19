@@ -23,6 +23,9 @@ noncomputable def GoodPackedFamily
     edgeCount G ≤ edgeCount F.quotient + p * F.blocks.card * (h - 1) ∧
     edgeCount F.quotient ≤ edgeCount G
 
+/--
+@isnad1 id=goodpack.0h4v.s4.fe270565b787 from=translated src=- shape=b23b412d vocab=383f3326
+-/
 theorem goodPackedFamily_empty
     (G : SimpleGraph V) (h p : ℕ) :
     GoodPackedFamily G h p (emptyConnectedBlockFamily G) := by
@@ -37,7 +40,9 @@ theorem goodPackedFamily_empty
       simpa [emptyConnectedBlockFamily_edgeCount]
     · exact le_of_eq (emptyConnectedBlockFamily_edgeCount G)
 
-/-- Finite maximality of the number of admissible disjoint blocks.-/
+/-- Finite maximality of the number of admissible disjoint blocks.
+@isnad1 id=ex.0h4v.s5.983353acbad7 from=translated src=- shape=e446cf65 vocab=64572976
+-/
 theorem exists_maximal_good_packed_family
     (G : SimpleGraph V) (h p : ℕ) :
     ∃ F : ConnectedBlockFamily G,
@@ -66,7 +71,9 @@ theorem exists_maximal_good_packed_family
   rw [← hFB] at hback
   omega
 
-/-- An admissible family of `h`-sets removes at most `N` vertices.-/
+/-- An admissible family of `h`-sets removes at most `N` vertices.
+@isnad1 id=le.2h5v.s6.1262e3269cf6 from=translated src=- shape=dc841c67 vocab=cf3346fc
+-/
 theorem GoodPackedFamily.savings_le_card
     (G : SimpleGraph V) (h p : ℕ) (hh : 1 ≤ h)
     (F : ConnectedBlockFamily G) (hF : GoodPackedFamily G h p F) :
@@ -76,7 +83,9 @@ theorem GoodPackedFamily.savings_le_card
   omega
 
 /-- Exact initial edge count and admissibility imply at least 90 percent
-of the original edges survive the simultaneous contraction.-/
+of the original edges survive the simultaneous contraction.
+@isnad1 id=le.4h6v.s6.3509ecddb1aa from=translated src=- shape=7f001ec8 vocab=a5a03087
+-/
 theorem GoodPackedFamily.retained_edges
     (G : SimpleGraph V) (h p : ℕ) (hh : 1 ≤ h)
     (F : ConnectedBlockFamily G) (hF : GoodPackedFamily G h p F)

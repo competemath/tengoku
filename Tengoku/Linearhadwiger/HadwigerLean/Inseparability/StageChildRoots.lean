@@ -14,6 +14,9 @@ namespace HadwigerLean.Inseparability
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=ex.1h4v.s6.037683778485 from=translated src=- shape=babc5442 vocab=1a74098f
+-/
 theorem exists_child_roots_in_pieces
     (p x : ℕ) (J : Fin p → Finset V)
     (hcard : ∀ i, 2 * x ≤ (J i).card) :
@@ -29,6 +32,9 @@ theorem exists_child_roots_in_pieces
   exact ⟨(fun i z => f i z),fun i => (f i).injective,
     fun i z => hf i ⟨z,rfl⟩⟩
 
+/--
+@isnad1 id=ex.2h6v.s7.d5360ce36a27 from=translated src=- shape=9b8887b5 vocab=ca13c7bc
+-/
 theorem exists_child_roots_of_connected_pieces
     (G : SimpleGraph V) (p x k : ℕ)
     (J : Fin p → Finset V)

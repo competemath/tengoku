@@ -14,6 +14,9 @@ namespace HadwigerLean.Inseparability
 
 universe u
 
+/--
+@isnad1 id=disjoint.3h8v.s7.039fe3c9bed2 from=translated src=- shape=e326ed6f vocab=9ca8bc99
+-/
 theorem rooted_model_disjoint_piece_of_tangent
     {I : Type u} {V : Type*} {G : SimpleGraph V}
     {root : I → V}
@@ -32,6 +35,9 @@ theorem rooted_model_disjoint_piece_of_tangent
   obtain ⟨i,rfl⟩ := hvRoot
   exact (hJ hvJ).2 (hrootW i)
 
+/--
+@isnad1 id=disjoint.4h11v.s7.7ddee38b8764 from=translated src=- shape=ca1f33fc vocab=9ca8bc99
+-/
 theorem rooted_model_disjoint_child_of_tangent
     {I K : Type u} {V : Type*} {G : SimpleGraph V}
     {root : I → V} {childRoot : K → V}
@@ -46,6 +52,9 @@ theorem rooted_model_disjoint_child_of_tangent
   exact (rooted_model_disjoint_piece_of_tangent A R W J
     htangent hJ hrootW).mono_right hM
 
+/--
+@isnad1 id=disjoint.3h10v.s7.64d5cb42ca50 from=translated src=- shape=65aa62d5 vocab=ca96f546
+-/
 theorem rooted_child_models_disjoint_of_pieces
     {I K : Type u} {V : Type*} {G : SimpleGraph V}
     {root₁ : I → V} {root₂ : K → V}

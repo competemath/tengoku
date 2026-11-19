@@ -23,6 +23,9 @@ def connectedSetContractionBlock (H : Set V) :
   | none => H
   | some x => {x.1}
 
+/--
+@isnad1 id=connecte.1h4v.s5.386577284c6c from=translated src=- shape=3d15584f vocab=e89ba191
+-/
 theorem connectedSetContractionBlock_connected
     (G : SimpleGraph V) (H : Set V)
     (hconn : (G.induce H).Connected)
@@ -32,6 +35,9 @@ theorem connectedSetContractionBlock_connected
   | none => exact hconn
   | some x => simp [connectedSetContractionBlock]
 
+/--
+@isnad1 id=pairwise.0h2v.s5.2380563abd31 from=translated src=- shape=11739228 vocab=409c3c4c
+-/
 theorem connectedSetContractionBlock_disjoint (H : Set V) :
     Pairwise fun i j : ConnectedSetContractionVertex H =>
       Disjoint (connectedSetContractionBlock H i)
@@ -61,6 +67,9 @@ theorem connectedSetContractionBlock_disjoint (H : Set V) :
           apply hij
           exact congrArg some (Subtype.ext (hzx.symm.trans hzy))
 
+/--
+@isnad1 id=ex.0h3v.s4.c1202a58ace2 from=translated src=- shape=c96b7329 vocab=ee0be404
+-/
 theorem connectedSetContractionBlock_cover (H : Set V) (x : V) :
     ∃ i : ConnectedSetContractionVertex H,
       x ∈ connectedSetContractionBlock H i := by
@@ -83,12 +92,18 @@ def connectedSetContractionGraph
     SimpleGraph (ConnectedSetContractionVertex H) :=
   (connectedSetContractionPartition G H hconn).touchingQuotient
 
+/--
+@isnad1 id=isminor.1h3v.s4.d8228d61161f from=translated src=- shape=30ae76ab vocab=e1cf3dbe
+-/
 theorem connectedSetContraction_isMinor
     (G : SimpleGraph V) (H : Set V)
     (hconn : (G.induce H).Connected) :
     IsMinor (connectedSetContractionGraph G H hconn) G :=
   (connectedSetContractionPartition G H hconn).isMinor
 
+/--
+@isnad1 id=iff.1h4v.s6.5cef8bef311a from=translated src=- shape=9855606e vocab=b025b5d5
+-/
 theorem connectedSetContraction_adj_none_some
     (G : SimpleGraph V) (H : Set V)
     (hconn : (G.induce H).Connected)
@@ -99,6 +114,9 @@ theorem connectedSetContraction_adj_none_some
     ConnectedPartition.touchingQuotient_adj_iff,
     connectedSetContractionBlock]
 
+/--
+@isnad1 id=iff.1h5v.s6.ff1651da83e7 from=translated src=- shape=f714cc7e vocab=bec10e51
+-/
 theorem connectedSetContraction_adj_some_some
     (G : SimpleGraph V) (H : Set V)
     (hconn : (G.induce H).Connected)
@@ -122,7 +140,9 @@ theorem connectedSetContraction_adj_some_some
       x.1, by simp [connectedSetContractionPartition, connectedSetContractionBlock],
       y.1, by simp [connectedSetContractionPartition, connectedSetContractionBlock], hxy⟩
 
-/-- Contracting a finite set removes all but one of its vertices.-/
+/-- Contracting a finite set removes all but one of its vertices.
+@isnad1 id=eq.0h2v.s6.f61e2139b79b from=translated src=- shape=c01b8d19 vocab=a867fda8
+-/
 theorem connectedSetContraction_card_add
     {V : Type u} [Fintype V] [DecidableEq V]
     (H : Finset V) :
@@ -140,6 +160,9 @@ theorem connectedSetContraction_card_add
   have hle : H.card ≤ Fintype.card V := Finset.card_le_univ H
   omega
 
+/--
+@isnad1 id=le.1h2v.s6.a1c9e624639a from=translated src=- shape=0ed16614 vocab=1c66d0e5
+-/
 theorem connectedSetContraction_card_le
     {V : Type u} [Fintype V] [DecidableEq V]
     (H : Finset V) (hH : H.Nonempty) :

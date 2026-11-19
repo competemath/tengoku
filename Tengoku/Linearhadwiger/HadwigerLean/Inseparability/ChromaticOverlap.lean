@@ -19,7 +19,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
 /-- Failure of chromatic separability forces two high-chromatic regions to
-have a large overlap.-/
+have a large overlap.
+@isnad1 id=le.4h6v.s7.a86b06ddf8d2 from=translated src=- shape=97599209 vocab=36b4021c
+-/
 theorem overlap_card_ge_of_chromatic_inseparable
     (A B : Finset V) (k m : ℕ)
     (hinsep : ¬ Bootstrap.ChromaticSeparable G m)

@@ -9,6 +9,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u v
 
+/--
+@isnad1 id=universa.1h6v.s5.adf4d1077074 from=translated src=- shape=cd4eed7b vocab=b8aa711b
+-/
 theorem UniversalAt.target_induce
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     {G : SimpleGraph V} {H : SimpleGraph W} {X : Finset V}

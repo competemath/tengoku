@@ -57,6 +57,9 @@ private theorem stageBlockSize_mul_sqrt_le
   dsimp [x, s] at hprod ⊢
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s4.2faaf3ae026f from=translated src=- shape=71fa8a4a vocab=28a0a413
+-/
 theorem stageBlockSize_le (t : ℕ) (ht : 3 ≤ t) :
     stageBlockSize t ≤ t := by
   let s := Real.sqrt (Real.log (t : ℝ))
@@ -68,6 +71,9 @@ theorem stageBlockSize_le (t : ℕ) (ht : 3 ≤ t) :
   apply (div_le_iff₀ hspos).2
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s5.49e3e118cb87 from=translated src=- shape=7adda989 vocab=31c2c0be
+-/
 theorem stageCount_sub_one_mul_block_le
     (t : ℕ) (ht : 3 ≤ t) :
     (stageCount t - 1) * stageBlockSize t ≤ 2 * t := by
@@ -98,6 +104,9 @@ theorem stageCount_sub_one_mul_block_le
     nlinarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=le.2h2v.s5.b6a808b886e0 from=translated src=- shape=9b127fd5 vocab=47466896
+-/
 theorem stageIndex_mul_block_le
     (t p : ℕ) (ht : 3 ≤ t) (hp : p < stageCount t) :
     p * stageBlockSize t ≤ 2 * t := by
@@ -113,6 +122,9 @@ private theorem log_two_le_two_thirds_log
     Real.log_le_log (by norm_num) (by exact_mod_cast ht)
   nlinarith [Real.log_two_lt_d9, Real.log_three_gt_d9]
 
+/--
+@isnad1 id=le.1h1v.s6.4117bbbd32ea from=translated src=- shape=1777afc6 vocab=90f82aac
+-/
 theorem stageBlockSize_root_log_bound
     (t : ℕ) (ht : 3 ≤ t) :
     (((2 * stageBlockSize t : ℕ) : ℝ) *
@@ -166,6 +178,9 @@ theorem stageBlockSize_root_log_bound
   push_cast at hprod ⊢
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.6a98f529e5b1 from=translated src=- shape=a8dc2df9 vocab=b0cf6ecd
+-/
 theorem stageCount_pos (t : ℕ) (ht : 3 ≤ t) :
     0 < stageCount t := by
   have hs := (sqrt_log_bounds t ht).1
@@ -176,6 +191,9 @@ theorem stageCount_pos (t : ℕ) (ht : 3 ≤ t) :
   have hreal : (0 : ℝ) < stageCount t := by linarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=le.1h1v.s4.9f766484dcd5 from=translated src=- shape=0eaed498 vocab=db1efd18
+-/
 theorem stageCount_mul_block_ge (t : ℕ) (ht : 3 ≤ t) :
     t ≤ stageCount t * stageBlockSize t := by
   let s := Real.sqrt (Real.log (t : ℝ))
@@ -200,6 +218,9 @@ theorem stageCount_mul_block_ge (t : ℕ) (ht : 3 ≤ t) :
     nlinarith
   exact_mod_cast hreal
 
+/--
+@isnad1 id=le.1h1v.s5.44dbc69202ad from=translated src=- shape=a423bdb2 vocab=409a0179
+-/
 theorem stageCount_le_two_sqrt_log
     (t : ℕ) (ht : 3 ≤ t) :
     (stageCount t : ℝ) ≤
@@ -213,6 +234,9 @@ theorem stageCount_le_two_sqrt_log
         (Real.sqrt_nonneg (Real.log (t : ℝ))))
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.7d338d60286d from=translated src=- shape=2483c521 vocab=db1efd18
+-/
 theorem stageCount_mul_block_le_three
     (t : ℕ) (ht : 3 ≤ t) :
     stageCount t * stageBlockSize t ≤ 3 * t := by
@@ -228,6 +252,9 @@ theorem stageCount_mul_block_le_three
         (stageBlockSize_le t ht)
     _ = 3 * t := by omega
 
+/--
+@isnad1 id=le.1h1v.s5.0ebb4ba44b4f from=translated src=- shape=169da95b vocab=6296956d
+-/
 theorem stageCount_le_two_log
     (t : ℕ) (ht : 3 ≤ t) :
     (stageCount t : ℝ) ≤
@@ -239,6 +266,9 @@ theorem stageCount_le_two_log
   have hr := stageCount_le_two_sqrt_log t ht
   nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s4.759ae68a48a1 from=translated src=- shape=a8dc2df9 vocab=90263285
+-/
 theorem stageBlockSize_pos (t : ℕ) (ht : 3 ≤ t) :
     0 < stageBlockSize t := by
   let s := Real.sqrt (Real.log (t : ℝ))

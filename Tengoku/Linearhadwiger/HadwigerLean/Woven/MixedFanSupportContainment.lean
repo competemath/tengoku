@@ -20,6 +20,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V} {Z H : Finset V} {a : ℕ}
   {P : IndexedPairs (Fin a × Fin 2) V}
 
+/--
+@isnad1 id=le.1h11v.s7.fe0777d152d3 from=translated src=- shape=37bdd282 vocab=cbc57fc7
+-/
 theorem mixedSupportGraph_path_subset_used
     (F : DoubleFan G Z H) (L : IndexedLinkage G P)
     {s t : V} (p : (mixedSupportGraph F L).Path s t)

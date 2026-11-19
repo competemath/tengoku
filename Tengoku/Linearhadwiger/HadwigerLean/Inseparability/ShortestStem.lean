@@ -17,7 +17,9 @@ namespace Inseparability
 variable {V : Type*} [DecidableEq V] {G : SimpleGraph V}
 
 /-- A shortest vertex-to-set path with the exact cross-edge property needed
-for the cheap-tree construction.-/
+for the cheap-tree construction.
+@isnad1 id=ex.2h4v.s7.db29eba5040c from=translated src=- shape=af91e66c vocab=0f0ca8f0
+-/
 theorem exists_shortest_stem_to_set
     (hconn : G.Connected) (Q : Finset V) (hQ : Q.Nonempty)
     (v : V) :

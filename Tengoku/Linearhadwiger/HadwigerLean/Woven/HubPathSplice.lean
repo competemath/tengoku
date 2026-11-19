@@ -41,7 +41,9 @@ private theorem slot_ne_of_pair_ne (slot : Fin m × Fin 2 ≃ ι)
   exact hkl (congrArg Prod.fst (slot.injective h))
 
 /-- An incoming path is disjoint from a hub route to which its arrival
-was not assigned.-/
+was not assigned.
+@isnad1 id=disjoint.6h11v.s8.67163244e8d2 from=translated src=- shape=16499a37 vocab=a09704e1
+-/
 theorem incoming_disjoint_hub_route
     (N : IndexedLinkage G P)
     (slot : Fin m × Fin 2 ≃ ι)
@@ -71,7 +73,9 @@ theorem incoming_disjoint_hub_route
     exact hi1 hi
 
 /-- Different matched pairs use disjoint total support, including their
-incoming paths and hub routes.-/
+incoming paths and hub routes.
+@isnad1 id=disjoint.5h11v.s8.60aca1105467 from=translated src=- shape=d5684d3d vocab=0d1d6201
+-/
 theorem hubSplicedSupport_disjoint
     (N : IndexedLinkage G P)
     (slot : Fin m × Fin 2 ≃ ι)

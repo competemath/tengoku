@@ -19,6 +19,9 @@ noncomputable def emptyConnectedBlockFamily (G : SimpleGraph V) :
   connected := by intro B hB; simp at hB
   disjoint := by intro B hB; simp at hB
 
+/--
+@isnad1 id=eq.0h2v.s4.44233284c37f from=translated src=- shape=84f398f8 vocab=fa225a96
+-/
 theorem emptyConnectedBlockFamily_covered (G : SimpleGraph V) :
     (emptyConnectedBlockFamily G).covered = ∅ := by
   simp [emptyConnectedBlockFamily, ConnectedBlockFamily.covered]
@@ -60,6 +63,9 @@ noncomputable def emptyConnectedBlockFamilyIso (G : SimpleGraph V) :
         x, by simp [ConnectedBlockFamily.partition, ConnectedBlockFamily.block],
         y, by simp [ConnectedBlockFamily.partition, ConnectedBlockFamily.block], hxy⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.f655c7cca30e from=translated src=- shape=c41cd567 vocab=0f12519f
+-/
 theorem emptyConnectedBlockFamily_edgeCount
     [Fintype V] (G : SimpleGraph V) :
     edgeCount (emptyConnectedBlockFamily G).quotient = edgeCount G :=

@@ -19,7 +19,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- A set is connected when every vertex can be joined to a center by a path
-of length at most two staying inside the set.-/
+of length at most two staying inside the set.
+@isnad1 id=connecte.2h4v.s6.ca2824cb7f95 from=translated src=- shape=b9381585 vocab=971f2208
+-/
 theorem connected_induce_of_center_two_hop
     (G : SimpleGraph V) (B : Finset V) (a : V) (ha : a ∈ B)
     (hreach : ∀ v ∈ B, v = a ∨ G.Adj a v ∨
@@ -41,7 +43,9 @@ theorem connected_induce_of_center_two_hop
   exact (hcenter x).symm.trans (hcenter y)
 
 /-- Uniformly large candidate sets admit globally distinct representatives.
-This is the connector-choice step in the near-complete minor construction.-/
+This is the connector-choice step in the near-complete minor construction.
+@isnad1 id=ex.1h3v.s6.885ad450354f from=translated src=- shape=2a7b3e6b vocab=8bb50bcf
+-/
 theorem exists_injective_choice_of_large_candidates
     {D : Type*} [Fintype D] [DecidableEq D]
     (T : D → Finset V)
@@ -78,7 +82,9 @@ def nearCompleteBranch (r : ℕ) (X Y : Fin r → Finset V)
       (fun d => f ⟨i, d⟩)
 
 /-- Disjoint core blocks and distinct outside connectors make clique-minor
-branches whenever each first block meets every other second block.-/
+branches whenever each first block meets every other second block.
+@isnad1 id=hascliqu.7h8v.s8.c96cb2a1df81 from=translated src=- shape=560e864e vocab=eb6afce0
+-/
 theorem hasCliqueMinor_of_blocks_and_connectors
     (G : SimpleGraph V) (r : ℕ) (Z : Finset V)
     (X Y : Fin r → Finset V) (a : Fin r → V)
@@ -156,7 +162,9 @@ theorem hasCliqueMinor_of_blocks_and_connectors
   exact ⟨M⟩
 
 /-- A plentiful common-neighbor pool supplies the distinct connectors
-needed by the near-complete block minor construction.-/
+needed by the near-complete block minor construction.
+@isnad1 id=hascliqu.5h7v.s9.9465b1ebb6ae from=translated src=- shape=fe27e3f2 vocab=839c0189
+-/
 theorem hasCliqueMinor_of_blocks_common_neighbors
     (G : SimpleGraph V) [DecidableRel G.Adj] (r : ℕ) (Z : Finset V)
     (X Y : Fin r → Finset V) (a : Fin r → V)
@@ -194,7 +202,9 @@ noncomputable def lowMissingDegreeVertices (G : SimpleGraph V) [DecidableRel G.A
     Fintype.card V * (Gᶜ).degree v ≤ 4 * edgeCount Gᶜ)
 
 /-- At least half the vertices have complement degree at most twice the
-average. This is the reservoir-size step of Appendix C.-/
+average. This is the reservoir-size step of Appendix C.
+@isnad1 id=le.0h2v.s5.2dd796d4115b from=translated src=- shape=79a0a196 vocab=e1a8940a
+-/
 theorem two_mul_card_lowMissingDegreeVertices_ge_order
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     Fintype.card V ≤ 2 * (lowMissingDegreeVertices G).card := by
@@ -249,7 +259,9 @@ theorem two_mul_card_lowMissingDegreeVertices_ge_order
     omega
 
 /-- If both endpoints lie in `Z`, the complement neighborhoods account for
-all outside vertices that fail to be their common neighbors.-/
+all outside vertices that fail to be their common neighbors.
+@isnad1 id=le.2h5v.s7.a877c5ff50a2 from=translated src=- shape=a7948b5e vocab=eca56cf1
+-/
 theorem order_le_common_outside_add_missing_degrees
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (a v : V) (ha : a ∈ Z) (hv : v ∈ Z) :
@@ -300,7 +312,9 @@ theorem order_le_common_outside_add_missing_degrees
   dsimp [J] at hcardU
   omega
 
-/-- Select a one-third-sized reservoir of low complement-degree vertices.-/
+/-- Select a one-third-sized reservoir of low complement-degree vertices.
+@isnad1 id=ex.0h2v.s7.4e2321ab9444 from=translated src=- shape=3b3a0ef7 vocab=a2572ed0
+-/
 theorem exists_low_missing_degree_reservoir
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∃ Z : Finset V,
@@ -317,7 +331,9 @@ theorem exists_low_missing_degree_reservoir
   exact (Finset.mem_filter.mp (hZ hv)).2
 
 /-- Under one-percent missing-edge density, any two vertices of the
-one-third reservoir have more than `|Z|` common neighbors outside it.-/
+one-third reservoir have more than `|Z|` common neighbors outside it.
+@isnad1 id=lt.6h5v.s8.eeb7a18437fe from=translated src=- shape=223fac4b vocab=26872d12
+-/
 theorem card_common_neighbors_outside_gt_reservoir
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Z : Finset V) (a v : V)
@@ -349,7 +365,9 @@ theorem card_common_neighbors_outside_gt_reservoir
 
 /-- The deterministic conclusion of the near-complete auxiliary lemma:
 once the random block selection supplies cross edges, the reservoir and
-connector estimates produce the clique minor.-/
+connector estimates produce the clique minor.
+@isnad1 id=hascliqu.9h7v.s8.c7cc25415113 from=translated src=- shape=3cc81fce vocab=5e0fd2f0
+-/
 theorem hasCliqueMinor_of_dense_blocks
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (r : ℕ) (Z : Finset V) (X Y : Fin r → Finset V)
@@ -381,7 +399,9 @@ theorem hasCliqueMinor_of_dense_blocks
   · exact hcross
 
 /-- The auxiliary lemma's power condition already implies at most one
-percent of pairs are missing.-/
+percent of pairs are missing.
+@isnad1 id=le.4h3v.s7.c6bec2fa246a from=translated src=- shape=675ceb58 vocab=a715f2ec
+-/
 theorem one_percent_of_near_complete_power_bound
     (t ℓ : ℕ) (ht : 1 ≤ t) (hℓ : 1 ≤ ℓ)
     (q : ℝ) (hq : 0 ≤ q)
@@ -396,7 +416,9 @@ theorem one_percent_of_near_complete_power_bound
   nlinarith
 
 /-- Convert the one-percent statement to the integer inequality used by
-the common-neighbor count.-/
+the common-neighbor count.
+@isnad1 id=le.2h2v.s7.61044053f494 from=translated src=- shape=84070169 vocab=20c14f63
+-/
 theorem missing_edge_count_bound_of_fraction_one_percent
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (hn : 2 ≤ Fintype.card V)
@@ -425,7 +447,9 @@ theorem missing_edge_count_bound_of_fraction_one_percent
   omega
 
 /-- A hypergeometric upper bound obtained from falling-factorial bounds on
-binomial coefficients.-/
+binomial coefficients.
+@isnad1 id=le.1h3v.s6.9542f5e17ead from=translated src=- shape=505724ac vocab=7419e6b8
+-/
 theorem choose_ratio_le_power
     (c m k : ℕ) (hkm : k ≤ m) :
     (Nat.choose c k : ℝ) / (Nat.choose m k : ℝ) ≤
@@ -459,7 +483,9 @@ theorem choose_ratio_le_power
   exact (div_le_div_iff₀ hchoose (pow_pos hden k)).mpr hcross
 
 /-- A uniform fixed-size subset lies inside a prescribed exceptional set
-with probability at most the corresponding power ratio.-/
+with probability at most the corresponding power ratio.
+@isnad1 id=le.2h4v.s7.598db496dac8 from=translated src=- shape=5bc17170 vocab=7396bf6e
+-/
 theorem card_powersetCard_contained_ratio_le_power
     (U C : Finset V) (k : ℕ) (hC : C ⊆ U) (hk : k ≤ U.card) :
     (((U.powersetCard k).filter (fun X => X ⊆ C)).card : ℝ) /

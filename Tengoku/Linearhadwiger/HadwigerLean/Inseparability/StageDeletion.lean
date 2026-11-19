@@ -18,6 +18,9 @@ namespace Inseparability
 variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
+/--
+@isnad1 id=vertexco.3h6v.s6.69f71101b03a from=translated src=- shape=f0b31600 vocab=a2e38803
+-/
 theorem vertexConnected_induce_sdiff
     (A D : Finset V) (k ℓ : ℕ)
     (hconn : VertexConnected (G.induce (A : Set V)) k)
@@ -61,6 +64,9 @@ theorem vertexConnected_induce_sdiff
       exact hconnE
     exact (deletionIso G R U).connected_iff.mpr hconnR
 
+/--
+@isnad1 id=le.1h4v.s6.7b7197cf7b8e from=translated src=- shape=4a703eaf vocab=12404429
+-/
 theorem chromatic_induce_le_sdiff_add_card
     (G : SimpleGraph V) (A D : Finset V) (hDA : D ⊆ A) :
     chromatic (G.induce (A : Set V)) ≤
@@ -77,7 +83,9 @@ theorem chromatic_induce_le_sdiff_add_card
   omega
 
 /-- The chromatic and connectivity budgets available after deleting a set
-from the stage region.-/
+from the stage region.
+@isnad1 id=and.2h9v.s7.97b424946a68 from=translated src=- shape=4e69add7 vocab=6735baca
+-/
 theorem StageState.after_delete
     {s k m coreBound : ℕ}
     (S : StageState G s k m coreBound)

@@ -11,7 +11,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- If the sampling edge budget exceeds the worst allowed sample order,
-then a sampled induced graph contains the target minor.-/
+then a sampled induced graph contains the target minor.
+@isnad1 id=ex.6h6v.s7.20b19245667f from=translated src=- shape=65e1b17e vocab=7df5842f
+-/
 theorem exists_induced_minor_of_sampling_budget
     {W : Type v} [Fintype W] (H : SimpleGraph W)
     (c : ℝ) (hc : 0 ≤ c) (hforces : DensityForcesMinor.{u,v} H c)

@@ -16,7 +16,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- A maximal admissible family has no additional uncovered connected
-`h`-block whose quotient contraction loss is at most `p(h-1)`.-/
+`h`-block whose quotient contraction loss is at most `p(h-1)`.
+@isnad1 id=false.6h6v.s8.f4f4dcb8e084 from=translated src=- shape=4a6e2ad4 vocab=baf0816e
+-/
 theorem no_lowLoss_block_of_maximal_family
     (G : SimpleGraph V) (h p : ℕ)
     (F : ConnectedBlockFamily G) [DecidableRel F.quotient.Adj]
@@ -66,7 +68,9 @@ theorem no_lowLoss_block_of_maximal_family
   rw [hm] at hbound
   omega
 
-/-- Every admissible local set in the uncovered quotient is shorter than h.-/
+/-- Every admissible local set in the uncovered quotient is shorter than h.
+@isnad1 id=lt.4h7v.s8.af35f8fc977a from=translated src=- shape=0d427d24 vocab=97703f10
+-/
 theorem lowLossConnectedSet_card_lt_of_maximal_family
     (G : SimpleGraph V) (h p : ℕ)
     (F : ConnectedBlockFamily G) [DecidableRel F.quotient.Adj]

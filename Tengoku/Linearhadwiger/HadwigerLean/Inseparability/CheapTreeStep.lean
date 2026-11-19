@@ -21,7 +21,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
 /-- Extend a connected two-color-off-marks piece to contain one new terminal
-outside it, adding at most three marked vertices.-/
+outside it, adding at most three marked vertices.
+@isnad1 id=ex.5h5v.s8.fd3d027307fd from=translated src=- shape=e3d43859 vocab=8ba096a2
+-/
 theorem cheap_tree_add_outside
     (hconn : G.Connected)
     (Q₀ T₀ : Finset V) (v : V)

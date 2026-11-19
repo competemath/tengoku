@@ -11,7 +11,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- The edge-per-vertex density is at least half the vertex-connectivity
-parameter, by minimum degree and handshaking.-/
+parameter, by minimum degree and handshaking.
+@isnad1 id=le.1h3v.s5.0c5151156c42 from=translated src=- shape=88f2d43a vocab=9b9031df
+-/
 theorem half_connectivity_le_edgeDensity
     {V : Type u} [Fintype V] (G : SimpleGraph V) (k : ℕ)
     (hconn : VertexConnected G k) :

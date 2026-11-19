@@ -10,6 +10,9 @@ namespace HadwigerLean.Inseparability
 
 open HadwigerLean.RootedDensity
 
+/--
+@isnad1 id=le.3h3v.s7.5a89858f34d4 from=translated src=- shape=694c7b8c vocab=2dd59577
+-/
 theorem cliqueMatchingScale_stage_le_nine
     (t p x : ℕ)
     (hroot :
@@ -31,6 +34,9 @@ theorem cliqueMatchingScale_stage_le_nine
     push_cast at hpR ⊢
     nlinarith
 
+/--
+@isnad1 id=le.4h4v.s7.73a7eebb90dc from=translated src=- shape=8018c019 vocab=2dd59577
+-/
 theorem sharp_woven_stage_budget
     (t p x C : ℕ)
     (hroot :

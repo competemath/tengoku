@@ -32,7 +32,9 @@ def cliqueMatchingGraph (a : ℕ) :
 noncomputable def cliqueMatchingThreshold (a b : ℕ) : ℝ :=
   30 * (a : ℝ) * Real.sqrt (Real.log (a : ℝ)) + 2 * (b : ℝ)
 
-/-- The recursive target has exactly the expected number of labels.-/
+/-- The recursive target has exactly the expected number of labels.
+@isnad1 id=eq.0h2v.s5.59e2a3039f4b from=translated src=- shape=ec571f25 vocab=35cfbeb8
+-/
 theorem cliqueMatchingLabels_card (a b : ℕ) :
     Fintype.card (CliqueMatchingLabels a b) = a + 2 * b := by
   induction b with
@@ -45,14 +47,18 @@ theorem cliqueMatchingLabels_card (a b : ℕ) :
       simp
       omega
 
-/-- The base density threshold is nonnegative.-/
+/-- The base density threshold is nonnegative.
+@isnad1 id=le.0h2v.s4.70020e264561 from=translated src=- shape=5ffe46ab vocab=1d8d2e27
+-/
 theorem cliqueMatchingThreshold_nonneg (a b : ℕ) :
     0 ≤ cliqueMatchingThreshold a b := by
   unfold cliqueMatchingThreshold
   positivity
 
 /-- The target has at least three vertices outside the lone excluded case
-`(a,b)=(2,0)` of the uniform woven argument.-/
+`(a,b)=(2,0)` of the uniform woven argument.
+@isnad1 id=le.2h2v.s5.f29dc592323b from=translated src=- shape=776b2a41 vocab=e151868d
+-/
 theorem cliqueMatchingLabels_card_ge_three
     (a b : ℕ) (ha : 2 ≤ a) (hcase : 3 ≤ a ∨ 1 ≤ b) :
     3 ≤ Fintype.card (CliqueMatchingLabels a b) := by

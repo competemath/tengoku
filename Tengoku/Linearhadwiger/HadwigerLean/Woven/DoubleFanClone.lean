@@ -68,6 +68,9 @@ noncomputable def doubleCloneSources (Z : Finset V) :
   classical
   exact Finset.univ.image (fun slot : Z × Fin 2 => doubleClone Z slot.1 slot.2)
 
+/--
+@isnad1 id=eq.0h2v.s5.24f3aa02ab34 from=translated src=- shape=6f50bd73 vocab=ceb0a542
+-/
 theorem doubleCloneSources_card (Z : Finset V) :
     (doubleCloneSources Z).card = 2 * Z.card := by
   classical
@@ -78,6 +81,9 @@ theorem doubleCloneSources_card (Z : Finset V) :
   · intro x y h
     exact Sum.inr_injective h
 
+/--
+@isnad1 id=mem.0h4v.s6.8b850a20b553 from=translated src=- shape=57449162 vocab=e7019675
+-/
 @[simp] theorem doubleClone_mem_sources (Z : Finset V) (z : Z) (i : Fin 2) :
     doubleClone Z z i ∈ doubleCloneSources Z := by
   classical

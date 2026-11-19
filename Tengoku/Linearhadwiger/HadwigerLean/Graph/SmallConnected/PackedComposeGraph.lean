@@ -137,7 +137,9 @@ noncomputable def ConnectedBlockFamily.secondAddedIso
               fun hab => (h.mp hab.symm).symm⟩
         | some r => exact (secondAdded_adj_some_some F H hconn hdisj q r).symm
 /-- Exact edge loss when a new uncovered connected block is added to a
-simultaneous contraction family.-/
+simultaneous contraction family.
+@isnad1 id=eq.2h4v.s9.eb381c6cb86e from=translated src=- shape=ab61e196 vocab=13966c18
+-/
 theorem ConnectedBlockFamily.add_edgeCount_add_loss
     (H : Finset V) (hconn : (G.induce (H : Set V)).Connected)
     (hdisj : Disjoint H F.covered)

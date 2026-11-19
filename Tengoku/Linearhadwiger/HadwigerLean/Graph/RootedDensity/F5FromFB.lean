@@ -11,7 +11,9 @@ universe u
 
 /-- The common-neighbor estimates from F.b imply the uniform numerical
 bound needed for the closed-neighborhood minimum degree. The root-edge
-premise uses total common neighbors, so F.b's outside-root count implies it.-/
+premise uses total common neighbors, so F.b's outside-root count implies it.
+@isnad1 id=le.5h7v.s7.43c15eb0e0d6 from=translated src=- shape=7a69a446 vocab=7fa4cee6
+-/
 theorem commonNeighbors_ge_density_minus_roots_of_FB
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -44,7 +46,9 @@ theorem commonNeighbors_ge_density_minus_roots_of_FB
     linarith
 
 /-- F.b's edge estimates plus one neighbor of the center imply F.5 for
-the induced closed neighborhood.-/
+the induced closed neighborhood.
+@isnad1 id=other.6h6v.s9.a5af5884581d from=translated src=- shape=a6f9fbc7 vocab=eb3380b5
+-/
 theorem closedNeighborhood_F5_of_FB
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

@@ -12,7 +12,9 @@ namespace HadwigerLean
 universe u
 
 /-- The degree-sum estimate used for `Z` in Equation (8.5), with `N`
-allowed to be the order of the graph before contraction.-/
+allowed to be the order of the graph before contraction.
+@isnad1 id=le.4h6v.s7.9a3a894eb0d6 from=translated src=- shape=082da41c vocab=8891b79a
+-/
 theorem high_degree_card_bound
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

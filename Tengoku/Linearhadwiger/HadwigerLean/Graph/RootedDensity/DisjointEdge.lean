@@ -13,7 +13,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- A minor outside the ends of an edge extends to a minor of its disjoint
-sum with `K₂`.-/
+sum with `K₂`.
+@isnad1 id=nonempty.1h7v.s6.954265c0b99d from=translated src=- shape=0749ebed vocab=d0a78ea2
+-/
 theorem minor_sum_edge_of_induced_minor
     {W : Type u} {V : Type v} (H : SimpleGraph W) (G : SimpleGraph V)
     {s t : V} (hst : G.Adj s t)
@@ -71,7 +73,9 @@ theorem minor_sum_edge_of_induced_minor
       fin_cases i <;> fin_cases j <;> simp_all [p, hst.symm]
 
 /-- Deleting the ends of an edge loses fewer than twice the order in edge
-count. A density budget of `c + 2` therefore leaves density at least `c`.-/
+count. A density budget of `c + 2` therefore leaves density at least `c`.
+@isnad1 id=le.3h5v.s7.12a7ea967d93 from=translated src=- shape=54cf1570 vocab=4f89fd32
+-/
 theorem dense_after_delete_edge_endpoints
     {V : Type v} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
     {s t : V} (hst : G.Adj s t) (c : ℝ) (hc : 0 ≤ c)
@@ -113,7 +117,9 @@ theorem dense_after_delete_edge_endpoints
   nlinarith
 
 /-- Adding a disjoint `K₂` to a fixed target raises its universal unrooted
-edge-density threshold by at most two.-/
+edge-density threshold by at most two.
+@isnad1 id=densityf.2h3v.s6.a78a5142b1b7 from=translated src=- shape=4a9e0dc4 vocab=045cc727
+-/
 theorem densityForcesMinor_sum_edge
     {W : Type u} [Fintype W] (H : SimpleGraph W) (c : ℝ) (hc : 0 ≤ c)
     (hforce : DensityForcesMinor.{v,u} H c) :

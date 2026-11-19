@@ -16,6 +16,9 @@ namespace HadwigerLean.Woven
 
 universe u v
 
+/--
+@isnad1 id=le.1h10v.s6.912532b9efdf from=translated src=- shape=788e08c4 vocab=2382672d
+-/
 theorem rooted_model_path_intersection_subset_root
     {I : Type u} {K : Type v} {V : Type*}
     {G : SimpleGraph V} {root : I → V}
@@ -43,6 +46,9 @@ theorem rooted_model_path_intersection_subset_root
     exact hj.symm
   simpa [hvEq]
 
+/--
+@isnad1 id=disjoint.3h11v.s7.edc3c6fb5f88 from=translated src=- shape=955c7dc0 vocab=59098536
+-/
 theorem rooted_model_path_disjoint_of_other_index
     {I : Type u} {K : Type v} {V : Type*}
     {G : SimpleGraph V} {root : I → V}
@@ -66,7 +72,9 @@ theorem rooted_model_path_disjoint_of_other_index
     (hvRoot ▸ hvP) hrootPath
 
 /-- The single-branch version avoids defining an assignment for all
-roots when only one branch is being attached.-/
+roots when only one branch is being attached.
+@isnad1 id=disjoint.3h11v.s7.0e259e4b4044 from=translated src=- shape=09cc96be vocab=59098536
+-/
 theorem rooted_model_path_disjoint_of_other_index_single
     {I : Type u} {K : Type v} {V : Type*}
     {G : SimpleGraph V} {root : I → V}

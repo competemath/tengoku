@@ -39,6 +39,9 @@ def ciChildModelReindex {V : Type u} {G : SimpleGraph V}
     intro z
     simpa [ciChildRootFin] using M.root_mem (finProdFinEquiv z)
 
+/--
+@isnad1 id=eq.0h5v.s7.039a5314c799 from=translated src=- shape=0cfec7a8 vocab=1e9260b8
+-/
 theorem ciChildModelReindex_vertices {V : Type u} {G : SimpleGraph V}
     (x : ℕ) (childRoot : Fin 2 × Fin x → V)
     (M : RootedMinorModel
@@ -60,6 +63,9 @@ theorem ciChildModelReindex_vertices {V : Type u} {G : SimpleGraph V}
         rw [Equiv.apply_symm_apply]
         exact hn⟩
 
+/--
+@isnad1 id=eq.1h8v.s7.8623117d24a3 from=translated src=- shape=29237448 vocab=cbc2a1a1
+-/
 theorem ciChildModelReindex_exact {V : Type u} {G : SimpleGraph V}
     {K : Type*} {P : IndexedPairs K V} (L : IndexedLinkage G P)
     (x : ℕ) (childRoot : Fin 2 × Fin x → V)

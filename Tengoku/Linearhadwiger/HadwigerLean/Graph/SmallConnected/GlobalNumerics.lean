@@ -8,6 +8,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean
 
+/--
+@isnad1 id=lt.12h10v.s8.0acef22f7d0c from=translated src=- shape=86e5e798 vocab=e9f5dc2a
+-/
 theorem global_trimming_surplus_numerical
     (s q N t k L eS eT eCross eTotal : ℝ)
     (hs : 0 ≤ s) (hsN : s ≤ N) (hq : 0 ≤ q)

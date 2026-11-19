@@ -13,6 +13,9 @@ def reassignedPieces {A : Type u} {I : Type v} {V : Type w}
     (piece : A → Set V) (recipient : A → I) (i : I) : Set V :=
   ⋃ a : A, ⋃ (_ : recipient a = i), piece a
 
+/--
+@isnad1 id=iff.0h7v.s5.e165bd8d6a7a from=translated src=- shape=8d94dbcd vocab=b17de0d9
+-/
 theorem mem_reassignedPieces_iff
     {A : Type u} {I : Type v} {V : Type w}
     (piece : A → Set V) (recipient : A → I) (i : I) (v : V) :
@@ -21,7 +24,9 @@ theorem mem_reassignedPieces_iff
   simp [reassignedPieces]
 
 /-- If the original pieces are pairwise disjoint, different recipients
-receive disjoint unions even when several pieces share one recipient.-/
+receive disjoint unions even when several pieces share one recipient.
+@isnad1 id=pairwise.1h5v.s6.ff38539a4535 from=translated src=- shape=cff799d1 vocab=01ac4a78
+-/
 theorem reassignedPieces_pairwise_disjoint
     {A : Type u} {I : Type v} {V : Type w}
     (piece : A → Set V) (recipient : A → I)
@@ -42,7 +47,9 @@ theorem reassignedPieces_pairwise_disjoint
   · exact (Set.disjoint_left.mp (hdis hab)) hva hvb
 
 /-- Disjointness between pieces assigned to different recipients suffices;
-pieces assigned to the same branch may overlap at their common roots.-/
+pieces assigned to the same branch may overlap at their common roots.
+@isnad1 id=pairwise.1h5v.s6.37c5e336875c from=translated src=- shape=0dc06c7b vocab=01ac4a78
+-/
 theorem reassignedPieces_pairwise_disjoint_of_cross
     {A : Type u} {I : Type v} {V : Type w}
     (piece : A → Set V) (recipient : A → I)

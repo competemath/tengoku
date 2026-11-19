@@ -109,7 +109,9 @@ noncomputable def twoNeighborContractionMinorModel
           u₂, Or.inr ⟨hyu, Or.inr rfl⟩, hux.symm⟩
   }
 
-/-- The two-neighbor path contraction is a minor of the original graph.-/
+/-- The two-neighbor path contraction is a minor of the original graph.
+@isnad1 id=isminor.2h5v.s5.6fa2735e04d8 from=translated src=- shape=0e5656dd vocab=5a1beb2c
+-/
 theorem twoNeighborContraction_isMinor
     (G : SimpleGraph V) (v u₁ u₂ : V)
     (h₁ : G.Adj v u₁) (h₂ : G.Adj v u₂) :
@@ -117,7 +119,9 @@ theorem twoNeighborContraction_isMinor
   ⟨twoNeighborContractionMinorModel G v u₁ u₂ h₁ h₂⟩
 
 /-- Contracting a path with both endpoints in the right class preserves the
-bipartition on the surviving vertices.-/
+bipartition on the surviving vertices.
+@isnad1 id=isbipart.3h7v.s7.06f7db93db12 from=translated src=- shape=9a3925e1 vocab=f985b096
+-/
 theorem twoNeighborContraction_isBipartiteWith
     (G : SimpleGraph V) (A B : Finset V)
     (hG : G.IsBipartiteWith (A : Set V) (B : Set V))
@@ -147,7 +151,9 @@ def replaceFinset (S : Finset V) (u₁ u₂ : V) : Finset V :=
   S.erase u₂ ∪ if u₂ ∈ S then {u₁} else ∅
 
 /-- A replacement reduces cardinality exactly when both vertices were
-already present in the original set.-/
+already present in the original set.
+@isnad1 id=eq.1h4v.s6.04aebdb831d7 from=translated src=- shape=0aa6b5bb vocab=96416ef2
+-/
 theorem replaceFinset_card_add_common
     (S : Finset V) (u₁ u₂ : V) (hneq : u₁ ≠ u₂) :
     (replaceFinset S u₁ u₂).card +
@@ -166,7 +172,9 @@ theorem replaceFinset_card_add_common
   · simp [replaceFinset, h₂]
 
 /-- On the left side, the contracted neighborhood is obtained by replacing
-`u₂` with `u₁` in the original neighborhood.-/
+`u₂` with `u₁` in the original neighborhood.
+@isnad1 id=eq.5h8v.s8.4db9ffda0891 from=translated src=- shape=37c48476 vocab=09a28b2c
+-/
 theorem twoNeighborContraction_neighborFinset_left
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V)
@@ -240,7 +248,9 @@ theorem twoNeighborContraction_neighborFinset_left
         ⟨hyw, Or.inr (Or.inr ⟨rfl, hadj⟩)⟩
 
 /-- Every left-side degree loses one precisely at common neighbors of the
-two contracted right-side endpoints.-/
+two contracted right-side endpoints.
+@isnad1 id=eq.5h8v.s8.a15ce21be818 from=translated src=- shape=16d2b727 vocab=a7c2a604
+-/
 theorem twoNeighborContraction_degree_left_add_common
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V)
@@ -263,7 +273,9 @@ theorem twoNeighborContraction_degree_left_add_common
   simpa only [G.mem_neighborFinset] using
     replaceFinset_card_add_common (G.neighborFinset y.1) u₁ u₂ hneq
 
-/-- Summation over the surviving left class agrees with deleting its center.-/
+/-- Summation over the surviving left class agrees with deleting its center.
+@isnad1 id=eq.2h6v.s7.7f92550fe386 from=translated src=- shape=2444e661 vocab=7d344b74
+-/
 theorem sum_twoNeighborContraction_left
     (A B : Finset V) (hAB : Disjoint A B)
     (v u₂ : V) (hu₂ : u₂ ∈ B)
@@ -289,7 +301,9 @@ theorem sum_twoNeighborContraction_left
     rfl
 
 /-- The two-edge path contraction loses the center's degree plus one edge
-at every other common neighbor of its endpoints.-/
+at every other common neighbor of its endpoints.
+@isnad1 id=eq.5h7v.s7.bd6796ca8252 from=translated src=- shape=0baf1852 vocab=a40009d4
+-/
 theorem twoNeighborContraction_edgeCount_add_loss
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V)
@@ -342,7 +356,9 @@ theorem twoNeighborContraction_edgeCount_add_loss
   omega
 
 /-- The common-neighbor loss can be expressed as the intersection of the
-two endpoint neighborhoods, with the center removed.-/
+two endpoint neighborhoods, with the center removed.
+@isnad1 id=eq.2h7v.s7.b6d8e17f91a0 from=translated src=- shape=66ae5be7 vocab=8d6ca5e1
+-/
 theorem common_left_filter_eq_neighbor_inter_erase
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V)
@@ -369,7 +385,9 @@ theorem common_left_filter_eq_neighbor_inter_erase
     exact Finset.mem_filter.mpr
       ⟨Finset.mem_erase.mpr ⟨hyneq, hyA⟩, hu₁y.symm, hu₂y.symm⟩
 
-/-- Exact edge loss in the form used in Appendix C.-/
+/-- Exact edge loss in the form used in Appendix C.
+@isnad1 id=eq.5h7v.s7.b75e3d651c7e from=translated src=- shape=3c6a24c8 vocab=917e3d54
+-/
 theorem twoNeighborContraction_edgeCount_add_degree_add_common
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B : Finset V)
@@ -386,7 +404,9 @@ theorem twoNeighborContraction_edgeCount_add_degree_add_common
   omega
 
 /-- Summation over the surviving right class agrees with deleting the
-second path endpoint.-/
+second path endpoint.
+@isnad1 id=eq.2h6v.s7.1b0f4a6476be from=translated src=- shape=f7c07be5 vocab=7d344b74
+-/
 theorem sum_twoNeighborContraction_right
     (A B : Finset V) (hAB : Disjoint A B)
     (v u₂ : V) (hv : v ∈ A)
@@ -411,7 +431,9 @@ theorem sum_twoNeighborContraction_right
   · intro y _
     rfl
 
-/-- The contraction deletes one vertex from each bipartition class.-/
+/-- The contraction deletes one vertex from each bipartition class.
+@isnad1 id=other.3h5v.s7.395b3715ef95 from=translated src=- shape=091961c8 vocab=2029f88b
+-/
 theorem twoNeighborContraction_class_card
     (A B : Finset V) (hAB : Disjoint A B)
     (v u₂ : V) (hv : v ∈ A) (hu₂ : u₂ ∈ B) :

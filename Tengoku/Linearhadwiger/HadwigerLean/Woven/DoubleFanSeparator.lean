@@ -23,6 +23,9 @@ noncomputable def doubleCloneOriginalCut (Z : Finset V)
   classical
   exact (Q.image (doubleCloneCollapse Z)) \ Z
 
+/--
+@isnad1 id=le.0h3v.s4.9fc86772bd4e from=translated src=- shape=8c74ddd6 vocab=5637fce7
+-/
 theorem doubleCloneOriginalCut_card_le
     (Z : Finset V) (Q : Finset (DoubleCloneVertex V Z)) :
     (doubleCloneOriginalCut Z Q).card ≤ Q.card := by
@@ -30,6 +33,9 @@ theorem doubleCloneOriginalCut_card_le
   unfold doubleCloneOriginalCut
   exact (Finset.card_le_card Finset.sdiff_subset).trans Finset.card_image_le
 
+/--
+@isnad1 id=iff.1h4v.s6.a6c6923cfb73 from=translated src=- shape=74891118 vocab=6f6c5227
+-/
 theorem doubleCloneTarget_mem_cut_iff
     (Z : Finset V) (Q : Finset (DoubleCloneVertex V Z))
     (v : V) (hv : v ∉ Z) :
@@ -65,6 +71,9 @@ noncomputable def doubleCloneTargets (Z H : Finset V)
     doubleCloneTarget Z v.1
       (fun hv => (Finset.disjoint_left.mp hdis) hv v.2))
 
+/--
+@isnad1 id=eq.1h3v.s5.a051219c57bf from=translated src=- shape=25195c49 vocab=a2ddd0e9
+-/
 theorem doubleCloneTargets_card
     (Z H : Finset V) (hdis : Disjoint Z H) :
     (doubleCloneTargets Z H hdis).card = H.card := by
@@ -77,6 +86,9 @@ theorem doubleCloneTargets_card
     have hc := congrArg (doubleCloneCollapse Z) h
     simpa [doubleCloneTarget, doubleCloneCollapse] using hc
 
+/--
+@isnad1 id=mem.1h4v.s6.70e75285cb3a from=translated src=- shape=1d1fe25c vocab=d328cbfc
+-/
 @[simp] theorem doubleCloneTarget_mem_targets
     (Z H : Finset V) (hdis : Disjoint Z H)
     (h : H) :
@@ -88,7 +100,9 @@ theorem doubleCloneTargets_card
   exact Finset.mem_image.mpr ⟨h, Finset.mem_univ _, rfl⟩
 
 /-- The lifted copy of the deleted original graph avoids the clone
-separator when its chosen source clone survives.-/
+separator when its chosen source clone survives.
+@isnad1 id=not.3h7v.s7.b9a2972fde5b from=translated src=- shape=35ce6db7 vocab=90d299ff
+-/
 theorem doubleCloneLiftVertex_not_mem_cut
     (Z : Finset V) (Q : Finset (DoubleCloneVertex V Z))
     (D : Finset V) (z : Z) (i : Fin 2)
@@ -113,7 +127,9 @@ theorem doubleCloneLiftVertex_not_mem_cut
     exact v.2 (hcut hq)
 
 /-- Connectedness after deleting the original cut and all other
-sources supplies a clone-to-target path avoiding the clone cut.-/
+sources supplies a clone-to-target path avoiding the clone cut.
+@isnad1 id=ex.7h8v.s8.3aecf84731c6 from=translated src=- shape=a1e42a21 vocab=373e176b
+-/
 theorem doubleClone_path_avoiding_cut
     (G : SimpleGraph V) (Z : Finset V)
     (Q : Finset (DoubleCloneVertex V Z))
@@ -161,7 +177,9 @@ theorem doubleClone_path_avoiding_cut
     hclone hZ hcut v
 
 /-- The connectivity slack rules out every clone-to-hub separator
-smaller than the full set of source clones.-/
+smaller than the full set of source clones.
+@isnad1 id=le.5h6v.s6.8be01a714b85 from=translated src=- shape=5dedac8d vocab=248e34f1
+-/
 theorem doubleClone_separator_card_ge
     (G : SimpleGraph V) (Z H : Finset V) (r : ℕ)
     (hconn : VertexConnected G r)

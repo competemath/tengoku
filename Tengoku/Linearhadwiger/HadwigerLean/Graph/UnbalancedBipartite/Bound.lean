@@ -15,7 +15,9 @@ This file collects the quantitative ingredients and the final statement.
 
 namespace HadwigerLean
 
-/-- Every edge of a bipartite graph is counted once by a left-side degree.-/
+/-- Every edge of a bipartite graph is counted once by a left-side degree.
+@isnad1 id=eq.1h4v.s6.916d0290fa8e from=translated src=- shape=8da962f0 vocab=a7c3dd88
+-/
 theorem edgeCount_eq_sum_degrees_left
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -25,7 +27,9 @@ theorem edgeCount_eq_sum_degrees_left
     (G.isBipartiteWith_sum_degrees_eq_card_edges
       (s := A) (t := B) hG).symm
 
-/-- A bipartite graph has at most the complete bipartite edge count.-/
+/-- A bipartite graph has at most the complete bipartite edge count.
+@isnad1 id=le.1h4v.s5.f3c3195678dc from=translated src=- shape=238ec533 vocab=9f2e43a3
+-/
 theorem edgeCount_le_card_mul_card_bipartite
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -40,7 +44,9 @@ theorem edgeCount_le_card_mul_card_bipartite
     _ = A.card * B.card := by simp
 
 /-- Strictly sub-average degree occurs on the left whenever the total edge
-count lies below a proposed left-side degree threshold.-/
+count lies below a proposed left-side degree threshold.
+@isnad1 id=ex.3h5v.s6.2df913827879 from=translated src=- shape=b41070f1 vocab=47ddb15f
+-/
 theorem exists_left_degree_lt_of_edgeCount_lt
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -56,7 +62,9 @@ theorem exists_left_degree_lt_of_edgeCount_lt
   exact Finset.exists_lt_of_sum_lt hlt
 
 /-- The square-root decrement used when removing a vertex from the larger
-bipartition class.-/
+bipartition class.
+@isnad1 id=le.2h2v.s6.6aab28bf10a6 from=translated src=- shape=ca1bf514 vocab=d4e3a789
+-/
 theorem sqrt_product_sub_one_lower
     (a b : ℝ) (ha : 1 ≤ a) (hb : 0 < b) :
     b / (2 * Real.sqrt (a * b)) ≤
@@ -73,7 +81,9 @@ theorem sqrt_product_sub_one_lower
   nlinarith
 
 /-- If the expected number of absent pairs is at least one, the
-exponential pair-failure estimate forces `s ≤ n log n`.-/
+exponential pair-failure estimate forces `s ≤ n log n`.
+@isnad1 id=le.2h2v.s6.0da2b924287d from=translated src=- shape=cbd9947b vocab=24e9d6be
+-/
 theorem mass_from_exponential_pair_failure
     (n s : ℝ) (hn : 0 < n)
     (hfail : 1 ≤ n ^ 2 * Real.exp (-(2 * s / n))) :
@@ -92,7 +102,9 @@ theorem mass_from_exponential_pair_failure
   nlinarith
 
 /-- The unbalanced estimate is immediate when the smaller class has at
-most `t-2` vertices.-/
+most `t-2` vertices.
+@isnad1 id=le.2h5v.s6.529402543638 from=translated src=- shape=422863ce vocab=8f7ad834
+-/
 theorem edgeCount_le_linear_term_of_small_right
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -104,7 +116,9 @@ theorem edgeCount_le_linear_term_of_small_right
   nlinarith
 
 /-- A convenient exponential criterion for the power condition in the
-near-complete auxiliary lemma.-/
+near-complete auxiliary lemma.
+@isnad1 id=le.4h4v.s7.5a3c1d08245c from=translated src=- shape=0eae7b00 vocab=ac08dee7
+-/
 theorem near_complete_power_bound_of_exponential_criteria
     (t ℓ : ℕ) (ht : 3 ≤ t) (s n : ℝ) (hn : 0 < n)
     (h100 : (100 : ℝ) ≤ Real.exp (s / n))
@@ -151,7 +165,9 @@ theorem near_complete_power_bound_of_exponential_criteria
   exact hmul.trans hfinal
 
 /-- The nontrivial pair-failure branch forces the contracted graph to
-have enough vertices for the near-complete auxiliary lemma.-/
+have enough vertices for the near-complete auxiliary lemma.
+@isnad1 id=le.4h3v.s7.3e09ce0a67f9 from=translated src=- shape=1719ea98 vocab=1835a83d
+-/
 theorem nine_mul_t_le_of_exponential_failure
     (t : ℕ) (ht : 3 ≤ t) (n s : ℝ) (hn : 1 ≤ n)
     (hfail : 1 ≤ n ^ 2 * Real.exp (-(2 * s / n)))
@@ -196,7 +212,9 @@ theorem nine_mul_t_le_of_exponential_failure
   linarith
 
 /-- A mass lower bound together with block size at least `n/(18t)`
-verifies the near-complete power condition.-/
+verifies the near-complete power condition.
+@isnad1 id=le.5h4v.s8.acc4b27bf470 from=translated src=- shape=53f93439 vocab=ac08dee7
+-/
 theorem near_complete_power_bound_of_mass
     (t ℓ : ℕ) (ht : 3 ≤ t) (n s : ℝ) (hn : 0 < n)
     (hblock : n ≤ 18 * (t : ℝ) * (ℓ : ℝ))
@@ -239,7 +257,9 @@ theorem near_complete_power_bound_of_mass
   exact near_complete_power_bound_of_exponential_criteria t ℓ ht s n hn
     h100 hlogNeeded
 
-/-- The block size `⌊n/(9t)⌋` is at least `n/(18t)` once `n ≥ 9t`.-/
+/-- The block size `⌊n/(9t)⌋` is at least `n/(18t)` once `n ≥ 9t`.
+@isnad1 id=le.2h2v.s6.16db35768ad7 from=translated src=- shape=299d9ba5 vocab=1d689698
+-/
 theorem order_le_eighteen_mul_t_mul_floor
     (t n : ℕ) (ht : 0 < t) (hn : 9 * t ≤ n) :
     n ≤ 18 * t * (n / (9 * t)) := by
@@ -252,7 +272,9 @@ theorem order_le_eighteen_mul_t_mul_floor
   nlinarith
 
 /-- Removing one vertex from each nonempty class decreases the square-root
-product by at least half the large-to-small aspect ratio.-/
+product by at least half the large-to-small aspect ratio.
+@isnad1 id=le.2h2v.s6.ac7adcba15fc from=translated src=- shape=b854c567 vocab=45144f9b
+-/
 theorem sqrt_double_decrement_lower
     (a b : ℝ) (ha : 1 ≤ a) (hb : 1 ≤ b) :
     a / (2 * Real.sqrt (a * b)) ≤
@@ -267,7 +289,9 @@ theorem sqrt_double_decrement_lower
   linarith
 
 /-- The algebraic C.5 step: minimality after contracting a two-edge path
-forces a large common neighborhood of its endpoints.-/
+forces a large common neighborhood of its endpoints.
+@isnad1 id=lt.8h8v.s8.b8fddd2e52dc from=translated src=- shape=99f9c228 vocab=e9f5dc2a
+-/
 theorem common_neighbor_lower_of_path_contraction
     (a b τ κ eG eH degree common : ℝ)
     (ha : 1 ≤ a) (hb : 1 ≤ b) (hτ : 0 ≤ τ) (hκ : 0 ≤ κ)
@@ -298,7 +322,9 @@ theorem common_neighbor_lower_of_path_contraction
   linarith
 
 /-- The C.4 degree lower bound obtained by deleting a vertex from the
-first bipartition class of a minimal counterexample.-/
+first bipartition class of a minimal counterexample.
+@isnad1 id=lt.6h7v.s8.820e5d7ef32e from=translated src=- shape=37ed1d04 vocab=e9f5dc2a
+-/
 theorem degree_lower_of_vertex_deletion
     (a b τ κ eG eDelete degree : ℝ)
     (ha : 1 ≤ a) (hb : 0 < b) (hτ : 0 ≤ τ)
@@ -319,7 +345,9 @@ theorem degree_lower_of_vertex_deletion
   linarith
 
 /-- Convert the C.5 common-neighbor lower bound and the chosen sample size
-into the two numerical inputs for C.7 and C.8.-/
+into the two numerical inputs for C.7 and C.8.
+@isnad1 id=and.5h4v.s7.8da6f0b9b6f1 from=translated src=- shape=1c7346ad vocab=d8b90f1e
+-/
 theorem mass_and_ratio_of_sample_bounds
     (τ α n s : ℝ) (hτ : 0 < τ) (hα : 1 ≤ α)
     (hnlow : τ / α ≤ n) (hnup : n ≤ 2 * τ)
@@ -345,7 +373,9 @@ theorem mass_and_ratio_of_sample_bounds
   exact ⟨hratio, hmass⟩
 
 /-- The combined numerical conclusion of Appendix C: either the expected
-missing-pair count is below one, or the near-complete power condition holds.-/
+missing-pair count is below one, or the near-complete power condition holds.
+@isnad1 id=and.9h5v.s8.4a7186d10ff0 from=translated src=- shape=46082949 vocab=ac08dee7
+-/
 theorem near_complete_power_of_sample_failure
     (t n : ℕ) (ht : 3 ≤ t) (hn : 1 ≤ n)
     (τ α s : ℝ) (hτ : 0 < τ) (hα : 1 ≤ α)
@@ -377,7 +407,9 @@ theorem near_complete_power_of_sample_failure
     (n : ℝ) s (by exact_mod_cast hn) hblock hratio hmass
 
 /-- Transfer the contraction's missing-edge count estimate to its
-missing-edge fraction in the near-complete criterion.-/
+missing-edge fraction in the near-complete criterion.
+@isnad1 id=le.3h5v.s8.15f033904f5e from=translated src=- shape=0b68d086 vocab=5ec1d5b9
+-/
 theorem near_complete_power_of_missing_count_bound
     (t n ℓ m : ℕ) (hn : 2 ≤ n) (s : ℝ)
     (hmissing : (m : ℝ) ≤ (n.choose 2 : ℝ) *
@@ -398,7 +430,9 @@ theorem near_complete_power_of_missing_count_bound
   exact (mul_le_mul_of_nonneg_left hpow (by positivity)).trans hpower
 
 /-- The ceiling sample size in Appendix C is large enough for the
-complete-outcome contradiction and at most twice the KT scale.-/
+complete-outcome contradiction and at most twice the KT scale.
+@isnad1 id=other.3h3v.s7.764c01e1b9e7 from=translated src=- shape=959cd6d4 vocab=f88b201a
+-/
 theorem sample_size_ceiling_bounds
     (t : ℕ) (ht : 2 ≤ t) (τ α : ℝ)
     (hτ : (t : ℝ) ≤ τ) (hα : 1 ≤ α) :
@@ -439,7 +473,9 @@ theorem sample_size_ceiling_bounds
   exact ⟨hNatLower, hτlower, hτupper⟩
 
 /-- For `t ≥ 3`, the Kostochka--Thomason scale dominates `t` and
-its square has the expected exact form.-/
+its square has the expected exact form.
+@isnad1 id=and.1h1v.s6.6dcd4ae66257 from=translated src=- shape=f9779b2b vocab=79221e15
+-/
 theorem kt_scale_ge_order_and_square (t : ℕ) (ht : 3 ≤ t) :
     (t : ℝ) ≤ (t : ℝ) * Real.sqrt (Real.log (t : ℝ)) ∧
       ((t : ℝ) * Real.sqrt (Real.log (t : ℝ))) ^ 2 =
@@ -460,7 +496,9 @@ theorem kt_scale_ge_order_and_square (t : ℕ) (ht : 3 ≤ t) :
   · rw [mul_pow, Real.sq_sqrt hlog0]
 
 /-- The large-to-small aspect ratio may be represented as `a / √(ab)`,
-which avoids a second square root in the vertex-deletion inequalities.-/
+which avoids a second square root in the vertex-deletion inequalities.
+@isnad1 id=le.3h2v.s5.af3f01346dd8 from=translated src=- shape=8ee8166a vocab=4374279d
+-/
 theorem aspect_ratio_ge_one
     (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (hba : b ≤ a) :
     1 ≤ a / Real.sqrt (a * b) := by
@@ -472,7 +510,9 @@ theorem aspect_ratio_ge_one
     simpa [Real.sqrt_sq_eq_abs, abs_of_pos ha] using h
   exact (le_div_iff₀ hroot).mpr (by linarith)
 
-/-- The two class-aspect factors are reciprocal.-/
+/-- The two class-aspect factors are reciprocal.
+@isnad1 id=eq.2h2v.s6.d28ffc14da87 from=translated src=- shape=e8f4db6d vocab=1ddfebe1
+-/
 theorem aspect_ratio_mul_reciprocal
     (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     (a / Real.sqrt (a * b)) * (b / Real.sqrt (a * b)) = 1 := by

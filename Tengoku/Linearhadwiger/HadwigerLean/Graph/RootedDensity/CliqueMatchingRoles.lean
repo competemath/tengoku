@@ -22,7 +22,9 @@ def cliqueMatchingPairLabel (a : ℕ) :
       Fin.cases (Sum.inr e)
         (fun k => Sum.inl (cliqueMatchingPairLabel a b k e)) i
 
-/-- The clique vertices are pairwise adjacent.-/
+/-- The clique vertices are pairwise adjacent.
+@isnad1 id=adj.1h4v.s4.d901a6bc5d9d from=translated src=- shape=65788109 vocab=ef0947ae
+-/
 theorem cliqueMatching_root_adj (a b : ℕ) (i k : Fin a) (hik : i ≠ k) :
     (cliqueMatchingGraph a b).Adj
       (cliqueMatchingRootLabel a b i) (cliqueMatchingRootLabel a b k) := by
@@ -31,7 +33,9 @@ theorem cliqueMatching_root_adj (a b : ℕ) (i k : Fin a) (hik : i ≠ k) :
   | succ b ih =>
       simpa [cliqueMatchingGraph, cliqueMatchingRootLabel] using ih
 
-/-- Different clique labels remain distinct at every matching depth.-/
+/-- Different clique labels remain distinct at every matching depth.
+@isnad1 id=injectiv.0h2v.s3.253ea3a25abe from=translated src=- shape=e64b3421 vocab=091cde41
+-/
 theorem cliqueMatching_root_injective (a b : ℕ) :
     Function.Injective (cliqueMatchingRootLabel a b) := by
   induction b with

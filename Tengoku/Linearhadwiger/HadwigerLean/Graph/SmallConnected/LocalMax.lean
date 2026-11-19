@@ -12,6 +12,9 @@ namespace HadwigerLean
 universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=eq.0h3v.s5.04b043258af1 from=translated src=- shape=2a06a990 vocab=f3adaf06
+-/
 theorem connectedSetContractionLoss_singleton
     (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
     connectedSetContractionLoss G {v} = 0 := by
@@ -45,6 +48,9 @@ noncomputable def LowLossConnectedSet
     (G.induce (H : Set V)).Connected ∧
       connectedSetContractionLoss G H ≤ p * (H.card - 1)
 
+/--
+@isnad1 id=ex.2h5v.s6.c38cdb8acec2 from=translated src=- shape=30eb0568 vocab=8d15dcef
+-/
 theorem exists_maximal_lowLossConnectedSet
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) (h p : ℕ)
@@ -82,7 +88,9 @@ theorem exists_maximal_lowLossConnectedSet
   omega
 
 /-- Adding a vertex adjacent to a connected induced set preserves
-connectedness.-/
+connectedness.
+@isnad1 id=connecte.3h5v.s6.e107b5f62ee8 from=translated src=- shape=98db6845 vocab=a7aacb74
+-/
 theorem connected_induce_insert_of_adjacent
     (G : SimpleGraph V) (H : Finset V) (v u : V)
     (hconn : (G.induce (H : Set V)).Connected)
@@ -105,7 +113,9 @@ theorem connected_induce_insert_of_adjacent
   rw [hset]
   exact h
 
-/-- Maximality makes every neighboring extension cost more than p per new vertex.-/
+/-- Maximality makes every neighboring extension cost more than p per new vertex.
+@isnad1 id=lt.4h8v.s6.c6ebf164d553 from=translated src=- shape=5dd99c8a vocab=6905b8bf
+-/
 theorem maximal_lowLoss_extension_cost
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S X H : Finset V) (h p : ℕ)

@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- A minor inside `S` and a disjoint linkage in its complement combine to
-a rooted minor when each path finish is adjacent to its assigned branch.-/
+a rooted minor when each path finish is adjacent to its assigned branch.
+@isnad1 id=nonempty.2h9v.s7.f70bd254a2be from=translated src=- shape=cd70dceb vocab=cb105936
+-/
 theorem rootedMinor_of_induced_minor_and_complement_linkage
     {W : Type u} {V : Type v} {H : SimpleGraph W} {G : SimpleGraph V}
     (S : Set V) (M : MinorModel H (G.induce S))

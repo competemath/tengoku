@@ -67,6 +67,9 @@ private noncomputable def crossRightFinset (A B : Finset V) :
   classical
   exact Finset.univ.filter (fun q => q ∈ crossRight A B)
 
+/--
+@isnad1 id=isbipart.0h4v.s7.2dea588f15bf from=translated src=- shape=44e66648 vocab=ee9d9759
+-/
 theorem crossGraph_isBipartiteWith (G : SimpleGraph V) (A B : Finset V) :
     (crossGraph G A B).IsBipartiteWith
       (crossLeftFinset A B : Set _) (crossRightFinset A B : Set _) := by
@@ -75,6 +78,9 @@ theorem crossGraph_isBipartiteWith (G : SimpleGraph V) (A B : Finset V) :
     ((G.comap (crossValue A B)).between_isBipartiteWith
       (crossLeft_disjoint_crossRight A B))
 
+/--
+@isnad1 id=isminor.1h4v.s5.7d96eb77f1ff from=translated src=- shape=be99e886 vocab=5cc6e120
+-/
 theorem crossGraph_isMinor (G : SimpleGraph V)
     (A B : Finset V) (hdisj : Disjoint A B) :
     IsMinor (crossGraph G A B) G := by

@@ -7,6 +7,9 @@ import Tengoku.Linearhadwiger.HadwigerLean.Inseparability.SharpWovenBudget
 
 namespace HadwigerLean.Inseparability
 
+/--
+@isnad1 id=le.3h3v.s6.fc9b19e044d4 from=translated src=- shape=cae1457d vocab=553d59aa
+-/
 theorem stage_sharp_woven_budget
     (t p C : ℕ) (ht : 3 ≤ t)
     (hp : p < stageCount t) (hC : 9000000 ≤ C) :

@@ -10,7 +10,9 @@ universe u
 variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- The edges split into those inside a finite set, those outside it, and
-crossing edges counted from the outside.-/
+crossing edges counted from the outside.
+@isnad1 id=eq.0h3v.s7.aae0e0b5a495 from=translated src=- shape=413de6ae vocab=e2053b98
+-/
 theorem edgeCount_eq_inside_add_outside_add_cross
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     (edgeCount G : ℝ) =

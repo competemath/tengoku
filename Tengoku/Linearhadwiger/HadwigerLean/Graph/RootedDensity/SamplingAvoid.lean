@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- The induced-density sample can be taken disjoint from an arbitrary
-forbidden vertex set, with its minor model returned in the ambient graph.-/
+forbidden vertex set, with its minor model returned in the ambient graph.
+@isnad1 id=ex.6h7v.s8.f47b5c8b4e12 from=translated src=- shape=35ab0940 vocab=839d2a11
+-/
 theorem exists_induced_minor_avoiding_of_sampling_budget
     {W : Type v} [Fintype W] (H : SimpleGraph W)
     (c : ℝ) (hc : 0 ≤ c) (hforces : DensityForcesMinor.{u,v} H c)

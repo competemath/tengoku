@@ -17,7 +17,9 @@ namespace Inseparability
 variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V}
 
-/-- An induced union costs at most the sum of the two chromatic numbers.-/
+/-- An induced union costs at most the sum of the two chromatic numbers.
+@isnad1 id=le.0h4v.s6.33d0ad335bc2 from=translated src=- shape=f0beff3c vocab=dce12dd2
+-/
 theorem chromatic_induce_union_le_add
     (G : SimpleGraph V) (A B : Finset V) :
     chromatic (G.induce ((A ∪ B : Finset V) : Set V)) ≤
@@ -37,7 +39,9 @@ theorem chromatic_induce_union_le_add
   omega
 
 /-- A finite union of induced pieces that each need at most two colors
-needs at most two colors per piece.-/
+needs at most two colors per piece.
+@isnad1 id=le.1h5v.s6.89c54720046d from=translated src=- shape=c7dec703 vocab=da543191
+-/
 theorem chromatic_biUnion_le_two_mul
     {ι : Type*} [Fintype ι]
     (G : SimpleGraph V) (R : ι → Finset V)
@@ -63,7 +67,9 @@ theorem chromatic_biUnion_le_two_mul
     omega
 
 /-- The model union has chromatic number at most the marked-set cost plus
-two colors for each trimmed branch.-/
+two colors for each trimmed branch.
+@isnad1 id=le.2h6v.s7.7fd5672fb142 from=translated src=- shape=8f7a8139 vocab=fe8b6c34
+-/
 theorem chromatic_model_union_le_marked_add_two_mul
     (G : SimpleGraph V) {s L : ℕ}
     (Q T : Fin s → Finset V)

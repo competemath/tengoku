@@ -29,6 +29,9 @@ def scaleAssignment {a c : ℕ} (hscale : 2 * a = 3 * c) :
     Fin (2 * a) ≃ Fin 3 × Fin c :=
   (finCongr hscale).trans finProdFinEquiv.symm
 
+/--
+@isnad1 id=ne.3h5v.s7.d80bcb71c975 from=translated src=- shape=0c4cee11 vocab=7d615d8c
+-/
 theorem connector_ne_of_parent_ne {a : ℕ} {j k : Fin a}
     (hjk : j ≠ k)
     {q r : Fin (2 * a)}
@@ -105,7 +108,9 @@ private theorem target_mem_branch (q : Fin (2 * a)) :
   (F.childModel (F.child q)).root_mem (F.slot q)
 
 /-- The path of connector q meets child k only at its own target, and
-only when that target belongs to k.-/
+only when that target belongs to k.
+@isnad1 id=ex.2h8v.s10.775bb483db78 from=translated src=- shape=48a2ac0d vocab=68650f84
+-/
 theorem path_meets_child
     (q : Fin (2 * a)) (k : Fin 3) {x : V}
     (hxp : x ∈ pathVertexSet (F.linkage.path q))
@@ -131,7 +136,9 @@ theorem path_meets_child
   rw [hqq']
   exact F.assignment.apply_symm_apply (k, u)
 
-/-- A connector path cannot use another connector's child branch.-/
+/-- A connector path cannot use another connector's child branch.
+@isnad1 id=disjoint.1h7v.s10.144e15dfb3d4 from=translated src=- shape=36daf127 vocab=766a2663
+-/
 theorem path_disjoint_other_branch
     {q r : Fin (2 * a)} (hqr : q ≠ r) :
     Disjoint (pathVertexSet (F.linkage.path q))
@@ -153,7 +160,9 @@ theorem path_disjoint_other_branch
   apply F.assignment.injective
   simpa [child, slot, hur] using hassign
 
-/-- Different connector indices select disjoint child branches.-/
+/-- Different connector indices select disjoint child branches.
+@isnad1 id=disjoint.1h7v.s7.9865a327b1eb from=translated src=- shape=671dacaa vocab=eb08ac7c
+-/
 theorem child_branches_disjoint
     {q r : Fin (2 * a)} (hqr : q ≠ r) :
     Disjoint ((F.childModel (F.child q)).branch (F.slot q))
@@ -175,7 +184,9 @@ theorem child_branches_disjoint
       Set.mem_iUnion.mpr ⟨F.slot r, hxr⟩
     exact (Set.disjoint_left.mp (F.children_disjoint hchild)) hxMq hxMr
 
-/-- Distinct connector pieces are vertex-disjoint.-/
+/-- Distinct connector pieces are vertex-disjoint.
+@isnad1 id=disjoint.1h7v.s6.fe280a8d3b8d from=translated src=- shape=6f7df615 vocab=b4c2310b
+-/
 theorem piece_disjoint {q r : Fin (2 * a)} (hqr : q ≠ r) :
     Disjoint (F.piece q) (F.piece r) := by
   apply Set.disjoint_left.mpr
@@ -191,7 +202,9 @@ theorem piece_disjoint {q r : Fin (2 * a)} (hqr : q ≠ r) :
     · exact (Set.disjoint_left.mp (F.child_branches_disjoint hqr))
         hxBq hxBr
 
-/-- Each connector piece is connected through its common target.-/
+/-- Each connector piece is connected through its common target.
+@isnad1 id=connecte.0h6v.s5.8a7b0e3afdad from=translated src=- shape=e745e7ac vocab=4ae0ca30
+-/
 theorem piece_connected (q : Fin (2 * a)) :
     (G.induce (F.piece q)).Connected := by
   have hP : (G.induce (pathVertexSet (F.linkage.path q))).Connected :=
@@ -216,7 +229,9 @@ private theorem root_piece_connected (j : Fin a) (q : Fin (2 * a))
     (Or.inl (pathVertexSet.start_mem (F.linkage.path q))) hadj
   simpa only [Set.singleton_union] using hconn
 
-/-- Each assembled parent branch is connected.-/
+/-- Each assembled parent branch is connected.
+@isnad1 id=connecte.0h6v.s5.eefda4a29088 from=translated src=- shape=981f96d1 vocab=97e3f09b
+-/
 theorem parentBranch_connected (j : Fin a) :
     (G.induce (F.parentBranch j)).Connected := by
   let q := firstConnector j
@@ -238,7 +253,9 @@ theorem parentBranch_connected (j : Fin a) :
   rw [hsets] at hunion
   exact hunion
 
-/-- Original parent roots lie outside every connector piece.-/
+/-- Original parent roots lie outside every connector piece.
+@isnad1 id=not.0h7v.s5.2cd2f5de9722 from=translated src=- shape=331a138c vocab=825d9d2b
+-/
 theorem root_not_mem_piece (j : Fin a) (q : Fin (2 * a)) :
     F.root j ∉ F.piece q := by
   rintro (hxP | hxB)
@@ -256,7 +273,9 @@ private theorem parent_pieces_disjoint {j k : Fin a} (hjk : j ≠ k)
     Disjoint (F.piece q) (F.piece r) :=
   F.piece_disjoint (connector_ne_of_parent_ne hjk hq hr)
 
-/-- Branches assembled for different parent roots do not overlap.-/
+/-- Branches assembled for different parent roots do not overlap.
+@isnad1 id=disjoint.1h7v.s6.95465f509115 from=translated src=- shape=76c6193f vocab=420466d1
+-/
 theorem parentBranch_disjoint {j k : Fin a} (hjk : j ≠ k) :
     Disjoint (F.parentBranch j) (F.parentBranch k) := by
   apply Set.disjoint_left.mpr
@@ -301,7 +320,9 @@ private theorem childPair_card (j : Fin a) :
       F.child (secondConnector j) := F.different_children j
   simp [childPair, hne]
 
-/-- Any two parent branches use a common child.-/
+/-- Any two parent branches use a common child.
+@isnad1 id=ex.0h7v.s7.ebac55024e82 from=translated src=- shape=8103453b vocab=339b7bf0
+-/
 theorem common_child (j k : Fin a) :
     ∃ q r : Fin (2 * a),
       (q = firstConnector j ∨ q = secondConnector j) ∧
@@ -338,7 +359,9 @@ private theorem selected_branch_subset_parent
   · exact Set.mem_insert_of_mem _ (Or.inr hxPiece)
 
 /-- A common child supplies an edge between every two distinct parent
-branches.-/
+branches.
+@isnad1 id=ex.1h7v.s6.7307b1c5cdc5 from=translated src=- shape=3b54a6b9 vocab=a00ac181
+-/
 theorem parentBranch_adjacent {j k : Fin a} (hjk : j ≠ k) :
     ∃ x ∈ F.parentBranch j, ∃ y ∈ F.parentBranch k,
       G.Adj x y := by
@@ -377,7 +400,9 @@ def toRootedMinorModel :
 end ThreeChildFrame
 
 /-- Rerouting through a disjoint new child preserves the exact
-intersection of an earlier rooted model with the linkage.-/
+intersection of an earlier rooted model with the linkage.
+@isnad1 id=eq.5h11v.s7.1a13c19c6229 from=translated src=- shape=5ec244a6 vocab=118b7347
+-/
 theorem exact_model_intersection_preserved
     {V : Type*} {G : SimpleGraph V} {c j : ℕ}
     {P : IndexedPairs (Fin j) V} {root : Fin c → V}

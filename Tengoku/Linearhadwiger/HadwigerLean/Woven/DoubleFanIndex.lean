@@ -13,7 +13,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A vertex-disjoint linkage with as many paths as private source
-clones uses every clone exactly once as a path start.-/
+clones uses every clone exactly once as a path start.
+@isnad1 id=ex.3h7v.s7.91b401888852 from=translated src=- shape=9e0da460 vocab=22953316
+-/
 theorem doubleClone_start_surjective
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)
@@ -43,7 +45,9 @@ theorem doubleClone_start_surjective
   exact ⟨j,hj⟩
 
 /-- Every source slot has a distinguished path index, and
-different slots receive different indices.-/
+different slots receive different indices.
+@isnad1 id=ex.2h6v.s8.c2c21bee7c74 from=translated src=- shape=82115215 vocab=fc009eaf
+-/
 theorem doubleClone_slot_index
     (G : SimpleGraph V) (Z H : Finset V)
     (hdis : Disjoint Z H)

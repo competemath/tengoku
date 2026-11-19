@@ -15,6 +15,9 @@ namespace HadwigerLean.Inseparability
 
 universe u v
 
+/--
+@isnad1 id=disjoint.4h8v.s8.d2309d381b8a from=translated src=- shape=4e6c5e9a vocab=9c3fb2a5
+-/
 theorem branchBase_disjoint_of_pieces
     {V : Type u} {I : Type v} {J : Type*}
     (C : I → Set V) (E : I → J → Set V)
@@ -43,6 +46,9 @@ theorem branchBase_disjoint_of_pieces
       simpa [extraPieces] using hvj
     exact (Set.disjoint_left.mp (hEE i j hij a hai b hbj)) hva hvb
 
+/--
+@isnad1 id=disjoint.3h11v.s7.807c46f435e2 from=translated src=- shape=ec0f972b vocab=9c3fb2a5
+-/
 theorem path_base_disjoint_of_pieces
     {V : Type u} {I : Type v} {J K : Type*}
     (C : I → Set V) (P : K → Set V)
@@ -63,7 +69,9 @@ theorem path_base_disjoint_of_pieces
     exact (Set.disjoint_left.mp (hPE k i hki a hai)) hvP hva
 
 /-- To attach an old or child model piece, it suffices to identify one
-assigned path meeting that piece.-/
+assigned path meeting that piece.
+@isnad1 id=ex.2h11v.s7.a4cecdca11ad from=translated src=- shape=993c2b2d vocab=6f05de06
+-/
 theorem extra_meet_of_path_attachment
     {V : Type u} {I : Type v} {J K : Type*}
     [Fintype K] [DecidableEq I]

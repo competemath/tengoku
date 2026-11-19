@@ -11,6 +11,9 @@ namespace HadwigerLean
 
 universe u
 
+/--
+@isnad1 id=ex.1h3v.s5.d064fecd1be1 from=translated src=- shape=4b940873 vocab=c33c6098
+-/
 theorem exists_spanning_subgraph_exact_edgeCount
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (m : ℕ) (hm : m ≤ edgeCount G) :

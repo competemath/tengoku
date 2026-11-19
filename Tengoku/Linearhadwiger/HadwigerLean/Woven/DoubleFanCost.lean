@@ -17,7 +17,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {G : SimpleGraph V} {Z H : Finset V}
 
 /-- On an induced graph, coloring one chosen set with a private palette
-costs its chromatic number in the ambient graph.-/
+costs its chromatic number in the ambient graph.
+@isnad1 id=le.0h4v.s5.d3522c37abff from=translated src=- shape=893455c7 vocab=10bb73cd
+-/
 theorem chromatic_induce_le_add_remainder
     (G : SimpleGraph V) (S A : Set V) :
     chromatic (G.induce S) ≤
@@ -48,7 +50,9 @@ theorem chromatic_induce_le_add_remainder
   exact (chromatic_le_iff_colorable _ _).mpr hc
 
 /-- A double fan, its sources, and a hub can be removed with their exact
-separate palette costs.-/
+separate palette costs.
+@isnad1 id=le.1h5v.s7.8d27501f45b9 from=translated src=- shape=4d1fccf0 vocab=9c985aef
+-/
 theorem DoubleFan.chromatic_le_source_hub_fan_residual
     (F : DoubleFan G Z H) (hfan :
       chromatic (G.induce (F.vertexFinset : Set V)) ≤ 4 * Z.card) :

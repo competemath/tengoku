@@ -17,7 +17,9 @@ universe u
 /-- A positive surplus on a finite set can be trimmed to a set with both a
 prescribed internal contribution and a prescribed fraction of each ambient
 contribution, provided deleting one element subtracts precisely its internal
-contribution.-/
+contribution.
+@isnad1 id=ex.6h7v.s8.c23238dc36a8 from=translated src=- shape=b87a66f8 vocab=ac1f2c46
+-/
 theorem exists_minimal_positive_surplus_set
     {V : Type u} [DecidableEq V]
     (S : Finset V) (energy : Finset V → ℝ)

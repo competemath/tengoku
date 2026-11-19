@@ -13,7 +13,9 @@ namespace Woven
 variable {V : Type*} [Fintype V] [DecidableEq V] {a : ℕ}
 
 /-- A simple path starting at an auxiliary pair vertex and meeting no
-other auxiliary vertex projects, after its first spoke, to an old path.-/
+other auxiliary vertex projects, after its first spoke, to an old path.
+@isnad1 id=ex.1h7v.s7.d6229b1fba55 from=translated src=- shape=0a951526 vocab=449ada7c
+-/
 theorem exists_pairedFanProjectRightPath
     (G : SimpleGraph V) (source : Fin a × Fin 2 → V)
     (i : Fin a) (t : V)

@@ -20,7 +20,9 @@ def childBlock (c i : ℕ) : Fin 3 :=
   if i < c then 0 else if i < 2 * c then 1 else 2
 
 /-- Two indices separated by at least one child block land in different
-blocks, provided both indices lie in the first three blocks.-/
+blocks, provided both indices lie in the first three blocks.
+@isnad1 id=ne.4h3v.s6.9e42268acf3a from=translated src=- shape=ae9b2672 vocab=16d0f2a2
+-/
 theorem childBlock_ne_of_gap {c a i : ℕ}
     (hc : 0 < c) (hgap : c ≤ a)
     (hi : i < a) (hbound : a + i < 3 * c) :
@@ -30,7 +32,9 @@ theorem childBlock_ne_of_gap {c a i : ℕ}
   split_ifs at heq <;> simp_all <;> omega
 
 /-- The two connectors assigned to one parent root belong to distinct
-children at an exact integer scale step.-/
+children at an exact integer scale step.
+@isnad1 id=ne.2h3v.s6.3fa81d7710c2 from=translated src=- shape=697f2f46 vocab=54f6a393
+-/
 theorem childBlock_ne_for_parent_pair {m i j : ℕ}
     (hi : i < m) (hj : j < outerScale m i) :
     childBlock (outerScale m (i + 1)) j ≠
@@ -42,7 +46,9 @@ theorem childBlock_ne_for_parent_pair {m i j : ℕ}
   apply childBlock_ne_of_gap hc hle hj
   omega
 
-/-- Any two sets of at least two of the three child indices intersect.-/
+/-- Any two sets of at least two of the three child indices intersect.
+@isnad1 id=ex.2h2v.s7.5a6eac4d63fe from=translated src=- shape=7a64bb18 vocab=cb3d8c40
+-/
 theorem two_children_intersect (S T : Finset (Fin 3))
     (hS : 2 ≤ S.card) (hT : 2 ≤ T.card) :
     ∃ k : Fin 3, k ∈ S ∧ k ∈ T := by
@@ -65,7 +71,9 @@ def parentChildPair (c a j : ℕ) : Finset (Fin 3) :=
   {childBlock c j, childBlock c (a + j)}
 
 /-- Any two parent branches assembled from two child models share at
-least one child model.-/
+least one child model.
+@isnad1 id=ex.6h4v.s7.a3a9e8ea76c4 from=translated src=- shape=3fa97af8 vocab=03a41490
+-/
 theorem parentChildPair_intersect {c a i j : ℕ}
     (hc : 0 < c) (hca : c ≤ a)
     (hi : i < a) (hj : j < a)

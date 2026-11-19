@@ -23,7 +23,9 @@ def OuterAt {V : Type*} [Fintype V] [DecidableEq V]
       (outerScale m i) (3 * outerScale m i)
 
 /-- The finite outer recursion reduces all scales to a base case at
-index m and a nonbase extension from child index i+1 to parent i.-/
+index m and a nonbase extension from child index i+1 to parent i.
+@isnad1 id=outerat.3h7v.s6.3b12278d09c7 from=translated src=- shape=4bad8fe0 vocab=9935e686
+-/
 theorem outerAt_all_of_base_step
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (m K U B : ℕ)
@@ -52,7 +54,9 @@ theorem outerAt_all_of_base_step
   have h := hrev (m - i) hd
   simpa [Nat.sub_sub_self hi] using h
 
-/-- The top-scale claim obtained from the base and extension contracts.-/
+/-- The top-scale claim obtained from the base and extension contracts.
+@isnad1 id=outerat.2h6v.s6.96bd41a53f8e from=translated src=- shape=4a86415a vocab=cf75a3ef
+-/
 theorem outerAt_top_of_base_step
     {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (m K U B : ℕ)

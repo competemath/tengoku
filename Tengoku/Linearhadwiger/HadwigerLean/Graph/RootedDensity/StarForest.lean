@@ -17,6 +17,9 @@ namespace HadwigerLean.RootedDensity
 
 universe u
 
+/--
+@isnad1 id=ex.2h4v.s6.6e7245276e41 from=translated src=- shape=2361aad2 vocab=fc8c9f44
+-/
 theorem exists_tree_with_boundary_star
     {V : Type u} (K : SimpleGraph V) (Z : Set V)
     (center : V)
@@ -47,7 +50,9 @@ def boundaryStarEdges {V : Type u} (Z : Set V) (center : V) :
 
 /-- Removing the prescribed star edges from a tree separates all
 distinct adhesion vertices. This is the forest underlying the
-center and hanging pieces of rigid truncation.-/
+center and hanging pieces of rigid truncation.
+@isnad1 id=not.5h6v.s6.0f4dcc2ee2dd from=translated src=- shape=8ac283b9 vocab=b501e5a5
+-/
 theorem boundary_vertices_separated_after_star_delete
     {V : Type u} (T : SimpleGraph V) (Z : Set V)
     (center : V) (hT : T.IsTree)
@@ -103,7 +108,9 @@ theorem boundary_vertices_separated_after_star_delete
 /-- Every component of the forest obtained by deleting the adhesion
 star meets the adhesion. Removed edges have both ends in the
 adhesion, so a component avoiding the adhesion would remain
-isolated even in the connected tree.-/
+isolated even in the connected tree.
+@isnad1 id=ex.2h5v.s5.be4c893d7964 from=translated src=- shape=d3792a1f vocab=d7e816eb
+-/
 theorem star_forest_component_meets_boundary
     {V : Type u} (T : SimpleGraph V) (Z : Set V)
     (center : V) (hT : T.Connected) (hcenter : center ∈ Z)
@@ -137,7 +144,9 @@ theorem star_forest_component_meets_boundary
 
 /-- Each forest component contains exactly one adhesion vertex.
 The existence uses connectivity of the original tree; uniqueness
-uses the bridge property of its prescribed star edges.-/
+uses the bridge property of its prescribed star edges.
+@isnad1 id=existsun.3h5v.s6.503326e34860 from=translated src=- shape=3c90b587 vocab=52040dbd
+-/
 theorem star_forest_unique_boundary
     {V : Type u} (T : SimpleGraph V) (Z : Set V)
     (center : V) (hT : T.IsTree) (hcenter : center ∈ Z)
@@ -157,7 +166,9 @@ theorem star_forest_unique_boundary
 
 /-- A forest edge remaining after deleting the adhesion star is a
 real edge: an artificial torso edge would join two distinct
-adhesion vertices, which the forest has separated.-/
+adhesion vertices, which the forest has separated.
+@isnad1 id=le.4h6v.s6.efce0555b185 from=translated src=- shape=ddd9e1dd vocab=9ec08d7b
+-/
 theorem star_forest_edges_real
     {V : Type u}
     (K near T : SimpleGraph V) (Z : Set V)
@@ -179,7 +190,9 @@ theorem star_forest_edges_real
 /-- A connected torso branch with clique adhesion admits a forest
 partition into connected real-edge pieces, one per adhesion
 vertex. The piece containing the prescribed root is determined
-by its unique adhesion vertex.-/
+by its unique adhesion vertex.
+@isnad1 id=ex.4h5v.s7.069230c5045d from=translated src=- shape=8743997e vocab=5bed3fc0
+-/
 theorem exists_star_forest_real_decomposition
     {V : Type u}
     (K near : SimpleGraph V) (Z : Set V)

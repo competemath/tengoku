@@ -86,7 +86,9 @@ private theorem duplicate_term_insert
 
 /-- The duplicated-incidence part of contraction loss changes by the
 number of outside common neighbors, after removing the new vertex's old
-contribution.-/
+contribution.
+@isnad1 id=eq.1h4v.s7.39a00bacaa23 from=translated src=- shape=d1d092cd vocab=f2653645
+-/
 theorem contractionDuplicateCost_insert_add
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) (v : V) (hv : v ∉ S) :
@@ -121,7 +123,9 @@ theorem contractionDuplicateCost_insert_add
   omega
 
 /-- Adding a vertex adjacent to the contracted set costs one edge plus the
-number of its outside common neighbors with that set.-/
+number of its outside common neighbors with that set.
+@isnad1 id=eq.2h4v.s7.2885c771e2e9 from=translated src=- shape=cee220a2 vocab=1c0588f5
+-/
 theorem connectedSetContractionLoss_insert
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) (v : V) (hv : v ∉ S)
@@ -141,6 +145,9 @@ noncomputable def contractedNeighborFinset
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) : Finset V :=
   (Sᶜ).filter (fun w => 0 < (G.neighborFinset w ∩ S).card)
 
+/--
+@isnad1 id=eq.0h3v.s6.91cf29094431 from=translated src=- shape=bb285e89 vocab=d0f12542
+-/
 theorem contractionDuplicateCost_add_neighborCount
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     contractionDuplicateCost G S + (contractedNeighborFinset G S).card =

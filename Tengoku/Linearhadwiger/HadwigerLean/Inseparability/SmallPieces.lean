@@ -40,6 +40,9 @@ private theorem card_piece_union_le
         _ = (P.card + 1) * N := by ring
     simpa [hJP, Finset.biUnion_insert] using hres
 
+/--
+@isnad1 id=le.0h3v.s6.f9dbd65a55ce from=translated src=- shape=af33a713 vocab=d46e2b16
+-/
 theorem chromatic_le_piece_and_complement
     (G : SimpleGraph V) (U : Finset V) :
     chromatic G ≤ chromatic (G.induce (U : Set V)) +
@@ -60,7 +63,9 @@ theorem chromatic_le_piece_and_complement
 
 /-- Repeatedly select disjoint small `k`-connected pieces. A local chromatic
 bound on any possible occupied union guarantees that the residual remains
-colorful enough for another selection.-/
+colorful enough for another selection.
+@isnad1 id=ex.3h7v.s7.cd4f3712f55f from=translated src=- shape=74156292 vocab=baa9600c
+-/
 theorem exists_disjoint_small_connected_pieces
     (G : SimpleGraph V) (r k N q d : ℕ)
     (hfind : ∀ R : Finset V,

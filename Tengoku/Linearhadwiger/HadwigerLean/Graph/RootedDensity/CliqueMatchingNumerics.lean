@@ -13,7 +13,9 @@ noncomputable def cliqueMatchingScale (a b : ℕ) : ℝ :=
   max ((a : ℝ) * Real.sqrt (Real.log (a : ℝ))) (b : ℝ)
 
 /-- At `a ≥ 2`, the target order is at most four times the natural
-`max{a√log a,b}` scale.-/
+`max{a√log a,b}` scale.
+@isnad1 id=le.1h2v.s5.ce3d803de8b8 from=translated src=- shape=8ce5b06f vocab=c5aa8b74
+-/
 theorem cliqueMatching_order_le_four_scale
     (a b : ℕ) (ha : 2 ≤ a) :
     (Fintype.card (CliqueMatchingLabels a b) : ℝ) ≤
@@ -42,7 +44,9 @@ theorem cliqueMatching_order_le_four_scale
   nlinarith
 
 /-- The sharp rooted-density constant from Appendix F, when applied to
-`K_a + b K₂`, stays below `21000` times the woven scale.-/
+`K_a + b K₂`, stays below `21000` times the woven scale.
+@isnad1 id=le.1h2v.s6.24bc6536e8f4 from=translated src=- shape=8c835a15 vocab=7c881406
+-/
 theorem cliqueMatching_alpha_le_scale
     (a b : ℕ) (ha : 2 ≤ a) :
     12 * cliqueMatchingThreshold a b +

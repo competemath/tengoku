@@ -9,7 +9,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- A rooted target model in an induced graph remains a rooted model in
-the ambient graph when the prescribed roots all lie in the induced set.-/
+the ambient graph when the prescribed roots all lie in the induced set.
+@isnad1 id=universa.3h7v.s6.da16711df1dd from=translated src=- shape=fc9561d7 vocab=b24316a5
+-/
 theorem UniversalAt.of_induce
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     (G : SimpleGraph V) (H : SimpleGraph W)

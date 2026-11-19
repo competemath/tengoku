@@ -8,6 +8,9 @@ import Tengoku.Seed.Tactic
 
 namespace HadwigerLean.Inseparability
 
+/--
+@isnad1 id=le.2h2v.s5.451606c485e7 from=translated src=- shape=2c9eb290 vocab=60006f9a
+-/
 theorem first_stage_uniformCliqueK_le
     (t C : ℕ) (ht : 3 ≤ t) (hC : 9000000 ≤ C) :
     HadwigerLean.Woven.uniformCliqueK (stageBlockSize t) 0 ≤ C * t := by

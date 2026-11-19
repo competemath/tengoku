@@ -15,6 +15,9 @@ namespace HadwigerLean.Inseparability
 
 universe u v
 
+/--
+@isnad1 id=eq.1h6v.s6.5ba6bde64bdd from=translated src=- shape=11d14be2 vocab=b32ba323
+-/
 theorem rooted_model_vertices_inter_region_eq_roots
     {I : Type u} {V : Type v} {G : SimpleGraph V}
     {root : I → V}
@@ -36,6 +39,9 @@ theorem rooted_model_vertices_inter_region_eq_roots
       simp
     exact ⟨Set.mem_iUnion.mpr ⟨i,hi.1⟩,hi.2⟩
 
+/--
+@isnad1 id=eq.3h9v.s7.b4a656c1ef30 from=translated src=- shape=bd72664d vocab=d75fff8f
+-/
 theorem rooted_model_exact_inter_linkage_of_region
     {I : Type u} {K : Type*} {V : Type v}
     {G : SimpleGraph V} {root : I → V}
@@ -55,6 +61,9 @@ theorem rooted_model_exact_inter_linkage_of_region
     exact ⟨Set.mem_iUnion.mpr ⟨i,A.root_mem i⟩,
       hroots ⟨i,rfl⟩⟩
 
+/--
+@isnad1 id=eq.4h12v.s7.13d04e693b37 from=translated src=- shape=e9474e66 vocab=09b385e0
+-/
 theorem rooted_model_exact_inter_linkage_of_reroute
     {I : Type u} {K K' : Type*} {V : Type v}
     {G : SimpleGraph V} {root : I → V}

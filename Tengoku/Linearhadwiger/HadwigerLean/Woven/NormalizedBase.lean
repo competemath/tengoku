@@ -18,7 +18,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
   {a j : ℕ}
 
 /-- The ambient connectivity budget guarantees connectivity of the graph
-after deleting the occupied roles.-/
+after deleting the occupied roles.
+@isnad1 id=ex.2h7v.s7.e9d25151fe2b from=translated src=- shape=14a8d731 vocab=3383361f
+-/
 theorem normalized_connected_of_budget
     {G : SimpleGraph V}
     (root : Fin a → V) (P : IndexedPairs (Fin j) V)

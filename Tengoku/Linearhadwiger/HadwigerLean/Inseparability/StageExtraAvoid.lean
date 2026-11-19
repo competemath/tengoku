@@ -16,6 +16,9 @@ namespace HadwigerLean.Inseparability
 
 universe u
 
+/--
+@isnad1 id=le.0h8v.s6.dcdd3222084f from=translated src=- shape=49ca4490 vocab=6730a0d1
+-/
 theorem ciExtraPiece_subset_model_union
     {V : Type u} (p x : ℕ) {G : SimpleGraph V}
     (A : MinorModel (SimpleGraph.completeGraph (Fin p × Fin x)) G)
@@ -46,6 +49,9 @@ theorem ciExtraPiece_subset_model_union
           exact Or.inr (Set.mem_iUnion.mpr
             ⟨i,Set.mem_iUnion.mpr ⟨(1,r),hv⟩⟩)
 
+/--
+@isnad1 id=disjoint.2h9v.s7.1d5f9913e19e from=translated src=- shape=60c101d8 vocab=40919240
+-/
 theorem ciExtraPiece_disjoint_of_models
     {V : Type u} (p x : ℕ) {G : SimpleGraph V}
     (A : MinorModel (SimpleGraph.completeGraph (Fin p × Fin x)) G)

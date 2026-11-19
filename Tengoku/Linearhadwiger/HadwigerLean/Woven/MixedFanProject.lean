@@ -18,11 +18,17 @@ def pairedFanOldSet : Set (PairedFanVertex V a) := Set.range Sum.inl
 noncomputable def pairedFanOldValue (x : pairedFanOldSet (V := V) (a := a)) : V :=
   Classical.choose x.2
 
+/--
+@isnad1 id=eq.0h3v.s5.ba9cb0b37233 from=translated src=- shape=4795bbbe vocab=f32647ff
+-/
 theorem pairedFanOldValue_spec
     (x : pairedFanOldSet (V := V) (a := a)) :
     Sum.inl (pairedFanOldValue x) = x.1 :=
   Classical.choose_spec x.2
 
+/--
+@isnad1 id=eq.0h3v.s6.5d4f77d2d19a from=translated src=- shape=9c031b7d vocab=7008322b
+-/
 @[simp] theorem pairedFanOldValue_inl (v : V) :
     pairedFanOldValue (⟨Sum.inl v, ⟨v,rfl⟩⟩ :
       pairedFanOldSet (V := V) (a := a)) = v :=
@@ -49,7 +55,9 @@ noncomputable def pairedFanOldProjection
     rfl
 
 /-- Every auxiliary path on old vertices projects without introducing
-new original vertices.-/
+new original vertices.
+@isnad1 id=ex.1h7v.s7.f07a40451cdb from=translated src=- shape=49042fb3 vocab=b5e78085
+-/
 theorem exists_pairedFanProjectOldPath
     (G : SimpleGraph V) (source : Fin a × Fin 2 → V)
     {s t : V} (p : (pairedFanGraph G source).Path (.inl s) (.inl t))
@@ -118,6 +126,9 @@ noncomputable def pairedFanProjectOldPath
       v ∈ pairedFanOldSet (V := V) (a := a)) : G.Path s t :=
   Classical.choose (exists_pairedFanProjectOldPath G source p hleft)
 
+/--
+@isnad1 id=mem.2h8v.s7.5d72839deb26 from=translated src=- shape=7ccc83d4 vocab=28cf0129
+-/
 theorem pairedFanProjectOldPath_support
     (G : SimpleGraph V) (source : Fin a × Fin 2 → V)
     {s t : V} (p : (pairedFanGraph G source).Path (.inl s) (.inl t))

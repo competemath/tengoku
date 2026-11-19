@@ -37,6 +37,9 @@ def normalizedSet
     (root : Fin a → V) (P : IndexedPairs (Fin j) V) : Set V :=
   (occupiedRoles root P : Set V)ᶜ
 
+/--
+@isnad1 id=mem.0h6v.s5.ad1c6887178f from=translated src=- shape=21f9a51f vocab=e2241280
+-/
 theorem originalRole_mem_occupied
     (root : Fin a → V) (P : IndexedPairs (Fin j) V)
     (slot : DistinctRoleIndex a j) :
@@ -46,6 +49,9 @@ theorem originalRole_mem_occupied
   refine ⟨(distinctRoleEquiv a j) slot, Finset.mem_univ _, ?_⟩
   simp [originalRoleFin]
 
+/--
+@isnad1 id=le.0h5v.s5.3341282c6d46 from=translated src=- shape=59f6f85c vocab=5bafdc41
+-/
 theorem occupiedRoles_card_le
     (root : Fin a → V) (P : IndexedPairs (Fin j) V) :
     (occupiedRoles root P).card ≤ a + 2 * j := by
@@ -56,12 +62,18 @@ theorem occupiedRoles_card_le
       Finset.card_image_le
     _ = a + 2 * j := by simp
 
+/--
+@isnad1 id=not.0h6v.s5.91d20fcb5659 from=translated src=- shape=67eea629 vocab=b6c300c2
+-/
 theorem root_not_normalized
     (root : Fin a → V) (P : IndexedPairs (Fin j) V)
     (i : Fin a) : root i ∉ normalizedSet root P := by
   simpa [normalizedSet, originalRole] using
     (originalRole_mem_occupied root P (Sum.inl i))
 
+/--
+@isnad1 id=and.0h6v.s6.ff1591b59f88 from=translated src=- shape=e6b6259a vocab=b6d77356
+-/
 theorem terminals_not_normalized
     (root : Fin a → V) (P : IndexedPairs (Fin j) V)
     (i : Fin j) :
@@ -74,7 +86,9 @@ theorem terminals_not_normalized
       (originalRole_mem_occupied root P (Sum.inr (Sum.inr i)))
 
 /-- Select one distinct proxy in the normalized graph for each original
-role occurrence.-/
+role occurrence.
+@isnad1 id=ex.1h6v.s8.82d3818047f3 from=translated src=- shape=438afce9 vocab=416faf34
+-/
 theorem exists_normalized_proxies
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (root : Fin a → V) (P : IndexedPairs (Fin j) V)

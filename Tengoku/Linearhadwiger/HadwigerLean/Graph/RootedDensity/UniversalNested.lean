@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- Universality of a graph induced inside an induced graph transfers to
-the corresponding ambient induced graph.-/
+the corresponding ambient induced graph.
+@isnad1 id=universa.1h6v.s7.7b042a1da102 from=translated src=- shape=b37aaa85 vocab=48b71671
+-/
 theorem Universal.induce_image_of_nested
     {V : Type u} {W : Type v} [Fintype V] [Fintype W] [DecidableEq V]
     (G : SimpleGraph V) (H : SimpleGraph W) (R : Set V) (S : Finset R)
@@ -38,7 +40,9 @@ theorem Universal.induce_image_of_nested
   exact Universal.of_iso e h
 
 /-- Either universality of the whole graph or of one induced subgraph
-produces a universal induced subgraph.-/
+produces a universal induced subgraph.
+@isnad1 id=ex.1h4v.s6.5a625ed84076 from=translated src=- shape=f3527547 vocab=509386ad
+-/
 theorem exists_universal_induced_of_universal_or_induced
     {V : Type u} {W : Type v} [Fintype V] [Fintype W] [DecidableEq V]
     (G : SimpleGraph V) (H : SimpleGraph W)
@@ -61,7 +65,9 @@ theorem exists_universal_induced_of_universal_or_induced
   · exact ⟨N, hN⟩
 
 /-- Flatten a universal induced subgraph of an induced graph into the
-ambient vertex set.-/
+ambient vertex set.
+@isnad1 id=ex.1h5v.s6.818145ffff87 from=translated src=- shape=6bf5c028 vocab=f67a8662
+-/
 theorem exists_ambient_universal_induced_of_nested
     {V : Type u} {W : Type v} [Fintype V] [Fintype W] [DecidableEq V]
     (G : SimpleGraph V) (H : SimpleGraph W) (R : Set V)

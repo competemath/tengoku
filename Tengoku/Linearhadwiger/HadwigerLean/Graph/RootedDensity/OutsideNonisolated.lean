@@ -10,7 +10,9 @@ namespace HadwigerLean.RootedDensity
 universe u v
 
 /-- If every one-vertex massed deletion is universal, a nonuniversal
-massed pair has no isolated vertex outside its root set.-/
+massed pair has no isolated vertex outside its root set.
+@isnad1 id=ex.4h8v.s7.2cf138b4b1d1 from=translated src=- shape=1a6d8514 vocab=d50c2eeb
+-/
 theorem outside_has_neighbor_of_universal_vertex_deletions
     {W : Type v} [Fintype W] (H : SimpleGraph W)
     {V : Type u} [Fintype V] [DecidableEq V]
