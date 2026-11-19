@@ -43,6 +43,9 @@ abbrev ValuationSubringOneClusterHypothesesWithCoeffProperty
   LocalOneClusterHypothesesWithCoeffProperty
     (R := valuationSubring k Γ) (fun x => P (x : HahnField k Γ)) F
 
+/--
+@isnad1 id=valuatio.1h4v.s9.c24917a5a7f7 from=translated src=- shape=b61460f7 vocab=2e80f822
+-/
 theorem ValuationSubringOneClusterHypothesesWithCoeffProperty.oddClusterHypotheses
     {P : HahnField k Γ → Prop}
     {F : Polynomial (valuationSubring k Γ)}

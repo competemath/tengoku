@@ -31,17 +31,26 @@ def constantCoeff : valuationSubring k Γ →+ k where
   map_zero' := by simp
   map_add' x y := by simp
 
+/--
+@isnad1 id=eq.0h3v.s12.4aae98abbabd from=translated src=- shape=fee14b7b vocab=52e64022
+-/
 @[simp]
 theorem constantCoeff_apply (x : valuationSubring k Γ) :
     constantCoeff k Γ x = (ofLex (x : HahnField k Γ)).coeff 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.a2e3360c94f1 from=translated src=- shape=ec45c3ae vocab=37e85b43
+-/
 @[simp]
 theorem constantCoeff_one :
     constantCoeff k Γ (1 : valuationSubring k Γ) = 1 := by
   change (ofLex ((1 : valuationSubring k Γ) : HahnField k Γ)).coeff 0 = 1
   simp
 
+/--
+@isnad1 id=surjecti.0h2v.s12.46ef260992bf from=translated src=- shape=4a488483 vocab=37f5a967
+-/
 theorem constantCoeff_surjective : Function.Surjective (constantCoeff k Γ) := by
   intro r
   refine ⟨⟨toLex (HahnSeries.single 0 r), ?_⟩, ?_⟩
@@ -53,7 +62,9 @@ theorem constantCoeff_surjective : Function.Surjective (constantCoeff k Γ) := b
     simp
 
 /-- The constant coefficient of a product of two elements of the valuation subring is the product
-of their constant coefficients.-/
+of their constant coefficients.
+@isnad1 id=eq.0h4v.s13.d70bc506952a from=translated src=- shape=2282f1ee vocab=f4da12dd
+-/
 theorem constantCoeff_mul (x y : valuationSubring k Γ) :
     constantCoeff k Γ (x * y) = constantCoeff k Γ x * constantCoeff k Γ y := by
   change (ofLex ((x : HahnField k Γ) * (y : HahnField k Γ))).coeff 0 =
@@ -94,17 +105,25 @@ def constantCoeffRingHom : valuationSubring k Γ →+* k where
   map_add' x y := by simp
   map_mul' := constantCoeff_mul k Γ
 
+/--
+@isnad1 id=eq.0h3v.s11.097b5c9241b3 from=translated src=- shape=fee14b7b vocab=175067a5
+-/
 @[simp]
 theorem constantCoeffRingHom_apply (x : valuationSubring k Γ) :
     constantCoeffRingHom k Γ x = (ofLex (x : HahnField k Γ)).coeff 0 :=
   rfl
 
+/--
+@isnad1 id=surjecti.0h2v.s11.26a196c65e4f from=translated src=- shape=4a488483 vocab=bf468aeb
+-/
 theorem constantCoeffRingHom_surjective :
     Function.Surjective (constantCoeffRingHom k Γ) :=
   constantCoeff_surjective k Γ
 
 /-- Inside the natural valuation subring, reducing to zero is the same as having positive
-valuation.-/
+valuation.
+@isnad1 id=iff.0h3v.s11.801a1fea4e74 from=translated src=- shape=3523aedb vocab=6c31df91
+-/
 theorem constantCoeffRingHom_eq_zero_iff_pos_addVal (x : valuationSubring k Γ) :
     constantCoeffRingHom k Γ x = 0 ↔
       (0 : WithTop Γ) < addVal k Γ (x : HahnField k Γ) := by
@@ -121,13 +140,18 @@ theorem constantCoeffRingHom_eq_zero_iff_pos_addVal (x : valuationSubring k Γ) 
     change (ofLex (x : HahnField k Γ)).coeff 0 = 0
     exact HahnSeries.coeff_eq_zero_of_lt_orderTop (by simpa [addVal_apply] using hpos)
 
+/--
+@isnad1 id=eq.2h3v.s9.48168efff1c0 from=translated src=- shape=8da5463a vocab=6dc40708
+-/
 theorem addVal_eq_zero_of_mem_valuationSubring_of_constantCoeff_ne_zero
     {x : HahnField k Γ} (hx : x ∈ valuationSubring k Γ)
     (h0 : (ofLex x).coeff 0 ≠ 0) :
     addVal k Γ x = 0 := by
   exact le_antisymm (by simpa [addVal_apply] using HahnSeries.orderTop_le_of_coeff_ne_zero h0) hx
 
-/-- A valuation-subring element of value zero has sign determined by its constant coefficient.-/
+/-- A valuation-subring element of value zero has sign determined by its constant coefficient.
+@isnad1 id=iff.1h3v.s12.fb45ae9d75b3 from=translated src=- shape=a7bbb259 vocab=e65d2a79
+-/
 theorem pos_iff_constantCoeff_pos_of_addVal_eq_zero (x : valuationSubring k Γ)
     (hx : addVal k Γ (x : HahnField k Γ) = 0) :
     0 < (x : HahnField k Γ) ↔ 0 < constantCoeff k Γ x := by
@@ -135,7 +159,9 @@ theorem pos_iff_constantCoeff_pos_of_addVal_eq_zero (x : valuationSubring k Γ)
     leadingCoeff_eq_coeff_zero_of_addVal_eq_zero k Γ hx]
 
 /-- The sign of any finite-value Hahn series can be read from the constant coefficient after
-positive monomial normalization.-/
+positive monomial normalization.
+@isnad1 id=other.1h4v.s12.e0c2b8a3ecf9 from=translated src=- shape=66751e5c vocab=23e6ebc1
+-/
 theorem pos_iff_constantCoeff_pos_of_normalized_monomial {x : HahnField k Γ} {γ : Γ}
     (hx : addVal k Γ x = (γ : WithTop Γ)) :
     let y : valuationSubring k Γ :=
@@ -158,7 +184,9 @@ theorem pos_iff_constantCoeff_pos_of_normalized_monomial {x : HahnField k Γ} {�
       pos_iff_constantCoeff_pos_of_addVal_eq_zero k Γ y
         (addVal_single_neg_mul_of_addVal_eq k Γ hx)
 
-/-- The binomial half-power squares to the original `1`-unit.-/
+/-- The binomial half-power squares to the original `1`-unit.
+@isnad1 id=eq.0h3v.s13.62f1e9b728d5 from=translated src=- shape=c6cb197e vocab=b7215e7d
+-/
 theorem orderTopSubOnePos_sq_pow_half (u : HahnSeries.orderTopSubOnePos Γ k) :
     (u ^ ((1 : k) / 2)) * (u ^ ((1 : k) / 2)) = u := by
   rw [← HahnSeries.pow_add]
@@ -177,7 +205,9 @@ theorem orderTopSubOnePos_sq_pow_half (u : HahnSeries.orderTopSubOnePos Γ k) :
   simp
 
 /-- A Hahn-field element congruent to `1` modulo positive valuation has a square root given by
-the binomial series.-/
+the binomial series.
+@isnad1 id=ex.1h3v.s9.1f10c3fc8c09 from=translated src=- shape=2d66e6e4 vocab=a96891cb
+-/
 theorem exists_square_root_of_orderTop_sub_one_pos {x : HahnField k Γ}
     (hx : 0 < (ofLex x - 1).orderTop) : ∃ z : HahnField k Γ, x = z * z := by
   let u : HahnSeries.orderTopSubOnePos Γ k := HahnSeries.toOrderTopSubOnePos hx
@@ -190,6 +220,9 @@ theorem exists_square_root_of_orderTop_sub_one_pos {x : HahnField k Γ}
   change x = toLex (r.val.val * r.val.val)
   simpa [u] using (congrArg toLex hval.symm)
 
+/--
+@isnad1 id=isunit.1h3v.s11.862c699f32b0 from=translated src=- shape=466ba1b3 vocab=30b17718
+-/
 theorem isUnit_of_constantCoeffRingHom_ne_zero (x : valuationSubring k Γ)
     (hx0 : constantCoeffRingHom k Γ x ≠ 0) : IsUnit x := by
   let x' : HahnField k Γ := x
@@ -212,7 +245,9 @@ theorem isUnit_of_constantCoeffRingHom_ne_zero (x : valuationSubring k Γ)
   · ext
     exact inv_mul_cancel₀ hxne
 
-/-- An element of the natural valuation subring with value zero is a unit.-/
+/-- An element of the natural valuation subring with value zero is a unit.
+@isnad1 id=isunit.1h3v.s10.80d7b65650fc from=translated src=- shape=fdd92749 vocab=9d34e81b
+-/
 theorem isUnit_of_addVal_eq_zero {x : HahnField k Γ} (hx : addVal k Γ x = 0) :
     IsUnit (⟨x, by change (0 : WithTop Γ) ≤ addVal k Γ x; rw [hx]⟩ :
       valuationSubring k Γ) := by
@@ -223,7 +258,9 @@ theorem isUnit_of_addVal_eq_zero {x : HahnField k Γ} (hx : addVal k Γ x = 0) :
   exact (lt_irrefl (0 : WithTop Γ)) hpos
 
 /-- The monomial-normalized form of a finite-value Hahn series is a unit of the natural valuation
-subring.-/
+subring.
+@isnad1 id=isunit.1h4v.s11.8ebb6b3c440f from=translated src=- shape=661d72e5 vocab=7cb97e69
+-/
 theorem isUnit_normalized_monomial {x : HahnField k Γ} {γ : Γ}
     (hx : addVal k Γ x = (γ : WithTop Γ)) :
     IsUnit (⟨toLex (HahnSeries.single (-γ) (1 : k)) * x, by
@@ -274,7 +311,9 @@ private theorem exists_leadingTerm_decomposition_of_pos {x : HahnField k Γ} (hx
     exact hdenorm
 
 /-- Over a real closed coefficient field and a divisible value group, every nonnegative Hahn-field
-element is a square.-/
+element is a square.
+@isnad1 id=issquare.1h3v.s8.d95eb2185262 from=translated src=- shape=2401ea72 vocab=1665c844
+-/
 theorem isSquare_of_nonneg [IsRealClosed k] [DivisibleBy Γ ℕ] {x : HahnField k Γ}
     (hx : 0 ≤ x) : IsSquare x := by
   rcases lt_or_eq_of_le hx with hxpos | rfl
@@ -300,7 +339,9 @@ theorem isSquare_of_nonneg [IsRealClosed k] [DivisibleBy Γ ℕ] {x : HahnField 
 /-- A sharper Hahn-field real-closedness criterion after proving the square part by binomial
 Hahn-series expansion.
 
-The remaining hard input is the existence of roots for odd-degree polynomials.-/
+The remaining hard input is the existence of roots for odd-degree polynomials.
+@isnad1 id=isrealcl.1h2v.s8.3d6c7e2a1682 from=translated src=- shape=4fdcb2a1 vocab=e7ac507a
+-/
 theorem isRealClosed_of_odd_roots [IsRealClosed k] [DivisibleBy Γ ℕ]
     (hodd : ∀ {f : (HahnField k Γ)[X]}, Odd f.natDegree → ∃ x, f.IsRoot x) :
     IsRealClosed (HahnField k Γ) := by
@@ -309,11 +350,17 @@ theorem isRealClosed_of_odd_roots [IsRealClosed k] [DivisibleBy Γ ℕ]
     exact isSquare_of_nonneg k Γ hx
   · exact hodd
 
+/--
+@isnad1 id=ismaxima.0h2v.s11.864bcacbfc58 from=translated src=- shape=9e4aa310 vocab=fe3d68b9
+-/
 theorem constantCoeffRingHom_ker_isMaximal :
     (RingHom.ker (constantCoeffRingHom k Γ)).IsMaximal :=
   RingHom.ker_isMaximal_of_surjective (constantCoeffRingHom k Γ)
     (constantCoeffRingHom_surjective k Γ)
 
+/--
+@isnad1 id=le.1h3v.s13.274aa586b1fd from=translated src=- shape=eed7b41f vocab=9d09f2fd
+-/
 theorem le_constantCoeffRingHom_ker_of_isMaximal
     (I : Ideal (valuationSubring k Γ)) (hI : I.IsMaximal) :
     I ≤ RingHom.ker (constantCoeffRingHom k Γ) := by
@@ -323,6 +370,9 @@ theorem le_constantCoeffRingHom_ker_of_isMaximal
   exact hI.ne_top (I.eq_top_of_isUnit_mem hxI
     (isUnit_of_constantCoeffRingHom_ne_zero k Γ x hx0))
 
+/--
+@isnad1 id=islocalr.0h2v.s9.49028bddc921 from=translated src=- shape=cf7824bf vocab=6877bd5e
+-/
 instance instIsLocalRingValuationSubring : IsLocalRing (valuationSubring k Γ) := by
   apply IsLocalRing.of_unique_max_ideal
   refine ⟨RingHom.ker (constantCoeffRingHom k Γ), constantCoeffRingHom_ker_isMaximal k Γ, ?_⟩
@@ -330,7 +380,9 @@ instance instIsLocalRingValuationSubring : IsLocalRing (valuationSubring k Γ) :
   exact hI.eq_of_le (constantCoeffRingHom_ker_isMaximal k Γ).ne_top
     (le_constantCoeffRingHom_ker_of_isMaximal k Γ I hI)
 
-/-- The maximal ideal of the natural valuation subring is the kernel of the residue map.-/
+/-- The maximal ideal of the natural valuation subring is the kernel of the residue map.
+@isnad1 id=eq.0h2v.s11.121fb52706ef from=translated src=- shape=6cae6f88 vocab=6c72220c
+-/
 theorem constantCoeffRingHom_ker_eq_maximalIdeal :
     RingHom.ker (constantCoeffRingHom k Γ) =
       IsLocalRing.maximalIdeal (valuationSubring k Γ) :=
@@ -338,7 +390,9 @@ theorem constantCoeffRingHom_ker_eq_maximalIdeal :
     (constantCoeffRingHom_surjective k Γ)
 
 /-- The maximal ideal of the natural valuation subring consists of elements with positive
-valuation.-/
+valuation.
+@isnad1 id=iff.0h3v.s12.b2be5be4db1d from=translated src=- shape=8ba0f4de vocab=07785f0f
+-/
 theorem mem_maximalIdeal_iff_pos_addVal (x : valuationSubring k Γ) :
     x ∈ IsLocalRing.maximalIdeal (valuationSubring k Γ) ↔
       (0 : WithTop Γ) < addVal k Γ (x : HahnField k Γ) := by
@@ -346,7 +400,9 @@ theorem mem_maximalIdeal_iff_pos_addVal (x : valuationSubring k Γ) :
     constantCoeffRingHom_eq_zero_iff_pos_addVal]
 
 /-- A nonzero maximal-ideal element has a finite positive valuation and nonzero leading
-coefficient.-/
+coefficient.
+@isnad1 id=ex.2h3v.s12.d7796fa3c965 from=translated src=- shape=d91fc37f vocab=b5beef36
+-/
 theorem exists_pos_addVal_coeff_ne_zero_of_mem_maximalIdeal
     {x : valuationSubring k Γ}
     (hxmem : x ∈ IsLocalRing.maximalIdeal (valuationSubring k Γ)) (hxne : x ≠ 0) :
@@ -368,7 +424,9 @@ theorem exists_pos_addVal_coeff_ne_zero_of_mem_maximalIdeal
   exact HahnSeries.coeff_orderTop_ne (by simpa [addVal_apply] using hγ)
 
 /-- A nonzero maximal-ideal element has a finite positive valuation and a named nonzero leading
-coefficient.-/
+coefficient.
+@isnad1 id=ex.2h3v.s12.b92299a30153 from=translated src=- shape=572c518d vocab=b5beef36
+-/
 theorem exists_pos_addVal_leading_coeff_of_mem_maximalIdeal
     {x : valuationSubring k Γ}
     (hxmem : x ∈ IsLocalRing.maximalIdeal (valuationSubring k Γ)) (hxne : x ≠ 0) :
@@ -408,18 +466,27 @@ noncomputable def PositiveHahnRoot.some {F : (HahnField k Γ)[X]}
   Classical.choose h
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=lt.1h3v.s8.fbc4922e7fcb from=translated src=- shape=c478c25f vocab=c5892af6
+-/
 theorem PositiveHahnRoot.pos {F : (HahnField k Γ)[X]}
     (h : PositiveHahnRoot k Γ F) :
     (0 : WithTop Γ) < addVal k Γ (PositiveHahnRoot.some k Γ h) :=
   (Classical.choose_spec h).1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=isroot.1h3v.s7.3047692ef3dd from=translated src=- shape=c154986e vocab=726e7d61
+-/
 theorem PositiveHahnRoot.isRoot {F : (HahnField k Γ)[X]}
     (h : PositiveHahnRoot k Γ F) :
     F.IsRoot (PositiveHahnRoot.some k Γ h) :=
   (Classical.choose_spec h).2
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=positive.2h4v.s9.970997f58854 from=translated src=- shape=0c7d1be4 vocab=1b83bf9e
+-/
 theorem PositiveHahnRoot.of_dvd {F G : (HahnField k Γ)[X]}
     (hroot : PositiveHahnRoot k Γ G) (hdiv : G ∣ F) :
     PositiveHahnRoot k Γ F := by
@@ -430,6 +497,9 @@ theorem PositiveHahnRoot.of_dvd {F G : (HahnField k Γ)[X]}
   rw [hFH, Polynomial.eval_mul, hyroot, zero_mul]
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=positive.2h5v.s9.57b24e2c5dde from=translated src=- shape=f6ad706f vocab=422c26c6
+-/
 theorem PositiveHahnRoot.of_mul_left {F G H : (HahnField k Γ)[X]}
     (hroot : PositiveHahnRoot k Γ G) (hF : F = G * H) :
     PositiveHahnRoot k Γ F :=

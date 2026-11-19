@@ -35,6 +35,9 @@ instance instField : Field (HahnField k Γ) :=
 instance instLinearOrder : LinearOrder (HahnField k Γ) :=
   inferInstance
 
+/--
+@isnad1 id=isstrict.0h2v.s7.045be448aa99 from=translated src=- shape=ec3cb3b8 vocab=88f894d2
+-/
 instance instIsStrictOrderedRing : IsStrictOrderedRing (HahnField k Γ) :=
   inferInstance
 
@@ -47,6 +50,9 @@ def ofLexRingHom : HahnField k Γ →+* k⟦Γ⟧ where
   map_add' := fun _ _ => rfl
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h3v.s9.74190de3a525 from=translated src=- shape=88757808 vocab=15f98a3e
+-/
 @[simp]
 theorem ofLexRingHom_apply (x : HahnField k Γ) :
     ofLexRingHom k Γ x = ofLex x :=
@@ -57,6 +63,9 @@ def addVal : AddValuation (HahnField k Γ) (WithTop Γ) :=
   (HahnSeries.addVal Γ k).comap (ofLexRingHom k Γ)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h3v.s9.6bb2039623a0 from=translated src=- shape=6c7b803d vocab=82a3f5e8
+-/
 @[simp]
 theorem addVal_apply (x : HahnField k Γ) :
     addVal k Γ x = (ofLex x).orderTop :=
@@ -67,6 +76,9 @@ def valuation : Valuation (HahnField k Γ) (Multiplicative (WithTop Γ)ᵒᵈ) :
   AddValuation.toValuation (addVal k Γ)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h3v.s8.f0f1acf00437 from=translated src=- shape=7cabf774 vocab=34b322b9
+-/
 @[simp]
 theorem valuation_apply (x : HahnField k Γ) :
     valuation k Γ x = Multiplicative.ofAdd (OrderDual.toDual (addVal k Γ x)) :=
@@ -114,6 +126,9 @@ noncomputable def subsingletonValueGroupRingEquiv [Subsingleton Γ] :
   map_add' x y := by
     exact (hahnSeriesSubsingletonRingEquiv k Γ).map_add' (ofLex x) (ofLex y)
 
+/--
+@isnad1 id=eq.0h3v.s9.e0c3b985b44f from=translated src=- shape=c9165b41 vocab=d235fa76
+-/
 @[simp]
 theorem addVal_single (γ : Γ) :
     addVal k Γ (toLex (HahnSeries.single γ (1 : k))) = (γ : WithTop Γ) := by
@@ -126,46 +141,66 @@ def hahnMonomial (γ : Γ) : HahnField k Γ :=
   toLex (HahnSeries.single γ (1 : k))
 
 omit [LinearOrder k] [IsStrictOrderedRing k] [AddCommGroup Γ] [IsOrderedAddMonoid Γ] in
+/--
+@isnad1 id=eq.0h3v.s8.ef70394fa2c8 from=translated src=- shape=5bbe5975 vocab=664794d4
+-/
 @[simp]
 theorem hahnMonomial_apply (γ : Γ) :
     hahnMonomial k Γ γ = toLex (HahnSeries.single γ (1 : k)) :=
   rfl
 
 omit [AddCommGroup Γ] [IsOrderedAddMonoid Γ] in
+/--
+@isnad1 id=ne.0h3v.s7.162728da0e22 from=translated src=- shape=d36e1731 vocab=5bf732ed
+-/
 @[simp]
 theorem hahnMonomial_ne_zero (γ : Γ) : hahnMonomial k Γ γ ≠ 0 := by
   simp [hahnMonomial]
 
+/--
+@isnad1 id=eq.0h3v.s7.94c6aa9f8ee6 from=translated src=- shape=4423f8c0 vocab=cc9c292d
+-/
 @[simp]
 theorem addVal_hahnMonomial (γ : Γ) :
     addVal k Γ (hahnMonomial k Γ γ) = (γ : WithTop Γ) := by
   exact addVal_single k Γ γ
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h4v.s9.4f27fccca927 from=translated src=- shape=37732a33 vocab=c0c40ab0
+-/
 theorem addVal_single_of_ne {γ : Γ} {r : k} (hr : r ≠ 0) :
     addVal k Γ (toLex (HahnSeries.single γ r)) = (γ : WithTop Γ) := by
   rw [addVal_apply]
   exact HahnSeries.orderTop_single hr
 
 omit [AddCommGroup Γ] [IsOrderedAddMonoid Γ] in
-/-- The monomial with coefficient `1` is positive in the lexicographic Hahn order.-/
+/-- The monomial with coefficient `1` is positive in the lexicographic Hahn order.
+@isnad1 id=lt.0h3v.s9.ccaec233b164 from=translated src=- shape=2b2e1d46 vocab=32d0ea6c
+-/
 theorem single_one_pos (γ : Γ) :
     0 < (toLex (HahnSeries.single γ (1 : k)) : HahnField k Γ) := by
   rw [← HahnSeries.leadingCoeff_pos_iff]
   simp [HahnSeries.leadingCoeff_of_single]
 
-/-- Multiplication by a positive Hahn monomial preserves positivity.-/
+/-- Multiplication by a positive Hahn monomial preserves positivity.
+@isnad1 id=iff.0h4v.s10.070eb66ceb21 from=translated src=- shape=ce6fd90e vocab=9d68150e
+-/
 theorem single_one_mul_pos_iff (γ : Γ) (x : HahnField k Γ) :
     0 < toLex (HahnSeries.single γ (1 : k)) * x ↔ 0 < x := by
   exact mul_pos_iff_of_pos_left (single_one_pos k Γ γ)
 
-/-- The inverse-value monomial used for normalization preserves positivity.-/
+/-- The inverse-value monomial used for normalization preserves positivity.
+@isnad1 id=iff.0h4v.s10.e1081ae11be5 from=translated src=- shape=8bfb4f9d vocab=759fd804
+-/
 theorem normalized_monomial_mul_pos_iff (γ : Γ) (x : HahnField k Γ) :
     0 < toLex (HahnSeries.single (-γ) (1 : k)) * x ↔ 0 < x :=
   single_one_mul_pos_iff k Γ (-γ) x
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- Divisibility of the value group lets us divide a positive value by a positive natural.-/
+/-- Divisibility of the value group lets us divide a positive value by a positive natural.
+@isnad1 id=ex.2h3v.s7.9bc67725d845 from=translated src=- shape=624b9bf1 vocab=b08f53f2
+-/
 theorem exists_pos_nsmul_eq [DivisibleBy Γ ℕ] {m : ℕ} {γ : Γ}
     (hm : 0 < m) (hγ : 0 < γ) :
     ∃ δ : Γ, 0 < δ ∧ m • δ = γ := by
@@ -176,7 +211,9 @@ theorem exists_pos_nsmul_eq [DivisibleBy Γ ℕ] {m : ℕ} {γ : Γ}
   simpa [hδeq] using hγ
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- In a nontrivial linearly ordered additive group, a finite set has a strict lower bound.-/
+/-- In a nontrivial linearly ordered additive group, a finite set has a strict lower bound.
+@isnad1 id=ex.0h2v.s6.aac2c8bafe74 from=translated src=- shape=71857937 vocab=157f4a91
+-/
 theorem exists_lt_all_finset [Nontrivial Γ] (s : Finset Γ) :
     ∃ δ : Γ, ∀ a ∈ s, δ < a := by
   classical
@@ -190,7 +227,9 @@ theorem exists_lt_all_finset [Nontrivial Γ] (s : Finset Γ) :
     exact False.elim (hs ⟨a, ha⟩)
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- A finite family in a nontrivial linearly ordered additive group has a strict lower bound.-/
+/-- A finite family in a nontrivial linearly ordered additive group has a strict lower bound.
+@isnad1 id=ex.0h4v.s6.0c8fa4cf9e0d from=translated src=- shape=58c0443d vocab=157f4a91
+-/
 theorem exists_lt_all_finset_image [Nontrivial Γ] {ι : Type*} (s : Finset ι)
     (f : ι → Γ) :
     ∃ δ : Γ, ∀ i ∈ s, δ < f i := by
@@ -201,7 +240,9 @@ theorem exists_lt_all_finset_image [Nontrivial Γ] {ι : Type*} (s : Finset ι)
   exact hδ (f i) (Finset.mem_image.mpr ⟨i, hi, rfl⟩)
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- Strict comparison with a divisible quotient, in additive notation.-/
+/-- Strict comparison with a divisible quotient, in additive notation.
+@isnad1 id=lt.2h4v.s7.6207a4c83c2d from=translated src=- shape=91423fe1 vocab=2317f189
+-/
 theorem nsmul_lt_of_lt_div [DivisibleBy Γ ℕ] {m : ℕ} (hm : m ≠ 0) {δ a : Γ}
     (hδ : δ < DivisibleBy.div a m) :
     m • δ < a := by
@@ -210,7 +251,9 @@ theorem nsmul_lt_of_lt_div [DivisibleBy Γ ℕ] {m : ℕ} (hm : m ≠ 0) {δ a :
     _ = a := DivisibleBy.div_cancel a hm
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] [LinearOrder Γ] [IsOrderedAddMonoid Γ] in
-/-- Algebraic rearrangement used by top-degree scaling.-/
+/-- Algebraic rearrangement used by top-degree scaling.
+@isnad1 id=eq.1h6v.s7.2b36d30a504e from=translated src=- shape=39b03a4d vocab=2dba4449
+-/
 theorem scaledValue_sub_eq {n i : ℕ} (hi : i ≤ n) (γn vi δ : Γ) :
     -(γn + n • δ) + vi + i • δ = vi - γn - (n - i) • δ := by
   have hn : n = n - i + i := by omega
@@ -219,13 +262,17 @@ theorem scaledValue_sub_eq {n i : ℕ} (hi : i ≤ n) (γn vi δ : Γ) :
   abel
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] [LinearOrder Γ] [IsOrderedAddMonoid Γ] in
-/-- The top coefficient has scaled value zero when `lam = γn + n • δ`.-/
+/-- The top coefficient has scaled value zero when `lam = γn + n • δ`.
+@isnad1 id=eq.0h4v.s7.0cc2225e87bb from=translated src=- shape=f60fd5aa vocab=273d7ac0
+-/
 theorem scaledValue_natDegree_eq_zero (n : ℕ) (γn δ : Γ) :
     -(γn + n • δ) + γn + n • δ = 0 := by
   abel
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- Dominance of the natural-degree slope gives strict positivity of a lower scaled value.-/
+/-- Dominance of the natural-degree slope gives strict positivity of a lower scaled value.
+@isnad1 id=lt.2h6v.s7.caad0275c9d8 from=translated src=- shape=486b7897 vocab=9f2957d3
+-/
 theorem scaledValue_pos_of_dominating {n i : ℕ} (hi : i ≤ n) {γn vi δ : Γ}
     (hdom : (n - i) • δ < vi - γn) :
     0 < -(γn + n • δ) + vi + i • δ := by
@@ -234,7 +281,9 @@ theorem scaledValue_pos_of_dominating {n i : ℕ} (hi : i ≤ n) {γn vi δ : Γ
     _ = -(γn + n • δ) + vi + i • δ := (scaledValue_sub_eq (Γ := Γ) hi γn vi δ).symm
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] [LinearOrder Γ] [IsOrderedAddMonoid Γ] in
-/-- WithTop form of `scaledValue_natDegree_eq_zero`.-/
+/-- WithTop form of `scaledValue_natDegree_eq_zero`.
+@isnad1 id=eq.0h4v.s7.3a3d2dc81603 from=translated src=- shape=2d27f12c vocab=8ae5d893
+-/
 theorem withTop_scaledValue_natDegree_eq_zero (n : ℕ) (γn δ : Γ) :
     (-(γn + n • δ : Γ) : WithTop Γ) + (γn : WithTop Γ) +
         n • (δ : WithTop Γ) =
@@ -246,7 +295,9 @@ theorem withTop_scaledValue_natDegree_eq_zero (n : ℕ) (γn δ : Γ) :
   rw [scaledValue_natDegree_eq_zero]
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- WithTop form of lower scaled-value positivity.-/
+/-- WithTop form of lower scaled-value positivity.
+@isnad1 id=lt.2h6v.s8.40d28b78dbde from=translated src=- shape=2f8e2208 vocab=ee3132ac
+-/
 theorem withTop_scaledValue_pos_of_dominating {n i : ℕ} (hi : i ≤ n)
     {γn vi δ : Γ} (hdom : (n - i) • δ < vi - γn) :
     (0 : WithTop Γ) <
@@ -265,7 +316,9 @@ noncomputable def coeffValueOfMemSupport (F : (HahnField k Γ)[X]) {i : ℕ}
       simpa [AddValuation.ne_top_iff] using hcoeff)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- `coeffValueOfMemSupport` really is the additive valuation of the coefficient.-/
+/-- `coeffValueOfMemSupport` really is the additive valuation of the coefficient.
+@isnad1 id=eq.1h4v.s8.652c1cf3bb22 from=translated src=- shape=ab7ea72f vocab=b4819cef
+-/
 theorem addVal_coeff_eq_coeffValueOfMemSupport (F : (HahnField k Γ)[X]) {i : ℕ}
     (hi : i ∈ F.support) :
     addVal k Γ (F.coeff i) = (coeffValueOfMemSupport k Γ F hi : WithTop Γ) := by
@@ -278,7 +331,9 @@ noncomputable def newtonWeightOfMemSupport (F : (HahnField k Γ)[X]) (γ : Γ) {
   coeffValueOfMemSupport k Γ F hi + i • γ
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- The `WithTop` expression for a coefficient weight is finite on the support.-/
+/-- The `WithTop` expression for a coefficient weight is finite on the support.
+@isnad1 id=eq.1h5v.s8.b0df5530e71e from=translated src=- shape=750894bf vocab=5902b116
+-/
 theorem withTop_newtonWeightOfMemSupport_eq (F : (HahnField k Γ)[X]) (γ : Γ)
     {i : ℕ} (hi : i ∈ F.support) :
     addVal k Γ (F.coeff i) + i • (γ : WithTop Γ) =
@@ -292,13 +347,18 @@ noncomputable def newtonWeight (F : (HahnField k Γ)[X]) (γ : Γ) (i : ℕ) : W
   addVal k Γ (F.coeff i) + i • (γ : WithTop Γ)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- On the support, `newtonWeight` agrees with the finite Newton weight.-/
+/-- On the support, `newtonWeight` agrees with the finite Newton weight.
+@isnad1 id=eq.1h5v.s7.41f2ce9b4735 from=translated src=- shape=60abf783 vocab=343d497b
+-/
 theorem newtonWeight_eq_of_mem_support (F : (HahnField k Γ)[X]) (γ : Γ)
     {i : ℕ} (hi : i ∈ F.support) :
     newtonWeight k Γ F γ i = (newtonWeightOfMemSupport k Γ F γ hi : WithTop Γ) :=
   withTop_newtonWeightOfMemSupport_eq k Γ F γ hi
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h5v.s7.26bce263f372 from=translated src=- shape=51b599e4 vocab=c2fe3ba4
+-/
 @[simp]
 theorem newtonWeight_eq_top_of_notMem_support (F : (HahnField k Γ)[X]) (γ : Γ)
     {i : ℕ} (hi : i ∉ F.support) :
@@ -311,6 +371,9 @@ noncomputable def newtonInitialSupport (F : (HahnField k Γ)[X]) (γ μ : Γ) : 
   F.support.filter fun i => newtonWeight k Γ F γ i = (μ : WithTop Γ)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=iff.0h6v.s7.462d779f763d from=translated src=- shape=38abc0b0 vocab=ec0e2fdc
+-/
 @[simp]
 theorem mem_newtonInitialSupport (F : (HahnField k Γ)[X]) (γ μ : Γ) {i : ℕ} :
     i ∈ newtonInitialSupport k Γ F γ μ ↔
@@ -324,6 +387,9 @@ noncomputable def newtonInitialCoeff (F : (HahnField k Γ)[X]) (γ μ : Γ) (i :
   else 0
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h6v.s7.b6d58572312c from=translated src=- shape=0784d6d3 vocab=f844a7e9
+-/
 @[simp]
 theorem newtonInitialCoeff_of_notMem (F : (HahnField k Γ)[X]) (γ μ : Γ) {i : ℕ}
     (hi : i ∉ newtonInitialSupport k Γ F γ μ) :
@@ -331,6 +397,9 @@ theorem newtonInitialCoeff_of_notMem (F : (HahnField k Γ)[X]) (γ μ : Γ) {i :
   simp [newtonInitialCoeff, hi]
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h6v.s9.313d7ffcfd03 from=translated src=- shape=d82aeb36 vocab=3c633db5
+-/
 @[simp]
 theorem newtonInitialCoeff_of_mem (F : (HahnField k Γ)[X]) (γ μ : Γ) {i : ℕ}
     (hi : i ∈ newtonInitialSupport k Γ F γ μ) :
@@ -344,6 +413,9 @@ noncomputable def newtonInitialPolynomial (F : (HahnField k Γ)[X]) (γ μ : Γ)
     Polynomial.C (newtonInitialCoeff k Γ F γ μ i) * Polynomial.X ^ i
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h6v.s7.25282a0c7f3b from=translated src=- shape=2e2b57fc vocab=50ce2f83
+-/
 @[simp]
 theorem coeff_newtonInitialPolynomial (F : (HahnField k Γ)[X]) (γ μ : Γ) (i : ℕ) :
     (newtonInitialPolynomial k Γ F γ μ).coeff i = newtonInitialCoeff k Γ F γ μ i := by
@@ -369,7 +441,9 @@ theorem coeff_newtonInitialPolynomial (F : (HahnField k Γ)[X]) (γ μ : Γ) (i 
       simp [hne]
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- Every index in the initial support contributes a nonzero coefficient.-/
+/-- Every index in the initial support contributes a nonzero coefficient.
+@isnad1 id=ne.1h6v.s7.5d1e3add1865 from=translated src=- shape=f29b616d vocab=f844a7e9
+-/
 theorem newtonInitialCoeff_ne_zero_of_mem (F : (HahnField k Γ)[X]) (γ μ : Γ)
     {i : ℕ} (hi : i ∈ newtonInitialSupport k Γ F γ μ) :
     newtonInitialCoeff k Γ F γ μ i ≠ 0 := by
@@ -392,7 +466,9 @@ theorem newtonInitialCoeff_ne_zero_of_mem (F : (HahnField k Γ)[X]) (γ μ : Γ)
   exact HahnSeries.coeff_orderTop_ne (by simpa [addVal_apply] using hval)
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- An erased support index is strictly below the natural degree.-/
+/-- An erased support index is strictly below the natural degree.
+@isnad1 id=lt.1h3v.s5.964e7594b9a9 from=translated src=- shape=64b44c54 vocab=51449176
+-/
 theorem lt_natDegree_of_mem_support_erase_natDegree {R : Type*} [Semiring R]
     {F : R[X]} {i : ℕ} (hi : i ∈ F.support.erase F.natDegree) :
     i < F.natDegree := by
@@ -400,14 +476,18 @@ theorem lt_natDegree_of_mem_support_erase_natDegree {R : Type*} [Semiring R]
   exact lt_of_le_of_ne (Polynomial.le_natDegree_of_mem_supp i hisupp) hine
 
 omit [Field k] [LinearOrder k] [IsStrictOrderedRing k] in
-/-- A support index below the natural degree gives a nonzero natural difference.-/
+/-- A support index below the natural degree gives a nonzero natural difference.
+@isnad1 id=ne.1h3v.s5.b1a5ba770d53 from=translated src=- shape=bba57c99 vocab=55f8cfc5
+-/
 theorem natDegree_sub_ne_zero_of_mem_support_erase_natDegree {R : Type*} [Semiring R]
     {F : R[X]} {i : ℕ} (hi : i ∈ F.support.erase F.natDegree) :
     F.natDegree - i ≠ 0 := by
   exact Nat.ne_of_gt (Nat.sub_pos_of_lt (lt_natDegree_of_mem_support_erase_natDegree hi))
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- Divisibility of the value group gives exact `n`-th roots of coefficient-one monomials.-/
+/-- Divisibility of the value group gives exact `n`-th roots of coefficient-one monomials.
+@isnad1 id=eq.1h4v.s10.ac89d3719cf7 from=translated src=- shape=567ea587 vocab=2989a239
+-/
 theorem single_one_pow_div_eq_single [DivisibleBy Γ ℕ] {n : ℕ} (hn : n ≠ 0) (γ : Γ) :
     (toLex (HahnSeries.single (DivisibleBy.div γ n) (1 : k)) : HahnField k Γ) ^ n =
       toLex (HahnSeries.single γ (1 : k)) := by
@@ -416,7 +496,9 @@ theorem single_one_pow_div_eq_single [DivisibleBy Γ ℕ] {n : ℕ} (hn : n ≠ 
   rw [HahnSeries.single_pow, DivisibleBy.div_cancel γ hn]
   simp
 
-/-- Multiplying by the inverse-value monomial normalizes a series of finite value to value zero.-/
+/-- Multiplying by the inverse-value monomial normalizes a series of finite value to value zero.
+@isnad1 id=eq.1h4v.s10.4d6d4fe3de1b from=translated src=- shape=6343e442 vocab=da513f4f
+-/
 theorem addVal_single_neg_mul_of_addVal_eq {x : HahnField k Γ} {γ : Γ}
     (hx : addVal k Γ x = (γ : WithTop Γ)) :
     addVal k Γ (toLex (HahnSeries.single (-γ) (1 : k)) * x) = 0 := by
@@ -432,6 +514,9 @@ noncomputable def scalePolynomial (F : (HahnField k Γ)[X]) (δ lam : Γ) :
     F.comp (Polynomial.C (hahnMonomial k Γ δ) * Polynomial.X)
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.0h6v.s9.86f0af997e27 from=translated src=- shape=d1e45569 vocab=65852713
+-/
 @[simp]
 theorem eval_scalePolynomial (F : (HahnField k Γ)[X]) (δ lam : Γ) (y : HahnField k Γ) :
     (scalePolynomial k Γ F δ lam).eval y =
@@ -440,7 +525,9 @@ theorem eval_scalePolynomial (F : (HahnField k Γ)[X]) (δ lam : Γ) (y : HahnFi
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
 /-- Coefficients of `scalePolynomial`: the `n`-th coefficient is multiplied by
-`T^{-lam} * T^{nδ}`.-/
+`T^{-lam} * T^{nδ}`.
+@isnad1 id=eq.0h6v.s9.9babfac447ff from=translated src=- shape=bde3de2e vocab=e8ee46d6
+-/
 @[simp]
 theorem coeff_scalePolynomial (F : (HahnField k Γ)[X]) (δ lam : Γ) (n : ℕ) :
     (scalePolynomial k Γ F δ lam).coeff n =
@@ -448,7 +535,9 @@ theorem coeff_scalePolynomial (F : (HahnField k Γ)[X]) (δ lam : Γ) (n : ℕ) 
   rw [scalePolynomial, Polynomial.coeff_C_mul, Polynomial.comp_C_mul_X_coeff]
   ring
 
-/-- A root of a scaled polynomial pulls back to a root of the original polynomial.-/
+/-- A root of a scaled polynomial pulls back to a root of the original polynomial.
+@isnad1 id=isroot.1h6v.s8.cd8286cf6f8e from=translated src=- shape=3d69a360 vocab=f4c30c76
+-/
 theorem isRoot_of_scalePolynomial_isRoot {F : (HahnField k Γ)[X]} {δ lam : Γ}
     {y : HahnField k Γ} (hy : (scalePolynomial k Γ F δ lam).IsRoot y) :
     F.IsRoot (hahnMonomial k Γ δ * y) := by
@@ -456,7 +545,9 @@ theorem isRoot_of_scalePolynomial_isRoot {F : (HahnField k Γ)[X]} {δ lam : Γ}
   rw [eval_scalePolynomial] at hy
   exact (mul_eq_zero.mp hy).resolve_left (hahnMonomial_ne_zero k Γ (-lam))
 
-/-- Existential root transport for `scalePolynomial`.-/
+/-- Existential root transport for `scalePolynomial`.
+@isnad1 id=ex.1h5v.s8.7cf1550920ca from=translated src=- shape=f90e8fc6 vocab=589f16dd
+-/
 theorem exists_root_of_scalePolynomial_root {F : (HahnField k Γ)[X]} {δ lam : Γ}
     (hroot : ∃ y : HahnField k Γ, (scalePolynomial k Γ F δ lam).IsRoot y) :
     ∃ x : HahnField k Γ, F.IsRoot x := by
@@ -464,7 +555,9 @@ theorem exists_root_of_scalePolynomial_root {F : (HahnField k Γ)[X]} {δ lam : 
   exact ⟨hahnMonomial k Γ δ * y, isRoot_of_scalePolynomial_isRoot k Γ hy⟩
 
 /-- A nonzero Hahn-field polynomial admits a scalar normalization whose coefficients all have
-nonnegative valuation and at least one coefficient has valuation zero.-/
+nonnegative valuation and at least one coefficient has valuation zero.
+@isnad1 id=ex.1h3v.s10.466d32427d95 from=translated src=- shape=f84c36d3 vocab=7fa15dae
+-/
 theorem exists_coeff_normalizing_scalar {f : (HahnField k Γ)[X]} (hf : f ≠ 0) :
     ∃ c : HahnField k Γ, c ≠ 0 ∧
       (∀ n : ℕ, (0 : WithTop Γ) ≤ addVal k Γ (c * f.coeff n)) ∧
@@ -505,7 +598,9 @@ theorem exists_coeff_normalizing_scalar {f : (HahnField k Γ)[X]} (hf : f ≠ 0)
     simp
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- A Hahn series with finite value `γ` has leading coefficient equal to its `γ`-coefficient.-/
+/-- A Hahn series with finite value `γ` has leading coefficient equal to its `γ`-coefficient.
+@isnad1 id=eq.1h4v.s9.2b4ee54f4bd2 from=translated src=- shape=678cb4ad vocab=e9e6abe7
+-/
 theorem leadingCoeff_eq_coeff_of_addVal_eq {x : HahnField k Γ} {γ : Γ}
     (hx : addVal k Γ x = (γ : WithTop Γ)) :
     (ofLex x).leadingCoeff = (ofLex x).coeff γ := by
@@ -519,7 +614,9 @@ theorem leadingCoeff_eq_coeff_of_addVal_eq {x : HahnField k Γ} {γ : Γ}
   exact hx
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- A Hahn series of value zero has leading coefficient equal to its constant coefficient.-/
+/-- A Hahn series of value zero has leading coefficient equal to its constant coefficient.
+@isnad1 id=eq.1h3v.s9.091dc308b443 from=translated src=- shape=8c7e0241 vocab=abb793d8
+-/
 theorem leadingCoeff_eq_coeff_zero_of_addVal_eq_zero {x : HahnField k Γ}
     (hx : addVal k Γ x = 0) :
     (ofLex x).leadingCoeff = (ofLex x).coeff 0 := by
@@ -527,7 +624,9 @@ theorem leadingCoeff_eq_coeff_zero_of_addVal_eq_zero {x : HahnField k Γ}
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
 /-- If all terms below `γ` vanish and the coefficient at `γ` also vanishes, then the valuation is
-strictly larger than `γ`.-/
+strictly larger than `γ`.
+@isnad1 id=lt.2h4v.s9.97627dcdc35a from=translated src=- shape=1d7b8424 vocab=cc9af578
+-/
 theorem lt_addVal_of_le_addVal_of_coeff_eq_zero {x : HahnField k Γ} {γ : Γ}
     (hle : (γ : WithTop Γ) ≤ addVal k Γ x) (hcoeff : (ofLex x).coeff γ = 0) :
     (γ : WithTop Γ) < addVal k Γ x := by
@@ -538,7 +637,9 @@ theorem lt_addVal_of_le_addVal_of_coeff_eq_zero {x : HahnField k Γ} {γ : Γ}
   exact HahnSeries.coeff_orderTop_ne horder hcoeff
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
-/-- A common valuation lower bound is preserved by addition.-/
+/-- A common valuation lower bound is preserved by addition.
+@isnad1 id=le.2h5v.s9.0b51e56ac81b from=translated src=- shape=6331fd1d vocab=95769521
+-/
 theorem le_addVal_add_of_le_addVal {x y : HahnField k Γ} {γ : WithTop Γ}
     (hx : γ ≤ addVal k Γ x) (hy : γ ≤ addVal k Γ y) :
     γ ≤ addVal k Γ (x + y) := by
@@ -555,7 +656,9 @@ theorem le_addVal_add_of_le_addVal {x y : HahnField k Γ} {γ : WithTop Γ}
     simpa [addVal_apply] using hj.trans_le hy
   simp [hxj, hyj]
 
-/-- The natural additive Hahn valuation is onto `WithTop Γ`.-/
+/-- The natural additive Hahn valuation is onto `WithTop Γ`.
+@isnad1 id=surjecti.0h2v.s7.dcef591f8a73 from=translated src=- shape=c1cffa1e vocab=8de17e27
+-/
 theorem addVal_surjective : Function.Surjective (addVal k Γ) := by
   intro γ
   cases γ with
@@ -564,7 +667,9 @@ theorem addVal_surjective : Function.Surjective (addVal k Γ) := by
   | coe γ =>
       exact ⟨toLex (HahnSeries.single γ (1 : k)), addVal_single k Γ γ⟩
 
-/-- The natural multiplicative Hahn valuation is onto its chosen codomain.-/
+/-- The natural multiplicative Hahn valuation is onto its chosen codomain.
+@isnad1 id=surjecti.0h2v.s8.63e6cdfc0ae5 from=translated src=- shape=a6d479d3 vocab=97742bde
+-/
 theorem valuation_surjective : Function.Surjective (valuation k Γ) := by
   intro γ
   rcases addVal_surjective k Γ (OrderDual.ofDual (Multiplicative.toAdd γ)) with ⟨x, hx⟩
@@ -576,7 +681,9 @@ theorem valuation_surjective : Function.Surjective (valuation k Γ) := by
 abbrev valueGroup : Type _ :=
   MonoidWithZeroHom.ValueGroup₀ (valuation k Γ).toMonoidWithZeroHom
 
-/-- The canonical embedding of the value group into the chosen codomain is onto.-/
+/-- The canonical embedding of the value group into the chosen codomain is onto.
+@isnad1 id=surjecti.0h2v.s12.8ab285de7d14 from=translated src=- shape=262debeb vocab=e4b60c28
+-/
 theorem valueGroupEmbedding_surjective :
     Function.Surjective
       (MonoidWithZeroHom.ValueGroup₀.embedding
@@ -607,13 +714,18 @@ def valuationSubring : Subring (HahnField k Γ) where
     rw [AddValuation.map_mul]
     exact add_nonneg hx hy
 
+/--
+@isnad1 id=iff.0h3v.s9.4d1f85840cc5 from=translated src=- shape=5bd3d8f2 vocab=32a1d9c0
+-/
 @[simp]
 theorem mem_valuationSubring_iff (x : HahnField k Γ) :
     x ∈ valuationSubring k Γ ↔ (0 : WithTop Γ) ≤ addVal k Γ x :=
   Iff.rfl
 
 /-- After scalar normalization, a nonzero Hahn-field polynomial is the image of a nonzero
-polynomial over the natural valuation subring.-/
+polynomial over the natural valuation subring.
+@isnad1 id=ex.1h3v.s12.6cb4f4f2ebfb from=translated src=- shape=f6e96099 vocab=8c62a5d6
+-/
 theorem exists_integral_scalar_multiple {f : (HahnField k Γ)[X]} (hf : f ≠ 0) :
     ∃ c : HahnField k Γ, c ≠ 0 ∧
       ∃ g : (valuationSubring k Γ)[X],
@@ -661,18 +773,26 @@ def valuationSubringValuationSubring : ValuationSubring (HahnField k Γ) :=
       rw [mul_inv_cancel₀ hx0, AddValuation.map_one] at hmul_lt
       simp at hmul_lt
 
+/--
+@isnad1 id=iff.0h3v.s8.d33a4ffe7454 from=translated src=- shape=a5ff69c5 vocab=67a91b8e
+-/
 @[simp]
 theorem mem_valuationSubringValuationSubring (x : HahnField k Γ) :
     x ∈ valuationSubringValuationSubring k Γ ↔ x ∈ valuationSubring k Γ :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.be6060b335de from=translated src=- shape=7a74f304 vocab=4d64353e
+-/
 @[simp]
 theorem valuationSubringValuationSubring_toSubring :
     (valuationSubringValuationSubring k Γ).toSubring = valuationSubring k Γ :=
   rfl
 
 /-- The valuation subring associated by mathlib to the multiplicative natural valuation is the
-same valuation subring constructed from the additive valuation.-/
+same valuation subring constructed from the additive valuation.
+@isnad1 id=eq.0h2v.s6.aaa1f638bc29 from=translated src=- shape=8d4f2de2 vocab=67d29da9
+-/
 theorem valuation_valuationSubring_eq :
     (valuation k Γ).valuationSubring = valuationSubringValuationSubring k Γ := by
   ext x
@@ -684,7 +804,9 @@ theorem valuation_valuationSubring_eq :
   rw [Multiplicative.ofAdd_le]
   exact OrderDual.toDual_le_toDual
 
-/-- Elements of the valuation subring have no terms of negative exponent.-/
+/-- Elements of the valuation subring have no terms of negative exponent.
+@isnad1 id=eq.2h4v.s9.6e2aef59c77f from=translated src=- shape=97c99bb8 vocab=506c8664
+-/
 theorem coeff_eq_zero_of_mem_valuationSubring_of_neg {x : HahnField k Γ}
     (hx : x ∈ valuationSubring k Γ) {γ : Γ} (hγ : γ < 0) :
     (ofLex x).coeff γ = 0 := by
@@ -692,7 +814,9 @@ theorem coeff_eq_zero_of_mem_valuationSubring_of_neg {x : HahnField k Γ}
   exact lt_of_lt_of_le (WithTop.coe_lt_coe.mpr hγ) hx
 
 /-- A nonzero coefficient of an element of the valuation subring can only occur in
-nonnegative degree.-/
+nonnegative degree.
+@isnad1 id=le.2h4v.s9.169ed6401cc9 from=translated src=- shape=bed7fde7 vocab=b4e76f73
+-/
 theorem nonneg_of_mem_valuationSubring_coeff_ne_zero {x : HahnField k Γ}
     (hx : x ∈ valuationSubring k Γ) {γ : Γ} (hγ : (ofLex x).coeff γ ≠ 0) :
     0 ≤ γ := by

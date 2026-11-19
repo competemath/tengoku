@@ -33,36 +33,54 @@ def KOddClusterHypotheses (F : (HahnField k Γ)[X]) (m : ℕ) : Prop :=
         addVal k Γ (F.coeff m) = 0
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=lt.1h4v.s6.46a413b3d4de from=translated src=- shape=81be4e6b vocab=cf622151
+-/
 theorem KOddClusterHypotheses.pos {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
     0 < m :=
   h.1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=odd.1h4v.s6.255ad676cca7 from=translated src=- shape=fd93fdfc vocab=ad8e6746
+-/
 theorem KOddClusterHypotheses.odd {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
     Odd m :=
   h.2.1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=le.1h5v.s8.cf1cf439509e from=translated src=- shape=a3b98ddc vocab=f7ef0e06
+-/
 theorem KOddClusterHypotheses.nonneg {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
     ∀ i, (0 : WithTop Γ) ≤ addVal k Γ (F.coeff i) :=
   h.2.2.1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=lt.2h5v.s8.dc2ce0ecbaa8 from=translated src=- shape=2bdd86e5 vocab=797dd872
+-/
 theorem KOddClusterHypotheses.lower {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
     ∀ i, i < m → (0 : WithTop Γ) < addVal k Γ (F.coeff i) :=
   h.2.2.2.1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h4v.s8.1b26b06589dd from=translated src=- shape=1e03c5ab vocab=4901bc8d
+-/
 theorem KOddClusterHypotheses.main {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
     addVal k Γ (F.coeff m) = 0 :=
   h.2.2.2.2
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.2h5v.s7.aad8572da0ac from=translated src=- shape=9ec84213 vocab=cc0e603e
+-/
 theorem coeff_newtonInitialPolynomial_zero_zero_eq_zero_of_KOddCluster_lt
     {F : (HahnField k Γ)[X]} {m i : ℕ}
     (h : KOddClusterHypotheses k Γ F m) (hi : i < m) :
@@ -76,6 +94,9 @@ theorem coeff_newtonInitialPolynomial_zero_zero_eq_zero_of_KOddCluster_lt
   exact (ne_of_gt (KOddClusterHypotheses.lower (k := k) (Γ := Γ) h i hi)) hval
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=ne.1h4v.s7.38b6082062b9 from=translated src=- shape=7dda9234 vocab=b47e85ab
+-/
 theorem coeff_newtonInitialPolynomial_zero_zero_ne_zero_of_KOddCluster
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
@@ -93,6 +114,9 @@ theorem coeff_newtonInitialPolynomial_zero_zero_ne_zero_of_KOddCluster
   · simp [newtonWeight, h.main]
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h4v.s7.6cadff552eb6 from=translated src=- shape=4c71dacf vocab=7053dc72
+-/
 theorem natTrailingDegree_newtonInitialPolynomial_zero_zero_of_KOddCluster
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
@@ -110,6 +134,9 @@ theorem natTrailingDegree_newtonInitialPolynomial_zero_zero_of_KOddCluster
     exact coeff_newtonInitialPolynomial_zero_zero_eq_zero_of_KOddCluster_lt k Γ h hi
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=eq.1h4v.s7.be4f4f8a7b5a from=translated src=- shape=53bdb276 vocab=ca7cb402
+-/
 theorem rootMultiplicity_zero_newtonInitialPolynomial_zero_zero_of_KOddCluster
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
@@ -142,6 +169,9 @@ def KTranslatedZeroBranch (F : (HahnField k Γ)[X]) (m r : ℕ) : Prop :=
   KResidueBranchMultiplicity k Γ F m 0 r
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=kresidue.1h4v.s7.69e95cc32f7f from=translated src=- shape=d5cc1ef8 vocab=2f739ff0
+-/
 theorem KOddClusterHypotheses.zero_residueBranchMultiplicity
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
@@ -150,6 +180,9 @@ theorem KOddClusterHypotheses.zero_residueBranchMultiplicity
     h.pos, le_rfl, h.odd⟩
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=ktransla.1h4v.s6.b21c9f12f6f1 from=translated src=- shape=3b18d5c7 vocab=1c2ba75e
+-/
 theorem KOddClusterHypotheses.translatedZeroBranch
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KOddClusterHypotheses k Γ F m) :
@@ -162,6 +195,9 @@ def KTranslatedSameMultiplicityZeroBranch (F : (HahnField k Γ)[X]) (m : ℕ) : 
   1 < m ∧ KTranslatedZeroBranch k Γ F m m
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=lt.1h4v.s6.6178463ebd47 from=translated src=- shape=81be4e6b vocab=6131fce8
+-/
 theorem KTranslatedSameMultiplicityZeroBranch.one_lt
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KTranslatedSameMultiplicityZeroBranch k Γ F m) :
@@ -169,6 +205,9 @@ theorem KTranslatedSameMultiplicityZeroBranch.one_lt
   h.1
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
+/--
+@isnad1 id=ktransla.1h4v.s6.e66e3f40d274 from=translated src=- shape=3b18d5c7 vocab=e806cebc
+-/
 theorem KTranslatedSameMultiplicityZeroBranch.branch
     {F : (HahnField k Γ)[X]} {m : ℕ}
     (h : KTranslatedSameMultiplicityZeroBranch k Γ F m) :
@@ -187,7 +226,9 @@ def KOddClusterOmegaContinuationAboveOneHypothesis : Prop :=
 
 omit [LinearOrder k] [IsStrictOrderedRing k] in
 /-- If the value group is subsingleton, the Hahn field is real closed because it is ring
-equivalent to the coefficient field.-/
+equivalent to the coefficient field.
+@isnad1 id=isrealcl.0h2v.s5.c43d2e2ba06c from=translated src=- shape=4c74414b vocab=0370b821
+-/
 theorem isRealClosed_of_subsingleton_valueGroup [IsRealClosed k] [Subsingleton Γ] :
     IsRealClosed (HahnField k Γ) :=
   isRealClosed_of_ringEquiv (subsingletonValueGroupRingEquiv k Γ)

@@ -35,6 +35,9 @@ open HahnSeries
 
 noncomputable section
 
+/--
+@isnad1 id=issumsq.1h4v.s6.cd37d3652026 from=translated src=- shape=65b4ec1d vocab=e3b41e32
+-/
 theorem isSumSq_map {R S : Type*} [Semiring R] [Semiring S] (f : R →+* S)
     {x : R} (hx : IsSumSq x) : IsSumSq (f x) := by
   induction hx with
@@ -42,6 +45,9 @@ theorem isSumSq_map {R S : Type*} [Semiring R] [Semiring S] (f : R →+* S)
   | sq_add a _ ih =>
       simpa [map_add, map_mul] using IsSumSq.sq_add (f a) ih
 
+/--
+@isnad1 id=isrealcl.0h3v.s6.84a5255edd7f from=translated src=- shape=96a879ac vocab=ff0e92be
+-/
 theorem isRealClosed_of_ringEquiv {R S : Type*} [Field R] [Field S]
     (e : R ≃+* S) [IsRealClosed S] : IsRealClosed R where
   one_add_ne_zero := by
@@ -76,7 +82,9 @@ theorem isRealClosed_of_ringEquiv {R S : Type*} [Field R] [Field S]
     have hy'' := Polynomial.eval_map_apply (p := f) (e : R →+* S) (e.symm y)
     simpa using hy''.symm.trans hy'
 
-/-- A separable polynomial with a root has a simple root.-/
+/-- A separable polynomial with a root has a simple root.
+@isnad1 id=ex.2h2v.s8.5fad3cb36182 from=translated src=- shape=45e22e16 vocab=9f464611
+-/
 theorem exists_simple_root_of_separable_of_exists_root {R : Type*} [Field R]
     {p : R[X]} (hsep : p.Separable) (hroot : ∃ a : R, p.IsRoot a) :
     ∃ a : R, p.IsRoot a ∧ p.derivative.eval a ≠ 0 := by
@@ -86,20 +94,26 @@ theorem exists_simple_root_of_separable_of_exists_root {R : Type*} [Field R]
     hsep.aeval_derivative_ne_zero (x := a)
       (by simpa [Polynomial.IsRoot, Polynomial.aeval_def] using ha)
 
-/-- Over a perfect field, every squarefree polynomial with a root has a simple root.-/
+/-- Over a perfect field, every squarefree polynomial with a root has a simple root.
+@isnad1 id=ex.2h2v.s8.6dd7f6f5220a from=translated src=- shape=8b1ce84d vocab=f8c039f1
+-/
 theorem exists_simple_root_of_squarefree_of_exists_root {R : Type*} [Field R] [PerfectField R]
     {p : R[X]} (hsq : Squarefree p) (hroot : ∃ a : R, p.IsRoot a) :
     ∃ a : R, p.IsRoot a ∧ p.derivative.eval a ≠ 0 :=
   exists_simple_root_of_separable_of_exists_root
     ((PerfectField.separable_iff_squarefree).mpr hsq) hroot
 
-/-- If a polynomial is not squarefree, then some nonunit square divides it.-/
+/-- If a polynomial is not squarefree, then some nonunit square divides it.
+@isnad1 id=ex.1h2v.s5.6e0cd3b5846b from=translated src=- shape=14c71fc3 vocab=327a7f10
+-/
 theorem exists_square_factor_of_not_squarefree {R : Type*} [CommMonoid R]
     {p : R} (h : ¬ Squarefree p) :
     ∃ q : R, q * q ∣ p ∧ ¬ IsUnit q := by
   simpa [Squarefree] using h
 
-/-- A nonzero nonsquarefree polynomial over a field has a positive-degree square factor.-/
+/-- A nonzero nonsquarefree polynomial over a field has a positive-degree square factor.
+@isnad1 id=ex.2h2v.s8.1fcbcef02d2a from=translated src=- shape=b3993b1a vocab=7fefb550
+-/
 theorem exists_positive_natDegree_square_factor_of_not_squarefree {K : Type*} [Field K]
     {p : K[X]} (hp : p ≠ 0) (h : ¬ Squarefree p) :
     ∃ q : K[X], q ≠ 0 ∧ 0 < q.natDegree ∧ q * q ∣ p := by
@@ -123,7 +137,9 @@ theorem exists_positive_natDegree_square_factor_of_not_squarefree {K : Type*} [F
     exact hnonunit hunit
   exact ⟨q, hq0, hqpos, hdvd⟩
 
-/-- A nonzero nonsquarefree polynomial over a field has a lower-degree square factor.-/
+/-- A nonzero nonsquarefree polynomial over a field has a lower-degree square factor.
+@isnad1 id=ex.2h2v.s8.cbbeba33c736 from=translated src=- shape=280b5174 vocab=7fefb550
+-/
 theorem exists_lower_natDegree_square_factor_of_not_squarefree {K : Type*} [Field K]
     {p : K[X]} (hp : p ≠ 0) (h : ¬ Squarefree p) :
     ∃ q : K[X], q ≠ 0 ∧ 0 < q.natDegree ∧ q.natDegree < p.natDegree ∧ q * q ∣ p := by
@@ -142,7 +158,9 @@ noncomputable def polynomialLowerPart {R : Type*} [Semiring R] (p : R[X]) (n : �
   ∑ i ∈ Finset.range n, Polynomial.monomial i (p.coeff i)
 
 /-- If every nonzero odd-degree polynomial has a root, then every nonzero odd-degree polynomial
-has a root of odd multiplicity.-/
+has a root of odd multiplicity.
+@isnad1 id=ex.3h2v.s7.e059d5313b97 from=translated src=- shape=6cac5072 vocab=1c021b50
+-/
 theorem exists_root_odd_rootMultiplicity_of_exists_odd_roots {R : Type*} [Field R]
     (hroot : ∀ {p : R[X]}, p ≠ 0 → Odd p.natDegree → ∃ a : R, p.IsRoot a)
     {p : R[X]} (hp : p ≠ 0) (hodd : Odd p.natDegree) :
@@ -219,7 +237,9 @@ theorem exists_root_odd_rootMultiplicity_of_exists_odd_roots {R : Type*} [Field 
   exact H p.natDegree p rfl hp hodd
 
 /-- Over a real closed field, every nonzero odd-degree polynomial has a root of odd
-multiplicity.-/
+multiplicity.
+@isnad1 id=ex.2h2v.s7.e441d25f6501 from=translated src=- shape=e20ea5b0 vocab=c57f2894
+-/
 theorem exists_root_odd_rootMultiplicity {R : Type*}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {p : R[X]} (hp : p ≠ 0) (hodd : Odd p.natDegree) :
@@ -228,7 +248,9 @@ theorem exists_root_odd_rootMultiplicity {R : Type*}
     (fun {p} _hp hodd => IsRealClosed.exists_isRoot_of_odd_natDegree (R := R) (f := p) hodd)
     hp hodd
 
-/-- Over a real closed field, an odd power can cancel any nonzero main coefficient.-/
+/-- Over a real closed field, an odd power can cancel any nonzero main coefficient.
+@isnad1 id=ex.2h4v.s7.815bdde318ea from=translated src=- shape=b29991db vocab=d537da47
+-/
 theorem exists_cancel_add_mul_pow_of_odd {R : Type*}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {u b : R} {m : ℕ} (hm : Odd m) (hu : u ≠ 0) :
@@ -239,7 +261,9 @@ theorem exists_cancel_add_mul_pow_of_odd {R : Type*}
   field_simp [hu]
   ring
 
-/-- If the term to cancel is nonzero, the odd-power cancelling coefficient can be chosen nonzero.-/
+/-- If the term to cancel is nonzero, the odd-power cancelling coefficient can be chosen nonzero.
+@isnad1 id=ex.3h4v.s7.a621c0801423 from=translated src=- shape=7b59ba1f vocab=d537da47
+-/
 theorem exists_nonzero_cancel_add_mul_pow_of_odd {R : Type*}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {u b : R} {m : ℕ} (hm : Odd m) (hu : u ≠ 0) (hb : b ≠ 0) :
