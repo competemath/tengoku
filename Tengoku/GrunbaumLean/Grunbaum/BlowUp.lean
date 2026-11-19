@@ -58,10 +58,16 @@ variable [Fintype ι] [DecidableEq κ]
 def mergeWeight (f : ι → κ) (w : ι → ℝ) : κ → ℝ :=
   fun a => ∑ i ∈ univ.filter fun i => f i = a, w i
 
+/--
+@isnad1 id=le.1h5v.s5.96da522fa01f from=translated src=- shape=3fc35092 vocab=5eaa597d
+-/
 lemma mergeWeight_nonneg (f : ι → κ) {w : ι → ℝ} (hw : ∀ i, 0 ≤ w i) (a : κ) :
     0 ≤ mergeWeight f w a :=
   sum_nonneg fun i _ => hw i
 
+/--
+@isnad1 id=isweight.1h4v.s5.20631852a3aa from=translated src=- shape=b9484dc8 vocab=7128cdd1
+-/
 lemma isWeight_mergeWeight [Fintype κ] (f : ι → κ) {w : ι → ℝ} (hw : IsWeight w) :
     IsWeight (mergeWeight f w) :=
   ⟨mergeWeight_nonneg f hw.nonneg, by rw [← hw.sum_eq]; exact sum_fiberwise univ f w⟩
@@ -72,12 +78,18 @@ def blowUpMatrix (f : ι → κ) : Matrix ι κ ℝ := of fun i a => if f i = a 
 variable [Fintype κ]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h4v.s6.96700c1dd1e8 from=translated src=- shape=fb8e6d99 vocab=304f0038
+-/
 lemma submatrix_eq_mul (T : Matrix κ κ ℝ) (f : ι → κ) :
     T.submatrix f f = blowUpMatrix f * T * (blowUpMatrix f)ᵀ := by
   ext i j
   simp [blowUpMatrix, mul_apply]
 
 omit [Fintype κ] in
+/--
+@isnad1 id=eq.0h4v.s6.ad62f2e17a71 from=translated src=- shape=30a2507f vocab=ffe1c9cd
+-/
 lemma transpose_blowUpMatrix_mul_diagonal [DecidableEq ι] (f : ι → κ) (w : ι → ℝ) :
     (blowUpMatrix f)ᵀ * diagonal w * blowUpMatrix f = diagonal (mergeWeight f w) := by
   ext a b
@@ -104,7 +116,9 @@ section BlowUp
 variable [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
 
 /-- **The blow-up lemma** ([JFA, Lemma 2.2], for arbitrary blow-ups): for `S = T(f, f)` and the
-merged weights `w'` of `w`, `X^{|κ|} χ(√D S √D) = X^{|ι|} χ(√D' T √D')`.-/
+merged weights `w'` of `w`, `X^{|κ|} χ(√D S √D) = X^{|ι|} χ(√D' T √D')`.
+@isnad1 id=eq.1h5v.s8.5174f9b5f10d from=translated src=- shape=cf9f3366 vocab=906be2c2
+-/
 theorem charpoly_weightedMatrix_submatrix (T : Matrix κ κ ℝ) (f : ι → κ) {w : ι → ℝ}
     (hw : ∀ i, 0 ≤ w i) :
     X ^ Fintype.card κ * (weightedMatrix (T.submatrix f f) w).charpoly =
@@ -149,11 +163,17 @@ def foldTo (i j : ι) (hij : i ≠ j) : ι → {k // k ≠ j} :=
   fun k => if h : k = j then ⟨i, hij⟩ else ⟨k, h⟩
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h4v.s5.9caf2f7f96f9 from=translated src=- shape=ce962dd6 vocab=936d706a
+-/
 lemma foldTo_val (i j : ι) (hij : i ≠ j) (k : ι) :
     (foldTo i j hij k : ι) = if k = j then i else k := by
   unfold foldTo
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.4f7d1f7e5e86 from=translated src=- shape=65cad57a vocab=bc1bb29a
+-/
 lemma card_subtype_ne_add_one (j : ι) : Fintype.card {k // k ≠ j} + 1 = Fintype.card ι := by
   rw [Fintype.card_subtype, filter_ne' univ j, card_erase_of_mem (mem_univ j), card_univ]
   have : 0 < Fintype.card ι := Fintype.card_pos_iff.mpr ⟨j⟩
@@ -161,7 +181,9 @@ lemma card_subtype_ne_add_one (j : ι) : Fintype.card {k // k ≠ j} + 1 = Finty
 
 /-- **[JFA, Lemma 2.2]** for twins. If the rows `i ≠ j` of the symmetric matrix `S` coincide,
 then `S` is the blow-up of its principal submatrix `S'` on `ι ∖ {j}`, and merging the weight of
-`j` into `i` gives `χ(√D S √D) = X · χ(√D' S' √D')`.-/
+`j` into `i` gives `χ(√D S √D) = X · χ(√D' S' √D')`.
+@isnad1 id=eq.4h5v.s8.7038787fc33a from=translated src=- shape=29a50c0a vocab=b6e8283d
+-/
 theorem charpoly_weightedMatrix_eq_X_mul {S : Matrix ι ι ℝ} (hS : ∀ k l, S l k = S k l)
     {i j : ι} (hij : i ≠ j) (hrow : ∀ k, S j k = S i k) {w : ι → ℝ} (hw : ∀ k, 0 ≤ w k) :
     (weightedMatrix S w).charpoly =
@@ -193,14 +215,18 @@ section Spectrum
 variable [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
 
 omit [DecidableEq ι] in
-/-- The number of indices at which `f` takes the value `x`, as a multiplicity.-/
+/-- The number of indices at which `f` takes the value `x`, as a multiplicity.
+@isnad1 id=eq.0h3v.s5.e34dfedfb4da from=translated src=- shape=2d1f0e89 vocab=dfafd9ba
+-/
 lemma card_filter_eq_count (f : ι → ℝ) (x : ℝ) :
     (univ.filter fun i => x = f i).card = Multiset.count x (Multiset.map f univ.val) := by
   rw [Multiset.count_map, ← Finset.filter_val, Finset.card_val]
 
 omit [DecidableEq ι] [DecidableEq κ] in
 /-- If `g` takes the values `f a` and `f b` at least as often as `f` does, then they are values of
-`g` at two distinct indices.-/
+`g` at two distinct indices.
+@isnad1 id=ex.3h6v.s7.90de24dd98e3 from=translated src=- shape=ed6ee507 vocab=3fdcb453
+-/
 lemma exists_pair_of_card_filter_le {f : ι → ℝ} {g : κ → ℝ} {a b : ι} (hab : a ≠ b)
     (ha : (univ.filter fun i => f a = f i).card ≤ (univ.filter fun k => f a = g k).card)
     (hb : (univ.filter fun i => f b = f i).card ≤ (univ.filter fun k => f b = g k).card) :
@@ -218,7 +244,9 @@ lemma exists_pair_of_card_filter_le {f : ι → ℝ} {g : κ → ℝ} {a b : ι}
 
 /-- **Deleting a zero eigenvalue.** If `χ_A = X · χ_B` for symmetric matrices `A` and `B`, i.e.
 the spectrum of `B` is that of `A` with one zero removed, and the second largest eigenvalue of
-`A` is positive, then `π₂ B = π₂ A`.-/
+`A` is positive, then `π₂ B = π₂ A`.
+@isnad1 id=eq.7h6v.s7.fdcc0849c485 from=translated src=- shape=f4ae6555 vocab=ef5f2256
+-/
 theorem sumTopTwo_eq_of_charpoly_eq_X_mul {A : Matrix ι ι ℝ} {B : Matrix κ κ ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (h : A.charpoly = X * B.charpoly) {a b : ι}
     (hab : a ≠ b) (ha : ∀ j, hA.eigenvalues j ≤ hA.eigenvalues a)

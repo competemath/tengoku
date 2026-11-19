@@ -55,31 +55,42 @@ namespace Grunbaum
 `2, 2, -1`.-/
 def R3 : Matrix (Fin 3) (Fin 3) ℝ := !![1, 1, -1; 1, 1, 1; -1, 1, 1]
 
+/--
+@isnad1 id=issignma.0h0v.s3.709b15a46d3a from=translated src=- shape=06f63001 vocab=561c80fa
+-/
 lemma isSignMatrix_R3 : IsSignMatrix R3 := by
   refine ⟨fun a b => ?_, fun a b => ?_, fun a => ?_⟩
   · fin_cases a <;> fin_cases b <;> simp [R3]
   · fin_cases a <;> fin_cases b <;> simp [R3]
   · fin_cases a <;> simp [R3]
 
-/-- `R₃` is `R_{2·1+1}` with the indices labelled by the vertices of the triangle.-/
+/-- `R₃` is `R_{2·1+1}` with the indices labelled by the vertices of the triangle.
+@isnad1 id=eq.0h0v.s6.40aeeb0292b4 from=translated src=- shape=aef7568e vocab=c608bb01
+-/
 lemma supWeights_polygonMatrix_one : supWeights (polygonMatrix 1) = supWeights R3 :=
   supWeights_eq_of_equiv (isSignMatrix_polygonMatrix 1) isSignMatrix_R3 (finCongr rfl)
     (ε := fun _ => 1) (fun _ => by norm_num) fun i j => by
       fin_cases i <;> fin_cases j <;> simp [polygonMatrix, R3]
 
-/-- (R2): `Π(2, R_{2·2+1}) = Π(2, R₅)`.-/
+/-- (R2): `Π(2, R_{2·2+1}) = Π(2, R₅)`.
+@isnad1 id=eq.0h0v.s6.c55782aee819 from=translated src=- shape=aef7568e vocab=e676b342
+-/
 lemma supWeights_polygonMatrix_two : supWeights (polygonMatrix 2) = supWeights R5 :=
   supWeights_eq_of_equiv (isSignMatrix_polygonMatrix 2) isSignMatrix_R5 (finCongr rfl)
     (ε := signsR2) isSignVector_signsR2.mul_self fun i j => polygonMatrix_two_eq i j
 
 /-- The block matrix `R_{2N+1}` of [JFA, Section 4.1] and `Grunbaum.polygonMatrix N` have the same
-`Π(2, ·)`, since they agree up to switching and relabelling.-/
+`Π(2, ·)`, since they agree up to switching and relabelling.
+@isnad1 id=eq.0h1v.s6.77e9c928e1f1 from=translated src=- shape=305d9152 vocab=d41cafc2
+-/
 lemma supWeights_blockR (N : ℕ) : supWeights (blockR N) = supWeights (polygonMatrix N) :=
   supWeights_eq_of_equiv (isSignMatrix_blockR N) (isSignMatrix_polygonMatrix N)
     (Equiv.ofBijective _ (blockLabel_bijective N)) (isSignVector_blockSign N).mul_self
     (blockR_eq N)
 
-/-- `√D R₃ √D = ⅓ R₃` for `D = ⅓ 𝟙₃`.-/
+/-- `√D R₃ √D = ⅓ R₃` for `D = ⅓ 𝟙₃`.
+@isnad1 id=eq.0h0v.s7.a3b2fc9101ed from=translated src=- shape=d98c37d0 vocab=5b7a7569
+-/
 lemma weightedMatrix_R3_third : weightedMatrix R3 (fun _ => 1 / 3) = (1 / 3 : ℝ) • R3 := by
   ext i j
   simp only [weightedMatrix_apply, Matrix.smul_apply, smul_eq_mul]
@@ -87,7 +98,9 @@ lemma weightedMatrix_R3_third : weightedMatrix R3 (fun _ => 1 / 3) = (1 / 3 : �
   linear_combination R3 i j * h
 
 /-- `π₂(⅓ R₃) ≥ 4/3`, since `R₃` has the eigenvalue `2` twice, with the orthonormal eigenvectors
-`(1, 1, 0)/√2` and `(1, -1, -2)/√6`.-/
+`(1, 1, 0)/√2` and `(1, -1, -2)/√6`.
+@isnad1 id=le.0h0v.s6.d0d26bcee4cb from=translated src=- shape=9661164a vocab=2f32cfb8
+-/
 theorem le_sumTopTwo_weightedMatrix_R3 : 4 / 3 ≤ π₂ (weightedMatrix R3 fun _ => 1 / 3) := by
   set a : ℝ := 1 / √2 with ha_def
   set b : ℝ := 1 / √6 with hb_def
@@ -114,19 +127,28 @@ theorem le_sumTopTwo_weightedMatrix_R3 : 4 / 3 ≤ π₂ (weightedMatrix R3 fun 
   exact fanValue_le_sumTopTwo _ hon
 
 /-- Up to a permutation, `R₃` is the principal submatrix of `R₅` on `{0, 1, 3}` (the errata's
-`{1, 2, 4}`).-/
+`{1, 2, 4}`).
+@isnad1 id=eq.0h2v.s7.80e30383d756 from=translated src=- shape=4863a79a vocab=2874f3d9
+-/
 lemma R3_eq_submatrix_R5 (i j : Fin 3) :
     R3 i j = R5 ((![0, 3, 1] : Fin 3 → Fin 5) i) ((![0, 3, 1] : Fin 3 → Fin 5) j) := by
   fin_cases i <;> fin_cases j <;> simp [R3, R5]
 
+/--
+@isnad1 id=injectiv.0h0v.s6.677ac7c72390 from=translated src=- shape=18b61ac6 vocab=ef2c2e29
+-/
 lemma injective_R3_R5 : Function.Injective (![0, 3, 1] : Fin 3 → Fin 5) := by decide
 
-/-- `Π(2, R₃) ≤ Π(2, R₅)`.-/
+/-- `Π(2, R₃) ≤ Π(2, R₅)`.
+@isnad1 id=le.0h0v.s4.db0e6c5d1642 from=translated src=- shape=f9b53af3 vocab=61d589f9
+-/
 theorem supWeights_R3_le_R5 : supWeights R3 ≤ supWeights R5 :=
   supWeights_le_of_transfer isSignMatrix_R5 injective_R3_R5 (ε := fun _ => 1)
     (fun _ => by norm_num) fun i j => by rw [R3_eq_submatrix_R5]; ring
 
-/-- `Π(2, d) ≥ 4/3` for `d ≥ 3`: `Π(2, d) ≥ π₂(⅓ R₃) = 4/3`.-/
+/-- `Π(2, d) ≥ 4/3` for `d ≥ 3`: `Π(2, d) ≥ π₂(⅓ R₃) = 4/3`.
+@isnad1 id=le.1h1v.s5.56b826985882 from=translated src=- shape=b4e243aa vocab=c96c5447
+-/
 theorem four_thirds_le_supConfigs {d : ℕ} (hd : 3 ≤ d) : 4 / 3 ≤ supConfigs (Fin d) :=
   le_sumTopTwo_weightedMatrix_R3.trans ((sumTopTwo_le_supConfigs isSignMatrix_R3
     ⟨fun _ => by norm_num, by norm_num⟩).trans
@@ -139,7 +161,9 @@ section Step1
 variable {ι : Type*} [Fintype ι]
 
 /-- If `S = εεᵀ` has rank one, then `M = √D S √D = yyᵀ` with `y = √D ε`, which has rank one and
-trace `1`; hence `π₂(M) ≤ 1`.-/
+trace `1`; hence `π₂(M) ≤ 1`.
+@isnad1 id=le.3h4v.s6.dabf4e3d2fe1 from=translated src=- shape=238e959f vocab=a0eb0c5a
+-/
 theorem sumTopTwo_weightedMatrix_le_one_of_eq_mul {S : Matrix ι ι ℝ} {ε : ι → ℝ}
     (hε : ∀ i, ε i * ε i = 1) (hS : ∀ i j, S i j = ε i * ε j) {w : ι → ℝ} (hw : IsWeight w) :
     π₂ (weightedMatrix S w) ≤ 1 := by
@@ -162,7 +186,9 @@ theorem sumTopTwo_weightedMatrix_le_one_of_eq_mul {S : Matrix ι ι ℝ} {ε : �
   simp only [fanValue, hq]
   linarith
 
-/-- On at most two indices, every sign matrix has the form `εεᵀ`.-/
+/-- On at most two indices, every sign matrix has the form `εεᵀ`.
+@isnad1 id=ex.2h2v.s5.c6326fe96f64 from=translated src=- shape=22dfe168 vocab=6713f8a7
+-/
 theorem exists_eq_mul_of_card_le_two {S : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     (h2 : Fintype.card ι ≤ 2) : ∃ ε : ι → ℝ, IsSignVector ε ∧ ∀ i j, S i j = ε i * ε j := by
   classical
@@ -175,7 +201,9 @@ theorem exists_eq_mul_of_card_le_two {S : Matrix ι ι ℝ} (hS : IsSignMatrix S
   obtain ⟨ε, hε, h⟩ := (isCoclique_iff_exists_switch hS Set.univ).mp hC
   exact ⟨ε, hε, fun i j => h i trivial j trivial⟩
 
-/-- **Step 1**: `m ≥ 3`. If `m ≤ 2`, then `S₀ = εεᵀ`, so `Π(2, m) = π₂(M) ≤ 1`.-/
+/-- **Step 1**: `m ≥ 3`. If `m ≤ 2`, then `S₀ = εεᵀ`, so `Π(2, m) = π₂(M) ≤ 1`.
+@isnad1 id=le.2h3v.s5.d1c676afa3fd from=translated src=- shape=ccf50e7c vocab=cd0e974d
+-/
 theorem three_le_of_isMaximizer {m : ℕ} {S : Matrix (Fin m) (Fin m) ℝ} {w : Fin m → ℝ}
     (hmax : IsMaximizer S w) (h1 : 1 < supConfigs (Fin m)) : 3 ≤ m := by
   by_contra hm
@@ -192,7 +220,9 @@ section Step2
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- `λ₁(M) ≤ 1` for `M = √D S √D`: since `|M| ≤ √D J √D` entrywise, `uᵀMu ≤ |u|²`.-/
+/-- `λ₁(M) ≤ 1` for `M = √D S √D`: since `|M| ≤ √D J √D` entrywise, `uᵀMu ≤ |u|²`.
+@isnad1 id=le.3h4v.s6.837492a87a0f from=translated src=- shape=0df7d62f vocab=c3ab99d3
+-/
 theorem eigenvalues_weightedMatrix_le_one {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) (hA : (weightedMatrix S w).IsHermitian) (k : ι) :
     hA.eigenvalues k ≤ 1 := by
@@ -209,7 +239,9 @@ maximizer of `Π(2, m)` has full support. Then `S₀` has no twins.
 `S₀` is a blow-up of a matrix `S' ∈ 𝒜_{m-1}`. Merge the weights of `i` and `j`. By [JFA,
 Lemma 2.2], the spectrum of the new maximizing matrix is that of `M` with one zero removed. Since
 `λ₂(M) > 0`, this does not change `π₂`. This gives a maximizer with support of size `m - 1`,
-contradicting minimality.-/
+contradicting minimality.
+@isnad1 id=not.3h5v.s6.6825b2a98fd9 from=translated src=- shape=67e0079f vocab=e3f042cc
+-/
 theorem not_isTwin_of_minimal {m : ℕ} {S : Matrix (Fin m) (Fin m) ℝ} {w : Fin m → ℝ}
     (hmax : IsMaximizer S w) (h1 : 1 < supConfigs (Fin m))
     (hmin : ∀ (S' : Matrix (Fin m) (Fin m) ℝ) (w' : Fin m → ℝ), IsMaximizer S' w' → ∀ i, 0 < w' i)
@@ -263,7 +295,9 @@ variable {m : ℕ}
 
 /-- Four or more rank-one matrices `xᵢ xᵢᵀ`, `xᵢ = (uᵢ, vᵢ) ∈ ℝ²`, are linearly dependent, since
 they lie in the `3`-dimensional space of symmetric `2 × 2` matrices: there is `0 ≠ h`
-supported on `C` with `∑_{i ∈ C} hᵢ xᵢ xᵢᵀ = 0`.-/
+supported on `C` with `∑_{i ∈ C} hᵢ xᵢ xᵢᵀ = 0`.
+@isnad1 id=ex.1h4v.s8.77278b0c1a0b from=translated src=- shape=4f6b3f48 vocab=20679673
+-/
 theorem exists_relation_of_three_lt_card (u v : Fin m → ℝ) {C : Finset (Fin m)}
     (hC : 3 < C.card) :
     ∃ h : Fin m → ℝ, (∀ i, i ∉ C → h i = 0) ∧ (∃ i ∈ C, h i ≠ 0) ∧
@@ -309,7 +343,9 @@ dependent: `∑_{i ∈ C} hᵢ xᵢ xᵢᵀ = 0` for some `h ≠ 0` supported on
 `∑ hᵢ |xᵢ|² = 0`, so `h` has a negative entry. Let `t* = min {-1/hᵢ : hᵢ < 0}` and
 `c = 1 + t* h`. Then `c ≥ 0`, `cᵢ = 0` where the minimum is attained, `cᵢ = 1` for `i ∉ C`, and
 `c` satisfies the identity of Lemma C. By Lemma C, `(S₀, Diag(cᵢ dᵢ))` is a maximizer of
-`Π(2, m)` with smaller support, a contradiction.-/
+`Π(2, m)` with smaller support, a contradiction.
+@isnad1 id=le.5h4v.s6.4092a4c3992d from=translated src=- shape=92badae3 vocab=58ea8737
+-/
 theorem card_le_three_of_isCoclique {S : Matrix (Fin m) (Fin m) ℝ} {w : Fin m → ℝ}
     (hmax : IsMaximizer S w) (hpos : ∀ i, 0 < w i) (hm : 2 < m)
     (hmin : ∀ (S' : Matrix (Fin m) (Fin m) ℝ) (w' : Fin m → ℝ), IsMaximizer S' w' → ∀ i, 0 < w' i)
@@ -408,7 +444,9 @@ section Step4
 
 variable {ι κ : Type*}
 
-/-- Cocliques pull back along blow-ups and switchings.-/
+/-- Cocliques pull back along blow-ups and switchings.
+@isnad1 id=iscocliq.3h7v.s6.1620b869a209 from=translated src=- shape=7e5a1aa6 vocab=183da9fc
+-/
 lemma isCoclique_preimage {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} {f : ι → κ} {ε : ι → ℝ}
     (hε : IsSignVector ε) (hST : ∀ i j, S i j = ε i * ε j * T (f i) (f j)) {C : Set κ}
     (hC : IsCoclique T C) : IsCoclique S (f ⁻¹' C) := by
@@ -419,6 +457,9 @@ lemma isCoclique_preimage {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} {f : ι 
   linear_combination hcoh - (T (f i) (f j) * T (f i) (f k) * T (f j) (f k)) *
     ((ε j * ε j) * (ε k * ε k) * hε.mul_self i + (ε k * ε k) * hε.mul_self j + hε.mul_self k)
 
+/--
+@isnad1 id=iscocliq.2h4v.s4.4fd5c1648d3b from=translated src=- shape=ada42955 vocab=29d3a8df
+-/
 lemma IsCoclique.subset {S : Matrix ι ι ℝ} {C D : Set ι} (hD : IsCoclique S D) (hCD : C ⊆ D) :
     IsCoclique S C :=
   fun i hi j hj k hk => hD i (hCD hi) j (hCD hj) k (hCD hk)
@@ -434,7 +475,9 @@ pattern of vectors `xᵢ = (uᵢ, vᵢ)` in the plane (Lemma B(b)). Then
 some `N ≥ 1` or a principal submatrix `B` of `A₆`; the blow-up is trivial because `S₀` has no
 twins. If `S₀ = R_{2N+1}`, then by (R1) it has a coclique with `N + 1` elements, and Step 3 gives
 `N ≤ 2`. If `S₀ = B`, then `B ≠ A₆` by Lemma B(b) and Lemma D, so `B` is a principal submatrix of
-a `5 × 5` principal submatrix of `A₆`, and `Π(2, S₀) ≤ Π(2, R₅)` by (A1).-/
+a `5 × 5` principal submatrix of `A₆`, and `Π(2, S₀) ≤ Π(2, R₅)` by (A1).
+@isnad1 id=le.6h4v.s7.a5429972adf3 from=translated src=- shape=a9adbe53 vocab=62089141
+-/
 theorem supWeights_le_max_of_minimal {S : Matrix (Fin m) (Fin m) ℝ} (hS : IsSignMatrix S)
     (hm : 2 < m) (hK4 : K4Free S) (htw : ∀ i j, ¬IsTwin S i j)
     (hcocl : ∀ C : Finset (Fin m), IsCoclique S (C : Set (Fin m)) → C.card ≤ 3) {u v : Fin m → ℝ}
@@ -491,7 +534,9 @@ end Step4
 /-! ### Proof of Theorem A -/
 
 /-- `Π(2, d) ≤ max {Π(2, R₃), Π(2, R₅)}` for `d > 2`: Steps 1–4 applied to a maximizer of minimal
-support.-/
+support.
+@isnad1 id=le.1h1v.s5.bbccda825cbd from=translated src=- shape=d931952f vocab=6007a0fe
+-/
 theorem supConfigs_le_max_of_two_lt {d : ℕ} (hd : 2 < d) :
     supConfigs (Fin d) ≤ max (supWeights R3) (supWeights R5) := by
   have h43 := four_thirds_le_supConfigs (d := d) (by omega)
@@ -517,19 +562,25 @@ theorem supConfigs_le_max_of_two_lt {d : ℕ} (hd : 2 < d) :
     _ ≤ max (supWeights R3) (supWeights R5) :=
         supWeights_le_max_of_minimal hmax.isSignMatrix (by omega) hK4 htw hcocl hsign
 
-/-- `Π(2, d) ≤ max {Π(2, R₃), Π(2, R₅)}` for all `d`.-/
+/-- `Π(2, d) ≤ max {Π(2, R₃), Π(2, R₅)}` for all `d`.
+@isnad1 id=le.0h1v.s5.911f8f445322 from=translated src=- shape=70cf756b vocab=88d9bae5
+-/
 theorem supConfigs_le_max (d : ℕ) : supConfigs (Fin d) ≤ max (supWeights R3) (supWeights R5) :=
   (supConfigs_le_of_injective (Fin.castLE_injective (by omega : d ≤ d + 3))).trans
     (supConfigs_le_max_of_two_lt (by omega))
 
-/-- **Theorem A** (Reduction). `Π₂ = max {Π(2, R₃), Π(2, R₅)}`.-/
+/-- **Theorem A** (Reduction). `Π₂ = max {Π(2, R₃), Π(2, R₅)}`.
+@isnad1 id=eq.0h0v.s5.d62a3021feff from=translated src=- shape=e28af53a vocab=51aa1ab0
+-/
 theorem maxProjConst_two_eq_max : maxProjConst ℝ 2 = max (supWeights R3) (supWeights R5) := by
   refine le_antisymm (maxProjConst_two_le supConfigs_le_max) (max_le ?_ ?_)
   · exact (supWeights_le_supConfigs isSignMatrix_R3).trans (supConfigs_le_maxProjConst_two _)
   · exact (supWeights_le_supConfigs isSignMatrix_R5).trans (supConfigs_le_maxProjConst_two _)
 
 /-- **Theorem A**, with `R₃` and `R₅` the block matrices `R_{2N+1}` of [JFA, Section 4.1] for
-`N = 1, 2`.-/
+`N = 1, 2`.
+@isnad1 id=eq.0h0v.s7.7507e98b9029 from=translated src=- shape=c2f46728 vocab=6b82ab08
+-/
 theorem maxProjConst_two_eq_max_blockR :
     maxProjConst ℝ 2 = max (supWeights (blockR 1)) (supWeights (blockR 2)) := by
   rw [supWeights_blockR, supWeights_blockR, supWeights_polygonMatrix_one,

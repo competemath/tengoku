@@ -40,6 +40,9 @@ def IsEquipartition (f : V → Fin 6) : Prop :=
   ∀ i, Fintype.card V / 6 ≤ partSizes f i ∧ partSizes f i ≤ (Fintype.card V + 5) / 6
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h2v.s6.ea378a9ed57a from=translated src=- shape=6cbd23b3 vocab=3c9ffc81
+-/
 lemma isEquipartition_iff (f : V → Fin 6) :
     IsEquipartition f ↔ ∀ i, Fintype.card V / 6 ≤ partSizes f i ∧
       partSizes f i ≤ Fintype.card V / 6 + 1 := by
@@ -59,6 +62,9 @@ lemma isEquipartition_iff (f : V → Fin 6) :
 /-! ### The balanced partition exists -/
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=ex.0h1v.s5.bca17f555dd0 from=translated src=- shape=d450ed38 vocab=8d587279
+-/
 theorem exists_balanced_partition :
     ∃ f : V → Fin 6, ∀ i, partSizes f i = balanced (Fintype.card V) i := by
   set n := Fintype.card V
@@ -85,6 +91,9 @@ theorem exists_balanced_partition :
     Nat.count_modEq_card n (by norm_num) (i : ℕ), Nat.mod_eq_of_lt i.isLt]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=isequipa.1h2v.s5.97bf61ccf1f8 from=translated src=- shape=8357793d vocab=fb06c1e5
+-/
 lemma balanced_isEquipartition {f : V → Fin 6}
     (hf : ∀ i, partSizes f i = balanced (Fintype.card V) i) : IsEquipartition f := by
   rw [isEquipartition_iff]
@@ -95,6 +104,9 @@ lemma balanced_isEquipartition {f : V → Fin 6}
 
 /-! ### Comparing the two examples -/
 
+/--
+@isnad1 id=le.1h1v.s6.385345d67490 from=translated src=- shape=93567a9b vocab=309744fa
+-/
 theorem circle_le_exS6 {n : ℕ} (hn : 5 ≤ n) : (n : ℤ) ^ 3 - n ≤ 24 * exS6 n := by
   have hf := exS6_formula n
   have hq : ((n : ℕ) : ℤ) = 6 * ((n / 6 : ℕ) : ℤ) + ((n % 6 : ℕ) : ℤ) := by
@@ -114,6 +126,9 @@ theorem circle_le_exS6 {n : ℕ} (hn : 5 ≤ n) : (n : ℤ) ^ 3 - n ≤ 24 * exS
   interval_cases hr' : n % 6 <;> simp [sig] <;> ring_nf <;>
     rcases hcases with h | h <;> first | omega | nlinarith
 
+/--
+@isnad1 id=lt.1h1v.s6.bec10f2b6a2a from=translated src=- shape=db513ad4 vocab=a8242442
+-/
 theorem circle_lt_exS6 {n : ℕ} (hn : 6 ≤ n) : (n : ℤ) ^ 3 - n < 24 * exS6 n := by
   have hf := exS6_formula n
   have hq : ((n : ℕ) : ℤ) = 6 * ((n / 6 : ℕ) : ℤ) + ((n % 6 : ℕ) : ℤ) := by
@@ -132,7 +147,9 @@ theorem circle_lt_exS6 {n : ℕ} (hn : 6 ≤ n) : (n : ℤ) ^ 3 - n < 24 * exS6 
 /-! ### Theorem 2 -/
 
 /-- The extremal `H_S`: for `n ≥ 5`, `H_S` has `ex(n)` edges iff `f` is an equipartition whose
-three larger classes form a triple of `S(6)` in case `n ≡ 3 (mod 6)`.-/
+three larger classes form a triple of `S(6)` in case `n ≡ 3 (mod 6)`.
+@isnad1 id=iff.1h2v.s7.89131420da31 from=translated src=- shape=2fd30239 vocab=e2a8fe8a
+-/
 theorem HS_extremal_iff (hn : 5 ≤ Fintype.card V) (f : V → Fin 6) :
     (HS f).edges.card = exS6 (Fintype.card V) ↔
       IsEquipartition f ∧ (Fintype.card V % 6 = 3 →
@@ -151,7 +168,9 @@ theorem HS_extremal_iff (hn : 5 ≤ Fintype.card V) (f : V → Fin 6) :
 /-- **Theorem 2** (Frankl–Füredi).  Let `|V| = n ≥ 5`.  Among the 3-graphs on `V` in which any
 four points span 0 or 2 edges, the maximum number of edges is `ex(n)`; it is attained by `H_S`
 for an equipartition, and every 3-graph attaining it is of the form `H_S` for an
-equipartition.-/
+equipartition.
+@isnad1 id=and.1h1v.s7.53a2560ab886 from=translated src=- shape=5c237dee vocab=8d390b5e
+-/
 theorem theorem2 (hn : 5 ≤ Fintype.card V) :
     (∀ H : ThreeGraph V, H.FourPointProperty → H.edges.card ≤ exS6 (Fintype.card V)) ∧
     (∃ f : V → Fin 6, IsEquipartition f ∧ (HS f).edges.card = exS6 (Fintype.card V)) ∧
@@ -197,14 +216,21 @@ theorem theorem2 (hn : 5 ≤ Fintype.card V) :
 
 /-! ### The case `n ≡ 3 (mod 6)` -/
 
-/-- For `n = 9` the maximum is `32` …-/
+/-- For `n = 9` the maximum is `32` …
+@isnad1 id=eq.0h0v.s3.c90c8150cc87 from=translated src=- shape=3c26ae4f vocab=caf97b5b
+-/
 theorem exS6_nine : exS6 9 = 32 := by decide
 
 /-- … but the equipartition with class sizes `2, 2, 1, 1, 2, 1` (the three larger classes
 `{0, 1, 4}` do not form a triple of `S(6)`) gives only `31` edges.  So not every equipartition
-`H_S` is extremal.-/
+`H_S` is extremal.
+@isnad1 id=eq.0h0v.s6.29f51ae24cb1 from=translated src=- shape=98d14d52 vocab=498dfbe2
+-/
 theorem s6Count_bad_equipartition_nine : s6Count ![2, 2, 1, 1, 2, 1] = 31 := by decide
 
+/--
+@isnad1 id=not.0h0v.s7.0490b6ae9c97 from=translated src=- shape=d39599f9 vocab=c3ed3fcb
+-/
 theorem not_mem_S6_014 : ({0, 1, 4} : Finset (Fin 6)) ∉ S6.edges := by decide
 
 end FranklFuredi

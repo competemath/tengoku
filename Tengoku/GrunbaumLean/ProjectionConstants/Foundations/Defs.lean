@@ -49,25 +49,38 @@ noncomputable def relProjConst (Y : Submodule 𝕜 X) : ℝ :=
 
 variable (Y : Submodule 𝕜 X)
 
-/-- Finite-dimensional subspaces are complemented: there is a projection onto `Y`.-/
+/-- Finite-dimensional subspaces are complemented: there is a projection onto `Y`.
+@isnad1 id=ex.0h3v.s8.ac024c6aad08 from=translated src=- shape=298796f5 vocab=89891622
+-/
 theorem exists_isProjectionOnto [FiniteDimensional 𝕜 Y] :
     ∃ P : X →L[𝕜] X, IsProjectionOnto Y P := by
   obtain ⟨f, hf⟩ := Submodule.ClosedComplemented.of_finiteDimensional Y
   refine ⟨Y.subtypeL.comp f, ⟨fun x => (f x).2, fun y hy => ?_⟩⟩
   simpa using congrArg Subtype.val (hf ⟨y, hy⟩)
 
+/--
+@isnad1 id=le.0h3v.s6.c0ba5cb23583 from=translated src=- shape=a7dac364 vocab=15e6df65
+-/
 lemma relProjConst_nonneg : 0 ≤ relProjConst Y :=
   Real.sInf_nonneg (by rintro _ ⟨P, -, rfl⟩; exact norm_nonneg _)
 
+/--
+@isnad1 id=le.1h4v.s8.335c01ce0a5f from=translated src=- shape=cee8b942 vocab=0961e550
+-/
 lemma relProjConst_le {P : X →L[𝕜] X} (hP : IsProjectionOnto Y P) : relProjConst Y ≤ ‖P‖ :=
   csInf_le ⟨0, by rintro _ ⟨Q, -, rfl⟩; exact norm_nonneg _⟩ ⟨P, hP, rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s8.c4c5641afeba from=translated src=- shape=a11fc696 vocab=20c17d0a
+-/
 lemma le_relProjConst [FiniteDimensional 𝕜 Y] {c : ℝ}
     (h : ∀ P : X →L[𝕜] X, IsProjectionOnto Y P → c ≤ ‖P‖) : c ≤ relProjConst Y := by
   obtain ⟨P, hP⟩ := exists_isProjectionOnto Y
   exact le_csInf ⟨_, P, hP, rfl⟩ (by rintro _ ⟨Q, hQ, rfl⟩; exact h Q hQ)
 
-/-- For every `ε > 0` there is a projection of norm at most `λ(Y, X) + ε`.-/
+/-- For every `ε > 0` there is a projection of norm at most `λ(Y, X) + ε`.
+@isnad1 id=ex.1h4v.s9.b87f625cc299 from=translated src=- shape=338e752c vocab=a5355941
+-/
 lemma exists_isProjectionOnto_norm_lt [FiniteDimensional 𝕜 Y] {ε : ℝ} (hε : 0 < ε) :
     ∃ P : X →L[𝕜] X, IsProjectionOnto Y P ∧ ‖P‖ < relProjConst Y + ε := by
   obtain ⟨P, hP⟩ := exists_isProjectionOnto Y
@@ -77,7 +90,9 @@ lemma exists_isProjectionOnto_norm_lt [FiniteDimensional 𝕜 Y] {ε : ℝ} (hε
     (lt_add_of_pos_right (relProjConst Y) hε)
   exact ⟨Q, hQ, h⟩
 
-/-- A nonzero subspace has relative projection constant at least `1`.-/
+/-- A nonzero subspace has relative projection constant at least `1`.
+@isnad1 id=le.1h3v.s8.dec63356c2ff from=translated src=- shape=52b9be96 vocab=0fe3ffd3
+-/
 lemma one_le_relProjConst [FiniteDimensional 𝕜 Y] (hY : Y ≠ ⊥) : 1 ≤ relProjConst Y := by
   refine le_relProjConst Y fun P hP => ?_
   obtain ⟨y, hyY, hy0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hY
@@ -132,6 +147,9 @@ def Superspace.ofSubmodule {X : Type u} [NormedAddCommGroup X] [NormedSpace 𝕜
     (Y : Submodule 𝕜 X) : Superspace 𝕜 Y :=
   ⟨X, Y.subtypeₗᵢ⟩
 
+/--
+@isnad1 id=eq.0h3v.s12.4889654187cc from=translated src=- shape=a850065f vocab=f8a58708
+-/
 @[simp] lemma Superspace.range_ofSubmodule {X : Type u} [NormedAddCommGroup X]
     [NormedSpace 𝕜 X] (Y : Submodule 𝕜 X) :
     LinearMap.range (Superspace.ofSubmodule Y).emb.toLinearMap = Y :=

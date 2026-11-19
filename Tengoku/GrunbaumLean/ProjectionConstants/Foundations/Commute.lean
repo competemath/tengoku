@@ -35,34 +35,57 @@ omit [Fintype ι] in
 def rk1 (x : ι → 𝕜) : Matrix ι ι 𝕜 := vecMulVec x (star x)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h3v.s6.60a662b83e99 from=translated src=- shape=3be985fa vocab=55f6fdb0
+-/
 lemma rk1_conjTranspose (x : ι → 𝕜) : (rk1 x)ᴴ = rk1 x := by
   simp [rk1, conjTranspose_vecMulVec]
 
+/--
+@isnad1 id=eq.0h4v.s7.3926ab691452 from=translated src=- shape=11cfe20f vocab=a79ad9b3
+-/
 lemma mul_rk1 (M : Matrix ι ι 𝕜) (x : ι → 𝕜) : M * rk1 x = vecMulVec (M *ᵥ x) (star x) :=
   mul_vecMulVec _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s7.12345dfe71cd from=translated src=- shape=18ff8aec vocab=52f00994
+-/
 lemma rk1_mul_of_herm {M : Matrix ι ι 𝕜} (hM : Mᴴ = M) (x : ι → 𝕜) :
     rk1 x * M = vecMulVec x (star (M *ᵥ x)) := by
   rw [rk1, vecMulVec_mul, star_mulVec, hM]
 
+/--
+@isnad1 id=eq.0h4v.s8.8099179d6b79 from=translated src=- shape=feff439e vocab=b93641e8
+-/
 lemma rk1_mul_rk1 (x y : ι → 𝕜) : rk1 x * rk1 y = (star x ⬝ᵥ y) • vecMulVec x (star y) := by
   rw [rk1, rk1, vecMulVec_mul_vecMulVec]
   ext i j
   simp [vecMulVec_apply, mul_left_comm]
 
+/--
+@isnad1 id=eq.0h4v.s7.f7431cd62454 from=translated src=- shape=fee4608b vocab=7c29af22
+-/
 lemma trace_mul_rk1 (A : Matrix ι ι 𝕜) (x : ι → 𝕜) :
     (A * rk1 x).trace = star x ⬝ᵥ (A *ᵥ x) := by
   rw [mul_rk1, trace_vecMulVec, dotProduct_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.224a27df31b3 from=translated src=- shape=dad87cb8 vocab=6fd6f108
+-/
 lemma trace_rk1 (x : ι → 𝕜) : (rk1 x).trace = star x ⬝ᵥ x := by
   rw [rk1, trace_vecMulVec, dotProduct_comm]
 
 /-! ### Building orthogonal projections -/
 
+/--
+@isnad1 id=isorthpr.1h3v.s7.55af9e19c64a from=translated src=- shape=978a7e6b vocab=c6cad729
+-/
 lemma isOrthProj_rk1 {v : ι → 𝕜} (hv : star v ⬝ᵥ v = 1) : IsOrthProj (rk1 v) :=
   ⟨rk1_conjTranspose v, by rw [rk1_mul_rk1, hv, one_smul]; rfl⟩
 
-/-- Removing a unit vector `x` of the range: `Q - x xᴴ` is again an orthogonal projection.-/
+/-- Removing a unit vector `x` of the range: `Q - x xᴴ` is again an orthogonal projection.
+@isnad1 id=isorthpr.3h4v.s7.b9aa0e9afae4 from=translated src=- shape=b0d26060 vocab=131535bf
+-/
 lemma isOrthProj_sub_rk1 {Q : Matrix ι ι 𝕜} (hQ : IsOrthProj Q) {x : ι → 𝕜} (hx : Q *ᵥ x = x)
     (hxx : star x ⬝ᵥ x = 1) : IsOrthProj (Q - rk1 x) := by
   refine ⟨by rw [conjTranspose_sub, hQ.herm, rk1_conjTranspose], ?_⟩
@@ -72,7 +95,9 @@ lemma isOrthProj_sub_rk1 {Q : Matrix ι ι 𝕜} (hQ : IsOrthProj Q) {x : ι →
   rw [sub_mul, mul_sub, mul_sub, hQ.idem, h1, h2, h3]
   abel
 
-/-- The sum of two orthogonal projections with `E F = 0` is an orthogonal projection.-/
+/-- The sum of two orthogonal projections with `E F = 0` is an orthogonal projection.
+@isnad1 id=isorthpr.3h4v.s7.95153be9bceb from=translated src=- shape=7e7e362f vocab=50a013b3
+-/
 lemma IsOrthProj.add {E F : Matrix ι ι 𝕜} (hE : IsOrthProj E) (hF : IsOrthProj F)
     (hEF : E * F = 0) : IsOrthProj (E + F) := by
   have hFE : F * E = 0 := by
@@ -84,21 +109,30 @@ lemma IsOrthProj.add {E F : Matrix ι ι 𝕜} (hE : IsOrthProj E) (hF : IsOrthP
 
 /-! ### Sesquilinear bookkeeping -/
 
-/-- `⟨u, M v⟩ = ⟨Mᴴ u, v⟩`.-/
+/-- `⟨u, M v⟩ = ⟨Mᴴ u, v⟩`.
+@isnad1 id=eq.0h5v.s8.a62173426f65 from=translated src=- shape=d172d0c9 vocab=09c63e27
+-/
 lemma dotProduct_mulVec_star (M : Matrix ι ι 𝕜) (u v : ι → 𝕜) :
     star u ⬝ᵥ (M *ᵥ v) = star (Mᴴ *ᵥ u) ⬝ᵥ v := by
   rw [dotProduct_mulVec, star_mulVec, conjTranspose_conjTranspose]
 
-/-- For Hermitian `A`, `⟨x, A y⟩ = conj ⟨y, A x⟩`.-/
+/-- For Hermitian `A`, `⟨x, A y⟩ = conj ⟨y, A x⟩`.
+@isnad1 id=eq.1h5v.s8.10e0a1adcc5b from=translated src=- shape=f7656175 vocab=09c63e27
+-/
 lemma dotProduct_mulVec_herm {A : Matrix ι ι 𝕜} (hA : Aᴴ = A) (x y : ι → 𝕜) :
     star x ⬝ᵥ (A *ᵥ y) = star (star y ⬝ᵥ (A *ᵥ x)) := by
   rw [dotProduct_mulVec_star, hA, star_dotProduct]
 
+/--
+@isnad1 id=eq.1h5v.s9.48716445f4a4 from=translated src=- shape=69d5a1a1 vocab=5c93e9e9
+-/
 lemma re_dotProduct_mulVec_herm {A : Matrix ι ι 𝕜} (hA : Aᴴ = A) (x y : ι → 𝕜) :
     RCLike.re (star x ⬝ᵥ (A *ᵥ y)) = RCLike.re (star y ⬝ᵥ (A *ᵥ x)) := by
   rw [dotProduct_mulVec_herm hA, RCLike.star_def, RCLike.conj_re]
 
-/-- Expansion of `⟨v, A v⟩` for `v = c x + d y` with real `c, d`.-/
+/-- Expansion of `⟨v, A v⟩` for `v = c x + d y` with real `c, d`.
+@isnad1 id=eq.1h7v.s10.a1ec57391f3c from=translated src=- shape=4bf6e061 vocab=68c9f182
+-/
 lemma re_quad_add {A : Matrix ι ι 𝕜} (hA : Aᴴ = A) (x y : ι → 𝕜) (c d : ℝ) :
     RCLike.re (star ((c : 𝕜) • x + (d : 𝕜) • y) ⬝ᵥ (A *ᵥ ((c : 𝕜) • x + (d : 𝕜) • y))) =
       c ^ 2 * RCLike.re (star x ⬝ᵥ (A *ᵥ x)) +
@@ -111,6 +145,9 @@ lemma re_quad_add {A : Matrix ι ι 𝕜} (hA : Aᴴ = A) (x y : ι → 𝕜) (c
   rw [hxy]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s9.8b610996a9bb from=translated src=- shape=e5899507 vocab=4288b7d5
+-/
 lemma dotProduct_add_smul (x y : ι → 𝕜) (c d : ℝ) :
     star ((c : 𝕜) • x + (d : 𝕜) • y) ⬝ᵥ ((c : 𝕜) • x + (d : 𝕜) • y) =
       (c ^ 2 : ℝ) * (star x ⬝ᵥ x) + (c * d : ℝ) * (star x ⬝ᵥ y + star y ⬝ᵥ x) +
@@ -120,7 +157,9 @@ lemma dotProduct_add_smul (x y : ι → 𝕜) (c d : ℝ) :
   push_cast
   ring
 
-/-- Every nonzero vector has a positive real multiple of norm one.-/
+/-- Every nonzero vector has a positive real multiple of norm one.
+@isnad1 id=ex.1h3v.s8.83422e03349e from=translated src=- shape=3f1fee3e vocab=b297c2a5
+-/
 lemma exists_normalize {v : ι → 𝕜} (hv : v ≠ 0) :
     ∃ c : ℝ, 0 < c ∧ star ((c : 𝕜) • v) ⬝ᵥ ((c : 𝕜) • v) = 1 := by
   have hpos : 0 < RCLike.re (star v ⬝ᵥ v) := by
@@ -150,7 +189,9 @@ variable [DecidableEq ι]
 /-- **The rotation step.** Let `Q` be an orthogonal projection of rank `m`, let `x` be a unit
 vector in its range and `y` a unit vector in its kernel with `Re ⟨y, A x⟩ > 0`. Rotating `x`
 slightly towards `y` produces an orthogonal projection of rank `m` with a larger value of
-`Re tr(A ·)`.-/
+`Re tr(A ·)`.
+@isnad1 id=ex.8h7v.s10.5de0855b492d from=translated src=- shape=5f1c047f vocab=2f1014e3
+-/
 theorem exists_rotation_gt {m : ℕ} {A Q : Matrix ι ι 𝕜} (hA : Aᴴ = A)
     (hQ : Q ∈ orthProjs 𝕜 ι m) {x y : ι → 𝕜} (hQx : Q *ᵥ x = x) (hQy : Q *ᵥ y = 0)
     (hxx : star x ⬝ᵥ x = 1) (hyy : star y ⬝ᵥ y = 1) (hxy : star x ⬝ᵥ y = 0)
@@ -221,7 +262,9 @@ theorem exists_rotation_gt {m : ℕ} {A Q : Matrix ι ι 𝕜} (hA : Aᴴ = A)
   linarith
 
 /-- **Maximizing projections commute.** If `Q` maximizes `Re tr(A P)` over the orthogonal
-projections `P` of rank `m` and `A` is Hermitian, then `A Q = Q A`.-/
+projections `P` of rank `m` and `A` is Hermitian, then `A Q = Q A`.
+@isnad1 id=eq.3h5v.s9.f416dfbf1a16 from=translated src=- shape=e851edb5 vocab=b7f7534b
+-/
 theorem commute_of_isMaxOn {m : ℕ} {A Q : Matrix ι ι 𝕜} (hA : Aᴴ = A)
     (hQ : Q ∈ orthProjs 𝕜 ι m)
     (hmax : ∀ Q' ∈ orthProjs 𝕜 ι m, RCLike.re (A * Q').trace ≤ RCLike.re (A * Q).trace) :

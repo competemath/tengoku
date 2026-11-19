@@ -47,13 +47,18 @@ variable {ι : Type*} [Fintype ι]
 
 /-! ### Quadratic forms of symmetric matrices -/
 
-/-- For a symmetric matrix `A`, `xᵀAy = yᵀAx`.-/
+/-- For a symmetric matrix `A`, `xᵀAy = yᵀAx`.
+@isnad1 id=eq.1h4v.s6.70dacbd12c88 from=translated src=- shape=f1984705 vocab=b1d89c68
+-/
 lemma dotProduct_mulVec_comm {A : Matrix ι ι ℝ} (hA : ∀ i j, A j i = A i j) (x y : ι → ℝ) :
     x ⬝ᵥ (A *ᵥ y) = y ⬝ᵥ (A *ᵥ x) := by
   simp only [dotProduct, mulVec, mul_sum]
   rw [sum_comm]
   exact sum_congr rfl fun i _ => sum_congr rfl fun j _ => by rw [hA]; ring
 
+/--
+@isnad1 id=eq.1h6v.s8.e2660334e20e from=translated src=- shape=1ba69793 vocab=34977719
+-/
 lemma quad_add_smul {A : Matrix ι ι ℝ} (hA : ∀ i j, A j i = A i j) (x z : ι → ℝ) (a b : ℝ) :
     (a • x + b • z) ⬝ᵥ (A *ᵥ (a • x + b • z))
       = a ^ 2 * (x ⬝ᵥ (A *ᵥ x)) + 2 * a * b * (z ⬝ᵥ (A *ᵥ x)) + b ^ 2 * (z ⬝ᵥ (A *ᵥ z)) := by
@@ -88,7 +93,9 @@ section Stationary
 
 variable {A : Matrix ι ι ℝ} {u v : ι → ℝ}
 
-/-- **Stationarity.** If `u, v` maximizes `xᵀAx + yᵀAy` and `z ⊥ u, v`, then `z ⊥ Au`.-/
+/-- **Stationarity.** If `u, v` maximizes `xᵀAx + yᵀAy` and `z ⊥ u, v`, then `z ⊥ Au`.
+@isnad1 id=eq.5h5v.s7.847c6380c251 from=translated src=- shape=a9932528 vocab=fad13d25
+-/
 theorem stationary (hA : ∀ i j, A j i = A i j) (h : IsOrthonormalPair u v)
     (hmax : ∀ x y, IsOrthonormalPair x y → fanValue A x y ≤ fanValue A u v) {z : ι → ℝ}
     (hzu : z ⬝ᵥ u = 0) (hzv : z ⬝ᵥ v = 0) : z ⬝ᵥ (A *ᵥ u) = 0 := by
@@ -127,7 +134,9 @@ theorem stationary (hA : ∀ i j, A j i = A i j) (h : IsOrthonormalPair u v)
   nlinarith [hle']
 
 /-- **Invariance.** A maximizing orthonormal pair spans an `A`-invariant plane:
-`Au = ⟨u, Au⟩ u + ⟨v, Au⟩ v`.-/
+`Au = ⟨u, Au⟩ u + ⟨v, Au⟩ v`.
+@isnad1 id=eq.3h4v.s7.70d5a10ea8b1 from=translated src=- shape=f1b56501 vocab=d8765a0f
+-/
 theorem mulVec_eq_of_isMax (hA : ∀ i j, A j i = A i j) (h : IsOrthonormalPair u v)
     (hmax : ∀ x y, IsOrthonormalPair x y → fanValue A x y ≤ fanValue A u v) :
     A *ᵥ u = (u ⬝ᵥ (A *ᵥ u)) • u + (v ⬝ᵥ (A *ᵥ u)) • v := by
@@ -151,7 +160,9 @@ theorem mulVec_eq_of_isMax (hA : ∀ i j, A j i = A i j) (h : IsOrthonormalPair 
   rw [hr_def, sub_sub, sub_eq_zero] at this
   exact this
 
-/-- The same for `v`.-/
+/-- The same for `v`.
+@isnad1 id=eq.3h4v.s7.d1b9d4973639 from=translated src=- shape=78535410 vocab=d8765a0f
+-/
 theorem mulVec_eq_of_isMax' (hA : ∀ i j, A j i = A i j) (h : IsOrthonormalPair u v)
     (hmax : ∀ x y, IsOrthonormalPair x y → fanValue A x y ≤ fanValue A u v) :
     A *ᵥ v = (u ⬝ᵥ (A *ᵥ v)) • u + (v ⬝ᵥ (A *ᵥ v)) • v := by
@@ -171,6 +182,9 @@ variable [DecidableEq ι] {A : Matrix ι ι ℝ}
 noncomputable def eigenvector (hA : A.IsHermitian) (k : ι) : ι → ℝ :=
   fun i => (hA.eigenvectorUnitary : Matrix ι ι ℝ) i k
 
+/--
+@isnad1 id=eq.1h4v.s6.6ec8bbb4dc3e from=translated src=- shape=e80927ae vocab=c3111873
+-/
 lemma eigenvector_dotProduct (hA : A.IsHermitian) (k l : ι) :
     eigenvector hA k ⬝ᵥ eigenvector hA l = if k = l then 1 else 0 := by
   have h := Matrix.mem_unitaryGroup_iff'.mp hA.eigenvectorUnitary.2
@@ -179,6 +193,9 @@ lemma eigenvector_dotProduct (hA : A.IsHermitian) (k l : ι) :
   rw [← this]
   simp only [dotProduct, eigenvector]
 
+/--
+@isnad1 id=eq.1h4v.s6.730243a17b96 from=translated src=- shape=4ecf6ae4 vocab=a9e77fb5
+-/
 lemma sum_eigenvector_mul (hA : A.IsHermitian) (i j : ι) :
     ∑ k, eigenvector hA k i * eigenvector hA k j = if i = j then 1 else 0 := by
   have h := Matrix.mem_unitaryGroup_iff.mp hA.eigenvectorUnitary.2
@@ -187,6 +204,9 @@ lemma sum_eigenvector_mul (hA : A.IsHermitian) (i j : ι) :
   rw [← this]
   simp only [eigenvector]
 
+/--
+@isnad1 id=eq.1h3v.s6.d931100800bc from=translated src=- shape=65537150 vocab=5ce60041
+-/
 lemma mulVec_eigenvector (hA : A.IsHermitian) (k : ι) :
     A *ᵥ eigenvector hA k = hA.eigenvalues k • eigenvector hA k := by
   have h := hA.mulVec_eigenvectorBasis k
@@ -207,7 +227,9 @@ lemma eq_sum_eigenvector (hA : A.IsHermitian) (x : ι → ℝ) (i : ι) :
   rw [this]
   simp only [sum_eigenvector_mul, mul_ite, mul_one, mul_zero, sum_ite_eq', mem_univ, ite_true]
 
-/-- Parseval's identity.-/
+/-- Parseval's identity.
+@isnad1 id=eq.1h4v.s6.26689dcce6f0 from=translated src=- shape=eddbce1a vocab=2fbd3737
+-/
 lemma sum_eigenvector_dotProduct_mul (hA : A.IsHermitian) (x y : ι → ℝ) :
     ∑ k, (eigenvector hA k ⬝ᵥ x) * (eigenvector hA k ⬝ᵥ y) = x ⬝ᵥ y := by
   calc ∑ k, (eigenvector hA k ⬝ᵥ x) * (eigenvector hA k ⬝ᵥ y)
@@ -228,7 +250,9 @@ lemma sum_eigenvector_dotProduct_mul (hA : A.IsHermitian) (x y : ι → ℝ) :
         simp
     _ = x ⬝ᵥ y := rfl
 
-/-- `xᵀAx = ∑ₖ λₖ ⟨eₖ, x⟩²`.-/
+/-- `xᵀAx = ∑ₖ λₖ ⟨eₖ, x⟩²`.
+@isnad1 id=eq.1h3v.s7.1adeb14b9ef2 from=translated src=- shape=77c99b76 vocab=2e1aa532
+-/
 lemma dotProduct_mulVec_eq_sum_eigenvalues (hA : A.IsHermitian) (x : ι → ℝ) :
     x ⬝ᵥ (A *ᵥ x) = ∑ k, hA.eigenvalues k * (eigenvector hA k ⬝ᵥ x) ^ 2 := by
   have hx : x = ∑ k, (eigenvector hA k ⬝ᵥ x) • eigenvector hA k := by
@@ -245,7 +269,9 @@ lemma dotProduct_mulVec_eq_sum_eigenvalues (hA : A.IsHermitian) (x : ι → ℝ)
   ring
 
 /-- **Fan's inequality** for two vectors: `uᵀAu + vᵀAv ≤ λ_a + λ_b` for the two largest
-eigenvalues `λ_a ≥ λ_b`.-/
+eigenvalues `λ_a ≥ λ_b`.
+@isnad1 id=le.4h6v.s7.2dc024c09301 from=translated src=- shape=0c2b4726 vocab=350030d7
+-/
 theorem fanValue_le_top_two (hA : A.IsHermitian) {u v : ι → ℝ} (huv : IsOrthonormalPair u v)
     {a b : ι} (ha : ∀ j, hA.eigenvalues j ≤ hA.eigenvalues a)
     (hb : ∀ j, j ≠ a → hA.eigenvalues j ≤ hA.eigenvalues b) :
@@ -268,7 +294,9 @@ theorem fanValue_le_top_two (hA : A.IsHermitian) {u v : ι → ℝ} (huv : IsOrt
     norm_num
   exact sum_mul_le_top_two _ _ (fun k => by positivity) h1 h2 ha hb
 
-/-- The eigenvectors attain Fan's bound.-/
+/-- The eigenvectors attain Fan's bound.
+@isnad1 id=and.2h4v.s6.9052b3761039 from=translated src=- shape=44175e6c vocab=4f716175
+-/
 theorem fanValue_eigenvector (hA : A.IsHermitian) {a b : ι} (hab : a ≠ b) :
     IsOrthonormalPair (eigenvector hA a) (eigenvector hA b) ∧
       fanValue A (eigenvector hA a) (eigenvector hA b)
@@ -278,7 +306,9 @@ theorem fanValue_eigenvector (hA : A.IsHermitian) {a b : ι} (hab : a ≠ b) :
   simp only [fanValue, mulVec_eigenvector, dotProduct_smul, eigenvector_dotProduct, ite_true,
     smul_eq_mul, mul_one]
 
-/-- **Fan's maximum principle** for `π₂`: `π₂(A)` is the sum of the two largest eigenvalues.-/
+/-- **Fan's maximum principle** for `π₂`: `π₂(A)` is the sum of the two largest eigenvalues.
+@isnad1 id=eq.4h4v.s7.d31c75c57bbf from=translated src=- shape=cd3dca6c vocab=7e4cc65c
+-/
 theorem sumTopTwo_eq_top_two (hA : A.IsHermitian) {a b : ι} (hab : a ≠ b)
     (ha : ∀ j, hA.eigenvalues j ≤ hA.eigenvalues a)
     (hb : ∀ j, j ≠ a → hA.eigenvalues j ≤ hA.eigenvalues b) :
@@ -288,14 +318,18 @@ theorem sumTopTwo_eq_top_two (hA : A.IsHermitian) {a b : ι} (hab : a ≠ b)
   · exact sumTopTwo_le ⟨_, _, _, hon, rfl⟩ fun u v huv => fanValue_le_top_two hA huv ha hb
   · rw [← hval]; exact fanValue_le_sumTopTwo A hon
 
-/-- If every sum of two eigenvalues (with distinct indices) is at most `c`, then `π₂ A ≤ c`.-/
+/-- If every sum of two eigenvalues (with distinct indices) is at most `c`, then `π₂ A ≤ c`.
+@isnad1 id=le.3h3v.s6.3e733f540561 from=translated src=- shape=e8298495 vocab=e8cedbec
+-/
 theorem sumTopTwo_le_of_forall_add_le (hA : A.IsHermitian) (h2 : 1 < Fintype.card ι) {c : ℝ}
     (h : ∀ i j, i ≠ j → hA.eigenvalues i + hA.eigenvalues j ≤ c) : π₂ A ≤ c := by
   obtain ⟨a, b, hab, ha, hb⟩ := exists_top_two hA.eigenvalues h2
   rw [sumTopTwo_eq_top_two hA hab ha hb]
   exact h a b hab
 
-/-- Every sum of two eigenvalues with distinct indices is at most `π₂ A`.-/
+/-- Every sum of two eigenvalues with distinct indices is at most `π₂ A`.
+@isnad1 id=le.2h4v.s6.0edddb0c1966 from=translated src=- shape=d65c91cb vocab=7e4cc65c
+-/
 theorem add_le_sumTopTwo (hA : A.IsHermitian) {i j : ι} (hij : i ≠ j) :
     hA.eigenvalues i + hA.eigenvalues j ≤ π₂ A := by
   obtain ⟨hon, hval⟩ := fanValue_eigenvector hA hij
@@ -303,7 +337,9 @@ theorem add_le_sumTopTwo (hA : A.IsHermitian) {i j : ι} (hij : i ≠ j) :
   exact fanValue_le_sumTopTwo A hon
 
 /-- **Fan's maximum principle** in terms of Mathlib's list `eigenvalues₀` of the eigenvalues in
-decreasing order: `π₂(A) = λ₁(A) + λ₂(A)`.-/
+decreasing order: `π₂(A) = λ₁(A) + λ₂(A)`.
+@isnad1 id=eq.2h2v.s6.ca635cb880c4 from=translated src=- shape=91302700 vocab=75ac13c4
+-/
 theorem sumTopTwo_eq_eigenvalues₀ (hA : A.IsHermitian) (h2 : 2 ≤ Fintype.card ι) :
     π₂ A = hA.eigenvalues₀ ⟨0, by omega⟩ + hA.eigenvalues₀ ⟨1, by omega⟩ := by
   set e := Fintype.equivOfCardEq (Fintype.card_fin (Fintype.card ι)) with he
@@ -328,7 +364,9 @@ theorem sumTopTwo_eq_eigenvalues₀ (hA : A.IsHermitian) (h2 : 2 ≤ Fintype.car
 
 end Fan
 
-/-- The supremum defining `π₂(A)` is attained, for symmetric `A` and `|ι| ≥ 2`.-/
+/-- The supremum defining `π₂(A)` is attained, for symmetric `A` and `|ι| ≥ 2`.
+@isnad1 id=ex.2h2v.s6.9aad41f3cc50 from=translated src=- shape=0e722102 vocab=539e965e
+-/
 theorem exists_fanValue_eq_sumTopTwo {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
     (h2 : 1 < Fintype.card ι) : ∃ u v, IsOrthonormalPair u v ∧ fanValue A u v = π₂ A := by
   classical

@@ -39,12 +39,21 @@ variable {ι : Type*}
 /-- The matrix `U = [u v] ∈ ℝ^{ι×2}`, whose rows are the vectors `xᵢ = (uᵢ, vᵢ) ∈ ℝ²`.-/
 def pairMatrix (u v : ι → ℝ) : Matrix ι (Fin 2) ℝ := of fun i => ![u i, v i]
 
+/--
+@isnad1 id=eq.0h4v.s5.910038a53207 from=translated src=- shape=f46b6eb0 vocab=03ccce81
+-/
 lemma pairMatrix_apply (u v : ι → ℝ) (i : ι) : pairMatrix u v i = ![u i, v i] := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.748441b4bea3 from=translated src=- shape=42e035b2 vocab=a5d9b46f
+-/
 lemma pairMatrix_dotProduct (u v : ι → ℝ) (i j : ι) :
     pairMatrix u v i ⬝ᵥ pairMatrix u v j = u i * u j + v i * v j := by
   simp [pairMatrix, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.1h3v.s7.086159c83852 from=translated src=- shape=44c002f4 vocab=f4cd4d25
+-/
 lemma transpose_pairMatrix_mul [Fintype ι] {u v : ι → ℝ} (huv : IsOrthonormalPair u v) :
     (pairMatrix u v)ᵀ * pairMatrix u v = 1 := by
   ext a b
@@ -57,7 +66,9 @@ lemma transpose_pairMatrix_mul [Fintype ι] {u v : ι → ℝ} (huv : IsOrthonor
 variable {m : ℕ} {S : Matrix (Fin m) (Fin m) ℝ} {w u v : Fin m → ℝ}
 
 /-- A maximizer `(S, D)` of `Π(2, m)` with `D` positive definite, together with a maximizing
-orthonormal pair `u, v` for `M = √D S √D`, gives the maximizing pair `(U, √D)` of KMMP.-/
+orthonormal pair `u, v` for `M = √D S √D`, gives the maximizing pair `(U, √D)` of KMMP.
+@isnad1 id=ismaximi.5h5v.s6.032bdcd56797 from=translated src=- shape=ab71a6e2 vocab=cc139e63
+-/
 theorem isMaximizingPair_pairMatrix (hmax : IsMaximizer S w) (hpos : ∀ i, 0 < w i)
     (hm : 2 < m) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) :
@@ -72,7 +83,9 @@ theorem isMaximizingPair_pairMatrix (hmax : IsMaximizer S w) (hpos : ∀ i, 0 < 
 with `D` positive definite, `m > 2`, and let `xᵢ = (uᵢ, vᵢ)` for a maximizing orthonormal pair
 `u, v` of `√D S √D`. Let `C` be such that `⟨xᵢ, xⱼ⟩ ≥ 0` for `i, j ∈ C`, and let `c ≥ 0` with
 `cᵢ = 1` for `i ∉ C` and `∑_{i ∈ C} cᵢ xᵢ xᵢᵀ = ∑_{i ∈ C} xᵢ xᵢᵀ`. Then `(S, D')` with
-`D' = Diag(cᵢ dᵢ)` is again a maximizer of `Π(2, m)` (in particular `D' ∈ 𝒟_m`).-/
+`D' = Diag(cᵢ dᵢ)` is again a maximizer of `Π(2, m)` (in particular `D' ∈ 𝒟_m`).
+@isnad1 id=ismaximi.9h7v.s9.107bc8d96bb9 from=translated src=- shape=9c877f31 vocab=1f315083
+-/
 theorem IsMaximizer.clone (hmax : IsMaximizer S w) (hpos : ∀ i, 0 < w i) (hm : 2 < m)
     (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) {C : Finset (Fin m)}

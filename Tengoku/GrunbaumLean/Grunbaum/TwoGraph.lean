@@ -56,46 +56,75 @@ section Coherent
 
 variable {S : Matrix ι ι ℝ}
 
+/--
+@isnad1 id=iff.1h5v.s4.cf34b7ffe820 from=translated src=- shape=cf9fa189 vocab=23b6bf97
+-/
 lemma coherent_swap₁₂ (hS : IsSignMatrix S) {i j k : ι} :
     Coherent S i j k ↔ Coherent S j i k := by
   unfold Coherent
   rw [hS.symm i j]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.1h5v.s4.f74db90c7963 from=translated src=- shape=a9c3f603 vocab=23b6bf97
+-/
 lemma coherent_swap₂₃ {i j k : ι} (hS : IsSignMatrix S) :
     Coherent S i j k ↔ Coherent S i k j := by
   unfold Coherent
   rw [hS.symm j k]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.1h5v.s4.f0101e0bf708 from=translated src=- shape=45bd8ae0 vocab=23b6bf97
+-/
 lemma coherent_rotate (hS : IsSignMatrix S) {i j k : ι} :
     Coherent S i j k ↔ Coherent S j k i := by
   rw [coherent_swap₁₂ hS, coherent_swap₂₃ hS]
 
+/--
+@isnad1 id=not.1h4v.s4.24185aa0e986 from=translated src=- shape=fc6ddd02 vocab=23b6bf97
+-/
 lemma not_coherent_of_eq_left (hS : IsSignMatrix S) (i k : ι) : ¬Coherent S i i k := by
   unfold Coherent
   rw [hS.diag, one_mul, hS.mul_self_apply]
   norm_num
 
+/--
+@isnad1 id=not.1h4v.s4.90e14eb89fd9 from=translated src=- shape=dddf83d6 vocab=23b6bf97
+-/
 lemma not_coherent_of_eq_right (hS : IsSignMatrix S) (i j : ι) : ¬Coherent S i j j := by
   unfold Coherent
   rw [hS.diag, mul_one, hS.mul_self_apply]
   norm_num
 
+/--
+@isnad1 id=not.1h4v.s4.56f2a4f97b6a from=translated src=- shape=41fbbb24 vocab=23b6bf97
+-/
 lemma not_coherent_of_eq_mid (hS : IsSignMatrix S) (i j : ι) : ¬Coherent S i j i := by
   rw [coherent_swap₂₃ hS]
   exact not_coherent_of_eq_left hS i j
 
+/--
+@isnad1 id=ne.2h5v.s4.73136adc2a28 from=translated src=- shape=c79ba954 vocab=23b6bf97
+-/
 lemma Coherent.ne₁₂ (hS : IsSignMatrix S) {i j k : ι} (h : Coherent S i j k) : i ≠ j := by
   rintro rfl; exact not_coherent_of_eq_left hS i k h
 
+/--
+@isnad1 id=ne.2h5v.s4.c3b8390be8e7 from=translated src=- shape=47d85e33 vocab=23b6bf97
+-/
 lemma Coherent.ne₁₃ (hS : IsSignMatrix S) {i j k : ι} (h : Coherent S i j k) : i ≠ k := by
   rintro rfl; exact not_coherent_of_eq_mid hS i j h
 
+/--
+@isnad1 id=ne.2h5v.s4.1d7adee33b70 from=translated src=- shape=af94310f vocab=23b6bf97
+-/
 lemma Coherent.ne₂₃ (hS : IsSignMatrix S) {i j k : ι} (h : Coherent S i j k) : j ≠ k := by
   rintro rfl; exact not_coherent_of_eq_right hS i j h
 
-/-- For a sign matrix, `sᵢⱼ sᵢₖ sⱼₖ = 1` iff `{i, j, k}` is not coherent.-/
+/-- For a sign matrix, `sᵢⱼ sᵢₖ sⱼₖ = 1` iff `{i, j, k}` is not coherent.
+@isnad1 id=iff.1h5v.s5.0c9c2cde774c from=translated src=- shape=cb74dc10 vocab=ceda8f45
+-/
 lemma not_coherent_iff (hS : IsSignMatrix S) {i j k : ι} :
     ¬Coherent S i j k ↔ S i j * S i k * S j k = 1 := by
   unfold Coherent
@@ -104,7 +133,9 @@ lemma not_coherent_iff (hS : IsSignMatrix S) {i j k : ι} :
 
 end Coherent
 
-/-- Principal submatrices and blow-ups of sign matrices are sign matrices.-/
+/-- Principal submatrices and blow-ups of sign matrices are sign matrices.
+@isnad1 id=issignma.1h4v.s4.caa42ba65439 from=translated src=- shape=d0f5c9b8 vocab=94ec2acc
+-/
 lemma IsSignMatrix.submatrix {T : Matrix κ κ ℝ} (hT : IsSignMatrix T) (f : ι → κ) :
     IsSignMatrix (T.submatrix f f) :=
   ⟨fun _ _ => hT.symm _ _, fun _ _ => hT.sign _ _, fun _ => hT.diag _⟩
@@ -122,7 +153,9 @@ noncomputable def twoGraph (S : Matrix ι ι ℝ) : FranklFuredi.ThreeGraph ι w
     ∃ i ∈ e, ∃ j ∈ e, ∃ k ∈ e, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ Coherent S i j k
   card_eq_three _ he := (mem_powersetCard.mp (mem_filter.mp he).1).2
 
-/-- The edges of `[S]` are the coherent triples.-/
+/-- The edges of `[S]` are the coherent triples.
+@isnad1 id=iff.1h5v.s5.7d182b232e5b from=translated src=- shape=0422e428 vocab=933189ed
+-/
 theorem isEdge_twoGraph {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {a b c : ι} :
     (twoGraph S).IsEdge a b c ↔ a ≠ b ∧ a ≠ c ∧ b ≠ c ∧ Coherent S a b c := by
   simp only [FranklFuredi.ThreeGraph.IsEdge, twoGraph, mem_filter, mem_powersetCard,
@@ -136,7 +169,9 @@ theorem isEdge_twoGraph {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {a b c : ι
   · rintro ⟨hab, hac, hbc, hcoh⟩
     exact ⟨⟨hab, hac, hbc⟩, a, by simp, b, by simp, c, by simp, hab, hac, hbc, hcoh⟩
 
-/-- The two-graph of a blow-up `S(f, f)` is the blow-up of the two-graph along `f`.-/
+/-- The two-graph of a blow-up `S(f, f)` is the blow-up of the two-graph along `f`.
+@isnad1 id=eq.1h4v.s5.5f58dee63484 from=translated src=- shape=b03bd664 vocab=ad4b2961
+-/
 theorem twoGraph_submatrix [Fintype κ] [DecidableEq κ] {T : Matrix κ κ ℝ}
     (hT : IsSignMatrix T) (f : ι → κ) :
     twoGraph (T.submatrix f f) = (twoGraph T).pullback f := by
@@ -158,6 +193,9 @@ end TwoGraph
 /-- The signs `εᵢ = ±1`.-/
 def IsSignVector (ε : ι → ℝ) : Prop := ∀ i, ε i = 1 ∨ ε i = -1
 
+/--
+@isnad1 id=eq.1h3v.s5.5e76c2d36264 from=translated src=- shape=4366bf4b vocab=1090ea53
+-/
 lemma IsSignVector.mul_self {ε : ι → ℝ} (hε : IsSignVector ε) (i : ι) : ε i * ε i = 1 := by
   rcases hε i with h | h <;> simp [h]
 
@@ -165,6 +203,9 @@ lemma IsSignVector.mul_self {ε : ι → ℝ} (hε : IsSignVector ε) (i : ι) :
 with `εᵢ = -1`.-/
 def switch (S : Matrix ι ι ℝ) (ε : ι → ℝ) : Matrix ι ι ℝ := of fun i j => ε i * ε j * S i j
 
+/--
+@isnad1 id=issignma.2h3v.s4.1e90079b60ce from=translated src=- shape=edaef910 vocab=7c9dca67
+-/
 lemma IsSignMatrix.switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {ε : ι → ℝ}
     (hε : IsSignVector ε) : IsSignMatrix (switch S ε) := by
   refine ⟨fun i j => ?_, fun i j => ?_, fun i => ?_⟩
@@ -174,7 +215,9 @@ lemma IsSignMatrix.switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {ε : ι 
       simp [h1, h2, h3]
   · simp only [Grunbaum.switch, of_apply, hS.diag, hε.mul_self, mul_one]
 
-/-- Switching does not change the coherent triples.-/
+/-- Switching does not change the coherent triples.
+@isnad1 id=iff.1h6v.s5.00d0a81a8803 from=translated src=- shape=6f923455 vocab=5ada6e20
+-/
 lemma coherent_switch_iff {S : Matrix ι ι ℝ} {ε : ι → ℝ} (hε : IsSignVector ε) {i j k : ι} :
     Coherent (switch S ε) i j k ↔ Coherent S i j k := by
   unfold Coherent switch
@@ -188,16 +231,25 @@ lemma coherent_switch_iff {S : Matrix ι ι ℝ} {ε : ι → ℝ} (hε : IsSign
 def SwitchEquiv (S T : Matrix ι ι ℝ) : Prop :=
   ∃ ε : ι → ℝ, IsSignVector ε ∧ ∀ i j, S i j = ε i * ε j * T i j
 
+/--
+@isnad1 id=switcheq.1h3v.s4.57afb3a9585e from=translated src=- shape=42400989 vocab=15be00a1
+-/
 lemma switchEquiv_switch (S : Matrix ι ι ℝ) {ε : ι → ℝ} (hε : IsSignVector ε) :
     SwitchEquiv (switch S ε) S :=
   ⟨ε, hε, fun _ _ => rfl⟩
 
+/--
+@isnad1 id=switcheq.1h3v.s4.eb94e8bbfc20 from=translated src=- shape=dfdced60 vocab=31f0c107
+-/
 lemma SwitchEquiv.symm {S T : Matrix ι ι ℝ} (h : SwitchEquiv S T) : SwitchEquiv T S := by
   obtain ⟨ε, hε, h⟩ := h
   refine ⟨ε, hε, fun i j => ?_⟩
   rw [h]
   linear_combination (-(T i j) * ε j * ε j) * hε.mul_self i - T i j * hε.mul_self j
 
+/--
+@isnad1 id=iff.1h6v.s5.996fbce57fb4 from=translated src=- shape=68253531 vocab=6e47e88e
+-/
 lemma SwitchEquiv.coherent_iff {S T : Matrix ι ι ℝ} (h : SwitchEquiv S T) {i j k : ι} :
     Coherent S i j k ↔ Coherent T i j k := by
   obtain ⟨ε, hε, h⟩ := h
@@ -206,7 +258,9 @@ lemma SwitchEquiv.coherent_iff {S T : Matrix ι ι ℝ} (h : SwitchEquiv S T) {i
 
 /-- **Sign matrices with the same two-graph are switching equivalent.** Switch `T` so that it
 agrees with `S` in the row of a fixed index `a`; the coherent triples through `a` then determine
-all other entries.-/
+all other entries.
+@isnad1 id=switcheq.3h3v.s5.0feca1bec8e8 from=translated src=- shape=6763cd38 vocab=04f43a69
+-/
 theorem switchEquiv_of_coherent_iff {S T : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     (hT : IsSignMatrix T) (h : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → (Coherent S i j k ↔
       Coherent T i j k)) : SwitchEquiv S T := by
@@ -241,7 +295,9 @@ theorem switchEquiv_of_coherent_iff {S T : Matrix ι ι ℝ} (hS : IsSignMatrix 
 def IsCoclique (S : Matrix ι ι ℝ) (C : Set ι) : Prop :=
   ∀ i ∈ C, ∀ j ∈ C, ∀ k ∈ C, ¬Coherent S i j k
 
-/-- "Equivalently, after switching, `S[C, C] = J_C`."-/
+/-- "Equivalently, after switching, `S[C, C] = J_C`."
+@isnad1 id=iff.1h3v.s6.6a747b05c366 from=translated src=- shape=27487bf4 vocab=b4e83466
+-/
 theorem isCoclique_iff_exists_switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (C : Set ι) :
     IsCoclique S C ↔ ∃ ε : ι → ℝ, IsSignVector ε ∧ ∀ i ∈ C, ∀ j ∈ C, S i j = ε i * ε j := by
   constructor
@@ -262,7 +318,9 @@ theorem isCoclique_iff_exists_switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S
 def IsClique (S : Matrix ι ι ℝ) (C : Set ι) : Prop :=
   ∀ x ∈ C, ∀ y ∈ C, ∀ z ∈ C, x ≠ y → x ≠ z → y ≠ z → Coherent S x y z
 
-/-- "Equivalently, after switching, all off-diagonal entries of `S` on it equal `-1`."-/
+/-- "Equivalently, after switching, all off-diagonal entries of `S` on it equal `-1`."
+@isnad1 id=iff.1h3v.s6.4d50216c9e37 from=translated src=- shape=031b8d61 vocab=0c2564bc
+-/
 theorem isClique_iff_exists_switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (C : Set ι) :
     IsClique S C ↔ ∃ ε : ι → ℝ, IsSignVector ε ∧
       ∀ x ∈ C, ∀ y ∈ C, x ≠ y → ε x * ε y * S x y = -1 := by
@@ -306,6 +364,9 @@ def IsClique4 (S : Matrix ι ι ℝ) (a b c d : ι) : Prop :=
 /-- `[S]` is `K₄`-free: it has no clique of order `4`.-/
 def K4Free (S : Matrix ι ι ℝ) : Prop := ∀ a b c d : ι, ¬IsClique4 S a b c d
 
+/--
+@isnad1 id=iff.1h6v.s6.e2084682fb0f from=translated src=- shape=bc45a2e6 vocab=4f82bc01
+-/
 theorem isClique4_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {a b c d : ι} :
     IsClique4 S a b c d ↔ (a ≠ b ∧ a ≠ c ∧ a ≠ d ∧ b ≠ c ∧ b ≠ d ∧ c ≠ d) ∧
       IsClique S {a, b, c, d} := by
@@ -326,7 +387,9 @@ theorem isClique4_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {a b c d : ι
 def IsTwin (S : Matrix ι ι ℝ) (i j : ι) : Prop :=
   i ≠ j ∧ ((∀ k, S j k = S i k) ∨ ∀ k, S j k = -S i k)
 
-/-- Twins are the pairs `{i, j}` contained in no coherent triple.-/
+/-- Twins are the pairs `{i, j}` contained in no coherent triple.
+@isnad1 id=iff.1h4v.s5.75e9acb2e6a0 from=translated src=- shape=111bceea vocab=b1638743
+-/
 theorem isTwin_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j : ι} :
     IsTwin S i j ↔ i ≠ j ∧ ∀ k, ¬Coherent S i j k := by
   constructor
@@ -354,7 +417,9 @@ theorem isTwin_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j : ι} :
       rw [hs] at this
       linear_combination (-S i k) * this - S j k * hS.mul_self_apply i k
 
-/-- After switching `j`, the rows of twins `i, j` coincide.-/
+/-- After switching `j`, the rows of twins `i, j` coincide.
+@isnad1 id=ex.2h4v.s6.2ae3f593bc85 from=translated src=- shape=ff47b142 vocab=6d494b04
+-/
 theorem IsTwin.exists_switch {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j : ι}
     (h : IsTwin S i j) :
     ∃ ε : ι → ℝ, IsSignVector ε ∧ (∀ k, k ≠ j → ε k = 1) ∧
@@ -388,7 +453,9 @@ section FourPoint
 variable [Fintype ι] [DecidableEq ι]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- For a sign matrix, among the four triples of four indices an even number is coherent.-/
+/-- For a sign matrix, among the four triples of four indices an even number is coherent.
+@isnad1 id=iff.1h6v.s5.85c3aab92e02 from=translated src=- shape=f558c58f vocab=23b6bf97
+-/
 lemma coherent_parity {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (a b c d : ι) :
     ((Coherent S a b c ↔ Coherent S a b d) ↔ (Coherent S a c d ↔ Coherent S b c d)) := by
   unfold Coherent
@@ -397,7 +464,9 @@ lemma coherent_parity {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (a b c d : ι
     rcases hS.sign b d with h5 | h5 <;> rcases hS.sign c d with h6 | h6 <;>
     simp [h1, h2, h3, h4, h5, h6]
 
-/-- If `[S]` is `K₄`-free, then any four points span `0` or `2` coherent triples.-/
+/-- If `[S]` is `K₄`-free, then any four points span `0` or `2` coherent triples.
+@isnad1 id=good.2h2v.s4.1984d5e7e2b2 from=translated src=- shape=35705c2e vocab=80db3dd0
+-/
 theorem good_twoGraph {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (hK4 : K4Free S) :
     FranklFuredi.Good (twoGraph S).IsEdge := by
   intro a b c d hab hac had hbc hbd hcd
@@ -406,7 +475,9 @@ theorem good_twoGraph {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (hK4 : K4Free
   exact ⟨coherent_parity hS a b c d, fun h => hK4 a b c d
     ⟨hab, hac, had, hbc, hbd, hcd, h.1, h.2.1, h.2.2.1, h.2.2.2⟩⟩
 
-/-- `[S]` is `K₄`-free iff it has the four-point property of Frankl and Füredi.-/
+/-- `[S]` is `K₄`-free iff it has the four-point property of Frankl and Füredi.
+@isnad1 id=iff.1h2v.s4.155532fc19c1 from=translated src=- shape=1df0e7f0 vocab=75ff1a8a
+-/
 theorem fourPointProperty_twoGraph_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) :
     (twoGraph S).FourPointProperty ↔ K4Free S := by
   rw [FranklFuredi.ThreeGraph.fourPointProperty_iff]
@@ -418,7 +489,9 @@ theorem fourPointProperty_twoGraph_iff {S : Matrix ι ι ℝ} (hS : IsSignMatrix
     exact this ⟨h1, h2, h3, h4⟩
   · exact good_twoGraph hS
 
-/-- Switching does not change the two-graph.-/
+/-- Switching does not change the two-graph.
+@isnad1 id=eq.3h3v.s5.2979f3268bf2 from=translated src=- shape=488ba412 vocab=924d47f4
+-/
 theorem twoGraph_eq_of_switchEquiv {S T : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     (hT : IsSignMatrix T) (h : SwitchEquiv S T) : twoGraph S = twoGraph T := by
   apply FranklFuredi.ThreeGraph.ext_of_isEdge

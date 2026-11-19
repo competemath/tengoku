@@ -29,21 +29,31 @@ namespace ProjectionConstants
 variable {𝕜 : Type*} [RCLike 𝕜]
 
 /-- **Theorem 1.1 (Chalmers–Lewicki).** `λ_𝕜(m, N) = sup { ∑ᵢⱼ tᵢ tⱼ |Pᵢⱼ| }`, the supremum over
-unit weights `t ≥ 0` and orthogonal projections `P` of rank `m`.-/
+unit weights `t ≥ 0` and orthogonal projections `P` of rank `m`.
+@isnad1 id=eq.0h3v.s4.f684f8fbd69c from=translated src=- shape=59e83deb vocab=80979b94
+-/
 theorem maxRelProjConst_eq_clConst (m N : ℕ) : maxRelProjConst 𝕜 m N = clConst 𝕜 (Fin N) m :=
   le_antisymm (Real.iSup_le (fun Y => relProjConst_le_clConst Y.1 Y.2) clConst_nonneg)
     (clConst_le_maxRelProjConst m N)
 
-/-- **Theorem 1.1**, in the formulation of the paper.-/
+/-- **Theorem 1.1**, in the formulation of the paper.
+@isnad1 id=eq.0h3v.s8.d4ee0621288f from=translated src=- shape=b7d105ee vocab=089c8639
+-/
 theorem maxRelProjConst_eq_sSup_parseval (m N : ℕ) :
     maxRelProjConst 𝕜 m N = sSup {x | ∃ (t : Fin N → ℝ) (U : Matrix (Fin m) (Fin N) 𝕜),
       (∀ i, 0 ≤ t i) ∧ ∑ i, t i ^ 2 = 1 ∧ U * Uᴴ = 1 ∧
         x = ∑ i, ∑ j, t i * t j * ‖(Uᴴ * U) i j‖} := by
   rw [maxRelProjConst_eq_clConst, clConst_eq_sSup_parseval]
 
+/--
+@isnad1 id=le.0h3v.s4.9bad6f656708 from=translated src=- shape=d1ee11de vocab=fcee8920
+-/
 lemma maxRelProjConst_le_sqrt (m N : ℕ) : maxRelProjConst 𝕜 m N ≤ √m := by
   rw [maxRelProjConst_eq_clConst]; exact clConst_le_sqrt
 
+/--
+@isnad1 id=le.0h3v.s4.7cad456ef9b3 from=translated src=- shape=78bf4c56 vocab=a82be468
+-/
 lemma quasiRelConst_le_maxRelProjConst (m N : ℕ) :
     quasiRelConst 𝕜 (Fin N) m ≤ maxRelProjConst 𝕜 m N := by
   rw [maxRelProjConst_eq_clConst]; exact quasiRelConst_le_clConst
@@ -59,6 +69,9 @@ variable (ι) in
 def unitWeights : Set (ι → ℝ) := {t | IsUnitWeight t}
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iscompac.0h1v.s4.ee91cd52726c from=translated src=- shape=fea4225f vocab=0d1cc9d1
+-/
 lemma isCompact_unitWeights : IsCompact (unitWeights ι) := by
   have hsub : unitWeights ι ⊆ Set.univ.pi fun _ : ι => Set.Icc (0 : ℝ) 1 := by
     intro t ht i _
@@ -77,7 +90,9 @@ lemma isCompact_unitWeights : IsCompact (unitWeights ι) := by
   rw [this]
   exact h1.inter h2
 
-/-- The supremum in Theorem 1.1 is a maximum.-/
+/-- The supremum in Theorem 1.1 is a maximum.
+@isnad1 id=ex.1h3v.s6.117d9503c98d from=translated src=- shape=71fd9ee8 vocab=bd32077d
+-/
 theorem exists_clConst_eq {m : ℕ} (hm : m ≤ Fintype.card ι) [Nonempty ι] :
     ∃ t P, IsUnitWeight t ∧ P ∈ orthProjs 𝕜 ι m ∧ weightedAbsSum t P = clConst 𝕜 ι m := by
   obtain ⟨P₀, hP₀⟩ := orthProjs_nonempty (𝕜 := 𝕜) hm
@@ -93,7 +108,9 @@ theorem exists_clConst_eq {m : ℕ} (hm : m ≤ Fintype.card ι) [Nonempty ι] :
   · exact weightedAbsSum_nonneg ht.nonneg P
   · exact hmax (Set.mk_mem_prod ht' hP')
 
-/-- The supremum defining `μ(m, N)` is a maximum.-/
+/-- The supremum defining `μ(m, N)` is a maximum.
+@isnad1 id=ex.1h3v.s6.f172027560ba from=translated src=- shape=a422b084 vocab=5adac4b5
+-/
 theorem exists_quasiRelConst_eq {m : ℕ} (hm : m ≤ Fintype.card ι) :
     ∃ P ∈ orthProjs 𝕜 ι m, absSum P / Fintype.card ι = quasiRelConst 𝕜 ι m := by
   obtain ⟨P₀, hP₀⟩ := orthProjs_nonempty (𝕜 := 𝕜) hm

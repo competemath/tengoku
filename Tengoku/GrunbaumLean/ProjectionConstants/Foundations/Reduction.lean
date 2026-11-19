@@ -39,7 +39,9 @@ section Reduction
 variable {X : Type*} [NormedAddCommGroup X] [NormedSpace 𝕜 X]
 
 /-- **Reduction to `ℓ∞^N`.** If `λ_𝕜(m, N) ≤ L` for every `N`, then `λ(Y, X) ≤ L` for every
-`m`-dimensional subspace `Y` of any normed space `X`.-/
+`m`-dimensional subspace `Y` of any normed space `X`.
+@isnad1 id=le.2h5v.s8.02f90988a3e3 from=translated src=- shape=c2b291d1 vocab=c404830d
+-/
 theorem relProjConst_le_of_maxRelProjConst_le {m : ℕ} {L : ℝ}
     (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) (Y : Submodule 𝕜 X) [FiniteDimensional 𝕜 Y]
     (hY : Module.finrank 𝕜 Y = m) : relProjConst Y ≤ L := by
@@ -171,7 +173,9 @@ end Reduction
 
 section Absolute
 
-/-- If `λ_𝕜(m, N) ≤ L` for all `N`, then `λ(Y) ≤ L` for every `m`-dimensional normed space.-/
+/-- If `λ_𝕜(m, N) ≤ L` for all `N`, then `λ(Y) ≤ L` for every `m`-dimensional normed space.
+@isnad1 id=le.2h4v.s6.61c7545fc1bb from=translated src=- shape=e48632ff vocab=b80cab88
+-/
 theorem absProjConst_le_of_maxRelProjConst_le {m : ℕ} {L : ℝ}
     (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) (Y : Type u) [NormedAddCommGroup Y]
     [NormedSpace 𝕜 Y] [FiniteDimensional 𝕜 Y] (hY : Module.finrank 𝕜 Y = m) :
@@ -183,7 +187,9 @@ theorem absProjConst_le_of_maxRelProjConst_le {m : ℕ} {L : ℝ}
     rw [LinearMap.finrank_range_of_inj hinj, hY]
   exact relProjConst_le_of_maxRelProjConst_le hL _ hfin
 
-/-- If `λ_𝕜(m, N) ≤ L` for all `N`, then `λ_𝕜(m) ≤ L`.-/
+/-- If `λ_𝕜(m, N) ≤ L` for all `N`, then `λ_𝕜(m) ≤ L`.
+@isnad1 id=le.1h3v.s4.d523c94cd46c from=translated src=- shape=7e035b8c vocab=d3454503
+-/
 theorem maxProjConst_le_of_maxRelProjConst_le {m : ℕ} {L : ℝ}
     (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) : maxProjConst 𝕜 m ≤ L := by
   have hL0 : 0 ≤ L := (maxRelProjConst_nonneg m 0).trans (hL 0)
@@ -191,7 +197,9 @@ theorem maxProjConst_le_of_maxRelProjConst_le {m : ℕ} {L : ℝ}
 
 variable {m : ℕ} {L : ℝ}
 
-/-- `λ(Y, X) ≤ λ(Y)`: `X` is one of the superspaces of `Y`.-/
+/-- `λ(Y, X) ≤ λ(Y)`: `X` is one of the superspaces of `Y`.
+@isnad1 id=le.2h5v.s9.fce9c7225868 from=translated src=- shape=3eaaca8f vocab=f1c04b8a
+-/
 theorem relProjConst_le_absProjConst (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) {X : Type u}
     [NormedAddCommGroup X] [NormedSpace 𝕜 X] (Y : Submodule 𝕜 X) [FiniteDimensional 𝕜 Y]
     (hY : Module.finrank 𝕜 Y = m) : relProjConst Y ≤ absProjConst 𝕜 Y := by
@@ -205,7 +213,9 @@ theorem relProjConst_le_absProjConst (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L
   have h := le_ciSup hbdd (Superspace.ofSubmodule Y)
   rwa [Superspace.range_ofSubmodule] at h
 
-/-- `λ(Y, ℓ∞^N) ≤ λ(m)` for every `m`-dimensional `Y ⊆ ℓ∞^N`.-/
+/-- `λ(Y, ℓ∞^N) ≤ λ(m)` for every `m`-dimensional `Y ⊆ ℓ∞^N`.
+@isnad1 id=le.2h5v.s9.e3dd8b1cb723 from=translated src=- shape=e16803b3 vocab=50470548
+-/
 theorem relProjConst_le_maxProjConst {𝕜 : Type} [RCLike 𝕜] {m : ℕ} {L : ℝ}
     (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) {N : ℕ} (Y : Submodule 𝕜 (Fin N → 𝕜))
     (hY : Module.finrank 𝕜 Y = m) : relProjConst Y ≤ maxProjConst 𝕜 m := by
@@ -216,14 +226,22 @@ theorem relProjConst_le_maxProjConst {𝕜 : Type} [RCLike 𝕜] {m : ℕ} {L : 
   have h := le_ciSup hbdd ⟨Y, hY⟩
   exact (relProjConst_le_absProjConst hL Y hY).trans h
 
+/--
+@isnad1 id=le.0h2v.s5.265f54f0a405 from=translated src=- shape=6409e8a8 vocab=328c5012
+-/
 lemma absProjConst_nonneg (Y : Type u) [NormedAddCommGroup Y] [NormedSpace 𝕜 Y] :
     0 ≤ absProjConst 𝕜 Y :=
   Real.iSup_nonneg fun _ => relProjConst_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.bfd1836dbded from=translated src=- shape=47213694 vocab=fb816622
+-/
 lemma maxProjConst_nonneg (m : ℕ) : 0 ≤ maxProjConst 𝕜 m :=
   Real.iSup_nonneg fun Y => absProjConst_nonneg Y.carrier
 
-/-- **Reduction to `ℓ∞^N`.** `λ_𝕜(m) = sup_N λ_𝕜(m, N)`.-/
+/-- **Reduction to `ℓ∞^N`.** `λ_𝕜(m) = sup_N λ_𝕜(m, N)`.
+@isnad1 id=eq.1h3v.s5.b73bee7e3e2c from=translated src=- shape=b4d5e78f vocab=c7a653bc
+-/
 theorem maxProjConst_eq_iSup {𝕜 : Type} [RCLike 𝕜] {m : ℕ} {L : ℝ}
     (hL : ∀ N, maxRelProjConst 𝕜 m N ≤ L) :
     maxProjConst 𝕜 m = ⨆ N, maxRelProjConst 𝕜 m N := by

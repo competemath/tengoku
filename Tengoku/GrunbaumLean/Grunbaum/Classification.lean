@@ -46,7 +46,9 @@ open FranklFuredi
 
 variable {ι κ : Type*}
 
-/-- Sign matrices with the same two-graph are switching equivalent.-/
+/-- Sign matrices with the same two-graph are switching equivalent.
+@isnad1 id=switcheq.3h3v.s5.6a06779bdb34 from=translated src=- shape=b13c763b vocab=924d47f4
+-/
 theorem switchEquiv_of_twoGraph_eq [Fintype ι] [DecidableEq ι] {S T : Matrix ι ι ℝ}
     (hS : IsSignMatrix S) (hT : IsSignMatrix T) (h : twoGraph S = twoGraph T) :
     SwitchEquiv S T := by
@@ -58,7 +60,9 @@ theorem switchEquiv_of_twoGraph_eq [Fintype ι] [DecidableEq ι] {S T : Matrix �
 permutation, a blow-up of `R_{2N+1}` for some `N ≥ 1`, or of a principal submatrix of `A₆`.
 
 A blow-up of `T` along a map `f` is the matrix `T(f, f) = (t_{f(i) f(j)})ᵢⱼ`; for a non-surjective
-`f` this is a blow-up of the principal submatrix of `T` on the range of `f`.-/
+`f` this is a blow-up of the principal submatrix of `T` on the range of `f`.
+@isnad1 id=or.3h2v.s7.88db3f057f7c from=translated src=- shape=951014ee vocab=5769c9b3
+-/
 theorem classification [Finite ι] {S : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     (hK4 : K4Free S) (hcoh : HasCoherent S) :
     (∃ (N : ℕ) (f : ι → Fin (2 * N + 1)), 1 ≤ N ∧ Function.Surjective f ∧
@@ -99,7 +103,9 @@ theorem classification [Finite ι] {S : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     norm_num at this
 
 /-- If `S` has no twins, then a map `f` with `S = T(f, f)` up to switching is injective: *the
-blow-up is trivial because `S₀` has no twins*.-/
+blow-up is trivial because `S₀` has no twins*.
+@isnad1 id=injectiv.2h5v.s5.95c12c3ee1bc from=translated src=- shape=82cd69be vocab=32bded28
+-/
 theorem injective_of_switchEquiv_submatrix {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} {f : ι → κ}
     (h : SwitchEquiv S (T.submatrix f f)) (htw : ∀ i j, ¬IsTwin S i j) :
     Function.Injective f := by
@@ -120,7 +126,9 @@ theorem injective_of_switchEquiv_submatrix {S : Matrix ι ι ℝ} {T : Matrix κ
   · exact Or.inl fun k => by rw [key k, h1, h2]; ring
 
 /-- A sign matrix without twins on at least two indices has a coherent triple. (Otherwise it is
-switching equivalent to `J`, and any two indices are twins.)-/
+switching equivalent to `J`, and any two indices are twins.)
+@isnad1 id=hascoher.3h2v.s5.1dd4989d3fb9 from=translated src=- shape=82861ba2 vocab=38b01ef7
+-/
 theorem hasCoherent_of_forall_not_isTwin [Fintype ι] {S : Matrix ι ι ℝ} (hS : IsSignMatrix S)
     (h2 : 2 ≤ Fintype.card ι) (htw : ∀ i j, ¬IsTwin S i j) : HasCoherent S := by
   obtain ⟨i, j, hij⟩ := Fintype.exists_pair_of_one_lt_card h2
@@ -128,7 +136,9 @@ theorem hasCoherent_of_forall_not_isTwin [Fintype ι] {S : Matrix ι ι ℝ} (hS
   exact htw i j ((isTwin_iff hS).mpr ⟨hij, fun k hk => hcoh ⟨i, j, k, hk⟩⟩)
 
 /-- **(FF) without twins.** A `K₄`-free sign matrix without twins, on at least two indices, is up
-to switching and permutation `R_{2N+1}` for some `N ≥ 1`, or a principal submatrix of `A₆`.-/
+to switching and permutation `R_{2N+1}` for some `N ≥ 1`, or a principal submatrix of `A₆`.
+@isnad1 id=or.4h2v.s8.7efad4f1594f from=translated src=- shape=d2b0cb08 vocab=7a796850
+-/
 theorem classification_of_forall_not_isTwin [Fintype ι] {S : Matrix ι ι ℝ}
     (hS : IsSignMatrix S) (hK4 : K4Free S) (h2 : 2 ≤ Fintype.card ι)
     (htw : ∀ i j, ¬IsTwin S i j) :

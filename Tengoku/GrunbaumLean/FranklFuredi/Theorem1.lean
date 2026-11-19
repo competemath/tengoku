@@ -45,6 +45,9 @@ instance (H : ThreeGraph V) (u : V) : DecidableRel (link H u) :=
   fun a b => inferInstanceAs (Decidable (H.IsEdge u a b))
 
 omit [Fintype V] in
+/--
+@isnad1 id=tf2k2.1h3v.s4.c9adaff1189a from=translated src=- shape=833e6636 vocab=4400dd83
+-/
 lemma link_tf2k2 {H : ThreeGraph V} (hP : Good H.IsEdge) (u : V) : TF2K2 (link H u) where
   symm h := ThreeGraph.isEdge_comm_23.mp h
   irrefl _ h := h.ne_23 rfl
@@ -94,6 +97,9 @@ theorem eq_HS_of_link_c5 {H : ThreeGraph V} (hP : Good H.IsEdge) (u : V) (f : V 
 section Realisation
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=lt.0h1v.s5.5867885de2c9 from=translated src=- shape=f68da6e7 vocab=10b1d6ff
+-/
 lemma card_pos_real : (0 : ℝ) < 4 * ((Fintype.card V : ℝ) + 1) := by positivity
 
 /-- A small perturbation `ρ(w)/(4(n+1)) ∈ [0, 1/4)`, injective in `w` (`ρ : V ≃ Fin n`).-/
@@ -101,9 +107,15 @@ noncomputable def pert (w : V) : ℝ :=
   ((Fintype.equivFin V w : ℕ) : ℝ) / (4 * ((Fintype.card V : ℝ) + 1))
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h2v.s4.f943545adf56 from=translated src=- shape=ad4abcc1 vocab=1f048c05
+-/
 lemma pert_nonneg (w : V) : 0 ≤ pert w := by unfold pert; positivity
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=lt.0h2v.s6.e4f4956ee36b from=translated src=- shape=9638328c vocab=5f3d3ed5
+-/
 lemma pert_add_lt (w : V) : pert w + 1 / (4 * ((Fintype.card V : ℝ) + 1)) < 1 / 4 := by
   unfold pert
   have h1 : ((Fintype.equivFin V w : ℕ) : ℝ) + 1 ≤ Fintype.card V := by
@@ -114,12 +126,18 @@ lemma pert_add_lt (w : V) : pert w + 1 / (4 * ((Fintype.card V : ℝ) + 1)) < 1 
   linarith
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=lt.0h2v.s5.88b8807b1a0e from=translated src=- shape=075b2551 vocab=a87f4182
+-/
 lemma pert_lt (w : V) : pert w < 1 / 4 := by
   have := pert_add_lt w
   have : 0 < 1 / (4 * ((Fintype.card V : ℝ) + 1)) := by positivity
   linarith
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h3v.s4.24f886d304c9 from=translated src=- shape=98e509fd vocab=94f0167e
+-/
 lemma pert_injective {v w : V} (h : pert v = pert w) : v = w := by
   unfold pert at h
   have hc := (card_pos_real (V := V))
@@ -136,31 +154,55 @@ noncomputable def param (u : V) (A B : Finset V) (lev : V → ℕ) (w : V) : ℝ
 
 variable {u : V} {A B : Finset V} {lev : V → ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s5.e83badb3a16a from=translated src=- shape=3f0d0a2b vocab=507c025a
+-/
 lemma param_u : param u A B lev u = 0 := by simp [param]
 
+/--
+@isnad1 id=eq.2h6v.s6.6086bd8e8d45 from=translated src=- shape=597cfa2e vocab=759f7a9f
+-/
 lemma param_A {w : V} (hw : w ≠ u) (hA : w ∈ A) :
     param u A B lev w = (lev w : ℝ) + 1 + pert w := by simp [param, hw, hA]
 
+/--
+@isnad1 id=eq.3h6v.s7.3026b41a4e78 from=translated src=- shape=023374c7 vocab=5a55ab8c
+-/
 lemma param_B {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∈ B) :
     param u A B lev w = -1 / ((lev w : ℝ) + 1 / 2 + pert w) := by simp [param, hw, hA, hB]
 
+/--
+@isnad1 id=eq.3h6v.s6.6c5a26d6d811 from=translated src=- shape=e8913533 vocab=9f0c6047
+-/
 lemma param_I {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∉ B) :
     param u A B lev w = pert w + 1 / (4 * ((Fintype.card V : ℝ) + 1)) := by
   simp [param, hw, hA, hB]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=lt.0h3v.s6.9e4d4501e5b6 from=translated src=- shape=a7d8a239 vocab=000a0ee8
+-/
 lemma denom_pos (w : V) : 0 < (lev w : ℝ) + 1 / 2 + pert w := by
   have := pert_nonneg w; positivity
 
+/--
+@isnad1 id=le.2h6v.s5.3d378fa64312 from=translated src=- shape=c3781be7 vocab=18afedc6
+-/
 lemma param_A_ge {w : V} (hw : w ≠ u) (hA : w ∈ A) : 1 ≤ param u A B lev w := by
   rw [param_A hw hA]; have := pert_nonneg w; have : (0 : ℝ) ≤ lev w := by positivity
   linarith
 
+/--
+@isnad1 id=lt.3h6v.s6.7a04626e781c from=translated src=- shape=8f20122d vocab=e493b52b
+-/
 lemma param_B_neg {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∈ B) : param u A B lev w < 0 := by
   rw [param_B hw hA hB]
   have := denom_pos (lev := lev) w
   exact div_neg_of_neg_of_pos (by norm_num) this
 
+/--
+@isnad1 id=le.3h6v.s6.a1ff8fcb0e93 from=translated src=- shape=03b3419e vocab=bf892b8f
+-/
 lemma param_B_ge {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∈ B) : -2 ≤ param u A B lev w := by
   rw [param_B hw hA hB]
   have hd := denom_pos (lev := lev) w
@@ -170,18 +212,26 @@ lemma param_B_ge {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∈ B) : -2 ≤ p
   rw [le_div_iff₀ hd]
   linarith
 
+/--
+@isnad1 id=lt.3h6v.s6.6002fe1b6747 from=translated src=- shape=e2ad37b9 vocab=e493b52b
+-/
 lemma param_I_pos {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∉ B) : 0 < param u A B lev w := by
   rw [param_I hw hA hB]
   have := pert_nonneg w
   have : 0 < 1 / (4 * ((Fintype.card V : ℝ) + 1)) := by positivity
   linarith
 
+/--
+@isnad1 id=lt.3h6v.s6.615939d9abd4 from=translated src=- shape=945c00f4 vocab=68ebc01b
+-/
 lemma param_I_lt {w : V} (hw : w ≠ u) (hA : w ∉ A) (hB : w ∉ B) :
     param u A B lev w < 1 / 4 := by
   rw [param_I hw hA hB]; exact pert_add_lt w
 
 /-- The key computation: for `a ∈ A` and `b ∈ B` the triangle `u a b` contains the origin iff
-`lev b ≤ lev a`.-/
+`lev b ≤ lev a`.
+@isnad1 id=iff.4h4v.s8.9746e9392a55 from=translated src=- shape=7b24d019 vocab=dfd977e8
+-/
 lemma key_AB {la lb : ℕ} {ea eb : ℝ} (hea : 0 ≤ ea) (hea' : ea < 1 / 4) (heb : 0 ≤ eb)
     (heb' : eb < 1 / 4) :
     0 < (-1 / ((lb : ℝ) + 1 / 2 + eb) - ((la : ℝ) + 1 + ea)) *
@@ -207,6 +257,9 @@ lemma key_AB {la lb : ℕ} {ea eb : ℝ} (hea : 0 ≤ ea) (hea' : ea < 1 / 4) (h
     have : (lb : ℝ) ≤ la := by exact_mod_cast h
     linarith
 
+/--
+@isnad1 id=iff.4h4v.s8.0eff303ad438 from=translated src=- shape=1c999246 vocab=dfd977e8
+-/
 lemma key_BA {la lb : ℕ} {ea eb : ℝ} (hea : 0 ≤ ea) (hea' : ea < 1 / 4) (heb : 0 ≤ eb)
     (heb' : eb < 1 / 4) :
     (((lb : ℝ) + 1 + eb) - -1 / ((la : ℝ) + 1 / 2 + ea)) *
@@ -214,6 +267,9 @@ lemma key_BA {la lb : ℕ} {ea eb : ℝ} (hea : 0 ≤ ea) (hea' : ea < 1 / 4) (h
   rw [← key_AB (la := lb) (lb := la) heb heb' hea hea']
   constructor <;> intro h <;> nlinarith
 
+/--
+@isnad1 id=ne.4h4v.s7.03f7ca7fafa3 from=translated src=- shape=79479f71 vocab=9b2b6093
+-/
 lemma gp_AB {la lb : ℕ} {ea eb : ℝ} (hea : 0 ≤ ea) (hea' : ea < 1 / 4) (heb : 0 ≤ eb)
     (heb' : eb < 1 / 4) :
     1 + ((la : ℝ) + 1 + ea) * (-1 / ((lb : ℝ) + 1 / 2 + eb)) ≠ 0 := by
@@ -237,7 +293,9 @@ lemma eq_of_lev_add {la lb : ℕ} {ea eb c : ℝ} (hea : 0 ≤ ea) (hea' : ea < 
   · have : (lb : ℝ) + 1 ≤ la := by exact_mod_cast hgt
     linarith
 
-/-- The parameters are injective and pairwise in general position.-/
+/-- The parameters are injective and pairwise in general position.
+@isnad1 id=and.2h7v.s6.02e0696ffc91 from=translated src=- shape=be1df8f4 vocab=04866b24
+-/
 lemma param_genPos (hdisj : Disjoint A B) {v w : V} (hvw : v ≠ w) :
     param u A B lev v ≠ param u A B lev w ∧
       1 + param u A B lev v * param u A B lev w ≠ 0 := by
@@ -326,6 +384,9 @@ lemma param_genPos (hdisj : Disjoint A B) {v w : V} (hvw : v ≠ w) :
     rw [param_I hv hvA hvB, param_I hw hwA hwB] at h
     linarith
 
+/--
+@isnad1 id=iff.0h2v.s6.85c270455181 from=translated src=- shape=e8f86b64 vocab=11d5108c
+-/
 lemma cyc_stereo_zero (t r : ℝ) :
     Cyc (det2 (stereo 0) (stereo t)) (det2 (stereo t) (stereo r)) (det2 (stereo r) (stereo 0)) ↔
       Cyc t ((r - t) * (1 + t * r)) (-r) := by
@@ -333,7 +394,9 @@ lemma cyc_stereo_zero (t r : ℝ) :
     mul_one, zero_sub, mul_zero]
 
 /-- **Realisation of case (b).**  If the link of `u` is a chain graph, it is also the link of
-`u` in a circle 3-graph with points in general position.-/
+`u` in a circle 3-graph with points in general position.
+@isnad1 id=and.3h6v.s6.efdab1c1aecf from=translated src=- shape=e71de423 vocab=43d6381f
+-/
 theorem link_realisation {G : V → V → Prop} (hch : IsChain G A B lev) (hu : ∀ z, ¬G u z)
     (hu' : ∀ z, ¬G z u) :
     GenPos (fun w => stereo (param u A B lev w)) ∧
@@ -441,7 +504,9 @@ end Realisation
 
 /-- **Theorem 1** (Frankl–Füredi).  If any four points of the 3-graph `H` span zero or two
 edges, then `H` is one of the 3-graphs of Example 1 (a blow-up `H_S` of `S(6)`) or of
-Example 2 (points on the unit circle, triangles containing the origin).-/
+Example 2 (points on the unit circle, triangles containing the origin).
+@isnad1 id=or.1h2v.s6.d3826a74fcbf from=translated src=- shape=39446920 vocab=c60ccbae
+-/
 theorem theorem1 (H : ThreeGraph V) (hH : H.FourPointProperty) :
     (∃ f : V → Fin 6, H = HS f) ∨ (∃ p : V → ℝ × ℝ, IsCircleConfig p ∧ H = circleGraph p) := by
   have hP := (H.fourPointProperty_iff).mp hH
@@ -475,7 +540,9 @@ theorem theorem1 (H : ThreeGraph V) (hH : H.FourPointProperty) :
     rcases hx with rfl | rfl | rfl <;> exact Set.mem_range_self _
 
 /-- **The converse of Theorem 1:** the 3-graphs of Examples 1 and 2 have the four-point
-property.-/
+property.
+@isnad1 id=fourpoin.1h2v.s6.8673ced6fc03 from=translated src=- shape=aef1405c vocab=c60ccbae
+-/
 theorem theorem1_converse (H : ThreeGraph V)
     (h : (∃ f : V → Fin 6, H = HS f) ∨ (∃ p : V → ℝ × ℝ, IsCircleConfig p ∧ H = circleGraph p)) :
     H.FourPointProperty := by
@@ -484,7 +551,9 @@ theorem theorem1_converse (H : ThreeGraph V)
   · exact circleGraph_fourPointProperty hp
 
 /-- Theorem 1 together with its converse: the four-point property characterises the 3-graphs of
-Examples 1 and 2.-/
+Examples 1 and 2.
+@isnad1 id=iff.0h2v.s6.0b25abdbc7b1 from=translated src=- shape=3c3fe658 vocab=c60ccbae
+-/
 theorem fourPointProperty_iff_examples (H : ThreeGraph V) :
     H.FourPointProperty ↔
       (∃ f : V → Fin 6, H = HS f) ∨ (∃ p : V → ℝ × ℝ, IsCircleConfig p ∧ H = circleGraph p) :=

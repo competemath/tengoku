@@ -31,12 +31,17 @@ def pullback [Fintype V] (K : ThreeGraph β) (f : V → β) : ThreeGraph V where
 
 variable [Fintype V]
 
+/--
+@isnad1 id=iff.0h7v.s6.faf0176d2739 from=translated src=- shape=e50a4e82 vocab=595d2da0
+-/
 lemma isEdge_pullback {K : ThreeGraph β} {f : V → β} {a b c : V} :
     (K.pullback f).IsEdge a b c ↔ a ≠ b ∧ a ≠ c ∧ b ≠ c ∧ K.IsEdge (f a) (f b) (f c) := by
   simp only [IsEdge, pullback, mem_filter, mem_powersetCard, subset_univ, true_and,
     card_triple_eq_three, image_insert, image_singleton, and_assoc]
 
-/-- Blow-ups preserve the four-point property.-/
+/-- Blow-ups preserve the four-point property.
+@isnad1 id=good.1h4v.s5.e1909a5746ab from=translated src=- shape=2b8b5be6 vocab=27e7f87c
+-/
 theorem good_pullback {K : ThreeGraph β} (hK : Good K.IsEdge) (f : V → β) :
     Good (K.pullback f).IsEdge := by
   intro a b c d hab hac had hbc hbd hcd
@@ -77,13 +82,21 @@ def S6 : ThreeGraph (Fin 6) where
     {0, 3, 5}, {1, 2, 5}, {1, 3, 4}}
   card_eq_three := by decide
 
-/-- "One can check that any 4 points span 2 edges in `S(6)`."-/
+/-- "One can check that any 4 points span 2 edges in `S(6)`."
+@isnad1 id=eq.1h1v.s5.a8658629ebbd from=translated src=- shape=c50c4a83 vocab=094b42af
+-/
 theorem S6_spanned_four : ∀ W : Finset (Fin 6), W.card = 4 → (S6.spanned W).card = 2 := by
   unfold ThreeGraph.spanned; decide
 
+/--
+@isnad1 id=fourpoin.0h0v.s3.0069a6663f5b from=translated src=- shape=06f63001 vocab=6134f432
+-/
 theorem S6_fourPointProperty : S6.FourPointProperty :=
   fun W hW => Or.inr (S6_spanned_four W hW)
 
+/--
+@isnad1 id=good.0h0v.s4.3fe298f46bcb from=translated src=- shape=380ce0b8 vocab=57c7b102
+-/
 theorem S6_good : Good S6.IsEdge := (ThreeGraph.fourPointProperty_iff S6).mp S6_fourPointProperty
 
 /-! ### Example 1 -/
@@ -95,13 +108,21 @@ variable [Fintype V]
 `{v_{i₁}, v_{i₂}, v_{i₃}}` with `v_{iⱼ} ∈ V_{iⱼ}` and `(i₁ i₂ i₃) ∈ S(6)`.-/
 def HS (f : V → Fin 6) : ThreeGraph V := S6.pullback f
 
+/--
+@isnad1 id=iff.0h5v.s6.8b6a514ac8b9 from=translated src=- shape=c61a7c72 vocab=ca8a31bc
+-/
 lemma isEdge_HS {f : V → Fin 6} {a b c : V} :
     (HS f).IsEdge a b c ↔ a ≠ b ∧ a ≠ c ∧ b ≠ c ∧ S6.IsEdge (f a) (f b) (f c) :=
   ThreeGraph.isEdge_pullback
 
+/--
+@isnad1 id=good.0h2v.s4.53a89509a779 from=translated src=- shape=f0d94b0f vocab=e5077c60
+-/
 theorem HS_good (f : V → Fin 6) : Good (HS f).IsEdge := ThreeGraph.good_pullback S6_good f
 
-/-- "In `H_S` any four points span either zero or two edges."-/
+/-- "In `H_S` any four points span either zero or two edges."
+@isnad1 id=fourpoin.0h2v.s4.f834b37dc29c from=translated src=- shape=97e97d05 vocab=ac5db7d8
+-/
 theorem HS_fourPointProperty (f : V → Fin 6) : (HS f).FourPointProperty :=
   ((HS f).fourPointProperty_iff).mpr (HS_good f)
 
@@ -111,10 +132,16 @@ theorem HS_fourPointProperty (f : V → Fin 6) : (HS f).FourPointProperty :=
 `i`-th vertex.-/
 def c5 : Fin 5 → Fin 6 := ![1, 2, 4, 5, 3]
 
+/--
+@isnad1 id=iff.0h2v.s7.dd3a52e8e894 from=translated src=- shape=13191156 vocab=31c7d451
+-/
 theorem S6_link_zero (i j : Fin 5) :
     S6.IsEdge 0 (c5 i) (c5 j) ↔ (j = i + 1 ∨ j = i - 1) := by
   revert i j; decide
 
+/--
+@isnad1 id=ne.0h1v.s5.49b436e783b5 from=translated src=- shape=fc91c174 vocab=a0601bbc
+-/
 theorem S6_c5_ne_zero (i : Fin 5) : c5 i ≠ 0 := by revert i; decide
 
 end FranklFuredi

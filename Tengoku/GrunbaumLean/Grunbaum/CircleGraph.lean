@@ -46,12 +46,21 @@ open Classical in
 /-- The sign `±1` which moves `q` into `UpperHalf`.-/
 noncomputable def halfSign (q : ℝ × ℝ) : ℝ := if UpperHalf q then 1 else -1
 
+/--
+@isnad1 id=or.0h1v.s4.e46e3f15228b from=translated src=- shape=33cd641d vocab=8d9662ea
+-/
 lemma halfSign_eq (q : ℝ × ℝ) : halfSign q = 1 ∨ halfSign q = -1 := by
   unfold halfSign; split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s4.ac8a05d58b69 from=translated src=- shape=f75bbe89 vocab=08677f6d
+-/
 lemma halfSign_mul_self (q : ℝ × ℝ) : halfSign q * halfSign q = 1 := by
   rcases halfSign_eq q with h | h <;> rw [h] <;> norm_num
 
+/--
+@isnad1 id=upperhal.1h1v.s5.a774600c2b82 from=translated src=- shape=1d9db93b vocab=96f78af9
+-/
 lemma upperHalf_halfSign_smul {q : ℝ × ℝ} (hq : q ≠ 0) : UpperHalf (halfSign q • q) := by
   unfold halfSign
   split_ifs with h
@@ -65,10 +74,15 @@ lemma upperHalf_halfSign_smul {q : ℝ × ℝ} (hq : q ≠ 0) : UpperHalf (halfS
       refine ⟨h2, lt_of_le_of_ne (h.2 h2) fun h1 => hq ?_⟩
       ext <;> simp [h1, h2]
 
+/--
+@isnad1 id=eq.0h4v.s6.eb906b69c1fe from=translated src=- shape=448e88b6 vocab=c1242629
+-/
 lemma det2_smul_smul (a b : ℝ) (u v : ℝ × ℝ) : det2 (a • u) (b • v) = a * b * det2 u v := by
   simp [det2]; ring
 
-/-- On `UpperHalf`, the determinant defines a transitive relation.-/
+/-- On `UpperHalf`, the determinant defines a transitive relation.
+@isnad1 id=lt.5h3v.s5.8a49123d50ea from=translated src=- shape=23cb6746 vocab=12cc98c0
+-/
 lemma det2_pos_trans {u v w : ℝ × ℝ} (hu : UpperHalf u) (hv : UpperHalf v) (hw : UpperHalf w)
     (huv : 0 < det2 u v) (hvw : 0 < det2 v w) : 0 < det2 u w := by
   have hid := congrArg Prod.snd (det2_identity u v w)
@@ -108,13 +122,22 @@ noncomputable def halfRep (p : V → ℝ × ℝ) (v : V) : ℝ × ℝ := halfSig
 /-- The order of the points: `v ≺ w` iff `det(q v, q w) > 0`.-/
 def Precedes (p : V → ℝ × ℝ) (v w : V) : Prop := 0 < det2 (halfRep p v) (halfRep p w)
 
+/--
+@isnad1 id=eq.0h3v.s5.3a209b275056 from=translated src=- shape=1b4e0981 vocab=21ab1860
+-/
 lemma p_eq_halfSign_smul (v : V) : p v = halfSign (p v) • halfRep p v := by
   rw [halfRep, smul_smul, halfSign_mul_self, one_smul]
 
+/--
+@isnad1 id=eq.0h4v.s5.f24404238b70 from=translated src=- shape=8e46da01 vocab=42c904cf
+-/
 lemma det2_halfRep (v w : V) :
     det2 (halfRep p v) (halfRep p w) = halfSign (p v) * halfSign (p w) * det2 (p v) (p w) := by
   rw [halfRep, halfRep, det2_smul_smul]
 
+/--
+@isnad1 id=eq.0h4v.s5.c1ccb18fad44 from=translated src=- shape=6ac0bfae vocab=42c904cf
+-/
 lemma det2_eq_halfSign_mul (v w : V) :
     det2 (p v) (p w) = halfSign (p v) * halfSign (p w) * det2 (halfRep p v) (halfRep p w) := by
   rw [det2_halfRep]
@@ -125,12 +148,18 @@ variable (hp : GenPos p) (hp0 : ∀ v, p v ≠ 0)
 include hp hp0
 
 omit hp in
+/--
+@isnad1 id=precedes.3h5v.s5.b193ff81d6d3 from=translated src=- shape=9d17f049 vocab=5642c717
+-/
 lemma precedes_trans {u v w : V} (huv : Precedes p u v) (hvw : Precedes p v w) :
     Precedes p u w :=
   det2_pos_trans (upperHalf_halfSign_smul (hp0 u)) (upperHalf_halfSign_smul (hp0 v))
     (upperHalf_halfSign_smul (hp0 w)) huv hvw
 
 omit hp0 in
+/--
+@isnad1 id=or.2h4v.s5.e45d7a3d72a5 from=translated src=- shape=5197de72 vocab=3458a279
+-/
 lemma precedes_or_precedes {v w : V} (hvw : v ≠ w) : Precedes p v w ∨ Precedes p w v := by
   have h := hp v w hvw
   have h' : det2 (halfRep p v) (halfRep p w) ≠ 0 := by
@@ -145,10 +174,16 @@ lemma precedes_or_precedes {v w : V} (hvw : v ≠ w) : Precedes p v w ∨ Preced
   · exact Or.inl h1
 
 omit hp hp0 in
+/--
+@isnad1 id=not.0h3v.s4.665a94ee2450 from=translated src=- shape=9092b238 vocab=5642c717
+-/
 lemma not_precedes_self (v : V) : ¬Precedes p v v := by
   simp [Precedes, det2_self]
 
 omit hp hp0 in
+/--
+@isnad1 id=not.1h4v.s4.55c7679ed188 from=translated src=- shape=352ec335 vocab=5642c717
+-/
 lemma not_precedes_of_precedes {v w : V} (h : Precedes p v w) : ¬Precedes p w v := by
   unfold Precedes at *
   rw [det2_antisymm]
@@ -162,6 +197,9 @@ noncomputable def rank (p : V → ℝ × ℝ) (v : V) : ℕ :=
   open Classical in (univ.filter fun w => Precedes p w v).card
 
 omit hp in
+/--
+@isnad1 id=lt.2h4v.s5.0a1f0bfe20de from=translated src=- shape=9fb52034 vocab=eea92bc1
+-/
 lemma rank_lt_rank {v w : V} (h : Precedes p v w) : rank p v < rank p w := by
   classical
   unfold rank
@@ -173,6 +211,9 @@ lemma rank_lt_rank {v w : V} (h : Precedes p v w) : rank p v < rank p w := by
     exact not_precedes_self v this
 
 omit hp hp0 in
+/--
+@isnad1 id=lt.0h3v.s4.1853f7f2a8ce from=translated src=- shape=95187141 vocab=57e01e50
+-/
 lemma rank_lt_card (v : V) : rank p v < Fintype.card V := by
   classical
   unfold rank
@@ -180,6 +221,9 @@ lemma rank_lt_card (v : V) : rank p v < Fintype.card V := by
   exact card_lt_card ⟨subset_univ _, fun h => not_precedes_self (p := p) v (by
     simpa using h (mem_univ v))⟩
 
+/--
+@isnad1 id=injectiv.2h2v.s5.510095913658 from=translated src=- shape=cb6b28f6 vocab=a4bac9cf
+-/
 lemma rank_injective : Function.Injective (rank p) := by
   intro v w h
   by_contra hvw
@@ -192,6 +236,9 @@ noncomputable def rankEquiv : V ≃ Fin (Fintype.card V) :=
     ((Fintype.bijective_iff_injective_and_card _).mpr
       ⟨fun v w h => rank_injective hp hp0 (Fin.mk.inj_iff.mp h), by simp⟩)
 
+/--
+@isnad1 id=iff.2h4v.s7.2de6a0058cf4 from=translated src=- shape=fd0291a7 vocab=8be0bd93
+-/
 lemma rankEquiv_lt_iff {v w : V} : rankEquiv hp hp0 v < rankEquiv hp hp0 w ↔ Precedes p v w := by
   constructor
   · intro h
@@ -206,6 +253,9 @@ end Order
 
 /-! ### The edges in terms of the order and the signs -/
 
+/--
+@isnad1 id=iff.6h6v.s7.d1338c45a303 from=translated src=- shape=bb4c9ada vocab=c250aebe
+-/
 lemma cyc_iff_of_pos {A B C s t r : ℝ} (hA : 0 < A) (hB : 0 < B) (hC : 0 < C)
     (hs : s = 1 ∨ s = -1) (ht : t = 1 ∨ t = -1) (hr : r = 1 ∨ r = -1) :
     Cyc (s * t * A) (t * r * B) (-(r * s * C)) ↔ s = r ∧ t ≠ s := by
@@ -220,7 +270,9 @@ section Edges
 variable {V : Type*} [Fintype V] [DecidableEq V] {p : V → ℝ × ℝ}
 
 /-- For `u ≺ v ≺ w`, the triangle `p u p v p w` contains the origin iff the signs satisfy
-`ε u = ε w ≠ ε v`.-/
+`ε u = ε w ≠ ε v`.
+@isnad1 id=iff.4h5v.s6.1d9db01563cc from=translated src=- shape=36f6a5bc vocab=b77c1503
+-/
 theorem isEdge_circleGraph_iff_of_precedes (hp : GenPos p) (hp0 : ∀ v, p v ≠ 0) {u v w : V}
     (huv : Precedes p u v) (hvw : Precedes p v w) :
     (circleGraph p).IsEdge u v w ↔
@@ -245,9 +297,15 @@ end Edges
 `2s ↦ s` and `2s + 1 ↦ s + N + 1`, i.e. `j ↦ j (N + 1) mod (2N + 1)`.-/
 def halve (N j : ℕ) : ℕ := if j % 2 = 0 then j / 2 else j / 2 + N + 1
 
+/--
+@isnad1 id=lt.1h2v.s6.2fe490312633 from=translated src=- shape=dd29ed3e vocab=55485681
+-/
 lemma halve_lt {N j : ℕ} (hj : j < 2 * N + 1) : halve N j < 2 * N + 1 := by
   unfold halve; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.3h3v.s6.28eacc0300fc from=translated src=- shape=7890bbac vocab=55485681
+-/
 lemma halve_injective {N i j : ℕ} (hi : i < 2 * N + 1) (hj : j < 2 * N + 1)
     (h : halve N i = halve N j) : i = j := by
   unfold halve at h; split_ifs at h <;> omega
@@ -259,7 +317,9 @@ noncomputable def halveEquiv (N : ℕ) : Fin (2 * N + 1) ≃ Fin (2 * N + 1) :=
       ⟨fun i j h => Fin.ext (halve_injective i.2 j.2 (Fin.mk.inj_iff.mp h)), rfl⟩)
 
 /-- In the relabelling `Grunbaum.halve`, the positions `i < j < k` form a coherent triple of
-`R_{2N+1}` iff `j - i` and `k - j` are odd.-/
+`R_{2N+1}` iff `j - i` and `k - j` are odd.
+@isnad1 id=iff.2h4v.s10.56aee107c65f from=translated src=- shape=14c83505 vocab=7648364a
+-/
 theorem coherent_polygonMatrix_halve {N : ℕ} {i j k : Fin (2 * N + 1)} (hij : i < j)
     (hjk : j < k) :
     Coherent (polygonMatrix N) (halveEquiv N i) (halveEquiv N j) (halveEquiv N k) ↔
@@ -279,7 +339,9 @@ section TwinFree
 variable {V : Type*} [Fintype V] [DecidableEq V] {p : V → ℝ × ℝ}
 
 /-- The edges of a circle 3-graph in terms of the positions `i < j < k` of the points in the order
-`≺` and their signs.-/
+`≺` and their signs.
+@isnad1 id=iff.4h5v.s8.ea948a461e78 from=translated src=- shape=b15bdb61 vocab=4c36b334
+-/
 lemma isEdge_rankEquiv_symm_iff (hp : GenPos p) (hp0 : ∀ v, p v ≠ 0)
     {i j k : Fin (Fintype.card V)} (hij : i < j) (hjk : j < k) :
     (circleGraph p).IsEdge ((rankEquiv hp hp0).symm i) ((rankEquiv hp hp0).symm j)
@@ -292,7 +354,9 @@ lemma isEdge_rankEquiv_symm_iff (hp : GenPos p) (hp0 : ∀ v, p v ≠ 0)
 
 /-- **Twin-free circle 3-graphs are regular polygons.** If any two points of a circle 3-graph lie
 in a common edge, then the number of points is odd, `2N + 1`, and after relabelling the 3-graph is
-`T_{2N+1} = [R_{2N+1}]`. This is Remark 1 of Frankl and Füredi in the twin-free case.-/
+`T_{2N+1} = [R_{2N+1}]`. This is Remark 1 of Frankl and Füredi in the twin-free case.
+@isnad1 id=ex.3h2v.s8.99b178bea33b from=translated src=- shape=b6096f56 vocab=bf43a817
+-/
 theorem exists_equiv_polygon_of_twinFree [Nonempty V] (hp : GenPos p) (hp0 : ∀ v, p v ≠ 0)
     (htf : ThreeGraph.TwinFree (circleGraph p)) :
     ∃ (N : ℕ) (e : V ≃ Fin (2 * N + 1)),

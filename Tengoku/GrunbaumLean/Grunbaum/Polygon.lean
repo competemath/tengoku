@@ -50,6 +50,9 @@ namespace Grunbaum
 def polygonMatrix (N : ℕ) : Matrix (Fin (2 * N + 1)) (Fin (2 * N + 1)) ℝ :=
   of fun i j => if (i : ℕ) ≤ j + N ∧ (j : ℕ) ≤ i + N then 1 else -1
 
+/--
+@isnad1 id=issignma.0h1v.s4.30a0ecb502db from=translated src=- shape=a97f289f vocab=7edc7a3f
+-/
 lemma isSignMatrix_polygonMatrix (N : ℕ) : IsSignMatrix (polygonMatrix N) := by
   refine ⟨fun i j => ?_, fun i j => ?_, fun i => ?_⟩
   · simp only [polygonMatrix, of_apply, and_comm]
@@ -61,7 +64,9 @@ lemma isSignMatrix_polygonMatrix (N : ℕ) : IsSignMatrix (polygonMatrix N) := b
 
 /-- The coherent triples of `R_{2N+1}`: for `i < j < k`, the triple is coherent iff each of the
 three gaps `j - i`, `k - j` and `2N + 1 - (k - i)` is at most `N`, i.e. iff the triangle
-`pᵢ pⱼ pₖ` contains the centre.-/
+`pᵢ pⱼ pₖ` contains the centre.
+@isnad1 id=iff.2h4v.s8.e1f064a67538 from=translated src=- shape=e993610e vocab=f95ba3c5
+-/
 theorem coherent_polygonMatrix_iff {N : ℕ} {i j k : Fin (2 * N + 1)} (hij : i < j)
     (hjk : j < k) :
     Coherent (polygonMatrix N) i j k ↔ (j : ℕ) ≤ i + N ∧ (k : ℕ) ≤ j + N ∧ (i : ℕ) + N < k := by
@@ -77,6 +82,9 @@ theorem coherent_polygonMatrix_iff {N : ℕ} {i j k : Fin (2 * N + 1)} (hij : i 
 noncomputable def regularPolygon (N : ℕ) (k : Fin (2 * N + 1)) : ℝ × ℝ :=
   (cos (2 * π * k / (2 * N + 1)), sin (2 * π * k / (2 * N + 1)))
 
+/--
+@isnad1 id=eq.0h3v.s7.fc9612cd1de6 from=translated src=- shape=aa558d48 vocab=274baf20
+-/
 lemma det2_regularPolygon (N : ℕ) (i j : Fin (2 * N + 1)) :
     FranklFuredi.det2 (regularPolygon N i) (regularPolygon N j) =
       sin (2 * π * ((j : ℝ) - i) / (2 * N + 1)) := by
@@ -85,6 +93,9 @@ lemma det2_regularPolygon (N : ℕ) (i j : Fin (2 * N + 1)) :
       = 2 * π * j / (2 * N + 1) - 2 * π * i / (2 * N + 1) by ring, sin_sub]
   ring
 
+/--
+@isnad1 id=lt.2h2v.s6.7645a659c266 from=translated src=- shape=863e28a7 vocab=afcf4f1f
+-/
 lemma sin_two_pi_mul_div_pos {n d : ℕ} (hd : 0 < d) (h : 2 * d < n) :
     0 < sin (2 * π * d / n) := by
   have hn : (0 : ℝ) < n := by exact_mod_cast (by omega : 0 < n)
@@ -95,6 +106,9 @@ lemma sin_two_pi_mul_div_pos {n d : ℕ} (hd : 0 < d) (h : 2 * d < n) :
     have : (2 * d : ℝ) < n := by exact_mod_cast h
     nlinarith [pi_pos]
 
+/--
+@isnad1 id=lt.2h2v.s6.2f3c998a9fa5 from=translated src=- shape=d42f7568 vocab=afcf4f1f
+-/
 lemma sin_two_pi_mul_div_neg {n d : ℕ} (h1 : n < 2 * d) (h2 : d < n) :
     sin (2 * π * d / n) < 0 := by
   have hn : (0 : ℝ) < n := by exact_mod_cast (by omega : 0 < n)
@@ -111,7 +125,9 @@ lemma sin_two_pi_mul_div_neg {n d : ℕ} (h1 : n < 2 * d) (h2 : d < n) :
       nlinarith [pi_pos]
     linarith
 
-/-- For `i < j`, `det(pᵢ, pⱼ) > 0` iff `j - i ≤ N`.-/
+/-- For `i < j`, `det(pᵢ, pⱼ) > 0` iff `j - i ≤ N`.
+@isnad1 id=iff.1h3v.s7.0181f70f9f7b from=translated src=- shape=0d69575c vocab=f4552840
+-/
 lemma det2_regularPolygon_pos_iff {N : ℕ} {i j : Fin (2 * N + 1)} (hij : i < j) :
     0 < FranklFuredi.det2 (regularPolygon N i) (regularPolygon N j) ↔ (j : ℕ) ≤ i + N := by
   have hij' : (i : ℕ) < j := hij
@@ -126,6 +142,9 @@ lemma det2_regularPolygon_pos_iff {N : ℕ} {i j : Fin (2 * N + 1)} (hij : i < j
   · intro h
     exact sin_two_pi_mul_div_pos (by omega) (by omega)
 
+/--
+@isnad1 id=ne.1h3v.s6.b282470c3e14 from=translated src=- shape=943448c8 vocab=163d9192
+-/
 lemma det2_regularPolygon_ne_zero {N : ℕ} {i j : Fin (2 * N + 1)} (hij : i ≠ j) :
     FranklFuredi.det2 (regularPolygon N i) (regularPolygon N j) ≠ 0 := by
   have key : ∀ a b : Fin (2 * N + 1), a < b →
@@ -143,11 +162,16 @@ lemma det2_regularPolygon_ne_zero {N : ℕ} {i j : Fin (2 * N + 1)} (hij : i ≠
   · rw [FranklFuredi.det2_antisymm]
     exact neg_ne_zero.mpr (key j i h)
 
+/--
+@isnad1 id=genpos.0h1v.s4.920f531caa8b from=translated src=- shape=a97f289f vocab=ebe38ffc
+-/
 lemma genPos_regularPolygon (N : ℕ) : FranklFuredi.GenPos (regularPolygon N) :=
   fun _ _ h => det2_regularPolygon_ne_zero h
 
 /-- **`[R_{2N+1}] = T_{2N+1}`**: a triple is coherent for `R_{2N+1}` iff the triangle on the
-corresponding vertices of the regular `(2N+1)`-gon contains the centre.-/
+corresponding vertices of the regular `(2N+1)`-gon contains the centre.
+@isnad1 id=eq.0h1v.s7.dc50a84b876a from=translated src=- shape=4e293382 vocab=1e141f36
+-/
 theorem twoGraph_polygonMatrix (N : ℕ) :
     twoGraph (polygonMatrix N) = FranklFuredi.circleGraph (regularPolygon N) := by
   apply FranklFuredi.ThreeGraph.ext_of_lt
@@ -168,7 +192,9 @@ theorem twoGraph_polygonMatrix (N : ℕ) :
   have hbc' : (b : ℕ) < c := hbc
   omega
 
-/-- The regular `(2N+1)`-gon, `N ≥ 1`, is a configuration as in Example 2 of Frankl and Füredi.-/
+/-- The regular `(2N+1)`-gon, `N ≥ 1`, is a configuration as in Example 2 of Frankl and Füredi.
+@isnad1 id=iscircle.1h1v.s5.8d8eff9efc2c from=translated src=- shape=0ef2f2b2 vocab=3090c74e
+-/
 theorem isCircleConfig_regularPolygon {N : ℕ} (hN : 1 ≤ N) :
     FranklFuredi.IsCircleConfig (regularPolygon N) where
   injective i j h := by
@@ -199,7 +225,9 @@ theorem isCircleConfig_regularPolygon {N : ℕ} (hN : 1 ≤ N) :
 /-! ### (R1) -/
 
 /-- **(R1)** The `N + 1` consecutive vertices `p₀, …, p_N` form a coclique of `[R_{2N+1}]`: they
-lie on an open half-circle, so no triangle on them contains the centre.-/
+lie on an open half-circle, so no triangle on them contains the centre.
+@isnad1 id=iscocliq.0h1v.s6.40e8f1730847 from=translated src=- shape=465d15a4 vocab=aef74385
+-/
 theorem isCoclique_polygonMatrix (N : ℕ) :
     IsCoclique (polygonMatrix N)
       (Set.range (Fin.castLE (by omega : N + 1 ≤ 2 * N + 1))) := by
@@ -242,10 +270,15 @@ def blockSign (N : ℕ) : Unit ⊕ (Fin N ⊕ Fin N) → ℝ
   | Sum.inl _ => -1
   | Sum.inr _ => 1
 
+/--
+@isnad1 id=issignve.0h1v.s3.f124ca821453 from=translated src=- shape=7daf9227 vocab=042efaf7
+-/
 lemma isSignVector_blockSign (N : ℕ) : IsSignVector (blockSign N) := by
   rintro (_ | _) <;> simp [blockSign]
 
-/-- `R_{2N+1}` is `polygonMatrix N`, up to switching the first index and relabelling.-/
+/-- `R_{2N+1}` is `polygonMatrix N`, up to switching the first index and relabelling.
+@isnad1 id=eq.0h3v.s5.5cca7fe044b3 from=translated src=- shape=629dc6ec vocab=6e0e181f
+-/
 theorem blockR_eq (N : ℕ) (x y : Unit ⊕ (Fin N ⊕ Fin N)) :
     blockR N x y =
       blockSign N x * blockSign N y * polygonMatrix N (blockLabel N x) (blockLabel N y) := by
@@ -255,14 +288,23 @@ theorem blockR_eq (N : ℕ) (x y : Unit ⊕ (Fin N ⊕ Fin N)) :
       Sum.elim_inr, Matrix.add_apply, Matrix.smul_apply, transpose_apply, smul_eq_mul] <;>
     split_ifs <;> (try norm_num) <;> omega
 
+/--
+@isnad1 id=injectiv.0h1v.s5.e0326c19405f from=translated src=- shape=97b4ca62 vocab=1f1ef5b0
+-/
 lemma blockLabel_injective (N : ℕ) : Function.Injective (blockLabel N) := by
   rintro (_ | a | a) (_ | b | b) h <;>
     simp only [blockLabel, Fin.mk.injEq] at h <;> first | rfl | omega | (congr; ext; omega)
 
+/--
+@isnad1 id=bijectiv.0h1v.s5.ce9fd41bcd99 from=translated src=- shape=97b4ca62 vocab=59f954bb
+-/
 lemma blockLabel_bijective (N : ℕ) : Function.Bijective (blockLabel N) :=
   (Fintype.bijective_iff_injective_and_card _).mpr
     ⟨blockLabel_injective N, by simp; omega⟩
 
+/--
+@isnad1 id=issignma.0h1v.s3.8e7cfa30e178 from=translated src=- shape=7daf9227 vocab=286a822b
+-/
 lemma isSignMatrix_blockR (N : ℕ) : IsSignMatrix (blockR N) := by
   have h : blockR N = switch ((polygonMatrix N).submatrix (blockLabel N) (blockLabel N))
       (blockSign N) := by
@@ -273,7 +315,9 @@ lemma isSignMatrix_blockR (N : ℕ) : IsSignMatrix (blockR N) := by
   exact ((isSignMatrix_polygonMatrix N).submatrix _).switch (isSignVector_blockSign N)
 
 /-- **[JFA, Section 4.1]** The indices of `R_{2N+1}` can be labelled by the vertices
-`p₀, …, p_{2N}` of the regular `(2N+1)`-gon such that `[R_{2N+1}] = T_{2N+1}`.-/
+`p₀, …, p_{2N}` of the regular `(2N+1)`-gon such that `[R_{2N+1}] = T_{2N+1}`.
+@isnad1 id=eq.0h1v.s7.7610b9782c70 from=translated src=- shape=8c448589 vocab=3970c908
+-/
 theorem twoGraph_blockR (N : ℕ) :
     twoGraph (blockR N) =
       (FranklFuredi.circleGraph (regularPolygon N)).pullback (blockLabel N) := by
@@ -293,6 +337,9 @@ def R5 : Matrix (Fin 5) (Fin 5) ℝ :=
       1,  1, -1,  1, -1;
      -1,  1,  1, -1,  1]
 
+/--
+@isnad1 id=issignma.0h0v.s3.693767512f7c from=translated src=- shape=06f63001 vocab=727bf28e
+-/
 lemma isSignMatrix_R5 : IsSignMatrix R5 := by
   refine ⟨fun a b => ?_, fun a b => ?_, fun a => ?_⟩
   · fin_cases a <;> fin_cases b <;> simp [R5]
@@ -302,15 +349,23 @@ lemma isSignMatrix_R5 : IsSignMatrix R5 := by
 /-- The signs `(-1)^i` of the switching in (R2).-/
 def signsR2 : Fin 5 → ℝ := ![1, -1, 1, -1, 1]
 
+/--
+@isnad1 id=issignve.0h0v.s3.71b1cbb13c74 from=translated src=- shape=06f63001 vocab=f59668c2
+-/
 lemma isSignVector_signsR2 : IsSignVector signsR2 := by
   intro i; fin_cases i <;> simp [signsR2]
 
 /-- **(R2)** `R₅ = 𝟙₅ + S(C₅)` up to switching, where `C₅` is the cycle `p₀p₁p₂p₃p₄`: a triangle
-of the regular pentagon contains the centre iff its vertices are not three consecutive ones.-/
+of the regular pentagon contains the centre iff its vertices are not three consecutive ones.
+@isnad1 id=eq.0h2v.s5.305214fce267 from=translated src=- shape=b835c8cc vocab=880b9b51
+-/
 theorem polygonMatrix_two_eq (i j : Fin 5) :
     polygonMatrix 2 i j = signsR2 i * signsR2 j * R5 i j := by
   fin_cases i <;> fin_cases j <;> simp [polygonMatrix, signsR2, R5]
 
+/--
+@isnad1 id=switcheq.0h0v.s5.169e7c5f8451 from=translated src=- shape=a21020ea vocab=08e8cdda
+-/
 lemma switchEquiv_polygonMatrix_two : SwitchEquiv (polygonMatrix 2) R5 :=
   ⟨signsR2, isSignVector_signsR2, polygonMatrix_two_eq⟩
 
@@ -335,15 +390,24 @@ def A6 : Matrix (Fin 6) (Fin 6) ℝ :=
      1, -1,  1, -1,  1,  1;
      1, -1, -1,  1,  1,  1]
 
+/--
+@isnad1 id=eq.0h2v.s4.6f154c870f50 from=translated src=- shape=3276f4fe vocab=fdcf173c
+-/
 lemma A6_eq_cast (i j : Fin 6) : A6 i j = (A6Int i j : ℝ) := by
   fin_cases i <;> fin_cases j <;> simp [A6, A6Int]
 
+/--
+@isnad1 id=issignma.0h0v.s3.d9238106629a from=translated src=- shape=06f63001 vocab=e28667fa
+-/
 lemma isSignMatrix_A6 : IsSignMatrix A6 := by
   refine ⟨fun a b => ?_, fun a b => ?_, fun a => ?_⟩
   · fin_cases a <;> fin_cases b <;> simp [A6]
   · fin_cases a <;> fin_cases b <;> simp [A6]
   · fin_cases a <;> simp [A6]
 
+/--
+@isnad1 id=iff.0h3v.s6.cdb90075eb7c from=translated src=- shape=a5b9e43c vocab=a3b9f5dd
+-/
 lemma coherent_A6_iff (a b c : Fin 6) :
     Coherent A6 a b c ↔ A6Int a b * A6Int a c * A6Int b c = -1 := by
   unfold Coherent
@@ -354,9 +418,14 @@ lemma coherent_A6_iff (a b c : Fin 6) :
 `S(6)` goes to the link `1 - 4 - 3 - 2 - 5` of `0` in `[A₆]`.-/
 def relabelS6 : Fin 6 → Fin 6 := ![0, 1, 4, 5, 3, 2]
 
+/--
+@isnad1 id=injectiv.0h0v.s3.9ff419519a0e from=translated src=- shape=44762807 vocab=03af2d49
+-/
 lemma relabelS6_injective : Function.Injective relabelS6 := by decide
 
-/-- The finite check behind `Grunbaum.pullback_twoGraph_A6`.-/
+/-- The finite check behind `Grunbaum.pullback_twoGraph_A6`.
+@isnad1 id=iff.3h3v.s7.5cd43396a8bb from=translated src=- shape=cb7297f7 vocab=e35e6de3
+-/
 lemma S6_isEdge_iff_A6Int : ∀ a b c : Fin 6, a ≠ b → a ≠ c → b ≠ c →
     (({a, b, c} : Finset (Fin 6)) ∈ FranklFuredi.S6.edges ↔
       A6Int (relabelS6 a) (relabelS6 b) * A6Int (relabelS6 a) (relabelS6 c) *
@@ -364,7 +433,9 @@ lemma S6_isEdge_iff_A6Int : ∀ a b c : Fin 6, a ≠ b → a ≠ c → b ≠ c �
   decide
 
 /-- The 3-graph `S(6)` of Frankl and Füredi (Example 1) is the two-graph `[A₆]`, up to
-relabelling.-/
+relabelling.
+@isnad1 id=eq.0h0v.s5.ce2e2ea83b2f from=translated src=- shape=8830befa vocab=0403e157
+-/
 theorem pullback_twoGraph_A6 : (twoGraph A6).pullback relabelS6 = FranklFuredi.S6 := by
   apply FranklFuredi.ThreeGraph.ext_of_isEdge
   intro a b c hab hac hbc
@@ -385,17 +456,25 @@ def certSign : Fin 6 → Fin 6 → ℝ :=
   ![![1, 1, 1, 1, 1, 1], ![1, 1, 1, 1, -1, -1], ![1, 1, 1, -1, 1, -1], ![1, 1, -1, 1, -1, 1],
     ![1, -1, 1, -1, 1, 1], ![1, -1, -1, 1, 1, 1]]
 
+/--
+@isnad1 id=eq.0h2v.s5.58ec2abe8a3a from=translated src=- shape=51ae6a03 vocab=6a2f4fbd
+-/
 lemma certSign_mul_self (k a : Fin 6) : certSign k a * certSign k a = 1 := by
   fin_cases k <;> fin_cases a <;> simp [certSign]
 
 /-- **(A1)** Every `5 × 5` principal submatrix of `A₆` equals `R₅` up to switching and
 permutation. Deleting the isolated vertex leaves `𝟙₅ + S(C₅)`; deleting a vertex of the
 `5`-cycle leaves `𝟙₅ + S(K₁ ∪ P₄)`, which becomes a `5`-cycle after switching at the ends of the
-path. The certificates `certMap`, `certSign` record these relabellings and switchings.-/
+path. The certificates `certMap`, `certSign` record these relabellings and switchings.
+@isnad1 id=eq.2h3v.s6.17ca158394f6 from=translated src=- shape=d5a63785 vocab=5193050d
+-/
 theorem A6_eq_certificate (k a b : Fin 6) (ha : a ≠ k) (hb : b ≠ k) :
     A6 a b = certSign k a * certSign k b * R5 (certMap k a) (certMap k b) := by
   fin_cases k <;> fin_cases a <;> fin_cases b <;> simp_all [A6, R5, certMap, certSign]
 
+/--
+@isnad1 id=eq.3h3v.s6.439c0be2d541 from=translated src=- shape=bc53314c vocab=56f5ddbc
+-/
 lemma certMap_injective (k a b : Fin 6) (ha : a ≠ k) (hb : b ≠ k)
     (h : certMap k a = certMap k b) : a = b := by
   fin_cases k <;> fin_cases a <;> fin_cases b <;> simp_all [certMap]

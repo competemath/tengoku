@@ -32,28 +32,46 @@ namespace FranklFuredi
 /-- The determinant `det(P, Q) = P₁ Q₂ - P₂ Q₁` of two vectors of the plane.-/
 def det2 (P Q : ℝ × ℝ) : ℝ := P.1 * Q.2 - P.2 * Q.1
 
+/--
+@isnad1 id=eq.0h2v.s4.5862cdcfd2dd from=translated src=- shape=eacbdac1 vocab=1afd8211
+-/
 lemma det2_antisymm (P Q : ℝ × ℝ) : det2 Q P = -det2 P Q := by unfold det2; ring
 
+/--
+@isnad1 id=eq.0h1v.s3.93f9ad21b9a6 from=translated src=- shape=d9215ee9 vocab=122bd4e3
+-/
 lemma det2_self (P : ℝ × ℝ) : det2 P P = 0 := by unfold det2; ring
 
-/-- The linear relation `det(Q,R) P + det(R,P) Q + det(P,Q) R = 0`.-/
+/-- The linear relation `det(Q,R) P + det(R,P) Q + det(P,Q) R = 0`.
+@isnad1 id=eq.0h3v.s7.001c69c2f8b9 from=translated src=- shape=149ba7df vocab=03873cb2
+-/
 lemma det2_identity (P Q R : ℝ × ℝ) : det2 Q R • P + det2 R P • Q + det2 P Q • R = 0 := by
   ext <;> simp [det2] <;> ring
 
-/-- The Plücker relation between the six determinants of four vectors.-/
+/-- The Plücker relation between the six determinants of four vectors.
+@isnad1 id=eq.0h4v.s6.46d819f1390f from=translated src=- shape=7fc41a02 vocab=5d1deac7
+-/
 lemma plucker (A B C D : ℝ × ℝ) :
     det2 A B * det2 C D - det2 A C * det2 B D + det2 A D * det2 B C = 0 := by
   unfold det2; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.e2113eeed647 from=translated src=- shape=63f47d26 vocab=122bd4e3
+-/
 lemma det2_zero_right (P : ℝ × ℝ) : det2 P 0 = 0 := by simp [det2]
 
+/--
+@isnad1 id=eq.0h7v.s7.50e9961620aa from=translated src=- shape=33f86e88 vocab=b4da6492
+-/
 lemma det2_comb (P X Y Z : ℝ × ℝ) (a b c : ℝ) :
     det2 P (a • X + b • Y + c • Z) = a * det2 P X + b * det2 P Y + c * det2 P Z := by
   simp [det2]; ring
 
 /-! ### Triangles containing the origin -/
 
-/-- Membership in the convex hull of three points.-/
+/-- Membership in the convex hull of three points.
+@isnad1 id=iff.0h4v.s8.1d113db88e9a from=translated src=- shape=7b6b1625 vocab=1ecf021b
+-/
 lemma mem_convexHull_triple {P Q R X : ℝ × ℝ} :
     X ∈ convexHull ℝ ({P, Q, R} : Set (ℝ × ℝ)) ↔
       ∃ a b c : ℝ, 0 ≤ a ∧ 0 ≤ b ∧ 0 ≤ c ∧ a + b + c = 1 ∧ a • P + b • Q + c • R = X := by
@@ -91,7 +109,9 @@ lemma mem_convexHull_triple {P Q R X : ℝ × ℝ} :
 def Cyc (u v w : ℝ) : Prop := (0 < u ∧ 0 < v ∧ 0 < w) ∨ (u < 0 ∧ v < 0 ∧ w < 0)
 
 /-- **The determinant criterion.**  If no two of `P, Q, R` are collinear with the origin, the
-origin lies in the triangle `PQR` iff `det(P,Q)`, `det(Q,R)`, `det(R,P)` have the same sign.-/
+origin lies in the triangle `PQR` iff `det(P,Q)`, `det(Q,R)`, `det(R,P)` have the same sign.
+@isnad1 id=iff.3h3v.s7.bb7c0cddbd95 from=translated src=- shape=3b6269ae vocab=cd458864
+-/
 theorem det_criterion {P Q R : ℝ × ℝ} (h1 : det2 P Q ≠ 0) (h2 : det2 Q R ≠ 0)
     (h3 : det2 R P ≠ 0) :
     (0 : ℝ × ℝ) ∈ convexHull ℝ ({P, Q, R} : Set (ℝ × ℝ)) ↔
@@ -174,6 +194,9 @@ noncomputable def circleGraph (p : V → ℝ × ℝ) : ThreeGraph V where
     (fun e => (0 : ℝ × ℝ) ∈ convexHull ℝ (p '' (e : Set V)))
   card_eq_three _ he := (mem_powersetCard.mp (mem_filter.mp he).1).2
 
+/--
+@isnad1 id=iff.0h5v.s7.6d1b32d18cf3 from=translated src=- shape=d3661b34 vocab=ec5bb0e0
+-/
 lemma isEdge_circleGraph {p : V → ℝ × ℝ} {a b c : V} :
     (circleGraph p).IsEdge a b c ↔
       a ≠ b ∧ a ≠ c ∧ b ≠ c ∧ (0 : ℝ × ℝ) ∈ convexHull ℝ ({p a, p b, p c} : Set (ℝ × ℝ)) := by
@@ -194,6 +217,9 @@ structure IsCircleConfig (p : V → ℝ × ℝ) : Prop where
 def GenPos (p : V → ℝ × ℝ) : Prop := ∀ v w, v ≠ w → det2 (p v) (p w) ≠ 0
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=genpos.1h2v.s3.d86fde6ab5d2 from=translated src=- shape=4d951844 vocab=f3163469
+-/
 lemma IsCircleConfig.genPos {p : V → ℝ × ℝ} (hp : IsCircleConfig p) : GenPos p := by
   intro v w hvw hdet
   have hv := hp.on_circle v
@@ -228,7 +254,9 @@ lemma IsCircleConfig.genPos {p : V → ℝ × ℝ} (hp : IsCircleConfig p) : Gen
     ext <;> simp <;> linarith
 
 omit [Fintype V] [DecidableEq V] in
-/-- Conversely, points in general position are never collinear with the origin.-/
+/-- Conversely, points in general position are never collinear with the origin.
+@isnad1 id=not.2h2v.s9.8b4dc1ecc60c from=translated src=- shape=db25a64c vocab=11b73d9f
+-/
 lemma not_mem_line_of_det_ne_zero {P Q : ℝ × ℝ} (hP : P.1 ^ 2 + P.2 ^ 2 = 1)
     (h : det2 P Q ≠ 0) : (0 : ℝ × ℝ) ∉ line[ℝ, P, Q] := by
   rw [mem_affineSpan_pair_iff_exists_lineMap_eq]
@@ -249,7 +277,9 @@ lemma not_mem_line_of_det_ne_zero {P Q : ℝ × ℝ} (hP : P.1 ^ 2 + P.2 ^ 2 = 1
   norm_num at hP
 
 /-- The edges of a circle 3-graph in general position: the triangles `abc` whose three
-determinants have the same sign.-/
+determinants have the same sign.
+@isnad1 id=iff.4h5v.s6.7e77bc3f5d44 from=translated src=- shape=32f76a66 vocab=f0ad6ee6
+-/
 lemma isEdge_circleGraph_iff_cyc {p : V → ℝ × ℝ} (hp : GenPos p) {a b c : V} (hab : a ≠ b)
     (hac : a ≠ c) (hbc : b ≠ c) :
     (circleGraph p).IsEdge a b c ↔ Cyc (det2 (p a) (p b)) (det2 (p b) (p c)) (det2 (p c) (p a)) := by
@@ -258,6 +288,9 @@ lemma isEdge_circleGraph_iff_cyc {p : V → ℝ × ℝ} (hp : GenPos p) {a b c :
 
 /-! ### The four-point property for circle 3-graphs -/
 
+/--
+@isnad1 id=iff.1h1v.s5.31b0520604f2 from=translated src=- shape=f7b6d43a vocab=6d10fa89
+-/
 lemma lt_zero_iff_not_pos {x : ℝ} (h : x ≠ 0) : x < 0 ↔ ¬0 < x := by
   constructor
   · intro hx hx'; linarith
@@ -265,6 +298,9 @@ lemma lt_zero_iff_not_pos {x : ℝ} (h : x ≠ 0) : x < 0 ↔ ¬0 < x := by
     · exact h
     · exact absurd h hx
 
+/--
+@isnad1 id=iff.2h2v.s6.644ce2889b85 from=translated src=- shape=38bd72b7 vocab=edc71203
+-/
 lemma pos_mul_iff_of_ne {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) : 0 < x * y ↔ (0 < x ↔ 0 < y) := by
   rcases lt_or_gt_of_ne hx with hx | hx <;> rcases lt_or_gt_of_ne hy with hy | hy
   · simp [mul_pos_of_neg_of_neg hx hy, not_lt.mpr hx.le, not_lt.mpr hy.le]
@@ -272,11 +308,16 @@ lemma pos_mul_iff_of_ne {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) : 0 < x * y �
   · simp [hx, not_lt.mpr hy.le, not_lt.mpr (mul_neg_of_pos_of_neg hx hy).le]
   · simp [mul_pos hx hy, hx, hy]
 
+/--
+@isnad1 id=iff.2h2v.s6.4164c807f584 from=translated src=- shape=fc50dead vocab=edc71203
+-/
 lemma neg_mul_iff_of_ne {x y : ℝ} (hx : x ≠ 0) (hy : y ≠ 0) : x * y < 0 ↔ ¬(0 < x ↔ 0 < y) := by
   rw [← pos_mul_iff_of_ne hx hy, lt_zero_iff_not_pos (mul_ne_zero hx hy)]
 
 /-- The sign pattern of the six determinants of four points in general position forces the
-four-point condition.-/
+four-point condition.
+@isnad1 id=and.7h6v.s7.74fb64e1ffe6 from=translated src=- shape=d41b1fb3 vocab=0c3b3bb6
+-/
 theorem good4_of_dets {x1 x2 x3 x4 x5 x6 : ℝ} (h1 : x1 ≠ 0) (h2 : x2 ≠ 0) (h3 : x3 ≠ 0)
     (h4 : x4 ≠ 0) (h5 : x5 ≠ 0) (h6 : x6 ≠ 0) (hpl : x1 * x6 - x2 * x5 + x3 * x4 = 0) :
     ((Cyc x1 x4 (-x2) ↔ Cyc x1 x5 (-x3)) ↔ (Cyc x2 x6 (-x3) ↔ Cyc x4 x6 (-x5))) ∧
@@ -300,7 +341,9 @@ theorem good4_of_dets {x1 x2 x3 x4 x5 x6 : ℝ} (h1 : x1 ≠ 0) (h2 : x2 ≠ 0) 
     by_cases p4 : 0 < x4 <;> by_cases p5 : 0 < x5 <;> by_cases p6 : 0 < x6 <;>
     simp [p1, p2, p3, p4, p5, p6] at C1 C2 ⊢
 
-/-- "In this 3-graph any 4 points span 0 or 2 edges."-/
+/-- "In this 3-graph any 4 points span 0 or 2 edges."
+@isnad1 id=good.1h2v.s4.e353b23341e1 from=translated src=- shape=718dc1d6 vocab=8ab49182
+-/
 theorem circleGraph_good {p : V → ℝ × ℝ} (hp : GenPos p) : Good (circleGraph p).IsEdge := by
   intro a b c d hab hac had hbc hbd hcd
   unfold Good4
@@ -310,6 +353,9 @@ theorem circleGraph_good {p : V → ℝ × ℝ} (hp : GenPos p) : Good (circleGr
   exact good4_of_dets (hp a b hab) (hp a c hac) (hp a d had) (hp b c hbc) (hp b d hbd)
     (hp c d hcd) (plucker _ _ _ _)
 
+/--
+@isnad1 id=fourpoin.1h2v.s4.bc5279c9f67c from=translated src=- shape=fcef3e1a vocab=847237e5
+-/
 theorem circleGraph_fourPointProperty {p : V → ℝ × ℝ} (hp : IsCircleConfig p) :
     (circleGraph p).FourPointProperty :=
   ((circleGraph p).fourPointProperty_iff).mpr (circleGraph_good hp.genPos)
@@ -319,12 +365,18 @@ theorem circleGraph_fourPointProperty {p : V → ℝ × ℝ} (hp : IsCircleConfi
 /-- The point of the unit circle with stereographic parameter `t`.-/
 noncomputable def stereo (t : ℝ) : ℝ × ℝ := ((1 - t ^ 2) / (1 + t ^ 2), 2 * t / (1 + t ^ 2))
 
+/--
+@isnad1 id=eq.0h1v.s5.b43d23b3dd25 from=translated src=- shape=693f13e1 vocab=694a71c7
+-/
 lemma stereo_on_circle (t : ℝ) : (stereo t).1 ^ 2 + (stereo t).2 ^ 2 = 1 := by
   have : (1 + t ^ 2) ≠ 0 := by positivity
   simp only [stereo]
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.c9e4bb8bfb32 from=translated src=- shape=cc1759c6 vocab=7dfc503b
+-/
 lemma det2_stereo (s t : ℝ) :
     det2 (stereo s) (stereo t) = (t - s) * (1 + s * t) * (2 / ((1 + s ^ 2) * (1 + t ^ 2))) := by
   have hs : (1 + s ^ 2) ≠ 0 := by positivity
@@ -333,12 +385,18 @@ lemma det2_stereo (s t : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=iff.0h2v.s6.d8b5fc3656ad from=translated src=- shape=02e0184f vocab=de638d5e
+-/
 lemma det2_stereo_pos_iff (s t : ℝ) :
     0 < det2 (stereo s) (stereo t) ↔ 0 < (t - s) * (1 + s * t) := by
   rw [det2_stereo]
   have : 0 < 2 / ((1 + s ^ 2) * (1 + t ^ 2)) := by positivity
   exact mul_pos_iff_of_pos_right this
 
+/--
+@isnad1 id=iff.0h2v.s6.85e6fbc5e66d from=translated src=- shape=af530d5c vocab=de638d5e
+-/
 lemma det2_stereo_neg_iff (s t : ℝ) :
     det2 (stereo s) (stereo t) < 0 ↔ (t - s) * (1 + s * t) < 0 := by
   rw [det2_stereo]
@@ -352,6 +410,9 @@ lemma det2_stereo_neg_iff (s t : ℝ) :
   · intro h
     exact mul_neg_of_neg_of_pos h this
 
+/--
+@isnad1 id=ne.2h2v.s5.6df636d2f7ce from=translated src=- shape=50c8a557 vocab=7616df84
+-/
 lemma det2_stereo_ne_zero {s t : ℝ} (hst : s ≠ t) (h : 1 + s * t ≠ 0) :
     det2 (stereo s) (stereo t) ≠ 0 := by
   rw [det2_stereo]

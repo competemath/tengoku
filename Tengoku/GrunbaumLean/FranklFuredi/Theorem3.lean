@@ -45,16 +45,34 @@ omit [Fintype V]
 
 variable {H : ThreeGraph V} {a b c : V}
 
+/--
+@isnad1 id=iff.0h5v.s4.dabe8aea712e from=translated src=- shape=9ee3f6f0 vocab=bc539f17
+-/
 lemma isEdge_perm_bac : H.IsEdge b a c ↔ H.IsEdge a b c := ThreeGraph.isEdge_comm_12.symm
+/--
+@isnad1 id=iff.0h5v.s4.8dfc75309594 from=translated src=- shape=2d7a76c8 vocab=bc539f17
+-/
 lemma isEdge_perm_cab : H.IsEdge c a b ↔ H.IsEdge a b c :=
   ThreeGraph.isEdge_rotate (a := c) (b := a) (c := b)
+/--
+@isnad1 id=iff.0h5v.s4.ef74927208d4 from=translated src=- shape=7c413a46 vocab=bc539f17
+-/
 lemma isEdge_perm_bca : H.IsEdge b c a ↔ H.IsEdge a b c := ThreeGraph.isEdge_rotate.symm
+/--
+@isnad1 id=iff.0h5v.s4.58761b4e3d8b from=translated src=- shape=8ff90264 vocab=bc539f17
+-/
 lemma isEdge_perm_acb : H.IsEdge a c b ↔ H.IsEdge a b c := ThreeGraph.isEdge_comm_23.symm
+/--
+@isnad1 id=iff.0h5v.s4.fad09b24ff6e from=translated src=- shape=dd34888a vocab=bc539f17
+-/
 lemma isEdge_perm_cba : H.IsEdge c b a ↔ H.IsEdge a b c := ThreeGraph.isEdge_comm_13.symm
 
 end Perm
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h2v.s4.bc5fd85295ad from=translated src=- shape=1f4bb101 vocab=4dd08df4
+-/
 theorem noFourSpanThree_iff (H : ThreeGraph V) : NoFourSpanThree H ↔ NoThreeAt H.IsEdge := by
   constructor
   · intro h a b c d hab hac had hbc hbd hcd ⟨h1, h2, h3⟩
@@ -86,11 +104,16 @@ theorem noFourSpanThree_iff (H : ThreeGraph V) : NoFourSpanThree H ↔ NoThreeAt
 /-- The codegree of an ordered pair of vertices.-/
 def codeg (H : ThreeGraph V) (a b : V) : ℕ := (univ.filter (fun c => H.IsEdge a b c)).card
 
+/--
+@isnad1 id=eq.0h4v.s6.0c961c805f84 from=translated src=- shape=fd0d96f4 vocab=6b777bb0
+-/
 lemma codeg_eq_sum (H : ThreeGraph V) (a b : V) :
     codeg H a b = ∑ c, if H.IsEdge a b c then 1 else 0 := by
   unfold codeg; rw [card_filter]
 
-/-- Every 3-element set is `{a, b, c}` for exactly six ordered triples `(a, b, c)`.-/
+/-- Every 3-element set is `{a, b, c}` for exactly six ordered triples `(a, b, c)`.
+@isnad1 id=eq.1h2v.s7.68c623068584 from=translated src=- shape=a38b7b78 vocab=3b4a45dc
+-/
 lemma card_triples_eq (e : Finset V) (he : e.card = 3) :
     (univ.filter (fun t : V × V × V => ({t.1, t.2.1, t.2.2} : Finset V) = e)).card = 6 := by
   obtain ⟨x, y, z, hxy, hxz, hyz, rfl⟩ := Finset.card_eq_three.mp he
@@ -124,7 +147,9 @@ lemma card_triples_eq (e : Finset V) (he : e.card = 3) :
   rw [hset]
   simp [hxy, hxz, hyz, Ne.symm hxy, Ne.symm hxz, Ne.symm hyz]
 
-/-- Each edge corresponds to six ordered triples.-/
+/-- Each edge corresponds to six ordered triples.
+@isnad1 id=eq.0h2v.s6.6a339f8ad783 from=translated src=- shape=5db22d79 vocab=3ae063bf
+-/
 lemma sum_isEdge (H : ThreeGraph V) :
     ∑ a, ∑ b, ∑ c, (if H.IsEdge a b c then 1 else 0 : ℕ) = 6 * H.edges.card := by
   have h1 : ∑ a, ∑ b, ∑ c, (if H.IsEdge a b c then 1 else 0 : ℕ) =
@@ -150,7 +175,9 @@ lemma sum_isEdge (H : ThreeGraph V) :
   rw [this]
   exact card_triples_eq e (H.card_eq_three e he)
 
-/-- The local estimate: for an edge `abc`, `d(ab) + d(ac) + d(bc) ≤ n`.-/
+/-- The local estimate: for an edge `abc`, `d(ab) + d(ac) + d(bc) ≤ n`.
+@isnad1 id=le.2h5v.s6.48a2be48c943 from=translated src=- shape=68662daf vocab=abebe0c1
+-/
 lemma codeg_sum_le {H : ThreeGraph V} (hH : NoThreeAt H.IsEdge) {a b c : V}
     (habc : H.IsEdge a b c) : codeg H a b + codeg H a c + codeg H b c ≤ Fintype.card V := by
   rw [codeg_eq_sum, codeg_eq_sum, codeg_eq_sum, ← sum_add_distrib, ← sum_add_distrib]
@@ -188,7 +215,9 @@ lemma codeg_sum_le {H : ThreeGraph V} (hH : NoThreeAt H.IsEdge) {a b c : V}
     _ = Fintype.card V := by simp
 
 /-- **de Caen's bound.**  If any four points span at most two edges then
-`18 |𝓔| ≤ n² (n - 1)`.-/
+`18 |𝓔| ≤ n² (n - 1)`.
+@isnad1 id=le.1h2v.s6.7c216396049d from=translated src=- shape=e8eb9d29 vocab=d8348673
+-/
 theorem deCaen (H : ThreeGraph V) (hH : NoThreeAt H.IsEdge) :
     18 * H.edges.card ≤ Fintype.card V ^ 2 * (Fintype.card V - 1) := by
   set n := Fintype.card V
@@ -304,10 +333,16 @@ def ThreeGraph.map (φ : W ↪ V) (G : ThreeGraph W) : ThreeGraph V where
     simp [G.card_eq_three e' he']
 
 omit [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W] in
+/--
+@isnad1 id=eq.0h4v.s4.1cedf24c23df from=translated src=- shape=f0800065 vocab=f96152aa
+-/
 lemma ThreeGraph.card_edges_map (φ : W ↪ V) (G : ThreeGraph W) :
     (G.map φ).edges.card = G.edges.card := card_map _
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=iff.0h7v.s6.fcf3ec673f4c from=translated src=- shape=f2e04974 vocab=a821afa8
+-/
 lemma ThreeGraph.isEdge_map_iff (φ : W ↪ V) (G : ThreeGraph W) {a b c : V} :
     (G.map φ).IsEdge a b c ↔ ∃ x y z, φ x = a ∧ φ y = b ∧ φ z = c ∧ G.IsEdge x y z := by
   constructor
@@ -333,6 +368,9 @@ lemma ThreeGraph.isEdge_map_iff (φ : W ↪ V) (G : ThreeGraph W) {a b c : V} :
     simp
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=nothreea.1h4v.s5.d65af2f68394 from=translated src=- shape=51c707ef vocab=6b5c9a8c
+-/
 lemma ThreeGraph.noThreeAt_map (φ : W ↪ V) (G : ThreeGraph W) (hG : NoThreeAt G.IsEdge) :
     NoThreeAt (G.map φ).IsEdge := by
   intro a b c d hab hac had hbc hbd hcd ⟨h1, h2, h3⟩
@@ -365,12 +403,18 @@ def compose (f : V → Fin 6) (G : ∀ i, ThreeGraph {v // f v = i}) : ThreeGrap
 
 variable {f : V → Fin 6} {G : ∀ i, ThreeGraph {v // f v = i}}
 
+/--
+@isnad1 id=iff.0h6v.s6.d58dc492623a from=translated src=- shape=9f83d95f vocab=1740bdc9
+-/
 lemma isEdge_compose {a b c : V} :
     (compose f G).IsEdge a b c ↔ (HS f).IsEdge a b c ∨
       ∃ i, ((G i).map (Function.Embedding.subtype (fun v => f v = i))).IsEdge a b c := by
   simp only [ThreeGraph.IsEdge, compose, mem_union, mem_biUnion, mem_univ, true_and]
 
 omit [Fintype V] in
+/--
+@isnad1 id=and.1h7v.s7.23de41531759 from=translated src=- shape=f55192e3 vocab=2393cd7a
+-/
 lemma class_eq_of_isEdge_map {i : Fin 6} {a b c : V}
     (h : ((G i).map (Function.Embedding.subtype (fun v => f v = i))).IsEdge a b c) :
     f a = i ∧ f b = i ∧ f c = i := by
@@ -378,13 +422,18 @@ lemma class_eq_of_isEdge_map {i : Fin 6} {a b c : V}
   obtain ⟨x, y, z, rfl, rfl, rfl, -⟩ := h
   exact ⟨x.2, y.2, z.2⟩
 
+/--
+@isnad1 id=and.1h5v.s6.f91f98e3d77a from=translated src=- shape=6e1f6a04 vocab=e1bdfb03
+-/
 lemma classes_ne_of_isEdge_HS {a b c : V} (h : (HS f).IsEdge a b c) :
     f a ≠ f b ∧ f a ≠ f c ∧ f b ≠ f c := by
   rw [isEdge_HS] at h
   have h' := h.2.2.2
   exact ⟨h'.ne_12, h'.ne_13, h'.ne_23⟩
 
-/-- **The iterated construction has no four points spanning three edges.**-/
+/-- **The iterated construction has no four points spanning three edges.**
+@isnad1 id=nothreea.1h3v.s7.f84998691aaa from=translated src=- shape=dbf94dda vocab=c180c502
+-/
 theorem noThreeAt_compose (hG : ∀ i, NoThreeAt (G i).IsEdge) : NoThreeAt (compose f G).IsEdge := by
   intro a b c d hab hac had hbc hbd hcd ⟨h1, h2, h3⟩
   rw [isEdge_compose] at h1 h2 h3
@@ -422,7 +471,9 @@ theorem noThreeAt_compose (hG : ∀ i, NoThreeAt (G i).IsEdge) : NoThreeAt (comp
         exact h3
     exact ThreeGraph.noThreeAt_map _ _ (hG i) a b c d hab hac had hbc hbd hcd ⟨h1, h2', h3'⟩
 
-/-- The number of edges of the composition.-/
+/-- The number of edges of the composition.
+@isnad1 id=eq.0h3v.s7.25ab57451ec2 from=translated src=- shape=953498f0 vocab=28d7867d
+-/
 theorem card_edges_compose :
     (compose f G).edges.card = s6Count (partSizes f) + ∑ i, (G i).edges.card := by
   have hdisj1 : Disjoint (HS f).edges
@@ -454,7 +505,9 @@ theorem card_edges_compose :
 end Compose
 
 /-- **The lower bound construction.**  On every vertex set of size `n` there is a 3-graph in
-which any four points span at most two edges, with at least `(n³ - 3n²)/21` edges.-/
+which any four points span at most two edges, with at least `(n³ - 3n²)/21` edges.
+@isnad1 id=ex.1h2v.s6.e90f89d9f443 from=translated src=- shape=16dce8d8 vocab=163b25de
+-/
 theorem exists_noThreeAt_large (n : ℕ) :
     ∀ (V : Type u) [Fintype V] [DecidableEq V], Fintype.card V = n →
       ∃ H : ThreeGraph V, NoThreeAt H.IsEdge ∧ (n : ℤ) ^ 3 - 3 * n ^ 2 ≤ 21 * H.edges.card := by
@@ -507,6 +560,9 @@ noncomputable def mExtremal (n r k s : ℕ) : ℕ :=
   ((univ : Finset (Finset (Finset (Fin n)))).filter (fun E => (∀ e ∈ E, e.card = r) ∧
     ∀ W : Finset (Fin n), W.card = k → (E.filter (· ⊆ W)).card < s)).sup Finset.card
 
+/--
+@isnad1 id=le.0h1v.s6.5b743e389db7 from=translated src=- shape=0c79b38d vocab=db3a6eae
+-/
 theorem mExtremal_le (n : ℕ) : 18 * mExtremal n 3 4 3 ≤ n ^ 2 * (n - 1) := by
   unfold mExtremal
   rw [Nat.mul_comm, ← Nat.le_div_iff_mul_le (by norm_num)]
@@ -521,6 +577,9 @@ theorem mExtremal_le (n : ℕ) : 18 * mExtremal n 3 4 3 ≤ n ^ 2 * (n - 1) := b
   rw [Nat.le_div_iff_mul_le (by norm_num)]
   linarith
 
+/--
+@isnad1 id=le.0h1v.s6.7afad8539b3a from=translated src=- shape=2e580e9b vocab=92b0750b
+-/
 theorem le_mExtremal (n : ℕ) : (n : ℤ) ^ 3 - 3 * n ^ 2 ≤ 21 * mExtremal n 3 4 3 := by
   obtain ⟨H, hH, hc⟩ := exists_noThreeAt_large n (Fin n) (Fintype.card_fin n)
   have : H.edges.card ≤ mExtremal n 3 4 3 := by
@@ -531,7 +590,9 @@ theorem le_mExtremal (n : ℕ) : (n : ℤ) ^ 3 - 3 * n ^ 2 ≤ 21 * mExtremal n 
   have : (H.edges.card : ℤ) ≤ mExtremal n 3 4 3 := by exact_mod_cast this
   linarith
 
-/-- **Theorem 3, upper bound** (de Caen): `m(n,3,4,3) ≤ (1/3) C(n,3) n/(n-2)`.-/
+/-- **Theorem 3, upper bound** (de Caen): `m(n,3,4,3) ≤ (1/3) C(n,3) n/(n-2)`.
+@isnad1 id=le.1h1v.s6.36ec1a21967f from=translated src=- shape=3dfcbe16 vocab=be9bdb61
+-/
 theorem theorem3_upper (n : ℕ) (hn : 3 ≤ n) :
     (mExtremal n 3 4 3 : ℝ) ≤ 1 / 3 * (n.choose 3 : ℝ) * (n / (n - 2)) := by
   have h := mExtremal_le n
@@ -554,7 +615,9 @@ theorem theorem3_upper (n : ℕ) (hn : 3 ≤ n) :
   linarith
 
 /-- **Theorem 3, lower bound**: `(2 + o(1))/7 · C(n,3) ≤ m(n,3,4,3)`, i.e. for every `ε > 0`
-and all large `n`, `(2 - ε)/7 · C(n,3) ≤ m(n,3,4,3)`.-/
+and all large `n`, `(2 - ε)/7 · C(n,3) ≤ m(n,3,4,3)`.
+@isnad1 id=ex.1h1v.s6.62b9d57442c6 from=translated src=- shape=da51593e vocab=5ea84e91
+-/
 theorem theorem3_lower (ε : ℝ) (hε : 0 < ε) :
     ∃ N : ℕ, ∀ n ≥ N, (2 - ε) / 7 * (n.choose 3 : ℝ) ≤ mExtremal n 3 4 3 := by
   refine ⟨⌈4 / ε⌉₊ + 3, fun n hn => ?_⟩

@@ -73,7 +73,9 @@ structure IsMaximizingPair (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) 
 
 /-! ### Theorem 2.1 and Remark 2.2 -/
 
-/-- `∑ᵢⱼ yᵢ yⱼ ⟨xᵢ, xⱼ⟩ = |Uᵀy|² = ∑ₐ (∑ᵢ yᵢ Uᵢₐ)²`.-/
+/-- `∑ᵢⱼ yᵢ yⱼ ⟨xᵢ, xⱼ⟩ = |Uᵀy|² = ∑ₐ (∑ᵢ yᵢ Uᵢₐ)²`.
+@isnad1 id=eq.0h4v.s7.e404f8137999 from=translated src=- shape=4ef36e87 vocab=45357104
+-/
 lemma sum_mul_dotProduct_eq_sum_sq (U : Matrix (Fin n) (Fin r) ℝ) (y : Fin n → ℝ) :
     ∑ i, ∑ j, y i * y j * (U i ⬝ᵥ U j) = ∑ a, (∑ i, y i * U i a) ^ 2 := by
   symm
@@ -88,29 +90,41 @@ section Feasible
 
 variable {U : Matrix (Fin n) (Fin r) ℝ}
 
+/--
+@isnad1 id=eq.0h5v.s6.bba90e7247c0 from=translated src=- shape=8266158e vocab=8b6d357b
+-/
 lemma mul_transpose_apply (U : Matrix (Fin n) (Fin r) ℝ) (i j : Fin n) :
     (U * Uᵀ) i j = U i ⬝ᵥ U j := by
   simp [mul_apply, dotProduct]
 
 /-- For feasible `U`, the Gram matrix `UUᵀ = (⟨xᵢ, xⱼ⟩)ᵢⱼ` is an orthogonal projection of rank
-`r`.-/
+`r`.
+@isnad1 id=mem.1h3v.s7.7a151967e93b from=translated src=- shape=63364c3b vocab=528b0f36
+-/
 lemma mul_transpose_mem_orthProjs (hU : Uᵀ * U = 1) : U * Uᵀ ∈ orthProjs ℝ (Fin n) r := by
   have h := conjTranspose_mul_self_mem_orthProjs (U := Uᵀ)
     (by rw [conjTranspose_eq_transpose_of_trivial, transpose_transpose]; exact hU)
   rwa [conjTranspose_eq_transpose_of_trivial, transpose_transpose] at h
 
+/--
+@isnad1 id=eq.0h4v.s6.c383ce610b43 from=translated src=- shape=7b6bb969 vocab=b2d43c56
+-/
 lemma weightedAbsSum_mul_transpose (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) :
     weightedAbsSum w (U * Uᵀ) = sigma U w := by
   simp only [weightedAbsSum, sigma, mul_transpose_apply, Real.norm_eq_abs]
 
-/-- **Theorem 2.1** (Chalmers–Lewicki): `σ(U, w) ≤ λ(r, n)` for feasible `U` and `w`.-/
+/-- **Theorem 2.1** (Chalmers–Lewicki): `σ(U, w) ≤ λ(r, n)` for feasible `U` and `w`.
+@isnad1 id=le.2h4v.s6.d9211e7772af from=translated src=- shape=0cc80860 vocab=f0624dad
+-/
 theorem sigma_le (hU : Uᵀ * U = 1) {w : Fin n → ℝ} (hw : IsUnitWeight w) :
     sigma U w ≤ maxRelProjConst ℝ r n := by
   rw [maxRelProjConst_eq_clConst, ← weightedAbsSum_mul_transpose]
   exact le_clConst hw (mul_transpose_mem_orthProjs hU)
 
 /-- **Remark 2.2**: `λ(r, n) ≥ 1` if there is a feasible `U ∈ ℝ^{n×r}` with `r ≥ 1`. Indeed, for
-the first column `y` of `U` and `wᵢ = |yᵢ|` we have `σ(U, w) ≥ ∑ᵢⱼ yᵢ yⱼ ⟨xᵢ, xⱼ⟩ = 1`.-/
+the first column `y` of `U` and `wᵢ = |yᵢ|` we have `σ(U, w) ≥ ∑ᵢⱼ yᵢ yⱼ ⟨xᵢ, xⱼ⟩ = 1`.
+@isnad1 id=le.2h3v.s6.3e6b71e405f4 from=translated src=- shape=6d12dd46 vocab=7bfa4285
+-/
 theorem one_le_maxRelProjConst (hU : Uᵀ * U = 1) (hr : 0 < r) : 1 ≤ maxRelProjConst ℝ r n := by
   set a : Fin r := ⟨0, hr⟩
   set y : Fin n → ℝ := fun i => U i a with hy
@@ -141,16 +155,24 @@ end Feasible
 noncomputable def absGram (U : Matrix (Fin n) (Fin r) ℝ) : Matrix (Fin n) (Fin n) ℝ :=
   of fun i j => |U i ⬝ᵥ U j|
 
+/--
+@isnad1 id=eq.0h5v.s4.75e4a8e8a818 from=translated src=- shape=3e19cc26 vocab=42874ee1
+-/
 lemma absGram_symm (U : Matrix (Fin n) (Fin r) ℝ) (i j : Fin n) :
     absGram U j i = absGram U i j := by
   simp only [absGram, of_apply, dotProduct_comm]
 
+/--
+@isnad1 id=eq.0h4v.s5.7d2063e60524 from=translated src=- shape=84c90a6e vocab=f592e970
+-/
 lemma sigma_eq_dotProduct_mulVec (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) :
     sigma U w = w ⬝ᵥ (absGram U *ᵥ w) := by
   rw [dotProduct_mulVec_eq_sum, sigma]
   exact sum_congr rfl fun i _ => sum_congr rfl fun j _ => by simp only [absGram, of_apply]; ring
 
-/-- For feasible `U`, `xᵀBx ≤ λ(r, n) |x|²` for all `x ∈ ℝⁿ`: compare with `σ(U, |x|/|x|)`.-/
+/-- For feasible `U`, `xᵀBx ≤ λ(r, n) |x|²` for all `x ∈ ℝⁿ`: compare with `σ(U, |x|/|x|)`.
+@isnad1 id=le.1h4v.s7.fb2c17da5eeb from=translated src=- shape=3882af5b vocab=12600b91
+-/
 theorem dotProduct_mulVec_absGram_le {U : Matrix (Fin n) (Fin r) ℝ} (hU : Uᵀ * U = 1)
     (x : Fin n → ℝ) : x ⬝ᵥ (absGram U *ᵥ x) ≤ maxRelProjConst ℝ r n * (x ⬝ᵥ x) := by
   set a : Fin n → ℝ := fun i => |x i| with ha
@@ -195,7 +217,9 @@ theorem dotProduct_mulVec_absGram_le {U : Matrix (Fin n) (Fin r) ℝ} (hU : Uᵀ
 
 /-- **Claim 2.1** of KMMP: for a maximizing pair `(U, w)`, `w` is an eigenvector of `B` for the
 eigenvalue `λ(r, n)`: `B w = λ(r, n) w`. Together with `Grunbaum.KMMP.dotProduct_mulVec_absGram_le`
-and `wᵀBw = σ(U, w) = λ(r, n)`, this says `λ(r, n) = λ₁(B)`.-/
+and `wᵀBw = σ(U, w) = λ(r, n)`, this says `λ(r, n) = λ₁(B)`.
+@isnad1 id=eq.1h4v.s6.17ee01e7180d from=translated src=- shape=228ca452 vocab=d1c0c896
+-/
 theorem IsMaximizingPair.absGram_mulVec {U : Matrix (Fin n) (Fin r) ℝ} {w : Fin n → ℝ}
     (h : IsMaximizingPair U w) : absGram U *ᵥ w = maxRelProjConst ℝ r n • w := by
   set L := maxRelProjConst ℝ r n
@@ -222,7 +246,9 @@ theorem IsMaximizingPair.absGram_mulVec {U : Matrix (Fin n) (Fin r) ℝ} {w : Fi
   have := key (Pi.single i 1)
   simpa [single_dotProduct] using this
 
-/-- **Claim 2.1** in coordinates: `∑ⱼ |⟨xᵢ, xⱼ⟩| wⱼ = λ(r, n) wᵢ`.-/
+/-- **Claim 2.1** in coordinates: `∑ⱼ |⟨xᵢ, xⱼ⟩| wⱼ = λ(r, n) wᵢ`.
+@isnad1 id=eq.1h5v.s6.82af7bf5fd1b from=translated src=- shape=6d33a33a vocab=4a40421c
+-/
 theorem IsMaximizingPair.sum_abs_mul {U : Matrix (Fin n) (Fin r) ℝ} {w : Fin n → ℝ}
     (h : IsMaximizingPair U w) (i : Fin n) :
     ∑ j, |U i ⬝ᵥ U j| * w j = maxRelProjConst ℝ r n * w i :=
@@ -240,11 +266,17 @@ noncomputable def weightedSign (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → �
     Matrix (Fin n) (Fin n) ℝ :=
   of fun i j => w i * signPattern (U * Uᵀ) i j * w j
 
+/--
+@isnad1 id=eq.0h6v.s5.78b215a4ab86 from=translated src=- shape=47bcd343 vocab=e14a720c
+-/
 lemma weightedSign_symm (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) (i j : Fin n) :
     weightedSign U w j i = weightedSign U w i j := by
   simp only [weightedSign, signPattern, of_apply, mul_transpose_apply, dotProduct_comm (U j)]
   ring
 
+/--
+@isnad1 id=le.2h5v.s6.69381b274d28 from=translated src=- shape=21c96986 vocab=5d6dde50
+-/
 lemma trace_weightedSign_mul_le {Q : Matrix (Fin n) (Fin n) ℝ} (hw : ∀ i, 0 ≤ w i)
     (hQ : IsOrthProj Q) : (weightedSign U w * Q).trace ≤ weightedAbsSum w Q := by
   simp only [trace, diag_apply, mul_apply, weightedAbsSum, Real.norm_eq_abs]
@@ -261,6 +293,9 @@ lemma trace_weightedSign_mul_le {Q : Matrix (Fin n) (Fin n) ℝ} (hw : ∀ i, 0 
         simp only [weightedSign, of_apply]; ring
     _ ≤ w i * w j * |Q i j| := mul_le_mul_of_nonneg_left hs hww
 
+/--
+@isnad1 id=eq.0h4v.s6.806defc4769b from=translated src=- shape=0c8ba7b4 vocab=7bf3bd0b
+-/
 lemma trace_weightedSign_mul_transpose (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) :
     (weightedSign U w * (U * Uᵀ)).trace = sigma U w := by
   simp only [trace, diag_apply, mul_apply, sigma]
@@ -273,7 +308,9 @@ lemma trace_weightedSign_mul_transpose (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin
   rw [hsym, mul_transpose_apply, ← this]
   ring
 
-/-- `P = UUᵀ` maximizes `Q ↦ Tr(M(G, w) Q)` over the orthogonal projections of rank `r`.-/
+/-- `P = UUᵀ` maximizes `Q ↦ Tr(M(G, w) Q)` over the orthogonal projections of rank `r`.
+@isnad1 id=le.2h5v.s7.f6a2d9530c6a from=translated src=- shape=a8d297a2 vocab=0e3fa41f
+-/
 theorem IsMaximizingPair.trace_mul_le (h : IsMaximizingPair U w) {Q : Matrix (Fin n) (Fin n) ℝ}
     (hQ : Q ∈ orthProjs ℝ (Fin n) r) :
     (weightedSign U w * Q).trace ≤ (weightedSign U w * (U * Uᵀ)).trace := by
@@ -281,7 +318,9 @@ theorem IsMaximizingPair.trace_mul_le (h : IsMaximizingPair U w) {Q : Matrix (Fi
   exact (trace_weightedSign_mul_le h.isUnitWeight.nonneg hQ.1).trans
     (le_clConst h.isUnitWeight hQ)
 
-/-- **Claim 2.2**, projection form: `M(G, w)` commutes with `P = UUᵀ`.-/
+/-- **Claim 2.2**, projection form: `M(G, w)` commutes with `P = UUᵀ`.
+@isnad1 id=eq.1h4v.s7.942fd677d9f6 from=translated src=- shape=29374222 vocab=a145d06d
+-/
 theorem IsMaximizingPair.commute (h : IsMaximizingPair U w) :
     weightedSign U w * (U * Uᵀ) = (U * Uᵀ) * weightedSign U w := by
   refine commute_of_isMaxOn (𝕜 := ℝ) (m := r) ?_ (mul_transpose_mem_orthProjs h.transpose_mul_self)
@@ -292,7 +331,9 @@ theorem IsMaximizingPair.commute (h : IsMaximizingPair U w) :
     exact weightedSign_symm U w i j
   · simpa only [RCLike.re_to_real] using h.trace_mul_le hQ
 
-/-- **Claim 2.2** of KMMP: `M(G, w) U = U H` with `H = Uᵀ M(G, w) U`.-/
+/-- **Claim 2.2** of KMMP: `M(G, w) U = U H` with `H = Uᵀ M(G, w) U`.
+@isnad1 id=eq.1h4v.s7.7c3779cf8dd2 from=translated src=- shape=4313955b vocab=a145d06d
+-/
 theorem IsMaximizingPair.mul_eq_mul (h : IsMaximizingPair U w) :
     weightedSign U w * U = U * (Uᵀ * weightedSign U w * U) := by
   have hU := h.transpose_mul_self
@@ -301,7 +342,9 @@ theorem IsMaximizingPair.mul_eq_mul (h : IsMaximizingPair U w) :
     _ = ((U * Uᵀ) * weightedSign U w) * U := by rw [h.commute]
     _ = U * (Uᵀ * weightedSign U w * U) := by simp only [Matrix.mul_assoc]
 
-/-- The matrix `H = Uᵀ M(G, w) U` of Claim 2.2 is symmetric.-/
+/-- The matrix `H = Uᵀ M(G, w) U` of Claim 2.2 is symmetric.
+@isnad1 id=eq.0h4v.s7.62500a80e49a from=translated src=- shape=a7a86000 vocab=c9a5a4c4
+-/
 lemma transpose_H (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) :
     (Uᵀ * weightedSign U w * U)ᵀ = Uᵀ * weightedSign U w * U := by
   have hM : (weightedSign U w)ᵀ = weightedSign U w := by
@@ -310,7 +353,9 @@ lemma transpose_H (U : Matrix (Fin n) (Fin r) ℝ) (w : Fin n → ℝ) :
     exact weightedSign_symm U w i j
   rw [transpose_mul, transpose_mul, transpose_transpose, hM, Matrix.mul_assoc]
 
-/-- **Claim 2.3** of KMMP: `xᵢᵀ H xᵢ = λ(r, n) wᵢ²`.-/
+/-- **Claim 2.3** of KMMP: `xᵢᵀ H xᵢ = λ(r, n) wᵢ²`.
+@isnad1 id=eq.1h5v.s7.7f663e657128 from=translated src=- shape=56f462a2 vocab=4bf5192f
+-/
 theorem IsMaximizingPair.dotProduct_mulVec_H (h : IsMaximizingPair U w) (i : Fin n) :
     U i ⬝ᵥ ((Uᵀ * weightedSign U w * U) *ᵥ U i) = maxRelProjConst ℝ r n * w i ^ 2 := by
   set M := weightedSign U w
@@ -357,7 +402,9 @@ noncomputable def cloneMatrix (U : Matrix (Fin n) (Fin r) ℝ) (c : Fin n → �
 /-- The cloned weights `w̃ᵢ = √cᵢ wᵢ`.-/
 noncomputable def cloneWeight (w c : Fin n → ℝ) : Fin n → ℝ := fun i => √(c i) * w i
 
-/-- Condition (ii) of Claim 2.4, entrywise: `∑ᵢ (cᵢ - 1) xᵢ xᵢᵀ = 0`.-/
+/-- Condition (ii) of Claim 2.4, entrywise: `∑ᵢ (cᵢ - 1) xᵢ xᵢᵀ = 0`.
+@isnad1 id=eq.2h7v.s7.335d5e48c9de from=translated src=- shape=c3253e01 vocab=efde56d9
+-/
 lemma sum_sub_one_mul_eq_zero {C : Finset (Fin n)} {c : Fin n → ℝ} (hc1 : ∀ i, i ∉ C → c i = 1)
     (hcC : ∑ i ∈ C, c i • vecMulVec (U i) (U i) = ∑ i ∈ C, vecMulVec (U i) (U i))
     (a b : Fin r) : ∑ i, (c i - 1) * (U i a * U i b) = 0 := by
@@ -373,7 +420,9 @@ lemma sum_sub_one_mul_eq_zero {C : Finset (Fin n)} {c : Fin n → ℝ} (hc1 : �
 2. there is `c ∈ ℝⁿ_{≥0}` with `cᵢ = 1` for `i ∉ C` and `∑_{i ∈ C} cᵢ xᵢ xᵢᵀ = ∑_{i ∈ C} xᵢ xᵢᵀ`.
 
 Put `w̃ᵢ = √cᵢ wᵢ` and `x̃ᵢ = √cᵢ xᵢ`, and let `Ũ` be the matrix with rows `x̃ᵢ`. Then
-`(Ũ, w̃)` is a maximizing pair.-/
+`(Ũ, w̃)` is a maximizing pair.
+@isnad1 id=ismaximi.6h6v.s8.a3598b77a30d from=translated src=- shape=ca21b1eb vocab=a15b2eda
+-/
 theorem IsMaximizingPair.clone (h : IsMaximizingPair U w) (hr : 0 < r) {C : Finset (Fin n)}
     (hC : ∀ i ∈ C, ∀ j ∈ C, 0 ≤ U i ⬝ᵥ U j) {c : Fin n → ℝ} (hc : ∀ i, 0 ≤ c i)
     (hc1 : ∀ i, i ∉ C → c i = 1)

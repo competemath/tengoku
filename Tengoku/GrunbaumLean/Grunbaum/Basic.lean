@@ -67,10 +67,16 @@ structure IsWeight [Fintype ι] (w : ι → ℝ) : Prop where
 noncomputable def weightedMatrix (S : Matrix ι ι ℝ) (w : ι → ℝ) : Matrix ι ι ℝ :=
   of fun i j => √(w i) * S i j * √(w j)
 
+/--
+@isnad1 id=eq.0h5v.s5.c177d13fa403 from=translated src=- shape=c98a55d1 vocab=0a8eacc1
+-/
 lemma weightedMatrix_apply (S : Matrix ι ι ℝ) (w : ι → ℝ) (i j : ι) :
     weightedMatrix S w i j = √(w i) * S i j * √(w j) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6707acdb1539 from=translated src=- shape=5a26bf35 vocab=1e2b7673
+-/
 lemma weightedMatrix_eq_diagonal_mul [Fintype ι] [DecidableEq ι] (S : Matrix ι ι ℝ) (w : ι → ℝ) :
     weightedMatrix S w = diagonal (fun i => √(w i)) * S * diagonal (fun i => √(w i)) := by
   ext i j
@@ -80,23 +86,37 @@ namespace IsSignMatrix
 
 variable {S : Matrix ι ι ℝ}
 
+/--
+@isnad1 id=eq.1h4v.s4.0000f3ef017c from=translated src=- shape=344f5f82 vocab=da3f1427
+-/
 lemma abs_apply (hS : IsSignMatrix S) (i j : ι) : |S i j| = 1 := by
   rcases hS.sign i j with h | h <;> simp [h]
 
+/--
+@isnad1 id=eq.1h4v.s5.3bb365f1ead9 from=translated src=- shape=64826cc1 vocab=9a50e2ca
+-/
 lemma mul_self_apply (hS : IsSignMatrix S) (i j : ι) : S i j * S i j = 1 := by
   rcases hS.sign i j with h | h <;> simp [h]
 
-/-- The matrix `𝟙` of all ones (the sign matrix of the empty graph) lies in `𝒜`.-/
+/-- The matrix `𝟙` of all ones (the sign matrix of the empty graph) lies in `𝒜`.
+@isnad1 id=issignma.0h1v.s6.f789459ca328 from=translated src=- shape=ea2478ee vocab=5ce4c128
+-/
 lemma ones : IsSignMatrix (of fun _ _ : ι => (1 : ℝ)) :=
   ⟨fun _ _ => rfl, fun _ _ => Or.inl rfl, fun _ => rfl⟩
 
 end IsSignMatrix
 
+/--
+@isnad1 id=eq.1h5v.s5.5128dd701984 from=translated src=- shape=68c90dc9 vocab=541b3f4e
+-/
 lemma weightedMatrix_symm {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (w : ι → ℝ) (i j : ι) :
     weightedMatrix S w j i = weightedMatrix S w i j := by
   simp only [weightedMatrix, of_apply, hS.symm]
   ring
 
+/--
+@isnad1 id=ishermit.1h3v.s5.69fd83ccb35a from=translated src=- shape=9eaaec42 vocab=3b8a5d59
+-/
 lemma isHermitian_weightedMatrix {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) (w : ι → ℝ) :
     (weightedMatrix S w).IsHermitian :=
   IsHermitian.ext fun i j => by simp [weightedMatrix_symm hS w j i]
@@ -111,6 +131,9 @@ structure IsOrthonormalPair (u v : ι → ℝ) : Prop where
   norm_right : v ⬝ᵥ v = 1
   orth : u ⬝ᵥ v = 0
 
+/--
+@isnad1 id=isorthon.1h3v.s4.d3824c1d7311 from=translated src=- shape=bfd681fb vocab=199ab5f3
+-/
 lemma IsOrthonormalPair.symm {u v : ι → ℝ} (h : IsOrthonormalPair u v) :
     IsOrthonormalPair v u :=
   ⟨h.norm_right, h.norm_left, by rw [dotProduct_comm]; exact h.orth⟩
@@ -132,31 +155,50 @@ noncomputable def sumTopTwo (A : Matrix ι ι ℝ) : ℝ := sSup (fanValues A)
 
 /-! ### Elementary facts -/
 
+/--
+@isnad1 id=eq.0h3v.s6.0f962d57a4c7 from=translated src=- shape=ceda824e vocab=2ba98488
+-/
 lemma dotProduct_mulVec_eq_sum (A : Matrix ι ι ℝ) (u : ι → ℝ) :
     u ⬝ᵥ (A *ᵥ u) = ∑ i, ∑ j, A i j * u i * u j := by
   simp only [dotProduct, mulVec, mul_sum]
   exact sum_congr rfl fun i _ => sum_congr rfl fun j _ => by ring
 
+/--
+@isnad1 id=eq.0h4v.s5.c02120fbc12f from=translated src=- shape=97731b67 vocab=785948b1
+-/
 lemma fanValue_symm (A : Matrix ι ι ℝ) (u v : ι → ℝ) : fanValue A u v = fanValue A v u := by
   simp only [fanValue, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.1927d7e9c7b4 from=translated src=- shape=4284bdba vocab=08a20b87
+-/
 lemma fanValue_eq_sum (A : Matrix ι ι ℝ) (u v : ι → ℝ) :
     fanValue A u v = ∑ i, ∑ j, A i j * (u i * u j + v i * v j) := by
   simp only [fanValue, dotProduct_mulVec_eq_sum, ← sum_add_distrib]
   exact sum_congr rfl fun i _ => sum_congr rfl fun j _ => by ring
 
+/--
+@isnad1 id=le.0h2v.s4.6e6563b835bf from=translated src=- shape=88b7ad43 vocab=fbc09bd2
+-/
 lemma dotProduct_self_nonneg' (u : ι → ℝ) : 0 ≤ u ⬝ᵥ u :=
   sum_nonneg fun i _ => mul_self_nonneg (u i)
 
-/-- Coordinates of a unit vector are bounded by one.-/
+/-- Coordinates of a unit vector are bounded by one.
+@isnad1 id=le.1h3v.s5.933e97459e9f from=translated src=- shape=7fcdfaf4 vocab=407f43b3
+-/
 lemma sq_le_one_of_dotProduct {u : ι → ℝ} (hu : u ⬝ᵥ u = 1) (i : ι) : u i ^ 2 ≤ 1 := by
   rw [← hu, dotProduct, sq]
   exact single_le_sum (f := fun k => u k * u k) (fun k _ => mul_self_nonneg (u k)) (mem_univ i)
 
+/--
+@isnad1 id=le.1h3v.s5.94269e841b04 from=translated src=- shape=9fb5e679 vocab=ebff5485
+-/
 lemma abs_le_one_of_dotProduct {u : ι → ℝ} (hu : u ⬝ᵥ u = 1) (i : ι) : |u i| ≤ 1 :=
   abs_le_of_sq_le_sq (by simpa using sq_le_one_of_dotProduct hu i) zero_le_one
 
-/-- A crude bound: `uᵀAu + vᵀAv ≤ 2 ∑ |Aᵢⱼ|` for an orthonormal pair `u, v`.-/
+/-- A crude bound: `uᵀAu + vᵀAv ≤ 2 ∑ |Aᵢⱼ|` for an orthonormal pair `u, v`.
+@isnad1 id=le.1h4v.s6.65b66b1f3dbf from=translated src=- shape=5e7502ea vocab=0ff4a797
+-/
 lemma fanValue_le_sum_abs (A : Matrix ι ι ℝ) {u v : ι → ℝ} (h : IsOrthonormalPair u v) :
     fanValue A u v ≤ 2 * ∑ i, ∑ j, |A i j| := by
   rw [fanValue_eq_sum, mul_sum]
@@ -177,30 +219,46 @@ lemma fanValue_le_sum_abs (A : Matrix ι ι ℝ) {u v : ι → ℝ} (h : IsOrtho
     _ ≤ |A i j| * 2 := by gcongr
     _ = 2 * |A i j| := by ring
 
+/--
+@isnad1 id=bddabove.0h2v.s4.701fdddc9bcd from=translated src=- shape=e8cf55cb vocab=2ac6d5fd
+-/
 lemma bddAbove_fanValues (A : Matrix ι ι ℝ) : BddAbove (fanValues A) :=
   ⟨2 * ∑ i, ∑ j, |A i j|, by rintro x ⟨u, v, h, rfl⟩; exact fanValue_le_sum_abs A h⟩
 
+/--
+@isnad1 id=le.1h4v.s5.460cc6a79b5a from=translated src=- shape=f68635f7 vocab=b6c9c46b
+-/
 lemma fanValue_le_sumTopTwo (A : Matrix ι ι ℝ) {u v : ι → ℝ} (h : IsOrthonormalPair u v) :
     fanValue A u v ≤ π₂ A :=
   le_csSup (bddAbove_fanValues A) ⟨u, v, h, rfl⟩
 
+/--
+@isnad1 id=le.2h3v.s5.ea1dd23af929 from=translated src=- shape=db173255 vocab=8e2e634e
+-/
 lemma sumTopTwo_le {A : Matrix ι ι ℝ} {c : ℝ} (hne : (fanValues A).Nonempty)
     (h : ∀ u v, IsOrthonormalPair u v → fanValue A u v ≤ c) : π₂ A ≤ c :=
   csSup_le hne (by rintro x ⟨u, v, huv, rfl⟩; exact h u v huv)
 
-/-- If there is no orthonormal pair, then `π₂ A = 0`.-/
+/-- If there is no orthonormal pair, then `π₂ A = 0`.
+@isnad1 id=eq.1h2v.s4.92fc80d0050f from=translated src=- shape=6417487c vocab=29eb4d37
+-/
 lemma sumTopTwo_of_not_nonempty {A : Matrix ι ι ℝ} (h : ¬(fanValues A).Nonempty) :
     π₂ A = 0 := by
   rw [Set.not_nonempty_iff_eq_empty] at h
   simp [sumTopTwo, h]
 
-/-- `π₂ A ≤ c` as soon as `uᵀAu + vᵀAv ≤ c` for all orthonormal pairs and `0 ≤ c`.-/
+/-- `π₂ A ≤ c` as soon as `uᵀAu + vᵀAv ≤ c` for all orthonormal pairs and `0 ≤ c`.
+@isnad1 id=le.2h3v.s5.b2dd03e1c2ae from=translated src=- shape=a1a1e8eb vocab=b6c9c46b
+-/
 lemma sumTopTwo_le' {A : Matrix ι ι ℝ} {c : ℝ} (hc : 0 ≤ c)
     (h : ∀ u v, IsOrthonormalPair u v → fanValue A u v ≤ c) : π₂ A ≤ c := by
   by_cases hne : (fanValues A).Nonempty
   · exact sumTopTwo_le hne h
   · rw [sumTopTwo_of_not_nonempty hne]; exact hc
 
+/--
+@isnad1 id=iff.0h3v.s4.630cefd1a711 from=translated src=- shape=68a6723b vocab=df1bbd27
+-/
 lemma fanValues_nonempty_iff (A B : Matrix ι ι ℝ) :
     (fanValues A).Nonempty ↔ (fanValues B).Nonempty := by
   constructor
@@ -209,6 +267,9 @@ lemma fanValues_nonempty_iff (A B : Matrix ι ι ℝ) :
 
 /-! ### The Rayleigh bound `uᵀ(√D S √D)u ≤ |u|²` -/
 
+/--
+@isnad1 id=le.2h4v.s6.cd105ef56b81 from=translated src=- shape=a8baca1a vocab=706fd6f2
+-/
 lemma dotProduct_mulVec_weightedMatrix_le {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) (u : ι → ℝ) : u ⬝ᵥ (weightedMatrix S w *ᵥ u) ≤ u ⬝ᵥ u := by
   have hsq : ∀ i, √(w i) ^ 2 = w i := fun i => Real.sq_sqrt (hw.nonneg i)
@@ -226,6 +287,9 @@ lemma dotProduct_mulVec_weightedMatrix_le {S : Matrix ι ι ℝ} {w : ι → ℝ
     _ ≤ (∑ i, √(w i) ^ 2) * ∑ i, |u i| ^ 2 := sum_mul_sq_le_sq_mul_sq _ _ _
     _ = u ⬝ᵥ u := by simp only [hsq, hw.sum_eq, one_mul, dotProduct, sq, abs_mul_abs_self]
 
+/--
+@isnad1 id=le.3h4v.s6.ba59a583fbb9 from=translated src=- shape=cc844764 vocab=706fd6f2
+-/
 lemma dotProduct_mulVec_weightedMatrix_le_one {S : Matrix ι ι ℝ} {w : ι → ℝ}
     (hS : IsSignMatrix S) (hw : IsWeight w) {u : ι → ℝ} (hu : u ⬝ᵥ u = 1) :
     u ⬝ᵥ (weightedMatrix S w *ᵥ u) ≤ 1 :=
@@ -233,6 +297,9 @@ lemma dotProduct_mulVec_weightedMatrix_le_one {S : Matrix ι ι ℝ} {w : ι →
 
 /-! ### Bessel's inequality for an orthonormal pair -/
 
+/--
+@isnad1 id=le.1h4v.s6.9b14a56e0346 from=translated src=- shape=c65d908d vocab=0685040a
+-/
 lemma bessel {u v : ι → ℝ} (h : IsOrthonormalPair u v) (x : ι → ℝ) :
     (u ⬝ᵥ x) ^ 2 + (v ⬝ᵥ x) ^ 2 ≤ x ⬝ᵥ x := by
   set a := u ⬝ᵥ x
@@ -249,7 +316,9 @@ lemma bessel {u v : ι → ℝ} (h : IsOrthonormalPair u v) (x : ι → ℝ) :
 /-! ### The two largest values of a family -/
 
 /-- If `a` is a largest and `b` a second largest index of `l`, and `0 ≤ α ≤ 1` with
-`∑ α = 2`, then `∑ lⱼ αⱼ ≤ l a + l b`.-/
+`∑ α = 2`, then `∑ lⱼ αⱼ ≤ l a + l b`.
+@isnad1 id=le.5h5v.s7.c4d6c450d12e from=translated src=- shape=46bd9150 vocab=8ac7d2c5
+-/
 lemma sum_mul_le_top_two (l α : ι → ℝ) (h0 : ∀ j, 0 ≤ α j)
     (h1 : ∀ j, α j ≤ 1) (hsum : ∑ j, α j = 2) {a b : ι} (ha : ∀ j, l j ≤ l a)
     (hb : ∀ j, j ≠ a → l j ≤ l b) : ∑ j, l j * α j ≤ l a + l b := by
@@ -267,7 +336,9 @@ lemma sum_mul_le_top_two (l α : ι → ℝ) (h0 : ∀ j, 0 ≤ α j)
   linarith
 
 /-- Every family indexed by a type with at least two elements has a largest and a second
-largest index.-/
+largest index.
+@isnad1 id=ex.1h2v.s5.d575364316e1 from=translated src=- shape=263f3b3f vocab=2e707fff
+-/
 lemma exists_top_two (l : ι → ℝ) (h2 : 1 < Fintype.card ι) :
     ∃ a b, a ≠ b ∧ (∀ j, l j ≤ l a) ∧ ∀ j, j ≠ a → l j ≤ l b := by
   classical
@@ -281,7 +352,9 @@ lemma exists_top_two (l : ι → ℝ) (h2 : 1 < Fintype.card ι) :
     fun j hj => hbmax j (mem_erase.2 ⟨hj, mem_univ j⟩)⟩
 
 omit [Fintype ι] in
-/-- For the top pair `(a, b)`, every sum `l i + l j` with `i ≠ j` is at most `l a + l b`.-/
+/-- For the top pair `(a, b)`, every sum `l i + l j` with `i ≠ j` is at most `l a + l b`.
+@isnad1 id=le.3h6v.s6.26a531168ec6 from=translated src=- shape=9fd6367d vocab=06893b8a
+-/
 lemma add_le_top_two (l : ι → ℝ) {a b : ι} (ha : ∀ j, l j ≤ l a)
     (hb : ∀ j, j ≠ a → l j ≤ l b) {i j : ι} (hij : i ≠ j) : l i + l j ≤ l a + l b := by
   by_cases hi : i = a

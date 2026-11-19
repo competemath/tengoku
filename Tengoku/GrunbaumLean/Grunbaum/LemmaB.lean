@@ -57,11 +57,17 @@ variable {ι : Type*} [Fintype ι]
 
 /-! ### Linearity of `fanValue` -/
 
+/--
+@isnad1 id=eq.0h5v.s6.8f7ee9057dea from=translated src=- shape=c47aa328 vocab=dec7aa9c
+-/
 lemma fanValue_add (A B : Matrix ι ι ℝ) (x y : ι → ℝ) :
     fanValue (A + B) x y = fanValue A x y + fanValue B x y := by
   simp only [fanValue, add_mulVec, dotProduct_add]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.ff17f89b6f37 from=translated src=- shape=6e86cf20 vocab=193f284d
+-/
 lemma fanValue_smul (c : ℝ) (A : Matrix ι ι ℝ) (x y : ι → ℝ) :
     fanValue (c • A) x y = c * fanValue A x y := by
   simp only [fanValue, smul_mulVec, dotProduct_smul, smul_eq_mul]
@@ -83,7 +89,9 @@ lemma eq_smul_add_smul_of_isOrthonormalPair {u v z : ι → ℝ} (huv : IsOrthon
 /-! ### Lemma B(a) -/
 
 /-- **Lemma B(a)**, commutation: if `u, v` maximizes `xᵀAx + yᵀAy`, then `P = uuᵀ + vvᵀ`
-commutes with `A`.-/
+commutes with `A`.
+@isnad1 id=eq.3h4v.s6.f4ec5dae732e from=translated src=- shape=225ef5d9 vocab=a4295ea6
+-/
 theorem mul_projPair_comm {A : Matrix ι ι ℝ} (hA : ∀ i j, A j i = A i j) {u v : ι → ℝ}
     (huv : IsOrthonormalPair u v)
     (hmax : ∀ x y, IsOrthonormalPair x y → fanValue A x y ≤ fanValue A u v) :
@@ -103,7 +111,9 @@ theorem mul_projPair_comm {A : Matrix ι ι ℝ} (hA : ∀ i j, A j i = A i j) {
   rw [hsym]
   ring
 
-/-- **Lemma B(a)**, trace: `Tr(AP) = uᵀAu + vᵀAv`.-/
+/-- **Lemma B(a)**, trace: `Tr(AP) = uᵀAu + vᵀAv`.
+@isnad1 id=eq.0h4v.s5.8583fb20b0da from=translated src=- shape=d8231664 vocab=f12356c9
+-/
 theorem trace_mul_projPair (A : Matrix ι ι ℝ) (u v : ι → ℝ) :
     (A * projPair u v).trace = fanValue A u v := by
   rw [fanValue_eq_sum]
@@ -121,10 +131,16 @@ def symE (i j : ι) : Matrix ι ι ℝ :=
   of fun k l => (if k = i ∧ l = j then 1 else 0) + (if k = j ∧ l = i then 1 else 0)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s4.9fa0291da0ae from=translated src=- shape=d958f16d vocab=15f232da
+-/
 lemma symE_symm (i j k l : ι) : symE i j l k = symE i j k l := by
   simp only [symE, of_apply, @and_comm (l = i) (k = j), @and_comm (l = j) (k = i)]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.e6a88d4c807b from=translated src=- shape=5d1fd96c vocab=a7953c46
+-/
 lemma mulVec_symE (i j : ι) (x : ι → ℝ) (k : ι) :
     (symE i j *ᵥ x) k = (if k = i then x j else 0) + (if k = j then x i else 0) := by
   simp only [mulVec, dotProduct, symE, of_apply, add_mul, sum_add_distrib, ite_mul, one_mul,
@@ -133,11 +149,17 @@ lemma mulVec_symE (i j : ι) (x : ι → ℝ) (k : ι) :
   · by_cases hk : k = i <;> simp [hk]
   · by_cases hk : k = j <;> simp [hk]
 
+/--
+@isnad1 id=eq.0h4v.s6.4c36d0be7826 from=translated src=- shape=3e08a425 vocab=db197f06
+-/
 lemma dotProduct_mulVec_symE (i j : ι) (x : ι → ℝ) : x ⬝ᵥ (symE i j *ᵥ x) = 2 * (x i * x j) := by
   simp only [dotProduct, mulVec_symE, mul_add, sum_add_distrib, mul_ite, mul_zero,
     Finset.sum_ite_eq', mem_univ, ite_true]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.430b80e9e486 from=translated src=- shape=715fed7d vocab=f7a79941
+-/
 lemma fanValue_symE (i j : ι) (x y : ι → ℝ) :
     fanValue (symE i j) x y = 2 * (x i * x j + y i * y j) := by
   simp only [fanValue, dotProduct_mulVec_symE]
@@ -148,6 +170,9 @@ def updateSymm (S : Matrix ι ι ℝ) (i j : ι) (t : ℝ) : Matrix ι ι ℝ :=
   of fun k l => if (k = i ∧ l = j) ∨ (k = j ∧ l = i) then t else S k l
 
 omit [Fintype ι] in
+/--
+@isnad1 id=issignma.3h5v.s5.e2f674722e34 from=translated src=- shape=bfb64574 vocab=6e020562
+-/
 lemma IsSignMatrix.updateSymm {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j : ι} (hij : i ≠ j)
     {t : ℝ} (ht : t = 1 ∨ t = -1) : IsSignMatrix (Grunbaum.updateSymm S i j t) := by
   refine ⟨fun k l => ?_, fun k l => ?_, fun k => ?_⟩
@@ -167,6 +192,9 @@ lemma IsSignMatrix.updateSymm {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j 
     rw [ite_eq_right this, hS.diag]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.2h6v.s7.30046e047cde from=translated src=- shape=c56dc7ac vocab=0ff23549
+-/
 lemma weightedMatrix_updateSymm {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {i j : ι} (hij : i ≠ j)
     (t : ℝ) (w : ι → ℝ) :
     weightedMatrix (updateSymm S i j t) w =
@@ -194,6 +222,9 @@ end Flip
 def IsSignMaximizer (S : Matrix ι ι ℝ) (w : ι → ℝ) : Prop :=
   ∀ S', IsSignMatrix S' → π₂ (weightedMatrix S' w) ≤ π₂ (weightedMatrix S w)
 
+/--
+@isnad1 id=issignma.1h3v.s4.01a49a517ffb from=translated src=- shape=5418df58 vocab=50574064
+-/
 lemma IsMaximizer.isSignMaximizer {S : Matrix ι ι ℝ} {w : ι → ℝ} (h : IsMaximizer S w) :
     IsSignMaximizer S w :=
   fun S' hS' => h.le S' w hS' h.isWeight
@@ -204,7 +235,9 @@ variable [DecidableEq ι] {S : Matrix ι ι ℝ} {w : ι → ℝ} {u v : ι → 
 
 omit [DecidableEq ι] in
 /-- At a maximizer, `sᵢⱼ ⟨xᵢ, xⱼ⟩ ≥ 0`: otherwise flipping the sign of `sᵢⱼ` would increase
-`uᵀMu + vᵀMv`.-/
+`uᵀMu + vᵀMv`.
+@isnad1 id=le.6h7v.s7.f149afc9e3b0 from=translated src=- shape=e7f99003 vocab=c29ce77c
+-/
 theorem mul_projPair_nonneg (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
     (hmax : IsSignMaximizer S w) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) {i j : ι}
@@ -222,7 +255,9 @@ theorem mul_projPair_nonneg (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
 
 /-- At a maximizer, a vanishing entry `Pᵢⱼ = 0` forces the plane of `u, v` to be invariant under
 `Eᵢⱼ + Eⱼᵢ`: the pair `u, v` is then also a maximizing pair for the average of the two matrices
-obtained by setting `sᵢⱼ = ±1`.-/
+obtained by setting `sᵢⱼ = ±1`.
+@isnad1 id=and.7h7v.s8.aefeffd23e43 from=translated src=- shape=a226d159 vocab=5815e83a
+-/
 theorem mulVec_symE_eq (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
     (hmax : IsSignMaximizer S w) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) {i j : ι}
@@ -289,7 +324,9 @@ theorem mulVec_symE_eq (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
 
 omit [DecidableEq ι] in
 /-- Consequences of a vanishing off-diagonal entry `Pᵢⱼ = 0` at a maximizer: `Pᵢᵢ = Pⱼⱼ`, and
-the rows `i` and `j` of `P` vanish off the diagonal.-/
+the rows `i` and `j` of `P` vanish off the diagonal.
+@isnad1 id=and.7h7v.s8.94c28ccf618a from=translated src=- shape=da424d01 vocab=ff0fd912
+-/
 theorem projPair_eq_zero_consequences (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
     (hmax : IsSignMaximizer S w) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) {i j : ι}
@@ -322,7 +359,9 @@ theorem projPair_eq_zero_consequences (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w
     linarith
 
 omit [DecidableEq ι] in
-/-- `∑ₖₗ Pₖₗ² = 2` for `P = uuᵀ + vvᵀ` and an orthonormal pair `u, v`.-/
+/-- `∑ₖₗ Pₖₗ² = 2` for `P = uuᵀ + vvᵀ` and an orthonormal pair `u, v`.
+@isnad1 id=eq.1h3v.s6.a50f991a7c22 from=translated src=- shape=26e73e67 vocab=af68ac5d
+-/
 lemma sum_sq_projPair (huv : IsOrthonormalPair u v) :
     ∑ k, ∑ l, (u k * u l + v k * v l) ^ 2 = 2 := by
   have h1 : ∑ l, u l * u l = 1 := huv.norm_left
@@ -343,7 +382,9 @@ omit [DecidableEq ι] in
 /-- **Lemma B(b)** ([AMOP, Lemma 3.2]). Let `|ι| > 2`, let `D` be positive definite and let `S`
 maximize `S' ↦ π₂(√D S' √D)`. If `u, v` is an orthonormal pair with `uᵀMu + vᵀMv = π₂(M)` for
 `M = √D S √D`, then `sᵢⱼ ⟨xᵢ, xⱼ⟩ > 0` for all `i, j`, where `xᵢ = (uᵢ, vᵢ)`. That is,
-`sᵢⱼ = sgn⟨xᵢ, xⱼ⟩ ≠ 0`.-/
+`sᵢⱼ = sgn⟨xᵢ, xⱼ⟩ ≠ 0`.
+@isnad1 id=lt.6h7v.s7.5c6b4d0249fb from=translated src=- shape=7bd31214 vocab=ef4a6373
+-/
 theorem mul_projPair_pos (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
     (h3 : 2 < Fintype.card ι) (hmax : IsSignMaximizer S w) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) (i j : ι) :
@@ -436,7 +477,9 @@ theorem mul_projPair_pos (hS : IsSignMatrix S) (hpos : ∀ i, 0 < w i)
     exact lt_of_le_of_ne h0 (Ne.symm hne)
 
 omit [DecidableEq ι] in
-/-- **Lemma B(b)** for maximizers of `Π(2, ι)`.-/
+/-- **Lemma B(b)** for maximizers of `Π(2, ι)`.
+@isnad1 id=lt.5h7v.s7.d51cef97e4ef from=translated src=- shape=7452fe3c vocab=d2715b43
+-/
 theorem IsMaximizer.mul_projPair_pos (hmax : IsMaximizer S w) (hpos : ∀ i, 0 < w i)
     (h3 : 2 < Fintype.card ι) (huv : IsOrthonormalPair u v)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w)) (i j : ι) :
@@ -446,7 +489,9 @@ theorem IsMaximizer.mul_projPair_pos (hmax : IsMaximizer S w) (hpos : ∀ i, 0 <
 end SignPattern
 
 omit [Fintype ι] in
-/-- If `0 < sᵢⱼ Pᵢⱼ` then `sᵢⱼ Pᵢⱼ = |Pᵢⱼ|`.-/
+/-- If `0 < sᵢⱼ Pᵢⱼ` then `sᵢⱼ Pᵢⱼ = |Pᵢⱼ|`.
+@isnad1 id=eq.2h5v.s6.ead82c3e59f6 from=translated src=- shape=e2a20c7c vocab=c99fb8cd
+-/
 lemma mul_eq_abs_of_pos {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {P : Matrix ι ι ℝ} {i j : ι}
     (h : 0 < S i j * P i j) : S i j * P i j = |P i j| := by
   rw [← abs_of_pos h, abs_mul, hS.abs_apply, one_mul]
@@ -458,13 +503,18 @@ section Switch
 variable {S : Matrix ι ι ℝ} {ε : ι → ℝ}
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h4v.s5.84abe1850dbb from=translated src=- shape=92ed470e vocab=d16fccf9
+-/
 lemma weightedMatrix_switch (S : Matrix ι ι ℝ) (ε w : ι → ℝ) :
     weightedMatrix (switch S ε) w = switch (weightedMatrix S w) ε := by
   ext i j
   simp only [weightedMatrix, switch, of_apply]
   ring
 
-/-- Switching `A` at the indices with `εᵢ = -1` corresponds to replacing `xᵢ` by `-xᵢ`.-/
+/-- Switching `A` at the indices with `εᵢ = -1` corresponds to replacing `xᵢ` by `-xᵢ`.
+@isnad1 id=eq.1h5v.s6.3f9655c11a09 from=translated src=- shape=7cc45294 vocab=5dfd2496
+-/
 lemma fanValue_switch (hε : IsSignVector ε) (A : Matrix ι ι ℝ) (x y : ι → ℝ) :
     fanValue (switch A ε) (ε * x) (ε * y) = fanValue A x y := by
   simp only [fanValue_eq_sum, switch, of_apply, Pi.mul_apply]
@@ -472,6 +522,9 @@ lemma fanValue_switch (hε : IsSignVector ε) (A : Matrix ι ι ℝ) (x y : ι �
   linear_combination (A i j * (x i * x j + y i * y j) * (ε j * ε j)) * hε.mul_self i
     + A i j * (x i * x j + y i * y j) * hε.mul_self j
 
+/--
+@isnad1 id=isorthon.2h4v.s6.d09c5827321d from=translated src=- shape=6b07bbfd vocab=118a912f
+-/
 lemma IsOrthonormalPair.mul_left (hε : IsSignVector ε) {x y : ι → ℝ}
     (h : IsOrthonormalPair x y) : IsOrthonormalPair (ε * x) (ε * y) := by
   have e : ∀ a b : ι → ℝ, (ε * a) ⬝ᵥ (ε * b) = a ⬝ᵥ b := by
@@ -481,12 +534,17 @@ lemma IsOrthonormalPair.mul_left (hε : IsSignVector ε) {x y : ι → ℝ}
   exact ⟨by rw [e]; exact h.norm_left, by rw [e]; exact h.norm_right, by rw [e]; exact h.orth⟩
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h3v.s6.4111970b7d3d from=translated src=- shape=5a8eecff vocab=1090ea53
+-/
 lemma mul_mul_cancel_left (hε : IsSignVector ε) (x : ι → ℝ) : ε * (ε * x) = x := by
   ext i
   simp only [Pi.mul_apply]
   linear_combination x i * hε.mul_self i
 
-/-- Switching does not change `π₂`.-/
+/-- Switching does not change `π₂`.
+@isnad1 id=eq.1h3v.s4.63407473dc63 from=translated src=- shape=7d0a9dcd vocab=2008a06b
+-/
 theorem sumTopTwo_switch (hε : IsSignVector ε) (A : Matrix ι ι ℝ) : π₂ (switch A ε) = π₂ A := by
   have hset : fanValues (switch A ε) = fanValues A := by
     ext t
@@ -499,7 +557,9 @@ theorem sumTopTwo_switch (hε : IsSignVector ε) (A : Matrix ι ι ℝ) : π₂ 
       exact ⟨ε * x, ε * y, h.mul_left hε, fanValue_switch hε A x y⟩
   rw [sumTopTwo, sumTopTwo, hset]
 
-/-- Switching a maximizer gives a maximizer.-/
+/-- Switching a maximizer gives a maximizer.
+@isnad1 id=ismaximi.2h4v.s5.7ccd84896b2a from=translated src=- shape=3422bf32 vocab=9d3f4e20
+-/
 theorem IsMaximizer.switch {w : ι → ℝ} (h : IsMaximizer S w) (hε : IsSignVector ε) :
     IsMaximizer (switch S ε) w := by
   refine isMaximizer_of_le (h.isSignMatrix.switch hε) h.isWeight ?_
@@ -509,7 +569,9 @@ end Switch
 
 /-! ### Lemma B(c) -/
 
-/-- **Lemma B(c)**: `π₂(M) = ∑ᵢⱼ √dᵢ √dⱼ |⟨xᵢ, xⱼ⟩|`.-/
+/-- **Lemma B(c)**: `π₂(M) = ∑ᵢⱼ √dᵢ √dⱼ |⟨xᵢ, xⱼ⟩|`.
+@isnad1 id=eq.3h5v.s7.5f39d5b7e0e4 from=translated src=- shape=8c2c2e06 vocab=71ffa7ec
+-/
 theorem sumTopTwo_eq_sum_abs {S : Matrix ι ι ℝ} {w u v : ι → ℝ} (hS : IsSignMatrix S)
     (hval : fanValue (weightedMatrix S w) u v = π₂ (weightedMatrix S w))
     (hsign : ∀ i j, 0 < S i j * (u i * u j + v i * v j)) :
@@ -523,7 +585,9 @@ theorem sumTopTwo_eq_sum_abs {S : Matrix ι ι ℝ} {w u v : ι → ℝ} (hS : I
 
 /-! ### Lemma B(d) -/
 
-/-- Four vectors in the plane cannot be pairwise obtuse.-/
+/-- Four vectors in the plane cannot be pairwise obtuse.
+@isnad1 id=false.6h8v.s7.88414e170afa from=translated src=- shape=78d17661 vocab=348220d6
+-/
 lemma no_four_pairwise_obtuse (x0 y0 x1 y1 x2 y2 x3 y3 : ℝ) (h01 : x0 * x1 + y0 * y1 < 0)
     (h02 : x0 * x2 + y0 * y2 < 0) (h03 : x0 * x3 + y0 * y3 < 0) (h12 : x1 * x2 + y1 * y2 < 0)
     (h13 : x1 * x3 + y1 * y3 < 0) (h23 : x2 * x3 + y2 * y3 < 0) : False := by
@@ -554,7 +618,9 @@ lemma no_four_pairwise_obtuse (x0 y0 x1 y1 x2 y2 x3 y3 : ℝ) (h01 : x0 * x1 + y
 omit [Fintype ι] in
 /-- **Lemma B(d)** for `n = 2`: the sign pattern of vectors in the plane is `K₄`-free. A clique
 of order `4` would give, after switching, four vectors in `ℝ²` with pairwise negative inner
-products.-/
+products.
+@isnad1 id=k4free.2h4v.s6.bc7e1b9a1598 from=translated src=- shape=7dc53e34 vocab=555075f9
+-/
 theorem k4Free_of_mul_projPair_pos {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) {u v : ι → ℝ}
     (h : ∀ i j, 0 < S i j * (u i * u j + v i * v j)) : K4Free S := by
   rintro a b c d ⟨-, -, -, -, -, -, habc, habd, hacd, -⟩

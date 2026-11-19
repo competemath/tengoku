@@ -37,6 +37,9 @@ variable (ι) in
 def probSimplex : Set (ι → ℝ) := {w | (∀ i, 0 ≤ w i) ∧ ∑ i, w i = 1}
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=convex.0h1v.s4.9ce8ba5a742c from=translated src=- shape=e1838753 vocab=bf818983
+-/
 lemma convex_probSimplex : Convex ℝ (probSimplex ι) := by
   intro x hx y hy a b ha hb hab
   refine ⟨fun i => ?_, ?_⟩
@@ -46,6 +49,9 @@ lemma convex_probSimplex : Convex ℝ (probSimplex ι) := by
       mul_one, hab]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iscompac.0h1v.s4.5d52eeab752e from=translated src=- shape=fea4225f vocab=c9207aca
+-/
 lemma isCompact_probSimplex : IsCompact (probSimplex ι) := by
   have hsub : probSimplex ι ⊆ Set.univ.pi fun _ : ι => Set.Icc (0 : ℝ) 1 := by
     intro w hw i _
@@ -60,6 +66,9 @@ lemma isCompact_probSimplex : IsCompact (probSimplex ι) := by
     isClosed_eq (continuous_finsetSum _ fun i _ => continuous_apply i) continuous_const
   exact h1.inter h2
 
+/--
+@isnad1 id=mem.0h2v.s5.fa0744470695 from=translated src=- shape=20026c28 vocab=070e3a12
+-/
 lemma single_mem_probSimplex (i : ι) : (Pi.single i 1 : ι → ℝ) ∈ probSimplex ι :=
   ⟨fun j => by by_cases h : j = i <;> simp [h], by simp⟩
 
@@ -69,17 +78,26 @@ lemma single_mem_probSimplex (i : ι) : (Pi.single i 1 : ι → ℝ) ∈ probSim
 noncomputable def rowWeighted (w : ι → ℝ) (P : Matrix ι ι 𝕜) : ℝ := ∑ i, w i * ∑ j, ‖P i j‖
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.1h4v.s5.fcc4c157c7a5 from=translated src=- shape=b73580ce vocab=6e95f4c9
+-/
 lemma rowWeighted_nonneg {w : ι → ℝ} (hw : ∀ i, 0 ≤ w i) (P : Matrix ι ι 𝕜) :
     0 ≤ rowWeighted w P :=
   sum_nonneg fun i _ => mul_nonneg (hw i) (sum_nonneg fun _ _ => norm_nonneg _)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.1h4v.s5.fe5149576f9b from=translated src=- shape=1d5dfd3b vocab=b34c4fdb
+-/
 lemma rowWeighted_le_rowSumNorm {w : ι → ℝ} (hw : w ∈ probSimplex ι) (P : Matrix ι ι 𝕜) :
     rowWeighted w P ≤ rowSumNorm P := by
   calc rowWeighted w P ≤ ∑ i, w i * rowSumNorm P :=
         sum_le_sum fun i _ => mul_le_mul_of_nonneg_left (row_le_rowSumNorm P i) (hw.1 i)
     _ = rowSumNorm P := by rw [← sum_mul, hw.2, one_mul]
 
+/--
+@isnad1 id=islub.0h3v.s6.ed7bdf8b9fb4 from=translated src=- shape=3ff9ea06 vocab=430c1554
+-/
 lemma isLUB_rowWeighted [Nonempty ι] (P : Matrix ι ι 𝕜) :
     IsLUB {x | ∃ w ∈ probSimplex ι, rowWeighted w P = x} (rowSumNorm P) := by
   obtain ⟨i, hi⟩ := exists_row_eq_rowSumNorm P
@@ -94,6 +112,9 @@ lemma isLUB_rowWeighted [Nonempty ι] (P : Matrix ι ι 𝕜) :
 /-! ### Convexity -/
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=convexon.2h4v.s7.d4c1b6de7734 from=translated src=- shape=509c7c60 vocab=f9cc7946
+-/
 lemma convexOn_rowWeighted {w : ι → ℝ} (hw : ∀ i, 0 ≤ w i) {K : Set (Matrix ι ι 𝕜)}
     (hK : Convex ℝ K) : ConvexOn ℝ K (rowWeighted w) := by
   refine ⟨hK, fun P _ Q _ a b ha hb _ => ?_⟩
@@ -110,11 +131,17 @@ lemma convexOn_rowWeighted {w : ι → ℝ} (hw : ∀ i, 0 ≤ w i) {K : Set (Ma
   nlinarith
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=continuo.0h3v.s5.e962e3eaf591 from=translated src=- shape=7f6580f2 vocab=1e717163
+-/
 lemma continuous_rowWeighted_left (P : Matrix ι ι 𝕜) :
     Continuous fun w : ι → ℝ => rowWeighted w P :=
   continuous_finsetSum _ fun i _ => (continuous_apply i).mul continuous_const
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=continuo.0h3v.s5.3582b662820e from=translated src=- shape=b44f693e vocab=1e717163
+-/
 lemma continuous_rowWeighted_right (w : ι → ℝ) :
     Continuous fun P : Matrix ι ι 𝕜 => rowWeighted w P :=
   continuous_finsetSum _ fun i _ => continuous_const.mul
@@ -128,6 +155,9 @@ variable (Y : Submodule 𝕜 (ι → 𝕜))
 def matProjs : Set (Matrix ι ι 𝕜) := {P | IsMatrixProjOnto Y P}
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=convex.0h3v.s7.5ffccbe7c4fc from=translated src=- shape=31c78b4e vocab=af42fd21
+-/
 lemma convex_matProjs : Convex ℝ (matProjs Y) := by
   intro P hP Q hQ a b _ _ hab
   refine ⟨fun x => ?_, fun y hy => ?_⟩
@@ -138,12 +168,17 @@ lemma convex_matProjs : Convex ℝ (matProjs Y) := by
   · rw [Matrix.add_mulVec, Matrix.smul_mulVec, Matrix.smul_mulVec, hP.map_id y hy,
       hQ.map_id y hy, ← add_smul, hab, one_smul]
 
+/--
+@isnad1 id=nonempty.0h3v.s6.bb1dabc63c60 from=translated src=- shape=3b4b8e1c vocab=33b3e4e2
+-/
 lemma matProjs_nonempty : (matProjs Y).Nonempty := exists_isMatrixProjOnto Y
 
 /-! ### The rescaling step -/
 
 /-- For every weight `w ∈ Δ` there are projections onto `Y` whose weighted row sums are at most
-`(1 + Nε) · clConst`.-/
+`(1 + Nε) · clConst`.
+@isnad1 id=ex.3h6v.s9.2b45940b6004 from=translated src=- shape=7fee9bc9 vocab=76574e16
+-/
 theorem exists_matProj_rowWeighted_le {m : ℕ} (hm : Module.finrank 𝕜 Y = m)
     {w : ι → ℝ} (hw : w ∈ probSimplex ι) {ε : ℝ} (hε : 0 < ε) :
     ∃ P ∈ matProjs Y, rowWeighted w P ≤ (1 + Fintype.card ι * ε) * clConst 𝕜 ι m := by
@@ -229,11 +264,17 @@ theorem exists_matProj_rowWeighted_le {m : ℕ} (hm : Module.finrank 𝕜 Y = m)
 /-- The inner infimum `g(w) = inf { ∑ᵢ wᵢ rᵢ(P) : P projection onto Y }`.-/
 noncomputable def innerInf (w : ι → ℝ) : ℝ := sInf ((rowWeighted w) '' matProjs Y)
 
+/--
+@isnad1 id=isglb.1h4v.s7.7b706434ee0f from=translated src=- shape=5257f4c2 vocab=e8aa6fec
+-/
 lemma isGLB_innerInf {w : ι → ℝ} (hw : ∀ i, 0 ≤ w i) :
     IsGLB ((rowWeighted w) '' matProjs Y) (innerInf Y w) :=
   isGLB_csInf ((matProjs_nonempty Y).image _)
     ⟨0, by rintro _ ⟨P, -, rfl⟩; exact rowWeighted_nonneg hw P⟩
 
+/--
+@isnad1 id=le.2h5v.s9.068c7cf6e5e2 from=translated src=- shape=e2f64569 vocab=7c82b0ee
+-/
 lemma innerInf_le_clConst {m : ℕ} (hm : Module.finrank 𝕜 Y = m) {w : ι → ℝ}
     (hw : w ∈ probSimplex ι) : innerInf Y w ≤ clConst 𝕜 ι m := by
   have hC := clConst_nonneg (𝕜 := 𝕜) (ι := ι) (m := m)
@@ -253,7 +294,9 @@ lemma innerInf_le_clConst {m : ℕ} (hm : Module.finrank 𝕜 Y = m) {w : ι →
     nlinarith
   nlinarith
 
-/-- A negated version of `IsGLB`, for use with the minimax theorem.-/
+/-- A negated version of `IsGLB`, for use with the minimax theorem.
+@isnad1 id=islub.1h4v.s5.1d6c67b238e9 from=translated src=- shape=3b719f9e vocab=86b28fef
+-/
 lemma isLUB_neg_image {α : Type*} {F : α → ℝ} {K : Set α} {a : ℝ} (h : IsGLB (F '' K) a) :
     IsLUB {x | ∃ P ∈ K, -F P = x} (-a) := by
   refine ⟨?_, fun b hb => ?_⟩
@@ -263,6 +306,9 @@ lemma isLUB_neg_image {α : Type*} {F : α → ℝ} {K : Set α} {a : ℝ} (h : 
       rw [← hy]; have := hb ⟨P, hP, rfl⟩; linarith
     linarith
 
+/--
+@isnad1 id=isglb.1h4v.s5.a28b37fdddc0 from=translated src=- shape=3b719f9e vocab=86b28fef
+-/
 lemma isGLB_neg_image {α : Type*} {F : α → ℝ} {K : Set α} {a : ℝ} (h : IsLUB (F '' K) a) :
     IsGLB {x | ∃ P ∈ K, -F P = x} (-a) := by
   refine ⟨?_, fun b hb => ?_⟩
@@ -272,7 +318,9 @@ lemma isGLB_neg_image {α : Type*} {F : α → ℝ} {K : Set α} {a : ℝ} (h : 
       rw [← hy]; have := hb ⟨P, hP, rfl⟩; linarith
     linarith
 
-/-- **Minimax**: `inf_P maxᵢ rᵢ(P) = sup_w inf_P ∑ᵢ wᵢ rᵢ(P)`.-/
+/-- **Minimax**: `inf_P maxᵢ rᵢ(P) = sup_w inf_P ∑ᵢ wᵢ rᵢ(P)`.
+@isnad1 id=eq.0h3v.s7.244e8366b615 from=translated src=- shape=42a2d510 vocab=6236ca3d
+-/
 theorem sInf_rowSumNorm_eq_sSup_innerInf [Nonempty ι] :
     sInf (rowSumNorm '' matProjs Y) = sSup (innerInf Y '' probSimplex ι) := by
   obtain ⟨P₀, hP₀⟩ := matProjs_nonempty Y
@@ -310,7 +358,9 @@ theorem sInf_rowSumNorm_eq_sSup_innerInf [Nonempty ι] :
   linarith
 
 /-- **Chalmers–Lewicki, upper bound.** For every `m`-dimensional `Y ⊆ ℓ∞^ι`,
-`λ(Y, ℓ∞^ι) ≤ sup { ∑ᵢⱼ tᵢ tⱼ |Pᵢⱼ| }`.-/
+`λ(Y, ℓ∞^ι) ≤ sup { ∑ᵢⱼ tᵢ tⱼ |Pᵢⱼ| }`.
+@isnad1 id=le.1h4v.s9.6f9521a4053e from=translated src=- shape=9a41994e vocab=1c60be82
+-/
 theorem relProjConst_le_clConst {m : ℕ} (hm : Module.finrank 𝕜 Y = m) :
     relProjConst Y ≤ clConst 𝕜 ι m := by
   cases isEmpty_or_nonempty ι

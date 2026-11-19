@@ -60,7 +60,9 @@ namespace PropF
 def weightedR5 (s : Fin 5 → ℝ) : Matrix (Fin 5) (Fin 5) ℝ :=
   of fun i j => s i * R5 i j * s j
 
-/-- The matrix `x 𝟙 - diag(s) R₅ diag(s)`, written out explicitly.-/
+/-- The matrix `x 𝟙 - diag(s) R₅ diag(s)`, written out explicitly.
+@isnad1 id=eq.0h2v.s10.eff3c6c8cf14 from=translated src=- shape=2541b736 vocab=a0f014f6
+-/
 theorem scalar_sub_weightedR5 (s : Fin 5 → ℝ) (x : ℝ) :
     scalar (Fin 5) x - weightedR5 s =
       !![x - s 0 * s 0, s 0 * s 1, -(s 0 * s 2), -(s 0 * s 3), s 0 * s 4;
@@ -71,7 +73,9 @@ theorem scalar_sub_weightedR5 (s : Fin 5 → ℝ) (x : ℝ) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [weightedR5, R5, scalar_apply]
 
-/-- `det(x 𝟙 - diag(s) R₅ diag(s)) = x⁵ - (∑ sᵢ²) x⁴ + 4τ x² - 16δ` with `dᵢ = sᵢ²`.-/
+/-- `det(x 𝟙 - diag(s) R₅ diag(s)) = x⁵ - (∑ sᵢ²) x⁴ + 4τ x² - 16δ` with `dᵢ = sᵢ²`.
+@isnad1 id=eq.0h2v.s9.ab251cc925c3 from=translated src=- shape=232a9a6d vocab=5bc19347
+-/
 theorem det_scalar_sub_weightedR5 (s : Fin 5 → ℝ) (x : ℝ) :
     (scalar (Fin 5) x - weightedR5 s).det
       = x ^ 5 - (s 0 ^ 2 + s 1 ^ 2 + s 2 ^ 2 + s 3 ^ 2 + s 4 ^ 2) * x ^ 4
@@ -83,7 +87,9 @@ theorem det_scalar_sub_weightedR5 (s : Fin 5 → ℝ) (x : ℝ) :
 /-! ### The Vieta argument -/
 
 /-- The Vieta argument for one pair `a, b` of roots of `x⁵ - x⁴ + 4τx² - 16δ` with remaining
-roots `c, d, e`: then `a + b ≤ 4/3`, strictly if `δ > 0`.-/
+roots `c, d, e`: then `a + b ≤ 4/3`, strictly if `δ > 0`.
+@isnad1 id=and.5h6v.s9.72c692d746be from=translated src=- shape=b9cf209f vocab=70d00927
+-/
 theorem pair_bound (a b c d e δ : ℝ) (hδ : 0 ≤ δ)
     (H1 : a + b + c + d + e = 1)
     (H2 : a * b + a * c + a * d + a * e + b * c + b * d + b * e + c * d + c * e + d * e = 0)
@@ -133,7 +139,9 @@ theorem pair_bound (a b c d e δ : ℝ) (hδ : 0 ≤ δ)
     have : 0 ≤ (a + b) * (3 * (a + b) - 4) := mul_nonneg hs.le (by linarith)
     linarith
 
-/-- Vieta for the pair `μ 0, μ 1`: the coefficients are read off by evaluating at `0, ±1, ±2`.-/
+/-- Vieta for the pair `μ 0, μ 1`: the coefficients are read off by evaluating at `0, ±1, ±2`.
+@isnad1 id=and.2h3v.s8.fffd95770fe6 from=translated src=- shape=a653a152 vocab=05ac8794
+-/
 theorem pair01 (μ : Fin 5 → ℝ) (t δ : ℝ) (hδ : 0 ≤ δ)
     (h : ∀ x : ℝ, ∏ i, (x - μ i) = x ^ 5 - x ^ 4 + 4 * t * x ^ 2 - 16 * δ) :
     μ 0 + μ 1 ≤ 4 / 3 ∧ (0 < δ → μ 0 + μ 1 < 4 / 3) := by
@@ -149,7 +157,9 @@ theorem pair01 (μ : Fin 5 → ℝ) (t δ : ℝ) (hδ : 0 ≤ δ)
   · linear_combination (8 * (h1 - h2) - (h3 - h4)) / 12
   · linear_combination (-1 : ℝ) * h0
 
-/-- Any two distinct indices can be moved to `0, 1` by a permutation.-/
+/-- Any two distinct indices can be moved to `0, 1` by a permutation.
+@isnad1 id=ex.1h2v.s7.ece31e352f84 from=translated src=- shape=cd8bd675 vocab=6f921ac2
+-/
 theorem exists_perm (i j : Fin 5) (hij : i ≠ j) :
     ∃ σ : Equiv.Perm (Fin 5), σ 0 = i ∧ σ 1 = j := by
   have h01 : (0 : Fin 5) ≠ 1 := by decide
@@ -163,7 +173,9 @@ theorem exists_perm (i j : Fin 5) (hij : i ≠ j) :
   · rw [Equiv.Perm.mul_apply, Equiv.swap_apply_of_ne_of_ne h01 hj.symm, Equiv.swap_apply_left]
   · rw [Equiv.Perm.mul_apply, Equiv.swap_apply_left, Equiv.swap_apply_self]
 
-/-- Vieta for an arbitrary pair of roots.-/
+/-- Vieta for an arbitrary pair of roots.
+@isnad1 id=and.3h5v.s8.3c541242b847 from=translated src=- shape=b5231ae4 vocab=05ac8794
+-/
 theorem pair_all (μ : Fin 5 → ℝ) (t δ : ℝ) (hδ : 0 ≤ δ)
     (h : ∀ x : ℝ, ∏ i, (x - μ i) = x ^ 5 - x ^ 4 + 4 * t * x ^ 2 - 16 * δ)
     (i j : Fin 5) (hij : i ≠ j) :
@@ -179,13 +191,17 @@ theorem pair_all (μ : Fin 5 → ℝ) (t δ : ℝ) (hδ : 0 ≤ δ)
 
 end PropF
 
-/-- `√D R₅ √D = diag(√d) R₅ diag(√d)`.-/
+/-- `√D R₅ √D = diag(√d) R₅ diag(√d)`.
+@isnad1 id=eq.0h1v.s5.3c492da31974 from=translated src=- shape=66c5f9e3 vocab=ac3b9af5
+-/
 lemma weightedMatrix_R5 (d : Fin 5 → ℝ) :
     weightedMatrix R5 d = PropF.weightedR5 fun i => √(d i) :=
   rfl
 
 /-- **Lemma E.** For `D ∈ 𝒟₅`, `det(x 𝟙₅ - √D R₅ √D) = x⁵ - x⁴ + 4τx² - 16δ`, where
-`δ = d₁ ⋯ d₅` and `τ = ∑_{{i, j, k} coherent} dᵢ dⱼ dₖ`.-/
+`δ = d₁ ⋯ d₅` and `τ = ∑_{{i, j, k} coherent} dᵢ dⱼ dₖ`.
+@isnad1 id=eq.1h1v.s8.6b513af699b5 from=translated src=- shape=8116952d vocab=61b5d4e0
+-/
 theorem charpoly_weightedMatrix_R5 {d : Fin 5 → ℝ} (hd : IsWeight d) :
     (weightedMatrix R5 d).charpoly =
       X ^ 5 - X ^ 4 + C (4 * tauR5 d) * X ^ 2 - C (16 * ∏ i, d i) := by
@@ -202,7 +218,9 @@ theorem charpoly_weightedMatrix_R5 {d : Fin 5 → ℝ} (hd : IsWeight d) :
 /-! ### Proposition F -/
 
 /-- Any two eigenvalues of `√D R₅ √D` sum to at most `4/3`, strictly if `D` is positive
-definite.-/
+definite.
+@isnad1 id=and.3h3v.s8.33fbf8ba7f91 from=translated src=- shape=cb890022 vocab=dca19ba8
+-/
 theorem eigenvalues_add_le_R5 {d : Fin 5 → ℝ} (hd : IsWeight d)
     (hA : (weightedMatrix R5 d).IsHermitian) (i j : Fin 5) (hij : i ≠ j) :
     hA.eigenvalues i + hA.eigenvalues j ≤ 4 / 3 ∧
@@ -222,14 +240,18 @@ theorem eigenvalues_add_le_R5 {d : Fin 5 → ℝ} (hd : IsWeight d)
   have H := PropF.pair_all _ (tauR5 d) (∏ k, d k) hδ h i j hij
   exact ⟨H.1, fun hk => H.2 (Finset.prod_pos fun k _ => hk k)⟩
 
-/-- `π₂(√D R₅ √D) ≤ 4/3` for all `D ∈ 𝒟₅`.-/
+/-- `π₂(√D R₅ √D) ≤ 4/3` for all `D ∈ 𝒟₅`.
+@isnad1 id=le.1h1v.s6.5373f3f29fc6 from=translated src=- shape=91d15ef9 vocab=ecbf8326
+-/
 theorem sumTopTwo_weightedMatrix_R5_le {d : Fin 5 → ℝ} (hd : IsWeight d) :
     π₂ (weightedMatrix R5 d) ≤ 4 / 3 := by
   have hA := isHermitian_weightedMatrix isSignMatrix_R5 d
   exact sumTopTwo_le_of_forall_add_le hA (by simp) fun i j hij =>
     (eigenvalues_add_le_R5 hd hA i j hij).1
 
-/-- **Proposition F, strictness**: `π₂(√D R₅ √D) < 4/3` if `D` is positive definite.-/
+/-- **Proposition F, strictness**: `π₂(√D R₅ √D) < 4/3` if `D` is positive definite.
+@isnad1 id=lt.2h1v.s6.5d8b7c9ef6e5 from=translated src=- shape=30cf913d vocab=df8f07c0
+-/
 theorem sumTopTwo_weightedMatrix_R5_lt {d : Fin 5 → ℝ} (hd : IsWeight d) (hpos : ∀ k, 0 < d k) :
     π₂ (weightedMatrix R5 d) < 4 / 3 := by
   classical

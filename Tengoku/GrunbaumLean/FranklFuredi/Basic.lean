@@ -41,6 +41,9 @@ structure ThreeGraph (V : Type*) where
 
 variable {V : Type*} [DecidableEq V]
 
+/--
+@isnad1 id=iff.0h4v.s5.7a8e80ff63f0 from=translated src=- shape=da71dadc vocab=792c0608
+-/
 lemma card_triple_eq_three {a b c : V} :
     ({a, b, c} : Finset V).card = 3 ↔ a ≠ b ∧ a ≠ c ∧ b ≠ c := by
   constructor
@@ -77,30 +80,65 @@ abbrev IsEdge (H : ThreeGraph V) (a b c : V) : Prop :=
 
 variable {H : ThreeGraph V} {a b c d u : V}
 
+/--
+@isnad1 id=iff.0h5v.s4.f5ae612c1d58 from=translated src=- shape=f4468ad2 vocab=bc539f17
+-/
 lemma isEdge_comm_12 : H.IsEdge a b c ↔ H.IsEdge b a c := by
   unfold IsEdge; rw [insert_comm]
 
+/--
+@isnad1 id=iff.0h5v.s4.7f8f749bb725 from=translated src=- shape=9e4e98ca vocab=bc539f17
+-/
 lemma isEdge_comm_23 : H.IsEdge a b c ↔ H.IsEdge a c b := by
   unfold IsEdge; rw [pair_comm]
 
+/--
+@isnad1 id=iff.0h5v.s4.1687fa1d27fe from=translated src=- shape=58628fe0 vocab=bc539f17
+-/
 lemma isEdge_comm_13 : H.IsEdge a b c ↔ H.IsEdge c b a := by
   rw [isEdge_comm_12, isEdge_comm_23, isEdge_comm_12]
 
+/--
+@isnad1 id=iff.0h5v.s4.df7064233564 from=translated src=- shape=8e40e2f5 vocab=bc539f17
+-/
 lemma isEdge_rotate : H.IsEdge a b c ↔ H.IsEdge b c a := by
   rw [isEdge_comm_12, isEdge_comm_23]
 
+/--
+@isnad1 id=eq.1h5v.s5.d0d152934d6d from=translated src=- shape=ac47b840 vocab=28f105d1
+-/
 lemma IsEdge.card_eq (h : H.IsEdge a b c) : ({a, b, c} : Finset V).card = 3 :=
   H.card_eq_three _ h
 
+/--
+@isnad1 id=ne.1h5v.s4.04c2790b1449 from=translated src=- shape=10dc44e5 vocab=bc539f17
+-/
 lemma IsEdge.ne_12 (h : H.IsEdge a b c) : a ≠ b := (card_triple_eq_three.mp h.card_eq).1
+/--
+@isnad1 id=ne.1h5v.s4.fad70a26e0a9 from=translated src=- shape=18593cad vocab=bc539f17
+-/
 lemma IsEdge.ne_13 (h : H.IsEdge a b c) : a ≠ c := (card_triple_eq_three.mp h.card_eq).2.1
+/--
+@isnad1 id=ne.1h5v.s4.1557ea275173 from=translated src=- shape=614fd52d vocab=bc539f17
+-/
 lemma IsEdge.ne_23 (h : H.IsEdge a b c) : b ≠ c := (card_triple_eq_three.mp h.card_eq).2.2
 
+/--
+@isnad1 id=not.0h4v.s4.5c2a823d0fa5 from=translated src=- shape=f4e5d350 vocab=bc539f17
+-/
 lemma not_isEdge_eq_12 (H : ThreeGraph V) (x y : V) : ¬H.IsEdge x x y := fun h => h.ne_12 rfl
+/--
+@isnad1 id=not.0h4v.s4.f708b299c6a1 from=translated src=- shape=08055b28 vocab=bc539f17
+-/
 lemma not_isEdge_eq_13 (H : ThreeGraph V) (x y : V) : ¬H.IsEdge x y x := fun h => h.ne_13 rfl
+/--
+@isnad1 id=not.0h4v.s4.a931e5ea8a7b from=translated src=- shape=4d2a5649 vocab=bc539f17
+-/
 lemma not_isEdge_eq_23 (H : ThreeGraph V) (x y : V) : ¬H.IsEdge y x x := fun h => h.ne_23 rfl
 
-/-- Two 3-graphs with the same edge triples are equal.-/
+/-- Two 3-graphs with the same edge triples are equal.
+@isnad1 id=eq.1h3v.s5.d9983a360495 from=translated src=- shape=81eeee57 vocab=bc539f17
+-/
 lemma ext_of_isEdge {H H' : ThreeGraph V}
     (h : ∀ a b c, a ≠ b → a ≠ c → b ≠ c → (H.IsEdge a b c ↔ H'.IsEdge a b c)) : H = H' := by
   ext e
@@ -130,11 +168,17 @@ namespace ThreeGraph
 
 variable {H : ThreeGraph V}
 
+/--
+@isnad1 id=eq.6h5v.s6.4b88b6e17dfe from=translated src=- shape=63418498 vocab=792c0608
+-/
 lemma card_four {a b c d : V} (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hbc : b ≠ c)
     (hbd : b ≠ d) (hcd : c ≠ d) : ({a, b, c, d} : Finset V).card = 4 := by
   rw [card_insert_of_notMem (by simp [hab, hac, had]),
     card_insert_of_notMem (by simp [hbc, hbd]), card_pair hcd]
 
+/--
+@isnad1 id=eq.6h6v.s8.9ed875aa8e97 from=translated src=- shape=3a197626 vocab=09ef7666
+-/
 lemma spanned_four (H : ThreeGraph V) {a b c d : V} (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)
     (hbc : b ≠ c) (hbd : b ≠ d) (hcd : c ≠ d) :
     H.spanned {a, b, c, d} =
@@ -183,9 +227,15 @@ lemma spanned_four (H : ThreeGraph V) {a b c d : V} (hab : a ≠ b) (hac : a ≠
       mem_singleton] at hy ⊢ <;> tauto
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=ne.2h4v.s5.ca8fe4018105 from=translated src=- shape=23f698bf vocab=5102f8d5
+-/
 lemma triple_ne_of_mem {s t : Finset V} (x : V) (hs : x ∉ s) (ht : x ∈ t) : s ≠ t :=
   fun h => hs (h ▸ ht)
 
+/--
+@isnad1 id=eq.6h6v.s8.e805db851f52 from=translated src=- shape=82edc288 vocab=d5aae19b
+-/
 lemma card_spanned_four (H : ThreeGraph V) {a b c d : V} (hab : a ≠ b) (hac : a ≠ c)
     (had : a ≠ d) (hbc : b ≠ c) (hbd : b ≠ d) (hcd : c ≠ d) :
     (H.spanned {a, b, c, d}).card =
@@ -209,7 +259,9 @@ lemma card_spanned_four (H : ThreeGraph V) {a b c d : V} (hab : a ≠ b) (hac : 
   simp only [IsEdge]
   ring
 
-/-- The four-point property is equivalent to its propositional form `Good`.-/
+/-- The four-point property is equivalent to its propositional form `Good`.
+@isnad1 id=iff.0h2v.s4.b35771152d6a from=translated src=- shape=1f4bb101 vocab=75aa7714
+-/
 theorem fourPointProperty_iff (H : ThreeGraph V) : H.FourPointProperty ↔ Good H.IsEdge := by
   constructor
   · intro h a b c d hab hac had hbc hbd hcd
@@ -237,23 +289,39 @@ section PropLemmas
 
 variable {X Y Z W Z' : Prop}
 
+/--
+@isnad1 id=var.1h7v.s4.6bfc5f489f9d from=translated src=- shape=11f9e349 vocab=e3b0c442
+-/
 lemma prop_aux1 (h : (X ↔ Y) ↔ (Z ↔ W)) (hx : X) (hy : Y) (hz : Z) : W := by tauto
+/--
+@isnad1 id=var.3h5v.s4.47829057fa24 from=translated src=- shape=304be009 vocab=e3b0c442
+-/
 lemma prop_aux2 (h : (X ↔ Y) ↔ (Z ↔ W)) (hx : X) (hy : ¬Y) (hz : ¬Z) : W := by tauto
+/--
+@isnad1 id=var.3h5v.s4.26c78029c823 from=translated src=- shape=bbc0e25f vocab=e3b0c442
+-/
 lemma prop_aux3 (h : (X ↔ Y) ↔ (Z ↔ W)) (hx : ¬X) (hy : ¬Y) (hz : Z) : W := by tauto
+/--
+@isnad1 id=iff.2h4v.s4.81937ddb459c from=translated src=- shape=812e5106 vocab=e3b0c442
+-/
 lemma prop_aux4 (h1 : X ↔ (Y ↔ Z)) (h2 : X ↔ (Y ↔ Z')) : Z ↔ Z' := by tauto
 
 end PropLemmas
 
 variable {a b c d u : V}
 
-/-- The link `N(u)` of a vertex is triangle-free.-/
+/-- The link `N(u)` of a vertex is triangle-free.
+@isnad1 id=false.4h6v.s5.948cb5838bda from=translated src=- shape=7c95c10e vocab=2d96d881
+-/
 lemma link_triangle_free (hP : Good H.IsEdge) (hab : H.IsEdge u a b) (hbc : H.IsEdge u b c)
     (hac : H.IsEdge u a c) : False := by
   have h := hP u a b c hab.ne_12 hab.ne_13 hbc.ne_13 hab.ne_23 hac.ne_23 hbc.ne_23
   exact h.2 ⟨hab, hac, hbc, prop_aux1 h.1 hab hac hbc⟩
 
 /-- The link `N(u)` of a vertex contains no induced `2K₂` (two disjoint edges with no edge
-between them).-/
+between them).
+@isnad1 id=false.7h7v.s6.29c5027092d5 from=translated src=- shape=f980e1c8 vocab=2d96d881
+-/
 lemma link_no_2K2 (hP : Good H.IsEdge) (hab : H.IsEdge u a b) (hcd : H.IsEdge u c d)
     (hac : ¬H.IsEdge u a c) (had : ¬H.IsEdge u a d) (hbc : ¬H.IsEdge u b c)
     (hbd : ¬H.IsEdge u b d) : False := by

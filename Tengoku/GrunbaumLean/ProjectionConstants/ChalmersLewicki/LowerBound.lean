@@ -32,12 +32,18 @@ variable {𝕜 : Type*} [RCLike 𝕜] {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- The sign `z / |z|` of a scalar (and `0` for `z = 0`).-/
 noncomputable def rsgn (z : 𝕜) : 𝕜 := ((‖z‖⁻¹ : ℝ) : 𝕜) * z
 
+/--
+@isnad1 id=le.0h2v.s4.54da72f61b8a from=translated src=- shape=8eeced41 vocab=966c5c44
+-/
 lemma norm_rsgn_le (z : 𝕜) : ‖rsgn z‖ ≤ 1 := by
   rw [rsgn, norm_mul, RCLike.norm_ofReal, abs_inv, abs_norm]
   by_cases hz : z = 0
   · simp [hz]
   · rw [inv_mul_cancel₀ (norm_ne_zero_iff.2 hz)]
 
+/--
+@isnad1 id=eq.0h2v.s6.0ad8aa20c8be from=translated src=- shape=8e725011 vocab=c700724f
+-/
 lemma rsgn_mul_conj (z : 𝕜) : rsgn z * star z = (‖z‖ : 𝕜) := by
   rw [rsgn, mul_assoc, RCLike.star_def, RCLike.mul_conj]
   by_cases hz : z = 0
@@ -46,6 +52,9 @@ lemma rsgn_mul_conj (z : 𝕜) : rsgn z * star z = (‖z‖ : 𝕜) := by
     push_cast
     field_simp
 
+/--
+@isnad1 id=eq.0h2v.s6.142fcbd634d2 from=translated src=- shape=be180bb6 vocab=2b6142b8
+-/
 lemma star_rsgn (z : 𝕜) : star (rsgn z) = rsgn (star z) := by
   simp [rsgn, RCLike.star_def]
 
@@ -53,25 +62,35 @@ lemma star_rsgn (z : 𝕜) : star (rsgn z) = rsgn (star z) := by
 noncomputable def sgnMat (P : Matrix ι ι 𝕜) : Matrix ι ι 𝕜 := Matrix.of fun i j => rsgn (P i j)
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- For a Hermitian matrix, `Pⱼᵢ = conj Pᵢⱼ`.-/
+/-- For a Hermitian matrix, `Pⱼᵢ = conj Pᵢⱼ`.
+@isnad1 id=eq.1h5v.s7.c344b6add571 from=translated src=- shape=bc74b167 vocab=1654d7e4
+-/
 lemma apply_eq_star_of_herm {P : Matrix ι ι 𝕜} (hP : Pᴴ = P) (i j : ι) :
     P j i = star (P i j) := by
   conv_lhs => rw [← hP]
   rfl
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h3v.s7.7bcef1d1e8e5 from=translated src=- shape=b2866fd9 vocab=5a23dfb4
+-/
 lemma sgnMat_conjTranspose {P : Matrix ι ι 𝕜} (hP : Pᴴ = P) : (sgnMat P)ᴴ = sgnMat P := by
   ext i j
   simp only [sgnMat, conjTranspose_apply, of_apply, star_rsgn]
   rw [← apply_eq_star_of_herm hP]
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=le.0h5v.s5.eebf3a911013 from=translated src=- shape=cc71310c vocab=8c77e4a5
+-/
 lemma norm_sgnMat_le (P : Matrix ι ι 𝕜) (i j : ι) : ‖sgnMat P i j‖ ≤ 1 := norm_rsgn_le _
 
 /-! ### Trace duality -/
 
 /-- **Trace duality in `ℓ∞`.** If `P₀` is idempotent, `A` commutes with `P₀`, and the columns
-of `A` are bounded by `αᵢ` with `∑ αᵢ ≤ 1`, then `Re tr(A P₀) ≤ λ(range P₀, ℓ∞)`.-/
+of `A` are bounded by `αᵢ` with `∑ αᵢ ≤ 1`, then `Re tr(A P₀) ≤ λ(range P₀, ℓ∞)`.
+@isnad1 id=le.4h5v.s11.10026061dc5a from=translated src=- shape=40be8a8d vocab=77d22836
+-/
 theorem re_trace_le_relProjConst {P₀ A : Matrix ι ι 𝕜} (hP₀ : P₀ * P₀ = P₀)
     (hAP : A * P₀ = P₀ * A) {α : ι → ℝ} (hα : ∀ i j, ‖A j i‖ ≤ α i) (hsum : ∑ i, α i ≤ 1) :
     RCLike.re (A * P₀).trace ≤ relProjConst (LinearMap.range (Matrix.toLin' P₀)) := by
@@ -113,21 +132,32 @@ theorem re_trace_le_relProjConst {P₀ A : Matrix ι ι 𝕜} (hP₀ : P₀ * P�
 /-! ### The weighted lower bound -/
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=continuo.0h3v.s5.8d545665bac7 from=translated src=- shape=b44f693e vocab=1ae5e21a
+-/
 lemma continuous_weightedAbsSum (t : ι → ℝ) :
     Continuous fun P : Matrix ι ι 𝕜 => weightedAbsSum t P :=
   continuous_finsetSum _ fun i _ => continuous_finsetSum _ fun j _ =>
     continuous_const.mul (continuous_apply_apply i j).norm
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s7.7e247a5cc8b8 from=translated src=- shape=debd6ce3 vocab=b6553e80
+-/
 lemma trace_mul_eq_sum (B Q : Matrix ι ι 𝕜) : (B * Q).trace = ∑ i, ∑ j, B i j * Q j i := by
   simp [Matrix.trace, Matrix.mul_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.55b41e48e6ec from=translated src=- shape=79854830 vocab=eca89a77
+-/
 lemma diag_mul_mul_diag_apply (t : ι → ℝ) (S : Matrix ι ι 𝕜) (i j : ι) :
     (diagonal (fun i => (t i : 𝕜)) * S * diagonal (fun i => (t i : 𝕜))) i j =
       (t i : 𝕜) * S i j * (t j : 𝕜) := by
   rw [mul_diagonal, diagonal_mul]
 
-/-- `Re tr(D S D Q) ≤ ∑ᵢⱼ tᵢ tⱼ |Qᵢⱼ|` for `|Sᵢⱼ| ≤ 1`, `t ≥ 0` and Hermitian `Q`.-/
+/-- `Re tr(D S D Q) ≤ ∑ᵢⱼ tᵢ tⱼ |Qᵢⱼ|` for `|Sᵢⱼ| ≤ 1`, `t ≥ 0` and Hermitian `Q`.
+@isnad1 id=le.3h5v.s8.25c5517f9178 from=translated src=- shape=9ef96379 vocab=3b943678
+-/
 lemma re_trace_diag_mul_le {t : ι → ℝ} (ht : ∀ i, 0 ≤ t i) {S Q : Matrix ι ι 𝕜}
     (hS : ∀ i j, ‖S i j‖ ≤ 1) (hQ : Qᴴ = Q) :
     RCLike.re (diagonal (fun i => (t i : 𝕜)) * S * diagonal (fun i => (t i : 𝕜)) * Q).trace ≤
@@ -147,6 +177,9 @@ lemma re_trace_diag_mul_le {t : ι → ℝ} (ht : ∀ i, 0 ≤ t i) {S Q : Matri
   have : t i * ‖S i j‖ * t j * ‖Q i j‖ ≤ t i * 1 * t j * ‖Q i j‖ := by gcongr
   linarith
 
+/--
+@isnad1 id=eq.1h4v.s8.bc0b6c1742ea from=translated src=- shape=12bd6f2b vocab=0cebe654
+-/
 lemma re_trace_diag_sgnMat {t : ι → ℝ} {Q : Matrix ι ι 𝕜} (hQ : Qᴴ = Q) :
     RCLike.re (diagonal (fun i => (t i : 𝕜)) * sgnMat Q * diagonal (fun i => (t i : 𝕜)) * Q).trace =
       weightedAbsSum t Q := by
@@ -167,7 +200,9 @@ lemma re_trace_diag_sgnMat {t : ι → ℝ} {Q : Matrix ι ι 𝕜} (hQ : Qᴴ =
 
 /-- **Chalmers–Lewicki, lower bound (positive weights).** For weights `t > 0` with `∑ tᵢ² = 1`
 and `P ∈ 𝒫ₘ(ι)` there is an `m`-dimensional subspace `Y ⊆ ℓ∞^ι` with
-`∑ᵢⱼ tᵢ tⱼ |Pᵢⱼ| ≤ λ(Y, ℓ∞^ι)`.-/
+`∑ᵢⱼ tᵢ tⱼ |Pᵢⱼ| ≤ λ(Y, ℓ∞^ι)`.
+@isnad1 id=ex.3h5v.s9.332383488b86 from=translated src=- shape=ee4a6bbd vocab=6b137bfc
+-/
 theorem exists_le_relProjConst {m : ℕ} {t : ι → ℝ} (ht : ∀ i, 0 < t i)
     (ht1 : ∑ i, t i ^ 2 = 1) {P : Matrix ι ι 𝕜} (hP : P ∈ orthProjs 𝕜 ι m) :
     ∃ Y : Submodule 𝕜 (ι → 𝕜), Module.finrank 𝕜 Y = m ∧ weightedAbsSum t P ≤ relProjConst Y := by
@@ -236,7 +271,9 @@ theorem exists_le_relProjConst {m : ℕ} {t : ι → ℝ} (ht : ∀ i, 0 < t i)
 
 /-! ### From positive weights to all weights -/
 
-/-- **Chalmers–Lewicki, lower bound.** `sup ∑ tᵢ tⱼ |Pᵢⱼ| ≤ λ_𝕜(m, N)`.-/
+/-- **Chalmers–Lewicki, lower bound.** `sup ∑ tᵢ tⱼ |Pᵢⱼ| ≤ λ_𝕜(m, N)`.
+@isnad1 id=le.0h3v.s4.b30f29e7ec26 from=translated src=- shape=78bf4c56 vocab=3a9e7ead
+-/
 theorem clConst_le_maxRelProjConst (m N : ℕ) : clConst 𝕜 (Fin N) m ≤ maxRelProjConst 𝕜 m N := by
   refine clConst_le (maxRelProjConst_nonneg m N) fun t P ht hP => ?_
   set L := maxRelProjConst 𝕜 m N

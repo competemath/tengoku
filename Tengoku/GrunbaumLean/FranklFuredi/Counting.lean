@@ -26,11 +26,17 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 def partSizes (f : V → Fin 6) (i : Fin 6) : ℕ := (univ.filter (fun v => f v = i)).card
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s5.270ba6a243c9 from=translated src=- shape=d61f02ea vocab=fe892bb1
+-/
 lemma sum_partSizes (f : V → Fin 6) : ∑ i, partSizes f i = Fintype.card V := by
   unfold partSizes
   rw [← card_univ (α := V)]
   exact (card_eq_sum_card_fiberwise (fun v _ => mem_univ (f v))).symm
 
+/--
+@isnad1 id=eq.3h5v.s8.236bb2245458 from=translated src=- shape=2fee8636 vocab=4048bbae
+-/
 lemma card_triples_image (f : V → Fin 6) {i j k : Fin 6} (hij : i ≠ j) (hik : i ≠ k)
     (hjk : j ≠ k) :
     ((univ.powersetCard 3).filter (fun e : Finset V => e.image f = {i, j, k})).card =
@@ -93,7 +99,9 @@ lemma card_triples_image (f : V → Fin 6) {i j k : Fin 6} (hij : i ≠ j) (hik 
       · exact h
     rw [e1, e2, e3]
 
-/-- The number of edges of `H_S`: `∑_{(ijk) ∈ S(6)} |Vᵢ| |Vⱼ| |Vₖ|`.-/
+/-- The number of edges of `H_S`: `∑_{(ijk) ∈ S(6)} |Vᵢ| |Vⱼ| |Vₖ|`.
+@isnad1 id=eq.0h2v.s5.b50786fe5669 from=translated src=- shape=e9304ac2 vocab=8f8c46d1
+-/
 theorem card_edges_HS (f : V → Fin 6) : (HS f).edges.card = s6Count (partSizes f) := by
   rw [s6Count_eq_sum]
   have h1 : (HS f).edges.card =
@@ -127,15 +135,24 @@ def Beats (p : V → ℝ × ℝ) (v w : V) : Prop := 0 < det2 (p v) (p w)
 noncomputable instance : DecidableRel (Beats p) := fun _ _ => Classical.dec _
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=not.0h3v.s4.4a75f7a75ed4 from=translated src=- shape=9092b238 vocab=819ad68b
+-/
 lemma not_beats_self (v : V) : ¬Beats p v v := by simp [Beats, det2_self]
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=not.1h4v.s4.79b3834c5235 from=translated src=- shape=352ec335 vocab=819ad68b
+-/
 lemma beats_asymm {v w : V} (h : Beats p v w) : ¬Beats p w v := by
   unfold Beats at *
   rw [det2_antisymm]
   linarith
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=or.2h4v.s5.de2163001db7 from=translated src=- shape=5197de72 vocab=61ae7307
+-/
 lemma beats_total (hp : GenPos p) {v w : V} (hvw : v ≠ w) : Beats p v w ∨ Beats p w v := by
   rcases lt_or_gt_of_ne (hp v w hvw) with h | h
   · right
@@ -145,12 +162,17 @@ lemma beats_total (hp : GenPos p) {v w : V} (hvw : v ≠ w) : Beats p v w ∨ Be
   · exact Or.inl h
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h4v.s5.539b4dca9a6a from=translated src=- shape=068c7989 vocab=dc014953
+-/
 lemma neg_iff_beats {v w : V} : det2 (p v) (p w) < 0 ↔ Beats p w v := by
   unfold Beats
   rw [det2_antisymm (p v) (p w)]
   constructor <;> intro h <;> linarith
 
-/-- The edges of a circle 3-graph are the cyclic triangles of its tournament.-/
+/-- The edges of a circle 3-graph are the cyclic triangles of its tournament.
+@isnad1 id=iff.4h5v.s6.b5b798ca3522 from=translated src=- shape=dbad51de vocab=1507d801
+-/
 lemma isEdge_iff_cyclic (hp : GenPos p) {a b c : V} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     (circleGraph p).IsEdge a b c ↔
       (Beats p a b ∧ Beats p b c ∧ Beats p c a) ∨ (Beats p b a ∧ Beats p c b ∧ Beats p a c) := by
@@ -162,6 +184,9 @@ lemma isEdge_iff_cyclic (hp : GenPos p) {a b c : V} (hab : a ≠ b) (hac : a ≠
 noncomputable def sources (p : V → ℝ × ℝ) (e : Finset V) : Finset V :=
   e.filter (fun v => ∀ w ∈ e, w ≠ v → Beats p v w)
 
+/--
+@isnad1 id=eq.4h5v.s7.b6bd70cdd53c from=translated src=- shape=a5c1ef9b vocab=11d9901e
+-/
 lemma card_sources_triple (hp : GenPos p) {a b c : V} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     (sources p {a, b, c}).card =
       if ({a, b, c} : Finset V) ∈ (circleGraph p).edges then 0 else 1 := by
@@ -193,7 +218,9 @@ lemma card_sources_triple (hp : GenPos p) {a b c : V} (hab : a ≠ b) (hac : a �
     by_cases h1 : Beats p a b <;> by_cases h2 : Beats p a c <;> by_cases h3 : Beats p b c <;>
       simp_all [Ne.symm hab, Ne.symm hac, Ne.symm hbc]
 
-/-- The number of edges of a circle 3-graph in terms of the out-degrees of its tournament.-/
+/-- The number of edges of a circle 3-graph in terms of the out-degrees of its tournament.
+@isnad1 id=eq.1h2v.s6.c9e768fa538a from=translated src=- shape=d14a201f vocab=9a8d2e72
+-/
 theorem card_edges_add_sum_choose (hp : GenPos p) :
     (circleGraph p).edges.card + ∑ v, ((univ.filter (Beats p v)).card).choose 2 =
       (Fintype.card V).choose 3 := by
@@ -261,7 +288,9 @@ theorem card_edges_add_sum_choose (hp : GenPos p) :
   rw [hsum2, sum_congr rfl (fun v _ => hfib v)] at hsum1
   omega
 
-/-- The out-degrees of a tournament add up to `n(n-1)/2`.-/
+/-- The out-degrees of a tournament add up to `n(n-1)/2`.
+@isnad1 id=eq.1h2v.s6.2339d68cba65 from=translated src=- shape=2b25b3ab vocab=fa06f614
+-/
 theorem sum_outdeg (hp : GenPos p) :
     2 * ∑ v, (univ.filter (Beats p v)).card = Fintype.card V * (Fintype.card V - 1) := by
   have h1 : ∀ v w : V, (if Beats p v w then 1 else 0) + (if Beats p w v then 1 else 0) =
@@ -289,6 +318,9 @@ theorem sum_outdeg (hp : GenPos p) :
   omega
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h1v.s5.7277b29ece71 from=translated src=- shape=d78e549a vocab=ec4627f8
+-/
 lemma two_mul_choose_two (m : ℕ) : 2 * (m.choose 2 : ℤ) = (m : ℤ) ^ 2 - m := by
   induction m with
   | zero => simp
@@ -298,6 +330,9 @@ lemma two_mul_choose_two (m : ℕ) : 2 * (m.choose 2 : ℤ) = (m : ℤ) ^ 2 - m 
     linarith
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h1v.s6.7e6a1cd607a1 from=translated src=- shape=f643b002 vocab=0a079b4c
+-/
 lemma six_mul_choose_three (m : ℕ) : 6 * (m.choose 3 : ℤ) = (m : ℤ) * (m - 1) * (m - 2) := by
   induction m with
   | zero => simp
@@ -306,7 +341,9 @@ lemma six_mul_choose_three (m : ℕ) : 6 * (m.choose 3 : ℤ) = (m : ℤ) * (m -
     push_cast
     linear_combination 3 * two_mul_choose_two m + ih
 
-/-- **A circle 3-graph on `n` points in general position has at most `(n³ - n)/24` edges.**-/
+/-- **A circle 3-graph on `n` points in general position has at most `(n³ - n)/24` edges.**
+@isnad1 id=le.1h2v.s6.c327d8091fc0 from=translated src=- shape=640df228 vocab=0184cde2
+-/
 theorem card_edges_circleGraph (hp : GenPos p) :
     24 * ((circleGraph p).edges.card : ℤ) ≤ (Fintype.card V : ℤ) ^ 3 - Fintype.card V := by
   set n := Fintype.card V

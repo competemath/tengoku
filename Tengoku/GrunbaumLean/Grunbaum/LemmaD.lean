@@ -38,7 +38,9 @@ namespace Grunbaum
 
 /-- The key inequality: if `a` is the smallest of three slopes `a, b, c` and the directions with
 slopes `b` and `c` both make an acute angle with the direction of slope `a`, then they make an
-acute angle with each other.-/
+acute angle with each other.
+@isnad1 id=lt.4h3v.s6.1cc88b0093fb from=translated src=- shape=596b211e vocab=caf967d0
+-/
 lemma acute_of_min {a b c : ℝ} (hb : a ≤ b) (hc : a ≤ c) (h1 : 0 < 1 + a * b)
     (h2 : 0 < 1 + a * c) : 0 < 1 + b * c := by
   rcases lt_or_ge 0 c with hc0 | hc0
@@ -48,7 +50,9 @@ lemma acute_of_min {a b c : ℝ} (hb : a ≤ b) (hc : a ≤ c) (h1 : 0 < 1 + a *
   · nlinarith [mul_nonneg_of_nonpos_of_nonpos hb0 hc0]
 
 /-- **Lemma D.** `A₆` is not the sign pattern `(sgn⟨uᵢ, uⱼ⟩)ᵢⱼ` of six vectors
-`uᵢ = (xᵢ, yᵢ) ∈ ℝ²` with pairwise non-zero inner products.-/
+`uᵢ = (xᵢ, yᵢ) ∈ ℝ²` with pairwise non-zero inner products.
+@isnad1 id=false.1h2v.s6.2baf38853896 from=translated src=- shape=1f90fb0d vocab=a5649498
+-/
 theorem not_signPattern_A6 (x y : Fin 6 → ℝ)
     (h : ∀ i j, 0 < A6 i j * (x i * x j + y i * y j)) : False := by
   -- coordinates relative to `u₀`: `aⱼ = ⟨uⱼ, u₀⟩`, `bⱼ = det(u₀, uⱼ)`, slope `σⱼ = bⱼ / aⱼ`
@@ -127,7 +131,9 @@ theorem not_signPattern_A6 (x y : Fin 6 → ℝ)
     rcases v4 with h4 | h4 <;> rcases v5 with h5 | h5 <;> linarith
 
 /-- **Lemma D**, up to switching and permutation: if `S` is the sign pattern of vectors
-`xᵢ = (uᵢ, vᵢ)` in the plane, then no six indices of `S` carry a copy of `A₆` up to switching.-/
+`xᵢ = (uᵢ, vᵢ)` in the plane, then no six indices of `S` carry a copy of `A₆` up to switching.
+@isnad1 id=false.3h6v.s7.aa08ef8c123e from=translated src=- shape=f927214c vocab=36e6b8c0
+-/
 theorem not_signPattern_A6_of_switch {ι : Type*} {S : Matrix ι ι ℝ} {u v : ι → ℝ}
     (h : ∀ i j, 0 < S i j * (u i * u j + v i * v j)) (ψ : Fin 6 → ι) (δ : Fin 6 → ℝ)
     (hδ : ∀ a, δ a * δ a = 1) (hψ : ∀ a b, S (ψ a) (ψ b) = δ a * δ b * A6 a b) : False := by

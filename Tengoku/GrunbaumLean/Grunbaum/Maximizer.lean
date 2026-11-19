@@ -66,7 +66,9 @@ structure IsMaximizer (S : Matrix ι ι ℝ) (w : ι → ℝ) : Prop where
 
 /-! ### Bounds -/
 
-/-- `π₂(√D S √D) ≤ 2`, since `uᵀ(√D S √D)u ≤ |u|²`.-/
+/-- `π₂(√D S √D) ≤ 2`, since `uᵀ(√D S √D)u ≤ |u|²`.
+@isnad1 id=le.2h3v.s5.3f92ff5296f3 from=translated src=- shape=8233dc58 vocab=0f766b29
+-/
 lemma sumTopTwo_weightedMatrix_le_two {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) : π₂ (weightedMatrix S w) ≤ 2 :=
   sumTopTwo_le' (by norm_num) fun _ _ h => by
@@ -75,59 +77,91 @@ lemma sumTopTwo_weightedMatrix_le_two {S : Matrix ι ι ℝ} {w : ι → ℝ} (h
     simp only [fanValue]
     linarith
 
+/--
+@isnad1 id=bddabove.1h2v.s5.10a13c7d1ad0 from=translated src=- shape=e4566556 vocab=f23aef06
+-/
 lemma bddAbove_supWeights_set (S : Matrix ι ι ℝ) (hS : IsSignMatrix S) :
     BddAbove ((fun w => π₂ (weightedMatrix S w)) '' {w | IsWeight w}) :=
   ⟨2, by rintro _ ⟨w, hw, rfl⟩; exact sumTopTwo_weightedMatrix_le_two hS hw⟩
 
+/--
+@isnad1 id=bddabove.0h1v.s5.f8156a52e088 from=translated src=- shape=157de809 vocab=91b725ff
+-/
 lemma bddAbove_supConfigs_set : BddAbove {x | ∃ (S : Matrix ι ι ℝ) (w : ι → ℝ),
     IsSignMatrix S ∧ IsWeight w ∧ x = π₂ (weightedMatrix S w)} :=
   ⟨2, by rintro _ ⟨S, w, hS, hw, rfl⟩; exact sumTopTwo_weightedMatrix_le_two hS hw⟩
 
+/--
+@isnad1 id=le.2h3v.s5.3a841c7d429e from=translated src=- shape=98528a6a vocab=74d9140f
+-/
 lemma sumTopTwo_le_supWeights {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) : π₂ (weightedMatrix S w) ≤ supWeights S :=
   le_csSup (bddAbove_supWeights_set S hS) ⟨w, hw, rfl⟩
 
+/--
+@isnad1 id=le.2h3v.s5.cefce612fc86 from=translated src=- shape=9744402d vocab=fac662e9
+-/
 lemma sumTopTwo_le_supConfigs {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) : π₂ (weightedMatrix S w) ≤ supConfigs ι :=
   le_csSup bddAbove_supConfigs_set ⟨S, w, hS, hw, rfl⟩
 
+/--
+@isnad1 id=le.0h1v.s4.f6387e589f43 from=translated src=- shape=533eefa4 vocab=cc57c543
+-/
 lemma supConfigs_nonneg : 0 ≤ supConfigs ι :=
   Real.sSup_nonneg (by rintro _ ⟨S, w, hS, hw, rfl⟩; exact sumTopTwo_weightedMatrix_nonneg hS hw)
 
+/--
+@isnad1 id=le.2h2v.s5.b1631e0ab635 from=translated src=- shape=74cc8629 vocab=fac662e9
+-/
 lemma supConfigs_le {c : ℝ} (hc : 0 ≤ c)
     (h : ∀ (S : Matrix ι ι ℝ) (w : ι → ℝ), IsSignMatrix S → IsWeight w →
       π₂ (weightedMatrix S w) ≤ c) : supConfigs ι ≤ c :=
   Real.sSup_le (by rintro _ ⟨S, w, hS, hw, rfl⟩; exact h S w hS hw) hc
 
+/--
+@isnad1 id=le.2h3v.s5.d4ee3f561291 from=translated src=- shape=0d88113c vocab=c63c2d03
+-/
 lemma supWeights_le {S : Matrix ι ι ℝ} {c : ℝ} (hc : 0 ≤ c)
     (h : ∀ w, IsWeight w → π₂ (weightedMatrix S w) ≤ c) : supWeights S ≤ c :=
   Real.sSup_le (by rintro _ ⟨w, hw, rfl⟩; exact h w hw) hc
 
+/--
+@isnad1 id=le.1h2v.s4.275f3ffe75ec from=translated src=- shape=6e6d803f vocab=41ca6bfa
+-/
 lemma supWeights_le_supConfigs {S : Matrix ι ι ℝ} (hS : IsSignMatrix S) :
     supWeights S ≤ supConfigs ι :=
   supWeights_le supConfigs_nonneg fun _ hw => sumTopTwo_le_supConfigs hS hw
 
-/-- The value of a maximizer is `Π(2, ι)`.-/
+/-- The value of a maximizer is `Π(2, ι)`.
+@isnad1 id=eq.1h3v.s5.d390ec6bf657 from=translated src=- shape=8203eccd vocab=b061dd4b
+-/
 lemma IsMaximizer.sumTopTwo_eq {S : Matrix ι ι ℝ} {w : ι → ℝ} (h : IsMaximizer S w) :
     π₂ (weightedMatrix S w) = supConfigs ι :=
   le_antisymm (sumTopTwo_le_supConfigs h.isSignMatrix h.isWeight)
     (supConfigs_le (sumTopTwo_weightedMatrix_nonneg h.isSignMatrix h.isWeight)
       fun S' w' hS' hw' => h.le S' w' hS' hw')
 
-/-- A configuration attaining `Π(2, ι)` is a maximizer.-/
+/-- A configuration attaining `Π(2, ι)` is a maximizer.
+@isnad1 id=ismaximi.3h3v.s5.e8e81f65317e from=translated src=- shape=e966e883 vocab=2e5459e2
+-/
 lemma isMaximizer_of_le {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S) (hw : IsWeight w)
     (h : supConfigs ι ≤ π₂ (weightedMatrix S w)) : IsMaximizer S w :=
   ⟨hS, hw, fun _ _ hS' hw' => (sumTopTwo_le_supConfigs hS' hw').trans h⟩
 
 /-! ### Existence of maximizers -/
 
-/-- `fanValue` is linear in the matrix.-/
+/-- `fanValue` is linear in the matrix.
+@isnad1 id=eq.0h5v.s6.152eff51251d from=translated src=- shape=c47aa328 vocab=5ca74bd7
+-/
 lemma fanValue_sub (A B : Matrix ι ι ℝ) (x y : ι → ℝ) :
     fanValue (A - B) x y = fanValue A x y - fanValue B x y := by
   simp only [fanValue, sub_mulVec, dotProduct_sub]
   ring
 
-/-- `π₂` is Lipschitz in the entries.-/
+/-- `π₂` is Lipschitz in the entries.
+@isnad1 id=le.0h3v.s6.c85dd9208a3d from=translated src=- shape=7a9bd72e vocab=35d89517
+-/
 lemma sumTopTwo_le_add (A B : Matrix ι ι ℝ) :
     π₂ A ≤ π₂ B + 2 * ∑ k, ∑ l, |A k l - B k l| := by
   by_cases hne : (fanValues A).Nonempty
@@ -141,6 +175,9 @@ lemma sumTopTwo_le_add (A B : Matrix ι ι ℝ) :
     rw [sumTopTwo_of_not_nonempty hne, sumTopTwo_of_not_nonempty hne']
     positivity
 
+/--
+@isnad1 id=continuo.0h2v.s5.09d8a4df0a61 from=translated src=- shape=d919d85f vocab=4b380083
+-/
 lemma continuous_sumTopTwo_weightedMatrix (S : Matrix ι ι ℝ) :
     Continuous fun w : ι → ℝ => π₂ (weightedMatrix S w) := by
   rw [Metric.continuous_iff]
@@ -168,7 +205,9 @@ lemma continuous_sumTopTwo_weightedMatrix (S : Matrix ι ι ℝ) :
   constructor <;> linarith
 
 omit [Fintype ι] in
-/-- The sign matrices form a finite set.-/
+/-- The sign matrices form a finite set.
+@isnad1 id=finite.0h1v.s4.b097b14c5e19 from=translated src=- shape=179f703f vocab=e2ea3efa
+-/
 lemma finite_isSignMatrix [Finite ι] : Set.Finite {S : Matrix ι ι ℝ | IsSignMatrix S} := by
   apply (Set.finite_range fun b : ι → ι → Bool =>
     (of fun i j => if b i j then (1 : ℝ) else -1)).subset
@@ -180,7 +219,9 @@ lemma finite_isSignMatrix [Finite ι] : Set.Finite {S : Matrix ι ι ℝ | IsSig
   · simp [h]
   · simp [h]; norm_num
 
-/-- The weights form a compact set.-/
+/-- The weights form a compact set.
+@isnad1 id=iscompac.0h1v.s5.681302f484ed from=translated src=- shape=cf91bc5e vocab=b1cfa808
+-/
 lemma isCompact_setOf_isWeight : IsCompact {w : ι → ℝ | IsWeight w} := by
   have hset : {w : ι → ℝ | IsWeight w} = (⋂ i, {w : ι → ℝ | 0 ≤ w i}) ∩ {w | ∑ i, w i = 1} := by
     ext w
@@ -197,12 +238,17 @@ lemma isCompact_setOf_isWeight : IsCompact {w : ι → ℝ | IsWeight w} := by
   rw [← hw.sum_eq]
   exact single_le_sum (f := w) (fun j _ => hw.nonneg j) (mem_univ i)
 
+/--
+@isnad1 id=ex.0h1v.s4.b6a3b96070f4 from=translated src=- shape=90e06aac vocab=8f3cb68f
+-/
 lemma exists_isWeight [Nonempty ι] : ∃ w : ι → ℝ, IsWeight w := by
   classical
   obtain ⟨i⟩ := ‹Nonempty ι›
   exact ⟨Pi.single i 1, fun k => by by_cases h : k = i <;> simp [h], by simp⟩
 
-/-- `Π(2, S)` is attained.-/
+/-- `Π(2, S)` is attained.
+@isnad1 id=ex.1h2v.s5.c8480ad66bf9 from=translated src=- shape=989c1137 vocab=fd148eba
+-/
 theorem exists_supWeights_eq [Nonempty ι] (S : Matrix ι ι ℝ) (hS : IsSignMatrix S) :
     ∃ w, IsWeight w ∧ π₂ (weightedMatrix S w) = supWeights S := by
   obtain ⟨w₀, hw₀⟩ := exists_isWeight (ι := ι)
@@ -211,7 +257,9 @@ theorem exists_supWeights_eq [Nonempty ι] (S : Matrix ι ι ℝ) (hS : IsSignMa
   refine ⟨w, hw, le_antisymm (sumTopTwo_le_supWeights hS hw) ?_⟩
   exact supWeights_le (sumTopTwo_weightedMatrix_nonneg hS hw) fun w' hw' => hmax hw'
 
-/-- **Existence of maximizers** of `Π(2, ι)`.-/
+/-- **Existence of maximizers** of `Π(2, ι)`.
+@isnad1 id=ex.0h1v.s4.ed7c3fc84b18 from=translated src=- shape=7f87246d vocab=62f97f14
+-/
 theorem exists_isMaximizer [Nonempty ι] :
     ∃ (S : Matrix ι ι ℝ) (w : ι → ℝ), IsMaximizer S w := by
   have hmaxw : ∀ S : Matrix ι ι ℝ, ∃ w, IsWeight w ∧
@@ -228,7 +276,9 @@ theorem exists_isMaximizer [Nonempty ι] :
 
 /-! ### Principal submatrices, switching and relabelling -/
 
-/-- If `S i j = εᵢ εⱼ T (f i) (f j)` with `f` injective, then `Π(2, S) ≤ Π(2, T)`.-/
+/-- If `S i j = εᵢ εⱼ T (f i) (f j)` with `f` injective, then `Π(2, S) ≤ Π(2, T)`.
+@isnad1 id=le.4h6v.s6.1bc0bfe2f159 from=translated src=- shape=6de57019 vocab=e28f2b59
+-/
 theorem supWeights_le_of_transfer {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} (hT : IsSignMatrix T)
     {f : ι → κ} (hf : Function.Injective f) {ε : ι → ℝ} (hε : ∀ i, ε i * ε i = 1)
     (hST : ∀ i j, S i j = ε i * ε j * T (f i) (f j)) :
@@ -243,7 +293,9 @@ theorem supWeights_le_of_transfer {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} 
   · exact (sumTopTwo_weightedMatrix_le_of_transfer hT hw hf hε hST).trans
       (sumTopTwo_le_supWeights hT (isWeight_extend hf hw))
 
-/-- `Π(2, S)` is invariant under switching and relabelling.-/
+/-- `Π(2, S)` is invariant under switching and relabelling.
+@isnad1 id=eq.4h6v.s7.d6bbbc1b8990 from=translated src=- shape=8eb4ec4f vocab=e98a9326
+-/
 theorem supWeights_eq_of_equiv {S : Matrix ι ι ℝ} {T : Matrix κ κ ℝ} (hS : IsSignMatrix S)
     (hT : IsSignMatrix T) (e : ι ≃ κ) {ε : ι → ℝ} (hε : ∀ i, ε i * ε i = 1)
     (hST : ∀ i j, S i j = ε i * ε j * T (e i) (e j)) : supWeights S = supWeights T := by
@@ -259,16 +311,25 @@ noncomputable def extendSign (f : κ → ι) (S : Matrix κ κ ℝ) : Matrix ι 
     Function.extend f (fun a => Function.extend f (fun b => S a b) (fun _ => 1) j) (fun _ => 1) i
 
 omit [Fintype ι] [Fintype κ] in
+/--
+@isnad1 id=eq.1h6v.s5.e183ad335bb3 from=translated src=- shape=404df297 vocab=fd694975
+-/
 lemma extendSign_apply {f : κ → ι} (hf : Function.Injective f) (S : Matrix κ κ ℝ) (a b : κ) :
     extendSign f S (f a) (f b) = S a b := by
   simp [extendSign, hf.extend_apply]
 
 omit [Fintype ι] [Fintype κ] in
+/--
+@isnad1 id=eq.1h6v.s5.62be676420db from=translated src=- shape=7e0bc291 vocab=cc27d584
+-/
 lemma extendSign_apply_of_notMem_left {f : κ → ι} (S : Matrix κ κ ℝ) {i : ι}
     (hi : ¬∃ a, f a = i) (j : ι) : extendSign f S i j = 1 := by
   simp [extendSign, Function.extend_apply' _ _ _ hi]
 
 omit [Fintype ι] [Fintype κ] in
+/--
+@isnad1 id=eq.2h6v.s5.865897a35b79 from=translated src=- shape=0210c08f vocab=fd694975
+-/
 lemma extendSign_apply_of_notMem_right {f : κ → ι} (hf : Function.Injective f)
     (S : Matrix κ κ ℝ) (i : ι) {j : ι} (hj : ¬∃ b, f b = j) : extendSign f S i j = 1 := by
   by_cases hi : ∃ a, f a = i
@@ -277,6 +338,9 @@ lemma extendSign_apply_of_notMem_right {f : κ → ι} (hf : Function.Injective 
   · exact extendSign_apply_of_notMem_left S hi j
 
 omit [Fintype ι] [Fintype κ] in
+/--
+@isnad1 id=issignma.2h4v.s4.bc3c98924f26 from=translated src=- shape=e0744d2a vocab=c67a81ad
+-/
 lemma isSignMatrix_extendSign {f : κ → ι} (hf : Function.Injective f) {S : Matrix κ κ ℝ}
     (hS : IsSignMatrix S) : IsSignMatrix (extendSign f S) := by
   refine ⟨fun i j => ?_, fun i j => ?_, fun i => ?_⟩
@@ -301,7 +365,9 @@ lemma isSignMatrix_extendSign {f : κ → ι} (hf : Function.Injective f) {S : M
       exact hS.diag a
     · exact extendSign_apply_of_notMem_left S hi i
 
-/-- Padding with zero weights: `Π(2, κ) ≤ Π(2, ι)` if `κ` embeds into `ι`.-/
+/-- Padding with zero weights: `Π(2, κ) ≤ Π(2, ι)` if `κ` embeds into `ι`.
+@isnad1 id=le.1h3v.s4.e7d97cf9278a from=translated src=- shape=02ba9555 vocab=6df77c0c
+-/
 theorem supConfigs_le_of_injective {f : κ → ι} (hf : Function.Injective f) :
     supConfigs κ ≤ supConfigs ι := by
   refine supConfigs_le supConfigs_nonneg fun S w hS hw => ?_
@@ -310,7 +376,9 @@ theorem supConfigs_le_of_injective {f : κ → ι} (hf : Function.Injective f) :
     (fun a b => by rw [extendSign_apply hf]; ring)).trans
     (sumTopTwo_le_supConfigs (isSignMatrix_extendSign hf hS) (isWeight_extend hf hw))
 
-/-- `Π(2, ι)` only depends on the cardinality of `ι`.-/
+/-- `Π(2, ι)` only depends on the cardinality of `ι`.
+@isnad1 id=eq.0h3v.s4.cae4dd44f787 from=translated src=- shape=65886f4b vocab=c0216508
+-/
 theorem supConfigs_congr (e : κ ≃ ι) : supConfigs κ = supConfigs ι :=
   le_antisymm (supConfigs_le_of_injective e.injective)
     (supConfigs_le_of_injective e.symm.injective)
@@ -318,7 +386,9 @@ theorem supConfigs_congr (e : κ ≃ ι) : supConfigs κ = supConfigs ι :=
 /-! ### Restriction to the support -/
 
 /-- If the weights vanish outside `T` and `π₂(√D S √D) > 1`, then the value `π₂(√D S √D)` is
-attained by the restriction of `(S, D)` to `T`: the top eigenvectors vanish outside `T`.-/
+attained by the restriction of `(S, D)` to `T`: the top eigenvectors vanish outside `T`.
+@isnad1 id=le.4h4v.s7.9310fece46dc from=translated src=- shape=04309718 vocab=1829fbd7
+-/
 theorem sumTopTwo_le_restrict {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSignMatrix S)
     (hw : IsWeight w) (T : Finset ι) (hT : ∀ j, j ∉ T → w j = 0)
     (hgt : 1 < π₂ (weightedMatrix S w)) :
@@ -387,7 +457,9 @@ theorem sumTopTwo_le_restrict {S : Matrix ι ι ℝ} {w : ι → ℝ} (hS : IsSi
 
 /-! ### Maximizers of minimal support -/
 
-/-- If `Π(2, ι) > 0`, then `ι` is nonempty.-/
+/-- If `Π(2, ι) > 0`, then `ι` is nonempty.
+@isnad1 id=nonempty.1h1v.s4.14fa200ea0d0 from=translated src=- shape=16d4200d vocab=75709c63
+-/
 lemma nonempty_of_supConfigs_pos (h : 0 < supConfigs ι) : Nonempty ι := by
   by_contra hne
   rw [not_nonempty_iff] at hne
@@ -401,7 +473,9 @@ support, of size `m`. This gives `S₀ ∈ 𝒜_m` and a positive definite `D₀
 support, since padding with zero weights would give one for `Π(2, d)`.*
 
 The restriction to the support does not change the value, since `Π(2, d) > 1`
-(`Grunbaum.sumTopTwo_le_restrict`).-/
+(`Grunbaum.sumTopTwo_le_restrict`).
+@isnad1 id=ex.1h1v.s6.78bd191b9b44 from=translated src=- shape=32b873b3 vocab=bbc25374
+-/
 theorem exists_minimal_maximizer (h1 : 1 < supConfigs ι) :
     ∃ (m : ℕ) (S₀ : Matrix (Fin m) (Fin m) ℝ) (w₀ : Fin m → ℝ),
       IsMaximizer S₀ w₀ ∧ (∀ i, 0 < w₀ i) ∧ supConfigs (Fin m) = supConfigs ι ∧

@@ -34,6 +34,9 @@ def s6Count (x : Fin 6 → ℕ) : ℕ :=
   x 0 * x 1 * x 2 + x 0 * x 1 * x 3 + x 2 * x 3 * x 4 + x 2 * x 3 * x 5 + x 4 * x 5 * x 0 +
     x 4 * x 5 * x 1 + x 0 * x 2 * x 4 + x 0 * x 3 * x 5 + x 1 * x 2 * x 5 + x 1 * x 3 * x 4
 
+/--
+@isnad1 id=eq.0h1v.s5.4ce1414f5497 from=translated src=- shape=2171ccf7 vocab=cef1a82e
+-/
 lemma s6Count_eq_sum (x : Fin 6 → ℕ) : s6Count x = ∑ T ∈ S6.edges, ∏ i ∈ T, x i := by
   simp +decide [s6Count, S6]
   ring
@@ -52,12 +55,18 @@ def balanced (n : ℕ) (i : Fin 6) : ℕ := n / 6 + if (i : ℕ) < n % 6 then 1 
 /-- `ex(n)`, the number of edges of `H_S` for the balanced class sizes.-/
 def exS6 (n : ℕ) : ℕ := s6Count (balanced n)
 
+/--
+@isnad1 id=eq.0h1v.s5.a860c3bdf771 from=translated src=- shape=b51b3cbc vocab=29387772
+-/
 lemma sum_balanced (n : ℕ) : ∑ i, balanced n i = n := by
   have hr : n % 6 < 6 := Nat.mod_lt _ (by norm_num)
   have h := Nat.div_add_mod n 6
   simp only [balanced, Fin.sum_univ_six]
   interval_cases hr' : n % 6 <;> simp <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s7.c0757826e434 from=translated src=- shape=0c0bf429 vocab=2bef3579
+-/
 lemma exS6_formula (n : ℕ) :
     (exS6 n : ℤ) = 10 * ((n / 6 : ℕ) : ℤ) ^ 3 + 5 * ((n % 6 : ℕ) : ℤ) * ((n / 6 : ℕ) : ℤ) ^ 2 +
       (((n % 6 : ℕ) : ℤ) ^ 2 - ((n % 6 : ℕ) : ℤ)) * ((n / 6 : ℕ) : ℤ) + sig ((n % 6 : ℕ) : ℤ) := by
@@ -68,6 +77,9 @@ lemma exS6_formula (n : ℕ) :
 
 /-! ### The expansion around `q` -/
 
+/--
+@isnad1 id=eq.0h2v.s8.499c18f0759b from=translated src=- shape=941f8432 vocab=2ef21cc2
+-/
 lemma s6Count_expand (x : Fin 6 → ℕ) (q : ℤ) :
     (s6Count x : ℤ) = 10 * q ^ 3 + 5 * (∑ i, ((x i : ℤ) - q)) * q ^ 2 +
       ((∑ i, ((x i : ℤ) - q)) ^ 2 - ∑ i, ((x i : ℤ) - q) ^ 2) * q +
@@ -90,6 +102,9 @@ def pairTab : Fin 15 → Fin 6 × Fin 6 × Fin 6 × Fin 6 :=
     (1, 3, 0, 4), (1, 4, 3, 5), (1, 5, 2, 4), (2, 3, 4, 5), (2, 4, 0, 3), (2, 5, 1, 3),
     (3, 4, 1, 2), (3, 5, 0, 2), (4, 5, 0, 1)]
 
+/--
+@isnad1 id=le.0h1v.s6.1a275f83a487 from=translated src=- shape=f441fa9c vocab=78b27e0f
+-/
 theorem stability (x : Fin 6 → ℕ) : 9 * s6Count x ≤ (∑ i, x i) * e2 x := by
   let w : Fin 15 → ℕ := fun m => x (pairTab m).1 * x (pairTab m).2.1
   let c : Fin 15 → ℕ := fun m => x (pairTab m).2.2.1 + x (pairTab m).2.2.2
@@ -111,6 +126,9 @@ theorem stability (x : Fin 6 → ℕ) : 9 * s6Count x ≤ (∑ i, x i) * e2 x :=
   · have : 9 * s6Count x * s6Count x ≤ (∑ i, x i) * e2 x * s6Count x := by nlinarith
     exact Nat.le_of_mul_le_mul_right this hpos
 
+/--
+@isnad1 id=eq.0h1v.s7.64b948be4bf2 from=translated src=- shape=0a78829d vocab=8a8cf390
+-/
 lemma sq_sum_eq (x : Fin 6 → ℕ) : (∑ i, x i) ^ 2 = 2 * e2 x + ∑ i, x i ^ 2 := by
   simp only [e2, Fin.sum_univ_six]
   ring
@@ -119,7 +137,9 @@ lemma sq_sum_eq (x : Fin 6 → ℕ) : (∑ i, x i) ^ 2 = 2 * e2 x + ∑ i, x i ^
 
 set_option maxRecDepth 100000 in
 /-- The finite check: for deviations `dᵢ ∈ {-1, 0, 1, 2}` with `0 ≤ ∑ dᵢ ≤ 5` and
-`Δ = ∑ dᵢ(dᵢ - 1) < 4`.-/
+`Δ = ∑ dᵢ(dᵢ - 1) < 4`.
+@isnad1 id=other.0h6v.s9.335ca433ca67 from=translated src=- shape=1853909f vocab=c35cc297
+-/
 theorem pattern : ∀ e0 e1 e2 e3 e4 e5 : Fin 4,
     let d : Fin 6 → ℤ := ![(e0 : ℤ) - 1, (e1 : ℤ) - 1, (e2 : ℤ) - 1, (e3 : ℤ) - 1, (e4 : ℤ) - 1,
       (e5 : ℤ) - 1]
@@ -138,7 +158,9 @@ section Main
 
 variable (x : Fin 6 → ℕ)
 
-/-- Everything about `x` in terms of `q = ⌊n/6⌋`, `r = n mod 6` and `d = x - q`.-/
+/-- Everything about `x` in terms of `q = ⌊n/6⌋`, `r = n mod 6` and `d = x - q`.
+@isnad1 id=other.0h1v.s8.37a2bb9da3f6 from=translated src=- shape=57a540e2 vocab=7a8703bc
+-/
 theorem main_estimate :
     let n := ∑ i, x i
     let q : ℤ := ((n / 6 : ℕ) : ℤ)
@@ -209,21 +231,32 @@ end FranklFuredi
 
 namespace FranklFuredi
 
+/--
+@isnad1 id=le.0h1v.s4.36eeec72e993 from=translated src=- shape=bd967a0d vocab=1b731bab
+-/
 lemma int_mul_pred_nonneg (z : ℤ) : 0 ≤ z * (z - 1) := by
   rcases le_or_gt z 0 with h | h
   · nlinarith
   · have : 1 ≤ z := by omega
     nlinarith
 
+/--
+@isnad1 id=and.1h1v.s5.211056929cf4 from=translated src=- shape=65cb2024 vocab=d6d493fb
+-/
 lemma int_bounds_of_mul_pred_lt (z : ℤ) (h : z * (z - 1) < 4) : -1 ≤ z ∧ z ≤ 2 := by
   constructor <;> nlinarith
 
+/--
+@isnad1 id=or.1h1v.s5.680f88d301e7 from=translated src=- shape=3df25a4e vocab=0e4a4b68
+-/
 lemma int_eq_zero_or_one (z : ℤ) (h : z * (z - 1) = 0) : z = 0 ∨ z = 1 := by
   rcases mul_eq_zero.mp h with h' | h'
   · exact Or.inl h'
   · exact Or.inr (by linarith)
 
-/-- Converting the deviations into the format of `pattern`.-/
+/-- Converting the deviations into the format of `pattern`.
+@isnad1 id=and.4h1v.s9.58ae7100a7ab from=translated src=- shape=be1834df vocab=a1b6666b
+-/
 lemma pattern_apply (d : Fin 6 → ℤ) (hd : ∀ i, -1 ≤ d i ∧ d i ≤ 2) :
     0 ≤ ∑ i, d i → ∑ i, d i ≤ 5 → ∑ i, d i * (d i - 1) < 4 →
       (∑ i, d i * (d i - 1) = 0 ∨ ∑ i, d i * (d i - 1) = 2) ∧
@@ -249,7 +282,9 @@ lemma pattern_apply (d : Fin 6 → ℤ) (hd : ∀ i, -1 ≤ d i ∧ d i ≤ 2) :
 
 /-- **The optimisation.**  For class sizes `x` with `∑ xᵢ = n`:
 `s6Count x ≤ ex(n)`; for `n ≥ 5` equality forces an equipartition; and an equipartition gives
-equality iff (for `n ≡ 3 (mod 6)`) its three larger classes form a triple of `S(6)`.-/
+equality iff (for `n ≡ 3 (mod 6)`) its three larger classes form a triple of `S(6)`.
+@isnad1 id=and.0h1v.s9.2d075e273910 from=translated src=- shape=fc4c9dc2 vocab=7e4e18fc
+-/
 theorem opt_core (x : Fin 6 → ℕ) :
     s6Count x ≤ exS6 (∑ i, x i) ∧
       (5 ≤ ∑ i, x i → s6Count x = exS6 (∑ i, x i) →

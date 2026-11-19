@@ -50,6 +50,9 @@ variable {G : V → V → Prop} [DecidableRel G]
 def nbhd (G : V → V → Prop) [DecidableRel G] (w : V) : Finset V := univ.filter (G w)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h4v.s5.92d9512d1261 from=translated src=- shape=56e5ae65 vocab=992c9c34
+-/
 @[simp] lemma mem_nbhd {w x : V} : x ∈ nbhd G w ↔ G w x := by simp [nbhd]
 
 /-- The non-isolated vertices.-/
@@ -60,12 +63,21 @@ def nonIsolated (G : V → V → Prop) [DecidableRel G] : Finset V :=
 
 section Fin5Facts
 
+/--
+@isnad1 id=or.2h1v.s9.231aa9f79595 from=translated src=- shape=2320d36e vocab=b84cdeed
+-/
 lemma fin5_key : ∀ T : Finset (Fin 5), (∀ i ∈ T, i + 1 ∉ T) → (∀ i ∈ T, i + 2 ∈ T ∨ i + 3 ∈ T) →
     T = ∅ ∨ ∃ j, T = {j - 1, j + 1} := by decide
 
+/--
+@isnad1 id=eq.1h2v.s8.4001ede6d8b0 from=translated src=- shape=b4a280fe vocab=36fdfc7f
+-/
 lemma fin5_uniq : ∀ j j' : Fin 5, ({j - 1, j + 1} : Finset (Fin 5)) = {j' - 1, j' + 1} → j = j' := by
   decide
 
+/--
+@isnad1 id=ex.1h2v.s8.368d52aec5b4 from=translated src=- shape=a188387e vocab=4718a3cb
+-/
 lemma fin5_inter : ∀ i j : Fin 5, ¬(j = i + 1 ∨ j = i - 1) →
     ∃ k, k ∈ ({i - 1, i + 1} : Finset (Fin 5)) ∧ k ∈ ({j - 1, j + 1} : Finset (Fin 5)) := by
   decide
@@ -74,7 +86,9 @@ end Fin5Facts
 
 omit [Fintype V] [DecidableEq V] in
 /-- A triangle-free graph without induced `2K₂` which contains an induced 5-cycle `c` is a
-blow-up of the 5-cycle (plus isolated vertices).-/
+blow-up of the 5-cycle (plus isolated vertices).
+@isnad1 id=ex.2h3v.s7.191f4a04c74d from=translated src=- shape=66ff8039 vocab=55b9cf54
+-/
 theorem isC5Blowup_of_c5 (hG : TF2K2 G) (c : Fin 5 → V)
     (hc : ∀ i j, G (c i) (c j) ↔ (j = i + 1 ∨ j = i - 1)) : ∃ f, IsC5Blowup G f := by
   classical
@@ -180,7 +194,9 @@ theorem isC5Blowup_of_c5 (hG : TF2K2 G) (c : Fin 5 → V)
 
 /-- **Dichotomy.**  A triangle-free graph without induced `2K₂` is either a blow-up of the
 5-cycle (plus isolated vertices), or a bipartite chain graph with at least five non-isolated
-vertices.-/
+vertices.
+@isnad1 id=or.1h2v.s6.983b2f01fd66 from=translated src=- shape=546ed5d0 vocab=523a8521
+-/
 theorem dichotomy (hG : TF2K2 G) :
     (∃ f, IsC5Blowup G f) ∨ ∃ A B lev, IsChain G A B lev ∧ 5 ≤ (nonIsolated G).card := by
   classical
