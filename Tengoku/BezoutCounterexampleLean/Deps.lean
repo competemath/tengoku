@@ -1,0 +1,1 @@
+-- BezoutCounterexampleLean: a factory bundle (data/intake/bezout-counterexample-lean). This file only marks the library for Tengoku/All.lean.

@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "14f223a3cb9711a51948d52d144c94412b834e8d4e30f90abce52bda158464dd",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "bezout-counterexample-lean",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 149
+}
