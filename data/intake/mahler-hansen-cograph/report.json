@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "575c08f4d7cf57d1b2a02682ea29249f64650726ed982502052c9404e51d38a1",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "mahler-hansen-cograph",
+ "lint_mode": "proposed",
+ "modules": 29,
+ "part": 1,
+ "theorems": 182
+}

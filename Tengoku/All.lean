@@ -191,6 +191,7 @@ import Tengoku.TaoAnalysis
 import Tengoku.Tautology
 import Tengoku.Absorptioncutoff
 import Tengoku.GrunbaumLean
+import Tengoku.MahlerHansenCograph
 import Tengoku.Complexitylib
 import Tengoku.DuistermaatVanDerKallenNonvanishing
 import Tengoku.Tauceti
