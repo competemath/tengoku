@@ -1,0 +1,239 @@
+/-
+Copyright (c) 2026 Quadratic Carleson formalization contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Quadratic Carleson formalization contributors
+-/
+
+import Tengoku.QuadraticCarlesonPalomarSubmission.QuadraticCarleson.FiniteModulationKernelComparison
+import Tengoku.QuadraticCarlesonPalomarSubmission.QuadraticCarleson.HilbertFiniteTruncationWeakOneOne
+import Tengoku.Seed.MeasureTheory.Integral.DominatedConvergence
+import Tengoku.Seed.Topology.Order.IsLUB
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Measurability of the quadratic maximal truncation
+
+For every real quadratic modulation, the sharp truncation is continuous in
+its positive radius.  Hence its supremum over all positive real radii equals
+a supremum over one fixed countable dense family and is measurable.  The
+argument applies to every measurable integrable input.
+-/
+
+open Filter Function MeasureTheory Set
+open scoped ENNReal Topology
+
+namespace QuadraticCarleson
+namespace QuadraticHilbertMaximalMeasurable
+
+open HilbertFiniteTruncationWeakOneOne
+
+set_option autoImplicit false
+
+noncomputable section
+
+def quadraticHilbertIntegrand
+    (lam : ℝ) (f : ℝ → ℂ) (x t : ℝ) : ℂ :=
+  f (x - t) * phase (lam * t ^ 2) / (t : ℂ)
+
+/--
+@isnad1 id=integrab.2h4v.s6.a517d748a753 from=translated src=- shape=a52bd81f vocab=b8df312d
+-/
+theorem integrableOn_quadraticHilbertTail
+    (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
+    {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    IntegrableOn (quadraticHilbertIntegrand lam f x) {t : ℝ | ε < |t|} := by
+  have hbase := integrableOn_zeroHilbertTail hε hf x
+  have hphase : Measurable fun t : ℝ ↦ phase (lam * t ^ 2) := by
+    unfold phase
+    fun_prop
+  have hbound : ∀ᵐ t : ℝ ∂volume.restrict {t : ℝ | ε < |t|},
+      ‖phase (lam * t ^ 2)‖ ≤ 1 :=
+    Filter.Eventually.of_forall fun t ↦ by rw [norm_phase]
+  have hmul := hbase.bdd_mul hphase.aestronglyMeasurable.restrict hbound
+  apply hmul.congr
+  filter_upwards with t
+  dsimp only [quadraticHilbertIntegrand]
+  field_simp
+
+/--
+@isnad1 id=eq.2h4v.s7.7eb230ff1803 from=translated src=- shape=9eee33c1 vocab=ec6ca388
+-/
+theorem quadraticHilbertTruncation_eq_oneSidedTails
+    (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
+    {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    quadraticHilbertTrunc lam ε f x =
+      (∫ t in Iio (-ε), quadraticHilbertIntegrand lam f x t) +
+        ∫ t in Ioi ε, quadraticHilbertIntegrand lam f x t := by
+  have hset : {t : ℝ | ε < |t|} = Iio (-ε) ∪ Ioi ε := by
+    ext t
+    simp only [mem_ofPred_eq, mem_union, mem_Iio, mem_Ioi]
+    rw [lt_abs]
+    constructor
+    · rintro (h | h)
+      · exact Or.inr h
+      · exact Or.inl (by linarith)
+    · rintro (h | h)
+      · exact Or.inr (by linarith)
+      · exact Or.inl h
+  have hwhole := integrableOn_quadraticHilbertTail lam hε hf x
+  have hleft : IntegrableOn (quadraticHilbertIntegrand lam f x) (Iio (-ε)) := by
+    apply hwhole.mono_set
+    intro t ht
+    change t < -ε at ht
+    change ε < |t|
+    have htneg : t < 0 := ht.trans (neg_neg_of_pos hε)
+    rw [abs_of_neg htneg]
+    linarith
+  have hright : IntegrableOn (quadraticHilbertIntegrand lam f x) (Ioi ε) := by
+    apply hwhole.mono_set
+    intro t ht
+    change ε < |t|
+    rw [abs_of_pos (hε.trans ht)]
+    exact ht
+  have hdis : Disjoint (Iio (-ε)) (Ioi ε) := by
+    apply Set.disjoint_left.2
+    intro t htl htr
+    change t < -ε at htl
+    change ε < t at htr
+    linarith
+  unfold quadraticHilbertTrunc quadraticHilbertIntegrand
+  rw [hset]
+  exact setIntegral_union hdis measurableSet_Ioi hleft hright
+
+/--
+@isnad1 id=continuo.2h4v.s6.f64fd88fd316 from=translated src=- shape=f63c7aca vocab=cb45a4d9
+-/
+theorem continuousAt_quadraticHilbertTruncation_radius
+    (lam : ℝ) {ε : ℝ} (hε : 0 < ε)
+    {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    ContinuousAt (fun δ : ℝ ↦ quadraticHilbertTrunc lam δ f x) ε := by
+  let a : ℝ := ε / 2
+  have ha : 0 < a := by dsimp [a]; linarith
+  have hwhole := integrableOn_quadraticHilbertTail lam ha hf x
+  have hright : IntegrableOn (quadraticHilbertIntegrand lam f x) (Ioi a) := by
+    apply hwhole.mono_set
+    intro t ht
+    change a < t at ht
+    change a < |t|
+    rw [abs_of_pos (ha.trans ht)]
+    exact ht
+  have hleft : IntegrableOn (quadraticHilbertIntegrand lam f x) (Iio (-a)) := by
+    apply hwhole.mono_set
+    intro t ht
+    change t < -a at ht
+    change a < |t|
+    have htneg : t < 0 := ht.trans (neg_neg_of_pos ha)
+    rw [abs_of_neg htneg]
+    linarith
+  have hεa : a < ε := by dsimp [a]; linarith
+  have hrightAt : ContinuousAt
+      (fun δ : ℝ ↦ ∫ t in Ioi δ, quadraticHilbertIntegrand lam f x t) ε := by
+    apply (hright.continuousOn_Ici_primitive_Ioi ε hεa.le).continuousAt
+    exact Ici_mem_nhds hεa
+  have hleftAtBound : ContinuousAt
+      (fun b : ℝ ↦ ∫ t in Iio b, quadraticHilbertIntegrand lam f x t) (-ε) := by
+    apply (hleft.continuousOn_Iic_primitive_Iio (-ε)
+      (by linarith : -ε ≤ -a)).continuousAt
+    exact Iic_mem_nhds (by linarith : -ε < -a)
+  have hleftAt : ContinuousAt
+      (fun δ : ℝ ↦ ∫ t in Iio (-δ), quadraticHilbertIntegrand lam f x t) ε :=
+    hleftAtBound.comp continuousAt_neg
+  have hsum : ContinuousAt
+      (fun δ : ℝ ↦
+        (∫ t in Iio (-δ), quadraticHilbertIntegrand lam f x t) +
+          ∫ t in Ioi δ, quadraticHilbertIntegrand lam f x t) ε :=
+    hleftAt.add hrightAt
+  apply ContinuousAt.congr_of_eventuallyEq hsum
+  filter_upwards [Ioi_mem_nhds hε] with δ hδ
+  exact quadraticHilbertTruncation_eq_oneSidedTails lam hδ hf x
+
+/--
+@isnad1 id=continuo.1h3v.s7.1de25cdd0dd2 from=translated src=- shape=7535f107 vocab=c4f7ce00
+-/
+theorem continuous_quadraticHilbertTruncation_positiveRadii
+    (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
+      quadraticHilbertTrunc lam ε.1 f x) := by
+  rw [continuous_iff_continuousAt]
+  intro ε
+  exact (continuousAt_quadraticHilbertTruncation_radius
+    lam ε.2 hf x).comp continuousAt_subtype_val
+
+/--
+@isnad1 id=continuo.1h3v.s7.25e590710114 from=translated src=- shape=6bbe2bac vocab=d5092de3
+-/
+theorem continuous_enorm_quadraticHilbertTruncation_positiveRadii
+    (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    Continuous (fun ε : {ε : ℝ // 0 < ε} ↦
+      ‖quadraticHilbertTrunc lam ε.1 f x‖ₑ) :=
+  (continuous_quadraticHilbertTruncation_positiveRadii lam hf x).enorm
+
+/-- A fixed countable dense family of positive truncation radii.-/
+def densePositiveRadii : Set {ε : ℝ // 0 < ε} :=
+  (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose
+
+/--
+@isnad1 id=countabl.0h0v.s4.a95296e8374f from=translated src=- shape=3e6b51dd vocab=42d6dcf1
+-/
+theorem countable_densePositiveRadii : densePositiveRadii.Countable :=
+  (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.1
+
+/--
+@isnad1 id=dense.0h0v.s5.f3693fd38f1d from=translated src=- shape=3e6b51dd vocab=0e319996
+-/
+theorem dense_densePositiveRadii : Dense densePositiveRadii :=
+  (TopologicalSpace.exists_countable_dense {ε : ℝ // 0 < ε}).choose_spec.2
+
+def countableQuadraticHilbertMaximalTruncation
+    (lam : ℝ) (f : ℝ → ℂ) (x : ℝ) : ENNReal :=
+  ⨆ ε : densePositiveRadii, ‖quadraticHilbertTrunc lam ε.1.1 f x‖ₑ
+
+/--
+@isnad1 id=eq.1h3v.s5.3322316f2228 from=translated src=- shape=60451e1c vocab=7e377f78
+-/
+theorem countableQuadraticHilbertMaximalTruncation_eq
+    (lam : ℝ) {f : ℝ → ℂ} (hf : Integrable f) (x : ℝ) :
+    countableQuadraticHilbertMaximalTruncation lam f x =
+      quadraticHilbertMaximalTruncation lam f x := by
+  unfold countableQuadraticHilbertMaximalTruncation quadraticHilbertMaximalTruncation
+  exact dense_densePositiveRadii.ciSup'
+    (continuous_enorm_quadraticHilbertTruncation_positiveRadii lam hf x)
+
+/--
+@isnad1 id=measurab.1h3v.s4.aa6a1705e0c9 from=translated src=- shape=414bc316 vocab=c3cbdebb
+-/
+theorem measurable_quadraticHilbertTrunc
+    (lam ε : ℝ) {f : ℝ → ℂ} (hf : Measurable f) :
+    Measurable (quadraticHilbertTrunc lam ε f) := by
+  have hm : Measurable (fun p : ℝ × ℝ ↦
+      f (p.1 - p.2) * phase (lam * p.2 ^ 2) / (p.2 : ℂ)) := by
+    unfold phase
+    fun_prop
+  exact (hm.stronglyMeasurable.integral_prod_right
+    (ν := volume.restrict {t : ℝ | ε < |t|})).measurable
+
+/--
+@isnad1 id=measurab.1h2v.s4.d72199f39242 from=translated src=- shape=e8169009 vocab=00c75052
+-/
+theorem measurable_countableQuadraticHilbertMaximalTruncation
+    (lam : ℝ) {f : ℝ → ℂ} (hf : Measurable f) :
+    Measurable (countableQuadraticHilbertMaximalTruncation lam f) := by
+  let _ := countable_densePositiveRadii.toEncodable
+  apply Measurable.iSup
+  intro ε
+  exact (measurable_quadraticHilbertTrunc lam ε.1.1 hf).enorm
+
+/-- The genuine supremum over every positive real truncation radius is
+measurable for any measurable integrable input.
+@isnad1 id=measurab.2h2v.s5.e3e5bcf2aa0d from=translated src=- shape=d31072d9 vocab=b401c5d7
+-/
+theorem measurable_quadraticHilbertMaximalTruncation
+    (lam : ℝ) {f : ℝ → ℂ} (hf : Measurable f) (hfi : Integrable f) :
+    Measurable (quadraticHilbertMaximalTruncation lam f) := by
+  rw [← funext (countableQuadraticHilbertMaximalTruncation_eq lam hfi)]
+  exact measurable_countableQuadraticHilbertMaximalTruncation lam hf
+
+end
+end QuadraticHilbertMaximalMeasurable
+end QuadraticCarleson

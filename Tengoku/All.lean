@@ -66,6 +66,7 @@ import Tengoku.FourierJacobiCoreEvaluation
 import Tengoku.JacobianTwo
 import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
+import Tengoku.QuadraticCarlesonPalomarSubmission
 import Tengoku.Barbier
 import Tengoku.EvmAsm
 import Tengoku.Lemmalib
