@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "05ee5adfabe35ccbe7bc7d6f973f5a4b53a08b930eb90141f32e5f62cc906f3f",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "congruence-phenomena-lean",
+ "lint_mode": "proposed",
+ "modules": 27,
+ "part": 1,
+ "theorems": 143
+}

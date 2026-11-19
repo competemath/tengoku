@@ -180,6 +180,7 @@ import Tengoku.EquationalTheories
 import Tengoku.XzMathieuSu2Counterexamples
 import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix
+import Tengoku.CongruencePhenomenaLean
 import Tengoku.FactorialHypergraphAuxiliaryErdos
 import Tengoku.StringDiagramsLean
 import Tengoku.CaratheodoryLoewner
