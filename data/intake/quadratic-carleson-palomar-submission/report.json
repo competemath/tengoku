@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "9df353f020a138e6cfb40c301ac6df369290410fcff06069fa21abb4845a65d9",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "quadratic-carleson-palomar-submission",
+ "lint_mode": "proposed",
+ "modules": 294,
+ "part": 1,
+ "theorems": 3281
+}

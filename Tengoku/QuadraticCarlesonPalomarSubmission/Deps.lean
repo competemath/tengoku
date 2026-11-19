@@ -1,0 +1,1 @@
+-- QuadraticCarlesonPalomarSubmission: a factory bundle (data/intake/quadratic-carleson-palomar-submission). This file only marks the library for Tengoku/All.lean.
