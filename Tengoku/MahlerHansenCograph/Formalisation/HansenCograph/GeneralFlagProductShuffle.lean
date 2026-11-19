@@ -176,6 +176,9 @@ noncomputable def Flag.productShuffle
           _ = z.2 := congrArg Subtype.val hj
   }
 
+/--
+@isnad1 id=eq.2h7v.s7.f98655e74186 from=translated src=- shape=6057304c vocab=5c15d2a2
+-/
 theorem Flag.productShuffle_fst_range
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P]
@@ -205,6 +208,9 @@ theorem Flag.productShuffle_fst_range
     refine ⟨((ef (s.left k)).1, (eg (s.right k)).1), ⟨k, rfl⟩, ?_⟩
     simpa [hk] using congrArg Subtype.val hi
 
+/--
+@isnad1 id=eq.2h7v.s7.faba1b0fb4ab from=translated src=- shape=7e5bd8fa vocab=177d4194
+-/
 theorem Flag.productShuffle_snd_range
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P]
@@ -234,6 +240,9 @@ theorem Flag.productShuffle_snd_range
     refine ⟨((ef (s.left k)).1, (eg (s.right k)).1), ⟨k, rfl⟩, ?_⟩
     simpa [hk] using congrArg Subtype.val hj
 
+/--
+@isnad1 id=injectiv.2h6v.s7.edcf25bcae5d from=translated src=- shape=a4110810 vocab=a913f091
+-/
 theorem Flag.productShuffle_injective_fixed
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P]

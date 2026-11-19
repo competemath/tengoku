@@ -51,7 +51,9 @@ noncomputable def toRankedFlagOfCardEq (s : Flag P) {n : ℕ}
           rfl)) }
 
 /-- Forgetting the increasing enumeration recovers the original maximal
-chain.-/
+chain.
+@isnad1 id=eq.1h3v.s6.b44c045d5d29 from=translated src=- shape=d11d932d vocab=ef662a2b
+-/
 theorem toFlag_toRankedFlagOfCardEq (s : Flag P) {n : ℕ}
     (hcard : Nat.card s = n + 1) :
     (toRankedFlagOfCardEq s hcard).toFlag = s := by

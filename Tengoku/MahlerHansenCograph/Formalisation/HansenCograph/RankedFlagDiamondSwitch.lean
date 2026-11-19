@@ -34,6 +34,9 @@ noncomputable def otherMiddle {P : Type u} [PartialOrder P]
     (hP : RankTwoDiamond P) {a b c : P} (hab : a ⋖ b) (hbc : b ⋖ c) : P :=
   Classical.choose (hP hab hbc)
 
+/--
+@isnad1 id=and.3h4v.s6.e98a38fc6ab2 from=translated src=- shape=e265e455 vocab=e33db1ca
+-/
 theorem otherMiddle_spec {P : Type u} [PartialOrder P]
     (hP : RankTwoDiamond P) {a b c : P} (hab : a ⋖ b) (hbc : b ⋖ c) :
     a ⋖ hP.otherMiddle hab hbc ∧
@@ -42,7 +45,9 @@ theorem otherMiddle_spec {P : Type u} [PartialOrder P]
   (Classical.choose_spec (hP hab hbc)).1
 
 /-- Switching the chosen alternative middle again returns the original
-middle element.-/
+middle element.
+@isnad1 id=eq.3h4v.s5.8d0a2d09360f from=translated src=- shape=d33c3523 vocab=bc281e91
+-/
 theorem otherMiddle_reverse {P : Type u} [PartialOrder P]
     (hP : RankTwoDiamond P) {a b c : P} (hab : a ⋖ b) (hbc : b ⋖ c) :
     hP.otherMiddle (hP.otherMiddle_spec hab hbc).1
@@ -53,7 +58,9 @@ theorem otherMiddle_reverse {P : Type u} [PartialOrder P]
       (hP.otherMiddle_spec hab hbc).2.1)).2 b
         ⟨hab, hbc, (hP.otherMiddle_spec hab hbc).2.2.symm⟩).symm
 
-/-- Thin rank-two intervals are preserved by order isomorphisms.-/
+/-- Thin rank-two intervals are preserved by order isomorphisms.
+@isnad1 id=ranktwod.1h3v.s4.c025d4548105 from=translated src=- shape=0751dee6 vocab=b12c53b3
+-/
 theorem orderIso {P Q : Type u} [PartialOrder P] [PartialOrder Q]
     (e : P ≃o Q) (hP : RankTwoDiamond P) : RankTwoDiamond Q := by
   intro a b c hab hbc
@@ -81,7 +88,9 @@ theorem orderIso {P Q : Type u} [PartialOrder P] [PartialOrder Q]
     apply e.symm.injective
     simpa only [OrderIso.symm_apply_apply] using heq
 
-/-- Reversing the order preserves thin rank-two intervals.-/
+/-- Reversing the order preserves thin rank-two intervals.
+@isnad1 id=ranktwod.1h1v.s3.eadf30dbbebe from=translated src=- shape=d96e9922 vocab=b6d7c8f1
+-/
 theorem orderDual {P : Type u} [PartialOrder P]
     (hP : RankTwoDiamond P) : RankTwoDiamond (OrderDual P) := by
   intro a b c hab hbc
@@ -134,6 +143,9 @@ def switchMiddleIndex {N : ℕ} (i : Fin N) : Fin (N + 2) :=
 def switchSuccIndex {N : ℕ} (i : Fin N) : Fin (N + 2) :=
   ⟨i.1 + 2, by omega⟩
 
+/--
+@isnad1 id=covby.0h4v.s6.13173bb452f9 from=translated src=- shape=6c228dae vocab=971610af
+-/
 theorem covBy_switchPred_middle {N : ℕ}
     (f : RankedFlag P (N + 1)) (i : Fin N) :
     f (switchPredIndex i) ⋖ f (switchMiddleIndex i) := by
@@ -148,6 +160,9 @@ theorem covBy_switchPred_middle {N : ℕ}
   rw [hpred, hmid] at h
   exact h
 
+/--
+@isnad1 id=covby.0h4v.s6.bae4893f257f from=translated src=- shape=6c228dae vocab=d2448348
+-/
 theorem covBy_switchMiddle_succ {N : ℕ}
     (f : RankedFlag P (N + 1)) (i : Fin N) :
     f (switchMiddleIndex i) ⋖ f (switchSuccIndex i) := by
@@ -226,6 +241,9 @@ def switchMiddle {N : ℕ} (f : RankedFlag P (N + 1)) (i : Fin N)
           omega
         simp [hleft, hright, f.covBy_succ j]
 
+/--
+@isnad1 id=eq.2h5v.s7.8090cad1e8b5 from=translated src=- shape=7e1c6215 vocab=a5796901
+-/
 @[simp] theorem switchMiddle_apply_middle {N : ℕ}
     (f : RankedFlag P (N + 1)) (i : Fin N) (b' : P)
     (hlo : f (switchPredIndex i) ⋖ b')
@@ -233,6 +251,9 @@ def switchMiddle {N : ℕ} (f : RankedFlag P (N + 1)) (i : Fin N)
     switchMiddle f i b' hlo hhi (switchMiddleIndex i) = b' := by
   simp [switchMiddle]
 
+/--
+@isnad1 id=eq.3h6v.s7.1fd2ba96abd3 from=translated src=- shape=7e3700b4 vocab=a5796901
+-/
 theorem switchMiddle_apply_of_ne {N : ℕ}
     (f : RankedFlag P (N + 1)) (i : Fin N) (b' : P)
     (hlo : f (switchPredIndex i) ⋖ b')
@@ -242,7 +263,9 @@ theorem switchMiddle_apply_of_ne {N : ℕ}
   simp [switchMiddle, hj]
 
 /-- Replacing the same position twice, first by an alternative middle and
-then by the original entry, recovers the initial saturated flag.-/
+then by the original entry, recovers the initial saturated flag.
+@isnad1 id=eq.2h5v.s8.4a14628ef26b from=translated src=- shape=2da942e6 vocab=c12cebc9
+-/
 theorem switchMiddle_restore {N : ℕ}
     (f : RankedFlag P (N + 1)) (i : Fin N) (b' : P)
     (hlo : f (switchPredIndex i) ⋖ b')

@@ -25,10 +25,16 @@ variable {P : Type u} {Q : Type v}
 variable [PartialOrder P] [BoundedOrder P] [Fintype P]
 variable [PartialOrder Q] [BoundedOrder Q] [Fintype Q]
 
+/--
+@isnad1 id=finite.0h2v.s3.17ea78c7d6ed from=translated src=- shape=65786801 vocab=5c7efa11
+-/
 noncomputable instance instFiniteSizedFlag (R : Type*) [LE R] [Finite R]
     (n : ℕ) : Finite (SizedFlag R n) :=
   Finite.of_injective Subtype.val Subtype.val_injective
 
+/--
+@isnad1 id=finite.0h2v.s4.167e88751568 from=translated src=- shape=fd72fa61 vocab=7cc26951
+-/
 noncomputable instance instFiniteInterleaving (n m : ℕ) :
     Finite (Interleaving n m) :=
   Finite.of_injective (fun s : Interleaving n m => s.1) Subtype.val_injective
@@ -80,6 +86,9 @@ noncomputable def boundedSizedFlagProductEmbedding :
 
 /- All finite factor flag sizes and all interleavings inject into the product
 flag set. -/
+/--
+@isnad1 id=le.0h2v.s5.406fa1459e67 from=translated src=- shape=356a122c vocab=45966562
+-/
 theorem boundedSizedFlagProduct_card_lower_bound :
     Nat.card (BoundedSizedProductCode (P := P) (Q := Q)) ≤
       Nat.card (Flag (P × Q)) := by
@@ -89,6 +98,9 @@ theorem boundedSizedFlagProduct_card_lower_bound :
 
 /- Expanded form: sum over the two factor flag sizes, with the binomial
 coefficient counting the interleaving choices. -/
+/--
+@isnad1 id=le.0h2v.s7.d9d45adb1f0c from=translated src=- shape=db480a39 vocab=e84acbb0
+-/
 theorem boundedSizedFlagProduct_card_lower_bound_sum :
     (∑ n : Fin (Fintype.card P), ∑ m : Fin (Fintype.card Q),
       Nat.card (SizedFlag P n) * Nat.card (SizedFlag Q m) *

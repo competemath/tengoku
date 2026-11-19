@@ -43,6 +43,9 @@ def dropWithTop (s : Flag (WithTop P)) : Flag P where
         have hct : c ∈ t := hsub hc
         simpa using ht.total hxt hct
 
+/--
+@isnad1 id=iff.0h3v.s6.1bc2af33e064 from=translated src=- shape=f7f62322 vocab=2538c675
+-/
 @[simp] theorem mem_dropWithTop (s : Flag (WithTop P)) (x : P) :
     x ∈ dropWithTop s ↔ (x : WithTop P) ∈ s := Iff.rfl
 
@@ -79,12 +82,18 @@ def addWithTop (s : Flag P) : Flag (WithTop P) where
           hsub (Or.inl ⟨y, hy, rfl⟩)
         simpa using ht.total hxt hy'
 
+/--
+@isnad1 id=iff.0h3v.s6.a1f991f58866 from=translated src=- shape=470f92be vocab=77010f6d
+-/
 @[simp] theorem coe_mem_addWithTop (s : Flag P) (x : P) :
     (x : WithTop P) ∈ addWithTop s ↔ x ∈ s := by
   change (x : WithTop P) ∈
     (((↑) : P → WithTop P) '' (s : Set P) ∪ {⊤}) ↔ x ∈ s
   simp
 
+/--
+@isnad1 id=mem.0h2v.s5.595a384e5ba9 from=translated src=- shape=0b1f5160 vocab=f9abac01
+-/
 @[simp] theorem top_mem_addWithTop (s : Flag P) :
     (⊤ : WithTop P) ∈ addWithTop s := by
   exact Or.inr (by simp)

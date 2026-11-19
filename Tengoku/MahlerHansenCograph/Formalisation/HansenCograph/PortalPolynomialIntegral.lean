@@ -20,7 +20,9 @@ open scoped BigOperators
 
 namespace HansenCograph
 
-/-- The beta integral of a pair of natural powers.-/
+/-- The beta integral of a pair of natural powers.
+@isnad1 id=eq.0h2v.s7.cae2269afe07 from=translated src=- shape=65161285 vocab=8daa55f5
+-/
 theorem integral_pow_mul_one_sub_pow (k l : ℕ) :
     (∫ x : ℝ in 0..1, x ^ k * (1 - x) ^ l) =
       (k.factorial : ℝ) * (l.factorial : ℝ) /
@@ -61,7 +63,9 @@ theorem integral_pow_mul_one_sub_pow (k l : ℕ) :
       apply Complex.ext <;> norm_num
 
 /-- Integrating a portal polynomial sums its portal vector and divides by
-the factorial of one more than its degree.-/
+the factorial of one more than its degree.
+@isnad1 id=eq.0h2v.s6.4d3f1d6b19e1 from=translated src=- shape=8f5295d9 vocab=6d82af6d
+-/
 theorem integral_portalPolynomial (n : ℕ) (a : ℕ → ℝ) :
     (∫ x : ℝ in 0..1, portalPolynomial n a x) =
       (∑ k ∈ Finset.range (n + 1), a k) /

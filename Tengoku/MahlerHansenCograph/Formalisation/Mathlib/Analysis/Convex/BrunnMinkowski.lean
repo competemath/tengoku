@@ -24,7 +24,9 @@ namespace Tengoku.MahlerHansenCograph end Tengoku.MahlerHansenCograph open Tengo
 open MeasureTheory Set
 open scoped Pointwise
 
-/-- Brunn–Minkowski when `A` has infinite volume.-/
+/-- Brunn–Minkowski when `A` has infinite volume.
+@isnad1 id=le.3h4v.s10.fe0acea58880 from=translated src=- shape=1e556bd9 vocab=f3e3004d
+-/
 lemma _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_infinite
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA : volume A = ⊤) (hB : B.Nonempty) (hABC : A + B ⊆ C)
@@ -38,7 +40,9 @@ lemma _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_infinite
     _ ≤ (volume (A + B))^((d:ℝ)+1)⁻¹ := by gcongr; exact singleton_subset_iff.mpr hB.some_mem
     _ ≤ (volume C)^((d:ℝ)+1)⁻¹ := by gcongr
 
-/-- Brunn–Minkowski when `A` has zero volume.-/
+/-- Brunn–Minkowski when `A` has zero volume.
+@isnad1 id=le.3h4v.s10.6f59659841fc from=translated src=- shape=68d010c4 vocab=070e6bc8
+-/
 lemma _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_zero
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA_zero : volume A = 0) (hA_nonempty : A.Nonempty) (hABC : A + B ⊆ C)
@@ -52,7 +56,9 @@ lemma _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_zero
     _ ≤ volume (A + B) := by gcongr; exact singleton_subset_iff.mpr hA_nonempty.some_mem
     _ ≤ volume C := by gcongr
 
-/-- Prékopa–Leindler applied to indicator functions of two measurable sets.-/
+/-- Prékopa–Leindler applied to indicator functions of two measurable sets.
+@isnad1 id=le.5h4v.s10.8e4d7aa47481 from=translated src=- shape=f25b0b0b vocab=1cf7b7b5
+-/
 lemma _root_.Tengoku.MahlerHansenCograph.prekopa_leindler_indicator
     {d : ℕ} {θ : ℝ} {A B : Set (Fin (d + 1) → ℝ)}
     (hθ0 : 0 < θ) (hθ1 : θ < 1)
@@ -82,7 +88,9 @@ lemma _root_.Tengoku.MahlerHansenCograph.prekopa_leindler_indicator
     simp only [zero_le]⟩
   simp_all  -- Rewrite the integrals of indicators as volumes
 
-/-- The Brunn–Minkowski inequality in arbitrary dimension.-/
+/-- The Brunn–Minkowski inequality in arbitrary dimension.
+@isnad1 id=le.5h3v.s10.2fae9ec487b8 from=translated src=- shape=a0aad12f vocab=9baf911e
+-/
 theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski
     {d : ℕ} {A B : Set (Fin (d + 1) → ℝ)}
     (hA_nonempty : A.Nonempty) (hA_measurable : MeasurableSet A)
@@ -218,7 +226,9 @@ theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski
     ENNReal.ofReal_toReal hvolAinf, ENNReal.ofReal_toReal hvolBinf] at h_result_simp_2
   exact h_result_simp_2
 
-/-- Brunn–Minkowski for `EuclideanSpace ℝ (Fin (d + 1))` (a wrapper around `brunn_minkowski`).-/
+/-- Brunn–Minkowski for `EuclideanSpace ℝ (Fin (d + 1))` (a wrapper around `brunn_minkowski`).
+@isnad1 id=le.5h3v.s11.e1449e505830 from=translated src=- shape=b1c5e603 vocab=25128f1b
+-/
 theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_euclideanSpace
     {d : ℕ} {A B : Set (EuclideanSpace ℝ (Fin (d + 1)))}
     (hA_nonempty : A.Nonempty) (hA_measurable : MeasurableSet A)
@@ -254,7 +264,9 @@ theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_euclideanSpace
 ## Arbitrary finite coordinate types
 -/
 
-/-- Brunn--Minkowski for a nonempty finite coordinate type.-/
+/-- Brunn--Minkowski for a nonempty finite coordinate type.
+@isnad1 id=le.5h3v.s8.839b4caf27a2 from=translated src=- shape=69d31f36 vocab=7c0ce357
+-/
 theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_fintype
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {A B : Set (ι → ℝ)}
@@ -308,7 +320,9 @@ theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_fintype
     h_add, h_vol (A + B) hAB_measurable] at hbm
   simpa [hd] using hbm
 
-/-- Finite-volume real-valued form of `brunn_minkowski_fintype`.-/
+/-- Finite-volume real-valued form of `brunn_minkowski_fintype`.
+@isnad1 id=le.8h3v.s9.b39503e76fd0 from=translated src=- shape=38518aeb vocab=34fa2046
+-/
 theorem _root_.Tengoku.MahlerHansenCograph.brunn_minkowski_fintype_toReal
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {A B : Set (ι → ℝ)}

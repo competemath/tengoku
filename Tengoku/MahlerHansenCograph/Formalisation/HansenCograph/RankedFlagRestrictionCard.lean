@@ -69,14 +69,18 @@ noncomputable def prefixEquiv {n : ℕ} (f : RankedFlag P n)
     dsimp
     exact sourceIndex_spec f x.1.1 x.2
 
-/-- A lower-interval restriction at index `i` has cardinality `i+1`.-/
+/-- A lower-interval restriction at index `i` has cardinality `i+1`.
+@isnad1 id=eq.0h4v.s8.af81956b44c7 from=translated src=- shape=17704fb6 vocab=57673e86
+-/
 theorem card_restrictIic_apply {n : ℕ} (f : RankedFlag P n)
     (i : Fin (n + 1)) :
     Nat.card (Flag.restrictIic f.toFlag (f i) ⟨i, rfl⟩) = i.1 + 1 := by
   rw [← Nat.card_congr (prefixEquiv f i), Nat.card_fin]
 
 /-- A member of a ranked flag is determined by the cardinality of the flag
-prefix ending there.-/
+prefix ending there.
+@isnad1 id=eq.2h5v.s7.e231b33e7af0 from=translated src=- shape=550ce2dc vocab=e3fa70dc
+-/
 theorem apply_eq_of_mem_of_card_restrictIic {n : ℕ} (f : RankedFlag P n)
     (i : Fin (n + 1)) (x : P) (hx : x ∈ f.toFlag)
     (hcard : Nat.card (Flag.restrictIic f.toFlag x hx) = i.1 + 1) :

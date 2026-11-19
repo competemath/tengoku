@@ -168,6 +168,9 @@ instance {A B : Type*} (inc : A → B → Prop) :
     cases h
     rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.c39efb0f02e0 from=translated src=- shape=51a2010b vocab=481a5e70
+-/
 @[ext]
 theorem IncidenceClosedSet.ext {A B : Type*} {inc : A → B → Prop}
     {X Y : IncidenceClosedSet inc} (h : (X : Set B) = Y) : X = Y :=

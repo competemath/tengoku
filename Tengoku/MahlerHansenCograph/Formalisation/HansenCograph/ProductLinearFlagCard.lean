@@ -24,7 +24,9 @@ universe u v
 namespace Flag
 
 /-- A maximal chain in the product of two nonempty finite linear orders has
-the sum of the two factor lengths, with the common endpoint counted once.-/
+the sum of the two factor lengths, with the common endpoint counted once.
+@isnad1 id=eq.2h5v.s7.508d934743e2 from=translated src=- shape=3eb76e85 vocab=585fe27f
+-/
 theorem prod_card_eq_of_card
     {P : Type u} {Q : Type v}
     [LinearOrder P] [Finite P] [Nonempty P]
@@ -114,7 +116,9 @@ theorem prod_card_eq_of_card
     simpa using h.symm
   omega
 
-/-- Cardinality-only form of `Flag.prod_card_eq_of_card`.-/
+/-- Cardinality-only form of `Flag.prod_card_eq_of_card`.
+@isnad1 id=eq.0h3v.s7.85ef03fd744a from=translated src=- shape=35c9caff vocab=74796bd9
+-/
 theorem prod_card_eq
     {P : Type u} {Q : Type v}
     [LinearOrder P] [Finite P] [Nonempty P]

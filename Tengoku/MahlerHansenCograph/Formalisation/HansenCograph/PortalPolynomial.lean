@@ -26,11 +26,17 @@ noncomputable def portalPolynomial (n : ℕ) (a : ℕ → ℝ) (x : ℝ) : ℝ :
     a k / ((k.factorial : ℝ) * ((n - k).factorial : ℝ)) *
       x ^ k * (1 - x) ^ (n - k)
 
+/--
+@isnad1 id=continuo.0h2v.s4.52ccf53ef427 from=translated src=- shape=13bbe4cc vocab=ea406c85
+-/
 theorem portalPolynomial_continuous (n : ℕ) (a : ℕ → ℝ) :
     Continuous (portalPolynomial n a) := by
   unfold portalPolynomial
   fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s5.3d296416e194 from=translated src=- shape=ae3af0c2 vocab=50da08cc
+-/
 @[simp] theorem portalPolynomial_zero (n : ℕ) (a : ℕ → ℝ) :
     portalPolynomial n a 0 = a 0 / (n.factorial : ℝ) := by
   classical
@@ -42,6 +48,9 @@ theorem portalPolynomial_continuous (n : ℕ) (a : ℕ → ℝ) :
     simp [zero_pow hkpos.ne']
   · simp
 
+/--
+@isnad1 id=eq.0h2v.s5.b8af08a59925 from=translated src=- shape=6a295dd3 vocab=50da08cc
+-/
 @[simp] theorem portalPolynomial_one (n : ℕ) (a : ℕ → ℝ) :
     portalPolynomial n a 1 = a n / (n.factorial : ℝ) := by
   classical
@@ -54,6 +63,9 @@ theorem portalPolynomial_continuous (n : ℕ) (a : ℕ → ℝ) :
     simp [zero_pow hsubpos.ne']
   · simp
 
+/--
+@isnad1 id=iff.0h2v.s5.3c0120a81cc2 from=translated src=- shape=c2827a45 vocab=5195c292
+-/
 theorem portalPolynomial_zero_lt_one_iff (n : ℕ) (a : ℕ → ℝ) :
     portalPolynomial n a 0 < portalPolynomial n a 1 ↔ a 0 < a n := by
   simp only [portalPolynomial_zero, portalPolynomial_one]
@@ -89,7 +101,9 @@ private theorem sum_range_diag
     exact False.elim (hnot hmem)
 
 /-- Expanding the normalized shuffle convolution and summing over its output
-degree removes the rank constraint.-/
+degree removes the rank constraint.
+@isnad1 id=eq.0h5v.s7.d73b739efae9 from=translated src=- shape=30f855fe vocab=d2059654
+-/
 theorem portalPolynomial_convolution_expand
     (n m : ℕ) (a b : ℕ → ℝ) (x : ℝ) :
     portalPolynomial (n + m) (portalShuffleConvolution n m a b) x =
@@ -150,7 +164,9 @@ theorem portalPolynomial_convolution_expand
       rw [hsub]
 
 /-- The normalized portal polynomial turns the exact shuffle convolution into
-ordinary multiplication.-/
+ordinary multiplication.
+@isnad1 id=eq.0h5v.s5.9304e00fa1e8 from=translated src=- shape=ca261207 vocab=12a5f5c2
+-/
 theorem portalPolynomial_convolution
     (n m : ℕ) (a b : ℕ → ℝ) (x : ℝ) :
     portalPolynomial (n + m) (portalShuffleConvolution n m a b) x =

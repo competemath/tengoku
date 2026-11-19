@@ -33,6 +33,9 @@ noncomputable def portalShuffleConvolution
   ∑ k ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (m + 1),
     portalShuffleKernel n m s k l * a k * b l
 
+/--
+@isnad1 id=le.0h5v.s4.f408220f6672 from=translated src=- shape=e13a4e99 vocab=6c76cb5d
+-/
 theorem portalShuffleKernel_nonneg (n m s k l : ℕ) :
     0 ≤ portalShuffleKernel n m s k l := by
   unfold portalShuffleKernel
@@ -41,6 +44,9 @@ theorem portalShuffleKernel_nonneg (n m s k l : ℕ) :
 /- The two shuffle factors become the product of factorial denominators after
 normalizing an output rank by `s! (n+m-s)!`.  This is the local algebraic
 identity behind the Bernstein-polynomial product law. -/
+/--
+@isnad1 id=eq.3h5v.s7.1ec853eacfc6 from=translated src=- shape=bec94072 vocab=8567aca4
+-/
 theorem portalShuffleKernel_factorial_normalized
     {n m s k l : ℕ} (hk : k ≤ n) (hl : l ≤ m) (hkl : k + l = s) :
     portalShuffleKernel n m s k l /
@@ -65,6 +71,9 @@ theorem portalShuffleKernel_factorial_normalized
 /- The preceding identity can be summed rank-by-rank: dividing the output
 coefficient by its factorial normalization turns the shuffle convolution into
 the finite convolution of the two normalized input vectors. -/
+/--
+@isnad1 id=eq.0h5v.s7.82ff0c7bebef from=translated src=- shape=ac7d4df4 vocab=741056ad
+-/
 theorem portalShuffleConvolution_factorial_normalized
     (n m s : ℕ) (a b : ℕ → ℝ) :
     portalShuffleConvolution n m a b s /
@@ -100,7 +109,9 @@ theorem portalShuffleConvolution_factorial_normalized
               field_simp
   · simp [portalShuffleKernel, h]
 
-/-- A portal convolution is nonnegative when both bounded input vectors are.-/
+/-- A portal convolution is nonnegative when both bounded input vectors are.
+@isnad1 id=le.2h5v.s6.df4c3138d9b6 from=translated src=- shape=a2a42664 vocab=636afe0e
+-/
 theorem portalShuffleConvolution_nonneg
     {n m : ℕ} {a b : ℕ → ℝ}
     (ha : ∀ k < n + 1, 0 ≤ a k)
@@ -119,7 +130,9 @@ theorem portalShuffleConvolution_nonneg
 
 /-- Explicit lower-bound transfer for the portal convolution.  This is purely
 finite algebra: the hypotheses provide componentwise lower bounds and the
-nonnegativity needed to multiply those inequalities.-/
+nonnegativity needed to multiply those inequalities.
+@isnad1 id=le.4h7v.s7.3cddeb57aaa5 from=translated src=- shape=6053af9e vocab=636afe0e
+-/
 theorem portalShuffleConvolution_le
     {n m : ℕ} {a a' b b' : ℕ → ℝ}
     (ha0 : ∀ k < n + 1, 0 ≤ a k)
@@ -146,7 +159,9 @@ theorem portalShuffleConvolution_le
 
 /-- A strict increase in one bounded portal coordinate transfers to a strict
 increase of the convolution at `s` when its shuffle coefficient and the
-opposite-factor coordinate are positive.  This is finite algebra only.-/
+opposite-factor coordinate are positive.  This is finite algebra only.
+@isnad1 id=lt.8h8v.s7.98c5d5fa17c5 from=translated src=- shape=e5483ffc vocab=bcd98289
+-/
 theorem portalShuffleConvolution_strict_of_witness
     {n m : ℕ} {a a' b : ℕ → ℝ} {s k₀ l₀ : ℕ}
     (ha0 : ∀ k < n + 1, 0 ≤ a k)
@@ -210,7 +225,9 @@ theorem portalShuffleConvolution_strict_of_witness
   rw [← hdiff] at hsum_pos
   linarith
 
-/-- The second-vector orientation of the finite strictness witness.-/
+/-- The second-vector orientation of the finite strictness witness.
+@isnad1 id=lt.8h8v.s7.1666bb05ed6f from=translated src=- shape=d65766d7 vocab=bcd98289
+-/
 theorem portalShuffleConvolution_strict_of_witness_right
     {n m : ℕ} {a b b' : ℕ → ℝ} {s k₀ l₀ : ℕ}
     (ha0 : ∀ k < n + 1, 0 ≤ a k)
@@ -268,7 +285,9 @@ theorem portalShuffleConvolution_strict_of_witness_right
 
 /-- A two-sided finite strictness interface.  Either an explicitly positive
 left witness or an explicitly positive right witness forces strict growth
-after both portal vectors are enlarged.-/
+after both portal vectors are enlarged.
+@isnad1 id=lt.5h7v.s8.b611f07366f2 from=translated src=- shape=9cd064eb vocab=bcd98289
+-/
 theorem portalShuffleConvolution_strict_of_witness_either
     {n m : ℕ} {a a' b b' : ℕ → ℝ} (s : ℕ)
     (ha0 : ∀ k < n + 1, 0 ≤ a k)

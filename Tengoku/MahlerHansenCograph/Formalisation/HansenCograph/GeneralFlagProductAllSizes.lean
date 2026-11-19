@@ -26,11 +26,17 @@ variable [PartialOrder Q] [Finite Q]
 noncomputable instance instGeneralFintypeP : Fintype P := Fintype.ofFinite P
 noncomputable instance instGeneralFintypeQ : Fintype Q := Fintype.ofFinite Q
 
+/--
+@isnad1 id=finite.0h2v.s3.17ea78c7d6ed from=translated src=- shape=65786801 vocab=5c7efa11
+-/
 noncomputable instance instFiniteGeneralSizedProductCode
     (R : Type*) [LE R] [Finite R] (n : ℕ) :
     Finite (SizedFlag R n) :=
   Finite.of_injective Subtype.val Subtype.val_injective
 
+/--
+@isnad1 id=finite.0h2v.s4.167e88751568 from=translated src=- shape=fd72fa61 vocab=7cc26951
+-/
 noncomputable instance instFiniteGeneralInterleaving (n m : ℕ) :
     Finite (Interleaving n m) :=
   Finite.of_injective (fun s : Interleaving n m => s.1) Subtype.val_injective
@@ -102,6 +108,9 @@ noncomputable def generalBoundedSizedFlagProductEmbedding :
     subst s'
     rfl
 
+/--
+@isnad1 id=le.0h2v.s5.85cb325a666f from=translated src=- shape=96456412 vocab=01ead4d3
+-/
 theorem generalBoundedSizedFlagProduct_card_lower_bound :
     Nat.card (GeneralBoundedSizedProductCode (P := P) (Q := Q)) ≤
       Nat.card (Flag (P × Q)) := by
@@ -109,6 +118,9 @@ theorem generalBoundedSizedFlagProduct_card_lower_bound :
     (generalBoundedSizedFlagProductEmbedding (P := P) (Q := Q))
     (generalBoundedSizedFlagProductEmbedding (P := P) (Q := Q)).injective
 
+/--
+@isnad1 id=le.0h2v.s7.272e70f23962 from=translated src=- shape=a3fa03ad vocab=ce77f2e6
+-/
 theorem generalBoundedSizedFlagProduct_card_lower_bound_sum :
     (∑ n : Fin (Fintype.card P), ∑ m : Fin (Fintype.card Q),
       Nat.card (SizedFlag P n) * Nat.card (SizedFlag Q m) *

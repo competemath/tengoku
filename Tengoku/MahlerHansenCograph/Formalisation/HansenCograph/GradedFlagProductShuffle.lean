@@ -38,6 +38,9 @@ structure ShufflePath (n m : ℕ) where
   left_surjective : Function.Surjective left
   right_surjective : Function.Surjective right
 
+/--
+@isnad1 id=eq.2h4v.s6.49bbc0cddfa5 from=translated src=- shape=a20d59da vocab=160169fb
+-/
 @[ext] theorem ShufflePath.ext {n m : ℕ} {s t : ShufflePath n m}
     (hleft : ∀ k, s.left k = t.left k)
     (hright : ∀ k, s.right k = t.right k) : s = t := by
@@ -46,6 +49,9 @@ structure ShufflePath (n m : ℕ) where
   simp only [mk.injEq]
   exact ⟨funext hleft, funext hright⟩
 
+/--
+@isnad1 id=finite.0h2v.s3.971674c9a516 from=translated src=- shape=b794339c vocab=8eacd04c
+-/
 noncomputable instance instFiniteShufflePath {n m : ℕ} :
     Finite (ShufflePath n m) :=
   Finite.of_injective (fun s ↦ (s.left, s.right)) (fun _ _ h ↦
@@ -60,7 +66,9 @@ variable [PartialOrder Q] [BoundedOrder Q]
 variable {n m : ℕ}
 
 /-- A saturated ranked flag carries covers between any two covering rank
-indices, not only between the syntactically adjacent indices in its fields.-/
+indices, not only between the syntactically adjacent indices in its fields.
+@isnad1 id=covby.1h5v.s6.d87e4b9970b8 from=translated src=- shape=e8c48b97 vocab=8966b399
+-/
 theorem RankedFlag.map_covBy (f : RankedFlag P n)
     {i j : Fin (n + 1)} (hij : i ⋖ j) : f i ⋖ f j := by
   have hij' : i.1 + 1 = j.1 := by
@@ -99,6 +107,9 @@ def RankedFlag.prodOfShuffle (f : RankedFlag P n) (g : RankedFlag Q m)
 /- The coordinate projections of an interleaved product flag recover the two
 factor flags. These identities are the key to comparing shuffles whose
 factor chain lengths are not fixed in advance. -/
+/--
+@isnad1 id=eq.0h7v.s7.cf66633c5ad8 from=translated src=- shape=7e5a55bd vocab=e9233522
+-/
 theorem RankedFlag.prodOfShuffle_fst_range
     (f : RankedFlag P n) (g : RankedFlag Q m) (s : ShufflePath n m) :
     Prod.fst '' (prodOfShuffle f g s).toFlag.carrier = Set.range f := by
@@ -115,6 +126,9 @@ theorem RankedFlag.prodOfShuffle_fst_range
       ⟩
     · rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.db0762f6a499 from=translated src=- shape=82b3a419 vocab=9b49926a
+-/
 theorem RankedFlag.prodOfShuffle_snd_range
     (f : RankedFlag P n) (g : RankedFlag Q m) (s : ShufflePath n m) :
     Prod.snd '' (prodOfShuffle f g s).toFlag.carrier = Set.range g := by
@@ -132,7 +146,9 @@ theorem RankedFlag.prodOfShuffle_snd_range
     · rfl
 
 /-- The interleaved product flag remembers both factor flags and the whole
-shuffle path.-/
+shuffle path.
+@isnad1 id=injectiv.0h4v.s7.d7f56fda81c7 from=translated src=- shape=d2434830 vocab=b7bad2ab
+-/
 theorem RankedFlag.prodOfShuffle_injective :
     Function.Injective
       (fun x : RankedFlag P n × RankedFlag Q m × ShufflePath n m ↦
@@ -250,7 +266,9 @@ def rankedFlagProductEmbedding :
     RankedFlag.prodOfShuffle_injective⟩
 
 /-- Two factor flags and every available shuffle path give distinct product
-flags.-/
+flags.
+@isnad1 id=le.0h4v.s6.fbc26d62afa3 from=translated src=- shape=f662797f vocab=ee602512
+-/
 theorem rankedFlag_product_card_lower_bound [Finite P] [Finite Q] :
     Nat.card (RankedFlag P n) * Nat.card (RankedFlag Q m) *
         Nat.card (ShufflePath n m) ≤

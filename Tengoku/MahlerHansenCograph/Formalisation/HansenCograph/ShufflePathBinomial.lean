@@ -38,20 +38,32 @@ def leftSupport (w : Interleaving n m) : Finset (Fin (n + m + 1)) :=
 def rightSupport (w : Interleaving n m) : Finset (Fin (n + m + 1)) :=
   (w.valᶜ : Finset (Fin (n + m))).map Fin.castSuccEmb
 
+/--
+@isnad1 id=eq.0h3v.s5.ff7f826dcd81 from=translated src=- shape=cfe5db2f vocab=3f37b87d
+-/
 @[simp] theorem card_leftSupport (w : Interleaving n m) :
     (leftSupport w).card = n := by
   simp [leftSupport, Set.powersetCard.card_eq]
 
+/--
+@isnad1 id=eq.0h3v.s5.46babb7f896e from=translated src=- shape=558cdce5 vocab=78ba6dcb
+-/
 @[simp] theorem card_rightSupport (w : Interleaving n m) :
     (rightSupport w).card = m := by
   rw [rightSupport, card_map, card_compl, Fintype.card_fin,
     Set.powersetCard.card_eq]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s8.5979a5dbbdae from=translated src=- shape=f7188662 vocab=6117cef5
+-/
 @[simp] theorem castSucc_mem_leftSupport (w : Interleaving n m)
     (k : Fin (n + m)) : k.castSucc ∈ leftSupport w ↔ k ∈ w.val := by
   simp [leftSupport]
 
+/--
+@isnad1 id=iff.0h4v.s8.44c434afab55 from=translated src=- shape=d70ce26e vocab=87d895b9
+-/
 @[simp] theorem castSucc_mem_rightSupport (w : Interleaving n m)
     (k : Fin (n + m)) : k.castSucc ∈ rightSupport w ↔ k ∉ w.val := by
   simp [rightSupport]
@@ -64,11 +76,17 @@ def leftCount (w : Interleaving n m) (k : Fin (n + m + 1)) : ℕ :=
 def rightCount (w : Interleaving n m) (k : Fin (n + m + 1)) : ℕ :=
   ((rightSupport w).filter (· < k)).card
 
+/--
+@isnad1 id=le.0h4v.s5.1afc298c0a8d from=translated src=- shape=1fcc97d2 vocab=4f23a577
+-/
 theorem leftCount_le (w : Interleaving n m) (k : Fin (n + m + 1)) :
     leftCount w k ≤ n := by
   exact (card_filter_le (leftSupport w) (· < k)).trans_eq
     (card_leftSupport w)
 
+/--
+@isnad1 id=le.0h4v.s5.3922edb6d155 from=translated src=- shape=0826cd5d vocab=ccf390b6
+-/
 theorem rightCount_le (w : Interleaving n m) (k : Fin (n + m + 1)) :
     rightCount w k ≤ m := by
   exact (card_filter_le (rightSupport w) (· < k)).trans_eq
@@ -82,6 +100,9 @@ def left (w : Interleaving n m) (k : Fin (n + m + 1)) : Fin (n + 1) :=
 def right (w : Interleaving n m) (k : Fin (n + m + 1)) : Fin (m + 1) :=
   ⟨rightCount w k, Nat.lt_succ_of_le (rightCount_le w k)⟩
 
+/--
+@isnad1 id=eq.1h4v.s9.76a837d46f3d from=translated src=- shape=aa241cda vocab=dc6fcf6b
+-/
 theorem filter_lt_succ_eq_insert (S : Finset (Fin (n + m + 1)))
     (k : Fin (n + m)) (hk : k.castSucc ∈ S) :
     S.filter (· < k.succ) = insert k.castSucc (S.filter (· < k.castSucc)) := by
@@ -102,6 +123,9 @@ theorem filter_lt_succ_eq_insert (S : Finset (Fin (n + m + 1)))
     · exact ⟨hk, by simp⟩
     · exact ⟨hxS, lt_trans hxlt (by simp)⟩
 
+/--
+@isnad1 id=eq.1h4v.s9.e5d80874bb53 from=translated src=- shape=30c803c0 vocab=bbb05c30
+-/
 theorem filter_lt_succ_eq_of_notMem (S : Finset (Fin (n + m + 1)))
     (k : Fin (n + m)) (hk : k.castSucc ∉ S) :
     S.filter (· < k.succ) = S.filter (· < k.castSucc) := by
@@ -122,12 +146,21 @@ theorem filter_lt_succ_eq_of_notMem (S : Finset (Fin (n + m + 1)))
   · rintro ⟨hxS, hxlt⟩
     exact ⟨hxS, lt_trans hxlt (by simp)⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.6b7a8bf5d8c8 from=translated src=- shape=8d9a92ff vocab=4b4dbf0b
+-/
 @[simp] theorem leftCount_zero (w : Interleaving n m) : leftCount w 0 = 0 := by
   simp [leftCount]
 
+/--
+@isnad1 id=eq.0h3v.s6.fa40817c370d from=translated src=- shape=8d9a92ff vocab=87097899
+-/
 @[simp] theorem rightCount_zero (w : Interleaving n m) : rightCount w 0 = 0 := by
   simp [rightCount]
 
+/--
+@isnad1 id=eq.0h3v.s5.7c0e366a8c15 from=translated src=- shape=690dfa2a vocab=a1656bb6
+-/
 @[simp] theorem leftCount_last (w : Interleaving n m) :
     leftCount w (.last (n + m)) = n := by
   rw [leftCount, filter_eq_self.mpr, card_leftSupport]
@@ -135,6 +168,9 @@ theorem filter_lt_succ_eq_of_notMem (S : Finset (Fin (n + m + 1)))
   rcases mem_map.mp hx with ⟨a, _, rfl⟩
   exact Fin.castSucc_lt_last a
 
+/--
+@isnad1 id=eq.0h3v.s5.196f498ea188 from=translated src=- shape=dd142767 vocab=4d8037c7
+-/
 @[simp] theorem rightCount_last (w : Interleaving n m) :
     rightCount w (.last (n + m)) = m := by
   rw [rightCount, filter_eq_self.mpr, card_rightSupport]
@@ -142,6 +178,9 @@ theorem filter_lt_succ_eq_of_notMem (S : Finset (Fin (n + m + 1)))
   rcases mem_map.mp hx with ⟨a, _, rfl⟩
   exact Fin.castSucc_lt_last a
 
+/--
+@isnad1 id=eq.1h4v.s7.530ef8060fac from=translated src=- shape=6a15d6cf vocab=47cdc1b5
+-/
 theorem leftCount_succ_of_mem (w : Interleaving n m) (k : Fin (n + m))
     (hk : k ∈ w.val) :
     leftCount w k.succ = leftCount w k.castSucc + 1 := by
@@ -150,18 +189,27 @@ theorem leftCount_succ_of_mem (w : Interleaving n m) (k : Fin (n + m))
   rw [card_insert_of_notMem]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s7.73a11d5dc3a0 from=translated src=- shape=30f48612 vocab=47cdc1b5
+-/
 theorem leftCount_succ_of_notMem (w : Interleaving n m) (k : Fin (n + m))
     (hk : k ∉ w.val) :
     leftCount w k.succ = leftCount w k.castSucc := by
   rw [leftCount, leftCount,
     filter_lt_succ_eq_of_notMem (leftSupport w) k (by simpa)]
 
+/--
+@isnad1 id=eq.1h4v.s7.3ce4637ab25a from=translated src=- shape=cb4dbed1 vocab=e15cc1af
+-/
 theorem rightCount_succ_of_mem (w : Interleaving n m) (k : Fin (n + m))
     (hk : k ∈ w.val) :
     rightCount w k.succ = rightCount w k.castSucc := by
   rw [rightCount, rightCount,
     filter_lt_succ_eq_of_notMem (rightSupport w) k (by simpa)]
 
+/--
+@isnad1 id=eq.1h4v.s7.ca8748aa1b46 from=translated src=- shape=be421f5a vocab=e15cc1af
+-/
 theorem rightCount_succ_of_notMem (w : Interleaving n m) (k : Fin (n + m))
     (hk : k ∉ w.val) :
     rightCount w k.succ = rightCount w k.castSucc + 1 := by
@@ -171,7 +219,9 @@ theorem rightCount_succ_of_notMem (w : Interleaving n m) (k : Fin (n + m))
   simp
 
 /-- Prefix counts of a finite support attain every value from zero to the
-cardinality of that support.-/
+cardinality of that support.
+@isnad1 id=ex.2h4v.s8.68f4f8859091 from=translated src=- shape=214ef070 vocab=678a3116
+-/
 theorem exists_card_filter_lt_eq {N r : ℕ} (S : Finset (Fin (N + 1)))
     (hcard : S.card = r) (hlast : ∀ x ∈ S, x < Fin.last N)
     (i : Fin (r + 1)) :
@@ -263,6 +313,9 @@ def toShufflePath (w : Interleaving n m) : ShufflePath n m where
         exact Fin.castSucc_lt_last a) i
     exact ⟨k, Fin.ext hk⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.8401c421ea5c from=translated src=- shape=050f662d vocab=e2afd050
+-/
 theorem mem_iff_left_ne (w : Interleaving n m) (k : Fin (n + m)) :
     k ∈ w.val ↔ left w k.castSucc ≠ left w k.succ := by
   by_cases hk : k ∈ w.val
@@ -275,6 +328,9 @@ theorem mem_iff_left_ne (w : Interleaving n m) (k : Fin (n + m)) :
       change leftCount w k.castSucc = leftCount w k.succ
       exact (leftCount_succ_of_notMem w k hk).symm))).elim⟩
 
+/--
+@isnad1 id=injectiv.0h2v.s4.c26a57fdb812 from=translated src=- shape=72d8d086 vocab=214924d4
+-/
 theorem toShufflePath_injective : Function.Injective
     (toShufflePath : Interleaving n m → ShufflePath n m) := by
   intro w z hwz
@@ -291,7 +347,9 @@ def embedding (n m : ℕ) : Interleaving n m ↪ ShufflePath n m :=
 
 end Interleaving
 
-/-- There are at least `choose (n + m) n` shuffle paths.-/
+/-- There are at least `choose (n + m) n` shuffle paths.
+@isnad1 id=le.0h2v.s4.eeef0b5aa399 from=translated src=- shape=020eaf5d vocab=10cf2ac7
+-/
 theorem choose_le_card_shufflePath (n m : ℕ) :
     Nat.choose (n + m) n ≤ Nat.card (ShufflePath n m) := by
   have h := Nat.card_le_card_of_injective (Interleaving.embedding n m)
@@ -299,7 +357,9 @@ theorem choose_le_card_shufflePath (n m : ℕ) :
   rw [Set.powersetCard.card, Nat.card_fin] at h
   exact h
 
-/-- Binomial graded-product lower bound for maximal-chain sequences.-/
+/-- Binomial graded-product lower bound for maximal-chain sequences.
+@isnad1 id=le.0h4v.s6.970916f08d4c from=translated src=- shape=02cf3bd4 vocab=639ece24
+-/
 theorem rankedFlag_product_choose_lower_bound
     {P : Type u} {Q : Type v}
     [PartialOrder P] [BoundedOrder P] [Finite P]

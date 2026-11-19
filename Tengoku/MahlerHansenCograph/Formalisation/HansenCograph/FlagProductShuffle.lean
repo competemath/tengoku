@@ -59,7 +59,9 @@ noncomputable def sizedFlagProductEmbedding
           (congrArg (Prod.snd ∘ Prod.snd) hcode)
 
 /-- If the two factor chains have `n + 1` and `m + 1` elements, their
-binomially many interleavings give distinct product maximal chains.-/
+binomially many interleavings give distinct product maximal chains.
+@isnad1 id=le.0h4v.s6.659f56895864 from=translated src=- shape=a916e6ad vocab=4647473a
+-/
 theorem sizedFlag_product_choose_lower_bound
     {P : Type u} {Q : Type v}
     [PartialOrder P] [BoundedOrder P] [Finite P]

@@ -143,7 +143,9 @@ noncomputable def projectionShufflePath
   exact toShufflePath (restrictToProjections s) hP hQ
 
 /-- Shuffling the projected factor chains with the path recovered from the
-restricted chain reconstructs the original product flag.-/
+restricted chain reconstructs the original product flag.
+@isnad1 id=eq.2h5v.s7.98866c3c8c31 from=translated src=- shape=597842d6 vocab=d5235af2
+-/
 theorem productShuffle_toShufflePath
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P] [Nonempty P]
@@ -246,7 +248,9 @@ noncomputable def ProductShuffleCode.decode
   productShuffle c.leftFlag c.rightFlag c.left_card c.right_card c.path
 
 /-- Every finite product flag is represented by the existing
-`Flag.productShuffle` construction.-/
+`Flag.productShuffle` construction.
+@isnad1 id=surjecti.0h2v.s5.ac6d797ed062 from=translated src=- shape=5309e0b2 vocab=d340bd0c
+-/
 theorem ProductShuffleCode.decode_surjective
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P] [Nonempty P]
@@ -280,7 +284,9 @@ theorem ProductShuffleCode.decode_surjective
   exact productShuffle_toShufflePath s hf hg
 
 /-- The projections recover both factor flags, and then the fixed-factor
-injectivity theorem recovers the path.-/
+injectivity theorem recovers the path.
+@isnad1 id=injectiv.0h2v.s5.b43b92605e09 from=translated src=- shape=5309e0b2 vocab=94a9b28d
+-/
 theorem ProductShuffleCode.decode_injective
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P] [Nonempty P]

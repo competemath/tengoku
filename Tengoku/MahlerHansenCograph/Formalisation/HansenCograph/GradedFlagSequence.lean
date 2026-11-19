@@ -24,6 +24,9 @@ namespace HansenCograph
 
 universe u v
 
+/--
+@isnad1 id=finite.0h1v.s3.071225f309f4 from=translated src=- shape=d96e9922 vocab=c45bf08a
+-/
 noncomputable instance instFiniteFlag {P : Type u} [LE P] [Finite P] :
     Finite (Flag P) := by
   letI : Fintype P := Fintype.ofFinite P
@@ -46,6 +49,9 @@ instance {P : Type u} [PartialOrder P] [BoundedOrder P] {n : ℕ} :
     CoeFun (RankedFlag P n) (fun _ ↦ Fin (n + 1) → P) :=
   ⟨RankedFlag.toFun⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.c920d8226dfb from=translated src=- shape=be495e19 vocab=79bf7a20
+-/
 @[ext] theorem RankedFlag.ext {P : Type u} [PartialOrder P] [BoundedOrder P]
     {n : ℕ} {f g : RankedFlag P n} (h : ∀ k, f k = g k) : f = g := by
   cases f
@@ -53,17 +59,24 @@ instance {P : Type u} [PartialOrder P] [BoundedOrder P] {n : ℕ} :
   simp only [mk.injEq]
   exact funext h
 
-/-- A saturated ranked flag is strictly increasing.-/
+/-- A saturated ranked flag is strictly increasing.
+@isnad1 id=strictmo.0h3v.s6.7bf4f7f395ee from=translated src=- shape=7de3c01a vocab=8009817e
+-/
 theorem RankedFlag.strictMono {P : Type u} [PartialOrder P] [BoundedOrder P]
     {n : ℕ} (f : RankedFlag P n) : StrictMono f :=
   Fin.strictMono_iff_lt_succ.mpr fun k ↦ (f.covBy_succ k).lt
 
 /-- In particular, distinct ranks of a saturated flag contain distinct
-elements.-/
+elements.
+@isnad1 id=injectiv.0h3v.s5.6fc8d7c5ba30 from=translated src=- shape=7de3c01a vocab=278774ea
+-/
 theorem RankedFlag.injective {P : Type u} [PartialOrder P] [BoundedOrder P]
     {n : ℕ} (f : RankedFlag P n) : Function.Injective f :=
   f.strictMono.injective
 
+/--
+@isnad1 id=finite.0h2v.s4.00ab8a4ba015 from=translated src=- shape=c53eb6db vocab=02acb3f3
+-/
 noncomputable instance instFiniteRankedFlag {P : Type u}
     [PartialOrder P] [BoundedOrder P] [Finite P] {n : ℕ} :
     Finite (RankedFlag P n) :=
@@ -156,10 +169,16 @@ def RankedFlag.toFlag (f : RankedFlag P n) : Flag P :=
     (fun k ↦ (f.covBy_succ k).wcovBy)
 
 omit [GradeBoundedOrder (Fin (n + 1)) P] in
+/--
+@isnad1 id=iff.0h4v.s6.a879a3a33bc0 from=translated src=- shape=8a651b93 vocab=a99ebc77
+-/
 theorem RankedFlag.mem_toFlag_iff (f : RankedFlag P n) (x : P) :
     x ∈ f.toFlag ↔ ∃ k, f k = x := Iff.rfl
 
 omit [GradeBoundedOrder (Fin (n + 1)) P] in
+/--
+@isnad1 id=eq.0h3v.s6.f180c6e3dfbd from=translated src=- shape=ac5db046 vocab=71c47030
+-/
 theorem RankedFlag.toFlag_card [Finite P] (f : RankedFlag P n) :
     Nat.card f.toFlag = n + 1 := by
   change Nat.card (Set.range f) = n + 1
@@ -167,7 +186,9 @@ theorem RankedFlag.toFlag_card [Finite P] (f : RankedFlag P n) :
 
 omit [GradeBoundedOrder (Fin (n + 1)) P] in
 /-- A saturated sequence is determined by its range.  Thus forgetting the
-rank indexing is injective even without an ambient grading.-/
+rank indexing is injective even without an ambient grading.
+@isnad1 id=injectiv.0h2v.s5.00bee097d21b from=translated src=- shape=6de5d47b vocab=53216a2a
+-/
 theorem RankedFlag.toFlag_injective : Function.Injective
     (RankedFlag.toFlag : RankedFlag P n → Flag P) := by
   intro f g h
@@ -206,7 +227,9 @@ theorem RankedFlag.toFlag_injective : Function.Injective
         exact f.strictMono.monotone hki
       exact le_antisymm hfg hgf
 
-/-- The grades along a saturated ranked flag are exactly its indices.-/
+/-- The grades along a saturated ranked flag are exactly its indices.
+@isnad1 id=eq.0h4v.s7.5108f9358950 from=translated src=- shape=f85b4b47 vocab=46de5049
+-/
 theorem RankedFlag.grade_apply (f : RankedFlag P n) :
     ∀ k, grade (Fin (n + 1)) (f k) = k := by
   intro k
@@ -222,7 +245,9 @@ theorem RankedFlag.grade_apply (f : RankedFlag P n) :
       exact hgrade.symm
 
 /-- Reading a maximal chain by grade and then forgetting the indexing gives
-the original chain.-/
+the original chain.
+@isnad1 id=eq.1h3v.s7.c2b05bb04e0e from=translated src=- shape=d71896a4 vocab=465fd6db
+-/
 theorem RankedFlag.toFlag_ofFlag (h : FlagGradeSurjective P n)
     (s : Flag P) : (RankedFlag.ofFlag h s).toFlag = s := by
   apply Flag.ext
@@ -236,7 +261,9 @@ theorem RankedFlag.toFlag_ofFlag (h : FlagGradeSurjective P n)
     exact congrArg Subtype.val ((flagGradeOrderIso h s).symm_apply_apply xs)
 
 /-- Forgetting and then recovering the grade indexing gives the original
-saturated sequence.-/
+saturated sequence.
+@isnad1 id=eq.1h3v.s7.cdda258df95d from=translated src=- shape=38948839 vocab=870ab11f
+-/
 theorem RankedFlag.ofFlag_toFlag (h : FlagGradeSurjective P n)
     (f : RankedFlag P n) : RankedFlag.ofFlag h f.toFlag = f := by
   apply RankedFlag.ext

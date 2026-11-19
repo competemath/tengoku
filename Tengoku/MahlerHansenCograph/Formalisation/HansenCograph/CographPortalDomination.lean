@@ -17,7 +17,9 @@ geometry identification.
 namespace HansenCograph
 
 /-- Pointwise domination of two nonnegative bounded portal vectors transfers
-to pointwise domination of their shuffle convolutions at every output rank.-/
+to pointwise domination of their shuffle convolutions at every output rank.
+@isnad1 id=le.4h7v.s7.3cddeb57aaa5 from=translated src=- shape=6053af9e vocab=636afe0e
+-/
 theorem portalShuffleConvolution_domination
     {n m : ℕ} {a a' b b' : ℕ → ℝ}
     (ha0 : ∀ k < n + 1, 0 ≤ a k)

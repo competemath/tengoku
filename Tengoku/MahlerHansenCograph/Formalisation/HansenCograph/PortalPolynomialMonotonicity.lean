@@ -101,7 +101,9 @@ private theorem bernsteinCombination_derivative_succ (n : ℕ) (a : ℕ → ℝ)
       simp [Nat.cast_add]
 
 /-- The derivative of a positive-degree portal polynomial is the portal
-polynomial of its forward differences.-/
+polynomial of its forward differences.
+@isnad1 id=hasderiv.0h3v.s6.5a0aae62f99e from=translated src=- shape=2ed9e302 vocab=c687ed28
+-/
 theorem portalPolynomial_hasDerivAt_succ (n : ℕ) (a : ℕ → ℝ) (x : ℝ) :
     HasDerivAt (portalPolynomial (n + 1) a)
       (portalPolynomial n (fun k ↦ a (k + 1) - a k) x) x := by
@@ -140,7 +142,9 @@ private theorem portalPolynomial_nonneg_of_coeff_nonneg
   positivity
 
 /-- A portal polynomial whose coefficients are nondecreasing is nondecreasing
-on the unit interval.-/
+on the unit interval.
+@isnad1 id=monotone.1h2v.s5.fd9611bf5733 from=translated src=- shape=6532d739 vocab=5c27ace9
+-/
 theorem portalPolynomial_monotoneOn_of_coeff_monotone
     {n : ℕ} {a : ℕ → ℝ}
     (ha : ∀ k < n, a k ≤ a (k + 1)) :

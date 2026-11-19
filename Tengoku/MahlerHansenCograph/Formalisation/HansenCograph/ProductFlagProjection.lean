@@ -88,6 +88,9 @@ noncomputable def fstProjection
         exact ⟨hpx, hzz0.2⟩
       exact ⟨(x, z0.1.2), hcand, rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.4755475b60dc from=translated src=- shape=05290d38 vocab=040bf5ab
+-/
 @[simp]
 theorem mem_fstProjection_iff
     {P : Type u} {Q : Type v}
@@ -106,6 +109,9 @@ noncomputable def sndProjection
     (s : Flag (P × Q)) : Flag Q :=
   fstProjection ((Flag.map (OrderIso.prodComm : P × Q ≃o Q × P)) s)
 
+/--
+@isnad1 id=iff.0h4v.s7.b8464cb9575b from=translated src=- shape=9dbcb605 vocab=42df5105
+-/
 @[simp]
 theorem mem_sndProjection_iff
     {P : Type u} {Q : Type v}
@@ -152,6 +158,9 @@ noncomputable def restrictToProjections
     · exact Or.inl hza
     · exact Or.inr haz
 
+/--
+@isnad1 id=iff.0h4v.s10.e8c996f8f6a2 from=translated src=- shape=326541d3 vocab=3e7c733c
+-/
 @[simp]
 theorem mem_restrictToProjections_iff
     {P : Type u} {Q : Type v}
@@ -180,6 +189,9 @@ noncomputable def restrictToProjectionsEquiv
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.9c41d2e115d5 from=translated src=- shape=d621df72 vocab=80aeba75
+-/
 theorem card_restrictToProjections
     {P : Type u} {Q : Type v}
     [PartialOrder P] [Finite P] [Nonempty P]

@@ -45,6 +45,9 @@ private def productAxisRight (V : Type u) (W : Type v) :
     intro c x
     ext <;> simp
 
+/--
+@isnad1 id=convex.1h3v.s7.395a72f564b6 from=translated src=- shape=797a9167 vocab=030e50cb
+-/
 lemma convex_productAxisLeft_image
     {V : Type u} {W : Type v}
     (s : Set (V → ℝ)) (hs : Convex ℝ s) :
@@ -52,6 +55,9 @@ lemma convex_productAxisLeft_image
   simpa [productAxisLeft] using
     hs.linear_image (productAxisLeft V W)
 
+/--
+@isnad1 id=convex.1h3v.s7.9574fe9ef7e7 from=translated src=- shape=a81b91fd vocab=030e50cb
+-/
 lemma convex_productAxisRight_image
     {V : Type u} {W : Type v}
     (t : Set (W → ℝ)) (ht : Convex ℝ t) :
@@ -59,6 +65,9 @@ lemma convex_productAxisRight_image
   simpa [productAxisRight] using
     ht.linear_image (productAxisRight V W)
 
+/--
+@isnad1 id=convex.2h4v.s8.7b066ffbe2a8 from=translated src=- shape=d37bcfd8 vocab=77345233
+-/
 lemma convex_convexJoin_productAxis
     {V : Type u} {W : Type v}
     (s : Set (V → ℝ)) (t : Set (W → ℝ))
@@ -71,6 +80,9 @@ lemma convex_convexJoin_productAxis
     (convex_productAxisLeft_image s hs).convexJoin
       (convex_productAxisRight_image t ht)
 
+/--
+@isnad1 id=nullmeas.2h4v.s8.b27f6779ad50 from=translated src=- shape=26561f3b vocab=92d24894
+-/
 lemma nullMeasurableSet_convexJoin_productAxis
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     (s : Set (V → ℝ)) (t : Set (W → ℝ))
@@ -93,6 +105,9 @@ lemma nullMeasurableSet_convexJoin_productAxis
 ## Exact geometry of the coordinate-axis join
 -/
 
+/--
+@isnad1 id=iff.0h5v.s8.a971542c08ba from=translated src=- shape=b729a894 vocab=cc462766
+-/
 lemma mem_convexJoin_productAxis_iff
     {V : Type u} {W : Type v}
     {s : Set (V → ℝ)} {t : Set (W → ℝ)}
@@ -130,6 +145,9 @@ lemma mem_convexJoin_productAxis_iff
     refine ⟨a, b, ha, hb, hab, ?_⟩
     simp
 
+/--
+@isnad1 id=iff.0h5v.s8.2abe4ce3ff23 from=translated src=- shape=dfe9e925 vocab=d01369e3
+-/
 lemma mem_convexJoin_productAxis_iff_exists_Icc
     {V : Type u} {W : Type v}
     {s : Set (V → ℝ)} {t : Set (W → ℝ)}
@@ -226,20 +244,32 @@ noncomputable def freeSumVolumeCoeff (a b : ℕ) : ℝ :=
   (a.factorial : ℝ) * (b.factorial : ℝ) /
     ((a + b).factorial : ℝ)
 
+/--
+@isnad1 id=le.0h2v.s4.f05256c61a3f from=translated src=- shape=5ffe46ab vocab=064985a3
+-/
 lemma freeSumVolumeCoeff_nonneg (a b : ℕ) :
     0 ≤ freeSumVolumeCoeff a b := by
   unfold freeSumVolumeCoeff
   positivity
 
+/--
+@isnad1 id=lt.0h2v.s4.6812f7b36bbb from=translated src=- shape=5ffe46ab vocab=8d2d8ece
+-/
 lemma freeSumVolumeCoeff_pos (a b : ℕ) :
     0 < freeSumVolumeCoeff a b := by
   unfold freeSumVolumeCoeff
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s4.ad569628b5dc from=translated src=- shape=8fc7241c vocab=38323de9
+-/
 @[simp] lemma freeSumVolumeCoeff_zero_right (a : ℕ) :
     freeSumVolumeCoeff a 0 = 1 := by
   simp [freeSumVolumeCoeff, Nat.factorial_ne_zero]
 
+/--
+@isnad1 id=eq.0h1v.s4.273ebcd86d3e from=translated src=- shape=d7485c18 vocab=38323de9
+-/
 @[simp] lemma freeSumVolumeCoeff_zero_left (b : ℕ) :
     freeSumVolumeCoeff 0 b = 1 := by
   simp [freeSumVolumeCoeff, Nat.factorial_ne_zero]
@@ -287,7 +317,9 @@ private lemma ae_measure_prodMk_preimage_eq_zero_of_measure_eq_zero
   apply measure_mono_null _ hx
   exact Set.preimage_mono (subset_toMeasurable (μ.prod ν) s)
 
-/-- Fubini's formula for a null-measurable subset of a product measure.-/
+/-- Fubini's formula for a null-measurable subset of a product measure.
+@isnad1 id=eq.1h5v.s6.2d0421259853 from=translated src=- shape=ba616a9b vocab=3693dcfa
+-/
 lemma Measure.prod_apply_nullMeasurableSet
     {α : Type*} {β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ : Measure α) (ν : Measure β) [SFinite ν]
@@ -318,6 +350,9 @@ lemma Measure.prod_apply_nullMeasurableSet
       exact measure_congr hx.symm
     _ = ∫⁻ x : α, ν {y : β | (x, y) ∈ s} ∂μ := by rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.3c2c6b027925 from=translated src=- shape=9d4c3622 vocab=ecc7ec79
+-/
 lemma volume_eq_lintegral_fiber_of_nullMeasurableSet
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     {J : Set ((V → ℝ) × (W → ℝ))}
@@ -1157,6 +1192,9 @@ private theorem volume_convexJoin_productAxis_ennreal_card_right_zero
 ## Strong ENNReal statement
 -/
 
+/--
+@isnad1 id=eq.6h4v.s9.113092169e7e from=translated src=- shape=01c362f8 vocab=84d45085
+-/
 theorem volume_convexJoin_productAxis_ennreal
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     (s : Set (V → ℝ)) (t : Set (W → ℝ))
@@ -1185,7 +1223,9 @@ complementary finite coordinate spaces.
 
 The factor is `a! b! / (a + b)!`, where `a` and `b` are the dimensions of the
 two coordinate spaces. The sets are embedded as the two coordinate axes of
-their product.-/
+their product.
+@isnad1 id=eq.6h4v.s9.99c1b2b8ea25 from=translated src=- shape=53049045 vocab=9f15ba90
+-/
 theorem volume_convexJoin_productAxis_toReal
     {V : Type u} {W : Type v} [Fintype V] [Fintype W]
     (s : Set (V → ℝ)) (t : Set (W → ℝ))
