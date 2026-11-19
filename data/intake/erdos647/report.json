@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "99855109e644980fa90ce24b758d4600274f70ff12cf0777670b98c21b552f3d",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "erdos647",
+ "lint_mode": "proposed",
+ "modules": 35,
+ "part": 1,
+ "theorems": 132
+}
