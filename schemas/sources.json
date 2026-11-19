@@ -272,7 +272,20 @@
     "https://github.com/SpencerWoolfson/biyoneda",
     "https://github.com/yoshiyoyoyo44/erdos278",
     "https://github.com/Janzert/nice-numbers-lean",
-    "https://github.com/Zelaron/bezout-counterexample-lean"
+    "https://github.com/Zelaron/bezout-counterexample-lean",
+    "https://github.com/Arthur742Ramos/GrushkoNeumannTheorem",
+    "https://github.com/NoahW314/KostkaNumbers",
+    "https://github.com/honicky/erdos884",
+    "https://github.com/KitaKen1/erdos176-nksqrtk-polynomial-bound-lean",
+    "https://github.com/selpoG/lean-ratfunc-witt-local-global",
+    "https://github.com/Drag0ndddd1118/jsp-000661-formalization",
+    "https://github.com/blawton/fried-conj-lean",
+    "https://github.com/JD-Jones-ASES/gnm-lean",
+    "https://github.com/YijunYuan/FormalizedSparse",
+    "https://github.com/luohaoyuan0420-w/lhyMathLib",
+    "https://github.com/RamenSensei/HellingerRepoLean4",
+    "https://github.com/xinjiegit/ben_27_formalization",
+    "https://github.com/JJYYY-JJY/burning-path-token-graphs"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -557,7 +570,20 @@
     "https://github.com/SpencerWoolfson/biyoneda": "Apache-2.0",
     "https://github.com/yoshiyoyoyo44/erdos278": "MIT",
     "https://github.com/Janzert/nice-numbers-lean": "MIT",
-    "https://github.com/Zelaron/bezout-counterexample-lean": "MIT"
+    "https://github.com/Zelaron/bezout-counterexample-lean": "MIT",
+    "https://github.com/Arthur742Ramos/GrushkoNeumannTheorem": "Apache-2.0",
+    "https://github.com/NoahW314/KostkaNumbers": "Apache-2.0",
+    "https://github.com/honicky/erdos884": "Apache-2.0",
+    "https://github.com/KitaKen1/erdos176-nksqrtk-polynomial-bound-lean": "Apache-2.0",
+    "https://github.com/selpoG/lean-ratfunc-witt-local-global": "Apache-2.0",
+    "https://github.com/Drag0ndddd1118/jsp-000661-formalization": "Apache-2.0",
+    "https://github.com/blawton/fried-conj-lean": "Apache-2.0",
+    "https://github.com/JD-Jones-ASES/gnm-lean": "MIT",
+    "https://github.com/YijunYuan/FormalizedSparse": "Apache-2.0",
+    "https://github.com/luohaoyuan0420-w/lhyMathLib": "Apache-2.0",
+    "https://github.com/RamenSensei/HellingerRepoLean4": "MIT",
+    "https://github.com/xinjiegit/ben_27_formalization": "Apache-2.0",
+    "https://github.com/JJYYY-JJY/burning-path-token-graphs": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -2749,6 +2775,101 @@
       "commit": "9eda7550c5b8e890bcc2e987556331704a035800",
       "roots": [
         "BezoutCounterexample"
+      ]
+    },
+    "grushkoneumanntheorem": {
+      "repo": "https://github.com/Arthur742Ramos/GrushkoNeumannTheorem",
+      "commit": "ef1f70db49792bb9bdb0c40eeec48168fca53393",
+      "roots": [
+        "GrushkoNeumann",
+        "MarshallHall"
+      ]
+    },
+    "kostkanumbers": {
+      "repo": "https://github.com/NoahW314/KostkaNumbers",
+      "commit": "135e49269833f4a760717b30777046d9629240df",
+      "roots": [
+        "KostkaNumbers"
+      ]
+    },
+    "erdos884": {
+      "repo": "https://github.com/honicky/erdos884",
+      "commit": "323e9a01306df1e094b434beaa48c018370fe258",
+      "roots": [
+        "Erdos884"
+      ]
+    },
+    "erdos176-nksqrtk-polynomial-bound-lean": {
+      "repo": "https://github.com/KitaKen1/erdos176-nksqrtk-polynomial-bound-lean",
+      "commit": "19b2ad31c81207613f7cfdaa68467d3dca98b3b7",
+      "roots": [
+        "Erdos176Lean"
+      ]
+    },
+    "lean-ratfunc-witt-local-global": {
+      "repo": "https://github.com/selpoG/lean-ratfunc-witt-local-global",
+      "commit": "dc7e8240cc5f1b31d7149409142599e7de69c9a5",
+      "roots": [
+        "RatFuncWittLocalGlobal"
+      ]
+    },
+    "jsp-000661-formalization": {
+      "repo": "https://github.com/Drag0ndddd1118/jsp-000661-formalization",
+      "commit": "2bcca8c5e6528f78866c86623ebda529e9058e25",
+      "roots": [
+        "Erdos804",
+        "JSP_000661"
+      ]
+    },
+    "fried-conj-lean": {
+      "repo": "https://github.com/blawton/fried-conj-lean",
+      "commit": "610d659ea15af869553f6e3e79c432880d9b0ab0",
+      "roots": [
+        "B1s"
+      ]
+    },
+    "gnm-lean": {
+      "repo": "https://github.com/JD-Jones-ASES/gnm-lean",
+      "commit": "c9a75e1c81e5b7231a5a720ab544dd33f6a52ca1",
+      "roots": [
+        "GN",
+        "GNM"
+      ]
+    },
+    "formalizedsparse": {
+      "repo": "https://github.com/YijunYuan/FormalizedSparse",
+      "commit": "be9fb43dded873bc7567b486e17e924823e10e41",
+      "roots": [
+        "FormalizedSparse"
+      ]
+    },
+    "lhymathlib": {
+      "repo": "https://github.com/luohaoyuan0420-w/lhyMathLib",
+      "commit": "f69123de02bacebb912891735c17310ba57ac0b3",
+      "roots": [
+        "LhyMathLib"
+      ]
+    },
+    "hellingerrepolean4": {
+      "repo": "https://github.com/RamenSensei/HellingerRepoLean4",
+      "commit": "9d24bdff6158d2e9d7088d1ff39e40df8a7ace37",
+      "roots": [
+        "Hellinger"
+      ]
+    },
+    "ben-27-formalization": {
+      "repo": "https://github.com/xinjiegit/ben_27_formalization",
+      "commit": "f70352964007662e97a810c880abbfea1e2ea262",
+      "roots": [
+        "NUSLean"
+      ]
+    },
+    "burning-path-token-graphs": {
+      "repo": "https://github.com/JJYYY-JJY/burning-path-token-graphs",
+      "commit": "c7f4cea7719c00b19e12d7b8c7f7b0d59317f460",
+      "roots": [
+        "BurningPathTokenGraphs",
+        "BurningPathTokenGraphsTests"
       ]
     }
   },
