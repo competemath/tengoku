@@ -311,7 +311,17 @@
     "https://github.com/barnettcaleb1/q1-lean-verification",
     "https://github.com/derekszen/erdos-64",
     "https://github.com/zoowirt/inverse-generator-lean",
-    "https://github.com/LingYi-Liang/squarefree-fuglede-lean"
+    "https://github.com/LingYi-Liang/squarefree-fuglede-lean",
+    "https://github.com/alerad/alpoge-lean",
+    "https://github.com/jpbald93/cliffordchain",
+    "https://github.com/rvazdev-ex/quartet_distance_bandelt_dress",
+    "https://github.com/SteveKotlarz/rcsr-lean-proofs",
+    "https://github.com/K-Yamada-2002/hall-ray",
+    "https://github.com/joelcanary/lean-theorems-around-millennium-problems",
+    "https://github.com/MingchenXia/pshd-lean",
+    "https://github.com/AxiomMath/partial-regularity",
+    "https://github.com/NoahW314/Lean-Tnorms",
+    "https://github.com/ZeterMordio/one-edge-instability"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -635,7 +645,17 @@
     "https://github.com/barnettcaleb1/q1-lean-verification": "Apache-2.0",
     "https://github.com/derekszen/erdos-64": "Apache-2.0",
     "https://github.com/zoowirt/inverse-generator-lean": "Apache-2.0",
-    "https://github.com/LingYi-Liang/squarefree-fuglede-lean": "MIT"
+    "https://github.com/LingYi-Liang/squarefree-fuglede-lean": "MIT",
+    "https://github.com/alerad/alpoge-lean": "Apache-2.0",
+    "https://github.com/jpbald93/cliffordchain": "Apache-2.0",
+    "https://github.com/rvazdev-ex/quartet_distance_bandelt_dress": "MIT",
+    "https://github.com/SteveKotlarz/rcsr-lean-proofs": "Apache-2.0",
+    "https://github.com/K-Yamada-2002/hall-ray": "MIT",
+    "https://github.com/joelcanary/lean-theorems-around-millennium-problems": "Apache-2.0",
+    "https://github.com/MingchenXia/pshd-lean": "Apache-2.0",
+    "https://github.com/AxiomMath/partial-regularity": "MIT",
+    "https://github.com/NoahW314/Lean-Tnorms": "Apache-2.0",
+    "https://github.com/ZeterMordio/one-edge-instability": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -3102,6 +3122,90 @@
       "commit": "3c043465f7be7e2ab534cd5230852c18d06ab984",
       "roots": [
         "FugledeAudit"
+      ]
+    },
+    "alpoge-lean": {
+      "repo": "https://github.com/alerad/alpoge-lean",
+      "commit": "b8eec94711a9b73151929b78cbd7cb999a008590",
+      "roots": [
+        "Alpoge"
+      ]
+    },
+    "cliffordchain": {
+      "repo": "https://github.com/jpbald93/cliffordchain",
+      "commit": "b6649f48bc4eaf192f729efd26a617fa2aeddfef",
+      "roots": [
+        "Clifford"
+      ]
+    },
+    "quartet-distance-bandelt-dress": {
+      "repo": "https://github.com/rvazdev-ex/quartet_distance_bandelt_dress",
+      "commit": "e904dcf3ae1208ad70c8d0677d6f78e13d33986f",
+      "roots": [
+        "QuartetDistance"
+      ]
+    },
+    "rcsr-lean-proofs": {
+      "repo": "https://github.com/SteveKotlarz/rcsr-lean-proofs",
+      "commit": "78b7d7f78fbfdd730cb703f2c49b372c6171f6db",
+      "roots": [
+        "RcsrProofs"
+      ]
+    },
+    "hall-ray": {
+      "repo": "https://github.com/K-Yamada-2002/hall-ray",
+      "commit": "a584e5620124d23c709e3bbdc66db8b8b0586310",
+      "roots": [
+        "HallRay"
+      ]
+    },
+    "lean-theorems-around-millennium-problems": {
+      "repo": "https://github.com/joelcanary/lean-theorems-around-millennium-problems",
+      "commit": "34bfd8551b59e05e781ee18f40ceb618aa48d9ce",
+      "roots": [
+        "BSDDeuring",
+        "BSDNotCongruentOne",
+        "BSDParidad",
+        "BSDTwist",
+        "HodgeMathlib",
+        "PanopticCandidato",
+        "PanopticDuplicados",
+        "PanopticFamilia",
+        "PanopticQuitar",
+        "PanopticTecho",
+        "PanopticUmbral",
+        "RiemannRedheffer",
+        "SmithDeterminant",
+        "SmithLCM",
+        "SmithLCMForma"
+      ]
+    },
+    "pshd-lean": {
+      "repo": "https://github.com/MingchenXia/pshd-lean",
+      "commit": "0f659d78f788b34592f4df1d951174ecdc3d88e4",
+      "roots": [
+        "PshLines"
+      ]
+    },
+    "partial-regularity": {
+      "repo": "https://github.com/AxiomMath/partial-regularity",
+      "commit": "90e9fef30ec4deaab84034917424b011f4341ec7",
+      "roots": [
+        "PartialRegularity"
+      ]
+    },
+    "lean-tnorms": {
+      "repo": "https://github.com/NoahW314/Lean-Tnorms",
+      "commit": "b42b1ce5f839c5f863a4d51669f8694f71674987",
+      "roots": [
+        "Tnorms"
+      ]
+    },
+    "one-edge-instability": {
+      "repo": "https://github.com/ZeterMordio/one-edge-instability",
+      "commit": "ce2d519d1445159ce0f4aba7efd901429c6772ba",
+      "roots": [
+        "OneEdgeInstability"
       ]
     }
   },
