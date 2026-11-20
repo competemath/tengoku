@@ -7,7 +7,9 @@ open scoped BigOperators Real
 open Finset Set Filter
 namespace Erdos1152.V5
 
-/-- A dyadic block contributes at least one half.-/
+/-- A dyadic block contributes at least one half.
+@isnad1 id=le.1h1v.s5.1b45ac7914fc from=translated src=- shape=d90d1f22 vocab=bf6721ee
+-/
 theorem harmonicHeight_double (n : ℕ) (hn : 0<n) :
     harmonicHeight n+1/2≤harmonicHeight (2*n) := by
   rw [show 2*n=n+n by omega]
@@ -26,6 +28,9 @@ theorem harmonicHeight_double (n : ℕ) (hn : 0<n) :
       · have := mem_range.mp hj
         exact_mod_cast (show n+j+1≤2*n by omega)
 
+/--
+@isnad1 id=le.0h1v.s5.5ab9737b48a0 from=translated src=- shape=0d2594b3 vocab=f89255a9
+-/
 theorem harmonicHeight_pow_two (j : ℕ) :
     1+(j:ℝ)/2≤harmonicHeight (2^j) := by
   induction j with
@@ -37,6 +42,9 @@ theorem harmonicHeight_pow_two (j : ℕ) :
     push_cast
     nlinarith [hs]
 
+/--
+@isnad1 id=ex.0h1v.s4.2bc49e5b9865 from=translated src=- shape=cefffa79 vocab=34dca7c6
+-/
 theorem exists_harmonicHeight_ge (B : ℝ) :
     ∃A : ℕ,0<A ∧ B≤harmonicHeight A := by
   obtain ⟨j,hj⟩ := exists_nat_gt (2*B)
@@ -54,11 +62,17 @@ noncomputable def localizationBandwidth (A : ℕ) : ℝ :=
 noncomputable def localizationGamma (A : ℕ) : ℝ :=
   Real.pi/(16*(32*A*A+1))
 
+/--
+@isnad1 id=eq.0h2v.s6.39b79691d494 from=translated src=- shape=e9d36767 vocab=d5fbaa14
+-/
 theorem localization_node_budget (A q : ℕ) :
     2*localizationRadius A q+1=2*(8*(4*q)*A*A)+4*q+1 := by
   unfold localizationRadius localizationDegree
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.f4e57d43f71a from=translated src=- shape=b857cc6c vocab=d5188e0b
+-/
 theorem localization_frequency (A q : ℕ) (hq : 0<q) :
     Real.pi*localizationDegree A q/localizationInner A q=localizationBandwidth A := by
   unfold localizationInner localizationBandwidth localizationDegree
@@ -67,6 +81,9 @@ theorem localization_frequency (A q : ℕ) (hq : 0<q) :
   have hd : (32*(A:ℝ)*A+1)≠0 := by positivity
   field_simp [hqr,hd]
 
+/--
+@isnad1 id=and.0h1v.s5.cb1b33807951 from=translated src=- shape=2a1cd095 vocab=7c62e4e8
+-/
 theorem localization_gap (A : ℕ) :
     localizationBandwidth A+16*localizationGamma A=Real.pi ∧
       0<localizationGamma A := by
@@ -75,6 +92,9 @@ theorem localization_gap (A : ℕ) :
   · field_simp
   · positivity
 
+/--
+@isnad1 id=eq.0h2v.s4.e8406bce669b from=translated src=- shape=129c390d vocab=9166ca92
+-/
 theorem localization_margin (A q : ℕ) :
     (localizationRadius A q:ℝ)-localizationInner A q=q := by
   unfold localizationRadius localizationInner

@@ -14,6 +14,9 @@ local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 noncomputable def cosineCharacter (n : ℤ) : CircleFunction :=
   (2:ℂ)⁻¹ • (character n+character (-n))
 
+/--
+@isnad1 id=eq.0h2v.s6.e823338ec622 from=translated src=- shape=c0a88e7b vocab=74ad9ee7
+-/
 theorem character_coe (n : ℤ) (t : ℝ) :
     character n (t : FourierCircle)=Complex.exp (((n:ℝ)*t:ℝ)*Complex.I) := by
   simp only [character,fourier_coe_apply]
@@ -21,6 +24,9 @@ theorem character_coe (n : ℤ) (t : ℝ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s6.fd0ee0f49394 from=translated src=- shape=c0ccc0e9 vocab=ec8d1d62
+-/
 @[simp] theorem cosineCharacter_coe (n : ℤ) (t : ℝ) :
     cosineCharacter n (t:FourierCircle)=(Real.cos ((n:ℝ)*t):ℂ) := by
   simp only [cosineCharacter,ContinuousMap.smul_apply,ContinuousMap.add_apply,
@@ -42,15 +48,24 @@ noncomputable def boundedProbe (A d : ℕ) : CircleFunction :=
 
 noncomputable def harmonicHeight (A : ℕ) : ℝ := ∑j∈range A,(1:ℝ)/(j+1:ℕ)
 
+/--
+@isnad1 id=lt.0h0v.s3.2cb4b1678a16 from=translated src=- shape=ff3a10fc vocab=afddf52a
+-/
 theorem probeNormalization_pos : 0<probeNormalization := by
   unfold probeNormalization; positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.c3ca417c2c92 from=translated src=- shape=1f9278da vocab=e2929c87
+-/
 @[simp] theorem probeLow_zero (A d : ℕ) : probeLow A d 0=(harmonicHeight A:ℂ) := by
   simp [probeLow,cosineCharacter,harmonicHeight,div_eq_mul_inv]
   apply Finset.sum_congr rfl
   intro j hj
   ring
 
+/--
+@isnad1 id=le.0h1v.s3.0539add58d69 from=translated src=- shape=b9369acb vocab=21c44326
+-/
 theorem harmonicHeight_nonneg (A : ℕ) : 0≤harmonicHeight A := by
   unfold harmonicHeight
   exact sum_nonneg fun _ _ => by positivity
@@ -69,6 +84,9 @@ private theorem cosine_mul_argument (d : ℕ) (n : ℤ) (x : FourierCircle) :
   rw [character_mul_argument,show -((d:ℤ)*n)=(d:ℤ)*(-n) by ring,
     character_mul_argument]
 
+/--
+@isnad1 id=le.0h3v.s6.1d90f14670a7 from=translated src=- shape=90386c21 vocab=c37d6624
+-/
 theorem boundedProbe_norm (A d : ℕ) (x : FourierCircle) :
     ‖boundedProbe A d x‖≤1 := by
   let t := AddCircle.equivIco (2*Real.pi) (-Real.pi) (d•x)
@@ -97,11 +115,17 @@ theorem boundedProbe_norm (A d : ℕ) (x : FourierCircle) :
 noncomputable def privalovModes (A : ℕ) : Finset ℤ :=
   ((Finset.Icc (-(2*A:ℕ):ℤ) (2*A:ℕ)).erase (-(A:ℤ))).erase (A:ℤ)
 
+/--
+@isnad1 id=iff.0h2v.s6.bec92639e567 from=translated src=- shape=39ccfb45 vocab=cdc394c0
+-/
 theorem mem_privalovModes (A : ℕ) (n : ℤ) :
     n∈privalovModes A ↔ -(2*A:ℕ)≤n ∧ n≤(2*A:ℕ) ∧ n≠-(A:ℤ) ∧ n≠(A:ℤ) := by
   simp only [privalovModes,mem_erase,Finset.mem_Icc]
   tauto
 
+/--
+@isnad1 id=eq.1h1v.s5.8898c54b846e from=translated src=- shape=b0e6a71b vocab=b9865185
+-/
 theorem card_privalovModes (A : ℕ) (hA : 0<A) :
     (privalovModes A).card=4*A-1 := by
   unfold privalovModes
@@ -130,7 +154,9 @@ noncomputable def modulationConstraints (A d m : ℕ)
   map_smul' c f := by ext q; simp [mul_smul_comm]
 
 /-- All extra-node constraints are imposed simultaneously by one genuine finite
-polynomial. The number of grid coefficients exceeds the number of equations.-/
+polynomial. The number of grid coefficients exceeds the number of equations.
+@isnad1 id=ex.2h4v.s9.14fddb7e173f from=translated src=- shape=97f8b885 vocab=e49b7bb2
+-/
 theorem exists_privalov_grid (A d m : ℕ) (hA : 0<A) (hm : 0<m)
     (ψ : Fin m → CircleFunction →ₗ[ℂ] ℂ) :
     ∃ Q : CircleFunction, ∃ t₀ : FourierCircle,
@@ -159,7 +185,9 @@ private theorem shifted_cosine (v : FourierCircle) (n : ℤ) (Q : CircleFunction
   ring
 
 /-- Each translated probe is killed by the original functionals, not merely a
-new predicate recording that it ought to be killed.-/
+new predicate recording that it ought to be killed.
+@isnad1 id=eq.1h7v.s9.db6ae6b22956 from=translated src=- shape=9c194c51 vocab=50ff448d
+-/
 theorem privalov_probe_constraints (A d m : ℕ)
     (ψ : Fin m → CircleFunction →ₗ[ℂ] ℂ) (Q : CircleFunction)
     (hQ : ∀q∈privalovModes A,∀j,ψ j (character ((d:ℤ)*q)*Q)=0)

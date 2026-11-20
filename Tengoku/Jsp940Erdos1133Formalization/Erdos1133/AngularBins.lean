@@ -9,6 +9,9 @@ namespace Erdos1133
 
 def binCount (D L : ℝ) : ℕ := ⌊D / L⌋₊ + 1
 
+/--
+@isnad1 id=le.2h2v.s5.ea950126c5d8 from=translated src=- shape=2619c72b vocab=679ab99d
+-/
 theorem binCount_le {D L : ℝ} (hD : 0 ≤ D) (hL : 0 < L) :
     (binCount D L : ℝ) ≤ D / L + 1 := by
   simp only [binCount, Nat.cast_add, Nat.cast_one]
@@ -17,6 +20,9 @@ theorem binCount_le {D L : ℝ} (hD : 0 ≤ D) (hL : 0 < L) :
 def angularBin {D L : ℝ} (hL : 0 < L) (t : Icc 0 D) : Fin (binCount D L) :=
   ⟨⌊(t : ℝ) / L⌋₊, Nat.lt_succ_of_le (Nat.floor_mono (div_le_div_of_nonneg_right t.property.2 hL.le))⟩
 
+/--
+@isnad1 id=mem.1h3v.s6.610414e08026 from=translated src=- shape=33d94500 vocab=fe8302ed
+-/
 theorem angularBin_bounds {D L : ℝ} (hL : 0 < L) (t : Icc 0 D) :
     (t : ℝ) ∈ Icc ((angularBin hL t).val * L) (((angularBin hL t).val + 1) * L) := by
   have ht0 : 0 ≤ (t : ℝ) / L := div_nonneg t.property.1 hL.le

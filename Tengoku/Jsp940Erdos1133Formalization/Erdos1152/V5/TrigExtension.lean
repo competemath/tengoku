@@ -13,11 +13,17 @@ noncomputable def trigExtension (k : ℕ) (R : ℝ) (P : CircleFunction) (z : �
   ∑n∈Finset.Icc (-(k:ℤ)) k,
     coefficient P n*Complex.exp ((Real.pi*n/R:ℂ)*z*Complex.I)
 
+/--
+@isnad1 id=differen.0h3v.s6.91256cc6fb12 from=translated src=- shape=2db7516a vocab=08c64dc0
+-/
 theorem trigExtension_entire (k : ℕ) (R : ℝ) (P : CircleFunction) :
     Differentiable ℂ (trigExtension k R P) := by
   unfold trigExtension
   fun_prop
 
+/--
+@isnad1 id=eq.1h4v.s8.08804662d6a9 from=translated src=- shape=5c8ac5cf vocab=9366c9ae
+-/
 theorem trigExtension_real (k : ℕ) (R : ℝ) (P : CircleFunction)
     (hP : P∈bandSpace k) (x : ℝ) :
     trigExtension k R P x=P ((Real.pi*x/R:ℝ):FourierCircle) := by
@@ -55,7 +61,9 @@ private theorem card_int_band (k : ℕ) :
   rw [Int.card_Icc]
   omega
 
-/-- Exponential type and a coefficient bound uniform over every normalized witness.-/
+/-- Exponential type and a coefficient bound uniform over every normalized witness.
+@isnad1 id=le.1h4v.s7.7e3b004ab46a from=translated src=- shape=912fd9fa vocab=9bb9a1f0
+-/
 theorem trigExtension_bound (k : ℕ) (R : ℝ) (hR : 0<R) (P : CircleFunction)
     (z : ℂ) :
     ‖trigExtension k R P z‖≤(2*k+1:ℕ)*‖P‖*
@@ -86,6 +94,9 @@ noncomputable def trigDerivative (k : ℕ) (R : ℝ) (P : CircleFunction) (z : �
     coefficient P n*((Real.pi*n/R:ℂ)*Complex.I)*
       Complex.exp ((Real.pi*n/R:ℂ)*z*Complex.I)
 
+/--
+@isnad1 id=hasderiv.0h4v.s5.94f5341d482e from=translated src=- shape=e2a556dc vocab=756e889f
+-/
 theorem trigExtension_derivative (k : ℕ) (R : ℝ) (P : CircleFunction) (z : ℂ) :
     HasDerivAt (trigExtension k R P) (trigDerivative k R P z) z := by
   unfold trigExtension trigDerivative
@@ -95,6 +106,9 @@ theorem trigExtension_derivative (k : ℕ) (R : ℝ) (P : CircleFunction) (z : �
     (((hasDerivAt_id z).const_mul (Real.pi*n/R:ℂ)).mul_const Complex.I).cexp.const_mul
       (coefficient P n)
 
+/--
+@isnad1 id=le.1h4v.s7.f071a4bab3f2 from=translated src=- shape=325e84ce vocab=5b89e927
+-/
 theorem trigDerivative_real_bound (k : ℕ) (R : ℝ) (hR : 0<R)
     (P : CircleFunction) (x : ℝ) :
     ‖trigDerivative k R P x‖≤((2*k+1:ℕ):ℝ)*‖P‖*(Real.pi*k/R) := by
@@ -115,6 +129,9 @@ theorem trigDerivative_real_bound (k : ℕ) (R : ℝ) (hR : 0<R)
       simp only [sum_const,nsmul_eq_mul,card_int_band]
       ring
 
+/--
+@isnad1 id=le.1h5v.s7.bcb0b13306ea from=translated src=- shape=cf6e3b47 vocab=84a1a2f0
+-/
 theorem trigExtension_real_lipschitz (k : ℕ) (R : ℝ) (hR : 0<R)
     (P : CircleFunction) (x y : ℝ) :
     ‖trigExtension k R P x-trigExtension k R P y‖≤

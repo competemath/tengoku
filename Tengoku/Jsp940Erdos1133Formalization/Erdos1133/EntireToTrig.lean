@@ -20,12 +20,18 @@ nonuniform complex growth prefactor of the entire interpolant.-/
 def plateauPeriodError (α τ T H : ℝ) : ℝ :=
   (2*H*α*τ)*(2/(α*(T/2-τ)))^6 * ∑' k : ℤ, sixthLatticeWeight k
 
+/--
+@isnad1 id=le.3h4v.s5.5502076d35e6 from=translated src=- shape=4b588aca vocab=b29461dc
+-/
 theorem plateauPeriodError_nonneg {α τ T H : ℝ}
     (hα : 0 ≤ α) (hτ : 0 ≤ τ) (hH : 0 ≤ H) :
     0 ≤ plateauPeriodError α τ T H := by
   unfold plateauPeriodError
   exact mul_nonneg (by positivity) (tsum_nonneg sixthLatticeWeight_nonneg)
 
+/--
+@isnad1 id=le.7h7v.s8.0e5253a4fecb from=translated src=- shape=0b4379b8 vocab=36fdb766
+-/
 theorem windowed_translate_bound {f : ℂ → ℂ} {α τ T H : ℝ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hgap : τ < T/2) (hH : 0 ≤ H)
     (hf : ∀ x : ℝ, ‖f x‖ ≤ H) (x : ℝ) (hx : |x| ≤ T/2)
@@ -62,7 +68,9 @@ theorem windowed_translate_bound {f : ℂ → ℂ} {α τ T H : ℝ}
     _ ≤ _ := mul_le_mul_of_nonneg_right
       (mul_le_mul_of_nonneg_left hr6 (by positivity)) (sixthLatticeWeight_nonneg k)
 
-/-- Removing the zero translate from a summable periodization.-/
+/-- Removing the zero translate from a summable periodization.
+@isnad1 id=le.3h4v.s7.79c58ad5afc6 from=translated src=- shape=d827d83d vocab=6561cfad
+-/
 theorem periodize_error_of_real_majorant (g : ℂ → ℂ) (T x A : ℝ)
     (hA : 0 ≤ A)
     (hs : Summable fun k : ℤ => g ((x : ℂ)+((T*(k:ℝ) : ℝ) : ℂ)))
@@ -93,6 +101,9 @@ theorem periodize_error_of_real_majorant (g : ℂ → ℂ) (T x A : ℝ)
       Summable.tsum_le_tsum hbound hn hmaj
     _ = _ := tsum_mul_left
 
+/--
+@isnad1 id=le.9h8v.s7.246a2731c723 from=translated src=- shape=5414663b vocab=fbcc9bc5
+-/
 theorem windowed_periodize_error {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hgap : τ < T/2) (hH : 0 ≤ H)
     (hK : 0 ≤ K) (hσ : 0 ≤ σ)
@@ -112,6 +123,9 @@ theorem windowed_periodize_error {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     simpa only [Complex.ofReal_add,Complex.ofReal_mul] using
       windowed_translate_bound hα hτ hgap hH hf x hx k hk
 
+/--
+@isnad1 id=le.9h8v.s7.608020e91e89 from=translated src=- shape=3f37db2d vocab=d1ce81de
+-/
 theorem windowed_periodize_center_bound {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hgap : τ < T/2) (hH : 0 ≤ H)
     (hK : 0 ≤ K) (hσ : 0 ≤ σ)
@@ -126,6 +140,9 @@ theorem windowed_periodize_center_bound {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     exact mul_le_mul (hf x) (norm_plateauWindow_real_le hα.le hτ x) (norm_nonneg _) hH
   exact (norm_le_norm_sub_add _ _).trans (by linarith)
 
+/--
+@isnad1 id=le.3h4v.s6.f4cb06199195 from=translated src=- shape=dbcc1fef vocab=3274acf0
+-/
 theorem periodic_real_bound_of_center {F : ℂ → ℂ} {T B : ℝ}
     (hT : 0 < T) (hp : Function.Periodic F (T : ℂ))
     (hb : ∀ x : ℝ, |x| ≤ T/2 → ‖F x‖ ≤ B) : ∀ x : ℝ, ‖F x‖ ≤ B := by
@@ -144,6 +161,9 @@ theorem periodic_real_bound_of_center {F : ℂ → ℂ} {T B : ℝ}
   rw [← he]
   exact hb y hy
 
+/--
+@isnad1 id=le.8h8v.s7.9161cc1532a7 from=translated src=- shape=eb812e22 vocab=d1ce81de
+-/
 theorem windowed_periodize_bound {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hgap : τ < T/2) (hH : 0 ≤ H)
     (hK : 0 ≤ K) (hσ : 0 ≤ σ)
@@ -155,7 +175,9 @@ theorem windowed_periodize_bound {f : ℂ → ℂ} {α τ T H K σ : ℝ}
     (windowed_periodize_center_bound hα hτ hgap hH hK hσ hf hg)
 
 /-- Dividing the desired labels by the strictly positive plateau keeps the
-input data in the unit ball after one uniform scaling.-/
+input data in the unit ball after one uniform scaling.
+@isnad1 id=le.3h3v.s6.521344a1b041 from=translated src=- shape=7fd9af6a vocab=3fd12985
+-/
 theorem window_division_data {ρ r d : ℝ} (hρ : 0 < ρ) (hr : ρ ≤ r) (hd : |d| ≤ 1) :
     |ρ*d/r| ≤ 1 := by
   have hr0 : 0 < r := hρ.trans_le hr
@@ -163,6 +185,9 @@ theorem window_division_data {ρ r d : ℝ} (hρ : 0 < ρ) (hr : ρ ≤ r) (hd :
   apply (div_le_iff₀ hr0).mpr
   nlinarith
 
+/--
+@isnad1 id=eq.3h4v.s7.c325a7cf9541 from=translated src=- shape=a3e8987d vocab=5aadd23d
+-/
 theorem plateauPeriodError_scaled {α β r H : ℝ} (hα : α ≠ 0)
     (hβ : 1-β ≠ 0) (hr : r ≠ 0) :
     plateauPeriodError α (β*r) (2*r) H =
@@ -174,7 +199,9 @@ theorem plateauPeriodError_scaled {α β r H : ℝ} (hα : α ≠ 0)
   ring
 
 /-- A fixed fractional gap between the nodes and the period seam makes the
-uniform real-axis error arbitrarily small.-/
+uniform real-axis error arbitrarily small.
+@isnad1 id=ex.5h4v.s6.90564ebd9102 from=translated src=- shape=9a4d08cc vocab=d5338007
+-/
 theorem exists_large_plateauPeriodError {α β H q : ℝ}
     (hα : 0 < α) (hβ : 0 ≤ β) (hβ1 : β < 1) (hH : 0 ≤ H) (hq : 0 < q) :
     ∃ R ≥ (1 : ℝ), ∀ r ≥ R, plateauPeriodError α (β*r) (2*r) H ≤ q := by
@@ -195,6 +222,9 @@ theorem exists_large_plateauPeriodError {α β H q : ℝ}
   exact (div_le_iff₀ (by positivity : 0 < r^5)).mpr
     (hAr.trans (mul_le_mul_of_nonneg_left hrpow hq.le))
 
+/--
+@isnad1 id=ex.4h8v.s7.9dc2c155c7e0 from=translated src=- shape=7c3481a1 vocab=6f70d1b0
+-/
 theorem exists_window_data_interpolant {ι : Type*} {α τ ρ σ H : ℝ}
     (node : ι → ℝ) (hρ : 0 < ρ)
     (hwin : ∀ i, ρ ≤ plateauWindowReal α τ (node i))
@@ -232,7 +262,9 @@ theorem exists_window_data_interpolant {ι : Type*} {α τ ρ σ H : ℝ}
 
 /-- Bounded entire interpolation yields a uniformly bounded approximate
 trigonometric interpolant. The error and norm are independent of the complex
-growth prefactor selected by the original interpolant.-/
+growth prefactor selected by the original interpolant.
+@isnad1 id=ex.13h11v.s9.bb09831f0d6e from=translated src=- shape=cfe00e84 vocab=848a1b26
+-/
 theorem entire_interpolation_gives_approx_trig {ι : Type*} [Fintype ι]
     (node : ι → ℝ) {α τ T H ρ σ q : ℝ} {m : ℕ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hgap : τ < T/2)

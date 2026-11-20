@@ -16,12 +16,21 @@ noncomputable def spectrumSpace (s : Set ℤ) : Submodule ℂ CircleFunction :=
 noncomputable def bandSpace (k : ℕ) : Submodule ℂ CircleFunction :=
   spectrumSpace (Set.Icc (-(k:ℤ)) k)
 
+/--
+@isnad1 id=mem.1h2v.s8.448489c513c6 from=translated src=- shape=7022829b vocab=e0eb9404
+-/
 theorem character_mem_spectrum {s : Set ℤ} {j : ℤ} (hj : j∈s) :
     character j∈spectrumSpace s := subset_span ⟨j,hj,rfl⟩
 
+/--
+@isnad1 id=le.1h2v.s8.15cdd43aa301 from=translated src=- shape=a1022681 vocab=3f684728
+-/
 theorem spectrum_mono {s t : Set ℤ} (hst : s⊆t) : spectrumSpace s≤spectrumSpace t :=
   span_mono (image_mono hst)
 
+/--
+@isnad1 id=mem.3h5v.s10.933e9b42bcce from=translated src=- shape=d9a233e3 vocab=22a15708
+-/
 theorem spectrum_mul {s t u : Set ℤ} (hsum : ∀j∈s,∀k∈t,j+k∈u)
     {f g : CircleFunction} (hf : f∈spectrumSpace s) (hg : g∈spectrumSpace t) :
     f*g∈spectrumSpace u := by
@@ -46,6 +55,9 @@ theorem spectrum_mul {s t u : Set ℤ} (hsum : ∀j∈s,∀k∈t,j+k∈u)
   | smul c f hf ih =>
     simpa [smul_mul_assoc] using (spectrumSpace u).smul_mem c ih
 
+/--
+@isnad1 id=mem.2h4v.s10.87532de311ff from=translated src=- shape=a20a59c7 vocab=fb108f96
+-/
 theorem band_mul {k l : ℕ} {f g : CircleFunction}
     (hf : f∈bandSpace k) (hg : g∈bandSpace l) : f*g∈bandSpace (k+l) := by
   apply spectrum_mul (s := Set.Icc (-(k:ℤ)) k) (t := Set.Icc (-(l:ℤ)) l) _ hf hg
@@ -61,16 +73,25 @@ noncomputable def reflectCircle (v : FourierCircle) (f : CircleFunction) : Circl
   toFun x := f (v-x)
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s6.0c6a760c8bf4 from=translated src=- shape=7b882e01 vocab=02790c00
+-/
 theorem translate_character (v : FourierCircle) (j : ℤ) :
     translateCircle v (character j) = character j v • character j := by
   ext x
   simp [translateCircle,character_translate,mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s7.f4d9fed7b40f from=translated src=- shape=997c7880 vocab=c413c00e
+-/
 theorem reflect_character (v : FourierCircle) (j : ℤ) :
     reflectCircle v (character j) = character j v • character (-j) := by
   ext x
   simp [reflectCircle,character_sub]
 
+/--
+@isnad1 id=mem.1h3v.s9.cb17c4b339a0 from=translated src=- shape=44e10bcc vocab=02fafaad
+-/
 theorem translate_spectrum (v : FourierCircle) {s : Set ℤ} {f : CircleFunction}
     (hf : f∈spectrumSpace s) : translateCircle v f∈spectrumSpace s := by
   induction hf using Submodule.span_induction with
@@ -88,6 +109,9 @@ theorem translate_spectrum (v : FourierCircle) {s : Set ℤ} {f : CircleFunction
     have he : translateCircle v (c•f)=c•translateCircle v f := by ext; rfl
     rw [he]; exact (spectrumSpace s).smul_mem _ ih
 
+/--
+@isnad1 id=mem.1h3v.s9.28f9ee480b4a from=translated src=- shape=f0938bec vocab=9fc4dab2
+-/
 theorem reflect_band (v : FourierCircle) {k : ℕ} {f : CircleFunction}
     (hf : f∈bandSpace k) : reflectCircle v f∈bandSpace k := by
   induction hf using Submodule.span_induction with
@@ -106,6 +130,9 @@ theorem reflect_band (v : FourierCircle) {k : ℕ} {f : CircleFunction}
     have he : reflectCircle v (c•f)=c•reflectCircle v f := by ext; rfl
     rw [he]; exact (bandSpace k).smul_mem _ ih
 
+/--
+@isnad1 id=eq.0h4v.s6.97a2c9678e82 from=translated src=- shape=1e2b46ec vocab=90c8b25a
+-/
 theorem convolution_add_right (K f g : CircleFunction) (x : FourierCircle) :
     circleConvolution K (f+g) x =circleConvolution K f x+circleConvolution K g x := by
   unfold circleConvolution
@@ -116,11 +143,17 @@ theorem convolution_add_right (K f g : CircleFunction) (x : FourierCircle) :
     · fun_prop
     · exact HasCompactSupport.of_compactSpace _
 
+/--
+@isnad1 id=eq.0h4v.s6.df41f858f6d9 from=translated src=- shape=355b6f91 vocab=56d74d63
+-/
 theorem convolution_smul_right (K f : CircleFunction) (c : ℂ)
     (x : FourierCircle) : circleConvolution K (c•f) x=c*circleConvolution K f x := by
   unfold circleConvolution
   simp only [ContinuousMap.smul_apply,smul_eq_mul,mul_left_comm (K _),integral_const_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.9c710757fb7a from=translated src=- shape=1e2b46ec vocab=9c26d136
+-/
 theorem convolution_sub_right (K f g : CircleFunction) (x : FourierCircle) :
     circleConvolution K (f-g) x =circleConvolution K f x-circleConvolution K g x := by
   unfold circleConvolution
@@ -131,6 +164,9 @@ theorem convolution_sub_right (K f g : CircleFunction) (x : FourierCircle) :
     · fun_prop
     · exact HasCompactSupport.of_compactSpace _
 
+/--
+@isnad1 id=eq.1h3v.s8.23646ee46f54 from=translated src=- shape=2a734a99 vocab=009e2769
+-/
 theorem vallee_fixes_band (L : ℕ) [NeZero L] {f : CircleFunction}
     (hf : f∈bandSpace L) : ∀x,circleConvolution (valleeKernel L) f x=f x := by
   induction hf using Submodule.span_induction with
@@ -149,6 +185,9 @@ theorem vallee_fixes_band (L : ℕ) [NeZero L] {f : CircleFunction}
     rw [convolution_smul_right,ih]
     rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.cf9206693918 from=translated src=- shape=54c9142e vocab=ecfbbba8
+-/
 theorem vallee_kills_high (L : ℕ) {f : CircleFunction}
     (hf : f∈spectrumSpace {j : ℤ | 2*L≤j.natAbs}) :
     ∀x,circleConvolution (valleeKernel L) f x=0 := by
@@ -164,7 +203,9 @@ theorem vallee_kills_high (L : ℕ) {f : CircleFunction}
     intro x
     rw [convolution_smul_right,ih,mul_zero]
 
-/-- Recover a finite coefficient list rather than assuming a Fourier expansion.-/
+/-- Recover a finite coefficient list rather than assuming a Fourier expansion.
+@isnad1 id=ex.1h2v.s8.841a0d050740 from=translated src=- shape=07954319 vocab=d784a90c
+-/
 theorem band_expansion {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
     ∃c : ℤ→ℂ,f=finiteFourier (Finset.Icc (-(k:ℤ)) k) c := by
   have hs : (Set.Icc (-(k:ℤ)) k)=(Finset.Icc (-(k:ℤ)) k : Set ℤ) := by ext; simp
@@ -172,6 +213,9 @@ theorem band_expansion {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
   obtain ⟨c,hc⟩ := hf
   exact ⟨c,hc.symm⟩
 
+/--
+@isnad1 id=mem.0h2v.s9.a644034cad96 from=translated src=- shape=fabdb0a3 vocab=afacd47f
+-/
 theorem fejerGridWeight_band (L : ℕ) [NeZero L] (q : ZMod L) :
     (⟨fun x => (fejerGridWeight L q x : ℂ),by fun_prop⟩ : CircleFunction)
       ∈bandSpace (L-1) := by
@@ -200,6 +244,9 @@ theorem fejerGridWeight_band (L : ℕ) [NeZero L] (q : ZMod L) :
   simp only [Set.mem_Icc]
   constructor <;> omega
 
+/--
+@isnad1 id=mem.0h2v.s8.106b6c6a7572 from=translated src=- shape=8d67b27f vocab=8acadcbe
+-/
 theorem fejerGridCombination_band (L : ℕ) [NeZero L] (a : ZMod L→ℂ) :
     fejerGridCombination L a∈bandSpace (L-1) := by
   have he : fejerGridCombination L a =

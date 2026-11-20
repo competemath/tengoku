@@ -19,6 +19,9 @@ def contourRadius (t : ℝ) (N : ℕ) : ℝ := ((N:ℝ)+1/2)/t
 def sineContourConstant : ℝ :=
   min (1/(2*Real.exp Real.pi)) ((1-Real.exp (-Real.pi/2))/2)
 
+/--
+@isnad1 id=lt.0h0v.s3.21eea325e351 from=translated src=- shape=ff3a10fc vocab=9d53f35f
+-/
 theorem sineContourConstant_pos : 0<sineContourConstant := by
   apply lt_min
   · positivity
@@ -61,7 +64,9 @@ private theorem hyperbolic_sine_le_complex_sine (z : ℂ) :
   nlinarith [sq_nonneg (Real.sin z.re),norm_nonneg (Complex.sin z)]
 
 /-- Half-integer-radius circles stay uniformly away from all sine zeros, including
- the portions close to the real axis.-/
+ the portions close to the real axis.
+@isnad1 id=le.2h2v.s6.da038f2bd9b3 from=translated src=- shape=85f86a78 vocab=ada4c2d6
+-/
 theorem sine_lower_on_half_integer_circle (N : ℕ) (hN : 1≤N) (w : ℂ)
     (hw : ‖w‖=(N:ℝ)+1/2) :
     sineContourConstant*Real.exp (Real.pi*|w.im|)≤‖Complex.sin (Real.pi*w)‖ := by
@@ -131,6 +136,9 @@ theorem sine_lower_on_half_integer_circle (N : ℕ) (hN : 1≤N) (w : ℂ)
         mul_le_mul_of_nonneg_left hexp (by positivity)
       _ = 1 / 2 := by field_simp
 
+/--
+@isnad1 id=le.3h4v.s6.ba57c6e87c2b from=translated src=- shape=056ce5ae vocab=9ce1d997
+-/
 theorem samplingSine_lower_on_contour (t θ : ℝ) (ht : 0<t)
     (N : ℕ) (hN : 1≤N) {z : ℂ}
     (hz : z∈Metric.sphere ((θ/t:ℝ):ℂ) (contourRadius t N)) :
@@ -146,6 +154,9 @@ theorem samplingSine_lower_on_contour (t θ : ℝ) (ht : 0<t)
   have h := sine_lower_on_half_integer_circle N hN ((t:ℂ)*z-θ) hw
   simpa [samplingSine,abs_mul,abs_of_pos ht,mul_assoc] using h
 
+/--
+@isnad1 id=eq.1h3v.s5.7ac32052cace from=translated src=- shape=765bf91c vocab=e69d124e
+-/
 @[simp] theorem samplingSine_at_grid (t θ : ℝ) (ht : t≠0) (j : ℤ) :
     samplingSine t θ (samplePoint t θ j)=0 := by
   have he : (t:ℂ)*(samplePoint t θ j:ℂ)-θ=(j:ℂ) := by
@@ -154,12 +165,18 @@ theorem samplingSine_lower_on_contour (t θ : ℝ) (ht : 0<t)
   rw [samplingSine,he]
   simpa [mul_comm] using Complex.sin_int_mul_pi j
 
+/--
+@isnad1 id=eq.0h1v.s5.f41e7fda2cad from=translated src=- shape=7911ab9d vocab=7ddc70db
+-/
 theorem complex_cos_int_mul_pi (j : ℤ) :
     Complex.cos ((j:ℂ)*Real.pi)=(-1:ℂ)^j := by
   simpa only [Complex.ofReal_cos, Complex.ofReal_mul, Complex.ofReal_intCast,
     Complex.ofReal_zpow, Complex.ofReal_neg, Complex.ofReal_one] using
     congrArg Complex.ofReal (Real.cos_int_mul_pi j)
 
+/--
+@isnad1 id=eq.1h3v.s6.5c947889c791 from=translated src=- shape=a474f3c9 vocab=40bfba9a
+-/
 theorem samplingSine_derivative (t θ : ℝ) (ht : t≠0) (j : ℤ) :
     deriv (samplingSine t θ) (samplePoint t θ j)=
       (Real.pi*t:ℝ)*(-1:ℂ)^j := by

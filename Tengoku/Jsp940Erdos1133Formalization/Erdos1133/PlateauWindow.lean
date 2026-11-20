@@ -20,6 +20,9 @@ def plateauWindow (α τ : ℝ) (z : ℂ) : ℂ :=
 def plateauWindowReal (α τ x : ℝ) : ℝ :=
   α * ∫ t : ℝ in -τ..τ, Real.sinc (α * (x-t)) ^ 6
 
+/--
+@isnad1 id=eq.0h3v.s4.2ae5c39384ca from=translated src=- shape=49d2e2cb vocab=4b34b8cd
+-/
 @[simp] theorem plateauWindow_real (α τ x : ℝ) :
     plateauWindow α τ x = (plateauWindowReal α τ x : ℂ) := by
   unfold plateauWindow plateauWindowReal
@@ -34,6 +37,9 @@ def plateauWindowReal (α τ x : ℝ) : ℝ :=
   push_cast
   rfl
 
+/--
+@isnad1 id=differen.0h2v.s6.deba178aebc2 from=translated src=- shape=feb27325 vocab=13464994
+-/
 theorem differentiable_plateauWindow (α τ : ℝ) : Differentiable ℂ (plateauWindow α τ) := by
   let F : ℂ → ℝ → ℂ := fun z t => entireSinc ((α : ℂ) * (z-t)) ^ 6
   let F' : ℂ → ℝ → ℂ := fun z t =>
@@ -64,10 +70,16 @@ theorem differentiable_plateauWindow (α τ : ℝ) : Differentiable ℂ (plateau
     exact h.2.differentiableAt
   convert hi.const_mul (α : ℂ) using 1 <;> rfl
 
+/--
+@isnad1 id=le.0h1v.s4.4bf94c3d1486 from=translated src=- shape=98bba06a vocab=c0d6529e
+-/
 theorem sinc_sixth_le_one (x : ℝ) : Real.sinc x ^ 6 ≤ 1 := by
   have h := pow_le_pow_left₀ (abs_nonneg _) (Real.abs_sinc_le_one x) 6
   simpa only [show (6 : ℕ) = 2 * 3 from rfl, pow_mul, sq_abs, one_pow] using h
 
+/--
+@isnad1 id=le.0h1v.s6.4d21264af5f7 from=translated src=- shape=fbe36b82 vocab=6e3b1a7c
+-/
 theorem sinc_sixth_le_cauchy (x : ℝ) : Real.sinc x ^ 6 ≤ 2 / (1+x^2) := by
   have h1 := sinc_sixth_le_one x
   have hs : (Real.sinc x)^2 ≤ 1 := by
@@ -89,11 +101,17 @@ theorem sinc_sixth_le_cauchy (x : ℝ) : Real.sinc x ^ 6 ≤ 2 / (1+x^2) := by
   apply (le_div_iff₀ (by positivity : 0 < 1+x^2)).mpr
   nlinarith
 
+/--
+@isnad1 id=le.2h3v.s5.10ce8d8b919d from=translated src=- shape=e9a55a0f vocab=7c56f008
+-/
 theorem plateauWindowReal_nonneg {α τ : ℝ} (hα : 0 ≤ α) (hτ : 0 ≤ τ) (x : ℝ) :
     0 ≤ plateauWindowReal α τ x := by
   apply mul_nonneg hα
   exact intervalIntegral.integral_nonneg_of_forall (by linarith) (fun _ => by positivity)
 
+/--
+@isnad1 id=eq.0h3v.s6.4fd629a989be from=translated src=- shape=f9d9e70b vocab=563fff7b
+-/
 theorem plateauWindowReal_change_variables (α τ x : ℝ) :
     plateauWindowReal α τ x =
       ∫ u : ℝ in α*(x-τ)..α*(x+τ), Real.sinc u ^ 6 := by
@@ -102,7 +120,9 @@ theorem plateauWindowReal_change_variables (α τ x : ℝ) :
     (fun u : ℝ => Real.sinc u ^ 6) (a := -τ) (b := τ) α (α*x)
   simpa only [smul_eq_mul, ← mul_sub, sub_neg_eq_add] using h
 
-/-- A deliberately nonoptimal absolute upper bound, independent of both scales.-/
+/-- A deliberately nonoptimal absolute upper bound, independent of both scales.
+@isnad1 id=le.2h3v.s5.fd07d640b44f from=translated src=- shape=ef2e9bc7 vocab=a2438edb
+-/
 theorem plateauWindowReal_le {α τ : ℝ} (hα : 0 ≤ α) (hτ : 0 ≤ τ) (x : ℝ) :
     plateauWindowReal α τ x ≤ 2 * Real.pi := by
   rw [plateauWindowReal_change_variables]
@@ -121,6 +141,9 @@ theorem plateauWindowReal_le {α τ : ℝ} (hα : 0 ≤ α) (hτ : 0 ≤ τ) (x 
       linarith [Real.arctan_lt_pi_div_two (α*(x+τ)),
         Real.neg_pi_div_two_lt_arctan (α*(x-τ))]
 
+/--
+@isnad1 id=ex.0h0v.s6.3cac365e5525 from=translated src=- shape=3eb378c5 vocab=b464434b
+-/
 theorem exists_sinc_sixth_near_one : ∃ η > 0, ∀ x : ℝ, |x| ≤ η →
     1/2 ≤ Real.sinc x ^ 6 := by
   have hc := (Real.continuous_sinc.pow 6).continuousAt (x := 0)
@@ -132,6 +155,9 @@ theorem exists_sinc_sixth_near_one : ∃ η > 0, ∀ x : ℝ, |x| ≤ η →
   simp only [Pi.pow_apply, Real.sinc_zero, one_pow, Real.dist_eq] at h
   linarith [(abs_lt.mp h).1]
 
+/--
+@isnad1 id=le.5h4v.s7.cbc6d87c38ea from=translated src=- shape=cb02f9fd vocab=424b35aa
+-/
 theorem plateauWindowReal_lower {η α τ x : ℝ} (hη : 0 < η)
     (hs : ∀ u : ℝ, |u| ≤ η → 1/2 ≤ Real.sinc u ^ 6)
     (hα : 0 ≤ α) (hsize : η ≤ α*τ) (hx : |x| ≤ τ) :
@@ -162,11 +188,17 @@ theorem plateauWindowReal_lower {η α τ x : ℝ} (hη : 0 < η)
     exact hsmall.trans (intervalIntegral.integral_mono_interval hηa (by linarith) hb
       (ae_of_all _ fun _ => by positivity) hi)
 
+/--
+@isnad1 id=ex.0h0v.s6.b1c37a9e7d2d from=translated src=- shape=1b0a22fd vocab=f160e79a
+-/
 theorem plateauWindow_uniform_positive : ∃ η > 0, ∀ α τ x : ℝ,
     0 ≤ α → η ≤ α*τ → |x| ≤ τ → η/2 ≤ plateauWindowReal α τ x := by
   obtain ⟨η,hη,hs⟩ := exists_sinc_sixth_near_one
   exact ⟨η,hη,fun _ _ _ hα hsize hx => plateauWindowReal_lower hη hs hα hsize hx⟩
 
+/--
+@isnad1 id=le.1h2v.s7.81cb78a2ee92 from=translated src=- shape=54188977 vocab=9e5a6a50
+-/
 theorem scaled_sinc_sixth_decay {α : ℝ} (hα : 0 < α) (z : ℂ) :
     ‖entireSinc ((α : ℂ)*z)^6‖ ≤
       (2/min 1 α)^6 * Real.exp (6*α*|z.im|)/(1+‖z‖)^6 := by
@@ -190,7 +222,9 @@ theorem scaled_sinc_sixth_decay {α : ℝ} (hα : 0 < α) (z : ℂ) :
   rw [← norm_pow, div_pow, mul_pow, ← Real.exp_nat_mul] at hh
   simpa [c, mul_assoc] using hh
 
-/-- The compact convolution preserves sixth-order complex decay and adds type `6α`.-/
+/-- The compact convolution preserves sixth-order complex decay and adds type `6α`.
+@isnad1 id=le.2h3v.s7.302a14dbe553 from=translated src=- shape=0bcc8294 vocab=691af1e5
+-/
 theorem plateauWindow_complex_decay {α τ : ℝ} (hα : 0 < α) (hτ : 0 ≤ τ) (z : ℂ) :
     ‖plateauWindow α τ z‖ ≤
       (2*α*τ*((2/min 1 α)*(1+τ))^6) *
@@ -226,12 +260,18 @@ theorem plateauWindow_complex_decay {α τ : ℝ} (hα : 0 < α) (hτ : 0 ≤ τ
     _ ≤ α*(C*|τ-(-τ)|) := mul_le_mul_of_nonneg_left hi hα.le
     _ = _ := by rw [abs_of_nonneg (by linarith : 0 ≤ τ-(-τ))]; dsimp [C]; ring
 
+/--
+@isnad1 id=ex.2h2v.s6.8d0ee8a327fc from=translated src=- shape=399ed8bd vocab=af936c2f
+-/
 theorem plateauWindow_exponential_type {α τ : ℝ} (hα : 0 < α) (hτ : 0 < τ) :
     ∃ C > 0, ∀ z : ℂ, ‖plateauWindow α τ z‖ ≤ C*Real.exp (6*α*|z.im|) := by
   refine ⟨2*α*τ*((2/min 1 α)*(1+τ))^6, by positivity, fun z => ?_⟩
   exact (plateauWindow_complex_decay hα hτ.le z).trans
     (div_le_self (by positivity) (one_le_pow₀ (by linarith [norm_nonneg z])))
 
+/--
+@isnad1 id=le.2h2v.s6.720250d9e913 from=translated src=- shape=2dd1c15e vocab=2aa3b29f
+-/
 theorem sinc_sixth_tail {α d : ℝ} (hα : 0 < α) (hd : d ≠ 0) :
     Real.sinc (α*d)^6 ≤ (1/(α*|d|))^6 := by
   have h : |Real.sinc (α*d)| ≤ 1/(α*|d|) := by
@@ -240,7 +280,9 @@ theorem sinc_sixth_tail {α d : ℝ} (hα : 0 < α) (hd : d ≠ 0) :
   have hh := pow_le_pow_left₀ (abs_nonneg _) h 6
   simpa only [show (6 : ℕ)=2*3 from rfl, pow_mul, sq_abs] using hh
 
-/-- Outside the plateau, the distance from the whole integration interval controls the tail.-/
+/-- Outside the plateau, the distance from the whole integration interval controls the tail.
+@isnad1 id=le.3h3v.s6.1da7cf468883 from=translated src=- shape=5f556d0d vocab=db05a73b
+-/
 theorem plateauWindowReal_tail {α τ x : ℝ} (hα : 0 < α) (hτ : 0 ≤ τ)
     (hx : τ < |x|) :
     plateauWindowReal α τ x ≤ 2*α*τ / (α*(|x|-τ))^6 := by
@@ -264,12 +306,18 @@ theorem plateauWindowReal_tail {α τ x : ℝ} (hα : 0 < α) (hτ : 0 ≤ τ)
         mul_le_mul_of_nonneg_left hm hα.le
     _ = _ := by rw [div_pow]; ring
 
+/--
+@isnad1 id=le.2h3v.s5.ff7afbe74577 from=translated src=- shape=defec27f vocab=a6a25222
+-/
 theorem norm_plateauWindow_real_le {α τ : ℝ} (hα : 0 ≤ α) (hτ : 0 ≤ τ) (x : ℝ) :
     ‖plateauWindow α τ x‖ ≤ 2*Real.pi := by
   rw [plateauWindow_real, Complex.norm_real, Real.norm_eq_abs,
     abs_of_nonneg (plateauWindowReal_nonneg hα hτ x)]
   exact plateauWindowReal_le hα hτ x
 
+/--
+@isnad1 id=le.3h3v.s6.4b169eac082e from=translated src=- shape=9dee6784 vocab=ab424c88
+-/
 theorem norm_plateauWindow_real_tail {α τ x : ℝ} (hα : 0 < α) (hτ : 0 ≤ τ)
     (hx : τ < |x|) :
     ‖plateauWindow α τ x‖ ≤ 2*α*τ/(α*(|x|-τ))^6 := by
@@ -277,6 +325,9 @@ theorem norm_plateauWindow_real_tail {α τ x : ℝ} (hα : 0 < α) (hτ : 0 ≤
     abs_of_nonneg (plateauWindowReal_nonneg hα.le hτ x)]
   exact plateauWindowReal_tail hα hτ hx
 
+/--
+@isnad1 id=le.4h6v.s8.50ae60ac5622 from=translated src=- shape=1c00ec17 vocab=691af1e5
+-/
 theorem mul_plateauWindow_decay {f : ℂ → ℂ} {α τ σ K : ℝ}
     (hα : 0 < α) (hτ : 0 ≤ τ) (hK : 0 ≤ K)
     (hf : ∀ z : ℂ, ‖f z‖ ≤ K*Real.exp (σ*|z.im|)) (z : ℂ) :

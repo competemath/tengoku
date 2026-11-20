@@ -17,6 +17,9 @@ private theorem conjugate_character (n : ℤ) :
   ext x
   exact (fourier_neg (n := n)).symm
 
+/--
+@isnad1 id=mem.1h2v.s9.027d8fe074df from=translated src=- shape=e97002e9 vocab=c7922329
+-/
 theorem conjugate_band {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
     conjugateCircle f∈bandSpace k := by
   induction hf using Submodule.span_induction with
@@ -45,6 +48,9 @@ noncomputable def realPartCircle (f : CircleFunction) : CircleFunction where
   toFun x := ((f x).re:ℂ)
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=mem.1h2v.s9.db65c73b30d6 from=translated src=- shape=e97002e9 vocab=e470f15c
+-/
 theorem realPart_band {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
     realPartCircle f∈bandSpace k := by
   have he : realPartCircle f=(2:ℂ)⁻¹•(f+conjugateCircle f) := by
@@ -58,7 +64,9 @@ theorem realPart_band {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
 
 /-- Normalize at an actual maximum, rotate its phase and take its real part.
 Both the global bound and all node bounds survive with constants independent
-of the positions of the nodes.-/
+of the positions of the nodes.
+@isnad1 id=ex.4h5v.s10.0aab22d05a4d from=translated src=- shape=98e58996 vocab=cae1ce3b
+-/
 theorem normalized_real_trig_witness {k : ℕ} (Γ : Finset FourierCircle)
     (M : ℝ) (hM : 0<M) (P : CircleFunction) (hP : P∈bandSpace k)
     (hnodes : ∀x∈Γ,‖P x‖≤1) (z : FourierCircle) (hz : M≤‖P z‖) :
@@ -98,7 +106,9 @@ theorem normalized_real_trig_witness {k : ℕ} (Γ : Finset FourierCircle)
       (one_mul 1))
 
 /-- A uniformly normalized real trigonometric witness for every finite node set
-within the explicit finite sampling budget.-/
+within the explicit finite sampling budget.
+@isnad1 id=ex.5h4v.s9.95fa15b9adee from=translated src=- shape=7fc0f005 vocab=02949281
+-/
 theorem real_trig_sampling (A q : ℕ) (hA : 0<A) (hq : 0<q)
     (Γ : Finset FourierCircle) (hΓ : Γ.card≤2*localizationRadius A q+1)
     (M : ℝ) (hM : 0<M) (hheight : M≤harmonicHeight A/(3*probeNormalization)) :

@@ -25,30 +25,51 @@ instance : IsProbabilityMeasure circleMeasure := by
   unfold circleMeasure
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s6.b0e106e1af93 from=translated src=- shape=f43dd4ae vocab=577c2980
+-/
 @[simp] theorem character_zero (x : FourierCircle) : character 0 x = 1 := by
   simp [character, fourier_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.f6e5e5d35dc9 from=translated src=- shape=68603a2a vocab=577c2980
+-/
 @[simp] theorem character_at_zero (n : ℤ) : character n 0 = 1 := by
   exact fourier_eval_zero n
 
+/--
+@isnad1 id=eq.0h3v.s7.cef866911372 from=translated src=- shape=26a8aca4 vocab=4fd1a98b
+-/
 @[simp] theorem character_add (j k : ℤ) (x : FourierCircle) :
     character (j + k) x = character j x * character k x := fourier_add
 
+/--
+@isnad1 id=eq.0h2v.s6.49aabec9eb1f from=translated src=- shape=63acd3fd vocab=41c8cdcf
+-/
 @[simp] theorem character_norm (n : ℤ) (x : FourierCircle) :
     ‖character n x‖ = 1 := by
   exact Circle.norm_coe _
 
+/--
+@isnad1 id=eq.0h3v.s7.517379ef84ec from=translated src=- shape=84af8958 vocab=4fd1a98b
+-/
 theorem character_translate (n : ℤ) (x y : FourierCircle) :
     character n (x + y) = character n x * character n y := by
   simp only [character, fourier_apply, smul_add, AddCircle.toCircle_add,
     Circle.coe_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.d5884b395062 from=translated src=- shape=4bd323f4 vocab=bf614f64
+-/
 theorem character_sub (n : ℤ) (x y : FourierCircle) :
     character n (x - y) = character n x * character (-n) y := by
   rw [sub_eq_add_neg, character_translate]
   congr 1
   simp only [character, fourier_apply, smul_neg, neg_smul]
 
+/--
+@isnad1 id=eq.0h1v.s7.ab207eb78896 from=translated src=- shape=5d39080e vocab=dd950c67
+-/
 @[simp] theorem character_integral (n : ℤ) :
     ∫ x, character n x ∂circleMeasure = if n = 0 then 1 else 0 := by
   by_cases hn : n = 0
@@ -63,10 +84,16 @@ theorem character_sub (n : ℤ) (x y : FourierCircle) :
 noncomputable def finiteFourier (s : Finset ℤ) (c : ℤ → ℂ) : CircleFunction :=
   ∑ n ∈ s, c n • character n
 
+/--
+@isnad1 id=eq.0h3v.s7.2acf4bbcd8fe from=translated src=- shape=f4f57fb3 vocab=de67dada
+-/
 @[simp] theorem finiteFourier_apply (s : Finset ℤ) (c : ℤ → ℂ)
     (x : FourierCircle) : finiteFourier s c x = ∑ n ∈ s, c n * character n x := by
   simp [finiteFourier]
 
+/--
+@isnad1 id=eq.0h2v.s7.109214e8b45f from=translated src=- shape=e4f6fb23 vocab=8935c4b7
+-/
 theorem integral_character_mul (j k : ℤ) :
     ∫ x, character j x * character k x ∂circleMeasure =
       if j + k = 0 then 1 else 0 := by
@@ -75,6 +102,9 @@ theorem integral_character_mul (j k : ℤ) :
 noncomputable def coefficient (f : CircleFunction) (n : ℤ) : ℂ :=
   ∫ x, character (-n) x * f x ∂circleMeasure
 
+/--
+@isnad1 id=eq.0h3v.s5.7607881e9e60 from=translated src=- shape=d53c020c vocab=0b04e089
+-/
 theorem coefficient_finiteFourier (s : Finset ℤ) (c : ℤ → ℂ) (n : ℤ) :
     coefficient (finiteFourier s c) n = if n ∈ s then c n else 0 := by
   classical
@@ -90,6 +120,9 @@ theorem coefficient_finiteFourier (s : Finset ℤ) (c : ℤ → ℂ) (n : ℤ) :
     exact (by fun_prop : Continuous fun x : FourierCircle =>
       character (-n) x * (c j * character j x)).integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=le.0h2v.s5.649a42a04220 from=translated src=- shape=fa9b273a vocab=bbbd29f8
+-/
 theorem norm_coefficient_le (f : CircleFunction) (n : ℤ) :
     ‖coefficient f n‖ ≤ ‖f‖ := by
   unfold coefficient
@@ -101,6 +134,9 @@ theorem norm_coefficient_le (f : CircleFunction) (n : ℤ) :
 noncomputable def circleConvolution (f g : CircleFunction) :
     FourierCircle → ℂ := fun x => ∫ y, f y * g (x-y) ∂circleMeasure
 
+/--
+@isnad1 id=eq.0h5v.s6.647e1aa06f6c from=translated src=- shape=b4063507 vocab=9fa619e6
+-/
 theorem convolution_finiteFourier (s t : Finset ℤ) (c d : ℤ → ℂ)
     (x : FourierCircle) :
     circleConvolution (finiteFourier s c) (finiteFourier t d) x =
@@ -139,7 +175,9 @@ theorem convolution_finiteFourier (s t : Finset ℤ) (c d : ℤ → ℂ)
       ∑ k ∈ t, c j * character j y * (d k * character k (x-y))).integrable_of_hasCompactSupport
         (HasCompactSupport.of_compactSpace _)
 
-/-- A real nonnegative convolution kernel has operator bound equal to its mass.-/
+/-- A real nonnegative convolution kernel has operator bound equal to its mass.
+@isnad1 id=le.1h4v.s7.6dcf489d7c18 from=translated src=- shape=002f7f18 vocab=af14d3fe
+-/
 theorem norm_convolution_le (f g : CircleFunction) (C : ℝ)
     (hC : ∀ y, ‖g y‖ ≤ C) :
     ∀ x, ‖circleConvolution f g x‖ ≤ (∫ y, ‖f y‖ ∂circleMeasure) * C := by
@@ -161,7 +199,9 @@ theorem norm_convolution_le (f g : CircleFunction) (C : ℝ)
     _ = (∫ y, ‖f y‖ ∂circleMeasure)*C := integral_mul_const _ _
 
 /-- The dimension argument in the localized finite sampling construction.
-All constraints are actual linear maps on the finite vector of coefficients.-/
+All constraints are actual linear maps on the finite vector of coefficients.
+@isnad1 id=ex.1h3v.s7.1f8dcbcdab12 from=translated src=- shape=1cda01e5 vocab=4b008618
+-/
 theorem exists_common_kernel_vector {ι κ : Type*} [Fintype ι] [Fintype κ]
     (hcard : Fintype.card κ < Fintype.card ι)
     (L : (ι → ℂ) →ₗ[ℂ] (κ → ℂ)) :

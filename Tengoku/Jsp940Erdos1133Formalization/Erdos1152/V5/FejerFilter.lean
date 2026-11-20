@@ -51,7 +51,9 @@ private theorem fejerKernel_expansion (L : ℕ) (x : FourierCircle) :
     Complex.ofReal_pow, normSq_dirichlet_expansion, div_eq_mul_inv]
   ring
 
-/-- The exact triangular Fourier coefficients, including the cutoff endpoints.-/
+/-- The exact triangular Fourier coefficients, including the cutoff endpoints.
+@isnad1 id=eq.0h2v.s5.8b0ceeb2bc45 from=translated src=- shape=7dc77bc1 vocab=50987b75
+-/
 theorem coefficient_fejerKernel (L : ℕ) (n : ℤ) :
     coefficient (fejerKernel L) n = ((L-n.natAbs : ℕ) : ℂ) / L := by
   classical
@@ -81,6 +83,9 @@ theorem coefficient_fejerKernel (L : ℕ) (n : ℤ) :
       ∑ j : Fin L, character (-n+((i:ℤ)-(j:ℤ))) x).integrable_of_hasCompactSupport
       (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=eq.0h1v.s6.565102f82ea0 from=translated src=- shape=7ed6a460 vocab=b375b898
+-/
 theorem integral_norm_fejerKernel (L : ℕ) [NeZero L] :
     ∫ x, ‖fejerKernel L x‖ ∂circleMeasure = 1 := by
   have hnonneg (x : FourierCircle) :
@@ -100,6 +105,9 @@ theorem integral_norm_fejerKernel (L : ℕ) [NeZero L] :
 noncomputable def valleeKernel (L : ℕ) : CircleFunction :=
   (2 : ℂ) • fejerKernel (2*L) - fejerKernel L
 
+/--
+@isnad1 id=le.0h1v.s6.31a4d75f2515 from=translated src=- shape=7ed6a460 vocab=bd16e2f5
+-/
 theorem integral_norm_valleeKernel_le (L : ℕ) [NeZero L] :
     ∫ x, ‖valleeKernel L x‖ ∂circleMeasure ≤ 3 := by
   have : NeZero (2*L) := ⟨mul_ne_zero (by decide) (NeZero.ne L)⟩
@@ -123,6 +131,9 @@ theorem integral_norm_valleeKernel_le (L : ℕ) [NeZero L] :
       · exact (fejerKernel L).continuous.norm.integrable_of_hasCompactSupport
           (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=eq.0h2v.s6.6011ac165c23 from=translated src=- shape=a004ef16 vocab=2537aede
+-/
 theorem coefficient_valleeKernel (L : ℕ) (n : ℤ) :
     coefficient (valleeKernel L) n =
       2*(((2*L-n.natAbs : ℕ) : ℂ)/(2*L))-
@@ -140,6 +151,9 @@ theorem coefficient_valleeKernel (L : ℕ) (n : ℤ) :
       character (-n) x*fejerKernel L x).integrable_of_hasCompactSupport
       (HasCompactSupport.of_compactSpace _)
 
+/--
+@isnad1 id=eq.1h2v.s4.3b578a84e434 from=translated src=- shape=fb5286f7 vocab=41b37471
+-/
 theorem coefficient_valleeKernel_low (L : ℕ) [NeZero L] (n : ℤ)
     (hn : n.natAbs ≤ L) : coefficient (valleeKernel L) n = 1 := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne L
@@ -148,11 +162,17 @@ theorem coefficient_valleeKernel_low (L : ℕ) [NeZero L] (n : ℤ)
   field_simp [hL]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.253634e1d3d5 from=translated src=- shape=c8d0a99c vocab=3d3873ff
+-/
 theorem coefficient_valleeKernel_high (L : ℕ) (n : ℤ)
     (hn : 2*L ≤ n.natAbs) : coefficient (valleeKernel L) n = 0 := by
   simp [coefficient_valleeKernel, Nat.sub_eq_zero_of_le hn,
     Nat.sub_eq_zero_of_le (show L ≤ n.natAbs by omega)]
 
+/--
+@isnad1 id=eq.0h3v.s6.72f558443c49 from=translated src=- shape=fc91a861 vocab=29c04719
+-/
 theorem convolution_character (K : CircleFunction) (n : ℤ) (x : FourierCircle) :
     circleConvolution K (character n) x = character n x * coefficient K n := by
   unfold circleConvolution coefficient
@@ -161,17 +181,25 @@ theorem convolution_character (K : CircleFunction) (n : ℤ) (x : FourierCircle)
       fun y => character n x*(character (-n) y*K y) by funext y; ring,
     integral_const_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.7d988c29eeea from=translated src=- shape=7cdac89a vocab=d0498054
+-/
 theorem vallee_low_character (L : ℕ) [NeZero L] (n : ℤ)
     (hn : n.natAbs ≤ L) (x : FourierCircle) :
     circleConvolution (valleeKernel L) (character n) x = character n x := by
   simp [convolution_character, coefficient_valleeKernel_low L n hn]
 
+/--
+@isnad1 id=eq.1h3v.s5.6ab4d11a1dd8 from=translated src=- shape=56095360 vocab=9957e2fe
+-/
 theorem vallee_high_character (L : ℕ) (n : ℤ)
     (hn : 2*L ≤ n.natAbs) (x : FourierCircle) :
     circleConvolution (valleeKernel L) (character n) x = 0 := by
   simp [convolution_character, coefficient_valleeKernel_high L n hn]
 
-/-- Norm at most three, with no dependence on the trigonometric degree.-/
+/-- Norm at most three, with no dependence on the trigonometric degree.
+@isnad1 id=le.0h3v.s6.1ff2df300730 from=translated src=- shape=9d7ed0be vocab=215690af
+-/
 theorem vallee_operator_bound (L : ℕ) [NeZero L] (f : CircleFunction)
     (x : FourierCircle) : ‖circleConvolution (valleeKernel L) f x‖ ≤ 3*‖f‖ := by
   exact (norm_convolution_le _ _ ‖f‖ (fun y => f.norm_coe_le_norm y) x).trans

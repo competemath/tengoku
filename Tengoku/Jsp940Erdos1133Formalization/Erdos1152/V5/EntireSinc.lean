@@ -13,25 +13,40 @@ namespace Erdos1152.V5
 /-- Unnormalized entire sinc: `sin z/z`, with its removable value filled in.-/
 def entireSinc (z : ℂ) : ℂ := if z=0 then 1 else Complex.sin z/z
 
+/--
+@isnad1 id=eq.0h0v.s4.2fa760db6de5 from=translated src=- shape=1d1fff56 vocab=191abe0e
+-/
 theorem entireSinc_eq_dslope : entireSinc=dslope Complex.sin 0 := by
   ext z
   by_cases hz : z=0
   · simp [entireSinc,hz,dslope_same]
   · simp [entireSinc,hz,dslope_of_ne Complex.sin hz,slope,div_eq_mul_inv,mul_comm]
 
+/--
+@isnad1 id=differen.0h0v.s6.3593264139c5 from=translated src=- shape=aa9fb30a vocab=57d69af9
+-/
 theorem differentiable_entireSinc : Differentiable ℂ entireSinc := by
   rw [entireSinc_eq_dslope]
   exact differentiableOn_univ.mp
     ((Complex.differentiableOn_dslope (s := univ) (c := 0) (by simp)).mpr
       Complex.differentiable_sin.differentiableOn)
 
+/--
+@isnad1 id=eq.0h0v.s3.4e258d15fe88 from=translated src=- shape=3c26ae4f vocab=3fba37fa
+-/
 @[simp] theorem entireSinc_zero : entireSinc 0=1 := by simp [entireSinc]
 
+/--
+@isnad1 id=eq.0h1v.s3.696f9fca65ec from=translated src=- shape=c14c2a45 vocab=16ba42b1
+-/
 @[simp] theorem entireSinc_real (x : ℝ) : entireSinc (x:ℂ)=(Real.sinc x:ℂ) := by
   by_cases hx : x=0
   · simp [hx]
   · simp [entireSinc,Real.sinc,hx,Complex.ofReal_eq_zero,Complex.ofReal_sin]
 
+/--
+@isnad1 id=le.0h1v.s4.fcc6ee675b8c from=translated src=- shape=2f36b9fd vocab=ef16af95
+-/
 theorem norm_complex_sin_le (z : ℂ) : ‖Complex.sin z‖≤Real.exp |z.im| := by
   rw [Complex.sin,norm_div,norm_mul,Complex.norm_I,mul_one]
   norm_num
@@ -42,6 +57,9 @@ theorem norm_complex_sin_le (z : ℂ) : ‖Complex.sin z‖≤Real.exp |z.im| :=
   have h2 : (z*Complex.I).re≤|z.im| := by simp; exact neg_le_abs _
   linarith [Real.exp_le_exp.mpr h1,Real.exp_le_exp.mpr h2]
 
+/--
+@isnad1 id=le.0h1v.s4.b1ce95caf43d from=translated src=- shape=2f36b9fd vocab=b81bbac8
+-/
 theorem norm_complex_cos_le (z : ℂ) : ‖Complex.cos z‖≤Real.exp |z.im| := by
   rw [Complex.cos,norm_div]
   norm_num
@@ -52,7 +70,9 @@ theorem norm_complex_cos_le (z : ℂ) : ‖Complex.cos z‖≤Real.exp |z.im| :=
   have h2 : (z*Complex.I).re≤|z.im| := by simp; exact neg_le_abs _
   linarith [Real.exp_le_exp.mpr h1,Real.exp_le_exp.mpr h2]
 
-/-- An integral representation valid also at the removable point.-/
+/-- An integral representation valid also at the removable point.
+@isnad1 id=eq.0h1v.s5.34fb99c45c24 from=translated src=- shape=4fd65339 vocab=1baafaf9
+-/
 theorem entireSinc_integral (z : ℂ) :
     entireSinc z=∫t:ℝ in (0:ℝ)..1,Complex.cos (z*t) := by
   by_cases hz : z=0
@@ -68,6 +88,9 @@ theorem entireSinc_integral (z : ℂ) :
   rw [intervalIntegral.integral_eq_sub_of_hasDerivAt (fun t ht => hd t) hi]
   simp [entireSinc,hz]
 
+/--
+@isnad1 id=le.0h1v.s4.f6d585fe38a6 from=translated src=- shape=2f36b9fd vocab=10e27294
+-/
 theorem norm_entireSinc_le_exp (z : ℂ) : ‖entireSinc z‖≤Real.exp |z.im| := by
   rw [entireSinc_integral]
   have h := intervalIntegral.norm_integral_le_of_norm_le_const
@@ -85,7 +108,9 @@ theorem norm_entireSinc_le_exp (z : ℂ) : ‖entireSinc z‖≤Real.exp |z.im| 
     rw [abs_of_nonneg ht'.1]
     exact mul_le_of_le_one_right (abs_nonneg _) ht'.2
 
-/-- Global algebraic decay with the correct exponential type.-/
+/-- Global algebraic decay with the correct exponential type.
+@isnad1 id=le.0h1v.s5.76d0f9fc3047 from=translated src=- shape=c0446cfe vocab=88146fd3
+-/
 theorem norm_entireSinc_decay (z : ℂ) :
     ‖entireSinc z‖≤2*Real.exp |z.im|/(1+‖z‖) := by
   by_cases hz : ‖z‖≤1
@@ -99,12 +124,21 @@ theorem norm_entireSinc_decay (z : ℂ) :
     rw [div_le_div_iff₀ hn (by positivity)]
     nlinarith [Real.exp_pos |z.im|]
 
+/--
+@isnad1 id=le.0h2v.s5.8c4a25cd940c from=translated src=- shape=0a094fef vocab=f0fe1575
+-/
 theorem sinc_power_nonneg (γ x : ℝ) : 0≤Real.sinc (γ*x)^4 := by positivity
 
+/--
+@isnad1 id=le.0h2v.s5.65ec74d93ebd from=translated src=- shape=cc009f99 vocab=f0fe1575
+-/
 theorem sinc_power_le_one (γ x : ℝ) : Real.sinc (γ*x)^4≤1 := by
   have h := pow_le_pow_left₀ (abs_nonneg _) (Real.abs_sinc_le_one (γ*x)) 4
   simpa only [show (4:ℕ)=2*2 from rfl,pow_mul,sq_abs,one_pow] using h
 
+/--
+@isnad1 id=ex.0h0v.s6.9fcd86f129d0 from=translated src=- shape=3eb378c5 vocab=b464434b
+-/
 theorem exists_sinc_fourth_near_one : ∃η>0,∀x:ℝ,|x|≤η→1/2≤Real.sinc x^4 := by
   have hc := (Real.continuous_sinc.pow 4).continuousAt (x := 0)
   obtain ⟨η,hη,hηc⟩ := Metric.continuousAt_iff.mp hc (1/2) (by norm_num)
@@ -114,6 +148,9 @@ theorem exists_sinc_fourth_near_one : ∃η>0,∀x:ℝ,|x|≤η→1/2≤Real.sin
   simp only [Pi.pow_apply,Real.sinc_zero,one_pow,Real.dist_eq] at hh
   linarith [(abs_lt.mp hh).1]
 
+/--
+@isnad1 id=le.2h2v.s6.a31630dea80c from=translated src=- shape=2dd1c15e vocab=2aa3b29f
+-/
 theorem sinc_fourth_tail {γ d : ℝ} (hγ : 0<γ) (hd : d≠0) :
     Real.sinc (γ*d)^4≤(1/(γ*|d|))^4 := by
   have hgd : γ*d≠0 := mul_ne_zero hγ.ne' hd

@@ -10,7 +10,9 @@ open Set Filter
 namespace Erdos1133
 
 /-- The complete finite reduction. The analytic obstruction is displayed as
-an assumption of this intermediate theorem; it is not an axiom.-/
+an assumption of this intermediate theorem; it is not an axiom.
+@isnad1 id=ex.3h4v.s8.9129ec1cba3b from=translated src=- shape=d50f1558 vocab=11ece20d
+-/
 theorem robust_labels_of_finite_obstruction {C : ℝ} {k n : ℕ}
     (hk : 2 ≤ k) (hn : 4*k^2 ≤ n) (hcore : FiniteBernsteinObstruction C k)
     (x : Fin n → Icc (-1 : ℝ) 1) :

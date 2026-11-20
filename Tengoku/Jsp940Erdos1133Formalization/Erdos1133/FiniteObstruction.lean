@@ -15,6 +15,9 @@ def FiniteBernsteinObstruction (H : ℝ) (k : ℕ) : Prop :=
       ∀ f : ℂ → ℂ, IsBernsteinFunction Real.pi H f →
         ∃ i, f (t i) ≠ ((y i : ℝ) : ℂ)
 
+/--
+@isnad1 id=ex.3h6v.s7.f36873ff1eb8 from=translated src=- shape=e8ff3673 vocab=ffccd217
+-/
 theorem finiteObstruction_group {H : ℝ} {k : ℕ}
     (h : FiniteBernsteinObstruction H k)
     {α : Type*} [DecidableEq α] (g : Finset α) (hg : g.card = k)

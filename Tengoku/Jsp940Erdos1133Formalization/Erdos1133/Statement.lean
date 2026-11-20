@@ -19,6 +19,9 @@ def BoundedOnSegment (C : ℝ) (P : Polynomial ℝ) : Prop :=
 def angularNode (D : ℝ) (x : Icc (-1 : ℝ) 1) : ℝ :=
   D / Real.pi * Real.arccos (x : ℝ)
 
+/--
+@isnad1 id=mem.1h2v.s5.2339eae4cf78 from=translated src=- shape=217de7d2 vocab=68aaeef9
+-/
 theorem angularNode_mem {D : ℝ} (hD : 0 ≤ D) (x : Icc (-1 : ℝ) 1) :
     angularNode D x ∈ Icc 0 D := by
   constructor
@@ -28,6 +31,9 @@ theorem angularNode_mem {D : ℝ} (hD : 0 ≤ D) (x : Icc (-1 : ℝ) 1) :
         mul_le_mul_of_nonneg_left (Real.arccos_le_pi _) (div_nonneg hD Real.pi_pos.le)
       _ = D := by field_simp
 
+/--
+@isnad1 id=eq.1h2v.s6.04a1c73f06e9 from=translated src=- shape=0b50aa16 vocab=f55e5566
+-/
 theorem cos_angularNode {D : ℝ} (hD : 0 < D) (x : Icc (-1 : ℝ) 1) :
     Real.cos (Real.pi / D * angularNode D x) = (x : ℝ) := by
   have he : Real.pi / D * angularNode D x = Real.arccos (x : ℝ) := by

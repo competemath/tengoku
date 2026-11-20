@@ -17,12 +17,17 @@ namespace Erdos1133
 
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
+/--
+@isnad1 id=ne.0h2v.s6.b17424388918 from=translated src=- shape=015c5117 vocab=577c2980
+-/
 theorem character_ne_zero (j : ℤ) (x : FourierCircle) : character j x ≠ 0 := by
   have := character_norm j x
   intro h
   simp [h] at this
 
-/-- A nonzero band-m circle function has at most 2m distinct zeros.-/
+/-- A nonzero band-m circle function has at most 2m distinct zeros.
+@isnad1 id=le.3h3v.s8.c26ca623fb4e from=translated src=- shape=15796f29 vocab=39d729ac
+-/
 theorem band_zero_card_le {m : ℕ} {f : CircleFunction}
     (hf : f ∈ bandSpace m) (hf0 : f ≠ 0)
     (S : Finset FourierCircle) (hS : ∀ x ∈ S, f x = 0) :
@@ -52,6 +57,9 @@ A constant phase makes this function real-valued.-/
 def circleNodeProduct (N : ℕ) (Γ : Finset FourierCircle) : CircleFunction :=
   polynomialCircle N (circleNodePolynomial Γ)
 
+/--
+@isnad1 id=eq.0h3v.s8.aa227e327a72 from=translated src=- shape=18514d0f vocab=20581473
+-/
 @[simp] theorem circleNodeProduct_apply (N : ℕ) (Γ : Finset FourierCircle)
     (x : FourierCircle) :
     circleNodeProduct N Γ x =
@@ -59,20 +67,32 @@ def circleNodeProduct (N : ℕ) (Γ : Finset FourierCircle) : CircleFunction :=
   simp [circleNodeProduct, circleNodePolynomial, polynomialCircle_apply,
     Polynomial.eval_prod]
 
+/--
+@isnad1 id=monic.0h1v.s3.7c22c6bc3c6d from=translated src=- shape=12d4eb43 vocab=6533fc3e
+-/
 theorem circleNodePolynomial_monic (Γ : Finset FourierCircle) :
     (circleNodePolynomial Γ).Monic := by
   exact Polynomial.monic_prod_X_sub_C _ _
 
+/--
+@isnad1 id=eq.0h1v.s3.6e4fb5ca98a0 from=translated src=- shape=60e9288d vocab=b79c87aa
+-/
 @[simp] theorem circleNodePolynomial_natDegree (Γ : Finset FourierCircle) :
     (circleNodePolynomial Γ).natDegree = Γ.card := by
   simp [circleNodePolynomial, Polynomial.natDegree_prod_of_monic,
     Polynomial.monic_X_sub_C]
 
+/--
+@isnad1 id=mem.1h2v.s8.d73845c41467 from=translated src=- shape=5c3e07c7 vocab=2b3e4c8a
+-/
 theorem circleNodeProduct_band (N : ℕ) (Γ : Finset FourierCircle)
     (hΓ : Γ.card = 2 * N) : circleNodeProduct N Γ ∈ bandSpace N := by
   apply polynomialCircle_band
   simp [hΓ]
 
+/--
+@isnad1 id=iff.0h3v.s6.b870a028f092 from=translated src=- shape=1a47f837 vocab=7125d312
+-/
 @[simp] theorem circleNodeProduct_eq_zero_iff (N : ℕ) (Γ : Finset FourierCircle)
     (x : FourierCircle) : circleNodeProduct N Γ x = 0 ↔ x ∈ Γ := by
   classical
@@ -84,6 +104,9 @@ theorem circleNodeProduct_band (N : ℕ) (Γ : Finset FourierCircle)
   · intro hx
     exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=dvd.2h4v.s8.f39922f40722 from=translated src=- shape=67813912 vocab=c981f2c2
+-/
 theorem circleNodePolynomial_dvd {m : ℕ} {f : CircleFunction}
     (p : ℂ[X]) (hpf : polynomialCircle m p = f)
     (Γ : Finset FourierCircle) (hfΓ : ∀ x ∈ Γ, f x = 0) :
@@ -101,7 +124,9 @@ theorem circleNodePolynomial_dvd {m : ℕ} {f : CircleFunction}
 
 /-- Vanishing at 2N distinct circle nodes removes exactly N from each end of
 the Fourier band. This is the algebraic sine-product division used in the
-finite trigonometric interpolation obstruction.-/
+finite trigonometric interpolation obstruction.
+@isnad1 id=ex.4h4v.s9.8f134c0b923b from=translated src=- shape=354156dc vocab=4bd5adff
+-/
 theorem exists_band_node_quotient {m N : ℕ} (hNm : N ≤ m)
     {f : CircleFunction} (hf : f ∈ bandSpace m)
     (Γ : Finset FourierCircle) (hΓ : Γ.card = 2 * N)
@@ -140,7 +165,9 @@ theorem exists_band_node_quotient {m N : ℕ} (hNm : N ≤ m)
   rw [show -(N : ℤ) + -((m - N : ℕ) : ℤ) = -(m : ℤ) by omega]
 
 /-- Once the node product is rotated to the real axis, taking the real part
-of its exact quotient preserves the factorization and the smaller band.-/
+of its exact quotient preserves the factorization and the smaller band.
+@isnad1 id=ex.7h5v.s10.69fa1e44c376 from=translated src=- shape=c573c7ed vocab=ca9031b9
+-/
 theorem exists_real_band_node_quotient {m N : ℕ} (hNm : N ≤ m)
     {f : CircleFunction} (hf : f ∈ bandSpace m)
     (hreal : ∀ x, (f x).im = 0)
@@ -190,7 +217,9 @@ private theorem exists_zero_between_opposite (u : ℝ → ℝ) (hu : Continuous 
   · exact intermediate_value_Ioo hab.le hu.continuousOn ⟨h.1, h.2⟩
 
 /-- Consecutive strict sign changes of a real band-m function, in an arc of
-length less than one period, number at most 2m.-/
+length less than one period, number at most 2m.
+@isnad1 id=le.5h4v.s9.96b0adbe14e3 from=translated src=- shape=122b94c1 vocab=49576517
+-/
 theorem band_alternating_card_le {m k : ℕ} {f : CircleFunction}
     (hf : f ∈ bandSpace m) (hreal : ∀ x, (f x).im = 0)
     (t : Fin (k + 1) → ℝ) (ht : StrictMono t)
@@ -257,7 +286,9 @@ private theorem opposite_preserves_alternation {u v a b : ℝ}
 
 /-- The precise finite oscillation obstruction. Values of phi divided by the
 real node product alternate at k+1 peaks. An interpolant uniformly smaller at
-those peaks therefore needs at least k/2 extra Fourier degrees.-/
+those peaks therefore needs at least k/2 extra Fourier degrees.
+@isnad1 id=le.14h8v.s10.67148a00e7d4 from=translated src=- shape=b50b4c30 vocab=95788fff
+-/
 theorem interpolant_peak_oscillations_le {m N k : ℕ} (hNm : N ≤ m)
     (Γ : Finset FourierCircle) (hΓ : Γ.card = 2 * N)
     (φ H : CircleFunction) (hφ : φ ∈ bandSpace N) (hH : H ∈ bandSpace m)

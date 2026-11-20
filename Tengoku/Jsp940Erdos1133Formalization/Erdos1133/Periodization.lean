@@ -11,10 +11,16 @@ namespace Erdos1133
 
 def sixthLatticeWeight (k : ℤ) : ℝ := 1 / (1 + |(k : ℝ)|) ^ 6
 
+/--
+@isnad1 id=le.0h1v.s3.98c70c3c4b62 from=translated src=- shape=b9369acb vocab=5d927c8d
+-/
 theorem sixthLatticeWeight_nonneg (k : ℤ) : 0 ≤ sixthLatticeWeight k := by
   unfold sixthLatticeWeight
   positivity
 
+/--
+@isnad1 id=summable.0h0v.s3.b6fdde75b8e6 from=translated src=- shape=ef4b497d vocab=44f35891
+-/
 theorem sixthLatticeWeight_summable : Summable sixthLatticeWeight := by
   have hnat : Summable fun n : ℕ => 1 / ((n : ℝ) + 1) ^ 6 := by
     simpa using (summable_nat_add_iff 1).mpr
@@ -27,7 +33,9 @@ theorem sixthLatticeWeight_summable : Summable sixthLatticeWeight := by
 def periodize (g : ℂ → ℂ) (T : ℝ) (z : ℂ) : ℂ :=
   ∑' k : ℤ, g (z + ((T * (k : ℝ) : ℝ) : ℂ))
 
-/-- A summable majorant on any bounded complex disk.-/
+/-- A summable majorant on any bounded complex disk.
+@isnad1 id=le.6h7v.s8.f0ab884b25cb from=translated src=- shape=99d77dc1 vocab=2b06229d
+-/
 theorem periodize_term_local_bound (g : ℂ → ℂ) {C σ T R : ℝ}
     (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T) (hR : 0 ≤ R)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -61,6 +69,9 @@ theorem periodize_term_local_bound (g : ℂ → ℂ) {C σ T R : ℝ}
     _ ≤ _ := mul_le_mul_of_nonneg_right
       (mul_le_mul_of_nonneg_left hr6 (by positivity)) (sixthLatticeWeight_nonneg k)
 
+/--
+@isnad1 id=summable.4h5v.s7.091baefa09aa from=translated src=- shape=d90fd9be vocab=d68f8f7b
+-/
 theorem periodize_summable (g : ℂ → ℂ) {C σ T : ℝ}
     (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -70,6 +81,9 @@ theorem periodize_summable (g : ℂ → ℂ) {C σ T : ℝ}
       (C * Real.exp (σ * ‖z‖) * ((T + ‖z‖ + 1) / T) ^ 6))
   exact fun k => periodize_term_local_bound g hC hσ hT (norm_nonneg z) hg z le_rfl k
 
+/--
+@isnad1 id=differen.5h4v.s8.451a20cbd68f from=translated src=- shape=c687aecc vocab=4abfa48b
+-/
 theorem differentiable_periodize (g : ℂ → ℂ) {C σ T : ℝ}
     (hd : Differentiable ℂ g) (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6) :
@@ -90,6 +104,9 @@ theorem differentiable_periodize (g : ℂ → ℂ) {C σ T : ℝ}
   exact hdiff.differentiableAt (Metric.isOpen_ball.mem_nhds (by
     simp [Metric.mem_ball, R]))
 
+/--
+@isnad1 id=periodic.0h2v.s3.d10ec1894095 from=translated src=- shape=71c2eb01 vocab=40654f59
+-/
 theorem periodize_periodic (g : ℂ → ℂ) (T : ℝ) :
     Function.Periodic (periodize g T) (T : ℂ) := by
   intro z
@@ -104,6 +121,9 @@ theorem periodize_periodic (g : ℂ → ℂ) (T : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.5h5v.s7.7a56c922de44 from=translated src=- shape=8bc81e76 vocab=54710810
+-/
 theorem periodize_real (g : ℂ → ℂ) {C σ T : ℝ}
     (hreal : ∀ x : ℝ, (g x).im = 0) (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -120,7 +140,9 @@ theorem periodize_real (g : ℂ → ℂ) {C σ T : ℝ}
   simp
 
 /-- A bound uniform in the height of a vertical strip, preserving the exact
-exponential type.-/
+exponential type.
+@isnad1 id=le.5h7v.s7.0031d8a25b85 from=translated src=- shape=7cdfc8eb vocab=466b1ad3
+-/
 theorem periodize_term_strip_bound (g : ℂ → ℂ) {C σ T R : ℝ}
     (hC : 0 ≤ C) (hT : 0 < T) (hR : 0 ≤ R)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -150,6 +172,9 @@ theorem periodize_term_strip_bound (g : ℂ → ℂ) {C σ T R : ℝ}
     _ ≤ _ := mul_le_mul_of_nonneg_right
       (mul_le_mul_of_nonneg_left hr6 (by positivity)) (sixthLatticeWeight_nonneg k)
 
+/--
+@isnad1 id=le.5h6v.s7.232d1e609d63 from=translated src=- shape=bbbea1a3 vocab=9acc8bec
+-/
 theorem periodize_strip_bound (g : ℂ → ℂ) {C σ T R : ℝ}
     (hC : 0 ≤ C) (hT : 0 < T) (hR : 0 ≤ R)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -168,6 +193,9 @@ theorem periodize_strip_bound (g : ℂ → ℂ) {C σ T R : ℝ}
       Summable.tsum_le_tsum (periodize_term_strip_bound g hC hT hR hg z hz) hn hmaj
     _ = _ := by rw [tsum_mul_left]; dsimp [A]; ring
 
+/--
+@isnad1 id=le.5h6v.s7.5595cad3c31d from=translated src=- shape=bc216625 vocab=2b06229d
+-/
 theorem periodize_term_tail_bound (g : ℂ → ℂ) {C σ T : ℝ}
     (hC : 0 ≤ C) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -201,7 +229,9 @@ theorem periodize_term_tail_bound (g : ℂ → ℂ) {C σ T : ℝ}
     _ = _ := by ring
 
 /-- Uniform error on the central period interval, sufficient to preserve peaks
-and bounded labels when the period tends to infinity.-/
+and bounded labels when the period tends to infinity.
+@isnad1 id=le.5h5v.s7.3c399e7b1a34 from=translated src=- shape=af6f17db vocab=850c23b6
+-/
 theorem periodize_real_error (g : ℂ → ℂ) {C σ T : ℝ}
     (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6)
@@ -234,7 +264,9 @@ theorem periodize_real_error (g : ℂ → ℂ) {C σ T : ℝ}
     _ = _ := tsum_mul_left
 
 /-- Vertical contour translation for an entire periodic function: the two
-vertical sides cancel exactly.-/
+vertical sides cancel exactly.
+@isnad1 id=eq.2h3v.s7.bc533d3ae67e from=translated src=- shape=40bb6b2a vocab=b0281b11
+-/
 theorem periodic_horizontal_integral (H : ℂ → ℂ) {T : ℝ}
     (hd : Differentiable ℂ H) (hp : Function.Periodic H (T : ℂ)) (y : ℝ) :
     (∫ x : ℝ in (-T / 2)..(T / 2), H (x : ℂ)) =
@@ -259,10 +291,16 @@ theorem periodic_horizontal_integral (H : ℂ → ℂ) {T : ℝ}
 def frequencyTwist (H : ℂ → ℂ) (T : ℝ) (j : ℤ) (z : ℂ) : ℂ :=
   H z * Complex.exp (-(2 * Real.pi * (j : ℝ) / T : ℝ) * Complex.I * z)
 
+/--
+@isnad1 id=differen.1h3v.s7.c93ee8984d8a from=translated src=- shape=7c418270 vocab=a25f7fa9
+-/
 theorem differentiable_frequencyTwist (H : ℂ → ℂ) (T : ℝ) (j : ℤ)
     (hd : Differentiable ℂ H) : Differentiable ℂ (frequencyTwist H T j) := by
   exact hd.mul (Complex.differentiable_exp.comp (differentiable_id.const_mul _))
 
+/--
+@isnad1 id=periodic.2h3v.s5.e64ffe46e702 from=translated src=- shape=a71de2e7 vocab=8d7752ce
+-/
 theorem frequencyTwist_periodic (H : ℂ → ℂ) {T : ℝ} (hT : T ≠ 0)
     (hp : Function.Periodic H (T : ℂ)) (j : ℤ) :
     Function.Periodic (frequencyTwist H T j) (T : ℂ) := by
@@ -278,6 +316,9 @@ theorem frequencyTwist_periodic (H : ℂ → ℂ) {T : ℝ} (hT : T ≠ 0)
     ring
   rw [heq, Complex.exp_add, Complex.exp_int_mul_two_pi_mul_I, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s6.1cebb02dacad from=translated src=- shape=58ba3184 vocab=bdd395e0
+-/
 theorem norm_frequencyTwist (H : ℂ → ℂ) (T : ℝ) (j : ℤ) (z : ℂ) :
     ‖frequencyTwist H T j z‖ =
       ‖H z‖ * Real.exp ((2 * Real.pi * (j : ℝ) / T) * z.im) := by
@@ -286,7 +327,9 @@ theorem norm_frequencyTwist (H : ℂ → ℂ) (T : ℝ) (j : ℤ) (z : ℂ) :
   simp [Complex.mul_re, Complex.mul_im]
 
 /-- Entire periodic functions of exponential type have no Fourier modes above
-that type. This is proved by an actual Cauchy contour translation.-/
+that type. This is proved by an actual Cauchy contour translation.
+@isnad1 id=eq.6h5v.s8.e431101289ae from=translated src=- shape=7b481c69 vocab=fa70e6d9
+-/
 theorem frequency_integral_eq_zero (H : ℂ → ℂ) {T K σ : ℝ}
     (hT : 0 < T) (_hK : 0 ≤ K) (hd : Differentiable ℂ H)
     (hp : Function.Periodic H (T : ℂ))
@@ -346,11 +389,17 @@ def entirePeriodicCircle (H : ℂ → ℂ) (T : ℝ) (hd : Differentiable ℂ H)
     simpa only [Complex.ofReal_add] using hp (x : ℂ)
   exact ⟨hpR.lift, continuous_coinduced_dom.mpr (hd.continuous.comp Complex.continuous_ofReal)⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.589b3bfcfa0f from=translated src=- shape=c6b6cd39 vocab=d3194084
+-/
 @[simp] theorem entirePeriodicCircle_apply (H : ℂ → ℂ) (T : ℝ)
     (hd : Differentiable ℂ H) (hp : Function.Periodic H (T : ℂ)) (x : ℝ) :
     entirePeriodicCircle H T hd hp (x : AddCircle T) = H (x : ℂ) := by
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s8.694af6a8b86f from=translated src=- shape=281a818b vocab=623b6242
+-/
 theorem entirePeriodicCircle_coeff_eq_integral (H : ℂ → ℂ) (T : ℝ)
     [Fact (0 < T)] (hd : Differentiable ℂ H) (hp : Function.Periodic H (T : ℂ)) (j : ℤ) :
     fourierCoeff (entirePeriodicCircle H T hd hp) j =
@@ -368,6 +417,9 @@ theorem entirePeriodicCircle_coeff_eq_integral (H : ℂ → ℂ) (T : ℝ)
   push_cast
   ring
 
+/--
+@isnad1 id=eq.5h5v.s8.540bca7b0cad from=translated src=- shape=91b00140 vocab=92034819
+-/
 theorem entirePeriodicCircle_coeff_zero (H : ℂ → ℂ) {T K σ : ℝ}
     [hT : Fact (0 < T)] (hK : 0 ≤ K) (hd : Differentiable ℂ H)
     (hp : Function.Periodic H (T : ℂ))
@@ -379,11 +431,17 @@ theorem entirePeriodicCircle_coeff_zero (H : ℂ → ℂ) {T K σ : ℝ}
 
 def periodizationBandwidth (σ T : ℝ) : ℕ := Nat.ceil (σ * T / (2 * Real.pi))
 
+/--
+@isnad1 id=le.1h3v.s5.397635fbb33f from=translated src=- shape=286b2f6a vocab=cb2d1e37
+-/
 theorem periodizationBandwidth_le {σ T : ℝ} {n : ℕ}
     (h : σ * T / (2 * Real.pi) ≤ (n : ℝ)) :
     periodizationBandwidth σ T ≤ n := by
   exact Nat.ceil_le.mpr h
 
+/--
+@isnad1 id=lt.2h3v.s6.3aebe82ed550 from=translated src=- shape=ead2a1d5 vocab=522bf48b
+-/
 theorem frequency_above_band {σ T : ℝ} (hT : 0 < T) (j : ℤ)
     (hj : j ∉ Finset.Icc (-(periodizationBandwidth σ T : ℤ)) (periodizationBandwidth σ T : ℤ)) :
     σ < |2 * Real.pi * (j : ℝ) / T| := by
@@ -399,7 +457,9 @@ theorem frequency_above_band {σ T : ℝ} (hT : 0 < T) (j : ℤ)
     abs_of_pos Real.pi_pos, abs_of_pos hT]
   exact (lt_div_iff₀ hT).mpr (by nlinarith)
 
-/-- An actual finite Fourier expansion, rather than a bandwidth assumption.-/
+/-- An actual finite Fourier expansion, rather than a bandwidth assumption.
+@isnad1 id=ex.4h4v.s8.bfd0ca17b8ff from=translated src=- shape=8e1a2fe2 vocab=a3b6ee4c
+-/
 theorem entire_periodic_finite_expansion (H : ℂ → ℂ) {T K σ : ℝ}
     [hT : Fact (0 < T)] (hK : 0 ≤ K) (hd : Differentiable ℂ H)
     (hp : Function.Periodic H (T : ℂ))
@@ -423,6 +483,9 @@ theorem entire_periodic_finite_expansion (H : ℂ → ℂ) {T K σ : ℝ}
     rw [hz j hj, zero_smul])] at heq
   simpa [F, s, smul_eq_mul, fourier_coe_apply] using heq.symm
 
+/--
+@isnad1 id=ex.4h4v.s8.10ec370feafe from=translated src=- shape=8e5f5487 vocab=31ad2369
+-/
 theorem periodize_finite_expansion (g : ℂ → ℂ) {C σ T : ℝ}
     [hT : Fact (0 < T)] (hd : Differentiable ℂ g) (hC : 0 ≤ C) (hσ : 0 ≤ σ)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C * Real.exp (σ * |z.im|) / (1 + ‖z‖) ^ 6) :

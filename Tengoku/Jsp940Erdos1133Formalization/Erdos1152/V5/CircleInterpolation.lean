@@ -11,6 +11,9 @@ open MeasureTheory Set Finset Submodule Polynomial
 namespace Erdos1152.V5
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.4479ea933fd3 from=translated src=- shape=83393e76 vocab=bfd073b8
+-/
 @[simp] theorem character_one_pow (n : ℕ) (x : FourierCircle) :
     character 1 x ^ n=character (n:ℤ) x := by
   induction n with
@@ -25,9 +28,15 @@ noncomputable def polynomialCircle (k : ℕ) : ℂ[X]→ₗ[ℂ]CircleFunction w
   map_add' p q := by ext x; simp [eval_add,mul_add]
   map_smul' c p := by ext x; simp [eval_smul,mul_left_comm]
 
+/--
+@isnad1 id=eq.0h3v.s8.2929b2d4d010 from=translated src=- shape=8ba9e0cf vocab=16c8b7aa
+-/
 @[simp] theorem polynomialCircle_apply (k : ℕ) (p : ℂ[X]) (x : FourierCircle) :
     polynomialCircle k p x=character (-(k:ℤ)) x*p.eval (character 1 x) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.c873fc02243c from=translated src=- shape=eaa5ee1f vocab=5e198f5e
+-/
 @[simp] theorem polynomialCircle_X_pow (k n : ℕ) :
     polynomialCircle k ((Polynomial.X:ℂ[X])^n)=character ((n:ℤ)-k) := by
   ext x
@@ -36,6 +45,9 @@ noncomputable def polynomialCircle (k : ℕ) : ℂ[X]→ₗ[ℂ]CircleFunction w
   congr 2
   ring
 
+/--
+@isnad1 id=mem.1h2v.s9.2c0c5e973b81 from=translated src=- shape=d045cea3 vocab=71812aa1
+-/
 theorem polynomialCircle_band (k : ℕ) (p : ℂ[X]) (hp : p.natDegree≤2*k) :
     polynomialCircle k p∈bandSpace k := by
   have he : polynomialCircle k p =
@@ -57,6 +69,9 @@ theorem polynomialCircle_band (k : ℕ) (p : ℂ[X]) (hp : p.natDegree≤2*k) :
   simp only [Set.mem_Icc]
   constructor <;> omega
 
+/--
+@isnad1 id=ex.1h2v.s9.83bfbdf47882 from=translated src=- shape=fb6c8ebe vocab=71812aa1
+-/
 theorem exists_polynomialCircle {k : ℕ} {f : CircleFunction} (hf : f∈bandSpace k) :
     ∃p : ℂ[X],p.natDegree≤2*k ∧ polynomialCircle k p=f := by
   induction hf using Submodule.span_induction with
@@ -78,6 +93,9 @@ theorem exists_polynomialCircle {k : ℕ} {f : CircleFunction} (hf : f∈bandSpa
     rcases ih with ⟨p,hp,he⟩
     exact ⟨c•p,(natDegree_smul_le c p).trans hp,by simp [he]⟩
 
+/--
+@isnad1 id=injectiv.0h0v.s6.f87461a11d9a from=translated src=- shape=18aa4729 vocab=95925dce
+-/
 theorem character_one_injective : Function.Injective (fun x:FourierCircle => character 1 x) := by
   intro x y h
   have h' : AddCircle.toCircle x=AddCircle.toCircle y := by
@@ -100,6 +118,9 @@ noncomputable def circleInterpolation (k : ℕ) (T : Finset FourierCircle) :
     rw [he,map_smul,map_smul]
     rfl
 
+/--
+@isnad1 id=mem.1h3v.s9.199b5fa58fef from=translated src=- shape=9e348772 vocab=740a7283
+-/
 theorem circleInterpolation_range (k : ℕ) (T : Finset FourierCircle)
     (hT : T.card=2*k+1) (f : CircleFunction) :
     circleInterpolation k T f∈bandSpace k := by
@@ -109,6 +130,9 @@ theorem circleInterpolation_range (k : ℕ) (T : Finset FourierCircle)
   apply Polynomial.natDegree_le_of_degree_le
   simpa [hT] using h
 
+/--
+@isnad1 id=eq.1h4v.s9.0cb80af9345a from=translated src=- shape=32382c88 vocab=c5f8d528
+-/
 theorem circleInterpolation_at_node (k : ℕ) (T : Finset FourierCircle)
     (f : CircleFunction) (x : FourierCircle) (hx : x∈T) :
     circleInterpolation k T f x=f x := by
@@ -119,6 +143,9 @@ theorem circleInterpolation_at_node (k : ℕ) (T : Finset FourierCircle)
     ←mul_assoc,←character_add]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s9.f6ee3fe239e7 from=translated src=- shape=5ca7d8e8 vocab=740a7283
+-/
 theorem circleInterpolation_fixes (k : ℕ) (T : Finset FourierCircle)
     (hT : T.card=2*k+1) (f : CircleFunction) (hf : f∈bandSpace k) :
     circleInterpolation k T f=f := by
@@ -142,7 +169,9 @@ local instance : Infinite FourierCircle := by
   exact Infinite.of_injective _ (AddCircle.equivIco (2*Real.pi) 0).symm.injective
 
 /-- Finite trigonometric sampling lower bound in the exact form needed for
-localization. It is now a theorem about every finite node set, not a parameter.-/
+localization. It is now a theorem about every finite node set, not a parameter.
+@isnad1 id=ex.3h3v.s9.5d495b5c2f5b from=translated src=- shape=9b393597 vocab=6aa4c2c4
+-/
 theorem finite_trigonometric_sampling_witness (A m : ℕ) (hA : 0<A) (hm : 0<m)
     (Γ : Finset FourierCircle) (hΓ : Γ.card≤2*(8*m*A*A)+m+1) :
     ∃P : CircleFunction,∃z : FourierCircle,

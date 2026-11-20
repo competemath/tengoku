@@ -33,7 +33,9 @@ private theorem local_quotient_sub_pole {f h : ℂ → ℂ} {a z : ℂ}
   <;> ring
 
 /-- The remainder is holomorphic at each actual simple zero.  No general residue
- theorem is assumed: the local formula is a divided difference of `f / dslope h a`.-/
+ theorem is assumed: the local formula is a divided difference of `f / dslope h a`.
+@isnad1 id=differen.5h4v.s8.de3caa29d678 from=translated src=- shape=2be8ecc0 vocab=25c89f7e
+-/
 theorem differentiableAt_poleRemainder_at_node
     (f h : ℂ → ℂ) (hf : Differentiable ℂ f) (hh : Differentiable ℂ h)
     (s : Finset ℂ) {a : ℂ} (ha : a∈s) (hzero : h a=0)
@@ -96,7 +98,9 @@ private theorem differentiableAt_poleRemainder_off_nodes
     ((hasDerivAt_id z).sub_const a).differentiableAt
     (sub_ne_zero.mpr (fun h => hz (h.symm ▸ ha)))
 
-/-- A finite simple-pole formula on a disk, derived by explicit pole subtraction.-/
+/-- A finite simple-pole formula on a disk, derived by explicit pole subtraction.
+@isnad1 id=eq.7h5v.s8.6783e57b2e44 from=translated src=- shape=b0493054 vocab=7cabdfd7
+-/
 theorem circleIntegral_finite_simple_poles
     (f h : ℂ → ℂ) (hf : Differentiable ℂ f) (hh : Differentiable ℂ h)
     (s : Finset ℂ) (c : ℂ) (R : ℝ) (hR : 0<R)
@@ -149,7 +153,9 @@ theorem circleIntegral_finite_simple_poles
       circleIntegral.integral_sub_inv_of_mem_ball (hin a ha)]
   rw [Finset.sum_congr rfl hterm,←Finset.sum_mul,mul_comm]
 
-/-- Cauchy interpolation with the same finite simple poles.-/
+/-- Cauchy interpolation with the same finite simple poles.
+@isnad1 id=eq.9h6v.s9.3a81694bf1df from=translated src=- shape=15f8af07 vocab=f226c7da
+-/
 theorem cauchy_finite_simple_poles
     (f h : ℂ → ℂ) (hf : Differentiable ℂ f) (hh : Differentiable ℂ h)
     (s : Finset ℂ) (c ξ : ℂ) (R : ℝ) (hR : 0<R)

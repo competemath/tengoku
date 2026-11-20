@@ -24,11 +24,17 @@ noncomputable def fejerGridWeight (L : ℕ) (q : ZMod L) : C(FourierCircle, ℝ)
   toFun x := ‖oneSidedDirichlet L (x-circleGrid L q)‖^2 / (L : ℝ)^2
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=le.0h3v.s6.975804fe07b1 from=translated src=- shape=ffe3d572 vocab=2b3dadb9
+-/
 theorem fejerGridWeight_nonneg (L : ℕ) (q : ZMod L) (x : FourierCircle) :
     0 ≤ fejerGridWeight L q x := by
   change 0 ≤ ‖oneSidedDirichlet L (x-circleGrid L q)‖^2 / (L : ℝ)^2
   positivity
 
+/--
+@isnad1 id=eq.0h3v.s7.b639058ba3a3 from=translated src=- shape=48c881cf vocab=569873c8
+-/
 theorem character_grid (L : ℕ) [NeZero L] (n : ℤ) (q : ZMod L) :
     character n (circleGrid L q) = ZMod.stdAddChar ((n : ZMod L)*q) := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast (NeZero.ne L)
@@ -46,6 +52,9 @@ theorem character_grid (L : ℕ) [NeZero L] (n : ℤ) (q : ZMod L) :
     _ = ZMod.stdAddChar ((n : ZMod L) * q) := by
       simp only [Int.cast_mul, Int.cast_natCast, ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=eq.0h2v.s7.ce7ce36bf026 from=translated src=- shape=4ff1f241 vocab=a7da208f
+-/
 theorem sum_character_grid (L : ℕ) [NeZero L] (n : ℤ) :
     ∑ q : ZMod L, character n (circleGrid L q) =
       if (n : ZMod L) = 0 then (L : ℂ) else 0 := by
@@ -54,6 +63,9 @@ theorem sum_character_grid (L : ℕ) [NeZero L] (n : ℤ) :
   · simp [hn]
   · exact AddChar.sum_eq_zero_of_ne_one (ZMod.isPrimitive_stdAddChar L hn)
 
+/--
+@isnad1 id=iff.0h3v.s6.9567ecc90629 from=translated src=- shape=be8f6948 vocab=d04a90d2
+-/
 theorem fin_sub_cast_zero (L : ℕ) [NeZero L] (i j : Fin L) :
     (((i : ℤ)-(j : ℤ) : ℤ) : ZMod L) = 0 ↔ i = j := by
   rw [Int.cast_sub, sub_eq_zero]
@@ -64,6 +76,9 @@ theorem fin_sub_cast_zero (L : ℕ) [NeZero L] (i j : Fin L) :
       Nat.mod_eq_of_lt j.isLt, Fin.ext_iff] using hv
   · intro h; simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s7.aae95c2461c8 from=translated src=- shape=86be1f9b vocab=ba5b6079
+-/
 theorem normSq_dirichlet_expansion (L : ℕ) (x : FourierCircle) :
     (‖oneSidedDirichlet L x‖^2 : ℂ) =
       ∑ i : Fin L, ∑ j : Fin L, character ((i:ℤ)-(j:ℤ)) x := by
@@ -81,7 +96,9 @@ theorem normSq_dirichlet_expansion (L : ℕ) (x : FourierCircle) :
   congr 1
   exact (fourier_neg (n := (j:ℤ))).symm
 
-/-- Exact nonnegative partition of unity, independent of the grid size.-/
+/-- Exact nonnegative partition of unity, independent of the grid size.
+@isnad1 id=eq.0h2v.s6.596589ad4957 from=translated src=- shape=1114b1a2 vocab=0545aa29
+-/
 theorem sum_fejerGridWeight (L : ℕ) [NeZero L] (x : FourierCircle) :
     ∑ q : ZMod L, fejerGridWeight L q x = 1 := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast (NeZero.ne L)
@@ -134,6 +151,9 @@ private theorem finEquiv_apply_eq_natCast (L : ℕ) [NeZero L] (i : Fin L) :
     change i.val = i.val % (n + 1)
     exact (Nat.mod_eq_of_lt i.isLt).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.f563cf3a3534 from=translated src=- shape=f89607e8 vocab=031552b4
+-/
 theorem grid_dirichlet (L : ℕ) [NeZero L] (p q : ZMod L) :
     oneSidedDirichlet L (circleGrid L p-circleGrid L q) =
       if p = q then (L : ℂ) else 0 := by
@@ -159,6 +179,9 @@ theorem grid_dirichlet (L : ℕ) [NeZero L] (p q : ZMod L) :
     exact AddChar.sum_eq_zero_of_ne_one
       (ZMod.isPrimitive_stdAddChar L (sub_ne_zero.mpr hpq))
 
+/--
+@isnad1 id=eq.0h3v.s7.b00894787d2f from=translated src=- shape=28a12b5b vocab=1ecca2f2
+-/
 @[simp] theorem fejerGridWeight_at_grid (L : ℕ) [NeZero L] (p q : ZMod L) :
     fejerGridWeight L q (circleGrid L p) = if p = q then 1 else 0 := by
   change ‖oneSidedDirichlet L (circleGrid L p-circleGrid L q)‖^2 / (L : ℝ)^2 = _
@@ -171,11 +194,17 @@ noncomputable def fejerGridCombination (L : ℕ) [NeZero L] (a : ZMod L → ℂ)
   toFun x := ∑ q : ZMod L, a q * (fejerGridWeight L q x : ℂ)
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=eq.0h3v.s6.3a130ef7fe71 from=translated src=- shape=f5120717 vocab=9baf6adf
+-/
 @[simp] theorem fejerGridCombination_at_grid (L : ℕ) [NeZero L]
     (a : ZMod L → ℂ) (p : ZMod L) :
     fejerGridCombination L a (circleGrid L p) = a p := by
   simp [fejerGridCombination, fejerGridWeight_at_grid, apply_ite]
 
+/--
+@isnad1 id=le.1h4v.s6.27952dd49fa2 from=translated src=- shape=2b2a5d1f vocab=a4af5b45
+-/
 theorem norm_fejerGridCombination_le (L : ℕ) [NeZero L]
     (a : ZMod L → ℂ) (C : ℝ) (ha : ∀ q, ‖a q‖ ≤ C) :
     ∀ x, ‖fejerGridCombination L a x‖ ≤ C := by
@@ -198,7 +227,9 @@ noncomputable def fejerGridCombinationLinear (L : ℕ) [NeZero L] :
   map_smul' c a := by ext x; simp [fejerGridCombination, mul_assoc, mul_sum]
 
 /-- One grid polynomial satisfying an arbitrary finite family of linear constraints,
-normalized at an actual grid point. No mutual separation of the original data enters.-/
+normalized at an actual grid point. No mutual separation of the original data enters.
+@isnad1 id=ex.1h3v.s9.0c3d203dc51f from=translated src=- shape=3da98fa4 vocab=ac969699
+-/
 theorem exists_normalized_fejer_annihilator (L : ℕ) [NeZero L]
     {κ : Type*} [Fintype κ] (hκ : Fintype.card κ < L)
     (Ψ : CircleFunction →ₗ[ℂ] (κ → ℂ)) :

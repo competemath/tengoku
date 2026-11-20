@@ -11,6 +11,9 @@ namespace Erdos1152.V5
 def sampleNodes (t θ : ℝ) (N : ℕ) : Finset ℂ :=
   (symmetricIndices N).image (fun j => (samplePoint t θ j:ℂ))
 
+/--
+@isnad1 id=injectiv.1h2v.s4.1cb62042dbdc from=translated src=- shape=279a6ea3 vocab=3887cfa8
+-/
 theorem samplePoint_injective (t θ : ℝ) (ht : t≠0) :
     Function.Injective (fun j:ℤ => (samplePoint t θ j:ℂ)) := by
   intro j k h
@@ -18,6 +21,9 @@ theorem samplePoint_injective (t θ : ℝ) (ht : t≠0) :
   dsimp [samplePoint] at hr
   exact_mod_cast (add_right_cancel ((div_left_inj' ht).mp hr))
 
+/--
+@isnad1 id=mem.2h4v.s6.87cc31e5c21e from=translated src=- shape=35fcbf2b vocab=1ce11ee7
+-/
 theorem sampleNodes_inside (t θ : ℝ) (ht : 0<t) (N : ℕ) :
     ∀a∈sampleNodes t θ N,a∈Metric.ball ((θ/t:ℝ):ℂ) (contourRadius t N) := by
   intro a ha
@@ -31,6 +37,9 @@ theorem sampleNodes_inside (t θ : ℝ) (ht : 0<t) (N : ℕ) :
   rw [he,Complex.norm_real,Real.norm_eq_abs,abs_div,abs_of_pos ht]
   exact (div_lt_div_iff_of_pos_right ht).mpr (by linarith)
 
+/--
+@isnad1 id=iff.1h3v.s5.70f31438664e from=translated src=- shape=65eafce9 vocab=e69d124e
+-/
 theorem samplingSine_zero_iff (t θ : ℝ) (ht : t≠0) (z : ℂ) :
     samplingSine t θ z=0 ↔ ∃j:ℤ,z=(samplePoint t θ j:ℂ) := by
   constructor
@@ -47,6 +56,9 @@ theorem samplingSine_zero_iff (t θ : ℝ) (ht : t≠0) (z : ℂ) :
   · rintro ⟨j,rfl⟩
     exact samplingSine_at_grid t θ ht j
 
+/--
+@isnad1 id=mem.3h4v.s6.f79216119cae from=translated src=- shape=4c5d27ab vocab=a9d1d2c4
+-/
 theorem samplingSine_all_zeros_in_disk (t θ : ℝ) (ht : 0<t) (N : ℕ) :
     ∀z∈Metric.closedBall ((θ/t:ℝ):ℂ) (contourRadius t N),
       samplingSine t θ z=0→z∈sampleNodes t θ N := by
@@ -74,6 +86,9 @@ theorem samplingSine_all_zeros_in_disk (t θ : ℝ) (ht : 0<t) (N : ℕ) :
     omega
   exact Finset.mem_Icc.mpr ⟨hlower,hupper⟩
 
+/--
+@isnad1 id=ne.2h4v.s6.f42a8efdad17 from=translated src=- shape=7ecda539 vocab=774d9ddc
+-/
 theorem sampleNodes_simple (t θ : ℝ) (ht : 0<t) (N : ℕ) :
     ∀a∈sampleNodes t θ N,deriv (samplingSine t θ) a≠0 := by
   intro a ha
@@ -83,6 +98,9 @@ theorem sampleNodes_simple (t θ : ℝ) (ht : 0<t) (N : ℕ) :
   · exact_mod_cast mul_ne_zero Real.pi_ne_zero ht.ne'
   · exact zpow_ne_zero _ (by norm_num)
 
+/--
+@isnad1 id=and.4h4v.s7.5c0d4ac636f9 from=translated src=- shape=1e3cdb18 vocab=a2a811b8
+-/
 theorem sampling_contour_geometry (t θ : ℝ) (ht : 0<t) (ht1 : t≤1)
     (hθ : |θ|≤1/2) (N : ℕ) {z : ℂ}
     (hz : z∈Metric.sphere ((θ/t:ℝ):ℂ) (contourRadius t N)) :
@@ -108,7 +126,9 @@ theorem sampling_contour_geometry (t θ : ℝ) (ht : 0<t) (ht1 : t≤1)
       _=((N:ℝ)+1)/t := by field_simp; ring
 
 /-- The integral estimates are uniform on the entire contour, not merely on its
- high-imaginary portions.-/
+ high-imaginary portions.
+@isnad1 id=le.9h8v.s8.3ce16568bed1 from=translated src=- shape=fab2b653 vocab=5026e2aa
+-/
 theorem moment_integrand_contour_bound
     (g : ℂ→ℂ) (C σ t θ : ℝ) (hC : 0≤C) (ht : 0<t) (ht1 : t≤1)
     (hθ : |θ|≤1/2) (hσ : σ≤Real.pi*t)
@@ -159,6 +179,9 @@ private theorem vanishing_contour_bound (C t : ℝ) :
     (tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ)).pow 4 |>.const_mul
       (2*Real.pi*C/(sineContourConstant*t^2))
 
+/--
+@isnad1 id=tendsto.7h6v.s8.989fffcc0603 from=translated src=- shape=035b9379 vocab=c55e7d96
+-/
 theorem moment_contour_tendsto_zero
     (g : ℂ→ℂ) (C σ t θ : ℝ) (hC : 0≤C) (ht : 0<t) (ht1 : t≤1)
     (hθ : |θ|≤1/2) (hσ : σ≤Real.pi*t)
@@ -185,6 +208,9 @@ theorem moment_contour_tendsto_zero
         field_simp
   · exact vanishing_contour_bound C t
 
+/--
+@isnad1 id=tendsto.6h6v.s8.66ddc5fdec85 from=translated src=- shape=0c5b5d70 vocab=e8e82516
+-/
 theorem cauchy_contour_tendsto_zero
     (g : ℂ→ℂ) (C σ t θ : ℝ) (hC : 0≤C) (ht : 0<t) (ht1 : t≤1)
     (hθ : |θ|≤1/2) (hσ : σ≤Real.pi*t)

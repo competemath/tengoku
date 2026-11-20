@@ -18,7 +18,9 @@ namespace Erdos1133
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
 /-- A quantitative residual-correction theorem. The approximate preimages may
-be chosen nonlinearly; no linear right inverse is assumed or constructed.-/
+be chosen nonlinearly; no linear right inverse is assumed or constructed.
+@isnad1 id=ex.5h7v.s9.c3416a9dc2e7 from=translated src=- shape=8040fed0 vocab=77c80b54
+-/
 theorem exists_exact_preimage_of_approx
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -77,7 +79,9 @@ theorem exists_exact_preimage_of_approx
       ring
 
 /-- Unit-data approximate solvability already suffices; all other residuals
-are reduced to it by scalar normalization.-/
+are reduced to it by scalar normalization.
+@isnad1 id=ex.5h7v.s9.eb504f847b90 from=translated src=- shape=1d56a051 vocab=77c80b54
+-/
 theorem exists_exact_preimage_of_unit_approx
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -116,11 +120,16 @@ def realFourierBand (m : ℕ) : Submodule ℝ CircleFunction where
     change ((c : ℂ) * f x).im = 0
     simp [hf.2]
 
+/--
+@isnad1 id=iff.0h2v.s9.7954dacd66c9 from=translated src=- shape=d1499a0e vocab=b1d8e579
+-/
 @[simp] theorem mem_realFourierBand (m : ℕ) (f : CircleFunction) :
     f ∈ realFourierBand m ↔ f ∈ bandSpace m ∧ ∀ x, (f x).im = 0 := Iff.rfl
 
 /-- Closure is proved from the finite spanning family of characters, rather
-than postulated as part of the interpolation hypothesis.-/
+than postulated as part of the interpolation hypothesis.
+@isnad1 id=isclosed.0h1v.s8.d60d47cc02be from=translated src=- shape=9e325049 vocab=42f9abaa
+-/
 theorem realFourierBand_isClosed (m : ℕ) : IsClosed (realFourierBand m : Set CircleFunction) := by
   have : FiniteDimensional ℂ (bandSpace m) :=
     FiniteDimensional.span_of_finite ℂ
@@ -139,12 +148,17 @@ def circleSampleMap {ι : Type*} [Fintype ι] (node : ι → FourierCircle) :
     CircleFunction →L[ℝ] (ι → ℝ) :=
   ContinuousLinearMap.pi fun i => Complex.reCLM.comp (ContinuousMap.evalCLM ℝ (node i))
 
+/--
+@isnad1 id=eq.0h4v.s9.676fd0512c25 from=translated src=- shape=f8f07d01 vocab=3c8b1a24
+-/
 @[simp] theorem circleSampleMap_apply {ι : Type*} [Fintype ι]
     (node : ι → FourierCircle) (f : CircleFunction) (i : ι) :
     circleSampleMap node f i = (f (node i)).re := rfl
 
 /-- Relative-error approximate real trigonometric interpolation yields exact
-interpolation of every data vector with the geometric-series norm bound.-/
+interpolation of every data vector with the geometric-series norm bound.
+@isnad1 id=ex.4h6v.s10.d7bde050f24d from=translated src=- shape=fd0c00f2 vocab=30736bd5
+-/
 theorem exact_real_trig_interpolation_of_approx
     {ι : Type*} [Fintype ι] (node : ι → FourierCircle) (m : ℕ)
     (K q : ℝ) (hK : 0 ≤ K) (hq : 0 ≤ q) (hq1 : q < 1)
@@ -173,7 +187,9 @@ theorem exact_real_trig_interpolation_of_approx
   · exact hf.2 (node i)
 
 /-- The unit-data form needed after windowing and periodization. Its conclusion
-applies to all data vectors, so it also supplies every residual correction.-/
+applies to all data vectors, so it also supplies every residual correction.
+@isnad1 id=ex.4h6v.s10.a8bd9002ad8c from=translated src=- shape=da8a6254 vocab=30736bd5
+-/
 theorem exact_real_trig_interpolation_of_unit_approx
     {ι : Type*} [Fintype ι] (node : ι → FourierCircle) (m : ℕ)
     (K q : ℝ) (hK : 0 ≤ K) (hq : 0 ≤ q) (hq1 : q < 1)
@@ -202,7 +218,9 @@ theorem exact_real_trig_interpolation_of_unit_approx
   · exact hf.2 (node i)
 
 /-- In particular, unit data admit an exact interpolant of norm at most
-K/(1-q), the form used to contradict the finite obstruction.-/
+K/(1-q), the form used to contradict the finite obstruction.
+@isnad1 id=ex.5h6v.s10.eb584d0684d3 from=translated src=- shape=cd3624f2 vocab=30736bd5
+-/
 theorem exact_unit_real_trig_interpolation
     {ι : Type*} [Fintype ι] (node : ι → FourierCircle) (m : ℕ)
     (K q : ℝ) (hK : 0 ≤ K) (hq : 0 ≤ q) (hq1 : q < 1)

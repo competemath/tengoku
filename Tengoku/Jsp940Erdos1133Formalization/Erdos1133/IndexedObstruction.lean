@@ -16,6 +16,9 @@ def InjectiveBernsteinObstruction (H : ℝ) (k : ℕ) : Prop :=
       ∀ f : ℂ → ℂ, IsBernsteinFunction Real.pi H f →
         ∃ i, f (t i) ≠ ((y i : ℝ) : ℂ)
 
+/--
+@isnad1 id=finitebe.1h2v.s3.8a636379c4ab from=translated src=- shape=6ef4b4a0 vocab=a854aaac
+-/
 theorem finiteObstruction_of_injective {H : ℝ} {k : ℕ}
     (h : InjectiveBernsteinObstruction H k) : FiniteBernsteinObstruction H k := by
   classical
@@ -55,6 +58,9 @@ def CenteredRealBernsteinObstruction (H : ℝ) (k : ℕ) : Prop :=
         (∀ x : ℝ, (f x).im = 0) →
         ∃ i, f (t i) ≠ ((y i : ℝ) : ℂ)
 
+/--
+@isnad1 id=centered.1h2v.s3.2e8f9b3d797a from=translated src=- shape=6ef4b4a0 vocab=dc328649
+-/
 theorem centeredObstruction_of_real {H : ℝ} {k : ℕ}
     (h : CenteredRealBernsteinObstruction H k) : CenteredBernsteinObstruction H k := by
   classical
@@ -66,6 +72,9 @@ theorem centeredObstruction_of_real {H : ℝ} {k : ℕ}
     (bernsteinRealification_im f)
   exact ⟨i, fun heq => hi (bernsteinRealification_real_value heq)⟩
 
+/--
+@isnad1 id=injectiv.2h2v.s4.160a849759d1 from=translated src=- shape=b06c76f5 vocab=fbd3dd79
+-/
 theorem injectiveObstruction_of_centered {H : ℝ} {k : ℕ} (hk : 0 < k)
     (h : CenteredBernsteinObstruction H k) : InjectiveBernsteinObstruction H k := by
   classical
@@ -111,6 +120,9 @@ theorem injectiveObstruction_of_centered {H : ℝ} {k : ℕ} (hk : 0 < k)
     ring
   simpa only [harg] using hi
 
+/--
+@isnad1 id=finitebe.2h2v.s4.11c9131b3630 from=translated src=- shape=b06c76f5 vocab=082c100d
+-/
 theorem finiteObstruction_of_centered_real {H : ℝ} {k : ℕ} (hk : 0 < k)
     (h : CenteredRealBernsteinObstruction H k) : FiniteBernsteinObstruction H k :=
   finiteObstruction_of_injective
@@ -126,6 +138,9 @@ def CenteredIntervalRealBernsteinObstruction (H : ℝ) (k : ℕ) (L : ℝ) : Pro
         (∀ x : ℝ, (f x).im = 0) →
         ∃ i, f (t i) ≠ ((y i : ℝ) : ℂ)
 
+/--
+@isnad1 id=finitebe.2h3v.s4.44228d767dc5 from=translated src=- shape=bffad1d8 vocab=f5c6b2b9
+-/
 theorem finiteObstruction_of_centered_interval_real {H L : ℝ} {k : ℕ}
     (hL : 0 < L) (h : CenteredIntervalRealBernsteinObstruction H k L) :
     FiniteBernsteinObstruction H k := by

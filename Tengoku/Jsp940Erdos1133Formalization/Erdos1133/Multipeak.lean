@@ -12,12 +12,21 @@ namespace Erdos1133
 /-- The universal summable majorant for separated translates.-/
 def squareTailMass : ℝ := ∑' j : ℤ, 1 / (j : ℝ)^2
 
+/--
+@isnad1 id=summable.0h0v.s5.05e0c045df9d from=translated src=- shape=2b250faf vocab=09ef54d7
+-/
 theorem summable_squareTail : Summable (fun j : ℤ => 1 / (j : ℝ)^2) :=
   Real.summable_one_div_int_pow.mpr (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s3.7842e513f55e from=translated src=- shape=ff3a10fc vocab=758c3a14
+-/
 theorem squareTailMass_nonneg : 0 ≤ squareTailMass :=
   tsum_nonneg (fun _ => by positivity)
 
+/--
+@isnad1 id=le.0h2v.s5.cb3564eb50c7 from=translated src=- shape=303de8b5 vocab=e902b2dd
+-/
 theorem shifted_square_sum_le (s : Finset ℤ) (i : ℤ) :
     ∑ j ∈ s, 1 / ((j-i : ℤ) : ℝ)^2 ≤ squareTailMass := by
   calc
@@ -28,6 +37,9 @@ theorem shifted_square_sum_le (s : Finset ℤ) (i : ℤ) :
     _ ≤ squareTailMass :=
       summable_squareTail.sum_le_tsum _ (fun _ _ => by positivity)
 
+/--
+@isnad1 id=le.5h4v.s7.920067890dcb from=translated src=- shape=73c4c05f vocab=3e3c5088
+-/
 theorem sixth_tail_le_square {C D d : ℝ} (hC : 0 ≤ C) (hD : 0 < D)
     (hd : 0 ≤ d) (j : ℤ) (hj : j ≠ 0)
     (hdist : D*|(j:ℝ)|/2 ≤ d) :
@@ -48,7 +60,9 @@ theorem sixth_tail_le_square {C D d : ℝ} (hC : 0 ≤ C) (hD : 0 < D)
       ring
 
 /-- Uniform interference of arbitrarily many separated packets. The bound is
-independent of the number of selected cells.-/
+independent of the number of selected cells.
+@isnad1 id=le.6h7v.s8.a2a5e296945a from=translated src=- shape=d54d519a vocab=80f332bc
+-/
 theorem packet_tail_at_nearest (s : Finset ℤ) (c : ℤ → ℝ) (u : ℤ → ℝ → ℝ)
     {C D : ℝ} (hC : 0 ≤ C) (hD : 0 < D)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, D*|((j-i:ℤ):ℝ)| ≤ |c j-c i|)
@@ -76,6 +90,9 @@ theorem packet_tail_at_nearest (s : Finset ℤ) (c : ℤ → ℝ) (u : ℤ → �
     _ ≤ (4*C/D^2)*squareTailMass :=
       mul_le_mul_of_nonneg_left (shifted_square_sum_le _ _) (by positivity)
 
+/--
+@isnad1 id=le.6h7v.s7.9fdcacb410ab from=translated src=- shape=168101c5 vocab=aeda99da
+-/
 theorem nearest_at_peak (s : Finset ℤ) (c : ℤ → ℝ)
     {D ρ : ℝ} (hD : 0 < D) (hgap : 2*ρ ≤ D)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, D*|((j-i:ℤ):ℝ)| ≤ |c j-c i|)
@@ -98,6 +115,9 @@ theorem nearest_at_peak (s : Finset ℤ) (c : ℤ → ℝ)
 def signedPacketSum (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → ℂ → ℂ) (z : ℂ) : ℂ :=
   ∑ i ∈ s, (ψ i : ℂ)*g i z
 
+/--
+@isnad1 id=eq.1h4v.s5.ed73ab041a9d from=translated src=- shape=b438f4c8 vocab=7ffb2b92
+-/
 theorem signedPacketSum_real (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → ℂ → ℂ)
     (hr : ∀ i ∈ s, ∀ x : ℝ, (g i x).im=0) (x : ℝ) :
     (signedPacketSum s ψ g x).im=0 := by
@@ -107,10 +127,16 @@ theorem signedPacketSum_real (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → �
   intro i hi
   rw [hr i hi x,mul_zero]
 
+/--
+@isnad1 id=eq.0h4v.s5.611894b099a5 from=translated src=- shape=a95f82c1 vocab=b120063a
+-/
 theorem signedPacketSum_re (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → ℂ → ℂ) (x : ℝ) :
     (signedPacketSum s ψ g x).re = ∑ i ∈ s, ψ i*(g i x).re := by
   simp [signedPacketSum,Complex.mul_re]
 
+/--
+@isnad1 id=differen.1h3v.s7.2f12a344d7c1 from=translated src=- shape=8fad35d3 vocab=8c273584
+-/
 theorem signedPacketSum_entire (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → ℂ → ℂ)
     (hg : ∀ i ∈ s, Differentiable ℂ (g i)) :
     Differentiable ℂ (signedPacketSum s ψ g) := by
@@ -119,6 +145,9 @@ theorem signedPacketSum_entire (s : Finset ℤ) (ψ : ℤ → ℝ) (g : ℤ → 
   intro i hi
   exact (hg i hi).const_mul (ψ i:ℂ)
 
+/--
+@isnad1 id=le.2h5v.s7.765fc1356dd1 from=translated src=- shape=507c48ee vocab=346e0771
+-/
 theorem centered_decay_to_origin (g : ℂ → ℂ) {a C σ : ℝ}
     (_hC : 0 ≤ C)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C*Real.exp (σ*|z.im|)/(1+‖z-(a:ℂ)‖)^6)
@@ -141,7 +170,9 @@ theorem centered_decay_to_origin (g : ℂ → ℂ) {a C σ : ℝ}
     _ = (C*(1+|a|)^6)*Real.exp (σ*|z.im|) := by ring
 
 /-- A genuine sixth-power bound, sufficient for analytic periodization. The
-large prefactor is used only in complex analysis, never for real tail budgets.-/
+large prefactor is used only in complex analysis, never for real tail budgets.
+@isnad1 id=le.3h7v.s8.69e1595cda65 from=translated src=- shape=90704b02 vocab=0dca5abf
+-/
 theorem signedPacketSum_decay (s : Finset ℤ) (c ψ : ℤ → ℝ)
     (g : ℤ → ℂ → ℂ) {C σ : ℝ} (hC : 0 ≤ C)
     (hψ : ∀ i ∈ s, |ψ i|=1)
@@ -160,13 +191,18 @@ theorem signedPacketSum_decay (s : Finset ℤ) (c ψ : ℤ → ℝ)
     _ = (∑ i ∈ s, C*(1+|c i|)^6)*Real.exp (σ*|z.im|)/(1+‖z‖)^6 := by
       rw [←Finset.sum_div,←Finset.sum_mul]
 
+/--
+@isnad1 id=eq.1h1v.s4.03cd0c124275 from=translated src=- shape=1f04f504 vocab=5dbb3ff2
+-/
 theorem real_norm_eq_abs_re {z : ℂ} (hz : z.im=0) : ‖z‖=|z.re| := by
   rw [←Complex.re_add_im z,hz,Complex.ofReal_zero,zero_mul,add_zero,
     Complex.norm_real,Real.norm_eq_abs]
   simp only [Complex.ofReal_re]
 
 /-- A signed sum retains a large peak if all other packets have bounded total
-mass there. This is applied to actual entire packets constructed below.-/
+mass there. This is applied to actual entire packets constructed below.
+@isnad1 id=le.4h7v.s7.b45a9dd2cee5 from=translated src=- shape=313c9247 vocab=722d31c2
+-/
 theorem signed_sum_peak {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (i : ι) (hi : i ∈ s) (u ψ : ι → ℝ)
     (hψ : ∀ j ∈ s, |ψ j| = 1) {B E : ℝ}
@@ -191,6 +227,9 @@ theorem signed_sum_peak {ι : Type*} [DecidableEq ι]
     exact hnorm
   linarith [(abs_le.mp hm).1]
 
+/--
+@isnad1 id=le.4h7v.s7.bc990d697ad3 from=translated src=- shape=45b55f71 vocab=2f30af0b
+-/
 theorem signed_sum_bound {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (i : ι) (hi : i ∈ s) (u ψ : ι → ℝ)
     (hψ : ∀ j ∈ s, |ψ j| = 1) {A E : ℝ}
@@ -210,7 +249,9 @@ theorem signed_sum_bound {ι : Type*} [DecidableEq ι]
   exact add_le_add hmain hnorm
 
 /-- Every bound here concerns the constructed finite sum, not an assumed
-interpolation operator. Separation makes the estimates uniform in `s.card`.-/
+interpolation operator. Separation makes the estimates uniform in `s.card`.
+@isnad1 id=and.12h11v.s9.b46893f0ff3a from=translated src=- shape=8505f05a vocab=505b6460
+-/
 theorem signedPacketSum_estimates (s : Finset ℤ) (hs : s.Nonempty)
     (c p ψ : ℤ → ℝ) (g : ℤ → ℂ → ℂ) {B C D M ρ : ℝ}
     (hC : 0 ≤ C) (hD : 0 < D) (hgap : 2*ρ ≤ D)
@@ -255,7 +296,9 @@ theorem signedPacketSum_estimates (s : Finset ℤ) (hs : s.Nonempty)
       (htail (p i) i hi (nearest_at_peak s c hD hgap hsep (p i) i hi (hp i hi).1))
 
 /-- The 957 packets apply to every sparse cell of the actual global node set.
-They are small at every global node, including nodes outside that cell.-/
+They are small at every global node, including nodes outside that cell.
+@isnad1 id=ex.1h1v.s8.ed1f631c236b from=translated src=- shape=31931d44 vocab=b21d65d6
+-/
 theorem sparse_cell_packets (B : ℝ) (hB : 1 < B) :
     ∃ ρ : ℕ, ∃ σ M C : ℝ,
       0 < ρ ∧ 0 < σ ∧ σ < Real.pi ∧ 0 < M ∧ 0 < C ∧
@@ -308,6 +351,9 @@ structure SparsePacketFamily (Γ : Finset ℝ) (s : Finset ℤ) (c : ℤ → ℝ
   decay : ∀ i ∈ s, ∀ z : ℂ,
     ‖g i z‖≤C*Real.exp (σ*|z.im|)/(1+‖z-(c i:ℂ)‖)^6
 
+/--
+@isnad1 id=ex.1h1v.s7.00850b6e8f44 from=translated src=- shape=1143bb70 vocab=95682b7c
+-/
 theorem sparse_packet_family_exists (B : ℝ) (hB : 1<B) :
     ∃ ρ : ℕ, ∃ σ M C : ℝ,
       0<ρ ∧ 0<σ ∧ σ<Real.pi ∧ 0<M ∧ 0<C ∧
@@ -337,6 +383,9 @@ theorem sparse_packet_family_exists (B : ℝ) (hB : 1<B) :
   · intro i hi z
     simpa [g,hi] using hdec ⟨i,hi⟩ z
 
+/--
+@isnad1 id=le.1h11v.s6.8633c0fd1510 from=translated src=- shape=1d38ab31 vocab=a77ff9ba
+-/
 theorem SparsePacketFamily.real_decay
     {Γ : Finset ℝ} {s : Finset ℤ} {c : ℤ → ℝ} {B ρ σ M C : ℝ}
     (F : SparsePacketFamily Γ s c B ρ σ M C) :
@@ -344,6 +393,9 @@ theorem SparsePacketFamily.real_decay
   intro i hi x
   simpa [←Complex.ofReal_sub,Complex.norm_real,Real.norm_eq_abs] using F.decay i hi (x:ℂ)
 
+/--
+@isnad1 id=and.7h11v.s8.ab5d3a6469ec from=translated src=- shape=759fb697 vocab=760bc215
+-/
 theorem SparsePacketFamily.signed_estimates
     {Γ : Finset ℝ} {s : Finset ℤ} {c : ℤ → ℝ} {B ρ σ M C D : ℝ}
     (F : SparsePacketFamily Γ s c B ρ σ M C) (hs : s.Nonempty)

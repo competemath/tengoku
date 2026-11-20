@@ -34,7 +34,9 @@ private theorem fourth_tail_budget {M γ q d : ℝ}
 
 /-- Complete finite-node Bernstein conclusion, including the whole exterior
 `|x| ≥ ρ`, a uniform positive-length peak interval, and a complex exponential
-bound.  All constants precede the arbitrary finite node set.-/
+bound.  All constants precede the arbitrary finite node set.
+@isnad1 id=ex.1h1v.s8.eaf67411dc8e from=translated src=- shape=f44c3a71 vocab=71cd65a7
+-/
 theorem local_bernstein_exists (B : ℝ) (hB : 1<B) :
     ∃ρ : ℕ,∃σ M ℓ K : ℝ,
       0<ρ ∧ 0<σ ∧ σ<Real.pi ∧ 0<M ∧ 0<ℓ ∧ 0<K ∧

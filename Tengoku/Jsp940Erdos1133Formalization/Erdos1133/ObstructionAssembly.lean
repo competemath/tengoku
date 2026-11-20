@@ -27,7 +27,9 @@ def FiniteTrigObstructions : Prop :=
     ∀ n : ℕ, n₀ ≤ n → TrigObstructionAt A δ n
 
 /-- Exact assembly of the contradiction. Both analytic inputs remain named
-hypotheses here and are discharged by the final theorem, not asserted as axioms.-/
+hypotheses here and are discharged by the final theorem, not asserted as axioms.
+@isnad1 id=centered.10h8v.s10.456aa1fe021a from=translated src=- shape=4f7e3835 vocab=62936d0b
+-/
 theorem centered_obstruction_of_trig_and_approx
     {H A δ τ K q : ℝ} {n m : ℕ}
     (hτ : 0 < τ) (hτn : τ < (n : ℝ))
@@ -82,7 +84,9 @@ theorem centered_obstruction_of_trig_and_approx
   exact congrArg Complex.re (hPd i)
 
 /-- Every parameter in the window argument is chosen here. In particular the
-window constants are fixed before the degree slack, avoiding a circular choice.-/
+window constants are fixed before the degree slack, avoiding a circular choice.
+@isnad1 id=ex.2h1v.s5.a6e13e5b9c42 from=translated src=- shape=08d9ac1a vocab=cbff80e1
+-/
 theorem finiteBernsteinObstructions_of_finiteTrig
     (htrig : FiniteTrigObstructions) :
     ∀ H > (0 : ℝ), ∃ k : ℕ, 2 ≤ k ∧ FiniteBernsteinObstruction H k := by

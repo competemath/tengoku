@@ -11,7 +11,9 @@ namespace Erdos1133
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
 /-- A separated family of genuine local packets yields arbitrarily signed
-peaks in the original trigonometric band, with unit data at every node.-/
+peaks in the original trigonometric band, with unit data at every node.
+@isnad1 id=ex.16h13v.s10.de47926a7f13 from=translated src=- shape=a3a2ca6f vocab=27beb492
+-/
 theorem SparsePacketFamily.periodized_peaks
     {Γ : Finset ℝ} {s : Finset ℤ} {c : ℤ → ℝ} {A B ρ σ M C D : ℝ}
     (F : SparsePacketFamily Γ s c B ρ σ M C) (n : ℕ) (hn : 0 < n)

@@ -12,7 +12,9 @@ open Finset Set
 namespace Erdos1133
 
 /-- Among finitely many residue classes, one retains at least the average
-number of indices, with an exact integer inequality.-/
+number of indices, with an exact integer inequality.
+@isnad1 id=ex.1h2v.s6.02fe01a620e5 from=translated src=- shape=ee01b272 vocab=0432e2f3
+-/
 theorem exists_large_residue (s : Finset ℕ) (K : ℕ) (hK : 0 < K) :
     ∃ r < K, s.card ≤ K * (s.filter fun i => i % K = r).card := by
   classical
@@ -25,6 +27,9 @@ theorem exists_large_residue (s : Finset ℕ) (K : ℕ) (hK : 0 < K) :
   rw [hpart]
   simpa using hsum
 
+/--
+@isnad1 id=pairwise.0h3v.s8.86a3f578b72a from=translated src=- shape=8446ca80 vocab=e0aaa214
+-/
 theorem cell_cores_disjoint (Γ : Finset ℝ) (ρ : ℕ) (a : ℝ) :
     Pairwise (fun i j : ℕ => Disjoint
       (Γ.filter fun x => |x - (a + (2*ρ+1 : ℕ)*i)| ≤ ρ)
@@ -44,7 +49,9 @@ theorem cell_cores_disjoint (Γ : Finset ℝ) (ρ : ℕ) (a : ℝ) :
     nlinarith
 
 /-- A genuine counting bound: all closed cores are disjoint, so every dense
-core consumes at least `2ρ+2` distinct nodes.-/
+core consumes at least `2ρ+2` distinct nodes.
+@isnad1 id=other.0h4v.s8.c63abe1b5a36 from=translated src=- shape=571f2878 vocab=308ab135
+-/
 theorem sparse_cells_count (Γ : Finset ℝ) (ρ m : ℕ) (a : ℝ) :
     let good := (Finset.range m).filter fun (i : ℕ) =>
       (Γ.filter fun x => |x - (a + (2*ρ+1 : ℕ)*(i : ℝ))| ≤ ρ).card ≤ 2*ρ+1
@@ -85,7 +92,9 @@ theorem sparse_cells_count (Γ : Finset ℝ) (ρ m : ℕ) (a : ℝ) :
   nlinarith
 
 /-- Reindexing a large residue class by its quotient makes the spacing scale
-appear directly in the integer indices used by the packet tail estimates.-/
+appear directly in the integer indices used by the packet tail estimates.
+@isnad1 id=ex.1h5v.s8.13b6a4472f0f from=translated src=- shape=b4dac9ec vocab=303e1d15
+-/
 theorem packed_sparse_cells (Γ : Finset ℝ) (ρ m K : ℕ) (hK : 0 < K) (a : ℝ) :
     ∃ r < K, ∃ s : Finset ℤ,
       (∀ j ∈ s, ∃ i < m, j = (i / K : ℕ) ∧ i % K = r) ∧
@@ -130,7 +139,9 @@ theorem packed_sparse_cells (Γ : Finset ℝ) (ρ m K : ℕ) (hK : 0 < K) (a : �
 
 /-- Arbitrary node sets of cardinality at most `2N` have a linear number of
 sparse cores. Their centers are indexed with the exact spacing needed by the
-packet estimates, and stay two spacing lengths away from the period seam.-/
+packet estimates, and stay two spacing lengths away from the period seam.
+@isnad1 id=ex.1h2v.s9.9c8009033a32 from=translated src=- shape=c465348c vocab=fe90fe05
+-/
 theorem separated_sparse_cells (ρ K : ℕ) (hK : 0 < K) :
     ∃ η : ℝ, 0 < η ∧ ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ Γ : Finset ℝ,
       Γ.card ≤ 2*N →
@@ -218,7 +229,9 @@ theorem separated_sparse_cells (ρ K : ℕ) (hK : 0 < K) :
     ring
 
 /-- Leaving a `2D` margin at both ends prevents collisions across every
-nonzero translate of the period, not just the immediately adjacent copy.-/
+nonzero translate of the period, not just the immediately adjacent copy.
+@isnad1 id=le.4h5v.s7.07d17208d292 from=translated src=- shape=7333b88f vocab=cd4582a6
+-/
 theorem center_gap_across_period {N D a b : ℝ} (hN : 0 ≤ N)
     (ha : -N+2*D ≤ a ∧ a ≤ N-2*D)
     (hb : -N+2*D ≤ b ∧ b ≤ N-2*D) (q : ℤ) (hq : q ≠ 0) :

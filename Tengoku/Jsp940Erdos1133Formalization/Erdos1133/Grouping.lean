@@ -15,7 +15,9 @@ namespace Erdos1133
 variable {α : Type*} [DecidableEq α]
 
 /-- Split a finite set into disjoint `k`-element groups, discarding fewer than `k`
-indices. The groups are actual subsets of the original index set.-/
+indices. The groups are actual subsets of the original index set.
+@isnad1 id=ex.1h3v.s7.2f3950454f2c from=translated src=- shape=1095910d vocab=8e8f69c8
+-/
 theorem exists_disjoint_equal_groups (s : Finset α) (k : ℕ) (hk : 0 < k) :
     ∃ G : Finset (Finset α),
       (∀ g ∈ G, g ⊆ s ∧ g.card = k) ∧
@@ -70,7 +72,9 @@ theorem exists_disjoint_equal_groups (s : Finset α) (k : ℕ) (hk : 0 < k) :
         nlinarith [Nat.sub_add_cancel hks]
 
 /-- A group containing only one bin cannot also belong to a different bin's
-family, because all groups have positive size.-/
+family, because all groups have positive size.
+@isnad1 id=ex.1h5v.s7.2aed9c1566d0 from=translated src=- shape=aa12d07e vocab=c7259ccf
+-/
 theorem exists_grouping_by_bins {β : Type*} [Fintype β] [DecidableEq β]
     (s : Finset α) (b : α → β) (k : ℕ) (hk : 0 < k) :
     ∃ G : Finset (Finset α),
@@ -119,7 +123,9 @@ theorem exists_grouping_by_bins {β : Type*} [Fintype β] [DecidableEq β]
     rw [hpartition, Finset.sum_add_distrib, ← Finset.mul_sum, ← hgroupscard] at hsum
     simpa [mul_comm] using hsum
 
-/-- The finite-index form used by the angular-bin proof.-/
+/-- The finite-index form used by the angular-bin proof.
+@isnad1 id=ex.1h4v.s7.add86e47c3ab from=translated src=- shape=7905d731 vocab=ff68338f
+-/
 theorem group_indices {n N k : ℕ} (b : Fin n → Fin N) (hk : 0 < k) :
     ∃ G : Finset (Finset (Fin n)),
       (∀ g ∈ G, g.card = k ∧ ∃ j : Fin N, ∀ i ∈ g, b i = j) ∧
@@ -130,7 +136,9 @@ theorem group_indices {n N k : ℕ} (b : Fin n → Fin N) (hk : 0 < k) :
   omega
 
 /-- Independently selected local data on disjoint groups define one global
-label vector, before any approximating polynomial is considered.-/
+label vector, before any approximating polynomial is considered.
+@isnad1 id=ex.2h3v.s7.3bcdd80f60c9 from=translated src=- shape=8f124ba2 vocab=27b8f4ba
+-/
 theorem glue_group_labels (G : Finset (Finset α))
     (hdis : (G : Set (Finset α)).Pairwise Disjoint)
     (a : Finset α → α → ℝ) (ha : ∀ g ∈ G, ∀ i ∈ g, |a g i| ≤ 1) :
@@ -157,7 +165,9 @@ theorem glue_group_labels (G : Finset (Finset α))
     rw [dite_eq_left hocc, hchosen]
 
 /-- One error in every disjoint group forces at least as many erroneous indices
-as there are groups. This counts indices even when their sample locations agree.-/
+as there are groups. This counts indices even when their sample locations agree.
+@isnad1 id=le.3h4v.s7.3e7d863ca148 from=translated src=- shape=c7d5705a vocab=07ccc1d2
+-/
 theorem groups_force_errors (s : Finset α) (G : Finset (Finset α))
     (hinside : ∀ g ∈ G, g ⊆ s) (hdis : (G : Set (Finset α)).Pairwise Disjoint)
     (Bad : α → Prop) [DecidablePred Bad]

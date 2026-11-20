@@ -12,7 +12,9 @@ namespace Erdos1133
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
 /-- Convert actual freely signed peaks into bad data for every degree below
-the oscillation threshold. The chosen data are independent of that degree.-/
+the oscillation threshold. The chosen data are independent of that degree.
+@isnad1 id=ex.7h5v.s10.e2c1b5267376 from=translated src=- shape=8e164fdb vocab=b30572b9
+-/
 theorem finite_trig_obstruction_of_peaks (N : ℕ) (Γ : Finset FourierCircle)
     (hΓ : Γ.card=2*N) (s : Finset ℤ) (hs : s.Nonempty) (t : ℤ → ℝ)
     (ht : ∀ i ∈ s, ∀ j ∈ s, i<j → t i<t j)

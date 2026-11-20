@@ -44,7 +44,9 @@ private theorem sixth_window_decay {ε : ℝ} (hε : 0<ε) (z : ℂ) :
   convert hh using 1 <;> congr 2 <;> ring
 
 /-- The exact decay class used by the sampling and moment-correction construction.
-The bandwidth includes the sixth-power window before the auxiliary mesh is chosen.-/
+The bandwidth includes the sixth-power window before the auxiliary mesh is chosen.
+@isnad1 id=ex.1h1v.s8.5127fea8837d from=translated src=- shape=a951fb9f vocab=9b8476ad
+-/
 theorem local_bernstein_decay_exists (B : ℝ) (hB : 1<B) :
     ∃ρ : ℕ,∃σ M ℓ C : ℝ,
       0<ρ ∧ 0<σ ∧ σ<Real.pi ∧ 0<M ∧ 0<ℓ ∧ 0<C ∧

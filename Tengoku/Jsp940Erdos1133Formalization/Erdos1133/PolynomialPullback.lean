@@ -19,11 +19,17 @@ def IsBernsteinFunction (σ H : ℝ) (f : ℂ → ℂ) : Prop :=
 def polynomialPullback (D : ℝ) (P : ℝ[X]) (z : ℂ) : ℂ :=
   (P.map Complex.ofRealHom).eval (Complex.cos ((Real.pi / D : ℝ) * z))
 
+/--
+@isnad1 id=differen.0h2v.s6.40c975db2d09 from=translated src=- shape=7f5cf012 vocab=fd932bf6
+-/
 theorem polynomialPullback_entire (D : ℝ) (P : ℝ[X]) :
     Differentiable ℂ (polynomialPullback D P) := by
   unfold polynomialPullback
   fun_prop
 
+/--
+@isnad1 id=eq.0h3v.s5.eafe62b7c7c2 from=translated src=- shape=8754b6e0 vocab=6b71ff71
+-/
 theorem polynomialPullback_real (D : ℝ) (P : ℝ[X]) (t : ℝ) :
     polynomialPullback D P t = ((P.eval (Real.cos (Real.pi / D * t)) : ℝ) : ℂ) := by
   unfold polynomialPullback
@@ -31,11 +37,17 @@ theorem polynomialPullback_real (D : ℝ) (P : ℝ[X]) (t : ℝ) :
   rw [Polynomial.eval_map]
   exact Polynomial.eval₂_at_apply Complex.ofRealHom _
 
+/--
+@isnad1 id=eq.1h3v.s6.5f74adc7c8fd from=translated src=- shape=86512979 vocab=c2d1d0ea
+-/
 theorem polynomialPullback_at_node {D : ℝ} (hD : 0 < D)
     (P : ℝ[X]) (x : Icc (-1 : ℝ) 1) :
     polynomialPullback D P (angularNode D x) = ((P.eval (x : ℝ) : ℝ) : ℂ) := by
   rw [polynomialPullback_real, cos_angularNode hD]
 
+/--
+@isnad1 id=le.1h4v.s4.aa8a7da65d21 from=translated src=- shape=5c0af178 vocab=f25d8ef6
+-/
 theorem polynomialPullback_bound_real (D : ℝ) (P : ℝ[X]) (H : ℝ)
     (hP : BoundedOnSegment H P) (t : ℝ) :
     ‖polynomialPullback D P t‖ ≤ H := by
@@ -62,6 +74,9 @@ private theorem mapped_polynomial_bound (P : ℝ[X]) (w : ℂ) (a : ℝ)
       apply mul_le_mul_of_nonneg_right _ ha
       exact_mod_cast Polynomial.le_natDegree_of_mem_supp j hj
 
+/--
+@isnad1 id=isbernst.3h3v.s5.42a39521439b from=translated src=- shape=f5e1b030 vocab=bc34b240
+-/
 theorem polynomialPullback_isBernstein {D H : ℝ} (hD : 0 < D)
     (P : ℝ[X]) (hdeg : (P.natDegree : ℝ) ≤ D) (hP : BoundedOnSegment H P) :
     IsBernsteinFunction Real.pi H (polynomialPullback D P) := by

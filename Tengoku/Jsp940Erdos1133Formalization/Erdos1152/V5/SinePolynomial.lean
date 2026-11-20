@@ -27,7 +27,9 @@ private theorem abel_finite (z w : ℕ → ℝ) (n : ℕ) :
     rw [sum_range_succ (f := z) (n := n+1)]
     ring
 
-/-- Abel's finite inequality with decreasing nonnegative weights.-/
+/-- Abel's finite inequality with decreasing nonnegative weights.
+@isnad1 id=le.4h4v.s7.9b51f0249096 from=translated src=- shape=b0ac0fd7 vocab=5018eba6
+-/
 theorem abs_weighted_sum_le (z w : ℕ → ℝ) (n : ℕ) (C : ℝ)
     (hC : 0 ≤ C) (hw : ∀j≤n, 0≤w j)
     (hmono : ∀j<n, w (j+1)≤w j)
@@ -60,6 +62,9 @@ private theorem sine_step (v t : ℝ) :
   rw [h1,h2,Real.sin_neg]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.4c865b6c7fa8 from=translated src=- shape=de669844 vocab=457040d7
+-/
 theorem partial_sine_identity (a n : ℕ) (t : ℝ) :
     2*Real.sin (t/2)*(∑j∈range n,Real.sin (((a+j : ℕ):ℝ)*t)) =
       Real.cos (((a:ℝ)-1/2)*t)-Real.cos (((a+n:ℕ):ℝ)*t-t/2) := by
@@ -116,7 +121,9 @@ private theorem weighted_sine_tail (a n : ℕ) (ha : 0<a) {t : ℝ}
 noncomputable def harmonicSine (n : ℕ) (t : ℝ) : ℝ :=
   ∑j∈range n,Real.sin (((j+1:ℕ):ℝ)*t)/(j+1:ℕ)
 
-/-- The uniform harmonic sine bound on the principal half-period.-/
+/-- The uniform harmonic sine bound on the principal half-period.
+@isnad1 id=le.2h2v.s5.78a38a3d90ab from=translated src=- shape=cef2fbdc vocab=fc2c949f
+-/
 theorem harmonicSine_bound_nonneg (n : ℕ) {t : ℝ}
     (ht : 0≤t) (htπ : t≤Real.pi) : |harmonicSine n t|≤1+Real.pi := by
   by_cases hz : t=0
@@ -165,6 +172,9 @@ theorem harmonicSine_bound_nonneg (n : ℕ) {t : ℝ}
       nlinarith [hm]
     exact (abs_add_le _ _).trans (add_le_add (hsmall M le_rfl) (htail.trans htail'))
 
+/--
+@isnad1 id=le.1h2v.s5.75d948fc7a9a from=translated src=- shape=610419c7 vocab=fc2c949f
+-/
 theorem harmonicSine_bound (n : ℕ) {t : ℝ} (ht : |t|≤Real.pi) :
     |harmonicSine n t|≤1+Real.pi := by
   by_cases ht0 : 0≤t
@@ -181,7 +191,9 @@ noncomputable def privalovLow (A : ℕ) (t : ℝ) : ℝ :=
 noncomputable def privalovHigh (A : ℕ) (t : ℝ) : ℝ :=
   ∑j∈range A,Real.cos (((A+1+j:ℕ):ℝ)*t)/(j+1:ℕ)
 
-/-- The two frequency blocks have bounded difference despite the harmonic peak.-/
+/-- The two frequency blocks have bounded difference despite the harmonic peak.
+@isnad1 id=eq.0h2v.s5.eea86ea8ebef from=translated src=- shape=bb2514a0 vocab=02e70f4f
+-/
 theorem privalov_split_identity (A : ℕ) (t : ℝ) :
     privalovLow A t-privalovHigh A t =
       2*Real.sin ((A:ℝ)*t)*harmonicSine A t := by
@@ -201,6 +213,9 @@ theorem privalov_split_identity (A : ℕ) (t : ℝ) :
   simp only [neg_mul,Real.sin_neg]
   ring
 
+/--
+@isnad1 id=le.1h2v.s5.5c43db372299 from=translated src=- shape=18fc5df2 vocab=5a5eb1af
+-/
 theorem privalov_split_bound (A : ℕ) {t : ℝ} (ht : |t|≤Real.pi) :
     |privalovLow A t-privalovHigh A t|≤2*(1+Real.pi) := by
   rw [privalov_split_identity,abs_mul,abs_mul]
@@ -213,6 +228,9 @@ theorem privalov_split_bound (A : ℕ) {t : ℝ} (ht : |t|≤Real.pi) :
           · exact harmonicSine_bound A ht
     _ = 2*(1+Real.pi) := by ring
 
+/--
+@isnad1 id=eq.0h1v.s5.025f32a47768 from=translated src=- shape=4d3b173d vocab=b16613b7
+-/
 @[simp] theorem privalovLow_zero (A : ℕ) :
     privalovLow A 0 = ∑j∈range A,(1:ℝ)/(j+1:ℕ) := by
   simp [privalovLow]

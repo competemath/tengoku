@@ -10,19 +10,31 @@ def plateauRate (δ : ℝ) : ℝ := Real.pi * δ / 24
 def compressedType (δ : ℝ) (n : ℕ) : ℝ :=
   Real.pi * (((2*n : ℕ) : ℝ) + 1) / (2*interiorRatio δ*n)
 
+/--
+@isnad1 id=lt.1h1v.s4.59ec816ae173 from=translated src=- shape=35bd48ee vocab=240d0df8
+-/
 theorem interiorRatio_pos {δ : ℝ} (hδ : 0 < δ) : 0 < interiorRatio δ := by
   unfold interiorRatio
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.7c5f8d09fef2 from=translated src=- shape=3965f485 vocab=240d0df8
+-/
 theorem interiorRatio_lt_one {δ : ℝ} (hδ : 0 < δ) : interiorRatio δ < 1 := by
   unfold interiorRatio
   apply (div_lt_one (by positivity)).mpr
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.bba59681c9ba from=translated src=- shape=35bd48ee vocab=20083522
+-/
 theorem plateauRate_pos {δ : ℝ} (hδ : 0 < δ) : 0 < plateauRate δ := by
   unfold plateauRate
   positivity
 
+/--
+@isnad1 id=and.2h2v.s7.474f4a7263a5 from=translated src=- shape=a13dc126 vocab=f9c3be6d
+-/
 theorem compressedType_bounds {δ : ℝ} {n : ℕ} (hδ : 0 < δ)
     (hn : (4+δ)/δ ≤ (n : ℝ)) :
     Real.pi ≤ compressedType δ n ∧
@@ -49,6 +61,9 @@ theorem compressedType_bounds {δ : ℝ} {n : ℕ} (hδ : 0 < δ)
     unfold plateauRate
     nlinarith [mul_le_mul_of_nonneg_left hs Real.pi_pos.le]
 
+/--
+@isnad1 id=other.2h2v.s7.4ca4c73adca4 from=translated src=- shape=c2b37b10 vocab=7906f539
+-/
 theorem compressed_bandwidth_budget {δ : ℝ} {n : ℕ} (hδ : 0 < δ)
     (hn : (4+δ)/δ ≤ (n : ℝ)) :
     let m := Nat.ceil ((compressedType δ n + 6*plateauRate δ)*(2*(n : ℝ))/(2*Real.pi))
@@ -73,7 +88,9 @@ theorem compressed_bandwidth_budget {δ : ℝ} {n : ℕ} (hδ : 0 < δ)
     nlinarith
 
 /-- A deliberately loose asymptotic estimate suffices for all window errors.
-Its threshold is explicit and no convergence theorem is assumed.-/
+Its threshold is explicit and no convergence theorem is assumed.
+@isnad1 id=ex.3h3v.s6.b2da05ab5f72 from=translated src=- shape=077eac9b vocab=bbfbc6af
+-/
 theorem linear_over_sixth_eventually_small {A d ε : ℝ}
     (hA : 0 ≤ A) (hd : 0 < d) (hε : 0 < ε) :
     ∃ n₀ : ℕ, ∀ n : ℕ, n₀ ≤ n → 0 < n ∧ A*n/(d*n)^6 ≤ ε := by

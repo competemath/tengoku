@@ -19,6 +19,9 @@ noncomputable def operatorOrbit (U : CircleFunction→ₗ[ℂ]CircleFunction)
     (Q : CircleFunction) (t₀ : FourierCircle) (n : ℤ) : CircleFunction :=
   translateCircle (-t₀) (character n) * reflectCircle t₀ (U (character n*Q))
 
+/--
+@isnad1 id=eq.0h5v.s9.1de344780799 from=translated src=- shape=d93bc12a vocab=5cb3b63e
+-/
 theorem operatorOrbit_apply (U : CircleFunction→ₗ[ℂ]CircleFunction)
     (Q : CircleFunction) (t₀ τ : FourierCircle) (n : ℤ) :
     operatorOrbit U Q t₀ n τ =
@@ -28,6 +31,9 @@ theorem operatorOrbit_apply (U : CircleFunction→ₗ[ℂ]CircleFunction)
     character n (τ-t₀) * U (character n*Q) (t₀-τ)
   simp only [sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.3h6v.s10.00658933363a from=translated src=- shape=cd408e43 vocab=0da22ce6
+-/
 theorem operatorOrbit_low (U : CircleFunction→ₗ[ℂ]CircleFunction) (k l : ℕ)
     (hfix : ∀f∈bandSpace k,U f=f) (Q : CircleFunction) (hQ : Q∈bandSpace l)
     (t₀ : FourierCircle) (n : ℤ) (hn : n.natAbs+l≤k) :
@@ -49,6 +55,9 @@ theorem operatorOrbit_low (U : CircleFunction→ₗ[ℂ]CircleFunction) (k l : �
   rw [←mul_assoc,←character_translate]
   simp [sub_eq_add_neg,add_assoc]
 
+/--
+@isnad1 id=mem.2h6v.s10.b4927ff1c5d7 from=translated src=- shape=42169743 vocab=a0e60bf1
+-/
 theorem operatorOrbit_high (U : CircleFunction→ₗ[ℂ]CircleFunction) (k L : ℕ)
     (hrange : ∀f,U f∈bandSpace k) (Q : CircleFunction)
     (t₀ : FourierCircle) (n : ℤ) (hn : k+2*L≤n.natAbs) :
@@ -80,6 +89,9 @@ noncomputable def boundedProbeOrbit (U : CircleFunction→ₗ[ℂ]CircleFunction
     (orbitBlock U Q t₀ A d (fun j => A-1-j)-
       orbitBlock U Q t₀ A d (fun j => A+1+j))
 
+/--
+@isnad1 id=eq.0h7v.s10.cf765a2e4e6f from=translated src=- shape=4895b4d5 vocab=937cb6dc
+-/
 theorem orbitBlock_apply (U : CircleFunction→ₗ[ℂ]CircleFunction)
     (Q : CircleFunction) (t₀ τ : FourierCircle) (A d : ℕ) (freq : ℕ→ℕ) :
     orbitBlock U Q t₀ A d freq τ =
@@ -97,6 +109,9 @@ theorem orbitBlock_apply (U : CircleFunction→ₗ[ℂ]CircleFunction)
   simp only [orbitBlock,ContinuousMap.sum_apply,ContinuousMap.smul_apply,
     ContinuousMap.add_apply,map_smul,map_add,smul_eq_mul,operatorOrbit_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.cffb54fccbe0 from=translated src=- shape=e8b9df60 vocab=b474e0bb
+-/
 theorem boundedProbeOrbit_apply (U : CircleFunction→ₗ[ℂ]CircleFunction)
     (Q : CircleFunction) (t₀ τ : FourierCircle) (A d : ℕ) :
     boundedProbeOrbit U Q t₀ A d τ =
@@ -157,7 +172,9 @@ private theorem orbitBlock_high (U : CircleFunction→ₗ[ℂ]CircleFunction)
 
 /-- A finite-dimensional Privalov theorem with explicit parameters
 `L=4mA`, `d=2L`, `k=Ad`.  The logarithmic growth is supplied by `harmonicHeight A`.
-The input is produced by the Fejér grid, not postulated as a sampling witness.-/
+The input is produced by the Fejér grid, not postulated as a sampling witness.
+@isnad1 id=ex.4h4v.s11.139c32ed82fd from=translated src=- shape=31167137 vocab=2046a296
+-/
 theorem finite_privalov (A m : ℕ) (hA : 0<A) (hm : 0<m)
     (U : CircleFunction→ₗ[ℂ]CircleFunction)
     (hrange : ∀f,U f∈bandSpace (8*m*A*A))

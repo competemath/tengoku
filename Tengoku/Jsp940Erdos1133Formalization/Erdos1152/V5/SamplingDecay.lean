@@ -11,6 +11,9 @@ namespace Erdos1152.V5
 def symmetricIndices (N : ℕ) : Finset ℤ := Finset.Icc (-(N:ℤ)) N
 def latticeWeight (j : ℤ) : ℝ := 1/(1+|(j:ℝ)|)^4
 
+/--
+@isnad1 id=tendsto.0h0v.s4.c4e7c7d9b19c from=translated src=- shape=6c9f2b17 vocab=5dc7fb66
+-/
 theorem symmetricIndices_tendsto : Tendsto symmetricIndices atTop atTop := by
   apply tendsto_atTop.mpr
   intro s
@@ -22,9 +25,15 @@ theorem symmetricIndices_tendsto : Tendsto symmetricIndices atTop atTop := by
   simpa [symmetricIndices,Finset.mem_Icc] using
     (show -(N:ℤ)≤j ∧ j≤N by omega)
 
+/--
+@isnad1 id=le.0h1v.s3.526e803cd43e from=translated src=- shape=b9369acb vocab=5c129286
+-/
 theorem latticeWeight_nonneg (j : ℤ) : 0≤latticeWeight j := by
   unfold latticeWeight; positivity
 
+/--
+@isnad1 id=summable.0h0v.s3.07001b442b5d from=translated src=- shape=ef4b497d vocab=77fadd26
+-/
 theorem latticeWeight_summable : Summable latticeWeight := by
   apply (Real.summable_one_div_int_pow.mpr (by norm_num : 1<(4:ℕ))).of_norm_bounded_eventually
   filter_upwards [Filter.eventually_cofinite_ne (0:ℤ)] with j hj
@@ -35,7 +44,9 @@ theorem latticeWeight_summable : Summable latticeWeight := by
     (pow_le_pow_left₀ hn.le (by linarith) 4)
 
 /-- The grid phase is controlled uniformly; no separation assumption is made on
- the interpolation nodes that were used to construct the Bernstein function.-/
+ the interpolation nodes that were used to construct the Bernstein function.
+@isnad1 id=le.3h3v.s6.6a8774612f7f from=translated src=- shape=608b4bf8 vocab=6816d265
+-/
 theorem lattice_distance_comparison (t θ : ℝ) (ht : 0<t) (ht1 : t≤1)
     (hθ : |θ|≤1/2) (j : ℤ) :
     1+|(j:ℝ)|≤2*(1+|samplePoint t θ j|) := by
@@ -46,6 +57,9 @@ theorem lattice_distance_comparison (t θ : ℝ) (ht : 0<t) (ht1 : t≤1)
   have hmul := mul_le_mul_of_nonneg_right ht1 (abs_nonneg (samplePoint t θ j))
   nlinarith [abs_nonneg (samplePoint t θ j)]
 
+/--
+@isnad1 id=le.6h7v.s7.7f8c12b5794b from=translated src=- shape=11743585 vocab=7ab5c2af
+-/
 theorem sample_moment_bound (g : ℂ→ℂ) (C σ t θ : ℝ)
     (hC : 0≤C) (ht : 0<t) (ht1 : t≤1) (hθ : |θ|≤1/2)
     (hg : ∀z,‖g z‖≤C*Real.exp (σ*|z.im|)/(1+‖z‖)^6)
@@ -76,6 +90,9 @@ theorem sample_moment_bound (g : ℂ→ℂ) (C σ t θ : ℝ)
       rw [← mul_div_assoc, mul_one, div_le_div_iff₀ (by positivity) (by positivity)]
       nlinarith [mul_le_mul_of_nonneg_left hdist4 hC]
 
+/--
+@isnad1 id=summable.6h6v.s7.e3eed61381d8 from=translated src=- shape=e4dbedad vocab=b37c6ed2
+-/
 theorem sample_moment_summable (g : ℂ→ℂ) (C σ t θ : ℝ)
     (hC : 0≤C) (ht : 0<t) (ht1 : t≤1) (hθ : |θ|≤1/2)
     (hg : ∀z,‖g z‖≤C*Real.exp (σ*|z.im|)/(1+‖z‖)^6)
@@ -84,15 +101,27 @@ theorem sample_moment_summable (g : ℂ→ℂ) (C σ t θ : ℝ)
   (latticeWeight_summable.mul_left (16*C)).of_norm_bounded
     (sample_moment_bound g C σ t θ hC ht ht1 hθ hg d hd)
 
+/--
+@isnad1 id=eq.0h1v.s5.9dc6887eb8b0 from=translated src=- shape=7af1b996 vocab=470d749e
+-/
 theorem sign_norm (j : ℤ) : ‖(-1:ℂ)^j‖=1 := by simp
 
+/--
+@isnad1 id=eq.0h1v.s5.ed5d704b8dc4 from=translated src=- shape=e8623351 vocab=25c0e7fb
+-/
 theorem sign_mul_self (j : ℤ) : (-1:ℂ)^j*(-1:ℂ)^j=1 := by
   rw [← mul_zpow]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s5.0298907218a1 from=translated src=- shape=1c25973a vocab=aa948350
+-/
 theorem inverse_sign (j : ℤ) : ((-1:ℂ)^j)⁻¹=(-1:ℂ)^j :=
   inv_eq_of_mul_eq_one_left (sign_mul_self j)
 
+/--
+@isnad1 id=summable.6h6v.s7.d602a484dd18 from=translated src=- shape=64270478 vocab=36f93a6b
+-/
 theorem signed_moment_summable (g : ℂ→ℂ) (C σ t θ : ℝ)
     (hC : 0≤C) (ht : 0<t) (ht1 : t≤1) (hθ : |θ|≤1/2)
     (hg : ∀z,‖g z‖≤C*Real.exp (σ*|z.im|)/(1+‖z‖)^6)
@@ -107,10 +136,16 @@ theorem signed_moment_summable (g : ℂ→ℂ) (C σ t θ : ℝ)
 def samplingTail (N : ℕ) : ℝ :=
   (∑'j:ℤ,latticeWeight j)-∑j∈symmetricIndices N,latticeWeight j
 
+/--
+@isnad1 id=le.0h1v.s3.257812a5e460 from=translated src=- shape=b9369acb vocab=e75fb03b
+-/
 theorem samplingTail_nonneg (N : ℕ) : 0≤samplingTail N := by
   exact sub_nonneg.mpr (Summable.sum_le_tsum (symmetricIndices N)
     (fun j hj => latticeWeight_nonneg j) latticeWeight_summable)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.435d3bc4f82b from=translated src=- shape=8e2810f0 vocab=c47b4f51
+-/
 theorem samplingTail_tendsto : Tendsto samplingTail atTop (𝓝 0) := by
   have h := latticeWeight_summable.hasSum.comp symmetricIndices_tendsto
   have hc : Tendsto (fun _ : ℕ => ∑'j:ℤ,latticeWeight j) atTop
@@ -119,6 +154,9 @@ theorem samplingTail_tendsto : Tendsto samplingTail atTop (𝓝 0) := by
     ∑j∈symmetricIndices N,latticeWeight j) atTop (𝓝 0)
   simpa using hc.sub h
 
+/--
+@isnad1 id=le.2h3v.s6.08dcc92af3cf from=translated src=- shape=43c31498 vocab=0c46d1ae
+-/
 theorem norm_tsum_sub_symmetric_le {f : ℤ→ℂ} {D : ℝ} (hD : 0≤D)
     (hf : ∀j,‖f j‖≤D*latticeWeight j) (N : ℕ) :
     ‖(∑'j,f j)-∑j∈symmetricIndices N,f j‖≤D*samplingTail N := by

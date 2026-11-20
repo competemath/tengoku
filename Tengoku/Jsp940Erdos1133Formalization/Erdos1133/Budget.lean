@@ -8,12 +8,18 @@ namespace Erdos1133
 /-- One parameter controls both the degree surplus and the allowed errors.-/
 def obstructionEpsilon (k : ℕ) : ℝ := 1 / (8 * (k : ℝ)^2)
 
+/--
+@isnad1 id=lt.1h1v.s4.de352950cbc0 from=translated src=- shape=f8216502 vocab=191c28ba
+-/
 theorem obstructionEpsilon_pos {k : ℕ} (hk : 2 ≤ k) :
     0 < obstructionEpsilon k := by
   unfold obstructionEpsilon
   have : (0 : ℝ) < k := by exact_mod_cast (by omega : 0 < k)
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.e2b2bd5d7b23 from=translated src=- shape=aa240375 vocab=191c28ba
+-/
 theorem obstructionEpsilon_lt_one {k : ℕ} (hk : 2 ≤ k) :
     obstructionEpsilon k < 1 := by
   have hkR : (2 : ℝ) ≤ k := by exact_mod_cast hk
@@ -21,7 +27,9 @@ theorem obstructionEpsilon_lt_one {k : ℕ} (hk : 2 ≤ k) :
   rw [div_lt_one (by positivity : (0 : ℝ) < 8 * (k : ℝ)^2)]
   nlinarith
 
-/-- The exact elementary estimate used after partitioning the angular interval.-/
+/-- The exact elementary estimate used after partitioning the angular interval.
+@isnad1 id=lt.3h3v.s7.6c560f9c1053 from=translated src=- shape=6ca76637 vocab=86311f7e
+-/
 theorem robust_group_budget {k n q : ℕ} (hk : 2 ≤ k) (hn : 4*k^2 ≤ n)
     (hgroup : (n : ℝ) / k - ((1 + obstructionEpsilon k) * n) / (k + 1) - 1 ≤ q) :
     obstructionEpsilon k * n < q := by

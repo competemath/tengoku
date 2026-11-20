@@ -39,7 +39,9 @@ private theorem moment_residue_formula
   simp only [mul_assoc]
 
 /-- The two alternating moments follow from actual vanishing contour integrals.
- They are not supplied as assumptions of the finite correction.-/
+ They are not supplied as assumptions of the finite correction.
+@isnad1 id=hassum.8h6v.s8.543cd92285ab from=translated src=- shape=ba4844e3 vocab=5d2ad1ff
+-/
 theorem hasSum_alternating_moment
     (g : ℂ→ℂ) (hgd : Differentiable ℂ g) (C σ t θ : ℝ)
     (hC : 0≤C) (ht : 0<t) (ht1 : t≤1) (hθ : |θ|≤1/2)
@@ -137,7 +139,9 @@ private theorem shannon_partial_error
     exact samplePoint_injective t θ ht.ne' he
 
 /-- Shannon cardinal reconstruction for the actual entire functions used here.
- The contour proof also supplies the two moments needed for cubic finite tails.-/
+ The contour proof also supplies the two moments needed for cubic finite tails.
+@isnad1 id=hassum.7h6v.s8.fa28b692c595 from=translated src=- shape=ab309f1b vocab=f64fb0d5
+-/
 theorem hasSum_shannon
     (g : ℂ→ℂ) (hgd : Differentiable ℂ g) (C σ t θ : ℝ)
     (hC : 0≤C) (ht : 0<t) (ht1 : t≤1) (hθ : |θ|≤1/2)

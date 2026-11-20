@@ -10,7 +10,9 @@ noncomputable section
 namespace Erdos1133
 
 /-- A large integer spacing simultaneously controls within-period packet tails
-and tails from the other periods.-/
+and tails from the other periods.
+@isnad1 id=ex.2h3v.s7.53507b9b24c6 from=translated src=- shape=fda78f8f vocab=341180a7
+-/
 theorem exists_packet_spacing (C S : ℝ) (hC : 0 < C) (hS : 0 ≤ S) (ρ : ℕ) :
     ∃ K : ℕ, 0 < K ∧
       let D : ℝ := ((2*ρ+1)*K : ℕ)
@@ -40,7 +42,9 @@ theorem exists_packet_spacing (C S : ℝ) (hC : 0 < C) (hS : 0 ≤ S) (ρ : ℕ)
     exact (div_le_one hpos).mpr hsecond
 
 /-- A linear number of peaks eventually strictly exceeds twice the excess
-Fourier degree plus one. Both subtractions in the conclusion are in `ℕ`.-/
+Fourier degree plus one. Both subtractions in the conclusion are in `ℕ`.
+@isnad1 id=ex.1h1v.s7.d89c1171f298 from=translated src=- shape=32f211d7 vocab=b1b3f093
+-/
 theorem exists_strict_zero_budget (η : ℝ) (hη : 0 < η) :
     ∃ δ : ℝ, 0 < δ ∧ ∃ n₀ : ℕ, ∀ n ≥ n₀, ∀ c m : ℕ,
       η*(n : ℝ) ≤ c → n ≤ m →

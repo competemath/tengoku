@@ -82,7 +82,9 @@ private theorem packet_negative_shift_distance (s : Finset ℤ) (hs : s.Nonempty
   exact hdist.trans (neg_le_abs _)
 
 /-- A bound for each nonzero period translate of all packets, independent
-of both the number of packets and the period length.-/
+of both the number of packets and the period length.
+@isnad1 id=le.7h8v.s8.7a00c2c1e4b2 from=translated src=- shape=55db2b77 vocab=e8320028
+-/
 theorem multipeak_shift_norm_bound (s : Finset ℤ) (c : ℤ → ℝ)
     (g : ℤ → ℂ → ℂ) {C D N : ℝ} (hC : 0 ≤ C) (hD : 1 ≤ D)
     (hbound : ∀ j ∈ s, c j ∈ Icc (-N+2*D) (N-2*D))
@@ -136,7 +138,9 @@ theorem multipeak_shift_norm_bound (s : Finset ℤ) (c : ℤ → ℝ)
     exact mul_nonneg (mul_nonneg (by positivity) squareTailMass_nonneg) (by positivity)
 
 /-- The whole real tail of the periodized packet family. Its constant does
-not depend on the number of centers or on their locations.-/
+not depend on the number of centers or on their locations.
+@isnad1 id=and.6h7v.s9.1d5ab75ac35b from=translated src=- shape=7671abaf vocab=43166fb3
+-/
 theorem multipeak_period_tail_bound (s : Finset ℤ) (c : ℤ → ℝ)
     (g : ℤ → ℂ → ℂ) {C D N : ℝ} (hC : 0 ≤ C) (hD : 1 ≤ D)
     (hbound : ∀ j ∈ s, c j ∈ Icc (-N+2*D) (N-2*D))
@@ -164,7 +168,9 @@ theorem multipeak_period_tail_bound (s : Finset ℤ) (c : ℤ → ℝ)
     _ = _ := by dsimp [A]; ring
 
 /-- The signed sum incurs only a uniformly small real error when periodized.
-Only the centered real-axis decay enters this bound.-/
+Only the centered real-axis decay enters this bound.
+@isnad1 id=le.7h8v.s8.a951c1e860d3 from=translated src=- shape=3059202b vocab=5834597d
+-/
 theorem multipeak_periodize_error (s : Finset ℤ) (c ψ : ℤ → ℝ)
     (g : ℤ → ℂ → ℂ) {C D N : ℝ} (hC : 0 ≤ C) (hD : 1 ≤ D)
     (hbound : ∀ j ∈ s, c j ∈ Icc (-N+2*D) (N-2*D))

@@ -12,7 +12,9 @@ namespace Erdos1133
 local instance : Fact (0 < 2 * Real.pi) := ⟨by positivity⟩
 
 /-- Arbitrary nodes admit bounded real data that cannot be interpolated with
-a fixed uniform bound, even after adding a positive proportion of frequencies.-/
+a fixed uniform bound, even after adding a positive proportion of frequencies.
+@isnad1 id=ex.1h1v.s9.38a2b8c09d89 from=translated src=- shape=af486ae6 vocab=e8d0515f
+-/
 theorem finite_trig_obstruction :
     ∀ A > (0:ℝ), ∃ δ > (0:ℝ), ∃ n₀ : ℕ, ∀ n ≥ n₀,
     ∀ Γ : Finset ℝ, (∀ x ∈ Γ, x ∈ Ico (-(n:ℝ)) n) → Γ.card=2*n →

@@ -11,6 +11,9 @@ namespace Erdos1133
 
 local instance : Fact (0 < 2*Real.pi) := ⟨by positivity⟩
 
+/--
+@isnad1 id=ex.1h4v.s9.234783300363 from=translated src=- shape=ba427855 vocab=759eb5d8
+-/
 theorem exists_circle_of_finite_expansion (F : ℂ → ℂ) (T : ℝ) (m : ℕ)
     (c : ℤ → ℂ)
     (he : ∀ x : ℝ, F x=∑ j ∈ Finset.Icc (-(m:ℤ)) (m:ℤ),
@@ -31,6 +34,9 @@ theorem exists_circle_of_finite_expansion (F : ℂ → ℂ) (T : ℝ) (m : ℕ)
     push_cast
     ring
 
+/--
+@isnad1 id=ex.6h5v.s9.1cffd4d571a4 from=translated src=- shape=7882fa3e vocab=927bc59d
+-/
 theorem periodize_circle_of_bandwidth_le (g : ℂ → ℂ) {C σ T : ℝ} {m : ℕ}
     (hd : Differentiable ℂ g) (hC : 0 ≤ C) (hσ : 0 ≤ σ) (hT : 0 < T)
     (hg : ∀ z : ℂ, ‖g z‖ ≤ C*Real.exp (σ*|z.im|)/(1+‖z‖)^6)
@@ -47,7 +53,9 @@ theorem periodize_circle_of_bandwidth_le (g : ℂ → ℂ) {C σ T : ℝ} {m : �
   simp only [Set.mem_Icc] at *
   constructor <;> omega
 
-/-- Every circle argument has a representative in the normalized physical scale.-/
+/-- Every circle argument has a representative in the normalized physical scale.
+@isnad1 id=surjecti.1h1v.s6.c262c4b02cd5 from=translated src=- shape=1c55e1cf vocab=80f6b397
+-/
 theorem normalized_circle_surjective {T : ℝ} (hT : T ≠ 0) :
     Function.Surjective (fun x : ℝ => ((2*Real.pi*x/T : ℝ) : FourierCircle)) := by
   intro u
@@ -58,6 +66,9 @@ theorem normalized_circle_surjective {T : ℝ} (hT : T ≠ 0) :
   rw [he]
   exact (AddCircle.equivIco (2*Real.pi) (-Real.pi)).symm_apply_apply u
 
+/--
+@isnad1 id=le.3h3v.s7.9f63911cf1f4 from=translated src=- shape=3dc1f5af vocab=822476f3
+-/
 theorem circle_norm_le_of_physical {P : CircleFunction} {T B : ℝ} (hT : T ≠ 0)
     (hB : 0 ≤ B)
     (hb : ∀ x : ℝ, ‖P ((2*Real.pi*x/T : ℝ) : FourierCircle)‖ ≤ B) : ‖P‖ ≤ B := by
