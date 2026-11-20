@@ -700,6 +700,14 @@ def migrate_dataset(path: Path, out: Optional[Path] = None, ids: Optional[Path] 
     return {"kind": "dataset", "already": None, "rows": new, "report": report}
 
 
+def patch_of(old_text: str, new_text: str, name: str) -> str:
+    """the unified diff of one file, in the form `git apply` takes: a last line without a newline is marked, as git itself does"""
+    out: List[str] = []
+    for line in difflib.unified_diff(old_text.splitlines(True), new_text.splitlines(True), f"a/{name}", f"b/{name}"):
+        out.append(line if line.endswith("\n") else line + "\n\\ No newline at end of file\n")
+    return "".join(out)
+
+
 def migrate_sources(path: Path, map_file: Optional[Path], projections: bool = False) -> Dict[str, Any]:
     """a Lean file or a directory of them -> for every file its report and the patch (nothing is written)"""
     if not map_file:
@@ -711,7 +719,7 @@ def migrate_sources(path: Path, map_file: Optional[Path], projections: bool = Fa
         old_text = f.read_text(encoding="utf-8")
         new_text, rep = migrate_source(old_text, renames, gone, projections)
         name = os.path.relpath(f)
-        diff = "".join(difflib.unified_diff(old_text.splitlines(True), new_text.splitlines(True), f"a/{name}", f"b/{name}"))
+        diff = patch_of(old_text, new_text, name)
         results.append({"file": str(f), "report": rep, "diff": diff, "new_text": new_text})
     return {"kind": "source", "files": results}
 

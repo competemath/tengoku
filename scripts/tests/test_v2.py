@@ -719,6 +719,33 @@ class CommandLine(unittest.TestCase):
         self.assertEqual(applied.returncode, 0, applied.stderr)
         self.assertEqual((src / "A.lean").read_text(), "theorem t : new_name 1 := gone\n")
 
+    def test_a_file_without_a_final_newline_gives_a_patch_git_accepts(self):
+        for body in ("theorem t : old_name 1 := gone", "theorem t : old_name 1 := gone\n", "a\ntheorem t : old_name 1"):
+            d = Path(tempfile.mkdtemp(dir=self.dir))
+            (d / "A.lean").write_text(body)
+            v2.write_jsonl(d / "map.jsonl", [{"old": "l:old_name", "new": "l:new_name", "change": "renamed"}])
+            r = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "v2.py"), "migrate", "A.lean", "--map", "map.jsonl"],
+                capture_output=True,
+                text=True,
+                cwd=d,
+            )
+            self.assertEqual(r.returncode, 0, r.stderr)
+            subprocess.run(["git", "init", "-q"], cwd=d, check=True)
+            (d / "p.patch").write_text(r.stdout)
+            applied = subprocess.run(["git", "apply", "p.patch"], cwd=d, capture_output=True, text=True)
+            self.assertEqual(applied.returncode, 0, (body, r.stdout, applied.stderr))
+            self.assertEqual((d / "A.lean").read_text(), body.replace("old_name", "new_name"))
+
+    def test_the_default_root_of_snapshot_is_the_repository_whatever_the_working_directory(self):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import snapshot
+
+        self.assertEqual(snapshot.pick_root(None), snapshot.ROOT)
+        self.assertEqual(snapshot.pick_root(str(self.dir)), self.dir.resolve())
+        with self.assertRaises(SystemExit):
+            snapshot.pick_root("/etc")
+
     def test_a_path_outside_the_working_and_temporary_directories_is_refused(self):
         r = self.run_cli("check", "/etc/hosts")
         self.assertNotEqual(r.returncode, 0)

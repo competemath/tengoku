@@ -281,10 +281,15 @@ def release_notes(
     return "\n".join(lines) + "\n"
 
 
+def pick_root(arg: str | None) -> Path:
+    """the repository to read: the one this script is in unless --root names another, which must lie in the working or temporary directory"""
+    return v2.checked_path(Path(arg)) if arg else ROOT
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
-    ap.add_argument("--root", default=str(ROOT))
+    ap.add_argument("--root", help="the repository to read (default: the one this script is in)")
     ap.add_argument("--previous", help="a directory with the previous release's snapshot.json and dataset")
     ap.add_argument("--notes", help="where to write the release notes (markdown); kept out of --out, which is published")
     ap.add_argument(
@@ -292,7 +297,7 @@ def main() -> None:
     )
     ap.add_argument("--ids", help="schema 2: a TSV of library, name, isnad id; a record listed there carries the id")
     args = ap.parse_args()
-    root, out = v2.checked_path(Path(args.root)), v2.checked_path(Path(args.out))
+    root, out = pick_root(args.root), v2.checked_path(Path(args.out))
     out.mkdir(parents=True, exist_ok=True)
     records, counts = dataset(root)
     if args.schema == 2:
