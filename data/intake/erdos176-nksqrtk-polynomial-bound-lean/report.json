@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "e6f702669658bf0e3f0a923d462f3371e95fb1122dee2bd030fcf26f370a7134",
+ "factory_changes": {
+  "inert lines removed": 2,
+  "modules changed": 2
+ },
+ "gate2_unjudged": [],
+ "library": "erdos176-nksqrtk-polynomial-bound-lean",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 27
+}

@@ -1,0 +1,1 @@
+-- Erdos176NksqrtkPolynomialBoundLean: a factory bundle (data/intake/erdos176-nksqrtk-polynomial-bound-lean). This file only marks the library for Tengoku/All.lean.
