@@ -10,6 +10,9 @@ universe u
 /- The ambient external-component dichotomy feeds its genuine two-attachment
    branch into the explicit bridge constructor. The unique-root branch is
    preserved as a separate alternative and is not analyzed here. -/
+/--
+@isnad1 id=or.3h5v.s7.7a64cfc5a2eb from=translated src=- shape=f50fa616 vocab=b3798860
+-/
 theorem externalComponent_bridge_or_unique_root
     {V : Type u} {G : SimpleGraph V} {s : V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

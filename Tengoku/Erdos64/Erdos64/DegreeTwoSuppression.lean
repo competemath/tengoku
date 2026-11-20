@@ -21,7 +21,9 @@ instance degreeTwoSuppressionGraph_decidableRel
     ((G.induce {v : V | v ≠ x}) ⊔ SimpleGraph.edge ⟨a, hax⟩ ⟨b, hbx⟩).Adj)
 
 /-- Deleting one vertex removes exactly its possible incidence from the
-degree of each surviving vertex.-/
+degree of each surviving vertex.
+@isnad1 id=eq.0h4v.s8.d359ffb067ea from=translated src=- shape=b57aff35 vocab=9511ef98
+-/
 theorem degree_induce_ne_vertex_add_indicator
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -44,7 +46,9 @@ theorem degree_induce_ne_vertex_add_indicator
   · simp [hadj]
 
 /-- Suppression of a vertex with exactly two distinct, nonadjacent neighbors
-preserves the degree of every surviving vertex.-/
+preserves the degree of every surviving vertex.
+@isnad1 id=eq.5h6v.s8.30fe15f3a1f3 from=translated src=- shape=886e3dbd vocab=107fced7
+-/
 theorem degreeTwoSuppressionGraph_degree
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -65,7 +69,9 @@ theorem degreeTwoSuppressionGraph_degree
     simp only [Subtype.ext_iff]
   simpa only [hiff] using degree_induce_ne_vertex_add_indicator G x v
 
-/-- The surviving vertex set has exactly one fewer vertex.-/
+/-- The surviving vertex set has exactly one fewer vertex.
+@isnad1 id=eq.0h2v.s5.4f7d1f7e5e86 from=translated src=- shape=65cad57a vocab=bc1bb29a
+-/
 theorem card_ne_vertex_add_one
     {V : Type u} [Fintype V] [DecidableEq V] (x : V) :
     Fintype.card {v : V // v ≠ x} + 1 = Fintype.card V := by

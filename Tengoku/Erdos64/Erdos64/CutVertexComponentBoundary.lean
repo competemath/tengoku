@@ -13,6 +13,9 @@ noncomputable def rootDeletedComponentCarrier
   letI : Fintype C := Fintype.ofFinite _
   exact C.supp.toFinset.image Subtype.val
 
+/--
+@isnad1 id=iff.0h5v.s7.a52619fc1591 from=translated src=- shape=7458c36a vocab=e6851b47
+-/
 @[simp] theorem mem_rootDeletedComponentCarrier_iff
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (r : V)
@@ -23,7 +26,9 @@ noncomputable def rootDeletedComponentCarrier
   classical
   simp [rootDeletedComponentCarrier]
 
-/-- A root-deleted component is nonempty and has no root vertex.-/
+/-- A root-deleted component is nonempty and has no root vertex.
+@isnad1 id=and.0h4v.s6.a646224c2073 from=translated src=- shape=8e324879 vocab=4f575ac2
+-/
 theorem rootDeletedComponentCarrier_nonempty_not_mem
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (r : V)
@@ -39,7 +44,9 @@ theorem rootDeletedComponentCarrier_nonempty_not_mem
     exact hr' rfl
 
 /-- The ambient boundary of a root-deleted connected component is constrained
-    to the deleted root, and connectedness gives an actual root attachment.-/
+    to the deleted root, and connectedness gives an actual root attachment.
+@isnad1 id=and.1h4v.s7.08fb3a93c7e9 from=translated src=- shape=05841ebd vocab=f83820cd
+-/
 theorem rootDeletedComponent_boundary
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V) (hconn : G.Connected)

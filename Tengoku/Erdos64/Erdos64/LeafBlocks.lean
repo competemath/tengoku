@@ -10,6 +10,9 @@ universe u
    all of its cycle boundary is concentrated at one root. The carrier,
    separation, and boundary hypotheses are kept explicit for later block
    arguments. -/
+/--
+@isnad1 id=or.4h5v.s7.15e896eb8ab1 from=translated src=- shape=458a1afb vocab=1628c04d
+-/
 theorem external_carrier_two_attachments_or_unique_root
     {V : Type u} {G : SimpleGraph V} {s : V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -41,6 +44,9 @@ theorem external_carrier_two_attachments_or_unique_root
 
 /- In a carrier whose boundary is rooted at `root`, every non-root carrier
    vertex keeps all of its ambient neighbors inside the carrier. -/
+/--
+@isnad1 id=mem.6h6v.s6.33d3a844fcbd from=translated src=- shape=073a307b vocab=5e529d27
+-/
 theorem LeafBlock.neighbor_mem_of_mem_of_ne_root
     {V : Type u} {G : SimpleGraph V} (K : Set V)
     (hKconn : (G.induce K).Connected) {root v w : V}

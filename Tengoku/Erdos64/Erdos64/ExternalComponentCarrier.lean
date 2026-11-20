@@ -37,7 +37,9 @@ noncomputable def RootedBranchCarrier.of_externalComponent_unique_root
     · exact (hv (Set.mem_toFinset.mpr hvK)).elim
 
 /-- Extraction keeps the actual component and the specified root, and exposes
-externality and the boundary statement on the original component set.-/
+externality and the boundary statement on the original component set.
+@isnad1 id=other.3h6v.s7.8591467e45eb from=translated src=- shape=290edda6 vocab=698e2cec
+-/
 theorem externalComponent_exists_rootedBranchCarrier
     {V : Type u} {G : SimpleGraph V} [Fintype V]
     {s : V} {C : G.Walk s s} {x r : V}

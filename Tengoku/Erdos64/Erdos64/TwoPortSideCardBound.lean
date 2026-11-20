@@ -8,7 +8,9 @@ universe u
 
 /-- A closed carrier with two distinct root attachments cannot be smaller than
 half of a minimal counterexample.  Rooted doubling supplies the strict descent
-when the carrier is below that size, so minimality forces the displayed bound.-/
+when the carrier is below that size, so minimality forces the displayed bound.
+@isnad1 id=le.4h6v.s7.29c7a45a2bad from=translated src=- shape=bfc07954 vocab=5a41e32c
+-/
 theorem MinimalCounterexample.two_port_side_card_bound
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

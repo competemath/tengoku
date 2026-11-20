@@ -10,7 +10,9 @@ namespace Erdos64
 universe u
 
 /-- Every specified cubic port of a sufficiently small closed two-port side
-lies on a cycle, contained in that side, one edge longer than a power of two.-/
+lies on a cycle, contained in that side, one edge longer than a power of two.
+@isnad1 id=ex.9h6v.s8.f0eb5b71929b from=translated src=- shape=74181326 vocab=dfd67057
+-/
 theorem MinimalCounterexample.exact_two_cubic_port_side_dyadic_successor_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -66,7 +68,9 @@ theorem MinimalCounterexample.exact_two_cubic_port_side_dyadic_successor_cycle
 
 /-- Each attachment of either native cut component lies on a side-contained
 cycle of length `2^k + 1`. The cycles supplied for different attachments need
-not be distinct.-/
+not be distinct.
+@isnad1 id=ex.4h6v.s7.99a9f6a91ae2 from=translated src=- shape=576c9d59 vocab=61d8e90d
+-/
 theorem EdgeMinimalCounterexample.rootDeleted_cut_port_dyadic_successor_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

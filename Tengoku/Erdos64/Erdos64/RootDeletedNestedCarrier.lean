@@ -10,7 +10,9 @@ universe u
 /-- If `x` lies in one root-deleted component, the other root-deleted
     component lies entirely in the component containing `r` after deleting
     `x`.  The proof lifts a path through the other component and its root
-    attachment into the induced graph with `x` removed.-/
+    attachment into the induced graph with `x` removed.
+@isnad1 id=mem.5h8v.s7.9ba1d1365e01 from=translated src=- shape=79525bfc vocab=7db1c7bd
+-/
 theorem MinimalCounterexample.rootDeleted_component_nested_in_other_root_component
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

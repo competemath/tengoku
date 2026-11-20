@@ -40,7 +40,9 @@ private theorem three_le_internalDegree_of_neighbors
   simpa [internalDegree, hab, hac, hbc] using Finset.card_le_card hsub
 
 /-- Every nonempty exterior carrier closed except into the hull has a private
-`b` attachment: precisely its two prescribed neighbors remain after deletion.-/
+`b` attachment: precisely its two prescribed neighbors remain after deletion.
+@isnad1 id=ex.5h4v.s8.35d9d2516e05 from=translated src=- shape=3b489abe vocab=cc8f5a14
+-/
 theorem private_b_of_closed_exterior
     (H : PentagramEarHull G)
     (hmin : 3 ≤ G.minDegree)

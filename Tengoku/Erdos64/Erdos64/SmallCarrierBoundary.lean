@@ -15,6 +15,9 @@ noncomputable def carrierBoundaryVertices
   classical
   exact Finset.univ.filter (fun v => ∃ w, w ∉ D ∧ G.Adj v.1 w)
 
+/--
+@isnad1 id=iff.0h4v.s7.ede136750180 from=translated src=- shape=a38832ac vocab=b57f1a1b
+-/
 @[simp] theorem mem_carrierBoundaryVertices
     {V : Type u} [Fintype V] (G : SimpleGraph V) (D : Finset V)
     (v : {v : V // v ∈ D}) :
@@ -23,7 +26,9 @@ noncomputable def carrierBoundaryVertices
   simp [carrierBoundaryVertices]
 
 /-- If every carrier vertex has at most one external neighbor, its induced
-degree loses exactly one at the boundary and otherwise remains unchanged.-/
+degree loses exactly one at the boundary and otherwise remains unchanged.
+@isnad1 id=eq.1h4v.s9.09abbbc5d00f from=translated src=- shape=87defc93 vocab=e3ffc10e
+-/
 theorem carrier_degree_add_boundary_indicator
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -68,7 +73,9 @@ theorem carrier_degree_add_boundary_indicator
 
 /-- A sufficiently small nonempty carrier cannot have fewer than two
 boundary vertices when each loses at most one incidence. Otherwise it has
-at most one degree-two defect, and its rooted double contradicts minimality.-/
+at most one degree-two defect, and its rooted double contradicts minimality.
+@isnad1 id=le.4h3v.s7.495cb6d8ab42 from=translated src=- shape=1b3dd2f7 vocab=7bab5ccf
+-/
 theorem MinimalCounterexample.small_carrier_boundary_card_ge_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

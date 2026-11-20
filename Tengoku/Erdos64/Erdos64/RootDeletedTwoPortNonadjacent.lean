@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- A walk between distinct nonadjacent vertices cannot have length zero or
-    one.-/
+    one.
+@isnad1 id=lt.2h5v.s5.a183f3b5c29c from=translated src=- shape=4066b9eb vocab=586a4f3d
+-/
 theorem one_lt_length_of_ne_of_not_adj
     {V : Type u} {G : SimpleGraph V} {a b : V} {p : G.Walk a b}
     (hab : a ≠ b) (hnadj : ¬ G.Adj a b) :
@@ -22,7 +24,9 @@ theorem one_lt_length_of_ne_of_not_adj
 /-- If every distinct pair of root-attached vertices in the component is
     explicitly nonadjacent, the extracted component path has length greater
     than one.  Nonadjacency is a premise here, not a consequence of degree or
-    criticality assumptions.-/
+    criticality assumptions.
+@isnad1 id=ex.2h4v.s8.722dab7c54ca from=translated src=- shape=cc0166a0 vocab=b8e86835
+-/
 theorem rootDeletedComponent_twoPort_path_of_nonadjacent
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

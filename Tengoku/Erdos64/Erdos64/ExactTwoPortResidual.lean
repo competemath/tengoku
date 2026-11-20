@@ -9,7 +9,9 @@ universe u
 
 /-- A walk that avoids every root attachment of a closed side cannot leave
 that side. Only the forward implication of exact two-port attachment is
-needed; simplicity and minimality are unnecessary.-/
+needed; simplicity and minimality are unnecessary.
+@isnad1 id=mem.5h10v.s7.d61ad3da5446 from=translated src=- shape=1fa23986 vocab=c9c32fda
+-/
 theorem walk_support_in_side_of_avoiding_ports
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r x y u v : V} (p : G.Walk u v)
@@ -41,7 +43,9 @@ theorem walk_support_in_side_of_avoiding_ports
 
 /-- Opposite-port residual endpoints belong to the port side, and avoiding
 its only two root attachments forces the entire residual walk to stay there.
-In particular, the root-internal excursion branch is impossible.-/
+In particular, the root-internal excursion branch is impossible.
+@isnad1 id=and.9h9v.s8.c188ecb23f84 from=translated src=- shape=2484c811 vocab=c9c32fda
+-/
 theorem cross_residual_in_exact_two_port_side
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r x y u v : V} {p : G.Walk u v}
@@ -66,7 +70,9 @@ theorem cross_residual_in_exact_two_port_side
 /-- A closed exact two-port side with nonadjacent ports in a minimal
 counterexample contains a simple dyadic port-to-port path. The root-avoidance
 premise is proved from the boundary, rather than supplied as an assumption.
-Closing this path through the root has length `2^k + 2`, not `2^k`.-/
+Closing this path through the root has length `2^k + 2`, not `2^k`.
+@isnad1 id=ex.11h6v.s8.fbed6e35142c from=translated src=- shape=675e3e59 vocab=1cee3a7b
+-/
 theorem MinimalCounterexample.exact_two_port_side_dyadic_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -102,7 +108,9 @@ theorem MinimalCounterexample.exact_two_port_side_dyadic_path
       hq hx hqr hboundary, hqr⟩
 
 /-- An attachment finset of cardinality two exposes the exact two-port
-condition needed by the residual closure theorem.-/
+condition needed by the residual closure theorem.
+@isnad1 id=ex.1h4v.s7.e1a27b46aba7 from=translated src=- shape=9ee24a1c vocab=43a57613
+-/
 theorem rootDeletedComponent_twoPort_attachment_exact
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)
@@ -138,7 +146,9 @@ theorem rootDeletedComponent_twoPort_attachment_exact
 /-- A root-deleted component feeds the exact-side residual theorem when its
 attachment finset has cardinality two, the root has degree at least four,
 and its two ports are nonadjacent. These are supplied hypotheses; component
-closure and avoidance of the root are derived in the proof.-/
+closure and avoidance of the root are derived in the proof.
+@isnad1 id=ex.4h4v.s8.de7d348c363d from=translated src=- shape=2a9eb700 vocab=4b0c6a1c
+-/
 theorem MinimalCounterexample.rootDeleted_twoPort_component_dyadic_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

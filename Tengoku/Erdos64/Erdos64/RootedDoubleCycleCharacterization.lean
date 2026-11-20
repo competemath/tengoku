@@ -8,7 +8,9 @@ universe u
 
 /-- Simple-cycle lengths are unchanged by rooted doubling.  The forward
 direction uses global copy localization and projection; the reverse direction
-uses one fixed Boolean copy, with the root sent to the shared vertex.-/
+uses one fixed Boolean copy, with the root sent to the shared vertex.
+@isnad1 id=iff.0h4v.s4.b25676debee1 from=translated src=- shape=0c6e7efe vocab=6785aee1
+-/
 theorem hasSimpleCycleOfLength_rootedDouble_iff
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V} (n : ℕ) :
     HasSimpleCycleOfLength (rootedDoubleGraph G r) n ↔

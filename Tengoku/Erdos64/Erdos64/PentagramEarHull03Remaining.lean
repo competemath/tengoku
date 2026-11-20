@@ -32,14 +32,23 @@ def route03LengthTwo (H : PentagramEarHull G) :
           SimpleGraph.Walk.cons (H.ca_adj 3) <|
             SimpleGraph.Walk.cons (H.ab_adj 3) .nil
 
+/--
+@isnad1 id=eq.0h3v.s5.c598964ca7aa from=translated src=- shape=990c9dfd vocab=83cd0264
+-/
 theorem route03LengthOne_length (H : PentagramEarHull G) :
     H.route03LengthOne.length = 7 := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.73d5b81844e7 from=translated src=- shape=990c9dfd vocab=eb166df4
+-/
 theorem route03LengthTwo_length (H : PentagramEarHull G) :
     H.route03LengthTwo.length = 6 := by
   rfl
 
+/--
+@isnad1 id=ispath.0h3v.s5.21a1ad6e7a6e from=translated src=- shape=def4ed68 vocab=03482578
+-/
 theorem route03LengthOne_isPath (H : PentagramEarHull G) :
     H.route03LengthOne.IsPath := by
   apply (SimpleGraph.Walk.isPath_def _).mpr
@@ -53,6 +62,9 @@ theorem route03LengthOne_isPath (H : PentagramEarHull G) :
       List (Sum (Fin 5) (Sum (Fin 5) (Fin 5)))).Nodup := by decide
   exact List.Nodup.map H.vertex_injective hxs
 
+/--
+@isnad1 id=ispath.0h3v.s5.fca5d2e77b2c from=translated src=- shape=def4ed68 vocab=060ac656
+-/
 theorem route03LengthTwo_isPath (H : PentagramEarHull G) :
     H.route03LengthTwo.IsPath := by
   apply (SimpleGraph.Walk.isPath_def _).mpr
@@ -156,6 +168,9 @@ def hullReturn_of_connector_03_length_two
   · change K.path.snd ≠ aVertex H 0
     exact connector03_snd_ne_a0 H K
 
+/--
+@isnad1 id=ex.1h4v.s8.e2f6e69e44f5 from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_03_length_one
     (H : PentagramEarHull G) (K : Connector H 0 3)
     (hK : K.path.length = 1) :
@@ -164,6 +179,9 @@ theorem cycle8_of_connector_03_length_one
   exact cycle8_of_hull_return H 0 3 K
     (hullReturn_of_connector_03_length_one H K hK)
 
+/--
+@isnad1 id=ex.1h4v.s8.e2ead618c013 from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_03_length_two
     (H : PentagramEarHull G) (K : Connector H 0 3)
     (hK : K.path.length = 2) :

@@ -9,7 +9,9 @@ universe u
 /-- Two distinct root neighbors in an induced-connected finite side admit a
     simple path through the side.  The path is exported in the ambient graph,
     with its exact length and root avoidance exposed for later spectrum
-    arguments.  No arithmetic condition on that length is asserted.-/
+    arguments.  No arithmetic condition on that length is asserted.
+@isnad1 id=ex.7h6v.s7.57c84994ec31 from=translated src=- shape=797ca2d5 vocab=6bfdcfbe
+-/
 theorem exists_simple_marked_root_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

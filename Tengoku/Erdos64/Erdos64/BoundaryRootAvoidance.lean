@@ -10,7 +10,9 @@ universe u
 
 /-- With at least four boundary vertices, omitting any one boundary-root
 incidence leaves just one possible degree-two defect. Doubling there forces
-a dyadic cycle while the synthetic root still has degree at least three.-/
+a dyadic cycle while the synthetic root still has degree at least three.
+@isnad1 id=haspower.4h4v.s8.f2e1fdfae036 from=translated src=- shape=b9072118 vocab=db2113bf
+-/
 theorem MinimalCounterexample.boundary_root_erase_has_dyadic_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -64,7 +66,9 @@ theorem MinimalCounterexample.boundary_root_erase_has_dyadic_cycle
 
 /-- A carrier with at least four boundary vertices has a forced dyadic
 boundary path avoiding any one specified vertex at both ends. The path may
-still contain that vertex internally.-/
+still contain that vertex internally.
+@isnad1 id=ex.4h4v.s9.ba95bf326ca7 from=translated src=- shape=082da8aa vocab=5c6d71e1
+-/
 theorem MinimalCounterexample.carrier_boundary_path_avoiding
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -91,7 +95,9 @@ theorem MinimalCounterexample.carrier_boundary_path_avoiding
 
 /-- If a specified outside vertex has at most the named carrier neighbor,
 the omitted boundary-root incidence forces a fresh dyadic ear avoiding that
-outside vertex altogether.-/
+outside vertex altogether.
+@isnad1 id=ex.8h6v.s8.5d92279ec092 from=translated src=- shape=a1b8c4f8 vocab=7a53d3f1
+-/
 theorem MinimalCounterexample.carrier_dyadic_ear_avoiding_unique_attachment
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- Identifying the two roots does not identify edges: every original edge
-has exactly two copies in the rooted double.-/
+has exactly two copies in the rooted double.
+@isnad1 id=eq.0h3v.s7.6c05fe1f5d3d from=translated src=- shape=6b35c56d vocab=8098d3df
+-/
 theorem rootedDouble_edge_count
     {V : Type u} (G : SimpleGraph V) [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] (r : V) :
@@ -26,7 +28,9 @@ theorem rootedDouble_edge_count
     G.sum_degrees_eq_twice_card_edges] at hsum
   omega
 
-/-- The edge-set cardinality formulation of `rootedDouble_edge_count`.-/
+/-- The edge-set cardinality formulation of `rootedDouble_edge_count`.
+@isnad1 id=eq.0h3v.s5.d82be16bbe3f from=translated src=- shape=6b35c56d vocab=d212f31d
+-/
 theorem rootedDouble_edgeSet_ncard
     {V : Type u} (G : SimpleGraph V) [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] (r : V) :
@@ -37,7 +41,9 @@ theorem rootedDouble_edgeSet_ncard
 
 /-- A closed side with at least two root neighbors doubles to a counterexample.
 No strict order bound is needed for counterexample preservation; a size bound
-is required only when this construction is used for a descent argument.-/
+is required only when this construction is used for a descent argument.
+@isnad1 id=iscounte.3h4v.s9.588926e56b26 from=translated src=- shape=1808e30a vocab=efc428fd
+-/
 theorem rootedDouble_closed_side_isCounterexample
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

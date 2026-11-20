@@ -12,7 +12,9 @@ namespace Walk
 
 variable {V : Type u} {G : SimpleGraph V}
 
-/-- Three original adjacency hypotheses give the corresponding simple triangle.-/
+/-- Three original adjacency hypotheses give the corresponding simple triangle.
+@isnad1 id=ex.3h5v.s5.4d15bba8f23e from=translated src=- shape=6caae7e1 vocab=479b9d3a
+-/
 theorem exists_triangle_of_marked_root_adjacencies
     {r a b : V}
     (hra : G.Adj r a)

@@ -9,7 +9,9 @@ universe u
 
 /-- A degree-four root in a critical minimum-degree-three graph has exactly
     two components after deletion, and every native component has exactly two
-    root attachments.-/
+    root attachments.
+@isnad1 id=and.5h3v.s7.30146fbd04f3 from=translated src=- shape=fb7ea9d9 vocab=1483446c
+-/
 theorem rootDeleted_degree_four_exact_two_components
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)
@@ -118,7 +120,9 @@ theorem rootDeleted_degree_four_exact_two_components
     simpa [Comp] using hattach_two C
 
 /-- The same balance conclusion with the more geometric hypothesis that two
-    distinct root-deleted components are supplied explicitly.-/
+    distinct root-deleted components are supplied explicitly.
+@isnad1 id=and.5h3v.s8.254f3668be93 from=translated src=- shape=1bff6889 vocab=e1e10fa9
+-/
 theorem rootDeleted_degree_four_exact_two_components_of_distinct
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)

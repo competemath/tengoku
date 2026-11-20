@@ -9,7 +9,9 @@ universe u
 set_option maxHeartbeats 800000 in
 /-- An actual bridge in a finite minimum-degree-three graph supplies a
 strictly small rooted closed side.  The side is chosen from the smaller of
-the two endpoint components after deleting the bridge.-/
+the two endpoint components after deleting the bridge.
+@isnad1 id=ex.4h4v.s7.98f75d904273 from=translated src=- shape=a32d0776 vocab=73df9901
+-/
 theorem exists_strict_closed_side_of_bridge
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- Removing a specified edge from a simple cycle preserves every other edge
-and leaves a simple path between the edge endpoints.-/
+and leaves a simple path between the edge endpoints.
+@isnad1 id=ex.2h6v.s6.30a10773aef7 from=translated src=- shape=a0b6e6f2 vocab=f9008266
+-/
 theorem cycle_path_of_mem_edge
     {V : Type u} {G : SimpleGraph V} {a b z : V}
     {c : G.Walk z z} (hc : c.IsCycle)
@@ -65,7 +67,9 @@ theorem cycle_path_of_mem_edge
 
 /-- If adding one edge creates a dyadic cycle in a dyadic-cycle-free graph,
 deleting the added edge yields a simple path of length one less than a power
-of two. The returned walk uses only edges of the original graph.-/
+of two. The returned walk uses only edges of the original graph.
+@isnad1 id=ex.2h4v.s6.ab8eacbec79b from=translated src=- shape=0ca09b9f vocab=639af27f
+-/
 theorem added_edge_dyadic_cycle_path
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (hno : ¬ HasPowerOfTwoCycle G)

@@ -8,7 +8,9 @@ universe u
 
 /-- In the exact cubic two-port branch, adjacent ports each have an
     additional internal neighbor.  The two additional neighbors are not
-    asserted to be distinct from one another.-/
+    asserted to be distinct from one another.
+@isnad1 id=ex.6h6v.s8.7853730579dd from=translated src=- shape=fae6e584 vocab=6cb45fb4
+-/
 theorem adjacent_cubic_two_ports_have_internal_third_neighbors
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

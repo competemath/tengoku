@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- A finite carrier whose only possible boundary vertex is `r` has the same
-    ambient and induced degrees at vertices with no edge to `r`.-/
+    ambient and induced degrees at vertices with no edge to `r`.
+@isnad1 id=eq.3h5v.s7.e83c5eed2c8f from=translated src=- shape=bc5ecc3f vocab=dc2dd195
+-/
 theorem internalDegree_eq_degree_of_boundary_root_of_no_root_neighbor
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -35,7 +37,9 @@ theorem internalDegree_eq_degree_of_boundary_root_of_no_root_neighbor
 
 /-- A nonempty component with no edge to its external root retains ambient
     minimum degree at least three after induction. This is only a degree
-    transport lemma; it makes no criticality or dyadic-cycle assertion.-/
+    transport lemma; it makes no criticality or dyadic-cycle assertion.
+@isnad1 id=le.4h4v.s8.c0f0f05fb2fb from=translated src=- shape=bccd7c87 vocab=25bba2a8
+-/
 theorem induced_minDegree_ge_three_of_boundary_root_of_no_root_neighbor
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

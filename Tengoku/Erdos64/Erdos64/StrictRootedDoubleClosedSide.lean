@@ -10,7 +10,9 @@ universe u
 set_option maxHeartbeats 800000 in
 /-- Doubling a closed side gives a strictly smaller counterexample when the
 root retains at least two neighbors and the doubled order is strictly smaller.
-The side and the strict size bound are supplied, not inferred.-/
+The side and the strict size bound are supplied, not inferred.
+@isnad1 id=isstrict.4h4v.s9.fd2f22e9e1da from=translated src=- shape=9d23fa9a vocab=a290e2bc
+-/
 theorem strict_double_of_closed_side
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

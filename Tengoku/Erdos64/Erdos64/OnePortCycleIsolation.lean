@@ -9,7 +9,9 @@ universe u
 /-- A simple cycle meeting a one-port carrier is contained in that carrier
     together with its boundary root.  The proof uses only the boundary
     condition and the fact that a simple cycle has two disjoint complementary
-    arcs away from their endpoints.-/
+    arcs away from their endpoints.
+@isnad1 id=or.3h6v.s7.4bfc76921d36 from=translated src=- shape=5952508d vocab=16ac2a38
+-/
 theorem SimpleGraph.Walk.IsCycle.onePort_support_dichotomy
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -102,7 +104,9 @@ theorem SimpleGraph.Walk.IsCycle.onePort_support_dichotomy
     exact hmeet ⟨v, hvK, hv⟩
 
 /-- A cycle through the one-port root and its carrier contains an internal
-    carrier path between two distinct neighbors of the root.-/
+    carrier path between two distinct neighbors of the root.
+@isnad1 id=ex.5h6v.s8.ab4de7e9377a from=translated src=- shape=d978d32e vocab=29b42f8c
+-/
 theorem SimpleGraph.Walk.IsCycle.onePort_cycle_excursion
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -13,7 +13,9 @@ noncomputable def rootDeletedComponentAttachments
     (C : (G.induce {v : V | v ≠ r}).ConnectedComponent) : Finset V :=
   (G.neighborFinset r).filter (fun x => x ∈ rootDeletedComponentCarrier G r C)
 
-/-- Attachments of distinct root-deleted components are disjoint.-/
+/-- Attachments of distinct root-deleted components are disjoint.
+@isnad1 id=pairwise.0h3v.s6.72596fb96efe from=translated src=- shape=7de80f1e vocab=3b61618a
+-/
 theorem rootDeletedComponentAttachments_pairwise_disjoint
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V) :
@@ -43,7 +45,9 @@ theorem rootDeletedComponentAttachments_pairwise_disjoint
   exact hCD (hmkC.symm.trans hmkD)
 
 /-- The root-neighbor finset is partitioned by the attachments of the actual
-    connected components after deleting the root.-/
+    connected components after deleting the root.
+@isnad1 id=eq.0h3v.s6.2ccdc02ad99b from=translated src=- shape=e43ad72f vocab=79e6e692
+-/
 theorem rootDeletedComponentAttachments_biUnion
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V) :

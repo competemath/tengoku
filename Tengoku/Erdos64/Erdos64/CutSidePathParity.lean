@@ -10,7 +10,9 @@ namespace Erdos64
 universe u
 
 /-- A finite graph with exactly two specified even-degree vertices and odd
-degrees elsewhere has even order, by the handshaking lemma.-/
+degrees elsewhere has even order, by the handshaking lemma.
+@isnad1 id=even.4h4v.s7.e1859fa048a1 from=translated src=- shape=2b4ee639 vocab=daf76e80
+-/
 theorem even_card_of_two_even_degree_vertices
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -45,7 +47,9 @@ theorem even_card_of_two_even_degree_vertices
 
 /-- Removing the two incidences to a common external root changes two odd
 degrees to even degrees. Hence an exact two-port side whose ambient degrees
-are all odd has even cardinality. No minimal-counterexample premise is used.-/
+are all odd has even cardinality. No minimal-counterexample premise is used.
+@isnad1 id=even.7h6v.s7.2ca334135a36 from=translated src=- shape=9abb7872 vocab=5c3592e9
+-/
 theorem exact_two_port_side_card_even_of_odd_degrees
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -92,7 +96,9 @@ theorem exact_two_port_side_card_even_of_odd_degrees
   simpa using heven
 
 /-- Native cut-side balance gives exactly two ports, so odd ambient degrees
-force even order on either side. Cubic sides are an immediate special case.-/
+force even order on either side. Cubic sides are an immediate special case.
+@isnad1 id=even.3h5v.s7.3d821e4d91e7 from=translated src=- shape=01653e92 vocab=707d44ab
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_card_even_of_odd_degrees
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -121,7 +127,9 @@ theorem MinimalCounterexample.rootDeleted_cut_side_card_even_of_odd_degrees
     (rootDeletedComponentCarrier_nonempty_not_mem G r C).2 hx hy hxy
     hboundary hexact hodd
 
-/-- A simple even-length path cannot cover a finite carrier of even order.-/
+/-- A simple even-length path cannot cover a finite carrier of even order.
+@isnad1 id=ex.4h6v.s6.9464a5c7570b from=translated src=- shape=a4c5ed83 vocab=f1997dda
+-/
 theorem exists_vertex_outside_even_path_of_even_card
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (D : Finset V) (hD : Even D.card) {x y : V}
@@ -145,7 +153,9 @@ theorem exists_vertex_outside_even_path_of_even_card
 
 /-- All odd ambient degrees in a cut side force every simple even-length
 path inside that side to omit a vertex. In particular this applies to any
-cubic side and to any simple dyadic port path.-/
+cubic side and to any simple dyadic port path.
+@isnad1 id=ex.6h8v.s7.e3416aa3d04e from=translated src=- shape=d156d326 vocab=37c5761c
+-/
 theorem MinimalCounterexample.rootDeleted_even_path_external_vertex_of_odd_degrees
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -162,7 +172,9 @@ theorem MinimalCounterexample.rootDeleted_even_path_external_vertex_of_odd_degre
 
 /-- In an all-odd-degree cut side, a simple even port path always has a
 fresh dyadic ear. The off-path vertex required by component extraction is
-produced by parity, rather than assumed.-/
+produced by parity, rather than assumed.
+@isnad1 id=ex.9h8v.s8.a65de3a667ad from=translated src=- shape=5f7a4c48 vocab=b31a196f
+-/
 theorem MinimalCounterexample.rootDeleted_even_port_path_dyadic_ear_of_odd_degrees
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -186,7 +198,9 @@ theorem MinimalCounterexample.rootDeleted_even_port_path_dyadic_ear_of_odd_degre
 /-- If an even port path spans its cut side, that side has an even-degree
 ambient vertex of degree at least four. Edge-minimality makes both ports
 cubic, so the forced vertex is internal. Otherwise an actual dyadic ear is
-produced. This narrows the spanning case but does not exclude it.-/
+produced. This narrows the spanning case but does not exclude it.
+@isnad1 id=or.8h8v.s8.78fd475a273b from=translated src=- shape=cfd63106 vocab=a9c0f5da
+-/
 theorem EdgeMinimalCounterexample.rootDeleted_even_port_path_ear_or_spanning_even_degree_vertex
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

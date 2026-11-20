@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- Deleting the support of an even simple path from an even-order carrier
-leaves an odd-order graph, hence at least one odd-order connected component.-/
+leaves an odd-order graph, hence at least one odd-order connected component.
+@isnad1 id=ex.4h6v.s7.9ddbda7023a1 from=translated src=- shape=9d85c61c vocab=b094806f
+-/
 theorem exists_odd_offPathComponent_of_even_card
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -51,7 +53,9 @@ theorem exists_odd_offPathComponent_of_even_card
   exact hE
 
 /-- In an all-odd-degree cut side, every even simple path omits an entire
-odd-order connected component, not merely an unspecified vertex.-/
+odd-order connected component, not merely an unspecified vertex.
+@isnad1 id=ex.6h8v.s8.de4b602a1aec from=translated src=- shape=c2cce829 vocab=ddf1a4e2
+-/
 theorem MinimalCounterexample.rootDeleted_even_path_odd_offPathComponent
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

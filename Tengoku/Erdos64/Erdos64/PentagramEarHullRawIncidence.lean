@@ -121,6 +121,9 @@ def incidenceBridgeWitness_of_connector_01
       route_length := by rw [show (rawRoute01LengthThree H).length = 5 by rfl, hK3]
       route_support_hull := rawRoute01LengthThree_support_hull H }
 
+/--
+@isnad1 id=ex.1h4v.s8.2bef9c6060d3 from=translated src=- shape=d135db9b vocab=3b04f5d3
+-/
 theorem cycle8_of_raw_incidence_connector_01
     (H : PentagramEarHull G) (K : Connector H 0 1)
     (hK : K.path.length = 1 ∨ K.path.length = 2 ∨ K.path.length = 3) :

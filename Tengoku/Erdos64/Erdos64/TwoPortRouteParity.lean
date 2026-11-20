@@ -9,7 +9,9 @@ universe u
 
 /-- Two walks with the same endpoints and opposite length parity rule out
 a bipartition, without requiring either walk to be simple or their interiors
-to be disjoint.-/
+to be disjoint.
+@isnad1 id=not.2h6v.s5.cb727215c30f from=translated src=- shape=f2a5bf99 vocab=6f0694bd
+-/
 theorem not_isBipartite_of_opposite_parity_routes
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (p q : G.Walk a b) (hp : Odd p.length) (hq : Even q.length) :
@@ -23,7 +25,9 @@ theorem not_isBipartite_of_opposite_parity_routes
 /-- A route completed to dyadic length by one new edge is odd, whereas an
 already dyadic route is even. Consequently the two supplied routes have
 different lengths, are distinct, and certify non-bipartiteness. This does
-not infer internally disjoint routes or a dyadic simple cycle.-/
+not infer internally disjoint routes or a dyadic simple cycle.
+@isnad1 id=and.4h8v.s7.98c846f2a56a from=translated src=- shape=62519362 vocab=fa12c266
+-/
 theorem twoPort_routes_parity_of_dyadic_completion
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (p q : G.Walk a b) {j k : ℕ} (hj : 2 ≤ j) (hk : 2 ≤ k)

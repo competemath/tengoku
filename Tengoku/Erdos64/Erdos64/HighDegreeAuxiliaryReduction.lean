@@ -13,14 +13,18 @@ variable {V : Type u} [Fintype V] [DecidableEq V]
 
 /-- Every nonempty induced part of the high-degree auxiliary graph has an
 internal vertex degree at most two. This is the degeneracy conclusion of
-Ducoffe--Dumitru, arXiv:2609.28594v1, Lemma 3.5.-/
+Ducoffe--Dumitru, arXiv:2609.28594v1, Lemma 3.5.
+@isnad1 id=ex.2h3v.s7.fcb19da2d49d from=translated src=- shape=d3a9a829 vocab=935eba2f
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_low_internal_degree
     (M : EdgeMinimalCounterexample G)
     (S : Finset (HighDegreeVertex G)) (hS : S.Nonempty) :
     ∃ w ∈ S, internalDegree (highDegreeAuxGraph G) S w ≤ 2 :=
   M.vertexMinimal.twoStep_has_low_internal_degree M.highDegreeTwoStepEmbedding S hS
 
-/-- The sharp edge bound on the auxiliary graph.-/
+/-- The sharp edge bound on the auxiliary graph.
+@isnad1 id=le.2h2v.s8.040197acf850 from=translated src=- shape=c04c63c7 vocab=203c66f0
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_edge_bound
     (M : EdgeMinimalCounterexample G)
     (hn : 2 ≤ Fintype.card (HighDegreeVertex G)) :
@@ -30,7 +34,9 @@ theorem EdgeMinimalCounterexample.highDegreeAuxGraph_edge_bound
     M.highDegreeAuxGraph_low_internal_degree hn
 
 /-- There are at most `2h - 3` cubic vertices with two high-degree neighbors
-when there are at least two high-degree vertices.-/
+when there are at least two high-degree vertices.
+@isnad1 id=le.2h2v.s7.a9c87740fe88 from=translated src=- shape=08adee8a vocab=57ac24b4
+-/
 theorem EdgeMinimalCounterexample.degreeThreeTwoHighNeighbors_card_bound
     (M : EdgeMinimalCounterexample G)
     (hn : 2 ≤ (Finset.univ.filter (fun v => 4 ≤ G.degree v)).card) :
@@ -44,7 +50,9 @@ theorem EdgeMinimalCounterexample.degreeThreeTwoHighNeighbors_card_bound
   exact hbound
 
 /-- The strengthened cubic-density bound of Ducoffe--Dumitru,
-arXiv:2609.28594v1, Theorem 3.7, in exact integer form.-/
+arXiv:2609.28594v1, Theorem 3.7, in exact integer form.
+@isnad1 id=and.1h2v.s8.269cb25036df from=translated src=- shape=87c57551 vocab=a901b6f2
+-/
 theorem EdgeMinimalCounterexample.cubic_density_additive_three
     (M : EdgeMinimalCounterexample G) :
     2 * (Finset.univ.filter (fun v => 4 ≤ G.degree v)).card + 3 ≤

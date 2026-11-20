@@ -9,7 +9,9 @@ universe u
 
 /-- A graph with just one possible degree-two defect must already contain a
 dyadic cycle if its rooted double is smaller than a minimal counterexample.
-The double repairs the defect without introducing any new cycle lengths.-/
+The double repairs the defect without introducing any new cycle lengths.
+@isnad1 id=haspower.4h5v.s7.3bb94da24a07 from=translated src=- shape=41bec4ec vocab=b1452927
+-/
 theorem MinimalCounterexample.one_defect_small_has_dyadic_cycle
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

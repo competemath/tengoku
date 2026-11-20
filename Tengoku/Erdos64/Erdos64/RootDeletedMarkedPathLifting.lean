@@ -22,14 +22,18 @@ structure MarkedRootPath (r a b : V) where
   endpoints_ne : a ≠ b
   length_gt_one : 1 < path.length
 
-/-- A marked path supplies a genuinely simple cycle, not merely a closed walk.-/
+/-- A marked path supplies a genuinely simple cycle, not merely a closed walk.
+@isnad1 id=ex.0h6v.s6.4ea4dc4aae66 from=translated src=- shape=f6dd6c23 vocab=0ac63e8f
+-/
 theorem MarkedRootPath.exists_cycle (P : MarkedRootPath (G := G) r a b) :
     ∃ c : G.Walk a a, c.IsCycle ∧ c.length = P.path.length + 2 := by
   exact endpoint_fan_cycle_certificate P.isPath P.root_adj_start P.root_adj_end
     P.root_not_mem P.endpoints_ne P.length_gt_one
 
 /-- Removing the first and last edges from a cycle rooted at `r` gives the
-root-avoiding middle path.-/
+root-avoiding middle path.
+@isnad1 id=ex.1h4v.s7.ba8f51c973ff from=translated src=- shape=7ac84d25 vocab=2ba4e72c
+-/
 theorem marked_cycle_decompose
     {r : V} {c : G.Walk r r} (hc : c.IsCycle) :
     ∃ q : G.Walk c.snd c.tail.penultimate,

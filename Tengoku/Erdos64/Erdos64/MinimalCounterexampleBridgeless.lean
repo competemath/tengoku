@@ -9,7 +9,9 @@ universe u
 
 /-- A bridge is impossible in a vertex-minimal counterexample. Doubling the
 smaller endpoint component at its deficient endpoint repairs minimum degree,
-preserves simple-cycle lengths, and has strictly smaller order.-/
+preserves simple-cycle lengths, and has strictly smaller order.
+@isnad1 id=not.2h4v.s5.c3c7fcee9ace from=translated src=- shape=a47d6446 vocab=fc593b39
+-/
 theorem MinimalCounterexample.not_isBridge
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -26,7 +28,9 @@ theorem MinimalCounterexample.not_isBridge
       hclosed hroot hsize)
 
 /-- If every edge leaving a carrier ends at `x`, and `z` is its only
-possible neighbor of `x`, deleting `xz` separates the carrier from `x`.-/
+possible neighbor of `x`, deleting `xz` separates the carrier from `x`.
+@isnad1 id=isbridge.4h5v.s6.867fb1e7696a from=translated src=- shape=610cd877 vocab=82e4fe8e
+-/
 theorem isBridge_of_onePort_unique_neighbor
     {V : Type u} {G : SimpleGraph V}
     (K : Finset V) (x z : V)
@@ -62,7 +66,9 @@ theorem isBridge_of_onePort_unique_neighbor
 
 /-- A one-port carrier in a minimal counterexample cannot have just one
 attachment edge. This produces a second actual neighbor, not a repair
-certificate assumed as a premise.-/
+certificate assumed as a premise.
+@isnad1 id=ex.5h5v.s7.974a2a1189b1 from=translated src=- shape=586d121e vocab=78a9449f
+-/
 theorem MinimalCounterexample.exists_second_onePort_neighbor
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

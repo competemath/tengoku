@@ -9,7 +9,9 @@ universe u
 open SimpleGraph
 
 /-- A boundary carrier retains minimum degree three when every port to its
-    external root has ambient degree at least four.-/
+    external root has ambient degree at least four.
+@isnad1 id=le.4h4v.s8.47afae48dc66 from=translated src=- shape=6660622f vocab=251b8fc6
+-/
 theorem induced_minDegree_ge_three_of_high_degree_ports
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

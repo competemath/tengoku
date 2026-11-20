@@ -14,6 +14,9 @@ there: a common neighbor of degree at least four survives identification,
 because only the two terminal incidences can merge.
 -/
 
+/--
+@isnad1 id=le.4h4v.s7.edede4e50099 from=translated src=- shape=eb5c3153 vocab=7c7afcc6
+-/
 theorem terminalQuotient_minDegree_ge_three_of_common_degree_ge_four
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
@@ -168,7 +171,9 @@ theorem terminalQuotient_minDegree_ge_three_of_common_degree_ge_four
         exact hdeg.trans hcardFull
 
 /-- Minimality still forces a dyadic quotient cycle when any common internal
-neighbor of the terminals has degree at least four.-/
+neighbor of the terminals has degree at least four.
+@isnad1 id=haspower.4h4v.s6.d0f115ee6e73 from=translated src=- shape=da2f13c1 vocab=879de5ec
+-/
 theorem MinimalCounterexample.terminalQuotient_hasPowerOfTwoCycle_of_common_degree_ge_four
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

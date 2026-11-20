@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- A simple path uses at most one incidence at its first vertex and at
-most two at any other vertex.-/
+most two at any other vertex.
+@isnad1 id=le.1h6v.s6.f42335c9e0bc from=translated src=- shape=df5c44f4 vocab=5d7b961e
+-/
 theorem path_incident_neighbors_card_le
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {a b : V} (p : G.Walk a b) (hp : p.IsPath) (v : V) :
@@ -61,7 +63,9 @@ theorem path_incident_neighbors_card_le
         simpa [hva, hvb] using ih hp'.1 v
 
 /-- At most two neighbors can be joined to a fixed vertex by edges of a
-simple path. This also applies to vertices outside the path.-/
+simple path. This also applies to vertices outside the path.
+@isnad1 id=le.1h6v.s6.32a7f40144fb from=translated src=- shape=cf2f72cd vocab=2c9ecc80
+-/
 theorem path_incident_neighbors_card_le_two
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {a b : V} (p : G.Walk a b) (hp : p.IsPath) (v : V) :
@@ -70,7 +74,9 @@ theorem path_incident_neighbors_card_le_two
   split_ifs at h <;> omega
 
 /-- A vertex of degree at least three has an incident edge unused by any
-specified simple path.-/
+specified simple path.
+@isnad1 id=ex.2h6v.s6.691130dcd99d from=translated src=- shape=f79857c3 vocab=84f953e3
+-/
 theorem exists_adj_not_mem_path_edges
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b v : V}

@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- Native off-path components have a nonempty carrier, boundary on the
-port walk, and the strict half-order bound required by carrier forcing.-/
+port walk, and the strict half-order bound required by carrier forcing.
+@isnad1 id=other.6h9v.s8.9e87fa6c1905 from=translated src=- shape=8286a827 vocab=98be98d9
+-/
 theorem cut_side_offPath_carrier_data
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -90,7 +92,9 @@ theorem cut_side_offPath_carrier_data
 /-- A component outside a simple port path with at least four boundary
 vertices supplies a fresh dyadic ear avoiding any specified cubic vertex of
 the path. Only that selected vertex must be cubic. Its unique incidence into
-the exterior component is derived from the path and root incidences.-/
+the exterior component is derived from the path and root incidences.
+@isnad1 id=ex.10h10v.s9.c7b324d5bb0c from=translated src=- shape=2c23ec37 vocab=79c1d50a
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_dyadic_ear_avoiding_cubic_path_vertex
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

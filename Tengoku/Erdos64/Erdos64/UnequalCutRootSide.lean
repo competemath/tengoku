@@ -10,7 +10,9 @@ variable {V : Type u} {G : SimpleGraph V}
 
 /-- The smaller member of a two-sided cut-root partition is a genuine
 rooted side.  The criticality and opposite-side degree premises are exposed
-for later descent use; this theorem only packages the side itself.-/
+for later descent use; this theorem only packages the side itself.
+@isnad1 id=ex.7h5v.s8.df0dbaf4e3b1 from=translated src=- shape=fa0913e9 vocab=c11720a4
+-/
 theorem exists_unequal_cut_root_side
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     (_hcritical : IsSubgraphCritical G)

@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Contracting a triangle-free edge leaves at least three neighbors at the
-new vertex when the original graph has minimum degree at least three.-/
+new vertex when the original graph has minimum degree at least three.
+@isnad1 id=le.3h4v.s7.c08fbfdc423e from=translated src=- shape=b895ce35 vocab=2b1cb606
+-/
 theorem quotient_root_degree_ge_three_of_adj_no_common
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -73,7 +75,9 @@ private theorem path_extend_fresh_terminals
 /-- Every adjacent pair in a globally vertex-minimal counterexample has a
 simple alternative path of power-of-two length. A triangle gives length two;
 otherwise contraction of the edge forces the path with exponent at least two.
-This is the path form of Ducoffe--Dumitru, arXiv:2609.28594v1, Lemma 2.1.-/
+This is the path form of Ducoffe--Dumitru, arXiv:2609.28594v1, Lemma 2.1.
+@isnad1 id=ex.2h4v.s6.a1ee37ff4812 from=translated src=- shape=6ea15c9d vocab=30b4ca06
+-/
 theorem MinimalCounterexample.adjacent_dyadic_alternative_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -115,7 +119,9 @@ theorem MinimalCounterexample.adjacent_dyadic_alternative_path
 
 /-- Every specified edge lies on a simple cycle of length one more than a
 power of two. This formalizes Ducoffe--Dumitru Lemma 2.1 using vertex
-minimality alone, and applies also when there is no cut vertex.-/
+minimality alone, and applies also when there is no cut vertex.
+@isnad1 id=ex.2h4v.s6.1a5968207e72 from=translated src=- shape=711eca99 vocab=ef29ac62
+-/
 theorem MinimalCounterexample.edge_dyadic_successor_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -133,7 +139,9 @@ theorem MinimalCounterexample.edge_dyadic_successor_cycle
 
 /-- Global vertex minimality excludes bipartite counterexamples: an edge
 and its forced even alternative path have opposite parity. This is not a
-claim that an arbitrary bipartite minimum-degree-three graph is solved.-/
+claim that an arbitrary bipartite minimum-degree-three graph is solved.
+@isnad1 id=not.1h2v.s4.bc0006464003 from=translated src=- shape=359c698b vocab=ada2ec29
+-/
 theorem MinimalCounterexample.not_isBipartite
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

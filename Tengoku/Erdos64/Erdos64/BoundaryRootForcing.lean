@@ -9,7 +9,9 @@ universe u
 
 /-- With at least three boundary vertices, the boundary root itself has
 degree at least three. Direct vertex minimality therefore forces a dyadic
-cycle using only the order of the carrier plus one new vertex.-/
+cycle using only the order of the carrier plus one new vertex.
+@isnad1 id=haspower.4h3v.s7.4d443a1a3abb from=translated src=- shape=43210f73 vocab=f56e576d
+-/
 theorem MinimalCounterexample.boundary_root_has_dyadic_cycle_of_three_boundary
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

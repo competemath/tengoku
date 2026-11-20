@@ -10,7 +10,9 @@ universe u
 open scoped BigOperators
 
 /-- Counting incidences from high-degree vertices more sharply: only cubic
-vertices with two high-degree neighbors contribute more than one incidence.-/
+vertices with two high-degree neighbors contribute more than one incidence.
+@isnad1 id=other.1h2v.s7.db4818b26ce7 from=translated src=- shape=a56de04e vocab=b91c6d58
+-/
 theorem EdgeMinimalCounterexample.high_degree_incidence_le_cubic_plus_connectors
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -62,7 +64,9 @@ theorem EdgeMinimalCounterexample.high_degree_incidence_le_cubic_plus_connectors
   exact hleft.trans (hdouble ▸ hright)
 
 /-- The cubic and high-degree carriers partition a graph of minimum degree
-at least three.-/
+at least three.
+@isnad1 id=eq.1h2v.s7.c107e1bed368 from=translated src=- shape=3c1b41ab vocab=0f6782a5
+-/
 theorem EdgeMinimalCounterexample.card_eq_cubic_add_high
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -94,7 +98,9 @@ theorem EdgeMinimalCounterexample.card_eq_cubic_add_high
     (Finset.card_union_of_disjoint hdisjoint)
 
 /-- The connector edge bound strengthens the cubic-density estimate by an
-additive three in its integer form.-/
+additive three in its integer form.
+@isnad1 id=and.1h3v.s9.4423f133d1fa from=translated src=- shape=78c6ace9 vocab=243ef307
+-/
 theorem EdgeMinimalCounterexample.cubic_density_of_connector_bound
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -115,7 +121,9 @@ theorem EdgeMinimalCounterexample.cubic_density_of_connector_bound
 
 /-- A high-degree vertex cannot occur in a counterexample on at most five
 vertices: it would be universal, and two neighbors of one of its cubic
-neighbors would give a four-cycle.-/
+neighbors would give a four-cycle.
+@isnad1 id=le.2h3v.s6.17fdb690ab3a from=translated src=- shape=6ed00493 vocab=bffb8b90
+-/
 theorem EdgeMinimalCounterexample.six_le_card_of_degree_ge_four
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -156,7 +164,9 @@ theorem EdgeMinimalCounterexample.six_le_card_of_degree_ge_four
 
 /-- The sharp cubic-density conclusion requires the connector bound only
 when there are at least two high-degree vertices.  The remaining two cases
-follow from the degree condition and the exclusion of four-cycles.-/
+follow from the degree condition and the exclusion of four-cycles.
+@isnad1 id=and.1h3v.s9.3949deaa36a5 from=translated src=- shape=58246b84 vocab=243ef307
+-/
 theorem EdgeMinimalCounterexample.cubic_density_of_conditional_connector_bound
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

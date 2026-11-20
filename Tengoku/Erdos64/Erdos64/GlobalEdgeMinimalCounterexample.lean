@@ -24,7 +24,9 @@ structure GlobalEdgeMinimalCounterexample
 
 /-- Among counterexamples of minimum vertex count, minimize the edge count.
 The selected graph has the same number of vertices as the input, but need not
-be an edge deletion of it.-/
+be an edge deletion of it.
+@isnad1 id=ex.1h2v.s6.faacf113276d from=translated src=- shape=c310242a vocab=a6d8c3e2
+-/
 theorem MinimalCounterexample.exists_globalEdgeMinimalCounterexample
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -60,7 +62,9 @@ theorem MinimalCounterexample.exists_globalEdgeMinimalCounterexample
 
 /-- Failure of the conjecture supplies a counterexample minimizing vertex
 count first and edge count second. This selection does not assert that any
-counterexample actually exists.-/
+counterexample actually exists.
+@isnad1 id=ex.1h0v.s5.57e1f571156b from=translated src=- shape=1be6defa vocab=fc65568d
+-/
 theorem exists_globalEdgeMinimalCounterexample
     (hnot : ¬ Conjecture.{u}) :
     ∃ (V : Type u) (G : SimpleGraph V) (_ : Fintype V)
@@ -73,7 +77,9 @@ theorem exists_globalEdgeMinimalCounterexample
   exact ⟨W, H, hW, hH, hglobal⟩
 
 /-- Global edge-count minimality implies the existing edge-deletion minimality
-interface, so structural results using that interface remain available.-/
+interface, so structural results using that interface remain available.
+@isnad1 id=edgemini.1h2v.s4.d76475136143 from=translated src=- shape=f84a8f9f vocab=cb68a20a
+-/
 theorem GlobalEdgeMinimalCounterexample.toEdgeMinimalCounterexample
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]

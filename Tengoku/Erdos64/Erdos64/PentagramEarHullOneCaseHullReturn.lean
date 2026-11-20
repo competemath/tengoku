@@ -88,6 +88,9 @@ def hullReturn_of_connector_01_length_three
     route_disjoint := hroute_disjoint
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.1h4v.s8.a3a102793afe from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_01_length_three
     (H : PentagramEarHull G) (K : Connector H 0 1)
     (hK : K.path.length = 3) :

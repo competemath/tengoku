@@ -11,7 +11,9 @@ universe u
 have all of its root-attached vertices of degree at least four.  The safe-side
 alternative would otherwise be a strictly smaller induced counterexample.
 This is the precise minimality specialization of
-`two_port_safe_side_or_cubic_defect`.-/
+`two_port_safe_side_or_cubic_defect`.
+@isnad1 id=or.5h6v.s7.6a91043ded78 from=translated src=- shape=c461aa9a vocab=dc2eef0e
+-/
 theorem MinimalCounterexample.two_port_cubic_defect_of_no_dyadic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

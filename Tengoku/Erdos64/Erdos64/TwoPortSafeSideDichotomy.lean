@@ -8,7 +8,9 @@ universe u
 
 /-- A boundary carrier with exactly two root ports either gives a strict
     minimum-degree-three induced side, or one of its ports is cubic. This
-    isolates the genuine two-defect branch rather than assuming it away.-/
+    isolates the genuine two-defect branch rather than assuming it away.
+@isnad1 id=or.5h6v.s8.ec4c459568c5 from=translated src=- shape=85278e8c vocab=9b9641a7
+-/
 theorem two_port_safe_side_or_cubic_defect
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

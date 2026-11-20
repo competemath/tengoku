@@ -45,7 +45,9 @@ noncomputable def rootedDouble_root_neighborEquiv
     · apply Subtype.ext
       rfl
 
-/-- The shared root has twice the original root degree.-/
+/-- The shared root has twice the original root degree.
+@isnad1 id=eq.0h3v.s7.a5f242ed4494 from=translated src=- shape=5b092609 vocab=8ead3e91
+-/
 theorem rootedDouble_root_degree_doubling
     {V : Type u} {G : SimpleGraph V} [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] {r : V} :

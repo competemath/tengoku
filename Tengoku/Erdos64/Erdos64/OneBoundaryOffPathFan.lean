@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- If deleting `t` leaves a connected graph, a proper carrier whose only
-possible boundary vertex is `t` consists of `t` alone.-/
+possible boundary vertex is `t` consists of `t` alone.
+@isnad1 id=eq.4h5v.s6.5310487b0c26 from=translated src=- shape=59bf79d5 vocab=ecb479bf
+-/
 theorem carrier_eq_singleton_of_connected_vertex_deletion
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (K : Finset V) (t : V) (ht : t ∈ K)
@@ -48,7 +50,9 @@ theorem carrier_eq_singleton_of_connected_vertex_deletion
 
 /-- Away from the unique cut root, a nonempty carrier with at most one
 boundary vertex is a singleton. No connectedness or size bound on the
-carrier is assumed.-/
+carrier is assumed.
+@isnad1 id=ex.5h4v.s7.f35624118024 from=translated src=- shape=c5da864c vocab=aedf84c3
+-/
 theorem MinimalCounterexample.carrier_singleton_of_boundary_card_le_one
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -75,7 +79,9 @@ theorem MinimalCounterexample.carrier_singleton_of_boundary_card_le_one
 
 /-- A component outside a native port walk with at most one carrier boundary
 vertex is a single vertex with three distinct neighbors on the walk. Thus
-the one-boundary case is an actual three-attachment, two-edge-ear fan.-/
+the one-boundary case is an actual three-attachment, two-edge-ear fan.
+@isnad1 id=ex.7h9v.s8.3fba92cfa24d from=translated src=- shape=648a04bd vocab=8820bd82
+-/
 theorem MinimalCounterexample.rootDeleted_one_boundary_component_three_attachment_fan
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -12,7 +12,9 @@ import Tengoku.Erdos64.Erdos64.Basic
 
 namespace Erdos64
 
-/-- A power of two with exponent at least two is at least four.-/
+/-- A power of two with exponent at least two is at least four.
+@isnad1 id=le.1h1v.s5.a249a80d3573 from=translated src=- shape=123d03c8 vocab=74f5fafa
+-/
 theorem four_le_pow_two {k : ℕ} (hk : 2 ≤ k) : 4 ≤ 2 ^ k := by
   cases k with
   | zero => omega
@@ -24,7 +26,9 @@ theorem four_le_pow_two {k : ℕ} (hk : 2 ≤ k) : 4 ≤ 2 ^ k := by
       have hpos : 0 < 2 ^ (Nat.succ k) := by positivity
       omega
 
-/-- Every positive natural number lies in a half-open dyadic interval.-/
+/-- Every positive natural number lies in a half-open dyadic interval.
+@isnad1 id=ex.1h1v.s6.83f0d27534d3 from=translated src=- shape=878f8eb0 vocab=cc49959f
+-/
 theorem exists_pow_two_le_and_lt_succ_pow_two {n : ℕ} (hn : 0 < n) :
     ∃ k : ℕ, 2 ^ k ≤ n ∧ n < 2 ^ (k + 1) := by
   induction n with
@@ -46,7 +50,9 @@ theorem exists_pow_two_le_and_lt_succ_pow_two {n : ℕ} (hn : 0 < n) :
               omega
             _ = 2 ^ (k + 1 + 1) := (Nat.pow_succ 2 (k + 1)).symm
 
-/-- A sufficiently long unit-step interval contains a target dyadic length.-/
+/-- A sufficiently long unit-step interval contains a target dyadic length.
+@isnad1 id=ex.3h2v.s6.87e6c48f60b2 from=translated src=- shape=4fb29b64 vocab=3f16b8dd
+-/
 theorem exists_dyadic_point_of_interval
     {m M : ℕ} (hm : 0 < m) (hM : 4 ≤ M) (hreaches : 2 * m ≤ M) :
     ∃ k t : ℕ, 2 ≤ k ∧
@@ -96,7 +102,9 @@ def SevenLengthArithmetic.lengths (s : SevenLengthArithmetic) : Finset ℕ :=
     s.p + s.q + s.gamma + s.alpha,
     s.p + s.q + s.beta + s.delta}
 
-/-- Membership in `lengths` exposes the seven entries explicitly.-/
+/-- Membership in `lengths` exposes the seven entries explicitly.
+@isnad1 id=iff.0h2v.s7.960d35b170a8 from=translated src=- shape=ee86fff8 vocab=bb96e35a
+-/
 theorem SevenLengthArithmetic.mem_lengths_iff
     (s : SevenLengthArithmetic) (x : ℕ) :
     x ∈ s.lengths ↔
@@ -109,7 +117,9 @@ theorem SevenLengthArithmetic.mem_lengths_iff
       x = s.p + s.q + s.beta + s.delta := by
   simp [SevenLengthArithmetic.lengths, or_comm]
 
-/-- A dyadic member of the seven-entry record identifies one of its entries.-/
+/-- A dyadic member of the seven-entry record identifies one of its entries.
+@isnad1 id=ex.1h1v.s8.998f1b104e22 from=translated src=- shape=22e01f89 vocab=36d94c15
+-/
 theorem SevenLengthArithmetic.exists_dyadic_entry
     (s : SevenLengthArithmetic)
     (h : ∃ k : ℕ, 2 ≤ k ∧ 2 ^ k ∈ s.lengths) :
@@ -134,6 +144,9 @@ theorem SevenLengthArithmetic.exists_dyadic_entry
   · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr h.symm)))))
 
 /- A realized arithmetic step and one dyadic point produce the graph target. -/
+/--
+@isnad1 id=haspower.2h5v.s7.4f60b7a265a4 from=translated src=- shape=c3e6f58a vocab=db3045df
+-/
 theorem hasPowerOfTwoCycle_of_realized_step
     {V : Type u} {G : SimpleGraph V}
     {m g M : ℕ}
@@ -149,7 +162,9 @@ theorem hasPowerOfTwoCycle_of_realized_step
     (hrealize t hbound) hk hlength
 
 /-- A dyadic target in the realized range, together with the exact residue
-condition, yields a step parameter.-/
+condition, yields a step parameter.
+@isnad1 id=ex.4h4v.s7.ca034894351b from=translated src=- shape=97eb3ed9 vocab=089069ba
+-/
 theorem exists_step_of_dyadic_residue
     {m g M k : ℕ}
     (hk : 2 ≤ k)
@@ -163,7 +178,9 @@ theorem exists_step_of_dyadic_residue
   · omega
 
 /-- The graph target follows from a dyadic value satisfying the exact
-residue condition for the realized arithmetic progression.-/
+residue condition for the realized arithmetic progression.
+@isnad1 id=haspower.2h5v.s7.518d12797c9c from=translated src=- shape=ada79dbd vocab=87ac25d4
+-/
 theorem hasPowerOfTwoCycle_of_realized_step_of_residue
     {V : Type u} {G : SimpleGraph V}
     {m g M : ℕ}

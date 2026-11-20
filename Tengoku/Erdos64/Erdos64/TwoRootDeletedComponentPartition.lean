@@ -9,7 +9,9 @@ universe u
 /-- Two explicit components of the graph with `r` deleted determine the two
     root sides.  The component hypotheses are retained in the output so that
     the result is a decomposition certificate rather than a bare finset
-    identity.-/
+    identity.
+@isnad1 id=ex.12h5v.s8.4d6ac0013221 from=translated src=- shape=2d3acf0e vocab=eae9e510
+-/
 theorem twoRootDeletedComponents_partition
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

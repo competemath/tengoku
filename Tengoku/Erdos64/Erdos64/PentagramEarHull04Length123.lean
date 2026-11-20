@@ -42,12 +42,21 @@ def route043 (H : PentagramEarHull G) :
         SimpleGraph.Walk.cons (H.ca_adj 4) <|
           SimpleGraph.Walk.cons (H.ab_adj 4) .nil
 
+/--
+@isnad1 id=eq.0h3v.s5.623d02ebcd45 from=translated src=- shape=990c9dfd vocab=c722dafd
+-/
 theorem route041_length (H : PentagramEarHull G) : H.route041.length = 7 := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.589dcdbd8f74 from=translated src=- shape=990c9dfd vocab=65b32418
+-/
 theorem route042_length (H : PentagramEarHull G) : H.route042.length = 6 := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0d044c5dc879 from=translated src=- shape=990c9dfd vocab=92479fe6
+-/
 theorem route043_length (H : PentagramEarHull G) : H.route043.length = 5 := by
   rfl
 
@@ -253,6 +262,9 @@ def hullReturn_of_connector_04_length_three
     route_disjoint := route043_disjoint H K hK
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.1h4v.s8.c22d8f2ec224 from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_04_length_one
     (H : PentagramEarHull G) (K : Connector H 0 4)
     (hK : K.path.length = 1) :
@@ -261,6 +273,9 @@ theorem cycle8_of_connector_04_length_one
   exact cycle8_of_hull_return H 0 4 K
     (hullReturn_of_connector_04_length_one H K hK)
 
+/--
+@isnad1 id=ex.1h4v.s8.90b276a47a6a from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_04_length_two
     (H : PentagramEarHull G) (K : Connector H 0 4)
     (hK : K.path.length = 2) :
@@ -269,6 +284,9 @@ theorem cycle8_of_connector_04_length_two
   exact cycle8_of_hull_return H 0 4 K
     (hullReturn_of_connector_04_length_two H K hK)
 
+/--
+@isnad1 id=ex.1h4v.s8.13b74c9d699d from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_04_length_three
     (H : PentagramEarHull G) (K : Connector H 0 4)
     (hK : K.path.length = 3) :

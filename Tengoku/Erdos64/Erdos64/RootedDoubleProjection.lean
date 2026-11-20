@@ -9,7 +9,9 @@ universe u
 
 /-- The rooted-double projection is injective on the support of a simple
 cycle. This is support-local only: the two tagged copies still collapse to
-the same original vertices away from a cycle support.-/
+the same original vertices away from a cycle support.
+@isnad1 id=injon.1h5v.s6.c4a6620a3531 from=translated src=- shape=902aff8f vocab=c12b5b02
+-/
 theorem rootedDouble_cycle_projection_injOn
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V}
     {x : RootedDoubleVertex V r}
@@ -46,7 +48,9 @@ theorem rootedDouble_cycle_projection_injOn
           exact congrArg some (Prod.ext htag hv)
 
 /-- A simple rooted-double cycle projects to a simple cycle, with exactly the
-same length, using only the support-local injectivity established above.-/
+same length, using only the support-local injectivity established above.
+@isnad1 id=and.1h5v.s7.15406d8060e8 from=translated src=- shape=bcf92bb2 vocab=8565099c
+-/
 theorem rootedDouble_cycle_projection
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V}
     {x : RootedDoubleVertex V r}

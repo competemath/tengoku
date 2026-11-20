@@ -10,7 +10,9 @@ universe u
     complement away from the root has the same size.  The complementary
     carrier is constructed internally, so the balance hypothesis does not
     duplicate the partition data required by the underlying bookkeeping
-    theorem.-/
+    theorem.
+@isnad1 id=and.6h6v.s8.c620a32927b8 from=translated src=- shape=2d99ff64 vocab=f6977da8
+-/
 theorem balanced_two_cubic_poles_force_odd_ambient_order_of_complement_balanced
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -153,7 +155,9 @@ theorem balanced_two_cubic_poles_force_odd_ambient_order_of_complement_balanced
 
 /-- Equal-sized exact cubic two-port sides have equal induced edge counts.
 The equality is a consequence of the two-pole handshake identity on each
-side, not an additional cut hypothesis.-/
+side, not an additional cut hypothesis.
+@isnad1 id=eq.11h9v.s9.1ef2bc450b4f from=translated src=- shape=2092a869 vocab=0d290828
+-/
 theorem equal_induced_edge_count_of_equal_two_pole_card
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

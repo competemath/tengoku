@@ -13,7 +13,9 @@ variable {V : Type u} {G : SimpleGraph V}
 variable [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
 
 /-- Disjoint exterior carriers cannot share a private `b` index. Only the
-exterior-neighbor and neighbor-classification parts of the witnesses are needed.-/
+exterior-neighbor and neighbor-classification parts of the witnesses are needed.
+@isnad1 id=ne.4h7v.s7.59e1c654ca3d from=translated src=- shape=0478f827 vocab=5d5fe012
+-/
 theorem private_b_indices_ne_of_disjoint
     (H : PentagramEarHull G) {D E : Finset V}
     (hdisjoint : Disjoint D E)
@@ -38,7 +40,9 @@ theorem private_b_indices_ne_of_disjoint
   · exact (Finset.disjoint_left.mp hdisjoint) hwD hwE
 
 /-- A finite pairwise-disjoint family of nonempty closed exterior carriers has
-at most five members, by choosing the private attachments supplied by criticality.-/
+at most five members, by choosing the private attachments supplied by criticality.
+@isnad1 id=le.6h5v.s7.22175b2dc088 from=translated src=- shape=7eec3390 vocab=13794830
+-/
 theorem closed_exterior_family_card_le_five
     (H : PentagramEarHull G)
     (hmin : 3 ≤ G.minDegree)
@@ -66,7 +70,9 @@ theorem closed_exterior_family_card_le_five
       Fintype.card_le_of_injective f hinj
     _ = 5 := by simp
 
-/-- There are at most five actual connected components outside the hull.-/
+/-- There are at most five actual connected components outside the hull.
+@isnad1 id=le.2h3v.s6.24588ffb3bac from=translated src=- shape=ad9312c1 vocab=4c27d134
+-/
 theorem PentagramEarHull.exteriorComponents_card_le_five
     (H : PentagramEarHull G)
     (hmin : 3 ≤ G.minDegree)

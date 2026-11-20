@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- A path inside an induced carrier avoiding the three displayed vertices
-    lifts to an ambient simple path with the same avoidance property.-/
+    lifts to an ambient simple path with the same avoidance property.
+@isnad1 id=ex.6h9v.s7.a057b71604df from=translated src=- shape=27873a48 vocab=5a6d01cc
+-/
 theorem separated_third_neighbor_path
     {V : Type u} {G : SimpleGraph V} {D : Set V}
     {r x y z w : V}

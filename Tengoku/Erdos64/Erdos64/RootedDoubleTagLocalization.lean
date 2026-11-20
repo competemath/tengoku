@@ -11,7 +11,9 @@ universe u
 /-- Every nonroot vertex on a simple rooted-double cycle belongs to one
 Boolean-tagged copy.  The shared root is deliberately excluded from the
 conclusion, making this support predicate suitable for later local projection
-arguments.-/
+arguments.
+@isnad1 id=ex.1h5v.s7.943a8dd634be from=translated src=- shape=80460f34 vocab=9cfd4649
+-/
 theorem rootedDouble_cycle_common_tag
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V}
     {x : RootedDoubleVertex V r}

@@ -141,6 +141,9 @@ def IncidenceBridgeWitness.toHullReturn
     route_disjoint := hdisjoint
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.0h7v.s6.58e8d077c703 from=translated src=- shape=3113917f vocab=3f93d599
+-/
 theorem cycle8_of_incidence_bridge_witness
     (H : PentagramEarHull G) (i j : Fin 5) (K : Connector H i j)
     (W : IncidenceBridgeWitness H i j K) :

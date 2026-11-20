@@ -9,7 +9,9 @@ universe u
 
 /-- Structural bridge/unique-root split with the minimality consequence in the
 unique-root branch.  The bridge branch is intentionally left as the existing
-bridge witness; no arithmetic conclusion about its cycle lengths is added.-/
+bridge witness; no arithmetic conclusion about its cycle lengths is added.
+@isnad1 id=or.4h5v.s7.3b4628e6fda4 from=translated src=- shape=4ad53cb7 vocab=8e9a7cdb
+-/
 theorem externalComponent_bridge_or_rootedBranch_residual
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

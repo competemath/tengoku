@@ -17,7 +17,9 @@ alternative would force a fourth neighbor at a cubic port, since a single
 attachment edge would be a bridge.
 
 This supplies the previously missing path premise and its root-cycle
-consequence. It does not assert that `p.length + 4` is a power of two.-/
+consequence. It does not assert that `p.length + 4` is a power of two.
+@isnad1 id=ex.7h6v.s8.d7dc8c96ef26 from=translated src=- shape=3fb4100f vocab=2b0d9bca
+-/
 theorem MinimalCounterexample.adjacent_cubic_two_ports_path_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -96,7 +98,9 @@ theorem MinimalCounterexample.adjacent_cubic_two_ports_path_cycle
     omega
 
 /-- The adjacent cubic two-port branch exposes two distinct cycle-length
-certificates from the same separated third-neighbor path.-/
+certificates from the same separated third-neighbor path.
+@isnad1 id=ex.7h6v.s8.9b97c3628d44 from=translated src=- shape=b3b3dd43 vocab=2b0d9bca
+-/
 theorem MinimalCounterexample.adjacent_cubic_two_ports_two_cycles
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -129,7 +133,9 @@ theorem MinimalCounterexample.adjacent_cubic_two_ports_two_cycles
     havoid, hc3, hlength3, hc4, hlength4⟩
 
 /-- In a minimal counterexample, the two adjacent-port cycle lengths from
-the same separated path are both excluded from the dyadic spectrum.-/
+the same separated path are both excluded from the dyadic spectrum.
+@isnad1 id=ex.7h6v.s8.4a9be4de7251 from=translated src=- shape=61ca190a vocab=d5ab7036
+-/
 theorem MinimalCounterexample.adjacent_cubic_two_ports_path_no_dyadic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

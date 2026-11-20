@@ -56,6 +56,9 @@ noncomputable def rootedDouble_nonroot_neighborEquiv
       simp [rootedDoubleProjection, hwr]
 
 /- Every nonroot copy vertex has the degree of its original vertex. -/
+/--
+@isnad1 id=eq.0h5v.s7.36592d0c9f70 from=translated src=- shape=2e09a1f9 vocab=4d3954d1
+-/
 theorem rootedDouble_nonroot_degree_preservation
     {V : Type u} {G : SimpleGraph V} [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] {r : V}

@@ -33,7 +33,9 @@ private theorem fresh_dyadic_ear_reroute_and_length_ne
 
 /-- A fresh dyadic ear strictly shortens the segment it replaces on an
 absolutely longest terminal path in a dyadic-cycle-free graph. This consumes
-an existing ear and longestness among all simple terminal paths.-/
+an existing ear and longestness among all simple terminal paths.
+@isnad1 id=lt.8h11v.s7.0aaa61cf80b5 from=translated src=- shape=375fb5f6 vocab=2d72a68f
+-/
 theorem dyadic_ear_lt_segment_of_longest_terminal_path
     {V : Type u} {G : SimpleGraph V} {a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)
@@ -55,7 +57,9 @@ theorem dyadic_ear_lt_segment_of_longest_terminal_path
 
 /-- A fresh dyadic ear strictly lengthens the segment it replaces on an
 absolutely shortest terminal path in a dyadic-cycle-free graph. This is a
-comparison, not a theorem asserting that an ear exists.-/
+comparison, not a theorem asserting that an ear exists.
+@isnad1 id=lt.8h11v.s7.c188b5dbb06b from=translated src=- shape=1a56c68e vocab=2d72a68f
+-/
 theorem segment_lt_dyadic_ear_of_shortest_terminal_path
     {V : Type u} {G : SimpleGraph V} {a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)

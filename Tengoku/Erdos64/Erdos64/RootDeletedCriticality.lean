@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- Criticality forces every native root-deleted component to use at least two
-    root ports when the deleted root has degree four.-/
+    root ports when the deleted root has degree four.
+@isnad1 id=le.4h4v.s6.a55d54ad34cf from=translated src=- shape=90c907d6 vocab=b85cf331
+-/
 theorem rootDeletedComponentAttachments_ge_two_of_degree_eq_four
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)

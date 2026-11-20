@@ -18,6 +18,9 @@ noncomputable def separatedThirdNeighborComponentCarrier
   letI : Fintype C := Fintype.ofFinite _
   exact C.supp.toFinset.image Subtype.val
 
+/--
+@isnad1 id=iff.0h7v.s8.75398f2cf155 from=translated src=- shape=dc136331 vocab=fc6f37ab
+-/
 theorem separatedThirdNeighborComponentCarrier_mem_iff
     {V : Type u} (G : SimpleGraph V) [Fintype V] [DecidableEq V]
     (D : Finset V) (x y : V)
@@ -34,7 +37,9 @@ theorem separatedThirdNeighborComponentCarrier_mem_iff
     either belong to one component after deleting the two ports, or the
     component containing `z` is a proper one-port leaf carrier rooted at `x`.
 
-    This is a structural split only; it makes no global cycle claim.-/
+    This is a structural split only; it makes no global cycle claim.
+@isnad1 id=or.10h8v.s9.81120f333ee9 from=translated src=- shape=c833101b vocab=64038b8a
+-/
 theorem separated_third_neighbor_component_split
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

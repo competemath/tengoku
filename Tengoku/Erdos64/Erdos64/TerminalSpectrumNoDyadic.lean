@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- In a graph with no power-of-two simple cycle, an explicit positive
-terminal path with two root edges cannot have a dyadic fan-cycle length.-/
+terminal path with two root edges cannot have a dyadic fan-cycle length.
+@isnad1 id=ne.8h7v.s6.04d99d467358 from=translated src=- shape=4018264c vocab=9a4e3ada
+-/
 theorem terminal_path_length_not_dyadic_of_no_powerOfTwoCycle
     {V : Type u} {G : SimpleGraph V} {r a b : V}
     {p : G.Walk a b}

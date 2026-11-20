@@ -12,7 +12,9 @@ universe u
 
 /-- Adding the missing port edge repairs the induced side's minimum degree.
 Minimality forces a dyadic cycle in that smaller completion. Removing its
-synthetic edge gives an original port path one edge short of a power of two.-/
+synthetic edge gives an original port path one edge short of a power of two.
+@isnad1 id=ex.10h6v.s8.50a83076f8fa from=translated src=- shape=8e6f0156 vocab=02e8edfc
+-/
 theorem MinimalCounterexample.exact_two_port_side_pow_two_sub_one_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -53,7 +55,9 @@ theorem MinimalCounterexample.exact_two_port_side_pow_two_sub_one_path
   exact hlen
 
 /-- The same named ports carry genuinely distinct odd and even simple routes.
-Both routes stay in the supplied side. No mutual disjointness is asserted.-/
+Both routes stay in the supplied side. No mutual disjointness is asserted.
+@isnad1 id=ex.11h6v.s8.cb186c67f6dc from=translated src=- shape=d96b8590 vocab=6016902f
+-/
 theorem MinimalCounterexample.exact_two_port_side_distinct_routes
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -84,7 +88,9 @@ theorem MinimalCounterexample.exact_two_port_side_distinct_routes
 
 /-- Opposite-parity routes lie in the side itself, so even that induced graph
 cannot be bipartite. This is a restriction on a putative counterexample,
-not a contradiction in an arbitrary nonbipartite side.-/
+not a contradiction in an arbitrary nonbipartite side.
+@isnad1 id=not.11h6v.s7.b6e9de1864ee from=translated src=- shape=e18c0ad9 vocab=393b6a43
+-/
 theorem MinimalCounterexample.exact_two_port_side_not_isBipartite
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -116,7 +122,9 @@ theorem MinimalCounterexample.exact_two_port_side_not_isBipartite
 
 /-- At a native cut, balance supplies the degree and attachment counts.
 If the two ports of one component are nonadjacent, that component's induced
-graph cannot be bipartite. No edge-minimality assumption is needed.-/
+graph cannot be bipartite. No edge-minimality assumption is needed.
+@isnad1 id=not.3h5v.s7.ef4f9bfbf574 from=translated src=- shape=21677947 vocab=2ee97499
+-/
 theorem MinimalCounterexample.rootDeleted_cut_nonadjacent_side_not_isBipartite
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- Removing the synthetic root from a simple cycle based there leaves a
-simple path between distinct boundary vertices, two edges shorter.-/
+simple path between distinct boundary vertices, two edges shorter.
+@isnad1 id=ex.1h4v.s6.73a1ee69b3a1 from=translated src=- shape=92c6b5d5 vocab=6d6f1bdc
+-/
 theorem boundaryRoot_root_cycle_path
     {W : Type u} {H : SimpleGraph W} {B : Finset W}
     (c : (boundaryRootGraph H B).Walk none none) (hc : c.IsCycle) :
@@ -67,7 +69,9 @@ theorem boundaryRoot_root_cycle_path
 
 /-- With a boundary root of degree at least two and at most one additional
 degree-two defect, minimality forces a boundary path whose two-edge closure
-has power-of-two length or one more than a power of two.-/
+has power-of-two length or one more than a power of two.
+@isnad1 id=ex.6h6v.s8.c762576116d3 from=translated src=- shape=36ecdac5 vocab=899798c2
+-/
 theorem MinimalCounterexample.boundaryRoot_small_two_defect_path
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -120,7 +124,9 @@ theorem MinimalCounterexample.boundaryRoot_small_two_defect_path
 /-- Three boundary vertices force a fresh ear avoiding a specified outside
 vertex when every outside attachment has at most one carrier neighbor. Its
 length is a power of two or one more than a power of two. Attachment
-injectivity is essential for the odd branch to be a path rather than a cycle.-/
+injectivity is essential for the odd branch to be a path rather than a cycle.
+@isnad1 id=ex.7h5v.s8.717fd9fafb1b from=translated src=- shape=d65107fa vocab=b8771fe7
+-/
 theorem MinimalCounterexample.small_carrier_mixed_ear_avoiding_attachment
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -312,7 +318,9 @@ theorem MinimalCounterexample.small_carrier_mixed_ear_avoiding_attachment
 /-- In a component with at least three boundary vertices, a port path whose
 vertices are all cubic admits a fresh avoiding ear with dyadic or dyadic-
 successor length. Cubicity of every path vertex supplies injectivity of all
-outside attachments, including the endpoints of the odd ear.-/
+outside attachments, including the endpoints of the odd ear.
+@isnad1 id=ex.10h10v.s9.3e18979a1cc0 from=translated src=- shape=f66c306e vocab=35dfc169
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_mixed_ear_avoiding_vertex_of_cubic_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

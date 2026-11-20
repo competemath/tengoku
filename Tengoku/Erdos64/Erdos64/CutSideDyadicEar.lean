@@ -16,6 +16,9 @@ noncomputable def offPathComponentCarrier
   classical
   exact E.supp.toFinset.image Subtype.val
 
+/--
+@isnad1 id=iff.0h8v.s8.91e256bd80b8 from=translated src=- shape=c1cf23f5 vocab=23b14fa7
+-/
 @[simp] theorem mem_offPathComponentCarrier_iff
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) (A : Finset V) {x y : V} (p : G.Walk x y)
@@ -28,7 +31,9 @@ noncomputable def offPathComponentCarrier
 
 /-- Every component outside a port walk in a balanced cut side contains the
 interior of a fresh ear of power-of-two length. Exponent one allows a
-two-edge ear; the attachments and exponent are produced by minimality.-/
+two-edge ear; the attachments and exponent are produced by minimality.
+@isnad1 id=ex.6h9v.s8.c8fc3541d30d from=translated src=- shape=0cfa945d vocab=55cb49c2
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_component_dyadic_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -119,7 +124,9 @@ theorem MinimalCounterexample.rootDeleted_cut_side_component_dyadic_ear
   · exact (hKdata v hvK).1
 
 /-- A vertex of a balanced cut side outside a port walk guarantees a fresh
-dyadic ear inside that side. No external-component or ear witness is assumed.-/
+dyadic ear inside that side. No external-component or ear witness is assumed.
+@isnad1 id=ex.8h9v.s8.9f8b3bade691 from=translated src=- shape=863d07e7 vocab=3a7b4b2d
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_dyadic_ear_of_external_vertex
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

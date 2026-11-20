@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- An actual root-deleted component with exactly two attachment vertices
-    exposes two distinct root ports together with their carrier membership.-/
+    exposes two distinct root ports together with their carrier membership.
+@isnad1 id=ex.1h4v.s6.6b0a070fad22 from=translated src=- shape=b4214d37 vocab=43a57613
+-/
 theorem rootDeletedComponent_twoPort_extraction
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)

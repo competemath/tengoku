@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- Adjacent exact ports have internal third neighbors under minimum degree
-three; cubicity is only needed for the later separated-component analysis.-/
+three; cubicity is only needed for the later separated-component analysis.
+@isnad1 id=ex.6h6v.s7.aa86f64d3c04 from=translated src=- shape=b0bfac8a vocab=5c3b541d
+-/
 theorem adjacent_exact_two_ports_have_internal_third_neighbors
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -70,7 +72,9 @@ theorem adjacent_exact_two_ports_have_internal_third_neighbors
 
 /-- Complete the exact cubic two-port case split. Nonadjacent ports feed the
 root-avoiding dyadic-path theorem; adjacent ports expose the separated
-third-neighbor path and its two non-dyadic cycle-length constraints.-/
+third-neighbor path and its two non-dyadic cycle-length constraints.
+@isnad1 id=or.9h6v.s9.84d6e46f5304 from=translated src=- shape=cb827ccf vocab=d5ab7036
+-/
 theorem MinimalCounterexample.exact_cubic_two_port_case_split
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -106,7 +110,9 @@ theorem MinimalCounterexample.exact_cubic_two_port_case_split
 
 /-- Component-level form of the exact cubic two-port split. The component
 attachment cardinality supplies the two ports and exactness; the remaining
-branching is only adjacency versus nonadjacency of those ports.-/
+branching is only adjacency versus nonadjacency of those ports.
+@isnad1 id=or.4h4v.s9.3f71c62d904b from=translated src=- shape=3a4d939a vocab=c4153811
+-/
 theorem MinimalCounterexample.rootDeleted_twoPort_component_cubic_case_split
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

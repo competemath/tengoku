@@ -6,7 +6,9 @@ namespace Erdos64
 
 universe u
 
-/-- Degree in an induced finite vertex set is the ambient internal degree.-/
+/-- Degree in an induced finite vertex set is the ambient internal degree.
+@isnad1 id=eq.0h4v.s8.ec174b95ce3b from=translated src=- shape=6f73df59 vocab=184c5d92
+-/
 theorem degree_induce_coeFinset_eq_internalDegree
     {V : Type u} (G : SimpleGraph V) [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj]
@@ -50,7 +52,9 @@ namespace RootedBranchCarrier
 variable {V : Type u} {G : SimpleGraph V}
 variable [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
 
-/-- Removing the carrier loses no neighbors at a retained vertex other than the root.-/
+/-- Removing the carrier loses no neighbors at a retained vertex other than the root.
+@isnad1 id=eq.2h4v.s6.0aa6d5011ade from=translated src=- shape=76246093 vocab=b1c040be
+-/
 theorem internalDegree_compl_eq_degree_of_ne_root
     (B : RootedBranchCarrier G) {v : V}
     (hv : v ∉ B.carrier) (hvroot : v ≠ B.root) :
@@ -72,7 +76,9 @@ theorem internalDegree_compl_eq_degree_of_ne_root
   rw [hfin]
   exact SimpleGraph.card_neighborFinset_eq_degree G v
 
-/-- The induced complement preserves degrees away from the root.-/
+/-- The induced complement preserves degrees away from the root.
+@isnad1 id=eq.1h4v.s9.3e1eafd57795 from=translated src=- shape=5063d579 vocab=3c012b48
+-/
 theorem degree_induce_compl_eq_degree_of_ne_root
     (B : RootedBranchCarrier G)
     (v : (↑(Finset.univ \ B.carrier) : Set V))
@@ -84,7 +90,9 @@ theorem degree_induce_compl_eq_degree_of_ne_root
     (Finset.mem_sdiff.mp v.2).2 hvroot
 
 /-- In a critical graph of minimum degree at least three, the root is the
-deficient vertex of the proper nonempty induced complement.-/
+deficient vertex of the proper nonempty induced complement.
+@isnad1 id=le.2h3v.s6.9004df40aa07 from=translated src=- shape=0412f778 vocab=64dfc765
+-/
 theorem root_internalDegree_le_two
     (B : RootedBranchCarrier G)
     (hcritical : IsSubgraphCritical G) (hmin : G.minDegree ≥ 3) :
@@ -111,7 +119,9 @@ theorem root_internalDegree_le_two
     omega
 
 /-- The neighbors of the root split between the retained complement and the
-carrier.-/
+carrier.
+@isnad1 id=eq.0h3v.s6.ee033be6b12f from=translated src=- shape=1b140d61 vocab=33ad559f
+-/
 theorem internalDegree_add_carrierNeighbor_card_eq_degree
     (B : RootedBranchCarrier G) :
     internalDegree G (Finset.univ \ B.carrier) B.root +
@@ -136,7 +146,9 @@ theorem internalDegree_add_carrierNeighbor_card_eq_degree
   exact hcard
 
 /-- A degree-three root with at most two retained neighbors has a carrier
-neighbor.-/
+neighbor.
+@isnad1 id=ex.2h3v.s6.6d16c3fb776d from=translated src=- shape=4f470d29 vocab=08b300dd
+-/
 theorem exists_carrier_neighbor_of_degree_eq_three_of_root_internalDegree_le_two
     (B : RootedBranchCarrier G)
     (hdeg : G.degree B.root = 3)
@@ -151,7 +163,9 @@ theorem exists_carrier_neighbor_of_degree_eq_three_of_root_internalDegree_le_two
   exact ⟨w, (Finset.mem_filter.mp hw).1, (Finset.mem_filter.mp hw).2⟩
 
 /-- In the same situation, the carrier boundary-neighbor count is between one
-and three, with the exact sum given by the preceding partition theorem.-/
+and three, with the exact sum given by the preceding partition theorem.
+@isnad1 id=and.2h3v.s7.62338c81b738 from=translated src=- shape=4a6ced01 vocab=34636c05
+-/
 theorem one_le_carrierNeighbor_card_of_degree_eq_three_of_root_internalDegree_le_two
     (B : RootedBranchCarrier G)
     (hdeg : G.degree B.root = 3)
@@ -162,7 +176,9 @@ theorem one_le_carrierNeighbor_card_of_degree_eq_three_of_root_internalDegree_le
   rw [hdeg] at hsum
   omega
 
-/-- The obstruction obtained from subgraph criticality at a degree-three root.-/
+/-- The obstruction obtained from subgraph criticality at a degree-three root.
+@isnad1 id=ex.3h3v.s6.5918b821e517 from=translated src=- shape=d1fa1e23 vocab=742f4106
+-/
 theorem exists_carrier_neighbor_of_degree_eq_three
     (B : RootedBranchCarrier G)
     (hcritical : IsSubgraphCritical G) (hmin : G.minDegree ≥ 3)
@@ -171,7 +187,9 @@ theorem exists_carrier_neighbor_of_degree_eq_three
   B.exists_carrier_neighbor_of_degree_eq_three_of_root_internalDegree_le_two
     hdeg (B.root_internalDegree_le_two hcritical hmin)
 
-/-- Complement minimum degree is conditional on the root retaining three neighbors.-/
+/-- Complement minimum degree is conditional on the root retaining three neighbors.
+@isnad1 id=le.2h3v.s8.1692cd5193cf from=translated src=- shape=4b95f65c vocab=83a4b0fa
+-/
 theorem complement_minDegree_ge_three
     (B : RootedBranchCarrier G) (hmin : G.minDegree ≥ 3)
     (hroot : 3 ≤ internalDegree G (Finset.univ \ B.carrier) B.root) :
@@ -190,7 +208,9 @@ theorem complement_minDegree_ge_three
       (Finset.mem_sdiff.mp v.2).2 hvroot]
     exact degree_ge_three_of_minDegree_ge_three G hmin v.1
 
-/-- A nonempty carrier makes its induced complement strictly smaller.-/
+/-- A nonempty carrier makes its induced complement strictly smaller.
+@isnad1 id=lt.0h3v.s6.fdf93c4444a8 from=translated src=- shape=fd183601 vocab=594a0186
+-/
 theorem complement_card_lt (B : RootedBranchCarrier G) :
     Fintype.card (↑(Finset.univ \ B.carrier) : Set V) < Fintype.card V := by
   classical
@@ -201,7 +221,9 @@ theorem complement_card_lt (B : RootedBranchCarrier G) :
   exact Fintype.card_subtype_lt hxnot
 
 /-- Conditional induced-subgraph descent: the residual degree at the root
-must be supplied separately from the boundary conditions.-/
+must be supplied separately from the boundary conditions.
+@isnad1 id=isstrict.2h3v.s8.5352bb70c977 from=translated src=- shape=2514d38c vocab=886ee273
+-/
 theorem isStrictlySmallerCounterexample_compl
     (B : RootedBranchCarrier G) (hcounter : IsCounterexample G)
     (hroot : 3 ≤ internalDegree G (Finset.univ \ B.carrier) B.root) :
@@ -224,7 +246,9 @@ def attachmentSet (G : SimpleGraph V) [DecidableRel G.Adj]
   C.filter (fun a => (K.filter (G.Adj a)).Nonempty)
 
 /-- A nonempty finite attachment set either has two distinct members or is a
-singleton. This uses no connectivity or degree assumption.-/
+singleton. This uses no connectivity or degree assumption.
+@isnad1 id=or.1h4v.s6.829426bba90c from=translated src=- shape=8133212b vocab=8e44b250
+-/
 theorem attachmentSet_two_or_singleton
     {C K : Finset V}
     (hattach : (attachmentSet G C K).Nonempty) :

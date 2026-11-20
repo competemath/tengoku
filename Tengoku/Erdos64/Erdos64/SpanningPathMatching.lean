@@ -10,7 +10,9 @@ universe u
 open scoped Classical
 
 /-- A nontrivial simple path uses one edge at either endpoint and two at
-each other vertex in its support.-/
+each other vertex in its support.
+@isnad1 id=eq.3h6v.s7.7ecad772b48d from=translated src=- shape=26fc213b vocab=5b7154ee
+-/
 theorem path_spanningCoe_degree_of_mem_support
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} {x y : V} (p : G.Walk x y) (hp : p.IsPath)
@@ -39,7 +41,9 @@ theorem path_spanningCoe_degree_of_mem_support
   rw [← hi]
   exact hp.ncard_neighborSet_toSubgraph_internal_eq_two hi0 hin
 
-/-- Removing a simple path subtracts exactly its used incidences.-/
+/-- Removing a simple path subtracts exactly its used incidences.
+@isnad1 id=eq.3h6v.s7.e877c9989447 from=translated src=- shape=3399e9ea vocab=5a098917
+-/
 theorem path_complement_degree_of_mem_support
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {x y : V}
@@ -59,7 +63,9 @@ theorem path_complement_degree_of_mem_support
 
 /-- For a spanning simple path with degree-two endpoints and degree-three
 internal vertices, the unused edges form a perfect matching on all vertices.
-No minimal-counterexample or cycle-length premise is needed.-/
+No minimal-counterexample or cycle-length premise is needed.
+@isnad1 id=isperfec.4h5v.s7.f8b926916fbc from=translated src=- shape=413097d6 vocab=7beebd0f
+-/
 theorem spanning_two_port_path_complement_isPerfectMatching
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {x y : V}
@@ -75,7 +81,9 @@ theorem spanning_two_port_path_complement_isPerfectMatching
   split_ifs <;> rfl
 
 /-- Every vertex of a spanning cubic two-port path has a unique neighbor
-joined by an unused edge. This is the matching in adjacency form.-/
+joined by an unused edge. This is the matching in adjacency form.
+@isnad1 id=existsun.4h6v.s7.cb9b976919e1 from=translated src=- shape=eb094926 vocab=0526039c
+-/
 theorem spanning_two_port_path_unique_unused_neighbor
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {x y : V}
@@ -91,7 +99,9 @@ theorem spanning_two_port_path_unique_unused_neighbor
 
 /-- The unique unused neighbors pair the vertices by a fixed-point-free
 involution. Thus the matching supplies actual partner data, with each pair
-an ambient edge outside the path.-/
+an ambient edge outside the path.
+@isnad1 id=ex.4h5v.s7.d6e196a4985e from=translated src=- shape=0ea1e4f1 vocab=8559bc37
+-/
 theorem spanning_two_port_path_matching_involution
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {x y : V}
@@ -117,7 +127,9 @@ theorem spanning_two_port_path_matching_involution
   · intro v w
     exact ⟨(hm v).2 w, fun h => h.symm ▸ (hm v).1⟩
 
-/-- The spanning path in this degree pattern necessarily has odd length.-/
+/-- The spanning path in this degree pattern necessarily has odd length.
+@isnad1 id=odd.4h5v.s7.b975f5b43906 from=translated src=- shape=670cc8cb vocab=5577f2bd
+-/
 theorem spanning_two_port_path_length_odd
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {x y : V}

@@ -8,6 +8,9 @@ universe u
 
 /- A dyadic cycle in an induced graph remains dyadic after inclusion in the
    ambient graph.  The embedding is injective, so simplicity is preserved. -/
+/--
+@isnad1 id=haspower.1h3v.s4.ca55602be971 from=translated src=- shape=174285b3 vocab=df3d812a
+-/
 theorem hasPowerOfTwoCycle_of_induce
     {V : Type u} {G : SimpleGraph V} {S : Set V}
     (hcycle : HasPowerOfTwoCycle (G.induce S)) :
@@ -20,6 +23,9 @@ theorem hasPowerOfTwoCycle_of_induce
     exact hlen
 
 /- Ambient absence of a dyadic cycle transfers to every induced subgraph. -/
+/--
+@isnad1 id=not.1h3v.s4.8956c734fb34 from=translated src=- shape=dd836b11 vocab=df3d812a
+-/
 theorem not_hasPowerOfTwoCycle_induce_of_not_hasPowerOfTwoCycle
     {V : Type u} {G : SimpleGraph V} {S : Set V}
     (hno : ¬ HasPowerOfTwoCycle G) :
@@ -30,6 +36,9 @@ theorem not_hasPowerOfTwoCycle_induce_of_not_hasPowerOfTwoCycle
 /- Root-deleted spelling for downstream strict-descent code.  The root
    exclusion is retained in the interface, although transfer itself is
    independent of it. -/
+/--
+@isnad1 id=not.2h4v.s5.7a6e39fc0e18 from=translated src=- shape=0d109a12 vocab=3142e2df
+-/
 theorem not_hasPowerOfTwoCycle_rootDeleted_induce
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

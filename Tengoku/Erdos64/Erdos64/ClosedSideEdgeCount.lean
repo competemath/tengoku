@@ -8,7 +8,9 @@ universe u
 
 /-- The edges of two closed sides meeting only at a root partition the ambient
 edge set. The sides include the root, so their counts include its attachments.
-No minimality, degree, or equal-order assumption is needed for this identity.-/
+No minimality, degree, or equal-order assumption is needed for this identity.
+@isnad1 id=eq.4h5v.s9.c6d08acb68cb from=translated src=- shape=6d60f48f vocab=4e140237
+-/
 theorem closed_sides_edge_count
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

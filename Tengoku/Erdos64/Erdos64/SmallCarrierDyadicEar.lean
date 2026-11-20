@@ -10,7 +10,9 @@ universe u
 
 /-- A cycle through a synthetic boundary root lifts to a fresh dyadic ear
 in the original graph. If its two external attachments coincided, the lift
-would already be a forbidden dyadic cycle.-/
+would already be a forbidden dyadic cycle.
+@isnad1 id=ex.4h4v.s8.86277af526c2 from=translated src=- shape=9b31ae48 vocab=91a3d380
+-/
 theorem boundaryRoot_dyadic_cycle_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -83,7 +85,9 @@ theorem boundaryRoot_dyadic_cycle_ear
 /-- A nonempty region smaller than half a minimal counterexample forces an
 ear of power-of-two length between distinct vertices on its boundary.
 The interior lies in the region. No bound on the attachment separation is
-asserted.-/
+asserted.
+@isnad1 id=ex.5h4v.s8.f6ff85a7f8f3 from=translated src=- shape=fe3a3dd4 vocab=ecde275f
+-/
 theorem MinimalCounterexample.small_carrier_dyadic_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -153,7 +157,9 @@ theorem MinimalCounterexample.small_carrier_dyadic_ear
 
 /-- Three boundary vertices make the new root have degree at least three,
 so the dyadic-ear construction needs only the carrier-plus-root order bound.
-The carrier need not be smaller than half the ambient graph.-/
+The carrier need not be smaller than half the ambient graph.
+@isnad1 id=ex.6h4v.s8.5ee8dd17c417 from=translated src=- shape=f4c9974c vocab=d87e38f7
+-/
 theorem MinimalCounterexample.carrier_dyadic_ear_of_three_boundary
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

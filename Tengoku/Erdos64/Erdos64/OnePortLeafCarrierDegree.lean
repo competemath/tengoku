@@ -35,7 +35,9 @@ private noncomputable def rootedBranchCarrier_of_onePort
 
 /-- In a minimal counterexample, a connected proper one-port carrier has a
     deficient root on the carrier side.  The minimum-degree and criticality
-    premises come from the minimal counterexample itself.-/
+    premises come from the minimal counterexample itself.
+@isnad1 id=le.6h4v.s7.f093f7dc5d22 from=translated src=- shape=e6ea6f45 vocab=9b144d63
+-/
 theorem MinimalCounterexample.connectedOnePortCarrier_internalDegree_le_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -55,7 +57,9 @@ theorem MinimalCounterexample.connectedOnePortCarrier_internalDegree_le_two
 
 /-- At a cubic port, a nontrivial connected one-port carrier has at least one
     root edge on each side.  The two root degrees are both at most two and
-    add to three.-/
+    add to three.
+@isnad1 id=and.8h4v.s8.c0c8e512cfe7 from=translated src=- shape=6937ddc5 vocab=61c0723b
+-/
 theorem MinimalCounterexample.connectedOnePortCarrier_cubic_port_degree_split
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -105,7 +109,9 @@ theorem MinimalCounterexample.connectedOnePortCarrier_cubic_port_degree_split
 
 /-- The rooted complement of a nontrivial one-port carrier cannot retain
     minimum degree three.  This is the exact obstruction to closing strict
-    induced-subgraph descent from the carrier decomposition.-/
+    induced-subgraph descent from the carrier decomposition.
+@isnad1 id=le.3h4v.s8.6eeb2915a3be from=translated src=- shape=b646e24f vocab=8a80fe9b
+-/
 theorem MinimalCounterexample.connectedOnePortCarrier_complement_minDegree_le_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -64,6 +64,9 @@ def rootedDoubleCopyEmbedding {V : Type u} {G : SimpleGraph V} {r : V} (b : Bool
     change (G.Adj v.1 w.1 ∧ b = b) ↔ G.Adj v.1 w.1
     simp
 
+/--
+@isnad1 id=eq.0h5v.s7.730780d91db1 from=translated src=- shape=7d100c4f vocab=3cab66a8
+-/
 @[simp] theorem rootedDoubleCopyEmbedding_apply
     {V : Type u} {G : SimpleGraph V} {r : V} (b : Bool)
     (v : {v : V // v ≠ r}) :
@@ -71,7 +74,9 @@ def rootedDoubleCopyEmbedding {V : Type u} {G : SimpleGraph V} {r : V} (b : Bool
   rfl
 
 /-- The rooted double has `2 * s - 1` vertices when the original graph has
-`s` vertices.-/
+`s` vertices.
+@isnad1 id=eq.0h2v.s6.346f06e65fd1 from=translated src=- shape=bd9cc518 vocab=a8c883a8
+-/
 theorem rootedDouble_card
     {V : Type u} [Fintype V] [DecidableEq V] {r : V} :
     Fintype.card (RootedDoubleVertex V r) = 2 * Fintype.card V - 1 := by
@@ -80,7 +85,9 @@ theorem rootedDouble_card
   simp [RootedDoubleVertex, Fintype.card_subtype_compl]
   omega
 
-/-- The projection preserves every walk length.-/
+/-- The projection preserves every walk length.
+@isnad1 id=eq.0h6v.s7.923c620d2781 from=translated src=- shape=a4b88526 vocab=665aea19
+-/
 theorem rootedDouble_projection_length
     {V : Type u} {G : SimpleGraph V} {r : V}
     {x y : RootedDoubleVertex V r}
@@ -92,7 +99,9 @@ theorem rootedDouble_projection_length
 any nonroot vertex, its two tagged copies have the same projection, so this
 premise fails. This is therefore not a usable cycle-projection route for a
 nontrivial rooted double. `rootedDouble_cycle_projection` in
-`RootedDoubleProjection.lean` uses injectivity on the cycle support instead.-/
+`RootedDoubleProjection.lean` uses injectivity on the cycle support instead.
+@isnad1 id=iscycle.2h5v.s7.2742d977d1f8 from=translated src=- shape=aa2217a6 vocab=aa88506b
+-/
 theorem rootedDouble_projection_cycle_of_injective
     {V : Type u} {G : SimpleGraph V} {r : V}
     {x : RootedDoubleVertex V r}
@@ -105,7 +114,9 @@ theorem rootedDouble_projection_cycle_of_injective
 
 /-- A support-local injectivity contract is enough for projection of a path;
 the caller must provide the support injectivity because the collapse map is not
-globally injective.-/
+globally injective.
+@isnad1 id=ispath.2h6v.s7.cd0caadd4da3 from=translated src=- shape=f9343f8c vocab=710ba16b
+-/
 theorem rootedDouble_projection_path_of_support_injective
     {V : Type u} {G : SimpleGraph V} {r : V}
     {x y : RootedDoubleVertex V r}
@@ -120,7 +131,9 @@ theorem rootedDouble_projection_path_of_support_injective
 /-- Historical localization interface: return the supplied assertion that
 every nonroot support vertex carries the displayed copy tag. This theorem
 does not derive localization. `rootedDouble_cycle_common_tag` in
-`RootedDoubleTagLocalization.lean` derives a common tag for every simple cycle.-/
+`RootedDoubleTagLocalization.lean` derives a common tag for every simple cycle.
+@isnad1 id=ex.4h7v.s7.f0b6e3da633b from=translated src=- shape=604e4d0a vocab=23364150
+-/
 theorem rootedDouble_cycle_localization_of
     {V : Type u} {G : SimpleGraph V} {r : V}
     {x : RootedDoubleVertex V r}
@@ -134,7 +147,9 @@ theorem rootedDouble_cycle_localization_of
 
 /-- Convert a supplied neighbor equivalence into nonroot degree preservation.
 `rootedDouble_nonroot_degree_preservation` in `RootedDoubleNonroot.lean`
-constructs the equivalence and discharges this condition.-/
+constructs the equivalence and discharges this condition.
+@isnad1 id=eq.0h6v.s8.bf397f678f9c from=translated src=- shape=72f21bff vocab=15477b20
+-/
 theorem rootedDouble_nonroot_degree_preservation_of_neighborEquiv
     {V : Type u} {G : SimpleGraph V} [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] {r : V}
@@ -149,7 +164,9 @@ theorem rootedDouble_nonroot_degree_preservation_of_neighborEquiv
 
 /-- Convert a supplied neighbor equivalence into root degree doubling.
 `rootedDouble_root_degree_doubling` in `RootedDoubleNeighbors.lean`
-constructs the equivalence and discharges this condition.-/
+constructs the equivalence and discharges this condition.
+@isnad1 id=eq.0h4v.s7.46879c123000 from=translated src=- shape=61124e30 vocab=6ac6e171
+-/
 theorem rootedDouble_root_degree_doubling_of_neighborEquiv
     {V : Type u} {G : SimpleGraph V} [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] {r : V}

@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- Adding a missing terminal edge increases each terminal degree by one and
-preserves every other degree.-/
+preserves every other degree.
+@isnad1 id=eq.2h5v.s7.459db4de671d from=translated src=- shape=d1c03446 vocab=8c71402e
+-/
 theorem degree_sup_edge_of_not_adj
     {V : Type u} [Fintype V] [DecidableEq V]
     (K : SimpleGraph V) [DecidableRel K.Adj]
@@ -52,7 +54,9 @@ theorem degree_sup_edge_of_not_adj
       simp [hva, hvb]
 
 /-- Completing an exact nonadjacent two-port side by its missing terminal edge
-repairs all lost root incidences. Each vertex recovers its ambient degree.-/
+repairs all lost root incidences. Each vertex recovers its ambient degree.
+@isnad1 id=eq.7h7v.s9.db56f078725d from=translated src=- shape=6abe81cd vocab=74c01ce3
+-/
 theorem two_port_edge_completion_degree
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -77,7 +81,9 @@ theorem two_port_edge_completion_degree
   simpa only [hiff] using haccount
 
 /-- Vertex minimality forces a dyadic cycle in the smaller terminal-edge
-completion. The synthetic edge is not yet removed in this degree lemma.-/
+completion. The synthetic edge is not yet removed in this degree lemma.
+@isnad1 id=haspower.8h6v.s7.4c4330d402a8 from=translated src=- shape=2a0b2296 vocab=46d85f40
+-/
 theorem MinimalCounterexample.two_port_edge_completion_has_dyadic_cycle
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

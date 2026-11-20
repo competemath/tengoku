@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Distinct vertices have at most one common neighbor in a graph with no
-four-cycle. This uses no degree or minimal-counterexample assumption.-/
+four-cycle. This uses no degree or minimal-counterexample assumption.
+@isnad1 id=eq.6h6v.s6.2406d544ef85 from=translated src=- shape=f9206c24 vocab=479b9d3a
+-/
 theorem common_neighbor_eq_of_no_four_cycle
     {V : Type u} {G : SimpleGraph V}
     (hfour : ∀ v (c : G.Walk v v), c.IsCycle → c.length ≠ 4)
@@ -27,7 +29,9 @@ theorem common_neighbor_eq_of_no_four_cycle
 /-- At a vertex of degree at most three in a graph with no four-cycle,
 there is at most one edge between its neighbors. Thus it lies in at most
 one triangle. The degree bound matters: two triangles may share a vertex
-of degree four without creating a four-cycle.-/
+of degree four without creating a four-cycle.
+@isnad1 id=eq.8h7v.s7.a70386733bb4 from=translated src=- shape=b0997c82 vocab=cb25e83b
+-/
 theorem neighbor_edge_unique_of_degree_le_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -66,7 +70,9 @@ theorem neighbor_edge_unique_of_degree_le_three
 /-- There is at most one position at which a vertex of degree at most three
 can be inserted into a simple path in a graph with no four-cycle. A valid
 position means that both endpoints of that consecutive path edge are
-neighbors of the inserted vertex.-/
+neighbors of the inserted vertex.
+@isnad1 id=eq.9h8v.s7.8db7177c25dd from=translated src=- shape=96a14af6 vocab=fcfc27ad
+-/
 theorem path_triangle_insertion_index_unique
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -90,7 +96,9 @@ theorem path_triangle_insertion_index_unique
 
 /-- The unique-insertion restriction applies to cubic vertices of any
 minimal counterexample. It is a restriction on possible moves, not an
-existence theorem for a move or a contradiction.-/
+existence theorem for a move or a contradiction.
+@isnad1 id=eq.9h8v.s7.24d2d73cd285 from=translated src=- shape=c2e8ea5d vocab=f9864578
+-/
 theorem MinimalCounterexample.cubic_path_triangle_insertion_index_unique
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

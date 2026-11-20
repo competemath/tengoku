@@ -44,7 +44,9 @@ def shortConnectorWitness_of_connector
 
 /-- Equivalence of two presentations of supplied connector evidence: a
 `Connector`, or a `ShortConnectorWitness` with distinct prescribed endpoints.
-This equivalence does not establish either side from ambient graph conditions.-/
+This equivalence does not establish either side from ambient graph conditions.
+@isnad1 id=iff.0h5v.s5.7566efccf21b from=translated src=- shape=78883617 vocab=62a65c46
+-/
 theorem exists_connector_iff_shortConnectorWitness
   (H : PentagramEarHull G) {i₀ j₀ : Fin 5} :
     (∃ K : Connector H i₀ j₀, True) ↔

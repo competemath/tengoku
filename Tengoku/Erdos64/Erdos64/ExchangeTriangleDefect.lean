@@ -38,7 +38,9 @@ private theorem not_two_same_color_exchange_edges
 
 /-- At a vertex where two cycle unions agree on whether the vertex is
 isolated, two distinct exchange edges have opposite colors. Only the local
-ambient degree bound is needed.-/
+ambient degree bound is needed.
+@isnad1 id=iff.9h7v.s7.3e00c66ec6cb from=translated src=- shape=3a662c86 vocab=3aeabd4e
+-/
 theorem cycle_exchange_alternates_at_common_support
     {V : Type u} [Fintype V] {G H K : SimpleGraph V} [DecidableRel G.Adj]
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)
@@ -64,7 +66,9 @@ theorem cycle_exchange_alternates_at_common_support
 /-- A triangle in the exchange of two cycle unions in a subcubic union
 contains a support defect: a vertex used by exactly one cycle union.
 In particular, an exchange triangle cannot be supported entirely on the
-vertices common to both original cycles.-/
+vertices common to both original cycles.
+@isnad1 id=or.6h6v.s7.713ec356242f from=translated src=- shape=e737b428 vocab=98cd9fb4
+-/
 theorem cycle_exchange_triangle_has_support_defect
     {V : Type u} [Fintype V] {H K : SimpleGraph V}
     (hH : H.IsCycles) (hK : K.IsCycles)
@@ -91,7 +95,9 @@ theorem cycle_exchange_triangle_has_support_defect
 
 /-- To exclude triangles from an exchange, it is enough to exclude ambient
 triangles at the support defects. No restriction on triangles elsewhere in
-the ambient graph is imposed.-/
+the ambient graph is imposed.
+@isnad1 id=ne.7h6v.s7.728ddb52c683 from=translated src=- shape=c27e3757 vocab=5e7fabc5
+-/
 theorem cycle_exchange_no_triangles_of_support_defects
     {V : Type u} [Fintype V] {G H K : SimpleGraph V}
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)
@@ -120,7 +126,9 @@ theorem cycle_exchange_no_triangles_of_support_defects
 /-- The eight-edge criterion only needs the vertices whose cycle membership
 changes to lie on no ambient triangle. For cycles omitting one vertex each,
 these support defects are among the two omitted vertices. This theorem does
-not assert the existence of an eight-edge exchange or of suitable defects.-/
+not assert the existence of an eight-edge exchange or of suitable defects.
+@isnad1 id=haspower.7h4v.s7.a42a5b5f9eb1 from=translated src=- shape=272e075c vocab=5b07ba85
+-/
 theorem hasPowerOfTwoCycle_of_eight_edge_exchange_triangle_free_defects
     {V : Type u} [Fintype V] {G H K : SimpleGraph V}
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)
@@ -134,7 +142,9 @@ theorem hasPowerOfTwoCycle_of_eight_edge_exchange_triangle_free_defects
 
 /-- An eight-edge exchange between cycle unions with the same support
 forces a dyadic cycle without excluding ambient triangles. In the
-near-Hamiltonian setting this applies when both cycles omit the same vertex.-/
+near-Hamiltonian setting this applies when both cycles omit the same vertex.
+@isnad1 id=haspower.7h4v.s7.5a4aed7426a7 from=translated src=- shape=7cbe2e57 vocab=5b07ba85
+-/
 theorem hasPowerOfTwoCycle_of_eight_edge_exchange_same_support
     {V : Type u} [Fintype V] {G H K : SimpleGraph V}
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)

@@ -30,12 +30,18 @@ def bVertex (H : PentagramEarHull G) (i : Fin 5) : V := H.vertex (.inr (.inr i))
 def hull (H : PentagramEarHull G) : Set V :=
   Set.range H.cVertex ∪ Set.range H.aVertex ∪ Set.range H.bVertex
 
+/--
+@isnad1 id=injectiv.0h3v.s4.3b20ddfae6e0 from=translated src=- shape=fed30095 vocab=f0dd7dbd
+-/
 theorem cVertex_injective (H : PentagramEarHull G) : Function.Injective H.cVertex := by
   intro i j hij
   apply Sum.inl.inj
   apply H.vertex_injective
   simpa [cVertex] using hij
 
+/--
+@isnad1 id=injectiv.0h3v.s4.52bc7a81b5ca from=translated src=- shape=fed30095 vocab=0e139149
+-/
 theorem aVertex_injective (H : PentagramEarHull G) : Function.Injective H.aVertex := by
   intro i j hij
   apply Sum.inl.inj
@@ -43,6 +49,9 @@ theorem aVertex_injective (H : PentagramEarHull G) : Function.Injective H.aVerte
   apply H.vertex_injective
   simpa [aVertex] using hij
 
+/--
+@isnad1 id=injectiv.0h3v.s4.ded0fc217803 from=translated src=- shape=fed30095 vocab=47b62cf1
+-/
 theorem bVertex_injective (H : PentagramEarHull G) : Function.Injective H.bVertex := by
   intro i j hij
   apply Sum.inr.inj
@@ -50,6 +59,9 @@ theorem bVertex_injective (H : PentagramEarHull G) : Function.Injective H.bVerte
   apply H.vertex_injective
   simpa [bVertex] using hij
 
+/--
+@isnad1 id=injectiv.0h3v.s5.446c27f56dc3 from=translated src=- shape=c8dd401c vocab=5b8f8e3d
+-/
 theorem c_a_b_jointly_injective (H : PentagramEarHull G) :
     Function.Injective (fun x : Sum (Fin 5) (Sum (Fin 5) (Fin 5)) => H.vertex x) :=
   H.vertex_injective
@@ -82,6 +94,9 @@ structure HullReturn (H : PentagramEarHull G) (i₀ j₀ : Fin 5)
       (route.take route.length).reverse.support.tail
   first_steps_distinct : K.path.snd ≠ route.snd
 
+/--
+@isnad1 id=ex.0h7v.s6.732d0b544c19 from=translated src=- shape=3113917f vocab=ef89009c
+-/
 theorem cycle8_of_hull_return (H : PentagramEarHull G) (i₀ j₀ : Fin 5)
     (K : PentagramEarHull.Connector (G := G) H i₀ j₀)
     (R : PentagramEarHull.HullReturn H i₀ j₀ K) :

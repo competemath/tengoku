@@ -8,7 +8,9 @@ universe u
 
 /-- At a finite carrier with no boundary vertex other than `r`, the ambient
     neighbors of a retained vertex split into its carrier neighbors and the
-    possible single boundary neighbor `r`.-/
+    possible single boundary neighbor `r`.
+@isnad1 id=eq.3h5v.s7.4158602f86b7 from=translated src=- shape=1539b3d9 vocab=89653b76
+-/
 theorem internalDegree_add_root_indicator_eq_degree
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -54,7 +56,9 @@ theorem internalDegree_add_root_indicator_eq_degree
     _ = G.degree v := SimpleGraph.card_neighborFinset_eq_degree G v
 
 /-- Exact degree and boundary accounting for a carrier with two distinct
-    cubic ports and no other root-adjacent carrier vertices.-/
+    cubic ports and no other root-adjacent carrier vertices.
+@isnad1 id=and.5h6v.s8.3436cb3d39d6 from=translated src=- shape=2ddc45c8 vocab=bff50499
+-/
 theorem two_cubic_ports_boundary_accounting
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

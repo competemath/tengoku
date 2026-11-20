@@ -8,7 +8,9 @@ universe u
 
 /-- If a simple residual path contains the shared root internally, split it at
 that unique root occurrence.  The two simple pieces have positive length,
-concatenate back to the original path, and meet only at the root.-/
+concatenate back to the original path, and meet only at the root.
+@isnad1 id=ex.4h6v.s7.551ea745a045 from=translated src=- shape=70609aef vocab=12bf0817
+-/
 theorem residual_path_root_internal_split
     {V : Type u} {G : SimpleGraph V}
     [DecidableEq V] [DecidableRel G.Adj]
@@ -68,7 +70,9 @@ theorem residual_path_root_internal_split
 
 /-- A root-avoiding simple path cannot leave a closed side: once its
 start is in `D`, every support vertex remains in `D` because the only allowed
-boundary exit is the distinguished root.-/
+boundary exit is the distinguished root.
+@isnad1 id=mem.5h8v.s6.d7fc971e84b0 from=translated src=- shape=2a707bc8 vocab=3a369ae9
+-/
 theorem SimpleGraph.Walk.IsPath.support_subset_of_boundary_avoiding_root
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r u v : V} {p : G.Walk u v}
@@ -103,7 +107,9 @@ theorem SimpleGraph.Walk.IsPath.support_subset_of_boundary_avoiding_root
         exact ih hqpath hbD hrootq z hz
 
 /-- The interior of a positive path ending at the boundary root stays inside a
-closed side when its start lies in that side.-/
+closed side when its start lies in that side.
+@isnad1 id=mem.6h7v.s7.6c65f739208a from=translated src=- shape=eef84004 vocab=f3b3e00a
+-/
 theorem SimpleGraph.Walk.IsPath.dropLast_support_subset_of_boundary
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r u : V} {a : G.Walk u r}
@@ -124,7 +130,9 @@ theorem SimpleGraph.Walk.IsPath.dropLast_support_subset_of_boundary
 
 /-- The interior of a positive path starting at the boundary root stays inside
 a closed side when its end lies in that side; reverse the path to apply the
-preceding boundary argument.-/
+preceding boundary argument.
+@isnad1 id=mem.6h7v.s7.d3378de1d515 from=translated src=- shape=87a17762 vocab=10e01726
+-/
 theorem SimpleGraph.Walk.IsPath.tail_support_subset_of_boundary
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r v : V} {b : G.Walk r v}

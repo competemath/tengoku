@@ -40,7 +40,9 @@ def ExplicitHullRoute.toHullReturn
     first_steps_distinct := R.first_steps_distinct }
 
 /-- Consume the supplied route certificate to construct an eight-cycle.
-Existence of the hull, connector, and return route remains in the inputs.-/
+Existence of the hull, connector, and return route remains in the inputs.
+@isnad1 id=ex.0h7v.s6.a56422a2589f from=translated src=- shape=3113917f vocab=a9a5cd60
+-/
 theorem cycle8_of_explicit_hull_route
     (H : PentagramEarHull G) (i₀ j₀ : Fin 5)
     (K : PentagramEarHull.Connector (G := G) H i₀ j₀)

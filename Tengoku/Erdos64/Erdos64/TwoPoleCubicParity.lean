@@ -8,7 +8,9 @@ universe u
 
 /-- A finite cubic two-pole has an even number of carrier vertices.  The
 boundary consists of one edge at each of two distinct ports, so the induced
-edge count satisfies the exact cubic handshake equation.-/
+edge count satisfies the exact cubic handshake equation.
+@isnad1 id=and.5h6v.s8.276747714f20 from=translated src=- shape=d0b8ecd9 vocab=a7cf01f9
+-/
 theorem two_pole_cubic_even_order
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

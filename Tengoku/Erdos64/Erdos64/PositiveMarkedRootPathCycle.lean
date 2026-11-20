@@ -13,7 +13,9 @@ namespace Walk
 variable {V : Type u} {G : SimpleGraph V}
 
 /-- Two marked root edges and a simple root-avoiding positive path form a
-simple cycle. The length-one case is the explicit triangle case.-/
+simple cycle. The length-one case is the explicit triangle case.
+@isnad1 id=ex.6h6v.s6.677ad546d978 from=translated src=- shape=cc9a83bd vocab=c5275a75
+-/
 theorem exists_cycle_of_positive_marked_root_path
     {r a b : V} {q : G.Walk a b}
     (hq : q.IsPath)

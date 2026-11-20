@@ -16,12 +16,21 @@ def quotientVertexMap [DecidableEq V] : V → QuotientVertex a b :=
   fun v => if h : v = a ∨ v = b then none
     else some ⟨v, fun h' => h (Or.inl h'), fun h' => h (Or.inr h')⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.88f214c0d349 from=translated src=- shape=e25799eb vocab=48ff5883
+-/
 @[simp] theorem quotientVertexMap_a [DecidableEq V] :
     quotientVertexMap a b a = none := by simp [quotientVertexMap]
 
+/--
+@isnad1 id=eq.0h3v.s4.de3d1c65eb98 from=translated src=- shape=8cc66701 vocab=48ff5883
+-/
 @[simp] theorem quotientVertexMap_b [DecidableEq V] :
     quotientVertexMap a b b = none := by simp [quotientVertexMap]
 
+/--
+@isnad1 id=eq.0h4v.s5.8f7cf7dd483d from=translated src=- shape=ec854486 vocab=eb92d86b
+-/
 @[simp] theorem quotientVertexMap_internal [DecidableEq V] (v : Internal a b) :
     quotientVertexMap a b v.1 = some v := by
   simp [quotientVertexMap, v.2.1, v.2.2]
@@ -44,10 +53,16 @@ noncomputable instance quotient_decidableRel [DecidableRel G.Adj] :
     DecidableRel (terminalQuotientGraph G a b).Adj := by
   classical exact fun x y => Classical.propDecidable _
 
+/--
+@isnad1 id=iff.0h5v.s6.8bea22cef579 from=translated src=- shape=72cdcc9c vocab=1fc5624a
+-/
 @[simp] theorem quotient_adj_root_internal (v : Internal a b) :
     (terminalQuotientGraph G a b).Adj none (some v) ↔
       G.Adj a v.1 ∨ G.Adj b v.1 := Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s6.1ac9ed080740 from=translated src=- shape=228a1367 vocab=7b377674
+-/
 @[simp] theorem quotient_adj_internal_internal (v w : Internal a b) :
     (terminalQuotientGraph G a b).Adj (some v) (some w) ↔
       G.Adj v.1 w.1 := Iff.rfl
@@ -62,9 +77,15 @@ def internalEmbedding :
     exact Option.some.inj h
   map_rel_iff' := by intro v w; rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.c1904bf7764b from=translated src=- shape=0a705d4c vocab=0ae709cf
+-/
 @[simp] theorem internalEmbedding_apply (v : Internal a b) :
     internalEmbedding G a b v = some v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.aaceb953deba from=translated src=- shape=7779e478 vocab=e8475a9f
+-/
 theorem quotient_card_internal [DecidableEq V] [Fintype V] :
     Fintype.card (QuotientVertex a b) = Fintype.card (Internal a b) + 1 := by
   simp [QuotientVertex]
@@ -84,6 +105,9 @@ def rootNeighborEquiv :
     · rfl
   right_inv := by intro x; rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.76c0a6e2e761 from=translated src=- shape=e867d690 vocab=65aeb2d7
+-/
 theorem quotient_root_degree [DecidableEq V] [Fintype V] [DecidableRel G.Adj] :
     (terminalQuotientGraph G a b).degree none =
       Fintype.card {v : V // v ≠ a ∧ v ≠ b ∧ (G.Adj a v ∨ G.Adj b v)} := by
@@ -91,7 +115,9 @@ theorem quotient_root_degree [DecidableEq V] [Fintype V] [DecidableRel G.Adj] :
   exact Fintype.card_congr (rootNeighborEquiv G a b)
 
 /-- A simple internal path between distinct root neighbors gives a simple
-root cycle. The root-neighbor disjunction permits either terminal at each end.-/
+root cycle. The root-neighbor disjunction permits either terminal at each end.
+@isnad1 id=ex.5h7v.s7.675ec9a243cf from=translated src=- shape=7a6a1c6f vocab=fd77c325
+-/
 theorem root_cycle_of_internal_path
     (_hnadj : ¬ G.Adj a b)
     {x y : Internal a b}
@@ -128,7 +154,9 @@ theorem root_cycle_of_internal_path
     omega
   exact ⟨r.append s, hr.isCycle_append hs hdis (Or.inl hlong)⟩
 
-/-- The restricted quotient cycle has the expected root-plus-path length.-/
+/-- The restricted quotient cycle has the expected root-plus-path length.
+@isnad1 id=ex.5h7v.s8.5e5508806b22 from=translated src=- shape=7365e187 vocab=ba6c54e0
+-/
 theorem root_cycle_of_internal_path_length
     (_hnadj : ¬ G.Adj a b)
     {x y : Internal a b}
@@ -173,7 +201,9 @@ theorem root_cycle_of_internal_path_length
   simp only [s, SimpleGraph.Adj.length_toWalk]
 
 /-- In the opposite-attachment case, a root cycle corresponds to an a-b
-path through the same internal path.-/
+path through the same internal path.
+@isnad1 id=and.6h7v.s7.37272f41b3ce from=translated src=- shape=e55d8f05 vocab=fd77c325
+-/
 theorem root_cycle_correspondence (hab : a ≠ b) (hnadj : ¬ G.Adj a b)
     {x y : Internal a b}
     (p : (G.induce {v : V | v ≠ a ∧ v ≠ b}).Walk x y)
@@ -211,7 +241,9 @@ theorem root_cycle_correspondence (hab : a ≠ b) (hnadj : ¬ G.Adj a b)
 construct a quotient cycle and an ambient terminal path of length
 `p.length + 2`. This conclusion states the terminal-path length only;
 `root_cycle_of_internal_path_length` separately supplies a quotient cycle
-with the same length equation.-/
+with the same length equation.
+@isnad1 id=ex.6h7v.s8.68af78eba0e0 from=translated src=- shape=18a44610 vocab=ba6c54e0
+-/
 theorem root_cycle_correspondence_length (hab : a ≠ b) (hnadj : ¬ G.Adj a b)
     {x y : Internal a b}
     (p : (G.induce {v : V | v ≠ a ∧ v ≠ b}).Walk x y)
@@ -252,7 +284,9 @@ theorem root_cycle_correspondence_length (hab : a ≠ b) (hnadj : ¬ G.Adj a b)
   change (p.map i.toHom).length + 1 + 1 = p.length + 2
   rw [SimpleGraph.Walk.length_map]
 
-/-- Internal simple cycles survive the quotient through the internal embedding.-/
+/-- Internal simple cycles survive the quotient through the internal embedding.
+@isnad1 id=iscycle.1h6v.s8.c2afcd04b97e from=translated src=- shape=32bd9b61 vocab=8ad096c1
+-/
 theorem quotient_cycle_of_internal_cycle
     {x : Internal a b}
     (c : (G.induce {v : V | v ≠ a ∧ v ≠ b}).Walk x x)
@@ -287,6 +321,9 @@ private def quotientToNotBEquiv
     · dsimp
       simp [hxa]
 
+/--
+@isnad1 id=lt.1h3v.s6.750f62a7b7f7 from=translated src=- shape=09ae83d5 vocab=ea6c9eb5
+-/
 theorem terminalQuotient_card_lt
     {V : Type u} [Fintype V] [DecidableEq V] {a b : V} (hab : a ≠ b) :
     Fintype.card (QuotientVertex a b) < Fintype.card V := by
@@ -391,7 +428,9 @@ private theorem terminalQuotient_internal_degree_ge_three
 /-- Identifying two nonadjacent terminals preserves minimum degree when no
     internal vertex is adjacent to both terminals.  The hypothesis is
     explicit: terminal identification otherwise merges two neighbors and can
-    lower an internal degree by one.-/
+    lower an internal degree by one.
+@isnad1 id=le.4h4v.s7.8352ce28ec62 from=translated src=- shape=ed768f75 vocab=6894df76
+-/
 theorem terminalQuotient_minDegree_ge_three
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
@@ -410,7 +449,9 @@ theorem terminalQuotient_minDegree_ge_three
 
 /-- In a minimal counterexample, the safe terminal quotient must itself
     contain a dyadic cycle.  This is the maximal conclusion available before
-    solving the quotient-cycle lifting obstruction.-/
+    solving the quotient-cycle lifting obstruction.
+@isnad1 id=haspower.4h4v.s6.5f0042eab771 from=translated src=- shape=00f0d49d vocab=c4dc006a
+-/
 theorem MinimalCounterexample.terminalQuotient_hasPowerOfTwoCycle
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

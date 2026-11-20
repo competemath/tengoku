@@ -9,7 +9,9 @@ universe u
 /-- Criticality applied to the complement of a root-deleted component forces
     the component to carry almost all of the root's degree.  The first
     conjunct is the connectedness attachment, and the second is the exact
-    criticality lower bound on the attachment count.-/
+    criticality lower bound on the attachment count.
+@isnad1 id=and.6h4v.s7.e137d00aef3b from=translated src=- shape=e5a56536 vocab=c339c36d
+-/
 theorem component_attachment_lower_bound
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

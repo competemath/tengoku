@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- The attachment finsets of the actual root-deleted components have total
-    cardinality equal to the degree of the deleted root.-/
+    cardinality equal to the degree of the deleted root.
+@isnad1 id=eq.0h3v.s7.9c829fb4c170 from=translated src=- shape=d5833c03 vocab=d1ab81e4
+-/
 theorem rootDeletedComponentAttachments_sum_card
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V) :

@@ -53,7 +53,9 @@ private theorem cubicTwoTerminalCompletion_isCycle
     · exact hb (hzb ▸ hzq)
   exact hp.isCycle_append hq.reverse htails (Or.inl hlong)
 
-/-- The supplied two paths form the completion cycle, with its exact length.-/
+/-- The supplied two paths form the completion cycle, with its exact length.
+@isnad1 id=and.0h3v.s7.28610d203c75 from=translated src=- shape=37a58800 vocab=f638798d
+-/
 theorem CubicTwoTerminalCompletion.completion_cycle
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -66,7 +68,9 @@ theorem CubicTwoTerminalCompletion.completion_cycle
   simp only [SimpleGraph.Walk.length_append, SimpleGraph.Walk.length_reverse]
 
 /-- A dyadic completion cycle traversing the supplied gadget yields the exact
-    terminal-path length equation.  This is only a bookkeeping implication.-/
+    terminal-path length equation.  This is only a bookkeeping implication.
+@isnad1 id=eq.1h4v.s7.c7035bdc24d4 from=translated src=- shape=b34e256f vocab=d9221a1c
+-/
 theorem CubicTwoTerminalCompletion.terminal_length_equation
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]

@@ -35,7 +35,9 @@ private theorem degree_two_neighbor_description
 
 /-- Suppressing two adjacent degree-two terminals repairs all degrees. A
 dyadic cycle in the smaller suppressed graph supplies a terminal path one
-edge longer than a power of two in the original graph.-/
+edge longer than a power of two in the original graph.
+@isnad1 id=ex.10h8v.s7.ff872fc995a2 from=translated src=- shape=5442b353 vocab=ebf90c69
+-/
 theorem MinimalCounterexample.adjacent_two_defect_pow_two_add_one_path
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -148,7 +150,9 @@ theorem MinimalCounterexample.adjacent_two_defect_pow_two_add_one_path
 
 /-- Degree-two adjacent terminals with no common neighbor force a path one
 edge beyond a dyadic length. The no-common-neighbor condition rules out the
-isolated-triangle obstruction and lets both suppressions preserve degrees.-/
+isolated-triangle obstruction and lets both suppressions preserve degrees.
+@isnad1 id=ex.8h6v.s8.f50c7bd82a51 from=translated src=- shape=61fc1628 vocab=ebf90c69
+-/
 theorem MinimalCounterexample.adjacent_degree_two_ports_pow_two_add_one_path
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

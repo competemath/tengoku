@@ -38,12 +38,21 @@ def rotateHull (H : PentagramEarHull G) (k : Fin 5) : PentagramEarHull G where
   shifted_ab_adj i := by
     simpa only [rotateVertexIndex, rotate5_add_two] using H.shifted_ab_adj (rotate5 k i)
 
+/--
+@isnad1 id=eq.0h5v.s5.7de0d4a638ec from=translated src=- shape=ff71d7b9 vocab=25241458
+-/
 @[simp] theorem rotateHull_cVertex (H : PentagramEarHull G) (k i : Fin 5) :
     cVertex (rotateHull H k) i = cVertex H (rotate5 k i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0dbbc6983e47 from=translated src=- shape=ff71d7b9 vocab=e0eacb6c
+-/
 @[simp] theorem rotateHull_aVertex (H : PentagramEarHull G) (k i : Fin 5) :
     aVertex (rotateHull H k) i = aVertex H (rotate5 k i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.dd8240a25b41 from=translated src=- shape=ff71d7b9 vocab=e2d87326
+-/
 @[simp] theorem rotateHull_bVertex (H : PentagramEarHull G) (k i : Fin 5) :
     bVertex (rotateHull H k) i = bVertex H (rotate5 k i) := rfl
 
@@ -57,6 +66,9 @@ private theorem range_comp_rotate5 {W : Type u} (f : Fin 5 -> W) (k : Fin 5) :
     obtain ⟨j, hj⟩ := (rotate5_bijective k).2 i
     exact ⟨j, by simpa only [hj] using hi⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.0f9883f9710f from=translated src=- shape=05ecf525 vocab=db46b3ae
+-/
 theorem hull_rotateHull (H : PentagramEarHull G) (k : Fin 5) :
     hull (rotateHull H k) = hull H := by
   change
@@ -78,6 +90,9 @@ def Connector.rotateIndices (H : PentagramEarHull G) (k i j : Fin 5)
     intro v hv hh
     exact K.interior_disjoint v hv (by rwa [hull_rotateHull] at hh)
 
+/--
+@isnad1 id=eq.0h7v.s6.ed0d5c4ef749 from=translated src=- shape=e106d802 vocab=9f988664
+-/
 @[simp] theorem Connector.rotateIndices_path
     (H : PentagramEarHull G) (k i j : Fin 5)
     (K : Connector H (rotate5 k i) (rotate5 k j)) :
@@ -94,7 +109,9 @@ def HullReturn.ofRotateIndices (H : PentagramEarHull G) (k i j : Fin 5)
   route_disjoint := R.route_disjoint
   first_steps_distinct := R.first_steps_distinct
 
-/-- Every connector admits rotation-only normalization to `0,d`, `d != 0`.-/
+/-- Every connector admits rotation-only normalization to `0,d`, `d != 0`.
+@isnad1 id=ex.0h6v.s6.e0b55e4f553c from=translated src=- shape=a46d1f63 vocab=bb12144f
+-/
 theorem exists_rotated_connector (H : PentagramEarHull G) {i j : Fin 5}
     (K : Connector H i j) :
     ∃ d : Fin 5, d ≠ 0 ∧ Nonempty (Connector (rotateHull H i) 0 d) := by

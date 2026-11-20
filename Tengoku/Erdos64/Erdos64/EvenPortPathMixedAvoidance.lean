@@ -10,7 +10,9 @@ universe u
 /-- In an all-odd-degree cut side, an even simple port path whose vertices
 are cubic has a fresh dyadic or dyadic-successor ear avoiding any specified
 path vertex. An odd-order off-path component is produced, so no component
-witness or boundary-cardinality hypothesis is required.-/
+witness or boundary-cardinality hypothesis is required.
+@isnad1 id=ex.11h9v.s9.15e5ef578b88 from=translated src=- shape=4658971a vocab=809fcb3a
+-/
 theorem MinimalCounterexample.rootDeleted_even_port_path_mixed_ear_avoiding_vertex
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

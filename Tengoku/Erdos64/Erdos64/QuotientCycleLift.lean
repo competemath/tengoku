@@ -12,6 +12,9 @@ The internal part of a terminal quotient embeds back into the ambient graph.
 This is the missing transport needed to distinguish quotient cycles that use
 the identified terminal from cycles that were already present internally.
 -/
+/--
+@isnad1 id=ex.2h6v.s7.ceab46b419c0 from=translated src=- shape=9d632b2a vocab=eda80154
+-/
 theorem quotient_cycle_lift_of_avoids_none
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -79,6 +82,9 @@ theorem quotient_cycle_lift_of_avoids_none
 /- A path in the quotient that avoids the identified terminal lifts to the
 ambient graph, while retaining which original terminal is adjacent at each
 endpoint. -/
+/--
+@isnad1 id=ex.4h7v.s7.62b1e288bda4 from=translated src=- shape=6b3ee5f2 vocab=b94571f6
+-/
 theorem quotient_path_lift_of_avoids_none
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -189,6 +195,9 @@ theorem quotient_path_lift_of_avoids_none
 /- A dyadic quotient cycle through the identified terminal either lifts to an
 ambient dyadic cycle or exposes an opposite-port path with the exact residual
 length. -/
+/--
+@isnad1 id=or.4h7v.s8.3649b6ef7c9c from=translated src=- shape=9ee49c54 vocab=aeebf9fa
+-/
 theorem quotient_dyadic_cycle_through_none_lift_or_cross_path
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -276,6 +285,9 @@ theorem quotient_dyadic_cycle_through_none_lift_or_cross_path
 
 /- Minimality forces the quotient-cycle alternative to land in the
 opposite-port residual path branch whenever the ambient graph is dyadic-free. -/
+/--
+@isnad1 id=ex.4h4v.s7.09eacacb60d0 from=translated src=- shape=c18035a5 vocab=8896c3cb
+-/
 theorem MinimalCounterexample.nonadjacent_terminal_cross_path
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -311,6 +323,9 @@ theorem MinimalCounterexample.nonadjacent_terminal_cross_path
 /- The same residual-path certificate remains available when the two
    terminals share a common internal vertex, provided every such common
    vertex has degree at least four. -/
+/--
+@isnad1 id=ex.4h4v.s7.848c6b85f4bc from=translated src=- shape=dddad306 vocab=ece15bbb
+-/
 theorem MinimalCounterexample.nonadjacent_terminal_cross_path_of_common_degree_ge_four
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

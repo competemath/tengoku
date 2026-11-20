@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Two adjacent root-attached ports yield a certified 4-cycle when their
-    explicitly supplied third neighbors coincide or are adjacent.-/
+    explicitly supplied third neighbors coincide or are adjacent.
+@isnad1 id=haspower.13h7v.s6.0cc857ad2172 from=translated src=- shape=892d7f65 vocab=6d261217
+-/
 theorem hasPowerOfTwoCycle_of_adjacent_two_port_third_neighbors
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -8,7 +8,9 @@ universe u
 
 /-- A degree-four root with a two-attachment lower bound on every actual
     root-deleted component has exactly two components, each with two ports,
-    once two distinct components are present.-/
+    once two distinct components are present.
+@isnad1 id=ex.3h3v.s8.e0b1746f19dd from=translated src=- shape=c8bc7adb vocab=7cdd21a6
+-/
 theorem exact_two_rootDeletedComponents_two_ports
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)

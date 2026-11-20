@@ -10,7 +10,9 @@ namespace Erdos64
 universe u
 
 /-- Close a nontrivial simple path through a fresh vertex, using that vertex
-as the basepoint of the resulting simple cycle.-/
+as the basepoint of the resulting simple cycle.
+@isnad1 id=ex.5h6v.s6.45ac2e88f3fc from=translated src=- shape=c2a8214f vocab=c6aebbca
+-/
 theorem cycle_based_at_fresh_vertex
     {W : Type u} {H : SimpleGraph W} {x a b : W}
     (p : H.Walk a b) (hp : p.IsPath) (hab : a ≠ b)
@@ -32,7 +34,9 @@ theorem cycle_based_at_fresh_vertex
 
 /-- Suppress one degree-two port and double at the other possible defect.
 Minimality forces an odd cycle through the suppressed port whose length is
-one more than a power of two. The triangle case has exponent one.-/
+one more than a power of two. The triangle case has exponent one.
+@isnad1 id=ex.7h6v.s8.4a32eb49d223 from=translated src=- shape=fa8ab34e vocab=0f0d37b2
+-/
 theorem MinimalCounterexample.two_defect_port_dyadic_successor_cycle
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

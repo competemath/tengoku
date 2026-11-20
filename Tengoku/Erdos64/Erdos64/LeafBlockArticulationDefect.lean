@@ -10,7 +10,9 @@ universe u
     minimum internal degree three at its articulation vertex in a
     subgraph-critical graph.  The closure premise is deliberately stated for
     every non-root carrier vertex, so the conclusion records the actual
-    defect at `root` rather than an abstract carrier existence claim.-/
+    defect at `root` rather than an abstract carrier existence claim.
+@isnad1 id=le.7h4v.s7.d5895a6aa8eb from=translated src=- shape=310b39f2 vocab=aaa21096
+-/
 theorem leafBlock_articulation_internalDegree_le_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

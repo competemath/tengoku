@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- Internal degree is unchanged when a finite carrier in an induced graph is
-viewed as a finite carrier in the ambient graph.-/
+viewed as a finite carrier in the ambient graph.
+@isnad1 id=eq.0h5v.s7.4e502b008033 from=translated src=- shape=13a1f16e vocab=98dfb97c
+-/
 theorem internalDegree_induce_map
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -69,7 +71,9 @@ private theorem two_degenerate_edge_bound_aux (n : ℕ) :
     omega
 
 /-- A finite graph with a vertex of internal degree at most two in every
-nonempty induced carrier has at most `2n - 3` edges when `n ≥ 2`.-/
+nonempty induced carrier has at most `2n - 3` edges when `n ≥ 2`.
+@isnad1 id=le.2h2v.s6.f00601049bb4 from=translated src=- shape=a9b5337e vocab=e9f70d42
+-/
 theorem two_degenerate_edge_bound
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -80,7 +84,9 @@ theorem two_degenerate_edge_bound
   two_degenerate_edge_bound_aux (Fintype.card V) G rfl hlow hn
 
 /-- Carrier form of the sharp two-degenerate edge bound.  The low-degree
-hypothesis is required only for nonempty subcarriers of `S`.-/
+hypothesis is required only for nonempty subcarriers of `S`.
+@isnad1 id=le.2h3v.s8.87cd1583bbb8 from=translated src=- shape=d0f74566 vocab=d1498f34
+-/
 theorem two_degenerate_induce_edge_bound
     {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]

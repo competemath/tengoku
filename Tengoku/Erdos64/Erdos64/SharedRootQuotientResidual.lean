@@ -8,7 +8,9 @@ universe u
 
 /-- In a dyadic-free graph, two distinct ports sharing a root have no other
 common neighbor: such a vertex would make a 4-cycle through the root.
-Despite the historical name, the ports need not be nonadjacent.-/
+Despite the historical name, the ports need not be nonadjacent.
+@isnad1 id=eq.8h6v.s6.e9ef9835e19e from=translated src=- shape=977c2d71 vocab=b8f8c50f
+-/
 theorem MinimalCounterexample.common_neighbor_eq_root_of_nonadjacent_ports
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -53,7 +55,9 @@ theorem MinimalCounterexample.common_neighbor_eq_root_of_nonadjacent_ports
 
 /-- The shared-root quotient residual path must attach to both ports away from
 the shared root.  If either endpoint attached through the root, the residual
-path itself would close with that port to a forbidden dyadic cycle.-/
+path itself would close with that port to a forbidden dyadic cycle.
+@isnad1 id=ex.6h5v.s7.e77911ce830e from=translated src=- shape=5eb24010 vocab=ece15bbb
+-/
 theorem MinimalCounterexample.shared_root_quotient_residual_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

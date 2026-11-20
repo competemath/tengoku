@@ -36,7 +36,9 @@ private theorem terminal_pair_isCycle
 
 /-- Three simple paths with common terminals and pairwise-disjoint interiors
 give three explicit simple cycles. Their lengths are the pairwise path-length
-sums, and their support lists are specified exactly. No dyadicity is asserted.-/
+sums, and their support lists are specified exactly. No dyadicity is asserted.
+@isnad1 id=and.9h7v.s9.aa4fcce11926 from=translated src=- shape=bc6d6aa8 vocab=577a22c5
+-/
 theorem three_terminal_paths_cycle_spectrum
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (p q t : G.Walk a b)
@@ -63,7 +65,9 @@ theorem three_terminal_paths_cycle_spectrum
       SimpleGraph.Walk.support_append, SimpleGraph.Walk.support_reverse]
 
 /-- Two internally disjoint terminal paths of the same dyadic length already
-form a forbidden cycle of the next dyadic length.-/
+form a forbidden cycle of the next dyadic length.
+@isnad1 id=false.8h7v.s7.ec4ae35fe510 from=translated src=- shape=831183df vocab=845a8c80
+-/
 theorem false_of_equal_dyadic_terminal_paths
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (hno : ¬ HasPowerOfTwoCycle G)
@@ -85,7 +89,9 @@ theorem false_of_equal_dyadic_terminal_paths
 /-- In a graph with no required cycle, three internally disjoint terminal
 paths cannot realize a dyadic length either through the common root or by
 pairing two of the routes. This is the obstruction form used by descent
-arguments; it asserts non-dyadicity rather than assuming a dyadic route.-/
+arguments; it asserts non-dyadicity rather than assuming a dyadic route.
+@isnad1 id=and.16h8v.s9.caed1618577f from=translated src=- shape=46d6ac8e vocab=e92f7918
+-/
 theorem three_terminal_paths_no_dyadic_lengths
     {V : Type u} {G : SimpleGraph V} {r a b : V}
     (hno : ¬ HasPowerOfTwoCycle G)
@@ -147,7 +153,9 @@ theorem three_terminal_paths_no_dyadic_lengths
 
 /-- A simple path of length greater than one together with a terminal edge
 forms a simple cycle. This is the edge-route case omitted by the
-three-long-path spectrum lemma.-/
+three-long-path spectrum lemma.
+@isnad1 id=ex.3h5v.s6.984658efe9d9 from=translated src=- shape=27eb734d vocab=ffb57321
+-/
 theorem terminal_path_edge_cycle
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (p : G.Walk a b)
@@ -165,7 +173,9 @@ theorem terminal_path_edge_cycle
 
 /-- A path between third neighbors, together with the two connector edges,
 gives an `a -> b` route. If `a-b` is also an edge, this route closes to a
-cycle whose length is the third-neighbor path length plus three.-/
+cycle whose length is the third-neighbor path length plus three.
+@isnad1 id=ex.7h7v.s6.6fca48ec6874 from=translated src=- shape=4fc387fc vocab=c6aebbca
+-/
 theorem connector_path_edge_cycle
     {V : Type u} {G : SimpleGraph V}
     {a b z w : V} {p : G.Walk z w}

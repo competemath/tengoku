@@ -8,7 +8,9 @@ universe u
 
 /-- Three distinct boundary ports can be extracted from an explicit finite
 boundary-neighbor set.  The carrier and boundary conditions are exposed
-pointwise so this is a premise-producing lemma rather than a forcing claim.-/
+pointwise so this is a premise-producing lemma rather than a forcing claim.
+@isnad1 id=ex.2h4v.s8.3c1bb0e7714f from=translated src=- shape=0fd6c1e2 vocab=ecd5054e
+-/
 theorem exists_three_distinct_boundary_attachments
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

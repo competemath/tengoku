@@ -8,7 +8,9 @@ universe u
 
 /-- A root-deleted component with exactly two attachments supplies distinct
     root-attached endpoints and an ambient simple path contained in its carrier.
-    The path has positive length; adjacent ports may still give length one.-/
+    The path has positive length; adjacent ports may still give length one.
+@isnad1 id=ex.1h4v.s7.79a92aaf0d1c from=translated src=- shape=17d66bbf vocab=b8e86835
+-/
 theorem rootDeletedComponent_twoPort_path
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

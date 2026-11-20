@@ -12,7 +12,9 @@ The original route is `prefix ++ segment ++ suffix`; the ear has the same
 endpoints as `segment`.  The support hypotheses are intentionally stated at
 the level needed by the path and cycle constructors.  In particular, this
 lemma does not infer an ear from connectivity or assert any equal-length
-rerouting.-/
+rerouting.
+@isnad1 id=ex.10h10v.s8.4581ac04afa4 from=translated src=- shape=670c5456 vocab=a2c64cca
+-/
 theorem terminal_path_reroute_of_ear
     {V : Type u} {G : SimpleGraph V}
     {a b x y : V}

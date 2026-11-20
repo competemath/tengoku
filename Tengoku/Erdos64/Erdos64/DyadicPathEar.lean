@@ -18,7 +18,9 @@ private theorem path_start_not_mem_tail
 simplicity and produces the segment-ear cycle. A single simplicity hypothesis
 on the original path and a single intersection condition supply all the
 support disjointness needed for both constructions. No ear existence or
-length relation is inferred.-/
+length relation is inferred.
+@isnad1 id=and.5h10v.s7.8a606dba849e from=translated src=- shape=8cbb7b70 vocab=8d2ae70d
+-/
 theorem terminal_path_reroute_of_fresh_ear
     {V : Type u} {G : SimpleGraph V} {a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)
@@ -90,7 +92,9 @@ theorem terminal_path_reroute_of_fresh_ear
 
 /-- A fresh ear that shortens a dyadic terminal path by exactly two edges
 forces a dyadic cycle through the common root. The original path and ear
-must both avoid that root.-/
+must both avoid that root.
+@isnad1 id=haspower.10h12v.s8.a95e6b11edce from=translated src=- shape=6b02ba3e vocab=b19b733c
+-/
 theorem hasPowerOfTwoCycle_of_two_edge_shortening_ear
     {V : Type u} {G : SimpleGraph V} {r a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)
@@ -134,7 +138,9 @@ theorem hasPowerOfTwoCycle_of_two_edge_shortening_ear
   exact ⟨k, a, cycle, hk, hcycle, hcyclelength.trans hlength⟩
 
 /-- The local ear cycle is already forbidden whenever the replaced segment
-and ear lengths sum to a power of two.-/
+and ear lengths sum to a power of two.
+@isnad1 id=haspower.6h11v.s7.c7c951b7b788 from=translated src=- shape=16d774cb vocab=6a593c44
+-/
 theorem hasPowerOfTwoCycle_of_dyadic_fresh_ear
     {V : Type u} {G : SimpleGraph V} {a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)

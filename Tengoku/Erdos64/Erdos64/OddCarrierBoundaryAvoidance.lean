@@ -36,7 +36,9 @@ private theorem boundary_card_even_of_odd_degrees_after_one_loss
 /-- An odd-order carrier whose ambient degrees are all odd admits a fresh
 ear avoiding any specified outside vertex, provided outside attachments
 are injective and the carrier is sufficiently small. The ear length is a
-power of two or one more than a power of two.-/
+power of two or one more than a power of two.
+@isnad1 id=ex.8h5v.s8.698130e8ef8d from=translated src=- shape=5a1f8991 vocab=2ebdffbd
+-/
 theorem MinimalCounterexample.odd_carrier_mixed_ear_avoiding_attachment
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

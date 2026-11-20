@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- A nonempty side no larger than its disjoint remainder has strict rooted
-doubling order.-/
+doubling order.
+@isnad1 id=lt.4h3v.s6.8c3536c32240 from=translated src=- shape=bc52fcb9 vocab=227e5c34
+-/
 theorem strict_size_of_disjoint_remainder
     {V : Type u} [Fintype V] [DecidableEq V]
     (D E : Finset V)

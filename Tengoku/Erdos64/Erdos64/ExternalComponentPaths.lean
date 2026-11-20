@@ -6,6 +6,9 @@ namespace Erdos64
 
 universe u
 
+/--
+@isnad1 id=mem.4h9v.s6.2725ffc64458 from=translated src=- shape=acdd1fe4 vocab=10d106e7
+-/
 theorem mem_externalComponent_of_mem_support
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x a b : V} (hx : x ∉ C.support)
@@ -45,6 +48,9 @@ theorem mem_externalComponent_of_mem_support
           exact hzq
   exact aux p ha hp hz
 
+/--
+@isnad1 id=ex.3h7v.s6.8cb852759b49 from=translated src=- shape=2700a320 vocab=10d106e7
+-/
 theorem externalComponent_exists_walk
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x a b : V} (hx : x ∉ C.support)
@@ -57,6 +63,9 @@ theorem externalComponent_exists_walk
   intro v hv
   exact mem_externalComponent_of_mem_support hx ha p hp hv
 
+/--
+@isnad1 id=connecte.1h5v.s5.b26bb7456342 from=translated src=- shape=05acf217 vocab=d7b41c4e
+-/
 theorem externalComponent_connected
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x : V} (hx : x ∉ C.support) :

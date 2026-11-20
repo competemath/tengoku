@@ -28,19 +28,30 @@ instance boundaryRootGraph_decidableRel
   intro v w
   cases v <;> cases w <;> dsimp [boundaryRootGraph] <;> infer_instance
 
+/--
+@isnad1 id=iff.0h5v.s4.55e36b149b6b from=translated src=- shape=8527b0c2 vocab=2d6b255e
+-/
 @[simp] theorem boundaryRootGraph_adj_some_some
     {W : Type u} (H : SimpleGraph W) (B : Finset W) (v w : W) :
     (boundaryRootGraph H B).Adj (some v) (some w) ↔ H.Adj v w := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.867269c588c9 from=translated src=- shape=05d889c6 vocab=6dde12c0
+-/
 @[simp] theorem boundaryRootGraph_adj_none_some
     {W : Type u} (H : SimpleGraph W) (B : Finset W) (w : W) :
     (boundaryRootGraph H B).Adj none (some w) ↔ w ∈ B := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.d4c8ee169f41 from=translated src=- shape=ffd51d49 vocab=6dde12c0
+-/
 @[simp] theorem boundaryRootGraph_adj_some_none
     {W : Type u} (H : SimpleGraph W) (B : Finset W) (w : W) :
     (boundaryRootGraph H B).Adj (some w) none ↔ w ∈ B := Iff.rfl
 
-/-- Each boundary vertex gains exactly one new neighbor.-/
+/-- Each boundary vertex gains exactly one new neighbor.
+@isnad1 id=eq.0h4v.s7.a492ec0aa992 from=translated src=- shape=566d21b2 vocab=62b3c1e0
+-/
 theorem boundaryRootGraph_degree_some
     {W : Type u} [Fintype W] [DecidableEq W]
     (H : SimpleGraph W) [DecidableRel H.Adj] (B : Finset W) (w : W) :
@@ -64,7 +75,9 @@ theorem boundaryRootGraph_degree_some
       SimpleGraph.card_neighborFinset_eq_degree]
     simp [hw]
 
-/-- The added root has one neighbor for each boundary vertex.-/
+/-- The added root has one neighbor for each boundary vertex.
+@isnad1 id=eq.0h3v.s6.12c1ff7477a7 from=translated src=- shape=6ba478ad vocab=7c5fafba
+-/
 theorem boundaryRootGraph_degree_none
     {W : Type u} [Fintype W] [DecidableEq W]
     (H : SimpleGraph W) [DecidableRel H.Adj] (B : Finset W) :
@@ -95,12 +108,17 @@ def boundaryRootDeletedIso
       | none => exact (hw rfl).elim
       | some b => rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.7ce233c2cf46 from=translated src=- shape=8ef23752 vocab=daa874ab
+-/
 @[simp] theorem boundaryRootDeletedIso_some
     {W : Type u} (H : SimpleGraph W) (B : Finset W) (w : W) :
     boundaryRootDeletedIso H B ⟨some w, by simp⟩ = w := rfl
 
 /-- A cycle avoiding the added root projects to an original simple cycle,
-without changing its length.-/
+without changing its length.
+@isnad1 id=ex.2h5v.s6.d6aa9731a1a0 from=translated src=- shape=b8366dea vocab=477533cc
+-/
 theorem boundaryRoot_cycle_avoiding_root
     {W : Type u} {H : SimpleGraph W} {B : Finset W} {v : Option W}
     (c : (boundaryRootGraph H B).Walk v v) (hc : c.IsCycle)

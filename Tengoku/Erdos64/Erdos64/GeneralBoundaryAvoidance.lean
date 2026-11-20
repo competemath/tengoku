@@ -9,7 +9,9 @@ universe u
 /-- Four boundary vertices allow a fresh dyadic ear avoiding an outside
 vertex with at most one carrier neighbor. No bound on the other external
 incidences of carrier vertices is needed: two permitted external neighbors
-already give a two-edge ear.-/
+already give a two-edge ear.
+@isnad1 id=ex.7h6v.s8.dd0906db3f42 from=translated src=- shape=05b2d139 vocab=7a53d3f1
+-/
 theorem MinimalCounterexample.small_carrier_dyadic_ear_avoiding_unique_attachment
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

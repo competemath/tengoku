@@ -27,7 +27,9 @@ private theorem isCycles_neighborFinset_card_zero_or_two
 /-- In a subcubic graph, the symmetric difference of two unions of cycles
 is again a union of cycles, still contained in the ambient graph. The cycle
 unions need not cover the same vertices. Connectedness of the result is not
-asserted: an exchange may produce several disjoint cycles.-/
+asserted: an exchange may produce several disjoint cycles.
+@isnad1 id=and.5h4v.s6.3c0d6cc1fb55 from=translated src=- shape=989df8e1 vocab=5c3e71a8
+-/
 theorem subcubic_isCycles_symmDiff
     {V : Type u} [Fintype V] {G H K : SimpleGraph V} [DecidableRel G.Adj]
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)
@@ -66,7 +68,9 @@ theorem subcubic_isCycles_symmDiff
   omega
 
 /-- Only the union of the two cycle graphs needs to be subcubic. The ambient
-graph may have larger degrees at vertices unused by their union.-/
+graph may have larger degrees at vertices unused by their union.
+@isnad1 id=iscycles.3h3v.s6.f2d2d241724c from=translated src=- shape=82612842 vocab=028a77cf
+-/
 theorem isCycles_symmDiff_of_sup_degree_le_three
     {V : Type u} [Fintype V] {H K : SimpleGraph V}
     (hH : H.IsCycles) (hK : K.IsCycles)
@@ -77,7 +81,9 @@ theorem isCycles_symmDiff_of_sup_degree_le_three
 
 /-- Every nontrivial connected component of a subcubic cycle exchange is
 the vertex set of an actual simple cycle. This permits inspecting exchange
-components without assuming the entire exchange remains connected.-/
+components without assuming the entire exchange remains connected.
+@isnad1 id=ex.7h6v.s7.e8192b998c1d from=translated src=- shape=05e3770c vocab=e43cec99
+-/
 theorem subcubic_cycle_exchange_component
     {V : Type u} [Fintype V] {G H K : SimpleGraph V}
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)
@@ -89,7 +95,9 @@ theorem subcubic_cycle_exchange_component
     (subcubic_isCycles_symmDiff hHG hKG hH hK hdegree).1 hv hnonempty
 
 /-- Removing all edges of one simple cycle from a union of cycles leaves a
-union of cycles. Every vertex on the removed cycle becomes isolated.-/
+union of cycles. Every vertex on the removed cycle becomes isolated.
+@isnad1 id=iscycles.2h4v.s5.c85adf211f05 from=translated src=- shape=106b34ca vocab=824a1f85
+-/
 theorem isCycles_sdiff_cycle
     {V : Type u} [Fintype V] {G : SimpleGraph V}
     (hG : G.IsCycles) {v : V} (p : G.Walk v v) (hp : p.IsCycle) :
@@ -120,7 +128,9 @@ private theorem exists_cycle_of_isCycles_ne_bot
 
 /-- An eight-edge union of cycles containing no triangle has a cycle of
 length four or eight, hence a power-of-two cycle. This counts all exchange
-components, rather than assuming that an eight-edge exchange is connected.-/
+components, rather than assuming that an eight-edge exchange is connected.
+@isnad1 id=haspower.3h2v.s6.61b33352afa9 from=translated src=- shape=f45e61d5 vocab=9657bce2
+-/
 theorem hasPowerOfTwoCycle_of_isCycles_eight_edges_no_triangles
     {V : Type u} [Fintype V] {G : SimpleGraph V}
     (hG : G.IsCycles) (hedges : G.edgeFinset.card = 8)
@@ -167,7 +177,9 @@ theorem hasPowerOfTwoCycle_of_isCycles_eight_edges_no_triangles
 
 /-- An eight-edge exchange between cycle unions forces a dyadic cycle when
 the union is subcubic and the exchanged edges contain no triangle. The
-ambient graph need not itself be subcubic or triangle-free.-/
+ambient graph need not itself be subcubic or triangle-free.
+@isnad1 id=haspower.7h4v.s7.fa1d2330499a from=translated src=- shape=67e24ce5 vocab=68a90652
+-/
 theorem hasPowerOfTwoCycle_of_eight_edge_cycle_exchange
     {V : Type u} [Fintype V] {G H K : SimpleGraph V}
     (hHG : H ≤ G) (hKG : K ≤ G) (hH : H.IsCycles) (hK : K.IsCycles)

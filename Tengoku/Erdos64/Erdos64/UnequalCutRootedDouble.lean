@@ -15,6 +15,9 @@ its ambient degree, while the shared root receives two copies of its internal
 side degree.  The rooted-double localization theorem then transfers every
 simple cycle back to the ambient graph with the same length.
 -/
+/--
+@isnad1 id=false.7h5v.s7.b06f5437b052 from=translated src=- shape=edcd6b86 vocab=f937f190
+-/
 theorem MinimalCounterexample.false_of_unequal_cut_root_partition
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

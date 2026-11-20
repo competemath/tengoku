@@ -35,6 +35,9 @@ def degreeThreeTwoHighNeighbors : Finset V :=
     (fun v => (highDegreeNeighbors G v).card = 2)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=ex.0h3v.s7.a6460507ae9e from=translated src=- shape=26584066 vocab=4bbdf994
+-/
 theorem highDegreeAuxGraph_edge_has_connector (e : (highDegreeAuxGraph G).edgeSet) :
     ∃ v, G.degree v = 3 ∧ ∀ x ∈ e.1, G.Adj v x.1 := by
   rcases e with ⟨e, he⟩
@@ -52,6 +55,9 @@ noncomputable def highDegreeConnector (e : (highDegreeAuxGraph G).edgeSet) : V :
   Classical.choose (highDegreeAuxGraph_edge_has_connector G e)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=and.0h3v.s7.035fe1888b54 from=translated src=- shape=e1cde789 vocab=f58e1962
+-/
 theorem highDegreeConnector_spec (e : (highDegreeAuxGraph G).edgeSet) :
     G.degree (highDegreeConnector G e) = 3 ∧
       ∀ x ∈ e.1, G.Adj (highDegreeConnector G e) x.1 :=
@@ -60,7 +66,9 @@ theorem highDegreeConnector_spec (e : (highDegreeAuxGraph G).edgeSet) :
 variable {G}
 
 /-- Two common neighbors of distinct high-degree vertices coincide: otherwise
-the four vertices give a forbidden 4-cycle.-/
+the four vertices give a forbidden 4-cycle.
+@isnad1 id=eq.6h6v.s7.478a068cc662 from=translated src=- shape=62150176 vocab=a9a48578
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_connector_unique
     (M : EdgeMinimalCounterexample G) {x y : HighDegreeVertex G}
     (hxy : x ≠ y) {v w : V}
@@ -69,7 +77,9 @@ theorem EdgeMinimalCounterexample.highDegreeAuxGraph_connector_unique
   exact (M.vertexMinimal.common_neighbor_eq_root_of_nonadjacent_ports
     hvx hvy (fun h => hxy (Subtype.ext h)) hwx.symm hwy.symm hwx.ne hwy.ne).symm
 
-/-- The two endpoints exhaust the high-degree neighbors of a cubic connector.-/
+/-- The two endpoints exhaust the high-degree neighbors of a cubic connector.
+@isnad1 id=eq.5h5v.s8.209d07f2a4d6 from=translated src=- shape=d3aa738e vocab=68095552
+-/
 theorem EdgeMinimalCounterexample.highDegreeNeighbors_eq_pair
     (M : EdgeMinimalCounterexample G) {v : V} (hv : G.degree v = 3)
     {x y : HighDegreeVertex G} (hxy : x ≠ y)
@@ -86,6 +96,9 @@ theorem EdgeMinimalCounterexample.highDegreeNeighbors_eq_pair
   apply (Finset.eq_of_subset_of_card_le hsub ?_).symm
   simpa [highDegreeNeighbors, hxy'] using hcard
 
+/--
+@isnad1 id=injectiv.1h2v.s5.aa1ced750ebd from=translated src=- shape=5ef9fbe1 vocab=981ee009
+-/
 theorem EdgeMinimalCounterexample.highDegreeConnector_injective
     (M : EdgeMinimalCounterexample G) : Function.Injective (highDegreeConnector G) := by
   intro e d heq
@@ -128,17 +141,26 @@ noncomputable def EdgeMinimalCounterexample.highDegreeTwoStepEmbedding
     have hs := (highDegreeConnector_spec G ⟨s(x, y), h⟩).2
     exact ⟨(hs x (by simp)).symm, hs y (by simp)⟩
 
+/--
+@isnad1 id=not.1h2v.s5.e34b7524e9ee from=translated src=- shape=9f2d57c1 vocab=8a4699d6
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_no_dyadic_cycle
     (M : EdgeMinimalCounterexample G) : ¬HasPowerOfTwoCycle (highDegreeAuxGraph G) := by
   intro h
   exact M.vertexMinimal.isCounterexample.2 (M.highDegreeTwoStepEmbedding.hasPowerOfTwoCycle h)
 
+/--
+@isnad1 id=lt.1h2v.s6.d83d9f3cfdb6 from=translated src=- shape=b73f4a44 vocab=b871d7bf
+-/
 theorem EdgeMinimalCounterexample.highDegreeVertex_card_lt
     (M : EdgeMinimalCounterexample G) : Fintype.card (HighDegreeVertex G) < Fintype.card V := by
   obtain ⟨v, hv⟩ := M.exists_degree_eq_three
   have hc : G.degree v = 3 := (Finset.mem_filter.mp hv).2
   exact Fintype.card_subtype_lt (x := v) (by omega)
 
+/--
+@isnad1 id=mem.1h3v.s6.34b9cce3f2ba from=translated src=- shape=374a3f93 vocab=affc990b
+-/
 theorem EdgeMinimalCounterexample.highDegreeConnector_mem_degreeThreeTwoHighNeighbors
     (M : EdgeMinimalCounterexample G) (e : (highDegreeAuxGraph G).edgeSet) :
     highDegreeConnector G e ∈ degreeThreeTwoHighNeighbors G := by
@@ -152,7 +174,9 @@ theorem EdgeMinimalCounterexample.highDegreeConnector_mem_degreeThreeTwoHighNeig
     simp [degreeThreeTwoHighNeighbors, hs.1, hn, hne]
 
 /-- The chosen connectors are exactly the cubic vertices with two high-degree
-neighbors; the no-4-cycle condition makes each choice canonical.-/
+neighbors; the no-4-cycle condition makes each choice canonical.
+@isnad1 id=iff.1h3v.s6.c1808f8b8610 from=translated src=- shape=c7276c0e vocab=affc990b
+-/
 theorem EdgeMinimalCounterexample.highDegreeConnector_range_iff
     (M : EdgeMinimalCounterexample G) (v : V) :
     (∃ e, highDegreeConnector G e = v) ↔ v ∈ degreeThreeTwoHighNeighbors G := by
@@ -177,7 +201,9 @@ theorem EdgeMinimalCounterexample.highDegreeConnector_range_iff
     exact M.highDegreeAuxGraph_connector_unique hXY
       (hs.2 X (by simp [e])) (hs.2 Y (by simp [e])) hx'.2 hy'.2
 
-/-- Count auxiliary edges by their unique cubic subdivision vertices.-/
+/-- Count auxiliary edges by their unique cubic subdivision vertices.
+@isnad1 id=eq.1h2v.s7.119fda794dda from=translated src=- shape=9f04734f vocab=10a1e32e
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_edge_card
     (M : EdgeMinimalCounterexample G) :
     Fintype.card (highDegreeAuxGraph G).edgeSet = (degreeThreeTwoHighNeighbors G).card := by
@@ -194,7 +220,9 @@ theorem EdgeMinimalCounterexample.highDegreeAuxGraph_edge_card
   exact (Fintype.card_congr (Equiv.ofBijective f hf)).trans (Fintype.card_coe _)
 
 /-- Auxiliary degree counts exactly the adjacent cubic vertices with two
-high-degree neighbors.-/
+high-degree neighbors.
+@isnad1 id=eq.1h3v.s8.fa959e1b09f1 from=translated src=- shape=5c3a6b0a vocab=7ac42331
+-/
 theorem EdgeMinimalCounterexample.highDegreeAuxGraph_degree_eq_connector_count
     (M : EdgeMinimalCounterexample G) (x : HighDegreeVertex G) :
     (highDegreeAuxGraph G).degree x =

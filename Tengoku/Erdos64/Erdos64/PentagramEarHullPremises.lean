@@ -14,6 +14,9 @@ variable {V : Type u} {G : SimpleGraph V}
 /- Minimum degree supplies a neighbor of each `b` vertex beyond the two
    attachment vertices already forced by the hull.  This does not claim that
    the new neighbor is outside the whole hull. -/
+/--
+@isnad1 id=ex.1h4v.s6.c3f6d9d15bef from=translated src=- shape=ccdd3c51 vocab=02c19c8a
+-/
 theorem exists_b_neighbor_outside_two_attachments
     (H : PentagramEarHull G)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

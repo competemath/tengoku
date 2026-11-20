@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- A middle vertex witnesses that a nontrivial two-step realization uses
-strictly more vertices than its source.-/
+strictly more vertices than its source.
+@isnad1 id=lt.1h7v.s5.1c083a9bf14a from=translated src=- shape=4e8fcf12 vocab=25189246
+-/
 theorem TwoStepEmbedding.card_lt_of_adj
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [Fintype W]
@@ -21,7 +23,9 @@ theorem TwoStepEmbedding.card_lt_of_adj
   exact E.disjoint w _ hw
 
 /-- Every nonempty induced carrier of a smaller dyadic-free graph has a vertex
-of degree at most two, by the defining vertex minimality of a counterexample.-/
+of degree at most two, by the defining vertex minimality of a counterexample.
+@isnad1 id=ex.4h5v.s6.d32ee08d5d5c from=translated src=- shape=098c160e vocab=1316fc45
+-/
 theorem MinimalCounterexample.smaller_dyadic_free_has_low_internal_degree
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableRel G.Adj]
@@ -51,7 +55,9 @@ theorem MinimalCounterexample.smaller_dyadic_free_has_low_internal_degree
     ⟨⟨hmin, fun hc => hno (hasPowerOfTwoCycle_of_induce hc)⟩, hcard⟩
 
 /-- A graph realized by distinct two-edge paths in a minimal counterexample
-is two-degenerate whenever it has fewer vertices than that counterexample.-/
+is two-degenerate whenever it has fewer vertices than that counterexample.
+@isnad1 id=ex.3h6v.s6.4daa4b9329dd from=translated src=- shape=8243dee6 vocab=0d180296
+-/
 theorem MinimalCounterexample.smaller_twoStep_has_low_internal_degree
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableRel G.Adj]
@@ -64,7 +70,9 @@ theorem MinimalCounterexample.smaller_twoStep_has_low_internal_degree
     (fun hc => M.isCounterexample.2 (E.hasPowerOfTwoCycle hc)) S hS
 
 /-- Sharp edge bound for a smaller graph realized by two-edge paths in a
-minimal counterexample.-/
+minimal counterexample.
+@isnad1 id=le.3h5v.s6.478bc33208ef from=translated src=- shape=5ed81e5a vocab=0be4cafc
+-/
 theorem MinimalCounterexample.smaller_twoStep_edge_bound
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableRel G.Adj]
@@ -77,7 +85,9 @@ theorem MinimalCounterexample.smaller_twoStep_edge_bound
     (M.smaller_twoStep_has_low_internal_degree E hsmall) hn
 
 /-- The smaller-order premise is automatic when a two-step realization has
-an edge; if it has no edges, every internal degree is zero.-/
+an edge; if it has no edges, every internal degree is zero.
+@isnad1 id=ex.2h6v.s6.bb846fb68ed2 from=translated src=- shape=67046560 vocab=542d2fd5
+-/
 theorem MinimalCounterexample.twoStep_has_low_internal_degree
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableRel G.Adj]
@@ -98,7 +108,9 @@ theorem MinimalCounterexample.twoStep_has_low_internal_degree
     simp only [internalDegree, hzero, Finset.card_empty, Nat.zero_le]
 
 /-- A vertex-minimal counterexample contains no two-step realization of a
-finite graph of minimum degree at least three.-/
+finite graph of minimum degree at least three.
+@isnad1 id=false.2h5v.s5.81fef15e6db1 from=translated src=- shape=9fc89f86 vocab=b428e6fe
+-/
 theorem MinimalCounterexample.not_twoStepEmbedding_of_minDegree_ge_three
     {V W : Type u} {G : SimpleGraph V} {H : SimpleGraph W}
     [Fintype V] [DecidableRel G.Adj]

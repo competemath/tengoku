@@ -7,6 +7,9 @@ namespace Erdos64
 /- Two simple paths which have already been normalized at their first
    reunion form a cycle. The distinct first steps rule out the degenerate
    two-edge backtrack. -/
+/--
+@isnad1 id=ex.9h8v.s7.3b867910407a from=translated src=- shape=7de69bdd vocab=2d367baa
+-/
 theorem SimpleGraph.Walk.IsPath.cycle_of_first_reunion
     {V : Type u} {G : SimpleGraph V} {w z : V}
     (p q : G.Walk w z) (hp : p.IsPath) (hq : q.IsPath)

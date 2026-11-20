@@ -9,6 +9,9 @@ universe u
 /- The genuine bridge branch exposes the two complementary arc lengths and
    one exact cycle-length witness. The arithmetic needed to make a witness
    dyadic remains a separate premise. -/
+/--
+@isnad1 id=ex.2h4v.s9.33649ebe0036 from=translated src=- shape=e0f0f64f vocab=344d924d
+-/
 theorem externalComponent_bridge_branch_cycle_length_certificate
     {V : Type u} {G : SimpleGraph V} {s : V}
     [DecidableEq V] {C : G.Walk s s} (hC : C.IsCycle)

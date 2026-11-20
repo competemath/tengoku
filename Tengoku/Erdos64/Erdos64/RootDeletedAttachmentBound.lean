@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Every actual root-deleted component has a nonempty root-attachment set in a
-    finite connected graph.-/
+    finite connected graph.
+@isnad1 id=nonempty.1h4v.s5.ec2bca33e90c from=translated src=- shape=fe808d4b vocab=8b5f9b17
+-/
 theorem rootDeletedComponentAttachments_nonempty
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)
@@ -21,7 +23,9 @@ theorem rootDeletedComponentAttachments_nonempty
   exact (G.mem_neighborFinset r x).2 hxr.symm
 
 /-- With root degree four, two distinct actual root-deleted components cannot
-    both have at least three root attachments.-/
+    both have at least three root attachments.
+@isnad1 id=ex.3h3v.s7.8d8c23483037 from=translated src=- shape=7f96fe47 vocab=e5aa15eb
+-/
 theorem exists_rootDeletedComponent_attachments_le_two_of_degree_eq_four
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (r : V)

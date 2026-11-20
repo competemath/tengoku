@@ -33,7 +33,9 @@ private theorem extend_carrier_path_to_external_ear
 
 /-- A small carrier with exactly two crossing edges supplies a dyadic ear
 between their specified distinct external endpoints. The endpoints are
-fixed, rather than independently selected by a generic ear theorem.-/
+fixed, rather than independently selected by a generic ear theorem.
+@isnad1 id=ex.7h7v.s8.1ed8188ab643 from=translated src=- shape=ff60ec2b vocab=a480d627
+-/
 theorem MinimalCounterexample.exact_two_crossing_edges_dyadic_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -76,7 +78,9 @@ theorem MinimalCounterexample.exact_two_crossing_edges_dyadic_ear
 
 /-- Completing the two internal boundary vertices by an edge supplies an
 odd ear with the same two external attachments. If the internal edge already
-exists, the three-edge ear gives exponent one directly.-/
+exists, the three-edge ear gives exponent one directly.
+@isnad1 id=ex.11h7v.s8.7aef321e18e3 from=translated src=- shape=1d741b96 vocab=c8d23b2c
+-/
 theorem MinimalCounterexample.exact_two_crossing_edges_dyadic_successor_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -163,7 +167,9 @@ theorem MinimalCounterexample.exact_two_crossing_edges_dyadic_successor_ear
   exact ⟨k, ear, by omega, hear, by omega, hsupport⟩
 
 /-- Both parities are forced at the same attachment pair for a small region
-whose entire boundary consists of the two specified crossing edges.-/
+whose entire boundary consists of the two specified crossing edges.
+@isnad1 id=ex.11h7v.s8.c07816a9f53b from=translated src=- shape=d39f05d7 vocab=a480d627
+-/
 theorem MinimalCounterexample.exact_two_crossing_edges_ear_spectrum
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -190,7 +196,9 @@ theorem MinimalCounterexample.exact_two_crossing_edges_ear_spectrum
 outside a cubic port path therefore has an honest split: one internal vertex
 already supplies a two-edge fork, or the boundary consists of two crossing
 edges and both dyadic and dyadic-successor ears use their same fixed external
-attachments. No relation between the two exponents is asserted.-/
+attachments. No relation between the two exponents is asserted.
+@isnad1 id=other.9h9v.s9.fe8845007bf5 from=translated src=- shape=5734dd2b vocab=35dfc169
+-/
 theorem MinimalCounterexample.rootDeleted_two_boundary_component_fork_or_ear_spectrum
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

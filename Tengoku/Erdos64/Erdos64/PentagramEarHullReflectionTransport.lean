@@ -58,12 +58,21 @@ def reflectHull (H : PentagramEarHull G) (k : Fin 5) : PentagramEarHull G where
     simpa only [reflectVertexIndex, reflect5Shifted, reflect5_add_two] using
       H.ab_adj (reflect5 k i + 3)
 
+/--
+@isnad1 id=eq.0h5v.s5.843392b352f4 from=translated src=- shape=ff71d7b9 vocab=0a377b1f
+-/
 @[simp] theorem reflectHull_cVertex (H : PentagramEarHull G) (k i : Fin 5) :
     cVertex (reflectHull H k) i = cVertex H (reflect5 k i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0dcd37b096cc from=translated src=- shape=ff71d7b9 vocab=cad60dc6
+-/
 @[simp] theorem reflectHull_aVertex (H : PentagramEarHull G) (k i : Fin 5) :
     aVertex (reflectHull H k) i = aVertex H (reflect5 k i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.467b96687d6b from=translated src=- shape=ff71d7b9 vocab=0900c23e
+-/
 @[simp] theorem reflectHull_bVertex (H : PentagramEarHull G) (k i : Fin 5) :
     bVertex (reflectHull H k) i = bVertex H (reflect5Shifted k i) := rfl
 
@@ -78,6 +87,9 @@ private theorem range_comp_bijective {W : Type u} (f : Fin 5 → W)
     obtain ⟨j, hj⟩ := he.2 i
     exact ⟨j, by simpa only [hj] using hi⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.9dd122aee292 from=translated src=- shape=05ecf525 vocab=43455861
+-/
 theorem hull_reflectHull (H : PentagramEarHull G) (k : Fin 5) :
     hull (reflectHull H k) = hull H := by
   change
@@ -104,6 +116,9 @@ def Connector.ofReflectIndices (H : PentagramEarHull G) (k i j : Fin 5)
     intro v hv hh
     exact K.interior_disjoint v hv (by rwa [hull_reflectHull] at hh)
 
+/--
+@isnad1 id=eq.0h7v.s6.8691ae5969c5 from=translated src=- shape=e106d802 vocab=688050fe
+-/
 @[simp] theorem Connector.ofReflectIndices_path
     (H : PentagramEarHull G) (k i j : Fin 5)
     (K : Connector H (reflect5Shifted k i) (reflect5Shifted k j)) :

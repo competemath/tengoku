@@ -19,12 +19,18 @@ def externalComponent
     (x : V) (hx : x ∉ C.support) : Set V :=
   {y | y ∉ C.support ∧ ExternalReachable G C x y}
 
+/--
+@isnad1 id=external.1h5v.s5.344a1885c00c from=translated src=- shape=a93e1ef3 vocab=543c02fd
+-/
 theorem ExternalReachable.refl
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x : V} (hx : x ∉ C.support) : ExternalReachable G C x x := by
   refine ⟨SimpleGraph.Walk.nil, ?_⟩
   simpa using hx
 
+/--
+@isnad1 id=external.1h6v.s5.99603009a04f from=translated src=- shape=5b746f4a vocab=c91fa8ab
+-/
 theorem ExternalReachable.symm
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x y : V} (hxy : ExternalReachable G C x y) :
@@ -35,6 +41,9 @@ theorem ExternalReachable.symm
   apply hp v
   simpa [SimpleGraph.Walk.support_reverse] using hv
 
+/--
+@isnad1 id=external.2h7v.s5.51e1ba01316d from=translated src=- shape=99234861 vocab=c91fa8ab
+-/
 theorem ExternalReachable.trans
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x y z : V} (hxy : ExternalReachable G C x y)
@@ -49,12 +58,18 @@ theorem ExternalReachable.trans
   · exact hp v hv
   · exact hq v (List.mem_of_mem_tail hv)
 
+/--
+@isnad1 id=mem.1h5v.s5.adcadaf54ff1 from=translated src=- shape=c6dc5727 vocab=10d106e7
+-/
 theorem mem_externalComponent_self
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x : V} (hx : x ∉ C.support) :
     x ∈ externalComponent G C x hx := by
   exact ⟨hx, ExternalReachable.refl hx⟩
 
+/--
+@isnad1 id=or.3h7v.s6.4a3e9c86def0 from=translated src=- shape=288706b8 vocab=258a16f9
+-/
 theorem externalComponent_adj_closure
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x u v : V} (hx : x ∉ C.support)
@@ -73,6 +88,9 @@ theorem externalComponent_adj_closure
     · have hzv : z = v := by simpa using hz
       simpa [hzv] using hvC
 
+/--
+@isnad1 id=ex.3h5v.s6.ce87320b691e from=translated src=- shape=0d586269 vocab=73e56fcb
+-/
 theorem exists_adj_mem_of_mem_of_not_mem
     {V : Type u} {G : SimpleGraph V} {S : Set V}
     (hG : G.Connected) {x y : V} (hx : x ∈ S) (hy : y ∉ S) :
@@ -96,6 +114,9 @@ theorem exists_adj_mem_of_mem_of_not_mem
         exact ih hv
   exact hy (hstay p hx)
 
+/--
+@isnad1 id=ex.3h5v.s6.134c5779c396 from=translated src=- shape=f7a0366b vocab=972cd419
+-/
 theorem externalComponent_exists_boundary
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     (_hC : C.IsCycle) (hG : G.Connected) {x : V} (hx : x ∉ C.support) :
@@ -112,6 +133,9 @@ theorem externalComponent_exists_boundary
   · exact ⟨u, hu, v, hvc, huv⟩
   · exact (hv hvK).elim
 
+/--
+@isnad1 id=mem.4h9v.s6.2725ffc64458 from=translated src=- shape=acdd1fe4 vocab=10d106e7
+-/
 theorem externalComponent_mem_of_mem_support
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x a b : V} (hx : x ∉ C.support)
@@ -151,6 +175,9 @@ theorem externalComponent_mem_of_mem_support
           · exact hzq
   exact aux p ha hp hz
 
+/--
+@isnad1 id=connecte.1h5v.s5.b26bb7456342 from=translated src=- shape=05acf217 vocab=d7b41c4e
+-/
 theorem externalComponent_induced_connected
     {V : Type u} {G : SimpleGraph V} {s : V} {C : G.Walk s s}
     {x : V} (hx : x ∉ C.support) :
@@ -165,6 +192,9 @@ theorem externalComponent_induced_connected
     exact externalComponent_mem_of_mem_support hx u.property p hp hz
   exact ⟨p.induce (externalComponent G C x hx) hpK⟩
 
+/--
+@isnad1 id=or.3h5v.s7.025bb8af6ea1 from=translated src=- shape=2a0f4cf5 vocab=a09a7918
+-/
 theorem externalComponent_two_attachments_or_unique_root
     {V : Type u} {G : SimpleGraph V} {s : V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

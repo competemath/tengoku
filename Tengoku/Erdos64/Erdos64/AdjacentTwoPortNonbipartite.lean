@@ -9,7 +9,9 @@ universe u
 
 /-- Terminal identification preserves minimum degree when the identified vertex
 has at least three neighbors and any common neighbor can absorb one lost edge.
-Unlike the nonadjacent-terminal interface, this includes edge contraction.-/
+Unlike the nonadjacent-terminal interface, this includes edge contraction.
+@isnad1 id=le.3h4v.s8.47d337315c0b from=translated src=- shape=d7413df0 vocab=1c00af73
+-/
 theorem terminalQuotient_minDegree_ge_three_of_root_and_common
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] {a b : V}
@@ -142,7 +144,9 @@ theorem terminalQuotient_minDegree_ge_three_of_root_and_common
         rw [hqdeg] at hcardFull
         exact hdeg.trans hcardFull
 
-/-- A sufficiently large quotient root forces the existing cross-path residual.-/
+/-- A sufficiently large quotient root forces the existing cross-path residual.
+@isnad1 id=ex.4h4v.s8.8b148e5a0c7f from=translated src=- shape=6125b6f5 vocab=f0aad2fd
+-/
 theorem MinimalCounterexample.terminal_cross_path_of_root_and_common
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -181,7 +185,9 @@ theorem MinimalCounterexample.terminal_cross_path_of_root_and_common
     exact ⟨k, x, y, p, hk, hp, hav, hlenp, hadj⟩
 
 /-- Exclude either residual endpoint being the shared root without assuming that
-the terminals are nonadjacent.-/
+the terminals are nonadjacent.
+@isnad1 id=ex.6h5v.s8.f0e82e87f11c from=translated src=- shape=5afa9843 vocab=f0aad2fd
+-/
 theorem MinimalCounterexample.shared_root_residual_path_of_quotient_root_degree
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -276,7 +282,9 @@ theorem MinimalCounterexample.shared_root_residual_path_of_quotient_root_degree
       · exact ⟨k, u, v, p, hk, hp, havoid, hlen,
           Or.inr ⟨hyu, hxv, hur, hvr⟩⟩
 
-/-- Close the generalized residual inside an exact two-port side.-/
+/-- Close the generalized residual inside an exact two-port side.
+@isnad1 id=ex.11h6v.s8.74cb84f77fa4 from=translated src=- shape=b6bc074a vocab=55996881
+-/
 theorem MinimalCounterexample.exact_two_port_side_dyadic_path_of_quotient_root_degree
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -315,7 +323,9 @@ theorem MinimalCounterexample.exact_two_port_side_dyadic_path_of_quotient_root_d
 /-- Adjacent exact ports also force a dyadic path inside their side. Their
 identification has at least three distinct neighbors: the shared root and
 one additional neighbor at each port. A forbidden four-cycle prevents those
-additional neighbors from coinciding.-/
+additional neighbors from coinciding.
+@isnad1 id=ex.11h6v.s8.1424f4a6bb29 from=translated src=- shape=c4faca70 vocab=1cee3a7b
+-/
 theorem MinimalCounterexample.exact_adjacent_two_port_side_dyadic_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -365,7 +375,9 @@ theorem MinimalCounterexample.exact_adjacent_two_port_side_dyadic_path
 
 /-- The dyadic port path is available in both adjacency branches. This still
 has a two-edge offset when closed through the root, so it is not itself a
-contradiction to the absence of dyadic cycles.-/
+contradiction to the absence of dyadic cycles.
+@isnad1 id=ex.10h6v.s8.8799bf68664b from=translated src=- shape=5e86ab46 vocab=1cee3a7b
+-/
 theorem MinimalCounterexample.exact_two_port_side_dyadic_path_unrestricted
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -387,7 +399,9 @@ theorem MinimalCounterexample.exact_two_port_side_dyadic_path_unrestricted
 
 /-- Every exact two-port side at a root of degree at least four is
 nonbipartite. Adjacent ports provide an odd edge; nonadjacent ports provide
-an odd path from edge completion. Neither branch requires cubic ports.-/
+an odd path from edge completion. Neither branch requires cubic ports.
+@isnad1 id=not.10h6v.s7.a9d634c1d874 from=translated src=- shape=ac99eb89 vocab=393b6a43
+-/
 theorem MinimalCounterexample.exact_two_port_side_not_isBipartite_unrestricted
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -418,7 +432,9 @@ theorem MinimalCounterexample.exact_two_port_side_not_isBipartite_unrestricted
       D r x y hr hx hy hrx hry hxy hadj hroot_degree hboundary hports
 
 /-- Both components at a cut vertex of a vertex-minimal counterexample are
-nonbipartite, regardless of whether their two root ports are adjacent.-/
+nonbipartite, regardless of whether their two root ports are adjacent.
+@isnad1 id=not.2h5v.s7.d21f4810e46f from=translated src=- shape=74682314 vocab=ee7cec1d
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_not_isBipartite
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

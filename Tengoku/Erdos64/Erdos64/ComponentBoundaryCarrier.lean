@@ -10,7 +10,9 @@ universe u
     component side `K` and the complementary side `R` partition the vertices,
     while all non-root cross-edges are excluded.  The output is the enlarged
     side `{r} ∪ K`, with its exact one-root boundary and nonroot closure
-    exposed for downstream criticality arguments.-/
+    exposed for downstream criticality arguments.
+@isnad1 id=ex.7h5v.s8.63ae07e8c373 from=translated src=- shape=2526cdef vocab=fc4ba7a2
+-/
 theorem cutComponent_to_leafBlockCarrier
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

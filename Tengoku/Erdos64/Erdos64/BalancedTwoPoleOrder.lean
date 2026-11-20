@@ -8,7 +8,9 @@ universe u
 
 /-- In the balanced two-pole cut, cubic bookkeeping forces the side order to
     be even and the ambient order to be odd. This is an order invariant, not
-    a cycle construction or a dyadic conclusion.-/
+    a cycle construction or a dyadic conclusion.
+@isnad1 id=and.9h7v.s8.00f99549b92c from=translated src=- shape=3f4f1b2c vocab=5a9d7824
+-/
 theorem balanced_two_cubic_poles_force_odd_ambient_order
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

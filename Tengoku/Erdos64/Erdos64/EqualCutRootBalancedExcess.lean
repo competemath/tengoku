@@ -18,7 +18,9 @@ def nonrootDegreeExcess
 This theorem retains `hedges` as an input under deletion-only minimality.
 The stronger `GlobalEdgeMinimalCounterexample` interface supplies that input
 for actual cut components in `GlobalCutEdgeBalance`; equality of excess alone
-does not imply that either excess is zero.-/
+does not imply that either excess is zero.
+@isnad1 id=and.12h5v.s9.1633b6d5725e from=translated src=- shape=b9fd401b vocab=1b953bf3
+-/
 theorem equal_cut_root_balanced_excess
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     (minimalCounterexample : EdgeMinimalCounterexample G)

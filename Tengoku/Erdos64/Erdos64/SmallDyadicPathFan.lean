@@ -126,7 +126,9 @@ private theorem small_cycle_even_index_fan
 /-- Three distinct neighbors of one external vertex on a simple six- or
 ten-cycle force a cycle of power-of-two length. The parity pigeonhole gives
 two attachments with an even arc, and one complementary arc has length two
-or six. No minimum-degree or minimal-counterexample assumption is needed.-/
+or six. No minimum-degree or minimal-counterexample assumption is needed.
+@isnad1 id=haspower.12h8v.s7.a7621256904f from=translated src=- shape=6109ee7d vocab=3a9d0350
+-/
 theorem hasPowerOfTwoCycle_of_three_attachments_to_six_or_ten_cycle
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r w a b d : V}
     (c : G.Walk r r) (hc : c.IsCycle) (hlen : c.length = 6 ∨ c.length = 10)
@@ -151,7 +153,9 @@ theorem hasPowerOfTwoCycle_of_three_attachments_to_six_or_ten_cycle
 
 /-- A simple port path of length four or eight, closed through its external
 common root, cannot have an external vertex distinct from the root with
-three distinct attachments to the path in a dyadic-cycle-free graph.-/
+three distinct attachments to the path in a dyadic-cycle-free graph.
+@isnad1 id=haspower.16h10v.s7.6c1b09f272ac from=translated src=- shape=8a50d30e vocab=8abb446d
+-/
 theorem hasPowerOfTwoCycle_of_three_attachments_to_small_port_path
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r w x y a b d : V}
     (p : G.Walk x y) (hp : p.IsPath) (hlen : p.length = 4 ∨ p.length = 8)
@@ -184,7 +188,9 @@ theorem hasPowerOfTwoCycle_of_three_attachments_to_small_port_path
 /-- Every component outside a native simple port path of length four or
 eight has at least two carrier boundary vertices. A boundary of size at
 most one would be a singleton with three attachments, which the small
-cycle fan theorem excludes.-/
+cycle fan theorem excludes.
+@isnad1 id=le.8h9v.s8.6a0c1dcaac52 from=translated src=- shape=2b67830c vocab=ff0295ee
+-/
 theorem MinimalCounterexample.rootDeleted_small_port_path_two_le_component_boundary
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

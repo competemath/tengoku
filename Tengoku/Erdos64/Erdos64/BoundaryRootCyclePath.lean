@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- A dyadic cycle introduced by adding a boundary root leaves a simple
-path between two distinct boundary vertices when the root is removed.-/
+path between two distinct boundary vertices when the root is removed.
+@isnad1 id=ex.2h3v.s7.23fbeef4cd04 from=translated src=- shape=ee3febb1 vocab=abe3c0af
+-/
 theorem boundaryRoot_dyadic_cycle_path
     {W : Type u} [Fintype W] [DecidableEq W]
     {H : SimpleGraph W} [DecidableRel H.Adj] (B : Finset W)

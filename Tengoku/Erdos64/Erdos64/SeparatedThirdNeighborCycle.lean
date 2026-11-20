@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- A root with two distinct neighbors, joined through a root-avoiding simple
-path, gives a simple cycle with the two connector edges on each side.-/
+path, gives a simple cycle with the two connector edges on each side.
+@isnad1 id=ex.7h8v.s7.3494b35b5396 from=translated src=- shape=2590dfb7 vocab=c6aebbca
+-/
 theorem separated_third_neighbor_cycle
     {V : Type u} {G : SimpleGraph V}
     {r x y z w : V} {p : G.Walk z w}

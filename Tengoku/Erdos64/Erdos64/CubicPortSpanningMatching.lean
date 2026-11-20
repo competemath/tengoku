@@ -11,7 +11,9 @@ open scoped Classical
 
 /-- The precise matching reduction for a cubic carrier with two root ports.
 The induced path maps back to the supplied ambient path, and its complement
-is a perfect matching. The spanning path is necessarily odd.-/
+is a perfect matching. The spanning path is necessarily odd.
+@isnad1 id=and.10h7v.s10.103e09c9ce12 from=translated src=- shape=22f987cc vocab=4dbd5e3e
+-/
 theorem exact_two_port_spanning_path_matching
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -76,7 +78,9 @@ theorem exact_two_port_spanning_path_matching
   exact spanning_two_port_path_complement_isPerfectMatching q hq hne hqspan hqdeg
 
 /-- Native specialization of the spanning matching reduction to a cubic
-side of a minimal counterexample with a cut root.-/
+side of a minimal counterexample with a cut root.
+@isnad1 id=and.9h8v.s10.315c4bc9dd30 from=translated src=- shape=f5bae789 vocab=c0898db5
+-/
 theorem MinimalCounterexample.rootDeleted_spanning_cubic_path_matching
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -8,7 +8,9 @@ universe u
 
 /-- A root-avoiding opposite-port residual path extends to a simple path
 between the two ports.  Its length is exactly the dyadic length supplied by
-quotient transport.-/
+quotient transport.
+@isnad1 id=or.8h9v.s8.894cfc5a0b57 from=translated src=- shape=ddee1e28 vocab=51f38e99
+-/
 theorem cross_residual_path_to_dyadic_port_path
     {V : Type u} {G : SimpleGraph V}
     [DecidableEq V] [DecidableRel G.Adj]

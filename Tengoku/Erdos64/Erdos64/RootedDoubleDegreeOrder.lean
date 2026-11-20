@@ -8,7 +8,9 @@ universe u
 
 /-- Degree and order facts for doubling a closed finite side.  The theorem
 does not assemble a counterexample: it only transports the supplied ambient
-side degree bounds and root internal degree to the rooted double.-/
+side degree bounds and root internal degree to the rooted double.
+@isnad1 id=and.4h4v.s10.9ceb44fc599f from=translated src=- shape=3f96f3e3 vocab=dd29763f
+-/
 theorem rootedDouble_degree_order_interface
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

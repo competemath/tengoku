@@ -10,7 +10,9 @@ universe u
 
 /-- The number of incidences directed from a carrier to its complement is
 odd when the carrier has odd order and all its ambient degrees are odd.
-Each crossing edge contributes exactly once to this sum.-/
+Each crossing edge contributes exactly once to this sum.
+@isnad1 id=odd.2h3v.s7.8f38ffde98a8 from=translated src=- shape=6c331b95 vocab=9a497e8a
+-/
 theorem carrier_external_degree_sum_odd
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -48,7 +50,9 @@ theorem carrier_external_degree_sum_odd
   exact ⟨k - H.edgeFinset.card, by omega⟩
 
 /-- In particular, an odd carrier of odd-degree vertices cannot have
-exactly two crossing edges, including the case where they share an endpoint.-/
+exactly two crossing edges, including the case where they share an endpoint.
+@isnad1 id=ne.2h3v.s7.857445d02700 from=translated src=- shape=376641f3 vocab=9a497e8a
+-/
 theorem odd_carrier_external_degree_sum_ne_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -60,7 +64,9 @@ theorem odd_carrier_external_degree_sum_ne_two
   omega
 
 /-- If each carrier vertex has at most one external neighbor, the crossing
-edge count is the number of internal boundary vertices.-/
+edge count is the number of internal boundary vertices.
+@isnad1 id=odd.3h3v.s7.b470f83f9dae from=translated src=- shape=cebab480 vocab=00940288
+-/
 theorem carrier_boundary_card_odd_of_single_external_neighbor
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -94,7 +100,9 @@ theorem carrier_boundary_card_odd_of_single_external_neighbor
 
 /-- An even number of internal boundary vertices forces two external
 neighbors at one carrier vertex. This is a parity theorem and requires no
-minimality, degree lower bound, connectivity, or size assumption.-/
+minimality, degree lower bound, connectivity, or size assumption.
+@isnad1 id=ex.3h3v.s7.754824ff3fac from=translated src=- shape=db37ceba vocab=bd8e79dc
+-/
 theorem odd_carrier_even_boundary_fork
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -115,7 +123,9 @@ theorem odd_carrier_even_boundary_fork
 /-- A small odd carrier with at most two internal boundary vertices must
 contain a fork. The potential one-boundary case is excluded by the existing
 one-defect minimality argument when every carrier vertex has at most one
-external neighbor.-/
+external neighbor.
+@isnad1 id=ex.5h3v.s7.45bb78bcf7ee from=translated src=- shape=b248f469 vocab=520b5823
+-/
 theorem MinimalCounterexample.small_odd_carrier_low_boundary_fork
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -139,7 +149,9 @@ theorem MinimalCounterexample.small_odd_carrier_low_boundary_fork
 
 /-- For an odd off-path component with at most two boundary vertices, the
 fork-or-ear-spectrum alternative reduces to a two-edge ear. Neither cubic
-path degrees nor simplicity or parity of the port walk is needed here.-/
+path degrees nor simplicity or parity of the port walk is needed here.
+@isnad1 id=other.9h9v.s9.d0f7efae1a44 from=translated src=- shape=87035388 vocab=9bb3dcc1
+-/
 theorem MinimalCounterexample.rootDeleted_odd_low_boundary_component_two_edge_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

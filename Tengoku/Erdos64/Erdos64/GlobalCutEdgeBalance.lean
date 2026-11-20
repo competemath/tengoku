@@ -13,7 +13,9 @@ universe u
 /-- At a globally edge-minimal counterexample, equally sized closed sides
 meeting at one root have equal edge counts. Each balanced double is a
 same-order counterexample, so both edge-count comparisons are justified.
-The sides include the root and all of their root-attachment edges.-/
+The sides include the root and all of their root-attachment edges.
+@isnad1 id=eq.8h5v.s9.b4cac98faca6 from=translated src=- shape=cd082651 vocab=1841d533
+-/
 theorem GlobalEdgeMinimalCounterexample.closed_sides_edge_count_eq
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -61,7 +63,9 @@ theorem GlobalEdgeMinimalCounterexample.closed_sides_edge_count_eq
 /-- Native one-port sides of a globally edge-minimal counterexample have
 equal edge counts and equal nonroot degree excess. Balance, the two root
 attachments, and the edge-count equality are all produced here. Equal excess
-does not imply zero excess or cubicity of every side vertex.-/
+does not imply zero excess or cubicity of every side vertex.
+@isnad1 id=and.8h5v.s9.b5b4877437e6 from=translated src=- shape=7b53f8f5 vocab=e50fc9ee
+-/
 theorem GlobalEdgeMinimalCounterexample.two_onePort_sides_balanced_edges_excess
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -137,7 +141,9 @@ theorem GlobalEdgeMinimalCounterexample.two_onePort_sides_balanced_edges_excess
 
 /-- Any two distinct actual components at a cut root have equal closed-side
 edge counts and equal nonroot degree excess under global edge-count minimality.
-No independent side-cardinality, attachment, or edge-balance premise remains.-/
+No independent side-cardinality, attachment, or edge-balance premise remains.
+@isnad1 id=and.2h5v.s9.3c2237fa2925 from=translated src=- shape=7572b2b9 vocab=119a2aac
+-/
 theorem GlobalEdgeMinimalCounterexample.rootDeleted_two_components_balanced_edges_excess
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

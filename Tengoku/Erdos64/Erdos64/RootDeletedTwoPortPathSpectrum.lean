@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- A two-port root-deleted component supplies a positive port path, and in a
-    dyadic-free ambient graph its two-root closure is necessarily non-dyadic.-/
+    dyadic-free ambient graph its two-root closure is necessarily non-dyadic.
+@isnad1 id=ex.2h4v.s8.b98c27b1d006 from=translated src=- shape=71bf6d66 vocab=d3778171
+-/
 theorem rootDeletedComponent_twoPort_path_no_dyadic_closure
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -41,7 +43,9 @@ theorem rootDeletedComponent_twoPort_path_no_dyadic_closure
 
 /-- In the nonadjacent-port subcase, the extracted route is genuinely longer
     than one edge and its two-root closure is still non-dyadic. This is the
-    route certificate paired with the separate dyadic residual route.-/
+    route certificate paired with the separate dyadic residual route.
+@isnad1 id=ex.3h4v.s8.20c9e78fde04 from=translated src=- shape=e194b807 vocab=d3778171
+-/
 theorem rootDeletedComponent_twoPort_nonadjacent_path_no_dyadic_closure
     {V : Type u} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

@@ -34,7 +34,9 @@ inductive FinalDichotomyCertificate (G : SimpleGraph V)
   | strictSide (side : StrictRootedSideCertificate G) :
       FinalDichotomyCertificate G
 
-/-- Certified degree and order consequences for the strict-side branch.-/
+/-- Certified degree and order consequences for the strict-side branch.
+@isnad1 id=and.0h3v.s11.3b61aec6804e from=translated src=- shape=45fd1609 vocab=f29b4fff
+-/
 theorem StrictRootedSideCertificate.rootedDouble_degree_order
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     (side : StrictRootedSideCertificate G) :

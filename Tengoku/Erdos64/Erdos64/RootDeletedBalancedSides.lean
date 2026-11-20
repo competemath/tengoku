@@ -12,7 +12,9 @@ universe u
 /-- Two distinct components after deleting a vertex already give the balanced
     two-side decomposition.  The component carriers are nonempty, disjoint,
     and have no boundary away from the deleted vertex; minimality then forces
-    equal size and exhausts the ambient graph together with the root.-/
+    equal size and exhausts the ambient graph together with the root.
+@isnad1 id=and.2h5v.s7.725beb73eabe from=translated src=- shape=219f5809 vocab=5cf1bf93
+-/
 theorem MinimalCounterexample.rootDeleted_two_components_balanced
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -67,7 +69,9 @@ theorem MinimalCounterexample.rootDeleted_two_components_balanced
 /-- The balanced component decomposition also supplies the exact degree-four
     root/two-port interface.  This is the native component form of the
     balanced terminal configuration; it still says nothing about route
-    intersections or path lengths.-/
+    intersections or path lengths.
+@isnad1 id=and.2h5v.s7.df2d1a0f18a2 from=translated src=- shape=f14b2d74 vocab=bc8bd6f7
+-/
 theorem MinimalCounterexample.rootDeleted_two_components_exact_balanced
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -142,7 +146,9 @@ theorem MinimalCounterexample.rootDeleted_two_components_exact_balanced
     exact hdegree.2.1
 
 /-- Edge-minimality upgrades the exact balanced component decomposition to the
-    cubic-port conclusion used by the terminal case split.-/
+    cubic-port conclusion used by the terminal case split.
+@isnad1 id=and.2h5v.s8.199830a27bb4 from=translated src=- shape=d14a6501 vocab=0d516daa
+-/
 theorem EdgeMinimalCounterexample.rootDeleted_two_components_exact_balanced_cubic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -165,7 +171,9 @@ theorem EdgeMinimalCounterexample.rootDeleted_two_components_exact_balanced_cubi
     exact M.neighbor_degree_eq_three_of_degree_ge_four (by omega) hrv
   exact ⟨hcard, hcover, hCports, hDports, hdegree, hcubic⟩
 
-/-- The same certificate rules out a third component of `G - {r}`.-/
+/-- The same certificate rules out a third component of `G - {r}`.
+@isnad1 id=and.2h5v.s8.dc26d62dde0c from=translated src=- shape=c6f7d7aa vocab=bc8bd6f7
+-/
 theorem MinimalCounterexample.rootDeleted_two_components_exactly
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

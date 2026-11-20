@@ -14,7 +14,9 @@ variable {V : Type u} {G : SimpleGraph V}
 
 /-- Two disjoint terminal paths, joined crosswise at both ends, form a
     simple cycle. The support and endpoint hypotheses are explicit so this
-    constructs a cycle rather than merely a closed walk.-/
+    constructs a cycle rather than merely a closed walk.
+@isnad1 id=ex.7h8v.s7.67746aec541f from=translated src=- shape=ca44c82a vocab=05f7ffd4
+-/
 theorem isCycle_append_cross_defect_paths
     {a₁ b₁ a₂ b₂ : V} {p : G.Walk a₁ b₁} {q : G.Walk a₂ b₂}
     (hp : p.IsPath)

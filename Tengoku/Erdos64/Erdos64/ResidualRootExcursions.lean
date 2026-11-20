@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Endpoint fan cycles remain valid for any positive path length: the fixed
-  two-edge return arc supplies the nontrivial cycle side.-/
+  two-edge return arc supplies the nontrivial cycle side.
+@isnad1 id=ex.6h6v.s6.233e39f113c0 from=translated src=- shape=e333ca82 vocab=c5275a75
+-/
 theorem endpoint_fan_cycle_certificate_of_pos
     {V : Type u} {G : SimpleGraph V}
     {a b v : V} {q : G.Walk a b}
@@ -64,7 +66,9 @@ theorem endpoint_fan_cycle_certificate_of_pos
 
 /-- A root-internal opposite-port residual path splits into two simple
 positive-length excursions. Each excursion closes with two endpoint/root-port
-edges into a simple cycle of its length plus two, including triangles.-/
+edges into a simple cycle of its length plus two, including triangles.
+@isnad1 id=ex.8h8v.s8.aa6021404d26 from=translated src=- shape=04e4ba1a vocab=8416ea93
+-/
 theorem cross_residual_root_internal_excursion_cycles
     {V : Type u} {G : SimpleGraph V}
     [DecidableEq V] [DecidableRel G.Adj]
@@ -124,7 +128,9 @@ universe u
 
 /-- In a minimal dyadic-free counterexample, a root-internal residual split
 produces two endpoint/root-port excursion cycles, and neither resulting cycle
-length can be dyadic.-/
+length can be dyadic.
+@isnad1 id=ex.9h8v.s8.0b9b39b5301a from=translated src=- shape=c0f525b0 vocab=2f313961
+-/
 theorem MinimalCounterexample.cross_residual_root_internal_excursions_nondyadic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

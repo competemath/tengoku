@@ -9,7 +9,9 @@ universe u
 /-- The shared-root quotient certificate composes into an explicit dichotomy:
 either the residual path avoids the shared root and closes to a dyadic
 port-to-port path, or it contains the root and splits into two excursions whose
-fan-cycle lengths are both certified non-dyadic in a minimal counterexample.-/
+fan-cycle lengths are both certified non-dyadic in a minimal counterexample.
+@isnad1 id=ex.6h5v.s9.d4ae486d26b5 from=translated src=- shape=4abada26 vocab=f422646a
+-/
 theorem MinimalCounterexample.shared_root_residual_case_split
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -58,7 +60,9 @@ theorem MinimalCounterexample.shared_root_residual_case_split
 /-- Once both endpoints of a root-internal split lie in one closed side, the
 root-free interiors of both excursions lie in that side.  This is the exact
 boundary interface needed before any balanced-side forcing argument can use
-the split.-/
+the split.
+@isnad1 id=and.9h8v.s7.301e92e6bd43 from=translated src=- shape=0408a684 vocab=92466c5b
+-/
 theorem residual_root_internal_excursion_interiors_in_closed_side
     {V : Type u} {G : SimpleGraph V}
     {D : Finset V} {r u v : V}

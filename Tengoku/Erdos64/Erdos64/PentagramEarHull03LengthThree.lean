@@ -20,10 +20,16 @@ def route03 (H : PentagramEarHull G) :
         SimpleGraph.Walk.cons (H.ca_adj 3) <|
           SimpleGraph.Walk.cons (H.ab_adj 3) .nil
 
+/--
+@isnad1 id=eq.0h3v.s5.3f7b105f06b7 from=translated src=- shape=990c9dfd vocab=2328c385
+-/
 theorem route03_length (H : PentagramEarHull G) :
     (H.route03).length = 5 := by
   rfl
 
+/--
+@isnad1 id=ispath.0h3v.s5.c5360910dc28 from=translated src=- shape=def4ed68 vocab=792323e7
+-/
 theorem route03_isPath (H : PentagramEarHull G) :
     H.route03.IsPath := by
   apply (SimpleGraph.Walk.isPath_def _).mpr
@@ -118,6 +124,9 @@ def hullReturn_of_connector_03_length_three
     route_disjoint := hroute_disjoint
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.1h4v.s8.94ff8fc5cd1c from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_03_length_three
     (H : PentagramEarHull G) (K : Connector H 0 3)
     (hK : K.path.length = 3) :

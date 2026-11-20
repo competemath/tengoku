@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- The predecessor and successor of an internal vertex on a simple path
-are distinct neighbors belonging to the path support.-/
+are distinct neighbors belonging to the path support.
+@isnad1 id=ex.4h6v.s6.c79301bf9130 from=translated src=- shape=6a6dc839 vocab=d70b29e5
+-/
 theorem internal_path_vertex_two_neighbors
     {V : Type u} {G : SimpleGraph V} {x y s : V}
     (p : G.Walk x y) (hp : p.IsPath) (hs : s ∈ p.support)
@@ -34,7 +36,9 @@ theorem internal_path_vertex_two_neighbors
   · simpa only [hi] using p.adj_getVert_succ hilt
 
 /-- Every vertex of a nontrivial simple port path has two distinct neighbors
-in the path support together with the external common root.-/
+in the path support together with the external common root.
+@isnad1 id=ex.6h7v.s7.c7ab5a89a907 from=translated src=- shape=da89426c vocab=d70b29e5
+-/
 theorem port_path_vertex_two_retained_neighbors
     {V : Type u} {G : SimpleGraph V} {r x y s : V}
     (p : G.Walk x y) (hp : p.IsPath) (hxy : x ≠ y)
@@ -66,7 +70,9 @@ theorem port_path_vertex_two_retained_neighbors
   exact ⟨a, b, hab, hsa, hsb, Or.inr ha, Or.inr hb⟩
 
 /-- At a cubic vertex, two distinct neighbors in a retained set leave at
-most one neighbor outside that set.-/
+most one neighbor outside that set.
+@isnad1 id=eq.10h8v.s7.fa95c909ee46 from=translated src=- shape=47a43ab1 vocab=7d632068
+-/
 theorem cubic_vertex_external_neighbors_eq
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -95,7 +101,9 @@ theorem cubic_vertex_external_neighbors_eq
   exact (Finset.card_le_one.mp hcard) v hvmem w hwmem
 
 /-- Every cubic vertex of a simple port path has at most one neighbor
-outside both the path and its common root, including the two ports.-/
+outside both the path and its common root, including the two ports.
+@isnad1 id=eq.13h9v.s7.d6932bd21f3d from=translated src=- shape=965bc5f2 vocab=29f1b583
+-/
 theorem cubic_port_path_external_neighbors_eq
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -113,7 +121,9 @@ theorem cubic_port_path_external_neighbors_eq
 
 /-- A cubic vertex of a simple cut-side port path has at most one neighbor
 in any specified carrier outside the path. This derives the
-unique attachment premise used by boundary-root avoidance.-/
+unique attachment premise used by boundary-root avoidance.
+@isnad1 id=eq.12h11v.s8.156ec580ff0e from=translated src=- shape=e8d6e0ac vocab=c7fb6114
+-/
 theorem cut_side_port_path_external_neighbors_eq
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

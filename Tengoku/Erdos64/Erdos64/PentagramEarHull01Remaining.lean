@@ -118,6 +118,9 @@ def hullReturn_of_connector_01_length_two
     route_disjoint := routeLengthTwo_disjoint H K hK
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.1h4v.s8.df04d52099de from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_01_length_two
     (H : PentagramEarHull G) (K : Connector H 0 1)
     (hK : K.path.length = 2) :
@@ -211,6 +214,9 @@ def hullReturn_of_connector_01_length_one
     route_disjoint := routeLengthOne_disjoint H K hK
     first_steps_distinct := hfirst }
 
+/--
+@isnad1 id=ex.1h4v.s8.483c91d18ccd from=translated src=- shape=19edbc8a vocab=3b04f5d3
+-/
 theorem cycle8_of_connector_01_length_one
     (H : PentagramEarHull G) (K : Connector H 0 1)
     (hK : K.path.length = 1) :

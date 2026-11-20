@@ -17,7 +17,9 @@ def highDegreePrivateNeighbors (r : V) : Finset V :=
 variable {G}
 
 /-- At a high-degree vertex, all neighbors split into private cubic neighbors
-and the cubic connectors counted by its auxiliary degree.-/
+and the cubic connectors counted by its auxiliary degree.
+@isnad1 id=eq.1h3v.s8.f4d14e5e13cf from=translated src=- shape=e79ff320 vocab=3d49f62c
+-/
 theorem EdgeMinimalCounterexample.highDegree_private_add_aux_degree
     (M : EdgeMinimalCounterexample G) (x : HighDegreeVertex G) :
     (highDegreePrivateNeighbors G x.1).card +
@@ -59,7 +61,9 @@ theorem EdgeMinimalCounterexample.highDegree_private_add_aux_degree
 
 /-- If high-degree vertices exist, one has at least two cubic neighbors for
 which it is the unique high-degree neighbor. In fact all but at most two of
-its neighbors are private.-/
+its neighbors are private.
+@isnad1 id=ex.2h2v.s7.1e680a67f0fa from=translated src=- shape=2be69a58 vocab=7c3fb11b
+-/
 theorem EdgeMinimalCounterexample.exists_highDegree_vertex_two_private_neighbors
     (M : EdgeMinimalCounterexample G)
     (hH : (Finset.univ.filter (fun v => 4 ≤ G.degree v)).Nonempty) :

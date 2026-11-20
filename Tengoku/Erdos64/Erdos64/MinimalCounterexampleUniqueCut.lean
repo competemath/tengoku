@@ -23,7 +23,9 @@ private theorem rootDeleted_distinct_carriers_disjoint
   exact hCD (hC.symm.trans hD)
 
 /-- Each of the two components at a cut vertex in a minimal counterexample
-    has exactly half the vertices other than the cut vertex.-/
+    has exactly half the vertices other than the cut vertex.
+@isnad1 id=eq.2h5v.s7.c85c3f07b61d from=translated src=- shape=55f022fd vocab=e8aa276a
+-/
 theorem MinimalCounterexample.rootDeleted_two_components_order
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -48,7 +50,9 @@ theorem MinimalCounterexample.rootDeleted_two_components_order
     would contain the other balanced component and the first root. This is
     strictly more than the size forced by balance at the second cut.
 
-    This theorem does not assert the absence of a cut vertex.-/
+    This theorem does not assert the absence of a cut vertex.
+@isnad1 id=eq.3h4v.s8.91a3d0f16c39 from=translated src=- shape=d2be7a5b vocab=d9f1c399
+-/
 theorem MinimalCounterexample.rootDeleted_cut_root_unique
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -98,7 +102,9 @@ theorem MinimalCounterexample.rootDeleted_cut_root_unique
   · exact hcontr D C hCD.symm hxD
 
 /-- Once a cut vertex is present, deleting any other vertex leaves the graph
-    connected. The surviving cut vertex also witnesses nonemptiness.-/
+    connected. The surviving cut vertex also witnesses nonemptiness.
+@isnad1 id=connecte.3h4v.s7.93b080ebfe8a from=translated src=- shape=4d0137e7 vocab=56a8e53a
+-/
 theorem MinimalCounterexample.rootDeleted_connected_away_from_cut
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

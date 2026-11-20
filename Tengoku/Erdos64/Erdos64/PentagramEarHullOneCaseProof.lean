@@ -19,10 +19,16 @@ def oneCaseProofRoute (H : PentagramEarHull G) :
         SimpleGraph.Walk.cons (H.ca_adj 1) <|
           SimpleGraph.Walk.cons (H.ab_adj 1) .nil
 
+/--
+@isnad1 id=eq.0h3v.s5.e79880141760 from=translated src=- shape=990c9dfd vocab=3fc71edc
+-/
 theorem oneCaseProofRoute_length (H : PentagramEarHull G) :
     H.oneCaseProofRoute.length = 5 := by
   rfl
 
+/--
+@isnad1 id=ispath.0h3v.s5.76bf92182cda from=translated src=- shape=def4ed68 vocab=4340e45a
+-/
 theorem oneCaseProofRoute_isPath (H : PentagramEarHull G) :
     H.oneCaseProofRoute.IsPath := by
   apply (SimpleGraph.Walk.isPath_def _).mpr

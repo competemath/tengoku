@@ -9,7 +9,9 @@ namespace Erdos64
 universe u
 
 /-- Two suppressions of adjacent cubic ports supply an odd path one edge
-longer than a power of two. The path stays in the original side.-/
+longer than a power of two. The path stays in the original side.
+@isnad1 id=ex.8h6v.s8.08a86bab9c50 from=translated src=- shape=df6f1a99 vocab=d5ab7036
+-/
 theorem MinimalCounterexample.exact_adjacent_cubic_side_pow_two_add_one_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -72,7 +74,9 @@ theorem MinimalCounterexample.exact_adjacent_cubic_side_pow_two_add_one_path
   exact hlen
 
 /-- Native adjacent attachments of a cut side carry a path of length
-`2^k + 1`, in addition to the previously constructed even dyadic path.-/
+`2^k + 1`, in addition to the previously constructed even dyadic path.
+@isnad1 id=ex.7h7v.s8.b8f9cd7f4063 from=translated src=- shape=469a9aa2 vocab=3412f5fb
+-/
 theorem EdgeMinimalCounterexample.rootDeleted_cut_adjacent_ports_pow_two_add_one_path
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -10,7 +10,9 @@ universe u
  two root attachments each in a vertex-minimal counterexample. Consequently the
  root has degree four. The closure hypotheses are stated as one-port boundary
  conditions, so no degree, attachment-count, cardinality, or edge-count
- premises are needed.-/
+ premises are needed.
+@isnad1 id=and.9h5v.s8.8f7053c2dc40 from=translated src=- shape=219e3224 vocab=b8cd9dac
+-/
 theorem MinimalCounterexample.two_closed_sides_root_degree_four
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -170,7 +172,9 @@ theorem MinimalCounterexample.two_closed_sides_root_degree_four
   omega
 
 /-- Edge-minimality upgrades the cut degree-four certificate to cubicity at
-all neighbors of the root.-/
+all neighbors of the root.
+@isnad1 id=and.9h5v.s8.785152ee0408 from=translated src=- shape=2ce2fd1a vocab=a1865d46
+-/
 theorem EdgeMinimalCounterexample.two_closed_sides_root_degree_four_cubic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

@@ -8,7 +8,9 @@ universe u
 
 /-- Two disjoint closed two-port sides covering a minimal counterexample are
 forced to have equal cardinality.  The two-port size bound applied to each
-side leaves no room for an unequal partition.-/
+side leaves no room for an unequal partition.
+@isnad1 id=eq.9h9v.s8.5da20c2d1fdd from=translated src=- shape=37165a4a vocab=f028cf98
+-/
 theorem MinimalCounterexample.two_twoPort_sides_balanced
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

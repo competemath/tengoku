@@ -9,7 +9,9 @@ universe u
 /-- Every nonempty side whose external neighbors are confined to one root
 contains at least half of the other vertices of a minimal counterexample.
 The two root neighbors needed for doubling follow from connectedness and
-bridgelessness; they are not additional hypotheses.-/
+bridgelessness; they are not additional hypotheses.
+@isnad1 id=le.4h4v.s6.47467018f944 from=translated src=- shape=fd751d05 vocab=222721a1
+-/
 theorem MinimalCounterexample.onePort_side_card_bound
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -70,7 +72,9 @@ theorem MinimalCounterexample.onePort_side_card_bound
 
 /-- Two disjoint nonempty sides with the same sole external root must be
 equally large and exhaust every vertex other than that root. In particular,
-a third nonempty disjoint side is impossible.-/
+a third nonempty disjoint side is impossible.
+@isnad1 id=and.8h5v.s7.54f243a09ac5 from=translated src=- shape=8288adc9 vocab=71765636
+-/
 theorem MinimalCounterexample.two_onePort_sides_balanced
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

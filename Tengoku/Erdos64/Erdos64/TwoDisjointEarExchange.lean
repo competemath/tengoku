@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- The simplicity part of fresh-ear rerouting needs no lower bound on the
-length of either route. If both routes have length at most one, they coincide.-/
+length of either route. If both routes have length at most one, they coincide.
+@isnad1 id=ispath.4h10v.s7.4c9a3afae464 from=translated src=- shape=1b1d2560 vocab=594048f1
+-/
 theorem terminal_path_reroute_isPath_of_fresh_ear
     {V : Type u} {G : SimpleGraph V} {a b x y : V}
     (pre : G.Walk a x) (segment : G.Walk x y)
@@ -28,7 +30,9 @@ theorem terminal_path_reroute_isPath_of_fresh_ear
 The middle walk may be nil, so the two replaced segments may share an endpoint.
 The mutual-intersection hypothesis allows this shared attachment but excludes
 shared ear interiors. No parity or extremality condition is imposed on the
-intermediate path obtained after the first replacement.-/
+intermediate path obtained after the first replacement.
+@isnad1 id=and.8h15v.s8.464e2ceb02ee from=translated src=- shape=26f1633b vocab=5b4a79ad
+-/
 theorem terminal_path_reroute_of_two_disjoint_fresh_ears
     {V : Type u} {G : SimpleGraph V} {a b x₁ y₁ x₂ y₂ : V}
     (pre : G.Walk a x₁) (segment₁ : G.Walk x₁ y₁)
@@ -85,7 +89,9 @@ theorem terminal_path_reroute_of_two_disjoint_fresh_ears
 
 /-- A balanced pair of disjoint ear replacements stays on the same path-length
 level, even if either individual replacement changes length or parity. This
-only consumes a specified pair of ears; it does not assert that one exists.-/
+only consumes a specified pair of ears; it does not assert that one exists.
+@isnad1 id=and.9h15v.s8.1376d69d4945 from=translated src=- shape=0556c34b vocab=5b4a79ad
+-/
 theorem terminal_path_equal_length_exchange_of_two_disjoint_fresh_ears
     {V : Type u} {G : SimpleGraph V} {a b x₁ y₁ x₂ y₂ : V}
     (pre : G.Walk a x₁) (segment₁ : G.Walk x₁ y₁)

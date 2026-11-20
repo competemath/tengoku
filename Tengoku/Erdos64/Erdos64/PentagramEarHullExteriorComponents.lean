@@ -22,6 +22,9 @@ noncomputable def exteriorComponents (H : PentagramEarHull G) [Fintype V] :
   letI : Fintype H.exteriorGraph.ConnectedComponent := Fintype.ofFinite _
   exact Finset.univ
 
+/--
+@isnad1 id=mem.0h4v.s7.0aad27e2ebaa from=translated src=- shape=e4ceeec0 vocab=7335a12e
+-/
 @[simp] theorem mem_exteriorComponents (H : PentagramEarHull G) [Fintype V]
     (C : H.exteriorGraph.ConnectedComponent) : C ∈ H.exteriorComponents := by
   classical
@@ -33,6 +36,9 @@ noncomputable def exteriorComponentCarrier (H : PentagramEarHull G) [Fintype V]
   classical
   exact C.supp.toFinset.image Subtype.val
 
+/--
+@isnad1 id=iff.0h5v.s7.221028590458 from=translated src=- shape=14e10c28 vocab=8a2b2b84
+-/
 @[simp] theorem mem_exteriorComponentCarrier_iff (H : PentagramEarHull G)
     [Fintype V] (C : H.exteriorGraph.ConnectedComponent) (v : V) :
     v ∈ H.exteriorComponentCarrier C ↔
@@ -45,20 +51,27 @@ noncomputable def exteriorComponentCarrier (H : PentagramEarHull G) [Fintype V]
   · rintro ⟨hv, hC⟩
     exact ⟨⟨v, hv⟩, hC, rfl⟩
 
-/-- Components are nonempty by the quotient connected-component definition.-/
+/-- Components are nonempty by the quotient connected-component definition.
+@isnad1 id=nonempty.0h4v.s5.33b3612c9b4c from=translated src=- shape=2a4d5947 vocab=d2a28caa
+-/
 theorem exteriorComponentCarrier_nonempty (H : PentagramEarHull G) [Fintype V]
     (C : H.exteriorGraph.ConnectedComponent) :
     (H.exteriorComponentCarrier C).Nonempty := by
   obtain ⟨⟨v, hv⟩, hC⟩ := C.nonempty_supp
   exact ⟨v, (H.mem_exteriorComponentCarrier_iff C v).2 ⟨hv, hC⟩⟩
 
+/--
+@isnad1 id=not.1h5v.s6.3436179c14a8 from=translated src=- shape=a838b7d1 vocab=4291cbd0
+-/
 theorem exteriorComponentCarrier_not_mem_hull (H : PentagramEarHull G)
     [Fintype V] (C : H.exteriorGraph.ConnectedComponent) {v : V}
     (hv : v ∈ H.exteriorComponentCarrier C) : v ∉ H.hull := by
   obtain ⟨hext, _⟩ := (H.mem_exteriorComponentCarrier_iff C v).1 hv
   exact hext
 
-/-- Distinct actual components have disjoint ambient carriers.-/
+/-- Distinct actual components have disjoint ambient carriers.
+@isnad1 id=pairwise.0h3v.s6.b8dc856d840a from=translated src=- shape=558cb245 vocab=98b0ff35
+-/
 theorem exteriorComponentCarrier_pairwise_disjoint (H : PentagramEarHull G)
     [Fintype V] :
     Pairwise (fun C D : H.exteriorGraph.ConnectedComponent =>
@@ -71,7 +84,9 @@ theorem exteriorComponentCarrier_pairwise_disjoint (H : PentagramEarHull G)
   obtain ⟨hv', hD⟩ := (H.mem_exteriorComponentCarrier_iff D v).1 hvD
   exact hne (SimpleGraph.ConnectedComponent.eq_of_common_vertex hC hD)
 
-/-- An ambient edge leaving a component must enter the hull.-/
+/-- An ambient edge leaving a component must enter the hull.
+@isnad1 id=or.2h6v.s6.363c827ee887 from=translated src=- shape=3894830a vocab=22c1adea
+-/
 theorem exteriorComponentCarrier_adj_closure (H : PentagramEarHull G)
     [Fintype V] (C : H.exteriorGraph.ConnectedComponent) {x y : V}
     (hx : x ∈ H.exteriorComponentCarrier C) (hxy : G.Adj x y) :
@@ -85,7 +100,9 @@ theorem exteriorComponentCarrier_adj_closure (H : PentagramEarHull G)
     exact (H.mem_exteriorComponentCarrier_iff C y).2
       ⟨hy, (C.mem_supp_congr_adj hxyext).1 hxC⟩
 
-/-- Every exterior vertex belongs to an actual indexed component carrier.-/
+/-- Every exterior vertex belongs to an actual indexed component carrier.
+@isnad1 id=ex.1h4v.s7.c6e6ca7991d1 from=translated src=- shape=509397e8 vocab=1625208b
+-/
 theorem exists_exteriorComponentCarrier_of_not_mem_hull (H : PentagramEarHull G)
     [Fintype V] {v : V} (hv : v ∉ H.hull) :
     ∃ C ∈ H.exteriorComponents, v ∈ H.exteriorComponentCarrier C := by

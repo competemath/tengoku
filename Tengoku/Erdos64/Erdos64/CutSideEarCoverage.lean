@@ -8,7 +8,9 @@ namespace Erdos64
 universe u
 
 /-- A simple path ending in a set has a simple prefix whose only vertex in
-that set is its endpoint. This constructs the first return to a carrier.-/
+that set is its endpoint. This constructs the first return to a carrier.
+@isnad1 id=ex.2h6v.s6.e594bebb6906 from=translated src=- shape=612b96d6 vocab=3f399e93
+-/
 theorem path_first_hit_set
     {V : Type u} {G : SimpleGraph V} {a b : V}
     (p : G.Walk a b) (hp : p.IsPath) (S : Set V) (hb : b ∈ S) :
@@ -46,7 +48,9 @@ theorem path_first_hit_set
           · exact hhit w hw hwS
 
 /-- A first-hit path remains in a carrier when leaving the carrier would
-require passing through the target set first.-/
+require passing through the target set first.
+@isnad1 id=mem.5h8v.s7.914cf15f35d1 from=translated src=- shape=812c941c vocab=5fc015b5
+-/
 theorem first_hit_path_support_in_carrier
     {V : Type u} {G : SimpleGraph V} {a z : V}
     (q : G.Walk a z) (hq : q.IsPath) (S D : Set V)
@@ -78,7 +82,9 @@ theorem first_hit_path_support_in_carrier
       · exact htail w hw
 
 /-- Connectedness after deleting an attachment turns any external neighbor
-into a fresh ear. Carrier closure is checked before the first return.-/
+into a fresh ear. Carrier closure is checked before the first return.
+@isnad1 id=ex.7h8v.s8.4219944f28ab from=translated src=- shape=68fc0a31 vocab=d30fe6b5
+-/
 theorem fresh_ear_of_external_neighbor
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     {x y v w : V} (p : G.Walk x y) (D : Set V)
@@ -134,7 +140,9 @@ theorem fresh_ear_of_external_neighbor
 /-- Every internal vertex of a simple port path in a native cut side has a
 fresh ear (possibly a chord) whose first edge is unused by that path. The
 minimum-degree hypothesis supplies that edge; unique-cut connectedness
-supplies a first return if its other endpoint is outside the path.-/
+supplies a first return if its other endpoint is outside the path.
+@isnad1 id=ex.10h9v.s8.c6df3fb838ac from=translated src=- shape=04314d54 vocab=691f7314
+-/
 theorem MinimalCounterexample.rootDeleted_cut_side_path_ear_coverage
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]

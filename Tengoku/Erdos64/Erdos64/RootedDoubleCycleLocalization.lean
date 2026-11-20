@@ -7,7 +7,9 @@ namespace Erdos64
 universe u
 
 /-- Every simple cycle in a rooted double is contained in one tagged copy,
-apart from the shared root.-/
+apart from the shared root.
+@isnad1 id=ex.1h5v.s7.4c76f849a8f2 from=translated src=- shape=58ead945 vocab=9cfd4649
+-/
 theorem rootedDouble_cycle_localization
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V}
     {x : RootedDoubleVertex V r}
@@ -22,7 +24,9 @@ theorem rootedDouble_cycle_localization
   · exact Or.inr (hb z hz hnone)
 
 /-- The global localization disjunction supplies the simple-cycle projection
-contract, with exact preservation of length.-/
+contract, with exact preservation of length.
+@isnad1 id=and.1h5v.s7.15406d8060e8 from=translated src=- shape=bcf92bb2 vocab=8565099c
+-/
 theorem rootedDouble_cycle_localization_projection
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {r : V}
     {x : RootedDoubleVertex V r}

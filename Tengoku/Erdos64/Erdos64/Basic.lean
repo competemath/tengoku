@@ -34,7 +34,9 @@ def Conjecture : Prop :=
   ∀ (V : Type u) (G : SimpleGraph V) [Fintype V] [DecidableRel G.Adj],
     G.minDegree ≥ 3 → HasPowerOfTwoCycle G
 
-/-- Propagate the minimum-degree lower bound to a supplied vertex.-/
+/-- Propagate the minimum-degree lower bound to a supplied vertex.
+@isnad1 id=le.1h3v.s6.574d8c1898f1 from=translated src=- shape=65581623 vocab=ec0068f3
+-/
 theorem degree_ge_three_of_minDegree_ge_three {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableRel G.Adj] (h : G.minDegree ≥ 3) (v : V) :
     G.degree v ≥ 3 :=
@@ -44,7 +46,9 @@ theorem degree_ge_three_of_minDegree_ge_three {V : Type u} (G : SimpleGraph V)
 
 The proof uses a longest path. If the graph were acyclic, every neighbor of
 the path's initial endpoint would have to be the path's second vertex;
-otherwise the path could be extended, or acyclicity would be contradicted.-/
+otherwise the path could be extended, or acyclicity would be contradicted.
+@isnad1 id=ex.1h2v.s5.0eadb5b959a9 from=translated src=- shape=060d1bdd vocab=c12a3d2f
+-/
 theorem exists_simpleCycle_of_minDegree_ge_three
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableRel G.Adj]
@@ -89,7 +93,9 @@ theorem exists_simpleCycle_of_minDegree_ge_three
     exact hcard
   omega
 
-/-- Package an already supplied cycle; this does not construct one.-/
+/-- Package an already supplied cycle; this does not construct one.
+@isnad1 id=haspower.3h5v.s5.7d441d4d003e from=translated src=- shape=6842be76 vocab=0f2dd72d
+-/
 theorem hasPowerOfTwoCycle_of_witness {V : Type u} {G : SimpleGraph V}
     {k : ℕ} {v : V} (c : G.Walk v v) (hk : k ≥ 2)
     (hc : c.IsCycle) (hlen : c.length = 2^k) : HasPowerOfTwoCycle G :=
@@ -104,7 +110,9 @@ structure CycleCertificate {V : Type u} (G : SimpleGraph V) where
   isCycle : cycle.IsCycle
   length_eq : cycle.length = 2 ^ exponent
 
-/-- Convert an explicit cycle certificate into the conjecture's target.-/
+/-- Convert an explicit cycle certificate into the conjecture's target.
+@isnad1 id=haspower.0h3v.s3.098b1b4b83de from=translated src=- shape=11db0672 vocab=ec834f9e
+-/
 theorem CycleCertificate.hasPowerOfTwoCycle {V : Type u}
     {G : SimpleGraph V} (certificate : CycleCertificate G) :
     HasPowerOfTwoCycle G :=
@@ -115,7 +123,9 @@ theorem CycleCertificate.hasPowerOfTwoCycle {V : Type u}
 
 The path `q` runs from `a` to `b`; the two edges run from `b` to `v` and from
 `v` back to `a`. The support hypotheses make the construction genuinely
-simple rather than merely a closed walk.-/
+simple rather than merely a closed walk.
+@isnad1 id=ex.6h6v.s6.aed6646a4fe7 from=translated src=- shape=e333ca82 vocab=c5275a75
+-/
 theorem endpoint_fan_cycle_certificate
     {V : Type u} {G : SimpleGraph V}
     {a b v : V} {q : G.Walk a b}
@@ -174,7 +184,9 @@ def HasSimpleCycleOfLength {V : Type u} (G : SimpleGraph V) (n : ℕ) : Prop :=
   ∃ (v : V) (c : G.Walk v v), c.IsCycle ∧ c.length = n
 
 /-- Turn a simple-cycle length witness into the target when its length is
-dyadic.-/
+dyadic.
+@isnad1 id=haspower.3h4v.s5.a4e27a455ba3 from=translated src=- shape=35a1afaf vocab=03751061
+-/
 theorem hasPowerOfTwoCycle_of_simpleCycleOfLength
     {V : Type u} {G : SimpleGraph V} {n k : ℕ}
     (hcycle : HasSimpleCycleOfLength G n)
@@ -207,7 +219,9 @@ structure TwoEarSevenCycleCertificate {V : Type u} (G : SimpleGraph V) where
   cycle_p_q_beta_delta : HasSimpleCycleOfLength G (p + q + beta + delta)
 
 /-- Any dyadic member of the seven-cycle certificate proves the conjecture
-for the underlying graph.-/
+for the underlying graph.
+@isnad1 id=haspower.1h3v.s8.a2de31ed7f6d from=translated src=- shape=c59d4a09 vocab=ffdb4bc6
+-/
 theorem TwoEarSevenCycleCertificate.hasPowerOfTwoCycle
     {V : Type u} {G : SimpleGraph V}
     (certificate : TwoEarSevenCycleCertificate G)
@@ -350,7 +364,9 @@ structure ShortestCycleCertificate {V : Type u} (G : SimpleGraph V) where
     ∀ (v : V) (c : G.Walk v v), c.IsCycle → cycle.length ≤ c.length
 
 /-- A shortest-cycle certificate rules out every strictly shorter simple
-cycle.-/
+cycle.
+@isnad1 id=false.2h5v.s5.6063ab52df6f from=translated src=- shape=512bd8c6 vocab=90660ad5
+-/
 theorem ShortestCycleCertificate.not_exists_strictly_shorter
     {V : Type u} {G : SimpleGraph V}
     (certificate : ShortestCycleCertificate G)
@@ -363,7 +379,9 @@ theorem ShortestCycleCertificate.not_exists_strictly_shorter
 /-- A nonempty graph cycle family has a shortest simple cycle.
 
 The proof minimizes natural-number lengths, so it does not require a finite
-enumeration of all walks.-/
+enumeration of all walks.
+@isnad1 id=nonempty.1h2v.s4.a2f64f047a20 from=translated src=- shape=59f5cb4a vocab=1d859577
+-/
 theorem exists_shortestCycleCertificate_of_exists_cycle
     {V : Type u} {G : SimpleGraph V}
     (hcycle : ∃ (v : V) (c : G.Walk v v), c.IsCycle) :
@@ -388,6 +406,9 @@ theorem exists_shortestCycleCertificate_of_exists_cycle
 its vertices. Consequently, a vertex of degree at least three has an
 external neighbor. The chordlessness premise is kept explicit until the
 shortest-cycle chord argument is formalized. -/
+/--
+@isnad1 id=ex.3h4v.s6.a7171ca1953d from=translated src=- shape=b8877f33 vocab=79ad06f2
+-/
 theorem ShortestCycleCertificate.exists_external_neighbor_of_chordless
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -423,7 +444,9 @@ theorem ShortestCycleCertificate.exists_external_neighbor_of_chordless
   omega
 
 /-- Two distinct vertices on a simple cycle determine two complementary
-simple path arcs after rotating the cycle to the first vertex.-/
+simple path arcs after rotating the cycle to the first vertex.
+@isnad1 id=ex.4h6v.s7.4bf04cf79aa7 from=translated src=- shape=b61ee094 vocab=736779a3
+-/
 theorem SimpleGraph.Walk.IsCycle.exists_path_arcs
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     {s : V} {c : G.Walk s s} (hc : c.IsCycle)
@@ -453,6 +476,9 @@ theorem SimpleGraph.Walk.IsCycle.exists_path_arcs
 
 /- A globally shortest simple cycle has no chord: a chord splits it into two
 shorter simple cycles, and the chord cannot coincide with either cycle arc. -/
+/--
+@isnad1 id=ischordl.0h3v.s4.e26b6783586a from=translated src=- shape=2bf2c629 vocab=b8cb06fc
+-/
 theorem ShortestCycleCertificate.isChordless
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (certificate : ShortestCycleCertificate G) :
@@ -540,6 +566,9 @@ theorem ShortestCycleCertificate.isChordless
 
 /- Once shortestness has supplied chordlessness, the external-neighbor
 conclusion needs no separate chordlessness hypothesis at call sites. -/
+/--
+@isnad1 id=ex.2h4v.s6.b3507c31884b from=translated src=- shape=b2e2de2e vocab=e0eca59f
+-/
 theorem ShortestCycleCertificate.exists_external_neighbor_of_minDegree_ge_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -553,6 +582,9 @@ theorem ShortestCycleCertificate.exists_external_neighbor_of_minDegree_ge_three
 
 /- A path from outside a cycle has an initial segment ending at its first
 cycle vertex, with every earlier support vertex outside the cycle. -/
+/--
+@isnad1 id=ex.4h7v.s7.2a8842449082 from=translated src=- shape=9ccb8454 vocab=8ce4a7e7
+-/
 theorem _root_.SimpleGraph.Walk.exists_first_return_to_cycle
     {V : Type u} {G : SimpleGraph V} {s x y : V}
     {c : G.Walk s s} (_hc : c.IsCycle)
@@ -591,6 +623,9 @@ theorem _root_.SimpleGraph.Walk.exists_first_return_to_cycle
    genuine simple closed excursion obtained by prefixing the incident edge.
    The degenerate branch is kept explicit because it is not a bridge or a
    simple cycle. -/
+/--
+@isnad1 id=or.5h7v.s6.c0a7368a3967 from=translated src=- shape=46e37147 vocab=9be1a871
+-/
 theorem _root_.SimpleGraph.Walk.same_attachment_excursion
     {V : Type u} {G : SimpleGraph V} {a x y : V}
     (hax : G.Adj a x) (p : G.Walk x y) (hp : p.IsPath)
@@ -621,6 +656,9 @@ theorem _root_.SimpleGraph.Walk.same_attachment_excursion
 
 /- A nondegenerate same-attachment excursion cannot be shorter than the
    globally shortest cycle. -/
+/--
+@isnad1 id=le.6h7v.s6.127565f74951 from=translated src=- shape=0c13ea32 vocab=125e7250
+-/
 theorem ShortestCycleCertificate.le_same_attachment_excursion_length
     {V : Type u} {G : SimpleGraph V}
     (certificate : ShortestCycleCertificate G)
@@ -637,6 +675,9 @@ theorem ShortestCycleCertificate.le_same_attachment_excursion_length
 
 /- An incident edge in a connected graph either is a bridge or admits a
    path between its endpoints that avoids the edge. -/
+/--
+@isnad1 id=or.2h4v.s6.794a006c3088 from=translated src=- shape=fbb2d864 vocab=a97840b1
+-/
 theorem _root_.SimpleGraph.exists_path_avoiding_edge_or_isBridge
     {V : Type u} {G : SimpleGraph V}
     (hconn : G.Connected) {a x : V} (hax : G.Adj a x) :
@@ -712,6 +753,9 @@ def CycleBridgePath.of_first_return
 
 /- Connectedness and an external incident edge yield either a genuine bridge
 or explicit same-attachment first-return data for the descent branch. -/
+/--
+@isnad1 id=or.5h6v.s7.ed2c4c27a885 from=translated src=- shape=589f2401 vocab=c959758b
+-/
 theorem CycleBridgePath.exists_of_connected_external_neighbor
     {V : Type u} {G : SimpleGraph V} {s a x : V}
     {cycle : G.Walk s s} (hcycle : cycle.IsCycle)
@@ -734,6 +778,9 @@ theorem CycleBridgePath.exists_of_connected_external_neighbor
 /- Every shortest-cycle vertex has an external incident edge, and connectedness
    classifies its first return as either a genuine bridge or a same-attachment
    excursion. -/
+/--
+@isnad1 id=ex.3h4v.s7.0783498ffa1b from=translated src=- shape=1fd13fd9 vocab=cb0f8fe2
+-/
 theorem ShortestCycleCertificate.exists_attachment_or_same_return
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -758,7 +805,9 @@ theorem ShortestCycleCertificate.exists_attachment_or_same_return
 
 /-- Every bridge has two complementary simple cycle arcs between its
 attachments, in the orientation obtained by rotating the cycle to the left
-attachment.-/
+attachment.
+@isnad1 id=ex.1h5v.s7.9aa7b9a41476 from=translated src=- shape=3928d6a2 vocab=73ff8d72
+-/
 theorem CycleBridgePath.exists_complementary_arcs
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {s : V}
     {cycle : G.Walk s s}
@@ -774,7 +823,9 @@ theorem CycleBridgePath.exists_complementary_arcs
 
 /-- The two complementary arcs supplied by
 `CycleBridgePath.exists_complementary_arcs` have total length equal to the
-cycle length.-/
+cycle length.
+@isnad1 id=eq.1h7v.s8.9847099c1cc2 from=translated src=- shape=6cf2f8cb vocab=707caba6
+-/
 theorem CycleBridgePath.complementary_arcs_length_add
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {s : V}
     {cycle : G.Walk s s}
@@ -791,6 +842,9 @@ theorem CycleBridgePath.complementary_arcs_length_add
   have hlength := congrArg SimpleGraph.Walk.length hdecomp
   simpa [SimpleGraph.Walk.length_append] using hlength
 
+/--
+@isnad1 id=ex.1h5v.s8.97e481156fca from=translated src=- shape=344b73fe vocab=15585810
+-/
 theorem CycleBridgePath.exists_complementary_arc_longer_than_one
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {s : V}
     {cycle : G.Walk s s}
@@ -862,6 +916,9 @@ def CycleBridgePath.reverse
 /- A cycle arc whose support lies on the chosen cycle is automatically
 disjoint from the bridge interior, including the endpoint bookkeeping needed
 for the two tails passed to `isCycle_append`. -/
+/--
+@isnad1 id=disjoint.2h6v.s7.8045ceb69865 from=translated src=- shape=4acd8462 vocab=680d5d2f
+-/
 theorem CycleBridgePath.tails_disjoint_of_arc_support_subset
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {s : V}
     {cycle : G.Walk s s}
@@ -907,7 +964,9 @@ theorem CycleBridgePath.tails_disjoint_of_arc_support_subset
   · exact hnotdrop (List.mem_dropLast_of_mem_of_ne_getLast hxpath hlast)
 
 /-- An external bridge path and an explicitly supplied cycle arc with the
-same endpoints form a simple cycle when their tails are disjoint.-/
+same endpoints form a simple cycle when their tails are disjoint.
+@isnad1 id=ex.3h6v.s8.6ef4fa6cc88f from=translated src=- shape=e5eacc63 vocab=565df1f2
+-/
 theorem CycleBridgePath.cycle_of_arc
     {V : Type u} {G : SimpleGraph V} {s : V}
     {cycle : G.Walk s s}
@@ -930,6 +989,9 @@ theorem CycleBridgePath.cycle_of_arc
 /- The complementary-arc decomposition supplies the support containment
 needed by `tails_disjoint_of_arc_support_subset`, so the bridge construction
 can be applied directly to an extracted cycle arc. -/
+/--
+@isnad1 id=ex.2h7v.s8.bfcf88412886 from=translated src=- shape=e6d5736f vocab=1eec2a19
+-/
 theorem CycleBridgePath.cycle_of_extracted_arc
     {V : Type u} {G : SimpleGraph V} [DecidableEq V] {s : V}
     {cycle : G.Walk s s}
@@ -966,7 +1028,9 @@ theorem CycleBridgePath.cycle_of_extracted_arc
   exact bridge.cycle_of_arc p.property hdisjoint hlength
 
 /-- Expose the bridge-plus-arc construction directly as a cycle-length
-  witness for the arithmetic layer.-/
+  witness for the arithmetic layer.
+@isnad1 id=hassimpl.3h6v.s7.25eff1532428 from=translated src=- shape=eecdfc13 vocab=34f5f4e5
+-/
 theorem CycleBridgePath.hasSimpleCycleOfLength_of_arc
     {V : Type u} {G : SimpleGraph V} {s : V}
     {cycle : G.Walk s s}
@@ -982,7 +1046,9 @@ theorem CycleBridgePath.hasSimpleCycleOfLength_of_arc
     bridge.cycle_of_arc arc_isPath tails_disjoint length_condition
   exact ⟨bridge.left, c, hc, hlength⟩
 
-/-- A bridge-plus-arc cycle cannot be shorter than a globally shortest cycle.-/
+/-- A bridge-plus-arc cycle cannot be shorter than a globally shortest cycle.
+@isnad1 id=le.3h5v.s8.adcf741a23a6 from=translated src=- shape=abcb7111 vocab=9929f3ab
+-/
 theorem ShortestCycleCertificate.le_bridge_arc_length
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (certificate : ShortestCycleCertificate G)
@@ -1001,6 +1067,9 @@ theorem ShortestCycleCertificate.le_bridge_arc_length
 
 /- The reversed bridge gives the corresponding restriction for an arc in the
 opposite orientation. -/
+/--
+@isnad1 id=le.3h5v.s8.870a3441be36 from=translated src=- shape=c77bbeec vocab=8fb631c3
+-/
 theorem ShortestCycleCertificate.le_reverse_bridge_arc_length
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (certificate : ShortestCycleCertificate G)
@@ -1029,6 +1098,9 @@ theorem ShortestCycleCertificate.le_reverse_bridge_arc_length
 
 /- The same shortest-cycle restriction applies directly to an arc extracted
 from the rotated cycle decomposition. -/
+/--
+@isnad1 id=le.2h6v.s9.e3d65c113c7b from=translated src=- shape=6a24cfd6 vocab=e692c83c
+-/
 theorem ShortestCycleCertificate.le_extracted_arc_length
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (certificate : ShortestCycleCertificate G)
@@ -1051,6 +1123,9 @@ theorem ShortestCycleCertificate.le_extracted_arc_length
 
 /- A shortest cycle forces each complementary cycle arc of an external bridge
 to be no longer than the bridge itself, once both reroutings are valid. -/
+/--
+@isnad1 id=and.3h6v.s9.59d46f479b88 from=translated src=- shape=7f1845de vocab=4a3008b1
+-/
 theorem ShortestCycleCertificate.complementary_arc_le_bridge_length
     {V : Type u} {G : SimpleGraph V} [DecidableEq V]
     (certificate : ShortestCycleCertificate G)
@@ -1116,6 +1191,9 @@ structure MinimalCounterexample
       [Fintype W] [DecidableRel H.Adj],
       IsCounterexample H → Fintype.card V ≤ Fintype.card W
 
+/--
+@isnad1 id=ex.1h0v.s6.89f0b1d82a0a from=translated src=- shape=0584d576 vocab=60b27f11
+-/
 theorem exists_minimalCounterexample
     (hnot :
       ¬ (∀ (V : Type u) (G : SimpleGraph V) [Fintype V]
@@ -1168,6 +1246,9 @@ structure EdgeMinimalCounterexample
     ∀ (H : SimpleGraph V) [DecidableRel H.Adj],
       IsCounterexample H → H ≤ G → H = G
 
+/--
+@isnad1 id=ex.1h2v.s5.cbffcd083531 from=translated src=- shape=1ff6d335 vocab=3ff87fce
+-/
 theorem MinimalCounterexample.exists_edgeMinimalCounterexample
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1220,7 +1301,9 @@ theorem MinimalCounterexample.exists_edgeMinimalCounterexample
     exact Set.eq_of_subset_of_ncard_le
       (SimpleGraph.edgeSet_mono hKH) (by omega)
 
-/-- Minimality rules out the descent branch of the dichotomy.-/
+/-- Minimality rules out the descent branch of the dichotomy.
+@isnad1 id=false.2h4v.s5.f7bef8e340d2 from=translated src=- shape=a7defe96 vocab=6acc2d98
+-/
 theorem MinimalCounterexample.not_exists_strictly_smaller
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -1235,7 +1318,9 @@ theorem MinimalCounterexample.not_exists_strictly_smaller
   exact (Nat.not_lt_of_ge hcard) hsmaller.2
 
 /-- A minimal counterexample is connected: a proper connected component would
-give a smaller counterexample with the same minimum-degree lower bound.-/
+give a smaller counterexample with the same minimum-degree lower bound.
+@isnad1 id=connecte.1h2v.s4.f572430f8fdf from=translated src=- shape=f84a8f9f vocab=cd337ee6
+-/
 theorem MinimalCounterexample.isConnected
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -1315,7 +1400,9 @@ def HasDyadicCertificateOrDescent
       IsStrictlySmallerCounterexample G H
 
 /-- The dichotomy closes a minimal counterexample once its forcing theorem is
-available.-/
+available.
+@isnad1 id=haspower.2h2v.s4.9a9a9e12fa58 from=translated src=- shape=0d7d407b vocab=ea435fc4
+-/
 theorem MinimalCounterexample.hasPowerOfTwoCycle_of_dichotomy
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableRel G.Adj]
@@ -1326,6 +1413,9 @@ theorem MinimalCounterexample.hasPowerOfTwoCycle_of_dichotomy
   · exact hcycle
   · exact (minimalCounterexample.not_exists_strictly_smaller hsmaller).elim
 
+/--
+@isnad1 id=haspower.2h2v.s5.2b8e52e44025 from=translated src=- shape=f4249d11 vocab=8a00ea5e
+-/
 theorem conjecture_of_minimal_counterexample_dichotomy
     (hforcing :
       ∀ (V : Type u) (G : SimpleGraph V) [Fintype V]
@@ -1353,6 +1443,9 @@ theorem conjecture_of_minimal_counterexample_dichotomy
     (hminimal.hasPowerOfTwoCycle_of_dichotomy
       (hforcing W K hminimal))
 
+/--
+@isnad1 id=haspower.2h2v.s5.4aef3417ed0a from=translated src=- shape=f4249d11 vocab=38c4efd4
+-/
 theorem conjecture_of_edgeMinimal_counterexample_dichotomy
     (hforcing :
       ∀ (V : Type u) (G : SimpleGraph V) [Fintype V]
@@ -1396,7 +1489,9 @@ def IsSubgraphCritical {V : Type u} (G : SimpleGraph V) [Fintype V]
     ∃ v, v ∈ S ∧ internalDegree G S v ≤ 2
 
 /-- A vertex-minimal counterexample has no proper induced subgraph of minimum
-degree at least three.-/
+degree at least three.
+@isnad1 id=issubgra.1h2v.s4.cd99bc182bb1 from=translated src=- shape=a5a4292f vocab=651bedf5
+-/
 theorem MinimalCounterexample.isSubgraphCritical
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1472,6 +1567,9 @@ theorem MinimalCounterexample.isSubgraphCritical
   rw [hcardW, hcardV] at hminimal
   omega
 
+/--
+@isnad1 id=eq.1h4v.s6.a366bbe8229a from=translated src=- shape=6b32f4ac vocab=e7fb09f7
+-/
 theorem internalDegree_erase_add_one_of_adj
     {V : Type u} (G : SimpleGraph V) [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj] {v w : V}
@@ -1493,6 +1591,9 @@ theorem internalDegree_erase_add_one_of_adj
     omega
   · simpa [SimpleGraph.neighborFinset_eq_filter] using hvw.symm
 
+/--
+@isnad1 id=ex.1h3v.s6.6bc641025dab from=translated src=- shape=45e3763c vocab=c58c1a4f
+-/
 theorem MinimalCounterexample.exists_adjacent_degree_eq_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1540,6 +1641,9 @@ theorem MinimalCounterexample.exists_adjacent_degree_eq_three
   refine ⟨w, hadj, ?_⟩
   omega
 
+/--
+@isnad1 id=eq.1h4v.s7.8e9174be2154 from=translated src=- shape=f226fff6 vocab=01c6d3a8
+-/
 theorem neighborFinset_deleteEdges_singleton_eq_erase
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1563,6 +1667,9 @@ theorem neighborFinset_deleteEdges_singleton_eq_erase
     · exact hxv hcases.2
     · exact huv.ne hcases.1
 
+/--
+@isnad1 id=eq.1h4v.s7.e9a2c9808248 from=translated src=- shape=ffeb0491 vocab=01c6d3a8
+-/
 theorem neighborFinset_deleteEdges_singleton_eq_erase_right
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1586,6 +1693,9 @@ theorem neighborFinset_deleteEdges_singleton_eq_erase_right
     · exact huv.ne hcases.1.symm
     · exact hxu hcases.2
 
+/--
+@isnad1 id=eq.3h5v.s7.f04c6a58228a from=translated src=- shape=eb654cdc vocab=b83b7a92
+-/
 theorem neighborFinset_deleteEdges_singleton_eq_self_of_ne
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1606,6 +1716,9 @@ theorem neighborFinset_deleteEdges_singleton_eq_self_of_ne
     · exact hxu hcases.1
     · exact hxv hcases.1
 
+/--
+@isnad1 id=le.4h4v.s7.402965d9dc00 from=translated src=- shape=a49d3c8c vocab=9d79b28a
+-/
 theorem minDegree_deleteEdges_singleton_ge_three
     {V : Type u} (G : SimpleGraph V)
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1640,6 +1753,9 @@ theorem minDegree_deleteEdges_singleton_ge_three
       SimpleGraph.card_neighborFinset_eq_degree G x]
     exact le_trans hmin (G.minDegree_le_degree x)
 
+/--
+@isnad1 id=not.3h4v.s6.8fb1ef0bb5a1 from=translated src=- shape=61fe1c78 vocab=a877bc90
+-/
 theorem EdgeMinimalCounterexample.high_degree_vertices_independent
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1672,6 +1788,9 @@ theorem EdgeMinimalCounterexample.high_degree_vertices_independent
     simp [H]
   exact hnot (by simpa [heq] using huv)
 
+/--
+@isnad1 id=eq.3h4v.s6.250a2b43efcc from=translated src=- shape=efb19ba6 vocab=a877bc90
+-/
 theorem EdgeMinimalCounterexample.neighbor_degree_eq_three_of_degree_ge_four
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1684,6 +1803,9 @@ theorem EdgeMinimalCounterexample.neighbor_degree_eq_three_of_degree_ge_four
   have hv4 : 4 ≤ G.degree v := by omega
   exact (minimalCounterexample.high_degree_vertices_independent hu hv4) huv
 
+/--
+@isnad1 id=ex.4h4v.s7.6c142868df55 from=translated src=- shape=4dc38136 vocab=5f3a432f
+-/
 theorem ShortestCycleCertificate.exists_external_degree_three_neighbor_of_high_degree
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1701,6 +1823,9 @@ theorem ShortestCycleCertificate.exists_external_degree_three_neighbor_of_high_d
       hvhigh hvw
   exact ⟨w, hvw, hw, hwdeg⟩
 
+/--
+@isnad1 id=ex.5h4v.s8.6a9a18684f5e from=translated src=- shape=58f9e1a6 vocab=c2c2a6ef
+-/
 theorem ShortestCycleCertificate.exists_degree_three_bridge_or_same_return
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1727,6 +1852,9 @@ theorem ShortestCycleCertificate.exists_degree_three_bridge_or_same_return
   · exact ⟨w, hvw, hw, hwdeg, Or.inl hbridge⟩
   · exact ⟨w, hvw, hw, hwdeg, Or.inr hreturn⟩
 
+/--
+@isnad1 id=ex.5h4v.s8.11093cec4443 from=translated src=- shape=55c75c9c vocab=a4a3a498
+-/
 theorem ShortestCycleCertificate.exists_degree_three_bridge_or_excursion
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1761,6 +1889,9 @@ theorem ShortestCycleCertificate.exists_degree_three_bridge_or_excursion
 
 /- A degree-three attachment vertex has two distinct neighbors besides the
    already chosen attachment edge. -/
+/--
+@isnad1 id=ex.2h4v.s6.2d63cc06e459 from=translated src=- shape=a6bb11f8 vocab=7d632068
+-/
 theorem exists_two_other_neighbors_of_degree_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1787,6 +1918,9 @@ theorem exists_two_other_neighbors_of_degree_three
     simpa [SimpleGraph.neighborFinset_eq_filter] using hy'.2
   exact ⟨x, y, hxy, hxadj, hyadj, hx'.1, hy'.1⟩
 
+/--
+@isnad1 id=le.2h3v.s7.90e56b14e30c from=translated src=- shape=7594f934 vocab=629ea923
+-/
 theorem EdgeMinimalCounterexample.high_degree_neighborFinset_card_le_two_of_degree_eq_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1849,6 +1983,9 @@ def CycleBridgePath.of_two_edge_ear
 /- A two-edge ear attached to a shortest cycle already forces a 4-cycle.
    The two complementary cycle arcs sum to the shortest-cycle length, while
    shortestness bounds each arc by the ear length. -/
+/--
+@isnad1 id=haspower.1h4v.s6.e3981ee67027 from=translated src=- shape=145bcf33 vocab=7e4d7d04
+-/
 theorem ShortestCycleCertificate.hasPowerOfTwoCycle_of_two_edge_ear
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1925,6 +2062,9 @@ theorem ShortestCycleCertificate.hasPowerOfTwoCycle_of_two_edge_ear
 
 /- A degree-three attachment either gives a direct ear back to the cycle or
    exposes two distinct continuations that are both still external. -/
+/--
+@isnad1 id=or.5h6v.s7.d7c68124de95 from=translated src=- shape=a9bb746f vocab=1c891ea0
+-/
 theorem exists_direct_ear_or_two_external_branches_of_degree_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -1954,6 +2094,9 @@ theorem exists_direct_ear_or_two_external_branches_of_degree_three
     · right
       exact ⟨x, y, hxy, hwx, hwy, hxv, hyv, hx, hy⟩
 
+/--
+@isnad1 id=le.1h2v.s7.877eaae82706 from=translated src=- shape=f15675c4 vocab=66ff10b1
+-/
 theorem EdgeMinimalCounterexample.high_degree_count_mul_four_le_degree_three_count_mul_two
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -2014,6 +2157,9 @@ theorem EdgeMinimalCounterexample.high_degree_count_mul_four_le_degree_three_cou
       exact hbound
   simpa [H, L] using hdouble
 
+/--
+@isnad1 id=le.1h2v.s7.d1d5004408ed from=translated src=- shape=0df9aacc vocab=66ff10b1
+-/
 theorem EdgeMinimalCounterexample.high_degree_count_mul_two_le_degree_three_count
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -2024,6 +2170,9 @@ theorem EdgeMinimalCounterexample.high_degree_count_mul_two_le_degree_three_coun
     minimalCounterexample.high_degree_count_mul_four_le_degree_three_count_mul_two
   omega
 
+/--
+@isnad1 id=nonempty.1h2v.s6.3ccad399d6ac from=translated src=- shape=521a3d4f vocab=e3f1d129
+-/
 theorem EdgeMinimalCounterexample.exists_degree_eq_three
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -2073,7 +2222,9 @@ theorem EdgeMinimalCounterexample.exists_degree_eq_three
 
 The separation hypothesis says that vertices outside both `U` and `K` have
 no neighbors in `K`. Thus `K` behaves as one component of the complement of
-`U`, without requiring a formal connected-component API.-/
+`U`, without requiring a formal connected-component API.
+@isnad1 id=ex.7h4v.s7.1fee5a52d21c from=translated src=- shape=8a5ff2cb vocab=e7f7768f
+-/
 theorem exists_deficient_boundary_vertex
     {V : Type u} (G : SimpleGraph V) [Fintype V]
     [DecidableEq V] [DecidableRel G.Adj]
@@ -2148,6 +2299,9 @@ theorem exists_deficient_boundary_vertex
 /- Expose the deficient-boundary certificate directly for a minimal
    counterexample, converting its minimum-degree statement to the finset
    form used by the general lemma. -/
+/--
+@isnad1 id=ex.6h4v.s7.d62a826880b8 from=translated src=- shape=79136147 vocab=977e1be1
+-/
 theorem MinimalCounterexample.exists_deficient_boundary_vertex
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -2175,6 +2329,9 @@ theorem MinimalCounterexample.exists_deficient_boundary_vertex
 
 /- An edge-minimal counterexample is predominantly cubic: at least two thirds
    of its vertices have degree exactly three. -/
+/--
+@isnad1 id=le.1h2v.s7.4b7c72e956d6 from=translated src=- shape=c82e0db3 vocab=c6307924
+-/
 theorem EdgeMinimalCounterexample.degree_three_count_ge_two_thirds
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
@@ -2224,6 +2381,9 @@ theorem EdgeMinimalCounterexample.degree_three_count_ge_two_thirds
 
 /- The predominantly-cubic invariant can be attached to a refinement of any
    vertex-minimal counterexample, rather than assumed for the original graph. -/
+/--
+@isnad1 id=ex.1h2v.s7.1aa1b8157ea1 from=translated src=- shape=f33236fe vocab=45f4129a
+-/
 theorem MinimalCounterexample.exists_edgeMinimal_predominantly_cubic
     {V : Type u} {G : SimpleGraph V}
     [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
