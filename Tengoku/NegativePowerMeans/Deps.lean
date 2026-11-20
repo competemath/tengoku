@@ -1,0 +1,1 @@
+-- NegativePowerMeans: a factory bundle (data/intake/negative-power-means). This file only marks the library for Tengoku/All.lean.

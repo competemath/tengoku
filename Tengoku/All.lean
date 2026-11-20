@@ -134,6 +134,7 @@ import Tengoku.CayleyBacharach
 import Tengoku.Compply
 import Tengoku.LeanCharacteristicSet
 import Tengoku.GnmLean
+import Tengoku.NegativePowerMeans
 import Tengoku.SpherePackingOrig
 import Tengoku.BezoutCounterexampleLean
 import Tengoku.Ulmstheorem
