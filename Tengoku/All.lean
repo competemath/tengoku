@@ -50,6 +50,7 @@ import Tengoku.TenProofs
 import Tengoku.TusnadyLean
 import Tengoku.FormalizeTubalDemystPaper
 import Tengoku.Leanmodularforms
+import Tengoku.SofaFormal
 import Tengoku.Foundation
 import Tengoku.Erdos1196
 import Tengoku.Xilab
