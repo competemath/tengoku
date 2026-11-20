@@ -1,0 +1,1 @@
+-- MoranLean: a factory bundle (data/intake/moran-lean). This file only marks the library for Tengoku/All.lean.
