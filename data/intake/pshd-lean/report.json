@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "d982b5cd65b0ff32baf3a8dae8fb9cab558a5969d0597c8236a0262d1a9a668b",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "pshd-lean",
+ "lint_mode": "proposed",
+ "modules": 148,
+ "part": 1,
+ "theorems": 969
+}
