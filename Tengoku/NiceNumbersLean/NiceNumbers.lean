@@ -124,8 +124,14 @@ def digitSum (b x : Nat) : Nat :=
   if h : 1 < b ∧ 0 < x then x % b + digitSum b (x / b) else 0
 decreasing_by exact Nat.div_lt_self h.2 h.1
 
+/--
+@isnad1 id=eq.0h1v.s4.152084e71979 from=translated src=- shape=1d838610 vocab=4aba56e8
+-/
 theorem numDigits_zero (b : Nat) : numDigits b 0 = 0 := by rw [numDigits]; simp
 
+/--
+@isnad1 id=eq.0h1v.s4.5a300d0216e8 from=translated src=- shape=1d838610 vocab=46644e62
+-/
 theorem digitSum_zero (b : Nat) : digitSum b 0 = 0 := by rw [digitSum]; simp
 
 theorem eq_zero_of_numDigits_eq_zero {b x : Nat} (hb : 1 < b)
@@ -134,10 +140,15 @@ theorem eq_zero_of_numDigits_eq_zero {b x : Nat} (hb : 1 < b)
   · exact h0
   · rw [numDigits, dite_eq_left ⟨hb, h0⟩] at h; omega
 
+/--
+@isnad1 id=lt.2h2v.s5.331ae7c31d1d from=translated src=- shape=6c67d60b vocab=6bce1123
+-/
 theorem numDigits_pos {b x : Nat} (hb : 1 < b) (hx : 0 < x) : 0 < numDigits b x := by
   rw [numDigits, dite_eq_left ⟨hb, hx⟩]; omega
 
-/-- `numDigits b x = k+1` means exactly `b^k ≤ x < b^(k+1)`.-/
+/-- `numDigits b x = k+1` means exactly `b^k ≤ x < b^(k+1)`.
+@isnad1 id=and.2h3v.s6.8b448fcb09f7 from=translated src=- shape=8cfc4530 vocab=850b17f7
+-/
 theorem bounds_of_numDigits {b : Nat} (hb : 1 < b) :
     ∀ x k, numDigits b x = k + 1 → b ^ k ≤ x ∧ x < b ^ (k + 1) := by
   intro x
@@ -170,7 +181,9 @@ theorem bounds_of_numDigits {b : Nat} (hb : 1 < b) :
           _ ≤ b * b ^ (j+1) := Nat.mul_le_mul_left b (by omega)
           _ = b ^ (j+1+1) := (Nat.mul_comm b (b^(j+1))).trans (Nat.pow_succ b (j+1)).symm
 
-/-- Casting out `b-1`s: the classical digit-sum congruence.-/
+/-- Casting out `b-1`s: the classical digit-sum congruence.
+@isnad1 id=eq.1h2v.s5.33f2a557b19a from=translated src=- shape=7211bc27 vocab=cfaf6dba
+-/
 theorem digitSum_mod {b : Nat} (hb : 1 < b) : ∀ x, x % (b - 1) = digitSum b x % (b - 1) := by
   intro x
   induction x using Nat.strongRecOn with
@@ -194,7 +207,9 @@ theorem digitSum_mod {b : Nat} (hb : 1 < b) : ∀ x, x % (b - 1) = digitSum b x 
 
 /-! ## §1  Theorem 1 — the length obstruction -/
 
-/-- Core lacks the strict form of `pow_le_pow_left`.-/
+/-- Core lacks the strict form of `pow_le_pow_left`.
+@isnad1 id=lt.2h3v.s5.bfa8ac3175a9 from=translated src=- shape=c574f6f7 vocab=7ddce274
+-/
 theorem pow_lt_pow_left' {x y : Nat} (h : x < y) : ∀ k, k ≠ 0 → x ^ k < y ^ k := by
   intro k hk
   match k, hk with
@@ -206,7 +221,9 @@ theorem pow_lt_pow_left' {x y : Nat} (h : x < y) : ∀ k, k ≠ 0 → x ^ k < y 
 
 /-- Comparing `b^a ≤ n^e1` and `n^e2 < b^(c+1)` through the common value
 `n^(e1e2)` pins `a·e2` strictly below `(c+1)·e1`.  Used both ways round, this
-confines `(a,c)` to a window of width exactly `e1+e2` — the whole theorem.-/
+confines `(a,c)` to a window of width exactly `e1+e2` — the whole theorem.
+@isnad1 id=lt.4h6v.s7.c4c308bdcaa6 from=translated src=- shape=4337d001 vocab=3f16b8dd
+-/
 theorem exp_lt {b e1 e2 n a c : Nat} (hb : 1 < b) (he1 : e1 ≠ 0)
     (ha : b ^ a ≤ n ^ e1) (hc' : n ^ e2 < b ^ (c + 1)) :
     a * e2 < (c + 1) * e1 := by
@@ -217,6 +234,9 @@ theorem exp_lt {b e1 e2 n a c : Nat} (hb : 1 < b) (he1 : e1 ≠ 0)
   rw [Nat.mul_comm e1 e2] at h1'
   exact (Nat.pow_lt_pow_iff_right hb).mp (Nat.lt_of_le_of_lt h1' h2')
 
+/--
+@isnad1 id=false.9h6v.s7.9e548b0b92cb from=translated src=- shape=9e0d493b vocab=2f6feaa2
+-/
 theorem no_candidate {b e1 e2 n a c : Nat}
     (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0)
     (ha : b ^ a ≤ n ^ e1) (ha' : n ^ e1 < b ^ (a + 1))
@@ -246,7 +266,9 @@ theorem no_candidate {b e1 e2 n a c : Nat}
 /--
 **Theorem 1.**  If `(e1+e2) ∣ e1*(b-1)` then no `n` has
 `numDigits b (n^e1) + numDigits b (n^e2) = b`, so base `b` contains no
-`(e1,e2)`-nice number.-/
+`(e1,e2)`-nice number.
+@isnad1 id=ne.4h4v.s6.ef21b40f6b63 from=translated src=- shape=bbfca1ab vocab=6b751c31
+-/
 theorem no_nice_of_dvd {b e1 e2 n : Nat}
     (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0)
     (hdvd : (e1 + e2) ∣ e1 * (b - 1)) :
@@ -266,14 +288,18 @@ theorem no_nice_of_dvd {b e1 e2 n : Nat}
 
 /-! ### Named corollaries -/
 
-/-- Square/cube ("nice") numbers: base `b ≡ 1 (mod 5)` is empty.-/
+/-- Square/cube ("nice") numbers: base `b ≡ 1 (mod 5)` is empty.
+@isnad1 id=ne.2h2v.s6.30933c09cf5c from=translated src=- shape=ee2dc1a8 vocab=41efc7a8
+-/
 theorem nice_no_solution {b n : Nat} (hb : 1 < b) (hmod : b % 5 = 1) :
     numDigits b (n ^ 2) + numDigits b (n ^ 3) ≠ b := by
   refine no_nice_of_dvd (e1 := 2) (e2 := 3) hb (by decide) (by decide) ?_
   obtain ⟨t, ht⟩ : 5 ∣ (b - 1) := by omega
   exact ⟨2 * t, by omega⟩
 
-/-- The `(1,3)` problem: base `b ≡ 1 (mod 4)` is empty.-/
+/-- The `(1,3)` problem: base `b ≡ 1 (mod 4)` is empty.
+@isnad1 id=ne.2h2v.s6.5392ab130c9c from=translated src=- shape=ee2dc1a8 vocab=41efc7a8
+-/
 theorem one_three_no_solution {b n : Nat} (hb : 1 < b) (hmod : b % 4 = 1) :
     numDigits b (n ^ 1) + numDigits b (n ^ 3) ≠ b := by
   refine no_nice_of_dvd (e1 := 1) (e2 := 3) hb (by decide) (by decide) ?_
@@ -281,7 +307,9 @@ theorem one_three_no_solution {b n : Nat} (hb : 1 < b) (hmod : b % 4 = 1) :
   exact ⟨t, by omega⟩
 
 /-- The `(2,4)` problem: base `b ≡ 1 (mod 3)` is empty — a *third* of all bases.
-    This is the `gcd(e1,e2) > 1` phenomenon, free from the divisibility form.-/
+    This is the `gcd(e1,e2) > 1` phenomenon, free from the divisibility form.
+@isnad1 id=ne.2h2v.s6.a4af71ba4cc5 from=translated src=- shape=ee2dc1a8 vocab=41efc7a8
+-/
 theorem two_four_no_solution {b n : Nat} (hb : 1 < b) (hmod : b % 3 = 1) :
     numDigits b (n ^ 2) + numDigits b (n ^ 4) ≠ b := by
   refine no_nice_of_dvd (e1 := 2) (e2 := 4) hb (by decide) (by decide) ?_
@@ -290,6 +318,9 @@ theorem two_four_no_solution {b n : Nat} (hb : 1 < b) (hmod : b % 3 = 1) :
 
 /-! ## §2  Theorem 3 — the parity obstruction, for every exponent pair -/
 
+/--
+@isnad1 id=eq.1h2v.s5.23b133671b10 from=translated src=- shape=00177818 vocab=df461349
+-/
 theorem pow_mod_two {n : Nat} : ∀ e, e ≠ 0 → n ^ e % 2 = n % 2 := by
   intro e he
   induction e with
@@ -307,7 +338,9 @@ theorem pow_mod_two {n : Nat} : ∀ e, e ≠ 0 → n ^ e % 2 = n % 2 := by
 /--
 **Theorem 3.**  For every exponent pair with `e1, e2 ≥ 1`, base `b ≡ 3 (mod 4)`
 contains no `(e1,e2)`-nice number: the digit-sum identity
-`2·(digitSum(n^e1) + digitSum(n^e2)) = b(b-1)` is already unsatisfiable.-/
+`2·(digitSum(n^e1) + digitSum(n^e2)) = b(b-1)` is already unsatisfiable.
+@isnad1 id=false.5h4v.s7.1dc56cafca25 from=translated src=- shape=e54f9c15 vocab=1a50f88f
+-/
 theorem no_nice_of_mod_four {b e1 e2 n : Nat}
     (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0) (hmod : b % 4 = 3)
     (hT : 2 * (digitSum b (n ^ e1) + digitSum b (n ^ e2)) = b * (b - 1)) : False := by
@@ -351,7 +384,9 @@ sieve uses it: for `b ≡ 3 (mod 4)` the residue set
 
 `no_nice_of_mod_four` rules out an actual solution's digit sums; this rules out
 the congruence class it would have to live in, which is the statement
-an exhaustive check once covered over `e1 ≤ 8`, `e2 ≤ 9`, `b < 400`.-/
+an exhaustive check once covered over `e1 ≤ 8`, `e2 ≤ 9`, `b < 400`.
+@isnad1 id=ne.5h5v.s7.e9b800fdd2e1 from=translated src=- shape=d8e223ca vocab=f572c56f
+-/
 theorem residues_empty_of_mod_four {b e1 e2 T ρ : Nat}
     (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0) (hmod : b % 4 = 3)
     (hT : 2 * T = b * (b - 1)) :
@@ -382,7 +417,9 @@ theorem residues_empty_of_mod_four {b e1 e2 T ρ : Nat}
   omega
 
 /-- Theorem 3's residue form firing: base 7 has no `(2,3)` residue at all
-(`T = 21`, `2·21 = 7·6`).-/
+(`T = 21`, `2·21 = 7·6`).
+@isnad1 id=ne.0h1v.s6.ad56dba82827 from=translated src=- shape=589029cd vocab=b2ffaa0b
+-/
 theorem base_seven_no_residue (ρ : Nat) : (ρ ^ 2 + ρ ^ 3) % 6 ≠ 21 % 6 :=
   residues_empty_of_mod_four (b := 7) (by decide) (by decide) (by decide) (by decide)
     (by decide)
@@ -399,7 +436,9 @@ vanish once.  What is formalised is therefore the general two-value statement,
 with the exponent form as a corollary. -/
 
 /-- `b^k ≤ x` forces `x` to have at least `k+1` digits — the converse direction
-of `bounds_of_numDigits`, and all that antitonicity needs.-/
+of `bounds_of_numDigits`, and all that antitonicity needs.
+@isnad1 id=le.2h3v.s5.db49011a11ad from=translated src=- shape=a465ce2c vocab=850b17f7
+-/
 theorem le_numDigits_of_pow_le {b x k : Nat} (hb : 1 < b) (h : b ^ k ≤ x) :
     k + 1 ≤ numDigits b x := by
   have hx : 0 < x := Nat.lt_of_lt_of_le (Nat.pow_pos (a := b) (n := k) (by omega)) h
@@ -410,7 +449,9 @@ theorem le_numDigits_of_pow_le {b x k : Nat} (hb : 1 < b) (h : b ^ k ≤ x) :
   have := (Nat.pow_lt_pow_iff_right hb).mp hpow
   omega
 
-/-- A bigger base never needs more digits.-/
+/-- A bigger base never needs more digits.
+@isnad1 id=le.2h3v.s4.1780265db26a from=translated src=- shape=e76e0b44 vocab=dab38113
+-/
 theorem numDigits_antitone {b b' : Nat} (hb : 1 < b) (hbb : b ≤ b') (x : Nat) :
     numDigits b' x ≤ numDigits b x := by
   rcases Nat.eq_zero_or_pos (numDigits b' x) with h | h
@@ -424,7 +465,9 @@ theorem numDigits_antitone {b b' : Nat} (hb : 1 < b) (hbb : b ≤ b') (x : Nat) 
 
 /--
 **One base per value.**  For any two values `x, y`, at most one base `b` satisfies the
-length identity `numDigits b x + numDigits b y = b`.-/
+length identity `numDigits b x + numDigits b y = b`.
+@isnad1 id=eq.4h4v.s6.b43ec02f109e from=translated src=- shape=df564095 vocab=db2b533d
+-/
 theorem base_unique {b b' x y : Nat} (hb : 1 < b) (hb' : 1 < b')
     (h : numDigits b x + numDigits b y = b)
     (h' : numDigits b' x + numDigits b' y = b') : b = b' := by
@@ -442,14 +485,18 @@ def InBand (b e1 e2 n : Nat) : Prop :=
   numDigits b (n ^ e1) + numDigits b (n ^ e2) = b
 
 /-- **The bands are disjoint.**  The bands of two distinct bases are disjoint: no `n`
-is a candidate in both.  Holds for every exponent pair, `n` included `0`.-/
+is a candidate in both.  Holds for every exponent pair, `n` included `0`.
+@isnad1 id=not.3h5v.s5.93766b777ad2 from=translated src=- shape=e4ca6fdb vocab=62854c8f
+-/
 theorem bands_disjoint {b b' e1 e2 n : Nat} (hb : 1 < b) (hb' : 1 < b')
     (hne : b ≠ b') : ¬(InBand b e1 e2 n ∧ InBand b' e1 e2 n) := by
   rintro ⟨h, h'⟩
   exact hne (base_unique hb hb' h h')
 
 /-- A bigger number never has fewer digits — the same move as `numDigits_antitone`,
-in the other variable.-/
+in the other variable.
+@isnad1 id=le.2h3v.s4.98fab56b638b from=translated src=- shape=53b07e13 vocab=dab38113
+-/
 theorem numDigits_mono {b x y : Nat} (hb : 1 < b) (hxy : x ≤ y) :
     numDigits b x ≤ numDigits b y := by
   rcases Nat.eq_zero_or_pos (numDigits b x) with h | h
@@ -461,7 +508,9 @@ theorem numDigits_mono {b x y : Nat} (hb : 1 < b) (hxy : x ≤ y) :
 
 /-- **The band's shape, part 1: one digit split.**  Across a base's band both
 lengths are individually constant — two non-decreasing quantities with a fixed
-sum cannot move — so a base has exactly one split `L1 + L2 = b`, or no band.-/
+sum cannot move — so a base has exactly one split `L1 + L2 = b`, or no band.
+@isnad1 id=and.4h5v.s6.97cf22ea2045 from=translated src=- shape=8d5cefbd vocab=7338f5d2
+-/
 theorem band_lengths_const {b e1 e2 n n' : Nat} (hb : 1 < b) (hle : n ≤ n')
     (h : InBand b e1 e2 n) (h' : InBand b e1 e2 n') :
     numDigits b (n ^ e1) = numDigits b (n' ^ e1) ∧
@@ -472,7 +521,9 @@ theorem band_lengths_const {b e1 e2 n n' : Nat} (hb : 1 < b) (hle : n ≤ n')
   omega
 
 /-- **The band's shape, part 2: no holes.**  Anything between two band members is
-a band member, so the band is a single unbroken interval of `n`.-/
+a band member, so the band is a single unbroken interval of `n`.
+@isnad1 id=inband.5h6v.s5.b83ee476cf6d from=translated src=- shape=3ff5d232 vocab=6f3998eb
+-/
 theorem band_convex {b e1 e2 lo n hi : Nat} (hb : 1 < b) (h1 : lo ≤ n) (h2 : n ≤ hi)
     (hlo : InBand b e1 e2 lo) (hhi : InBand b e1 e2 hi) : InBand b e1 e2 n := by
   have a1 := numDigits_mono hb (Nat.pow_le_pow_left h1 e1)
@@ -489,7 +540,9 @@ contradictory.  They are not: **69 in base 10** satisfies both of them, and it
 is the only known (2,3)-nice number.  Everything below is kernel-checked. -/
 
 /-- Converse of `bounds_of_numDigits`, so non-vacuity reduces to arithmetic on
-numerals that `decide` can do.-/
+numerals that `decide` can do.
+@isnad1 id=eq.3h3v.s6.c71c4f58cc92 from=translated src=- shape=f4498c2f vocab=850b17f7
+-/
 theorem numDigits_eq_of_bounds {b x k : Nat} (hb : 1 < b)
     (h1' : b ^ k ≤ x) (h2' : x < b ^ (k + 1)) : numDigits b x = k + 1 := by
   have hx : 0 < x := Nat.lt_of_lt_of_le (Nat.pow_pos (a := b) (n := k) (by omega)) h1'
@@ -505,27 +558,41 @@ theorem numDigits_eq_of_bounds {b x k : Nat} (hb : 1 < b)
       omega
   omega
 
-/-- One unfolding of `digitSum`.-/
+/-- One unfolding of `digitSum`.
+@isnad1 id=eq.2h2v.s5.ca7fb69e6393 from=translated src=- shape=41a6fdc7 vocab=13261a74
+-/
 theorem digitSum_step {b x : Nat} (hb : 1 < b) (hx : 0 < x) :
     digitSum b x = x % b + digitSum b (x / b) := by
   rw [digitSum, dite_eq_left ⟨hb, hx⟩]
 
-/-- 69^2 = 4761 has 4 base-10 digits.-/
+/-- 69^2 = 4761 has 4 base-10 digits.
+@isnad1 id=eq.0h0v.s5.f9e1903744f4 from=translated src=- shape=50862e3b vocab=8ef9df92
+-/
 theorem nd_sq : numDigits 10 (69 ^ 2) = 4 := numDigits_eq_of_bounds (by decide) (by decide) (by decide)
 
-/-- 69^3 = 328509 has 6 base-10 digits.-/
+/-- 69^3 = 328509 has 6 base-10 digits.
+@isnad1 id=eq.0h0v.s5.b0140fd90fb0 from=translated src=- shape=50862e3b vocab=8ef9df92
+-/
 theorem nd_cb : numDigits 10 (69 ^ 3) = 6 := numDigits_eq_of_bounds (by decide) (by decide) (by decide)
 
-/-- The length identity really is satisfiable: 4 + 6 = 10.-/
+/-- The length identity really is satisfiable: 4 + 6 = 10.
+@isnad1 id=eq.0h0v.s6.7b01568c0e5a from=translated src=- shape=a75ab5c9 vocab=a7b2f459
+-/
 theorem length_identity_holds : numDigits 10 (69 ^ 2) + numDigits 10 (69 ^ 3) = 10 := by
   rw [nd_sq, nd_cb]
 
+/--
+@isnad1 id=eq.0h0v.s5.9bcc9d8fa76f from=translated src=- shape=50862e3b vocab=70120bfa
+-/
 theorem ds_sq : digitSum 10 (69 ^ 2) = 18 := by
   show digitSum 10 4761 = 18
   rw [digitSum_step (by decide) (by decide), digitSum_step (by decide) (by decide),
       digitSum_step (by decide) (by decide), digitSum_step (by decide) (by decide),
       digitSum_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.0c2f5fdcbb68 from=translated src=- shape=50862e3b vocab=70120bfa
+-/
 theorem ds_cb : digitSum 10 (69 ^ 3) = 27 := by
   show digitSum 10 328509 = 27
   rw [digitSum_step (by decide) (by decide), digitSum_step (by decide) (by decide),
@@ -533,31 +600,43 @@ theorem ds_cb : digitSum 10 (69 ^ 3) = 27 := by
       digitSum_step (by decide) (by decide), digitSum_step (by decide) (by decide),
       digitSum_zero]
 
-/-- The digit-sum identity really is satisfiable: 18 + 27 = 45 = 10·9/2.-/
+/-- The digit-sum identity really is satisfiable: 18 + 27 = 45 = 10·9/2.
+@isnad1 id=eq.0h0v.s6.7954894b4db5 from=translated src=- shape=e9d0443f vocab=eb087b00
+-/
 theorem digitsum_identity_holds :
     2 * (digitSum 10 (69 ^ 2) + digitSum 10 (69 ^ 3)) = 10 * (10 - 1) := by
   rw [ds_sq, ds_cb]
 
-/-- Theorem 1 firing: base 11 ≡ 1 (mod 5) admits no square/cube candidate.-/
+/-- Theorem 1 firing: base 11 ≡ 1 (mod 5) admits no square/cube candidate.
+@isnad1 id=ne.0h1v.s5.d878aba446c9 from=translated src=- shape=6f546437 vocab=a7b2f459
+-/
 theorem base_eleven_dead (n : Nat) : numDigits 11 (n ^ 2) + numDigits 11 (n ^ 3) ≠ 11 :=
   nice_no_solution (by decide) (by decide)
 
 /-- Theorem 3 firing where Theorem 1 says nothing: 7 ≢ 1 (mod 5), but 7 ≡ 3
-(mod 4), so the digit-sum identity is already impossible in base 7.-/
+(mod 4), so the digit-sum identity is already impossible in base 7.
+@isnad1 id=ne.0h1v.s6.df91d4a8217c from=translated src=- shape=be881c80 vocab=eb087b00
+-/
 theorem base_seven_dead (n : Nat) :
     2 * (digitSum 7 (n ^ 2) + digitSum 7 (n ^ 3)) ≠ 7 * (7 - 1) :=
   fun h => no_nice_of_mod_four (by decide) (by decide) (by decide) (by decide) h
 
 /-- `base_unique` needs a witness too, or "at most one base" could mean "no base": 69 is
-in the base-10 `(2,3)` band.-/
+in the base-10 `(2,3)` band.
+@isnad1 id=inband.0h0v.s4.2eb18d85b8cf from=translated src=- shape=147f988f vocab=7d977a64
+-/
 theorem sixtynine_in_band : InBand 10 2 3 69 := length_identity_holds
 
 /-- `base_unique` firing on that witness: base 10 is the *only* base 69 is a candidate
-in — no finite search, and no appeal to the exponents being `(2,3)`.-/
+in — no finite search, and no appeal to the exponents being `(2,3)`.
+@isnad1 id=eq.2h1v.s5.24d18a973212 from=translated src=- shape=e4ee31a4 vocab=62854c8f
+-/
 theorem sixtynine_only_base_ten {b : Nat} (hb : 1 < b) (h : InBand b 2 3 69) : b = 10 :=
   base_unique hb (by decide) h sixtynine_in_band
 
-/-- Theorem 3 is genuinely pair-independent: same base, exponents (3,8).-/
+/-- Theorem 3 is genuinely pair-independent: same base, exponents (3,8).
+@isnad1 id=ne.0h1v.s6.2e1b6c9bd0ba from=translated src=- shape=be881c80 vocab=eb087b00
+-/
 theorem base_seven_dead' (n : Nat) :
     2 * (digitSum 7 (n ^ 3) + digitSum 7 (n ^ 8)) ≠ 7 * (7 - 1) :=
   fun h => no_nice_of_mod_four (by decide) (by decide) (by decide) (by decide) h
@@ -588,8 +667,14 @@ def digits (b x : Nat) : List Nat :=
   if h : 1 < b ∧ 0 < x then x % b :: digits b (x / b) else []
 decreasing_by exact Nat.div_lt_self h.2 h.1
 
+/--
+@isnad1 id=eq.0h1v.s3.0ca870f7fa2d from=translated src=- shape=45d350c2 vocab=54361ee8
+-/
 theorem digits_zero (b : Nat) : digits b 0 = [] := by rw [digits]; simp
 
+/--
+@isnad1 id=eq.2h2v.s5.36054351ddd9 from=translated src=- shape=f71e833b vocab=1e1797d9
+-/
 theorem digits_step {b x : Nat} (hb : 1 < b) (hx : 0 < x) :
     digits b x = x % b :: digits b (x / b) := by rw [digits, dite_eq_left ⟨hb, hx⟩]
 
@@ -599,10 +684,16 @@ def occ (v : Nat) : List Nat → Nat
   | [] => 0
   | a :: l => (if a = v then 1 else 0) + occ v l
 
+/--
+@isnad1 id=eq.0h2v.s4.0b8dce10fe40 from=translated src=- shape=fa06886e vocab=792f4c61
+-/
 theorem occ_cons_self (v : Nat) (l : List Nat) : occ v (v :: l) = 1 + occ v l := by
   show (if v = v then 1 else 0) + occ v l = 1 + occ v l
   rw [ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.0h3v.s5.07494d958c46 from=translated src=- shape=d76f1390 vocab=6b950f29
+-/
 theorem occ_append (v : Nat) : ∀ l1 l2 : List Nat,
     occ v (l1 ++ l2) = occ v l1 + occ v l2 := by
   intro l1
@@ -628,7 +719,9 @@ def Pandigital (b e1 e2 n : Nat) : Prop :=
 `x^e1` and `x^e2` agree for every `x`.-/
 def UniversalClash (b e1 e2 : Nat) : Prop := ∀ x, x ^ e1 % b = x ^ e2 % b
 
-/-- A pandigital `n` is positive: `0` supplies no digit `0` in any base.-/
+/-- A pandigital `n` is positive: `0` supplies no digit `0` in any base.
+@isnad1 id=lt.2h4v.s5.61c1575e51e7 from=translated src=- shape=ba2d70e5 vocab=71524155
+-/
 theorem pos_of_pandigital {b e1 e2 n : Nat} (hb : 1 < b)
     (hp : Pandigital b e1 e2 n) : 0 < n := by
   rcases Nat.eq_zero_or_pos n with rfl | h
@@ -649,7 +742,9 @@ theorem pos_of_pandigital {b e1 e2 n : Nat} (hb : 1 < b)
 /--
 **Theorem 2, the operative half.**  A base with a universal clash contains no
 pandigital `n` at all — the last digits of `n^e1` and `n^e2` are the same value,
-so that value is used twice.  Every exponent pair, every `n`, no search.-/
+so that value is used twice.  Every exponent pair, every `n`, no search.
+@isnad1 id=not.2h4v.s4.6f1e104253e0 from=translated src=- shape=96429708 vocab=17e448d0
+-/
 theorem no_nice_of_universal_clash {b e1 e2 n : Nat} (hb : 1 < b)
     (hclash : UniversalClash b e1 e2) : ¬ Pandigital b e1 e2 n := by
   intro hp
@@ -669,6 +764,9 @@ def clashGcd (e1 e2 : Nat) : Nat → Nat
   | 0 => 0
   | m + 1 => Nat.gcd (m ^ e2 - m ^ e1) (clashGcd e1 e2 m)
 
+/--
+@isnad1 id=eq.0h3v.s5.d5c8bf95ccfb from=translated src=- shape=1db7df50 vocab=72f51aa9
+-/
 theorem clashGcd_succ (e1 e2 m : Nat) :
     clashGcd e1 e2 (m + 1) = Nat.gcd (m ^ e2 - m ^ e1) (clashGcd e1 e2 m) := rfl
 
@@ -676,7 +774,9 @@ theorem clashGcd_succ (e1 e2 m : Nat) :
 because the `x = 2` term already bounds every clashing base by it.-/
 def clashMod (e1 e2 : Nat) : Nat := clashGcd e1 e2 (2 ^ e2 - 2 ^ e1 + 1)
 
-/-- `x^e1 ≤ x^e2` for `1 ≤ e1 ≤ e2`, `x = 0` included.-/
+/-- `x^e1 ≤ x^e2` for `1 ≤ e1 ≤ e2`, `x = 0` included.
+@isnad1 id=le.2h3v.s5.87c73b86708e from=translated src=- shape=44559af5 vocab=74f5fafa
+-/
 theorem pow_le_pow_exp {x e1 e2 : Nat} (he1 : 1 ≤ e1) (he : e1 ≤ e2) :
     x ^ e1 ≤ x ^ e2 := by
   rcases Nat.eq_zero_or_pos x with rfl | hx
@@ -685,7 +785,9 @@ theorem pow_le_pow_exp {x e1 e2 : Nat} (he1 : 1 ≤ e1) (he : e1 ≤ e2) :
     omega
   · exact Nat.pow_le_pow_right hx he
 
-/-- Congruence as divisibility of the (truncated) difference.-/
+/-- Congruence as divisibility of the (truncated) difference.
+@isnad1 id=iff.2h3v.s5.2114fbc1ea04 from=translated src=- shape=c88eaafe vocab=473cfa50
+-/
 theorem dvd_sub_iff_mod_eq {b x y : Nat} (hb : 0 < b) (hyx : y ≤ x) :
     b ∣ x - y ↔ x % b = y % b := by
   constructor
@@ -701,6 +803,9 @@ theorem dvd_sub_iff_mod_eq {b x y : Nat} (hb : 0 < b) (hyx : y ≤ x) :
     rw [ht] at hdx
     exact ⟨t, by omega⟩
 
+/--
+@isnad1 id=iff.3h3v.s6.75f6928ad075 from=translated src=- shape=dac012e9 vocab=61d73516
+-/
 theorem clash_iff_dvd_sub {b e1 e2 : Nat} (hb : 0 < b) (he1 : 1 ≤ e1) (he : e1 ≤ e2) :
     UniversalClash b e1 e2 ↔ ∀ x, b ∣ x ^ e2 - x ^ e1 := by
   constructor
@@ -709,6 +814,9 @@ theorem clash_iff_dvd_sub {b e1 e2 : Nat} (hb : 0 < b) (he1 : 1 ≤ e1) (he : e1
   · intro h x
     exact ((dvd_sub_iff_mod_eq hb (pow_le_pow_exp he1 he)).mp (h x)).symm
 
+/--
+@isnad1 id=iff.0h4v.s5.b22419659761 from=translated src=- shape=ad347efa vocab=16da91eb
+-/
 theorem dvd_clashGcd_iff {b e1 e2 : Nat} :
     ∀ m, b ∣ clashGcd e1 e2 m ↔ ∀ x, x < m → b ∣ x ^ e2 - x ^ e1 := by
   intro m
@@ -731,7 +839,9 @@ theorem dvd_clashGcd_iff {b e1 e2 : Nat} :
 **Theorem 2 (classification).**  For `1 ≤ e1 < e2` and any `b > 0`, base `b` has
 a universal clash **iff** `b ∣ N(e1,e2)`.  So the clashing bases of a pair are
 exactly the divisors of a single computable number — divisor-closed, closed under
-lcm, and bounded, all at once.-/
+lcm, and bounded, all at once.
+@isnad1 id=iff.3h3v.s5.e083e9cd2f6f from=translated src=- shape=f12fbd84 vocab=2b5b6d8d
+-/
 theorem clash_iff_dvd_clashMod {b e1 e2 : Nat} (hb : 0 < b) (he1 : 1 ≤ e1) (he : e1 < e2) :
     UniversalClash b e1 e2 ↔ b ∣ clashMod e1 e2 := by
   -- the x = 2 term is at least 2, so it is inside the range and bounds b
@@ -752,14 +862,18 @@ theorem clash_iff_dvd_clashMod {b e1 e2 : Nat} (hb : 0 < b) (he1 : 1 ≤ e1) (he
     rw [Nat.pow_mod x e1 b, Nat.pow_mod x e2 b]
     exact hmod.symm
 
-/-- Divisor-closure, the half of the structure that is obvious.-/
+/-- Divisor-closure, the half of the structure that is obvious.
+@isnad1 id=universa.2h4v.s4.e2042f08445b from=translated src=- shape=f56d14f5 vocab=8a0d33f3
+-/
 theorem clash_of_dvd {b b' e1 e2 : Nat} (hbb : b ∣ b') (h : UniversalClash b' e1 e2) :
     UniversalClash b e1 e2 := by
   intro x
   have h1' : x ^ e1 % b' % b = x ^ e2 % b' % b := by rw [h x]
   rwa [Nat.mod_mod_of_dvd _ hbb, Nat.mod_mod_of_dvd _ hbb] at h1'
 
-/-- Closure under lcm, which is what makes "divisors of one number" possible.-/
+/-- Closure under lcm, which is what makes "divisors of one number" possible.
+@isnad1 id=universa.6h4v.s5.2e488c1bdf4a from=translated src=- shape=11c6ab49 vocab=ceedea73
+-/
 theorem clash_lcm {b b' e1 e2 : Nat} (hb : 0 < b) (hb' : 0 < b') (he1 : 1 ≤ e1) (he : e1 < e2)
     (h : UniversalClash b e1 e2) (h' : UniversalClash b' e1 e2) :
     UniversalClash (Nat.lcm b b') e1 e2 := by
@@ -778,6 +892,9 @@ unformalised. -/
 /-- Core has no `Nat.Prime`, and only one consequence of primality is used.-/
 def IsPrime (p : Nat) : Prop := 2 ≤ p ∧ ∀ k, k ∣ p → k = 1 ∨ k = p
 
+/--
+@isnad1 id=coprime.2h2v.s4.e24627e6d68c from=translated src=- shape=8e5dcdd3 vocab=30a741b1
+-/
 theorem coprime_of_not_dvd {p u : Nat} (hp : IsPrime p) (h : ¬ p ∣ u) :
     Nat.Coprime p u := by
   rcases hp.2 (Nat.gcd p u) (Nat.gcd_dvd_left p u) with h1' | h1'
@@ -785,15 +902,26 @@ theorem coprime_of_not_dvd {p u : Nat} (hp : IsPrime p) (h : ¬ p ∣ u) :
   · exact absurd (by rw [← h1']; exact Nat.gcd_dvd_right p u) h
 
 /-- Primality of a numeral: a divisor of `p` is at most `p`, so the unbounded
-quantifier in `IsPrime` becomes a bounded one that `decide` can do.-/
+quantifier in `IsPrime` becomes a bounded one that `decide` can do.
+@isnad1 id=isprime.2h1v.s5.e45cfc696b1d from=translated src=- shape=d19a15bd vocab=a275a289
+-/
 theorem isPrime_of_bounded {p : Nat} (hp : 2 ≤ p)
     (h : ∀ k, k < p + 1 → k ∣ p → k = 1 ∨ k = p) : IsPrime p :=
   ⟨hp, fun k hk => h k (by have := Nat.le_of_dvd (show 0 < p by omega) hk; omega) hk⟩
 
+/--
+@isnad1 id=isprime.0h0v.s2.ec4d231a1ef1 from=translated src=- shape=e590c3e1 vocab=39fe27f3
+-/
 theorem isPrime_two : IsPrime 2 := isPrime_of_bounded (by decide) (by decide)
 
+/--
+@isnad1 id=isprime.0h0v.s2.be8761c2c6be from=translated src=- shape=e590c3e1 vocab=39fe27f3
+-/
 theorem isPrime_three : IsPrime 3 := isPrime_of_bounded (by decide) (by decide)
 
+/--
+@isnad1 id=dvd.1h3v.s5.9608029bb829 from=translated src=- shape=8e01055e vocab=059ded25
+-/
 theorem pow_dvd_pow_of_dvd {a b : Nat} (h : a ∣ b) (n : Nat) : a ^ n ∣ b ^ n := by
   obtain ⟨k, rfl⟩ := h
   exact ⟨k ^ n, Nat.mul_pow a k n⟩
@@ -804,7 +932,9 @@ theorem pow_dvd_pow_of_dvd {a b : Nat} (h : a ∣ b) (n : Nat) : a ^ n ∣ b ^ n
 unit mod `p` satisfies `u^(e2-e1) ≡ 1 (mod p^a)`.
 
 The `x = p` half of the proof forces `a ≤ e1`; the unit half forces the exponent
-condition; and the two together suffice, by the dichotomy `p ∣ x` or not.-/
+condition; and the two together suffice, by the dichotomy `p ∣ x` or not.
+@isnad1 id=iff.4h4v.s6.a5ad209d4367 from=translated src=- shape=7c4e0721 vocab=8d7df736
+-/
 theorem clash_prime_pow_iff {p a e1 e2 : Nat} (hp : IsPrime p) (ha : 1 ≤ a)
     (he1 : 1 ≤ e1) (he : e1 < e2) :
     UniversalClash (p ^ a) e1 e2 ↔
@@ -873,7 +1003,9 @@ theorem clash_prime_pow_iff {p a e1 e2 : Nat} (hp : IsPrime p) (ha : 1 ≤ a)
 /-- The valuation form of Theorem 2: `p^a ∣ N(e1,e2)` exactly when `a ≤ e1` and
 every unit mod `p` has order dividing `e2-e1`.  Feed in `λ(p^a)` — the exponent
 of `(ℤ/p^aℤ)ˣ` — and this is the textbook closed form
-`N = ∏_p p^{a_p}`, `a_p = max{a ≤ e1 : λ(p^a) ∣ e2-e1}`.-/
+`N = ∏_p p^{a_p}`, `a_p = max{a ≤ e1 : λ(p^a) ∣ e2-e1}`.
+@isnad1 id=iff.4h4v.s6.b121277b2b00 from=translated src=- shape=3c9910e8 vocab=fe208349
+-/
 theorem prime_pow_dvd_clashMod_iff {p a e1 e2 : Nat} (hp : IsPrime p) (ha : 1 ≤ a)
     (he1 : 1 ≤ e1) (he : e1 < e2) :
     p ^ a ∣ clashMod e1 e2 ↔ (a ≤ e1 ∧ ∀ u, ¬ p ∣ u → u ^ (e2 - e1) % p ^ a = 1) := by
@@ -886,29 +1018,62 @@ theorem prime_pow_dvd_clashMod_iff {p a e1 e2 : Nat} (hp : IsPrime p) (ha : 1 �
 The values agree with the Carmichael product `∏ p^{a_p}` computed independently, which
 is the form Theorem 2 is usually stated in.  These are kernel computations, not `native_decide`. -/
 
+/--
+@isnad1 id=eq.0h0v.s4.8c689cb7b1f4 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_one_two : clashMod 1 2 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.dc3fd437e3a7 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_two_three : clashMod 2 3 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.1ae1d39a4ff7 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_one_four : clashMod 1 4 = 2 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.26344cdefd51 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_one_three : clashMod 1 3 = 6 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.e968ade58c6c from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_two_four : clashMod 2 4 = 12 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.b9cab8b41b23 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_one_five : clashMod 1 5 = 30 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.e5f1022fa1fc from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_one_seven : clashMod 1 7 = 42 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.e4e088e3e3b2 from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_two_six : clashMod 2 6 = 60 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.21999556001e from=translated src=- shape=7226d0ee vocab=ac90ef74
+-/
 theorem clashMod_three_seven : clashMod 3 7 = 120 := by decide
 
-/-- Every divisor of `N(e1,e2)` is a dead base, for every `n`.-/
+/-- Every divisor of `N(e1,e2)` is a dead base, for every `n`.
+@isnad1 id=not.4h4v.s5.ad102d914730 from=translated src=- shape=956e73ec vocab=2ce8c48a
+-/
 theorem no_pandigital_of_dvd_clashMod {b e1 e2 n : Nat} (hb : 1 < b) (he1 : 1 ≤ e1)
     (he : e1 < e2) (hdvd : b ∣ clashMod e1 e2) : ¬ Pandigital b e1 e2 n :=
   no_nice_of_universal_clash hb ((clash_iff_dvd_clashMod (by omega) he1 he).mpr hdvd)
 
 /-- Theorem 2 firing where Theorems 1 and 3 both say nothing: `6 % 4 = 2` so Theorem 1
 misses it and `6` is even so Theorem 3 misses it, but `x ≡ x^3 (mod 6)` for every
-`x` because `6 ∣ N(1,3) = 6`.  So base 6 has no `(1,3)` pandigital number.-/
+`x` because `6 ∣ N(1,3) = 6`.  So base 6 has no `(1,3)` pandigital number.
+@isnad1 id=not.0h1v.s4.55390026c5f6 from=translated src=- shape=2e95bcf2 vocab=f94668c8
+-/
 theorem one_three_base_six_dead (n : Nat) : ¬ Pandigital 6 1 3 n :=
   no_pandigital_of_dvd_clashMod (by decide) (by decide) (by decide) (by decide)
 
 /-- The same at `(2,4)`, base 12: `12 ≡ 0 (mod 3)` so Theorem 1 misses it too,
-and `12 ∣ N(2,4) = 12`.-/
+and `12 ∣ N(2,4) = 12`.
+@isnad1 id=not.0h1v.s4.e0ebc1b8ee29 from=translated src=- shape=2e95bcf2 vocab=f94668c8
+-/
 theorem two_four_base_twelve_dead (n : Nat) : ¬ Pandigital 12 2 4 n :=
   no_pandigital_of_dvd_clashMod (by decide) (by decide) (by decide) (by decide)
 
@@ -918,12 +1083,18 @@ Two directions matter here.  `Pandigital` must be satisfiable, or §5.1 proves
 nothing; and Theorem 2 must **not** kill base 10 at `(2,3)`, or it would
 contradict 69. -/
 
+/--
+@isnad1 id=eq.0h0v.s5.6ff35e0dfeb3 from=translated src=- shape=82c8f877 vocab=c2c693df
+-/
 theorem digits_69sq : digits 10 (69 ^ 2) = [1, 6, 7, 4] := by
   show digits 10 4761 = [1, 6, 7, 4]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.1be8648cb6e5 from=translated src=- shape=70269627 vocab=c2c693df
+-/
 theorem digits_69cb : digits 10 (69 ^ 3) = [9, 0, 5, 8, 2, 3] := by
   show digits 10 328509 = [9, 0, 5, 8, 2, 3]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
@@ -932,7 +1103,9 @@ theorem digits_69cb : digits 10 (69 ^ 3) = [9, 0, 5, 8, 2, 3] := by
       digits_zero]
 
 /-- 69 in base 10 really is `(2,3)`-pandigital: `69^2 = 4761`, `69^3 = 328509`,
-and the ten digits are `{0,…,9}` once each.-/
+and the ten digits are `{0,…,9}` once each.
+@isnad1 id=pandigit.0h0v.s4.8c67aca80e56 from=translated src=- shape=147f988f vocab=f94668c8
+-/
 theorem sixtynine_pandigital : Pandigital 10 2 3 69 := by
   have h : ∀ v, v < 10 → occ v ([1, 6, 7, 4] ++ [9, 0, 5, 8, 2, 3]) = 1 := by decide
   intro v hv
@@ -940,7 +1113,9 @@ theorem sixtynine_pandigital : Pandigital 10 2 3 69 := by
   exact h v hv
 
 /-- Theorem 2 does not kill base 10 at `(2,3)` — it had better not.
-`N(2,3) = 2` and `10 ∤ 2`.-/
+`N(2,3) = 2` and `10 ∤ 2`.
+@isnad1 id=not.0h0v.s4.eef19b509056 from=translated src=- shape=7029dda5 vocab=cc77a806
+-/
 theorem base_ten_no_clash : ¬ UniversalClash 10 2 3 := by
   intro h
   have hd := (clash_iff_dvd_clashMod (by decide) (by decide) (by decide)).mp h
@@ -949,7 +1124,9 @@ theorem base_ten_no_clash : ¬ UniversalClash 10 2 3 := by
   omega
 
 /-- The local criterion running forwards: `3 = 3^1` clashes for `(1,3)` because
-`1 ≤ e1` and every unit mod 3 squares to 1.-/
+`1 ≤ e1` and every unit mod 3 squares to 1.
+@isnad1 id=universa.0h0v.s4.9e81319133cb from=translated src=- shape=b850a97b vocab=cc77a806
+-/
 theorem clash_three_one_three : UniversalClash 3 1 3 := by
   refine (clash_prime_pow_iff (p := 3) (a := 1) isPrime_three (by decide) (by decide)
     (by decide)).mpr ⟨by decide, ?_⟩
@@ -961,7 +1138,9 @@ theorem clash_three_one_three : UniversalClash 3 1 3 := by
   rcases h3 with h | h <;> rw [h] at hpm <;> omega
 
 /-- And backwards: base 9 does *not* clash for `(1,3)`, because `a = 2` exceeds
-`e1 = 1`.  No unit-group computation is needed to see it.-/
+`e1 = 1`.  No unit-group computation is needed to see it.
+@isnad1 id=not.0h0v.s4.19f66578129a from=translated src=- shape=7029dda5 vocab=cc77a806
+-/
 theorem nine_no_clash_one_three : ¬ UniversalClash 9 1 3 := by
   intro h
   have hc := (clash_prime_pow_iff (p := 3) (a := 2) isPrime_three (by decide) (by decide)
@@ -1006,12 +1185,20 @@ def wsum (b j : Nat) : Nat → List Nat → Nat
   | _, [] => 0
   | t, d :: ds => b ^ t * d + wsum b j ((t + 1) % j) ds
 
+/--
+@isnad1 id=eq.0h3v.s4.cbc38f31f186 from=translated src=- shape=dca39eb1 vocab=490731e1
+-/
 theorem wsum_nil (b j t : Nat) : wsum b j t [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.56071898e1eb from=translated src=- shape=94489032 vocab=c969d204
+-/
 theorem wsum_cons (b j t d : Nat) (ds : List Nat) :
     wsum b j t (d :: ds) = b ^ t * d + wsum b j ((t + 1) % j) ds := rfl
 
-/-- `x^q ≡ 1 (mod x-1)`, the reason weights are periodic at all.-/
+/-- `x^q ≡ 1 (mod x-1)`, the reason weights are periodic at all.
+@isnad1 id=eq.1h2v.s6.b2c6aa0356a9 from=translated src=- shape=cd6215c1 vocab=f9c26dd3
+-/
 theorem pow_mod_pred {x : Nat} (hx : 1 ≤ x) : ∀ q, x ^ q % (x - 1) = 1 % (x - 1) := by
   intro q
   induction q with
@@ -1022,7 +1209,9 @@ theorem pow_mod_pred {x : Nat} (hx : 1 ≤ x) : ∀ q, x ^ q % (x - 1) = 1 % (x 
       rwa [show x - 1 + 1 = x from by omega] at h
     rw [Nat.pow_succ, Nat.mul_mod, ih, hstep, ← Nat.mul_mod, Nat.one_mul]
 
-/-- Weights are periodic mod `b^j - 1`: only `u mod j` matters.-/
+/-- Weights are periodic mod `b^j - 1`: only `u mod j` matters.
+@isnad1 id=eq.2h3v.s6.29648e657ba5 from=translated src=- shape=0f64699e vocab=533ac268
+-/
 theorem pow_mod_cycle {b j : Nat} (hb : 1 < b) (hj : 0 < j) (u : Nat) :
     b ^ u % (b ^ j - 1) = b ^ (u % j) % (b ^ j - 1) := by
   have hbj : 1 ≤ b ^ j := Nat.pow_pos (by omega)
@@ -1034,7 +1223,9 @@ theorem pow_mod_cycle {b j : Nat} (hb : 1 < b) (hj : 0 < j) (u : Nat) :
 **The block congruence.**  `b^t · valOf b ds ≡ wsum b j t ds (mod b^j - 1)`:
 reducing mod `b^j - 1` collapses the digit positions into `j` residue classes,
 and only the total of each class survives.  Everything §6 says about which
-moduli can see what comes from this one identity.-/
+moduli can see what comes from this one identity.
+@isnad1 id=eq.2h4v.s7.674b5476a5e7 from=translated src=- shape=37276312 vocab=53172ae8
+-/
 theorem valOf_mod_wsum {b j : Nat} (hb : 1 < b) (hj : 0 < j) :
     ∀ (ds : List Nat) (t : Nat),
       (b ^ t * valOf b ds) % (b ^ j - 1) = wsum b j (t % j) ds % (b ^ j - 1) := by
@@ -1051,7 +1242,9 @@ theorem valOf_mod_wsum {b j : Nat} (hb : 1 < b) (hj : 0 < j) :
         Nat.mul_mod (b ^ t) d, Nat.mul_mod (b ^ (t % j)) d,
         pow_mod_cycle hb hj t, ih (t + 1)]
 
-/-- The block congruence at `t = 0`, which is the form actually used.-/
+/-- The block congruence at `t = 0`, which is the form actually used.
+@isnad1 id=eq.2h3v.s6.745717f2e0c4 from=translated src=- shape=fe6bb3c2 vocab=1962d1cb
+-/
 theorem valOf_mod_pow_sub_one {b j : Nat} (hb : 1 < b) (hj : 0 < j) (ds : List Nat) :
     valOf b ds % (b ^ j - 1) = wsum b j 0 ds % (b ^ j - 1) := by
   have h := valOf_mod_wsum hb hj ds 0
@@ -1062,13 +1255,17 @@ theorem valOf_mod_pow_sub_one {b j : Nat} (hb : 1 < b) (hj : 0 < j) (ds : List N
 pair `(x,y)` enters the sieve only through `wsum b j 0` of each digit list — the
 `j` totals of the digits in positions `≡ t (mod j)`.  This is why the block
 sizes are the sole combinatorial data in §6, and why `j = ord_m(b)` is the only
-feature of `m` that matters.-/
+feature of `m` that matters.
+@isnad1 id=eq.2h4v.s7.f64ec7ecf3ac from=translated src=- shape=cee94526 vocab=13daad14
+-/
 theorem pair_mod_pow_sub_one {b j : Nat} (hb : 1 < b) (hj : 0 < j) (d1 d2 : List Nat) :
     (valOf b d1 + valOf b d2) % (b ^ j - 1)
       = (wsum b j 0 d1 + wsum b j 0 d2) % (b ^ j - 1) := by
   rw [Nat.add_mod, valOf_mod_pow_sub_one hb hj, valOf_mod_pow_sub_one hb hj, ← Nat.add_mod]
 
-/-- At `j = 1` the weights collapse to `1` and `wsum` is the plain digit sum.-/
+/-- At `j = 1` the weights collapse to `1` and `wsum` is the plain digit sum.
+@isnad1 id=eq.0h2v.s4.648531d758a3 from=translated src=- shape=e990e290 vocab=0093045a
+-/
 theorem wsum_one (b : Nat) : ∀ ds : List Nat, wsum b 1 0 ds = ds.sum := by
   intro ds
   induction ds with
@@ -1076,7 +1273,9 @@ theorem wsum_one (b : Nat) : ∀ ds : List Nat, wsum b 1 0 ds = ds.sum := by
   | cons d ds ih => rw [wsum_cons, ih]; simp
 
 /-- **Casting out `b-1`s, for lists.**  The `j = 1` case of the block
-congruence, and the only congruence the naive claim says is available.-/
+congruence, and the only congruence the naive claim says is available.
+@isnad1 id=eq.1h2v.s6.dd97463354e8 from=translated src=- shape=7aea0edb vocab=84cda3ab
+-/
 theorem valOf_mod_pred {b : Nat} (hb : 1 < b) (ds : List Nat) :
     valOf b ds % (b - 1) = ds.sum % (b - 1) := by
   have h := valOf_mod_pow_sub_one hb Nat.one_pos ds
@@ -1085,14 +1284,18 @@ theorem valOf_mod_pred {b : Nat} (hb : 1 < b) (ds : List Nat) :
 /-- **Soundness of the digit-sum sieve.**  A pandigital pair has
 `x + y ≡ T (mod b-1)`, where `T` is the total of all `b` digits.  Stated on the
 digit lists, so it holds for any notion of solution whose digits are those
-lists — the same convention §1-§3 use.-/
+lists — the same convention §1-§3 use.
+@isnad1 id=eq.2h4v.s6.9e9274ff48c0 from=translated src=- shape=b0791472 vocab=02e41b9f
+-/
 theorem sieve_sound_mod_pred {b T : Nat} (hb : 1 < b) (d1 d2 : List Nat)
     (hT : d1.sum + d2.sum = T) :
     (valOf b d1 + valOf b d2) % (b - 1) = T % (b - 1) := by
   rw [Nat.add_mod, valOf_mod_pred hb, valOf_mod_pred hb, ← Nat.add_mod, hT]
 
 /-- `valOf` inverts `digits`, so everything above is about actual numbers and
-not merely about lists that resemble digits.-/
+not merely about lists that resemble digits.
+@isnad1 id=eq.1h2v.s4.c3c357dd31ee from=translated src=- shape=eb0f5b30 vocab=89d04391
+-/
 theorem valOf_digits {b : Nat} (hb : 1 < b) : ∀ x, valOf b (digits b x) = x := by
   intro x
   induction x using Nat.strongRecOn with
@@ -1105,7 +1308,9 @@ theorem valOf_digits {b : Nat} (hb : 1 < b) : ∀ x, valOf b (digits b x) = x :=
       exact Nat.mod_add_div x b
 
 /-- …and `digitSum` of §0 is the sum of that list, so §6 and §2 are talking
-about the same quantity.-/
+about the same quantity.
+@isnad1 id=eq.1h2v.s4.8a28aad93a52 from=translated src=- shape=d864a40f vocab=8633980f
+-/
 theorem digitSum_eq_sum {b : Nat} (hb : 1 < b) : ∀ x, digitSum b x = (digits b x).sum := by
   intro x
   induction x using Nat.strongRecOn with
@@ -1116,7 +1321,9 @@ theorem digitSum_eq_sum {b : Nat} (hb : 1 < b) : ∀ x, digitSum b x = (digits b
       simp
 
 /-- **Soundness, on numbers.**  Whatever else a sieve knows, it never learns
-more than this about `x + y` from a modulus dividing `b-1`.-/
+more than this about `x + y` from a modulus dividing `b-1`.
+@isnad1 id=eq.2h4v.s6.337a19c45110 from=translated src=- shape=ef554868 vocab=34bdc0e3
+-/
 theorem sieve_sound {b x y T : Nat} (hb : 1 < b)
     (hT : digitSum b x + digitSum b y = T) :
     (x + y) % (b - 1) = T % (b - 1) := by
@@ -1137,7 +1344,9 @@ Only three do.  The three attainable sums are `15, 18, 21`; all are `≡ 0 (mod 
 as casting out 3s demands, and mod 5 they are `0, 3, 1`. -/
 
 /-- A number with exactly two base-`b` digits has the digit list you expect.
-Same two-`digits_step` unfolding as `digits_69sq`, done once and generically.-/
+Same two-`digits_step` unfolding as `digits_69sq`, done once and generically.
+@isnad1 id=eq.3h2v.s6.3363728f8cca from=translated src=- shape=8d6564f1 vocab=c890173d
+-/
 theorem digits_two {b x : Nat} (hb : 1 < b) (h1' : b ≤ x) (h2' : x < b * b) :
     digits b x = [x % b, x / b] := by
   have hx : 0 < x := by omega
@@ -1150,13 +1359,17 @@ theorem digits_two {b x : Nat} (hb : 1 < b) (h1' : b ≤ x) (h2' : x < b * b) :
 every pair of two-digit base-4 numbers, a pandigital one sums to `0`, `1` or `3`
 mod 5 — never `2`, never `4`.  256 cases, checked by the kernel.  (The
 hypotheses are conjoined rather than curried purely so that
-`Nat.decidableBallLT` instance search succeeds; curried, it gives up.)-/
+`Nat.decidableBallLT` instance search succeeds; curried, it gives up.)
+@isnad1 id=or.3h2v.s7.82538005fe5a from=translated src=- shape=e6ea8e3f vocab=0076e7da
+-/
 theorem base_four_gap_core :
     ∀ x < 16, ∀ y < 16,
       (4 ≤ x ∧ 4 ≤ y ∧ ∀ v < 4, occ v [x % 4, x / 4, y % 4, y / 4] = 1) →
       ((x + y) % 5 = 0 ∨ (x + y) % 5 = 1 ∨ (x + y) % 5 = 3) := by decide
 
-/-- Lifting the finite check off the digit lists and onto the numbers.-/
+/-- Lifting the finite check off the digit lists and onto the numbers.
+@isnad1 id=or.3h2v.s7.b5eb19a3b5c1 from=translated src=- shape=ab8eda96 vocab=dc464879
+-/
 theorem base_four_image {x y : Nat}
     (hx : numDigits 4 x = 2) (hy : numDigits 4 y = 2)
     (hpan : ∀ v, v < 4 → occ v (digits 4 x ++ digits 4 y) = 1) :
@@ -1175,7 +1388,9 @@ theorem base_four_image {x y : Nat}
 pair has `x + y ≡ 2 (mod 5)` — while the digit-sum congruence, the only thing
 the naive claim allows a sieve to know, permits every residue mod 5 because
 `gcd(5, 4-1) = 1`.  So the modulus 5 is strictly stronger than casting out 3s,
-and "no modulus yields additional density" does not hold as stated.-/
+and "no modulus yields additional density" does not hold as stated.
+@isnad1 id=ne.3h2v.s6.8d763a1abc9e from=translated src=- shape=cf2594fb vocab=dc464879
+-/
 theorem base_four_sieve_is_incomplete {x y : Nat}
     (hx : numDigits 4 x = 2) (hy : numDigits 4 y = 2)
     (hpan : ∀ v, v < 4 → occ v (digits 4 x ++ digits 4 y) = 1) :
@@ -1183,7 +1398,9 @@ theorem base_four_sieve_is_incomplete {x y : Nat}
   rcases base_four_image hx hy hpan with h | h | h <;> omega
 
 /-- The same for `4`: two of the five residues are unreachable, so the sieve
-mod 5 keeps `3/5` of the residues where casting out 3s keeps all of them.-/
+mod 5 keeps `3/5` of the residues where casting out 3s keeps all of them.
+@isnad1 id=ne.3h2v.s6.3ee471ef8e3a from=translated src=- shape=cf2594fb vocab=dc464879
+-/
 theorem base_four_sieve_is_incomplete' {x y : Nat}
     (hx : numDigits 4 x = 2) (hy : numDigits 4 y = 2)
     (hpan : ∀ v, v < 4 → occ v (digits 4 x ++ digits 4 y) = 1) :
@@ -1194,7 +1411,9 @@ theorem base_four_sieve_is_incomplete' {x y : Nat}
 hypothesis set would have neither of.  The three pandigital base-4 pairs are
 `(4,11)`, `(4,14)` and `(9,12)`, with sums `15, 18, 21` — every one `≡ 0 (mod 3)`
 as casting out 3s demands, and mod 5 they are exactly `0, 3, 1`.  So `{0,1,3}` in
-`base_four_gap_core` is attained, not merely permitted.-/
+`base_four_gap_core` is attained, not merely permitted.
+@isnad1 id=and.0h0v.s8.0b15c789bfe3 from=translated src=- shape=048d9f42 vocab=26becef1
+-/
 theorem base_four_attained :
     ((∀ v, v < 4 → occ v (digits 4 4 ++ digits 4 11) = 1) ∧ (4 + 11) % 5 = 0) ∧
     ((∀ v, v < 4 → occ v (digits 4 4 ++ digits 4 14) = 1) ∧ (4 + 14) % 5 = 3) ∧
@@ -1210,7 +1429,9 @@ theorem base_four_attained :
   · rw [h9, h12]; decide
 
 /-- And the lengths are right, so this really is the `(2,2)` split: `4`, `9`,
-`11`, `12` and `14` all have exactly two base-4 digits.-/
+`11`, `12` and `14` all have exactly two base-4 digits.
+@isnad1 id=and.0h0v.s6.d25a51bda663 from=translated src=- shape=1190bf51 vocab=4aba56e8
+-/
 theorem base_four_lengths :
     numDigits 4 4 = 2 ∧ numDigits 4 9 = 2 ∧ numDigits 4 11 = 2 ∧
     numDigits 4 12 = 2 ∧ numDigits 4 14 = 2 :=
@@ -1224,7 +1445,9 @@ theorem base_four_lengths :
 `2^2 = "10"` and `2^3 = "20"`, two base-4 digits each, so the length identity
 `2 + 2 = 4 = b` holds.  Neither Theorem 1 (`4 % 5 ≠ 1`) nor Theorem 3
 (`4 % 4 ≠ 3`) kills the base, so the counterexample sits inside the very family
-under study.-/
+under study.
+@isnad1 id=inband.0h0v.s4.f2d8d5a091b2 from=translated src=- shape=147f988f vocab=7d977a64
+-/
 theorem base_four_band_nonempty : InBand 4 2 3 2 := by
   show numDigits 4 (2 ^ 2) + numDigits 4 (2 ^ 3) = 4
   rw [numDigits_eq_of_bounds (b := 4) (x := 2 ^ 2) (k := 1) (by decide) (by decide) (by decide),
@@ -1262,7 +1485,9 @@ residues and §6.1 counts 3.
 mentions no digit lengths and no leading digits; `blocks_to_pair` is the other
 half, which mentions no arithmetic. -/
 
-/-- Cancelling a common summand under `%`.-/
+/-- Cancelling a common summand under `%`.
+@isnad1 id=eq.2h4v.s6.7db38f87cbc1 from=translated src=- shape=283c3aee vocab=fd2b17b6
+-/
 theorem mod_add_cancel {b c u v : Nat} (hb : 0 < b) (h : (u + c) % b = (v + c) % b) :
     u % b = v % b := by
   rcases Nat.le_total u v with hle | hle
@@ -1277,6 +1502,9 @@ theorem mod_add_cancel {b c u v : Nat} (hb : 0 < b) (h : (u + c) % b = (v + c) %
     rw [he] at hd
     exact (dvd_sub_iff_mod_eq hb hle).mp hd
 
+/--
+@isnad1 id=eq.0h1v.s3.86b5e4de4965 from=translated src=- shape=8686b4dd vocab=3d320731
+-/
 theorem occ_nil (v : Nat) : occ v [] = 0 := rfl
 
 /-! ### Runs of consecutive naturals -/
@@ -1291,11 +1519,17 @@ def tri : Nat → Nat
   | 0 => 0
   | p + 1 => tri p + p
 
+/--
+@isnad1 id=eq.0h2v.s3.b232cc8e9139 from=translated src=- shape=9da2df65 vocab=1cca483f
+-/
 theorem run_length (s n : Nat) : (run s n).length = n := by
   induction n generalizing s with
   | zero => rfl
   | succ k ih => show (run (s+1) k).length + 1 = k + 1; rw [ih]
 
+/--
+@isnad1 id=eq.0h2v.s5.1bb7fe03e411 from=translated src=- shape=bc24ce81 vocab=0dc16578
+-/
 theorem run_sum (s : Nat) : ∀ n, (run s n).sum = n * s + tri n := by
   intro n
   induction n generalizing s with
@@ -1307,7 +1541,9 @@ theorem run_sum (s : Nat) : ∀ n, (run s n).sum = n * s + tri n := by
     rw [Nat.mul_succ, Nat.succ_mul]
     omega
 
-/-- `run` splits at any point.-/
+/-- `run` splits at any point.
+@isnad1 id=eq.0h3v.s5.1771a15abf23 from=translated src=- shape=7a8fe856 vocab=15b8dc28
+-/
 theorem run_add (s m : Nat) : ∀ n, run s (m + n) = run s m ++ run (s + m) n := by
   intro n
   induction m generalizing s with
@@ -1321,6 +1557,9 @@ theorem run_add (s m : Nat) : ∀ n, run s (m + n) = run s m ++ run (s + m) n :=
     show s :: (run (s+1) k ++ run (s + 1 + k) n) = s :: (run (s+1) k ++ run (s + (k+1)) n)
     rw [show s + 1 + k = s + (k+1) from by omega]
 
+/--
+@isnad1 id=eq.0h2v.s5.ed49f895d900 from=translated src=- shape=1e155ae5 vocab=925d86d2
+-/
 theorem run_succ (s n : Nat) : run s (n + 1) = run s n ++ [s + n] := by
   have h := run_add s n 1
   simpa [run] using h
@@ -1341,6 +1580,9 @@ def pick : Nat → Nat → Nat → Nat → List Nat × List Nat
          ((pick s (p + 1) q ν).2) ++ [s + p + q + 1])
 termination_by _ p q _ => p + q
 
+/--
+@isnad1 id=eq.0h4v.s4.956fafdb9f03 from=translated src=- shape=f2fd1e52 vocab=569365e1
+-/
 theorem pick_len1 (s p q ν : Nat) : (pick s p q ν).1.length = p := by
   induction s, p, q, ν using pick.induct with
   | case1 s q ν => simp [pick]
@@ -1348,6 +1590,9 @@ theorem pick_len1 (s p q ν : Nat) : (pick s p q ν).1.length = p := by
   | case3 s p q ν h ih => rw [pick]; simp [h, ih]
   | case4 s p q ν h ih => rw [pick]; simp [h, ih]
 
+/--
+@isnad1 id=eq.0h4v.s4.3a5b122ff3d4 from=translated src=- shape=9a0cc209 vocab=9baa3063
+-/
 theorem pick_len2 (s p q ν : Nat) : (pick s p q ν).2.length = q := by
   induction s, p, q, ν using pick.induct with
   | case1 s q ν => simp [pick, run_length]
@@ -1355,6 +1600,9 @@ theorem pick_len2 (s p q ν : Nat) : (pick s p q ν).2.length = q := by
   | case3 s p q ν h ih => rw [pick]; simp [h, ih]
   | case4 s p q ν h ih => rw [pick]; simp [h, ih]
 
+/--
+@isnad1 id=eq.0h5v.s5.80be01a4b678 from=translated src=- shape=bd55b2c1 vocab=c90bb715
+-/
 theorem pick_occ (v : Nat) : ∀ s p q ν,
     occ v (pick s p q ν).1 + occ v (pick s p q ν).2 = occ v (run s (p + q)) := by
   intro s p q ν
@@ -1376,6 +1624,9 @@ theorem pick_occ (v : Nat) : ∀ s p q ν,
         occ_append, ← ih, show s + ((p+1) + q) = s + p + q + 1 from by omega]
     omega
 
+/--
+@isnad1 id=eq.0h4v.s6.973efc596e6c from=translated src=- shape=396e9556 vocab=8e2b9cce
+-/
 theorem pick_sum_total : ∀ s p q ν,
     (pick s p q ν).1.sum + (pick s p q ν).2.sum = (run s (p + q)).sum := by
   intro s p q ν
@@ -1399,7 +1650,9 @@ theorem pick_sum_total : ∀ s p q ν,
 
 /-- **Subset-sum contiguity.**  The `p`-element sublists of a run of `p+q`
 consecutive integers realise every sum from the minimum to the minimum plus
-`p·q`, with no gaps — this is the one combinatorial fact Theorem 5 needs.-/
+`p·q`, with no gaps — this is the one combinatorial fact Theorem 5 needs.
+@isnad1 id=eq.1h4v.s6.8e43c9f6f188 from=translated src=- shape=95eeedad vocab=73941ef6
+-/
 theorem pick_sum : ∀ s p q ν, ν ≤ p * q →
     (pick s p q ν).1.sum = p * s + tri p + ν := by
   intro s p q ν
@@ -1442,6 +1695,9 @@ def sumRange (f : Nat → Nat) : Nat → Nat
   | 0 => 0
   | n + 1 => sumRange f n + f n
 
+/--
+@isnad1 id=eq.1h3v.s5.28bc9597ae8a from=translated src=- shape=f6826cbd vocab=4902b010
+-/
 theorem sumRange_congr {f g : Nat → Nat} :
     ∀ n, (∀ t, t < n → f t = g t) → sumRange f n = sumRange g n := by
   intro n
@@ -1457,7 +1713,9 @@ theorem sumRange_congr {f g : Nat → Nat} :
 /-- **Mixed-radix covering.**  If each place `b^t` opens before the lower places
 run out — `b^t ≤ 1 + Σ_{s<t} N_s b^s` — then `{Σ_{t<j} ν_t b^t : ν_t ≤ N_t}` is
 the whole interval `[0, Σ_{t<j} N_t b^t]`, with no gaps.  This is the second of
-Theorem 5's two engines, and the only place the no-gap hypothesis is used.-/
+Theorem 5's two engines, and the only place the no-gap hypothesis is used.
+@isnad1 id=ex.3h4v.s7.d7f7b4ed3bc4 from=translated src=- shape=44a2c56a vocab=43250dbd
+-/
 theorem cover_exists {b : Nat} (hb : 0 < b) (N : Nat → Nat) :
     ∀ j, (∀ t, t < j → b ^ t ≤ sumRange (fun s => N s * b ^ s) t + 1) →
       ∀ V, V ≤ sumRange (fun s => N s * b ^ s) j →
@@ -1513,6 +1771,9 @@ theorem cover_exists {b : Nat} (hb : 0 < b) (N : Nat → Nat) :
         rw [ite_eq_left rfl]
         omega
 
+/--
+@isnad1 id=eq.3h5v.s6.14655e97c3f3 from=translated src=- shape=61b926ce vocab=f66cd819
+-/
 theorem sumRange_update {f g : Nat → Nat} {t0 x : Nat} :
     ∀ j, t0 < j → (∀ t, t ≠ t0 → g t = f t) → x + g t0 = f t0 →
     x + sumRange g j = sumRange f j := by
@@ -1539,6 +1800,9 @@ def deal : (Nat → List Nat) → List Nat → List Nat × (Nat → List Nat)
       ((B t).headD 0 :: (deal (fun u => if u = t then (B t).tail else B u) cs).1,
        (deal (fun u => if u = t then (B t).tail else B u) cs).2)
 
+/--
+@isnad1 id=eq.0h2v.s4.e2c95e238fc4 from=translated src=- shape=4a68cdaf vocab=ccf14add
+-/
 theorem deal_len : ∀ (l : List Nat) (B : Nat → List Nat),
     (deal B l).1.length = l.length := by
   intro l
@@ -1546,7 +1810,9 @@ theorem deal_len : ∀ (l : List Nat) (B : Nat → List Nat),
   | nil => intro B; rfl
   | cons t cs ih => intro B; show (deal _ cs).1.length + 1 = cs.length + 1; rw [ih]
 
-/-- What is left of block `t` is exactly `B t` with its dealt prefix dropped.-/
+/-- What is left of block `t` is exactly `B t` with its dealt prefix dropped.
+@isnad1 id=eq.0h3v.s5.0f4704ea9d4d from=translated src=- shape=08604168 vocab=5df8f739
+-/
 theorem deal_res : ∀ (l : List Nat) (B : Nat → List Nat) (t : Nat),
     (deal B l).2 t = (B t).drop (occ t l) := by
   intro l
@@ -1566,6 +1832,9 @@ theorem deal_res : ∀ (l : List Nat) (B : Nat → List Nat) (t : Nat),
       congr 1
       omega
 
+/--
+@isnad1 id=eq.0h3v.s6.878e422fc1ad from=translated src=- shape=1f5da3e3 vocab=263114b2
+-/
 theorem deal_app : ∀ (l1 l2 : List Nat) (B : Nat → List Nat),
     (deal B (l1 ++ l2)).1 = (deal B l1).1 ++ (deal (deal B l1).2 l2).1 := by
   intro l1
@@ -1585,7 +1854,9 @@ def wcls (b : Nat) : List Nat → List Nat → Nat
   | t :: cs, d :: ds => b ^ t * d + wcls b cs ds
 
 /-- The bookkeeping shared by the next two lemmas: dealing one slot of class
-`t0` shortens block `t0` by its head and leaves the others alone.-/
+`t0` shortens block `t0` by its head and leaves the others alone.
+@isnad1 id=and.2h4v.s6.cc3f64a613a1 from=translated src=- shape=717e2e3f vocab=49b1efd7
+-/
 theorem deal_step_hyps {j t0 : Nat} {cs : List Nat} {B : Nat → List Nat}
     (hmem : ∀ t, t ∈ (t0 :: cs) → t < j) (hlen : ∀ t, occ t (t0 :: cs) ≤ (B t).length) :
     t0 < j ∧ 0 < (B t0).length ∧ (∀ t, t ∈ cs → t < j) ∧
@@ -1611,7 +1882,9 @@ theorem deal_step_hyps {j t0 : Nat} {cs : List Nat} {B : Nat → List Nat}
       omega
 
 /-- **Dealing conserves values.**  Nothing is created or lost: what is placed
-plus what is left equals what there was.-/
+plus what is left equals what there was.
+@isnad1 id=eq.2h4v.s6.02343272fee1 from=translated src=- shape=b8712c6c vocab=5b1dfe4b
+-/
 theorem deal_occ (v j : Nat) : ∀ (l : List Nat) (B : Nat → List Nat),
     (∀ t, t ∈ l → t < j) → (∀ t, occ t l ≤ (B t).length) →
     occ v (deal B l).1 + sumRange (fun t => occ v ((deal B l).2 t)) j
@@ -1644,7 +1917,9 @@ theorem deal_occ (v j : Nat) : ∀ (l : List Nat) (B : Nat → List Nat),
       | cons x xs => show (if x = v then 1 else 0) + occ v xs = occ v (x :: xs); rfl
 
 /-- **Dealing conserves the weighted block totals.**  Slot `i` of class `t`
-carries weight `b^t`, so the value dealt there is charged to block `t`.-/
+carries weight `b^t`, so the value dealt there is charged to block `t`.
+@isnad1 id=eq.2h4v.s7.63306ab50bd9 from=translated src=- shape=93fa384d vocab=596b3f4b
+-/
 theorem deal_wcls (b j : Nat) : ∀ (l : List Nat) (B : Nat → List Nat),
     (∀ t, t ∈ l → t < j) → (∀ t, occ t l ≤ (B t).length) →
     wcls b l (deal B l).1 + sumRange (fun t => b ^ t * ((deal B l).2 t).sum) j
@@ -1680,12 +1955,18 @@ def clsOf (j : Nat) : Nat → Nat → List Nat
   | _, 0 => []
   | t, n + 1 => t :: clsOf j ((t + 1) % j) n
 
+/--
+@isnad1 id=eq.0h3v.s3.9c0b98d0a2a9 from=translated src=- shape=247bb1a2 vocab=67bc8d15
+-/
 theorem clsOf_length (j : Nat) : ∀ n t, (clsOf j t n).length = n := by
   intro n
   induction n with
   | zero => intro t; rfl
   | succ k ih => intro t; show (clsOf j ((t+1) % j) k).length + 1 = k + 1; rw [ih]
 
+/--
+@isnad1 id=lt.3h4v.s5.ac50280b8a6e from=translated src=- shape=3fb44c87 vocab=52e70cc4
+-/
 theorem clsOf_mem {j : Nat} (hj : 0 < j) : ∀ n t, t < j → ∀ x, x ∈ clsOf j t n → x < j := by
   intro n
   induction n with
@@ -1696,6 +1977,9 @@ theorem clsOf_mem {j : Nat} (hj : 0 < j) : ∀ n t, t < j → ∀ x, x ∈ clsOf
     · exact ht
     · exact ih ((t+1) % j) (Nat.mod_lt _ hj) x hx'
 
+/--
+@isnad1 id=eq.2h3v.s6.d97e54c28e17 from=translated src=- shape=f26845ca vocab=75fd5c47
+-/
 theorem clsOf_snoc {j : Nat} (hj : 0 < j) : ∀ n t, t < j →
     clsOf j t (n + 1) = clsOf j t n ++ [(t + n) % j] := by
   intro n
@@ -1710,7 +1994,9 @@ theorem clsOf_snoc {j : Nat} (hj : 0 < j) : ∀ n t, t < j →
     rw [Nat.mod_add_mod, show t + 1 + k = t + (k+1) from by omega]
 
 /-- `wsum` is `wcls` against the slot-class list — the bridge from the file's
-existing block congruence to the arrangement built here.-/
+existing block congruence to the arrangement built here.
+@isnad1 id=eq.0h4v.s4.666508bf6368 from=translated src=- shape=57ccd384 vocab=053b4397
+-/
 theorem wsum_eq_wcls (b j : Nat) : ∀ (ds : List Nat) (t : Nat),
     wsum b j t ds = wcls b (clsOf j t ds.length) ds := by
   intro ds
@@ -1722,6 +2008,9 @@ theorem wsum_eq_wcls (b j : Nat) : ∀ (ds : List Nat) (t : Nat),
     rw [ih]
     rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.989093add68f from=translated src=- shape=bbfa9e62 vocab=fd3447d0
+-/
 theorem wcls_append (b : Nat) : ∀ (l1 : List Nat) (d1 : List Nat) (l2 d2 : List Nat),
     l1.length = d1.length →
     wcls b (l1 ++ l2) (d1 ++ d2) = wcls b l1 d1 + wcls b l2 d2 := by
@@ -1742,7 +2031,9 @@ theorem wcls_append (b : Nat) : ∀ (l1 : List Nat) (d1 : List Nat) (l2 d2 : Lis
       rw [ih ds l2 d2 (by simpa using h)]
       omega
 
-/-- The `j` classes account for every slot.-/
+/-- The `j` classes account for every slot.
+@isnad1 id=eq.1h2v.s5.843af057733c from=translated src=- shape=c73949eb vocab=273a8dc4
+-/
 theorem sumRange_occ_length {j : Nat} : ∀ (l : List Nat), (∀ x, x ∈ l → x < j) →
     sumRange (fun t => occ t l) j = l.length := by
   intro l
@@ -1770,6 +2061,9 @@ theorem sumRange_occ_length {j : Nat} : ∀ (l : List Nat), (∀ x, x ∈ l → 
     show 1 + cs.length = cs.length + 1
     omega
 
+/--
+@isnad1 id=eq.0h3v.s5.cf9f7b37ec9e from=translated src=- shape=9bf0e71e vocab=5bc23739
+-/
 theorem sumRange_add (f g : Nat → Nat) : ∀ n,
     sumRange (fun t => f t + g t) n = sumRange f n + sumRange g n := by
   intro n
@@ -1779,6 +2073,9 @@ theorem sumRange_add (f g : Nat → Nat) : ∀ n,
     show sumRange (fun t => f t + g t) k + (f k + g k) = (sumRange f k + f k) + (sumRange g k + g k)
     rw [ih]; omega
 
+/--
+@isnad1 id=eq.0h3v.s5.cfaa8d8981de from=translated src=- shape=bcfac8c9 vocab=23da36ea
+-/
 theorem sumRange_mul (k : Nat) (f : Nat → Nat) : ∀ n,
     k * sumRange f n = sumRange (fun t => k * f t) n := by
   intro n
@@ -1787,6 +2084,9 @@ theorem sumRange_mul (k : Nat) (f : Nat → Nat) : ∀ n,
   | succ m ih => show k * (sumRange f m + f m) = sumRange (fun t => k * f t) m + k * f m
                  rw [← ih, Nat.mul_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.0488e31e0e18 from=translated src=- shape=63c28c72 vocab=5bc23739
+-/
 theorem sumRange_front (f : Nat → Nat) : ∀ n,
     sumRange f (n + 1) = f 0 + sumRange (fun t => f (t + 1)) n := by
   intro n
@@ -1804,24 +2104,41 @@ def nxt (j t : Nat) : Nat := (t + 1) % j
 /-- The previous class, cyclically.-/
 def prv (j t : Nat) : Nat := (t + (j - 1)) % j
 
+/--
+@isnad1 id=lt.1h2v.s4.638464145109 from=translated src=- shape=7155da86 vocab=b788b02f
+-/
 theorem nxt_lt {j : Nat} (hj : 0 < j) (t : Nat) : nxt j t < j := Nat.mod_lt _ hj
 
+/--
+@isnad1 id=lt.1h2v.s4.8fe103d0596e from=translated src=- shape=7155da86 vocab=f9787ea1
+-/
 theorem prv_lt {j : Nat} (hj : 0 < j) (t : Nat) : prv j t < j := Nat.mod_lt _ hj
 
+/--
+@isnad1 id=eq.2h2v.s4.965e27bfd4df from=translated src=- shape=908806d4 vocab=62d7deb3
+-/
 theorem nxt_prv {j : Nat} (hj : 0 < j) {t : Nat} (ht : t < j) : nxt j (prv j t) = t := by
   show ((t + (j-1)) % j + 1) % j = t
   rw [Nat.mod_add_mod, show t + (j-1) + 1 = t + j from by omega, Nat.add_mod_right,
       Nat.mod_eq_of_lt ht]
 
+/--
+@isnad1 id=eq.1h1v.s5.fb4994ed89f4 from=translated src=- shape=6a311c38 vocab=9c680410
+-/
 theorem prv_zero {j : Nat} (hj : 0 < j) : prv j 0 = j - 1 := by
   show (0 + (j-1)) % j = j - 1
   rw [Nat.zero_add, Nat.mod_eq_of_lt (by omega)]
 
+/--
+@isnad1 id=eq.2h2v.s5.ea9b060b4532 from=translated src=- shape=d6266a87 vocab=cdfc7d37
+-/
 theorem prv_succ {j t : Nat} (hj : 0 < j) (ht : t + 1 < j) : prv j (t + 1) = t := by
   show (t + 1 + (j-1)) % j = t
   rw [show t + 1 + (j-1) = t + j from by omega, Nat.add_mod_right, Nat.mod_eq_of_lt (by omega)]
 
-/-- Summing a function of the previous class is summing the function.-/
+/-- Summing a function of the previous class is summing the function.
+@isnad1 id=eq.1h2v.s4.169464d0297d from=translated src=- shape=1872b284 vocab=1ae7f7a3
+-/
 theorem sumRange_prv {j : Nat} (hj : 0 < j) (f : Nat → Nat) :
     sumRange (fun t => f (prv j t)) j = sumRange f j := by
   obtain ⟨m, rfl⟩ : ∃ m, j = m + 1 := ⟨j - 1, by omega⟩
@@ -1833,7 +2150,9 @@ theorem sumRange_prv {j : Nat} (hj : 0 < j) (f : Nat → Nat) :
   show f m + sumRange f m = sumRange f m + f m
   omega
 
-/-- …and so is summing a function of the next class.-/
+/-- …and so is summing a function of the next class.
+@isnad1 id=eq.1h2v.s4.2eaa66f05857 from=translated src=- shape=1872b284 vocab=be00d5e1
+-/
 theorem sumRange_nxt {j : Nat} (hj : 0 < j) (f : Nat → Nat) :
     sumRange (fun t => f (nxt j t)) j = sumRange f j := by
   obtain ⟨m, rfl⟩ : ∃ m, j = m + 1 := ⟨j - 1, by omega⟩
@@ -1844,7 +2163,9 @@ theorem sumRange_nxt {j : Nat} (hj : 0 < j) (f : Nat → Nat) :
       sumRange_front f m]
   omega
 
-/-- Consecutive runs tile `[0, Σ a)`.-/
+/-- Consecutive runs tile `[0, Σ a)`.
+@isnad1 id=eq.0h3v.s5.b0740012c3f5 from=translated src=- shape=4351c90e vocab=271b09d3
+-/
 theorem occ_runs (v : Nat) (a : Nat → Nat) : ∀ n,
     sumRange (fun t => occ v (run (sumRange a t) (a t))) n = occ v (run 0 (sumRange a n)) := by
   intro n
@@ -1875,11 +2196,17 @@ def picked (j : Nat) (c p ν : Nat → Nat) (t : Nat) : List Nat × List Nat :=
 def blk (j : Nat) (c p ν : Nat → Nat) (t : Nat) : List Nat :=
   (picked j c p ν t).1 ++ (picked j c p ν (prv j t)).2
 
+/--
+@isnad1 id=eq.2h4v.s5.a8f26c6d8a76 from=translated src=- shape=850184d3 vocab=58e99c9e
+-/
 theorem qOf_prv {j : Nat} (hj : 0 < j) (c p : Nat → Nat) {t : Nat} (ht : t < j) :
     qOf j c p (prv j t) = c t - p t := by
   show c (nxt j (prv j t)) - p (nxt j (prv j t)) = _
   rw [nxt_prv hj ht]
 
+/--
+@isnad1 id=eq.3h5v.s5.644bdbff4e2e from=translated src=- shape=ac6a3a8f vocab=7f1400d3
+-/
 theorem blk_length {j : Nat} (hj : 0 < j) (c p ν : Nat → Nat)
     (hpc : ∀ t, t < j → p t ≤ c t) {t : Nat} (ht : t < j) :
     (blk j c p ν t).length = c t := by
@@ -1887,6 +2214,9 @@ theorem blk_length {j : Nat} (hj : 0 < j) (c p ν : Nat → Nat)
   have := hpc t ht
   omega
 
+/--
+@isnad1 id=eq.2h3v.s5.012dbb41a62b from=translated src=- shape=7b5f3eaa vocab=67619149
+-/
 theorem sum_aOf {j : Nat} (hj : 0 < j) (c p : Nat → Nat)
     (hpc : ∀ t, t < j → p t ≤ c t) : sumRange (aOf j c p) j = sumRange c j := by
   have h1' : sumRange (aOf j c p) j
@@ -1896,6 +2226,9 @@ theorem sum_aOf {j : Nat} (hj : 0 < j) (c p : Nat → Nat)
   rw [h1', sumRange_nxt hj (fun u => c u - p u), ← sumRange_add]
   exact sumRange_congr j (fun t ht => by have := hpc t ht; omega)
 
+/--
+@isnad1 id=eq.1h5v.s5.aa430e36ccc9 from=translated src=- shape=fc48b4be vocab=ffbbcc67
+-/
 theorem blk_occ {j : Nat} (hj : 0 < j) (c p ν : Nat → Nat) (v : Nat) :
     sumRange (fun t => occ v (blk j c p ν t)) j
       = occ v (run 0 (sumRange (aOf j c p) j)) := by
@@ -1912,7 +2245,9 @@ theorem blk_occ {j : Nat} (hj : 0 < j) (c p ν : Nat → Nat) (v : Nat) :
   exact sumRange_congr j (fun t _ => rfl)
 
 /-- The wraparound: reading the block totals with weight `b^(t+1)` differs from
-reading them with `b^t` at the previous class by one multiple of `b^j - 1`.-/
+reading them with `b^t` at the previous class by one multiple of `b^j - 1`.
+@isnad1 id=eq.2h3v.s7.82daffcf10c9 from=translated src=- shape=3f915922 vocab=7ca3b9fd
+-/
 theorem wrap_sum {b j : Nat} (hb : 0 < b) (hj : 0 < j) (τ : Nat → Nat) :
     sumRange (fun t => b ^ t * τ (prv j t)) j + (b ^ j - 1) * τ (j - 1)
       = sumRange (fun t => b ^ (t + 1) * τ t) j := by
@@ -1934,7 +2269,9 @@ theorem wrap_sum {b j : Nat} (hb : 0 < b) (hj : 0 < j) (τ : Nat → Nat) :
 
 /-- **The exact identity.**  `X` is the arrangement's block-sum value; increasing
 the kept-sums by one moves `X` down by `b-1` times that, up to one wrap of
-`b^j - 1`.  No congruence yet: this is an equation in `ℕ`.-/
+`b^j - 1`.  No congruence yet: this is an equation in `ℕ`.
+@isnad1 id=eq.2h5v.s8.032e316d5d06 from=translated src=- shape=6413593b vocab=8cc3e4e7
+-/
 theorem blk_identity {b j : Nat} (hb : 0 < b) (hj : 0 < j) (c p ν : Nat → Nat) :
     sumRange (fun t => b ^ t * (blk j c p ν t).sum) j
         + (b - 1) * sumRange (fun t => b ^ t * (picked j c p ν t).1.sum) j
@@ -1972,6 +2309,9 @@ theorem blk_identity {b j : Nat} (hb : 0 < b) (hj : 0 < j) (c p ν : Nat → Nat
 digit-sum congruence leaves open.  Kept as a sum, so no division appears.-/
 def cosetSize (b j : Nat) : Nat := sumRange (fun t => b ^ t) j
 
+/--
+@isnad1 id=eq.1h2v.s5.911093f43ff2 from=translated src=- shape=80240b51 vocab=d209cd09
+-/
 theorem geom {b : Nat} (hb : 1 ≤ b) : ∀ j, (b - 1) * cosetSize b j + 1 = b ^ j := by
   intro j
   induction j with
@@ -1986,6 +2326,9 @@ theorem geom {b : Nat} (hb : 1 ≤ b) : ∀ j, (b - 1) * cosetSize b j + 1 = b ^
     rw [Nat.pow_succ, Nat.mul_comm (b ^ k) b, ← h1']
     omega
 
+/--
+@isnad1 id=lt.1h2v.s4.27ba0ad477da from=translated src=- shape=61bdc3e7 vocab=5696d9b6
+-/
 theorem cosetSize_pos {b j : Nat} (hj : 0 < j) : 0 < cosetSize b j := by
   obtain ⟨m, rfl⟩ : ∃ m, j = m + 1 := ⟨j - 1, by omega⟩
   show 0 < sumRange (fun t => b ^ t) (m + 1)
@@ -1996,7 +2339,9 @@ theorem cosetSize_pos {b j : Nat} (hj : 0 < j) : 0 < cosetSize b j := by
 
 /-- **The coset is a cycle.**  Inside `ℤ/(g·K)`, the residues congruent to a
 given value mod `g` are the `K` numbers `z, z+g, …, z+(K-1)g`; so any two
-members of the class are joined by adding `g` some `W < K` times.-/
+members of the class are joined by adding `g` some `W < K` times.
+@isnad1 id=ex.2h4v.s6.2ab85a321e7f from=translated src=- shape=4e3b8088 vocab=cb088a8e
+-/
 theorem coset_hit {g K z C : Nat} (hK : 0 < K) (h : z % g = C % g) :
     ∃ W, W < K ∧ (z + g * W) % (g * K) = C % (g * K) := by
   have hC := Nat.div_add_mod C g
@@ -2027,6 +2372,9 @@ theorem coset_hit {g K z C : Nat} (hK : 0 < K) (h : z % g = C % g) :
 
 /-! ### Where the digit `0` lands -/
 
+/--
+@isnad1 id=eq.2h3v.s5.4169cf69fa87 from=translated src=- shape=3e7781b1 vocab=4902b010
+-/
 theorem sumRange_eq_zero {f : Nat → Nat} : ∀ n, sumRange f n = 0 → ∀ t, t < n → f t = 0 := by
   intro n
   induction n with
@@ -2039,6 +2387,9 @@ theorem sumRange_eq_zero {f : Nat → Nat} : ∀ n, sumRange f n = 0 → ∀ t, 
     · have : t = k := by omega
       subst this; omega
 
+/--
+@isnad1 id=ex.1h2v.s5.f92361c69dac from=translated src=- shape=7226ae70 vocab=4902b010
+-/
 theorem sumRange_eq_one {f : Nat → Nat} : ∀ n, sumRange f n = 1 →
     ∃ t0, t0 < n ∧ f t0 = 1 ∧ ∀ t, t < n → t ≠ t0 → f t = 0 := by
   intro n
@@ -2062,6 +2413,9 @@ theorem sumRange_eq_one {f : Nat → Nat} : ∀ n, sumRange f n = 1 →
 /-- The value at index `m`, read through `drop` so that no `Fin` is needed.-/
 def nth (l : List Nat) (m : Nat) : Nat := (l.drop m).headD 0
 
+/--
+@isnad1 id=ne.2h2v.s5.de211b33e993 from=translated src=- shape=3ed661f7 vocab=ff3c5d04
+-/
 theorem nth_ne_zero : ∀ (l : List Nat), occ 0 l = 0 → ∀ m, m < l.length → nth l m ≠ 0 := by
   intro l
   induction l with
@@ -2077,6 +2431,9 @@ theorem nth_ne_zero : ∀ (l : List Nat), occ 0 l = 0 → ∀ m, m < l.length �
     | zero => show (x :: xs).headD 0 ≠ 0; exact hx.1
     | succ i => exact ih hx.2 i (by simpa using hm)
 
+/--
+@isnad1 id=eq.1h3v.s5.f442960465d2 from=translated src=- shape=807fdf82 vocab=2f0edb01
+-/
 theorem nth_append_left : ∀ (l1 : List Nat) (l2 : List Nat) (m : Nat), m < l1.length →
     nth (l1 ++ l2) m = nth l1 m := by
   intro l1
@@ -2088,6 +2445,9 @@ theorem nth_append_left : ∀ (l1 : List Nat) (l2 : List Nat) (m : Nat), m < l1.
     | zero => rfl
     | succ i => exact ih l2 i (by simpa using hm)
 
+/--
+@isnad1 id=eq.1h3v.s5.1b49a5bf975c from=translated src=- shape=de68e6a1 vocab=23654af7
+-/
 theorem nth_append_right : ∀ (l1 : List Nat) (l2 : List Nat) (m : Nat), l1.length ≤ m →
     nth (l1 ++ l2) m = nth l2 (m - l1.length) := by
   intro l1
@@ -2107,6 +2467,9 @@ theorem nth_append_right : ∀ (l1 : List Nat) (l2 : List Nat) (m : Nat), l1.len
 /-- `l` with a `0` inserted at index `k`.-/
 def ins0 (k : Nat) (l : List Nat) : List Nat := l.take k ++ 0 :: l.drop k
 
+/--
+@isnad1 id=eq.0h3v.s4.a9272a713a07 from=translated src=- shape=59e8783a vocab=3ca35259
+-/
 theorem ins0_occ (k : Nat) (l : List Nat) (v : Nat) : occ v (ins0 k l) = occ v (0 :: l) := by
   show occ v (l.take k ++ 0 :: l.drop k) = (if 0 = v then 1 else 0) + occ v l
   rw [occ_append]
@@ -2115,6 +2478,9 @@ theorem ins0_occ (k : Nat) (l : List Nat) (v : Nat) : occ v (ins0 k l) = occ v (
   rw [List.take_append_drop] at this
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.7e52342e84f6 from=translated src=- shape=f0fb6b79 vocab=5866ebb9
+-/
 theorem ins0_sum (k : Nat) (l : List Nat) : (ins0 k l).sum = l.sum := by
   show (l.take k ++ 0 :: l.drop k).sum = l.sum
   rw [List.sum_append]
@@ -2125,6 +2491,9 @@ theorem ins0_sum (k : Nat) (l : List Nat) : (ins0 k l).sum = l.sum := by
   rw [List.take_append_drop] at this
   omega
 
+/--
+@isnad1 id=eq.1h2v.s5.28ef74176b48 from=translated src=- shape=2295992c vocab=326a677f
+-/
 theorem ins0_length {k : Nat} {l : List Nat} (hk : k ≤ l.length) :
     (ins0 k l).length = l.length + 1 := by
   show (l.take k ++ 0 :: l.drop k).length = l.length + 1
@@ -2134,7 +2503,9 @@ theorem ins0_length {k : Nat} {l : List Nat} (hk : k ≤ l.length) :
   omega
 
 /-- Away from index `k`, the inserted list has no zeros — which is exactly what
-a leading digit needs.-/
+a leading digit needs.
+@isnad1 id=ne.4h3v.s6.83405091a473 from=translated src=- shape=429b0cbc vocab=0e3b23ec
+-/
 theorem ins0_nth_ne {k : Nat} {l : List Nat} (h0 : occ 0 l = 0) (hk : k ≤ l.length)
     {m : Nat} (hm : m < l.length + 1) (hmk : m ≠ k) : nth (ins0 k l) m ≠ 0 := by
   have hsplit := occ_append 0 (l.take k) (l.drop k)
@@ -2158,6 +2529,9 @@ def dropZeros : List Nat → List Nat
   | [] => []
   | x :: xs => if x = 0 then dropZeros xs else x :: dropZeros xs
 
+/--
+@isnad1 id=eq.0h1v.s4.7631aae47d29 from=translated src=- shape=d2a47a63 vocab=5ad587c7
+-/
 theorem dropZeros_occ_zero : ∀ l : List Nat, occ 0 (dropZeros l) = 0 := by
   intro l
   induction l with
@@ -2169,6 +2543,9 @@ theorem dropZeros_occ_zero : ∀ l : List Nat, occ 0 (dropZeros l) = 0 := by
     · rw [ite_eq_right h]; show (if x = 0 then 1 else 0) + occ 0 (dropZeros xs) = 0
       rw [ite_eq_right h]; omega
 
+/--
+@isnad1 id=eq.1h2v.s4.cff333e3f14f from=translated src=- shape=06df6ac0 vocab=5ad587c7
+-/
 theorem dropZeros_occ {v : Nat} (hv : v ≠ 0) : ∀ l : List Nat, occ v (dropZeros l) = occ v l := by
   intro l
   induction l with
@@ -2181,6 +2558,9 @@ theorem dropZeros_occ {v : Nat} (hv : v ≠ 0) : ∀ l : List Nat, occ v (dropZe
     · rw [ite_eq_right h]; show (if x = v then 1 else 0) + occ v (dropZeros xs) = _
       rw [ih]
 
+/--
+@isnad1 id=eq.0h1v.s4.3a7bacb6e2dd from=translated src=- shape=744721d0 vocab=4c2dfca9
+-/
 theorem dropZeros_sum : ∀ l : List Nat, (dropZeros l).sum = l.sum := by
   intro l
   induction l with
@@ -2191,6 +2571,9 @@ theorem dropZeros_sum : ∀ l : List Nat, (dropZeros l).sum = l.sum := by
     · rw [ite_eq_left h, ih, h]; omega
     · rw [ite_eq_right h]; show x + (dropZeros xs).sum = _; rw [ih]
 
+/--
+@isnad1 id=eq.1h1v.s4.352012e93765 from=translated src=- shape=7439e570 vocab=51fed8bd
+-/
 theorem dropZeros_length_zero : ∀ l : List Nat, occ 0 l = 0 →
     (dropZeros l).length = l.length := by
   intro l
@@ -2209,6 +2592,9 @@ theorem dropZeros_length_zero : ∀ l : List Nat, occ 0 l = 0 →
     show (dropZeros xs).length + 1 = xs.length + 1
     rw [ih (by omega)]
 
+/--
+@isnad1 id=eq.1h1v.s5.b90f235f9669 from=translated src=- shape=eb12f33d vocab=3b17eabf
+-/
 theorem dropZeros_length : ∀ l : List Nat, occ 0 l = 1 →
     (dropZeros l).length + 1 = l.length := by
   intro l
@@ -2228,6 +2614,9 @@ theorem dropZeros_length : ∀ l : List Nat, occ 0 l = 1 →
       show (dropZeros xs).length + 1 + 1 = xs.length + 1
       rw [ih (by omega)]
 
+/--
+@isnad1 id=eq.1h2v.s5.b86d350982ee from=translated src=- shape=81f55e72 vocab=4902b010
+-/
 theorem sumRange_zero {f : Nat → Nat} : ∀ n, (∀ t, t < n → f t = 0) → sumRange f n = 0 := by
   intro n
   induction n with
@@ -2237,6 +2626,9 @@ theorem sumRange_zero {f : Nat → Nat} : ∀ n, (∀ t, t < n → f t = 0) → 
     show sumRange f k + f k = 0
     rw [ih (fun t ht => h t (by omega)), h k (by omega)]
 
+/--
+@isnad1 id=eq.1h4v.s6.2937e51f3e06 from=translated src=- shape=8cfc6517 vocab=4e2a050f
+-/
 theorem sumRange_mod_congr {f g : Nat → Nat} {d : Nat} : ∀ n,
     (∀ t, t < n → f t % d = g t % d) → sumRange f n % d = sumRange g n % d := by
   intro n
@@ -2247,6 +2639,9 @@ theorem sumRange_mod_congr {f g : Nat → Nat} {d : Nat} : ∀ n,
     show (sumRange f k + f k) % d = (sumRange g k + g k) % d
     rw [Nat.add_mod, ih (fun t ht => h t (by omega)), h k (by omega), ← Nat.add_mod]
 
+/--
+@isnad1 id=mem.1h2v.s4.08dcd18ab2ab from=translated src=- shape=7f7f1c27 vocab=c88483c0
+-/
 theorem mem_of_occ_pos : ∀ (l : List Nat) (t : Nat), 0 < occ t l → t ∈ l := by
   intro l
   induction l with
@@ -2260,6 +2655,9 @@ theorem mem_of_occ_pos : ∀ (l : List Nat) (t : Nat), 0 < occ t l → t ∈ l :
       rw [ite_eq_right hx] at hh
       omega
 
+/--
+@isnad1 id=eq.1h3v.s4.49a29e621ed6 from=translated src=- shape=9029dd0f vocab=71045009
+-/
 theorem occ_run_lt : ∀ n s v, v < s → occ v (run s n) = 0 := by
   intro n
   induction n with
@@ -2269,7 +2667,9 @@ theorem occ_run_lt : ∀ n s v, v < s → occ v (run s n) = 0 := by
     show (if s = v then 1 else 0) + occ v (run (s+1) k) = 0
     rw [ite_eq_right (by omega), ih (s+1) v (by omega)]
 
-/-- Every value below `b` occurs exactly once in `run 0 b`.-/
+/-- Every value below `b` occurs exactly once in `run 0 b`.
+@isnad1 id=eq.2h3v.s5.7de13e907d1b from=translated src=- shape=eb7a0f99 vocab=e89e8ac3
+-/
 theorem occ_run : ∀ n s v, s ≤ v → v < s + n → occ v (run s n) = 1 := by
   intro n
   induction n with
@@ -2281,7 +2681,9 @@ theorem occ_run : ∀ n s v, s ≤ v → v < s + n → occ v (run s n) = 1 := by
     · rw [ite_eq_left h, occ_run_lt k (s+1) v (by omega)]
     · rw [ite_eq_right h, ih (s+1) v (by omega) (by omega)]
 
-/-- Consecutive runs tile `[0, Σ a)` — the sum form.-/
+/-- Consecutive runs tile `[0, Σ a)` — the sum form.
+@isnad1 id=eq.0h2v.s5.36a025e211c4 from=translated src=- shape=cf5d1da5 vocab=c87320db
+-/
 theorem sum_runs (a : Nat → Nat) : ∀ n,
     sumRange (fun t => (run (sumRange a t) (a t)).sum) n = (run 0 (sumRange a n)).sum := by
   intro n
@@ -2296,7 +2698,9 @@ theorem sum_runs (a : Nat → Nat) : ∀ n,
 
 /-- **Realisation.**  Blocks of the right sizes become a pandigital pair of digit
 lists: value-for-value the same multiset, and block `t` is charged weight `b^t`,
-which is exactly what the block congruence sees.-/
+which is exactly what the block congruence sees.
+@isnad1 id=and.2h5v.s8.d3cfec8089be from=translated src=- shape=9ad5b728 vocab=3445f61b
+-/
 theorem realise_pair {b j L1 L2 : Nat} (hj : 0 < j) (B : Nat → List Nat)
     (hlen : ∀ t, t < j → (B t).length = occ t (clsOf j 0 L1) + occ t (clsOf j 0 L2)) :
     ((deal B (clsOf j 0 L1)).1.length = L1) ∧
@@ -2340,7 +2744,9 @@ theorem realise_pair {b j L1 L2 : Nat} (hj : 0 < j) (B : Nat → List Nat)
     rw [sumRange_zero j (fun t ht => by rw [hres t ht]; rfl)] at h
     omega
 
-/-- Any residue mod `K` is reachable by adding `V < K`.-/
+/-- Any residue mod `K` is reachable by adding `V < K`.
+@isnad1 id=ex.2h3v.s5.2829156776eb from=translated src=- shape=92bc0415 vocab=fd2b17b6
+-/
 theorem shift_mod {K M W : Nat} (hK : 0 < K) (hW : W < K) :
     ∃ V, V < K ∧ (M + V) % K = W := by
   have hr : M % K < K := Nat.mod_lt _ hK
@@ -2360,7 +2766,9 @@ def Nof (j : Nat) (c p : Nat → Nat) (t : Nat) : Nat := p t * qOf j c p t
 /-- **Theorem 5, block level.**  Under the no-gap hypothesis, the block-sum
 value `Σ_t b^t S_t` of an arrangement with class sizes `c` runs over the whole
 coset `{z : z ≡ T (mod b-1)}` of `ℤ/(b^j - 1)`.  Leading digits are not yet in
-play; that is the next theorem's business.-/
+play; that is the next theorem's business.
+@isnad1 id=ex.6h5v.s8.1ac00d50cb3e from=translated src=- shape=b970603c vocab=d2f691e6
+-/
 theorem blocks_hit {b j : Nat} (hb : 1 < b) (hj : 0 < j) (c p : Nat → Nat)
     (hpc : ∀ t, t < j → p t ≤ c t)
     (hgap : ∀ t, t < j → b ^ t ≤ sumRange (fun s => Nof j c p s * b ^ s) t + 1)
@@ -2443,7 +2851,9 @@ theorem blocks_hit {b j : Nat} (hb : 1 < b) (hj : 0 < j) (c p : Nat → Nat)
   rw [hfold, Nat.add_mul_mod_self_left, hWeq]
 
 /-- The leading digit of a dealt list is the head of whatever is left of the
-block named by the last slot.-/
+block named by the last slot.
+@isnad1 id=eq.0h3v.s5.2543e04ad76c from=translated src=- shape=ac97f1c5 vocab=a2ed1828
+-/
 theorem deal_last (B : Nat → List Nat) (u : List Nat) (t : Nat) :
     nth (deal B (u ++ [t])).1 u.length = nth (B t) (occ t u) := by
   rw [deal_app]
@@ -2453,15 +2863,23 @@ theorem deal_last (B : Nat → List Nat) (u : List Nat) (t : Nat) :
   rw [deal_res]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.8e68abff7334 from=translated src=- shape=ae5ce9d3 vocab=d39c1124
+-/
 theorem occ_single (x : Nat) : occ x [x] = 1 := by rw [occ_cons_self, occ_nil]
 
+/--
+@isnad1 id=eq.0h3v.s4.6b05576a18d1 from=translated src=- shape=886a4c87 vocab=5c8271e3
+-/
 theorem nth_drop (l : List Nat) (s m : Nat) : nth (l.drop s) m = nth l (s + m) := by
   show ((l.drop s).drop m).headD 0 = (l.drop (s + m)).headD 0
   rw [List.drop_drop]
 
 /-- **The digit-list half.**  Blocks of the right sizes, holding each value once
 and keeping `0` off the two leading slots, read out as a genuine pandigital pair
-of digit lists whose sum the sieve sees as `Σ_t b^t S_t`.-/
+of digit lists whose sum the sieve sees as `Σ_t b^t S_t`.
+@isnad1 id=ex.8h5v.s9.83689a240296 from=translated src=- shape=694f4f7a vocab=28297409
+-/
 theorem blocks_to_pair {b j L1 L2 : Nat} (hb : 1 < b) (hj : 0 < j)
     (hL1 : 0 < L1) (hL2 : 0 < L2) (B : Nat → List Nat)
     (hlen : ∀ t, t < j → (B t).length = occ t (clsOf j 0 L1) + occ t (clsOf j 0 L2))
@@ -2518,7 +2936,9 @@ out `b-1`s does.
 The rider is sharper than the informal proof's `c_t ≥ 3` for all `t`,
 and sharpening it was worth doing: the gap between this theorem and the
 conjecture that `c_t ≥ 2` suffices is now a single class, not every
-class.-/
+class.
+@isnad1 id=ex.12h7v.s9.0549b4f6a04d from=translated src=- shape=67e262c9 vocab=e93d051d
+-/
 theorem sieve_complete {b j L1 L2 : Nat} (hb : 1 < b) (hj : 0 < j)
     (hL : L1 + L2 = b) (hL1 : 0 < L1) (hL2 : 0 < L2)
     (c p : Nat → Nat)
@@ -2636,6 +3056,9 @@ theorem sieve_complete {b j L1 L2 : Nat} (hb : 1 < b) (hj : 0 < j)
 
 /-! ### Non-vacuity, and where the hypothesis bites -/
 
+/--
+@isnad1 id=eq.3h4v.s5.e84e8135b240 from=translated src=- shape=87f0d3c0 vocab=9419a325
+-/
 theorem occ_clsOf_zero {j s n t : Nat} (hj : 0 < j) (hs : s < j) (ht : j ≤ t) :
     occ t (clsOf j s n) = 0 := by
   rcases Nat.eq_zero_or_pos (occ t (clsOf j s n)) with h | h
@@ -2643,7 +3066,9 @@ theorem occ_clsOf_zero {j s n t : Nat} (hj : 0 < j) (hs : s < j) (ht : j ≤ t) 
   · exact absurd (clsOf_mem hj n s hs t (mem_of_occ_pos _ t h)) (by omega)
 
 /-- At base 10, `j = 2`, digit lengths `(4,6)` — the lengths of `69^2 = 4761` and
-`69^3 = 328509` — both classes hold five values.-/
+`69^3 = 328509` — both classes hold five values.
+@isnad1 id=eq.0h1v.s6.6aa2c2d1761f from=translated src=- shape=08457707 vocab=5f57ebd1
+-/
 theorem base_ten_two_classes : ∀ t,
     (if t < 2 then 5 else 0) = occ t (clsOf 2 0 4) + occ t (clsOf 2 0 6) := by
   intro t
@@ -2659,7 +3084,9 @@ theorem base_ten_two_classes : ∀ t,
 /-- **Theorem 5 fires at the base and the digit lengths of the only known nice
 number.**  Every residue mod `99` that casting out 9s permits really is the sum
 of a genuine pandigital `(4,6)` pair in base 10, so the modulus `99` — and with
-it every modulus of order 2 — buys nothing over casting out 9s.-/
+it every modulus of order 2 — buys nothing over casting out 9s.
+@isnad1 id=ex.1h1v.s7.4f1be56f71c3 from=translated src=- shape=3f7be1bb vocab=9da452b8
+-/
 theorem base_ten_j_two_complete {z : Nat} (hz : z % 9 = 0) :
     ∃ d1 d2 : List Nat,
       d1.length = 4 ∧ d2.length = 6 ∧
@@ -2681,7 +3108,9 @@ theorem base_ten_j_two_complete {z : Nat} (hz : z % 9 = 0) :
 /-- …and it does **not** fire at `j = 5`, which is exactly where base 10's sieve
 does gain: `11111 = 41 · 271` has order 5 and two residues are unreachable.  The
 class sizes there are `(3,2,2,2,1)`, so the `c_t ≥ 2` half of the rider fails —
-the theorem's hypothesis and the measured counterexample agree.-/
+the theorem's hypothesis and the measured counterexample agree.
+@isnad1 id=not.0h0v.s6.42cebee19fbc from=translated src=- shape=b945804c vocab=dbb3dbd4
+-/
 theorem base_ten_j_five_rider_fails :
     ¬ ∀ t, t < 5 → 2 ≤ occ t (clsOf 5 0 4) + occ t (clsOf 5 0 6) := by decide
 
@@ -2689,17 +3118,24 @@ theorem base_ten_j_five_rider_fails :
 it even satisfies the no-gap conditions: `p = (2,0)` gives `N = (4,0)`, and
 `b^1 = 4 ≤ 5`, `K - 1 = 4`.  What stops it is the *other* half of the rider.  So
 the two witnesses fail on different halves and neither half is slack — without
-the second one this theorem would contradict `base_four_sieve_is_incomplete`.-/
+the second one this theorem would contradict `base_four_sieve_is_incomplete`.
+@isnad1 id=not.0h0v.s6.4183ba32e3e4 from=translated src=- shape=aded7f0b vocab=f8611c50
+-/
 theorem base_four_rider_fails :
     ¬ 3 ≤ occ ((2 - 1) % 2) (clsOf 2 0 2) + occ ((2 - 1) % 2) (clsOf 2 0 2) := by decide
 
+/--
+@isnad1 id=le.1h1v.s5.28fc8ae09655 from=translated src=- shape=401a7ac1 vocab=dbb3dbd4
+-/
 theorem base_four_clears_the_other_half :
     ∀ t, t < 2 → 2 ≤ occ t (clsOf 2 0 2) + occ t (clsOf 2 0 2) := by decide
 
 /-- …and it clears the no-gap conditions too, with `c = (2,2)` and `p = (2,0)`.
 Without this the previous theorem would prove nothing about the rider: a witness
 that fails several hypotheses at once says which one is load-bearing only if the
-others are checked to hold.-/
+others are checked to hold.
+@isnad1 id=and.0h0v.s8.7a1a6d7497b3 from=translated src=- shape=736de731 vocab=83d35970
+-/
 theorem base_four_clears_the_no_gap :
     (∀ t, t < 2 → 4 ^ t ≤ sumRange (fun s => Nof 2 (fun u => if u < 2 then 2 else 0)
         (fun u => if u = 0 then 2 else 0) s * 4 ^ s) t + 1)
@@ -2732,18 +3168,29 @@ second clause.  §7.5 runs both ends on numerals.
 
 /-! ### §7.0  A two-adic toolkit -/
 
+/--
+@isnad1 id=eq.0h1v.s4.8b00658ca4d2 from=translated src=- shape=18b02a30 vocab=de4a4c74
+-/
 theorem pow_two_eq (x : Nat) : x ^ 2 = x * x := by rw [Nat.pow_succ, Nat.pow_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.2534ec0262ae from=translated src=- shape=d983bf58 vocab=30ba1354
+-/
 theorem mul_pow_two_comm (p q m : Nat) : (2^p * m) * (2^q * m) = 2^(p+q) * (m*m) := by
   rw [Nat.pow_add, Nat.mul_assoc, ← Nat.mul_assoc m (2^q) m, Nat.mul_comm m (2^q),
       Nat.mul_assoc, ← Nat.mul_assoc]
 
+/--
+@isnad1 id=eq.1h2v.s5.26db361cda4f from=translated src=- shape=395e3d0d vocab=df461349
+-/
 theorem odd_pow {u : Nat} (hu : u % 2 = 1) (e : Nat) : u ^ e % 2 = 1 := by
   induction e with
   | zero => simp
   | succ j ih => rw [Nat.pow_succ, Nat.mul_mod, ih, hu]
 
-/-- an odd square is `1` mod 4 -- the only fact about squares this section needs.-/
+/-- an odd square is `1` mod 4 -- the only fact about squares this section needs.
+@isnad1 id=eq.1h1v.s6.9db4d287fef2 from=translated src=- shape=cb0dfa3d vocab=df461349
+-/
 theorem odd_sq_mod_four {x : Nat} (hx : x % 2 = 1) : x ^ 2 % 4 = 1 % 4 := by
   obtain ⟨t, ht⟩ : ∃ t, x = 2 * t + 1 := ⟨x / 2, by omega⟩
   have hsq : x ^ 2 = 4 * (t * t) + 4 * t + 1 := by
@@ -2752,7 +3199,9 @@ theorem odd_sq_mod_four {x : Nat} (hx : x % 2 = 1) : x ^ 2 % 4 = 1 % 4 := by
     omega
   omega
 
-/-- `(b-1)/2 = 2^(a-1)·m` is `2^(a-1)` mod `2^a`: the target, localised.-/
+/-- `(b-1)/2 = 2^(a-1)·m` is `2^(a-1)` mod `2^a`: the target, localised.
+@isnad1 id=eq.1h2v.s6.963cb5555351 from=translated src=- shape=c220c0a5 vocab=84e92033
+-/
 theorem half_mod {a m : Nat} (hm : m % 2 = 1) : (2 ^ a * m) % (2 ^ (a+1)) = 2 ^ a := by
   obtain ⟨t, ht⟩ : ∃ t, m = 2 * t + 1 := ⟨m / 2, by omega⟩
   have h : 2 ^ a * m = 2 ^ a + 2 ^ (a+1) * t := by
@@ -2761,7 +3210,9 @@ theorem half_mod {a m : Nat} (hm : m % 2 = 1) : (2 ^ a * m) % (2 ^ (a+1)) = 2 ^ 
   rw [h, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt]
   exact Nat.pow_lt_pow_right (by decide) (by omega)
 
-/-- every positive natural is `2^v` times an odd number-/
+/-- every positive natural is `2^v` times an odd number
+@isnad1 id=ex.1h1v.s6.1e199b50cf4b from=translated src=- shape=ffa4f5d6 vocab=1795eeb0
+-/
 theorem two_adic_split : ∀ x : Nat, 0 < x → ∃ v u, x = 2 ^ v * u ∧ u % 2 = 1 := by
   intro x
   induction x using Nat.strongRecOn with
@@ -2775,7 +3226,9 @@ theorem two_adic_split : ∀ x : Nat, 0 < x → ∃ v u, x = 2 ^ v * u ∧ u % 2
       rw [hy, hu, Nat.pow_succ, Nat.mul_comm (2^v) 2, Nat.mul_assoc]
 
 /-- ...and the exponent is determined, which is the whole of "the 2-adic
-valuation is well defined".  Used only through the equality `2^i·U = 2^j·V`.-/
+valuation is well defined".  Used only through the equality `2^i·U = 2^j·V`.
+@isnad1 id=eq.3h4v.s6.90d004bfd3f4 from=translated src=- shape=070f4b57 vocab=d5c43088
+-/
 theorem two_pow_odd_unique {i j U V : Nat} (hU : U % 2 = 1) (hV : V % 2 = 1)
     (h : 2 ^ i * U = 2 ^ j * V) : i = j := by
   rcases Nat.lt_trichotomy i j with hlt | heq | hgt
@@ -2793,12 +3246,17 @@ theorem two_pow_odd_unique {i j U V : Nat} (hU : U % 2 = 1) (hV : V % 2 = 1)
       rw [Nat.pow_succ, Nat.mul_comm (2^s) 2, Nat.mul_assoc, Nat.mul_mod_right]
     omega
 
+/--
+@isnad1 id=eq.1h3v.s6.f7aa1d8dd7a6 from=translated src=- shape=b8e28657 vocab=df461349
+-/
 theorem pow_mod_one {x M : Nat} (h : x % M = 1 % M) (c : Nat) : x ^ c % M = 1 % M := by
   induction c with
   | zero => simp
   | succ j ih => rw [Nat.pow_succ, Nat.mul_mod, ih, h, ← Nat.mul_mod, Nat.one_mul]
 
-/-- a square root of `1` is fixed by odd powers and trivialised by even ones-/
+/-- a square root of `1` is fixed by odd powers and trivialised by even ones
+@isnad1 id=and.1h3v.s7.aca68f6e05a6 from=translated src=- shape=41224b5d vocab=84e92033
+-/
 theorem pow_mod_sq_one {x M : Nat} (h : x ^ 2 % M = 1 % M) :
     ∀ k, x ^ (2 * k) % M = 1 % M ∧ x ^ (2 * k + 1) % M = x % M := by
   have h' : x * x % M = 1 % M := by rw [← pow_two_eq]; exact h
@@ -2816,6 +3274,9 @@ theorem pow_mod_sq_one {x M : Nat} (h : x ^ 2 % M = 1 % M) :
 `T = b(b-1)/2` mod `b-1` is `(b-1)/2` when `b` is odd and `0` when `b` is even.
 Both are one line and neither needs `b` again afterwards. -/
 
+/--
+@isnad1 id=eq.3h3v.s6.9827277100de from=translated src=- shape=d84937d3 vocab=8d1d45fb
+-/
 theorem target_eq {b T A : Nat} (hb : 1 < b) (hT : 2 * T = b * (b - 1))
     (hA : 2 * A = b - 1) : T % (b - 1) = A % (b - 1) := by
   have hb1 : b = (b - 1) + 1 := by omega
@@ -2830,6 +3291,9 @@ theorem target_eq {b T A : Nat} (hb : 1 < b) (hT : 2 * T = b * (b - 1))
     omega
   rw [hTv, Nat.add_mul_mod_self_left]
 
+/--
+@isnad1 id=eq.3h2v.s6.75e98bba9b5d from=translated src=- shape=7df24af4 vocab=8d1d45fb
+-/
 theorem target_zero {b T : Nat} (hb : 1 < b) (hT : 2 * T = b * (b - 1))
     (hbe : b % 2 = 0) : T % (b - 1) = 0 := by
   obtain ⟨c, hc⟩ : ∃ c, b = 2 * c := ⟨b / 2, by omega⟩
@@ -2843,7 +3307,9 @@ Each live class gets a residue written down, so this half of the theorem needs
 no existence argument and, in particular, no Chinese remainder theorem. -/
 
 /-- The shape two of the four witnesses reduce to: if the sum is `2^w · m · W`
-with `W` odd and `b - 1 = 2^(w+1)·m`, it is congruent to `T`.-/
+with `W` odd and `b - 1 = 2^(w+1)·m`, it is congruent to `T`.
+@isnad1 id=eq.5h6v.s7.f4b796c40957 from=translated src=- shape=48caef73 vocab=f572c56f
+-/
 theorem residue_of_odd_cofactor {b T w m W S : Nat} (hb : 1 < b) (hT : 2 * T = b * (b - 1))
     (hM : b - 1 = 2 ^ (w+1) * m) (hW : W % 2 = 1) (hS : S = 2 ^ w * (m * W)) :
     S % (b - 1) = T % (b - 1) := by
@@ -2856,7 +3322,9 @@ theorem residue_of_odd_cofactor {b T w m W S : Nat} (hb : 1 < b) (hT : 2 * T = b
     omega
   rw [hval, Nat.add_mul_mod_self_left, target_eq hb hT h2A]
 
-/-- `a = 0`, i.e. `b` even: `ρ = 0`, because then `T ≡ 0 (mod b-1)`.-/
+/-- `a = 0`, i.e. `b` even: `ρ = 0`, because then `T ≡ 0 (mod b-1)`.
+@isnad1 id=eq.5h4v.s7.9660b67544bc from=translated src=- shape=79859545 vocab=407ce26c
+-/
 theorem residue_of_even_base {b e1 e2 T : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (he2 : 1 ≤ e2)
     (hT : 2 * T = b * (b - 1)) (hbe : b % 2 = 0) :
     (0 ^ e1 + 0 ^ e2) % (b - 1) = T % (b - 1) := by
@@ -2864,7 +3332,9 @@ theorem residue_of_even_base {b e1 e2 T : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (he
   simp
 
 /-- `x + 1 = A`, `2A = M` and `M ∣ A^2` make `x` a square root of `1` mod `M`.
-With `A = M/2` the cross term `2x = M - 2` is the point: it wipes out `-2A`.-/
+With `A = M/2` the cross term `2x = M - 2` is the point: it wipes out `-2A`.
+@isnad1 id=eq.4h4v.s6.ee7549d7749c from=translated src=- shape=93671f33 vocab=daab4b83
+-/
 theorem sq_one_of_half {x A M K : Nat} (hx1 : x + 1 = A) (h2A : 2 * A = M)
     (hAA : A * A = M * K) (hK : 0 < K) : x ^ 2 % M = 1 % M := by
   have hexp : (x + 1) * (x + 1) = x * x + 2 * x + 1 := by
@@ -2877,7 +3347,9 @@ theorem sq_one_of_half {x A M K : Nat} (hx1 : x + 1 = A) (h2A : 2 * A = M)
   rw [pow_two_eq, hxx, Nat.add_mul_mod_self_left]
 
 /-- a square root of `1` raised to exponents of opposite parity contributes
-`x + 1` — one power gives `x`, the other `1`.-/
+`x + 1` — one power gives `x`, the other `1`.
+@isnad1 id=eq.2h4v.s7.d6584266faab from=translated src=- shape=a93e356c vocab=b2ffaa0b
+-/
 theorem pair_pow_sq_one {x M e1 e2 : Nat} (h : x ^ 2 % M = 1 % M) (hpar : e1 % 2 ≠ e2 % 2) :
     (x ^ e1 + x ^ e2) % M = (x + 1) % M := by
   have hpow := pow_mod_sq_one h
@@ -2896,7 +3368,9 @@ theorem pair_pow_sq_one {x M e1 e2 : Nat} (h : x ^ 2 % M = 1 % M) (hpar : e1 % 2
 /-- `a ≥ 2` and `e2 - e1` odd: `ρ = (b-1)/2 - 1`, whose square is `1`, so the two
 powers contribute `ρ` and `1` and their sum is `(b-1)/2 ≡ T`.  Note the witness
 is *not* `≡ 0` mod the odd part of `b-1`: there it is `-1`, and the two opposite
-parities cancel it.-/
+parities cancel it.
+@isnad1 id=eq.5h6v.s8.3cae71742e07 from=translated src=- shape=c36b64eb vocab=f572c56f
+-/
 theorem residue_of_odd_gap {b e1 e2 T c m : Nat} (hb : 1 < b) (hm : m % 2 = 1)
     (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ (c + 2) * m) (hpar : e1 % 2 ≠ e2 % 2) :
     ((2 ^ (c+1) * m - 1) ^ e1 + (2 ^ (c+1) * m - 1) ^ e2) % (b - 1) = T % (b - 1) := by
@@ -2916,7 +3390,9 @@ theorem residue_of_odd_gap {b e1 e2 T c m : Nat} (hb : 1 < b) (hm : m % 2 = 1)
   rw [hx1, target_eq hb hT h2A]
 
 /-- `a = 2`: `ρ = m^2`, where `b - 1 = 4m`.  An odd square is `1` mod 8, so the
-sum is `m` times something `≡ 2 (mod 4)` — valuation exactly `1 = a - 1`.-/
+sum is `m` times something `≡ 2 (mod 4)` — valuation exactly `1 = a - 1`.
+@isnad1 id=eq.6h5v.s7.1a4d1db0d800 from=translated src=- shape=6ebab85a vocab=407ce26c
+-/
 theorem residue_of_two_adic_two {b e1 e2 T m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (he2 : 1 ≤ e2)
     (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ 2 * m) :
     ((m ^ 2) ^ e1 + (m ^ 2) ^ e2) % (b - 1) = T % (b - 1) := by
@@ -2940,7 +3416,9 @@ theorem residue_of_two_adic_two {b e1 e2 T m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1
       ← Nat.mul_assoc]
 
 /-- `a - 1 = e1·V` with `V ≥ 1`: `ρ = 2^V·m`, where `b - 1 = 2^a·m`.  Here
-`v_2(ρ^e1 + ρ^e2) = V·e1` exactly, because `1 + ρ^(e2-e1)` is odd.-/
+`v_2(ρ^e1 + ρ^e2) = V·e1` exactly, because `1 + ρ^(e2-e1)` is odd.
+@isnad1 id=eq.7h6v.s8.448cbd656afc from=translated src=- shape=7248be19 vocab=407ce26c
+-/
 theorem residue_of_dvd {b e1 e2 T m V : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2)
     (hV : 1 ≤ V) (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1))
     (hM : b - 1 = 2 ^ (V * e1 + 1) * m) :
@@ -2973,9 +3451,15 @@ theorem residue_of_dvd {b e1 e2 T m V : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt 
 
 /-! ### §7.3  The dead direction -/
 
+/--
+@isnad1 id=eq.0h3v.s6.6cc9b2f55955 from=translated src=- shape=5f6228a5 vocab=30ba1354
+-/
 theorem sum_factor (ρ e1 d : Nat) : ρ ^ e1 + ρ ^ (e1 + (d+1)) = ρ ^ e1 * (1 + ρ ^ (d+1)) := by
   rw [Nat.mul_add, Nat.mul_one, Nat.pow_add]
 
+/--
+@isnad1 id=eq.1h3v.s6.d78cc49e6071 from=translated src=- shape=1ab7e7cf vocab=30ba1354
+-/
 theorem sum_shape {S a' q : Nat} (hdiv : 2 ^ (a'+1) * q + 2 ^ a' = S) :
     S = 2 ^ a' * (2 * q + 1) := by
   have hexp : 2 ^ a' * (2 * q + 1) = 2 ^ (a'+1) * q + 2 ^ a' := by
@@ -2990,7 +3474,9 @@ def LiveTwoAdic (a e1 e2 : Nat) : Prop :=
 /-- **Theorem 4, necessity.**  A residue exists only in the classes above.  The
 argument is one valuation count: `ρ^e1 + ρ^e2 = ρ^e1·(1 + ρ^(e2-e1))` must have
 `v_2` exactly `a - 1`, and the three cases of `ρ` (zero, odd, even) supply the
-three clauses.-/
+three clauses.
+@isnad1 id=livetwoa.7h7v.s7.854d428a1bba from=translated src=- shape=994263fe vocab=35b3ed67
+-/
 theorem live_of_residue {b e1 e2 T a m ρ : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2)
     (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ a * m)
     (hρ : (ρ ^ e1 + ρ ^ e2) % (b - 1) = T % (b - 1)) :
@@ -3077,7 +3563,9 @@ factorisation `b - 1 = 2^a·m` with `m` odd, the residue set is nonempty **iff**
 
 No odd prime divisor of `b-1` appears anywhere: the classification is a
 condition on `v_2(b-1)` and the pair alone, which is why the dead bases form a
-union of congruence classes mod powers of two.-/
+union of congruence classes mod powers of two.
+@isnad1 id=iff.6h6v.s7.6e4ca2ffde9d from=translated src=- shape=8090a17b vocab=35b3ed67
+-/
 theorem residues_nonempty_iff {b e1 e2 T a m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2)
     (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ a * m) :
     (∃ ρ, (ρ ^ e1 + ρ ^ e2) % (b - 1) = T % (b - 1)) ↔ LiveTwoAdic a e1 e2 := by
@@ -3107,7 +3595,9 @@ theorem residues_nonempty_iff {b e1 e2 T a m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1
         exact ⟨_, residue_of_dvd hb he1 hlt hVpos hm hT hMV⟩
 
 /-- **Theorem 4, dead form** — the classification read as a list of dead classes,
-which is how the informal account states it.-/
+which is how the informal account states it.
+@isnad1 id=iff.6h6v.s8.717f7b46c764 from=translated src=- shape=6fdb4716 vocab=1ed20a06
+-/
 theorem residues_empty_iff {b e1 e2 T a m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2)
     (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ a * m) :
     (∀ ρ, (ρ ^ e1 + ρ ^ e2) % (b - 1) ≠ T % (b - 1))
@@ -3136,7 +3626,9 @@ theorem residues_empty_iff {b e1 e2 T a m : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (
 
 /-- The operative form: a base in a dead 2-adic class admits no `n` whose digit
 sums satisfy the identity, hence no solution.  Same shape as
-`no_nice_of_mod_four`, of which this is the generalisation.-/
+`no_nice_of_mod_four`, of which this is the generalisation.
+@isnad1 id=false.7h6v.s7.d29d91813dd9 from=translated src=- shape=eee48da8 vocab=837dace5
+-/
 theorem no_nice_of_two_adic {b e1 e2 a m n : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2)
     (hm : m % 2 = 1) (hM : b - 1 = 2 ^ a * m)
     (hdead : a = 1 ∨ (3 ≤ a ∧ (e2 - e1) % 2 = 0 ∧ ¬ e1 ∣ (a - 1)))
@@ -3157,24 +3649,35 @@ Theorem 1 says nothing, `17 % 4 = 1` so Theorem 3 says nothing, and
 next base with `v_2(b-1) ≥ 3` that A leaves alive — is *not* killed, and the
 witness is exhibited, so the boundary `e1 ∣ a-1` is sharp and not slack. -/
 
-/-- `(2,4)` in base 17: no residue at all.  `T = 136`, `2·136 = 17·16`.-/
+/-- `(2,4)` in base 17: no residue at all.  `T = 136`, `2·136 = 17·16`.
+@isnad1 id=ne.0h1v.s6.b29481ea222e from=translated src=- shape=589029cd vocab=b2ffaa0b
+-/
 theorem two_four_base_seventeen_dead (ρ : Nat) : (ρ ^ 2 + ρ ^ 4) % 16 ≠ 136 % 16 :=
   (residues_empty_iff (b := 17) (a := 4) (m := 1) (by decide) (by decide) (by decide)
     (by decide) (by decide) (by decide)).2 (Or.inr ⟨by decide, by decide, by decide⟩) ρ
 
 /-- ...and base 33 is alive, with the witness `ρ = 2^2·1 = 4` the theorem
-predicts: `v_2(32) = 5` and `e1 = 2 ∣ 4`.-/
+predicts: `v_2(32) = 5` and `e1 = 2 ∣ 4`.
+@isnad1 id=eq.0h0v.s6.356c1302ec4b from=translated src=- shape=8c5e922d vocab=b2ffaa0b
+-/
 theorem two_four_base_thirtythree_live : (4 ^ 2 + 4 ^ 4) % 32 = 528 % 32 := by decide
 
 /-- Base 10 had better be alive, or the theorem would contradict 69.
 `v_2(9) = 0`, so the `a = 0` clause applies and `ρ = 0` is a residue — as is 69
-itself, which is the residue the solution actually lives in.-/
+itself, which is the residue the solution actually lives in.
+@isnad1 id=livetwoa.0h0v.s4.73f0b43615ec from=translated src=- shape=b850a97b vocab=ef792921
+-/
 theorem base_ten_live : LiveTwoAdic 0 2 3 := ⟨by decide, Or.inl (by decide)⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.1c9bbc6092af from=translated src=- shape=8c5e922d vocab=b2ffaa0b
+-/
 theorem base_ten_residue : (69 ^ 2 + 69 ^ 3) % 9 = 45 % 9 := by decide
 
 /-- Theorem 3 is the `a = 1` case: `b ≡ 3 (mod 4)` is exactly `v_2(b-1) = 1`.
-Re-deriving `residues_empty_of_mod_four` from Theorem 4, for every pair.-/
+Re-deriving `residues_empty_of_mod_four` from Theorem 4, for every pair.
+@isnad1 id=ne.5h5v.s7.e7c1f05cc2c8 from=translated src=- shape=d2901dc6 vocab=407ce26c
+-/
 theorem residues_empty_of_mod_four_via_two_adic {b e1 e2 T ρ : Nat}
     (hb : 1 < b) (he1 : 1 ≤ e1) (hlt : e1 < e2) (hmod : b % 4 = 3)
     (hT : 2 * T = b * (b - 1)) :
@@ -3197,7 +3700,9 @@ Note `a = 1` is **live** here — Theorem 3 needs the sum `ρ^e1 + ρ^e2 ≡ 2ρ
 single exponent has no partner to pair with — which is why `b ≡ 3 (mod 4)`
 survives for `n^4` and not for `(1,3)`. -/
 
-/-- `a - 1 = e·V` (including `V = 0`, i.e. `a = 1`): `ρ = 2^V·m`.-/
+/-- `a - 1 = e·V` (including `V = 0`, i.e. `a = 1`): `ρ = 2^V·m`.
+@isnad1 id=eq.5h5v.s7.39608ea06247 from=translated src=- shape=cad59cf6 vocab=407ce26c
+-/
 theorem residue_single_of_dvd {b e T m V : Nat} (hb : 1 < b) (he : 1 ≤ e) (hm : m % 2 = 1)
     (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ (V * e + 1) * m) :
     (2 ^ V * m) ^ e % (b - 1) = T % (b - 1) := by
@@ -3206,7 +3711,9 @@ theorem residue_single_of_dvd {b e T m V : Nat} (hb : 1 < b) (he : 1 ≤ e) (hm 
     (odd_pow hm f) ?_
   rw [Nat.mul_pow, ← Nat.pow_mul, Nat.pow_succ (m := f), Nat.mul_comm (m ^ f) m]
 
-/-- `a = 0`, i.e. `b` even: `ρ = 0`.-/
+/-- `a = 0`, i.e. `b` even: `ρ = 0`.
+@isnad1 id=eq.4h3v.s7.53683a51aad7 from=translated src=- shape=d15b7e1e vocab=c7cb47a2
+-/
 theorem residue_single_of_even_base {b e T : Nat} (hb : 1 < b) (he : 1 ≤ e)
     (hT : 2 * T = b * (b - 1)) (hbe : b % 2 = 0) : (0:Nat) ^ e % (b - 1) = T % (b - 1) := by
   rw [Nat.zero_pow (by omega), target_zero hb hT hbe]
@@ -3214,7 +3721,9 @@ theorem residue_single_of_even_base {b e T : Nat} (hb : 1 < b) (he : 1 ≤ e)
 
 /-- **Theorem 4, single-exponent form.**  (`a - 1` is truncated subtraction, so
 the `a = 0` disjunct is formally implied by the second; it is kept because the
-mathematics has two cases — even base, and `v_2(b-1) ≡ 1 mod e` — not one.)-/
+mathematics has two cases — even base, and `v_2(b-1) ≡ 1 mod e` — not one.)
+@isnad1 id=iff.5h5v.s7.602d65fbcad7 from=translated src=- shape=3924eb23 vocab=db831e56
+-/
 theorem residues_single_nonempty_iff {b e T a m : Nat} (hb : 1 < b) (he : 1 ≤ e)
     (hm : m % 2 = 1) (hT : 2 * T = b * (b - 1)) (hM : b - 1 = 2 ^ a * m) :
     (∃ ρ, ρ ^ e % (b - 1) = T % (b - 1)) ↔ (a = 0 ∨ e ∣ (a - 1)) := by
@@ -3259,7 +3768,9 @@ theorem residues_single_nonempty_iff {b e T a m : Nat} (hb : 1 < b) (he : 1 ≤ 
 
 /-- `n^4` in base 29 has no residue: `v_2(28) = 2` and `4 ∤ 1`.  This is one of the
 bases the single-exponent family loses, and base 8 — where the only known
-solution `42^4` lives — is even, hence `a = 0`, hence live.-/
+solution `42^4` lives — is even, hence `a = 0`, hence live.
+@isnad1 id=ne.0h1v.s5.b1ff2675d08d from=translated src=- shape=13b567fb vocab=df461349
+-/
 theorem single_four_base_twentynine_dead (ρ : Nat) : ρ ^ 4 % 28 ≠ 406 % 28 := by
   intro h
   rcases (residues_single_nonempty_iff (b := 29) (e := 4) (a := 2) (m := 7)
@@ -3267,7 +3778,9 @@ theorem single_four_base_twentynine_dead (ρ : Nat) : ρ ^ 4 % 28 ≠ 406 % 28 :
     revert h' <;> decide
 
 /-- ...and base 33 is live, with the residue `2^1·1 = 2` the theorem predicts:
-`v_2(32) = 5` and `4 ∣ 4`.-/
+`v_2(32) = 5` and `4 ∣ 4`.
+@isnad1 id=eq.0h0v.s5.bef9773609cc from=translated src=- shape=2990c449 vocab=df461349
+-/
 theorem single_four_base_thirtythree_live : (2:Nat) ^ 4 % 32 = 528 % 32 := by decide
 
 /-! ## §8  Theorem 7 — the `2/E` greedy construction
@@ -3288,13 +3801,21 @@ digit deficiency of at most `b - 2d ≈ b(1 - 2/E)`. -/
 /-- Digit `i` of `x` in base `b`, counting from the least significant.-/
 def slot (b i x : Nat) : Nat := x / b ^ i % b
 
+/--
+@isnad1 id=lt.1h3v.s4.ee52c3a1c188 from=translated src=- shape=e93141a0 vocab=e75e975b
+-/
 theorem slot_lt {b : Nat} (hb : 0 < b) (i x : Nat) : slot b i x < b := Nat.mod_lt _ hb
 
+/--
+@isnad1 id=eq.0h2v.s4.dee7f9474a20 from=translated src=- shape=4ca1e92e vocab=3cd93737
+-/
 theorem slot_zero (b x : Nat) : slot b 0 x = x % b := by
   show x / b ^ 0 % b = x % b
   rw [Nat.pow_zero, Nat.div_one]
 
-/-- A slot sees only the low `i+1` digits: this is the p-adic boundary, stated.-/
+/-- A slot sees only the low `i+1` digits: this is the p-adic boundary, stated.
+@isnad1 id=eq.1h4v.s6.be10b79674c1 from=translated src=- shape=bac06d9c vocab=fc408ed2
+-/
 theorem slot_of_mod {b i x y : Nat} (h : x % b ^ (i + 1) = y % b ^ (i + 1)) :
     slot b i x = slot b i y := by
   have hp : b ^ (i + 1) = b ^ i * b := Nat.pow_succ b i
@@ -3302,13 +3823,17 @@ theorem slot_of_mod {b i x y : Nat} (h : x % b ^ (i + 1) = y % b ^ (i + 1)) :
   rw [← Nat.mod_mul_right_div_self x (b ^ i) b, ← Nat.mod_mul_right_div_self y (b ^ i) b,
       ← hp, h]
 
-/-- Hence `n mod b^(i+1)` pins slot `i` of `n^e` — two slots per digit of `n`.-/
+/-- Hence `n mod b^(i+1)` pins slot `i` of `n^e` — two slots per digit of `n`.
+@isnad1 id=eq.1h5v.s6.38ee9df1cb99 from=translated src=- shape=2c8aab83 vocab=fc408ed2
+-/
 theorem slot_pow_of_mod {b i x y e : Nat} (h : x % b ^ (i + 1) = y % b ^ (i + 1)) :
     slot b i (x ^ e) = slot b i (y ^ e) := by
   refine slot_of_mod ?_
   rw [Nat.pow_mod, h, ← Nat.pow_mod]
 
-/-- Every slot below the digit count really is one of the digits.-/
+/-- Every slot below the digit count really is one of the digits.
+@isnad1 id=mem.2h3v.s5.00f4c9396354 from=translated src=- shape=f1a45e9d vocab=356bb6e6
+-/
 theorem slot_mem_digits {b : Nat} (hb : 1 < b) :
     ∀ x i, i < numDigits b x → slot b i x ∈ digits b x := by
   intro x
@@ -3337,6 +3862,9 @@ theorem slot_mem_digits {b : Nat} (hb : 1 < b) :
 term from `x^2b^{2i}` up is divisible by `b^(i+1)`, because `2i ≥ i+1`.  This is the
 same recurrence the CUDA and Vulkan kernels advance the digit with. -/
 
+/--
+@isnad1 id=eq.1h5v.s7.4f2aa857e1c3 from=translated src=- shape=9ba23979 vocab=f7476a03
+-/
 theorem add_pow_ladder {b i : Nat} (hi : 1 ≤ i) (r x : Nat) : ∀ e,
     (r + x * b ^ i) ^ e % b ^ (i + 1)
       = (r ^ e + e * r ^ (e - 1) * x * b ^ i) % b ^ (i + 1) := by
@@ -3381,7 +3909,9 @@ theorem add_pow_ladder {b i : Nat} (hi : 1 ≤ i) (r x : Nat) : ∀ e,
               Nat.add_mul_mod_self_left _ _ _
 
 /-- The ladder as the greedy uses it: adding digit `x` at level `i` moves slot `i`
-of `n^e` along the progression with common difference `e·r^(e-1) (mod b)`.-/
+of `n^e` along the progression with common difference `e·r^(e-1) (mod b)`.
+@isnad1 id=eq.2h5v.s7.42daaab8ef54 from=translated src=- shape=c8cf8615 vocab=d2a51d15
+-/
 theorem slot_step {b i : Nat} (hb : 0 < b) (hi : 1 ≤ i) (r x e : Nat) :
     slot b i ((r + x * b ^ i) ^ e) = (slot b i (r ^ e) + e * r ^ (e - 1) * x) % b := by
   have hstep : slot b i ((r + x * b ^ i) ^ e)
@@ -3398,7 +3928,9 @@ The progressions are bijections when their common differences are units, and the
 *difference* of the two progressions is a bijection when `α1 - α2` is — which is
 the side condition Theorem 7 carries, here supplied as an explicit unit `β`. -/
 
-/-- `x ↦ (A + α·x) mod b` is injective on `{0,…,b-1}` when `α` is a unit.-/
+/-- `x ↦ (A + α·x) mod b` is injective on `{0,…,b-1}` when `α` is a unit.
+@isnad1 id=eq.5h5v.s6.d57bc5b5027e from=translated src=- shape=7bc8241c vocab=b6618d57
+-/
 theorem lin_inj {b α A x y : Nat} (hb : 0 < b) (hα : Nat.Coprime b α)
     (hx : x < b) (hy : y < b) (h : (A + α * x) % b = (A + α * y) % b) : x = y := by
   rcases Nat.le_total x y with hle | hle
@@ -3423,7 +3955,9 @@ theorem lin_inj {b α A x y : Nat} (hb : 0 < b) (hα : Nat.Coprime b α)
 
 /-- The two progressions collide for at most one digit `x`.  This is the side
 condition of Theorem 7: `α1 - α2` must be a unit, supplied as `β` with
-`α2 + β ≡ α1`.-/
+`α2 + β ≡ α1`.
+@isnad1 id=eq.7h8v.s7.8e260bf6dec6 from=translated src=- shape=741d22c2 vocab=b6618d57
+-/
 theorem clash_inj {b α1 α2 β A1 A2 x y : Nat} (hb : 0 < b) (hβ : Nat.Coprime b β)
     (hsep : (α2 + β) % b = α1 % b) (hx : x < b) (hy : y < b)
     (h1 : (A1 + α1 * x) % b = (A2 + α2 * x) % b)
@@ -3465,11 +3999,20 @@ def memb (v : Nat) : List Nat → Bool
   | [] => false
   | a :: l => (a == v) || memb v l
 
+/--
+@isnad1 id=eq.0h1v.s3.7650e98b33cd from=translated src=- shape=3df3c22a vocab=d75f8160
+-/
 theorem memb_nil (v : Nat) : memb v [] = false := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.0c9749189262 from=translated src=- shape=6194dc8f vocab=5f89e98b
+-/
 theorem memb_cons (v a : Nat) (l : List Nat) :
     memb v (a :: l) = ((a == v) || memb v l) := rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.81808fbae7a0 from=translated src=- shape=d6702376 vocab=06ea8aa4
+-/
 theorem memb_iff (v : Nat) : ∀ l : List Nat, memb v l = true ↔ v ∈ l := by
   intro l
   induction l with
@@ -3484,6 +4027,9 @@ theorem memb_iff (v : Nat) : ∀ l : List Nat, memb v l = true ↔ v ∈ l := by
       · exact Or.inl h.symm
       · exact Or.inr h
 
+/--
+@isnad1 id=le.0h3v.s5.67284cf291c3 from=translated src=- shape=0509e946 vocab=14720d2a
+-/
 theorem countP_or_le (p q : Nat → Bool) : ∀ l : List Nat,
     List.countP (fun a => p a || q a) l ≤ List.countP p l + List.countP q l := by
   intro l
@@ -3494,7 +4040,9 @@ theorem countP_or_le (p q : Nat → Bool) : ∀ l : List Nat,
     by_cases hp : p a = true <;> by_cases hq : q a = true <;> simp [hp, hq] <;> omega
 
 /-- A predicate that can hold at only one element of a duplicate-free list is
-counted at most once.-/
+counted at most once.
+@isnad1 id=le.2h2v.s6.40fa6b325d08 from=translated src=- shape=58efd042 vocab=a1e4dc30
+-/
 theorem countP_le_one {p : Nat → Bool} : ∀ l : List Nat, l.Nodup →
     (∀ x ∈ l, ∀ y ∈ l, p x = true → p y = true → x = y) → List.countP p l ≤ 1 := by
   intro l
@@ -3515,7 +4063,9 @@ theorem countP_le_one {p : Nat → Bool} : ∀ l : List Nat, l.Nodup →
       simp [hpa]
       omega
 
-/-- If `f` is injective on `l`, at most `U.length` of `l`'s elements land in `U`.-/
+/-- If `f` is injective on `l`, at most `U.length` of `l`'s elements land in `U`.
+@isnad1 id=le.2h3v.s6.8586d42a840c from=translated src=- shape=4abbad5a vocab=de721b1e
+-/
 theorem countP_memb_le {f : Nat → Nat} {l : List Nat} (hl : l.Nodup)
     (hinj : ∀ x ∈ l, ∀ y ∈ l, f x = f y → x = y) :
     ∀ U : List Nat, List.countP (fun x => memb (f x) U) l ≤ U.length := by
@@ -3545,6 +4095,9 @@ theorem countP_memb_le {f : Nat → Nat} {l : List Nat} (hl : l.Nodup)
     simp only [List.length_cons]
     omega
 
+/--
+@isnad1 id=eq.0h2v.s5.4457f9f210d8 from=translated src=- shape=1409dffb vocab=52d85661
+-/
 theorem countP_split (p : Nat → Bool) : ∀ l : List Nat,
     List.countP p l + List.countP (fun a => !p a) l = l.length := by
   intro l
@@ -3554,6 +4107,9 @@ theorem countP_split (p : Nat → Bool) : ∀ l : List Nat,
     rw [List.countP_cons, List.countP_cons, List.length_cons]
     by_cases hp : p a = true <;> simp [hp] <;> omega
 
+/--
+@isnad1 id=ex.1h2v.s5.0046d3eed659 from=translated src=- shape=7e02af4f vocab=70641547
+-/
 theorem exists_of_countP_pos {p : Nat → Bool} : ∀ l : List Nat, 0 < List.countP p l →
     ∃ a, a ∈ l ∧ p a = true := by
   intro l
@@ -3568,6 +4124,9 @@ theorem exists_of_countP_pos {p : Nat → Bool} : ∀ l : List Nat, 0 < List.cou
       obtain ⟨y, hy, hpy⟩ := ih h
       exact ⟨y, List.Mem.tail _ hy, hpy⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.3ae308c510ef from=translated src=- shape=cbe05cfc vocab=286b3144
+-/
 theorem countP_eq_length_filter (p : Nat → Bool) : ∀ l : List Nat,
     List.countP p l = (l.filter p).length := by
   intro l
@@ -3585,7 +4144,9 @@ digit having to be nonzero. -/
 
 /-- The pigeonhole, over abstract slot maps: two maps injective on `{0,…,b-1}`
 whose coincidence set has at most one element leave a nonzero digit avoiding `U`
-in both, as soon as `2|U| + 2 < b`.-/
+in both, as soon as `2|U| + 2 < b`.
+@isnad1 id=ex.5h4v.s7.27e9621a6b37 from=translated src=- shape=1b6dce9a vocab=0a946462
+-/
 theorem exists_good_digit {b : Nat} (hb : 0 < b) (s1 s2 : Nat → Nat)
     (hinj1 : ∀ x, x < b → ∀ y, y < b → s1 x = s1 y → x = y)
     (hinj2 : ∀ x, x < b → ∀ y, y < b → s2 x = s2 y → x = y)
@@ -3647,7 +4208,9 @@ def GreedyInv (b e1 e2 ρ i r : Nat) (U : List Nat) : Prop :=
   U.length = 2 * i ∧ U.Nodup ∧ (∀ v ∈ U, v < b) ∧
   (∀ v ∈ U, ∃ j, j < i ∧ (v = slot b j (r ^ e1) ∨ v = slot b j (r ^ e2)))
 
-/-- Level 0: the starting digit `ρ`, whose two slots already differ.-/
+/-- Level 0: the starting digit `ρ`, whose two slots already differ.
+@isnad1 id=greedyin.4h4v.s7.d39db0fbd152 from=translated src=- shape=f482b890 vocab=7a9e5b62
+-/
 theorem greedy_base {b e1 e2 ρ : Nat} (hb : 1 < b) (hρ : 0 < ρ) (hρb : ρ < b)
     (hstart : ρ ^ e1 % b ≠ ρ ^ e2 % b) :
     GreedyInv b e1 e2 ρ 1 ρ [ρ ^ e1 % b, ρ ^ e2 % b] := by
@@ -3675,7 +4238,9 @@ theorem greedy_base {b e1 e2 ρ : Nat} (hb : 1 < b) (hρ : 0 < ρ) (hρb : ρ < 
 
 /-- One level of the greedy.  `4i + 2 < b` is the whole content: `2i` used values,
 each killing at most one digit in each of the two progressions, plus the one digit
-where the progressions collide and the one that would make the leading digit `0`.-/
+where the progressions collide and the one that would make the leading digit `0`.
+@isnad1 id=ex.9h8v.s7.fd1fd36f6237 from=translated src=- shape=d79b1c75 vocab=823707b3
+-/
 theorem greedy_step {b e1 e2 ρ β i r : Nat} (hb : 1 < b)
     (hce1 : Nat.Coprime b e1) (hce2 : Nat.Coprime b e2) (hcρ : Nat.Coprime b ρ)
     (hβ : Nat.Coprime b β)
@@ -3758,7 +4323,9 @@ theorem greedy_step {b e1 e2 ρ β i r : Nat} (hb : 1 < b)
       · obtain ⟨j, hj, hval⟩ := hslot v hv''
         exact ⟨j, by omega, by rw [hlow j hj e1, hlow j hj e2]; exact hval⟩
 
-/-- The greedy runs to depth `d`.-/
+/-- The greedy runs to depth `d`.
+@isnad1 id=ex.11h6v.s8.4cc36d76aaf4 from=translated src=- shape=5638e793 vocab=823707b3
+-/
 theorem greedy_reaches {b e1 e2 ρ β d : Nat} (hb : 1 < b)
     (hce1 : Nat.Coprime b e1) (hce2 : Nat.Coprime b e2)
     (hρ : 0 < ρ) (hρb : ρ < b) (hcρ : Nat.Coprime b ρ)
@@ -3788,7 +4355,9 @@ a *constructive* argument can reach, not what is typical. -/
 /--
 **Theorem 7, slot form** — the statement the `2/E` accounting is really about:
 some `d`-digit `n` has `2d` *pairwise distinct* values among the low `d` slots of
-`n^e1` and of `n^e2`.  The deficiency bound below is its corollary.-/
+`n^e1` and of `n^e2`.  The deficiency bound below is its corollary.
+@isnad1 id=ex.11h6v.s8.59cc17d604fd from=translated src=- shape=ee7ad1f8 vocab=7182bf0d
+-/
 theorem greedy_distinct_slots {b e1 e2 ρ β d : Nat} (hb : 1 < b)
     (hce1 : Nat.Coprime b e1) (hce2 : Nat.Coprime b e2)
     (hρ : 0 < ρ) (hρb : ρ < b) (hcρ : Nat.Coprime b ρ)
@@ -3813,7 +4382,9 @@ witnessing that the two progressions have invertible difference
 has combined digit deficiency at most `b - 2d`.
 
 Since `d ≈ b/E` with `E = e1+e2`, the counting condition is `4b/E < b`, i.e.
-`E ≥ 5` up to the rounding, and the bound is `b(1 - 2/E) + O(1)`.-/
+`E ≥ 5` up to the rounding, and the bound is `b(1 - 2/E) + O(1)`.
+@isnad1 id=ex.13h6v.s8.0c56142cfe77 from=translated src=- shape=30608106 vocab=8dbb8c15
+-/
 theorem greedy_deficiency_le {b e1 e2 ρ β d : Nat} (hb : 1 < b) (he1 : 1 ≤ e1) (he2 : 1 ≤ e2)
     (hce1 : Nat.Coprime b e1) (hce2 : Nat.Coprime b e2)
     (hρ : 0 < ρ) (hρb : ρ < b) (hcρ : Nat.Coprime b ρ)
@@ -3866,21 +4437,27 @@ theorem fires at a pair the informal account says the counting bound cannot reac
 
 /-- `deficiency` says what it should: 69 in base 10 misses nothing.  (`digits` is
 defined by well-founded recursion and does not reduce in the kernel, so the two
-digit lists are supplied by §5's evaluations rather than by `decide` alone.)-/
+digit lists are supplied by §5's evaluations rather than by `decide` alone.)
+@isnad1 id=eq.0h0v.s4.1bd0af4a73b6 from=translated src=- shape=06995877 vocab=a6a266ef
+-/
 theorem deficiency_sixtynine : deficiency 10 2 3 69 = 0 := by
   show List.countP (fun v => !memb v (digits 10 (69 ^ 2) ++ digits 10 (69 ^ 3)))
     (List.range 10) = 0
   rw [digits_69sq, digits_69cb]
   decide
 
-/-- Theorem 7 at base 13, `(2,3)`: a 3-digit `n` whose six low slots are distinct.-/
+/-- Theorem 7 at base 13, `(2,3)`: a 3-digit `n` whose six low slots are distinct.
+@isnad1 id=ex.0h0v.s6.8277ad012227 from=translated src=- shape=fa1899e5 vocab=ac8da1c3
+-/
 theorem greedy_deficiency_thirteen :
     ∃ n, 13 ^ 2 ≤ n ∧ n < 13 ^ 3 ∧ deficiency 13 2 3 n + 6 ≤ 13 :=
   greedy_deficiency_le (b := 13) (e1 := 2) (e2 := 3) (ρ := 2) (β := 5) (d := 3)
     (by decide) (by decide) (by decide) (by decide) (by decide) (by decide)
     (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) (by decide)
 
-/-- Theorem 7 at base 65, `(2,3)`: 26 of the 65 digit values are forced to occur.-/
+/-- Theorem 7 at base 65, `(2,3)`: 26 of the 65 digit values are forced to occur.
+@isnad1 id=ex.0h0v.s6.993844542458 from=translated src=- shape=fa1899e5 vocab=ac8da1c3
+-/
 theorem greedy_deficiency_sixtyfive :
     ∃ n, 65 ^ 12 ≤ n ∧ n < 65 ^ 13 ∧ deficiency 65 2 3 n + 26 ≤ 65 :=
   greedy_deficiency_le (b := 65) (e1 := 2) (e2 := 3) (ρ := 2) (β := 57) (d := 13)
@@ -3889,7 +4466,9 @@ theorem greedy_deficiency_sixtyfive :
 
 /-- And at `(1,3)`, where `E = 4` — the informal account says the counting bound fails
 for `E = 3, 4`, but `4(d-1) + 2 < b` is sharper than `4b/E < b` and `E = 4` clears
-it at every base where the arithmetic side conditions hold. `E = 3` never does.-/
+it at every base where the arithmetic side conditions hold. `E = 3` never does.
+@isnad1 id=ex.0h0v.s6.3aee701591d7 from=translated src=- shape=fa1899e5 vocab=ac8da1c3
+-/
 theorem greedy_deficiency_fortyseven :
     ∃ n, 47 ^ 11 ≤ n ∧ n < 47 ^ 12 ∧ deficiency 47 1 3 n + 24 ≤ 47 :=
   greedy_deficiency_le (b := 47) (e1 := 1) (e2 := 3) (ρ := 2) (β := 36) (d := 12)
@@ -3899,13 +4478,18 @@ theorem greedy_deficiency_fortyseven :
 /-- The conclusion is a genuine selection, not a property of the range: `169 = 13^2`
 lies in the very interval `greedy_deficiency_thirteen` quantifies over, and it fails the
 bound.  `169^2 = 13^4` and `169^3 = 13^6`, so between them they show two digit values
-and miss eleven.-/
+and miss eleven.
+@isnad1 id=eq.0h0v.s6.725b235d230e from=translated src=- shape=4a9848ef vocab=c2c693df
+-/
 theorem digits_169sq : digits 13 (169 ^ 2) = [0, 0, 0, 0, 1] := by
   show digits 13 28561 = [0, 0, 0, 0, 1]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.0d2058297ea1 from=translated src=- shape=400058ff vocab=c2c693df
+-/
 theorem digits_169cb : digits 13 (169 ^ 3) = [0, 0, 0, 0, 0, 0, 1] := by
   show digits 13 4826809 = [0, 0, 0, 0, 0, 0, 1]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
@@ -3913,6 +4497,9 @@ theorem digits_169cb : digits 13 (169 ^ 3) = [0, 0, 0, 0, 0, 0, 1] := by
       digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_zero]
 
+/--
+@isnad1 id=and.0h0v.s6.0b18d2aa84c2 from=translated src=- shape=1d67c116 vocab=ac8da1c3
+-/
 theorem greedy_deficiency_not_automatic :
     13 ^ 2 ≤ 169 ∧ 169 < 13 ^ 3 ∧ ¬ (deficiency 13 2 3 169 + 6 ≤ 13) := by
   refine ⟨by decide, by decide, ?_⟩
@@ -3921,7 +4508,9 @@ theorem greedy_deficiency_not_automatic :
   rw [digits_169sq, digits_169cb]
   decide
 
-/-- Odd naturals, as the coprimality hypotheses deliver them.-/
+/-- Odd naturals, as the coprimality hypotheses deliver them.
+@isnad1 id=eq.1h1v.s4.ef917d99b70a from=translated src=- shape=fe4d3c0f vocab=368387ec
+-/
 theorem odd_of_coprime_two {x : Nat} (hx : Nat.Coprime 2 x) : x % 2 = 1 := by
   rcases (by omega : x % 2 = 0 ∨ x % 2 = 1) with h | h
   · exfalso
@@ -3938,7 +4527,9 @@ exponents odd and `gcd(ρ, b) = 1` forces `ρ` odd, so both progression differen
 
 This is the honest limitation: every `(1,3)` base that can hold a
 solution is even, and so is `(2,3)` base 34.  `(2,3)` base
-57 is odd but loses the coprimality instead, `3 ∣ 57`.-/
+57 is odd but loses the coprimality instead, `3 ∣ 57`.
+@isnad1 id=false.6h5v.s7.372b93a7e866 from=translated src=- shape=244288fd vocab=7fbe2e61
+-/
 theorem no_even_base {b e1 e2 ρ β : Nat} (hbe : b % 2 = 0)
     (hce1 : Nat.Coprime b e1) (hce2 : Nat.Coprime b e2) (hcρ : Nat.Coprime b ρ)
     (hβ : Nat.Coprime b β)
@@ -3957,9 +4548,14 @@ theorem no_even_base {b e1 e2 ρ β : Nat} (hbe : b % 2 = 0)
   rw [hβodd] at h2'
   exact absurd h2' (by decide)
 
-/-- Two `(2,3)` bases often used as search benchmarks, and why each is outside.-/
+/-- Two `(2,3)` bases often used as search benchmarks, and why each is outside.
+@isnad1 id=eq.0h0v.s4.d154610f54e8 from=translated src=- shape=7f6a8e6b vocab=b6301362
+-/
 theorem base_thirtyfour_is_even : 34 % 2 = 0 := by decide
 
+/--
+@isnad1 id=not.0h0v.s3.4c597a90bd56 from=translated src=- shape=90d9b386 vocab=8c9e6272
+-/
 theorem base_fiftyseven_not_coprime : ¬ Nat.Coprime 57 3 := by decide
 
 /-! ## §9  Theorem 6 — a rigorous upper bound on how many nice numbers a base has
@@ -3991,11 +4587,20 @@ def lowSlots (b : Nat) : Nat → Nat → List Nat
   | 0, _ => []
   | k + 1, x => x % b :: lowSlots b k (x / b)
 
+/--
+@isnad1 id=eq.0h2v.s4.a1fa2ed4910b from=translated src=- shape=23b069da vocab=215275d5
+-/
 theorem lowSlots_zero (b x : Nat) : lowSlots b 0 x = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.bf57c822ce68 from=translated src=- shape=b65b7a23 vocab=c876f2c8
+-/
 theorem lowSlots_succ (b k x : Nat) :
     lowSlots b (k + 1) x = x % b :: lowSlots b k (x / b) := rfl
 
+/--
+@isnad1 id=lt.2h4v.s5.1142cf9107f0 from=translated src=- shape=8ade4901 vocab=784b315c
+-/
 theorem lowSlots_lt {b : Nat} (hb : 0 < b) : ∀ k x v, v ∈ lowSlots b k x → v < b := by
   intro k
   induction k with
@@ -4008,7 +4613,9 @@ theorem lowSlots_lt {b : Nat} (hb : 0 < b) : ∀ k x v, v ∈ lowSlots b k x →
     · exact ih (x / b) v hv'
 
 /-- The low slots see only `x mod b^k`: the p-adic boundary, in the form the
-counting argument needs.-/
+counting argument needs.
+@isnad1 id=eq.1h3v.s5.7581f571d078 from=translated src=- shape=1ed0e526 vocab=a5fadc95
+-/
 theorem lowSlots_mod {b : Nat} (hb : 0 < b) :
     ∀ k x, lowSlots b k (x % b ^ k) = lowSlots b k x := by
   intro k
@@ -4024,7 +4631,9 @@ theorem lowSlots_mod {b : Nat} (hb : 0 < b) :
     rw [lowSlots_succ, lowSlots_succ, h1', h2', ih (x / b)]
 
 /-- A `k` below the digit count really does name `k` digits: `digits` splits as the
-low `k` slots followed by the digits of what is left.-/
+low `k` slots followed by the digits of what is left.
+@isnad1 id=eq.2h3v.s6.c80d6c90066a from=translated src=- shape=eeeb0be8 vocab=597bd3e7
+-/
 theorem digits_split {b : Nat} (hb : 1 < b) :
     ∀ k x, k ≤ numDigits b x → digits b x = lowSlots b k x ++ digits b (x / b ^ k) := by
   intro k
@@ -4045,7 +4654,9 @@ theorem digits_split {b : Nat} (hb : 1 < b) :
     rfl
 
 /-- Hence every value occurs at least as often among the digits as among the low
-slots — the only thing the low-slot filter needs from pandigitality.-/
+slots — the only thing the low-slot filter needs from pandigitality.
+@isnad1 id=le.2h4v.s5.38422a4ef6af from=translated src=- shape=92ca0e6e vocab=ea0400ee
+-/
 theorem occ_lowSlots_le {b : Nat} (hb : 1 < b) {k x : Nat} (hk : k ≤ numDigits b x) (v : Nat) :
     occ v (lowSlots b k x) ≤ occ v (digits b x) := by
   rw [digits_split hb k x hk, occ_append]
@@ -4058,6 +4669,9 @@ def allb (p : Nat → Bool) : List Nat → Bool
   | [] => true
   | a :: l => p a && allb p l
 
+/--
+@isnad1 id=eq.1h2v.s4.d1f27f0b6306 from=translated src=- shape=4f323958 vocab=643249cc
+-/
 theorem allb_of_mem {p : Nat → Bool} :
     ∀ l : List Nat, (∀ v, v ∈ l → p v = true) → allb p l = true := by
   intro l
@@ -4069,6 +4683,9 @@ theorem allb_of_mem {p : Nat → Bool} :
     rw [h a List.mem_cons_self, ih (fun v hv => h v (List.mem_cons_of_mem _ hv))]
     rfl
 
+/--
+@isnad1 id=eq.2h3v.s4.fc8ccc6696b0 from=translated src=- shape=67b89981 vocab=643249cc
+-/
 theorem allb_mem {p : Nat → Bool} :
     ∀ l : List Nat, allb p l = true → ∀ v, v ∈ l → p v = true := by
   intro l
@@ -4082,6 +4699,9 @@ theorem allb_mem {p : Nat → Bool} :
     · exact h'.1
     · exact ih h'.2 v hv'
 
+/--
+@isnad1 id=and.1h3v.s5.ba1f3ae14e74 from=translated src=- shape=341e8e30 vocab=6c56e49d
+-/
 theorem mem_run : ∀ n s v, v ∈ run s n → s ≤ v ∧ v < s + n := by
   intro n
   induction n with
@@ -4093,6 +4713,9 @@ theorem mem_run : ∀ n s v, v ∈ run s n → s ≤ v ∧ v < s + n := by
     · omega
     · have := ih (s + 1) v hv''; omega
 
+/--
+@isnad1 id=mem.2h3v.s5.23dec2c78457 from=translated src=- shape=85e4740e vocab=6c56e49d
+-/
 theorem mem_run_of : ∀ n s v, s ≤ v → v < s + n → v ∈ run s n := by
   intro n
   induction n with
@@ -4128,6 +4751,9 @@ def adm (b e1 e2 k T n : Nat) : Bool :=
 def isPandigital (b e1 e2 n : Nat) : Bool :=
   allb (fun v => decide (occ v (digits b (n ^ e1) ++ digits b (n ^ e2)) = 1)) (run 0 b)
 
+/--
+@isnad1 id=iff.0h4v.s4.c660d3d7b26b from=translated src=- shape=614422a2 vocab=7d2ac1cb
+-/
 theorem isPandigital_iff {b e1 e2 n : Nat} :
     isPandigital b e1 e2 n = true ↔ Pandigital b e1 e2 n := by
   constructor
@@ -4143,6 +4769,9 @@ theorem isPandigital_iff {b e1 e2 n : Nat} :
 
 /-! ### §9.3  Pandigitality implies each filter -/
 
+/--
+@isnad1 id=lt.2h3v.s5.728fad811a3a from=translated src=- shape=8f809611 vocab=12835a20
+-/
 theorem digits_lt {b : Nat} (hb : 1 < b) : ∀ x v, v ∈ digits b x → v < b := by
   intro x
   induction x using Nat.strongRecOn with
@@ -4155,6 +4784,9 @@ theorem digits_lt {b : Nat} (hb : 1 < b) : ∀ x v, v ∈ digits b x → v < b :
       · exact Nat.mod_lt _ (by omega)
       · exact ih (x / b) (Nat.div_lt_self hx hb) v hv'
 
+/--
+@isnad1 id=eq.1h2v.s4.f19332eaa16e from=translated src=- shape=f133cd39 vocab=3c0c603d
+-/
 theorem digits_length {b : Nat} (hb : 1 < b) : ∀ x, (digits b x).length = numDigits b x := by
   intro x
   induction x using Nat.strongRecOn with
@@ -4166,7 +4798,9 @@ theorem digits_length {b : Nat} (hb : 1 < b) : ∀ x, (digits b x).length = numD
       rfl
 
 /-- The weighted companion of `sumRange_occ_length`: a list of values below `j` is
-worth `Σ_t t · occ t l`.-/
+worth `Σ_t t · occ t l`.
+@isnad1 id=eq.1h2v.s5.d3033ad6fad8 from=translated src=- shape=38e00064 vocab=ddbb9a80
+-/
 theorem sumRange_occ_wsum {j : Nat} : ∀ (l : List Nat), (∀ x, x ∈ l → x < j) →
     sumRange (fun t => t * occ t l) j = l.sum := by
   intro l
@@ -4195,12 +4829,18 @@ theorem sumRange_occ_wsum {j : Nat} : ∀ (l : List Nat), (∀ x, x ∈ l → x 
     rw [← hupd, ih (fun x hx => hmem x (List.mem_cons_of_mem _ hx))]
     rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.dc4b40050148 from=translated src=- shape=2729d924 vocab=851e6271
+-/
 theorem sumRange_one : ∀ n, sumRange (fun _ => 1) n = n := by
   intro n
   induction n with
   | zero => rfl
   | succ m ih => show sumRange _ m + 1 = m + 1; rw [ih]
 
+/--
+@isnad1 id=eq.0h1v.s5.22a5a8656f24 from=translated src=- shape=a570214a vocab=b4c6976d
+-/
 theorem two_sumRange_id : ∀ n, 2 * sumRange (fun t => t) (n + 1) = (n + 1) * n := by
   intro n
   induction n with
@@ -4213,7 +4853,9 @@ theorem two_sumRange_id : ∀ n, 2 * sumRange (fun t => t) (n + 1) = (n + 1) * n
       _ = (m + 1) * (m + 2) := (Nat.mul_add (m + 1) m 2).symm
       _ = (m + 1 + 1) * (m + 1) := Nat.mul_comm _ _
 
-/-- The length identity, derived from pandigitality rather than assumed.-/
+/-- The length identity, derived from pandigitality rather than assumed.
+@isnad1 id=eq.2h4v.s5.d5f3a3360c0e from=translated src=- shape=ecb4bc26 vocab=10bf11c3
+-/
 theorem pandigital_length {b e1 e2 n : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2 n) :
     numDigits b (n ^ e1) + numDigits b (n ^ e2) = b := by
   have hmem : ∀ x, x ∈ digits b (n ^ e1) ++ digits b (n ^ e2) → x < b := by
@@ -4229,7 +4871,9 @@ theorem pandigital_length {b e1 e2 n : Nat} (hb : 1 < b) (hp : Pandigital b e1 e
   rw [← digits_length hb, ← digits_length hb, ← List.length_append]
   omega
 
-/-- The digit-sum identity, likewise.-/
+/-- The digit-sum identity, likewise.
+@isnad1 id=eq.2h4v.s6.d97d8e70d623 from=translated src=- shape=590fcc39 vocab=3dbec344
+-/
 theorem pandigital_digitSum {b e1 e2 n : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2 n) :
     2 * (digitSum b (n ^ e1) + digitSum b (n ^ e2)) = b * (b - 1) := by
   have hmem : ∀ x, x ∈ digits b (n ^ e1) ++ digits b (n ^ e2) → x < b := by
@@ -4254,6 +4898,9 @@ No jump structure and no roots: `n^e1 < b^L1` and `n^e2 < b^L2` multiply to
 wider interval than the exact band — the union of the exact band with its two
 neighbouring length splits — and it costs nothing to prove. -/
 
+/--
+@isnad1 id=and.2h4v.s6.dd04374795be from=translated src=- shape=96417a28 vocab=1b02cd21
+-/
 theorem pandigital_pow_bounds {b e1 e2 n : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2 n) :
     b ^ (b - 2) ≤ n ^ (e1 + e2) ∧ n ^ (e1 + e2) < b ^ b := by
   have hn : 0 < n := pos_of_pandigital hb hp
@@ -4282,6 +4929,9 @@ theorem pandigital_pow_bounds {b e1 e2 n : Nat} (hb : 1 < b) (hp : Pandigital b 
       _ < b ^ (j1 + 1) * b ^ (j2 + 1) := hstep
       _ = b ^ b := by rw [← Nat.pow_add, hsum']
 
+/--
+@isnad1 id=lt.3h5v.s6.ceff459e88ec from=translated src=- shape=c02832fb vocab=06be250f
+-/
 theorem pandigital_gt {b e1 e2 n lo : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2 n)
     (hlo : lo ^ (e1 + e2) < b ^ (b - 2)) : lo < n := by
   rcases Nat.lt_or_ge lo n with h | h
@@ -4291,6 +4941,9 @@ theorem pandigital_gt {b e1 e2 n lo : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2
     have h2' := (pandigital_pow_bounds hb hp).1
     omega
 
+/--
+@isnad1 id=lt.3h5v.s6.194e19d217b6 from=translated src=- shape=efc0efa6 vocab=dcb0a75f
+-/
 theorem pandigital_lt {b e1 e2 n hi : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2 n)
     (hhi : b ^ b ≤ hi ^ (e1 + e2)) : n < hi := by
   rcases Nat.lt_or_ge n hi with h | h
@@ -4301,7 +4954,9 @@ theorem pandigital_lt {b e1 e2 n hi : Nat} (hb : 1 < b) (hp : Pandigital b e1 e2
     omega
 
 /-- `k` digits, from `b^(k-1) ≤ x`.  §3's `le_numDigits_of_pow_le` shifted by one so
-that `k` counts digits rather than the exponent.-/
+that `k` counts digits rather than the exponent.
+@isnad1 id=le.3h3v.s5.5b1cd855ac8e from=translated src=- shape=36a7d3a3 vocab=31edcded
+-/
 theorem numDigits_ge {b k x : Nat} (hb : 1 < b) (hk : 0 < k)
     (h : b ^ (k - 1) ≤ x) : k ≤ numDigits b x := by
   have := le_numDigits_of_pow_le hb h
@@ -4309,6 +4964,9 @@ theorem numDigits_ge {b k x : Nat} (hb : 1 < b) (hk : 0 < k)
 
 /-! ### §9.5  The two filters fire -/
 
+/--
+@isnad1 id=eq.3h5v.s6.2522cb20ae60 from=translated src=- shape=5cb0bad5 vocab=e16d57f2
+-/
 theorem pandigital_resOK {b e1 e2 T n : Nat} (hb : 1 < b) (hT : 2 * T = b * (b - 1))
     (hp : Pandigital b e1 e2 n) : resOK b e1 e2 T (n % (b - 1)) = true := by
   have hds : digitSum b (n ^ e1) + digitSum b (n ^ e2) = T := by
@@ -4319,6 +4977,9 @@ theorem pandigital_resOK {b e1 e2 T n : Nat} (hb : 1 < b) (hT : 2 * T = b * (b -
     rw [Nat.add_mod, ← Nat.pow_mod, ← Nat.pow_mod, ← Nat.add_mod]
   exact decide_eq_true (hmod.trans hs)
 
+/--
+@isnad1 id=eq.4h5v.s6.5af79af2853c from=translated src=- shape=eb8fbcb1 vocab=8a36f48f
+-/
 theorem pandigital_lowOK {b e1 e2 k n : Nat} (hb : 1 < b)
     (hk1 : k ≤ numDigits b (n ^ e1)) (hk2 : k ≤ numDigits b (n ^ e2))
     (hp : Pandigital b e1 e2 n) : lowOK b e1 e2 k (n % b ^ k) = true := by
@@ -4341,6 +5002,9 @@ theorem pandigital_lowOK {b e1 e2 k n : Nat} (hb : 1 < b)
 
 /-! ### §9.6  Counting a periodic test on a segment -/
 
+/--
+@isnad1 id=le.1h3v.s5.f42688d1055d from=translated src=- shape=6041a2bd vocab=aa377db1
+-/
 theorem countP_mono {p q : Nat → Bool} (h : ∀ x, p x = true → q x = true) :
     ∀ l : List Nat, List.countP p l ≤ List.countP q l := by
   intro l
@@ -4355,6 +5019,9 @@ theorem countP_mono {p q : Nat → Bool} (h : ∀ x, p x = true → q x = true) 
       · rw [ite_eq_left hq]; omega
       · rw [ite_eq_right hq]; omega
 
+/--
+@isnad1 id=eq.1h4v.s5.8bc3f02f2173 from=translated src=- shape=7ff13fc5 vocab=2ce9334c
+-/
 theorem countP_run_shift {p : Nat → Bool} {W : Nat} (hper : ∀ x, p (x + W) = p x) :
     ∀ n s, List.countP p (run (s + W) n) = List.countP p (run s n) := by
   intro n
@@ -4367,6 +5034,9 @@ theorem countP_run_shift {p : Nat → Bool} {W : Nat} (hper : ∀ x, p (x + W) =
     have he : s + W + 1 = (s + 1) + W := by omega
     rw [he, ih (s + 1)]
 
+/--
+@isnad1 id=eq.1h3v.s5.dcf85f21e9e2 from=translated src=- shape=3edb6c78 vocab=2ce9334c
+-/
 theorem countP_run_window {p : Nat → Bool} {W : Nat} (hper : ∀ x, p (x + W) = p x) :
     ∀ s, List.countP p (run s W) = List.countP p (run 0 W) := by
   intro s
@@ -4388,6 +5058,9 @@ theorem countP_run_window {p : Nat → Bool} {W : Nat} (hper : ∀ x, p (x + W) 
     rw [hper t] at happ
     exact Nat.add_right_cancel (hcons.symm.trans happ)
 
+/--
+@isnad1 id=le.2h4v.s6.7831c98b8408 from=translated src=- shape=0708b670 vocab=ef967497
+-/
 theorem countP_run_le {p : Nat → Bool} {W : Nat} (hW : 0 < W) (hper : ∀ x, p (x + W) = p x) :
     ∀ len s, List.countP p (run s len)
       ≤ List.countP p (run 0 W) * ((len + W - 1) / W) := by
@@ -4422,6 +5095,9 @@ theorem countP_run_le {p : Nat → Bool} {W : Nat} (hW : 0 < W) (hper : ∀ x, p
           Nat.mul_add, Nat.mul_one]
       omega
 
+/--
+@isnad1 id=eq.1h6v.s6.7bfdfe8c910c from=translated src=- shape=293be3aa vocab=15db5d25
+-/
 theorem adm_period {b e1 e2 k T : Nat} (hb : 1 < b) (x : Nat) :
     adm b e1 e2 k T (x + (b - 1) * b ^ k) = adm b e1 e2 k T x := by
   have h1' : (x + (b - 1) * b ^ k) % (b - 1) = x % (b - 1) :=
@@ -4444,7 +5120,9 @@ through `n mod (b-1)` and `n mod b^k`.
 `hlo` and `hhi` are the band: any `lo` below it and any `hi` at or above its top.
 `hk1`/`hk2` say only that the powers of the smallest surviving `n` already have `k`
 digits, which is what makes the low-`k`-slot filter legitimate — without them the
-padding zeros of `lowSlots` would be counted as digits.-/
+padding zeros of `lowSlots` would be counted as digits.
+@isnad1 id=and.8h8v.s8.d2745d610906 from=translated src=- shape=802c6f7b vocab=e37e327e
+-/
 theorem adm_of_pandigital {b e1 e2 k T lo hi n : Nat} (hb : 1 < b) (hk : 0 < k)
     (hT : 2 * T = b * (b - 1))
     (hlo : lo ^ (e1 + e2) < b ^ (b - 2)) (hhi : b ^ b ≤ hi ^ (e1 + e2))
@@ -4465,7 +5143,9 @@ theorem adm_of_pandigital {b e1 e2 k T lo hi n : Nat} (hb : 1 < b) (hk : 0 < k)
 
 /--
 **Theorem 6, counting form.**  At most `countP adm` numbers of the crude band are
-nice.  This is the quantity a program evaluating the bound computes.-/
+nice.  This is the quantity a program evaluating the bound computes.
+@isnad1 id=le.7h7v.s8.942a42fd278a from=translated src=- shape=b982fb14 vocab=6ed22182
+-/
 theorem countP_pandigital_le_adm {b e1 e2 k T lo hi : Nat} (hb : 1 < b) (hk : 0 < k)
     (hT : 2 * T = b * (b - 1))
     (hlo : lo ^ (e1 + e2) < b ^ (b - 2)) (hhi : b ^ b ≤ hi ^ (e1 + e2))
@@ -4478,7 +5158,9 @@ theorem countP_pandigital_le_adm {b e1 e2 k T lo hi : Nat} (hb : 1 < b) (hk : 0 
 /--
 **Theorem 6, closed form.**  `adm` has period `W = (b-1)·b^k`, so the count over the
 band is at most the count over one window times `⌈band/W⌉` — `O(b^k)` work, with no
-reference to the band beyond its length.-/
+reference to the band beyond its length.
+@isnad1 id=le.1h7v.s7.fe0a9fdbef59 from=translated src=- shape=38170005 vocab=2a6eb0a5
+-/
 theorem countP_pandigital_le_window {b e1 e2 k T lo hi : Nat} (hb : 1 < b) :
     List.countP (adm b e1 e2 k T) (run (lo + 1) (hi - lo - 1))
       ≤ List.countP (adm b e1 e2 k T) (run 0 ((b - 1) * b ^ k))
@@ -4501,15 +5183,24 @@ Note which filter does the work: at `k = 4` the low slots alone already pin 69, 
 `base_ten_survivors` survives deleting `resOK` from `adm`.  `base_seventeen_window`
 below is the witness that catches that deletion, which is why both are here. -/
 
-/-- The crude band at base 10 for `(2,3)`: `39^5 < 10^8` and `10^10 ≤ 100^5`.-/
+/-- The crude band at base 10 for `(2,3)`: `39^5 < 10^8` and `10^10 ≤ 100^5`.
+@isnad1 id=lt.0h0v.s5.7030e71bc6ee from=translated src=- shape=d88261e9 vocab=7ddce274
+-/
 theorem base_ten_lo : (39 : Nat) ^ 5 < 10 ^ 8 := by decide
+/--
+@isnad1 id=le.0h0v.s5.7f42c677385e from=translated src=- shape=d88261e9 vocab=74f5fafa
+-/
 theorem base_ten_hi : (10 : Nat) ^ 10 ≤ 100 ^ 5 := by decide
 
 /-- The whole content of the bound at base 10: over `[40, 100)`, `adm` at `k = 4`
-admits exactly one number.-/
+admits exactly one number.
+@isnad1 id=eq.0h0v.s5.72b347fe6a15 from=translated src=- shape=11adfbf9 vocab=8e561867
+-/
 theorem base_ten_survivors : (run 40 60).filter (adm 10 2 3 4 45) = [69] := by decide
 
-/-- **69 is the only `(2,3)`-nice number in base 10.**-/
+/-- **69 is the only `(2,3)`-nice number in base 10.**
+@isnad1 id=eq.1h1v.s4.eca44c156f60 from=translated src=- shape=028bbed8 vocab=f94668c8
+-/
 theorem sixtynine_unique {n : Nat} (hp : Pandigital 10 2 3 n) : n = 69 := by
   have h := adm_of_pandigital (b := 10) (e1 := 2) (e2 := 3) (k := 4) (T := 45) (lo := 39) (hi := 100)
     (by decide) (by decide) (by decide) base_ten_lo base_ten_hi (by decide) (by decide) hp
@@ -4519,7 +5210,9 @@ theorem sixtynine_unique {n : Nat} (hp : Pandigital 10 2 3 n) : n = 69 := by
   rw [base_ten_survivors] at hfil
   simpa using hfil
 
-/-- **The set of `(2,3)`-nice numbers in base 10 is exactly `{69}`.**-/
+/-- **The set of `(2,3)`-nice numbers in base 10 is exactly `{69}`.**
+@isnad1 id=iff.0h1v.s4.a6ab56d78d34 from=translated src=- shape=ffc0a5fa vocab=f94668c8
+-/
 theorem base_ten_nice_iff {n : Nat} : Pandigital 10 2 3 n ↔ n = 69 :=
   ⟨sixtynine_unique, fun h => h ▸ sixtynine_pandigital⟩
 
@@ -4531,9 +5224,14 @@ Base 17 at `k = 1` is the other way round — a 272-number window bounds a band 
 longer, and comes within 2.5% of the exact count over the same interval (571). -/
 
 set_option maxRecDepth 4000 in
-/-- The whole cost of the closed form at base 17, `k = 1`: 272 kernel evaluations.-/
+/-- The whole cost of the closed form at base 17, `k = 1`: 272 kernel evaluations.
+@isnad1 id=eq.0h0v.s5.f00f880bd945 from=translated src=- shape=ee786766 vocab=f81fd813
+-/
 theorem base_seventeen_window : List.countP (adm 17 2 3 1 136) (run 0 272) = 15 := by decide
 
+/--
+@isnad1 id=mem.1h1v.s5.7f0672311e2f from=translated src=- shape=09574e3f vocab=9e3c54b0
+-/
 theorem base_seventeen_all {n : Nat} (hp : Pandigital 17 2 3 n) : n ∈ run 4913 10347 := by
   have h := adm_of_pandigital (b := 17) (e1 := 2) (e2 := 3) (k := 1) (T := 136)
     (lo := 4912) (hi := 15260) (by decide) (by decide) (by decide)
@@ -4541,7 +5239,9 @@ theorem base_seventeen_all {n : Nat} (hp : Pandigital 17 2 3 n) : n ∈ run 4913
   exact mem_run_of 10347 4913 n (by omega) (by omega)
 
 /-- **At most 585 `(2,3)`-nice numbers in base 17** — from `base_seventeen_window`
-and a division, with nothing evaluated over the band itself.  (The truth is 0.)-/
+and a division, with nothing evaluated over the band itself.  (The truth is 0.)
+@isnad1 id=le.0h0v.s5.e6cf30815ca6 from=translated src=- shape=67fc0f4e vocab=40df0d7c
+-/
 theorem base_seventeen_bound :
     List.countP (isPandigital 17 2 3) (run 4913 10347) ≤ 585 := by
   have hlen : 15260 - 4912 - 1 = 10347 := rfl
@@ -4573,7 +5273,9 @@ read at position `L - h`, so the length `L` has to be known, and the crude band 
 the union of three length splits.  §9.12 is what buys the cost back — the test is
 constant on intervals, so one evaluation retires a whole run of candidates. -/
 
-/-- `lowSlots` splits at any depth, exactly as `digits` does.-/
+/-- `lowSlots` splits at any depth, exactly as `digits` does.
+@isnad1 id=eq.0h4v.s5.90484c194696 from=translated src=- shape=1306f39e vocab=e04c732e
+-/
 theorem lowSlots_add (b : Nat) : ∀ k j x,
     lowSlots b (k + j) x = lowSlots b k x ++ lowSlots b j (x / b ^ k) := by
   intro k
@@ -4592,7 +5294,9 @@ theorem lowSlots_add (b : Nat) : ∀ k j x,
             rw [hdiv, lowSlots_succ]; rfl
 
 /-- A number with exactly `L` digits is its own low `L` slots.  `lowSlots` pads
-with zeros and `digits` does not, so this needs the length on the nose.-/
+with zeros and `digits` does not, so this needs the length on the nose.
+@isnad1 id=eq.2h3v.s5.aaadf40d0e05 from=translated src=- shape=edcaf2b6 vocab=a7db9741
+-/
 theorem digits_eq_lowSlots {b : Nat} (hb : 1 < b) :
     ∀ L x, numDigits b x = L → digits b x = lowSlots b L x := by
   intro L
@@ -4611,7 +5315,9 @@ theorem digits_eq_lowSlots {b : Nat} (hb : 1 < b) :
     rw [digits_step hb hpos, lowSlots_succ, ih (x / b) (by omega)]
 
 /-- Dividing by `b^j` drops exactly `j` digits — no hypothesis needed, since past
-the top of `x` both sides are zero.-/
+the top of `x` both sides are zero.
+@isnad1 id=eq.1h3v.s5.b4174a631362 from=translated src=- shape=f17775df vocab=91ea7160
+-/
 theorem numDigits_div_pow {b : Nat} (hb : 1 < b) :
     ∀ j x, numDigits b (x / b ^ j) = numDigits b x - j := by
   have hstep : ∀ y, numDigits b (y / b) = numDigits b y - 1 := by
@@ -4631,7 +5337,9 @@ theorem numDigits_div_pow {b : Nat} (hb : 1 < b) :
     rw [hdiv, ih (x / b), hstep x]
     omega
 
-/-- The length in the shape the interval hypotheses below produce.-/
+/-- The length in the shape the interval hypotheses below produce.
+@isnad1 id=eq.4h3v.s6.e333ba380744 from=translated src=- shape=e25b8611 vocab=31edcded
+-/
 theorem numDigits_eq_of_len {b x L : Nat} (hb : 1 < b) (hL : 0 < L)
     (h1 : b ^ (L - 1) ≤ x) (h2 : x < b ^ L) : numDigits b x = L := by
   have he : L - 1 + 1 = L := by omega
@@ -4644,7 +5352,9 @@ filter is evaluated in the kernel and `numDigits` is well-founded recursion; the
 theorems below carry `numDigits b x = L` as a hypothesis instead.-/
 def topSlots (b h L x : Nat) : List Nat := lowSlots b h (x / b ^ (L - h))
 
-/-- The digit list splits as the low `L-h` slots followed by the top `h`.-/
+/-- The digit list splits as the low `L-h` slots followed by the top `h`.
+@isnad1 id=eq.3h4v.s6.6e2aa9d8cd68 from=translated src=- shape=db2bda49 vocab=5d1b34ad
+-/
 theorem digits_split_top {b : Nat} (hb : 1 < b) {L h x : Nat}
     (hL : numDigits b x = L) (hh : h ≤ L) :
     digits b x = lowSlots b (L - h) x ++ topSlots b h L x := by
@@ -4657,7 +5367,9 @@ theorem digits_split_top {b : Nat} (hb : 1 < b) {L h x : Nat}
 
 /-- The low `k` slots and the top `h` slots are disjoint stretches of the digit
 list, so their occurrence counts add up inside it.  This is everything conditions
-3 and 4 take from pandigitality, and it is where `k + h ≤ L` is used.-/
+3 and 4 take from pandigitality, and it is where `k + h ≤ L` is used.
+@isnad1 id=le.3h6v.s6.e65817281b70 from=translated src=- shape=f6fc8e6b vocab=80c5293d
+-/
 theorem occ_low_top_le {b : Nat} (hb : 1 < b) {k h L x : Nat}
     (hL : numDigits b x = L) (hkh : k + h ≤ L) (v : Nat) :
     occ v (lowSlots b k x) + occ v (topSlots b h L x) ≤ occ v (digits b x) := by
@@ -4687,11 +5399,16 @@ distinctness `adm` already tests, so nothing is added and nothing is lost.-/
 def admTop (b e1 e2 k h L1 L2 T n : Nat) : Bool :=
   adm b e1 e2 k T n && boundaryOK b e1 e2 k h L1 L2 n
 
-/-- Condition 4 can only remove candidates.-/
+/-- Condition 4 can only remove candidates.
+@isnad1 id=eq.1h9v.s5.3fcda97c64d1 from=translated src=- shape=5e40f77c vocab=a086b9d4
+-/
 theorem admTop_le_adm {b e1 e2 k h L1 L2 T n : Nat}
     (h' : admTop b e1 e2 k h L1 L2 T n = true) : adm b e1 e2 k T n = true :=
   (Bool.and_eq_true _ _).mp h' |>.1
 
+/--
+@isnad1 id=eq.6h8v.s6.a9c6da2086fc from=translated src=- shape=676a1794 vocab=392d9d81
+-/
 theorem pandigital_boundaryOK {b e1 e2 k h L1 L2 n : Nat} (hb : 1 < b)
     (hd1 : numDigits b (n ^ e1) = L1) (hd2 : numDigits b (n ^ e2) = L2)
     (hkh1 : k + h ≤ L1) (hkh2 : k + h ≤ L2)
@@ -4717,7 +5434,9 @@ passes `admTop` — conditions 1-3 of §9.7 *and* the top-digit condition.
 The four length hypotheses are what pin `L1` and `L2` across the whole interval,
 and at a concrete base each is a `decide` on numerals.  They are also the reason
 this theorem is stated over an interval rather than over §9.4's crude band: that
-band is the union of three length splits, and `L1` is not constant on it.-/
+band is the union of three length splits, and `L1` is not constant on it.
+@isnad1 id=eq.13h11v.s8.4bfa92293db9 from=translated src=- shape=36c008eb vocab=7a7bbea5
+-/
 theorem admTop_of_pandigital {b e1 e2 k h L1 L2 T a c n : Nat} (hb : 1 < b)
     (hT : 2 * T = b * (b - 1))
     (hL1 : 0 < L1) (hL2 : 0 < L2)
@@ -4744,7 +5463,9 @@ theorem admTop_of_pandigital {b e1 e2 k h L1 L2 T a c n : Nat} (hb : 1 < b)
   rfl
 
 /-- `countP_mono` where the implication is only available on the list — which is
-the shape a filter valid on one interval has.-/
+the shape a filter valid on one interval has.
+@isnad1 id=le.1h3v.s5.f5bed7a77b76 from=translated src=- shape=9b6b1200 vocab=3e95f10f
+-/
 theorem countP_mono_mem {p q : Nat → Bool} : ∀ l : List Nat,
     (∀ x, x ∈ l → p x = true → q x = true) →
       List.countP p l ≤ List.countP q l := by
@@ -4765,7 +5486,9 @@ theorem countP_mono_mem {p q : Nat → Bool} : ∀ l : List Nat,
 /--
 **Theorem 6 with condition 4, counting form.**  At most `countP admTop` of the
 interval is nice.  Unlike §9.7's this is a scan of the interval: `admTop` has no
-period, which is exactly what §9.12 pays for.-/
+period, which is exactly what §9.12 pays for.
+@isnad1 id=le.10h10v.s8.725d74b8e5b2 from=translated src=- shape=0920734a vocab=eb83b7e9
+-/
 theorem countP_pandigital_le_admTop {b e1 e2 k h L1 L2 T a c : Nat} (hb : 1 < b)
     (hT : 2 * T = b * (b - 1))
     (hL1 : 0 < L1) (hL2 : 0 < L2)
@@ -4779,7 +5502,9 @@ theorem countP_pandigital_le_admTop {b e1 e2 k h L1 L2 T a c : Nat} (hb : 1 < b)
     admTop_of_pandigital hb hT hL1 hL2 ha1 hc1 ha2 hc2 hkh1 hkh2 hm.1 (by omega)
       (isPandigital_iff.mp hpx))
 
-/-- And the refinement really is one: it never counts more than §9.7 does.-/
+/-- And the refinement really is one: it never counts more than §9.7 does.
+@isnad1 id=le.0h9v.s5.6199f8cdd76f from=translated src=- shape=12f4b5e9 vocab=ca4c8f3f
+-/
 theorem countP_admTop_le {b e1 e2 k h L1 L2 T : Nat} (l : List Nat) :
     List.countP (admTop b e1 e2 k h L1 L2 T) l ≤ List.countP (adm b e1 e2 k T) l :=
   countP_mono (fun _ hx => admTop_le_adm hx) l
@@ -4799,7 +5524,9 @@ interval's two ends it agrees throughout, which is two divisions and monotonicit
 `/`.  Formalise the property the construction has, not the construction. -/
 
 /-- The engine of the decomposition: where the top quotient agrees at the two ends
-of an interval it is constant throughout, and so are the top slots.-/
+of an interval it is constant throughout, and so are the top slots.
+@isnad1 id=eq.3h7v.s7.87a4f322e40f from=translated src=- shape=6af4c690 vocab=5d72f2c4
+-/
 theorem topSlots_const {b e h L a c n : Nat} (han : a ≤ n) (hnc : n < c)
     (hq : a ^ e / b ^ (L - h) = (c - 1) ^ e / b ^ (L - h)) :
     topSlots b h L (n ^ e) = topSlots b h L (a ^ e) := by
@@ -4815,7 +5542,9 @@ theorem topSlots_const {b e h L a c n : Nat} (han : a ≤ n) (hnc : n < c)
 **The interval filter.**  If two of the `2h` top digits read at the *left end* of
 such an interval agree, the interval contains no nice number at all.  Nothing about
 `n mod b^k` is used, and nothing is evaluated per candidate: the whole interval
-costs the four divisions that produce `hq1` and `hq2`.-/
+costs the four divisions that produce `hq1` and `hq2`.
+@isnad1 id=not.14h10v.s8.1db6a4ec95f6 from=translated src=- shape=dad7285e vocab=96562fc4
+-/
 theorem no_pandigital_of_top_clash {b e1 e2 h L1 L2 a c v : Nat} (hb : 1 < b)
     (hL1 : 0 < L1) (hL2 : 0 < L2)
     (ha1 : b ^ (L1 - 1) ≤ a ^ e1) (hc1 : (c - 1) ^ e1 < b ^ L1)
@@ -4864,7 +5593,9 @@ is that witness, over 95 consecutive candidates. -/
 /-- The **exact** band at base 10, which is what condition 4 needs and §9.4 does
 not give: `47 ≤ n < 100`, with `n^2` of 4 digits and `n^3` of 6.  The crude band
 also holds `40 ≤ n < 47`, where the split is `(4,5)` — and `4 + 5 ≠ 10`, so the
-length identity is what removes it.-/
+length identity is what removes it.
+@isnad1 id=and.1h1v.s6.da12fcacc3ea from=translated src=- shape=4285e721 vocab=9114883a
+-/
 theorem base_ten_exact_band {n : Nat} (hp : Pandigital 10 2 3 n) :
     (47 ≤ n ∧ n < 100) ∧ numDigits 10 (n ^ 2) = 4 ∧ numDigits 10 (n ^ 3) = 6 := by
   have hb : (1 : Nat) < 10 := by decide
@@ -4899,13 +5630,17 @@ set_option maxRecDepth 8000 in
 /-- The whole content of the four-condition bound at base 10: over the exact band
 `[47, 100)`, `admTop` at `(k, h) = (2, 2)` admits exactly one number.  §9.8 reached
 the same conclusion at `(4, 0)`: `b^4 = 10 000` tabulated residues there, against
-`b^2 = 100` and two divisions per candidate here.-/
+`b^2 = 100` and two divisions per candidate here.
+@isnad1 id=eq.0h0v.s6.fd48cd91c761 from=translated src=- shape=d5378fe3 vocab=d29e3db5
+-/
 theorem base_ten_top_survivors :
     (run 47 53).filter (admTop 10 2 3 2 2 4 6 45) = [69] := by decide
 
 /-- **69 is the only `(2,3)`-nice number in base 10** — again, and this time with
 condition 4 doing part of the work.  The two proofs are independent: §9.8 uses the
-low slots to depth 4 and no top digit, this one uses depth 2 at both ends.-/
+low slots to depth 4 and no top digit, this one uses depth 2 at both ends.
+@isnad1 id=eq.1h1v.s4.eca44c156f60 from=translated src=- shape=028bbed8 vocab=f94668c8
+-/
 theorem sixtynine_unique_top {n : Nat} (hp : Pandigital 10 2 3 n) : n = 69 := by
   obtain ⟨⟨h1, h2⟩, -, -⟩ := base_ten_exact_band hp
   have h := admTop_of_pandigital (b := 10) (e1 := 2) (e2 := 3) (k := 2) (h := 2)
@@ -4924,7 +5659,9 @@ exact band — and both read `(0, 1)`, so the digit `0` occupies two slots and
 nothing in that interval can be nice.  For contrast, the congruence filters of §9.2
 leave five of these 95 alive at `k = 1`, three at `k = 2`, one at `k = 3` and at
 `k = 4`, and clear the interval only at `k = 5` — 1 419 857 tabulated residues and
-a test per candidate, against `h = 2` and four divisions for the whole run.-/
+a test per candidate, against `h = 2` and four divisions for the whole run.
+@isnad1 id=not.2h1v.s5.998fa67433ff from=translated src=- shape=1c4077fc vocab=901f3045
+-/
 theorem base_seventeen_dead_interval {n : Nat} (h1 : 4913 ≤ n) (h2 : n < 5008) :
     ¬ Pandigital 17 2 3 n :=
   no_pandigital_of_top_clash (b := 17) (e1 := 2) (e2 := 3) (h := 2)
@@ -4974,14 +5711,22 @@ def fact : Nat → Nat
   | 0 => 1
   | n + 1 => (n + 1) * fact n
 
+/--
+@isnad1 id=eq.0h1v.s5.2b5e82bc9a71 from=translated src=- shape=48355f7a vocab=01aabeca
+-/
 theorem fact_succ (n : Nat) : fact (n + 1) = (n + 1) * fact n := rfl
 
+/--
+@isnad1 id=lt.0h1v.s3.22413da9d591 from=translated src=- shape=8a62b088 vocab=0e941b03
+-/
 theorem fact_pos (n : Nat) : 0 < fact n := by
   induction n with
   | zero => decide
   | succ n ih => rw [fact_succ]; exact Nat.mul_pos (Nat.succ_pos n) ih
 
-/-- The top `j` factors of `(b+j)!` are each at least `b`.-/
+/-- The top `j` factors of `(b+j)!` are each at least `b`.
+@isnad1 id=le.0h2v.s5.8cf001ac96e6 from=translated src=- shape=bb30f873 vocab=1d8a5a16
+-/
 theorem fact_mul_pow_le (b : Nat) : ∀ j, fact b * b ^ j ≤ fact (b + j) := by
   intro j
   induction j with
@@ -4993,12 +5738,17 @@ theorem fact_mul_pow_le (b : Nat) : ∀ j, fact b * b ^ j ≤ fact (b + j) := by
       _ = (b + j + 1) * fact (b + j) := Nat.mul_comm _ _
       _ = fact (b + (j + 1)) := by rw [← Nat.add_assoc, fact_succ]
 
+/--
+@isnad1 id=eq.0h3v.s6.d64ec6121481 from=translated src=- shape=ab7bf578 vocab=662b3218
+-/
 theorem prod_shuffle (x P F : Nat) :
     (2 * x) * ((2 * x) * (P * (F * F))) = P * 4 * ((x * F) * (x * F)) := by
   simp [Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
 
 /-- `(2b)! ≤ 4^b·(b!)^2` — the central-binomial bound, proved directly so that no
-binomial coefficients are needed.-/
+binomial coefficients are needed.
+@isnad1 id=le.0h1v.s5.6150b9255258 from=translated src=- shape=15aaeb71 vocab=4e0ea197
+-/
 theorem fact_two_mul_le (b : Nat) : fact (2 * b) ≤ 4 ^ b * (fact b * fact b) := by
   induction b with
   | zero => decide
@@ -5014,7 +5764,9 @@ theorem fact_two_mul_le (b : Nat) : fact (2 * b) ≤ 4 ^ b * (fact b * fact b) :
           exact prod_shuffle (b + 1) (4 ^ b) (fact b)
 
 /-- **`b^b ≤ 4^b · b!`.**  The whole analytic content of Theorem 9, in one
-cancellation: `b!·b^b ≤ (2b)! ≤ 4^b·(b!)^2`.-/
+cancellation: `b!·b^b ≤ (2b)! ≤ 4^b·(b!)^2`.
+@isnad1 id=le.0h1v.s5.2654dcd94f3d from=translated src=- shape=e479d15c vocab=4e0ea197
+-/
 theorem pow_self_le_fact (b : Nat) : b ^ b ≤ 4 ^ b * fact b := by
   have h1' : fact b * b ^ b ≤ fact (2 * b) := by
     have h := fact_mul_pow_le b b
@@ -5034,6 +5786,9 @@ every `n` below `2b^q`, because `n^e < 2^e·b^(qe) ≤ b^(qe+1)` as soon as `2^e
 That is `b^q` consecutive candidates with no root extraction anywhere — a factor
 `⌊b^(1/e2)⌋-1` short of the true band, which is nothing on the scale of `b^q`. -/
 
+/--
+@isnad1 id=eq.5h4v.s7.49ee72a33c99 from=translated src=- shape=3a45d5ed vocab=523c6e27
+-/
 theorem numDigits_pow_of_interval {b q e n : Nat} (hb : 1 < b) (he : 0 < e)
     (hpow : 2 ^ e ≤ b) (hlo : b ^ q ≤ n) (hhi : n < 2 * b ^ q) :
     numDigits b (n ^ e) = q * e + 1 := by
@@ -5047,7 +5802,9 @@ theorem numDigits_pow_of_interval {b q e n : Nat} (hb : 1 < b) (he : 0 < e)
       _ = b ^ (q * e + 1) := by rw [Nat.pow_succ, Nat.mul_comm]
 
 /-- **The band, exhibited.**  With `q·E + 2 = b` and `2^e1, 2^e2 ≤ b`, every one of
-the `b^q` integers in `[b^q, 2b^q)` is a candidate in base `b`.-/
+the `b^q` integers in `[b^q, 2b^q)` is a candidate in base `b`.
+@isnad1 id=inband.8h5v.s7.5e960dc98c4a from=translated src=- shape=25f075d1 vocab=984d072f
+-/
 theorem band_of_interval {b e1 e2 q n : Nat} (hb : 1 < b) (he1 : 0 < e1) (he2 : 0 < e2)
     (h1' : 2 ^ e1 ≤ b) (h2' : 2 ^ e2 ≤ b) (hq : q * (e1 + e2) + 2 = b)
     (hlo : b ^ q ≤ n) (hhi : n < 2 * b ^ q) : InBand b e1 e2 n := by
@@ -5065,6 +5822,9 @@ Stirling constant of §10.0; the real crossover is near `b = e^E` (148 for `(2,3
 and this proof makes no attempt to find it — divergence is insensitive to the
 constant, which is the point. -/
 
+/--
+@isnad1 id=lt.0h1v.s4.e71bcf1cd881 from=translated src=- shape=e17d9afa vocab=7ddce274
+-/
 theorem lt_pow_four (k : Nat) : k < 4 ^ k := by
   induction k with
   | zero => decide
@@ -5072,6 +5832,9 @@ theorem lt_pow_four (k : Nat) : k < 4 ^ k := by
     have e : 4 ^ (k + 1) = 4 ^ k * 4 := Nat.pow_succ 4 k
     omega
 
+/--
+@isnad1 id=le.3h4v.s7.04dbd030804f from=translated src=- shape=ee137471 vocab=1d8a5a16
+-/
 theorem yield_ge {b q M E : Nat} (hq : q * E + 2 = b)
     (hbig : 4 ^ (2 * E) ≤ b) (hM : M + 4 ≤ b) : M * b ^ b ≤ b ^ q * fact b := by
   have h1' : 4 ^ (2 * E * q) ≤ b ^ q := by
@@ -5093,7 +5856,9 @@ theorem yield_ge {b q M E : Nat} (hq : q * E + 2 = b)
 bases `b` which are even, satisfy `E ∣ b-2`, carry `b^q` consecutive candidates in
 their band, and whose heuristic count `|band|·b!/b^b` exceeds `M`.
 
-No hypothesis, no asymptotics, and the band is produced rather than estimated.-/
+No hypothesis, no asymptotics, and the band is produced rather than estimated.
+@isnad1 id=ex.2h4v.s7.997e36bee415 from=translated src=- shape=612e5977 vocab=e81385e1
+-/
 theorem model_diverges (e1 e2 M B : Nat) (he1 : 0 < e1) (he2 : 0 < e2) :
     ∃ b q, B < b ∧ 1 < b ∧ b % 2 = 0 ∧ q * (e1 + e2) + 2 = b ∧
       (∀ n, b ^ q ≤ n → n < 2 * b ^ q → InBand b e1 e2 n) ∧
@@ -5124,6 +5889,9 @@ neither can Theorem 3 nor Theorem 4: `b` even makes `b-1` odd, so `T ≡ 0 (mod 
 residue.  That is Theorem 4's `v_2(b-1) = 0` case, and it is why §10.2 builds the
 family out of even bases in the first place. -/
 
+/--
+@isnad1 id=eq.5h4v.s6.33e81604d32b from=translated src=- shape=e129dc75 vocab=5f8565f1
+-/
 theorem resOK_zero_of_even {b e1 e2 T : Nat} (hb : 1 < b) (hev : b % 2 = 0)
     (he1 : 0 < e1) (he2 : 0 < e2) (hT : 2 * T = b * (b - 1)) :
     resOK b e1 e2 T 0 = true := by
@@ -5140,7 +5908,9 @@ theorem resOK_zero_of_even {b e1 e2 T : Nat} (hb : 1 < b) (hev : b % 2 = 0)
 /-- And Theorem 2 misses it as well: the clashing bases all divide `N(e1,e2)`, so
 only finitely many of them exist and the family runs past all of them.  With the
 band exhibited (Theorem 1), `ρ = 0` a residue (Theorems 3 and 4) and no clash (Theorem 2), **none of
-the four proved obstructions touches §10.2's family**.-/
+the four proved obstructions touches §10.2's family**.
+@isnad1 id=not.5h3v.s5.6e3d48a3911e from=translated src=- shape=3fe8cef1 vocab=2d85a270
+-/
 theorem no_clash_of_large {b e1 e2 : Nat} (hb : 0 < b) (he1 : 1 ≤ e1) (he : e1 < e2)
     (hN : 0 < clashMod e1 e2) (hgt : clashMod e1 e2 < b) : ¬ UniversalClash b e1 e2 := by
   intro h
@@ -5158,6 +5928,9 @@ def InfinitelyManyNice (e1 e2 : Nat) : Prop :=
 def InfinitelyManyNiceBases (e1 e2 : Nat) : Prop :=
   ∀ B, ∃ b n, B < b ∧ 1 < b ∧ Pandigital b e1 e2 n
 
+/--
+@isnad1 id=le.1h2v.s4.c765129ffe0a from=translated src=- shape=d0dd947f vocab=191dae4c
+-/
 theorem le_self_pow' {m e : Nat} (he : 0 < e) : m ≤ m ^ e := by
   obtain ⟨j, hj⟩ : ∃ j, e = j + 1 := ⟨e - 1, by omega⟩
   subst hj
@@ -5167,7 +5940,9 @@ theorem le_self_pow' {m e : Nat} (he : 0 < e) : m ≤ m ^ e := by
       _ ≤ m ^ j * m := Nat.mul_le_mul (Nat.one_le_pow _ _ h) (Nat.le_refl m)
       _ = m ^ (j + 1) := (Nat.pow_succ m j).symm
 
-/-- §3's `base_unique` at the level of solutions: a nice number is nice in exactly one base.-/
+/-- §3's `base_unique` at the level of solutions: a nice number is nice in exactly one base.
+@isnad1 id=eq.4h5v.s5.0e35313f833d from=translated src=- shape=263d0c3c vocab=71524155
+-/
 theorem nice_base_unique {b b' e1 e2 n : Nat} (hb : 1 < b) (hb' : 1 < b')
     (h : Pandigital b e1 e2 n) (h' : Pandigital b' e1 e2 n) : b = b' :=
   base_unique hb hb' (pandigital_length hb h) (pandigital_length hb' h')
@@ -5175,7 +5950,9 @@ theorem nice_base_unique {b b' e1 e2 n : Nat} (hb : 1 < b) (hb' : 1 < b')
 /--
 **Theorem 8.**  There are infinitely many `(e1,e2)`-nice numbers **iff** infinitely
 many bases host one.  "Search more numbers" and "search more bases" are the same
-axis — quantitatively, not just up to the disjointness of §3.-/
+axis — quantitatively, not just up to the disjointness of §3.
+@isnad1 id=iff.2h2v.s4.9c1b24b3a982 from=translated src=- shape=4c218ca2 vocab=c1defa0d
+-/
 theorem infinitude_iff {e1 e2 : Nat} (he1 : 0 < e1) (he2 : 0 < e2) :
     InfinitelyManyNiceBases e1 e2 ↔ InfinitelyManyNice e1 e2 := by
   constructor
@@ -5214,7 +5991,9 @@ def ModelPositive (e1 e2 : Nat) : Prop :=
   ∃ M0 b0, ∀ b q, b0 ≤ b → b % 2 = 0 → q * (e1 + e2) + 2 = b →
     M0 * b ^ b ≤ b ^ q * fact b → ∃ n, Pandigital b e1 e2 n
 
-/-- **Theorem 10.**  `ModelPositive` implies there are infinitely many nice numbers.-/
+/-- **Theorem 10.**  `ModelPositive` implies there are infinitely many nice numbers.
+@isnad1 id=infinite.3h2v.s4.42a34800c150 from=translated src=- shape=5bfdd39e vocab=8466d281
+-/
 theorem conditional_infinitude {e1 e2 : Nat} (he1 : 0 < e1) (he2 : 0 < e2)
     (h : ModelPositive e1 e2) : InfinitelyManyNice e1 e2 := by
   obtain ⟨M0, b0, hmp⟩ := h
@@ -5236,10 +6015,16 @@ The moral is the one this file keeps meeting from the other side: the three prov
 sources are all *obstructions*.  They can empty a base; nothing here, and nothing in
 the literature, can fill one. -/
 
+/--
+@isnad1 id=not.4h4v.s5.1e399cd0e4d0 from=translated src=- shape=6149ec0f vocab=97acedb1
+-/
 theorem no_pandigital_of_mod_four {b e1 e2 n : Nat} (hb : 1 < b) (he1 : e1 ≠ 0)
     (he2 : e2 ≠ 0) (hmod : b % 4 = 3) : ¬ Pandigital b e1 e2 n := fun hp =>
   no_nice_of_mod_four hb he1 he2 hmod (pandigital_digitSum hb hp)
 
+/--
+@isnad1 id=ex.0h2v.s7.977d75cc1b6e from=translated src=- shape=37c9c0fd vocab=15ef3d42
+-/
 theorem divergence_is_not_existence (M B : Nat) :
     ∃ b q, B < b ∧ 1 < b ∧ q * (2 + 3) + 2 = b ∧
       (∀ n, b ^ q ≤ n → n < 2 * b ^ q → InBand b 2 3 n) ∧
@@ -5264,32 +6049,48 @@ The family of §10.2 is not empty of solutions: base 8 is even, `3 ∣ 8-2`, and
 all eight digits.  Base 8 is far below the crossover — its heuristic count is 0.15 —
 so this witnesses the *shape* of `ModelPositive`, not its hypothesis. -/
 
+/--
+@isnad1 id=eq.0h0v.s5.b6cf7501d6b0 from=translated src=- shape=2287321b vocab=c2c693df
+-/
 theorem digits_174 : digits 8 (174 ^ 1) = [6, 5, 2] := by
   show digits 8 174 = [6, 5, 2]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.fc374a568804 from=translated src=- shape=4a9848ef vocab=c2c693df
+-/
 theorem digits_174sq : digits 8 (174 ^ 2) = [4, 0, 1, 3, 7] := by
   show digits 8 30276 = [4, 0, 1, 3, 7]
   rw [digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_step (by decide) (by decide),
       digits_step (by decide) (by decide), digits_zero]
 
-/-- 174 is `(1,2)`-nice in base 8, and base 8 is a member of §10.2's family.-/
+/-- 174 is `(1,2)`-nice in base 8, and base 8 is a member of §10.2's family.
+@isnad1 id=pandigit.0h0v.s4.68a492261738 from=translated src=- shape=147f988f vocab=f94668c8
+-/
 theorem base_eight_nice : Pandigital 8 1 2 174 := by
   have h : ∀ v, v < 8 → occ v ([6, 5, 2] ++ [4, 0, 1, 3, 7]) = 1 := by decide
   intro v hv
   rw [digits_174, digits_174sq]
   exact h v hv
 
+/--
+@isnad1 id=and.0h0v.s6.3c094069bd16 from=translated src=- shape=5745fa88 vocab=1d9bb786
+-/
 theorem base_eight_in_family : 2 * (1 + 2) + 2 = 8 ∧ 8 % 2 = 0 := by decide
 
+/--
+@isnad1 id=inband.2h1v.s6.ad495f0d10fc from=translated src=- shape=d96defbd vocab=093cf8a6
+-/
 theorem base_eight_band : ∀ n, 8 ^ 2 ≤ n → n < 2 * 8 ^ 2 → InBand 8 1 2 n := by
   intro n hlo hhi
   exact band_of_interval (by decide) (by decide) (by decide) (by decide) (by decide)
     rfl hlo hhi
 
-/-- The even-base residue lemma, firing: base 8, `T = 28`.-/
+/-- The even-base residue lemma, firing: base 8, `T = 28`.
+@isnad1 id=eq.0h0v.s4.0a71887816e4 from=translated src=- shape=4e73c06f vocab=262eb8b4
+-/
 theorem base_eight_live : resOK 8 1 2 28 0 = true :=
   resOK_zero_of_even (by decide) (by decide) (by decide) (by decide) (by decide)
 
@@ -5322,6 +6123,9 @@ identifies.  So `g` attains every non-skipped value, `b` among them. -/
 `(1 + 1/x)^k ≤ 2` for `x ≥ 2k`, without leaving ℕ and without a binomial theorem.  The
 induction step is `x + 2i ≤ 2x`, which is the hypothesis. -/
 
+/--
+@isnad1 id=le.1h2v.s6.8af6c4e6ce1e from=translated src=- shape=752cfbce vocab=f96c6fce
+-/
 theorem mul_succ_pow_le : ∀ k x, 2 * k ≤ x → x * (x + 1) ^ k ≤ (x + 2 * k) * x ^ k := by
   intro k
   induction k with
@@ -5345,7 +6149,9 @@ theorem mul_succ_pow_le : ∀ k x, 2 * k ≤ x → x * (x + 1) ^ k ≤ (x + 2 * 
 
 /-- Hence one step of `n` multiplies `n^k` by less than the base, once `n ≥ 2k`.  This
 is the only inequality §11 needs about powers, and both of the next two subsections
-run on it.-/
+run on it.
+@isnad1 id=le.3h3v.s6.6156db96afa8 from=translated src=- shape=76a071b3 vocab=3f16b8dd
+-/
 theorem succ_pow_le_base_mul {b k n : Nat} (hb : 1 < b) (hn : 0 < n) (hk : 2 * k ≤ n) :
     (n + 1) ^ k ≤ b * n ^ k := by
   have h1 := mul_succ_pow_le k n hk
@@ -5362,6 +6168,9 @@ theorem succ_pow_le_base_mul {b k n : Nat} (hb : 1 < b) (hn : 0 < n) (hk : 2 * k
 
 /-! ### §11.1  `numDigits`, read from a power bound -/
 
+/--
+@isnad1 id=le.2h3v.s5.b8d45e4ea1f5 from=translated src=- shape=0088fa00 vocab=29965d7b
+-/
 theorem numDigits_le_of_lt_pow {b x j : Nat} (hb : 1 < b) (h : x < b ^ j) :
     numDigits b x ≤ j := by
   rcases Nat.lt_or_ge (numDigits b x) (j + 1) with hh | hh
@@ -5372,7 +6181,9 @@ theorem numDigits_le_of_lt_pow {b x j : Nat} (hb : 1 < b) (h : x < b ^ j) :
     have : b ^ j ≤ b ^ i := Nat.pow_le_pow_right (by omega) (by omega)
     omega
 
-/-- `x` always fits in its own digit count.-/
+/-- `x` always fits in its own digit count.
+@isnad1 id=lt.1h2v.s5.a2d2172c6fe7 from=translated src=- shape=ae907648 vocab=9f8a2fd9
+-/
 theorem lt_pow_numDigits {b : Nat} (hb : 1 < b) (x : Nat) : x < b ^ numDigits b x := by
   rcases Nat.eq_zero_or_pos x with rfl | hx
   · rw [numDigits_zero, Nat.pow_zero]; omega
@@ -5381,7 +6192,9 @@ theorem lt_pow_numDigits {b : Nat} (hb : 1 < b) (x : Nat) : x < b ^ numDigits b 
     obtain ⟨-, g2⟩ := bounds_of_numDigits hb x i hi
     rw [hi]; exact g2
 
-/-- One step of `n` adds at most one digit to `n^e`.-/
+/-- One step of `n` adds at most one digit to `n^e`.
+@isnad1 id=le.3h3v.s6.5427a15512dd from=translated src=- shape=bb820452 vocab=523c6e27
+-/
 theorem numDigits_step_le {b e n : Nat} (hb : 1 < b) (hn : 0 < n) (he : 2 * e ≤ n) :
     numDigits b ((n + 1) ^ e) ≤ numDigits b (n ^ e) + 1 := by
   refine numDigits_le_of_lt_pow hb ?_
@@ -5397,7 +6210,9 @@ sit in the same interval `(n^(e1e2), (n+1)^(e1e2)]` after being raised to `e2` a
 respectively — and §11.0 says that interval has ratio at most `b`, so it holds at most
 one power of `b`. -/
 
-/-- Two powers of `b` inside an interval of ratio at most `b` are the same power.-/
+/-- Two powers of `b` inside an interval of ratio at most `b` are the same power.
+@isnad1 id=eq.6h5v.s6.7869c3c7aa12 from=translated src=- shape=c5fd4652 vocab=2a3f5b88
+-/
 theorem pow_eq_of_narrow {b A B p q : Nat} (hb : 1 < b) (hAB : B ≤ b * A)
     (h1 : A < b ^ p) (h2 : b ^ p ≤ B) (h3 : A < b ^ q) (h4 : b ^ q ≤ B) : p = q := by
   have step : ∀ r s : Nat, r < s → A < b ^ r → b ^ s ≤ B → False := by
@@ -5412,7 +6227,9 @@ theorem pow_eq_of_narrow {b A B p q : Nat} (hb : 1 < b) (hAB : B ≤ b * A)
   · exact h
   · exact (step q p h h3 h2).elim
 
-/-- At a double step the two digit counts are locked to each other: `A1·e2 = A2·e1`.-/
+/-- At a double step the two digit counts are locked to each other: `A1·e2 = A2·e1`.
+@isnad1 id=eq.9h6v.s7.2b90b0c997e9 from=translated src=- shape=18c40dc7 vocab=3f16b8dd
+-/
 theorem double_step_ratio {b e1 e2 n A1 A2 : Nat} (hb : 1 < b) (hn : 0 < n)
     (he1 : e1 ≠ 0) (he2 : e2 ≠ 0) (hk : 2 * (e1 * e2) ≤ n)
     (hlo1 : n ^ e1 < b ^ A1) (hhi1 : b ^ A1 ≤ (n + 1) ^ e1)
@@ -5437,7 +6254,9 @@ theorem double_step_ratio {b e1 e2 n A1 A2 : Nat} (hb : 1 < b) (hn : 0 < n)
 
 /-- …and that locking is exactly the divisibility Theorem 1 tests.  The `gcd` lives
 only inside this proof: the statement is in the same shape as `no_nice_of_dvd`, so the
-two compose into a biconditional with nothing in between.-/
+two compose into a biconditional with nothing in between.
+@isnad1 id=dvd.3h4v.s6.76df79ae6632 from=translated src=- shape=d4d91f59 vocab=e4d01d9c
+-/
 theorem dvd_of_ratio {e1 e2 u v : Nat} (he1 : e1 ≠ 0) (he2 : e2 ≠ 0)
     (h : u * e2 = v * e1) : (e1 + e2) ∣ e1 * (u + v) := by
   have hg : 0 < Nat.gcd e1 e2 := Nat.gcd_pos_of_pos_left e2 (Nat.pos_of_ne_zero he1)
@@ -5491,6 +6310,9 @@ A nondecreasing `g` that starts below `b`, ends at or above it, and never steps 
 it, must land on it.  Stated for exactly the range that is walked, because §11.2's
 hypotheses hold only above the threshold. -/
 
+/--
+@isnad1 id=ex.3h4v.s6.1df30f26ce67 from=translated src=- shape=daf1d2e6 vocab=110a7538
+-/
 theorem hits_of_no_jump {g : Nat → Nat} {b N : Nat}
     (hjump : ∀ n, N ≤ n → g n < b → g (n + 1) ≤ b) :
     ∀ len, g N < b → b ≤ g (N + len) → ∃ n, g n = b := by
@@ -5524,7 +6346,9 @@ i.e. the walk starts below the value it is looking for.  This form is stated wit
 digit counts named because it is `decide`able at a concrete base and `numDigits` is
 not.  The left side is nonincreasing in `b`, so each pair has a single first base from
 which the theorem holds for good — 8 for `(2,3)` (`two_three_band_nonempty`), 6 for
-`(1,2)`, 12 for `(3,4)`, 28 for `(8,9)`.-/
+`(1,2)`, 12 for `(3,4)`, 28 for `(8,9)`.
+@isnad1 id=ex.7h5v.s7.3031b0c50b79 from=translated src=- shape=e40ccf43 vocab=785c8858
+-/
 theorem band_nonempty {b e1 e2 j1 j2 : Nat} (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0)
     (hj1 : (2 * (e1 * e2) + 1) ^ e1 < b ^ j1)
     (hj2 : (2 * (e1 * e2) + 1) ^ e2 < b ^ j2)
@@ -5601,7 +6425,9 @@ theorem band_nonempty {b e1 e2 j1 j2 : Nat} (hb : 1 < b) (he1 : e1 ≠ 0) (he2 :
 
 /-- **Theorem 1, both directions.**  Above the threshold, a base has a candidate if and
 only if it is outside the dead class — which is the classification the informal account states,
-and of which, until §11, only the forward half was proved.-/
+and of which, until §11, only the forward half was proved.
+@isnad1 id=iff.6h5v.s7.bfdb77adeb33 from=translated src=- shape=e6cf1a36 vocab=785c8858
+-/
 theorem band_nonempty_iff {b e1 e2 j1 j2 : Nat} (hb : 1 < b) (he1 : e1 ≠ 0) (he2 : e2 ≠ 0)
     (hj1 : (2 * (e1 * e2) + 1) ^ e1 < b ^ j1)
     (hj2 : (2 * (e1 * e2) + 1) ^ e2 < b ^ j2)
@@ -5619,7 +6445,9 @@ candidate anyway, so a converse without a threshold would be false, not merely u
 
 /-- **Every base `b ≥ 8` outside `b ≡ 1 (mod 5)` has a square/cube candidate.**  The
 counterpart of `nice_no_solution`, and with it the `(2,3)` admissibility question is
-closed in both directions from base 8 on.-/
+closed in both directions from base 8 on.
+@isnad1 id=ex.2h1v.s5.9157421a853d from=translated src=- shape=d0bb8e04 vocab=0522b4ea
+-/
 theorem two_three_band_nonempty {b : Nat} (hb : 8 ≤ b) (hmod : b % 5 ≠ 1) :
     ∃ n, InBand b 2 3 n := by
   refine band_nonempty (e1 := 2) (e2 := 3) (j1 := 3) (j2 := 4) (by omega) (by decide)
@@ -5636,7 +6464,9 @@ theorem two_three_band_nonempty {b : Nat} (hb : 8 ≤ b) (hmod : b % 5 ≠ 1) :
     exact hmod (by have := hcop.dvd_of_dvd_mul_left h2; omega)
 
 /-- Base 34 is one of them — a base whose band starts above `3·10^9`, exhibited by
-nothing more than `169 < 34^2` and `2197 < 34^3`.-/
+nothing more than `169 < 34^2` and `2197 < 34^3`.
+@isnad1 id=ex.0h0v.s4.f98284f88841 from=translated src=- shape=26e9acfe vocab=7d977a64
+-/
 theorem base_thirtyfour_band : ∃ n, InBand 34 2 3 n :=
   two_three_band_nonempty (by omega) (by decide)
 
@@ -5644,7 +6474,9 @@ theorem base_thirtyfour_band : ∃ n, InBand 34 2 3 n :=
 — and still has no `(2,3)` candidate: `n^2` and `n^3` each need two base-3 digits as soon
 as `n ≥ 2`, and `n ≤ 1` gives at most two digits in total, so the sum is never 3.  In the
 real picture the level set of `⌊2t⌋ + ⌊3t⌋ = 1` is the interval `[1/3, 1/2)`, and
-`3^(1/3) ≤ n < 3^(1/2)` catches no integer.-/
+`3^(1/3) ≤ n < 3^(1/2)` catches no integer.
+@isnad1 id=not.0h1v.s4.eb3defbce1de from=translated src=- shape=2e95bcf2 vocab=7d977a64
+-/
 theorem base_three_no_candidate (n : Nat) : ¬ InBand 3 2 3 n := by
   intro h
   have hb : (1 : Nat) < 3 := by decide
@@ -5669,7 +6501,9 @@ theorem base_three_no_candidate (n : Nat) : ¬ InBand 3 2 3 n := by
     omega
 
 /-- And base 3 fails the theorem's hypotheses exactly where it should: `2197 < 3^j2`
-needs `j2 ≥ 7`, so `j1 + j2 < 3` is unreachable.-/
+needs `j2 ≥ 7`, so `j1 + j2 < 3` is unreachable.
+@isnad1 id=not.0h0v.s6.27a1248468b5 from=translated src=- shape=3e064da7 vocab=b9e5bafd
+-/
 theorem base_three_misses_the_threshold : ¬ ((2 : Nat) * (2 * 3) + 1) ^ 3 < 3 ^ 6 := by
   decide
 
