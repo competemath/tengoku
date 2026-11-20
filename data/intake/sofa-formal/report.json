@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1bfc5d07a0b7f6e9ad329141be82f75d1dd88a90574057801d8b187766fd4b19",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "sofa-formal",
+ "lint_mode": "proposed",
+ "modules": 4,
+ "part": 1,
+ "theorems": 65
+}
