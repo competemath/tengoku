@@ -20,7 +20,9 @@ namespace Clifford
 
 open Complex ComplexConjugate
 
-/-- Three points of `ℂ` are collinear iff `conj (y - x) * (z - x)` is real.-/
+/-- Three points of `ℂ` are collinear iff `conj (y - x) * (z - x)` is real.
+@isnad1 id=iff.0h3v.s7.09a86d7684e0 from=translated src=- shape=5b942be5 vocab=3368c255
+-/
 theorem collinear_iff_conj_mul (x y z : ℂ) :
     Collinear ℝ ({x, y, z} : Set ℂ) ↔ conj (y - x) * (z - x) = (y - x) * conj (z - x) := by
   constructor
@@ -57,10 +59,16 @@ theorem collinear_iff_conj_mul (x y z : ℂ) :
       field_simp
       ring
 
+/--
+@isnad1 id=iff.0h2v.s6.8238205e9643 from=translated src=- shape=b372a70c vocab=a66af892
+-/
 theorem transversal_iff (c d : ℂ) : Transversal c d ↔ ¬ Collinear ℝ ({0, c, d} : Set ℂ) := by
   rw [collinear_iff_conj_mul, Transversal]
   simp only [sub_zero]
 
+/--
+@isnad1 id=iff.0h3v.s7.d782d903ba17 from=translated src=- shape=37c0e113 vocab=34f16a98
+-/
 theorem triP_ne_zero_iff (a b c : ℂ) :
     triP a b c (conj a) (conj b) (conj c) ≠ 0 ↔ ¬ Collinear ℝ ({a, b, c} : Set ℂ) := by
   have e : triP a b c (conj a) (conj b) (conj c) =
@@ -68,7 +76,9 @@ theorem triP_ne_zero_iff (a b c : ℂ) :
     simp only [triP, det3, map_sub]; ring
   rw [collinear_iff_conj_mul, e, Ne, sub_eq_zero, eq_comm]
 
-/-- The key identity: cross product of the second intersections, times `∏ |cᵢ - cⱼ|²`.-/
+/-- The key identity: cross product of the second intersections, times `∏ |cᵢ - cⱼ|²`.
+@isnad1 id=eq.3h3v.s9.7d14260eda8e from=translated src=- shape=0f30cbe1 vocab=f74eecef
+-/
 theorem cross_second {a b c : ℂ} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     (conj (second a c - second a b) * (second b c - second a b) -
         (second a c - second a b) * conj (second b c - second a b)) *
@@ -82,6 +92,9 @@ theorem cross_second {a b c : ℂ} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ 
   field_simp
   ring
 
+/--
+@isnad1 id=iff.4h3v.s8.5da50d69b97d from=translated src=- shape=ac18ea5e vocab=df14fcba
+-/
 theorem cycP_ne_zero_iff {a b c : ℂ} (hab : Transversal a b) (hac : Transversal a c)
     (hbc : Transversal b c) (htri : ¬ Collinear ℝ ({a, b, c} : Set ℂ)) :
     cycP a b c (conj a) (conj b) (conj c) ≠ 0 ↔
@@ -103,12 +116,18 @@ theorem cycP_ne_zero_iff {a b c : ℂ} (hab : Transversal a b) (hac : Transversa
     rw [h0, zero_mul, eq_comm] at e
     exact (mul_eq_zero.1 e).resolve_left (pow_ne_zero 2 ht)
 
+/--
+@isnad1 id=iff.0h2v.s4.844d3a6c8694 from=translated src=- shape=c77f3f00 vocab=a024b19b
+-/
 theorem onCircleM_iff_mem_sphere (c z : ℂ) : OnCircleM c z ↔ z ∈ Metric.sphere c ‖c‖ := by
   rw [Metric.mem_sphere, Complex.dist_eq, OnCircleM,
     ← sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _), Complex.sq_norm, Complex.sq_norm,
     Complex.normSq_apply, Complex.normSq_apply, Complex.sub_re, Complex.sub_im]
   constructor <;> intro h <;> linear_combination h
 
+/--
+@isnad1 id=iff.3h3v.s7.3cd099d54e44 from=translated src=- shape=d49d4400 vocab=b6e5a76e
+-/
 theorem genTriple_iff {a b c : ℂ} (hab : Transversal a b) (hac : Transversal a c)
     (hbc : Transversal b c) :
     GenTriple a b c ↔ (¬ Collinear ℝ ({a, b, c} : Set ℂ) ∧

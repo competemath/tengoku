@@ -20,17 +20,25 @@ def cD (a b c q : ℂ) : ℝ :=
   det4 (a.re ^ 2 + a.im ^ 2) a.re a.im 1 (b.re ^ 2 + b.im ^ 2) b.re b.im 1
     (c.re ^ 2 + c.im ^ 2) c.re c.im 1 (q.re ^ 2 + q.im ^ 2) q.re q.im 1
 
+/--
+@isnad1 id=eq.1h3v.s6.1916d0891bcc from=translated src=- shape=ba397cec vocab=eef2e834
+-/
 theorem mem_sphere_eq {o z : ℂ} {r : ℝ} (h : z ∈ Metric.sphere o r) :
     (z.re - o.re) ^ 2 + (z.im - o.im) ^ 2 = r ^ 2 := by
   rw [Metric.mem_sphere, Complex.dist_eq] at h
   rw [← h, Complex.sq_norm, Complex.normSq_apply]; simp; ring
 
+/--
+@isnad1 id=eq.0h11v.s7.ca14faaefeff from=translated src=- shape=002c7b01 vocab=ac4465c6
+-/
 theorem det4_col1 (k₁ k₂ k₃ x₁ y₁ x₂ y₂ x₃ y₃ x₄ y₄ : ℝ) :
     det4 (k₁ * x₁ + k₂ * y₁ + k₃) x₁ y₁ 1 (k₁ * x₂ + k₂ * y₂ + k₃) x₂ y₂ 1
       (k₁ * x₃ + k₂ * y₃ + k₃) x₃ y₃ 1 (k₁ * x₄ + k₂ * y₄ + k₃) x₄ y₄ 1 = 0 := by
   unfold det4 det3; ring
 
-/-- Four points on a generalized circle satisfy `cD = 0`.-/
+/-- Four points on a generalized circle satisfy `cD = 0`.
+@isnad1 id=eq.5h5v.s5.dac733c762bb from=translated src=- shape=7837d05e vocab=606dd8d6
+-/
 theorem cD_eq_zero {Y : Set ℂ} (hY : IsGCircle Y) {a b c q : ℂ} (ha : a ∈ Y) (hb : b ∈ Y)
     (hc : c ∈ Y) (hq : q ∈ Y) : cD a b c q = 0 := by
   rcases hY with ⟨o, r, rfl⟩ | ⟨p, v, -, rfl⟩
@@ -45,9 +53,15 @@ theorem cD_eq_zero {Y : Set ℂ} (hY : IsGCircle Y) {a b c q : ℂ} (ha : a ∈ 
       Complex.mul_re, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s6.81639f2565bc from=translated src=- shape=8a563369 vocab=cd81edc3
+-/
 theorem chain2_eq {c : Fin 2 → ℂ} {p : ℂ} (h : Chain 2 c {p}) : p = second (c 0) (c 1) :=
   Set.singleton_eq_singleton_iff.1 h
 
+/--
+@isnad1 id=and.1h4v.s6.8af8b01db9e3 from=translated src=- shape=61041215 vocab=46a75520
+-/
 theorem chain3_mem {x y z : ℂ} {Y : Set ℂ} (h : Chain 3 ![x, y, z] Y) :
     IsGCircle Y ∧ second y z ∈ Y ∧ second x z ∈ Y ∧ second x y ∈ Y := by
   obtain ⟨hY, h⟩ := (h : IsGCircle Y ∧
@@ -59,7 +73,9 @@ theorem chain3_mem {x y z : ℂ} {Y : Set ℂ} (h : Chain 3 ![x, y, z] Y) :
   exact ⟨hY, m0, m1, m2⟩
 
 /-- A level-4 point lies, with the three second intersections of each triple, on a generalized
-circle.-/
+circle.
+@isnad1 id=and.1h5v.s7.190d91b00250 from=translated src=- shape=35b8cb60 vocab=59e8986d
+-/
 theorem chain4_cD {x y z w q : ℂ} (h : Chain 4 ![x, y, z, w] {q}) :
     cD (second z w) (second y w) (second y z) q = 0 ∧
     cD (second z w) (second x w) (second x z) q = 0 ∧
@@ -80,12 +96,17 @@ theorem chain4_cD {x y z w q : ℂ} (h : Chain 4 ![x, y, z, w] {q}) :
   exact ⟨cD_eq_zero g0 a0 b0 c0 q0, cD_eq_zero g1 a1 b1 c1 q1, cD_eq_zero g2 a2 b2 c2 q2,
     cD_eq_zero g3 a3 b3 c3 q3⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.9d7c8959d05f from=translated src=- shape=8bd60871 vocab=d584fc79
+-/
 theorem second_eq {c d z : ℂ} (h : c ≠ d)
     (hz : conj c * d - c * conj d = z * (conj c - conj d)) : second c d = z := by
   rw [second, div_eq_iff (conj_sub_ne_zero h)]; exact hz
 
 /-- Unfolding `Chain 5`: a generalized circle through level-4 points of the subfamilies omitting the
-first, second and third circle.-/
+first, second and third circle.
+@isnad1 id=and.1h6v.s7.aa7ef54c7736 from=translated src=- shape=ff7c12db vocab=6e2b66bf
+-/
 theorem chain5_mem {a b c d e : ℂ} {Y : Set ℂ} (h : Chain 5 ![a, b, c, d, e] Y) :
     IsGCircle Y ∧ (∃ q, Chain 4 ![b, c, d, e] {q} ∧ q ∈ Y) ∧
       (∃ q, Chain 4 ![a, c, d, e] {q} ∧ q ∈ Y) ∧ (∃ q, Chain 4 ![a, b, d, e] {q} ∧ q ∈ Y) := by

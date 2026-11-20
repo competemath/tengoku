@@ -22,7 +22,9 @@ namespace Clifford
 open Complex ComplexConjugate EuclideanGeometry
 
 /-- A point satisfying a non-trivial real-linear equation `g₀ - z g₁ - conj z conj g₁ = 0` lies on
-the line through `g₀ / (2 g₁)` with direction `I / g₁`.-/
+the line through `g₀ / (2 g₁)` with direction `I / g₁`.
+@isnad1 id=ex.2h3v.s7.4289f95649ee from=translated src=- shape=b025c0e8 vocab=f9f65c0a
+-/
 theorem mem_line_of {g₀ g₁ z : ℂ} (hg : g₁ ≠ 0) (hz : g₀ - z * g₁ - conj z * conj g₁ = 0) :
     ∃ t : ℝ, z = g₀ / (2 * g₁) + t • (I / g₁) := by
   refine ⟨(z * g₁).im, ?_⟩
@@ -34,14 +36,18 @@ theorem mem_line_of {g₀ g₁ z : ℂ} (hg : g₁ ≠ 0) (hz : g₀ - z * g₁ 
   linear_combination (2 : ℂ) * hw
 
 /-- A set of points satisfying a non-trivial real-linear equation
-`g₀ - z g₁ - conj z conj g₁ = 0` is collinear.-/
+`g₀ - z g₁ - conj z conj g₁ = 0` is collinear.
+@isnad1 id=collinea.2h3v.s7.3e3a302814f1 from=translated src=- shape=c54e325c vocab=cb8039da
+-/
 theorem collinear_of_line {s : Set ℂ} {g₀ g₁ : ℂ} (hg : g₁ ≠ 0)
     (hs : ∀ z ∈ s, g₀ - z * g₁ - conj z * conj g₁ = 0) : Collinear ℝ s := by
   rw [collinear_iff_exists_forall_eq_smul_vadd]
   exact ⟨g₀ / (2 * g₁), I / g₁, fun z hz => by
     obtain ⟨t, ht⟩ := mem_line_of hg (hs z hz); exact ⟨t, by rw [vadd_eq_add, add_comm]; exact ht⟩⟩
 
-/-- The five Miquel points satisfy the Clifford equation.-/
+/-- The five Miquel points satisfy the Clifford equation.
+@isnad1 id=eq.2h6v.s6.f5e2eeb9501d from=translated src=- shape=ed335381 vocab=5365980e
+-/
 theorem clifford_points_on {a b c d e : ℂ} (h : GenPos5 a b c d e) :
     ∀ z ∈ ({miquel a b c d, miquel a b c e, miquel a b d e, miquel a c d e, miquel b c d e} :
       Set ℂ), cliffordEq a b c d e z = 0 := by
@@ -59,7 +65,9 @@ theorem clifford_points_on {a b c d e : ℂ} (h : GenPos5 a b c d e) :
     rw [cliffordEq, kK_p23451] at h1; exact h1
 
 /-- If the Clifford equation vanishes identically (in independent `z`, `Z`), the Miquel points
-of `{a,b,c,d}` and `{a,b,c,e}` coincide (Desnanot–Jacobi, `kK_dj`, at `Z ≠ conj P_abcd`).-/
+of `{a,b,c,d}` and `{a,b,c,e}` coincide (Desnanot–Jacobi, `kK_dj`, at `Z ≠ conj P_abcd`).
+@isnad1 id=eq.8h5v.s9.012e5bda7611 from=translated src=- shape=c2bb3ced vocab=12e7d8d5
+-/
 theorem miquel_eq_of_kK_zero {a b c d e : ℂ} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hd : d ≠ 0)
     (he : e ≠ 0) (hD4 : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0)
     (hD5 : mD a b c e (conj a) (conj b) (conj c) (conj e) ≠ 0)
@@ -91,7 +99,9 @@ theorem miquel_eq_of_kK_zero {a b c d e : ℂ} (ha : a ≠ 0) (hb : b ≠ 0) (hc
   linear_combination key
 
 /-- If the Clifford equation of five circles in general position vanishes identically, all five
-Miquel points coincide.-/
+Miquel points coincide.
+@isnad1 id=eq.3h6v.s8.6253fb1accac from=translated src=- shape=5a991066 vocab=c169d0f3
+-/
 theorem miquel_all_eq {a b c d e : ℂ} (h : GenPos5 a b c d e)
     (H : ∀ z Z, kK a b c d e (conj a) (conj b) (conj c) (conj d) (conj e) z Z = 0) :
     ∀ z ∈ ({miquel a b c d, miquel a b c e, miquel a b d e, miquel a c d e, miquel b c d e} :
@@ -121,7 +131,9 @@ theorem miquel_all_eq {a b c d e : ℂ} (h : GenPos5 a b c d e)
 
 /-- **Clifford's second theorem, hypothesis-free form** (`n = 5`). For five circles through `M`
 with centres `a, b, c, d, e` in general position, the five points `P_S` of `clifford_one` lie on a
-generalized circle: a circle (`Cospherical`) or a line (`Collinear`).-/
+generalized circle: a circle (`Cospherical`) or a line (`Collinear`).
+@isnad1 id=or.1h5v.s7.3445a3bef976 from=translated src=- shape=f77819a5 vocab=dc2686b8
+-/
 theorem clifford_two_clean {a b c d e : ℂ} (h : GenPos5 a b c d e) :
     Cospherical ({miquel a b c d, miquel a b c e, miquel a b d e, miquel a c d e, miquel b c d e} :
       Set ℂ) ∨
@@ -185,6 +197,9 @@ exists (odd `n ≥ 3`: the points of level `n - 1` are concyclic, on a generaliz
 even `n ≥ 4`: the circles of level `n - 1` are concurrent).-/
 def CliffordChain (n : ℕ) : Prop := ∀ c : Fin n → ℂ, GenPosN c → ∃ X, Chain n c X
 
+/--
+@isnad1 id=ex.1h2v.s7.ea996aeb932f from=translated src=- shape=30cb73dc vocab=1ece8696
+-/
 theorem chain3_of (c : Fin 3 → ℂ) (q : ℂ)
     (hq : OnCircle3 (second (c 0) (c 1)) (second (c 0) (c 2)) (second (c 1) (c 2)) q) :
     ∃ Y, Chain 3 c Y ∧ q ∈ Y := by
@@ -198,6 +213,9 @@ theorem chain3_of (c : Fin 3 → ℂ) (q : ℂ)
   · exact ⟨second (c 0) (c 2), rfl, hm _ (by simp)⟩
   · exact ⟨second (c 0) (c 1), rfl, hm _ (by simp)⟩
 
+/--
+@isnad1 id=chain.1h1v.s7.db786d2037d7 from=translated src=- shape=f409a842 vocab=11e1fb8e
+-/
 theorem chain4_of (c : Fin 4 → ℂ) (h : GenPos4 (c 0) (c 1) (c 2) (c 3)) :
     Chain 4 c {miquel (c 0) (c 1) (c 2) (c 3)} := by
   obtain ⟨h1, h2, h3, h4⟩ := clifford_one h
@@ -208,12 +226,18 @@ theorem chain4_of (c : Fin 4 → ℂ) (h : GenPos4 (c 0) (c 1) (c 2) (c 3)) :
   · exact chain3_of (c ∘ Fin.succAbove 2) _ h2
   · exact chain3_of (c ∘ Fin.succAbove 3) _ h1
 
+/--
+@isnad1 id=genpos4.1h1v.s6.a910649dd2c3 from=translated src=- shape=3646f8a6 vocab=5ba8384a
+-/
 theorem GenPosN.pos4 {c : Fin 4 → ℂ} (h : GenPosN c) : GenPos4 (c 0) (c 1) (c 2) (c 3) :=
   ⟨h.1 0 1 (by decide), h.1 0 2 (by decide), h.1 0 3 (by decide), h.1 1 2 (by decide),
     h.1 1 3 (by decide), h.1 2 3 (by decide), h.2 0 1 2 (by decide) (by decide),
     h.2 0 1 3 (by decide) (by decide), h.2 0 2 3 (by decide) (by decide),
     h.2 1 2 3 (by decide) (by decide)⟩
 
+/--
+@isnad1 id=genpos5.1h1v.s6.b3b5b591caa2 from=translated src=- shape=80057986 vocab=6e0e08a6
+-/
 theorem GenPosN.pos5 {c : Fin 5 → ℂ} (h : GenPosN c) : GenPos5 (c 0) (c 1) (c 2) (c 3) (c 4) :=
   ⟨h.1 0 1 (by decide), h.1 0 2 (by decide), h.1 0 3 (by decide), h.1 0 4 (by decide),
     h.1 1 2 (by decide), h.1 1 3 (by decide), h.1 1 4 (by decide), h.1 2 3 (by decide),
@@ -224,11 +248,15 @@ theorem GenPosN.pos5 {c : Fin 5 → ℂ} (h : GenPosN c) : GenPos5 (c 0) (c 1) (
     h.2 1 2 4 (by decide) (by decide), h.2 1 3 4 (by decide) (by decide),
     h.2 2 3 4 (by decide) (by decide)⟩
 
-/-- Base case `n = 4` of the Clifford chain (Clifford's first theorem).-/
+/-- Base case `n = 4` of the Clifford chain (Clifford's first theorem).
+@isnad1 id=clifford.0h0v.s2.fd0f6aecede3 from=translated src=- shape=e590c3e1 vocab=5675b229
+-/
 theorem cliffordChain_four : CliffordChain 4 :=
   fun c h => ⟨_, chain4_of c h.pos4⟩
 
-/-- A cospherical or collinear set lies on a generalized circle.-/
+/-- A cospherical or collinear set lies on a generalized circle.
+@isnad1 id=ex.1h1v.s6.0fc418e8d0e8 from=translated src=- shape=2f76e61c vocab=73afb293
+-/
 theorem exists_gcircle {s : Set ℂ} (h : Cospherical s ∨ Collinear ℝ s) :
     ∃ X, IsGCircle X ∧ s ⊆ X := by
   rcases h with ⟨o, r, hr⟩ | h
@@ -243,7 +271,9 @@ theorem exists_gcircle {s : Set ℂ} (h : Cospherical s ∨ Collinear ℝ s) :
       obtain ⟨t, ht⟩ := hv z hz
       exact ⟨t, by rw [ht, vadd_eq_add, add_comm]⟩
 
-/-- Base case `n = 5` of the Clifford chain (Clifford's second theorem, `clifford_two_clean`).-/
+/-- Base case `n = 5` of the Clifford chain (Clifford's second theorem, `clifford_two_clean`).
+@isnad1 id=clifford.0h0v.s2.06388a029eed from=translated src=- shape=e590c3e1 vocab=5675b229
+-/
 theorem cliffordChain_five : CliffordChain 5 := by
   intro c h
   have h5 := h.pos5

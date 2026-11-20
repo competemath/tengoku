@@ -86,26 +86,35 @@ def gq1 (x₁ x₂ x₃ y₁ y₂ y₃ : R) : R :=
 def gq2 (x₁ x₂ x₃ y₁ y₂ y₃ : R) : R :=
   det3 (x₁ ^ 2) (y₁ * x₁) y₁ (x₂ ^ 2) (y₂ * x₂) y₂ (x₃ ^ 2) (y₃ * x₃) y₃
 
+/--
+@isnad1 id=eq.0h9v.s7.2da454b8e65b from=translated src=- shape=54479074 vocab=46c34e10
+-/
 theorem gq_expand (x₁ x₂ x₃ y₁ y₂ y₃ z Z : R) :
     gq x₁ x₂ x₃ y₁ y₂ y₃ z Z = gq0 x₁ x₂ x₃ y₁ y₂ y₃ - z * gq1 x₁ x₂ x₃ y₁ y₂ y₃
       - Z * gq2 x₁ x₂ x₃ y₁ y₂ y₃ + z * Z * cycP x₁ x₂ x₃ y₁ y₂ y₃ := by
   unfold gq gq0 gq1 gq2 cycP det3; ring
 
-/-- Certificate for Clifford's first theorem, part 1.-/
+/-- Certificate for Clifford's first theorem, part 1.
+@isnad1 id=eq.0h9v.s7.77b8cdecab11 from=translated src=- shape=d9fea500 vocab=ea7fe6a4
+-/
 theorem certA₁ (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ * gq0 x₁ x₂ x₃ y₁ y₂ y₃ -
       mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ * gq1 x₁ x₂ x₃ y₁ y₂ y₃ =
       mN y₁ y₂ y₃ y₄ x₁ x₂ x₃ x₄ * (y₁ * y₂ * y₃ * triP x₁ x₂ x₃ y₁ y₂ y₃) := by
   unfold mD mN gq0 gq1 triP det4 det3; ring
 
-/-- Certificate for Clifford's first theorem, part 2.-/
+/-- Certificate for Clifford's first theorem, part 2.
+@isnad1 id=eq.0h9v.s7.90502354ba7a from=translated src=- shape=a99d0d2c vocab=7e3d4ce3
+-/
 theorem certA₂ (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ * gq2 x₁ x₂ x₃ y₁ y₂ y₃ -
       mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ * cycP x₁ x₂ x₃ y₁ y₂ y₃ =
       mD y₁ y₂ y₃ y₄ x₁ x₂ x₃ x₄ * (y₁ * y₂ * y₃ * triP x₁ x₂ x₃ y₁ y₂ y₃) := by
   unfold mD mN gq2 cycP triP det4 det3; ring
 
-/-- Elimination identity behind `resD`.-/
+/-- Elimination identity behind `resD`.
+@isnad1 id=other.0h9v.s10.514bea3798be from=translated src=- shape=fb1d3449 vocab=22bb2f4e
+-/
 theorem resD_id (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     let a := det4 y₁ (y₁ ^ 2) (y₁ * x₁) x₁ y₂ (y₂ ^ 2) (y₂ * x₂) x₂ y₃ (y₃ ^ 2) (y₃ * x₃) x₃ 0 0 y₄ 1
     let b := det4 y₁ (y₁ ^ 2) (y₁ * x₁) x₁ y₂ (y₂ ^ 2) (y₂ * x₂) x₂ y₃ (y₃ ^ 2) (y₃ * x₃) x₃ y₄ (y₄ ^ 2) 0 0
@@ -118,7 +127,9 @@ theorem resD_id (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
   simp only [a, b, e₂, e₁, mD, crs, triP, cycP, det4, det3]
   ring
 
-/-- `mD` and its conjugate cannot vanish together in general position.-/
+/-- `mD` and its conjugate cannot vanish together in general position.
+@isnad1 id=eq.2h9v.s8.540d24fd36e6 from=translated src=- shape=2356f30e vocab=6b05f7e8
+-/
 theorem resD {x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R} (h₁ : mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ = 0)
     (h₂ : mD y₁ y₂ y₃ y₄ x₁ x₂ x₃ x₄ = 0) :
     y₄ * (y₁ - y₄) * (y₂ - y₄) * (y₃ - y₄) * crs x₁ x₂ y₁ y₂ * crs x₁ x₃ y₁ y₃ *
@@ -165,12 +176,17 @@ def kK (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) : R :=
     (x₄ * y₄) (x₄ ^ 2 * y₄) (x₄ * y₄ ^ 2) (x₄ ^ 2 * (x₄ - z)) (y₄ ^ 2 * (y₄ - Z))
     (x₅ * y₅) (x₅ ^ 2 * y₅) (x₅ * y₅ ^ 2) (x₅ ^ 2 * (x₅ - z)) (y₅ ^ 2 * (y₅ - Z))
 
+/--
+@isnad1 id=eq.0h13v.s7.c632f941256f from=translated src=- shape=e0ef9185 vocab=93dc34c4
+-/
 theorem kK_expand (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z = k0 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ - z * k1 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ - Z * k2 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ + z * Z * k3 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ := by
   unfold kK k0 k1 k2 k3 det5 det4 det3; ring
 
 /-- Desnanot–Jacobi (Sylvester) identity for a 5×5 determinant: bordering the 3×3 block in the
-top-left corner.-/
+top-left corner.
+@isnad1 id=eq.0h26v.s7.07325dcbe5b2 from=translated src=- shape=2cf272c3 vocab=7966ef0c
+-/
 theorem det5_mul_det3 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ *
       det3 a₁ a₂ a₃ b₁ b₂ b₃ c₁ c₂ c₃ =
@@ -180,70 +196,115 @@ theorem det5_mul_det3 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c�
         det4 a₁ a₂ a₃ a₄ b₁ b₂ b₃ b₄ c₁ c₂ c₃ c₄ e₁ e₂ e₃ e₄ := by
   unfold det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h26v.s7.ee6865acd13c from=translated src=- shape=f06e4aa2 vocab=0f426fd8
+-/
 theorem det5_p12354 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ e₁ e₂ e₃ e₄ e₅ d₁ d₂ d₃ d₄ d₅ =
       -det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ := by
   unfold det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h13v.s6.1be4185bc1eb from=translated src=- shape=964439ea vocab=b032bdbb
+-/
 theorem kK_p12354 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₁ x₂ x₃ x₅ x₄ y₁ y₂ y₃ y₅ y₄ z Z =
       -kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z := by
   unfold kK; exact det5_p12354 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h26v.s6.d93496822da8 from=translated src=- shape=23b751ac vocab=bc233259
+-/
 theorem det5_p12453 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ c₁ c₂ c₃ c₄ c₅ =
       det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ := by
   unfold det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h13v.s5.7329ce81ba44 from=translated src=- shape=f66b247b vocab=4e06bed0
+-/
 theorem kK_p12453 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₁ x₂ x₄ x₅ x₃ y₁ y₂ y₄ y₅ y₃ z Z =
       kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z := by
   unfold kK; exact det5_p12453 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h26v.s7.b031f921b53b from=translated src=- shape=08f4820c vocab=0f426fd8
+-/
 theorem det5_p13452 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     det5 a₁ a₂ a₃ a₄ a₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ b₁ b₂ b₃ b₄ b₅ =
       -det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ := by
   unfold det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h13v.s6.ad3dc23e034d from=translated src=- shape=264cbdff vocab=b032bdbb
+-/
 theorem kK_p13452 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₁ x₃ x₄ x₅ x₂ y₁ y₃ y₄ y₅ y₂ z Z =
       -kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z := by
   unfold kK; exact det5_p13452 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h26v.s6.ca533959ad2c from=translated src=- shape=d4f35e5b vocab=bc233259
+-/
 theorem det5_p23451 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     det5 b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ a₁ a₂ a₃ a₄ a₅ =
       det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ := by
   unfold det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h13v.s5.01346fca7222 from=translated src=- shape=6e13c93d vocab=4e06bed0
+-/
 theorem kK_p23451 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₂ x₃ x₄ x₅ x₁ y₂ y₃ y₄ y₅ y₁ z Z =
       kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z := by
   unfold kK; exact det5_p23451 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s5.7b9810161a38 from=translated src=- shape=359c7ba8 vocab=b0a05904
+-/
 theorem mN_p1243 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mN x₁ x₂ x₄ x₃ y₁ y₂ y₄ y₃ = -mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mN det4 det3; ring
 
+/--
+@isnad1 id=eq.0h9v.s5.fc0faaaff332 from=translated src=- shape=359c7ba8 vocab=1a455f7b
+-/
 theorem mD_p1243 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mD x₁ x₂ x₄ x₃ y₁ y₂ y₄ y₃ = -mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mD det4 det3; ring
 
+/--
+@isnad1 id=eq.0h9v.s5.3d6fb094d7d4 from=translated src=- shape=5f07d601 vocab=5094fd47
+-/
 theorem mN_p1342 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mN x₁ x₃ x₄ x₂ y₁ y₃ y₄ y₂ = mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mN det4 det3; ring
 
+/--
+@isnad1 id=eq.0h9v.s5.af47b76b5e80 from=translated src=- shape=5f07d601 vocab=40e6cec7
+-/
 theorem mD_p1342 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mD x₁ x₃ x₄ x₂ y₁ y₃ y₄ y₂ = mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mD det4 det3; ring
 
+/--
+@isnad1 id=eq.0h9v.s5.c859b241e22b from=translated src=- shape=4f966582 vocab=b0a05904
+-/
 theorem mN_p2341 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mN x₂ x₃ x₄ x₁ y₂ y₃ y₄ y₁ = -mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mN det4 det3; ring
 
+/--
+@isnad1 id=eq.0h9v.s5.45d440f0df88 from=translated src=- shape=4f966582 vocab=1a455f7b
+-/
 theorem mD_p2341 (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     mD x₂ x₃ x₄ x₁ y₂ y₃ y₄ y₁ = -mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ := by
   unfold mD det4 det3; ring
 
+/--
+@isnad1 id=eq.0h10v.s9.70de892d7a5a from=translated src=- shape=c7bae3e2 vocab=da4c424d
+-/
 theorem detU (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ z : R) :
     det4 (x₁ * y₁) (x₁ ^ 2 * y₁) (x₁ * y₁ ^ 2) (x₁ ^ 2 * (x₁ - z)) (x₂ * y₂) (x₂ ^ 2 * y₂)
       (x₂ * y₂ ^ 2) (x₂ ^ 2 * (x₂ - z)) (x₃ * y₃) (x₃ ^ 2 * y₃) (x₃ * y₃ ^ 2) (x₃ ^ 2 * (x₃ - z))
@@ -251,6 +312,9 @@ theorem detU (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ z : R) :
       -(x₁ * x₂ * x₃ * x₄) * (mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ - z * mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄) := by
   unfold mN mD det4 det3; ring
 
+/--
+@isnad1 id=eq.0h10v.s9.8cccef9c1873 from=translated src=- shape=ba8bfdde vocab=6981f732
+-/
 theorem detV (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ Z : R) :
     det4 (x₁ * y₁) (x₁ ^ 2 * y₁) (x₁ * y₁ ^ 2) (y₁ ^ 2 * (y₁ - Z)) (x₂ * y₂) (x₂ ^ 2 * y₂)
       (x₂ * y₂ ^ 2) (y₂ ^ 2 * (y₂ - Z)) (x₃ * y₃) (x₃ ^ 2 * y₃) (x₃ * y₃ ^ 2) (y₃ ^ 2 * (y₃ - Z))
@@ -258,6 +322,9 @@ theorem detV (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ Z : R) :
       y₁ * y₂ * y₃ * y₄ * (mN y₁ y₂ y₃ y₄ x₁ x₂ x₃ x₄ - Z * mD y₁ y₂ y₃ y₄ x₁ x₂ x₃ x₄) := by
   unfold mN mD det4 det3; ring
 
+/--
+@isnad1 id=eq.0h7v.s8.f4400974c540 from=translated src=- shape=fe08ec20 vocab=2540227a
+-/
 theorem detT (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     det3 (x₁ * y₁) (x₁ ^ 2 * y₁) (x₁ * y₁ ^ 2) (x₂ * y₂) (x₂ ^ 2 * y₂) (x₂ * y₂ ^ 2)
       (x₃ * y₃) (x₃ ^ 2 * y₃) (x₃ * y₃ ^ 2) =
@@ -265,7 +332,9 @@ theorem detT (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
   unfold triP det3; ring
 
 /-- The Clifford circle `kK` restricted to the two Miquel points of `{1,2,3,4}` and `{1,2,3,5}`
-(Desnanot–Jacobi applied to the defining 5×5 determinant).-/
+(Desnanot–Jacobi applied to the defining 5×5 determinant).
+@isnad1 id=eq.0h13v.s9.b2975fbaac00 from=translated src=- shape=d9a8d85c vocab=12937870
+-/
 theorem kK_dj (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
     kK x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z * (x₁ * y₁ * x₂ * y₂ * x₃ * y₃ * triP x₁ x₂ x₃ y₁ y₂ y₃) =
       (-(x₁ * x₂ * x₃ * x₄) * (mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ - z * mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄)) *
@@ -276,37 +345,61 @@ theorem kK_dj (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ z Z : R) :
   rw [detU, detU, detV, detV, detT] at h
   exact h
 
+/--
+@isnad1 id=eq.0h11v.s5.610bbf574ded from=translated src=- shape=6fd6bca2 vocab=96517b9b
+-/
 theorem k3_swap (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) : k3 y₁ y₂ y₃ y₄ y₅ x₁ x₂ x₃ x₄ x₅ = k3 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ := by
   unfold k3 det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h11v.s5.6e1b5a8595b3 from=translated src=- shape=6fd6bca2 vocab=c3d94aae
+-/
 theorem k0_swap (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) : k0 y₁ y₂ y₃ y₄ y₅ x₁ x₂ x₃ x₄ x₅ = k0 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ := by
   unfold k0 det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h11v.s5.718706964952 from=translated src=- shape=6fd6bca2 vocab=73b1f6a0
+-/
 theorem k2_swap (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) : k2 y₁ y₂ y₃ y₄ y₅ x₁ x₂ x₃ x₄ x₅ = k1 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ := by
   unfold k1 k2 det5 det4 det3; ring
 
+/--
+@isnad1 id=eq.0h7v.s5.c0b71c568e9b from=translated src=- shape=79d13319 vocab=b69bd877
+-/
 theorem cycP_swap (x₁ x₂ x₃ y₁ y₂ y₃ : R) : cycP y₁ y₂ y₃ x₁ x₂ x₃ = -cycP x₁ x₂ x₃ y₁ y₂ y₃ := by
   unfold cycP det3; ring
 
+/--
+@isnad1 id=eq.0h7v.s5.a5e43af2e248 from=translated src=- shape=d1dc0a56 vocab=551c4c3e
+-/
 theorem gq2_swap (x₁ x₂ x₃ y₁ y₂ y₃ : R) : gq2 y₁ y₂ y₃ x₁ x₂ x₃ = -gq1 x₁ x₂ x₃ y₁ y₂ y₃ := by
   unfold gq1 gq2 det3; ring
 
+/--
+@isnad1 id=eq.0h7v.s5.b3e5691ff4a0 from=translated src=- shape=79d13319 vocab=e4b311ba
+-/
 theorem gq0_swap (x₁ x₂ x₃ y₁ y₂ y₃ : R) : gq0 y₁ y₂ y₃ x₁ x₂ x₃ = -gq0 x₁ x₂ x₃ y₁ y₂ y₃ := by
   unfold gq0 det3; ring
 
-/-- The second intersection `P_12` lies on `Γ₁₂₃` (cleared denominators).-/
+/-- The second intersection `P_12` lies on `Γ₁₂₃` (cleared denominators).
+@isnad1 id=eq.0h7v.s9.163986be455b from=translated src=- shape=f7615c11 vocab=485cd963
+-/
 theorem gq_P12 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     gq0 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ - y₂) * (x₁ - x₂)) - gq1 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ * x₂ - x₁ * y₂) * (x₁ - x₂)) -
       gq2 x₁ x₂ x₃ y₁ y₂ y₃ * ((x₁ * y₂ - y₁ * x₂) * (y₁ - y₂)) + cycP x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ * x₂ - x₁ * y₂) * (x₁ * y₂ - y₁ * x₂)) = 0 := by
   unfold gq0 gq1 gq2 cycP det3; ring
 
-/-- The second intersection `P_13` lies on `Γ₁₂₃` (cleared denominators).-/
+/-- The second intersection `P_13` lies on `Γ₁₂₃` (cleared denominators).
+@isnad1 id=eq.0h7v.s9.730d1242a697 from=translated src=- shape=2ff81f15 vocab=485cd963
+-/
 theorem gq_P13 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     gq0 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ - y₃) * (x₁ - x₃)) - gq1 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ * x₃ - x₁ * y₃) * (x₁ - x₃)) -
       gq2 x₁ x₂ x₃ y₁ y₂ y₃ * ((x₁ * y₃ - y₁ * x₃) * (y₁ - y₃)) + cycP x₁ x₂ x₃ y₁ y₂ y₃ * ((y₁ * x₃ - x₁ * y₃) * (x₁ * y₃ - y₁ * x₃)) = 0 := by
   unfold gq0 gq1 gq2 cycP det3; ring
 
-/-- The second intersection `P_23` lies on `Γ₁₂₃` (cleared denominators).-/
+/-- The second intersection `P_23` lies on `Γ₁₂₃` (cleared denominators).
+@isnad1 id=eq.0h7v.s9.3ca63c97d148 from=translated src=- shape=ea934a55 vocab=485cd963
+-/
 theorem gq_P23 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     gq0 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₂ - y₃) * (x₂ - x₃)) - gq1 x₁ x₂ x₃ y₁ y₂ y₃ * ((y₂ * x₃ - x₂ * y₃) * (x₂ - x₃)) -
       gq2 x₁ x₂ x₃ y₁ y₂ y₃ * ((x₂ * y₃ - y₂ * x₃) * (y₂ - y₃)) + cycP x₁ x₂ x₃ y₁ y₂ y₃ * ((y₂ * x₃ - x₂ * y₃) * (x₂ * y₃ - y₂ * x₃)) = 0 := by
@@ -318,57 +411,96 @@ section Map
 
 variable {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
 
+/--
+@isnad1 id=eq.0h12v.s8.b382a65e951f from=translated src=- shape=db5ef01b vocab=cc3536b7
+-/
 theorem map_det3 (a₁ a₂ a₃ b₁ b₂ b₃ c₁ c₂ c₃ : R) :
     f (det3 a₁ a₂ a₃ b₁ b₂ b₃ c₁ c₂ c₃) =
       det3 (f a₁) (f a₂) (f a₃) (f b₁) (f b₂) (f b₃) (f c₁) (f c₂) (f c₃) := by
   simp [det3]
 
+/--
+@isnad1 id=eq.0h19v.s9.750ab687c46d from=translated src=- shape=51cdea5c vocab=2860cdd2
+-/
 theorem map_det4 (a₁ a₂ a₃ a₄ b₁ b₂ b₃ b₄ c₁ c₂ c₃ c₄ d₁ d₂ d₃ d₄ : R) :
     f (det4 a₁ a₂ a₃ a₄ b₁ b₂ b₃ b₄ c₁ c₂ c₃ c₄ d₁ d₂ d₃ d₄) =
       det4 (f a₁) (f a₂) (f a₃) (f a₄) (f b₁) (f b₂) (f b₃) (f b₄) (f c₁) (f c₂) (f c₃) (f c₄) (f d₁) (f d₂) (f d₃) (f d₄) := by
   simp [det4, map_det3]
 
+/--
+@isnad1 id=eq.0h28v.s10.e50dd1cff4ce from=translated src=- shape=af9b07e1 vocab=d12f1c53
+-/
 theorem map_det5 (a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅ : R) :
     f (det5 a₁ a₂ a₃ a₄ a₅ b₁ b₂ b₃ b₄ b₅ c₁ c₂ c₃ c₄ c₅ d₁ d₂ d₃ d₄ d₅ e₁ e₂ e₃ e₄ e₅) =
       det5 (f a₁) (f a₂) (f a₃) (f a₄) (f a₅) (f b₁) (f b₂) (f b₃) (f b₄) (f b₅) (f c₁) (f c₂) (f c₃) (f c₄) (f c₅) (f d₁) (f d₂) (f d₃) (f d₄) (f d₅) (f e₁) (f e₂) (f e₃) (f e₄) (f e₅) := by
   simp [det5, map_det4]
 
+/--
+@isnad1 id=eq.0h11v.s8.6a2b86f93f76 from=translated src=- shape=cb70a047 vocab=f88a7827
+-/
 theorem map_mN (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     f (mN x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄) = mN (f x₁) (f x₂) (f x₃) (f x₄) (f y₁) (f y₂) (f y₃) (f y₄) := by
   simp [mN, map_det4]
 
+/--
+@isnad1 id=eq.0h11v.s8.e7c82c6929a1 from=translated src=- shape=cb70a047 vocab=e5c3dcb9
+-/
 theorem map_mD (x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄ : R) :
     f (mD x₁ x₂ x₃ x₄ y₁ y₂ y₃ y₄) = mD (f x₁) (f x₂) (f x₃) (f x₄) (f y₁) (f y₂) (f y₃) (f y₄) := by
   simp [mD, map_det4]
 
+/--
+@isnad1 id=eq.0h13v.s9.a4b5895f2a0a from=translated src=- shape=9b007ca1 vocab=585a5497
+-/
 theorem map_k0 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) :
     f (k0 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅) = k0 (f x₁) (f x₂) (f x₃) (f x₄) (f x₅) (f y₁) (f y₂) (f y₃) (f y₄) (f y₅) := by
   simp [k0, map_det5]
 
+/--
+@isnad1 id=eq.0h13v.s9.5028d78591e6 from=translated src=- shape=9b007ca1 vocab=8d3a4d05
+-/
 theorem map_k1 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) :
     f (k1 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅) = k1 (f x₁) (f x₂) (f x₃) (f x₄) (f x₅) (f y₁) (f y₂) (f y₃) (f y₄) (f y₅) := by
   simp [k1, map_det5]
 
+/--
+@isnad1 id=eq.0h13v.s9.45c6009fc7df from=translated src=- shape=9b007ca1 vocab=afe9c9d1
+-/
 theorem map_k2 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) :
     f (k2 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅) = k2 (f x₁) (f x₂) (f x₃) (f x₄) (f x₅) (f y₁) (f y₂) (f y₃) (f y₄) (f y₅) := by
   simp [k2, map_det5]
 
+/--
+@isnad1 id=eq.0h13v.s9.79580eedabc9 from=translated src=- shape=9b007ca1 vocab=4c5f2ff6
+-/
 theorem map_k3 (x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅ : R) :
     f (k3 x₁ x₂ x₃ x₄ x₅ y₁ y₂ y₃ y₄ y₅) = k3 (f x₁) (f x₂) (f x₃) (f x₄) (f x₅) (f y₁) (f y₂) (f y₃) (f y₄) (f y₅) := by
   simp [k3, map_det5]
 
+/--
+@isnad1 id=eq.0h9v.s8.c9099e62e962 from=translated src=- shape=daf67344 vocab=cd8011c4
+-/
 theorem map_cycP (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     f (cycP x₁ x₂ x₃ y₁ y₂ y₃) = cycP (f x₁) (f x₂) (f x₃) (f y₁) (f y₂) (f y₃) := by
   simp [cycP, map_det3]
 
+/--
+@isnad1 id=eq.0h9v.s8.1412723b7396 from=translated src=- shape=daf67344 vocab=3f2ba010
+-/
 theorem map_gq0 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     f (gq0 x₁ x₂ x₃ y₁ y₂ y₃) = gq0 (f x₁) (f x₂) (f x₃) (f y₁) (f y₂) (f y₃) := by
   simp [gq0, map_det3]
 
+/--
+@isnad1 id=eq.0h9v.s8.d658a073a199 from=translated src=- shape=daf67344 vocab=6853657b
+-/
 theorem map_gq1 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     f (gq1 x₁ x₂ x₃ y₁ y₂ y₃) = gq1 (f x₁) (f x₂) (f x₃) (f y₁) (f y₂) (f y₃) := by
   simp [gq1, map_det3]
 
+/--
+@isnad1 id=eq.0h9v.s8.ced4da8466f5 from=translated src=- shape=daf67344 vocab=c795f795
+-/
 theorem map_gq2 (x₁ x₂ x₃ y₁ y₂ y₃ : R) :
     f (gq2 x₁ x₂ x₃ y₁ y₂ y₃) = gq2 (f x₁) (f x₂) (f x₃) (f y₁) (f y₂) (f y₃) := by
   simp [gq2, map_det3]
@@ -384,6 +516,9 @@ open EuclideanGeometry
 /-- `z` lies on the circle through `M = 0` with centre `c = p + q i`: `x² + y² = 2 (p x + q y)`.-/
 def OnCircleM (c z : ℂ) : Prop := z.re ^ 2 + z.im ^ 2 = 2 * (c.re * z.re + c.im * z.im)
 
+/--
+@isnad1 id=iff.0h2v.s7.472f4a46f013 from=translated src=- shape=54e3fec2 vocab=7f81eacf
+-/
 theorem onCircleM_iff (c z : ℂ) : OnCircleM c z ↔ z * conj z = conj c * z + c * conj z := by
   rw [OnCircleM, Complex.ext_iff]
   simp only [Complex.mul_re, Complex.mul_im, Complex.conj_re, Complex.conj_im, Complex.add_re,
@@ -409,20 +544,34 @@ determinants in the centres and their conjugates.-/
 noncomputable def miquel (a b c d : ℂ) : ℂ :=
   mN a b c d (conj a) (conj b) (conj c) (conj d) / mD a b c d (conj a) (conj b) (conj c) (conj d)
 
+/--
+@isnad1 id=ne.1h2v.s3.4dd6ec3867c0 from=translated src=- shape=37236ace vocab=ec552c18
+-/
 theorem Transversal.ne {c d : ℂ} (h : Transversal c d) : c ≠ d := by
   rintro rfl; exact h (mul_comm _ _)
 
+/--
+@isnad1 id=ne.1h2v.s4.2a6276d47299 from=translated src=- shape=025a27bb vocab=ec552c18
+-/
 theorem Transversal.left_ne_zero {c d : ℂ} (h : Transversal c d) : c ≠ 0 := by
   rintro rfl; exact h (by simp)
 
+/--
+@isnad1 id=ne.1h2v.s4.039069fa8410 from=translated src=- shape=ee2c62e5 vocab=ec552c18
+-/
 theorem Transversal.right_ne_zero {c d : ℂ} (h : Transversal c d) : d ≠ 0 := by
   rintro rfl; exact h (by simp)
 
+/--
+@isnad1 id=ne.1h2v.s6.d36f9700d772 from=translated src=- shape=48f1a04c vocab=87c109b5
+-/
 theorem conj_sub_ne_zero {c d : ℂ} (h : c ≠ d) : conj c - conj d ≠ 0 := by
   rw [← map_sub]; exact (map_ne_zero _).2 (sub_ne_zero.2 h)
 
 /-- `second` agrees with the real-coordinate formula: with `a = pᵢ - pⱼ`, `b = qᵢ - qⱼ`,
-`λ = 2 (qᵢ a - pᵢ b) / (a² + b²)` the second intersection is `(λ (-b), λ a)`.-/
+`λ = 2 (qᵢ a - pᵢ b) / (a² + b²)` the second intersection is `(λ (-b), λ a)`.
+@isnad1 id=eq.1h2v.s8.5b2d3f253dd6 from=translated src=- shape=d7fb29b9 vocab=80e20b78
+-/
 theorem second_eq_coords {c d : ℂ} (h : c ≠ d) :
     second c d =
       ⟨2 * (c.im * (c.re - d.re) - c.re * (c.im - d.im)) / ((c.re - d.re) ^ 2 + (c.im - d.im) ^ 2) *
@@ -441,17 +590,29 @@ theorem second_eq_coords {c d : ℂ} (h : c ≠ d) :
       Complex.conj_im] <;>
     field_simp <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s7.6e94f06e8e0d from=translated src=- shape=d5174e5e vocab=fb2e2d35
+-/
 theorem conj_second (c d : ℂ) : conj (second c d) = (c * conj d - conj c * d) / (c - d) := by
   unfold second; rw [map_div₀]; simp only [map_sub, map_mul, starRingEnd_self_apply]
 
+/--
+@isnad1 id=oncircle.1h2v.s3.7c3eb8a32be9 from=translated src=- shape=b60038ee vocab=71d7bcfa
+-/
 theorem second_onCircleM_left {c d : ℂ} (h : c ≠ d) : OnCircleM c (second c d) := by
   have hd := conj_sub_ne_zero h; have he := sub_ne_zero.2 h
   rw [onCircleM_iff, conj_second, second]; field_simp; ring
 
+/--
+@isnad1 id=oncircle.1h2v.s3.8aa0ff673a5b from=translated src=- shape=9005b7e6 vocab=71d7bcfa
+-/
 theorem second_onCircleM_right {c d : ℂ} (h : c ≠ d) : OnCircleM d (second c d) := by
   have hd := conj_sub_ne_zero h; have he := sub_ne_zero.2 h
   rw [onCircleM_iff, conj_second, second]; field_simp; ring
 
+/--
+@isnad1 id=ne.1h2v.s4.f88e1eb0cdcb from=translated src=- shape=bedffbc2 vocab=f2b494d3
+-/
 theorem second_ne_zero {c d : ℂ} (h : Transversal c d) : second c d ≠ 0 := by
   unfold second
   exact div_ne_zero (sub_ne_zero.2 h) (conj_sub_ne_zero h.ne)
@@ -462,6 +623,9 @@ def OnCircle3 (z₁ z₂ z₃ z : ℂ) : Prop := Cospherical ({z₁, z₂, z₃,
 
 /-! ### Generic circle lemmas -/
 
+/--
+@isnad1 id=eq.2h6v.s7.2d243c7bc1b5 from=translated src=- shape=88cfd198 vocab=80516351
+-/
 theorem circ_of_eq {g₀ g₁ g₂ cy z Z : ℂ} (hcy : cy ≠ 0) (h : g₀ - z * g₁ - Z * g₂ + z * Z * cy = 0) :
     (z - g₂ / cy) * (Z - g₁ / cy) = (g₁ * g₂ - g₀ * cy) / cy ^ 2 := by
   have e : (z - g₂ / cy) * (Z - g₁ / cy) - (g₁ * g₂ - g₀ * cy) / cy ^ 2 =
@@ -470,7 +634,9 @@ theorem circ_of_eq {g₀ g₁ g₂ cy z Z : ℂ} (hcy : cy ≠ 0) (h : g₀ - z 
   rw [h, zero_div, sub_eq_zero] at e; exact e
 
 /-- If every point of `s` satisfies `g₀ - z g₁ - z̄ g₂ + z z̄ cy = 0` (a genuine circle equation:
-`cy ≠ 0`, centre `g₂ / cy` with conjugate `g₁ / cy`), then `s` is cospherical.-/
+`cy ≠ 0`, centre `g₂ / cy` with conjugate `g₁ / cy`), then `s` is cospherical.
+@isnad1 id=cospheri.3h5v.s7.2001ef9d63c5 from=translated src=- shape=99b195f6 vocab=ec8ed4e9
+-/
 theorem cospherical_of_eq {s : Set ℂ} {g₀ g₁ g₂ cy : ℂ} (hcy : cy ≠ 0)
     (ho : conj (g₂ / cy) = g₁ / cy)
     (hs : ∀ z ∈ s, g₀ - z * g₁ - conj z * g₂ + z * conj z * cy = 0) : Cospherical s := by
@@ -479,6 +645,9 @@ theorem cospherical_of_eq {s : Set ℂ} {g₀ g₁ g₂ cy : ℂ} (hcy : cy ≠ 
   rw [← ho, ← map_sub, Complex.mul_conj] at h1
   rw [Complex.dist_eq, Complex.norm_def, ← h1, Complex.ofReal_re]
 
+/--
+@isnad1 id=eq.2h6v.s9.5f97ba88f791 from=translated src=- shape=3f91a70f vocab=ece2c642
+-/
 theorem second_on {g₀ g₁ g₂ cy c d : ℂ} (hcd : c ≠ d)
     (h : g₀ * ((conj c - conj d) * (c - d)) - g₁ * ((conj c * d - c * conj d) * (c - d)) -
       g₂ * ((c * conj d - conj c * d) * (conj c - conj d)) +
@@ -493,6 +662,9 @@ theorem second_on {g₀ g₁ g₂ cy c d : ℂ} (hcd : c ≠ d)
     rw [conj_second, second]; field_simp
   rw [key, h, zero_div]
 
+/--
+@isnad1 id=eq.4h9v.s7.9f1ca4b034bd from=translated src=- shape=7f7f8c12 vocab=5eb28542
+-/
 theorem ratio_on {g₀ g₁ g₂ cy N D Nb Db q : ℂ} (hD : D ≠ 0) (hDb : Db ≠ 0)
     (h₁ : D * g₀ - N * g₁ = Nb * q) (h₂ : D * g₂ - N * cy = Db * q) :
     g₀ - N / D * g₁ - Nb / Db * g₂ + N / D * (Nb / Db) * cy = 0 := by
@@ -503,22 +675,33 @@ theorem ratio_on {g₀ g₁ g₂ cy N D Nb Db q : ℂ} (hD : D ≠ 0) (hDb : Db 
 
 /-! ### Conjugation -/
 
+/--
+@isnad1 id=eq.0h4v.s8.f8f18e5cb226 from=translated src=- shape=6bc61e63 vocab=035e3ebb
+-/
 theorem conj_mN (a b c d : ℂ) :
     conj (mN a b c d (conj a) (conj b) (conj c) (conj d)) =
       mN (conj a) (conj b) (conj c) (conj d) a b c d := by
   rw [map_mN]; simp only [starRingEnd_self_apply]
 
+/--
+@isnad1 id=eq.0h4v.s8.4a4975c2af78 from=translated src=- shape=6bc61e63 vocab=ca122d29
+-/
 theorem conj_mD (a b c d : ℂ) :
     conj (mD a b c d (conj a) (conj b) (conj c) (conj d)) =
       mD (conj a) (conj b) (conj c) (conj d) a b c d := by
   rw [map_mD]; simp only [starRingEnd_self_apply]
 
+/--
+@isnad1 id=eq.0h4v.s8.6f6df7cc019e from=translated src=- shape=27300e5c vocab=1ecc2820
+-/
 theorem conj_miquel (a b c d : ℂ) :
     conj (miquel a b c d) =
       mN (conj a) (conj b) (conj c) (conj d) a b c d / mD (conj a) (conj b) (conj c) (conj d) a b c d := by
   rw [miquel, map_div₀, conj_mN, conj_mD]
 
-/-- In general position the Miquel denominator does not vanish.-/
+/-- In general position the Miquel denominator does not vanish.
+@isnad1 id=ne.7h4v.s7.ebac65cc1014 from=translated src=- shape=db9f7b77 vocab=0963e0f2
+-/
 theorem mD_ne_zero {a b c d : ℂ} (hab : Transversal a b) (hac : Transversal a c)
     (hbc : Transversal b c) (had : Transversal a d) (hbd : Transversal b d) (hcd : Transversal c d)
     (ht : GenTriple a b c) : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0 := by
@@ -534,11 +717,17 @@ theorem mD_ne_zero {a b c d : ℂ} (hab : Transversal a b) (hac : Transversal a 
   · exact sub_ne_zero.2 hac
   · exact sub_ne_zero.2 hbc
 
+/--
+@isnad1 id=eq.1h4v.s8.d84e218117b0 from=translated src=- shape=afd877cf vocab=a5e094f1
+-/
 theorem miquel_mul (a b c d : ℂ) (hD : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0) :
     mN a b c d (conj a) (conj b) (conj c) (conj d) -
       miquel a b c d * mD a b c d (conj a) (conj b) (conj c) (conj d) = 0 := by
   rw [miquel, div_mul_cancel₀ _ hD, sub_self]
 
+/--
+@isnad1 id=eq.1h4v.s9.6cc836c633bd from=translated src=- shape=4b37fff2 vocab=a5e094f1
+-/
 theorem conj_miquel_mul (a b c d : ℂ) (hD : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0) :
     mN (conj a) (conj b) (conj c) (conj d) a b c d -
       conj (miquel a b c d) * mD (conj a) (conj b) (conj c) (conj d) a b c d = 0 := by
@@ -546,22 +735,36 @@ theorem conj_miquel_mul (a b c d : ℂ) (hD : mD a b c d (conj a) (conj b) (conj
     rw [← conj_mD]; exact (map_ne_zero _).2 hD
   rw [conj_miquel, div_mul_cancel₀ _ hDb, sub_self]
 
+/--
+@isnad1 id=transver.1h2v.s3.9a1e00923e38 from=translated src=- shape=7e524d71 vocab=ec552c18
+-/
 theorem cd_symm {c d : ℂ} (h : Transversal c d) : Transversal d c := by
   intro h'; apply h; rw [mul_comm, ← h', mul_comm]
 
 /-! ### Clifford's first theorem -/
 
+/--
+@isnad1 id=eq.0h4v.s4.60dc7f48ee07 from=translated src=- shape=02067221 vocab=e71c97ee
+-/
 theorem miquel_p1243 (a b c d : ℂ) : miquel a b d c = miquel a b c d := by
   unfold miquel; rw [mN_p1243, mD_p1243, neg_div_neg_eq]
 
+/--
+@isnad1 id=eq.0h4v.s4.9a42c292701a from=translated src=- shape=d1ca441d vocab=e71c97ee
+-/
 theorem miquel_p1342 (a b c d : ℂ) : miquel a c d b = miquel a b c d := by
   unfold miquel; rw [mN_p1342, mD_p1342]
 
+/--
+@isnad1 id=eq.0h4v.s4.1c9aeedff7f9 from=translated src=- shape=f19afb19 vocab=e71c97ee
+-/
 theorem miquel_p2341 (a b c d : ℂ) : miquel b c d a = miquel a b c d := by
   unfold miquel; rw [mN_p2341, mD_p2341, neg_div_neg_eq]
 
 /-- The circle `Γ_abc` through the second intersections `P_ab, P_ac, P_bc` passes through
-`miquel a b c d`.-/
+`miquel a b c d`.
+@isnad1 id=cospheri.5h4v.s7.19046774472b from=translated src=- shape=0fab1673 vocab=9136c03f
+-/
 theorem gamma_cospherical {a b c d : ℂ} (hab : Transversal a b) (hac : Transversal a c)
     (hbc : Transversal b c) (ht : GenTriple a b c)
     (hD : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0) :
@@ -599,7 +802,9 @@ structure GenPos4 (a b c d : ℂ) : Prop where
 
 /-- **Clifford's first theorem** (`n = 4`). For four circles through `M` with centres `a, b, c, d`
 in general position, the four circles `Γ_ijk` through the second intersection points
-`P_ij, P_ik, P_jk` all pass through the single point `miquel a b c d`.-/
+`P_ij, P_ik, P_jk` all pass through the single point `miquel a b c d`.
+@isnad1 id=and.1h4v.s6.99fdf4700a16 from=translated src=- shape=d01850d6 vocab=6e620bd2
+-/
 theorem clifford_one {a b c d : ℂ} (h : GenPos4 a b c d) :
     OnCircle3 (second a b) (second a c) (second b c) (miquel a b c d) ∧
     OnCircle3 (second a b) (second a d) (second b d) (miquel a b c d) ∧
@@ -624,9 +829,14 @@ theorem clifford_one {a b c d : ℂ} (h : GenPos4 a b c d) :
 noncomputable def cliffordEq (a b c d e z : ℂ) : ℂ :=
   kK a b c d e (conj a) (conj b) (conj c) (conj d) (conj e) z (conj z)
 
+/--
+@isnad1 id=ne.1h1v.s5.144a34a9c7d7 from=translated src=- shape=20b0c7e1 vocab=4951f870
+-/
 theorem conj_ne_zero' {c : ℂ} (h : c ≠ 0) : conj c ≠ 0 := (map_ne_zero _).2 h
 
-/-- The Miquel point of the first four circles lies on the Clifford circle (Desnanot–Jacobi).-/
+/-- The Miquel point of the first four circles lies on the Clifford circle (Desnanot–Jacobi).
+@isnad1 id=eq.5h5v.s8.0677a72a0fa8 from=translated src=- shape=466610e9 vocab=e71f6944
+-/
 theorem cliffordEq_miquel {a b c d e : ℂ} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
     (ht : triP a b c (conj a) (conj b) (conj c) ≠ 0)
     (hD : mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0) :
@@ -669,21 +879,42 @@ nonzero (when it vanishes, the "circle" through the five points degenerates to a
 def CliffordNondeg (a b c d e : ℂ) : Prop :=
   k3 a b c d e (conj a) (conj b) (conj c) (conj d) (conj e) ≠ 0
 
+/--
+@isnad1 id=genpos4.1h5v.s4.0c278146bd0c from=translated src=- shape=2764c49f vocab=8314316d
+-/
 theorem GenPos5.pos4_abcd {a b c d e : ℂ} (h : GenPos5 a b c d e) : GenPos4 a b c d :=
   ⟨h.ab, h.ac, h.ad, h.bc, h.bd, h.cd, h.abc, h.abd, h.acd, h.bcd⟩
+/--
+@isnad1 id=genpos4.1h5v.s4.9afbf588627a from=translated src=- shape=61e312c5 vocab=8314316d
+-/
 theorem GenPos5.pos4_abce {a b c d e : ℂ} (h : GenPos5 a b c d e) : GenPos4 a b c e :=
   ⟨h.ab, h.ac, h.ae, h.bc, h.be, h.ce, h.abc, h.abe, h.ace, h.bce⟩
+/--
+@isnad1 id=genpos4.1h5v.s4.c734742278d4 from=translated src=- shape=bcc5a4ae vocab=8314316d
+-/
 theorem GenPos5.pos4_abde {a b c d e : ℂ} (h : GenPos5 a b c d e) : GenPos4 a b d e :=
   ⟨h.ab, h.ad, h.ae, h.bd, h.be, h.de, h.abd, h.abe, h.ade, h.bde⟩
+/--
+@isnad1 id=genpos4.1h5v.s4.101ba329ea0c from=translated src=- shape=f1e6b604 vocab=8314316d
+-/
 theorem GenPos5.pos4_acde {a b c d e : ℂ} (h : GenPos5 a b c d e) : GenPos4 a c d e :=
   ⟨h.ac, h.ad, h.ae, h.cd, h.ce, h.de, h.acd, h.ace, h.ade, h.cde⟩
+/--
+@isnad1 id=genpos4.1h5v.s4.414511fffea3 from=translated src=- shape=9ab2ca64 vocab=8314316d
+-/
 theorem GenPos5.pos4_bcde {a b c d e : ℂ} (h : GenPos5 a b c d e) : GenPos4 b c d e :=
   ⟨h.bc, h.bd, h.be, h.cd, h.ce, h.de, h.bcd, h.bce, h.bde, h.cde⟩
 
+/--
+@isnad1 id=ne.1h4v.s7.360a888f29f4 from=translated src=- shape=efdd0e33 vocab=d5086224
+-/
 theorem GenPos4.mD_ne_zero {a b c d : ℂ} (h : GenPos4 a b c d) :
     mD a b c d (conj a) (conj b) (conj c) (conj d) ≠ 0 :=
   Clifford.mD_ne_zero h.ab h.ac h.bc h.ad h.bd h.cd h.abc
 
+/--
+@isnad1 id=eq.1h5v.s5.a5d18184d7d0 from=translated src=- shape=112d9837 vocab=e4b2753d
+-/
 theorem GenPos4.cliffordEq_miquel {a b c d : ℂ} (h : GenPos4 a b c d) (e : ℂ) :
     cliffordEq a b c d e (miquel a b c d) = 0 :=
   Clifford.cliffordEq_miquel h.ab.left_ne_zero h.bc.left_ne_zero h.cd.left_ne_zero h.abc.1
@@ -691,7 +922,9 @@ theorem GenPos4.cliffordEq_miquel {a b c d : ℂ} (h : GenPos4 a b c d) (e : ℂ
 
 /-- **Clifford's second theorem** (`n = 5`). For five circles through `M` with centres
 `a, b, c, d, e` in general position, the five points `P_S` given by Clifford's first theorem
-(`clifford_one`), one for each 4-element subset `S`, lie on one circle.-/
+(`clifford_one`), one for each 4-element subset `S`, lie on one circle.
+@isnad1 id=cospheri.2h5v.s6.2db78d5695ac from=translated src=- shape=4579245a vocab=6a6bfeb6
+-/
 theorem clifford_two {a b c d e : ℂ} (h : GenPos5 a b c d e) (hk : CliffordNondeg a b c d e) :
     Cospherical ({miquel a b c d, miquel a b c e, miquel a b d e, miquel a c d e, miquel b c d e} :
       Set ℂ) := by

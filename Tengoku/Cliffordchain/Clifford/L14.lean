@@ -31,7 +31,9 @@ open EuclideanGeometry ComplexConjugate Complex
 
 /-! ### Bridges -/
 
-/-- A point `≠ 0` on the two circles through `0` with centres `c ≠ d` is `second c d`.-/
+/-- A point `≠ 0` on the two circles through `0` with centres `c ≠ d` is `second c d`.
+@isnad1 id=eq.4h3v.s6.a76c04bcf5cc from=translated src=- shape=5225f4ae vocab=dcf02dd0
+-/
 theorem l14b_second_eq {c d z : ℂ} (hcd : c ≠ d) (hz : z ≠ 0) (h1 : dist z c = ‖c‖)
     (h2 : dist z d = ‖d‖) : z = second c d := by
   have k1 : (z - c) * conj (z - c) = c * conj c := by
@@ -50,7 +52,9 @@ theorem l14b_second_eq {c d z : ℂ} (hcd : c ≠ d) (hz : z ≠ 0) (h1 : dist z
   linear_combination h
 
 /-- A point `P ≠ M` on two spheres through `M` with distinct centres is the library's `second`
-(after translating `M` to `0`), and the two translated centres are `Transversal`.-/
+(after translating `M` to `0`), and the two translated centres are `Transversal`.
+@isnad1 id=and.4h4v.s7.45d9f54d6772 from=translated src=- shape=f93e02b9 vocab=f90b4bdf
+-/
 theorem l14b_second {M : ℂ} {s t : Sphere ℂ} (hs : M ∈ s) (ht : M ∈ t)
     (hst : s.center ≠ t.center) {P : ℂ} (h : P ∈ s ∧ P ∈ t ∧ P ≠ M) :
     P - M = second (s.center - M) (t.center - M) ∧ Transversal (s.center - M) (t.center - M) := by
@@ -65,7 +69,9 @@ theorem l14b_second {M : ℂ} {s t : Sphere ℂ} (hs : M ∈ s) (ht : M ∈ t)
   refine ⟨eq, fun e0 => hz ?_⟩
   rw [eq]; unfold second; rw [e0, sub_self, zero_div]
 
-/-- Non-collinear second intersections force non-collinear centres, hence `GenTriple`.-/
+/-- Non-collinear second intersections force non-collinear centres, hence `GenTriple`.
+@isnad1 id=gentripl.4h3v.s7.227e3749eb0c from=translated src=- shape=f79eeae8 vocab=b6e5a76e
+-/
 theorem l14b_genTriple {a b c : ℂ} (hab : Transversal a b) (hac : Transversal a c)
     (hbc : Transversal b c)
     (hn : ¬ Collinear ℝ ({second a b, second a c, second b c} : Set ℂ)) : GenTriple a b c := by
@@ -88,6 +94,9 @@ theorem l14b_genTriple {a b c : ℂ} (hab : Transversal a b) (hac : Transversal 
     linear_combination (mul_eq_zero.1 k2).resolve_right hprod
   exact (genTriple_iff hab hac hbc).2 ⟨htri, hn⟩
 
+/--
+@isnad1 id=collinea.1h4v.s7.528eeb1ae8ba from=translated src=- shape=11f5d092 vocab=be53c61d
+-/
 theorem l14b_collinear_sub {a b c M : ℂ} (h : Collinear ℝ ({a - M, b - M, c - M} : Set ℂ)) :
     Collinear ℝ ({a, b, c} : Set ℂ) := by
   rw [collinear_iff_of_mem (p₀ := a - M) (by simp)] at h
@@ -106,6 +115,9 @@ theorem l14b_collinear_sub {a b c M : ℂ} (h : Collinear ℝ ({a - M, b - M, c 
     rw [vadd_eq_add, Complex.real_smul] at hr ⊢
     linear_combination hr
 
+/--
+@isnad1 id=cospheri.1h2v.s5.c2b0dfbc7657 from=translated src=- shape=9fb70899 vocab=1d0d65e8
+-/
 theorem l14b_cospherical_add {s : Set ℂ} (M : ℂ) (h : Cospherical s) :
     Cospherical ((· + M) '' s) := by
   obtain ⟨c, r, hr⟩ := h
@@ -113,6 +125,9 @@ theorem l14b_cospherical_add {s : Set ℂ} (M : ℂ) (h : Cospherical s) :
   rintro _ ⟨x, hx, rfl⟩
   rw [dist_add_right]; exact hr x hx
 
+/--
+@isnad1 id=collinea.1h2v.s7.53dfde476bd3 from=translated src=- shape=2bc20189 vocab=d9d6d8e4
+-/
 theorem l14b_collinear_add {s : Set ℂ} (M : ℂ) (h : Collinear ℝ s) :
     Collinear ℝ ((· + M) '' s) := by
   obtain ⟨p, v, hv⟩ := (collinear_iff_exists_forall_eq_smul_vadd _).1 h
@@ -121,6 +136,9 @@ theorem l14b_collinear_add {s : Set ℂ} (M : ℂ) (h : Collinear ℝ s) :
   obtain ⟨r, rfl⟩ := hv x hx
   exact ⟨r, by simp only [vadd_eq_add]; ring⟩
 
+/--
+@isnad1 id=cospheri.1h5v.s6.e938dd2bd6b7 from=translated src=- shape=9f41c8a3 vocab=db008e71
+-/
 theorem l14b_cosph_tr {x y z w M : ℂ}
     (h : Cospherical ({x - M, y - M, z - M, w} : Set ℂ)) :
     Cospherical ({x, y, z, w + M} : Set ℂ) := by
@@ -128,11 +146,16 @@ theorem l14b_cosph_tr {x y z w M : ℂ}
     simp only [Set.image_insert_eq, Set.image_singleton, sub_add_cancel]
   rw [hs]; exact l14b_cospherical_add M h
 
+/--
+@isnad1 id=not.4h7v.s7.79a08507fdef from=translated src=- shape=3d27097c vocab=be53c61d
+-/
 theorem l14b_nc {a b c x y z M : ℂ} (ea : a - M = x) (eb : b - M = y) (ec : c - M = z)
     (hn : ¬ Collinear ℝ ({a, b, c} : Set ℂ)) : ¬ Collinear ℝ ({x, y, z} : Set ℂ) :=
   fun h => hn (l14b_collinear_sub (by rw [ea, eb, ec]; exact h))
 
-/-- The four `Γ`-circle facts for a subfamily, in the original (untranslated) coordinates.-/
+/-- The four `Γ`-circle facts for a subfamily, in the original (untranslated) coordinates.
+@isnad1 id=and.7h11v.s8.9fdc3129f3f7 from=translated src=- shape=f4c86569 vocab=5710d270
+-/
 theorem l14b_four {M a b c d Pab Pac Pad Pbc Pbd Pcd : ℂ} (G : GenPos4 a b c d)
     (eab : Pab - M = second a b) (eac : Pac - M = second a c) (ead : Pad - M = second a d)
     (ebc : Pbc - M = second b c) (ebd : Pbd - M = second b d) (ecd : Pcd - M = second c d) :
@@ -148,6 +171,9 @@ theorem l14b_four {M a b c d Pab Pac Pad Pbc Pbd Pcd : ℂ} (G : GenPos4 a b c d
   rw [← ebc, ← ebd, ← ecd] at x4
   exact ⟨l14b_cosph_tr x1, l14b_cosph_tr x2, l14b_cosph_tr x3, l14b_cosph_tr x4⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.70ffc3648af4 from=translated src=- shape=354bdd0b vocab=3189007d
+-/
 theorem l14b_img5 (M x₁ x₂ x₃ x₄ x₅ : ℂ) :
     ({x₅ + M, x₄ + M, x₃ + M, x₂ + M, x₁ + M} : Set ℂ) = (· + M) '' {x₁, x₂, x₃, x₄, x₅} := by
   simp only [Set.image_insert_eq, Set.image_singleton]
@@ -155,7 +181,9 @@ theorem l14b_img5 (M x₁ x₂ x₃ x₄ x₅ : ℂ) :
 
 /-! ### `CliffordChain 4`, Mathlib-only -/
 
-/-- The meaning of `CliffordChain 4`, Mathlib-only (Clifford's first theorem).-/
+/-- The meaning of `CliffordChain 4`, Mathlib-only (Clifford's first theorem).
+@isnad1 id=ex.17h11v.s9.7b6080b27e4b from=translated src=- shape=caf8fd86 vocab=70fe7177
+-/
 theorem l14_cliffordChain_four (M : ℂ) (s₁ s₂ s₃ s₄ : Sphere ℂ)
     (hM : M ∈ s₁ ∧ M ∈ s₂ ∧ M ∈ s₃ ∧ M ∈ s₄)
     (d12 : s₁.center ≠ s₂.center) (d13 : s₁.center ≠ s₃.center) (d14 : s₁.center ≠ s₄.center)
@@ -187,7 +215,9 @@ theorem l14_cliffordChain_four (M : ℂ) (s₁ s₂ s₃ s₄ : Sphere ℂ)
 
 /-! ### `CliffordChain 5`, Mathlib-only -/
 
-/-- The meaning of `CliffordChain 5`, Mathlib-only (Clifford's second theorem).-/
+/-- The meaning of `CliffordChain 5`, Mathlib-only (Clifford's second theorem).
+@isnad1 id=ex.31h16v.s11.3dfd20019742 from=translated src=- shape=8f4fca42 vocab=70fe7177
+-/
 theorem l14_cliffordChain_five (M : ℂ) (s₁ s₂ s₃ s₄ s₅ : Sphere ℂ)
     (hM : M ∈ s₁ ∧ M ∈ s₂ ∧ M ∈ s₃ ∧ M ∈ s₄ ∧ M ∈ s₅)
     (d12 : s₁.center ≠ s₂.center) (d13 : s₁.center ≠ s₃.center) (d14 : s₁.center ≠ s₄.center)
@@ -254,6 +284,9 @@ theorem l14_cliffordChain_five (M : ℂ) (s₁ s₂ s₃ s₄ s₅ : Sphere ℂ)
 
 /-! ### Witnesses -/
 
+/--
+@isnad1 id=mem.1h3v.s6.a2ede69d5ed4 from=translated src=- shape=61d9a5a4 vocab=118b9f27
+-/
 theorem l14b_mem {z c : ℂ} {r : ℝ} (h : (z.re - c.re) ^ 2 + (z.im - c.im) ^ 2 = r) :
     z ∈ (⟨c, Real.sqrt r⟩ : Sphere ℂ) := by
   rw [mem_sphere, Complex.dist_eq, Complex.norm_def, Complex.normSq_apply]
@@ -261,10 +294,16 @@ theorem l14b_mem {z c : ℂ} {r : ℝ} (h : (z.re - c.re) ^ 2 + (z.im - c.im) ^ 
   simp only [sub_re, sub_im]
   linear_combination h
 
+/--
+@isnad1 id=cospheri.1h3v.s6.e434192fc0a7 from=translated src=- shape=f38f5685 vocab=5359e907
+-/
 theorem l14b_cosph {s : Set ℂ} (o : ℂ) (r : ℝ)
     (h : ∀ x ∈ s, (x.re - o.re) ^ 2 + (x.im - o.im) ^ 2 = r) : Cospherical s :=
   ⟨o, Real.sqrt r, fun x hx => l14b_mem (h x hx)⟩
 
+/--
+@isnad1 id=not.1h3v.s7.f9a12a532a87 from=translated src=- shape=aab1fa82 vocab=92cbca22
+-/
 theorem l14b_not_collinear {a b c : ℂ}
     (h : (b.re - a.re) * (c.im - a.im) - (b.im - a.im) * (c.re - a.re) ≠ 0) :
     ¬Collinear ℝ ({a, b, c} : Set ℂ) := by
@@ -281,7 +320,9 @@ theorem l14b_not_collinear {a b c : ℂ}
 /-- Witness for `l14_cliffordChain_four`: four circles through `M = 0` with centres `3 - i`, `1 + 3i`,
 `-1 + 3i`, `-3 - i`; the six second intersections `4+2i, 2+2i, -2i, 6i, -2+2i, -4+2i`; the four
 `Γ` circles with centres `3+5i, 1+i, -1+i, -3+5i`; the Clifford point `4i`, distinct from all six
-second intersections.-/
+second intersections.
+@isnad1 id=and.0h0v.s11.0422b5826df8 from=translated src=- shape=440b0d41 vocab=99a839c8
+-/
 theorem l14w_cliffordChain_four :
     ((⟨0, 0⟩ : ℂ) ∈ (⟨(⟨3, -1⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨1, 3⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-1, 3⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-3, -1⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ)) ∧
     ((⟨(⟨3, -1⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ).center ≠ (⟨(⟨1, 3⟩ : ℂ), Real.sqrt 10⟩ : Sphere ℂ).center) ∧
@@ -338,7 +379,9 @@ theorem l14w_cliffordChain_four :
   refine And.intro (by norm_num [Complex.ext_iff]) ?_
   exact by norm_num [Complex.ext_iff]
 
-/-- Witness for `l14_cliffordChain_five`: five circles through `M = 0` with centres `-3-2i, -i, -1-2i, -2-i, -2+3i`; all ten second intersections, the ten `Γ` circles (explicit centre and squared radius), the five Clifford points `Q₁ … Q₅` (pairwise distinct, distinct from every second intersection) and the Clifford circle (centre `(-16 - 81i)/17`); the `Q`'s are not collinear, so the conclusion holds through its `Cospherical` branch.-/
+/-- Witness for `l14_cliffordChain_five`: five circles through `M = 0` with centres `-3-2i, -i, -1-2i, -2-i, -2+3i`; all ten second intersections, the ten `Γ` circles (explicit centre and squared radius), the five Clifford points `Q₁ … Q₅` (pairwise distinct, distinct from every second intersection) and the Clifford circle (centre `(-16 - 81i)/17`); the `Q`'s are not collinear, so the conclusion holds through its `Cospherical` branch.
+@isnad1 id=and.0h0v.s13.72345ae92bb4 from=translated src=- shape=0a68f391 vocab=9560d768
+-/
 theorem l14w_cliffordChain_five :
     ((⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-3, -2⟩ : ℂ), Real.sqrt 13⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨0, -1⟩ : ℂ), Real.sqrt 1⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-1, -2⟩ : ℂ), Real.sqrt 5⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-2, -1⟩ : ℂ), Real.sqrt 5⟩ : Sphere ℂ) ∧ (⟨0, 0⟩ : ℂ) ∈ (⟨(⟨-2, 3⟩ : ℂ), Real.sqrt 13⟩ : Sphere ℂ)) ∧
     ((⟨(⟨-3, -2⟩ : ℂ), Real.sqrt 13⟩ : Sphere ℂ).center ≠ (⟨(⟨0, -1⟩ : ℂ), Real.sqrt 1⟩ : Sphere ℂ).center) ∧
@@ -569,7 +612,9 @@ theorem l14w_cliffordChain_five :
 
 /-! ### `¬ CliffordChain 6`, Mathlib-only -/
 
-/-- A line `line[ℝ, a, b]` (`a ≠ b`) is a generalized circle in the library's sense.-/
+/-- A line `line[ℝ, a, b]` (`a ≠ b`) is a generalized circle in the library's sense.
+@isnad1 id=isgcircl.1h2v.s8.237854550cd5 from=translated src=- shape=c5b21520 vocab=c879da88
+-/
 theorem l14b_isGCircle_line {a b : ℂ} (h : a ≠ b) : IsGCircle (line[ℝ, a, b] : Set ℂ) := by
   refine Or.inr ⟨a, b - a, sub_ne_zero.2 h.symm, ?_⟩
   ext z
@@ -579,6 +624,9 @@ theorem l14b_isGCircle_line {a b : ℂ} (h : a ≠ b) : IsGCircle (line[ℝ, a, 
   · rintro ⟨t, rfl⟩; exact ⟨t, by ring⟩
   · rintro ⟨t, rfl⟩; exact ⟨t, by ring⟩
 
+/--
+@isnad1 id=isgcircl.1h1v.s8.d1f7dc52580f from=translated src=- shape=7be1c060 vocab=bbcbc968
+-/
 theorem l14b_isGCircle {Y : Set ℂ}
     (h : (∃ o : ℂ, ∃ r : ℝ, Y = Metric.sphere o r) ∨ ∃ a b : ℂ, a ≠ b ∧ Y = line[ℝ, a, b]) :
     IsGCircle Y := by
@@ -592,7 +640,9 @@ theorem l14b_isGCircle {Y : Set ℂ}
 and (b) there is no point `p` that lies, for every five-circle subfamily `i`, on a generalized
 circle `Y` (a sphere, or a line `line[ℝ, a, b]` with `a ≠ b`) containing, for each four-circle
 sub-subfamily `j`, a point `q` on the four circles through the second intersections of its
-triples `k`.-/
+triples `k`.
+@isnad1 id=ex.0h0v.s10.5a76d46fe9a3 from=translated src=- shape=953669ed vocab=6ed315c6
+-/
 theorem l14_not_cliffordChain_six :
     ∃ c : Fin 6 → ℂ,
       (∀ i j, i ≠ j → ¬ Collinear ℝ ({0, c i, c j} : Set ℂ)) ∧
@@ -654,7 +704,9 @@ theorem l14_not_cliffordChain_six :
       Fin.succAbove_right_injective)) q (hk k)
 
 /-- Non-vacuity of `l14_not_cliffordChain_six`: the hypothesis on `S` is satisfiable, by the
-explicit formula `S a b = (conj a * b - a * conj b) / (conj a - conj b)`.-/
+explicit formula `S a b = (conj a * b - a * conj b) / (conj a - conj b)`.
+@isnad1 id=and.1h2v.s9.6837ba5f72e2 from=translated src=- shape=404e883f vocab=3122a02b
+-/
 theorem l14w_not_cliffordChain_six :
     ∀ i j : Fin 6, i ≠ j →
       (fun a b : ℂ => (conj a * b - a * conj b) / (conj a - conj b)) (Counter6.cx i) (Counter6.cx j)

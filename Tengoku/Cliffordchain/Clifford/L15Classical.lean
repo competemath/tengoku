@@ -347,6 +347,9 @@ namespace Clifford.Classical
 noncomputable def planeIso : ℂ ≃ₗᵢ[ℝ] Pt := Complex.orthonormalBasisOneI.repr
 noncomputable def complexIso : Pt ≃ₗᵢ[ℝ] ℂ := planeIso.symm
 
+ /--
+ @isnad1 id=iff.0h1v.s9.dfc4857b27da from=translated src=- shape=d8d84c9a vocab=8ee86303
+ -/
  theorem cov_cospherical_transport {s : Set Pt} :
     Cospherical (complexIso '' s) ↔ Cospherical s := by
   constructor
@@ -361,6 +364,9 @@ noncomputable def complexIso : Pt ≃ₗᵢ[ℝ] ℂ := planeIso.symm
     rw [complexIso.dist_map]
     exact hr p hp
 
+ /--
+ @isnad1 id=iff.0h1v.s10.9055a80318fa from=translated src=- shape=d310b567 vocab=6742b343
+ -/
  theorem cov_collinear_transport {s : Set Pt} :
     Collinear ℝ (complexIso '' s) ↔ Collinear ℝ s := by
   rw [collinear_iff_exists_forall_eq_smul_vadd, collinear_iff_exists_forall_eq_smul_vadd]
@@ -377,13 +383,22 @@ noncomputable def complexIso : Pt ≃ₗᵢ[ℝ] ℂ := planeIso.symm
     obtain ⟨r, rfl⟩ := h p hp
     exact ⟨r, by simp [vadd_eq_add]⟩
 
+/--
+@isnad1 id=iff.0h1v.s3.789efa23e9b1 from=translated src=- shape=069670d4 vocab=5110f286
+-/
 theorem cov_D1_d_repository_classification (n : ℕ) : Clifford.CliffordChain n ↔ n ≤ 5 :=
   Clifford.cliffordChain_iff n
 
+/--
+@isnad1 id=and.0h0v.s4.cfbe8c0ab296 from=translated src=- shape=c56c94c9 vocab=b3e6b028
+-/
 theorem cov_D1_d_repository_counterexample :
     Clifford.GenPosN Clifford.Counter6.cx ∧ ¬ ∃ X, Clifford.Chain 6 Clifford.Counter6.cx X :=
   ⟨Clifford.Counter6.cx_genPosN, fun ⟨_,h⟩ => Clifford.Counter6.not_chain6 h⟩
 
+/--
+@isnad1 id=not.1h1v.s5.c32906945fd9 from=translated src=- shape=79ceb67e vocab=933bc2ec
+-/
 theorem cov_D1_d_no_spherical_level_five (Y : Set ℂ)
     (hY : Clifford.Chain 5 (Clifford.Counter6.cx ∘ (5 : Fin 6).succAbove) Y) :
     ¬ Cospherical Y := by
@@ -412,12 +427,18 @@ theorem cov_D1_d_no_spherical_level_five (Y : Set ℂ)
   · exact ⟨-8/3, by apply Complex.ext <;> norm_num⟩
   · exact ⟨-6, by apply Complex.ext <;> norm_num⟩
 
+/--
+@isnad1 id=false.2h2v.s9.fde43e6e2062 from=translated src=- shape=d4dffa09 vocab=00718c36
+-/
 theorem cov_D1_d_counterexample_not_writer_data (Y : Set Pt)
     (hY : Clifford.Chain 5 (Clifford.Counter6.cx ∘ (5 : Fin 6).succAbove) (complexIso '' Y))
     (ω : Sphere Pt) (hm : Y ⊆ (ω : Set Pt)) : False := by
   exact cov_D1_d_no_spherical_level_five _ hY
     (cov_cospherical_transport.2 (ω.cospherical.subset hm))
 
+/--
+@isnad1 id=cospheri.2h4v.s9.17c51c277098 from=translated src=- shape=2273451a vocab=a0d93ab9
+-/
 theorem cov_D1_d_odd_three_part (c : Fin 3 → Sphere Pt) (M : Pt)
     (pt : Finset (Fin 3) → Pt) (circ : Finset (Fin 3) → Sphere Pt)
     (h : CliffordChain 3 c M pt circ)
@@ -445,12 +466,21 @@ theorem cov_D1_d_odd_three_part (c : Fin 3 → Sphere Pt) (M : Pt)
   · rw [dist_comm]; exact t.dist_circumcenter_eq_circumradius' 1
   · rw [dist_comm]; exact t.dist_circumcenter_eq_circumradius' 2
 
+/--
+@isnad1 id=clifford.0h0v.s2.fd0f6aecede3 from=translated src=- shape=e590c3e1 vocab=5675b229
+-/
 theorem cov_D1_d_even_repository_part : Clifford.CliffordChain 4 :=
   Clifford.cliffordChain_four
 
+/--
+@isnad1 id=clifford.0h0v.s2.06388a029eed from=translated src=- shape=e590c3e1 vocab=5675b229
+-/
 theorem cov_D1_d_odd_repository_part : Clifford.CliffordChain 5 :=
   Clifford.cliffordChain_five
 
+/--
+@isnad1 id=not.1h1v.s3.65be7e3bb06b from=translated src=- shape=c1538fc1 vocab=5110f286
+-/
 theorem cov_D1_d_large_repository_failure (n : ℕ) (hn : 6 ≤ n) : ¬ Clifford.CliffordChain n :=
   Clifford.not_cliffordChain_of_six_le hn
 
