@@ -61,11 +61,17 @@ section General
 ### Auxiliary analysis lemmas
 -/
 
+/--
+@isnad1 id=lt.1h1v.s5.224d158a2b62 from=translated src=- shape=82f338a3 vocab=b33b0ad3
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.pos_of_dist_one_lt_one (hx : dist x 1 < 1) : 0 < x := by
   rw [Real.dist_eq, abs_sub_lt_iff] at hx
   linarith
 
 -- Propagate zeros to derivatives
+/--
+@isnad1 id=frequent.3h3v.s7.43c04b9a1329 from=translated src=- shape=c447406f vocab=c93c9867
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.frequently_deriv_eq_zero_of_frequently_eq_zero
     (hx : g x = 0)
     (hDer : ∀ᶠ (y : ℝ) in nhds x, HasDerivAt g (g' y) y)
@@ -118,6 +124,9 @@ lemma ContinuousAt.eq_of_frequently_eq {g : ℝ → ℝ} {a x : ℝ}
       (tendsto_nhdsWithin_of_tendsto_nhds hCont)
       tendsto_const_nhds hZero)
 
+/--
+@isnad1 id=le.4h5v.s6.99521d696d03 from=translated src=- shape=5ae36398 vocab=838e34aa
+-/
 lemma ConvexOn.tangent_line_le (hgc : ConvexOn ℝ U g) (hx : x ∈ U) (hy : y ∈ U)
   (hg' : HasDerivAt g (g' y) y) : g y + g' y * (x - y) ≤ g x := by
   rcases lt_trichotomy x y with hxy | hxy | hxy
@@ -134,6 +143,9 @@ lemma ConvexOn.tangent_line_le (hgc : ConvexOn ℝ U g) (hx : x ∈ U) (hy : y �
 -/
 
 -- General iterated L'Hôpital's rule
+/--
+@isnad1 id=continuo.9h4v.s9.f688909d6a76 from=translated src=- shape=eac644de vocab=a714964a
+-/
 lemma ContinuousAt.lhopital_iterated (n : ℕ) (ns ds : List (ℝ → ℝ))
     (hnslen : ns.length = n + 1) (hdslen : ds.length = n + 1)
     (hnDer : ∀ k (hk : k < n), ∀ᶠ (y : ℝ) in nhds x, HasDerivAt ns[k] (ns[k + 1] y) y)
@@ -276,8 +288,14 @@ def _root_.Tengoku.Shearertrianglefreeind.dF''₄ : ℝ → ℝ := fun x ↦ -96
 ### Lemmas about S
 -/
 
+/--
+@isnad1 id=isopen.0h0v.s3.fbcd499b9e83 from=translated src=- shape=25b03439 vocab=b6debc2d
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.S_open : IsOpen S := IsOpen.and (isOpen_lt' 0) (isOpen_ne)
 
+/--
+@isnad1 id=eq.2h1v.s5.2a189cf92e6a from=translated src=- shape=d02b87de vocab=e3e64b5d
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.pos_not_in_S_eq_one (hx_pos : 0 < x) (hx_not_in_S : x ∉ S) : x = 1 := by
   by_contra hxn1
   exact hx_not_in_S ⟨hx_pos, hxn1⟩
@@ -286,17 +304,47 @@ lemma _root_.Tengoku.Shearertrianglefreeind.pos_not_in_S_eq_one (hx_pos : 0 < x)
 ### F, F', and F'' equal to rational functions on S
 -/
 
+/--
+@isnad1 id=eq.1h1v.s4.c277ee630afa from=translated src=- shape=4b68e457 vocab=70614eaf
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F_not_one (hx : x ≠ 1) : F x   = nF₀ x / dF₀ x       := ite_eq_right hx
+/--
+@isnad1 id=eq.1h1v.s4.42673e941c73 from=translated src=- shape=4b68e457 vocab=cf92ff46
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F'_not_one (hx : x ≠ 1) : F' x  = nF'₀ x / dF'₀ x     := ite_eq_right hx
+/--
+@isnad1 id=eq.1h1v.s4.72bef1daf64a from=translated src=- shape=4b68e457 vocab=9f9283f7
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F''_not_one (hx : x ≠ 1) : F'' x = nF''₀ x / dF''₀ x   := ite_eq_right hx
 
+/--
+@isnad1 id=eq.0h0v.s3.ece482052cdf from=translated src=- shape=3c26ae4f vocab=0f1023cf
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F_at_zero : F 0    = 1  := by simp [F]
+/--
+@isnad1 id=eq.0h0v.s5.0eae25163ec6 from=translated src=- shape=d4f6e56f vocab=f3d9eec7
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F_at_one : F 1    = 1/2  := ite_eq_left rfl
+/--
+@isnad1 id=eq.0h0v.s5.5f7fec93c0df from=translated src=- shape=18b54dcc vocab=d7b555ee
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F'_at_one : F' 1   = -1/6 := ite_eq_left rfl
+/--
+@isnad1 id=eq.0h0v.s5.0c72bf7f1399 from=translated src=- shape=d4f6e56f vocab=0ce48ef6
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F''_at_one : F'' 1  = 1/6  := ite_eq_left rfl
 
+/--
+@isnad1 id=eqon.0h0v.s4.8a9dd5a4318c from=translated src=- shape=04cd9d28 vocab=d1ce4674
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F_on_S : S.EqOn F    (fun x ↦ nF₀ x    / dF₀ x)    := fun _ hx ↦ ite_eq_right hx.2
+/--
+@isnad1 id=eqon.0h0v.s4.66ac4b13c6b3 from=translated src=- shape=04cd9d28 vocab=97c23324
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F'_on_S : S.EqOn F'   (fun x ↦ nF'₀ x   / dF'₀ x)   := fun _ hx ↦ ite_eq_right hx.2
+/--
+@isnad1 id=eqon.0h0v.s4.41330df16201 from=translated src=- shape=04cd9d28 vocab=1019a15f
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F''_on_S : S.EqOn F''  (fun x ↦ nF''₀ x  / dF''₀ x)  := fun _ hx ↦ ite_eq_right hx.2
 
 /-!
@@ -307,6 +355,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.F''_on_S : S.EqOn F''  (fun x ↦ nF
   Two helpful rewrite lemmas about the derivatives of `x ↦ 1/x` and `x ↦ 1/x^2`.
 -/
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.cafe60533b19 from=translated src=- shape=db8c996b vocab=b6e4edfe
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.hasDerivAtInv (hx : 0 < x) : HasDerivAt (fun y ↦ 1 / y) (- 1 / x^2) x := by
   convert hasDerivAt_inv (ne_of_lt hx).symm using 1
   · ext _; ring
@@ -322,6 +373,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.hasDerivAtInv (hx : 0 < x) : HasDeri
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.6e5e3fb62f12 from=translated src=- shape=111225e6 vocab=371e23d8
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.hasDerivAt_nF''₂ (hx : 0 < x) : HasDerivAt nF''₂ (nF''₃ x) x := by
   unfold nF''₂ nF''₃
   convert! HasDerivAt.add
@@ -336,30 +390,54 @@ lemma _root_.Tengoku.Shearertrianglefreeind.hasDerivAt_nF''₂ (hx : 0 < x) : Ha
 ### Continuity of (derivatives of) denominators and numerators
 -/
 
+/--
+@isnad1 id=continuo.0h1v.s4.7d16420ec56e from=translated src=- shape=54444e7e vocab=f9855f04
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_dF₀ : ContinuousAt dF₀ x := by
   unfold dF₀
   exact ContinuousAt.pow (ContinuousAt.sub (by exact fun ⦃U⦄ a ↦ a) continuousAt_const) _
 
+/--
+@isnad1 id=continuo.0h1v.s4.c7581da4b35a from=translated src=- shape=54444e7e vocab=dcf7cddb
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_nF₀ : ContinuousAt nF₀ x  :=
   ContinuousAt.add (ContinuousAt.sub (Continuous.continuousAt Real.continuous_mul_log ) fun _ a ↦ a)
     continuousAt_const
 
+/--
+@isnad1 id=continuo.1h1v.s4.e5c5826a64ec from=translated src=- shape=4d60c403 vocab=e340c826
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_nF₂ (hx : 0 < x) : ContinuousAt nF₂ x := by unfold nF₂; continuity
 
+/--
+@isnad1 id=continuo.0h1v.s4.256c51769256 from=translated src=- shape=54444e7e vocab=b3d856a1
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_dF₂ : ContinuousAt dF₂ x := continuousAt_const
 
+/--
+@isnad1 id=continuo.1h1v.s4.c4eded54b595 from=translated src=- shape=4d60c403 vocab=b2fe5ec2
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_nF'₃ (hx : 0 < x) : ContinuousAt nF'₃ x := by
   refine ContinuousAt.add ?_ ?_ <;>
   exact ContinuousAt.div₀ continuousAt_const
     (ContinuousAt.pow (by exact fun _ a ↦ a) _) (by positivity)
 
+/--
+@isnad1 id=continuo.0h1v.s4.217f60d5ba90 from=translated src=- shape=54444e7e vocab=e331ab93
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_dF'₃ : ContinuousAt dF'₃ x := continuousAt_const
 
+/--
+@isnad1 id=continuo.1h1v.s4.72710d8e1208 from=translated src=- shape=4d60c403 vocab=3462308b
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_nF''₄ (hx : 0 < x) : ContinuousAt nF''₄ x := by
   refine ContinuousAt.add ?_ (ContinuousAt.neg ?_) <;>
   exact ContinuousAt.div₀ continuousAt_const
     (ContinuousAt.pow (by exact fun _ a ↦ a) _) (by positivity)
 
+/--
+@isnad1 id=continuo.0h1v.s4.7ca79197f8d2 from=translated src=- shape=54444e7e vocab=4b449d24
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_dF''₄ : ContinuousAt dF''₄ x := by
   unfold dF''₄
   exact Continuous.continuousAt (by continuity)
@@ -368,15 +446,36 @@ lemma _root_.Tengoku.Shearertrianglefreeind.ContinuousAt_dF''₄ : ContinuousAt 
 ### Useful (in)equalities involving the denominators and numerators
 -/
 
+/--
+@isnad1 id=ne.1h1v.s4.66f3cf12cc38 from=translated src=- shape=5aedd577 vocab=0dd17931
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF₀_ne_zero (hx : x ≠ 1) : dF₀ x ≠ 0      := pow_ne_zero 2 (sub_ne_zero_of_ne hx)
+/--
+@isnad1 id=ne.1h1v.s4.341e41d231af from=translated src=- shape=73ba5747 vocab=b5ea9101
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF₀_ne_zero_on_S (hx : x ∈ S) : dF₀ x ≠ 0 := dF₀_ne_zero hx.2
 
+/--
+@isnad1 id=ne.1h1v.s4.0def403f2613 from=translated src=- shape=5aedd577 vocab=bff2eee8
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF'₀_ne_zero (hx : x ≠ 1) : dF'₀ x ≠ 0      := pow_ne_zero 3 (sub_ne_zero_of_ne hx)
+/--
+@isnad1 id=ne.1h1v.s4.52c19bee8764 from=translated src=- shape=73ba5747 vocab=cb79c456
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF'₀_ne_zero_on_S (hx : x ∈ S) : dF'₀ x ≠ 0 := dF'₀_ne_zero hx.2
+/--
+@isnad1 id=le.1h1v.s4.6e8da605cc32 from=translated src=- shape=a8dc2df9 vocab=4f3fad20
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF'₀_nonneg (hx : 1 < x) : 0 ≤ dF'₀ x       := pow_nonneg (by linarith) 3
 
+/--
+@isnad1 id=le.1h1v.s4.aa64c81f91f8 from=translated src=- shape=a8dc2df9 vocab=2e1d6a2e
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF''₀_nonneg (hx : 0 < x) : 0 ≤ dF''₀ x  := by unfold dF''₀; positivity
 
+/--
+@isnad1 id=ne.1h1v.s4.4f32321cb7da from=translated src=- shape=73ba5747 vocab=db150742
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.dF''₀_ne_zero_on_S (hx : x ∈ S) : dF''₀ x ≠ 0   :=
   (mul_ne_zero_iff_right (ne_of_lt hx.1).symm).mpr (pow_ne_zero 4 (sub_ne_zero_of_ne hx.2))
 
@@ -390,17 +489,26 @@ lemma _root_.Tengoku.Shearertrianglefreeind.dF''₀_ne_zero_on_S (hx : x ∈ S) 
 def _root_.Tengoku.Shearertrianglefreeind.isType1 (l : ℝ → ℝ) :=  AntitoneOn l (Ioc 0 1) ∧ MonotoneOn l (Ici 1) ∧ (l 1 = 0)
 def _root_.Tengoku.Shearertrianglefreeind.isType2 (l : ℝ → ℝ) :=  (∀ {x}, x ∈ Ioc 0 1 → l x ≤ 0) ∧ (∀ {x}, x ∈ Ici 1 → 0 ≤ l x)
 
+/--
+@isnad1 id=le.2h2v.s5.a07e55c5d5f1 from=translated src=- shape=f1a482a6 vocab=89258aa8
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.Type1_nonneg {l : ℝ → ℝ} (hType : isType1 l) (hx : 0 < x) : 0 ≤ l x := by
   rw [←hType.2.2]
   rcases le_or_gt x 1 with hx1 | hx1
   · exact hType.1 ⟨hx,hx1⟩ ⟨Real.zero_lt_one, le_refl 1⟩ hx1
   · exact hType.2.1 self_mem_Ici (mem_Ici_of_Ioi hx1) (le_of_lt hx1)
 
+/--
+@isnad1 id=istype2.2h2v.s5.81ec6691ea7d from=translated src=- shape=26a74c72 vocab=51ee90dc
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.Type2_mul_nonneg {l m : ℝ → ℝ} (hType : isType2 l) (hm : ∀ {x}, 0 < x → 0 ≤ m x) :
   isType2 (fun x ↦ l x * m x) :=
   ⟨ fun hx ↦ mul_nonpos_of_nonpos_of_nonneg (hType.1 hx) (hm hx.1),
     fun hx ↦ Left.mul_nonneg (hType.2 hx) (hm (by linarith [mem_Ici.1 hx]))⟩
 
+/--
+@isnad1 id=istype2.3h2v.s6.f46dde05549f from=translated src=- shape=442c306d vocab=a2015302
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.DerivAt_Type1_imp_Type2 {l l' : ℝ → ℝ} (hType : isType1 l')
     (hDer : ∀ {x}, 0 < x → HasDerivAt l (l' x) x)
     (h : l 1 = 0) : isType2 l := by
@@ -417,6 +525,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.DerivAt_Type1_imp_Type2 {l l' : ℝ 
   · refine h_mon (by norm_num) ?_ (by exact hx)
     rw [mem_Ioi]; rw [mem_Ici] at hx; linarith
 
+/--
+@isnad1 id=istype1.3h2v.s6.f317abbc0685 from=translated src=- shape=442c306d vocab=a2015302
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.DerivAt_Type2_imp_Type1 {l l' : ℝ → ℝ} (hType : isType2 l')
     (hDer : ∀ {x}, 0 < x → HasDerivAt l (l' x) x)
     (h : l 1 = 0) : isType1 l := by
@@ -441,6 +552,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.DerivAt_Type2_imp_Type1 {l l' : ℝ 
   We prove that the first few derivatives of `nF''₀` alternate between these two types.
 -/
 
+/--
+@isnad1 id=istype2.0h0v.s1.e50104234780 from=translated src=- shape=49959d42 vocab=7151ccef
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.isType2_nF''₃ : isType2 nF''₃ := by
   convert Type2_mul_nonneg (l := fun x ↦ -4 + 4*x) (m := fun x ↦ 1 / x^2) ?_ ?_ using 1
   · unfold nF''₃; ext x;
@@ -450,6 +564,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.isType2_nF''₃ : isType2 nF''₃ :=
   · refine ⟨?_,?_⟩ <;> (intro _ _; simp_all)
   · intro _ _; simp [sq_nonneg]
 
+/--
+@isnad1 id=istype1.0h0v.s1.1b8a6495696e from=translated src=- shape=49959d42 vocab=5db2259b
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.isType1_nF''₂ : isType1 nF''₂ :=
   DerivAt_Type2_imp_Type1 isType2_nF''₃ hasDerivAt_nF''₂ (by norm_num [nF''₂])
 
@@ -485,6 +602,9 @@ lemma _root_.Tengoku.Shearertrianglefreeind.isType1_nF''₂ : isType1 nF''₂ :=
 ### Finally the differential equation that F satisfies.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s6.a44e730dc921 from=translated src=- shape=38e47756 vocab=6110cd80
+-/
 lemma _root_.Tengoku.Shearertrianglefreeind.F_diff_equation : (x - x^2) * F' x - (x + 1) * F x + 1 = 0 := by
   by_cases hx : x = 1
   · rw [hx, F_at_one, F'_at_one]; norm_num
