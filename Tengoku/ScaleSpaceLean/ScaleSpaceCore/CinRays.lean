@@ -31,20 +31,35 @@ open scoped ENNReal Topology
 
 /-! ## `lem:cin-rays`(1): the ray -/
 
+/--
+@isnad1 id=le.0h2v.s4.630b0db8e8e9 from=translated src=- shape=a120b2a8 vocab=acffaf8b
+-/
 theorem cinProfile_nonneg (τ : ℝ) (x : ℝ) : 0 ≤ cinProfile τ x := by
   rw [cinProfile]
   by_cases hx : x ∈ Ioo (0 : ℝ) τ <;> simp [hx]
 
+/--
+@isnad1 id=le.0h2v.s4.5fbfd6a83731 from=translated src=- shape=aa052b1b vocab=acffaf8b
+-/
 theorem cinProfile_le_one (τ : ℝ) (x : ℝ) : cinProfile τ x ≤ 1 := by
   rw [cinProfile]
   by_cases hx : x ∈ Ioo (0 : ℝ) τ <;> simp [hx]
 
+/--
+@isnad1 id=eq.1h2v.s5.8c4343255af9 from=translated src=- shape=f73e45bd vocab=e704dd53
+-/
 theorem cinProfile_eq_zero {τ x : ℝ} (hx : x ∉ Ioo (0 : ℝ) τ) : cinProfile τ x = 0 := by
   simp [cinProfile, hx]
 
+/--
+@isnad1 id=eq.1h2v.s5.3c835f080f7f from=translated src=- shape=2df36b9c vocab=e704dd53
+-/
 theorem cinProfile_eq_one {τ x : ℝ} (hx : x ∈ Ioo (0 : ℝ) τ) : cinProfile τ x = 1 := by
   simp [cinProfile, hx]
 
+/--
+@isnad1 id=antitone.0h1v.s4.f232a4c9dca8 from=translated src=- shape=140225b6 vocab=3473ab19
+-/
 theorem antitoneOn_cinProfile (τ : ℝ) : AntitoneOn (cinProfile τ) (Ioi (0 : ℝ)) := by
   intro a ha b hb hab
   by_cases hb' : b ∈ Ioo (0 : ℝ) τ
@@ -52,6 +67,9 @@ theorem antitoneOn_cinProfile (τ : ℝ) : AntitoneOn (cinProfile τ) (Ioi (0 : 
   · rw [cinProfile_eq_zero hb']
     exact cinProfile_nonneg τ a
 
+/--
+@isnad1 id=measurab.0h1v.s3.5cbae13f568f from=translated src=- shape=f736e2c1 vocab=3b87dddc
+-/
 theorem measurable_cinProfile (τ : ℝ) : Measurable (cinProfile τ) :=
   (measurable_const.indicator measurableSet_Ioo)
 
@@ -92,6 +110,9 @@ noncomputable def cinSDProfile (τ : ℝ) : SDProfile where
     rw [Real.volume_Ioo]
     exact ENNReal.ofReal_ne_top
 
+/--
+@isnad1 id=eq.1h2v.s5.c85473093fb2 from=translated src=- shape=21a0ff20 vocab=70bc2029
+-/
 theorem cinSDProfile_exponentL {τ : ℝ} (hτ : 0 < τ) (ω : ℝ) :
     (cinSDProfile τ).exponentL ω = ENNReal.ofReal (cin (τ * ω)) := by
   have hzero : (∫⁻ x in Ici τ,
@@ -124,7 +145,9 @@ theorem cinSDProfile_exponentL {τ : ℝ} (hτ : 0 < τ) (ω : ℝ) :
     intervalIntegral_dilate_cinIntegrand, mul_comm]
 
 /-- **`lem:cin-rays`(1), the ray.** The unit-step profile `1_{(0,τ)}` is admissible, with Gaussian
-coefficient `0`, and its exponent is `Cin(τ·)`.-/
+coefficient `0`, and its exponent is `Cin(τ·)`.
+@isnad1 id=ex.1h1v.s5.197ee7addb1b from=translated src=- shape=c85e8db0 vocab=8a2aeead
+-/
 theorem cin_ray {τ : ℝ} (hτ : 0 < τ) :
     ∃ Q : SDProfile, Q.a = 0 ∧ Q.k = cinProfile τ ∧ ∀ ω : ℝ, Q.exponent ω = cin (τ * ω) :=
   ⟨cinSDProfile τ, rfl, rfl, fun ω => by

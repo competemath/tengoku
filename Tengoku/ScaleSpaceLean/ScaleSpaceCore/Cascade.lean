@@ -68,7 +68,9 @@ open scoped ENNReal Topology
 
 variable {Fam : PreCascadeCore} {μ : ℝ → ℝ → Measure ℝ}
 
-/-- **(ND) at the level of measures**: strictly below the diagonal the kernel is not `δ₀`.-/
+/-- **(ND) at the level of measures**: strictly below the diagonal the kernel is not `δ₀`.
+@isnad1 id=ne.4h4v.s5.9a05f28fc7e3 from=translated src=- shape=f1b367e6 vocab=0e04b520
+-/
 theorem kernel_ne_dirac (hker : IsKernelFamily Fam.Φ μ) (hnd : IsNondegenerate Fam.Φ)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s < t) : μ s t ≠ Measure.dirac 0 := by
   intro hcon
@@ -82,7 +84,9 @@ theorem kernel_ne_dirac (hker : IsKernelFamily Fam.Φ μ) (hnd : IsNondegenerate
 /-! ## The transform along the cascade -/
 
 /-- **The transform is multiplicative along the cascade**, with the factors in the order the
-chapter-5 statements read them.-/
+chapter-5 statements read them.
+@isnad1 id=eq.4h6v.s6.0580afce6d43 from=translated src=- shape=ca477f2f vocab=62d7d705
+-/
 theorem fourierCos_kernel_mul_comm (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤ r)
     (hrs : r ≤ s) (hst : s ≤ t) (ω : ℝ) :
     fourierCos (μ r t) ω = fourierCos (μ s t) ω * fourierCos (μ r s) ω := by
@@ -95,7 +99,9 @@ theorem fourierCos_kernel_mul_comm (hker : IsKernelFamily Fam.Φ μ) {r s t : �
 /-- **The transform of a kernel is strictly positive at every frequency** — `lem:nonvanishing`,
 applied at the hypotheses chapters 5 and 6 carry. The node's own declaration is
 `ScaleSpace.nonvanishing` in `Nonvanishing`; this is the name the later
-chapters cite it by.-/
+chapters cite it by.
+@isnad1 id=lt.3h5v.s5.6805070a38ec from=translated src=- shape=4714f211 vocab=93dc23e8
+-/
 theorem kernel_transform_pos (hker : IsKernelFamily Fam.Φ μ) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t)
     (ω : ℝ) : 0 < fourierCos (μ s t) ω :=
   nonvanishing Fam μ hker hs hst ω

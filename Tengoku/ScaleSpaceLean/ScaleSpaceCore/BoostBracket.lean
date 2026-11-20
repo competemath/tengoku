@@ -50,7 +50,9 @@ of the operator algebra, for scalar velocity `v` along one spatial direction.-/
 def Lop [Ring L] [Module ℝ L] (dt dj B : L) (v : ℝ) : L := dt + v • dj - B
 
 /-- `∂_v L_t^{(v)} = ∂_x`: the evolution is affine in the velocity, with slope the spatial
-translation `dj`.-/
+translation `dj`.
+@isnad1 id=hasderiv.0h5v.s6.77b0e72620ec from=translated src=- shape=ad5ab216 vocab=ac49c4e2
+-/
 theorem hasDerivAt_Lop [NormedRing L] [NormedAlgebra ℝ L] (dt dj B : L) (v : ℝ) :
     HasDerivAt (Lop dt dj B) dj v := by
   have hs : HasDerivAt (fun w : ℝ => w • dj) dj v := by
@@ -60,7 +62,9 @@ theorem hasDerivAt_Lop [NormedRing L] [NormedAlgebra ℝ L] (dt dj B : L) (v : �
 
 /-- The commutator `[γ, L_t^{(v)}] = −∂_x`, from the Galilean structure constants. Stated over a
 general `ℝ`-algebra so a concrete operator algebra (e.g. `Module.End ℝ (MvPolynomial …)`) can
-instantiate it — see `ScaleSpace.BoostBracket.Concrete`.-/
+instantiate it — see `ScaleSpace.BoostBracket.Concrete`.
+@isnad1 id=eq.3h6v.s8.d94ba5d43f60 from=translated src=- shape=b660d1a1 vocab=9d3c8ace
+-/
 theorem boost_comm_Lop [Ring L] [Algebra ℝ L]
     (dt dj B boost : L)
     (h_dt : boost * dt - dt * boost = -dj)
@@ -78,7 +82,9 @@ theorem boost_comm_Lop [Ring L] [Algebra ℝ L]
 
 /-- **The boost bracket.** The Galilean boost `γ = t∂_x` acts on the velocity-adapted temporal
 evolution `L_t^{(v)}` as a translation in the velocity parameter: `[γ, L_t^{(v)}] = −∂_v L_t^{(v)}`.
-The space-and-memory resolution of the non-existence theorem as one operator identity.-/
+The space-and-memory resolution of the non-existence theorem as one operator identity.
+@isnad1 id=eq.3h6v.s8.71fa89927f70 from=translated src=- shape=7255e032 vocab=c41c720e
+-/
 theorem boost_bracket [NormedRing L] [NormedAlgebra ℝ L]
     (dt dj B boost : L)
     (h_dt : boost * dt - dt * boost = -dj)

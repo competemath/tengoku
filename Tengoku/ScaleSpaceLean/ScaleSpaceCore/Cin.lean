@@ -70,6 +70,9 @@ Even without stipulation, the integrand being odd; see the module docstring.
 twin: `Hemigroup.ein`.-/
 noncomputable def cin (z : ℝ) : ℝ := ∫ v in (0 : ℝ)..z, cinIntegrand v
 
+/--
+@isnad1 id=eq.0h1v.s5.ba7ef502d588 from=translated src=- shape=a0923814 vocab=4b32613d
+-/
 lemma cin_apply (z : ℝ) : cin z = ∫ v in (0 : ℝ)..z, cinIntegrand v := rfl
 
 /-- The profile of the `Cin` ray of step `τ`: `k = 1_{(0,τ)}`.
@@ -80,21 +83,36 @@ noncomputable def cinProfile (τ : ℝ) : ℝ → ℝ := Set.indicator (Ioo (0 :
 
 /-! ## The integrand -/
 
+/--
+@isnad1 id=le.1h1v.s4.cf764c440586 from=translated src=- shape=35bd48ee vocab=b3db1b74
+-/
 theorem cinIntegrand_nonneg {v : ℝ} (hv : 0 ≤ v) : 0 ≤ cinIntegrand v :=
   div_nonneg (by linarith [Real.cos_le_one v]) hv
 
+/--
+@isnad1 id=eq.0h1v.s3.f7ac77b54dc5 from=translated src=- shape=c7188113 vocab=6f69b64e
+-/
 theorem cinIntegrand_neg (v : ℝ) : cinIntegrand (-v) = -cinIntegrand v := by
   rw [cinIntegrand, cinIntegrand, Real.cos_neg, div_neg]
 
+/--
+@isnad1 id=le.1h1v.s5.8ac8439eff9c from=translated src=- shape=95757b40 vocab=363cdb49
+-/
 theorem cinIntegrand_le_half {v : ℝ} (hv : 0 ≤ v) : cinIntegrand v ≤ v / 2 := by
   rcases hv.eq_or_lt with rfl | hv'
   · simp [cinIntegrand]
   · rw [cinIntegrand, div_le_iff₀ hv']
     nlinarith [Real.one_sub_sq_div_two_le_cos (x := v)]
 
+/--
+@isnad1 id=measurab.0h0v.s2.cfe7e4b22f20 from=translated src=- shape=e3d48bcb vocab=792c5db2
+-/
 theorem measurable_cinIntegrand : Measurable cinIntegrand := by
   unfold cinIntegrand; fun_prop
 
+/--
+@isnad1 id=interval.1h1v.s5.6f7c5a349aa7 from=translated src=- shape=6f190ffe vocab=5cd67dc9
+-/
 theorem intervalIntegrable_cinIntegrand {z : ℝ} (hz : 0 ≤ z) :
     IntervalIntegrable cinIntegrand volume 0 z := by
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hz]
@@ -108,7 +126,9 @@ theorem intervalIntegrable_cinIntegrand {z : ℝ} (hz : 0 ≤ z) :
 
 /-! ## The calculus of `Cin` -/
 
-/-- `|Cin'(v)| ≤ |v|/2`, the bound that makes the integrand continuous at the origin.-/
+/-- `|Cin'(v)| ≤ |v|/2`, the bound that makes the integrand continuous at the origin.
+@isnad1 id=le.0h1v.s5.552e5f3aebaa from=translated src=- shape=9079d770 vocab=30ee11a2
+-/
 theorem abs_cinIntegrand_le (v : ℝ) : |cinIntegrand v| ≤ |v| / 2 := by
   rcases le_or_gt 0 v with hv | hv
   · rw [abs_of_nonneg (cinIntegrand_nonneg hv), abs_of_nonneg hv]
@@ -121,7 +141,9 @@ theorem abs_cinIntegrand_le (v : ℝ) : |cinIntegrand v| ≤ |v| / 2 := by
 
 /-- **`Cin'` is continuous**, the origin included: `(1 - cos v)/v` is `0` at `v = 0` by Lean's
 division convention and tends to `0` there, the two agreeing because the quotient is squeezed by
-`|v|/2`.-/
+`|v|/2`.
+@isnad1 id=continuo.0h0v.s3.d167f1fe76f7 from=translated src=- shape=e3d48bcb vocab=e41abcc0
+-/
 theorem continuous_cinIntegrand : Continuous cinIntegrand := by
   rw [continuous_iff_continuousAt]
   intro v
@@ -135,20 +157,31 @@ theorem continuous_cinIntegrand : Continuous cinIntegrand := by
   · unfold cinIntegrand
     exact ContinuousAt.div (by fun_prop) (by fun_prop) hv
 
-/-- **`Cin' = cinIntegrand` everywhere**, by the fundamental theorem of calculus.-/
+/-- **`Cin' = cinIntegrand` everywhere**, by the fundamental theorem of calculus.
+@isnad1 id=hasderiv.0h1v.s5.cdb1915b8b61 from=translated src=- shape=475e04ea vocab=bc2b2a4e
+-/
 theorem hasDerivAt_cin (z : ℝ) : HasDerivAt cin (cinIntegrand z) z :=
   intervalIntegral.integral_hasDerivAt_right
     (continuous_cinIntegrand.intervalIntegrable 0 z)
     (continuous_cinIntegrand.stronglyMeasurableAtFilter _ _)
     continuous_cinIntegrand.continuousAt
 
+/--
+@isnad1 id=continuo.0h0v.s3.feecb87cd0c9 from=translated src=- shape=e3d48bcb vocab=30bc91de
+-/
 theorem continuous_cin : Continuous cin :=
   continuous_iff_continuousAt.mpr fun z => ((hasDerivAt_cin z).differentiableAt).continuousAt
 
 /-! ## `Cin` itself -/
 
+/--
+@isnad1 id=eq.0h0v.s3.70979cf033cd from=translated src=- shape=3c26ae4f vocab=0f2191d7
+-/
 theorem cin_zero : cin 0 = 0 := by simp [cin]
 
+/--
+@isnad1 id=eq.0h1v.s3.3d631ee0e968 from=translated src=- shape=cd419dad vocab=9ab73ecf
+-/
 theorem cin_neg (z : ℝ) : cin (-z) = cin z := by
   have h : (∫ x in (0 : ℝ)..z, cinIntegrand (-x)) = ∫ x in (-z)..(-0:ℝ), cinIntegrand x :=
     intervalIntegral.integral_comp_neg cinIntegrand
@@ -159,10 +192,16 @@ theorem cin_neg (z : ℝ) : cin (-z) = cin z := by
   rw [hl, hr] at h
   exact (neg_injective h).symm
 
+/--
+@isnad1 id=le.1h1v.s4.3ed1aa8fce0c from=translated src=- shape=35bd48ee vocab=01f70fdd
+-/
 theorem cin_nonneg {z : ℝ} (hz : 0 ≤ z) : 0 ≤ cin z := by
   rw [cin_apply]
   refine intervalIntegral.integral_nonneg hz fun v hv => cinIntegrand_nonneg hv.1
 
+/--
+@isnad1 id=monotone.0h0v.s3.07abe2cb5ad4 from=translated src=- shape=f2a09be3 vocab=62fc66a6
+-/
 theorem monotoneOn_cin : MonotoneOn cin (Ici 0) := by
   intro a ha b hb hab
   have ha' : (0 : ℝ) ≤ a := ha
@@ -182,10 +221,16 @@ theorem monotoneOn_cin : MonotoneOn cin (Ici 0) := by
 
 /-! ## The expansion at infinity -/
 
+/--
+@isnad1 id=eq.1h1v.s5.0305c5b8a4dc from=translated src=- shape=577c1027 vocab=78ea50f5
+-/
 theorem rpow_neg_two {v : ℝ} (hv : 0 < v) : v ^ (-2 : ℝ) = (v ^ 2)⁻¹ := by
   rw [← Real.rpow_natCast v 2, ← Real.rpow_neg hv.le]
   norm_num
 
+/--
+@isnad1 id=integrab.1h1v.s6.1a128ed0717e from=translated src=- shape=ddccb3a3 vocab=6aaf0319
+-/
 theorem integrableOn_sin_div_sq {c : ℝ} (hc : 0 < c) :
     IntegrableOn (fun v : ℝ => Real.sin v / v ^ 2) (Ioi c) := by
   have hg : IntegrableOn (fun v : ℝ => v ^ (-2 : ℝ)) (Ioi c) :=
@@ -200,6 +245,9 @@ theorem integrableOn_sin_div_sq {c : ℝ} (hc : 0 < c) :
   rw [inv_mul_cancel₀ (by positivity : (v:ℝ) ^ 2 ≠ 0)]
   exact this
 
+/--
+@isnad1 id=le.1h1v.s6.30f8cf6294d1 from=translated src=- shape=8b756d12 vocab=6fc9cedb
+-/
 theorem norm_integral_Ioi_sin_div_sq {c : ℝ} (hc : 0 < c) :
     ‖∫ v in Ioi c, Real.sin v / v ^ 2‖ ≤ c⁻¹ := by
   have hg : IntegrableOn (fun v : ℝ => v ^ (-2 : ℝ)) (Ioi c) :=
@@ -221,6 +269,9 @@ theorem norm_integral_Ioi_sin_div_sq {c : ℝ} (hc : 0 < c) :
         exact Real.abs_sin_le_one v
     _ = c⁻¹ := hval
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.85021b1f431c from=translated src=- shape=c3ded563 vocab=c33b2268
+-/
 theorem hasDerivAt_sin_div {v : ℝ} (hv : v ≠ 0) :
     HasDerivAt (fun u : ℝ => Real.sin u / u) (Real.cos v / v - Real.sin v / v ^ 2) v := by
   have h : HasDerivAt (fun u : ℝ => Real.sin u / u)
@@ -230,6 +281,9 @@ theorem hasDerivAt_sin_div {v : ℝ} (hv : v ≠ 0) :
       = Real.cos v / v - Real.sin v / v ^ 2 := by field_simp
   rwa [heq] at h
 
+/--
+@isnad1 id=eq.1h1v.s7.91cc3fe3b968 from=translated src=- shape=b5c815d9 vocab=bce9f37f
+-/
 theorem integral_cos_div {z : ℝ} (hz : 1 ≤ z) :
     (∫ v in (1 : ℝ)..z, Real.cos v / v)
       = Real.sin z / z - Real.sin 1 + ∫ v in (1 : ℝ)..z, Real.sin v / v ^ 2 := by
@@ -249,6 +303,9 @@ theorem integral_cos_div {z : ℝ} (hz : 1 ≤ z) :
   rw [intervalIntegral.integral_sub hi1 hi2] at hftc
   linarith [hftc]
 
+/--
+@isnad1 id=eq.1h1v.s6.f5a43ee0bad8 from=translated src=- shape=83bf1010 vocab=7e376606
+-/
 theorem cin_eq_log_sub {z : ℝ} (hz : 1 ≤ z) :
     cin z = cin 1 + Real.log z - ∫ v in (1 : ℝ)..z, Real.cos v / v := by
   have hz0 : (0 : ℝ) < z := lt_of_lt_of_le zero_lt_one hz
@@ -281,6 +338,9 @@ theorem cin_eq_log_sub {z : ℝ} (hz : 1 ≤ z) :
 /-- The constant `C` of `lem:cin-rays`(1)'s expansion at infinity.-/
 noncomputable def cinConst : ℝ := cin 1 + Real.sin 1 - ∫ v in Ioi (1 : ℝ), Real.sin v / v ^ 2
 
+/--
+@isnad1 id=eq.1h1v.s6.1e850d9bc66a from=translated src=- shape=58f5923e vocab=9a9c1c31
+-/
 theorem cin_sub_log_eq {z : ℝ} (hz : 1 ≤ z) :
     cin z - Real.log z - cinConst
       = -(Real.sin z / z) + ∫ v in Ioi z, Real.sin v / v ^ 2 := by
@@ -295,6 +355,9 @@ theorem cin_sub_log_eq {z : ℝ} (hz : 1 ≤ z) :
   rw [cin_eq_log_sub hz, integral_cos_div hz, cinConst, hsplit]
   ring
 
+/--
+@isnad1 id=le.1h1v.s5.e9f2aec46e1d from=translated src=- shape=5046ce8a vocab=88b8c071
+-/
 theorem cin_expansion_top_bound {z : ℝ} (hz : 1 ≤ z) :
     |cin z - Real.log z - cinConst| ≤ 2 * z⁻¹ := by
   have hz0 : (0 : ℝ) < z := lt_of_lt_of_le zero_lt_one hz
@@ -309,6 +372,9 @@ theorem cin_expansion_top_bound {z : ℝ} (hz : 1 ≤ z) :
     _ ≤ z⁻¹ + z⁻¹ := by rw [abs_neg]; linarith
     _ = 2 * z⁻¹ := by ring
 
+/--
+@isnad1 id=ex.0h0v.s5.e6ffb4846c92 from=translated src=- shape=483e39f0 vocab=6d4d075c
+-/
 theorem cin_expansion_top :
     ∃ C : ℝ, (fun z : ℝ => cin z - Real.log z - C) =O[atTop] fun z : ℝ => z⁻¹ := by
   refine ⟨cinConst, Asymptotics.isBigO_iff.mpr ⟨2, ?_⟩⟩
@@ -319,12 +385,17 @@ theorem cin_expansion_top :
 
 /-! ## The dilated integrand, and the ray -/
 
+/--
+@isnad1 id=le.0h1v.s3.57047b94ed62 from=translated src=- shape=8a62b088 vocab=01f70fdd
+-/
 theorem cin_nonneg' (z : ℝ) : 0 ≤ cin z := by
   rcases le_or_gt 0 z with hz | hz
   · exact cin_nonneg hz
   · rw [← cin_neg]; exact cin_nonneg (by linarith)
 
-/-- `(1 - cos(ωx))/x = ω · cinIntegrand(ωx)`, at every real `ω` and `x`.-/
+/-- `(1 - cos(ωx))/x = ω · cinIntegrand(ωx)`, at every real `ω` and `x`.
+@isnad1 id=eq.0h2v.s5.19a7120315f3 from=translated src=- shape=20f99127 vocab=90e68983
+-/
 theorem dilate_cinIntegrand (ω x : ℝ) :
     (1 - Real.cos (ω * x)) / x = ω * cinIntegrand (ω * x) := by
   rcases eq_or_ne ω 0 with rfl | hω
@@ -333,7 +404,9 @@ theorem dilate_cinIntegrand (ω x : ℝ) :
   · simp [cinIntegrand]
   · rw [cinIntegrand]; field_simp
 
-/-- **The substitution**: `∫₀^z (1 - cos(ωx))\,dx/x = Cin(ωz)`.-/
+/-- **The substitution**: `∫₀^z (1 - cos(ωx))\,dx/x = Cin(ωz)`.
+@isnad1 id=eq.0h2v.s6.a16d37eaba58 from=translated src=- shape=2965728f vocab=f33dc9aa
+-/
 theorem intervalIntegral_dilate_cinIntegrand (ω z : ℝ) :
     (∫ x in (0 : ℝ)..z, (1 - Real.cos (ω * x)) / x) = cin (ω * z) := by
   rcases eq_or_ne ω 0 with rfl | hω
@@ -342,10 +415,16 @@ theorem intervalIntegral_dilate_cinIntegrand (ω z : ℝ) :
     rw [intervalIntegral.integral_const_mul, intervalIntegral.integral_comp_mul_left _ hω,
       mul_zero, smul_eq_mul, ← mul_assoc, mul_inv_cancel₀ hω, one_mul, cin]
 
+/--
+@isnad1 id=le.1h2v.s5.e0ee47c04e14 from=translated src=- shape=83ec9209 vocab=e5ab6f22
+-/
 theorem dilate_cinIntegrand_nonneg (ω : ℝ) {x : ℝ} (hx : 0 ≤ x) :
     0 ≤ (1 - Real.cos (ω * x)) / x :=
   div_nonneg (by linarith [Real.cos_le_one (ω * x)]) hx
 
+/--
+@isnad1 id=le.2h3v.s6.919251706991 from=translated src=- shape=1cd5599a vocab=14595f7b
+-/
 theorem dilate_cinIntegrand_le (ω : ℝ) {x z : ℝ} (hx : 0 ≤ x) (hxz : x ≤ z) :
     (1 - Real.cos (ω * x)) / x ≤ ω ^ 2 * z / 2 := by
   rcases hx.eq_or_lt with rfl | hx'
@@ -353,6 +432,9 @@ theorem dilate_cinIntegrand_le (ω : ℝ) {x z : ℝ} (hx : 0 ≤ x) (hxz : x �
   · rw [div_le_iff₀ hx']
     nlinarith [Real.one_sub_sq_div_two_le_cos (x := ω * x), sq_nonneg (ω * x), hx'.le, sq_nonneg ω]
 
+/--
+@isnad1 id=interval.1h2v.s6.d6fd4874efab from=translated src=- shape=a082bae5 vocab=80d3362e
+-/
 theorem intervalIntegrable_dilate_cinIntegrand (ω : ℝ) {z : ℝ} (hz : 0 ≤ z) :
     IntervalIntegrable (fun x : ℝ => (1 - Real.cos (ω * x)) / x) volume 0 z := by
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hz]

@@ -85,10 +85,15 @@ about it alone and because the increment's density is not a profile.-/
 noncomputable def profileJumpL (k : ℝ → ℝ) (ω : ℝ) : ℝ≥0∞ :=
   ∫⁻ x in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.cos (ω * x)) * k x / x)
 
+/--
+@isnad1 id=eq.0h2v.s5.2022aff8d01c from=translated src=- shape=1e7db001 vocab=e01298f6
+-/
 theorem SDProfile.exponentL_eq_add_jump (P : SDProfile) (ω : ℝ) :
     P.exponentL ω = ENNReal.ofReal (P.a * ω ^ 2) + profileJumpL P.k ω := rfl
 
-/-- The integrand of `profileJumpL` is a.e. measurable when the profile is.-/
+/-- The integrand of `profileJumpL` is a.e. measurable when the profile is.
+@isnad1 id=aemeasur.1h2v.s6.33fc483bbd4c from=translated src=- shape=fad70367 vocab=0f252451
+-/
 theorem aemeasurable_profileJump_integrand {k : ℝ → ℝ}
     (hk : AEMeasurable k (volume.restrict (Ioi (0 : ℝ)))) (ω : ℝ) :
     AEMeasurable (fun x : ℝ => ENNReal.ofReal ((1 - Real.cos (ω * x)) * k x / x))
@@ -98,7 +103,9 @@ theorem aemeasurable_profileJump_integrand {k : ℝ → ℝ}
 
 /-- Precomposition with a dilation preserves antitonicity on the half-line.
 
-twin: `Hemigroup.antitoneOn_comp_div`, verbatim.-/
+twin: `Hemigroup.antitoneOn_comp_div`, verbatim.
+@isnad1 id=antitone.2h2v.s5.e102f40fcb24 from=translated src=- shape=ecef4d18 vocab=dcd60826
+-/
 theorem antitoneOn_comp_div {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : ℝ))) {c : ℝ} (hc : 0 < c) :
     AntitoneOn (fun u => k (u / c)) (Ioi (0 : ℝ)) := fun _ hx _ hy hxy =>
   hk (mem_Ioi.mpr (div_pos (mem_Ioi.mp hx) hc)) (mem_Ioi.mpr (div_pos (mem_Ioi.mp hy) hc))
@@ -109,7 +116,9 @@ theorem antitoneOn_comp_div {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : ℝ))
 The Jacobian `c` of `u = c x` cancels exactly against the `c` produced by `x = u/c` in the
 denominator, which is the statement that `dx/x` is invariant under the multiplicative group.
 
-twin: `Hemigroup.levyJump_comp_mul`.-/
+twin: `Hemigroup.levyJump_comp_mul`.
+@isnad1 id=eq.1h3v.s5.28ab94fb1938 from=translated src=- shape=93f623ec vocab=7e90a473
+-/
 theorem profileJumpL_comp_div (k : ℝ → ℝ) {c : ℝ} (hc : 0 < c) (ω : ℝ) :
     profileJumpL (fun u => k (u / c)) ω = profileJumpL k (c * ω) := by
   rw [profileJumpL, setLIntegral_Ioi_comp_mul hc, ← lintegral_const_mul' _ _ ENNReal.ofReal_ne_top,
@@ -124,7 +133,9 @@ theorem profileJumpL_comp_div (k : ℝ → ℝ) {c : ℝ} (hc : 0 < c) (ω : ℝ
 /-! ## Reading the jump part off the profile measure -/
 
 /-- The `ℝ≥0∞` integral of a measurable function against a profile measure, with the density
-unfolded.-/
+unfolded.
+@isnad1 id=eq.2h2v.s6.22d127614664 from=translated src=- shape=852d234e vocab=920d19e8
+-/
 theorem lintegral_profileMeasure {k : ℝ → ℝ}
     (hk : AEMeasurable k (volume.restrict (Ioi (0 : ℝ)))) {g : ℝ → ℝ≥0∞} (hg : Measurable g) :
     (∫⁻ x, g x ∂(profileMeasure k))
@@ -135,7 +146,9 @@ theorem lintegral_profileMeasure {k : ℝ → ℝ}
   rfl
 
 /-- The jump part of a Lévy pair whose measure is a profile measure is the profile's jump
-part.-/
+part.
+@isnad1 id=eq.2h2v.s6.9ce89a76b985 from=translated src=- shape=f9466f1c vocab=880604a7
+-/
 theorem lintegral_one_sub_cos_profileMeasure {k : ℝ → ℝ}
     (hk₀ : ∀ x ∈ Ioi (0 : ℝ), 0 ≤ k x)
     (hk : AEMeasurable k (volume.restrict (Ioi (0 : ℝ)))) (ω : ℝ) :
@@ -155,7 +168,9 @@ theorem lintegral_one_sub_cos_profileMeasure {k : ℝ → ℝ}
 
 The two regimes of the truncation meet here: for small `x` both sides are quadratic, for large
 `x` both are constant, and the middle range is covered because `(cx)² > 1 ≥ x²` forces
-`(1 ∨ c²)x² ≥ c²x² > 1`.-/
+`(1 ∨ c²)x² ≥ c²x² > 1`.
+@isnad1 id=le.0h2v.s6.50580439a362 from=translated src=- shape=22ffdae8 vocab=171f88de
+-/
 theorem min_one_sq_mul_le (c x : ℝ) :
     min 1 ((c * x) ^ 2) ≤ max 1 (c ^ 2) * min 1 (x ^ 2) := by
   have hm1 : (1 : ℝ) ≤ max 1 (c ^ 2) := le_max_left _ _
@@ -176,7 +191,9 @@ measure of `k`, the same holds for the profile measure of `k(·/c)`, `c > 0`.
 
 This has no causal counterpart: Paper I's structure carries the finiteness of the *exponent*,
 which transports by `levyJump_comp_mul` alone, while `SymLevyPair` carries the Lévy condition on
-the measure and so needs the truncation comparison `min_one_sq_mul_le`.-/
+the measure and so needs the truncation comparison `min_one_sq_mul_le`.
+@isnad1 id=ne.4h2v.s7.e6b0646fe1d0 from=translated src=- shape=41157f90 vocab=b4e203e2
+-/
 theorem lintegral_min_profileMeasure_comp_div_ne_top {k : ℝ → ℝ}
     (hk : AntitoneOn k (Ioi (0 : ℝ))) (hk₀ : ∀ x ∈ Ioi (0 : ℝ), 0 ≤ k x)
     (hfin : (∫⁻ x, ENNReal.ofReal (min 1 (x ^ 2)) ∂(profileMeasure k)) ≠ ⊤)
@@ -216,7 +233,9 @@ theorem lintegral_min_profileMeasure_comp_div_ne_top {k : ℝ → ℝ}
 /-- The increment density is nonnegative: the *only* place monotonicity of `k` is used, and what
 makes the increment a symmetric Lévy exponent rather than a mere difference.
 
-twin: `Hemigroup.increment_density_nonneg`.-/
+twin: `Hemigroup.increment_density_nonneg`.
+@isnad1 id=le.4h4v.s6.884eff2f3cb8 from=translated src=- shape=6a9eea33 vocab=32327f2a
+-/
 theorem incrementProfile_nonneg {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : ℝ)))
     {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) {x : ℝ} (hx : x ∈ Ioi (0 : ℝ)) :
     0 ≤ incrementProfile k s t x := by
@@ -226,7 +245,9 @@ theorem incrementProfile_nonneg {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : �
     hk (mem_Ioi.mpr (div_pos hx0 ht)) (mem_Ioi.mpr (div_pos hx0 hs)) (by gcongr)
 
 /-- The increment density is dominated by the upper dilate: `k(x/t) - k(x/s) ≤ k(x/t)`, because
-`k ≥ 0`.-/
+`k ≥ 0`.
+@isnad1 id=le.3h4v.s6.d90b5edea4ff from=translated src=- shape=c15f1e76 vocab=2c6ff046
+-/
 theorem incrementProfile_le {k : ℝ → ℝ} (hk₀ : ∀ x ∈ Ioi (0 : ℝ), 0 ≤ k x)
     {s t : ℝ} (hs : 0 < s) {x : ℝ} (hx : x ∈ Ioi (0 : ℝ)) :
     incrementProfile k s t x ≤ k (x / t) := by
@@ -234,6 +255,9 @@ theorem incrementProfile_le {k : ℝ → ℝ} (hk₀ : ∀ x ∈ Ioi (0 : ℝ), 
   have := hk₀ (x / s) (mem_Ioi.mpr (div_pos hx0 hs))
   simpa [incrementProfile] using this
 
+/--
+@isnad1 id=aemeasur.3h3v.s6.57f05005a718 from=translated src=- shape=6aae5230 vocab=551befb9
+-/
 theorem aemeasurable_incrementProfile {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : ℝ)))
     {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) :
     AEMeasurable (incrementProfile k s t) (volume.restrict (Ioi (0 : ℝ))) := by
@@ -244,7 +268,9 @@ theorem aemeasurable_incrementProfile {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi 
 /-- **The jump parts add**: the jump part of the lower dilate plus that of the increment density
 is the jump part of the upper dilate.
 
-twin: `Hemigroup.levyJump_add_increment`.-/
+twin: `Hemigroup.levyJump_add_increment`.
+@isnad1 id=eq.4h4v.s6.e5c219ba3677 from=translated src=- shape=947726d1 vocab=f0188d29
+-/
 theorem profileJumpL_add_increment {k : ℝ → ℝ} (hk : AntitoneOn k (Ioi (0 : ℝ)))
     (hk₀ : ∀ x ∈ Ioi (0 : ℝ), 0 ≤ k x) {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) (ω : ℝ) :
     profileJumpL (fun u => k (u / s)) ω + profileJumpL (incrementProfile k s t) ω
@@ -273,7 +299,9 @@ Stated additively rather than as a truncated `ℝ≥0∞` subtraction: the two a
 finite, and the additive form is what `thm:main-characterization`'s constructive direction uses,
 since it needs exponents to add along a cascade.
 
-twin: `Hemigroup.levyExponentD_increment`.-/
+twin: `Hemigroup.levyExponentD_increment`.
+@isnad1 id=ex.2h3v.s7.2c5ff057518e from=translated src=- shape=3fb13482 vocab=ecb3fef3
+-/
 theorem sd_increment_pair (Q : SDProfile) {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) :
     ∃ R : SymLevyPair, R.a = Q.a * (t ^ 2 - s ^ 2)
       ∧ R.ν = profileMeasure (incrementProfile Q.k s t)
@@ -326,7 +354,9 @@ theorem sd_increment_pair (Q : SDProfile) {s t : ℝ} (hs : 0 < s) (hst : s ≤ 
 
 This is `eq:dilation-difference` at the lower endpoint `s = 0`, the case
 `sd_exponents_three_implies_one` deliberately excludes and `thm:main-characterization`'s
-constructive direction needs.-/
+constructive direction needs.
+@isnad1 id=ex.1h2v.s5.9249ab6018e4 from=translated src=- shape=2cb678b2 vocab=d0b79cf6
+-/
 theorem sd_dilate_pair (Q : SDProfile) {c : ℝ} (hc : 0 < c) :
     ∃ R : SymLevyPair, ∀ ω, R.exponentL ω = Q.exponentL (c * ω) := by
   have hkm : AEMeasurable Q.k (volume.restrict (Ioi (0 : ℝ))) := Q.aemeasurable_k
@@ -351,7 +381,9 @@ be the origin.
 Three cases, and the boundary ones are why the declaration exists: at `c = d = 0` the increment
 is the zero exponent, at `c = 0 < d` it is the dilate `F(d\,\cdot)` itself, and at `0 < c` it is
 `sd_increment_pair`. `thm:main-characterization`'s constructive direction quantifies over
-`0 ≤ s ≤ t`, so all three occur.-/
+`0 ≤ s ≤ t`, so all three occur.
+@isnad1 id=issymlev.2h3v.s5.880be41d31a0 from=translated src=- shape=02d9fa3d vocab=96e30104
+-/
 theorem sd_increment_isSymLevyExponent (Q : SDProfile) {c d : ℝ} (hc : 0 ≤ c) (hcd : c ≤ d) :
     IsSymLevyExponent fun ω => Q.exponent (d * ω) - Q.exponent (c * ω) := by
   rcases eq_or_lt_of_le hc with h0 | hcpos

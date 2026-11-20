@@ -49,7 +49,9 @@ open scoped ENNReal Topology
 /-- **The compatibility of dilation with convolution**, at the level of functions:
 `(D_λ ν) * f = D_λ (ν * D_{λ⁻¹} f)`. The measurable-embedding form of `integral_map` is used, so
 no measurability of `f` is needed — which matters, because `f` is an `L¹` representative at
-every use.-/
+every use.
+@isnad1 id=eq.1h4v.s5.f13ee79bb90e from=translated src=- shape=d62b2ae7 vocab=5f267356
+-/
 lemma mconv_map_mul (ν : Measure ℝ) {lam : ℝ} (hlam : 0 < lam) (f : ℝ → ℝ) (x : ℝ) :
     mconv (ν.map (fun y => lam * y)) f x = dilate lam (mconv ν (dilate lam⁻¹ f)) x := by
   rw [mconv_apply, (measurableEmbedding_mulLeft₀ hlam.ne').integral_map]
@@ -60,7 +62,9 @@ lemma mconv_map_mul (ν : Measure ℝ) {lam : ℝ} (hlam : 0 < lam) (f : ℝ →
   have hy : lam * (lam⁻¹ * x - y) = x - lam * y := by field_simp
   rw [hy, ← mul_assoc, inv_mul_cancel₀ hlam.ne', one_mul]
 
-/-- Dilations compose.-/
+/-- Dilations compose.
+@isnad1 id=eq.0h3v.s4.9bc38abb8c52 from=translated src=- shape=0b16d896 vocab=fc3272dd
+-/
 lemma dilate_dilate (lam κ : ℝ) (f : ℝ → ℝ) :
     dilate lam (dilate κ f) = dilate (lam * κ) f := by
   funext x
@@ -69,21 +73,30 @@ lemma dilate_dilate (lam κ : ℝ) (f : ℝ → ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.f315fbb453b4 from=translated src=- shape=d11dff22 vocab=b0050396
+-/
 @[simp] lemma dilate_one (f : ℝ → ℝ) : dilate 1 f = f := by
   funext x
   simp [dilate]
 
-/-- `D_{λ⁻¹}` undoes `D_λ`.-/
+/-- `D_{λ⁻¹}` undoes `D_λ`.
+@isnad1 id=eq.1h2v.s4.90dcf193ac9b from=translated src=- shape=c67ef9ed vocab=ecdd4950
+-/
 lemma dilate_inv_dilate {lam : ℝ} (hlam : lam ≠ 0) (f : ℝ → ℝ) :
     dilate lam⁻¹ (dilate lam f) = f := by
   rw [dilate_dilate, inv_mul_cancel₀ hlam, dilate_one]
 
-/-- `D_λ` undoes `D_{λ⁻¹}`.-/
+/-- `D_λ` undoes `D_{λ⁻¹}`.
+@isnad1 id=eq.1h2v.s4.bb95a8ed0a96 from=translated src=- shape=313cb008 vocab=ecdd4950
+-/
 lemma dilate_dilate_inv {lam : ℝ} (hlam : lam ≠ 0) (f : ℝ → ℝ) :
     dilate lam (dilate lam⁻¹ f) = f := by
   rw [dilate_dilate, mul_inv_cancel₀ hlam, dilate_one]
 
-/-- The transform of a dilated measure.-/
+/-- The transform of a dilated measure.
+@isnad1 id=eq.1h3v.s5.56ee3540ae27 from=translated src=- shape=c28dc8ce vocab=45298e55
+-/
 lemma fourierCos_map_mul (ν : Measure ℝ) {lam : ℝ} (hlam : lam ≠ 0) (ω : ℝ) :
     fourierCos (ν.map (fun y => lam * y)) ω = fourierCos ν (lam * ω) := by
   rw [fourierCos_apply, fourierCos_apply, (measurableEmbedding_mulLeft₀ hlam).integral_map]

@@ -59,20 +59,30 @@ noncomputable def subCME : C(E, C(E, E)) :=
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] [MeasureSpace E] [BorelSpace E]
   [(volume : Measure E).IsAddHaarMeasure] in
+/--
+@isnad1 id=eq.0h3v.s7.b7ef941c5bc7 from=translated src=- shape=a62cacfb vocab=23313dcc
+-/
 @[simp] lemma subCME_apply (a x : E) : subCME a x = x - a := rfl
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=measurep.0h2v.s7.4668ddb1ea7c from=translated src=- shape=c35b2636 vocab=254a06f5
+-/
 lemma measurePreserving_subCME (a : E) :
     MeasurePreserving (subCME a) volume volume := measurePreserving_sub_constE a
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- The hand-built `transL1E` is Mathlib's composition operator.-/
+/-- The hand-built `transL1E` is Mathlib's composition operator.
+@isnad1 id=eq.0h3v.s13.bc0109b7c696 from=translated src=- shape=80ee6530 vocab=dd727617
+-/
 theorem transL1E_eq (a : E) (g : E →₁[volume] ℝ) :
     transL1E a g = Lp.compMeasurePreserving (subCME a) (measurePreserving_subCME a) g := by
   refine Lp.ext ((coeFn_transL1E a g).trans ?_)
   exact (Lp.coeFn_compMeasurePreserving g (measurePreserving_subCME a)).symm
 
-/-- **Translation acts continuously on `L¹(E)`**: `y ↦ T_y g` is continuous.-/
+/-- **Translation acts continuously on `L¹(E)`**: `y ↦ T_y g` is continuous.
+@isnad1 id=continuo.0h2v.s12.2ec83fabcd29 from=translated src=- shape=746c15a4 vocab=ac1c33e6
+-/
 theorem continuous_transL1E (g : E →₁[volume] ℝ) : Continuous fun a : E => transL1E a g := by
   rw [continuous_iff_continuousAt]
   intro a₀
@@ -89,6 +99,9 @@ theorem continuous_transL1E (g : E →₁[volume] ℝ) : Continuous fun a : E =>
 noncomputable def bconvE (f : E → ℝ) (g : E →₁[volume] ℝ) : E →₁[volume] ℝ :=
   ∫ y, f y • transL1E y g
 
+/--
+@isnad1 id=integrab.1h3v.s13.a6df341a83e2 from=translated src=- shape=5065830d vocab=682d83dd
+-/
 theorem integrable_smul_transL1E {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] ℝ) :
     Integrable (fun y => f y • transL1E y g) := by
   have hm : AEStronglyMeasurable (fun y => f y • transL1E y g) volume :=
@@ -101,7 +114,9 @@ theorem integrable_smul_transL1E {f : E → ℝ} (hf : Integrable f) (g : E →�
   exact ((hf.norm.mul_const ‖g‖).mono' hm (Filter.Eventually.of_forall hdom)).2
 
 /-- **The interchange identity `Φ (f * g) = f * (Φ g)`**, for any bounded operator on `L¹(E)` that
-commutes with every translation.-/
+commutes with every translation.
+@isnad1 id=eq.2h4v.s15.88a73956f269 from=translated src=- shape=dc1d7893 vocab=bff01245
+-/
 theorem map_bconvE (L : (E →₁[volume] ℝ) →L[ℝ] (E →₁[volume] ℝ))
     (hL : ∀ a g, L (transL1E a g) = transL1E a (L g))
     {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] ℝ) :
@@ -146,10 +161,15 @@ noncomputable def setIntegralCLME (A : Set E) : (E →₁[volume] ℝ) →L[ℝ]
 
 omit [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] [BorelSpace E]
   [(volume : Measure E).IsAddHaarMeasure] in
+/--
+@isnad1 id=eq.0h3v.s11.61536cea2044 from=translated src=- shape=3b2d32e6 vocab=503d842f
+-/
 @[simp] lemma setIntegralCLME_apply (A : Set E) (h : E →₁[volume] ℝ) :
     setIntegralCLME A h = ∫ x in A, (h : E → ℝ) x := rfl
 
-/-- The two-variable integrand of the classical convolution is integrable on the product.-/
+/-- The two-variable integrand of the classical convolution is integrable on the product.
+@isnad1 id=integrab.1h3v.s9.b69db21f19f3 from=translated src=- shape=85c3aa21 vocab=b33d3b05
+-/
 theorem integrable_uncurry_pconvE {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] ℝ) :
     Integrable (fun p : E × E => f p.2 * (g : E → ℝ) (p.1 - p.2)) (volume.prod volume) := by
   have hgm : AEStronglyMeasurable (fun p : E × E => (g : E → ℝ) (p.1 - p.2))
@@ -181,12 +201,16 @@ theorem integrable_uncurry_pconvE {f : E → ℝ} (hf : Integrable f) (g : E →
         rw [lintegral_mul_const' _ _ (L1.integrable_coeFn g).2.ne]
         exact ENNReal.mul_lt_top hf.2 (L1.integrable_coeFn g).2
 
-/-- The classical convolution is integrable.-/
+/-- The classical convolution is integrable.
+@isnad1 id=integrab.1h3v.s9.4f2466c23079 from=translated src=- shape=c5ffcd75 vocab=2bf5dcc3
+-/
 theorem integrable_pconvE {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] ℝ) :
     Integrable (fun x => ∫ y, f y * (g : E → ℝ) (x - y)) :=
   (integrable_uncurry_pconvE hf g).integral_prod_left
 
-/-- **`bconvE` is the classical convolution** `x ↦ ∫ f(y) g(x - y) dy`.-/
+/-- **`bconvE` is the classical convolution** `x ↦ ∫ f(y) g(x - y) dy`.
+@isnad1 id=eventual.1h3v.s9.85e429569e04 from=translated src=- shape=505ce38b vocab=fbccdc85
+-/
 theorem coeFn_bconvE {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] ℝ) :
     (bconvE f g : E → ℝ) =ᵐ[volume] fun x => ∫ y, f y * (g : E → ℝ) (x - y) := by
   refine ae_eq_of_forall_setIntegral_eq_of_sigmaFinite
@@ -235,7 +259,9 @@ theorem coeFn_bconvE {f : E → ℝ} (hf : Integrable f) (g : E →₁[volume] �
 
 /-! ## `μ * f` as a Bochner integral -/
 
-/-- `y ↦ T_y f` is `μ`-integrable for every finite `μ`.-/
+/-- `y ↦ T_y f` is `μ`-integrable for every finite `μ`.
+@isnad1 id=integrab.0h3v.s13.14c827292182 from=translated src=- shape=98e3ebac vocab=21a09337
+-/
 theorem integrable_transL1E (μ : Measure E) [IsFiniteMeasure μ] (f : E →₁[volume] ℝ) :
     Integrable (fun y => transL1E y f) μ :=
   Integrable.mono' (integrable_const ‖f‖) (continuous_transL1E f).aestronglyMeasurable
@@ -246,7 +272,9 @@ omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
 noncomputable def bconvME (μ : Measure E) (f : E →₁[volume] ℝ) : E →₁[volume] ℝ :=
   ∫ y, transL1E y f ∂μ
 
-/-- **The Bochner form of convolution by a measure**: `μ * f = ∫ T_y f dμ(y)`.-/
+/-- **The Bochner form of convolution by a measure**: `μ * f = ∫ T_y f dμ(y)`.
+@isnad1 id=eq.0h3v.s12.1fa41928bfe9 from=translated src=- shape=7b2051d4 vocab=289d001a
+-/
 theorem bconvME_eq_mconvL1E (μ : Measure E) [IsFiniteMeasure μ] (f : E →₁[volume] ℝ) :
     bconvME μ f = mconvL1E μ f := by
   refine Lp.ext ?_
@@ -300,7 +328,9 @@ theorem bconvME_eq_mconvL1E (μ : Measure E) [IsFiniteMeasure μ] (f : E →₁[
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
 /-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`**, for a bounded functional with values in any Banach
-space.-/
+space.
+@isnad1 id=eq.0h5v.s14.78b65bc0037d from=translated src=- shape=1f0927cc vocab=89f5c33d
+-/
 theorem apply_mconvL1E_general (Ψ : (E →₁[volume] ℝ) →L[ℝ] F) (μ : Measure E) [IsFiniteMeasure μ]
     (f : E →₁[volume] ℝ) :
     Ψ (mconvL1E μ f) = ∫ y, Ψ (transL1E y f) ∂μ := by
@@ -314,16 +344,23 @@ noncomputable def pairTransE (Ψ : (E →₁[volume] ℝ) →L[ℝ] ℝ) (f : E 
     (Ψ.continuous.comp (continuous_transL1E f)) (‖Ψ‖ * ‖f‖) fun y =>
     (Ψ.le_opNorm _).trans (mul_le_mul_of_nonneg_left (norm_transL1E_le y f) (norm_nonneg _))
 
+/--
+@isnad1 id=eq.0h4v.s13.8abcae70a49c from=translated src=- shape=abb1db18 vocab=1ab467ae
+-/
 @[simp] lemma pairTransE_apply (Ψ : (E →₁[volume] ℝ) →L[ℝ] ℝ) (f : E →₁[volume] ℝ) (y : E) :
     pairTransE Ψ f y = Ψ (transL1E y f) := rfl
 
-/-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`.**-/
+/-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`.**
+@isnad1 id=eq.0h4v.s13.092482e28325 from=translated src=- shape=62975ff3 vocab=1320cd16
+-/
 theorem apply_mconvL1E (Ψ : (E →₁[volume] ℝ) →L[ℝ] ℝ) (μ : Measure E) [IsFiniteMeasure μ]
     (f : E →₁[volume] ℝ) :
     Ψ (mconvL1E μ f) = ∫ y, pairTransE Ψ f y ∂μ :=
   apply_mconvL1E_general Ψ μ f
 
-/-- **`Ψ (g * f) = ∫ g(y) Ψ (T_y f) dy`**, the density counterpart.-/
+/-- **`Ψ (g * f) = ∫ g(y) Ψ (T_y f) dy`**, the density counterpart.
+@isnad1 id=eq.1h4v.s12.9f9c2e69f001 from=translated src=- shape=fe4b0236 vocab=767a9abb
+-/
 theorem apply_bconvE (Ψ : (E →₁[volume] ℝ) →L[ℝ] ℝ) {g : E → ℝ} (hg : Integrable g)
     (f : E →₁[volume] ℝ) :
     Ψ (bconvE g f) = ∫ y, g y * pairTransE Ψ f y := by
@@ -404,9 +441,15 @@ theorem eq_dirac_of_mconvL1E_eq_id {μ : Measure E} [IsProbabilityMeasure μ]
 
 /-! ## ℝ is the case `d = 1` -/
 
+/--
+@isnad1 id=eq.0h2v.s8.b992f5c923b8 from=translated src=- shape=e98020a7 vocab=6900c112
+-/
 theorem bconvE_real (f : ℝ → ℝ) (g : X) : bconvE f g = bconv f g := by
   simp only [bconvE, bconv, transL1E_real]
 
+/--
+@isnad1 id=eq.0h2v.s8.a75ab3574c0b from=translated src=- shape=85a9e684 vocab=8b2349e4
+-/
 theorem bconvME_real (μ : Measure ℝ) (f : X) : bconvME μ f = bconvM μ f := by
   simp only [bconvME, bconvM, transL1E_real]
 

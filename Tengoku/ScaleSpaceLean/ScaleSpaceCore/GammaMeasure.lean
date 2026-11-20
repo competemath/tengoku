@@ -40,7 +40,9 @@ namespace ScaleSpace
 open MeasureTheory Set Filter ProbabilityTheory
 open scoped ENNReal
 
-/-- Integration against the Gamma law is integration against its density on `(0,∞)`.-/
+/-- Integration against the Gamma law is integration against its density on `(0,∞)`.
+@isnad1 id=eq.1h3v.s7.d49054862d65 from=translated src=- shape=91800023 vocab=c7a1b6a8
+-/
 theorem lintegral_gammaMeasure {a r : ℝ} {g : ℝ → ℝ≥0∞} (hg : Measurable g) :
     (∫⁻ u, g u ∂(gammaMeasure a r))
       = ∫⁻ u in Ioi (0 : ℝ),
@@ -62,11 +64,16 @@ theorem lintegral_gammaMeasure {a r : ℝ} {g : ℝ → ℝ≥0∞} (hg : Measur
   refine setLIntegral_congr_fun measurableSet_Ioi fun u hu => ?_
   rw [gammaPDF_of_nonneg (le_of_lt hu)]
 
-/-- The Gamma law lives on the positive axis.-/
+/-- The Gamma law lives on the positive axis.
+@isnad1 id=eq.0h2v.s5.df758a943a93 from=translated src=- shape=abc9a97c vocab=65861018
+-/
 theorem gammaMeasure_Iio_zero (a r : ℝ) : gammaMeasure a r (Iio (0 : ℝ)) = 0 := by
   rw [gammaMeasure, withDensity_apply _ measurableSet_Iio]
   exact lintegral_gammaPDF_of_nonpos le_rfl
 
+/--
+@isnad1 id=eventual.0h2v.s4.117ae70b16f8 from=translated src=- shape=0f8b1919 vocab=8365cc64
+-/
 theorem ae_pos_gammaMeasure (a r : ℝ) : ∀ᵐ u ∂(gammaMeasure a r), 0 < u := by
   have hIic : gammaMeasure a r (Iic (0 : ℝ)) = 0 := by
     rw [gammaMeasure, withDensity_apply _ measurableSet_Iic,

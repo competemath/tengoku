@@ -59,7 +59,9 @@ open scoped ENNReal Topology
 probability measures converge pointwise to the transform of a probability measure, the sequence
 converges weakly.
 
-Sequences, not nets: the uses are all along sequences `(sₙ,tₙ) → (s,t)` in a metric space.-/
+Sequences, not nets: the uses are all along sequences `(sₙ,tₙ) → (s,t)` in a metric space.
+@isnad1 id=tendsto.1h3v.s7.598a4206cd1a from=translated src=- shape=5f05024b vocab=d66f736e
+-/
 theorem levy_continuity {μ : ℕ → Measure ℝ} {μ₀ : Measure ℝ}
     [hμ : ∀ n, IsProbabilityMeasure (μ n)] [hμ₀ : IsProbabilityMeasure μ₀]
     (h : ∀ ω, Tendsto (fun n => charFun (μ n) ω) atTop (𝓝 (charFun μ₀ ω))) :
@@ -76,11 +78,20 @@ theorem levy_continuity {μ : ℕ → Measure ℝ} {μ₀ : Measure ℝ}
 /-- `Θ_f(y) = ‖T_y f - f‖₁`, the modulus of continuity of translation at `f`.-/
 noncomputable def transDiff (f : X) (y : ℝ) : ℝ := ‖transL1 y f - f‖
 
+/--
+@isnad1 id=continuo.0h1v.s7.6a0eb7b5ed5f from=translated src=- shape=efa74aae vocab=aa270da9
+-/
 theorem continuous_transDiff (f : X) : Continuous (transDiff f) :=
   ((continuous_transL1 f).sub continuous_const).norm
 
+/--
+@isnad1 id=le.0h2v.s7.0fc5cdc2f5c2 from=translated src=- shape=9ae55b78 vocab=6dcf97ad
+-/
 theorem transDiff_nonneg (f : X) (y : ℝ) : 0 ≤ transDiff f y := norm_nonneg _
 
+/--
+@isnad1 id=eq.0h1v.s7.3ae8597497de from=translated src=- shape=92f3a175 vocab=57ee8dd0
+-/
 @[simp]
 theorem transDiff_zero (f : X) : transDiff f 0 = 0 := by
   simp only [transDiff]
@@ -91,7 +102,9 @@ theorem transDiff_zero (f : X) : transDiff f 0 = 0 := by
   simp
 
 /-- `Θ_f ≤ 2‖f‖`: the bound that makes `Θ_f` dominated-convergence-ready against any probability
-measure.-/
+measure.
+@isnad1 id=le.0h2v.s8.cf7d54afe867 from=translated src=- shape=51db1081 vocab=191677f8
+-/
 theorem transDiff_le (f : X) (y : ℝ) : transDiff f y ≤ 2 * ‖f‖ := by
   have h1 : ‖transL1 y f‖ ≤ ‖f‖ := by
     calc ‖transL1 y f‖ ≤ ‖transL1 y‖ * ‖f‖ := ContinuousLinearMap.le_opNorm _ _
@@ -104,6 +117,9 @@ theorem transDiff_le (f : X) (y : ℝ) : transDiff f y ≤ 2 * ‖f‖ := by
   calc transDiff f y ≤ ‖transL1 y f‖ + ‖f‖ := norm_sub_le _ _
     _ ≤ 2 * ‖f‖ := by linarith
 
+/--
+@isnad1 id=integrab.0h2v.s7.462c77ac364e from=translated src=- shape=c0db980a vocab=1c37c8f5
+-/
 theorem integrable_transDiff (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     Integrable (transDiff f) μ :=
   (integrable_const (2 * ‖f‖)).mono' (continuous_transDiff f).aestronglyMeasurable
@@ -111,7 +127,9 @@ theorem integrable_transDiff (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
       rw [Real.norm_eq_abs, abs_of_nonneg (transDiff_nonneg f y)]
       exact transDiff_le f y)
 
-/-- `Θ_f(y)` as a lower integral, the register the estimate (★) is proved in.-/
+/-- `Θ_f(y)` as a lower integral, the register the estimate (★) is proved in.
+@isnad1 id=eq.0h2v.s9.61cca6a976ae from=translated src=- shape=4ef87c1e vocab=088b5b34
+-/
 theorem lintegral_enorm_sub_eq (f : X) (y : ℝ) :
     ∫⁻ x, ‖(f : ℝ → ℝ) (x - y) - (f : ℝ → ℝ) x‖ₑ = ENNReal.ofReal (transDiff f y) := by
   have hint : Integrable (fun x => (f : ℝ → ℝ) (x - y) - (f : ℝ → ℝ) x) volume :=
@@ -132,7 +150,9 @@ theorem lintegral_enorm_sub_eq (f : X) (y : ℝ) :
 /-- **(★) in `ℝ≥0∞`.** For a probability measure, `μ * f - f` is the `μ`-average of the
 translates `T_y f - f`, so its `L¹` norm is at most the average of theirs. Both steps are
 Tonelli: the pointwise bound is `‖∫ ·‖ ≤ ∫ ‖·‖`, and the swap needs no integrability side
-condition because everything is `ℝ≥0∞`-valued.-/
+condition because everything is `ℝ≥0∞`-valued.
+@isnad1 id=le.0h2v.s9.ab85a7df9a0f from=translated src=- shape=cdac6b21 vocab=de780350
+-/
 theorem lintegral_enorm_mconv_sub_le (μ : Measure ℝ) [IsProbabilityMeasure μ] (f : X) :
     ∫⁻ x, ‖mconv μ (f : ℝ → ℝ) x - (f : ℝ → ℝ) x‖ₑ
       ≤ ∫⁻ y, ENNReal.ofReal (transDiff f y) ∂μ := by
@@ -165,7 +185,9 @@ theorem lintegral_enorm_mconv_sub_le (μ : Measure ℝ) [IsProbabilityMeasure μ
 
 This is the whole of the (A7) machinery: it reduces strong convergence of the operators to
 concentration of the kernels at the origin, tested against a fixed bounded continuous function
-that vanishes there.-/
+that vanishes there.
+@isnad1 id=le.0h2v.s12.bdab16880fe1 from=translated src=- shape=31a5e900 vocab=6fad7f0e
+-/
 theorem norm_mconvL1_sub_le (μ : Measure ℝ) [IsProbabilityMeasure μ] (f : X) :
     ‖mconvL1 μ f - f‖ ≤ ∫ y, transDiff f y ∂μ := by
   have hofReal : ∫⁻ y, ENNReal.ofReal (transDiff f y) ∂μ
@@ -189,7 +211,9 @@ theorem norm_mconvL1_sub_le (μ : Measure ℝ) [IsProbabilityMeasure μ] (f : X)
         ENNReal.toReal_ofReal (integral_nonneg (transDiff_nonneg f))
 
 /-- **The modulus of continuity decreases under convolution.** Translation commutes with
-convolution and convolution by a probability measure is a contraction, so `Θ_{ν*f} ≤ Θ_f`.-/
+convolution and convolution by a probability measure is a contraction, so `Θ_{ν*f} ≤ Θ_f`.
+@isnad1 id=le.0h3v.s12.0bf8faf95e62 from=translated src=- shape=18170c4d vocab=72ad908b
+-/
 theorem transDiff_mconvL1_le (ν : Measure ℝ) [IsProbabilityMeasure ν] (f : X) (y : ℝ) :
     transDiff (mconvL1 ν f) y ≤ transDiff f y := by
   have hcomm : transL1 y (mconvL1 ν f) - mconvL1 ν f = mconvL1 ν (transL1 y f - f) := by
@@ -199,7 +223,9 @@ theorem transDiff_mconvL1_le (ν : Measure ℝ) [IsProbabilityMeasure ν] (f : X
 
 /-- **(★) after an operator.** The estimate read at `ν * f` rather than at `f`, with the bound
 still expressed at `f`. This is the form the two-parameter case needs: moving the right endpoint
-of `Φ_{s,t}` leaves an increment applied last, to an element that varies with the parameters.-/
+of `Φ_{s,t}` leaves an increment applied last, to an element that varies with the parameters.
+@isnad1 id=le.0h3v.s14.f534b19bdb8f from=translated src=- shape=a82e5d36 vocab=6fad7f0e
+-/
 theorem norm_mconvL1_comp_sub_le (μ ν : Measure ℝ) [IsProbabilityMeasure μ]
     [IsProbabilityMeasure ν] (f : X) :
     ‖mconvL1 μ (mconvL1 ν f) - mconvL1 ν f‖ ≤ ∫ y, transDiff f y ∂μ :=
@@ -217,12 +243,17 @@ noncomputable def transDiffBCF (f : X) : BoundedContinuousFunction ℝ ℝ :=
       rw [Real.norm_eq_abs, abs_of_nonneg (transDiff_nonneg f y)]
       exact transDiff_le f y
 
+/--
+@isnad1 id=eq.0h2v.s7.61fd9f3ede86 from=translated src=- shape=aa8a918d vocab=684ce6c5
+-/
 @[simp]
 theorem transDiffBCF_apply (f : X) (y : ℝ) : transDiffBCF f y = transDiff f y := rfl
 
 /-- **Kernels whose transforms tend to `1` concentrate at the origin**, measured by the modulus
 of continuity: the transform of `δ₀` is `1`, so the hypothesis is weak convergence to `δ₀` by
-Lévy's theorem, and `Θ_f` is bounded, continuous and vanishes there.-/
+Lévy's theorem, and `Θ_f` is bounded, continuous and vanishes there.
+@isnad1 id=tendsto.1h2v.s8.c7fb1a417429 from=translated src=- shape=b1f07900 vocab=77b9f906
+-/
 theorem tendsto_integral_transDiff_of_tendsto_charFun {μ : ℕ → Measure ℝ}
     [∀ n, IsProbabilityMeasure (μ n)]
     (h : ∀ ω, Tendsto (fun n => charFun (μ n) ω) atTop (𝓝 1)) (f : X) :
@@ -236,7 +267,9 @@ theorem tendsto_integral_transDiff_of_tendsto_charFun {μ : ℕ → Measure ℝ}
   simpa using this
 
 /-- **Kernels whose transforms tend to `1` give operators tending strongly to the identity.**
-(★) transfers the concentration above to the operators.-/
+(★) transfers the concentration above to the operators.
+@isnad1 id=tendsto.1h2v.s12.498e8ea8242a from=translated src=- shape=bf8999e4 vocab=5925c1de
+-/
 theorem tendsto_norm_mconvL1_sub_of_tendsto_charFun {μ : ℕ → Measure ℝ}
     [∀ n, IsProbabilityMeasure (μ n)]
     (h : ∀ ω, Tendsto (fun n => charFun (μ n) ω) atTop (𝓝 1)) (f : X) :

@@ -51,7 +51,9 @@ open scoped ENNReal Topology
 
 /-! ## Half-line integrals -/
 
-/-- The split `(0,∞) = (0,1) ∪ (1,∞)` of a lower Lebesgue integral; the point `1` is null.-/
+/-- The split `(0,∞) = (0,1) ∪ (1,∞)` of a lower Lebesgue integral; the point `1` is null.
+@isnad1 id=eq.0h1v.s6.397146c0b890 from=translated src=- shape=c456ab82 vocab=bcba9fd6
+-/
 theorem lintegral_Ioi_split (f : ℝ → ℝ≥0∞) :
     ∫⁻ t in Ioi (0 : ℝ), f t
       = (∫⁻ t in Ioo (0 : ℝ) 1, f t) + ∫⁻ t in Ioi (1 : ℝ), f t := by
@@ -73,7 +75,9 @@ theorem lintegral_Ioi_split (f : ℝ → ℝ≥0∞) :
   congr 1
   exact setLIntegral_congr Ioi_ae_eq_Ici.symm
 
-/-- The image of Lebesgue measure on `(0,∞)` under `x ↦ cx`, `c > 0`, is `c⁻¹` times itself.-/
+/-- The image of Lebesgue measure on `(0,∞)` under `x ↦ cx`, `c > 0`, is `c⁻¹` times itself.
+@isnad1 id=eq.1h1v.s6.74283c479050 from=translated src=- shape=a21633a0 vocab=6f46f88b
+-/
 theorem map_mul_restrict_Ioi {c : ℝ} (hc : 0 < c) :
     Measure.map (fun x : ℝ => c * x) (volume.restrict (Ioi (0 : ℝ)))
       = ENNReal.ofReal c⁻¹ • volume.restrict (Ioi (0 : ℝ)) := by
@@ -87,7 +91,9 @@ theorem map_mul_restrict_Ioi {c : ℝ} (hc : 0 < c) :
     abs_of_pos (inv_pos.mpr hc)]
 
 /-- **The change of variables `u = cx` on the half-line**, for an arbitrary `ℝ≥0∞`-valued
-integrand: `∫_{(0,∞)} G = c ∫_{(0,∞)} G(c\,\cdot)`. No measurability of `G` is needed.-/
+integrand: `∫_{(0,∞)} G = c ∫_{(0,∞)} G(c\,\cdot)`. No measurability of `G` is needed.
+@isnad1 id=eq.1h2v.s6.cac2e3610f59 from=translated src=- shape=8fcd6bb3 vocab=e052759c
+-/
 theorem setLIntegral_Ioi_comp_mul {c : ℝ} (hc : 0 < c) (G : ℝ → ℝ≥0∞) :
     (∫⁻ u in Ioi (0 : ℝ), G u) = ENNReal.ofReal c * ∫⁻ x in Ioi (0 : ℝ), G (c * x) := by
   have hemb : MeasurableEmbedding (fun x : ℝ => c * x) :=
@@ -98,7 +104,9 @@ theorem setLIntegral_Ioi_comp_mul {c : ℝ} (hc : 0 < c) (G : ℝ → ℝ≥0∞
   rw [← hpush, ← mul_assoc, ← ENNReal.ofReal_mul hc.le, mul_inv_cancel₀ hc.ne',
     ENNReal.ofReal_one, one_mul]
 
-/-- An integrable, a.e. nonnegative function has a finite lower integral of its `ofReal`.-/
+/-- An integrable, a.e. nonnegative function has a finite lower integral of its `ofReal`.
+@isnad1 id=ne.2h2v.s6.ef04fca61be6 from=translated src=- shape=75c6ba63 vocab=af0f95a8
+-/
 theorem lintegral_ofReal_ne_top_of_integrableOn {f : ℝ → ℝ} {s : Set ℝ}
     (hf : IntegrableOn f s) (hnn : ∀ᵐ x ∂(volume.restrict s), 0 ≤ f x) :
     (∫⁻ x in s, ENNReal.ofReal (f x)) ≠ ⊤ := by
@@ -146,17 +154,24 @@ variable (F : CausalAdmissible)
 
 /-! ## Measurability -/
 
-/-- The delay profile is a.e. measurable on `(0,∞)`: it is antitone there.-/
+/-- The delay profile is a.e. measurable on `(0,∞)`: it is antitone there.
+@isnad1 id=aemeasur.0h1v.s4.9c4727f6587f from=translated src=- shape=d27af4e0 vocab=0bca3e4b
+-/
 theorem aemeasurable_k : AEMeasurable F.k (volume.restrict (Ioi (0 : ℝ))) :=
   aemeasurable_restrict_of_antitoneOn measurableSet_Ioi F.k_antitone
 
+/--
+@isnad1 id=aemeasur.1h2v.s5.cba6ab61a49f from=translated src=- shape=88e1088c vocab=25b42b14
+-/
 theorem aemeasurable_k_mono {s : Set ℝ} (hs : s ⊆ Ioi (0 : ℝ)) :
     AEMeasurable F.k (volume.restrict s) :=
   F.aemeasurable_k.mono_measure (Measure.restrict_mono hs le_rfl)
 
 /-! ## The two integrability windows, as real integrals -/
 
-/-- `k` is integrable on `(0,1)`: the first window, read as a Bochner statement.-/
+/-- `k` is integrable on `(0,1)`: the first window, read as a Bochner statement.
+@isnad1 id=integrab.0h1v.s5.2723eedfb2d7 from=translated src=- shape=484bea3b vocab=72a54667
+-/
 theorem integrableOn_k_Ioo : IntegrableOn F.k (Ioo (0 : ℝ) 1) := by
   refine ⟨(F.aemeasurable_k_mono Ioo_subset_Ioi_self).aestronglyMeasurable, ?_⟩
   rw [hasFiniteIntegral_iff_ofReal]
@@ -164,7 +179,9 @@ theorem integrableOn_k_Ioo : IntegrableOn F.k (Ioo (0 : ℝ) 1) := by
   · filter_upwards [ae_restrict_mem measurableSet_Ioo] with u hu
     exact F.k_nonneg u (Ioo_subset_Ioi_self hu)
 
-/-- `k(u)/u` is integrable on `(1,∞)`: the second window, read as a Bochner statement.-/
+/-- `k(u)/u` is integrable on `(1,∞)`: the second window, read as a Bochner statement.
+@isnad1 id=integrab.0h1v.s5.98f74c5494ff from=translated src=- shape=b3cfdf7a vocab=2ad841ad
+-/
 theorem integrableOn_k_div_Ioi : IntegrableOn (fun u => F.k u / u) (Ioi (1 : ℝ)) := by
   have hsub : Ioi (1 : ℝ) ⊆ Ioi (0 : ℝ) := fun _ hx => lt_trans zero_lt_one (mem_Ioi.mp hx)
   refine ⟨((F.aemeasurable_k_mono hsub).div aemeasurable_id).aestronglyMeasurable, ?_⟩
@@ -175,7 +192,9 @@ theorem integrableOn_k_div_Ioi : IntegrableOn (fun u => F.k u / u) (Ioi (1 : ℝ
 
 /-! ## The elementary inequalities -/
 
-/-- `x ≤ e^x`, in the form `u e^{-σu} ≤ σ^{-1}` for `σ > 0`.-/
+/-- `x ≤ e^x`, in the form `u e^{-σu} ≤ σ^{-1}` for `σ > 0`.
+@isnad1 id=le.1h2v.s5.e5a5580e7e06 from=translated src=- shape=26662adf vocab=8f1bea67
+-/
 theorem mul_exp_neg_le {σ : ℝ} (hσ : 0 < σ) (u : ℝ) :
     u * Real.exp (-(σ * u)) ≤ σ⁻¹ := by
   have hx : σ * u ≤ Real.exp (σ * u) := by
@@ -185,7 +204,9 @@ theorem mul_exp_neg_le {σ : ℝ} (hσ : 0 < σ) (u : ℝ) :
   rw [Real.exp_neg, ← div_eq_mul_inv, div_le_iff₀ hpos, inv_mul_eq_div, le_div_iff₀ hσ]
   nlinarith
 
-/-- `0 ≤ 1 - e^{-σu} ≤ σu` for `σ, u ≥ 0`.-/
+/-- `0 ≤ 1 - e^{-σu} ≤ σu` for `σ, u ≥ 0`.
+@isnad1 id=and.2h2v.s6.7fc1a2669135 from=translated src=- shape=91c43a90 vocab=ae3d593e
+-/
 theorem one_sub_exp_bounds {σ u : ℝ} (hσ : 0 ≤ σ) (hu : 0 ≤ u) :
     0 ≤ 1 - Real.exp (-(σ * u)) ∧ 1 - Real.exp (-(σ * u)) ≤ σ * u := by
   constructor
@@ -196,6 +217,9 @@ theorem one_sub_exp_bounds {σ u : ℝ} (hσ : 0 ≤ σ) (hu : 0 ≤ u) :
 
 /-! ## The splitting of `(0,∞)` -/
 
+/--
+@isnad1 id=eq.0h0v.s5.d4f835062b09 from=translated src=- shape=e55050ac vocab=85eaa579
+-/
 theorem Ioi_zero_eq_union : Ioi (0 : ℝ) = Ioo (0 : ℝ) 1 ∪ Ici (1 : ℝ) := by
   ext x
   constructor
@@ -207,22 +231,35 @@ theorem Ioi_zero_eq_union : Ioi (0 : ℝ) = Ioo (0 : ℝ) 1 ∪ Ici (1 : ℝ) :=
     · exact hx
     · exact lt_of_lt_of_le zero_lt_one (mem_Ici.mp hx)
 
-/-- `k(u)/u` is integrable on `[1,∞)`, the closed window the union splitting uses.-/
+/-- `k(u)/u` is integrable on `[1,∞)`, the closed window the union splitting uses.
+@isnad1 id=integrab.0h1v.s5.f69333bf4d43 from=translated src=- shape=b3cfdf7a vocab=e2bd17de
+-/
 theorem integrableOn_k_div_Ici : IntegrableOn (fun u => F.k u / u) (Ici (1 : ℝ)) :=
   (F.integrableOn_k_div_Ioi).congr_set_ae Ioi_ae_eq_Ici.symm
 
+/--
+@isnad1 id=aemeasur.0h1v.s5.1bedfbc4eb3a from=translated src=- shape=89bbdd90 vocab=b57b2c62
+-/
 theorem aemeasurable_k_Ioo : AEMeasurable F.k (volume.restrict (Ioo (0 : ℝ) 1)) :=
   F.aemeasurable_k_mono Ioo_subset_Ioi_self
 
+/--
+@isnad1 id=aemeasur.0h1v.s4.6fb5daa3a682 from=translated src=- shape=d27af4e0 vocab=4454ca36
+-/
 theorem aemeasurable_k_Ici : AEMeasurable F.k (volume.restrict (Ici (1 : ℝ))) :=
   F.aemeasurable_k_mono fun _ hx => lt_of_lt_of_le zero_lt_one (mem_Ici.mp hx)
 
+/--
+@isnad1 id=measurab.0h1v.s4.2ca730a2626c from=translated src=- shape=51febd46 vocab=1ed6fa1a
+-/
 theorem measurable_expIntegrand (σ : ℝ) : Measurable fun u : ℝ => Real.exp (-(σ * u)) := by
   fun_prop
 
 /-! ## The exponent's integrand -/
 
-/-- The integrand of `F` is integrable on `(0,∞)` at every nonnegative frequency.-/
+/-- The integrand of `F` is integrable on `(0,∞)` at every nonnegative frequency.
+@isnad1 id=integrab.1h2v.s6.719caba40ffc from=translated src=- shape=6a53e230 vocab=784c7fd4
+-/
 theorem integrableOn_exponentIntegrand {σ : ℝ} (hσ : 0 ≤ σ) :
     IntegrableOn (fun u => (1 - Real.exp (-(σ * u))) * F.k u / u) (Ioi (0 : ℝ)) := by
   rw [Ioi_zero_eq_union]
@@ -250,7 +287,9 @@ theorem integrableOn_exponentIntegrand {σ : ℝ} (hσ : 0 ≤ σ) :
     gcongr
 
 /-- The integrand of `F'` is integrable on `(0,∞)` at every **positive** frequency. At `σ = 0`
-this is false in general: `∫₀^∞ k` need not converge.-/
+this is false in general: `∫₀^∞ k` need not converge.
+@isnad1 id=integrab.1h2v.s6.7920e927aaf3 from=translated src=- shape=efb18563 vocab=2feb4e5e
+-/
 theorem integrableOn_derivIntegrand {σ : ℝ} (hσ : 0 < σ) :
     IntegrableOn (fun u => Real.exp (-(σ * u)) * F.k u) (Ioi (0 : ℝ)) := by
   rw [Ioi_zero_eq_union]
@@ -284,13 +323,18 @@ theorem integrableOn_derivIntegrand {σ : ℝ} (hσ : 0 < σ) :
 
 /-! ## The exponent as a real integral -/
 
-/-- The integrand of `F` is nonnegative on `(0,∞)`.-/
+/-- The integrand of `F` is nonnegative on `(0,∞)`.
+@isnad1 id=le.2h3v.s6.8f64ab43f988 from=translated src=- shape=99711cc8 vocab=09238b80
+-/
 theorem exponentIntegrand_nonneg {σ : ℝ} (hσ : 0 ≤ σ) {u : ℝ} (hu : 0 < u) :
     0 ≤ (1 - Real.exp (-(σ * u))) * F.k u / u := by
   have hk : 0 ≤ F.k u := F.k_nonneg u hu
   obtain ⟨hlo, -⟩ := one_sub_exp_bounds hσ hu.le
   positivity
 
+/--
+@isnad1 id=ne.1h2v.s6.760ef4ab412f from=translated src=- shape=692c5818 vocab=cf253403
+-/
 theorem lintegral_exponentIntegrand_ne_top {σ : ℝ} (hσ : 0 ≤ σ) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.exp (-(σ * u))) * F.k u / u)) ≠ ⊤ := by
   have h2 := (F.integrableOn_exponentIntegrand hσ).2
@@ -299,12 +343,16 @@ theorem lintegral_exponentIntegrand_ne_top {σ : ℝ} (hσ : 0 ≤ σ) :
   · filter_upwards [ae_restrict_mem measurableSet_Ioi] with u hu
     exact F.exponentIntegrand_nonneg hσ hu
 
-/-- **`F` is finite at every nonnegative frequency**: the causal article's field `ne_top`.-/
+/-- **`F` is finite at every nonnegative frequency**: the causal article's field `ne_top`.
+@isnad1 id=ne.1h2v.s4.168387d5ff02 from=translated src=- shape=e0698135 vocab=d86c2830
+-/
 theorem exponentL_ne_top {σ : ℝ} (hσ : 0 ≤ σ) : F.exponentL σ ≠ ⊤ := by
   rw [exponentL]
   exact ENNReal.add_ne_top.mpr ⟨ENNReal.ofReal_ne_top, F.lintegral_exponentIntegrand_ne_top hσ⟩
 
-/-- The exponent as a Bochner integral: `F(σ) = b₀σ + ∫₀^∞ (1 - e^{-σu}) k(u)\,du/u`, `σ ≥ 0`.-/
+/-- The exponent as a Bochner integral: `F(σ) = b₀σ + ∫₀^∞ (1 - e^{-σu}) k(u)\,du/u`, `σ ≥ 0`.
+@isnad1 id=eq.1h2v.s6.3cf72f81adfa from=translated src=- shape=c693948f vocab=8a89aa66
+-/
 theorem exponent_eq {σ : ℝ} (hσ : 0 ≤ σ) :
     F.exponent σ = F.b₀ * σ + ∫ u in Ioi (0 : ℝ), (1 - Real.exp (-(σ * u))) * F.k u / u := by
   have hnn : 0 ≤ᵐ[volume.restrict (Ioi (0 : ℝ))]
@@ -321,6 +369,9 @@ theorem exponent_eq {σ : ℝ} (hσ : 0 ≤ σ) :
   congr 1
   exact (integral_eq_lintegral_of_nonneg_ae hnn hmeas).symm
 
+/--
+@isnad1 id=eq.0h1v.s4.6d8f28ea11a7 from=translated src=- shape=9b4d794a vocab=db6a0d2e
+-/
 theorem exponent_zero : F.exponent 0 = 0 := by
   rw [F.exponent_eq le_rfl]
   simp
@@ -330,7 +381,9 @@ theorem exponent_zero : F.exponent 0 = 0 := by
 /-- **`F'(σ) = b₀ + ∫₀^∞ e^{-σu} k(u)\,du`** at every positive frequency.
 
 The dominating function on `(σ/2, 2σ)` is `e^{-σu/2}k(u)`, integrable by
-`integrableOn_derivIntegrand`.-/
+`integrableOn_derivIntegrand`.
+@isnad1 id=hasderiv.1h2v.s6.0d2a624d20d4 from=translated src=- shape=af6eeb04 vocab=44f99f10
+-/
 theorem hasDerivAt_exponent {σ : ℝ} (hσ : 0 < σ) :
     HasDerivAt F.exponent
       (F.b₀ + ∫ u in Ioi (0 : ℝ), Real.exp (-(σ * u)) * F.k u) σ := by
@@ -386,7 +439,9 @@ theorem hasDerivAt_exponent {σ : ℝ} (hσ : 0 < σ) :
 
 /-! ## Positivity of the derivative -/
 
-/-- If the data vanish, so does the exponent on `[0,∞)`.-/
+/-- If the data vanish, so does the exponent on `[0,∞)`.
+@isnad1 id=eq.3h2v.s6.aace25bf6792 from=translated src=- shape=bac93d05 vocab=bc23476d
+-/
 theorem exponent_eq_zero_of_trivial (hb : F.b₀ = 0)
     (hk : F.k =ᵐ[volume.restrict (Ioi (0 : ℝ))] 0) {σ : ℝ} (hσ : 0 ≤ σ) : F.exponent σ = 0 := by
   rw [F.exponent_eq hσ, hb, zero_mul, zero_add]
@@ -399,7 +454,9 @@ theorem exponent_eq_zero_of_trivial (hb : F.b₀ = 0)
 
 /-- **`F' > 0` on `(0,∞)` for every nonzero `F`.** The derivative is `b₀ + ∫₀^∞ e^{-σu}k(u)\,du`;
 if it vanishes then `b₀ = 0` and `k = 0` a.e. on `(0,∞)`, and then `F` vanishes on `[0,∞)`. The
-representing measure is given by the structure, so no Bernstein theorem is involved.-/
+representing measure is given by the structure, so no Bernstein theorem is involved.
+@isnad1 id=lt.2h2v.s6.05b60ddb08ee from=translated src=- shape=1f639f40 vocab=ddfdd22a
+-/
 theorem deriv_integral_pos {σ : ℝ} (hσ : 0 < σ)
     (hne : ∃ τ : ℝ, 0 ≤ τ ∧ F.exponent τ ≠ 0) :
     0 < F.b₀ + ∫ u in Ioi (0 : ℝ), Real.exp (-(σ * u)) * F.k u := by
@@ -426,7 +483,9 @@ end Exponent
 
 /-! ## The two field forms -/
 
-/-- The two integrability windows are the two halves of `∫₀^∞ (1 ∧ u)k(u)\,du/u`.-/
+/-- The two integrability windows are the two halves of `∫₀^∞ (1 ∧ u)k(u)\,du/u`.
+@isnad1 id=eq.0h1v.s7.01c269f12c87 from=translated src=- shape=07760f1c vocab=8013338c
+-/
 theorem lintegral_min_split (k : ℝ → ℝ) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (min 1 u * k u / u))
       = (∫⁻ u in Ioo (0 : ℝ) 1, ENNReal.ofReal (k u))
@@ -445,14 +504,18 @@ theorem lintegral_min_split (k : ℝ → ℝ) :
     congr 1
     ring
 
-/-- The one-integral form of the two windows, for a causally admissible datum.-/
+/-- The one-integral form of the two windows, for a causally admissible datum.
+@isnad1 id=ne.0h1v.s5.394aba03bee0 from=translated src=- shape=5daf2f4c vocab=d7724b39
+-/
 theorem lintegral_min_ne_top (F : CausalAdmissible) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (min 1 u * F.k u / u)) ≠ ⊤ := by
   rw [lintegral_min_split]
   exact ENNReal.add_ne_top.mpr ⟨F.integrable_near_zero, F.integrable_at_top⟩
 
 /-- `1 ∧ cx ≤ (1 ∨ c)(1 ∧ x)` for `x > 0`: the inequality that prices a dilation, and a
-frequency `σ`, against the undilated one-integral form.-/
+frequency `σ`, against the undilated one-integral form.
+@isnad1 id=le.1h2v.s5.e693b5730046 from=translated src=- shape=a9cdadbb vocab=e1f802d7
+-/
 theorem min_one_mul_le (c : ℝ) {x : ℝ} (hx : 0 < x) :
     min 1 (c * x) ≤ max 1 c * min 1 x := by
   have hc1 : (1 : ℝ) ≤ max 1 c := le_max_left _ _
@@ -471,7 +534,9 @@ theorem min_one_mul_le (c : ℝ) {x : ℝ} (hx : 0 < x) :
     · rw [min_eq_left hx1.le]
       linarith
 
-/-- `1 ∧ u ≤ 2(1 - e^{-u})` for `u > 0`: from `e^u ≥ 1 + u`, `1 - e^{-u} ≥ u/(1+u)`.-/
+/-- `1 ∧ u ≤ 2(1 - e^{-u})` for `u > 0`: from `e^u ≥ 1 + u`, `1 - e^{-u} ≥ u/(1+u)`.
+@isnad1 id=le.1h1v.s6.25371ed1e950 from=translated src=- shape=726fdd0e vocab=4f453f18
+-/
 theorem min_one_le_two_mul_one_sub_exp {u : ℝ} (hu : 0 < u) :
     min 1 u ≤ 2 * (1 - Real.exp (-(1 * u))) := by
   have h1 : 1 + u ≤ Real.exp u := by linarith [Real.add_one_le_exp u]
@@ -489,7 +554,9 @@ theorem min_one_le_two_mul_one_sub_exp {u : ℝ} (hu : 0 < u) :
     nlinarith
 
 /-- **Windows to finiteness**: if `k ≥ 0` meets both windows, the exponent's integral is finite at
-every `σ ≥ 0`, by `1 - e^{-σu} ≤ 1 ∧ σu ≤ (1 ∨ σ)(1 ∧ u)`.-/
+every `σ ≥ 0`, by `1 - e^{-σu} ≤ 1 ∧ σu ≤ (1 ∨ σ)(1 ∧ u)`.
+@isnad1 id=ne.4h2v.s7.9b7cfd6dab7c from=translated src=- shape=f41568a7 vocab=6b1c285a
+-/
 theorem lintegral_exponentIntegrand_ne_top_of_windows {k : ℝ → ℝ}
     (hk : ∀ u ∈ Ioi (0 : ℝ), 0 ≤ k u)
     (h0 : ∫⁻ u in Ioo (0 : ℝ) 1, ENNReal.ofReal (k u) ≠ ⊤)
@@ -516,7 +583,9 @@ theorem lintegral_exponentIntegrand_ne_top_of_windows {k : ℝ → ℝ}
   exact ne_top_of_le_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top hmin) hle
 
 /-- **Finiteness to windows**: finiteness of the exponent's integral at `σ = 1` alone forces both
-windows, by `1 ∧ u ≤ 2(1 - e^{-u})`.-/
+windows, by `1 ∧ u ≤ 2(1 - e^{-u})`.
+@isnad1 id=and.2h1v.s7.ac0cadb46123 from=translated src=- shape=2a637057 vocab=6b1c285a
+-/
 theorem windows_of_lintegral_exponentIntegrand_ne_top {k : ℝ → ℝ}
     (hk : ∀ u ∈ Ioi (0 : ℝ), 0 ≤ k u)
     (h : (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.exp (-(1 * u))) * k u / u)) ≠ ⊤) :
@@ -541,7 +610,9 @@ theorem windows_of_lintegral_exponentIntegrand_ne_top {k : ℝ → ℝ}
 
 /-- **The two field forms are equivalent.** For `k ≥ 0` on `(0,∞)`, the causal article's
 single condition — the exponent is finite at every `σ ≥ 0` — holds exactly when the two
-integrability windows do. Neither the sign of `b₀` nor the monotonicity of `k` is used.-/
+integrability windows do. Neither the sign of `b₀` nor the monotonicity of `k` is used.
+@isnad1 id=iff.1h2v.s7.cdf2026a926b from=translated src=- shape=ea6d5390 vocab=800e1e15
+-/
 theorem ne_top_iff_windows (b₀ : ℝ) {k : ℝ → ℝ} (hk : ∀ u ∈ Ioi (0 : ℝ), 0 ≤ k u) :
     (∀ σ, 0 ≤ σ → (ENNReal.ofReal (b₀ * σ)
         + ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.exp (-(σ * u))) * k u / u)) ≠ ⊤)
@@ -580,11 +651,19 @@ variable {b₀ : ℝ} {k : ℝ → ℝ} {hb : 0 ≤ b₀} {hk : ∀ u ∈ Ioi (0
   {hne : ∀ σ, 0 ≤ σ → (ENNReal.ofReal (b₀ * σ)
     + ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.exp (-(σ * u))) * k u / u)) ≠ ⊤}
 
+/--
+@isnad1 id=eq.5h2v.s7.e7b0589457b9 from=translated src=- shape=eb37a58b vocab=375db9ac
+-/
 @[simp] theorem ofNeTop_b₀ : (ofNeTop b₀ k hb hk hanti hk0 hne).b₀ = b₀ := rfl
 
+/--
+@isnad1 id=eq.5h2v.s7.3239004b5979 from=translated src=- shape=ae342c87 vocab=ad53074e
+-/
 @[simp] theorem ofNeTop_k : (ofNeTop b₀ k hb hk hanti hk0 hne).k = k := rfl
 
-/-- The exponent of `ofNeTop` is the exponent the finiteness hypothesis is about, by `rfl`.-/
+/-- The exponent of `ofNeTop` is the exponent the finiteness hypothesis is about, by `rfl`.
+@isnad1 id=eq.5h3v.s8.940d6714a1d3 from=translated src=- shape=0e26196d vocab=65b8e4b1
+-/
 theorem ofNeTop_exponentL (σ : ℝ) :
     (ofNeTop b₀ k hb hk hanti hk0 hne).exponentL σ = ENNReal.ofReal (b₀ * σ)
       + ∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal ((1 - Real.exp (-(σ * u))) * k u / u) := rfl
@@ -663,7 +742,9 @@ noncomputable def smul (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) : CausalA
 
 /-! ## The dilation -/
 
-/-- The dilated datum meets the one-integral form of the two windows.-/
+/-- The dilated datum meets the one-integral form of the two windows.
+@isnad1 id=ne.1h2v.s6.c618da8d0659 from=translated src=- shape=f14149b1 vocab=3bf1c829
+-/
 theorem lintegral_min_dilate_ne_top (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (min 1 u * F.k (u / c) / u)) ≠ ⊤ := by
   rw [setLIntegral_Ioi_comp_mul hc]
@@ -721,23 +802,43 @@ noncomputable def dilate (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) : CausalA
 
 /-! ## The exponents of the three constructions -/
 
+/--
+@isnad1 id=eq.0h2v.s4.6fde7e3403c7 from=translated src=- shape=88b36870 vocab=b655c2e7
+-/
 @[simp] theorem add_b₀ (F G : CausalAdmissible) : (F.add G).b₀ = F.b₀ + G.b₀ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.203bbdefc2bc from=translated src=- shape=be92c776 vocab=4a971dee
+-/
 @[simp] theorem add_k (F G : CausalAdmissible) (u : ℝ) : (F.add G).k u = F.k u + G.k u := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.08d81d69d8aa from=translated src=- shape=5641ec63 vocab=b61a469c
+-/
 @[simp] theorem smul_b₀ (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) :
     (F.smul hc).b₀ = c * F.b₀ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.8f7fbc4e2ad4 from=translated src=- shape=c3930857 vocab=c85de715
+-/
 @[simp] theorem smul_k (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) (u : ℝ) :
     (F.smul hc).k u = c * F.k u := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.c1ea81bb5c77 from=translated src=- shape=5641ec63 vocab=37e3c783
+-/
 @[simp] theorem dilate_b₀ (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) :
     (F.dilate hc).b₀ = c * F.b₀ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.f89af80b9850 from=translated src=- shape=8866a8fe vocab=4871d481
+-/
 @[simp] theorem dilate_k (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) (u : ℝ) :
     (F.dilate hc).k u = F.k (u / c) := rfl
 
-/-- The exponent is additive in the data, at every nonnegative frequency.-/
+/-- The exponent is additive in the data, at every nonnegative frequency.
+@isnad1 id=eq.1h3v.s5.caa154876d07 from=translated src=- shape=d2012957 vocab=3931f0dc
+-/
 theorem exponentL_add (F G : CausalAdmissible) {σ : ℝ} (hσ : 0 ≤ σ) :
     (F.add G).exponentL σ = F.exponentL σ + G.exponentL σ := by
   have hm : AEMeasurable
@@ -765,7 +866,9 @@ theorem exponentL_add (F G : CausalAdmissible) {σ : ℝ} (hσ : 0 ≤ σ) :
   rw [hgauss, hjump]
   ring
 
-/-- The exponent is homogeneous in the data, at every frequency.-/
+/-- The exponent is homogeneous in the data, at every frequency.
+@isnad1 id=eq.1h3v.s5.69e14de95653 from=translated src=- shape=45430920 vocab=c7c05aac
+-/
 theorem exponentL_smul (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) (σ : ℝ) :
     (F.smul hc).exponentL σ = ENNReal.ofReal c * F.exponentL σ := by
   have hjump : (∫⁻ u in Ioi (0 : ℝ),
@@ -786,7 +889,9 @@ theorem exponentL_smul (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) (σ : ℝ
   rw [hgauss, hjump, mul_add]
 
 /-- **The dilation's exponent**: `F(c\,\cdot)`, exactly. The change of variables `u = cx` leaves
-`du/u` alone, which is why the dilated profile carries no Jacobian.-/
+`du/u` alone, which is why the dilated profile carries no Jacobian.
+@isnad1 id=eq.1h3v.s5.41c72dd89259 from=translated src=- shape=fd582019 vocab=f0c2b61c
+-/
 theorem exponentL_dilate (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) (σ : ℝ) :
     (F.dilate hc).exponentL σ = F.exponentL (c * σ) := by
   have hjump : (∫⁻ u in Ioi (0 : ℝ),
@@ -813,20 +918,26 @@ theorem exponentL_dilate (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) (σ : ℝ
   simp only [exponentL, dilate_b₀, dilate_k]
   rw [hgauss, hjump]
 
-/-- The sum read at the real-valued exponent.-/
+/-- The sum read at the real-valued exponent.
+@isnad1 id=eq.1h3v.s5.c5193831533b from=translated src=- shape=31d1e25a vocab=9bfe2d7d
+-/
 theorem exponent_add (F G : CausalAdmissible) {σ : ℝ} (hσ : 0 ≤ σ) :
     (F.add G).exponent σ = F.exponent σ + G.exponent σ := by
   rw [exponent, exponentL_add F G hσ,
     ENNReal.toReal_add (F.exponentL_ne_top hσ) (G.exponentL_ne_top hσ)]
   rfl
 
-/-- The nonnegative multiple read at the real-valued exponent.-/
+/-- The nonnegative multiple read at the real-valued exponent.
+@isnad1 id=eq.1h3v.s5.11830d30ccf6 from=translated src=- shape=c3930857 vocab=57364b49
+-/
 theorem exponent_smul (F : CausalAdmissible) {c : ℝ} (hc : 0 ≤ c) (σ : ℝ) :
     (F.smul hc).exponent σ = c * F.exponent σ := by
   rw [exponent, exponentL_smul F hc σ, ENNReal.toReal_mul, ENNReal.toReal_ofReal hc]
   rfl
 
-/-- The dilation read at the real-valued exponent.-/
+/-- The dilation read at the real-valued exponent.
+@isnad1 id=eq.1h3v.s5.5e1e7e398679 from=translated src=- shape=ba0b1936 vocab=df003deb
+-/
 theorem exponent_dilate (F : CausalAdmissible) {c : ℝ} (hc : 0 < c) (σ : ℝ) :
     (F.dilate hc).exponent σ = F.exponent (c * σ) := by
   rw [exponent, exponentL_dilate F hc σ]

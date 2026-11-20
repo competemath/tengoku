@@ -51,7 +51,9 @@ variable {d : ℕ}
 /-- **The square root of a scalar multiple of the identity matrix**, for every real scalar
 `u`, including `u < 0`. `CFC.sqrt`'s junk value off the positive-semidefinite cone (`0`) and
 `Real.sqrt`'s junk value off the nonnegative reals (`0`) agree, so no side condition on `u` is
-needed.-/
+needed.
+@isnad1 id=eq.0h2v.s7.b218310d0520 from=translated src=- shape=79f7c951 vocab=a101b4d6
+-/
 theorem sqrt_smul_one_eq (d : ℕ) (u : ℝ) :
     CFC.sqrt (u • (1 : Matrix (Fin d) (Fin d) ℝ)) =
       Real.sqrt u • (1 : Matrix (Fin d) (Fin d) ℝ) := by
@@ -76,7 +78,9 @@ theorem sqrt_smul_one_eq (d : ℕ) (u : ℝ) :
 
 /-- **The multivariate Gaussian `N(0, uI_d)` is the pushforward of the standard Gaussian by
 scaling**, for every real `u`, with `Real.sqrt`'s own junk convention off `u < 0` doing the work
-of `multivariateGaussian`'s junk convention there: both sides are `dirac 0`.-/
+of `multivariateGaussian`'s junk convention there: both sides are `dirac 0`.
+@isnad1 id=eq.0h2v.s8.c764f0ab5573 from=translated src=- shape=593eca1a vocab=213cae89
+-/
 theorem multivariateGaussian_zero_smul_one (d : ℕ) (u : ℝ) :
     multivariateGaussian (0 : EuclideanSpace ℝ (Fin d)) (u • 1) =
       (stdGaussian (EuclideanSpace ℝ (Fin d))).map (fun x => Real.sqrt u • x) := by
@@ -86,7 +90,9 @@ theorem multivariateGaussian_zero_smul_one (d : ℕ) (u : ℝ) :
   rw [zero_add, map_smul, smul_apply, map_one, one_apply_eq_self]
 
 /-- **`u ↦ N(0, uI_d)` is measurable**, Paper VII's `measurable_gaussVar` in Mathlib's types
-(`gaussVar d u = multivariateGaussian 0 (u • 1)`), `d` arbitrary.-/
+(`gaussVar d u = multivariateGaussian 0 (u • 1)`), `d` arbitrary.
+@isnad1 id=measurab.0h1v.s7.367a3ab95173 from=translated src=- shape=7f7aee8d vocab=b1ca54c1
+-/
 theorem measurable_multivariateGaussian_zero_smul_one (d : ℕ) :
     Measurable fun u : ℝ => multivariateGaussian (0 : EuclideanSpace ℝ (Fin d)) (u • 1) := by
   simp_rw [multivariateGaussian_zero_smul_one]

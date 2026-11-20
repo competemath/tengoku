@@ -100,7 +100,9 @@ section Operator
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- `e^{-t·1} = e^{-t} •` on `E`.-/
+/-- `e^{-t·1} = e^{-t} •` on `E`.
+@isnad1 id=eq.0h2v.s9.39618625d1b3 from=translated src=- shape=00b72a6a vocab=3d3d2965
+-/
 theorem coe_exp_neg_smul_one (t : ℝ) :
     ⇑(NormedSpace.exp (-t • (1 : E →L[ℝ] E))) = (Real.exp (-t) • ·) := by
   rw [← Algebra.algebraMap_eq_smul_one, ← NormedSpace.algebraMap_exp_comm, ← Real.exp_eq_exp_ℝ,
@@ -110,7 +112,9 @@ theorem coe_exp_neg_smul_one (t : ℝ) :
 
 variable [MeasurableSpace E]
 
-/-- **The scalar notion is the case `B = 1`**: `c = e^{-t}`.-/
+/-- **The scalar notion is the case `B = 1`**: `c = e^{-t}`.
+@isnad1 id=iff.0h2v.s7.86f2df665c00 from=translated src=- shape=77c202c0 vocab=fb786abc
+-/
 theorem isBSelfDecomposable_one_iff (μ : Measure E) :
     IsBSelfDecomposable (1 : E →L[ℝ] E) μ ↔ IsSelfDecomposable μ := by
   simp only [IsBSelfDecomposable, coe_exp_neg_smul_one]
@@ -134,7 +138,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensi
   [FiniteDimensional ℝ F] [MeasurableSpace F] [BorelSpace F]
 
 /-- **The image of a self-decomposable measure under a linear map is self-decomposable**, with
-residual `L_* ρ_c`.-/
+residual `L_* ρ_c`.
+@isnad1 id=isselfde.1h4v.s8.bc06d16ad18a from=translated src=- shape=72e2fa5b vocab=7936be73
+-/
 theorem IsSelfDecomposable.map {μ : Measure E} [SFinite μ] (h : IsSelfDecomposable μ)
     (L : E →L[ℝ] F) : IsSelfDecomposable (μ.map L) := by
   intro c hc0 hc1
@@ -156,7 +162,9 @@ section Transform
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
   [MeasurableSpace E] [BorelSpace E]
 
-/-- **The transform form** `μ̂(ξ) = μ̂(cξ) ρ̂_c(ξ)`, for a finite measure (Paper VII's form).-/
+/-- **The transform form** `μ̂(ξ) = μ̂(cξ) ρ̂_c(ξ)`, for a finite measure (Paper VII's form).
+@isnad1 id=iff.0h2v.s7.107cc71eeef4 from=translated src=- shape=c9532c3f vocab=3918309c
+-/
 theorem isSelfDecomposable_iff_charFun (μ : Measure E) [IsFiniteMeasure μ] :
     IsSelfDecomposable μ ↔ ∀ c : ℝ, 0 < c → c < 1 → ∃ ρ : Measure E, IsProbabilityMeasure ρ ∧
       ∀ ξ : E, charFun μ ξ = charFun μ (c • ξ) * charFun ρ ξ := by
@@ -171,7 +179,9 @@ theorem isSelfDecomposable_iff_charFun (μ : Measure E) [IsFiniteMeasure μ] :
 
 /-- **The line as an instance**: on `ℝ`, self-decomposability is Sato's `b > 1` form
 `μ̂(ω) = μ̂(ω/b) ρ̂_b(ω)`. The right-hand side is Paper V's `SpatialLine.IsSelfDecomposable`
-([V, Def. 2.12]) verbatim, with `c = b⁻¹`.-/
+([V, Def. 2.12]) verbatim, with `c = b⁻¹`.
+@isnad1 id=iff.0h1v.s7.44fbe092cc8b from=translated src=- shape=349f9312 vocab=2e9a091b
+-/
 theorem isSelfDecomposable_real_iff (μ : Measure ℝ) [IsFiniteMeasure μ] :
     IsSelfDecomposable μ ↔ ∀ b : ℝ, 1 < b → ∃ ρ : Measure ℝ, IsProbabilityMeasure ρ ∧
       ∀ ω : ℝ, charFun μ ω = charFun μ (ω / b) * charFun ρ ω := by
@@ -187,7 +197,9 @@ theorem isSelfDecomposable_real_iff (μ : Measure ℝ) [IsFiniteMeasure μ] :
 /-! ## The doubling inequality -/
 
 omit [FiniteDimensional ℝ E] in
-/-- The real part of a transform is the integral of the cosine.-/
+/-- The real part of a transform is the integral of the cosine.
+@isnad1 id=eq.0h3v.s6.58431cf8cca5 from=translated src=- shape=8c71c943 vocab=8c9a7f15
+-/
 theorem re_charFun_eq_integral_cos (ρ : Measure E) [IsProbabilityMeasure ρ] (η : E) :
     (charFun ρ η).re = ∫ x, Real.cos ⟪x, η⟫ ∂ρ := by
   have hintc : Integrable (fun x : E => Complex.exp (⟪x, η⟫ * Complex.I)) ρ :=
@@ -198,7 +210,9 @@ theorem re_charFun_eq_integral_cos (ρ : Measure E) [IsProbabilityMeasure ρ] (�
 
 omit [FiniteDimensional ℝ E] in
 /-- **The doubling inequality for a real part**: `1 - Re κ̂(2ξ) ≤ 4(1 - Re κ̂(ξ))`, from
-`1 - cos 2τ ≤ 4(1 - cos τ)` under the integral.-/
+`1 - cos 2τ ≤ 4(1 - cos τ)` under the integral.
+@isnad1 id=le.0h3v.s7.eac13d64f123 from=translated src=- shape=5305edab vocab=d7de98aa
+-/
 theorem one_sub_re_charFun_two_smul_le (κ : Measure E) [IsProbabilityMeasure κ] (ξ : E) :
     1 - (charFun κ ((2 : ℝ) • ξ)).re ≤ 4 * (1 - (charFun κ ξ).re) := by
   have hint : ∀ η : E, Integrable (fun x : E => Real.cos ⟪x, η⟫) κ := fun η =>
@@ -215,7 +229,9 @@ theorem one_sub_re_charFun_two_smul_le (κ : Measure E) [IsProbabilityMeasure κ
   nlinarith [Real.cos_le_one ⟪x, ξ⟫, Real.neg_one_le_cos ⟪x, ξ⟫]
 
 /-- **The doubling inequality**: `1 - |ρ̂(2ξ)|² ≤ 4(1 - |ρ̂(ξ)|²)` for a probability measure `ρ`,
-since `|ρ̂|²` is the transform of the symmetrisation `ρ ∗ (-1)_* ρ`.-/
+since `|ρ̂|²` is the transform of the symmetrisation `ρ ∗ (-1)_* ρ`.
+@isnad1 id=le.0h3v.s8.7b2621a51465 from=translated src=- shape=2445e946 vocab=ef20c5f9
+-/
 theorem one_sub_norm_sq_charFun_two_smul_le (ρ : Measure E) [IsProbabilityMeasure ρ] (ξ : E) :
     1 - ‖charFun ρ ((2 : ℝ) • ξ)‖ ^ 2 ≤ 4 * (1 - ‖charFun ρ ξ‖ ^ 2) := by
   haveI : IsProbabilityMeasure (ρ.map ((-1 : ℝ) • ·)) :=
@@ -232,7 +248,9 @@ theorem one_sub_norm_sq_charFun_two_smul_le (ρ : Measure E) [IsProbabilityMeasu
 /-- **The transform of a self-decomposable probability measure has no zeros** (Paper VII,
 `prop:gw-ray-families`(1)). Let `z₀` be the first zero along a ray. At `z₀` the factorisation
 forces `ρ̂_c(z₀) = 0`, so the doubling inequality at `z₀/2` gives `|μ̂(z₀/2)|² ≤ ¾ |μ̂(cz₀/2)|²`
-for every `c ∈ (0,1)`, which fails in the limit `c ↑ 1` since `μ̂(z₀/2) ≠ 0`.-/
+for every `c ∈ (0,1)`, which fails in the limit `c ↑ 1` since `μ̂(z₀/2) ≠ 0`.
+@isnad1 id=ne.1h3v.s6.fa852e8bc8e4 from=translated src=- shape=fef4b5ff vocab=d2a98026
+-/
 theorem IsSelfDecomposable.charFun_ne_zero {μ : Measure E} [IsProbabilityMeasure μ]
     (hμ : IsSelfDecomposable μ) (z : E) : charFun μ z ≠ 0 := by
   rw [isSelfDecomposable_iff_charFun] at hμ

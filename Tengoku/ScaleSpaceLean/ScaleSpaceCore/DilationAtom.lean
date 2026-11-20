@@ -66,7 +66,9 @@ none.
 
 Class (c) — the replacement for the causal orientation argument, which used monotonicity of
 Bernstein functions; that monotonicity is unavailable here before the classification and is
-recovered from it in `prop:strict-positivity`(1).-/
+recovered from it in `prop:strict-positivity`(1).
+@isnad1 id=eq.2h2v.s6.e6add976ca4c from=translated src=- shape=84d78888 vocab=e6082b6b
+-/
 theorem dilation_atom (μ : Measure ℝ) [IsProbabilityMeasure μ] (lam : ℕ → ℝ)
     (hlam : Tendsto lam atTop atTop)
     (h : ∀ ω : ℝ, Tendsto (fun n => charFun μ (lam n * ω)) atTop (𝓝 1)) :

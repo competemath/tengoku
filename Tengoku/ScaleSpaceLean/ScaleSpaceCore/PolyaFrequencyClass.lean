@@ -64,25 +64,33 @@ is integrable the value is Mathlib's junk value `0`.-/
 noncomputable def bilateralLaplace (μ : Measure ℝ) (s : ℂ) : ℂ := ∫ x, cexp (-s * x) ∂μ
 
 /-- The bilateral Laplace transform is Mathlib's complex moment generating function of the
-identity, evaluated at `-s`.-/
+identity, evaluated at `-s`.
+@isnad1 id=eq.0h2v.s4.fc18903249b5 from=translated src=- shape=4468cf62 vocab=13fbee75
+-/
 theorem bilateralLaplace_eq_complexMGF (μ : Measure ℝ) (s : ℂ) :
     bilateralLaplace μ s = ProbabilityTheory.complexMGF id μ (-s) := rfl
 
 /-- On the imaginary axis the bilateral Laplace transform is the characteristic function at the
-reflected frequency: `L(iω) = charFun μ (-ω)`.-/
+reflected frequency: `L(iω) = charFun μ (-ω)`.
+@isnad1 id=eq.0h2v.s5.f7ff52c3b1f2 from=translated src=- shape=7ead864e vocab=18136d60
+-/
 theorem bilateralLaplace_ofReal_mul_I (μ : Measure ℝ) (ω : ℝ) :
     bilateralLaplace μ (ω * I) = charFun μ (-ω) := by
   rw [bilateralLaplace_eq_complexMGF, ← ProbabilityTheory.complexMGF_id_mul_I]
   congr 1; push_cast; ring
 
-/-- On the real axis the bilateral Laplace transform is the real integral `∫ e^{-xy} dμ(y)`.-/
+/-- On the real axis the bilateral Laplace transform is the real integral `∫ e^{-xy} dμ(y)`.
+@isnad1 id=eq.0h2v.s5.15ccc4b57c98 from=translated src=- shape=b96b05c5 vocab=a3ef3619
+-/
 theorem bilateralLaplace_ofReal (μ : Measure ℝ) (x : ℝ) :
     bilateralLaplace μ x = ((∫ y, Real.exp (-x * y) ∂μ : ℝ) : ℂ) := by
   rw [bilateralLaplace, ← integral_complex_ofReal]
   congr 1 with y
   simp [ofReal_exp]
 
-/-- A reflection-invariant measure has an even bilateral Laplace transform.-/
+/-- A reflection-invariant measure has an even bilateral Laplace transform.
+@isnad1 id=eq.1h2v.s5.5bad013e1e6f from=translated src=- shape=b69e8384 vocab=3023ef76
+-/
 theorem bilateralLaplace_neg_of_map_neg {μ : Measure ℝ} (h : μ.map (fun x => -x) = μ)
     (s : ℂ) : bilateralLaplace μ (-s) = bilateralLaplace μ s := by
   conv_rhs => rw [bilateralLaplace, ← h]
@@ -101,7 +109,9 @@ by zeros. The product is multipliable at every `s` once `∑ a_j² < ∞`
 noncomputable def polyaE2 (γ δ : ℝ) (a : ℕ → ℝ) (s : ℂ) : ℂ :=
   cexp (-(γ : ℂ) * s ^ 2 + δ * s) * ∏' j, (1 + (a j : ℂ) * s) * cexp (-((a j : ℂ) * s))
 
-/-- The Weierstrass factor estimate: `‖(1 + w) e^{-w} - 1‖ ≤ e ‖w‖²` for `‖w‖ ≤ 1`.-/
+/-- The Weierstrass factor estimate: `‖(1 + w) e^{-w} - 1‖ ≤ e ‖w‖²` for `‖w‖ ≤ 1`.
+@isnad1 id=le.1h1v.s6.ce8ecdef043a from=translated src=- shape=bafaf9a9 vocab=a9bc9a9d
+-/
 theorem norm_one_add_mul_cexp_neg_sub_one_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
     ‖(1 + w) * cexp (-w) - 1‖ ≤ Real.exp 1 * ‖w‖ ^ 2 := by
   have h1 : (1 + w) * cexp (-w) - 1 = -(cexp (-w) * (cexp w - 1 - w)) := by
@@ -114,7 +124,9 @@ theorem norm_one_add_mul_cexp_neg_sub_one_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
   exact mul_le_mul h2 (Complex.norm_exp_sub_one_sub_id_le hw) (norm_nonneg _)
     (Real.exp_pos 1).le
 
-/-- The factors of `polyaE2` are summably close to `1` when `∑ a_j² < ∞`.-/
+/-- The factors of `polyaE2` are summably close to `1` when `∑ a_j² < ∞`.
+@isnad1 id=summable.1h2v.s6.030499daa954 from=translated src=- shape=0d6e466d vocab=b21a09f9
+-/
 theorem summable_norm_polyaE2_factor_sub_one {a : ℕ → ℝ} (ha : Summable fun j => a j ^ 2)
     (s : ℂ) : Summable fun j => ‖(1 + (a j : ℂ) * s) * cexp (-((a j : ℂ) * s)) - 1‖ := by
   have hev : ∀ᶠ j in Filter.cofinite, a j ^ 2 * ‖s‖ ^ 2 ≤ 1 :=
@@ -131,13 +143,17 @@ theorem summable_norm_polyaE2_factor_sub_one {a : ℕ → ℝ} (ha : Summable fu
     _ = _ := by rw [hn]; ring
 
 /-- **Multipliability of the `E₂*` product.** For `∑ a_j² < ∞` the product defining `polyaE2`
-converges at every complex `s` (*Total Positivity* I, (2.2), p. 336).-/
+converges at every complex `s` (*Total Positivity* I, (2.2), p. 336).
+@isnad1 id=multipli.1h2v.s6.f26627da5cc3 from=translated src=- shape=dce7d5db vocab=5499e80d
+-/
 theorem multipliable_polyaE2_factor {a : ℕ → ℝ} (ha : Summable fun j => a j ^ 2) (s : ℂ) :
     Multipliable fun j => (1 + (a j : ℂ) * s) * cexp (-((a j : ℂ) * s)) := by
   simpa only [add_sub_cancel] using
     multipliable_one_add_of_summable (summable_norm_polyaE2_factor_sub_one ha s)
 
-/-- A multipliable real product is carried to `ℂ` factor by factor.-/
+/-- A multipliable real product is carried to `ℂ` factor by factor.
+@isnad1 id=eq.1h1v.s5.4c89dce21721 from=translated src=- shape=8c491560 vocab=eebf55a0
+-/
 theorem ofReal_tprod_of_multipliable {f : ℕ → ℝ} (hf : Multipliable f) :
     ((∏' j, f j : ℝ) : ℂ) = ∏' j, (f j : ℂ) :=
   ((hf.hasProd.map Complex.ofRealHom Complex.continuous_ofReal).tprod_eq).symm
@@ -150,11 +166,17 @@ even, and on the imaginary axis it is the exponential of a Pólya-frequency expo
 (`polyaE2_pairSeq_mul_I`).-/
 def pairSeq (lam : ℕ → ℝ) : ℕ → ℝ := fun n => if Even n then lam (n / 2) else -lam (n / 2)
 
+/--
+@isnad1 id=eq.0h2v.s4.8134fd539542 from=translated src=- shape=bca5466d vocab=f563391f
+-/
 @[simp] theorem pairSeq_two_mul (lam : ℕ → ℝ) (k : ℕ) : pairSeq lam (2 * k) = lam k := by
   have h2 : 2 * k / 2 = k := by omega
   change (if Even (2 * k) then lam (2 * k / 2) else -lam (2 * k / 2)) = lam k
   rw [ite_eq_left (even_two_mul k), h2]
 
+/--
+@isnad1 id=eq.0h2v.s5.4c59ee02f9f3 from=translated src=- shape=8fddf870 vocab=1917ba68
+-/
 @[simp] theorem pairSeq_two_mul_add_one (lam : ℕ → ℝ) (k : ℕ) :
     pairSeq lam (2 * k + 1) = -lam k := by
   have h2 : (2 * k + 1) / 2 = k := by omega
@@ -164,7 +186,9 @@ def pairSeq (lam : ℕ → ℝ) : ℕ → ℝ := fun n => if Even n then lam (n 
 /-- **The `E₂*` function of a paired sequence on the imaginary axis.** With `δ = 0` and
 parameters `pairSeq lam`, each pair of factors multiplies to `1 + lam_i² ω²`, so
 `ψ(iω) = exp (γ ω² + ∑ log (1 + lam_i² ω²))` — real, positive, and the exponential of a
-Pólya-frequency exponent (*Total Positivity* I, (2.2), p. 336).-/
+Pólya-frequency exponent (*Total Positivity* I, (2.2), p. 336).
+@isnad1 id=eq.1h3v.s7.bcc0a92f32b2 from=translated src=- shape=d96f8736 vocab=264eda13
+-/
 theorem polyaE2_pairSeq_mul_I {lam : ℕ → ℝ} (hl : Summable fun i => lam i ^ 2) (γ ω : ℝ) :
     polyaE2 γ 0 (pairSeq lam) (ω * I) =
       ((Real.exp (γ * ω ^ 2 + ∑' i, Real.log (1 + lam i ^ 2 * ω ^ 2)) : ℝ) : ℂ) := by

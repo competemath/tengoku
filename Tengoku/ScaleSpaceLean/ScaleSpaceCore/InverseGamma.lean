@@ -58,7 +58,9 @@ open scoped ENNReal Topology
 
 /-! ## The exponential change of variables -/
 
-/-- The exponential change of variables `v ↦ c e^v`, from the line onto `(0,∞)`.-/
+/-- The exponential change of variables `v ↦ c e^v`, from the line onto `(0,∞)`.
+@isnad1 id=eq.1h1v.s5.da36bc6acf57 from=translated src=- shape=ca7f1450 vocab=f77f418d
+-/
 theorem expMap_image {c : ℝ} (hc : 0 < c) :
     (fun v : ℝ => c * Real.exp v) '' univ = Ioi (0 : ℝ) := by
   ext y
@@ -71,11 +73,17 @@ theorem expMap_image {c : ℝ} (hc : 0 < c) :
     rw [Real.exp_log (div_pos hy hc)]
     field_simp
 
+/--
+@isnad1 id=monotone.1h1v.s5.bcd3cb64c6af from=translated src=- shape=860b29d0 vocab=aa248e07
+-/
 theorem expMap_monotone {c : ℝ} (hc : 0 < c) :
     MonotoneOn (fun v : ℝ => c * Real.exp v) univ := by
   intro x _ y _ hxy
   exact mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr hxy) hc.le
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.7b5e7231c811 from=translated src=- shape=3b346da5 vocab=da9d0ba9
+-/
 theorem expMap_hasDeriv (c v : ℝ) :
     HasDerivAt (fun w : ℝ => c * Real.exp w) (c * Real.exp v) v :=
   (Real.hasDerivAt_exp v).const_mul c
@@ -84,7 +92,9 @@ theorem expMap_hasDeriv (c v : ℝ) :
 
 It is `lintegral_image_eq_lintegral_deriv_mul_of_monotoneOn`, which asks only for measurability
 of the domain, the derivative and monotonicity: no injectivity argument and no integrability side
-condition.-/
+condition.
+@isnad1 id=eq.1h2v.s6.d514eabbddfd from=translated src=- shape=db0909d1 vocab=1bfeb9c9
+-/
 theorem lintegral_Ioi_comp_exp {c : ℝ} (hc : 0 < c) (g : ℝ → ℝ≥0∞) :
     (∫⁻ u in Ioi (0 : ℝ), g u)
       = ∫⁻ v, ENNReal.ofReal (c * Real.exp v) * g (c * Real.exp v) := by
@@ -95,6 +105,9 @@ theorem lintegral_Ioi_comp_exp {c : ℝ} (hc : 0 < c) (g : ℝ → ℝ≥0∞) :
   rw [expMap_image hc] at h
   rw [h, setLIntegral_univ]
 
+/--
+@isnad1 id=eq.0h2v.s4.8aeec0590dbe from=translated src=- shape=e590dbf5 vocab=97fcab74
+-/
 theorem exp_rpow (v y : ℝ) : (Real.exp v) ^ y = Real.exp (v * y) := by
   rw [Real.rpow_def_of_pos (Real.exp_pos v), Real.log_exp]
 
@@ -106,7 +119,9 @@ Two exponential substitutions and one reflection: `u = e^v` turns the integral i
 `∫_ℝ e^{-av}e^{-e^{-v}/2}dv`, the reflection `v \mapsto -v` into `∫_ℝ e^{av}e^{-e^v/2}dv`, and
 `u = e^v` read backwards into the Gamma integral at rate `1/2`. Mathlib's
 `integral_rpow_mul_exp_neg_mul_Ioi` evaluates that one, and the positivity trick carries the
-value back into `ℝ≥0∞`.-/
+value back into `ℝ≥0∞`.
+@isnad1 id=eq.1h1v.s6.7932370aac99 from=translated src=- shape=85eb636d vocab=36fa18ea
+-/
 theorem lintegral_Ioi_inverseGammaKernel {a : ℝ} (ha : 0 < a) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (u ^ (-a - 1) * Real.exp (-(2 * u)⁻¹)))
       = ENNReal.ofReal (2 ^ a * Real.Gamma a) := by
@@ -189,11 +204,17 @@ noncomputable def inverseGammaDensity (a u : ℝ) : ℝ :=
 noncomputable def inverseGammaLaw (a : ℝ) : Measure ℝ :=
   volume.withDensity fun u => ENNReal.ofReal (inverseGammaDensity a u)
 
+/--
+@isnad1 id=measurab.0h1v.s3.59b1e8029cc1 from=translated src=- shape=f736e2c1 vocab=40453e5f
+-/
 theorem measurable_inverseGammaDensity (a : ℝ) : Measurable (inverseGammaDensity a) := by
   unfold inverseGammaDensity
   refine Measurable.indicator ?_ measurableSet_Ioi
   fun_prop
 
+/--
+@isnad1 id=le.1h2v.s4.17be271bd762 from=translated src=- shape=1852429d vocab=d70eb7fa
+-/
 theorem inverseGammaDensity_nonneg {a : ℝ} (ha : 0 < a) (u : ℝ) :
     0 ≤ inverseGammaDensity a u := by
   unfold inverseGammaDensity
@@ -204,6 +225,9 @@ theorem inverseGammaDensity_nonneg {a : ℝ} (ha : 0 < a) (u : ℝ) :
   have h3 : (0 : ℝ) < Real.Gamma a := Real.Gamma_pos_of_pos ha
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s6.a38026912588 from=translated src=- shape=b62c2fab vocab=5c599c13
+-/
 theorem inverseGammaDensity_eq_indicator (a : ℝ) :
     (fun u : ℝ => ENNReal.ofReal (inverseGammaDensity a u))
       = Set.indicator (Ioi (0 : ℝ))
@@ -216,7 +240,9 @@ theorem inverseGammaDensity_eq_indicator (a : ℝ) :
   · rw [Set.indicator_of_notMem h, inverseGammaDensity, Set.indicator_of_notMem h]
     simp
 
-/-- The inverse-gamma law is carried by the half-line.-/
+/-- The inverse-gamma law is carried by the half-line.
+@isnad1 id=eq.0h1v.s5.24ded92c04d6 from=translated src=- shape=0b4cdb55 vocab=739256b9
+-/
 theorem inverseGammaLaw_Iio_zero (a : ℝ) : inverseGammaLaw a (Iio 0) = 0 := by
   rw [inverseGammaLaw, withDensity_apply _ measurableSet_Iio,
     inverseGammaDensity_eq_indicator]
@@ -225,7 +251,9 @@ theorem inverseGammaLaw_Iio_zero (a : ℝ) : inverseGammaLaw a (Iio 0) = 0 := by
   · intro u hu
     exact Set.indicator_of_notMem (by simpa using le_of_lt hu) _
 
-/-- The inverse-gamma law of positive shape is a probability law.-/
+/-- The inverse-gamma law of positive shape is a probability law.
+@isnad1 id=isprobab.1h1v.s4.f2aa01bb1261 from=translated src=- shape=b8038e13 vocab=eb48520f
+-/
 theorem isProbabilityMeasure_inverseGammaLaw {a : ℝ} (ha : 0 < a) :
     IsProbabilityMeasure (inverseGammaLaw a) := by
   have hpos : (0 : ℝ) < 2 ^ a * Real.Gamma a := by

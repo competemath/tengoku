@@ -29,7 +29,9 @@ open scoped Topology
 /-- **`lem:dilation-invariance`.** A function fixed by one dilation and continuous at the
 origin, where it vanishes, vanishes identically.
 
-Continuity is asked **at `0` only**, which is all the iteration needs and all three uses supply.-/
+Continuity is asked **at `0` only**, which is all the iteration needs and all three uses supply.
+@isnad1 id=eq.5h3v.s6.8a78b74bcd9d from=translated src=- shape=7b288e7b vocab=ea453b5f
+-/
 theorem dilation_invariance (h : ℝ → ℝ) (hcont : ContinuousAt h 0) (hzero : h 0 = 0)
     (κ : ℝ) (hκ : 0 < κ) (hκ1 : κ ≠ 1) (hinv : ∀ ω : ℝ, h ω = h (κ * ω)) :
     ∀ ω : ℝ, h ω = 0 := by

@@ -94,7 +94,9 @@ noncomputable def studentLaw (a t : ℝ) : Measure ℝ :=
 /-! ## The reflection fold -/
 
 /-- **The reflection fold at a general exponential weight.** For an even nonnegative `G`,
-`∫_ℝ e^{pv}G(v)\,dv = 2∫_0^∞ \cosh(pv)G(v)\,dv`.-/
+`∫_ℝ e^{pv}G(v)\,dv = 2∫_0^∞ \cosh(pv)G(v)\,dv`.
+@isnad1 id=eq.3h2v.s7.a374b7ad5292 from=translated src=- shape=ec26b42c vocab=f688e71e
+-/
 theorem lintegral_exp_mul_of_even {p : ℝ} {G : ℝ → ℝ} (hGm : Measurable G)
     (hGnn : ∀ v, 0 ≤ G v) (hGeven : ∀ v, G (-v) = G v) :
     (∫⁻ v, ENNReal.ofReal (Real.exp (p * v) * G v))
@@ -147,7 +149,9 @@ theorem lintegral_exp_mul_of_even {p : ℝ} {G : ℝ → ℝ} (hGm : Measurable 
 `∫_0^∞ u^{p-1}e^{-A/u - Bu}\,du = 2c^pK_p(2s)` for `A, B > 0`, every real `p`, and
 `c = \sqrt A/\sqrt B`, `s = \sqrt A\sqrt B` — here with the right-hand side left as the integral
 that *defines* `besselK`, and with the constants written in the coordinates that keep fourth
-roots out.-/
+roots out.
+@isnad1 id=eq.2h3v.s8.0d95a97f0d7a from=translated src=- shape=a92b405d vocab=e528a843
+-/
 theorem lintegral_Ioi_rpow_exp_besselKernel {p A B : ℝ} (hA : 0 < A) (hB : 0 < B) :
     (∫⁻ u in Ioi (0 : ℝ), ENNReal.ofReal (u ^ (p - 1) * Real.exp (-(A / u + B * u))))
       = ENNReal.ofReal ((Real.sqrt A / Real.sqrt B) ^ p) * (2 * ∫⁻ v in Ioi (0 : ℝ),
@@ -219,7 +223,9 @@ theorem lintegral_Ioi_rpow_exp_besselKernel {p A B : ℝ} (hA : 0 < A) (hB : 0 <
 
 `besselK` is a Bochner integral and returns junk when its integrand is not integrable, so the
 identification is stated with finiteness as a hypothesis; every consumer gets it by comparison
-with a convergent integral.-/
+with a convergent integral.
+@isnad1 id=eq.1h2v.s7.67690ac3853e from=translated src=- shape=22841ad8 vocab=490b2f2a
+-/
 theorem lintegral_cosh_exp_eq_besselK (p : ℝ) {z : ℝ}
     (hfin : (∫⁻ v in Ioi (0 : ℝ),
       ENNReal.ofReal (Real.cosh (p * v) * Real.exp (-(z * Real.cosh v)))) ≠ ⊤) :
@@ -238,12 +244,17 @@ theorem lintegral_cosh_exp_eq_besselK (p : ℝ) {z : ℝ}
     exact .of_forall fun u => by positivity
   rw [hb, ENNReal.ofReal_toReal hfin]
 
-/-- `K_{-p} = K_p`: the defining integral is even in the order.-/
+/-- `K_{-p} = K_p`: the defining integral is even in the order.
+@isnad1 id=eq.0h2v.s3.1c47f513f44f from=translated src=- shape=395f08e8 vocab=f0c07c1e
+-/
 theorem besselK_neg (p z : ℝ) : besselK (-p) z = besselK p z := by
   rw [besselK, besselK]
   refine setIntegral_congr_fun measurableSet_Ioi fun u _ => ?_
   rw [show -p * u = -(p * u) by ring, Real.cosh_neg]
 
+/--
+@isnad1 id=le.0h2v.s4.1e2337feb207 from=translated src=- shape=a120b2a8 vocab=a54936e7
+-/
 theorem besselK_nonneg (p z : ℝ) : 0 ≤ besselK p z := by
   rw [besselK]
   refine setIntegral_nonneg measurableSet_Ioi fun u _ => ?_

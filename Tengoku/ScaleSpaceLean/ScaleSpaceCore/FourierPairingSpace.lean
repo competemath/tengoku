@@ -43,7 +43,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
 
 omit [FiniteDimensional ℝ E] [(volume : Measure E).IsAddHaarMeasure] in
 /-- The integrand of the character pairing is integrable: a unit-modulus continuous factor times
-an `L¹` function.-/
+an `L¹` function.
+@isnad1 id=integrab.0h3v.s9.beaca8b051ee from=translated src=- shape=c56d6ad9 vocab=b71eb6e2
+-/
 theorem integrable_char_mulE (ω : E) (f : E →₁[volume] ℝ) :
     Integrable (fun x : E => Complex.exp (⟪x, ω⟫ * Complex.I) * ((f : E → ℝ) x : ℂ)) := by
   refine Integrable.bdd_mul (c := 1) (L1.integrable_coeFn f).ofReal ?_ ?_
@@ -85,11 +87,16 @@ noncomputable def charCLME (ω : E) : (E →₁[volume] ℝ) →L[ℝ] ℂ :=
             simp [Complex.norm_exp]
 
 omit [FiniteDimensional ℝ E] [(volume : Measure E).IsAddHaarMeasure] in
+/--
+@isnad1 id=eq.0h3v.s11.e2613bae3571 from=translated src=- shape=53575793 vocab=bdaaefe6
+-/
 lemma charCLME_apply (ω : E) (f : E →₁[volume] ℝ) :
     charCLME ω f = ∫ x : E, Complex.exp (⟪x, ω⟫ * Complex.I) * ((f : E → ℝ) x : ℂ) := rfl
 
 omit [FiniteDimensional ℝ E] in
-/-- **The character pairing turns translation into multiplication** by `e^{i⟨a, ω⟩}`.-/
+/-- **The character pairing turns translation into multiplication** by `e^{i⟨a, ω⟩}`.
+@isnad1 id=eq.0h4v.s13.4339ef93fa53 from=translated src=- shape=cee59b13 vocab=e930c50c
+-/
 theorem charCLME_transL1E (ω a : E) (f : E →₁[volume] ℝ) :
     charCLME ω (transL1E a f) = Complex.exp (⟪a, ω⟫ * Complex.I) * charCLME ω f := by
   rw [charCLME_apply, charCLME_apply]
@@ -108,7 +115,9 @@ theorem charCLME_transL1E (ω a : E) (f : E →₁[volume] ℝ) :
   ring_nf
 
 /-- **`(μ * f)^ = μ̂ f̂`**: pairing the convolution operator against a character factorises into
-the characteristic function of the measure times the transform of the function.-/
+the characteristic function of the measure times the transform of the function.
+@isnad1 id=eq.0h4v.s13.b7288387a68f from=translated src=- shape=23fc17ce vocab=c5796e8a
+-/
 theorem charCLME_mconvL1E (μ : Measure E) [IsFiniteMeasure μ] (ω : E) (f : E →₁[volume] ℝ) :
     charCLME ω (mconvL1E μ f) = charFun μ ω * charCLME ω f := by
   rw [apply_mconvL1E_general (charCLME ω) μ f]

@@ -58,7 +58,9 @@ noncomputable def driftDatum (b₀ : ℝ) (hb : 0 ≤ b₀) : CausalAdmissible w
   integrable_near_zero := by simp
   integrable_at_top := by simp
 
-/-- The drift datum's exponent is `σ ↦ b₀σ` on `[0,∞)`.-/
+/-- The drift datum's exponent is `σ ↦ b₀σ` on `[0,∞)`.
+@isnad1 id=eq.2h2v.s5.ed8d96b7b99c from=translated src=- shape=636da22d vocab=ca9a8014
+-/
 theorem driftDatum_exponent {b₀ : ℝ} (hb : 0 ≤ b₀) {σ : ℝ} (hσ : 0 ≤ σ) :
     (driftDatum b₀ hb).exponent σ = b₀ * σ := by
   rw [exponent_eq _ hσ]
@@ -70,12 +72,18 @@ theorem driftDatum_exponent {b₀ : ℝ} (hb : 0 ≤ b₀) {σ : ℝ} (hσ : 0 �
 noncomputable def gammaCausalProfile (γ : ℝ) : ℝ → ℝ :=
   fun u => if 0 < u then γ * Real.exp (-u) else 0
 
+/--
+@isnad1 id=le.1h2v.s4.7566f984d30d from=translated src=- shape=d58f95ac vocab=1fd4182f
+-/
 theorem gammaCausalProfile_nonneg {γ : ℝ} (hγ : 0 ≤ γ) (u : ℝ) : 0 ≤ gammaCausalProfile γ u := by
   unfold gammaCausalProfile
   split_ifs
   · positivity
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h2v.s4.9a5115e257a2 from=translated src=- shape=7155da86 vocab=1fd4182f
+-/
 theorem gammaCausalProfile_le {γ : ℝ} (hγ : 0 ≤ γ) (u : ℝ) : gammaCausalProfile γ u ≤ γ := by
   unfold gammaCausalProfile
   split_ifs with hu
@@ -83,6 +91,9 @@ theorem gammaCausalProfile_le {γ : ℝ} (hγ : 0 ≤ γ) (u : ℝ) : gammaCausa
     nlinarith
   · exact hγ
 
+/--
+@isnad1 id=integrab.0h1v.s5.db0ec81ead03 from=translated src=- shape=cca0aac9 vocab=99dfc4e7
+-/
 theorem integrableOn_gammaCausalProfile (γ : ℝ) :
     IntegrableOn (gammaCausalProfile γ) (Ioo (0 : ℝ) 1) := by
   have hbase : IntegrableOn (fun u : ℝ => γ * Real.exp (-u)) (Ioo (0 : ℝ) 1) :=
@@ -90,6 +101,9 @@ theorem integrableOn_gammaCausalProfile (γ : ℝ) :
   refine hbase.congr_fun (fun u hu => ?_) measurableSet_Ioo
   simp [gammaCausalProfile, hu.1]
 
+/--
+@isnad1 id=integrab.1h1v.s6.06b72958e487 from=translated src=- shape=6c370af3 vocab=0224d88b
+-/
 theorem integrableOn_gammaCausalProfile_div {γ : ℝ} (hγ : 0 ≤ γ) :
     IntegrableOn (fun u => gammaCausalProfile γ u / u) (Ioi (1 : ℝ)) := by
   have hbase : IntegrableOn (fun u : ℝ => γ * Real.exp (-(1 * u))) (Ioi (1 : ℝ)) :=
@@ -130,8 +144,14 @@ noncomputable def gammaCausalDatum (γ : ℝ) (hγ : 0 ≤ γ) : CausalAdmissibl
         (.of_forall fun u hu =>
           div_nonneg (gammaCausalProfile_nonneg hγ u) (lt_trans zero_lt_one hu).le))
 
+/--
+@isnad1 id=eq.1h1v.s4.b4cdda7e46ca from=translated src=- shape=0c9a7190 vocab=ff568fa8
+-/
 @[simp] theorem gammaCausalDatum_b₀ (γ : ℝ) (hγ : 0 ≤ γ) : (gammaCausalDatum γ hγ).b₀ = 0 := rfl
 
+/--
+@isnad1 id=eq.2h2v.s5.1b15c0a4751f from=translated src=- shape=eabd486b vocab=c06b9e91
+-/
 theorem gammaCausalDatum_k {γ : ℝ} (hγ : 0 ≤ γ) {u : ℝ} (hu : 0 < u) :
     (gammaCausalDatum γ hγ).k u = γ * Real.exp (-u) := by
   simp [gammaCausalDatum, gammaCausalProfile, hu]
@@ -144,9 +164,15 @@ noncomputable def stableCausalProfile (α : ℝ) : ℝ → ℝ :=
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=lt.2h1v.s5.5116339e3a50 from=translated src=- shape=19b07251 vocab=306bc92b
+-/
 theorem stableCausalConst_pos (hα : 0 < α) (hα1 : α < 1) : 0 < α / Real.Gamma (1 - α) :=
   div_pos hα (Real.Gamma_pos_of_pos (by linarith))
 
+/--
+@isnad1 id=le.2h2v.s5.6888f1eaeb02 from=translated src=- shape=aefe07d6 vocab=1e5bb303
+-/
 theorem stableCausalProfile_nonneg (hα : 0 < α) (hα1 : α < 1) (u : ℝ) :
     0 ≤ stableCausalProfile α u := by
   unfold stableCausalProfile
@@ -154,6 +180,9 @@ theorem stableCausalProfile_nonneg (hα : 0 < α) (hα1 : α < 1) (u : ℝ) :
   · exact mul_nonneg (stableCausalConst_pos hα hα1).le (Real.rpow_nonneg (by linarith) _)
   · exact le_rfl
 
+/--
+@isnad1 id=antitone.2h1v.s5.a3df40be4260 from=translated src=- shape=f3d2f96e vocab=213f7f9e
+-/
 theorem stableCausalProfile_antitoneOn (hα : 0 < α) (hα1 : α < 1) :
     AntitoneOn (stableCausalProfile α) (Ioi (0 : ℝ)) := by
   intro x hx y hy hxy
@@ -164,7 +193,9 @@ theorem stableCausalProfile_antitoneOn (hα : 0 < α) (hα1 : α < 1) :
   rw [Real.rpow_neg hxpos.le, Real.rpow_neg hypos.le]
   exact inv_anti₀ (Real.rpow_pos_of_pos hxpos _) (Real.rpow_le_rpow hxpos.le hxy hα.le)
 
-/-- Integrable at the origin exactly because `α < 1`.-/
+/-- Integrable at the origin exactly because `α < 1`.
+@isnad1 id=integrab.1h1v.s5.150b03d3602f from=translated src=- shape=df85dc36 vocab=05baedbf
+-/
 theorem integrableOn_stableCausalProfile (hα1 : α < 1) :
     IntegrableOn (stableCausalProfile α) (Ioo (0 : ℝ) 1) := by
   have hrpow : IntegrableOn (fun t : ℝ => t ^ (-α)) (Ioc 0 1) :=
@@ -175,7 +206,9 @@ theorem integrableOn_stableCausalProfile (hα1 : α < 1) :
   intro t ht
   rw [stableCausalProfile, ite_eq_left ht.1]
 
-/-- Integrable against `du/u` at infinity exactly because `α > 0`.-/
+/-- Integrable against `du/u` at infinity exactly because `α > 0`.
+@isnad1 id=integrab.1h1v.s6.63593035793d from=translated src=- shape=6c370af3 vocab=ad32c4d0
+-/
 theorem integrableOn_stableCausalProfile_div (hα : 0 < α) :
     IntegrableOn (fun t => stableCausalProfile α t / t) (Ioi 1) := by
   have hrpow : IntegrableOn (fun t : ℝ => t ^ (-α - 1)) (Ioi 1) :=
@@ -204,11 +237,16 @@ noncomputable def stableCausalDatum (α : ℝ) (hα : 0 < α) (hα1 : α < 1) : 
         (.of_forall fun u hu =>
           div_nonneg (stableCausalProfile_nonneg hα hα1 u) (lt_trans zero_lt_one hu).le))
 
+/--
+@isnad1 id=eq.2h1v.s5.da4c04364d65 from=translated src=- shape=de9984da vocab=5c572dfd
+-/
 @[simp] theorem stableCausalDatum_b₀ (hα : 0 < α) (hα1 : α < 1) :
     (stableCausalDatum α hα hα1).b₀ = 0 := rfl
 
 /-- The profile is homogeneous of degree `-α`: `k(u/c) = c^α k(u)` for `c > 0`, at every real
-`u`, the guard making both sides `0` off `(0,∞)`.-/
+`u`, the guard making both sides `0` off `(0,∞)`.
+@isnad1 id=eq.3h3v.s6.299f71e4aa2b from=translated src=- shape=2257f4ac vocab=204f318b
+-/
 theorem stableCausalDatum_dilate_k (hα : 0 < α) (hα1 : α < 1) {c : ℝ} (hc : 0 < c) (u : ℝ) :
     (stableCausalDatum α hα hα1).k (u / c) = c ^ α * (stableCausalDatum α hα hα1).k u := by
   change stableCausalProfile α (u / c) = c ^ α * stableCausalProfile α u
@@ -220,7 +258,9 @@ theorem stableCausalDatum_dilate_k (hα : 0 < α) (hα1 : α < 1) {c : ℝ} (hc 
   · have huc : ¬ 0 < u / c := not_lt.mpr (div_nonpos_of_nonpos_of_nonneg hu hc.le)
     simp [stableCausalProfile, not_lt.mpr hu, huc]
 
-/-- The stable exponent is homogeneous of degree `α`: `F(cσ) = c^α F(σ)` for `c > 0`.-/
+/-- The stable exponent is homogeneous of degree `α`: `F(cσ) = c^α F(σ)` for `c > 0`.
+@isnad1 id=eq.3h3v.s6.85a3ae1b64c3 from=translated src=- shape=dafbc0e7 vocab=c52f0339
+-/
 theorem stableCausalDatum_exponent_mul (hα : 0 < α) (hα1 : α < 1) {c : ℝ} (hc : 0 < c)
     (σ : ℝ) :
     (stableCausalDatum α hα hα1).exponent (c * σ)
@@ -230,7 +270,9 @@ theorem stableCausalDatum_exponent_mul (hα : 0 < α) (hα1 : α < 1) {c : ℝ} 
   simp only [exponent, exponentL, dilate_b₀, dilate_k, smul_b₀, smul_k,
     stableCausalDatum_dilate_k hα hα1 hc, stableCausalDatum_b₀, mul_zero, zero_mul]
 
-/-- `∫₀^∞ e^{-u}c_α u^{-α}\,du = c_αΓ(1-α) = α`: Mathlib's Gamma integral at shape `1 - α`.-/
+/-- `∫₀^∞ e^{-u}c_α u^{-α}\,du = c_αΓ(1-α) = α`: Mathlib's Gamma integral at shape `1 - α`.
+@isnad1 id=eq.2h1v.s6.ea81eec3c057 from=translated src=- shape=f40cc46f vocab=2ff445d6
+-/
 theorem stableCausalDatum_integral_one (hα : 0 < α) (hα1 : α < 1) :
     (∫ u in Ioi (0 : ℝ), Real.exp (-(1 * u)) * (stableCausalDatum α hα hα1).k u) = α := by
   have hΓ : 0 < Real.Gamma (1 - α) := Real.Gamma_pos_of_pos (by linarith)
@@ -249,7 +291,9 @@ theorem stableCausalDatum_integral_one (hα : 0 < α) (hα1 : α < 1) :
 
 Homogeneity gives `F(σ) = σ^α F(1)` for `σ > 0`; differentiating both sides at `σ = 1`,
 `hasDerivAt_exponent` and `stableCausalDatum_integral_one` give `αF(1) = α`. The value at the
-origin is `exponent_zero`.-/
+origin is `exponent_zero`.
+@isnad1 id=eq.3h2v.s5.55f7b58f843e from=translated src=- shape=e5772c8a vocab=d07df6a0
+-/
 theorem stableCausalDatum_exponent (hα : 0 < α) (hα1 : α < 1) {σ : ℝ} (hσ : 0 ≤ σ) :
     (stableCausalDatum α hα hα1).exponent σ = σ ^ α := by
   set F := stableCausalDatum α hα hα1 with hF

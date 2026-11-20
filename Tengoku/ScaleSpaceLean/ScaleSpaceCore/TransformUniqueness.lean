@@ -54,7 +54,9 @@ open scoped Topology
 transform.
 
 Stated for Mathlib's `charFun`, whose sign convention is the opposite of the blueprint's (2.1);
-the statement is symmetric in the convention, since `ω ↦ -ω` is a bijection of `ℝ`.-/
+the statement is symmetric in the convention, since `ω ↦ -ω` is a bijection of `ℝ`.
+@isnad1 id=eq.1h2v.s6.03a86ba697b3 from=translated src=- shape=78c8ff53 vocab=ea87cee1
+-/
 theorem fourier_uniqueness {μ ρ : Measure ℝ} [IsFiniteMeasure μ] [IsFiniteMeasure ρ]
     (h : ∀ ω, charFun μ ω = charFun ρ ω) : μ = ρ :=
   Measure.ext_of_charFun (funext h)

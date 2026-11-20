@@ -149,7 +149,9 @@ namespace SymLevyPair
 /-! ### The two pieces of the constant are finite -/
 
 /-- The near-origin half of the constant of `lem:quadratic-growth` is finite: on `(0,1]` the
-integrand `x²/2` is dominated by `1 ∧ x²`, whose integral is a field of the structure.-/
+integrand `x²/2` is dominated by `1 ∧ x²`, whose integral is a field of the structure.
+@isnad1 id=ne.0h1v.s6.4cdc49973d34 from=translated src=- shape=409b47c6 vocab=44b71fa5
+-/
 theorem lintegral_sq_div_two_ne_top (P : SymLevyPair) :
     (∫⁻ x in Ioc (0 : ℝ) 1, ENNReal.ofReal (x ^ 2 / 2) ∂P.ν) ≠ ⊤ := by
   refine ne_top_of_le_ne_top P.ν_integrable ?_
@@ -161,7 +163,9 @@ theorem lintegral_sq_div_two_ne_top (P : SymLevyPair) :
         nlinarith [sq_nonneg x]
     _ ≤ ∫⁻ x, ENNReal.ofReal (min 1 (x ^ 2)) ∂P.ν := setLIntegral_le_lintegral _ _
 
-/-- The far half of the constant is finite: on `(1,∞)` the constant `1` is exactly `1 ∧ x²`.-/
+/-- The far half of the constant is finite: on `(1,∞)` the constant `1` is exactly `1 ∧ x²`.
+@isnad1 id=ne.0h1v.s4.a36d864d6178 from=translated src=- shape=b409238a vocab=9c3697e5
+-/
 theorem measure_Ioi_one_ne_top (P : SymLevyPair) : P.ν (Ioi (1 : ℝ)) ≠ ⊤ := by
   refine ne_top_of_le_ne_top P.ν_integrable ?_
   calc P.ν (Ioi (1 : ℝ))
@@ -180,7 +184,9 @@ theorem measure_Ioi_one_ne_top (P : SymLevyPair) : P.ν (Ioi (1 : ℝ)) ≠ ⊤ 
 `C = a + ½∫_{(0,1]} x² ν + 2 ν((1,∞))` is finite, and `ψ(ω) ≤ C(1 + ω²)` for every `ω`.
 
 The proof is the truncation split of `eq:levy-khintchine` at `x = 1`: below it
-`1 - cos ωx ≤ ω²x²/2`, above it `1 - cos ωx ≤ 2`.-/
+`1 - cos ωx ≤ ω²x²/2`, above it `1 - cos ωx ≤ 2`.
+@isnad1 id=and.0h1v.s8.2c795f7223b5 from=translated src=- shape=70a0588c vocab=13a62612
+-/
 theorem quadratic_growth (P : SymLevyPair) :
     (ENNReal.ofReal P.a + (∫⁻ x in Ioc (0 : ℝ) 1, ENNReal.ofReal (x ^ 2 / 2) ∂P.ν)
         + 2 * P.ν (Ioi 1)) ≠ ⊤ ∧
@@ -251,7 +257,9 @@ theorem quadratic_growth (P : SymLevyPair) :
 pair is finite at every frequency, so `SymLevyPair.exponent`, a `.toReal`, is the real number
 `eq:levy-khintchine` writes.
 
-Helper, named by no node.-/
+Helper, named by no node.
+@isnad1 id=ne.0h2v.s3.d04c8eed3b30 from=translated src=- shape=92158592 vocab=dda3d8ad
+-/
 theorem exponentL_ne_top (P : SymLevyPair) (ω : ℝ) : P.exponentL ω ≠ ⊤ := by
   obtain ⟨hC, hbound⟩ := P.quadratic_growth
   exact ne_top_of_le_ne_top (ENNReal.mul_ne_top hC ENNReal.ofReal_ne_top) (hbound ω)
@@ -261,7 +269,9 @@ end SymLevyPair
 /-! ## `lem:profile-integrability` -/
 
 /-- **`lem:profile-integrability`.** The Lévy condition `∫ (1 ∧ x²) ν < ∞` on the profile measure
-`ν(dx) = k(x) x⁻¹ dx` is the conjunction of the two conditions of `eq:sd-profile`.-/
+`ν(dx) = k(x) x⁻¹ dx` is the conjunction of the two conditions of `eq:sd-profile`.
+@isnad1 id=iff.2h1v.s7.b76b1d874efa from=translated src=- shape=faf7c757 vocab=8da93877
+-/
 theorem profile_integrability {k : ℝ → ℝ} (hk : ∀ x ∈ Ioi (0 : ℝ), 0 ≤ k x)
     (hkm : AEMeasurable k (volume.restrict (Ioi (0 : ℝ)))) :
     (∫⁻ x, ENNReal.ofReal (min 1 (x ^ 2)) ∂(profileMeasure k)) ≠ ⊤
@@ -295,7 +305,9 @@ theorem profile_integrability {k : ℝ → ℝ} (hk : ∀ x ∈ Ioi (0 : ℝ), 0
       rw [Pi.mul_apply, min_eq_left hx1, ENNReal.ofReal_one, mul_one]
   rw [hkey, ENNReal.add_ne_top]
 
-/-- The profile measure of an `SDProfile` is carried by `(0,∞)`.-/
+/-- The profile measure of an `SDProfile` is carried by `(0,∞)`.
+@isnad1 id=isfolded.0h1v.s2.bed8f598bf15 from=translated src=- shape=ff8268f1 vocab=d8fefaa4
+-/
 theorem isFolded_profileMeasure (k : ℝ → ℝ) : IsFolded (profileMeasure k) := by
   refine (withDensity_absolutelyContinuous _ _) ?_
   rw [Measure.restrict_apply measurableSet_Iic]
@@ -306,7 +318,9 @@ theorem isFolded_profileMeasure (k : ℝ → ℝ) : IsFolded (profileMeasure k) 
 
 /-- A symmetric Lévy pair carrying a profile's data has the profile's exponent. The two are the
 same `lintegral` once `withDensity` is unfolded: `(k(x)/x)·(1 - cos ωx)` is the integrand of
-`eq:sd-profile`.-/
+`eq:sd-profile`.
+@isnad1 id=eq.2h3v.s4.e9f69fc0fae1 from=translated src=- shape=febc7259 vocab=59167f22
+-/
 theorem exponentL_eq_of_profileMeasure (P : SDProfile) (Q : SymLevyPair) (ha : Q.a = P.a)
     (hν : Q.ν = profileMeasure P.k) (ω : ℝ) : P.exponentL ω = Q.exponentL ω := by
   have hkm : AEMeasurable P.k (volume.restrict (Ioi (0 : ℝ))) :=
@@ -330,7 +344,9 @@ pair with the same Gaussian coefficient and the same exponent.
 
 This is the half of the node's "consequently" clause that rests on Lean core alone: the Lévy
 condition is `profile_integrability` read right to left from the structure's two integrability
-fields.-/
+fields.
+@isnad1 id=ex.0h1v.s5.902c241d4821 from=translated src=- shape=8ac39342 vocab=ddc25d2c
+-/
 theorem profile_integrability_pair (P : SDProfile) :
     ∃ Q : SymLevyPair, Q.a = P.a ∧ Q.ν = profileMeasure P.k ∧ ∀ ω, P.exponent ω = Q.exponent ω := by
   have hkm : AEMeasurable P.k (volume.restrict (Ioi (0 : ℝ))) :=
@@ -345,7 +361,9 @@ theorem profile_integrability_pair (P : SDProfile) :
   rw [SDProfile.exponent, SymLevyPair.exponent,
     exponentL_eq_of_profileMeasure P Q hQa hQν ω]
 
-/-- A profile exponent vanishes at the origin.-/
+/-- A profile exponent vanishes at the origin.
+@isnad1 id=eq.0h1v.s4.e8288768b28f from=translated src=- shape=9b4d794a vocab=35d69542
+-/
 @[simp] theorem SDProfile.exponent_zero (Q : SDProfile) : Q.exponent 0 = 0 := by
   have h : Q.exponentL 0 = 0 := by
     rw [SDProfile.exponentL]

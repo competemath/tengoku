@@ -51,23 +51,37 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimension
 /-- `Θ_f(y) = ‖T_y f - f‖₁`, the modulus of continuity of translation at `f`.-/
 noncomputable def transDiffE (f : E →₁[volume] ℝ) (y : E) : ℝ := ‖transL1E y f - f‖
 
+/--
+@isnad1 id=continuo.0h2v.s8.8f169071d4ca from=translated src=- shape=342801dc vocab=c950f5b8
+-/
 theorem continuous_transDiffE (f : E →₁[volume] ℝ) : Continuous (transDiffE f) :=
   ((continuous_transL1E f).sub continuous_const).norm
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=le.0h3v.s8.47cbe66849e6 from=translated src=- shape=36a0b20c vocab=44169d86
+-/
 theorem transDiffE_nonneg (f : E →₁[volume] ℝ) (y : E) : 0 ≤ transDiffE f y := norm_nonneg _
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h2v.s8.3f294ff3a600 from=translated src=- shape=510097e2 vocab=86bd48d7
+-/
 @[simp]
 theorem transDiffE_zero (f : E →₁[volume] ℝ) : transDiffE f 0 = 0 := by
   rw [transDiffE, transL1E_zero, ContinuousLinearMap.id_apply, sub_self, norm_zero]
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- `Θ_f ≤ 2‖f‖`.-/
+/-- `Θ_f ≤ 2‖f‖`.
+@isnad1 id=le.0h3v.s9.eb0fe0d7f326 from=translated src=- shape=3b029452 vocab=6b7fbe48
+-/
 theorem transDiffE_le (f : E →₁[volume] ℝ) (y : E) : transDiffE f y ≤ 2 * ‖f‖ := by
   calc transDiffE f y ≤ ‖transL1E y f‖ + ‖f‖ := norm_sub_le _ _
     _ ≤ 2 * ‖f‖ := by linarith [norm_transL1E_le y f]
 
+/--
+@isnad1 id=integrab.0h3v.s8.1d7ca17a1f18 from=translated src=- shape=b4ce16bd vocab=020c40de
+-/
 theorem integrable_transDiffE (μ : Measure E) [IsFiniteMeasure μ] (f : E →₁[volume] ℝ) :
     Integrable (transDiffE f) μ :=
   (integrable_const (2 * ‖f‖)).mono' (continuous_transDiffE f).aestronglyMeasurable
@@ -75,7 +89,9 @@ theorem integrable_transDiffE (μ : Measure E) [IsFiniteMeasure μ] (f : E →�
       rw [Real.norm_eq_abs, abs_of_nonneg (transDiffE_nonneg f y)]
       exact transDiffE_le f y)
 
-/-- **(★).** `‖μ * f - f‖₁ ≤ ∫ Θ_f dμ` for a probability measure `μ`.-/
+/-- **(★).** `‖μ * f - f‖₁ ≤ ∫ Θ_f dμ` for a probability measure `μ`.
+@isnad1 id=le.0h3v.s12.c501e9342699 from=translated src=- shape=b1856021 vocab=115a2ded
+-/
 theorem norm_mconvL1E_sub_le (μ : Measure E) [IsProbabilityMeasure μ] (f : E →₁[volume] ℝ) :
     ‖mconvL1E μ f - f‖ ≤ ∫ y, transDiffE f y ∂μ := by
   have hsplit : mconvL1E μ f - f = ∫ y, (transL1E y f - f) ∂μ := by
@@ -84,7 +100,9 @@ theorem norm_mconvL1E_sub_le (μ : Measure E) [IsProbabilityMeasure μ] (f : E �
   rw [hsplit]
   exact norm_integral_le_integral_norm _
 
-/-- **The modulus of continuity decreases under convolution**: `Θ_{ν*f} ≤ Θ_f`.-/
+/-- **The modulus of continuity decreases under convolution**: `Θ_{ν*f} ≤ Θ_f`.
+@isnad1 id=le.0h4v.s12.7c2364252301 from=translated src=- shape=8d6d713a vocab=69271ecc
+-/
 theorem transDiffE_mconvL1E_le (ν : Measure E) [IsProbabilityMeasure ν] (f : E →₁[volume] ℝ)
     (y : E) : transDiffE (mconvL1E ν f) y ≤ transDiffE f y := by
   have hcomm : transL1E y (mconvL1E ν f) - mconvL1E ν f = mconvL1E ν (transL1E y f - f) := by
@@ -92,7 +110,9 @@ theorem transDiffE_mconvL1E_le (ν : Measure E) [IsProbabilityMeasure ν] (f : E
   rw [transDiffE, transDiffE, hcomm]
   exact norm_mconvL1E_le ν _
 
-/-- **(★) after an operator**, with the bound still expressed at `f`.-/
+/-- **(★) after an operator**, with the bound still expressed at `f`.
+@isnad1 id=le.0h4v.s14.67c4f0b35485 from=translated src=- shape=8f635a3c vocab=115a2ded
+-/
 theorem norm_mconvL1E_comp_sub_le (μ ν : Measure E) [IsProbabilityMeasure μ]
     [IsProbabilityMeasure ν] (f : E →₁[volume] ℝ) :
     ‖mconvL1E μ (mconvL1E ν f) - mconvL1E ν f‖ ≤ ∫ y, transDiffE f y ∂μ :=
@@ -107,10 +127,16 @@ noncomputable def transDiffBCFE (f : E →₁[volume] ℝ) : BoundedContinuousFu
       rw [Real.norm_eq_abs, abs_of_nonneg (transDiffE_nonneg f y)]
       exact transDiffE_le f y
 
+/--
+@isnad1 id=eq.0h3v.s8.12b745888674 from=translated src=- shape=0e0e6832 vocab=a74d2f37
+-/
 @[simp]
 theorem transDiffBCFE_apply (f : E →₁[volume] ℝ) (y : E) :
     transDiffBCFE f y = transDiffE f y := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.8541286179d0 from=translated src=- shape=a35ea343 vocab=031846d9
+-/
 theorem transDiffE_real (f : X) (y : ℝ) : transDiffE f y = transDiff f y := by
   rw [transDiffE, transDiff, transL1E_real]
 
@@ -124,7 +150,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDim
   [MeasureSpace E] [BorelSpace E] [(volume : Measure E).IsAddHaarMeasure]
 
 /-- **Kernels whose characteristic functions tend to `1` concentrate at the origin**, measured by
-the modulus of continuity.-/
+the modulus of continuity.
+@isnad1 id=tendsto.1h3v.s8.ae4d19ab17dc from=translated src=- shape=96f5d62b vocab=f4269a01
+-/
 theorem tendsto_integral_transDiffE_of_tendsto_charFun {μ : ℕ → Measure E}
     [hμ : ∀ n, IsProbabilityMeasure (μ n)]
     (h : ∀ ω, Tendsto (fun n => charFun (μ n) ω) atTop (𝓝 1)) (f : E →₁[volume] ℝ) :
@@ -143,7 +171,9 @@ theorem tendsto_integral_transDiffE_of_tendsto_charFun {μ : ℕ → Measure E}
   simpa [hP, hP₀] using this
 
 /-- **Kernels whose characteristic functions tend to `1` give operators tending strongly to the
-identity.**-/
+identity.**
+@isnad1 id=tendsto.1h3v.s12.70b5f6b983d4 from=translated src=- shape=44fa6369 vocab=f05acbd4
+-/
 theorem tendsto_norm_mconvL1E_sub_of_tendsto_charFun {μ : ℕ → Measure E}
     [∀ n, IsProbabilityMeasure (μ n)]
     (h : ∀ ω, Tendsto (fun n => charFun (μ n) ω) atTop (𝓝 1)) (f : E →₁[volume] ℝ) :

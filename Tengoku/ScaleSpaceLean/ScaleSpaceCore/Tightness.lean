@@ -58,7 +58,9 @@ open scoped ENNReal Topology
 
 /-! ## The truncation inequality for one kernel -/
 
-/-- `sinc (r x)` is integrable against a finite measure: it is continuous and bounded by `1`.-/
+/-- `sinc (r x)` is integrable against a finite measure: it is continuous and bounded by `1`.
+@isnad1 id=integrab.0h2v.s5.69b183274185 from=translated src=- shape=5c9ad075 vocab=18888f36
+-/
 lemma integrable_sinc_mul (ρ : Measure ℝ) [IsFiniteMeasure ρ] (r : ℝ) :
     Integrable (fun x : ℝ => Real.sinc (r * x)) ρ := by
   refine (integrable_const (1 : ℝ)).mono' (by fun_prop) ?_
@@ -66,7 +68,9 @@ lemma integrable_sinc_mul (ρ : Measure ℝ) [IsFiniteMeasure ρ] (r : ℝ) :
   simpa [Real.norm_eq_abs] using Real.abs_sinc_le_one (r * x)
 
 /-- The transform of a symmetric measure, integrated over a symmetric interval, is what
-`integral_charFun_Icc` computes: `∫_{-r}^{r} ρ̂ = 2r ∫ sinc(r x) dρ`, read on the real line.-/
+`integral_charFun_Icc` computes: `∫_{-r}^{r} ρ̂ = 2r ∫ sinc(r x) dρ`, read on the real line.
+@isnad1 id=eq.2h2v.s6.22f50975bc9a from=translated src=- shape=1c52b2ad vocab=92318e97
+-/
 lemma intervalIntegral_fourierCos_eq (ρ : Measure ℝ) [IsFiniteMeasure ρ] (hsym : IsSymmetric ρ)
     {r : ℝ} (hr : 0 < r) :
     ∫ ω in (-r)..r, fourierCos ρ ω = 2 * r * ∫ x, Real.sinc (r * x) ∂ρ := by

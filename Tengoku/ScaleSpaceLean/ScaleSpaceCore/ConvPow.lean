@@ -39,14 +39,18 @@ noncomputable def convPow [AddMonoid E] (ν : Measure E) : ℕ → Measure E
   | 0 => Measure.dirac 0
   | n + 1 => convPow ν n ∗ ν
 
-/-- A convolution power of a finite measure is finite.-/
+/-- A convolution power of a finite measure is finite.
+@isnad1 id=isfinite.0h2v.s4.a303cb9a2083 from=translated src=- shape=e8b952f1 vocab=3a75d5fd
+-/
 theorem isFiniteMeasure_convPow (L : Measure ℝ) [IsFiniteMeasure L] (n : ℕ) :
     IsFiniteMeasure (convPow L n) := by
   induction n with
   | zero => rw [convPow]; infer_instance
   | succ n ih => rw [convPow]; infer_instance
 
-/-- A convolution power of a probability measure on the line is a probability measure.-/
+/-- A convolution power of a probability measure on the line is a probability measure.
+@isnad1 id=isprobab.0h2v.s4.d763bf1f7060 from=translated src=- shape=e8b952f1 vocab=f807d8a5
+-/
 theorem isProbabilityMeasure_convPow_real (L : Measure ℝ) [IsProbabilityMeasure L] (n : ℕ) :
     IsProbabilityMeasure (convPow L n) := by
   induction n with
@@ -55,7 +59,9 @@ theorem isProbabilityMeasure_convPow_real (L : Measure ℝ) [IsProbabilityMeasur
 
 variable {d : ℕ}
 
-/-- A convolution power of a finite measure on `ℝ^d` is finite.-/
+/-- A convolution power of a finite measure on `ℝ^d` is finite.
+@isnad1 id=isfinite.0h3v.s7.3fadc4ee4c18 from=translated src=- shape=808466ce vocab=25a49829
+-/
 theorem isFiniteMeasure_convPow_Rd (L : Measure (EuclideanSpace ℝ (Fin d))) [IsFiniteMeasure L]
     (n : ℕ) : IsFiniteMeasure (convPow L n) := by
   induction n with

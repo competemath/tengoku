@@ -40,6 +40,9 @@ noncomputable def tailInv (h : ℝ → ℝ) (y : ℝ) : ℝ := sSup {u : ℝ | 0
 
 variable {h : ℝ → ℝ}
 
+/--
+@isnad1 id=le.0h2v.s4.719fa9810087 from=translated src=- shape=d51b80ee vocab=37b8e6e3
+-/
 theorem tailInv_nonneg (y : ℝ) : 0 ≤ tailInv h y := by
   rcases eq_empty_or_nonempty {u : ℝ | 0 < u ∧ y < h u} with he | ⟨u, hu⟩
   · rw [tailInv, he, Real.sSup_empty]
@@ -47,6 +50,9 @@ theorem tailInv_nonneg (y : ℝ) : 0 ≤ tailInv h y := by
     · exact le_trans hu.1.le (le_csSup hbd hu)
     · rw [tailInv, Real.sSup_of_not_bddAbove hbd]
 
+/--
+@isnad1 id=bddabove.2h2v.s5.ec58a04c2dd2 from=translated src=- shape=56b638e8 vocab=63402a58
+-/
 theorem bddAbove_tailSet (htend : Tendsto h atTop (𝓝 0)) {y : ℝ} (hy : 0 < y) :
     BddAbove {u : ℝ | 0 < u ∧ y < h u} := by
   obtain ⟨M, hM⟩ := eventually_atTop.mp (htend.eventually_lt_const hy)
@@ -54,6 +60,9 @@ theorem bddAbove_tailSet (htend : Tendsto h atTop (𝓝 0)) {y : ℝ} (hy : 0 < 
   by_contra hc
   exact absurd (hM u (le_of_lt (not_le.mp hc))) (not_lt.mpr hu.2.le)
 
+/--
+@isnad1 id=lt.3h3v.s5.97137d06a12d from=translated src=- shape=1f9445b5 vocab=862f6872
+-/
 theorem lt_of_lt_tailInv (hmono : AntitoneOn h (Ioi 0))
     {y r : ℝ} (hr : 0 < r) (hlt : r < tailInv h y) : y < h r := by
   have hne : {u : ℝ | 0 < u ∧ y < h u}.Nonempty := by
@@ -63,10 +72,16 @@ theorem lt_of_lt_tailInv (hmono : AntitoneOn h (Ioi 0))
   obtain ⟨u, hu, hru⟩ := exists_lt_of_lt_csSup hne hlt
   exact lt_of_lt_of_le hu.2 (hmono (mem_Ioi.mpr hr) (mem_Ioi.mpr hu.1) hru.le)
 
+/--
+@isnad1 id=lt.5h4v.s6.ad42a443598c from=translated src=- shape=1d7c39ae vocab=2692e8ed
+-/
 theorem lt_tailInv_of_lt (htend : Tendsto h atTop (𝓝 0)) {y u r : ℝ} (hy : 0 < y) (hu : 0 < u)
     (hru : r < u) (hlt : y < h u) : r < tailInv h y :=
   lt_of_lt_of_le hru (le_csSup (bddAbove_tailSet htend hy) ⟨hu, hlt⟩)
 
+/--
+@isnad1 id=antitone.1h1v.s5.208a8e33081b from=translated src=- shape=dd3fb0a6 vocab=3f5f56a2
+-/
 theorem antitoneOn_tailInv (htend : Tendsto h atTop (𝓝 0)) :
     AntitoneOn (tailInv h) (Ioi 0) := by
   intro y₁ h₁ y₂ h₂ h12

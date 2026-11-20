@@ -53,14 +53,18 @@ open scoped ENNReal Topology
 
 /-! ## The exponential inequality of the null-array step -/
 
-/-- `0 ≤ u - (1 - e^{-u})` for `u ≥ 0`.-/
+/-- `0 ≤ u - (1 - e^{-u})` for `u ≥ 0`.
+@isnad1 id=le.0h1v.s4.9694d969d531 from=translated src=- shape=4b077e48 vocab=e9db171f
+-/
 theorem one_sub_exp_neg_le (u : ℝ) : 1 - Real.exp (-u) ≤ u := by
   have h := Real.add_one_le_exp (-u)
   linarith
 
 /-! ## The truncation inequality -/
 
-/-- `u - sin u = ∫₀^u (1 - cos v) dv`.-/
+/-- `u - sin u = ∫₀^u (1 - cos v) dv`.
+@isnad1 id=eq.0h1v.s5.15438acb1258 from=translated src=- shape=23cbdef2 vocab=48eaf76b
+-/
 lemma sub_sin_eq_intervalIntegral (u : ℝ) :
     u - Real.sin u = ∫ v in (0:ℝ)..u, (1 - Real.cos v) := by
   rw [intervalIntegral.integral_sub intervalIntegrable_const

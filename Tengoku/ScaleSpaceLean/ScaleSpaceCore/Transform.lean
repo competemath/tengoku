@@ -74,7 +74,9 @@ open scoped ENNReal
 `R μ = μ`, with `R` extended to measures as the pushforward.-/
 def IsSymmetric (μ : Measure ℝ) : Prop := μ.map (fun x => -x) = μ
 
-/-- The point mass at the origin is symmetric.-/
+/-- The point mass at the origin is symmetric.
+@isnad1 id=issymmet.0h0v.s3.a1f17e27351a from=translated src=- shape=6ea877c3 vocab=7bc6a039
+-/
 theorem isSymmetric_dirac_zero : IsSymmetric (Measure.dirac (0 : ℝ)) := by
   rw [IsSymmetric, Measure.map_dirac' measurable_neg]
   norm_num
@@ -87,6 +89,9 @@ A Bochner integral of a bounded continuous function; for a finite `μ` it always
 for a symmetric `μ` it is the Fourier transform.-/
 noncomputable def fourierCos (μ : Measure ℝ) (ω : ℝ) : ℝ := ∫ x, Real.cos (ω * x) ∂μ
 
+/--
+@isnad1 id=eq.0h2v.s5.f250a5713bba from=translated src=- shape=b2e6e2cf vocab=60fd6d37
+-/
 lemma fourierCos_apply (μ : Measure ℝ) (ω : ℝ) : fourierCos μ ω = ∫ x, Real.cos (ω * x) ∂μ := rfl
 
 /-- **The exponent `g(ω) = -log μ̂(ω)`**, the quantity a cascade makes additive.
@@ -95,19 +100,26 @@ Unconditional, hence junk where `μ̂ ≤ 0`; every statement that reads `expone
 positive number says so in its hypotheses.-/
 noncomputable def exponent (μ : Measure ℝ) (ω : ℝ) : ℝ := -Real.log (fourierCos μ ω)
 
+/--
+@isnad1 id=eq.0h2v.s4.c835874e8759 from=translated src=- shape=f8189924 vocab=1f7dbda1
+-/
 lemma exponent_apply (μ : Measure ℝ) (ω : ℝ) :
     exponent μ ω = -Real.log (fourierCos μ ω) := rfl
 
 /-! ## The bridge to Mathlib's characteristic function -/
 
-/-- The transform of `δ₀` is `1` at every frequency.-/
+/-- The transform of `δ₀` is `1` at every frequency.
+@isnad1 id=eq.0h1v.s4.fb5b10e691d1 from=translated src=- shape=433e25b6 vocab=7bb70fe1
+-/
 @[simp] theorem fourierCos_dirac_zero (ω : ℝ) :
     fourierCos (Measure.dirac (0 : ℝ)) ω = 1 := by
   rw [fourierCos_apply, integral_dirac]
   simp
 
 /-- The integrand of `charFun` is integrable against a finite measure: it is continuous of
-constant modulus `1`.-/
+constant modulus `1`.
+@isnad1 id=integrab.0h2v.s6.7535e1f2bd57 from=translated src=- shape=d2f6429e vocab=16c4e25f
+-/
 theorem integrable_charFun_integrand (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
     Integrable (fun x : ℝ => Complex.exp ((ω : ℂ) * (x : ℂ) * Complex.I)) μ := by
   have hmeas : AEStronglyMeasurable
@@ -124,7 +136,9 @@ theorem integrable_charFun_integrand (μ : Measure ℝ) [IsFiniteMeasure μ] (ω
 /-- **The cosine transform is the real part of the characteristic function.**
 
 `fourierCos μ ω = ∫ cos(ωx) ∂μ` and `charFun μ ω = ∫ exp(ωx i) ∂μ`, and `re` commutes with the
-Bochner integral of an integrable function.-/
+Bochner integral of an integrable function.
+@isnad1 id=eq.0h2v.s5.57e4faee6a22 from=translated src=- shape=bef2b05b vocab=74a7ad4f
+-/
 theorem fourierCos_eq_charFun_re (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
     fourierCos μ ω = (charFun μ ω).re := by
   rw [charFun_apply_real, ← RCLike.re_to_complex,
@@ -138,7 +152,9 @@ cosine transform; so the sign convention is immaterial wherever a symmetric meas
 is read.
 
 The imaginary part is `∫ sin(ωx) ∂μ`, which vanishes because `μ` is invariant under `x ↦ -x`
-and `sin` is odd.-/
+and `sin` is odd.
+@isnad1 id=eq.1h2v.s5.f1a1400209e3 from=translated src=- shape=a7dbd94c vocab=82f55847
+-/
 theorem charFun_eq_fourierCos_of_symmetric {μ : Measure ℝ} [IsFiniteMeasure μ]
     (hsym : IsSymmetric μ) (ω : ℝ) :
     charFun μ ω = (fourierCos μ ω : ℂ) := by
@@ -175,6 +191,9 @@ twin: `Hemigroup.laplaceL`, verbatim.-/
 noncomputable def laplaceL (m : Measure ℝ) (τ : ℝ) : ℝ≥0∞ :=
   ∫⁻ u, ENNReal.ofReal (Real.exp (-(τ * u))) ∂m
 
+/--
+@isnad1 id=eq.0h2v.s4.8eda17457d48 from=translated src=- shape=dcbb05f5 vocab=a495ac6e
+-/
 lemma laplaceL_apply (m : Measure ℝ) (τ : ℝ) :
     laplaceL m τ = ∫⁻ u, ENNReal.ofReal (Real.exp (-(τ * u))) ∂m := rfl
 

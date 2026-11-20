@@ -73,7 +73,9 @@ in the parameters.
 
 variable {Fam : PreCascadeCore} {μ : ℝ → ℝ → Measure ℝ}
 
-/-- The operator is convolution by its kernel, as an identity of operators.-/
+/-- The operator is convolution by its kernel, as an identity of operators.
+@isnad1 id=eq.3h4v.s11.e649a2d88b85 from=translated src=- shape=304e9c0f vocab=41140c4a
+-/
 theorem Phi_eq_mconvL1 (hker : IsKernelFamily Fam.Φ μ) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t)
     [IsProbabilityMeasure (μ s t)] : Fam.Φ s t = mconvL1 (μ s t) :=
   eq_mconvL1_of_ae (hker.conv s t hs hst)
@@ -82,12 +84,16 @@ theorem Phi_eq_mconvL1 (hker : IsKernelFamily Fam.Φ μ) {s t : ℝ} (hs : 0 ≤
 
 Note which form of the rider is used: `isSymmetric_of_reflL1`, not the node
 `representation_symmetric`. The node carries (A4) and (A5) among its hypotheses, which a
-`PreCascadeCore` does not supply and which its proof does not consume.-/
+`PreCascadeCore` does not supply and which its proof does not consume.
+@isnad1 id=issymmet.3h4v.s5.8403565ef45f from=translated src=- shape=7038516c vocab=fe45a61b
+-/
 theorem isSymmetric_kernel (hker : IsKernelFamily Fam.Φ μ) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t)
     [IsProbabilityMeasure (μ s t)] : IsSymmetric (μ s t) :=
   isSymmetric_of_reflL1 (Phi_eq_mconvL1 hker hs hst) (Fam.reflection s t hs hst)
 
-/-- **The kernels convolve along the cascade** — (A6) through the uniqueness clause.-/
+/-- **The kernels convolve along the cascade** — (A6) through the uniqueness clause.
+@isnad1 id=eq.4h5v.s6.fbee6d4e4a8f from=translated src=- shape=3b2ec329 vocab=ee579171
+-/
 theorem kernel_conv (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤ r) (hrs : r ≤ s)
     (hst : s ≤ t) : μ r t = μ r s ∗ μ s t := by
   haveI := hker.isProbability r s hr hrs
@@ -98,14 +104,18 @@ theorem kernel_conv (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤ 
     ← Phi_eq_mconvL1 hker hr hrs, ← Phi_eq_mconvL1 hker (hr.trans hrs) hst,
     Fam.cascade r s t hr hrs hst]
 
-/-- **The diagonal kernel is `δ₀`** — (A6) through the uniqueness clause.-/
+/-- **The diagonal kernel is `δ₀`** — (A6) through the uniqueness clause.
+@isnad1 id=eq.2h3v.s5.f90075f30d07 from=translated src=- shape=d6b06025 vocab=ab371eeb
+-/
 theorem kernel_diag (hker : IsKernelFamily Fam.Φ μ) {t : ℝ} (ht : 0 ≤ t) :
     μ t t = Measure.dirac 0 := by
   haveI := hker.isProbability t t ht le_rfl
   refine mconvL1_injective ?_
   rw [← Phi_eq_mconvL1 hker ht le_rfl, Fam.diag t ht, mconvL1_dirac_zero]
 
-/-- **The transforms multiply over adjacent intervals.**-/
+/-- **The transforms multiply over adjacent intervals.**
+@isnad1 id=eq.4h6v.s6.ae588f4badaf from=translated src=- shape=54243b3e vocab=62d7d705
+-/
 theorem fourierCos_kernel_mul (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤ r)
     (hrs : r ≤ s) (hst : s ≤ t) (ω : ℝ) :
     fourierCos (μ r t) ω = fourierCos (μ r s) ω * fourierCos (μ s t) ω := by
@@ -125,7 +135,9 @@ theorem fourierCos_kernel_mul (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (h
 This is (A7) divided by the transform of the test density, and it is where the blueprint's remark
 that "the test density must have a zero-free transform" is load-bearing: the Gaussian is used
 because `charCLM_gaussL1_ne_zero`, and an indicator — whose transform vanishes on
-`2πℤ ∖ {0}` — would not do.-/
+`2πℤ ∖ {0}` — would not do.
+@isnad1 id=continuo.1h3v.s6.80e087e6011e from=translated src=- shape=6f05452f vocab=f76b1c4c
+-/
 theorem continuousOn_fourierCos_kernel (hker : IsKernelFamily Fam.Φ μ) (ω : ℝ) :
     ContinuousOn (fun p : ℝ × ℝ => fourierCos (μ p.1 p.2) ω)
       {p : ℝ × ℝ | 0 ≤ p.1 ∧ p.1 ≤ p.2} := by
@@ -157,7 +169,9 @@ theorem continuousOn_fourierCos_kernel (hker : IsKernelFamily Fam.Φ μ) (ω : �
 Reading: strict positivity of the *cosine* transform, at every frequency and every admissible
 pair. The hypotheses are `PreCascadeCore` — literally (A1)–(A3), (A5)–(A7) — together with a
 kernel family; (A4) enters only through the representation, and `IsKernelFamily.isProbability` is
-where it has gone.-/
+where it has gone.
+@isnad1 id=lt.3h5v.s5.6805070a38ec from=translated src=- shape=4714f211 vocab=93dc23e8
+-/
 theorem nonvanishing (Fam : PreCascadeCore) (μ : ℝ → ℝ → Measure ℝ)
     (hker : IsKernelFamily Fam.Φ μ) {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) (ω : ℝ) :
     0 < fourierCos (μ s t) ω := by

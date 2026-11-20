@@ -53,7 +53,9 @@ variable {μ : Measure ℝ}
 /-! ## Reflection -/
 
 /-- **(A3)** at the level of functions: for a symmetric measure, convolution commutes with
-reflection. The change of variables is `y ↦ -y`, which `IsSymmetric` says leaves `μ` alone.-/
+reflection. The change of variables is `y ↦ -y`, which `IsSymmetric` says leaves `μ` alone.
+@isnad1 id=eq.2h3v.s5.44e5805dc5bd from=translated src=- shape=ad3e1148 vocab=c79090f2
+-/
 theorem mconv_reflect (hμ : IsSymmetric μ) {f : ℝ → ℝ} (hf : StronglyMeasurable f) (x : ℝ) :
     mconv μ (fun u => f (-u)) x = mconv μ f (-x) := by
   simp only [mconv_apply]
@@ -66,7 +68,9 @@ theorem mconv_reflect (hμ : IsSymmetric μ) {f : ℝ → ℝ} (hf : StronglyMea
   rw [hl, hmap]
   simp only [show ∀ y : ℝ, -y - x = -x - y from fun y => by ring]
 
-/-- **(A3)** for `mconvL1`: a symmetric measure gives an operator commuting with reflection.-/
+/-- **(A3)** for `mconvL1`: a symmetric measure gives an operator commuting with reflection.
+@isnad1 id=eq.1h2v.s14.8c8b9099990a from=translated src=- shape=7466821e vocab=2db07d67
+-/
 theorem mconvL1_reflL1 [IsFiniteMeasure μ] (hμ : IsSymmetric μ) (f : X) :
     mconvL1 μ (reflL1 f) = reflL1 (mconvL1 μ f) := by
   set f₀ := (Lp.aestronglyMeasurable f).mk (f : ℝ → ℝ) with hf₀
@@ -84,7 +88,9 @@ theorem mconvL1_reflL1 [IsFiniteMeasure μ] (hμ : IsSymmetric μ) (f : X) :
 
 /-! ## Dilation -/
 
-/-- **(A8)** at the level of functions: dilating intertwines with dilating the measure.-/
+/-- **(A8)** at the level of functions: dilating intertwines with dilating the measure.
+@isnad1 id=eq.2h3v.s5.e180641e847a from=translated src=- shape=e568d2a7 vocab=be8a49ad
+-/
 theorem dilate_mconv {lam : ℝ} (hlam : 0 < lam) (μ : Measure ℝ) {f : ℝ → ℝ} (hf : Measurable f) :
     dilate lam (mconv μ f) = mconv (μ.map (fun x => lam * x)) (dilate lam f) := by
   have hmeas : Measurable (dilate lam f) := (hf.comp (measurable_const_mul lam⁻¹)).const_mul lam⁻¹
@@ -99,7 +105,9 @@ theorem dilate_mconv {lam : ℝ} (hlam : 0 < lam) (μ : Measure ℝ) {f : ℝ �
   rw [integral_const_mul]
   rfl
 
-/-- **(A8)** for `mconvL1`: dilating intertwines with dilating the measure.-/
+/-- **(A8)** for `mconvL1`: dilating intertwines with dilating the measure.
+@isnad1 id=eq.1h2v.s13.7288e81886f1 from=translated src=- shape=cf27503b vocab=5b73c44c
+-/
 theorem dilL1_comp_mconvL1 {lam : ℝ} (hlam : 0 < lam) (μ : Measure ℝ) [IsFiniteMeasure μ]
     [IsFiniteMeasure (μ.map (fun x => lam * x))] :
     (dilL1 hlam).comp (mconvL1 μ) = (mconvL1 (μ.map (fun x => lam * x))).comp (dilL1 hlam) := by
@@ -187,7 +195,9 @@ theorem eq_dirac_of_mconvL1_eq_id {μ : Measure ℝ} [IsProbabilityMeasure μ]
 /-! ## The `L¹` norm of a difference -/
 
 /-- The `L¹` norm of a difference as a lower integral — the form the (A7) estimates of
-`ScaleSpaceCore.L1Continuity` speak in.-/
+`ScaleSpaceCore.L1Continuity` speak in.
+@isnad1 id=eq.0h2v.s11.a783d9403722 from=translated src=- shape=823237a7 vocab=f28d781f
+-/
 theorem norm_sub_eq_lintegral (a b : X) :
     ‖a - b‖ = (∫⁻ x, ‖(a : ℝ → ℝ) x - (b : ℝ → ℝ) x‖ₑ).toReal := by
   rw [Lp.norm_def, eLpNorm_one_eq_lintegral_enorm]

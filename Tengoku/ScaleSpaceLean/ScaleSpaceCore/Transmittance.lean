@@ -54,12 +54,21 @@ open scoped ENNReal Topology
 
 /-! ## The Gaussian density, written as the statement writes it -/
 
+/--
+@isnad1 id=eq.0h1v.s6.2ca5633aea8f from=translated src=- shape=0b81609e vocab=c942be0b
+-/
 lemma gaussTest_apply (ω : ℝ) :
     gaussTest ω = (Real.sqrt (2 * Real.pi))⁻¹ * Real.exp (-(ω ^ 2) / 2) := by
   simp [gaussTest, gaussianPDFReal]
 
+/--
+@isnad1 id=lt.0h1v.s3.cec424dc6ae9 from=translated src=- shape=8a62b088 vocab=2f37cb5d
+-/
 lemma gaussTest_pos (x : ℝ) : 0 < gaussTest x := gaussianPDFReal_pos 0 1 x one_ne_zero
 
+/--
+@isnad1 id=continuo.0h0v.s3.9eab4b384449 from=translated src=- shape=e3d48bcb vocab=4dbeac52
+-/
 lemma continuous_gaussTest : Continuous gaussTest := by
   have h : gaussTest = fun ω => (Real.sqrt (2 * Real.pi))⁻¹ * Real.exp (-(ω ^ 2) / 2) :=
     funext gaussTest_apply

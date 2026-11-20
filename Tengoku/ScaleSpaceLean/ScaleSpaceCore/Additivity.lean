@@ -52,6 +52,9 @@ were proved again in `Nonvanishing` for `lem:nonvanishing`, and the wave-1 merge
 own.
 -/
 
+/--
+@isnad1 id=le.0h2v.s4.855c7d068f4b from=translated src=- shape=14fd590a vocab=d9aebb4d
+-/
 lemma abs_fourierCos_le_one (ν : Measure ℝ) [IsProbabilityMeasure ν] (ω : ℝ) :
     |fourierCos ν ω| ≤ 1 := by
   calc |fourierCos ν ω| = ‖∫ x, Real.cos (ω * x) ∂ν‖ := by
@@ -68,7 +71,9 @@ variable {Fam : PreCascadeCore} {μ : ℝ → ℝ → Measure ℝ}
 
 /-- **`g_{r,t} = g_{r,s} + g_{s,t}`.** Convolution becomes multiplication under the transform and
 multiplication becomes addition under `-log`, which is legitimate exactly because the transform
-of a kernel is strictly positive (`kernel_transform_pos`).-/
+of a kernel is strictly positive (`kernel_transform_pos`).
+@isnad1 id=eq.4h6v.s6.5a73d3808b25 from=translated src=- shape=54243b3e vocab=c322b919
+-/
 theorem exponent_add (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤ r) (hrs : r ≤ s)
     (hst : s ≤ t) (ω : ℝ) :
     exponent (μ r t) ω = exponent (μ r s) ω + exponent (μ s t) ω := by
@@ -78,7 +83,9 @@ theorem exponent_add (hker : IsKernelFamily Fam.Φ μ) {r s t : ℝ} (hr : 0 ≤
   rw [Real.log_mul h2.ne' h1.ne']
   ring
 
-/-- **`G(t,·)` is continuous** — the continuity of a characteristic function.-/
+/-- **`G(t,·)` is continuous** — the continuity of a characteristic function.
+@isnad1 id=continuo.2h3v.s5.64b4fb310151 from=translated src=- shape=b0767f29 vocab=e7517936
+-/
 theorem continuous_exponent (hker : IsKernelFamily Fam.Φ μ) {t : ℝ} (ht : 0 ≤ t) :
     Continuous (exponent (μ 0 t)) := by
   haveI := hker.isProbability 0 t le_rfl ht

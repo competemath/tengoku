@@ -71,9 +71,15 @@ twin: `Hemigroup.approxId`, centred.-/
 noncomputable def approxId (ε : ℝ) : ℝ → ℝ :=
   fun x => (2 * ε)⁻¹ * (Ioo (-ε) ε).indicator (fun _ => (1 : ℝ)) x
 
+/--
+@isnad1 id=eq.1h2v.s5.7d4be203fca8 from=translated src=- shape=d10ea518 vocab=e5230801
+-/
 lemma approxId_eq_zero {ε x : ℝ} (hx : x ∉ Ioo (-ε) ε) : approxId ε x = 0 := by
   simp [approxId, Set.indicator_of_notMem hx]
 
+/--
+@isnad1 id=le.0h2v.s4.3e4f43949a4f from=translated src=- shape=a120b2a8 vocab=c9498719
+-/
 lemma approxId_nonneg (ε : ℝ) (x : ℝ) : 0 ≤ approxId ε x := by
   rcases le_or_gt ε 0 with h | h
   · have hempty : (Ioo (-ε) ε) = ∅ := Ioo_eq_empty (by simp; linarith)
@@ -81,11 +87,17 @@ lemma approxId_nonneg (ε : ℝ) (x : ℝ) : 0 ≤ approxId ε x := by
   · exact mul_nonneg (inv_nonneg.mpr (by linarith))
       (Set.indicator_nonneg (fun _ _ => zero_le_one) x)
 
+/--
+@isnad1 id=integrab.0h1v.s4.c1177dbc9763 from=translated src=- shape=b231e927 vocab=828e903b
+-/
 lemma integrable_approxId (ε : ℝ) : Integrable (approxId ε) :=
   (IntegrableOn.integrable_indicator
     (integrableOn_const (hs := by rw [Real.volume_Ioo]; exact ENNReal.ofReal_ne_top))
     measurableSet_Ioo).const_mul _
 
+/--
+@isnad1 id=eq.1h1v.s5.8ab990ad4db1 from=translated src=- shape=78831b10 vocab=3b203b2f
+-/
 lemma integral_approxId {ε : ℝ} (hε : 0 < ε) : ∫ x, approxId ε x = 1 := by
   simp only [approxId]
   rw [integral_const_mul, integral_indicator_const _ measurableSet_Ioo, smul_eq_mul, mul_one,
@@ -95,26 +107,40 @@ lemma integral_approxId {ε : ℝ} (hε : 0 < ε) : ∫ x, approxId ε x = 1 := 
 /-- `ρ_ε` as an element of `X`.-/
 noncomputable def approxIdL1 (ε : ℝ) : X := (integrable_approxId ε).toL1 _
 
+/--
+@isnad1 id=eventual.0h1v.s8.c61bfe2440f2 from=translated src=- shape=b57ab7cd vocab=bc22c3fc
+-/
 lemma coeFn_approxIdL1 (ε : ℝ) : ((approxIdL1 ε : X) : ℝ → ℝ) =ᵐ[volume] approxId ε :=
   Integrable.coeFn_toL1 _
 
+/--
+@isnad1 id=isnonneg.0h1v.s2.94d105320ffb from=translated src=- shape=76a08d12 vocab=e45c2045
+-/
 lemma isNonneg_approxIdL1 (ε : ℝ) : IsNonneg (approxIdL1 ε) := by
   filter_upwards [coeFn_approxIdL1 ε] with x hx
   simp only [Pi.zero_apply, hx]
   exact approxId_nonneg ε x
 
+/--
+@isnad1 id=eq.1h1v.s8.f48a5474ccc7 from=translated src=- shape=d3ed8062 vocab=31733044
+-/
 lemma integral_approxIdL1 {ε : ℝ} (hε : 0 < ε) :
     ∫ x, ((approxIdL1 ε : X) : ℝ → ℝ) x = 1 := by
   rw [integral_congr_ae (coeFn_approxIdL1 ε)]
   exact integral_approxId hε
 
+/--
+@isnad1 id=eq.0h1v.s12.5024a5574171 from=translated src=- shape=28bf76e2 vocab=4af1afd8
+-/
 @[simp] lemma transL1_zero (g : X) : transL1 0 g = g := by
   refine Lp.ext ((coeFn_transL1 0 g).trans ?_)
   filter_upwards with x
   rw [sub_zero]
 
 /-- **`ρ_ε * g → g` in `L¹`.** The mass sits in `(-ε,ε)`, where `T_y g` is within `δ` of `g` by
-continuity of translation — so the average of the translates is too.-/
+continuity of translation — so the average of the translates is too.
+@isnad1 id=tendsto.0h1v.s10.cd7796d1a0a8 from=translated src=- shape=e920ca3b vocab=fc700048
+-/
 theorem tendsto_bconv_approxId (g : X) :
     Tendsto (fun ε => bconv (approxId ε) g) (nhdsWithin 0 (Ioi 0)) (nhds g) := by
   rw [Metric.tendsto_nhdsWithin_nhds]
@@ -160,7 +186,9 @@ theorem tendsto_bconv_approxId (g : X) :
     _ < δ := by linarith
 
 /-- **`f * ρ_ε → f`**, the form the representation argument consumes: the approximate identity
-sits in the second slot, so that `Φ (f * ρ_ε) = f * (Φ ρ_ε)` puts `Φ` on the varying factor.-/
+sits in the second slot, so that `Φ (f * ρ_ε) = f * (Φ ρ_ε)` puts `Φ` on the varying factor.
+@isnad1 id=tendsto.1h1v.s10.969361081bce from=translated src=- shape=1e3810fc vocab=4636ca57
+-/
 theorem tendsto_bconv_approxIdL1 {f : ℝ → ℝ} (hf : Integrable f) :
     Tendsto (fun ε => bconv f (approxIdL1 ε)) (nhdsWithin 0 (Ioi 0)) (nhds (hf.toL1 f)) := by
   have hcongr : ∀ ε : ℝ, bconv f (approxIdL1 ε) = bconv (approxId ε) (hf.toL1 f) := fun ε => by
@@ -184,9 +212,15 @@ noncomputable def approxMeasure (L : X →L[ℝ] X) (ε : ℝ) : Measure ℝ :=
 
 variable {L : X →L[ℝ] X}
 
+/--
+@isnad1 id=isnonneg.1h2v.s13.98b19c448378 from=translated src=- shape=f4aab1b7 vocab=042a8313
+-/
 lemma isNonneg_approx (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) (ε : ℝ) :
     IsNonneg (approx L ε) := hpos _ (isNonneg_approxIdL1 ε)
 
+/--
+@isnad1 id=eq.2h2v.s13.fb44627eba9b from=translated src=- shape=38bcf757 vocab=8d7e578a
+-/
 lemma integral_approx
     (hmass : ∀ f : X, IsNonneg f → ∫ x, ((L f : X) : ℝ → ℝ) x = ∫ x, (f : ℝ → ℝ) x)
     {ε : ℝ} (hε : 0 < ε) : ∫ x, ((approx L ε : X) : ℝ → ℝ) x = 1 := by
@@ -194,20 +228,27 @@ lemma integral_approx
   exact integral_approxIdL1 hε
 
 /-- **`f * h_ε = Φ (f * ρ_ε)`**, the identity the whole argument turns on: `map_bconv` with (A2)
-supplying the commutation.-/
+supplying the commutation.
+@isnad1 id=eq.2h3v.s15.4196c9f3af15 from=translated src=- shape=150754bf vocab=362afead
+-/
 theorem bconv_approx (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     {f : ℝ → ℝ} (hf : Integrable f) (ε : ℝ) :
     bconv f (approx L ε) = L (bconv f (approxIdL1 ε)) :=
   (map_bconv L htrans hf (approxIdL1 ε)).symm
 
 /-- **`f * h_ε → Φ f`.** The left side is `Φ (f * ρ_ε)` and `f * ρ_ε → f`, so this is continuity
-of a bounded operator.-/
+of a bounded operator.
+@isnad1 id=tendsto.2h2v.s15.e7c485238170 from=translated src=- shape=7fb906ed vocab=5ea9e8f9
+-/
 theorem tendsto_bconv_approx (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     {f : ℝ → ℝ} (hf : Integrable f) :
     Tendsto (fun ε => bconv f (approx L ε)) (nhdsWithin 0 (Ioi 0)) (nhds (L (hf.toL1 f))) := by
   simp only [bconv_approx htrans hf]
   exact (L.continuous.tendsto _).comp (tendsto_bconv_approxIdL1 hf)
 
+/--
+@isnad1 id=isprobab.3h2v.s13.7b5d66688c55 from=translated src=- shape=063662e1 vocab=e38c7af8
+-/
 lemma isProbabilityMeasure_approxMeasure (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
     (hmass : ∀ f : X, IsNonneg f → ∫ x, ((L f : X) : ℝ → ℝ) x = ∫ x, (f : ℝ → ℝ) x)
     {ε : ℝ} (hε : 0 < ε) : IsProbabilityMeasure (approxMeasure L ε) := by
@@ -226,15 +267,23 @@ in `L¹`, so its tails are small uniformly — which is tightness.
 /-- The two-sided tail `{|x| > R}`.-/
 def tailSet (R : ℝ) : Set ℝ := {x : ℝ | R < |x|}
 
+/--
+@isnad1 id=measurab.0h1v.s2.cc515ebe35d5 from=translated src=- shape=6da4ece3 vocab=025dd0b7
+-/
 lemma measurableSet_tailSet (R : ℝ) : MeasurableSet (tailSet R) :=
   measurableSet_lt measurable_const measurable_norm
 
+/--
+@isnad1 id=le.1h2v.s4.d16ff6477787 from=translated src=- shape=899d10d5 vocab=9fd72147
+-/
 lemma tailSet_antitone {R R' : ℝ} (h : R ≤ R') : tailSet R' ⊆ tailSet R :=
   fun _ hx => lt_of_le_of_lt h hx
 
 /-- Translating a restricted integral: `∫_A φ(x - y) dx = ∫_{A - y} φ`. Stated for an arbitrary
 measurable set, which is what makes the two-sided tail bound no harder than the one-sided one —
-Paper I states the same lemma for `Ioi` alone.-/
+Paper I states the same lemma for `Ioi` alone.
+@isnad1 id=eq.1h3v.s6.86504eb9ad2e from=translated src=- shape=7f0899b4 vocab=90cc0e81
+-/
 theorem setIntegral_comp_sub_right (φ : ℝ → ℝ) {A : Set ℝ} (hA : MeasurableSet A) (y : ℝ) :
     ∫ x in A, φ (x - y) = ∫ u in (fun u : ℝ => u + y) ⁻¹' A, φ u := by
   have hA2 : MeasurableSet ((fun u : ℝ => u + y) ⁻¹' A) := hA.preimage (measurable_add_const y)
@@ -250,7 +299,9 @@ theorem setIntegral_comp_sub_right (φ : ℝ → ℝ) {A : Set ℝ} (hA : Measur
 /-- **The tail of `ν_ε` beyond `R+1` is dominated by the tail of `ρ₁ * h_ε` beyond `R`.**
 
 Convolution with a nonnegative unit-mass density carried by `[-1,1]` moves mass by at most `1`:
-for `|y| < 1` the preimage `{x : |x + y| > R}` contains `{|x| > R + 1}`.-/
+for `|y| < 1` the preimage `{x : |x + y| > R}` contains `{|x| > R + 1}`.
+@isnad1 id=le.1h2v.s9.8bd2f7054e6f from=translated src=- shape=b4588161 vocab=96cd1b07
+-/
 theorem tail_le_tail_bconv {h : X} (hnn : IsNonneg h) (R : ℝ) :
     ∫ u in tailSet (R + 1), (h : ℝ → ℝ) u
       ≤ ∫ x in tailSet R, ((bconv (approxId 1) h : X) : ℝ → ℝ) x := by
@@ -280,7 +331,9 @@ theorem tail_le_tail_bconv {h : X} (hnn : IsNonneg h) (R : ℝ) :
 
 /-! ### Tails vanish -/
 
-/-- The two-sided tail of a finite measure can be made as small as wanted.-/
+/-- The two-sided tail of a finite measure can be made as small as wanted.
+@isnad1 id=ex.1h2v.s5.ba5930e731dc from=translated src=- shape=08de99e9 vocab=2b27ab72
+-/
 theorem exists_measure_tailSet_le (ν : Measure ℝ) [IsFiniteMeasure ν] {η : ℝ≥0∞} (hη : 0 < η) :
     ∃ R : ℝ, ν (tailSet R) ≤ η := by
   have hmono : Antitone fun n : ℕ => tailSet (n : ℝ) := fun m n hmn =>
@@ -299,7 +352,9 @@ theorem exists_measure_tailSet_le (ν : Measure ℝ) [IsFiniteMeasure ν] {η : 
   exact ⟨n, hn.le⟩
 
 /-- The two-sided tail of the absolute value of an integrable function can be made as small as
-wanted.-/
+wanted.
+@isnad1 id=ex.2h2v.s6.21dd0cc2a413 from=translated src=- shape=1a9d74ee vocab=540397c4
+-/
 theorem exists_setIntegral_abs_tailSet_le {k : ℝ → ℝ} (hk : Integrable k) {η : ℝ} (hη : 0 < η) :
     ∃ R : ℝ, ∫ u in tailSet R, |k u| ≤ η := by
   set ν : Measure ℝ := volume.withDensity fun x => ‖k x‖ₑ with hν
@@ -325,9 +380,15 @@ theorem exists_setIntegral_abs_tailSet_le {k : ℝ → ℝ} (hk : Integrable k) 
 /-- The sequence `ε n = 1/(n+1)` along which the approximants are taken.-/
 noncomputable def epsSeq (n : ℕ) : ℝ := 1 / (n + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.2f058ab1a9e9 from=translated src=- shape=b9369acb vocab=9d873a66
+-/
 lemma epsSeq_pos (n : ℕ) : 0 < epsSeq n := by
   rw [epsSeq]; positivity
 
+/--
+@isnad1 id=tendsto.0h0v.s4.9cce5a0340a7 from=translated src=- shape=d35a1368 vocab=68051596
+-/
 lemma tendsto_epsSeq : Tendsto epsSeq atTop (nhdsWithin 0 (Ioi 0)) :=
   tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within _
     tendsto_one_div_add_atTop_nhds_zero_nat
@@ -337,7 +398,9 @@ lemma tendsto_epsSeq : Tendsto epsSeq atTop (nhdsWithin 0 (Ioi 0)) :=
 
 For large `n` the bound comes from `ρ₁ * h_{ε n} → Φ ρ₁` in `L¹` together with
 `tail_le_tail_bconv`; for the finitely many small `n` each density is integrable and supplies its
-own cutoff, and the maximum serves for all.-/
+own cutoff, and the maximum serves for all.
+@isnad1 id=ex.3h2v.s15.e9be7a21efcf from=translated src=- shape=0845db45 vocab=dcf2bb22
+-/
 theorem exists_uniform_tail (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) {η : ℝ} (hη : 0 < η) :
     ∃ R : ℝ, ∀ n : ℕ, ∫ u in tailSet R, ((approx L (epsSeq n) : X) : ℝ → ℝ) u ≤ η := by
@@ -416,7 +479,9 @@ theorem exists_uniform_tail (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f)
           (hM _ (Finset.mem_image_of_mem _ (Finset.mem_range.mpr hn)))
           (le_max_right _ _))))
 
-/-- The tail of `ν_ε`, in terms of the density.-/
+/-- The tail of `ν_ε`, in terms of the density.
+@isnad1 id=eq.1h3v.s13.531300724240 from=translated src=- shape=6ea174f3 vocab=61bf685a
+-/
 lemma approxMeasure_tailSet (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) (ε R : ℝ) :
     approxMeasure L ε (tailSet R)
       = ENNReal.ofReal (∫ u in tailSet R, ((approx L ε : X) : ℝ → ℝ) u) := by
@@ -425,7 +490,9 @@ lemma approxMeasure_tailSet (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) (�
       (ae_restrict_of_ae (isNonneg_approx hpos ε))]
 
 /-- **The approximants are tight.** The compacts are `[-R, R]`; the whole content is
-`exists_uniform_tail`.-/
+`exists_uniform_tail`.
+@isnad1 id=istightm.2h1v.s15.0a169207db32 from=translated src=- shape=a9664855 vocab=d01f558e
+-/
 theorem isTightMeasureSet_approxMeasure (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) :
     IsTightMeasureSet {ν : Measure ℝ | ∃ n : ℕ, ν = approxMeasure L (epsSeq n)} := by
@@ -459,7 +526,9 @@ because `ℝ` is Polish, so compactness of the closure gives sequential compactn
 -/
 
 /-- **A weak limit exists.** Some subsequence of the approximants converges weakly to a
-probability measure.-/
+probability measure.
+@isnad1 id=ex.3h1v.s15.43e045087652 from=translated src=- shape=bb970fd5 vocab=cca7baf4
+-/
 theorem exists_weak_limit (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
     (hmass : ∀ f : X, IsNonneg f → ∫ x, ((L f : X) : ℝ → ℝ) x = ∫ x, (f : ℝ → ℝ) x) :
@@ -498,7 +567,9 @@ blueprint restriction to `f` continuous with compact support, followed by a dens
 disappears.
 -/
 
-/-- Integration against `ν_ε` is integration against the density `h_ε`.-/
+/-- Integration against `ν_ε` is integration against the density `h_ε`.
+@isnad1 id=eq.1h3v.s13.726ea53d6720 from=translated src=- shape=dcca6869 vocab=49b6fb48
+-/
 theorem integral_approxMeasure (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f)) (ε : ℝ)
     (G : BoundedContinuousFunction ℝ ℝ) :
     ∫ y, G y ∂(approxMeasure L ε) = ∫ y, ((approx L ε : X) : ℝ → ℝ) y * G y := by
@@ -510,7 +581,9 @@ theorem integral_approxMeasure (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
   rw [smul_eq_mul, ENNReal.toReal_ofReal hy]
 
 /-- **The pairing identity in the limit.** For every bounded functional, `Ψ (Φ f)` is the integral
-of the bounded continuous function `y ↦ Ψ (T_y f)` against the weak limit.-/
+of the bounded continuous function `y ↦ Ψ (T_y f)` against the weak limit.
+@isnad1 id=eq.4h5v.s15.3089f8b9be23 from=translated src=- shape=f1a486fc vocab=2a838cc4
+-/
 theorem apply_eq_integral_pairTrans (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
     {μ : Measure ℝ} {σ : ℕ → ℕ} (hσ : StrictMono σ)
@@ -536,7 +609,9 @@ theorem apply_eq_integral_pairTrans (htrans : ∀ a f, L (transL1 a f) = transL1
   simpa only [h2] using hweak (pairTrans Ψ f)
 
 /-- **`lem:convolution-representation`, existence.** A bounded operator on `L¹(ℝ)` satisfying
-(A2), (A4) and (A5) is convolution by a probability measure.-/
+(A2), (A4) and (A5) is convolution by a probability measure.
+@isnad1 id=ex.3h1v.s15.0aa228a42d2e from=translated src=- shape=64888866 vocab=7eb4e8d0
+-/
 theorem exists_isProbabilityMeasure_eq_mconvL1
     (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
@@ -563,7 +638,9 @@ theorem eq_mconvL1_of_ae {μ : Measure ℝ} [IsFiniteMeasure μ]
     L = mconvL1 μ :=
   ContinuousLinearMap.ext fun f => Lp.ext ((h f).trans (coeFn_mconvL1 μ f).symm)
 
-/-- **`lem:convolution-representation`, existence and uniqueness, for a single operator.**-/
+/-- **`lem:convolution-representation`, existence and uniqueness, for a single operator.**
+@isnad1 id=existsun.3h1v.s15.97ec8da650c0 from=translated src=- shape=bb551d15 vocab=36a86bf0
+-/
 theorem existsUnique_repr_of_operator
     (htrans : ∀ a f, L (transL1 a f) = transL1 a (L f))
     (hpos : ∀ f : X, IsNonneg f → IsNonneg (L f))
@@ -585,14 +662,18 @@ the existence statement — which is how the blueprint states it, and why: the r
 wanted in settings where (A3) is present and in settings where it is not.
 -/
 
-/-- Reflection is an involution of `L¹`.-/
+/-- Reflection is an involution of `L¹`.
+@isnad1 id=eq.0h1v.s13.a85294c23c57 from=translated src=- shape=9a66ef49 vocab=441756d5
+-/
 lemma reflL1_reflL1 (f : X) : reflL1 (reflL1 f) = f := by
   refine Lp.ext ?_
   refine ((coeFn_reflL1 (reflL1 f)).trans (reflect_congr_ae (coeFn_reflL1 f))).trans ?_
   filter_upwards with x
   simp
 
-/-- **The reflected measure gives the conjugated operator**: `(Rμ) * f = R (μ * (R f))`.-/
+/-- **The reflected measure gives the conjugated operator**: `(Rμ) * f = R (μ * (R f))`.
+@isnad1 id=eq.0h2v.s14.71e2b8799085 from=translated src=- shape=cf2c0954 vocab=dcdc4cd0
+-/
 theorem mconvL1_map_neg (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     mconvL1 (μ.map (fun x : ℝ => -x)) f = reflL1 (mconvL1 μ (reflL1 f)) := by
   haveI : IsFiniteMeasure (μ.map (fun x : ℝ => -x)) :=
@@ -621,7 +702,9 @@ theorem mconvL1_map_neg (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
   congr 1
   ring
 
-/-- **`lem:convolution-representation`, the symmetry rider, for a single operator.**-/
+/-- **`lem:convolution-representation`, the symmetry rider, for a single operator.**
+@isnad1 id=issymmet.2h2v.s14.20dc3d429477 from=translated src=- shape=9a5f6c3a vocab=14355354
+-/
 theorem isSymmetric_of_reflL1 {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (hL : L = mconvL1 μ) (hrefl : ∀ f : X, L (reflL1 f) = reflL1 (L f)) : IsSymmetric μ := by
   haveI : IsProbabilityMeasure (μ.map (fun x : ℝ => -x)) :=
@@ -638,7 +721,9 @@ and (A5) spelled out, because those are the four axioms the node names. The conc
 `∃!` over probability measures, with the representation read at the level of representatives
 (`=ᵐ[volume]`), which is equality in `X`.
 
-twin: `Hemigroup.CascadeCore.existsUnique_repr`.-/
+twin: `Hemigroup.CascadeCore.existsUnique_repr`.
+@isnad1 id=existsun.5h3v.s15.99b5ae9e62fd from=translated src=- shape=386fb337 vocab=5f5bacf5
+-/
 theorem representation_existsUnique (Φ : ℝ → ℝ → (X →L[ℝ] X))
     (htrans : ∀ s t, 0 ≤ s → s ≤ t → ∀ a f, Φ s t (transL1 a f) = transL1 a (Φ s t f))
     (hpos : IsPositive Φ)

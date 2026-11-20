@@ -57,20 +57,30 @@ open scoped ENNReal
 /-- The change of variable carrying a half-line onto `(0,1]`.-/
 noncomputable def expNeg (t : ℝ) : ℝ := Real.exp (-t)
 
+/--
+@isnad1 id=continuo.0h0v.s3.7317c1aab75d from=translated src=- shape=e3d48bcb vocab=94df0fd0
+-/
 lemma continuous_expNeg : Continuous expNeg := by unfold expNeg; fun_prop
 
+/--
+@isnad1 id=injectiv.0h0v.s2.543290e5daa8 from=translated src=- shape=e3d48bcb vocab=9bfded06
+-/
 lemma injective_expNeg : Function.Injective expNeg := fun x y hxy => by
   have : -x = -y := Real.exp_eq_exp.mp hxy
   linarith
 
-/-- `expNeg` is a measurable embedding: injective and continuous on a Polish space.-/
+/-- `expNeg` is a measurable embedding: injective and continuous on a Polish space.
+@isnad1 id=measurab.0h0v.s2.5ccefe8811ff from=translated src=- shape=e3d48bcb vocab=7b1f8703
+-/
 lemma measurableEmbedding_expNeg : MeasurableEmbedding expNeg :=
   continuous_expNeg.measurableEmbedding injective_expNeg
 
 /-! ## Integrating continuous functions against a compactly carried measure -/
 
 /-- A continuous function is integrable against a finite measure carried by a compact set — it
-need not be bounded on all of `ℝ`, which is what lets polynomials be used below.-/
+need not be bounded on all of `ℝ`, which is what lets polynomials be used below.
+@isnad1 id=integrab.3h3v.s6.ca01c7ecdafc from=translated src=- shape=af9f1a1a vocab=b2d1c06b
+-/
 theorem integrable_of_carried {ν : Measure ℝ} [IsFiniteMeasure ν] {K : Set ℝ} (hK : IsCompact K)
     (hcar : ν Kᶜ = 0) {g : ℝ → ℝ} (hg : Continuous g) : Integrable g ν := by
   obtain ⟨C, hC⟩ := hK.exists_bound_of_continuousOn hg.continuousOn
@@ -83,7 +93,9 @@ theorem integrable_of_carried {ν : Measure ℝ} [IsFiniteMeasure ν] {K : Set �
   exact (hasFiniteIntegral_const C).mono hae
 
 /-- The `ε`-estimate: two integrals of functions uniformly `ε`-close on the carrier differ by at
-most `ε` times the mass.-/
+most `ε` times the mass.
+@isnad1 id=le.4h4v.s7.8b2176e50f62 from=translated src=- shape=90562bdd vocab=6c637b97
+-/
 theorem abs_integral_sub_le_of_carried {ν : Measure ℝ} [IsFiniteMeasure ν]
     (hcar : ν (Icc (0 : ℝ) 1)ᶜ = 0) {g₁ g₂ : ℝ → ℝ}
     (h₁ : Integrable g₁ ν) (h₂ : Integrable g₂ ν) {ε : ℝ}
@@ -105,7 +117,9 @@ theorem abs_integral_sub_le_of_carried {ν : Measure ℝ} [IsFiniteMeasure ν]
 
 /-! ## Equal moments force equal measures on `[0,1]` -/
 
-/-- Equal moments give equal polynomial integrals, by linearity.-/
+/-- Equal moments give equal polynomial integrals, by linearity.
+@isnad1 id=eq.3h3v.s7.fccf39809ee2 from=translated src=- shape=c1bb1689 vocab=77f794dd
+-/
 theorem integral_polynomial_eq_of_moments {ν ν' : Measure ℝ} [IsFiniteMeasure ν]
     [IsFiniteMeasure ν'] (hν : ν (Icc (0 : ℝ) 1)ᶜ = 0) (hν' : ν' (Icc (0 : ℝ) 1)ᶜ = 0)
     (hmom : ∀ n : ℕ, ∫ x, x ^ n ∂ν = ∫ x, x ^ n ∂ν') (p : Polynomial ℝ) :
@@ -120,7 +134,9 @@ theorem integral_polynomial_eq_of_moments {ν ν' : Measure ℝ} [IsFiniteMeasur
   rw [integral_const_mul, integral_const_mul, hmom i]
 
 /-- **Two finite measures carried by `[0,1]` with the same moments are equal.** Weierstrass plus
-the `ε`-estimate.-/
+the `ε`-estimate.
+@isnad1 id=eq.3h2v.s7.5f5c2c4cdb41 from=translated src=- shape=8f6e2854 vocab=6b5b5853
+-/
 theorem ext_of_moments {ν ν' : Measure ℝ} [IsFiniteMeasure ν] [IsFiniteMeasure ν']
     (hν : ν (Icc (0 : ℝ) 1)ᶜ = 0) (hν' : ν' (Icc (0 : ℝ) 1)ᶜ = 0)
     (hmom : ∀ n : ℕ, ∫ x, x ^ n ∂ν = ∫ x, x ^ n ∂ν') : ν = ν' := by
@@ -167,7 +183,9 @@ theorem ext_of_moments {ν ν' : Measure ℝ} [IsFiniteMeasure ν] [IsFiniteMeas
 /-- The `ℝ≥0∞`-valued transform and the Bochner integral of `e^{-τu}` agree, unconditionally:
 where the transform is infinite both sides are `0`, the integrand failing to be integrable.
 
-twin: `Hemigroup.laplace_eq_toReal_laplaceL`.-/
+twin: `Hemigroup.laplace_eq_toReal_laplaceL`.
+@isnad1 id=eq.0h2v.s5.a7ba7b45f2a9 from=translated src=- shape=c3bda1f4 vocab=b08a9521
+-/
 theorem integral_exp_neg_eq_toReal_laplaceL (m : Measure ℝ) (τ : ℝ) :
     ∫ u, Real.exp (-(τ * u)) ∂m = (laplaceL m τ).toReal := by
   rw [laplaceL, ← integral_toReal]
@@ -179,11 +197,16 @@ theorem integral_exp_neg_eq_toReal_laplaceL (m : Measure ℝ) (τ : ℝ) :
 
 /-! ## The pushforward of a folded measure under `expNeg` -/
 
+/--
+@isnad1 id=mem.1h1v.s5.6e06833853b2 from=translated src=- shape=418cb657 vocab=add6ae00
+-/
 lemma expNeg_mem_Icc {t : ℝ} (ht : 0 ≤ t) : expNeg t ∈ Icc (0 : ℝ) 1 :=
   ⟨(Real.exp_pos _).le, Real.exp_le_one_iff.mpr (by simp [ht])⟩
 
 /-- The pushforward of a folded measure is carried by the compact set `[0,1]`. This is the step
-that makes Weierstrass applicable, and the only place the folding is used.-/
+that makes Weierstrass applicable, and the only place the folding is used.
+@isnad1 id=eq.1h1v.s5.0f8310c81ba0 from=translated src=- shape=317bffa6 vocab=6a7c4fd5
+-/
 lemma map_expNeg_compl_Icc {m : Measure ℝ} (h : IsFolded m) :
     (m.map expNeg) (Icc (0 : ℝ) 1)ᶜ = 0 := by
   rw [Measure.map_apply continuous_expNeg.measurable measurableSet_Icc.compl]
@@ -192,6 +215,9 @@ lemma map_expNeg_compl_Icc {m : Measure ℝ} (h : IsFolded m) :
   by_contra hc
   exact ht (expNeg_mem_Icc (not_le.mp hc).le)
 
+/--
+@isnad1 id=isfinite.0h1v.s4.0102235e7765 from=translated src=- shape=9ce1bd95 vocab=e4a43ad1
+-/
 instance isFiniteMeasure_map_expNeg {m : Measure ℝ} [IsFiniteMeasure m] :
     IsFiniteMeasure (m.map expNeg) := by
   constructor
@@ -199,7 +225,9 @@ instance isFiniteMeasure_map_expNeg {m : Measure ℝ} [IsFiniteMeasure m] :
   exact measure_lt_top m univ
 
 /-- **The transform at a natural number is a moment of the pushforward.** This is the identity the
-whole proof turns on.-/
+whole proof turns on.
+@isnad1 id=eq.0h2v.s5.4e9c3e321948 from=translated src=- shape=9d858e81 vocab=f5235944
+-/
 lemma integral_pow_map_expNeg {m : Measure ℝ} (n : ℕ) :
     ∫ x, x ^ n ∂(m.map expNeg) = (laplaceL m n).toReal := by
   rw [measurableEmbedding_expNeg.integral_map, ← integral_exp_neg_eq_toReal_laplaceL]
@@ -213,7 +241,9 @@ lemma integral_pow_map_expNeg {m : Measure ℝ} (n : ℕ) :
 
 /-- Injectivity of the Laplace transform on **finite** folded measures.
 
-twin: `Hemigroup.laplace_injective`.-/
+twin: `Hemigroup.laplace_injective`.
+@isnad1 id=eq.3h2v.s5.3994371788f0 from=translated src=- shape=b3913b86 vocab=a9702073
+-/
 theorem laplaceL_injective_of_isFiniteMeasure {m m' : Measure ℝ} [IsFiniteMeasure m]
     [IsFiniteMeasure m'] (hm : IsFolded m) (hm' : IsFolded m')
     (h : ∀ s : ℝ, 0 ≤ s → laplaceL m s = laplaceL m' s) : m = m' := by
@@ -232,7 +262,9 @@ theorem laplaceL_injective_of_isFiniteMeasure {m m' : Measure ℝ} [IsFiniteMeas
 
 /-- Damping a measure by `e^{-τ₁ u}` shifts its transform.
 
-twin: `Hemigroup.laplaceL_withDensity_expNeg`.-/
+twin: `Hemigroup.laplaceL_withDensity_expNeg`.
+@isnad1 id=eq.0h3v.s5.29cb4936803a from=translated src=- shape=45fc3c5e vocab=a73d7d6e
+-/
 theorem laplaceL_withDensity_expNeg (m : Measure ℝ) (τ₁ τ : ℝ) :
     laplaceL (m.withDensity fun u => ENNReal.ofReal (Real.exp (-(τ₁ * u)))) τ
       = laplaceL m (τ₁ + τ) := by
@@ -250,7 +282,9 @@ folded measures whose transforms agree on `[τ₁,∞)`, one of them finite at `
 twin: `Hemigroup.laplaceL_injective_of_ne_top`, verbatim with `IsCausal` replaced by `IsFolded`.
 The proof is the damping trick: `e^{-τ₁u}m(du)` is finite precisely because the transform
 converges at `τ₁`, its transform at `τ` is `m`'s at `τ₁ + τ`, and the damping is undone by
-multiplying the density back, `e^{-τ₁u}` being everywhere positive and finite.-/
+multiplying the density back, `e^{-τ₁u}` being everywhere positive and finite.
+@isnad1 id=eq.4h3v.s5.5ce5c08b5131 from=translated src=- shape=f463ffd5 vocab=e99d13d0
+-/
 theorem laplaceL_injective_of_ne_top {m m' : Measure ℝ} (hm : IsFolded m) (hm' : IsFolded m')
     {τ₁ : ℝ} (hfin : laplaceL m τ₁ ≠ ⊤) (h : ∀ τ, τ₁ ≤ τ → laplaceL m τ = laplaceL m' τ) :
     m = m' := by
@@ -282,7 +316,9 @@ theorem laplaceL_injective_of_ne_top {m m' : Measure ℝ} (hm : IsFolded m) (hm'
 finite, whose Laplace transforms agree and are finite on some ray `(τ₀,∞)`, are equal.
 
 The blueprint's hypothesis is the whole open ray; the proof needs finiteness at one point of it,
-which is the sharpening the causal side found and which `laplaceL_injective_of_ne_top` records.-/
+which is the sharpening the causal side found and which `laplaceL_injective_of_ne_top` records.
+@isnad1 id=eq.4h3v.s5.c599fc65b5bf from=translated src=- shape=d07244cd vocab=7161c6fb
+-/
 theorem laplace_uniqueness_locally_finite {m m' : Measure ℝ} (hm : IsFolded m) (hm' : IsFolded m')
     {τ₀ : ℝ} (heq : ∀ τ, τ₀ < τ → laplaceL m τ = laplaceL m' τ)
     (hfin : ∀ τ, τ₀ < τ → laplaceL m τ ≠ ⊤) : m = m' := by

@@ -83,16 +83,24 @@ by its limit `ω²/2`, written in a closed form that makes the filling automatic
 noncomputable def levyTest (ω x : ℝ) : ℝ :=
   ω ^ 2 / 2 * Real.sinc (ω * x / 2) ^ 2 * max 1 (x ^ 2)
 
+/--
+@isnad1 id=continuo.0h1v.s4.960d80113f15 from=translated src=- shape=f736e2c1 vocab=814aaf90
+-/
 lemma continuous_levyTest (ω : ℝ) : Continuous (levyTest ω) := by
   unfold levyTest
   exact ((continuous_const.mul ((Real.continuous_sinc.comp (by fun_prop)).pow 2)).mul
     (continuous_const.max (continuous_pow 2)))
 
+/--
+@isnad1 id=eq.0h1v.s5.6ba39aba3801 from=translated src=- shape=cf918b00 vocab=e30c3e6e
+-/
 @[simp] lemma levyTest_zero (ω : ℝ) : levyTest ω 0 = ω ^ 2 / 2 := by
   simp [levyTest]
 
 /-- **The defining identity**: `k_ω(x)\,(1 ∧ x²) = 1 - \cos ωx`, at *every* `x`, the origin
-included (where both sides vanish).-/
+included (where both sides vanish).
+@isnad1 id=eq.0h2v.s6.51faa1813fb5 from=translated src=- shape=ff2d57ab vocab=60511217
+-/
 theorem levyTest_mul_min (ω x : ℝ) :
     levyTest ω x * min 1 (x ^ 2) = 1 - Real.cos (ω * x) := by
   have hmaxmin : max 1 (x ^ 2) * min 1 (x ^ 2) = x ^ 2 := by
@@ -119,12 +127,17 @@ theorem levyTest_mul_min (ω x : ℝ) :
     rw [Real.sinc_of_ne_zero h]
     field_simp
 
+/--
+@isnad1 id=le.0h2v.s4.31abbec45cca from=translated src=- shape=a120b2a8 vocab=0a4a9019
+-/
 lemma levyTest_nonneg (ω x : ℝ) : 0 ≤ levyTest ω x := by
   refine mul_nonneg (mul_nonneg (by positivity) (sq_nonneg _)) ?_
   exact le_trans zero_le_one (le_max_left _ _)
 
 /-- The test function is bounded by `\max(ω²/2, 2)`: below `1` the weight is `x²` and the sinc
-factor is at most `1`; above it the identity reads `k_ω = 1 - \cos ωx`.-/
+factor is at most `1`; above it the identity reads `k_ω = 1 - \cos ωx`.
+@isnad1 id=le.0h2v.s5.fc6fffb305fb from=translated src=- shape=e1d3af1b vocab=7edcb289
+-/
 theorem levyTest_le (ω x : ℝ) : levyTest ω x ≤ max (ω ^ 2 / 2) 2 := by
   rcases le_total (1 : ℝ) (x ^ 2) with h | h
   · have hmin : min 1 (x ^ 2) = 1 := min_eq_left h
@@ -147,6 +160,9 @@ noncomputable def levyTestBdd (ω : ℝ) : BoundedContinuousFunction ℝ ℝ :=
       rw [Real.norm_eq_abs, abs_of_nonneg (levyTest_nonneg ω x)]
       exact levyTest_le ω x)
 
+/--
+@isnad1 id=eq.0h2v.s5.fb24c6d6cd85 from=translated src=- shape=586619af vocab=7f585e73
+-/
 @[simp] lemma levyTestBdd_apply (ω x : ℝ) : levyTestBdd ω x = levyTest ω x := rfl
 
 /-! ## A cluster point is pinned by what already converges
@@ -185,7 +201,9 @@ and the same membership condition that gives tightness also gives that the clust
 no negative half-line — so the folding survives the limit without a portmanteau argument.
 -/
 
-/-- The value of a `FiniteMeasure` on a set, as a real number.-/
+/-- The value of a `FiniteMeasure` on a set, as a real number.
+@isnad1 id=eq.0h2v.s5.280d5badb9cb from=translated src=- shape=53c6d401 vocab=7d24b8e4
+-/
 lemma finiteMeasure_apply_coe (ν : FiniteMeasure ℝ) (A : Set ℝ) :
     ((ν A : ℝ≥0) : ℝ) = (ν : Measure ℝ).real A := by
   rw [measureReal_def, ← FiniteMeasure.ennreal_coeFn_eq_coeFn_toMeasure, ENNReal.coe_toReal]

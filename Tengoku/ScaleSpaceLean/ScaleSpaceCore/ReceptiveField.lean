@@ -42,12 +42,16 @@ namespace ScaleSpace.ReceptiveField
 variable {M : Type*} [NormedAddCommGroup M] [NormedSpace ℝ M]
 
 /-- A continuous linear map commutes with differentiation of a curve:
-`d/ds (L (u s)) = L (u' )`.-/
+`d/ds (L (u s)) = L (u' )`.
+@isnad1 id=hasderiv.1h5v.s8.9cc6f70c24f1 from=translated src=- shape=c6b1fc9e vocab=d428129e
+-/
 theorem hasDerivAt_clm_comp (L : M →L[ℝ] M) {u : ℝ → M} {u' : M} {t : ℝ}
     (h : HasDerivAt u u' t) : HasDerivAt (fun s => L (u s)) (L u') t := by
   simpa [Function.comp_def] using (L.hasFDerivAt.comp t h.hasFDerivAt).hasDerivAt
 
-/-- `deriv`-form of `hasDerivAt_clm_comp`.-/
+/-- `deriv`-form of `hasDerivAt_clm_comp`.
+@isnad1 id=eq.1h4v.s8.e66c3f1b6184 from=translated src=- shape=21133cb4 vocab=18186482
+-/
 theorem deriv_clm_comp (L : M →L[ℝ] M) {g : ℝ → M} {t : ℝ} (hg : DifferentiableAt ℝ g t) :
     deriv (fun s => L (g s)) t = L (deriv g t) :=
   (hasDerivAt_clm_comp L hg.hasDerivAt).deriv
@@ -57,7 +61,9 @@ def Solves (A : M →L[ℝ] M) (u : ℝ → M) : Prop := ∀ s, HasDerivAt u (A 
 
 /-- **Receptive fields are scale-spaces.** If a derivative operator `D` commutes with the
 generator `A`, then `D` carries a solution to a solution: `∂_x` of a scale-space solves the same
-evolution, so a Gaussian-derivative receptive field is a legitimate scale-space measurement.-/
+evolution, so a Gaussian-derivative receptive field is a legitimate scale-space measurement.
+@isnad1 id=solves.2h4v.s9.5cf2046ba024 from=translated src=- shape=b35a9763 vocab=32fbf89c
+-/
 theorem Solves.clm_comp {A D : M →L[ℝ] M} (hAD : D.comp A = A.comp D)
     {u : ℝ → M} (hu : Solves A u) : Solves A (fun s => D (u s)) := by
   intro s

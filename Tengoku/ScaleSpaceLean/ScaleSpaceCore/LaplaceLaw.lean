@@ -74,19 +74,27 @@ noncomputable def laplaceDensity (θ x : ℝ) : ℝ := (2 * θ)⁻¹ * Real.exp 
 noncomputable def laplaceLaw (θ : ℝ) : Measure ℝ :=
   volume.withDensity fun x => ENNReal.ofReal (laplaceDensity θ x)
 
-/-- The Laplace density is nonnegative.-/
+/-- The Laplace density is nonnegative.
+@isnad1 id=le.1h2v.s4.00d104c0ee7e from=translated src=- shape=1852429d vocab=e264b98f
+-/
 theorem laplaceDensity_nonneg {θ : ℝ} (hθ : 0 < θ) (x : ℝ) : 0 ≤ laplaceDensity θ x := by
   rw [laplaceDensity]; positivity
 
-/-- The Laplace density is continuous.-/
+/-- The Laplace density is continuous.
+@isnad1 id=continuo.0h1v.s4.da513fbdb9c5 from=translated src=- shape=f736e2c1 vocab=5f2dc1b6
+-/
 theorem continuous_laplaceDensity (θ : ℝ) : Continuous (laplaceDensity θ) := by
   unfold laplaceDensity; fun_prop
 
-/-- The Laplace density is measurable.-/
+/-- The Laplace density is measurable.
+@isnad1 id=measurab.0h1v.s3.8e9816df5839 from=translated src=- shape=f736e2c1 vocab=11872052
+-/
 theorem measurable_laplaceDensity (θ : ℝ) : Measurable (laplaceDensity θ) :=
   (continuous_laplaceDensity θ).measurable
 
-/-- The Laplace density is integrable on the positive half-line.-/
+/-- The Laplace density is integrable on the positive half-line.
+@isnad1 id=integrab.1h1v.s5.6127be75a011 from=translated src=- shape=30a2fe48 vocab=b56d15e6
+-/
 theorem integrableOn_laplaceDensity_Ioi {θ : ℝ} (hθ : 0 < θ) :
     IntegrableOn (laplaceDensity θ) (Ioi (0 : ℝ)) := by
   have hneg : -θ⁻¹ < 0 := by simp [hθ]
@@ -97,7 +105,9 @@ theorem integrableOn_laplaceDensity_Ioi {θ : ℝ} (hθ : 0 < θ) :
   rw [laplaceDensity, abs_of_pos hy0]
   field_simp
 
-/-- The Laplace density is integrable on the negative half-line.-/
+/-- The Laplace density is integrable on the negative half-line.
+@isnad1 id=integrab.1h1v.s5.788cd2dade66 from=translated src=- shape=30a2fe48 vocab=226f891d
+-/
 theorem integrableOn_laplaceDensity_Iic {θ : ℝ} (hθ : 0 < θ) :
     IntegrableOn (laplaceDensity θ) (Iic (0 : ℝ)) := by
   have hpos : (0 : ℝ) < θ⁻¹ := by positivity
@@ -108,7 +118,9 @@ theorem integrableOn_laplaceDensity_Iic {θ : ℝ} (hθ : 0 < θ) :
   rw [laplaceDensity, abs_of_nonpos hy0]
   field_simp
 
-/-- The Laplace density is integrable on the line.-/
+/-- The Laplace density is integrable on the line.
+@isnad1 id=integrab.1h1v.s5.77fb35f50da2 from=translated src=- shape=77bdae96 vocab=c013abba
+-/
 theorem integrable_laplaceDensity {θ : ℝ} (hθ : 0 < θ) : Integrable (laplaceDensity θ) := by
   rw [← integrableOn_univ, ← Iic_union_Ioi (a := (0 : ℝ))]
   exact (integrableOn_laplaceDensity_Iic hθ).union (integrableOn_laplaceDensity_Ioi hθ)
@@ -119,14 +131,23 @@ theorem integrable_laplaceDensity {θ : ℝ} (hθ : 0 < θ) : Integrable (laplac
 noncomputable def expoDensity (t x : ℝ) : ℝ :=
   Set.indicator (Ioi (0 : ℝ)) (fun y => t⁻¹ * Real.exp (-(y / t))) x
 
+/--
+@isnad1 id=eq.0h1v.s5.f3c612fbbc3a from=translated src=- shape=fcd1c7b3 vocab=2c43126d
+-/
 theorem expoDensity_def (t : ℝ) :
     expoDensity t = Set.indicator (Ioi (0 : ℝ)) (fun y => t⁻¹ * Real.exp (-(y / t))) := rfl
 
+/--
+@isnad1 id=le.1h2v.s4.36c79f4f6ec7 from=translated src=- shape=1852429d vocab=724330df
+-/
 theorem expoDensity_nonneg {t : ℝ} (ht : 0 < t) (x : ℝ) : 0 ≤ expoDensity t x := by
   rw [expoDensity_def]
   refine Set.indicator_nonneg (fun y _ => ?_) x
   positivity
 
+/--
+@isnad1 id=integrab.1h1v.s5.7fdc8bcbfe10 from=translated src=- shape=77bdae96 vocab=41bcd110
+-/
 theorem integrable_expoDensity {t : ℝ} (ht : 0 < t) : Integrable (expoDensity t) := by
   rw [expoDensity_def, integrable_indicator_iff measurableSet_Ioi]
   refine Integrable.const_mul ?_ _
@@ -135,6 +156,9 @@ theorem integrable_expoDensity {t : ℝ} (ht : 0 < t) : Integrable (expoDensity 
   show Real.exp (-t⁻¹ * y) = Real.exp (-(y / t))
   rw [neg_mul, ← div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.1h1v.s5.12a77571014c from=translated src=- shape=78831b10 vocab=a128e45c
+-/
 theorem integral_expoDensity {t : ℝ} (ht : 0 < t) : ∫ x, expoDensity t x = 1 := by
   have h := integral_comp_mul_left_Ioi (fun y : ℝ => Real.exp (-y)) 0
     (b := t⁻¹) (by positivity)
@@ -146,6 +170,9 @@ theorem integral_expoDensity {t : ℝ} (ht : 0 < t) : ∫ x, expoDensity t x = 1
   rw [expoDensity_def, integral_indicator measurableSet_Ioi, integral_const_mul, hI,
     inv_mul_cancel₀ ht.ne']
 
+/--
+@isnad1 id=integrab.1h1v.s5.73ad434f835d from=translated src=- shape=bb4a0272 vocab=75a7a120
+-/
 theorem integrable_expoDensity_neg {t : ℝ} (ht : 0 < t) :
     Integrable (fun x : ℝ => expoDensity t (-x)) := by
   have A : MeasurableEmbedding fun x : ℝ => -x :=
@@ -155,7 +182,9 @@ theorem integrable_expoDensity_neg {t : ℝ} (ht : 0 < t) :
   exact (A.integrable_map_iff).1 h
 
 /-- The Laplace density is the half-sum of the one-sided exponential density and its
-reflection, away from the origin.-/
+reflection, away from the origin.
+@isnad1 id=eq.1h2v.s5.9c5c30b4169a from=translated src=- shape=50938f51 vocab=123726b7
+-/
 theorem laplaceDensity_eq_half_add (t : ℝ) {x : ℝ} (hx : x ≠ 0) :
     laplaceDensity t x = 2⁻¹ * (expoDensity t x + expoDensity t (-x)) := by
   rcases hx.lt_or_gt with h | h
@@ -168,16 +197,25 @@ theorem laplaceDensity_eq_half_add (t : ℝ) {x : ℝ} (hx : x ≠ 0) :
     rw [expoDensity_def, Set.indicator_of_mem hx', Set.indicator_of_notMem hnx, add_zero,
       laplaceDensity, abs_of_pos h, mul_inv, mul_assoc]
 
+/--
+@isnad1 id=eventual.0h1v.s5.b61323fdfc17 from=translated src=- shape=b3fb931d vocab=57de9b1a
+-/
 theorem laplaceDensity_ae_eq (t : ℝ) :
     laplaceDensity t =ᵐ[volume] fun x : ℝ => 2⁻¹ * (expoDensity t x + expoDensity t (-x)) := by
   filter_upwards [ae_ne_zero] with x hx using laplaceDensity_eq_half_add t hx
 
+/--
+@isnad1 id=eq.1h1v.s5.e905bace779f from=translated src=- shape=78831b10 vocab=ec470728
+-/
 theorem integral_laplaceDensity {t : ℝ} (ht : 0 < t) : ∫ x, laplaceDensity t x = 1 := by
   rw [integral_congr_ae (laplaceDensity_ae_eq t), integral_const_mul,
     integral_add (integrable_expoDensity ht) (integrable_expoDensity_neg ht),
     integral_neg_arg (fun x : ℝ => expoDensity t x), integral_expoDensity ht]
   norm_num
 
+/--
+@isnad1 id=isprobab.1h1v.s4.84c7bcde2db1 from=translated src=- shape=b8038e13 vocab=538fedc3
+-/
 theorem isProbabilityMeasure_laplaceLaw {t : ℝ} (ht : 0 < t) :
     IsProbabilityMeasure (laplaceLaw t) := by
   constructor

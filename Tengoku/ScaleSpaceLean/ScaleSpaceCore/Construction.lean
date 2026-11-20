@@ -56,8 +56,14 @@ namespace CascadeData
 
 variable (D : CascadeData)
 
+/--
+@isnad1 id=isprobab.0h3v.s3.7e0c81fa3036 from=translated src=- shape=410ba7e5 vocab=bc7518ea
+-/
 instance instIsProbabilityMeasure (s t : ℝ) : IsProbabilityMeasure (D.κ s t) := D.prob s t
 
+/--
+@isnad1 id=eq.0h4v.s5.174342e1a6ba from=translated src=- shape=0751e1d8 vocab=b526d6fa
+-/
 theorem charFun_kernel (s t : ℝ) (ω : ℝ) :
     charFun (D.κ s t) ω = ((fourierCos (D.κ s t) ω : ℝ) : ℂ) :=
   charFun_eq_fourierCos_of_symmetric (D.sym s t) ω
@@ -65,7 +71,9 @@ theorem charFun_kernel (s t : ℝ) (ω : ℝ) :
 /-! ## (A7): the operators depend continuously on the pair of scales -/
 
 /-- **Concentration of a collapsing increment.** If both endpoints tend to the same limit, the
-increments tend to `δ₀` and the modulus of continuity averages away.-/
+increments tend to `δ₀` and the modulus of continuity averages away.
+@isnad1 id=tendsto.5h5v.s8.fbfc935896de from=translated src=- shape=99c6fc01 vocab=856cdf19
+-/
 theorem tendsto_integral_transDiff (f : X) {a b : ℕ → ℝ} {c : ℝ} (hc : 0 ≤ c)
     (ha : ∀ n, 0 ≤ a n) (hab : ∀ n, a n ≤ b n)
     (hac : Tendsto a atTop (𝓝 c)) (hbc : Tendsto b atTop (𝓝 c)) :
@@ -84,7 +92,9 @@ theorem tendsto_integral_transDiff (f : X) {a b : ℕ → ℝ} {c : ℝ} (hc : 0
   exact hcast.congr fun n => (D.charFun_kernel (a n) (b n) ω).symm
 
 /-- **Moving the left endpoint.** The increment is applied *first*, so the contraction bound
-absorbs it and the estimate is at `f`.-/
+absorbs it and the estimate is at `f`.
+@isnad1 id=le.4h5v.s14.d54733623cf7 from=translated src=- shape=a0a8a325 vocab=18d8ab98
+-/
 theorem norm_sub_left (f : X) {s s' t : ℝ} (hs : 0 ≤ s) (hs' : 0 ≤ s')
     (hst : s ≤ t) (hs't : s' ≤ t) :
     ‖mconvL1 (D.κ s t) f - mconvL1 (D.κ s' t) f‖
@@ -105,7 +115,9 @@ theorem norm_sub_left (f : X) {s s' t : ℝ} (hs : 0 ≤ s) (hs' : 0 ≤ s')
     exact key s' s hs' h hst
 
 /-- **Moving the right endpoint.** The increment is applied *last*, to an element that varies
-with the parameters, so the estimate is read there.-/
+with the parameters, so the estimate is read there.
+@isnad1 id=le.3h5v.s13.0410002a0e0a from=translated src=- shape=8c5b7611 vocab=cb299149
+-/
 theorem norm_sub_right (f : X) {s t t' : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) (hst' : s ≤ t') :
     ‖mconvL1 (D.κ s t) f - mconvL1 (D.κ s t') f‖
       ≤ ∫ y, transDiff f y ∂(D.κ (min t t') (max t t')) := by
@@ -124,7 +136,9 @@ theorem norm_sub_right (f : X) {s t t' : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) (hs
   · rw [min_eq_right h, max_eq_left h]
     exact key t' t hst' h
 
-/-- **(A7).**-/
+/-- **(A7).**
+@isnad1 id=continuo.0h2v.s12.00d2363b7e97 from=translated src=- shape=b776fcf1 vocab=c9e4bb0c
+-/
 theorem continuousOn_mconvL1 (f : X) :
     ContinuousOn (fun p : ℝ × ℝ => mconvL1 (D.κ p.1 p.2) f)
       {p : ℝ × ℝ | 0 ≤ p.1 ∧ p.1 ≤ p.2} := by
@@ -196,17 +210,26 @@ noncomputable def preCore : PreCascadeCore where
     rw [mconvL1_comp, mconvL1_congr (D.conv r s t hr hrs hst)]
   continuous f := D.continuousOn_mconvL1 f
 
+/--
+@isnad1 id=eq.0h3v.s11.4817770eba83 from=translated src=- shape=0ddf37b2 vocab=3ddbb815
+-/
 @[simp] theorem preCore_Φ (s t : ℝ) : D.preCore.Φ s t = mconvL1 (D.κ s t) := rfl
 
-/-- **(A4).**-/
+/-- **(A4).**
+@isnad1 id=ispositi.0h1v.s2.e55a93b07b80 from=translated src=- shape=36b3d148 vocab=84046918
+-/
 theorem isPositive : IsPositive D.preCore.Φ := fun _ _ _ _ f hf => isNonneg_mconvL1 f hf
 
-/-- The kernels represent the operators.-/
+/-- The kernels represent the operators.
+@isnad1 id=iskernel.0h1v.s3.c49f5bac7dbf from=translated src=- shape=1aa159a0 vocab=5e20d471
+-/
 theorem isKernelFamily : IsKernelFamily D.preCore.Φ D.κ where
   isProbability s t _ _ := D.prob s t
   conv s t _ _ f := coeFn_mconvL1 (D.κ s t) f
 
-/-- **(ND)**, from nondegeneracy at the level of kernels.-/
+/-- **(ND)**, from nondegeneracy at the level of kernels.
+@isnad1 id=isnondeg.1h1v.s5.e48e34545df4 from=translated src=- shape=6563b169 vocab=7861ff52
+-/
 theorem isNondegenerate (h : ∀ s t : ℝ, 0 ≤ s → s < t → D.κ s t ≠ Measure.dirac 0) :
     IsNondegenerate D.preCore.Φ := fun s t hs hst hid =>
   h s t hs hst (eq_dirac_of_mconvL1_eq_id hid)
@@ -218,10 +241,15 @@ noncomputable def cascadeCore (h : ∀ s t : ℝ, 0 ≤ s → s < t → D.κ s t
   positive := D.isPositive
   nondegenerate := D.isNondegenerate h
 
+/--
+@isnad1 id=eq.1h3v.s11.6d998c807ed9 from=translated src=- shape=b3437d7c vocab=2ba55f44
+-/
 @[simp] theorem cascadeCore_Φ (h : ∀ s t : ℝ, 0 ≤ s → s < t → D.κ s t ≠ Measure.dirac 0)
     (s t : ℝ) : (D.cascadeCore h).Φ s t = mconvL1 (D.κ s t) := rfl
 
-/-- **(A8)**, from the dilation identity at the level of kernels.-/
+/-- **(A8)**, from the dilation identity at the level of kernels.
+@isnad1 id=isscalec.4h2v.s7.1747ed019bc0 from=translated src=- shape=b8456aaa vocab=ecda28e2
+-/
 theorem isScaleCovariant (S : ℝ → ℝ → ℝ)
     (hmap : ∀ lam, 0 < lam → MapsTo (S lam) (Ici 0) (Ici 0))
     (hmono : ∀ lam, 0 < lam → StrictMonoOn (S lam) (Ici 0))

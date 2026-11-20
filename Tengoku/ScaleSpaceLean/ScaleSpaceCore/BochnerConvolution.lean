@@ -57,18 +57,28 @@ compact-open continuity automatic.-/
 noncomputable def subCM : C(ℝ, C(ℝ, ℝ)) :=
   ContinuousMap.curry ⟨fun p : ℝ × ℝ => p.2 - p.1, by fun_prop⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.5c444db80d1f from=translated src=- shape=735f8515 vocab=ab09ab74
+-/
 @[simp] lemma subCM_apply (a x : ℝ) : subCM a x = x - a := rfl
 
+/--
+@isnad1 id=measurep.0h1v.s7.0b0d41b65ae4 from=translated src=- shape=5fc87b16 vocab=3aef6034
+-/
 lemma measurePreserving_subCM (a : ℝ) :
     MeasurePreserving (subCM a) volume volume := measurePreserving_sub_const a
 
-/-- The hand-built `transL1` is Mathlib's composition operator.-/
+/-- The hand-built `transL1` is Mathlib's composition operator.
+@isnad1 id=eq.0h2v.s13.f0e47540d706 from=translated src=- shape=1c4ec03e vocab=ad417f18
+-/
 theorem transL1_eq (a : ℝ) (g : X) :
     transL1 a g = Lp.compMeasurePreserving (subCM a) (measurePreserving_subCM a) g := by
   refine Lp.ext ((coeFn_transL1 a g).trans ?_)
   exact (Lp.coeFn_compMeasurePreserving g (measurePreserving_subCM a)).symm
 
-/-- **Translation acts continuously on `L¹`.**-/
+/-- **Translation acts continuously on `L¹`.**
+@isnad1 id=continuo.0h1v.s12.0259e0256842 from=translated src=- shape=a0c64fea vocab=cfbc7162
+-/
 theorem continuous_transL1 (g : X) : Continuous fun a : ℝ => transL1 a g := by
   rw [continuous_iff_continuousAt]
   intro a₀
@@ -79,6 +89,9 @@ theorem continuous_transL1 (g : X) : Continuous fun a : ℝ => transL1 a g := by
   simp only [← transL1_eq] at h
   exact h
 
+/--
+@isnad1 id=le.0h2v.s12.66023536e6f5 from=translated src=- shape=1bf578cf vocab=adac4e2a
+-/
 lemma norm_transL1_le (a : ℝ) (g : X) : ‖transL1 a g‖ ≤ ‖g‖ := by
   have hop : ‖transL1 a‖ ≤ 1 := by
     rw [transL1]
@@ -92,6 +105,9 @@ lemma norm_transL1_le (a : ℝ) (g : X) : ‖transL1 a g‖ ≤ ‖g‖ := by
 /-- `f * g = ∫ f(y) · T_y g dy`, as an `X`-valued Bochner integral.-/
 noncomputable def bconv (f : ℝ → ℝ) (g : X) : X := ∫ y, f y • transL1 y g
 
+/--
+@isnad1 id=integrab.1h2v.s13.e5169d51525f from=translated src=- shape=acad08e6 vocab=584b0819
+-/
 theorem integrable_smul_transL1 {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     Integrable (fun y => f y • transL1 y g) := by
   have hm : AEStronglyMeasurable (fun y => f y • transL1 y g) volume :=
@@ -103,7 +119,9 @@ theorem integrable_smul_transL1 {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     exact mul_le_mul_of_nonneg_left (norm_transL1_le y g) (norm_nonneg _)
   exact ((hf.norm.mul_const ‖g‖).mono' hm (Filter.Eventually.of_forall hdom)).2
 
-/-- **`Φ (f * g) = f * (Φ g)`**, for any bounded operator that commutes with translation.-/
+/-- **`Φ (f * g) = f * (Φ g)`**, for any bounded operator that commutes with translation.
+@isnad1 id=eq.2h3v.s15.bdefc7e38d21 from=translated src=- shape=0eb934e9 vocab=d408d77a
+-/
 theorem map_bconv (L : X →L[ℝ] X) (hL : ∀ a g, L (transL1 a g) = transL1 a (L g))
     {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     L (bconv f g) = bconv f (L g) := by
@@ -149,11 +167,16 @@ noncomputable def setIntegralCLM (A : Set ℝ) : X →L[ℝ] ℝ :=
             rw [Lp.norm_def, eLpNorm_one_eq_lintegral_enorm,
               ← integral_norm_eq_lintegral_enorm (Lp.aestronglyMeasurable h)]
 
+/--
+@isnad1 id=eq.0h2v.s11.3b18b1bd2fe5 from=translated src=- shape=17e0cbda vocab=496b0ef9
+-/
 @[simp] lemma setIntegralCLM_apply (A : Set ℝ) (h : X) :
     setIntegralCLM A h = ∫ x in A, (h : ℝ → ℝ) x := rfl
 
 /-- The two-variable integrand of the classical convolution is integrable on the product — the
-Tonelli bound `‖f‖₁ ‖g‖₁`, by translation invariance in `x`.-/
+Tonelli bound `‖f‖₁ ‖g‖₁`, by translation invariance in `x`.
+@isnad1 id=integrab.1h2v.s9.1ff4638408ef from=translated src=- shape=032e1f78 vocab=48b2b9e3
+-/
 theorem integrable_uncurry_pconv {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     Integrable (fun p : ℝ × ℝ => f p.2 * (g : ℝ → ℝ) (p.1 - p.2)) (volume.prod volume) := by
   have hgm : AEStronglyMeasurable (fun p : ℝ × ℝ => (g : ℝ → ℝ) (p.1 - p.2))
@@ -185,12 +208,16 @@ theorem integrable_uncurry_pconv {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
         rw [lintegral_mul_const' _ _ (L1.integrable_coeFn g).2.ne]
         exact ENNReal.mul_lt_top hf.2 (L1.integrable_coeFn g).2
 
-/-- The classical convolution is integrable.-/
+/-- The classical convolution is integrable.
+@isnad1 id=integrab.1h2v.s9.2d81a60e3568 from=translated src=- shape=08bffd12 vocab=270b19a6
+-/
 theorem integrable_pconv {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     Integrable (fun x => ∫ y, f y * (g : ℝ → ℝ) (x - y)) :=
   (integrable_uncurry_pconv hf g).integral_prod_left
 
-/-- **`bconv` is the classical convolution.**-/
+/-- **`bconv` is the classical convolution.**
+@isnad1 id=eventual.1h2v.s9.8347df141cf0 from=translated src=- shape=cd27f189 vocab=0458da91
+-/
 theorem coeFn_bconv {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     (bconv f g : ℝ → ℝ) =ᵐ[volume] fun x => ∫ y, f y * (g : ℝ → ℝ) (x - y) := by
   refine ae_eq_of_forall_setIntegral_eq_of_sigmaFinite
@@ -237,12 +264,16 @@ theorem coeFn_bconv {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     rw [integral_indicator hA, integral_const_mul]
   rw [hleft, hright]
 
-/-- `y ↦ x - y` preserves Lebesgue measure.-/
+/-- `y ↦ x - y` preserves Lebesgue measure.
+@isnad1 id=measurep.0h1v.s4.3057245fca41 from=translated src=- shape=fcb563e5 vocab=decd8885
+-/
 theorem measurePreserving_const_sub (x : ℝ) :
     MeasurePreserving (fun y : ℝ => x - y) volume volume :=
   (volume : Measure ℝ).measurePreserving_sub_left x
 
-/-- Convolution is commutative — the change of variables `y ↦ x - y`.-/
+/-- Convolution is commutative — the change of variables `y ↦ x - y`.
+@isnad1 id=eq.1h2v.s9.a7201ce9a79d from=translated src=- shape=9fefffb6 vocab=9168a2ca
+-/
 theorem bconv_comm {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     bconv f g = bconv (g : ℝ → ℝ) (hf.toL1 f) := by
   refine Lp.ext ((coeFn_bconv hf g).trans ?_)
@@ -265,7 +296,9 @@ theorem bconv_comm {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
 /-! ## `μ * f` as a Bochner integral -/
 
 /-- `y ↦ T_y f` is `μ`-integrable for every finite `μ`: continuous, hence strongly measurable,
-and bounded by `‖f‖`.-/
+and bounded by `‖f‖`.
+@isnad1 id=integrab.0h2v.s13.6f3375d46282 from=translated src=- shape=050a1ceb vocab=8e446cad
+-/
 theorem integrable_transL1 (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     Integrable (fun y => transL1 y f) μ :=
   Integrable.mono' (integrable_const ‖f‖) (continuous_transL1 f).aestronglyMeasurable
@@ -274,7 +307,9 @@ theorem integrable_transL1 (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
 /-- `μ * f = ∫ T_y f dμ(y)`, as an `X`-valued Bochner integral.-/
 noncomputable def bconvM (μ : Measure ℝ) (f : X) : X := ∫ y, transL1 y f ∂μ
 
-/-- **The Bochner form of `mconvL1`.**-/
+/-- **The Bochner form of `mconvL1`.**
+@isnad1 id=eq.0h2v.s12.61d9cf966bff from=translated src=- shape=2a190f2b vocab=aefc48c6
+-/
 theorem bconvM_eq_mconvL1 (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     bconvM μ f = mconvL1 μ f := by
   refine Lp.ext ?_
@@ -334,7 +369,9 @@ strict generalization with no article twin.
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
 /-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`**, for a bounded functional with values in any Banach
-space.-/
+space.
+@isnad1 id=eq.0h4v.s14.1271d91d840f from=translated src=- shape=54e78702 vocab=520dd76c
+-/
 theorem apply_mconvL1_general (Ψ : X →L[ℝ] F) (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     Ψ (mconvL1 μ f) = ∫ y, Ψ (transL1 y f) ∂μ := by
   rw [← bconvM_eq_mconvL1, bconvM,
@@ -346,15 +383,22 @@ noncomputable def pairTrans (Ψ : X →L[ℝ] ℝ) (f : X) : BoundedContinuousFu
     (Ψ.continuous.comp (continuous_transL1 f)) (‖Ψ‖ * ‖f‖) fun y =>
     (Ψ.le_opNorm _).trans (mul_le_mul_of_nonneg_left (norm_transL1_le y f) (norm_nonneg _))
 
+/--
+@isnad1 id=eq.0h3v.s13.29d5631bba72 from=translated src=- shape=c048c5b4 vocab=42b63b3f
+-/
 @[simp] lemma pairTrans_apply (Ψ : X →L[ℝ] ℝ) (f : X) (y : ℝ) :
     pairTrans Ψ f y = Ψ (transL1 y f) := rfl
 
-/-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`.**-/
+/-- **`Ψ (μ * f) = ∫ Ψ (T_y f) dμ(y)`.**
+@isnad1 id=eq.0h3v.s13.49e95c9c15f5 from=translated src=- shape=b63c9d31 vocab=c7b296a9
+-/
 theorem apply_mconvL1 (Ψ : X →L[ℝ] ℝ) (μ : Measure ℝ) [IsFiniteMeasure μ] (f : X) :
     Ψ (mconvL1 μ f) = ∫ y, pairTrans Ψ f y ∂μ :=
   apply_mconvL1_general Ψ μ f
 
-/-- **`Ψ (g * f) = ∫ g(y) Ψ (T_y f) dy`**, the density counterpart.-/
+/-- **`Ψ (g * f) = ∫ g(y) Ψ (T_y f) dy`**, the density counterpart.
+@isnad1 id=eq.1h3v.s12.cdf8e9bff3d6 from=translated src=- shape=467d165f vocab=fb439001
+-/
 theorem apply_bconv (Ψ : X →L[ℝ] ℝ) {g : ℝ → ℝ} (hg : Integrable g) (f : X) :
     Ψ (bconv g f) = ∫ y, g y * pairTrans Ψ f y := by
   rw [bconv, ← ContinuousLinearMap.integral_comp_comm _ (integrable_smul_transL1 hg f)]
@@ -385,7 +429,9 @@ concludes. Pairing against a set is a bounded functional, so it passes through t
 integral, which is what makes the left-hand side computable at all.
 -/
 
-/-- `bconv` respects a.e. equality of the scalar factor.-/
+/-- `bconv` respects a.e. equality of the scalar factor.
+@isnad1 id=eq.1h3v.s8.8ad4d24c9793 from=translated src=- shape=a67aaad5 vocab=252b3c74
+-/
 theorem bconv_congr_ae {f₁ f₂ : ℝ → ℝ} (h : f₁ =ᵐ[volume] f₂) (g : X) :
     bconv f₁ g = bconv f₂ g := by
   refine integral_congr_ae ?_
@@ -417,6 +463,9 @@ needs it a second time — and needs it in the form that avoids Fubini, the boun
 `setIntegralCLM A` passing through the Bochner integral.
 -/
 
+/--
+@isnad1 id=eq.1h3v.s9.e6ae3c94f365 from=translated src=- shape=ba76f0db vocab=517b7b9b
+-/
 theorem setIntegral_bconv (A : Set ℝ) {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     ∫ x in A, (bconv f g : ℝ → ℝ) x = ∫ y, f y * ∫ x in A, (g : ℝ → ℝ) (x - y) := by
   rw [← setIntegralCLM_apply A (bconv f g), bconv,
@@ -427,6 +476,9 @@ theorem setIntegral_bconv (A : Set ℝ) {f : ℝ → ℝ} (hf : Integrable f) (g
   congr 1
   exact integral_congr_ae ((coeFn_transL1 y g).restrict)
 
+/--
+@isnad1 id=integrab.1h3v.s9.b841733b5d01 from=translated src=- shape=9204e8e5 vocab=0b520146
+-/
 theorem integrable_setIntegral_bconv (A : Set ℝ) {f : ℝ → ℝ} (hf : Integrable f) (g : X) :
     Integrable (fun y => f y * ∫ x in A, (g : ℝ → ℝ) (x - y)) := by
   refine ((setIntegralCLM A).integrable_comp (integrable_smul_transL1 hf g)).congr
@@ -439,7 +491,9 @@ theorem integrable_setIntegral_bconv (A : Set ℝ) {f : ℝ → ℝ} (hf : Integ
 /-! ## The character pairing, and uniqueness of the representing measure -/
 
 /-- The integrand of the character pairing is integrable: a unit-modulus continuous factor times
-an `L¹` function.-/
+an `L¹` function.
+@isnad1 id=integrab.0h2v.s9.b3dfb7001089 from=translated src=- shape=f39e164b vocab=f3d7c2e6
+-/
 theorem integrable_char_mul (ω : ℝ) (f : X) :
     Integrable (fun x : ℝ => Complex.exp (x * ω * Complex.I) * ((f : ℝ → ℝ) x : ℂ)) := by
   refine Integrable.bdd_mul (c := 1) (L1.integrable_coeFn f).ofReal ?_ ?_
@@ -485,10 +539,15 @@ noncomputable def charCLM (ω : ℝ) : X →L[ℝ] ℂ :=
             refine integral_congr_ae (Filter.Eventually.of_forall fun x => ?_)
             simp [Complex.norm_exp]
 
+/--
+@isnad1 id=eq.0h2v.s11.da9b68336f58 from=translated src=- shape=e999f34e vocab=87cfe7ec
+-/
 lemma charCLM_apply (ω : ℝ) (f : X) :
     charCLM ω f = ∫ x : ℝ, Complex.exp (x * ω * Complex.I) * ((f : ℝ → ℝ) x : ℂ) := rfl
 
-/-- The character pairing turns translation into multiplication by a unimodular constant.-/
+/-- The character pairing turns translation into multiplication by a unimodular constant.
+@isnad1 id=eq.0h3v.s13.42d79358a4fa from=translated src=- shape=bf4946fb vocab=80c72e45
+-/
 theorem charCLM_transL1 (ω a : ℝ) (f : X) :
     charCLM ω (transL1 a f) = Complex.exp (a * ω * Complex.I) * charCLM ω f := by
   rw [charCLM_apply, charCLM_apply]
@@ -507,7 +566,9 @@ theorem charCLM_transL1 (ω a : ℝ) (f : X) :
   ring_nf
 
 /-- **The blueprint’s pairing identity (4.1)**: pairing the operator against a character
-factorises into the transform of the measure times the transform of the test function.-/
+factorises into the transform of the measure times the transform of the test function.
+@isnad1 id=eq.0h3v.s13.dfd24015dc74 from=translated src=- shape=6fe9c8fd vocab=0d8d1644
+-/
 theorem charCLM_mconvL1 (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) (f : X) :
     charCLM ω (mconvL1 μ f) = charFun μ ω * charCLM ω f := by
   rw [apply_mconvL1_general (charCLM ω) μ f]
@@ -524,10 +585,15 @@ function whose transform is zero-free at every frequency, so that a single pairi
 transform of the measure everywhere.-/
 noncomputable def gaussL1 : X := (integrable_gaussianPDFReal 0 1).toL1 _
 
+/--
+@isnad1 id=eventual.0h0v.s8.0c3fc63b7a05 from=translated src=- shape=386430b2 vocab=c3afba4a
+-/
 lemma coeFn_gaussL1 : ((gaussL1 : X) : ℝ → ℝ) =ᵐ[volume] gaussianPDFReal 0 1 :=
   Integrable.coeFn_toL1 _
 
-/-- **The Gaussian transform has no zeros.**-/
+/-- **The Gaussian transform has no zeros.**
+@isnad1 id=eq.0h1v.s11.3ff819c3bfc9 from=translated src=- shape=5ca2e13e vocab=602b237f
+-/
 theorem charCLM_gaussL1 (ω : ℝ) :
     charCLM ω gaussL1 = Complex.exp (-(ω ^ 2) / 2) := by
   have hcoe : charCLM ω gaussL1
@@ -542,13 +608,18 @@ theorem charCLM_gaussL1 (ω : ℝ) :
   push_cast
   ring_nf
 
+/--
+@isnad1 id=ne.0h1v.s11.f776360dc70f from=translated src=- shape=ef97b5d9 vocab=12266ada
+-/
 theorem charCLM_gaussL1_ne_zero (ω : ℝ) : charCLM ω gaussL1 ≠ 0 := by
   rw [charCLM_gaussL1]
   exact Complex.exp_ne_zero _
 
 /-- **A finite measure is determined by its convolution operator** — the uniqueness clause of
 `lem:convolution-representation`. One test function suffices: pairing `Φ g` against `e_ω` reads
-off `μ̂(ω)` at every frequency, because the Gaussian transform never vanishes.-/
+off `μ̂(ω)` at every frequency, because the Gaussian transform never vanishes.
+@isnad1 id=eq.1h2v.s11.11cc1e338022 from=translated src=- shape=58a17bc9 vocab=1edf85c3
+-/
 theorem mconvL1_injective {μ ρ : Measure ℝ} [IsFiniteMeasure μ] [IsFiniteMeasure ρ]
     (h : mconvL1 μ = mconvL1 ρ) : μ = ρ := by
   refine fourier_uniqueness fun ω => ?_

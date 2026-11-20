@@ -47,7 +47,9 @@ Wave 1 of the proving campaign (2026-09-09) moved this here. It was proved three
 independently — as `integrable_cos` in Paper V's `SpatialLine/LatticeZero.lean`, and as
 `integrable_cos_mul` in `Nonvanishing` and `Pairing`. This
 file is the chapter-2 home of the elementary facts about (2.1), and it sits low enough in the
-import graph for every chapter to reach it.-/
+import graph for every chapter to reach it.
+@isnad1 id=integrab.0h2v.s5.01100c2db820 from=translated src=- shape=5c9ad075 vocab=56dab5d6
+-/
 theorem integrable_cos_mul (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
     Integrable (fun x : ℝ => Real.cos (ω * x)) μ := by
   refine (integrable_const (1 : ℝ)).mono' (by fun_prop) ?_
@@ -61,7 +63,9 @@ Lifted here by the wave-6 merge (2026-09-10) from `Pairing` (chapter 4), which
 had carried it since the sine half of the characteristic function was written, and from
 Paper V's `SpatialLine/GeneratorSignal.lean` (chapter 11), which wrote it again. This is the wave-1 remedy
 applied to the other half of the pair: `integrable_cos_mul` was moved out of `Pairing.lean` for
-the same reason and by the same argument.-/
+the same reason and by the same argument.
+@isnad1 id=integrab.0h2v.s5.45672e94951e from=translated src=- shape=5c9ad075 vocab=d6a8a4ac
+-/
 theorem integrable_sin_mul (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
     Integrable (fun x : ℝ => Real.sin (ω * x)) μ := by
   refine (integrable_const (1 : ℝ)).mono' (by fun_prop) ?_
@@ -75,16 +79,25 @@ rule: these are elementary facts about (2.1), not about `lem:nonvanishing`, so t
 the chapter-2 file every chapter can reach. Paper V's `SpatialLine/Interfaces.lean` needs two of them for
 the reverse direction of ledger A1 and must not import chapter 4. -/
 
+/--
+@isnad1 id=eq.0h1v.s4.4a2b5ae3ceec from=translated src=- shape=444dcb93 vocab=10071c2a
+-/
 @[simp] theorem fourierCos_zero (μ : Measure ℝ) [IsProbabilityMeasure μ] :
     fourierCos μ 0 = 1 := by
   simp [fourierCos_apply]
 
+/--
+@isnad1 id=le.0h2v.s4.d0442e3460b8 from=translated src=- shape=7e8df74b vocab=9b52726a
+-/
 theorem fourierCos_le_one (μ : Measure ℝ) [IsProbabilityMeasure μ] (ω : ℝ) :
     fourierCos μ ω ≤ 1 := by
   have h := integral_mono (integrable_cos_mul μ ω) (integrable_const (1 : ℝ))
     (fun x => Real.cos_le_one (ω * x))
   simpa [fourierCos_apply] using h
 
+/--
+@isnad1 id=continuo.0h1v.s4.2f057c3f2878 from=translated src=- shape=edd8977f vocab=e8b9db8f
+-/
 theorem continuous_fourierCos (μ : Measure ℝ) [IsFiniteMeasure μ] :
     Continuous (fourierCos μ) := by
   refine continuous_of_dominated (F := fun ω x => Real.cos (ω * x)) (bound := fun _ => (1 : ℝ))
@@ -99,7 +112,9 @@ theorem continuous_fourierCos (μ : Measure ℝ) [IsFiniteMeasure μ] :
 
 Moved here by wave 2's merge (2026-09-09) from `MaternData.charFun_map_const_mul`, where it
 was stranded in a concrete namespace: it mentions no Matérn datum, and
-`MainConstruction` already called it across the namespace boundary.-/
+`MainConstruction` already called it across the namespace boundary.
+@isnad1 id=eq.0h3v.s6.47431c8e1c73 from=translated src=- shape=81ab755a vocab=71494bf8
+-/
 theorem charFun_map_const_mul (μ : Measure ℝ) [IsFiniteMeasure μ] (c ω : ℝ) :
     charFun (μ.map (fun x => c * x)) ω = charFun μ (c * ω) := by
   have hmeas : ∀ ν : Measure ℝ, AEStronglyMeasurable

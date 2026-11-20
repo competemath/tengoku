@@ -81,6 +81,9 @@ vocabulary — every kernel is symmetric and this vanishes — but the *proof* t
 symmetric has to talk about it.-/
 noncomputable def fourierSin (μ : Measure ℝ) (ω : ℝ) : ℝ := ∫ x, Real.sin (ω * x) ∂μ
 
+/--
+@isnad1 id=eq.0h2v.s5.d2a43e9bdd6a from=translated src=- shape=b2e6e2cf vocab=baa79023
+-/
 lemma fourierSin_apply (μ : Measure ℝ) (ω : ℝ) :
     fourierSin μ ω = ∫ x, Real.sin (ω * x) ∂μ := rfl
 
@@ -88,7 +91,9 @@ lemma fourierSin_apply (μ : Measure ℝ) (ω : ℝ) :
 
 Mathlib's `charFun` uses the sign convention opposite to `(2.1)`; the two agree on the cosine
 half and differ by a sign on the sine half, which is immaterial everywhere below because the
-sine half is only ever compared with itself or shown to vanish.-/
+sine half is only ever compared with itself or shown to vanish.
+@isnad1 id=eq.0h2v.s5.644ad0251796 from=translated src=- shape=1cab185e vocab=24d2942d
+-/
 theorem charFun_eq (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
     charFun μ ω = ((fourierCos μ ω : ℝ) : ℂ) + Complex.I * ((fourierSin μ ω : ℝ) : ℂ) := by
   rw [charFun_apply_real]
@@ -106,6 +111,9 @@ theorem charFun_eq (μ : Measure ℝ) [IsFiniteMeasure μ] (ω : ℝ) :
 
 /-! ## The even test function, translated -/
 
+/--
+@isnad1 id=eq.1h1v.s5.446bd10e261a from=translated src=- shape=b29d9b78 vocab=bba0affc
+-/
 lemma integral_odd_eq_zero {g : ℝ → ℝ} (hodd : ∀ x, g (-x) = -g x) : ∫ x, g x = 0 := by
   have h1 : ∫ x, g (-x) = ∫ x, g x := integral_neg_eq_self g volume
   simp only [hodd, integral_neg] at h1
@@ -113,25 +121,35 @@ lemma integral_odd_eq_zero {g : ℝ → ℝ} (hodd : ∀ x, g (-x) = -g x) : ∫
 
 variable {f : ℝ → ℝ}
 
+/--
+@isnad1 id=integrab.1h2v.s6.ca2a44e180ec from=translated src=- shape=f03511ce vocab=1dfc5b26
+-/
 lemma integrable_cos_mul_self (hfi : Integrable f) (ω : ℝ) :
     Integrable (fun u => Real.cos (ω * u) * f u) := by
   refine hfi.bdd_mul (c := 1)
     ((Real.continuous_cos.comp (continuous_const.mul continuous_id)).aestronglyMeasurable) ?_
   exact ae_of_all _ fun u => by simpa using Real.abs_cos_le_one (ω * u)
 
+/--
+@isnad1 id=integrab.1h2v.s6.2b5fe68ab955 from=translated src=- shape=f03511ce vocab=562485bc
+-/
 lemma integrable_sin_mul_self (hfi : Integrable f) (ω : ℝ) :
     Integrable (fun u => Real.sin (ω * u) * f u) := by
   refine hfi.bdd_mul (c := 1)
     ((Real.continuous_sin.comp (continuous_const.mul continuous_id)).aestronglyMeasurable) ?_
   exact ae_of_all _ fun u => by simpa using Real.abs_sin_le_one (ω * u)
 
-/-- For an even `f` the sine moment vanishes — the fact that separates the two pairings.-/
+/-- For an even `f` the sine moment vanishes — the fact that separates the two pairings.
+@isnad1 id=eq.1h2v.s6.8797441219de from=translated src=- shape=70548fd2 vocab=077a5c81
+-/
 lemma integral_sin_mul_eq_zero (heven : ∀ x, f (-x) = f x) (ω : ℝ) :
     ∫ u, Real.sin (ω * u) * f u = 0 := by
   refine integral_odd_eq_zero fun x => ?_
   rw [heven, mul_neg, Real.sin_neg, neg_mul]
 
-/-- Translating the cosine test function against an even `f`.-/
+/-- Translating the cosine test function against an even `f`.
+@isnad1 id=eq.2h3v.s7.03233f68235b from=translated src=- shape=1feae3c2 vocab=b0c0f8e8
+-/
 lemma integral_cos_mul_translate (hfi : Integrable f) (heven : ∀ x, f (-x) = f x) (ω r : ℝ) :
     ∫ t, Real.cos (ω * t) * f (t - r) = Real.cos (ω * r) * ∫ u, Real.cos (ω * u) * f u := by
   have hshift : ∫ t, Real.cos (ω * t) * f (t - r)
@@ -150,7 +168,9 @@ lemma integral_cos_mul_translate (hfi : Integrable f) (heven : ∀ x, f (-x) = f
       ((integrable_sin_mul_self hfi ω).const_mul _),
     integral_const_mul, integral_const_mul, integral_sin_mul_eq_zero heven, mul_zero, sub_zero]
 
-/-- Translating the sine test function against an even `f`.-/
+/-- Translating the sine test function against an even `f`.
+@isnad1 id=eq.2h3v.s7.04e65e5f1f8d from=translated src=- shape=8a55d248 vocab=a6f5c38f
+-/
 lemma integral_sin_mul_translate (hfi : Integrable f) (heven : ∀ x, f (-x) = f x) (ω r : ℝ) :
     ∫ t, Real.sin (ω * t) * f (t - r) = Real.sin (ω * r) * ∫ u, Real.cos (ω * u) * f u := by
   have hshift : ∫ t, Real.sin (ω * t) * f (t - r)
@@ -169,7 +189,9 @@ lemma integral_sin_mul_translate (hfi : Integrable f) (heven : ∀ x, f (-x) = f
       ((integrable_sin_mul_self hfi ω).const_mul _),
     integral_const_mul, integral_const_mul, integral_sin_mul_eq_zero heven, mul_zero, add_zero]
 
-/-- **The cosine pairing factorises.**-/
+/-- **The cosine pairing factorises.**
+@isnad1 id=eq.3h3v.s7.80be599f6b84 from=translated src=- shape=54cbf2e9 vocab=23c8aaca
+-/
 theorem integral_cos_mul_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] (hfi : Integrable f)
     (hfm : Measurable f) (heven : ∀ x, f (-x) = f x) (ω : ℝ) :
     ∫ t, Real.cos (ω * t) * mconv μ f t = (∫ u, Real.cos (ω * u) * f u) * fourierCos μ ω := by
@@ -179,7 +201,9 @@ theorem integral_cos_mul_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] (hfi : In
   rw [integral_mul_const, fourierCos_apply]
   ring
 
-/-- **The sine pairing factorises**, against the same cosine moment of the test function.-/
+/-- **The sine pairing factorises**, against the same cosine moment of the test function.
+@isnad1 id=eq.3h3v.s7.5d3dfaa674ac from=translated src=- shape=bf76e4df vocab=81411ac8
+-/
 theorem integral_sin_mul_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] (hfi : Integrable f)
     (hfm : Measurable f) (heven : ∀ x, f (-x) = f x) (ω : ℝ) :
     ∫ t, Real.sin (ω * t) * mconv μ f t = (∫ u, Real.cos (ω * u) * f u) * fourierSin μ ω := by
@@ -196,15 +220,26 @@ and with a cosine transform that vanishes nowhere — which the box, the causal 
 not.-/
 noncomputable def gaussTest : ℝ → ℝ := gaussianPDFReal 0 1
 
+/--
+@isnad1 id=measurab.0h0v.s2.90345a68112e from=translated src=- shape=e3d48bcb vocab=f1700369
+-/
 lemma measurable_gaussTest : Measurable gaussTest := measurable_gaussianPDFReal 0 1
 
+/--
+@isnad1 id=integrab.0h0v.s4.b0047e63f935 from=translated src=- shape=e14394ff vocab=0fc366a0
+-/
 lemma integrable_gaussTest : Integrable gaussTest := integrable_gaussianPDFReal 0 1
 
+/--
+@isnad1 id=eq.0h1v.s3.6d6157984c89 from=translated src=- shape=cd419dad vocab=9b4dd67c
+-/
 lemma gaussTest_even (x : ℝ) : gaussTest (-x) = gaussTest x := by
   simp [gaussTest, gaussianPDFReal]
 
 /-- **The cosine moment of the test function**, `e^{-ω²/2}` — positive at every frequency, which
-is the whole reason the Gaussian is the test function.-/
+is the whole reason the Gaussian is the test function.
+@isnad1 id=eq.0h1v.s6.c38b20a7c3db from=translated src=- shape=2132608b vocab=cd5b8930
+-/
 theorem integral_cos_mul_gaussTest (ω : ℝ) :
     ∫ u, Real.cos (ω * u) * gaussTest u = Real.exp (-(ω ^ 2) / 2) := by
   have h1 : ∫ u, Real.cos (ω * u) * gaussTest u
@@ -215,6 +250,9 @@ theorem integral_cos_mul_gaussTest (ω : ℝ) :
   norm_num
   ring
 
+/--
+@isnad1 id=lt.0h1v.s5.e6d45a0ac849 from=translated src=- shape=32a723c4 vocab=400f89ff
+-/
 theorem integral_cos_mul_gaussTest_pos (ω : ℝ) : 0 < ∫ u, Real.cos (ω * u) * gaussTest u := by
   rw [integral_cos_mul_gaussTest]
   exact Real.exp_pos _
@@ -252,7 +290,9 @@ theorem eq_of_mconv_gaussTest_ae {μ ν : Measure ℝ} [IsFiniteMeasure μ] [IsF
 Wave 1 of the merge (2026-09-09): `gaussL1` and its coercion lemma were proved twice, here and in
 Paper V's `SpatialLine/BochnerConvolution.lean`, where `lem:convolution-representation` needs them. That
 copy survives; `gaussTest` is `gaussianPDFReal 0 1` by definition, so this adapter is the same
-statement read at the name chapters 5 and 6 use.-/
+statement read at the name chapters 5 and 6 use.
+@isnad1 id=eventual.0h0v.s8.91c84da2745e from=translated src=- shape=72c230f5 vocab=343cceb6
+-/
 lemma coeFn_gaussL1_gaussTest : ((gaussL1 : X) : ℝ → ℝ) =ᵐ[volume] gaussTest := coeFn_gaussL1
 
 end ScaleSpace
