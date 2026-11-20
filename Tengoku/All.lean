@@ -200,6 +200,7 @@ import Tengoku.CongruencePhenomenaLean
 import Tengoku.FactorialHypergraphAuxiliaryErdos
 import Tengoku.StringDiagramsLean
 import Tengoku.CaratheodoryLoewner
+import Tengoku.Erdos815Lean
 import Tengoku.Cslib
 import Tengoku.FormalMath
 import Tengoku.RiemannhypothesisFormalization
