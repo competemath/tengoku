@@ -77,7 +77,9 @@ open Classical in
 /-- **One matching triple suffices.** All terms of the estimate are nonnegative, so a single
 triple with representative-density floors `ρ`, proxy-cell floors `α·#s`, and the candidate
 inequalities `#Cᵢ ≤ 2q·#(g Cᵢ)` bounds the whole estimate below — in multiplication form,
-with `(2q)³` on the left rather than a division.-/
+with `(2q)³` on the left rather than a division.
+@isnad1 id=le.10h11v.s9.8119dc3b6cef from=translated src=- shape=9989e016 vocab=ff1f3f78
+-/
 theorem le_representativeInducedEstimate_of_single_triple {g : Finset V → Finset V}
     {T : Fin 3 → Finset V} (hT : T ∈ transversalCellTriples Q)
     (hmatch : MatchesThreeProfiles P M (fun i => g (T i)))
@@ -155,7 +157,9 @@ open Classical in
 omit [AtMostBinary L] in
 /-- **The positivity criterion.** With the estimate bounded below by a single triple and the
 indexed-box estimate bounding the error, the representative count is positive as soon as the
-multiplication-form margin holds. Nothing is divided by `q`.-/
+multiplication-form margin holds. Nothing is divided by `q`.
+@isnad1 id=lt.5h12v.s8.98e50b4e0627 from=translated src=- shape=8915eacc vocab=683c6c99
+-/
 theorem representativeInducedCount_pos {g : Finset V → Finset V}
     {ρ α q ε β : ℝ} (hq0 : 0 ≤ q)
     (hlow : ρ ^ 3 * α ^ 3 * (s.card : ℝ) ^ 3
@@ -179,7 +183,9 @@ theorem representativeInducedCount_pos {g : Finset V → Finset V}
 
 /-- **The obligation with the combined cost substituted.** The available bound on the
 selected bad-pair mass is `β ≤ 4Kε + 4Kδ/η²`, so the margin becomes
-`(2q)³ · (7ε + 12Kε + 12Kδ/η²) < ρ³α³`.-/
+`(2q)³ · (7ε + 12Kε + 12Kδ/η²) < ρ³α³`.
+@isnad1 id=lt.3h8v.s8.691d8e6166cb from=translated src=- shape=82dd5463 vocab=5c9d27ef
+-/
 theorem positivityMargin_of_combined_cost {ρ α q ε β K δ η : ℝ} (hq0 : 0 ≤ q)
     (hβ : β ≤ 4 * K * ε + 4 * K * δ / η ^ 2)
     (hobl : (2 * q) ^ 3 * (7 * ε + 12 * K * ε + 12 * K * δ / η ^ 2) < ρ ^ 3 * α ^ 3) :
@@ -204,7 +210,9 @@ growth rate.
 `#F.parts ≤ q`, an UPPER bound, and a rapidly growing majorant does not force the smallest
 usable `q` to grow: a trivial relation stays regular at constant part count. This applies to
 any `q` known to satisfy an inverse-linear lower bound; no lemma here establishes one for the
-regularity iteration's a priori majorant.-/
+regularity iteration's a priori majorant.
+@isnad1 id=not.5h6v.s8.6d6ecee93c25 from=translated src=- shape=7736e00d vocab=5c9d27ef
+-/
 theorem margin_fails_of_inverse_linear_q {c ε q ρ α β : ℝ} (hc : 0 < c) (hε : 0 < ε)
     (hβ0 : 0 ≤ β) (hq : c / ε ≤ q)
     (hsmall : ρ ^ 3 * α ^ 3 * ε ^ 2 ≤ 56 * c ^ 3) :

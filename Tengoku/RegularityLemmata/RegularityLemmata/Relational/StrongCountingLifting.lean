@@ -39,6 +39,9 @@ def selectedFinePairs (Q Pc : Finpartition s)
 variable {Q Pc : Finpartition s}
   {sel : (Finset V × Finset V) → (Finset V × Finset V) → Prop} [DecidableRel sel]
 
+/--
+@isnad1 id=le.0h5v.s7.a23baa421ec0 from=translated src=- shape=b79f2be8 vocab=6cfa15e5
+-/
 theorem selectedFinePairs_subset : selectedFinePairs Q Pc sel ⊆ Q.parts ×ˢ Q.parts := by
   intro p hp
   rw [selectedFinePairs, Finset.mem_biUnion] at hp
@@ -55,7 +58,9 @@ private theorem coarse_parent_eq {A X X' : Finset V} (hAne : A.Nonempty)
   exact Finset.disjoint_left.mp
     (Pc.disjoint (Finset.mem_coe.mpr hX) (Finset.mem_coe.mpr hX') hne) (hAX ha) (hAX' ha)
 
-/-- The coarse-pair fibers are pairwise disjoint (unique coarse parent).-/
+/-- The coarse-pair fibers are pairwise disjoint (unique coarse parent).
+@isnad1 id=pairwise.0h5v.s7.bc16dde2f86b from=translated src=- shape=301ab3f3 vocab=95112732
+-/
 theorem pairwiseDisjoint_refinementPairFibers :
     (↑(Pc.parts ×ˢ Pc.parts) : Set (Finset V × Finset V)).PairwiseDisjoint
       fun pd => (refinementFiber Q pd.1 ×ˢ refinementFiber Q pd.2).filter (sel pd) := by
@@ -72,7 +77,9 @@ theorem pairwiseDisjoint_refinementPairFibers :
   exact hne (Prod.ext (coarse_parent_eq (Q.nonempty_of_mem_parts h1.1) h1.2 h1'.2 hpd.1 hpd'.1)
     (coarse_parent_eq (Q.nonempty_of_mem_parts h2.1) h2.2 h2'.2 hpd.2 hpd'.2))
 
-/-- **Selected-pair mass reindex**, matching the nesting of `deviant_mass_le`.-/
+/-- **Selected-pair mass reindex**, matching the nesting of `deviant_mass_le`.
+@isnad1 id=eq.0h5v.s7.291d29b13415 from=translated src=- shape=930de612 vocab=05f65b33
+-/
 theorem sum_selectedFinePairs_mass :
     ∑ p ∈ selectedFinePairs Q Pc sel, ((p.1.card : ℝ) * p.2.card)
       = ∑ pd ∈ Pc.parts ×ˢ Pc.parts,
@@ -80,7 +87,9 @@ theorem sum_selectedFinePairs_mass :
             ((p.1.card : ℝ) * p.2.card) := by
   rw [selectedFinePairs, Finset.sum_biUnion pairwiseDisjoint_refinementPairFibers]
 
-/-- A refinement of a transversal box selects a fine pair iff the coarse pair is selected.-/
+/-- A refinement of a transversal box selects a fine pair iff the coarse pair is selected.
+@isnad1 id=iff.2h9v.s8.532036984ecc from=translated src=- shape=11d292a5 vocab=ff1bb23a
+-/
 theorem mem_selectedFinePairs_of_refines {T W : Fin 3 → Finset V} {i j : Fin 3}
     (hT : T ∈ transversalCellTriples Pc) (hW : W ∈ refinementTriples Q T) :
     (W i, W j) ∈ selectedFinePairs Q Pc sel ↔ sel (T i, T j) (W i, W j) := by
@@ -109,7 +118,9 @@ theorem mem_selectedFinePairs_of_refines {T W : Fin 3 → Finset V} {i j : Fin 3
 
 /-! ### Embedding refinements into fine transversal triples -/
 
-/-- The refinement boxes of a transversal coarse triple are themselves transversal.-/
+/-- The refinement boxes of a transversal coarse triple are themselves transversal.
+@isnad1 id=le.1h5v.s7.373896804f2e from=translated src=- shape=a1c0f696 vocab=9b3ac2a8
+-/
 theorem refinementTriples_subset_transversal {T : Fin 3 → Finset V}
     (hT : T ∈ transversalCellTriples Pc) : refinementTriples Q T ⊆ transversalCellTriples Q := by
   intro W hW
@@ -124,7 +135,9 @@ theorem refinementTriples_subset_transversal {T : Fin 3 → Finset V}
     (transversalCellTriples_ne hT hij) (transversalCellTriples_cell_mem hT i)
     (transversalCellTriples_cell_mem hT j) h
 
-/-- Distinct transversal coarse triples have disjoint refinement families.-/
+/-- Distinct transversal coarse triples have disjoint refinement families.
+@isnad1 id=pairwise.0h4v.s6.fe333f88d113 from=translated src=- shape=ff0a52dc vocab=12bc9836
+-/
 theorem pairwiseDisjoint_refinementTriples :
     (↑(transversalCellTriples Pc) : Set (Fin 3 → Finset V)).PairwiseDisjoint
       (refinementTriples Q) := by
@@ -143,7 +156,9 @@ theorem pairwiseDisjoint_refinementTriples :
 
 /-! ### Nested lifting wrappers -/
 
-/-- **Nested `(0,1)` lifting.**-/
+/-- **Nested `(0,1)` lifting.**
+@isnad1 id=le.0h5v.s9.cb70b25e7f42 from=translated src=- shape=0f3a82ff vocab=49ad72c0
+-/
 theorem selectedRefinementPairTripleMass_zero_one_le :
     ∑ T ∈ transversalCellTriples Pc,
         ∑ W ∈ (refinementTriples Q T).filter (fun W => sel (T 0, T 1) (W 0, W 1)),
@@ -175,7 +190,9 @@ theorem selectedRefinementPairTripleMass_zero_one_le :
     exact ⟨refinementTriples_subset_transversal hT hWmem.1, hWmem.2⟩
   · intro W _ _; positivity
 
-/-- **Nested `(0,2)` lifting.**-/
+/-- **Nested `(0,2)` lifting.**
+@isnad1 id=le.0h5v.s9.a15135eef823 from=translated src=- shape=0f3a82ff vocab=49ad72c0
+-/
 theorem selectedRefinementPairTripleMass_zero_two_le :
     ∑ T ∈ transversalCellTriples Pc,
         ∑ W ∈ (refinementTriples Q T).filter (fun W => sel (T 0, T 2) (W 0, W 2)),
@@ -207,7 +224,9 @@ theorem selectedRefinementPairTripleMass_zero_two_le :
     exact ⟨refinementTriples_subset_transversal hT hWmem.1, hWmem.2⟩
   · intro W _ _; positivity
 
-/-- **Nested `(1,2)` lifting.**-/
+/-- **Nested `(1,2)` lifting.**
+@isnad1 id=le.0h5v.s9.2877851dca3d from=translated src=- shape=0f3a82ff vocab=49ad72c0
+-/
 theorem selectedRefinementPairTripleMass_one_two_le :
     ∑ T ∈ transversalCellTriples Pc,
         ∑ W ∈ (refinementTriples Q T).filter (fun W => sel (T 1, T 2) (W 1, W 2)),

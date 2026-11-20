@@ -67,12 +67,17 @@ def nonInjectiveRelationCount (M : FiniteRelModel L V) {n : ℕ}
   ((nonInjectiveMaps (Fin n) V).filter (M.Holds R)).card
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s6.e6a049db8c08 from=translated src=- shape=30b0a141 vocab=73b5222f
+-/
 theorem relationCount_eq_card_filter_univ (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) :
     relationCount M R = (Finset.univ.filter (M.Holds R)).card := by
   rw [relationCount, relationCountOn, tupleCount, Fintype.piFinset_univ]
 
-/-- **The exact decomposition**: ordered = injective + noninjective.-/
+/-- **The exact decomposition**: ordered = injective + noninjective.
+@isnad1 id=eq.0h5v.s5.992ab003c7db from=translated src=- shape=47915208 vocab=549e7f2b
+-/
 theorem relationCount_eq_injective_add_nonInjective (M : FiniteRelModel L V)
     {n : ℕ} (R : L.Relations n) :
     relationCount M R
@@ -96,7 +101,9 @@ theorem relationCount_eq_injective_add_nonInjective (M : FiniteRelModel L V)
       (p := fun f : Fin n → V => Function.Injective f)]
 
 /-- The collision bound: ordered count at most injective count plus the total
-collision mass (Phase 1).-/
+collision mass (Phase 1).
+@isnad1 id=le.0h5v.s6.e6b92b945935 from=translated src=- shape=fb4c1953 vocab=ac8c3d39
+-/
 theorem relationCount_le_injective_add_collisions (M : FiniteRelModel L V)
     {n : ℕ} (R : L.Relations n) :
     relationCount M R
@@ -104,7 +111,9 @@ theorem relationCount_le_injective_add_collisions (M : FiniteRelModel L V)
   rw [relationCount_eq_injective_add_nonInjective]
   exact Nat.add_le_add_left (Finset.card_filter_le _ _) _
 
-/-- Ordered and injective counts agree when every satisfying tuple is injective.-/
+/-- Ordered and injective counts agree when every satisfying tuple is injective.
+@isnad1 id=eq.1h5v.s5.4dd77cc2b4dd from=translated src=- shape=aa2b7f47 vocab=bc91e782
+-/
 theorem relationCount_eq_injective_of_forall (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n)
     (h : ∀ x : Fin n → V, M.Holds R x → Function.Injective x) :
@@ -116,12 +125,18 @@ theorem relationCount_eq_injective_of_forall (M : FiniteRelModel L V) {n : ℕ}
   exact hf (h f hHolds)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s5.17d5121b32ae from=translated src=- shape=b818b8ac vocab=a4719cba
+-/
 theorem relationCount_le_pow (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) : relationCount M R ≤ Fintype.card V ^ n := by
   rw [relationCount_eq_card_filter_univ]
   refine le_trans (Finset.card_filter_le _ _) (le_of_eq ?_)
   rw [Finset.card_univ, Fintype.card_fun, Fintype.card_fin]
 
+/--
+@isnad1 id=le.0h5v.s5.f4883061fdd8 from=translated src=- shape=b26e2327 vocab=3ac20e2d
+-/
 theorem injectiveRelationCount_le_descFactorial (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) :
     injectiveRelationCount M R ≤ (Fintype.card V).descFactorial n := by
@@ -142,12 +157,18 @@ noncomputable def injectiveRelationDensity (M : FiniteRelModel L V) {n : ℕ}
   (injectiveRelationCount M R : ℝ) / ((Fintype.card V).descFactorial n : ℝ)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s5.601cf26b12c5 from=translated src=- shape=ffdf310f vocab=df62cae6
+-/
 theorem relationDensity_nonneg (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) : 0 ≤ relationDensity M R := by
   rw [relationDensity]
   positivity
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s5.4aa5ed3d38b0 from=translated src=- shape=1ccbfa92 vocab=df62cae6
+-/
 theorem relationDensity_le_one (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) : relationDensity M R ≤ 1 := by
   rw [relationDensity, ← Nat.cast_pow]
@@ -157,11 +178,17 @@ theorem relationDensity_le_one (M : FiniteRelModel L V) {n : ℕ}
   · rw [div_le_one (by exact_mod_cast hpos)]
     exact_mod_cast relationCount_le_pow M R
 
+/--
+@isnad1 id=le.0h5v.s5.25db2671844d from=translated src=- shape=638f5d15 vocab=690e97a4
+-/
 theorem injectiveRelationDensity_nonneg (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) : 0 ≤ injectiveRelationDensity M R := by
   rw [injectiveRelationDensity]
   positivity
 
+/--
+@isnad1 id=le.0h5v.s5.173fd2ef0bf2 from=translated src=- shape=1b63238d vocab=690e97a4
+-/
 theorem injectiveRelationDensity_le_one (M : FiniteRelModel L V) {n : ℕ}
     (R : L.Relations n) : injectiveRelationDensity M R ≤ 1 := by
   rw [injectiveRelationDensity]
@@ -174,7 +201,9 @@ theorem injectiveRelationDensity_le_one (M : FiniteRelModel L V) {n : ℕ}
 /-! ### Transport formulas -/
 
 omit [DecidableEq V] [DecidableEq W] in
-/-- Relabeling preserves the ordered count.-/
+/-- Relabeling preserves the ordered count.
+@isnad1 id=eq.0h7v.s5.2e46b3ccd56d from=translated src=- shape=1711f89d vocab=d4b54c0d
+-/
 theorem relationCount_relabel (M : FiniteRelModel L V) (e : V ≃ W) {n : ℕ}
     (R : L.Relations n) : relationCount (M.relabel e) R = relationCount M R := by
   classical
@@ -193,7 +222,9 @@ theorem relationCount_relabel (M : FiniteRelModel L V) (e : V ≃ W) {n : ℕ}
     rw [this]
     exact hy.2
 
-/-- Relabeling preserves the injective count.-/
+/-- Relabeling preserves the injective count.
+@isnad1 id=eq.0h7v.s5.059d2366ed8e from=translated src=- shape=b65761b5 vocab=7e8e71b0
+-/
 theorem injectiveRelationCount_relabel (M : FiniteRelModel L V) (e : V ≃ W)
     {n : ℕ} (R : L.Relations n) :
     injectiveRelationCount (M.relabel e) R = injectiveRelationCount M R := by
@@ -217,7 +248,9 @@ theorem injectiveRelationCount_relabel (M : FiniteRelModel L V) (e : V ≃ W)
       exact hy.2
 
 omit [Fintype V] [DecidableEq V] in
-/-- Restriction counts on the subtype are box counts on the subset.-/
+/-- Restriction counts on the subtype are box counts on the subset.
+@isnad1 id=eq.0h6v.s6.c55fa057721d from=translated src=- shape=af8ed8b4 vocab=52fc376d
+-/
 theorem relationCount_restrict (M : FiniteRelModel L V) (S : Finset V) {n : ℕ}
     (R : L.Relations n) :
     relationCount (M.restrict S) R = relationCountOn M R fun _ => S := by

@@ -23,14 +23,18 @@ namespace RegularityLemmata
 variable {Omega I : Type*} [Fintype Omega] [Fintype I] [DecidableEq Omega]
 
 omit [Fintype Omega] in
-/-- The union of all bad events has cardinality at most the sum of their cardinalities.-/
+/-- The union of all bad events has cardinality at most the sum of their cardinalities.
+@isnad1 id=le.0h3v.s5.1fc7d3869ba1 from=translated src=- shape=58c9a427 vocab=bbc2e611
+-/
 theorem card_biUnion_le_sum_card (bad : I → Finset Omega) :
     (univ.biUnion bad).card ≤ ∑ i : I, (bad i).card := by
   exact card_biUnion_le
 
 /-- If the sum of bad-event cardinalities is smaller than the finite sample space, some outcome
 avoids every bad event.  This is the exact finite probabilistic-method step used after the
-hypergeometric/permutation concentration estimate.-/
+hypergeometric/permutation concentration estimate.
+@isnad1 id=ex.1h3v.s5.91eb8a2f7c82 from=translated src=- shape=9622dcf5 vocab=2acad63a
+-/
 theorem exists_avoids_all_of_sum_card_lt (bad : I → Finset Omega)
     (hbad : ∑ i : I, (bad i).card < Fintype.card Omega) :
     ∃ omega : Omega, ∀ i : I, omega ∉ bad i := by
@@ -45,7 +49,9 @@ theorem exists_avoids_all_of_sum_card_lt (bad : I → Finset Omega)
   rw [heq, card_univ] at hunion
   exact (lt_irrefl _ hunion)
 
-/-- Uniform-cardinality corollary: at most `|I|` bad-event families, each of size at most `B`.-/
+/-- Uniform-cardinality corollary: at most `|I|` bad-event families, each of size at most `B`.
+@isnad1 id=ex.2h4v.s6.a71b46615900 from=translated src=- shape=4de76b17 vocab=93013f3a
+-/
 theorem exists_avoids_all_of_uniform_bound (bad : I → Finset Omega) (B : ℕ)
     (hcard : ∀ i : I, (bad i).card ≤ B)
     (hsmall : Fintype.card I * B < Fintype.card Omega) :

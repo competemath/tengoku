@@ -40,10 +40,15 @@ def relationKernel (R : α → β → Prop) [DecidableRel R] : RectKernel α β 
 
 variable {R : α → β → Prop} [DecidableRel R] {A : Finset α} {B : Finset β}
 
+/--
+@isnad1 id=eq.0h5v.s5.4380def120b7 from=translated src=- shape=c46d79ed vocab=45bf6d63
+-/
 @[simp] theorem relationKernel_apply (a : α) (b : β) :
     relationKernel R a b = if R a b then 1 else 0 := rfl
 
-/-- Indicators take values in `[0,1]`, on every rectangle.-/
+/-- Indicators take values in `[0,1]`, on every rectangle.
+@isnad1 id=isunitin.0h5v.s4.a40ed72ba161 from=translated src=- shape=d6820874 vocab=52d1152b
+-/
 theorem isUnitIntervalOnRectangle_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) : IsUnitIntervalOnRectangle (relationKernel R) A B := by
   intro a _ b _
@@ -51,7 +56,9 @@ theorem isUnitIntervalOnRectangle_relationKernel (R : α → β → Prop) [Decid
   split <;> norm_num
 
 /-- The indicator's absolute bound is `1` — the weaker signed statement, recorded so a
-consumer working with residuals can use it without reproving.-/
+consumer working with residuals can use it without reproving.
+@isnad1 id=isabsuni.0h5v.s4.d7aa9f112f89 from=translated src=- shape=d6820874 vocab=6cd02dce
+-/
 theorem isAbsUnitBoundedOnRectangle_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) : IsAbsUnitBoundedOnRectangle (relationKernel R) A B :=
   (isUnitIntervalOnRectangle_relationKernel R A B).absBounded (by norm_num) le_rfl
@@ -59,7 +66,9 @@ theorem isAbsUnitBoundedOnRectangle_relationKernel (R : α → β → Prop) [Dec
 /-! ### The pair bridges -/
 
 /-- **The counting bridge**: at uniform weights, the indicator kernel's rectangle sum is the
-pair count.-/
+pair count.
+@isnad1 id=eq.0h5v.s5.a9acf4b96c37 from=translated src=- shape=633ff0d1 vocab=c3512de3
+-/
 theorem rectSum_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) :
     rectSum (relationKernel R) (fun _ => 1) (fun _ => 1) A B = (pairCount R A B : ℝ) := by
@@ -70,20 +79,27 @@ theorem rectSum_relationKernel (R : α → β → Prop) [DecidableRel R]
     rw [relationKernel]
     split <;> norm_num
 
-/-- The same statement through the counting wrapper.-/
+/-- The same statement through the counting wrapper.
+@isnad1 id=eq.0h5v.s5.7e9cf25f9bda from=translated src=- shape=c1dab9a9 vocab=639df08a
+-/
 theorem rectSumCount_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) :
     rectSumCount (relationKernel R) A B = (pairCount R A B : ℝ) :=
   rectSum_relationKernel R A B
 
 /-- **The density bridge**: at uniform weights, the indicator kernel's rectangle average is
-the pair density. Guard-free on both sides — an empty side gives `0` either way.-/
+the pair density. Guard-free on both sides — an empty side gives `0` either way.
+@isnad1 id=eq.0h5v.s5.300dbfa7f772 from=translated src=- shape=8a665ff7 vocab=a9dbdbbd
+-/
 theorem rectAverage_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) :
     rectAverage (relationKernel R) (fun _ => 1) (fun _ => 1) A B = pairDensity R A B := by
   rw [rectAverage, rectSum_relationKernel, finsetMass_one, finsetMass_one,
     pairDensity_eq_count_div]
 
+/--
+@isnad1 id=eq.0h5v.s5.b6b6e1528b46 from=translated src=- shape=0e6d7c7e vocab=d15416ab
+-/
 theorem rectAverageCount_relationKernel (R : α → β → Prop) [DecidableRel R]
     (A : Finset α) (B : Finset β) :
     rectAverageCount (relationKernel R) A B = pairDensity R A B :=
@@ -91,11 +107,15 @@ theorem rectAverageCount_relationKernel (R : α → β → Prop) [DecidableRel R
 
 /-! ### Transpose and complement -/
 
-/-- Transposing the kernel is transposing the relation.-/
+/-- Transposing the kernel is transposing the relation.
+@isnad1 id=eq.0h3v.s5.32cc99d2d00f from=translated src=- shape=ac3d49be vocab=09cc95e3
+-/
 @[simp] theorem relationKernel_op (R : α → β → Prop) [DecidableRel R] :
     (relationKernel R).op = relationKernel (swapRel R) := rfl
 
-/-- The complement's indicator is `1` minus the indicator, pointwise.-/
+/-- The complement's indicator is `1` minus the indicator, pointwise.
+@isnad1 id=eq.0h5v.s6.0f17861e3d55 from=translated src=- shape=395bb1b0 vocab=3415cc19
+-/
 theorem relationKernel_not (R : α → β → Prop) [DecidableRel R] (a : α) (b : β) :
     relationKernel (fun a b => ¬ R a b) a b = 1 - relationKernel R a b := by
   by_cases h : R a b <;> simp [relationKernel, h]
@@ -117,15 +137,23 @@ section RectIndicator
 
 variable [DecidableEq α] [DecidableEq β] {S : Finset α} {T : Finset β}
 
+/--
+@isnad1 id=eq.0h6v.s6.f268da2db2ae from=translated src=- shape=477bff92 vocab=a7bb8851
+-/
 @[simp] theorem rectIndicator_apply (S : Finset α) (T : Finset β) (a : α) (b : β) :
     rectIndicator S T a b = if a ∈ S ∧ b ∈ T then 1 else 0 := rfl
 
+/--
+@isnad1 id=isunitin.0h6v.s5.96c669f3e472 from=translated src=- shape=4f4e5f39 vocab=b1b8a15f
+-/
 theorem isUnitIntervalOnRectangle_rectIndicator (S : Finset α) (T : Finset β) (A : Finset α)
     (B : Finset β) : IsUnitIntervalOnRectangle (rectIndicator S T) A B :=
   isUnitIntervalOnRectangle_relationKernel _ A B
 
 /-- **The rectangle sum of an indicator is the mass of the overlap**: on `S' ×ˢ T'` it is
-`mass (S' ∩ S) · mass (T' ∩ T)`, for arbitrary (signed) weights.-/
+`mass (S' ∩ S) · mass (T' ∩ T)`, for arbitrary (signed) weights.
+@isnad1 id=eq.0h8v.s6.7672add38ab5 from=translated src=- shape=9ee62471 vocab=eef58f1d
+-/
 theorem rectSum_rectIndicator (S : Finset α) (T : Finset β) (wX : α → ℝ) (wY : β → ℝ)
     (S' : Finset α) (T' : Finset β) :
     rectSum (rectIndicator S T) wX wY S' T' = finsetMass wX (S' ∩ S) * finsetMass wY (T' ∩ T) := by
@@ -141,7 +169,9 @@ theorem rectSum_rectIndicator (S : Finset α) (T : Finset β) (wX : α → ℝ) 
     rw [rectIndicator_apply]
     split_ifs with hy <;> simp_all
 
-/-- Transposing a rectangle indicator swaps its sides.-/
+/-- Transposing a rectangle indicator swaps its sides.
+@isnad1 id=eq.0h4v.s5.42d1fcb6a4f8 from=translated src=- shape=e8e85ef6 vocab=88344d9d
+-/
 theorem rectIndicator_op (S : Finset α) (T : Finset β) :
     (rectIndicator S T).op = rectIndicator T S := by
   funext b a
@@ -159,17 +189,24 @@ section RectCombination
 
 variable [DecidableEq α] [DecidableEq β] {n : ℕ}
 
+/--
+@isnad1 id=eq.0h8v.s6.4fe3a3d383d2 from=translated src=- shape=4be6dcf3 vocab=670d56ef
+-/
 @[simp] theorem rectCombination_apply (c : Fin n → ℝ) (S : Fin n → Finset α)
     (T : Fin n → Finset β) (a : α) (b : β) :
     rectCombination c S T a b = ∑ k, c k * rectIndicator (S k) (T k) a b := rfl
 
-/-- The empty combination is the zero kernel.-/
+/-- The empty combination is the zero kernel.
+@isnad1 id=eq.0h5v.s6.017f5a6e05db from=translated src=- shape=1440967a vocab=8e0f097b
+-/
 @[simp] theorem rectCombination_zero (c : Fin 0 → ℝ) (S : Fin 0 → Finset α)
     (T : Fin 0 → Finset β) : rectCombination c S T = fun _ _ => 0 := by
   funext a b; simp [rectCombination]
 
 /-- **Linearity**: the rectangle sum of a combination is the combination of the overlap
-masses, for arbitrary (signed) weights.-/
+masses, for arbitrary (signed) weights.
+@isnad1 id=eq.0h10v.s6.88b2bf16d5cd from=translated src=- shape=f9acd876 vocab=15322a7e
+-/
 theorem rectSum_rectCombination (c : Fin n → ℝ) (S : Fin n → Finset α) (T : Fin n → Finset β)
     (wX : α → ℝ) (wY : β → ℝ) (S' : Finset α) (T' : Finset β) :
     rectSum (rectCombination c S T) wX wY S' T'
@@ -180,7 +217,9 @@ theorem rectSum_rectCombination (c : Fin n → ℝ) (S : Fin n → Finset α) (T
   intro k _
   rw [rectSum_smul, rectSum_rectIndicator]
 
-/-- Appending one weighted rectangle to a combination adds its term pointwise.-/
+/-- Appending one weighted rectangle to a combination adds its term pointwise.
+@isnad1 id=eq.0h9v.s7.4ba0a7ba7745 from=translated src=- shape=a72c5bac vocab=e22b6658
+-/
 theorem rectCombination_snoc (c : Fin n → ℝ) (S : Fin n → Finset α) (T : Fin n → Finset β)
     (a : ℝ) (S₀ : Finset α) (T₀ : Finset β) :
     rectCombination (Fin.snoc c a) (Fin.snoc S S₀) (Fin.snoc T T₀)
@@ -188,7 +227,9 @@ theorem rectCombination_snoc (c : Fin n → ℝ) (S : Fin n → Finset α) (T : 
   funext x y
   simp only [rectCombination_apply, Fin.sum_univ_castSucc, Fin.snoc_castSucc, Fin.snoc_last]
 
-/-- The combination transposes with its rectangles swapped.-/
+/-- The combination transposes with its rectangles swapped.
+@isnad1 id=eq.0h6v.s5.8445a278b452 from=translated src=- shape=e62b1af7 vocab=83ee8d32
+-/
 theorem rectCombination_op (c : Fin n → ℝ) (S : Fin n → Finset α) (T : Fin n → Finset β) :
     (rectCombination c S T).op = rectCombination c T S := by
   funext y x
@@ -214,7 +255,9 @@ variable [DecidableEq α] [DecidableEq β] {wX : α → ℝ} {wY : β → ℝ} {
   {B : Finset β} {S : Finset α} {T : Finset β}
 
 /-- Multiplying by a rectangle indicator restricts the rectangle sum to the rectangle, when the
-rectangle lies inside the carriers.-/
+rectangle lies inside the carriers.
+@isnad1 id=eq.2h9v.s6.ac2102eb6728 from=translated src=- shape=1b9b05f0 vocab=8178c15a
+-/
 theorem rectSum_mul_rectIndicator (f : RectKernel α β) (hS : S ⊆ A) (hT : T ⊆ B) :
     rectSum (fun x y => f x y * rectIndicator S T x y) wX wY A B = rectSum f wX wY S T := by
   rw [rectSum, rectSum, ← Finset.inter_eq_right.mpr hS, ← Finset.inter_eq_right.mpr hT,
@@ -230,7 +273,9 @@ theorem rectSum_mul_rectIndicator (f : RectKernel α β) (hS : S ⊆ A) (hT : T 
     split_ifs with hy <;> simp_all
 
 /-- **The quadratic expansion**, arbitrary coefficient `a`:
-`Φ(f − a·𝟙_{S×T}) = Φ(f) − 2a · rectSum f S T + a² · mass S · mass T`.-/
+`Φ(f − a·𝟙_{S×T}) = Φ(f) − 2a · rectSum f S T + a² · mass S · mass T`.
+@isnad1 id=eq.2h10v.s7.b0be4cf90799 from=translated src=- shape=6fb7a7eb vocab=8e57bae5
+-/
 theorem rectSqMass_sub_smul_rectIndicator (f : RectKernel α β) (hS : S ⊆ A) (hT : T ⊆ B)
     (a : ℝ) :
     rectSqMass (fun x y => f x y - a * rectIndicator S T x y) wX wY A B
@@ -250,7 +295,9 @@ theorem rectSqMass_sub_smul_rectIndicator (f : RectKernel α β) (hS : S ⊆ A) 
 pointwise square by exactly the block energy, `Φ(f − c·𝟙_{S×T}) = Φ(f) − c²·d` with
 `c = rectAverage f S T`. Signed weights are admitted: when the rectangle mass `d` vanishes the
 totalized average is `0` and nothing changes; when `d ≠ 0`, `c · d = rectSum f S T` by
-cancellation.-/
+cancellation.
+@isnad1 id=eq.2h9v.s7.150afd80a741 from=translated src=- shape=08435c2e vocab=6ea1a983
+-/
 theorem rectSqMass_sub_rectAverage_smul_rectIndicator (f : RectKernel α β) (hS : S ⊆ A)
     (hT : T ⊆ B) :
     rectSqMass (fun x y => f x y - rectAverage f wX wY S T * rectIndicator S T x y) wX wY A B

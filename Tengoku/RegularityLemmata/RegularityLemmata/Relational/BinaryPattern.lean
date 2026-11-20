@@ -43,6 +43,9 @@ class AtMostBinary (L : FirstOrder.Language) : Prop where
   /-- No relation symbol above arity two.-/
   relationsEmptyAboveTwo : ∀ n, 2 < n → IsEmpty (L.Relations n)
 
+/--
+@isnad1 id=isempty.1h2v.s4.b3365d54ee4e from=translated src=- shape=6cdb803b vocab=d732e01f
+-/
 theorem isEmpty_relations_of_two_lt (L : FirstOrder.Language) [AtMostBinary L] {n : ℕ}
     (h : 2 < n) : IsEmpty (L.Relations n) :=
   AtMostBinary.relationsEmptyAboveTwo n h
@@ -76,7 +79,9 @@ private theorem comp_cons_one {α β : Type*} (f : α → β) (a : α) :
 
 /-- **The load-bearing reduction.** For **any** `f`, preservation-and-reflection is
 exactly nullary compatibility, vertex-profile agreement, and pair-palette agreement on
-distinct indices (injectivity, the intended domain, is not needed).-/
+distinct indices (injectivity, the intended domain, is not needed).
+@isnad1 id=iff.0h6v.s6.46a89c51f467 from=translated src=- shape=d66de2e1 vocab=00f5fe04
+-/
 theorem preservesAndReflects_iff_profiles_palettes [AtMostBinary L]
     {P : FiniteRelModel L W} {M : FiniteRelModel L V} {f : W → V} :
     PreservesAndReflects P M f ↔ NullaryCompatible P M ∧
@@ -133,7 +138,9 @@ shape. -/
 
 /-- **Same-host transport.** If `f` and `g` agree coordinatewise on vertex profiles and on
 pair palettes at distinct indices, they realize exactly the same patterns of `M`. Nullary
-compatibility does not mention the map, so it transfers unchanged.-/
+compatibility does not mention the map, so it transfers unchanged.
+@isnad1 id=iff.2h7v.s6.823aa04a8209 from=translated src=- shape=45e4a850 vocab=3a54054f
+-/
 theorem preservesAndReflects_transport [AtMostBinary L]
     {P : FiniteRelModel L W} {M : FiniteRelModel L V} {f g : W → V}
     (hprof : ∀ i, binaryVertexProfile M (f i) = binaryVertexProfile M (g i))
@@ -152,7 +159,9 @@ theorem preservesAndReflects_transport [AtMostBinary L]
 /-- **The three-vertex ordered corollary.** For a `Fin 3` index the six distinct-index
 palette hypotheses collapse to the three FORWARD pairs: the reversal law
 `binaryPairPalette_swap` supplies the other three. This is the form an ordered-orbit
-argument uses, where only `(0,1)`, `(0,2)`, `(1,2)` are exhibited.-/
+argument uses, where only `(0,1)`, `(0,2)`, `(1,2)` are exhibited.
+@isnad1 id=iff.4h6v.s8.a10681af146f from=translated src=- shape=42d59cde vocab=b2a21ad5
+-/
 theorem preservesAndReflects_transport_three [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {f g : Fin 3 → V}
     (hprof : ∀ i, binaryVertexProfile M (f i) = binaryVertexProfile M (g i))
@@ -200,7 +209,9 @@ def inducedEmbeddingCountOn (P : FiniteRelModel L W) (M : FiniteRelModel L V)
   ((Fintype.piFinset A).filter fun f =>
     Function.Injective f ∧ PreservesAndReflects P M f).card
 
-/-- On a finite carrier, the count over the full box `fun _ ↦ univ` is `inducedEmbeddingCount`.-/
+/-- On a finite carrier, the count over the full box `fun _ ↦ univ` is `inducedEmbeddingCount`.
+@isnad1 id=eq.0h5v.s5.6abbe53e2349 from=translated src=- shape=400fd7cc vocab=7de033b9
+-/
 theorem inducedEmbeddingCountOn_univ (P : FiniteRelModel L W) (M : FiniteRelModel L V) :
     inducedEmbeddingCountOn P M (fun _ : W => Finset.univ) = inducedEmbeddingCount P M := by
   rw [inducedEmbeddingCountOn, inducedEmbeddingCount, Fintype.piFinset_univ]
@@ -209,7 +220,9 @@ omit [Fintype V] in
 /-- **The restricted falling-factorial ceiling.** Induced embeddings into the box `fun _ ↦ s` are
 injective tuples through `s`, so their number is at most `(|s|)_{|W|}`
 (`card_injectiveTuplesOn`). This is the `c ≤ (|s|)_k` hypothesis of the normalization
-conversion `div_descFactorial_sub_div_pow_le`.-/
+conversion `div_descFactorial_sub_div_pow_le`.
+@isnad1 id=le.0h6v.s5.3aa2470e8e5c from=translated src=- shape=1f2b33db vocab=6af14d35
+-/
 theorem inducedEmbeddingCountOn_le_descFactorial (P : FiniteRelModel L W) (M : FiniteRelModel L V)
     (s : Finset V) :
     inducedEmbeddingCountOn P M (fun _ => s) ≤ s.card.descFactorial (Fintype.card W) := by
@@ -219,7 +232,9 @@ theorem inducedEmbeddingCountOn_le_descFactorial (P : FiniteRelModel L W) (M : F
     exact Finset.mem_filter.mpr ⟨hf.1, hf.2.1⟩
 
 omit [Fintype V] in
-/-- Box monotonicity.-/
+/-- Box monotonicity.
+@isnad1 id=le.1h7v.s6.9da94d88b1d4 from=translated src=- shape=bb28fa5f vocab=cd5f7d4a
+-/
 theorem inducedEmbeddingCountOn_mono (P : FiniteRelModel L W) (M : FiniteRelModel L V)
     {A B : W → Finset V} (h : ∀ w, A w ⊆ B w) :
     inducedEmbeddingCountOn P M A ≤ inducedEmbeddingCountOn P M B := by
@@ -229,7 +244,9 @@ theorem inducedEmbeddingCountOn_mono (P : FiniteRelModel L W) (M : FiniteRelMode
 
 omit [Fintype V] in
 /-- On pairwise-disjoint boxes, injectivity is automatic, so the induced count is the
-count of preservation-and-reflection maps.-/
+count of preservation-and-reflection maps.
+@isnad1 id=eq.1h6v.s6.346faa497be5 from=translated src=- shape=b89b5912 vocab=efec449a
+-/
 theorem inducedEmbeddingCountOn_of_disjoint (P : FiniteRelModel L W)
     (M : FiniteRelModel L V) {A : W → Finset V}
     (hdisj : ∀ i j, i ≠ j → Disjoint (A i) (A j)) :
@@ -243,7 +260,9 @@ theorem inducedEmbeddingCountOn_of_disjoint (P : FiniteRelModel L W)
   exact Finset.disjoint_left.mp (hdisj i j hne) (hg i) (hij ▸ hg j)
 
 omit [Fintype V] in
-/-- A nullary incompatibility forces the induced count to zero.-/
+/-- A nullary incompatibility forces the induced count to zero.
+@isnad1 id=eq.1h6v.s5.97331a38e6d6 from=translated src=- shape=3b01c2c5 vocab=f3d61e43
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_not_nullaryCompatible [AtMostBinary L]
     {P : FiniteRelModel L W} {M : FiniteRelModel L V} {A : W → Finset V}
     (h : ¬NullaryCompatible P M) : inducedEmbeddingCountOn P M A = 0 := by
@@ -252,7 +271,9 @@ theorem inducedEmbeddingCountOn_eq_zero_of_not_nullaryCompatible [AtMostBinary L
   exact h ((preservesAndReflects_iff_profiles_palettes).mp hpar).1
 
 omit [Fintype V] in
-/-- A vertex-profile mismatch forces the induced count to zero.-/
+/-- A vertex-profile mismatch forces the induced count to zero.
+@isnad1 id=eq.1h7v.s6.bcfd290855e4 from=translated src=- shape=d65fc16f vocab=cdc10419
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_profile_mismatch [AtMostBinary L]
     {P : FiniteRelModel L W} {M : FiniteRelModel L V} {A : W → Finset V} {i : W}
     (h : ∀ v ∈ A i, binaryVertexProfile P i ≠ binaryVertexProfile M v) :

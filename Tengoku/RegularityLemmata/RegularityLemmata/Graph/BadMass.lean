@@ -52,12 +52,21 @@ def IsRegularPartition (P : Finpartition s) : Prop :=
 
 variable {P : Finpartition s}
 
+/--
+@isnad1 id=le.0h5v.s5.1219de66d34e from=translated src=- shape=d264cd23 vocab=2ad5a4e5
+-/
 theorem badMassNum_nonneg : 0 ≤ badMassNum R ε P :=
   Finset.sum_nonneg fun uv _ => by positivity
 
+/--
+@isnad1 id=le.0h5v.s5.7a3b2afca5f2 from=translated src=- shape=d264cd23 vocab=9b1ebece
+-/
 theorem badMass_nonneg : 0 ≤ badMass R ε P :=
   div_nonneg (badMassNum_nonneg R ε) (by positivity)
 
+/--
+@isnad1 id=le.0h5v.s6.097640d0fdd4 from=translated src=- shape=13790038 vocab=c531251d
+-/
 theorem badMassNum_le_sq : badMassNum R ε P ≤ (s.card : ℝ) ^ 2 := by
   classical
   calc badMassNum R ε P
@@ -68,6 +77,9 @@ theorem badMassNum_le_sq : badMassNum R ε P ≤ (s.card : ℝ) ^ 2 := by
         rw [Finset.sum_mul_sum, Finset.sum_product]
     _ = (s.card : ℝ) ^ 2 := by rw [sum_card_parts_cast, sq]
 
+/--
+@isnad1 id=le.0h5v.s5.e0c77824e589 from=translated src=- shape=76e036eb vocab=9b1ebece
+-/
 theorem badMass_le_one : badMass R ε P ≤ 1 := by
   unfold badMass
   rcases eq_or_ne ((s.card : ℝ)) 0 with h | h
@@ -79,7 +91,9 @@ theorem badMass_le_one : badMass R ε P ≤ 1 := by
     exact badMassNum_le_sq R ε
 
 /-- Bad mass is antitone in the tolerance: a pair bad at a larger `ε'` is bad at any
-smaller `ε`.-/
+smaller `ε`.
+@isnad1 id=le.1h6v.s5.a0aed90f143b from=translated src=- shape=0cc029e3 vocab=2ad5a4e5
+-/
 theorem badMassNum_anti {ε ε' : ℝ} (hεε : ε ≤ ε') :
     badMassNum R ε' P ≤ badMassNum R ε P := by
   classical
@@ -88,19 +102,28 @@ theorem badMassNum_anti {ε ε' : ℝ} (hεε : ε ≤ ε') :
   rw [Finset.mem_filter] at huv ⊢
   refine ⟨huv.1, huv.2.1, fun hunif => huv.2.2 (hunif.mono hεε)⟩
 
+/--
+@isnad1 id=le.1h6v.s5.23e599e23c0d from=translated src=- shape=0cc029e3 vocab=9b1ebece
+-/
 theorem badMass_anti {ε ε' : ℝ} (hεε : ε ≤ ε') : badMass R ε' P ≤ badMass R ε P :=
   div_le_div_of_nonneg_right (badMassNum_anti R hεε) (by positivity) |>.trans_eq rfl
 
-/-- Regularity is monotone in the tolerance.-/
+/-- Regularity is monotone in the tolerance.
+@isnad1 id=isregula.2h6v.s5.964fa3bbff3c from=translated src=- shape=a1cb1fab vocab=574f8efd
+-/
 theorem IsRegularPartition.mono {ε ε' : ℝ} (hεε : ε ≤ ε')
     (h : IsRegularPartition R ε P) : IsRegularPartition R ε' P :=
   le_trans (badMass_anti R hεε) (le_trans h hεε)
 
-/-- Everything is `1`-regular.-/
+/-- Everything is `1`-regular.
+@isnad1 id=isregula.0h4v.s5.1c9d14dbd656 from=translated src=- shape=59a30b72 vocab=0b9a54ab
+-/
 theorem isRegularPartition_one : IsRegularPartition R 1 P := badMass_le_one R 1
 
 /-- **Raw regularity conversion**: a regular partition has raw bad mass at most
-`ε·|s|²`.-/
+`ε·|s|²`.
+@isnad1 id=le.1h5v.s6.868a4cb21218 from=translated src=- shape=be99551f vocab=ba581ae0
+-/
 theorem badMassNum_le_of_isRegularPartition (h : IsRegularPartition R ε P) :
     badMassNum R ε P ≤ ε * (s.card : ℝ) ^ 2 := by
   rcases eq_or_ne ((s.card : ℝ)) 0 with h0 | h0

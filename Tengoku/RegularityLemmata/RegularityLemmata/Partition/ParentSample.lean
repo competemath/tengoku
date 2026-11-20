@@ -41,7 +41,9 @@ structure TiledSliceCert (A : Finset α) (F : Finset (Finset α)) (m s t : ℕ) 
 
 open Classical in
 /-- **The per-parent sample exists** under the active-trace ratio inequality (stated over the
-rekeyed subtype family; inactive traces are discharged exactly by the sampler).-/
+rekeyed subtype family; inactive traces are discharged exactly by the sampler).
+@isnad1 id=nonempty.5h6v.s8.b7efb1b0a5b9 from=translated src=- shape=4d77fe4e vocab=60e319c2
+-/
 theorem tiledSliceCert_exists (A : Finset α) (F : Finset (Finset α)) {m s t : ℕ}
     (hA : A.card = m * s) (hs : 0 < s) (ht : t < s)
     (hchoose : 0 < (m * s).choose s)

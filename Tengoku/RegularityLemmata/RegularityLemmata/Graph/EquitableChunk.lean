@@ -73,11 +73,16 @@ def chunkRem (P : Finpartition s) : ℕ :=
 
 variable {P : Finpartition s}
 
+/--
+@isnad1 id=lt.0h3v.s5.fd137d827e7c from=translated src=- shape=0c07ed09 vocab=178df0d2
+-/
 theorem chunkRem_lt : chunkRem P < familyChunksPerPart P.parts.card :=
   Nat.mod_lt _ (familyChunksPerPart_pos _)
 
 /-- The parent cell size decomposition: the average cell size splits into
-`familyChunksPerPart #P.parts` chunks of size `chunkSize P`, plus the remainder.-/
+`familyChunksPerPart #P.parts` chunks of size `chunkSize P`, plus the remainder.
+@isnad1 id=eq.0h3v.s6.a491b0e0c084 from=translated src=- shape=4a9fa600 vocab=0718055f
+-/
 theorem chunkSize_mul_add_chunkRem :
     chunkSize P * familyChunksPerPart P.parts.card + chunkRem P = s.card / P.parts.card := by
   rw [chunkSize, chunkRem, familyStepBound, ← Nat.div_div_eq_div_mul]
@@ -92,7 +97,9 @@ private theorem equitabilise_card_aux {q a m N : ℕ} (ha : a ≤ q) (h : N = m 
     Nat.mul_comm]
 
 /-- A parent cell of average size is chunked as `q - a` chunks of size `m` and `a` of size
-`m + 1` (mathlib's `card_aux₁`).-/
+`m + 1` (mathlib's `card_aux₁`).
+@isnad1 id=eq.1h4v.s7.06a8be42c4db from=translated src=- shape=549aa453 vocab=7c665727
+-/
 theorem chunk_card_aux₁ {C : Finset α}
     (hC : C.card = chunkSize P * familyChunksPerPart P.parts.card + chunkRem P) :
     (familyChunksPerPart P.parts.card - chunkRem P) * chunkSize P
@@ -101,7 +108,9 @@ theorem chunk_card_aux₁ {C : Finset α}
 
 /-- A parent cell one larger than average is chunked as `q - (a + 1)` chunks of size `m` and
 `a + 1` of size `m + 1` (mathlib's `card_aux₂`). The equipartition hypothesis is what rules
-out every other cell size.-/
+out every other cell size.
+@isnad1 id=eq.3h4v.s7.16191b5e6d67 from=translated src=- shape=26f36525 vocab=ac0a669a
+-/
 theorem chunk_card_aux₂ (hP : P.IsEquipartition) {C : Finset α} (hC : C ∈ P.parts)
     (hCcard : C.card ≠ chunkSize P * familyChunksPerPart P.parts.card + chunkRem P) :
     (familyChunksPerPart P.parts.card - (chunkRem P + 1)) * chunkSize P
@@ -113,13 +122,18 @@ theorem chunk_card_aux₂ (hP : P.IsEquipartition) {C : Finset α} (hC : C ∈ P
 
 /-! ### Positivity and host-size room -/
 
+/--
+@isnad1 id=lt.1h4v.s6.a5f4c416c4a6 from=translated src=- shape=4a08f379 vocab=96d01780
+-/
 theorem familyStepBound_pos_of_mem {C : Finset α} (hC : C ∈ P.parts) :
     0 < familyStepBound P.parts.card :=
   familyStepBound_pos (Finset.card_pos.mpr ⟨C, hC⟩)
 
 /-- **The step is nondegenerate exactly when the host is large enough**: if the host admits
 the step's part count, the common chunk size is positive. This is what lets
-`Finpartition.card_parts_equitabilise` count parts.-/
+`Finpartition.card_parts_equitabilise` count parts.
+@isnad1 id=lt.2h4v.s6.3131366886d8 from=translated src=- shape=46ef6202 vocab=33f596b2
+-/
 theorem chunkSize_pos {C : Finset α} (hC : C ∈ P.parts)
     (hs : familyStepBound P.parts.card ≤ s.card) : 0 < chunkSize P :=
   Nat.div_pos hs (familyStepBound_pos_of_mem hC)
@@ -127,7 +141,9 @@ theorem chunkSize_pos {C : Finset α} (hC : C ∈ P.parts)
 /-- **Room for the prescribed chunks**: if the host admits the step's part count, then EVERY
 cell of the equipartition is at least as large as the number of chunks it must be cut into.
 This is the positivity needed to create `familyChunksPerPart #P.parts` nonempty local
-chunks.-/
+chunks.
+@isnad1 id=le.3h4v.s6.0aada0482ada from=translated src=- shape=9a631843 vocab=78a44e50
+-/
 theorem familyChunksPerPart_le_card_part (hP : P.IsEquipartition)
     (hs : familyStepBound P.parts.card ≤ s.card) {C : Finset α} (hC : C ∈ P.parts) :
     familyChunksPerPart P.parts.card ≤ C.card := by
@@ -158,7 +174,9 @@ noncomputable def equitableChunk (hP : P.IsEquipartition) {C : Finset α} (hC : 
     (Finpartition.atomise C (witnessCuts R ε P C)).equitabilise (chunk_card_aux₂ hP hC hCcard)
 
 /-- **Every chunk has the common global size** `chunkSize P` or `chunkSize P + 1` — the same
-`chunkSize P` in every parent cell, which is what makes the global result an equipartition.-/
+`chunkSize P` in every parent cell, which is what makes the global result an equipartition.
+@isnad1 id=or.3h7v.s7.59152103d5f7 from=translated src=- shape=a5f07850 vocab=587ccb73
+-/
 theorem card_equitableChunk_part (hP : P.IsEquipartition) {C : Finset α} (hC : C ∈ P.parts)
     {t : Finset α} (ht : t ∈ (equitableChunk R ε hP hC).parts) :
     t.card = chunkSize P ∨ t.card = chunkSize P + 1 := by
@@ -166,7 +184,9 @@ theorem card_equitableChunk_part (hP : P.IsEquipartition) {C : Finset α} (hC : 
   split_ifs at ht <;> exact Finpartition.card_eq_of_mem_parts_equitabilise ht
 
 /-- **Exactly `familyChunksPerPart #P.parts` chunks in every parent cell** — the same count
-in each, which is what makes the global part count exact.-/
+in each, which is what makes the global part count exact.
+@isnad1 id=eq.3h6v.s6.ee409ed56983 from=translated src=- shape=9a210bc9 vocab=b48f1bf9
+-/
 theorem card_equitableChunk_parts (hP : P.IsEquipartition)
     (hs : familyStepBound P.parts.card ≤ s.card) {C : Finset α} (hC : C ∈ P.parts) :
     (equitableChunk R ε hP hC).parts.card = familyChunksPerPart P.parts.card := by
@@ -185,26 +205,35 @@ equipartition `P` is cut into the same number of chunks of the same global size.
 noncomputable def equitableIncrement (hP : P.IsEquipartition) : Finpartition s :=
   P.bind fun _ hC => equitableChunk R ε hP hC
 
+/--
+@isnad1 id=iff.1h6v.s7.4c0a0fe80dc0 from=translated src=- shape=7e6b9492 vocab=98e1fa49
+-/
 theorem mem_equitableIncrement {hP : P.IsEquipartition} {b : Finset α} :
     b ∈ (equitableIncrement R ε hP).parts ↔
       ∃ C, ∃ hC : C ∈ P.parts, b ∈ (equitableChunk R ε hP hC).parts :=
   Finpartition.mem_bind
 
 /-- **The increment refines the parent partition.** Immediate: each chunk is a part of a
-`Finpartition C` for a cell `C` of `P`. No claim about the atomisation is made.-/
+`Finpartition C` for a cell `C` of `P`. No claim about the atomisation is made.
+@isnad1 id=le.1h5v.s6.b5ff403ee575 from=translated src=- shape=d4ccfd76 vocab=2594f8e9
+-/
 theorem equitableIncrement_le (hP : P.IsEquipartition) : equitableIncrement R ε hP ≤ P := by
   intro b hb
   obtain ⟨C, hC, hb⟩ := (mem_equitableIncrement R ε).mp hb
   exact ⟨C, hC, (equitableChunk R ε hP hC).le hb⟩
 
-/-- Every part of the increment has the common size `chunkSize P` or `chunkSize P + 1`.-/
+/-- Every part of the increment has the common size `chunkSize P` or `chunkSize P + 1`.
+@isnad1 id=or.2h6v.s6.c5542d7a7177 from=translated src=- shape=8f2f5a0c vocab=ca3bf33a
+-/
 theorem card_equitableIncrement_part (hP : P.IsEquipartition) {b : Finset α}
     (hb : b ∈ (equitableIncrement R ε hP).parts) :
     b.card = chunkSize P ∨ b.card = chunkSize P + 1 := by
   obtain ⟨C, hC, hb⟩ := (mem_equitableIncrement R ε).mp hb
   exact card_equitableChunk_part R ε hP hC hb
 
-/-- **The increment is an equipartition** — with the same `chunkSize P` across all parents.-/
+/-- **The increment is an equipartition** — with the same `chunkSize P` across all parents.
+@isnad1 id=isequipa.1h5v.s5.8fb13a361ab1 from=translated src=- shape=4cef9f4a vocab=238d4ebd
+-/
 theorem equitableIncrement_isEquipartition (hP : P.IsEquipartition) :
     (equitableIncrement R ε hP).IsEquipartition :=
   Set.equitableOn_iff_exists_eq_eq_add_one.2
@@ -212,7 +241,9 @@ theorem equitableIncrement_isEquipartition (hP : P.IsEquipartition) :
 
 /-- **The exact global part count**: `#P.parts` parents, each cut into
 `familyChunksPerPart #P.parts` chunks, is exactly the step bound
-`familyStepBound #P.parts` the numerical schedule iterates.-/
+`familyStepBound #P.parts` the numerical schedule iterates.
+@isnad1 id=eq.2h5v.s6.9a0d3af666a0 from=translated src=- shape=2f8a172b vocab=d962628e
+-/
 theorem card_equitableIncrement_parts (hP : P.IsEquipartition)
     (hs : familyStepBound P.parts.card ≤ s.card) :
     (equitableIncrement R ε hP).parts.card = familyStepBound P.parts.card := by

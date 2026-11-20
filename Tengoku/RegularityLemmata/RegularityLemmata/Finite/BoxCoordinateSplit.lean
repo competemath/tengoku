@@ -60,9 +60,15 @@ def boxLeft (σ : CoordinateSplit n) (A : FiniteBox V) :
 def boxRight (σ : CoordinateSplit n) (A : FiniteBox V) :
     FiniteBox (fun i : σ.Right => V i.1) := fun i => A i.1
 
+/--
+@isnad1 id=eq.0h5v.s6.1b011f024285 from=translated src=- shape=7af302b9 vocab=058baaee
+-/
 @[simp] theorem boxLeft_apply (σ : CoordinateSplit n) (A : FiniteBox V) (i : σ.Left) :
     σ.boxLeft A i = A i.1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.1c39c858cea3 from=translated src=- shape=d0d9ab9a vocab=b1c01655
+-/
 @[simp] theorem boxRight_apply (σ : CoordinateSplit n) (A : FiniteBox V) (i : σ.Right) :
     σ.boxRight A i = A i.1 := rfl
 
@@ -72,25 +78,39 @@ def boxGlue (σ : CoordinateSplit n) (AL : FiniteBox (fun i : σ.Left => V i.1))
     (AR : FiniteBox (fun i : σ.Right => V i.1)) : FiniteBox V :=
   fun i => if h : i ∈ σ.left then AL ⟨i, h⟩ else AR ⟨i, h⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.0de7809d9229 from=translated src=- shape=94bba201 vocab=5da97350
+-/
 @[simp] theorem boxGlue_apply_left (σ : CoordinateSplit n)
     (AL : FiniteBox (fun i : σ.Left => V i.1)) (AR : FiniteBox (fun i : σ.Right => V i.1))
     (i : σ.Left) : σ.boxGlue AL AR i.1 = AL i := by
   rw [boxGlue, dite_eq_left i.2]
 
+/--
+@isnad1 id=eq.0h6v.s7.58beb5541041 from=translated src=- shape=41a8c559 vocab=5da97350
+-/
 @[simp] theorem boxGlue_apply_right (σ : CoordinateSplit n)
     (AL : FiniteBox (fun i : σ.Left => V i.1)) (AR : FiniteBox (fun i : σ.Right => V i.1))
     (i : σ.Right) : σ.boxGlue AL AR i.1 = AR i := by
   rw [boxGlue, dite_eq_right i.2]
 
+/--
+@isnad1 id=eq.0h5v.s7.89defc5caad5 from=translated src=- shape=0f55e5be vocab=835b1309
+-/
 @[simp] theorem boxLeft_boxGlue (σ : CoordinateSplit n)
     (AL : FiniteBox (fun i : σ.Left => V i.1)) (AR : FiniteBox (fun i : σ.Right => V i.1)) :
     σ.boxLeft (σ.boxGlue AL AR) = AL := funext fun i => boxGlue_apply_left σ AL AR i
 
+/--
+@isnad1 id=eq.0h5v.s7.58ac42d73639 from=translated src=- shape=5abfaabc vocab=11c58e2c
+-/
 @[simp] theorem boxRight_boxGlue (σ : CoordinateSplit n)
     (AL : FiniteBox (fun i : σ.Left => V i.1)) (AR : FiniteBox (fun i : σ.Right => V i.1)) :
     σ.boxRight (σ.boxGlue AL AR) = AR := funext fun i => boxGlue_apply_right σ AL AR i
 
-/-- **Gluing the two restrictions recovers the box.**-/
+/-- **Gluing the two restrictions recovers the box.**
+@isnad1 id=eq.0h4v.s5.7a92de8505a8 from=translated src=- shape=eee8c4eb vocab=f4d080b5
+-/
 @[simp] theorem boxGlue_boxLeft_boxRight (σ : CoordinateSplit n) (A : FiniteBox V) :
     σ.boxGlue (σ.boxLeft A) (σ.boxRight A) = A := by
   funext i
@@ -100,7 +120,9 @@ def boxGlue (σ : CoordinateSplit n) (AL : FiniteBox (fun i : σ.Left => V i.1))
 /-! ### Tuple membership across the split -/
 
 /-- **A tuple lies in a box exactly when both of its halves lie in the corresponding side
-boxes.** The membership counterpart of `splitEquiv`.-/
+boxes.** The membership counterpart of `splitEquiv`.
+@isnad1 id=iff.0h5v.s9.a9d21bf54b4c from=translated src=- shape=14197d43 vocab=628ff226
+-/
 theorem mem_tuples_iff_split (σ : CoordinateSplit n) (A : FiniteBox V) (x : ∀ i, V i) :
     x ∈ A.tuples ↔
       σ.restrictLeft x ∈ (σ.boxLeft A).tuples ∧ σ.restrictRight x ∈ (σ.boxRight A).tuples := by
@@ -114,7 +136,9 @@ theorem mem_tuples_iff_split (σ : CoordinateSplit n) (A : FiniteBox V) (x : ∀
     · exact hR ⟨i, hi⟩
 
 /-- The same statement read through `splitEquiv`, so the two halves are literally the components
-of the transported tuple.-/
+of the transported tuple.
+@isnad1 id=iff.0h5v.s10.dbbcc765ecf9 from=translated src=- shape=67304697 vocab=b2cd8d85
+-/
 theorem mem_tuples_iff_splitEquiv (σ : CoordinateSplit n) (A : FiniteBox V) (x : ∀ i, V i) :
     x ∈ A.tuples ↔
       (σ.splitEquiv V x).1 ∈ (σ.boxLeft A).tuples ∧
@@ -127,7 +151,9 @@ A box's mass is a product over coordinates, and a product over all coordinates s
 product over the chosen ones times the product over the rest. Nothing about signs enters, so
 these hold for signed weights. -/
 
-/-- **The mass of a box factorizes across a split.**-/
+/-- **The mass of a box factorizes across a split.**
+@isnad1 id=eq.0h5v.s8.280a316df61a from=translated src=- shape=10009cc0 vocab=203934e7
+-/
 theorem boxMass_split (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ) (A : FiniteBox V) :
     boxMass w A
       = boxMass (V := fun i : σ.Left => V i.1) (fun i => w i.1) (σ.boxLeft A)
@@ -139,7 +165,9 @@ theorem boxMass_split (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ) (A : Fin
   · exact Finset.prod_subtype (M := ℝ) (p := fun i => i ∉ σ.left) σ.leftᶜ
       (fun _ => Finset.mem_compl) fun i => finsetMass (w i) (A i)
 
-/-- **The mass of a glued box is the product of the side masses.**-/
+/-- **The mass of a glued box is the product of the side masses.**
+@isnad1 id=eq.0h6v.s8.7718f9292a99 from=translated src=- shape=d0cd4909 vocab=00ec6d9c
+-/
 theorem boxMass_glue (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ)
     (AL : FiniteBox (fun i : σ.Left => V i.1)) (AR : FiniteBox (fun i : σ.Right => V i.1)) :
     boxMass w (σ.boxGlue AL AR)
@@ -150,14 +178,21 @@ theorem boxMass_glue (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ)
 /-! ### Naturality -/
 
 /-- **Swapping the split exchanges the two side boxes.** The index equivalences of
-`CoordinateSplit` carry the correspondence, so this is cast-free.-/
+`CoordinateSplit` carry the correspondence, so this is cast-free.
+@isnad1 id=eq.0h5v.s7.75e9194c0ae2 from=translated src=- shape=1280d553 vocab=4ea31b1f
+-/
 @[simp] theorem boxLeft_swap (σ : CoordinateSplit n) (A : FiniteBox V) (i : σ.swap.Left) :
     σ.swap.boxLeft A i = σ.boxRight A (σ.swapLeftEquiv i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f04c45ace563 from=translated src=- shape=42b6518b vocab=8fe6df74
+-/
 @[simp] theorem boxRight_swap (σ : CoordinateSplit n) (A : FiniteBox V) (i : σ.swap.Right) :
     σ.swap.boxRight A i = σ.boxLeft A (σ.swapRightEquiv i) := rfl
 
-/-- **The factorization is symmetric under swapping**, the two factors exchanging places.-/
+/-- **The factorization is symmetric under swapping**, the two factors exchanging places.
+@isnad1 id=eq.0h5v.s9.647c083a9279 from=translated src=- shape=aa1b154e vocab=f510d9bf
+-/
 theorem boxMass_split_swap (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ) (A : FiniteBox V) :
     boxMass (V := fun i : σ.swap.Left => V i.1) (fun i => w i.1) (σ.swap.boxLeft A)
         * boxMass (V := fun i : σ.swap.Right => V i.1) (fun i => w i.1) (σ.swap.boxRight A)
@@ -165,12 +200,17 @@ theorem boxMass_split_swap (σ : CoordinateSplit n) (w : ∀ i, V i → ℝ) (A 
         * boxMass (V := fun i : σ.Right => V i.1) (fun i => w i.1) (σ.boxRight A) := by
   rw [← boxMass_split σ.swap w A, ← boxMass_split σ w A]
 
-/-- **Coordinate reindexing commutes with restriction to a side.**-/
+/-- **Coordinate reindexing commutes with restriction to a side.**
+@isnad1 id=eq.0h6v.s7.814ab963c470 from=translated src=- shape=ded958f6 vocab=ab6800be
+-/
 @[simp] theorem boxLeft_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) (A : FiniteBox V)
     (i : (σ.reindex π).Left) :
     (σ.reindex π).boxLeft (V := fun i => V (π i)) (fun i => A (π i)) i
       = σ.boxLeft A (σ.reindexLeftEquiv π i) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.402e77390f8a from=translated src=- shape=77823a86 vocab=8eafff28
+-/
 @[simp] theorem boxRight_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) (A : FiniteBox V)
     (i : (σ.reindex π).Right) :
     (σ.reindex π).boxRight (V := fun i => V (π i)) (fun i => A (π i)) i
@@ -182,7 +222,9 @@ The empty and full splits are legal — `CoordinateSplit` makes properness a pre
 field — and these are the statements a consumer needs so that a degenerate side reads as the
 multiplicative unit rather than as `0`. -/
 
-/-- **An empty split has no left coordinates**, so its left factor is the empty product `1`.-/
+/-- **An empty split has no left coordinates**, so its left factor is the empty product `1`.
+@isnad1 id=eq.1h5v.s7.b30e0d9d3c28 from=translated src=- shape=3fb58d68 vocab=0f7eddd6
+-/
 theorem boxMass_boxLeft_of_left_eq_empty (σ : CoordinateSplit n) (hσ : σ.left = ∅)
     (w : ∀ i, V i → ℝ) (A : FiniteBox V) :
     boxMass (V := fun i : σ.Left => V i.1) (fun i => w i.1) (σ.boxLeft A) = 1 := by
@@ -194,13 +236,17 @@ theorem boxMass_boxLeft_of_left_eq_empty (σ : CoordinateSplit n) (hσ : σ.left
     exact Finset.notMem_empty j hj⟩
   exact boxMass_of_isEmpty _ _
 
-/-- …so an empty split leaves the mass on the right factor alone.-/
+/-- …so an empty split leaves the mass on the right factor alone.
+@isnad1 id=eq.1h5v.s7.51044cdd8bba from=translated src=- shape=bb116552 vocab=01bcdcda
+-/
 theorem boxMass_of_left_eq_empty (σ : CoordinateSplit n) (hσ : σ.left = ∅) (w : ∀ i, V i → ℝ)
     (A : FiniteBox V) :
     boxMass w A = boxMass (V := fun i : σ.Right => V i.1) (fun i => w i.1) (σ.boxRight A) := by
   rw [boxMass_split σ w A, boxMass_boxLeft_of_left_eq_empty σ hσ, one_mul]
 
-/-- **A full split has no right coordinates**, so its right factor is the empty product `1`.-/
+/-- **A full split has no right coordinates**, so its right factor is the empty product `1`.
+@isnad1 id=eq.1h5v.s7.06167fc56569 from=translated src=- shape=30d602ba vocab=e9ac8576
+-/
 theorem boxMass_boxRight_of_left_eq_univ (σ : CoordinateSplit n) (hσ : σ.left = Finset.univ)
     (w : ∀ i, V i → ℝ) (A : FiniteBox V) :
     boxMass (V := fun i : σ.Right => V i.1) (fun i => w i.1) (σ.boxRight A) = 1 := by
@@ -210,7 +256,9 @@ theorem boxMass_boxRight_of_left_eq_univ (σ : CoordinateSplit n) (hσ : σ.left
     exact hj (Finset.mem_univ j)⟩
   exact boxMass_of_isEmpty _ _
 
-/-- …so a full split leaves the mass on the left factor alone.-/
+/-- …so a full split leaves the mass on the left factor alone.
+@isnad1 id=eq.1h5v.s7.40b54ec96cb0 from=translated src=- shape=7cc26fe1 vocab=f1bdbc5f
+-/
 theorem boxMass_of_left_eq_univ (σ : CoordinateSplit n) (hσ : σ.left = Finset.univ)
     (w : ∀ i, V i → ℝ) (A : FiniteBox V) :
     boxMass w A = boxMass (V := fun i : σ.Left => V i.1) (fun i => w i.1) (σ.boxLeft A) := by

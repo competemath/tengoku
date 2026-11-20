@@ -71,20 +71,30 @@ bound, started at the ε-dependent initial floor. Host-independent — it mentio
 noncomputable def familyRegularityBound (K : ℕ) (ε : ℝ) (l : ℕ) : ℕ :=
   familyRegularityBoundAux (familyFuel K ε) (familyInitialBound familyChunkThreshold ε l)
 
+/--
+@isnad1 id=eq.0h1v.s4.d538c320dac2 from=translated src=- shape=004a7881 vocab=dd49d9c8
+-/
 theorem familyFuel_zero (ε : ℝ) : familyFuel 0 ε = 0 := by
   rw [familyFuel]
   norm_num
 
+/--
+@isnad1 id=le.0h3v.s4.b4a652779442 from=translated src=- shape=791015cc vocab=9617b01c
+-/
 theorem le_familyRegularityBound (K : ℕ) (ε : ℝ) (l : ℕ) :
     familyInitialBound familyChunkThreshold ε l ≤ familyRegularityBound K ε l :=
   le_familyRegularityBoundAux _ _
 
-/-- The requested part count is met: `l` never exceeds the final bound.-/
+/-- The requested part count is met: `l` never exceeds the final bound.
+@isnad1 id=le.0h3v.s3.430451c882c2 from=translated src=- shape=24aa6d92 vocab=31fa52ed
+-/
 theorem le_familyRegularityBound_of_le (K : ℕ) (ε : ℝ) (l : ℕ) :
     l ≤ familyRegularityBound K ε l :=
   le_trans (le_familyInitialBound _ _ _) (le_familyRegularityBound K ε l)
 
-/-- **The fuel is enough**: `K` steps' worth of gain at `ε⁵/5` each exhausts the ceiling.-/
+/-- **The fuel is enough**: `K` steps' worth of gain at `ε⁵/5` each exhausts the ceiling.
+@isnad1 id=le.1h2v.s5.326bd8154d9f from=translated src=- shape=cb9d581f vocab=50e039d4
+-/
 theorem card_le_familyFuel_mul (hε : 0 < ε) (K : ℕ) :
     (K : ℝ) ≤ (familyFuel K ε : ℝ) * (familyRetainedFraction * ε ^ 5) := by
   have hε5 : (0 : ℝ) < ε ^ 5 := by positivity
@@ -103,7 +113,9 @@ theorem card_le_familyFuel_mul (hε : 0 < ε) (K : ℕ) :
 
 The host hypothesis is the part count the LAST of the `t` steps could reach — no more:
 at fuel `t + 1` it unfolds to the fuel-`t` hypothesis for the stepped partition and
-dominates the single step taken now, and at fuel `0` it is not used at all.-/
+dominates the single step taken now, and at fuel `0` it is not used at all.
+@isnad1 id=ex.6h8v.s8.cd3fca46f79c from=translated src=- shape=7d8a9963 vocab=e30be6be
+-/
 theorem familyRegularity_iterate (hε : 0 < ε) (hε1 : ε ≤ 1) {l : ℕ} :
     ∀ (t : ℕ) (P : Finpartition s), P.IsEquipartition →
       familyInitialBound familyChunkThreshold ε l ≤ P.parts.card →
@@ -166,7 +178,9 @@ the produced part count itself — no room is asked for a step that never happen
 
 No symmetry is assumed anywhere. The bound is host-independent; the host hypothesis is a
 lower bound on `#s`, not on the bound. Ordinary off-diagonal regularity only — equitable
-STRONG regularity stays deferred (`ARCHITECTURE.md`), and no tower-type claim is made.-/
+STRONG regularity stays deferred (`ARCHITECTURE.md`), and no tower-type claim is made.
+@isnad1 id=ex.3h6v.s7.18d7b1ea5223 from=translated src=- shape=cbcce8e6 vocab=9279144f
+-/
 theorem exists_familyRegular_equipartition (Rk : Fin K → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (hε : 0 < ε) (hε1 : ε ≤ 1) (l : ℕ)
     (hs : familyRegularityBound K ε l ≤ s.card) :
@@ -199,7 +213,9 @@ theorem exists_familyRegular_equipartition (Rk : Fin K → α → α → Prop)
 /-- **The `K = 0` endpoint.** The empty family needs no steps: the fuel is `0` and the
 bound is the initial floor itself, so the summit returns an equipartition of the requested
 size, family-regular for vacuous reasons — and its host requirement is just enough
-vertices for that initial equipartition.-/
+vertices for that initial equipartition.
+@isnad1 id=eq.0h2v.s4.d0a28f28d4d6 from=translated src=- shape=8ca0490d vocab=a53997de
+-/
 theorem familyRegularityBound_zero (ε : ℝ) (l : ℕ) :
     familyRegularityBound 0 ε l = familyInitialBound familyChunkThreshold ε l := by
   rw [familyRegularityBound, familyFuel_zero, familyRegularityBoundAux]

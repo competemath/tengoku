@@ -64,7 +64,9 @@ This is the shared content of every "aggregate gap bounds each component's gap" 
 the library: the family energy over `Fin K` here, and the palette energy over
 `BinaryPairPalette L` in `RegularityLemmata/Relational/BinaryStrong.lean`. It is stated for an
 arbitrary
-finite index type because neither consumer needs anything more.-/
+finite index type because neither consumer needs anything more.
+@isnad1 id=le.2h5v.s6.e674d5146b19 from=translated src=- shape=2c39356c vocab=c9befd04
+-/
 theorem summand_le_add_of_sum_le_add {ι : Type*} [Fintype ι]
     {f g : ι → ℝ} (hmono : ∀ i, g i ≤ f i) {δ : ℝ}
     (h : ∑ i, f i ≤ ∑ i, g i + δ) (i : ι) : f i ≤ g i + δ := by
@@ -87,7 +89,9 @@ relation of the family the same gap. The other `K − 1` summands are monotone u
 refinement, so they cancel from both sides rather than absorbing the slack.
 
 This is the direction opposite to `familyEnergy_add_le_of_component`, which lifts a
-component *gain* to the family; here a family *gap* descends to every component.-/
+component *gain* to the family; here a family *gap* descends to every component.
+@isnad1 id=le.2h8v.s7.7410d98fd91e from=translated src=- shape=14877604 vocab=efa2e0ac
+-/
 theorem energy_le_of_familyEnergy_le {Q P : Finpartition s} (hQP : Q ≤ P) {δ : ℝ}
     (h : familyEnergy Rk Q ≤ familyEnergy Rk P + δ) (k : Fin K) :
     energy (Rk k) Q ≤ energy (Rk k) P + δ :=
@@ -124,21 +128,33 @@ round.-/
 noncomputable def familyMonoStepBound (E : ErrorSchedule) (K m : ℕ) : ℕ :=
   (Finset.range (m + 1)).sup fun j => regularityBound ⌈(K : ℝ) / (E j) ^ 5⌉₊ j
 
+/--
+@isnad1 id=le.0h3v.s5.07c2def7930f from=translated src=- shape=0939d2a5 vocab=8e2da9c1
+-/
 theorem familyStepBound_le_familyMonoStepBound (E : ErrorSchedule) (K m : ℕ) :
     regularityBound ⌈(K : ℝ) / (E m) ^ 5⌉₊ m ≤ familyMonoStepBound E K m := by
   unfold familyMonoStepBound
   exact Finset.le_sup (f := fun j => regularityBound ⌈(K : ℝ) / (E j) ^ 5⌉₊ j)
     (Finset.self_mem_range_succ m)
 
+/--
+@isnad1 id=le.0h3v.s3.a8960ec2dd8b from=translated src=- shape=c960e0f0 vocab=c7dae207
+-/
 theorem le_familyMonoStepBound (E : ErrorSchedule) (K m : ℕ) :
     m ≤ familyMonoStepBound E K m :=
   le_trans (le_regularityBound _ _) (familyStepBound_le_familyMonoStepBound E K m)
 
+/--
+@isnad1 id=le.1h4v.s4.7933548bb175 from=translated src=- shape=f46c1e06 vocab=c7dae207
+-/
 theorem familyMonoStepBound_mono (E : ErrorSchedule) (K : ℕ) {m m' : ℕ} (h : m ≤ m') :
     familyMonoStepBound E K m ≤ familyMonoStepBound E K m' := by
   unfold familyMonoStepBound
   exact Finset.sup_mono (Finset.range_subset_range.mpr (Nat.succ_le_succ h))
 
+/--
+@isnad1 id=le.1h5v.s5.551d201db815 from=translated src=- shape=8959b313 vocab=d035c648
+-/
 theorem familyMonoStepBound_iterate_mono (E : ErrorSchedule) (K i : ℕ) {m m' : ℕ}
     (h : m ≤ m') :
     (familyMonoStepBound E K)^[i] m ≤ (familyMonoStepBound E K)^[i] m' := by
@@ -148,6 +164,9 @@ theorem familyMonoStepBound_iterate_mono (E : ErrorSchedule) (K i : ℕ) {m m' :
     rw [Function.iterate_succ_apply, Function.iterate_succ_apply]
     exact IH (familyMonoStepBound_mono E K h)
 
+/--
+@isnad1 id=le.0h4v.s4.0c0ac6d95d48 from=translated src=- shape=9d8813d1 vocab=d035c648
+-/
 theorem le_familyMonoStepBound_iterate (E : ErrorSchedule) (K i m : ℕ) :
     m ≤ (familyMonoStepBound E K)^[i] m := by
   induction i with
@@ -156,6 +175,9 @@ theorem le_familyMonoStepBound_iterate (E : ErrorSchedule) (K i m : ℕ) :
     rw [Function.iterate_succ_apply]
     exact le_trans IH (familyMonoStepBound_iterate_mono E K i (le_familyMonoStepBound E K m))
 
+/--
+@isnad1 id=le.1h5v.s5.9326d88dce3b from=translated src=- shape=eefac034 vocab=d035c648
+-/
 theorem familyMonoStepBound_iterate_le_iterate (E : ErrorSchedule) (K : ℕ) {i j : ℕ}
     (hij : i ≤ j) (m : ℕ) :
     (familyMonoStepBound E K)^[i] m ≤ (familyMonoStepBound E K)^[j] m := by
@@ -178,7 +200,9 @@ ceiling `K`, `t` restarts suffice.
 
 Each round is `exists_familyRegular_refinement`, an **exact** refinement of its input, so
 the coarse partition's refinement of the seed is carried by transitivity. The budget is
-stated against the ceiling `K`, which is the only place the family size appears.-/
+stated against the ceiling `K`, which is the only place the family size appears.
+@isnad1 id=ex.2h8v.s7.ce01a61fb416 from=translated src=- shape=41e59b2b vocab=f06d6b2b
+-/
 theorem familyStrong_iterate (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ) :
     ∀ (t : ℕ) (P : Finpartition s), (K : ℝ) - (t : ℝ) * δ ≤ familyEnergy Rk P →
       ∃ w : FamilyStrongWitness Rk E δ P,
@@ -235,7 +259,9 @@ theorem familyStrong_iterate (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ) :
 for any positive error schedule and gap, with explicit host-independent part-count bounds.
 
 The fuel is `⌈K/δ⌉`, linear in the family size, because the family-energy ceiling is `K`
-rather than `1`.-/
+rather than `1`.
+@isnad1 id=ex.1h7v.s7.740bf1650860 from=translated src=- shape=242b4071 vocab=d48a8fe2
+-/
 theorem exists_familyStrongWitness (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ)
     (P₀ : Finpartition s) :
     ∃ w : FamilyStrongWitness Rk E δ P₀,
@@ -254,7 +280,9 @@ namespace FamilyStrongWitness
 
 variable {Rk} {E : ErrorSchedule} {δ : ℝ} {P₀ : Finpartition s}
 
-/-- Each relation of the family inherits the gap: the component form of `energy_gap`.-/
+/-- Each relation of the family inherits the gap: the component form of `energy_gap`.
+@isnad1 id=le.0h9v.s6.0015ac85de83 from=translated src=- shape=20670ea5 vocab=01db7ef6
+-/
 theorem component_energy_gap (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
     energy (Rk k) w.fine ≤ energy (Rk k) w.coarse + δ :=
   energy_le_of_familyEnergy_le w.fine_le w.energy_gap k
@@ -272,16 +300,24 @@ def toStrongWitness (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
   fine_regular := w.fine_regular k
   energy_gap := w.component_energy_gap k
 
+/--
+@isnad1 id=eq.0h9v.s6.21537454d89d from=translated src=- shape=c522cf9b vocab=7a4e1278
+-/
 @[simp] theorem toStrongWitness_coarse (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
     (w.toStrongWitness k).coarse = w.coarse := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.4bfd444486d5 from=translated src=- shape=c522cf9b vocab=48308bb7
+-/
 @[simp] theorem toStrongWitness_fine (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
     (w.toStrongWitness k).fine = w.fine := rfl
 
 /-- **The per-relation regularity conclusion**: for each relation, the fine partition's
 normalized bad mass is within the tolerance chosen against the coarse complexity. This is
 the regularity field read off one component; it is *not* the exceptional-mass bound — see
-`deviant_mass_le` for that.-/
+`deviant_mass_le` for that.
+@isnad1 id=le.0h9v.s7.19e0194faa51 from=translated src=- shape=7a59f572 vocab=709e2ea1
+-/
 theorem fine_badMass_le (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
     badMass (Rk k) (E w.coarse.parts.card) w.fine ≤ E w.coarse.parts.card :=
   w.fine_regular k
@@ -289,7 +325,9 @@ theorem fine_badMass_le (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) :
 /-- **Exceptional-mass (Markov) consequence, per relation.** For each relation, the mass of
 refined rectangles whose density shifts from their coarse parent by more than `η` is at
 most `(δ/η²)·|s|²` — the same bound `StrongWitness.deviant_mass_le` gives, with no factor of
-`K`, because `component_energy_gap` hands each relation the full gap `δ`.-/
+`K`, because `component_energy_gap` hands each relation the full gap `δ`.
+@isnad1 id=le.1h10v.s8.5d5d527e3d84 from=translated src=- shape=33773f74 vocab=8e2460cf
+-/
 theorem deviant_mass_le (w : FamilyStrongWitness Rk E δ P₀) (k : Fin K) {η : ℝ}
     (hη : 0 < η) :
     ∑ pd ∈ w.coarse.parts ×ˢ w.coarse.parts,
@@ -317,16 +355,24 @@ def familyStrongWitness_zero (Rk : Fin 0 → α → α → Prop) [∀ k, Decidab
   fine_regular := isFamilyRegular_zero Rk
   energy_gap := by linarith
 
+/--
+@isnad1 id=eq.1h6v.s6.8624e0c92c1f from=translated src=- shape=1c12d90a vocab=54539ded
+-/
 @[simp] theorem familyStrongWitness_zero_coarse (Rk : Fin 0 → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ)
     (P₀ : Finpartition s) : (familyStrongWitness_zero Rk E hδ P₀).coarse = P₀ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.220b717d3796 from=translated src=- shape=1c12d90a vocab=4e1fe51b
+-/
 @[simp] theorem familyStrongWitness_zero_fine (Rk : Fin 0 → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ)
     (P₀ : Finpartition s) : (familyStrongWitness_zero Rk E hδ P₀).fine = P₀ := rfl
 
 /-- The singleton family's step bound is literally the single-relation one: at `K = 1` the
-fuel `⌈K/E(j)⁵⌉` of each round is `⌈1/E(j)⁵⌉`.-/
+fuel `⌈K/E(j)⁵⌉` of each round is `⌈1/E(j)⁵⌉`.
+@isnad1 id=eq.0h1v.s3.7098ee11d32a from=translated src=- shape=c32e12e7 vocab=6d8403fd
+-/
 theorem familyMonoStepBound_one (E : ErrorSchedule) :
     familyMonoStepBound E 1 = monoStepBound E := by
   funext m
@@ -335,7 +381,9 @@ theorem familyMonoStepBound_one (E : ErrorSchedule) :
 
 /-- **The singleton endpoint.** One relation recovers the single-relation strong shape
 exactly: the projected witness satisfies the *ordinary* `monoStepBound` coarse and fine
-bounds of `exists_strongWitness`, not merely a family-shaped analogue of them.-/
+bounds of `exists_strongWitness`, not merely a family-shaped analogue of them.
+@isnad1 id=ex.1h6v.s7.91c45427a0d9 from=translated src=- shape=56368315 vocab=cb019a1d
+-/
 theorem exists_familyStrongWitness_single (R : α → α → Prop) [DecidableRel R]
     (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ) (P₀ : Finpartition s) :
     ∃ w : StrongWitness R E δ P₀,

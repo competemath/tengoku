@@ -30,7 +30,9 @@ namespace RegularityLemmata
 
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
-/-- At `lo = 0` there are no lower violations.-/
+/-- At `lo = 0` there are no lower violations.
+@isnad1 id=eq.0h3v.s5.d9ef0fd2f1f3 from=translated src=- shape=00a4886c vocab=b8cac329
+-/
 theorem lowerViolations_zero (A : Finset α) (s : ℕ) : lowerViolations A s 0 = ∅ := by
   rw [lowerViolations, Finset.filter_eq_empty_iff]
   intro S _
@@ -38,7 +40,9 @@ theorem lowerViolations_zero (A : Finset α) (s : ℕ) : lowerViolations A s 0 =
 
 /-- **One-sided proportional sampling.**  If the upper-violation total, multiplied by the block
 count, is below `C(n, s)`, some equivalence keeps every trace of `F` under its upper window on
-every equal block simultaneously.  The lower windows are free (`lo = 0`).-/
+every equal block simultaneously.  The lower windows are free (`lo = 0`).
+@isnad1 id=ex.3h6v.s7.259dc258530e from=translated src=- shape=b357b00b vocab=a418bc4c
+-/
 theorem exists_equiv_forall_blocks_upper {n s m : ℕ}
     (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hi : Finset α → ℕ)
@@ -58,7 +62,9 @@ theorem exists_equiv_forall_blocks_upper {n s m : ℕ}
 omit [Fintype α] [DecidableEq α] in
 /-- **The cross-multiplied trace estimate.**  The `ℕ`-division upper window
 `TB ≤ TA·s/n + t` with slack `t ≤ ζ·s` yields the real-valued form
-`n·TB ≤ s·TA + ζ·n·s` consumed by the sampled-line transfer downstream.-/
+`n·TB ≤ s·TA + ζ·n·s` consumed by the sampled-line transfer downstream.
+@isnad1 id=le.2h6v.s6.566e026035ab from=translated src=- shape=df2cfb1d vocab=a3b58bfa
+-/
 theorem cross_mul_le_of_upper_window {n s TA TB t : ℕ} {ζ : ℝ}
     (hTB : TB ≤ TA * s / n + t) (ht : (t : ℝ) ≤ ζ * s) :
     (n : ℝ) * TB ≤ (s : ℝ) * TA + ζ * n * s := by

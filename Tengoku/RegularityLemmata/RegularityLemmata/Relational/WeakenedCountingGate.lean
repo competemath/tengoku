@@ -75,6 +75,9 @@ noncomputable def selectedPaletteNonuniformPairs (ε : ℝ) (F : Finpartition s)
       (g (proxyEventFst e), g (proxyEventSnd e)) ∈ paletteNonuniformFinePairs M ε F).image
     proxyEventPair
 
+/--
+@isnad1 id=le.0h8v.s6.997d7538ae66 from=translated src=- shape=6f43bce5 vocab=275cb42f
+-/
 theorem selectedPaletteNonuniformPairs_subset (ε : ℝ) (F : Finpartition s)
     (Q : Finpartition s) (g : ProxyIndex Q → Finset V) :
     selectedPaletteNonuniformPairs M ε F Q g ⊆ Q.parts ×ˢ Q.parts := by
@@ -88,7 +91,9 @@ theorem selectedPaletteNonuniformPairs_subset (ε : ℝ) (F : Finpartition s)
 open Classical in
 /-- **The charge and the raw mass are the same quantity.** The selected palette-nonuniform
 pairs carry raw mass exactly `#s ^ 2` times the normalized charge, so a cost bound on the
-charge is a mass bound on the pairs — which is what the pair-to-triple lifting consumes.-/
+charge is a mass bound on the pairs — which is what the pair-to-triple lifting consumes.
+@isnad1 id=eq.0h8v.s7.70d678fb0410 from=translated src=- shape=6f4d7576 vocab=7f228ac3
+-/
 theorem sum_selectedPaletteNonuniformPairs_mass (ε : ℝ) (F : Finpartition s)
     (Q : Finpartition s) (g : ProxyIndex Q → Finset V) :
     ∑ p ∈ selectedPaletteNonuniformPairs M ε F Q g, ((p.1.card : ℝ) * p.2.card)
@@ -118,7 +123,9 @@ open Classical in
 /-- **Bad-triple volume.** With the selected nonuniform pair mass at most `β * #s ^ 2`, the
 transversal triples having ANY bad coordinate pair carry volume at most `3 * β * #s ^ 3`. The
 three coordinate pairs of a triple are charged by a union bound, so the factor is exactly
-three; the pair-to-triple lifting is the existing one, reused unchanged.-/
+three; the pair-to-triple lifting is the existing one, reused unchanged.
+@isnad1 id=le.2h5v.s10.71f2854f6ffd from=translated src=- shape=3d0a3174 vocab=c7515fa0
+-/
 theorem badTripleVolume_le {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts)
     {β : ℝ} (hβ : ∑ p ∈ D, ((p.1.card : ℝ) * p.2.card) ≤ β * (s.card : ℝ) ^ 2) :
     ∑ T ∈ (transversalCellTriples Q).filter
@@ -139,7 +146,9 @@ open Classical in
 /-- **The combined branch-B cost.** With uniformity no longer forbidden, the two charges are
 one cost, and its budget is the SUM of the two — `4 * K * ε + 4 * K * δ / η ^ 2`. No
 conditioning factor appears: an empty forbidden-event type makes `hbad` hold at `σ = 0`, so
-`1 / (1 - σ) = 1` and the doubled form of the conditioned bound is not incurred.-/
+`1 / (1 - σ) = 1` and the doubled form of the conditioned bound is not incurred.
+@isnad1 id=le.5h11v.s9.da035385198b from=translated src=- shape=d6ce81d5 vocab=095c42a2
+-/
 theorem expected_proxyCombinedCost_le (w : BinaryPaletteStrongDiagWitness M sch δ P₀)
     (q : ℕ) {ε η : ℝ} (hη : 0 < η) (hε : 0 ≤ ε) (hδ0 : 0 ≤ δ)
     (hq : w.fine.parts.card ≤ q)

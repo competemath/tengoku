@@ -46,36 +46,48 @@ def complete (n : ℕ) (loops : Bool) : FiniteRelModel language (Fin n) where
     | 2, x => loops || decide (x 0 ≠ x 1)
     | _, _ => false
 
-/-- The two models agree on every off-diagonal binary tuple.-/
+/-- The two models agree on every off-diagonal binary tuple.
+@isnad1 id=iff.1h2v.s6.01dbe915b2c9 from=translated src=- shape=c6593174 vocab=8db88e31
+-/
 theorem offDiagonal_agreement (n : ℕ) (x : Fin 2 → Fin n) (hx : x 0 ≠ x 1) :
     (complete n false).Holds (n := 2) () x ↔ (complete n true).Holds (n := 2) () x := by
   change (false || decide (x 0 ≠ x 1)) = true ↔ (true || decide (x 0 ≠ x 1)) = true
   simp [hx]
 
 /-- The irreflexive two-vertex pattern has six induced embeddings into the
-irreflexive three-vertex complete relation, and none after only loops are added.-/
+irreflexive three-vertex complete relation, and none after only loops are added.
+@isnad1 id=and.0h0v.s6.9a5c30670e62 from=translated src=- shape=1ac4f421 vocab=4dca9e6a
+-/
 theorem induced_count_changes_on_loops :
     inducedEmbeddingCount (complete 2 false) (complete 3 false) = 6 ∧
       inducedEmbeddingCount (complete 2 false) (complete 3 true) = 0 := by decide
 
-/-- Injective homomorphisms do not test the pattern's absent loops.-/
+/-- Injective homomorphisms do not test the pattern's absent loops.
+@isnad1 id=and.0h0v.s6.8d9baa47c3fb from=translated src=- shape=1ac4f421 vocab=ee2a3dec
+-/
 theorem injective_hom_count_ignores_added_loops :
     injectiveHomCount (complete 2 false) (complete 3 false) = 6 ∧
       injectiveHomCount (complete 2 false) (complete 3 true) = 6 := by decide
 
 /-- All homomorphisms may change through collisions; here the three constant
-maps are added, exactly the two-vertex collision charge.-/
+maps are added, exactly the two-vertex collision charge.
+@isnad1 id=and.0h0v.s6.a775331fd485 from=translated src=- shape=1ac4f421 vocab=358c59f8
+-/
 theorem hom_count_collision_difference :
     homCount (complete 2 false) (complete 3 false) = 6 ∧
       homCount (complete 2 false) (complete 3 true) = 9 := by decide
 
-/-- The positive edge pattern meets the new simplicity hypothesis.-/
+/-- The positive edge pattern meets the new simplicity hypothesis.
+@isnad1 id=simplepa.0h0v.s3.a56625cff409 from=translated src=- shape=af010f2d vocab=a51b9dd2
+-/
 theorem edge_isSimplePattern : SimplePattern (complete 2 false) := by
   unfold SimplePattern
   decide
 
 /-- The two hosts in the regression do not meet diagonal agreement. This is
-the explicit missing premise of the induced-count corollary.-/
+the explicit missing premise of the induced-count corollary.
+@isnad1 id=not.0h0v.s5.ba355542ebda from=translated src=- shape=754bc602 vocab=3b55cf52
+-/
 theorem hosts_not_diagonalAgreement :
     ¬ DiagonalAgreementOn (complete 3 false) (complete 3 true) Finset.univ := by
   intro h
@@ -88,7 +100,9 @@ theorem hosts_not_diagonalAgreement :
   exact Bool.false_ne_true (hh.mpr rfl)
 
 /-- The set-restricted homomorphism API agrees with the original count used
-by this regression, including its three colliding maps.-/
+by this regression, including its three colliding maps.
+@isnad1 id=eq.0h0v.s5.7ba299bbba40 from=translated src=- shape=3451d1f3 vocab=6cc46dd2
+-/
 theorem restricted_hom_regression :
     homCountOn (complete 2 false) (complete 3 true) Finset.univ = 9 := by
   rw [homCountOn_univ]

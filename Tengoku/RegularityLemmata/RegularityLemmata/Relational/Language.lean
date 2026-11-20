@@ -65,13 +65,17 @@ instance (n : ℕ) : DecidableEq (L.Relations n) :=
   FiniteRelational.relationsDecidableEq n
 
 /-- Emptiness above the bound, as a theorem (not an instance, to keep instance
-search unambiguous).-/
+search unambiguous).
+@isnad1 id=isempty.1h2v.s4.53ba3e112184 from=translated src=- shape=88565f8e vocab=476e2366
+-/
 theorem isEmpty_relations_of_lt {n : ℕ} (h : arityBound L < n) :
     IsEmpty (L.Relations n) :=
   FiniteRelational.relationsEmptyAbove n h
 
 /-- Every symbol's arity is at most the bound: a symbol above it would inhabit an
-empty type.-/
+empty type.
+@isnad1 id=le.0h3v.s4.61c581da4b3a from=translated src=- shape=e1dff151 vocab=04341296
+-/
 theorem arity_le_arityBound {n : ℕ} (R : L.Relations n) : n ≤ arityBound L := by
   by_contra h
   push Not at h

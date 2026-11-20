@@ -48,14 +48,22 @@ variable (R : α → β → Prop) [DecidableRel R]
 def fiberType (D : Finset β) (a : α) : Finset β :=
   D.filter (R a)
 
+/--
+@isnad1 id=iff.0h6v.s5.d45c2b43f639 from=translated src=- shape=4ea46fe9 vocab=12d7287a
+-/
 @[simp] theorem mem_fiberType {D : Finset β} {a : α} {d : β} :
     d ∈ fiberType R D a ↔ d ∈ D ∧ R a d := by
   simp [fiberType]
 
+/--
+@isnad1 id=le.0h5v.s5.ba1ea6091684 from=translated src=- shape=1fb53c86 vocab=00acd331
+-/
 theorem fiberType_subset (D : Finset β) (a : α) : fiberType R D a ⊆ D :=
   filter_subset _ _
 
-/-- Equal fiber types on `D` = agreement of `R` against every element of `D`.-/
+/-- Equal fiber types on `D` = agreement of `R` against every element of `D`.
+@isnad1 id=iff.0h6v.s6.aa73f22d42c3 from=translated src=- shape=8fdeb53a vocab=12d7287a
+-/
 theorem fiberType_eq_iff {D : Finset β} {a₁ a₂ : α} :
     fiberType R D a₁ = fiberType R D a₂ ↔ ∀ d ∈ D, (R a₁ d ↔ R a₂ d) := by
   simp only [Finset.ext_iff, mem_fiberType]
@@ -69,6 +77,9 @@ theorem fiberType_eq_iff {D : Finset β} {a₁ a₂ : α} :
     · rintro ⟨hd, hr⟩; exact ⟨hd, (h d hd).mp hr⟩
     · rintro ⟨hd, hr⟩; exact ⟨hd, (h d hd).mpr hr⟩
 
+/--
+@isnad1 id=le.1h6v.s5.46d8dd0e2149 from=translated src=- shape=a32fe8c5 vocab=00acd331
+-/
 theorem fiberType_mono {D₁ D₂ : Finset β} (h : D₁ ⊆ D₂) (a : α) :
     fiberType R D₁ a ⊆ fiberType R D₂ a := by
   intro d hd
@@ -99,13 +110,17 @@ at the fiber setoid).-/
 def fiberPartition (C : Finset α) (D : Finset β) : Finpartition C :=
   Finpartition.ofSetSetoid (fiberSetoid R D) C
 
-/-- The parts, explicitly: one filter per represented fiber type.-/
+/-- The parts, explicitly: one filter per represented fiber type.
+@isnad1 id=eq.0h5v.s6.bb480a48f129 from=translated src=- shape=eea6dea2 vocab=0c20fa1d
+-/
 theorem fiberPartition_parts (C : Finset α) (D : Finset β) :
     (fiberPartition R C D).parts
       = C.image fun a => C.filter fun b => fiberType R D a = fiberType R D b := by
   rfl
 
-/-- Members of one part share their fiber type.-/
+/-- Members of one part share their fiber type.
+@isnad1 id=eq.3h8v.s6.e9f03e2e273e from=translated src=- shape=9e52e7a2 vocab=7a6683ba
+-/
 theorem fiberType_eq_of_mem_part {C : Finset α} {D : Finset β} {t : Finset α}
     (ht : t ∈ (fiberPartition R C D).parts) {a b : α} (ha : a ∈ t) (hb : b ∈ t) :
     fiberType R D a = fiberType R D b := by
@@ -119,7 +134,9 @@ theorem fiberType_eq_of_mem_part {C : Finset α} {D : Finset β} {t : Finset α}
 def fiberTypeCount (C : Finset α) (D : Finset β) : ℕ :=
   (C.image (fiberType R D)).card
 
-/-- Cells of the fiber partition biject with the represented fiber types.-/
+/-- Cells of the fiber partition biject with the represented fiber types.
+@isnad1 id=eq.0h5v.s5.99943dbac682 from=translated src=- shape=6e65bc14 vocab=e08ad853
+-/
 theorem card_parts_fiberPartition (C : Finset α) (D : Finset β) :
     (fiberPartition R C D).parts.card = fiberTypeCount R C D := by
   rw [fiberPartition_parts, fiberTypeCount]
@@ -141,7 +158,9 @@ theorem card_parts_fiberPartition (C : Finset α) (D : Finset β) :
   exact h1.2
 
 omit [DecidableEq α] in
-/-- At most `2 ^ |D|` fiber types: fiber types are subsets of `D`.-/
+/-- At most `2 ^ |D|` fiber types: fiber types are subsets of `D`.
+@isnad1 id=le.0h5v.s5.24ef1ababe9c from=translated src=- shape=1032a020 vocab=ea85e2c9
+-/
 theorem fiberTypeCount_le_two_pow (C : Finset α) (D : Finset β) :
     fiberTypeCount R C D ≤ 2 ^ D.card := by
   rw [fiberTypeCount, ← Finset.card_powerset]
@@ -152,7 +171,9 @@ theorem fiberTypeCount_le_two_pow (C : Finset α) (D : Finset β) :
   exact fiberType_subset R D a
 
 /-- Larger targets distinguish more, so they induce finer partitions
-(`P ≤ Q` = `P` finer).-/
+(`P ≤ Q` = `P` finer).
+@isnad1 id=le.1h6v.s6.16d5766744a0 from=translated src=- shape=20e732c9 vocab=472dd519
+-/
 theorem fiberPartition_le_of_subset {C : Finset α} {D₁ D₂ : Finset β} (h : D₁ ⊆ D₂) :
     fiberPartition R C D₂ ≤ fiberPartition R C D₁ := by
   intro t ht
@@ -177,7 +198,9 @@ variable [DecidableEq α] [DecidableEq β]
 
 /-- **Pairwise constancy, heterogeneous base form.** A cell of the row partition of
 `s` (fiber types on `t`) and a cell of the column partition of `t` (fiber types on
-`s`) see a constant relation.-/
+`s`) see a constant relation.
+@isnad1 id=or.2h7v.s7.e12efbac6bb7 from=translated src=- shape=47658ebb vocab=09e1f025
+-/
 theorem fiberPartition_pair_constant (R : α → β → Prop) [DecidableRel R]
     {s : Finset α} {t : Finset β} {C : Finset α} {D : Finset β}
     (hC : C ∈ (fiberPartition R s t).parts)
@@ -198,7 +221,9 @@ theorem fiberPartition_pair_constant (R : α → β → Prop) [DecidableRel R]
   · exact Or.inr fun a ha d hd hR => h₀ ((hchain a ha d hd).mp hR)
 
 /-- Homogeneous corollary: on the common refinement of the forward and backward
-fiber partitions of `s`, the relation is constant on every ordered pair of cells.-/
+fiber partitions of `s`, the relation is constant on every ordered pair of cells.
+@isnad1 id=or.2h5v.s8.f3b8494f8f41 from=translated src=- shape=124b1fbc vocab=16db5117
+-/
 theorem inf_fiberPartition_constant (R : α → α → Prop) [DecidableRel R]
     {s : Finset α} {C D : Finset α}
     (hC : C ∈ (fiberPartition R s s ⊓ fiberPartition (fun a b => R b a) s s).parts)
@@ -213,7 +238,9 @@ theorem inf_fiberPartition_constant (R : α → α → Prop) [DecidableRel R]
   · exact Or.inr fun a ha d hd => h a (hCA ha) d (hDB hd)
 
 /-- For a symmetric relation the backward fiber partition coincides with the
-forward one.-/
+forward one.
+@isnad1 id=eq.0h5v.s6.43877fc3366d from=translated src=- shape=8d6d65e6 vocab=0a0cff9b
+-/
 theorem fiberPartition_symm_eq {R : α → α → Prop} [DecidableRel R]
     (hR : ∀ a b, R a b → R b a) (C D : Finset α) :
     fiberPartition (fun a b => R b a) C D = fiberPartition R C D := by
@@ -226,7 +253,9 @@ theorem fiberPartition_symm_eq {R : α → α → Prop} [DecidableRel R]
   rw [hfT, hfT]
 
 /-- **Symmetric corollary**: for a symmetric relation, one fiber partition suffices
-for pairwise constancy.-/
+for pairwise constancy.
+@isnad1 id=or.2h6v.s7.e2702c7b080a from=translated src=- shape=860d6c3f vocab=09e1f025
+-/
 theorem fiberPartition_pair_constant_of_symm {R : α → α → Prop} [DecidableRel R]
     (hR : ∀ a b, R a b → R b a) {s : Finset α} {C D : Finset α}
     (hC : C ∈ (fiberPartition R s s).parts) (hD : D ∈ (fiberPartition R s s).parts) :
@@ -236,7 +265,9 @@ theorem fiberPartition_pair_constant_of_symm {R : α → α → Prop} [Decidable
   exact hD
 
 /-- Pairwise constancy transfers down refinement: constant on `Q`-cell pairs and
-`P ≤ Q` gives constancy on `P`-cell pairs.-/
+`P ≤ Q` gives constancy on `P`-cell pairs.
+@isnad1 id=or.4h7v.s8.7da2854527a8 from=translated src=- shape=b6b505f0 vocab=9b06a030
+-/
 theorem pair_constant_of_le {s : Finset α} {P Q : Finpartition s} (hle : P ≤ Q)
     (R : α → α → Prop) {C D : Finset α} (hC : C ∈ P.parts) (hD : D ∈ P.parts)
     (hconst : ∀ C' ∈ Q.parts, ∀ D' ∈ Q.parts,
@@ -248,7 +279,9 @@ theorem pair_constant_of_le {s : Finset α} {P Q : Finpartition s} (hle : P ≤ 
   · exact Or.inl fun a ha d hd => h a (hCC' ha) d (hDD' hd)
   · exact Or.inr fun a ha d hd => h a (hCC' ha) d (hDD' hd)
 
-/-- Predicate constancy transfers down refinement.-/
+/-- Predicate constancy transfers down refinement.
+@isnad1 id=or.3h6v.s7.8cb33e312575 from=translated src=- shape=fd1f58f7 vocab=9b06a030
+-/
 theorem pred_constant_of_le {s : Finset α} {P Q : Finpartition s} (hle : P ≤ Q)
     (p : α → Prop) {C : Finset α} (hC : C ∈ P.parts)
     (hconst : ∀ C' ∈ Q.parts, (∀ a ∈ C', p a) ∨ (∀ a ∈ C', ¬p a)) :

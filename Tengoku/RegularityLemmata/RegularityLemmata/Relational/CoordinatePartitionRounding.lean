@@ -44,7 +44,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V}
 /-! ### Bridge to the partition defect -/
 
 /-- The summed part-resampling defect at coordinate `j` is the family defect of the
-coordinate-`j` sections over the ambient off-tuples.-/
+coordinate-`j` sections over the ambient off-tuples.
+@isnad1 id=eq.0h6v.s8.f193b8dd0549 from=translated src=- shape=bec6d495 vocab=d9856984
+-/
 theorem sum_partResampleDefect_eq_familyDefect {n : ℕ} (R : (Fin (n + 1) → V) → Prop)
     [DecidablePred R] (P : Finpartition s) (j : Fin (n + 1)) :
     ∑ w ∈ Fintype.piFinset (fun _ : Fin (n + 1) ↦ s), partResampleDefect R P j w
@@ -67,7 +69,9 @@ section Labels
 variable {Λ : Type*} [DecidableEq Λ] (lab : V → Λ) (s : Finset V)
 
 /-- The defect of a labeled partition is the sum over all labels of the fiber defects; an
-unused label has an empty fiber and contributes `0`.-/
+unused label has an empty fiber and contributes `0`.
+@isnad1 id=eq.0h5v.s6.7457bdca37d6 from=translated src=- shape=2f2dd756 vocab=c48b12da
+-/
 theorem partitionDefect_labelPartition [Fintype Λ] (p : V → Prop) [DecidablePred p] :
     partitionDefect (labelPartition lab s) p
       = ∑ a : Λ, (sectionDisagreement (labelFiber lab s a) p : ℝ) / (labelFiber lab s a).card := by
@@ -94,7 +98,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L]
 
 /-- **The majority bound by the summed coordinate defects, each in its own partition.**
 Rounding `M` at the join of the coordinate partitions `P j` has edit distance on `s^(n+1)` at
-most `∑ⱼ familyDefect (P j)` of the coordinate-`j` sections.-/
+most `∑ⱼ familyDefect (P j)` of the coordinate-`j` sections.
+@isnad1 id=le.0h7v.s8.219260b5676a from=translated src=- shape=0e0ec665 vocab=9c4469c4
+-/
 theorem editDistance_majorityRound_coordinateJoin_le (M : FiniteRelModel L V) {n : ℕ}
     (P : Fin (n + 1) → Finpartition s) (S : L.Relations (n + 1)) :
     (editDistance (M.Holds S) ((M.majorityRound (coordinateJoin P)).Holds S)
@@ -107,7 +113,9 @@ theorem editDistance_majorityRound_coordinateJoin_le (M : FiniteRelModel L V) {n
   exact familyDefect_mono (coordinateJoin_le P j) _ _
 
 /-- The rounded model packaged: indivisible for the join, nullary-exact, part count bounded by
-the product, and the edit bound above for the given symbol.-/
+the product, and the edit bound above for the given symbol.
+@isnad1 id=ex.0h7v.s9.280f77ad58b1 from=translated src=- shape=9e26695e vocab=9e6ce388
+-/
 theorem exists_isIndivisibleFor_coordinateJoin (M : FiniteRelModel L V) {n : ℕ}
     (P : Fin (n + 1) → Finpartition s) (S : L.Relations (n + 1)) :
     ∃ N : FiniteRelModel L V, N.IsIndivisibleFor (coordinateJoin P) ∧ NullaryCompatible M N ∧

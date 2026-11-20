@@ -103,7 +103,9 @@ omit [DecidableEq α] in
 configuration off-diagonal regularity speaks about: `IsBadPair` is defined on distinct
 cells, so a clean such pair is uniform for the relation. Grouping cells of an
 already-regular partition into owners therefore leaves sibling pairs inside the existing
-event index — sibling proxies are distinct cells — with no diagonal control required.-/
+event index — sibling proxies are distinct cells — with no diagonal control required.
+@isnad1 id=isunifor.2h5v.s5.0f46f4455a7e from=translated src=- shape=d64e9fd0 vocab=c9b927a5
+-/
 theorem isUniformPair_of_not_isBadPair {R : α → α → Prop} [DecidableRel R] {ε : ℝ}
     {A B : Finset α} (hAB : A ≠ B) (h : ¬ IsBadPair R ε A B) : IsUniformPair R A B ε := by
   by_contra hcon
@@ -117,7 +119,9 @@ end GateP2
 whose ordered distinct pairs number `3n(3n−1)` — under a `9n²` envelope. This is an
 envelope on the proxy count itself, NOT a ninefold factor over the coarse count `n(n−1)`:
 that ratio exceeds `9` for small `n`. The selection tolerance is chosen against `9n²`, and
-only after this is known.-/
+only after this is known.
+@isnad1 id=le.0h1v.s6.969e49d2dce8 from=translated src=- shape=019ebfc3 vocab=3027adc6
+-/
 theorem card_ordered_pairs_grouped_le (n : ℕ) :
     3 * n * (3 * n - 1) ≤ 9 * (n * n) := by
   cases n with
@@ -128,7 +132,9 @@ theorem card_ordered_pairs_grouped_le (n : ℕ) :
     nlinarith
 
 /-- The proxy pair count dominates the coarse one, so the envelope is an increase and not
-a re-description of the same events. No factor is claimed here.-/
+a re-description of the same events. No factor is claimed here.
+@isnad1 id=le.0h1v.s6.4e637628541e from=translated src=- shape=9044f7cb vocab=3027adc6
+-/
 theorem card_ordered_pairs_coarse_le (n : ℕ) : n * (n - 1) ≤ 3 * n * (3 * n - 1) := by
   cases n with
   | zero => simp

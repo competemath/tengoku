@@ -44,7 +44,9 @@ private theorem pairDensity_abs_le_one {R : V → V → Prop} [DecidableRel R] (
 
 /-- **The density-shift charge.** The fine step estimate is within `(3·η + 3·δ/η²)·|s|³` of the
 coarse step estimate: `3·η` from the three-factor perturbation on boxes whose fine and coarse
-palette densities agree to within `η`, and `3·δ/η²` from the three deviant-mass liftings.-/
+palette densities agree to within `η`, and `3·δ/η²` from the three deviant-mass liftings.
+@isnad1 id=le.1h10v.s7.78e4b7e80cd8 from=translated src=- shape=575b9e39 vocab=08068ba0
+-/
 theorem BinaryPaletteStrongWitness.abs_fineInducedEstimate_sub_coarseInducedEstimate_le
     {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (P : FiniteRelModel L (Fin 3))
@@ -300,7 +302,9 @@ theorem BinaryPaletteStrongWitness.abs_fineInducedEstimate_sub_coarseInducedEsti
 induced pattern embeddings landing in distinct coarse cells is within
 `(10·τ + 3·η + 3·δ/η²)·|s|³` of the coarse step estimate, where `τ = E w.coarse.parts.card`. The
 bound is the triangle-inequality sum of the regularity charge (`10·τ`) and the density-shift
-charge (`3·η + 3·δ/η²`).-/
+charge (`3·η + 3·δ/η²`).
+@isnad1 id=le.3h10v.s8.dee7aabd3f8e from=translated src=- shape=8cb2a2bc vocab=66a60b8c
+-/
 theorem BinaryPaletteStrongWitness.abs_transversalInducedCount_sub_coarseInducedEstimate_le
     [AtMostBinary L] {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (P : FiniteRelModel L (Fin 3))

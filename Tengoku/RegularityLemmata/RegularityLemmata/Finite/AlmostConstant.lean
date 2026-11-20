@@ -70,19 +70,30 @@ def IsAlmostConstantPair (f : RectKernel X Y) (δ ε : ℝ) (A : Finset X) (B : 
 
 /-! ### Monotonicity and trivial regimes -/
 
+/--
+@isnad1 id=isdeltac.2h5v.s4.92c335ddc896 from=translated src=- shape=1ad07145 vocab=da7914e9
+-/
 theorem IsDeltaConstantOn.mono (h : IsDeltaConstantOn φ δ W) (hδ : δ ≤ δ') :
     IsDeltaConstantOn φ δ' W :=
   fun v hv v' hv' ↦ lt_of_lt_of_le (h v hv v' hv') hδ
 
+/--
+@isnad1 id=isdeltac.2h5v.s5.be3c3c5e55ca from=translated src=- shape=0117fd35 vocab=da7914e9
+-/
 theorem IsDeltaConstantOn.subset {W' : Finset α} (h : IsDeltaConstantOn φ δ W)
     (hW' : W' ⊆ W) : IsDeltaConstantOn φ δ W' :=
   fun v hv v' hv' ↦ h v (hW' hv) v' (hW' hv')
 
+/--
+@isnad1 id=isdeltac.0h3v.s4.5b35810d4b4e from=translated src=- shape=3a76e001 vocab=ce646d4d
+-/
 theorem isDeltaConstantOn_empty (φ : α → ℝ) (δ : ℝ) :
     IsDeltaConstantOn φ δ (∅ : Finset α) :=
   fun v hv ↦ absurd hv (by simp)
 
-/-- Singletons are `δ`-constant for every positive `δ`.-/
+/-- Singletons are `δ`-constant for every positive `δ`.
+@isnad1 id=isdeltac.1h4v.s5.d842ca68df01 from=translated src=- shape=4e52fd6c vocab=ce85daec
+-/
 theorem isDeltaConstantOn_singleton (hδ : 0 < δ) (v : α) :
     IsDeltaConstantOn φ δ ({v} : Finset α) := by
   intro w hw w' hw'
@@ -91,19 +102,27 @@ theorem isDeltaConstantOn_singleton (hδ : 0 < δ) (v : α) :
   simpa using hδ
 
 /-- … and **only** for positive `δ`: strictness makes even the one-point diagonal fail at
-`δ ≤ 0`.-/
+`δ ≤ 0`.
+@isnad1 id=iff.0h4v.s5.b6351138a930 from=translated src=- shape=2fe7387b vocab=ce85daec
+-/
 theorem isDeltaConstantOn_singleton_iff (v : α) :
     IsDeltaConstantOn φ δ ({v} : Finset α) ↔ 0 < δ := by
   refine ⟨fun h ↦ ?_, fun hδ ↦ isDeltaConstantOn_singleton hδ v⟩
   have := h v (Finset.mem_singleton_self v) v (Finset.mem_singleton_self v)
   simpa using this
 
+/--
+@isnad1 id=isalmost.2h6v.s5.69b40c85315f from=translated src=- shape=78bb708a vocab=b2b33249
+-/
 theorem IsAlmostConstantOn.mono_delta (h : IsAlmostConstantOn φ δ ε V) (hδ : δ ≤ δ') :
     IsAlmostConstantOn φ δ' ε V := by
   rcases h with rfl | ⟨W, hWV, hcard, hconst⟩
   · exact Or.inl rfl
   · exact Or.inr ⟨W, hWV, hcard, hconst.mono hδ⟩
 
+/--
+@isnad1 id=isalmost.2h6v.s5.24a3d6dd0b80 from=translated src=- shape=4f49798f vocab=b2b33249
+-/
 theorem IsAlmostConstantOn.mono_eps (h : IsAlmostConstantOn φ δ ε V) (hε : ε ≤ ε') :
     IsAlmostConstantOn φ δ ε' V := by
   rcases h with rfl | ⟨W, hWV, hcard, hconst⟩
@@ -111,11 +130,16 @@ theorem IsAlmostConstantOn.mono_eps (h : IsAlmostConstantOn φ δ ε V) (hε : �
   · refine Or.inr ⟨W, hWV, lt_of_le_of_lt ?_ hcard, hconst⟩
     exact mul_le_mul_of_nonneg_right (by linarith) (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=isalmost.0h4v.s4.31255412bf16 from=translated src=- shape=4c127a25 vocab=3e9c133e
+-/
 theorem isAlmostConstantOn_empty (φ : α → ℝ) (δ ε : ℝ) :
     IsAlmostConstantOn φ δ ε (∅ : Finset α) :=
   Or.inl rfl
 
-/-- A globally `δ`-constant function is `ε`-almost `δ`-constant for every positive `ε`.-/
+/-- A globally `δ`-constant function is `ε`-almost `δ`-constant for every positive `ε`.
+@isnad1 id=isalmost.2h5v.s5.c8e746d2f13a from=translated src=- shape=0962473f vocab=6378823e
+-/
 theorem IsDeltaConstantOn.isAlmostConstantOn (h : IsDeltaConstantOn φ δ V) (hε : 0 < ε) :
     IsAlmostConstantOn φ δ ε V := by
   rcases V.eq_empty_or_nonempty with rfl | hV
@@ -124,7 +148,9 @@ theorem IsDeltaConstantOn.isAlmostConstantOn (h : IsDeltaConstantOn φ δ V) (h�
     have hpos : (0 : ℝ) < (V.card : ℝ) := by exact_mod_cast Finset.card_pos.mpr hV
     nlinarith
 
-/-- The trivial regime `1 ≤ ε`: a singleton witness suffices, for any positive `δ`.-/
+/-- The trivial regime `1 ≤ ε`: a singleton witness suffices, for any positive `δ`.
+@isnad1 id=isalmost.2h5v.s5.fb14fa0f2567 from=translated src=- shape=1610634a vocab=abe5f6c2
+-/
 theorem isAlmostConstantOn_of_one_le (hδ : 0 < δ) (hε : 1 ≤ ε) :
     IsAlmostConstantOn φ δ ε V := by
   rcases V.eq_empty_or_nonempty with rfl | ⟨v, hv⟩
@@ -135,11 +161,17 @@ theorem isAlmostConstantOn_of_one_le (hδ : 0 < δ) (hε : 1 ≤ ε) :
       mul_nonpos_of_nonpos_of_nonneg (by linarith) (Nat.cast_nonneg _)
     simpa using lt_of_le_of_lt h1 one_pos
 
+/--
+@isnad1 id=isalmost.2h8v.s5.c369c811efe9 from=translated src=- shape=3a607ffd vocab=c9a85d98
+-/
 theorem IsAlmostConstantPair.mono_delta {f : RectKernel X Y} {A : Finset X} {B : Finset Y}
     (h : IsAlmostConstantPair f δ ε A B) (hδ : δ ≤ δ') :
     IsAlmostConstantPair f δ' ε A B :=
   IsAlmostConstantOn.mono_delta h hδ
 
+/--
+@isnad1 id=isalmost.2h8v.s5.d1a816fb8d38 from=translated src=- shape=f644f4a9 vocab=c9a85d98
+-/
 theorem IsAlmostConstantPair.mono_eps {f : RectKernel X Y} {A : Finset X} {B : Finset Y}
     (h : IsAlmostConstantPair f δ ε A B) (hε : ε ≤ ε') :
     IsAlmostConstantPair f δ ε' A B :=
@@ -151,7 +183,9 @@ A rectangle with a singleton side is the one-variable predicate on the other sid
 the specializations a fiberwise argument needs: they turn control of `φ` along one fiber into
 control of the pair form, with no stability content whatsoever. -/
 
-/-- A singleton **left** side: almost-constancy of the fiber `f a` transfers to the pair.-/
+/-- A singleton **left** side: almost-constancy of the fiber `f a` transfers to the pair.
+@isnad1 id=isalmost.1h7v.s5.e9ceab0092db from=translated src=- shape=0dd18f77 vocab=b0c0d64c
+-/
 theorem IsAlmostConstantOn.isAlmostConstantPair_singleton_left [DecidableEq X] [DecidableEq Y]
     {f : RectKernel X Y} {a : X} {B : Finset Y} (h : IsAlmostConstantOn (f a) δ ε B) :
     IsAlmostConstantPair f δ ε {a} B := by
@@ -168,7 +202,9 @@ theorem IsAlmostConstantOn.isAlmostConstantPair_singleton_left [DecidableEq X] [
       exact hconst _ hy _ hy'
 
 /-- A singleton **right** side: almost-constancy of the co-fiber `f · b` transfers to the
-pair.-/
+pair.
+@isnad1 id=isalmost.1h7v.s5.2afb577ad054 from=translated src=- shape=b8c43e99 vocab=b0c0d64c
+-/
 theorem IsAlmostConstantOn.isAlmostConstantPair_singleton_right [DecidableEq X] [DecidableEq Y]
     {f : RectKernel X Y} {A : Finset X} {b : Y}
     (h : IsAlmostConstantOn (fun x ↦ f x b) δ ε A) :
@@ -190,7 +226,9 @@ single pair, so it is `δ`-constant outright.
 
 `0 < ε` is required and cannot be weakened to `0 ≤ ε`: the exceptional-mass clause is strict,
 and at `ε = 0` it reads `1 < 1`. The whole rectangle is still `δ`-constant — that is
-`isDeltaConstantOn_singleton` — but it does not witness *almost*-constancy at zero tolerance.-/
+`isDeltaConstantOn_singleton` — but it does not witness *almost*-constancy at zero tolerance.
+@isnad1 id=isalmost.2h7v.s6.695c772be4ab from=translated src=- shape=720a04b5 vocab=ab19d1e1
+-/
 theorem isAlmostConstantPair_singleton [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (hδ : 0 < δ) (hε : 0 < ε) (a : X) (b : Y) : IsAlmostConstantPair f δ ε {a} {b} := by
   classical
@@ -227,7 +265,9 @@ private theorem IsDeltaConstantOn.exists_max_min_center (h : IsDeltaConstantOn �
 
 /-- **`δ`-constancy is closeness to a common center at radius `δ / 2`.** Forward: the
 midpoint of the max and the min (the empty set takes `0`); backward: the triangle
-inequality.-/
+inequality.
+@isnad1 id=iff.0h4v.s6.238ada121b04 from=translated src=- shape=ae7349d3 vocab=56848378
+-/
 theorem isDeltaConstantOn_iff_exists_center :
     IsDeltaConstantOn φ δ V ↔ ∃ r : ℝ, ∀ v ∈ V, |φ v - r| < δ / 2 := by
   constructor
@@ -243,7 +283,9 @@ theorem isDeltaConstantOn_iff_exists_center :
     constructor <;> linarith [h1.1, h1.2, h2.1, h2.2]
 
 /-- The range-aware companion: a `[0,1]`-valued `δ`-constant function has a center in
-`[0,1]` (the midpoint of its max and min; `0` on the empty set).-/
+`[0,1]` (the midpoint of its max and min; `0` on the empty set).
+@isnad1 id=ex.2h4v.s7.5b393e9ed3e3 from=translated src=- shape=e3705214 vocab=ae9316f5
+-/
 theorem IsDeltaConstantOn.exists_center_mem_Icc (h : IsDeltaConstantOn φ δ V)
     (hφ : ∀ v ∈ V, φ v ∈ Set.Icc (0 : ℝ) 1) :
     ∃ r ∈ Set.Icc (0 : ℝ) 1, ∀ v ∈ V, |φ v - r| < δ / 2 := by
@@ -278,7 +320,9 @@ private theorem isAlmostConstantPair_op_of_isAlmostConstantPair {f : RectKernel 
       exact hconst q hq q' hq'
 
 /-- **Exact transpose law** for almost-constant rectangles: swapping the kernel and the two
-sides is a `Finset.product` swap of the witness.-/
+sides is a `Finset.product` swap of the witness.
+@isnad1 id=iff.0h7v.s5.6ea16be98301 from=translated src=- shape=a9f5c742 vocab=818cb834
+-/
 theorem isAlmostConstantPair_op_iff {f : RectKernel X Y} {A : Finset X} {B : Finset Y} :
     IsAlmostConstantPair (RectKernel.op f) δ ε B A ↔ IsAlmostConstantPair f δ ε A B :=
   ⟨fun h ↦ isAlmostConstantPair_op_of_isAlmostConstantPair h,
@@ -293,7 +337,9 @@ theorem isAlmostConstantPair_op_iff {f : RectKernel X Y} {A : Finset X} {B : Fin
 This **generalizes** Conant–Terry Proposition 2.2: the paper assumes a `[0,1]`-valued
 function and returns `r ∈ [0,1]`, while this statement permits an arbitrary real-valued `φ`;
 the constants and strict inequalities otherwise match. The range-aware companion
-`exists_separation_mem_Icc_of_not_isAlmostConstantOn` is the paper's exact consumer shape.-/
+`exists_separation_mem_Icc_of_not_isAlmostConstantOn` is the paper's exact consumer shape.
+@isnad1 id=ex.3h5v.s7.fb349c42bcb1 from=translated src=- shape=33f91c4c vocab=91497b2b
+-/
 theorem exists_separation_of_not_isAlmostConstantOn [DecidableEq α]
     (hδ : 0 < δ) (hε : 0 < ε) (h : ¬ IsAlmostConstantOn φ δ (2 * ε) V) :
     ∃ r : ℝ, (ε * V.card ≤ ((V.filter fun x ↦ φ x ≤ r).card : ℝ)) ∧
@@ -401,7 +447,9 @@ theorem exists_separation_of_not_isAlmostConstantOn [DecidableEq α]
 
 /-- **Range-aware separation** — the exact Conant–Terry Proposition 2.2 shape: for a
 `[0,1]`-valued function the threshold can be taken in `[0,1]`, since both level sets it
-produces are nonempty and pin it between attained values.-/
+produces are nonempty and pin it between attained values.
+@isnad1 id=ex.4h5v.s7.277cae9cca7f from=translated src=- shape=15593b8d vocab=fb1f40b6
+-/
 theorem exists_separation_mem_Icc_of_not_isAlmostConstantOn [DecidableEq α]
     (hδ : 0 < δ) (hε : 0 < ε) (hrange : ∀ x ∈ V, φ x ∈ Set.Icc (0 : ℝ) 1)
     (h : ¬ IsAlmostConstantOn φ δ (2 * ε) V) :
@@ -444,7 +492,9 @@ theorem exists_separation_mem_Icc_of_not_isAlmostConstantOn [DecidableEq α]
 /-- **The level-set staircase.** If every level set `{x ∈ A : r·ν ≤ φ x}` (at positive levels
 up to `1`) keeps its density on `Q` within `β` of its density on `A`, then the `[0,1]`-valued
 averages differ by at most `2ν + (1 + ν)β`. This reduces average control to finite-family
-set-density control (`exists_balanced_slicing`), with the level count priced at `⌈1/ν⌉`.-/
+set-density control (`exists_balanced_slicing`), with the level count priced at `⌈1/ν⌉`.
+@isnad1 id=le.6h6v.s8.f7d78c97a461 from=translated src=- shape=179c5fe9 vocab=4de15e08
+-/
 theorem abs_averageOn_sub_averageOn_le_of_levelSets [DecidableEq α] {φ : α → ℝ}
     {A Q : Finset α} {β ν : ℝ} (hν : 0 < ν) (hβ : 0 ≤ β) (hQ : Q ⊆ A) (hQne : Q.Nonempty)
     (hrange : ∀ x ∈ A, φ x ∈ Set.Icc (0 : ℝ) 1)
@@ -592,7 +642,9 @@ theorem abs_averageOn_sub_averageOn_le_of_levelSets [DecidableEq α] {φ : α �
     nlinarith
   linarith [hQside, hmid, htri, hAside', hprice]
 
-/-- The clean `2ν + 2β` reading, under `ν ≤ 1`.-/
+/-- The clean `2ν + 2β` reading, under `ν ≤ 1`.
+@isnad1 id=le.7h6v.s8.dc6272785ff2 from=translated src=- shape=63a1acb9 vocab=4de15e08
+-/
 theorem abs_averageOn_sub_averageOn_le_of_levelSets_of_le_one [DecidableEq α] {φ : α → ℝ}
     {A Q : Finset α} {β ν : ℝ} (hν : 0 < ν) (hν1 : ν ≤ 1) (hβ : 0 ≤ β) (hQ : Q ⊆ A)
     (hQne : Q.Nonempty) (hrange : ∀ x ∈ A, φ x ∈ Set.Icc (0 : ℝ) 1)
@@ -604,7 +656,9 @@ theorem abs_averageOn_sub_averageOn_le_of_levelSets_of_le_one [DecidableEq α] {
   nlinarith
 
 /-- The trivial regime `1 < ν`: `[0,1]`-valued averages differ by at most `1 < 2ν`, with no
-level-set hypothesis at all.-/
+level-set hypothesis at all.
+@isnad1 id=le.3h5v.s6.fbd449330cf6 from=translated src=- shape=1ab09321 vocab=4cb2ad93
+-/
 theorem abs_averageOn_sub_averageOn_le_of_one_lt {φ : α → ℝ} {A Q : Finset α} {ν : ℝ}
     (hν : 1 < ν) (hQ : Q ⊆ A) (hrange : ∀ x ∈ A, φ x ∈ Set.Icc (0 : ℝ) 1) :
     |averageOn Q φ - averageOn A φ| ≤ 2 * ν := by

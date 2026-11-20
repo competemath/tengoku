@@ -50,6 +50,9 @@ def injectiveTuples (α : Type*) [Fintype α] [DecidableEq α] (n : ℕ) :
     Finset (Fin n → α) :=
   Finset.univ.filter Function.Injective
 
+/--
+@isnad1 id=iff.0h3v.s5.1f329feb634d from=translated src=- shape=a6de190a vocab=8ad36e81
+-/
 @[simp] theorem mem_injectiveTuples [Fintype α] [DecidableEq α] {n : ℕ} {f : Fin n → α} :
     f ∈ injectiveTuples α n ↔ Function.Injective f := by
   simp [injectiveTuples]
@@ -59,13 +62,18 @@ see `injectiveTupleCount_eq_descFactorial`).-/
 def injectiveTupleCount (α : Type*) [Fintype α] [DecidableEq α] (n : ℕ) : ℕ :=
   (injectiveTuples α n).card
 
+/--
+@isnad1 id=le.0h2v.s5.39a5caa971f8 from=translated src=- shape=4fe9176f vocab=a901fe94
+-/
 theorem injectiveTupleCount_le_pow [Fintype α] [DecidableEq α] (n : ℕ) :
     injectiveTupleCount α n ≤ Fintype.card α ^ n := by
   refine le_trans (Finset.card_filter_le _ _) (le_of_eq ?_)
   simp
 
 /-- Positivity of the injective tuple count: an injection `Fin n ↪ α` exists
-whenever `n ≤ |α|`.-/
+whenever `n ≤ |α|`.
+@isnad1 id=lt.1h2v.s4.63cf4779b8e4 from=translated src=- shape=3d23ed20 vocab=51f81296
+-/
 theorem injectiveTupleCount_pos_of_le [Fintype α] [DecidableEq α] {n : ℕ}
     (h : n ≤ Fintype.card α) : 0 < injectiveTupleCount α n := by
   rw [injectiveTupleCount, Finset.card_pos]
@@ -73,7 +81,9 @@ theorem injectiveTupleCount_pos_of_le [Fintype α] [DecidableEq α] {n : ℕ}
     (by simpa using h : Fintype.card (Fin n) ≤ Fintype.card α)
   exact ⟨emb, mem_injectiveTuples.mpr emb.injective⟩
 
-/-- The injective tuple count is the falling factorial.-/
+/-- The injective tuple count is the falling factorial.
+@isnad1 id=eq.0h2v.s4.513777c22b26 from=translated src=- shape=b7174f36 vocab=1a091236
+-/
 theorem injectiveTupleCount_eq_descFactorial [Fintype α] [DecidableEq α] (n : ℕ) :
     injectiveTupleCount α n = (Fintype.card α).descFactorial n := by
   rw [injectiveTupleCount, injectiveTuples, ← Fintype.card_subtype,
@@ -86,6 +96,9 @@ theorem injectiveTupleCount_eq_descFactorial [Fintype α] [DecidableEq α] (n : 
 def tupleRange [DecidableEq α] {n : ℕ} (v : Fin n → α) : Finset α :=
   Finset.univ.image v
 
+/--
+@isnad1 id=eq.1h3v.s4.9094b0671f45 from=translated src=- shape=36d0cc7c vocab=404f61f0
+-/
 theorem card_tupleRange_of_injective [DecidableEq α] {n : ℕ} {v : Fin n → α}
     (hv : Function.Injective v) : (tupleRange v).card = n := by
   rw [tupleRange, Finset.card_image_of_injective _ hv, Finset.card_univ, Fintype.card_fin]
@@ -93,7 +106,9 @@ theorem card_tupleRange_of_injective [DecidableEq α] {n : ℕ} {v : Fin n → �
 -- `hv` is kept for API symmetry; it is derivable (equal ranges force equal
 -- cardinalities of images), and only `hw` does real work.
 /-- **Enumeration of orderings**: two injective tuples with the same underlying set
-differ by a permutation of the index type.-/
+differ by a permutation of the index type.
+@isnad1 id=ex.3h4v.s6.015592cf4174 from=translated src=- shape=72a81bdb vocab=389b2b68
+-/
 theorem exists_comp_perm_of_tupleRange_eq [DecidableEq α] {n : ℕ} {v w : Fin n → α}
     (hv : Function.Injective v) (hw : Function.Injective w)
     (h : tupleRange v = tupleRange w) : ∃ σ : Equiv.Perm (Fin n), w = v ∘ ⇑σ := by
@@ -119,7 +134,9 @@ theorem exists_comp_perm_of_tupleRange_eq [DecidableEq α] {n : ℕ} {v w : Fin 
 two coordinates `i < j` collide. The strict order orients the collision witness (a tuple may have
 several collisions; the theorem provides some strictly ordered one), which is what lets a
 nontransversal charge be counted by *unordered* coordinate pairs (`k.choose 2`) rather than
-ordered ones.-/
+ordered ones.
+@isnad1 id=iff.0h3v.s5.99035f105da7 from=translated src=- shape=a2519567 vocab=0afe7b3b
+-/
 theorem not_injective_iff_exists_lt_eq {k : ℕ} {T : Fin k → α} :
     ¬ Function.Injective T ↔ ∃ i j, i < j ∧ T i = T j := by
   rw [Function.not_injective_iff]
@@ -138,6 +155,9 @@ def nonInjectiveMaps (ι β : Type*) [Fintype ι] [DecidableEq ι] [Fintype β]
 
 variable [Fintype ι] [DecidableEq ι] [Fintype β] [DecidableEq β]
 
+/--
+@isnad1 id=iff.0h3v.s5.958300c60d02 from=translated src=- shape=fd190de9 vocab=28b8c7fb
+-/
 @[simp] theorem mem_nonInjectiveMaps {f : ι → β} :
     f ∈ nonInjectiveMaps ι β ↔ ¬ Function.Injective f := by
   simp [nonInjectiveMaps]
@@ -168,7 +188,9 @@ private lemma card_filter_eq_le_pow {i j : ι} (hne : i ≠ j) :
     _ = Fintype.card β ^ (Fintype.card ι - 1) := hbound
 
 /-- Cardinality bound on non-injective maps: `#nonInj ≤ |ι|² · |β|^(|ι| - 1)`
-(ordered-pair union bound).-/
+(ordered-pair union bound).
+@isnad1 id=le.0h2v.s6.ed0085176680 from=translated src=- shape=68bb379a vocab=fcc8afec
+-/
 theorem card_nonInjectiveMaps_le :
     (nonInjectiveMaps ι β).card
       ≤ Fintype.card ι * Fintype.card ι * Fintype.card β ^ (Fintype.card ι - 1) := by
@@ -200,7 +222,9 @@ theorem card_nonInjectiveMaps_le :
         rw [hpairs_def, Finset.offDiag_card, Finset.card_univ]
         exact Nat.sub_le _ _
 
-/-- Collisions lose one ambient power: `#nonInj / |β|^|ι| ≤ |ι|² / |β|`.-/
+/-- Collisions lose one ambient power: `#nonInj / |β|^|ι| ≤ |ι|² / |β|`.
+@isnad1 id=le.1h2v.s6.2083be847f26 from=translated src=- shape=fe998f4d vocab=31c5cfe2
+-/
 theorem nonInjectiveMaps_ratio_le (hβ : 0 < Fintype.card β) :
     ((nonInjectiveMaps ι β).card : ℝ) / (Fintype.card β : ℝ) ^ Fintype.card ι
       ≤ (Fintype.card ι : ℝ) ^ 2 / (Fintype.card β : ℝ) := by
@@ -252,16 +276,24 @@ section TuplesOn
 
 variable [DecidableEq α] {s : Finset α}
 
+/--
+@isnad1 id=iff.0h4v.s6.7c610459c878 from=translated src=- shape=a9e4867e vocab=abb8eec7
+-/
 @[simp] theorem mem_injectiveTuplesOn {f : ι → α} :
     f ∈ injectiveTuplesOn ι s ↔ (∀ i, f i ∈ s) ∧ Function.Injective f := by
   simp [injectiveTuplesOn, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=iff.0h4v.s6.c1bb77ebec6e from=translated src=- shape=9e7456a4 vocab=f35d785b
+-/
 @[simp] theorem mem_nonInjectiveTuplesOn {f : ι → α} :
     f ∈ nonInjectiveTuplesOn ι s ↔ (∀ i, f i ∈ s) ∧ ¬ Function.Injective f := by
   simp [nonInjectiveTuplesOn, Fintype.mem_piFinset]
 
 /-- **The restricted falling factorial.** The injective tuples through `s` are counted by
-`(|s|)_{|ι|}`; at `s = univ` this is `injectiveTupleCount_eq_descFactorial`.-/
+`(|s|)_{|ι|}`; at `s = univ` this is `injectiveTupleCount_eq_descFactorial`.
+@isnad1 id=eq.0h3v.s5.889213ba8346 from=translated src=- shape=d9e24993 vocab=0413ef40
+-/
 theorem card_injectiveTuplesOn (s : Finset α) :
     (injectiveTuplesOn ι s).card = s.card.descFactorial (Fintype.card ι) := by
   classical
@@ -282,7 +314,9 @@ theorem card_injectiveTuplesOn (s : Finset α) :
     Fintype.card_congr (Equiv.subtypeInjectiveEquivEmbedding ι s), Fintype.card_embedding_eq,
     Fintype.card_coe]
 
-/-- Every tuple through `s` is injective or not: the counts split `|s|^{|ι|}`.-/
+/-- Every tuple through `s` is injective or not: the counts split `|s|^{|ι|}`.
+@isnad1 id=eq.0h3v.s6.a1b5f0673025 from=translated src=- shape=70d5c45a vocab=fdae702c
+-/
 theorem card_injectiveTuplesOn_add_card_nonInjectiveTuplesOn (s : Finset α) :
     (injectiveTuplesOn ι s).card + (nonInjectiveTuplesOn ι s).card
       = s.card ^ Fintype.card ι := by
@@ -291,7 +325,9 @@ theorem card_injectiveTuplesOn_add_card_nonInjectiveTuplesOn (s : Finset α) :
 
 /-- **Where positivity lives.** The restricted falling factorial is positive exactly when
 `|ι| ≤ |s|`; this is the only place the normalization layer needs a size hypothesis (inverting a
-density bound into a count bound), never on the guard-free conversions below.-/
+density bound into a count bound), never on the guard-free conversions below.
+@isnad1 id=iff.0h3v.s5.b7c680d32305 from=translated src=- shape=3d55610a vocab=c2178f3b
+-/
 theorem card_injectiveTuplesOn_pos_iff (s : Finset α) :
     0 < (injectiveTuplesOn ι s).card ↔ Fintype.card ι ≤ s.card := by
   rw [card_injectiveTuplesOn, Nat.pos_iff_ne_zero, ne_eq, Nat.descFactorial_eq_zero_iff_lt,
@@ -333,7 +369,9 @@ private theorem card_filter_eq_on_le {i j : Fin k} (hij : i ≠ j) :
 `(k.choose 2)·|s|^(k−1)` of the `k`-tuples through `s` are non-injective: each has some strictly
 ordered collision `i < j` (`not_injective_iff_exists_lt_eq`), and each of the `k.choose 2`
 collision events has at most `|s|^(k−1)` members. Sharper than `card_nonInjectiveMaps_le`'s
-ordered-pair `|ι|²`.-/
+ordered-pair `|ι|²`.
+@isnad1 id=le.0h3v.s6.d94800927111 from=translated src=- shape=4f574a38 vocab=79434c98
+-/
 theorem card_nonInjectiveTuplesOn_le (s : Finset α) (k : ℕ) :
     (nonInjectiveTuplesOn (Fin k) s).card ≤ k.choose 2 * s.card ^ (k - 1) := by
   classical
@@ -364,7 +402,9 @@ theorem card_nonInjectiveTuplesOn_le (s : Finset α) (k : ℕ) :
 `x : Fin n → Fin k` to lie in a set `E` pins the tuple on the coordinate `x i₀`, so at most
 `|E|·|s|^(k−1)` tuples through `s` have `f ∘ x ∈ E`: the map `f ↦ (f ∘ x, f off `x i₀`)` is
 injective into `E ×ˢ (free box)`. The index `i₀` witnesses `n ≥ 1`; at `n = 0` no coordinate is
-pinned and no bound of this shape holds.-/
+pinned and no bound of this shape holds.
+@isnad1 id=le.0h7v.s7.ac9dbe23c9d1 from=translated src=- shape=1f834aa4 vocab=b5413866
+-/
 theorem card_filter_comp_mem_le {n : ℕ} (E : Finset (Fin n → α)) (x : Fin n → Fin k)
     (i₀ : Fin n) :
     ((Fintype.piFinset fun _ : Fin k => s).filter fun f => f ∘ x ∈ E).card
@@ -398,7 +438,9 @@ end CollisionOn
 
 /-- **Additive conversion between the power and the falling factorial**:
 `n^k ≤ (n)_k + (k.choose 2)·n^(k−1)`. Together with `Nat.descFactorial_le_pow` this pins the
-all-tuple count to within `(k.choose 2)·n^(k−1)` of the injective count, in either direction.-/
+all-tuple count to within `(k.choose 2)·n^(k−1)` of the injective count, in either direction.
+@isnad1 id=le.0h2v.s6.605350ca0ae2 from=translated src=- shape=533cbee6 vocab=cc8b24cd
+-/
 theorem pow_le_descFactorial_add_choose_mul (n k : ℕ) :
     n ^ k ≤ n.descFactorial k + k.choose 2 * n ^ (k - 1) := by
   have h := card_injectiveTuplesOn_add_card_nonInjectiveTuplesOn
@@ -410,7 +452,9 @@ theorem pow_le_descFactorial_add_choose_mul (n k : ℕ) :
 
 /-- **Density conversion, lower half.** A count `c` of injective tuples (`0 ≤ c ≤ (n)_k`) has
 power-normalized density at most its falling-factorial density. Guard-free under `x / 0 = 0`:
-when `(n)_k = 0` the hypotheses force `c = 0`.-/
+when `(n)_k = 0` the hypotheses force `c = 0`.
+@isnad1 id=le.2h3v.s6.9ee532fd107e from=translated src=- shape=4121f0f4 vocab=89dc676b
+-/
 theorem div_pow_le_div_descFactorial {n k : ℕ} {c : ℝ} (hc0 : 0 ≤ c)
     (hc : c ≤ (n.descFactorial k : ℝ)) :
     c / (n : ℝ) ^ k ≤ c / (n.descFactorial k : ℝ) := by
@@ -421,7 +465,9 @@ theorem div_pow_le_div_descFactorial {n k : ℕ} {c : ℝ} (hc0 : 0 ≤ c)
       (by exact_mod_cast Nat.descFactorial_le_pow n k)
 
 /-- **Density conversion, upper half.** The falling-factorial density exceeds the
-power-normalized density by at most `(k.choose 2) / n`. Guard-free under `x / 0 = 0`.-/
+power-normalized density by at most `(k.choose 2) / n`. Guard-free under `x / 0 = 0`.
+@isnad1 id=le.2h3v.s6.48eca393b821 from=translated src=- shape=4496b8f9 vocab=85057b73
+-/
 theorem div_descFactorial_sub_div_pow_le {n k : ℕ} {c : ℝ} (hc0 : 0 ≤ c)
     (hc : c ≤ (n.descFactorial k : ℝ)) :
     c / (n.descFactorial k : ℝ) - c / (n : ℝ) ^ k ≤ (k.choose 2 : ℝ) / n := by
@@ -462,14 +508,18 @@ theorem div_descFactorial_sub_div_pow_le {n k : ℕ} {c : ℝ} (hc0 : 0 ≤ c)
 
 /-! ### The injective/non-injective split -/
 
-/-- Every map is injective or not: the counts split the full power.-/
+/-- Every map is injective or not: the counts split the full power.
+@isnad1 id=eq.0h2v.s5.6b0c5443f4f5 from=translated src=- shape=a8f0ea4b vocab=af986f33
+-/
 theorem injectiveTupleCount_add_card_nonInjectiveMaps [Fintype α] [DecidableEq α] {n : ℕ} :
     injectiveTupleCount α n + (nonInjectiveMaps (Fin n) α).card = Fintype.card α ^ n := by
   rw [injectiveTupleCount, injectiveTuples, nonInjectiveMaps,
     Finset.card_filter_add_card_filter_not, Finset.card_univ]
   simp
 
-/-- Once `2n² ≤ |α|`, at least half of all `n`-tuples are injective.-/
+/-- Once `2n² ≤ |α|`, at least half of all `n`-tuples are injective.
+@isnad1 id=le.2h2v.s6.9a8d4180381d from=translated src=- shape=1a597f9e vocab=fca10dda
+-/
 theorem half_pow_le_injectiveTupleCount [Fintype α] [DecidableEq α] {n : ℕ} (hn1 : 1 ≤ n)
     (hn : 2 * n ^ 2 ≤ Fintype.card α) :
     (Fintype.card α : ℝ) ^ n / 2 ≤ (injectiveTupleCount α n : ℝ) := by

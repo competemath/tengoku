@@ -48,17 +48,25 @@ def badNbhd (B : V → V → Prop) [DecidableRel B] (S : Finset V) (v : V) : Fin
   S.filter (fun u => B v u ∨ B u v)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h4v.s5.91b1c3187a22 from=translated src=- shape=fb7c765b vocab=ad9e2ea2
+-/
 theorem badNbhd_subset {B : V → V → Prop} [DecidableRel B] {S : Finset V} {v : V} :
     badNbhd B S v ⊆ S :=
   Finset.filter_subset _ _
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.1h5v.s5.1b4a7cf9accd from=translated src=- shape=66e55342 vocab=ad9e2ea2
+-/
 theorem badNbhd_mono {B : V → V → Prop} [DecidableRel B] {S S' : Finset V}
     (h : S' ⊆ S) (v : V) : badNbhd B S' v ⊆ badNbhd B S v :=
   Finset.filter_subset_filter _ h
 
 omit [DecidableEq V] in
-/-- Membership outside the bad-neighborhood cleans both orientations.-/
+/-- Membership outside the bad-neighborhood cleans both orientations.
+@isnad1 id=and.2h5v.s5.66de066aac60 from=translated src=- shape=58096bbf vocab=13374693
+-/
 theorem not_bad_of_mem_of_notMem_badNbhd {B : V → V → Prop} [DecidableRel B]
     {S : Finset V} {v u : V} (hu : u ∈ S) (h : u ∉ badNbhd B S v) :
     ¬ B v u ∧ ¬ B u v := by
@@ -67,7 +75,9 @@ theorem not_bad_of_mem_of_notMem_badNbhd {B : V → V → Prop} [DecidableRel B]
   exact h hu
 
 /-- **Greedy core**: a symmetrized bad-degree cap `D` on `S` yields a pairwise-clean
-subset carrying a `1/(D+1)` fraction of `S`.-/
+subset carrying a `1/(D+1)` fraction of `S`.
+@isnad1 id=ex.1h4v.s7.180068fdeec7 from=translated src=- shape=d2b59bb6 vocab=b0a593e4
+-/
 theorem exists_clean_subset_of_degree_le (B : V → V → Prop) [DecidableRel B]
     (D : ℕ) (S : Finset V) (hdeg : ∀ v ∈ S, (badNbhd B S v).card ≤ D) :
     ∃ T ⊆ S, S.card ≤ (D + 1) * T.card ∧
@@ -116,7 +126,9 @@ theorem exists_clean_subset_of_degree_le (B : V → V → Prop) [DecidableRel B]
 
 omit [DecidableEq V] in
 /-- **The Markov half**: if the summed symmetrized bad-degree is at most `E` and
-`2·E ≤ |S|·(D+1)`, at least half of `S` has bad-degree at most `D`.-/
+`2·E ≤ |S|·(D+1)`, at least half of `S` has bad-degree at most `D`.
+@isnad1 id=le.2h5v.s7.60d493e6b92d from=translated src=- shape=a6306e40 vocab=0ae4721a
+-/
 theorem card_filter_degree_le (B : V → V → Prop) [DecidableRel B] (S : Finset V)
     {E D : ℕ} (hE : ∑ v ∈ S, (badNbhd B S v).card ≤ E)
     (hD : 2 * E ≤ S.card * (D + 1)) :
@@ -155,7 +167,9 @@ bad-degree total of at most `E` over `S` with `2·E ≤ |S|·(D+1)`, a pairwise-
 subset carrying at least a `1/(2·(D+1))` fraction of `S`. The counting feeding `E`
 must already be UNWEIGHTED — see the module docstring for why equal (or
 fixed-comparability) cell sizes are a genuine precondition of the route (b)
-supplier, and how `E` carries the `2·K` palette/orientation factor.-/
+supplier, and how `E` carries the `2·K` palette/orientation factor.
+@isnad1 id=ex.2h5v.s7.32470a6b2d2e from=translated src=- shape=a3fe0e93 vocab=d961c809
+-/
 theorem exists_clean_subset (B : V → V → Prop) [DecidableRel B] (S : Finset V)
     {E D : ℕ} (hE : ∑ v ∈ S, (badNbhd B S v).card ≤ E)
     (hD : 2 * E ≤ S.card * (D + 1)) :

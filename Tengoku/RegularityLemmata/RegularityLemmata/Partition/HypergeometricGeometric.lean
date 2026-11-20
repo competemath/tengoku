@@ -27,7 +27,9 @@ open Finset
 
 namespace RegularityLemmata
 
-/-- Normalize the binomial-moment estimate without introducing division.-/
+/-- Normalize the binomial-moment estimate without introducing division.
+@isnad1 id=le.2h6v.s6.5c87b1dd0dad from=translated src=- shape=2bf1f5b0 vocab=005aed2a
+-/
 theorem normalize_binomial_moment
     {bad n s a K r : ℕ} (hrs : r ≤ s)
     (hmoment : bad * K.choose r ≤ a.choose r * (n - r).choose (s - r)) :
@@ -45,7 +47,9 @@ theorem normalize_binomial_moment
         _ = a.choose r * (n.choose s * s.choose r) := by rw [← hchoose]
         _ = n.choose s * a.choose r * s.choose r := by ring
 
-/-- Division-free geometric consequence of the binomial-moment estimate.-/
+/-- Division-free geometric consequence of the binomial-moment estimate.
+@isnad1 id=le.2h6v.s7.a068c8d55bd2 from=translated src=- shape=5094cbef vocab=32545042
+-/
 theorem binomial_moment_geometric
     {bad n s a K r : ℕ} (hrs : r ≤ s)
     (hmoment : bad * K.choose r ≤ a.choose r * (n - r).choose (s - r)) :
@@ -81,7 +85,9 @@ theorem binomial_moment_geometric
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- The upper-violation family of the proportional route satisfies the division-free geometric
-tail.  The threshold is `hi + 1`, hence the first denominator factor is `hi + 2 - r`.-/
+tail.  The threshold is `hi + 1`, hence the first denominator factor is `hi + 2 - r`.
+@isnad1 id=le.1h5v.s7.15e0f12ebefe from=translated src=- shape=4c93bae9 vocab=1f0399cb
+-/
 theorem card_upperViolations_geometric (A : Finset α) {s hi r : ℕ} (hrs : r ≤ s) :
     (upperViolations A s hi).card * (hi + 2 - r) ^ r *
         (Fintype.card α + 1 - r) ^ r ≤
@@ -94,7 +100,9 @@ theorem card_upperViolations_geometric (A : Finset α) {s hi r : ℕ} (hrs : r �
 
 /-- Clearing-denominators union bound.  If every bad family has numerator `Q` and denominator
 `D`, and the number of events times `Q` is below `D`, their total is below the sample-space
-size `N`.-/
+size `N`.
+@isnad1 id=lt.4h7v.s6.0e1e820e9f54 from=translated src=- shape=63fc990b vocab=b2fdb46e
+-/
 theorem sum_bad_lt_of_mul_le_and_event_ratio
     {ι : Type*} [DecidableEq ι] (F : Finset ι) (bad : ι → ℕ)
     {m N Q D : ℕ} (hN : 0 < N) (hD : 0 < D)
@@ -115,7 +123,9 @@ theorem sum_bad_lt_of_mul_le_and_event_ratio
   exact (Nat.mul_lt_mul_right hD).mp (by simpa [mul_comm] using hmul)
 
 /-- Schedule-ready simultaneous sampling.  The caller supplies only a uniform denominator
-floor, numerator ceiling, positivity, and the strict event-ratio inequality.-/
+floor, numerator ceiling, positivity, and the strict event-ratio inequality.
+@isnad1 id=ex.8h9v.s8.c00c62d415c5 from=translated src=- shape=a0db8bed vocab=aee8ea34
+-/
 theorem exists_equiv_forall_blocks_upper_of_geometric
     {n s m r D Q : ℕ} (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hi : Finset α → ℕ) (hrs : r ≤ s)
@@ -146,7 +156,9 @@ theorem exists_equiv_forall_blocks_upper_of_geometric
   exact exists_equiv_forall_blocks_upper hn hnm F hi hsum
 
 /-- Proportional-window specialization of the geometric sampler.  Once `r ≤ t`, all trace
-dependence disappears from the numerical hypothesis.-/
+dependence disappears from the numerical hypothesis.
+@isnad1 id=ex.7h7v.s8.47ec50d0c38c from=translated src=- shape=170894d8 vocab=a014cf9a
+-/
 theorem exists_equiv_forall_blocks_proportional_of_ratio
     {n s m t r : ℕ} (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hrs : r ≤ s) (hrt : r ≤ t) (hrn : r ≤ n)
@@ -174,7 +186,9 @@ theorem exists_equiv_forall_blocks_proportional_of_ratio
 
 omit [Fintype α] [DecidableEq α] in
 /-- A simple geometric sufficient condition for the exact proportional-sampling ratio.  Under
-the half-slack bounds on `r`, it exposes the factor `(4s/t)^r` directly.-/
+the half-slack bounds on `r`, it exposes the factor `(4s/t)^r` directly.
+@isnad1 id=lt.4h6v.s8.25b5338bf3d8 from=translated src=- shape=a045659c vocab=62399aff
+-/
 theorem proportional_ratio_of_four_mul
     {m F n s t r : ℕ} (hn : 0 < n)
     (hrt : 2 * r ≤ t + 4) (hrn : 2 * r ≤ n + 2)
@@ -201,7 +215,9 @@ theorem proportional_ratio_of_four_mul
       ring
     _ = 4 ^ r * ((t + 2 - r) ^ r * (n + 1 - r) ^ r) := rfl
 
-/-- A window already at least the sample size has no upper violations.-/
+/-- A window already at least the sample size has no upper violations.
+@isnad1 id=eq.1h4v.s5.38063e688528 from=translated src=- shape=9e3890da vocab=25180b3d
+-/
 theorem upperViolations_eq_empty_of_s_le_hi (A : Finset α) {s hi : ℕ} (h : s ≤ hi) :
     upperViolations A s hi = ∅ := by
   rw [upperViolations, Finset.filter_eq_empty_iff]
@@ -213,7 +229,9 @@ theorem upperViolations_eq_empty_of_s_le_hi (A : Finset α) {s hi : ℕ} (h : s 
     _ ≤ hi := h
 
 omit [Fintype α] [DecidableEq α] in
-/-- The raw trace product is below `n` times one more than its proportional quotient.-/
+/-- The raw trace product is below `n` times one more than its proportional quotient.
+@isnad1 id=lt.1h5v.s6.294a52b48082 from=translated src=- shape=268cd460 vocab=9b7302f0
+-/
 theorem card_mul_lt_mul_proportional_window_succ (A : Finset α) {n s t : ℕ}
     (hn : 0 < n) :
     A.card * s < n * (A.card * s / n + t + 1) := by
@@ -222,7 +240,9 @@ theorem card_mul_lt_mul_proportional_window_succ (A : Finset α) {n s t : ℕ}
     _ ≤ n * (A.card * s / n + t + 1) := by gcongr; omega
 
 /-- Schedule-ready sampler asking tail estimates only for active traces `hi A < s`.  Every
-inactive trace is discharged because its upper-violation family is empty.-/
+inactive trace is discharged because its upper-violation family is empty.
+@isnad1 id=ex.8h9v.s8.c3045abc9efa from=translated src=- shape=15e13d3e vocab=91698f0e
+-/
 theorem exists_equiv_forall_blocks_upper_of_active_geometric
     {n s m r D Q : ℕ} (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hi : Finset α → ℕ) (hrs : r ≤ s)

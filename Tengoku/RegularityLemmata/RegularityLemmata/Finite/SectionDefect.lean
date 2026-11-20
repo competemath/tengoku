@@ -41,7 +41,9 @@ section Count
 
 variable (A : Finset α) (p : α → Prop) [DecidablePred p]
 
-/-- The disagreeing pairs are the two rectangles `{p} × {¬p}` and `{¬p} × {p}`.-/
+/-- The disagreeing pairs are the two rectangles `{p} × {¬p}` and `{¬p} × {p}`.
+@isnad1 id=eq.0h3v.s6.104f3abfe4ea from=translated src=- shape=4f03613a vocab=af7da927
+-/
 theorem sectionDisagreement_eq :
     sectionDisagreement A p = 2 * (A.filter p).card * (A.filter fun a => ¬ p a).card := by
   classical
@@ -71,12 +73,17 @@ theorem sectionDisagreement_eq :
     exact h₂.1.2 h₁.1.2
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=eq.0h2v.s4.dfc8bfb6e98f from=translated src=- shape=b26b787f vocab=7494c8bd
+-/
 @[simp] theorem sectionDisagreement_empty : sectionDisagreement (∅ : Finset α) p = 0 := by
   simp [sectionDisagreement]
 
 omit [DecidableEq α] in
 /-- The disagreement counted row by row: for each `b ∈ A`, the points of `A` on which `p` differs
-from its value at `b`.-/
+from its value at `b`.
+@isnad1 id=eq.0h3v.s6.da8c55f8f06b from=translated src=- shape=feb30270 vocab=77a88ef6
+-/
 theorem sectionDisagreement_eq_sum :
     sectionDisagreement A p = ∑ b ∈ A, (A.filter fun a => ¬ (p b ↔ p a)).card := by
   unfold sectionDisagreement
@@ -84,6 +91,9 @@ theorem sectionDisagreement_eq_sum :
   simp only [Finset.card_filter]
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=le.0h3v.s5.42a000f63a70 from=translated src=- shape=d91fea8b vocab=7935b2d7
+-/
 theorem sectionDisagreement_le_sq : sectionDisagreement A p ≤ A.card ^ 2 := by
   unfold sectionDisagreement
   calc ((A ×ˢ A).filter fun q => ¬ (p q.1 ↔ p q.2)).card ≤ (A ×ˢ A).card :=
@@ -91,7 +101,9 @@ theorem sectionDisagreement_le_sq : sectionDisagreement A p ≤ A.card ^ 2 := by
     _ = A.card ^ 2 := by rw [Finset.card_product, sq]
 
 /-- Normalized by `|A|²`, the disagreement is `2·d·(1 − d)` for the density `d` of the section;
-guard-free at `A = ∅` (both sides `0`).-/
+guard-free at `A = ∅` (both sides `0`).
+@isnad1 id=eq.0h3v.s6.48916d25b4b3 from=translated src=- shape=0a970fd7 vocab=e65816d0
+-/
 theorem sectionDisagreement_div_sq :
     (sectionDisagreement A p : ℝ) / (A.card : ℝ) ^ 2
       = 2 * densityOn A p * (1 - densityOn A p) := by
@@ -110,7 +122,9 @@ theorem sectionDisagreement_div_sq :
   rw [hnot]
   field_simp
 
-/-- The normalized disagreement never exceeds `1/2`.-/
+/-- The normalized disagreement never exceeds `1/2`.
+@isnad1 id=le.0h1v.s6.2547e34ff7ae from=translated src=- shape=18dee4b7 vocab=00cae1bd
+-/
 theorem two_mul_mul_one_sub_le_half {d : ℝ} : 2 * d * (1 - d) ≤ 1 / 2 := by
   nlinarith [sq_nonneg (2 * d - 1)]
 
@@ -125,7 +139,9 @@ def InclusiveMixed (θ d : ℝ) : Prop := θ ≤ d ∧ d ≤ 1 - θ
 noncomputable instance (θ d : ℝ) : Decidable (InclusiveMixed θ d) := by
   unfold InclusiveMixed; infer_instance
 
-/-- A density in `[0, 1]` that is not inclusively `θ`-mixed has `2·d·(1 − d) ≤ 2·θ`.-/
+/-- A density in `[0, 1]` that is not inclusively `θ`-mixed has `2·d·(1 − d) ≤ 2·θ`.
+@isnad1 id=le.4h2v.s6.eaa9fb4f5b20 from=translated src=- shape=fc5f27f4 vocab=3dd8ee2c
+-/
 theorem two_mul_mul_one_sub_le_of_not_inclusiveMixed {θ d : ℝ} (hθ : 0 ≤ θ) (hd0 : 0 ≤ d)
     (hd1 : d ≤ 1) (h : ¬ InclusiveMixed θ d) : 2 * d * (1 - d) ≤ 2 * θ := by
   unfold InclusiveMixed at h
@@ -138,7 +154,9 @@ theorem two_mul_mul_one_sub_le_of_not_inclusiveMixed {θ d : ℝ} (hθ : 0 ≤ �
 /-- **The inclusive-decency bound.** For sections `p y` on `A` indexed by `y ∈ Y`, if at most
 `γ·|Y|` of them are inclusively `θ`-mixed, the total normalized disagreement is at most
 `(2·θ + γ/2)·|Y|`. Only `0 ≤ θ` is assumed (the rate `γ` enters through the counting
-hypothesis alone); `Y = ∅` and `A = ∅` are covered.-/
+hypothesis alone); `Y = ∅` and `A = ∅` are covered.
+@isnad1 id=le.2h7v.s7.ca077d780fca from=translated src=- shape=b75c1cb7 vocab=7ddceba9
+-/
 theorem sum_normalizedDisagreement_le {ι : Type*} (Y : Finset ι) (A : Finset α)
     (p : ι → α → Prop) [∀ y, DecidablePred (p y)] {θ γ : ℝ} (hθ : 0 ≤ θ)
     (hmixed : ((Y.filter fun y => InclusiveMixed θ (densityOn A (p y))).card : ℝ)

@@ -40,7 +40,9 @@ noncomputable def rectCutNorm (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → 
       ⟨∅, Finset.empty_mem_powerset B⟩)
     fun p => |rectSum f wX wY p.1 p.2|
 
-/-- Elimination API: bounding the cut norm is exactly the quantified rectangle bound.-/
+/-- Elimination API: bounding the cut norm is exactly the quantified rectangle bound.
+@isnad1 id=iff.0h8v.s6.ac0e12094c22 from=translated src=- shape=c53abcea vocab=d2b4e5af
+-/
 theorem rectCutNorm_le_iff {c : ℝ} :
     rectCutNorm f wX wY A B ≤ c ↔ ∀ S ⊆ A, ∀ T ⊆ B, |rectSum f wX wY S T| ≤ c := by
   rw [rectCutNorm, Finset.sup'_le_iff]
@@ -52,16 +54,23 @@ theorem rectCutNorm_le_iff {c : ℝ} :
     rw [Finset.mem_product, Finset.mem_powerset, Finset.mem_powerset] at hp
     exact h S hp.1 T hp.2
 
-/-- Every test rectangle's absolute sum is at most the cut norm.-/
+/-- Every test rectangle's absolute sum is at most the cut norm.
+@isnad1 id=le.2h9v.s6.44b00260f790 from=translated src=- shape=370227b1 vocab=d2b4e5af
+-/
 theorem abs_rectSum_le_rectCutNorm {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) :
     |rectSum f wX wY S T| ≤ rectCutNorm f wX wY A B :=
   rectCutNorm_le_iff.mp le_rfl S hS T hT
 
+/--
+@isnad1 id=le.0h7v.s5.6d028d2b8db6 from=translated src=- shape=17fd5e70 vocab=7f1ad0c9
+-/
 theorem rectCutNorm_nonneg : 0 ≤ rectCutNorm f wX wY A B :=
   le_trans (abs_nonneg _)
     (abs_rectSum_le_rectCutNorm (Finset.empty_subset A) (Finset.empty_subset B))
 
-/-- `op` exchanges the two sides of the cut norm.-/
+/-- `op` exchanges the two sides of the cut norm.
+@isnad1 id=eq.0h7v.s5.f91560f110cf from=translated src=- shape=6037f121 vocab=db0d3be7
+-/
 theorem rectCutNorm_op (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (A : Finset X)
     (B : Finset Y) : rectCutNorm f.op wY wX B A = rectCutNorm f wX wY A B := by
   refine le_antisymm ?_ ?_
@@ -75,7 +84,9 @@ theorem rectCutNorm_op (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (A
     exact abs_rectSum_le_rectCutNorm hT hS
 
 /-- Positive rescaling of the left carrier weight scales the cut norm by the same factor
-(design-freeze convention 6).-/
+(design-freeze convention 6).
+@isnad1 id=eq.1h8v.s6.a2dfff3dbd59 from=translated src=- shape=fa859b83 vocab=12cb06ae
+-/
 theorem rectCutNorm_smul_weight_left {c : ℝ} (hc : 0 < c) (f : RectKernel X Y) (wX : X → ℝ)
     (wY : Y → ℝ) (A : Finset X) (B : Finset Y) :
     rectCutNorm f (fun x => c * wX x) wY A B = c * rectCutNorm f wX wY A B := by
@@ -92,7 +103,9 @@ theorem rectCutNorm_smul_weight_left {c : ℝ} (hc : 0 < c) (f : RectKernel X Y)
 
 /-- **The trivial bound.** An absolutely `C`-bounded kernel has cut norm at most `C` times the
 total mass, under nonnegative weights; guard-free, and the reason a cut-norm target `ε · M`
-with `ε ≥ C` is met by the zero decomposition.-/
+with `ε ≥ C` is met by the zero decomposition.
+@isnad1 id=le.4h8v.s7.910fc6576098 from=translated src=- shape=0f587f69 vocab=c47dddeb
+-/
 theorem rectCutNorm_le_mul_mass {C : ℝ} (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hC : 0 ≤ C) (hf : IsAbsBoundedOnRectangle f C A B) :
     rectCutNorm f wX wY A B ≤ C * (finsetMass wX A * finsetMass wY B) := by
@@ -106,7 +119,9 @@ theorem rectCutNorm_le_mul_mass {C : ℝ} (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY :
     (finsetMass_nonneg hwT) (finsetMass_nonneg hwX)
 
 /-- **Zero total mass gives zero cut norm** under nonnegative weights: every rectangle sum
-inside the carriers vanishes (`rectSum_eq_zero_of_finsetMass_mul_eq_zero`).-/
+inside the carriers vanishes (`rectSum_eq_zero_of_finsetMass_mul_eq_zero`).
+@isnad1 id=eq.3h7v.s6.602d8bfd7556 from=translated src=- shape=650e7d72 vocab=ac39beca
+-/
 theorem rectCutNorm_eq_zero_of_finsetMass_mul_eq_zero (hwX : ∀ x ∈ A, 0 ≤ wX x)
     (hwY : ∀ y ∈ B, 0 ≤ wY y) (h : finsetMass wX A * finsetMass wY B = 0) :
     rectCutNorm f wX wY A B = 0 := by

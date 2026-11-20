@@ -26,7 +26,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L] {V : Type*}
 
 omit [Fintype V] [DecidableEq V] in
 /-- On a profile-matching pair of vertices, preservation-and-reflection reduces to
-carrying the pattern's required palette color.-/
+carrying the pattern's required palette color.
+@isnad1 id=iff.3h5v.s7.f2696407b1d8 from=translated src=- shape=ed1ff2dd vocab=bf2bcbc3
+-/
 theorem preservesAndReflects_two_iff [AtMostBinary L]
     {P : FiniteRelModel L (Fin 2)} {M : FiniteRelModel L V}
     (hnull : NullaryCompatible P M) {f : Fin 2 → V}
@@ -54,7 +56,9 @@ theorem preservesAndReflects_two_iff [AtMostBinary L]
 
 omit [Fintype V] in
 /-- **Exact two-vertex count.** The induced count over disjoint profile-matching cells
-equals the palette pair count of the pattern's required color.-/
+equals the palette pair count of the pattern's required color.
+@isnad1 id=eq.4h6v.s8.24dbe87bb7ae from=translated src=- shape=794b5114 vocab=b4c9fdd3
+-/
 theorem inducedEmbeddingCountOn_two [AtMostBinary L]
     {P : FiniteRelModel L (Fin 2)} {M : FiniteRelModel L V} {A B : Finset V}
     (hnull : NullaryCompatible P M)
@@ -94,7 +98,9 @@ theorem inducedEmbeddingCountOn_two [AtMostBinary L]
       · exact hp.2
 
 omit [Fintype V] in
-/-- The density form.-/
+/-- The density form.
+@isnad1 id=eq.4h6v.s8.dfc778c9905f from=translated src=- shape=b08e6089 vocab=1c3edf02
+-/
 theorem inducedEmbeddingDensityOn_two [AtMostBinary L]
     {P : FiniteRelModel L (Fin 2)} {M : FiniteRelModel L V} {A B : Finset V}
     (hnull : NullaryCompatible P M)

@@ -85,7 +85,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V} {Q : Finpartition s}
 
 omit [AtMostBinary L] in
 /-- On ANY triple both the count and the density product lie in `[0, volume]`, so their
-difference is at most the volume. This is the only estimate a bad triple receives.-/
+difference is at most the volume. This is the only estimate a bad triple receives.
+@isnad1 id=le.0h5v.s9.f6f40a3bab7f from=translated src=- shape=cba78d4f vocab=dbe2a263
+-/
 theorem abs_count_sub_densityProduct_le_volume (T : Fin 3 → Finset V) :
     |(inducedEmbeddingCountOn P M T : ℝ)
         - pairDensity (HasBinaryPairPalette M (binaryPairPalette P 0 1)) (T 0) (T 1)
@@ -131,7 +133,9 @@ noncomputable def representativeInducedEstimate (P : FiniteRelModel L (Fin 3))
       * (g (T 0)).card * (g (T 1)).card * (g (T 2)).card
 
 open Classical in
-/-- Both sides live on the triples whose REPRESENTATIVE boxes match profiles.-/
+/-- Both sides live on the triples whose REPRESENTATIVE boxes match profiles.
+@isnad1 id=eq.2h7v.s8.b67a8eb5ad16 from=translated src=- shape=1c03e9e9 vocab=8879b2c1
+-/
 theorem representativeInducedCount_eq_sum_matching (hQ : Q ≤ binaryProfilePartition M s)
     {g : Finset V → Finset V} (hg : ∀ C ∈ Q.parts, g C ⊆ C) :
     (representativeInducedCount P M Q g : ℝ)
@@ -155,11 +159,17 @@ theorem representativeInducedCount_eq_sum_matching (hQ : Q ≤ binaryProfilePart
     norm_num
   rw [hzero, add_zero]
 
+/--
+@isnad1 id=eq.0h6v.s6.4016e91be148 from=translated src=- shape=95cdb7bd vocab=1468d888
+-/
 @[simp] theorem representativeInducedCount_id (P : FiniteRelModel L (Fin 3))
     (M : FiniteRelModel L V) (Q : Finpartition s) :
     representativeInducedCount P M Q (fun C => C) = transversalInducedCount P M Q := rfl
 
 open Classical in
+/--
+@isnad1 id=eq.0h6v.s6.054097a6eab3 from=translated src=- shape=19515b05 vocab=73444c14
+-/
 @[simp] theorem representativeInducedEstimate_id (P : FiniteRelModel L (Fin 3))
     (M : FiniteRelModel L V) (Q : Finpartition s) :
     representativeInducedEstimate P M Q (fun C => C) = coarseInducedEstimate P M Q := rfl
@@ -171,7 +181,9 @@ open Classical in
 the representatives `g C ⊆ C`. The bad-pair set `D` is a set of PROXY pairs, its uniformity
 hypothesis is about the REPRESENTATIVE boxes, and its mass is proxy-weighted — which is
 exactly the shape a selected-pair set has. No representative cover is needed and no uncovered
-mass appears: proxy disjointness carries the accounting, and the boxes only shrink.-/
+mass appears: proxy disjointness carries the accounting, and the boxes only shrink.
+@isnad1 id=le.10h10v.s10.affd6d853cde from=translated src=- shape=0499a4ae vocab=548a6845
+-/
 theorem abs_representativeInducedCount_sub_estimate_le
     (hQ : Q ≤ binaryProfilePartition M s) (hnull : NullaryCompatible P M)
     {g : Finset V → Finset V} (hg : ∀ C ∈ Q.parts, g C ⊆ C)
@@ -287,7 +299,9 @@ theorem abs_representativeInducedCount_sub_estimate_le
 
 open Classical in
 /-- The original partition estimate is the case `g C = C`: the boxes counted are the cells
-themselves.-/
+themselves.
+@isnad1 id=le.9h9v.s9.3e7f49aa9817 from=translated src=- shape=174a65fe vocab=e8d6dc6d
+-/
 theorem abs_transversalInducedCount_sub_coarseInducedEstimate_le
     (hQ : Q ≤ binaryProfilePartition M s) (hnull : NullaryCompatible P M)
     {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts)

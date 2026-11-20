@@ -63,7 +63,9 @@ def placementClass (T : Fin 3 → β) : PlacementClass :=
 
 omit [DecidableEq β] in
 /-- Injectivity of a `Fin 3`-triple is the conjunction of the three disequalities
-(the Graph-layer counterpart of the relational collision characterization).-/
+(the Graph-layer counterpart of the relational collision characterization).
+@isnad1 id=iff.0h2v.s7.ec670621c6b6 from=translated src=- shape=ba939a66 vocab=658a211e
+-/
 theorem injective_fin_three_iff {T : Fin 3 → β} :
     Function.Injective T ↔ T 0 ≠ T 1 ∧ T 0 ≠ T 2 ∧ T 1 ≠ T 2 := by
   constructor
@@ -73,30 +75,48 @@ theorem injective_fin_three_iff {T : Fin 3 → β} :
   · rintro ⟨h1, h2, h3⟩ a b hab
     fin_cases a <;> fin_cases b <;> simp_all
 
+/--
+@isnad1 id=iff.0h2v.s7.6591e5474c02 from=translated src=- shape=5e8142d1 vocab=2ac230c8
+-/
 theorem placementClass_eq_allDistinct_iff {T : Fin 3 → β} :
     placementClass T = .allDistinct ↔ T 0 ≠ T 1 ∧ T 0 ≠ T 2 ∧ T 1 ≠ T 2 := by
   rw [placementClass]
   split_ifs with h01 h12 h02 h12' <;> simp_all
 
+/--
+@isnad1 id=iff.0h2v.s4.80bb9f4be221 from=translated src=- shape=93f78ba2 vocab=f885ca55
+-/
 theorem placementClass_eq_allDistinct_iff_injective {T : Fin 3 → β} :
     placementClass T = .allDistinct ↔ Function.Injective T := by
   rw [placementClass_eq_allDistinct_iff, injective_fin_three_iff]
 
+/--
+@isnad1 id=iff.0h2v.s6.3bbcff8ec947 from=translated src=- shape=abb66459 vocab=1591c019
+-/
 theorem placementClass_eq_allEqual_iff {T : Fin 3 → β} :
     placementClass T = .allEqual ↔ T 0 = T 1 ∧ T 1 = T 2 := by
   rw [placementClass]
   split_ifs with h01 h12 h02 h12' <;> simp_all
 
+/--
+@isnad1 id=iff.0h2v.s6.ce68669ccd6c from=translated src=- shape=ab97605a vocab=069417a1
+-/
 theorem placementClass_eq_eq01_iff {T : Fin 3 → β} :
     placementClass T = .eq01 ↔ T 0 = T 1 ∧ T 1 ≠ T 2 := by
   rw [placementClass]
   split_ifs with h01 h12 h02 h12' <;> simp_all
 
+/--
+@isnad1 id=iff.0h2v.s6.2429d16cd8b7 from=translated src=- shape=ab97605a vocab=ee74b1c3
+-/
 theorem placementClass_eq_eq02_iff {T : Fin 3 → β} :
     placementClass T = .eq02 ↔ T 0 = T 2 ∧ T 0 ≠ T 1 := by
   rw [placementClass]
   split_ifs with h01 h12 h02 h12' <;> simp_all
 
+/--
+@isnad1 id=iff.0h2v.s6.5a9885f2d389 from=translated src=- shape=ab97605a vocab=142cc4a9
+-/
 theorem placementClass_eq_eq12_iff {T : Fin 3 → β} :
     placementClass T = .eq12 ↔ T 1 = T 2 ∧ T 0 ≠ T 1 := by
   rw [placementClass]
@@ -104,19 +124,25 @@ theorem placementClass_eq_eq12_iff {T : Fin 3 → β} :
   exact fun h => h01 h.symm
 
 /-- In the two one-coincidence strata that omit it, the third pair is automatically
-distinct: `eq01` forces `T 0 ≠ T 2`, …-/
+distinct: `eq01` forces `T 0 ≠ T 2`, …
+@isnad1 id=ne.1h2v.s5.a8f0b4148505 from=translated src=- shape=5c58b800 vocab=069417a1
+-/
 theorem ne_of_placementClass_eq_eq01 {T : Fin 3 → β}
     (h : placementClass T = .eq01) : T 0 ≠ T 2 := by
   rw [placementClass_eq_eq01_iff] at h
   exact fun h02 => h.2 (h.1.symm.trans h02)
 
-/-- … `eq12` forces `T 0 ≠ T 2`, …-/
+/-- … `eq12` forces `T 0 ≠ T 2`, …
+@isnad1 id=ne.1h2v.s5.6cff5ee050c3 from=translated src=- shape=5c58b800 vocab=142cc4a9
+-/
 theorem ne_of_placementClass_eq_eq12 {T : Fin 3 → β}
     (h : placementClass T = .eq12) : T 0 ≠ T 2 := by
   rw [placementClass_eq_eq12_iff] at h
   exact fun h02 => h.2 (h02.trans h.1.symm)
 
-/-- … and `eq02` forces `T 1 ≠ T 2`.-/
+/-- … and `eq02` forces `T 1 ≠ T 2`.
+@isnad1 id=ne.1h2v.s5.d40acff272c5 from=translated src=- shape=5c58b800 vocab=ee74b1c3
+-/
 theorem ne_of_placementClass_eq_eq02 {T : Fin 3 → β}
     (h : placementClass T = .eq02) : T 1 ≠ T 2 := by
   rw [placementClass_eq_eq02_iff] at h
@@ -126,7 +152,9 @@ theorem ne_of_placementClass_eq_eq02 {T : Fin 3 → β}
 
 /-- **The exact decomposition.** Any sum over a finite set of triples splits exactly
 over the five placement strata — disjointness and exhaustiveness in one identity,
-before any inequality.-/
+before any inequality.
+@isnad1 id=eq.0h4v.s7.a2cb605697e7 from=translated src=- shape=731279f6 vocab=7238e75e
+-/
 theorem sum_placementClass_fiberwise {M : Type*} [AddCommMonoid M]
     (S : Finset (Fin 3 → β)) (f : (Fin 3 → β) → M) :
     ∑ c : PlacementClass, ∑ T ∈ S.filter (fun T => placementClass T = c), f T
@@ -147,6 +175,9 @@ def injectiveTriangleCount (A B C : Finset α) : ℕ :=
   ((Fintype.piFinset ![A, B, C]).filter fun x =>
     directedTriangleObs R₀₁ R₀₂ R₁₂ x ∧ Function.Injective x).card
 
+/--
+@isnad1 id=le.0h7v.s6.3cea172443d0 from=translated src=- shape=b2ee56d9 vocab=14666689
+-/
 theorem injectiveTriangleCount_le_directedTriangleCount (A B C : Finset α) :
     injectiveTriangleCount R₀₁ R₀₂ R₁₂ A B C ≤ directedTriangleCount R₀₁ R₀₂ R₁₂ A B C := by
   rw [injectiveTriangleCount, directedTriangleCount, tupleCount]
@@ -154,7 +185,9 @@ theorem injectiveTriangleCount_le_directedTriangleCount (A B C : Finset α) :
   rw [Finset.mem_filter] at hx ⊢
   exact ⟨hx.1, hx.2.1⟩
 
-/-- **The exact injective/collision split** of the tuple count.-/
+/-- **The exact injective/collision split** of the tuple count.
+@isnad1 id=eq.0h7v.s8.6fce62540831 from=translated src=- shape=a5666825 vocab=80cd8201
+-/
 theorem directedTriangleCount_eq_injective_add_noninjective (A B C : Finset α) :
     directedTriangleCount R₀₁ R₀₂ R₁₂ A B C
       = injectiveTriangleCount R₀₁ R₀₂ R₁₂ A B C
@@ -167,6 +200,9 @@ theorem directedTriangleCount_eq_injective_add_noninjective (A B C : Finset α) 
 
 /-! ### Box-restricted collision estimates -/
 
+/--
+@isnad1 id=le.0h4v.s8.0cb3109cba0a from=translated src=- shape=0fb86886 vocab=83277db4
+-/
 theorem card_filter_piFinset_zero_eq_one_le (A B C : Finset α) :
     ((Fintype.piFinset ![A, B, C]).filter fun x => x 0 = x 1).card
       ≤ (A ∩ B).card * C.card := by
@@ -192,6 +228,9 @@ theorem card_filter_piFinset_zero_eq_one_le (A B C : Finset α) :
     · exact e1
     · exact e2
 
+/--
+@isnad1 id=le.0h4v.s8.eb0938ef6ce0 from=translated src=- shape=7e617068 vocab=83277db4
+-/
 theorem card_filter_piFinset_zero_eq_two_le (A B C : Finset α) :
     ((Fintype.piFinset ![A, B, C]).filter fun x => x 0 = x 2).card
       ≤ (A ∩ C).card * B.card := by
@@ -217,6 +256,9 @@ theorem card_filter_piFinset_zero_eq_two_le (A B C : Finset α) :
     · exact e1
     · exact e2
 
+/--
+@isnad1 id=le.0h4v.s8.c1354b74a170 from=translated src=- shape=43b78d89 vocab=83277db4
+-/
 theorem card_filter_piFinset_one_eq_two_le (A B C : Finset α) :
     ((Fintype.piFinset ![A, B, C]).filter fun x => x 1 = x 2).card
       ≤ A.card * (B ∩ C).card := by
@@ -242,7 +284,9 @@ theorem card_filter_piFinset_one_eq_two_le (A B C : Finset α) :
     · exact e1
     · exact e2
 
-/-- The non-injective mass is bounded by the three box-restricted collision terms.-/
+/-- The non-injective mass is bounded by the three box-restricted collision terms.
+@isnad1 id=le.0h7v.s8.c0b6fe995bf9 from=translated src=- shape=cb6540da vocab=02f3dc32
+-/
 theorem card_filter_noninjective_le (A B C : Finset α) :
     ((Fintype.piFinset ![A, B, C]).filter fun x =>
         directedTriangleObs R₀₁ R₀₂ R₁₂ x ∧ ¬ Function.Injective x).card
@@ -290,7 +334,9 @@ theorem card_filter_noninjective_le (A B C : Finset α) :
 /-- **The generic injective lower bound** — "density product − regularity error −
 collision slack", for arbitrary (possibly coinciding) boxes. Full-square densities
 throughout; the collision slack is the box-restricted union-bound mass — the three
-collision events overlap, so the slack is an upper bound, not an exact mass.-/
+collision events overlap, so the slack is an upper bound, not an exact mass.
+@isnad1 id=le.5h8v.s8.957717bc640f from=translated src=- shape=3b2a4e7d vocab=d3b7a3c7
+-/
 theorem injectiveTriangleCount_ge {A B C : Finset α} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A C ε)
     (h12 : IsUniformPair R₁₂ B C ε) :
@@ -314,7 +360,9 @@ theorem injectiveTriangleCount_ge {A B C : Finset α} (hε0 : 0 ≤ ε) (hε1 : 
 
 /-! ### The five stratum instances -/
 
-/-- **Transversal stratum**: pairwise-disjoint boxes carry ZERO collision slack.-/
+/-- **Transversal stratum**: pairwise-disjoint boxes carry ZERO collision slack.
+@isnad1 id=le.8h8v.s8.fe5b6cb3729f from=translated src=- shape=06dc8270 vocab=8fc9fa45
+-/
 theorem injectiveTriangleCount_ge_of_disjoint {A B C : Finset α}
     (hAB : Disjoint A B) (hAC : Disjoint A C) (hBC : Disjoint B C)
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
@@ -330,7 +378,9 @@ theorem injectiveTriangleCount_ge_of_disjoint {A B C : Finset α}
   simpa using h
 
 /-- **Stratum `0 = 1`** (boxes `(A, A, B)`, `A` and `B` disjoint): slack `|A|·|B|`.
-The `R₀₁` uniformity hypothesis is on the DIAGONAL pair `(A, A)`.-/
+The `R₀₁` uniformity hypothesis is on the DIAGONAL pair `(A, A)`.
+@isnad1 id=le.6h7v.s8.f0faf61e4449 from=translated src=- shape=542c88d3 vocab=8fc9fa45
+-/
 theorem injectiveTriangleCount_ge_eq01 {A B : Finset α} (hAB : Disjoint A B)
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A A ε) (h02 : IsUniformPair R₀₂ A B ε)
@@ -344,7 +394,9 @@ theorem injectiveTriangleCount_ge_eq01 {A B : Finset α} (hAB : Disjoint A B)
   rw [Finset.inter_self, Finset.disjoint_iff_inter_eq_empty.mp hAB] at h
   simpa using h
 
-/-- **Stratum `0 = 2`** (boxes `(A, B, A)`): slack `|A|·|B|`; `R₀₂` on the diagonal.-/
+/-- **Stratum `0 = 2`** (boxes `(A, B, A)`): slack `|A|·|B|`; `R₀₂` on the diagonal.
+@isnad1 id=le.6h7v.s8.4bd3babbd5d8 from=translated src=- shape=62524f95 vocab=8fc9fa45
+-/
 theorem injectiveTriangleCount_ge_eq02 {A B : Finset α} (hAB : Disjoint A B)
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A A ε)
@@ -360,7 +412,9 @@ theorem injectiveTriangleCount_ge_eq02 {A B : Finset α} (hAB : Disjoint A B)
   simp only [Finset.card_empty, Nat.cast_zero, zero_mul, mul_zero, add_zero, zero_add] at h
   linarith
 
-/-- **Stratum `1 = 2`** (boxes `(A, B, B)`): slack `|A|·|B|`; `R₁₂` on the diagonal.-/
+/-- **Stratum `1 = 2`** (boxes `(A, B, B)`): slack `|A|·|B|`; `R₁₂` on the diagonal.
+@isnad1 id=le.6h7v.s8.00b037edba85 from=translated src=- shape=522b803c vocab=8fc9fa45
+-/
 theorem injectiveTriangleCount_ge_eq12 {A B : Finset α} (hAB : Disjoint A B)
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A B ε)
@@ -375,7 +429,9 @@ theorem injectiveTriangleCount_ge_eq12 {A B : Finset α} (hAB : Disjoint A B)
   simpa using h
 
 /-- **Stratum all-equal** (boxes `(A, A, A)`): slack `3·|A|²`; ALL three uniformity
-hypotheses are on the diagonal pair `(A, A)`.-/
+hypotheses are on the diagonal pair `(A, A)`.
+@isnad1 id=le.5h6v.s8.b640ac212a17 from=translated src=- shape=cd1d101e vocab=c9c53dd2
+-/
 theorem injectiveTriangleCount_ge_allEqual {A : Finset α}
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A A ε) (h02 : IsUniformPair R₀₂ A A ε)

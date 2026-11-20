@@ -97,13 +97,17 @@ instance decidableIsIndivisible [Fintype V] (P : Finpartition s) (R : (Fin n →
   inferInstanceAs (Decidable (∀ x y : Fin n → V, (∀ i, x i ∈ s) → (∀ i, y i ∈ s) →
     (∀ i, P.part (x i) = P.part (y i)) → (R x ↔ R y)))
 
-/-- The defining transport: entrywise equal parts transports the truth value.-/
+/-- The defining transport: entrywise equal parts transports the truth value.
+@isnad1 id=iff.4h7v.s6.0072235773e2 from=translated src=- shape=afaa1088 vocab=5e3f0a9a
+-/
 theorem IsIndivisible.iff_of_part_eq (h : IsIndivisible P R) {x y : Fin n → V}
     (hx : ∀ i, x i ∈ s) (hy : ∀ i, y i ∈ s) (hpart : ∀ i, P.part (x i) = P.part (y i)) :
     R x ↔ R y :=
   h x y hx hy hpart
 
-/-- The relation of a single symbol of an indivisible model is indivisible.-/
+/-- The relation of a single symbol of an indivisible model is indivisible.
+@isnad1 id=isindivi.1h7v.s5.9fe9774cdfb7 from=translated src=- shape=0a8ee6a4 vocab=9d42a410
+-/
 theorem FiniteRelModel.IsIndivisibleFor.rel {L : FirstOrder.Language} [FiniteRelational L]
     {N : FiniteRelModel L V} (h : N.IsIndivisibleFor P) {m : ℕ} (S : L.Relations m) :
     IsIndivisible P (N.Holds S) :=
@@ -112,7 +116,9 @@ theorem FiniteRelModel.IsIndivisibleFor.rel {L : FirstOrder.Language} [FiniteRel
 /-! ### Cell constancy -/
 
 /-- **Cell constancy.** On a box of cells an indivisible relation is constant: any two tuples
-with the same entrywise cells agree.-/
+with the same entrywise cells agree.
+@isnad1 id=iff.4h8v.s7.c78d8af8a051 from=translated src=- shape=1fb3d7e2 vocab=4b703f90
+-/
 theorem IsIndivisible.const_on_cells (h : IsIndivisible P R) {C : Fin n → Finset V}
     (hC : ∀ i, C i ∈ P.parts) {x y : Fin n → V} (hx : ∀ i, x i ∈ C i) (hy : ∀ i, y i ∈ C i) :
     R x ↔ R y :=
@@ -120,7 +126,9 @@ theorem IsIndivisible.const_on_cells (h : IsIndivisible P R) {C : Fin n → Fins
     fun i ↦ (P.part_eq_of_mem (hC i) (hx i)).trans (P.part_eq_of_mem (hC i) (hy i)).symm
 
 /-- Cell constancy in `Fintype.piFinset` form: the cell box `Fintype.piFinset C` is a set on
-which an indivisible relation is constant.-/
+which an indivisible relation is constant.
+@isnad1 id=iff.4h8v.s7.3cbb02f7d129 from=translated src=- shape=26605946 vocab=18ad89cd
+-/
 theorem IsIndivisible.const_on_cellBox (h : IsIndivisible P R) {C : Fin n → Finset V}
     (hC : ∀ i, C i ∈ P.parts) {x y : Fin n → V} (hx : x ∈ Fintype.piFinset C)
     (hy : y ∈ Fintype.piFinset C) : R x ↔ R y :=
@@ -134,13 +142,17 @@ def quotientRel (P : Finpartition s) {n : ℕ} (R : (Fin n → V) → Prop)
     (C : Fin n → P.parts) : Prop :=
   ∃ x : Fin n → V, (∀ i, x i ∈ (C i : Finset V)) ∧ R x
 
-/-- Cells are recovered from any tuple of representatives — no indivisibility needed.-/
+/-- Cells are recovered from any tuple of representatives — no indivisibility needed.
+@isnad1 id=eq.1h7v.s7.86ed3aac0acf from=translated src=- shape=bc2a339b vocab=7871c38a
+-/
 theorem part_eq_of_mem_cells {C : Fin n → P.parts} {x : Fin n → V}
     (hx : ∀ i, x i ∈ (C i : Finset V)) (i : Fin n) : P.part (x i) = (C i : Finset V) :=
   P.part_eq_of_mem (C i).2 (hx i)
 
 /-- **Round trip, cells to tuples.** The induced relation at a tuple of cells is the original
-relation at any tuple of representatives.-/
+relation at any tuple of representatives.
+@isnad1 id=iff.2h7v.s7.d07615f1386d from=translated src=- shape=ec4dd764 vocab=5076ea8a
+-/
 theorem IsIndivisible.quotientRel_iff (h : IsIndivisible P R) (C : Fin n → P.parts)
     {x : Fin n → V} (hx : ∀ i, x i ∈ (C i : Finset V)) : quotientRel P R C ↔ R x := by
   constructor
@@ -149,14 +161,18 @@ theorem IsIndivisible.quotientRel_iff (h : IsIndivisible P R) (C : Fin n → P.p
   · exact fun hR ↦ ⟨x, hx, hR⟩
 
 /-- **Round trip, tuples to cells.** The induced relation at the tuple of parts of a tuple
-over `s` is the original relation there.-/
+over `s` is the original relation there.
+@isnad1 id=iff.2h6v.s6.66fdfe02fb92 from=translated src=- shape=02945cf8 vocab=ce116ae6
+-/
 theorem IsIndivisible.quotientRel_part (h : IsIndivisible P R) {x : Fin n → V}
     (hx : ∀ i, x i ∈ s) :
     quotientRel P R (fun i ↦ ⟨P.part (x i), P.part_mem.mpr (hx i)⟩) ↔ R x :=
   h.quotientRel_iff _ fun i ↦ P.mem_part (hx i)
 
 /-- Under indivisibility the existential induced relation is also the universal one: parts
-are nonempty, so "some representative tuple" and "every representative tuple" agree.-/
+are nonempty, so "some representative tuple" and "every representative tuple" agree.
+@isnad1 id=iff.1h6v.s7.fee9aa34991c from=translated src=- shape=86e26c3f vocab=5076ea8a
+-/
 theorem IsIndivisible.quotientRel_iff_forall (h : IsIndivisible P R) (C : Fin n → P.parts) :
     quotientRel P R C ↔ ∀ x : Fin n → V, (∀ i, x i ∈ (C i : Finset V)) → R x := by
   refine ⟨fun hq x hx ↦ (h.quotientRel_iff C hx).mp hq, fun hall ↦ ?_⟩
@@ -166,7 +182,9 @@ theorem IsIndivisible.quotientRel_iff_forall (h : IsIndivisible P R) (C : Fin n 
 /-! ### Monotonicity under refinement -/
 
 /-- **Refinement monotonicity.** In mathlib's order `Q ≤ P` means `Q` is finer than `P`, and
-a finer partition distinguishes more, so indivisibility passes down.-/
+a finer partition distinguishes more, so indivisibility passes down.
+@isnad1 id=isindivi.2h6v.s6.b8c001828c61 from=translated src=- shape=da9ac2c8 vocab=1c5ed65c
+-/
 theorem IsIndivisible.mono_of_le (h : IsIndivisible P R) (hQP : Q ≤ P) : IsIndivisible Q R := by
   intro x y hx hy hpart
   refine h x y hx hy fun i ↦ ?_
@@ -175,14 +193,18 @@ theorem IsIndivisible.mono_of_le (h : IsIndivisible P R) (hQP : Q ≤ P) : IsInd
   exact (P.part_eq_of_mem hA (hsub (Q.mem_part (hx i)))).trans
     (P.part_eq_of_mem hA (hsub hyi)).symm
 
-/-- Refinement monotonicity at the level of models.-/
+/-- Refinement monotonicity at the level of models.
+@isnad1 id=isindivi.2h6v.s6.81cd83f338d6 from=translated src=- shape=93c94101 vocab=1b501d36
+-/
 theorem FiniteRelModel.IsIndivisibleFor.mono_of_le {L : FirstOrder.Language} [FiniteRelational L]
     {N : FiniteRelModel L V} (h : N.IsIndivisibleFor P) (hQP : Q ≤ P) : N.IsIndivisibleFor Q :=
   fun m S ↦ (h m S).mono_of_le hQP
 
 /-! ### The cell-box tiling -/
 
-/-- Cell boxes over distinct tuples of cells are disjoint.-/
+/-- Cell boxes over distinct tuples of cells are disjoint.
+@isnad1 id=disjoint.3h6v.s7.c9a63a035487 from=translated src=- shape=95168c18 vocab=d38f231e
+-/
 theorem disjoint_piFinset_of_ne {C D : Fin n → Finset V} (hC : ∀ i, C i ∈ P.parts)
     (hD : ∀ i, D i ∈ P.parts) (hCD : C ≠ D) :
     Disjoint (Fintype.piFinset C) (Fintype.piFinset D) := by
@@ -194,7 +216,9 @@ theorem disjoint_piFinset_of_ne {C D : Fin n → Finset V} (hC : ∀ i, C i ∈ 
   rw [Fintype.mem_piFinset] at hxC hxD
   exact Finset.disjoint_left.mp (P.disjoint (hC i) (hD i) hi) (hxC i) (hxD i)
 
-/-- **The tiling.** The tuples over `s` are the union of the cell boxes.-/
+/-- **The tiling.** The tuples over `s` are the union of the cell boxes.
+@isnad1 id=eq.0h4v.s6.77bd3bcd727c from=translated src=- shape=e437241b vocab=2c11e81a
+-/
 theorem piFinset_const_eq_biUnion (P : Finpartition s) (n : ℕ) :
     (Fintype.piFinset fun _ : Fin n ↦ s)
       = (Fintype.piFinset fun _ : Fin n ↦ P.parts).biUnion fun C ↦ Fintype.piFinset C := by
@@ -206,7 +230,9 @@ theorem piFinset_const_eq_biUnion (P : Finpartition s) (n : ℕ) :
   exact fun i ↦ P.le (hC i) (hx i)
 
 /-- **The tiling, counting form.** The number of tuples over `s` is the sum of the cell-box
-sizes — the shape later counting arguments consume.-/
+sizes — the shape later counting arguments consume.
+@isnad1 id=eq.0h4v.s6.7360bdbbd3fd from=translated src=- shape=679cb51c vocab=421ba61b
+-/
 theorem card_piFinset_const (P : Finpartition s) (n : ℕ) :
     (Fintype.piFinset fun _ : Fin n ↦ s).card
       = ∑ C ∈ Fintype.piFinset fun _ : Fin n ↦ P.parts, (Fintype.piFinset C).card := by
@@ -218,13 +244,17 @@ theorem card_piFinset_const (P : Finpartition s) (n : ℕ) :
 /-! ### Degenerate cases -/
 
 /-- **Arity zero is free.** There is exactly one empty tuple, so every nullary relation is
-indivisible for every partition.-/
+indivisible for every partition.
+@isnad1 id=isindivi.0h4v.s5.9b0f710a5b0c from=translated src=- shape=2f6e5421 vocab=7c1fe370
+-/
 theorem isIndivisible_of_arity_zero (P : Finpartition s) (R : (Fin 0 → V) → Prop) :
     IsIndivisible P R := fun x y _ _ _ ↦ by
   rw [show x = y from funext fun i ↦ i.elim0]
 
 /-- **The empty ground set.** Over a partition of `∅` there are no tuples to divide, so every
-relation is indivisible at every arity.-/
+relation is indivisible at every arity.
+@isnad1 id=isindivi.0h4v.s5.a2404dc86325 from=translated src=- shape=93ec6996 vocab=a076a6c5
+-/
 theorem isIndivisible_of_empty (P : Finpartition (∅ : Finset V)) (R : (Fin n → V) → Prop) :
     IsIndivisible P R := by
   cases n with
@@ -232,7 +262,9 @@ theorem isIndivisible_of_empty (P : Finpartition (∅ : Finset V)) (R : (Fin n �
   | succ m => exact fun _ _ hx _ _ ↦ absurd (hx 0) (by simp)
 
 /-- **The discrete partition.** Every part of `⊥` is a singleton, so every relation is
-indivisible for it: indivisibility is a vacuous requirement at the finest partition.-/
+indivisible for it: indivisibility is a vacuous requirement at the finest partition.
+@isnad1 id=isindivi.0h4v.s5.8693f9b1c16a from=translated src=- shape=ce5f34ed vocab=dc7f2269
+-/
 theorem isIndivisible_bot (R : (Fin n → V) → Prop) : IsIndivisible (⊥ : Finpartition s) R := by
   intro x y hx hy hpart
   have hpt : ∀ a ∈ s, (⊥ : Finpartition s).part a = {a} := fun a ha ↦
@@ -242,7 +274,9 @@ theorem isIndivisible_bot (R : (Fin n → V) → Prop) : IsIndivisible (⊥ : Fi
   exact Finset.singleton_injective
     ((hpt (x i) (hx i)).symm.trans ((hpart i).trans (hpt (y i) (hy i))))
 
-/-- Arity zero contributes nothing to model indivisibility.-/
+/-- Arity zero contributes nothing to model indivisibility.
+@isnad1 id=iff.0h5v.s6.f3958a2f0314 from=translated src=- shape=fae39b36 vocab=f7e9269e
+-/
 theorem FiniteRelModel.isIndivisibleFor_iff_pos {L : FirstOrder.Language} [FiniteRelational L]
     (N : FiniteRelModel L V) (P : Finpartition s) :
     N.IsIndivisibleFor P ↔ ∀ m, 0 < m → ∀ S : L.Relations m, IsIndivisible P (N.Holds S) := by
@@ -254,7 +288,9 @@ theorem FiniteRelModel.isIndivisibleFor_iff_pos {L : FirstOrder.Language} [Finit
 /-! ### The nullary layer, through `NullaryCompatible` -/
 
 /-- The arity-zero induced relation **is** the nullary datum of the model: on the unique empty
-tuple of cells it says exactly that the nullary relation holds.-/
+tuple of cells it says exactly that the nullary relation holds.
+@isnad1 id=iff.0h7v.s6.ba90b58cd1e8 from=translated src=- shape=79b083dd vocab=ee7e7c6f
+-/
 theorem quotientRel_zero {L : FirstOrder.Language} [FiniteRelational L] (N : FiniteRelModel L V)
     (P : Finpartition s) (S : L.Relations 0) (C : Fin 0 → P.parts) :
     quotientRel P (N.Holds S) C ↔ N.Holds S Fin.elim0 := by
@@ -266,7 +302,9 @@ theorem quotientRel_zero {L : FirstOrder.Language} [FiniteRelational L] (N : Fin
 (`RegularityLemmata/Relational/BinaryPattern.lean`): two models agree nullarily iff their arity-zero
 induced relations agree, over any partitions of any ground sets. Indivisibility never touches this
 layer, so no competing nullary
-predicate is introduced here.-/
+predicate is introduced here.
+@isnad1 id=iff.0h9v.s7.0bcdb26913a8 from=translated src=- shape=279051a5 vocab=64ebe7e0
+-/
 theorem nullaryCompatible_iff_quotientRel {L : FirstOrder.Language} [FiniteRelational L]
     {W : Type*} [DecidableEq W] {t : Finset W} (M : FiniteRelModel L W)
     (N : FiniteRelModel L V) (Q' : Finpartition t) (P : Finpartition s) :
@@ -294,7 +332,9 @@ def FiniteRelModel.quotient (N : FiniteRelModel L V) (Q : Finpartition s) :
   rel := fun {_n} S C ↦
     decide (∃ x ∈ Fintype.piFinset (fun i ↦ (C i : Finset V)), N.Holds S x)
 
-/-- The quotient model interprets each symbol by `quotientRel`.-/
+/-- The quotient model interprets each symbol by `quotientRel`.
+@isnad1 id=iff.0h8v.s7.2d1b5ff61ba4 from=translated src=- shape=daef569e vocab=657afaa9
+-/
 theorem FiniteRelModel.quotient_holds_iff (N : FiniteRelModel L V) (Q : Finpartition s) {n : ℕ}
     (S : L.Relations n) (C : Fin n → Q.parts) :
     (N.quotient Q).Holds S C ↔ quotientRel Q (N.Holds S) C := by
@@ -303,7 +343,9 @@ theorem FiniteRelModel.quotient_holds_iff (N : FiniteRelModel L V) (Q : Finparti
   simp only [Fintype.mem_piFinset]
 
 /-- **Cellwise agreement, cells to tuples.** For indivisible `N`, the quotient's truth at a tuple
-of cells is `N`'s truth at any tuple of representatives.-/
+of cells is `N`'s truth at any tuple of representatives.
+@isnad1 id=iff.2h9v.s7.0e647e5a9ab4 from=translated src=- shape=1c15fefc vocab=00b5e712
+-/
 theorem FiniteRelModel.IsIndivisibleFor.quotient_holds_iff {N : FiniteRelModel L V}
     (h : N.IsIndivisibleFor Q) {n : ℕ} (S : L.Relations n) (C : Fin n → Q.parts)
     {x : Fin n → V} (hx : ∀ i, x i ∈ (C i : Finset V)) :
@@ -311,20 +353,26 @@ theorem FiniteRelModel.IsIndivisibleFor.quotient_holds_iff {N : FiniteRelModel L
   (N.quotient_holds_iff Q S C).trans ((h.rel S).quotientRel_iff C hx)
 
 /-- **Cellwise agreement, tuples to cells.** For indivisible `N`, the quotient's truth at the
-tuple of parts of a tuple over `s` is `N`'s truth there.-/
+tuple of parts of a tuple over `s` is `N`'s truth there.
+@isnad1 id=iff.2h8v.s7.337c2768ff79 from=translated src=- shape=658d0924 vocab=0530ac01
+-/
 theorem FiniteRelModel.IsIndivisibleFor.quotient_holds_part {N : FiniteRelModel L V}
     (h : N.IsIndivisibleFor Q) {n : ℕ} (S : L.Relations n) {x : Fin n → V}
     (hx : ∀ i, x i ∈ s) :
     (N.quotient Q).Holds S (fun i ↦ ⟨Q.part (x i), Q.part_mem.mpr (hx i)⟩) ↔ N.Holds S x :=
   (N.quotient_holds_iff Q S _).trans ((h.rel S).quotientRel_part hx)
 
-/-- Nullary symbols pass through the quotient unchanged, with no indivisibility needed.-/
+/-- Nullary symbols pass through the quotient unchanged, with no indivisibility needed.
+@isnad1 id=iff.0h7v.s7.54cdff39eae7 from=translated src=- shape=b2089a56 vocab=785f1019
+-/
 theorem FiniteRelModel.quotient_holds_zero (N : FiniteRelModel L V) (Q : Finpartition s)
     (S : L.Relations 0) (C : Fin 0 → Q.parts) :
     (N.quotient Q).Holds S C ↔ N.Holds S Fin.elim0 :=
   (N.quotient_holds_iff Q S C).trans (quotientRel_zero N Q S C)
 
-/-- A model and its quotient are nullary-compatible, unconditionally.-/
+/-- A model and its quotient are nullary-compatible, unconditionally.
+@isnad1 id=nullaryc.0h5v.s6.306a941d2b90 from=translated src=- shape=cd318142 vocab=365c4049
+-/
 theorem FiniteRelModel.nullaryCompatible_quotient (N : FiniteRelModel L V)
     (Q : Finpartition s) : NullaryCompatible N (N.quotient Q) :=
   fun S ↦ (N.quotient_holds_zero Q S Fin.elim0).symm
@@ -337,7 +385,9 @@ variable {W : Type*} [Fintype W] [DecidableEq W]
 induced-embedding count of an indivisible model is either the full box volume `Π_i |C i|` or
 `0`, according to whether the quotient model matches the pattern at `C`: distinct cells are
 disjoint, so every tuple through the box is injective, and indivisibility makes the induced
-condition constant on the box. An equality, with no error term.-/
+condition constant on the box. An equality, with no error term.
+@isnad1 id=eq.2h8v.s8.78ee23a2946d from=translated src=- shape=3a7820bf vocab=48fb5f8f
+-/
 theorem FiniteRelModel.IsIndivisibleFor.inducedEmbeddingCountOn_cells {N : FiniteRelModel L V}
     (h : N.IsIndivisibleFor Q) (P : FiniteRelModel L W) {C : W → Q.parts}
     (hC : Function.Injective C) :
@@ -378,7 +428,9 @@ def quotientInducedCount (P : FiniteRelModel L W) (N : FiniteRelModel L V)
     ∏ i, ((C i : Finset V)).card
 
 /-- The quotient-weighted count is the sum, over all transversal cell tuples, of the
-all-or-nothing box count.-/
+all-or-nothing box count.
+@isnad1 id=eq.1h7v.s9.ab4566e05c92 from=translated src=- shape=c2d2f89a vocab=974f7dac
+-/
 theorem quotientInducedCount_eq_sum_ite {N : FiniteRelModel L V} (h : N.IsIndivisibleFor Q)
     (P : FiniteRelModel L W) :
     quotientInducedCount P N Q

@@ -103,22 +103,35 @@ def proxyEventFst (e : ProxyEvent Q) : ProxyIndex Q :=
 def proxyEventSnd (e : ProxyEvent Q) : ProxyIndex Q :=
   ⟨e.1.2, (mem_proxyPairEvents.mp e.2).2.1⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.5417b3287bc2 from=translated src=- shape=23392a01 vocab=095774ac
+-/
 @[simp] theorem proxyEventPair_fst (e : ProxyEvent Q) :
     (proxyEventPair e).1 = (proxyEventFst e).1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.b7b91045e3af from=translated src=- shape=23392a01 vocab=4ceb30ad
+-/
 @[simp] theorem proxyEventPair_snd (e : ProxyEvent Q) :
     (proxyEventPair e).2 = (proxyEventSnd e).1 := rfl
 
+/--
+@isnad1 id=mem.0h4v.s6.ed36e228a888 from=translated src=- shape=822b7089 vocab=8e683550
+-/
 @[simp] theorem proxyEventPair_mem (e : ProxyEvent Q) :
     proxyEventPair e ∈ proxyPairEvents Q := e.2
 
 /-- An event IS its proxy pair, so the projection is injective — structural API for the
-event representation, used whenever events are summed as pairs.-/
+event representation, used whenever events are summed as pairs.
+@isnad1 id=injectiv.0h3v.s5.18d32c95279d from=translated src=- shape=f978feaa vocab=a8de8f80
+-/
 theorem proxyEventPair_injective : Function.Injective (proxyEventPair (Q := Q)) :=
   fun _ _ h => Subtype.ext h
 
 /-- **The two coordinates are distinct** — the hypothesis `WeightedChoice` demands of an
-event index, and the reason self-pairs are excluded from `proxyPairEvents`.-/
+event index, and the reason self-pairs are excluded from `proxyPairEvents`.
+@isnad1 id=ne.0h4v.s5.67b17662b1b5 from=translated src=- shape=889e54f5 vocab=f44ffd7c
+-/
 theorem proxyEvent_fst_ne_snd (e : ProxyEvent Q) : proxyEventFst e ≠ proxyEventSnd e := by
   intro h
   exact (mem_proxyPairEvents.mp e.2).2.2 (Subtype.ext_iff.mp h)
@@ -130,6 +143,9 @@ Reused unchanged — the proxy rebuild changes the INDEX, not the candidates.-/
 def proxyCandidates (F : Finpartition s) (q : ℕ) (C : ProxyIndex Q) : Finset (Finset V) :=
   repCandidates F q C.1
 
+/--
+@isnad1 id=le.0h6v.s7.4b7a27e7c5d3 from=translated src=- shape=411dd3c5 vocab=9adcb05f
+-/
 theorem proxyCandidates_subset_fiber (F : Finpartition s) (q : ℕ) (C : ProxyIndex Q) :
     proxyCandidates (Q := Q) F q C ⊆ F.parts.filter (· ⊆ C.1) :=
   Finset.filter_subset _ _
@@ -144,11 +160,17 @@ noncomputable def proxyTotalCandidateWeight (F : Finpartition s) (q : ℕ)
     (Q : Finpartition s) : ℝ :=
   ∏ C : ProxyIndex Q, proxyCandidateWeight (Q := Q) F q C
 
+/--
+@isnad1 id=le.0h6v.s5.04600362ba5a from=translated src=- shape=74c4e35c vocab=22b7139e
+-/
 theorem proxyCandidateWeight_nonneg (F : Finpartition s) (q : ℕ) (C : ProxyIndex Q) :
     0 ≤ proxyCandidateWeight (Q := Q) F q C := by
   rw [proxyCandidateWeight]
   exact Finset.sum_nonneg fun A _ => by positivity
 
+/--
+@isnad1 id=le.0h5v.s5.4534420348a4 from=translated src=- shape=17bc0987 vocab=c0b8a3d8
+-/
 theorem proxyTotalCandidateWeight_nonneg (F : Finpartition s) (q : ℕ) :
     0 ≤ proxyTotalCandidateWeight F q Q := by
   rw [proxyTotalCandidateWeight]
@@ -156,7 +178,9 @@ theorem proxyTotalCandidateWeight_nonneg (F : Finpartition s) (q : ℕ) :
 
 /-- **The candidate rectangle lies inside the fine-part fibers.** Stated as a weighted-mass
 inequality, since that is the form both channels use — and the form later sparse, deviant
-and edit charges will use.-/
+and edit charges will use.
+@isnad1 id=le.0h8v.s8.8bf14b3c225f from=translated src=- shape=dabd659d vocab=c262951f
+-/
 theorem sum_candidateMass_le_fiberMass (F : Finpartition s) (q : ℕ)
     (pred : Finset V × Finset V → Prop) [DecidablePred pred] (C D : ProxyIndex Q) :
     ∑ p ∈ ((F.parts ×ˢ F.parts).filter pred) ∩
@@ -171,12 +195,17 @@ theorem sum_candidateMass_le_fiberMass (F : Finpartition s) (q : ℕ)
   exact ⟨⟨proxyCandidates_subset_fiber F q C hp.2.1,
     proxyCandidates_subset_fiber F q D hp.2.2⟩, hp.1.2⟩
 
+/--
+@isnad1 id=nonempty.3h6v.s7.5d62c57c0297 from=translated src=- shape=9b3d4c0d vocab=cb569c24
+-/
 theorem proxyCandidates_nonempty {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
     (hq : F.parts.card ≤ q) (C : ProxyIndex Q) (hCpos : 0 < C.1.card) :
     (proxyCandidates (Q := Q) F q C).Nonempty :=
   repCandidates_nonempty hFQ C.2 hq hCpos
 
-/-- Each proxy's candidate weight is at least half its size, hence positive.-/
+/-- Each proxy's candidate weight is at least half its size, hence positive.
+@isnad1 id=lt.2h6v.s6.4fec327e50a2 from=translated src=- shape=56635968 vocab=b30bb729
+-/
 theorem proxyCandidateWeight_pos {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
     (hq : F.parts.card ≤ q) (C : ProxyIndex Q) :
     0 < proxyCandidateWeight (Q := Q) F q C := by
@@ -189,14 +218,18 @@ theorem proxyCandidateWeight_pos {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
 
 /-- **The half-mass theorem is the weight floor.** Every proxy's candidate weight is at
 least half the proxy's size, so a size floor on proxies gives the uniform `w₀` the
-factorization needs.-/
+factorization needs.
+@isnad1 id=le.2h6v.s7.5a488e09c7f4 from=translated src=- shape=c6c511be vocab=5dc81dd4
+-/
 theorem half_card_le_proxyCandidateWeight {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
     (hq : F.parts.card ≤ q) (C : ProxyIndex Q) :
     (C.1.card : ℝ) / 2 ≤ proxyCandidateWeight (Q := Q) F q C :=
   half_le_sum_card_repCandidates hFQ C.2 hq
 
 /-- **The total selection weight is positive** — `hWpos` of the conditioned-cost form,
-obtained proxy by proxy from the half-mass theorem.-/
+obtained proxy by proxy from the half-mass theorem.
+@isnad1 id=lt.2h5v.s6.3256da8ca087 from=translated src=- shape=1f4e9de4 vocab=1b3f2867
+-/
 theorem proxyTotalCandidateWeight_pos {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
     (hq : F.parts.card ≤ q) :
     0 < proxyTotalCandidateWeight F q Q := by
@@ -219,7 +252,9 @@ open Classical in
 events, is at most `badMassDiagNum R ε F / w₀ ^ 2` times the total selection weight. The
 admissible `σ` is therefore that quotient: the aggregate mass, bounded ONCE by
 `sum_proxyPair_nonuniform_le`, against the squared weight floor. No `9n²` event-count
-multiplier appears — the factorization gives each event its own mass and nothing else.-/
+multiplier appears — the factorization gives each event its own mass and nothing else.
+@isnad1 id=le.2h8v.s8.c9ddd79ab183 from=translated src=- shape=2571311a vocab=eff53586
+-/
 theorem sum_proxyEvent_nonuniform_mass_le (R : V → V → Prop) [DecidableRel R] {ε : ℝ}
     (F : Finpartition s) (q : ℕ) {w₀ : ℝ} (hw₀ : 0 < w₀)
     (hW : ∀ C : ProxyIndex Q, w₀ ≤ proxyCandidateWeight (Q := Q) F q C) :
@@ -281,7 +316,9 @@ noncomputable def paletteNonuniformFinePairs (M : FiniteRelModel L V) (ε : ℝ)
 
 open Classical in
 /-- The union is covered color by color: every forbidden pair is forbidden for some
-specific color.-/
+specific color.
+@isnad1 id=ex.1h7v.s7.4d6ac0e225e0 from=translated src=- shape=016a8db5 vocab=a36ec7c2
+-/
 theorem exists_mem_nonuniformFinePairs {M : FiniteRelModel L V} {ε : ℝ} {F : Finpartition s}
     {p : Finset V × Finset V} (hp : p ∈ paletteNonuniformFinePairs M ε F) :
     ∃ c : BinaryPairPalette L, p ∈ nonuniformFinePairs (HasBinaryPairPalette M c) ε F := by
@@ -292,7 +329,9 @@ theorem exists_mem_nonuniformFinePairs {M : FiniteRelModel L V} {ε : ℝ} {F : 
 open Classical in
 /-- Conversely each color's forbidden set sits inside the union. This is why simultaneous
 uniformity cannot be represented by one chosen color's forbidden set; the theorem below
-charges the union using the factor `K`. It says nothing about whether `K` is optimal.-/
+charges the union using the factor `K`. It says nothing about whether `K` is optimal.
+@isnad1 id=le.0h7v.s6.e1431ba45dcf from=translated src=- shape=09a079c9 vocab=7eb72ba4
+-/
 theorem nonuniformFinePairs_subset_palette (M : FiniteRelModel L V) (ε : ℝ)
     (F : Finpartition s) (c : BinaryPairPalette L) :
     nonuniformFinePairs (HasBinaryPairPalette M c) ε F ⊆ paletteNonuniformFinePairs M ε F := by
@@ -303,7 +342,9 @@ theorem nonuniformFinePairs_subset_palette (M : FiniteRelModel L V) (ε : ℝ)
 open Classical in
 /-- **What weighted choice actually returns.** The machine delivers `∉ Bad e`, so the
 load-bearing direction is from NOT forbidden to uniformity for every color. For a pair of
-fine cells the two are equivalent.-/
+fine cells the two are equivalent.
+@isnad1 id=iff.1h7v.s7.2afd3419182d from=translated src=- shape=d18ebb83 vocab=25e78eb2
+-/
 theorem notMem_paletteNonuniformFinePairs_iff {M : FiniteRelModel L V} {ε : ℝ}
     {F : Finpartition s} {p : Finset V × Finset V} (hp : p ∈ F.parts ×ˢ F.parts) :
     p ∉ paletteNonuniformFinePairs M ε F ↔
@@ -322,7 +363,9 @@ times the total selection weight, where `K = Fintype.card (BinaryPairPalette L)`
 bounds each color's diagonal-inclusive bad mass. `K` is the UNION-BOUND factor obtained
 from the per-palette estimates — `sum_proxyEvent_nonuniform_mass_le` applied once per
 color — and not an event-count factor; no `9n²` multiplier appears. Optimality of `K` is
-neither claimed nor proved.-/
+neither claimed nor proved.
+@isnad1 id=le.3h10v.s9.b5a0dde4337c from=translated src=- shape=26462efb vocab=c01fed83
+-/
 theorem sum_proxyEvent_paletteNonuniform_mass_le (M : FiniteRelModel L V) {ε : ℝ}
     (F : Finpartition s) (q : ℕ) {w₀ : ℝ} (hw₀ : 0 < w₀)
     (hW : ∀ C : ProxyIndex Q, w₀ ≤ proxyCandidateWeight (Q := Q) F q C)

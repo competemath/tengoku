@@ -46,12 +46,16 @@ namespace RegularityLemmata
 def blockWindow (n s j : ℕ) : Finset (Fin n) :=
   Finset.univ.filter fun x ↦ j * s ≤ x.val ∧ x.val < (j + 1) * s
 
-/-- Membership in a position window is the defining pair of value inequalities.-/
+/-- Membership in a position window is the defining pair of value inequalities.
+@isnad1 id=iff.0h4v.s6.4d0c908c8cda from=translated src=- shape=88162751 vocab=c9354886
+-/
 theorem mem_blockWindow {n s j : ℕ} {x : Fin n} :
     x ∈ blockWindow n s j ↔ j * s ≤ x.val ∧ x.val < (j + 1) * s := by
   simp [blockWindow]
 
-/-- An in-range window has exactly `s` positions.-/
+/-- An in-range window has exactly `s` positions.
+@isnad1 id=eq.1h3v.s5.a1ea4f7a9ebc from=translated src=- shape=0f6a8881 vocab=715cd826
+-/
 theorem card_blockWindow {n s j : ℕ} (hj : (j + 1) * s ≤ n) :
     (blockWindow n s j).card = s := by
   have hmap : (blockWindow n s j).map Fin.valEmbedding = Finset.Ico (j * s) ((j + 1) * s) := by
@@ -66,7 +70,9 @@ theorem card_blockWindow {n s j : ℕ} (hj : (j + 1) * s ≤ n) :
     Nat.add_sub_cancel_left]
 
 /-- Distinct windows are disjoint, with no range hypotheses: the underlying value-intervals
-`[j*s, (j+1)*s)` and `[k*s, (k+1)*s)` are disjoint whenever `j ≠ k`.-/
+`[j*s, (j+1)*s)` and `[k*s, (k+1)*s)` are disjoint whenever `j ≠ k`.
+@isnad1 id=disjoint.1h4v.s4.f08f9437d8b1 from=translated src=- shape=5f72f84d vocab=f8b2011f
+-/
 theorem blockWindow_disjoint {n s j k : ℕ} (hjk : j ≠ k) :
     Disjoint (blockWindow n s j) (blockWindow n s k) := by
   rw [Finset.disjoint_left]
@@ -79,7 +85,9 @@ theorem blockWindow_disjoint {n s j k : ℕ} (hjk : j ≠ k) :
     have hle : (k + 1) * s ≤ j * s := Nat.mul_le_mul_right s h'
     exact absurd ((hxk.2.trans_le hle).trans_le hxj.1) (lt_irrefl _)
 
-/-- When `n = m * s`, the `m` windows of width `s` tile all positions.-/
+/-- When `n = m * s`, the `m` windows of width `s` tile all positions.
+@isnad1 id=eq.1h3v.s5.d3fbb566d3d4 from=translated src=- shape=4a5c61b0 vocab=e3a0908d
+-/
 theorem biUnion_blockWindow {n s m : ℕ} (h : n = m * s) :
     (Finset.range m).biUnion (blockWindow n s) = Finset.univ := by
   refine Finset.eq_univ_of_forall fun x ↦ ?_
@@ -107,18 +115,24 @@ def sampleBlock {n : ℕ} (e : Fin n ≃ α) (s j : ℕ) : Finset α :=
   (blockWindow n s j).image e
 
 omit [Fintype α] in
-/-- An in-range sample block has exactly `s` elements.-/
+/-- An in-range sample block has exactly `s` elements.
+@isnad1 id=eq.1h5v.s5.eaf60a19eb92 from=translated src=- shape=fa28968c vocab=b4faace6
+-/
 theorem card_sampleBlock {n s j : ℕ} (e : Fin n ≃ α) (hj : (j + 1) * s ≤ n) :
     (sampleBlock e s j).card = s :=
   (Finset.card_image_of_injective _ e.injective).trans (card_blockWindow hj)
 
 omit [Fintype α] in
-/-- Distinct sample blocks are disjoint, with no range hypotheses.-/
+/-- Distinct sample blocks are disjoint, with no range hypotheses.
+@isnad1 id=disjoint.1h6v.s5.296ffca96537 from=translated src=- shape=96cf1d53 vocab=2e457630
+-/
 theorem sampleBlock_disjoint {n s j k : ℕ} (e : Fin n ≃ α) (hjk : j ≠ k) :
     Disjoint (sampleBlock e s j) (sampleBlock e s k) :=
   (Finset.disjoint_image e.injective).mpr (blockWindow_disjoint hjk)
 
-/-- When `n = m * s`, the `m` sample blocks tile the carrier.-/
+/-- When `n = m * s`, the `m` sample blocks tile the carrier.
+@isnad1 id=eq.1h5v.s5.399ead2df0c8 from=translated src=- shape=adeb97a8 vocab=6af71e0a
+-/
 theorem biUnion_sampleBlock {n s m : ℕ} (e : Fin n ≃ α) (h : n = m * s) :
     (Finset.range m).biUnion (fun j ↦ sampleBlock e s j) = Finset.univ := by
   unfold sampleBlock
@@ -164,7 +178,9 @@ def predicateSplitEquiv {β γ : Type*} (p : β → Prop) (q : γ → Prop)
         Equiv.sumCompl_apply_inr]
 
 /-- An equivalence maps a finite set exactly onto another iff it carries the membership
-predicates onto each other pointwise.-/
+predicates onto each other pointwise.
+@isnad1 id=iff.0h5v.s6.b49cb2819921 from=translated src=- shape=088cd395 vocab=56ea080f
+-/
 theorem image_eq_iff_forall_mem {β γ : Type*} [DecidableEq γ] (e : β ≃ γ) (W : Finset β)
     (S : Finset γ) : W.image e = S ↔ ∀ x, x ∈ W ↔ e x ∈ S := by
   constructor
@@ -187,7 +203,9 @@ theorem image_eq_iff_forall_mem {β γ : Type*} [DecidableEq γ] (e : β ≃ γ)
 
 /-- **Fiber constancy.**  For an in-range window and any `s`-subset `S` of the carrier, exactly
 `s! * (n-s)!` equivalences `e : Fin n ≃ α` sample `S` as their `j`-th block.  This is the exact
-count that makes the uniform equal-block decomposition exchangeable over `s`-subsets.-/
+count that makes the uniform equal-block decomposition exchangeable over `s`-subsets.
+@isnad1 id=eq.3h5v.s7.ad2b4b4df10c from=translated src=- shape=f7ec1c3c vocab=e5bd1eaf
+-/
 theorem card_filter_sampleBlock_eq {n s j : ℕ} (hn : Fintype.card α = n)
     (hj : (j + 1) * s ≤ n) (S : Finset α) (hS : S.card = s) :
     (Finset.univ.filter fun e : Fin n ≃ α ↦ sampleBlock e s j = S).card
@@ -214,7 +232,9 @@ theorem card_filter_sampleBlock_eq {n s j : ℕ} (hn : Fintype.card α = n)
 /-- **Counting transfer.**  For a family `𝒮` of `s`-subsets and an in-range window `j`, the
 number of equivalences whose `j`-th sample block lands in `𝒮` is exactly `𝒮.card` times the
 constant fiber size `s! * (n-s)!`.  This converts subset-family counts into permutation-space
-counts.-/
+counts.
+@isnad1 id=eq.3h5v.s7.c0f84981f5fd from=translated src=- shape=4a0db481 vocab=8dba73c9
+-/
 theorem card_filter_sampleBlock_mem {n s j : ℕ} (hn : Fintype.card α = n)
     (hj : (j + 1) * s ≤ n) (𝒮 : Finset (Finset α)) (h𝒮 : ∀ S ∈ 𝒮, S.card = s) :
     (Finset.univ.filter fun e : Fin n ≃ α ↦ sampleBlock e s j ∈ 𝒮).card
@@ -246,7 +266,9 @@ theorem card_filter_sampleBlock_mem {n s j : ℕ} (hn : Fintype.card α = n)
 block index `blk i` and a family `fam i` of `s`-subsets.  If the total family count is strictly
 below `n.choose s`, some equivalence `e : Fin n ≃ α` avoids every bad event: no sampled block
 `sampleBlock e s (blk i)` lies in the corresponding family.  Exact counting only: the strict
-inequality is multiplied by the positive constant fiber size and compared against `n!`.-/
+inequality is multiplied by the positive constant fiber size and compared against `n!`.
+@isnad1 id=ex.5h6v.s7.c6e327c96624 from=translated src=- shape=126c3e05 vocab=9707b15c
+-/
 theorem exists_equiv_avoids_all {n s : ℕ} {I : Type*} [Fintype I]
     (hn : Fintype.card α = n) (hs : s ≤ n) (blk : I → ℕ) (fam : I → Finset (Finset α))
     (hblk : ∀ i, (blk i + 1) * s ≤ n) (hfam : ∀ i, ∀ S ∈ fam i, S.card = s)

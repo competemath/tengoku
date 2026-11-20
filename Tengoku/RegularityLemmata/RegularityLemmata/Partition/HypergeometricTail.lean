@@ -46,7 +46,9 @@ variable {α : Type*} [DecidableEq α]
 /-! ### Supersets of a fixed set among `s`-subsets -/
 
 /-- Exactly `(|U| - |R|).choose (s - |R|)` of the `s`-subsets of `U` contain a fixed subset
-`R ⊆ U` (for `|R| ≤ s`; both sides vanish when `s` exceeds `|U|`).-/
+`R ⊆ U` (for `|R| ≤ s`; both sides vanish when `s` exceeds `|U|`).
+@isnad1 id=eq.2h4v.s6.e8c4eebea654 from=translated src=- shape=4ada8024 vocab=55f2384a
+-/
 theorem card_powersetCard_filter_superset (U R : Finset α) (hR : R ⊆ U) {s : ℕ}
     (hrs : R.card ≤ s) :
     ((U.powersetCard s).filter fun S ↦ R ⊆ S).card = (U.card - R.card).choose (s - R.card) := by
@@ -78,7 +80,9 @@ theorem card_powersetCard_filter_superset (U R : Finset α) (hR : R ⊆ U) {s : 
 
 /-- **The `r`-th binomial moment of the hypergeometric count, exactly.**  Summing
 `C((A ∩ S).card, r)` over all `s`-subsets `S` of `U` counts the pairs `(R, S)` with `R ⊆ A`,
-`|R| = r`, `R ⊆ S`; grouping by `R` gives `C(|A|, r) * C(|U| - r, s - r)`.-/
+`|R| = r`, `R ⊆ S`; grouping by `R` gives `C(|A|, r) * C(|U| - r, s - r)`.
+@isnad1 id=eq.2h5v.s6.5abc986f1c51 from=translated src=- shape=604c4936 vocab=9f9c89d8
+-/
 theorem sum_choose_inter_card (U A : Finset α) (hA : A ⊆ U) {s r : ℕ} (hrs : r ≤ s) :
     ∑ S ∈ U.powersetCard s, ((A ∩ S).card).choose r
       = A.card.choose r * (U.card - r).choose (s - r) := by
@@ -106,7 +110,9 @@ theorem sum_choose_inter_card (U A : Finset α) (hA : A ⊆ U) {s r : ℕ} (hrs 
       rw [Finset.sum_const, Finset.card_powersetCard, smul_eq_mul]
 
 /-- The mean identity (the `r = 1` binomial moment): the total intersection mass of a subset
-`A ⊆ U` over all `s`-subsets of `U` is exactly `|A| * C(|U| - 1, s - 1)`.-/
+`A ⊆ U` over all `s`-subsets of `U` is exactly `|A| * C(|U| - 1, s - 1)`.
+@isnad1 id=eq.2h4v.s6.4db17b680185 from=translated src=- shape=902b7386 vocab=9f9c89d8
+-/
 theorem sum_inter_card (U A : Finset α) (hA : A ⊆ U) {s : ℕ} (hs : 1 ≤ s) :
     ∑ S ∈ U.powersetCard s, (A ∩ S).card = A.card * (U.card - 1).choose (s - 1) := by
   have h := sum_choose_inter_card U A hA (r := 1) hs
@@ -117,7 +123,9 @@ theorem sum_inter_card (U A : Finset α) (hA : A ⊆ U) {s : ℕ} (hs : 1 ≤ s)
 /-- **Upper tail (Markov at the `r`-th binomial moment).**  The number of `s`-subsets `S` of `U`
 with `K ≤ (A ∩ S).card`, multiplied by `C(K, r)`, is at most the `r`-th binomial moment
 `C(|A|, r) * C(|U| - r, s - r)`.  Choosing `r ≈ K - s|A|/|U|` makes the ratio geometrically
-small; that comparison is left to the schedule layer.-/
+small; that comparison is left to the schedule layer.
+@isnad1 id=le.2h6v.s6.d388ba756310 from=translated src=- shape=9b62fce9 vocab=3ab90743
+-/
 theorem card_filter_le_inter_card_mul_choose_le (U A : Finset α) (hA : A ⊆ U) {s r K : ℕ}
     (hrs : r ≤ s) :
     ((U.powersetCard s).filter fun S ↦ K ≤ (A ∩ S).card).card * K.choose r
@@ -136,7 +144,9 @@ theorem card_filter_le_inter_card_mul_choose_le (U A : Finset α) (hA : A ⊆ U)
 
 /-! ### The lower tail, by complementation -/
 
-/-- For `A, S ⊆ U`, the intersection masses of `A` and of `U \ A` on `S` add up to `|S|`.-/
+/-- For `A, S ⊆ U`, the intersection masses of `A` and of `U \ A` on `S` add up to `|S|`.
+@isnad1 id=eq.2h4v.s6.04082355c71c from=translated src=- shape=9670a091 vocab=550e2bf2
+-/
 theorem inter_card_add_compl_inter_card (U A S : Finset α) (hA : A ⊆ U) (hS : S ⊆ U) :
     (A ∩ S).card + ((U \ A) ∩ S).card = S.card := by
   have hdisj : Disjoint (A ∩ S) ((U \ A) ∩ S) :=
@@ -146,7 +156,9 @@ theorem inter_card_add_compl_inter_card (U A S : Finset α) (hA : A ⊆ U) (hS :
 
 /-- **Lower tail.**  The number of `s`-subsets `S` of `U` with `(A ∩ S).card ≤ L`, multiplied by
 `C(s - L, r)`, is at most `C(|U| - |A|, r) * C(|U| - r, s - r)`: a low intersection with `A` is
-a high intersection with `U \ A`, and the upper tail applies to the complement.-/
+a high intersection with `U \ A`, and the upper tail applies to the complement.
+@isnad1 id=le.2h6v.s7.3bf534089c68 from=translated src=- shape=12a54db2 vocab=3ab90743
+-/
 theorem card_filter_inter_card_le_mul_choose_le (U A : Finset α) (hA : A ⊆ U) {s r L : ℕ}
     (hrs : r ≤ s) :
     ((U.powersetCard s).filter fun S ↦ (A ∩ S).card ≤ L).card * (s - L).choose r

@@ -66,9 +66,15 @@ survives equitabilisation. Uniform: independent of the relation, the partition, 
 the host size, and `ε`.-/
 noncomputable def familyRetainedFraction : ℝ := 1 / 5
 
+/--
+@isnad1 id=lt.0h0v.s3.f2904734bcf8 from=translated src=- shape=ff3a10fc vocab=06c5cbae
+-/
 theorem familyRetainedFraction_pos : 0 < familyRetainedFraction := by
   rw [familyRetainedFraction]; norm_num
 
+/--
+@isnad1 id=lt.0h0v.s3.0186b463f540 from=translated src=- shape=ffdda526 vocab=06c5cbae
+-/
 theorem familyRetainedFraction_lt_one : familyRetainedFraction < 1 := by
   rw [familyRetainedFraction]; norm_num
 
@@ -79,7 +85,9 @@ the threshold `100`, the witness-side remainder is smaller than every cell by `�
 
 This is the conversion the loss calculus was left waiting for: the remainder-to-cell
 inequality supplies the factor `4^(n·2^(2n))`, and the transported numerical bridge
-`le_pow_mul_of_familyInitialBound_le` says the floor makes that factor beat `100/ε⁵`.-/
+`le_pow_mul_of_familyInitialBound_le` says the floor makes that factor beat `100/ε⁵`.
+@isnad1 id=le.4h6v.s7.50cad69f0806 from=translated src=- shape=4dade3e8 vocab=cd04f231
+-/
 theorem chunkThreshold_mul_chunkWitnessRemainder_le (hP : P.IsEquipartition) (hε : 0 < ε)
     {l : ℕ} (hfloor : familyInitialBound familyChunkThreshold ε l ≤ P.parts.card)
     {C : Finset α} (hC : C ∈ P.parts) :
@@ -163,7 +171,9 @@ private theorem chunk_gain_numerics {a b r ε : ℝ} (hε : 0 < ε) (hε1 : ε �
 /-- **The per-pair gain with the constants fixed**: a bad ordered pair contributes
 `(1/5)·ε⁴·|C||D|` across the equitabilised refinement. Every numerical hypothesis of
 step 3's loss theorem is discharged from the chunk condition alone, at the named
-constants.-/
+constants.
+@isnad1 id=le.7h8v.s8.145035d66304 from=translated src=- shape=8fa7afd8 vocab=0ea2363a
+-/
 theorem blockEnergy_equitableIncrement_retained (hP : P.IsEquipartition) (hε : 0 < ε)
     (hε1 : ε ≤ 1) {l : ℕ}
     (hfloor : familyInitialBound familyChunkThreshold ε l ≤ P.parts.card)
@@ -190,7 +200,9 @@ theorem blockEnergy_equitableIncrement_retained (hP : P.IsEquipartition) (hε : 
 /-- **The selected relation's normalized increment.** On a partition whose bad mass
 exceeds `ε`, the equitabilised refinement raises that relation's normalized energy by
 `(1/5)·ε⁵` — the exact refinement's `ε⁵` degraded by the uniform retained fraction, and
-nothing else.-/
+nothing else.
+@isnad1 id=le.5h6v.s7.ed389ffcc467 from=translated src=- shape=7cb9dc03 vocab=df528691
+-/
 theorem energy_equitableIncrement_increment (hP : P.IsEquipartition) (hε : 0 < ε)
     (hε1 : ε ≤ 1) {l : ℕ}
     (hfloor : familyInitialBound familyChunkThreshold ε l ≤ P.parts.card)
@@ -213,7 +225,9 @@ variable {K : ℕ} {Rk : Fin K → α → α → Prop} [∀ k, DecidableRel (Rk 
 
 /-- **The family lift.** Resolving ONE relation lifts its component gain to the family
 sum: the other `K − 1` summands cannot decrease, because the equitabilised increment
-refines `P`.-/
+refines `P`.
+@isnad1 id=le.5h8v.s7.7c175a0e5bcc from=translated src=- shape=9d510c2d vocab=27e483bf
+-/
 theorem familyEnergy_equitableIncrement_increment (hP : P.IsEquipartition) (hε : 0 < ε)
     (hε1 : ε ≤ 1) {l : ℕ}
     (hfloor : familyInitialBound familyChunkThreshold ε l ≤ P.parts.card) (k : Fin K)
@@ -229,7 +243,9 @@ refinement that is again an equipartition, has EXACTLY `familyStepBound #P.parts
 and gains `(1/5)·ε⁵` of family energy.
 
 Everything the iteration needs is here and nothing more: no fuel, and no final
-part-count bound.-/
+part-count bound.
+@isnad1 id=ex.6h7v.s7.edae9261c394 from=translated src=- shape=e3e7bdd0 vocab=99bb4932
+-/
 theorem exists_familyEnergy_increment_equitable (Rk : Fin K → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (hP : P.IsEquipartition) (hε : 0 < ε) (hε1 : ε ≤ 1) {l : ℕ}
     (hfloor : familyInitialBound familyChunkThreshold ε l ≤ P.parts.card)

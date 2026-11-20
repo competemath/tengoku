@@ -39,6 +39,9 @@ noncomputable def witnessCuts (P : Finpartition s) (C : Finset α) : Finset (Fin
     ∪ (P.parts.image fun D =>
       if h : IsBadPair R ε D C then (NonuniformWitness.ofNotUniform h.2).right else ∅)
 
+/--
+@isnad1 id=le.0h6v.s6.0168103d2ead from=translated src=- shape=bfcb1fcc vocab=6865fed4
+-/
 theorem witnessCuts_card_le (P : Finpartition s) (C : Finset α) :
     (witnessCuts R ε P C).card ≤ 2 * P.parts.card := by
   classical
@@ -49,6 +52,9 @@ theorem witnessCuts_card_le (P : Finpartition s) (C : Finset α) :
     if h : IsBadPair R ε D C then (NonuniformWitness.ofNotUniform h.2).right else ∅)
   omega
 
+/--
+@isnad1 id=le.1h7v.s6.aae042074ea3 from=translated src=- shape=2a580231 vocab=b28b7a00
+-/
 theorem witnessCuts_subset (P : Finpartition s) {C : Finset α}
     {b : Finset α} (hb : b ∈ witnessCuts R ε P C) : b ⊆ C := by
   rw [witnessCuts, Finset.mem_union] at hb
@@ -60,7 +66,9 @@ theorem witnessCuts_subset (P : Finpartition s) {C : Finset α}
     · exact (NonuniformWitness.ofNotUniform h.2).right_subset
     · exact Finset.empty_subset _
 
-/-- The left witness of a bad pair `(C, D)` is one of `C`'s cuts.-/
+/-- The left witness of a bad pair `(C, D)` is one of `C`'s cuts.
+@isnad1 id=mem.2h7v.s6.aecb68ab18dd from=translated src=- shape=e1808886 vocab=0532c1b7
+-/
 theorem left_mem_witnessCuts {P : Finpartition s} {C D : Finset α} (hD : D ∈ P.parts)
     (hbad : IsBadPair R ε C D) :
     (NonuniformWitness.ofNotUniform hbad.2).left ∈ witnessCuts R ε P C := by
@@ -70,7 +78,9 @@ theorem left_mem_witnessCuts {P : Finpartition s} {C D : Finset α} (hD : D ∈ 
   rw [Finset.mem_image]
   exact ⟨D, hD, dite_eq_left hbad⟩
 
-/-- The right witness of a bad pair `(C, D)` is one of `D`'s cuts.-/
+/-- The right witness of a bad pair `(C, D)` is one of `D`'s cuts.
+@isnad1 id=mem.2h7v.s6.d7cd75e0dcfa from=translated src=- shape=75546301 vocab=4563befd
+-/
 theorem right_mem_witnessCuts {P : Finpartition s} {C D : Finset α} (hC : C ∈ P.parts)
     (hbad : IsBadPair R ε C D) :
     (NonuniformWitness.ofNotUniform hbad.2).right ∈ witnessCuts R ε P D := by
@@ -84,6 +94,9 @@ theorem right_mem_witnessCuts {P : Finpartition s} {C D : Finset α} (hC : C ∈
 noncomputable def witnessRefinement (P : Finpartition s) : Finpartition s :=
   P.bind fun C _ => Finpartition.atomise C (witnessCuts R ε P C)
 
+/--
+@isnad1 id=le.0h5v.s5.ce7bd7f837fc from=translated src=- shape=1d99c222 vocab=0663099d
+-/
 theorem witnessRefinement_le (P : Finpartition s) : witnessRefinement R ε P ≤ P := by
   intro b hb
   rw [witnessRefinement, Finpartition.mem_bind] at hb
@@ -91,7 +104,9 @@ theorem witnessRefinement_le (P : Finpartition s) : witnessRefinement R ε P ≤
   exact ⟨C, hC, (Finpartition.atomise C (witnessCuts R ε P C)).le hb⟩
 
 /-- **Part-count bound `k · 2^(2k)`**: each cell may receive one left and one right
-witness for each partner, hence at most `2k` cuts and `2^(2k)` atoms.-/
+witness for each partner, hence at most `2k` cuts and `2^(2k)` atoms.
+@isnad1 id=le.0h5v.s6.b8d3d85c5bfb from=translated src=- shape=62099d55 vocab=f00adf33
+-/
 theorem witnessRefinement_parts_card_le (P : Finpartition s) :
     (witnessRefinement R ε P).parts.card ≤ P.parts.card * 2 ^ (2 * P.parts.card) := by
   rw [witnessRefinement, Finpartition.card_bind]
@@ -105,7 +120,9 @@ theorem witnessRefinement_parts_card_le (P : Finpartition s) :
         rw [Finset.sum_const, smul_eq_mul, Finset.card_attach]
 
 /-- Any member of a cell's cut family is a part union of the per-cell atomisation
-refinement.-/
+refinement.
+@isnad1 id=ispartun.3h6v.s7.4be13ec2a16d from=translated src=- shape=c7bc8ccf vocab=cd5c3e5c
+-/
 theorem isPartUnion_bind_atomise {P : Finpartition s} {F : ∀ C ∈ P.parts, Finset (Finset α)}
     {C b : Finset α} (hC : C ∈ P.parts) (hbF : b ∈ F C hC) (hbC : b ⊆ C) :
     IsPartUnion (P.bind fun C hC => Finpartition.atomise C (F C hC)) b := by
@@ -127,7 +144,9 @@ theorem isPartUnion_bind_atomise {P : Finpartition s} {F : ∀ C ∈ P.parts, Fi
     exact ⟨C, hC, huf.1⟩
 
 /-- **Witness resolution.** Every bad pair has a witness whose sides are part unions of
-the witness refinement.-/
+the witness refinement.
+@isnad1 id=ex.3h7v.s7.2811615e36e9 from=translated src=- shape=52ccd4f6 vocab=f87f3bae
+-/
 theorem witnessRefinement_resolves (P : Finpartition s) :
     ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPair R ε C D →
       ∃ w : NonuniformWitness R C D ε,

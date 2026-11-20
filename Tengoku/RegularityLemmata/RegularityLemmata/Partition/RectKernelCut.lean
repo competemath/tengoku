@@ -57,7 +57,9 @@ noncomputable def rectError [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (S : Finset X) (T : Finset Y) : ℝ :=
   rectSum f wX wY S T - steppedRectSum f wX wY P Q S T
 
-/-- On the full rectangle the prediction is exact, so the error vanishes.-/
+/-- On the full rectangle the prediction is exact, so the error vanishes.
+@isnad1 id=eq.2h9v.s6.42df28795f70 from=translated src=- shape=fb78d41e vocab=af80eb83
+-/
 theorem rectError_self [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     rectError f wX wY P Q A B = 0 := by
@@ -72,7 +74,9 @@ noncomputable def rectCutDiscrepancy [DecidableEq X] [DecidableEq Y] (f : RectKe
     fun p => |rectError f wX wY P Q p.1 p.2|
 
 /-- Elimination API: bounding the cut discrepancy is exactly the quantified rectangle
-bound.-/
+bound.
+@isnad1 id=iff.0h10v.s6.c1acaefa2898 from=translated src=- shape=bbc6a812 vocab=d2d208f1
+-/
 theorem rectCutDiscrepancy_le_iff [DecidableEq X] [DecidableEq Y] {P : Finpartition A}
     {Q : Finpartition B} {c : ℝ} :
     rectCutDiscrepancy f wX wY P Q ≤ c
@@ -86,6 +90,9 @@ theorem rectCutDiscrepancy_le_iff [DecidableEq X] [DecidableEq Y] {P : Finpartit
     rw [Finset.mem_product, Finset.mem_powerset, Finset.mem_powerset] at hp
     exact h S hp.1 T hp.2
 
+/--
+@isnad1 id=le.0h9v.s6.68d2121837bb from=translated src=- shape=0a8b790b vocab=b2bac019
+-/
 theorem rectCutDiscrepancy_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) : 0 ≤ rectCutDiscrepancy f wX wY P Q := by
   have hmem : ((∅ : Finset X), (∅ : Finset Y)) ∈ A.powerset ×ˢ B.powerset :=
@@ -101,7 +108,9 @@ the weights and no positive-mass hypothesis. Those enter only where an average i
 or an inequality is proved, never here. -/
 
 /-- A weighted sum whose coefficient depends on the containing cell reindexes to a sum over
-cells against the traces' masses.-/
+cells against the traces' masses.
+@isnad1 id=eq.1h6v.s6.b4a254b9d3cb from=translated src=- shape=0e3344ec vocab=851ccac6
+-/
 theorem sum_part_mul_weight [DecidableEq X] (P : Finpartition A) (S : Finset X) (hS : S ⊆ A)
     (w : X → ℝ) (c : Finset X → ℝ) :
     ∑ x ∈ S, c (P.part x) * w x = ∑ C ∈ P.parts, c C * finsetMass w (S ∩ C) := by
@@ -136,21 +145,27 @@ noncomputable def rectResidual [DecidableEq X] [DecidableEq Y] (f : RectKernel X
 
 /-- The defining equation. Deliberately **not** `@[simp]`: unconditional unfolding turns
 every rectangle sum into `part`-indexed averages, which is exactly what
-`rectSum_rectResidual_eq_rectError` exists to avoid.-/
+`rectSum_rectResidual_eq_rectError` exists to avoid.
+@isnad1 id=eq.0h11v.s6.d0f10fd2065e from=translated src=- shape=ec346b8a vocab=bb1caad8
+-/
 theorem rectResidual_apply [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) (x : X) (y : Y) :
     rectResidual f wX wY P Q x y
       = f x y - rectAverage f wX wY (P.part x) (Q.part y) := rfl
 
 /-- Off the left carrier the residual is `f` itself: `P.part x = ∅`, and an empty rectangle
-has average `0`.-/
+has average `0`.
+@isnad1 id=eq.1h11v.s6.d2523d8d730f from=translated src=- shape=aae02022 vocab=060ef5e0
+-/
 @[simp] theorem rectResidual_of_notMem_left [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {x : X} (hx : x ∉ A) (y : Y) : rectResidual f wX wY P Q x y = f x y := by
   rw [rectResidual_apply, P.part_eq_empty.mpr hx, rectAverage,
     rectSum_empty_left, zero_div, sub_zero]
 
-/-- …and off the right carrier likewise.-/
+/-- …and off the right carrier likewise.
+@isnad1 id=eq.1h11v.s6.d77eb28cd62b from=translated src=- shape=9c241328 vocab=060ef5e0
+-/
 @[simp] theorem rectResidual_of_notMem_right [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (x : X) {y : Y} (hy : y ∉ B) : rectResidual f wX wY P Q x y = f x y := by
@@ -163,7 +178,9 @@ rectangle sum *is* the rectangle error.
 Pure algebra: `S ⊆ A` and `T ⊆ B` are the only hypotheses. No nonnegativity, no positive
 mass, and no unfolding of `rectAverage` — each cell average is an opaque coefficient
 throughout, and `sum_part_mul_weight` is applied once per coordinate. If division appeared
-here, the proof would have crossed into tower mathematics prematurely.-/
+here, the proof would have crossed into tower mathematics prematurely.
+@isnad1 id=eq.2h11v.s6.a7acc2d53d26 from=translated src=- shape=2e64c5ba vocab=9375115d
+-/
 theorem rectSum_rectResidual_eq_rectError [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) :
@@ -209,7 +226,9 @@ same
 functional, one on the stepped residual and one on the rectangle-combination residual. -/
 /-- **The two summits measure the same thing on the residual**: the cut discrepancy equals the
 partition-free cut norm of the stepped residual. Pure repackaging, valid for arbitrary signed
-weights.-/
+weights.
+@isnad1 id=eq.0h9v.s6.a55b5a0d6fef from=translated src=- shape=4dac30b4 vocab=818911b9
+-/
 theorem rectCutDiscrepancy_eq_rectCutNorm_rectResidual [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) :
     rectCutDiscrepancy f wX wY P Q = rectCutNorm (rectResidual f wX wY P Q) wX wY A B := by
@@ -257,7 +276,9 @@ rather than merely convenient.
 `rectAverage (rectResidual …) C' D' = rectAverage f C' D' - rectAverage f C D` is **false**
 on a zero-mass fine cell: the guard-free residual average is `0 / 0 = 0` there, while the
 difference of averages need not vanish. Consumers that want to cancel must first establish a
-nonzero mass product locally.-/
+nonzero mass product locally.
+@isnad1 id=eq.6h15v.s8.f3a3801ea531 from=translated src=- shape=64f0f743 vocab=c5b365f8
+-/
 theorem rectAverage_rectResidual_mul_trace_mass [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) {P : Finpartition A} {Q : Finpartition B}
     {C C' : Finset X} {D D' : Finset Y} (hC : C ∈ P.parts) (hD : D ∈ Q.parts)
@@ -313,7 +334,9 @@ increment consumes.
 Same contract as the linear version above: the identity is stated **only** after multiplying
 by the fine-cell mass product, because the unweighted equality of averages fails on a
 zero-mass fine cell. The cancellation happens inside this proof, under a locally established
-`mass ≠ 0`, and is never exposed.-/
+`mass ≠ 0`, and is never exposed.
+@isnad1 id=eq.6h13v.s8.80eb30f0c7cc from=translated src=- shape=0700141a vocab=28878d7a
+-/
 theorem sq_rectAverage_rectResidual_mul_mass [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) {P : Finpartition A} {Q : Finpartition B}
     {C C' : Finset X} {D D' : Finset Y} (hC : C ∈ P.parts) (hD : D ∈ Q.parts)
@@ -342,7 +365,9 @@ introducing them. See the section note for why signed weights break the argument
 `S ⊆ A` and `T ⊆ B` are **not** needed, unlike in `rectSum_rectResidual_eq_rectError`. A
 stepped sum ranges over cells, so points of `S` outside the carrier are invisible to both
 sides; the ordinary rectangle sum, by contrast, sees them and there the residual equals `f`.
-Consumers below supply the carrier hypotheses anyway, since their other inputs need them.-/
+Consumers below supply the carrier hypotheses anyway, since their other inputs need them.
+@isnad1 id=eq.4h13v.s7.08f90ccd5756 from=translated src=- shape=30c6ce87 vocab=35f5e3ee
+-/
 theorem steppedRectSum_rectResidual [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) {P P' : Finpartition A} {Q Q' : Finpartition B}
     (hP : P' ≤ P) (hQ : Q' ≤ Q) (S : Finset X) (T : Finset Y)
@@ -411,7 +436,9 @@ positive-mass hypothesis. -/
 
 Guard-free, and the zero-mass case is split rather than canceled: when a cell has zero
 mass, its relative mass is `0 / 0 = 0` on one side, and the trace of the test set inside it
-has zero mass on the other, so both sides drop the cell.-/
+has zero mass on the other, so both sides drop the cell.
+@isnad1 id=eq.2h11v.s7.1ece4c5b5e84 from=translated src=- shape=2a8d9249 vocab=a0988216
+-/
 theorem steppedRectSum_eq_relMass_bilinear [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B) (S : Finset X) (T : Finset Y)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -453,7 +480,9 @@ theorem steppedRectSum_eq_relMass_bilinear [DecidableEq X] [DecidableEq Y]
 
 /-! ### Contraction of stepping, at constant `1` -/
 
-/-- Cell-union rectangles are test rectangles: a union of `P`-parts sits inside `A`.-/
+/-- Cell-union rectangles are test rectangles: a union of `P`-parts sits inside `A`.
+@isnad1 id=le.1h4v.s6.02764b24d6c6 from=translated src=- shape=ca4626b2 vocab=2492632d
+-/
 theorem biUnion_parts_subset [DecidableEq X] {P : Finpartition A} {I : Finset (Finset X)}
     (hI : I ⊆ P.parts) : I.biUnion id ⊆ A := by
   intro x hx
@@ -465,7 +494,9 @@ theorem biUnion_parts_subset [DecidableEq X] {P : Finpartition A} {I : Finset (F
 is every stepped prediction — for **any** test rectangle and any pair of partitions.
 
 This is the estimate the common-refinement adapter rests on, and the reason its constant is
-`2` rather than `4`: stepping is free, and the factor of two is a triangle inequality.-/
+`2` rather than `4`: stepping is free, and the factor of two is a triangle inequality.
+@isnad1 id=le.3h12v.s7.9c69ccfe810e from=translated src=- shape=e0243489 vocab=436ab137
+-/
 theorem abs_steppedRectSum_le [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (S : Finset X) (T : Finset Y)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) {ε : ℝ}
@@ -492,7 +523,9 @@ theorem abs_steppedRectSum_le [DecidableEq X] [DecidableEq Y] (P : Finpartition 
 
 /-- The same bound in error form: a stepped prediction of a kernel whose rectangle sums are
 all small is itself small, so the rectangle error is at most twice the input bound. This is
-the triangle step, with its constant `2` made explicit.-/
+the triangle step, with its constant `2` made explicit.
+@isnad1 id=le.5h12v.s7.2ff9327a5406 from=translated src=- shape=8e55ed0e vocab=5cb7a404
+-/
 theorem abs_rectError_le_two_mul [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) {ε : ℝ}
@@ -514,13 +547,17 @@ statement goes through `rectCutDiscrepancy_le_iff` in both directions rather tha
 the two `sup'` index sets directly. -/
 
 /-- `op` exchanges the two sides of the rectangle error, together with the partitions and
-the test rectangle.-/
+the test rectangle.
+@isnad1 id=eq.0h11v.s6.5b8cf62b2e15 from=translated src=- shape=47bbe731 vocab=35815e99
+-/
 theorem rectError_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y) (wX : X → ℝ)
     (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) (S : Finset X) (T : Finset Y) :
     rectError f.op wY wX Q P T S = rectError f wX wY P Q S T := by
   rw [rectError, rectError, rectSum_op, steppedRectSum_op]
 
-/-- …and of the cut discrepancy.-/
+/-- …and of the cut discrepancy.
+@isnad1 id=eq.0h9v.s6.d87f7674b7de from=translated src=- shape=79fcddbb vocab=647b4c6c
+-/
 theorem rectCutDiscrepancy_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) :
     rectCutDiscrepancy f.op wY wX Q P = rectCutDiscrepancy f wX wY P Q := by
@@ -546,6 +583,9 @@ weights force zero rectangle sums, zero cell masses, and hence `0 / 0 = 0` avera
 degenerate case simply wants a different argument, and no consumer has asked for it;
 `0 < c` is the public contract until one does. -/
 
+/--
+@isnad1 id=eq.1h12v.s6.fa1ce7d5eb1b from=translated src=- shape=8473c12c vocab=40025b91
+-/
 theorem rectError_smul_weight_left [DecidableEq X] [DecidableEq Y] {c : ℝ} (hc : 0 < c)
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A)
     (Q : Finpartition B) (S : Finset X) (T : Finset Y) :
@@ -560,7 +600,9 @@ theorem rectError_smul_weight_left [DecidableEq X] [DecidableEq Y] {c : ℝ} (hc
     ring
   rw [rectError, rectError, rectSum_smul_weight_left, hstep, mul_sub]
 
-/-- **The raw discrepancy scales with the carrier weight.**-/
+/-- **The raw discrepancy scales with the carrier weight.**
+@isnad1 id=eq.1h10v.s6.7d551d02e7fd from=translated src=- shape=706da2e6 vocab=772eac19
+-/
 theorem rectCutDiscrepancy_smul_weight_left [DecidableEq X] [DecidableEq Y] {c : ℝ}
     (hc : 0 < c) (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A)
     (Q : Finpartition B) :
@@ -592,7 +634,9 @@ supplies the estimate, and nothing below introduces new mathematics. The constan
 triangle inequality of `abs_rectError_le_two_mul`; stepping itself is free. -/
 
 /-- The rectangle error of the **residual** against a finer pair is the rectangle error of
-`f` itself against that pair: the coarse prediction cancels.-/
+`f` itself against that pair: the coarse prediction cancels.
+@isnad1 id=eq.6h13v.s7.4c3ae18d372e from=translated src=- shape=e9bf8978 vocab=737966c7
+-/
 theorem rectError_rectResidual [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) {P P' : Finpartition A} {Q Q' : Finpartition B}
     (hP : P' ≤ P) (hQ : Q' ≤ Q) {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B)
@@ -607,7 +651,9 @@ cut discrepancy.
 
 The proof is the residual's: its rectangle sums are the coarse pair's rectangle errors, hence
 bounded by the coarse discrepancy; the contraction bounds the residual's stepped predictions
-by the same quantity; and the triangle inequality pays the factor `2`.-/
+by the same quantity; and the triangle inequality pays the factor `2`.
+@isnad1 id=le.4h11v.s7.4690a7b193de from=translated src=- shape=89a9e900 vocab=e902fdd7
+-/
 theorem rectCutDiscrepancy_le_two_mul [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) {P P' : Finpartition A} {Q Q' : Finpartition B}
     (hP : P' ≤ P) (hQ : Q' ≤ Q) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -623,7 +669,9 @@ theorem rectCutDiscrepancy_le_two_mul [DecidableEq X] [DecidableEq Y] (f : RectK
   have h := abs_rectError_le_two_mul (f := rectResidual f wX wY P Q) P' Q' hS hT hwX hwY hres
   rwa [rectError_rectResidual f wX wY hP hQ hS hT hwX hwY] at h
 
-/-- The common refinement inherits the **left** pair's bound, up to the factor `2`.-/
+/-- The common refinement inherits the **left** pair's bound, up to the factor `2`.
+@isnad1 id=le.2h11v.s7.7d8583d0245d from=translated src=- shape=04ba38e0 vocab=0be5e8fa
+-/
 theorem rectCutDiscrepancy_inf_le_two_mul_left [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P₁ P₂ : Finpartition A)
     (Q₁ Q₂ : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -631,7 +679,9 @@ theorem rectCutDiscrepancy_inf_le_two_mul_left [DecidableEq X] [DecidableEq Y]
       ≤ 2 * rectCutDiscrepancy f wX wY P₁ Q₁ :=
   rectCutDiscrepancy_le_two_mul f wX wY inf_le_left inf_le_left hwX hwY
 
-/-- …and symmetrically the **right** pair's.-/
+/-- …and symmetrically the **right** pair's.
+@isnad1 id=le.2h11v.s7.a4cf6380f978 from=translated src=- shape=8aa4f87a vocab=0be5e8fa
+-/
 theorem rectCutDiscrepancy_inf_le_two_mul_right [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P₁ P₂ : Finpartition A)
     (Q₁ Q₂ : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -648,7 +698,9 @@ never merged into a single bound.
 Boolean same-carrier summit, not that theorem's sharper complexity bound: the part counts here
 are the generic product bounds of `card_parts_inf_le`, and the `4^t`-type control of the
 Boolean development is *not* reproduced. Single-exponential dependence is preserved; see
-`docs/design/rectangular-kernels.md`.-/
+`docs/design/rectangular-kernels.md`.
+@isnad1 id=and.3h12v.s8.9187cbf5855e from=translated src=- shape=ed0ca6f7 vocab=835edca2
+-/
 theorem rectCutDiscrepancy_inf_le_of_le_half [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P₁ P₂ : Finpartition A)
     (Q₁ Q₂ : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) {ε : ℝ}
@@ -673,7 +725,9 @@ Both halves of the common refinement do work here — `inf_le_left` on the left 
 The same-carrier product bound is **derived**, from the two separate part counts, never
 primitive. The quantitative disclaimer of `rectCutDiscrepancy_inf_le_of_le_half` applies
 verbatim: this recovers the Boolean summit's discrepancy conclusion, not its sharper
-complexity bound.-/
+complexity bound.
+@isnad1 id=and.3h8v.s8.46b79acf1f5d from=translated src=- shape=a6b1480c vocab=835edca2
+-/
 theorem rectCutDiscrepancy_inf_self_le_of_le_half [DecidableEq X] (f : RectKernel X X)
     (w₁ w₂ : X → ℝ) (P Q : Finpartition A) (hw₁ : ∀ x ∈ A, 0 ≤ w₁ x)
     (hw₂ : ∀ x ∈ A, 0 ≤ w₂ x) {ε : ℝ} (hε : rectCutDiscrepancy f w₁ w₂ P Q ≤ ε / 2) :

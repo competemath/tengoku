@@ -40,6 +40,9 @@ def lowerFaceSet (v : Fin (j + 1) → α) (i : Fin (j + 1)) : Finset α :=
   tupleRange (lowerFace v i)
 
 omit [Fintype α] in
+/--
+@isnad1 id=eq.0h4v.s6.bae7f09d938f from=translated src=- shape=9dc7efb9 vocab=f275b725
+-/
 theorem lowerFaceSet_eq_image_erase (v : Fin (j + 1) → α) (i : Fin (j + 1)) :
     lowerFaceSet v i = (Finset.univ.erase i).image v := by
   rw [lowerFaceSet, tupleRange]
@@ -56,6 +59,9 @@ theorem lowerFaceSet_eq_image_erase (v : Fin (j + 1) → α) (i : Fin (j + 1)) :
   rfl
 
 omit [Fintype α] in
+/--
+@isnad1 id=eq.1h4v.s6.112b91fef89e from=translated src=- shape=851cfd88 vocab=4eb0700b
+-/
 theorem card_lowerFaceSet {v : Fin (j + 1) → α} (hv : Function.Injective v)
     (i : Fin (j + 1)) : (lowerFaceSet v i).card = j :=
   card_tupleRange_of_injective (lowerFace_injective hv i)
@@ -66,7 +72,9 @@ def lowerFaceRSet {v : Fin (j + 1) → α} (hv : Function.Injective v)
   ⟨lowerFaceSet v i, card_lowerFaceSet hv i⟩
 
 omit [Fintype α] in
-/-- Permuting the tuple permutes its face sets.-/
+/-- Permuting the tuple permutes its face sets.
+@isnad1 id=eq.0h5v.s8.7b667f80eebd from=translated src=- shape=6c831a71 vocab=c766a3c6
+-/
 theorem lowerFaceSet_comp_perm (v : Fin (j + 1) → α) (σ : Equiv.Perm (Fin (j + 1)))
     (i : Fin (j + 1)) : lowerFaceSet (v ∘ σ) i = lowerFaceSet v (σ i) := by
   rw [lowerFaceSet_eq_image_erase, lowerFaceSet_eq_image_erase]
@@ -86,6 +94,9 @@ def polyadBlock (κ : RSet j α → Fin K) (P : Fin (j + 1) → Fin K) :
     ∀ (i : Fin (j + 1)) (h : (lowerFaceSet v i).card = j),
       κ ⟨lowerFaceSet v i, h⟩ = P i
 
+/--
+@isnad1 id=iff.0h6v.s7.337a93f37fe3 from=translated src=- shape=44c9fdbd vocab=cbdaa87a
+-/
 theorem mem_polyadBlock {κ : RSet j α → Fin K} {P : Fin (j + 1) → Fin K}
     {v : Fin (j + 1) → α} :
     v ∈ polyadBlock κ P ↔ Function.Injective v ∧
@@ -93,12 +104,17 @@ theorem mem_polyadBlock {κ : RSet j α → Fin K} {P : Fin (j + 1) → Fin K}
         κ ⟨lowerFaceSet v i, h⟩ = P i := by
   simp [polyadBlock]
 
+/--
+@isnad1 id=injectiv.1h6v.s7.1e4a14b40b3a from=translated src=- shape=de315adf vocab=a88d0029
+-/
 theorem injective_of_mem_polyadBlock {κ : RSet j α → Fin K}
     {P : Fin (j + 1) → Fin K} {v : Fin (j + 1) → α} (hv : v ∈ polyadBlock κ P) :
     Function.Injective v :=
   (mem_polyadBlock.mp hv).1
 
-/-- Clean membership for injective tuples: the polyad is the tuple of face colors.-/
+/-- Clean membership for injective tuples: the polyad is the tuple of face colors.
+@isnad1 id=iff.1h6v.s7.131420ea7d3b from=translated src=- shape=640d669f vocab=d6301f88
+-/
 theorem mem_polyadBlock_iff_of_injective {κ : RSet j α → Fin K}
     {P : Fin (j + 1) → Fin K} {v : Fin (j + 1) → α} (hv : Function.Injective v) :
     v ∈ polyadBlock κ P ↔ ∀ i, κ (lowerFaceRSet hv i) = P i := by
@@ -114,19 +130,27 @@ def polyadKey (κ : RSet j α → Fin K) {v : Fin (j + 1) → α}
     (hv : Function.Injective v) : Fin (j + 1) → Fin K :=
   fun i => κ (lowerFaceRSet hv i)
 
+/--
+@isnad1 id=mem.1h5v.s7.cc18863a9b0c from=translated src=- shape=7789ba29 vocab=c655317e
+-/
 theorem mem_polyadBlock_polyadKey (κ : RSet j α → Fin K) {v : Fin (j + 1) → α}
     (hv : Function.Injective v) : v ∈ polyadBlock κ (polyadKey κ hv) := by
   rw [mem_polyadBlock_iff_of_injective hv]
   intro i
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s7.bac02efc6c48 from=translated src=- shape=94cc960d vocab=c655317e
+-/
 theorem polyadKey_eq_of_mem_polyadBlock {κ : RSet j α → Fin K}
     {P : Fin (j + 1) → Fin K} {v : Fin (j + 1) → α} (hv : Function.Injective v)
     (h : v ∈ polyadBlock κ P) : polyadKey κ hv = P :=
   funext ((mem_polyadBlock_iff_of_injective hv).mp h)
 
 omit [Fintype α] in
-/-- Reordering the tuple permutes its polyad key.-/
+/-- Reordering the tuple permutes its polyad key.
+@isnad1 id=eq.2h6v.s9.a4514b220d0f from=translated src=- shape=73e137bc vocab=9e11d680
+-/
 theorem polyadKey_comp_perm (κ : RSet j α → Fin K) {v : Fin (j + 1) → α}
     (hv : Function.Injective v) (σ : Equiv.Perm (Fin (j + 1)))
     (hvσ : Function.Injective (v ∘ ⇑σ)) :
@@ -134,6 +158,9 @@ theorem polyadKey_comp_perm (κ : RSet j α → Fin K) {v : Fin (j + 1) → α}
   funext i
   exact congrArg κ (Subtype.ext (lowerFaceSet_comp_perm v σ i))
 
+/--
+@isnad1 id=disjoint.1h6v.s7.fd97dc9b77aa from=translated src=- shape=2f5a53eb vocab=c6a5d659
+-/
 theorem polyadBlock_disjoint {κ : RSet j α → Fin K} {P P' : Fin (j + 1) → Fin K}
     (h : P ≠ P') : Disjoint (polyadBlock κ P) (polyadBlock κ P') := by
   rw [Finset.disjoint_left]
@@ -142,6 +169,9 @@ theorem polyadBlock_disjoint {κ : RSet j α → Fin K} {P P' : Fin (j + 1) → 
   refine h (funext fun i => ?_)
   rw [← hv.2 i (card_lowerFaceSet hv.1 i), hv'.2 i (card_lowerFaceSet hv.1 i)]
 
+/--
+@isnad1 id=eq.0h4v.s8.35f755e81f78 from=translated src=- shape=87c4f70a vocab=d3aa6682
+-/
 theorem biUnion_polyadBlock (κ : RSet j α → Fin K) :
     (Finset.univ : Finset (Fin (j + 1) → Fin K)).biUnion (polyadBlock κ)
       = injectiveTuples α (j + 1) := by
@@ -157,7 +187,9 @@ theorem biUnion_polyadBlock (κ : RSet j α → Fin K) :
     rfl
 
 /-- **Partition of the injective tuples.** Every injective `(j+1)`-tuple lies in
-exactly one polyad block, so the block cardinalities sum to the injective count.-/
+exactly one polyad block, so the block cardinalities sum to the injective count.
+@isnad1 id=eq.0h4v.s7.560ce263354e from=translated src=- shape=74300153 vocab=614d70b8
+-/
 theorem sum_card_polyadBlock (κ : RSet j α → Fin K) :
     ∑ P : Fin (j + 1) → Fin K, (polyadBlock κ P).card
       = injectiveTupleCount α (j + 1) := by
@@ -166,7 +198,9 @@ theorem sum_card_polyadBlock (κ : RSet j α → Fin K) :
   exact (Finset.card_biUnion fun P _ P' _ h => polyadBlock_disjoint h).symm
 
 /-- **Permutation invariance**: reordering the tuple permutes the key. Unordered
-cell data makes this automatic — the face sets themselves are permuted.-/
+cell data makes this automatic — the face sets themselves are permuted.
+@isnad1 id=iff.0h7v.s9.f00de30d7683 from=translated src=- shape=6825d964 vocab=659b4d3a
+-/
 theorem comp_perm_mem_polyadBlock {κ : RSet j α → Fin K} {P : Fin (j + 1) → Fin K}
     {v : Fin (j + 1) → α} (σ : Equiv.Perm (Fin (j + 1))) :
     v ∘ σ ∈ polyadBlock κ P ↔ v ∈ polyadBlock κ (P ∘ ⇑σ⁻¹) := by
@@ -207,6 +241,9 @@ def discAtom (κ : RSet j α → Fin K) (key : Fin (j + 1) → Fin K)
     ∀ (i : Fin (j + 1)) (h : (lowerFaceSet v i).card = j),
       (⟨lowerFaceSet v i, h⟩ : RSet j α) ∈ P i
 
+/--
+@isnad1 id=iff.0h7v.s8.2c56be9ad8cf from=translated src=- shape=819db22b vocab=b1c841bd
+-/
 theorem mem_discAtom {κ : RSet j α → Fin K} {key : Fin (j + 1) → Fin K}
     {P : Fin (j + 1) → Finset (RSet j α)} {v : Fin (j + 1) → α} :
     v ∈ discAtom κ key P ↔ v ∈ polyadBlock κ key ∧
@@ -214,7 +251,9 @@ theorem mem_discAtom {κ : RSet j α → Fin K} {key : Fin (j + 1) → Fin K}
         (⟨lowerFaceSet v i, h⟩ : RSet j α) ∈ P i := by
   simp [discAtom]
 
-/-- Clean membership for tuples of the parent block.-/
+/-- Clean membership for tuples of the parent block.
+@isnad1 id=iff.1h7v.s8.155dd0323da3 from=translated src=- shape=2d955654 vocab=a72305a1
+-/
 theorem mem_discAtom_iff_of_injective {κ : RSet j α → Fin K}
     {key : Fin (j + 1) → Fin K} {P : Fin (j + 1) → Finset (RSet j α)}
     {v : Fin (j + 1) → α} (hv : Function.Injective v) :
@@ -228,17 +267,25 @@ theorem mem_discAtom_iff_of_injective {κ : RSet j α → Fin K}
   · intro h i _
     exact h i
 
+/--
+@isnad1 id=le.0h6v.s7.63772ccfa975 from=translated src=- shape=9f64c126 vocab=b0b11317
+-/
 theorem discAtom_subset_polyadBlock (κ : RSet j α → Fin K)
     (key : Fin (j + 1) → Fin K) (P : Fin (j + 1) → Finset (RSet j α)) :
     discAtom κ key P ⊆ polyadBlock κ key :=
   Finset.filter_subset _ _
 
-/-- Unrestricted faces recover the whole block.-/
+/-- Unrestricted faces recover the whole block.
+@isnad1 id=eq.0h5v.s6.bcfb55b730be from=translated src=- shape=e85397a9 vocab=517db70b
+-/
 theorem discAtom_univ (κ : RSet j α → Fin K) (key : Fin (j + 1) → Fin K) :
     discAtom κ key (fun _ => Finset.univ) = polyadBlock κ key := by
   rw [discAtom]
   exact Finset.filter_true_of_mem fun v _ i h => Finset.mem_univ _
 
+/--
+@isnad1 id=le.1h7v.s7.fc9c552af769 from=translated src=- shape=6d4fc8be vocab=146160ae
+-/
 theorem discAtom_mono {κ : RSet j α → Fin K} {key : Fin (j + 1) → Fin K}
     {P P' : Fin (j + 1) → Finset (RSet j α)} (h : ∀ i, P i ⊆ P' i) :
     discAtom κ key P ⊆ discAtom κ key P' := by
@@ -246,7 +293,9 @@ theorem discAtom_mono {κ : RSet j α → Fin K} {key : Fin (j + 1) → Fin K}
   rw [mem_discAtom] at hv ⊢
   exact ⟨hv.1, fun i hi => h i (hv.2 i hi)⟩
 
-/-- Restricting every face to the empty family empties the atom.-/
+/-- Restricting every face to the empty family empties the atom.
+@isnad1 id=eq.0h5v.s6.7df8a96358b8 from=translated src=- shape=d90293fa vocab=950b1187
+-/
 theorem discAtom_empty_family (κ : RSet j α → Fin K) (key : Fin (j + 1) → Fin K) :
     discAtom κ key (fun _ => (∅ : Finset (RSet j α))) = ∅ := by
   ext v
@@ -259,7 +308,9 @@ theorem discAtom_empty_family (κ : RSet j α → Fin K) (key : Fin (j + 1) → 
 /-! ### Permutation transport of atoms -/
 
 /-- Permutation transport: reordering the tuple permutes the key and the face
-families together.-/
+families together.
+@isnad1 id=iff.0h8v.s9.a80ababb7d93 from=translated src=- shape=76e6c226 vocab=f825a463
+-/
 theorem comp_perm_mem_discAtom {κ : RSet j α → Fin K} {key : Fin (j + 1) → Fin K}
     {P : Fin (j + 1) → Finset (RSet j α)} {v : Fin (j + 1) → α}
     (σ : Equiv.Perm (Fin (j + 1))) :
@@ -296,7 +347,9 @@ theorem comp_perm_mem_discAtom {κ : RSet j α → Fin K} {key : Fin (j + 1) →
     exact hface
 
 /-- Composing with `σ` on the right is a bijection between the transported atom and
-the original one; cardinalities agree.-/
+the original one; cardinalities agree.
+@isnad1 id=eq.0h7v.s8.53e19a9e4071 from=translated src=- shape=6df9179b vocab=d8ac8e19
+-/
 theorem card_discAtom_comp_perm (κ : RSet j α → Fin K) (key : Fin (j + 1) → Fin K)
     (P : Fin (j + 1) → Finset (RSet j α)) (σ : Equiv.Perm (Fin (j + 1))) :
     (discAtom κ (key ∘ ⇑σ⁻¹) (fun i => P (σ⁻¹ i))).card = (discAtom κ key P).card := by
@@ -308,7 +361,9 @@ theorem card_discAtom_comp_perm (κ : RSet j α → Fin K) (key : Fin (j + 1) �
   have hcomp : (w ∘ ⇑σ⁻¹) ∘ ⇑σ = w := funext fun x => congrArg w (σ.symm_apply_apply x)
   rwa [hcomp]
 
-/-- Filtered-cardinality version, for observables invariant under `σ`.-/
+/-- Filtered-cardinality version, for observables invariant under `σ`.
+@isnad1 id=eq.1h8v.s9.df26626dcc72 from=translated src=- shape=229f715d vocab=b3b9922e
+-/
 theorem card_filter_discAtom_comp_perm (κ : RSet j α → Fin K)
     (key : Fin (j + 1) → Fin K) (P : Fin (j + 1) → Finset (RSet j α))
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs]
@@ -331,7 +386,9 @@ theorem card_filter_discAtom_comp_perm (κ : RSet j α → Fin K)
       rw [hcomp] at this
       exact this.mp hw.2
 
-/-- Density of a transported atom, for observables invariant under `σ`.-/
+/-- Density of a transported atom, for observables invariant under `σ`.
+@isnad1 id=eq.1h8v.s9.82be9b9f3540 from=translated src=- shape=db5d7c48 vocab=7d92395c
+-/
 theorem densityOn_discAtom_comp_perm (κ : RSet j α → Fin K)
     (key : Fin (j + 1) → Fin K) (P : Fin (j + 1) → Finset (RSet j α))
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs]
@@ -341,14 +398,18 @@ theorem densityOn_discAtom_comp_perm (κ : RSet j α → Fin K)
   rw [densityOn, densityOn, card_filter_discAtom_comp_perm κ key P obs σ hobs,
     card_discAtom_comp_perm κ key P σ]
 
-/-- Cardinality of a transported block.-/
+/-- Cardinality of a transported block.
+@isnad1 id=eq.0h6v.s8.58f63edf6f31 from=translated src=- shape=b9081236 vocab=a48521de
+-/
 theorem card_polyadBlock_comp_perm (κ : RSet j α → Fin K)
     (key : Fin (j + 1) → Fin K) (σ : Equiv.Perm (Fin (j + 1))) :
     (polyadBlock κ (key ∘ ⇑σ⁻¹)).card = (polyadBlock κ key).card := by
   rw [← discAtom_univ κ key, ← discAtom_univ κ (key ∘ ⇑σ⁻¹)]
   exact card_discAtom_comp_perm κ key (fun _ => Finset.univ) σ
 
-/-- Density of a transported block, for observables invariant under `σ`.-/
+/-- Density of a transported block, for observables invariant under `σ`.
+@isnad1 id=eq.1h7v.s9.c4d4bcc29183 from=translated src=- shape=e4f9f783 vocab=fbb718e8
+-/
 theorem densityOn_polyadBlock_comp_perm (κ : RSet j α → Fin K)
     (key : Fin (j + 1) → Fin K) (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs]
     (σ : Equiv.Perm (Fin (j + 1))) (hobs : ∀ w : Fin (j + 1) → α, obs (w ∘ ⇑σ) ↔ obs w) :

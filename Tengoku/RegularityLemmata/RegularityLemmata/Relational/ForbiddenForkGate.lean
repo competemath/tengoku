@@ -73,7 +73,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V} {Q : Finpartition s}
 
 /-! ### Branch A: equipartitions with a singleton part are nearly discrete -/
 
-/-- An equipartition with a singleton part has every part of size at most two.-/
+/-- An equipartition with a singleton part has every part of size at most two.
+@isnad1 id=le.4h5v.s6.c36d58e00afa from=translated src=- shape=314a8b94 vocab=2628b912
+-/
 theorem card_le_two_of_singleton_part (hQ : Q.IsEquipartition) {A : Finset V}
     (hA : A ∈ Q.parts) (hA1 : A.card = 1) {B : Finset V} (hB : B ∈ Q.parts) : B.card ≤ 2 := by
   by_contra hcon
@@ -81,7 +83,9 @@ theorem card_le_two_of_singleton_part (hQ : Q.IsEquipartition) {A : Finset V}
   omega
 
 /-- **Branch A's size collapse.** An equipartition with a singleton part has at least
-`#s / 2` parts: the singleton caps every part at two.-/
+`#s / 2` parts: the singleton caps every part at two.
+@isnad1 id=le.3h4v.s6.12e075fae80b from=translated src=- shape=e3f592cd vocab=012206ea
+-/
 theorem card_le_two_mul_card_parts_of_singleton_part (hQ : Q.IsEquipartition) {A : Finset V}
     (hA : A ∈ Q.parts) (hA1 : A.card = 1) : s.card ≤ 2 * Q.parts.card := by
   classical
@@ -98,7 +102,9 @@ section Profile
 variable {L : FirstOrder.Language} [FiniteRelational L] {M : FiniteRelModel L V}
 
 /-- A vertex whose profile is shared with no other vertex of the host has a singleton
-profile class, so every partition refining the profile partition has `{v}` as a part.-/
+profile class, so every partition refining the profile partition has `{v}` as a part.
+@isnad1 id=mem.3h6v.s7.0e18f0423e7d from=translated src=- shape=9ca71c5c vocab=03e76fbd
+-/
 theorem exists_eq_singleton_of_unique_profile (hQ : Q ≤ binaryProfilePartition M s) {v : V}
     (hv : v ∈ s) (huniq : ∀ b ∈ s, binaryVertexProfile M v = binaryVertexProfile M b → b = v) :
     ({v} : Finset V) ∈ Q.parts := by
@@ -124,7 +130,9 @@ theorem exists_eq_singleton_of_unique_profile (hQ : Q ≤ binaryProfilePartition
 
 /-- **Branch A, falsified.** A witness coarse partition that is an equipartition and refines
 the profile partition has at least `#s / 2` parts as soon as ONE vertex has a unique profile.
-The proxy count is then linear in the host, not bounded.-/
+The proxy count is then linear in the host, not bounded.
+@isnad1 id=le.4h6v.s7.4913144c9641 from=translated src=- shape=e66601ea vocab=7cd0dd8b
+-/
 theorem card_le_two_mul_card_parts_of_unique_profile (hQ : Q.IsEquipartition)
     (hQP : Q ≤ binaryProfilePartition M s) {v : V} (hv : v ∈ s)
     (huniq : ∀ b ∈ s, binaryVertexProfile M v = binaryVertexProfile M b → b = v) :
@@ -136,7 +144,9 @@ omit [DecidableEq V] in
 /-- **The fatal consequence.** At a proxy count linear in the host, the fine tolerance the
 forbidden channel would require shrinks like `#s ⁻²`. No regularity lemma delivers a
 bounded-complexity partition at a host-dependent tolerance, so branch A is not repairable by
-choosing a different producer.-/
+choosing a different producer.
+@isnad1 id=le.4h4v.s7.639b602fbcac from=translated src=- shape=1a6598e6 vocab=e2f99c44
+-/
 theorem proxyFineTolerance_le_of_singleton_part {K P : ℕ} (hK : 0 < K) (hP : 0 < P)
     (hspos : 0 < s.card) (hs : s.card ≤ 2 * P) :
     proxyFineTolerance K P ≤ 1 / (8 * (K : ℝ) * (s.card : ℝ) ^ 2) := by
@@ -168,7 +178,9 @@ noncomputable def proxyNormalizedNonuniformCost (ε : ℝ) (F : Finpartition s)
 
 open Classical in
 /-- The aggregate nonuniform candidate mass over all proxy-pair events, bounded once by the
-fine partition's diagonal-inclusive bad mass — the mass-only form of the step-2 aggregate.-/
+fine partition's diagonal-inclusive bad mass — the mass-only form of the step-2 aggregate.
+@isnad1 id=le.0h7v.s7.ce26c101323b from=translated src=- shape=1b0eacaf vocab=d42221e0
+-/
 theorem sum_proxyEvent_nonuniformMass_le {ε : ℝ} (F : Finpartition s) (q : ℕ)
     (Q : Finpartition s) :
     ∑ e : ProxyEvent Q, ∑ p ∈ nonuniformFinePairs R ε F ∩
@@ -191,7 +203,9 @@ theorem sum_proxyEvent_nonuniformMass_le {ε : ℝ} (F : Finpartition s) (q : �
             (fun p => ¬ IsUniformPair R p.1 p.2 ε), ((p.1.card : ℝ) * p.2.card))
     _ ≤ badMassDiagNum R ε F := sum_proxyPair_nonuniform_le R F Q
 
-/-- The `hcost` input for the per-relation charge.-/
+/-- The `hcost` input for the per-relation charge.
+@isnad1 id=le.0h7v.s6.6385945b58f8 from=translated src=- shape=f8766ae8 vocab=0bab8300
+-/
 theorem proxyNormalizedNonuniformCost_nonneg (ε : ℝ) (F : Finpartition s) (Q : Finpartition s)
     (g : ProxyIndex Q → Finset V) : 0 ≤ proxyNormalizedNonuniformCost R ε F Q g := by
   classical
@@ -203,7 +217,9 @@ theorem proxyNormalizedNonuniformCost_nonneg (ε : ℝ) (F : Finpartition s) (Q 
 open Classical in
 /-- **Branch B, surviving.** Charging nonuniformity by the proxy pair's normalized mass makes
 its budget `4 * ε` — no proxy count, no size floor. The cancellation is the same
-coordinatewise one that freed the deviation budget.-/
+coordinatewise one that freed the deviation budget.
+@isnad1 id=le.4h7v.s8.a9a7df277ee0 from=translated src=- shape=1b3d4a3e vocab=d70ed3e6
+-/
 theorem expected_proxyNormalizedNonuniformCost_le {ε : ℝ} {F : Finpartition s} (hFQ : F ≤ Q)
     {q : ℕ} (hq : F.parts.card ≤ q) (hε : 0 ≤ ε)
     (hB : badMassDiagNum R ε F ≤ ε * (s.card : ℝ) ^ 2) :
@@ -257,7 +273,9 @@ noncomputable def proxyNormalizedPaletteCost (ε : ℝ) (F : Finpartition s) (Q 
     if (g (proxyEventFst e), g (proxyEventSnd e)) ∈ paletteNonuniformFinePairs M ε F
       then proxyPairMassWeight s (proxyEventPair e) else 0
 
-/-- The `hcost` input for the relational charge.-/
+/-- The `hcost` input for the relational charge.
+@isnad1 id=le.0h8v.s6.c438a0e5f664 from=translated src=- shape=1aa0ca95 vocab=e34dce59
+-/
 theorem proxyNormalizedPaletteCost_nonneg (ε : ℝ) (F : Finpartition s) (Q : Finpartition s)
     (g : ProxyIndex Q → Finset V) : 0 ≤ proxyNormalizedPaletteCost M ε F Q g := by
   classical
@@ -269,7 +287,9 @@ theorem proxyNormalizedPaletteCost_nonneg (ε : ℝ) (F : Finpartition s) (Q : F
 open Classical in
 /-- The aggregate palette-nonuniform candidate mass: the union over colors is charged once
 per color, so the bound is `K` times a single color's bad mass — the union-bound
-multiplicity, not an event count.-/
+multiplicity, not an event count.
+@isnad1 id=le.1h9v.s8.c38ff3b54275 from=translated src=- shape=291ba1c9 vocab=b9c8acae
+-/
 theorem sum_proxyEvent_paletteNonuniformMass_le {ε B : ℝ} (F : Finpartition s) (q : ℕ)
     (Q : Finpartition s)
     (hB : ∀ c : BinaryPairPalette L, badMassDiagNum (HasBinaryPairPalette M c) ε F ≤ B) :
@@ -316,7 +336,9 @@ theorem sum_proxyEvent_paletteNonuniformMass_le {ε B : ℝ} (F : Finpartition s
 open Classical in
 /-- **The relational branch-B gate.** For SIMULTANEOUS palette uniformity — the forbidden
 condition the summit actually needs — the normalized charge has budget `4 * K * ε`. No proxy
-count and no size floor; `K` is the union-bound multiplicity over colors.-/
+count and no size floor; `K` is the union-bound multiplicity over colors.
+@isnad1 id=le.4h8v.s8.518f552a730b from=translated src=- shape=ef3b7fde vocab=bc382a6e
+-/
 theorem expected_proxyNormalizedPaletteCost_le {ε : ℝ} {F : Finpartition s} (hFQ : F ≤ Q)
     {q : ℕ} (hq : F.parts.card ≤ q) (hε : 0 ≤ ε)
     (hB : ∀ c : BinaryPairPalette L,
@@ -384,7 +406,9 @@ private abbrev loopMarked : FiniteRelModel (singleRelLang 2) (Fin 3) :=
 -- so the hypothesis is about one vertex rather than about a degenerate model.
 
 /-- **The unique-profile hypothesis, satisfied concretely.** Vertex `0` is distinguished by
-its loop data alone.-/
+its loop data alone.
+@isnad1 id=eq.2h1v.s7.c328f54d5997 from=translated src=- shape=1e1ee8ea vocab=be46dc12
+-/
 theorem uniqueProfileVertex :
     ∀ b ∈ (Finset.univ : Finset (Fin 3)),
       binaryVertexProfile loopMarked 0 = binaryVertexProfile loopMarked b → b = 0 := by

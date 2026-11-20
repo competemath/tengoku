@@ -32,7 +32,9 @@ variable {V : Type*} [DecidableEq V] {R : V → V → Prop} [DecidableRel R]
 
 /-- A subset of an indexed disjoint union decomposes exactly over the pieces. This is
 the indexed form (pieces may coincide as SETS only when empty, but the index keeps
-them apart — the set-indexed `pairCount_biUnion` cannot be reused).-/
+them apart — the set-indexed `pairCount_biUnion` cannot be reused).
+@isnad1 id=eq.2h4v.s6.3845a05d15fb from=translated src=- shape=ec7a978a vocab=8e03eebf
+-/
 theorem card_eq_sum_card_inter {s : ℕ} (A : Fin s → Finset V)
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     {X : Finset V} (hX : X ⊆ Finset.univ.biUnion A) :
@@ -55,7 +57,9 @@ theorem card_eq_sum_card_inter {s : ℕ} (A : Fin s → Finset V)
 /-- **Exact pair-count decomposition** of test sets over an indexed disjoint family
 (the `Fin`-indexed sibling of `RegularityLemmata/Graph/CutNorm.lean`'s Finpartition-indexed
 `pairCount_eq_sum_inter`: an INDEXED family keeps coinciding intersection pieces
-apart, which a set-indexed cover cannot).-/
+apart, which a set-indexed cover cannot).
+@isnad1 id=eq.3h6v.s7.927da4717c78 from=translated src=- shape=8e01b181 vocab=2a1718ca
+-/
 theorem pairCount_eq_sum_inter_fin {s : ℕ} (R : V → V → Prop) [DecidableRel R]
     (A : Fin s → Finset V) (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     {X Y : Finset V} (hX : X ⊆ Finset.univ.biUnion A)
@@ -93,7 +97,9 @@ theorem pairCount_eq_sum_inter_fin {s : ℕ} (R : V → V → Prop) [DecidableRe
   rw [hset, Finset.card_biUnion hd, ← Fintype.sum_prod_type']
 
 omit [DecidableEq V] in
-/-- The trivial pair-count bound by the rectangle.-/
+/-- The trivial pair-count bound by the rectangle.
+@isnad1 id=le.0h4v.s5.358ef847eb55 from=translated src=- shape=6dfcc9d2 vocab=e5a5b6b0
+-/
 theorem pairCount_le_mul (R : V → V → Prop) [DecidableRel R] (A B : Finset V) :
     pairCount R A B ≤ A.card * B.card :=
   le_trans (Finset.card_filter_le _ _) (le_of_eq (Finset.card_product _ _))
@@ -104,7 +110,9 @@ section Union
 
 variable {s m : ℕ} {A : Fin s → Finset V} {α d ε : ℝ} {U X Y : Finset V}
 
-/-- The disjoint union of `s` pieces of common cardinality `m` has `s·m` vertices.-/
+/-- The disjoint union of `s` pieces of common cardinality `m` has `s·m` vertices.
+@isnad1 id=eq.2h4v.s6.08ec75eace57 from=translated src=- shape=5ea3658b vocab=712b7a9e
+-/
 theorem card_biUnion_const
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     (hcard : ∀ i, (A i).card = m) :
@@ -117,7 +125,9 @@ theorem card_biUnion_const
 within `2α + 2α/ε + 1/(s·ε)` of the common off-diagonal density `d`: `2α` from pair
 regularity plus class width on the regularity-controlled blocks, `2α/ε` from pieces
 where `X` or `Y` is below the (inclusive) `α·m` cutoff, and `1/(s·ε)` from the
-equal-size diagonal bound `Σᵢ |X∩Aᵢ|·|Y∩Aᵢ| ≤ m·|Y|`.-/
+equal-size diagonal bound `Σᵢ |X∩Aᵢ|·|Y∩Aᵢ| ≤ m·|Y|`.
+@isnad1 id=le.15h11v.s8.6d360eaadf9f from=translated src=- shape=70508e3d vocab=5861c3a3
+-/
 theorem pairDensity_union_close_center (hm : 0 < m) (hs : 0 < s)
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     (hcard : ∀ i, (A i).card = m)
@@ -434,7 +444,9 @@ theorem pairDensity_union_close_center (hm : 0 < m) (hs : 0 < s)
     linarith
 
 /-- **The union against the class center on itself**: `|density(U,U) − d| ≤ α + 1/s`
-— `α` from the class width on off-diagonal blocks, `1/s` from the diagonal blocks.-/
+— `α` from the class width on off-diagonal blocks, `1/s` from the diagonal blocks.
+@isnad1 id=le.9h8v.s7.0c10b42c986e from=translated src=- shape=06b5a5db vocab=fda4bf12
+-/
 theorem pairDensity_union_self_close_center (hm : 0 < m) (hs : 0 < s)
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     (hcard : ∀ i, (A i).card = m)

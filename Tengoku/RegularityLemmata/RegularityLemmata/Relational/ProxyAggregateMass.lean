@@ -46,7 +46,9 @@ at most one proxy, so it cannot be a fiber member of two. This is what makes the
 a single sum rather than a per-pair bound multiplied by the pair count.
 
 No refinement hypothesis is needed: the fiber filter `(· ⊆ pd.1)` already forces the
-containment that the argument uses.-/
+containment that the argument uses.
+@isnad1 id=pairwise.0h5v.s7.50906988a6e6 from=translated src=- shape=49db592f vocab=1cc5b089
+-/
 theorem proxyFiber_pairwiseDisjoint {F Q : Finpartition s}
     (f : Finset V × Finset V → Prop) [DecidablePred f] :
     (↑(proxyPairEvents Q) : Set (Finset V × Finset V)).PairwiseDisjoint
@@ -68,7 +70,9 @@ theorem proxyFiber_pairwiseDisjoint {F Q : Finpartition s}
 open Classical in
 /-- **Aggregate nonuniform-mass reindexing.** Summed over EVERY ordered distinct proxy
 pair, the nonuniform fine-fiber-pair mass is bounded ONCE by the diagonal-inclusive bad
-mass of the fine partition — no factor of the proxy-pair count.-/
+mass of the fine partition — no factor of the proxy-pair count.
+@isnad1 id=le.0h6v.s8.480bb8cd1acc from=translated src=- shape=4671738c vocab=2727ce61
+-/
 theorem sum_proxyPair_nonuniform_le (R : V → V → Prop) [DecidableRel R] {ε : ℝ}
     (F : Finpartition s) (Q : Finpartition s) :
     ∑ pd ∈ proxyPairEvents Q,
@@ -97,7 +101,9 @@ open Classical in
 /-- **Aggregate deviant-mass reindexing.** Summed over EVERY ordered distinct proxy pair,
 the `η`-deviant fine-fiber-pair mass is bounded ONCE per palette by the witness's total
 deviant mass — the proxy pairs being a subset of all coarse pairs. Again no factor of the
-proxy-pair count.-/
+proxy-pair count.
+@isnad1 id=le.1h10v.s8.0ea04e28cf1b from=translated src=- shape=b52a4ee5 vocab=13e50682
+-/
 theorem BinaryPaletteStrongDiagWitness.sum_proxyPair_deviant_le
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) (c : BinaryPairPalette L) {η : ℝ}
     (hη : 0 < η) :

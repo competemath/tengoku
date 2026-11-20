@@ -43,25 +43,38 @@ variable {α : Type*} (R : α → α → Prop) [DecidableRel R] {A B T : Finset 
 /-- The normalized out-degree of `x` into `B` (guard-free: `0` on empty `B`).-/
 noncomputable def degreeDensity (x : α) (B : Finset α) : ℝ := pairDensity R {x} B
 
+/--
+@isnad1 id=eq.0h4v.s5.7f24ff2a4e99 from=translated src=- shape=83154c50 vocab=a341f07f
+-/
 theorem degreeDensity_eq (x : α) (B : Finset α) :
     degreeDensity R x B = ((B.filter (R x ·)).card : ℝ) / B.card := by
   rw [degreeDensity, pairDensity_eq_count_div, pairCount_singleton_left, Finset.card_singleton]
   norm_num
 
+/--
+@isnad1 id=le.0h4v.s5.7c8440ae3c8a from=translated src=- shape=8493f036 vocab=09879457
+-/
 theorem degreeDensity_nonneg (x : α) (B : Finset α) : 0 ≤ degreeDensity R x B := by
   rw [degreeDensity_eq]; positivity
 
+/--
+@isnad1 id=le.0h4v.s5.c6fc06522847 from=translated src=- shape=3402497c vocab=09879457
+-/
 theorem degreeDensity_le_one (x : α) (B : Finset α) : degreeDensity R x B ≤ 1 := by
   rw [degreeDensity]; exact pairDensity_le_one
 
-/-- Fiberwise degree sum for `pairCount`.-/
+/-- Fiberwise degree sum for `pairCount`.
+@isnad1 id=eq.0h4v.s5.148d10b1f096 from=translated src=- shape=442b0e6b vocab=69fc29a7
+-/
 theorem pairCount_eq_sum_degree (A B : Finset α) :
     pairCount R A B = ∑ x ∈ A, (B.filter (R x ·)).card := by
   rw [pairCount, Finset.card_filter, Finset.sum_product]
   exact Finset.sum_congr rfl fun x _ => (Finset.card_filter _ _).symm
 
 /-- **The averaging identity** (guard-free): the pair density is the average of the
-one-vertex degrees.-/
+one-vertex degrees.
+@isnad1 id=eq.0h4v.s5.93ee156b7089 from=translated src=- shape=3724da95 vocab=f815d9d8
+-/
 theorem sum_degreeDensity (A B : Finset α) :
     ∑ x ∈ A, degreeDensity R x B = pairDensity R A B * A.card := by
   rcases A.eq_empty_or_nonempty with rfl | hA
@@ -76,7 +89,9 @@ theorem sum_degreeDensity (A B : Finset α) :
       pairDensity_eq_count_div]
     field_simp
 
-/-- If every out-degree on a nonempty set is below `c`, so is the pair density.-/
+/-- If every out-degree on a nonempty set is below `c`, so is the pair density.
+@isnad1 id=lt.2h5v.s5.4e0eb4b61863 from=translated src=- shape=839aa663 vocab=39fea3e1
+-/
 theorem pairDensity_lt_of_forall_lt (hT : T.Nonempty) {c : ℝ}
     (h : ∀ x ∈ T, degreeDensity R x B < c) : pairDensity R T B < c := by
   have hcard : (0 : ℝ) < T.card := by exact_mod_cast Finset.card_pos.mpr hT
@@ -86,7 +101,9 @@ theorem pairDensity_lt_of_forall_lt (hT : T.Nonempty) {c : ℝ}
   rw [sum_degreeDensity] at hsum
   exact lt_of_mul_lt_mul_right hsum hcard.le
 
-/-- If every out-degree on a nonempty set is above `c`, so is the pair density.-/
+/-- If every out-degree on a nonempty set is above `c`, so is the pair density.
+@isnad1 id=lt.2h5v.s5.f28a445ad00d from=translated src=- shape=84bac5fd vocab=39fea3e1
+-/
 theorem lt_pairDensity_of_forall_lt (hT : T.Nonempty) {c : ℝ}
     (h : ∀ x ∈ T, c < degreeDensity R x B) : c < pairDensity R T B := by
   have hcard : (0 : ℝ) < T.card := by exact_mod_cast Finset.card_pos.mpr hT
@@ -101,13 +118,18 @@ theorem lt_pairDensity_of_forall_lt (hT : T.Nonempty) {c : ℝ}
 /-- Uniformity transports to the transpose. `swapRel` and its count/density transport now
 live in `RegularityLemmata/Finite/PairDensity.lean`, stated for genuinely heterogeneous carriers;
 only the
-uniformity statement belongs at this layer.-/
+uniformity statement belongs at this layer.
+@isnad1 id=isunifor.1h5v.s5.f72c0b38c269 from=translated src=- shape=d6de465d vocab=5f670181
+-/
 theorem isUniformPair_swapRel (hunif : IsUniformPair R A B ε) :
     IsUniformPair (swapRel R) B A ε := by
   intro B' hB' A' hA' hBc hAc
   rw [pairDensity_swapRel, pairDensity_swapRel]
   exact hunif hA' hB' hAc hBc
 
+/--
+@isnad1 id=iff.0h5v.s5.360ef6055311 from=translated src=- shape=90d14c05 vocab=5f670181
+-/
 theorem isUniformPair_swapRel_iff :
     IsUniformPair (swapRel R) B A ε ↔ IsUniformPair R A B ε :=
   ⟨fun h => isUniformPair_swapRel (swapRel R) h, isUniformPair_swapRel R⟩
@@ -126,21 +148,32 @@ noncomputable def upperDegreeExceptional (A B : Finset α) (ε : ℝ) : Finset �
 noncomputable def degreeExceptional [DecidableEq α] (A B : Finset α) (ε : ℝ) : Finset α :=
   lowerDegreeExceptional R A B ε ∪ upperDegreeExceptional R A B ε
 
+/--
+@isnad1 id=iff.0h6v.s6.a2e764a9ac4e from=translated src=- shape=97ff8e33 vocab=db3ce08d
+-/
 theorem mem_lowerDegreeExceptional {x : α} :
     x ∈ lowerDegreeExceptional R A B ε
       ↔ x ∈ A ∧ degreeDensity R x B < pairDensity R A B - ε := by
   rw [lowerDegreeExceptional, Finset.mem_filter]
 
+/--
+@isnad1 id=iff.0h6v.s6.de9107fedf2f from=translated src=- shape=c9904f52 vocab=2f4fcd7d
+-/
 theorem mem_upperDegreeExceptional {x : α} :
     x ∈ upperDegreeExceptional R A B ε
       ↔ x ∈ A ∧ pairDensity R A B + ε < degreeDensity R x B := by
   rw [upperDegreeExceptional, Finset.mem_filter]
 
+/--
+@isnad1 id=le.0h5v.s5.5ba802b29c29 from=translated src=- shape=6423dd9b vocab=88a63086
+-/
 theorem degreeExceptional_subset [DecidableEq α] : degreeExceptional R A B ε ⊆ A := by
   rw [degreeExceptional]
   exact Finset.union_subset (Finset.filter_subset _ _) (Finset.filter_subset _ _)
 
-/-- The two tails are disjoint once `0 ≤ ε`: no vertex both under- and overshoots.-/
+/-- The two tails are disjoint once `0 ≤ ε`: no vertex both under- and overshoots.
+@isnad1 id=disjoint.1h5v.s5.4a5680692dd8 from=translated src=- shape=7875c32e vocab=52e6b639
+-/
 theorem disjoint_lower_upper (hε : 0 ≤ ε) :
     Disjoint (lowerDegreeExceptional R A B ε) (upperDegreeExceptional R A B ε) := by
   rw [Finset.disjoint_left]
@@ -149,6 +182,9 @@ theorem disjoint_lower_upper (hε : 0 ≤ ε) :
   rw [upperDegreeExceptional, Finset.mem_filter] at hxu
   linarith [hxl.2, hxu.2]
 
+/--
+@isnad1 id=iff.0h6v.s6.40e47fe2c89f from=translated src=- shape=a81cca35 vocab=f90505cc
+-/
 theorem mem_degreeExceptional_iff [DecidableEq α] {x : α} :
     x ∈ degreeExceptional R A B ε
       ↔ x ∈ A ∧ ε < |degreeDensity R x B - pairDensity R A B| := by
@@ -163,7 +199,9 @@ theorem mem_degreeExceptional_iff [DecidableEq α] {x : α} :
     · exact Or.inl ⟨hx, by linarith⟩
 
 /-- **Good-vertex elimination** (the form path counting consumes): a vertex of `A` that
-is not exceptional has degree within `ε` of the pair density.-/
+is not exceptional has degree within `ε` of the pair density.
+@isnad1 id=le.2h6v.s6.77c3510f68a8 from=translated src=- shape=896cbdf5 vocab=4c10b3f1
+-/
 theorem abs_degreeDensity_sub_le_of_not_mem [DecidableEq α] {x : α} (hx : x ∈ A)
     (hxE : x ∉ degreeExceptional R A B ε) :
     |degreeDensity R x B - pairDensity R A B| ≤ ε := by
@@ -171,12 +209,17 @@ theorem abs_degreeDensity_sub_le_of_not_mem [DecidableEq α] {x : α} (hx : x �
   push Not at hxE
   exact hxE hx
 
+/--
+@isnad1 id=eq.1h5v.s6.97c9aff4749a from=translated src=- shape=aa80b897 vocab=e7b11fcb
+-/
 theorem card_degreeExceptional_eq_add [DecidableEq α] (hε : 0 ≤ ε) :
     (degreeExceptional R A B ε).card
       = (lowerDegreeExceptional R A B ε).card + (upperDegreeExceptional R A B ε).card := by
   rw [degreeExceptional, Finset.card_union_of_disjoint (disjoint_lower_upper R hε)]
 
-/-- **Lower-tail bound.**-/
+/-- **Lower-tail bound.**
+@isnad1 id=le.3h5v.s6.43a016798601 from=translated src=- shape=56c1cab0 vocab=13db979c
+-/
 theorem card_lowerDegreeExceptional_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hunif : IsUniformPair R A B ε) :
     ((lowerDegreeExceptional R A B ε).card : ℝ) ≤ ε * A.card := by
@@ -196,7 +239,9 @@ theorem card_lowerDegreeExceptional_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
   rw [abs_le] at hdev
   linarith [hdev.1]
 
-/-- **Upper-tail bound.**-/
+/-- **Upper-tail bound.**
+@isnad1 id=le.3h5v.s6.9eb5eaca2026 from=translated src=- shape=56c1cab0 vocab=c3ffb9cc
+-/
 theorem card_upperDegreeExceptional_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hunif : IsUniformPair R A B ε) :
     ((upperDegreeExceptional R A B ε).card : ℝ) ≤ ε * A.card := by
@@ -218,7 +263,9 @@ theorem card_upperDegreeExceptional_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
 
 /-- **The two-sided exceptional bound**: the absolute-deviation set has the *safe*
 bound `2·ε·|A|`, because the two one-sided tails are bounded separately (uniformity
-cannot be applied to the absolute set directly — see the factor-two test).-/
+cannot be applied to the absolute set directly — see the factor-two test).
+@isnad1 id=le.3h5v.s6.db369ed36dcf from=translated src=- shape=f99d36cc vocab=2e242189
+-/
 theorem card_degreeExceptional_le [DecidableEq α] (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (hunif : IsUniformPair R A B ε) :
     ((degreeExceptional R A B ε).card : ℝ) ≤ 2 * ε * A.card := by

@@ -67,28 +67,44 @@ def unionTuples [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (F : Finset (FiniteBox V)) : Finset (∀ i, V i) :=
   F.biUnion FiniteBox.tuples
 
+/--
+@isnad1 id=iff.0h4v.s7.bbe5a6514652 from=translated src=- shape=d4b61f2c vocab=358f7783
+-/
 @[simp] theorem mem_unionTuples [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {F : Finset (FiniteBox V)} {x : ∀ i, V i} :
     x ∈ unionTuples F ↔ ∃ A ∈ F, x ∈ A.tuples := Finset.mem_biUnion
 
+/--
+@isnad1 id=eq.0h2v.s5.2e726b0f1078 from=translated src=- shape=6befe62d vocab=24ecf444
+-/
 @[simp] theorem unionTuples_empty [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)] :
     unionTuples (∅ : Finset (FiniteBox V)) = ∅ := Finset.biUnion_empty
 
+/--
+@isnad1 id=eq.0h3v.s5.0d9adbcd4355 from=translated src=- shape=6c72f857 vocab=4d06c9db
+-/
 @[simp] theorem unionTuples_singleton [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (A : FiniteBox V) : unionTuples {A} = A.tuples := Finset.singleton_biUnion
 
+/--
+@isnad1 id=le.1h4v.s6.bc90ddba2d0a from=translated src=- shape=5f5a55cb vocab=f4821ca7
+-/
 theorem unionTuples_subset [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {F G : Finset (FiniteBox V)} (h : F ⊆ G) : unionTuples F ⊆ unionTuples G :=
   Finset.biUnion_subset_biUnion_of_subset_left _ h
 
 /-- **`boxMass` is `finsetMass` of the tuple weight**, over the box's tuples. Stated so that the
 box layer and the generic weight layer never drift apart, and so the results below can be phrased
-with one mass notion.-/
+with one mass notion.
+@isnad1 id=eq.0h4v.s5.362bc3f19dd1 from=translated src=- shape=2dbcac0e vocab=e140f964
+-/
 theorem boxMass_eq_finsetMass_tupleWeight [Fintype ι] [DecidableEq ι] (w : ∀ i, V i → ℝ)
     (A : FiniteBox V) : boxMass w A = finsetMass (tupleWeight w) A.tuples := rfl
 
 /-- **Exact additivity for a disjoint family.** An identity: no positivity hypothesis, so signed
-weights are fine.-/
+weights are fine.
+@isnad1 id=eq.1h4v.s6.0671b0489a8d from=translated src=- shape=0d094e66 vocab=81976ef3
+-/
 theorem finsetMass_unionTuples_of_pairwiseDisjoint [Fintype ι] [DecidableEq ι]
     [∀ i, DecidableEq (V i)] (w : ∀ i, V i → ℝ) {F : Finset (FiniteBox V)}
     (h : (F : Set (FiniteBox V)).PairwiseDisjoint FiniteBox.tuples) :
@@ -96,7 +112,9 @@ theorem finsetMass_unionTuples_of_pairwiseDisjoint [Fintype ι] [DecidableEq ι]
   Finset.sum_biUnion h
 
 /-- **The union bound**, which does need nonnegativity. A direct specialization of the generic
-`finsetMass_biUnion_le`.-/
+`finsetMass_biUnion_le`.
+@isnad1 id=le.1h4v.s7.665283ced807 from=translated src=- shape=21e7d35e vocab=2418e619
+-/
 theorem finsetMass_unionTuples_le [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {w : ∀ i, V i → ℝ} {F : Finset (FiniteBox V)}
     (hw : ∀ x ∈ unionTuples F, 0 ≤ tupleWeight w x) :
@@ -111,18 +129,25 @@ def boxUnionError [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)] (w : 
     (F G : Finset (FiniteBox V)) : ℝ :=
   finsetMass (tupleWeight w) (unionTuples F ∆ unionTuples G)
 
+/--
+@isnad1 id=eq.0h5v.s7.01931fa180ce from=translated src=- shape=9f63a649 vocab=8370d484
+-/
 theorem boxUnionError_apply [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) (F G : Finset (FiniteBox V)) :
     boxUnionError w F G = finsetMass (tupleWeight w) (unionTuples F ∆ unionTuples G) := rfl
 
-/-- **Symmetric, with no hypothesis.**-/
+/-- **Symmetric, with no hypothesis.**
+@isnad1 id=eq.0h5v.s5.1a5e2130ee6b from=translated src=- shape=29fb0ed4 vocab=e2e05539
+-/
 theorem boxUnionError_comm [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) (F G : Finset (FiniteBox V)) :
     boxUnionError w F G = boxUnionError w G F := by
   rw [boxUnionError, boxUnionError, symmDiff_comm]
 
 /-- **Zero against itself, with no hypothesis** — an identity, not an estimate, so signed
-weights are fine.-/
+weights are fine.
+@isnad1 id=eq.0h4v.s5.f688ce68c809 from=translated src=- shape=86da647e vocab=e2e05539
+-/
 @[simp] theorem boxUnionError_self [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) (F : Finset (FiniteBox V)) : boxUnionError w F F = 0 := by
   rw [boxUnionError, symmDiff_self]
@@ -131,20 +156,27 @@ weights are fine.-/
 /-- Families covering the same tuples have zero error.
 
 Stated in one direction only, and that is the correct contract: the converse is **false**, since
-a nonempty symmetric difference of zero-weight tuples also has zero error.-/
+a nonempty symmetric difference of zero-weight tuples also has zero error.
+@isnad1 id=eq.1h5v.s6.77c6a4d73c23 from=translated src=- shape=852b2c95 vocab=d1cb1a7b
+-/
 theorem boxUnionError_of_unionTuples_eq [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) {F G : Finset (FiniteBox V)} (h : unionTuples F = unionTuples G) :
     boxUnionError w F G = 0 := by
   rw [boxUnionError, h, symmDiff_self]
   exact finsetMass_empty _
 
+/--
+@isnad1 id=le.1h5v.s7.7eb9e8e31df3 from=translated src=- shape=c703f7b4 vocab=7093dc89
+-/
 theorem boxUnionError_nonneg [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {w : ∀ i, V i → ℝ} {F G : Finset (FiniteBox V)}
     (hw : ∀ x ∈ unionTuples F ∆ unionTuples G, 0 ≤ tupleWeight w x) :
     0 ≤ boxUnionError w F G := finsetMass_nonneg hw
 
 /-- **The triangle inequality.** Nonnegativity is needed on the union of the two pairwise
-differences, which is where the intermediate family's own tuples enter.-/
+differences, which is where the intermediate family's own tuples enter.
+@isnad1 id=le.1h6v.s8.c094a1a76fa6 from=translated src=- shape=38c873b5 vocab=f9e9c29e
+-/
 theorem boxUnionError_triangle [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {w : ∀ i, V i → ℝ} {F G H : Finset (FiniteBox V)}
     (hw : ∀ x ∈ (unionTuples F ∆ unionTuples G) ∪ (unionTuples G ∆ unionTuples H),
@@ -153,7 +185,9 @@ theorem boxUnionError_triangle [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq
   le_trans (finsetMass_mono hw (symmDiff_triangle _ _ _)) (finsetMass_union_le hw)
 
 /-- **A mass difference between two unions is controlled by the error.** One-sided, assuming
-neither disjointness nor nesting, and needing nonnegativity only on the symmetric difference.-/
+neither disjointness nor nesting, and needing nonnegativity only on the symmetric difference.
+@isnad1 id=le.1h5v.s7.145f68ff1ff2 from=translated src=- shape=fff82a05 vocab=22e5ce23
+-/
 theorem abs_sub_finsetMass_unionTuples_le [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {w : ∀ i, V i → ℝ} {F G : Finset (FiniteBox V)}
     (hw : ∀ x ∈ unionTuples F ∆ unionTuples G, 0 ≤ tupleWeight w x) :

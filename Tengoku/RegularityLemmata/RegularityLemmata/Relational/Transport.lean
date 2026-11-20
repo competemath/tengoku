@@ -42,7 +42,9 @@ def pullback (M : FiniteRelModel L V) (f : W → V) : FiniteRelModel L W :=
 
 /-- The frozen pullback direction, as a simp lemma:
 `(M.pullback f).Holds R x ↔ M.Holds R (f ∘ x)`. Definitional. Consumed by
-`binaryRel_pullback`.-/
+`binaryRel_pullback`.
+@isnad1 id=iff.0h8v.s5.942933bbbbc7 from=translated src=- shape=7ca39082 vocab=53c8d91d
+-/
 @[simp] theorem pullback_holds (M : FiniteRelModel L V) (f : W → V) {n : ℕ}
     (R : L.Relations n) (x : Fin n → W) :
     (M.pullback f).Holds R x ↔ M.Holds R (f ∘ x) :=
@@ -50,14 +52,18 @@ def pullback (M : FiniteRelModel L V) (f : W → V) : FiniteRelModel L W :=
 
 /-- Pullback along the identity map is the identity on models: `M.pullback id = M`. Proved by
 `ext_holds` from the frozen direction `(M.pullback f).Holds R x ↔ M.Holds R (f ∘ x)`. House
-lemma, no source; the relational analogue of `RectKernel.pullback_id`.-/
+lemma, no source; the relational analogue of `RectKernel.pullback_id`.
+@isnad1 id=eq.0h3v.s4.1073f597e62b from=translated src=- shape=b23d2a31 vocab=d01f3417
+-/
 theorem pullback_id (M : FiniteRelModel L V) : M.pullback id = M :=
   ext_holds fun _ _ => Iff.rfl
 
 /-- Pullback is functorial (contravariantly): `(M.pullback f).pullback g = M.pullback (f ∘ g)`
 for `f : W → V` and `g : X → W`. No injectivity is assumed of either map; see the module's
 falsification note. Proved by `ext_holds` from the frozen direction. House lemma, no
-source.-/
+source.
+@isnad1 id=eq.0h7v.s5.c2a22d95c72f from=translated src=- shape=7efe45cb vocab=9bc66c06
+-/
 theorem pullback_comp (M : FiniteRelModel L V) (f : W → V) (g : X → W) :
     (M.pullback f).pullback g = M.pullback (f ∘ g) :=
   ext_holds fun _ _ => Iff.rfl
@@ -67,13 +73,17 @@ def restrict (M : FiniteRelModel L V) (S : Finset V) :
     FiniteRelModel L {x // x ∈ S} :=
   M.pullback Subtype.val
 
-/-- Restriction is pullback along the inclusion, definitionally.-/
+/-- Restriction is pullback along the inclusion, definitionally.
+@isnad1 id=eq.0h4v.s6.39eae9341f6c from=translated src=- shape=91335923 vocab=87ab7655
+-/
 theorem restrict_eq_pullback (M : FiniteRelModel L V) (S : Finset V) :
     M.restrict S = M.pullback Subtype.val :=
   rfl
 
 /-- Unfolding lemma for restriction: `(M.restrict S).Holds R x ↔ M.Holds R (fun i => (x i : V))`,
-the frozen pullback direction along the subtype inclusion. Definitional.-/
+the frozen pullback direction along the subtype inclusion. Definitional.
+@isnad1 id=iff.0h7v.s6.ea30e3796c3a from=translated src=- shape=82fa93be vocab=18caf867
+-/
 theorem restrict_holds (M : FiniteRelModel L V) (S : Finset V) {n : ℕ}
     (R : L.Relations n) (x : Fin n → {y // y ∈ S}) :
     (M.restrict S).Holds R x ↔ M.Holds R fun i => (x i : V) :=
@@ -83,7 +93,9 @@ theorem restrict_holds (M : FiniteRelModel L V) (S : Finset V) {n : ℕ}
 def relabel (M : FiniteRelModel L V) (e : V ≃ W) : FiniteRelModel L W :=
   M.pullback e.symm
 
-/-- Relabeling is pullback along the inverse, definitionally.-/
+/-- Relabeling is pullback along the inverse, definitionally.
+@isnad1 id=eq.0h5v.s5.d3635355e277 from=translated src=- shape=6e3c3517 vocab=07496ec6
+-/
 theorem relabel_eq_pullback (M : FiniteRelModel L V) (e : V ≃ W) :
     M.relabel e = M.pullback e.symm :=
   rfl
@@ -91,7 +103,9 @@ theorem relabel_eq_pullback (M : FiniteRelModel L V) (e : V ≃ W) :
 /-- Unfolding lemma for relabeling: `(M.relabel e).Holds R x ↔ M.Holds R (fun i => e.symm (x i))`,
 the frozen pullback direction along `e.symm`. Definitional. Consumed by the relabeling
 invariance proofs in `RegularityLemmata/Relational/Counts.lean` and
-`RegularityLemmata/Relational/PatternCounts.lean`.-/
+`RegularityLemmata/Relational/PatternCounts.lean`.
+@isnad1 id=iff.0h8v.s6.749e6b3e98cf from=translated src=- shape=2cb0ca84 vocab=a621fe03
+-/
 theorem relabel_holds (M : FiniteRelModel L V) (e : V ≃ W) {n : ℕ}
     (R : L.Relations n) (x : Fin n → W) :
     (M.relabel e).Holds R x ↔ M.Holds R fun i => e.symm (x i) :=
@@ -99,13 +113,17 @@ theorem relabel_holds (M : FiniteRelModel L V) (e : V ≃ W) {n : ℕ}
 
 /-- Relabeling along the identity equivalence is the identity on models:
 `M.relabel (Equiv.refl V) = M`. Special case of `pullback_id` since
-`(Equiv.refl V).symm = id`. House lemma, no source.-/
+`(Equiv.refl V).symm = id`. House lemma, no source.
+@isnad1 id=eq.0h3v.s4.1c20393d0435 from=translated src=- shape=b23d2a31 vocab=6720bfdb
+-/
 theorem relabel_refl (M : FiniteRelModel L V) : M.relabel (Equiv.refl V) = M :=
   ext_holds fun _ _ => Iff.rfl
 
 /-- Relabeling along a composite equivalence factors: `M.relabel (e.trans f)` equals
 `(M.relabel e).relabel f` for `e : V ≃ W` and `f : W ≃ X`. Special case of `pullback_comp`
-since `(e.trans f).symm = e.symm ∘ f.symm`. House lemma, no source.-/
+since `(e.trans f).symm = e.symm ∘ f.symm`. House lemma, no source.
+@isnad1 id=eq.0h7v.s5.98006c8ceeb3 from=translated src=- shape=e4808a8d vocab=820a5870
+-/
 theorem relabel_trans (M : FiniteRelModel L V) (e : V ≃ W) (f : W ≃ X) :
     M.relabel (e.trans f) = (M.relabel e).relabel f :=
   ext_holds fun _ _ => Iff.rfl
@@ -119,6 +137,9 @@ density and homogeneity layers use.
 No injectivity is required — the same falsification note as `pullback` applies: a
 noninjective `f` collapses pairs, and nothing here claims otherwise. -/
 
+/--
+@isnad1 id=iff.0h8v.s5.1c202ad3d8bb from=translated src=- shape=b07a1f3c vocab=45e776ac
+-/
 @[simp] theorem binaryRel_pullback (M : FiniteRelModel L V) (f : W → V) (R : L.Relations 2)
     (a b : W) : (M.pullback f).binaryRel R a b ↔ M.binaryRel R (f a) (f b) := by
   have h : f ∘ ![a, b] = ![f a, f b] := by
@@ -126,21 +147,27 @@ noninjective `f` collapses pairs, and nothing here claims otherwise. -/
     fin_cases i <;> rfl
   rw [binaryRel_apply, pullback_holds, h, binaryRel_apply]
 
-/-- The same law as an equality of relations, for rewriting under binders.-/
+/-- The same law as an equality of relations, for rewriting under binders.
+@isnad1 id=eq.0h6v.s5.f8064f298427 from=translated src=- shape=28454c62 vocab=45e776ac
+-/
 theorem binaryRel_pullback_eq (M : FiniteRelModel L V) (f : W → V) (R : L.Relations 2) :
     (M.pullback f).binaryRel R = fun a b => M.binaryRel R (f a) (f b) := by
   funext a b
   exact propext (binaryRel_pullback M f R a b)
 
 /-- Relabeling transports the binary reading along the inverse equivalence — immediate from
-`relabel_eq_pullback`, and the bridge a consumer would otherwise rebuild at each use.-/
+`relabel_eq_pullback`, and the bridge a consumer would otherwise rebuild at each use.
+@isnad1 id=iff.0h8v.s6.b27e4e889055 from=translated src=- shape=5c735efe vocab=b6aebd75
+-/
 @[simp] theorem binaryRel_relabel (M : FiniteRelModel L V) (e : V ≃ W) (R : L.Relations 2)
     (a b : W) :
     (M.relabel e).binaryRel R a b ↔ M.binaryRel R (e.symm a) (e.symm b) := by
   rw [relabel_eq_pullback, binaryRel_pullback]
 
 /-- Restriction is pullback along the subtype inclusion, so the binary reading restricts by
-composing with the coercion.-/
+composing with the coercion.
+@isnad1 id=iff.0h7v.s6.fcf03bc72c5b from=translated src=- shape=d610b146 vocab=02c5cea8
+-/
 theorem binaryRel_restrict (M : FiniteRelModel L V) (S : Finset V) (R : L.Relations 2)
     (a b : {x // x ∈ S}) :
     (M.restrict S).binaryRel R a b ↔ M.binaryRel R a.1 b.1 := by
@@ -148,7 +175,9 @@ theorem binaryRel_restrict (M : FiniteRelModel L V) (S : Finset V) (R : L.Relati
 
 /-- Relation-level compatibility with mathlib's induced structure: relabeling and
 `Equiv.inducedStructure` interpret every relation identically (the function side
-is empty for relational languages).-/
+is empty for relational languages).
+@isnad1 id=iff.0h8v.s5.2c22175830fa from=translated src=- shape=ae436f0d vocab=0debff5d
+-/
 theorem relabel_toStructure_relMap (M : FiniteRelModel L V) (e : V ≃ W) {n : ℕ}
     (R : L.Relations n) (x : Fin n → W) :
     @FirstOrder.Language.Structure.RelMap L W (M.relabel e).toStructure n R x

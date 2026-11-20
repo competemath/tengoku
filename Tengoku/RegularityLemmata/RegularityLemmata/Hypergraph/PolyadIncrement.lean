@@ -62,14 +62,18 @@ def IsBadPolyad (κ : RSet j α → Fin K) (obs : (Fin (j + 1) → α) → Prop)
     (δ : ℝ) (key : Fin (j + 1) → Fin K) : Prop :=
   ¬ IsLocalDiscRegular κ obs key δ
 
-/-- Unrealized keys are never bad (for `0 ≤ δ`).-/
+/-- Unrealized keys are never bad (for `0 ≤ δ`).
+@isnad1 id=not.2h7v.s7.206d6b0f1493 from=translated src=- shape=10cdac60 vocab=7ab98a18
+-/
 theorem not_isBadPolyad_of_empty_block {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {δ : ℝ} {key : Fin (j + 1) → Fin K}
     (h : polyadBlock κ key = ∅) (hδ : 0 ≤ δ) : ¬ IsBadPolyad κ obs δ key :=
   not_not_intro (isLocalDiscRegular_of_empty_block h hδ)
 
 /-- **Permutation closure of bad keys**, for a permutation-invariant observable: all
-ordered presentations of an unordered polyad go bad together.-/
+ordered presentations of an unordered polyad go bad together.
+@isnad1 id=iff.1h8v.s8.bca4523e8234 from=translated src=- shape=5bf3f4bf vocab=fad63174
+-/
 theorem isBadPolyad_comp_perm_iff (κ : RSet j α → Fin K)
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] (δ : ℝ) (key : Fin (j + 1) → Fin K)
     (σ : Equiv.Perm (Fin (j + 1))) (hobs : ∀ w : Fin (j + 1) → α, obs (w ∘ σ) ↔ obs w) :
@@ -88,18 +92,26 @@ noncomputable def badPolyadMass (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) : ℝ :=
   badPolyadMassNum κ obs δ / (Fintype.card α : ℝ) ^ (j + 1)
 
+/--
+@isnad1 id=le.0h6v.s6.17dc8c3b5bb1 from=translated src=- shape=ae6d7441 vocab=de0ffe1d
+-/
 theorem badPolyadMassNum_nonneg (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     0 ≤ badPolyadMassNum κ obs δ :=
   Finset.sum_nonneg fun _ _ => Nat.cast_nonneg _
 
+/--
+@isnad1 id=le.0h6v.s6.1a1da089fedd from=translated src=- shape=ae6d7441 vocab=3e6e875b
+-/
 theorem badPolyadMass_nonneg (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     0 ≤ badPolyadMass κ obs δ :=
   div_nonneg (badPolyadMassNum_nonneg κ obs δ) (by positivity)
 
 /-- The bad mass is at most the total injective mass: the bad blocks are disjoint subsets
-of the injective `(j+1)`-tuples, by the generic block partition identity.-/
+of the injective `(j+1)`-tuples, by the generic block partition identity.
+@isnad1 id=le.0h6v.s6.c59a347ae096 from=translated src=- shape=0b10e9e2 vocab=eaed6748
+-/
 theorem badPolyadMassNum_le_count (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     badPolyadMassNum κ obs δ ≤ (injectiveTupleCount α (j + 1) : ℝ) := by
@@ -109,6 +121,9 @@ theorem badPolyadMassNum_le_count (κ : RSet j α → Fin K)
   rw [← Nat.cast_sum]
   exact_mod_cast sum_card_polyadBlock κ
 
+/--
+@isnad1 id=le.0h6v.s6.dce4e0fc61d9 from=translated src=- shape=bc94b743 vocab=3e6e875b
+-/
 theorem badPolyadMass_le_one (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     badPolyadMass κ obs δ ≤ 1 := by
@@ -128,6 +143,9 @@ noncomputable def badPolyadTuples (κ : RSet j α → Fin K)
   (Finset.univ.filter fun key => IsBadPolyad κ obs δ key).biUnion (polyadBlock κ)
 
 open Classical in
+/--
+@isnad1 id=eq.0h6v.s8.27b15aaa5d84 from=translated src=- shape=223a97a9 vocab=d20d62d9
+-/
 theorem card_badPolyadTuples (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     (badPolyadTuples κ obs δ).card
@@ -137,6 +155,9 @@ theorem card_badPolyadTuples (κ : RSet j α → Fin K)
   rw [badPolyadTuples]
   exact Finset.card_biUnion fun key _ key' _ h => polyadBlock_disjoint h
 
+/--
+@isnad1 id=eq.0h6v.s6.f0aba679625f from=translated src=- shape=a030cfa6 vocab=2b4e25e9
+-/
 theorem cast_card_badPolyadTuples (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (δ : ℝ) :
     ((badPolyadTuples κ obs δ).card : ℝ) = badPolyadMassNum κ obs δ := by
@@ -155,7 +176,9 @@ noncomputable def badPolyadWitnessFamily (κ : RSet j α → Fin K)
     if h : IsBadPolyad κ obs δ key then (exists_discWitness h).some.faces
     else fun _ => ∅
 
-/-- On a bad key, the chosen family is an actual witness's face system.-/
+/-- On a bad key, the chosen family is an actual witness's face system.
+@isnad1 id=ex.1h7v.s7.950ce6b198f0 from=translated src=- shape=dab7ab60 vocab=020c56bb
+-/
 theorem badPolyadWitnessFamily_spec {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {δ : ℝ}
     {key : Fin (j + 1) → Fin K} (h : IsBadPolyad κ obs δ key) :
@@ -169,7 +192,9 @@ theorem badPolyadWitnessFamily_spec {κ : RSet j α → Fin K}
 
 /-- **The global increment**: if the bad keys carry more than a `δ` fraction of the
 `(j+1)`-tuple mass, one simultaneous cut round strictly gains more than `δ⁴` of
-normalized energy.-/
+normalized energy.
+@isnad1 id=lt.2h6v.s7.f10719df31a7 from=translated src=- shape=70580e50 vocab=31955cf4
+-/
 theorem polyadEnergy_cutRefine_gain_of_badPolyadMass {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {δ : ℝ} (hδ : 0 < δ)
     (hbad : δ < badPolyadMass κ obs δ) :
@@ -237,6 +262,9 @@ def polyadRegularityBound (j : ℕ) : ℕ → ℕ → ℕ
   | 0, K => K
   | t + 1, K => polyadRegularityBound j t (cutBound j K)
 
+/--
+@isnad1 id=le.0h3v.s3.5b04ea210ca7 from=translated src=- shape=65f3bd0e vocab=28d2622a
+-/
 theorem le_polyadRegularityBound (j t K : ℕ) : K ≤ polyadRegularityBound j t K := by
   induction t generalizing K with
   | zero => exact le_refl K
@@ -253,7 +281,9 @@ Every round is a `cutRefine`, hence a refinement (`coloringRefines_cutRefine`); 
 projections compose along the induction by `ColoringRefines.trans`. Preserving the
 projection is what makes the summit usable when `κ` already encodes structure — a
 prescribed vertex partition, a family of lower-arity colorings, or a lower level of a
-complex.-/
+complex.
+@isnad1 id=ex.2h7v.s7.4827415b4a05 from=translated src=- shape=88741c96 vocab=8cbe1e21
+-/
 theorem exists_goodPolyadColoring_of_fuel_refining {obs : (Fin (j + 1) → α) → Prop}
     [DecidablePred obs] {δ : ℝ} (hδ : 0 < δ) (t : ℕ) (K : ℕ) (κ : RSet j α → Fin K)
     (hbudget : 1 - polyadEnergy κ obs ≤ (t : ℝ) * δ ^ 4) :
@@ -286,7 +316,9 @@ theorem exists_goodPolyadColoring_of_fuel_refining {obs : (Fin (j + 1) → α) �
 some coloring with at most `polyadRegularityBound j t K` colors has bad mass at most `δ`.
 Each failing round strictly gains `δ⁴` of energy and multiplies the colors by at most one
 `cutBound j` step. The refinement-forgetting form of
-`exists_goodPolyadColoring_of_fuel_refining`.-/
+`exists_goodPolyadColoring_of_fuel_refining`.
+@isnad1 id=ex.2h7v.s7.8158e11929f5 from=translated src=- shape=435daf41 vocab=85380425
+-/
 theorem exists_goodPolyadColoring_of_fuel {obs : (Fin (j + 1) → α) → Prop}
     [DecidablePred obs] {δ : ℝ} (hδ : 0 < δ) (t : ℕ) (K : ℕ) (κ : RSet j α → Fin K)
     (hbudget : 1 - polyadEnergy κ obs ≤ (t : ℝ) * δ ^ 4) :
@@ -304,7 +336,9 @@ noncomputable def polyadFuel (δ : ℝ) : ℕ := ⌈1 / δ ^ 4⌉₊
 noncomputable def polyadBound (j : ℕ) (δ : ℝ) : ℕ := polyadRegularityBound j (polyadFuel δ) 1
 
 /-- The fuel budget is available from **any** seed coloring: the polyad energy is
-nonnegative and `polyadFuel δ` rounds already exhaust a budget of `1`.-/
+nonnegative and `polyadFuel δ` rounds already exhaust a budget of `1`.
+@isnad1 id=le.1h6v.s6.69381b8c1182 from=translated src=- shape=254dad15 vocab=a88d74d3
+-/
 theorem one_sub_polyadEnergy_le_polyadFuel_mul {K₀ : ℕ} (κ₀ : RSet j α → Fin K₀)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] {δ : ℝ} (hδ : 0 < δ) :
     1 - polyadEnergy κ₀ obs ≤ (polyadFuel δ : ℝ) * δ ^ 4 := by
@@ -323,7 +357,9 @@ fraction of the ordered `(j+1)`-tuple mass.
 
 This is the form required to insert the summit into a hierarchy: `κ₀` may already
 represent a constructed lower level, and `ColoringRefines` guarantees it survives.
-`exists_goodPolyadColoring` is the trivial-seed specialization.-/
+`exists_goodPolyadColoring` is the trivial-seed specialization.
+@isnad1 id=ex.1h6v.s6.76daad397b32 from=translated src=- shape=ed4d444c vocab=03fbae14
+-/
 theorem exists_goodPolyadColoring_refining {K₀ : ℕ} (κ₀ : RSet j α → Fin K₀)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] {δ : ℝ} (hδ : 0 < δ) :
     ∃ (K' : ℕ) (κ' : RSet j α → Fin K'),
@@ -335,7 +371,9 @@ theorem exists_goodPolyadColoring_refining {K₀ : ℕ} (κ₀ : RSet j α → F
 /-- **The weak regularization summit**: for every decidable observable on ordered
 `(j+1)`-tuples there is a coloring of `j`-sets with at most `polyadBound j δ` colors whose
 bad keys carry at most a `δ` fraction of the ordered `(j+1)`-tuple mass. The trivial-seed
-specialization of `exists_goodPolyadColoring_refining`.-/
+specialization of `exists_goodPolyadColoring_refining`.
+@isnad1 id=ex.1h4v.s6.70e6363484c4 from=translated src=- shape=2bd4bc29 vocab=2ae59744
+-/
 theorem exists_goodPolyadColoring (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs]
     {δ : ℝ} (hδ : 0 < δ) :
     ∃ (K' : ℕ) (κ' : RSet j α → Fin K'),

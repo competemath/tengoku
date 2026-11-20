@@ -41,7 +41,9 @@ variable (R : α → α → Prop) [DecidableRel R] {ε : ℝ}
 `g · |C||D|` on every BAD ordered pair of parts, it gains `g · badMassNum` overall: the
 good pairs contribute nothing but cannot lose, by refinement superadditivity. The gain
 `g` is arbitrary here — the exact witness refinement supplies `g = ε⁴`, an
-equitabilised refinement a degraded `g = c·ε⁴`.-/
+equitabilised refinement a degraded `g = c·ε⁴`.
+@isnad1 id=le.2h7v.s8.fb8de096630d from=translated src=- shape=a17aaa50 vocab=d016009f
+-/
 theorem energyNum_increment_of_pairwise_gain {P P' : Finpartition s} (hP' : P' ≤ P) {g : ℝ}
     (hpair : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPair R ε C D →
       blockEnergy R C D + g * ((C.card : ℝ) * (D.card : ℝ))
@@ -76,7 +78,9 @@ theorem energyNum_increment_of_pairwise_gain {P P' : Finpartition s} (hP' : P' �
         exact energyNum_eq_sum_refined R hP'
 
 /-- **Global increment, un-normalized.** A refinement resolving every bad pair's
-witness gains at least `ε⁴ · badMassNum` of energy.-/
+witness gains at least `ε⁴ · badMassNum` of energy.
+@isnad1 id=le.3h6v.s7.f191df1dfa98 from=translated src=- shape=a6beeffd vocab=274629b1
+-/
 theorem energyNum_increment_of_badMassNum {P P' : Finpartition s} (hP' : P' ≤ P)
     (hε : 0 < ε)
     (hwit : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPair R ε C D →
@@ -91,7 +95,9 @@ theorem energyNum_increment_of_badMassNum {P P' : Finpartition s} (hP' : P' ≤ 
 /-- **Global increment from a per-pair gain, normalized.** If the normalized bad mass
 exceeds `ε`, a refinement with per-pair gain `g ≥ 0` raises the normalized energy by at
 least `g · ε`. (The hypothesis `ε < badMass` with `0 < ε` forces a nonempty ground set —
-no separate `Nonempty` assumption.)-/
+no separate `Nonempty` assumption.)
+@isnad1 id=le.5h7v.s8.d01428526299 from=translated src=- shape=0070635f vocab=0032ffdd
+-/
 theorem energy_increment_of_pairwise_gain {P P' : Finpartition s} (hP' : P' ≤ P)
     (hε : 0 < ε) {g : ℝ} (hg : 0 ≤ g)
     (hpair : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPair R ε C D →
@@ -121,7 +127,9 @@ theorem energy_increment_of_pairwise_gain {P P' : Finpartition s} (hP' : P' ≤ 
   gcongr
 
 /-- **Global increment, normalized.** If the normalized bad mass exceeds `ε`, a
-witness-resolving refinement raises the normalized energy by at least `ε⁵`.-/
+witness-resolving refinement raises the normalized energy by at least `ε⁵`.
+@isnad1 id=le.4h6v.s7.614a1480123f from=translated src=- shape=fafd6250 vocab=d2462c33
+-/
 theorem energy_increment_of_badMass {P P' : Finpartition s} (hP' : P' ≤ P) (hε : 0 < ε)
     (hwit : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPair R ε C D →
       ∃ w : NonuniformWitness R C D ε, IsPartUnion P' w.left ∧ IsPartUnion P' w.right)
@@ -138,7 +146,9 @@ theorem energy_increment_of_badMass {P P' : Finpartition s} (hP' : P' ≤ P) (h�
   rwa [hrw] at h
 
 /-- **The weak step.** A partition with normalized bad mass exceeding `ε` has a
-refinement gaining `ε⁵` of energy, with part count at most `k · 2^(2k)`.-/
+refinement gaining `ε⁵` of energy, with part count at most `k · 2^(2k)`.
+@isnad1 id=ex.2h5v.s7.ee743147d2cd from=translated src=- shape=879386f2 vocab=2efc3f25
+-/
 theorem exists_refinement_energy_increment (P : Finpartition s) (hε : 0 < ε)
     (hbm : ε < badMass R ε P) :
     ∃ Q : Finpartition s, Q ≤ P ∧ energy R P + ε ^ 5 ≤ energy R Q ∧
@@ -155,6 +165,9 @@ def regularityBound : ℕ → ℕ → ℕ
   | 0, m => m
   | t + 1, m => regularityBound t (m * 2 ^ (2 * m))
 
+/--
+@isnad1 id=le.0h2v.s3.c8ecbba25d56 from=translated src=- shape=86c6c8ca vocab=4b510af1
+-/
 theorem le_regularityBound (t m : ℕ) : m ≤ regularityBound t m := by
   induction t generalizing m with
   | zero => simp [regularityBound]
@@ -162,6 +175,9 @@ theorem le_regularityBound (t m : ℕ) : m ≤ regularityBound t m := by
     rw [regularityBound]
     exact le_trans (Nat.le_mul_of_pos_right m (Nat.pow_pos (by norm_num))) (IH _)
 
+/--
+@isnad1 id=le.1h3v.s4.a031edfb9fed from=translated src=- shape=32f89d1d vocab=4b510af1
+-/
 theorem regularityBound_mono (t : ℕ) {m m' : ℕ} (h : m ≤ m') : regularityBound t m ≤ regularityBound t m' := by
   induction t generalizing m m' with
   | zero => simpa [regularityBound] using h
@@ -170,7 +186,9 @@ theorem regularityBound_mono (t : ℕ) {m m' : ℕ} (h : m ≤ m') : regularityB
     exact IH (Nat.mul_le_mul h (Nat.pow_le_pow_right (by norm_num) (by omega)))
 
 /-- **Fuel-parametrized iteration.** From energy within `t · ε⁵` of the ceiling `1`,
-`t` weak steps reach an `ε`-regular refinement.-/
+`t` weak steps reach an `ε`-regular refinement.
+@isnad1 id=ex.2h6v.s7.f53c9d371238 from=translated src=- shape=b6db6f64 vocab=96ecc493
+-/
 theorem regularity_iterate (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * ε ^ 5 ≤ energy R P →
       ∃ Q : Finpartition s, Q ≤ P ∧ IsRegularPartition R ε Q ∧
@@ -205,7 +223,9 @@ theorem regularity_iterate (hε : 0 < ε) :
         _ = regularityBound (t + 1) P.parts.card := by simp only [regularityBound]
 
 /-- **Partition regularity.** Every partition has an `ε`-regular refinement with the
-explicit host-independent part-count bound `regularityBound ⌈1/ε⁵⌉ k`.-/
+explicit host-independent part-count bound `regularityBound ⌈1/ε⁵⌉ k`.
+@isnad1 id=ex.1h5v.s7.d2a07c9272fc from=translated src=- shape=8a840728 vocab=8c2f1784
+-/
 theorem exists_regular_refinement (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsRegularPartition R ε Q ∧
       Q.parts.card ≤ regularityBound ⌈1 / ε ^ 5⌉₊ P.parts.card := by

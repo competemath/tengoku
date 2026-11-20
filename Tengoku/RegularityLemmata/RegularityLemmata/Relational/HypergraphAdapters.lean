@@ -46,6 +46,9 @@ def ofUniformHypergraph [DecidableEq V] {r : ℕ} (H : UniformHypergraph r V) :
     if h : n = r then decide (H.orderedRel fun i : Fin r => x (Fin.cast h.symm i))
     else false
 
+/--
+@isnad1 id=iff.0h4v.s5.2a3ea7d07b45 from=translated src=- shape=574ac7c1 vocab=b2db5ef9
+-/
 @[simp] theorem ofUniformHypergraph_holds [DecidableEq V] {r : ℕ}
     (H : UniformHypergraph r V) (x : Fin r → V) :
     (ofUniformHypergraph H).Holds (singleRelSymbol r) x ↔ H.orderedRel x := by
@@ -54,6 +57,9 @@ def ofUniformHypergraph [DecidableEq V] {r : ℕ} (H : UniformHypergraph r V) :
   rw [dite_eq_left rfl, decide_eq_true_eq]
   exact Iff.rfl
 
+/--
+@isnad1 id=not.1h4v.s5.30d6f93bcde8 from=translated src=- shape=0d0851ce vocab=b7399c7f
+-/
 theorem not_ofUniformHypergraph_holds_of_not_injective [DecidableEq V] {r : ℕ}
     (H : UniformHypergraph r V) {x : Fin r → V} (hx : ¬Function.Injective x) :
     ¬(ofUniformHypergraph H).Holds (singleRelSymbol r) x := fun h =>
@@ -61,7 +67,9 @@ theorem not_ofUniformHypergraph_holds_of_not_injective [DecidableEq V] {r : ℕ}
 
 variable [Fintype V] [DecidableEq V] {r : ℕ}
 
-/-- The ordered relational count is the ordered realization count.-/
+/-- The ordered relational count is the ordered realization count.
+@isnad1 id=eq.0h3v.s5.2d509ae2a2b5 from=translated src=- shape=e1310b79 vocab=df49be45
+-/
 theorem relationCount_ofUniformHypergraph (H : UniformHypergraph r V) :
     relationCount (ofUniformHypergraph H) (singleRelSymbol r)
       = tupleCount H.orderedRel fun _ => Finset.univ := by
@@ -70,14 +78,18 @@ theorem relationCount_ofUniformHypergraph (H : UniformHypergraph r V) :
     (Finset.filter_congr fun v _ => ofUniformHypergraph_holds H v)
 
 /-- The adapter falsifies every noninjective tuple, so the full ordered count
-equals the injective count.-/
+equals the injective count.
+@isnad1 id=eq.0h3v.s5.86c7faa41192 from=translated src=- shape=8dd90b22 vocab=ce19e95e
+-/
 theorem relationCount_eq_injective_ofUniformHypergraph (H : UniformHypergraph r V) :
     relationCount (ofUniformHypergraph H) (singleRelSymbol r)
       = injectiveRelationCount (ofUniformHypergraph H) (singleRelSymbol r) :=
   relationCount_eq_injective_of_forall _ _ fun x hx =>
     ((ofUniformHypergraph_holds H x).mp hx).1
 
-/-- **The visible count chain**: `injectiveRelationCount = r!·#edges`.-/
+/-- **The visible count chain**: `injectiveRelationCount = r!·#edges`.
+@isnad1 id=eq.0h3v.s5.16ac48459a0e from=translated src=- shape=5de6617e vocab=971fdd17
+-/
 theorem injectiveRelationCount_ofUniformHypergraph (H : UniformHypergraph r V) :
     injectiveRelationCount (ofUniformHypergraph H) (singleRelSymbol r)
       = r.factorial * H.edges.card :=
@@ -88,7 +100,9 @@ theorem injectiveRelationCount_ofUniformHypergraph (H : UniformHypergraph r V) :
         relationCount_ofUniformHypergraph H
     _ = r.factorial * H.edges.card := H.orderedCount_eq
 
-/-- The injective relational density bridge.-/
+/-- The injective relational density bridge.
+@isnad1 id=eq.0h3v.s6.a9cec68c5a6f from=translated src=- shape=5dfeb499 vocab=688f146f
+-/
 theorem injectiveRelationDensity_ofUniformHypergraph (H : UniformHypergraph r V) :
     injectiveRelationDensity (ofUniformHypergraph H) (singleRelSymbol r)
       = (r.factorial : ℝ) * (H.edges.card : ℝ)
@@ -133,13 +147,22 @@ def coloredRelSymbol (r K : ℕ) (c : Fin K) : (coloredRelLang r K).Relations r 
 def colorOfSymbol {r K n : ℕ} (R : (coloredRelLang r K).Relations n) : Fin K :=
   R.1
 
+/--
+@isnad1 id=eq.0h3v.s4.e377045d6918 from=translated src=- shape=8730a296 vocab=c3e7f91c
+-/
 @[simp] theorem colorOfSymbol_coloredRelSymbol {r K : ℕ} (c : Fin K) :
     colorOfSymbol (coloredRelSymbol r K c) = c := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2ef23ac5e215 from=translated src=- shape=12592bb2 vocab=a055168d
+-/
 theorem coloredRelSymbol_colorOfSymbol {r K : ℕ}
     (R : (coloredRelLang r K).Relations r) :
     coloredRelSymbol r K (colorOfSymbol R) = R := rfl
 
+/--
+@isnad1 id=isempty.1h3v.s4.e91a4524ead7 from=translated src=- shape=1c66bea2 vocab=91c99cf6
+-/
 theorem isEmpty_coloredRel_of_ne {r K n : ℕ} (h : n ≠ r) :
     IsEmpty ((coloredRelLang r K).Relations n) :=
   ⟨fun R => h R.2⟩
@@ -154,6 +177,9 @@ def ofColoredHypergraph [Fintype V] [DecidableEq V] {r K : ℕ}
   rel {_n} R x :=
     decide ((H.colorClass R.1).orderedRel fun i : Fin r => x (Fin.cast R.2.symm i))
 
+/--
+@isnad1 id=iff.0h6v.s5.a73a960e7960 from=translated src=- shape=7a502b0c vocab=2f4008ab
+-/
 @[simp] theorem ofColoredHypergraph_holds [Fintype V] [DecidableEq V] {r K : ℕ}
     (H : ColoredHypergraph r K V) (c : Fin K) (x : Fin r → V) :
     (ofColoredHypergraph H).Holds (coloredRelSymbol r K c) x
@@ -162,6 +188,9 @@ def ofColoredHypergraph [Fintype V] [DecidableEq V] {r K : ℕ}
   rw [decide_eq_true_eq]
   exact Iff.rfl
 
+/--
+@isnad1 id=not.1h6v.s5.38fa69185ccd from=translated src=- shape=06594c64 vocab=2226b8a1
+-/
 theorem not_ofColoredHypergraph_holds_of_not_injective [Fintype V] [DecidableEq V]
     {r K : ℕ} (H : ColoredHypergraph r K V) (c : Fin K) {x : Fin r → V}
     (hx : ¬Function.Injective x) :
@@ -175,7 +204,9 @@ namespace FiniteRelModel
 variable [Fintype V] [DecidableEq V] {r K : ℕ}
 
 /-- The ordered relational count of color `c` is the ordered realization count of
-its color class.-/
+its color class.
+@isnad1 id=eq.0h5v.s6.bb38dd3f7ab3 from=translated src=- shape=24721132 vocab=febbc935
+-/
 theorem relationCount_ofColoredHypergraph (H : ColoredHypergraph r K V) (c : Fin K) :
     relationCount (ofColoredHypergraph H) (coloredRelSymbol r K c)
       = tupleCount (H.colorClass c).orderedRel fun _ => Finset.univ := by
@@ -184,7 +215,9 @@ theorem relationCount_ofColoredHypergraph (H : ColoredHypergraph r K V) (c : Fin
     (Finset.filter_congr fun v _ => ofColoredHypergraph_holds H c v)
 
 /-- **Per-color count**: color `c` has `r!·#(color-c edges)` injective realizations,
-and (no noninjective tuple realizes it) the same ordered count.-/
+and (no noninjective tuple realizes it) the same ordered count.
+@isnad1 id=eq.0h5v.s6.fa5bd44f560c from=translated src=- shape=3fd71289 vocab=4d0557c1
+-/
 theorem injectiveRelationCount_ofColoredHypergraph (H : ColoredHypergraph r K V)
     (c : Fin K) :
     injectiveRelationCount (ofColoredHypergraph H) (coloredRelSymbol r K c)
@@ -198,7 +231,9 @@ theorem injectiveRelationCount_ofColoredHypergraph (H : ColoredHypergraph r K V)
     _ = r.factorial * (H.colorClass c).edges.card := (H.colorClass c).orderedCount_eq
 
 /-- **Partition of the injective tuples over colors**: summing the per-color
-injective counts recovers the total injective-tuple count.-/
+injective counts recovers the total injective-tuple count.
+@isnad1 id=eq.0h4v.s5.296c94c45490 from=translated src=- shape=60f8c59f vocab=88e5f8a1
+-/
 theorem sum_injectiveRelationCount_ofColoredHypergraph
     (H : ColoredHypergraph r K V) :
     ∑ c : Fin K,
@@ -209,7 +244,9 @@ theorem sum_injectiveRelationCount_ofColoredHypergraph
     Nat.descFactorial_eq_factorial_mul_choose]
 
 /-- **Exactly one color.** Every injective tuple realizes exactly one color of the
-adapter — the totality of the coloring, at the tuple level.-/
+adapter — the totality of the coloring, at the tuple level.
+@isnad1 id=existsun.1h5v.s5.0a5c951947e6 from=translated src=- shape=64c89069 vocab=969dced1
+-/
 theorem existsUnique_coloredRelSymbol_holds (H : ColoredHypergraph r K V)
     {x : Fin r → V} (hx : Function.Injective x) :
     ∃! c : Fin K, (ofColoredHypergraph H).Holds (coloredRelSymbol r K c) x := by
@@ -229,7 +266,9 @@ theorem existsUnique_coloredRelSymbol_holds (H : ColoredHypergraph r K V)
     exact hcolor'.symm
 
 /-- **Density partition of unity.** On a host with `r ≤ |V|` the per-color injective
-densities sum to `1`.-/
+densities sum to `1`.
+@isnad1 id=eq.1h4v.s6.de9bcb64147c from=translated src=- shape=e602f1d6 vocab=ff27594a
+-/
 theorem sum_injectiveRelationDensity_ofColoredHypergraph
     (H : ColoredHypergraph r K V) (hr : r ≤ Fintype.card V) :
     ∑ c : Fin K,
@@ -263,7 +302,9 @@ private theorem tupleRange_comp {f : W → V} {x : Fin r → W} :
     tupleRange (f ∘ x) = (tupleRange x).image f := by
   rw [tupleRange, tupleRange, Finset.image_image]
 
-/-- `Preserves` between colored adapters means every color transports along `f`.-/
+/-- `Preserves` between colored adapters means every color transports along `f`.
+@isnad1 id=iff.0h7v.s6.5448d94042a1 from=translated src=- shape=632cf382 vocab=93cee53c
+-/
 theorem preserves_ofColoredHypergraph_iff (P : ColoredHypergraph r K W)
     (H : ColoredHypergraph r K V) (f : W → V) :
     Preserves (ofColoredHypergraph P) (ofColoredHypergraph H) f
@@ -286,7 +327,9 @@ theorem preserves_ofColoredHypergraph_iff (P : ColoredHypergraph r K W)
     · exact absurd R.2 h
 
 /-- `PreservesAndReflects` between colored adapters means every color transports in
-both directions.-/
+both directions.
+@isnad1 id=iff.0h7v.s6.755954ac48b0 from=translated src=- shape=c826ec4c vocab=ed2b0aa2
+-/
 theorem preservesAndReflects_ofColoredHypergraph_iff (P : ColoredHypergraph r K W)
     (H : ColoredHypergraph r K V) (f : W → V) :
     PreservesAndReflects (ofColoredHypergraph P) (ofColoredHypergraph H) f
@@ -315,7 +358,9 @@ private def CopyCond (P : ColoredHypergraph r K W) (H : ColoredHypergraph r K V)
     H.coloring ⟨e.1.image f, h⟩ = P.coloring e
 
 /-- Color preservation is the copy-count condition (for injective `f`). Totality of
-the coloring is what makes preservation determine every color.-/
+the coloring is what makes preservation determine every color.
+@isnad1 id=iff.1h7v.s6.633b8a870bbb from=translated src=- shape=906e6005 vocab=b49ce2f2
+-/
 theorem preservesColors_iff_copyCond {P : ColoredHypergraph r K W}
     {H : ColoredHypergraph r K V} {f : W → V} (hinj : Function.Injective f) :
     (∀ (c : Fin K) (x : Fin r → W),
@@ -363,7 +408,9 @@ theorem preservesColors_iff_copyCond {P : ColoredHypergraph r K W}
     exact hcopy'
 
 /-- Color preservation-and-reflection is the copy-count condition (for injective
-`f`). Reflection is free from uniqueness of the transported color.-/
+`f`). Reflection is free from uniqueness of the transported color.
+@isnad1 id=iff.1h7v.s6.ce835c9469e2 from=translated src=- shape=67640eb4 vocab=b49ce2f2
+-/
 theorem reflectsColors_iff_copyCond {P : ColoredHypergraph r K W}
     {H : ColoredHypergraph r K V} {f : W → V} (hinj : Function.Injective f) :
     (∀ (c : Fin K) (x : Fin r → W),
@@ -391,7 +438,9 @@ theorem reflectsColors_iff_copyCond {P : ColoredHypergraph r K W}
     exact hcopy'.symm
 
 /-- **The copy-count bridge (injective homomorphisms).** For total colorings,
-preserving every color already forces color equality.-/
+preserving every color already forces color equality.
+@isnad1 id=eq.0h6v.s6.ff9d7eb4200f from=translated src=- shape=6ba05866 vocab=fd2760fb
+-/
 theorem injectiveHomCount_ofColoredHypergraph (P : ColoredHypergraph r K W)
     (H : ColoredHypergraph r K V) :
     injectiveHomCount (ofColoredHypergraph P) (ofColoredHypergraph H)
@@ -403,7 +452,9 @@ theorem injectiveHomCount_ofColoredHypergraph (P : ColoredHypergraph r K W)
   exact preservesColors_iff_copyCond hinj
 
 /-- **The copy-count bridge (induced embeddings).** Reflection follows from
-uniqueness, so the induced count coincides with the copy count.-/
+uniqueness, so the induced count coincides with the copy count.
+@isnad1 id=eq.0h6v.s6.e831c77c6d63 from=translated src=- shape=6ba05866 vocab=bf16ab91
+-/
 theorem inducedEmbeddingCount_ofColoredHypergraph (P : ColoredHypergraph r K W)
     (H : ColoredHypergraph r K V) :
     inducedEmbeddingCount (ofColoredHypergraph P) (ofColoredHypergraph H)

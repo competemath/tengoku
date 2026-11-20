@@ -54,7 +54,9 @@ structure BinaryPaletteStrongWitness (M : FiniteRelModel L V) (E : ErrorSchedule
   /-- The fine refinement gains at most `δ` of aggregate palette energy.-/
   energy_gap : binaryPaletteEnergy M fine ≤ binaryPaletteEnergy M coarse + δ
 
-/-- The fine partition refines the vertex-profile partition too.-/
+/-- The fine partition refines the vertex-profile partition too.
+@isnad1 id=le.0h8v.s6.969ab0e41896 from=translated src=- shape=9fb6172b vocab=eb2f86e7
+-/
 theorem BinaryPaletteStrongWitness.fine_profile {M : FiniteRelModel L V}
     {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) :
@@ -63,7 +65,9 @@ theorem BinaryPaletteStrongWitness.fine_profile {M : FiniteRelModel L V}
 
 /-! ### Existence by energy-gap stopping -/
 
-/-- Fuel-parametrized palette strong iteration.-/
+/-- Fuel-parametrized palette strong iteration.
+@isnad1 id=ex.2h8v.s8.d6142eebdd0b from=translated src=- shape=c51918ad vocab=a57e66c8
+-/
 theorem binaryPalette_strong_iterate (M : FiniteRelModel L V) (E : ErrorSchedule)
     (hδ : 0 < δ) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * δ ≤ binaryPaletteEnergy M P →
@@ -118,7 +122,9 @@ theorem binaryPalette_strong_iterate (M : FiniteRelModel L V) (E : ErrorSchedule
 
 /-- **Strong palette regularity.** Every starting partition admits a strong palette
 witness for any positive error schedule and gap, refining the vertex-profile
-partition, with host-independent part-count bounds.-/
+partition, with host-independent part-count bounds.
+@isnad1 id=ex.1h7v.s7.d6bb58384754 from=translated src=- shape=84c9e1b7 vocab=41f1915b
+-/
 theorem exists_binaryPaletteStrongWitness (M : FiniteRelModel L V) (E : ErrorSchedule)
     (hδ : 0 < δ) (P₀ : Finpartition s) :
     ∃ w : BinaryPaletteStrongWitness M E δ P₀,
@@ -142,7 +148,9 @@ theorem exists_binaryPaletteStrongWitness (M : FiniteRelModel L V) (E : ErrorSch
 /-- The aggregate palette-energy gap bounds every single color's gap. The palette colors
 are the index type, and the other colors' energies are individually monotone under
 refinement, so they cancel — the generic summand descent of
-`RegularityLemmata.summand_le_add_of_sum_le_add`, at `ι = BinaryPairPalette L`.-/
+`RegularityLemmata.summand_le_add_of_sum_le_add`, at `ι = BinaryPairPalette L`.
+@isnad1 id=le.2h8v.s7.df976e8fc31f from=translated src=- shape=c663fdf1 vocab=147f9e79
+-/
 theorem energy_le_of_binaryPaletteEnergy_gap (M : FiniteRelModel L V)
     {fine coarse : Finpartition s} (hfc : fine ≤ coarse)
     (hgap : binaryPaletteEnergy M fine ≤ binaryPaletteEnergy M coarse + δ)
@@ -166,7 +174,9 @@ def BinaryPaletteStrongWitness.toStrongWitness {M : FiniteRelModel L V}
   energy_gap := energy_le_of_binaryPaletteEnergy_gap M w.fine_le w.energy_gap c
 
 /-- **Per-color deviant-mass bound**, re-exported from the existing
-`StrongWitness.deviant_mass_le`.-/
+`StrongWitness.deviant_mass_le`.
+@isnad1 id=le.1h10v.s9.365e6633c9f7 from=translated src=- shape=bf806034 vocab=2afbe34b
+-/
 theorem BinaryPaletteStrongWitness.deviant_mass_le {M : FiniteRelModel L V}
     {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (c : BinaryPairPalette L)

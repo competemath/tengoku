@@ -96,14 +96,18 @@ def IsTransversalizable (N : FiniteRelModel L V) (Q : Finpartition s) : Prop :=
 variable {P : FiniteRelModel L (Fin 3)} {N : FiniteRelModel L V} {Q : Finpartition s}
 
 /-- The transversal count never exceeds the global count — so the converse implication in
-the certificate is free, and the certificate says the two pattern sets coincide.-/
+the certificate is free, and the certificate says the two pattern sets coincide.
+@isnad1 id=le.0h6v.s5.648a5cb9e3c2 from=translated src=- shape=1b8b3f6e vocab=19ff0e76
+-/
 theorem transversalInducedCount_le_globalInducedCount :
     transversalInducedCount P N Q ≤ globalInducedCount P N Q := by
   rw [globalInducedCount_eq_transversal_add_nontransversal]
   omega
 
 /-- The certificate, in set form: a pattern occurs in `N` exactly when it occurs
-transversally.-/
+transversally.
+@isnad1 id=iff.0h5v.s6.c51d13a0ff19 from=translated src=- shape=e5152a8f vocab=5edacb49
+-/
 theorem isTransversalizable_iff :
     IsTransversalizable N Q ↔
       ∀ P : FiniteRelModel L (Fin 3),
@@ -116,7 +120,9 @@ theorem isTransversalizable_iff :
 
 /-- **The consumption form.** Under the certificate, a pattern surviving in `N` has an
 explicit transversal cell triple carrying it — which is what a transversal counting lower
-bound in the original model is applied to.-/
+bound in the original model is applied to.
+@isnad1 id=ex.2h6v.s7.17b485c80687 from=translated src=- shape=6eb2e104 vocab=b5c63e1a
+-/
 theorem exists_transversal_of_isTransversalizable (h : IsTransversalizable N Q)
     (hP : 0 < globalInducedCount P N Q) :
     ∃ T ∈ transversalCellTriples Q, 0 < inducedEmbeddingCountOn P N T := by
@@ -130,7 +136,9 @@ theorem exists_transversal_of_isTransversalizable (h : IsTransversalizable N Q)
 
 /-! ### The certificate forces at least three cells -/
 
-/-- With fewer than three cells there is no transversal triple at all.-/
+/-- With fewer than three cells there is no transversal triple at all.
+@isnad1 id=eq.1h3v.s6.0e3936f3e150 from=translated src=- shape=8413e718 vocab=c33a73a4
+-/
 theorem transversalCellTriples_eq_empty_of_card_lt_three (Q : Finpartition s)
     (h : Q.parts.card < 3) : transversalCellTriples Q = (∅ : Finset (Fin 3 → Finset V)) := by
   rw [Finset.eq_empty_iff_forall_notMem]
@@ -142,7 +150,9 @@ theorem transversalCellTriples_eq_empty_of_card_lt_three (Q : Finpartition s)
   omega
 
 /-- **The one- or two-cell test.** Below three cells the certificate degenerates: it asserts
-that no three-vertex pattern is realized on `s` at all.-/
+that no three-vertex pattern is realized on `s` at all.
+@isnad1 id=eq.2h6v.s6.0a71424136ec from=translated src=- shape=32b7d8d8 vocab=c244b70b
+-/
 theorem globalInducedCount_eq_zero_of_card_lt_three (h : IsTransversalizable N Q)
     (hcard : Q.parts.card < 3) (P : FiniteRelModel L (Fin 3)) :
     globalInducedCount P N Q = 0 := by
@@ -156,7 +166,9 @@ theorem globalInducedCount_eq_zero_of_card_lt_three (h : IsTransversalizable N Q
 /-- **Three-cell necessity, positively.** If any three-vertex pattern occurs on `s`, the
 certificate forces at least three cells. So no cleaning rescues a one- or two-cell
 partition — except on ground sets too small to carry a pattern at all, which is the
-legitimate exception.-/
+legitimate exception.
+@isnad1 id=le.2h6v.s6.273fcfddc935 from=translated src=- shape=b9dda24c vocab=3463da4e
+-/
 theorem three_le_card_parts_of_isTransversalizable (h : IsTransversalizable N Q)
     (hP : 0 < globalInducedCount P N Q) : 3 ≤ Q.parts.card := by
   by_contra hcard
@@ -168,7 +180,9 @@ theorem three_le_card_parts_of_isTransversalizable (h : IsTransversalizable N Q)
 
 /-! ### The certificate is satisfiable (singleton cells) -/
 
-/-- A repeated cell of size at most one admits no injective map, so its box count is zero.-/
+/-- A repeated cell of size at most one admits no injective map, so its box count is zero.
+@isnad1 id=eq.3h7v.s6.2c7f3b90f4c7 from=translated src=- shape=7ee6abb3 vocab=038eeda5
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_repeat_of_card_le_one {T : Fin 3 → Finset V}
     {i j : Fin 3} (hij : i ≠ j) (hT : T i = T j) (hcard : (T i).card ≤ 1) :
     inducedEmbeddingCountOn P N T = 0 := by
@@ -182,7 +196,9 @@ theorem inducedEmbeddingCountOn_eq_zero_of_repeat_of_card_le_one {T : Fin 3 → 
 /-- **Satisfiability.** When every cell is a singleton, global and transversal counts agree
 identically, so the certificate holds. The witness is the partition that does no
 coarsening — which is exactly why satisfiability alone says nothing about the open gate:
-large cells are what make within-cell triples possible.-/
+large cells are what make within-cell triples possible.
+@isnad1 id=istransv.1h5v.s6.54b810aeb1a1 from=translated src=- shape=d0a2a161 vocab=dae60cd4
+-/
 theorem isTransversalizable_of_forall_card_le_one (N : FiniteRelModel L V)
     (Q : Finpartition s) (hQ : ∀ C ∈ Q.parts, C.card ≤ 1) : IsTransversalizable N Q := by
   intro P hP

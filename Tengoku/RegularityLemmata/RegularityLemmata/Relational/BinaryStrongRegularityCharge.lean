@@ -33,7 +33,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V}
 
 open Classical in
 /-- Every fine bad pair refines a unique coarse pair, so the coarse-nested `IsBadPair` fine
-pairs are exactly the bad pairs of `Q`.-/
+pairs are exactly the bad pairs of `Q`.
+@isnad1 id=eq.1h6v.s7.acf04e677a7f from=translated src=- shape=e6fbb95b vocab=71b7977d
+-/
 theorem selectedFinePairs_isBadPair_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     (R : V → V → Prop) [DecidableRel R] (τ : ℝ) :
     selectedFinePairs Q Pc (fun _ p => IsBadPair R τ p.1 p.2)
@@ -59,7 +61,9 @@ theorem selectedFinePairs_isBadPair_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
 open Classical in
 /-- **Bad-pair refinement-mass reindex.** The coarse-nested `IsBadPair` fine-pair mass is the
 raw bad mass of `Q` — this is what lets `badMassNum_le_of_isRegularPartition` charge the
-nonuniform occurrences.-/
+nonuniform occurrences.
+@isnad1 id=eq.1h6v.s8.60fefc70a4c2 from=translated src=- shape=531f2f48 vocab=dd575282
+-/
 theorem sum_refinement_isBadPair_mass_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     (R : V → V → Prop) [DecidableRel R] {τ : ℝ} :
     (∑ pd ∈ Pc.parts ×ˢ Pc.parts,
@@ -84,6 +88,9 @@ noncomputable def requiredPaletteProduct (P : FiniteRelModel L (Fin 3)) (M : Fin
     pairDensity (HasBinaryPairPalette M (binaryPairPalette P 1 2)) (T 1) (T 2)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s5.aaab46dca4ac from=translated src=- shape=5b09265f vocab=d721dfed
+-/
 theorem requiredPaletteProduct_nonneg (P : FiniteRelModel L (Fin 3)) (M : FiniteRelModel L V)
     (T : Fin 3 → Finset V) : 0 ≤ requiredPaletteProduct P M T := by
   rw [requiredPaletteProduct]
@@ -96,6 +103,9 @@ theorem requiredPaletteProduct_nonneg (P : FiniteRelModel L (Fin 3)) (M : Finite
   positivity
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s5.5d9b71f04773 from=translated src=- shape=ba3695c8 vocab=d721dfed
+-/
 theorem requiredPaletteProduct_le_one (P : FiniteRelModel L (Fin 3)) (M : FiniteRelModel L V)
     (T : Fin 3 → Finset V) : requiredPaletteProduct P M T ≤ 1 :=
   mul_le_one₀ (mul_le_one₀ pairDensity_le_one pairDensity_nonneg pairDensity_le_one)
@@ -110,7 +120,9 @@ noncomputable def fineInducedEstimate (P : FiniteRelModel L (Fin 3)) (M : Finite
 
 variable {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {Q Pc : Finpartition s}
 
-/-- **Actual count over the common fine index.**-/
+/-- **Actual count over the common fine index.**
+@isnad1 id=eq.2h7v.s7.7b8e858188ee from=translated src=- shape=f50f4ebc vocab=4d68f308
+-/
 theorem transversalInducedCount_eq_sum_refinement_of_profiled [AtMostBinary L]
     (hQP : Q ≤ Pc) (hprofile : Pc ≤ binaryProfilePartition M s) :
     (transversalInducedCount P M Pc : ℝ)
@@ -131,7 +143,9 @@ theorem transversalInducedCount_eq_sum_refinement_of_profiled [AtMostBinary L]
   rw [inducedEmbeddingCountOn_refinement_three hQP
     (fun i => transversalCellTriples_cell_mem hT.1 i), Nat.cast_sum]
 
-/-- **Coarse estimate over the common fine index** (using the coarse density on each box).-/
+/-- **Coarse estimate over the common fine index** (using the coarse density on each box).
+@isnad1 id=eq.1h7v.s7.964d4d153deb from=translated src=- shape=ef44401f vocab=e7a06fee
+-/
 theorem coarseInducedEstimate_eq_sum_refinement (hQP : Q ≤ Pc) :
     coarseInducedEstimate P M Pc
       = ∑ T ∈ (transversalCellTriples Pc).filter (MatchesThreeProfiles P M),
@@ -146,7 +160,9 @@ theorem coarseInducedEstimate_eq_sum_refinement (hQP : Q ≤ Pc) :
 
 /-! ### The regularity charge -/
 
-/-- The total fine volume over profile-matching coarse triples is at most `|s|³`.-/
+/-- The total fine volume over profile-matching coarse triples is at most `|s|³`.
+@isnad1 id=le.1h7v.s7.0eaa0935ac52 from=translated src=- shape=8e6f5dd0 vocab=5f5a0093
+-/
 theorem sum_matching_refinement_volume_le_cube (hQP : Q ≤ Pc) :
     ∑ T ∈ (transversalCellTriples Pc).filter (MatchesThreeProfiles P M),
         ∑ W ∈ refinementTriples Q T, cellTripleVolume W
@@ -164,7 +180,9 @@ theorem sum_matching_refinement_volume_le_cube (hQP : Q ≤ Pc) :
 
 /-- **The regularity charge.** The transversal induced count is within `10·τ·|s|³` of the
 fine estimate, where `τ = E w.coarse.parts.card`: `7·τ` from the exact three-vertex count on
-uniform fine triples, and `3·τ` from the three `IsBadPair` liftings on nonuniform ones.-/
+uniform fine triples, and `3·τ` from the three `IsBadPair` liftings on nonuniform ones.
+@isnad1 id=le.2h9v.s7.6734a64bfb2b from=translated src=- shape=5349b5b4 vocab=70af74fb
+-/
 theorem BinaryPaletteStrongWitness.abs_transversalInducedCount_sub_fineEstimate_le
     [AtMostBinary L] {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (P : FiniteRelModel L (Fin 3))

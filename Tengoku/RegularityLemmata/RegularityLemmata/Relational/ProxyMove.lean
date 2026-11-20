@@ -76,6 +76,9 @@ instance decidableProxyLt (localOrder : LinearOrder V) (rank : V → ℕ) (x y :
   letI := localOrder
   inferInstanceAs (Decidable (rank x < rank y ∨ (rank x = rank y ∧ x < y)))
 
+/--
+@isnad1 id=not.0h4v.s4.d319a05ccdfa from=translated src=- shape=6a807f49 vocab=dacd8a26
+-/
 theorem proxyLt_irrefl (localOrder : LinearOrder V) (rank : V → ℕ) (x : V) :
     ¬ ProxyLt localOrder rank x x := by
   letI := localOrder
@@ -83,6 +86,9 @@ theorem proxyLt_irrefl (localOrder : LinearOrder V) (rank : V → ℕ) (x : V) :
   · exact lt_irrefl _ h
   · exact lt_irrefl _ h
 
+/--
+@isnad1 id=proxylt.2h6v.s5.6b98a5bf6fc4 from=translated src=- shape=37a2f9f5 vocab=dacd8a26
+-/
 theorem proxyLt_trans {localOrder : LinearOrder V} {rank : V → ℕ} {x y z : V}
     (hxy : ProxyLt localOrder rank x y) (hyz : ProxyLt localOrder rank y z) :
     ProxyLt localOrder rank x z := by
@@ -93,7 +99,9 @@ theorem proxyLt_trans {localOrder : LinearOrder V} {rank : V → ℕ} {x y z : V
   · exact Or.inl (h1 ▸ h2)
   · exact Or.inr ⟨h1.trans h2, lt_trans h1' h2'⟩
 
-/-- Distinct vertices are comparable.-/
+/-- Distinct vertices are comparable.
+@isnad1 id=or.1h5v.s4.d7a179784d67 from=translated src=- shape=40d2af1a vocab=dacd8a26
+-/
 theorem proxyLt_total {localOrder : LinearOrder V} {rank : V → ℕ} {x y : V} (hxy : x ≠ y) :
     ProxyLt localOrder rank x y ∨ ProxyLt localOrder rank y x := by
   letI := localOrder
@@ -105,11 +113,16 @@ theorem proxyLt_total {localOrder : LinearOrder V} {rank : V → ℕ} {x y : V} 
     · exact Or.inr (Or.inr ⟨h.symm, h'⟩)
   · exact Or.inr (Or.inl h)
 
+/--
+@isnad1 id=not.1h5v.s4.161f0161fb99 from=translated src=- shape=a281bad3 vocab=dacd8a26
+-/
 theorem proxyLt_asymm {localOrder : LinearOrder V} {rank : V → ℕ} {x y : V}
     (h : ProxyLt localOrder rank x y) : ¬ ProxyLt localOrder rank y x :=
   fun h' => proxyLt_irrefl localOrder rank x (proxyLt_trans h h')
 
-/-- A strictly rank-increasing pair is `ProxyLt`-increasing.-/
+/-- A strictly rank-increasing pair is `ProxyLt`-increasing.
+@isnad1 id=proxylt.1h5v.s4.bc6cacc38455 from=translated src=- shape=9787f2a7 vocab=192e14eb
+-/
 theorem proxyLt_of_rank_lt {localOrder : LinearOrder V} {rank : V → ℕ} {x y : V}
     (h : rank x < rank y) : ProxyLt localOrder rank x y := Or.inl h
 
@@ -140,7 +153,9 @@ variable {M : FiniteRelModel L V} {owner : V → ι} {localOrder : LinearOrder V
 
 omit [AtMostBinary L] [DecidableEq ι] in
 /-- Backwards within an owner, the palette is the swap of that owner's diagonal palette —
-the reversal law.-/
+the reversal law.
+@isnad1 id=eq.3h10v.s6.aabb10172885 from=translated src=- shape=413320e4 vocab=e02ecc93
+-/
 theorem IsOrderDeterminedProxyPalette.within_backward
     (h : IsOrderDeterminedProxyPalette M owner localOrder rank d) {x y : V}
     (hxy : owner x = owner y) (hlt : ProxyLt localOrder rank y x) :
@@ -153,7 +168,9 @@ theorem IsOrderDeterminedProxyPalette.within_backward
 relative order realizes exactly the patterns `f` does. The SOURCE map `f` must still be
 injective — that is what makes distinct same-owner coordinates comparable — but no
 proxy-distinctness of the TARGET `g` is required; that is what the supply step below adds,
-and the two are kept apart deliberately.-/
+and the two are kept apart deliberately.
+@isnad1 id=iff.4h11v.s7.2b4a6eb343a0 from=translated src=- shape=9b85d387 vocab=01dbb9f3
+-/
 theorem preservesAndReflects_proxy_move
     (h : IsOrderDeterminedProxyPalette M owner localOrder rank d)
     {P : FiniteRelModel L (Fin 3)} {f g : Fin 3 → V} (hf : Function.Injective f)
@@ -231,7 +248,9 @@ def HasProxySupply (owner : V → ι) (rank : V → ℕ) : Prop :=
 
 open scoped Classical in
 /-- **The supply step.** Under `HasProxySupply`, every injective triple admits a move that
-preserves owners and same-owner relative order and lands in three DISTINCT proxy cells.-/
+preserves owners and same-owner relative order and lands in three DISTINCT proxy cells.
+@isnad1 id=ex.2h6v.s7.3453da0055d6 from=translated src=- shape=e4645363 vocab=b4da86d8
+-/
 theorem exists_proxyDistinct_move (owner : V → ι) (localOrder : LinearOrder V)
     (rank : V → ℕ) (hsupply : HasProxySupply owner rank) {f : Fin 3 → V}
     (hf : Function.Injective f) :
@@ -275,7 +294,9 @@ theorem exists_proxyDistinct_move (owner : V → ι) (localOrder : LinearOrder V
 /-- **The generic form of the probe's five cases.** Every injective triple has a
 proxy-distinct triple realizing exactly the same patterns. No case analysis on the
 placement strata appears: they are the fibers of `owner ∘ f`, and the predecessor count
-treats them uniformly.-/
+treats them uniformly.
+@isnad1 id=ex.3h9v.s7.50dc5e5aaa02 from=translated src=- shape=359c0807 vocab=1e4bc4ef
+-/
 theorem exists_proxyDistinct_preservesAndReflects_iff
     (h : IsOrderDeterminedProxyPalette M owner localOrder rank d)
     (hsupply : HasProxySupply owner rank)

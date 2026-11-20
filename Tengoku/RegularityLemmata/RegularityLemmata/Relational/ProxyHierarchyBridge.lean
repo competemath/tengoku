@@ -92,6 +92,9 @@ noncomputable def proxyFineSchedule (K : ℕ) (hK : 0 < K) : ErrorSchedule where
   toFun P := proxyFineTolerance K (max P 1)
   pos P := proxyFineTolerance_pos hK (lt_of_lt_of_le Nat.one_pos (le_max_right P 1))
 
+/--
+@isnad1 id=eq.1h2v.s5.b03e94dbda04 from=translated src=- shape=8c15d1b2 vocab=abff0d0c
+-/
 @[simp] theorem proxyFineSchedule_apply {K : ℕ} (hK : 0 < K) (P : ℕ) :
     proxyFineSchedule K hK P = proxyFineTolerance K (max P 1) := rfl
 
@@ -101,7 +104,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V} {Q : Finpartition s}
 
 /-- **Handoff for the forbidden channel.** A tolerance chosen at the a priori bound `B` is
 admissible at any realized count below `B`. Conditional on `hPB`, which is the hypothesis
-this file investigates.-/
+this file investigates.
+@isnad1 id=le.8h8v.s8.8a8796e05d45 from=translated src=- shape=634d0d98 vocab=7cde35f5
+-/
 theorem sigma_le_half_of_countBound {K B m : ℕ} {B' ε : ℝ} (hK : 1 ≤ K)
     (hP : 1 ≤ Q.parts.card) (hPB : Q.parts.card ≤ B) (hm : 1 ≤ m)
     (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) (hε0 : 0 ≤ ε)
@@ -111,7 +116,9 @@ theorem sigma_le_half_of_countBound {K B m : ℕ} {B' ε : ℝ} (hK : 1 ≤ K)
     (hεB.trans (proxyFineTolerance_anti (Nat.lt_of_lt_of_le Nat.zero_lt_one hK) hP hPB)) hB
 
 /-- **Handoff for the cost channel.** Likewise for the deviation parameter — and likewise
-conditional on `hPB`.-/
+conditional on `hPB`.
+@isnad1 id=le.9h9v.s8.db3982b28655 from=translated src=- shape=4e3381b0 vocab=4ec67321
+-/
 theorem mu_le_of_countBound {K B m : ℕ} {δ η τ : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ Q.parts.card)
     (hPB : Q.parts.card ≤ B) (hm : 1 ≤ m) (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) (hη : 0 < η)
     (hδ0 : 0 ≤ δ) (hτ : 0 ≤ τ) (hδB : δ ≤ proxyDeviationTolerance K B η τ) :
@@ -129,7 +136,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L] {M : FiniteRelModel L V}
 tolerance for its own realized coarse count — literally at `max P 1`, the schedule's
 `ℕ`-clamped argument, since `ErrorSchedule` demands positivity at every input including `0`.
 No bound on that count is used. See `fine_diagRegular_proxyFineSchedule_of_pos` for the
-unclamped form.-/
+unclamped form.
+@isnad1 id=isbinary.1h8v.s6.90318d873ef8 from=translated src=- shape=ead6d0de vocab=0bb84f5c
+-/
 theorem fine_diagRegular_proxyFineSchedule {K : ℕ} (hK : 0 < K)
     (w : BinaryPaletteStrongDiagWitness M (proxyFineSchedule K hK) δ P₀) :
     IsBinaryPaletteDiagRegular M
@@ -138,7 +147,9 @@ theorem fine_diagRegular_proxyFineSchedule {K : ℕ} (hK : 0 < K)
 
 /-- The unclamped form: once the coarse partition has at least one part — which it does
 whenever the host is nonempty — the tolerance is `proxyFineTolerance K w.coarse.parts.card`
-on the nose.-/
+on the nose.
+@isnad1 id=isbinary.2h8v.s7.d5411fca3ee3 from=translated src=- shape=413bab40 vocab=101c617d
+-/
 theorem fine_diagRegular_proxyFineSchedule_of_pos {K : ℕ} (hK : 0 < K)
     (w : BinaryPaletteStrongDiagWitness M (proxyFineSchedule K hK) δ P₀)
     (hpos : 0 < w.coarse.parts.card) :
@@ -153,7 +164,9 @@ theorem fine_diagRegular_proxyFineSchedule_of_pos {K : ℕ} (hK : 0 < K)
 refining another can have strictly more parts. Seeding at the family-regular equipartition
 therefore transports neither its count bound nor its equitability to `w.coarse`; the size
 floor `m` and ceiling `m + 1` the local budgets read off an equipartition are not available
-for `w.coarse` on these grounds.-/
+for `w.coarse` on these grounds.
+@isnad1 id=ex.0h0v.s8.8dbcf961b57b from=translated src=- shape=ff58e0d6 vocab=9ea01c70
+-/
 theorem exists_le_and_card_parts_lt :
     ∃ (t : Finset (Fin 2)) (P₀ C : Finpartition t),
       C ≤ P₀ ∧ P₀.parts.card < C.parts.card := by
@@ -168,7 +181,9 @@ theorem exists_le_and_card_parts_lt :
 `(monoStepBound E)^[⌈1 / δ⌉₊] n₀`, and it is ANTITONE in `δ`: a smaller deviation parameter
 means more fuel, hence a larger bound. So the order "fix a target `B`, derive `δ` from `B`,
 then produce a witness whose coarse count is at most `B`" tightens both sides at once and is
-not supported by this construction.-/
+not supported by this construction.
+@isnad1 id=le.2h4v.s6.8eff22d51e94 from=translated src=- shape=57bdecf2 vocab=809694bc
+-/
 theorem witnessCoarseBound_anti_in_deviation (E : ErrorSchedule) {δ δ' : ℝ} (hδ : 0 < δ)
     (hδδ : δ ≤ δ') (n₀ : ℕ) :
     (monoStepBound E)^[⌈1 / δ'⌉₊] n₀ ≤ (monoStepBound E)^[⌈1 / δ⌉₊] n₀ := by

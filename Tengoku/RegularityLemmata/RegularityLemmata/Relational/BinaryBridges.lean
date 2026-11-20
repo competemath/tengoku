@@ -36,6 +36,9 @@ variable {V : Type*}
 
 /-! ### The graph language: constant profiles -/
 
+/--
+@isnad1 id=eq.0h4v.s5.7cfa2b2b573a from=translated src=- shape=d4d60b13 vocab=ba5ee595
+-/
 theorem ofSimpleGraph_rel_loop {V : Type*} (G : SimpleGraph V) [DecidableRel G.Adj]
     (R : FirstOrder.Language.graph.Relations 2) (v : V) :
     (ofSimpleGraph G).rel R ![v, v] = false := by
@@ -44,7 +47,9 @@ theorem ofSimpleGraph_rel_loop {V : Type*} (G : SimpleGraph V) [DecidableRel G.A
   simp only [decide_eq_false_iff_not]
   exact fun h => h.ne rfl
 
-/-- Graph vertex profiles are constant: no unary symbols, and loops are false.-/
+/-- Graph vertex profiles are constant: no unary symbols, and loops are false.
+@isnad1 id=eq.0h4v.s5.cd99e32745a5 from=translated src=- shape=f7ff7a92 vocab=fe2faa2a
+-/
 theorem binaryVertexProfile_ofSimpleGraph_eq {V : Type*} (G : SimpleGraph V)
     [DecidableRel G.Adj] (a b : V) :
     binaryVertexProfile (ofSimpleGraph G) a = binaryVertexProfile (ofSimpleGraph G) b := by
@@ -55,7 +60,9 @@ theorem binaryVertexProfile_ofSimpleGraph_eq {V : Type*} (G : SimpleGraph V)
     show (ofSimpleGraph G).rel R ![a, a] = (ofSimpleGraph G).rel R ![b, b]
     rw [ofSimpleGraph_rel_loop, ofSimpleGraph_rel_loop]
 
-/-- The graph vertex-profile partition is trivial (at most one cell).-/
+/-- The graph vertex-profile partition is trivial (at most one cell).
+@isnad1 id=le.0h3v.s5.b118ac684413 from=translated src=- shape=2f8554ce vocab=f6c0c38e
+-/
 theorem binaryProfilePartition_ofSimpleGraph_le_one [DecidableEq V] (G : SimpleGraph V)
     [DecidableRel G.Adj] (s : Finset V) :
     (binaryProfilePartition (ofSimpleGraph G) s).parts.card ≤ 1 := by
@@ -77,7 +84,9 @@ theorem binaryProfilePartition_ofSimpleGraph_le_one [DecidableEq V] (G : SimpleG
 
 /-! ### The graph language: only symmetric palettes -/
 
-/-- Graph palettes are invariant under reversal (adjacency is symmetric).-/
+/-- Graph palettes are invariant under reversal (adjacency is symmetric).
+@isnad1 id=eq.0h4v.s5.077c0d92c4f7 from=translated src=- shape=bd4626ac vocab=8dd5edcc
+-/
 theorem binaryPairPalette_ofSimpleGraph_symm {V : Type*} (G : SimpleGraph V)
     [DecidableRel G.Adj] (a b : V) :
     binaryPairPalette (ofSimpleGraph G) a b
@@ -91,7 +100,9 @@ theorem binaryPairPalette_ofSimpleGraph_symm {V : Type*} (G : SimpleGraph V)
     = (decide (G.Adj b a), decide (G.Adj a b))
   rw [hsymm]
 
-/-- The two coordinates of a graph palette always agree.-/
+/-- The two coordinates of a graph palette always agree.
+@isnad1 id=eq.0h5v.s5.105b1ab405e5 from=translated src=- shape=feda9a77 vocab=f8b236bd
+-/
 theorem binaryPairPalette_ofSimpleGraph_coords_eq {V : Type*} (G : SimpleGraph V)
     [DecidableRel G.Adj] (a b : V) (R : FirstOrder.Language.graph.Relations 2) :
     (binaryPairPalette (ofSimpleGraph G) a b R).1
@@ -101,7 +112,9 @@ theorem binaryPairPalette_ofSimpleGraph_coords_eq {V : Type*} (G : SimpleGraph V
   rw [decide_eq_decide]
   exact ⟨fun h => h.symm, fun h => h.symm⟩
 
-/-- **Asymmetric palettes are never realized** on a graph.-/
+/-- **Asymmetric palettes are never realized** on a graph.
+@isnad1 id=not.1h6v.s5.94731f78d056 from=translated src=- shape=0f8f2644 vocab=e054f21c
+-/
 theorem not_hasBinaryPairPalette_ofSimpleGraph_of_asymm {V : Type*} (G : SimpleGraph V)
     [DecidableRel G.Adj] {c : BinaryPairPalette FirstOrder.Language.graph}
     (R : FirstOrder.Language.graph.Relations 2) (hc : (c R).1 ≠ (c R).2) (a b : V) :

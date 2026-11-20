@@ -94,21 +94,27 @@ variable {W : Type*} [Fintype W] [DecidableEq W]
 /-- **The full box is the disjoint union of the cell boxes.** The constant-partition
 specialization of the `ProductSpaces` substrate `biUnion_boxCells_tuples`
 (`RegularityLemmata/Partition/BoxPartition.lean`): the box `fun _ ↦ s` with the box partition `fun _
-↦ Q`.-/
+↦ Q`.
+@isnad1 id=eq.0h4v.s6.86079b8f324e from=translated src=- shape=63a491e4 vocab=f8177ced
+-/
 theorem piFinset_const_eq_biUnion_cellTuples (Q : Finpartition s) :
     Fintype.piFinset (fun _ : W => s)
       = (Fintype.piFinset fun _ : W => Q.parts).biUnion Fintype.piFinset :=
   (biUnion_boxCells_tuples (A := fun _ : W => s) fun _ => Q).symm
 
 /-- The cell boxes over distinct cell tuples are pairwise disjoint: the constant-partition
-specialization of `boxCells_pairwiseDisjoint`.-/
+specialization of `boxCells_pairwiseDisjoint`.
+@isnad1 id=pairwise.0h4v.s6.9340ea2ce377 from=translated src=- shape=6371113e vocab=7e309d6d
+-/
 theorem piFinset_pairwiseDisjoint_cellTuples (Q : Finpartition s) :
     (↑(Fintype.piFinset fun _ : W => Q.parts) : Set (W → Finset V)).PairwiseDisjoint
       Fintype.piFinset :=
   boxCells_pairwiseDisjoint (A := fun _ : W => s) fun _ => Q
 
 /-- **The `s`-restricted induced count is the sum of the box counts over all cell tuples.**
-Index-generic; `globalInducedCount_eq_inducedEmbeddingCountOn` is the `Fin 3` reading.-/
+Index-generic; `globalInducedCount_eq_inducedEmbeddingCountOn` is the `Fin 3` reading.
+@isnad1 id=eq.0h7v.s6.b6b72faa4ba5 from=translated src=- shape=840b3fe1 vocab=e90bf402
+-/
 theorem inducedEmbeddingCountOn_eq_sum_cellTuples (P : FiniteRelModel L W) (M : FiniteRelModel L V)
     (Q : Finpartition s) :
     inducedEmbeddingCountOn P M (fun _ : W => s)
@@ -123,7 +129,9 @@ end BoxDecomposition
 
 /-! ### Exact global-count decomposition -/
 
-/-- **Global = transversal + nontransversal.**-/
+/-- **Global = transversal + nontransversal.**
+@isnad1 id=eq.0h6v.s6.c157eb7e325d from=translated src=- shape=7976764b vocab=692417e6
+-/
 theorem globalInducedCount_eq_transversal_add_nontransversal :
     globalInducedCount P M Q
       = transversalInducedCount P M Q
@@ -134,34 +142,44 @@ theorem globalInducedCount_eq_transversal_add_nontransversal :
     Function.Injective _).symm
 
 /-- **The full box is the disjoint union of the cell boxes**, `Fin 3` reading of
-`piFinset_const_eq_biUnion_cellTuples`.-/
+`piFinset_const_eq_biUnion_cellTuples`.
+@isnad1 id=eq.0h3v.s7.f3bb02f6cd80 from=translated src=- shape=0ad15f55 vocab=2c11e81a
+-/
 theorem piFinset_const_eq_biUnion_cellTriples (Q : Finpartition s) :
     Fintype.piFinset (fun _ : Fin 3 => s)
       = (Fintype.piFinset fun _ : Fin 3 => Q.parts).biUnion Fintype.piFinset :=
   piFinset_const_eq_biUnion_cellTuples Q
 
 /-- The cell boxes over distinct cell-triples are pairwise disjoint, `Fin 3` reading of
-`piFinset_pairwiseDisjoint_cellTuples`.-/
+`piFinset_pairwiseDisjoint_cellTuples`.
+@isnad1 id=pairwise.0h3v.s7.8c263cfc944c from=translated src=- shape=9d94f1ed vocab=c1852ea4
+-/
 theorem piFinset_pairwiseDisjoint_cellTriples (Q : Finpartition s) :
     (↑(Fintype.piFinset fun _ : Fin 3 => Q.parts) : Set (Fin 3 → Finset V)).PairwiseDisjoint
       Fintype.piFinset :=
   piFinset_pairwiseDisjoint_cellTuples Q
 
 /-- **The global count is the library's actual induced-embedding count over the full box.** The
-partition-cell sum equals `inducedEmbeddingCountOn` on `fun _ => s`.-/
+partition-cell sum equals `inducedEmbeddingCountOn` on `fun _ => s`.
+@isnad1 id=eq.0h6v.s6.c9736aff6d92 from=translated src=- shape=83c35feb vocab=9633ccaa
+-/
 theorem globalInducedCount_eq_inducedEmbeddingCountOn :
     globalInducedCount P M Q = inducedEmbeddingCountOn P M (fun _ : Fin 3 => s) :=
   (inducedEmbeddingCountOn_eq_sum_cellTuples P M Q).symm
 
 /-- **Partition-independence of the global count**: it does not depend on the cell partition (both
-sides equal the actual count over the full box).-/
+sides equal the actual count over the full box).
+@isnad1 id=eq.0h7v.s6.df799eca63c0 from=translated src=- shape=88369115 vocab=fdb14647
+-/
 theorem globalInducedCount_eq_globalInducedCount (Q Q' : Finpartition s) :
     globalInducedCount P M Q = globalInducedCount P M Q' :=
   (globalInducedCount_eq_inducedEmbeddingCountOn (Q := Q)).trans
     (globalInducedCount_eq_inducedEmbeddingCountOn (Q := Q')).symm
 
 /-- **Full-carrier bridge to the Phase 8 counting API.** On a finite carrier partitioned as
-`Finpartition univ`, the global count is exactly the diagonal-sensitive `inducedEmbeddingCount`.-/
+`Finpartition univ`, the global count is exactly the diagonal-sensitive `inducedEmbeddingCount`.
+@isnad1 id=eq.0h5v.s6.a7f3a84bc7b1 from=translated src=- shape=9d05ec55 vocab=c2a18855
+-/
 theorem globalInducedCount_eq_inducedEmbeddingCount [Fintype V]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V}
     (Q : Finpartition (Finset.univ : Finset V)) :
@@ -175,10 +193,16 @@ tuples inside all ordered cell-tuples). `nontransversalCellTriples` is the `k = 
 def nontransversalCellTuples {k : ℕ} (Q : Finpartition s) : Finset (Fin k → Finset V) :=
   (Fintype.piFinset fun _ => Q.parts).filter (fun T => ¬ Function.Injective T)
 
+/--
+@isnad1 id=iff.0h5v.s6.bd5be527fb71 from=translated src=- shape=8bdb915e vocab=724a8980
+-/
 @[simp] theorem mem_nontransversalCellTuples {k : ℕ} {T : Fin k → Finset V} :
     T ∈ nontransversalCellTuples Q ↔ (∀ i, T i ∈ Q.parts) ∧ ¬ Function.Injective T := by
   simp [nontransversalCellTuples, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=eq.0h3v.s5.9ef9e98bba13 from=translated src=- shape=65427b85 vocab=cbd27573
+-/
 theorem nontransversalCellTriples_eq_nontransversalCellTuples (Q : Finpartition s) :
     nontransversalCellTriples Q = nontransversalCellTuples Q := rfl
 
@@ -187,15 +211,23 @@ instance.-/
 def transversalCellTuples {k : ℕ} (Q : Finpartition s) : Finset (Fin k → Finset V) :=
   (Fintype.piFinset fun _ => Q.parts).filter Function.Injective
 
+/--
+@isnad1 id=iff.0h5v.s6.3cf4b5db7b81 from=translated src=- shape=22201378 vocab=294e0211
+-/
 @[simp] theorem mem_transversalCellTuples {k : ℕ} {T : Fin k → Finset V} :
     T ∈ transversalCellTuples Q ↔ (∀ i, T i ∈ Q.parts) ∧ Function.Injective T := by
   simp [transversalCellTuples, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=eq.0h3v.s5.a83c9e8d69ee from=translated src=- shape=65427b85 vocab=e50d3ffe
+-/
 theorem transversalCellTriples_eq_transversalCellTuples (Q : Finpartition s) :
     transversalCellTriples Q = transversalCellTuples Q := rfl
 
 /-- **Transversal + nontransversal**, arity-generic: the `s`-restricted count splits exactly
-along injectivity of the cell tuple.-/
+along injectivity of the cell tuple.
+@isnad1 id=eq.0h7v.s7.4caecc101eaa from=translated src=- shape=aeaa612c vocab=ec80df63
+-/
 theorem inducedEmbeddingCountOn_eq_transversal_add_nontransversal {k : ℕ}
     (P : FiniteRelModel L (Fin k)) (M : FiniteRelModel L V) (Q : Finpartition s) :
     inducedEmbeddingCountOn P M (fun _ : Fin k => s)
@@ -211,31 +243,43 @@ def cellTupleVolume {k : ℕ} (T : Fin k → Finset V) : ℝ :=
   ∏ i, ((T i).card : ℝ)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s4.751dabbdfb30 from=translated src=- shape=6c53f2c4 vocab=e6b4e2e6
+-/
 theorem cellTupleVolume_nonneg {k : ℕ} (T : Fin k → Finset V) : 0 ≤ cellTupleVolume T :=
   Finset.prod_nonneg fun _ _ => Nat.cast_nonneg _
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s4.9743e7d22826 from=translated src=- shape=5edb1ea1 vocab=f6dde1a3
+-/
 theorem cellTripleVolume_eq_cellTupleVolume (T : Fin 3 → Finset V) :
     cellTripleVolume T = cellTupleVolume T := by
   rw [cellTripleVolume, cellTupleVolume, Fin.prod_univ_three]
 
 /-- **The cell boxes tile the `s`-box by volume**: `Σ_T vol T = |s|^k` over all cell tuples.
 The constant-partition specialization of the `ProductSpaces` substrate
-`boxMass_eq_sum_boxCells` with unit weights (`boxMass_one`).-/
+`boxMass_eq_sum_boxCells` with unit weights (`boxMass_one`).
+@isnad1 id=eq.0h4v.s6.5e2b7a62bb0f from=translated src=- shape=886c0821 vocab=1b49dc46
+-/
 theorem sum_cellTupleVolume_eq (Q : Finpartition s) (k : ℕ) :
     ∑ T ∈ Fintype.piFinset fun _ : Fin k => Q.parts, cellTupleVolume T = (s.card : ℝ) ^ k := by
   have h := boxMass_eq_sum_boxCells (fun _ _ => (1 : ℝ)) (A := fun _ : Fin k => s) fun _ => Q
   simp only [boxMass_one, Finset.prod_const, Finset.card_univ, Fintype.card_fin] at h
   exact h.symm
 
-/-- The transversal cell tuples carry volume at most `|s|^k`.-/
+/-- The transversal cell tuples carry volume at most `|s|^k`.
+@isnad1 id=le.0h4v.s6.fd35df648464 from=translated src=- shape=07ad6cdb vocab=4c9c0262
+-/
 theorem sum_transversalCellTuples_cellTupleVolume_le (Q : Finpartition s) (k : ℕ) :
     ∑ T ∈ transversalCellTuples (k := k) Q, cellTupleVolume T ≤ (s.card : ℝ) ^ k := by
   rw [← sum_cellTupleVolume_eq Q k, transversalCellTuples]
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.filter_subset _ _)
     fun T _ _ => cellTupleVolume_nonneg T
 
-/-- Crude box bound, arity-generic: an induced count never exceeds the box volume.-/
+/-- Crude box bound, arity-generic: an induced count never exceeds the box volume.
+@isnad1 id=le.0h6v.s5.3cfec00e8f77 from=translated src=- shape=c384712f vocab=6100ca35
+-/
 theorem inducedEmbeddingCountOn_le_cellTupleVolume {k : ℕ} (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) (T : Fin k → Finset V) :
     (inducedEmbeddingCountOn P M T : ℝ) ≤ cellTupleVolume T := by
@@ -305,7 +349,9 @@ each nontransversal tuple has some strictly ordered collision `i < j`
 
 Guard-free: no `2 ≤ k`, no nonempty carrier, no positive cell size, and no nonnegativity of the
 weight — only the one-sided domination is used. At `k = 0` and `k = 1` every tuple is injective
-and `k.choose 2 = 0`, so both sides vanish.-/
+and `k.choose 2 = 0`, so both sides vanish.
+@isnad1 id=le.2h6v.s7.1bc453601a6d from=translated src=- shape=f0f74510 vocab=4549c1c0
+-/
 theorem sum_nontransversalCellTuples_weight_le {k m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m)
     (weight : (Fin k → Finset V) → ℝ)
     (hw : ∀ T ∈ nontransversalCellTuples Q, weight T ≤ cellTupleVolume T) :
@@ -361,6 +407,9 @@ def badCellTuples {k : ℕ} (Q : Finpartition s) (D : Finset (Finset V × Finset
     Finset (Fin k → Finset V) :=
   (Fintype.piFinset fun _ => Q.parts).filter fun T => ∃ i j, i < j ∧ (T i, T j) ∈ D
 
+/--
+@isnad1 id=iff.0h6v.s7.2a6a0d645bf9 from=translated src=- shape=2ef06cb7 vocab=bd0df631
+-/
 @[simp] theorem mem_badCellTuples {k : ℕ} {D : Finset (Finset V × Finset V)}
     {T : Fin k → Finset V} :
     T ∈ badCellTuples Q D ↔ (∀ i, T i ∈ Q.parts) ∧ ∃ i j, i < j ∧ (T i, T j) ∈ D := by
@@ -440,7 +489,9 @@ each of the `k.choose 2` positions carries at most the pair mass times the free 
 transversal tuples (coefficient `3.choose 2 = 3`, free volume `|s|`).
 
 Guard-free: no `2 ≤ k` (at `k < 2` there are no positions, and `k.choose 2 = 0`), no
-`D ⊆ Q.parts ×ˢ Q.parts`, no nonnegativity of the weight.-/
+`D ⊆ Q.parts ×ˢ Q.parts`, no nonnegativity of the weight.
+@isnad1 id=le.1h6v.s7.41a7a9f7e4b3 from=translated src=- shape=6a18b7c5 vocab=09947e49
+-/
 theorem sum_badCellTuples_weight_le_mass {k : ℕ} {D : Finset (Finset V × Finset V)}
     (weight : (Fin k → Finset V) → ℝ)
     (hw : ∀ T ∈ badCellTuples Q D, weight T ≤ cellTupleVolume T) :
@@ -494,7 +545,9 @@ theorem sum_badCellTuples_weight_le_mass {k : ℕ} {D : Finset (Finset V × Fins
 weight at most `(k.choose 2)·β·|s|^k`. The `k.choose 2` is the positional lift of
 `sum_badCellTuples_weight_le_mass`, never a union bound over per-pair hypotheses: a consumer
 holding per-pair bounds sums them into this one hypothesis first. `badTripleVolume_le` is
-recovered at `k = 3` by restricting to transversal tuples. Guard-free in `k`.-/
+recovered at `k = 3` by restricting to transversal tuples. Guard-free in `k`.
+@isnad1 id=le.2h7v.s7.9c8b2b03c15a from=translated src=- shape=4a550938 vocab=459d9a3f
+-/
 theorem sum_badCellTuples_weight_le {k : ℕ} {D : Finset (Finset V × Finset V)} {β : ℝ}
     (hmass : ∑ p ∈ D, ((p.1.card : ℝ) * p.2.card) ≤ β * (s.card : ℝ) ^ 2)
     (weight : (Fin k → Finset V) → ℝ)
@@ -522,7 +575,9 @@ variable {k : ℕ}
 
 /-- **The transversal part of an indivisible model's count is the quotient-weighted count.**
 Transversal cell tuples correspond to injective tuples of cells, and on each the box count is
-all-or-nothing (`IsIndivisibleFor.inducedEmbeddingCountOn_cells`).-/
+all-or-nothing (`IsIndivisibleFor.inducedEmbeddingCountOn_cells`).
+@isnad1 id=eq.1h7v.s6.dbc5bd268dd3 from=translated src=- shape=9fc34204 vocab=f7d94468
+-/
 theorem sum_transversalCellTuples_eq_quotientInducedCount {N : FiniteRelModel L V}
     (h : N.IsIndivisibleFor Q) (P : FiniteRelModel L (Fin k)) :
     ∑ T ∈ transversalCellTuples Q, inducedEmbeddingCountOn P N T = quotientInducedCount P N Q := by
@@ -538,7 +593,9 @@ theorem sum_transversalCellTuples_eq_quotientInducedCount {N : FiniteRelModel L 
       ⟨fun i => (C i).2, fun i j hij => (Finset.mem_filter.mp hC).2 (Subtype.ext hij)⟩, rfl⟩
 
 /-- The quotient-weighted count never exceeds the `s`-restricted count of an indivisible
-model: the nontransversal part is nonnegative.-/
+model: the nontransversal part is nonnegative.
+@isnad1 id=le.1h7v.s6.4690de808788 from=translated src=- shape=a3d5abbb vocab=3786b06f
+-/
 theorem FiniteRelModel.IsIndivisibleFor.quotientInducedCount_le {N : FiniteRelModel L V}
     (h : N.IsIndivisibleFor Q) (P : FiniteRelModel L (Fin k)) :
     quotientInducedCount P N Q ≤ inducedEmbeddingCountOn P N (fun _ : Fin k => s) := by
@@ -553,7 +610,9 @@ diagonal charge `(k.choose 2)·m·|s|^(k−1)`: the transversal part is exact
 by injective host tuples, with no exact formula attempted — route entirely through the diagonal
 gate `sum_nontransversalCellTuples_weight_le`. The only constant is the gate's. Stated in
 `s`-restricted units; the full-carrier form is
-`abs_inducedEmbeddingCount_sub_quotientInducedCount_le` at `s = univ`.-/
+`abs_inducedEmbeddingCount_sub_quotientInducedCount_le` at `s = univ`.
+@isnad1 id=le.2h8v.s7.3c6c2f808fbf from=translated src=- shape=4b13a09a vocab=b4ed973b
+-/
 theorem FiniteRelModel.IsIndivisibleFor.abs_inducedEmbeddingCountOn_sub_quotientInducedCount_le
     {N : FiniteRelModel L V} (h : N.IsIndivisibleFor Q) (P : FiniteRelModel L (Fin k)) {m : ℕ}
     (hm : ∀ C ∈ Q.parts, C.card ≤ m) :
@@ -567,7 +626,9 @@ theorem FiniteRelModel.IsIndivisibleFor.abs_inducedEmbeddingCountOn_sub_quotient
     fun T _ => inducedEmbeddingCountOn_le_cellTupleVolume P N T
 
 /-- **Quotient counting on the full carrier**: the `s = univ` specialization, with the diagonal
-charge in units of `|V|^(k−1)`.-/
+charge in units of `|V|^(k−1)`.
+@isnad1 id=le.2h7v.s7.f430f2586b13 from=translated src=- shape=7960bf57 vocab=243f1fe6
+-/
 theorem FiniteRelModel.IsIndivisibleFor.abs_inducedEmbeddingCount_sub_quotientInducedCount_le
     [Fintype V] {N : FiniteRelModel L V} {Q : Finpartition (Finset.univ : Finset V)}
     (h : N.IsIndivisibleFor Q) (P : FiniteRelModel L (Fin k)) {m : ℕ}
@@ -582,7 +643,9 @@ end QuotientCounting
 /-! ### The `Fin 3` instance: collision characterization and the `3·m·|s|²` bound -/
 
 /-- A `Fin 3`-indexed triple fails to be injective exactly when two coordinates collide. The
-`k = 3` instance of `not_injective_iff_exists_lt_eq`, with the three `i < j` pairs enumerated.-/
+`k = 3` instance of `not_injective_iff_exists_lt_eq`, with the three `i < j` pairs enumerated.
+@isnad1 id=iff.0h2v.s7.414b52c26929 from=translated src=- shape=1ebd8933 vocab=658a211e
+-/
 theorem not_injective_fin_three {α : Type*} {T : Fin 3 → α} :
     ¬ Function.Injective T ↔ T 0 = T 1 ∨ T 0 = T 2 ∨ T 1 = T 2 := by
   rw [not_injective_iff_exists_lt_eq]
@@ -604,7 +667,9 @@ one-sided. Consumers supply their own domination lemma: `inducedEmbeddingCountOn
 `inducedEmbeddingCountOn_le_cellTripleVolume` (see
 `sum_nontransversal_inducedEmbeddingCountOn_le`), and any *predicted*/expected mass qualifies as
 soon as it is shown to be at most the box volume — which is immediate for a volume times a product
-of densities in `[0, 1]`.-/
+of densities in `[0, 1]`.
+@isnad1 id=le.2h5v.s7.72f9be618c32 from=translated src=- shape=de61c34d vocab=cb73ba34
+-/
 theorem sum_nontransversal_weight_le {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m)
     (weight : (Fin 3 → Finset V) → ℝ)
     (hw : ∀ T ∈ nontransversalCellTriples Q, weight T ≤ cellTripleVolume T) :
@@ -617,7 +682,9 @@ theorem sum_nontransversal_weight_le {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card �
 
 /-- **Derived diagonal bound.** When every cell of `Q` has cardinality at most `m`, the
 nontransversal induced count is at most `3·m·|s|²`. One specialization of
-`sum_nontransversal_weight_le`.-/
+`sum_nontransversal_weight_le`.
+@isnad1 id=le.1h7v.s7.d54d434d61cf from=translated src=- shape=2959812a vocab=17a82f2b
+-/
 theorem sum_nontransversal_inducedEmbeddingCountOn_le {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m) :
     ((∑ T ∈ nontransversalCellTriples Q, inducedEmbeddingCountOn P M T : ℕ) : ℝ)
       ≤ 3 * m * (s.card : ℝ) ^ 2 := by
@@ -632,7 +699,9 @@ dominated by the volume, hence obeys the same `3·m·|s|²` charge.
 This is the second specialization of `sum_nontransversal_weight_le`, and it settles the predicted
 side generically: no counting definition, palette, or route structure is needed, only that the
 density factor is at most one. Nonnegativity of the factor is not required, the bound being
-one-sided.-/
+one-sided.
+@isnad1 id=le.2h5v.s7.d8ac3c7f0097 from=translated src=- shape=722a2b4e vocab=cb73ba34
+-/
 theorem sum_nontransversal_volume_mul_le {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m)
     (factor : (Fin 3 → Finset V) → ℝ) (hf : ∀ T, factor T ≤ 1) :
     ∑ T ∈ nontransversalCellTriples Q, cellTripleVolume T * factor T
@@ -648,7 +717,9 @@ theorem sum_nontransversal_volume_mul_le {m : ℕ} (hm : ∀ C ∈ Q.parts, C.ca
 /-- **Global strong three-vertex counting.** Adding the diagonal charge to the summit: for a
 binary-palette strong witness whose coarse cells all have cardinality at most `m`, the actual
 number of induced pattern embeddings on the whole carrier (`inducedEmbeddingCountOn` over the full
-box `fun _ => s`) is within `(10·τ + 3·η + 3·δ/η²)·|s|³ + 3·m·|s|²` of the coarse step estimate.-/
+box `fun _ => s`) is within `(10·τ + 3·η + 3·δ/η²)·|s|³ + 3·m·|s|²` of the coarse step estimate.
+@isnad1 id=le.4h11v.s8.797e398abda5 from=translated src=- shape=fb0d39af vocab=e06f7639
+-/
 theorem BinaryPaletteStrongWitness.abs_inducedEmbeddingCountOn_sub_coarseInducedEstimate_le
     [AtMostBinary L] {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (P : FiniteRelModel L (Fin 3))
@@ -679,7 +750,9 @@ theorem BinaryPaletteStrongWitness.abs_inducedEmbeddingCountOn_sub_coarseInduced
 /-- **Equipartition specialization.** When the witness's starting partition `P₀` is an
 equipartition, its `|s| / #parts + 1` part-size bound is inherited by the coarse partition
 (`part_card_le_of_refines`), supplying the diagonal charge without a separate cell-size
-hypothesis.-/
+hypothesis.
+@isnad1 id=le.4h10v.s8.b24270b483f7 from=translated src=- shape=6c7493e8 vocab=7147f7d2
+-/
 theorem BinaryPaletteStrongWitness.abs_inducedEmbeddingCountOn_sub_coarseInducedEstimate_le_of_equipartition
     [AtMostBinary L] {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
     (w : BinaryPaletteStrongWitness M E δ P₀) (hP₀ : P₀.IsEquipartition)

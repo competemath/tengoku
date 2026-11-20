@@ -42,7 +42,9 @@ variable {A : Finset X} {B : Finset Y}
 /-! ### Decomposition over disjoint covers -/
 
 /-- **The exact sum decomposition**, over arbitrary pairwise-disjoint finite covers of the
-two carriers. No weight hypotheses: this is an identity between sums.-/
+two carriers. No weight hypotheses: this is an identity between sums.
+@isnad1 id=eq.2h7v.s7.06da085821b6 from=translated src=- shape=39baa9b6 vocab=5006126e
+-/
 theorem rectSum_biUnion [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) {sA : Finset (Finset X)} {sB : Finset (Finset Y)}
     (hA : (sA : Set (Finset X)).PairwiseDisjoint id)
@@ -62,14 +64,18 @@ theorem rectSum_biUnion [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
         rw [Finset.sum_product]
         exact Finset.sum_congr rfl fun C _ => Finset.sum_congr rfl fun D _ => rfl
 
-/-- The mass of a carrier decomposes along a partition of it.-/
+/-- The mass of a carrier decomposes along a partition of it.
+@isnad1 id=eq.0h4v.s5.f19655ab5e32 from=translated src=- shape=ad37a46b vocab=5dfbf58e
+-/
 theorem finsetMass_finpartition [DecidableEq X] (w : X → ℝ) (P : Finpartition A) :
     finsetMass w A = ∑ C ∈ P.parts, finsetMass w C := by
   have h : finsetMass w (P.parts.biUnion id) = ∑ C ∈ P.parts, finsetMass w (id C) :=
     finsetMass_biUnion w P.supIndep.pairwiseDisjoint
   rwa [P.biUnion_parts] at h
 
-/-- **The Finpartition wrapper**: independent partitions of the two carriers.-/
+/-- **The Finpartition wrapper**: independent partitions of the two carriers.
+@isnad1 id=eq.0h9v.s7.8e4a1f8b705a from=translated src=- shape=b4bbd6b7 vocab=88f52936
+-/
 theorem rectSum_finpartition [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) :
     rectSum f wX wY A B
@@ -84,7 +90,9 @@ off rather than assumed away.
 
 Nonnegativity is load-bearing: with signed weights a rectangle can have zero total mass and a
 nonzero sum, and the identity fails. With nonnegative weights, zero mass forces every weight
-to vanish, so both sides are `0`.-/
+to vanish, so both sides are `0`.
+@isnad1 id=eq.2h7v.s6.c42c8832e847 from=translated src=- shape=e87aa806 vocab=426eeded
+-/
 theorem rectAverage_mul_mass (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     rectAverage f wX wY A B * (finsetMass wX A * finsetMass wY B) = rectSum f wX wY A B := by
   rcases eq_or_ne (finsetMass wX A * finsetMass wY B) 0 with h | h
@@ -103,7 +111,9 @@ theorem rectAverage_mul_mass (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B,
 
 /-- **The denominator-free average decomposition.** Correct on empty and zero-mass
 rectangles, which is why it is the primitive form rather than the weighted-average
-identity.-/
+identity.
+@isnad1 id=eq.2h9v.s7.2d22975fbaa4 from=translated src=- shape=a7d473f5 vocab=65dae8c2
+-/
 theorem rectAverage_mul_mass_decomposition [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -130,7 +140,9 @@ noncomputable def steppedRectSum [DecidableEq X] [DecidableEq Y] (f : RectKernel
     rectAverage f wX wY C D * (finsetMass wX (S ∩ C) * finsetMass wY (T ∩ D))
 
 /-- **Left and right stepification commute**: the two coordinate summations are independent,
-so either order gives the same predicted sum.-/
+so either order gives the same predicted sum.
+@isnad1 id=eq.0h11v.s7.c1910fff34dc from=translated src=- shape=f6f3b844 vocab=4f646ff1
+-/
 theorem steppedRectSum_comm [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (S : Finset X) (T : Finset Y) :
@@ -141,7 +153,9 @@ theorem steppedRectSum_comm [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
 
 /-- **Consistency on the full rectangle**: at `S = A`, `T = B` the prediction is exact. This
 is the statement that stepping loses nothing at the resolution of the partitions
-themselves.-/
+themselves.
+@isnad1 id=eq.2h9v.s7.a9f26d6d417f from=translated src=- shape=0b68c3d0 vocab=ae13abc8
+-/
 theorem steppedRectSum_self [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -154,7 +168,9 @@ theorem steppedRectSum_self [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
 
 /-- **Independence of the two coordinates**: the predicted sum depends on the left partition
 only through the left cell masses, so replacing the right partition leaves the left-hand
-data untouched — and conversely, by `steppedRectSum_comm`.-/
+data untouched — and conversely, by `steppedRectSum_comm`.
+@isnad1 id=eq.1h12v.s6.8860eda67d39 from=translated src=- shape=b7db72be vocab=4d108e31
+-/
 theorem steppedRectSum_congr_left [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) {P P' : Finpartition A} (_Q : Finpartition B)
     (S : Finset X) (T : Finset Y) (h : P.parts = P'.parts) :
@@ -163,7 +179,9 @@ theorem steppedRectSum_congr_left [DecidableEq X] [DecidableEq Y] (f : RectKerne
 
 /-! ### Transpose transport -/
 
-/-- `op` exchanges the two sides of the predicted sum together with the two partitions.-/
+/-- `op` exchanges the two sides of the predicted sum together with the two partitions.
+@isnad1 id=eq.0h11v.s6.cc0906ee6a00 from=translated src=- shape=47bbe731 vocab=084b0cf9
+-/
 theorem steppedRectSum_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (S : Finset X) (T : Finset Y) :
@@ -173,7 +191,9 @@ theorem steppedRectSum_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     rw [rectAverage_op]
     ring
 
-/-- `op` exchanges the two sides of the decomposition.-/
+/-- `op` exchanges the two sides of the decomposition.
+@isnad1 id=eq.0h9v.s7.24203f58bbd3 from=translated src=- shape=3ddbb292 vocab=1260d2c4
+-/
 theorem rectSum_finpartition_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) :
     rectSum f.op wY wX B A = ∑ p ∈ P.parts ×ˢ Q.parts, rectSum f wX wY p.1 p.2 := by

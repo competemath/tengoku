@@ -62,6 +62,9 @@ def IsFamilyBadPair (Rk : Fin K → V → V → Prop) [∀ k, DecidableRel (Rk k
   ∃ k, IsBadPair (Rk k) ρ C D
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=isunifor.2h7v.s5.bea42a87c9a5 from=translated src=- shape=a293a296 vocab=18f8f88c
+-/
 theorem isUniformPair_of_not_isFamilyBadPair {C D : Finset V} (hCD : C ≠ D)
     (h : ¬ IsFamilyBadPair Rk ρ C D) (k : Fin K) : IsUniformPair (Rk k) C D ρ := by
   by_contra hcon
@@ -69,12 +72,16 @@ theorem isUniformPair_of_not_isFamilyBadPair {C D : Finset V} (hCD : C ≠ D)
 
 /-! ### Step 1: weighted mass to unweighted count -/
 
-/-- Cells of an equipartition are sandwiched: `m ≤ |C| ≤ m + 1`.-/
+/-- Cells of an equipartition are sandwiched: `m ≤ |C| ≤ m + 1`.
+@isnad1 id=and.2h4v.s6.bd4203f57221 from=translated src=- shape=af9f397a vocab=edf2b6f3
+-/
 theorem card_part_bounds (hP : P.IsEquipartition) {C : Finset V} (hC : C ∈ P.parts) :
     A.card / P.parts.card ≤ C.card ∧ C.card ≤ A.card / P.parts.card + 1 :=
   ⟨hP.average_le_card_part hC, hP.card_part_le_average_add_one hC⟩
 
-/-- The host is at most `2·n·m`: `n` cells of size at most `m + 1 ≤ 2m`.-/
+/-- The host is at most `2·n·m`: `n` cells of size at most `m + 1 ≤ 2m`.
+@isnad1 id=le.2h3v.s7.0fbb8415bb86 from=translated src=- shape=d85e1d58 vocab=8c0ac804
+-/
 theorem card_le_two_mul_card_parts_mul (hP : P.IsEquipartition)
     (hm : 0 < A.card / P.parts.card) :
     (A.card : ℝ) ≤ 2 * (P.parts.card : ℝ) * ((A.card / P.parts.card : ℕ) : ℝ) := by
@@ -91,7 +98,9 @@ theorem card_le_two_mul_card_parts_mul (hP : P.IsEquipartition)
 
 /-- **The weighted-to-unweighted bad-pair bound** (the conversion gate G-S1 rules out
 without equal sizes). Any set of ordered bad pairs of cells has at most `4ρn²` elements:
-each contributes at least `m²` to the bad mass, which is at most `ρ|A|² ≤ 4ρn²m²`.-/
+each contributes at least `m²` to the bad mass, which is at most `ρ|A|² ≤ 4ρn²m²`.
+@isnad1 id=le.5h8v.s8.18588b1429ae from=translated src=- shape=5ad5f5ef vocab=1695a77e
+-/
 theorem card_le_of_forall_isBadPair (hP : P.IsEquipartition)
     (hm : 0 < A.card / P.parts.card) (k : Fin K) (hreg : IsRegularPartition (Rk k) ρ P)
     (F : Finset (Finset V × Finset V)) (hFsub : F ⊆ P.parts ×ˢ P.parts)
@@ -149,7 +158,9 @@ theorem card_le_of_forall_isBadPair (hP : P.IsEquipartition)
 
 open scoped Classical in
 /-- **The summed symmetrized bad degree**: both orientations and all `K` relations, so the
-per-relation count `4ρn²` becomes `8Kρn²`.-/
+per-relation count `4ρn²` becomes `8Kρn²`.
+@isnad1 id=le.3h6v.s7.62d8c665ac96 from=translated src=- shape=3e46bd9d vocab=ef9e8cf6
+-/
 theorem sum_card_badNbhd_le (hP : P.IsEquipartition) (hm : 0 < A.card / P.parts.card)
     (hreg : IsFamilyRegular Rk ρ P) :
     ((∑ C ∈ P.parts, (badNbhd (IsFamilyBadPair Rk ρ) P.parts C).card : ℕ) : ℝ)
@@ -247,7 +258,9 @@ family-bad.
 
 The constant `64(K+1)t` is DERIVED, not posited: it is exactly what makes
 `16Kρn ≤ n/(4t) ≤ n/(2t)`, and `4t ≤ n` is what makes the natural-number division
-`n/(2t)` lose at most half.-/
+`n/(2t)` lose at most half.
+@isnad1 id=ex.6h7v.s8.cade36c35b02 from=translated src=- shape=64d628a5 vocab=c19f87af
+-/
 theorem exists_clean_cells (hP : P.IsEquipartition) (hm : 0 < A.card / P.parts.card)
     (hreg : IsFamilyRegular Rk ρ P) {t : ℕ} (ht : 0 < t)
     (hρK : ρ ≤ 1 / (64 * ((K : ℝ) + 1) * (t : ℝ))) (hl : 4 * t ≤ P.parts.card) :
@@ -319,7 +332,9 @@ relation of the family, with at least `4t` cells and a positive common size `m`,
 The trimming is what makes the sizes exactly equal; the retention is at least `1/2`
 because `|C| ≤ m + 1 ≤ 2m`, and `IsUniformPair.slice` at that retention costs exactly the
 factor `2` in the tolerance. No schedule constant appears: `ρ`, `t`, and the part-count
-requirement are hypotheses.-/
+requirement are hypotheses.
+@isnad1 id=ex.9h8v.s8.0da7fce23bce from=translated src=- shape=a8b271db vocab=4e2a5bf9
+-/
 theorem exists_pieceFamily_of_familyRegular (hP : P.IsEquipartition)
     (hm : 0 < A.card / P.parts.card) (hreg : IsFamilyRegular Rk ρ P)
     {t : ℕ} (ht : 0 < t) (hρ0 : 0 < ρ) (hρhalf : ρ ≤ 1 / 2) (hρτ : 2 * ρ ≤ τ)

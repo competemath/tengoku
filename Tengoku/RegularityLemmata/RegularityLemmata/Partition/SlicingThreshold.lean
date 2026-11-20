@@ -48,7 +48,9 @@ section Facts
 
 variable {q c n : ℕ} {μ ν : ℝ}
 
-/-- The key mass fact at the threshold: `16 P + 16 ≤ ν μ n`.-/
+/-- The key mass fact at the threshold: `16 P + 16 ≤ ν μ n`.
+@isnad1 id=le.3h4v.s6.ce9bd780c0cf from=translated src=- shape=a7812dd9 vocab=3dc747f9
+-/
 theorem sliceThreshold_key (hμ : 0 < μ) (hν : 0 < ν)
     (hn : sliceThreshold q μ ν ≤ n) :
     16 * (polyGeometricThreshold (sliceRaceCoeff q μ ν) 0 (ν / 4) : ℝ) + 16 ≤ ν * μ * n := by
@@ -61,11 +63,16 @@ theorem sliceThreshold_key (hμ : 0 < μ) (hν : 0 < ν)
 
   rw [div_mul_eq_mul_div, div_le_iff₀ hνμ] at h1
   nlinarith
+/--
+@isnad1 id=le.1h2v.s5.f16226883fde from=translated src=- shape=1dcf39d4 vocab=59f17d45
+-/
 theorem sliceBlockSize_le (hμ : 0 ≤ μ) : (sliceBlockSize μ n : ℝ) ≤ μ * n :=
   Nat.floor_le (by positivity)
 
 /-- Under the threshold hypotheses, the block size clears `16`; in particular it is
-positive.-/
+positive.
+@isnad1 id=le.4h4v.s6.c0fd30380d69 from=translated src=- shape=cb98fde1 vocab=1ae78d09
+-/
 theorem sixteen_le_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) : 16 ≤ sliceBlockSize μ n := by
   have hkey := sliceThreshold_key (q := q) hμ hν hn
@@ -74,7 +81,9 @@ theorem sixteen_le_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1
   have h16 : (16 : ℝ) ≤ μ * n := by nlinarith
   exact Nat.le_floor (by exact_mod_cast h16)
 
-/-- Half the real mass survives the floor once the block is large.-/
+/-- Half the real mass survives the floor once the block is large.
+@isnad1 id=le.4h4v.s6.69a7a7322f9e from=translated src=- shape=e877d43a vocab=df266d5c
+-/
 theorem sliceBlockSize_ge_half (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) : μ * n / 2 ≤ (sliceBlockSize μ n : ℝ) := by
   have h16 : (16 : ℕ) ≤ sliceBlockSize μ n := sixteen_le_sliceBlockSize hμ hν hν2 hn
@@ -82,7 +91,9 @@ theorem sliceBlockSize_ge_half (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 
   have h16R : (16 : ℝ) ≤ (sliceBlockSize μ n : ℝ) := by exact_mod_cast h16
   linarith
 
-/-- The slack mass fact: `8 P + 8 ≤ ν · sliceBlockSize`.-/
+/-- The slack mass fact: `8 P + 8 ≤ ν · sliceBlockSize`.
+@isnad1 id=le.4h4v.s7.0cf4b49f04c2 from=translated src=- shape=202d8d82 vocab=4224c51b
+-/
 theorem sliceSlack_mass (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) :
     8 * (polyGeometricThreshold (sliceRaceCoeff q μ ν) 0 (ν / 4) : ℝ) + 8
@@ -91,7 +102,9 @@ theorem sliceSlack_mass (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
   have hhalf := sliceBlockSize_ge_half (q := q) hμ hν hν2 hn
   nlinarith
 
-/-- In particular `8 ≤ ν · sliceBlockSize` — the largeness the chunk absorption consumes.-/
+/-- In particular `8 ≤ ν · sliceBlockSize` — the largeness the chunk absorption consumes.
+@isnad1 id=le.4h4v.s6.b765742254d0 from=translated src=- shape=fed2075a vocab=df266d5c
+-/
 theorem eight_le_nu_mul_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) : (8 : ℝ) ≤ ν * sliceBlockSize μ n := by
   have h := sliceSlack_mass (q := q) hμ hν hν2 hn
@@ -99,9 +112,15 @@ theorem eight_le_nu_mul_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν 
     Nat.cast_nonneg _
   linarith
 
+/--
+@isnad1 id=le.1h3v.s5.2f450e0fb68f from=translated src=- shape=eb890455 vocab=8d8c4095
+-/
 theorem sliceSlack_le (hν : 0 ≤ ν) : (sliceSlack μ ν n : ℝ) ≤ ν * sliceBlockSize μ n :=
   Nat.floor_le (by positivity)
 
+/--
+@isnad1 id=lt.4h4v.s6.c9d4433e2965 from=translated src=- shape=0d66ea1b vocab=292d777d
+-/
 theorem sliceSlack_lt_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) : sliceSlack μ ν n < sliceBlockSize μ n := by
   have h16 := sixteen_le_sliceBlockSize (q := q) hμ hν hν2 hn
@@ -114,7 +133,9 @@ theorem sliceSlack_lt_sliceBlockSize (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν �
     linarith
   exact_mod_cast h2
 
-/-- Piece-to-block count is bounded by the constant `⌈2/μ⌉`.-/
+/-- Piece-to-block count is bounded by the constant `⌈2/μ⌉`.
+@isnad1 id=le.5h5v.s6.5b12f4c5ccf0 from=translated src=- shape=15f6142c vocab=dfdbf051
+-/
 theorem sliceCount_le_ceil (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) (hc : c ≤ n) :
     c / sliceBlockSize μ n ≤ ⌈2 / μ⌉₊ := by
@@ -137,7 +158,9 @@ theorem sliceCount_le_ceil (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
   exact_mod_cast h3
 
 /-- The threshold is monotone in the family size, so one largeness hypothesis serves every
-smaller family.-/
+smaller family.
+@isnad1 id=le.4h4v.s6.63c0903a506f from=translated src=- shape=fea16ace vocab=c2db7ef2
+-/
 theorem sliceThreshold_mono_q {q q' : ℕ} {μ ν : ℝ} (hq : q ≤ q')
     (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2) :
     sliceThreshold q μ ν ≤ sliceThreshold q' μ ν := by
@@ -155,7 +178,9 @@ theorem sliceThreshold_mono_q {q q' : ℕ} {μ ν : ℝ} (hq : q ≤ q')
   have hcoeff : (0 : ℝ) ≤ 2 / (ν * μ) := by positivity
   nlinarith
 
-/-- The threshold is positive, so a host beyond it is nonempty.-/
+/-- The threshold is positive, so a host beyond it is nonempty.
+@isnad1 id=lt.2h3v.s5.7065a6e64d2c from=translated src=- shape=2775ffb6 vocab=1ce1b73e
+-/
 theorem sliceThreshold_pos {q : ℕ} {μ ν : ℝ} (hμ : 0 < μ) (hν : 0 < ν) :
     0 < sliceThreshold q μ ν := by
   refine Nat.ceil_pos.mpr ?_
@@ -191,7 +216,9 @@ private theorem event_mul_pow_lt_const (K E b B r : ℕ) {x : ℝ} (hx : 0 < x) 
 /-- **The constant-count race**: beyond `sliceThreshold`, any piece of the host satisfies
 the ratio hypothesis of `exists_average_slicing` at block size `sliceBlockSize`, slack
 `sliceSlack`, and `q` functions. The event count is constant (`sliceRaceCoeff`), so the
-polynomial degree in the geometric threshold is `0`.-/
+polynomial degree in the geometric threshold is `0`.
+@isnad1 id=lt.5h5v.s7.05eb63a61783 from=translated src=- shape=bc6dfdd7 vocab=4b2e16fe
+-/
 theorem slice_sampling_race (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) (hc : c ≤ n) :
     (c / sliceBlockSize μ n) * (2 * (q * ⌈1 / ν⌉₊))
@@ -259,6 +286,9 @@ section SymFacts
 
 variable {q c n : ℕ} {μ ν : ℝ}
 
+/--
+@isnad1 id=le.3h3v.s6.f25defe74feb from=translated src=- shape=0cf2719a vocab=4c52028e
+-/
 theorem sliceThresholdLinear_key (hμ : 0 < μ) (hν : 0 < ν)
     (hn : sliceThresholdLinear μ ν ≤ n) :
     16 * (polyGeometricThreshold (sliceRaceCoeffLinear μ ν) 1 (ν / 4) : ℝ) + 16 ≤ ν * μ * n := by
@@ -272,6 +302,9 @@ theorem sliceThresholdLinear_key (hμ : 0 < μ) (hν : 0 < ν)
   rw [div_mul_eq_mul_div, div_le_iff₀ hνμ] at h1
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s5.a5432f2fa982 from=translated src=- shape=e8b7e832 vocab=4e0e7e5b
+-/
 theorem sliceThresholdLinear_pos (hμ : 0 < μ) (hν : 0 < ν) :
     0 < sliceThresholdLinear μ ν := by
   refine Nat.ceil_pos.mpr ?_
@@ -280,6 +313,9 @@ theorem sliceThresholdLinear_pos (hμ : 0 < μ) (hν : 0 < ν) :
   have h1 : (0 : ℝ) < 2 / (ν * μ) := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.4h3v.s6.6a9723ec4378 from=translated src=- shape=c3e2205a vocab=105f0245
+-/
 theorem sixteen_le_sliceBlockSize_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) : 16 ≤ sliceBlockSize μ n := by
   have hkey := sliceThresholdLinear_key hμ hν hn
@@ -288,6 +324,9 @@ theorem sixteen_le_sliceBlockSize_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : �
   have h16 : (16 : ℝ) ≤ μ * n := by nlinarith
   exact Nat.le_floor (by exact_mod_cast h16)
 
+/--
+@isnad1 id=le.4h3v.s6.8fa70730f1a9 from=translated src=- shape=fc927f94 vocab=1c4f9929
+-/
 theorem sliceBlockSize_ge_half_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) : μ * n / 2 ≤ (sliceBlockSize μ n : ℝ) := by
   have h16 : (16 : ℕ) ≤ sliceBlockSize μ n := sixteen_le_sliceBlockSize_linear hμ hν hν2 hn
@@ -295,6 +334,9 @@ theorem sliceBlockSize_ge_half_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν �
   have h16R : (16 : ℝ) ≤ (sliceBlockSize μ n : ℝ) := by exact_mod_cast h16
   linarith
 
+/--
+@isnad1 id=le.4h3v.s7.44ee3842429e from=translated src=- shape=0cb71103 vocab=3daeb396
+-/
 theorem sliceSlack_mass_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) :
     8 * (polyGeometricThreshold (sliceRaceCoeffLinear μ ν) 1 (ν / 4) : ℝ) + 8
@@ -303,6 +345,9 @@ theorem sliceSlack_mass_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 
   have hhalf := sliceBlockSize_ge_half_linear hμ hν hν2 hn
   nlinarith
 
+/--
+@isnad1 id=le.4h3v.s6.04a3eda83f9f from=translated src=- shape=66d8687f vocab=1c4f9929
+-/
 theorem eight_le_nu_mul_sliceBlockSize_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) : (8 : ℝ) ≤ ν * sliceBlockSize μ n := by
   have h := sliceSlack_mass_linear hμ hν hν2 hn
@@ -310,6 +355,9 @@ theorem eight_le_nu_mul_sliceBlockSize_linear (hμ : 0 < μ) (hν : 0 < ν) (hν
     Nat.cast_nonneg _
   linarith
 
+/--
+@isnad1 id=le.5h4v.s6.92bc6fa11f2e from=translated src=- shape=8130bb25 vocab=9af24b17
+-/
 theorem sliceCount_le_ceil_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) (hc : c ≤ n) :
     c / sliceBlockSize μ n ≤ ⌈2 / μ⌉₊ := by
@@ -358,7 +406,9 @@ private theorem event_mul_pow_lt_linear (K E b B r : ℕ) {x : ℝ} (hx : 0 < x)
 /-- **The linear-count race**: with the family size bounded by the host itself, the ratio
 hypothesis of `exists_average_slicing` still holds beyond `sliceThresholdLinear`, because
 the exponent grows linearly in the host while the event count is linear too — a degree-`1`
-geometric race.-/
+geometric race.
+@isnad1 id=lt.6h5v.s7.ff84596f22c9 from=translated src=- shape=378f56b3 vocab=07dcbf8c
+-/
 theorem slice_sampling_race_linear (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThresholdLinear μ ν ≤ n) (hc : c ≤ n) (hq : q ≤ n) :
     (c / sliceBlockSize μ n) * (2 * (q * ⌈1 / ν⌉₊))
@@ -444,7 +494,9 @@ end SymFacts
 
 /-- **Joint monotonicity of the constant-count threshold**: a larger family, smaller block
 fraction, or smaller slack all raise it. Stated jointly, over the positive domain with
-`ν ≤ 1/2`, so consumers compose one lemma.-/
+`ν ≤ 1/2`, so consumers compose one lemma.
+@isnad1 id=le.6h6v.s6.83f90c46dca6 from=translated src=- shape=28533059 vocab=c2db7ef2
+-/
 theorem sliceThreshold_le_sliceThreshold {q q' : ℕ} {μ μ' ν ν' : ℝ} (hq : q ≤ q')
     (hμ' : 0 < μ') (hμle : μ' ≤ μ) (hν' : 0 < ν') (hνle : ν' ≤ ν) (hν2 : ν ≤ 1 / 2) :
     sliceThreshold q μ ν ≤ sliceThreshold q' μ' ν' := by
@@ -476,7 +528,9 @@ theorem sliceThreshold_le_sliceThreshold {q q' : ℕ} {μ μ' ν ν' : ℝ} (hq 
   nlinarith
 
 /-- **Joint monotonicity of the linear-count threshold**: a smaller block fraction or
-smaller slack raises it.-/
+smaller slack raises it.
+@isnad1 id=le.5h4v.s6.6848470e4c29 from=translated src=- shape=d3312703 vocab=f8d853e2
+-/
 theorem sliceThresholdLinear_le_sliceThresholdLinear {μ μ' ν ν' : ℝ}
     (hμ' : 0 < μ') (hμle : μ' ≤ μ) (hν' : 0 < ν') (hνle : ν' ≤ ν) (hν2 : ν ≤ 1 / 2) :
     sliceThresholdLinear μ ν ≤ sliceThresholdLinear μ' ν' := by
@@ -534,7 +588,9 @@ inside `A`: `sliceBlockSize μ n = ⌊μ·n⌋₊` can exceed `A.card` (for a sm
 host, or for `μ > 1`), and then `A.card / sliceBlockSize μ n = 0`, the certificate has no blocks,
 its leftover is all of `A`, and the density conclusion is vacuous. The specialization
 `exists_balanced_slicing_of_threshold_self` at `n = A.card` and `μ ≤ 1` returns at least one
-block.-/
+block.
+@isnad1 id=ex.7h7v.s8.981f932e751e from=translated src=- shape=28c16881 vocab=617b870e
+-/
 theorem exists_balanced_slicing_of_threshold [DecidableEq α] (A : Finset α)
     (F : Finset (Finset α)) {q n : ℕ} {μ ν : ℝ} (hμ : 0 < μ) (hν : 0 < ν) (hν2 : ν ≤ 1 / 2)
     (hn : sliceThreshold q μ ν ≤ n) (hAn : A.card ≤ n) (hA : A.Nonempty) (hF : F.card ≤ q) :
@@ -563,7 +619,9 @@ theorem exists_balanced_slicing_of_threshold [DecidableEq α] (A : Finset α)
 /-- **The intended sampling use, nonvacuous.** At `n = A.card` and `μ ≤ 1` the block size
 `⌊μ·|A|⌋₊` fits inside `A`, so at least one block is returned: the block count
 `A.card / sliceBlockSize μ A.card` is positive. Same conclusion as
-`exists_balanced_slicing_of_threshold` otherwise; the threshold is now a condition on `A.card`.-/
+`exists_balanced_slicing_of_threshold` otherwise; the threshold is now a condition on `A.card`.
+@isnad1 id=ex.6h6v.s8.99b8e026354f from=translated src=- shape=b6060445 vocab=6134c4d3
+-/
 theorem exists_balanced_slicing_of_threshold_self [DecidableEq α] (A : Finset α)
     (F : Finset (Finset α)) {q : ℕ} {μ ν : ℝ} (hμ : 0 < μ) (hμ1 : μ ≤ 1) (hν : 0 < ν)
     (hν2 : ν ≤ 1 / 2) (hn : sliceThreshold q μ ν ≤ A.card) (hF : F.card ≤ q) :

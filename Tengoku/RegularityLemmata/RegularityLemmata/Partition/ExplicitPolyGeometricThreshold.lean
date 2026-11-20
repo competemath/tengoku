@@ -28,7 +28,9 @@ namespace RegularityLemmata
 open Real
 
 /-- A factorial estimate gives an explicit threshold where a polynomial is beaten by a
-geometric factor.-/
+geometric factor.
+@isnad1 id=lt.3h4v.s7.0df81360d718 from=translated src=- shape=90030828 vocab=fa4bc454
+-/
 theorem nat_mul_pow_mul_one_sub_pow_lt_one
     (K d r : ℕ) (x : ℝ) (hx : 0 < x) (hx1 : x ≤ 1)
     (hr : (K : ℝ) * (Nat.factorial (d + 1) : ℝ) < x ^ (d + 1) * r) :
@@ -85,7 +87,9 @@ noncomputable def polyGeometricThreshold (K d : ℕ) (x : ℝ) : ℕ :=
   ⌊(K : ℝ) * (Nat.factorial (d + 1) : ℝ) / x ^ (d + 1)⌋₊ + 1
 
 /-- The threshold is monotone: larger coefficient, higher degree, or smaller (positive) ratio
-slack all raise it. Stated jointly so consumers compose one lemma.-/
+slack all raise it. Stated jointly so consumers compose one lemma.
+@isnad1 id=le.5h6v.s5.c583c623fa88 from=translated src=- shape=4196f968 vocab=d2395150
+-/
 theorem polyGeometricThreshold_le_polyGeometricThreshold {K₁ K₂ d₁ d₂ : ℕ} {x₁ x₂ : ℝ}
     (hK : K₁ ≤ K₂) (hd : d₁ ≤ d₂) (hx₂ : 0 < x₂) (hx : x₂ ≤ x₁) (hx₁ : x₁ ≤ 1) :
     polyGeometricThreshold K₁ d₁ x₁ ≤ polyGeometricThreshold K₂ d₂ x₂ := by
@@ -108,7 +112,9 @@ theorem polyGeometricThreshold_le_polyGeometricThreshold {K₁ K₂ d₁ d₂ : 
   exact Nat.add_le_add_right (Nat.floor_le_floor hdiv) 1
 
 /-- Beyond `polyGeometricThreshold K d x`, the polynomial-geometric expression is strictly
-below one.-/
+below one.
+@isnad1 id=lt.3h4v.s6.b2921141b152 from=translated src=- shape=bafadfa8 vocab=7e02a81e
+-/
 theorem polyGeometricThreshold_spec (K d : ℕ) (x : ℝ) (hx : 0 < x) (hx1 : x ≤ 1) :
     ∀ r ≥ polyGeometricThreshold K d x, (K : ℝ) * (r : ℝ) ^ d * (1 - x) ^ r < 1 := by
   intro r hr
@@ -125,7 +131,9 @@ theorem polyGeometricThreshold_spec (K d : ℕ) (x : ℝ) (hx : 0 < x) (hx1 : x 
   rw [div_lt_iff₀ hxpow] at hlt
   simpa [mul_assoc, mul_comm] using hlt
 
-/-- On `[4, ∞)`, the logarithm is bounded by twice the square root.-/
+/-- On `[4, ∞)`, the logarithm is bounded by twice the square root.
+@isnad1 id=le.1h1v.s5.2549890c2746 from=translated src=- shape=f2dbaddc vocab=2ffd54a2
+-/
 theorem log_le_two_sqrt {r : ℝ} (hr : 4 ≤ r) : Real.log r ≤ 2 * Real.sqrt r := by
   have hr0 : 0 ≤ r := by linarith
   have hsqrt2 : (2 : ℝ) ≤ Real.sqrt r := by
@@ -145,7 +153,9 @@ theorem log_le_two_sqrt {r : ℝ} (hr : 4 ≤ r) : Real.log r ≤ 2 * Real.sqrt 
     _ ≤ 2 * Real.sqrt r := by linarith
 
 /-- A log-sensitive explicit criterion. Unlike the factorial threshold, this charges only
-`log K` and `d * sqrt r`, the scale needed for comparison with the host floor.-/
+`log K` and `d * sqrt r`, the scale needed for comparison with the host floor.
+@isnad1 id=lt.6h4v.s7.1cb163c5cb42 from=translated src=- shape=9b058f5c vocab=cc4c4d6f
+-/
 theorem nat_mul_pow_mul_one_sub_pow_lt_one_of_log_bounds
     (K d r : ℕ) (x : ℝ) (hKpos : 0 < K) (hr4 : 4 ≤ r)
     (hx : 0 < x) (hx1 : x ≤ 1)
@@ -184,7 +194,9 @@ theorem nat_mul_pow_mul_one_sub_pow_lt_one_of_log_bounds
     _ = Real.exp (Real.log K + (d : ℝ) * Real.log r - x * r) := hrewrite
     _ < 1 := Real.exp_lt_one_iff.mpr harg
 
-/-- Division-free sampler form of the log-sensitive criterion.-/
+/-- Division-free sampler form of the log-sensitive criterion.
+@isnad1 id=lt.9h7v.s7.f8c14abbc3be from=translated src=- shape=3651adff vocab=bc69ca30
+-/
 theorem event_mul_pow_lt_of_log_bounds
     (K d r E b B : ℕ) (x : ℝ) (hKpos : 0 < K) (hr4 : 4 ≤ r)
     (hx : 0 < x) (hx1 : x ≤ 1)

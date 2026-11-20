@@ -114,7 +114,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L] {V : Type*} [DecidableEq
 
 /-- **The bridge to the pinned density form.** Since every cell is nonempty, the count form of
 the definition and `relativeEditDistance ≤ ε` are interchangeable, box by box. Both pinned
-spellings are therefore one rewrite apart.-/
+spellings are therefore one rewrite apart.
+@isnad1 id=iff.0h7v.s7.edf95038d1ef from=translated src=- shape=35f5c2ee vocab=02174bd7
+-/
 theorem cellwiseEditBound_iff_relative {M N : FiniteRelModel L V} {P : Finpartition s}
     {ε : ℝ} :
     CellwiseEditBound M N P ε ↔ ∀ (n : ℕ), 0 < n → ∀ (S : L.Relations n) (C : Fin n → P.parts),
@@ -132,20 +134,26 @@ Monotonicity in `ε` is genuinely generic — the box mass is a product of casts
 nonnegative — and so are symmetry and the triangle inequality, which come from
 `editDistance_comm` and `editDistance_triangle`. -/
 
-/-- The bound only weakens as the tolerance grows.-/
+/-- The bound only weakens as the tolerance grows.
+@isnad1 id=cellwise.2h8v.s6.cce8a727a70f from=translated src=- shape=e3fc130b vocab=8e0e74b6
+-/
 theorem CellwiseEditBound.mono {M N : FiniteRelModel L V} {P : Finpartition s} {ε ε' : ℝ}
     (h : CellwiseEditBound M N P ε) (hε : ε ≤ ε') : CellwiseEditBound M N P ε' := fun n hn S C ↦
   (h n hn S C).trans
     (mul_le_mul_of_nonneg_right hε (Finset.prod_nonneg fun _ _ ↦ Nat.cast_nonneg _))
 
-/-- Symmetry, from `editDistance_comm`.-/
+/-- Symmetry, from `editDistance_comm`.
+@isnad1 id=cellwise.1h7v.s5.af84d7b59478 from=translated src=- shape=78d6f9f4 vocab=2b40e2f8
+-/
 theorem CellwiseEditBound.symm {M N : FiniteRelModel L V} {P : Finpartition s} {ε : ℝ}
     (h : CellwiseEditBound M N P ε) : CellwiseEditBound N M P ε := by
   intro n hn S C
   rw [editDistance_comm]
   exact h n hn S C
 
-/-- The triangle inequality, at the summed tolerance, from `editDistance_triangle`.-/
+/-- The triangle inequality, at the summed tolerance, from `editDistance_triangle`.
+@isnad1 id=cellwise.2h9v.s6.959314751082 from=translated src=- shape=f164e4ee vocab=cfba1fa2
+-/
 theorem CellwiseEditBound.trans {M N N' : FiniteRelModel L V} {P : Finpartition s} {ε₁ ε₂ : ℝ}
     (h₁ : CellwiseEditBound M N P ε₁) (h₂ : CellwiseEditBound N N' P ε₂) :
     CellwiseEditBound M N' P (ε₁ + ε₂) := by
@@ -159,7 +167,9 @@ theorem CellwiseEditBound.trans {M N N' : FiniteRelModel L V} {P : Finpartition 
 
 /-- **Vacuity above `1`.** At tolerance `1` the budget is the whole box, so *any* two models are
 cellwise `1`-close. The predicate therefore carries information only below `1`, and — through
-`cellwiseEditBound_majorityRound_half` — the rounding witness already meets `1/2`.-/
+`cellwiseEditBound_majorityRound_half` — the rounding witness already meets `1/2`.
+@isnad1 id=cellwise.1h7v.s5.9fc2d8f99e27 from=translated src=- shape=ce6cc408 vocab=8e0e74b6
+-/
 theorem cellwiseEditBound_of_one_le (M N : FiniteRelModel L V) (P : Finpartition s) {ε : ℝ}
     (hε : 1 ≤ ε) : CellwiseEditBound M N P ε := by
   intro n hn S C
@@ -189,7 +199,9 @@ def FiniteRelModel.majorityRound {L : FirstOrder.Language} [FiniteRelational L] 
     decide ((Fintype.piFinset (fun i ↦ P.part (x i))).card
       ≤ 2 * tupleCount (M.Holds S) (fun i ↦ P.part (x i)))
 
-/-- The threshold, readable: no instance-irrelevance step is needed.-/
+/-- The threshold, readable: no instance-irrelevance step is needed.
+@isnad1 id=iff.0h8v.s7.1949fe0e8ed8 from=translated src=- shape=04cb59da vocab=7a449a26
+-/
 theorem majorityRound_holds_iff (M : FiniteRelModel L V) (P : Finpartition s) {n : ℕ}
     (S : L.Relations n) (x : Fin n → V) :
     (M.majorityRound P).Holds S x
@@ -198,7 +210,9 @@ theorem majorityRound_holds_iff (M : FiniteRelModel L V) (P : Finpartition s) {n
   decide_eq_true_iff
 
 /-- The rounded model is indivisible for `P`: its truth value is computed from the tuple of
-cells, so entrywise equal cells give equal values.-/
+cells, so entrywise equal cells give equal values.
+@isnad1 id=isindivi.0h5v.s5.55cd6b122c67 from=translated src=- shape=169dde4e vocab=5f3f5af3
+-/
 theorem majorityRound_isIndivisibleFor (M : FiniteRelModel L V) (P : Finpartition s) :
     (M.majorityRound P).IsIndivisibleFor P := by
   intro n S x y hx hy hpart
@@ -206,7 +220,9 @@ theorem majorityRound_isIndivisibleFor (M : FiniteRelModel L V) (P : Finpartitio
     show (fun i ↦ P.part (x i)) = (fun i ↦ P.part (y i)) from funext hpart]
 
 /-- Rounding is the identity at arity zero: the arity-zero box is a singleton, so the threshold
-reads `1 ≤ 2 * (1 or 0)`. Hence the nullary datum is preserved exactly.-/
+reads `1 ≤ 2 * (1 or 0)`. Hence the nullary datum is preserved exactly.
+@isnad1 id=nullaryc.0h5v.s5.572496195826 from=translated src=- shape=98707859 vocab=b114e870
+-/
 theorem nullaryCompatible_majorityRound (M : FiniteRelModel L V) (P : Finpartition s) :
     NullaryCompatible M (M.majorityRound P) := by
   intro S
@@ -239,7 +255,9 @@ which both the unconditional `1/2` bound and the `ε` bound follow in a few line
 edit count *equals* `min d (1 - d)` times the box mass, where `d` is the density of the symbol on
 that box. Hypothesis-free: nonemptiness of the cells is derived internally from
 `Finpartition.nonempty_of_mem_parts`. This is the canonical form; the `≤` version and both
-consequences are derived from it.-/
+consequences are derived from it.
+@isnad1 id=eq.0h8v.s8.1c508470649b from=translated src=- shape=1a0f7799 vocab=704b3972
+-/
 theorem editDistance_majorityRound_eq_min (M : FiniteRelModel L V) (P : Finpartition s) {n : ℕ}
     (S : L.Relations n) (C : Fin n → P.parts) :
     (editDistance (M.Holds S) ((M.majorityRound P).Holds S)
@@ -302,7 +320,9 @@ theorem editDistance_majorityRound_eq_min (M : FiniteRelModel L V) (P : Finparti
 /-! ### The two consequences of the box lemma -/
 
 /-- The inequality form of `editDistance_majorityRound_eq_min`, for consumers that only need a
-bound.-/
+bound.
+@isnad1 id=le.0h8v.s8.1c95e294c7d2 from=translated src=- shape=1a0f7799 vocab=f6f8f180
+-/
 theorem editDistance_majorityRound_le_min (M : FiniteRelModel L V) (P : Finpartition s) {n : ℕ}
     (S : L.Relations n) (C : Fin n → P.parts) :
     (editDistance (M.Holds S) ((M.majorityRound P).Holds S)
@@ -314,7 +334,9 @@ theorem editDistance_majorityRound_le_min (M : FiniteRelModel L V) (P : Finparti
 
 /-- **The unconditional half bound.** A density and its complement cannot both exceed `1/2`, so
 majority rounding is within `1/2` of `M` on every cell box, over every partition, with no
-homogeneity, extraction, or stability input.-/
+homogeneity, extraction, or stability input.
+@isnad1 id=cellwise.0h5v.s6.b3d92633998f from=translated src=- shape=9871b92c vocab=935c054d
+-/
 theorem cellwiseEditBound_majorityRound_half (M : FiniteRelModel L V) (P : Finpartition s) :
     CellwiseEditBound M (M.majorityRound P) P (1 / 2) := by
   intro n hn S C
@@ -325,7 +347,9 @@ theorem cellwiseEditBound_majorityRound_half (M : FiniteRelModel L V) (P : Finpa
   · exact (min_le_right _ _).trans (by linarith)
 
 /-- **The `ε` form.** Cell homogeneity at every positive arity bounds the rounding error by `ε`:
-each disjunct of the homogeneity disjunction bounds one of the two arguments of the `min`.-/
+each disjunct of the homogeneity disjunction bounds one of the two arguments of the `min`.
+@isnad1 id=cellwise.1h6v.s7.684b06cd011a from=translated src=- shape=e9c8d298 vocab=ff6deeec
+-/
 theorem cellwiseEditBound_majorityRound_of_isHomogeneousCell (M : FiniteRelModel L V)
     (P : Finpartition s) {ε : ℝ}
     (hhom : ∀ (n : ℕ), 0 < n → ∀ (S : L.Relations n) (C : Fin n → P.parts),
@@ -350,7 +374,9 @@ some model is indivisible for `P`, agrees with `M` on the nullary data exactly, 
 
 The witness is `M.majorityRound P`; consumers who want it explicitly can use
 `majorityRound_isIndivisibleFor`, `nullaryCompatible_majorityRound`, and
-`cellwiseEditBound_majorityRound_of_isHomogeneousCell` directly. No uniqueness is claimed.-/
+`cellwiseEditBound_majorityRound_of_isHomogeneousCell` directly. No uniqueness is claimed.
+@isnad1 id=ex.1h6v.s7.194ed9473096 from=translated src=- shape=962630a8 vocab=7da8264a
+-/
 theorem exists_isIndivisibleFor_of_isHomogeneousCell (M : FiniteRelModel L V)
     (P : Finpartition s) {ε : ℝ}
     (hhom : ∀ (n : ℕ), 0 < n → ∀ (S : L.Relations n) (C : Fin n → P.parts),
@@ -369,7 +395,9 @@ the edit bound *is* a density bound.
 
 Note the arity guard: this recovers homogeneity at positive arity. At arity `0` the cell is
 `0`-homogeneous outright (`isHomogeneousCell_of_isEmpty_index`), so a consumer needing all
-arities dispatches on `n` rather than applying this lemma alone.-/
+arities dispatches on `n` rather than applying this lemma alone.
+@isnad1 id=ishomoge.3h10v.s7.4a3cba86925b from=translated src=- shape=a52ae04d vocab=447e8b44
+-/
 theorem isHomogeneousCell_of_cellwiseEditBound {M N : FiniteRelModel L V}
     {P : Finpartition s} {ε : ℝ} (hN : N.IsIndivisibleFor P)
     (hedit : CellwiseEditBound M N P ε) {n : ℕ} (hn : 0 < n) (S : L.Relations n)
@@ -415,7 +443,9 @@ variable {s : Finset V}
 /-- **The `s`-box edit set tiles by cell boxes.** The edit distance on the constant box
 `fun _ ↦ s` is the sum of the edit distances on the cell boxes of `P`, with no off-`s`
 remainder: the constant-partition specialization of the `ProductSpaces` substrate
-`biUnion_boxCells_tuples` / `boxCells_pairwiseDisjoint`.-/
+`biUnion_boxCells_tuples` / `boxCells_pairwiseDisjoint`.
+@isnad1 id=eq.0h6v.s6.82d24e9cca62 from=translated src=- shape=8f5375bf vocab=a99c32d5
+-/
 theorem editDistance_const_eq_sum_cellBoxes {n : ℕ} (R₁ R₂ : (Fin n → V) → Prop)
     [DecidablePred R₁] [DecidablePred R₂] (P : Finpartition s) :
     editDistance R₁ R₂ (fun _ : Fin n ↦ s)
@@ -435,7 +465,9 @@ theorem editDistance_const_eq_sum_cellBoxes {n : ℕ} (R₁ R₂ : (Fin n → V)
 absolute `s`-box edit count `ε · |s|^n` for every positive-arity symbol — **exact** over the
 partition boxes, since the cell boxes tile the `s`-box by volume (`boxMass_eq_sum_boxCells`
 with unit weights). This is the conversion the edit-transfer theorem
-(`abs_inducedEmbeddingCountOn_sub_le_editMass`) consumes.-/
+(`abs_inducedEmbeddingCountOn_sub_le_editMass`) consumes.
+@isnad1 id=le.2h9v.s7.24dfdbdd2023 from=translated src=- shape=9c14fa1a vocab=86b158bd
+-/
 theorem CellwiseEditBound.editDistance_const_le {M N : FiniteRelModel L V} {P : Finpartition s}
     {ε : ℝ} (h : CellwiseEditBound M N P ε) {n : ℕ} (hn : 0 < n) (S : L.Relations n) :
     (editDistance (M.Holds S) (N.Holds S) (fun _ : Fin n ↦ s) : ℝ) ≤ ε * (s.card : ℝ) ^ n := by

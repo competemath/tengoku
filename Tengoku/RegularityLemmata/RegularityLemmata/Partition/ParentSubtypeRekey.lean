@@ -27,7 +27,9 @@ variable {α : Type*} [DecidableEq α]
 /-- Restrict an ambient finite set to the subtype carried by a parent cell.-/
 def traceOnParent (A T : Finset α) : Finset A := T.subtype (fun x ↦ x ∈ A)
 
-/-- Membership in the rekeyed trace: `x ∈ traceOnParent A T ↔ (x : α) ∈ T` for `x : A`.-/
+/-- Membership in the rekeyed trace: `x ∈ traceOnParent A T ↔ (x : α) ∈ T` for `x : A`.
+@isnad1 id=iff.0h4v.s7.5c1123c5dbe0 from=translated src=- shape=38497dbd vocab=53699111
+-/
 @[simp] theorem mem_traceOnParent (A T : Finset α) (x : A) :
     x ∈ traceOnParent A T ↔ (x : α) ∈ T := by
   simp [traceOnParent]
@@ -36,7 +38,9 @@ def traceOnParent (A T : Finset α) : Finset A := T.subtype (fun x ↦ x ∈ A)
 An exact count, not a bound; in particular `traceOnParent A T` is empty when `T` misses `A`.
 House lemma, no source; consumed by `tiledSliceCert_exists` in
 `RegularityLemmata/Partition/ParentSample.lean`
-and `sliceCert_exists` in `RegularityLemmata/Partition/PrefixBlockSampling.lean`.-/
+and `sliceCert_exists` in `RegularityLemmata/Partition/PrefixBlockSampling.lean`.
+@isnad1 id=eq.0h3v.s5.43f1b4c9b404 from=translated src=- shape=02598623 vocab=8946d713
+-/
 theorem card_traceOnParent (A T : Finset α) :
     (traceOnParent A T).card = (A ∩ T).card := by
   rw [traceOnParent, Finset.card_subtype]
@@ -48,14 +52,18 @@ theorem card_traceOnParent (A T : Finset α) :
 subtype complement `Finset.univ \ traceOnParent A T` in `Finset A`. This is what makes the
 complement closure of `RegularityLemmata/Partition/TraceComplementClosure.lean` transport losslessly
 to the
-parent subtype. House lemma, no source.-/
+parent subtype. House lemma, no source.
+@isnad1 id=eq.0h3v.s7.7b1f6f29f46f from=translated src=- shape=c1e07677 vocab=931c2e8d
+-/
 theorem traceOnParent_compl (A T : Finset α) :
     traceOnParent A (A \ T) = Finset.univ \ traceOnParent A T := by
   ext x
   simp [traceOnParent]
 
 /-- Mapping a sampled subtype block back to the ambient carrier preserves its trace
-intersection count exactly.-/
+intersection count exactly.
+@isnad1 id=eq.0h4v.s7.88f526a92e76 from=translated src=- shape=db4c7115 vocab=f527d6a6
+-/
 theorem map_inter_traceOnParent (A T : Finset α) (B : Finset A) :
     (B ∩ traceOnParent A T).map (Function.Embedding.subtype _) =
       B.map (Function.Embedding.subtype _) ∩ T := by
@@ -77,7 +85,9 @@ back to the ambient carrier against the raw trace `T`. An equality, not a bound,
 estimates proved at the subtype hold verbatim in ambient units. Cardinality form of
 `map_inter_traceOnParent`. House lemma, no source; consumed by `tiledSliceCert_exists` in
 `RegularityLemmata/Partition/ParentSample.lean` and `sliceCert_exists` in
-`RegularityLemmata/Partition/PrefixBlockSampling.lean`.-/
+`RegularityLemmata/Partition/PrefixBlockSampling.lean`.
+@isnad1 id=eq.0h4v.s7.7aac74f785d0 from=translated src=- shape=f16d40c0 vocab=52ab7146
+-/
 theorem card_inter_traceOnParent (A T : Finset α) (B : Finset A) :
     (B ∩ traceOnParent A T).card =
       (B.map (Function.Embedding.subtype _) ∩ T).card := by
@@ -90,7 +100,9 @@ def traceFamilyOnParent (A : Finset α) (F : Finset (Finset α)) : Finset (Finse
 /-- Rekeying a trace family onto the parent subtype does not increase its size:
 `|traceFamilyOnParent A F| ≤ |F|`. Not an equality: two traces agreeing on `A` collapse to
 one. House lemma, no source; consumed by `exists_balanced_slicing` in
-`RegularityLemmata/Partition/BalancedSlicing.lean`, chained with `card_traceComplementClosure_le`.-/
+`RegularityLemmata/Partition/BalancedSlicing.lean`, chained with `card_traceComplementClosure_le`.
+@isnad1 id=le.0h3v.s5.ba598ea0446a from=translated src=- shape=35a23a88 vocab=85658049
+-/
 theorem card_traceFamilyOnParent_le (A : Finset α) (F : Finset (Finset α)) :
     (traceFamilyOnParent A F).card ≤ F.card := by
   exact Finset.card_image_le
@@ -99,7 +111,9 @@ theorem card_traceFamilyOnParent_le (A : Finset α) (F : Finset (Finset α)) :
 `T ∈ F` gives `traceOnParent A T ∈ traceFamilyOnParent A F`. House lemma, no source;
 consumed by `tiledSliceCert_exists` in `RegularityLemmata/Partition/ParentSample.lean` and
 `sliceCert_exists`
-in `RegularityLemmata/Partition/PrefixBlockSampling.lean`.-/
+in `RegularityLemmata/Partition/PrefixBlockSampling.lean`.
+@isnad1 id=mem.1h4v.s7.d85c54e704fe from=translated src=- shape=dbfc5288 vocab=fce6ef2f
+-/
 theorem traceOnParent_mem_traceFamilyOnParent (A : Finset α) (F : Finset (Finset α))
     {T : Finset α} (hT : T ∈ F) :
     traceOnParent A T ∈ traceFamilyOnParent A F := by

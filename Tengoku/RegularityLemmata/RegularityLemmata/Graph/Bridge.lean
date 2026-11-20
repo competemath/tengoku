@@ -46,25 +46,34 @@ variable {α : Type*} {s A B : Finset α} {ε : ℝ}
 
 /-! ### The ℚ → ℝ boundary -/
 
+/--
+@isnad1 id=eq.0h4v.s5.d81ae5401823 from=translated src=- shape=3621f1ad vocab=63a4f5e3
+-/
 theorem pairCount_eq_card_interedges (R : α → α → Prop) [DecidableRel R] :
     pairCount R A B = (Rel.interedges R A B).card := rfl
 
 /-- The single cast equation for densities: our real-valued `pairDensity` is the cast
-of mathlib's rational `Rel.edgeDensity`.-/
+of mathlib's rational `Rel.edgeDensity`.
+@isnad1 id=eq.0h4v.s5.a03c61ff9515 from=translated src=- shape=ab80ced2 vocab=a718ac81
+-/
 theorem pairDensity_eq_edgeDensity_cast (R : α → α → Prop) [DecidableRel R] :
     pairDensity R A B = ((Rel.edgeDensity R A B : ℚ) : ℝ) := by
   rw [pairDensity_eq_count_div, pairCount_eq_card_interedges R, Rel.edgeDensity]
   push_cast
   rfl
 
-/-- Specialization to a simple graph's adjacency.-/
+/-- Specialization to a simple graph's adjacency.
+@isnad1 id=eq.0h4v.s5.63dd4a5dc5af from=translated src=- shape=d3292e8e vocab=656acf4b
+-/
 theorem pairDensity_adj_eq_edgeDensity (G : SimpleGraph α) [DecidableRel G.Adj] :
     pairDensity G.Adj A B = ((G.edgeDensity A B : ℚ) : ℝ) :=
   pairDensity_eq_edgeDensity_cast _
 
 /-! ### Uniformity bridges -/
 
-/-- Mathlib uniformity (strict `< ε`) implies library uniformity (`≤ ε`).-/
+/-- Mathlib uniformity (strict `< ε`) implies library uniformity (`≤ ε`).
+@isnad1 id=isunifor.1h5v.s5.c6bfa4a92d83 from=translated src=- shape=1d0c7414 vocab=e0495132
+-/
 theorem IsUniformPair.of_isUniform {G : SimpleGraph α} [DecidableRel G.Adj]
     (h : G.IsUniform ε A B) : IsUniformPair G.Adj A B ε := by
   intro A' hA' B' hB' hAc hBc
@@ -72,7 +81,9 @@ theorem IsUniformPair.of_isUniform {G : SimpleGraph α} [DecidableRel G.Adj]
   exact (h hA' hB' (by rwa [mul_comm]) (by rwa [mul_comm])).le
 
 /-- Library uniformity at `ε` gives mathlib uniformity at any `ε' > ε`. (Trading `ε`
-for a strictly larger `ε'` is unavoidable: see the strictness counterexample below.)-/
+for a strictly larger `ε'` is unavoidable: see the strictness counterexample below.)
+@isnad1 id=isunifor.2h6v.s5.d93a79be3db2 from=translated src=- shape=18ba2b9d vocab=9c49ffbf
+-/
 theorem isUniform_of_isUniformPair {G : SimpleGraph α} [DecidableRel G.Adj] {ε' : ℝ}
     (h : IsUniformPair G.Adj A B ε) (hεε' : ε < ε') : G.IsUniform ε' A B := by
   intro A' hA' B' hB' hAc hBc
@@ -97,7 +108,9 @@ section FintypeHost
 variable [DecidableEq α] [Fintype α]
 
 /-- Mathlib's effective **Szemerédi regularity lemma**: a bounded-size `ε`-uniform
-equipartition, with a host-independent bound. Wrapped, not reproved.-/
+equipartition, with a host-independent bound. Wrapped, not reproved.
+@isnad1 id=ex.2h4v.s7.9d26ae428314 from=translated src=- shape=c6bc017d vocab=46774d2d
+-/
 theorem exists_equipartition_isUniform (G : SimpleGraph α) [DecidableRel G.Adj]
     {l : ℕ} (hε : 0 < ε) (hl : l ≤ Fintype.card α) :
     ∃ P : Finpartition (Finset.univ : Finset α),
@@ -108,7 +121,9 @@ theorem exists_equipartition_isUniform (G : SimpleGraph α) [DecidableRel G.Adj]
 /-- **Partition-level bridge.** A mathlib-uniform equipartition is library-regular at
 `4ε`: the bad mass is at most `#nonUniforms · (max part size)²`, and the equipartition
 size bound `|C| ≤ ⌊n/k⌋ + 1` with `k ≤ n` turns mathlib's pair-counting bound into the
-mass bound.-/
+mass bound.
+@isnad1 id=isregula.4h4v.s6.f36b1fe1c9b1 from=translated src=- shape=9f3eb221 vocab=21ec04cd
+-/
 theorem isRegularPartition_of_isUniform {G : SimpleGraph α} [DecidableRel G.Adj]
     {P : Finpartition (Finset.univ : Finset α)}
     (hequi : P.IsEquipartition) (hunif : P.IsUniform G ε) (hε : 0 ≤ ε)
@@ -208,7 +223,9 @@ partitions: an `ε`-regular exact refinement `Q ≤ P₀` with the host-independ
 bound, and a *separate* equipartition `E` with exactly `t` parts almost-refining both
 `Q` and `P₀` at `ε` — provided `t` is fine enough
 (`⌊|s|/t⌋ · regularityBound ⌈1/ε⁵⌉ #P₀.parts ≤ ε·|s|`). It does NOT assert that `E`
-itself is regular (deferred; see `ARCHITECTURE.md`).-/
+itself is regular (deferred; see `ARCHITECTURE.md`).
+@isnad1 id=ex.4h6v.s8.620f75139b55 from=translated src=- shape=f7aa02f6 vocab=305c79d2
+-/
 theorem exists_regular_refinement_and_almostRefining_equipartition [DecidableEq α]
     (R : α → α → Prop) [DecidableRel R] (P₀ : Finpartition s) (hε : 0 < ε)
     {t : ℕ} (ht : 0 < t) (hts : t ≤ s.card)
@@ -229,7 +246,9 @@ theorem exists_regular_refinement_and_almostRefining_equipartition [DecidableEq 
   exact ⟨Q, E, hQP, hQreg, hQcard, hE1, hE2, hEQ, hEP₀⟩
 
 /-- User-facing arithmetic corollary: the cleaner sufficient condition
-`regularityBound ⌈1/ε⁵⌉ #P₀.parts ≤ ε · t` implies the floor inequality.-/
+`regularityBound ⌈1/ε⁵⌉ #P₀.parts ≤ ε · t` implies the floor inequality.
+@isnad1 id=ex.4h6v.s8.1a6485bd16e1 from=translated src=- shape=f2a1a7e7 vocab=305c79d2
+-/
 theorem exists_regular_refinement_and_almostRefining_equipartition_of_bound_le
     [DecidableEq α] (R : α → α → Prop) [DecidableRel R] (P₀ : Finpartition s)
     (hε : 0 < ε) {t : ℕ} (ht : 0 < t) (hts : t ≤ s.card)
@@ -248,7 +267,9 @@ theorem exists_regular_refinement_and_almostRefining_equipartition_of_bound_le
     _ = ε * s.card := by field_simp
 
 /-- Choosing `t = ⌈B/ε⌉` (the coarsest admissible equipartition size) under the
-corresponding host-size assumption.-/
+corresponding host-size assumption.
+@isnad1 id=ex.3h5v.s8.8df100898386 from=translated src=- shape=8652d781 vocab=848fb2bd
+-/
 theorem exists_regular_refinement_and_almostRefining_equipartition_ceil
     [DecidableEq α] (R : α → α → Prop) [DecidableRel R] (P₀ : Finpartition s)
     (hε : 0 < ε) (hs : s.Nonempty)
@@ -330,6 +351,9 @@ def graph : SimpleGraph (Fin 6) where
 
 instance : DecidableRel graph.Adj := inferInstanceAs (DecidableRel Adj)
 
+/--
+@isnad1 id=le.0h0v.s6.b4ce918cc10b from=translated src=- shape=126ad5e7 vocab=f589c522
+-/
 theorem fine_le_coarse : fine ≤ coarse := by
   intro b hb
   have hcases : b = cellA ∨ b = cellB₁ ∨ b = cellB₂ := by
@@ -339,16 +363,27 @@ theorem fine_le_coarse : fine ≤ coarse := by
   · exact ⟨cellB, by simp [coarse], by decide⟩
   · exact ⟨cellB, by simp [coarse], by decide⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.94fabef70eeb from=translated src=- shape=a800cc78 vocab=fd570b69
+-/
 theorem mathlibEnergy_coarse : coarse.energy graph = 1 / 2 := by decide +kernel
 
+/--
+@isnad1 id=eq.0h0v.s5.94b46c14fd60 from=translated src=- shape=a800cc78 vocab=47ca7960
+-/
 theorem mathlibEnergy_fine : fine.energy graph = 4 / 9 := by decide +kernel
 
 /-- **The counterexample.** Refining strictly *decreases* mathlib's uniform off-diagonal
-energy.-/
+energy.
+@isnad1 id=lt.0h0v.s5.5c67edf9459f from=translated src=- shape=90f74300 vocab=0a54690a
+-/
 theorem mathlibEnergy_fine_lt_coarse : fine.energy graph < coarse.energy graph := by
   rw [mathlibEnergy_coarse, mathlibEnergy_fine]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.d2d4e285b802 from=translated src=- shape=d95cb4af vocab=ae668819
+-/
 theorem energyNum_coarse : energyNum graph.Adj coarse = 16 := by
   rw [energyNum, show coarse.parts ×ˢ coarse.parts =
     {(cellA, cellA), (cellA, cellB), (cellB, cellA), (cellB, cellB)} from by decide]
@@ -362,6 +397,9 @@ theorem energyNum_coarse : energyNum graph.Adj coarse = 16 := by
     show cellA.card = 2 from by decide, show cellB.card = 4 from by decide]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.80b4e340a237 from=translated src=- shape=d95cb4af vocab=ffe988a1
+-/
 theorem energyNum_fine : energyNum graph.Adj fine = 16 := by
   rw [energyNum, show fine.parts ×ˢ fine.parts =
     {(cellA, cellA), (cellA, cellB₁), (cellA, cellB₂), (cellB₁, cellA), (cellB₁, cellB₁),
@@ -384,19 +422,30 @@ theorem energyNum_fine : energyNum graph.Adj fine = 16 := by
     show cellB₂.card = 2 from by decide]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.80b809d722d5 from=translated src=- shape=2b19164f vocab=22de3d5a
+-/
 theorem card_univ_fin6 : ((Finset.univ : Finset (Fin 6)).card : ℝ) = 6 := by
   rw [show (Finset.univ : Finset (Fin 6)).card = 6 from by decide]
   norm_num
 
 /-- **The contrast.** On the very same data the mass-weighted energy is unchanged — as
-`energy_mono` requires, since `fine ≤ coarse`.-/
+`energy_mono` requires, since `fine ≤ coarse`.
+@isnad1 id=eq.0h0v.s6.f48d4b1d74a3 from=translated src=- shape=4518daf7 vocab=a52abcb3
+-/
 theorem weightedEnergy_eq : energy graph.Adj coarse = energy graph.Adj fine := by
   rw [energy, energy, energyNum_coarse, energyNum_fine]
 
+/--
+@isnad1 id=eq.0h0v.s5.c33776b41410 from=translated src=- shape=1fa0abdb vocab=e5ac952e
+-/
 theorem weightedEnergy_coarse : energy graph.Adj coarse = 4 / 9 := by
   rw [energy, energyNum_coarse, card_univ_fin6]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.7fd999f56447 from=translated src=- shape=1fa0abdb vocab=cfea9877
+-/
 theorem weightedEnergy_fine : energy graph.Adj fine = 4 / 9 := by
   rw [energy, energyNum_fine, card_univ_fin6]
   norm_num

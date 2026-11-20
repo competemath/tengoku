@@ -40,11 +40,16 @@ coordinate `i`, with the remaining coordinates in order (via `Fin.succAbove`).-/
 def lowerFace {j : ℕ} (v : Fin (j + 1) → α) (i : Fin (j + 1)) : Fin j → α :=
   fun k => v (i.succAbove k)
 
+/--
+@isnad1 id=eq.0h5v.s5.cab7b8b60271 from=translated src=- shape=dfb953d3 vocab=94b60de4
+-/
 @[simp] theorem lowerFace_apply {j : ℕ} (v : Fin (j + 1) → α) (i : Fin (j + 1)) (k : Fin j) :
     lowerFace v i k = v (i.succAbove k) := rfl
 
 /-- A sum over the box `∏ᵢ A i` split at coordinate `j`: the pivot value `b ∈ A j` and the
-off-coordinate tuple in the lower box `∏_{i ≠ j} A i` (indexed via `Fin.succAbove`).-/
+off-coordinate tuple in the lower box `∏_{i ≠ j} A i` (indexed via `Fin.succAbove`).
+@isnad1 id=eq.0h6v.s7.28b70027541a from=translated src=- shape=2f448c98 vocab=5f20c39a
+-/
 theorem sum_piFinset_succAbove {M : Type*} [AddCommMonoid M] {n : ℕ}
     (A : Fin (n + 1) → Finset α) (j : Fin (n + 1)) (f : (Fin (n + 1) → α) → M) :
     ∑ w ∈ Fintype.piFinset A, f w
@@ -70,7 +75,9 @@ theorem sum_piFinset_succAbove {M : Type*} [AddCommMonoid M] {n : ℕ}
   · rintro ⟨rest, b⟩ _
     rfl
 
-/-- The tuples of `s^(n+1)` whose `j`-th coordinate lies in `D ⊆ s`: exactly `|D| · |s|^n`.-/
+/-- The tuples of `s^(n+1)` whose `j`-th coordinate lies in `D ⊆ s`: exactly `|D| · |s|^n`.
+@isnad1 id=eq.1h5v.s7.55f27fee9797 from=translated src=- shape=9d5af472 vocab=8e2b0707
+-/
 theorem card_filter_apply_mem [DecidableEq α] {s D : Finset α} (hD : D ⊆ s) {n : ℕ}
     (j : Fin (n + 1)) :
     ((Fintype.piFinset fun _ : Fin (n + 1) ↦ s).filter fun x ↦ x j ∈ D).card
@@ -82,7 +89,9 @@ theorem card_filter_apply_mem [DecidableEq α] {s D : Finset α} (hD : D ⊆ s) 
     Finset.filter_mem_eq_inter, Finset.inter_eq_right.mpr hD]
   exact Nat.mul_comm _ _
 
-/-- Union bound: at most `(n+1) · |D| · |s|^n` tuples of `s^(n+1)` meet `D ⊆ s`.-/
+/-- Union bound: at most `(n+1) · |D| · |s|^n` tuples of `s^(n+1)` meet `D ⊆ s`.
+@isnad1 id=le.1h4v.s8.483cc95e6cf8 from=translated src=- shape=7b946cc9 vocab=8e2b0707
+-/
 theorem card_filter_exists_apply_mem_le [DecidableEq α] {s D : Finset α} (hD : D ⊆ s) (n : ℕ) :
     ((Fintype.piFinset fun _ : Fin (n + 1) ↦ s).filter fun x ↦ ∃ i, x i ∈ D).card
       ≤ (n + 1) * D.card * s.card ^ n := by
@@ -103,35 +112,50 @@ theorem card_filter_exists_apply_mem_le [DecidableEq α] {s D : Finset α} (hD :
           Finset.card_univ, Fintype.card_fin, smul_eq_mul]
         exact (Nat.mul_assoc _ _ _).symm
 
-/-- Lower faces of injective tuples are injective.-/
+/-- Lower faces of injective tuples are injective.
+@isnad1 id=injectiv.1h4v.s5.1368568d0e33 from=translated src=- shape=55324a7c vocab=8f33fa92
+-/
 theorem lowerFace_injective {j : ℕ} {v : Fin (j + 1) → α} (hv : Function.Injective v)
     (i : Fin (j + 1)) : Function.Injective (lowerFace v i) :=
   hv.comp Fin.succAbove_right_injective
 
 /-! ### Arity-3 face indexing -/
 
-/-- Arity-3 face indexing: dropping coordinate `i` keeps the complementary ordered pair.-/
+/-- Arity-3 face indexing: dropping coordinate `i` keeps the complementary ordered pair.
+@isnad1 id=and.0h0v.s9.8cc52b6ec941 from=translated src=- shape=666f3baf vocab=6aa4e61c
+-/
 theorem succAbove_faces_three :
     ((0 : Fin 3).succAbove 0 = 1 ∧ (0 : Fin 3).succAbove 1 = 2) ∧
     ((1 : Fin 3).succAbove 0 = 0 ∧ (1 : Fin 3).succAbove 1 = 2) ∧
     ((2 : Fin 3).succAbove 0 = 0 ∧ (2 : Fin 3).succAbove 1 = 1) := by decide
 
-/-- The pair encoding of a lower face reads off the two surviving coordinates.-/
+/-- The pair encoding of a lower face reads off the two surviving coordinates.
+@isnad1 id=eq.0h3v.s7.1a3ad3c65611 from=translated src=- shape=740cba74 vocab=00227c6f
+-/
 @[simp] theorem finTwoArrowEquiv_lowerFace (v : Fin 3 → α) (i : Fin 3) :
     finTwoArrowEquiv α (lowerFace v i) = (v (i.succAbove 0), v (i.succAbove 1)) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.9652af8aeb52 from=translated src=- shape=0073c691 vocab=1be7905a
+-/
 theorem finTwoArrowEquiv_lowerFace_zero (v : Fin 3 → α) :
     finTwoArrowEquiv α (lowerFace v 0) = (v 1, v 2) := by
   rw [finTwoArrowEquiv_lowerFace,
     show (0 : Fin 3).succAbove 0 = 1 from by decide,
     show (0 : Fin 3).succAbove 1 = 2 from by decide]
 
+/--
+@isnad1 id=eq.0h2v.s7.9c7d51399ff9 from=translated src=- shape=0073c691 vocab=1be7905a
+-/
 theorem finTwoArrowEquiv_lowerFace_one (v : Fin 3 → α) :
     finTwoArrowEquiv α (lowerFace v 1) = (v 0, v 2) := by
   rw [finTwoArrowEquiv_lowerFace,
     show (1 : Fin 3).succAbove 0 = 0 from by decide,
     show (1 : Fin 3).succAbove 1 = 2 from by decide]
 
+/--
+@isnad1 id=eq.0h2v.s7.ce5f35851ed3 from=translated src=- shape=0073c691 vocab=1be7905a
+-/
 theorem finTwoArrowEquiv_lowerFace_two (v : Fin 3 → α) :
     finTwoArrowEquiv α (lowerFace v 2) = (v 0, v 1) := by
   rw [finTwoArrowEquiv_lowerFace,
@@ -139,7 +163,9 @@ theorem finTwoArrowEquiv_lowerFace_two (v : Fin 3 → α) :
     show (2 : Fin 3).succAbove 1 = 1 from by decide]
 
 /-- Membership transports across the pair encoding: `w ∈ P` iff its pair encoding lies in
-the `finTwoArrowEquiv`-image of `P`.-/
+the `finTwoArrowEquiv`-image of `P`.
+@isnad1 id=iff.0h3v.s7.444f9d74cb60 from=translated src=- shape=2dcd9da4 vocab=39ac3482
+-/
 theorem mem_map_finTwoArrowEquiv (P : Finset (Fin 2 → α)) (w : Fin 2 → α) :
     finTwoArrowEquiv α w ∈ P.map (finTwoArrowEquiv α).toEmbedding ↔ w ∈ P := by
   rw [Finset.mem_map_equiv, Equiv.symm_apply_apply]
@@ -149,12 +175,16 @@ theorem mem_map_finTwoArrowEquiv (P : Finset (Fin 2 → α)) (w : Fin 2 → α) 
 The arity-one companions of the `Fin 2` lemmas below, under the encoding `a ↦ ![a]`. No
 `DecidableEq α` is needed: the transfer is a bijection, not an image. -/
 
-/-- Cardinality of a `Fin 1` box.-/
+/-- Cardinality of a `Fin 1` box.
+@isnad1 id=eq.0h2v.s6.8ffb7ea49f32 from=translated src=- shape=a8736605 vocab=68495075
+-/
 theorem card_piFinset_one (A : Fin 1 → Finset α) :
     (Fintype.piFinset A).card = (A 0).card := by
   rw [Fintype.card_piFinset, Fin.prod_univ_one]
 
-/-- Filter cardinalities agree across the arity-one encoding `a ↦ ![a]`.-/
+/-- Filter cardinalities agree across the arity-one encoding `a ↦ ![a]`.
+@isnad1 id=eq.0h3v.s7.7c411ec1caf0 from=translated src=- shape=ddd50bb1 vocab=b2208575
+-/
 theorem card_filter_piFinset_one (A : Fin 1 → Finset α) (R : (Fin 1 → α) → Prop)
     [DecidablePred R] :
     ((Fintype.piFinset A).filter R).card = ((A 0).filter fun a ↦ R ![a]).card := by
@@ -177,7 +207,9 @@ theorem card_filter_piFinset_one (A : Fin 1 → Finset α) (R : (Fin 1 → α) �
 /-! ### `Fin 2` boxes as binary products -/
 
 /-- A `Fin 2` box is a binary product under the pair encoding. Stated for an arbitrary
-family `A : Fin 2 → Finset α`; instantiate with `![C, D]` for the two-set form.-/
+family `A : Fin 2 → Finset α`; instantiate with `![C, D]` for the two-set form.
+@isnad1 id=eq.0h2v.s7.8e5df43195c5 from=translated src=- shape=7e3cd7fc vocab=e5768550
+-/
 theorem image_finTwoArrowEquiv_piFinset [DecidableEq α] (A : Fin 2 → Finset α) :
     (Fintype.piFinset A).image (finTwoArrowEquiv α) = A 0 ×ˢ A 1 := by
   ext ⟨a, b⟩
@@ -193,12 +225,16 @@ theorem image_finTwoArrowEquiv_piFinset [DecidableEq α] (A : Fin 2 → Finset �
     · simpa using ha
     · simpa using hb
 
-/-- Cardinality of a `Fin 2` box.-/
+/-- Cardinality of a `Fin 2` box.
+@isnad1 id=eq.0h2v.s6.0f18ebb19a04 from=translated src=- shape=d3ef2379 vocab=d2e9188b
+-/
 theorem card_piFinset_two (A : Fin 2 → Finset α) :
     (Fintype.piFinset A).card = (A 0).card * (A 1).card := by
   rw [Fintype.card_piFinset, Fin.prod_univ_two]
 
-/-- Filtering a `Fin 2` box corresponds to filtering the binary product.-/
+/-- Filtering a `Fin 2` box corresponds to filtering the binary product.
+@isnad1 id=eq.0h3v.s8.26a93e0d3940 from=translated src=- shape=53754031 vocab=cd50b132
+-/
 theorem filter_piFinset_two_image [DecidableEq α] (A : Fin 2 → Finset α)
     (R : (Fin 2 → α) → Prop) [DecidablePred R] :
     ((Fintype.piFinset A).filter R).image (finTwoArrowEquiv α) =
@@ -224,7 +260,9 @@ theorem filter_piFinset_two_image [DecidableEq α] (A : Fin 2 → Finset α)
     · simpa using ha
     · simpa using hb
 
-/-- Filter cardinalities agree across the pair encoding.-/
+/-- Filter cardinalities agree across the pair encoding.
+@isnad1 id=eq.0h3v.s7.ff1502f30660 from=translated src=- shape=879fb45d vocab=7325e944
+-/
 theorem card_filter_piFinset_two [DecidableEq α] (A : Fin 2 → Finset α)
     (R : (Fin 2 → α) → Prop) [DecidablePred R] :
     ((Fintype.piFinset A).filter R).card =

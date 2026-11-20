@@ -70,13 +70,17 @@ def binaryPairPalette (M : FiniteRelModel L V) (a b : V) : BinaryPairPalette L :
 def swapBinaryPairPalette (c : BinaryPairPalette L) : BinaryPairPalette L :=
   fun R => (c R).swap
 
-/-- **Reversal law**: swapping the pair swaps every palette coordinate.-/
+/-- **Reversal law**: swapping the pair swaps every palette coordinate.
+@isnad1 id=eq.0h5v.s5.f3fa06b67558 from=translated src=- shape=c859a4aa vocab=8b72e759
+-/
 theorem binaryPairPalette_swap (M : FiniteRelModel L V) (a b : V) :
     binaryPairPalette M b a = swapBinaryPairPalette (binaryPairPalette M a b) := by
   funext R
   simp [binaryPairPalette, swapBinaryPairPalette, Prod.swap]
 
-/-- The swap is an involution.-/
+/-- The swap is an involution.
+@isnad1 id=involuti.0h1v.s3.b801e3108efe from=translated src=- shape=2b510e99 vocab=7bc41327
+-/
 theorem swapBinaryPairPalette_involutive :
     Function.Involutive (swapBinaryPairPalette (L := L)) := by
   intro c
@@ -92,7 +96,9 @@ instance (M : FiniteRelModel L V) (c : BinaryPairPalette L) :
     DecidableRel (HasBinaryPairPalette M c) :=
   fun a b => inferInstanceAs (Decidable (binaryPairPalette M a b = c))
 
-/-- **Exactly one palette per ordered pair.**-/
+/-- **Exactly one palette per ordered pair.**
+@isnad1 id=existsun.0h5v.s5.afa501b5e532 from=translated src=- shape=ebe56a12 vocab=2d800c95
+-/
 theorem existsUnique_hasBinaryPairPalette (M : FiniteRelModel L V) (a b : V) :
     ∃! c : BinaryPairPalette L, HasBinaryPairPalette M c a b :=
   ⟨binaryPairPalette M a b, rfl, fun _ hc => hc.symm⟩
@@ -100,7 +106,9 @@ theorem existsUnique_hasBinaryPairPalette (M : FiniteRelModel L V) (a b : V) :
 /-! ### Partition of unity on a rectangle -/
 
 /-- **Palette count partition**: over any rectangle, the per-palette pair counts sum
-to `|A|·|B|`.-/
+to `|A|·|B|`.
+@isnad1 id=eq.0h5v.s6.31f53da89132 from=translated src=- shape=7cc83bce vocab=c567f1d8
+-/
 theorem sum_pairCount_hasBinaryPairPalette (M : FiniteRelModel L V) (A B : Finset V) :
     ∑ c : BinaryPairPalette L, pairCount (HasBinaryPairPalette M c) A B
       = A.card * B.card := by
@@ -116,7 +124,9 @@ theorem sum_pairCount_hasBinaryPairPalette (M : FiniteRelModel L V) (A B : Finse
 
 /-- **Palette density partition of unity**: over a nonempty rectangle, the per-palette
 pair densities sum to `1`. On an empty side every density is `0`, so the sum is `0`
-(the honest statement — see the test).-/
+(the honest statement — see the test).
+@isnad1 id=eq.2h5v.s6.a67793f29539 from=translated src=- shape=d18000ea vocab=c054eccf
+-/
 theorem sum_pairDensity_hasBinaryPairPalette (M : FiniteRelModel L V) (A B : Finset V)
     (hA : A.Nonempty) (hB : B.Nonempty) :
     ∑ c : BinaryPairPalette L, pairDensity (HasBinaryPairPalette M c) A B = 1 := by
@@ -134,14 +144,18 @@ theorem sum_pairDensity_hasBinaryPairPalette (M : FiniteRelModel L V) (A B : Fin
 
 /-! ### Palette cardinalities -/
 
-/-- `#BinaryVertexProfile = 2^(#unary + #binary)`.-/
+/-- `#BinaryVertexProfile = 2^(#unary + #binary)`.
+@isnad1 id=eq.0h1v.s7.7cca38f05ba9 from=translated src=- shape=c8d6805e vocab=30cd8ef8
+-/
 theorem card_binaryVertexProfile :
     Fintype.card (BinaryVertexProfile L)
       = 2 ^ (Fintype.card (L.Relations 1) + Fintype.card (L.Relations 2)) := by
   rw [Fintype.card_prod, Fintype.card_fun, Fintype.card_fun, Fintype.card_bool,
     pow_add]
 
-/-- `#BinaryPairPalette = 4^(#binary)` — four two-way colors per binary symbol.-/
+/-- `#BinaryPairPalette = 4^(#binary)` — four two-way colors per binary symbol.
+@isnad1 id=eq.0h1v.s5.bd8d3646c8f5 from=translated src=- shape=c29473e8 vocab=98aa9564
+-/
 theorem card_binaryPairPalette :
     Fintype.card (BinaryPairPalette L) = 4 ^ Fintype.card (L.Relations 2) := by
   rw [Fintype.card_fun, Fintype.card_prod, Fintype.card_bool]

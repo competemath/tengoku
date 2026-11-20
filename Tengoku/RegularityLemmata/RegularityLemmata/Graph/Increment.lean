@@ -43,7 +43,9 @@ variable {α : Type*} {R : α → α → Prop} [DecidableRel R] {ε : ℝ}
 
 /-- The abstract `2 × 2` energy increment: four cells with counts `cᵢⱼ` and masses
 `mᵢⱼ` refining a parent with count `c` and mass `M`; the refined Engel sum exceeds the
-parent's by at least the witness cell's weighted squared deviation.-/
+parent's by at least the witness cell's weighted squared deviation.
+@isnad1 id=le.10h11v.s8.4724501e0e4a from=translated src=- shape=1ff10387 vocab=762a6581
+-/
 theorem energy_increment_abstract {c11 c12 c21 c22 m11 m12 m21 m22 M c gain : ℝ}
     (hm11 : 0 < m11) (hm12 : 0 ≤ m12) (hm21 : 0 ≤ m21) (hm22 : 0 ≤ m22)
     (hz12 : m12 = 0 → c12 = 0) (hz21 : m21 = 0 → c21 = 0) (hz22 : m22 = 0 → c22 = 0)
@@ -78,7 +80,9 @@ theorem energy_increment_abstract {c11 c12 c21 c22 m11 m12 m21 m22 M c gain : �
 sub-rectangle `(A', B')` gains AT LEAST that cell's mass-weighted squared deviation from
 the parent density; the remaining three cells may contribute more, so this is an
 inequality. No tolerance and no witness are involved: the two consumers below supply
-their own lower bound for the gain.-/
+their own lower bound for the gain.
+@isnad1 id=le.3h6v.s7.df29cfb73944 from=translated src=- shape=c744822e vocab=053023db
+-/
 theorem blockEnergy_increment_general [DecidableEq α] {A B A' B' : Finset α}
     (hA' : A' ⊆ A) (hB' : B' ⊆ B) (hpos : 0 < (A'.card : ℝ) * (B'.card : ℝ)) :
     blockEnergy R A B
@@ -152,7 +156,9 @@ private theorem card_pos_of_witness {A B : Finset α} (w : NonuniformWitness R A
       linarith
     · exact_mod_cast hpos
 
-/-- The witness rectangle is nondegenerate.-/
+/-- The witness rectangle is nondegenerate.
+@isnad1 id=lt.1h6v.s6.7dc1a72ce99a from=translated src=- shape=390613a9 vocab=b9a2f2c8
+-/
 theorem NonuniformWitness.card_mul_pos {A B : Finset α} (w : NonuniformWitness R A B ε)
     (hε : 0 < ε) : 0 < (w.left.card : ℝ) * (w.right.card : ℝ) := by
   obtain ⟨hApos, hBpos⟩ := card_pos_of_witness w hε
@@ -161,7 +167,9 @@ theorem NonuniformWitness.card_mul_pos {A B : Finset α} (w : NonuniformWitness 
 
 /-- **The witness gain bound**: a nonuniformity witness's mass-weighted squared deviation
 dominates the raw `ε⁴ · |A| · |B|`. This is the ONLY place the witness's two defining
-inequalities are consumed; everything else about the increment is `ε`-free.-/
+inequalities are consumed; everything else about the increment is `ε`-free.
+@isnad1 id=le.1h6v.s7.f1b95634f0d7 from=translated src=- shape=9f56ae0f vocab=2aeffd08
+-/
 theorem NonuniformWitness.pow_four_mul_le {A B : Finset α} (w : NonuniformWitness R A B ε)
     (hε : 0 < ε) :
     ε ^ 4 * (A.card : ℝ) * (B.card : ℝ)
@@ -188,7 +196,9 @@ theorem NonuniformWitness.pow_four_mul_le {A B : Finset α} (w : NonuniformWitne
     _ ≤ _ := hstep
 
 /-- **The one-block energy increment.** A nonuniformity witness turns into an
-`ε⁴ · |A| · |B|` energy gain across the `2 × 2` witness refinement.-/
+`ε⁴ · |A| · |B|` energy gain across the `2 × 2` witness refinement.
+@isnad1 id=le.1h6v.s7.fd624aa7e27f from=translated src=- shape=e47ca2f1 vocab=bd24546b
+-/
 theorem blockEnergy_increment [DecidableEq α] {A B : Finset α}
     (w : NonuniformWitness R A B ε) (hε : 0 < ε) :
     blockEnergy R A B + ε ^ 4 * (A.card : ℝ) * (B.card : ℝ)
@@ -202,7 +212,9 @@ theorem blockEnergy_increment [DecidableEq α] {A B : Finset α}
 /-- **The general per-pair bridge**: any nondegenerate sub-rectangle whose sides — and
 whose ambient block — are part unions of `P'` transports at least its own weighted
 squared deviation to the summed energies of the refined sub-blocks. The `ε`-free form: the
-consumer chooses the sub-rectangle and supplies the gain bound.-/
+consumer chooses the sub-rectangle and supplies the gain bound.
+@isnad1 id=le.7h8v.s8.73f7b4e7f206 from=translated src=- shape=6847356a vocab=92e559d6
+-/
 theorem blockEnergy_increment_refined_general [DecidableEq α] {s : Finset α}
     {P' : Finpartition s} (R : α → α → Prop) [DecidableRel R] {C D A' B' : Finset α}
     (hA' : A' ⊆ C) (hB' : B' ⊆ D) (hpos : 0 < (A'.card : ℝ) * (B'.card : ℝ))
@@ -248,7 +260,9 @@ theorem blockEnergy_increment_refined_general [DecidableEq α] {s : Finset α}
     _ ≤ _ := add_le_add (add_le_add (add_le_add hb11 hb12) hb21) hb22
 
 /-- The per-pair bridge: a witness whose block and sides are part unions of `P'`
-transports the `ε⁴` gain to the summed energies of the refined sub-blocks.-/
+transports the `ε⁴` gain to the summed energies of the refined sub-blocks.
+@isnad1 id=le.5h8v.s7.035b632f02cb from=translated src=- shape=cc79db41 vocab=8d31ace1
+-/
 theorem blockEnergy_increment_refined [DecidableEq α] {s : Finset α}
     {P' : Finpartition s} (R : α → α → Prop) [DecidableRel R] {C D : Finset α} {ε : ℝ}
     (hε : 0 < ε) (w : NonuniformWitness R C D ε)

@@ -26,7 +26,9 @@ namespace RegularityLemmata
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- Simultaneous sampling on the first `m` size-`s` blocks of a permutation.  Unlike the
-exact-tiling theorem, this leaves an unused tail when `m * s < n`.-/
+exact-tiling theorem, this leaves an unused tail when `m * s < n`.
+@isnad1 id=ex.3h7v.s7.4160dfb8278f from=translated src=- shape=284285d3 vocab=af378b88
+-/
 theorem exists_equiv_forall_prefix_blocks_window {n s m : ℕ}
     (hn : Fintype.card α = n) (hms : m * s ≤ n)
     (F : Finset (Finset α)) (lo hi : Finset α → ℕ)
@@ -101,7 +103,9 @@ theorem exists_equiv_forall_prefix_blocks_window {n s m : ℕ}
     exact hnothigh (Finset.mem_filter.mpr ⟨hSmem, hlt⟩)
 
 /-- One-sided proportional sampling on an initial family of disjoint equal blocks, leaving
-an unused tail when the ambient cardinality is not divisible by the block size.-/
+an unused tail when the ambient cardinality is not divisible by the block size.
+@isnad1 id=ex.3h6v.s7.2d5029425a4b from=translated src=- shape=a83333e9 vocab=a418bc4c
+-/
 theorem exists_equiv_forall_prefix_blocks_upper {n s m : ℕ}
     (hn : Fintype.card α = n) (hms : m * s ≤ n)
     (F : Finset (Finset α)) (hi : Finset α → ℕ)
@@ -122,7 +126,9 @@ theorem exists_equiv_forall_prefix_blocks_upper {n s m : ℕ}
     exists_equiv_forall_prefix_blocks_window hn hms F (fun _ ↦ 0) hi hsum'
   exact ⟨e, fun C hC j hj ↦ (he C hC j hj).2⟩
 
-/-- Active-trace proportional sampling on a prefix of disjoint size-`s` blocks.-/
+/-- Active-trace proportional sampling on a prefix of disjoint size-`s` blocks.
+@isnad1 id=ex.7h7v.s8.bcd59d9f8c4c from=translated src=- shape=5c1f4457 vocab=ff02e2f9
+-/
 theorem exists_equiv_forall_prefix_blocks_proportional_of_active_ratio
     {n s m t r : ℕ} (hn : Fintype.card α = n) (hms : m * s ≤ n)
     (F : Finset (Finset α)) (hs : 0 < s) (ht : t < s) (hr : 8 * r ≤ t)
@@ -163,7 +169,9 @@ theorem exists_equiv_forall_prefix_blocks_proportional_of_active_ratio
       _ = s := card_sampleBlock e hjs
       _ ≤ A.card * s / n + t := by omega
 
-/-- Concrete eighth-moment prefix sampler.-/
+/-- Concrete eighth-moment prefix sampler.
+@isnad1 id=ex.6h6v.s8.47ced20124ba from=translated src=- shape=2b133d4b vocab=ff02e2f9
+-/
 theorem exists_equiv_forall_prefix_blocks_proportional_eighth_moment
     {n s m t : ℕ} (hn : Fintype.card α = n) (hms : m * s ≤ n)
     (F : Finset (Finset α)) (hs : 0 < s) (ht : t < s)
@@ -201,22 +209,34 @@ def covered (cert : SliceCert A F m s t) : Finset α :=
 def leftover (cert : SliceCert A F m s t) : Finset α :=
   A \ cert.covered
 
+/--
+@isnad1 id=le.0h7v.s5.a7e0d3b6bc6c from=translated src=- shape=e145c290 vocab=68752c28
+-/
 theorem covered_subset (cert : SliceCert A F m s t) : cert.covered ⊆ A := by
   intro x hx
   rw [covered, Finset.mem_biUnion] at hx
   obtain ⟨j, _, hxj⟩ := hx
   exact cert.block_subset j hxj
 
+/--
+@isnad1 id=eq.0h7v.s5.19b4df8c0377 from=translated src=- shape=7e7de616 vocab=d7d5d6dc
+-/
 theorem card_covered (cert : SliceCert A F m s t) : cert.covered.card = m * s := by
   rw [covered, Finset.card_biUnion]
   · simp [cert.block_card]
   · intro i _ j _ hij
     exact cert.block_disjoint hij
 
+/--
+@isnad1 id=eq.0h7v.s5.c1d554e6450b from=translated src=- shape=3c58424f vocab=53e16935
+-/
 theorem card_leftover (cert : SliceCert A F m s t) :
     cert.leftover.card = A.card - m * s := by
   rw [leftover, Finset.card_sdiff_of_subset cert.covered_subset, cert.card_covered]
 
+/--
+@isnad1 id=eq.0h6v.s6.bb52e61ff7e6 from=translated src=- shape=74e853b7 vocab=3f46b8ee
+-/
 theorem card_leftover_eq_mod (cert : SliceCert A F (A.card / s) s t) :
     cert.leftover.card = A.card % s := by
   rw [cert.card_leftover]
@@ -224,6 +244,9 @@ theorem card_leftover_eq_mod (cert : SliceCert A F (A.card / s) s t) :
   rw [Nat.add_comm, Nat.mul_comm] at hmod
   omega
 
+/--
+@isnad1 id=lt.1h6v.s6.3c80840c1cb1 from=translated src=- shape=196f379d vocab=3bc2eeb5
+-/
 theorem card_leftover_lt (cert : SliceCert A F (A.card / s) s t) (hs : 0 < s) :
     cert.leftover.card < s := by
   rw [cert.card_leftover_eq_mod]
@@ -232,7 +255,9 @@ theorem card_leftover_lt (cert : SliceCert A F (A.card / s) s t) (hs : 0 < s) :
 end SliceCert
 
 open Classical in
-/-- A prefix sample exists under the same active-trace ratio as the exact parent sampler.-/
+/-- A prefix sample exists under the same active-trace ratio as the exact parent sampler.
+@isnad1 id=nonempty.5h6v.s8.d86a29a8dd29 from=translated src=- shape=f521eb67 vocab=b5730bc5
+-/
 theorem sliceCert_exists (A : Finset α) (F : Finset (Finset α)) {m s t : ℕ}
     (hms : m * s ≤ A.card) (hs : 0 < s) (ht : t < s)
     (hchoose : 0 < A.card.choose s)
@@ -289,7 +314,9 @@ theorem sliceCert_exists (A : Finset α) (F : Finset (Finset α)) {m s t : ℕ}
 open Classical in
 /-- Floor-many prefix blocks exist under the active ratio without a separate choose-positivity
 premise.  If the parent is thinner than one block, the demanded family is empty, so the
-certificate is canonical even though `A.card.choose s = 0`.-/
+certificate is canonical even though `A.card.choose s = 0`.
+@isnad1 id=nonempty.3h5v.s8.7c1fb78f4035 from=translated src=- shape=1e628034 vocab=a3881e1d
+-/
 theorem sliceCert_floor_exists (A : Finset α) (F : Finset (Finset α)) {s t : ℕ}
     (hs : 0 < s) (ht : t < s)
     (hratio : (A.card / s) *

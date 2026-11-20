@@ -49,7 +49,9 @@ def IsBadTriadEdge (H : UniformHypergraph 3 α) (κ : RSet 2 α → Fin K) (δ :
     tupleRange v = e.1 ∧ IsBadTriad H κ δ (polyadKey κ hv)
 
 /-- Badness of an edge is ordering-independent: any one injective realization
-decides it.-/
+decides it.
+@isnad1 id=iff.2h7v.s6.75a23428f1b2 from=translated src=- shape=f8e773b9 vocab=2b4348b0
+-/
 theorem isBadTriadEdge_iff_of_tupleRange {H : UniformHypergraph 3 α}
     {κ : RSet 2 α → Fin K} {δ : ℝ} {e : RSet 3 α} {v : Fin 3 → α}
     (hv : Function.Injective v) (hrange : tupleRange v = e.1) :
@@ -75,13 +77,18 @@ noncomputable def triadCleaned (H : UniformHypergraph 3 α) (κ : RSet 2 α → 
   exact ⟨H.edges.filter fun e => ∀ h : e.card = 3, ¬IsBadTriadEdge H κ δ ⟨e, h⟩,
     fun e he => H.card_eq e (Finset.mem_filter.mp he).1⟩
 
-/-- Deletion only.-/
+/-- Deletion only.
+@isnad1 id=le.0h5v.s6.7483189cb752 from=translated src=- shape=81f25255 vocab=86c7a3ff
+-/
 theorem triadCleaned_subset (H : UniformHypergraph 3 α) (κ : RSet 2 α → Fin K) (δ : ℝ) :
     (triadCleaned H κ δ).edges ⊆ H.edges := by
   classical
   rw [triadCleaned]
   exact Finset.filter_subset _ _
 
+/--
+@isnad1 id=iff.0h6v.s7.fd527daee7c4 from=translated src=- shape=d55fe036 vocab=55fce6fc
+-/
 theorem mem_triadCleaned {H : UniformHypergraph 3 α} {κ : RSet 2 α → Fin K} {δ : ℝ}
     {e : Finset α} :
     e ∈ (triadCleaned H κ δ).edges
@@ -91,7 +98,9 @@ theorem mem_triadCleaned {H : UniformHypergraph 3 α} {κ : RSet 2 α → Fin K}
   exact Finset.mem_filter
 
 /-- On a good key, the triadCleaned observable agrees with `H`'s throughout the parent
-block.-/
+block.
+@isnad1 id=iff.2h7v.s7.eabb038e6527 from=translated src=- shape=0024ebd6 vocab=0f477851
+-/
 theorem triadObs_triadCleaned_iff_of_good {H : UniformHypergraph 3 α}
     {κ : RSet 2 α → Fin K} {δ : ℝ} {key : Fin 3 → Fin K}
     (hgood : ¬IsBadTriad H κ δ key) {v : Fin 3 → α} (hv : v ∈ polyadBlock κ key) :
@@ -107,7 +116,9 @@ theorem triadObs_triadCleaned_iff_of_good {H : UniformHypergraph 3 α}
     rwa [hkey] at hbadedge
 
 /-- On a bad key, the triadCleaned observable is identically false on the parent
-block.-/
+block.
+@isnad1 id=not.2h7v.s7.422bfbbcd4a3 from=translated src=- shape=846cf61d vocab=0f477851
+-/
 theorem not_triadObs_triadCleaned_of_bad {H : UniformHypergraph 3 α}
     {κ : RSet 2 α → Fin K} {δ : ℝ} {key : Fin 3 → Fin K}
     (hbad : IsBadTriad H κ δ key) {v : Fin 3 → α} (hv : v ∈ polyadBlock κ key) :
@@ -124,7 +135,9 @@ theorem not_triadObs_triadCleaned_of_bad {H : UniformHypergraph 3 α}
 
 /-- **Local regularity everywhere**: for the triadCleaned hypergraph, every key —
 realized or not — is locally disc-regular. Good keys inherit `H`'s regularity; bad
-keys are constant-zero at their new own density `0`.-/
+keys are constant-zero at their new own density `0`.
+@isnad1 id=islocald.1h6v.s6.4fa718150430 from=translated src=- shape=dcb5e4c4 vocab=9b4de2a7
+-/
 theorem isLocalDiscRegular_triadCleaned {H : UniformHypergraph 3 α}
     {κ : RSet 2 α → Fin K} {δ : ℝ} (hδ : 0 ≤ δ) (key : Fin 3 → Fin K) :
     IsLocalDiscRegular κ (triadObs (triadCleaned H κ δ)) key δ := by
@@ -156,7 +169,9 @@ theorem isLocalDiscRegular_triadCleaned {H : UniformHypergraph 3 α}
 
 /-! ### The edit inequality -/
 
-/-- Every ordered disagreement triple lives in a bad block.-/
+/-- Every ordered disagreement triple lives in a bad block.
+@isnad1 id=le.0h5v.s7.c10e5c42969c from=translated src=- shape=e90491e2 vocab=1d726038
+-/
 theorem editTriples_subset_badTriadTuples (H : UniformHypergraph 3 α)
     (κ : RSet 2 α → Fin K) (δ : ℝ) :
     (injectiveTuples α 3).filter
@@ -174,7 +189,9 @@ theorem editTriples_subset_badTriadTuples (H : UniformHypergraph 3 α)
     (mem_polyadBlock_polyadKey κ hinj)))
 
 /-- **The edit inequality**: the ordered edit mass of cleaning is at most the bad
-mass.-/
+mass.
+@isnad1 id=le.0h5v.s6.11b1942a94e8 from=translated src=- shape=133a3d54 vocab=f2563c10
+-/
 theorem editCount_triadCleaned_le (H : UniformHypergraph 3 α) (κ : RSet 2 α → Fin K)
     (δ : ℝ) :
     (6 * editCount H (triadCleaned H κ δ) : ℝ) ≤ badTriadMassNum H κ δ := by
@@ -188,7 +205,9 @@ theorem editCount_triadCleaned_le (H : UniformHypergraph 3 α) (κ : RSet 2 α �
     (Finset.card_le_card (editTriples_subset_badTriadTuples H κ δ))
 
 /-- Normalized-to-raw conversion of the bad-mass bound, with the empty host handled
-explicitly.-/
+explicitly.
+@isnad1 id=le.1h5v.s6.03526c3b8c49 from=translated src=- shape=ccf69dfd vocab=0132d3e4
+-/
 theorem badTriadMassNum_le_of_mass_le {H : UniformHypergraph 3 α}
     {κ : RSet 2 α → Fin K} {δ : ℝ} (h : badTriadMass H κ δ ≤ δ) :
     badTriadMassNum H κ δ ≤ δ * (Fintype.card α : ℝ) ^ 3 := by
@@ -215,7 +234,9 @@ theorem badTriadMassNum_le_of_mass_le {H : UniformHypergraph 3 α}
 
 /-- **The edited summit**: every 3-uniform hypergraph admits a pair coloring with at
 most `triadBound δ` colors and a deletion-only subgraph within `δ·|V|³` ordered
-edits, under which EVERY key is locally disc-regular.-/
+edits, under which EVERY key is locally disc-regular.
+@isnad1 id=ex.1h3v.s7.e8bf401fd8a7 from=translated src=- shape=5c8b190d vocab=962ca81a
+-/
 theorem exists_triadic_regular_approximation (H : UniformHypergraph 3 α) {δ : ℝ} (hδ : 0 < δ) :
     ∃ (K : ℕ) (κ : RSet 2 α → Fin K) (G : UniformHypergraph 3 α),
       K ≤ triadBound δ

@@ -21,7 +21,9 @@ open Filter Asymptotics
 
 namespace RegularityLemmata
 
-/-- Any fixed polynomial trace count is eventually beaten by a geometric tail.-/
+/-- Any fixed polynomial trace count is eventually beaten by a geometric tail.
+@isnad1 id=ex.2h3v.s6.1a9b1fa0720c from=translated src=- shape=8cf55e12 vocab=f186b2fd
+-/
 theorem exists_forall_const_mul_pow_mul_geometric_lt_one
     (C r : ℝ) (d : ℕ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
     ∃ N : ℕ, ∀ n ≥ N, C * (n : ℝ) ^ d * r ^ n < 1 := by
@@ -37,7 +39,9 @@ theorem exists_forall_const_mul_pow_mul_geometric_lt_one
     simpa only [mul_assoc] using (tendsto_order.mp htend).2 1 zero_lt_one
   exact Filter.eventually_atTop.mp hevent
 
-/-- A finite multiple of a polynomial trace count is likewise eventually beaten.-/
+/-- A finite multiple of a polynomial trace count is likewise eventually beaten.
+@isnad1 id=ex.2h3v.s6.53a5201b2d16 from=translated src=- shape=f95bd3dc vocab=f186b2fd
+-/
 theorem exists_forall_nat_mul_pow_mul_geometric_lt_one
     (K d : ℕ) (r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
     ∃ N : ℕ, ∀ n ≥ N, K * (n : ℝ) ^ d * r ^ n < 1 :=

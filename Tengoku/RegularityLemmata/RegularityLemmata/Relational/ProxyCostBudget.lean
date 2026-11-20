@@ -76,19 +76,33 @@ def proxyDevFst (e : ProxyDevEvent Q L) : ProxyIndex Q := proxyEventFst e.1
 /-- The second coordinate of a cost event.-/
 def proxyDevSnd (e : ProxyDevEvent Q L) : ProxyIndex Q := proxyEventSnd e.1
 
+/--
+@isnad1 id=eq.0h5v.s6.94360cf935a7 from=translated src=- shape=44268b5c vocab=7fc0db41
+-/
 @[simp] theorem proxyDevPair_fst (e : ProxyDevEvent Q L) :
     (proxyDevPair e).1 = (proxyDevFst e).1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.743e23b01d83 from=translated src=- shape=44268b5c vocab=5d6e2427
+-/
 @[simp] theorem proxyDevPair_snd (e : ProxyDevEvent Q L) :
     (proxyDevPair e).2 = (proxyDevSnd e).1 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.90b72d92ca88 from=translated src=- shape=ee083e4b vocab=e2e714ff
+-/
 @[simp] theorem proxyDevPair_mk (e₁ : ProxyEvent Q) (c : BinaryPairPalette L) :
     proxyDevPair (Q := Q) (e₁, c) = proxyEventPair e₁ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.a77159761cd2 from=translated src=- shape=0fb7c3c2 vocab=89d24afe
+-/
 @[simp] theorem proxyDevColor_mk (e₁ : ProxyEvent Q) (c : BinaryPairPalette L) :
     proxyDevColor (Q := Q) (e₁, c) = c := rfl
 
-/-- The two coordinates of a cost event are distinct, the color playing no part.-/
+/-- The two coordinates of a cost event are distinct, the color playing no part.
+@isnad1 id=ne.0h5v.s5.1d4d401c7fab from=translated src=- shape=7a1bfeb1 vocab=2d96f567
+-/
 theorem proxyDev_fst_ne_snd (e : ProxyDevEvent Q L) : proxyDevFst e ≠ proxyDevSnd e :=
   proxyEvent_fst_ne_snd e.1
 
@@ -114,7 +128,9 @@ noncomputable def proxyDeviationCost (M : FiniteRelModel L V) (η : ℝ) (F : Fi
         proxyDeviantFinePairs M (proxyDevColor e) η F (proxyDevPair e)
       then (1 : ℝ) else 0
 
-/-- The `hcost` input: the cost is nonnegative.-/
+/-- The `hcost` input: the cost is nonnegative.
+@isnad1 id=le.0h8v.s6.8c285d0270d0 from=translated src=- shape=1aa0ca95 vocab=062b6b6e
+-/
 theorem proxyDeviationCost_nonneg (M : FiniteRelModel L V) (η : ℝ) (F : Finpartition s)
     (Q : Finpartition s) (g : ProxyIndex Q → Finset V) :
     0 ≤ proxyDeviationCost M η F Q g := by
@@ -129,7 +145,9 @@ open Classical in
 proxy pair and every color, the deviant candidate-pair mass is at most `K` times the
 witness's total deviant mass: `sum_proxyPair_deviant_le` is applied once per color, and
 each color's proxy-pair sum is bounded once. Only the palette multiplicity is paid; the
-number of proxy pairs multiplies nothing.-/
+number of proxy pairs multiplies nothing.
+@isnad1 id=le.1h10v.s8.f64d2c68702e from=translated src=- shape=61d53765 vocab=7b275dc7
+-/
 theorem sum_proxyDevEvent_mass_le (w : BinaryPaletteStrongDiagWitness M sch δ P₀) (q : ℕ)
     {η : ℝ} (hη : 0 < η) :
     ∑ e : ProxyDevEvent w.coarse L,
@@ -193,7 +211,9 @@ as in the forbidden channel: `sum_piFinset_weight_mul_eventCost_le_of_weight_flo
 same weight-floor factorization, and `sum_proxyDevEvent_mass_le` supplies the aggregate by
 applying `sum_proxyPair_deviant_le` ONCE PER PALETTE. Only
 the palette multiplicity `K` is paid — never the event-cardinality envelope, and no `9n²`
-multiplier appears.-/
+multiplier appears.
+@isnad1 id=le.3h11v.s9.0bf41faf534c from=translated src=- shape=9aa4f4c7 vocab=3ce80925
+-/
 theorem expected_proxyDeviationCost_le (w : BinaryPaletteStrongDiagWitness M sch δ P₀)
     (q : ℕ) {η w₀ : ℝ} (hη : 0 < η) (hw₀ : 0 < w₀)
     (hW : ∀ C : ProxyIndex w.coarse,

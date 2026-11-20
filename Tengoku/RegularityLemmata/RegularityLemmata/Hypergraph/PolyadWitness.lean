@@ -61,7 +61,9 @@ structure DiscWitness (κ : RSet j α → Fin K) (obs : (Fin (j + 1) → α) →
   deviates : δ < |densityOn (discAtom κ key faces) obs
       - densityOn (polyadBlock κ key) obs|
 
-/-- Failure of the canonical local predicate yields a witness.-/
+/-- Failure of the canonical local predicate yields a witness.
+@isnad1 id=nonempty.1h7v.s6.9b309c503634 from=translated src=- shape=35be8c7c vocab=5e3e2b90
+-/
 theorem exists_discWitness {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {δ : ℝ} (h : ¬ IsLocalDiscRegular κ obs key δ) :
@@ -101,7 +103,9 @@ def cutRefineBit (c : Fin (cutBound j K)) (key : Fin (j + 1) → Fin K)
 
 omit [Fintype α] in
 /-- The old coloring is exactly the projection of the refined one: `κ` is a merge
-of `cutRefine κ W`.-/
+of `cutRefine κ W`.
+@isnad1 id=eq.0h5v.s6.3b394de50fc1 from=translated src=- shape=41134beb vocab=55b42763
+-/
 theorem cutRefineProj_comp (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α)) :
     (fun e => cutRefineProj (cutRefine κ W e)) = κ := by
@@ -118,10 +122,16 @@ def ColoringRefines {K' : ℕ} (κ' : RSet j α → Fin K') (κ : RSet j α → 
   ∃ π : Fin K' → Fin K, π ∘ κ' = κ
 
 omit [Fintype α] [DecidableEq α] in
+/--
+@isnad1 id=coloring.0h4v.s4.32f63efa5d02 from=translated src=- shape=a16ed213 vocab=60e4009a
+-/
 @[refl] theorem ColoringRefines.refl (κ : RSet j α → Fin K) : ColoringRefines κ κ :=
   ⟨id, rfl⟩
 
 omit [Fintype α] [DecidableEq α] in
+/--
+@isnad1 id=coloring.2h8v.s5.55bd744628d3 from=translated src=- shape=2c2c3b51 vocab=60e4009a
+-/
 theorem ColoringRefines.trans {K' K'' : ℕ} {κ'' : RSet j α → Fin K''}
     {κ' : RSet j α → Fin K'} {κ : RSet j α → Fin K}
     (h₂ : ColoringRefines κ'' κ') (h₁ : ColoringRefines κ' κ) : ColoringRefines κ'' κ := by
@@ -131,14 +141,18 @@ theorem ColoringRefines.trans {K' K'' : ℕ} {κ'' : RSet j α → Fin K''}
 
 omit [Fintype α] in
 /-- **The one-step refinement witness**: `cutRefineProj` exhibits every simultaneous cut as a
-refinement of the coloring it cut.-/
+refinement of the coloring it cut.
+@isnad1 id=coloring.0h5v.s6.1a441a95c996 from=translated src=- shape=29ae4158 vocab=4d5de34c
+-/
 theorem coloringRefines_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α)) :
     ColoringRefines (cutRefine κ W) κ :=
   ⟨cutRefineProj, cutRefineProj_comp κ W⟩
 
 omit [Fintype α] in
-/-- The refined color records exactly the face-family memberships.-/
+/-- The refined color records exactly the face-family memberships.
+@isnad1 id=eq.0h8v.s7.9854367c9f8d from=translated src=- shape=a237a22a vocab=c2e620ef
+-/
 theorem cutRefineBit_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α)) (e : RSet j α)
     (key : Fin (j + 1) → Fin K) (i : Fin (j + 1)) :
@@ -147,7 +161,9 @@ theorem cutRefineBit_cutRefine (κ : RSet j α → Fin K)
   simp
 
 /-- Energy never decreases under a cut refinement (via the merge identity and
-refinement monotonicity).-/
+refinement monotonicity).
+@isnad1 id=le.0h6v.s6.5a76ae3a6a9c from=translated src=- shape=3214aace vocab=27babfea
+-/
 theorem polyadEnergyNum_le_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
@@ -158,7 +174,9 @@ theorem polyadEnergyNum_le_cutRefine (κ : RSet j α → Fin K)
 
 /-! ### Witness atoms are unions of refined blocks -/
 
-/-- Refined blocks sit inside the old blocks of their projected keys.-/
+/-- Refined blocks sit inside the old blocks of their projected keys.
+@isnad1 id=le.0h6v.s7.56ac8d3d2e81 from=translated src=- shape=790318d1 vocab=f74f9a24
+-/
 theorem polyadBlock_cutRefine_subset (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (Q : Fin (j + 1) → Fin (cutBound j K)) :
@@ -183,7 +201,9 @@ def resolvingKeys (κ : RSet j α → Fin K)
     (∀ i, cutRefineProj (Q i) = key i) ∧ ∀ i, cutRefineBit (Q i) key i = 1
 
 omit [Fintype α] [DecidableEq α] in
-/-- Resolving keys lie in the projection fiber of `key`.-/
+/-- Resolving keys lie in the projection fiber of `key`.
+@isnad1 id=le.0h6v.s8.4e75155b0ded from=translated src=- shape=da35be4c vocab=96040942
+-/
 theorem resolvingKeys_subset_fiber (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (key : Fin (j + 1) → Fin K) :
@@ -196,7 +216,9 @@ theorem resolvingKeys_subset_fiber (κ : RSet j α → Fin K)
   exact ⟨Finset.mem_univ _, funext hQ.2.1⟩
 
 /-- **Witness atoms are unions of refined blocks**: the disc atom of `W key` at
-`key` is exactly the union of the refined blocks over its resolving keys.-/
+`key` is exactly the union of the refined blocks over its resolving keys.
+@isnad1 id=eq.0h6v.s8.4137dfe57cc0 from=translated src=- shape=0682e176 vocab=74a104e2
+-/
 theorem discAtom_eq_biUnion_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (key : Fin (j + 1) → Fin K) :
@@ -238,7 +260,9 @@ theorem discAtom_eq_biUnion_cutRefine (κ : RSet j α → Fin K)
       exact absurd hb (by decide)
 
 /-- Cardinality of a witness atom: the sum over its resolving keys (the refined
-blocks are pairwise disjoint).-/
+blocks are pairwise disjoint).
+@isnad1 id=eq.0h6v.s7.57520535270b from=translated src=- shape=91788465 vocab=dbc6db1a
+-/
 theorem card_discAtom_eq_sum_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (key : Fin (j + 1) → Fin K) :
@@ -247,7 +271,9 @@ theorem card_discAtom_eq_sum_cutRefine (κ : RSet j α → Fin K)
   rw [discAtom_eq_biUnion_cutRefine κ W key]
   exact Finset.card_biUnion fun Q _ Q' _ h => polyadBlock_disjoint h
 
-/-- Filtered cardinality of a witness atom: the sum over its resolving keys.-/
+/-- Filtered cardinality of a witness atom: the sum over its resolving keys.
+@isnad1 id=eq.0h7v.s8.227c795d844e from=translated src=- shape=43c0cdd0 vocab=c8a3b2a0
+-/
 theorem card_filter_discAtom_eq_sum_cutRefine (κ : RSet j α → Fin K)
     (W : (Fin (j + 1) → Fin K) → Fin (j + 1) → Finset (RSet j α))
     (key : Fin (j + 1) → Fin K) (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
@@ -263,7 +289,9 @@ theorem card_filter_discAtom_eq_sum_cutRefine (κ : RSet j α → Fin K)
 /-- **Local increment**: at a key carrying an actual witness in the family, the
 refinement variance strictly exceeds `δ³ · |parent block|`. The strictness comes
 from `DiscWitness.deviates`; the route is the restricted Engel-form Cauchy–Schwarz
-over the atom's resolving keys.-/
+over the atom's resolving keys.
+@isnad1 id=lt.2h9v.s9.a142431be9d3 from=translated src=- shape=a4664969 vocab=15a54a75
+-/
 theorem local_variance_gain {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {δ : ℝ} (hδ : 0 < δ)

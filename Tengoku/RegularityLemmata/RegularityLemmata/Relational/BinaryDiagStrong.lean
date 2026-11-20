@@ -58,12 +58,16 @@ namespace BinaryPaletteStrongDiagWitness
 
 variable {M : FiniteRelModel L V} {E : ErrorSchedule} {P₀ : Finpartition s}
 
-/-- The fine partition refines the vertex-profile partition too.-/
+/-- The fine partition refines the vertex-profile partition too.
+@isnad1 id=le.0h8v.s6.2627e57642c8 from=translated src=- shape=9fb6172b vocab=15e8613e
+-/
 theorem fine_profile (w : BinaryPaletteStrongDiagWitness M E δ P₀) :
     w.fine ≤ binaryProfilePartition M s :=
   w.fine_le.trans w.coarse_profile
 
-/-- The fine partition is palette-regular in the frozen off-diagonal sense.-/
+/-- The fine partition is palette-regular in the frozen off-diagonal sense.
+@isnad1 id=isbinary.0h8v.s6.fcbc06de7a9b from=translated src=- shape=611c72f5 vocab=e3fa3109
+-/
 theorem fine_regular (w : BinaryPaletteStrongDiagWitness M E δ P₀) :
     IsBinaryPaletteRegular M (E w.coarse.parts.card) w.fine :=
   w.fine_diagRegular.isBinaryPaletteRegular
@@ -82,10 +86,16 @@ def toBinaryPaletteStrongWitness (w : BinaryPaletteStrongDiagWitness M E δ P₀
   fine_regular := w.fine_regular
   energy_gap := w.energy_gap
 
+/--
+@isnad1 id=eq.0h8v.s6.65d4716d8827 from=translated src=- shape=733dcd4d vocab=6996b8ff
+-/
 @[simp] theorem toBinaryPaletteStrongWitness_coarse
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) :
     w.toBinaryPaletteStrongWitness.coarse = w.coarse := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.b56e2b386456 from=translated src=- shape=733dcd4d vocab=ecd4acf7
+-/
 @[simp] theorem toBinaryPaletteStrongWitness_fine
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) :
     w.toBinaryPaletteStrongWitness.fine = w.fine := rfl
@@ -99,7 +109,9 @@ def toStrongWitness (w : BinaryPaletteStrongDiagWitness M E δ P₀)
 /-- **Per-color deviant-mass bound, diagonal-inclusive by construction**: the sum
 ranges over ALL ordered coarse pairs (diagonal coarse pairs included) and all fine
 sub-pairs (diagonal fine pairs included) — exactly the form the representative
-selection consumes.-/
+selection consumes.
+@isnad1 id=le.1h10v.s9.5b169fc720cf from=translated src=- shape=bf806034 vocab=7ccad862
+-/
 theorem deviant_mass_le (w : BinaryPaletteStrongDiagWitness M E δ P₀)
     (c : BinaryPairPalette L) {η : ℝ} (hη : 0 < η) :
     ∑ pd ∈ w.coarse.parts ×ˢ w.coarse.parts,
@@ -117,7 +129,9 @@ end BinaryPaletteStrongDiagWitness
 
 /-- Fuel-parametrized diagonal-inclusive strong iteration — the port of the frozen
 `binaryPalette_strong_iterate` over the diagonal-inclusive per-step summit, with the
-SAME `monoStepBound` bookkeeping (the diag ladder reuses `regularityBound`).-/
+SAME `monoStepBound` bookkeeping (the diag ladder reuses `regularityBound`).
+@isnad1 id=ex.2h8v.s8.817a19ca0f2e from=translated src=- shape=c51918ad vocab=59db6d62
+-/
 theorem binaryPaletteDiag_strong_iterate (M : FiniteRelModel L V) (E : ErrorSchedule)
     (hδ : 0 < δ) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * δ ≤ binaryPaletteEnergy M P →
@@ -172,7 +186,9 @@ theorem binaryPaletteDiag_strong_iterate (M : FiniteRelModel L V) (E : ErrorSche
 
 /-- **Strong diagonal-inclusive palette regularity** — the SAME host-independent
 bounds (`monoStepBound` iterates over fuel `⌈1/δ⌉` from the profile-refined start) as
-the frozen `exists_binaryPaletteStrongWitness`.-/
+the frozen `exists_binaryPaletteStrongWitness`.
+@isnad1 id=ex.1h7v.s7.1d26708b1118 from=translated src=- shape=84c9e1b7 vocab=b601d1d9
+-/
 theorem exists_binaryPaletteStrongDiagWitness (M : FiniteRelModel L V)
     (E : ErrorSchedule) (hδ : 0 < δ) (P₀ : Finpartition s) :
     ∃ w : BinaryPaletteStrongDiagWitness M E δ P₀,

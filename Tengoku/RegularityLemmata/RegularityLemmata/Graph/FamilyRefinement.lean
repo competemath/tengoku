@@ -37,7 +37,9 @@ variable {α : Type*} [DecidableEq α] {s : Finset α}
 variable {K : ℕ} {Rk : Fin K → α → α → Prop} [∀ k, DecidableRel (Rk k)] {ε : ℝ}
 
 /-- **Fuel-parametrized family iteration.** From family energy within `t · ε⁵` of the ceiling
-`K`, `t` weak steps reach an `ε`-family-regular exact refinement.-/
+`K`, `t` weak steps reach an `ε`-family-regular exact refinement.
+@isnad1 id=ex.2h7v.s7.5926c3bc459f from=translated src=- shape=d1dc613c vocab=01528af1
+-/
 theorem familyRegularity_refinement_iterate (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s), (K : ℝ) - (t : ℝ) * ε ^ 5 ≤ familyEnergy Rk P →
       ∃ Q : Finpartition s, Q ≤ P ∧ IsFamilyRegular Rk ε Q ∧
@@ -83,7 +85,9 @@ exact refinement, with the host-independent part bound `regularityBound ⌈K/ε�
 
 No equitability, no symmetry, and no host-size hypothesis: the seed is arbitrary and the
 conclusion refines it. The fuel `⌈K/ε⁵⌉` is linear in the family size because the family energy
-ceiling is `K`, not `1`.-/
+ceiling is `K`, not `1`.
+@isnad1 id=ex.1h6v.s7.32ccec274a02 from=translated src=- shape=f23551fd vocab=954cc816
+-/
 theorem exists_familyRegular_refinement (Rk : Fin K → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsFamilyRegular Rk ε Q ∧
@@ -100,14 +104,18 @@ theorem exists_familyRegular_refinement (Rk : Fin K → α → α → Prop)
 /-! ### Endpoints -/
 
 /-- **The empty-family endpoint.** No relations, no work: the seed itself is returned, and the
-fuel is `0`.-/
+fuel is `0`.
+@isnad1 id=ex.1h5v.s7.cba966e5cf12 from=translated src=- shape=b774630c vocab=dcc6ce7d
+-/
 theorem exists_familyRegular_refinement_zero (Rk : Fin 0 → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (P : Finpartition s) (_hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsFamilyRegular Rk ε Q ∧ Q.parts.card ≤ P.parts.card :=
   ⟨P, le_rfl, isFamilyRegular_zero Rk, le_rfl⟩
 
 /-- **The singleton endpoint.** One relation recovers the single-relation exact-refining
-summit's shape.-/
+summit's shape.
+@isnad1 id=ex.1h5v.s7.34c533a844be from=translated src=- shape=7fdbf39b vocab=8c2f1784
+-/
 theorem exists_familyRegular_refinement_single (R : α → α → Prop) [DecidableRel R]
     (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsRegularPartition R ε Q ∧

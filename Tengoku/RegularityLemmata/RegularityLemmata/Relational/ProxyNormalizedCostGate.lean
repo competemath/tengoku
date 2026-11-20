@@ -65,6 +65,9 @@ noncomputable def proxyPairMassWeight (s : Finset V) (pd : Finset V × Finset V)
   (pd.1.card : ℝ) * pd.2.card / (s.card : ℝ) ^ 2
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s4.20702c873d80 from=translated src=- shape=1d0df6f6 vocab=57a373a0
+-/
 theorem proxyPairMassWeight_nonneg (s : Finset V) (pd : Finset V × Finset V) :
     0 ≤ proxyPairMassWeight s pd := by
   rw [proxyPairMassWeight]; positivity
@@ -79,6 +82,9 @@ noncomputable def proxyNormalizedDeviationCost (M : FiniteRelModel L V) (η : �
         proxyDeviantFinePairs M (proxyDevColor e) η F (proxyDevPair e)
       then proxyPairMassWeight s (proxyDevPair e) else 0
 
+/--
+@isnad1 id=le.0h8v.s6.08c71f2e23e6 from=translated src=- shape=1aa0ca95 vocab=ad324274
+-/
 theorem proxyNormalizedDeviationCost_nonneg (M : FiniteRelModel L V) (η : ℝ)
     (F : Finpartition s) (Q : Finpartition s) (g : ProxyIndex Q → Finset V) :
     0 ≤ proxyNormalizedDeviationCost M η F Q g := by
@@ -94,7 +100,9 @@ theorem proxyNormalizedDeviationCost_nonneg (M : FiniteRelModel L V) (η : ℝ)
 half-mass theorem gives `W_C ≥ #C / 2` and `W_D ≥ #D / 2`, so the event weight
 `#C * #D / #s ^ 2` is absorbed by `4 * W_C * W_D / #s ^ 2`. No common floor and no proxy
 size enter, and the forbidden family is arbitrary — the same cancellation serves any charge
-that is weighted by the proxy pair's own mass.-/
+that is weighted by the proxy pair's own mass.
+@isnad1 id=le.2h8v.s9.be3c43ec2531 from=translated src=- shape=5a5cc06d vocab=a877e7be
+-/
 theorem massWeight_mul_mass_le_of_candidates {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ}
     (hq : F.parts.card ≤ q) (Bad : Finset (Finset V × Finset V)) (C D : ProxyIndex Q) :
     (C.1.card : ℝ) * D.1.card / (s.card : ℝ) ^ 2
@@ -121,7 +129,9 @@ theorem massWeight_mul_mass_le_of_candidates {F : Finpartition s} (hFQ : F ≤ Q
 open Classical in
 /-- **Coordinatewise cancellation.** At the event's own two coordinates the half-mass theorem
 gives `W_C ≥ #C / 2` and `W_D ≥ #D / 2`, so the event weight `#C * #D / #s ^ 2` is absorbed
-by `4 * W_C * W_D / #s ^ 2`. No common floor and no proxy size enter.-/
+by `4 * W_C * W_D / #s ^ 2`. No common floor and no proxy size enter.
+@isnad1 id=le.1h11v.s9.532cc6ce53ec from=translated src=- shape=105138af vocab=b64705d5
+-/
 theorem proxyPairMassWeight_mul_mass_le (w : BinaryPaletteStrongDiagWitness M sch δ P₀)
     {q : ℕ} (hq : w.fine.parts.card ≤ q) (e : ProxyDevEvent w.coarse L) :
     proxyPairMassWeight s (proxyDevPair e)
@@ -141,7 +151,9 @@ theorem proxyPairMassWeight_mul_mass_le (w : BinaryPaletteStrongDiagWitness M sc
 
 open Classical in
 /-- **The `P`-free cost budget.** Charging each deviant incidence its proxy pair's normalized
-mass gives `μ = 4 * K * δ / η ^ 2`: no proxy count and no proxy-size floor appear.-/
+mass gives `μ = 4 * K * δ / η ^ 2`: no proxy count and no proxy-size floor appear.
+@isnad1 id=le.3h10v.s9.8645b53b0f9c from=translated src=- shape=b9a7afc4 vocab=d1c439dc
+-/
 theorem expected_proxyNormalizedDeviationCost_le
     (w : BinaryPaletteStrongDiagWitness M sch δ P₀) (q : ℕ) {η : ℝ} (hη : 0 < η)
     (hδ0 : 0 ≤ δ) (hq : w.fine.parts.card ≤ q) :
@@ -195,7 +207,9 @@ theorem expected_proxyNormalizedDeviationCost_le
 
 /-- **Conditioned.** With the forbidden budget at `σ ≤ 1/2`, the selection returned by
 `exists_piFinset_forall_not_mem_bad_cost_le` has normalized deviation cost at most
-`8 * K * δ / η ^ 2` — still `P`-free.-/
+`8 * K * δ / η ^ 2` — still `P`-free.
+@isnad1 id=le.3h4v.s7.34214de7c3c2 from=translated src=- shape=cb96bca5 vocab=dd3297cd
+-/
 theorem conditioned_proxyNormalizedCost_le {K : ℕ} {η σ : ℝ} (hη : 0 < η) (hδ0 : 0 ≤ δ)
     (hσ : σ ≤ 1 / 2) :
     (4 * (K : ℝ) * δ / η ^ 2) / (1 - σ) ≤ 8 * (K : ℝ) * δ / η ^ 2 := by

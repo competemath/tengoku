@@ -53,7 +53,9 @@ def IsHomogeneousPair (R : α → β → Prop) (A : Finset α) (B : Finset β) (
   pairDensity R A B ≤ ε ∨ 1 - ε ≤ pairDensity R A B
 
 /-- The definitional reading, valid over **any** ambient decidability instance: the
-classical instance inside `IsHomogeneousPair` is propositionally irrelevant.-/
+classical instance inside `IsHomogeneousPair` is propositionally irrelevant.
+@isnad1 id=iff.0h6v.s6.43f2cd0fd1d8 from=translated src=- shape=818bb4c5 vocab=a3c9837f
+-/
 theorem isHomogeneousPair_def [inst : DecidableRel R] :
     IsHomogeneousPair R A B ε ↔ pairDensity R A B ≤ ε ∨ 1 - ε ≤ pairDensity R A B := by
   unfold IsHomogeneousPair
@@ -62,6 +64,9 @@ theorem isHomogeneousPair_def [inst : DecidableRel R] :
 
 /-! ### Unconditional symmetries -/
 
+/--
+@isnad1 id=ishomoge.2h7v.s5.afa3a53c63bb from=translated src=- shape=e2e8986a vocab=0e9f013a
+-/
 theorem IsHomogeneousPair.mono (h : IsHomogeneousPair R A B ε) (hε : ε ≤ ε') :
     IsHomogeneousPair R A B ε' := by
   classical
@@ -70,7 +75,9 @@ theorem IsHomogeneousPair.mono (h : IsHomogeneousPair R A B ε) (hε : ε ≤ ε
   · exact Or.inl (h.trans hε)
   · exact Or.inr (by linarith)
 
-/-- Transposing swaps the carriers and preserves homogeneity.-/
+/-- Transposing swaps the carriers and preserves homogeneity.
+@isnad1 id=iff.0h6v.s5.681a929128be from=translated src=- shape=f0d5c86d vocab=9310b3d1
+-/
 theorem isHomogeneousPair_swapRel_iff :
     IsHomogeneousPair (swapRel R) B A ε ↔ IsHomogeneousPair R A B ε := by
   classical
@@ -79,7 +86,9 @@ theorem isHomogeneousPair_swapRel_iff :
 /-- Complementing the relation preserves homogeneity — **including on empty rectangles**,
 where `pairDensity_not` is unavailable because both densities are `0`. There the two sides
 are literally the same proposition; on a nonempty rectangle they exchange the two
-disjuncts.-/
+disjuncts.
+@isnad1 id=iff.0h6v.s5.906d027f33c6 from=translated src=- shape=5eed66b8 vocab=a56281e7
+-/
 theorem isHomogeneousPair_not_iff :
     IsHomogeneousPair (fun a b => ¬ R a b) A B ε ↔ IsHomogeneousPair R A B ε := by
   classical
@@ -107,7 +116,9 @@ bound on a relation over `A ×ˢ B` descends to a density bound on a subrectangl
 the two sides' inverse relative masses.
 
 Guard-free in the subrectangle: if `A'` or `B'` is empty the density is `0`, which is below
-the (nonnegative) right-hand side.-/
+the (nonnegative) right-hand side.
+@isnad1 id=le.8h10v.s7.19e0b041de6b from=translated src=- shape=05009f4b vocab=a46404fa
+-/
 theorem pairDensity_restrict_le {S : α → β → Prop} [DecidableRel S] {c ρA ρB : ℝ}
     (hc : 0 ≤ c) (hρA : 0 < ρA) (hρB : 0 < ρB) (hA : A' ⊆ A) (hB : B' ⊆ B)
     (hAc : ρA * (A.card : ℝ) ≤ (A'.card : ℝ)) (hBc : ρB * (B.card : ℝ) ≤ (B'.card : ℝ))
@@ -146,7 +157,9 @@ theorem pairDensity_restrict_le {S : α → β → Prop} [DecidableRel S] {c ρA
 
 /-- **Exact homogeneity is closed under subrectangles.** At `ε = 0` there is no degradation:
 a rectangle with no related pairs, or with every pair related, keeps that property on every
-subrectangle. (An empty subrectangle lands in the first disjunct, since its density is `0`.)-/
+subrectangle. (An empty subrectangle lands in the first disjunct, since its density is `0`.)
+@isnad1 id=ishomoge.3h7v.s6.64b1ba6fbc89 from=translated src=- shape=da9de945 vocab=0e9f013a
+-/
 theorem IsHomogeneousPair.subset_zero (h : IsHomogeneousPair R A B 0)
     (hA : A' ⊆ A) (hB : B' ⊆ B) : IsHomogeneousPair R A' B' 0 := by
   classical
@@ -197,7 +210,9 @@ theorem IsHomogeneousPair.subset_zero (h : IsHomogeneousPair R A B 0)
 by `ρA · ρB` — the exceptional mass can concentrate by the inverse relative rectangle mass.
 
 The two proportions are tracked **separately** rather than as a single rectangle fraction,
-because a consumer that shrinks only one side should pay only that side's factor.-/
+because a consumer that shrinks only one side should pay only that side's factor.
+@isnad1 id=ishomoge.8h10v.s7.bade4a668ad8 from=translated src=- shape=bd0a8a31 vocab=dfa45780
+-/
 theorem IsHomogeneousPair.restrict {ρA ρB : ℝ} (h : IsHomogeneousPair R A B ε)
     (hε : 0 ≤ ε) (hρA : 0 < ρA) (hρB : 0 < ρB) (hA : A' ⊆ A) (hB : B' ⊆ B)
     (hAc : ρA * (A.card : ℝ) ≤ (A'.card : ℝ)) (hBc : ρB * (B.card : ℝ) ≤ (B'.card : ℝ)) :
@@ -234,7 +249,9 @@ theorem IsHomogeneousPair.restrict {ρA ρB : ℝ} (h : IsHomogeneousPair R A B 
 /-! ### Perturbation -/
 
 /-- Homogeneity is stable under density perturbation: if two rectangles have densities within
-`γ`, homogeneity of one at `ε` gives homogeneity of the other at `ε + γ`.-/
+`γ`, homogeneity of one at `ε` gives homogeneity of the other at `ε + γ`.
+@isnad1 id=ishomoge.2h9v.s6.56690766f9ff from=translated src=- shape=99c42ded vocab=2f24c636
+-/
 theorem IsHomogeneousPair.of_abs_pairDensity_sub_le [DecidableRel R] {γ : ℝ}
     (h : IsHomogeneousPair R A' B' ε)
     (hclose : |pairDensity R A B - pairDensity R A' B'| ≤ γ) :
@@ -247,7 +264,9 @@ theorem IsHomogeneousPair.of_abs_pairDensity_sub_le [DecidableRel R] {γ : ℝ}
 
 /-- Division form of the sub-rectangle comparison for growth by at most `k` elements per side:
 the density moves by at most `2k(s + k)/s²` when the smaller rectangle has both sides of size
-at least `s`. Generalizes `abs_pairDensity_sub_le_of_grow_one` (the case `k = 1`).-/
+at least `s`. Generalizes `abs_pairDensity_sub_le_of_grow_one` (the case `k = 1`).
+@isnad1 id=le.7h9v.s7.f01b328e04b3 from=translated src=- shape=6e723ba0 vocab=d3c1ea36
+-/
 theorem abs_pairDensity_sub_le_of_grow [DecidableRel R] [DecidableEq α] [DecidableEq β]
     {A' : Finset α} {B' : Finset β} {s k : ℕ} (hs : 0 < s)
     (hA : A' ⊆ A) (hB : B' ⊆ B)
@@ -302,7 +321,9 @@ theorem abs_pairDensity_sub_le_of_grow [DecidableRel R] [DecidableEq α] [Decida
 
 /-- Division form of the sub-rectangle comparison: growing each side by at most one element
 moves the density by at most `2 * (s + 1) / s ^ 2` when the smaller rectangle has both sides of
-size at least `s`. This is the exact cost of absorbing one leftover element per block.-/
+size at least `s`. This is the exact cost of absorbing one leftover element per block.
+@isnad1 id=le.7h8v.s7.24d6b214b5d6 from=translated src=- shape=0e651417 vocab=d3c1ea36
+-/
 theorem abs_pairDensity_sub_le_of_grow_one [DecidableRel R] [DecidableEq α] [DecidableEq β]
     {s : ℕ} (hs : 0 < s)
     (hA : A' ⊆ A) (hB : B' ⊆ B)
@@ -319,7 +340,9 @@ tolerance `0`. -/
 
 /-- **Half is the trivial tolerance.** Every rectangle is `ε`-homogeneous once `1/2 ≤ ε`,
 because a density in `[0,1]` is either at most `1/2` or at least `1/2`. No hypothesis on `R`,
-`A`, or `B` — the empty rectangle included, where the guard-free density is `0`.-/
+`A`, or `B` — the empty rectangle included, where the guard-free density is `0`.
+@isnad1 id=ishomoge.1h6v.s5.0c3c9ed28d76 from=translated src=- shape=54b4b852 vocab=5846e63a
+-/
 theorem isHomogeneousPair_of_half_le (R : α → β → Prop) (A : Finset α) (B : Finset β)
     (hε : (1 : ℝ) / 2 ≤ ε) : IsHomogeneousPair R A B ε := by
   classical
@@ -329,7 +352,9 @@ theorem isHomogeneousPair_of_half_le (R : α → β → Prop) (A : Finset α) (B
   · exact Or.inr (by linarith)
 
 /-- **A one-point rectangle is exactly homogeneous**: its density is `0` or `1`, so it is
-`0`-homogeneous, hence `ε`-homogeneous for every `ε ≥ 0`.-/
+`0`-homogeneous, hence `ε`-homogeneous for every `ε ≥ 0`.
+@isnad1 id=ishomoge.0h5v.s5.fb5fd7a4d7c6 from=translated src=- shape=38110a68 vocab=91503355
+-/
 theorem isHomogeneousPair_singleton [DecidableEq α] [DecidableEq β] (R : α → β → Prop)
     (a : α) (b : β) : IsHomogeneousPair R {a} {b} 0 := by
   classical
@@ -357,7 +382,9 @@ output tolerance is the right shape: the asymmetry lives entirely in the two gro
 
 **No sign hypothesis on `cX`, `cY` is needed.** Nonnegativity is forced: `A' ⊆ A` gives
 `|A'| ≤ |A| ≤ (1 + cX)|A'|`, and `|A'| > 0` then yields `0 ≤ cX`. Stating it would be
-redundant rather than defensive.-/
+redundant rather than defensive.
+@isnad1 id=le.6h9v.s7.bf94bad79f04 from=translated src=- shape=fbbd807b vocab=67f72ddf
+-/
 theorem abs_pairDensity_sub_le_of_relative_grow [DecidableRel R] [DecidableEq α] [DecidableEq β]
     {A' : Finset α} {B' : Finset β} {cX cY : ℝ}
     (hA : A' ⊆ A) (hB : B' ⊆ B) (hA'ne : A'.Nonempty) (hB'ne : B'.Nonempty)

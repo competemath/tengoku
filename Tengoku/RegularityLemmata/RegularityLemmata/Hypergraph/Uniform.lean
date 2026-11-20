@@ -59,18 +59,25 @@ def symmDiff [DecidableEq V] (H G : UniformHypergraph r V) : UniformHypergraph r
     · exact H.card_eq e he
     · exact G.card_eq e he⟩
 
-/-- Membership in the symmetric difference, in the house `¬(↔)` form.-/
+/-- Membership in the symmetric difference, in the house `¬(↔)` form.
+@isnad1 id=iff.0h5v.s6.5e8dfe40e491 from=translated src=- shape=33ca459b vocab=7fefe59d
+-/
 theorem mem_symmDiff [DecidableEq V] {H G : UniformHypergraph r V} {e : Finset V} :
     e ∈ (H.symmDiff G).edges ↔ ¬(e ∈ H.edges ↔ e ∈ G.edges) := by
   rw [symmDiff]
   simp only [Finset.mem_union, Finset.mem_sdiff]
   tauto
 
-/-- Every edge set is contained in the complete one.-/
+/-- Every edge set is contained in the complete one.
+@isnad1 id=le.0h3v.s5.c7e3f9bdd2aa from=translated src=- shape=bc357481 vocab=32093452
+-/
 theorem edges_subset_powersetCard [Fintype V] [DecidableEq V] (H : UniformHypergraph r V) :
     H.edges ⊆ Finset.univ.powersetCard r := fun e he =>
   Finset.mem_powersetCard.mpr ⟨Finset.subset_univ e, H.card_eq e he⟩
 
+/--
+@isnad1 id=le.0h3v.s4.dfeecfceb584 from=translated src=- shape=3fb806dc vocab=be846d91
+-/
 theorem card_edges_le [Fintype V] [DecidableEq V] (H : UniformHypergraph r V) :
     H.edges.card ≤ (Fintype.card V).choose r := by
   refine le_trans (Finset.card_le_card H.edges_subset_powersetCard) (le_of_eq ?_)
@@ -87,10 +94,16 @@ noncomputable def restrictedDensity [DecidableEq V] (H : UniformHypergraph r V)
     (W : Finset V) : ℝ :=
   ((H.edges.filter (· ⊆ W)).card : ℝ) / ((W.card.choose r : ℕ) : ℝ)
 
+/--
+@isnad1 id=le.0h3v.s4.0916a176b0a2 from=translated src=- shape=4bf90389 vocab=42123bd0
+-/
 theorem density_nonneg [Fintype V] (H : UniformHypergraph r V) : 0 ≤ H.density := by
   unfold density
   positivity
 
+/--
+@isnad1 id=le.0h3v.s4.7115be281679 from=translated src=- shape=c9f20f02 vocab=a989b480
+-/
 theorem density_le_one [Fintype V] [DecidableEq V] (H : UniformHypergraph r V) :
     H.density ≤ 1 := by
   unfold density
@@ -100,11 +113,17 @@ theorem density_le_one [Fintype V] [DecidableEq V] (H : UniformHypergraph r V) :
   · rw [div_le_one (by exact_mod_cast hpos)]
     exact_mod_cast H.card_edges_le
 
+/--
+@isnad1 id=le.0h4v.s4.e7ce2fdd028e from=translated src=- shape=c0795de2 vocab=45b7ed9f
+-/
 theorem restrictedDensity_nonneg [DecidableEq V] (H : UniformHypergraph r V)
     (W : Finset V) : 0 ≤ H.restrictedDensity W := by
   unfold restrictedDensity
   positivity
 
+/--
+@isnad1 id=le.0h4v.s4.824262b6eba4 from=translated src=- shape=433b29ea vocab=45b7ed9f
+-/
 theorem restrictedDensity_le_one [DecidableEq V] (H : UniformHypergraph r V)
     (W : Finset V) : H.restrictedDensity W ≤ 1 := by
   unfold restrictedDensity
@@ -121,7 +140,9 @@ theorem restrictedDensity_le_one [DecidableEq V] (H : UniformHypergraph r V)
     exact_mod_cast this
 
 /-- The complete hypergraph has density `1` whenever the denominator is positive
-(`r ≤ |V|`); the zero-denominator convention gives `0` otherwise.-/
+(`r ≤ |V|`); the zero-denominator convention gives `0` otherwise.
+@isnad1 id=eq.1h2v.s5.993b6bea8543 from=translated src=- shape=6b1a187d vocab=069e1ca3
+-/
 theorem density_complete [Fintype V] [DecidableEq V] (hr : r ≤ Fintype.card V) :
     (complete r V).density = 1 := by
   unfold density complete
@@ -131,6 +152,9 @@ theorem density_complete [Fintype V] [DecidableEq V] (hr : r ≤ Fintype.card V)
   rw [div_self]
   exact_mod_cast hpos.ne'
 
+/--
+@isnad1 id=eq.0h2v.s4.e5b2f6596346 from=translated src=- shape=854112cc vocab=71e676a2
+-/
 @[simp] theorem density_empty [Fintype V] : (empty r V).density = 0 := by
   unfold density empty
   simp
@@ -142,6 +166,9 @@ def toHypergraph (H : UniformHypergraph r V) : Hypergraph V where
   edgeSet := (fun e : Finset V => (e : Set V)) '' ↑H.edges
   subset_vertexSet_of_mem_edgeSet' := fun _ _ => Set.subset_univ _
 
+/--
+@isnad1 id=iff.0h4v.s5.c6249d88bf27 from=translated src=- shape=2e6b3a32 vocab=1fa5975a
+-/
 theorem coe_mem_toHypergraph_edgeSet {H : UniformHypergraph r V} {e : Finset V} :
     (e : Set V) ∈ H.toHypergraph.edgeSet ↔ e ∈ H.edges := by
   rw [toHypergraph]
@@ -160,7 +187,9 @@ def orderedRel [DecidableEq V] (H : UniformHypergraph r V) : (Fin r → V) → P
 instance [DecidableEq V] (H : UniformHypergraph r V) : DecidablePred H.orderedRel :=
   fun _ => instDecidableAnd
 
-/-- Injective tuples with a prescribed `r`-element range number exactly `r!`.-/
+/-- Injective tuples with a prescribed `r`-element range number exactly `r!`.
+@isnad1 id=eq.1h3v.s6.b571e3378a1c from=translated src=- shape=295f798f vocab=361cac1b
+-/
 theorem card_injective_tuples_range_eq [Fintype V] [DecidableEq V] {e : Finset V}
     (he : e.card = r) :
     ((Finset.univ : Finset (Fin r → V)).filter
@@ -199,7 +228,9 @@ theorem card_injective_tuples_range_eq [Fintype V] [DecidableEq V] {e : Finset V
       rfl
 
 /-- **Ordered realization count.** The ordered injective tuples realizing a uniform
-hypergraph number exactly `r! · #edges`.-/
+hypergraph number exactly `r! · #edges`.
+@isnad1 id=eq.0h3v.s5.2b0557b034f9 from=translated src=- shape=7c188ad3 vocab=68edaf4d
+-/
 theorem orderedCount_eq [Fintype V] [DecidableEq V] (H : UniformHypergraph r V) :
     tupleCount H.orderedRel (fun _ => Finset.univ) = r.factorial * H.edges.card := by
   classical
@@ -239,7 +270,9 @@ def ofSimpleGraph [DecidableEq V] [Fintype V] (G : SimpleGraph V) [DecidableRel 
     UniformHypergraph 2 V :=
   ⟨G.cliqueFinset 2, fun _ he => (SimpleGraph.mem_cliqueFinset_iff.mp he).2⟩
 
-/-- Membership in the graph adapter is adjacency of an unordered pair.-/
+/-- Membership in the graph adapter is adjacency of an unordered pair.
+@isnad1 id=iff.0h3v.s6.e5e85058d6d7 from=translated src=- shape=632ec522 vocab=5ca7794e
+-/
 theorem mem_ofSimpleGraph [DecidableEq V] [Fintype V] {G : SimpleGraph V}
     [DecidableRel G.Adj] {e : Finset V} :
     e ∈ (ofSimpleGraph G).edges ↔ ∃ a b, G.Adj a b ∧ e = {a, b} := by
@@ -266,7 +299,9 @@ def triangles [DecidableEq V] [Fintype V] (G : SimpleGraph V) [DecidableRel G.Ad
   ⟨G.cliqueFinset 3, fun _ he => (SimpleGraph.mem_cliqueFinset_iff.mp he).2⟩
 
 /-- **Ordered triangle count** (the conversion deferred from the removal bridge):
-injective ordered triangles number `6 · #cliqueFinset 3`.-/
+injective ordered triangles number `6 · #cliqueFinset 3`.
+@isnad1 id=eq.0h2v.s6.e21f6755d138 from=translated src=- shape=a02be4d5 vocab=3dff11d2
+-/
 theorem orderedCount_triangles [DecidableEq V] [Fintype V] (G : SimpleGraph V)
     [DecidableRel G.Adj] :
     tupleCount (triangles G).orderedRel (fun _ => Finset.univ)

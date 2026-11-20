@@ -25,7 +25,9 @@ namespace RegularityLemmata
 variable {α : Type*} [DecidableEq α] {k n : ℕ}
 
 /-- Pinning all coordinates touched by an assignment saves one power per
-distinct image vertex. The existing one-coordinate bound remains unchanged.-/
+distinct image vertex. The existing one-coordinate bound remains unchanged.
+@isnad1 id=le.0h6v.s7.54eb1ad86b3a from=translated src=- shape=fc74ee95 vocab=44a2a9fb
+-/
 theorem card_filter_comp_mem_le_image (s : Finset α) (E : Finset (Fin n → α))
     (x : Fin n → Fin k) :
     ((Fintype.piFinset fun _ : Fin k ↦ s).filter fun f ↦ f ∘ x ∈ E).card ≤
@@ -62,7 +64,9 @@ theorem card_filter_comp_mem_le_image (s : Finset α) (E : Finset (Fin n → α)
   rw [hc]
 
 /-- In a non-diagonal assignment all `n` arguments are distinct, giving exponent
-`k-n`. This bound itself imposes no simplicity assumption on a relation.-/
+`k-n`. This bound itself imposes no simplicity assumption on a relation.
+@isnad1 id=le.1h6v.s7.831693234b1e from=translated src=- shape=964a6fcc vocab=f6b55b6c
+-/
 theorem card_filter_comp_mem_le_of_injective (s : Finset α) (E : Finset (Fin n → α))
     (x : Fin n → Fin k) (hx : Function.Injective x) :
     ((Fintype.piFinset fun _ : Fin k ↦ s).filter fun f ↦ f ∘ x ∈ E).card ≤
@@ -70,7 +74,9 @@ theorem card_filter_comp_mem_le_of_injective (s : Finset α) (E : Finset (Fin n 
   simpa [Finset.card_image_of_injective _ hx] using card_filter_comp_mem_le_image s E x
 
 /-- Only tuples consistent with the assignment's equalities can occur.
-This sharper coefficient exposes contraction-specific edit mass explicitly.-/
+This sharper coefficient exposes contraction-specific edit mass explicitly.
+@isnad1 id=le.0h6v.s8.0580c48421c7 from=translated src=- shape=9aa6b57c vocab=44a2a9fb
+-/
 theorem card_filter_comp_mem_le_compatible (s : Finset α) (E : Finset (Fin n → α))
     (x : Fin n → Fin k) :
     ((Fintype.piFinset fun _ : Fin k ↦ s).filter fun f ↦ f ∘ x ∈ E).card ≤
@@ -91,7 +97,9 @@ theorem card_filter_comp_mem_le_compatible (s : Finset α) (E : Finset (Fin n �
   exact card_filter_comp_mem_le_image s _ x
 
 /-- Union bound over assignments, retaining each equality pattern's own edit
-mass and extension exponent. No single-coordinate envelope is introduced.-/
+mass and extension exponent. No single-coordinate envelope is introduced.
+@isnad1 id=le.0h5v.s8.bff05c5e2d02 from=translated src=- shape=056295e9 vocab=222a33a5
+-/
 theorem card_filter_exists_comp_mem_le (s : Finset α)
     (E : (Fin n → Fin k) → Finset (Fin n → α)) :
     ((Fintype.piFinset fun _ : Fin k ↦ s).filter fun f ↦ ∃ x, f ∘ x ∈ E x).card ≤

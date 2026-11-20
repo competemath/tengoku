@@ -56,13 +56,18 @@ def ofSimpleGraph (G : SimpleGraph V) [DecidableRel G.Adj] :
     match R with
     | .adj => decide (G.Adj (x 0) (x 1))⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.39c7e312b305 from=translated src=- shape=c5f096ef vocab=3278af50
+-/
 @[simp] theorem ofSimpleGraph_holds_adj (G : SimpleGraph V) [DecidableRel G.Adj]
     (x : Fin 2 → V) :
     (ofSimpleGraph G).Holds FirstOrder.Language.adj x ↔ G.Adj (x 0) (x 1) := by
   show decide (G.Adj (x 0) (x 1)) = true ↔ _
   exact decide_eq_true_iff
 
-/-- Pointwise compatibility with mathlib's `SimpleGraph.structure`.-/
+/-- Pointwise compatibility with mathlib's `SimpleGraph.structure`.
+@isnad1 id=iff.0h5v.s5.8f69b8526987 from=translated src=- shape=a48f518e vocab=a970ebf1
+-/
 theorem ofSimpleGraph_toStructure_relMap (G : SimpleGraph V) [DecidableRel G.Adj]
     {n : ℕ} (R : FirstOrder.Language.graph.Relations n) (x : Fin n → V) :
     @FirstOrder.Language.Structure.RelMap _ V (ofSimpleGraph G).toStructure n R x
@@ -71,14 +76,18 @@ theorem ofSimpleGraph_toStructure_relMap (G : SimpleGraph V) [DecidableRel G.Adj
   show (ofSimpleGraph G).Holds FirstOrder.Language.adj x ↔ G.Adj (x 0) (x 1)
   exact ofSimpleGraph_holds_adj G x
 
-/-- Diagonal tuples are false, by looplessness.-/
+/-- Diagonal tuples are false, by looplessness.
+@isnad1 id=not.0h3v.s5.e1ebc87bfb81 from=translated src=- shape=b08527b8 vocab=3278af50
+-/
 theorem not_ofSimpleGraph_holds_diagonal (G : SimpleGraph V) [DecidableRel G.Adj]
     (v : V) :
     ¬(ofSimpleGraph G).Holds FirstOrder.Language.adj fun _ => v := by
   rw [ofSimpleGraph_holds_adj]
   exact fun h => G.irrefl h
 
-/-- The ordered adjacency count is the existing `pairCount`.-/
+/-- The ordered adjacency count is the existing `pairCount`.
+@isnad1 id=eq.0h2v.s5.244b8b08b5ca from=translated src=- shape=36498bc0 vocab=b1acb420
+-/
 theorem relationCount_ofSimpleGraph [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     relationCount (ofSimpleGraph G) FirstOrder.Language.adj
@@ -126,7 +135,9 @@ private theorem mem_ofSimpleGraph_pair [Fintype V] [DecidableEq V]
     exact ⟨a, b, h, rfl⟩
 
 /-- **The induced-copy bridge**: induced relational embeddings between graph
-adapters are exactly the induced graph copies of the edge hypergraphs.-/
+adapters are exactly the induced graph copies of the edge hypergraphs.
+@isnad1 id=eq.0h4v.s6.d7f0d6fa97b0 from=translated src=- shape=ab6dbcec vocab=a0671986
+-/
 theorem inducedEmbeddingCount_ofSimpleGraph [Fintype V] [DecidableEq V]
     [Fintype W] [DecidableEq W] (G₁ : SimpleGraph W) [DecidableRel G₁.Adj]
     (G₂ : SimpleGraph V) [DecidableRel G₂.Adj] :

@@ -57,7 +57,9 @@ section Union
 
 variable {s m : ℕ} {A : Fin s → Finset V} {α d ε : ℝ} {U X Y : Finset V}
 
-/-- **The generic union estimate**, with the exact four-term error.-/
+/-- **The generic union estimate**, with the exact four-term error.
+@isnad1 id=le.15h11v.s8.3484d6e39729 from=translated src=- shape=89c3a92d vocab=5861c3a3
+-/
 theorem pairDensity_union_sub_self_le (hm : 0 < m) (hs : 0 < s)
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     (hcard : ∀ i, (A i).card = m)
@@ -83,7 +85,9 @@ theorem pairDensity_union_sub_self_le (hm : 0 < m) (hs : 0 < s)
 
 /-- **The self-uniformity corollary at the frozen constants**: with `α = (ε/3)²` and
 `2 ≤ α·s`, the union is `ε`-uniform with itself — the displayed error is at most
-`2ε/3`, leaving slack for later slicing and palette bookkeeping.-/
+`2ε/3`, leaving slack for later slicing and palette bookkeeping.
+@isnad1 id=isunifor.12h8v.s8.f9cd098732b9 from=translated src=- shape=9745fe9c vocab=c40ad323
+-/
 theorem isUniformPair_self_union (hm : 0 < m) (hs : 0 < s)
     (hdisj : ∀ i j : Fin s, i ≠ j → Disjoint (A i) (A j))
     (hcard : ∀ i, (A i).card = m)

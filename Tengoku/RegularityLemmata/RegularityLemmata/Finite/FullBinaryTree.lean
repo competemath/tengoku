@@ -63,8 +63,14 @@ def internalToTree (x : InternalNode h) : TreeNode h := ⟨x.1, le_of_lt x.2⟩
 /-- A leaf is a vertex.-/
 def leafToTree (x : LeafNode h) : TreeNode h := ⟨x.1, le_of_eq x.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.862efcbe72e6 from=translated src=- shape=9f5fdcf3 vocab=15bd7c3f
+-/
 @[simp] theorem internalToTree_val (x : InternalNode h) : (internalToTree x).1 = x.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.829d5cbfda53 from=translated src=- shape=e8ab8f20 vocab=bfd74069
+-/
 @[simp] theorem leafToTree_val (x : LeafNode h) : (leafToTree x).1 = x.1 := rfl
 
 /-! ### Ancestry and branch direction
@@ -81,6 +87,9 @@ def IsStrictPrefix (x y : List Bool) : Prop := x <+: y ∧ x ≠ y
 the immediate children of `x`, because `y` may be arbitrarily far below.-/
 def BranchBelow (b : Bool) (x y : List Bool) : Prop := x ++ [b] <+: y
 
+/--
+@isnad1 id=iff.0h3v.s5.672e754ae0a3 from=translated src=- shape=c8ef54f5 vocab=29a2383a
+-/
 theorem branchBelow_def (b : Bool) (x y : List Bool) :
     BranchBelow b x y ↔ x ++ [b] <+: y := Iff.rfl
 
@@ -93,6 +102,9 @@ instance (b : Bool) (x y : List Bool) : Decidable (BranchBelow b x y) :=
 instance (x y : List Bool) : Decidable (IsStrictPrefix x y) :=
   inferInstanceAs (Decidable (x <+: y ∧ x ≠ y))
 
+/--
+@isnad1 id=isstrict.1h3v.s4.05c1f0da74dc from=translated src=- shape=b1b1fea7 vocab=86092cdb
+-/
 theorem BranchBelow.isStrictPrefix {b : Bool} {x y : List Bool} (h : BranchBelow b x y) :
     IsStrictPrefix x y := by
   refine ⟨(List.prefix_append _ _).trans h, ?_⟩
@@ -100,6 +112,9 @@ theorem BranchBelow.isStrictPrefix {b : Bool} {x y : List Bool} (h : BranchBelow
   have := h.length_le
   simp [hxy] at this
 
+/--
+@isnad1 id=lt.1h3v.s4.13591a9eaef9 from=translated src=- shape=82d815df vocab=3782234d
+-/
 theorem BranchBelow.length_lt {b : Bool} {x y : List Bool} (h : BranchBelow b x y) :
     x.length < y.length := by
   have := h.length_le
@@ -107,7 +122,9 @@ theorem BranchBelow.length_lt {b : Bool} {x y : List Bool} (h : BranchBelow b x 
   omega
 
 /-- **A strict descent happens through one definite turn.** Ancestry therefore carries no
-information beyond the branch relation, which is why an embedding needs only the branch law.-/
+information beyond the branch relation, which is why an embedding needs only the branch law.
+@isnad1 id=ex.1h2v.s4.132eded60caf from=translated src=- shape=54dae646 vocab=86092cdb
+-/
 theorem exists_branchBelow_of_isStrictPrefix {x y : List Bool} (h : IsStrictPrefix x y) :
     ∃ b : Bool, BranchBelow b x y := by
   obtain ⟨⟨t, ht⟩, hne⟩ := h
@@ -126,7 +143,9 @@ theorem eq_of_prefix_of_prefix_of_length_eq {l₁ l₂ l : List Bool}
     exact List.eq_nil_of_length_eq_zero (by omega)
   simpa [htnil] using ht
 
-/-- **The two branches below a node are disjoint.**-/
+/-- **The two branches below a node are disjoint.**
+@isnad1 id=false.2h3v.s4.1192adb6b5f6 from=translated src=- shape=315b6896 vocab=34e07869
+-/
 theorem not_branchBelow_of_branchBelow {b : Bool} {x y : List Bool}
     (h₁ : BranchBelow b x y) (h₂ : BranchBelow (!b) x y) : False := by
   have := eq_of_prefix_of_prefix_of_length_eq h₁ h₂ (by simp)
@@ -135,7 +154,9 @@ theorem not_branchBelow_of_branchBelow {b : Bool} {x y : List Bool}
 
 /-- **The word trichotomy.** Any two words are prefix-comparable, or else they separate at a
 definite point through opposite turns. This is the case analysis behind injectivity of an
-embedding.-/
+embedding.
+@isnad1 id=or.0h2v.s5.aa28bb526ff6 from=translated src=- shape=6ada4633 vocab=3247245a
+-/
 theorem prefix_trichotomy : ∀ x y : List Bool,
     x <+: y ∨ y <+: x ∨ ∃ (z : List Bool) (b : Bool), BranchBelow b z x ∧ BranchBelow (!b) z y
   | [], _ => Or.inl List.nil_prefix
@@ -164,6 +185,9 @@ theorem prefix_trichotomy : ∀ x y : List Bool,
 internal node, so the root is only internal once there is a turn to make.-/
 def root (h : ℕ) : InternalNode (h + 1) := ⟨[], by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.5206f332e79f from=translated src=- shape=845dae08 vocab=a050e3aa
+-/
 @[simp] theorem root_val (h : ℕ) : (root h).1 = [] := rfl
 
 /-- The `b`-child of an internal node, as a vertex. It need not be internal: the child of a
@@ -177,10 +201,15 @@ abbrev leftChild (x : InternalNode h) : TreeNode h := child false x
 /-- The right child.-/
 abbrev rightChild (x : InternalNode h) : TreeNode h := child true x
 
+/--
+@isnad1 id=eq.0h3v.s5.a3792aa6db88 from=translated src=- shape=fbfe641b vocab=27acb567
+-/
 @[simp] theorem child_val (b : Bool) (x : InternalNode h) : (child b x).1 = x.1 ++ [b] := rfl
 
 /-- A node lies in the `b`-branch below its own `b`-child, inclusively: the child is the least
-such node.-/
+such node.
+@isnad1 id=branchbe.0h3v.s5.2920dae4add2 from=translated src=- shape=edb913c8 vocab=dac31aff
+-/
 theorem branchBelow_child (b : Bool) (x : InternalNode h) :
     BranchBelow b x.1 (child b x).1 := by
   rw [BranchBelow, child_val]
@@ -190,6 +219,9 @@ needed at a use site.-/
 def parent (x : TreeNode h) : TreeNode h :=
   ⟨x.1.dropLast, le_trans (by simp) x.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.102c1b1f99df from=translated src=- shape=31063e25 vocab=552cd852
+-/
 @[simp] theorem parent_val (x : TreeNode h) : (parent x).1 = x.1.dropLast := rfl
 
 /-! ### Descending into a branch
@@ -201,22 +233,32 @@ Prefixing a word by `b` embeds a tree of height `h` into the `b`-branch of a tre
 def consInternal (b : Bool) (x : InternalNode h) : InternalNode (h + 1) :=
   ⟨b :: x.1, by have := x.2; simp; omega⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.f88e788dd57c from=translated src=- shape=14cefc3a vocab=dc7f2694
+-/
 @[simp] theorem consInternal_val (b : Bool) (x : InternalNode h) :
     (consInternal b x).1 = b :: x.1 := rfl
 
-/-- Everything in the image of `consInternal b` lies in the `b`-branch below the root.-/
+/-- Everything in the image of `consInternal b` lies in the `b`-branch below the root.
+@isnad1 id=branchbe.0h3v.s6.1e2979b48efa from=translated src=- shape=9bf2da14 vocab=60795bd8
+-/
 theorem branchBelow_root_cons (b : Bool) (x : InternalNode h) :
     BranchBelow b (root h).1 (consInternal b x).1 := by
   rw [BranchBelow, root_val, List.nil_append, consInternal_val]
   exact List.cons_prefix_cons.mpr ⟨rfl, List.nil_prefix⟩
 
+/--
+@isnad1 id=injectiv.0h2v.s4.d02ad427210c from=translated src=- shape=628b0bd2 vocab=ffa96931
+-/
 theorem consInternal_injective (b : Bool) :
     Function.Injective (consInternal (h := h) b) := by
   intro x y hxy
   exact Subtype.ext (by simpa using congrArg Subtype.val hxy)
 
 /-- **The height-`h + 1` case analysis.** Every internal node is either the root or lies in one
-of the two branches, and the branch decomposition is by the first letter.-/
+of the two branches, and the branch decomposition is by the first letter.
+@isnad1 id=or.0h2v.s6.6c483611e2d8 from=translated src=- shape=4d23e4a5 vocab=697e9aee
+-/
 theorem internalNode_cases (x : InternalNode (h + 1)) :
     x = root h ∨ ∃ (b : Bool) (y : InternalNode h), x = consInternal b y := by
   obtain ⟨w, hw⟩ := x
@@ -234,6 +276,9 @@ def wordsLE : ℕ → Finset (List Bool)
   | h + 1 =>
       insert [] (((wordsLE h).image (List.cons true)) ∪ ((wordsLE h).image (List.cons false)))
 
+/--
+@isnad1 id=iff.0h2v.s4.81762e1d008d from=translated src=- shape=4df08e09 vocab=ab0e79f7
+-/
 @[simp] theorem mem_wordsLE : ∀ {h : ℕ} {w : List Bool}, w ∈ wordsLE h ↔ w.length ≤ h
   | 0, _ => by simp [wordsLE, List.length_eq_zero_iff]
   | _ + 1, [] => by simp [wordsLE]
@@ -262,7 +307,9 @@ to handle separately.-/
 instance : IsEmpty (InternalNode 0) := ⟨fun x => by have := x.2; omega⟩
 
 /-- **A tree of height `0` has exactly one leaf**, the empty word — so height `0` is not the
-empty tree.-/
+empty tree.
+@isnad1 id=eq.0h1v.s5.85121f35f9c9 from=translated src=- shape=b182823c vocab=14a7c6f3
+-/
 theorem leafNode_zero_eq (x : LeafNode 0) : x = ⟨[], rfl⟩ :=
   Subtype.ext (List.eq_nil_of_length_eq_zero x.2)
 
@@ -270,6 +317,9 @@ instance : Unique (LeafNode 0) where
   default := ⟨[], rfl⟩
   uniq := leafNode_zero_eq
 
+/--
+@isnad1 id=eq.0h1v.s4.6632c2c6e07b from=translated src=- shape=5b09d1d5 vocab=34aa3a5b
+-/
 @[simp] theorem card_leafNode (h : ℕ) : Fintype.card (LeafNode h) = 2 ^ h := by
   have hcard : Fintype.card (LeafNode h)
       = @Fintype.card (List.Vector Bool h) (List.Vector.instFintype) :=

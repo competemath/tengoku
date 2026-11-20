@@ -65,6 +65,9 @@ variable {n : ℕ} {V : Fin n → Type*}
 /-- The complementary coordinates.-/
 def right (σ : CoordinateSplit n) : Finset (Fin n) := Finset.univ \ σ.left
 
+/--
+@isnad1 id=iff.0h3v.s5.9ca8fc5c88a7 from=translated src=- shape=6da60c4a vocab=d6cb43af
+-/
 @[simp] theorem mem_right_iff {σ : CoordinateSplit n} {i : Fin n} :
     i ∈ σ.right ↔ i ∉ σ.left := by
   rw [right, Finset.mem_sdiff]
@@ -80,6 +83,9 @@ abbrev Right (σ : CoordinateSplit n) := {i : Fin n // i ∉ σ.left}
 field: the empty and full splits are legal here.-/
 def IsProper (σ : CoordinateSplit n) : Prop := σ.left.Nonempty ∧ σ.right.Nonempty
 
+/--
+@isnad1 id=iff.0h2v.s5.088a7bd438ca from=translated src=- shape=6a795a2b vocab=dfcdf7be
+-/
 theorem isProper_iff {σ : CoordinateSplit n} :
     σ.IsProper ↔ σ.left.Nonempty ∧ ∃ i, i ∉ σ.left := by
   rw [IsProper]
@@ -106,22 +112,37 @@ def glue (σ : CoordinateSplit n) (xL : ∀ i : σ.Left, V i.1) (xR : ∀ i : σ
 
 variable {σ : CoordinateSplit n}
 
+/--
+@isnad1 id=eq.1h6v.s7.fff04a51f0d3 from=translated src=- shape=eb99003e vocab=73609518
+-/
 @[simp] theorem glue_apply_left {xL : ∀ i : σ.Left, V i.1} {xR : ∀ i : σ.Right, V i.1}
     {i : Fin n} (hi : i ∈ σ.left) : σ.glue xL xR i = xL ⟨i, hi⟩ := dite_eq_left hi
 
+/--
+@isnad1 id=eq.1h6v.s7.e350604879e3 from=translated src=- shape=f840b048 vocab=73609518
+-/
 @[simp] theorem glue_apply_right {xL : ∀ i : σ.Left, V i.1} {xR : ∀ i : σ.Right, V i.1}
     {i : Fin n} (hi : i ∉ σ.left) : σ.glue xL xR i = xR ⟨i, hi⟩ := dite_eq_right hi
 
+/--
+@isnad1 id=eq.0h5v.s6.260ee8365383 from=translated src=- shape=24bf0ff4 vocab=77a9a533
+-/
 @[simp] theorem restrictLeft_glue (xL : ∀ i : σ.Left, V i.1) (xR : ∀ i : σ.Right, V i.1) :
     σ.restrictLeft (σ.glue xL xR) = xL := by
   funext i
   rw [restrictLeft, glue_apply_left i.2]
 
+/--
+@isnad1 id=eq.0h5v.s6.de16a3b7f438 from=translated src=- shape=7dadb553 vocab=f473537a
+-/
 @[simp] theorem restrictRight_glue (xL : ∀ i : σ.Left, V i.1) (xR : ∀ i : σ.Right, V i.1) :
     σ.restrictRight (σ.glue xL xR) = xR := by
   funext i
   rw [restrictRight, glue_apply_right i.2]
 
+/--
+@isnad1 id=eq.0h4v.s5.0acb9bbd2346 from=translated src=- shape=84b74311 vocab=cebb1a59
+-/
 @[simp] theorem glue_restrict (x : ∀ i, V i) :
     σ.glue (σ.restrictLeft x) (σ.restrictRight x) = x := by
   funext i
@@ -139,9 +160,15 @@ def splitEquiv (σ : CoordinateSplit n) (V : Fin n → Type*) :
   left_inv x := glue_restrict x
   right_inv p := Prod.ext (restrictLeft_glue p.1 p.2) (restrictRight_glue p.1 p.2)
 
+/--
+@isnad1 id=eq.0h4v.s9.25cc13e1a9e0 from=translated src=- shape=8ff3c038 vocab=a1e8218c
+-/
 @[simp] theorem splitEquiv_apply (x : ∀ i, V i) :
     σ.splitEquiv V x = (σ.restrictLeft x, σ.restrictRight x) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.7559bbbfbe2f from=translated src=- shape=34477714 vocab=a6d6b3cf
+-/
 @[simp] theorem splitEquiv_symm_apply
     (p : (∀ i : σ.Left, V i.1) × (∀ i : σ.Right, V i.1)) :
     (σ.splitEquiv V).symm p = σ.glue p.1 p.2 := rfl
@@ -151,8 +178,14 @@ def splitEquiv (σ : CoordinateSplit n) (V : Fin n → Type*) :
 /-- Exchanging the two sides.-/
 def swap (σ : CoordinateSplit n) : CoordinateSplit n := ⟨σ.right⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.2e82ea7f5017 from=translated src=- shape=d8898af0 vocab=2f35ae79
+-/
 @[simp] theorem swap_left (σ : CoordinateSplit n) : σ.swap.left = σ.right := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.4bf5e84c7eda from=translated src=- shape=6ddf6d3e vocab=13ec25a7
+-/
 @[simp] theorem swap_swap (σ : CoordinateSplit n) : σ.swap.swap = σ := by
   refine congrArg CoordinateSplit.mk ?_
   ext i
@@ -174,15 +207,23 @@ def swapRightEquiv (σ : CoordinateSplit n) : σ.swap.Right ≃ σ.Left where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.aef88593bfd1 from=translated src=- shape=7faec61e vocab=64d688c6
+-/
 @[simp] theorem swapLeftEquiv_val (σ : CoordinateSplit n) (i : σ.swap.Left) :
     (σ.swapLeftEquiv i).1 = i.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.cd90b6795bd6 from=translated src=- shape=69ab7002 vocab=a36c7138
+-/
 @[simp] theorem swapRightEquiv_val (σ : CoordinateSplit n) (i : σ.swap.Right) :
     (σ.swapRightEquiv i).1 = i.1 := rfl
 
 /-- **Complement coherence**: gluing over the complementary split is gluing over the
 original with the two halves exchanged. This is the `Prod.swap` statement, with the index
-correspondence carried by the two equivalences rather than by a cast.-/
+correspondence carried by the two equivalences rather than by a cast.
+@isnad1 id=eq.0h5v.s8.f736ec5512e6 from=translated src=- shape=04fd275c vocab=9299484a
+-/
 theorem swap_glue (σ : CoordinateSplit n) (xL : ∀ i : σ.swap.Left, V i.1)
     (xR : ∀ i : σ.swap.Right, V i.1) :
     σ.swap.glue xL xR
@@ -197,11 +238,15 @@ theorem swap_glue (σ : CoordinateSplit n) (xL : ∀ i : σ.swap.Left, V i.1)
 
 /-- **Pointwise restriction under swap**, left half. Both sides read the same coordinate of
 `x`; the index correspondence is carried by `swapLeftEquiv`, not a cast. Stated pointwise so
-it applies without unfolding `restrictLeft`.-/
+it applies without unfolding `restrictLeft`.
+@isnad1 id=eq.0h5v.s6.766abda833b5 from=translated src=- shape=ac74cb13 vocab=a78ef4fe
+-/
 @[simp] theorem restrictLeft_swap (σ : CoordinateSplit n) (x : ∀ i, V i) (i : σ.swap.Left) :
     σ.swap.restrictLeft x i = σ.restrictRight x (σ.swapLeftEquiv i) := rfl
 
-/-- …and the right half.-/
+/-- …and the right half.
+@isnad1 id=eq.0h5v.s6.989936f41317 from=translated src=- shape=f90e649f vocab=1ee60f8d
+-/
 @[simp] theorem restrictRight_swap (σ : CoordinateSplit n) (x : ∀ i, V i) (i : σ.swap.Right) :
     σ.swap.restrictRight x i = σ.restrictLeft x (σ.swapRightEquiv i) := rfl
 
@@ -215,7 +260,9 @@ public statement cast-free. -/
 def reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) : CoordinateSplit n :=
   ⟨σ.left.image π.symm⟩
 
-/-- **The canonical direction statement.** Everything about `reindex` follows from this.-/
+/-- **The canonical direction statement.** Everything about `reindex` follows from this.
+@isnad1 id=iff.0h4v.s6.fd823f03c31f from=translated src=- shape=74d20e06 vocab=f10ff13f
+-/
 @[simp] theorem mem_reindex_left {σ : CoordinateSplit n} {π : Equiv.Perm (Fin n)}
     {i : Fin n} : i ∈ (σ.reindex π).left ↔ π i ∈ σ.left := by
   rw [reindex, Finset.mem_image]
@@ -245,27 +292,39 @@ def reindexRightEquiv (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) :
   left_inv i := Subtype.ext (π.symm_apply_apply i.1)
   right_inv j := Subtype.ext (π.apply_symm_apply j.1)
 
+/--
+@isnad1 id=eq.0h4v.s7.b737c73fecf3 from=translated src=- shape=fe90502f vocab=513c0741
+-/
 @[simp] theorem reindexLeftEquiv_val (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (i : (σ.reindex π).Left) : (σ.reindexLeftEquiv π i).1 = π i.1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.42b48a74c1fd from=translated src=- shape=693ebb19 vocab=2565dc39
+-/
 @[simp] theorem reindexRightEquiv_val (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (i : (σ.reindex π).Right) : (σ.reindexRightEquiv π i).1 = π i.1 := rfl
 
 /-- **Naturality of the chosen-side restriction.** Cast-free, because the reindexed tuple is
-taken over the transported carrier family.-/
+taken over the transported carrier family.
+@isnad1 id=eq.0h5v.s7.3229b967e981 from=translated src=- shape=5728ce7c vocab=0affcd7f
+-/
 theorem restrictLeft_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (x : ∀ i, V i) :
     (σ.reindex π).restrictLeft (V := fun i => V (π i)) (fun i => x (π i))
       = fun i => σ.restrictLeft x (σ.reindexLeftEquiv π i) := rfl
 
-/-- Naturality of the complementary-side restriction.-/
+/-- Naturality of the complementary-side restriction.
+@isnad1 id=eq.0h5v.s7.51dc76f39deb from=translated src=- shape=3e77b6d8 vocab=8798a130
+-/
 theorem restrictRight_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (x : ∀ i, V i) :
     (σ.reindex π).restrictRight (V := fun i => V (π i)) (fun i => x (π i))
       = fun i => σ.restrictRight x (σ.reindexRightEquiv π i) := rfl
 
 /-- Naturality of gluing: reassembling the transported halves is the transport of the
-reassembled tuple.-/
+reassembled tuple.
+@isnad1 id=eq.0h6v.s8.5648c7dfb364 from=translated src=- shape=65b07f08 vocab=ccf35454
+-/
 theorem glue_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (xL : ∀ i : σ.Left, V i.1) (xR : ∀ i : σ.Right, V i.1) :
     (σ.reindex π).glue (V := fun i => V (π i))
@@ -284,6 +343,9 @@ def splitRel (σ : CoordinateSplit n) (R : (∀ i, V i) → Prop) :
     (∀ i : σ.Left, V i.1) → (∀ i : σ.Right, V i.1) → Prop :=
   fun xL xR => R (σ.glue xL xR)
 
+/--
+@isnad1 id=iff.0h6v.s6.6ec62bb81691 from=translated src=- shape=d9bf08f5 vocab=6f6b9a1c
+-/
 @[simp] theorem splitRel_apply (R : (∀ i, V i) → Prop) (xL : ∀ i : σ.Left, V i.1)
     (xR : ∀ i : σ.Right, V i.1) : σ.splitRel R xL xR ↔ R (σ.glue xL xR) := Iff.rfl
 
@@ -294,10 +356,15 @@ def reindexRel (π : Equiv.Perm (Fin n)) (R : (∀ i, V i) → Prop) :
     (∀ i, V (π i)) → Prop :=
   fun y => R (Equiv.piCongrLeft V π y)
 
+/--
+@isnad1 id=iff.0h5v.s8.5c1feddfa328 from=translated src=- shape=5db7870f vocab=c0695a50
+-/
 @[simp] theorem reindexRel_apply (π : Equiv.Perm (Fin n)) (R : (∀ i, V i) → Prop)
     (y : ∀ i, V (π i)) : reindexRel π R y ↔ R (Equiv.piCongrLeft V π y) := Iff.rfl
 
-/-- Transporting a tuple and then the relation recovers the original test.-/
+/-- Transporting a tuple and then the relation recovers the original test.
+@isnad1 id=iff.0h5v.s6.255efcb16b85 from=translated src=- shape=d0cb5988 vocab=ea5370bf
+-/
 theorem reindexRel_comp (π : Equiv.Perm (Fin n)) (R : (∀ i, V i) → Prop)
     (x : ∀ i, V i) : reindexRel π R (fun i => x (π i)) ↔ R x := by
   rw [reindexRel, show (fun i => x (π i)) = (Equiv.piCongrLeft V π).symm x from rfl,
@@ -305,7 +372,9 @@ theorem reindexRel_comp (π : Equiv.Perm (Fin n)) (R : (∀ i, V i) → Prop)
 
 /-- **Naturality of `splitRel` under reindexing.** The relation genuinely consumes the
 transported tuple — `reindexRel π R` is a relation on `∀ i, V (π i)`, not a constant — so
-this is a transport statement rather than a tautology.-/
+this is a transport statement rather than a tautology.
+@isnad1 id=iff.0h7v.s8.e2673016c47b from=translated src=- shape=4dfe8ce5 vocab=68d44356
+-/
 theorem splitRel_reindex (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n))
     (R : (∀ i, V i) → Prop) (xL : ∀ i : σ.Left, V i.1) (xR : ∀ i : σ.Right, V i.1) :
     (σ.reindex π).splitRel (V := fun i => V (π i)) (reindexRel π R)
@@ -325,7 +394,9 @@ distinguishes the two sides. The order-sensitive test below would be unprovable 
 exchange were dropped.
 
 Explicit subtype constructors keep the dependent carrier indices syntactically aligned,
-matching `swap_glue`.-/
+matching `swap_glue`.
+@isnad1 id=iff.0h6v.s8.cd83fa98ca81 from=translated src=- shape=13936fd2 vocab=14784ca1
+-/
 theorem splitRel_swap (σ : CoordinateSplit n) (R : (∀ i, V i) → Prop)
     (xL : ∀ i : σ.swap.Left, V i.1) (xR : ∀ i : σ.swap.Right, V i.1) :
     -- Routing the indices through `swapLeftEquiv.symm` instead would make the carrier read
@@ -338,16 +409,23 @@ theorem splitRel_swap (σ : CoordinateSplit n) (R : (∀ i, V i) → Prop)
 
 /-! ### Properness under the structural operations -/
 
+/--
+@isnad1 id=eq.0h2v.s4.089727498b2c from=translated src=- shape=d8898af0 vocab=2f35ae79
+-/
 theorem swap_right (σ : CoordinateSplit n) : σ.swap.right = σ.left := by
   ext i
   simp [swap, right]
 
-/-- Properness is symmetric in the two sides.-/
+/-- Properness is symmetric in the two sides.
+@isnad1 id=iff.0h2v.s3.27f06cfc7439 from=translated src=- shape=d0788cef vocab=d709f88d
+-/
 theorem swap_isProper (σ : CoordinateSplit n) : σ.swap.IsProper ↔ σ.IsProper := by
   rw [IsProper, IsProper, swap_left, swap_right]
   exact and_comm
 
-/-- Reindexing preserves properness: it permutes the coordinates without merging sides.-/
+/-- Reindexing preserves properness: it permutes the coordinates without merging sides.
+@isnad1 id=iff.0h3v.s4.9153bb285c43 from=translated src=- shape=054148bb vocab=3aeb0342
+-/
 theorem reindex_isProper (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) :
     (σ.reindex π).IsProper ↔ σ.IsProper := by
   rw [IsProper, IsProper]
@@ -368,6 +446,9 @@ theorem reindex_isProper (σ : CoordinateSplit n) (π : Equiv.Perm (Fin n)) :
 /-- The split isolating a single coordinate.-/
 def singleton (i : Fin n) : CoordinateSplit n := ⟨{i}⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.b108b6e2519f from=translated src=- shape=86025b85 vocab=fecc34ab
+-/
 @[simp] theorem mem_singleton_left {i j : Fin n} : j ∈ ((singleton i : CoordinateSplit n)).left ↔ j = i := by
   rw [singleton, Finset.mem_singleton]
 
@@ -378,12 +459,16 @@ def oneVsRest (R : (∀ i, V i) → Prop) (i : Fin n) :
     V i → (∀ j : {j : Fin n // j ≠ i}, V j.1) → Prop :=
   fun v rest => R fun j => if h : j = i then h ▸ v else rest ⟨j, h⟩
 
-/-- The evaluation lemma, displaying the reconstructed tuple explicitly.-/
+/-- The evaluation lemma, displaying the reconstructed tuple explicitly.
+@isnad1 id=iff.0h6v.s6.78f49305beaa from=translated src=- shape=0dd90de1 vocab=b10e0bf6
+-/
 theorem oneVsRest_apply (R : (∀ i, V i) → Prop) (i : Fin n) (v : V i)
     (rest : ∀ j : {j : Fin n // j ≠ i}, V j.1) :
     oneVsRest R i v rest ↔ R (fun j => if h : j = i then h ▸ v else rest ⟨j, h⟩) := Iff.rfl
 
-/-- A singleton split is proper exactly when some other coordinate exists.-/
+/-- A singleton split is proper exactly when some other coordinate exists.
+@isnad1 id=iff.0h2v.s4.7edfdf9c511d from=translated src=- shape=b60a95aa vocab=9e2128e6
+-/
 theorem singleton_isProper (i : Fin n) : (singleton i).IsProper ↔ ∃ j, j ≠ i := by
   rw [IsProper]
   constructor
@@ -402,6 +487,9 @@ def singletonLeftEquiv (i : Fin n) : (singleton i).Left ≃ PUnit.{1} where
   left_inv j := Subtype.ext (mem_singleton_left.mp j.2).symm
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f4a013d09540 from=translated src=- shape=407fb4f5 vocab=ae2f1042
+-/
 @[simp] theorem singletonLeftEquiv_symm_val (i : Fin n) (u : PUnit.{1}) :
     ((singletonLeftEquiv i).symm u).1 = i := rfl
 
@@ -413,9 +501,15 @@ def singletonRightEquiv (i : Fin n) : (singleton i).Right ≃ {j : Fin n // j �
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.46a03a7319be from=translated src=- shape=032b885c vocab=f29c2250
+-/
 @[simp] theorem singletonRightEquiv_val (i : Fin n) (j : (singleton i).Right) :
     (singletonRightEquiv i j).1 = j.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.12a8a8b7cd72 from=translated src=- shape=85a90049 vocab=bbf56744
+-/
 @[simp] theorem singletonRightEquiv_symm_val (i : Fin n) (j : {j : Fin n // j ≠ i}) :
     ((singletonRightEquiv i).symm j).1 = j.1 := rfl
 
@@ -424,7 +518,9 @@ def singletonRightEquiv (i : Fin n) : (singleton i).Right ≃ {j : Fin n // j �
 Only meaningful for a constant carrier, where `Function.Injective` typechecks. -/
 
 /-- **Injectivity of a glued tuple.** The cross-range disjointness clause is load-bearing:
-individually injective halves do **not** give an injective glued tuple.-/
+individually injective halves do **not** give an injective glued tuple.
+@isnad1 id=iff.0h5v.s6.835c8c9832a2 from=translated src=- shape=d4587856 vocab=a3f7bded
+-/
 theorem glue_injective_iff {α : Type*} (σ : CoordinateSplit n) (xL : σ.Left → α)
     (xR : σ.Right → α) :
     Function.Injective (σ.glue (V := fun _ => α) xL xR) ↔
@@ -466,7 +562,9 @@ def rightEquiv (σ : CoordinateSplit n) : σ.Right ≃ {i : Fin n // i ∈ σ.ri
 /-! ### Box factorization -/
 
 /-- **`piFinset` factors along a split**, in cardinality. The identity the weighted-box layer
-consumes.-/
+consumes.
+@isnad1 id=eq.0h4v.s8.389cfb6fbfdf from=translated src=- shape=d59e0e5e vocab=e4b8aac5
+-/
 theorem card_piFinset_split [∀ i, DecidableEq (V i)] [∀ i, Fintype (V i)]
     (σ : CoordinateSplit n) (A : ∀ i, Finset (V i)) :
     (Fintype.piFinset A).card

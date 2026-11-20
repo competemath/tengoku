@@ -63,7 +63,9 @@ namespace RegularityLemmata
 /-- The half-open bucket index of `x` at width `α`: bucket `k` is `[k·α, (k+1)·α)`.-/
 noncomputable def densityBucket (α x : ℝ) : ℕ := ⌊x / α⌋₊
 
-/-- **Bucket equality forces `α`-closeness**, strictly.-/
+/-- **Bucket equality forces `α`-closeness**, strictly.
+@isnad1 id=lt.4h3v.s6.bc05f2839c0f from=translated src=- shape=e77654da vocab=421ac351
+-/
 theorem abs_sub_lt_of_densityBucket_eq {α x y : ℝ} (hα : 0 < α) (hx : 0 ≤ x)
     (hy : 0 ≤ y) (h : densityBucket α x = densityBucket α y) : |x - y| < α := by
   have hx1 : (densityBucket α x : ℝ) ≤ x / α := Nat.floor_le (div_nonneg hx hα.le)
@@ -87,7 +89,9 @@ theorem abs_sub_lt_of_densityBucket_eq {α x y : ℝ} (hα : 0 < α) (hx : 0 ≤
     rw [sub_mul, hx', hy', one_mul] at h1
     linarith
 
-/-- Values in `[0, 1]` occupy the buckets `0, …, ⌊1/α⌋₊`.-/
+/-- Values in `[0, 1]` occupy the buckets `0, …, ⌊1/α⌋₊`.
+@isnad1 id=lt.2h2v.s6.5552fc474a4f from=translated src=- shape=d3611d3c vocab=7c243a8a
+-/
 theorem densityBucket_lt_of_le_one {α x : ℝ} (hα : 0 < α) (hx1 : x ≤ 1) :
     densityBucket α x < ⌊1 / α⌋₊ + 1 := by
   rw [densityBucket, Nat.lt_add_one_iff]
@@ -104,7 +108,9 @@ ceilings `0` and `1` into one bucket). It also cannot be strengthened to `x < y 
 `y = 0` gives equality. This is the closeness fact for the consumer's bucketing of `[0, 1]` into
 exactly `⌈1 / c⌉₊` buckets, as opposed to the `⌊1 / c⌋₊ + 1` half-open buckets of
 `densityBucket`. Mathlib's pin has `Nat.ceil_eq_iff` and the floor-equality lemma
-`Int.abs_sub_lt_one_of_floor_eq_floor` but no predecessor-ceiling variant.-/
+`Int.abs_sub_lt_one_of_floor_eq_floor` but no predecessor-ceiling variant.
+@isnad1 id=le.3h3v.s6.c2d45428ec77 from=translated src=- shape=4a1e6dd9 vocab=246aef49
+-/
 theorem le_add_of_ceil_div_pred_eq {x y c : ℝ} (hc : 0 < c) (hy : 0 ≤ y)
     (h : ⌈x / c⌉₊ - 1 = ⌈y / c⌉₊ - 1) : x ≤ y + c := by
   rcases Nat.lt_or_ge ⌈y / c⌉₊ 2 with hy2 | hy2
@@ -134,7 +140,9 @@ omit [DecidableEq V] in
 /-- **The bucket-aligned subfamily.** With at least `multicolorRamseyBound` pieces
 (for the color space of paired bucket vectors over the `K` relations), there are `t`
 pieces such that for every relation and every two chain-ordered piece pairs the
-forward densities agree within `α` and the reverse densities agree within `α`.-/
+forward densities agree within `α` and the reverse densities agree within `α`.
+@isnad1 id=ex.2h7v.s9.4617e0c331fb from=translated src=- shape=23ba4e5b vocab=8fd84cd6
+-/
 theorem exists_bucketAligned_subfamily {K n t : ℕ}
     (Rk : Fin K → V → V → Prop) [inst : ∀ k, DecidableRel (Rk k)]
     (A : Fin n → Finset V) {α : ℝ} (hα : 0 < α)

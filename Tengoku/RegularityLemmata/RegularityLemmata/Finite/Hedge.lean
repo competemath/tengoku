@@ -71,15 +71,22 @@ noncomputable def hedgeExpectedLoss (η : ℝ) (ℓ : ℕ → ι → ℝ) (t : �
 variable {η : ℝ} {ℓ ℓ' : ℕ → ι → ℝ} {t : ℕ} {i : ι}
 
 omit [Fintype ι] in
-/-- The closed form, definitionally.-/
+/-- The closed form, definitionally.
+@isnad1 id=eq.0h5v.s5.ecbf52de4630 from=translated src=- shape=52ecda57 vocab=3cdb640a
+-/
 theorem hedgeWeight_eq_exp : hedgeWeight η ℓ t i = Real.exp (-η * ∑ s ∈ range t, ℓ s i) := rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h4v.s4.40a189caec1e from=translated src=- shape=ee1eba57 vocab=4c59de4b
+-/
 @[simp] theorem hedgeWeight_zero : hedgeWeight η ℓ 0 i = 1 := by
   simp [hedgeWeight]
 
 omit [Fintype ι] in
-/-- **The multiplicative update.**-/
+/-- **The multiplicative update.**
+@isnad1 id=eq.0h5v.s5.bf83566eefeb from=translated src=- shape=32d4e277 vocab=00637daa
+-/
 theorem hedgeWeight_succ :
     hedgeWeight η ℓ (t + 1) i = hedgeWeight η ℓ t i * Real.exp (-η * ℓ t i) := by
   rw [hedgeWeight, hedgeWeight, sum_range_succ, ← Real.exp_add]
@@ -87,32 +94,53 @@ theorem hedgeWeight_succ :
   ring
 
 omit [Fintype ι] in
+/--
+@isnad1 id=lt.0h5v.s4.7d2e35d0b11b from=translated src=- shape=ce603f34 vocab=96b61d9c
+-/
 theorem hedgeWeight_pos : 0 < hedgeWeight η ℓ t i := Real.exp_pos _
 
+/--
+@isnad1 id=le.0h4v.s4.0ff667c35f95 from=translated src=- shape=f5904cad vocab=c6187e77
+-/
 theorem hedgePotential_nonneg : 0 ≤ hedgePotential η ℓ t :=
   sum_nonneg fun _ _ => hedgeWeight_pos.le
 
-/-- With at least one expert the potential is positive.-/
+/-- With at least one expert the potential is positive.
+@isnad1 id=lt.0h4v.s5.5fd01a1afb77 from=translated src=- shape=a2104525 vocab=f272c5d3
+-/
 theorem hedgePotential_pos [Nonempty ι] : 0 < hedgePotential η ℓ t :=
   sum_pos (fun _ _ => hedgeWeight_pos) univ_nonempty
 
+/--
+@isnad1 id=eq.0h3v.s4.d4fca8eb20f7 from=translated src=- shape=2cf974aa vocab=81025527
+-/
 @[simp] theorem hedgePotential_zero : hedgePotential η ℓ 0 = Fintype.card ι := by
   simp [hedgePotential]
 
 /-- **The potential is the weight of every expert's own cumulative loss**: each weight is at
-most the total.-/
+most the total.
+@isnad1 id=le.0h5v.s5.6788968505fe from=translated src=- shape=5fc136c3 vocab=548faefd
+-/
 theorem hedgeWeight_le_hedgePotential : hedgeWeight η ℓ t i ≤ hedgePotential η ℓ t :=
   single_le_sum (f := fun j => hedgeWeight η ℓ t j) (fun _ _ => hedgeWeight_pos.le) (mem_univ i)
 
+/--
+@isnad1 id=le.0h5v.s5.6463ff8a4630 from=translated src=- shape=6baf5a00 vocab=19bc1f13
+-/
 theorem hedgeProb_nonneg : 0 ≤ hedgeProb η ℓ t i :=
   div_nonneg hedgeWeight_pos.le hedgePotential_nonneg
 
-/-- It really is a distribution — given an expert.-/
+/-- It really is a distribution — given an expert.
+@isnad1 id=eq.0h4v.s5.dc4c945e2d85 from=translated src=- shape=0d81a189 vocab=05f19603
+-/
 theorem hedgeProb_sum_one [Nonempty ι] : ∑ i, hedgeProb η ℓ t i = 1 := by
   simp only [hedgeProb, div_eq_mul_inv]
   rw [← Finset.sum_mul]
   exact mul_inv_cancel₀ hedgePotential_pos.ne'
 
+/--
+@isnad1 id=le.0h5v.s5.ee3bbf977d19 from=translated src=- shape=88350596 vocab=19bc1f13
+-/
 theorem hedgeProb_le_one : hedgeProb η ℓ t i ≤ 1 := by
   rw [hedgeProb]
   rcases eq_or_ne (hedgePotential η ℓ t) 0 with h0 | h0
@@ -120,7 +148,9 @@ theorem hedgeProb_le_one : hedgeProb η ℓ t i ≤ 1 := by
   · exact (div_le_one (lt_of_le_of_ne hedgePotential_nonneg h0.symm)).mpr
       hedgeWeight_le_hedgePotential
 
-/-- Uniform at round `0`.-/
+/-- Uniform at round `0`.
+@isnad1 id=eq.0h4v.s5.83ac1f2af19e from=translated src=- shape=71b9fe73 vocab=56a4a323
+-/
 theorem hedgeProb_zero : hedgeProb η ℓ 0 i = 1 / Fintype.card ι := by
   simp [hedgeProb]
 
@@ -130,14 +160,21 @@ section Empty
 
 variable [IsEmpty ι]
 
-/-- With no experts the potential is `0`.-/
+/-- With no experts the potential is `0`.
+@isnad1 id=eq.0h4v.s5.885cf541e352 from=translated src=- shape=2d8e887b vocab=39016531
+-/
 theorem hedgePotential_of_isEmpty : hedgePotential η ℓ t = 0 := by
   simp [hedgePotential]
 
-/-- With no experts nothing sums to one: the probabilities sum to `0`.-/
+/-- With no experts nothing sums to one: the probabilities sum to `0`.
+@isnad1 id=eq.0h4v.s5.1b3823a30c87 from=translated src=- shape=0d81a189 vocab=e7c6444b
+-/
 theorem sum_hedgeProb_of_isEmpty : ∑ i, hedgeProb η ℓ t i = 0 := by
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.c03775c13cab from=translated src=- shape=2d8e887b vocab=4fe154c7
+-/
 theorem hedgeExpectedLoss_of_isEmpty : hedgeExpectedLoss η ℓ t = 0 := by
   simp [hedgeExpectedLoss]
 
@@ -146,16 +183,25 @@ end Empty
 /-! ### Causal congruence: round `t` reads only rounds `< t` -/
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h5v.s5.9339a9a59f23 from=translated src=- shape=fd9c0537 vocab=96b61d9c
+-/
 theorem hedgeWeight_congr (h : ∀ s < t, ℓ s = ℓ' s) : hedgeWeight η ℓ t = hedgeWeight η ℓ' t := by
   funext i
   rw [hedgeWeight, hedgeWeight]
   congr 2
   exact sum_congr rfl fun s hs => by rw [h s (mem_range.mp hs)]
 
+/--
+@isnad1 id=eq.1h5v.s5.610a673500f4 from=translated src=- shape=76f3226b vocab=33b44961
+-/
 theorem hedgePotential_congr (h : ∀ s < t, ℓ s = ℓ' s) :
     hedgePotential η ℓ t = hedgePotential η ℓ' t := by
   rw [hedgePotential, hedgePotential, hedgeWeight_congr h]
 
+/--
+@isnad1 id=eq.1h5v.s5.206a0595053c from=translated src=- shape=8d50553c vocab=25f7c4b9
+-/
 theorem hedgeProb_congr (h : ∀ s < t, ℓ s = ℓ' s) : hedgeProb η ℓ t = hedgeProb η ℓ' t := by
   funext i
   rw [hedgeProb, hedgeProb, hedgeWeight_congr h, hedgePotential_congr h]
@@ -167,23 +213,31 @@ section Relabel
 variable [Fintype κ] (e : κ ≃ ι)
 
 omit [Fintype ι] [Fintype κ] in
-/-- Weights transport along a relabeling of the experts, pointwise.-/
+/-- Weights transport along a relabeling of the experts, pointwise.
+@isnad1 id=eq.0h6v.s6.cb0d3f6dbf35 from=translated src=- shape=1a6c9fd0 vocab=ac396c08
+-/
 theorem hedgeWeight_comp_equiv :
     hedgeWeight η (fun s j => ℓ s (e j)) t = fun j => hedgeWeight η ℓ t (e j) := rfl
 
-/-- The potential is invariant under relabeling.-/
+/-- The potential is invariant under relabeling.
+@isnad1 id=eq.0h6v.s5.1ec02ba568e7 from=translated src=- shape=36479574 vocab=2c72bcd9
+-/
 theorem hedgePotential_comp_equiv :
     hedgePotential η (fun s j => ℓ s (e j)) t = hedgePotential η ℓ t := by
   rw [hedgePotential, hedgePotential, hedgeWeight_comp_equiv]
   exact e.sum_comp fun i => hedgeWeight η ℓ t i
 
-/-- Probabilities transport along a relabeling, pointwise.-/
+/-- Probabilities transport along a relabeling, pointwise.
+@isnad1 id=eq.0h6v.s6.920be53b4dcc from=translated src=- shape=77d4fc97 vocab=48554561
+-/
 theorem hedgeProb_comp_equiv :
     hedgeProb η (fun s j => ℓ s (e j)) t = fun j => hedgeProb η ℓ t (e j) := by
   funext j
   rw [hedgeProb, hedgeProb, hedgeWeight_comp_equiv, hedgePotential_comp_equiv]
 
-/-- The expected loss is invariant under relabeling.-/
+/-- The expected loss is invariant under relabeling.
+@isnad1 id=eq.0h6v.s5.494dde93ae53 from=translated src=- shape=36479574 vocab=77525198
+-/
 theorem hedgeExpectedLoss_comp_equiv :
     hedgeExpectedLoss η (fun s j => ℓ s (e j)) t = hedgeExpectedLoss η ℓ t := by
   rw [hedgeExpectedLoss, hedgeExpectedLoss, hedgeProb_comp_equiv]
@@ -194,7 +248,9 @@ end Relabel
 /-! ### The potential estimate -/
 
 /-- **The potential update, algebraic**: the next potential is the current one times the
-forecaster's expected value of `exp (−η ℓ_t)`. Needs an expert, to divide by the potential.-/
+forecaster's expected value of `exp (−η ℓ_t)`. Needs an expert, to divide by the potential.
+@isnad1 id=eq.0h4v.s6.bea6c25346bf from=translated src=- shape=ba5511a5 vocab=74346522
+-/
 theorem hedgePotential_succ [Nonempty ι] :
     hedgePotential η ℓ (t + 1)
       = hedgePotential η ℓ t * ∑ i, hedgeProb η ℓ t i * Real.exp (-η * ℓ t i) := by
@@ -206,7 +262,9 @@ theorem hedgePotential_succ [Nonempty ι] :
 
 /-- **The per-round estimate**, the single analytic step: for `η ≥ 0` and losses in `[0, 1]`,
 `Φ (t+1) ≤ Φ t · (1 − η⟨p_t, ℓ_t⟩ + η²/2)`, from `exp (−x) ≤ 1 − x + x²/2` at `x = η ℓ_t i`
-and `ℓ_t i² ≤ 1`.-/
+and `ℓ_t i² ≤ 1`.
+@isnad1 id=le.2h4v.s7.5e0ae5f789ad from=translated src=- shape=2d5aefc8 vocab=39bbdc5b
+-/
 theorem hedgePotential_succ_le [Nonempty ι] (hη : 0 ≤ η)
     (hℓ : ∀ i, 0 ≤ ℓ t i ∧ ℓ t i ≤ 1) :
     hedgePotential η ℓ (t + 1)
@@ -236,7 +294,9 @@ theorem hedgePotential_succ_le [Nonempty ι] (hη : 0 ≤ η)
 
 /-- **The relaxed logarithmic increment.** `log Φ (t+1) ≤ log Φ t − η⟨p_t, ℓ_t⟩ + η²/2`: the
 factor `1 − η⟨p,ℓ⟩ + η²/2` is positive for every `η ≥ 0` (it is at least `(1 − η)²/2 + 1/2`,
-since `⟨p, ℓ⟩ ≤ 1`), and `log (1 + y) ≤ y`. This is the step that keeps `η` unconstrained.-/
+since `⟨p, ℓ⟩ ≤ 1`), and `log (1 + y) ≤ y`. This is the step that keeps `η` unconstrained.
+@isnad1 id=le.2h4v.s7.cf9910339c92 from=translated src=- shape=7171fd85 vocab=48c8c046
+-/
 theorem log_hedgePotential_succ_le [Nonempty ι] (hη : 0 ≤ η)
     (hℓ : ∀ i, 0 ≤ ℓ t i ∧ ℓ t i ≤ 1) :
     Real.log (hedgePotential η ℓ (t + 1))
@@ -261,7 +321,9 @@ theorem log_hedgePotential_succ_le [Nonempty ι] (hη : 0 ≤ η)
 
 /-! ### The regret bound -/
 
-/-- **Telescoped**: `log Φ T ≤ log |ι| − η ∑_{t<T} ⟨p_t, ℓ_t⟩ + η² T / 2`.-/
+/-- **Telescoped**: `log Φ T ≤ log |ι| − η ∑_{t<T} ⟨p_t, ℓ_t⟩ + η² T / 2`.
+@isnad1 id=le.2h4v.s7.2fe761d36171 from=translated src=- shape=032b9f5a vocab=b0adfba4
+-/
 theorem log_hedgePotential_le [Nonempty ι] (hη : 0 ≤ η) {T : ℕ}
     (hℓ : ∀ t < T, ∀ i, 0 ≤ ℓ t i ∧ ℓ t i ≤ 1) :
     Real.log (hedgePotential η ℓ T)
@@ -283,7 +345,9 @@ theorem log_hedgePotential_le [Nonempty ι] (hη : 0 ≤ η) {T : ℕ}
 
 with no upper hypothesis on `η` and no hypothesis on rounds `≥ T`. From the telescoped
 potential bound and `Φ T ≥ hedgeWeight η ℓ T i₀ = exp (−η ∑_{t<T} ℓ t i₀)`. The expert `i₀`
-itself witnesses `Nonempty ι`, so no instance is assumed.-/
+itself witnesses `Nonempty ι`, so no instance is assumed.
+@isnad1 id=le.2h5v.s7.03dd109cd76f from=translated src=- shape=274f2307 vocab=bd460f90
+-/
 theorem hedge_regret (hη : 0 < η) {T : ℕ} (hℓ : ∀ t < T, ∀ i, 0 ≤ ℓ t i ∧ ℓ t i ≤ 1)
     (i₀ : ι) :
     ∑ t ∈ range T, hedgeExpectedLoss η ℓ t
@@ -307,14 +371,21 @@ section Fin
 
 variable {m : ℕ} {ℓm : ℕ → Fin m → ℝ}
 
-/-- The potential over `m` experts is positive when `m ≠ 0`.-/
+/-- The potential over `m` experts is positive when `m ≠ 0`.
+@isnad1 id=lt.0h4v.s5.744578bf1cf6 from=translated src=- shape=8029b0c7 vocab=43d991f7
+-/
 theorem sum_hedgeWeight_pos [NeZero m] : 0 < ∑ i, hedgeWeight η ℓm t i :=
   hedgePotential_pos
 
+/--
+@isnad1 id=eq.0h4v.s5.bf70fe57226c from=translated src=- shape=b7dc820e vocab=c2ef5368
+-/
 theorem hedgeProb_sum_one_fin [NeZero m] : ∑ i, hedgeProb η ℓm t i = 1 :=
   hedgeProb_sum_one
 
-/-- The regret bound over `m` experts, reading `log m`; `i₀ : Fin m` already forces `m ≠ 0`.-/
+/-- The regret bound over `m` experts, reading `log m`; `i₀ : Fin m` already forces `m ≠ 0`.
+@isnad1 id=le.2h5v.s7.e4fa2d8a6218 from=translated src=- shape=8b466b92 vocab=f7a925a0
+-/
 theorem hedge_regret_fin (hη : 0 < η) {T : ℕ} (hℓ : ∀ t < T, ∀ i, 0 ≤ ℓm t i ∧ ℓm t i ≤ 1)
     (i₀ : Fin m) :
     ∑ t ∈ range T, hedgeExpectedLoss η ℓm t

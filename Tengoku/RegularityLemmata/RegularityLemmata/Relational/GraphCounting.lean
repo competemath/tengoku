@@ -58,12 +58,16 @@ def adjPalette : BinaryPairPalette FirstOrder.Language.graph := fun _ => (true, 
 /-- The graph palette recording nonadjacency in both directions.-/
 def nonadjPalette : BinaryPairPalette FirstOrder.Language.graph := fun _ => (false, false)
 
-/-- The adapter interprets the adjacency symbol as `decide ∘ Adj`.-/
+/-- The adapter interprets the adjacency symbol as `decide ∘ Adj`.
+@isnad1 id=eq.0h4v.s5.f8d84582342b from=translated src=- shape=359caae9 vocab=3013fc6e
+-/
 theorem rel_ofSimpleGraph_adj (G : SimpleGraph V) [DecidableRel G.Adj] (a b : V) :
     (ofSimpleGraph G).rel FirstOrder.Language.adj ![a, b] = decide (G.Adj a b) := rfl
 
 /-- **Adjacency is the all-adjacent palette.** On the symmetric adapter, a pair carries the
-all-adjacent palette exactly when the two vertices are adjacent.-/
+all-adjacent palette exactly when the two vertices are adjacent.
+@isnad1 id=iff.0h4v.s5.9b80f1836efe from=translated src=- shape=730730ff vocab=c045e736
+-/
 theorem hasBinaryPairPalette_adjPalette_iff (G : SimpleGraph V) [DecidableRel G.Adj] (a b : V) :
     HasBinaryPairPalette (ofSimpleGraph G) adjPalette a b ↔ G.Adj a b := by
   rw [HasBinaryPairPalette]
@@ -78,13 +82,17 @@ theorem hasBinaryPairPalette_adjPalette_iff (G : SimpleGraph V) [DecidableRel G.
     simp only [binaryPairPalette, adjPalette, rel_ofSimpleGraph_adj]
     exact Prod.ext (decide_eq_true h) (decide_eq_true h.symm)
 
-/-- **Adjacency as a relation is the all-adjacent palette.**-/
+/-- **Adjacency as a relation is the all-adjacent palette.**
+@isnad1 id=eq.0h2v.s4.512544bdb194 from=translated src=- shape=13a24350 vocab=c045e736
+-/
 theorem hasBinaryPairPalette_adjPalette_eq (G : SimpleGraph V) [DecidableRel G.Adj] :
     HasBinaryPairPalette (ofSimpleGraph G) adjPalette = G.Adj := by
   ext a b; exact hasBinaryPairPalette_adjPalette_iff G a b
 
 /-- **Nonadjacency is the all-nonadjacent palette.** On the symmetric adapter, a pair carries the
-all-nonadjacent palette exactly when the two vertices are not adjacent.-/
+all-nonadjacent palette exactly when the two vertices are not adjacent.
+@isnad1 id=iff.0h4v.s5.432b097cca5c from=translated src=- shape=8f2c71ce vocab=768d7771
+-/
 theorem hasBinaryPairPalette_nonadjPalette_iff (G : SimpleGraph V) [DecidableRel G.Adj]
     (a b : V) :
     HasBinaryPairPalette (ofSimpleGraph G) nonadjPalette a b ↔ ¬ G.Adj a b := by
@@ -100,14 +108,18 @@ theorem hasBinaryPairPalette_nonadjPalette_iff (G : SimpleGraph V) [DecidableRel
     simp only [binaryPairPalette, nonadjPalette, rel_ofSimpleGraph_adj]
     exact Prod.ext (decide_eq_false h) (decide_eq_false fun h' => h h'.symm)
 
-/-- **Nonadjacency as a relation is the all-nonadjacent palette.**-/
+/-- **Nonadjacency as a relation is the all-nonadjacent palette.**
+@isnad1 id=eq.0h2v.s5.46b382d34abe from=translated src=- shape=30cb1a35 vocab=768d7771
+-/
 theorem hasBinaryPairPalette_nonadjPalette_eq (G : SimpleGraph V) [DecidableRel G.Adj] :
     HasBinaryPairPalette (ofSimpleGraph G) nonadjPalette = fun a b => ¬ G.Adj a b := by
   ext a b; exact hasBinaryPairPalette_nonadjPalette_iff G a b
 
 /-- **Palette classification on graph adapters.** Every ordered pair of a graph adapter carries
 the all-adjacent or the all-nonadjacent palette, according to adjacency; the induced nature of the
-count — edges *and* nonedges — is therefore visible at the palette level.-/
+count — edges *and* nonedges — is therefore visible at the palette level.
+@isnad1 id=eq.0h4v.s5.91f8a35ca0e9 from=translated src=- shape=fa0ccb6c vocab=6e043a12
+-/
 theorem binaryPairPalette_ofSimpleGraph (G : SimpleGraph V) [DecidableRel G.Adj] (a b : V) :
     binaryPairPalette (ofSimpleGraph G) a b
       = if G.Adj a b then adjPalette else nonadjPalette := by
@@ -118,7 +130,9 @@ theorem binaryPairPalette_ofSimpleGraph (G : SimpleGraph V) [DecidableRel G.Adj]
     exact (hasBinaryPairPalette_nonadjPalette_iff G a b).mpr h
 
 /-- The palette relation required by a pattern pair is adjacency on a pattern edge and
-nonadjacency on a pattern nonedge.-/
+nonadjacency on a pattern nonedge.
+@isnad1 id=eq.0h6v.s6.f7c22e4321b2 from=translated src=- shape=7fcaa2aa vocab=00793429
+-/
 theorem hasBinaryPairPalette_binaryPairPalette_ofSimpleGraph {W : Type*} (P : SimpleGraph W)
     [DecidableRel P.Adj] (G : SimpleGraph V) [DecidableRel G.Adj] (i j : W) :
     HasBinaryPairPalette (ofSimpleGraph G) (binaryPairPalette (ofSimpleGraph P) i j)
@@ -130,7 +144,9 @@ theorem hasBinaryPairPalette_binaryPairPalette_ofSimpleGraph {W : Type*} (P : Si
 
 /-! ### Ordered edge and length-two-path counts -/
 
-/-- **Edge count.** The all-adjacent palette pair count is the graph edge count.-/
+/-- **Edge count.** The all-adjacent palette pair count is the graph edge count.
+@isnad1 id=eq.0h4v.s5.4f6590c44e03 from=translated src=- shape=f443806c vocab=b338bcdf
+-/
 theorem pairCount_adjPalette (G : SimpleGraph V) [DecidableRel G.Adj] (A B : Finset V) :
     pairCount (HasBinaryPairPalette (ofSimpleGraph G) adjPalette) A B = pairCount G.Adj A B := by
   rw [pairCount, pairCount]
@@ -138,7 +154,9 @@ theorem pairCount_adjPalette (G : SimpleGraph V) [DecidableRel G.Adj] (A B : Fin
     (Finset.filter_congr fun p _ => hasBinaryPairPalette_adjPalette_iff G p.1 p.2)
 
 /-- **Length-two-path count.** The all-adjacent palette directed-path count is the graph
-length-two-path count.-/
+length-two-path count.
+@isnad1 id=eq.0h5v.s6.2a7b18dad22e from=translated src=- shape=49775e7b vocab=5037eaf8
+-/
 theorem directedPathCount_adjPalette (G : SimpleGraph V) [DecidableRel G.Adj] (A B C : Finset V) :
     directedPathCount (HasBinaryPairPalette (ofSimpleGraph G) adjPalette)
         (HasBinaryPairPalette (ofSimpleGraph G) adjPalette) A B C
@@ -151,7 +169,9 @@ theorem directedPathCount_adjPalette (G : SimpleGraph V) [DecidableRel G.Adj] (A
 /-! ### Ordered triangle count and the `6 · #cliqueFinset 3` conversion -/
 
 /-- **Ordered triangle count.** The all-adjacent palette directed-triangle count is the graph
-directed-triangle count over adjacency.-/
+directed-triangle count over adjacency.
+@isnad1 id=eq.0h5v.s6.f97d8d35ca3f from=translated src=- shape=0a273eeb vocab=4aefff94
+-/
 theorem directedTriangleCount_adjPalette (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B C : Finset V) :
     directedTriangleCount (HasBinaryPairPalette (ofSimpleGraph G) adjPalette)
@@ -178,7 +198,9 @@ private theorem tupleRange_three (f : Fin 3 → V) : tupleRange f = {f 0, f 1, f
 
 /-- **The `3! = 6` conversion.** Over the full carrier the graph directed-triangle count is six
 times the number of triangles (`3`-cliques): each unordered triangle has `3! = 6` orderings, and
-adjacency forces the three vertices distinct.-/
+adjacency forces the three vertices distinct.
+@isnad1 id=eq.0h2v.s6.98a35fcceb05 from=translated src=- shape=b6cbbd2e vocab=b7821008
+-/
 theorem directedTriangleCount_adj_eq_six_mul_cliqueFinset [Fintype V] (G : SimpleGraph V)
     [DecidableRel G.Adj] :
     directedTriangleCount G.Adj G.Adj G.Adj Finset.univ Finset.univ Finset.univ
@@ -206,14 +228,18 @@ theorem directedTriangleCount_adj_eq_six_mul_cliqueFinset [Fintype V] (G : Simpl
 /-! ### Induced relational counts versus induced graph copies -/
 
 omit [DecidableEq V] in
-/-- Nullary compatibility is automatic in the graph language (no nullary symbols).-/
+/-- Nullary compatibility is automatic in the graph language (no nullary symbols).
+@isnad1 id=nullaryc.0h3v.s4.8710bd99a40e from=translated src=- shape=67cf1332 vocab=8fe50549
+-/
 theorem nullaryCompatible_graph (P : FiniteRelModel FirstOrder.Language.graph (Fin 3))
     (M : FiniteRelModel FirstOrder.Language.graph V) : NullaryCompatible P M :=
   fun R => nomatch R
 
 omit [DecidableEq V] in
 /-- All vertices of a graph adapter carry the same binary profile (there are no arity-`1` symbols
-and the adjacency symbol is irreflexive), so profile matching across graph adapters is automatic.-/
+and the adjacency symbol is irreflexive), so profile matching across graph adapters is automatic.
+@isnad1 id=eq.0h6v.s5.0bc671343296 from=translated src=- shape=1a414678 vocab=fe2faa2a
+-/
 theorem binaryVertexProfile_ofSimpleGraph {W : Type*} (G : SimpleGraph V) [DecidableRel G.Adj]
     (H : SimpleGraph W) [DecidableRel H.Adj] (v : V) (w : W) :
     binaryVertexProfile (ofSimpleGraph G) v = binaryVertexProfile (ofSimpleGraph H) w := by
@@ -227,7 +253,9 @@ theorem binaryVertexProfile_ofSimpleGraph {W : Type*} (G : SimpleGraph V) [Decid
 
 /-- **Three-vertex induced graph copies.** On disjoint cells, the induced relational count of a
 pattern graph `P` inside a host graph `G` is the directed-triangle count of the three palettes
-`P` requires — profile matching and nullary compatibility are automatic for graph adapters.-/
+`P` requires — profile matching and nullary compatibility are automatic for graph adapters.
+@isnad1 id=eq.3h6v.s8.7ced3be86af4 from=translated src=- shape=4264d0bb vocab=aa588878
+-/
 theorem inducedEmbeddingCountOn_three_ofSimpleGraph (P : SimpleGraph (Fin 3)) [DecidableRel P.Adj]
     (G : SimpleGraph V) [DecidableRel G.Adj] {A B C : Finset V}
     (hAB : Disjoint A B) (hAC : Disjoint A C) (hBC : Disjoint B C) :
@@ -251,7 +279,9 @@ instance {α : Type*} {p : Prop} [Decidable p] (R S : α → α → Prop) [hR : 
 
 /-- **Three-vertex induced graph copies, graph-facing form.** The three required palette
 relations of `inducedEmbeddingCountOn_three_ofSimpleGraph` rewritten through the palette
-classification: adjacency on pattern edges, nonadjacency on pattern nonedges.-/
+classification: adjacency on pattern edges, nonadjacency on pattern nonedges.
+@isnad1 id=eq.3h6v.s9.3313d297d0ae from=translated src=- shape=1ba2c2d0 vocab=01ff20f3
+-/
 theorem inducedEmbeddingCountOn_three_ofSimpleGraph_adj (P : SimpleGraph (Fin 3))
     [DecidableRel P.Adj] (G : SimpleGraph V) [DecidableRel G.Adj] {A B C : Finset V}
     (hAB : Disjoint A B) (hAC : Disjoint A C) (hBC : Disjoint B C) :
@@ -270,7 +300,9 @@ theorem inducedEmbeddingCountOn_three_ofSimpleGraph_adj (P : SimpleGraph (Fin 3)
 
 /-- **Full-carrier bridge to induced graph copies.** Over the whole carrier, the box-restricted
 induced relational count between graph adapters is the existing induced graph-copy count of the
-edge hypergraphs.-/
+edge hypergraphs.
+@isnad1 id=eq.0h3v.s7.2e3a31330320 from=translated src=- shape=4ea91839 vocab=dc3ee3c0
+-/
 theorem inducedEmbeddingCountOn_univ_ofSimpleGraph [Fintype V] (P : SimpleGraph (Fin 3))
     [DecidableRel P.Adj] (G : SimpleGraph V) [DecidableRel G.Adj] :
     inducedEmbeddingCountOn (ofSimpleGraph P) (ofSimpleGraph G) (fun _ : Fin 3 => Finset.univ)
@@ -289,7 +321,9 @@ open FiniteRelModel
 corollary (`abs_inducedEmbeddingCountOn_sub_coarseInducedEstimate_le`) specialized to the graph
 adapter `ofSimpleGraph G`: the actual induced count over the whole carrier is within
 `(10·τ + 3·η + 3·δ/η²)·|s|³ + 3·m·|s|²` of the coarse estimate. Nullary compatibility is
-automatic.-/
+automatic.
+@isnad1 id=le.3h10v.s8.256e97c98842 from=translated src=- shape=b378e06c vocab=dccfb1c8
+-/
 theorem BinaryPaletteStrongWitness.abs_inducedEmbeddingCountOn_ofSimpleGraph_sub_coarseInducedEstimate_le
     {V : Type*} [DecidableEq V] {s : Finset V} {δ : ℝ} {G : SimpleGraph V} [DecidableRel G.Adj]
     {E : ErrorSchedule} {P₀ : Finpartition s}

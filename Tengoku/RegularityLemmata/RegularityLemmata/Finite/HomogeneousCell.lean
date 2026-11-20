@@ -80,7 +80,9 @@ def IsHomogeneousCell (R : (ι → α) → Prop) (A : ι → Finset α) (ε : �
   tupleDensity R A ≤ ε ∨ 1 - ε ≤ tupleDensity R A
 
 /-- The definitional reading, valid over **any** ambient instances: the classical instances
-inside `IsHomogeneousCell` are propositionally irrelevant.-/
+inside `IsHomogeneousCell` are propositionally irrelevant.
+@isnad1 id=iff.0h5v.s6.d6d7ee012138 from=translated src=- shape=8bf202e1 vocab=56b9d711
+-/
 theorem isHomogeneousCell_def [instι : DecidableEq ι] [instR : DecidablePred R] :
     IsHomogeneousCell R A ε ↔ tupleDensity R A ≤ ε ∨ 1 - ε ≤ tupleDensity R A := by
   unfold IsHomogeneousCell
@@ -91,7 +93,9 @@ theorem isHomogeneousCell_def [instι : DecidableEq ι] [instR : DecidablePred R
 
 /-! ### Monotonicity in the tolerance -/
 
-/-- Homogeneity only weakens as the tolerance grows.-/
+/-- Homogeneity only weakens as the tolerance grows.
+@isnad1 id=ishomoge.2h6v.s5.5cc978081f62 from=translated src=- shape=2b281897 vocab=03162892
+-/
 theorem IsHomogeneousCell.mono (h : IsHomogeneousCell R A ε) (hε : ε ≤ ε') :
     IsHomogeneousCell R A ε' := by
   classical
@@ -102,7 +106,9 @@ theorem IsHomogeneousCell.mono (h : IsHomogeneousCell R A ε) (hε : ε ≤ ε')
 
 /-- **Half tolerance is free.** From `1/2` onwards every cell is homogeneous for every
 relation: a density and its complement cannot both exceed `1/2`. So the predicate has content
-only below `1/2`, and a consumer above it gets no structural information.-/
+only below `1/2`, and a consumer above it gets no structural information.
+@isnad1 id=ishomoge.1h5v.s5.d63b289c8662 from=translated src=- shape=c45cd308 vocab=34c81704
+-/
 theorem isHomogeneousCell_of_half_le (hε : 1 / 2 ≤ ε) : IsHomogeneousCell R A ε := by
   classical
   rw [isHomogeneousCell_def]
@@ -111,7 +117,9 @@ theorem isHomogeneousCell_of_half_le (hε : 1 / 2 ≤ ε) : IsHomogeneousCell R 
   · exact Or.inr (by linarith)
 
 /-- An empty coordinate set makes the cell sparse, hence `ε`-homogeneous for every `ε ≥ 0`.
-This is the empty-box convention, stated so that consumers do not re-derive it.-/
+This is the empty-box convention, stated so that consumers do not re-derive it.
+@isnad1 id=ishomoge.2h6v.s5.77a3951857d5 from=translated src=- shape=976ebfbe vocab=0b2aa547
+-/
 theorem isHomogeneousCell_of_side_empty [DecidableEq ι] {i : ι} (hi : A i = ∅) (hε : 0 ≤ ε) :
     IsHomogeneousCell R A ε := by
   classical
@@ -120,7 +128,9 @@ theorem isHomogeneousCell_of_side_empty [DecidableEq ι] {i : ι} (hi : A i = �
 
 /-- **The arity-zero cell is exactly homogeneous.** Over an empty index type the box is the
 singleton containing the empty tuple, so the density is `0` or `1` on the nose and no tolerance
-is needed. The general form of the concrete `Empty`-index test at the end of the file.-/
+is needed. The general form of the concrete `Empty`-index test at the end of the file.
+@isnad1 id=ishomoge.0h4v.s5.a585d569a93b from=translated src=- shape=883cacc2 vocab=5906d7ad
+-/
 theorem isHomogeneousCell_of_isEmpty_index [IsEmpty ι] : IsHomogeneousCell R A 0 := by
   classical
   rw [isHomogeneousCell_def]
@@ -145,7 +155,9 @@ Unlike `IsHomogeneousCell` itself, the statement carries `[DecidablePred R₁]`:
 side mentions `densityOn`, which needs the instance. That matches `isHomogeneousCell_def`. -/
 
 /-- **The arity-one bridge**: a `Fin 1`-indexed cell is homogeneous exactly when the curried
-relation has density within `ε` of `0` or of `1` on the single coordinate set.-/
+relation has density within `ε` of `0` or of `1` on the single coordinate set.
+@isnad1 id=iff.0h4v.s7.f72f695c937f from=translated src=- shape=02b7395b vocab=54e644a2
+-/
 theorem isHomogeneousCell_one_iff {R₁ : (Fin 1 → α) → Prop} [DecidablePred R₁]
     {A₁ : Fin 1 → Finset α} :
     IsHomogeneousCell R₁ A₁ ε ↔ densityOn (A₁ 0) (fun a ↦ R₁ ![a]) ≤ ε
@@ -159,14 +171,18 @@ The binary case of a cell is a rectangle, and the two predicates agree on the no
 the shape a `Fin 2`-indexed box forces; `IsHomogeneousPair` is stated for genuinely
 heterogeneous carriers and is strictly more general in that direction. -/
 
-/-- A `Fin 2` tuple density is the pair density of the curried relation.-/
+/-- A `Fin 2` tuple density is the pair density of the curried relation.
+@isnad1 id=eq.0h3v.s7.41ada9b87797 from=translated src=- shape=934980b9 vocab=ce15ea83
+-/
 theorem tupleDensity_eq_pairDensity [DecidableEq α] (R₂ : (Fin 2 → α) → Prop)
     [DecidablePred R₂] (A₂ : Fin 2 → Finset α) :
     tupleDensity R₂ A₂ = pairDensity (fun a b ↦ R₂ ![a, b]) (A₂ 0) (A₂ 1) := by
   rw [tupleDensity_two_eq, pairDensity_eq_count_div, pairCount]
 
 /-- **The binary bridge**: a `Fin 2`-indexed cell is homogeneous exactly when the corresponding
-rectangle is.-/
+rectangle is.
+@isnad1 id=iff.0h4v.s6.36e49bade4b2 from=translated src=- shape=478c8109 vocab=0b8ccbf1
+-/
 theorem isHomogeneousCell_two_iff [DecidableEq α] {R₂ : (Fin 2 → α) → Prop}
     {A₂ : Fin 2 → Finset α} :
     IsHomogeneousCell R₂ A₂ ε ↔ IsHomogeneousPair (fun a b ↦ R₂ ![a, b]) (A₂ 0) (A₂ 1) ε := by
@@ -177,7 +193,9 @@ theorem isHomogeneousCell_two_iff [DecidableEq α] {R₂ : (Fin 2 → α) → Pr
 
 /-- **Exact homogeneity is closed under passing to a subcell.** At `ε = 0` there is no
 degradation: a cell with no related tuples, or with every tuple related, keeps that property on
-every subcell. (An empty subcell lands in the first disjunct, since its density is `0`.)-/
+every subcell. (An empty subcell lands in the first disjunct, since its density is `0`.)
+@isnad1 id=ishomoge.2h5v.s6.5b76e724360e from=translated src=- shape=6fd3cbd1 vocab=03162892
+-/
 theorem IsHomogeneousCell.subset_zero (h : IsHomogeneousCell R A 0) (hA : ∀ i, A' i ⊆ A i) :
     IsHomogeneousCell R A' 0 := by
   classical
@@ -227,7 +245,9 @@ on a relation over the cell `A` descends to a density bound on a subcell, degrad
 **product of the coordinatewise inverse relative masses**.
 
 Guard-free downstairs: if some `A' i` is empty the density is `0`, which is below the
-(nonnegative) right-hand side.-/
+(nonnegative) right-hand side.
+@isnad1 id=le.5h7v.s7.0595b4733568 from=translated src=- shape=5a6b7af2 vocab=d737a09e
+-/
 theorem tupleDensity_restrict_le [DecidableEq ι] {S : (ι → α) → Prop} [DecidablePred S]
     {c : ℝ} {ρ : ι → ℝ} (hc : 0 ≤ c) (hρ : ∀ i, 0 < ρ i) (hA : ∀ i, A' i ⊆ A i)
     (hcard : ∀ i, ρ i * ((A i).card : ℝ) ≤ ((A' i).card : ℝ))
@@ -257,7 +277,9 @@ fraction of coordinate `i`, with the tolerance degraded by `∏ i, ρ i` — the
 can concentrate by the inverse relative cell mass.
 
 The proportions are tracked **coordinatewise** rather than as a single cell fraction, so that a
-consumer shrinking only some coordinates pays only those coordinates' factors.-/
+consumer shrinking only some coordinates pays only those coordinates' factors.
+@isnad1 id=ishomoge.5h7v.s7.a87bb7f4908c from=translated src=- shape=e375493b vocab=ea7c9d23
+-/
 theorem IsHomogeneousCell.restrict {ρ : ι → ℝ} (h : IsHomogeneousCell R A ε) (hε : 0 ≤ ε)
     (hρ : ∀ i, 0 < ρ i) (hA : ∀ i, A' i ⊆ A i)
     (hcard : ∀ i, ρ i * ((A i).card : ℝ) ≤ ((A' i).card : ℝ)) :
@@ -303,7 +325,9 @@ omit [Fintype ι] in
 factor `1 + γ` of it, then the two products differ by at most `|s| · γ` times the larger one.
 
 The proof deletes one coordinate at a time; each deletion costs a single factor of `γ` against
-the larger product, which is where the linear-in-arity constant comes from.-/
+the larger product, which is where the linear-in-arity constant comes from.
+@isnad1 id=le.4h5v.s7.8ac1100a2618 from=translated src=- shape=f8f0d357 vocab=09358e65
+-/
 theorem prod_sub_prod_le_card_mul_of_le {s : Finset ι} {b p : ι → ℝ} {γ : ℝ} (hγ : 0 ≤ γ)
     (hb : ∀ i ∈ s, 0 ≤ b i) (hbp : ∀ i ∈ s, b i ≤ p i)
     (hgrow : ∀ i ∈ s, p i ≤ (1 + γ) * b i) :
@@ -332,7 +356,9 @@ theorem prod_sub_prod_le_card_mul_of_le {s : Finset ι} {b p : ι → ℝ} {γ :
       mul_nonneg hγ hPs]
 
 /-- The mass of the larger box exceeds that of the smaller one by at most `n · γ` times the
-larger mass, where `n = Fintype.card ι`.-/
+larger mass, where `n = Fintype.card ι`.
+@isnad1 id=le.3h5v.s7.bfb061a7e7d7 from=translated src=- shape=ff5d8d6c vocab=8c749c42
+-/
 theorem prod_card_sub_le_of_grow [DecidableEq ι] {γ : ℝ} (hγ : 0 ≤ γ) (hA : ∀ i, A' i ⊆ A i)
     (hgrow : ∀ i, ((A i).card : ℝ) ≤ (1 + γ) * ((A' i).card : ℝ)) :
     (∏ i, ((A i).card : ℝ)) - ∏ i, ((A' i).card : ℝ)
@@ -348,7 +374,9 @@ The constant `c(n) = n` is the arity itself — no auxiliary named constant is n
 first-order sharp: the exact bound produced by the argument is `1 - (1 + γ)⁻ⁿ ≤ n · γ`.
 
 Guard-free: if some side of `A'` is empty then the growth hypothesis forces the corresponding
-side of `A` to be empty too, both densities are `0`, and the bound reads `0 ≤ n · γ`.-/
+side of `A` to be empty too, both densities are `0`, and the bound reads `0 ≤ n · γ`.
+@isnad1 id=le.3h6v.s7.e9f8d0328f7f from=translated src=- shape=d1cfc64e vocab=e32f50db
+-/
 theorem abs_tupleDensity_sub_le_of_grow [DecidableEq ι] [DecidablePred R] {γ : ℝ} (hγ : 0 ≤ γ)
     (hA : ∀ i, A' i ⊆ A i) (hgrow : ∀ i, ((A i).card : ℝ) ≤ (1 + γ) * ((A' i).card : ℝ)) :
     |tupleDensity R A - tupleDensity R A'| ≤ (Fintype.card ι : ℝ) * γ := by
@@ -417,7 +445,9 @@ theorem abs_tupleDensity_sub_le_of_grow [DecidableEq ι] [DecidablePred R] {γ :
         mul_le_mul_of_nonneg_right (sub_nonneg.mpr hmAle) (sub_nonneg.mpr hsmall)]
 
 /-- Homogeneity is stable under density perturbation: if two cells have densities within `γ`,
-homogeneity of one at `ε` gives homogeneity of the other at `ε + γ`.-/
+homogeneity of one at `ε` gives homogeneity of the other at `ε + γ`.
+@isnad1 id=ishomoge.2h7v.s6.b636bb757ec3 from=translated src=- shape=d16ff1a4 vocab=7150a0b3
+-/
 theorem IsHomogeneousCell.of_abs_tupleDensity_sub_le [DecidableEq ι] [DecidablePred R] {γ : ℝ}
     (h : IsHomogeneousCell R A' ε)
     (hclose : |tupleDensity R A - tupleDensity R A'| ≤ γ) :
@@ -429,7 +459,9 @@ theorem IsHomogeneousCell.of_abs_tupleDensity_sub_le [DecidableEq ι] [Decidable
   · exact Or.inr (by linarith [hclose.1])
 
 /-- The packaged transfer: homogeneity of a subcell moves to the cell that grew each coordinate
-by a factor at most `1 + γ`, at tolerance `ε + n · γ`.-/
+by a factor at most `1 + γ`, at tolerance `ε + n · γ`.
+@isnad1 id=ishomoge.4h7v.s7.55fc8287764f from=translated src=- shape=9a7de50a vocab=cdbdb39c
+-/
 theorem IsHomogeneousCell.of_grow [DecidableEq ι] [DecidablePred R] {γ : ℝ} (hγ : 0 ≤ γ)
     (h : IsHomogeneousCell R A' ε) (hA : ∀ i, A' i ⊆ A i)
     (hgrow : ∀ i, ((A i).card : ℝ) ≤ (1 + γ) * ((A' i).card : ℝ)) :

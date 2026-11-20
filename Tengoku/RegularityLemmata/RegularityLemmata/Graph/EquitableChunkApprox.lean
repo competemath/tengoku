@@ -68,7 +68,9 @@ variable {P : Finpartition s}
 
 /-- **The chunks inside a parent cell are exactly that parent's local chunks.** The
 inclusion `⊇` is the definition of the bind; `⊆` uses that a chunk is nonempty and so
-meets only one cell of `P`.-/
+meets only one cell of `P`.
+@isnad1 id=eq.2h6v.s7.a68da6cc36fe from=translated src=- shape=058e4adb vocab=ac439406
+-/
 theorem filter_subset_equitableIncrement (hP : P.IsEquipartition) {C : Finset α}
     (hC : C ∈ P.parts) :
     (equitableIncrement R ε hP).parts.filter (· ⊆ C) = (equitableChunk R ε hP hC).parts := by
@@ -86,7 +88,9 @@ theorem filter_subset_equitableIncrement (hP : P.IsEquipartition) {C : Finset α
     exact ⟨(mem_equitableIncrement R ε).mpr ⟨C, hC, hb⟩, (equitableChunk R ε hP hC).le hb⟩
 
 /-- Filtering the global chunks by a subset of one parent cell agrees with filtering that
-parent's local chunks.-/
+parent's local chunks.
+@isnad1 id=eq.3h7v.s7.3af6e3cd4dc8 from=translated src=- shape=563f041d vocab=ac439406
+-/
 theorem filter_subset_equitableIncrement_of_subset (hP : P.IsEquipartition) {C B : Finset α}
     (hC : C ∈ P.parts) (hBC : B ⊆ C) :
     (equitableIncrement R ε hP).parts.filter (· ⊆ B)
@@ -107,7 +111,9 @@ noncomputable def witnessAtoms (P : Finpartition s) (C : Finset α) : Finpartiti
 /-- **Step 1: the per-atom remainder.** Each atom of a parent cell loses at most one
 chunk's worth of elements to chunks that straddle its boundary — mathlib's
 `Finpartition.card_parts_equitabilise_subset_le`, transported through the chunk's case
-split.-/
+split.
+@isnad1 id=le.3h7v.s7.dc016a8480fe from=translated src=- shape=f451d7f4 vocab=36eece91
+-/
 theorem card_sdiff_innerPartUnion_atom_le (hP : P.IsEquipartition) {C : Finset α}
     (hC : C ∈ P.parts) {B : Finset α} (hB : B ∈ (witnessAtoms R ε P C).parts) :
     (B \ (((equitableChunk R ε hP hC).parts.filter (· ⊆ B)).biUnion id)).card
@@ -117,14 +123,18 @@ theorem card_sdiff_innerPartUnion_atom_le (hP : P.IsEquipartition) {C : Finset �
   · exact equitabilise_uncovered_card_le hB
   · exact equitabilise_uncovered_card_le hB
 
-/-- **Step 2: a witness side is a union of its atoms.**-/
+/-- **Step 2: a witness side is a union of its atoms.**
+@isnad1 id=eq.1h7v.s7.d2fc4d3ce2b5 from=translated src=- shape=6544bfec vocab=9c2339c5
+-/
 theorem biUnion_witnessAtoms_of_mem_witnessCuts {C W : Finset α}
     (hW : W ∈ witnessCuts R ε P C) :
     ((witnessAtoms R ε P C).parts.filter (fun B => B ⊆ W ∧ B.Nonempty)).biUnion id = W :=
   Finpartition.biUnion_filter_atomise hW (witnessCuts_subset R ε P hW)
 
 /-- **Step 3: at most `2 ^ (2·#P.parts)` atoms contribute to a witness side**, because a
-parent cell receives at most `2·#P.parts` cuts.-/
+parent cell receives at most `2·#P.parts` cuts.
+@isnad1 id=le.1h7v.s7.071767803959 from=translated src=- shape=9ff3477f vocab=ce451b04
+-/
 theorem card_filter_witnessAtoms_le {C W : Finset α} (hW : W ∈ witnessCuts R ε P C) :
     ((witnessAtoms R ε P C).parts.filter (fun B => B ⊆ W ∧ B.Nonempty)).card
       ≤ 2 ^ (2 * P.parts.card) := by
@@ -140,6 +150,9 @@ what step 4 needs.-/
 def chunkWitnessRemainder (P : Finpartition s) : ℕ :=
   2 ^ (2 * P.parts.card) * chunkSize P
 
+/--
+@isnad1 id=iff.0h3v.s5.96991cc15d9f from=translated src=- shape=97be31f1 vocab=ad5c5dd6
+-/
 theorem chunkWitnessRemainder_eq_zero_iff : chunkWitnessRemainder P = 0 ↔ chunkSize P = 0 := by
   have h : (2 : ℕ) ^ (2 * P.parts.card) ≠ 0 := (pow_pos (by norm_num : (0 : ℕ) < 2) _).ne'
   rw [chunkWitnessRemainder, Nat.mul_eq_zero]
@@ -154,7 +167,9 @@ This is the exact structural bridge between the remainder and the cell sizes: it
 lets a caller discharge the `r < ε|C|` and density-error hypotheses of the gain theorem
 below, since the ratio `r / |C|` is at most `4^(−n·2^(2n))`. It chooses no `δ`, no
 retained fraction, and no threshold — those are step 4's, where this is combined with
-`le_pow_mul_of_familyInitialBound_le`.-/
+`le_pow_mul_of_familyInitialBound_le`.
+@isnad1 id=le.2h4v.s7.886e1d6d98e1 from=translated src=- shape=cb15cdd3 vocab=8025a759
+-/
 theorem chunkWitnessRemainder_mul_pow_le_card_part (hP : P.IsEquipartition) {C : Finset α}
     (hC : C ∈ P.parts) :
     chunkWitnessRemainder P * 4 ^ (P.parts.card * 2 ^ (2 * P.parts.card)) ≤ C.card := by
@@ -169,7 +184,9 @@ theorem chunkWitnessRemainder_mul_pow_le_card_part (hP : P.IsEquipartition) {C :
     _ ≤ C.card := hP.average_le_card_part hC
 
 /-- The real-cast form of the remainder-to-cell inequality, the shape the numerical
-hypotheses of the gain theorem are stated in.-/
+hypotheses of the gain theorem are stated in.
+@isnad1 id=le.2h4v.s7.41deaebd26ac from=translated src=- shape=19914a2c vocab=d7e13883
+-/
 theorem chunkWitnessRemainder_mul_pow_le_card_part_cast (hP : P.IsEquipartition)
     {C : Finset α} (hC : C ∈ P.parts) :
     (chunkWitnessRemainder P : ℝ) * 4 ^ (P.parts.card * 2 ^ (2 * P.parts.card))
@@ -178,7 +195,9 @@ theorem chunkWitnessRemainder_mul_pow_le_card_part_cast (hP : P.IsEquipartition)
 
 /-- **Step 4: the witness-side remainder bound.** A chosen witness side is, up to
 `chunkWitnessRemainder P` elements, a union of chunks. This is the exact sense in which
-the produced layer approximates the certifying layer.-/
+the produced layer approximates the certifying layer.
+@isnad1 id=le.3h7v.s6.ec07bdd0eb46 from=translated src=- shape=e1679189 vocab=813a10ec
+-/
 theorem card_sdiff_innerPartUnion_le (hP : P.IsEquipartition) {C W : Finset α}
     (hC : C ∈ P.parts) (hW : W ∈ witnessCuts R ε P C) :
     (W \ innerPartUnion (equitableIncrement R ε hP) W).card ≤ chunkWitnessRemainder P := by
@@ -211,7 +230,9 @@ theorem card_sdiff_innerPartUnion_le (hP : P.IsEquipartition) {C W : Finset α}
     _ ≤ 2 ^ (2 * P.parts.card) * chunkSize P :=
         Nat.mul_le_mul_right _ (card_filter_witnessAtoms_le R ε hW)
 
-/-- **Step 5: the recovered witness side is nearly as large as the original.**-/
+/-- **Step 5: the recovered witness side is nearly as large as the original.**
+@isnad1 id=le.3h7v.s7.3e2f249751b1 from=translated src=- shape=2065e43f vocab=cdac7f12
+-/
 theorem card_le_card_innerPartUnion_add (hP : P.IsEquipartition) {C W : Finset α}
     (hC : C ∈ P.parts) (hW : W ∈ witnessCuts R ε P C) :
     (W.card : ℝ)
@@ -241,7 +262,9 @@ simplifying against `|s|` — is what prevents an extra power of `ε` from being
 step 4 chooses `δ`.
 
 No `0 < ε` hypothesis is needed: `hrC` already forces it, since the remainder is a
-natural number and `|C| ≥ 0`.-/
+natural number and `|C| ≥ 0`.
+@isnad1 id=le.9h8v.s9.2fa271aec676 from=translated src=- shape=ffb0c204 vocab=e9d35a59
+-/
 theorem blockEnergy_equitableIncrement_gain (hP : P.IsEquipartition)
     {C D : Finset α} (hC : C ∈ P.parts) (hD : D ∈ P.parts) (hbad : IsBadPair R ε C D)
     {δ : ℝ} (hδ0 : 0 ≤ δ) (hδε : δ ≤ ε)
@@ -336,7 +359,9 @@ theorem blockEnergy_equitableIncrement_gain (hP : P.IsEquipartition)
 
 /-- **The retained-fraction form** step 4 consumes: if the degraded product retains a
 fraction `c` of the raw `ε⁴|C||D|` gain, the equitabilised refinement gains `c` times the
-raw gain. No value of `c` is chosen here.-/
+raw gain. No value of `c` is chosen here.
+@isnad1 id=le.10h9v.s9.1ae2bedbdff5 from=translated src=- shape=34fb3cde vocab=e9d35a59
+-/
 theorem blockEnergy_equitableIncrement_gain_of_retained (hP : P.IsEquipartition)
     {C D : Finset α} (hC : C ∈ P.parts) (hD : D ∈ P.parts) (hbad : IsBadPair R ε C D)
     {δ : ℝ} (hδ0 : 0 ≤ δ) (hδε : δ ≤ ε)

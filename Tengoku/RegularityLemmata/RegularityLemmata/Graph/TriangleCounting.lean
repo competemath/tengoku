@@ -68,7 +68,9 @@ noncomputable def directedTriangleDensity (R₀₁ R₀₂ R₁₂ : α → α �
 /-! ### The apex-vertex fiber identity -/
 
 /-- **Apex fiber identity.** Triangles are organized by their apex `a`: through `a` there
-are the `R₁₂`-pairs inside its two out-neighborhoods.-/
+are the `R₁₂`-pairs inside its two out-neighborhoods.
+@isnad1 id=eq.0h7v.s6.cc3231702316 from=translated src=- shape=f40c0540 vocab=494fb115
+-/
 theorem directedTriangleCount_eq_sum (A B C : Finset α) :
     directedTriangleCount R₀₁ R₀₂ R₁₂ A B C
       = ∑ a ∈ A, pairCount R₁₂ (B.filter (R₀₁ a ·)) (C.filter (R₀₂ a ·)) := by
@@ -164,7 +166,9 @@ private theorem abs_pairCount_nbhd_sub_le (hε0 : 0 ≤ ε)
 
 /-- **Triangle-count approximation.** Under `ε`-uniformity of all three pairs, the
 directed triangle count is within `7·ε·|A||B||C|` of `d₀₁·d₀₂·d₁₂·|A||B||C|`, with
-`7 = 1 + 2 + 4` derived (apex-neighborhood threshold + apex-degree correlation).-/
+`7 = 1 + 2 + 4` derived (apex-neighborhood threshold + apex-degree correlation).
+@isnad1 id=le.5h8v.s7.012fd524644a from=translated src=- shape=633708a1 vocab=e8792edc
+-/
 theorem abs_directedTriangleCount_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A C ε)
     (h12 : IsUniformPair R₁₂ B C ε) :
@@ -233,7 +237,9 @@ theorem abs_directedTriangleCount_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
         add_le_add hstep1 hstep2
     _ = 7 * ε * A.card * B.card * C.card := by ring
 
-/-- **Density form** of the triangle-count approximation.-/
+/-- **Density form** of the triangle-count approximation.
+@isnad1 id=le.5h8v.s7.69a8765b8c65 from=translated src=- shape=87426e0e vocab=430fe72d
+-/
 theorem abs_directedTriangleDensity_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A C ε)
     (h12 : IsUniformPair R₁₂ B C ε) :
@@ -278,7 +284,9 @@ theorem abs_directedTriangleDensity_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     exact hraw
 
 /-- **Positive lower bound.** The count is at least `(d₀₁·d₀₂·d₁₂ − 7·ε)·|A||B||C|`; in
-particular it is positive once the three densities' product exceeds `7·ε`.-/
+particular it is positive once the three densities' product exceeds `7·ε`.
+@isnad1 id=le.5h8v.s7.f67d47e2936e from=translated src=- shape=919b89ba vocab=819d18da
+-/
 theorem directedTriangleCount_ge (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h02 : IsUniformPair R₀₂ A C ε)
     (h12 : IsUniformPair R₁₂ B C ε) :

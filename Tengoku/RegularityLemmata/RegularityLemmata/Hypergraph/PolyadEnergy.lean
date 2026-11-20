@@ -42,13 +42,18 @@ noncomputable def polyadEnergyNum (κ : RSet j α → Fin K)
   ∑ key : Fin (j + 1) → Fin K,
     densityOn (polyadBlock κ key) obs ^ 2 * ((polyadBlock κ key).card : ℝ)
 
+/--
+@isnad1 id=le.0h5v.s6.d6b377b46a4d from=translated src=- shape=bfc20f21 vocab=464e4324
+-/
 theorem polyadEnergyNum_nonneg (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     0 ≤ polyadEnergyNum κ obs :=
   Finset.sum_nonneg fun _ _ =>
     mul_nonneg (sq_nonneg _) (Nat.cast_nonneg _)
 
-/-- The energy is at most the total injective mass (densities are at most `1`).-/
+/-- The energy is at most the total injective mass (densities are at most `1`).
+@isnad1 id=le.0h5v.s6.c69a93737b6f from=translated src=- shape=0e55dd50 vocab=38ab1ded
+-/
 theorem polyadEnergyNum_le_count (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     polyadEnergyNum κ obs ≤ (injectiveTupleCount α (j + 1) : ℝ) := by
@@ -65,7 +70,9 @@ theorem polyadEnergyNum_le_count (κ : RSet j α → Fin K)
   exact_mod_cast sum_card_polyadBlock κ
 
 /-- **Fiber decomposition of a merged block**: coloring through `f : Fin K' → Fin K`
-makes each merged block the union of the blocks of the keys in its fiber.-/
+makes each merged block the union of the blocks of the keys in its fiber.
+@isnad1 id=eq.0h7v.s8.a178d18f9669 from=translated src=- shape=73478ec0 vocab=0b1b70cb
+-/
 theorem polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (P : Fin (j + 1) → Fin K) :
     polyadBlock (fun e => f (κ' e)) P
@@ -91,7 +98,9 @@ theorem polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     rw [← congrFun hP'.2 i]
     exact congrArg f (hv i)
 
-/-- Filtered cardinality of a merged block: the sum over its fiber.-/
+/-- Filtered cardinality of a merged block: the sum over its fiber.
+@isnad1 id=eq.0h8v.s8.1dad747514f8 from=translated src=- shape=cf3bf6e7 vocab=70f9416a
+-/
 theorem card_filter_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (P : Fin (j + 1) → Fin K) (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     ((polyadBlock (fun e => f (κ' e)) P).filter obs).card
@@ -101,7 +110,9 @@ theorem card_filter_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α →
   exact Finset.card_biUnion fun P₁ _ P₂ _ h =>
     (polyadBlock_disjoint h).mono (Finset.filter_subset _ _) (Finset.filter_subset _ _)
 
-/-- Cardinality of a merged block: the sum over its fiber.-/
+/-- Cardinality of a merged block: the sum over its fiber.
+@isnad1 id=eq.0h7v.s8.25bbf6c687ed from=translated src=- shape=546cb84f vocab=715a7151
+-/
 theorem card_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (P : Fin (j + 1) → Fin K) :
     (polyadBlock (fun e => f (κ' e)) P).card
@@ -111,7 +122,9 @@ theorem card_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K'
   exact Finset.card_biUnion fun P₁ _ P₂ _ h => polyadBlock_disjoint h
 
 /-- **Refinement monotonicity**: merging cells can only lower the energy. The heart
-is the Engel-form Cauchy–Schwarz `(Σ r)²/(Σ b) ≤ Σ r²/b` applied on each fiber.-/
+is the Engel-form Cauchy–Schwarz `(Σ r)²/(Σ b) ≤ Σ r²/b` applied on each fiber.
+@isnad1 id=le.0h7v.s6.2a5d4358bd03 from=translated src=- shape=68eb62e9 vocab=464e4324
+-/
 theorem polyadEnergyNum_comp_le (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     polyadEnergyNum (fun e => f (κ' e)) obs ≤ polyadEnergyNum κ' obs := by
@@ -158,10 +171,16 @@ noncomputable def polyadEnergy (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : ℝ :=
   polyadEnergyNum κ obs / (Fintype.card α : ℝ) ^ (j + 1)
 
+/--
+@isnad1 id=le.0h5v.s6.54852ca18b1f from=translated src=- shape=bfc20f21 vocab=662bde39
+-/
 theorem polyadEnergy_nonneg (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : 0 ≤ polyadEnergy κ obs :=
   div_nonneg (polyadEnergyNum_nonneg κ obs) (by positivity)
 
+/--
+@isnad1 id=le.0h5v.s6.048dd4d9621d from=translated src=- shape=40e5ef29 vocab=662bde39
+-/
 theorem polyadEnergy_le_one (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : polyadEnergy κ obs ≤ 1 := by
   rw [polyadEnergy]
@@ -172,6 +191,9 @@ theorem polyadEnergy_le_one (κ : RSet j α → Fin K)
     refine le_trans (polyadEnergyNum_le_count κ obs) ?_
     exact_mod_cast injectiveTupleCount_le_pow (α := α) (j + 1)
 
+/--
+@isnad1 id=le.0h7v.s6.002aba8232d8 from=translated src=- shape=68eb62e9 vocab=662bde39
+-/
 theorem polyadEnergy_comp_le (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     polyadEnergy (fun e => f (κ' e)) obs ≤ polyadEnergy κ' obs :=
@@ -180,7 +202,9 @@ theorem polyadEnergy_comp_le (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
 /-- **The exact refinement-variance identity**: the energy gap under merging is the
 mass-weighted variance of the fine block densities around their merged blocks'
 densities (the polyad analogue of the parallel-axis identity in
-`RegularityLemmata/Graph/Variance.lean`). Refinement monotonicity is its nonnegativity.-/
+`RegularityLemmata/Graph/Variance.lean`). Refinement monotonicity is its nonnegativity.
+@isnad1 id=eq.0h7v.s9.ebd42558ef35 from=translated src=- shape=c15c98dc vocab=006d9071
+-/
 theorem polyadEnergyNum_comp_variance (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
     polyadEnergyNum κ' obs - polyadEnergyNum (fun e => f (κ' e)) obs

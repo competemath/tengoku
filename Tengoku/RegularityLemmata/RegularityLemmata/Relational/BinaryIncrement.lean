@@ -30,7 +30,9 @@ open FirstOrder
 variable {L : FirstOrder.Language} [FiniteRelational L] {V : Type*} [DecidableEq V]
   {s : Finset V} {ε : ℝ}
 
-/-- **The one-step palette increment.**-/
+/-- **The one-step palette increment.**
+@isnad1 id=ex.2h6v.s7.afc9f1dc5738 from=translated src=- shape=18692f46 vocab=36bfc178
+-/
 theorem exists_binaryPalette_refinement_energy_increment (M : FiniteRelModel L V)
     {P : Finpartition s} (hε : 0 < ε) (hbad : ¬IsBinaryPaletteRegular M ε P) :
     ∃ Q : Finpartition s, Q ≤ P
@@ -56,7 +58,9 @@ theorem exists_binaryPalette_refinement_energy_increment (M : FiniteRelModel L V
     rw [binaryPaletteEnergy, binaryPaletteEnergy, ← Finset.sum_sub_distrib]
   linarith
 
-/-- Sanity: an already palette-regular partition cannot trigger the increment.-/
+/-- Sanity: an already palette-regular partition cannot trigger the increment.
+@isnad1 id=not.1h6v.s5.bc60013319b5 from=translated src=- shape=30c5c3d3 vocab=1ef93226
+-/
 theorem not_not_isBinaryPaletteRegular_of_isBinaryPaletteRegular
     {M : FiniteRelModel L V} {P : Finpartition s}
     (h : IsBinaryPaletteRegular M ε P) : ¬¬IsBinaryPaletteRegular M ε P :=

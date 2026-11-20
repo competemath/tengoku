@@ -64,7 +64,9 @@ omit [FiniteRelational L] in
 on the good transversal tuples, and within `vol` of each other on the bad ones, have
 transversal sums within `(δ + (k.choose 2)·β) · |s|^k`: the good tuples contribute at most
 `δ` times the total volume, and the bad ones at most their volume, which the positional lift
-charges to the aggregated bad-pair mass.-/
+charges to the aggregated bad-pair mass.
+@isnad1 id=le.4h9v.s8.779b57170bf3 from=translated src=- shape=3451c3f4 vocab=254735aa
+-/
 theorem abs_sum_transversalCellTuples_sub_le (count est : (Fin k → Finset V) → ℝ)
     (D : Finset (Finset V × Finset V)) {δ β : ℝ} (hδ : 0 ≤ δ)
     (hlocal : ∀ T ∈ transversalCellTuples Q, T ∉ badCellTuples Q D →
@@ -118,7 +120,9 @@ single aggregated bad-pair mass bound and the cell-size bound, gives
 
 Denominator-free and guard-free: no `2 ≤ k`, no positivity of `|s|` or of the cells, no
 hypothesis on `β` or `m` beyond the two bounds. `δ` is supplied, never computed (§1 of the
-design); both `k.choose 2` are computed — the positional lift and the diagonal charge.-/
+design); both `k.choose 2` are computed — the positional lift and the diagonal charge.
+@isnad1 id=le.5h12v.s9.85488a2c25ea from=translated src=- shape=452292ed vocab=bce465f9
+-/
 theorem abs_inducedEmbeddingCountOn_sub_sum_est_le (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) (est : (Fin k → Finset V) → ℝ) (D : Finset (Finset V × Finset V))
     {δ β : ℝ} {m : ℕ} (hδ : 0 ≤ δ)
@@ -167,7 +171,9 @@ theorem abs_inducedEmbeddingCountOn_sub_sum_est_le (P : FiniteRelModel L (Fin k)
 factorial `(|s|)_k` — the number of injective `k`-tuples through `s` — gives the density form.
 Guard-free under `x / 0 = 0`: at `|s| < k` both sides are `0`, and no positivity hypothesis is
 taken (positivity belongs to the inversion lemma `card_injectiveTuplesOn_pos_iff` alone). At
-`s = univ` the denominator is `(|V|)_k`, the `injectiveRelationDensity` convention.-/
+`s = univ` the denominator is `(|V|)_k`, the `injectiveRelationDensity` convention.
+@isnad1 id=le.5h12v.s9.bea6f09a8943 from=translated src=- shape=db1c8bb8 vocab=ff9dfc8a
+-/
 theorem abs_inducedEmbeddingCountOn_div_sub_sum_est_div_le (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) (est : (Fin k → Finset V) → ℝ) (D : Finset (Finset V × Finset V))
     {δ β : ℝ} {m : ℕ} (hδ : 0 ≤ δ)
@@ -202,7 +208,9 @@ noncomputable def pairInducedEstimate (P : FiniteRelModel L (Fin 2)) (M : Finite
 induced count *is* the palette pair count (`inducedEmbeddingCountOn_two`), so the bridge is
 instantiated with `δ = 0` and an empty bad set, and only the diagonal charge `m · |s|`
 remains. (An `ε` local error at arity `2` arises only when a coarser density is substituted
-for the cell's own — the `IsUniformPair` reading — and is a supplied `δ` like any other.)-/
+for the cell's own — the `IsUniformPair` reading — and is a supplied `δ` like any other.)
+@isnad1 id=le.3h7v.s7.1983fe53076d from=translated src=- shape=b87eaaa8 vocab=82d44e4d
+-/
 theorem abs_inducedEmbeddingCountOn_sub_pairInducedEstimate_le [AtMostBinary L]
     {P : FiniteRelModel L (Fin 2)} {M : FiniteRelModel L V}
     (hQ : Q ≤ binaryProfilePartition M s) (hnull : NullaryCompatible P M) {m : ℕ}
@@ -263,7 +271,9 @@ section Three
 coordinate pair in the non-uniform pair set `D`), the single aggregated mass bound on `D`, and
 the cell bound. The conclusion is the shape of the global strong-counting corollary,
 `(7ε + 3β) · |s|³ + 3·m · |s|²`, with `3 = 3.choose 2` at both places. The `7` is supplied by the
-three-vertex estimate, not computed here (design §1).-/
+three-vertex estimate, not computed here (design §1).
+@isnad1 id=le.9h10v.s9.d3f6b3084a65 from=translated src=- shape=9af5678d vocab=19751456
+-/
 theorem abs_inducedEmbeddingCountOn_sub_coarseInducedEstimate_le [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V}
     (hQ : Q ≤ binaryProfilePartition M s) (hnull : NullaryCompatible P M)
@@ -365,7 +375,9 @@ diagonal charge. Everything is in `s`-restricted units — restricted count, `s`
 extension factor `|s|^(k−1)` — so the two terms compose with no off-`s` remainder. No new
 coefficient: the edit coefficient `Σ_R k^(arity R)` and the diagonal `k.choose 2` are the
 audited ones. Hypotheses: `N` indivisible for `Q`, nullary agreement, cells of size at most
-`m`.-/
+`m`.
+@isnad1 id=le.3h9v.s10.3abd48d639b6 from=translated src=- shape=1bbe2926 vocab=10f17dac
+-/
 theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_le_editMass
     (P : FiniteRelModel L (Fin k)) {M N : FiniteRelModel L V} (hN : N.IsIndivisibleFor Q)
     (hnull : NullaryCompatible M N) {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m) :
@@ -388,7 +400,9 @@ theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_le_editMass
 agreement makes the arity-`0` edit mass exactly `0`; so the edit term is bounded by
 `Σ_{R, arity R > 0} k^(arity R) · ε · |s|^(arity R)`, a sum over the positive-arity symbols only
 (the nullary symbols contribute nothing, and are not charged). This is "approximation yields
-counting": a cellwise approximation in, a global induced count out.-/
+counting": a cellwise approximation in, a global induced count out.
+@isnad1 id=le.4h10v.s9.cb1733ff44fd from=translated src=- shape=7dd462f8 vocab=76655b77
+-/
 theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_le_of_cellwiseEditBound
     (P : FiniteRelModel L (Fin k)) {M N : FiniteRelModel L V} (hN : N.IsIndivisibleFor Q)
     (hnull : NullaryCompatible M N) {ε : ℝ} (hce : CellwiseEditBound M N Q ε)
@@ -420,7 +434,9 @@ theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_le_of_cellwiseEditB
 /-- **Homogeneity in, counting out.** Majority rounding of `M` over `Q` is indivisible,
 nullary-compatible, and cellwise within `ε` under cell homogeneity
 (`cellwiseEditBound_majorityRound_of_isHomogeneousCell`); the composite then reads the induced
-count of `M` off the quotient of its rounding.-/
+count of `M` off the quotient of its rounding.
+@isnad1 id=le.2h9v.s9.bb99a9ad5bee from=translated src=- shape=e598b591 vocab=5ffcae57
+-/
 theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_majorityRound_le
     (P : FiniteRelModel L (Fin k)) (M : FiniteRelModel L V) (Q : Finpartition s) {ε : ℝ}
     (hhom : ∀ (n : ℕ), 0 < n → ∀ (S : L.Relations n) (C : Fin n → Q.parts),
@@ -438,7 +454,9 @@ theorem abs_inducedEmbeddingCountOn_sub_quotientInducedCount_majorityRound_le
 
 /-- **The composite chained with the raw bridge.** When the approximant's transversal count is
 further compared with a supplied estimate, the bridge's `(δ + (k.choose 2)·β) · |s|^k` is added:
-edit transfer from `M` to `N`, then `abs_inducedEmbeddingCountOn_sub_sum_est_le` for `N`.-/
+edit transfer from `M` to `N`, then `abs_inducedEmbeddingCountOn_sub_sum_est_le` for `N`.
+@isnad1 id=le.6h13v.s10.741bd592b136 from=translated src=- shape=5e49386a vocab=87d04569
+-/
 theorem abs_inducedEmbeddingCountOn_sub_sum_est_le_of_editMass (P : FiniteRelModel L (Fin k))
     {M N : FiniteRelModel L V} (hnull : NullaryCompatible M N)
     (est : (Fin k → Finset V) → ℝ) (D : Finset (Finset V × Finset V))
@@ -465,7 +483,9 @@ theorem abs_inducedEmbeddingCountOn_sub_sum_est_le_of_editMass (P : FiniteRelMod
           (abs_inducedEmbeddingCountOn_sub_sum_est_le P N est D hδ hlocal hest hmass hm)
 
 /-- **The normalized composite.** The composite divided through by `(|s|)_k`, guard-free under
-`x / 0 = 0`; at `s = univ` the denominator is `(|V|)_k`.-/
+`x / 0 = 0`; at `s = univ` the denominator is `(|V|)_k`.
+@isnad1 id=le.3h9v.s10.2eba71f94da7 from=translated src=- shape=f2696e26 vocab=8e9e1b9c
+-/
 theorem abs_inducedEmbeddingCountOn_div_sub_quotientInducedCount_div_le
     (P : FiniteRelModel L (Fin k)) {M N : FiniteRelModel L V} (hN : N.IsIndivisibleFor Q)
     (hnull : NullaryCompatible M N) {m : ℕ} (hm : ∀ C ∈ Q.parts, C.card ≤ m) :
@@ -483,7 +503,9 @@ theorem abs_inducedEmbeddingCountOn_div_sub_quotientInducedCount_div_le
 
 /-- **The normalized whole chain.** The edit-to-estimate chain
 `abs_inducedEmbeddingCountOn_sub_sum_est_le_of_editMass` divided through by `(|s|)_k`, including
-the bridge's `(δ + (k.choose 2)·β) · |s|^k` term, guard-free under `x / 0 = 0`.-/
+the bridge's `(δ + (k.choose 2)·β) · |s|^k` term, guard-free under `x / 0 = 0`.
+@isnad1 id=le.6h13v.s10.7603f4c37fdd from=translated src=- shape=f6a78410 vocab=a3eadf53
+-/
 theorem abs_inducedEmbeddingCountOn_div_sub_sum_est_div_le_of_editMass
     (P : FiniteRelModel L (Fin k)) {M N : FiniteRelModel L V} (hnull : NullaryCompatible M N)
     (est : (Fin k → Finset V) → ℝ) (D : Finset (Finset V × Finset V))

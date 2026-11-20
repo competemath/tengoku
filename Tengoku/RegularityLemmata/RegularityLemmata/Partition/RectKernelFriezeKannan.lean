@@ -64,7 +64,9 @@ A round of the iteration cuts each carrier by one test set, independently. The t
 bounds are produced and kept **separate** — this file never multiplies them. -/
 
 /-- **A round costs a factor of `2` in each coordinate, separately.** Stated as a pair rather
-than as a product: the product is the adapter's business, not the iteration's.-/
+than as a product: the product is the adapter's business, not the iteration's.
+@isnad1 id=and.0h8v.s7.723ea23d9b50 from=translated src=- shape=2e2b4435 vocab=db6276e8
+-/
 theorem card_parts_cut_pair_le [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (S : Finset X) (T : Finset Y) :
     (cutRefinePartition P S).parts.card ≤ 2 * P.parts.card
@@ -89,19 +91,30 @@ noncomputable def selectedRight [DecidableEq Y] (Q : Finpartition B) (T : Finset
     Finset (Finset Y) :=
   (cutRefinePartition Q T).parts.filter (· ⊆ T)
 
+/--
+@isnad1 id=le.0h4v.s5.87c5f3e50100 from=translated src=- shape=7b80c5bf vocab=404b4ab8
+-/
 theorem selectedLeft_subset [DecidableEq X] (P : Finpartition A) (S : Finset X) :
     selectedLeft P S ⊆ (cutRefinePartition P S).parts :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.0h4v.s5.0a438cf53aec from=translated src=- shape=7b80c5bf vocab=a72f2eb3
+-/
 theorem selectedRight_subset [DecidableEq Y] (Q : Finpartition B) (T : Finset Y) :
     selectedRight Q T ⊆ (cutRefinePartition Q T).parts :=
   Finset.filter_subset _ _
 
-/-- **The witness rectangle is the union of the selected cells.**-/
+/-- **The witness rectangle is the union of the selected cells.**
+@isnad1 id=eq.1h4v.s5.aacd5b544c86 from=translated src=- shape=10959c49 vocab=f4c3454c
+-/
 theorem biUnion_selectedLeft [DecidableEq X] (P : Finpartition A) {S : Finset X}
     (hS : S ⊆ A) : (selectedLeft P S).biUnion id = S :=
   biUnion_cutRefinePartition_filter_subset P hS
 
+/--
+@isnad1 id=eq.1h4v.s5.ff4da47c6ca7 from=translated src=- shape=10959c49 vocab=cf8c9a06
+-/
 theorem biUnion_selectedRight [DecidableEq Y] (Q : Finpartition B) {T : Finset Y}
     (hT : T ⊆ B) : (selectedRight Q T).biUnion id = T :=
   biUnion_cutRefinePartition_filter_subset Q hT
@@ -113,7 +126,9 @@ pairs.
 Pure bookkeeping: the bridge of `RegularityLemmata/Partition/RectKernelCut.lean`, additivity of a
 rectangle sum over disjoint unions, and the cancellation gate `rectAverage_mul_mass` — which needs
 no
-positive-mass hypothesis, so neither does this.-/
+positive-mass hypothesis, so neither does this.
+@isnad1 id=eq.4h11v.s8.2fd99c322870 from=translated src=- shape=59f5d261 vocab=83b25c06
+-/
 theorem rectError_eq_sum_selected [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) {S : Finset X}
     {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
@@ -149,6 +164,9 @@ noncomputable def selectedVariance [DecidableEq X] [DecidableEq Y] (f : RectKern
     rectAverage (rectResidual f wX wY P Q) wX wY p.1 p.2 ^ 2
       * (finsetMass wX p.1 * finsetMass wY p.2)
 
+/--
+@isnad1 id=le.2h11v.s7.f81aca838f02 from=translated src=- shape=00563461 vocab=0478c7ff
+-/
 theorem selectedVariance_nonneg [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) (S : Finset X)
     (T : Finset Y) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -161,7 +179,9 @@ theorem selectedVariance_nonneg [DecidableEq X] [DecidableEq Y] (f : RectKernel 
     (finsetMass_nonneg fun y hy =>
       hwY y ((cutRefinePartition Q T).le (selectedRight_subset Q T hp.2) hy)))
 
-/-- The selected cell masses sum to the mass of the witness rectangle.-/
+/-- The selected cell masses sum to the mass of the witness rectangle.
+@isnad1 id=eq.2h10v.s7.60e3b09fc20f from=translated src=- shape=63194d51 vocab=ae19b900
+-/
 theorem sum_selected_mass [DecidableEq X] [DecidableEq Y] (wX : X → ℝ) (wY : Y → ℝ)
     (P : Finpartition A) (Q : Finpartition B) {S : Finset X} {T : Finset Y} (hS : S ⊆ A)
     (hT : T ⊆ B) :
@@ -181,7 +201,9 @@ theorem sum_selected_mass [DecidableEq X] [DecidableEq Y] (wX : X → ℝ) (wY :
 selected variance.
 
 Mass-weighted Cauchy–Schwarz, applied to the decomposition above. No positive-mass hypothesis
-and no boundedness hypothesis on `f`; nonnegative carrier weights are the only assumption.-/
+and no boundedness hypothesis on `f`; nonnegative carrier weights are the only assumption.
+@isnad1 id=le.4h11v.s7.9fe84909ea65 from=translated src=- shape=bc466683 vocab=9c8d6504
+-/
 theorem sq_rectError_le_mul_selectedVariance [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
@@ -225,7 +247,9 @@ Three moves, none of them quantitative: regroup the selected cells under coarse 
 (`sum_product_parts_eq_sum_over_parents_subset`); replace each residual average by the
 child-minus-parent difference, mass-multiplied; then extend each inner sum from the selected
 cells to all fine cells inside that parent, which is legitimate because every term is
-nonnegative.-/
+nonnegative.
+@isnad1 id=le.2h11v.s7.e6debf3a265d from=translated src=- shape=d7c96ef3 vocab=69af0727
+-/
 theorem selectedVariance_le_rectRefinementVarianceNum [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (S : Finset X) (T : Finset Y) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -280,7 +304,9 @@ rectangle error vanish, so no witness can exist there.
 
 `ε` is **unconstrained** — no positivity is needed. At zero total mass the threshold
 `ε · 0` and the error both vanish for *any* `ε`, so the witness inequality is already
-contradictory. The increment theorems still need `0 < ε`, but for the gain, not for this.-/
+contradictory. The increment theorems still need `0 < ε`, but for the gain, not for this.
+@isnad1 id=lt.5h12v.s7.9bebb921af0a from=translated src=- shape=f9239c7a vocab=9c1ddecd
+-/
 theorem finsetMass_mul_pos_of_lt_abs_rectError [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
@@ -300,7 +326,9 @@ Consumes `rectEnergyNum_eq_add_rectRefinementVarianceNum` — the tranche-4c pri
 refinement bookkeeping is the established one and not a private substitute.
 
 Hypotheses are exactly nonnegative carrier weights and `0 < ε`. There is **no** boundedness
-hypothesis on `f`: absolute bounds are owed only by the iteration, to force termination.-/
+hypothesis on `f`: absolute bounds are owed only by the iteration, to force termination.
+@isnad1 id=le.6h12v.s8.0cc3551d3a80 from=translated src=- shape=faae2fdb vocab=e7beedd4
+-/
 theorem rectEnergyNum_add_le_of_lt_abs_rectError [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
@@ -344,7 +372,9 @@ theorem rectEnergyNum_add_le_of_lt_abs_rectError [DecidableEq X] [DecidableEq Y]
 /-- **The normalized `ε²` increment**, as a corollary. Division and the positivity of the
 total mass are confined here; the combinatorial core above is denominator-free.
 
-Still no positive-mass and no boundedness hypothesis: the witness supplies the positivity.-/
+Still no positive-mass and no boundedness hypothesis: the witness supplies the positivity.
+@isnad1 id=le.6h12v.s8.64e6b0b4d475 from=translated src=- shape=85ba2721 vocab=9e2978b5
+-/
 theorem rectEnergy_add_le_of_lt_abs_rectError [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     {S : Finset X} {T : Finset Y} (hS : S ⊆ A) (hT : T ⊆ B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
@@ -375,7 +405,9 @@ ceiling, `t` rounds reach a *pair* of refinements whose stepped prediction is un
 The round-budget arithmetic mirrors `RegularityLemmata/Graph/FriezeKannan.lean`'s `fk_iterate`,
 including its strict-increment handling: the `t = 0` case is closed by contradiction against the
 energy
-ceiling, which is what makes `⌈1/ε²⌉₊ + 1` rather than `⌈1/ε²⌉₊` the right fuel.-/
+ceiling, which is what makes `⌈1/ε²⌉₊ + 1` rather than `⌈1/ε²⌉₊` the right fuel.
+@isnad1 id=ex.5h11v.s8.d2a23a8957de from=translated src=- shape=ea87cbd6 vocab=9eb13a1d
+-/
 theorem rectFkIterate [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y) (wX : X → ℝ)
     (wY : Y → ℝ) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) {ε : ℝ} (hε : 0 < ε) :
@@ -426,7 +458,9 @@ theorem rectFkIterate [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y) (wX :
 
 /-- **The round budget is seed-independent**, exactly as in the Boolean development: the
 energy is nonnegative and `⌈1/ε²⌉₊ + 1` rounds already exhaust a budget of `1`. The `+ 1` is
-the strict-increment allowance — the last round must still be able to fail.-/
+the strict-increment allowance — the last round must still be able to fail.
+@isnad1 id=le.3h10v.s7.752f9a97a993 from=translated src=- shape=8c47578d vocab=1cac3e0c
+-/
 theorem one_sub_rounds_mul_sq_le_rectEnergy [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) {ε : ℝ} (hε : 0 < ε) :
@@ -448,7 +482,9 @@ with **separate** left and right part-count bounds.
 
 The two bounds are exposed individually and are never multiplied here. That is the point of
 the rectangular formulation: the product is where sharpness is lost, so it is deferred to the
-same-carrier adapter, which is the only place a factor `4` can appear.-/
+same-carrier adapter, which is the only place a factor `4` can appear.
+@isnad1 id=ex.4h10v.s8.0a8054e72e0f from=translated src=- shape=ba0c151a vocab=4989331d
+-/
 theorem rect_frieze_kannan_refining [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P₀ : Finpartition A) (Q₀ : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
@@ -461,7 +497,9 @@ theorem rect_frieze_kannan_refining [DecidableEq X] [DecidableEq Y] (f : RectKer
   rectFkIterate f wX wY hwX hwY hf hε (⌈1 / ε ^ 2⌉₊ + 1) P₀ Q₀
     (one_sub_rounds_mul_sq_le_rectEnergy f wX wY P₀ Q₀ hwX hwY hε)
 
-/-- The summit in cut-discrepancy form.-/
+/-- The summit in cut-discrepancy form.
+@isnad1 id=ex.4h10v.s8.bfb26803da93 from=translated src=- shape=061a5a51 vocab=a21f0464
+-/
 theorem rect_frieze_kannan_cutDiscrepancy [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P₀ : Finpartition A) (Q₀ : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
@@ -485,6 +523,9 @@ The existing Boolean same-carrier summit in `RegularityLemmata/Graph/FriezeKanna
 **sharper direct result** and is untouched: it obtains `4 ^ (⌈1/ε²⌉₊ + 1)` directly, whereas the
 route below pays `⌈4/ε²⌉₊ + 1` rounds because it calls at `ε/2`. This theorem is an adapter, not a
 replacement. -/
+/--
+@isnad1 id=ex.4h8v.s8.8b9bdffa927b from=translated src=- shape=411338d4 vocab=a21f0464
+-/
 theorem rect_frieze_kannan_same_carrier [DecidableEq X] (f : RectKernel X X) (w₁ w₂ : X → ℝ)
     (P₀ Q₀ : Finpartition A) (hw₁ : ∀ x ∈ A, 0 ≤ w₁ x) (hw₂ : ∀ x ∈ A, 0 ≤ w₂ x)
     (hf : IsAbsUnitBoundedOnRectangle f A A) {ε : ℝ} (hε : 0 < ε) :

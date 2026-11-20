@@ -81,31 +81,48 @@ noncomputable def coarseInducedEstimate (P : FiniteRelModel L (Fin 3)) (M : Fini
 variable {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {Q : Finpartition s}
   {T U : Fin 3 → Finset V} {i j : Fin 3}
 
+/--
+@isnad1 id=iff.0h4v.s7.9643f40fa5b5 from=translated src=- shape=387615b8 vocab=1c742adb
+-/
 theorem mem_transversalCellTriples :
     T ∈ transversalCellTriples Q ↔ (∀ i, T i ∈ Q.parts) ∧ Function.Injective T := by
   rw [transversalCellTriples, Finset.mem_filter, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=mem.1h5v.s6.98f16d405f3c from=translated src=- shape=2bb50d5b vocab=bc457777
+-/
 theorem transversalCellTriples_cell_mem (hT : T ∈ transversalCellTriples Q) (i : Fin 3) :
     T i ∈ Q.parts :=
   (mem_transversalCellTriples.mp hT).1 i
 
+/--
+@isnad1 id=ne.2h6v.s6.2ed7ac9cd1a8 from=translated src=- shape=e39b6f1b vocab=80cb51bd
+-/
 theorem transversalCellTriples_ne (hT : T ∈ transversalCellTriples Q) (hij : i ≠ j) :
     T i ≠ T j :=
   fun h => hij ((mem_transversalCellTriples.mp hT).2 h)
 
+/--
+@isnad1 id=disjoint.2h6v.s6.ca564e471761 from=translated src=- shape=e39b6f1b vocab=79249839
+-/
 theorem transversalCellTriples_disjoint (hT : T ∈ transversalCellTriples Q) (hij : i ≠ j) :
     Disjoint (T i) (T j) :=
   Q.disjoint (Finset.mem_coe.mpr (transversalCellTriples_cell_mem hT i))
     (Finset.mem_coe.mpr (transversalCellTriples_cell_mem hT j)) (transversalCellTriples_ne hT hij)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=matchest.2h6v.s6.417fc0bb21aa from=translated src=- shape=6fdae81e vocab=4a889130
+-/
 theorem MatchesThreeProfiles.mono (h : MatchesThreeProfiles P M T) (hsub : ∀ i, U i ⊆ T i) :
     MatchesThreeProfiles P M U :=
   fun i v hv => h i v (hsub i hv)
 
 /-! ### The profile-mismatch vanishing -/
 
-/-- On a partition refining the vertex-profile partition, every cell has constant profile.-/
+/-- On a partition refining the vertex-profile partition, every cell has constant profile.
+@isnad1 id=eq.4h8v.s7.7a0e5a2c438a from=translated src=- shape=826c8537 vocab=27038274
+-/
 theorem binaryVertexProfile_eq_of_mem_of_le_profile (hQ : Q ≤ binaryProfilePartition M s)
     {C : Finset V} (hC : C ∈ Q.parts) {x y : V} (hx : x ∈ C) (hy : y ∈ C) :
     binaryVertexProfile M x = binaryVertexProfile M y := by
@@ -113,7 +130,9 @@ theorem binaryVertexProfile_eq_of_mem_of_le_profile (hQ : Q ≤ binaryProfilePar
   exact binaryVertexProfile_eq_of_mem_part M ht (hCt hx) (hCt hy)
 
 /-- A transversal box whose cells refine the vertex-profile partition but do **not** match
-the pattern's required profiles contributes zero induced embeddings.-/
+the pattern's required profiles contributes zero induced embeddings.
+@isnad1 id=eq.3h7v.s7.527544936db2 from=translated src=- shape=431c8228 vocab=809fba80
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_not_matchesThreeProfiles [AtMostBinary L]
     (hQ : Q ≤ binaryProfilePartition M s) (hT : ∀ i, T i ∈ Q.parts)
     (hmatch : ¬ MatchesThreeProfiles P M T) :
@@ -127,13 +146,17 @@ theorem inducedEmbeddingCountOn_eq_zero_of_not_matchesThreeProfiles [AtMostBinar
   exact fun hcontra => hne (hwv.symm.trans hcontra.symm)
 
 omit [DecidableEq V] in
-/-- `MatchesThreeProfiles` is the `Fin 3` instance of the index-generic `MatchesProfiles`.-/
+/-- `MatchesThreeProfiles` is the `Fin 3` instance of the index-generic `MatchesProfiles`.
+@isnad1 id=iff.0h5v.s5.c002b69c6017 from=translated src=- shape=9b7d843e vocab=1ae6e8f8
+-/
 theorem matchesThreeProfiles_iff_matchesProfiles (T : Fin 3 → Finset V) :
     MatchesThreeProfiles P M T ↔ MatchesProfiles P M T := Iff.rfl
 
 /-- A cell tuple refining the vertex-profile partition that does not match the pattern's
 profiles contributes zero induced embeddings: the index-generic form of
-`inducedEmbeddingCountOn_eq_zero_of_not_matchesThreeProfiles`.-/
+`inducedEmbeddingCountOn_eq_zero_of_not_matchesThreeProfiles`.
+@isnad1 id=eq.3h8v.s7.32715b4920ee from=translated src=- shape=a9aa976f vocab=5c789e19
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_not_matchesProfiles [AtMostBinary L]
     {W : Type*} [Fintype W] [DecidableEq W] {P : FiniteRelModel L W}
     (hQ : Q ≤ binaryProfilePartition M s) {T : W → Finset V} (hT : ∀ i, T i ∈ Q.parts)
@@ -148,7 +171,9 @@ theorem inducedEmbeddingCountOn_eq_zero_of_not_matchesProfiles [AtMostBinary L]
   exact fun hcontra => hne (hwv.symm.trans hcontra.symm)
 
 /-- Profile elimination for a SUB-BOX system: boxes chosen inside the cells of `Q` inherit
-the elimination, because all vertices of a cell share a profile.-/
+the elimination, because all vertices of a cell share a profile.
+@isnad1 id=eq.4h8v.s7.277a3fae7e3d from=translated src=- shape=ed3dd491 vocab=809fba80
+-/
 theorem inducedEmbeddingCountOn_eq_zero_of_not_matchesThreeProfiles_of_subset [AtMostBinary L]
     {U : Fin 3 → Finset V} (hQ : Q ≤ binaryProfilePartition M s) (hT : ∀ i, T i ∈ Q.parts)
     (hsub : ∀ i, U i ⊆ T i) (hmatch : ¬ MatchesThreeProfiles P M U) :
@@ -172,7 +197,9 @@ def refinementTriples (Q : Finpartition s) (T : Fin 3 → Finset V) : Finset (Fi
   Fintype.piFinset fun i => refinementFiber Q (T i)
 
 /-- **Box cover.** A box over coarse cells is the disjoint union of the boxes over the fine
-cells refining each coordinate.-/
+cells refining each coordinate.
+@isnad1 id=eq.2h5v.s8.eca3e2e2d914 from=translated src=- shape=0deb37b0 vocab=f5c07038
+-/
 theorem piFinset_eq_biUnion_refinement {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     (hT : ∀ i, T i ∈ Pc.parts) :
     Fintype.piFinset T
@@ -197,7 +224,9 @@ theorem piFinset_eq_biUnion_refinement {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     rw [refinementFiber, Finset.mem_filter] at hWi
     exact hWi.2 (hfW i)
 
-/-- The fine boxes below distinct coordinate-fibers are pairwise disjoint.-/
+/-- The fine boxes below distinct coordinate-fibers are pairwise disjoint.
+@isnad1 id=pairwise.0h4v.s7.b84e33925f2e from=translated src=- shape=a9b095ae vocab=f65eb1e2
+-/
 theorem piFinset_refinement_pairwiseDisjoint {Q : Finpartition s} :
     (↑(Fintype.piFinset fun i => refinementFiber Q (T i)) :
         Set (Fin 3 → Finset V)).PairwiseDisjoint Fintype.piFinset := by
@@ -215,7 +244,9 @@ theorem piFinset_refinement_pairwiseDisjoint {Q : Finpartition s} :
   exact Finset.disjoint_left.mp
     (Q.disjoint (Finset.mem_coe.mpr hWi) (Finset.mem_coe.mpr hW'i) hi) (hfW i) (hfW' i)
 
-/-- **Box additivity of induced counts.** No profile matching or transversality is needed.-/
+/-- **Box additivity of induced counts.** No profile matching or transversality is needed.
+@isnad1 id=eq.2h8v.s7.903d98d8d839 from=translated src=- shape=ba3b0331 vocab=9049ef26
+-/
 theorem inducedEmbeddingCountOn_refinement_three {Pc : Finpartition s} (hQP : Q ≤ Pc)
     (hT : ∀ i, T i ∈ Pc.parts) :
     inducedEmbeddingCountOn P M T
@@ -228,7 +259,9 @@ theorem inducedEmbeddingCountOn_refinement_three {Pc : Finpartition s} (hQP : Q 
   exact Finset.sum_congr rfl fun u _ => rfl
 
 /-- Fine cells inside distinct coarse cells are distinct — this is what turns failure of
-uniformity into an `IsBadPair` (whose definition excludes the diagonal).-/
+uniformity into an `IsBadPair` (whose definition excludes the diagonal).
+@isnad1 id=ne.6h8v.s7.1b50fe7bd6a4 from=translated src=- shape=a68cf79a vocab=9b06a030
+-/
 theorem fine_cells_ne_of_subset_distinct_coarse {Q Pc : Finpartition s} {A B X Y : Finset V}
     (hA : A ∈ Q.parts) (hAX : A ⊆ X) (hBY : B ⊆ Y) (hXY : X ≠ Y)
     (hX : X ∈ Pc.parts) (hY : Y ∈ Pc.parts) :
@@ -241,7 +274,9 @@ theorem fine_cells_ne_of_subset_distinct_coarse {Q Pc : Finpartition s} {A B X Y
 
 /-! ### Mass identities -/
 
-/-- **Total transversal box volume is at most `|s|³`.**-/
+/-- **Total transversal box volume is at most `|s|³`.**
+@isnad1 id=le.0h3v.s7.fb52b7283fab from=translated src=- shape=06ebd1e3 vocab=20ed3217
+-/
 theorem sum_transversal_volume_le (Q : Finpartition s) :
     ∑ T ∈ transversalCellTriples Q, ((T 0).card * (T 1).card * (T 2).card : ℝ)
       ≤ (s.card : ℝ) ^ 3 := by
@@ -258,7 +293,9 @@ theorem sum_transversal_volume_le (Q : Finpartition s) :
     _ = (s.card : ℝ) ^ 3 := by
         rw [sum_card_parts_cast Q, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
-/-- The fine cells of `Q` contained in a coarse cell partition its cardinality.-/
+/-- The fine cells of `Q` contained in a coarse cell partition its cardinality.
+@isnad1 id=eq.2h5v.s7.9a7cfd546ccc from=translated src=- shape=355a269d vocab=c1549125
+-/
 theorem sum_card_filter_subset_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc) {C : Finset V}
     (hC : C ∈ Pc.parts) :
     ∑ A ∈ Q.parts.filter (· ⊆ C), (A.card : ℝ) = C.card := by
@@ -270,7 +307,9 @@ theorem sum_card_filter_subset_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc) {C : 
     simp
   rw [hnat, Nat.cast_sum]
 
-/-- **Refinement volume identity.** Refining a box preserves total volume.-/
+/-- **Refinement volume identity.** Refining a box preserves total volume.
+@isnad1 id=eq.2h5v.s8.00634fd924e7 from=translated src=- shape=c399f48b vocab=844c7101
+-/
 theorem sum_refinement_volume_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     (hT : ∀ i, T i ∈ Pc.parts) :
     ∑ W ∈ refinementTriples Q T, ((W 0).card * (W 1).card * (W 2).card : ℝ)
@@ -290,6 +329,9 @@ theorem sum_refinement_volume_eq {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
 
 /-! ### Bounds on the coarse estimate -/
 
+/--
+@isnad1 id=le.0h6v.s5.6b3e41c28bb9 from=translated src=- shape=7ae1f436 vocab=dcc768fb
+-/
 theorem coarseInducedEstimate_nonneg (Q : Finpartition s) : 0 ≤ coarseInducedEstimate P M Q := by
   rw [coarseInducedEstimate]
   refine Finset.sum_nonneg fun T _ => ?_
@@ -301,6 +343,9 @@ theorem coarseInducedEstimate_nonneg (Q : Finpartition s) : 0 ≤ coarseInducedE
     (A := T 1) (B := T 2)
   positivity
 
+/--
+@isnad1 id=le.0h6v.s6.f0d0de4d9b6d from=translated src=- shape=342f23c7 vocab=8e6398c7
+-/
 theorem coarseInducedEstimate_le_cube (Q : Finpartition s) :
     coarseInducedEstimate P M Q ≤ (s.card : ℝ) ^ 3 := by
   rw [coarseInducedEstimate]
@@ -331,10 +376,15 @@ def cellTripleVolume (T : Fin 3 → Finset V) : ℝ :=
   (T 0).card * (T 1).card * (T 2).card
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h2v.s4.f30a83a04e8b from=translated src=- shape=70ce7fe8 vocab=a6fd5237
+-/
 theorem cellTripleVolume_nonneg (T : Fin 3 → Finset V) : 0 ≤ cellTripleVolume T := by
   rw [cellTripleVolume]; positivity
 
-/-- Crude box bound: an induced count never exceeds the box volume.-/
+/-- Crude box bound: an induced count never exceeds the box volume.
+@isnad1 id=le.0h5v.s6.8d6502d5762b from=translated src=- shape=7e55a78f vocab=fcc13e09
+-/
 theorem inducedEmbeddingCountOn_le_cellTripleVolume (P : FiniteRelModel L (Fin 3))
     (M : FiniteRelModel L V) (W : Fin 3 → Finset V) :
     (inducedEmbeddingCountOn P M W : ℝ) ≤ cellTripleVolume W := by
@@ -349,7 +399,9 @@ theorem inducedEmbeddingCountOn_le_cellTripleVolume (P : FiniteRelModel L (Fin 3
 
 /-- **The transversal count is carried by the profile-matching triples.** The others
 contribute nothing, which is what lets a count and a density estimate be compared triple by
-triple. Generic profile-elimination infrastructure.-/
+triple. Generic profile-elimination infrastructure.
+@isnad1 id=eq.1h6v.s7.527aca24b390 from=translated src=- shape=a36ae903 vocab=18a297f9
+-/
 theorem transversalInducedCount_eq_sum_matching [AtMostBinary L]
     (hQ : Q ≤ binaryProfilePartition M s) :
     (transversalInducedCount P M Q : ℝ)
@@ -373,7 +425,9 @@ theorem transversalInducedCount_eq_sum_matching [AtMostBinary L]
 
 /-- **Lift a selected `(0,1)`-pair family to transversal triples.** The mass of transversal
 triples whose first two cells lie in `D` is at most the `D`-pair mass times `|s|` (the third
-coordinate ranges over all cells).-/
+coordinate ranges over all cells).
+@isnad1 id=le.1h4v.s8.24b600bbfd45 from=translated src=- shape=91207862 vocab=92205571
+-/
 theorem selectedPairTripleMass_zero_one_le {Q : Finpartition s}
     {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts) :
     ∑ T ∈ (transversalCellTriples Q).filter (fun T => (T 0, T 1) ∈ D),
@@ -408,7 +462,9 @@ theorem selectedPairTripleMass_zero_one_le {Q : Finpartition s}
   dsimp only
   rw [← Finset.mul_sum, sum_card_parts_cast]
 
-/-- **Lift a selected `(0,2)`-pair family to transversal triples.**-/
+/-- **Lift a selected `(0,2)`-pair family to transversal triples.**
+@isnad1 id=le.1h4v.s8.f8a871347fe3 from=translated src=- shape=91207862 vocab=92205571
+-/
 theorem selectedPairTripleMass_zero_two_le {Q : Finpartition s}
     {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts) :
     ∑ T ∈ (transversalCellTriples Q).filter (fun T => (T 0, T 2) ∈ D),
@@ -443,7 +499,9 @@ theorem selectedPairTripleMass_zero_two_le {Q : Finpartition s}
   dsimp only
   rw [← Finset.mul_sum, sum_card_parts_cast]
 
-/-- **Lift a selected `(1,2)`-pair family to transversal triples.**-/
+/-- **Lift a selected `(1,2)`-pair family to transversal triples.**
+@isnad1 id=le.1h4v.s8.864cad71de54 from=translated src=- shape=91207862 vocab=92205571
+-/
 theorem selectedPairTripleMass_one_two_le {Q : Finpartition s}
     {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts) :
     ∑ T ∈ (transversalCellTriples Q).filter (fun T => (T 1, T 2) ∈ D),
@@ -481,7 +539,9 @@ theorem selectedPairTripleMass_one_two_le {Q : Finpartition s}
 /-- **The three-coordinate union.** Triples having ANY of their three coordinate pairs in `D`
 carry volume at most three times the `D`-pair mass times `|s|`. The factor is the number of
 coordinate pairs in a triple; nothing about cells or events enters. Palette-, proxy- and
-regularity-free counting infrastructure.-/
+regularity-free counting infrastructure.
+@isnad1 id=le.1h4v.s10.f636d6af35ff from=translated src=- shape=1f8ec544 vocab=92205571
+-/
 theorem selectedPairTripleMass_any_le {Q : Finpartition s}
     {D : Finset (Finset V × Finset V)} (hD : D ⊆ Q.parts ×ˢ Q.parts) :
     ∑ T ∈ (transversalCellTriples Q).filter

@@ -53,7 +53,9 @@ private theorem single_atom_bound (s : Finset V) {n : ℕ} (E : Finset (Fin n �
 
 /-- Shared counting step. Every changed test is covered by an edited atom on
 distinct pattern vertices. No assumption on injectivity of the host map is
-needed by this counting step itself.-/
+needed by this counting step itself.
+@isnad1 id=le.3h8v.s11.145abe27d141 from=translated src=- shape=77994ee6 vocab=286ebf65
+-/
 theorem abs_filter_card_sub_le_of_atom_cover (s : Finset V)
     (A B : (Fin k → V) → Prop) [DecidablePred A] [DecidablePred B]
     (E : (S : RelSymbol L) → Finset (Fin (S.1 : ℕ) → V)) {ε : ℝ}
@@ -134,7 +136,9 @@ private theorem nullary_agreement {M N : FiniteRelModel L V} (hnull : NullaryCom
 
 /-- Uniform induced-count transfer under diagonal and nullary agreement.
 The coefficient is independent of the host size. The pattern may be arbitrary:
-both diagonal agreement and nullary agreement are explicit hypotheses.-/
+both diagonal agreement and nullary agreement are explicit hypotheses.
+@isnad1 id=le.4h8v.s10.8737c579c2e3 from=translated src=- shape=f07db324 vocab=5e31f9c4
+-/
 theorem abs_inducedEmbeddingCountOn_sub_le_of_diagonalAgreement
     (P : FiniteRelModel L (Fin k)) (M N : FiniteRelModel L V) (s : Finset V)
     {ε : ℝ} (hε : 0 ≤ ε) (hnull : NullaryCompatible M N)
@@ -178,7 +182,9 @@ def injectiveHomCountOn (P : FiniteRelModel L (Fin k)) (M : FiniteRelModel L V)
     Function.Injective f ∧ Preserves P M f).card
 
 /-- Uniform injective-homomorphism transfer for a simple pattern. The hosts
-need not agree on diagonals, but nullary agreement is explicit.-/
+need not agree on diagonals, but nullary agreement is explicit.
+@isnad1 id=le.4h8v.s10.7570f23faecf from=translated src=- shape=f41beb26 vocab=01862f6f
+-/
 theorem abs_injectiveHomCountOn_sub_le_of_simple
     (P : FiniteRelModel L (Fin k)) (M N : FiniteRelModel L V) (s : Finset V)
     {ε : ℝ} (hε : 0 ≤ ε) (hnull : NullaryCompatible M N) (hP : SimplePattern P)
@@ -207,7 +213,9 @@ theorem abs_injectiveHomCountOn_sub_le_of_simple
     exact ⟨hi, fun S x hPx ↦ (hagree S x hPx).mpr (hN S x hPx)⟩
 
 /-- The excess of all homomorphisms over injective homomorphisms is bounded by
-the ambient non-injective-map count, without any stability or simplicity premise.-/
+the ambient non-injective-map count, without any stability or simplicity premise.
+@isnad1 id=ex.0h6v.s6.26315bedeee1 from=translated src=- shape=634e369f vocab=65833e17
+-/
 theorem homCountOn_eq_injective_add_collision (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) (s : Finset V) :
     ∃ b : ℕ, b ≤ k.choose 2 * s.card ^ (k - 1) ∧
@@ -226,7 +234,9 @@ theorem homCountOn_eq_injective_add_collision (P : FiniteRelModel L (Fin k))
 
 /-- All homomorphisms of a simple pattern: the injective estimate plus one
 explicit non-injective term. There is no diagonal-agreement hypothesis, and no
-host-size premise silently absorbing the collision term into epsilon.-/
+host-size premise silently absorbing the collision term into epsilon.
+@isnad1 id=le.4h8v.s10.a21d14388948 from=translated src=- shape=b8c1dabf vocab=61ac0dc4
+-/
 theorem abs_homCountOn_sub_le_of_simple
     (P : FiniteRelModel L (Fin k)) (M N : FiniteRelModel L V) (s : Finset V)
     {ε : ℝ} (hε : 0 ≤ ε) (hnull : NullaryCompatible M N) (hP : SimplePattern P)
@@ -245,16 +255,24 @@ theorem abs_homCountOn_sub_le_of_simple
   constructor <;> linarith [Nat.cast_nonneg (α := ℝ) a, Nat.cast_nonneg (α := ℝ) b]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.79fd8ac7309d from=translated src=- shape=41af30eb vocab=361e11f4
+-/
 @[simp] theorem homCountOn_univ [Fintype V] (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) : homCountOn P M Finset.univ = homCount P M := by
   simp [homCountOn, homCount]
 
+/--
+@isnad1 id=eq.0h5v.s5.3e490719889f from=translated src=- shape=f0ba0eeb vocab=001b7d36
+-/
 @[simp] theorem injectiveHomCountOn_univ [Fintype V] (P : FiniteRelModel L (Fin k))
     (M : FiniteRelModel L V) : injectiveHomCountOn P M Finset.univ = injectiveHomCount P M := by
   simp [injectiveHomCountOn, injectiveHomCount]
 
 /-- Cellwise-error specialization of the induced transfer. Diagonal agreement
-is still a separate premise, not a consequence of the cellwise bound.-/
+is still a separate premise, not a consequence of the cellwise bound.
+@isnad1 id=le.4h9v.s7.93d3ef187af7 from=translated src=- shape=a892c54b vocab=f139cfc2
+-/
 theorem abs_inducedEmbeddingCountOn_sub_le_of_cellwise_diagonalAgreement
     (P : FiniteRelModel L (Fin k)) (M N : FiniteRelModel L V) (s : Finset V)
     (Q : Finpartition s) {ε : ℝ} (hε : 0 ≤ ε) (hnull : NullaryCompatible M N)
@@ -266,7 +284,9 @@ theorem abs_inducedEmbeddingCountOn_sub_le_of_cellwise_diagonalAgreement
     (fun S hS ↦ hcell.editDistance_const_le hS S.2)
 
 /-- Cellwise-error specialization for preservation-only homomorphisms. The
-non-injective contribution remains explicit, with no diagonal premise.-/
+non-injective contribution remains explicit, with no diagonal premise.
+@isnad1 id=le.4h9v.s7.a8e1682c558d from=translated src=- shape=a639bfc4 vocab=1e1e7947
+-/
 theorem abs_homCountOn_sub_le_of_cellwise_simple
     (P : FiniteRelModel L (Fin k)) (M N : FiniteRelModel L V) (s : Finset V)
     (Q : Finpartition s) {ε : ℝ} (hε : 0 ≤ ε) (hnull : NullaryCompatible M N)

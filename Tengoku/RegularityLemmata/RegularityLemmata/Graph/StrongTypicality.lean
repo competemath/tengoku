@@ -59,7 +59,9 @@ variable {Rk : Fin K → α → α → Prop} [∀ k, DecidableRel (Rk k)]
 up to the family-energy gain scaled by `|s|²`. Each summand is the single-relation identity
 `refinementVarianceNum_eq`, renormalized by the all-host `energyNum_eq_energy_mul`; the
 family energy is by definition the sum of the component energies, so nothing else is
-needed.-/
+needed.
+@isnad1 id=eq.1h6v.s7.8bad47f39941 from=translated src=- shape=16e16376 vocab=ac1e3fd9
+-/
 theorem sum_refinementVarianceNum_eq {Q P : Finpartition s} (hQP : Q ≤ P) :
     ∑ k, refinementVarianceNum (Rk k) Q P
       = (familyEnergy Rk Q - familyEnergy Rk P) * (s.card : ℝ) ^ 2 := by
@@ -73,7 +75,9 @@ end SummedVariance
 /-- **The hard-stop checkpoint, cleared.** A family strong witness's component refinement
 variances sum to at most `δ·|s|²` — from the single aggregate `energy_gap` field, with no
 appeal to the individual components' gaps. This is what makes every downstream constant
-`K`-free.-/
+`K`-free.
+@isnad1 id=le.0h8v.s7.e9abd5c5742b from=translated src=- shape=83f5018d vocab=ad849397
+-/
 theorem FamilyStrongWitness.sum_refinementVarianceNum_le
     {Rk : Fin K → α → α → Prop} [∀ k, DecidableRel (Rk k)] {E : ErrorSchedule} {δ : ℝ}
     {P₀ : Finpartition s} (w : FamilyStrongWitness Rk E δ P₀) :
@@ -100,10 +104,16 @@ noncomputable def deviantMass (Q P : Finpartition s) (η : ℝ) : ℝ :=
 
 variable {R}
 
+/--
+@isnad1 id=le.0h6v.s5.50837835a073 from=translated src=- shape=ad44926f vocab=8fdee341
+-/
 theorem deviantChildMass_nonneg {Q : Finpartition s} {η : ℝ}
     {pd : Finset α × Finset α} : 0 ≤ deviantChildMass R Q η pd :=
   Finset.sum_nonneg fun _ _ => by positivity
 
+/--
+@isnad1 id=le.0h6v.s5.03900a6a46dd from=translated src=- shape=ddf9e257 vocab=0d0a4166
+-/
 theorem deviantMass_nonneg {Q P : Finpartition s} {η : ℝ} : 0 ≤ deviantMass R Q P η :=
   Finset.sum_nonneg fun _ _ => deviantChildMass_nonneg
 
@@ -114,7 +124,9 @@ non-deviant children contribute nonnegatively.
 Stated for arbitrary partitions: beyond `0 ≤ η` (without which `η < |x|` would not give
 `η² ≤ x²`) there is no witness and no refinement hypothesis, so the inequality can be summed
 over a family before any normalization happens. This is the lemma whose reuse makes the
-aggregate bound `K`-free.-/
+aggregate bound `K`-free.
+@isnad1 id=le.1h6v.s6.7f68a2cd44c0 from=translated src=- shape=17db9be7 vocab=28014752
+-/
 theorem deviantMass_mul_sq_le_refinementVarianceNum (Q P : Finpartition s) {η : ℝ}
     (hη : 0 ≤ η) : deviantMass R Q P η * η ^ 2 ≤ refinementVarianceNum R Q P := by
   classical
@@ -160,7 +172,9 @@ noncomputable def StrongWitness.atypicalMass (w : StrongWitness R E δ P₀) (η
   ∑ pd ∈ (w.coarse.parts ×ˢ w.coarse.parts).filter
       (fun pd => ¬ w.IsTypicalCoarsePair η θ pd), ((pd.1.card : ℝ) * pd.2.card)
 
-/-- The global deviant mass of a strong witness, in the named form.-/
+/-- The global deviant mass of a strong witness, in the named form.
+@isnad1 id=le.1h8v.s7.b9abeaff4dc2 from=translated src=- shape=94edb04e vocab=de8281cc
+-/
 theorem StrongWitness.deviantMass_le (w : StrongWitness R E δ P₀) {η : ℝ} (hη : 0 < η) :
     deviantMass R w.fine w.coarse η ≤ δ / η ^ 2 * (s.card : ℝ) ^ 2 :=
   StrongWitness.deviant_mass_le R w hη
@@ -168,7 +182,9 @@ theorem StrongWitness.deviantMass_le (w : StrongWitness R E δ P₀) {η : ℝ} 
 /-- **The ordinary second Markov step.** The mass of coarse pairs that fail `(η, θ)`
 typicality is at most `(δ/(η²θ))·|s|²`. The first Markov step is inside
 `deviantMass_mul_sq_le_refinementVarianceNum`; this is the second, applied to the coarse
-pairs rather than to the refined rectangles.-/
+pairs rather than to the refined rectangles.
+@isnad1 id=le.2h9v.s7.7c2d2992857b from=translated src=- shape=c5e15f6e vocab=b4a53412
+-/
 theorem StrongWitness.atypicalMass_le (w : StrongWitness R E δ P₀) {η θ : ℝ}
     (hη : 0 < η) (hθ : 0 < θ) :
     w.atypicalMass η θ ≤ δ / (η ^ 2 * θ) * (s.card : ℝ) ^ 2 := by
@@ -205,7 +221,9 @@ at most `(δ/η²)·|s|²` — the same constant as for a single relation, with 
 The route is the point: sum the Markov cores first
 (`deviantMass_mul_sq_le_refinementVarianceNum` needs no witness), then apply the single
 aggregate variance bound once. Union-bounding the `K` per-relation projections would give
-`K·δ/η²` instead.-/
+`K·δ/η²` instead.
+@isnad1 id=le.1h9v.s7.028c9aa511a3 from=translated src=- shape=ee56f1eb vocab=ce595a08
+-/
 theorem FamilyStrongWitness.sum_deviantMass_le (w : FamilyStrongWitness Rk E δ P₀) {η : ℝ}
     (hη : 0 < η) :
     ∑ k, deviantMass (Rk k) w.fine w.coarse η ≤ δ / η ^ 2 * (s.card : ℝ) ^ 2 := by
@@ -238,7 +256,9 @@ noncomputable def FamilyStrongWitness.atypicalMass (w : FamilyStrongWitness Rk E
 /-- Pointwise failure is monotone into the aggregate: if some component's deviant child mass
 exceeds the threshold, the sum over components does too, every summand being nonnegative.
 This is what lets a *pointwise* typicality notion be bounded by an *aggregate* Markov step,
-and it is why no `K` appears.-/
+and it is why no `K` appears.
+@isnad1 id=lt.1h11v.s7.eb2527d8158d from=translated src=- shape=70bce027 vocab=ca2657ba
+-/
 theorem FamilyStrongWitness.threshold_lt_sum_of_not_typical
     (w : FamilyStrongWitness Rk E δ P₀) {η θ : ℝ} {pd : Finset α × Finset α}
     (h : ¬ w.IsTypicalCoarsePair η θ pd) :
@@ -258,7 +278,9 @@ theorem FamilyStrongWitness.threshold_lt_sum_of_not_typical
 constant as the single-relation bound, with **no factor of `K`**.
 
 Typicality is pointwise, so this controls all `K` relations simultaneously without
-strengthening the hypothesis to a condition on the summed component mass.-/
+strengthening the hypothesis to a condition on the summed component mass.
+@isnad1 id=le.2h10v.s7.5c5de5a09e54 from=translated src=- shape=5c56597a vocab=2afb9f92
+-/
 theorem FamilyStrongWitness.atypicalMass_le (w : FamilyStrongWitness Rk E δ P₀) {η θ : ℝ}
     (hη : 0 < η) (hθ : 0 < θ) :
     w.atypicalMass η θ ≤ δ / (η ^ 2 * θ) * (s.card : ℝ) ^ 2 := by

@@ -41,7 +41,9 @@ variable {α : Type*} [DecidableEq α] {s : Finset α}
 
 /-- **The grouping construction.** A finset of cardinality `d · k` admits a labeling whose
 every fiber below `k` has exactly `d` elements. Applied to `Q.parts` with `d = 3`, this is
-the owner labeling: each owner is a fiber of three cells.-/
+the owner labeling: each owner is a fiber of three cells.
+@isnad1 id=ex.1h4v.s6.1f73a0c87441 from=translated src=- shape=5056fbb3 vocab=14a0ff41
+-/
 theorem exists_fiber_labeling {β : Type*} [DecidableEq β] (d : ℕ) :
     ∀ (k : ℕ) (S : Finset β), S.card = d * k →
       ∃ g : β → ℕ, (∀ x ∈ S, g x < k) ∧
@@ -105,17 +107,24 @@ def groupUnion (Q : Finpartition s) (g : Finset α → ℕ) (j : ℕ) : Finset �
 
 variable {Q : Finpartition s} {g : Finset α → ℕ} {j j' : ℕ}
 
+/--
+@isnad1 id=le.0h5v.s5.e72caff4e6f6 from=translated src=- shape=89db0f91 vocab=ea83a9be
+-/
 theorem groupUnion_subset : groupUnion Q g j ⊆ s := by
   refine Finset.biUnion_subset.mpr fun C hC => ?_
   simpa using Q.le (Finset.mem_filter.mp hC).1
 
-/-- A proxy sits inside its owner.-/
+/-- A proxy sits inside its owner.
+@isnad1 id=le.2h6v.s6.e477656039aa from=translated src=- shape=2d1f3ca7 vocab=ccdee3d8
+-/
 theorem subset_groupUnion {C : Finset α} (hC : C ∈ Q.parts) (hg : g C = j) :
     C ⊆ groupUnion Q g j := fun _ hx =>
   Finset.mem_biUnion.mpr ⟨C, Finset.mem_filter.mpr ⟨hC, hg⟩, hx⟩
 
 /-- **Owners with distinct labels are disjoint**, because their proxies are distinct cells
-of `Q`.-/
+of `Q`.
+@isnad1 id=disjoint.1h6v.s5.06767501eae9 from=translated src=- shape=2fa53e7c vocab=b0bbf22b
+-/
 theorem groupUnion_disjoint (hjj : j ≠ j') :
     Disjoint (groupUnion Q g j) (groupUnion Q g j') := by
   rw [Finset.disjoint_left]
@@ -128,7 +137,9 @@ theorem groupUnion_disjoint (hjj : j ≠ j') :
   exact hjj (hC.2 ▸ hCD ▸ hD.2.symm ▸ rfl)
 
 /-- Each owner is a union of `Q`-cells, hence a part union — the form the refinement API
-consumes.-/
+consumes.
+@isnad1 id=ispartun.0h5v.s5.c9c53fe05bee from=translated src=- shape=9d94d06b vocab=870e31f5
+-/
 theorem groupUnion_isPartUnion : IsPartUnion Q (groupUnion Q g j) := by
   refine Finset.Subset.antisymm (fun x hx => ?_) (fun x hx => ?_)
   · rw [Finset.mem_biUnion] at hx
@@ -141,7 +152,9 @@ theorem groupUnion_isPartUnion : IsPartUnion Q (groupUnion Q g j) := by
       subset_groupUnion (Finset.mem_filter.mp hC).1 (Finset.mem_filter.mp hC).2⟩, hxC⟩
 
 /-- **The owners cover the ground set exactly**: every vertex lies in the owner of its own
-cell's label.-/
+cell's label.
+@isnad1 id=eq.1h5v.s6.3158a9e51368 from=translated src=- shape=af956b15 vocab=c4ad5d1d
+-/
 theorem biUnion_groupUnion (L : Finset ℕ) (hL : ∀ C ∈ Q.parts, g C ∈ L) :
     L.biUnion (groupUnion Q g) = s := by
   refine Finset.Subset.antisymm (fun x hx => ?_) (fun x hx => ?_)
@@ -151,7 +164,9 @@ theorem biUnion_groupUnion (L : Finset ℕ) (hL : ∀ C ∈ Q.parts, g C ∈ L) 
   · obtain ⟨C, hC, hxC⟩ := Q.exists_mem hx
     exact Finset.mem_biUnion.mpr ⟨g C, hL C hC, subset_groupUnion hC rfl hxC⟩
 
-/-- **An owner's cardinality is the sum of its proxies'**, the cells being disjoint.-/
+/-- **An owner's cardinality is the sum of its proxies'**, the cells being disjoint.
+@isnad1 id=eq.0h5v.s6.b781e21f55ac from=translated src=- shape=cca09371 vocab=83825a87
+-/
 theorem card_groupUnion :
     (groupUnion Q g j).card = ∑ C ∈ Q.parts.filter fun C => g C = j, C.card := by
   rw [groupUnion, Finset.card_biUnion]
@@ -164,7 +179,9 @@ theorem card_groupUnion :
 elements and a fiber of exactly `d` cells: `d·m ≤ |owner| ≤ d·m + d`. At `d = 3` this is
 `3m ≤ |owner| ≤ 3m + 3`; the intermediate values arise from mixed fibers and are ordinary,
 so a size floor must be stated against the RANGE. (Only the cell-size sandwich is used, so
-the equipartition hypothesis is not restated here — `card_part_bounds` supplies it.)-/
+the equipartition hypothesis is not restated here — `card_part_bounds` supplies it.)
+@isnad1 id=and.2h7v.s7.9f0340b7edf8 from=translated src=- shape=ad62de7c vocab=0e2eb564
+-/
 theorem card_groupUnion_bounds {m d : ℕ}
     (hm : ∀ C ∈ Q.parts, m ≤ C.card ∧ C.card ≤ m + 1)
     (hfib : (Q.parts.filter fun C => g C = j).card = d) :
@@ -180,7 +197,9 @@ theorem card_groupUnion_bounds {m d : ℕ}
           Finset.sum_le_sum fun C hC => (hm C (Finset.mem_filter.mp hC).1).2
       _ = d * m + d := by rw [Finset.sum_const, hfib, smul_eq_mul, Nat.mul_succ]
 
-/-- The route's instance: three proxies per owner.-/
+/-- The route's instance: three proxies per owner.
+@isnad1 id=and.2h6v.s7.52006bbecb26 from=translated src=- shape=850cb117 vocab=0e2eb564
+-/
 theorem card_groupUnion_triple_bounds {m : ℕ}
     (hm : ∀ C ∈ Q.parts, m ≤ C.card ∧ C.card ≤ m + 1)
     (hfib : (Q.parts.filter fun C => g C = j).card = 3) :
@@ -191,7 +210,9 @@ theorem card_groupUnion_triple_bounds {m : ℕ}
 `RegularityLemmata/Graph/TripleSeed.lean`'s seeded summit delivers — directly produces the owner
 count `k` and a labeling whose every fiber is exactly a triple of cells. Downstream selection
 consumes
-this, rather than recomposing the divisibility and the labeling itself.-/
+this, rather than recomposing the divisibility and the labeling itself.
+@isnad1 id=ex.1h3v.s7.9666e6b0d43f from=translated src=- shape=4253ad44 vocab=4f5c0b8c
+-/
 theorem exists_triple_grouping (h : 3 ∣ Q.parts.card) :
     ∃ k, ∃ g : Finset α → ℕ, Q.parts.card = 3 * k ∧
       (∀ C ∈ Q.parts, g C < k) ∧

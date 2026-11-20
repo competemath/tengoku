@@ -48,7 +48,9 @@ noncomputable def steppedCount (P : Finpartition s) (A B : Finset α) : ℝ :=
   ∑ p ∈ P.parts ×ˢ P.parts,
     pairDensity R p.1 p.2 * ((A ∩ p.1).card : ℝ) * ((B ∩ p.2).card : ℝ)
 
-/-- The pair count decomposes over cell traces.-/
+/-- The pair count decomposes over cell traces.
+@isnad1 id=eq.2h6v.s7.d10608da35ff from=translated src=- shape=6e280e72 vocab=acdbcaf4
+-/
 theorem pairCount_eq_sum_inter (P : Finpartition s) (hA : A ⊆ s) (hB : B ⊆ s) :
     pairCount R A B = ∑ p ∈ P.parts ×ˢ P.parts, pairCount R (A ∩ p.1) (B ∩ p.2) := by
   classical
@@ -82,7 +84,9 @@ theorem pairCount_eq_sum_inter (P : Finpartition s) (hA : A ⊆ s) (hB : B ⊆ s
 /-- **Cut-deviation estimate (Frieze–Kannan form).** Against an `ε`-regular
 partition, the stepped prediction is uniformly cut-close to the true count: for all
 test sets `A, B ⊆ s`,
-`|count − predicted| ≤ 2ε·|s|² + Σ_C |C|²` (diagonal blocks charged explicitly).-/
+`|count − predicted| ≤ 2ε·|s|² + Σ_C |C|²` (diagonal blocks charged explicitly).
+@isnad1 id=le.4h7v.s7.686cbbc4ad06 from=translated src=- shape=35eb258b vocab=f5034866
+-/
 theorem cut_deviation_le {P : Finpartition s} (hreg : IsRegularPartition R ε P) (hε : 0 ≤ ε)
     (hA : A ⊆ s) (hB : B ⊆ s) :
     |(pairCount R A B : ℝ) - steppedCount R P A B|
@@ -225,7 +229,9 @@ theorem cut_deviation_le {P : Finpartition s} (hreg : IsRegularPartition R ε P)
 /-- Cut deviation of a regular partition, **with an uncontrolled diagonal term**: this
 is NOT a Frieze–Kannan approximation (take `P = ⊤`); see `RegularityLemmata/Graph/FriezeKannan.lean`
 for
-the genuine theorem.-/
+the genuine theorem.
+@isnad1 id=ex.1h4v.s8.bd223a046b01 from=translated src=- shape=ab600390 vocab=2afe54d2
+-/
 theorem exists_regular_partition_cut_deviation (hε : 0 < ε) :
     ∃ P : Finpartition s, P.parts.card ≤ regularityBound ⌈1 / ε ^ 5⌉₊ 1 ∧
       ∀ A ⊆ s, ∀ B ⊆ s,
@@ -247,7 +253,9 @@ noncomputable def cutDiscrepancy (P : Finpartition s) : ℝ :=
     fun p => |(pairCount R p.1 p.2 : ℝ) - steppedCount R P p.1 p.2|
 
 /-- Elimination API: bounding the cut discrepancy is exactly the quantified rectangle
-bound.-/
+bound.
+@isnad1 id=iff.0h5v.s6.9a7acd040c46 from=translated src=- shape=66ebc8cd vocab=ecc00729
+-/
 theorem cutDiscrepancy_le_iff {P : Finpartition s} {c : ℝ} :
     cutDiscrepancy R P ≤ c ↔ ∀ A ⊆ s, ∀ B ⊆ s,
       |(pairCount R A B : ℝ) - steppedCount R P A B| ≤ c := by

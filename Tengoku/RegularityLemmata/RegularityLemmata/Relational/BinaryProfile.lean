@@ -51,14 +51,18 @@ def binaryProfilePartition (M : FiniteRelModel L V) (s : Finset V) : Finpartitio
 `{b ∈ s | binaryVertexProfile M a = binaryVertexProfile M b}` for `a ∈ s`. On `s = ∅` the
 image is empty, so there are no cells. House lemma, no source; unfolds mathlib's
 `Finpartition.ofSetSetoid_parts`. Consumed by `binaryVertexProfile_eq_of_mem_part` and
-`exists_eq_singleton_of_unique_profile`.-/
+`exists_eq_singleton_of_unique_profile`.
+@isnad1 id=eq.0h4v.s6.bc5008175724 from=translated src=- shape=cf775a8f vocab=3df0fc8d
+-/
 theorem binaryProfilePartition_parts (M : FiniteRelModel L V) (s : Finset V) :
     (binaryProfilePartition M s).parts
       = s.image fun a => {b ∈ s | binaryVertexProfile M a = binaryVertexProfile M b} := by
   rw [binaryProfilePartition, Finpartition.ofSetSetoid_parts]
   rfl
 
-/-- Members of one cell share their profile.-/
+/-- Members of one cell share their profile.
+@isnad1 id=eq.3h7v.s6.792eb66fb741 from=translated src=- shape=727b25d4 vocab=cba60f52
+-/
 theorem binaryVertexProfile_eq_of_mem_part (M : FiniteRelModel L V) {s : Finset V}
     {t : Finset V} (ht : t ∈ (binaryProfilePartition M s).parts) {a b : V}
     (ha : a ∈ t) (hb : b ∈ t) :
@@ -68,19 +72,25 @@ theorem binaryVertexProfile_eq_of_mem_part (M : FiniteRelModel L V) {s : Finset 
   rw [Finset.mem_filter] at ha hb
   exact ha.2.symm.trans hb.2
 
-/-- Every unary relation is constant on a cell.-/
+/-- Every unary relation is constant on a cell.
+@isnad1 id=eq.3h8v.s7.e838ef30b6b1 from=translated src=- shape=3075feeb vocab=5b15ff2c
+-/
 theorem unary_const_on_part (M : FiniteRelModel L V) {s : Finset V} {t : Finset V}
     (ht : t ∈ (binaryProfilePartition M s).parts) (U : L.Relations 1) {a b : V}
     (ha : a ∈ t) (hb : b ∈ t) : M.rel U ![a] = M.rel U ![b] :=
   congrFun (congrArg Prod.fst (binaryVertexProfile_eq_of_mem_part M ht ha hb)) U
 
-/-- Every binary loop is constant on a cell.-/
+/-- Every binary loop is constant on a cell.
+@isnad1 id=eq.3h8v.s7.5bc7935b27a8 from=translated src=- shape=36f32a25 vocab=5b15ff2c
+-/
 theorem loop_const_on_part (M : FiniteRelModel L V) {s : Finset V} {t : Finset V}
     (ht : t ∈ (binaryProfilePartition M s).parts) (R : L.Relations 2) {a b : V}
     (ha : a ∈ t) (hb : b ∈ t) : M.rel R ![a, a] = M.rel R ![b, b] :=
   congrFun (congrArg Prod.snd (binaryVertexProfile_eq_of_mem_part M ht ha hb)) R
 
-/-- At most `2^(#unary + #binary)` cells.-/
+/-- At most `2^(#unary + #binary)` cells.
+@isnad1 id=le.0h4v.s7.292aaeced1bd from=translated src=- shape=c0e0a091 vocab=7b253f17
+-/
 theorem card_parts_binaryProfilePartition_le (M : FiniteRelModel L V) (s : Finset V) :
     (binaryProfilePartition M s).parts.card ≤ Fintype.card (BinaryVertexProfile L) := by
   rw [binaryProfilePartition_parts]
@@ -102,7 +112,9 @@ def refineByBinaryProfile (M : FiniteRelModel L V) {s : Finset V} (P : Finpartit
 
 /-- `refineByBinaryProfile M P ≤ P`: the common refinement refines `P`. House lemma, no
 source (`inf_le_left`). Consumed by `exists_binaryPalette_regular_refinement` and
-`exists_binaryPaletteStrongWitness`.-/
+`exists_binaryPaletteStrongWitness`.
+@isnad1 id=le.0h5v.s5.ab4c38e8f65d from=translated src=- shape=4b5bd7cd vocab=235f17be
+-/
 theorem refineByBinaryProfile_le (M : FiniteRelModel L V) {s : Finset V}
     (P : Finpartition s) : refineByBinaryProfile M P ≤ P :=
   inf_le_left
@@ -110,7 +122,9 @@ theorem refineByBinaryProfile_le (M : FiniteRelModel L V) {s : Finset V}
 /-- `refineByBinaryProfile M P ≤ binaryProfilePartition M s`: the common refinement refines
 the vertex-profile partition, so unary relations and binary loops are constant on its cells.
 House lemma, no source (`inf_le_right`). Consumed by
-`exists_binaryPalette_regular_refinement` and `exists_binaryPaletteStrongWitness`.-/
+`exists_binaryPalette_regular_refinement` and `exists_binaryPaletteStrongWitness`.
+@isnad1 id=le.0h5v.s5.061e1cd230da from=translated src=- shape=22e42a3f vocab=76ad7505
+-/
 theorem refineByBinaryProfile_le_profile (M : FiniteRelModel L V) {s : Finset V}
     (P : Finpartition s) : refineByBinaryProfile M P ≤ binaryProfilePartition M s :=
   inf_le_right
@@ -121,7 +135,9 @@ the profile partition has at most as many cells as there are profiles. Coarse: t
 bound counts every pairwise intersection, empty ones included, and the profile count
 counts unrealized profiles. Host-independent, which is what the summit needs. House
 lemma, no source. Consumed by `exists_binaryPalette_regular_refinement` and its diagonal
-variant in `BinaryDiagRegularity.lean`.-/
+variant in `BinaryDiagRegularity.lean`.
+@isnad1 id=le.0h5v.s7.a7f6433484e1 from=translated src=- shape=a79b0fda vocab=e2db0651
+-/
 theorem card_parts_refineByBinaryProfile_le (M : FiniteRelModel L V) {s : Finset V}
     (P : Finpartition s) :
     (refineByBinaryProfile M P).parts.card

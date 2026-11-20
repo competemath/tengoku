@@ -82,7 +82,9 @@ variable {K t : ℕ} {τ : ℝ}
 /-- The internal tolerance is at most half the target: `supplierTolerance K t τ ≤ τ / 2`.
 Both sides are absolute tolerances in the same units as `τ`; the bound is the left branch
 of the `min` and needs no hypothesis (for `τ ≤ 0` it holds with a nonpositive tolerance).
-House lemma, no source. Consumed by `two_mul_supplierTolerance_le`.-/
+House lemma, no source. Consumed by `two_mul_supplierTolerance_le`.
+@isnad1 id=le.0h3v.s4.80df1ff9f1ce from=translated src=- shape=5631de79 vocab=fe5ba575
+-/
 theorem supplierTolerance_le_half_target : supplierTolerance K t τ ≤ τ / 2 :=
   min_le_left _ _
 
@@ -91,7 +93,9 @@ theorem supplierTolerance_le_half_target : supplierTolerance K t τ ≤ τ / 2 :
 the palette count and `t` the target piece count; the formula itself is a frozen constant
 (`ARCHITECTURE.md`). Totalized at zero: with `t = 0` the right side is `1 / 0 = 0`, and
 the inequality still holds as stated. Consumed by `supplierTolerance_le_half` and by
-`exists_pieceFamily`, which hands it to `exists_pieceFamily_of_familyRegular`.-/
+`exists_pieceFamily`, which hands it to `exists_pieceFamily_of_familyRegular`.
+@isnad1 id=le.0h3v.s6.b3ee25f80e0b from=translated src=- shape=a501daae vocab=81464152
+-/
 theorem supplierTolerance_le_bound :
     supplierTolerance K t τ ≤ 1 / (64 * ((K : ℝ) + 1) * (t : ℝ)) :=
   min_le_right _ _
@@ -100,7 +104,9 @@ theorem supplierTolerance_le_bound :
 and `0 < τ`. Both hypotheses are necessary, since each branch of the `min` vanishes when
 its argument does (`τ / 2 = 0` at `τ = 0`, and `1 / (64 (K + 1) t) = 0` at `t = 0` under
 the totalized division). House lemma, no source. Consumed by `exists_pieceFamily` to feed
-the family regularity summit.-/
+the family regularity summit.
+@isnad1 id=lt.2h3v.s5.00c76ad260ea from=translated src=- shape=642de6af vocab=c219a5a8
+-/
 theorem supplierTolerance_pos (ht : 0 < t) (hτ : 0 < τ) : 0 < supplierTolerance K t τ := by
   have htR : (0 : ℝ) < (t : ℝ) := by exact_mod_cast ht
   refine lt_min (by linarith) ?_
@@ -108,7 +114,9 @@ theorem supplierTolerance_pos (ht : 0 < t) (hτ : 0 < τ) : 0 < supplierToleranc
 
 /-- The internal tolerance is at most `1/2` — in fact at most `1/64` — so it is a
 legitimate input to the family regularity summit, and the slicing hypothesis `ρ ≤ 1/2`
-holds with room.-/
+holds with room.
+@isnad1 id=le.1h3v.s5.347ffa4a3e9b from=translated src=- shape=8ace1808 vocab=f290f0a8
+-/
 theorem supplierTolerance_le_half (ht : 0 < t) : supplierTolerance K t τ ≤ 1 / 2 := by
   have htR : (1 : ℝ) ≤ (t : ℝ) := by exact_mod_cast ht
   have hK : (0 : ℝ) ≤ (K : ℝ) := Nat.cast_nonneg _
@@ -120,14 +128,18 @@ theorem supplierTolerance_le_half (ht : 0 < t) : supplierTolerance K t τ ≤ 1 
 This is `supplierTolerance_le_half_target` rearranged into the shape the piece extraction
 of step 6a asks for (the `ρ`-uniformity of the cells is spent twice, once per direction).
 House lemma, no source. Consumed by `exists_pieceFamily` via
-`exists_pieceFamily_of_familyRegular`.-/
+`exists_pieceFamily_of_familyRegular`.
+@isnad1 id=le.0h3v.s4.ea3d2b66b640 from=translated src=- shape=b782be1a vocab=9abdda25
+-/
 theorem two_mul_supplierTolerance_le : 2 * supplierTolerance K t τ ≤ τ := by
   have := supplierTolerance_le_half_target (K := K) (t := t) (τ := τ)
   linarith
 
 /-- The requested part count `supplierParts t = 4 t` is positive whenever `0 < t`.
 Consumed by `exists_pieceFamily` to show the produced partition has at least one part,
-which is what makes the common size `|A| / #parts` meaningful.-/
+which is what makes the common size `|A| / #parts` meaningful.
+@isnad1 id=lt.1h1v.s4.c6536d29fcfd from=translated src=- shape=35bd48ee vocab=5aa02888
+-/
 theorem supplierParts_pos (ht : 0 < t) : 0 < supplierParts t := by
   rw [supplierParts]; omega
 
@@ -136,7 +148,9 @@ theorem supplierParts_pos (ht : 0 < t) : 0 < supplierParts t := by
 its initial floor `familyInitialBound`, which is at least `2` (`two_le_familyInitialBound`);
 only positivity is exported here. Because `supplierThreshold K t τ = supplierBound K t τ`
 definitionally, this is also positivity of the host threshold. Consumed by
-`supplierRetention_pos` and `exists_pieceFamily`.-/
+`supplierRetention_pos` and `exists_pieceFamily`.
+@isnad1 id=lt.0h3v.s4.b73aec51f106 from=translated src=- shape=bad53a6c vocab=d0812d4b
+-/
 theorem supplierBound_pos : 0 < supplierBound K t τ := by
   have h2 : 2 ≤ familyInitialBound familyChunkThreshold (supplierTolerance K t τ)
       (supplierParts t) := two_le_familyInitialBound _ _ _
@@ -148,7 +162,9 @@ theorem supplierBound_pos : 0 < supplierBound K t τ := by
 where `B = supplierBound K t τ` is positive unconditionally (`supplierBound_pos`). The
 hypothesis `0 < t` is necessary: at `t = 0` the floor is `0`, which is why gate G-S2 in the
 module docstring keeps `0 < t` on the summit. House lemma, no source. Consumed by
-`pieceSupplier` to discharge the `0 < κ` clause of the frozen existential.-/
+`pieceSupplier` to discharge the `0 < κ` clause of the frozen existential.
+@isnad1 id=lt.1h3v.s4.678368f3f4f9 from=translated src=- shape=9819aafd vocab=5576e7c8
+-/
 theorem supplierRetention_pos (ht : 0 < t) : 0 < supplierRetention K t τ := by
   have htR : (0 : ℝ) < (t : ℝ) := by exact_mod_cast ht
   have hB : (0 : ℝ) < (supplierBound K t τ : ℝ) := by
@@ -168,7 +184,9 @@ distinct pieces `τ`-uniform for every relation of the family, carrying at least
 
 The retention floor and the threshold depend on `(K, t, τ)` only — they are fixed before
 any partition is produced, and `supplierTolerance` does not mention the part-count bound.
-This is the obligation frozen at the 2026-07-22 supplier checkpoint.-/
+This is the obligation frozen at the 2026-07-22 supplier checkpoint.
+@isnad1 id=ex.3h6v.s7.ddbc2c0fe367 from=translated src=- shape=cadb4e91 vocab=ea6b8d7d
+-/
 theorem exists_pieceFamily {K t : ℕ} (ht : 0 < t) {τ : ℝ} (hτ : 0 < τ)
     (Rk : Fin K → V → V → Prop) [∀ k, DecidableRel (Rk k)] (A : Finset V)
     (hA : supplierThreshold K t τ ≤ A.card) :
@@ -213,7 +231,9 @@ theorem exists_pieceFamily {K t : ℕ} (ht : 0 < t) {τ : ℝ} (hτ : 0 < τ)
 
 /-- **The frozen existential shape** of the supplier obligation: the retention floor and
 the host threshold are produced from `(K, t, τ)` BEFORE the family and the host are
-quantified.-/
+quantified.
+@isnad1 id=ex.2h4v.s7.57662a54d4cf from=translated src=- shape=2bd517c0 vocab=2190743a
+-/
 theorem pieceSupplier (K t : ℕ) (ht : 0 < t) (τ : ℝ) (hτ : 0 < τ) :
     ∃ κ : ℝ, 0 < κ ∧ ∃ N₀ : ℕ,
       ∀ (Rk : Fin K → V → V → Prop) [∀ k, DecidableRel (Rk k)] (A : Finset V),

@@ -54,7 +54,9 @@ instance (M : FiniteRelModel L V) {n : ℕ} (R : L.Relations n) (x : Fin n → V
     Decidable (M.Holds R x) :=
   inferInstanceAs (Decidable (_ = true))
 
-/-- Extensionality at the `Holds` level.-/
+/-- Extensionality at the `Holds` level.
+@isnad1 id=eq.1h4v.s5.a79a27e407e0 from=translated src=- shape=9534b8f1 vocab=f732bc09
+-/
 theorem ext_holds {M N : FiniteRelModel L V}
     (h : ∀ {n : ℕ} (R : L.Relations n) (x : Fin n → V),
       M.Holds R x ↔ N.Holds R x) : M = N := by
@@ -77,6 +79,9 @@ For the behavior of this reading under the model transports, see `Relational.Tra
 def binaryRel (M : FiniteRelModel L V) (R : L.Relations 2) : V → V → Prop :=
   fun a b => M.Holds R ![a, b]
 
+/--
+@isnad1 id=iff.0h6v.s5.0a3a682ce9d9 from=translated src=- shape=e7a3a2a7 vocab=817cac8c
+-/
 @[simp] theorem binaryRel_apply (M : FiniteRelModel L V) (R : L.Relations 2) (a b : V) :
     M.binaryRel R a b ↔ M.Holds R ![a, b] := Iff.rfl
 
@@ -92,7 +97,9 @@ def toStructure (M : FiniteRelModel L V) : L.Structure V where
   funMap := fun {_} f => isEmptyElim f
   RelMap := fun {_} R x => M.Holds R x
 
-/-- The exact bridge: mathlib's `RelMap` under `toStructure` is `Holds`.-/
+/-- The exact bridge: mathlib's `RelMap` under `toStructure` is `Holds`.
+@isnad1 id=iff.0h6v.s5.fbd6ba8bb026 from=translated src=- shape=06c052d7 vocab=3cc3fec1
+-/
 theorem toStructure_relMap (M : FiniteRelModel L V) {n : ℕ} (R : L.Relations n)
     (x : Fin n → V) :
     @FirstOrder.Language.Structure.RelMap L V M.toStructure n R x ↔ M.Holds R x :=

@@ -56,7 +56,9 @@ noncomputable def directedPathDensity (R₀₁ R₁₂ : α → α → Prop)
 /-! ### The middle-vertex fiber identities -/
 
 /-- **Raw middle-fiber identity.** Paths are organized by their middle vertex: through
-`b` there are (incoming degree from `A`) × (outgoing degree into `C`) paths.-/
+`b` there are (incoming degree from `A`) × (outgoing degree into `C`) paths.
+@isnad1 id=eq.0h6v.s6.cd7f140b5ebf from=translated src=- shape=78bdc89c vocab=7e897f7b
+-/
 theorem directedPathCount_eq_sum (A B C : Finset α) :
     directedPathCount R₀₁ R₁₂ A B C
       = ∑ b ∈ B, (A.filter fun a => R₀₁ a b).card * (C.filter fun c => R₁₂ b c).card := by
@@ -96,7 +98,9 @@ theorem directedPathCount_eq_sum (A B C : Finset α) :
 
 /-- **Normalized middle-fiber identity** (guard-free): the path density is the `B`-average
 of the product of the incoming (`swapRel R₀₁`) and outgoing (`R₁₂`) middle-vertex
-degrees.-/
+degrees.
+@isnad1 id=eq.0h6v.s6.17364e68b28e from=translated src=- shape=cb285654 vocab=415f9e39
+-/
 theorem directedPathDensity_eq (A B C : Finset α) :
     directedPathDensity R₀₁ R₁₂ A B C
       = (∑ b ∈ B, degreeDensity (swapRel R₀₁) b A * degreeDensity R₁₂ b C) / B.card := by
@@ -129,7 +133,9 @@ theorem directedPathDensity_eq (A B C : Finset α) :
 /-- **Path-density approximation.** Under `ε`-uniformity of `(A, B)` for `R₀₁` and
 `(B, C)` for `R₁₂`, the path density is within `6·ε = (2 + 4)·ε` of the product of the
 two pair densities. The `2` is the two-factor perturbation on good middle vertices; the
-`4` is the two-sided exceptional mass of the two middle-degree tails.-/
+`4` is the two-sided exceptional mass of the two middle-degree tails.
+@isnad1 id=le.4h7v.s7.dd1337702d61 from=translated src=- shape=f9504fac vocab=e766dbcb
+-/
 theorem abs_directedPathDensity_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h12 : IsUniformPair R₁₂ B C ε) :
     |directedPathDensity R₀₁ R₁₂ A B C
@@ -226,7 +232,9 @@ theorem abs_directedPathDensity_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
           - pairDensity R₀₁ A B * pairDensity R₁₂ B C| := Finset.abs_sum_le_sum_abs _ _
     _ ≤ 6 * ε * B.card := hsum
 
-/-- **Raw box-scaled path-count approximation.**-/
+/-- **Raw box-scaled path-count approximation.**
+@isnad1 id=le.4h7v.s7.67807aa5c8a6 from=translated src=- shape=272fba1f vocab=12d8d846
+-/
 theorem abs_directedPathCount_sub_le (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair R₀₁ A B ε) (h12 : IsUniformPair R₁₂ B C ε) :
     |(directedPathCount R₀₁ R₁₂ A B C : ℝ)

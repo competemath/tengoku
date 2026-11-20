@@ -24,7 +24,9 @@ variable {α : Type*}
 /-- **Common-size blocks**: slicing every piece of a partition at one exact block size `m`,
 under the per-piece ratio hypothesis. The remainder collects the exceptional set and the
 sub-`m` leftovers; each block remembers a piece it lives in and the two-sided average
-control against that piece.-/
+control against that piece.
+@isnad1 id=ex.12h12v.s9.990ef134b82c from=translated src=- shape=50e96a26 vocab=9f696e77
+-/
 theorem exists_common_blocks [DecidableEq α]
     {X A₀ : Finset α} {s : ℕ} {A : Fin s → Finset α}
     {q m t : ℕ} (φ : Fin s → Fin q → α → ℝ) {β ν νs : ℝ}

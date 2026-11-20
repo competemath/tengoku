@@ -40,7 +40,9 @@ variable {V : Type*} [DecidableEq V] {r : ℕ}
 open Finset
 
 /-- **The greedy chain.** From `(r+1)^t` vertices, a length-`t` injective chain in
-which every vertex sees one recorded color toward all later chain vertices.-/
+which every vertex sees one recorded color toward all later chain vertices.
+@isnad1 id=ex.1h5v.s6.0b68abb86524 from=translated src=- shape=88b397ab vocab=8a4ee097
+-/
 theorem exists_forward_monochromatic_chain (χ : V → V → Fin r) :
     ∀ (t : ℕ) (S : Finset V), (r + 1) ^ t ≤ S.card →
     ∃ (v : Fin t → V) (c : Fin t → Fin r),
@@ -110,7 +112,9 @@ finiteness of the bound enters the route (b) constants.-/
 def multicolorRamseyBound (r s : ℕ) : ℕ := (r + 1) ^ (r * s + 1)
 
 /-- **The extraction summit.** From `multicolorRamseyBound r s` vertices, `s`
-vertices in chain order whose forward colors all equal one `c`.-/
+vertices in chain order whose forward colors all equal one `c`.
+@isnad1 id=ex.1h5v.s6.b461d4d65627 from=translated src=- shape=876cb13c vocab=517d31da
+-/
 theorem exists_monochromatic_subchain (χ : V → V → Fin r) {s : ℕ} (S : Finset V)
     (hS : multicolorRamseyBound r s ≤ S.card) :
     ∃ (v : Fin s → V) (c : Fin r), (∀ i, v i ∈ S) ∧ Function.Injective v ∧

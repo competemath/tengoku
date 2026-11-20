@@ -77,6 +77,9 @@ two proxies of one owner — are included; a proxy against itself is not.-/
 def proxyPairEvents (Q : Finpartition s) : Finset (Finset V × Finset V) :=
   Q.parts.offDiag
 
+/--
+@isnad1 id=iff.0h4v.s7.68090f1320f8 from=translated src=- shape=1b397d8c vocab=a70b4528
+-/
 theorem mem_proxyPairEvents {Q : Finpartition s} {p : Finset V × Finset V} :
     p ∈ proxyPairEvents Q ↔ p.1 ∈ Q.parts ∧ p.2 ∈ Q.parts ∧ p.1 ≠ p.2 :=
   Finset.mem_offDiag
@@ -84,7 +87,9 @@ theorem mem_proxyPairEvents {Q : Finpartition s} {p : Finset V × Finset V} :
 /-- **Sibling pairs are events, and they live in one owner.** Two distinct proxies carrying
 the same owner label are an ordered distinct proxy pair — so the union bound must cover them
 — while both sit inside that owner. This is the clause the coarse-level `C ≠ D` exclusion
-does NOT provide.-/
+does NOT provide.
+@isnad1 id=and.5h7v.s7.10ac7e0dde90 from=translated src=- shape=e75bace0 vocab=2d100c3d
+-/
 theorem mem_proxyPairEvents_of_sibling {Q : Finpartition s} {g : Finset V → ℕ} {j : ℕ}
     {A B : Finset V} (hA : A ∈ Q.parts) (hB : B ∈ Q.parts) (hgA : g A = j) (hgB : g B = j)
     (hAB : A ≠ B) : (A, B) ∈ proxyPairEvents Q ∧
@@ -92,7 +97,9 @@ theorem mem_proxyPairEvents_of_sibling {Q : Finpartition s} {g : Finset V → �
   ⟨mem_proxyPairEvents.mpr ⟨hA, hB, hAB⟩, subset_groupUnion hA hgA,
     subset_groupUnion hB hgB⟩
 
-/-- A proxy is never paired with itself.-/
+/-- A proxy is never paired with itself.
+@isnad1 id=not.0h4v.s6.645d58799f07 from=translated src=- shape=dca837d9 vocab=54a7b6a3
+-/
 theorem notMem_proxyPairEvents_self {Q : Finpartition s} {A : Finset V} :
     (A, A) ∉ proxyPairEvents Q := by
   rw [mem_proxyPairEvents]
@@ -101,13 +108,18 @@ theorem notMem_proxyPairEvents_self {Q : Finpartition s} {A : Finset V} :
 
 /-! ### The size -/
 
+/--
+@isnad1 id=eq.0h3v.s6.e8f511c54243 from=translated src=- shape=ac95a4ea vocab=b2803ef5
+-/
 theorem card_proxyPairEvents (Q : Finpartition s) :
     (proxyPairEvents Q).card = Q.parts.card * Q.parts.card - Q.parts.card :=
   Finset.offDiag_card Q.parts
 
 /-- **The `9n²` envelope.** With `3n` proxies from `n` owners the ordered distinct proxy
 pairs number `3n(3n − 1)`, which sits under `9n²`. This is an envelope on the proxy count,
-NOT a ninefold factor over the coarse `n(n − 1)`.-/
+NOT a ninefold factor over the coarse `n(n − 1)`.
+@isnad1 id=le.1h4v.s6.3a6d3e1db0ad from=translated src=- shape=fb820236 vocab=af783fd3
+-/
 theorem card_proxyPairEvents_le_of_triple (Q : Finpartition s) {n : ℕ}
     (hn : Q.parts.card = 3 * n) : (proxyPairEvents Q).card ≤ 9 * (n * n) := by
   rw [card_proxyPairEvents, hn]
@@ -117,7 +129,9 @@ theorem card_proxyPairEvents_le_of_triple (Q : Finpartition s) {n : ℕ}
 
 /-- With palette colors the index carries a factor `K`, and the whole event count is under
 `9n²·K`. This is the cardinality ENVELOPE. Whether it enters the selection tolerance is
-determined by the aggregate mass reindex in the summit, not by this count.-/
+determined by the aggregate mass reindex in the summit, not by this count.
+@isnad1 id=le.1h5v.s7.82609c11f8e5 from=translated src=- shape=e287f224 vocab=b2fd3939
+-/
 theorem card_proxyPaletteEvents_le {L : FirstOrder.Language} [FiniteRelational L]
     (Q : Finpartition s) {n : ℕ} (hn : Q.parts.card = 3 * n) :
     (proxyPairEvents Q ×ˢ (Finset.univ : Finset (BinaryPairPalette L))).card

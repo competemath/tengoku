@@ -33,7 +33,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L] {V : Type*} [DecidableEq
 /-! ### The fuel iteration -/
 
 /-- **Fuel-parametrized palette iteration.** From palette energy within `t · ε⁵` of
-the ceiling `1`, `t` weak steps reach a palette-regular refinement.-/
+the ceiling `1`, `t` weak steps reach a palette-regular refinement.
+@isnad1 id=ex.2h7v.s7.e5d926284f93 from=translated src=- shape=7bccc281 vocab=7c066607
+-/
 theorem binaryPaletteRegularity_iterate (M : FiniteRelModel L V) (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s),
       1 - (t : ℝ) * ε ^ 5 ≤ binaryPaletteEnergy M P →
@@ -70,7 +72,9 @@ theorem binaryPaletteRegularity_iterate (M : FiniteRelModel L V) (hε : 0 < ε) 
         _ = regularityBound (t + 1) P.parts.card := by simp only [regularityBound]
 
 /-- Palette regularity from a profile-respecting starting partition, with the graph
-fuel `⌈1/ε⁵⌉`.-/
+fuel `⌈1/ε⁵⌉`.
+@isnad1 id=ex.1h6v.s7.f21eb0e4e814 from=translated src=- shape=45501502 vocab=d4bb97f8
+-/
 theorem exists_binaryPalette_regular_refinement_of_profiled (M : FiniteRelModel L V)
     (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsBinaryPaletteRegular M ε Q ∧
@@ -89,6 +93,9 @@ theorem exists_binaryPalette_regular_refinement_of_profiled (M : FiniteRelModel 
 def binaryProfileBound (L : FirstOrder.Language) [FiniteRelational L] : ℕ :=
   2 ^ (Fintype.card (L.Relations 1) + Fintype.card (L.Relations 2))
 
+/--
+@isnad1 id=eq.0h1v.s7.c5e5365640f6 from=translated src=- shape=003df33a vocab=fc39c9e8
+-/
 theorem binaryProfileBound_eq_card (L : FirstOrder.Language) [FiniteRelational L] :
     binaryProfileBound L = Fintype.card (BinaryVertexProfile L) :=
   (card_binaryVertexProfile).symm
@@ -105,7 +112,9 @@ noncomputable def binaryRegularityBound (L : FirstOrder.Language) [FiniteRelatio
 admits a refinement of `P` that also refines the vertex-profile partition, is
 simultaneously `ε`-regular for every two-way palette color, and has at most
 `binaryRegularityBound L ε #P.parts` cells — host-independent. It asserts nothing
-about relation symbols of arity greater than two.-/
+about relation symbols of arity greater than two.
+@isnad1 id=ex.1h6v.s7.3b666f12e9fa from=translated src=- shape=85eaa7b9 vocab=cea7a366
+-/
 theorem exists_binaryPalette_regular_refinement (M : FiniteRelModel L V)
     (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ Q ≤ binaryProfilePartition M s ∧

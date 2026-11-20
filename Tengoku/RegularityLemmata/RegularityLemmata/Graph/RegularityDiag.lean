@@ -50,6 +50,9 @@ noncomputable def diagWitnessCuts (P : Finpartition s) (C : Finset α) :
     ∪ (P.parts.image fun D =>
       if h : IsBadPairDiag R ε D C then (NonuniformWitness.ofNotUniform h).right else ∅)
 
+/--
+@isnad1 id=le.0h6v.s6.df281e0a2472 from=translated src=- shape=bfcb1fcc vocab=bf652ec1
+-/
 theorem diagWitnessCuts_card_le (P : Finpartition s) (C : Finset α) :
     (diagWitnessCuts R ε P C).card ≤ 2 * P.parts.card := by
   classical
@@ -60,6 +63,9 @@ theorem diagWitnessCuts_card_le (P : Finpartition s) (C : Finset α) :
     if h : IsBadPairDiag R ε D C then (NonuniformWitness.ofNotUniform h).right else ∅)
   omega
 
+/--
+@isnad1 id=le.1h7v.s6.ea6214c0c36e from=translated src=- shape=2a580231 vocab=46ac0730
+-/
 theorem diagWitnessCuts_subset (P : Finpartition s) {C : Finset α}
     {b : Finset α} (hb : b ∈ diagWitnessCuts R ε P C) : b ⊆ C := by
   rw [diagWitnessCuts, Finset.mem_union] at hb
@@ -75,6 +81,9 @@ theorem diagWitnessCuts_subset (P : Finpartition s) {C : Finset α}
 noncomputable def diagWitnessRefinement (P : Finpartition s) : Finpartition s :=
   P.bind fun C _ => Finpartition.atomise C (diagWitnessCuts R ε P C)
 
+/--
+@isnad1 id=le.0h5v.s5.0851fa74ac91 from=translated src=- shape=1d99c222 vocab=cd1b5028
+-/
 theorem diagWitnessRefinement_le (P : Finpartition s) :
     diagWitnessRefinement R ε P ≤ P := by
   intro b hb
@@ -84,7 +93,9 @@ theorem diagWitnessRefinement_le (P : Finpartition s) :
 
 /-- **Part-count bound `k · 2^(2k)`** — unchanged from the off-diagonal layer: each
 cell still receives at most `2k` cuts (its own diagonal witnesses replace one formerly
-empty left slot and one formerly empty right slot).-/
+empty left slot and one formerly empty right slot).
+@isnad1 id=le.0h5v.s6.fbfcf6b9f48f from=translated src=- shape=62099d55 vocab=228ec0d5
+-/
 theorem diagWitnessRefinement_parts_card_le (P : Finpartition s) :
     (diagWitnessRefinement R ε P).parts.card
       ≤ P.parts.card * 2 ^ (2 * P.parts.card) := by
@@ -100,7 +111,9 @@ theorem diagWitnessRefinement_parts_card_le (P : Finpartition s) :
 
 /-- **Witness resolution, diagonal pairs included.** Every diagonal-inclusive bad pair
 has a witness whose sides are part unions of the refinement (via the generic
-`isPartUnion_bind_atomise`).-/
+`isPartUnion_bind_atomise`).
+@isnad1 id=ex.3h7v.s7.5fcc9dc3965d from=translated src=- shape=52ccd4f6 vocab=dfd6be57
+-/
 theorem diagWitnessRefinement_resolves (P : Finpartition s) :
     ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPairDiag R ε C D →
       ∃ w : NonuniformWitness R C D ε,
@@ -129,7 +142,9 @@ end Cuts
 /-- **Global increment, un-normalized**: a refinement resolving every
 diagonal-inclusive bad pair's witness gains at least `ε⁴ · badMassDiagNum` of energy —
 the per-pair energy bridge never uses cell-distinctness, and the energy sum is
-diagonal-inclusive by the frozen convention.-/
+diagonal-inclusive by the frozen convention.
+@isnad1 id=le.3h6v.s7.0f9ea34c9217 from=translated src=- shape=a6beeffd vocab=a4b15d8d
+-/
 theorem energyNum_increment_of_badMassDiagNum {P P' : Finpartition s} (hP' : P' ≤ P)
     (hε : 0 < ε)
     (hwit : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPairDiag R ε C D →
@@ -166,7 +181,9 @@ theorem energyNum_increment_of_badMassDiagNum {P P' : Finpartition s} (hP' : P' 
         exact energyNum_eq_sum_refined R hP'
 
 /-- **Global increment, normalized**: normalized diagonal-inclusive bad mass exceeding
-`ε` yields an `ε⁵` energy gain.-/
+`ε` yields an `ε⁵` energy gain.
+@isnad1 id=le.4h6v.s7.352cfed7f35b from=translated src=- shape=fafd6250 vocab=7c429794
+-/
 theorem energy_increment_of_badMassDiag {P P' : Finpartition s} (hP' : P' ≤ P)
     (hε : 0 < ε)
     (hwit : ∀ C ∈ P.parts, ∀ D ∈ P.parts, IsBadPairDiag R ε C D →
@@ -193,7 +210,9 @@ theorem energy_increment_of_badMassDiag {P P' : Finpartition s} (hP' : P' ≤ P)
   rw [div_add' _ _ _ hs.ne']
   gcongr
 
-/-- **The diagonal-inclusive weak step** — identical growth `k · 2^(2k)`.-/
+/-- **The diagonal-inclusive weak step** — identical growth `k · 2^(2k)`.
+@isnad1 id=ex.2h5v.s7.783211b6fd70 from=translated src=- shape=879386f2 vocab=4b7fcc3d
+-/
 theorem exists_refinement_energy_increment_diag (P : Finpartition s) (hε : 0 < ε)
     (hbm : ε < badMassDiag R ε P) :
     ∃ Q : Finpartition s, Q ≤ P ∧ energy R P + ε ^ 5 ≤ energy R Q ∧
@@ -206,7 +225,9 @@ theorem exists_refinement_energy_increment_diag (P : Finpartition s) (hε : 0 < 
 /-! ### Bounded iteration — `regularityBound` and the fuel are reused unchanged -/
 
 /-- **Fuel-parametrized diagonal-inclusive iteration**: same fuel, same
-`regularityBound`, because the energy ceiling `1` is diagonal-inclusive already.-/
+`regularityBound`, because the energy ceiling `1` is diagonal-inclusive already.
+@isnad1 id=ex.2h6v.s7.17edfb7d9066 from=translated src=- shape=b6db6f64 vocab=c774a2eb
+-/
 theorem regularityDiag_iterate (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * ε ^ 5 ≤ energy R P →
       ∃ Q : Finpartition s, Q ≤ P ∧ IsRegularPartitionDiag R ε Q ∧
@@ -243,7 +264,9 @@ theorem regularityDiag_iterate (hε : 0 < ε) :
 
 /-- **Diagonal-inclusive partition regularity.** Every partition has a
 diagonal-inclusively `ε`-regular refinement with the SAME host-independent bound
-`regularityBound ⌈1/ε⁵⌉ k` as the frozen off-diagonal ladder.-/
+`regularityBound ⌈1/ε⁵⌉ k` as the frozen off-diagonal ladder.
+@isnad1 id=ex.1h5v.s7.cf5777b07caa from=translated src=- shape=8a840728 vocab=db3756f8
+-/
 theorem exists_regularDiag_refinement (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsRegularPartitionDiag R ε Q ∧
       Q.parts.card ≤ regularityBound ⌈1 / ε ^ 5⌉₊ P.parts.card := by

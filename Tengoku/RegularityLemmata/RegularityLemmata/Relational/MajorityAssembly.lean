@@ -61,7 +61,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V}
 section BoxSum
 
 /-- Summing over the tuples of `s^m` is summing over the cell boxes of a partition `P` of `s`
-and then over each box: the constant-partition specialization of `biUnion_boxCells_tuples`.-/
+and then over each box: the constant-partition specialization of `biUnion_boxCells_tuples`.
+@isnad1 id=eq.0h5v.s6.151f64d089f8 from=translated src=- shape=5253784e vocab=5c4af3e3
+-/
 theorem sum_const_eq_sum_cellBoxes {m : ℕ} (P : Finpartition s) (f : (Fin m → V) → ℝ) :
     ∑ w ∈ Fintype.piFinset (fun _ : Fin m ↦ s), f w
       = ∑ C ∈ Fintype.piFinset (fun _ : Fin m ↦ P.parts), ∑ w ∈ Fintype.piFinset C, f w := by
@@ -88,7 +90,9 @@ noncomputable def partResampleDefect (j : Fin (n + 1)) (w : Fin (n + 1) → V) :
     / (P.part (w j)).card
 
 omit [DecidableEq V] in
-/-- The coordinate defect of a box, counted tuple by tuple.-/
+/-- The coordinate defect of a box, counted tuple by tuple.
+@isnad1 id=eq.0h5v.s8.d4765872f2d4 from=translated src=- shape=6754e06c vocab=dfcf9c4e
+-/
 theorem coordDisagreement_eq_sum_box (A : Fin (n + 1) → Finset V) (j : Fin (n + 1)) :
     coordDisagreement R A j
       = ∑ w ∈ Fintype.piFinset A,
@@ -98,7 +102,9 @@ theorem coordDisagreement_eq_sum_box (A : Fin (n + 1) → Finset V) (j : Fin (n 
   simp only [Finset.card_filter]
 
 /-- **Reassembly.** Summing the normalized coordinate defects of all cell boxes of `P` gives the
-sum of the part-resampling defects over the ambient tuples of `s^(n+1)`.-/
+sum of the part-resampling defects over the ambient tuples of `s^(n+1)`.
+@isnad1 id=eq.0h5v.s8.607cdf320fd8 from=translated src=- shape=d84fcf18 vocab=26b1bc22
+-/
 theorem sum_coordDisagreement_div_eq_sum_partResampleDefect :
     ∑ C ∈ Fintype.piFinset (fun _ : Fin (n + 1) ↦ P.parts),
         ∑ j : Fin (n + 1), (coordDisagreement R C j : ℝ) / (C j).card
@@ -124,7 +130,9 @@ section Majority
 variable {L : FirstOrder.Language} [FiniteRelational L]
 
 /-- **Box level.** On a cell box of `P`, the edit distance from `M` to its majority rounding is
-exactly the minority count of the box: the `ℕ` form of `editDistance_majorityRound_eq_min`.-/
+exactly the minority count of the box: the `ℕ` form of `editDistance_majorityRound_eq_min`.
+@isnad1 id=eq.1h8v.s7.c61ce753f39a from=translated src=- shape=241fe8c6 vocab=647216ee
+-/
 theorem editDistance_majorityRound_eq_minorityCount (M : FiniteRelModel L V) (P : Finpartition s)
     {m : ℕ} (S : L.Relations m) (C : Fin m → Finset V) (hC : ∀ i, C i ∈ P.parts) :
     editDistance (M.Holds S) ((M.majorityRound P).Holds S) C = minorityCount (M.Holds S) C := by
@@ -148,7 +156,9 @@ theorem editDistance_majorityRound_eq_minorityCount (M : FiniteRelModel L V) (P 
   exact_mod_cast key
 
 /-- **Global majority bound.** The edit distance of the majority rounding on `s^(n+1)` is at
-most the sum, over coordinates `j` and ambient tuples `w`, of the part-resampling defects.-/
+most the sum, over coordinates `j` and ambient tuples `w`, of the part-resampling defects.
+@isnad1 id=le.0h7v.s8.300ba014b04a from=translated src=- shape=c3435b9c vocab=71b807dc
+-/
 theorem editDistance_majorityRound_le_sum_partResampleDefect (M : FiniteRelModel L V)
     (P : Finpartition s) {n : ℕ} (S : L.Relations (n + 1)) :
     (editDistance (M.Holds S) ((M.majorityRound P).Holds S) (fun _ : Fin (n + 1) ↦ s) : ℝ)
@@ -162,7 +172,9 @@ theorem editDistance_majorityRound_le_sum_partResampleDefect (M : FiniteRelModel
   rw [editDistance_majorityRound_eq_minorityCount M P S C hC']
   exact minorityCount_le_sum_coordDisagreement_div (M.Holds S) C
 
-/-- Nullary symbols are copied exactly by the majority rounding.-/
+/-- Nullary symbols are copied exactly by the majority rounding.
+@isnad1 id=eq.0h6v.s7.25543e665873 from=translated src=- shape=5144b5c8 vocab=c24d84f5
+-/
 theorem editDistance_majorityRound_nullary (M : FiniteRelModel L V) (P : Finpartition s)
     (S : L.Relations 0) :
     editDistance (M.Holds S) ((M.majorityRound P).Holds S) (fun _ : Fin 0 ↦ s) = 0 :=
@@ -175,7 +187,9 @@ section Decency
 variable {n : ℕ} (R : (Fin (n + 1) → V) → Prop) [DecidablePred R] (P : Finpartition s)
 
 /-- The part-resampling defects of a whole row `b ↦ insertNth j b rest`, `b` ranging over a part
-`l`, sum to the section disagreement of `a ↦ R (insertNth j a rest)` on `l`, divided by `|l|`.-/
+`l`, sum to the section disagreement of `a ↦ R (insertNth j a rest)` on `l`, divided by `|l|`.
+@isnad1 id=eq.1h8v.s7.00d71e1c6e81 from=translated src=- shape=bf6674fe vocab=a8608549
+-/
 theorem sum_partResampleDefect_row (j : Fin (n + 1)) (rest : Fin n → V) {l : Finset V}
     (hl : l ∈ P.parts) :
     ∑ b ∈ l, partResampleDefect R P j (Fin.insertNth j b rest)
@@ -193,7 +207,9 @@ theorem sum_partResampleDefect_row (j : Fin (n + 1)) (rest : Fin n → V) {l : F
 /-- **Decency ⇒ summed resampling defect.** With exceptional parts `E ⊆ P.parts` of total size at
 most `λ·|s|`, and at most a `γ`-fraction of the ambient off-tuples inclusively `θ`-mixed on each
 ordinary part, the part-resampling defects at coordinate `j` sum to at most
-`|s|^(n+1) · (2θ + γ/2 + λ/2)`.-/
+`|s|^(n+1) · (2θ + γ/2 + λ/2)`.
+@isnad1 id=le.5h10v.s9.6f1064cbd99a from=translated src=- shape=1a8b2c5e vocab=433f7afa
+-/
 theorem sum_partResampleDefect_le (j : Fin (n + 1)) {θ γ lam : ℝ} (hθ : 0 ≤ θ) (hγ : 0 ≤ γ)
     (E : Finset (Finset V)) (hE : E ⊆ P.parts) (hlam : (∑ l ∈ E, (l.card : ℝ)) ≤ lam * s.card)
     (hdec : ∀ l ∈ P.parts, l ∉ E →
@@ -286,7 +302,9 @@ def labelFiber (a : Λ) : Finset V := s.filter fun v ↦ lab v = a
 `Finpartition.ofSetSetoid` on the kernel setoid of `lab`. Unused labels contribute no part.-/
 def labelPartition : Finpartition s := Finpartition.ofSetSetoid (Setoid.ker lab) s
 
-/-- The parts of the label partition are the fibers of the labels used.-/
+/-- The parts of the label partition are the fibers of the labels used.
+@isnad1 id=eq.0h4v.s6.886a98129ef8 from=translated src=- shape=2006cb02 vocab=20e39d5c
+-/
 theorem labelPartition_parts :
     (labelPartition lab s).parts = (s.image lab).image (labelFiber lab s) := by
   rw [labelPartition, Finpartition.ofSetSetoid_parts, Finset.image_image]
@@ -295,10 +313,15 @@ theorem labelPartition_parts :
   exact Finset.filter_congr fun b _ ↦ ⟨fun h ↦ h.symm, fun h ↦ h.symm⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h5v.s5.5c993d0c19da from=translated src=- shape=c91f7606 vocab=c432b8fc
+-/
 theorem labelFiber_eq_empty_iff (a : Λ) : labelFiber lab s a = ∅ ↔ ∀ v ∈ s, lab v ≠ a := by
   simp [labelFiber, Finset.filter_eq_empty_iff]
 
-/-- The part of an element of `s` is the fiber of its label.-/
+/-- The part of an element of `s` is the fiber of its label.
+@isnad1 id=eq.1h5v.s5.7e1c17721136 from=translated src=- shape=6e66a2bd vocab=eef9d906
+-/
 theorem labelPartition_part_eq {b : V} (hb : b ∈ s) :
     (labelPartition lab s).part b = labelFiber lab s (lab b) := by
   ext v
@@ -308,7 +331,9 @@ theorem labelPartition_part_eq {b : V} (hb : b ∈ s) :
 
 omit [DecidableEq V] in
 /-- **Reassembly over label tuples.** A sum over `s^m` is the sum over all label tuples `c` of
-the sum over the box `∏ᵢ labelFiber (c i)`; boxes with an unused label are empty.-/
+the sum over the box `∏ᵢ labelFiber (c i)`; boxes with an unused label are empty.
+@isnad1 id=eq.0h7v.s7.abe45cd50043 from=translated src=- shape=058e2e0f vocab=80d1a627
+-/
 theorem sum_piFinset_const_eq_sum_labelBoxes [Fintype Λ] {m : ℕ} {M : Type*} [AddCommMonoid M]
     (f : (Fin m → V) → M) :
     ∑ w ∈ Fintype.piFinset (fun _ : Fin m ↦ s), f w
@@ -322,7 +347,9 @@ theorem sum_piFinset_const_eq_sum_labelBoxes [Fintype Λ] {m : ℕ} {M : Type*} 
   exact ⟨fun ⟨h1, h2⟩ i ↦ ⟨h1 i, h2 i⟩, fun h ↦ ⟨fun i ↦ (h i).1, fun i ↦ (h i).2⟩⟩
 
 /-- For the label partition, the part-resampling defect resamples inside the fiber of the
-label of `w j`.-/
+label of `w j`.
+@isnad1 id=eq.1h8v.s8.6c219b6b3592 from=translated src=- shape=4fdcc7e6 vocab=146fb5e8
+-/
 theorem partResampleDefect_labelPartition {n : ℕ} (R : (Fin (n + 1) → V) → Prop)
     [DecidablePred R] (j : Fin (n + 1)) {w : Fin (n + 1) → V} (hw : w j ∈ s) :
     partResampleDefect R (labelPartition lab s) j w
@@ -334,7 +361,9 @@ theorem partResampleDefect_labelPartition {n : ℕ} (R : (Fin (n + 1) → V) →
 
 /-- **The labeled global bound.** For the label partition, the edit distance of the majority
 rounding is at most the sum over coordinates, label tuples `c`, and tuples of the label box of
-the resampling defect inside the fiber of `c j`; boxes with an unused label are empty.-/
+the resampling defect inside the fiber of `c j`; boxes with an unused label are empty.
+@isnad1 id=le.0h8v.s9.13630f5f047e from=translated src=- shape=7af332c3 vocab=2699a1d6
+-/
 theorem editDistance_majorityRound_labelPartition_le [Fintype Λ] {L : FirstOrder.Language}
     [FiniteRelational L] (M : FiniteRelModel L V) {n : ℕ} (S : L.Relations (n + 1)) :
     (editDistance (M.Holds S) ((M.majorityRound (labelPartition lab s)).Holds S)
@@ -362,7 +391,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L]
 exceptional parts `E ⊆ P.parts` of total size at most `λ·|s|`, and decency (at most a
 `γ`-fraction of ambient off-tuples inclusively `θ`-mixed) on every ordinary part and coordinate,
 the edit distance from `M` to its majority rounding on `s^(n+1)` is at most
-`(n + 1) · |s|^(n+1) · (2θ + γ/2 + λ/2)`.-/
+`(n + 1) · |s|^(n+1) · (2θ + γ/2 + λ/2)`.
+@isnad1 id=le.5h11v.s9.0277cb76593c from=translated src=- shape=88a2fe30 vocab=30fa83e1
+-/
 theorem editDistance_majorityRound_le (M : FiniteRelModel L V) (P : Finpartition s) {n : ℕ}
     (S : L.Relations (n + 1)) {θ γ lam : ℝ} (hθ : 0 ≤ θ) (hγ : 0 ≤ γ)
     (E : Finset (Finset V)) (hE : E ⊆ P.parts) (hlam : (∑ l ∈ E, (l.card : ℝ)) ≤ lam * s.card)

@@ -161,7 +161,9 @@ private theorem cutIterInv_step (f : RectKernel X Y) (wX : X → ℝ) (wY : Y �
 nonnegative carrier weights and `0 < ε`, is a combination of at most `⌈1/ε²⌉₊` weighted
 rectangles inside the carriers, with coefficients of absolute value at most `1/ε`, plus a
 residual of cut norm at most `ε` times the total mass. Denominator-free; no nonemptiness,
-positive-mass, or `ε ≤ 1` hypothesis.-/
+positive-mass, or `ε ≤ 1` hypothesis.
+@isnad1 id=ex.4h8v.s8.3d84fd50cd7c from=translated src=- shape=26e50d06 vocab=eb8472d5
+-/
 theorem kernel_frieze_kannan_cutDecomposition (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) {ε : ℝ} (hε : 0 < ε) :
@@ -223,7 +225,9 @@ theorem kernel_frieze_kannan_cutDecomposition (f : RectKernel X Y) (wX : X → �
 /-! ### Corollaries -/
 
 /-- **Normalized form**: the residual's cut norm divided by the total mass is at most `ε`,
-guard-free under `x / 0 = 0`.-/
+guard-free under `x / 0 = 0`.
+@isnad1 id=ex.4h8v.s8.177040c2c2c5 from=translated src=- shape=a40724f2 vocab=eb8472d5
+-/
 theorem kernel_frieze_kannan_cutDecomposition_normalized (f : RectKernel X Y) (wX : X → ℝ)
     (wY : Y → ℝ) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) {ε : ℝ} (hε : 0 < ε) :
@@ -243,7 +247,9 @@ theorem kernel_frieze_kannan_cutDecomposition_normalized (f : RectKernel X Y) (w
   · rw [div_le_iff₀ hpos]
     exact hcut
 
-/-- **`op` transport**: a decomposition of `f.op` on `B ×ˢ A` with the rectangles swapped.-/
+/-- **`op` transport**: a decomposition of `f.op` on `B ×ˢ A` with the rectangles swapped.
+@isnad1 id=ex.4h8v.s8.553cb8ae74e4 from=translated src=- shape=80a2d020 vocab=483970cb
+-/
 theorem kernel_frieze_kannan_cutDecomposition_op (f : RectKernel X Y) (wX : X → ℝ)
     (wY : Y → ℝ) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) {ε : ℝ} (hε : 0 < ε) :

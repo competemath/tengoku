@@ -189,7 +189,9 @@ color-`0` subtree of height `a + 1` or a color-`1` subtree of height `b + 1`.
 
 The subtrees are `InternalEmbedding` images: their roots may sit at any host node and their
 edges may span many host levels, but branch direction is preserved. Both freedoms are used by
-the proof and neither may be removed.-/
+the proof and neither may be removed.
+@isnad1 id=or.0h3v.s8.52722d1ec5fd from=translated src=- shape=31591dd2 vocab=84baee34
+-/
 theorem binaryTreeRamsey_two (a b : ℕ) (color : BinaryTreeTwoColoring (a + b + 1)) :
     (∃ e : InternalEmbedding (a + 1) (a + b + 1), ∀ x, color (e x) = 0) ∨
     (∃ e : InternalEmbedding (b + 1) (a + b + 1), ∀ x, color (e x) = 1) :=
@@ -200,7 +202,9 @@ what is exhibited is a copy of the full tree of the stated height and not only o
 
 The coloring constrains only internal nodes, so the leaf placement is unconstrained; it is
 supplied by `InternalEmbedding.extendProper`, whose restriction to the interior is the embedding
-the previous theorem produces.-/
+the previous theorem produces.
+@isnad1 id=or.0h3v.s8.3c8733e91025 from=translated src=- shape=31591dd2 vocab=af4d7620
+-/
 theorem binaryTreeRamsey_two_proper (a b : ℕ) (color : BinaryTreeTwoColoring (a + b + 1)) :
     (∃ e : ProperEmbedding (a + 1) (a + b + 1), ∀ x, color (e.internal x) = 0) ∨
     (∃ e : ProperEmbedding (b + 1) (a + b + 1), ∀ x, color (e.internal x) = 1) := by
@@ -284,7 +288,9 @@ private theorem ramsey_aux_multi : ∀ (n : ℕ) {m : ℕ} (t : Fin m → ℕ), 
 /-- **The multicolor subtree theorem** — companion Lemma 2.6 in coloring form. An `m`-coloring
 of the internal nodes of a tree of height `(∑ i, t i) + 1` admits, for some color `i`, a
 color-`i` subtree of height `t i + 1`. The parenthesization of the host height is load-bearing:
-it is the successor of the sum, matching `a + b + 1` at `m = 2`.-/
+it is the successor of the sum, matching `a + b + 1` at `m = 2`.
+@isnad1 id=ex.0h3v.s7.556b11751272 from=translated src=- shape=20028147 vocab=32e1c22e
+-/
 theorem binaryTreeRamsey (m : ℕ) (t : Fin m → ℕ)
     (color : InternalNode ((∑ i, t i) + 1) → Fin m) :
     ∃ (i : Fin m) (e : InternalEmbedding (t i + 1) ((∑ i, t i) + 1)),
@@ -294,7 +300,9 @@ theorem binaryTreeRamsey (m : ℕ) (t : Fin m → ℕ)
   exact ⟨i, e, he⟩
 
 /-- **The multicolor whole-tree form**: the monochromatic subtree with its leaves placed, via
-`InternalEmbedding.extendProper` as in `binaryTreeRamsey_two_proper`.-/
+`InternalEmbedding.extendProper` as in `binaryTreeRamsey_two_proper`.
+@isnad1 id=ex.0h3v.s7.d363fd1d5f7a from=translated src=- shape=20028147 vocab=81844e73
+-/
 theorem binaryTreeRamsey_proper (m : ℕ) (t : Fin m → ℕ)
     (color : InternalNode ((∑ i, t i) + 1) → Fin m) :
     ∃ (i : Fin m) (e : ProperEmbedding (t i + 1) ((∑ i, t i) + 1)),
@@ -304,7 +312,9 @@ theorem binaryTreeRamsey_proper (m : ℕ) (t : Fin m → ℕ)
 
 /-- **Equal heights**: `m` colors, every subtree of height `t + 1`, host height `m * t + 1`.
 Stated at the host height `m * t + 1` directly (the recursion is entered with `∑ i : Fin m, t =
-m * t` as a hypothesis, so no coloring is transported along that identity).-/
+m * t` as a hypothesis, so no coloring is transported along that identity).
+@isnad1 id=ex.0h3v.s7.81f143303e36 from=translated src=- shape=ac2153ba vocab=083b306b
+-/
 theorem binaryTreeRamsey_proper_const (m t : ℕ) (color : InternalNode (m * t + 1) → Fin m) :
     ∃ (c : Fin m) (e : ProperEmbedding (t + 1) (m * t + 1)), ∀ x, color (e.internal x) = c := by
   obtain ⟨c, k, hk, e, he⟩ := ramsey_aux_multi (m * t) (fun _ : Fin m => t)

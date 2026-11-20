@@ -73,7 +73,9 @@ noncomputable def rectEnergy [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) : ℝ :=
   rectEnergyNum f wX wY P Q / (finsetMass wX A * finsetMass wY B)
 
-/-- The rectangle mass factors over the product of the two partitions' parts.-/
+/-- The rectangle mass factors over the product of the two partitions' parts.
+@isnad1 id=eq.0h8v.s7.5662e86bcdb2 from=translated src=- shape=ffbf9923 vocab=a4740e6b
+-/
 theorem sum_mass_product [DecidableEq X] [DecidableEq Y] (wX : X → ℝ) (wY : Y → ℝ)
     (P : Finpartition A) (Q : Finpartition B) :
     ∑ p ∈ P.parts ×ˢ Q.parts, (finsetMass wX p.1 * finsetMass wY p.2)
@@ -81,6 +83,9 @@ theorem sum_mass_product [DecidableEq X] [DecidableEq Y] (wX : X → ℝ) (wY : 
   rw [Finset.sum_product, ← Finset.sum_mul_sum, ← finsetMass_finpartition wX P,
     ← finsetMass_finpartition wY Q]
 
+/--
+@isnad1 id=le.2h9v.s6.7b17c7873677 from=translated src=- shape=39e90e88 vocab=225486f7
+-/
 theorem rectEnergyNum_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     0 ≤ rectEnergyNum f wX wY P Q := by
@@ -89,6 +94,9 @@ theorem rectEnergyNum_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A
   exact rectBlockEnergy_nonneg (fun x hx => hwX x ((P.le hp.1) hx))
     (fun y hy => hwY y ((Q.le hp.2) hy))
 
+/--
+@isnad1 id=le.3h9v.s7.2edff2a009f3 from=translated src=- shape=b09ef846 vocab=f36307be
+-/
 theorem rectEnergyNum_le_mass [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) :
@@ -100,6 +108,9 @@ theorem rectEnergyNum_le_mass [DecidableEq X] [DecidableEq Y] (P : Finpartition 
     (fun y hy => hwY y ((Q.le hp.2) hy))
     (fun x hx y hy => hf x ((P.le hp.1) hx) y ((Q.le hp.2) hy))
 
+/--
+@isnad1 id=le.2h9v.s6.d54ab538d885 from=translated src=- shape=39e90e88 vocab=df1fd22b
+-/
 theorem rectEnergy_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     0 ≤ rectEnergy f wX wY P Q :=
@@ -107,7 +118,9 @@ theorem rectEnergy_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (mul_nonneg (finsetMass_nonneg hwX) (finsetMass_nonneg hwY))
 
 /-- **Guard-free `≤ 1`.** At zero rectangle mass the normalized energy is `0/0 = 0`, so no
-positive-mass hypothesis is needed.-/
+positive-mass hypothesis is needed.
+@isnad1 id=le.3h9v.s7.8d28c2e2ee9b from=translated src=- shape=3cb97f83 vocab=4d8bbb4b
+-/
 theorem rectEnergy_le_one [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y)
     (hf : IsAbsUnitBoundedOnRectangle f A B) : rectEnergy f wX wY P Q ≤ 1 := by
@@ -128,6 +141,9 @@ noncomputable def rectVarianceNum [DecidableEq X] [DecidableEq Y] (f : RectKerne
     (rectAverage f wX wY p.1 p.2 - rectAverage f wX wY A B) ^ 2
       * (finsetMass wX p.1 * finsetMass wY p.2)
 
+/--
+@isnad1 id=le.2h9v.s6.5b54138cda89 from=translated src=- shape=39e90e88 vocab=9144eff7
+-/
 theorem rectVarianceNum_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition A)
     (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     0 ≤ rectVarianceNum f wX wY P Q := by
@@ -143,7 +159,9 @@ theorem rectVarianceNum_nonneg [DecidableEq X] [DecidableEq Y] (P : Finpartition
 Both cancellations it needs — the first moment and the total mass — come from the
 denominator-free decompositions of `RegularityLemmata/Partition/RectKernel.lean`, so no mass is
 divided out
-and the zero-mass case is handled uniformly.-/
+and the zero-mass case is handled uniformly.
+@isnad1 id=eq.2h9v.s7.b124ed961243 from=translated src=- shape=b6836fa8 vocab=09cf162c
+-/
 theorem rectEnergyNum_sub_rectBlockEnergy [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
     (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -174,7 +192,9 @@ theorem rectEnergyNum_sub_rectBlockEnergy [DecidableEq X] [DecidableEq Y]
   ring
 
 /-- **Refinement monotonicity**, an immediate corollary: the cells of `P ×ˢ Q` carry at
-least the energy of the single block they refine.-/
+least the energy of the single block they refine.
+@isnad1 id=le.2h9v.s6.61ea45efab01 from=translated src=- shape=81767616 vocab=277d38a4
+-/
 theorem rectBlockEnergy_le_rectEnergyNum [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B) (hwX : ∀ x ∈ A, 0 ≤ wX x)
     (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -186,7 +206,9 @@ theorem rectBlockEnergy_le_rectEnergyNum [DecidableEq X] [DecidableEq Y]
 /-! ### Transpose transport -/
 
 /-- `op` exchanges the two sides of the total energy (the block-energy law is
-`rectBlockEnergy_op` in `RegularityLemmata/Finite/RectKernel.lean`).-/
+`rectBlockEnergy_op` in `RegularityLemmata/Finite/RectKernel.lean`).
+@isnad1 id=eq.0h9v.s6.3921271a6770 from=translated src=- shape=79fcddbb vocab=fba20e6b
+-/
 theorem rectEnergyNum_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B) :
     rectEnergyNum f.op wY wX Q P = rectEnergyNum f wX wY P Q := by
@@ -216,6 +238,9 @@ noncomputable def rectRefinementVarianceNum [DecidableEq X] [DecidableEq Y]
       (rectAverage f wX wY p.1 p.2 - rectAverage f wX wY pd.1 pd.2) ^ 2
         * (finsetMass wX p.1 * finsetMass wY p.2)
 
+/--
+@isnad1 id=le.2h11v.s7.aed66a2df314 from=translated src=- shape=8644992f vocab=bdf6a250
+-/
 theorem rectRefinementVarianceNum_nonneg [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B) (P' : Finpartition A) (Q' : Finpartition B)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -231,7 +256,9 @@ regroup under their coarse parents.
 
 Stated for sub-families because the energy increment selects the fine cells meeting a witness
 rectangle and still has to group them under parents to match the summand of
-`rectRefinementVarianceNum`; the unrestricted version below does not apply there.-/
+`rectRefinementVarianceNum`; the unrestricted version below does not apply there.
+@isnad1 id=eq.4h11v.s8.82876a92c021 from=translated src=- shape=250baba9 vocab=017a458c
+-/
 theorem sum_product_parts_eq_sum_over_parents_subset [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     {I : Finset (Finset X)} {J : Finset (Finset Y)} (hI : I ⊆ P'.parts) (hJ : J ⊆ Q'.parts)
@@ -255,7 +282,9 @@ theorem sum_product_parts_eq_sum_over_parents_subset [DecidableEq X] [DecidableE
         sum_over_parents_subset hP hI fun C' => ∑ D' ∈ J, g C' D'
 
 /-- Summing over the fine parts inside each coarse cell recovers the sum over all fine
-cells — the two-coordinate form of `sum_over_parents`.-/
+cells — the two-coordinate form of `sum_over_parents`.
+@isnad1 id=eq.2h9v.s8.955f4903a92f from=translated src=- shape=82aeeb58 vocab=017a458c
+-/
 theorem sum_product_parts_eq_sum_over_parents [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     (g : Finset X → Finset Y → ℝ) :
@@ -269,7 +298,9 @@ the mass-weighted variance of the fine cell averages around the coarse ones.
 
 This is the primitive: the one-sided identities below are specializations, not separate
 proofs. Each coarse cell contributes its own copy of `rectEnergyNum_sub_rectBlockEnergy`,
-applied to the fine parts inside it via `refinementOnPart`.-/
+applied to the fine parts inside it via `refinementOnPart`.
+@isnad1 id=eq.4h11v.s7.d65c4c27b33f from=translated src=- shape=9c797f74 vocab=6ef8ea42
+-/
 theorem rectEnergyNum_eq_add_rectRefinementVarianceNum [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -296,7 +327,9 @@ theorem rectEnergyNum_eq_add_rectRefinementVarianceNum [DecidableEq X] [Decidabl
     rectRefinementVarianceNum, rectEnergyNum, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl hcell
 
-/-- **Left-only refinement**, by taking `Q' = Q`.-/
+/-- **Left-only refinement**, by taking `Q' = Q`.
+@isnad1 id=eq.3h10v.s7.1b22f13553c8 from=translated src=- shape=6f56bcda vocab=6ef8ea42
+-/
 theorem rectEnergyNum_eq_add_rectRefinementVarianceNum_left [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q : Finpartition B} (hP : P' ≤ P)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -305,7 +338,9 @@ theorem rectEnergyNum_eq_add_rectRefinementVarianceNum_left [DecidableEq X] [Dec
   rectEnergyNum_eq_add_rectRefinementVarianceNum hP le_rfl hwX hwY
 
 /-- With the right partition unrefined the inner right sum collapses to the coarse cell
-itself, so the left-only variance is a single sum over the refined left parts.-/
+itself, so the left-only variance is a single sum over the refined left parts.
+@isnad1 id=eq.0h10v.s8.e0e383250139 from=translated src=- shape=5aa7c438 vocab=a1e380a0
+-/
 theorem rectRefinementVarianceNum_right_self [DecidableEq X] [DecidableEq Y]
     (P : Finpartition A) (Q : Finpartition B) (P' : Finpartition A) :
     rectRefinementVarianceNum f wX wY P Q P' Q
@@ -319,7 +354,9 @@ theorem rectRefinementVarianceNum_right_self [DecidableEq X] [DecidableEq Y]
   exact Finset.sum_congr rfl fun C' _ => Finset.sum_singleton _ _
 
 /-- `op` exchanges the two sides of the refinement variance, together with both partition
-pairs.-/
+pairs.
+@isnad1 id=eq.0h11v.s6.b2f439a3cc2c from=translated src=- shape=98e6a5c5 vocab=b186d789
+-/
 theorem rectRefinementVarianceNum_op [DecidableEq X] [DecidableEq Y] (f : RectKernel X Y)
     (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (P' : Finpartition A) (Q' : Finpartition B) :
@@ -335,7 +372,9 @@ theorem rectRefinementVarianceNum_op [DecidableEq X] [DecidableEq Y] (f : RectKe
 
 /-- The mirror collapse: with the left partition unrefined, the left-only variance is a
 single sum over the refined right parts. Transported from
-`rectRefinementVarianceNum_right_self` through `op`.-/
+`rectRefinementVarianceNum_right_self` through `op`.
+@isnad1 id=eq.0h10v.s8.cb2ba96a59c7 from=translated src=- shape=753d95df vocab=a1e380a0
+-/
 theorem rectRefinementVarianceNum_left_self [DecidableEq X] [DecidableEq Y]
     (f : RectKernel X Y) (wX : X → ℝ) (wY : Y → ℝ) (P : Finpartition A) (Q : Finpartition B)
     (Q' : Finpartition B) :
@@ -352,7 +391,9 @@ theorem rectRefinementVarianceNum_left_self [DecidableEq X] [DecidableEq Y]
       rw [rectAverage_op, rectAverage_op, mul_comm (finsetMass wY D')]
 
 /-- **Right-only refinement**, derived from the left-only identity through `op` rather than
-reproved.-/
+reproved.
+@isnad1 id=eq.3h10v.s7.69d94e76fd8a from=translated src=- shape=f33a2c47 vocab=6ef8ea42
+-/
 theorem rectEnergyNum_eq_add_rectRefinementVarianceNum_right [DecidableEq X] [DecidableEq Y]
     {P : Finpartition A} {Q Q' : Finpartition B} (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -367,6 +408,9 @@ theorem rectEnergyNum_eq_add_rectRefinementVarianceNum_right [DecidableEq X] [De
 All three monotonicity statements are immediate corollaries of the corresponding identity
 together with `rectRefinementVarianceNum_nonneg`; none needs its own argument. -/
 
+/--
+@isnad1 id=le.4h11v.s7.08064b3d08d8 from=translated src=- shape=51046ca8 vocab=225486f7
+-/
 theorem rectEnergyNum_le_rectEnergyNum [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -375,12 +419,18 @@ theorem rectEnergyNum_le_rectEnergyNum [DecidableEq X] [DecidableEq Y]
   have hv := rectRefinementVarianceNum_nonneg (f := f) P Q P' Q' hwX hwY
   linarith
 
+/--
+@isnad1 id=le.3h10v.s7.a15f9c4633c3 from=translated src=- shape=0cff9d87 vocab=225486f7
+-/
 theorem rectEnergyNum_le_rectEnergyNum_left [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q : Finpartition B} (hP : P' ≤ P)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
     rectEnergyNum f wX wY P Q ≤ rectEnergyNum f wX wY P' Q :=
   rectEnergyNum_le_rectEnergyNum hP le_rfl hwX hwY
 
+/--
+@isnad1 id=le.3h10v.s7.9b98e8df52da from=translated src=- shape=bb2f1252 vocab=225486f7
+-/
 theorem rectEnergyNum_le_rectEnergyNum_right [DecidableEq X] [DecidableEq Y]
     {P : Finpartition A} {Q Q' : Finpartition B} (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -392,6 +442,9 @@ theorem rectEnergyNum_le_rectEnergyNum_right [DecidableEq X] [DecidableEq Y]
 Dividing the identity by the fixed rectangle mass is guard-free: at zero mass every term is
 `0/0 = 0` and the identity reads `0 = 0 + 0`. -/
 
+/--
+@isnad1 id=eq.4h11v.s7.16d2eedeb7bd from=translated src=- shape=9b49aaaa vocab=59698549
+-/
 theorem rectEnergy_eq_add_rectRefinementVarianceNum [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :
@@ -402,6 +455,9 @@ theorem rectEnergy_eq_add_rectRefinementVarianceNum [DecidableEq X] [DecidableEq
   rw [rectEnergy, rectEnergy, ← add_div,
     rectEnergyNum_eq_add_rectRefinementVarianceNum hP hQ hwX hwY]
 
+/--
+@isnad1 id=le.4h11v.s7.a4c84425d16c from=translated src=- shape=51046ca8 vocab=df1fd22b
+-/
 theorem rectEnergy_le_rectEnergy [DecidableEq X] [DecidableEq Y]
     {P P' : Finpartition A} {Q Q' : Finpartition B} (hP : P' ≤ P) (hQ : Q' ≤ Q)
     (hwX : ∀ x ∈ A, 0 ≤ wX x) (hwY : ∀ y ∈ B, 0 ≤ wY y) :

@@ -53,15 +53,23 @@ def prefixHybrid (x y : ∀ i, V i) (j : ℕ) : ∀ i, V i :=
   fun i => if (i : ℕ) < j then y i else x i
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=eq.0h4v.s5.c4b8df9b0242 from=translated src=- shape=ec9d9a5a vocab=90722c49
+-/
 @[simp] theorem prefixHybrid_zero (x y : ∀ i, V i) : prefixHybrid x y 0 = x := by
   funext i; simp [prefixHybrid]
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=eq.1h5v.s5.57e3f38687c7 from=translated src=- shape=e12424c4 vocab=a1943e92
+-/
 theorem prefixHybrid_of_le (x y : ∀ i, V i) {j : ℕ} (h : k ≤ j) : prefixHybrid x y j = y := by
   funext i; simp [prefixHybrid, lt_of_lt_of_le i.2 h]
 
 omit [∀ i, DecidableEq (V i)] in
-/-- Consecutive hybrids differ in coordinate `j` only.-/
+/-- Consecutive hybrids differ in coordinate `j` only.
+@isnad1 id=eq.0h5v.s6.0dd0b2bb45c1 from=translated src=- shape=255c4150 vocab=246f3e0b
+-/
 theorem prefixHybrid_succ (x y : ∀ i, V i) (j : Fin k) :
     prefixHybrid x y (j + 1) = Function.update (prefixHybrid x y j) j (y j) := by
   funext i
@@ -79,6 +87,9 @@ theorem prefixHybrid_succ (x y : ∀ i, V i) (j : Fin k) :
     simp [this]
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=mem.2h6v.s7.25b2ff034fa6 from=translated src=- shape=872017ea vocab=49c39857
+-/
 theorem prefixHybrid_mem {A : ∀ i, Finset (V i)} {x y : ∀ i, V i}
     (hx : x ∈ Fintype.piFinset A) (hy : y ∈ Fintype.piFinset A) (j : ℕ) :
     prefixHybrid x y j ∈ Fintype.piFinset A := by
@@ -195,7 +206,9 @@ private theorem fiber_eq (w : ∀ i, V i) (j : Fin k) (a : V j) (hw : w ∈ Fint
       · exact hxw i hlt
 
 /-- **The prefix-swap identity.** The disagreeing `j`-th hybrid edges are counted exactly by the
-coordinate-`j` resampling disagreement times the size of the off-coordinate box.-/
+coordinate-`j` resampling disagreement times the size of the off-coordinate box.
+@isnad1 id=eq.0h5v.s6.f367b4d0947c from=translated src=- shape=aa3b42d4 vocab=130e221b
+-/
 theorem hybridEdgeDisagreement_eq (j : Fin k) :
     hybridEdgeDisagreement R A j
       = coordDisagreement R A j * ∏ i ∈ Finset.univ.erase j, (A i).card := by
@@ -239,7 +252,9 @@ theorem hybridEdgeDisagreement_eq (j : Fin k) :
 
 /-! ### The resampling bound -/
 
-/-- A disagreeing pair has a disagreeing hybrid edge: the union bound over the `k` edges.-/
+/-- A disagreeing pair has a disagreeing hybrid edge: the union bound over the `k` edges.
+@isnad1 id=le.0h4v.s6.2a155af263b5 from=translated src=- shape=b568eb69 vocab=99758cfe
+-/
 theorem sectionDisagreement_piFinset_le_sum_hybridEdge :
     sectionDisagreement (Fintype.piFinset A) R ≤ ∑ j : Fin k, hybridEdgeDisagreement R A j := by
   classical
@@ -285,20 +300,30 @@ def minorityCount : ℕ :=
     ((Fintype.piFinset A).card - ((Fintype.piFinset A).filter R).card)
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=le.0h4v.s6.342c3597d0de from=translated src=- shape=bc0064b4 vocab=485ef05f
+-/
 theorem minorityCount_le : minorityCount R A ≤ ((Fintype.piFinset A).filter R).card :=
   Nat.min_le_left _ _
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=le.0h4v.s6.c368c2702277 from=translated src=- shape=e29d1be9 vocab=e0f34243
+-/
 theorem minorityCount_le_sub :
     minorityCount R A ≤ (Fintype.piFinset A).card - ((Fintype.piFinset A).filter R).card :=
   Nat.min_le_right _ _
 
-/-- Over a common carrier the true count is `tupleCount`.-/
+/-- Over a common carrier the true count is `tupleCount`.
+@isnad1 id=eq.0h4v.s6.b167065574be from=translated src=- shape=a53fbb07 vocab=f7d07cf0
+-/
 theorem minorityCount_eq_min_tupleCount {α : Type*} [DecidableEq α] (R : (Fin k → α) → Prop)
     [DecidablePred R] (A : Fin k → Finset α) :
     minorityCount R A = min (tupleCount R A) ((Fintype.piFinset A).card - tupleCount R A) := rfl
 
-/-- `min(c, n − c) · n ≤ 2·c·(n − c)` for `c ≤ n`.-/
+/-- `min(c, n − c) · n ≤ 2·c·(n − c)` for `c ≤ n`.
+@isnad1 id=le.1h2v.s5.7cc71a98db21 from=translated src=- shape=1aa07a71 vocab=c0e6c8b0
+-/
 theorem min_mul_le_two_mul {c n : ℕ} (hc : c ≤ n) :
     min c (n - c) * n ≤ 2 * c * (n - c) := by
   rcases le_or_gt c (n - c) with h | h
@@ -313,7 +338,9 @@ theorem min_mul_le_two_mul {c n : ℕ} (hc : c ≤ n) :
 
 /-- **The coordinate-resampling bound.** The minority of `R` on the box, times the box size, is
 at most the sum over coordinates of the resampling disagreement weighted by the off-coordinate
-box size. In `ℕ`, division-free; empty factors and `k = 0` need no hypothesis.-/
+box size. In `ℕ`, division-free; empty factors and `k = 0` need no hypothesis.
+@isnad1 id=le.0h4v.s6.a99602b33580 from=translated src=- shape=48463db6 vocab=076887c3
+-/
 theorem minorityCount_mul_card_le :
     minorityCount R A * (Fintype.piFinset A).card
       ≤ ∑ j : Fin k, coordDisagreement R A j * ∏ i ∈ Finset.univ.erase j, (A i).card := by
@@ -340,7 +367,9 @@ theorem minorityCount_mul_card_le :
 /-! ### Endpoints -/
 
 omit [∀ i, DecidableEq (V i)] in
-/-- An empty factor empties the box: every count is `0`.-/
+/-- An empty factor empties the box: every count is `0`.
+@isnad1 id=eq.1h6v.s6.709c5a70b234 from=translated src=- shape=93182a17 vocab=a2f3a5f0
+-/
 theorem coordDisagreement_of_eq_empty {i : Fin k} (hi : A i = ∅) (j : Fin k) :
     coordDisagreement R A j = 0 := by
   unfold coordDisagreement
@@ -349,6 +378,9 @@ theorem coordDisagreement_of_eq_empty {i : Fin k} (hi : A i = ∅) (j : Fin k) :
   simp [this]
 
 omit [∀ i, DecidableEq (V i)] in
+/--
+@isnad1 id=eq.1h5v.s6.303dc616c044 from=translated src=- shape=f8ed29d7 vocab=de871fae
+-/
 theorem minorityCount_of_eq_empty {i : Fin k} (hi : A i = ∅) : minorityCount R A = 0 := by
   unfold minorityCount
   have : Fintype.piFinset A = ∅ := by
@@ -356,7 +388,9 @@ theorem minorityCount_of_eq_empty {i : Fin k} (hi : A i = ∅) : minorityCount R
   simp [this]
 
 omit [∀ i, DecidableEq (V i)] in
-/-- For `k = 0` the box is a single point and the minority is `0`.-/
+/-- For `k = 0` the box is a single point and the minority is `0`.
+@isnad1 id=eq.0h3v.s6.c010f58ba6d7 from=translated src=- shape=76ab3c88 vocab=ff9cab5f
+-/
 theorem minorityCount_zero {V : Fin 0 → Type*} [∀ i, DecidableEq (V i)] (R : (∀ i, V i) → Prop)
     [DecidablePred R] (A : ∀ i, Finset (V i)) :
     minorityCount R A = 0 := by
@@ -372,7 +406,9 @@ theorem minorityCount_zero {V : Fin 0 → Type*} [∀ i, DecidableEq (V i)] (R :
 
 /-- **The normalized resampling bound.** The minority is at most the sum over coordinates of
 the resampling disagreement divided by the size of that factor: `minorityCount_mul_card_le`
-divided by the box size. Guard-free: an empty factor makes both sides `0`.-/
+divided by the box size. Guard-free: an empty factor makes both sides `0`.
+@isnad1 id=le.0h4v.s6.e68e2c385170 from=translated src=- shape=ec3db28b vocab=4e05ef7c
+-/
 theorem minorityCount_le_sum_coordDisagreement_div :
     (minorityCount R A : ℝ) ≤ ∑ j : Fin k, (coordDisagreement R A j : ℝ) / (A j).card := by
   classical

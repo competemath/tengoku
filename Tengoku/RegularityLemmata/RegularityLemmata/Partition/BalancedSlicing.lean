@@ -50,7 +50,9 @@ namespace RegularityLemmata
 variable {α : Type*} [DecidableEq α]
 
 /-- Splitting a block along a test set and its in-`A` complement: since blocks sit inside `A`,
-the two intersections partition the block.-/
+the two intersections partition the block.
+@isnad1 id=eq.1h4v.s6.ece887781f36 from=translated src=- shape=d667261d vocab=550e2bf2
+-/
 theorem card_inter_add_card_sdiff_inter {A T Q : Finset α} (hQ : Q ⊆ A) :
     (T ∩ Q).card + ((A \ T) ∩ Q).card = Q.card := by
   have h1 : T ∩ Q = Q.filter (fun x ↦ x ∈ T) := by
@@ -70,7 +72,9 @@ theorem card_inter_add_card_sdiff_inter {A T Q : Finset α} (hQ : Q ⊆ A) :
 /-- **Two-sided density control from a complement-closed certificate.** A slicing certificate
 over `traceComplementClosure A F` keeps every `T ∈ F` within `β` of its `A`-density on every
 block, provided `(t : ℝ) ≤ β * s`. The `ℕ`-floor window rounding is absorbed (see the module
-docstring).-/
+docstring).
+@isnad1 id=le.4h10v.s7.7d164a60811d from=translated src=- shape=24c70180 vocab=fa49d74f
+-/
 theorem SliceCert.abs_block_density_sub_le
     {A : Finset α} {F : Finset (Finset α)} {m s t : ℕ} {β : ℝ}
     (cert : SliceCert A (traceComplementClosure A F) m s t)
@@ -128,7 +132,9 @@ theorem SliceCert.abs_block_density_sub_le
 /-- **Balanced slicing** (the packaged consumer theorem): under the single geometric ratio
 hypothesis, `A` splits into `A.card / s` blocks of exact size `s` (leftover `A.card % s < s`,
 via the certificate's `SliceCert.card_leftover_*` API) with every `T ∈ F` within `β` of its
-`A`-density on every block.-/
+`A`-density on every block.
+@isnad1 id=ex.5h6v.s8.3f2f27ca32e4 from=translated src=- shape=0d4565ca vocab=3425120d
+-/
 theorem exists_balanced_slicing (A : Finset α) (F : Finset (Finset α)) {s t : ℕ} {β : ℝ}
     (hA : A.Nonempty) (hs : 0 < s) (ht : t < s) (htβ : (t : ℝ) ≤ β * s)
     (hratio : (A.card / s) * (2 * F.card) * (2 * s - t) ^ (t / 8) < (2 * s) ^ (t / 8)) :

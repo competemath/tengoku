@@ -31,7 +31,9 @@ zero-denominator indices. The two- and three-term forms are instantiations.
 namespace RegularityLemmata
 
 /-- Engel form / Titu's lemma over a finset, with nonnegative denominators and the
-`x / 0 = 0` convention hypothesis.-/
+`x / 0 = 0` convention hypothesis.
+@isnad1 id=le.2h4v.s7.d17e3f93d252 from=translated src=- shape=f859e410 vocab=6c53dc37
+-/
 theorem titu_finset {ι : Type*} [DecidableEq ι] (f g : ι → ℝ) (I : Finset ι)
     (hg : ∀ i ∈ I, 0 ≤ g i) (hfg : ∀ i ∈ I, g i = 0 → f i = 0) :
     (∑ i ∈ I, f i) ^ 2 / (∑ i ∈ I, g i) ≤ ∑ i ∈ I, f i ^ 2 / g i := by
@@ -63,7 +65,9 @@ mass-weighted mean square, in the denominator-free form the energy calculus want
 
 Only nonnegativity of the masses is assumed — no positivity, and no convention hypothesis,
 because the `mᵢ = 0` indices drop from both sides on their own. This is the form that turns a
-large rectangle error into an energy increment.-/
+large rectangle error into an energy increment.
+@isnad1 id=le.1h4v.s7.b21ffa3df14d from=translated src=- shape=955685fa vocab=5aa34ec3
+-/
 theorem sq_sum_mul_le_sum_mul_sum_sq_mul {ι : Type*} [DecidableEq ι] (a m : ι → ℝ)
     (I : Finset ι) (hm : ∀ i ∈ I, 0 ≤ m i) :
     (∑ i ∈ I, a i * m i) ^ 2 ≤ (∑ i ∈ I, m i) * ∑ i ∈ I, a i ^ 2 * m i := by
@@ -87,7 +91,9 @@ theorem sq_sum_mul_le_sum_mul_sum_sq_mul {ι : Type*} [DecidableEq ι] (a m : ι
     calc (∑ i ∈ I, a i * m i) ^ 2 ≤ (∑ i ∈ I, a i ^ 2 * m i) * ∑ i ∈ I, m i := htitu
       _ = (∑ i ∈ I, m i) * ∑ i ∈ I, a i ^ 2 * m i := by ring
 
-/-- Two-term Engel form with the division convention.-/
+/-- Two-term Engel form with the division convention.
+@isnad1 id=le.4h4v.s7.dac49ce75144 from=translated src=- shape=aa4bc034 vocab=d8071e98
+-/
 theorem titu_two {a b p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q)
     (ha : p = 0 → a = 0) (hb : q = 0 → b = 0) :
     (a + b) ^ 2 / (p + q) ≤ a ^ 2 / p + b ^ 2 / q := by
@@ -96,7 +102,9 @@ theorem titu_two {a b p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q)
     (fun i _ => by fin_cases i <;> assumption)
   simpa [Fin.sum_univ_two] using this
 
-/-- Three-term Engel form with the division convention.-/
+/-- Three-term Engel form with the division convention.
+@isnad1 id=le.6h6v.s8.1413efad5196 from=translated src=- shape=2bb63ea4 vocab=d8071e98
+-/
 theorem titu_three {a b c p q r : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) (hr : 0 ≤ r)
     (ha : p = 0 → a = 0) (hb : q = 0 → b = 0) (hc : r = 0 → c = 0) :
     (a + b + c) ^ 2 / (p + q + r) ≤ a ^ 2 / p + b ^ 2 / q + c ^ 2 / r := by
@@ -106,7 +114,9 @@ theorem titu_three {a b c p q r : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) (hr : 0 ≤
   simpa [Fin.sum_univ_three, add_assoc] using this
 
 /-- Engel form with an explicit defect: the two-term inequality improves by the
-weighted squared deviation of the first cell's ratio from the pooled ratio.-/
+weighted squared deviation of the first cell's ratio from the pooled ratio.
+@isnad1 id=le.2h4v.s7.a3b0b343d0d9 from=translated src=- shape=ed14150d vocab=762a6581
+-/
 theorem engel_defect_lower {a b p q : ℝ} (hp : 0 < p) (hq : 0 < q) :
     (a + b) ^ 2 / (p + q) + p * (a / p - (a + b) / (p + q)) ^ 2 ≤ a ^ 2 / p + b ^ 2 / q := by
   have hpq : (0 : ℝ) < p + q := by linarith
@@ -121,7 +131,9 @@ theorem engel_defect_lower {a b p q : ℝ} (hp : 0 < p) (hq : 0 < q) :
 /-- Two-factor perturbation bound: replacing each factor of a product by a nearby
 value perturbs the product by at most the sum of the factor errors, provided the
 retained factors `x` and `e` have absolute value at most one (densities are in `[0,1]`).
-Consumed by path and triangle counting.-/
+Consumed by path and triangle counting.
+@isnad1 id=le.2h4v.s6.4f3753ab6c8f from=translated src=- shape=820674b7 vocab=7729d30c
+-/
 theorem abs_mul_sub_mul_le {x y d e : ℝ} (hx : |x| ≤ 1) (he : |e| ≤ 1) :
     |x * y - d * e| ≤ |x - d| + |y - e| := by
   have key : x * y - d * e = x * (y - e) + e * (x - d) := by ring
@@ -137,7 +149,9 @@ theorem abs_mul_sub_mul_le {x y d e : ℝ} (hx : |x| ≤ 1) (he : |e| ≤ 1) :
 /-- Three-factor perturbation bound: replacing each factor of a triple product by a nearby
 value perturbs the product by at most the sum of the three factor errors, given the
 retained factors have absolute value at most one. Consumed by strong three-vertex
-counting.-/
+counting.
+@isnad1 id=le.4h6v.s7.277a6647c919 from=translated src=- shape=1cea4a6b vocab=7729d30c
+-/
 theorem abs_mul_mul_sub_mul_mul_le {a b c a' b' c' : ℝ}
     (hb : |b| ≤ 1) (hc : |c| ≤ 1) (ha' : |a'| ≤ 1) (hb' : |b'| ≤ 1) :
     |a * b * c - a' * b' * c'| ≤ |a - a'| + |b - b'| + |c - c'| := by
@@ -174,7 +188,9 @@ coefficients are relative cell masses. Note the constant: the bound is `ε`, **n
 no extreme-point machinery is needed, because `cᵢ * yᵢ ≤ max yᵢ 0` holds pointwise. -/
 
 /-- A `[0,1]`-weighted sum is dominated by the sum over its nonnegative part — the 0/1
-choice `cᵢ = 1 ↔ 0 ≤ yᵢ`.-/
+choice `cᵢ = 1 ↔ 0 ≤ yᵢ`.
+@isnad1 id=le.2h4v.s7.4ff202f676d9 from=translated src=- shape=6c943635 vocab=de056eee
+-/
 theorem sum_mul_le_sum_filter_nonneg {ι : Type*} [DecidableEq ι] {c : ι → ℝ} (I : Finset ι)
     (hc0 : ∀ i ∈ I, 0 ≤ c i) (hc1 : ∀ i ∈ I, c i ≤ 1) (y : ι → ℝ) :
     ∑ i ∈ I, c i * y i ≤ ∑ i ∈ I.filter (fun i => 0 ≤ y i), y i := by
@@ -195,7 +211,9 @@ theorem sum_mul_le_sum_filter_nonneg {ι : Type*} [DecidableEq ι] {c : ι → �
         · simp [h]
         · simp [h, max_eq_right (not_le.mp h).le]
 
-/-- The mirror bound, with the 0/1 choice `cᵢ = 1 ↔ yᵢ < 0`.-/
+/-- The mirror bound, with the 0/1 choice `cᵢ = 1 ↔ yᵢ < 0`.
+@isnad1 id=le.2h4v.s7.496045ce7608 from=translated src=- shape=cb0a18b5 vocab=a7704ea5
+-/
 theorem sum_filter_neg_le_sum_mul {ι : Type*} [DecidableEq ι] {c : ι → ℝ} (I : Finset ι)
     (hc0 : ∀ i ∈ I, 0 ≤ c i) (hc1 : ∀ i ∈ I, c i ≤ 1) (y : ι → ℝ) :
     ∑ i ∈ I.filter (fun i => y i < 0), y i ≤ ∑ i ∈ I, c i * y i := by
@@ -220,7 +238,9 @@ theorem sum_filter_neg_le_sum_mul {ι : Type*} [DecidableEq ι] {c : ι → ℝ}
 `ε`, then so is every `[0,1]`-weighted bilinear combination.
 
 The `1` here is what keeps the downstream common-refinement constant at `2` rather than
-`4`: contraction is free, and the only factor of two comes from a triangle inequality.-/
+`4`: contraction is free, and the only factor of two comes from a triangle inequality.
+@isnad1 id=le.5h8v.s7.d582e68fbb70 from=translated src=- shape=ade36a23 vocab=9a05ebea
+-/
 theorem abs_sum_bilinear_le {ι κ : Type*} [DecidableEq ι] [DecidableEq κ] {c : ι → ℝ}
     {d : κ → ℝ} (I : Finset ι) (J : Finset κ)
     (hc0 : ∀ i ∈ I, 0 ≤ c i) (hc1 : ∀ i ∈ I, c i ≤ 1)
@@ -278,7 +298,9 @@ series bound `Real.quadratic_le_exp_of_nonneg` (`1 + x + x²/2 ≤ exp x`), from
 since `(1 − x + x²/2)·(1 + x + x²/2) = 1 + x⁴/4 ≥ 1`. This is the single analytic ingredient of
 the Hedge regret bound (`RegularityLemmata/Finite/Hedge.lean`); Mathlib's pin has only the forward
 bound. Recorded
-on the plausibly-Mathlib-shaped list (#54).-/
+on the plausibly-Mathlib-shaped list (#54).
+@isnad1 id=le.1h1v.s6.3e5149f28210 from=translated src=- shape=b77fa57d vocab=8aeb8a51
+-/
 theorem exp_neg_le_one_sub_add_sq_half {x : ℝ} (hx : 0 ≤ x) :
     Real.exp (-x) ≤ 1 - x + x ^ 2 / 2 := by
   have hq : 0 ≤ 1 - x + x ^ 2 / 2 := by nlinarith [sq_nonneg (x - 1)]

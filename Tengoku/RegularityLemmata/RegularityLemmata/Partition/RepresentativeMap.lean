@@ -67,15 +67,22 @@ variable {P Q : Finpartition s} (r : RepresentativeMap P Q)
 /-- The owner of the new part of `x`: the old part of its representative.-/
 def owner (x : α) : Finset α := P.part (r.rep x)
 
+/--
+@isnad1 id=mem.1h6v.s6.0abccc9db1c6 from=translated src=- shape=86b964cc vocab=4fa59069
+-/
 theorem owner_mem_parts {x : α} (hx : x ∈ s) : r.owner x ∈ P.parts :=
   P.part_mem.mpr (r.rep_mem x hx)
 
-/-- The owner depends only on the new part.-/
+/-- The owner depends only on the new part.
+@isnad1 id=eq.3h7v.s6.e66c78c1067d from=translated src=- shape=4ce12bcd vocab=353c4103
+-/
 theorem owner_eq_of_part_eq {x y : α} (hx : x ∈ s) (hy : y ∈ s) (h : Q.part x = Q.part y) :
     r.owner x = r.owner y := by
   unfold owner; rw [r.rep_const x hx y hy h]
 
-/-- Outside the displaced set, old label = owner (new label).-/
+/-- Outside the displaced set, old label = owner (new label).
+@isnad1 id=eq.2h6v.s6.b0f631421733 from=translated src=- shape=d14df397 vocab=f4efca0a
+-/
 theorem part_eq_owner {x : α} (hx : x ∈ s) (hxD : x ∉ r.displaced) : P.part x = r.owner x :=
   (r.part_rep x hx hxD).symm
 
@@ -95,6 +102,9 @@ def bot (P : Finpartition s) : RepresentativeMap P ⊥ where
     exact hy.symm
   part_rep := fun _ _ _ ↦ rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7989f663ca4f from=translated src=- shape=4d8d2bf5 vocab=86e2002a
+-/
 @[simp] theorem card_displaced_bot (P : Finpartition s) : (bot P).displaced.card = 0 := rfl
 
 /-- A refinement `Q ≤ P` admits a representative map with nothing displaced: represent each
@@ -125,7 +135,9 @@ end RepresentativeMap
 def crossingSet (P Q : Finpartition s) : Finset α :=
   s.filter fun x ↦ ¬ ∃ t ∈ P.parts, Q.part x ⊆ t
 
-/-- Inside an old part `t`, the uncovered remainder is exactly the crossing points of `t`.-/
+/-- Inside an old part `t`, the uncovered remainder is exactly the crossing points of `t`.
+@isnad1 id=eq.1h5v.s6.8a74fe27e3ad from=translated src=- shape=f96d5a91 vocab=daff9f6e
+-/
 theorem uncoveredWithin_eq_filter_crossing (P Q : Finpartition s) {t : Finset α}
     (ht : t ∈ P.parts) :
     uncoveredWithin Q t = (crossingSet P Q).filter (· ∈ t) := by
@@ -145,7 +157,9 @@ theorem uncoveredWithin_eq_filter_crossing (P Q : Finpartition s) {t : Finset α
     have : u = Q.part x := (Q.part_eq_of_mem hu.1 hxu).symm
     exact hcross t ht (this ▸ hu.2)
 
-/-- The almost-refinement charge is the number of crossing points.-/
+/-- The almost-refinement charge is the number of crossing points.
+@isnad1 id=eq.0h4v.s5.721f260f2010 from=translated src=- shape=8b9200cc vocab=4da02b38
+-/
 theorem card_crossingSet (P Q : Finpartition s) : (crossingSet P Q).card = exceptionalMass Q P := by
   classical
   unfold exceptionalMass
@@ -192,7 +206,9 @@ noncomputable def RepresentativeMap.ofExceptional (ht₀ : t₀ ∈ P.parts) :
       exact Exists.choose_spec _
     rw [P.part_eq_of_mem ht (hsub hmem), P.part_eq_of_mem ht (hsub (Q.mem_part_self.mpr hx))]
 
-/-- The displaced set of `ofExceptional` is the crossing set, of size `exceptionalMass Q P`.-/
+/-- The displaced set of `ofExceptional` is the crossing set, of size `exceptionalMass Q P`.
+@isnad1 id=eq.1h5v.s6.303a9d3e314d from=translated src=- shape=7e4f8c27 vocab=bb88739d
+-/
 theorem RepresentativeMap.card_displaced_ofExceptional (ht₀ : t₀ ∈ P.parts) :
     (RepresentativeMap.ofExceptional P Q ht₀).displaced.card = exceptionalMass Q P :=
   card_crossingSet P Q
@@ -220,7 +236,9 @@ noncomputable def RepresentativeMap.ofExceptionalFree (ht₀ : t₀ ∈ P.parts)
     · exact (RepresentativeMap.ofExceptional P Q ht₀).part_rep x hx hcross
 
 /-- The displaced set of `ofExceptionalFree` is the union of the uncovered remainders of the old
-parts other than `t₀`.-/
+parts other than `t₀`.
+@isnad1 id=eq.1h5v.s6.5a2f0d36685b from=translated src=- shape=f1245b74 vocab=fdfaaf80
+-/
 theorem RepresentativeMap.card_displaced_ofExceptionalFree (ht₀ : t₀ ∈ P.parts) :
     (RepresentativeMap.ofExceptionalFree P Q ht₀).displaced.card
       = ∑ t ∈ P.parts.erase t₀, (uncoveredWithin Q t).card := by
@@ -247,7 +265,9 @@ theorem RepresentativeMap.card_displaced_ofExceptionalFree (ht₀ : t₀ ∈ P.p
       (P.part_eq_iff_mem ht.2).mpr hxt⟩
 
 /-- Under a per-parent remainder `m`, the free-part construction displaces at most
-`(K − 1) · m` points, `K = #P.parts`; in particular `0` when `P` has a single part.-/
+`(K − 1) · m` points, `K = #P.parts`; in particular `0` when `P` has a single part.
+@isnad1 id=le.2h6v.s6.69605a8422ac from=translated src=- shape=3d2abd3f vocab=3b592471
+-/
 theorem RepresentativeMap.card_displaced_ofExceptionalFree_le (ht₀ : t₀ ∈ P.parts) {m : ℕ}
     (h : AlmostRefinesAt Q P m) :
     (RepresentativeMap.ofExceptionalFree P Q ht₀).displaced.card ≤ (P.parts.card - 1) * m := by
@@ -264,7 +284,9 @@ end OfExceptional
 
 /-- **Map → mass.** If every part of `Q` has at most `b` elements, the almost-refinement charge
 is at most `b · |D|`: every crossing part contains a displaced point, and a crossing point is
-charged to a displaced point of its own part.-/
+charged to a displaced point of its own part.
+@isnad1 id=le.1h6v.s6.08106596afd2 from=translated src=- shape=845d90a6 vocab=dd8dcad2
+-/
 theorem RepresentativeMap.exceptionalMass_le_mul_card_displaced {P Q : Finpartition s}
     (r : RepresentativeMap P Q) {b : ℕ} (hb : ∀ u ∈ Q.parts, u.card ≤ b) :
     exceptionalMass Q P ≤ b * r.displaced.card := by
@@ -317,7 +339,9 @@ theorem RepresentativeMap.exceptionalMass_le_mul_card_displaced {P Q : Finpartit
 /-- **Equitable representative map.** For a requested part count `0 < t ≤ |s|` and a designated
 (free) old part `t₀`, an equipartition `Q` with exactly `t` parts and a representative map into
 `P` whose displaced set has at most `(#P.parts − 1) · ⌊|s|/t⌋` elements: the per-old-part
-remainder of mathlib's equitabilisation, summed over the old parts other than `t₀`.-/
+remainder of mathlib's equitabilisation, summed over the old parts other than `t₀`.
+@isnad1 id=ex.3h5v.s7.bd5c8c64fc78 from=translated src=- shape=6f84d8bf vocab=3d6b1dcf
+-/
 theorem exists_equitable_representativeMap (P : Finpartition s) {t₀ : Finset α}
     (ht₀ : t₀ ∈ P.parts) {t : ℕ} (ht : 0 < t) (hts : t ≤ s.card) :
     ∃ (Q : Finpartition s) (r : RepresentativeMap P Q), Q.IsEquipartition ∧ Q.parts.card = t ∧
@@ -326,7 +350,9 @@ theorem exists_equitable_representativeMap (P : Finpartition s) {t₀ : Finset �
   exact ⟨Q, RepresentativeMap.ofExceptionalFree P Q ht₀, hQ, hcard,
     RepresentativeMap.card_displaced_ofExceptionalFree_le P Q ht₀ hat⟩
 
-/-- The `ε`-form: displaced mass at most `ε · |s|` once `⌊|s|/t⌋ · (#P.parts − 1) ≤ ε · |s|`.-/
+/-- The `ε`-form: displaced mass at most `ε · |s|` once `⌊|s|/t⌋ · (#P.parts − 1) ≤ ε · |s|`.
+@isnad1 id=ex.4h6v.s7.e2b99db9a3e5 from=translated src=- shape=e9577ced vocab=fc2ef939
+-/
 theorem exists_equitable_representativeMap_of_le (P : Finpartition s) {t₀ : Finset α}
     (ht₀ : t₀ ∈ P.parts) {t : ℕ} (ht : 0 < t) (hts : t ≤ s.card) {ε : ℝ}
     (hbound : ((s.card / t : ℕ) : ℝ) * ((P.parts.card - 1 : ℕ) : ℝ) ≤ ε * s.card) :

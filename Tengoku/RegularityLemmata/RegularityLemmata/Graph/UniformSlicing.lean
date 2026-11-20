@@ -32,7 +32,9 @@ variable {α : Type*} {R : α → α → Prop} [DecidableRel R] {A B WA WB : Fin
   {ε ε' κA κB : ℝ}
 
 /-- **Density control under slicing**: a slice retaining a `κ ≥ ε` fraction of each
-side of an `ε`-uniform pair has density within `ε` of the host pair's.-/
+side of an `ε`-uniform pair has density within `ε` of the host pair's.
+@isnad1 id=le.7h9v.s7.f2a164db55f9 from=translated src=- shape=3ba6eed3 vocab=62c13601
+-/
 theorem IsUniformPair.slice_density_close (h : IsUniformPair R A B ε)
     (hWA : WA ⊆ A) (hWB : WB ⊆ B) (hκA : ε ≤ κA) (hκB : ε ≤ κB)
     (hA : κA * (A.card : ℝ) ≤ (WA.card : ℝ))
@@ -44,7 +46,9 @@ theorem IsUniformPair.slice_density_close (h : IsUniformPair R A B ε)
 
 /-- **Slicing inheritance**: slices retaining `κ_A, κ_B ≥ ε` fractions of an
 `ε`-uniform pair are `ε'`-uniform whenever `ε ≤ ε'·κ_A`, `ε ≤ ε'·κ_B`, and
-`2ε ≤ ε'`.-/
+`2ε ≤ ε'`.
+@isnad1 id=isunifor.11h10v.s7.f40ebb79351e from=translated src=- shape=a2e0bb62 vocab=07e9f167
+-/
 theorem IsUniformPair.slice (hε : 0 ≤ ε) (h : IsUniformPair R A B ε)
     (hWA : WA ⊆ A) (hWB : WB ⊆ B) (hκA : ε ≤ κA) (hκB : ε ≤ κB)
     (hA : κA * (A.card : ℝ) ≤ (WA.card : ℝ))

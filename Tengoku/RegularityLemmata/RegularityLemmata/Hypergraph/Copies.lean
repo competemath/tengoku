@@ -45,12 +45,18 @@ def inducedCopyCount (P : UniformHypergraph r W) (H : UniformHypergraph r V) : �
   (Finset.univ.filter fun f : W → V => Function.Injective f ∧
     ∀ e ∈ Finset.univ.powersetCard r, (e ∈ P.edges ↔ e.image f ∈ H.edges)).card
 
+/--
+@isnad1 id=le.0h5v.s5.5d811dc63fd5 from=translated src=- shape=032a28bc vocab=d4da216b
+-/
 theorem copyCount_le_homCount (P : UniformHypergraph r W) (H : UniformHypergraph r V) :
     copyCount P H ≤ homCount P H := by
   refine Finset.card_le_card fun f hf => ?_
   rw [Finset.mem_filter] at hf ⊢
   exact ⟨hf.1, hf.2.2⟩
 
+/--
+@isnad1 id=le.0h5v.s5.58d4505f828c from=translated src=- shape=032a28bc vocab=cabb60ce
+-/
 theorem inducedCopyCount_le_copyCount (P : UniformHypergraph r W)
     (H : UniformHypergraph r V) : inducedCopyCount P H ≤ copyCount P H := by
   refine Finset.card_le_card fun f hf => ?_
@@ -58,14 +64,18 @@ theorem inducedCopyCount_le_copyCount (P : UniformHypergraph r W)
   refine ⟨hf.1, hf.2.1, fun e he => ?_⟩
   exact (hf.2.2 e (P.edges_subset_powersetCard he)).mp he
 
-/-- Host monotonicity: more host edges, more homomorphisms.-/
+/-- Host monotonicity: more host edges, more homomorphisms.
+@isnad1 id=le.1h6v.s6.1cfa547e6b76 from=translated src=- shape=99779838 vocab=6c1a369d
+-/
 theorem homCount_mono_host (P : UniformHypergraph r W) {H₁ H₂ : UniformHypergraph r V}
     (h : H₁.edges ⊆ H₂.edges) : homCount P H₁ ≤ homCount P H₂ := by
   refine Finset.card_le_card fun f hf => ?_
   rw [Finset.mem_filter] at hf ⊢
   exact ⟨hf.1, fun e he => h (hf.2 e he)⟩
 
-/-- Host monotonicity: more host edges, more copies.-/
+/-- Host monotonicity: more host edges, more copies.
+@isnad1 id=le.1h6v.s6.fc719fc2770e from=translated src=- shape=99779838 vocab=c22c3428
+-/
 theorem copyCount_mono_host (P : UniformHypergraph r W) {H₁ H₂ : UniformHypergraph r V}
     (h : H₁.edges ⊆ H₂.edges) : copyCount P H₁ ≤ copyCount P H₂ := by
   refine Finset.card_le_card fun f hf => ?_
@@ -73,7 +83,9 @@ theorem copyCount_mono_host (P : UniformHypergraph r W) {H₁ H₂ : UniformHype
   exact ⟨hf.1, hf.2.1, fun e he => h (hf.2.2 e he)⟩
 
 /-- Every injective map is a copy into the complete host: the count is the falling
-factorial `(|V|)_{|W|}`.-/
+factorial `(|V|)_{|W|}`.
+@isnad1 id=eq.0h4v.s5.e3f8eb350890 from=translated src=- shape=78d15f2e vocab=7cd45ea8
+-/
 theorem copyCount_complete (P : UniformHypergraph r W) :
     copyCount P (complete r V) = (Fintype.card V).descFactorial (Fintype.card W) := by
   classical
@@ -94,7 +106,9 @@ theorem copyCount_complete (P : UniformHypergraph r W) :
     Fintype.card_congr (Equiv.subtypeInjectiveEquivEmbedding W V),
     Fintype.card_embedding_eq]
 
-/-- The empty pattern is mapped by every function: a full power.-/
+/-- The empty pattern is mapped by every function: a full power.
+@isnad1 id=eq.0h4v.s5.6e5bac6fc1fe from=translated src=- shape=fb638b1e vocab=92ed9447
+-/
 theorem homCount_empty (H : UniformHypergraph r V) :
     homCount (empty r W) H = (Fintype.card V) ^ (Fintype.card W) := by
   rw [homCount]
@@ -122,7 +136,9 @@ def copyCount (P : ColoredHypergraph r K W) (H : ColoredHypergraph r K V) : ℕ 
     ∀ (e : RSet r W) (h : (e.1.image f).card = r),
       H.coloring ⟨e.1.image f, h⟩ = P.coloring e).card
 
-/-- Colored copies are injective maps, so at most `(|V|)_{|W|}` of them.-/
+/-- Colored copies are injective maps, so at most `(|V|)_{|W|}` of them.
+@isnad1 id=le.0h6v.s5.a355d3673ff2 from=translated src=- shape=189aed30 vocab=0c655726
+-/
 theorem copyCount_le_descFactorial (P : ColoredHypergraph r K W)
     (H : ColoredHypergraph r K V) :
     copyCount P H ≤ (Fintype.card V).descFactorial (Fintype.card W) := by
@@ -139,7 +155,9 @@ theorem copyCount_le_descFactorial (P : ColoredHypergraph r K W)
 
 /-- **The induced-copy bridge.** Colored copies between graph adapters are exactly the
 uncolored induced copies between the corresponding edge hypergraphs: transporting both
-colors is transporting edges and non-edges.-/
+colors is transporting edges and non-edges.
+@isnad1 id=eq.0h4v.s6.5bb491adb5c5 from=translated src=- shape=658ec316 vocab=a3c6a842
+-/
 theorem copyCount_ofSimpleGraph (G₁ : SimpleGraph W) [DecidableRel G₁.Adj]
     (G₂ : SimpleGraph V) [DecidableRel G₂.Adj] :
     copyCount (ofSimpleGraph G₁) (ofSimpleGraph G₂)

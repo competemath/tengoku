@@ -73,7 +73,9 @@ schedule and `m` the current part count; the exponent `5` is the one-round Szeme
 exponent inherited from `regularityBound`. Coarse by design: the majorant is a `sup`, not
 a closed form. House lemma, no source. Consumed by `le_monoStepBound` and `strong_iterate`
 (and by the palette and diagonal analogues in `RegularityLemmata/Relational/BinaryStrong.lean` and
-`RegularityLemmata/Relational/BinaryDiagStrong.lean`).-/
+`RegularityLemmata/Relational/BinaryDiagStrong.lean`).
+@isnad1 id=le.0h2v.s5.b1e27132e34e from=translated src=- shape=793278d5 vocab=5e7a16e0
+-/
 theorem stepBound_le_monoStepBound (E : ErrorSchedule) (m : ℕ) :
     regularityBound ⌈1 / (E m) ^ 5⌉₊ m ≤ monoStepBound E m := by
   unfold monoStepBound
@@ -83,7 +85,9 @@ theorem stepBound_le_monoStepBound (E : ErrorSchedule) (m : ℕ) :
 /-- The monotone step bound dominates the identity: `m ≤ monoStepBound E m`. Follows from
 `le_regularityBound` through `stepBound_le_monoStepBound`; it holds for every `m`,
 including `m = 0`. House lemma, no source. Consumed by `le_monoStepBound_iterate` and
-`monoStepBound_iterate_le_iterate`.-/
+`monoStepBound_iterate_le_iterate`.
+@isnad1 id=le.0h2v.s3.6606f3b0c624 from=translated src=- shape=58a504ac vocab=c6b63949
+-/
 theorem le_monoStepBound (E : ErrorSchedule) (m : ℕ) : m ≤ monoStepBound E m :=
   le_trans (le_regularityBound _ _) (stepBound_le_monoStepBound E m)
 
@@ -91,7 +95,9 @@ theorem le_monoStepBound (E : ErrorSchedule) (m : ℕ) : m ≤ monoStepBound E m
 `monoStepBound E m ≤ monoStepBound E m'`, because the `sup` over `range (m + 1)` is a
 `sup` over a subset of `range (m' + 1)`. This is the property `regularityBound ⌈1/E(k)⁵⌉ k`
 itself lacks for an arbitrary schedule, and the reason the majorant exists. House lemma,
-no source. Consumed by `monoStepBound_iterate_mono`.-/
+no source. Consumed by `monoStepBound_iterate_mono`.
+@isnad1 id=le.1h3v.s4.69c08dc3b1f1 from=translated src=- shape=008790cb vocab=c6b63949
+-/
 theorem monoStepBound_mono (E : ErrorSchedule) {m m' : ℕ} (h : m ≤ m') :
     monoStepBound E m ≤ monoStepBound E m' := by
   unfold monoStepBound
@@ -102,7 +108,9 @@ theorem monoStepBound_mono (E : ErrorSchedule) {m m' : ℕ} (h : m ≤ m') :
 `monoStepBound_mono`. This is what lets the restart of `strong_iterate` compose a bound
 from an intermediate partition with the bound on that partition's part count. House
 lemma, no source. Consumed by `strong_iterate`, `le_monoStepBound_iterate`, and
-`monoStepBound_iterate_le_iterate`.-/
+`monoStepBound_iterate_le_iterate`.
+@isnad1 id=le.1h4v.s4.2bac9350d7b0 from=translated src=- shape=8ec2a8d2 vocab=2bf0fd17
+-/
 theorem monoStepBound_iterate_mono (E : ErrorSchedule) (i : ℕ) {m m' : ℕ} (h : m ≤ m') :
     (monoStepBound E)^[i] m ≤ (monoStepBound E)^[i] m' := by
   induction i generalizing m m' with
@@ -115,7 +123,9 @@ theorem monoStepBound_iterate_mono (E : ErrorSchedule) (i : ℕ) {m m' : ℕ} (h
 `m ≤ (monoStepBound E)^[i] m` for every fuel `i` and part count `m`. At `i = 0` this is
 reflexivity; the step uses `le_monoStepBound` and `monoStepBound_iterate_mono`. House
 lemma, no source. Consumed by `strong_iterate` for the coarse-count bound on the branch
-that stops early, and by `monoStepBound_iterate_le_iterate`.-/
+that stops early, and by `monoStepBound_iterate_le_iterate`.
+@isnad1 id=le.0h3v.s4.ca87c5670035 from=translated src=- shape=3fb9be13 vocab=2bf0fd17
+-/
 theorem le_monoStepBound_iterate (E : ErrorSchedule) (i : ℕ) (m : ℕ) :
     m ≤ (monoStepBound E)^[i] m := by
   induction i with
@@ -128,7 +138,9 @@ theorem le_monoStepBound_iterate (E : ErrorSchedule) (i : ℕ) (m : ℕ) :
 `(monoStepBound E)^[i] m ≤ (monoStepBound E)^[j] m`. This is the property that lets early
 stopping in `strong_iterate` be charged against the full-fuel closed-form bound, and it is
 also why the coarse-count bound of `exists_strongWitness` is antitone in the gap `δ`. House
-lemma, no source. Consumed by `strong_iterate` and its palette and diagonal analogues.-/
+lemma, no source. Consumed by `strong_iterate` and its palette and diagonal analogues.
+@isnad1 id=le.1h4v.s4.395536e36840 from=translated src=- shape=635ab4c3 vocab=2bf0fd17
+-/
 theorem monoStepBound_iterate_le_iterate (E : ErrorSchedule) {i j : ℕ} (hij : i ≤ j)
     (m : ℕ) : (monoStepBound E)^[i] m ≤ (monoStepBound E)^[j] m := by
   induction j with
@@ -146,7 +158,9 @@ theorem monoStepBound_iterate_le_iterate (E : ErrorSchedule) {i j : ℕ} (hij : 
 /-! ### Existence by energy-gap stopping -/
 
 /-- Fuel-parametrized strong iteration: from energy within `t · δ` of the ceiling,
-`t` restarts suffice.-/
+`t` restarts suffice.
+@isnad1 id=ex.2h7v.s7.75e27e64f2e8 from=translated src=- shape=901edef0 vocab=e956c5b0
+-/
 theorem strong_iterate (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * δ ≤ energy R P →
       ∃ w : StrongWitness R E δ P,
@@ -198,7 +212,9 @@ theorem strong_iterate (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ) :
               (Function.iterate_succ_apply _ _ _).symm
 
 /-- **Strong regularity.** Every starting partition admits a strong witness for any
-positive error schedule and gap, with explicit host-independent part-count bounds.-/
+positive error schedule and gap, with explicit host-independent part-count bounds.
+@isnad1 id=ex.1h6v.s7.91c45427a0d9 from=translated src=- shape=56368315 vocab=cb019a1d
+-/
 theorem exists_strongWitness (E : ErrorSchedule) {δ : ℝ} (hδ : 0 < δ)
     (P₀ : Finpartition s) :
     ∃ w : StrongWitness R E δ P₀,
@@ -230,13 +246,17 @@ mass weights `|p₁| |p₂|` times squared density shifts. Raw (mass units, not 
 `|s|²`); no relation between `Q` and `P` is assumed, and on an empty carrier or with no
 sub-blocks the sum is `0`. House lemma, no source. Not consumed elsewhere in the
 repository; it records the sign of the quantity `refinementVarianceNum_eq` identifies
-with the energy gain.-/
+with the energy gain.
+@isnad1 id=le.0h5v.s5.0fbe90453686 from=translated src=- shape=73d0ba10 vocab=c477a4d3
+-/
 theorem refinementVarianceNum_nonneg {Q P : Finpartition s} :
     0 ≤ refinementVarianceNum R Q P :=
   Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => by positivity
 
 /-- The parallel-axis identity, summed: the refinement variance is exactly the
-un-normalized energy gain.-/
+un-normalized energy gain.
+@isnad1 id=eq.1h5v.s6.418cee4c892f from=translated src=- shape=287c183b vocab=d373dad8
+-/
 theorem refinementVarianceNum_eq {Q P : Finpartition s} (hQP : Q ≤ P) :
     refinementVarianceNum R Q P = energyNum R Q - energyNum R P := by
   classical
@@ -262,7 +282,9 @@ theorem refinementVarianceNum_eq {Q P : Finpartition s} (hQP : Q ≤ P) :
   rw [Finset.sum_product]
 
 /-- **L² density-shift bound.** The strong witness's energy gap bounds the refinement
-variance of the fine partition against the coarse one by `δ·|s|²`.-/
+variance of the fine partition against the coarse one by `δ·|s|²`.
+@isnad1 id=le.0h7v.s6.455ed49c9251 from=translated src=- shape=57cbfa42 vocab=f1152a25
+-/
 theorem StrongWitness.refinementVarianceNum_le {E : ErrorSchedule} {δ : ℝ}
     {P₀ : Finpartition s} (w : StrongWitness R E δ P₀) :
     refinementVarianceNum R w.fine w.coarse ≤ δ * (s.card : ℝ) ^ 2 := by
@@ -297,7 +319,9 @@ theorem StrongWitness.refinementVarianceNum_le {E : ErrorSchedule} {δ : ℝ}
 
 /-- **Exceptional-mass (Markov) consequence.** The mass of refined rectangles whose
 density shifts from their coarse parent by more than `η` is at most `(δ/η²)·|s|²` —
-the bridge a strong-witness counting theorem consumes.-/
+the bridge a strong-witness counting theorem consumes.
+@isnad1 id=le.1h8v.s8.284d110c6fd5 from=translated src=- shape=58127706 vocab=ecdb29fe
+-/
 theorem StrongWitness.deviant_mass_le {E : ErrorSchedule} {δ : ℝ}
     {P₀ : Finpartition s} (w : StrongWitness R E δ P₀) {η : ℝ} (hη : 0 < η) :
     ∑ pd ∈ w.coarse.parts ×ˢ w.coarse.parts,

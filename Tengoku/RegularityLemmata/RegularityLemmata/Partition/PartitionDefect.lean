@@ -61,10 +61,15 @@ section Basic
 
 variable (P : Finpartition s) (p : α → Prop) [DecidablePred p]
 
+/--
+@isnad1 id=le.0h4v.s5.e4e5b39eb3b4 from=translated src=- shape=618f3402 vocab=4d5aaa8f
+-/
 theorem partitionDefect_nonneg : 0 ≤ partitionDefect P p :=
   Finset.sum_nonneg fun _ _ ↦ by positivity
 
-/-- Each part contributes `|l| · 2·d_l·(1 − d_l)`.-/
+/-- Each part contributes `|l| · 2·d_l·(1 − d_l)`.
+@isnad1 id=eq.0h4v.s6.cdcf3c75fa93 from=translated src=- shape=8cd2f23b vocab=67eb89a6
+-/
 theorem partitionDefect_eq_sum_density :
     partitionDefect P p
       = ∑ l ∈ P.parts, (l.card : ℝ) * (2 * densityOn l p * (1 - densityOn l p)) := by
@@ -74,7 +79,9 @@ theorem partitionDefect_eq_sum_density :
   rw [← sectionDisagreement_div_sq]
   field_simp
 
-/-- The defect never exceeds `|s| / 2`.-/
+/-- The defect never exceeds `|s| / 2`.
+@isnad1 id=le.0h4v.s5.6b227ece522e from=translated src=- shape=cf1f2087 vocab=3a0906ee
+-/
 theorem partitionDefect_le_half : partitionDefect P p ≤ (s.card : ℝ) / 2 := by
   rw [partitionDefect_eq_sum_density]
   calc ∑ l ∈ P.parts, (l.card : ℝ) * (2 * densityOn l p * (1 - densityOn l p))
@@ -83,7 +90,9 @@ theorem partitionDefect_le_half : partitionDefect P p ≤ (s.card : ℝ) / 2 := 
           mul_le_mul_of_nonneg_left two_mul_mul_one_sub_le_half (Nat.cast_nonneg _)
     _ = (s.card : ℝ) / 2 := by rw [← Finset.sum_mul, sum_card_parts_cast]; ring
 
-/-- Singleton parts never disagree: the defect of `⊥` is `0`.-/
+/-- Singleton parts never disagree: the defect of `⊥` is `0`.
+@isnad1 id=eq.0h3v.s5.ab26ab9d262b from=translated src=- shape=2313901a vocab=ee911c60
+-/
 theorem partitionDefect_bot : partitionDefect (⊥ : Finpartition s) p = 0 := by
   unfold partitionDefect
   refine Finset.sum_eq_zero fun l hl ↦ ?_
@@ -94,10 +103,16 @@ theorem partitionDefect_bot : partitionDefect (⊥ : Finpartition s) p = 0 := by
     by_cases hx : p x <;> simp [hx]
   simp [Function.Embedding.coeFn_mk, this]
 
+/--
+@isnad1 id=le.0h5v.s5.f73e7376c8a5 from=translated src=- shape=b37900ea vocab=58684f2e
+-/
 theorem sectionRefinementVariance_nonneg (Q : Finpartition s) :
     0 ≤ sectionRefinementVariance Q P p :=
   Finset.sum_nonneg fun _ _ ↦ Finset.sum_nonneg fun _ _ ↦ by positivity
 
+/--
+@isnad1 id=le.0h6v.s5.1f6c08f80d66 from=translated src=- shape=bdb5cf0f vocab=a5251332
+-/
 theorem familyDefect_nonneg {ι : Type*} (Y : Finset ι) (q : ι → α → Prop)
     [∀ y, DecidablePred (q y)] : 0 ≤ familyDefect P Y q :=
   Finset.sum_nonneg fun _ _ ↦ partitionDefect_nonneg P _
@@ -131,7 +146,9 @@ private theorem sum_card_filter_subset (hQ : Q ≤ P) {t : Finset α} (ht : t �
     exact (Finset.card_biUnion hdisj').symm
 
 /-- **The refinement variance identity.** For `Q ≤ P`,
-`partitionDefect P p = partitionDefect Q p + 2 · sectionRefinementVariance Q P p`.-/
+`partitionDefect P p = partitionDefect Q p + 2 · sectionRefinementVariance Q P p`.
+@isnad1 id=eq.1h5v.s6.3c6d590a5c01 from=translated src=- shape=5e761c97 vocab=8d5cc1c6
+-/
 theorem partitionDefect_eq_add_refinementVariance (hQ : Q ≤ P) :
     partitionDefect P p = partitionDefect Q p + 2 * sectionRefinementVariance Q P p := by
   classical
@@ -161,16 +178,23 @@ theorem partitionDefect_eq_add_refinementVariance (hQ : Q ≤ P) :
     Finset.sum_congr rfl hmass, hcount, ← htmass, hcard]
   ring
 
-/-- **Refinement monotonicity.** Refining the partition can only lower the defect.-/
+/-- **Refinement monotonicity.** Refining the partition can only lower the defect.
+@isnad1 id=le.1h5v.s6.d3ba22e24a23 from=translated src=- shape=433d92f9 vocab=4d5aaa8f
+-/
 theorem partitionDefect_mono (hQ : Q ≤ P) : partitionDefect Q p ≤ partitionDefect P p := by
   rw [partitionDefect_eq_add_refinementVariance p hQ]
   linarith [sectionRefinementVariance_nonneg P p Q]
 
+/--
+@isnad1 id=le.1h7v.s6.ef39f1302508 from=translated src=- shape=656d89b0 vocab=a5251332
+-/
 theorem familyDefect_mono (hQ : Q ≤ P) {ι : Type*} (Y : Finset ι) (q : ι → α → Prop)
     [∀ y, DecidablePred (q y)] : familyDefect Q Y q ≤ familyDefect P Y q :=
   Finset.sum_le_sum fun y _ ↦ partitionDefect_mono (q y) hQ
 
-/-- The identity lifted to a family of sections.-/
+/-- The identity lifted to a family of sections.
+@isnad1 id=eq.1h7v.s7.dc855037e24f from=translated src=- shape=fa7b2983 vocab=b88abafb
+-/
 theorem familyDefect_eq_add_refinementVariance (hQ : Q ≤ P) {ι : Type*} (Y : Finset ι)
     (q : ι → α → Prop) [∀ y, DecidablePred (q y)] :
     familyDefect P Y q = familyDefect Q Y q + 2 * ∑ y ∈ Y, sectionRefinementVariance Q P (q y) := by

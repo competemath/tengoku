@@ -38,7 +38,9 @@ variable {ι β : Type*} [Fintype ι] [DecidableEq ι] [DecidableEq β]
 /-- **The union bound.** A set every element of which lies in at least one of finitely many
 sets has mass at most the summed masses. This is where a palette factor comes from when one
 forbidden condition must hold for EVERY color simultaneously: the forbidden set is the
-union of the per-color ones, not a product of the event index with the colors.-/
+union of the per-color ones, not a product of the event index with the colors.
+@isnad1 id=le.2h5v.s6.76c980011913 from=translated src=- shape=828998e4 vocab=f8ffe19f
+-/
 theorem sum_le_sum_of_exists_mem {γ κ : Type*} [DecidableEq γ] [Fintype κ]
     (S : Finset γ) (T : κ → Finset γ) (f : γ → ℝ) (hf : ∀ x, 0 ≤ f x)
     (hcov : ∀ x ∈ S, ∃ k, x ∈ T k) :
@@ -63,7 +65,9 @@ theorem sum_le_sum_of_exists_mem {γ κ : Type*} [DecidableEq γ] [Fintype κ]
 event `e` the product `hbad` omits is the total product divided by the two coordinate
 weights, so a uniform floor `w₀` on those weights converts the `hbad` left-hand side into
 the AGGREGATE event mass, scaled by `w₀⁻²` and the total weight. The number of events never
-multiplies anything: each event contributes only its own mass.-/
+multiplies anything: each event contributes only its own mass.
+@isnad1 id=le.4h9v.s8.c1e352e57542 from=translated src=- shape=93d121d7 vocab=7df9a846
+-/
 theorem sum_event_mass_le_of_weight_floor {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e) (Bad : E → Finset (β × β))
@@ -103,7 +107,9 @@ theorem sum_event_mass_le_of_weight_floor {E : Type*} [Fintype E]
 
 /-- **The cost channel in one step.** An aggregate bound `A` on the summed event masses
 produces the `μ` input of `exists_piFinset_forall_not_mem_bad_cost_le` directly, for the
-unit-charge event cost: `μ = A / w₀ ^ 2`.-/
+unit-charge event cost: `μ = A / w₀ ^ 2`.
+@isnad1 id=le.5h10v.s8.00595d07bbf4 from=translated src=- shape=d290680d vocab=8d060b17
+-/
 theorem sum_piFinset_weight_mul_eventCost_le_of_weight_floor {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e) (Dev : E → Finset (β × β))

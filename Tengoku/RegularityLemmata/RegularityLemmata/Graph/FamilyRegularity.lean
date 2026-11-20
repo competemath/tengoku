@@ -83,7 +83,9 @@ variable {K : ℕ} {Rk : Fin K → α → α → Prop} [∀ k, DecidableRel (Rk 
   {ε : ℝ} {P Q : Finpartition s}
 
 /-- The singleton bridge: family regularity of one relation is that relation's
-regularity. Nothing here assumes symmetry.-/
+regularity. Nothing here assumes symmetry.
+@isnad1 id=iff.0h5v.s6.fced4510d4fb from=translated src=- shape=1161ed37 vocab=c53404cf
+-/
 theorem isFamilyRegular_single {R : α → α → Prop} [DecidableRel R] :
     IsFamilyRegular (fun _ : Fin 1 => R) ε P ↔ IsRegularPartition R ε P := by
   constructor
@@ -92,15 +94,22 @@ theorem isFamilyRegular_single {R : α → α → Prop} [DecidableRel R] :
   · intro h k
     exact h
 
-/-- The empty family is regular at every tolerance — the `K = 0` endpoint.-/
+/-- The empty family is regular at every tolerance — the `K = 0` endpoint.
+@isnad1 id=isfamily.0h5v.s5.704079e6eae6 from=translated src=- shape=1cc5d7c5 vocab=80efa3e8
+-/
 theorem isFamilyRegular_zero (Rk : Fin 0 → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] : IsFamilyRegular Rk ε P :=
   fun k => k.elim0
 
+/--
+@isnad1 id=le.0h5v.s5.8e7ce16ce6e9 from=translated src=- shape=6c05af37 vocab=24d6c55c
+-/
 theorem familyEnergy_nonneg : 0 ≤ familyEnergy Rk P :=
   Finset.sum_nonneg fun k _ => energy_nonneg (Rk k)
 
-/-- The family-energy ceiling is `K`, not `1`.-/
+/-- The family-energy ceiling is `K`, not `1`.
+@isnad1 id=le.0h5v.s5.a2605b557138 from=translated src=- shape=0ff7b29e vocab=b87f3e37
+-/
 theorem familyEnergy_le_card : familyEnergy Rk P ≤ (K : ℝ) := by
   calc familyEnergy Rk P
       ≤ ∑ _k : Fin K, (1 : ℝ) :=
@@ -109,12 +118,16 @@ theorem familyEnergy_le_card : familyEnergy Rk P ≤ (K : ℝ) := by
         rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul,
           mul_one]
 
-/-- Family energy is monotone under refinement — every summand is.-/
+/-- Family energy is monotone under refinement — every summand is.
+@isnad1 id=le.1h6v.s6.a5159e1cf730 from=translated src=- shape=2ecaa5c3 vocab=24d6c55c
+-/
 theorem familyEnergy_mono (hQ : Q ≤ P) : familyEnergy Rk P ≤ familyEnergy Rk Q :=
   Finset.sum_le_sum fun k _ => energy_mono (Rk k) hQ
 
 /-- A single relation's energy is dominated by the family energy. Weaker than the
-lifting lemma below — kept as a convenience.-/
+lifting lemma below — kept as a convenience.
+@isnad1 id=le.0h6v.s6.19ccc326b9d4 from=translated src=- shape=623f49dc vocab=ce0cdb32
+-/
 theorem energy_le_familyEnergy (k : Fin K) : energy (Rk k) P ≤ familyEnergy Rk P :=
   Finset.single_le_sum (f := fun k => energy (Rk k) P)
     (fun j _ => energy_nonneg (Rk j)) (Finset.mem_univ k)
@@ -123,7 +136,9 @@ theorem energy_le_familyEnergy (k : Fin K) : energy (Rk k) P ≤ familyEnergy Rk
 across a refinement `Q ≤ P` lifts to the SAME gain in the family energy, because
 every other summand is monotone under refinement. This packages the preservation of
 the untouched `K − 1` summands, and is exactly why the family iteration can resolve
-a single offending relation at each step.-/
+a single offending relation at each step.
+@isnad1 id=le.2h8v.s7.c1fc0f354fb5 from=translated src=- shape=994afe5e vocab=efa2e0ac
+-/
 theorem familyEnergy_add_le_of_component {g : ℝ} (hQP : Q ≤ P) (k : Fin K)
     (hgain : energy (Rk k) P + g ≤ energy (Rk k) Q) :
     familyEnergy Rk P + g ≤ familyEnergy Rk Q := by
@@ -140,7 +155,9 @@ theorem familyEnergy_add_le_of_component {g : ℝ} (hQP : Q ≤ P) (k : Fin K)
   simp only [Finset.mem_univ, ite_true] at hsum
   exact hsum
 
-/-- The empty family has zero energy.-/
+/-- The empty family has zero energy.
+@isnad1 id=eq.0h4v.s6.211406e43065 from=translated src=- shape=f2dc2b60 vocab=f5136233
+-/
 theorem familyEnergy_zero (Rk : Fin 0 → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] : familyEnergy Rk P = 0 := by
   simp [familyEnergy]
@@ -184,9 +201,15 @@ def familyRegularityBoundAux : ℕ → ℕ → ℕ
   | 0, m => m
   | t + 1, m => familyRegularityBoundAux t (familyStepBound m)
 
+/--
+@isnad1 id=le.0h3v.s3.8e268bc0ba5f from=translated src=- shape=667193bd vocab=efebf19a
+-/
 theorem le_familyInitialBound (C ε : ℝ) (l : ℕ) : l ≤ familyInitialBound C ε l :=
   le_trans (le_max_left l 2) (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h3v.s4.8765cd6e1882 from=translated src=- shape=242e3cc5 vocab=efebf19a
+-/
 theorem two_le_familyInitialBound (C ε : ℝ) (l : ℕ) :
     2 ≤ familyInitialBound C ε l :=
   le_trans (le_max_right l 2) (le_max_left _ _)
@@ -194,7 +217,9 @@ theorem two_le_familyInitialBound (C ε : ℝ) (l : ℕ) :
 /-- **The chunk numerical condition is met by the initial floor**: for the ε-dependent
 floor, `4^(familyInitialBound C ε l)·ε⁵ ≥ C`. This is the family analogue of mathlib's
 `100 ≤ 4^#P·ε⁵`, with the constant left as the parameter `C`. (No sign hypothesis on
-`C` is needed: `⌈C/ε⁵⌉₊ = 0` for `C ≤ 0`, and `C ≤ 0 ≤ 4^··ε⁵` there.)-/
+`C` is needed: `⌈C/ε⁵⌉₊ = 0` for `C ≤ 0`, and `C ≤ 0 ≤ 4^··ε⁵` there.)
+@isnad1 id=le.1h3v.s6.13ea21f2c8be from=translated src=- shape=48ce4e97 vocab=314d61fa
+-/
 theorem le_pow_familyInitialBound_mul {C ε : ℝ} (hε : 0 < ε) (l : ℕ) :
     C ≤ 4 ^ familyInitialBound C ε l * ε ^ 5 := by
   have hε5 : (0 : ℝ) < ε ^ 5 := by positivity
@@ -212,7 +237,9 @@ theorem le_pow_familyInitialBound_mul {C ε : ℝ} (hε : 0 < ε) (l : ℕ) :
 
 /-- **The transported numerical bridge**: the chunk condition holds at EVERY part
 count `N` at or above the initial floor, not only at the floor itself — the form the
-iteration consumes (`N := P.parts.card` at each refinement stage).-/
+iteration consumes (`N := P.parts.card` at each refinement stage).
+@isnad1 id=le.2h4v.s6.451deaad54ef from=translated src=- shape=fbf7f180 vocab=314d61fa
+-/
 theorem le_pow_mul_of_familyInitialBound_le {C ε : ℝ} (hε : 0 < ε) {l N : ℕ}
     (hN : familyInitialBound C ε l ≤ N) : C ≤ 4 ^ N * ε ^ 5 := by
   refine le_trans (le_pow_familyInitialBound_mul hε l) ?_
@@ -220,9 +247,15 @@ theorem le_pow_mul_of_familyInitialBound_le {C ε : ℝ} (hε : 0 < ε) {l N : �
     pow_le_pow_right₀ (by norm_num) hN
   exact mul_le_mul_of_nonneg_right h4 (by positivity)
 
+/--
+@isnad1 id=lt.0h1v.s3.7abd6fdfbe42 from=translated src=- shape=8a62b088 vocab=e189e79b
+-/
 theorem familyChunksPerPart_pos (n : ℕ) : 0 < familyChunksPerPart n :=
   Nat.mul_pos (pow_pos (by norm_num) _) (pow_pos (by norm_num) _)
 
+/--
+@isnad1 id=le.1h2v.s4.a0724011e223 from=translated src=- shape=6bee9d27 vocab=8f72746b
+-/
 theorem familyChunksPerPart_mono {m n : ℕ} (h : m ≤ n) :
     familyChunksPerPart m ≤ familyChunksPerPart n := by
   have h2 : 2 ^ (2 * m) ≤ 2 ^ (2 * n) := Nat.pow_le_pow_right (by norm_num) (by omega)
@@ -231,10 +264,15 @@ theorem familyChunksPerPart_mono {m n : ℕ} (h : m ≤ n) :
   exact Nat.mul_le_mul h2 h4
 
 /-- The step bound is positive exactly on a nonempty partition — the nondegeneracy the
-step-3 construction needs to divide the host size by it.-/
+step-3 construction needs to divide the host size by it.
+@isnad1 id=lt.1h1v.s4.19c994632c87 from=translated src=- shape=35bd48ee vocab=80df05d3
+-/
 theorem familyStepBound_pos {n : ℕ} (hn : 0 < n) : 0 < familyStepBound n :=
   Nat.mul_pos hn (familyChunksPerPart_pos n)
 
+/--
+@isnad1 id=le.0h1v.s3.7b205e4abdb8 from=translated src=- shape=e63234f4 vocab=d5eac618
+-/
 theorem le_familyStepBound (n : ℕ) : n ≤ familyStepBound n :=
   calc n = n * 1 := (mul_one n).symm
     _ ≤ n * familyChunksPerPart n := Nat.mul_le_mul (le_refl n) (familyChunksPerPart_pos n)
@@ -242,15 +280,23 @@ theorem le_familyStepBound (n : ℕ) : n ≤ familyStepBound n :=
 /-- Divisibility by three is preserved by the step, since `familyStepBound n` is `n` times
 something. Seeding the exact iteration at a multiple of three therefore keeps every
 reachable part count divisible by three — the prerequisite of grouping cells into owners of
-three (`ARCHITECTURE.md`, route (b) ladder step 2).-/
+three (`ARCHITECTURE.md`, route (b) ladder step 2).
+@isnad1 id=dvd.1h1v.s4.3981ac2861e7 from=translated src=- shape=35bd48ee vocab=992ca9f5
+-/
 theorem three_dvd_familyStepBound {n : ℕ} (h : 3 ∣ n) : 3 ∣ familyStepBound n := by
   rw [familyStepBound]
   exact Dvd.dvd.mul_right h _
 
+/--
+@isnad1 id=le.1h2v.s4.0f7754b6c5df from=translated src=- shape=6bee9d27 vocab=d5eac618
+-/
 theorem familyStepBound_mono {m n : ℕ} (h : m ≤ n) :
     familyStepBound m ≤ familyStepBound n :=
   Nat.mul_le_mul h (familyChunksPerPart_mono h)
 
+/--
+@isnad1 id=le.0h2v.s3.76d1c392afde from=translated src=- shape=86c6c8ca vocab=7dca0cd4
+-/
 theorem le_familyRegularityBoundAux (t m : ℕ) :
     m ≤ familyRegularityBoundAux t m := by
   induction t generalizing m with
@@ -260,7 +306,9 @@ theorem le_familyRegularityBoundAux (t m : ℕ) :
     exact le_trans (le_familyStepBound m) (IH _)
 
 /-- Monotonicity of the iterate in its initial argument — step 5 uses this to replace
-actual part counts by their recursive upper bounds.-/
+actual part counts by their recursive upper bounds.
+@isnad1 id=le.1h3v.s4.88d33ce06c03 from=translated src=- shape=32f89d1d vocab=7dca0cd4
+-/
 theorem familyRegularityBoundAux_mono (t : ℕ) {m n : ℕ} (h : m ≤ n) :
     familyRegularityBoundAux t m ≤ familyRegularityBoundAux t n := by
   induction t generalizing m n with

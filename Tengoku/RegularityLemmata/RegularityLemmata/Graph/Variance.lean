@@ -35,7 +35,9 @@ variable {α : Type*} {R : α → α → Prop} [DecidableRel R] {A B : Finset α
 
 /-! ### One-sided and 2×2 count splits -/
 
-/-- Splitting the source set splits the pair count additively.-/
+/-- Splitting the source set splits the pair count additively.
+@isnad1 id=eq.1h5v.s6.9e0f64c384e1 from=translated src=- shape=5f909f77 vocab=d26db833
+-/
 theorem pairCount_split_left (R : α → α → Prop) [DecidableRel R] [DecidableEq α]
     {A : Finset α} (A' : Finset α) (hA' : A' ⊆ A) (B : Finset α) :
     pairCount R A B = pairCount R A' B + pairCount R (A \ A') B := by
@@ -50,7 +52,9 @@ theorem pairCount_split_left (R : α → α → Prop) [DecidableRel R] [Decidabl
   rw [← Finset.card_union_of_disjoint hdisj, ← Finset.filter_union, ← Finset.union_product,
     Finset.union_sdiff_of_subset hA']
 
-/-- Splitting the target set splits the pair count additively.-/
+/-- Splitting the target set splits the pair count additively.
+@isnad1 id=eq.1h5v.s6.aa44be9d009c from=translated src=- shape=459e4185 vocab=d26db833
+-/
 theorem pairCount_split_right (R : α → α → Prop) [DecidableRel R] [DecidableEq α]
     (A : Finset α) {B : Finset α} (B' : Finset α) (hB' : B' ⊆ B) :
     pairCount R A B = pairCount R A B' + pairCount R A (B \ B') := by
@@ -65,7 +69,9 @@ theorem pairCount_split_right (R : α → α → Prop) [DecidableRel R] [Decidab
   rw [← Finset.card_union_of_disjoint hdisj, ← Finset.filter_union, ← Finset.product_union,
     Finset.union_sdiff_of_subset hB']
 
-/-- The pair count is additive over the `2 × 2` refinement by a sub-rectangle.-/
+/-- The pair count is additive over the `2 × 2` refinement by a sub-rectangle.
+@isnad1 id=eq.2h6v.s7.698662a83a5a from=translated src=- shape=807d5570 vocab=d26db833
+-/
 theorem pairCount_split (R : α → α → Prop) [DecidableRel R] [DecidableEq α]
     {A B : Finset α} (A' B' : Finset α) (hA' : A' ⊆ A) (hB' : B' ⊆ B) :
     pairCount R A B = pairCount R A' B' + pairCount R A' (B \ B')
@@ -76,11 +82,17 @@ theorem pairCount_split (R : α → α → Prop) [DecidableRel R] [DecidableEq �
 
 /-! ### Empty-side densities -/
 
+/--
+@isnad1 id=eq.1h4v.s5.aa519f8dd702 from=translated src=- shape=3381657f vocab=04f49aec
+-/
 theorem pairDensity_of_left_card_eq_zero (R : α → α → Prop) [DecidableRel R]
     (B : Finset α) (h : A.card = 0) : pairDensity R A B = 0 := by
   rw [Finset.card_eq_zero.mp h, pairDensity]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.e1a028e44dfe from=translated src=- shape=8bb15c09 vocab=04f49aec
+-/
 theorem pairDensity_of_right_card_eq_zero (R : α → α → Prop) [DecidableRel R]
     (A : Finset α) (h : B.card = 0) : pairDensity R A B = 0 := by
   rw [Finset.card_eq_zero.mp h, pairDensity]
@@ -90,7 +102,9 @@ theorem pairDensity_of_right_card_eq_zero (R : α → α → Prop) [DecidableRel
 
 /-- **Parallel-axis identity.** Over a disjoint rectangle cover of `(C, D)`, the
 mass-weighted variance of the sub-block densities around the parent density is exactly
-the block-energy gain of the refinement.-/
+the block-energy gain of the refinement.
+@isnad1 id=eq.4h6v.s8.9a64db3a56db from=translated src=- shape=6fcebee7 vocab=ce107adc
+-/
 theorem variance_eq_sum_blockEnergy_sub [DecidableEq α] (R : α → α → Prop) [DecidableRel R]
     {C D : Finset α} (sC sD : Finset (Finset α))
     (hCdisj : (sC : Set (Finset α)).PairwiseDisjoint id) (hCcover : sC.biUnion id = C)
@@ -126,7 +140,9 @@ theorem variance_eq_sum_blockEnergy_sub [DecidableEq α] (R : α → α → Prop
 /-- Superadditivity re-derived: the variance is nonnegative. (The Engel-form proof in
 `RegularityLemmata/Partition/BlockEnergy.lean` remains the library's primary route; this corollary
 checks
-the identity against it.)-/
+the identity against it.)
+@isnad1 id=le.4h6v.s7.210218648db3 from=translated src=- shape=0e178b93 vocab=99e4ffbf
+-/
 theorem blockEnergy_le_sum_of_cover_via_variance [DecidableEq α] (R : α → α → Prop)
     [DecidableRel R] {C D : Finset α} (sC sD : Finset (Finset α))
     (hCdisj : (sC : Set (Finset α)).PairwiseDisjoint id) (hCcover : sC.biUnion id = C)

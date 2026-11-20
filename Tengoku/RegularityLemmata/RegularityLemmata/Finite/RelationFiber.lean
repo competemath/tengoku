@@ -30,28 +30,40 @@ variable {α β : Type*}
 def fiber (R : α → β → Prop) [DecidableRel R] (a : α) (B : Finset β) : Finset β :=
   B.filter (R a)
 
+/--
+@isnad1 id=iff.0h6v.s5.e1d65d795271 from=translated src=- shape=eb80de76 vocab=a9d838f9
+-/
 @[simp] theorem mem_fiber (R : α → β → Prop) [DecidableRel R] (a : α) (B : Finset β)
     (b : β) : b ∈ fiber R a B ↔ b ∈ B ∧ R a b := by
   simp [fiber]
 
-/-- A relation fiber is supported on the finite set on which it was traced.-/
+/-- A relation fiber is supported on the finite set on which it was traced.
+@isnad1 id=le.0h5v.s5.cb74eff3c194 from=translated src=- shape=39de9285 vocab=30dd24a7
+-/
 theorem fiber_subset (R : α → β → Prop) [DecidableRel R] (a : α) (B : Finset β) :
     fiber R a B ⊆ B := by
   intro b hb
   exact (mem_fiber R a B b).1 hb |>.1
 
-/-- Restricting the support can only shrink a fiber.-/
+/-- Restricting the support can only shrink a fiber.
+@isnad1 id=le.1h6v.s5.a2e9f4f8310f from=translated src=- shape=b23484f3 vocab=30dd24a7
+-/
 theorem fiber_mono (R : α → β → Prop) [DecidableRel R] (a : α)
     {B C : Finset β} (hBC : B ⊆ C) : fiber R a B ⊆ fiber R a C := by
   intro b hb
   rw [mem_fiber] at hb ⊢
   exact ⟨hBC hb.1, hb.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.754f9d1a8ae0 from=translated src=- shape=d7871977 vocab=b4d7a40c
+-/
 @[simp] theorem fiber_empty (R : α → β → Prop) [DecidableRel R] (a : α) :
     fiber R a ∅ = ∅ := by
   simp [fiber]
 
-/-- Tracing on an intersection is the same as tracing first and then intersecting.-/
+/-- Tracing on an intersection is the same as tracing first and then intersecting.
+@isnad1 id=eq.0h6v.s5.b5e30403d7f3 from=translated src=- shape=cd71b0e0 vocab=b2cf458f
+-/
 @[simp] theorem fiber_inter (R : α → β → Prop) [DecidableRel R] [DecidableEq β]
     (a : α) (B C : Finset β) : fiber R a (B ∩ C) = fiber R a B ∩ C := by
   ext b
@@ -62,27 +74,39 @@ def fiberFamily (R : α → β → Prop) [DecidableRel R] [DecidableEq β]
     (A : Finset α) (B : Finset β) : Finset (Finset β) :=
   A.image fun a => fiber R a B
 
+/--
+@isnad1 id=iff.0h6v.s6.90b073ad52e6 from=translated src=- shape=40f72608 vocab=9084ce83
+-/
 @[simp] theorem mem_fiberFamily (R : α → β → Prop) [DecidableRel R] [DecidableEq β]
     (A : Finset α) (B : Finset β) (s : Finset β) :
     s ∈ fiberFamily R A B ↔ ∃ a ∈ A, fiber R a B = s := by
   simp [fiberFamily]
 
-/-- Every member of a fiber family is supported on the tracing set.-/
+/-- Every member of a fiber family is supported on the tracing set.
+@isnad1 id=le.1h6v.s6.7b94b7a45a21 from=translated src=- shape=9d364b7e vocab=7d2b856e
+-/
 theorem mem_fiberFamily_subset (R : α → β → Prop) [DecidableRel R] [DecidableEq β]
     (A : Finset α) (B : Finset β) {s : Finset β} (hs : s ∈ fiberFamily R A B) : s ⊆ B := by
   obtain ⟨a, _, rfl⟩ := (mem_fiberFamily R A B s).1 hs
   exact fiber_subset R a B
 
+/--
+@isnad1 id=eq.0h4v.s5.820c25423e46 from=translated src=- shape=cedf8813 vocab=eeea56c2
+-/
 @[simp] theorem fiberFamily_empty_left (R : α → β → Prop) [DecidableRel R]
     [DecidableEq β] (B : Finset β) : fiberFamily R ∅ B = ∅ := by
   simp [fiberFamily]
 
-/-- A nonempty row family traced on `∅` consists of the single fiber `∅`.-/
+/-- A nonempty row family traced on `∅` consists of the single fiber `∅`.
+@isnad1 id=eq.1h4v.s5.73b1387678bb from=translated src=- shape=b78a1d3f vocab=38d23774
+-/
 theorem fiberFamily_empty_right (R : α → β → Prop) [DecidableRel R]
     [DecidableEq β] {A : Finset α} (hA : A.Nonempty) : fiberFamily R A ∅ = {∅} := by
   simpa [fiberFamily, fiber] using (Finset.image_const hA (∅ : Finset β))
 
-/-- Adding rows can only enlarge the represented fiber family.-/
+/-- Adding rows can only enlarge the represented fiber family.
+@isnad1 id=le.1h6v.s6.3bf6b12ee940 from=translated src=- shape=b388fb57 vocab=f2134e00
+-/
 theorem fiberFamily_mono_left (R : α → β → Prop) [DecidableRel R] [DecidableEq β]
     {A A' : Finset α} (hAA' : A ⊆ A') (B : Finset β) :
     fiberFamily R A B ⊆ fiberFamily R A' B := by

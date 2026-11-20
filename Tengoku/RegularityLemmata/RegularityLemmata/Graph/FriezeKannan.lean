@@ -48,6 +48,9 @@ and `B`.-/
 noncomputable def refineByCuts (P : Finpartition s) (A B : Finset α) : Finpartition s :=
   P.bind fun C _ => Finpartition.atomise C {C ∩ A, C ∩ B}
 
+/--
+@isnad1 id=le.0h5v.s5.1ece2765733c from=translated src=- shape=ecc956e7 vocab=627f106a
+-/
 theorem refineByCuts_le (P : Finpartition s) (A B : Finset α) :
     refineByCuts P A B ≤ P := by
   intro b hb
@@ -55,6 +58,9 @@ theorem refineByCuts_le (P : Finpartition s) (A B : Finset α) :
   obtain ⟨C, hC, hb⟩ := hb
   exact ⟨C, hC, (Finpartition.atomise C _).le hb⟩
 
+/--
+@isnad1 id=le.0h5v.s6.fbdc41e35c15 from=translated src=- shape=29d9ee34 vocab=0b1d89de
+-/
 theorem refineByCuts_parts_card_le (P : Finpartition s) (A B : Finset α) :
     (refineByCuts P A B).parts.card ≤ 4 * P.parts.card := by
   rw [refineByCuts, Finpartition.card_bind]
@@ -69,7 +75,9 @@ theorem refineByCuts_parts_card_le (P : Finpartition s) (A B : Finset α) :
     _ = P.parts.card * 4 := by rw [Finset.sum_const, smul_eq_mul, Finset.card_attach]
     _ = 4 * P.parts.card := Nat.mul_comm _ _
 
-/-- Atoms respect every member of the cutting family.-/
+/-- Atoms respect every member of the cutting family.
+@isnad1 id=or.2h5v.s6.b1af924b7f18 from=translated src=- shape=2090430b vocab=198d9a5e
+-/
 theorem atomise_subset_or_disjoint {C : Finset α} {F : Finset (Finset α)}
     {t : Finset α} (ht : t ∈ F) {u : Finset α}
     (hu : u ∈ (Finpartition.atomise C F).parts) : u ⊆ t ∨ Disjoint u t := by
@@ -85,7 +93,9 @@ theorem atomise_subset_or_disjoint {C : Finset α} {F : Finset (Finset α)}
     rw [Finset.mem_filter] at hx
     exact hQt ((hx.2 t ht).mpr hxt)
 
-/-- Every part of the double split lies inside or outside each test set.-/
+/-- Every part of the double split lies inside or outside each test set.
+@isnad1 id=and.1h6v.s6.29a9bb2b2931 from=translated src=- shape=414ecd92 vocab=dd706e5e
+-/
 theorem refineByCuts_subset_or_disjoint {P : Finpartition s} {A B U : Finset α}
     (hU : U ∈ (refineByCuts P A B).parts) :
     (U ⊆ A ∨ Disjoint U A) ∧ (U ⊆ B ∨ Disjoint U B) := by
@@ -106,7 +116,9 @@ theorem refineByCuts_subset_or_disjoint {P : Finpartition s} {A B U : Finset α}
       exact fun x hx hxB => h hx (Finset.mem_inter.mpr ⟨hUC hx, hxB⟩)
 
 /-- The parts of a refinement inside a part `C` and inside a respected test set `T`
-cover the trace `T ∩ C`.-/
+cover the trace `T ∩ C`.
+@isnad1 id=eq.3h6v.s7.b89cb3cf0177 from=translated src=- shape=40a4d288 vocab=bf04f1cd
+-/
 theorem biUnion_filter_subset_inter {Q P : Finpartition s} (hQP : Q ≤ P) {T : Finset α}
     (hdich : ∀ U ∈ Q.parts, U ⊆ T ∨ Disjoint U T) {C : Finset α} (hC : C ∈ P.parts) :
     ((Q.parts.filter fun U => U ⊆ C ∧ U ⊆ T).biUnion id) = T ∩ C := by
@@ -157,7 +169,9 @@ private theorem sq_sum_le_sum_mul {ι : Type*} [DecidableEq ι] {I : Finset ι}
 set_option maxHeartbeats 1000000 in
 /-- **FK energy increment.** A rectangle with cut discrepancy exceeding `ε·|s|²`
 yields, by double splitting, a refinement with at most `4·#P` parts and an `ε²` energy
-gain.-/
+gain.
+@isnad1 id=ex.4h7v.s8.039a81dc8fcb from=translated src=- shape=b996aca1 vocab=314dbc2d
+-/
 theorem exists_refinement_energy_increment_of_cut_witness {P : Finpartition s}
     (hA : A ⊆ s) (hB : B ⊆ s) (hε : 0 < ε)
     (hdev : ε * (s.card : ℝ) ^ 2 < |(pairCount R A B : ℝ) - steppedCount R P A B|) :
@@ -354,7 +368,9 @@ theorem exists_refinement_energy_increment_of_cut_witness {P : Finpartition s}
 /-! ### The Frieze–Kannan iteration -/
 
 /-- Fuel-parametrized FK iteration: from energy within `t·ε²` of the ceiling, `t`
-rounds reach a partition with uniformly `ε·|s|²`-small cut discrepancy.-/
+rounds reach a partition with uniformly `ε·|s|²`-small cut discrepancy.
+@isnad1 id=ex.2h6v.s8.df47f5f58fbb from=translated src=- shape=6ea70d54 vocab=85cea27d
+-/
 theorem fk_iterate (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s), 1 - (t : ℝ) * ε ^ 2 ≤ energy R P →
       ∃ Q : Finpartition s, Q ≤ P ∧ Q.parts.card ≤ P.parts.card * 4 ^ t ∧
@@ -394,7 +410,9 @@ theorem fk_iterate (hε : 0 < ε) :
 
 /-- The round budget is available from **any** starting partition: the energy is nonnegative and
 `⌈1/ε²⌉₊ + 1` rounds already exhaust a budget of `1`. This is why the iteration needs no hypothesis
-on its seed.-/
+on its seed.
+@isnad1 id=le.1h5v.s7.c605c92e3a82 from=translated src=- shape=4e028274 vocab=82b5a961
+-/
 theorem one_sub_rounds_mul_sq_le_energy (P : Finpartition s) (hε : 0 < ε) :
     1 - ((⌈1 / ε ^ 2⌉₊ + 1 : ℕ) : ℝ) * ε ^ 2 ≤ energy R P := by
   have h0 : (0 : ℝ) ≤ energy R P := energy_nonneg R
@@ -414,7 +432,9 @@ This is the form `fk_iterate` actually proves: the iteration starts anywhere, ea
 and the budget (`one_sub_rounds_mul_sq_le_energy`) is seed-independent. `frieze_kannan` is the
 `⊤` specialization. The refinement conclusion is what downstream layers need when the seed carries
 structure to be preserved — a vertex partition, a color class family, or a lower level of a
-complex.-/
+complex.
+@isnad1 id=ex.1h5v.s8.eee844587c01 from=translated src=- shape=60709d4e vocab=5898bd5c
+-/
 theorem frieze_kannan_refining (P₀ : Finpartition s) (hε : 0 < ε) :
     ∃ P : Finpartition s, P ≤ P₀ ∧
       P.parts.card ≤ P₀.parts.card * 4 ^ (⌈1 / ε ^ 2⌉₊ + 1) ∧
@@ -424,7 +444,9 @@ theorem frieze_kannan_refining (P₀ : Finpartition s) (hε : 0 < ε) :
 
 /-- **Finite Frieze–Kannan weak regularity.** Every relation admits a partition with
 at most `4^(⌈1/ε²⌉ + 1)` parts whose stepped approximation is within `ε·|s|²` of the
-true count on every rectangle. The `⊤`-seeded specialization of `frieze_kannan_refining`.-/
+true count on every rectangle. The `⊤`-seeded specialization of `frieze_kannan_refining`.
+@isnad1 id=ex.1h4v.s7.f0acf3c676ab from=translated src=- shape=5c26bc83 vocab=5898bd5c
+-/
 theorem frieze_kannan (hε : 0 < ε) :
     ∃ P : Finpartition s, P.parts.card ≤ 4 ^ (⌈1 / ε ^ 2⌉₊ + 1) ∧
       ∀ A ⊆ s, ∀ B ⊆ s,
@@ -436,7 +458,9 @@ theorem frieze_kannan (hε : 0 < ε) :
         Nat.mul_le_mul_right _ parts_top_card_le_one
     _ = 4 ^ (⌈1 / ε ^ 2⌉₊ + 1) := one_mul _
 
-/-- The supremum form: the cut discrepancy itself is at most `ε·|s|²`.-/
+/-- The supremum form: the cut discrepancy itself is at most `ε·|s|²`.
+@isnad1 id=ex.1h4v.s7.c66c78f59371 from=translated src=- shape=d6fe444c vocab=eb835b57
+-/
 theorem frieze_kannan_cutDiscrepancy (hε : 0 < ε) :
     ∃ P : Finpartition s, P.parts.card ≤ 4 ^ (⌈1 / ε ^ 2⌉₊ + 1) ∧
       cutDiscrepancy R P ≤ ε * (s.card : ℝ) ^ 2 := by

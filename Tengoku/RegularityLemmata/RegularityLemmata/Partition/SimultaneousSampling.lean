@@ -44,7 +44,9 @@ def lowerViolations (A : Finset α) (s lo : ℕ) : Finset (Finset α) :=
 /-- **Simultaneous equal-block sampling, conditional form.**  If the total violation count,
 over all members of `F` and both window sides, multiplied by the block count `m`, is strictly
 below `C(n, s)`, then some equivalence `e : Fin n ≃ α` splits every `A ∈ F` within its window
-`[lo A, hi A]` on every one of the `m` equal blocks simultaneously.-/
+`[lo A, hi A]` on every one of the `m` equal blocks simultaneously.
+@isnad1 id=ex.3h7v.s7.26c57b6fac2d from=translated src=- shape=7001753e vocab=af378b88
+-/
 theorem exists_equiv_forall_blocks_window {n s m : ℕ}
     (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (lo hi : Finset α → ℕ)

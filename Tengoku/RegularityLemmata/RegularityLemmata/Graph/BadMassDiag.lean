@@ -40,7 +40,9 @@ def IsBadPairDiag (C D : Finset α) : Prop :=
   ¬ IsUniformPair R C D ε
 
 omit [DecidableEq α] in
-/-- An off-diagonal bad pair is a diagonal-inclusive bad pair.-/
+/-- An off-diagonal bad pair is a diagonal-inclusive bad pair.
+@isnad1 id=isbadpai.1h5v.s5.ff3143da7633 from=translated src=- shape=e25a5307 vocab=f7b184d0
+-/
 theorem IsBadPair.isBadPairDiag {C D : Finset α} (h : IsBadPair R ε C D) :
     IsBadPairDiag R ε C D :=
   h.2
@@ -62,12 +64,21 @@ def IsRegularPartitionDiag (P : Finpartition s) : Prop :=
 
 variable {P : Finpartition s}
 
+/--
+@isnad1 id=le.0h5v.s5.9326e29b12cb from=translated src=- shape=d264cd23 vocab=46bbb70a
+-/
 theorem badMassDiagNum_nonneg : 0 ≤ badMassDiagNum R ε P :=
   Finset.sum_nonneg fun uv _ => by positivity
 
+/--
+@isnad1 id=le.0h5v.s5.9ac9ec775466 from=translated src=- shape=d264cd23 vocab=fdcd06a4
+-/
 theorem badMassDiag_nonneg : 0 ≤ badMassDiag R ε P :=
   div_nonneg (badMassDiagNum_nonneg R ε) (by positivity)
 
+/--
+@isnad1 id=le.0h5v.s6.245d0e3b1ad2 from=translated src=- shape=13790038 vocab=c90f25fc
+-/
 theorem badMassDiagNum_le_sq : badMassDiagNum R ε P ≤ (s.card : ℝ) ^ 2 := by
   classical
   calc badMassDiagNum R ε P
@@ -78,6 +89,9 @@ theorem badMassDiagNum_le_sq : badMassDiagNum R ε P ≤ (s.card : ℝ) ^ 2 := b
         rw [Finset.sum_mul_sum, Finset.sum_product]
     _ = (s.card : ℝ) ^ 2 := by rw [sum_card_parts_cast, sq]
 
+/--
+@isnad1 id=le.0h5v.s5.248a57e382bd from=translated src=- shape=76e036eb vocab=fdcd06a4
+-/
 theorem badMassDiag_le_one : badMassDiag R ε P ≤ 1 := by
   unfold badMassDiag
   rcases eq_or_ne ((s.card : ℝ)) 0 with h | h
@@ -88,7 +102,9 @@ theorem badMassDiag_le_one : badMassDiag R ε P ≤ 1 := by
     rw [div_le_one (by positivity)]
     exact badMassDiagNum_le_sq R ε
 
-/-- Diagonal-inclusive bad mass is antitone in the tolerance.-/
+/-- Diagonal-inclusive bad mass is antitone in the tolerance.
+@isnad1 id=le.1h6v.s5.a1af971ac902 from=translated src=- shape=0cc029e3 vocab=46bbb70a
+-/
 theorem badMassDiagNum_anti {ε ε' : ℝ} (hεε : ε ≤ ε') :
     badMassDiagNum R ε' P ≤ badMassDiagNum R ε P := by
   classical
@@ -97,21 +113,30 @@ theorem badMassDiagNum_anti {ε ε' : ℝ} (hεε : ε ≤ ε') :
   rw [Finset.mem_filter] at huv ⊢
   exact ⟨huv.1, fun hunif => huv.2 (hunif.mono hεε)⟩
 
+/--
+@isnad1 id=le.1h6v.s5.4afce9359316 from=translated src=- shape=0cc029e3 vocab=fdcd06a4
+-/
 theorem badMassDiag_anti {ε ε' : ℝ} (hεε : ε ≤ ε') :
     badMassDiag R ε' P ≤ badMassDiag R ε P :=
   div_le_div_of_nonneg_right (badMassDiagNum_anti R hεε) (by positivity) |>.trans_eq rfl
 
-/-- Diagonal-inclusive regularity is monotone in the tolerance.-/
+/-- Diagonal-inclusive regularity is monotone in the tolerance.
+@isnad1 id=isregula.2h6v.s5.338aefde337a from=translated src=- shape=a1cb1fab vocab=7b24926f
+-/
 theorem IsRegularPartitionDiag.mono {ε ε' : ℝ} (hεε : ε ≤ ε')
     (h : IsRegularPartitionDiag R ε P) : IsRegularPartitionDiag R ε' P :=
   le_trans (badMassDiag_anti R hεε) (le_trans h hεε)
 
-/-- Everything is diagonal-inclusively `1`-regular.-/
+/-- Everything is diagonal-inclusively `1`-regular.
+@isnad1 id=isregula.0h4v.s5.e3874cf63ef9 from=translated src=- shape=59a30b72 vocab=07781f84
+-/
 theorem isRegularPartitionDiag_one : IsRegularPartitionDiag R 1 P :=
   badMassDiag_le_one R 1
 
 /-- **Raw conversion**: a diagonal-inclusively regular partition has raw
-diagonal-inclusive bad mass at most `ε·|s|²`.-/
+diagonal-inclusive bad mass at most `ε·|s|²`.
+@isnad1 id=le.1h5v.s6.0884aeb782a9 from=translated src=- shape=be99551f vocab=3d2d71bb
+-/
 theorem badMassDiagNum_le_of_isRegularPartitionDiag
     (h : IsRegularPartitionDiag R ε P) :
     badMassDiagNum R ε P ≤ ε * (s.card : ℝ) ^ 2 := by
@@ -127,7 +152,9 @@ theorem badMassDiagNum_le_of_isRegularPartitionDiag
 
 /-! ### Bridges to the off-diagonal layer -/
 
-/-- The off-diagonal bad mass is dominated by the diagonal-inclusive one.-/
+/-- The off-diagonal bad mass is dominated by the diagonal-inclusive one.
+@isnad1 id=le.0h5v.s5.99e25d9240be from=translated src=- shape=33b5ab78 vocab=7b2de365
+-/
 theorem badMassNum_le_badMassDiagNum : badMassNum R ε P ≤ badMassDiagNum R ε P := by
   classical
   refine Finset.sum_le_sum_of_subset_of_nonneg (fun uv huv => ?_)
@@ -135,19 +162,26 @@ theorem badMassNum_le_badMassDiagNum : badMassNum R ε P ≤ badMassDiagNum R ε
   rw [Finset.mem_filter] at huv ⊢
   exact ⟨huv.1, huv.2.isBadPairDiag⟩
 
+/--
+@isnad1 id=le.0h5v.s5.8e6247a30891 from=translated src=- shape=33b5ab78 vocab=03802296
+-/
 theorem badMass_le_badMassDiag : badMass R ε P ≤ badMassDiag R ε P :=
   div_le_div_of_nonneg_right (badMassNum_le_badMassDiagNum R ε) (by positivity)
     |>.trans_eq rfl
 
 /-- **Diagonal-inclusive regularity implies the frozen off-diagonal notion** — every
-Phase 9/10 consumer applies unchanged through this bridge.-/
+Phase 9/10 consumer applies unchanged through this bridge.
+@isnad1 id=isregula.1h5v.s5.ca65f077a0d1 from=translated src=- shape=5b43de74 vocab=549cc6e2
+-/
 theorem IsRegularPartitionDiag.isRegularPartition
     (h : IsRegularPartitionDiag R ε P) : IsRegularPartition R ε P :=
   le_trans (badMass_le_badMassDiag R ε) h
 
 open Classical in
 /-- **Exact decomposition**: the diagonal-inclusive bad mass is the off-diagonal bad
-mass plus the mass `|C|²` of the parts whose diagonal pair fails uniformity.-/
+mass plus the mass `|C|²` of the parts whose diagonal pair fails uniformity.
+@isnad1 id=eq.0h5v.s7.813ff690c3d8 from=translated src=- shape=a45860ab vocab=3812065d
+-/
 theorem badMassDiagNum_eq_badMassNum_add :
     badMassDiagNum R ε P = badMassNum R ε P
       + ∑ C ∈ P.parts.filter (fun C => ¬ IsUniformPair R C C ε), (C.card : ℝ) ^ 2 := by
@@ -184,13 +218,17 @@ theorem badMassDiagNum_eq_badMassNum_add :
 /-! ### Ordered-reversal transport -/
 
 omit [DecidableEq α] in
-/-- Diagonal-inclusive badness transports along ordered reversal.-/
+/-- Diagonal-inclusive badness transports along ordered reversal.
+@isnad1 id=iff.0h5v.s5.7ca629d1edf5 from=translated src=- shape=1111c889 vocab=6a20611d
+-/
 theorem isBadPairDiag_swapRel_iff {C D : Finset α} :
     IsBadPairDiag (swapRel R) ε C D ↔ IsBadPairDiag R ε D C :=
   not_congr (isUniformPair_swapRel_iff R)
 
 open Classical in
-/-- Diagonal-inclusive bad mass is reversal-invariant.-/
+/-- Diagonal-inclusive bad mass is reversal-invariant.
+@isnad1 id=eq.0h5v.s5.063c4c821a2d from=translated src=- shape=330df99f vocab=5ddbcd5b
+-/
 theorem badMassDiagNum_swapRel : badMassDiagNum (swapRel R) ε P = badMassDiagNum R ε P := by
   rw [badMassDiagNum, badMassDiagNum]
   refine Finset.sum_nbij' Prod.swap Prod.swap ?_ ?_ ?_ ?_ ?_
@@ -208,9 +246,15 @@ theorem badMassDiagNum_swapRel : badMassDiagNum (swapRel R) ε P = badMassDiagNu
     rw [mul_comm]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a95d062f856f from=translated src=- shape=330df99f vocab=95461aeb
+-/
 theorem badMassDiag_swapRel : badMassDiag (swapRel R) ε P = badMassDiag R ε P := by
   rw [badMassDiag, badMassDiag, badMassDiagNum_swapRel]
 
+/--
+@isnad1 id=iff.0h5v.s5.12b9b373d8bc from=translated src=- shape=9182e674 vocab=a3d30a0f
+-/
 theorem isRegularPartitionDiag_swapRel_iff :
     IsRegularPartitionDiag (swapRel R) ε P ↔ IsRegularPartitionDiag R ε P := by
   rw [IsRegularPartitionDiag, IsRegularPartitionDiag, badMassDiag_swapRel]

@@ -32,7 +32,9 @@ set_option maxHeartbeats 1600000
 
 namespace RegularityLemmata
 
-/-- Activity of the proportional window bounds the raw incidence numerator.-/
+/-- Activity of the proportional window bounds the raw incidence numerator.
+@isnad1 id=lt.2h4v.s6.57c13c0d2b02 from=translated src=- shape=6c2fd7f2 vocab=10106a83
+-/
 theorem mul_lt_mul_sub_of_proportional_active {a n s t : ℕ} (hn : 0 < n)
     (hactive : a * s / n + t < s) :
     a * s < n * (s - t) := by
@@ -44,7 +46,9 @@ theorem mul_lt_mul_sub_of_proportional_active {a n s t : ℕ} (hn : 0 < n)
 
 The intended reading is
 `a*s / ((a*s/n+t+2-r)*(n+1-r)) <= (2*s-t)/(2*s)`.
-The hypotheses `8*r <= t` and `s <= n` absorb both `r`-shifts.-/
+The hypotheses `8*r <= t` and `s <= n` absorb both `r`-shifts.
+@isnad1 id=le.5h5v.s7.5ef154604246 from=translated src=- shape=21e445fa vocab=91c4bd75
+-/
 theorem coupled_proportional_base {a n s t r : ℕ} (hs : 0 < s) (hsn : s ≤ n)
     (ht : t < s) (hr : 8 * r ≤ t) (hactive : a * s / n + t < s) :
     2 * s * (a * s) ≤
@@ -161,7 +165,9 @@ theorem coupled_proportional_base {a n s t r : ℕ} (hs : 0 < s) (hsn : s ≤ n)
   exact hfin
 
 /-- Power form of `coupled_proportional_base`, matching the exact moment numerator and
-denominator in `card_upperViolations_geometric`.-/
+denominator in `card_upperViolations_geometric`.
+@isnad1 id=le.5h5v.s8.967ab5a99292 from=translated src=- shape=8165196d vocab=b68d0884
+-/
 theorem coupled_proportional_pow {a n s t r : ℕ} (hs : 0 < s) (hsn : s ≤ n)
     (ht : t < s) (hr : 8 * r ≤ t) (hactive : a * s / n + t < s) :
     (2 * s) ^ r * (a ^ r * s ^ r) ≤
@@ -181,7 +187,9 @@ variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- An active proportional upper-tail event has a uniform geometric ratio, while its exact
 trace-dependent numerator is retained until after the threshold-dependent denominator is
-combined with it.-/
+combined with it.
+@isnad1 id=le.6h6v.s7.1407122e3bdd from=translated src=- shape=7f82d340 vocab=3911e43a
+-/
 theorem card_upperViolations_mul_pow_le (A : Finset α) {n s t r : ℕ}
     (hn : Fintype.card α = n) (hs : 0 < s) (hsn : s ≤ n) (ht : t < s)
     (hr : 8 * r ≤ t) (hactive : A.card * s / n + t < s) :
@@ -229,7 +237,9 @@ theorem card_upperViolations_mul_pow_le (A : Finset α) {n s t r : ℕ}
 /-- Schedule-ready active-trace sampler with a genuine geometric factor.
 
 Taking `r = t / 8` makes the event ratio approximately
-`m * |active| * (1 - t/(2*s))^(t/8)`.  Inactive traces are discharged exactly.-/
+`m * |active| * (1 - t/(2*s))^(t/8)`.  Inactive traces are discharged exactly.
+@isnad1 id=ex.7h7v.s8.927aef4c1c71 from=translated src=- shape=36a2bbcf vocab=ff02e2f9
+-/
 theorem exists_equiv_forall_blocks_proportional_of_active_ratio
     {n s m t r : ℕ} (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hs : 0 < s) (ht : t < s) (hr : 8 * r ≤ t)
@@ -277,15 +287,21 @@ theorem exists_equiv_forall_blocks_proportional_of_active_ratio
       _ = s := card_sampleBlock e hjs
       _ ≤ A.card * s / n + t := by omega
 
-/-- The concrete eighth-slack moment satisfies the correction budget.-/
+/-- The concrete eighth-slack moment satisfies the correction budget.
+@isnad1 id=le.0h1v.s4.c499fe619b43 from=translated src=- shape=ef8f0bca vocab=aac49d37
+-/
 theorem eighth_moment_le_slack (t : ℕ) : 8 * (t / 8) ≤ t := Nat.mul_div_le t 8
 
-/-- Once the slack is at least eight, the eighth-slack moment is still linear in the slack.-/
+/-- Once the slack is at least eight, the eighth-slack moment is still linear in the slack.
+@isnad1 id=le.1h1v.s5.a6b8bf534338 from=translated src=- shape=8979ae7e vocab=aac49d37
+-/
 theorem slack_le_sixteen_mul_eighth_moment {t : ℕ} (ht : 8 ≤ t) :
     t ≤ 16 * (t / 8) := by
   omega
 
-/-- The concrete moment exposes a genuinely contracting power ratio.-/
+/-- The concrete moment exposes a genuinely contracting power ratio.
+@isnad1 id=lt.2h2v.s6.5bb8248e1296 from=translated src=- shape=8bcb285b vocab=ec125bd5
+-/
 theorem eighth_moment_ratio_lt {s t : ℕ} (ht8 : 8 ≤ t) (hts : t < s) :
     (2 * s - t) ^ (t / 8) < (2 * s) ^ (t / 8) := by
   apply Nat.pow_lt_pow_left
@@ -294,7 +310,9 @@ theorem eighth_moment_ratio_lt {s t : ℕ} (ht8 : 8 ≤ t) (hts : t < s) :
 
 /-- A fixed real contraction and a polynomial event count imply the exact natural-number
 power inequality required by the active sampler.  This is the bridge from the
-polynomial-versus-geometric threshold to the division-free schedule.-/
+polynomial-versus-geometric threshold to the division-free schedule.
+@isnad1 id=ex.2h3v.s7.7ccc214b408f from=translated src=- shape=b8fa3a96 vocab=6f22346b
+-/
 theorem exists_forall_event_mul_pow_lt_of_fixed_ratio
     (K d : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1) :
     ∃ R : ℕ, ∀ r ≥ R, ∀ E b B : ℕ,
@@ -322,7 +340,9 @@ theorem exists_forall_event_mul_pow_lt_of_fixed_ratio
     exact hscaled
   exact_mod_cast hreal
 
-/-- Concrete `r = floor(t/8)` specialization of the active-trace sampler.-/
+/-- Concrete `r = floor(t/8)` specialization of the active-trace sampler.
+@isnad1 id=ex.6h6v.s8.2e9f1fecfae8 from=translated src=- shape=33ba8b76 vocab=ff02e2f9
+-/
 theorem exists_equiv_forall_blocks_proportional_eighth_moment
     {n s m t : ℕ} (hn : Fintype.card α = n) (hnm : n = m * s)
     (F : Finset (Finset α)) (hs : 0 < s) (ht : t < s)

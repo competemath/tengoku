@@ -44,7 +44,9 @@ section Abstract
 variable {α : Type*} [DecidableEq α]
   (R₀₁ R₀₂ R₁₂ : α → α → Prop) [DecidableRel R₀₁] [DecidableRel R₀₂] [DecidableRel R₁₂]
 
-/-- Density transfer: an `η`-close density inherits a coarse floor at an `η` loss.-/
+/-- Density transfer: an `η`-close density inherits a coarse floor at an `η` loss.
+@isnad1 id=le.2h4v.s5.727178f7ea16 from=translated src=- shape=045476e3 vocab=881e8232
+-/
 theorem le_of_coarse_of_close {d D m₀ η : ℝ} (hD : m₀ ≤ D) (hclose : |d - D| ≤ η) :
     m₀ - η ≤ d := by
   have := abs_le.mp hclose
@@ -52,7 +54,9 @@ theorem le_of_coarse_of_close {d D m₀ η : ℝ} (hD : m₀ ≤ D) (hclose : |d
 
 /-- **The abstract quantitative certificate**: `ρ`-dense `τ`-uniform boxes (arbitrary,
 possibly coinciding) carry at least `(ρ³ − 7τ)·|A₀||A₁||A₂| − slack` injective
-realizations.-/
+realizations.
+@isnad1 id=le.9h9v.s8.faed0a483b4d from=translated src=- shape=8e4a9372 vocab=4387f3d9
+-/
 theorem injectiveTriangleCount_ge_of_dense_uniform {A₀ A₁ A₂ : Finset α} {ρ τ : ℝ}
     (hτ0 : 0 ≤ τ) (hτ1 : τ ≤ 1) (hρ : 0 ≤ ρ)
     (h01u : IsUniformPair R₀₁ A₀ A₁ τ) (h02u : IsUniformPair R₀₂ A₀ A₂ τ)
@@ -79,7 +83,9 @@ theorem injectiveTriangleCount_ge_of_dense_uniform {A₀ A₁ A₂ : Finset α} 
 /-- **The slack bound for representative boxes**, in multiplication form: with size
 floors `α·n ≤ 2q·|Aᵢ|`, the collision slack satisfies `slack·(α·n) ≤ 6·q·vol`. This
 is the ONLY place the fine-part bound `q` enters Unit 8 — the large-host cutoff, never
-the witness tolerance.-/
+the witness tolerance.
+@isnad1 id=le.3h7v.s8.cbb815fb4cc5 from=translated src=- shape=a8a72a52 vocab=2bc8ce1a
+-/
 theorem collisionSlack_mul_le {A₀ A₁ A₂ : Finset α} {q : ℕ} {a n : ℝ}
     (h0 : a * n ≤ 2 * q * A₀.card) (h1 : a * n ≤ 2 * q * A₁.card)
     (han : 0 ≤ a * n) :
@@ -122,7 +128,9 @@ theorem collisionSlack_mul_le {A₀ A₁ A₂ : Finset α} {q : ℕ} {a n : ℝ}
 /-- **The abstract positivity certificate.** Under `ρ`-density, `τ`-uniformity, the
 size floors, and the explicit host-size inequality `6·q < (ρ³ − 7τ)·α·n`, the
 injective count is strictly positive — for ARBITRARY boxes: no placement stratum
-needs a disjointness or literal-equality hypothesis.-/
+needs a disjointness or literal-equality hypothesis.
+@isnad1 id=lt.14h12v.s8.a409dbe3808e from=translated src=- shape=38ec37a5 vocab=221a568f
+-/
 theorem injectiveTriangleCount_pos_of_dense_uniform {A₀ A₁ A₂ : Finset α}
     {ρ τ : ℝ} {q : ℕ} {a n : ℝ}
     (hτ0 : 0 ≤ τ) (hτ1 : τ ≤ 1) (hρ : 0 ≤ ρ) (han : 0 < a * n)
@@ -185,7 +193,9 @@ FORWARD required palettes are `ρ`-dense and `τ`-uniform, with the size floors 
 host-size inequality, the induced three-vertex count is strictly positive. The
 nullary compatibility and the three profile matchings are explicit hypotheses; the
 REVERSE palette orientations are supplied by the proved reversal law inside
-`preservesAndReflects_three_iff` — no orientation assumption is made.-/
+`preservesAndReflects_three_iff` — no orientation assumption is made.
+@isnad1 id=lt.18h12v.s10.34d961f74022 from=translated src=- shape=39641576 vocab=9335e8e3
+-/
 theorem inducedEmbeddingCountOn_pos_of_representatives [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {A₀ A₁ A₂ : Finset V}
     {ρ τ : ℝ} {q : ℕ} {a n : ℝ}
@@ -217,7 +227,9 @@ theorem inducedEmbeddingCountOn_pos_of_representatives [AtMostBinary L]
 
 /-- **The global count decomposes exactly over the five placement strata** of coarse
 cell triples — the promised glue between the Unit 6 combinatorics and the global
-counting surface.-/
+counting surface.
+@isnad1 id=eq.0h6v.s7.8644e2a3af3e from=translated src=- shape=505bc76e vocab=47459949
+-/
 theorem globalInducedCount_eq_sum_placementClass [AtMostBinary L] [Fintype V]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} (Q : Finpartition s) :
     ∑ c : PlacementClass,
@@ -238,7 +250,9 @@ variable {V : Type*} [DecidableEq V] {L : FirstOrder.Language} [FiniteRelational
 
 omit [DecidableEq V] in
 /-- The swapped palette, pointwise: `a, b` carry the swap of `c` exactly when `b, a`
-carry `c`.-/
+carry `c`.
+@isnad1 id=iff.0h6v.s5.1d6a646a08f9 from=translated src=- shape=71045561 vocab=5b0ad486
+-/
 theorem hasBinaryPairPalette_swap_iff (M : FiniteRelModel L V)
     (c : BinaryPairPalette L) {a b : V} :
     HasBinaryPairPalette M (swapBinaryPairPalette c) a b
@@ -253,7 +267,9 @@ theorem hasBinaryPairPalette_swap_iff (M : FiniteRelModel L V)
     rw [binaryPairPalette_swap M b a, h]
 
 omit [DecidableEq V] in
-/-- The swapped palette, as a relation: it is the ordered reversal.-/
+/-- The swapped palette, as a relation: it is the ordered reversal.
+@isnad1 id=eq.0h4v.s5.d1d4f28da426 from=translated src=- shape=4577c2e4 vocab=d0e63aec
+-/
 theorem hasBinaryPairPalette_swap_eq (M : FiniteRelModel L V)
     (c : BinaryPairPalette L) :
     HasBinaryPairPalette M (swapBinaryPairPalette c)
@@ -262,7 +278,9 @@ theorem hasBinaryPairPalette_swap_eq (M : FiniteRelModel L V)
   exact propext ((hasBinaryPairPalette_swap_iff M c).trans Iff.rfl)
 
 omit [DecidableEq V] in
-/-- Density transports along orientation reversal.-/
+/-- Density transports along orientation reversal.
+@isnad1 id=eq.0h6v.s6.68af27f04319 from=translated src=- shape=6409cc3e vocab=52d68cf6
+-/
 theorem pairDensity_hasBinaryPairPalette_swap (M : FiniteRelModel L V)
     (c : BinaryPairPalette L) (A B : Finset V) :
     pairDensity (HasBinaryPairPalette M (swapBinaryPairPalette c)) A B
@@ -270,7 +288,9 @@ theorem pairDensity_hasBinaryPairPalette_swap (M : FiniteRelModel L V)
   simp only [hasBinaryPairPalette_swap_eq, pairDensity_swapRel]
 
 omit [DecidableEq V] in
-/-- Uniformity transports along orientation reversal.-/
+/-- Uniformity transports along orientation reversal.
+@isnad1 id=iff.0h7v.s6.1e644c3e1643 from=translated src=- shape=d178f1d2 vocab=8e188653
+-/
 theorem isUniformPair_hasBinaryPairPalette_swap_iff (M : FiniteRelModel L V)
     (c : BinaryPairPalette L) {A B : Finset V} {τ : ℝ} :
     IsUniformPair (HasBinaryPairPalette M (swapBinaryPairPalette c)) A B τ
@@ -297,7 +317,9 @@ required palettes at their ordered orientations from the selection clause; and t
 `(θ' − η)`-density floors from the coarse floors through the selection's
 density-closeness via `le_of_coarse_of_close`. The certificate clause is
 **pattern-uniform**: one representative system serves every pattern `P` and every
-large profile-matching coarse triple.-/
+large profile-matching coarse triple.
+@isnad1 id=ex.4h11v.s10.f3560dc42484 from=translated src=- shape=f07b98d2 vocab=0e95d936
+-/
 theorem BinaryPaletteStrongDiagWitness.exists_rep_certificate [AtMostBinary L]
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) {q : ℕ}
     (hq : w.fine.parts.card ≤ q) {α η : ℝ} (hα : 0 < α) (hη : 0 < η)
@@ -358,7 +380,9 @@ theorem BinaryPaletteStrongDiagWitness.exists_rep_certificate [AtMostBinary L]
 
 /-- **Both orientations, visibly**: the selection clause at the reversed roles with
 the reversed required palette gives the swap-orientation uniformity — through the
-proved reversal law, never an assumption.-/
+proved reversal law, never an assumption.
+@isnad1 id=isunifor.4h16v.s8.4901616d8aeb from=translated src=- shape=6be9d836 vocab=c3ce5276
+-/
 theorem rep_swap_orientation {α η : ℝ}
     {rep : Finset V → Fin 3 → Finset V} {w : BinaryPaletteStrongDiagWitness M E δ P₀}
     (hgood : ∀ C ∈ largeParts w.coarse α, ∀ D ∈ largeParts w.coarse α,
@@ -383,7 +407,9 @@ end RepCertificate
 enters through the palette count `K`, the budget through the free parameter `θ`; the
 derived `η`, `τ`, `ρ` depend on those alone — never on a pattern family or a carrier;
 and the host-size inequality is a pure large-host cutoff in which the fine-part bound
-`q` legitimately appears. Witnesses: `η = θ/2`, `τ = ρ³/8`.-/
+`q` legitimately appears. Witnesses: `η = θ/2`, `τ = ρ³/8`.
+@isnad1 id=ex.2h2v.s8.f98a6cefd473 from=translated src=- shape=92359589 vocab=7c643948
+-/
 theorem exists_viable_constants (K : ℕ) {θ : ℝ} (hθ0 : 0 < θ) (hθK : θ ≤ 1 / K) :
     ∃ η τ ρ : ℝ, 0 < η ∧ 0 < τ ∧ τ ≤ 1 ∧ ρ = min θ (1 / K) - η ∧ 0 < ρ ∧
       7 * τ < ρ ^ 3 ∧
@@ -414,7 +440,9 @@ theorem exists_viable_constants (K : ℕ) {θ : ℝ} (hθ0 : 0 < θ) (hθK : θ 
 schedule is chosen BEFORE any witness, and at EVERY realized coarse complexity `k` it
 satisfies the tolerance clamp, the triangle margin, and the uniformity half of the
 Unit 7 selection inequality against the coverage-forced threshold `α(k) = δ'/(k+1)`.
-Witness: `E k = min 1 (min (ρ³/8) (δ'²/(96·K·(k+1)⁴ + 1)))`.-/
+Witness: `E k = min 1 (min (ρ³/8) (δ'²/(96·K·(k+1)⁴ + 1)))`.
+@isnad1 id=ex.2h3v.s7.b3e9a2067a19 from=translated src=- shape=c6027e94 vocab=91a10ae9
+-/
 theorem exists_selection_schedule (K : ℕ) {ρ δ' : ℝ} (hρ : 0 < ρ) (hδ' : 0 < δ') :
     ∃ E : ErrorSchedule, ∀ k : ℕ,
       E k ≤ 1 ∧ 7 * E k < ρ ^ 3 ∧
@@ -485,7 +513,9 @@ replaces the per-pair closeness clause by an aggregate deviant-cost clause (cons
 only in the 11B edit budget), which removes THIS PARTICULAR circularity from the
 selection inequality (cf. `exists_selection_schedule` for the uniformity half); its
 own obligations — the conditioned cost bound and role-consistent rounding — are
-recorded at the checkpoint and are NOT yet validated.-/
+recorded at the checkpoint and are NOT yet validated.
+@isnad1 id=lt.4h5v.s8.436580be278e from=translated src=- shape=595dcb71 vocab=c8a517f0
+-/
 theorem deviant_condition_forces_gap_lt (K : ℕ) {δ η δ' : ℝ} (hη : 0 < η)
     {k : ℕ} (hK : 0 < K) (hk : 0 < k)
     (h : 48 * (k : ℝ) ^ 2 * K * (δ / η ^ 2) < (δ' / ((k : ℝ) + 1)) ^ 2) :

@@ -43,33 +43,48 @@ noncomputable def densityOn (S : Finset β) (p : β → Prop) [DecidablePred p] 
 
 variable {S T : Finset β} {p q : β → Prop} [DecidablePred p] [DecidablePred q] {c : ℝ}
 
+/--
+@isnad1 id=eq.0h2v.s4.fdb1b411a0a8 from=translated src=- shape=b26b787f vocab=ab2d1224
+-/
 @[simp] theorem densityOn_empty : densityOn (∅ : Finset β) p = 0 := by
   simp [densityOn]
 
+/--
+@isnad1 id=le.0h3v.s4.19c5da030811 from=translated src=- shape=0c66ad06 vocab=ee81a5c1
+-/
 theorem densityOn_nonneg : 0 ≤ densityOn S p := by
   unfold densityOn; positivity
 
+/--
+@isnad1 id=le.0h3v.s4.be3ac3063b5f from=translated src=- shape=ecf8ac55 vocab=ee81a5c1
+-/
 theorem densityOn_le_one : densityOn S p ≤ 1 := by
   rcases S.eq_empty_or_nonempty with rfl | hS
   · simp
   · rw [densityOn, div_le_one (by exact_mod_cast S.card_pos.mpr hS)]
     exact_mod_cast Finset.card_filter_le S p
 
-/-- Complement identity. **Requires** `S.Nonempty`: on `∅` both densities are `0`.-/
+/-- Complement identity. **Requires** `S.Nonempty`: on `∅` both densities are `0`.
+@isnad1 id=eq.1h3v.s5.0f67a7f5e8e4 from=translated src=- shape=8a59969d vocab=9970aa4f
+-/
 theorem densityOn_add_not (hS : S.Nonempty) :
     densityOn S p + densityOn S (fun x => ¬ p x) = 1 := by
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast S.card_pos.mpr hS
   rw [densityOn, densityOn, ← add_div, div_eq_one_iff_eq hcard.ne']
   exact_mod_cast S.card_filter_add_card_filter_not p
 
-/-- Complement density. **Requires** `S.Nonempty` (false on `∅`).-/
+/-- Complement density. **Requires** `S.Nonempty` (false on `∅`).
+@isnad1 id=eq.1h3v.s5.06dfdee713b2 from=translated src=- shape=e51f8c30 vocab=aba58063
+-/
 theorem densityOn_not (hS : S.Nonempty) :
     densityOn S (fun x => ¬ p x) = 1 - densityOn S p := by
   have := densityOn_add_not (p := p) hS
   linarith
 
 /-- Predicate monotonicity on a fixed support. (Density is NOT monotone in the
-support; no such lemma is stated.)-/
+support; no such lemma is stated.)
+@isnad1 id=le.0h5v.s5.994fea5212b8 from=translated src=- shape=2defb08a vocab=08cdfa78
+-/
 theorem densityOn_mono_pred (h : ∀ x ∈ S, p x → q x) : densityOn S p ≤ densityOn S q := by
   rcases S.eq_empty_or_nonempty with rfl | hS
   · simp
@@ -81,7 +96,9 @@ theorem densityOn_mono_pred (h : ∀ x ∈ S, p x → q x) : densityOn S p ≤ d
       (by exact_mod_cast Finset.card_le_card hsub) hcard.le
 
 /-- **Density-difference bound**: two densities on the same support differ by at
-most the density of their disagreement set.-/
+most the density of their disagreement set.
+@isnad1 id=le.0h4v.s6.cd5e6f4e7b3a from=translated src=- shape=17e9fff8 vocab=c65c7474
+-/
 theorem abs_densityOn_sub_densityOn_le :
     |densityOn S p - densityOn S q| ≤ densityOn S fun x => ¬(p x ↔ q x) := by
   classical
@@ -120,7 +137,9 @@ theorem abs_densityOn_sub_densityOn_le :
   exact key q p
 
 /-- Count extraction: `d · |S| = #filter`, valid for all `S` (both sides `0` on
-`∅`).-/
+`∅`).
+@isnad1 id=eq.0h3v.s5.2f7a5cb5aeb6 from=translated src=- shape=96df4725 vocab=aeca797c
+-/
 theorem densityOn_mul_card (S : Finset β) (p : β → Prop) [DecidablePred p] :
     densityOn S p * (S.card : ℝ) = ((S.filter p).card : ℝ) := by
   rcases S.eq_empty_or_nonempty with rfl | hS
@@ -129,7 +148,9 @@ theorem densityOn_mul_card (S : Finset β) (p : β → Prop) [DecidablePred p] :
     exact_mod_cast (S.card_pos.mpr hS).ne'
 
 /-- Energy-form conversion: `d² · |S| = (#filter)² / |S|`, valid for all `S` (both
-sides `0` on `∅`).-/
+sides `0` on `∅`).
+@isnad1 id=eq.0h3v.s6.3e8f481a92d9 from=translated src=- shape=85fc9d03 vocab=ba81aa1c
+-/
 theorem sq_densityOn_mul_card (S : Finset β) (p : β → Prop) [DecidablePred p] :
     densityOn S p ^ 2 * (S.card : ℝ) = ((S.filter p).card : ℝ) ^ 2 / (S.card : ℝ) := by
   rcases S.eq_empty_or_nonempty with rfl | hS
@@ -139,12 +160,16 @@ theorem sq_densityOn_mul_card (S : Finset β) (p : β → Prop) [DecidablePred p
     rw [densityOn, div_pow]
     field_simp
 
-/-- Count monotonicity under support inclusion (the honest form of "restriction").-/
+/-- Count monotonicity under support inclusion (the honest form of "restriction").
+@isnad1 id=le.1h4v.s5.66829e802af6 from=translated src=- shape=8fa74c5a vocab=541824b5
+-/
 theorem card_filter_mono_subset (p : β → Prop) [DecidablePred p] (h : S ⊆ T) :
     (S.filter p).card ≤ (T.filter p).card :=
   Finset.card_le_card (Finset.filter_subset_filter p h)
 
-/-- Count from a density upper bound. Holds for all `S` (on `∅` it reads `0 ≤ 0`).-/
+/-- Count from a density upper bound. Holds for all `S` (on `∅` it reads `0 ≤ 0`).
+@isnad1 id=le.1h4v.s5.061de03584a7 from=translated src=- shape=2e71dd38 vocab=929a3120
+-/
 theorem card_filter_le_of_densityOn_le (h : densityOn S p ≤ c) :
     ((S.filter p).card : ℝ) ≤ c * S.card := by
   rcases S.eq_empty_or_nonempty with rfl | hS
@@ -155,7 +180,9 @@ theorem card_filter_le_of_densityOn_le (h : densityOn S p ≤ c) :
       _ ≤ c * S.card := mul_le_mul_of_nonneg_right h hcard.le
 
 /-- Count from a density lower bound. Holds for all `S`: on `∅` the conclusion reads
-`c · 0 ≤ 0`, which is true for every `c`.-/
+`c · 0 ≤ 0`, which is true for every `c`.
+@isnad1 id=le.1h4v.s5.810d7971e8ab from=translated src=- shape=ceccd5fa vocab=929a3120
+-/
 theorem le_card_filter_of_le_densityOn (h : c ≤ densityOn S p) :
     c * S.card ≤ ((S.filter p).card : ℝ) := by
   rcases S.eq_empty_or_nonempty with rfl | hS
@@ -184,64 +211,94 @@ noncomputable def tupleDensity (R : (ι → α) → Prop) [DecidablePred R]
     (A : ι → Finset α) : ℝ :=
   densityOn (Fintype.piFinset A) R
 
+/--
+@isnad1 id=eq.0h4v.s6.c3c4c7cc2b5f from=translated src=- shape=943c18b9 vocab=b59aa157
+-/
 theorem tupleDensity_eq_count_div :
     tupleDensity R A = (tupleCount R A : ℝ) / (Fintype.piFinset A).card := rfl
 
+/--
+@isnad1 id=le.0h4v.s5.7a47bce35902 from=translated src=- shape=e9540edf vocab=623c7b6c
+-/
 theorem tupleDensity_nonneg : 0 ≤ tupleDensity R A := densityOn_nonneg
 
+/--
+@isnad1 id=le.0h4v.s5.643d54408594 from=translated src=- shape=eddcd3f2 vocab=623c7b6c
+-/
 theorem tupleDensity_le_one : tupleDensity R A ≤ 1 := densityOn_le_one
 
-/-- Complement identity on a box with all sides nonempty.-/
+/-- Complement identity on a box with all sides nonempty.
+@isnad1 id=eq.1h4v.s6.521ea0ce9e10 from=translated src=- shape=175630ee vocab=0772d8ee
+-/
 theorem tupleDensity_add_neg (hne : ∀ i, (A i).Nonempty) :
     tupleDensity R A + tupleDensity (fun x => ¬ R x) A = 1 :=
   densityOn_add_not (Fintype.piFinset_nonempty.mpr hne)
 
+/--
+@isnad1 id=eq.1h4v.s6.6235f24b4f10 from=translated src=- shape=6274024a vocab=5ef9d2ff
+-/
 theorem tupleDensity_neg (hne : ∀ i, (A i).Nonempty) :
     tupleDensity (fun x => ¬ R x) A = 1 - tupleDensity R A :=
   densityOn_not (Fintype.piFinset_nonempty.mpr hne)
 
-/-- Count from a density upper bound, `n`-ary form. Holds for all boxes.-/
+/-- Count from a density upper bound, `n`-ary form. Holds for all boxes.
+@isnad1 id=le.1h5v.s6.3b8679266053 from=translated src=- shape=55d84b1c vocab=26e3f28f
+-/
 theorem card_filter_le_of_tupleDensity_le {c : ℝ} (h : tupleDensity R A ≤ c) :
     (tupleCount R A : ℝ) ≤ c * ∏ i, ((A i).card : ℝ) := by
   have := card_filter_le_of_densityOn_le h
   rwa [Fintype.card_piFinset, Nat.cast_prod] at this
 
 /-- Count from a density lower bound, `n`-ary form. Holds for all boxes: with an empty side
-the conclusion reads `c · 0 ≤ 0`.-/
+the conclusion reads `c · 0 ≤ 0`.
+@isnad1 id=le.1h5v.s6.d312fb64fbc0 from=translated src=- shape=2f03b71f vocab=26e3f28f
+-/
 theorem le_card_filter_of_le_tupleDensity {c : ℝ} (h : c ≤ tupleDensity R A) :
     c * ∏ i, ((A i).card : ℝ) ≤ (tupleCount R A : ℝ) := by
   have := le_card_filter_of_le_densityOn h
   rwa [Fintype.card_piFinset, Nat.cast_prod] at this
 
 /-- Raw count from the density: `#tuples = d · ∏|Aᵢ|`, unconditionally (an empty side gives
-`0 = d · 0`). The `n`-ary companion of `pairCount_eq_pairDensity_mul`.-/
+`0 = d · 0`). The `n`-ary companion of `pairCount_eq_pairDensity_mul`.
+@isnad1 id=eq.0h4v.s6.6d656ffb67d7 from=translated src=- shape=de42a2d5 vocab=1834c71c
+-/
 theorem tupleCount_eq_tupleDensity_mul :
     (tupleCount R A : ℝ) = tupleDensity R A * ∏ i, ((A i).card : ℝ) :=
   le_antisymm (card_filter_le_of_tupleDensity_le le_rfl)
     (le_card_filter_of_le_tupleDensity le_rfl)
 
-/-- A tuple count never exceeds the size of its box.-/
+/-- A tuple count never exceeds the size of its box.
+@isnad1 id=le.0h4v.s5.7cf09ebf2a6b from=translated src=- shape=6fae48d1 vocab=527ecbbe
+-/
 theorem tupleCount_le_card : tupleCount R A ≤ (Fintype.piFinset A).card :=
   Finset.card_filter_le _ _
 
 /-- A relation and its complement partition the box. Guard-free: on a box with an empty
-side both counts are `0` and so is the box.-/
+side both counts are `0` and so is the box.
+@isnad1 id=eq.0h4v.s6.51c3345f1da0 from=translated src=- shape=cd7083ab vocab=07f8aae7
+-/
 theorem tupleCount_add_neg :
     tupleCount R A + tupleCount (fun x ↦ ¬ R x) A = (Fintype.piFinset A).card :=
   (Fintype.piFinset A).card_filter_add_card_filter_not R
 
 /-- Tuple counts are monotone in the box, coordinatewise. (Tuple *densities* are not; no
-such lemma is stated.)-/
+such lemma is stated.)
+@isnad1 id=le.1h5v.s6.b29aeaf73070 from=translated src=- shape=79f77a59 vocab=d974bbe4
+-/
 theorem tupleCount_mono (h : ∀ i, A' i ⊆ A i) : tupleCount R A' ≤ tupleCount R A :=
   card_filter_mono_subset R (Fintype.piFinset_subset _ _ h)
 
 /-- An empty box has density `0`, for every relation. This is the convention frozen by
-`densityOn`'s `x / 0 = 0`, not a nontrivial fact.-/
+`densityOn`'s `x / 0 = 0`, not a nontrivial fact.
+@isnad1 id=eq.1h4v.s6.40f9f75fef98 from=translated src=- shape=ac19613e vocab=0d5b7a2b
+-/
 theorem tupleDensity_eq_zero_of_box_empty (h : Fintype.piFinset A = ∅) :
     tupleDensity R A = 0 := by
   rw [tupleDensity, h, densityOn_empty]
 
-/-- A box with an empty side is empty, hence has density `0`, for every relation.-/
+/-- A box with an empty side is empty, hence has density `0`, for every relation.
+@isnad1 id=eq.1h5v.s5.b443beccd4b0 from=translated src=- shape=f213006c vocab=c15666c5
+-/
 theorem tupleDensity_eq_zero_of_side_empty {i : ι} (hi : A i = ∅) : tupleDensity R A = 0 := by
   refine tupleDensity_eq_zero_of_box_empty (Finset.not_nonempty_iff_eq_empty.mp fun hne => ?_)
   exact (Finset.not_nonempty_iff_eq_empty.mpr hi) (Fintype.piFinset_nonempty.mp hne i)
@@ -253,7 +310,9 @@ an ordinary `densityOn`. The two cardinality lemmas this rests on carry no densi
 live beside their `Fin 2` analogues in `RegularityLemmata/Finite/Tuple.lean`. -/
 
 /-- Arity-one tuple density is the density of the curried relation on the single coordinate
-set. Holds for all boxes: with an empty side both sides are `0` by the division convention.-/
+set. Holds for all boxes: with an empty side both sides are `0` by the division convention.
+@isnad1 id=eq.0h3v.s6.845d739d531c from=translated src=- shape=98f0d52d vocab=34ae9b36
+-/
 theorem tupleDensity_one_eq {A : Fin 1 → Finset α} {R : (Fin 1 → α) → Prop} [DecidablePred R] :
     tupleDensity R A = densityOn (A 0) fun a ↦ R ![a] := by
   rw [tupleDensity, densityOn, densityOn, card_filter_piFinset_one, card_piFinset_one]
@@ -263,7 +322,9 @@ theorem tupleDensity_one_eq {A : Fin 1 → Finset α} {R : (Fin 1 → α) → Pr
 variable [DecidableEq α] {A₂ : Fin 2 → Finset α} {R₂ : (Fin 2 → α) → Prop} [DecidablePred R₂]
 
 /-- Binary tuple density as a product-filter ratio. Holds for all boxes: with an empty
-side both sides are `0` by the division convention.-/
+side both sides are `0` by the division convention.
+@isnad1 id=eq.0h3v.s7.875ce87e0e25 from=translated src=- shape=710e2533 vocab=7d08dc3a
+-/
 theorem tupleDensity_two_eq :
     tupleDensity R₂ A₂ =
       (((A₂ 0 ×ˢ A₂ 1).filter fun p => R₂ ![p.1, p.2]).card : ℝ)
@@ -272,7 +333,9 @@ theorem tupleDensity_two_eq :
   push_cast
   rfl
 
-/-- Count from a binary density upper bound. Holds for all boxes.-/
+/-- Count from a binary density upper bound. Holds for all boxes.
+@isnad1 id=le.1h4v.s7.55bc0c0739a8 from=translated src=- shape=ef1d7c4b vocab=82df6dd4
+-/
 theorem card_filter_product_le_of_tupleDensity_le {c : ℝ} (h : tupleDensity R₂ A₂ ≤ c) :
     (((A₂ 0 ×ˢ A₂ 1).filter fun p => R₂ ![p.1, p.2]).card : ℝ)
       ≤ c * (((A₂ 0).card : ℝ) * (A₂ 1).card) := by
@@ -280,7 +343,9 @@ theorem card_filter_product_le_of_tupleDensity_le {c : ℝ} (h : tupleDensity R�
   rwa [card_filter_piFinset_two, card_piFinset_two, Nat.cast_mul] at this
 
 /-- Count from a binary density lower bound. Holds for all boxes (empty sides give
-`c · 0 ≤ 0`).-/
+`c · 0 ≤ 0`).
+@isnad1 id=le.1h4v.s7.2179b078876a from=translated src=- shape=4a357cba vocab=82df6dd4
+-/
 theorem le_card_filter_product_of_le_tupleDensity {c : ℝ} (h : c ≤ tupleDensity R₂ A₂) :
     c * (((A₂ 0).card : ℝ) * (A₂ 1).card)
       ≤ (((A₂ 0 ×ˢ A₂ 1).filter fun p => R₂ ![p.1, p.2]).card : ℝ) := by

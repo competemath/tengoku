@@ -53,7 +53,9 @@ variable {α : Type*}
 /-- **Leftover absorption.** Equal-size disjoint blocks covering all but a small complement
 extend to an equipartition of the whole carrier: each block absorbs at most one leftover
 element, so part sizes lie in `{s, s + 1}`. The correspondence clause lets a consumer
-transfer properties proved for the blocks to the parts.-/
+transfer properties proved for the blocks to the parts.
+@isnad1 id=ex.5h4v.s7.e589826f3c66 from=translated src=- shape=652942a8 vocab=19a8a3fd
+-/
 theorem exists_equipartition_absorb_leftover [Fintype α] [DecidableEq α]
     {S : Finset α} {blocks : Finset (Finset α)} {s : ℕ} (hs : 0 < s)
     (hdisj : (blocks : Set (Finset α)).PairwiseDisjoint id)
@@ -198,7 +200,9 @@ theorem exists_equipartition_absorb_leftover [Fintype α] [DecidableEq α]
 equipartition of the whole carrier with the same part count: the remainder splits into
 near-equal chunks, one per block, so part sizes take at most two consecutive values. The
 correspondence clause bounds each part by `s + q + 1` where `q` is the chunk floor
-`(univ \ S).card / blocks.card`.-/
+`(univ \ S).card / blocks.card`.
+@isnad1 id=ex.5h4v.s8.00887355170f from=translated src=- shape=fb5fcac5 vocab=94c5e73f
+-/
 theorem exists_equipartition_absorb_chunks [Fintype α] [DecidableEq α]
     {S : Finset α} {blocks : Finset (Finset α)} {s : ℕ} (hs : 0 < s)
     (hbne : blocks.Nonempty)

@@ -38,7 +38,9 @@ variable {L : FirstOrder.Language} [FiniteRelational L] {V : Type*} [DecidableEq
 
 /-! ### Palette path and triangle wrappers -/
 
-/-- The colored directed-path deliverable: two palette colors feed the `6·ε` path bound.-/
+/-- The colored directed-path deliverable: two palette colors feed the `6·ε` path bound.
+@isnad1 id=le.4h9v.s7.4527506237c2 from=translated src=- shape=c04f7b8f vocab=5f9b62f0
+-/
 theorem abs_binaryPalettePathDensity_sub_le (M : FiniteRelModel L V)
     (c₀₁ c₁₂ : BinaryPairPalette L) {A B C : Finset V} {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair (HasBinaryPairPalette M c₀₁) A B ε)
@@ -48,7 +50,9 @@ theorem abs_binaryPalettePathDensity_sub_le (M : FiniteRelModel L V)
             * pairDensity (HasBinaryPairPalette M c₁₂) B C| ≤ 6 * ε :=
   abs_directedPathDensity_sub_le _ _ hε0 hε1 h01 h12
 
-/-- The colored directed-triangle deliverable: three palette colors feed the `7·ε` bound.-/
+/-- The colored directed-triangle deliverable: three palette colors feed the `7·ε` bound.
+@isnad1 id=le.5h10v.s8.d98df288d89a from=translated src=- shape=d2f7a6ac vocab=13390e82
+-/
 theorem abs_binaryPaletteTriangleCount_sub_le (M : FiniteRelModel L V)
     (c₀₁ c₀₂ c₁₂ : BinaryPairPalette L) {A B C : Finset V} {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
     (h01 : IsUniformPair (HasBinaryPairPalette M c₀₁) A B ε)
@@ -68,7 +72,9 @@ theorem abs_binaryPaletteTriangleCount_sub_le (M : FiniteRelModel L V)
 omit [DecidableEq V] in
 /-- **The three-vertex reduction.** Under profile matching, an induced embedding of a
 three-vertex pattern is exactly a directed triangle in the three forward palette colors.
-Injectivity is not needed.-/
+Injectivity is not needed.
+@isnad1 id=iff.4h5v.s8.604d22138c8a from=translated src=- shape=475e84e9 vocab=eed97397
+-/
 theorem preservesAndReflects_three_iff [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V}
     (hnull : NullaryCompatible P M) {f : Fin 3 → V}
@@ -109,7 +115,9 @@ theorem preservesAndReflects_three_iff [AtMostBinary L]
 /-! ### The exact box-count bridge -/
 
 /-- **Exact three-vertex count.** On disjoint profile-matching cells, the induced count
-equals the directed triangle count of the three required palette colors.-/
+equals the directed triangle count of the three required palette colors.
+@isnad1 id=eq.7h7v.s9.d0e634583670 from=translated src=- shape=28d82663 vocab=053c108c
+-/
 theorem inducedEmbeddingCountOn_three [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {A B C : Finset V}
     (hnull : NullaryCompatible P M)
@@ -142,7 +150,9 @@ may overlap or coincide, the induced count is the INJECTIVE triangle count of th
 three required palette colors — the explicit injectivity condition is retained in the
 count rather than derived from disjointness. This is the bridge the Phase 11
 placement-strata certificate consumes on role-indexed representative boxes (whose
-coarse parents may coincide while the fine boxes differ, and vice versa).-/
+coarse parents may coincide while the fine boxes differ, and vice versa).
+@isnad1 id=eq.4h7v.s9.8b5090cc579b from=translated src=- shape=25640d02 vocab=e684482d
+-/
 theorem inducedEmbeddingCountOn_three_eq_injectiveTriangleCount [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {A B C : Finset V}
     (hnull : NullaryCompatible P M)
@@ -164,7 +174,9 @@ theorem inducedEmbeddingCountOn_three_eq_injectiveTriangleCount [AtMostBinary L]
 
 /-- **Induced three-vertex approximation.** On disjoint profile-matching cells with all
 three required palette colors `ε`-uniform, the induced count is within `7·ε·|A||B||C|` of
-the product of the three palette densities times the box volume.-/
+the product of the three palette densities times the box volume.
+@isnad1 id=le.12h8v.s10.e321707a9405 from=translated src=- shape=937fcd92 vocab=b3ea0a54
+-/
 theorem abs_inducedEmbeddingCountOn_three_sub_le [AtMostBinary L]
     {P : FiniteRelModel L (Fin 3)} {M : FiniteRelModel L V} {A B C : Finset V} {ε : ℝ}
     (hnull : NullaryCompatible P M)

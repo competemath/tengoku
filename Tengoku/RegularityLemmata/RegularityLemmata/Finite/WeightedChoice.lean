@@ -43,7 +43,9 @@ namespace RegularityLemmata
 
 variable {ι β : Type*} [Fintype ι] [DecidableEq ι] [DecidableEq β]
 
-/-- **Pinning two distinct coordinates factorizes the weight.**-/
+/-- **Pinning two distinct coordinates factorizes the weight.**
+@isnad1 id=eq.3h8v.s7.62a5c4ef678e from=translated src=- shape=3e64594f vocab=0355d3bf
+-/
 theorem sum_piFinset_pinned_two (t : ι → Finset β) (wt : β → ℝ) {i₁ i₂ : ι}
     (hne : i₁ ≠ i₂) {a b : β} (ha : a ∈ t i₁) (hb : b ∈ t i₂) :
     ∑ g ∈ (Fintype.piFinset t).filter (fun g => g i₁ = a ∧ g i₂ = b), ∏ j, wt (g j)
@@ -102,7 +104,9 @@ theorem sum_piFinset_pinned_two (t : ι → Finset β) (wt : β → ℝ) {i₁ i
     rw [Function.update_of_ne hj.1, Function.update_of_ne hj.2.1]
   rw [hFi₁, hFi₂, hFrest, mul_assoc]
 
-/-- **Marginalization over a bad pair set.**-/
+/-- **Marginalization over a bad pair set.**
+@isnad1 id=eq.1h7v.s7.9b2ace327311 from=translated src=- shape=f3069bde vocab=dc4abbb7
+-/
 theorem sum_piFinset_filter_pair_mem (t : ι → Finset β) (wt : β → ℝ) {i₁ i₂ : ι}
     (hne : i₁ ≠ i₂) (B : Finset (β × β)) :
     ∑ g ∈ (Fintype.piFinset t).filter (fun g => (g i₁, g i₂) ∈ B), ∏ j, wt (g j)
@@ -132,7 +136,9 @@ theorem sum_piFinset_filter_pair_mem (t : ι → Finset β) (wt : β → ℝ) {i
   rw [hfilter, sum_piFinset_pinned_two t wt hne hp.2.1 hp.2.2]
 
 /-- **Covering-count identity.** Summing each event's bad-selection mass counts every
-selection with multiplicity the number of events it violates.-/
+selection with multiplicity the number of events it violates.
+@isnad1 id=eq.0h8v.s8.c00058a3c621 from=translated src=- shape=e0039cdf vocab=579e63d0
+-/
 theorem sum_filter_pair_mem_eq_badCount {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (i₁ i₂ : E → ι) (Bad : E → Finset (β × β)) :
     ∑ e : E, ∑ g ∈ (Fintype.piFinset t).filter
@@ -159,7 +165,9 @@ theorem sum_filter_pair_mem_eq_badCount {E : Type*} [Fintype E]
 
 /-- **The weighted union bound.** If the summed masses of the bad events are strictly
 below the total selection weight, some selection avoids every bad event. Events carry
-two DISTINCT coordinates; equal-cell distinct-role events are admissible.-/
+two DISTINCT coordinates; equal-cell distinct-role events are admissible.
+@isnad1 id=ex.3h8v.s8.f33da5791789 from=translated src=- shape=42ee91dd vocab=47b25f8e
+-/
 theorem exists_piFinset_forall_not_mem_bad {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e) (Bad : E → Finset (β × β))
@@ -211,7 +219,9 @@ the per-event charges times the marginalized `Dev`-pair masses. This is the mech
 route to the `μ` input of `exists_piFinset_forall_not_mem_bad_cost_le`: in the intended
 application the events range over the six ordered role pairs and the `K` palette
 colors, each `Dev`-mass is controlled by the witness deviance bound, and the
-per-event weights are the coarse-pair volumes.-/
+per-event weights are the coarse-pair volumes.
+@isnad1 id=eq.1h9v.s8.2c6d2151f0c0 from=translated src=- shape=8cd3be8f vocab=dfaba1a4
+-/
 theorem sum_piFinset_weight_mul_eventCost {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e)
     (Dev : E → Finset (β × β)) (w : E → ℝ) :
@@ -243,7 +253,9 @@ theorem sum_piFinset_weight_mul_eventCost {E : Type*} [Fintype E]
 /-- **Per-event factor accounting.** Pinned-pair bounds
 `w e · (Dev-restricted pair mass) ≤ μe e · (pinned-coordinate weights)` convert the
 expected-cost identity into the `μ = ∑ e, μe e` input of the conditioned selection
-bound, with no reference to the remaining coordinates.-/
+bound, with no reference to the remaining coordinates.
+@isnad1 id=le.3h10v.s8.57806f67a648 from=translated src=- shape=38732706 vocab=cdee8c91
+-/
 theorem sum_piFinset_weight_mul_eventCost_le {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e)
@@ -292,7 +304,9 @@ theorem sum_piFinset_weight_mul_eventCost_le {E : Type*} [Fintype E]
 Conditioning on avoiding every bad event inflates the expected-cost bound by exactly
 the factor `1/(1 − σ)`; with the half-budget `σ ≤ 1/2` this is a factor `2`. The bound
 is honest: without the conditioning factor the conclusion is FALSE (a cost supported
-exactly on the good selections has conditional average `μ/(1 − σ)`, not `μ`).-/
+exactly on the good selections has conditional average `μ/(1 − σ)`, not `μ`).
+@isnad1 id=ex.7h11v.s8.ff92e76b1233 from=translated src=- shape=ad7326c8 vocab=94cbecab
+-/
 theorem exists_piFinset_forall_not_mem_bad_cost_le {E : Type*} [Fintype E]
     (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (i₁ i₂ : E → ι) (hne : ∀ e, i₁ e ≠ i₂ e) (Bad : E → Finset (β × β))
@@ -408,7 +422,9 @@ theorem exists_piFinset_forall_not_mem_bad_cost_le {E : Type*} [Fintype E]
 /-- **Cost only, no forbidden events.** When nothing is forbidden the conditioning factor
 disappears: a weighted expected cost at most `μ` times the total weight is achieved by some
 selection at cost at most `μ`, UNDOUBLED. Derived from the conditioned form at `E := Empty`
-and `σ := 0`, so no dummy event arguments are needed at the call site.-/
+and `σ := 0`, so no dummy event arguments are needed at the call site.
+@isnad1 id=ex.4h6v.s7.cbb39b9aac76 from=translated src=- shape=aadc2f4e vocab=907670bb
+-/
 theorem exists_piFinset_cost_le (t : ι → Finset β) (wt : β → ℝ) (hwt : ∀ x, 0 ≤ wt x)
     (cost : (ι → β) → ℝ) (hcost : ∀ g, 0 ≤ cost g) {μ : ℝ}
     (hWpos : 0 < ∏ j, ∑ x ∈ t j, wt x)

@@ -67,7 +67,9 @@ def IsDiscRegularAt (κ : RSet j α → Fin K) (obs : (Fin (j + 1) → α) → P
     δ * ((polyadBlock κ key).card : ℝ) ≤ ((discAtom κ key P).card : ℝ) →
     |densityOn (discAtom κ key P) obs - d| ≤ δ
 
-/-- **The exact `r = 1` bridge**, locally at each key.-/
+/-- **The exact `r = 1` bridge**, locally at each key.
+@isnad1 id=iff.0h8v.s6.3b9d5c3d3b02 from=translated src=- shape=d215356f vocab=c947956d
+-/
 theorem isPolyadRegularAt_one_iff {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ} :
@@ -86,7 +88,9 @@ def IsLocalDiscRegular (κ : RSet j α → Fin K) (obs : (Fin (j + 1) → α) �
   IsDiscRegularAt κ obs key (densityOn (polyadBlock κ key) obs) δ
 
 /-- **Empty parent**: at its natural density `0`, an unrealized key is vacuously
-locally regular.-/
+locally regular.
+@isnad1 id=islocald.2h7v.s7.9021ecbccd5e from=translated src=- shape=ffb0ec0a vocab=c1cbf4e0
+-/
 theorem isLocalDiscRegular_of_empty_block {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {δ : ℝ}
@@ -100,7 +104,9 @@ theorem isLocalDiscRegular_of_empty_block {κ : RSet j α → Fin K}
 /-! ### Structural monotonicities -/
 
 /-- Weakening the tolerance preserves local polyad regularity (the threshold rises
-and the conclusion loosens together).-/
+and the conclusion loosens together).
+@isnad1 id=ispolyad.2h10v.s6.d77f7dd5a577 from=translated src=- shape=fef35f96 vocab=096f83f2
+-/
 theorem IsPolyadRegularAt.mono_delta {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ δ' : ℝ} {r : ℕ}
@@ -110,7 +116,9 @@ theorem IsPolyadRegularAt.mono_delta {κ : RSet j α → Fin K}
   refine le_trans (h F ?_) hδ
   exact le_trans (mul_le_mul_of_nonneg_right hδ (Nat.cast_nonneg _)) hcard
 
-/-- Weakening the tolerance preserves local disc regularity.-/
+/-- Weakening the tolerance preserves local disc regularity.
+@isnad1 id=isdiscre.2h9v.s6.e7d10ebb8c81 from=translated src=- shape=266a18f2 vocab=cf37c658
+-/
 theorem IsDiscRegularAt.mono_delta {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ δ' : ℝ}
@@ -121,7 +129,9 @@ theorem IsDiscRegularAt.mono_delta {κ : RSet j α → Fin K}
   exact le_trans (mul_le_mul_of_nonneg_right hδ (Nat.cast_nonneg _)) hcard
 
 /-- **Antitonicity in `r`**: fewer simultaneous families are a weaker test — pad the
-unused slots with empty families, which contribute empty atoms.-/
+unused slots with empty families, which contribute empty atoms.
+@isnad1 id=ispolyad.2h10v.s6.17f7751729a0 from=translated src=- shape=0cd27aad vocab=096f83f2
+-/
 theorem IsPolyadRegularAt.anti_r {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ} {r r' : ℕ}
@@ -158,7 +168,9 @@ theorem IsPolyadRegularAt.anti_r {κ : RSet j α → Fin K}
 /-! ### Permutation invariance -/
 
 /-- Permutation invariance of local disc regularity, for observables invariant
-under `σ`.-/
+under `σ`.
+@isnad1 id=isdiscre.2h9v.s8.a61a5ec813f0 from=translated src=- shape=2edc14d6 vocab=d7cf01e3
+-/
 theorem IsDiscRegularAt.comp_perm {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ}
@@ -177,7 +189,9 @@ theorem IsDiscRegularAt.comp_perm {κ : RSet j α → Fin K}
   rw [← hcard]
   rwa [← card_polyadBlock_comp_perm κ key σ]
 
-/-- Permutation invariance of local disc regularity, as an equivalence.-/
+/-- Permutation invariance of local disc regularity, as an equivalence.
+@isnad1 id=iff.1h9v.s8.7fe709718496 from=translated src=- shape=d6e1b43a vocab=d7cf01e3
+-/
 theorem isDiscRegularAt_comp_perm_iff {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ} (σ : Equiv.Perm (Fin (j + 1)))
@@ -196,7 +210,9 @@ theorem isDiscRegularAt_comp_perm_iff {κ : RSet j α → Fin K}
     exact funext fun i => congrArg key (σ.symm_apply_apply i)
   rwa [hkey] at this
 
-/-- Permutation invariance of local `(δ, d, r)` polyad regularity.-/
+/-- Permutation invariance of local `(δ, d, r)` polyad regularity.
+@isnad1 id=ispolyad.2h10v.s8.e1d016f759b8 from=translated src=- shape=343dfb94 vocab=527a2992
+-/
 theorem IsPolyadRegularAt.comp_perm {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ} {r : ℕ}
@@ -254,7 +270,9 @@ theorem IsPolyadRegularAt.comp_perm {κ : RSet j α → Fin K}
   rwa [← card_polyadBlock_comp_perm κ key σ]
 
 /-- Permutation invariance of the canonical own-density predicate, as an
-equivalence.-/
+equivalence.
+@isnad1 id=iff.1h8v.s8.fe183e4a0781 from=translated src=- shape=11945c9d vocab=6b05e2c0
+-/
 theorem isLocalDiscRegular_comp_perm_iff {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {δ : ℝ} (σ : Equiv.Perm (Fin (j + 1)))
@@ -266,7 +284,9 @@ theorem isLocalDiscRegular_comp_perm_iff {κ : RSet j α → Fin K}
 
 /-! ### Whole-block control and common-density globalizations -/
 
-/-- Local disc regularity controls the whole block once `δ ≤ 1`.-/
+/-- Local disc regularity controls the whole block once `δ ≤ 1`.
+@isnad1 id=le.2h8v.s7.e7140ed79d8f from=translated src=- shape=3998b198 vocab=f72306aa
+-/
 theorem IsDiscRegularAt.polyadBlock_density {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs]
     {key : Fin (j + 1) → Fin K} {d δ : ℝ}
@@ -289,11 +309,17 @@ def IsCommonDensityDiscRegular (κ : RSet j α → Fin K)
     (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] (d δ : ℝ) : Prop :=
   ∀ key : Fin (j + 1) → Fin K, IsDiscRegularAt κ obs key d δ
 
+/--
+@isnad1 id=iff.0h7v.s6.3f6f13bc0ab8 from=translated src=- shape=9700cd7f vocab=a7907e3f
+-/
 theorem isCommonDensityPolyadRegular_one_iff {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ : ℝ} :
     IsCommonDensityPolyadRegular κ obs d δ 1 ↔ IsCommonDensityDiscRegular κ obs d δ :=
   forall_congr' fun _ => isPolyadRegularAt_one_iff
 
+/--
+@isnad1 id=iscommon.2h8v.s6.41281bc67ef8 from=translated src=- shape=eb21aa04 vocab=f2a23f2f
+-/
 theorem IsCommonDensityDiscRegular.mono_delta {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ δ' : ℝ}
     (h : IsCommonDensityDiscRegular κ obs d δ) (hδ : δ ≤ δ') :
@@ -314,21 +340,27 @@ def IsBlockUnionRegular (κ : RSet j α → Fin K) (obs : (Fin (j + 1) → α) �
     thr ≤ (Q.biUnion (polyadBlock κ)).card →
     |densityOn (Q.biUnion (polyadBlock κ)) obs - d| ≤ δ
 
-/-- Weakening the tolerance preserves block-union regularity.-/
+/-- Weakening the tolerance preserves block-union regularity.
+@isnad1 id=isblocku.2h10v.s6.3cd8de4d2565 from=translated src=- shape=c1c779b5 vocab=8bb6ae82
+-/
 theorem IsBlockUnionRegular.mono_delta {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ δ' : ℝ} {r thr : ℕ}
     (h : IsBlockUnionRegular κ obs d δ r thr) (hδ : δ ≤ δ') :
     IsBlockUnionRegular κ obs d δ' r thr :=
   fun Q hr hthr => le_trans (h Q hr hthr) hδ
 
-/-- Shrinking the union budget preserves block-union regularity (fewer tests).-/
+/-- Shrinking the union budget preserves block-union regularity (fewer tests).
+@isnad1 id=isblocku.2h10v.s6.dde750573885 from=translated src=- shape=7cbcf8ba vocab=8bb6ae82
+-/
 theorem IsBlockUnionRegular.anti_r {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ : ℝ} {r r' thr : ℕ}
     (h : IsBlockUnionRegular κ obs d δ r thr) (hr : r' ≤ r) :
     IsBlockUnionRegular κ obs d δ r' thr :=
   fun Q hQ hthr => h Q (hQ.trans hr) hthr
 
-/-- Raising the negligibility threshold preserves block-union regularity.-/
+/-- Raising the negligibility threshold preserves block-union regularity.
+@isnad1 id=isblocku.2h10v.s6.8b024d6712f0 from=translated src=- shape=63757edc vocab=8bb6ae82
+-/
 theorem IsBlockUnionRegular.mono_thr {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ : ℝ} {r thr thr' : ℕ}
     (h : IsBlockUnionRegular κ obs d δ r thr) (hthr : thr ≤ thr') :
@@ -336,7 +368,9 @@ theorem IsBlockUnionRegular.mono_thr {κ : RSet j α → Fin K}
   fun Q hQ hcard => h Q hQ (hthr.trans hcard)
 
 /-- Common-density disc regularity implies the `r = 1` block-union test at any
-positive absolute threshold, provided `δ ≤ 1`.-/
+positive absolute threshold, provided `δ ≤ 1`.
+@isnad1 id=isblocku.3h8v.s6.935c9afc9f2e from=translated src=- shape=284becf5 vocab=f4b9c10f
+-/
 theorem IsCommonDensityDiscRegular.isBlockUnionRegular_one {κ : RSet j α → Fin K}
     {obs : (Fin (j + 1) → α) → Prop} [DecidablePred obs] {d δ : ℝ} {thr : ℕ}
     (h : IsCommonDensityDiscRegular κ obs d δ) (hδ : δ ≤ 1) (hthr : 0 < thr) :

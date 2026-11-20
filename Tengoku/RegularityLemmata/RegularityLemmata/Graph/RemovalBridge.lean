@@ -34,14 +34,18 @@ namespace RegularityLemmata
 variable {α : Type*} [Fintype α] [DecidableEq α] {ε : ℝ}
 
 omit [DecidableEq α] in
-/-- Ordered adjacent pairs over the full box are twice the edges.-/
+/-- Ordered adjacent pairs over the full box are twice the edges.
+@isnad1 id=eq.0h2v.s5.5cea7d224a7b from=translated src=- shape=eaa44aa8 vocab=4c804b91
+-/
 theorem pairCount_adj_eq_two_mul_card_edgeFinset (G : SimpleGraph α)
     [DecidableRel G.Adj] :
     pairCount G.Adj Finset.univ Finset.univ = 2 * G.edgeFinset.card := by
   rw [SimpleGraph.two_mul_card_edgeFinset, pairCount, Finset.univ_product_univ]
 
 /-- For a subgraph `G' ≤ G`, the adjacency edit distance on the full box is twice the
-number of removed edges.-/
+number of removed edges.
+@isnad1 id=eq.1h3v.s8.10b80a329d6b from=translated src=- shape=d8150e84 vocab=66eefe6c
+-/
 theorem editDistance_adj_of_le {G G' : SimpleGraph α} [DecidableRel G.Adj]
     [DecidableRel G'.Adj] (h : G' ≤ G) :
     editDistance (fun x : Fin 2 → α => G.Adj (x 0) (x 1))
@@ -85,7 +89,9 @@ theorem editDistance_adj_of_le {G G' : SimpleGraph α} [DecidableRel G.Adj]
   rw [hbox, hfe]
   omega
 
-/-- Normalized form: the relative adjacency edit distance is the removed-edge fraction.-/
+/-- Normalized form: the relative adjacency edit distance is the removed-edge fraction.
+@isnad1 id=eq.1h3v.s8.66fa046a6639 from=translated src=- shape=e6c2c267 vocab=344d17b0
+-/
 theorem relativeEditDistance_adj_of_le {G G' : SimpleGraph α} [DecidableRel G.Adj]
     [DecidableRel G'.Adj] (h : G' ≤ G) :
     relativeEditDistance (fun x : Fin 2 → α => G.Adj (x 0) (x 1))
@@ -102,7 +108,9 @@ theorem relativeEditDistance_adj_of_le {G G' : SimpleGraph α} [DecidableRel G.A
 /-! ### Mathlib triangle results, re-exported -/
 
 /-- Mathlib's **triangle counting lemma**: a graph far from triangle-free has many
-triangles. Wrapped, not reproved.-/
+triangles. Wrapped, not reproved.
+@isnad1 id=le.1h3v.s6.63653b1dc0ed from=translated src=- shape=6d4f8cc7 vocab=869fa533
+-/
 theorem farFromTriangleFree_le_card_cliqueFinset {G : SimpleGraph α} [DecidableRel G.Adj]
     (hG : G.FarFromTriangleFree ε) :
     SimpleGraph.triangleRemovalBound ε * Fintype.card α ^ 3 ≤ (G.cliqueFinset 3).card :=
@@ -110,7 +118,9 @@ theorem farFromTriangleFree_le_card_cliqueFinset {G : SimpleGraph α} [Decidable
 
 /-- Mathlib's **triangle removal lemma**: few triangles can all be removed by deleting
 few edges. Combined with `editDistance_adj_of_le`, the edge conclusion reads as an
-adjacency edit-distance bound. Wrapped, not reproved.-/
+adjacency edit-distance bound. Wrapped, not reproved.
+@isnad1 id=ex.1h3v.s7.651bc186adff from=translated src=- shape=2d04b28f vocab=2a4a204b
+-/
 theorem triangle_removal_of_card_cliqueFinset_lt {G : SimpleGraph α} [DecidableRel G.Adj]
     (hG : ((G.cliqueFinset 3).card : ℝ)
       < SimpleGraph.triangleRemovalBound ε * Fintype.card α ^ 3) :

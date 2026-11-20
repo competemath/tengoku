@@ -81,7 +81,9 @@ def RectKernel.IsHomogeneousPair (f : RectKernel X Y) (δ ε : ℝ) (A : Finset 
 /-- Monotonicity in the closeness radius: `IsAlmostNearOn φ r δ ε V` implies
 `IsAlmostNearOn φ r δ' ε V` whenever `δ ≤ δ'`. The witness subset is reused unchanged; the
 open `δ`-ball around `r` sits inside the open `δ'`-ball. No sign condition on `δ`, `ε`.
-House lemma, no source; consumed by `RectKernel.IsRowConcentrated.mono_delta`.-/
+House lemma, no source; consumed by `RectKernel.IsRowConcentrated.mono_delta`.
+@isnad1 id=isalmost.2h7v.s5.49b54ac104b6 from=translated src=- shape=4ca0018f vocab=9211bbf5
+-/
 theorem IsAlmostNearOn.mono_delta (h : IsAlmostNearOn φ r δ ε V) (hδ : δ ≤ δ') :
     IsAlmostNearOn φ r δ' ε V := by
   rcases h with rfl | ⟨W, hWV, hcard, hnear⟩
@@ -91,7 +93,9 @@ theorem IsAlmostNearOn.mono_delta (h : IsAlmostNearOn φ r δ ε V) (hδ : δ �
 /-- Monotonicity in the exceptional fraction: `IsAlmostNearOn φ r δ ε V` implies
 `IsAlmostNearOn φ r δ ε' V` whenever `ε ≤ ε'`. The witness subset is reused; its strict mass
 bound `(1 - ε) * |V| < |W|` weakens to `(1 - ε') * |V| < |W|`. No sign condition on `δ`,
-`ε`, `ε'`. House lemma, no source; consumed by `RectKernel.IsRowConcentrated.mono_eps`.-/
+`ε`, `ε'`. House lemma, no source; consumed by `RectKernel.IsRowConcentrated.mono_eps`.
+@isnad1 id=isalmost.2h7v.s5.e0023828ace3 from=translated src=- shape=ae680a26 vocab=9211bbf5
+-/
 theorem IsAlmostNearOn.mono_eps (h : IsAlmostNearOn φ r δ ε V) (hε : ε ≤ ε') :
     IsAlmostNearOn φ r δ ε' V := by
   rcases h with rfl | ⟨W, hWV, hcard, hnear⟩
@@ -100,14 +104,18 @@ theorem IsAlmostNearOn.mono_eps (h : IsAlmostNearOn φ r δ ε V) (hε : ε ≤ 
     exact mul_le_mul_of_nonneg_right (by linarith) (Nat.cast_nonneg _)
 
 /-- Totalization: `IsAlmostNearOn φ r δ ε ∅` holds for every `φ`, `r`, `δ`, `ε`, including
-`ε = 0` and `δ ≤ 0`, by the first disjunct of the definition. House lemma, no source.-/
+`ε = 0` and `δ ≤ 0`, by the first disjunct of the definition. House lemma, no source.
+@isnad1 id=isalmost.0h5v.s4.aa08462e84b2 from=translated src=- shape=a09755c8 vocab=ee2ef102
+-/
 theorem isAlmostNearOn_empty (φ : α → ℝ) (r δ ε : ℝ) : IsAlmostNearOn φ r δ ε (∅ : Finset α) :=
   Or.inl rfl
 
 /-- Monotonicity of row concentration in the closeness radius: `δ ≤ δ'` transports
 `RectKernel.IsRowConcentrated f r δ ε A B` to radius `δ'`, row by row through
 `IsAlmostNearOn.mono_delta`. The set of good rows is unchanged. No sign condition on the
-parameters. House lemma, no source; consumed by `RectKernel.IsHomogeneousPair.mono_delta`.-/
+parameters. House lemma, no source; consumed by `RectKernel.IsHomogeneousPair.mono_delta`.
+@isnad1 id=isrowcon.2h9v.s5.47f950ab0821 from=translated src=- shape=f46a06a3 vocab=a5afe881
+-/
 theorem RectKernel.IsRowConcentrated.mono_delta (h : RectKernel.IsRowConcentrated f r δ ε A B)
     (hδ : δ ≤ δ') : RectKernel.IsRowConcentrated f r δ' ε A B := by
   rcases h with hA | hB | ⟨A', hA'A, hcard, hrows⟩
@@ -120,7 +128,9 @@ theorem RectKernel.IsRowConcentrated.mono_delta (h : RectKernel.IsRowConcentrate
 in the predicate (the fraction of bad rows and the fraction of bad columns within a good
 row); both weaken at once, the row count via the mass clause and the columns via
 `IsAlmostNearOn.mono_eps`. No sign condition on the parameters. House lemma, no source;
-consumed by `RectKernel.IsHomogeneousPair.mono_eps`.-/
+consumed by `RectKernel.IsHomogeneousPair.mono_eps`.
+@isnad1 id=isrowcon.2h9v.s5.649e8ba14be5 from=translated src=- shape=0f57b519 vocab=a5afe881
+-/
 theorem RectKernel.IsRowConcentrated.mono_eps (h : RectKernel.IsRowConcentrated f r δ ε A B)
     (hε : ε ≤ ε') : RectKernel.IsRowConcentrated f r δ ε' A B := by
   rcases h with hA | hB | ⟨A', hA'A, hcard, hrows⟩
@@ -130,7 +140,9 @@ theorem RectKernel.IsRowConcentrated.mono_eps (h : RectKernel.IsRowConcentrated 
     exact mul_le_mul_of_nonneg_right (by linarith) (Nat.cast_nonneg _)
 
 /-- Totalization on the row side: `RectKernel.IsRowConcentrated f r δ ε ∅ B` holds for every
-`r`, `δ`, `ε`, `B`, by the first disjunct of the definition. House lemma, no source.-/
+`r`, `δ`, `ε`, `B`, by the first disjunct of the definition. House lemma, no source.
+@isnad1 id=isrowcon.0h7v.s4.19b453eaef74 from=translated src=- shape=b3198eca vocab=76ac36e8
+-/
 theorem rectKernel_isRowConcentrated_empty_left (f : RectKernel X Y) (r δ ε : ℝ)
     (B : Finset Y) : RectKernel.IsRowConcentrated f r δ ε ∅ B :=
   Or.inl rfl
@@ -138,7 +150,9 @@ theorem rectKernel_isRowConcentrated_empty_left (f : RectKernel X Y) (r δ ε : 
 /-- Totalization on the column side: `RectKernel.IsRowConcentrated f r δ ε A ∅` holds for
 every `r`, `δ`, `ε`, `A`, by the second disjunct. This is the case a row-only totalization
 would get wrong at `ε ≤ 0` with `A ≠ ∅` (see the module docstring and the `Tests` section).
-House lemma, no source.-/
+House lemma, no source.
+@isnad1 id=isrowcon.0h7v.s4.cc0a35d1d978 from=translated src=- shape=d72e4811 vocab=76ac36e8
+-/
 theorem rectKernel_isRowConcentrated_empty_right (f : RectKernel X Y) (r δ ε : ℝ)
     (A : Finset X) : RectKernel.IsRowConcentrated f r δ ε A ∅ :=
   Or.inr (Or.inl rfl)
@@ -147,7 +161,9 @@ theorem rectKernel_isRowConcentrated_empty_right (f : RectKernel X Y) (r δ ε :
 `RectKernel.IsHomogeneousPair f δ ε A B` to `δ'`, keeping the same row value `r` and column
 value `s` in `[0,1]`. Both clauses go through `RectKernel.IsRowConcentrated.mono_delta`.
 No sign condition on the parameters. House lemma, no source (the paper takes this for
-granted).-/
+granted).
+@isnad1 id=ishomoge.2h8v.s5.4945d84baa80 from=translated src=- shape=dd89bbf1 vocab=f1ce7642
+-/
 theorem RectKernel.IsHomogeneousPair.mono_delta (h : RectKernel.IsHomogeneousPair f δ ε A B)
     (hδ : δ ≤ δ') : RectKernel.IsHomogeneousPair f δ' ε A B :=
   ⟨let ⟨r, hr, hrow⟩ := h.1; ⟨r, hr, hrow.mono_delta hδ⟩,
@@ -156,13 +172,17 @@ theorem RectKernel.IsHomogeneousPair.mono_delta (h : RectKernel.IsHomogeneousPai
 /-- Monotonicity of `(δ, ε)`-homogeneity in `ε`: `ε ≤ ε'` transports
 `RectKernel.IsHomogeneousPair f δ ε A B` to `ε'`, keeping the same `r` and `s` in `[0,1]`.
 Both clauses go through `RectKernel.IsRowConcentrated.mono_eps`. No sign condition on the
-parameters. House lemma, no source (the paper takes this for granted).-/
+parameters. House lemma, no source (the paper takes this for granted).
+@isnad1 id=ishomoge.2h8v.s5.ca6f358352be from=translated src=- shape=4893b072 vocab=f1ce7642
+-/
 theorem RectKernel.IsHomogeneousPair.mono_eps (h : RectKernel.IsHomogeneousPair f δ ε A B)
     (hε : ε ≤ ε') : RectKernel.IsHomogeneousPair f δ ε' A B :=
   ⟨let ⟨r, hr, hrow⟩ := h.1; ⟨r, hr, hrow.mono_eps hε⟩,
    let ⟨s, hs, hcol⟩ := h.2; ⟨s, hs, hcol.mono_eps hε⟩⟩
 
-/-- **Exact transpose law**: swap the two clauses.-/
+/-- **Exact transpose law**: swap the two clauses.
+@isnad1 id=iff.0h7v.s5.27fa9c965b79 from=translated src=- shape=f77d334a vocab=5ea7f07e
+-/
 theorem RectKernel.isHomogeneousPair_op_iff :
     RectKernel.IsHomogeneousPair (RectKernel.op f) δ ε B A ↔
       RectKernel.IsHomogeneousPair f δ ε A B :=
@@ -172,7 +192,9 @@ theorem RectKernel.isHomogeneousPair_op_iff :
 `δ`, `ε`, `B`, with `r = s = 0` as the (irrelevant) common values. The row clause is
 `rectKernel_isRowConcentrated_empty_left`; the column clause, stated on the transpose with
 `∅` as its column side, is `rectKernel_isRowConcentrated_empty_right`. House lemma, no
-source.-/
+source.
+@isnad1 id=ishomoge.0h6v.s4.447a0a4b9d1f from=translated src=- shape=f3165179 vocab=9551f186
+-/
 theorem rectKernel_isHomogeneousPair_empty_left (f : RectKernel X Y) (δ ε : ℝ) (B : Finset Y) :
     RectKernel.IsHomogeneousPair f δ ε ∅ B :=
   ⟨⟨0, ⟨le_rfl, zero_le_one⟩, Or.inl rfl⟩, ⟨0, ⟨le_rfl, zero_le_one⟩, Or.inr (Or.inl rfl)⟩⟩
@@ -180,7 +202,9 @@ theorem rectKernel_isHomogeneousPair_empty_left (f : RectKernel X Y) (δ ε : �
 /-- Totalization on the column side: `RectKernel.IsHomogeneousPair f δ ε A ∅` holds for
 every `δ`, `ε`, `A`, with `r = s = 0`. Mirror image of
 `rectKernel_isHomogeneousPair_empty_left` under `RectKernel.isHomogeneousPair_op_iff`.
-House lemma, no source.-/
+House lemma, no source.
+@isnad1 id=ishomoge.0h6v.s4.1041992dce51 from=translated src=- shape=d6044932 vocab=9551f186
+-/
 theorem rectKernel_isHomogeneousPair_empty_right (f : RectKernel X Y) (δ ε : ℝ)
     (A : Finset X) : RectKernel.IsHomogeneousPair f δ ε A ∅ :=
   ⟨⟨0, ⟨le_rfl, zero_le_one⟩, Or.inr (Or.inl rfl)⟩, ⟨0, ⟨le_rfl, zero_le_one⟩, Or.inl rfl⟩⟩
@@ -269,7 +293,9 @@ private theorem RectKernel.exists_isRowConcentrated_of_isAlmostConstantPair (hε
 
 /-- **Proposition A.5(a)** (reformulated variant): an `ε²`-almost `2δ`-constant rectangle is
 `(δ, ε)`-homogeneous. The range hypothesis places the common values in `[0,1]`; the column
-clause is the row clause of the transpose, through `isAlmostConstantPair_op_iff`.-/
+clause is the row clause of the transpose, through `isAlmostConstantPair_op_iff`.
+@isnad1 id=ishomoge.3h7v.s6.4ebd913f4592 from=translated src=- shape=24bd00fc vocab=c8cdef25
+-/
 theorem RectKernel.isHomogeneousPair_of_isAlmostConstantPair (hε : 0 < ε)
     (hrange : IsUnitIntervalOnRectangle f A B)
     (h : IsAlmostConstantPair f (2 * δ) (ε * ε) A B) :
@@ -283,7 +309,9 @@ theorem RectKernel.isHomogeneousPair_of_isAlmostConstantPair (hε : 0 < ε)
 /-- **Proposition A.5(b)** (reformulated variant, no hypotheses): a `(δ, ε)`-homogeneous
 rectangle is `2ε`-almost `2δ`-constant. Only the row clause is used: the union over the good
 rows of their good column sets has more than `(1 − ε)²|A||B| ≥ (1 − 2ε)|A||B|` points when
-`ε ≤ 1`, and for `ε > 1` the conclusion is the trivial regime.-/
+`ε ≤ 1`, and for `ε > 1` the conclusion is the trivial regime.
+@isnad1 id=isalmost.1h7v.s6.8fe2ddad5045 from=translated src=- shape=fad50fb1 vocab=a2b1b554
+-/
 theorem RectKernel.isAlmostConstantPair_of_isHomogeneousPair
     (h : RectKernel.IsHomogeneousPair f δ ε A B) :
     IsAlmostConstantPair f (2 * δ) (2 * ε) A B := by

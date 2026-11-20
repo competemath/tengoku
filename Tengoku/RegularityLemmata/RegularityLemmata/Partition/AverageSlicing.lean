@@ -31,7 +31,9 @@ variable {α : Type*}
 /-- **Average slicing**: under the balanced-slicing ratio hypothesis for the
 `q · ⌈1/ν⌉`-member level-set trace family, a nonempty set splits into `A.card / s` pairwise
 disjoint blocks of exact size `s`, on each of which every function of the family keeps its
-average within `2ν + (1 + ν)β` of its `A`-average.-/
+average within `2ν + (1 + ν)β` of its `A`-average.
+@isnad1 id=ex.8h8v.s9.62224de1965b from=translated src=- shape=978be59e vocab=c7c98677
+-/
 theorem exists_average_slicing [DecidableEq α] (A : Finset α) {q : ℕ} (φ : Fin q → α → ℝ)
     {s t : ℕ} {β ν : ℝ}
     (hA : A.Nonempty) (hs : 0 < s) (ht : t < s) (htβ : (t : ℝ) ≤ β * s) (hβ : 0 ≤ β)

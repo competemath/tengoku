@@ -47,7 +47,9 @@ noncomputable def familyTripleSeed (C ε : ℝ) (l : ℕ) : ℕ :=
 /-- The seed is a multiple of three: `3 ∣ familyTripleSeed C ε l`, definitionally, since
 the seed is `3 * ((familyInitialBound C ε l + 2) / 3)`. Consumed by
 `three_dvd_familyRegularityBoundTriple` and by
-`exists_familyRegular_equipartition_triple` to seed the divisibility invariant.-/
+`exists_familyRegular_equipartition_triple` to seed the divisibility invariant.
+@isnad1 id=dvd.0h3v.s4.1eb19175014c from=translated src=- shape=242e3cc5 vocab=b1aaef4e
+-/
 theorem three_dvd_familyTripleSeed (C ε : ℝ) (l : ℕ) : 3 ∣ familyTripleSeed C ε l :=
   ⟨_, rfl⟩
 
@@ -57,13 +59,17 @@ tolerance, and `l` the requested part count; no hypothesis on `ε` is needed bec
 statement is a natural-number inequality about `⌈·⌉₊`-valued floors. Together with
 `familyTripleSeed_le` it pins the seed to the interval `[floor, floor + 2]`. House lemma,
 no source. Consumed by `two_le_familyTripleSeed`, `le_familyTripleSeed_of_le`, and
-`exists_familyRegular_equipartition_triple`.-/
+`exists_familyRegular_equipartition_triple`.
+@isnad1 id=le.0h3v.s4.6b47777da837 from=translated src=- shape=f563864f vocab=72bccc10
+-/
 theorem le_familyTripleSeed (C ε : ℝ) (l : ℕ) :
     familyInitialBound C ε l ≤ familyTripleSeed C ε l := by
   rw [familyTripleSeed]
   omega
 
-/-- The seed costs at most two extra parts over the floor.-/
+/-- The seed costs at most two extra parts over the floor.
+@isnad1 id=le.0h3v.s4.b8156a1d26ad from=translated src=- shape=c38f7976 vocab=519da36f
+-/
 theorem familyTripleSeed_le (C ε : ℝ) (l : ℕ) :
     familyTripleSeed C ε l ≤ familyInitialBound C ε l + 2 := by
   rw [familyTripleSeed]
@@ -73,21 +79,27 @@ theorem familyTripleSeed_le (C ε : ℝ) (l : ℕ) :
 floor through `le_familyTripleSeed`. In fact the seed is at least `3`, being a positive
 multiple of three; only the floor's bound is exported. Consumed by
 `exists_familyRegular_equipartition_triple` to show the seed is nonzero, as
-`Finpartition.exists_equipartition_card_eq` requires.-/
+`Finpartition.exists_equipartition_card_eq` requires.
+@isnad1 id=le.0h3v.s4.60d30c041087 from=translated src=- shape=242e3cc5 vocab=220ad820
+-/
 theorem two_le_familyTripleSeed (C ε : ℝ) (l : ℕ) : 2 ≤ familyTripleSeed C ε l :=
   le_trans (two_le_familyInitialBound C ε l) (le_familyTripleSeed C ε l)
 
 /-- The requested part count is met by the seed: `l ≤ familyTripleSeed C ε l`, from
 `le_familyInitialBound` through `le_familyTripleSeed`. House lemma, no source. Not
 consumed elsewhere; `exists_familyRegular_equipartition_triple` obtains `l ≤ #Q.parts`
-from the floor instead.-/
+from the floor instead.
+@isnad1 id=le.0h3v.s3.ddf1ea98538c from=translated src=- shape=667193bd vocab=220ad820
+-/
 theorem le_familyTripleSeed_of_le (C ε : ℝ) (l : ℕ) : l ≤ familyTripleSeed C ε l :=
   le_trans (le_familyInitialBound C ε l) (le_familyTripleSeed C ε l)
 
 /-! ### Divisibility through the recursion -/
 
 /-- Divisibility by three survives the iterate, because each step multiplies the part
-count by `familyChunksPerPart`.-/
+count by `familyChunksPerPart`.
+@isnad1 id=dvd.1h2v.s4.4034e0da63c1 from=translated src=- shape=d2ae1989 vocab=da8eefc4
+-/
 theorem three_dvd_familyRegularityBoundAux {m : ℕ} (h : 3 ∣ m) (t : ℕ) :
     3 ∣ familyRegularityBoundAux t m := by
   induction t generalizing m with
@@ -105,7 +117,9 @@ The seed is divisible by three (`three_dvd_familyTripleSeed`) and the recursion 
 divisibility (`three_dvd_familyRegularityBoundAux`), for every `K`, `ε`, and `l`. House
 lemma, no source. This concerns the numerical bound only: divisibility of the actual part
 count is maintained separately by `familyRegularity_iterate_dvd`, which is where the summit's
-`3 ∣ #Q.parts` clause comes from. Exercised by the tests at the end of this file.-/
+`3 ∣ #Q.parts` clause comes from. Exercised by the tests at the end of this file.
+@isnad1 id=dvd.0h3v.s4.1dccb66bcff5 from=translated src=- shape=bad53a6c vocab=33c6471f
+-/
 theorem three_dvd_familyRegularityBoundTriple (K : ℕ) (ε : ℝ) (l : ℕ) :
     3 ∣ familyRegularityBoundTriple K ε l :=
   three_dvd_familyRegularityBoundAux (three_dvd_familyTripleSeed _ _ _) _
@@ -114,7 +128,9 @@ theorem three_dvd_familyRegularityBoundTriple (K : ℕ) (ε : ℝ) (l : ℕ) :
 `familyTripleSeed familyChunkThreshold ε l ≤ familyRegularityBoundTriple K ε l`, since the
 `familyFuel`-fold iterate of `familyStepBound` never decreases (`le_familyRegularityBoundAux`).
 The `C` argument of the seed is the frozen `familyChunkThreshold`. House lemma, no source.
-Consumed by `exists_familyRegular_equipartition_triple` to fit the seed inside the host.-/
+Consumed by `exists_familyRegular_equipartition_triple` to fit the seed inside the host.
+@isnad1 id=le.0h3v.s4.05087f35a8bd from=translated src=- shape=791015cc vocab=d4a363b0
+-/
 theorem le_familyRegularityBoundTriple (K : ℕ) (ε : ℝ) (l : ℕ) :
     familyTripleSeed familyChunkThreshold ε l ≤ familyRegularityBoundTriple K ε l :=
   le_familyRegularityBoundAux _ _
@@ -123,7 +139,9 @@ theorem le_familyRegularityBoundTriple (K : ℕ) (ε : ℝ) (l : ℕ) :
 
 /-- **The iteration with the divisibility invariant.** The part count stays divisible by
 three at every stage, because each step multiplies it by `familyChunksPerPart`. Otherwise
-this is `familyRegularity_iterate` verbatim.-/
+this is `familyRegularity_iterate` verbatim.
+@isnad1 id=ex.7h8v.s8.26975ab545cc from=translated src=- shape=e3085d44 vocab=11799c31
+-/
 theorem familyRegularity_iterate_dvd (hε : 0 < ε) (hε1 : ε ≤ 1) {l : ℕ} :
     ∀ (t : ℕ) (P : Finpartition s), P.IsEquipartition →
       familyInitialBound familyChunkThreshold ε l ≤ P.parts.card →
@@ -183,7 +201,9 @@ theorem familyRegularity_iterate_dvd (hε : 0 < ε) (hε1 : ε ≤ 1) {l : ℕ} 
 /-- **Family regularity with a part count divisible by three.** Seeding the iteration at
 `familyTripleSeed` discharges the divisibility prerequisite that grouping into owners of
 three needs, at a cost of at most two extra parts and with no acyclicity disturbed: the
-seed is still a function of `(ε, l)` alone.-/
+seed is still a function of `(ε, l)` alone.
+@isnad1 id=ex.3h6v.s7.15aa65fdd4d1 from=translated src=- shape=96b5840a vocab=108989df
+-/
 theorem exists_familyRegular_equipartition_triple (Rk : Fin K → α → α → Prop)
     [∀ k, DecidableRel (Rk k)] (hε : 0 < ε) (hε1 : ε ≤ 1) (l : ℕ)
     (hs : familyRegularityBoundTriple K ε l ≤ s.card) :

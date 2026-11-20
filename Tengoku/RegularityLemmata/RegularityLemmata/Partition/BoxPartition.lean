@@ -66,20 +66,30 @@ def boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)] {A : Finit
     (P : BoxPartition A) : Finset (FiniteBox V) :=
   Fintype.piFinset fun i => (P i).parts
 
+/--
+@isnad1 id=iff.0h5v.s6.aea3c93fafc7 from=translated src=- shape=4f4c67cc vocab=53d47c8e
+-/
 @[simp] theorem mem_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} {P : BoxPartition A} {C : FiniteBox V} :
     C ∈ boxCells P ↔ ∀ i, C i ∈ (P i).parts := Fintype.mem_piFinset
 
-/-- **The number of product cells** is the product of the per-coordinate part counts.-/
+/-- **The number of product cells** is the product of the per-coordinate part counts.
+@isnad1 id=eq.0h4v.s6.6cfd01ae853e from=translated src=- shape=95913ccd vocab=aabf3f59
+-/
 @[simp] theorem card_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} (P : BoxPartition A) :
     (boxCells P).card = ∏ i, (P i).parts.card := Fintype.card_piFinset _
 
-/-- Every product cell is a sub-box of the box being partitioned.-/
+/-- Every product cell is a sub-box of the box being partitioned.
+@isnad1 id=le.1h6v.s6.e4f9d09079dc from=translated src=- shape=06eeaf06 vocab=3ccd76d1
+-/
 theorem boxCells_subset [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)] {A : FiniteBox V}
     {P : BoxPartition A} {C : FiniteBox V} (hC : C ∈ boxCells P) (i : ι) : C i ⊆ A i :=
   (P i).le (mem_boxCells.mp hC i)
 
+/--
+@isnad1 id=le.1h5v.s6.167adcc43172 from=translated src=- shape=588232d1 vocab=7822f264
+-/
 theorem tuples_subset_of_mem_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} {P : BoxPartition A} {C : FiniteBox V} (hC : C ∈ boxCells P) :
     C.tuples ⊆ A.tuples := fun _ hx =>
@@ -91,14 +101,23 @@ theorem tuples_subset_of_mem_boxCells [Fintype ι] [DecidableEq ι] [∀ i, Deci
 def cellOf [∀ i, DecidableEq (V i)] {A : FiniteBox V} (P : BoxPartition A) (x : ∀ i, V i) :
     FiniteBox V := fun i => (P i).part (x i)
 
+/--
+@isnad1 id=eq.0h6v.s5.dc5599e24722 from=translated src=- shape=eeb6d6e3 vocab=b08b932e
+-/
 @[simp] theorem cellOf_apply [∀ i, DecidableEq (V i)] {A : FiniteBox V} (P : BoxPartition A)
     (x : ∀ i, V i) (i : ι) : cellOf P x i = (P i).part (x i) := rfl
 
+/--
+@isnad1 id=mem.1h5v.s6.74d1813e8192 from=translated src=- shape=3b0899ca vocab=576b5a11
+-/
 theorem cellOf_mem_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} (P : BoxPartition A) {x : ∀ i, V i} (hx : x ∈ A.tuples) :
     cellOf P x ∈ boxCells P :=
   mem_boxCells.mpr fun i => (P i).part_mem.mpr (FiniteBox.mem_tuples.mp hx i)
 
+/--
+@isnad1 id=mem.1h5v.s6.8f225904cb9d from=translated src=- shape=aabd0cf2 vocab=ffed70f3
+-/
 theorem mem_tuples_cellOf [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} (P : BoxPartition A) {x : ∀ i, V i} (hx : x ∈ A.tuples) :
     x ∈ (cellOf P x).tuples :=
@@ -117,7 +136,9 @@ theorem eq_cellOf_of_mem_tuples [Fintype ι] [DecidableEq ι] [∀ i, DecidableE
 /-! ### Disjointness and coverage -/
 
 /-- **Distinct product cells have disjoint tuple sets.** They differ in some coordinate, and two
-distinct parts there are disjoint.-/
+distinct parts there are disjoint.
+@isnad1 id=pairwise.0h4v.s6.f5ed12426cf2 from=translated src=- shape=3e68eae5 vocab=368a3ebd
+-/
 theorem boxCells_pairwiseDisjoint [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} (P : BoxPartition A) :
     ((boxCells P : Finset (FiniteBox V)) : Set (FiniteBox V)).PairwiseDisjoint
@@ -128,7 +149,9 @@ theorem boxCells_pairwiseDisjoint [Fintype ι] [DecidableEq ι] [∀ i, Decidabl
   exact hne ((eq_cellOf_of_mem_tuples (Finset.mem_coe.mp hC) hxC).trans
     (eq_cellOf_of_mem_tuples (Finset.mem_coe.mp hD) hxD).symm)
 
-/-- **The product cells cover the box.**-/
+/-- **The product cells cover the box.**
+@isnad1 id=eq.0h4v.s6.333238b8793b from=translated src=- shape=dd973bb7 vocab=4150d4f2
+-/
 theorem biUnion_boxCells_tuples [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} (P : BoxPartition A) :
     (boxCells P).biUnion FiniteBox.tuples = A.tuples := by
@@ -145,7 +168,9 @@ theorem biUnion_boxCells_tuples [Fintype ι] [DecidableEq ι] [∀ i, DecidableE
 Both are denominator-free and carry no positivity hypothesis, so they hold for signed weights
 and for boxes of zero mass, including the case of an empty coordinate where every side is `0`. -/
 
-/-- **The mass of a box is the sum of the masses of its product cells.**-/
+/-- **The mass of a box is the sum of the masses of its product cells.**
+@isnad1 id=eq.0h5v.s6.8908e64a99af from=translated src=- shape=8c39f050 vocab=a5d0800a
+-/
 theorem boxMass_eq_sum_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) {A : FiniteBox V} (P : BoxPartition A) :
     boxMass w A = ∑ C ∈ boxCells P, boxMass w C := by
@@ -154,7 +179,9 @@ theorem boxMass_eq_sum_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableE
   rfl
 
 /-- **Predicate mass decomposes the same way**, since the predicate cuts each cell
-independently.-/
+independently.
+@isnad1 id=eq.0h6v.s6.9f906c8eaeb3 from=translated src=- shape=39e66498 vocab=578d4ff0
+-/
 theorem boxPredMass_eq_sum_boxCells [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     (w : ∀ i, V i → ℝ) {A : FiniteBox V} (P : BoxPartition A) (p : (∀ i, V i) → Prop)
     [DecidablePred p] :
@@ -171,10 +198,15 @@ because `(A.reindex e) j` is `A (e j)` definitionally.-/
 def BoxPartition.reindex [∀ i, DecidableEq (V i)] {ι' : Type*} (e : ι' ≃ ι) {A : FiniteBox V}
     (P : BoxPartition A) : BoxPartition (A.reindex e) := fun j => P (e j)
 
+/--
+@isnad1 id=eq.0h7v.s7.04f28ba3e30f from=translated src=- shape=c0c3b8da vocab=27ff7bdb
+-/
 @[simp] theorem BoxPartition.reindex_apply [∀ i, DecidableEq (V i)] {ι' : Type*} (e : ι' ≃ ι)
     {A : FiniteBox V} (P : BoxPartition A) (j : ι') : P.reindex e j = P (e j) := rfl
 
-/-- **Reindexing carries the product cells across**, bijectively.-/
+/-- **Reindexing carries the product cells across**, bijectively.
+@isnad1 id=eq.0h6v.s8.d655f0b80cba from=translated src=- shape=4829c4de vocab=af434ff2
+-/
 theorem boxCells_reindex [Fintype ι] [DecidableEq ι] {ι' : Type*} [Fintype ι'] [DecidableEq ι']
     [∀ i, DecidableEq (V i)] (e : ι' ≃ ι) {A : FiniteBox V} (P : BoxPartition A) :
     boxCells (P.reindex e) = (boxCells P).image (FiniteBox.reindex e) := by
@@ -192,6 +224,9 @@ theorem boxCells_reindex [Fintype ι] [DecidableEq ι] {ι' : Type*} [Fintype ι
   · rintro ⟨C, hC, rfl⟩ j
     exact hC (e j)
 
+/--
+@isnad1 id=eq.0h6v.s7.66d8d35e80c9 from=translated src=- shape=094489bf vocab=1dfa9297
+-/
 theorem card_boxCells_reindex [Fintype ι] [DecidableEq ι] {ι' : Type*} [Fintype ι']
     [DecidableEq ι'] [∀ i, DecidableEq (V i)] (e : ι' ≃ ι) {A : FiniteBox V}
     (P : BoxPartition A) : (boxCells (P.reindex e)).card = (boxCells P).card := by
@@ -205,7 +240,9 @@ theorem card_boxCells_reindex [Fintype ι] [DecidableEq ι] {ι' : Type*} [Finty
 
 /-- **Every cell of a finer box partition sits inside exactly one cell of the coarser one.**
 Uniqueness needs no extra hypothesis: parts of a `Finpartition` are nonempty, so a containing
-part is pinned by any point of the finer cell.-/
+part is pinned by any point of the finer cell.
+@isnad1 id=existsun.2h6v.s7.d9cc60c1c6aa from=translated src=- shape=6b6db911 vocab=f899b11e
+-/
 theorem existsUnique_parent_boxCell [Fintype ι] [DecidableEq ι] [∀ i, DecidableEq (V i)]
     {A : FiniteBox V} {P Q : BoxPartition A} (hQP : ∀ i, Q i ≤ P i) {D : FiniteBox V}
     (hD : D ∈ boxCells Q) : ∃! C : FiniteBox V, C ∈ boxCells P ∧ ∀ i, D i ⊆ C i := by

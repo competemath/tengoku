@@ -37,24 +37,32 @@ def IsBinaryPaletteDiagRegular (M : FiniteRelModel L V) (ε : ℝ) (P : Finparti
   ∀ c : BinaryPairPalette L, IsRegularPartitionDiag (HasBinaryPairPalette M c) ε P
 
 /-- **Diagonal-inclusive palette regularity implies the frozen off-diagonal notion** —
-every Phase 9/10 consumer applies unchanged through this bridge.-/
+every Phase 9/10 consumer applies unchanged through this bridge.
+@isnad1 id=isbinary.1h6v.s5.125b4ec54815 from=translated src=- shape=44a6d216 vocab=32c0c027
+-/
 theorem IsBinaryPaletteDiagRegular.isBinaryPaletteRegular {M : FiniteRelModel L V}
     {P : Finpartition s} (h : IsBinaryPaletteDiagRegular M ε P) :
     IsBinaryPaletteRegular M ε P :=
   fun c => (h c).isRegularPartition
 
-/-- Monotone in the tolerance.-/
+/-- Monotone in the tolerance.
+@isnad1 id=isbinary.2h7v.s5.bd4d4f6ba1cc from=translated src=- shape=0dcef97f vocab=eb4f50bf
+-/
 theorem IsBinaryPaletteDiagRegular.mono {M : FiniteRelModel L V} {P : Finpartition s}
     {ε ε' : ℝ} (hεε : ε ≤ ε') (h : IsBinaryPaletteDiagRegular M ε P) :
     IsBinaryPaletteDiagRegular M ε' P :=
   fun c => IsRegularPartitionDiag.mono (R := HasBinaryPairPalette M c) hεε (h c)
 
-/-- Every partition is diagonal-inclusively palette-regular at tolerance `1`.-/
+/-- Every partition is diagonal-inclusively palette-regular at tolerance `1`.
+@isnad1 id=isbinary.0h5v.s5.37f0d35b391b from=translated src=- shape=e388e86d vocab=c2bc06bc
+-/
 theorem isBinaryPaletteDiagRegular_one (M : FiniteRelModel L V) (P : Finpartition s) :
     IsBinaryPaletteDiagRegular M 1 P :=
   fun _ => isRegularPartitionDiag_one _
 
-/-- **Failure yields a bad palette color** at diagonal-inclusive bad mass.-/
+/-- **Failure yields a bad palette color** at diagonal-inclusive bad mass.
+@isnad1 id=ex.1h6v.s6.d20b76570247 from=translated src=- shape=faa9195a vocab=29630e7e
+-/
 theorem exists_bad_of_not_isBinaryPaletteDiagRegular {M : FiniteRelModel L V}
     {P : Finpartition s} (h : ¬IsBinaryPaletteDiagRegular M ε P) :
     ∃ c : BinaryPairPalette L, ε < badMassDiag (HasBinaryPairPalette M c) ε P := by
@@ -68,7 +76,9 @@ theorem exists_bad_of_not_isBinaryPaletteDiagRegular {M : FiniteRelModel L V}
 
 /-- **The one-step diagonal-inclusive palette increment**: resolve ONE bad color via
 the diagonal-inclusive graph step; every other color is refinement-monotone. Growth
-`k · 2^(2k)`, unchanged.-/
+`k · 2^(2k)`, unchanged.
+@isnad1 id=ex.2h6v.s7.d699a53f0eab from=translated src=- shape=18692f46 vocab=0ef76090
+-/
 theorem exists_binaryPaletteDiag_refinement_energy_increment (M : FiniteRelModel L V)
     {P : Finpartition s} (hε : 0 < ε) (hbad : ¬IsBinaryPaletteDiagRegular M ε P) :
     ∃ Q : Finpartition s, Q ≤ P
@@ -97,7 +107,9 @@ theorem exists_binaryPaletteDiag_refinement_energy_increment (M : FiniteRelModel
 /-! ### The fuel iteration and the summit -/
 
 /-- Fuel-parametrized diagonal-inclusive palette iteration — same fuel as the frozen
-ladder.-/
+ladder.
+@isnad1 id=ex.2h7v.s7.d62a71bb78c3 from=translated src=- shape=7bccc281 vocab=c4dc271c
+-/
 theorem binaryPaletteDiagRegularity_iterate (M : FiniteRelModel L V) (hε : 0 < ε) :
     ∀ (t : ℕ) (P : Finpartition s),
       1 - (t : ℝ) * ε ^ 5 ≤ binaryPaletteEnergy M P →
@@ -134,7 +146,9 @@ theorem binaryPaletteDiagRegularity_iterate (M : FiniteRelModel L V) (hε : 0 < 
         _ = regularityBound (t + 1) P.parts.card := by simp only [regularityBound]
 
 /-- Diagonal-inclusive palette regularity from any starting partition, with the graph
-fuel `⌈1/ε⁵⌉`.-/
+fuel `⌈1/ε⁵⌉`.
+@isnad1 id=ex.1h6v.s7.f57b69752427 from=translated src=- shape=45501502 vocab=3695f23e
+-/
 theorem exists_binaryPaletteDiagRegular_refinement_of_profiled (M : FiniteRelModel L V)
     (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ IsBinaryPaletteDiagRegular M ε Q ∧
@@ -149,7 +163,9 @@ theorem exists_binaryPaletteDiagRegular_refinement_of_profiled (M : FiniteRelMod
 
 /-- **The diagonal-inclusive palette summit**, with the **identical** host-independent
 bound `binaryRegularityBound` as the frozen Phase 9 summit (reused, not redefined). It
-asserts nothing about relation symbols of arity greater than two.-/
+asserts nothing about relation symbols of arity greater than two.
+@isnad1 id=ex.1h6v.s7.8ceb9523dc66 from=translated src=- shape=85eaa7b9 vocab=c667f2e9
+-/
 theorem exists_binaryPaletteDiagRegular_refinement (M : FiniteRelModel L V)
     (P : Finpartition s) (hε : 0 < ε) :
     ∃ Q : Finpartition s, Q ≤ P ∧ Q ≤ binaryProfilePartition M s ∧

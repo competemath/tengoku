@@ -53,14 +53,23 @@ returned unchanged, which does not occur at the call sites here.-/
 def padWordToLength (t : ℕ) (w : List Bool) : List Bool :=
   w ++ List.replicate (t - w.length) false
 
+/--
+@isnad1 id=eq.1h2v.s4.e7b72fed38f2 from=translated src=- shape=1c05d0cb vocab=79e6c71e
+-/
 theorem padWordToLength_length {t : ℕ} {w : List Bool} (h : w.length ≤ t) :
     (padWordToLength t w).length = t := by
   rw [padWordToLength, List.length_append, List.length_replicate]
   omega
 
+/--
+@isnad1 id=isprefix.0h2v.s3.8cc60be60703 from=translated src=- shape=99e00f31 vocab=bed73ac3
+-/
 theorem prefix_padWordToLength (t : ℕ) (w : List Bool) : w <+: padWordToLength t w :=
   List.prefix_append _ _
 
+/--
+@isnad1 id=eq.0h1v.s3.7ac46d2047bc from=translated src=- shape=ca9a636d vocab=ee973581
+-/
 @[simp] theorem padWordToLength_nil (t : ℕ) : padWordToLength t [] = List.replicate t false := by
   simp [padWordToLength]
 
@@ -89,9 +98,15 @@ namespace ProperEmbedding
 def toInternal (e : ProperEmbedding s t) : InternalEmbedding s t :=
   ⟨e.internal, e.branch_internal⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.0d04f5b103a7 from=translated src=- shape=eafb80cd vocab=6c01a530
+-/
 @[simp] theorem toInternal_apply (e : ProperEmbedding s t) (x : InternalNode s) :
     e.toInternal x = e.internal x := rfl
 
+/--
+@isnad1 id=eq.2h4v.s5.9fb7f6b0c0b8 from=translated src=- shape=92c6c2e9 vocab=5adac127
+-/
 theorem ext {e₁ e₂ : ProperEmbedding s t} (hi : ∀ x, e₁.internal x = e₂.internal x)
     (hl : ∀ l, e₁.leaf l = e₂.leaf l) : e₁ = e₂ := by
   cases e₁; cases e₂; congr 1
@@ -99,11 +114,15 @@ theorem ext {e₁ e₂ : ProperEmbedding s t} (hi : ∀ x, e₁.internal x = e�
   · exact funext hl
 
 /-- **The leaf-height equation.** A source leaf's image sits at exactly the host height, not
-merely at some length that is large enough.-/
+merely at some length that is large enough.
+@isnad1 id=eq.0h4v.s5.c0e7b38d6f74 from=translated src=- shape=7c6e3122 vocab=442211e0
+-/
 @[simp] theorem length_leaf (e : ProperEmbedding s t) (l : LeafNode s) :
     (e.leaf l).1.length = t := (e.leaf l).2
 
-/-- An internal image sits strictly below the host height.-/
+/-- An internal image sits strictly below the host height.
+@isnad1 id=lt.0h4v.s5.f7eb585fcd07 from=translated src=- shape=7c6e3122 vocab=283c70b5
+-/
 @[simp] theorem length_internal (e : ProperEmbedding s t) (x : InternalNode s) :
     (e.internal x).1.length < t := (e.internal x).2
 
@@ -116,10 +135,19 @@ def id (s : ℕ) : ProperEmbedding s s where
   branch_internal _ _ _ h := h
   branch_leaf _ _ _ h := h
 
+/--
+@isnad1 id=eq.0h2v.s3.8f324b186060 from=translated src=- shape=4f334db7 vocab=52be36e5
+-/
 @[simp] theorem id_internal (x : InternalNode s) : (id s).internal x = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.628bd3fc4ba8 from=translated src=- shape=4f334db7 vocab=a11cf27c
+-/
 @[simp] theorem id_leaf (l : LeafNode s) : (id s).leaf l = l := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.9043031ca0e6 from=translated src=- shape=6e1b5516 vocab=47694719
+-/
 @[simp] theorem toInternal_id (s : ℕ) : (id s).toInternal = InternalEmbedding.id s := rfl
 
 /-- Composition. Both levels compose, and the leaf law composes through the internal one.-/
@@ -129,37 +157,58 @@ def comp {u : ℕ} (g : ProperEmbedding t u) (f : ProperEmbedding s t) : ProperE
   branch_internal b x y h := g.branch_internal b _ _ (f.branch_internal b x y h)
   branch_leaf b x l h := g.branch_leaf b _ _ (f.branch_leaf b x l h)
 
+/--
+@isnad1 id=eq.0h6v.s5.e73ac891827a from=translated src=- shape=e3dad629 vocab=dae4f8c2
+-/
 @[simp] theorem comp_internal {u : ℕ} (g : ProperEmbedding t u) (f : ProperEmbedding s t)
     (x : InternalNode s) : (comp g f).internal x = g.internal (f.internal x) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.f062034e798b from=translated src=- shape=e3dad629 vocab=e41fd88b
+-/
 @[simp] theorem comp_leaf {u : ℕ} (g : ProperEmbedding t u) (f : ProperEmbedding s t)
     (l : LeafNode s) : (comp g f).leaf l = g.leaf (f.leaf l) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.1789ca95c914 from=translated src=- shape=ddc63a57 vocab=a5309221
+-/
 @[simp] theorem comp_id (f : ProperEmbedding s t) : comp f (id s) = f := ext (fun _ => rfl)
   (fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h3v.s4.ab7dd9486d12 from=translated src=- shape=7ba0ebfe vocab=a5309221
+-/
 @[simp] theorem id_comp (f : ProperEmbedding s t) : comp (id t) f = f := ext (fun _ => rfl)
   (fun _ => rfl)
 
 /-- Restriction is functorial: restricting a composite gives the composite of the
-restrictions.-/
+restrictions.
+@isnad1 id=eq.0h5v.s5.7f16a2eb347b from=translated src=- shape=143dc0ba vocab=bec9f8cd
+-/
 @[simp] theorem toInternal_comp {u : ℕ} (g : ProperEmbedding t u) (f : ProperEmbedding s t) :
     (comp g f).toInternal = InternalEmbedding.comp g.toInternal f.toInternal := rfl
 
 /-! ### Injectivity and direction preservation -/
 
+/--
+@isnad1 id=injectiv.0h3v.s4.0d4897e8cfa9 from=translated src=- shape=603e1419 vocab=6daa57b4
+-/
 theorem internal_injective (e : ProperEmbedding s t) : Function.Injective e.internal :=
   e.toInternal.injective
 
 /-- Branch direction from an internal node to a leaf, restated under the name it is searched
-for.-/
+for.
+@isnad1 id=branchbe.1h6v.s6.d30de468fccc from=translated src=- shape=3f3f1cbb vocab=3380f9e2
+-/
 theorem branch_leaf_preserved (e : ProperEmbedding s t) (b : Bool) (x : InternalNode s)
     (l : LeafNode s) (h : BranchBelow b x.1 l.1) :
     BranchBelow b (e.internal x).1 (e.leaf l).1 := e.branch_leaf b x l h
 
 /-- **Leaves stay distinct**, and this is a theorem rather than a hypothesis: two distinct
 leaves of the same height separate through opposite turns below a common internal node, and the
-branch law keeps their images in the two disjoint branches below that node's image.-/
+branch law keeps their images in the two disjoint branches below that node's image.
+@isnad1 id=injectiv.0h3v.s4.7bd7f0fcfc6f from=translated src=- shape=603e1419 vocab=c7170860
+-/
 theorem leaf_injective (e : ProperEmbedding s t) : Function.Injective e.leaf := by
   intro l₁ l₂ hl
   by_contra hne
@@ -177,7 +226,9 @@ theorem leaf_injective (e : ProperEmbedding s t) : Function.Injective e.leaf := 
     exact e.branch_leaf (!b) ⟨z, hz⟩ l₂ h2
 
 /-- **An internal image is never a leaf image.** Internal host nodes are shorter than the host
-height and host leaves sit exactly at it, so the two levels cannot collide.-/
+height and host leaves sit exactly at it, so the two levels cannot collide.
+@isnad1 id=ne.0h5v.s5.06ff000248f7 from=translated src=- shape=e6e364d1 vocab=4426a40d
+-/
 theorem internal_ne_leaf (e : ProperEmbedding s t) (x : InternalNode s) (l : LeafNode s) :
     (e.internal x).1 ≠ (e.leaf l).1 := by
   intro hcon
@@ -191,6 +242,9 @@ def vertex (e : ProperEmbedding s t) (x : TreeNode s) : TreeNode t :=
   if h : x.1.length < s then internalToTree (e.internal ⟨x.1, h⟩)
   else leafToTree (e.leaf ⟨x.1, le_antisymm x.2 (not_lt.mp h)⟩)
 
+/--
+@isnad1 id=eq.0h4v.s7.29070de34611 from=translated src=- shape=afff8af0 vocab=7e492d0a
+-/
 @[simp] theorem vertex_val (e : ProperEmbedding s t) (x : TreeNode s) :
     (e.vertex x).1
       = if h : x.1.length < s then (e.internal ⟨x.1, h⟩).1
@@ -198,12 +252,18 @@ def vertex (e : ProperEmbedding s t) (x : TreeNode s) : TreeNode t :=
   rw [vertex]
   split <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.62179d6ea520 from=translated src=- shape=b1e9deaa vocab=770cfaaf
+-/
 @[simp] theorem vertex_of_internal (e : ProperEmbedding s t) (x : InternalNode s) :
     e.vertex (internalToTree x) = internalToTree (e.internal x) := by
   refine Subtype.ext ?_
   rw [vertex_val, dite_eq_left (show (internalToTree x).1.length < s from x.2)]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.51d5cc8932cd from=translated src=- shape=b1e9deaa vocab=7051a451
+-/
 @[simp] theorem vertex_of_leaf (e : ProperEmbedding s t) (l : LeafNode s) :
     e.vertex (leafToTree l) = leafToTree (e.leaf l) := by
   refine Subtype.ext ?_
@@ -211,6 +271,9 @@ def vertex (e : ProperEmbedding s t) (x : TreeNode s) : TreeNode t :=
   rw [vertex_val, dite_eq_right hnl]
   rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s4.69730b4573e4 from=translated src=- shape=603e1419 vocab=e98cd772
+-/
 theorem vertex_injective (e : ProperEmbedding s t) : Function.Injective e.vertex := by
   intro x y hxy
   have hval : (e.vertex x).1 = (e.vertex y).1 := congrArg Subtype.val hxy
@@ -241,10 +304,15 @@ def leafParent (l : LeafNode s) (hl : l.1 ≠ []) : InternalNode s :=
     rw [List.length_dropLast, hlen]
     omega⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.fac961ddb349 from=translated src=- shape=242ffb7c vocab=acf61629
+-/
 @[simp] theorem leafParent_val (l : LeafNode s) (hl : l.1 ≠ []) :
     (leafParent l hl).1 = l.1.dropLast := rfl
 
-/-- The parent, followed by the leaf's own last turn, is the leaf.-/
+/-- The parent, followed by the leaf's own last turn, is the leaf.
+@isnad1 id=eq.1h2v.s6.50fbf32b98e5 from=translated src=- shape=ba182f6d vocab=d8819ff5
+-/
 theorem leafParent_append_getLast (l : LeafNode s) (hl : l.1 ≠ []) :
     (leafParent l hl).1 ++ [l.1.getLast hl] = l.1 := List.dropLast_append_getLast hl
 
@@ -253,12 +321,21 @@ turn the leaf takes. Empty when the leaf has no parent, which happens exactly at
 def leafPrefix (e : InternalEmbedding s t) (l : LeafNode s) : List Bool :=
   if hl : l.1 = [] then [] else (e (leafParent l hl)).1 ++ [l.1.getLast hl]
 
+/--
+@isnad1 id=eq.1h4v.s6.ea7d14af17fc from=translated src=- shape=66880689 vocab=fc997209
+-/
 theorem leafPrefix_of_ne_nil (e : InternalEmbedding s t) (l : LeafNode s) (hl : l.1 ≠ []) :
     leafPrefix e l = (e (leafParent l hl)).1 ++ [l.1.getLast hl] := dite_eq_right hl
 
+/--
+@isnad1 id=eq.1h4v.s5.73d953d07282 from=translated src=- shape=af67f12d vocab=f461daf5
+-/
 @[simp] theorem leafPrefix_of_nil (e : InternalEmbedding s t) (l : LeafNode s) (hl : l.1 = []) :
     leafPrefix e l = [] := dite_eq_left hl
 
+/--
+@isnad1 id=le.0h4v.s4.7c72b2abb2c5 from=translated src=- shape=fb4cae9b vocab=a4fd8394
+-/
 theorem leafPrefix_length_le (e : InternalEmbedding s t) (l : LeafNode s) :
     (leafPrefix e l).length ≤ t := by
   by_cases hl : l.1 = []
@@ -309,14 +386,21 @@ def extendProper (e : InternalEmbedding s t) : ProperEmbedding s t where
       exact (e.branch b x w hsub).trans (List.prefix_append _ _)
 
 /-- **Restriction after extension is the identity.** The extension adds the leaf level and
-changes nothing in the interior.-/
+changes nothing in the interior.
+@isnad1 id=eq.0h3v.s4.d7143d186e92 from=translated src=- shape=db68ba20 vocab=613736a5
+-/
 @[simp] theorem extendProper_toInternal (e : InternalEmbedding s t) :
     (extendProper e).toInternal = e := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.b144495726cf from=translated src=- shape=eafb80cd vocab=5fde5589
+-/
 @[simp] theorem extendProper_internal (e : InternalEmbedding s t) (x : InternalNode s) :
     (extendProper e).internal x = e x := rfl
 
-/-- The leaf equation away from height `0`: enter the branch, then pad.-/
+/-- The leaf equation away from height `0`: enter the branch, then pad.
+@isnad1 id=eq.1h4v.s6.320c95303fb4 from=translated src=- shape=aa461513 vocab=f6f8212c
+-/
 theorem extendProper_leaf_val (e : InternalEmbedding s t) (l : LeafNode s) (hl : l.1 ≠ []) :
     ((extendProper e).leaf l).1
       = padWordToLength t ((e (leafParent l hl)).1 ++ [l.1.getLast hl]) := by
@@ -324,7 +408,9 @@ theorem extendProper_leaf_val (e : InternalEmbedding s t) (l : LeafNode s) (hl :
     leafPrefix_of_ne_nil e l hl]
 
 /-- **The height-zero endpoint.** There is no interior to read, so the single source leaf goes
-to the canonical all-`false` host leaf.-/
+to the canonical all-`false` host leaf.
+@isnad1 id=eq.0h3v.s5.0b17b8a73001 from=translated src=- shape=b5d2dbcb vocab=7210cf6f
+-/
 @[simp] theorem extendProper_leaf_zero (e : InternalEmbedding 0 t) (l : LeafNode 0) :
     ((extendProper e).leaf l).1 = List.replicate t false := by
   have hl : l.1 = [] := List.eq_nil_of_length_eq_zero l.2
@@ -358,7 +444,9 @@ accepts a regular embedding with synchronized levels, without using that extra c
 Source height is `s`, host height is `t`, with no shift. Leaves are extended to host depth
 `t`; their original images need not be preserved. This is a one-way convention bridge:
 proper embeddings do not require synchronized levels. It transfers monochromaticity on
-internal nodes, but does not identify Ramsey bounds or supply the converse convention.-/
+internal nodes, but does not identify Ramsey bounds or supply the converse convention.
+@isnad1 id=ex.2h3v.s7.fd6b7711c8e7 from=translated src=- shape=a47d9a6e vocab=b4b1e6be
+-/
 theorem exists_properEmbedding_of_child_branches {s t : ℕ}
     (f : (x : List Bool) → x.length ≤ s → List Bool)
     (hint : ∀ x (hx : x.length < s), (f x (by omega)).length < t)

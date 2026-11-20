@@ -44,10 +44,16 @@ open Classical in
 noncomputable def largeParts (Pc : Finpartition s) (α : ℝ) : Finset (Finset V) :=
   Pc.parts.filter fun C => α * s.card ≤ C.card
 
+/--
+@isnad1 id=le.0h4v.s5.0033e5b6f816 from=translated src=- shape=643a5a7e vocab=d2e20e56
+-/
 theorem largeParts_subset {Pc : Finpartition s} {α : ℝ} :
     largeParts Pc α ⊆ Pc.parts :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.1h5v.s6.03414daa5e75 from=translated src=- shape=a9c9d669 vocab=907c2d40
+-/
 theorem card_le_of_mem_largeParts {Pc : Finpartition s} {α : ℝ} {C : Finset V}
     (hC : C ∈ largeParts Pc α) : α * s.card ≤ C.card := by
   classical
@@ -55,7 +61,9 @@ theorem card_le_of_mem_largeParts {Pc : Finpartition s} {α : ℝ} {C : Finset V
 
 open Classical in
 /-- **Small-cell mass bound**: the coarse cells below the size threshold carry at most
-`α·|s|·k` of the ground mass.-/
+`α·|s|·k` of the ground mass.
+@isnad1 id=le.1h4v.s7.157bf0483cc3 from=translated src=- shape=40294470 vocab=83b54f15
+-/
 theorem sum_card_not_largeParts_le {Pc : Finpartition s} {α : ℝ} (hα : 0 ≤ α) :
     ∑ C ∈ Pc.parts.filter (fun C => ¬ α * s.card ≤ (C.card : ℝ)), (C.card : ℝ)
       ≤ α * s.card * Pc.parts.card := by
@@ -81,17 +89,25 @@ place the fine-part bound `q` enters the selection.-/
 def repCandidates (Q : Finpartition s) (q : ℕ) (C : Finset V) : Finset (Finset V) :=
   (refinementFiber Q C).filter fun A => C.card ≤ 2 * q * A.card
 
+/--
+@isnad1 id=le.0h5v.s5.d5bcefac51c0 from=translated src=- shape=2c5c9da5 vocab=bf1a6f71
+-/
 theorem repCandidates_subset_fiber {Q : Finpartition s} {q : ℕ} {C : Finset V} :
     repCandidates Q q C ⊆ refinementFiber Q C :=
   Finset.filter_subset _ _
 
+/--
+@isnad1 id=iff.0h6v.s6.5091e2020980 from=translated src=- shape=2d4aa7d2 vocab=2e07a155
+-/
 theorem mem_repCandidates {Q : Finpartition s} {q : ℕ} {C A : Finset V} :
     A ∈ repCandidates Q q C ↔ (A ∈ Q.parts ∧ A ⊆ C) ∧ C.card ≤ 2 * q * A.card := by
   rw [repCandidates, Finset.mem_filter, refinementFiber, Finset.mem_filter]
 
 /-- **The half-mass theorem.** The large candidates inside a coarse cell carry at
 least half of its mass: the discarded fiber cells each contribute less than
-`|C|/(2q)` and there are at most `q` of them.-/
+`|C|/(2q)` and there are at most `q` of them.
+@isnad1 id=le.3h6v.s7.f473be18786a from=translated src=- shape=6be5b8a5 vocab=766e8552
+-/
 theorem half_le_sum_card_repCandidates {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     {C : Finset V} (hC : C ∈ Pc.parts) {q : ℕ} (hq : Q.parts.card ≤ q) :
     (C.card : ℝ) / 2 ≤ ∑ A ∈ repCandidates Q q C, (A.card : ℝ) := by
@@ -142,7 +158,9 @@ theorem half_le_sum_card_repCandidates {Q Pc : Finpartition s} (hQP : Q ≤ Pc)
     linarith
   linarith
 
-/-- A coarse cell of positive size has a candidate.-/
+/-- A coarse cell of positive size has a candidate.
+@isnad1 id=nonempty.4h6v.s6.13c5e4df565c from=translated src=- shape=e8cf7fbb vocab=f4a36473
+-/
 theorem repCandidates_nonempty {Q Pc : Finpartition s} (hQP : Q ≤ Pc) {C : Finset V}
     (hC : C ∈ Pc.parts) {q : ℕ} (hq : Q.parts.card ≤ q) (hCpos : 0 < C.card) :
     (repCandidates Q q C).Nonempty := by
@@ -157,7 +175,9 @@ theorem repCandidates_nonempty {Q Pc : Finpartition s} (hQP : Q ≤ Pc) {C : Fin
 
 open Classical in
 /-- The non-uniform fiber-pair mass inside any box pair is dominated by the
-diagonal-inclusive bad mass of the whole partition.-/
+diagonal-inclusive bad mass of the whole partition.
+@isnad1 id=le.0h7v.s7.a5bdd4d34d89 from=translated src=- shape=a24b3064 vocab=825eb7f0
+-/
 theorem sum_fiber_nonuniform_le_badMassDiagNum (R : V → V → Prop) [DecidableRel R]
     {ε : ℝ} (Q : Finpartition s) (C D : Finset V) :
     ∑ p ∈ (refinementFiber Q C ×ˢ refinementFiber Q D).filter
@@ -173,7 +193,9 @@ theorem sum_fiber_nonuniform_le_badMassDiagNum (R : V → V → Prop) [Decidable
 
 open FirstOrder in
 /-- The `η`-deviant fiber-pair mass of a SINGLE coarse pair is dominated by the
-witness's total deviant mass — including diagonal coarse pairs.-/
+witness's total deviant mass — including diagonal coarse pairs.
+@isnad1 id=le.2h11v.s9.508cf713b75a from=translated src=- shape=94d347b1 vocab=e04fb34e
+-/
 theorem BinaryPaletteStrongDiagWitness.deviant_pair_mass_le
     {L : FirstOrder.Language} [FiniteRelational L] {M : FiniteRelModel L V}
     {E : ErrorSchedule} {δ : ℝ} {P₀ : Finpartition s}
@@ -228,7 +250,9 @@ uniformity events under the half-budget schedule (`σ ≤ 1/2`) doubles it to
 are composed from the proved generic lemmas but are NOT packaged as a single
 relational theorem — the role-indexed aggregate-cost route was rejected at the
 round-2 checkpoint (role-consistency failure, gate G10), so the selection-with-cost
-wiring is intentionally absent.-/
+wiring is intentionally absent.
+@isnad1 id=le.1h10v.s12.7dc7cb7a865f from=translated src=- shape=c2828bda vocab=7595d58d
+-/
 theorem BinaryPaletteStrongDiagWitness.sum_selEvent_deviantMass_le
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) (α : ℝ) {η : ℝ} (hη : 0 < η) :
     ∑ e : SelEvent w α,
@@ -303,7 +327,9 @@ hypothesis — coarse complexity, palette count, schedule, and gap parameters ON
 fine-part bound `q` appears in the size guarantee and NOWHERE in the tolerance — there
 exist three role-indexed representative fine cells per large coarse cell,
 simultaneously uniform and density-close for every ordered coarse pair (equal cells
-included), every ordered role pair with distinct roles, and every palette color.-/
+included), every ordered role pair with distinct roles, and every palette color.
+@isnad1 id=ex.4h11v.s9.26aafad30158 from=translated src=- shape=6cb515f7 vocab=d1a0a216
+-/
 theorem BinaryPaletteStrongDiagWitness.exists_representatives
     (w : BinaryPaletteStrongDiagWitness M E δ P₀) {q : ℕ}
     (hq : w.fine.parts.card ≤ q) {α η : ℝ} (hα : 0 < α) (hη : 0 < η)

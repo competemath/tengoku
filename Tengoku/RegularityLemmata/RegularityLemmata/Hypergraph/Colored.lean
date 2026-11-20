@@ -48,6 +48,9 @@ def colorClass (H : ColoredHypergraph r K V) (c : Fin K) : UniformHypergraph r V
       obtain ⟨e', _, rfl⟩ := he
       exact e'.2⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.fcc9bae70d4c from=translated src=- shape=a838439f vocab=a1882bfd
+-/
 theorem mem_colorClass {H : ColoredHypergraph r K V} {c : Fin K} {e : Finset V} :
     e ∈ (H.colorClass c).edges ↔ ∃ h : e.card = r, H.coloring ⟨e, h⟩ = c := by
   rw [colorClass]
@@ -58,7 +61,9 @@ theorem mem_colorClass {H : ColoredHypergraph r K V} {c : Fin K} {e : Finset V} 
   · rintro ⟨h, hc⟩
     exact ⟨⟨e, h⟩, hc, rfl⟩
 
-/-- Color classes partition the `r`-sets: totality of the coloring.-/
+/-- Color classes partition the `r`-sets: totality of the coloring.
+@isnad1 id=eq.0h4v.s5.bd497a5ddab0 from=translated src=- shape=d1e204a6 vocab=cd22c5b9
+-/
 theorem sum_card_colorClass (H : ColoredHypergraph r K V) :
     ∑ c : Fin K, (H.colorClass c).edges.card = (Fintype.card V).choose r := by
   classical
@@ -80,7 +85,9 @@ theorem sum_card_colorClass (H : ColoredHypergraph r K V) :
     exact ⟨fun h => ⟨Finset.subset_univ _, h.2⟩, fun h => ⟨Finset.mem_univ _, h.2⟩⟩
 
 /-- **Partition of unity.** On a host with `r ≤ |V|`, the color-class densities sum
-to `1`; the zero-denominator convention gives `0` otherwise.-/
+to `1`; the zero-denominator convention gives `0` otherwise.
+@isnad1 id=eq.1h4v.s5.e11de8b426f2 from=translated src=- shape=0b09154a vocab=ea9d96ed
+-/
 theorem sum_density_colorClass (H : ColoredHypergraph r K V) (hr : r ≤ Fintype.card V) :
     ∑ c : Fin K, (H.colorClass c).density = 1 := by
   have hpos : (0 : ℝ) < ((Fintype.card V).choose r : ℝ) := by
@@ -96,7 +103,9 @@ def ofSimpleGraph (G : SimpleGraph V) [DecidableRel G.Adj] :
     ColoredHypergraph 2 2 V :=
   ⟨fun e => if (e : Finset V) ∈ (UniformHypergraph.ofSimpleGraph G).edges then 1 else 0⟩
 
-/-- Color `1` is exactly the edge set.-/
+/-- Color `1` is exactly the edge set.
+@isnad1 id=eq.0h2v.s6.f43bf199c0b3 from=translated src=- shape=b10534b3 vocab=4b319966
+-/
 theorem ofSimpleGraph_colorClass_one (G : SimpleGraph V) [DecidableRel G.Adj] :
     ((ofSimpleGraph G).colorClass 1).edges = (UniformHypergraph.ofSimpleGraph G).edges := by
   ext e
@@ -113,7 +122,9 @@ theorem ofSimpleGraph_colorClass_one (G : SimpleGraph V) [DecidableRel G.Adj] :
     refine ⟨(UniformHypergraph.ofSimpleGraph G).card_eq e he, ?_⟩
     rw [hcol, ite_eq_left he]
 
-/-- Color `0` is exactly the non-edges among the pairs.-/
+/-- Color `0` is exactly the non-edges among the pairs.
+@isnad1 id=eq.0h2v.s6.74c3d6a7ef5b from=translated src=- shape=c8e74ef3 vocab=256a2f2a
+-/
 theorem ofSimpleGraph_colorClass_zero (G : SimpleGraph V) [DecidableRel G.Adj] :
     ((ofSimpleGraph G).colorClass 0).edges
       = (UniformHypergraph.complete 2 V).edges

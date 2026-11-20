@@ -58,25 +58,34 @@ namespace FiniteRelModel
 
 variable (M : FiniteRelModel L V) (r : RepresentativeMap P Q)
 
+/--
+@isnad1 id=iff.0h10v.s6.336599ada503 from=translated src=- shape=8b775a08 vocab=03ed7713
+-/
 @[simp] theorem transportAlong_holds {n : ℕ} (S : L.Relations n) (x : Fin n → V) :
     (M.transportAlong r).Holds S x ↔ M.Holds S (r.rep ∘ x) :=
   Iff.rfl
 
 /-- The transport is indivisible for the new partition: the representative map is constant
-on its parts.-/
+on its parts.
+@isnad1 id=isindivi.0h7v.s5.8fb712338975 from=translated src=- shape=38b841f3 vocab=52bf3e77
+-/
 theorem transportAlong_isIndivisibleFor : (M.transportAlong r).IsIndivisibleFor Q := by
   intro n S x y hx hy hpart
   simp only [transportAlong_holds]
   have : r.rep ∘ x = r.rep ∘ y := funext fun i ↦ r.rep_const _ (hx i) _ (hy i) (hpart i)
   rw [this]
 
-/-- Nullary symbols are copied exactly.-/
+/-- Nullary symbols are copied exactly.
+@isnad1 id=nullaryc.0h7v.s5.0cd8be243e60 from=translated src=- shape=d886b626 vocab=8e2f1802
+-/
 theorem nullaryCompatible_transportAlong : NullaryCompatible M (M.transportAlong r) := by
   intro S
   simp only [transportAlong_holds]
   rw [show r.rep ∘ Fin.elim0 = Fin.elim0 from funext fun i ↦ i.elim0]
 
-/-- On a tuple of `s^n` avoiding `D`, the transport agrees with an old-indivisible `M`.-/
+/-- On a tuple of `s^n` avoiding `D`, the transport agrees with an old-indivisible `M`.
+@isnad1 id=iff.3h10v.s7.20084dbebfe8 from=translated src=- shape=fd5bc4a4 vocab=0c144e79
+-/
 theorem transportAlong_holds_iff_of_not_displaced (hM : M.IsIndivisibleFor P) {n : ℕ}
     (S : L.Relations n) {x : Fin n → V} (hx : ∀ i, x i ∈ s) (hD : ∀ i, x i ∉ r.displaced) :
     (M.transportAlong r).Holds S x ↔ M.Holds S x := by
@@ -84,7 +93,9 @@ theorem transportAlong_holds_iff_of_not_displaced (hM : M.IsIndivisibleFor P) {n
   exact hM n S (r.rep ∘ x) x (fun i ↦ r.rep_mem _ (hx i)) hx
     fun i ↦ r.part_rep _ (hx i) (hD i)
 
-/-- Differences can occur only on tuples meeting the displaced set.-/
+/-- Differences can occur only on tuples meeting the displaced set.
+@isnad1 id=le.1h9v.s7.3d0163cbcf6b from=translated src=- shape=7fb195fe vocab=fb917888
+-/
 theorem editSet_transportAlong_subset (hM : M.IsIndivisibleFor P) {n : ℕ} (S : L.Relations n) :
     editSet (M.Holds S) ((M.transportAlong r).Holds S) (fun _ : Fin n ↦ s)
       ⊆ (Fintype.piFinset fun _ : Fin n ↦ s).filter fun x ↦ ∃ i, x i ∈ r.displaced := by
@@ -104,7 +115,9 @@ namespace FiniteRelModel
 variable (M : FiniteRelModel L V) (r : RepresentativeMap P Q)
 
 /-- **Displaced-coordinate edit bound.** For an old-indivisible `M` and a symbol of arity
-`n + 1`, the edit distance to the transport on `s^(n+1)` is at most `(n+1) · |D| · |s|^n`.-/
+`n + 1`, the edit distance to the transport on `s^(n+1)` is at most `(n+1) · |D| · |s|^n`.
+@isnad1 id=le.1h9v.s8.c311949261c2 from=translated src=- shape=ea8b1d48 vocab=9320a5ef
+-/
 theorem editDistance_transportAlong_le (hM : M.IsIndivisibleFor P) {n : ℕ}
     (S : L.Relations (n + 1)) :
     editDistance (M.Holds S) ((M.transportAlong r).Holds S) (fun _ : Fin (n + 1) ↦ s)
@@ -112,7 +125,9 @@ theorem editDistance_transportAlong_le (hM : M.IsIndivisibleFor P) {n : ℕ}
   (Finset.card_le_card (M.editSet_transportAlong_subset r hM S)).trans
     (card_filter_exists_apply_mem_le r.displaced_subset n)
 
-/-- The normalized form: at most `(n+1) · |D| / |s|` when `|s| > 0`.-/
+/-- The normalized form: at most `(n+1) · |D| / |s|` when `|s| > 0`.
+@isnad1 id=le.2h9v.s8.d23a52514bc7 from=translated src=- shape=f61cb6b0 vocab=fa222ecf
+-/
 theorem editDistance_transportAlong_div_le (hM : M.IsIndivisibleFor P) {n : ℕ}
     (S : L.Relations (n + 1)) (hs : 0 < s.card) :
     (editDistance (M.Holds S) ((M.transportAlong r).Holds S) (fun _ : Fin (n + 1) ↦ s) : ℝ)
@@ -128,7 +143,9 @@ theorem editDistance_transportAlong_div_le (hM : M.IsIndivisibleFor P) {n : ℕ}
         gcongr
     _ = (n + 1) * r.displaced.card * (s.card : ℝ) ^ (n + 1) := by push_cast; ring
 
-/-- Arity `0` is copied exactly.-/
+/-- Arity `0` is copied exactly.
+@isnad1 id=eq.0h8v.s7.2cb510185d78 from=translated src=- shape=ddf7ed23 vocab=81c39f6f
+-/
 theorem editDistance_transportAlong_nullary (S : L.Relations 0) :
     editDistance (M.Holds S) ((M.transportAlong r).Holds S) (fun _ : Fin 0 ↦ s) = 0 :=
   editDistance_const_eq_zero_of_nullaryCompatible (M.nullaryCompatible_transportAlong r) s rfl S
@@ -143,7 +160,9 @@ Given `M`, an old partition `P` with a designated part `t₀`, and a requested p
 and nullary-compatible with `M`, such that every symbol of arity `n + 1` meeting the decency
 hypotheses of `editDistance_majorityRound_le` (at `P`) has
 `edit(M, N) ≤ (n+1)·|s|^(n+1)·(2θ + γ/2 + λ/2) + (n+1)·((#P.parts − 1)·⌊|s|/t⌋)·|s|^n`; the
-designated old part `t₀` is free.-/
+designated old part `t₀` is free.
+@isnad1 id=ex.3h7v.s9.8bd793307112 from=translated src=- shape=1197cbbb vocab=83c4aa7a
+-/
 theorem exists_equitable_isIndivisibleFor (M : FiniteRelModel L V) (P : Finpartition s)
     {t₀ : Finset V} (ht₀ : t₀ ∈ P.parts) {t : ℕ} (ht : 0 < t) (hts : t ≤ s.card) :
     ∃ (Q : Finpartition s) (N : FiniteRelModel L V), Q.IsEquipartition ∧ Q.parts.card = t ∧

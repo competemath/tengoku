@@ -75,7 +75,9 @@ variable {V : Type*} [DecidableEq V] {s : Finset V} {Q : Finpartition s}
 /-! ### From a proxy-size floor to a candidate-weight floor -/
 
 /-- **The weight floor.** The half-mass theorem converts a floor on proxy SIZES into a floor
-on candidate WEIGHTS: `w₀ = m / 2`.-/
+on candidate WEIGHTS: `w₀ = m / 2`.
+@isnad1 id=le.3h7v.s7.5d454d49634a from=translated src=- shape=d7b29dcf vocab=b3c5f59f
+-/
 theorem proxyWeightFloor {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ} (hq : F.parts.card ≤ q)
     {m : ℕ} (hm : ∀ C ∈ Q.parts, m ≤ C.card) (C : ProxyIndex Q) :
     (m : ℝ) / 2 ≤ proxyCandidateWeight (Q := Q) F q C := by
@@ -86,7 +88,9 @@ theorem proxyWeightFloor {F : Finpartition s} (hFQ : F ≤ Q) {q : ℕ} (hq : F.
 /-! ### The geometric normalization -/
 
 /-- **Host size against a single proxy's size.** An equipartition into `P` proxies of size
-`m` or `m + 1` with `1 ≤ m` has host size at most `2 * P * m`.-/
+`m` or `m + 1` with `1 ≤ m` has host size at most `2 * P * m`.
+@isnad1 id=le.2h4v.s7.59bbc5c7f772 from=translated src=- shape=e2266f80 vocab=271d6031
+-/
 theorem card_le_two_mul_parts_mul {m : ℕ} (hm : 1 ≤ m)
     (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) :
     (s.card : ℝ) ≤ 2 * (Q.parts.card : ℝ) * m := by
@@ -103,7 +107,9 @@ theorem card_le_two_mul_parts_mul {m : ℕ} (hm : 1 ≤ m)
   ring_nf
   exact le_refl _
 
-/-- The normalization in the form the budgets use: `#s ^ 2` against `m ^ 2`.-/
+/-- The normalization in the form the budgets use: `#s ^ 2` against `m ^ 2`.
+@isnad1 id=le.2h4v.s7.e673dd87b862 from=translated src=- shape=544628de vocab=95bef6d2
+-/
 theorem sq_card_le_of_proxy_size {m : ℕ} (hm : 1 ≤ m) (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) :
     (s.card : ℝ) ^ 2 ≤ 4 * (Q.parts.card : ℝ) ^ 2 * (m : ℝ) ^ 2 := by
   have h := card_le_two_mul_parts_mul (Q := Q) hm hM
@@ -122,6 +128,9 @@ palette count and proxy count only.-/
 noncomputable def proxyDeviationTolerance (K P : ℕ) (η τ : ℝ) : ℝ :=
   η ^ 2 * τ / (16 * K * P ^ 2)
 
+/--
+@isnad1 id=lt.2h2v.s5.3460764da2d7 from=translated src=- shape=e8b7e832 vocab=689b0bca
+-/
 theorem proxyFineTolerance_pos {K P : ℕ} (hK : 0 < K) (hP : 0 < P) :
     0 < proxyFineTolerance K P := by
   have hK0 : (0 : ℝ) < K := by exact_mod_cast hK
@@ -129,6 +138,9 @@ theorem proxyFineTolerance_pos {K P : ℕ} (hK : 0 < K) (hP : 0 < P) :
   rw [proxyFineTolerance]
   positivity
 
+/--
+@isnad1 id=lt.4h4v.s6.951f5e060aa6 from=translated src=- shape=e2709c26 vocab=d2c8b38f
+-/
 theorem proxyDeviationTolerance_pos {K P : ℕ} (hK : 0 < K) (hP : 0 < P) {η τ : ℝ}
     (hη : 0 < η) (hτ : 0 < τ) : 0 < proxyDeviationTolerance K P η τ := by
   have hK0 : (0 : ℝ) < K := by exact_mod_cast hK
@@ -138,7 +150,9 @@ theorem proxyDeviationTolerance_pos {K P : ℕ} (hK : 0 < K) (hP : 0 < P) {η τ
 
 omit [DecidableEq V] in
 /-- Both tolerances are antitone in the proxy count: more proxies is a stricter requirement,
-never a weaker one.-/
+never a weaker one.
+@isnad1 id=le.3h3v.s5.89f119c55087 from=translated src=- shape=d73b17f4 vocab=fe413ae2
+-/
 theorem proxyFineTolerance_anti {K P P' : ℕ} (hK : 0 < K) (hP : 0 < P) (hPP : P ≤ P') :
     proxyFineTolerance K P' ≤ proxyFineTolerance K P := by
   have hK0 : (0 : ℝ) < K := by exact_mod_cast hK
@@ -150,6 +164,9 @@ theorem proxyFineTolerance_anti {K P P' : ℕ} (hK : 0 < K) (hP : 0 < P) (hPP : 
   linarith [mul_nonneg hK0.le (sub_nonneg.mpr hsq)]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.4h5v.s5.9aa45cc85495 from=translated src=- shape=c3fcd0cc vocab=0e2b6dbb
+-/
 theorem proxyDeviationTolerance_anti {K P P' : ℕ} (hK : 0 < K) (hP : 0 < P) (hPP : P ≤ P')
     {η τ : ℝ} (hτ : 0 ≤ τ) :
     proxyDeviationTolerance K P' η τ ≤ proxyDeviationTolerance K P η τ := by
@@ -166,7 +183,9 @@ theorem proxyDeviationTolerance_anti {K P P' : ℕ} (hK : 0 < K) (hP : 0 < P) (h
 omit [DecidableEq V] in
 /-- **`σ ≤ 1/2`.** The forbidden budget of step 2 at the weight floor `m / 2`, with the fine
 partition produced at `proxyFineTolerance K P`. The `P ²` enters through `#s ^ 2 / m ^ 2` —
-geometric normalization — and not through any count of events.-/
+geometric normalization — and not through any count of events.
+@isnad1 id=le.7h7v.s8.9225a329c3b1 from=translated src=- shape=6a750eff vocab=4667e85f
+-/
 theorem proxySigma_le_half {K P m : ℕ} {B ε : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ P) (hm : 1 ≤ m)
     (hε0 : 0 ≤ ε) (hεle : ε ≤ proxyFineTolerance K P)
     (hB : B ≤ ε * (s.card : ℝ) ^ 2)
@@ -191,7 +210,9 @@ theorem proxySigma_le_half {K P m : ℕ} {B ε : ℝ} (hK : 1 ≤ K) (hP : 1 ≤
 
 omit [DecidableEq V] in
 /-- **`μ ≤ τ`.** The cost budget of step 3 at the same weight floor, with the witness's
-deviation parameter at `proxyDeviationTolerance K P η τ`.-/
+deviation parameter at `proxyDeviationTolerance K P η τ`.
+@isnad1 id=le.7h8v.s8.794654182449 from=translated src=- shape=ce5084fd vocab=5a797560
+-/
 theorem proxyMu_le {K P m : ℕ} {δ η τ : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ P) (hm : 1 ≤ m)
     (hη : 0 < η) (hδ0 : 0 ≤ δ) (hδ : δ ≤ proxyDeviationTolerance K P η τ)
     (hn : (s.card : ℝ) ^ 2 ≤ 4 * (P : ℝ) ^ 2 * (m : ℝ) ^ 2) :
@@ -222,14 +243,18 @@ theorem proxyMu_le {K P m : ℕ} {δ η τ : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ P) 
 
 /-- `σ ≤ 1/2` stated at the realized proxy count `P = #Q.parts`, with the proxy-size
 hypotheses supplied directly. Everything above is local to THIS partition: the tolerance was
-chosen for this `P`, and nothing here licenses reusing it at another.-/
+chosen for this `P`, and nothing here licenses reusing it at another.
+@isnad1 id=le.7h7v.s8.0c6f9eb0f636 from=translated src=- shape=585d0571 vocab=7cde35f5
+-/
 theorem proxySigma_le_half_of_parts {K m : ℕ} {B ε : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ Q.parts.card)
     (hm : 1 ≤ m) (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) (hε0 : 0 ≤ ε)
     (hεle : ε ≤ proxyFineTolerance K Q.parts.card) (hB : B ≤ ε * (s.card : ℝ) ^ 2) :
     (K : ℝ) * B / ((m : ℝ) / 2) ^ 2 ≤ 1 / 2 :=
   proxySigma_le_half hK hP hm hε0 hεle hB (sq_card_le_of_proxy_size hm hM)
 
-/-- `μ ≤ τ` at the realized proxy count, likewise.-/
+/-- `μ ≤ τ` at the realized proxy count, likewise.
+@isnad1 id=le.7h8v.s8.b113ee79873e from=translated src=- shape=b4bda54a vocab=4ec67321
+-/
 theorem proxyMu_le_of_parts {K m : ℕ} {δ η τ : ℝ} (hK : 1 ≤ K) (hP : 1 ≤ Q.parts.card)
     (hm : 1 ≤ m) (hM : ∀ C ∈ Q.parts, C.card ≤ m + 1) (hη : 0 < η) (hδ0 : 0 ≤ δ)
     (hδ : δ ≤ proxyDeviationTolerance K Q.parts.card η τ) :
@@ -251,7 +276,9 @@ bound on `P`.
 
 What it does establish is what Step 5 still lacks: either an a priori bound on `P` (or an
 order of choice that fixes `P` first), or a deviation requirement that is `P`-free.
-Recorded, not discharged.-/
+Recorded, not discharged.
+@isnad1 id=ex.2h4v.s5.3edd8b3992f8 from=translated src=- shape=2698b7f8 vocab=d2c8b38f
+-/
 theorem exists_proxyCount_gt_globalDeviation (K : ℕ) (hK : 0 < K) {η τ δ : ℝ}
     (hδ : 0 < δ) :
     ∃ P : ℕ, 0 < P ∧ proxyDeviationTolerance K P η τ < δ := by
@@ -270,7 +297,9 @@ theorem exists_proxyCount_gt_globalDeviation (K : ℕ) (hK : 0 < K) {η τ δ : 
 
 /-- **The conditioned conclusion.** With `σ ≤ 1/2` and `μ ≤ τ` the selection returned by
 `exists_piFinset_forall_not_mem_bad_cost_le` has cost at most `2 * τ`: conditioning on
-avoiding every forbidden event costs exactly the factor `1 / (1 - σ)`.-/
+avoiding every forbidden event costs exactly the factor `1 / (1 - σ)`.
+@isnad1 id=le.3h3v.s6.61ad0358ab64 from=translated src=- shape=cf87a67e vocab=00cae1bd
+-/
 theorem proxyCost_le_two_mul {σ μ τ : ℝ} (hσ : σ ≤ 1 / 2) (hμ : μ ≤ τ) (hτ : 0 ≤ τ) :
     μ / (1 - σ) ≤ 2 * τ := by
   have h1 : (0 : ℝ) < 1 - σ := by linarith
@@ -284,6 +313,9 @@ section Tests
 -- The `P ²` of the normalization and the discarded `9n²` pair envelope can share a numeral
 -- without sharing a source: with `n` owners the grouping gives `P = 3n` proxies, so
 -- `P ² = 9n²` — but this `P ²` came from `#s / m`, not from counting pairs.
+/--
+@isnad1 id=eq.0h1v.s6.52b33f757ce9 from=translated src=- shape=035ebc79 vocab=de4a4c74
+-/
 theorem proxySq_eq_nine_mul_sq (n : ℕ) : (3 * n) ^ 2 = 9 * n ^ 2 := by ring
 
 -- …and the two really are different quantities: the pair count is not the square.
