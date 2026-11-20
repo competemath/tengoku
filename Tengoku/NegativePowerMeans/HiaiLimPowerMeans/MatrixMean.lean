@@ -28,13 +28,17 @@ noncomputable def weightedGeometricMean
     (A ^ (-(1 / 2 : ℝ)) * B * A ^ (-(1 / 2 : ℝ))) ^ t *
       A ^ (1 / 2 : ℝ)
 
-/-- Real CFC powers of a positive-definite matrix are positive definite.-/
+/-- Real CFC powers of a positive-definite matrix are positive definite.
+@isnad1 id=posdef.1h4v.s7.fb1d39e18008 from=translated src=- shape=da25e74b vocab=ac933f99
+-/
 theorem Matrix.PosDef.rpow {A : Matrix n n 𝕜} (hA : A.PosDef) (t : ℝ) :
     (A ^ t).PosDef := by
   apply CFC.rpow_nonneg.posSemidef.posDef_iff_isUnit.mpr
   exact hA.isUnit.cfcRpow t hA.posSemidef.nonneg
 
-/-- Taking a real power after matrix inversion negates the exponent.-/
+/-- Taking a real power after matrix inversion negates the exponent.
+@isnad1 id=eq.1h4v.s8.6c79be035f21 from=translated src=- shape=6c256ccc vocab=ee218b6c
+-/
 theorem Matrix.PosDef.inv_rpow {A : Matrix n n 𝕜} (hA : A.PosDef) (t : ℝ) :
     A⁻¹ ^ t = A ^ (-t) := by
   let u : (Matrix n n 𝕜)ˣ := hA.isUnit.unit
@@ -43,7 +47,9 @@ theorem Matrix.PosDef.inv_rpow {A : Matrix n n 𝕜} (hA : A.PosDef) (t : ℝ) :
   simpa [hu] using h.symm
 
 /-- The matrix inverse of a positive-definite real power is the power with
-negated exponent.-/
+negated exponent.
+@isnad1 id=eq.1h4v.s8.b9539176131e from=translated src=- shape=99f717fe vocab=ee218b6c
+-/
 theorem Matrix.PosDef.rpow_inv {A : Matrix n n 𝕜} (hA : A.PosDef) (t : ℝ) :
     (A ^ t)⁻¹ = A ^ (-t) := by
   by_cases ht : t = 0
@@ -52,14 +58,23 @@ theorem Matrix.PosDef.rpow_inv {A : Matrix n n 𝕜} (hA : A.PosDef) (t : ℝ) :
   · rw [Matrix.nonsing_inv_eq_ringInverse]
     exact CFC.inverse_rpow A t ht hA.isStrictlyPositive
 
+/--
+@isnad1 id=eq.1h3v.s8.eb6c0773646c from=translated src=- shape=4e7bff53 vocab=9f7a815c
+-/
 theorem Matrix.PosDef.invHalf_mul_half {A : Matrix n n 𝕜} (hA : A.PosDef) :
     A ^ (-(1 / 2 : ℝ)) * A ^ (1 / 2 : ℝ) = 1 := by
   exact CFC.rpow_neg_mul_rpow (1 / 2 : ℝ) hA.isStrictlyPositive
 
+/--
+@isnad1 id=eq.1h3v.s8.ed39bb980772 from=translated src=- shape=b3735b5b vocab=9f7a815c
+-/
 theorem Matrix.PosDef.half_mul_invHalf {A : Matrix n n 𝕜} (hA : A.PosDef) :
     A ^ (1 / 2 : ℝ) * A ^ (-(1 / 2 : ℝ)) = 1 := by
   exact CFC.rpow_mul_rpow_neg (1 / 2 : ℝ) hA.isStrictlyPositive
 
+/--
+@isnad1 id=eq.1h3v.s8.c2a78ee97f32 from=translated src=- shape=49f4ed4c vocab=9f7a815c
+-/
 theorem Matrix.PosDef.invHalf_conjugate_self {A : Matrix n n 𝕜}
     (hA : A.PosDef) :
     A ^ (-(1 / 2 : ℝ)) * A * A ^ (-(1 / 2 : ℝ)) = 1 := by
@@ -81,7 +96,9 @@ theorem Matrix.PosDef.invHalf_conjugate_self {A : Matrix n n 𝕜}
           Matrix.PosDef.half_mul_invHalf hA, one_mul]
 
 /-- The weighted geometric mean of two positive-definite matrices is positive
-definite (for every real parameter for which the formula is considered).-/
+definite (for every real parameter for which the formula is considered).
+@isnad1 id=posdef.2h5v.s6.0626da95f03e from=translated src=- shape=d47c0137 vocab=77c68b9f
+-/
 theorem weightedGeometricMean_posDef
     {A B : Matrix n n 𝕜} (hA : A.PosDef) (hB : B.PosDef) (t : ℝ) :
     (weightedGeometricMean A B t).PosDef := by
@@ -99,7 +116,9 @@ theorem weightedGeometricMean_posDef
       (Matrix.PosDef.rpow hinner t).conjTranspose_mul_mul_same
         (Matrix.mulVec_injective_of_isUnit hR.isUnit)
 
-/-- Self-duality of the weighted geometric mean.-/
+/-- Self-duality of the weighted geometric mean.
+@isnad1 id=eq.2h5v.s7.3adf7ccc6a28 from=translated src=- shape=e50e0358 vocab=5f56ef7b
+-/
 theorem weightedGeometricMean_inv
     {A B : Matrix n n 𝕜} (hA : A.PosDef) (hB : B.PosDef) (t : ℝ) :
     (weightedGeometricMean A B t)⁻¹ =
@@ -206,7 +225,9 @@ noncomputable def FixedPoint.negativePowerMean
   (hLP.mean ω (fun j ↦ (A j)⁻¹) (-r) (fun j ↦ (hA j).inv)
     (neg_pos.mpr hr0) (by linarith)).value⁻¹
 
-/-- The negative-order mean defined by duality is positive definite.-/
+/-- The negative-order mean defined by duality is positive definite.
+@isnad1 id=posdef.4h6v.s7.a1005e0ec1bf from=translated src=- shape=452d6394 vocab=ead5f275
+-/
 theorem FixedPoint.negativePowerMean_posDef
     (hLP : FixedPoint 𝕜)
     {n m : ℕ} [NeZero n] [NeZero m]
@@ -232,20 +253,32 @@ theorem FixedPoint.eq_mean
   exact (hLP n m ω A t hA ht0 ht1).unique hX
     (hLP.mean ω A t hA ht0 ht1).isMean
 
+/--
+@isnad1 id=posdef.0h7v.s6.efb22387f4fe from=translated src=- shape=d27ace9f vocab=03a2dca4
+-/
 theorem Mean.posDef
     {ω : ProbabilityWeights m} {A : m → Matrix n n 𝕜} {t : ℝ}
     (P : Mean ω A t) : P.value.PosDef := P.isMean.1
 
+/--
+@isnad1 id=eq.0h7v.s6.5ab30d58f156 from=translated src=- shape=cdd0486c vocab=55086d75
+-/
 theorem Mean.fixedPoint
     {ω : ProbabilityWeights m} {A : m → Matrix n n 𝕜} {t : ℝ}
     (P : Mean ω A t) :
     P.value = positivePowerMeanMap ω.value A t P.value := P.isMean.2
 
+/--
+@isnad1 id=posdef.1h7v.s6.ef8c5d71d850 from=translated src=- shape=9e7b2c0c vocab=0dc005f5
+-/
 theorem IsMean.posDef
     {w : m → ℝ} {A : m → Matrix n n 𝕜} {t : ℝ} {X : Matrix n n 𝕜}
     (hX : IsMean w A t X) : X.PosDef :=
   hX.1
 
+/--
+@isnad1 id=eq.1h7v.s6.1d2f8510da57 from=translated src=- shape=6e6d208a vocab=6f4c9251
+-/
 theorem IsMean.fixedPoint
     {w : m → ℝ} {A : m → Matrix n n 𝕜} {t : ℝ} {X : Matrix n n 𝕜}
     (hX : IsMean w A t X) :
@@ -253,7 +286,9 @@ theorem IsMean.fixedPoint
   hX.2
 
 /-- With positive weights and positive-definite inputs, the defining map
-preserves the positive-definite cone.-/
+preserves the positive-definite cone.
+@isnad1 id=posdef.3h7v.s7.2f30c775c7fe from=translated src=- shape=51f76795 vocab=4af6cbbd
+-/
 theorem positivePowerMeanMap_posDef [Nonempty m]
     {w : m → ℝ} {A : m → Matrix n n 𝕜} {t : ℝ} {X : Matrix n n 𝕜}
     (hw : ∀ j, 0 < w j) (hA : ∀ j, (A j).PosDef) (hX : X.PosDef) :
@@ -264,7 +299,9 @@ theorem positivePowerMeanMap_posDef [Nonempty m]
       (fun j _ ↦ (weightedGeometricMean_posDef hX (hA j) t).smul (hw j)))
 
 /-- Congruencing the defining map by `X⁻¹ᐟ²` removes both outer square
-roots in every weighted geometric mean.-/
+roots in every weighted geometric mean.
+@isnad1 id=eq.1h7v.s10.54d438ecab83 from=translated src=- shape=59b31294 vocab=7507c929
+-/
 theorem normalize_positivePowerMeanMap
     (w : m → ℝ) (A : m → Matrix n n 𝕜) (t : ℝ)
     {X : Matrix n n 𝕜} (hX : X.PosDef) :

@@ -22,7 +22,9 @@ noncomputable def spectralIsometry
     (e : Fin k ↪ Fin n) : Matrix (Fin n) (Fin k) 𝕜 :=
   fun p i ↦ decreasingEigenvectorUnitary hA p (e i)
 
-/-- Selected columns of a unitary eigenvector matrix remain orthonormal.-/
+/-- Selected columns of a unitary eigenvector matrix remain orthonormal.
+@isnad1 id=matrixis.1h5v.s6.37a60601a54e from=translated src=- shape=88bd1b8e vocab=1affd7c5
+-/
 theorem spectralIsometry_isometry
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -35,7 +37,9 @@ theorem spectralIsometry_isometry
     Matrix.one_apply] using hij
 
 /-- A selected spectral isometry intertwines the Hermitian matrix with the
-diagonal matrix of its selected eigenvalues.-/
+diagonal matrix of its selected eigenvalues.
+@isnad1 id=eq.1h5v.s8.484b83c2d56b from=translated src=- shape=8cc0e859 vocab=4b9d08f9
+-/
 theorem mul_spectralIsometry
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -51,7 +55,9 @@ theorem mul_spectralIsometry
   rw [Matrix.mul_diagonal]
   simpa [spectralIsometry, Matrix.mul_apply] using hi
 
-/-- Compression to a selected spectral subspace is diagonal.-/
+/-- Compression to a selected spectral subspace is diagonal.
+@isnad1 id=eq.1h5v.s7.64df4a5e05c9 from=translated src=- shape=d5f06e89 vocab=858a8642
+-/
 theorem compress_spectralIsometry
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -73,7 +79,9 @@ theorem compress_spectralIsometry
     _ = Matrix.diagonal
         (fun i ↦ RCLike.ofReal (decreasingEigenvalues hA (e i))) := rfl
 
-/-- The Euclidean linear map represented by an isometry matrix is injective.-/
+/-- The Euclidean linear map represented by an isometry matrix is injective.
+@isnad1 id=injectiv.1h4v.s12.74e01f559c98 from=translated src=- shape=17934f53 vocab=0cecc923
+-/
 theorem toEuclideanLin_injective_of_isometry
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {V : Matrix (Fin n) (Fin k) 𝕜} (hV : MatrixIsometry V) :
@@ -94,7 +102,9 @@ def bottomFinEmbeddingAt {n : ℕ} (i : Fin n) : Fin (n - i.val) ↪ Fin n :=
 
 /-- The top spectral subspace of one Hermitian matrix and the bottom spectral
 subspace of another, with complementary dimensions adding to `n + 1`, have a
-nonzero common vector.-/
+nonzero common vector.
+@isnad1 id=ex.2h5v.s14.da4aa3ba0a0a from=translated src=- shape=fffd6f8f vocab=9fa64bd4
+-/
 theorem spectral_subspaces_intersect
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A B : Matrix (Fin n) (Fin n) 𝕜}
@@ -152,7 +162,9 @@ def realQuadraticForm
   RCLike.re (star x ⬝ᵥ A.mulVec x)
 
 /-- Star converts a matrix-vector product into multiplication by the
-conjugate transpose on the other side.-/
+conjugate transpose on the other side.
+@isnad1 id=eq.0h5v.s7.df223492390a from=translated src=- shape=7b179c87 vocab=a5f3d247
+-/
 theorem star_mulVec
     {m n : Type*} [Fintype n] {𝕜 : Type*} [RCLike 𝕜]
     (A : Matrix m n 𝕜) (x : n → 𝕜) :
@@ -162,7 +174,9 @@ theorem star_mulVec
   simp [mul_comm]
 
 /-- Pulling a quadratic form back along a matrix is the same as applying the
-quadratic form of the corresponding compression.-/
+quadratic form of the corresponding compression.
+@isnad1 id=eq.0h6v.s6.afb28490bac0 from=translated src=- shape=54f96ab8 vocab=cfc083da
+-/
 theorem realQuadraticForm_mulVec
     {m n : Type*} [Fintype m] [Fintype n]
     {𝕜 : Type*} [RCLike 𝕜]
@@ -175,7 +189,9 @@ theorem realQuadraticForm_mulVec
     Matrix.vecMul_vecMul, ← Matrix.dotProduct_mulVec]
   simp [Matrix.mul_assoc]
 
-/-- A diagonal real matrix has the expected weighted-square quadratic form.-/
+/-- A diagonal real matrix has the expected weighted-square quadratic form.
+@isnad1 id=eq.0h4v.s6.d01da9eeffdc from=translated src=- shape=81d1c8f7 vocab=c5e951dc
+-/
 theorem realQuadraticForm_diagonal
     {n : Type*} [Fintype n] [DecidableEq n]
     {𝕜 : Type*} [RCLike 𝕜]
@@ -204,7 +220,9 @@ theorem realQuadraticForm_diagonal
   simp [RCLike.mul_re, RCLike.star_def]
   ring
 
-/-- Loewner order compares all real quadratic forms.-/
+/-- Loewner order compares all real quadratic forms.
+@isnad1 id=le.1h5v.s5.723dd4536066 from=translated src=- shape=7c778981 vocab=7a52be95
+-/
 theorem realQuadraticForm_mono
     {n : Type*} [Fintype n]
     {𝕜 : Type*} [RCLike 𝕜]
@@ -214,7 +232,9 @@ theorem realQuadraticForm_mono
   unfold realQuadraticForm
   simpa [Matrix.sub_mulVec, dotProduct_sub] using hnonneg
 
-/-- An isometry matrix preserves the Euclidean norm.-/
+/-- An isometry matrix preserves the Euclidean norm.
+@isnad1 id=eq.1h5v.s12.9ec0e608eb4a from=translated src=- shape=9bc3d7b7 vocab=9fb6f4d6
+-/
 theorem norm_toEuclideanLin_of_isometry
     {m n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {V : Matrix (Fin m) (Fin n) 𝕜} (hV : MatrixIsometry V)
@@ -240,7 +260,9 @@ theorem norm_toEuclideanLin_of_isometry
   nlinarith [norm_nonneg (Matrix.toEuclideanLin V x), norm_nonneg x]
 
 /-- The quadratic form of the identity matrix is the sum of coordinate norm
-squares.-/
+squares.
+@isnad1 id=eq.0h3v.s6.b246bc2fa3e3 from=translated src=- shape=17b9cc6b vocab=2b09c6ca
+-/
 theorem realQuadraticForm_one
     {n : Type*} [Fintype n] [DecidableEq n]
     {𝕜 : Type*} [RCLike 𝕜] (x : n → 𝕜) :
@@ -252,7 +274,9 @@ theorem realQuadraticForm_one
   simp
 
 /-- The quadratic form of a real scalar matrix is the corresponding scalar
-multiple of the identity quadratic form.-/
+multiple of the identity quadratic form.
+@isnad1 id=eq.0h4v.s7.db045c4197b8 from=translated src=- shape=0293837f vocab=ea4fb2ac
+-/
 theorem realQuadraticForm_scalar
     {n : Type*} [Fintype n] [DecidableEq n]
     {𝕜 : Type*} [RCLike 𝕜] (c : ℝ) (x : n → 𝕜) :
@@ -262,7 +286,9 @@ theorem realQuadraticForm_scalar
     realQuadraticForm_one, Finset.mul_sum]
 
 /-- On the span of the first `i + 1` eigenvectors, the quadratic form is
-bounded below by the `i`th decreasing eigenvalue.-/
+bounded below by the `i`th decreasing eigenvalue.
+@isnad1 id=le.1h5v.s8.ec27bf49a6ca from=translated src=- shape=0992a271 vocab=dfeee4fd
+-/
 theorem top_spectral_quadratic_lower
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -296,7 +322,9 @@ theorem top_spectral_quadratic_lower
         ((spectralIsometry hA (topFinEmbeddingAt i)).mulVec x.ofLp) := rfl
 
 /-- On the span of the eigenvectors from `i` through the final coordinate,
-the quadratic form is bounded above by the `i`th decreasing eigenvalue.-/
+the quadratic form is bounded above by the `i`th decreasing eigenvalue.
+@isnad1 id=le.1h5v.s8.622a2f0e7e6c from=translated src=- shape=9a2bf9c9 vocab=e6026796
+-/
 theorem bottom_spectral_quadratic_upper
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)

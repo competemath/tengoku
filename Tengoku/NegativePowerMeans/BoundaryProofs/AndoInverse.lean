@@ -24,7 +24,9 @@ complex matrices. -/
 noncomputable local instance : CStarAlgebra (Matrix k k ℂ) where
 
 /-- Inversion reverses an isometric compression inequality.  This is the
-finite-dimensional Choi inequality for the inverse function.-/
+finite-dimensional Choi inequality for the inverse function.
+@isnad1 id=le.2h4v.s6.a47e60620f1c from=translated src=- shape=15eb8fad vocab=185713ed
+-/
 theorem inverse_compress_le
     {V : Matrix n k ℂ} (hV : MatrixIsometry V)
     {A : Matrix n n ℂ} (hA : A.PosDef) :

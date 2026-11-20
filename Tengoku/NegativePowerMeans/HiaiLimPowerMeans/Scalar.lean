@@ -41,17 +41,25 @@ def LowerProductDominates {n : ℕ} (y q : Fin n → ℝ) : Prop :=
   ∀ (k : ℕ) (_hk0 : 0 < k) (hk : k ≤ n),
     prefixProd q k hk ≤ prefixProd y k hk
 
+/--
+@isnad1 id=lt.2h3v.s5.1e0f4deefe38 from=translated src=- shape=62ea9baf vocab=0904bc3f
+-/
 lemma prefixProd_pos {n : ℕ} {x : Fin n → ℝ} (hx : ∀ i, 0 < x i)
     (k : ℕ) (hk : k ≤ n) : 0 < prefixProd x k hk := by
   unfold prefixProd
   exact Finset.prod_pos fun i _ ↦ hx _
 
+/--
+@isnad1 id=eq.1h3v.s5.676557f1ddc5 from=translated src=- shape=ffeeb909 vocab=a029059f
+-/
 lemma prefixProd_inv {n : ℕ} (x : Fin n → ℝ) (k : ℕ) (hk : k ≤ n) :
     prefixProd (fun i ↦ (x i)⁻¹) k hk = (prefixProd x k hk)⁻¹ := by
   simp [prefixProd]
 
 /-- Inverting a lower-product comparison reverses it and gives weak
-log-majorization.  This is the scalar core of the final duality argument.-/
+log-majorization.  This is the scalar core of the final duality argument.
+@isnad1 id=weaklogm.5h3v.s6.abb2574d2a99 from=translated src=- shape=e37c6503 vocab=cf236571
+-/
 theorem inv_weakLogMajorized_of_lowerProductDominates
     {n : ℕ} {y q : Fin n → ℝ}
     (hy : ∀ i, 0 < y i) (hq : ∀ i, 0 < q i)
@@ -69,7 +77,9 @@ theorem inv_weakLogMajorized_of_lowerProductDominates
     exact (inv_le_inv₀ (prefixProd_pos hy k hk) (prefixProd_pos hq k hk)).2
       (h k hk0 hk)
 
-/-- The unweighted AM--GM consequence used in the determinant proposition.-/
+/-- The unweighted AM--GM consequence used in the determinant proposition.
+@isnad1 id=le.2h2v.s6.8c220e06d43d from=translated src=- shape=b043e541 vocab=799be5d7
+-/
 theorem product_le_one_of_sum_le_card
     {n : ℕ} [NeZero n] {z : Fin n → ℝ}
     (hz : ∀ i, 0 ≤ z i) (hsum : ∑ i, z i ≤ (n : ℝ)) :
@@ -86,7 +96,9 @@ theorem product_le_one_of_sum_le_card
 
 /-- If the normalized trace argument gives
 `sum ((q i / y i)^t) ≤ n`, then AM--GM gives `prod q ≤ prod y`.
-This is exactly the final scalar step of the determinant proposition.-/
+This is exactly the final scalar step of the determinant proposition.
+@isnad1 id=le.4h4v.s7.d4ab4c5b7696 from=translated src=- shape=2bcf6b68 vocab=91b52f4a
+-/
 theorem product_le_product_of_sum_rpow_div_le_card
     {n : ℕ} [NeZero n] {q y : Fin n → ℝ} {t : ℝ}
     (hq : ∀ i, 0 < q i) (hy : ∀ i, 0 < y i) (ht : 0 < t)

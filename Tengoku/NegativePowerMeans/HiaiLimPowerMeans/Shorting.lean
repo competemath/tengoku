@@ -45,6 +45,9 @@ def Ando (𝕜 : Type*) [RCLike 𝕜]
         weightedGeometricMean (compress V A) (compress V B) t
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=injectiv.1h4v.s5.21ecca1fbb3a from=translated src=- shape=e1d9e80d vocab=f3a54427
+-/
 theorem MatrixIsometry.mulVec_injective
     {V : Matrix n k 𝕜} (hV : MatrixIsometry V) :
     Function.Injective V.mulVec := by
@@ -54,7 +57,9 @@ theorem MatrixIsometry.mulVec_injective
   simpa only [Matrix.mulVec_mulVec, hV, Matrix.one_mulVec] using h
 
 omit [DecidableEq n] [Fintype k] in
-/-- Compression by an isometry preserves positive definiteness.-/
+/-- Compression by an isometry preserves positive definiteness.
+@isnad1 id=posdef.2h5v.s6.54d1dce3ec66 from=translated src=- shape=39fddc11 vocab=817f1a3a
+-/
 theorem compress_posDef [Finite k]
     {V : Matrix n k 𝕜} (hV : MatrixIsometry V)
     {A : Matrix n n 𝕜} (hA : A.PosDef) : (compress V A).PosDef := by
@@ -62,7 +67,9 @@ theorem compress_posDef [Finite k]
   exact hA.conjTranspose_mul_mul_same hV.mulVec_injective
 
 omit [DecidableEq n] [Fintype k] [DecidableEq k] in
-/-- Compression preserves the Loewner order.-/
+/-- Compression preserves the Loewner order.
+@isnad1 id=le.1h6v.s6.34622733242a from=translated src=- shape=8ffb7b09 vocab=33e9f5ec
+-/
 theorem compress_mono [Finite k]
     (V : Matrix n k 𝕜) {A B : Matrix n n 𝕜}
     (hAB : A ≤ B) : compress V A ≤ compress V B := by
@@ -79,7 +86,9 @@ theorem compress_mono [Finite k]
   exact hcongr
 
 /-- Shorting a positive-definite matrix again gives a positive-definite
-matrix.-/
+matrix.
+@isnad1 id=posdef.2h5v.s6.5cb61eaeaa61 from=translated src=- shape=6a8c0b17 vocab=39583533
+-/
 theorem shorted_posDef {V : Matrix n k 𝕜} (hV : MatrixIsometry V)
     {A : Matrix n n 𝕜} (hA : A.PosDef) : (shorted V A).PosDef := by
   exact (compress_posDef hV hA.inv).inv
@@ -106,6 +115,9 @@ noncomputable def bottomEigenvectorIsometry
   fun p i ↦ decreasingEigenvectorUnitary hA.isHermitian p
     (bottomFinEmbedding hab i)
 
+/--
+@isnad1 id=matrixis.2h4v.s6.8342fcd03180 from=translated src=- shape=015dddf2 vocab=c261ce58
+-/
 theorem bottomEigenvectorIsometry_isometry
     {A : Matrix (Fin b) (Fin b) 𝕜} (hA : A.PosDef) (hab : a ≤ b) :
     MatrixIsometry (bottomEigenvectorIsometry hA hab) := by
@@ -118,7 +130,9 @@ theorem bottomEigenvectorIsometry_isometry
     Matrix.one_apply] using hij
 
 /-- The selected eigenvector isometry intertwines `A` with the diagonal
-matrix of its selected (smallest) eigenvalues.-/
+matrix of its selected (smallest) eigenvalues.
+@isnad1 id=eq.2h4v.s7.e147f394424e from=translated src=- shape=9488223a vocab=bc915646
+-/
 theorem mul_bottomEigenvectorIsometry
     {A : Matrix (Fin b) (Fin b) 𝕜} (hA : A.PosDef) (hab : a ≤ b) :
     A * bottomEigenvectorIsometry hA hab =
@@ -198,7 +212,9 @@ private theorem shorted_bottom_eq_diagonal
   rw [shorted, hcompressInv, Matrix.inv_inv_of_invertible]
 
 /-- On the bottom spectral subspace, shorting agrees with compression, and
-its determinant is the product of the selected smallest eigenvalues.-/
+its determinant is the product of the selected smallest eigenvalues.
+@isnad1 id=and.2h4v.s8.72bde5f81308 from=translated src=- shape=ce8485df vocab=58853914
+-/
 theorem shorted_bottomEigenvectors
     {A : Matrix (Fin b) (Fin b) 𝕜} (hA : A.PosDef) (hab : a ≤ b) :
     shorted (bottomEigenvectorIsometry hA hab) A =
@@ -227,7 +243,9 @@ noncomputable local instance : CStarAlgebra (Matrix k k ℂ) where
 
 omit [Nonempty n] [Nonempty k] in
 /-- Variational characterization of the shorted matrix: it is feasible, and
-it dominates every positive-definite feasible matrix.-/
+it dominates every positive-definite feasible matrix.
+@isnad1 id=and.2h4v.s8.c8569eb01276 from=translated src=- shape=5daa178a vocab=47faff43
+-/
 theorem shorted_variational
     {V : Matrix n k ℂ} (hV : MatrixIsometry V)
     {A : Matrix n n ℂ} (hA : A.PosDef) :
@@ -271,7 +289,9 @@ theorem shorted_variational
 
 /-- Ando compression, self-duality of the weighted geometric mean, and
 order reversal under inversion give the geometric-mean inequality for
-shorted matrices.-/
+shorted matrices.
+@isnad1 id=le.6h6v.s7.dee31d073ab4 from=translated src=- shape=94ec7474 vocab=c30cdce8
+-/
 theorem weightedGeometricMean_shorted_le
     (hAndo : Ando ℂ n k)
     {V : Matrix n k ℂ} (hV : MatrixIsometry V)
@@ -309,7 +329,9 @@ theorem weightedGeometricMean_shorted_le
 omit [Nonempty n] [Nonempty k] in
 /-- Shorting is superadditive for finite positive weighted sums.  This is the
 finite-matrix form needed after compressing the Lim--Pálfia fixed-point
-equation.-/
+equation.
+@isnad1 id=le.3h6v.s8.b9dd7170d8d4 from=translated src=- shape=e2ccd8cc vocab=4b4a64ac
+-/
 theorem shorted_superadditive
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {V : Matrix n k ℂ} (hV : MatrixIsometry V)

@@ -15,6 +15,9 @@ namespace HiaiLimPowerMeans
 open Finset Matrix
 open scoped BigOperators ComplexOrder MatrixOrder Matrix
 
+/--
+@isnad1 id=eq.1h3v.s6.99ed1b68f122 from=translated src=- shape=e776f4cd vocab=a1862c99
+-/
 theorem prod_decreasingEigenvalues_eq_prod_increasingEigenvalues
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) :

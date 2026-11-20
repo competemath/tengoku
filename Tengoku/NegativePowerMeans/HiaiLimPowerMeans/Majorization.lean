@@ -27,12 +27,17 @@ occur in the definition of majorization.-/
 def prefixSum {n : ℕ} (x : Fin n → ℝ) (k : ℕ) : ℝ :=
   ∑ i ∈ Finset.range k, natAt x i
 
+/--
+@isnad1 id=eq.0h2v.s4.c57eed05d2f8 from=translated src=- shape=ad47a743 vocab=ecb81ffe
+-/
 lemma prefixSum_card {n : ℕ} (x : Fin n → ℝ) :
     prefixSum x n = ∑ i, x i := by
   simpa [prefixSum, natAt] using (Finset.sum_fin_eq_sum_range x).symm
 
 /-- When `k ≤ n`, the zero-extended prefix sum is the ordinary sum over
-`Fin k`.-/
+`Fin k`.
+@isnad1 id=eq.1h3v.s5.aec9416b2ea8 from=translated src=- shape=298a45bf vocab=0b53f893
+-/
 lemma prefixSum_eq_sum_fin {n : ℕ} (x : Fin n → ℝ)
     (k : ℕ) (hk : k ≤ n) :
     prefixSum x k = ∑ i : Fin k, x (Fin.castLE hk i) := by
@@ -135,7 +140,9 @@ private lemma exp_sub_exp_le_tangent (t a b : ℝ) :
     _ = (t * Real.exp (t * a)) * (a - b) := by ring
 
 /-- Karamata's inequality for the exponential function, proved directly from
-the finite prefix-sum definition for vectors already in decreasing order.-/
+the finite prefix-sum definition for vectors already in decreasing order.
+@isnad1 id=le.5h4v.s7.2cfa19e81185 from=translated src=- shape=d12aaadb vocab=fc3d4805
+-/
 theorem sum_exp_le_sum_exp_of_antitone
     {n : ℕ} {x y : Fin n → ℝ}
     (hx : Antitone x) (_hy : Antitone y)
@@ -194,7 +201,9 @@ theorem sum_exp_le_sum_exp_of_antitone
   exact sub_nonpos.mp hdiff
 
 /-- The increasing-convex exponential consequence of weak majorization for
-vectors already in decreasing order.-/
+vectors already in decreasing order.
+@isnad1 id=le.4h4v.s6.3e800a56c9e1 from=translated src=- shape=03933563 vocab=fc3d4805
+-/
 theorem sum_exp_le_sum_exp_of_antitone_weak
     {n : ℕ} {x y : Fin n → ℝ}
     (hx : Antitone x) (_hy : Antitone y)
@@ -251,7 +260,9 @@ theorem sum_exp_le_sum_exp_of_antitone_weak
   exact sub_nonpos.mp hdiff
 
 /-- A version of the preceding theorem whose prefix hypotheses are stated as
-sums over the corresponding `Fin k`.-/
+sums over the corresponding `Fin k`.
+@isnad1 id=le.4h4v.s7.952cd50c0a45 from=translated src=- shape=fe819674 vocab=cb1ce99b
+-/
 theorem sum_exp_le_sum_exp_of_fin_prefix
     {n : ℕ} {x y : Fin n → ℝ}
     (hx : Antitone x) (hy : Antitone y)
@@ -265,7 +276,9 @@ theorem sum_exp_le_sum_exp_of_fin_prefix
   rw [prefixSum_eq_sum_fin x k hk, prefixSum_eq_sum_fin y k hk]
   exact hprefix k hk
 
-/-- The exponential instance of finite Karamata's inequality.-/
+/-- The exponential instance of finite Karamata's inequality.
+@isnad1 id=le.2h4v.s6.c95baea06646 from=translated src=- shape=54ecee79 vocab=405878a2
+-/
 theorem Majorized.sum_exp_le_sum_exp
     {n : ℕ} {x y : Fin n → ℝ} (h : Majorized x y)
     {t : ℝ} (ht : 0 < t) :

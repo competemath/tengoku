@@ -21,7 +21,9 @@ noncomputable section
 /-- The scalar measure in the integral representation of `x ^ p` gives the
 same representation in every finite complex matrix algebra.  This is the
 matrix specialization of the lifting argument used in Mathlib's proof of
-`CFC.exists_measure_nnrpow_eq_integral_cfc₁_rpowIntegrand₀₁`.-/
+`CFC.exists_measure_nnrpow_eq_integral_cfc₁_rpowIntegrand₀₁`.
+@isnad1 id=and.3h4v.s9.bec656569144 from=translated src=- shape=af3cf7a3 vocab=bf692cb5
+-/
 theorem matrix_nnrpow_integral_representation
     {n : Type*} [Fintype n] [DecidableEq n]
     {p : ℝ≥0} (hp : p ∈ Ioo 0 1)
@@ -79,7 +81,9 @@ theorem matrix_nnrpow_integral_representation
           hbound_finite_integral hA.isSelfAdjoint
 
 /-- Functional calculus evaluates the power-integral kernel by the expected
-resolvent formula.-/
+resolvent formula.
+@isnad1 id=eq.3h4v.s9.cf58f2deae03 from=translated src=- shape=e876bdb5 vocab=8f48d77c
+-/
 theorem cfcₙ_rpowIntegrand₀₁_eq
     {n : Type*} [Fintype n] [DecidableEq n]
     {p s : ℝ} (hp : p ∈ Ioo 0 1) (hs : 0 < s)
@@ -103,7 +107,9 @@ theorem cfcₙ_rpowIntegrand₀₁_eq
     cfc_const_add s (fun z : ℝ ↦ z) A (by fun_prop) hA.isSelfAdjoint,
     cfc_id' ℝ A hA.isSelfAdjoint]
 
-/-- Isometric compression fixes real scalar matrices.-/
+/-- Isometric compression fixes real scalar matrices.
+@isnad1 id=eq.1h4v.s7.f853a4e223be from=translated src=- shape=29956057 vocab=b364a37a
+-/
 theorem compress_algebraMap
     {n k : Type*} [Fintype n] [DecidableEq n]
     [Fintype k] [DecidableEq k]
@@ -114,21 +120,27 @@ theorem compress_algebraMap
   simp only [compress, Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one]
   rw [hV]
 
-/-- Compression preserves subtraction.-/
+/-- Compression preserves subtraction.
+@isnad1 id=eq.0h5v.s6.593a48726b5b from=translated src=- shape=ec2d7c85 vocab=63aaccef
+-/
 theorem compress_sub
     {n k : Type*} [Fintype n]
     (V : Matrix n k ℂ) (A B : Matrix n n ℂ) :
     compress V (A - B) = compress V A - compress V B := by
   simp [compress, Matrix.mul_sub, Matrix.sub_mul]
 
-/-- Compression commutes with complex scalar multiplication.-/
+/-- Compression commutes with complex scalar multiplication.
+@isnad1 id=eq.0h5v.s6.a8e3eb6e325e from=translated src=- shape=2f020c13 vocab=d20a02d7
+-/
 theorem compress_smul
     {n k : Type*} [Fintype n]
     (V : Matrix n k ℂ) (c : ℂ) (A : Matrix n n ℂ) :
     compress V (c • A) = c • compress V A := by
   simp [compress, Matrix.mul_smul, Matrix.smul_mul]
 
-/-- Compression commutes with real scalar multiplication.-/
+/-- Compression commutes with real scalar multiplication.
+@isnad1 id=eq.0h5v.s7.3bdf26cdf1c3 from=translated src=- shape=bb2c8ca0 vocab=4925f0a2
+-/
 theorem compress_smul_real
     {n k : Type*} [Fintype n]
     (V : Matrix n k ℂ) (c : ℝ) (A : Matrix n n ℂ) :
@@ -137,7 +149,9 @@ theorem compress_smul_real
 
 open scoped Classical in
 /-- Each resolvent kernel in the integral representation satisfies the
-Hansen compression inequality.-/
+Hansen compression inequality.
+@isnad1 id=le.4h6v.s8.4b797711a812 from=translated src=- shape=792f72d5 vocab=ed3c1e9b
+-/
 theorem compress_cfcₙ_rpowIntegrand₀₁_le
     {n k : Type*} [Fintype n]
     [Fintype k] [DecidableEq k]
@@ -204,6 +218,9 @@ noncomputable def compressCLM
         simp [compress, Matrix.mul_apply, Finset.mul_sum, Finset.sum_mul,
           mul_assoc] }
 
+/--
+@isnad1 id=eq.0h4v.s7.a8c33924832b from=translated src=- shape=7d3f5302 vocab=59e8125f
+-/
 @[simp]
 theorem compressCLM_apply
     {n k : Type*} [Fintype n] [DecidableEq n]
@@ -211,7 +228,9 @@ theorem compressCLM_apply
     (V : Matrix n k ℂ) (A : Matrix n n ℂ) :
     compressCLM V A = compress V A := rfl
 
-/-- Isometric compression commutes with Bochner integration.-/
+/-- Isometric compression commutes with Bochner integration.
+@isnad1 id=eq.1h7v.s7.b0f4ceff0893 from=translated src=- shape=7ae8ec18 vocab=6261164c
+-/
 theorem compress_setIntegral
     {α n k : Type*} [MeasurableSpace α]
     [Fintype n] [DecidableEq n] [Fintype k] [DecidableEq k]
@@ -229,7 +248,9 @@ variable {n k : Type*} [Fintype n] [DecidableEq n]
 noncomputable local instance : CStarAlgebra (Matrix k k ℂ) where
 
 /-- Hansen's inequality for real powers and rectangular isometric
-compressions.-/
+compressions.
+@isnad1 id=le.4h5v.s8.e5a377b2d813 from=translated src=- shape=189b01c5 vocab=ff6ce9a3
+-/
 theorem compress_rpow_le
     {V : Matrix n k ℂ} (hV : MatrixIsometry V)
     {A : Matrix n n ℂ} (hA : A.PosDef)
@@ -265,7 +286,9 @@ theorem compress_rpow_le
 
 end Hansen
 
-/-- The square of the positive square root is the original matrix.-/
+/-- The square of the positive square root is the original matrix.
+@isnad1 id=eq.1h2v.s8.9242b0b62d5d from=translated src=- shape=ee478be1 vocab=99fa61cb
+-/
 theorem Matrix.PosDef.sqrt_mul_sqrt
     {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.PosDef) :
@@ -276,7 +299,9 @@ theorem Matrix.PosDef.sqrt_mul_sqrt
   exact h.symm
 
 /-- Ando's compression inequality for the weighted geometric mean, obtained
-from Hansen's inequality by the standard normalization.-/
+from Hansen's inequality by the standard normalization.
+@isnad1 id=le.5h6v.s7.27c9bb6ed7c4 from=translated src=- shape=7b1da3ec vocab=ecb93aed
+-/
 theorem weightedGeometricMean_compress_le
     {n k : Type*} [Fintype n] [DecidableEq n]
     [Fintype k] [DecidableEq k]
@@ -364,7 +389,9 @@ theorem weightedGeometricMean_compress_le
       rw [hcompressT]
       rfl
 
-/-- Standalone verification of the exact published `Ando` statement.-/
+/-- Standalone verification of the exact published `Ando` statement.
+@isnad1 id=ando.0h2v.s5.e85d1a9752a9 from=translated src=- shape=3e58fe7b vocab=2b459f0b
+-/
 theorem ando_from_mathlib
     (n k : Type*) [Fintype n] [DecidableEq n] [Nonempty n]
     [Fintype k] [DecidableEq k] [Nonempty k] :

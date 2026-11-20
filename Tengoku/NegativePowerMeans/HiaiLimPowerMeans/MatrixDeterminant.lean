@@ -17,7 +17,9 @@ namespace HiaiLimPowerMeans
 open Finset Matrix
 open scoped BigOperators ComplexOrder
 
-/-- The determinant consequence of the normalized trace bound.-/
+/-- The determinant consequence of the normalized trace bound.
+@isnad1 id=le.4h5v.s8.369949f24ced from=translated src=- shape=da0d4342 vocab=65116927
+-/
 theorem det_ge_prod_of_normalized_trace_bound
     {n : ℕ} [NeZero n] {𝕜 : Type*} [RCLike 𝕜]
     {Y : Matrix (Fin n) (Fin n) 𝕜} (hY : Y.PosDef)

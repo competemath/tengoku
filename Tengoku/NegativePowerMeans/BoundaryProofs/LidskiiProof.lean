@@ -22,7 +22,9 @@ open scoped BigOperators ComplexOrder MatrixOrder
 
 /-- A scaled comparison of quadratic forms compares the ordered spectra by
 the same factor.  The proof is the same finite-dimensional intersection
-argument as Weyl monotonicity, with the scalar retained.-/
+argument as Weyl monotonicity, with the scalar retained.
+@isnad1 id=le.4h6v.s7.07d143557e7c from=translated src=- shape=33ed3ab2 vocab=46707a0c
+-/
 theorem decreasingEigenvalues_le_of_quadratic_le
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A B : Matrix (Fin n) (Fin n) 𝕜}
@@ -76,7 +78,9 @@ theorem decreasingEigenvalues_le_of_quadratic_le
 
 /-- **Weyl monotonicity** for the decreasingly ordered eigenvalues of
 Hermitian matrices.  This is derived here from the spectral theorem and a
-finite-dimensional intersection argument.-/
+finite-dimensional intersection argument.
+@isnad1 id=le.3h5v.s7.837aa87839a1 from=translated src=- shape=f84534ae vocab=80d8a546
+-/
 theorem decreasingEigenvalues_mono
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A B : Matrix (Fin n) (Fin n) 𝕜}
@@ -124,7 +128,9 @@ theorem decreasingEigenvalues_mono
   exact le_of_mul_le_mul_right hchain hv0
 
 /-- The Gram quadratic form of a product is the Gram quadratic form of the
-left factor evaluated on the image under the right factor.-/
+left factor evaluated on the image under the right factor.
+@isnad1 id=eq.0h5v.s8.b34765b1a243 from=translated src=- shape=be0bdc72 vocab=5235a384
+-/
 theorem realQuadraticForm_gram_mul
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (Y Z : Matrix (Fin n) (Fin n) 𝕜) (x : Fin n → 𝕜) :
@@ -137,7 +143,9 @@ theorem realQuadraticForm_gram_mul
   rw [hgram]
   exact (realQuadraticForm_mulVec Z (Y.conjTranspose * Y) x).symm
 
-/-- The Gram quadratic form is the squared norm after applying the matrix.-/
+/-- The Gram quadratic form is the squared norm after applying the matrix.
+@isnad1 id=eq.0h5v.s7.f3d98dc2c4c9 from=translated src=- shape=bcbc4543 vocab=5235a384
+-/
 theorem realQuadraticForm_gram
     {m n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (Z : Matrix (Fin m) (Fin n) 𝕜) (x : Fin n → 𝕜) :
@@ -150,7 +158,9 @@ theorem realQuadraticForm_gram
 
 /-- The singular values of a matrix product are bounded by a uniform Gram
 bound for the left factor.  This is the singular-value ideal property in the
-precise form needed in Hiai's factorization proof.-/
+precise form needed in Hiai's factorization proof.
+@isnad1 id=le.2h6v.s13.944d4796ceb4 from=translated src=- shape=2ec902db vocab=0364f8e4
+-/
 theorem singularValues_mul_le_of_gram_le
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (Y Z : Matrix (Fin n) (Fin n) 𝕜) (c : ℝ) (hc : 0 ≤ c)
@@ -196,7 +206,9 @@ theorem singularValues_mul_le_of_gram_le
       (LinearMap.singularValues_nonneg (Matrix.toEuclideanLin Z) i))).mp hsq
 
 /-- If `XᴴX ≥ I`, left multiplication by `X` cannot decrease any singular
-value.-/
+value.
+@isnad1 id=le.1h5v.s13.c16684dcb288 from=translated src=- shape=6e388714 vocab=b112cd3d
+-/
 theorem singularValues_le_mul_of_one_le_gram
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (X T : Matrix (Fin n) (Fin n) 𝕜)
@@ -221,7 +233,9 @@ theorem singularValues_le_mul_of_one_le_gram
       heig
 
 /-- For an endomorphism of `n`-dimensional Euclidean space, the product of
-its `n` singular values is its norm determinant.-/
+its `n` singular values is its norm determinant.
+@isnad1 id=eq.0h3v.s9.3b6ea6a551d0 from=translated src=- shape=70da37e6 vocab=5489f12b
+-/
 theorem prod_singularValues_eq_normDet
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (T : EuclideanSpace 𝕜 (Fin n) →ₗ[𝕜]
@@ -230,7 +244,9 @@ theorem prod_singularValues_eq_normDet
   rw [LinearMap.normDet_eq_prod_singularValues]
   simpa using Fin.prod_univ_eq_prod_range T.singularValues n
 
-/-- Norm determinant is multiplicative for endomorphisms.-/
+/-- Norm determinant is multiplicative for endomorphisms.
+@isnad1 id=eq.0h4v.s8.32a45408a68d from=translated src=- shape=d7f6613c vocab=60f13598
+-/
 theorem normDet_comp
     {E : Type*} {𝕜 : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
@@ -241,7 +257,9 @@ theorem normDet_comp
     LinearMap.normDet_eq_norm_det, LinearMap.det_comp, norm_mul]
 
 /-- A product over an embedded subset is bounded by the full product when
-all factors are at least one.-/
+all factors are at least one.
+@isnad1 id=le.1h4v.s6.68cf3e9bc34f from=translated src=- shape=10422cb2 vocab=30d9c200
+-/
 theorem prod_embedding_le_prod
     {n k : ℕ} (f : Fin n → ℝ) (hf : ∀ i, 1 ≤ f i)
     (e : Fin k ↪ Fin n) :
@@ -255,7 +273,9 @@ theorem prod_embedding_le_prod
 
 /-- For an expanding left factor `X` and an injective right factor `T`, the
 product of any selected singular values grows by at most the total volume
-factor `normDet X`.-/
+factor `normDet X`.
+@isnad1 id=le.2h6v.s14.8c5c09f3afcb from=translated src=- shape=8ef74b0a vocab=5b290202
+-/
 theorem expanding_selected_product_of_injective
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (X T : Matrix (Fin n) (Fin n) 𝕜)
@@ -313,7 +333,9 @@ theorem expanding_selected_product_of_injective
       LinearMap.singularValues_nonneg LT (indices j))
 
 /-- Hiai's factorization reduces the selected-product inequality to the two
-spectral estimates proved above.-/
+spectral estimates proved above.
+@isnad1 id=le.6h9v.s14.721f8bdc9814 from=translated src=- shape=74b61b0c vocab=6dee6ff8
+-/
 theorem selected_product_of_factorization
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S T X Y : Matrix (Fin n) (Fin n) 𝕜) (c : ℝ) (hc : 0 ≤ c)
@@ -391,6 +413,9 @@ noncomputable def hiaiScale
       (Matrix.toEuclideanLin S).singularValues (kthIndex hk hkn)
   else 1
 
+/--
+@isnad1 id=eq.3h5v.s13.23e83b365dcc from=translated src=- shape=f432c748 vocab=2f3c2e01
+-/
 theorem hiaiScale_eq_of_lt
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -400,6 +425,9 @@ theorem hiaiScale_eq_of_lt
         (Matrix.toEuclideanLin S).singularValues (kthIndex hk hkn) := by
   simp [hiaiScale, hi]
 
+/--
+@isnad1 id=eq.3h5v.s5.e41e8d65c374 from=translated src=- shape=bdc4468f vocab=8ca0c410
+-/
 theorem hiaiScale_eq_one_of_le
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -407,6 +435,9 @@ theorem hiaiScale_eq_one_of_le
     hiaiScale S hk hkn i = 1 := by
   simp [hiaiScale, not_lt.mpr hi]
 
+/--
+@isnad1 id=le.3h5v.s12.4508593b0bee from=translated src=- shape=018499ad vocab=bf353070
+-/
 theorem hiaiScale_one_le
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -423,6 +454,9 @@ theorem hiaiScale_one_le
         omega))
   · rw [hiaiScale_eq_one_of_le S hk hkn i (not_lt.mp hi)]
 
+/--
+@isnad1 id=lt.3h5v.s12.a14f807be904 from=translated src=- shape=c06844c1 vocab=bf353070
+-/
 theorem hiaiScale_pos
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -432,6 +466,9 @@ theorem hiaiScale_pos
     0 < hiaiScale S hk hkn i :=
   lt_of_lt_of_le zero_lt_one (hiaiScale_one_le S hk hkn ha i)
 
+/--
+@isnad1 id=antitone.3h4v.s12.35e83919643a from=translated src=- shape=be73b267 vocab=54cc3161
+-/
 theorem hiaiScale_antitone
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -448,7 +485,9 @@ theorem hiaiScale_antitone
   · rw [hiaiScale_eq_one_of_le S hk hkn j (not_lt.mp hj)]
     exact hiaiScale_one_le S hk hkn ha i
 
-/-- The squared Hiai scale remains decreasing.-/
+/-- The squared Hiai scale remains decreasing.
+@isnad1 id=antitone.3h4v.s12.95f9ea377bbc from=translated src=- shape=b074841a vocab=3c17dcef
+-/
 theorem hiaiScale_sq_antitone
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -460,7 +499,9 @@ theorem hiaiScale_sq_antitone
     (hiaiScale_antitone S hk hkn ha hij) 2
 
 /-- After conjugation by the inverse Hiai scale, every eigenvalue of the
-Gram matrix is at most the square of the `k`th singular value.-/
+Gram matrix is at most the square of the `k`th singular value.
+@isnad1 id=le.3h5v.s13.9217c6787863 from=translated src=- shape=e42bab76 vocab=30c0d0ac
+-/
 theorem gramEigenvalue_div_hiaiScale_sq_le
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -496,7 +537,9 @@ theorem gramEigenvalue_div_hiaiScale_sq_le
 
 /-- The determinant factor represented by the Hiai scale gives exactly the
 product of the first `k` singular values after multiplication by the `k`th
-singular value to the power `k`.-/
+singular value to the power `k`.
+@isnad1 id=eq.3h4v.s13.85b245362143 from=translated src=- shape=d2e30a4a vocab=b87d5ec2
+-/
 theorem hiaiScale_volume_identity
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -549,7 +592,9 @@ theorem hiaiScale_volume_identity
 /-- Hiai's explicit spectral factorization.  When the `k`th singular value
 of `S` is positive, `S = YX` with `X` expanding, `Y` uniformly bounded by
 that singular value, and the exact volume identity required by the
-Gel'fand--Naimark product argument.-/
+Gel'fand--Naimark product argument.
+@isnad1 id=ex.3h4v.s14.afd9e21a5c34 from=translated src=- shape=c7ef48f2 vocab=fe405fce
+-/
 theorem exists_hiai_factorization
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S : Matrix (Fin n) (Fin n) 𝕜)
@@ -768,7 +813,9 @@ theorem exists_hiai_factorization
 
 /-- The selected-index Gel'fand--Naimark inequality when both square factors
 are injective.  This is the only case needed in the multiplicative-Lidskii
-application, where both factors are products of positive-definite matrices.-/
+application, where both factors are products of positive-definite matrices.
+@isnad1 id=le.4h6v.s14.4496dea6859b from=translated src=- shape=3b645ee6 vocab=607ff258
+-/
 theorem selectedSingularProduct_of_injective
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S T : Matrix (Fin n) (Fin n) 𝕜)
@@ -793,7 +840,9 @@ theorem selectedSingularProduct_of_injective
     hfactor hY hX hvolume hT indices
 
 /-- The Euclidean linear map of a positive-definite square matrix is
-injective.-/
+injective.
+@isnad1 id=injectiv.1h3v.s12.dad7e010c5b9 from=translated src=- shape=b530030d vocab=9e12ccf0
+-/
 theorem toEuclideanLin_injective_of_posDef
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.PosDef) :
@@ -805,7 +854,9 @@ theorem toEuclideanLin_injective_of_posDef
   simpa [Matrix.toEuclideanLin, Matrix.toLpLin_apply] using h
 
 /-- Squared Gram-matrix form of the selected-product inequality for
-injective square factors.-/
+injective square factors.
+@isnad1 id=le.4h6v.s13.1b9a11bc03cf from=translated src=- shape=e0a52dc0 vocab=c430d9a5
+-/
 theorem selectedGramProduct_of_injective
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (S T : Matrix (Fin n) (Fin n) 𝕜)
@@ -851,7 +902,9 @@ theorem selectedGramProduct_of_injective
 /-- The selected ratio products required by multiplicative Lidskii follow
 from the injective selected-product theorem.  The two factors introduced in
 the square-root reduction are positive definite, so no singular
-regularization is needed here.-/
+regularization is needed here.
+@isnad1 id=lidskiis.0h1v.s3.b0767f1d6eef from=translated src=- shape=c6850a32 vocab=eea8ec68
+-/
 theorem lidskiiSelectedProducts_from_gelfandNaimark
     {𝕜 : Type*} [RCLike 𝕜] : LidskiiSelectedProducts 𝕜 := by
   intro n _ B Y hB hY p k hk0 hk
@@ -909,7 +962,9 @@ theorem lidskiiSelectedProducts_from_gelfandNaimark
   simpa [prefixProd, mul_comm] using h
 
 /-- Multiplicative Lidskii in the exact form used by the paper, derived from
-Mathlib and the nondegenerate Gel'fand--Naimark proof above.-/
+Mathlib and the nondegenerate Gel'fand--Naimark proof above.
+@isnad1 id=lidskii.0h1v.s3.cc72a47301f0 from=translated src=- shape=c6850a32 vocab=214a9450
+-/
 theorem lidskii_from_gelfandNaimark
     {𝕜 : Type*} [RCLike 𝕜] : Lidskii 𝕜 :=
   lidskii_of_properPrefix

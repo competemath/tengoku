@@ -19,12 +19,18 @@ noncomputable def powerCoordinate {m : ℕ}
     (w x : Fin m → ℝ) (t : ℝ) : ℝ :=
   (∑ j, w j * (x j) ^ t) ^ t⁻¹
 
+/--
+@isnad1 id=le.2h4v.s5.512acb9dd976 from=translated src=- shape=8cd4c351 vocab=fb773e2b
+-/
 lemma powerCoordinate_nonneg {m : ℕ} {w x : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 ≤ w j) (hx : ∀ j, 0 ≤ x j) :
     0 ≤ powerCoordinate w x t := by
   apply Real.rpow_nonneg
   exact Finset.sum_nonneg fun j _ ↦ mul_nonneg (hw j) (Real.rpow_nonneg (hx j) t)
 
+/--
+@isnad1 id=lt.2h4v.s6.7184b173884e from=translated src=- shape=08cbb38c vocab=fc761380
+-/
 lemma powerCoordinate_pos {m : ℕ} [NeZero m]
     {w x : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 < w j) (hx : ∀ j, 0 < x j) :
@@ -34,7 +40,9 @@ lemma powerCoordinate_pos {m : ℕ} [NeZero m]
     (fun j _ ↦ mul_pos (hw j) (Real.rpow_pos_of_pos (hx j) t)) Finset.univ_nonempty
 
 /-- Raising a positive scalar power mean back to any nonzero order recovers
-the weighted sum from which it was defined.-/
+the weighted sum from which it was defined.
+@isnad1 id=eq.3h4v.s6.bf55b32ae591 from=translated src=- shape=0e12a26d vocab=fc764f03
+-/
 theorem powerCoordinate_rpow_order_of_ne {m : ℕ} [NeZero m]
     {w x : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 < w j) (hx : ∀ j, 0 < x j) (ht : t ≠ 0) :
@@ -48,14 +56,18 @@ theorem powerCoordinate_rpow_order_of_ne {m : ℕ} [NeZero m]
   rw [← Real.rpow_mul hs.le]
   simp [ht]
 
-/-- Positive-order specialization of `powerCoordinate_rpow_order_of_ne`.-/
+/-- Positive-order specialization of `powerCoordinate_rpow_order_of_ne`.
+@isnad1 id=eq.3h4v.s6.3781613f3fc2 from=translated src=- shape=44e359fe vocab=fc764f03
+-/
 theorem powerCoordinate_rpow_order {m : ℕ} [NeZero m]
     {w x : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 < w j) (hx : ∀ j, 0 < x j) (ht : 0 < t) :
     (powerCoordinate w x t) ^ t = ∑ j, w j * (x j) ^ t :=
   powerCoordinate_rpow_order_of_ne hw hx ht.ne'
 
-/-- Division identity for a nonzero-order scalar power mean.-/
+/-- Division identity for a nonzero-order scalar power mean.
+@isnad1 id=eq.4h5v.s7.174f464088b0 from=translated src=- shape=c33dd961 vocab=8e7ee981
+-/
 theorem powerCoordinate_div_rpow_of_ne {m : ℕ} [NeZero m]
     {w x : Fin m → ℝ} {y t : ℝ}
     (hw : ∀ j, 0 < w j) (hx : ∀ j, 0 < x j) (hy : 0 < y) (ht : t ≠ 0) :
@@ -69,7 +81,9 @@ theorem powerCoordinate_div_rpow_of_ne {m : ℕ} [NeZero m]
   funext j
   ring
 
-/-- Positive-order specialization of `powerCoordinate_div_rpow_of_ne`.-/
+/-- Positive-order specialization of `powerCoordinate_div_rpow_of_ne`.
+@isnad1 id=eq.4h5v.s7.dc81b14298f3 from=translated src=- shape=2de36247 vocab=8e7ee981
+-/
 theorem powerCoordinate_div_rpow {m : ℕ} [NeZero m]
     {w x : Fin m → ℝ} {y t : ℝ}
     (hw : ∀ j, 0 < w j) (hx : ∀ j, 0 < x j) (hy : 0 < y) (ht : 0 < t) :
@@ -77,7 +91,9 @@ theorem powerCoordinate_div_rpow {m : ℕ} [NeZero m]
       ∑ j, w j * (x j / y) ^ t :=
   powerCoordinate_div_rpow_of_ne hw hx hy ht.ne'
 
-/-- Coordinatewise monotonicity of the scalar positive power mean.-/
+/-- Coordinatewise monotonicity of the scalar positive power mean.
+@isnad1 id=le.4h5v.s6.28f4ece054e3 from=translated src=- shape=60c59655 vocab=ad3bac25
+-/
 theorem powerCoordinate_mono {m : ℕ} {w x z : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 ≤ w j) (hx : ∀ j, 0 ≤ x j)
     (hxz : ∀ j, x j ≤ z j) (ht : 0 < t) :
@@ -90,7 +106,9 @@ theorem powerCoordinate_mono {m : ℕ} {w x z : Fin m → ℝ} {t : ℝ}
 
 /-- The scalar identity used when the positive-order result is inverted:
 the inverse of the order-`t` mean of inverse inputs is the order-`-t`
-mean of the original inputs.-/
+mean of the original inputs.
+@isnad1 id=eq.2h4v.s6.b9b4f3d8b05b from=translated src=- shape=c12ddfef vocab=be0be4ef
+-/
 theorem inv_powerCoordinate_invs {m : ℕ} [NeZero m]
     {w a : Fin m → ℝ} {t : ℝ}
     (hw : ∀ j, 0 < w j) (ha : ∀ j, 0 < a j) :

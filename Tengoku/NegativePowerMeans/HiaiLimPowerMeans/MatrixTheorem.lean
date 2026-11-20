@@ -27,6 +27,9 @@ def IsSuper
     (X : Matrix n n 𝕜) : Prop :=
   X.PosDef ∧ positivePowerMeanMap w A t X ≤ X
 
+/--
+@isnad1 id=issuper.1h7v.s5.5670141701e4 from=translated src=- shape=e6342e5a vocab=a255e8b3
+-/
 theorem IsMean.isSuper
     {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m]
     {𝕜 : Type*} [RCLike 𝕜]
@@ -35,6 +38,9 @@ theorem IsMean.isSuper
     IsSuper w A t X := by
   exact ⟨hX.posDef, hX.fixedPoint.ge⟩
 
+/--
+@isnad1 id=posdef.1h7v.s6.15fe2bdd4090 from=translated src=- shape=d374e2d3 vocab=ea00d5c1
+-/
 theorem IsSuper.posDef
     {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m]
     {𝕜 : Type*} [RCLike 𝕜]
@@ -42,7 +48,9 @@ theorem IsSuper.posDef
     (hX : IsSuper w A t X) : X.PosDef := hX.1
 
 /-- Normalizing a power-mean supersolution gives both the matrix inequality
-with identity on the right and its trace consequence.-/
+with identity on the right and its trace consequence.
+@isnad1 id=and.1h7v.s10.91026ced5291 from=translated src=- shape=4e4f10ef vocab=50f90fbd
+-/
 theorem IsSuper.norm
     {n m : ℕ} [NeZero n] {𝕜 : Type*} [RCLike 𝕜]
     {w : Fin m → ℝ} {A : Fin m → Matrix (Fin n) (Fin n) 𝕜}
@@ -81,7 +89,9 @@ theorem IsSuper.norm
   simpa [RCLike.smul_re] using hre
 
 /-- The trace of a CFC real power is the sum of the corresponding real
-powers of the eigenvalues.-/
+powers of the eigenvalues.
+@isnad1 id=eq.1h4v.s8.d11490378fea from=translated src=- shape=65c459d8 vocab=b9923514
+-/
 theorem Matrix.PosDef.re_trace_rpow_eq_sum_eigenvalues
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {D : Matrix (Fin n) (Fin n) 𝕜} (hD : D.PosDef) (t : ℝ) :
@@ -102,6 +112,9 @@ noncomputable def relativeMatrix
     (Y B : Matrix n n 𝕜) : Matrix n n 𝕜 :=
   Y ^ (-(1 / 2 : ℝ)) * B * Y ^ (-(1 / 2 : ℝ))
 
+/--
+@isnad1 id=posdef.2h4v.s6.e8ae96af245b from=translated src=- shape=4e1ea137 vocab=23d718c1
+-/
 theorem relativeMatrix_posDef
     {n : Type*} [Fintype n] [DecidableEq n] {𝕜 : Type*} [RCLike 𝕜]
     {Y B : Matrix n n 𝕜} (hY : Y.PosDef) (hB : B.PosDef) :
@@ -138,7 +151,9 @@ def LidskiiTrace (𝕜 : Type*) [RCLike 𝕜] : Prop :=
         ((Y ^ (-(1 / 2 : ℝ)) * B * Y ^ (-(1 / 2 : ℝ))) ^ t))
 
 /-- The trace consequence of multiplicative Lidskii, proved by the finite
-exponential case of Karamata's inequality.-/
+exponential case of Karamata's inequality.
+@isnad1 id=lidskiit.1h1v.s3.858ec18562df from=translated src=- shape=c612a321 vocab=7db49cbd
+-/
 theorem Lidskii.trace
     {𝕜 : Type*} [RCLike 𝕜] (hL : Lidskii 𝕜) :
     LidskiiTrace 𝕜 := by
@@ -178,7 +193,9 @@ theorem Lidskii.trace
     _ = RCLike.re (Matrix.trace
         ((Y ^ (-(1 / 2 : ℝ)) * B * Y ^ (-(1 / 2 : ℝ))) ^ t)) := rfl
 
-/-- The determinant bound for a positive-definite supersolution.-/
+/-- The determinant bound for a positive-definite supersolution.
+@isnad1 id=le.5h7v.s8.898bf06ea403 from=translated src=- shape=eb1ee1f7 vocab=024e192e
+-/
 theorem IsSuper.powerCoordinateProd_le_det
     {n m : ℕ} [NeZero n] [NeZero m]
     {𝕜 : Type*} [RCLike 𝕜]

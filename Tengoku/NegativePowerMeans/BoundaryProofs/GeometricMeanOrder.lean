@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 noncomputable local instance : CStarAlgebra (Matrix n n ℂ) where
 
-/-- Real powers commute with multiplication by a positive real scalar.-/
+/-- Real powers commute with multiplication by a positive real scalar.
+@isnad1 id=eq.2h4v.s8.3e76c239c62e from=translated src=- shape=1d891aaa vocab=0e73a635
+-/
 theorem Matrix.PosDef.rpow_smul
     {A : Matrix n n ℂ} (hA : A.PosDef) {c t : ℝ} (hc : 0 < c) :
     (c • A) ^ t = c ^ t • A ^ t := by
@@ -49,7 +51,9 @@ theorem Matrix.PosDef.rpow_smul
     _ = c ^ t • A ^ t := by
       rw [CFC.rpow_eq_cfc_real hA.posSemidef.nonneg]
 
-/-- The weighted geometric mean is monotone in its second variable.-/
+/-- The weighted geometric mean is monotone in its second variable.
+@isnad1 id=le.6h5v.s6.470775223144 from=translated src=- shape=85be4203 vocab=71723233
+-/
 theorem weightedGeometricMean_mono_right
     {A B C : Matrix n n ℂ}
     (hA : A.PosDef) (hB : B.PosDef) (hC : C.PosDef)
@@ -75,7 +79,9 @@ theorem weightedGeometricMean_mono_right
 
 /-- The transformer inequality for an invertible square congruence.  The
 normalizing matrix in Ando's argument is still an isometry; only positive
-definiteness of the compressed first input uses invertibility here.-/
+definiteness of the compressed first input uses invertibility here.
+@isnad1 id=le.5h5v.s7.6f7d28222c6c from=translated src=- shape=ce710322 vocab=1386c290
+-/
 theorem weightedGeometricMean_compress_le_of_isUnit
     {V A B : Matrix n n ℂ} (hV : IsUnit V)
     (hA : A.PosDef) (hB : B.PosDef)
@@ -163,7 +169,9 @@ theorem weightedGeometricMean_compress_le_of_isUnit
       rw [hcompressT]
       rfl
 
-/-- The weighted geometric mean is invariant under invertible congruence.-/
+/-- The weighted geometric mean is invariant under invertible congruence.
+@isnad1 id=eq.4h5v.s7.7f237c5001fa from=translated src=- shape=7065e503 vocab=f7ac1ec7
+-/
 theorem weightedGeometricMean_compress_eq
     (V : (Matrix n n ℂ)ˣ) {A B : Matrix n n ℂ}
     (hA : A.PosDef) (hB : B.PosDef)
@@ -221,12 +229,17 @@ theorem weightedGeometricMean_compress_eq
   apply le_antisymm hforward
   simpa only [hundocomp] using hback'
 
+/--
+@isnad1 id=eq.0h3v.s7.5471f9b4d36b from=translated src=- shape=7dbf6901 vocab=043a53cf
+-/
 @[simp]
 theorem weightedGeometricMean_one_left (B : Matrix n n ℂ) (t : ℝ) :
     weightedGeometricMean 1 B t = B ^ t := by
   simp [weightedGeometricMean]
 
-/-- The geometric mean with identity as its second argument.-/
+/-- The geometric mean with identity as its second argument.
+@isnad1 id=eq.1h3v.s7.79970805ec16 from=translated src=- shape=933acf93 vocab=3e6c94bd
+-/
 theorem weightedGeometricMean_one_right
     {A : Matrix n n ℂ} (hA : A.PosDef) (t : ℝ) :
     weightedGeometricMean A 1 t = A ^ (1 - t) := by
@@ -252,7 +265,9 @@ theorem weightedGeometricMean_one_right
       congr 1
       ring
 
-/-- Symmetry with complementary weight.-/
+/-- Symmetry with complementary weight.
+@isnad1 id=eq.4h4v.s6.0122339ab418 from=translated src=- shape=48751312 vocab=22517cd2
+-/
 theorem weightedGeometricMean_symm
     {A B : Matrix n n ℂ} (hA : A.PosDef) (hB : B.PosDef)
     {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
@@ -298,7 +313,9 @@ theorem weightedGeometricMean_symm
       rw [weightedGeometricMean_compress_eq U hC Matrix.PosDef.one ht'0 ht'1,
         hcompC, hcompOne]
 
-/-- The weighted geometric mean is monotone in its first variable.-/
+/-- The weighted geometric mean is monotone in its first variable.
+@isnad1 id=le.6h5v.s6.0e8d4b71efd5 from=translated src=- shape=545cf90c vocab=71723233
+-/
 theorem weightedGeometricMean_mono_left
     {A B C : Matrix n n ℂ}
     (hA : A.PosDef) (hB : B.PosDef) (hC : C.PosDef)
@@ -310,7 +327,9 @@ theorem weightedGeometricMean_mono_left
     weightedGeometricMean_symm hB hC ht0 ht1]
   exact weightedGeometricMean_mono_right hC hA hB ht'0 ht'1 hAB
 
-/-- Positive scalar homogeneity in the second variable.-/
+/-- Positive scalar homogeneity in the second variable.
+@isnad1 id=eq.3h5v.s7.bd721435fdf2 from=translated src=- shape=0d1c18ea vocab=d856411b
+-/
 theorem weightedGeometricMean_smul_right
     {A B : Matrix n n ℂ} (hA : A.PosDef) (hB : B.PosDef)
     {c t : ℝ} (hc : 0 < c) :
@@ -328,7 +347,9 @@ theorem weightedGeometricMean_smul_right
   simp only [Matrix.mul_smul, Matrix.smul_mul]
   rfl
 
-/-- Positive scalar homogeneity in the first variable.-/
+/-- Positive scalar homogeneity in the first variable.
+@isnad1 id=eq.5h5v.s7.60f62ac3fd16 from=translated src=- shape=5c0cd975 vocab=3055df66
+-/
 theorem weightedGeometricMean_smul_left
     {A B : Matrix n n ℂ} (hA : A.PosDef) (hB : B.PosDef)
     {c t : ℝ} (hc : 0 < c) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :

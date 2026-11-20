@@ -16,7 +16,9 @@ namespace HiaiLimPowerMeans
 open Matrix
 open scoped ComplexOrder MatrixOrder
 
-/-- The product of two matrix isometries is a matrix isometry.-/
+/-- The product of two matrix isometries is a matrix isometry.
+@isnad1 id=matrixis.2h6v.s6.47e8035ecc56 from=translated src=- shape=9972a536 vocab=6bd8ad97
+-/
 theorem matrixIsometry_mul
     {n k l : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {V : Matrix (Fin n) (Fin k) 𝕜}
@@ -33,7 +35,9 @@ theorem matrixIsometry_mul
     _ = 1 := hW
 
 /-- Two isometric subspaces of dimensions whose sum exceeds the ambient
-dimension have a common nonzero vector.-/
+dimension have a common nonzero vector.
+@isnad1 id=ex.3h6v.s8.92031a2c8e72 from=translated src=- shape=07f0d756 vocab=5bc50486
+-/
 theorem isometry_ranges_intersect
     {n p q : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (V : Matrix (Fin n) (Fin p) 𝕜)
@@ -77,7 +81,9 @@ theorem isometry_ranges_intersect
     simpa [LV, LW, Matrix.toEuclideanLin, Matrix.toLpLin_apply] using h
   exact ⟨x, y, hx0, hy0, hraw⟩
 
-/-- The upper Cauchy--Poincaré inequality for an isometric compression.-/
+/-- The upper Cauchy--Poincaré inequality for an isometric compression.
+@isnad1 id=le.3h6v.s7.6864d0919258 from=translated src=- shape=4f98ffe7 vocab=d32ebc79
+-/
 theorem decreasingEigenvalues_compress_le_proved
     {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (hkn : k ≤ n)

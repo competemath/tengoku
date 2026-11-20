@@ -16,7 +16,9 @@ namespace HiaiLimPowerMeans
 open Finset Matrix
 open scoped BigOperators ComplexOrder MatrixOrder
 
-/-- Every positive moment is monotone under weak log-majorization.-/
+/-- Every positive moment is monotone under weak log-majorization.
+@isnad1 id=le.2h4v.s6.a6ffae80ec75 from=translated src=- shape=a3a3119f vocab=49eeca1f
+-/
 theorem WeakLogMajorized.sum_rpow_le_sum_rpow
     {n : ℕ} {x y : Fin n → ℝ} (h : WeakLogMajorized x y)
     {q : ℝ} (hq : 0 < q) :
@@ -100,7 +102,9 @@ private theorem weighted_rpow_neg_le
     _ = ∏ i, ((z i) ^ s) ^ (a i) := hreorder
     _ ≤ ∑ i, a i * (z i) ^ s := by simpa using hgmPower
 
-/-- A negative scalar power mean is superadditive on positive vectors.-/
+/-- A negative scalar power mean is superadditive on positive vectors.
+@isnad1 id=le.3h5v.s6.9975b24646eb from=translated src=- shape=f8d9a4f3 vocab=f91e9aed
+-/
 theorem sum_powerCoordinate_le
     {n m : ℕ} [NeZero n] [NeZero m]
     {w : Fin m → ℝ} {x : Fin n → Fin m → ℝ} {s : ℝ}
@@ -185,6 +189,9 @@ noncomputable def schattenQ {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℂ} (hA : A.PosDef) (q : ℝ) : ℝ :=
   (∑ i, (decreasingEigenvalues hA.isHermitian i) ^ q) ^ q⁻¹
 
+/--
+@isnad1 id=lt.1h3v.s5.638adbc79b9e from=translated src=- shape=9d621f54 vocab=18c2ff54
+-/
 lemma schattenQ_pos {n : ℕ} [NeZero n]
     {A : Matrix (Fin n) (Fin n) ℂ} (hA : A.PosDef) (q : ℝ) :
     0 < schattenQ hA q := by

@@ -18,7 +18,9 @@ namespace HiaiLimPowerMeans
 open Finset Matrix
 open scoped BigOperators ComplexOrder MatrixOrder
 
-/-- The positive square root multiplied by itself is the original matrix.-/
+/-- The positive square root multiplied by itself is the original matrix.
+@isnad1 id=eq.1h3v.s8.d27c58204824 from=translated src=- shape=6a877ba5 vocab=4be7c64b
+-/
 theorem Matrix.PosDef.half_mul_half
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.PosDef) :
@@ -28,7 +30,9 @@ theorem Matrix.PosDef.half_mul_half
   norm_num [CFC.rpow_one A hA.posSemidef.nonneg] at h ⊢
   exact h.symm
 
-/-- Determinant identity for the positive relative matrix.-/
+/-- Determinant identity for the positive relative matrix.
+@isnad1 id=eq.1h4v.s7.5de5d4f94b10 from=translated src=- shape=e5fae25f vocab=8263d9ee
+-/
 theorem det_relative_mul_det
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {B Y : Matrix (Fin n) (Fin n) 𝕜}
@@ -46,7 +50,9 @@ theorem det_relative_mul_det
     _ = (S.det * Y.det * S.det) * B.det := by ring
     _ = B.det := by rw [hdetSYS, one_mul]
 
-/-- Coercing the product of the decreasing eigenvalues gives the determinant.-/
+/-- Coercing the product of the decreasing eigenvalues gives the determinant.
+@isnad1 id=eq.1h3v.s6.91279782d14b from=translated src=- shape=d732ff5d vocab=0c8baf2a
+-/
 theorem coe_prod_decreasingEigenvalues_eq_det
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.PosDef) :
@@ -62,7 +68,9 @@ theorem coe_prod_decreasingEigenvalues_eq_det
   exact hA.isHermitian.det_eq_prod_eigenvalues.symm
 
 /-- The product equality, i.e. the full-prefix equality in multiplicative
-Lidskii, follows from determinant multiplicativity alone.-/
+Lidskii, follows from determinant multiplicativity alone.
+@isnad1 id=eq.2h4v.s7.9fed62a50ca8 from=translated src=- shape=f20c7dfc vocab=a8443cea
+-/
 theorem prod_relative_mul_prod
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {B Y : Matrix (Fin n) (Fin n) 𝕜}
@@ -79,7 +87,9 @@ theorem prod_relative_mul_prod
   exact det_relative_mul_det hY
 
 /-- The equality of the total logarithmic sums in multiplicative Lidskii is
-therefore already derivable from Mathlib.-/
+therefore already derivable from Mathlib.
+@isnad1 id=eq.2h4v.s7.dbf7f265830d from=translated src=- shape=d505fc24 vocab=e84be3af
+-/
 theorem sum_log_ratio_eq_sum_log_relative
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {B Y : Matrix (Fin n) (Fin n) 𝕜}
@@ -146,7 +156,9 @@ def LidskiiProperPrefix (𝕜 : Type*) [RCLike 𝕜] : Prop :=
               (relativeMatrix_posDef hY hB).isHermitian i)) k
 
 /-- Every finite real vector has an antitone rearrangement.  Mathlib's
-`Tuple.sort` sorts increasingly, so it is applied to the negative vector.-/
+`Tuple.sort` sorts increasingly, so it is applied to the negative vector.
+@isnad1 id=ex.0h2v.s5.ba396069fe6a from=translated src=- shape=da9dc8be vocab=79370e8d
+-/
 theorem exists_perm_antitone {n : ℕ} (x : Fin n → ℝ) :
     ∃ p : Equiv.Perm (Fin n), Antitone (fun i ↦ x (p i)) := by
   let p : Equiv.Perm (Fin n) := Tuple.sort (fun i ↦ -x i)
@@ -193,7 +205,9 @@ def SelectedGramProduct (𝕜 : Type*) [RCLike 𝕜] : Prop :=
 
 /-- Ordered eigenvalues are unchanged when the underlying Hermitian matrices
 are equal.  Stating this separately avoids dependent rewriting through the
-Hermitian proof argument.-/
+Hermitian proof argument.
+@isnad1 id=eq.3h4v.s7.97f0e8744aa3 from=translated src=- shape=79578e9a vocab=cc3011c3
+-/
 lemma decreasingEigenvalues_congr
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A C : Matrix (Fin n) (Fin n) 𝕜}
@@ -203,7 +217,9 @@ lemma decreasingEigenvalues_congr
   rfl
 
 /-- The selected Gram-eigenvalue inequality implies the exact
-selected ratio-product statement needed for multiplicative Lidskii.-/
+selected ratio-product statement needed for multiplicative Lidskii.
+@isnad1 id=lidskiis.1h1v.s3.3504ddf9ff12 from=translated src=- shape=c612a321 vocab=7b11aebc
+-/
 theorem selectedProducts_of_gram
     {𝕜 : Type*} [RCLike 𝕜]
     (hgram : SelectedGramProduct 𝕜) : LidskiiSelectedProducts 𝕜 := by
@@ -275,7 +291,9 @@ def LidskiiRatioProducts (𝕜 : Type*) [RCLike 𝕜] : Prop :=
               (relativeMatrix_posDef hY hB).isHermitian) k hk.le
 
 /-- The universal selected-product inequality supplies the rearranged
-ratio-product statement using only Mathlib's finite tuple sorting.-/
+ratio-product statement using only Mathlib's finite tuple sorting.
+@isnad1 id=lidskiir.1h1v.s3.8518395c7892 from=translated src=- shape=c612a321 vocab=a27a14f8
+-/
 theorem ratioProducts_of_selectedProducts
     {𝕜 : Type*} [RCLike 𝕜]
     (hselected : LidskiiSelectedProducts 𝕜) : LidskiiRatioProducts 𝕜 := by
@@ -290,7 +308,9 @@ theorem ratioProducts_of_selectedProducts
     exact hselected n B Y hB hY p k hk0 hk
 
 /-- Removing logarithms loses no content: the selected ratio-product bound
-implies every proper-prefix logarithmic inequality.-/
+implies every proper-prefix logarithmic inequality.
+@isnad1 id=lidskiip.1h1v.s3.96bc558064bb from=translated src=- shape=c612a321 vocab=48a61da6
+-/
 theorem lidskiiProperPrefix_of_ratioProducts
     {𝕜 : Type*} [RCLike 𝕜]
     (hproducts : LidskiiRatioProducts 𝕜) : LidskiiProperPrefix 𝕜 := by
@@ -348,7 +368,9 @@ theorem lidskiiProperPrefix_of_ratioProducts
     (hproduct k hkpos hk)
 
 /-- Matrix multiplication becomes composition under `Matrix.toEuclideanLin`.
-This elementary compatibility is not currently a named Mathlib theorem.-/
+This elementary compatibility is not currently a named Mathlib theorem.
+@isnad1 id=eq.0h4v.s13.d2e9f32770a8 from=translated src=- shape=83ab5d9a vocab=d5dff687
+-/
 lemma toEuclideanLin_mul
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (A B : Matrix (Fin n) (Fin n) 𝕜) :
@@ -358,7 +380,9 @@ lemma toEuclideanLin_mul
   simp [Matrix.toLpLin_apply, Matrix.mulVec_mulVec]
 
 /-- Taking the pointwise star of a conjugate-transpose matrix-vector product
-turns it into the corresponding row-vector product.-/
+turns it into the corresponding row-vector product.
+@isnad1 id=eq.0h4v.s7.1e77b4f3e623 from=translated src=- shape=c4f100ff vocab=f4691914
+-/
 lemma star_conjTranspose_mulVec
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (A : Matrix (Fin n) (Fin n) 𝕜) (x : Fin n → 𝕜) :
@@ -368,7 +392,9 @@ lemma star_conjTranspose_mulVec
   simp [mul_comm]
 
 /-- Conjugate transpose of a matrix represents the Hilbert-space adjoint of
-its Euclidean linear map.-/
+its Euclidean linear map.
+@isnad1 id=eq.0h3v.s14.abfdce9f0cec from=translated src=- shape=5d616b48 vocab=9d9590ed
+-/
 lemma adjoint_toEuclideanLin
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (A : Matrix (Fin n) (Fin n) 𝕜) :
@@ -383,7 +409,9 @@ lemma adjoint_toEuclideanLin
   rw [dotProduct_comm, ← Matrix.dotProduct_mulVec, dotProduct_comm]
 
 /-- Ordered eigenvalues of symmetric linear maps are unchanged when the maps
-are equal.-/
+are equal.
+@isnad1 id=eq.4h5v.s8.bbc43553af56 from=translated src=- shape=d9048246 vocab=8203a0c4
+-/
 lemma symmetricEigenvalues_congr
     {𝕜 E : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
@@ -396,7 +424,9 @@ lemma symmetricEigenvalues_congr
   rfl
 
 /-- Mathlib's singular values of a matrix linear map square to the decreasing
-eigenvalues of its Gram matrix.-/
+eigenvalues of its Gram matrix.
+@isnad1 id=eq.0h4v.s12.1039fee42ddc from=translated src=- shape=5b71543a vocab=c0cb98cc
+-/
 lemma singularValues_sq_eq_decreasingEigenvalues_gram
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     (A : Matrix (Fin n) (Fin n) 𝕜) (i : Fin n) :
@@ -423,7 +453,9 @@ lemma singularValues_sq_eq_decreasingEigenvalues_gram
   simpa [decreasingEigenvalues, Matrix.IsHermitian.eigenvalues₀, ii] using hs
 
 /-- Once the proper-prefix inequality is available, Mathlib's determinant
-identities complete the published `Lidskii` statement.-/
+identities complete the published `Lidskii` statement.
+@isnad1 id=lidskii.1h1v.s3.11a865714f60 from=translated src=- shape=c612a321 vocab=e2b96c68
+-/
 theorem lidskii_of_properPrefix
     {𝕜 : Type*} [RCLike 𝕜]
     (hprefix : LidskiiProperPrefix 𝕜) : Lidskii 𝕜 := by
@@ -465,7 +497,9 @@ theorem lidskii_of_properPrefix
 
 /-- Consequently the single Gram-form inequality is sufficient for the full
 published `Lidskii` statement; all remaining arrows in this reduction are
-proved in this file from Mathlib.-/
+proved in this file from Mathlib.
+@isnad1 id=lidskii.1h1v.s3.f770ff8fc5a6 from=translated src=- shape=c612a321 vocab=a0e2e5fa
+-/
 theorem lidskii_of_gram
     {𝕜 : Type*} [RCLike 𝕜]
     (hgram : SelectedGramProduct 𝕜) : Lidskii 𝕜 :=
@@ -475,7 +509,9 @@ theorem lidskii_of_gram
         (selectedProducts_of_gram hgram)))
 
 /-- As a consistency check, multiplicative Lidskii is completely derivable
-from Mathlib in dimension one; there are then no nontrivial proper prefixes.-/
+from Mathlib in dimension one; there are then no nontrivial proper prefixes.
+@isnad1 id=majorize.2h3v.s7.842c59312b49 from=translated src=- shape=815b6bc9 vocab=f93e6800
+-/
 theorem lidskii_dim_one
     {𝕜 : Type*} [RCLike 𝕜]
     (B Y : Matrix (Fin 1) (Fin 1) 𝕜)

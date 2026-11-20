@@ -38,6 +38,9 @@ noncomputable def decreasingIndexEquiv (n : ℕ) : Fin n ≃ Fin n :=
     (Fintype.equivOfCardEq
       (Fintype.card_fin (Fintype.card (Fin n))))
 
+/--
+@isnad1 id=eq.1h4v.s6.69a084a67898 from=translated src=- shape=50ce87e3 vocab=fa2136c5
+-/
 theorem eigenvalues_decreasingIndexEquiv
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) (i : Fin n) :
@@ -54,6 +57,9 @@ noncomputable def decreasingEigenvectorUnitary
     Matrix (Fin n) (Fin n) 𝕜 :=
   fun p i ↦ hA.eigenvectorUnitary p (decreasingIndexEquiv n i)
 
+/--
+@isnad1 id=eq.1h3v.s7.a4b8439f8ac4 from=translated src=- shape=94b1402d vocab=494379e2
+-/
 theorem decreasingEigenvectorUnitary_isometry
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) :
@@ -66,6 +72,9 @@ theorem decreasingEigenvectorUnitary_isometry
       M (decreasingIndexEquiv n i) (decreasingIndexEquiv n j)) hu
   simpa [decreasingEigenvectorUnitary, Matrix.mul_apply, Matrix.one_apply] using hij
 
+/--
+@isnad1 id=eq.1h3v.s7.85a228efdc99 from=translated src=- shape=7f34c028 vocab=52aa6c7f
+-/
 theorem mul_decreasingEigenvectorUnitary
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) :
@@ -80,6 +89,9 @@ theorem mul_decreasingEigenvectorUnitary
     Matrix.mulVec, dotProduct, eigenvalues_decreasingIndexEquiv,
     RCLike.real_smul_eq_coe_mul, mul_comm] using h
 
+/--
+@isnad1 id=antitone.1h3v.s6.b73bea9bf7d5 from=translated src=- shape=01b6112a vocab=e95f6271
+-/
 theorem decreasingEigenvalues_antitone
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) :
@@ -88,7 +100,9 @@ theorem decreasingEigenvalues_antitone
   apply hA.eigenvalues₀_antitone
   exact hij
 
-/-- The eigenvalues reindexed in increasing order form a monotone vector.-/
+/-- The eigenvalues reindexed in increasing order form a monotone vector.
+@isnad1 id=monotone.1h3v.s6.2a7adb899230 from=translated src=- shape=01b6112a vocab=a64fb017
+-/
 theorem increasingEigenvalues_monotone
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian) :
@@ -96,6 +110,9 @@ theorem increasingEigenvalues_monotone
   intro i j hij
   exact decreasingEigenvalues_antitone hA (Fin.rev_le_rev.mpr hij)
 
+/--
+@isnad1 id=lt.1h4v.s5.965479e0e0bb from=translated src=- shape=047b2ac7 vocab=032d0cd9
+-/
 theorem Matrix.PosDef.decreasingEigenvalues_pos
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.PosDef) (i : Fin n) :
@@ -107,7 +124,9 @@ theorem Matrix.PosDef.decreasingEigenvalues_pos
 
 /-- An antitone unitary diagonalization determines the decreasingly ordered
 eigenvalue list.  This is the uniqueness bridge between an explicitly
-constructed ordered eigenbasis and Mathlib's canonical ordered spectrum.-/
+constructed ordered eigenbasis and Mathlib's canonical ordered spectrum.
+@isnad1 id=eq.4h5v.s8.a6e33bdfe5c1 from=translated src=- shape=44010ac8 vocab=80d6bbf6
+-/
 theorem decreasingEigenvalues_eq_of_diagonalization
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -159,6 +178,9 @@ noncomputable def reverseColumns
     (U : Matrix (Fin n) (Fin n) 𝕜) : Matrix (Fin n) (Fin n) 𝕜 :=
   fun p i ↦ U p i.rev
 
+/--
+@isnad1 id=eq.1h3v.s8.9f45b369992a from=translated src=- shape=3d4281f4 vocab=24f94d09
+-/
 theorem reverseColumns_isometry
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {U : Matrix (Fin n) (Fin n) 𝕜} (hU : U.conjTranspose * U = 1) :
@@ -168,7 +190,9 @@ theorem reverseColumns_isometry
     (fun M : Matrix (Fin n) (Fin n) 𝕜 ↦ M i.rev j.rev) hU
   simpa [reverseColumns, Matrix.mul_apply, Matrix.one_apply] using hij
 
-/-- Inversion reciprocates the spectrum and reverses its decreasing order.-/
+/-- Inversion reciprocates the spectrum and reverses its decreasing order.
+@isnad1 id=eq.1h4v.s6.4110b21c818c from=translated src=- shape=5aad96bb vocab=a0b78522
+-/
 theorem Matrix.PosDef.decreasingEigenvalues_inv
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.PosDef) (i : Fin n) :
@@ -225,7 +249,9 @@ theorem Matrix.PosDef.decreasingEigenvalues_inv
     hA.inv.isHermitian Urev f hf hUrev hInvRelRev
   exact congrFun hordered i
 
-/-- Reindexing to decreasing order does not change a finite sum.-/
+/-- Reindexing to decreasing order does not change a finite sum.
+@isnad1 id=eq.1h5v.s6.d5e57ad5ade7 from=translated src=- shape=cb0b873a vocab=07744791
+-/
 theorem sum_comp_decreasingEigenvalues_eq_eigenvalues
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -242,7 +268,9 @@ theorem sum_comp_decreasingEigenvalues_eq_eigenvalues
     _ = ∑ i, f (hA.eigenvalues i) := by
       exact (e.symm.sum_comp (f ∘ hA.eigenvalues₀)).symm
 
-/-- Reindexing to decreasing order does not change a finite product.-/
+/-- Reindexing to decreasing order does not change a finite product.
+@isnad1 id=eq.1h5v.s6.a7bff9e96053 from=translated src=- shape=cb0b873a vocab=b310aed6
+-/
 theorem prod_comp_decreasingEigenvalues_eq_eigenvalues
     {n : ℕ} {𝕜 : Type*} [RCLike 𝕜]
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)

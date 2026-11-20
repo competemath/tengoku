@@ -17,7 +17,9 @@ open scoped ComplexOrder MatrixOrder Matrix
 
 variable {n k : ℕ} {𝕜 : Type*} [RCLike 𝕜]
 
-/-- A compression of a Hermitian matrix is Hermitian.-/
+/-- A compression of a Hermitian matrix is Hermitian.
+@isnad1 id=ishermit.1h5v.s7.2a3593530915 from=translated src=- shape=d123cd89 vocab=63869ed6
+-/
 theorem compress_isHermitian
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
     (V : Matrix (Fin n) (Fin k) 𝕜) : (compress V A).IsHermitian := by
@@ -47,7 +49,9 @@ def Interlacing (𝕜 : Type*) [RCLike 𝕜] : Prop :=
 
 /-- The upper interlacing inequality used in the paper: the `i`th largest
 eigenvalue of an isometric compression is at most the `i`th largest
-eigenvalue of the original Hermitian matrix.-/
+eigenvalue of the original Hermitian matrix.
+@isnad1 id=le.4h6v.s7.a0e2bd2ff1d0 from=translated src=- shape=09e5ac23 vocab=05d3c41b
+-/
 theorem decreasingEigenvalues_compress_le
     (hInterlace : Interlacing 𝕜) (hkn : k ≤ n)
     {A : Matrix (Fin n) (Fin n) 𝕜} (hA : A.IsHermitian)
@@ -58,7 +62,9 @@ theorem decreasingEigenvalues_compress_le
   (hInterlace n k hkn A V hA hV i).1
 
 /-- The exact Cauchy-interlacing step from the shorted-matrix argument,
-applied to `Vᴴ B⁻¹ V`.-/
+applied to `Vᴴ B⁻¹ V`.
+@isnad1 id=le.4h6v.s7.2272d662ef15 from=translated src=- shape=43117ca0 vocab=452c9a6c
+-/
 theorem decreasingEigenvalues_compress_inv_le
     (hInterlace : Interlacing 𝕜) (hkn : k ≤ n)
     {B : Matrix (Fin n) (Fin n) 𝕜} (hB : B.PosDef)
@@ -70,7 +76,9 @@ theorem decreasingEigenvalues_compress_inv_le
 
 /-- The shorted-matrix consequence of Cauchy interlacing used in the paper.
 For `i < k`, the `i`th eigenvalue in increasing order of `S_V(B)` is at
-least the `i`th eigenvalue in increasing order of `B`.-/
+least the `i`th eigenvalue in increasing order of `B`.
+@isnad1 id=le.4h6v.s6.8e1dc44d2648 from=translated src=- shape=625b54ee vocab=23ed3025
+-/
 theorem increasingEigenvalues_le_shorted
     (hInterlace : Interlacing 𝕜) (hkn : k ≤ n)
     {B : Matrix (Fin n) (Fin n) 𝕜} (hB : B.PosDef)

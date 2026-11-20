@@ -24,7 +24,9 @@ noncomputable local instance : CStarAlgebra (Matrix n n ℂ) where
 
 omit [Nonempty n] in
 /-- A self-adjoint element lying in the order interval `[-r 1, r 1]`
-has norm at most `r`.-/
+has norm at most `r`.
+@isnad1 id=le.4h3v.s8.e78c8fee8cd1 from=translated src=- shape=023ece90 vocab=01277f8d
+-/
 theorem norm_le_of_order_interval
     {X : Matrix n n ℂ} (hX : IsSelfAdjoint X) {r : ℝ} (hr : 0 ≤ r)
     (hlower : -(r • (1 : Matrix n n ℂ)) ≤ X)
@@ -56,6 +58,9 @@ namespace ThompsonPD
 instance : Coe (ThompsonPD n) (Matrix n n ℂ) := ⟨val⟩
 
 omit [Nonempty n] in
+/--
+@isnad1 id=eq.1h3v.s5.425d62d1a9cb from=translated src=- shape=05f27d86 vocab=5f38c3b1
+-/
 @[ext]
 theorem ext {A B : ThompsonPD n} (h : A.val = B.val) : A = B := by
   cases A
@@ -67,6 +72,9 @@ def relative (A B : ThompsonPD n) : Matrix n n ℂ :=
   A.val ^ (-(1 / 2 : ℝ)) * B.val * A.val ^ (-(1 / 2 : ℝ))
 
 omit [Nonempty n] in
+/--
+@isnad1 id=posdef.0h3v.s4.0c52d8010226 from=translated src=- shape=dcba5a33 vocab=7e1337f1
+-/
 theorem relative_posDef (A B : ThompsonPD n) : (relative A B).PosDef := by
   let S : Matrix n n ℂ := A.val ^ (-(1 / 2 : ℝ))
   have hS : S.PosDef := Matrix.PosDef.rpow A.posDef _
@@ -77,16 +85,24 @@ theorem relative_posDef (A B : ThompsonPD n) : (relative A B).PosDef := by
 /-- The least order factor carrying `A` above `B`.-/
 def ratio (A B : ThompsonPD n) : ℝ := ‖relative A B‖
 
+/--
+@isnad1 id=lt.0h3v.s5.b544d42e8b13 from=translated src=- shape=f6437df8 vocab=6dc98d2a
+-/
 theorem ratio_pos (A B : ThompsonPD n) : 0 < ratio A B := by
   rw [ratio, norm_pos_iff]
   exact (relative_posDef A B).isUnit.ne_zero
 
+/--
+@isnad1 id=le.0h3v.s5.e13a21c476ae from=translated src=- shape=f6437df8 vocab=298ba13a
+-/
 theorem ratio_nonneg (A B : ThompsonPD n) : 0 ≤ ratio A B :=
   (ratio_pos A B).le
 
 omit [Nonempty n] in
 /-- The norm definition of `ratio` is equivalent to its order-theoretic
-characterization.-/
+characterization.
+@isnad1 id=iff.1h4v.s6.ae960b26e82b from=translated src=- shape=344c95f3 vocab=1a916fed
+-/
 theorem ratio_le_iff (A B : ThompsonPD n) {r : ℝ} (hr : 0 ≤ r) :
     ratio A B ≤ r ↔ B.val ≤ r • A.val := by
   let S : Matrix n n ℂ := A.val ^ (-(1 / 2 : ℝ))
@@ -125,15 +141,23 @@ theorem ratio_le_iff (A B : ThompsonPD n) {r : ℝ} (hr : 0 ≤ r) :
       Matrix.smul_mul, hSA, Matrix.mul_one] using hc
 
 omit [Nonempty n] in
+/--
+@isnad1 id=eq.0h2v.s5.e817ad25ab34 from=translated src=- shape=4184b409 vocab=eb99f276
+-/
 @[simp]
 theorem relative_self (A : ThompsonPD n) : relative A A = 1 :=
   Matrix.PosDef.invHalf_conjugate_self A.posDef
 
+/--
+@isnad1 id=eq.0h2v.s4.03b58490f984 from=translated src=- shape=8cd1d2e5 vocab=576b7c5d
+-/
 @[simp]
 theorem ratio_self (A : ThompsonPD n) : ratio A A = 1 := by
   simp [ratio]
 
-/-- Submultiplicativity of the order ratios.-/
+/-- Submultiplicativity of the order ratios.
+@isnad1 id=le.0h4v.s5.509e42281162 from=translated src=- shape=37b660fb vocab=1485ff7b
+-/
 theorem ratio_triangle (A B C : ThompsonPD n) :
     ratio A C ≤ ratio A B * ratio B C := by
   have hAB : B.val ≤ ratio A B • A.val :=
@@ -153,28 +177,46 @@ theorem ratio_triangle (A B C : ThompsonPD n) :
 def tdist (A B : ThompsonPD n) : ℝ :=
   max (Real.log (ratio A B)) (Real.log (ratio B A))
 
+/--
+@isnad1 id=eq.0h2v.s4.5e7c4443e5eb from=translated src=- shape=8cd1d2e5 vocab=41e1c54a
+-/
 @[simp]
 theorem tdist_self (A : ThompsonPD n) : tdist A A = 0 := by
   simp [tdist]
 
 omit [Nonempty n] in
+/--
+@isnad1 id=eq.0h3v.s5.b66256659b8c from=translated src=- shape=d8e7d638 vocab=1bb3648b
+-/
 theorem tdist_comm (A B : ThompsonPD n) : tdist A B = tdist B A := by
   simp only [tdist]
   exact max_comm _ _
 
 omit [Nonempty n] in
+/--
+@isnad1 id=le.0h3v.s5.ffe1df49c7f3 from=translated src=- shape=77ee2184 vocab=45ed7962
+-/
 theorem log_ratio_le_tdist (A B : ThompsonPD n) :
     Real.log (ratio A B) ≤ tdist A B :=
   le_max_left _ _
 
+/--
+@isnad1 id=le.0h3v.s5.0f561eabad6b from=translated src=- shape=2f4cefae vocab=1f44a369
+-/
 theorem ratio_le_exp_tdist (A B : ThompsonPD n) :
     ratio A B ≤ Real.exp (tdist A B) :=
   (Real.log_le_iff_le_exp (ratio_pos A B)).mp (log_ratio_le_tdist A B)
 
+/--
+@isnad1 id=le.0h3v.s6.51c250e57a42 from=translated src=- shape=966ded4c vocab=38cc423e
+-/
 theorem order_le_exp_tdist (A B : ThompsonPD n) :
     B.val ≤ Real.exp (tdist A B) • A.val :=
   (ratio_le_iff A B (Real.exp_pos _).le).mp (ratio_le_exp_tdist A B)
 
+/--
+@isnad1 id=le.1h4v.s6.42022163ff23 from=translated src=- shape=7722d3ce vocab=75dd2435
+-/
 theorem order_le_exp_of_dist_lt
     (A B : ThompsonPD n) {e : ℝ} (h : tdist A B < e) :
     B.val ≤ Real.exp e • A.val := by
@@ -184,6 +226,9 @@ theorem order_le_exp_of_dist_lt
       exact smul_le_smul_of_nonneg_right
         (Real.exp_le_exp.mpr h.le) A.posDef.posSemidef.nonneg
 
+/--
+@isnad1 id=le.2h4v.s7.44d6908e3b8e from=translated src=- shape=f885e4bd vocab=38cc423e
+-/
 theorem tdist_le_of_order_exp
     (A B : ThompsonPD n) {e : ℝ}
     (hBA : B.val ≤ Real.exp e • A.val)
@@ -198,7 +243,9 @@ theorem tdist_le_of_order_exp
   · exact (Real.log_le_iff_le_exp (ratio_pos B A)).mpr hrBA
 
 /-- On an order-bounded part of the cone, a Thompson-distance bound gives
-an ordinary operator-norm bound.-/
+an ordinary operator-norm bound.
+@isnad1 id=le.5h5v.s8.fd91d33b5c18 from=translated src=- shape=fb986a28 vocab=f01bde32
+-/
 theorem norm_sub_le_of_dist_lt_of_upper
     (A B : ThompsonPD n) {e M : ℝ} (he : 0 ≤ e) (hM : 0 ≤ M)
     (hA : A.val ≤ M • (1 : Matrix n n ℂ))
@@ -239,6 +286,9 @@ theorem norm_sub_le_of_dist_lt_of_upper
     (B.posDef.isHermitian.sub A.posDef.isHermitian)
     (mul_nonneg hc hM) hl hu
 
+/--
+@isnad1 id=le.0h4v.s5.20b9796ea170 from=translated src=- shape=37b660fb vocab=85df964b
+-/
 theorem tdist_triangle (A B C : ThompsonPD n) :
     tdist A C ≤ tdist A B + tdist B C := by
   have hforward : Real.log (ratio A C) ≤
@@ -296,6 +346,9 @@ noncomputable instance instMetricSpace : MetricSpace (ThompsonPD n) where
   dist_triangle := tdist_triangle
   eq_of_dist_eq_zero := fun h ↦ eq_of_tdist_eq_zero h
 
+/--
+@isnad1 id=eq.0h3v.s5.e69f1e2d90b6 from=translated src=- shape=0a8204a7 vocab=b9ec4054
+-/
 @[simp]
 theorem dist_eq_tdist (A B : ThompsonPD n) : dist A B = tdist A B := rfl
 
