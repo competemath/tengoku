@@ -41,7 +41,9 @@ lemma eq_tT_of_val {a : TVtx x n} {k : Fin n} {t : Bool} {l : List Bool}
 /-! ## 1. 连通性 -/
 
 /-- 对根到结点的路径 `l` 归纳:`l = []` 时一条边 `uᵢ—vᵢ`;
-`l = b :: m` 时先沿父边下降一层到 `m`(`|m| + 1 < |l| + 1 ≤ xᵢ`,故 `m` 合法),再用归纳假设。-/
+`l = b :: m` 时先沿父边下降一层到 `m`(`|m| + 1 < |l| + 1 ≤ xᵢ`,故 `m` 合法),再用归纳假设。
+@isnad1 id=reachabl.1h5v.s5.8283a9e27f1a from=translated src=- shape=3589e05d vocab=2cfc166a
+-/
 lemma reachable_tP_of_treeV_aux {i : Fin n} {s : Bool} : ∀ (l : List Bool)
     (h : TValid x n (TV.treeV i s l)), (TTree x n).Reachable (tT x i s l h) (tP x i) := by
   intro l
@@ -61,13 +63,17 @@ lemma reachable_tP_of_treeV_aux {i : Fin n} {s : Bool} : ∀ (l : List Bool)
         (show tAdjRaw n (TV.treeV i s (b :: m)) (TV.treeV i s m) from
           Or.inl ⟨rfl, rfl, b, rfl⟩)).trans (ih hm)
 
-/-- 从子树结点沿父边走到该子树的根 `uᵢ`,再一步到 `vᵢ`。-/
+/-- 从子树结点沿父边走到该子树的根 `uᵢ`,再一步到 `vᵢ`。
+@isnad1 id=reachabl.1h5v.s5.8283a9e27f1a from=translated src=- shape=3589e05d vocab=2cfc166a
+-/
 lemma reachable_tP_of_treeV {i : Fin n} {s : Bool} {l : List Bool}
     (h : TValid x n (.treeV i s l)) :
     (TTree x n).Reachable (tT x i s l h) (tP x i) :=
   reachable_tP_of_treeV_aux l h
 
-/-- 沿主路径从 `v_{k+1}` 退一步到 `v_k`,对 `k` 归纳即得所有点可达 `v₁`。-/
+/-- 沿主路径从 `v_{k+1}` 退一步到 `v_k`,对 `k` 归纳即得所有点可达 `v₁`。
+@isnad1 id=reachabl.1h3v.s5.a230b3fbf33c from=translated src=- shape=33b34723 vocab=fcdc2b4e
+-/
 lemma reachable_tP_zero (h0 : 0 < n) (i : Fin n) :
     (TTree x n).Reachable (tP x i) (tP x ⟨0, h0⟩) := by
   obtain ⟨k, hk⟩ := i
@@ -79,13 +85,17 @@ lemma reachable_tP_zero (h0 : 0 < n) (i : Fin n) :
         (show tAdjRaw n (TV.pathV (⟨m + 1, hk⟩ : Fin n)) (TV.pathV (⟨m, hm⟩ : Fin n)) from
           Or.inr rfl)).trans (ih hm)
 
-/-- 主路径上任意两点互相可达。-/
+/-- 主路径上任意两点互相可达。
+@isnad1 id=reachabl.0h4v.s4.5ad53669ddd5 from=translated src=- shape=aff822c4 vocab=3951950a
+-/
 lemma reachable_tP_tP (i j : Fin n) : (TTree x n).Reachable (tP x i) (tP x j) := by
   -- [S4-5] 两端都先走到 `v₁`,再把其中一段反过来
   have h0 : 0 < n := Nat.lt_of_le_of_lt (Nat.zero_le _) i.2
   exact (reachable_tP_zero h0 i).trans (reachable_tP_zero h0 j).symm
 
-/-- `T(x₁…xₙ)` 连通。-/
+/-- `T(x₁…xₙ)` 连通。
+@isnad1 id=preconne.1h2v.s4.5f83a7e0e85b from=translated src=- shape=60c5a6c6 vocab=1c2be9ae
+-/
 lemma TTree_preconnected (hp : TParams x n) : (TTree x n).Preconnected := by
   -- [S4-6] 每个顶点先走到某个 `vᵢ`(路径点自身即是,子树结点用 `reachable_tP_of_treeV`),
   -- 而所有 `vᵢ` 两两可达
@@ -109,7 +119,9 @@ lemma TTree_preconnected (hp : TParams x n) : (TTree x n).Preconnected := by
 每条边都是桥:删掉它之后两端不可达,见证者是 `TreeBasic.lean` 里的三族割函数。 -/
 
 /-- 给一条边配一个割函数:它在**删掉这条边之后**的每条边上取值不变,而在这条边两端取值不同,
-于是删边后两端不可达,即这条边是桥。-/
+于是删边后两端不可达,即这条边是桥。
+@isnad1 id=isbridge.2h5v.s6.8ce29314f4e9 from=translated src=- shape=a6052f7d vocab=75bfb966
+-/
 lemma isBridge_of_cut {u v : TVtx x n} (χ : TV n → Bool)
     (hconst : ∀ a b : TVtx x n, (TTree x n).Adj a b → s(a, b) ≠ s(u, v) → χ a.val = χ b.val)
     (hne : χ u.val ≠ χ v.val) : (TTree x n).IsBridge s(u, v) := by
@@ -122,7 +134,9 @@ lemma isBridge_of_cut {u v : TVtx x n} (χ : TV n → Bool)
 
 /-- 主路径边 `vᵢ—vⱼ`(`j = i+1`)是桥:割函数 `cutSeg i` 按块下标是否 `≤ i` 分边。
 子树内部的边与 `vₖ—uₖ` 都不改变块下标,主路径上的边 `vₖ—vₖ₊₁` 只在 `k = i` 时改变割值,
-而那正是被删掉的这条边。-/
+而那正是被删掉的这条边。
+@isnad1 id=isbridge.1h4v.s5.66c3e192ae76 from=translated src=- shape=a86575c3 vocab=5ddc70cf
+-/
 lemma isBridge_seg {i j : Fin n} (hij : (i : ℕ) + 1 = (j : ℕ)) :
     (TTree x n).IsBridge s(tP x i, tP x j) := by
   classical
@@ -159,7 +173,9 @@ lemma isBridge_seg {i j : Fin n} (hij : (i : ℕ) + 1 = (j : ℕ)) :
     simp [cutSeg, hji]
 
 /-- 边 `vᵢ—uᵢ^{(s)}` 是桥:割函数 `cutRoot i s` 标记「落在第 `(i,s)` 棵子树里」。
-路径点恒取 `false`;子树内部的边不改变 `(i,s)`;别的 `vₖ—uₖ^{(t)}` 两端都取 `false`。-/
+路径点恒取 `false`;子树内部的边不改变 `(i,s)`;别的 `vₖ—uₖ^{(t)}` 两端都取 `false`。
+@isnad1 id=isbridge.1h4v.s5.d3cbeacd4118 from=translated src=- shape=798e7f5e vocab=df8f2525
+-/
 lemma isBridge_root {i : Fin n} {s : Bool} (hv : TValid x n (TV.treeV i s [])) :
     (TTree x n).IsBridge s(tP x i, tT x i s [] hv) := by
   classical
@@ -180,7 +196,9 @@ lemma isBridge_root {i : Fin n} {s : Bool} (hv : TValid x n (TV.treeV i s [])) :
     exact Sym2.eq_swap
   · rcases hab with ⟨rfl, rfl, -⟩ | ⟨rfl, rfl, -⟩ <;> rfl
 
-/-- `c = b :: m` 时,`c` 是 `d :: p` 的后缀但不是 `p` 的后缀,只能是 `c = d :: p`。-/
+/-- `c = b :: m` 时,`c` 是 `d :: p` 的后缀但不是 `p` 的后缀,只能是 `c = d :: p`。
+@isnad1 id=and.2h4v.s5.e6375f5673ac from=translated src=- shape=4b173333 vocab=e104be64
+-/
 lemma cons_eq_of_suffix_cons {b d : Bool} {m p : List Bool}
     (hs : (b :: m) <:+ d :: p) (hns : ¬ ((b :: m) <:+ p)) : b = d ∧ m = p := by
   rcases List.suffix_cons_iff.mp hs with heq | hs'
@@ -190,7 +208,9 @@ lemma cons_eq_of_suffix_cons {b d : Bool} {m p : List Bool}
 /-- 子树内部边 `(b::m)—m` 是桥:割函数 `cutIn i s (b::m)` 标记「落在以 `b::m` 为根的子树里」。
 沿子树边 `(d::p)—p` 割值改变当且仅当 `b::m <:+ d::p` 而 `¬ (b::m <:+ p)`,
 由 `List.suffix_cons_iff` 这迫使 `b::m = d::p`,即这条边就是被删掉的那条;
-`vₖ—uₖ^{(t)}` 与主路径边两端都取 `false`(`b::m` 不是 `[]` 的后缀)。-/
+`vₖ—uₖ^{(t)}` 与主路径边两端都取 `false`(`b::m` 不是 `[]` 的后缀)。
+@isnad1 id=isbridge.2h6v.s6.0de2c9f42a3e from=translated src=- shape=4abf7bd9 vocab=2a166429
+-/
 lemma isBridge_in {i : Fin n} {s : Bool} {b : Bool} {m : List Bool}
     (h1 : TValid x n (TV.treeV i s (b :: m))) (h2 : TValid x n (TV.treeV i s m)) :
     (TTree x n).IsBridge s(tT x i s (b :: m) h1, tT x i s m h2) := by
@@ -241,22 +261,31 @@ lemma isBridge_in {i : Fin n} {s : Bool} {b : Bool} {m : List Bool}
         · rintro ⟨e1, e2, -⟩; exact absurd ⟨e1, e2⟩ hki
         · rintro ⟨e1, e2, -⟩; exact absurd ⟨e1, e2⟩ hki
 
-/-- 主路径边的另一个朝向。-/
+/-- 主路径边的另一个朝向。
+@isnad1 id=isbridge.1h4v.s5.fe840982e616 from=translated src=- shape=e3e30447 vocab=5ddc70cf
+-/
 lemma isBridge_seg' {i j : Fin n} (hij : (i : ℕ) + 1 = (j : ℕ)) :
     (TTree x n).IsBridge s(tP x j, tP x i) := by
   rw [Sym2.eq_swap]; exact isBridge_seg hij
 
-/-- `uᵢ^{(s)}—vᵢ` 朝向。-/
+/-- `uᵢ^{(s)}—vᵢ` 朝向。
+@isnad1 id=isbridge.1h4v.s5.93816af866a4 from=translated src=- shape=3f988374 vocab=df8f2525
+-/
 lemma isBridge_root' {i : Fin n} {s : Bool} (hv : TValid x n (TV.treeV i s [])) :
     (TTree x n).IsBridge s(tT x i s [] hv, tP x i) := by
   rw [Sym2.eq_swap]; exact isBridge_root hv
 
-/-- `m—(b::m)` 朝向。-/
+/-- `m—(b::m)` 朝向。
+@isnad1 id=isbridge.2h6v.s6.850db8adc54f from=translated src=- shape=e7de3dbe vocab=2a166429
+-/
 lemma isBridge_in' {i : Fin n} {s : Bool} {b : Bool} {m : List Bool}
     (h1 : TValid x n (TV.treeV i s (b :: m))) (h2 : TValid x n (TV.treeV i s m)) :
     (TTree x n).IsBridge s(tT x i s m h2, tT x i s (b :: m) h1) := by
   rw [Sym2.eq_swap]; exact isBridge_in h1 h2
 
+/--
+@isnad1 id=isacycli.0h2v.s3.ba22822468d8 from=translated src=- shape=1e9cfd13 vocab=5c1fab19
+-/
 lemma TTree_isAcyclic : (TTree x n).IsAcyclic := by
   -- [S4-7] `isAcyclic_iff_forall_adj_isBridge`:逐边按「主路径边 / `vᵢuᵢ` / 子树内部边」
   -- 三类分派到三族割函数,两个朝向各用一次
@@ -293,16 +322,22 @@ lemma TTree_isAcyclic : (TTree x n).IsAcyclic := by
 
 /-! ## 3. 1-3 树 -/
 
-/-- `T(x₁…xₙ)` 的顶点集非空(`n ≥ 2` 给出 `v₁`)。-/
+/-- `T(x₁…xₙ)` 的顶点集非空(`n ≥ 2` 给出 `v₁`)。
+@isnad1 id=nonempty.1h2v.s3.2c8e6da01470 from=translated src=- shape=bf7622b2 vocab=41ae5e37
+-/
 lemma TTree_nonempty (hp : TParams x n) : Nonempty (TVtx x n) :=
   ⟨tP x ⟨0, by have := hp.two_le; omega⟩⟩
 
-/-- `T(x₁…xₙ)` 是树。-/
+/-- `T(x₁…xₙ)` 是树。
+@isnad1 id=istree.1h2v.s4.2a976fe0fd4c from=translated src=- shape=60c5a6c6 vocab=374bbf1a
+-/
 theorem TTree_isTree (hp : TParams x n) : (TTree x n).IsTree where
   connected := haveI := TTree_nonempty hp; ⟨TTree_preconnected hp⟩
   isAcyclic := TTree_isAcyclic
 
-/-- **论文的 "the tree `T(x₁ . . . xₙ)` is a 1-3 tree"。**-/
+/-- **论文的 "the tree `T(x₁ . . . xₙ)` is a 1-3 tree"。**
+@isnad1 id=is13tree.1h2v.s4.a16067d32224 from=translated src=- shape=60c5a6c6 vocab=e8b371c8
+-/
 theorem TTree_is13Tree (hp : TParams x n) : Is13Tree (TTree x n) where
   isTree := TTree_isTree hp
   deg := by

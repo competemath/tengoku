@@ -62,7 +62,9 @@ variable {V : Type*} {G : SimpleGraph V}
 是因为这个更强的形式**一次性**给出长度(`List.length_map`)与 `IsPath`
 (`List.Nodup.of_map`),省掉两轮转写。 -/
 
-/-- 支撑集全落在 `.inl` 上的 `G(T)`-walk 可以降回 `T`,且支撑集逐点对应。-/
+/-- 支撑集全落在 `.inl` 上的 `G(T)`-walk 可以降回 `T`,且支撑集逐点对应。
+@isnad1 id=ex.3h7v.s7.94bcf8d9fb5e from=translated src=- shape=f2888ea1 vocab=eb44f95b
+-/
 lemma exists_walk_of_support_inl :
     ∀ {u v : V ⊕ Bool} (w : (GT G).Walk u v) {a b : V},
       u = Sum.inl a → v = Sum.inl b →
@@ -98,7 +100,9 @@ noncomputable def treeColoring (hT : G.IsTree) : G.Coloring Bool :=
 
 论文 §1 的 even tree 定义就是「所有叶子在二部划分的同一类」;`Defs.lean` 取的是等价形式
 「所有 leaf-leaf 路径长为偶」。这条引理把后者翻回前者:两叶子间在树里有路径,
-其长为偶 ⟹ 由 `Coloring.even_length_iff_congr` 两端同色。-/
+其长为偶 ⟹ 由 `Coloring.even_length_iff_congr` 两端同色。
+@isnad1 id=eq.4h5v.s6.fe312d5c6995 from=translated src=- shape=4ad54cec vocab=86112005
+-/
 lemma leaf_color_eq (hT : G.IsTree) (he : IsEvenTree G) (cT : G.Coloring Bool)
     {u v : V} (hu : IsLeaf G u) (hv : IsLeaf G v) : cT u = cT v := by
   classical
@@ -119,6 +123,9 @@ open scoped Classical in
 noncomputable def coColor (G : SimpleGraph V) (cT : G.Coloring Bool) : Bool :=
   if h : ∃ a : V, IsLeaf G a then !(cT h.choose) else true
 
+/--
+@isnad1 id=ne.3h4v.s5.36fdb07e004c from=translated src=- shape=a5c75a1b vocab=ef811cef
+-/
 lemma coColor_ne (hT : G.IsTree) (he : IsEvenTree G) (cT : G.Coloring Bool)
     {a : V} (ha : IsLeaf G a) : cT a ≠ coColor G cT := by
   have hex : ∃ a : V, IsLeaf G a := ⟨a, ha⟩
@@ -154,7 +161,9 @@ noncomputable def gtColoring (hT : G.IsTree) (he : IsEvenTree G) :
 /-- **奇长闭迹必用到边 `xy`。**
 
 论文:*So `C` must contain the edge `xy`*。反证:若不含,整条闭迹落在二部的
-`G(T) − xy` 里,而二部图里闭迹两端同色 ⟹ 长度为偶。-/
+`G(T) − xy` 里,而二部图里闭迹两端同色 ⟹ 长度为偶。
+@isnad1 id=mem.3h4v.s6.a078010f7284 from=translated src=- shape=329a0f98 vocab=e2e6ed21
+-/
 lemma edge_xy_mem_edges_of_odd (hT : G.IsTree) (he : IsEvenTree G) {u : V ⊕ Bool}
     (c : (GT G).Walk u u) (hodd : ¬ Even c.length) :
     s(Sum.inr false, Sum.inr true) ∈ c.edges := by
@@ -173,7 +182,9 @@ lemma edge_xy_mem_edges_of_odd (hT : G.IsTree) (he : IsEvenTree G) {u : V ⊕ Bo
 
 /-- **核心一步**:首边恰为 `xy` 的圈 `x → y ⇝ x`,去掉 `x`、`y` 后是 `T` 里的 leaf-leaf 路径。
 
-论文:*hence `C − x − y` must be a leaf-leaf path of length `2k − 2` as required*。-/
+论文:*hence `C − x − y` must be a leaf-leaf path of length `2k − 2` as required*。
+@isnad1 id=hasleafl.4h4v.s6.7ae5c834ad68 from=translated src=- shape=f2b28ff6 vocab=c40904f3
+-/
 lemma leafPath_of_cycle_cons {ℓ : ℕ} (hℓ : ℓ ≠ 0)
     (hxy : (GT G).Adj (Sum.inr false) (Sum.inr true))
     (q : (GT G).Walk (Sum.inr true) (Sum.inr false))
@@ -247,7 +258,9 @@ lemma leafPath_of_cycle_cons {ℓ : ℕ} (hℓ : ℓ ≠ 0)
 /-- **(C′)**:以 `x` 为起点、含边 `xy` 的圈,可以(必要时取 `reverse`)写成首边为 `xy` 的形式。
 
 论文把这一步和 (C) 合并成了一句话,但 Lean 里必须补:旋到 `x` 之后 `xy` 可能是**末**边。
-理由是圈里含 `x` 的边只有首、末两条 —— 去掉首边后剩下的道路 `p` 只在末端碰到 `x`。-/
+理由是圈里含 `x` 的边只有首、末两条 —— 去掉首边后剩下的道路 `p` 只在末端碰到 `x`。
+@isnad1 id=ex.2h3v.s7.16123d17a24f from=translated src=- shape=cf4eda00 vocab=d02b438a
+-/
 lemma cycle_cons_xy {c : (GT G).Walk (Sum.inr false) (Sum.inr false)}
     (hcyc : c.IsCycle) (hmem : s(Sum.inr false, Sum.inr true) ∈ c.edges) :
     ∃ (hxy : (GT G).Adj (Sum.inr false) (Sum.inr true))
@@ -301,7 +314,9 @@ lemma cycle_cons_xy {c : (GT G).Walk (Sum.inr false) (Sum.inr false)}
 > of length `2k − 2`.
 
 这里写作「长 `ℓ + 3` 的圈 ⟹ 长 `ℓ` 的 leaf-leaf 路径」(`ℓ` 偶且非零),
-与论文的 `2k + 1` / `2k − 2` 在 `k ≥ 2` 时同义,详见文件头。-/
+与论文的 `2k + 1` / `2k − 2` 在 `k ≥ 2` 时同义,详见文件头。
+@isnad1 id=hasleafl.5h3v.s5.93edc711ffb7 from=translated src=- shape=5d74f5cb vocab=a8401b94
+-/
 theorem lemma_2_1_i_mp (hT : G.IsTree) (he : IsEvenTree G) {ℓ : ℕ}
     (hℓ : Even ℓ) (hℓ0 : ℓ ≠ 0) (h : HasCycleOfLength (GT G) (ℓ + 3)) :
     HasLeafLeafPath G ℓ := by
@@ -333,7 +348,9 @@ theorem lemma_2_1_i_mp (hT : G.IsTree) (he : IsEvenTree G) {ℓ : ℕ}
 > does not contain a leaf-leaf path of length 20 to conclude that `Gₙ` contains no cycle
 > of length 23.
 
-`23 = 20 + 3`(论文写作 `2·11 + 1`,对应 `2k − 2 = 20`)。-/
+`23 = 20 + 3`(论文写作 `2·11 + 1`,对应 `2k − 2 = 20`)。
+@isnad1 id=not.3h2v.s5.62391315bc1a from=translated src=- shape=3370018b vocab=ec588963
+-/
 theorem no_cycle_23_of_no_leaf_path_20 (hT : Is13Tree G) (he : IsEvenTree G)
     (h20 : ¬ HasLeafLeafPath G 20) : ¬ HasCycleOfLength (GT G) 23 := by
   intro hc

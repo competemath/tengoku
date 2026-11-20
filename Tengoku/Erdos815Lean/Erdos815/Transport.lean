@@ -48,7 +48,9 @@ variable {V : Type u} {W : Type v}
 /-- 同构把长 `ℓ` 的圈搬到长 `ℓ` 的圈。
 
 `Walk.map` 沿 `f.toHom` 推走,长度不变(`Walk.length_map`),`IsCycle` 由
-`IsCycle.map` 保持(`f` 单射)。-/
+`IsCycle.map` 保持(`f` 单射)。
+@isnad1 id=hascycle.1h6v.s4.dfefc97eb734 from=translated src=- shape=1880b659 vocab=d6cd9a82
+-/
 lemma hasCycleOfLength_of_iso {G : SimpleGraph V} {H : SimpleGraph W} (f : G ≃g H) {ℓ : ℕ}
     (h : HasCycleOfLength G ℓ) : HasCycleOfLength H ℓ := by
   obtain ⟨a, c, hcyc, hlen⟩ := h
@@ -72,7 +74,9 @@ variable {G : SimpleGraph V} {H : SimpleGraph W}
 让 Lean 从目标反填即可。`Fintype` 是 `Subsingleton`,这样写不损失任何东西。
 
 `hiso a` 与 `⟨f a.val, hbij.mapsTo a.2⟩` 是定义相等的(`Subtype` 的证明分量无关),
-故 `Iso.degree_eq` 可直接 `exact`。-/
+故 `Iso.degree_eq` 可直接 `exact`。
+@isnad1 id=eq.1h10v.s7.71557f0ca630 from=translated src=- shape=5e73f4a3 vocab=4e0d8ef7
+-/
 lemma induce_degree_eq_of_iso (f : G ≃g H) {s : Set V} {t : Set W}
     (hbij : Set.BijOn (f : V → W) s t) (a : s)
     (i₁ : Fintype ((G.induce s).neighborSet a))
@@ -85,7 +89,9 @@ lemma induce_degree_eq_of_iso (f : G ≃g H) {s : Set V} {t : Set W}
   let _ : Fintype ((H.induce t).neighborSet ((f.induce hbij) a)) := i₂
   exact (f.induce hbij).degree_eq a
 
-/-- **degree 3-critical 沿同构搬运。**-/
+/-- **degree 3-critical 沿同构搬运。**
+@isnad1 id=isdegree.1h5v.s4.1e9c9fe6992e from=translated src=- shape=ab745cbb vocab=12acbb34
+-/
 theorem IsDegree3Critical.of_iso [Fintype V] [Fintype W] (f : G ≃g H) (hG : IsDegree3Critical G) :
     IsDegree3Critical H := by
   classical
@@ -133,6 +139,9 @@ end Critical
 noncomputable def finGraph [Fintype V] (G : SimpleGraph V) : Σ n : ℕ, SimpleGraph (Fin n) :=
   ⟨Fintype.card V, G.map (Fintype.equivFin V).toEmbedding⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.07782d0f045e from=translated src=- shape=9e4d94aa vocab=d44b6ceb
+-/
 @[simp] lemma finGraph_fst [Fintype V] (G : SimpleGraph V) :
     (finGraph G).1 = Fintype.card V := rfl
 
@@ -140,10 +149,16 @@ noncomputable def finGraph [Fintype V] (G : SimpleGraph V) : Σ n : ℕ, SimpleG
 noncomputable def finGraphIso [Fintype V] (G : SimpleGraph V) : G ≃g (finGraph G).2 :=
   Iso.map (Fintype.equivFin V) G
 
+/--
+@isnad1 id=isdegree.1h2v.s5.438186f3268c from=translated src=- shape=5281d401 vocab=0a58af80
+-/
 lemma finGraph_isDegree3Critical [Fintype V] {G : SimpleGraph V}
     (h : IsDegree3Critical G) : IsDegree3Critical (finGraph G).2 :=
   h.of_iso (finGraphIso G)
 
+/--
+@isnad1 id=not.1h3v.s5.c7268d1d62a4 from=translated src=- shape=ac4adccd vocab=2827d81c
+-/
 lemma finGraph_no_cycle [Fintype V] {G : SimpleGraph V} {ℓ : ℕ}
     (h : ¬ HasCycleOfLength G ℓ) : ¬ HasCycleOfLength (finGraph G).2 ℓ := by
   intro hc

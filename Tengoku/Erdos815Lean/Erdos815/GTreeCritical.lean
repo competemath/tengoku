@@ -80,12 +80,16 @@ variable {V : Type*}
 `Defs.lean` 里 `IsLeaf` / `IsDeg3` 是用 `∃!` / 「恰三个互异邻居」写的(为了不拖 `Fintype`
 实例)。计数时必须换回 `degree`。 -/
 
-/-- 叶子 ⟺ 度为 1。-/
+/-- 叶子 ⟺ 度为 1。
+@isnad1 id=iff.0h3v.s5.3cbb2d69b299 from=translated src=- shape=a6e03f07 vocab=2eb3a7d5
+-/
 lemma isLeaf_iff_degree_eq_one {G : SimpleGraph V} {v : V} [Fintype (G.neighborSet v)] :
     IsLeaf G v ↔ G.degree v = 1 :=
   SimpleGraph.degree_eq_one_iff_existsUnique_adj.symm
 
-/-- 3 度点 ⟹ 度为 3。-/
+/-- 3 度点 ⟹ 度为 3。
+@isnad1 id=eq.1h3v.s5.022c94e5272e from=translated src=- shape=432d497c vocab=044faa15
+-/
 lemma IsDeg3.degree_eq_three {G : SimpleGraph V} {v : V} [Fintype (G.neighborSet v)]
     (h : IsDeg3 G v) : G.degree v = 3 := by
   classical
@@ -100,7 +104,9 @@ lemma IsDeg3.degree_eq_three {G : SimpleGraph V} {v : V} [Fintype (G.neighborSet
 
 刻意**不**经过 `degree`(那会拖一个 `Fintype (G.neighborSet v)` 实例参数,
 而这条引理在下面的临界性论证里要用在实例来源不同的上下文中):
-直接用 `IsLeaf` 的唯一性把两个互异邻居等同起来。-/
+直接用 `IsLeaf` 的唯一性把两个互异邻居等同起来。
+@isnad1 id=not.1h3v.s4.ce685b3e3789 from=translated src=- shape=b479eadd vocab=195cd577
+-/
 lemma IsDeg3.not_isLeaf {G : SimpleGraph V} {v : V} (h : IsDeg3 G v) : ¬ IsLeaf G v := by
   obtain ⟨a, b, _, hab, -, -, hadj⟩ := h
   intro hl
@@ -108,7 +114,9 @@ lemma IsDeg3.not_isLeaf {G : SimpleGraph V} {v : V} (h : IsDeg3 G v) : ¬ IsLeaf
   exact hab ((huniq a ((hadj a).mpr (Or.inl rfl))).trans
     (huniq b ((hadj b).mpr (Or.inr (Or.inl rfl)))).symm)
 
-/-- 1-3 树里,不是叶子的点度为 3。-/
+/-- 1-3 树里,不是叶子的点度为 3。
+@isnad1 id=eq.2h3v.s6.3c8390fba8c6 from=translated src=- shape=c61b0114 vocab=0ed2d00a
+-/
 lemma Is13Tree.degree_eq_three_of_ne_one {G : SimpleGraph V} [Fintype V] [DecidableRel G.Adj]
     (hT : Is13Tree G) {v : V} (h : G.degree v ≠ 1) : G.degree v = 3 := by
   rcases hT.deg v with hl | hd
@@ -121,6 +129,9 @@ lemma Is13Tree.degree_eq_three_of_ne_one {G : SimpleGraph V} [Fintype V] [Decida
 def leafFinset (G : SimpleGraph V) [Fintype V] [DecidableRel G.Adj] : Finset V :=
   Finset.univ.filter (fun v => G.degree v = 1)
 
+/--
+@isnad1 id=iff.0h3v.s6.ba5e11c3b59b from=translated src=- shape=7a071f83 vocab=f71f6a4c
+-/
 lemma mem_leafFinset {G : SimpleGraph V} [Fintype V] [DecidableRel G.Adj] {v : V} :
     v ∈ leafFinset G ↔ G.degree v = 1 := by
   simp [leafFinset]
@@ -128,7 +139,9 @@ lemma mem_leafFinset {G : SimpleGraph V} [Fintype V] [DecidableRel G.Adj] {v : V
 /-- **1-3 树的顶点计数恒等式**:`2 · (叶子数) = (顶点数) + 2`。
 
 论文完全没写这一条(它把 P-crit 整条当作显然),但它是边数计算的全部内容。
-证明 = 树的边数公式 + 握手引理 + 「度只能是 1 或 3」的二分,最后交给 `omega`。-/
+证明 = 树的边数公式 + 握手引理 + 「度只能是 1 或 3」的二分,最后交给 `omega`。
+@isnad1 id=eq.1h2v.s5.e68ee36cccad from=translated src=- shape=1abe921f vocab=1e658644
+-/
 theorem Is13Tree.two_mul_card_leafFinset {G : SimpleGraph V} [Fintype V] [DecidableRel G.Adj]
     (hT : Is13Tree G) :
     2 * (leafFinset G).card = Fintype.card V + 2 := by
@@ -154,7 +167,9 @@ theorem Is13Tree.two_mul_card_leafFinset {G : SimpleGraph V} [Fintype V] [Decida
   have htree : #G.edgeFinset + 1 = Fintype.card V := hT.isTree.card_edgeFinset
   omega
 
-/-- 1-3 树至少有一个叶子(其实至少两个;这里只需要非空)。-/
+/-- 1-3 树至少有一个叶子(其实至少两个;这里只需要非空)。
+@isnad1 id=nonempty.1h2v.s4.c92f38b22117 from=translated src=- shape=811446ca vocab=f3f405ff
+-/
 lemma Is13Tree.leafFinset_nonempty {G : SimpleGraph V} [Fintype V] [DecidableRel G.Adj]
     (hT : Is13Tree G) : (leafFinset G).Nonempty := by
   rw [← Finset.card_pos]
@@ -168,7 +183,9 @@ lemma Is13Tree.leafFinset_nonempty {G : SimpleGraph V} [Fintype V] [DecidableRel
 /-- **`T` 的每个原顶点在 `G(T)` 里的度恰为 3。**
 
 这是整个构造的要点:叶子在 `T` 里度 1、在 `G(T)` 里补上 `x, y` 正好到 3;
-3 度点在 `T` 里已经是 3、且不与 `x, y` 相连。-/
+3 度点在 `T` 里已经是 3、且不与 `x, y` 相连。
+@isnad1 id=eq.1h3v.s6.3dfce24f9a88 from=translated src=- shape=c727bcfc vocab=9dec9f99
+-/
 lemma GT_degree_inl {G : SimpleGraph V} [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     [DecidableRel (GT G).Adj] (hT : Is13Tree G) (a : V) :
     (GT G).degree (Sum.inl a) = 3 := by
@@ -201,7 +218,9 @@ lemma GT_degree_inl {G : SimpleGraph V} [Fintype V] [DecidableEq V] [DecidableRe
         Finset.mem_singleton, reduceCtorEq, or_self, iff_false]
       exact hnl
 
-/-- **`x` 与 `y` 在 `G(T)` 里的度是「叶子数 + 1」**(全部叶子,外加对方)。-/
+/-- **`x` 与 `y` 在 `G(T)` 里的度是「叶子数 + 1」**(全部叶子,外加对方)。
+@isnad1 id=eq.0h3v.s6.bc16e2546721 from=translated src=- shape=442966fa vocab=06bd5e5b
+-/
 lemma GT_degree_inr {G : SimpleGraph V} [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     [DecidableRel (GT G).Adj] (p : Bool) :
     (GT G).degree (Sum.inr p) = (leafFinset G).card + 1 := by
@@ -220,7 +239,9 @@ lemma GT_degree_inr {G : SimpleGraph V} [Fintype V] [DecidableEq V] [DecidableRe
 
 /-! ## 4. (B) 边数 `= 2N − 2` -/
 
-/-- **`G(T)` 的边数恰为 `2N − 2`**,其中 `N = |V(T)| + 2` 是 `G(T)` 的顶点数。-/
+/-- **`G(T)` 的边数恰为 `2N − 2`**,其中 `N = |V(T)| + 2` 是 `G(T)` 的顶点数。
+@isnad1 id=eq.1h2v.s6.b85b6df543e7 from=translated src=- shape=fcd40f18 vocab=a6a63150
+-/
 theorem GT_card_edgeFinset {G : SimpleGraph V} [Fintype V] [DecidableEq V] [DecidableRel G.Adj]
     [DecidableRel (GT G).Adj] (hT : Is13Tree G) :
     #(GT G).edgeFinset = 2 * Fintype.card (V ⊕ Bool) - 2 := by
@@ -247,7 +268,9 @@ theorem GT_card_edgeFinset {G : SimpleGraph V} [Fintype V] [DecidableEq V] [Deci
 /-- 若 `v ∈ s` 在 `H.induce s` 里的度不低于它在 `H` 里的度,则 `v` 在 `H` 里的邻居全在 `s` 里。
 
 证明:`H.induce s` 的邻居集在 `Subtype.val` 下单射地嵌入 `H` 的邻居集;
-基数不减 ⟹ 像就是整个邻居集。-/
+基数不减 ⟹ 像就是整个邻居集。
+@isnad1 id=mem.2h7v.s6.0e434e481110 from=translated src=- shape=ad8f226a vocab=b878defc
+-/
 lemma mem_of_adj_of_degree_le {W : Type*} (H : SimpleGraph W) (s : Set W) (v : s)
     (inst₁ : Fintype ((H.induce s).neighborSet v)) (inst₂ : Fintype (H.neighborSet v.val))
     (h : @SimpleGraph.degree _ H v.val inst₂
@@ -278,7 +301,9 @@ lemma mem_of_adj_of_degree_le {W : Type*} (H : SimpleGraph W) (s : Set W) (v : s
 open scoped Classical in
 /-- **P-crit**(论文 §2 的 *"Notice that if `T` is a 1-3 tree then `G(T)` is degree 3-critical"*)。
 
-论文未给证明;上面文件头的 proof sketch 是我们补的论证,下面是它的形式化。-/
+论文未给证明;上面文件头的 proof sketch 是我们补的论证,下面是它的形式化。
+@isnad1 id=isdegree.1h2v.s4.664fbec893a0 from=translated src=- shape=c6aecd6b vocab=a262fef1
+-/
 theorem gt_isDegree3Critical {V : Type*} [Fintype V] {G : SimpleGraph V} (hT : Is13Tree G) :
     IsDegree3Critical (GT G) := by
   classical

@@ -66,11 +66,20 @@ def tP (x : ℕ → ℕ) {n : ℕ} (i : Fin n) : TVtx x n := ⟨.pathV i, trivia
 def tT (x : ℕ → ℕ) {n : ℕ} (i : Fin n) (s : Bool) (l : List Bool)
     (h : TValid x n (.treeV i s l)) : TVtx x n := ⟨.treeV i s l, h⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.d949a3cda1c3 from=translated src=- shape=8c1b9702 vocab=75c28285
+-/
 @[simp] lemma tP_val (i : Fin n) : (tP x i).val = TV.pathV i := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.58cc222f68ab from=translated src=- shape=041a1697 vocab=34a0aa88
+-/
 @[simp] lemma tT_val (i : Fin n) (s : Bool) (l : List Bool)
     (h : TValid x n (.treeV i s l)) : (tT x i s l h).val = TV.treeV i s l := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.42e95768986a from=translated src=- shape=15853f3e vocab=12347f0b
+-/
 lemma TVtx_ext {u v : TVtx x n} (h : u.val = v.val) : u = v := Subtype.ext h
 
 /-! ## 2. 三个坐标函数
@@ -84,6 +93,9 @@ lemma TVtx_ext {u v : TVtx x n} (h : u.val = v.val) : u = v := Subtype.ext h
 `x i = aSeq (i+1)` 的下标平移,不必再转换距离的写法。-/
 def idxDist {n : ℕ} (i j : Fin n) : ℕ := (((i : ℕ) : ℤ) - ((j : ℕ) : ℤ)).natAbs
 
+/--
+@isnad1 id=eq.0h3v.s4.5b4843b9919e from=translated src=- shape=9ee3e7a7 vocab=d6946524
+-/
 lemma idxDist_comm {n : ℕ} (i j : Fin n) : idxDist i j = idxDist j i := by
   unfold idxDist; omega
 
@@ -100,17 +112,31 @@ def tHeight : TV n → ℕ
 /-- 到 `v₁` 的距离(分级函数)。-/
 def tRank (v : TV n) : ℕ := (tIdx v : ℕ) + tHeight v
 
+/--
+@isnad1 id=eq.0h2v.s3.332cb26b9505 from=translated src=- shape=6ddf6d3e vocab=51a15361
+-/
 @[simp] lemma tIdx_pathV (i : Fin n) : tIdx (TV.pathV i) = i := rfl
+/--
+@isnad1 id=eq.0h4v.s4.37838c9519e4 from=translated src=- shape=c3cf3804 vocab=8da52466
+-/
 @[simp] lemma tIdx_treeV (i : Fin n) (s : Bool) (l : List Bool) :
     tIdx (TV.treeV i s l) = i := rfl
+/--
+@isnad1 id=eq.0h2v.s4.7bc0cf989fd8 from=translated src=- shape=5091f66c vocab=cb946113
+-/
 @[simp] lemma tHeight_pathV (i : Fin n) : tHeight (TV.pathV i) = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.2906d6d58d4a from=translated src=- shape=d60a0ae8 vocab=7b909672
+-/
 @[simp] lemma tHeight_treeV (i : Fin n) (s : Bool) (l : List Bool) :
     tHeight (TV.treeV i s l) = l.length + 1 := rfl
 
 /-- **分级性**:每条边恰好把 `tRank` 改变 1。
 
 这是整个构造的骨架:主路径的边改变 `tIdx`,子树里的边(含 `vᵢuᵢ`)改变 `tHeight`,
-两者不会同时变。-/
+两者不会同时变。
+@isnad1 id=or.1h3v.s5.6401bb69a7fd from=translated src=- shape=aabf11f5 vocab=2850ec5b
+-/
 lemma tRank_adj {u v : TV n} (h : tAdjRaw n u v) :
     tRank u = tRank v + 1 ∨ tRank v = tRank u + 1 := by
   rcases u with i | ⟨i, s, l⟩ <;> rcases v with j | ⟨j, t, m⟩ <;>
@@ -125,6 +151,9 @@ lemma tRank_adj {u v : TV n} (h : tAdjRaw n u v) :
 /-- 由分级函数导出的 `Bool` 2-染色。-/
 def tColor (v : TVtx x n) : Bool := decide (tRank v.val % 2 = 1)
 
+/--
+@isnad1 id=ne.1h4v.s5.ccbff53b55e4 from=translated src=- shape=da15a098 vocab=aaceb1c7
+-/
 lemma tColor_ne_of_adj {u v : TVtx x n} (h : (TTree x n).Adj u v) :
     tColor u ≠ tColor v := by
   have := tRank_adj (u := u.val) (v := v.val) h
@@ -234,7 +263,9 @@ private lemma tT_adj_iff {i : Fin n} {s : Bool} {l : List Bool}
 * `i + 1 < n` 时是 `v_{i+1}`,`i = n − 1` 时同样是 `u_i^{(2)}`;
 * 永远有第一棵子树的根 `uᵢ`(`= tT x i false []`,`xᵢ ≥ 1` 保证合法)。
 
-`n ≥ 2` 保证前两条不会同时退化。-/
+`n ≥ 2` 保证前两条不会同时退化。
+@isnad1 id=isdeg3.1h3v.s4.4cc95b9b2ebd from=translated src=- shape=3e3e010c vocab=77bfda70
+-/
 lemma pathV_isDeg3 (hp : TParams x n) (i : Fin n) : IsDeg3 (TTree x n) (tP x i) := by
   -- 证明框架:按 `i` 是否落在主路径两端分三种情形(`i = 0` / 内部 / `i = n−1`),
   -- 每种情形显式给出三个邻居,再用 `tP_adj_iff` 把「是邻居」化归为下标算术。
@@ -315,7 +346,9 @@ lemma pathV_isDeg3 (hp : TParams x n) (i : Fin n) : IsDeg3 (TTree x n) (tP x i) 
         · exact Or.inr ⟨true, rfl⟩
         · exact Or.inr ⟨false, rfl⟩
 
-/-- 非最深层的子树结点度为 3:父亲 + 两个儿子。-/
+/-- 非最深层的子树结点度为 3:父亲 + 两个儿子。
+@isnad1 id=isdeg3.2h5v.s5.937011589bd0 from=translated src=- shape=bf2cd3fc vocab=1c800b3e
+-/
 lemma treeV_isDeg3 {i : Fin n} {s : Bool} {l : List Bool}
     (h : TValid x n (.treeV i s l)) (hd : l.length + 1 < x (i : ℕ)) :
     IsDeg3 (TTree x n) (tT x i s l h) := by
@@ -374,7 +407,9 @@ lemma treeV_isDeg3 {i : Fin n} {s : Bool} {l : List Bool}
       · exact Or.inr ⟨false :: d :: m, rfl, Or.inr ⟨false, rfl⟩⟩
       · exact Or.inr ⟨true :: d :: m, rfl, Or.inr ⟨true, rfl⟩⟩
 
-/-- 最深层的子树结点是叶子:只有父亲(`l = []` 时父亲是 `vᵢ`)。-/
+/-- 最深层的子树结点是叶子:只有父亲(`l = []` 时父亲是 `vᵢ`)。
+@isnad1 id=isleaf.2h5v.s5.2378feb3b0c5 from=translated src=- shape=bf2cd3fc vocab=71ead290
+-/
 lemma treeV_isLeaf {i : Fin n} {s : Bool} {l : List Bool}
     (h : TValid x n (.treeV i s l)) (hd : l.length + 1 = x (i : ℕ)) :
     IsLeaf (TTree x n) (tT x i s l h) := by
@@ -417,7 +452,9 @@ lemma treeV_isLeaf {i : Fin n} {s : Bool} {l : List Bool}
         simp only [List.length_cons] at h2 hd
         omega
 
-/-- **叶子刻画**:`T(x₁…xₙ)` 的叶子恰是各子树最深一层的结点。-/
+/-- **叶子刻画**:`T(x₁…xₙ)` 的叶子恰是各子树最深一层的结点。
+@isnad1 id=iff.1h3v.s5.512f6b29498c from=translated src=- shape=4d77bde6 vocab=3708f516
+-/
 theorem isLeaf_iff (hp : TParams x n) (v : TVtx x n) :
     IsLeaf (TTree x n) v ↔ IsTLeafRaw x n v.val := by
   constructor
@@ -440,7 +477,9 @@ theorem isLeaf_iff (hp : TParams x n) (v : TVtx x n) :
       rw [show v = tT x i s l hval from TVtx_ext (by simp [hv])]
       exact treeV_isLeaf hval h
 
-/-- 叶子的 `tRank` 是 `i + xᵢ`。-/
+/-- 叶子的 `tRank` 是 `i + xᵢ`。
+@isnad1 id=eq.1h3v.s6.beae0b293123 from=translated src=- shape=5cbab703 vocab=e2b5b84c
+-/
 lemma tRank_of_leaf {v : TVtx x n} (h : IsTLeafRaw x n v.val) :
     tRank v.val = (tIdx v.val : ℕ) + x (tIdx v.val : ℕ) := by
   rcases hv : v.val with i | ⟨i, s, l⟩
@@ -451,7 +490,9 @@ lemma tRank_of_leaf {v : TVtx x n} (h : IsTLeafRaw x n v.val) :
 /-- **odd-even 下所有叶子同色。**
 
 叶子的 rank 是 `i + xᵢ`,而 `xᵢ ≡ i + 1 (mod 2)`,故 `i + xᵢ ≡ 2i + 1 ≡ 1 (mod 2)`
-—— 与 `i` 无关,所有叶子都染成 `true`。-/
+—— 与 `i` 无关,所有叶子都染成 `true`。
+@isnad1 id=eq.2h3v.s5.bdf4bc8c360a from=translated src=- shape=ed8482cf vocab=9be804f8
+-/
 lemma leaf_tColor (hoe : IsOddEvenFin x n) {v : TVtx x n} (h : IsTLeafRaw x n v.val) :
     tColor v = true := by
   have hlt : ((tIdx v.val : ℕ)) < n := (tIdx v.val).2
@@ -476,7 +517,9 @@ def cutIn (i : Fin n) (s : Bool) (c : List Bool) : TV n → Bool
   | .pathV _ => false
   | .treeV j t l => decide (j = i ∧ t = s ∧ c <:+ l)
 
-/-- 沿着一条 walk,一个「在所有边上取值相同」的函数保持常值。-/
+/-- 沿着一条 walk,一个「在所有边上取值相同」的函数保持常值。
+@isnad1 id=eq.1h6v.s5.e2dcd7a15ed5 from=translated src=- shape=52aaed9e vocab=da921252
+-/
 lemma cut_const {W : Type*} {H : SimpleGraph W} (χ : W → Bool)
     (hχ : ∀ a b, H.Adj a b → χ a = χ b) : ∀ {u v : W} (p : H.Walk u v), χ u = χ v := by
   intro u v p
@@ -484,7 +527,9 @@ lemma cut_const {W : Type*} {H : SimpleGraph W} (χ : W → Bool)
   | nil => rfl
   | cons h _ ih => exact (hχ _ _ h).trans ih
 
-/-- 由割函数得到不可达。-/
+/-- 由割函数得到不可达。
+@isnad1 id=not.2h5v.s5.699ad8f99898 from=translated src=- shape=4f68cb0c vocab=d7f1754f
+-/
 lemma not_reachable_of_cut {W : Type*} {H : SimpleGraph W} (χ : W → Bool)
     (hχ : ∀ a b, H.Adj a b → χ a = χ b) {u v : W} (huv : χ u ≠ χ v) :
     ¬ H.Reachable u v := by

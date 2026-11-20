@@ -103,6 +103,9 @@ def gtAdj (G : SimpleGraph V) : V ⊕ Bool → V ⊕ Bool → Prop
   | .inr _, .inl b => IsLeaf G b
   | .inr p, .inr q => p ≠ q
 
+/--
+@isnad1 id=gtadj.1h4v.s4.c66eda2b4e7a from=translated src=- shape=cedb55a7 vocab=0e6f8d0f
+-/
 lemma gtAdj_symm (G : SimpleGraph V) : ∀ u v, gtAdj G u v → gtAdj G v u := by
   rintro (a | p) (b | q) h <;> simp only [gtAdj] at h ⊢
   · exact h.symm
@@ -110,6 +113,9 @@ lemma gtAdj_symm (G : SimpleGraph V) : ∀ u v, gtAdj G u v → gtAdj G v u := b
   · exact h
   · exact h.symm
 
+/--
+@isnad1 id=not.0h3v.s3.620c241b3390 from=translated src=- shape=37a5e68d vocab=0e6f8d0f
+-/
 lemma gtAdj_irrefl (G : SimpleGraph V) : ∀ u, ¬ gtAdj G u u := by
   rintro (a | p) h <;> simp only [gtAdj] at h
   · exact G.irrefl h
@@ -122,15 +128,27 @@ def GT (G : SimpleGraph V) : SimpleGraph (V ⊕ Bool) where
   symm := ⟨gtAdj_symm G⟩
   loopless := ⟨gtAdj_irrefl G⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.731ae66fb5a1 from=translated src=- shape=fa59133e vocab=e5bade78
+-/
 @[simp] lemma GT_adj_inl_inl (G : SimpleGraph V) (a b : V) :
     (GT G).Adj (.inl a) (.inl b) ↔ G.Adj a b := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s4.308655837ddb from=translated src=- shape=8c341193 vocab=0e1b8eb8
+-/
 @[simp] lemma GT_adj_inl_inr (G : SimpleGraph V) (a : V) (p : Bool) :
     (GT G).Adj (.inl a) (.inr p) ↔ IsLeaf G a := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s4.d6df5cef0ad0 from=translated src=- shape=57f9d6f1 vocab=0e1b8eb8
+-/
 @[simp] lemma GT_adj_inr_inl (G : SimpleGraph V) (b : V) (p : Bool) :
     (GT G).Adj (.inr p) (.inl b) ↔ IsLeaf G b := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s4.5eb4e0183f0d from=translated src=- shape=bfcae59a vocab=f2ad7e23
+-/
 @[simp] lemma GT_adj_inr_inr (G : SimpleGraph V) (p q : Bool) :
     (GT G).Adj (.inr p) (.inr q) ↔ p ≠ q := Iff.rfl
 
@@ -231,9 +249,15 @@ def tAdjRaw (n : ℕ) : TV n → TV n → Prop
   | .treeV i s l, .treeV j t m =>
       i = j ∧ s = t ∧ (∃ b, l = b :: m) ∨ i = j ∧ s = t ∧ (∃ b, m = b :: l)
 
+/--
+@isnad1 id=tadjraw.1h3v.s4.09905992c649 from=translated src=- shape=26022270 vocab=cf519c29
+-/
 lemma tAdjRaw_symm (n : ℕ) : ∀ u v : TV n, tAdjRaw n u v → tAdjRaw n v u := by
   rintro (i | ⟨i, s, l⟩) (j | ⟨j, t, m⟩) h <;> simp only [tAdjRaw] at h ⊢ <;> try tauto
 
+/--
+@isnad1 id=not.0h2v.s3.6cbed19561d9 from=translated src=- shape=b327dfc8 vocab=cf519c29
+-/
 lemma tAdjRaw_irrefl (n : ℕ) : ∀ u : TV n, ¬ tAdjRaw n u u := by
   rintro (i | ⟨i, s, l⟩) h <;> simp only [tAdjRaw] at h
   · omega
@@ -248,6 +272,9 @@ def TTree (x : ℕ → ℕ) (n : ℕ) : SimpleGraph (TVtx x n) where
   symm := ⟨fun u v h => tAdjRaw_symm n u.val v.val h⟩
   loopless := ⟨fun u h => tAdjRaw_irrefl n u.val h⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.6733eb9ab249 from=translated src=- shape=777d514b vocab=38c33c9b
+-/
 @[simp] lemma TTree_adj (x : ℕ → ℕ) (n : ℕ) (u v : TVtx x n) :
     (TTree x n).Adj u v ↔ tAdjRaw n u.val v.val := Iff.rfl
 

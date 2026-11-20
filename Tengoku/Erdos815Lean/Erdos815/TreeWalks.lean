@@ -47,7 +47,9 @@ variable {n : ℕ} {x : ℕ → ℕ}
 
 /-! ## 0. 小工具 -/
 
-/-- 子树结点的父亲仍然合法(深度减一)。-/
+/-- 子树结点的父亲仍然合法(深度减一)。
+@isnad1 id=tvalid.1h6v.s5.db4d5e424df7 from=translated src=- shape=806987e1 vocab=c3173b60
+-/
 lemma TValid_tail {i : Fin n} {s b : Bool} {m : List Bool}
     (h : TValid x n (.treeV i s (b :: m))) : TValid x n (.treeV i s m) := by
   refine ⟨h.1, ?_⟩
@@ -55,7 +57,9 @@ lemma TValid_tail {i : Fin n} {s b : Bool} {m : List Bool}
   simp only [List.length_cons] at h2 ⊢
   omega
 
-/-- 高度为 0 恰好刻画主路径点。-/
+/-- 高度为 0 恰好刻画主路径点。
+@isnad1 id=iff.0h2v.s4.0e592adcf7a6 from=translated src=- shape=6bc0bd2d vocab=a0c09496
+-/
 lemma tHeight_eq_zero_iff {v : TV n} : tHeight v = 0 ↔ ∃ k : Fin n, v = TV.pathV k := by
   cases v with
   | pathV k => exact ⟨fun _ => ⟨k, rfl⟩, fun _ => rfl⟩
@@ -68,7 +72,9 @@ lemma tHeight_eq_zero_iff {v : TV n} : tHeight v = 0 ↔ ∃ k : Fin n, v = TV.p
 支撑集的三条性质分别为下游服务:
 * `tIdx w.val = i` —— 异块档里把这一段与别的块分开;
 * `tHeight w.val ≤ l.length + 1` —— 归纳里证 `IsPath` 用(新头结点比整段都深);
-* `w = tP x i ∨ 1 ≤ tHeight w.val` —— 去掉端点后整段都在子树内部。-/
+* `w = tP x i ∨ 1 ≤ tHeight w.val` —— 去掉端点后整段都在子树内部。
+@isnad1 id=ex.1h5v.s7.950db03a2ffc from=translated src=- shape=12706f12 vocab=0d349a86
+-/
 lemma exists_upPath_aux {i : Fin n} {s : Bool} :
     ∀ (l : List Bool) (h : TValid x n (.treeV i s l)),
       ∃ p : (TTree x n).Walk (tT x i s l h) (tP x i),
@@ -111,7 +117,9 @@ lemma exists_upPath_aux {i : Fin n} {s : Bool} :
 
 /-- **上行路径(叶子版本)**:从第 `i` 块的一片叶子走到 `vᵢ`,长度恰为 `xᵢ`。
 
-这是下游真正使用的形态 —— 把子树的侧 `s` 与位置 `l` 都藏了起来。-/
+这是下游真正使用的形态 —— 把子树的侧 `s` 与位置 `l` 都藏了起来。
+@isnad1 id=ex.2h4v.s7.f2e094d6e280 from=translated src=- shape=4651af98 vocab=68cecf3b
+-/
 lemma exists_upPath (i : Fin n) (u : TVtx x n) (hi : tIdx u.val = i)
     (hu : IsTLeafRaw x n u.val) :
     ∃ p : (TTree x n).Walk u (tP x i), p.length = x (i : ℕ) ∧ p.IsPath ∧
@@ -134,7 +142,9 @@ lemma exists_upPath (i : Fin n) (u : TVtx x n) (hi : tIdx u.val = i)
 /-- **同块档的见证 walk**:两片同属第 `i` 块的叶子之间有一条长 `2xᵢ` 的 walk。
 
 见证:上行到 `vᵢ`(长 `xᵢ`),再沿另一条上行路径的反向下到目标(长 `xᵢ`)。
-**不需要**它是路径 —— 无圈图里真正的路径只会更短。-/
+**不需要**它是路径 —— 无圈图里真正的路径只会更短。
+@isnad1 id=ex.3h4v.s7.aa33c2e53c96 from=translated src=- shape=a1f4ea56 vocab=c94f3ee8
+-/
 lemma exists_leafWalk_of_idx_eq {u v : TVtx x n}
     (hu : IsTLeafRaw x n u.val) (hv : IsTLeafRaw x n v.val)
     (heq : tIdx u.val = tIdx v.val) :
