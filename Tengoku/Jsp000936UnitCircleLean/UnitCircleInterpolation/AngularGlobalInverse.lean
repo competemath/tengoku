@@ -1,0 +1,90 @@
+/-
+Copyright (c) 2026 wang060919.
+Released under the MIT license; see LICENSE.
+Public project author: wang060919. Developed with Codex assistance.
+-/
+
+import Tengoku.Jsp000936UnitCircleLean.UnitCircleInterpolation.AngularProperness
+import Tengoku.Jsp000936UnitCircleLean.UnitCircleInterpolation.AngularDomainTopology
+import Tengoku.Jsp000936UnitCircleLean.UnitCircleInterpolation.GenericGlobalInverse
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Global inversion of the actual circular height differences
+
+The actual angular domain is convex and nonempty. Its actual difference map
+is a proper local homeomorphism. The generic covering argument therefore gives
+a global homeomorphism onto the entire real difference space, and in particular
+exactly one normalized configuration with all its actual gap heights equal.
+Identifying that configuration and proving minimizer classification are separate
+steps.
+-/
+
+set_option autoImplicit false
+set_option relaxedAutoImplicit false
+
+namespace UnitCircleInterpolation
+
+noncomputable section
+
+variable {d : ℕ}
+
+/-- The actual circular difference map is a global homeomorphism.
+@isnad1 id=ishomeom.1h1v.s6.0b75d6d7f736 from=translated src=- shape=2176ad16 vocab=0d0b126f
+-/
+theorem isHomeomorph_heightDifferenceMap (hsize : 2 ≤ d + 1) :
+    IsHomeomorph (heightDifferenceMap hsize) := by
+  let : PreconnectedSpace (angularParameterDomain d) :=
+    Subtype.preconnectedSpace (isPreconnected_angularParameterDomain d)
+  let : Nonempty (angularParameterDomain d) :=
+    ⟨⟨regularAngularParameters d, regularAngularParameters_mem_domain d⟩⟩
+  exact euclideanTarget_isHomeomorph_of_localHomeomorph_of_proper
+    (isLocalHomeomorph_heightDifferenceMap hsize) (isProperMap_heightDifferenceMap hsize)
+
+/--
+@isnad1 id=injectiv.1h1v.s5.5ad9764bf11d from=translated src=- shape=2176ad16 vocab=93bd5853
+-/
+theorem heightDifferenceMap_injective (hsize : 2 ≤ d + 1) :
+    Function.Injective (heightDifferenceMap hsize) :=
+  (isHomeomorph_heightDifferenceMap hsize).injective
+
+/--
+@isnad1 id=surjecti.1h1v.s5.c6c1c08e0922 from=translated src=- shape=2176ad16 vocab=ba847592
+-/
+theorem heightDifferenceMap_surjective (hsize : 2 ≤ d + 1) :
+    Function.Surjective (heightDifferenceMap hsize) :=
+  (isHomeomorph_heightDifferenceMap hsize).surjective
+
+/--
+@isnad1 id=iff.1h2v.s7.188707cf6ab2 from=translated src=- shape=d535256f vocab=50d69bda
+-/
+lemma heightDifferenceMap_eq_zero_iff (hsize : 2 ≤ d + 1)
+    (u : angularParameterDomain d) :
+    heightDifferenceMap hsize u = 0 ↔
+      ∀ i, parameterOrderedHeight hsize i u.val = parameterOrderedHeight hsize 0 u.val := by
+  change parameterAdjacentHeightDifferences hsize u.val = 0 ↔ _
+  rw [← finiteHeightDifferences_parameterOrderedHeightMap]
+  exact finiteHeightDifferences_eq_zero_iff (parameterOrderedHeightMap hsize u.val)
+
+/-- Every prescribed real difference vector occurs at exactly one normalized node configuration.
+@isnad1 id=existsun.1h2v.s5.c10564dd060e from=translated src=- shape=c1a7bacb vocab=bbe64478
+-/
+theorem existsUnique_heightDifferenceMap_eq (hsize : 2 ≤ d + 1) (y : Fin d → ℝ) :
+    ∃! u : angularParameterDomain d, heightDifferenceMap hsize u = y := by
+  obtain ⟨u, hu⟩ := heightDifferenceMap_surjective hsize y
+  exact ⟨u, hu, fun v hv => heightDifferenceMap_injective hsize (hv.trans hu.symm)⟩
+
+/-- There is exactly one actual normalized configuration with equal heights.
+@isnad1 id=existsun.1h1v.s7.8481c1988711 from=translated src=- shape=b1259a06 vocab=3772eedd
+-/
+theorem existsUnique_equal_parameterOrderedHeights (hsize : 2 ≤ d + 1) :
+    ∃! u : angularParameterDomain d,
+      ∀ i, parameterOrderedHeight hsize i u.val = parameterOrderedHeight hsize 0 u.val := by
+  obtain ⟨u, hu, huniq⟩ := existsUnique_heightDifferenceMap_eq hsize 0
+  exact ⟨u, (heightDifferenceMap_eq_zero_iff hsize u).mp hu,
+    fun v hv => huniq v ((heightDifferenceMap_eq_zero_iff hsize v).mpr hv)⟩
+
+end
+
+end UnitCircleInterpolation
