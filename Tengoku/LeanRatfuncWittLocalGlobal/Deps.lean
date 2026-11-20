@@ -1,0 +1,1 @@
+-- LeanRatfuncWittLocalGlobal: a factory bundle (data/intake/lean-ratfunc-witt-local-global). This file only marks the library for Tengoku/All.lean.
