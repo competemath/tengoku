@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "032f4163970847f91f4d20ee0761f735b61dee81416e2371d0e1fad51c4c86fe",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "formalizedsparse",
+ "lint_mode": "proposed",
+ "modules": 4,
+ "part": 1,
+ "theorems": 34
+}

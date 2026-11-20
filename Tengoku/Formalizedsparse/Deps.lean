@@ -1,0 +1,1 @@
+-- Formalizedsparse: a factory bundle (data/intake/formalizedsparse). This file only marks the library for Tengoku/All.lean.
