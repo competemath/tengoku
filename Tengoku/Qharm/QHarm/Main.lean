@@ -59,15 +59,21 @@ Every input this file once declared as a placeholder is now closed. `pade` comes
 `sumsq`, `sumsq_pos` and `clr_mul_rem_tendsto_zero` from `QHarm/Forms.lean`; the two
 integrality facts from `QHarm/Integrality.lean`. -/
 
-/-- `clr` is `QHarm/Forms.lean`'s `clrF` — definitionally identical.-/
+/-- `clr` is `QHarm/Forms.lean`'s `clrF` — definitionally identical.
+@isnad1 id=eq.0h2v.s3.5d7bdaf6af34 from=translated src=- shape=6456e7f0 vocab=3234a3ed
+-/
 theorem clr_eq_clrF (t : ℝ) (n : ℕ) : clr t n = clrF t n := rfl
 
-/-- Closed by `QHarm/Integrality.lean`.-/
+/-- Closed by `QHarm/Integrality.lean`.
+@isnad1 id=ex.1h2v.s5.d82ed2d57072 from=translated src=- shape=7931f8d9 vocab=776c5442
+-/
 theorem clr_mul_legVal_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ b : ℤ, clr (t : ℝ) n * legVal (t : ℝ) n = (b : ℝ) :=
   tM_Dr_mul_legVal_isInt ht n
 
-/-- Closed by `QHarm/Integrality.lean`.-/
+/-- Closed by `QHarm/Integrality.lean`.
+@isnad1 id=ex.1h2v.s6.3bf20c6bc9f2 from=translated src=- shape=4e351085 vocab=1dcf7914
+-/
 theorem clr_mul_form_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ a : ℤ, clr (t : ℝ) n * legQval (t : ℝ) n
         + clr (t : ℝ) n * legVal (t : ℝ) n * headSum (t : ℝ) n = (a : ℝ) := by
@@ -76,7 +82,9 @@ theorem clr_mul_form_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
 
 /-! ### Assembly -/
 
-/-- The linear form, in the shape `QHarm/Basic.lean`'s criterion consumes.-/
+/-- The linear form, in the shape `QHarm/Basic.lean`'s criterion consumes.
+@isnad1 id=eq.2h2v.s6.d84fd50a417b from=translated src=- shape=9152b570 vocab=ebb3d339
+-/
 theorem form_eq {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     (clr t n * legVal t n) * S t
         - (clr t n * legQval t n + clr t n * legVal t n * headSum t n)
@@ -84,20 +92,26 @@ theorem form_eq {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
   have h := pade ht hn
   linear_combination clr t n * h
 
-/-- `clr` is positive, so it never destroys nonvanishing.-/
+/-- `clr` is positive, so it never destroys nonvanishing.
+@isnad1 id=lt.1h2v.s4.172fa8431544 from=translated src=- shape=9141f3a7 vocab=a6170c0b
+-/
 theorem clr_pos {t : ℝ} (ht : 1 < t) (n : ℕ) : 0 < clr t n := by
   have h1 : (0 : ℝ) < t ^ Mexp n := pow_pos (lt_trans zero_lt_one ht) _
   exact mul_pos h1 (Clearing.Dr_pos ht n)
 
 /-- `legVal t n ≠ 0` and `rem t n ≠ 0`, both at once, from the sum-of-squares form. This is
-the whole content of "nonvanishing" — no zero-localisation argument is used anywhere.-/
+the whole content of "nonvanishing" — no zero-localisation argument is used anywhere.
+@isnad1 id=ne.2h2v.s5.12bc7e4eeced from=translated src=- shape=cf5864d0 vocab=9c096aa4
+-/
 theorem rem_ne_zero {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) : rem t n ≠ 0 := by
   intro h
   have hp := sumsq_pos ht hn
   rw [← sumsq ht hn, h, mul_zero] at hp
   exact lt_irrefl 0 hp
 
-/-- **The integer master theorem.** Erdős 1948, by the Van Assche route.-/
+/-- **The integer master theorem.** Erdős 1948, by the Van Assche route.
+@isnad1 id=irration.1h1v.s6.4b00e674d9a8 from=translated src=- shape=c700ddf4 vocab=c5b869d2
+-/
 theorem master_int (t : ℤ) (ht : 2 ≤ t) :
     Irrational (∑' n : ℕ+, 1 / ((t : ℝ) ^ (n : ℕ) - 1)) := by
   have ht1 : (1 : ℝ) < (t : ℝ) := by exact_mod_cast lt_of_lt_of_le one_lt_two ht

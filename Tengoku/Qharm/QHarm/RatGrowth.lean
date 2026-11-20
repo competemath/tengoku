@@ -115,7 +115,9 @@ private theorem rem_factor_le {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 1 ≤ n) 
   linarith
 
 /-- The lossy remainder bound the rational balance consumes: for `t ≥ 2`, eventually
-`|rem t n| ≤ 8 / t^{C_n}` with `C_n = degTerm n n`.-/
+`|rem t n| ≤ 8 / t^{C_n}` with `C_n = degTerm n n`.
+@isnad1 id=eventual.1h1v.s6.78b8923ed0ae from=translated src=- shape=2d062361 vocab=a6daa8ba
+-/
 theorem eventually_abs_rem_le_crude {t : ℝ} (ht : 2 ≤ t) :
     ∀ᶠ n : ℕ in atTop, |rem t n| ≤ 8 / t ^ degTerm n n := by
   have ht0 : (0 : ℝ) < t := by linarith
@@ -133,18 +135,25 @@ theorem eventually_abs_rem_le_crude {t : ℝ} (ht : 2 ≤ t) :
 /-- The rational-base clearing factor `Q^{C_n} · 𝒟_n`, with `C_n = degTerm n n = n(3n−1)/2`.-/
 noncomputable def ratClr (P Q : ℤ) (n : ℕ) : ℝ := (Q : ℝ) ^ degTerm n n * (Dsharp P Q n : ℝ)
 
+/--
+@isnad1 id=lt.2h3v.s5.4c236dfa2748 from=translated src=- shape=b023042e vocab=bd4712be
+-/
 theorem ratClr_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) : 0 < ratClr P Q n := by
   have hQ0 : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
   have hD0 : (0 : ℝ) < ((Dsharp P Q n : ℤ) : ℝ) := by exact_mod_cast Dsharp_pos hQ hPQ n
   exact mul_pos (pow_pos hQ0 _) hD0
 
-/-- `P ≥ 2`, hence `log P > 0`.  (`Q ≥ 1` because `Q > 0` in `ℤ`, and `P > Q`.)-/
+/-- `P ≥ 2`, hence `log P > 0`.  (`Q ≥ 1` because `Q > 0` in `ℤ`, and `P > Q`.)
+@isnad1 id=lt.2h2v.s5.8a50e7c7ac4e from=translated src=- shape=e2caced2 vocab=2fb3040f
+-/
 theorem ratBase_log_P_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) : 0 < Real.log (P : ℝ) := by
   have h2 : (2 : ℤ) ≤ P := by omega
   have h2' : (2 : ℝ) ≤ (P : ℝ) := by exact_mod_cast h2
   exact Real.log_pos (by linarith)
 
-/-- `log (Q^{C_n}·𝒟_n) = C_n·log Q + log 𝒟_n`.  At `Q = 1` the first summand is `0`.-/
+/-- `log (Q^{C_n}·𝒟_n) = C_n·log Q + log 𝒟_n`.  At `Q = 1` the first summand is `0`.
+@isnad1 id=eq.2h3v.s5.a8a67729ed77 from=translated src=- shape=7c649243 vocab=94835660
+-/
 theorem ratClr_le {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     Real.log (ratClr P Q n) = (degTerm n n : ℝ) * Real.log (Q : ℝ) + Real.log (Dsharp P Q n : ℝ) := by
   have hQ0 : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
@@ -169,7 +178,9 @@ private theorem tendsto_exp_quad {A B : ℝ} (hA : A < 0) :
 
 /-! ### The balance -/
 
-/-- **The balance.**  Under the threshold hypothesis the linear forms tend to 0.-/
+/-- **The balance.**  Under the threshold hypothesis the linear forms tend to 0.
+@isnad1 id=tendsto.4h2v.s7.ec2424bb40e7 from=translated src=- shape=6852afe6 vocab=1f240281
+-/
 theorem ratClr_mul_rem_tendsto_zero {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
     (ht2 : (2 : ℝ) ≤ (P : ℝ) / (Q : ℝ))
     (hθ : Real.log (Q : ℝ) / Real.log (P : ℝ) < 1 / 2 - 1 / Real.pi ^ 2) :

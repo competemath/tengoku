@@ -92,10 +92,15 @@ private theorem sum_range_id' (j : ℕ) : ∑ i ∈ Finset.range j, i = j.choose
 
 /-! ## `Rfac` and `gauss` basics -/
 
+/--
+@isnad1 id=eq.0h2v.s6.df3e95e9a629 from=translated src=- shape=614ff42f vocab=072d1d83
+-/
 theorem Rfac_succ (t : ℝ) (m : ℕ) : Rfac t (m + 1) = Rfac t m * (t ^ (m + 1) - 1) := by
   simp [Rfac, Finset.prod_range_succ]
 
-/-- Symmetry of the Gaussian binomial.-/
+/-- Symmetry of the Gaussian binomial.
+@isnad1 id=eq.2h3v.s5.edee5c7299c7 from=translated src=- shape=477b0614 vocab=0a374652
+-/
 theorem gauss_symm {t : ℝ} (ht : 1 < t) {n j : ℕ} (hj : j ≤ n) :
     gauss t n j = gauss t n (n - j) := by
   have h1 := gauss_mul_Rfac ht hj
@@ -108,7 +113,9 @@ theorem gauss_symm {t : ℝ} (ht : 1 < t) {n j : ℕ} (hj : j ≤ n) :
     _ = gauss t n (n - j) * (Rfac t j * Rfac t (n - j)) := by linear_combination -h2
 
 /-- **q-Pascal**, in the form used by the q-binomial theorem:
-`[n+1, a+1] = t^{a+1} [n, a+1] + [n, a]`.-/
+`[n+1, a+1] = t^{a+1} [n, a+1] + [n, a]`.
+@isnad1 id=eq.2h3v.s6.9132a893278e from=translated src=- shape=48443834 vocab=f48799d6
+-/
 theorem gauss_pascal {t : ℝ} (ht : 1 < t) {n a : ℕ} (ha : a < n) :
     gauss t (n + 1) (a + 1) = t ^ (a + 1) * gauss t n (a + 1) + gauss t n a := by
   obtain ⟨m, rfl⟩ : ∃ m, n = a + 1 + m := ⟨n - (a + 1), by omega⟩
@@ -160,7 +167,9 @@ private theorem sum_shift_lemma (n : ℕ) (c d : ℕ → ℝ) (y : ℝ)
   ring
 
 /-- **Rothe's q-binomial theorem.**
-`∏_{k<n} (1 - t^k y) = ∑_{a≤n} (-1)^a [n,a]_t t^{C(a,2)} y^a`.-/
+`∏_{k<n} (1 - t^k y) = ∑_{a≤n} (-1)^a [n,a]_t t^{C(a,2)} y^a`.
+@isnad1 id=eq.1h3v.s7.5fdfca6d02c9 from=translated src=- shape=bdf55580 vocab=71f95559
+-/
 theorem qbinom {t : ℝ} (ht : 1 < t) (n : ℕ) (y : ℝ) :
     ∑ a ∈ Finset.range (n + 1), (-1 : ℝ) ^ a * gauss t n a * t ^ (a.choose 2) * y ^ a
       = ∏ k ∈ Finset.range n, (1 - t ^ k * y) := by
@@ -185,7 +194,9 @@ theorem qbinom {t : ℝ} (ht : 1 < t) (n : ℕ) (y : ℝ) :
 
 /-! ## The node products at the geometric nodes `u_j = t^j` -/
 
-/-- `∏_{i ≠ j, i ≤ n} (t^j - t^i)`, in closed form.-/
+/-- `∏_{i ≠ j, i ≤ n} (t^j - t^i)`, in closed form.
+@isnad1 id=eq.1h3v.s7.1285561e1224 from=translated src=- shape=1c37121b vocab=5fc928c3
+-/
 theorem node_prod {t : ℝ} {n j : ℕ} (hj : j ≤ n) :
     ∏ i ∈ (Finset.range (n + 1)).erase j, (t ^ j - t ^ i)
       = (-1) ^ (n - j) * t ^ (j.choose 2 + j * (n - j)) * (Rfac t j * Rfac t (n - j)) := by
@@ -228,7 +239,9 @@ theorem node_prod {t : ℝ} {n j : ℕ} (hj : j ≤ n) :
 /-- **The Lagrange coefficient at the geometric nodes.**  This is the `u`-side twin of
 `Orthogonality.lagrange_coef`: the little q-Legendre coefficient `γ_{n,j}`, multiplied by the
 node `t^j` and by the Lagrange denominator, collapses to the polynomial
-`∏_{k<n} (1 - t^{k+j+1})` — no `j`-dependent scalar left over.-/
+`∏_{k<n} (1 - t^{k+j+1})` — no `j`-dependent scalar left over.
+@isnad1 id=eq.2h3v.s7.4153a39cf541 from=translated src=- shape=6c799eff vocab=82a23e9a
+-/
 theorem legGamma_prod {t : ℝ} (ht : 1 < t) {n j : ℕ} (hj : j ≤ n) :
     legGamma t n j * t ^ j * (∏ i ∈ (Finset.range (n + 1)).erase j, (t ^ j - t ^ i))
       = ∏ k ∈ Finset.range n, (1 - t ^ (k + j + 1)) := by
@@ -330,7 +343,9 @@ private theorem dd_key {t : ℝ} (ht : 1 < t) (n d : ℕ) :
   rw [Finset.mul_sum, Finset.sum_congr rfl hterm, ← Finset.mul_sum,
     qbinom ht n (t ^ (d + 1) * (t ^ n)⁻¹)]
 
-/-- **Divided differences at geometric nodes, vanishing branch.**-/
+/-- **Divided differences at geometric nodes, vanishing branch.**
+@isnad1 id=eq.2h3v.s7.369b56d1c571 from=translated src=- shape=1c29c393 vocab=2fbed31f
+-/
 theorem dd_geom_lt {t : ℝ} (ht : 1 < t) {n d : ℕ} (hd : d < n) :
     ∑ j ∈ Finset.range (n + 1),
         (t ^ j) ^ d / ∏ i ∈ (Finset.range (n + 1)).erase j, ((t : ℝ) ^ j - t ^ i) = 0 := by
@@ -348,7 +363,9 @@ theorem dd_geom_lt {t : ℝ} (ht : 1 < t) {n d : ℕ} (hd : d < n) :
   rw [hzero, mul_zero] at h
   exact (mul_eq_zero.mp h).resolve_left (Rfac_ne_zero ht n)
 
-/-- **Divided differences at geometric nodes, evaluating branch.**-/
+/-- **Divided differences at geometric nodes, evaluating branch.**
+@isnad1 id=eq.2h3v.s7.312412f39ddb from=translated src=- shape=78691a03 vocab=8a692168
+-/
 theorem dd_geom_ge {t : ℝ} (ht : 1 < t) {n d : ℕ} (hd : n ≤ d) :
     ∑ j ∈ Finset.range (n + 1),
         (t ^ j) ^ d / ∏ i ∈ (Finset.range (n + 1)).erase j, ((t : ℝ) ^ j - t ^ i)
@@ -380,7 +397,9 @@ theorem dd_geom_ge {t : ℝ} (ht : 1 < t) {n d : ℕ} (hd : n ≤ d) :
 
 /-- **Divided differences at geometric nodes.**  For the nodes `u_j = t^j`, `j = 0..n`,
 the divided difference of `X^d` is `0` below the degree threshold and the Gaussian binomial
-`[d, n]_t = h_{d-n}(1, t, …, t^n)` above it.-/
+`[d, n]_t = h_{d-n}(1, t, …, t^n)` above it.
+@isnad1 id=eq.1h3v.s7.3a767006c80b from=translated src=- shape=c3fb5741 vocab=f56c0e1d
+-/
 theorem dd_geom {t : ℝ} (ht : 1 < t) (n d : ℕ) :
     ∑ j ∈ Finset.range (n + 1),
         (t ^ j) ^ d / ∏ i ∈ (Finset.range (n + 1)).erase j, ((t : ℝ) ^ j - t ^ i)
@@ -411,7 +430,9 @@ private theorem sum_reflect_trunc (n s : ℕ) (f : ℕ → ℝ) (hsn : s < n)
   exact hvan b h2 h1
 
 /-- **The little q-Legendre polynomial at the points `t^m`, in closed form.**
-For `1 < t` and `r < n`, writing `s = n - 1 - r` (so the evaluation point is `P_n(t^{n-r})`).-/
+For `1 < t` and `r < n`, writing `s = n - 1 - r` (so the evaluation point is `P_n(t^{n-r})`).
+@isnad1 id=eq.2h3v.s7.cfb06ed687d6 from=translated src=- shape=20bced89 vocab=e2ccac94
+-/
 theorem legG_inv_pow {t : ℝ} (ht : 1 < t) {n r : ℕ} (hr : r < n) :
     legG t n ((t ^ r)⁻¹)
       = (-1) ^ n * ∑ a ∈ Finset.range (n - r),
@@ -509,7 +530,9 @@ theorem legG_inv_pow {t : ℝ} (ht : 1 < t) {n r : ℕ} (hr : r < n) :
       ((-1 : ℝ) ^ n * (-1) ^ b * gauss t n b * gauss t (n + s - b) (s - b)) * hpow
 
 /-- `legG_inv_pow` re-indexed by `s = n - 1 - r`, the shape in which the exponent count is
-usually read: the evaluation point is `P_n(t^{s+1})`.-/
+usually read: the evaluation point is `P_n(t^{s+1})`.
+@isnad1 id=eq.2h3v.s7.02a1260def69 from=translated src=- shape=e9e99611 vocab=e2ccac94
+-/
 theorem legG_eval_aux {t : ℝ} (ht : 1 < t) {n s : ℕ} (hs : s < n) :
     legG t n ((t ^ (n - 1 - s))⁻¹)
       = (-1) ^ n * ∑ a ∈ Finset.range (s + 1),

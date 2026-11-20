@@ -52,12 +52,16 @@ private theorem one_le_pow_aux {t : ℝ} (ht : 1 < t) (k : ℕ) : (1 : ℝ) ≤ 
   | zero => simp
   | succ n ih => rw [pow_succ]; nlinarith [ih, ht]
 
-/-- `t > 1` forces `t^(k+1) > 1`.-/
+/-- `t > 1` forces `t^(k+1) > 1`.
+@isnad1 id=lt.1h2v.s5.1ba58fad006d from=translated src=- shape=1f9df266 vocab=65df512c
+-/
 theorem one_lt_pow_of_one_lt {t : ℝ} (ht : 1 < t) (k : ℕ) : 1 < t ^ (k + 1) := by
   rw [pow_succ]
   nlinarith [one_le_pow_aux ht k, ht]
 
-/-- The denominators of the q-harmonic series are positive.-/
+/-- The denominators of the q-harmonic series are positive.
+@isnad1 id=lt.1h2v.s5.a5ae0f450bd7 from=translated src=- shape=7625b463 vocab=7c89cd43
+-/
 theorem pow_sub_one_pos {t : ℝ} (ht : 1 < t) (k : ℕ) : 0 < t ^ (k + 1) - 1 :=
   sub_pos.mpr (one_lt_pow_of_one_lt ht k)
 
@@ -87,6 +91,9 @@ private theorem term_le {t : ℝ} (ht : 1 < t) (k : ℕ) :
         rw [div_pow, one_pow]
         field_simp
 
+/--
+@isnad1 id=summable.1h1v.s6.01b97ebdb613 from=translated src=- shape=3784bc79 vocab=43a45158
+-/
 theorem summable_nat {t : ℝ} (ht : 1 < t) :
     Summable (fun n : ℕ => 1 / (t ^ (n + 1) - 1)) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -96,6 +103,9 @@ theorem summable_nat {t : ℝ} (ht : 1 < t) :
   refine Summable.of_nonneg_of_le (fun k => ?_) (fun k => term_le ht k) hgeo
   exact le_of_lt (div_pos one_pos (pow_sub_one_pos ht k))
 
+/--
+@isnad1 id=summable.1h1v.s6.7d377a715337 from=translated src=- shape=9881b282 vocab=d98c14d5
+-/
 theorem summable_pnat {t : ℝ} (ht : 1 < t) :
     Summable (fun n : ℕ+ => 1 / (t ^ (n : ℕ) - 1)) := by
   rw [← Equiv.summable_iff Equiv.pnatEquivNat.symm]
@@ -105,13 +115,17 @@ theorem summable_pnat {t : ℝ} (ht : 1 < t) :
 because all the analysis is done over `ℕ`.
 
 (The reindexing is in fact unconditional; `ht` is kept in the signature because it is
-part of the library's standing interface and every call site has it to hand.)-/
+part of the library's standing interface and every call site has it to hand.)
+@isnad1 id=eq.1h1v.s6.bde403bbaddf from=translated src=- shape=a53a8ecc vocab=95076a82
+-/
 theorem S_eq_tsum_nat {t : ℝ} (ht : 1 < t) :
     S t = ∑' n : ℕ, 1 / (t ^ (n + 1) - 1) := by
   rw [S, ← Equiv.tsum_eq Equiv.pnatEquivNat.symm (fun n : ℕ+ => 1 / (t ^ (n : ℕ) - 1))]
   rfl
 
-/-- Head/tail split at `N`.-/
+/-- Head/tail split at `N`.
+@isnad1 id=eq.1h2v.s7.5dca4395b32a from=translated src=- shape=a78a8c21 vocab=408827be
+-/
 theorem S_sub_head {t : ℝ} (ht : 1 < t) (N : ℕ) :
     S t - ∑ k ∈ Finset.range N, 1 / (t ^ (k + 1) - 1)
       = ∑' n : ℕ, 1 / (t ^ (n + N + 1) - 1) := by
@@ -121,6 +135,9 @@ theorem S_sub_head {t : ℝ} (ht : 1 < t) (N : ℕ) :
     exact (summable_nat ht).sum_add_tsum_nat_add N
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.cd944127d4bb from=translated src=- shape=35bd48ee vocab=be025c6a
+-/
 theorem S_pos {t : ℝ} (ht : 1 < t) : 0 < S t := by
   rw [S_eq_tsum_nat ht]
   refine (summable_nat ht).tsum_pos (fun n => ?_) 0 ?_
@@ -130,7 +147,9 @@ theorem S_pos {t : ℝ} (ht : 1 < t) : 0 < S t := by
 /-! ### Van Assche Lemma 1 — the irrationality criterion -/
 
 /-- **Van Assche Lemma 1.** The irrationality criterion. This is the ONE place in the
-whole development where `Irrational` is unfolded.-/
+whole development where `Irrational` is unfolded.
+@isnad1 id=irration.1h3v.s6.419948d439b1 from=translated src=- shape=133b7762 vocab=7c8c208f
+-/
 theorem irrational_of_linear_forms {x : ℝ} (A B : ℕ → ℤ)
     (h : ∀ ε : ℝ, 0 < ε → ∃ n : ℕ,
         (B n : ℝ) * x - (A n : ℝ) ≠ 0 ∧ |(B n : ℝ) * x - (A n : ℝ)| < ε) :
@@ -163,7 +182,9 @@ theorem irrational_of_linear_forms {x : ℝ} (A B : ℕ → ℤ)
   rw [h2, one_div, inv_mul_cancel₀ hd] at h3
   linarith
 
-/-- Convenience form taking a limit plus eventual nonvanishing.-/
+/-- Convenience form taking a limit plus eventual nonvanishing.
+@isnad1 id=irration.2h3v.s6.b39b45303980 from=translated src=- shape=8d3fdaba vocab=9c817d71
+-/
 theorem irrational_of_linear_forms_tendsto {x : ℝ} (A B : ℕ → ℤ)
     (hne : ∀ n : ℕ, (B n : ℝ) * x - (A n : ℝ) ≠ 0)
     (h0 : Filter.Tendsto (fun n => |(B n : ℝ) * x - (A n : ℝ)|) Filter.atTop (nhds 0)) :

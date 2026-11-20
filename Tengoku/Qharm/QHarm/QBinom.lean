@@ -55,11 +55,20 @@ def qbin (P Q : ℤ) : ℕ → ℕ → ℤ
   | 0, (_ + 1) => 0
   | (n + 1), (k + 1) => Q ^ (k + 1) * qbin P Q n (k + 1) + P ^ (n - k) * qbin P Q n k
 
+/--
+@isnad1 id=eq.0h3v.s4.9b9b8db1aaa9 from=translated src=- shape=b99ec26b vocab=c0b4a5da
+-/
 @[simp] theorem qbin_zero_right (P Q : ℤ) (n : ℕ) : qbin P Q n 0 = 1 := by
   cases n <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.8a498ee6452f from=translated src=- shape=ab7c01b8 vocab=44349373
+-/
 @[simp] theorem qbin_zero_succ (P Q : ℤ) (k : ℕ) : qbin P Q 0 (k + 1) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.fbc6d8c8a1e1 from=translated src=- shape=4bcdff73 vocab=e7c7add3
+-/
 theorem qbin_succ_succ (P Q : ℤ) (n k : ℕ) :
     qbin P Q (n + 1) (k + 1) = Q ^ (k + 1) * qbin P Q n (k + 1) + P ^ (n - k) * qbin P Q n k :=
   rfl
@@ -77,9 +86,15 @@ private theorem qbin_eq_zero_aux (P Q : ℤ) : ∀ n k : ℕ, n < k → qbin P Q
       rw [qbin_succ_succ, ih (k' + 1) (by omega), ih k' (by omega)]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s4.7b9a0bbb7c94 from=translated src=- shape=45083e1b vocab=b6f1e18e
+-/
 theorem qbin_eq_zero_of_lt (P Q : ℤ) {n k : ℕ} (h : n < k) : qbin P Q n k = 0 :=
   qbin_eq_zero_aux P Q n k h
 
+/--
+@isnad1 id=eq.0h3v.s4.83c89200a31f from=translated src=- shape=706e8392 vocab=c0b4a5da
+-/
 @[simp] theorem qbin_self (P Q : ℤ) (n : ℕ) : qbin P Q n n = 1 := by
   induction n with
   | zero => rfl
@@ -90,7 +105,9 @@ theorem qbin_eq_zero_of_lt (P Q : ℤ) {n k : ℕ} (h : n < k) : qbin P Q n k = 
 /-! ## The product formula -/
 
 /-- The product formula in the `n = m + k` parametrisation, where ℕ-subtraction has been
-eliminated.-/
+eliminated.
+@isnad1 id=eq.0h4v.s7.008e7006a6e6 from=translated src=- shape=ca3801aa vocab=66a9bece
+-/
 theorem qbin_mul_prod_aux (P Q : ℤ) (m k : ℕ) :
     qbin P Q (m + k) k * ∏ j ∈ Finset.range k, (P ^ (j + 1) - Q ^ (j + 1))
       = ∏ j ∈ Finset.range k, (P ^ (m + j + 1) - Q ^ (m + j + 1)) := by
@@ -126,7 +143,9 @@ theorem qbin_mul_prod_aux (P Q : ℤ) (m k : ℕ) :
           linear_combination
             Q ^ (k + 1) * hU + P ^ (m + 1) * (P ^ (k + 1) - Q ^ (k + 1)) * ihk
 
-/-- **The product formula, in division-free form.** This is the integrality statement.-/
+/-- **The product formula, in division-free form.** This is the integrality statement.
+@isnad1 id=eq.1h4v.s7.07b6c6243c65 from=translated src=- shape=e517574c vocab=9e55cc47
+-/
 theorem qbin_mul_prod (P Q : ℤ) {n k : ℕ} (h : k ≤ n) :
     qbin P Q n k * ∏ j ∈ Finset.range k, (P ^ (j + 1) - Q ^ (j + 1))
       = ∏ j ∈ Finset.range k, (P ^ (n - k + j + 1) - Q ^ (n - k + j + 1)) := by
@@ -134,7 +153,9 @@ theorem qbin_mul_prod (P Q : ℤ) {n k : ℕ} (h : k ≤ n) :
   rw [Nat.add_sub_cancel_left, Nat.add_comm k m]
   exact qbin_mul_prod_aux P Q m k
 
-/-- Specialisation `Q = 1`: the one-variable integer Gaussian binomial.-/
+/-- Specialisation `Q = 1`: the one-variable integer Gaussian binomial.
+@isnad1 id=eq.1h3v.s7.e8294e940b7f from=translated src=- shape=37190a5d vocab=9e55cc47
+-/
 theorem qbin_one_mul_prod (P : ℤ) {n k : ℕ} (h : k ≤ n) :
     qbin P 1 n k * ∏ j ∈ Finset.range k, (P ^ (j + 1) - 1)
       = ∏ j ∈ Finset.range k, (P ^ (n - k + j + 1) - 1) := by
@@ -159,6 +180,9 @@ private theorem den_pos {t : ℝ} (ht : 1 < t) (j : ℕ) : 0 < t ^ (j + 1) - 1 :
   have := one_lt_pow_of_one_lt ht j
   linarith
 
+/--
+@isnad1 id=lt.2h3v.s5.014a8a32057c from=translated src=- shape=b88f78be vocab=ae2ea732
+-/
 theorem gauss_pos {t : ℝ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) : 0 < gauss t n k := by
   unfold gauss
   refine Finset.prod_pos ?_
@@ -166,7 +190,9 @@ theorem gauss_pos {t : ℝ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) : 0 < gauss t
   exact div_pos (by have := den_pos ht (n - k + j); linarith [den_pos ht (n - k + j)])
     (den_pos ht j)
 
-/-- `gauss` at `t` agrees with the integer object at `Q = 1`.-/
+/-- `gauss` at `t` agrees with the integer object at `Q = 1`.
+@isnad1 id=eq.2h3v.s5.32928ab592b7 from=translated src=- shape=4b55d92a vocab=2bf2a8f7
+-/
 theorem gauss_eq_qbin {t : ℤ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) :
     gauss (t : ℝ) n k = (qbin t 1 n k : ℝ) := by
   have htR : (1 : ℝ) < (t : ℝ) := by exact_mod_cast ht
@@ -199,7 +225,9 @@ private theorem pow_le_gauss_aux {t : ℝ} (ht : 1 < t) (m k : ℕ) :
     _ ≤ ∏ j ∈ Finset.range k, (t ^ (m + j + 1) - 1) / (t ^ (j + 1) - 1) :=
         Finset.prod_le_prod (fun j _ => le_trans zero_le_one hm) hstep
 
-/-- **Lower bound.**-/
+/-- **Lower bound.**
+@isnad1 id=le.2h3v.s5.b409b9be15f5 from=translated src=- shape=a2850e66 vocab=a775f6d5
+-/
 theorem pow_le_gauss {t : ℝ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) :
     t ^ (k * (n - k)) ≤ gauss t n k := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -209,6 +237,9 @@ theorem pow_le_gauss {t : ℝ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) :
 /-- The universal constant controlling the upper bound.-/
 noncomputable def gaussConst (t : ℝ) : ℝ := Real.exp (t / (t - 1) ^ 2)
 
+/--
+@isnad1 id=le.1h1v.s4.9eac45175434 from=translated src=- shape=a8dc2df9 vocab=c91d1d80
+-/
 theorem one_le_gaussConst {t : ℝ} (ht : 1 < t) : 1 ≤ gaussConst t := by
   refine Real.one_le_exp ?_
   exact div_nonneg (by linarith) (sq_nonneg _)
@@ -322,7 +353,9 @@ private theorem gauss_le_const_mul_pow_aux {t : ℝ} (ht : 1 < t) (m k : ℕ) :
     _ = gaussConst t * t ^ (k * m) := by ring
 
 /-- **Upper bound.** Note the constant does not depend on `n` or `k` — that is the whole
-point, and it is what makes the dominant-term separation downstream work.-/
+point, and it is what makes the dominant-term separation downstream work.
+@isnad1 id=le.2h3v.s6.d9c398357ec4 from=translated src=- shape=d0c41491 vocab=ee2d6f6f
+-/
 theorem gauss_le_const_mul_pow {t : ℝ} (ht : 1 < t) {n k : ℕ} (h : k ≤ n) :
     gauss t n k ≤ gaussConst t * t ^ (k * (n - k)) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le h

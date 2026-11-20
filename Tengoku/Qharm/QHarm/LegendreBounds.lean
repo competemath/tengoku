@@ -106,16 +106,27 @@ Gaussian binomial two-sidedly: `t^{j(n-j)} ≤ [n,j]_t ≤ C·t^{j(n-j)}` and
 /-- The `t`-degree of the `j`-th term of Van Assche (23).-/
 def degTerm (n j : ℕ) : ℕ := j.choose 2 + j * (n - j) + n * j
 
+/--
+@isnad1 id=eq.0h2v.s4.00dcd51d44ba from=translated src=- shape=19b8f434 vocab=03e0a281
+-/
 theorem degTerm_eq_gammaExp_add (n j : ℕ) : degTerm n j = gammaExp n j + n * j := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.a9576ed7a125 from=translated src=- shape=1d838610 vocab=5d719147
+-/
 @[simp] theorem degTerm_zero_right (n : ℕ) : degTerm n 0 = 0 := by simp [degTerm]
 
+/--
+@isnad1 id=eq.0h1v.s4.0727aec9d28e from=translated src=- shape=eb97e8dc vocab=e256ff4d
+-/
 theorem degTerm_diag (n : ℕ) : degTerm n n = n.choose 2 + n * n := by
   simp [degTerm]
 
 /-- `degTerm n n = n(3n−1)/2`, subtraction- and division-free.  This is the clearing
 exponent `C_n`, and it was measured to be exactly the minimal integralising exponent at
-every base and degree tested.-/
+every base and degree tested.
+@isnad1 id=eq.0h1v.s5.1ef0cdb2334d from=translated src=- shape=9a0de78d vocab=256547fc
+-/
 theorem two_mul_degTerm_diag (n : ℕ) : 2 * degTerm n n + n = 3 * (n * n) := by
   have h := two_mul_choose_two_add n
   rw [degTerm_diag]
@@ -136,7 +147,9 @@ private theorem choose_two_add (j m : ℕ) :
 
 written additively so that no ℕ-subtraction appears on the large side.  Equality of the
 `(n−j)·n` part with the naive "gap ≥ n at every step" count is why the geometric factor
-below is a plain `∑ u^i` with ratio `u = t^{-n}`.-/
+below is a plain `∑ u^i` with ratio `u = t^{-n}`.
+@isnad1 id=eq.1h2v.s6.8cf6a475417a from=translated src=- shape=0c71ff47 vocab=23358c73
+-/
 theorem degTerm_add_gap {n j : ℕ} (h : j ≤ n) :
     degTerm n j + ((n - j) * n + (n - j).choose 2) = degTerm n n := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -147,7 +160,9 @@ theorem degTerm_add_gap {n j : ℕ} (h : j ≤ n) :
   ring
 
 /-- The consequence actually used: each non-dominant term is below the dominant one by at
-least `(n − j)` full powers of `t^n`.-/
+least `(n − j)` full powers of `t^n`.
+@isnad1 id=le.1h2v.s5.468db804d639 from=translated src=- shape=d0d6e680 vocab=ffdb96fb
+-/
 theorem degTerm_add_mul_le {n j : ℕ} (h : j ≤ n) :
     degTerm n j + n * (n - j) ≤ degTerm n n := by
   have hg := degTerm_add_gap h
@@ -156,7 +171,9 @@ theorem degTerm_add_mul_le {n j : ℕ} (h : j ≤ n) :
 
 /-- The consecutive gap, for the record: `degTerm n (j+1) − degTerm n j = 2n − j − 1`, hence
 `≥ n` for every `j < n`.  (An earlier sketch said `≥ n − 1`; the sharp value on the range
-that matters is `≥ n`, and the proofs below use the stronger `degTerm_add_mul_le` form.)-/
+that matters is `≥ n`, and the proofs below use the stronger `degTerm_add_mul_le` form.)
+@isnad1 id=eq.1h2v.s6.58b138419be1 from=translated src=- shape=804b2ff1 vocab=32da7968
+-/
 theorem degTerm_succ_sub {n j : ℕ} (h : j < n) :
     degTerm n j + (2 * n - j - 1) = degTerm n (j + 1) := by
   have h1 := degTerm_add_gap (le_of_lt h)
@@ -226,14 +243,18 @@ private theorem sum_pow_sub_le {u : ℝ} (h0 : 0 ≤ u) (h1 : u ≤ 1 / 2) (n : 
 /-! ### The two-sided bounds on the terms of (23) -/
 
 /-- Every term of (23) is at most `gaussConst² t^{degTerm n j}` in absolute value.  This is
-`QHarm/CoefBound.lean`'s `abs_legCoef_le_aux` repackaged in `degTerm` shape.-/
+`QHarm/CoefBound.lean`'s `abs_legCoef_le_aux` repackaged in `degTerm` shape.
+@isnad1 id=le.2h3v.s6.d11c11c7c882 from=translated src=- shape=356a3fe8 vocab=c3fe8764
+-/
 theorem abs_legCoef_le_degTerm {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legCoef t n j| ≤ gaussConst t ^ 2 * t ^ degTerm n j := by
   refine le_trans (abs_legCoef_le_aux ht h) (le_of_eq ?_)
   rw [degTerm_eq_gammaExp_add, pow_add]
 
 /-- **The dominant term.**  `(-1)^n · legCoef t n n ≥ t^{degTerm n n}`, with no constant:
-the two Gaussian binomials involved are `[n,n]_t = 1` and `[2n,n]_t ≥ t^{n²}`.-/
+the two Gaussian binomials involved are `[n,n]_t = 1` and `[2n,n]_t ≥ t^{n²}`.
+@isnad1 id=le.1h2v.s6.b2ff798324f1 from=translated src=- shape=c5ad6fa6 vocab=e447de33
+-/
 theorem pow_degTerm_le_signed_diag {t : ℝ} (ht : 1 < t) (n : ℕ) :
     t ^ degTerm n n ≤ (-1) ^ n * legCoef t n n := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -259,7 +280,9 @@ theorem pow_degTerm_le_signed_diag {t : ℝ} (ht : 1 < t) (n : ℕ) :
 
 /-! ### The largeness hypothesis -/
 
-/-- `4 gaussConst t ^ 2 ≤ t ^ n` forces `n ≥ 1`, since `gaussConst t ≥ 1` and `t^0 = 1`.-/
+/-- `4 gaussConst t ^ 2 ≤ t ^ n` forces `n ≥ 1`, since `gaussConst t ≥ 1` and `t^0 = 1`.
+@isnad1 id=le.2h2v.s6.ffd7a3916533 from=translated src=- shape=3762dce3 vocab=4e8d7407
+-/
 theorem one_le_of_threshold {t : ℝ} (ht : 2 ≤ t) {n : ℕ}
     (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) : 1 ≤ n := by
   have ht1 : (1 : ℝ) < t := by linarith
@@ -275,7 +298,9 @@ theorem one_le_of_threshold {t : ℝ} (ht : 2 ≤ t) {n : ℕ}
 
 `|legCoef t n j| ≤ C² t^{degTerm n j} ≤ C² t^{degTerm n n} u^{n-j}` with `u = t^{-n}`
 (`degTerm_add_mul_le`), the reversed geometric tail sums to `≤ 2u` (`sum_pow_sub_le`), and
-`2 C² u ≤ 1/2` is exactly the hypothesis.-/
+`2 C² u ≤ 1/2` is exactly the hypothesis.
+@isnad1 id=le.2h2v.s6.72973ff2d354 from=translated src=- shape=d4b395dd vocab=b343884e
+-/
 theorem abs_head_le {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     |∑ j ∈ Finset.range n, legCoef t n j| ≤ t ^ degTerm n n / 2 := by
   have ht1 : (1 : ℝ) < t := by linarith
@@ -327,7 +352,9 @@ theorem abs_head_le {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 
     _ = t ^ degTerm n n / 2 := by ring
 
 /-- **Dominant-term separation, signed.**  `(-1)^n P_n(t^n) ≥ t^{degTerm n n}/2 > 0`.
-This is the whole content of the file; `legVal_lower` and `legVal_sign` are corollaries.-/
+This is the whole content of the file; `legVal_lower` and `legVal_sign` are corollaries.
+@isnad1 id=le.2h2v.s7.6545d5ce6b53 from=translated src=- shape=23eb3230 vocab=4dae5c8f
+-/
 theorem half_pow_le_signed_legVal {t : ℝ} (ht : 2 ≤ t) {n : ℕ}
     (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     t ^ degTerm n n / 2 ≤ (-1) ^ n * legVal t n := by
@@ -351,7 +378,9 @@ theorem half_pow_le_signed_legVal {t : ℝ} (ht : 2 ≤ t) {n : ℕ}
 
 /-- **The lower bound on `|P_n(t^n)|`.**  `degTerm n n = n(3n−1)/2 = 3n²/2 − n/2`, so this
 is `|P_n(t^n)| ≥ t^{3n²/2 − n/2}/2`, matching the measured `log_t |P_n(t^n)| = 145.170` at
-`t = 5, n = 10` against `degTerm 10 10 = 145`.-/
+`t = 5, n = 10` against `degTerm 10 10 = 145`.
+@isnad1 id=le.2h2v.s6.ed1671bc504c from=translated src=- shape=35672673 vocab=69c7f52a
+-/
 theorem legVal_lower {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     t ^ degTerm n n / 2 ≤ |legVal t n| := by
   have habs : |(-1 : ℝ) ^ n * legVal t n| = |legVal t n| := by
@@ -360,13 +389,18 @@ theorem legVal_lower {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^
     _ ≤ |(-1 : ℝ) ^ n * legVal t n| := le_abs_self _
     _ = |legVal t n| := habs
 
-/-- **The sign, as a by-product.**-/
+/-- **The sign, as a by-product.**
+@isnad1 id=lt.2h2v.s6.7c069b5ef68d from=translated src=- shape=1056c7e7 vocab=ca2509fe
+-/
 theorem legVal_sign {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     0 < (-1) ^ n * legVal t n := by
   have ht0 : (0 : ℝ) < t := by linarith
   have hpos : (0 : ℝ) < t ^ degTerm n n / 2 := by positivity
   linarith [half_pow_le_signed_legVal ht hn]
 
+/--
+@isnad1 id=ne.2h2v.s6.c90bb599fff2 from=translated src=- shape=345f9006 vocab=173d8ff4
+-/
 theorem legVal_ne_zero {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     legVal t n ≠ 0 := by
   intro h
@@ -395,7 +429,9 @@ private theorem inv_den_le' {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) (k :
   have h := one_div_le_one_div_of_le hpos hle
   rwa [one_div, one_div] at h
 
-/-- The sum-of-squares form, bounded by the exact squared norm.-/
+/-- The sum-of-squares form, bounded by the exact squared norm.
+@isnad1 id=le.2h2v.s8.08349567e3c6 from=translated src=- shape=55aacc28 vocab=5ac1f342
+-/
 theorem sumsq_le {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     ∑' k : ℕ, (t⁻¹) ^ k * (latVal t n k) ^ 2 / ((t : ℝ) ^ n - (t⁻¹) ^ k)
       ≤ ((t : ℝ) ^ n - 1)⁻¹ * (t ^ (n + 1) / (t ^ (2 * n + 1) - 1)) := by
@@ -421,7 +457,9 @@ theorem sumsq_le {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
 
 Compare `QHarm/Forms.lean`'s (private) integer-track bound `|R_n| ≤ t^{-n²}(t^n−1)⁻¹ L_n`:
 here the `t^{-n²}` is replaced by `t^{-degTerm n n} = t^{-(3n²−n)/2}`, which is the extra
-`t^{n²/2}` of margin the rational track needs.-/
+`t^{n²/2}` of margin the rational track needs.
+@isnad1 id=le.2h2v.s7.3e9f592f5771 from=translated src=- shape=639acd15 vocab=1587c510
+-/
 theorem abs_rem_le_sharp {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     |rem t n| ≤ (2 * t ^ (n + 1) / ((t ^ n - 1) * (t ^ (2 * n + 1) - 1))) / t ^ degTerm n n := by
   have ht1 : (1 : ℝ) < t := by linarith
@@ -457,7 +495,9 @@ theorem abs_rem_le_sharp {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst
 /-- The spelling the rational-track assembly consumes.  `QHarm/Forms.lean` also has an
 `abs_rem_le`, but
 it is `private` there (and is the *lossy* integer-track bound `|R_n| ≤ t^{-n²}(t^n−1)⁻¹L_n`),
-so the two names do not collide.-/
+so the two names do not collide.
+@isnad1 id=le.2h2v.s7.3e9f592f5771 from=translated src=- shape=639acd15 vocab=1587c510
+-/
 theorem abs_rem_le {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
     |rem t n| ≤ (2 * t ^ (n + 1) / ((t ^ n - 1) * (t ^ (2 * n + 1) - 1))) / t ^ degTerm n n :=
   abs_rem_le_sharp ht hn
@@ -469,22 +509,34 @@ The largeness hypothesis `4 gaussConst t ^ 2 ≤ t ^ n` is an eventual condition
 should consume: `∀ᶠ n in atTop` is all the assembly needs. -/
 
 open Filter in
+/--
+@isnad1 id=eventual.1h1v.s6.9f0a7eca91b5 from=translated src=- shape=2b35f759 vocab=f922a449
+-/
 theorem eventually_threshold {t : ℝ} (ht : 2 ≤ t) :
     ∀ᶠ n : ℕ in atTop, 4 * gaussConst t ^ 2 ≤ t ^ n := by
   have ht1 : (1 : ℝ) < t := by linarith
   exact (tendsto_pow_atTop_atTop_of_one_lt ht1).eventually_ge_atTop _
 
 open Filter in
+/--
+@isnad1 id=eventual.1h1v.s6.ceb0ea8d3be6 from=translated src=- shape=2020c0b6 vocab=a2f38f6f
+-/
 theorem eventually_legVal_lower {t : ℝ} (ht : 2 ≤ t) :
     ∀ᶠ n : ℕ in atTop, t ^ degTerm n n / 2 ≤ |legVal t n| :=
   (eventually_threshold ht).mono fun _ hn => legVal_lower ht hn
 
 open Filter in
+/--
+@isnad1 id=eventual.1h1v.s5.fb3a26c9b654 from=translated src=- shape=490d201d vocab=b3156ae0
+-/
 theorem eventually_legVal_sign {t : ℝ} (ht : 2 ≤ t) :
     ∀ᶠ n : ℕ in atTop, 0 < (-1) ^ n * legVal t n :=
   (eventually_threshold ht).mono fun _ hn => legVal_sign ht hn
 
 open Filter in
+/--
+@isnad1 id=eventual.1h1v.s7.f96c54b11e3b from=translated src=- shape=f3949a86 vocab=62e39c0b
+-/
 theorem eventually_abs_rem_le {t : ℝ} (ht : 2 ≤ t) :
     ∀ᶠ n : ℕ in atTop,
       |rem t n| ≤ (2 * t ^ (n + 1) / ((t ^ n - 1) * (t ^ (2 * n + 1) - 1))) / t ^ degTerm n n :=

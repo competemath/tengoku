@@ -85,13 +85,17 @@ open Finset
 
 /-! ### Positivity for a rational base -/
 
-/-- `t = P/Q > 1` whenever `0 < Q < P`.-/
+/-- `t = P/Q > 1` whenever `0 < Q < P`.
+@isnad1 id=lt.2h2v.s5.0ec7b6498a3d from=translated src=- shape=134af866 vocab=27aa5cc3
+-/
 theorem one_lt_ratBase {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) : (1 : ℝ) < (P : ℝ) / (Q : ℝ) := by
   have hQ0 : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
   rw [lt_div_iff₀ hQ0, one_mul]
   exact_mod_cast hPQ
 
-/-- `t^ℓ − 1 > 0` for `ℓ ≥ 1`.-/
+/-- `t^ℓ − 1 > 0` for `ℓ ≥ 1`.
+@isnad1 id=lt.3h3v.s6.a31f9230b695 from=translated src=- shape=1aea359f vocab=942ec24d
+-/
 theorem ratBase_pow_sub_one_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {ℓ : ℕ} (hℓ : 1 ≤ ℓ) :
     (0 : ℝ) < (((P : ℝ) / (Q : ℝ)) ^ ℓ) - 1 := by
   have h := one_lt_pow₀ (one_lt_ratBase hQ hPQ) (by omega : ℓ ≠ 0)
@@ -117,11 +121,19 @@ private theorem sub_pow_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {s : ℕ} (hs
 `degTerm n n = C(n,2) + n²` of `QHarm/LegendreBounds.lean`.-/
 def Cexp (n : ℕ) : ℕ := degTerm n n
 
+/--
+@isnad1 id=eq.0h1v.s3.fe565ca62ea7 from=translated src=- shape=929e8767 vocab=3c997ce0
+-/
 theorem Cexp_eq (n : ℕ) : Cexp n = degTerm n n := rfl
 
-/-- `2·C_n + n = 3n²`, i.e. `C_n = n(3n−1)/2`.-/
+/-- `2·C_n + n = 3n²`, i.e. `C_n = n(3n−1)/2`.
+@isnad1 id=eq.0h1v.s5.87b309de6c07 from=translated src=- shape=1fff1b82 vocab=2b240f9a
+-/
 theorem two_mul_Cexp (n : ℕ) : 2 * Cexp n + n = 3 * (n * n) := two_mul_degTerm_diag n
 
+/--
+@isnad1 id=le.1h2v.s4.f9e44495d571 from=translated src=- shape=da6c2e30 vocab=191c8f14
+-/
 theorem degTerm_le_Cexp {n j : ℕ} (h : j ≤ n) : degTerm n j ≤ Cexp n := by
   have hg := degTerm_add_gap h
   unfold Cexp
@@ -160,7 +172,9 @@ private theorem factor_rat {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (m j : ℕ) :
   field_simp
 
 /-- **The two-variable bridge.**  `gauss (P/Q) n k = qbin P Q n k / Q^{k(n−k)}`, stated
-multiplicatively so that no division appears.-/
+multiplicatively so that no division appears.
+@isnad1 id=eq.3h4v.s6.1addfef074c9 from=translated src=- shape=b1ca71a2 vocab=a2e4e2cb
+-/
 theorem gauss_rat {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n k : ℕ} (h : k ≤ n) :
     (Q : ℝ) ^ (k * (n - k)) * gauss ((P : ℝ) / (Q : ℝ)) n k = (qbin P Q n k : ℝ) := by
   have hdne : (∏ j ∈ Finset.range k, ((P : ℝ) ^ (j + 1) - (Q : ℝ) ^ (j + 1))) ≠ 0 :=
@@ -195,6 +209,9 @@ theorem gauss_rat {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n k : ℕ} (h : k ≤ 
 def legCoefZ (P Q : ℤ) (n j : ℕ) : ℤ :=
   (-1) ^ j * P ^ (j.choose 2) * qbin P Q n j * qbin P Q (n + j) n * Q ^ (Cexp n - degTerm n j)
 
+/--
+@isnad1 id=eq.3h4v.s6.f9524e8e93b7 from=translated src=- shape=77ac7543 vocab=e9953596
+-/
 theorem legCoef_rat {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n j : ℕ} (h : j ≤ n) :
     (Q : ℝ) ^ Cexp n * legCoef ((P : ℝ) / (Q : ℝ)) n j = (legCoefZ P Q n j : ℝ) := by
   have hQ0 : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
@@ -220,14 +237,18 @@ theorem legCoef_rat {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n j : ℕ} (h : j �
   simp only [degTerm]
   ring
 
-/-- Membership form, for `Subring.sum_mem`.-/
+/-- Membership form, for `Subring.sum_mem`.
+@isnad1 id=mem.3h4v.s6.101d3280206f from=translated src=- shape=ba8c28a1 vocab=7f96057a
+-/
 theorem QCn_legCoef_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n j : ℕ} (h : j ≤ n) :
     (Q : ℝ) ^ Cexp n * legCoef ((P : ℝ) / (Q : ℝ)) n j ∈ Zr := by
   rw [legCoef_rat hQ hPQ h]
   exact intCast_mem_Zr _
 
 /-- Any real-linear combination of the `legCoef`s with integer coefficients, scaled by
-`Q^{C_n}`, is an integer.-/
+`Q^{C_n}`, is an integer.
+@isnad1 id=mem.3h5v.s7.f5fa4b5cedb2 from=translated src=- shape=9e821466 vocab=e25e0c31
+-/
 theorem QCn_legCombo_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ)
     (c : ℕ → ℤ) (s : Finset ℕ) (hs : ∀ j ∈ s, j ≤ n) :
     (Q : ℝ) ^ Cexp n * (∑ j ∈ s, (c j : ℝ) * legCoef ((P : ℝ) / (Q : ℝ)) n j) ∈ Zr := by
@@ -238,6 +259,9 @@ theorem QCn_legCombo_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ)
   rw [hrw]
   exact Subring.mul_mem _ (intCast_mem_Zr _) (QCn_legCoef_mem_Zr hQ hPQ (hs j hj))
 
+/--
+@isnad1 id=mem.2h3v.s6.10fa8a35dc76 from=translated src=- shape=e87b42e8 vocab=bbd7d094
+-/
 theorem QCn_legVal_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     (Q : ℝ) ^ Cexp n * legVal ((P : ℝ) / (Q : ℝ)) n ∈ Zr := by
   rw [legVal_eq]
@@ -248,6 +272,9 @@ theorem QCn_legVal_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
   exact QCn_legCombo_mem_Zr hQ hPQ n (fun _ => 1) _
     (fun j hj => Nat.lt_succ_iff.mp (Finset.mem_range.mp hj))
 
+/--
+@isnad1 id=ex.2h3v.s6.3f1e3954ca0c from=translated src=- shape=67089c09 vocab=0a010d6d
+-/
 theorem QCn_legVal_isInt {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     ∃ z : ℤ, (Q : ℝ) ^ Cexp n * legVal ((P : ℝ) / (Q : ℝ)) n = (z : ℝ) :=
   exists_int_of_mem_Zr (QCn_legVal_mem_Zr hQ hPQ n)
@@ -265,6 +292,9 @@ private theorem ratBase_pow_sub_one_eq {P Q : ℤ} (hQ : 0 < Q) (ℓ : ℕ) :
   rw [div_pow]
   field_simp
 
+/--
+@isnad1 id=mem.4h4v.s7.90bd261ba9f9 from=translated src=- shape=6e59c96f vocab=493a2fdb
+-/
 theorem Dsharp_div_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n ℓ : ℕ}
     (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ n) :
     (Dsharp P Q n : ℝ) * (1 / (((P : ℝ) / (Q : ℝ)) ^ ℓ - 1)) ∈ Zr := by
@@ -277,6 +307,9 @@ theorem Dsharp_div_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n ℓ : ℕ}
   push_cast
   field_simp
 
+/--
+@isnad1 id=mem.4h4v.s7.8b4799dbdcb0 from=translated src=- shape=e0403c35 vocab=493a2fdb
+-/
 theorem Dsharp_mul_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n ℓ : ℕ}
     (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ n) :
     (Dsharp P Q n : ℝ) * ((((P : ℝ) / (Q : ℝ)) ^ ℓ) / ((((P : ℝ) / (Q : ℝ)) ^ ℓ) - 1)) ∈ Zr := by
@@ -289,7 +322,9 @@ theorem Dsharp_mul_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n ℓ : ℕ}
   push_cast
   field_simp
 
-/-- `𝒟_n · headSum` is an integer.-/
+/-- `𝒟_n · headSum` is an integer.
+@isnad1 id=mem.2h3v.s6.a0efedd89436 from=translated src=- shape=023a0291 vocab=968cc49d
+-/
 theorem Dsharp_headSum_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     (Dsharp P Q n : ℝ) * headSum ((P : ℝ) / (Q : ℝ)) n ∈ Zr := by
   unfold headSum

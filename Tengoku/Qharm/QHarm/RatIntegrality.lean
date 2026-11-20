@@ -93,7 +93,9 @@ with `s = n − 1 − r`.  The claim is `g(a) ≤ Cexp n` for all `a ≤ s ≤ n
 
 /-- **The degree count.**  Doubling and substituting `b := n − a`, `c := s − a` reduces this to
 `0 ≤ (n − b)·(3n − b + 1)`, which is manifest.  Equality holds exactly at `a = 0`, `s = n − 1`
-(i.e. `r = 0`), so the exponent `C_n` is sharp and cannot be lowered.-/
+(i.e. `r = 0`), so the exponent `C_n` is sharp and cannot be lowered.
+@isnad1 id=le.2h3v.s6.6331fe59c49e from=translated src=- shape=0915d6cc vocab=afa42dfd
+-/
 theorem gexp_le_Cexp {n s a : ℕ} (hs : s + 1 ≤ n) (ha : a ≤ s) :
     a * (n - a) + (s - a) * n + (n + 1 - a).choose 2 ≤ Cexp n := by
   obtain ⟨c, rfl⟩ : ∃ c, s = a + c := ⟨s - a, by omega⟩
@@ -121,7 +123,9 @@ def legGZ (P Q : ℤ) (n s a : ℕ) : ℤ :=
     * Q ^ (Cexp n - (a * (n - a) + (s - a) * n + (n + 1 - a).choose 2))
 
 /-- **The per-summand clearing identity.**  Two applications of `gauss_rat` plus
-`(P/Q)^h = P^h/Q^h`; the surviving `Q`-exponent is non-negative by `gexp_le_Cexp`.-/
+`(P/Q)^h = P^h/Q^h`; the surviving `Q`-exponent is non-negative by `gexp_le_Cexp`.
+@isnad1 id=eq.4h5v.s7.41efdc0255c4 from=translated src=- shape=f4f08931 vocab=4e921eb1
+-/
 theorem QCn_legG_term {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n s a : ℕ}
     (hs : s + 1 ≤ n) (ha : a ≤ s) :
     (Q : ℝ) ^ Cexp n *
@@ -163,7 +167,9 @@ private theorem neg_one_pow_mem_Zr (m : ℕ) : ((-1 : ℝ)) ^ m ∈ Zr := by
 `r < n`.  This is what makes block 2 of `Aform_decomp` clear with `𝒟_n` alone.
 
 Verified numerically before formalisation (`t ∈ {7/2, 5/2, 11/3, 9/2, 13/4, 5/3, 8/3}`,
-`n = 1..7`, every `r < n`): integral at every point.-/
+`n = 1..7`, every `r < n`): integral at every point.
+@isnad1 id=mem.3h4v.s7.9bd7a32ac2aa from=translated src=- shape=3ab11a64 vocab=3911a881
+-/
 theorem QCn_legG_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n r : ℕ} (hr : r < n) :
     (Q : ℝ) ^ Cexp n * legG ((P : ℝ) / (Q : ℝ)) n ((((P : ℝ) / (Q : ℝ)) ^ r)⁻¹) ∈ Zr := by
   have ht : (1 : ℝ) < (P : ℝ) / (Q : ℝ) := one_lt_ratBase hQ hPQ
@@ -190,7 +196,9 @@ private theorem div_regroup (D q g y : ℝ) : D * (q * (g / y)) = (q * g) * (D *
 
 private theorem mul_regroup (D q u v : ℝ) : D * (q * (u * v)) = (q * u) * (D * v) := by ring
 
-/-- `Q^{C_n} · 𝒟_n · P_n(t^n) ∈ ℤ`.-/
+/-- `Q^{C_n} · 𝒟_n · P_n(t^n) ∈ ℤ`.
+@isnad1 id=mem.2h3v.s6.7208902a1fee from=translated src=- shape=4ed06ae9 vocab=066163a2
+-/
 theorem ratB_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) * legVal ((P : ℝ) / (Q : ℝ)) n ∈ Zr := by
   have hrw : (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) * legVal ((P : ℝ) / (Q : ℝ)) n
@@ -198,6 +206,9 @@ theorem ratB_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
   rw [hrw]
   exact Subring.mul_mem _ (intCast_mem_Zr _) (QCn_legVal_mem_Zr hQ hPQ n)
 
+/--
+@isnad1 id=ex.2h3v.s6.3a291dfb2c28 from=translated src=- shape=032e7b4f vocab=7af1f51f
+-/
 theorem ratB_isInt {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     ∃ b : ℤ, (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) * legVal ((P : ℝ) / (Q : ℝ)) n = (b : ℝ) :=
   exists_int_of_mem_Zr (ratB_mem_Zr hQ hPQ n)
@@ -231,7 +242,9 @@ private theorem QCn_legTail_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n d :
 
 The three blocks of `Aform_decomp` clear independently:
 `∑_j j·legCoef` by `Q^{C_n}` alone; `P_n(t^{n−r})/(t^r − 1)` by `Q^{C_n}` (result (I)) times
-`𝒟_n/(t^r − 1)`; and `T_d · t^d/(t^d − 1)` by `Q^{C_n}·T_d` times `𝒟_n t^d/(t^d − 1)`.-/
+`𝒟_n/(t^r − 1)`; and `T_d · t^d/(t^d − 1)` by `Q^{C_n}·T_d` times `𝒟_n t^d/(t^d − 1)`.
+@isnad1 id=mem.2h3v.s7.eb66c2fa74ab from=translated src=- shape=8bb5ddb6 vocab=96927765
+-/
 theorem ratA_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ)
         * (legQval ((P : ℝ) / (Q : ℝ)) n
@@ -260,6 +273,9 @@ theorem ratA_mem_Zr {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     exact Subring.mul_mem _ (QCn_legTail_mem_Zr hQ hPQ n (d + 1))
       (Dsharp_mul_mem_Zr hQ hPQ (by omega) hdn)
 
+/--
+@isnad1 id=ex.2h3v.s7.c29e523b18bb from=translated src=- shape=80d85001 vocab=c8e88693
+-/
 theorem ratA_isInt {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     ∃ a : ℤ, (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ)
         * (legQval ((P : ℝ) / (Q : ℝ)) n

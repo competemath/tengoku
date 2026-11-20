@@ -112,7 +112,9 @@ expansion of `N(z) / ∏_j (z - y j)` has the Lagrange coefficients as residues.
 
 /-- **Cauchy's partial-fraction identity.**  Proved by evaluating Mathlib's
 `Lagrange.eq_interpolate` (in the `Lagrange.interpolate_eq_sum` shape) at `z` and dividing by
-the nodal polynomial `∏_{j ∈ s} (z - y j)`.-/
+the nodal polynomial `∏_{j ∈ s} (z - y j)`.
+@isnad1 id=eq.3h6v.s8.8bb4f7d03fd3 from=translated src=- shape=2b3ff49e vocab=4324bbf0
+-/
 theorem cauchy_lagrange {F : Type*} [Field F] {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (y : ι → F) (hinj : Set.InjOn y s)
     (N : Polynomial F) (hdeg : N.degree < s.card)
@@ -145,21 +147,35 @@ theorem cauchy_lagrange {F : Type*} [Field F] {ι : Type*} [DecidableEq ι]
 coefficient is a ratio of these times a power of `t`.-/
 noncomputable def Rfac (t : ℝ) (m : ℕ) : ℝ := ∏ s ∈ Finset.range m, (t ^ (s + 1) - 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.88ca66db033f from=translated src=- shape=0e0c2bda vocab=cc8d1362
+-/
 @[simp] theorem Rfac_zero (t : ℝ) : Rfac t 0 = 1 := by simp [Rfac]
 
+/--
+@isnad1 id=lt.1h2v.s4.9cb8abd272ee from=translated src=- shape=9141f3a7 vocab=1284c07c
+-/
 theorem Rfac_pos {t : ℝ} (ht : 1 < t) (m : ℕ) : 0 < Rfac t m := by
   refine Finset.prod_pos fun s _ => ?_
   have : (1 : ℝ) < t ^ (s + 1) := one_lt_pow₀ ht (Nat.succ_ne_zero s)
   linarith
 
+/--
+@isnad1 id=ne.1h2v.s4.a9cdd5f0fd0a from=translated src=- shape=740a21f0 vocab=1284c07c
+-/
 theorem Rfac_ne_zero {t : ℝ} (ht : 1 < t) (m : ℕ) : Rfac t m ≠ 0 := (Rfac_pos ht m).ne'
 
+/--
+@isnad1 id=eq.0h3v.s6.485ac80b64e1 from=translated src=- shape=c3225cbd vocab=4b3ccff3
+-/
 theorem Rfac_split (t : ℝ) (a b : ℕ) :
     Rfac t (a + b) = Rfac t a * ∏ i ∈ Finset.range b, (t ^ (a + i + 1) - 1) := by
   simp only [Rfac]
   rw [Finset.prod_range_add]
 
-/-- **The division-free product formula for `gauss`.**  `[n,j]_t · [j]_t! · [n-j]_t! = [n]_t!`.-/
+/-- **The division-free product formula for `gauss`.**  `[n,j]_t · [j]_t! · [n-j]_t! = [n]_t!`.
+@isnad1 id=eq.2h3v.s5.c356bee261c9 from=translated src=- shape=f4da1767 vocab=29fa67aa
+-/
 theorem gauss_mul_Rfac {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     gauss t n j * Rfac t j * Rfac t (n - j) = Rfac t n := by
   have hd : ∀ i : ℕ, t ^ (i + 1) - 1 ≠ 0 := by
@@ -336,7 +352,9 @@ private theorem lagrange_coef {t : ℝ} (ht : 1 < t) {n j : ℕ} (hj : j ≤ n) 
 
 /-- **The moment in closed form, for every `m`.**  This is `cauchy_lagrange` specialised to
 `y j = q^j`, `z = t^{m+1}`, `N = ∏_{r<n} (X - t^{r+1})`, with the Lagrange coefficients replaced
-by `legGamma` through `lagrange_coef`.  No hypothesis relating `m` and `n` is needed.-/
+by `legGamma` through `lagrange_coef`.  No hypothesis relating `m` and `n` is needed.
+@isnad1 id=eq.1h3v.s8.770ffcb9bb83 from=translated src=- shape=b3399627 vocab=7d512d67
+-/
 theorem orth_moment {t : ℝ} (ht : 1 < t) (n m : ℕ) :
     ((-1) ^ n * t ^ ((n + 1).choose 2))
         * ∑ j ∈ Finset.range (n + 1), legGamma t n j * t ^ j / (t ^ (m + j + 1) - 1)
@@ -400,7 +418,9 @@ theorem orth_moment {t : ℝ} (ht : 1 < t) (n m : ℕ) :
 
 /-- **Orthogonality, finite form.**  For `m < n` the little q-Legendre polynomial `P_n` is
 annihilated by the functional `x ↦ L(x^m ·)`; in the explicit coefficient form this reads
-`∑_{j≤n} γ_{n,j} t^j / (t^{m+j+1} - 1) = 0`.-/
+`∑_{j≤n} γ_{n,j} t^j / (t^{m+j+1} - 1) = 0`.
+@isnad1 id=eq.2h3v.s7.0857bb1e1f0b from=translated src=- shape=7332e218 vocab=d5e86de2
+-/
 theorem orth_finset {t : ℝ} (ht : 1 < t) {n m : ℕ} (hm : m < n) :
     ∑ j ∈ Finset.range (n + 1),
       legGamma t n j * t ^ j / (t ^ (m + j + 1) - 1) = 0 := by
@@ -415,7 +435,9 @@ theorem orth_finset {t : ℝ} (ht : 1 < t) {n m : ℕ} (hm : m < n) :
   exact (mul_eq_zero.mp h).resolve_left hC
 
 /-- **The `n`-th moment.**  `m = n` in `orth_moment`; the numerator no longer vanishes, so this
-is an explicit closed product form for `L(x^n P_n)` up to the scalar.-/
+is an explicit closed product form for `L(x^n P_n)` up to the scalar.
+@isnad1 id=eq.1h2v.s8.2c9cb70c1f3b from=translated src=- shape=921fe6c3 vocab=7d512d67
+-/
 theorem moment_n {t : ℝ} (ht : 1 < t) (n : ℕ) :
     ((-1) ^ n * t ^ ((n + 1).choose 2))
         * ∑ j ∈ Finset.range (n + 1), legGamma t n j * t ^ j / (t ^ (n + j + 1) - 1)
@@ -426,7 +448,9 @@ theorem moment_n {t : ℝ} (ht : 1 < t) (n : ℕ) :
 /-! ## Step 5 — the series forms -/
 
 /-- `P_n(q^k) = ∑_j γ_{n,j} (q^k)^j` — `legG` in the rescaled variable, evaluated on the
-lattice.-/
+lattice.
+@isnad1 id=eq.0h3v.s6.0b432fab28e2 from=translated src=- shape=9830399c vocab=b73ae9d2
+-/
 theorem legG_lattice (t : ℝ) (n k : ℕ) :
     legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)
       = ∑ j ∈ Finset.range (n + 1), legGamma t n j * ((t⁻¹) ^ k) ^ j := by
@@ -444,7 +468,9 @@ private theorem lattice_term (t : ℝ) (n p k : ℕ) :
     ring
   linear_combination (legGamma t n j) * h
 
-/-- Summability of the lattice terms — a finite sum of geometric series with ratio `< 1`.-/
+/-- Summability of the lattice terms — a finite sum of geometric series with ratio `< 1`.
+@isnad1 id=summable.1h3v.s6.48740c4cfb65 from=translated src=- shape=3341fc57 vocab=cf3403c6
+-/
 theorem summable_lattice {t : ℝ} (ht : 1 < t) (n p : ℕ) :
     Summable (fun k : ℕ => ((t⁻¹) ^ k) ^ (p + 1) * legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -456,7 +482,9 @@ theorem summable_lattice {t : ℝ} (ht : 1 < t) (n p : ℕ) :
   exact (summable_geometric_of_lt_one (pow_nonneg (le_of_lt hinv0) _)
     (pow_lt_one₀ (le_of_lt hinv0) hinv1 (by omega))).mul_left _
 
-/-- **The series moment, for every `m`.**  `L(x^m P_n) = t^{m+1} ∑_j γ_{n,j} t^j/(t^{m+j+1}-1)`.-/
+/-- **The series moment, for every `m`.**  `L(x^m P_n) = t^{m+1} ∑_j γ_{n,j} t^j/(t^{m+j+1}-1)`.
+@isnad1 id=eq.1h3v.s8.16a4638ff8f7 from=translated src=- shape=ec484542 vocab=0e297d9a
+-/
 theorem moment_tsum {t : ℝ} (ht : 1 < t) (n p : ℕ) :
     ∑' k : ℕ, ((t⁻¹) ^ k) ^ (p + 1) * legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)
       = t ^ (p + 1)
@@ -484,13 +512,17 @@ theorem moment_tsum {t : ℝ} (ht : 1 < t) (n p : ℕ) :
   field_simp
   linear_combination (legGamma t n j) * hpj
 
-/-- **Orthogonality, series form.**  The statement `QHarm/Pade.lean` consumes.-/
+/-- **Orthogonality, series form.**  The statement `QHarm/Pade.lean` consumes.
+@isnad1 id=eq.2h3v.s7.9cee63f799d4 from=translated src=- shape=f6782d7c vocab=c07a351e
+-/
 theorem orth_tsum {t : ℝ} (ht : 1 < t) {n m : ℕ} (hm : m < n) :
     ∑' k : ℕ, ((t⁻¹) ^ k) ^ (m + 1) * legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹) = 0 := by
   rw [moment_tsum ht n m, orth_finset ht hm, mul_zero]
 
 /-- **Linear-combination form.**  Any polynomial of degree `< n` is annihilated — the shape the
-add-and-subtract in `QHarm/Forms.lean` needs.-/
+add-and-subtract in `QHarm/Forms.lean` needs.
+@isnad1 id=eq.1h3v.s7.8fb12a26963c from=translated src=- shape=6e012b32 vocab=602bd860
+-/
 theorem orth_tsum_lt {t : ℝ} (ht : 1 < t) {n : ℕ} (c : ℕ → ℝ) :
     ∑' k : ℕ, (t⁻¹) ^ k * (∑ m ∈ Finset.range n, c m * ((t⁻¹) ^ k) ^ m)
         * legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹) = 0 := by
@@ -509,7 +541,9 @@ theorem orth_tsum_lt {t : ℝ} (ht : 1 < t) {n : ℕ} (c : ℕ → ℝ) :
   rw [tsum_mul_left, orth_tsum ht (Finset.mem_range.mp hm), mul_zero]
 
 /-- **The squared norm reduces to the `n`-th moment.**  `h_n = γ_{n,n} · L(x^n P_n)`, because
-`P_n = γ_{n,n} x^n + (lower)` and the lower part is annihilated by `orth_finset`.-/
+`P_n = γ_{n,n} x^n + (lower)` and the lower part is annihilated by `orth_finset`.
+@isnad1 id=eq.1h2v.s8.2735736ba7e8 from=translated src=- shape=6e202755 vocab=0e297d9a
+-/
 theorem norm_sq_eq {t : ℝ} (ht : 1 < t) (n : ℕ) :
     ∑' k : ℕ, (t⁻¹) ^ k * (legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)) ^ 2
       = legGamma t n n
@@ -590,6 +624,9 @@ private theorem nodal_den {t : ℝ} (htne : t ≠ 0) (n : ℕ) :
   linear_combination
     (Rfac t n * ∏ i ∈ Finset.range (n + 1), (t ^ (n + i + 1) - 1)) * hunit
 
+/--
+@isnad1 id=eq.1h2v.s4.7abe3b5a644c from=translated src=- shape=2cea811e vocab=2cddcce4
+-/
 theorem gauss_diag {t : ℝ} (ht : 1 < t) (n : ℕ) : gauss t n n = 1 := by
   have h := gauss_mul_Rfac ht (le_refl n)
   rw [Nat.sub_self, Rfac_zero, mul_one] at h
@@ -641,7 +678,9 @@ private theorem moment_n_prod {t : ℝ} (ht : 1 < t) (n : ℕ) :
 
 /-- **The squared norm, exactly.**  `h_n = ∑_k q^k P_n(q^k)^2 = t^{n+1}/(t^{2n+1} - 1)`, i.e.
 Van Assche's `q^n/(1 - q^{2n+1})`.  Checked independently on exact rationals
-(`t ∈ {2,3,5,7}`, `n ≤ 7`) before formalisation.-/
+(`t ∈ {2,3,5,7}`, `n ≤ 7`) before formalisation.
+@isnad1 id=eq.1h2v.s7.fe6038e83fae from=translated src=- shape=7bb4eaff vocab=4d170dbf
+-/
 theorem norm_sq_value {t : ℝ} (ht : 1 < t) (n : ℕ) :
     ∑' k : ℕ, (t⁻¹) ^ k * (legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)) ^ 2
       = t ^ (n + 1) / (t ^ (2 * n + 1) - 1) := by

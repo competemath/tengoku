@@ -73,12 +73,20 @@ stated without `Nat` division, and so that the divided form is a one-line coroll
 /-- The exponent appearing in the size bound: `∑_{k<n} (k+1)`.-/
 def gaussExp (n : ℕ) : ℕ := ∑ k ∈ Finset.range n, (k + 1)
 
+/--
+@isnad1 id=eq.0h0v.s3.859006f459ef from=translated src=- shape=3c26ae4f vocab=758b1766
+-/
 @[simp] theorem gaussExp_zero : gaussExp 0 = 0 := by simp [gaussExp]
 
+/--
+@isnad1 id=eq.0h1v.s5.1bd3f0d65678 from=translated src=- shape=50954a66 vocab=fce70451
+-/
 theorem gaussExp_succ (n : ℕ) : gaussExp (n + 1) = gaussExp n + (n + 1) := by
   simp [gaussExp, Finset.sum_range_succ]
 
-/-- The Gauss identity, in the form that avoids `Nat` division entirely.-/
+/-- The Gauss identity, in the form that avoids `Nat` division entirely.
+@isnad1 id=eq.0h1v.s5.05158e48df8b from=translated src=- shape=e492614d vocab=f1b60da2
+-/
 theorem two_mul_gaussExp (n : ℕ) : 2 * gaussExp n = n * (n + 1) := by
   induction n with
   | zero => simp
@@ -86,35 +94,52 @@ theorem two_mul_gaussExp (n : ℕ) : 2 * gaussExp n = n * (n + 1) := by
     rw [gaussExp_succ, Nat.mul_add, ih]
     ring
 
-/-- The `Nat` division in `n(n+1)/2` is exact.-/
+/-- The `Nat` division in `n(n+1)/2` is exact.
+@isnad1 id=eq.0h1v.s5.457cf4050d9d from=translated src=- shape=f3c20b95 vocab=15ab0ff4
+-/
 theorem gaussExp_eq (n : ℕ) : gaussExp n = n * (n + 1) / 2 := by
   rw [← two_mul_gaussExp]
   omega
 
 /-! ### Positivity -/
 
-/-- Every factor of the clearing product is positive for an integer base `t ≥ 2`.-/
+/-- Every factor of the clearing product is positive for an integer base `t ≥ 2`.
+@isnad1 id=lt.1h2v.s5.0b93b5346588 from=translated src=- shape=29404a28 vocab=42b4349b
+-/
 theorem sub_one_pos_int {t : ℤ} (ht : 2 ≤ t) (k : ℕ) : 0 < t ^ (k + 1) - 1 := by
   have h1 : (1 : ℤ) < t := by linarith
   have : (1 : ℤ) < t ^ (k + 1) := one_lt_pow₀ h1 (Nat.succ_ne_zero k)
   linarith
 
-/-- Every factor of the clearing product is positive for a real base `t > 1`.-/
+/-- Every factor of the clearing product is positive for a real base `t > 1`.
+@isnad1 id=lt.1h2v.s5.a5ae0f450bd7 from=translated src=- shape=7625b463 vocab=7c89cd43
+-/
 theorem sub_one_pos_real {t : ℝ} (ht : 1 < t) (k : ℕ) : 0 < t ^ (k + 1) - 1 := by
   have : (1 : ℝ) < t ^ (k + 1) := one_lt_pow₀ ht (Nat.succ_ne_zero k)
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s4.ab5a7912fc10 from=translated src=- shape=902071bf vocab=9e7f9a73
+-/
 theorem Dz_pos {t : ℤ} (ht : 2 ≤ t) (n : ℕ) : 0 < Dz t n := by
   unfold Dz
   exact Finset.prod_pos fun k _ => sub_one_pos_int ht k
 
+/--
+@isnad1 id=lt.1h2v.s4.35c502b89e12 from=translated src=- shape=9141f3a7 vocab=acaeeffd
+-/
 theorem Dr_pos {t : ℝ} (ht : 1 < t) (n : ℕ) : 0 < Dr t n := by
   unfold Dr
   exact Finset.prod_pos fun k _ => sub_one_pos_real ht k
 
+/--
+@isnad1 id=le.1h2v.s4.6126bf371c31 from=translated src=- shape=902071bf vocab=53b6d9c8
+-/
 theorem Dr_nonneg {t : ℝ} (ht : 1 < t) (n : ℕ) : 0 ≤ Dr t n := (Dr_pos ht n).le
 
-/-- The real and integer clearing factors agree under `Int.cast`.-/
+/-- The real and integer clearing factors agree under `Int.cast`.
+@isnad1 id=eq.0h2v.s4.aca3abae7e4f from=translated src=- shape=0382be14 vocab=fa240a0f
+-/
 theorem Dr_eq_Dz {t : ℤ} (n : ℕ) : Dr (t : ℝ) n = (Dz t n : ℝ) := by
   unfold Dr Dz
   push_cast
@@ -122,7 +147,9 @@ theorem Dr_eq_Dz {t : ℤ} (n : ℕ) : Dr (t : ℝ) n = (Dz t n : ℝ) := by
 
 /-! ### The clearing property -/
 
-/-- **The clearing property.** Every `t^ℓ − 1` with `1 ≤ ℓ ≤ n` divides `D n`.-/
+/-- **The clearing property.** Every `t^ℓ − 1` with `1 ≤ ℓ ≤ n` divides `D n`.
+@isnad1 id=dvd.2h3v.s5.a4067f7da632 from=translated src=- shape=142b9508 vocab=bad3228a
+-/
 theorem sub_one_dvd_Dz {t : ℤ} {n ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ n) :
     (t ^ ℓ - 1) ∣ Dz t n := by
   unfold Dz
@@ -133,14 +160,18 @@ theorem sub_one_dvd_Dz {t : ℤ} {n ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ 
   exact h
 
 /-- The real-side restatement of the clearing property, for consumers that work over `ℝ`
-after `Dr_eq_Dz`.-/
+after `Dr_eq_Dz`.
+@isnad1 id=ex.2h3v.s6.55a22b365445 from=translated src=- shape=1ede90fc vocab=da191e5a
+-/
 theorem sub_one_dvd_Dz' {t : ℤ} {n ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ n) :
     ∃ c : ℤ, Dz t n = (t ^ ℓ - 1) * c := sub_one_dvd_Dz hℓ hn
 
 /-! ### The size bound -/
 
 /-- The clearing product is bounded termwise by `∏_{k<n} t^{k+1}`, i.e. by
-`t ^ gaussExp n`.-/
+`t ^ gaussExp n`.
+@isnad1 id=le.1h2v.s5.f23437494f00 from=translated src=- shape=db64b54e vocab=132d173f
+-/
 theorem Dr_le_gaussExp {t : ℝ} (ht : 1 < t) (n : ℕ) : Dr t n ≤ t ^ gaussExp n := by
   unfold Dr
   calc ∏ k ∈ Finset.range n, (t ^ (k + 1) - 1)
@@ -153,7 +184,9 @@ theorem Dr_le_gaussExp {t : ℝ} (ht : 1 < t) (n : ℕ) : Dr t n ≤ t ^ gaussEx
         rfl
 
 /-- **The size bound, squared form** — `(D_n)² ≤ t^{n(n+1)}`. No `Nat` division; this is
-the form downstream code should consume.-/
+the form downstream code should consume.
+@isnad1 id=le.1h2v.s6.d9496ee55e72 from=translated src=- shape=9dcc2298 vocab=e5fa1e65
+-/
 theorem Dr_sq_le {t : ℝ} (ht : 1 < t) (n : ℕ) : (Dr t n) ^ 2 ≤ t ^ (n * (n + 1)) := by
   have h1 : Dr t n ≤ t ^ gaussExp n := Dr_le_gaussExp ht n
   calc (Dr t n) ^ 2 ≤ (t ^ gaussExp n) ^ 2 := pow_le_pow_left₀ (Dr_nonneg ht n) h1 2
@@ -161,12 +194,16 @@ theorem Dr_sq_le {t : ℝ} (ht : 1 < t) (n : ℕ) : (Dr t n) ^ 2 ≤ t ^ (n * (n
     _ = t ^ (n * (n + 1)) := by rw [two_mul_gaussExp]
 
 /-- **The size bound.** `D_n ≤ t^{n(n+1)/2}` — the whole point of the crude route. The
-`Nat` division is exact (`gaussExp_eq`).-/
+`Nat` division is exact (`gaussExp_eq`).
+@isnad1 id=le.1h2v.s6.b9d8370ab1f8 from=translated src=- shape=9878c6f2 vocab=bdc4cdde
+-/
 theorem Dr_le {t : ℝ} (ht : 1 < t) (n : ℕ) : Dr t n ≤ t ^ (n * (n + 1) / 2) := by
   rw [← gaussExp_eq]
   exact Dr_le_gaussExp ht n
 
-/-- Division-free restatement: any `e` with `2 * e = n * (n+1)` works as the exponent.-/
+/-- Division-free restatement: any `e` with `2 * e = n * (n+1)` works as the exponent.
+@isnad1 id=le.2h3v.s6.7f3b0b8748b0 from=translated src=- shape=6f999146 vocab=e5fa1e65
+-/
 theorem Dr_le_of_two_mul {t : ℝ} (ht : 1 < t) {n e : ℕ} (he : 2 * e = n * (n + 1)) :
     Dr t n ≤ t ^ e := by
   have : e = gaussExp n := by
@@ -175,7 +212,9 @@ theorem Dr_le_of_two_mul {t : ℝ} (ht : 1 < t) {n e : ℕ} (he : 2 * e = n * (n
   rw [this]
   exact Dr_le_gaussExp ht n
 
-/-- The integer-side size bound, obtained from `Dr_le` through `Dr_eq_Dz`.-/
+/-- The integer-side size bound, obtained from `Dr_le` through `Dr_eq_Dz`.
+@isnad1 id=le.1h2v.s6.d4deb2ddcda2 from=translated src=- shape=44eca5e1 vocab=8249bd08
+-/
 theorem Dz_le {t : ℤ} (ht : 2 ≤ t) (n : ℕ) : Dz t n ≤ t ^ (n * (n + 1) / 2) := by
   have h1 : (1 : ℝ) < (t : ℝ) := by exact_mod_cast (by linarith : (1 : ℤ) < t)
   have h := Dr_le h1 n

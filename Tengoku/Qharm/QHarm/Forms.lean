@@ -121,7 +121,9 @@ private theorem one_sub_q_pos (ht : 1 < t) : (0 : ℝ) < 1 - t⁻¹ := by
   have := qlt ht; linarith
 
 /-- `latVal` is `legG` at the lattice point — definitionally, but `rw` needs it as an
-equation.-/
+equation.
+@isnad1 id=eq.0h3v.s5.8ab2a306384d from=translated src=- shape=93a5216f vocab=2dd37585
+-/
 theorem latVal_def (t : ℝ) (n k : ℕ) :
     latVal t n k = legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹) := rfl
 
@@ -162,7 +164,9 @@ private theorem sqnorm_le {t : ℝ} (ht : 1 < t) (n : ℕ) :
   rw [e1, e2]
   linarith
 
-/-- **The `L`-bound.** `∑_k q^k |P_n(q^k)| ≤ (1 − q)⁻¹`, uniformly in `n`.-/
+/-- **The `L`-bound.** `∑_k q^k |P_n(q^k)| ≤ (1 − q)⁻¹`, uniformly in `n`.
+@isnad1 id=le.1h2v.s6.5a68ff85e646 from=translated src=- shape=14d4b425 vocab=b3b46920
+-/
 theorem L_le {t : ℝ} (ht : 1 < t) (n : ℕ) :
     ∑' k : ℕ, (t⁻¹) ^ k * |latVal t n k| ≤ (1 - t⁻¹)⁻¹ := by
   have hpos : (0 : ℝ) < (1 - t⁻¹)⁻¹ := inv_pos.mpr (one_sub_q_pos ht)
@@ -224,7 +228,9 @@ private theorem inv_den_le {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) (k : 
   have h := one_div_le_one_div_of_le hpos hle
   rwa [one_div, one_div] at h
 
-/-- The summand of the sum-of-squares form is summable.-/
+/-- The summand of the sum-of-squares form is summable.
+@isnad1 id=summable.2h2v.s7.6bae357abe2a from=translated src=- shape=7585dc5d vocab=89401d70
+-/
 theorem summable_sq {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     Summable (fun k : ℕ => (t⁻¹) ^ k * (latVal t n k) ^ 2 / ((t : ℝ) ^ n - (t⁻¹) ^ k)) := by
   have h1 : (1 : ℝ) < t ^ n := one_lt_pow₀ ht (by omega)
@@ -339,7 +345,9 @@ private theorem tsum_cross_zero {t : ℝ} (ht : 1 < t) {n : ℕ} (_hn : 1 ≤ n)
   have h := orth_tsum ht (n := n) (m := j - 1 - i) (by omega)
   rw [show (∑' k : ℕ, ((t⁻¹) ^ k) ^ (j - 1 - i + 1) * latVal t n k) = 0 from h, mul_zero]
 
-/-- **Van Assche (34).**-/
+/-- **Van Assche (34).**
+@isnad1 id=eq.2h2v.s7.295c0808f32b from=translated src=- shape=0eb1b127 vocab=450e107a
+-/
 theorem sumsq {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     legVal t n * rem t n
       = ∑' k : ℕ, (t⁻¹) ^ k * (latVal t n k) ^ 2 / ((t : ℝ) ^ n - (t⁻¹) ^ k) := by
@@ -394,6 +402,9 @@ private theorem exists_latVal_ne_zero {t : ℝ} (ht : 1 < t) (n : ℕ) :
   rw [← hval] at hpos
   exact lt_irrefl 0 hpos
 
+/--
+@isnad1 id=lt.2h2v.s7.c2b743de5798 from=translated src=- shape=abf0a096 vocab=593ba351
+-/
 theorem sumsq_pos {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     0 < ∑' k : ℕ, (t⁻¹) ^ k * (latVal t n k) ^ 2 / ((t : ℝ) ^ n - (t⁻¹) ^ k) := by
   obtain ⟨k0, hk0⟩ := exists_latVal_ne_zero ht n
@@ -518,11 +529,16 @@ private theorem Mexp_add_gaussExp (n : ℕ) : Mexp n + Clearing.gaussExp n = n *
   have h3 : n * (n + 1) = n * n + n := by ring
   omega
 
+/--
+@isnad1 id=lt.1h2v.s4.88fd0cb4e43b from=translated src=- shape=9141f3a7 vocab=b0b71f10
+-/
 theorem clrF_pos {t : ℝ} (ht : 1 < t) (n : ℕ) : 0 < clrF t n :=
   mul_pos (pow_pos (tpos ht) _) (Clearing.Dr_pos ht n)
 
 /-- `clr_n = t^{M_n} D_n ≤ t^{n²}` — the exponents `n(n−1)/2` and `n(n+1)/2` add to `n²`
-exactly.-/
+exactly.
+@isnad1 id=le.1h2v.s5.41d45b5b9474 from=translated src=- shape=8aab35aa vocab=c4aad05e
+-/
 theorem clrF_le {t : ℝ} (ht : 1 < t) (n : ℕ) : clrF t n ≤ t ^ (n * n) := by
   have hD : Dr t n ≤ t ^ Clearing.gaussExp n := Clearing.Dr_le_gaussExp ht n
   have hM : (0 : ℝ) < t ^ Mexp n := pow_pos (tpos ht) _
@@ -553,7 +569,9 @@ private theorem main_bound {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     _ ≤ ((t : ℝ) ^ n - 1)⁻¹ * (1 - t⁻¹)⁻¹ := mul_le_mul_of_nonneg_left (L_le ht n) hdeninv
     _ = (1 - t⁻¹)⁻¹ * ((t : ℝ) ^ n - 1)⁻¹ := by ring
 
-/-- **The quantitative estimate.** Stated with the local `clrF`; `clr = clrF` is `rfl`.-/
+/-- **The quantitative estimate.** Stated with the local `clrF`; `clr = clrF` is `rfl`.
+@isnad1 id=tendsto.1h1v.s5.b220ff6cd940 from=translated src=- shape=7d396643 vocab=8b2c5c7f
+-/
 theorem clr_mul_rem_tendsto_zero {t : ℝ} (ht : 1 < t) :
     Tendsto (fun n : ℕ => |clrF t n * rem t n|) atTop (nhds 0) := by
   have hpow : Tendsto (fun n : ℕ => t ^ n) atTop atTop := tendsto_pow_atTop_atTop_of_one_lt ht

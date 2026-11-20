@@ -125,7 +125,9 @@ def hev (p : Polynomial ℤ) (d : ℕ) (P Q : ℤ) : ℤ :=
 
 /-- The bridge: over any field, `hev p d P Q = Q^d · p(P/Q)` provided `Q ≠ 0` and the
 degree budget `d` is at least `p.natDegree`. This single lemma is used at `K = ℚ` for
-`prod_PhiHom` and at `K = ℝ` for `PhiHom_bounds`.-/
+`prod_PhiHom` and at `K = ℝ` for `PhiHom_bounds`.
+@isnad1 id=eq.2h5v.s7.c2bfc2c896b4 from=translated src=- shape=ddfd90a4 vocab=6fd0b8dc
+-/
 theorem hev_cast {K : Type*} [Field K] {p : Polynomial ℤ} {d : ℕ} (hd : p.natDegree ≤ d)
     (P Q : ℤ) (hQ : (Q : K) ≠ 0) :
     ((hev p d P Q : ℤ) : K)
@@ -140,7 +142,9 @@ theorem hev_cast {K : Type*} [Field K] {p : Polynomial ℤ} {d : ℕ} (hd : p.na
   rw [pow_sub₀ _ hQ hi']
   field_simp
 
-/-- At `Q = 0`, `hev` collapses to the leading term.-/
+/-- At `Q = 0`, `hev` collapses to the leading term.
+@isnad1 id=eq.0h3v.s5.e3fe65f87572 from=translated src=- shape=697d1952 vocab=ed1ee269
+-/
 theorem hev_zero_right {p : Polynomial ℤ} {d : ℕ} (P : ℤ) :
     hev p d P 0 = p.coeff d * P ^ d := by
   rw [hev]
@@ -159,13 +163,18 @@ theorem hev_zero_right {p : Polynomial ℤ} {d : ℕ} (P : ℤ) :
 noncomputable def PhiHom (P Q : ℤ) (k : ℕ) : ℤ :=
   hev (Polynomial.cyclotomic k ℤ) (Nat.totient k) P Q
 
-/-- `PhiHom` cast into any field, for `Q ≠ 0`: literally `Q^{φ(k)} · Φ_k(P/Q)`.-/
+/-- `PhiHom` cast into any field, for `Q ≠ 0`: literally `Q^{φ(k)} · Φ_k(P/Q)`.
+@isnad1 id=eq.1h4v.s7.88dab778c9ee from=translated src=- shape=affa9c89 vocab=5bdb72c6
+-/
 theorem PhiHom_cast {K : Type*} [Field K] (P Q : ℤ) (k : ℕ) (hQ : (Q : K) ≠ 0) :
     ((PhiHom P Q k : ℤ) : K)
       = (Q : K) ^ Nat.totient k * (Polynomial.cyclotomic k K).eval ((P : K) / (Q : K)) := by
   rw [PhiHom, hev_cast (le_of_eq (Polynomial.natDegree_cyclotomic k ℤ)) P Q hQ,
     Polynomial.map_cyclotomic]
 
+/--
+@isnad1 id=eq.0h2v.s4.20d7dc87feb1 from=translated src=- shape=755360d1 vocab=28e3a4e0
+-/
 @[simp] theorem PhiHom_one (P Q : ℤ) : PhiHom P Q 1 = P - Q := by
   have h1 : Nat.totient 1 = 1 := rfl
   simp only [PhiHom, hev, h1, Polynomial.cyclotomic_one, Finset.sum_range_succ,
@@ -174,6 +183,9 @@ theorem PhiHom_cast {K : Type*} [Field K] (P Q : ℤ) (k : ℕ) (hQ : (Q : K) �
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.5e799ea027ee from=translated src=- shape=755360d1 vocab=afb538d0
+-/
 @[simp] theorem PhiHom_two (P Q : ℤ) : PhiHom P Q 2 = P + Q := by
   have h1 : Nat.totient 2 = 1 := rfl
   simp only [PhiHom, hev, h1, Polynomial.cyclotomic_two, Finset.sum_range_succ,
@@ -182,7 +194,9 @@ theorem PhiHom_cast {K : Type*} [Field K] (P Q : ℤ) (k : ℕ) (hQ : (Q : K) �
   norm_num
   ring
 
-/-- At `Q = 0` the atom degenerates to `P^{φ(k)}` (`cyclotomic` is monic).-/
+/-- At `Q = 0` the atom degenerates to `P^{φ(k)}` (`cyclotomic` is monic).
+@isnad1 id=eq.0h2v.s4.b071a7f5b241 from=translated src=- shape=1e0aaae6 vocab=9a4624b9
+-/
 theorem PhiHom_zero_right (P : ℤ) (k : ℕ) : PhiHom P 0 k = P ^ Nat.totient k := by
   rw [PhiHom, hev_zero_right]
   have : (Polynomial.cyclotomic k ℤ).coeff (Nat.totient k) = 1 := by
@@ -191,7 +205,9 @@ theorem PhiHom_zero_right (P : ℤ) (k : ℕ) : PhiHom P 0 k = P ^ Nat.totient k
       Polynomial.natDegree_cyclotomic k ℤ] at h
   rw [this, one_mul]
 
-/-- **The defining product formula.** `∏_{d ∣ ℓ} Φ_d(P,Q) = P^ℓ − Q^ℓ`.-/
+/-- **The defining product formula.** `∏_{d ∣ ℓ} Φ_d(P,Q) = P^ℓ − Q^ℓ`.
+@isnad1 id=eq.1h3v.s6.cfcdb8e9db27 from=translated src=- shape=326d0f72 vocab=c9d100d4
+-/
 theorem prod_PhiHom (P Q : ℤ) {ℓ : ℕ} (hℓ : 0 < ℓ) :
     ∏ d ∈ ℓ.divisors, PhiHom P Q d = P ^ ℓ - Q ^ ℓ := by
   rcases eq_or_ne Q 0 with rfl | hQ
@@ -213,15 +229,23 @@ theorem prod_PhiHom (P Q : ℤ) {ℓ : ℕ} (hℓ : 0 < ℓ) :
 /-- The sharp clearing factor `𝒟_n = ∏_{k=1}^{n} Φ_k(P,Q)`.-/
 noncomputable def Dsharp (P Q : ℤ) (n : ℕ) : ℤ := ∏ k ∈ Finset.Icc 1 n, PhiHom P Q k
 
+/--
+@isnad1 id=eq.0h2v.s4.53d649cb5ade from=translated src=- shape=4f096759 vocab=b6fde27c
+-/
 @[simp] theorem Dsharp_zero (P Q : ℤ) : Dsharp P Q 0 = 1 := by simp [Dsharp]
 
+/--
+@isnad1 id=eq.0h3v.s5.f720e701b3ce from=translated src=- shape=a477492d vocab=3900fe5a
+-/
 theorem Dsharp_succ (P Q : ℤ) (n : ℕ) :
     Dsharp P Q (n + 1) = Dsharp P Q n * PhiHom P Q (n + 1) := by
   rw [Dsharp, Dsharp, ← Finset.prod_Icc_succ_top (by omega : 1 ≤ n + 1)]
 
 /-- **The simultaneous divisibility.** This is the whole point of the file: a single
 product `𝒟_n` of `n` atoms is divisible by `P^ℓ − Q^ℓ` for *every* `ℓ ≤ n` at once,
-because each cyclotomic atom occurs exactly once in it.-/
+because each cyclotomic atom occurs exactly once in it.
+@isnad1 id=dvd.2h4v.s6.2eb9ba3d6085 from=translated src=- shape=9f316f63 vocab=0110d465
+-/
 theorem sub_dvd_Dsharp {P Q : ℤ} {n ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hn : ℓ ≤ n) :
     (P ^ ℓ - Q ^ ℓ) ∣ Dsharp P Q n := by
   rw [← prod_PhiHom P Q (by omega : 0 < ℓ), Dsharp]
@@ -232,7 +256,9 @@ theorem sub_dvd_Dsharp {P Q : ℤ} {n ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hn : ℓ �
 
 /-! ## Size and positivity -/
 
-/-- `Φ_k(P,Q) > 0` whenever `0 < Q < P`.-/
+/-- `Φ_k(P,Q) > 0` whenever `0 < Q < P`.
+@isnad1 id=lt.2h3v.s5.0adcf8344bed from=translated src=- shape=2cf56ff3 vocab=b21ba0e1
+-/
 theorem PhiHom_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (k : ℕ) : 0 < PhiHom P Q k := by
   have hQR : ((Q : ℝ)) ≠ 0 := Int.cast_ne_zero.mpr hQ.ne'
   have hQR0 : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
@@ -244,9 +270,15 @@ theorem PhiHom_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (k : ℕ) : 0 < PhiHom
     exact mul_pos (pow_pos hQR0 _) (Polynomial.cyclotomic_pos' k hx)
   exact_mod_cast this
 
+/--
+@isnad1 id=ne.2h3v.s5.6bf80d54888e from=translated src=- shape=80375a52 vocab=b21ba0e1
+-/
 theorem PhiHom_ne_zero {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (k : ℕ) : PhiHom P Q k ≠ 0 :=
   (PhiHom_pos hQ hPQ k).ne'
 
+/--
+@isnad1 id=lt.2h3v.s5.b6e607d38a25 from=translated src=- shape=2cf56ff3 vocab=3ac8d97e
+-/
 theorem Dsharp_pos {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) : 0 < Dsharp P Q n :=
   Finset.prod_pos fun k _ => PhiHom_pos hQ hPQ k
 
@@ -259,7 +291,9 @@ needed — `Φ_0 = 1` and `φ 0 = 0` — but it is kept so the statement matches
 `QHarm/Growth.lean` was specified against.)
 
 This is **not** sufficient for the sharp constant: it pins `log 𝒟_n` only to within
-`Θ(n²)`. See `log_Dsharp_eq` for the `O(n)` statement.-/
+`Θ(n²)`. See `log_Dsharp_eq` for the `O(n)` statement.
+@isnad1 id=and.3h3v.s6.0c0d915c1885 from=translated src=- shape=e469209c vocab=26a09fa6
+-/
 theorem PhiHom_bounds {P Q : ℤ} (h : 0 < Q) (hPQ : Q < P) {k : ℕ} (hk : 1 ≤ k) :
     (P - Q) ^ Nat.totient k ≤ PhiHom P Q k ∧ PhiHom P Q k ≤ (P + Q) ^ Nat.totient k := by
   have hQR : ((Q : ℝ)) ≠ 0 := Int.cast_ne_zero.mpr h.ne'
@@ -358,7 +392,9 @@ private theorem sum_abs_log_le {r : ℝ} (h0 : 0 < r) (h1 : r < 1) (n : ℕ) :
         mul_le_mul_of_nonneg_left (geom_sum_le_inv h0.le h1 (n + 1)) hinv
     _ = ((1 - r)⁻¹) ^ 2 := by ring
 
-/-- Möbius inversion of `Nat.sum_totient`: `∑_{ab=k} μ(a)·b = φ(k)` over `ℝ`.-/
+/-- Möbius inversion of `Nat.sum_totient`: `∑_{ab=k} μ(a)·b = φ(k)` over `ℝ`.
+@isnad1 id=eq.1h1v.s6.0f3f5b5ce826 from=translated src=- shape=fa3622e5 vocab=6613b325
+-/
 theorem sum_moebius_mul_snd {k : ℕ} (hk : 0 < k) :
     ∑ x ∈ k.divisorsAntidiagonal,
         ((ArithmeticFunction.moebius x.1 : ℤ) : ℝ) * ((x.2 : ℕ) : ℝ)
@@ -376,7 +412,9 @@ theorem sum_moebius_mul_snd {k : ℕ} (hk : 0 < k) :
 
 This is the cancellation that `PhiHom_bounds` cannot see. Each summand is `O(r^b)`, and the
 number of summands is `τ(k)`, so the whole thing is `O(1)` per `k` on average — against the
-`Θ(φ(k))` that the crude bounds give.-/
+`Θ(φ(k))` that the crude bounds give.
+@isnad1 id=eq.3h3v.s7.6307309669dc from=translated src=- shape=237a1c02 vocab=c7ce11b7
+-/
 theorem log_PhiHom_sub {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {k : ℕ} (hk : 0 < k) :
     Real.log ((PhiHom P Q k : ℤ) : ℝ) - ((Nat.totient k : ℕ) : ℝ) * Real.log ((P : ℤ) : ℝ)
       = ∑ x ∈ k.divisorsAntidiagonal,
@@ -439,7 +477,9 @@ Together with Mertens' `∑_{k≤n} φ(k) = 3n²/π² + o(n²)` this gives `𝒟
 which is the sharp clearing rate the rational-base track needs. The error term here is
 `O(n)`, hence `o(n²)`; the constant is deliberately lossy (the true error is `O(1)·n` with a
 much smaller constant — measured `2.65` at `P=7, Q=2, n=200` against the bound `112`), since
-nothing downstream is tight.-/
+nothing downstream is tight.
+@isnad1 id=le.2h3v.s7.4a8c66cc3cae from=translated src=- shape=d10553bb vocab=c545c086
+-/
 theorem log_Dsharp_eq {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     |Real.log ((Dsharp P Q n : ℤ) : ℝ)
         - (∑ k ∈ Finset.Icc 1 n, ((Nat.totient k : ℕ) : ℝ)) * Real.log ((P : ℤ) : ℝ)|

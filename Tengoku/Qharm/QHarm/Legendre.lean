@@ -60,9 +60,15 @@ Mathlib has no q-Pochhammer machinery at all (only a TODO in
 noncomputable def qpoch (t a : ℝ) (m : ℕ) : ℝ :=
   ∏ j ∈ Finset.range m, (1 - a * t ^ j)
 
+/--
+@isnad1 id=eq.0h2v.s4.0bd732782310 from=translated src=- shape=4f096759 vocab=d6f52f68
+-/
 @[simp] theorem qpoch_zero (t a : ℝ) : qpoch t a 0 = 1 := by
   simp [qpoch]
 
+/--
+@isnad1 id=eq.0h3v.s6.1c46e7029a9f from=translated src=- shape=a948c8bf vocab=d05bb88c
+-/
 theorem qpoch_succ (t a : ℝ) (m : ℕ) :
     qpoch t a (m + 1) = qpoch t a m * (1 - a * t ^ m) := by
   simp [qpoch, Finset.prod_range_succ]
@@ -81,6 +87,9 @@ noncomputable def legG (t : ℝ) (n : ℕ) (w : ℝ) : ℝ :=
 built on.-/
 noncomputable def legVal (t : ℝ) (n : ℕ) : ℝ := legG t n 1
 
+/--
+@isnad1 id=eq.0h2v.s5.54c00a0b70e2 from=translated src=- shape=86ffa0cb vocab=afc65882
+-/
 theorem legVal_eq (t : ℝ) (n : ℕ) :
     legVal t n = ∑ j ∈ Finset.range (n + 1), legCoef t n j := by
   simp [legVal, legG]
@@ -123,17 +132,32 @@ noncomputable def latVal (t : ℝ) (n k : ℕ) : ℝ := legG t n ((t⁻¹) ^ k *
 noncomputable def headSum (t : ℝ) (n : ℕ) : ℝ :=
   ∑ k ∈ Finset.range (n - 1), 1 / (t ^ (k + 1) - 1)
 
+/--
+@isnad1 id=eq.0h1v.s4.297f72908e7d from=translated src=- shape=0e0c2bda vocab=e317615f
+-/
 @[simp] theorem headSum_zero (t : ℝ) : headSum t 0 = 0 := by
   simp [headSum]
 
+/--
+@isnad1 id=eq.0h1v.s4.b0029978916d from=translated src=- shape=0e0c2bda vocab=e317615f
+-/
 @[simp] theorem headSum_one (t : ℝ) : headSum t 1 = 0 := by
   simp [headSum]
 
+/--
+@isnad1 id=eq.0h2v.s4.cb5d15d5dc5d from=translated src=- shape=f976ef39 vocab=3030046f
+-/
 theorem legG_zero (t : ℝ) (w : ℝ) : legG t 0 w = 1 := by
   simp [legG, legCoef, gauss]
 
+/--
+@isnad1 id=eq.0h1v.s4.76f3b654219b from=translated src=- shape=0e0c2bda vocab=c8be3eab
+-/
 @[simp] theorem legVal_zero (t : ℝ) : legVal t 0 = 1 := legG_zero t 1
 
+/--
+@isnad1 id=eq.0h1v.s4.119a0fe3f172 from=translated src=- shape=0e0c2bda vocab=9212f02b
+-/
 @[simp] theorem legQval_zero (t : ℝ) : legQval t 0 = 0 := by
   simp [legQval]
 

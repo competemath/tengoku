@@ -94,7 +94,9 @@ open Finset Filter
 
 /-- The `O(n)` Möbius error of `log_Dsharp_eq`, divided by `n²`, is `O(1/n)`.
 
-Explicit rate: for `n ≥ 1` the quantity is at most `(P/(P−Q))²/n`.-/
+Explicit rate: for `n ≥ 1` the quantity is at most `(P/(P−Q))²/n`.
+@isnad1 id=tendsto.2h2v.s6.9c2693e30b27 from=translated src=- shape=e47c10e2 vocab=278da2d8
+-/
 theorem log_Dsharp_div_sq_sub_tendsto_zero {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) :
     Tendsto (fun n : ℕ =>
         (Real.log ((Dsharp P Q n : ℤ) : ℝ)
@@ -125,7 +127,9 @@ the assembly actually consumes:
     log 𝒟_n / n²  →  (3/π²) · log P.
 
 The `Q`-dependence has vanished entirely, which is the content of the Möbius cancellation:
-the atoms `Φ_k(P,Q)` know about `Q`, but their product to `n` does not, to order `n²`.-/
+the atoms `Φ_k(P,Q)` know about `Q`, but their product to `n` does not, to order `n²`.
+@isnad1 id=tendsto.2h2v.s6.6a1090d5de0d from=translated src=- shape=68988b61 vocab=88b9a5f3
+-/
 theorem log_Dsharp_div_sq_tendsto {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) :
     Tendsto (fun n : ℕ => Real.log ((Dsharp P Q n : ℤ) : ℝ) / (n : ℝ) ^ 2)
       atTop (nhds ((3 / Real.pi ^ 2) * Real.log ((P : ℤ) : ℝ))) := by
@@ -146,7 +150,9 @@ theorem log_Dsharp_div_sq_tendsto {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) :
 `|log 𝒟_n / n² − ((∑_{k≤n} φ(k))/n²)·log P| ≤ (P/(P−Q))² / n`.
 
 Not needed for the limit above (which goes through `squeeze_zero_norm'`), but it is the
-quantitative statement, and it is what one would use to make the assembly effective.-/
+quantitative statement, and it is what one would use to make the assembly effective.
+@isnad1 id=le.3h3v.s7.0290466c2060 from=translated src=- shape=7908a12b vocab=c545c086
+-/
 theorem abs_log_Dsharp_div_sq_le {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {n : ℕ} (hn : 1 ≤ n) :
     |Real.log ((Dsharp P Q n : ℤ) : ℝ) / (n : ℝ) ^ 2
         - (∑ k ∈ Finset.Icc 1 n, ((Nat.totient k : ℕ) : ℝ)) / (n : ℝ) ^ 2
@@ -178,7 +184,9 @@ consumes: the balance only ever needs `𝒟_n` to be *no larger* than `P^{(3/π�
 
 Note there is no `n ≥ N(ε)` bookkeeping to do downstream — `∀ᶠ n in atTop` composes with the
 other eventual bounds by `filter_upwards`, and the final contradiction is drawn at a single
-large `n`.-/
+large `n`.
+@isnad1 id=eventual.3h3v.s7.bd0b0e24377d from=translated src=- shape=9013fc3f vocab=8637c002
+-/
 theorem log_Dsharp_le_eventually {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ n : ℕ in atTop,
       Real.log ((Dsharp P Q n : ℤ) : ℝ)
@@ -197,7 +205,9 @@ theorem log_Dsharp_le_eventually {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {ε : �
 
 /-- **`𝒟_n^{1/n²} → P^{3/π²}`**, literally, as real powers. This is the shape the growth
 lemma is usually quoted in; the log form above is the one the Lean assembly uses. Recorded so that
-the file's headline claim is present as a theorem and not only as a docstring.-/
+the file's headline claim is present as a theorem and not only as a docstring.
+@isnad1 id=tendsto.2h2v.s7.c4ea8aabffac from=translated src=- shape=3decee74 vocab=ef5f1bd0
+-/
 theorem Dsharp_rpow_tendsto {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) :
     Tendsto (fun n : ℕ => (((Dsharp P Q n : ℤ) : ℝ)) ^ ((1 : ℝ) / (n : ℝ) ^ 2))
       atTop (nhds (((P : ℤ) : ℝ) ^ (3 / Real.pi ^ 2))) := by

@@ -76,7 +76,9 @@ private theorem q_lt_one (ht : 1 < t) : t⁻¹ < 1 := by
   rw [← one_div, div_lt_one h0]
   linarith
 
-/-- The Padé denominators `t^n − q^k` are strictly positive as soon as `n ≥ 1`.-/
+/-- The Padé denominators `t^n − q^k` are strictly positive as soon as `n ≥ 1`.
+@isnad1 id=lt.2h3v.s6.fa1f4266e134 from=translated src=- shape=9de20a7a vocab=83a80735
+-/
 theorem pade_den_pos {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) (k : ℕ) :
     0 < t ^ n - t⁻¹ ^ k := by
   have h1 : t⁻¹ ^ k ≤ 1 := pow_le_one₀ (q_nonneg ht) (q_lt_one ht).le
@@ -186,15 +188,24 @@ private theorem abs_latVal_le {t : ℝ} (ht : 1 < t) (n k : ℕ) :
         mul_le_mul_of_nonneg_left hpj (abs_nonneg _)
     _ = |legCoef t n j| := mul_one _
 
+/--
+@isnad1 id=summable.1h2v.s6.7abcd2c4e88a from=translated src=- shape=c5223b2e vocab=2c304552
+-/
 theorem summable_stieltjes {t : ℝ} (ht : 1 < t) (n : ℕ) :
     Summable (fun k : ℕ => (t⁻¹) ^ k / (t ^ n - (t⁻¹) ^ k)) := by
   have h := summable_master ht n (g := fun _ : ℕ => (1 : ℝ)) (M := 1) (fun k => by simp)
   exact h.congr (fun k => by rw [mul_one])
 
+/--
+@isnad1 id=summable.1h2v.s6.9ae2e2ca3d8d from=translated src=- shape=225b1dfd vocab=f7e24fa0
+-/
 theorem summable_rem {t : ℝ} (ht : 1 < t) (n : ℕ) :
     Summable (fun k : ℕ => (t⁻¹) ^ k * latVal t n k / (t ^ n - (t⁻¹) ^ k)) :=
   summable_master ht n (abs_latVal_le ht n)
 
+/--
+@isnad1 id=summable.1h2v.s6.24a2cf70b0a7 from=translated src=- shape=fdbe2f4f vocab=d56c1202
+-/
 theorem summable_qterm {t : ℝ} (ht : 1 < t) (n : ℕ) :
     Summable (fun k : ℕ => (t⁻¹) ^ k * (legVal t n - latVal t n k) / (t ^ n - (t⁻¹) ^ k)) := by
   refine summable_master ht n (M := |legVal t n| + coefAbsSum t n) (fun k => ?_)
@@ -221,7 +232,9 @@ private theorem stieltjes_term {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) (
   rw [div_eq_div_iff (ne_of_gt hD) (ne_of_gt hE)]
   linear_combination hx
 
-/-- The Stieltjes function at `z = t^n` is exactly the tail of the q-harmonic series.-/
+/-- The Stieltjes function at `z = t^n` is exactly the tail of the q-harmonic series.
+@isnad1 id=eq.2h2v.s6.e40824c9e992 from=translated src=- shape=36325a61 vocab=5ace72eb
+-/
 theorem stieltjes_eq_tail {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     ∑' k : ℕ, (t⁻¹) ^ k / (t ^ n - (t⁻¹) ^ k) = S t - headSum t n := by
   simp only [headSum]
@@ -284,7 +297,9 @@ private theorem geom_inv_eval {t : ℝ} (ht : 1 < t) {m : ℕ} (hm : 1 ≤ m) :
   rw [inv_pow, show (1 : ℝ) - ((t : ℝ) ^ m)⁻¹ = (t ^ m - 1) / t ^ m from by field_simp, inv_div]
 
 /-- `Q_n` in series form — the reconciliation of the finite double sum with the
-add-and-subtract.-/
+add-and-subtract.
+@isnad1 id=eq.1h2v.s6.5daf639cf7bc from=translated src=- shape=92fe92a6 vocab=6785034b
+-/
 theorem legQval_eq_tsum {t : ℝ} (ht : 1 < t) (n : ℕ) :
     legQval t n
       = ∑' k : ℕ, (t⁻¹) ^ k * (legVal t n - latVal t n k) / (t ^ n - (t⁻¹) ^ k) := by
@@ -325,7 +340,9 @@ theorem legQval_eq_tsum {t : ℝ} (ht : 1 < t) (n : ℕ) :
 
 /-! ### Van Assche (22) -/
 
-/-- **Van Assche (22).**-/
+/-- **Van Assche (22).**
+@isnad1 id=eq.2h2v.s5.574c1d411e41 from=translated src=- shape=c143df13 vocab=f1d22fc5
+-/
 theorem pade {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) :
     legVal t n * (S t - headSum t n) - legQval t n = rem t n := by
   have h1 : Summable (fun k : ℕ => legVal t n * ((t⁻¹) ^ k / (t ^ n - (t⁻¹) ^ k))) :=

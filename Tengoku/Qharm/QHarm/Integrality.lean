@@ -96,15 +96,26 @@ open Finset
 /-- The extra clearing exponent, `M n = n(n-1)/2`.-/
 def Mexp (n : ℕ) : ℕ := n * (n - 1) / 2
 
+/--
+@isnad1 id=eq.0h1v.s3.0c0912092716 from=translated src=- shape=3e368d2e vocab=26464b95
+-/
 theorem Mexp_eq_choose (n : ℕ) : Mexp n = n.choose 2 := (Nat.choose_two_right n).symm
 
-/-- Subtraction-free form: `2 M n + n = n^2`.-/
+/-- Subtraction-free form: `2 M n + n = n^2`.
+@isnad1 id=eq.0h1v.s5.cb0031df0ffb from=translated src=- shape=3bca70dc vocab=faf7d129
+-/
 theorem two_mul_Mexp_add (n : ℕ) : 2 * Mexp n + n = n * n := by
   rw [Mexp_eq_choose]
   exact two_mul_choose_two_add n
 
+/--
+@isnad1 id=eq.0h0v.s3.9c44dacd69b6 from=translated src=- shape=3c26ae4f vocab=7426cc80
+-/
 @[simp] theorem Mexp_zero : Mexp 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5d973dc52999 from=translated src=- shape=3c26ae4f vocab=7426cc80
+-/
 @[simp] theorem Mexp_one : Mexp 1 = 0 := rfl
 
 /-! ### The exponent inequality
@@ -129,7 +140,9 @@ private theorem key_core {p j d : ℕ} (hdj : d ≤ j) (hjn : j ≤ p + 1) :
   omega
 
 /-- **The exponent inequality.** This is what makes `t^(Mexp n) · D_n · Q_n` integral
-term by term. Sharp at `j = d = n`.-/
+term by term. Sharp at `j = d = n`.
+@isnad1 id=le.3h3v.s6.a2f3fa639df7 from=translated src=- shape=bedec8d7 vocab=7a355e43
+-/
 theorem key_exp {n j d : ℕ} (hd1 : 1 ≤ d) (hdj : d ≤ j) (hjn : j ≤ n) :
     (n - 1) * d ≤ j.choose 2 + Mexp n := by
   have hn1 : 1 ≤ n := by omega
@@ -159,10 +172,19 @@ Membership in `Zr` is exactly `∃ a : ℤ, (a : ℝ) = x`; using a `Subring` gi
 /-- The image of `ℤ` in `ℝ`, as a subring.-/
 noncomputable def Zr : Subring ℝ := (Int.castRingHom ℝ).range
 
+/--
+@isnad1 id=iff.0h1v.s5.907ac3908df2 from=translated src=- shape=b4d9c0ac vocab=154497cb
+-/
 theorem mem_Zr {x : ℝ} : x ∈ Zr ↔ ∃ a : ℤ, (a : ℝ) = x := RingHom.mem_range
 
+/--
+@isnad1 id=mem.0h1v.s5.944f288664ca from=translated src=- shape=2622c728 vocab=154497cb
+-/
 theorem intCast_mem_Zr (a : ℤ) : ((a : ℝ)) ∈ Zr := mem_Zr.mpr ⟨a, rfl⟩
 
+/--
+@isnad1 id=ex.1h1v.s5.b98183ca8a76 from=translated src=- shape=7e4da729 vocab=154497cb
+-/
 theorem exists_int_of_mem_Zr {x : ℝ} (h : x ∈ Zr) : ∃ a : ℤ, x = (a : ℝ) := by
   obtain ⟨a, ha⟩ := mem_Zr.mp h
   exact ⟨a, ha.symm⟩
@@ -172,6 +194,9 @@ theorem exists_int_of_mem_Zr {x : ℝ} (h : x ∈ Zr) : ∃ a : ℤ, x = (a : �
 /-- `legCoef t n j = t^(C(j,2)) * coefZ t n j`, with `coefZ` an integer.-/
 def coefZ (t : ℤ) (n j : ℕ) : ℤ := (-1) ^ j * qbin t 1 n j * qbin t 1 (n + j) n
 
+/--
+@isnad1 id=eq.2h3v.s6.1164723bfadf from=translated src=- shape=7edde502 vocab=81e73e3a
+-/
 theorem legCoef_eq_of_int {t : ℤ} (ht : 2 ≤ t) {n j : ℕ} (h : j ≤ n) :
     legCoef (t : ℝ) n j = (t : ℝ) ^ (j.choose 2) * (coefZ t n j : ℝ) := by
   have h1 : (1 : ℤ) < t := by linarith
@@ -182,6 +207,9 @@ theorem legCoef_eq_of_int {t : ℤ} (ht : 2 ≤ t) {n j : ℕ} (h : j ≤ n) :
 
 /-! ### `P_n(t^n)` is an integer -/
 
+/--
+@isnad1 id=mem.1h2v.s5.ec84fcb556fe from=translated src=- shape=7545c239 vocab=875b17a4
+-/
 theorem legVal_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) : legVal (t : ℝ) n ∈ Zr := by
   rw [legVal_eq]
   refine Subring.sum_mem _ (fun j hj => ?_)
@@ -191,13 +219,18 @@ theorem legVal_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) : legVal (t : ℝ) n �
   push_cast
   ring
 
-/-- **`P_n(t^n)` is an integer for integer `t`.** No clearing factor is needed.-/
+/-- **`P_n(t^n)` is an integer for integer `t`.** No clearing factor is needed.
+@isnad1 id=ex.1h2v.s4.242cd81bcbfe from=translated src=- shape=65e8bf8b vocab=b6dab3f1
+-/
 theorem legVal_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ b : ℤ, legVal (t : ℝ) n = (b : ℝ) :=
   exists_int_of_mem_Zr (legVal_mem_Zr ht n)
 
 /-! ### `D_n · headSum` is an integer -/
 
+/--
+@isnad1 id=mem.1h2v.s5.3225475d0218 from=translated src=- shape=2ba833d8 vocab=26322b39
+-/
 theorem Dr_mul_headSum_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     Dr (t : ℝ) n * headSum (t : ℝ) n ∈ Zr := by
   have htR : (1 : ℝ) < (t : ℝ) := by exact_mod_cast (by linarith : (1 : ℤ) < t)
@@ -212,7 +245,9 @@ theorem Dr_mul_headSum_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
   push_cast
   field_simp
 
-/-- **`D_n · P_n(t^n) · headSum` is an integer.**-/
+/-- **`D_n · P_n(t^n) · headSum` is an integer.**
+@isnad1 id=ex.1h2v.s5.89849b7f0a5e from=translated src=- shape=f84d84b4 vocab=1e9135e2
+-/
 theorem Dr_mul_legVal_mul_headSum_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ a : ℤ, Dr (t : ℝ) n * legVal (t : ℝ) n * headSum (t : ℝ) n = (a : ℝ) := by
   refine exists_int_of_mem_Zr ?_
@@ -243,7 +278,9 @@ private theorem qterm_rw {t : ℝ} (ht : 1 < t) {n i j : ℕ} (hij : i < j) (hjn
   field_simp
   linear_combination legCoef t n j * hkey
 
-/-- `Q_n(t^n)` with every `t`-power explicit.-/
+/-- `Q_n(t^n)` with every `t`-power explicit.
+@isnad1 id=eq.1h2v.s7.c720cae8200d from=translated src=- shape=c0c3f049 vocab=68b11d61
+-/
 theorem legQval_eq_flat {t : ℝ} (ht : 1 < t) (n : ℕ) :
     legQval t n = ∑ j ∈ Finset.range (n + 1), ∑ i ∈ Finset.range j,
       legCoef t n j * ((t ^ ((n - 1) * (j - i)))⁻¹ * (t ^ (j - i) - 1)⁻¹) := by
@@ -256,6 +293,9 @@ theorem legQval_eq_flat {t : ℝ} (ht : 1 < t) (n : ℕ) :
 
 /-! ### The main integrality statements -/
 
+/--
+@isnad1 id=mem.1h2v.s6.c1a14a904e94 from=translated src=- shape=95405cea vocab=65d92a3a
+-/
 theorem tM_Dr_mul_legQval_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legQval (t : ℝ) n ∈ Zr := by
   have htZ : (1 : ℤ) < t := by linarith
@@ -291,11 +331,16 @@ theorem tM_Dr_mul_legQval_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
   field_simp
   linear_combination (-((coefZ t n j : ℝ) * (c : ℝ))) * hpow
 
-/-- **`t^(Mexp n) · D_n · Q_n(t^n)` is an integer.**-/
+/-- **`t^(Mexp n) · D_n · Q_n(t^n)` is an integer.**
+@isnad1 id=ex.1h2v.s6.303c6c4dab1a from=translated src=- shape=def8c4bb vocab=2673e3d9
+-/
 theorem tM_Dr_mul_legQval_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ a : ℤ, (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legQval (t : ℝ) n = (a : ℝ) :=
   exists_int_of_mem_Zr (tM_Dr_mul_legQval_mem_Zr ht n)
 
+/--
+@isnad1 id=mem.1h2v.s6.90f005a6854e from=translated src=- shape=95405cea vocab=8cd85ce8
+-/
 theorem tM_Dr_mul_legVal_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legVal (t : ℝ) n ∈ Zr := by
   have hDr : Dr (t : ℝ) n ∈ Zr := by
@@ -305,11 +350,16 @@ theorem tM_Dr_mul_legVal_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     rw [this]; exact intCast_mem_Zr _
   exact Subring.mul_mem _ (Subring.mul_mem _ hpow hDr) (legVal_mem_Zr ht n)
 
-/-- **`t^(Mexp n) · D_n · P_n(t^n)` is an integer.**-/
+/-- **`t^(Mexp n) · D_n · P_n(t^n)` is an integer.**
+@isnad1 id=ex.1h2v.s6.aac9bcb325c4 from=translated src=- shape=def8c4bb vocab=6d96c4ea
+-/
 theorem tM_Dr_mul_legVal_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ b : ℤ, (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legVal (t : ℝ) n = (b : ℝ) :=
   exists_int_of_mem_Zr (tM_Dr_mul_legVal_mem_Zr ht n)
 
+/--
+@isnad1 id=mem.1h2v.s6.e8f5ad9c11df from=translated src=- shape=f201875c vocab=d7b246b5
+-/
 theorem tM_Dr_mul_legVal_mul_headSum_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legVal (t : ℝ) n * headSum (t : ℝ) n ∈ Zr := by
   have hpow : ((t : ℝ)) ^ Mexp n ∈ Zr := by
@@ -321,13 +371,17 @@ theorem tM_Dr_mul_legVal_mul_headSum_mem_Zr {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
   exact Subring.mul_mem _ hpow
     (Subring.mul_mem _ (legVal_mem_Zr ht n) (Dr_mul_headSum_mem_Zr ht n))
 
-/-- **`t^(Mexp n) · D_n · P_n(t^n) · headSum` is an integer.**-/
+/-- **`t^(Mexp n) · D_n · P_n(t^n) · headSum` is an integer.**
+@isnad1 id=ex.1h2v.s6.7a65b3b660af from=translated src=- shape=2cec557b vocab=efab8e37
+-/
 theorem tM_Dr_mul_legVal_mul_headSum_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ a : ℤ, (t : ℝ) ^ Mexp n * Dr (t : ℝ) n * legVal (t : ℝ) n * headSum (t : ℝ) n = (a : ℝ) :=
   exists_int_of_mem_Zr (tM_Dr_mul_legVal_mul_headSum_mem_Zr ht n)
 
 /-- **Integrality of `A_n`.** The combined form the assembly consumes:
-`A_n = t^(Mexp n) · D_n · (Q_n(t^n) + P_n(t^n) · headSum) ∈ ℤ`.-/
+`A_n = t^(Mexp n) · D_n · (Q_n(t^n) + P_n(t^n) · headSum) ∈ ℤ`.
+@isnad1 id=ex.1h2v.s6.3883d2b0ad9a from=translated src=- shape=61530215 vocab=4bfc3831
+-/
 theorem tM_Dr_mul_Aform_isInt {t : ℤ} (ht : 2 ≤ t) (n : ℕ) :
     ∃ a : ℤ, (t : ℝ) ^ Mexp n * Dr (t : ℝ) n *
       (legQval (t : ℝ) n + legVal (t : ℝ) n * headSum (t : ℝ) n) = (a : ℝ) := by

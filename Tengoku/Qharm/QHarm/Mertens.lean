@@ -48,7 +48,9 @@ open scoped ArithmeticFunction.Moebius
 
 /-! ### Step 1: `φ = μ * id` pointwise -/
 
-/-- Möbius inversion of `∑_{d ∣ n} φ(d) = n`, stated over `ℝ`.-/
+/-- Möbius inversion of `∑_{d ∣ n} φ(d) = n`, stated over `ℝ`.
+@isnad1 id=eq.1h1v.s6.0f3f5b5ce826 from=translated src=- shape=fa3622e5 vocab=6613b325
+-/
 theorem sum_moebius_mul_id (n : ℕ) (hn : 0 < n) :
     ∑ p ∈ n.divisorsAntidiagonal, (μ p.1 : ℝ) * (p.2 : ℝ) = (n.totient : ℝ) := by
   refine (ArithmeticFunction.sum_eq_iff_sum_mul_moebius_eq
@@ -59,7 +61,9 @@ theorem sum_moebius_mul_id (n : ℕ) (hn : 0 < n) :
 /-! ### Step 2: the Dirichlet interchange -/
 
 /-- The lattice `{(d, m) : 1 ≤ d, 1 ≤ m, d·m ≤ N}` sliced by the product `d·m` versus
-sliced by `d`.-/
+sliced by `d`.
+@isnad1 id=eq.0h2v.s6.a06f12b6020a from=translated src=- shape=88330228 vocab=186d57ff
+-/
 theorem sum_Icc_divisorsAntidiagonal (N : ℕ) (F : ℕ → ℕ → ℝ) :
     ∑ n ∈ Icc 1 N, ∑ p ∈ n.divisorsAntidiagonal, F p.1 p.2
       = ∑ d ∈ Icc 1 N, ∑ m ∈ Icc 1 (N / d), F d m := by
@@ -108,6 +112,9 @@ theorem sum_Icc_divisorsAntidiagonal (N : ℕ) (F : ℕ → ℕ → ℝ) :
 /-- `T m = m(m+1)/2`.-/
 noncomputable def triangle (m : ℕ) : ℝ := (m : ℝ) * ((m : ℝ) + 1) / 2
 
+/--
+@isnad1 id=eq.0h1v.s4.c8e04f177f14 from=translated src=- shape=934a16f6 vocab=7c303571
+-/
 theorem sum_Icc_cast (M : ℕ) : ∑ m ∈ Icc 1 M, (m : ℝ) = triangle M := by
   induction M with
   | zero => simp [triangle]
@@ -116,7 +123,9 @@ theorem sum_Icc_cast (M : ℕ) : ∑ m ∈ Icc 1 M, (m : ℝ) = triangle M := by
       push_cast
       ring
 
-/-- **The exact identity.** `∑_{k ≤ N} φ(k) = ∑_{d ≤ N} μ(d) · T(⌊N/d⌋)`.-/
+/-- **The exact identity.** `∑_{k ≤ N} φ(k) = ∑_{d ≤ N} μ(d) · T(⌊N/d⌋)`.
+@isnad1 id=eq.0h1v.s6.c33754d878ac from=translated src=- shape=80f6ff45 vocab=b52b9203
+-/
 theorem sum_totient_eq_sum_moebius (N : ℕ) :
     ∑ k ∈ Icc 1 N, (k.totient : ℝ) = ∑ d ∈ Icc 1 N, (μ d : ℝ) * triangle (N / d) := by
   have h1 : ∑ k ∈ Icc 1 N, (k.totient : ℝ)
@@ -130,6 +139,9 @@ theorem sum_totient_eq_sum_moebius (N : ℕ) :
 
 /-! ### Step 4: `∑_d μ(d)/d² = 6/π²` -/
 
+/--
+@isnad1 id=summable.0h0v.s6.3de7477407a9 from=translated src=- shape=0011f613 vocab=428797b8
+-/
 theorem summable_moebius_div_sq :
     Summable (fun d : ℕ => (μ d : ℝ) / (d : ℝ) ^ 2) := by
   have hcomp : Summable (fun d : ℕ => 1 / (d : ℝ) ^ 2) :=
@@ -150,7 +162,9 @@ theorem summable_moebius_div_sq :
     exact h
 
 /-- **`∑_{d≥1} μ(d)/d² = 6/π² = 1/ζ(2)`.** Transported from the complex L-series identity
-`L ζ s · L μ s = 1` at `s = 2` together with `ζ(2) = π²/6`.-/
+`L ζ s · L μ s = 1` at `s = 2` together with `ζ(2) = π²/6`.
+@isnad1 id=hassum.0h0v.s6.147365eaa15f from=translated src=- shape=313bb109 vocab=858e6f30
+-/
 theorem hasSum_moebius_div_sq :
     HasSum (fun d : ℕ => (μ d : ℝ) / (d : ℝ) ^ 2) (6 / Real.pi ^ 2) := by
   have hpi : (Real.pi : ℂ) ^ 2 ≠ 0 := by
@@ -183,7 +197,9 @@ theorem hasSum_moebius_div_sq :
 private lemma Ioc_zero_eq_Icc_one (k : ℕ) : Finset.Ioc 0 k = Finset.Icc 1 k := by
   ext x; simp only [Finset.mem_Ioc, Finset.mem_Icc]; omega
 
-/-- `|∑_{d ≤ N} μ(d)/d² − 6/π²| ≤ 1/N`.-/
+/-- `|∑_{d ≤ N} μ(d)/d² − 6/π²| ≤ 1/N`.
+@isnad1 id=le.1h1v.s7.d77be92aaac0 from=translated src=- shape=0bd5dc72 vocab=7d8ece45
+-/
 theorem abs_partial_moebius_sub_le (N : ℕ) (hN : 1 ≤ N) :
     |(∑ d ∈ Icc 1 N, (μ d : ℝ) / (d : ℝ) ^ 2) - 6 / Real.pi ^ 2| ≤ 1 / (N : ℝ) := by
   set f : ℕ → ℝ := fun d => (μ d : ℝ) / (d : ℝ) ^ 2 with hf
@@ -246,7 +262,9 @@ private lemma tri_abs_aux {x y : ℝ} (hy0 : 0 ≤ y) (h1 : y ≤ x) (h2 : x < y
   · nlinarith
   · nlinarith
 
-/-- `|T(⌊N/d⌋) − N²/(2d²)| ≤ N/d`.-/
+/-- `|T(⌊N/d⌋) − N²/(2d²)| ≤ N/d`.
+@isnad1 id=le.1h2v.s6.22180a18a0a5 from=translated src=- shape=af41b042 vocab=4854a9bc
+-/
 theorem abs_triangle_sub_le (N d : ℕ) (hd : 1 ≤ d) :
     |triangle (N / d) - (N : ℝ) ^ 2 / (2 * (d : ℝ) ^ 2)| ≤ (N : ℝ) / (d : ℝ) := by
   have hd0 : (0 : ℝ) < (d : ℝ) := by exact_mod_cast hd
@@ -263,7 +281,9 @@ theorem abs_triangle_sub_le (N d : ℕ) (hd : 1 ≤ d) :
   rw [hxx, triangle]
   exact tri_abs_aux (Nat.cast_nonneg _) hmx hxm
 
-/-- `∑_{d ≤ N} 1/d ≤ 1 + log N`.-/
+/-- `∑_{d ≤ N} 1/d ≤ 1 + log N`.
+@isnad1 id=le.0h1v.s5.632c805f13ac from=translated src=- shape=d1a1014a vocab=e138e725
+-/
 theorem sum_inv_Icc_le (N : ℕ) : ∑ d ∈ Icc 1 N, (1 : ℝ) / (d : ℝ) ≤ 1 + Real.log N := by
   have h := harmonic_le_one_add_log N
   rw [harmonic_eq_sum_Icc] at h
@@ -272,7 +292,9 @@ theorem sum_inv_Icc_le (N : ℕ) : ∑ d ∈ Icc 1 N, (1 : ℝ) / (d : ℝ) ≤ 
 
 /-! ### Step 7: the theorems -/
 
-/-- **Mertens' totient asymptotic.** Explicit-constant form: `C = 10` works.-/
+/-- **Mertens' totient asymptotic.** Explicit-constant form: `C = 10` works.
+@isnad1 id=ex.0h0v.s7.182c5196bc95 from=translated src=- shape=c2a3a4c7 vocab=5f5c8b28
+-/
 theorem sum_totient_asymptotic :
     ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, 1 ≤ n →
       |(∑ k ∈ Finset.Icc 1 n, (Nat.totient k : ℝ)) - (3 / Real.pi ^ 2) * (n : ℝ) ^ 2|
@@ -331,7 +353,9 @@ theorem sum_totient_asymptotic :
   have hmul := mul_le_mul_of_nonneg_left hkey (le_of_lt hn0)
   linarith [hA, hB, hmul]
 
-/-- **The consequence `QHarm/Growth.lean` consumes.**-/
+/-- **The consequence `QHarm/Growth.lean` consumes.**
+@isnad1 id=tendsto.0h0v.s6.5aaef5d961e7 from=translated src=- shape=31a8702f vocab=e0938876
+-/
 theorem sum_totient_div_sq_tendsto :
     Filter.Tendsto (fun n : ℕ => (∑ k ∈ Finset.Icc 1 n, (Nat.totient k : ℝ)) / (n : ℝ) ^ 2)
       Filter.atTop (nhds (3 / Real.pi ^ 2)) := by

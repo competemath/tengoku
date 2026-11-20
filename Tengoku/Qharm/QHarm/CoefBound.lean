@@ -78,17 +78,24 @@ open Finset
 Everything here is `Nat`-level bookkeeping, isolated so that no analytic proof below has to
 fight `Nat` subtraction or `Nat` division. -/
 
-/-- `2 * C(j,2) = j(j-1)` — the `Nat` division in `Nat.choose_two_right` is exact.-/
+/-- `2 * C(j,2) = j(j-1)` — the `Nat` division in `Nat.choose_two_right` is exact.
+@isnad1 id=eq.0h1v.s5.6da3fcb856a7 from=translated src=- shape=6f4b6b76 vocab=0f313466
+-/
 theorem two_mul_choose_two (j : ℕ) : 2 * j.choose 2 = j * (j - 1) := by
   rw [Nat.choose_two_right, Nat.mul_div_cancel' (Nat.even_mul_pred_self j).two_dvd]
 
 /-- The exponent controlling `legGamma t n j`: `C(j,2) + j(n-j)`.-/
 def gammaExp (n j : ℕ) : ℕ := j.choose 2 + j * (n - j)
 
+/--
+@isnad1 id=eq.0h1v.s4.e12df50e65b8 from=translated src=- shape=1d838610 vocab=1c8d3a1d
+-/
 @[simp] theorem gammaExp_zero_right (n : ℕ) : gammaExp n 0 = 0 := by simp [gammaExp]
 
 /-- Subtraction-free companion: `2*C(j,2) + j = j^2`. This is the form the `Nat`
-bookkeeping below actually uses, because `omega` handles it without atom mismatches.-/
+bookkeeping below actually uses, because `omega` handles it without atom mismatches.
+@isnad1 id=eq.0h1v.s5.003ae8c20d6d from=translated src=- shape=16c2a87c vocab=14a23cc3
+-/
 theorem two_mul_choose_two_add (j : ℕ) : 2 * j.choose 2 + j = j * j := by
   have h := two_mul_choose_two j
   rcases j with _ | a
@@ -98,7 +105,9 @@ theorem two_mul_choose_two_add (j : ℕ) : 2 * j.choose 2 + j = j * j := by
     omega
 
 /-- The exact quadratic identity behind both bounds, in subtraction-free form:
-`2*gammaExp n j + (n-j)^2 + j = n^2`. Everything else is a corollary.-/
+`2*gammaExp n j + (n-j)^2 + j = n^2`. Everything else is a corollary.
+@isnad1 id=eq.1h2v.s6.639433f9eae2 from=translated src=- shape=93b700d0 vocab=8c78e966
+-/
 theorem two_mul_gammaExp_add {n j : ℕ} (h : j ≤ n) :
     2 * gammaExp n j + (n - j) * (n - j) + j = n * n := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le h
@@ -114,7 +123,9 @@ private theorem self_le_sq (m : ℕ) : m ≤ m * m := by
   · simp [hm]
   · exact Nat.le_mul_of_pos_left m hm
 
-/-- `gammaExp n j ≤ n * j`.-/
+/-- `gammaExp n j ≤ n * j`.
+@isnad1 id=le.1h2v.s4.196349c21749 from=translated src=- shape=7f371492 vocab=0e2f2208
+-/
 theorem gammaExp_le_mul {n j : ℕ} (h : j ≤ n) : gammaExp n j ≤ n * j := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le h
   have hsub : j + m - j = m := by omega
@@ -125,7 +136,9 @@ theorem gammaExp_le_mul {n j : ℕ} (h : j ≤ n) : gammaExp n j ≤ n * j := by
   omega
 
 /-- `gammaExp n j ≤ C(n,2)`, **uniformly in `j`**. Sharp: equality at `j = n` and
-`j = n - 1`.-/
+`j = n - 1`.
+@isnad1 id=le.1h2v.s4.46010e6d0cbe from=translated src=- shape=34a9b0fe vocab=b16f6355
+-/
 theorem gammaExp_le_choose {n j : ℕ} (h : j ≤ n) : gammaExp n j ≤ n.choose 2 := by
   have hid := two_mul_gammaExp_add h
   have hB : 2 * n.choose 2 + n = n * n := two_mul_choose_two_add n
@@ -135,7 +148,9 @@ theorem gammaExp_le_choose {n j : ℕ} (h : j ≤ n) : gammaExp n j ≤ n.choose
 /-! ### The coefficient bounds -/
 
 /-- **The sharp form.** Every exponent is a natural number and the constant is uniform in
-both `n` and `j`.-/
+both `n` and `j`.
+@isnad1 id=le.2h3v.s6.9abbc7b82e51 from=translated src=- shape=b3b4c027 vocab=dee1facf
+-/
 theorem abs_legCoef_le_aux {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legCoef t n j| ≤ gaussConst t ^ 2 * (t ^ gammaExp n j * t ^ (n * j)) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -167,7 +182,9 @@ theorem abs_legCoef_le_aux {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
   rw [pow_add]
   ring
 
-/-- The bound in the shape the assembly consumes. Lossy on purpose.-/
+/-- The bound in the shape the assembly consumes. Lossy on purpose.
+@isnad1 id=le.2h3v.s6.f18cc26b875b from=translated src=- shape=b62b0820 vocab=76986880
+-/
 theorem abs_legCoef_le {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legCoef t n j| ≤ gaussConst t ^ 2 * t ^ (2 * n * j) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -180,7 +197,9 @@ theorem abs_legCoef_le {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
   have h2 : 2 * n * j = n * j + n * j := by ring
   omega
 
-/-- **The sharp bound on the `x`-coefficients of `P_n`.**-/
+/-- **The sharp bound on the `x`-coefficients of `P_n`.**
+@isnad1 id=le.2h3v.s6.a2dbd926571d from=translated src=- shape=356a3fe8 vocab=b8789efd
+-/
 theorem abs_legGamma_le_gammaExp {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legGamma t n j| ≤ gaussConst t ^ 2 * t ^ gammaExp n j := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -195,14 +214,18 @@ theorem abs_legGamma_le_gammaExp {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n
     _ = gaussConst t ^ 2 * t ^ gammaExp n j := by
         field_simp
 
-/-- The bound in the shape the assembly consumes.-/
+/-- The bound in the shape the assembly consumes.
+@isnad1 id=le.2h3v.s6.25fadbce63b7 from=translated src=- shape=98b9e20a vocab=376f836c
+-/
 theorem abs_legGamma_le {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legGamma t n j| ≤ gaussConst t ^ 2 * t ^ (n * j) := by
   have hC : 0 ≤ gaussConst t ^ 2 := by positivity
   refine le_trans (abs_legGamma_le_gammaExp ht h) ?_
   exact mul_le_mul_of_nonneg_left (pow_le_pow_right₀ ht.le (gammaExp_le_mul h)) hC
 
-/-- The `j`-**uniform** bound: `|legGamma t n j| ≤ C^2 t^{n(n-1)/2}` for every `j ≤ n`.-/
+/-- The `j`-**uniform** bound: `|legGamma t n j| ≤ C^2 t^{n(n-1)/2}` for every `j ≤ n`.
+@isnad1 id=le.2h3v.s6.85dc358c48ca from=translated src=- shape=10d80d17 vocab=6361ace9
+-/
 theorem abs_legGamma_le_choose {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legGamma t n j| ≤ gaussConst t ^ 2 * t ^ (n.choose 2) := by
   have hC : 0 ≤ gaussConst t ^ 2 := by positivity
@@ -213,7 +236,9 @@ theorem abs_legGamma_le_choose {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) 
 
 -- `latVal` now lives in QHarm/Legendre.lean (lifted at integration).
 
-/-- The bridging lemma: the rescaling `w = x / t^n` turns `legCoef` into `legGamma`.-/
+/-- The bridging lemma: the rescaling `w = x / t^n` turns `legCoef` into `legGamma`.
+@isnad1 id=eq.0h3v.s6.24015a31b4ac from=translated src=- shape=b2cc2d55 vocab=ebb0c691
+-/
 theorem latVal_eq (t : ℝ) (n k : ℕ) :
     latVal t n k = ∑ j ∈ Finset.range (n + 1), legGamma t n j * ((t⁻¹) ^ k) ^ j := by
   unfold latVal legG legGamma
@@ -223,7 +248,9 @@ theorem latVal_eq (t : ℝ) (n k : ℕ) :
 
 /-- **The uniform bound on the lattice values.** Uniform in `k`; the exponent is
 `n.choose 2 = n(n-1)/2`. See the honesty note in the file header: the truth is `< 1`, this
-bound overshoots by exactly that factor, and it exists only to give summability.-/
+bound overshoots by exactly that factor, and it exists only to give summability.
+@isnad1 id=le.1h3v.s6.434daba94e68 from=translated src=- shape=3938143e vocab=9adcbb18
+-/
 theorem abs_latVal_le {t : ℝ} (ht : 1 < t) (n k : ℕ) :
     |latVal t n k| ≤ (n + 1) * gaussConst t ^ 2 * t ^ (n.choose 2) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -258,6 +285,9 @@ private theorem summable_geom_inv {t : ℝ} (ht : 1 < t) :
   rw [inv_lt_one_iff₀]
   exact Or.inr ht
 
+/--
+@isnad1 id=summable.1h2v.s5.9471c0b4f696 from=translated src=- shape=194001a7 vocab=854341b8
+-/
 theorem summable_weight_abs_latVal {t : ℝ} (ht : 1 < t) (n : ℕ) :
     Summable (fun k : ℕ => (t⁻¹) ^ k * |latVal t n k|) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -267,6 +297,9 @@ theorem summable_weight_abs_latVal {t : ℝ} (ht : 1 < t) (n : ℕ) :
   exact mul_le_mul_of_nonneg_left (abs_latVal_le ht n k) (by positivity)
     |>.trans (le_of_eq (by ring))
 
+/--
+@isnad1 id=summable.1h2v.s6.66ca252994d2 from=translated src=- shape=e79e88e0 vocab=d375ff9f
+-/
 theorem summable_weight_sq_latVal {t : ℝ} (ht : 1 < t) (n : ℕ) :
     Summable (fun k : ℕ => (t⁻¹) ^ k * (latVal t n k) ^ 2) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -287,6 +320,9 @@ This is the step the final assembly actually consumes. The squared-norm bound `h
 hypothesis: it is supplied by `QHarm/Orthogonality.lean` (the `m = n` evaluation of the same
 Lagrange identity), and measured to be `≈ t^{-n}`, whence this lemma delivers `≈ t^{-n/2}`. -/
 
+/--
+@isnad1 id=le.2h3v.s7.8b42106965b7 from=translated src=- shape=d32f1663 vocab=53220a20
+-/
 theorem sum_abs_latVal_le {t : ℝ} (ht : 1 < t) (n : ℕ) {h : ℝ}
     (hh : ∑' k : ℕ, (t⁻¹) ^ k * (latVal t n k) ^ 2 ≤ h) :
     ∑' k : ℕ, (t⁻¹) ^ k * |latVal t n k| ≤ Real.sqrt ((1 - t⁻¹)⁻¹) * Real.sqrt h := by

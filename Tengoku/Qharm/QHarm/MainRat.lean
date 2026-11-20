@@ -50,23 +50,31 @@ open Filter
 
 /-! ### Inputs from the component files -/
 
-/-- Closed by `QHarm/RatIntegrality.lean`.-/
+/-- Closed by `QHarm/RatIntegrality.lean`.
+@isnad1 id=ex.2h3v.s6.3a291dfb2c28 from=translated src=- shape=032e7b4f vocab=7af1f51f
+-/
 theorem fr_ratB_isInt {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     ∃ b : ℤ, (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) * legVal ((P : ℝ) / (Q : ℝ)) n = (b : ℝ) :=
   ratB_isInt hQ hPQ n
 
-/-- Closed by `QHarm/RatIntegrality.lean`.-/
+/-- Closed by `QHarm/RatIntegrality.lean`.
+@isnad1 id=ex.2h3v.s7.c29e523b18bb from=translated src=- shape=80d85001 vocab=c8e88693
+-/
 theorem fr_ratA_isInt {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     ∃ a : ℤ, (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ)
         * (legQval ((P : ℝ) / (Q : ℝ)) n
             + legVal ((P : ℝ) / (Q : ℝ)) n * headSum ((P : ℝ) / (Q : ℝ)) n) = (a : ℝ) :=
   ratA_isInt hQ hPQ n
 
-/-- `QHarm/RatGrowth.lean`'s `ratClr` is definitionally `Q^{C_n} · 𝒟_n`.-/
+/-- `QHarm/RatGrowth.lean`'s `ratClr` is definitionally `Q^{C_n} · 𝒟_n`.
+@isnad1 id=eq.0h3v.s5.0ab600a07991 from=translated src=- shape=317b1637 vocab=b3756721
+-/
 theorem ratClr_eq (P Q : ℤ) (n : ℕ) :
     ratClr P Q n = (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) := rfl
 
-/-- Closed by `QHarm/RatGrowth.lean`.-/
+/-- Closed by `QHarm/RatGrowth.lean`.
+@isnad1 id=tendsto.4h2v.s7.ff548a8f50be from=translated src=- shape=f36a7ff8 vocab=8be35986
+-/
 theorem fr_ratClr_mul_rem_tendsto_zero {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
     (ht2 : (2 : ℝ) ≤ (P : ℝ) / (Q : ℝ))
     (hθ : Real.log (Q : ℝ) / Real.log (P : ℝ) < 1 / 2 - 1 / Real.pi ^ 2) :
@@ -77,7 +85,9 @@ theorem fr_ratClr_mul_rem_tendsto_zero {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
 
 /-! ### The clearing factor -/
 
-/-- Positivity of `Q^{C_n} · 𝒟_n`.-/
+/-- Positivity of `Q^{C_n} · 𝒟_n`.
+@isnad1 id=lt.2h3v.s5.9f4d9d34fd38 from=translated src=- shape=f7b0e6b4 vocab=e3127575
+-/
 theorem ratClr_pos' {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
     0 < (Q : ℝ) ^ Cexp n * (Dsharp P Q n : ℝ) := by
   have hQR : (0 : ℝ) < (Q : ℝ) := by exact_mod_cast hQ
@@ -85,7 +95,9 @@ theorem ratClr_pos' {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) (n : ℕ) :
   exact mul_pos (pow_pos hQR _) hD
 
 /-- The Padé identity in the shape `QHarm/Basic.lean`'s criterion consumes, for an arbitrary
-positive clearing factor `c`.-/
+positive clearing factor `c`.
+@isnad1 id=eq.2h3v.s6.29756ef49add from=translated src=- shape=2a106968 vocab=7c61fb50
+-/
 theorem form_eq_gen {t : ℝ} (ht : 1 < t) {n : ℕ} (hn : 1 ≤ n) (c : ℝ) :
     c * legVal t n * S t - c * (legQval t n + legVal t n * headSum t n)
       = c * rem t n := by
@@ -98,6 +110,9 @@ Every rational base the theorem covers is at least `2`.  If `Q = 1` this is `P �
 then `θ < 1/2` gives `Q² < P`, hence `2Q ≤ Q² < P`.  The only transcendental input is
 `Real.pi_gt_three`. -/
 
+/--
+@isnad1 id=le.3h2v.s7.90421d11967a from=translated src=- shape=2f9b2151 vocab=d631c941
+-/
 theorem two_le_of_theta {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
     (hθ : Real.log (Q : ℝ) / Real.log (P : ℝ) < 1 / 2 - 1 / Real.pi ^ 2) :
     (2 : ℝ) ≤ (P : ℝ) / (Q : ℝ) := by
@@ -149,7 +164,9 @@ theorem two_le_of_theta {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
 
 /-! ### The assembly -/
 
-/-- **The rational-base master theorem, in `(P, Q)` coordinates.**-/
+/-- **The rational-base master theorem, in `(P, Q)` coordinates.**
+@isnad1 id=irration.3h2v.s6.25c8cf506dd4 from=translated src=- shape=985f162e vocab=50da8d3c
+-/
 theorem master_rat_core {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
     (hθ : Real.log (Q : ℝ) / Real.log (P : ℝ) < 1 / 2 - 1 / Real.pi ^ 2) :
     Irrational (S ((P : ℝ) / (Q : ℝ))) := by
@@ -172,7 +189,9 @@ theorem master_rat_core {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P)
       abs_of_pos (ratClr_pos' hQ hPQ n)]
 
 /-- **The rational-base master theorem.**  For every rational `t > 1` in lowest terms with
-`log t.den / log t.num < 1/2 − 1/π²`, the `q`-harmonic series is irrational.-/
+`log t.den / log t.num < 1/2 − 1/π²`, the `q`-harmonic series is irrational.
+@isnad1 id=irration.2h1v.s7.73d51fa36933 from=translated src=- shape=548b39d1 vocab=4499ab25
+-/
 theorem master_rat (t : ℚ) (ht : 1 < t)
     (hθ : Real.log (t.den : ℝ) / Real.log (t.num : ℝ) < 1 / 2 - 1 / Real.pi ^ 2) :
     Irrational (∑' n : ℕ+, 1 / ((t : ℝ) ^ (n : ℕ) - 1)) := by

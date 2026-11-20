@@ -104,6 +104,9 @@ private theorem geom_split_abstract {x y : ℝ} (hxy : x * y = 1) (hy1 : y - 1 �
   rw [eq_div_iff hy1, add_mul, mul_assoc, hinv, mul_one]
   exact key
 
+/--
+@isnad1 id=eq.2h3v.s7.bb185d429f5e from=translated src=- shape=0f909dc8 vocab=325fea1b
+-/
 theorem geom_split (ht : 1 < t) (p : ℕ) {d : ℕ} (hd : 1 ≤ d) :
     (t ^ (p * d))⁻¹ * (t ^ d - 1)⁻¹ + ∑ r ∈ Finset.range (p + 1), (t ^ (r * d))⁻¹
       = t ^ d / (t ^ d - 1) := by
@@ -125,7 +128,9 @@ private theorem geom_finite_abstract {x y : ℝ} (hxy : x * y = 1) (hy1 : y - 1 
 
 /-! ### Step 2 — the two evaluations of `∑_{d=1}^{n} T_d t^{-rd}` -/
 
-/-- `r = 0`: the tail sums add up to `∑_j j · legCoef t n j`.-/
+/-- `r = 0`: the tail sums add up to `∑_j j · legCoef t n j`.
+@isnad1 id=eq.0h2v.s6.50f0af79018e from=translated src=- shape=02a115db vocab=1ab82a21
+-/
 theorem tail_sum_zero (t : ℝ) (n : ℕ) :
     ∑ d ∈ Finset.range n, legTail t n (d + 1)
       = ∑ j ∈ Finset.range (n + 1), (j : ℝ) * legCoef t n j := by
@@ -138,7 +143,9 @@ theorem tail_sum_zero (t : ℝ) (n : ℕ) :
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
 
-/-- `r ≥ 1`: the tail sums resum to `(P_n(t^n) − P_n(t^{n-r}))/(t^r − 1)`.-/
+/-- `r ≥ 1`: the tail sums resum to `(P_n(t^n) − P_n(t^{n-r}))/(t^r − 1)`.
+@isnad1 id=eq.2h3v.s7.6134111ef27d from=translated src=- shape=4fe9754d vocab=ca033bce
+-/
 theorem tail_sum_pos (ht : 1 < t) (n : ℕ) {r : ℕ} (hr : 1 ≤ r) :
     ∑ d ∈ Finset.range n, legTail t n (d + 1) * (t ^ ((d + 1) * r))⁻¹
       = (legVal t n - legG t n ((t ^ r)⁻¹)) / (t ^ r - 1) := by
@@ -182,7 +189,9 @@ theorem tail_sum_pos (ht : 1 < t) (n : ℕ) {r : ℕ} (hr : 1 ≤ r) :
 /-! ### Step 3 — the decomposition -/
 
 /-- **The A-form decomposition.**  Verified in exact rational arithmetic at
-`t ∈ {7/2, 2, 5/2, 11/3, 3}`, `n = 1..7`, before the Lean proof was written.-/
+`t ∈ {7/2, 2, 5/2, 11/3, 3}`, `n = 1..7`, before the Lean proof was written.
+@isnad1 id=eq.1h2v.s8.b6aa40c06698 from=translated src=- shape=7e29a95d vocab=beabda0d
+-/
 theorem Aform_decomp (ht : 1 < t) (n : ℕ) :
     legQval t n + legVal t n * headSum t n
       = -(∑ j ∈ Finset.range (n + 1), (j : ℝ) * legCoef t n j)
