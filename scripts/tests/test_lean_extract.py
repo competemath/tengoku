@@ -132,9 +132,10 @@ class AdmitIsSorry(unittest.TestCase):
             "theorem uses_it (x : ℕ) : x = x := by\n  exact Foo.admit_nonneg x\n\n"
             "theorem other (x : ℕ) : x = x := by\n  exact Bar.admit x\n\n"
             "theorem primed (x : ℕ) : x = x := by\n  exact admit' x\n\n"
-            "theorem dotted_primed (x : ℕ) : x = x := by\n  exact h.admit' x\n"
+            "theorem dotted_primed (x : ℕ) : x = x := by\n  exact h.admit' x\n\n"
+            "theorem inner_prime (x : ℕ) : x = x := by\n  exact a'admit x\n"
         )
-        self.assertEqual(self.names(src), ["uses_it", "other", "primed", "dotted_primed"])
+        self.assertEqual(self.names(src), ["uses_it", "other", "primed", "dotted_primed", "inner_prime"])
 
     def test_mutant_without_the_admit_check_the_real_proofs_pass(self):
         self.assertFalse(lean_extract._SORRY_RE.search(":= by   admit"))  # the filter as it was lets the admit proof through
