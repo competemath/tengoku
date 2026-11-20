@@ -128,6 +128,7 @@ import Tengoku.Biyoneda
 import Tengoku.Azurite
 import Tengoku.Compply
 import Tengoku.LeanCharacteristicSet
+import Tengoku.GnmLean
 import Tengoku.SpherePackingOrig
 import Tengoku.BezoutCounterexampleLean
 import Tengoku.Ulmstheorem
