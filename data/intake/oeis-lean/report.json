@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "8d7e276a33e05f6fc37996b550a7b38ac91c857c3c8ada5995572b074baf76ee",
+ "factory_changes": {
+  "modules changed": 14,
+  "print lines removed": 22
+ },
+ "gate2_unjudged": [],
+ "library": "oeis-lean",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 178
+}
