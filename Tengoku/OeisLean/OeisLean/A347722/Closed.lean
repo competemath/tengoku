@@ -22,11 +22,20 @@ open Finset
 /-- `mu c j = C(c, 2j) (2j-1)!!`, the number of `j`-edge matchings on `c` points.-/
 def mu (c j : ℕ) : ℤ := (c.choose (2 * j) : ℤ) * (Nat.doubleFactorial (2 * j - 1) : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s4.22881e0f8eb7 from=translated src=- shape=8fc7241c vocab=edb5d15f
+-/
 theorem mu_zero (c : ℕ) : mu c 0 = 1 := by simp [mu]
 
+/--
+@isnad1 id=eq.1h2v.s5.ef1c4b15e7c3 from=translated src=- shape=c7c730aa vocab=1c5769b9
+-/
 theorem mu_eq_zero {c j : ℕ} (hcj : c < 2 * j) : mu c j = 0 := by
   simp [mu, Nat.choose_eq_zero_of_lt hcj]
 
+/--
+@isnad1 id=eq.0h2v.s6.f9ad30bb6e51 from=translated src=- shape=54aeecb2 vocab=04c05228
+-/
 theorem mu_succ (c j : ℕ) : mu (c + 1) (j + 1) = mu c (j + 1) + c * mu (c - 1) j := by
   have e1 : 2 * (j + 1) = 2 * j + 1 + 1 := by ring
   have e2 : 2 * (j + 1) - 1 = 2 * j + 1 := by omega
@@ -48,6 +57,9 @@ theorem mu_succ (c j : ℕ) : mu (c + 1) (j + 1) = mu c (j + 1) + c * mu (c - 1)
 /-- The sum defining `f`, with free parameters: `Sum_{j<N} (-1)^j mu(c,j) h(n-2j)`.-/
 def T (c n N : ℕ) : ℤ := ∑ j ∈ range N, (-1) ^ j * mu c j * (h (n - 2 * j) : ℤ)
 
+/--
+@isnad1 id=eq.0h3v.s6.e42378ac1040 from=translated src=- shape=42d0ac46 vocab=1275062a
+-/
 theorem T_succ (c n M : ℕ) :
     T (c + 1) n (M + 1) = T c n (M + 1) - c * T (c - 1) (n - 2) M := by
   unfold T
@@ -63,7 +75,9 @@ theorem T_succ (c n M : ℕ) :
     ring
   linarith
 
-/-- Closed form of `D`.-/
+/-- Closed form of `D`.
+@isnad1 id=eq.4h4v.s7.4ce18fbe15dd from=translated src=- shape=b6faaddc vocab=a5746e3a
+-/
 theorem D_eq (D' : ℕ → ℕ → ℕ)
     (hD0 : ∀ n, D' n 0 = h n)
     (hDs : ∀ n c, c < n → D' n (c + 1) + c * D' (n - 2) (c - 1) = D' n c) :
@@ -94,13 +108,18 @@ theorem D_eq (D' : ℕ → ℕ → ℕ)
       rw [T_succ]
       linarith
 
+/--
+@isnad1 id=eq.0h1v.s5.a06412ebb3fd from=translated src=- shape=31500a24 vocab=e661376f
+-/
 theorem T_self (n : ℕ) : T n n (n / 2 + 1) = f n := by
   unfold T f
   refine sum_congr rfl fun j _ => ?_
   unfold mu
   ring
 
-/-- Closed form of `F`, given `D n n = f n`.-/
+/-- Closed form of `F`, given `D n n = f n`.
+@isnad1 id=eq.4h4v.s7.c1a08d0e03e2 from=translated src=- shape=4629d03d vocab=c9783a71
+-/
 theorem F_eq (D' F' : ℕ → ℕ → ℕ)
     (hDf : ∀ n, (D' n n : ℤ) = f n)
     (hF0 : ∀ n, F' n 0 = D' n n)
@@ -147,7 +166,9 @@ end Closed
 open Closed in
 /-- Pure algebra: if `D` starts at `h` and satisfies the "forbid one more bad point" recurrence,
 and `F` starts at the diagonal of `D` and satisfies the "forbid one more isolated point"
-recurrence, then `D n n = f n` and `D n n - F n n` is the alternating sum of `formula`.-/
+recurrence, then `D n n = f n` and `D n n - F n n` is the alternating sum of `formula`.
+@isnad1 id=eq.4h3v.s8.143389995fc6 from=translated src=- shape=17b2777d vocab=05eff7e1
+-/
 theorem diff_eq_sum (D F : ℕ → ℕ → ℕ)
     (hD0 : ∀ n, D n 0 = h n)
     (hDs : ∀ n c, c < n → D n (c + 1) + c * D (n - 2) (c - 1) = D n c)

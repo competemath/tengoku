@@ -26,7 +26,9 @@ def S (n L : ℕ) : Finset (Fin L → Fin n) :=
 def allowed (z' : Fin L → Fin n) : Finset (Fin n) :=
   Finset.univ.filter fun v : Fin n => ∀ i : Fin L, i.val % 2 = L % 2 → z' i ≠ v
 
-/-- There are `L / 2` positions below `L` with the parity of `L`.-/
+/-- There are `L / 2` positions below `L` with the parity of `L`.
+@isnad1 id=eq.0h1v.s6.799bcd635677 from=translated src=- shape=e8b8fd2c vocab=1fe2fd64
+-/
 theorem par_card (L : ℕ) :
     ((Finset.univ : Finset (Fin L)).filter fun i => i.val % 2 = L % 2).card = L / 2 := by
   have h : ((Finset.univ : Finset (Fin L)).filter fun i => i.val % 2 = L % 2) =
@@ -46,6 +48,9 @@ theorem par_card (L : ℕ) :
   simp only at this
   exact Fin.ext (by omega)
 
+/--
+@isnad1 id=iff.0h4v.s6.7751926bb144 from=translated src=- shape=32f0f05d vocab=13718130
+-/
 theorem Sp_snoc (z' : Fin L → Fin n) (v : Fin n) :
     Sp (Fin.snoc z' v : Fin (L + 1) → Fin n) ↔
       Sp z' ∧ ∀ i : Fin L, i.val % 2 = L % 2 → z' i ≠ v := by
@@ -74,6 +79,9 @@ theorem Sp_snoc (z' : Fin L → Fin n) (v : Fin n) :
         simp only [Fin.snoc_castSucc]
         exact h1 i j (fun e => hij (by rw [e])) (by simpa using hpar)
 
+/--
+@isnad1 id=eq.1h3v.s5.c7645039fea8 from=translated src=- shape=8e34da66 vocab=302b6e66
+-/
 theorem allowed_card (z' : Fin L → Fin n) (h : Sp z') : (allowed z').card = n - L / 2 := by
   have e : allowed z' =
       (((Finset.univ : Finset (Fin L)).filter fun i => i.val % 2 = L % 2).image z')ᶜ := by
@@ -86,6 +94,9 @@ theorem allowed_card (z' : Fin L → Fin n) (h : Sp z') : (allowed z').card = n 
   simp only [Finset.coe_filter, Finset.mem_univ, true_and, Set.mem_ofPred_eq] at hi hj
   exact h i j hne (hi.trans hj.symm) hij
 
+/--
+@isnad1 id=eq.0h2v.s6.c0d0e21882b2 from=translated src=- shape=9dddd4e7 vocab=1b2f86a0
+-/
 theorem S_succ (n L : ℕ) : (S n (L + 1)).card = (S n L).card * (n - L / 2) := by
   have h : ((S n L).sigma fun z' => allowed z').card = (S n (L + 1)).card := by
     apply Finset.card_bij (fun p _ => (Fin.snoc p.1 p.2 : Fin (L + 1) → Fin n))
@@ -106,6 +117,9 @@ theorem S_succ (n L : ℕ) : (S n (L + 1)).card = (S n L).card * (n - L / 2) := 
   rw [← h, Finset.card_sigma,
     Finset.sum_const_nat fun z hz => allowed_card z (by simpa [S] using hz)]
 
+/--
+@isnad1 id=eq.0h2v.s6.971f24d7ed24 from=translated src=- shape=74a04c04 vocab=2fd85c1e
+-/
 theorem S_card (n L : ℕ) :
     (S n L).card = n.descFactorial ((L + 1) / 2) * n.descFactorial (L / 2) := by
   induction L with
@@ -136,6 +150,9 @@ end A307917.Base
 namespace A307917
 
 open Base in
+/--
+@isnad1 id=eq.0h2v.s5.85ffcb2a27e5 from=translated src=- shape=a6539531 vocab=07afc018
+-/
 theorem B_zero (n L : ℕ) :
     B n L 0 = n.descFactorial ((L + 1) / 2) * n.descFactorial (L / 2) := by
   rw [← S_card]
@@ -144,6 +161,9 @@ theorem B_zero (n L : ℕ) :
   ext z
   simp
 
+/--
+@isnad1 id=eq.1h2v.s4.6a2e3bfcacc5 from=translated src=- shape=dbaa340c vocab=6f6ca7fe
+-/
 theorem B_zero_left (L c : ℕ) (hL : 1 ≤ L) : B 0 L c = 0 := by
   unfold B
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]

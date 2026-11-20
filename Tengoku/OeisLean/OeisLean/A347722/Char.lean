@@ -14,10 +14,15 @@ namespace A347722.Char
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=iff.0h2v.s5.a0a22b63c638 from=translated src=- shape=a405aacb vocab=59f8af51
+-/
 theorem mem_verts {e : Finset (Fin n)} : e ∈ verts n ↔ e.card = 2 := by
   simp [verts, Finset.mem_powersetCard]
 
-/-- For two edges, "equal or adjacent" means "sharing a vertex".-/
+/-- For two edges, "equal or adjacent" means "sharing a vertex".
+@isnad1 id=iff.2h3v.s5.0b56e5fb123d from=translated src=- shape=05e49e56 vocab=b8fe3aff
+-/
 theorem closed_iff {e f : Finset (Fin n)} (he : e.card = 2) (hf : f.card = 2) :
     (f = e ∨ Adj e f) ↔ (e ∩ f).Nonempty := by
   unfold Adj
@@ -37,10 +42,16 @@ theorem closed_iff {e f : Finset (Fin n)} (he : e.card = 2) (hf : f.card = 2) :
       have e2 : e ∩ f = f := Finset.eq_of_subset_of_card_le Finset.inter_subset_right (by omega)
       exact hfe (e2.symm.trans e1)
 
+/--
+@isnad1 id=iff.0h3v.s6.e3f6a950b054 from=translated src=- shape=8a371e47 vocab=ae9bf85f
+-/
 theorem deg_eq_zero {S : Finset (Finset (Fin n))} {w : Fin n} :
     deg S w = 0 ↔ ∀ g ∈ S, w ∉ g := by
   simp [deg, Finset.filter_eq_empty_iff]
 
+/--
+@isnad1 id=iff.0h3v.s6.303619781a14 from=translated src=- shape=2135564b vocab=ae9bf85f
+-/
 theorem deg_eq_one {S : Finset (Finset (Fin n))} {x : Fin n} :
     deg S x = 1 ↔ ∃ e ∈ S, x ∈ e ∧ ∀ g ∈ S, x ∈ g → g = e := by
   unfold deg
@@ -66,7 +77,9 @@ theorem deg_eq_one {S : Finset (Finset (Fin n))} {x : Fin n} :
       exact ⟨heS, hxe⟩
 
 /-- An edge `e ∈ S` has a private closed neighbour iff both its endpoints have degree 1, or one
-of them has and some vertex is uncovered.-/
+of them has and some vertex is uncovered.
+@isnad1 id=iff.2h3v.s7.111610f6cae5 from=translated src=- shape=830508a2 vocab=92c40e91
+-/
 theorem priv_iff {S : Finset (Finset (Fin n))} (hS : S ⊆ verts n) {e : Finset (Fin n)}
     (he : e ∈ S) :
     (∃ f ∈ verts n, (f = e ∨ Adj e f) ∧ ∀ g ∈ S, g ≠ e → ¬ (f = g ∨ Adj g f)) ↔
@@ -119,7 +132,9 @@ end A347722.Char
 namespace A347722
 
 /-- A set `S` of vertices of the triangular graph `T(n)` (edges of `K_n`) is irredundant iff it
-is a star forest with an uncovered vertex, or a perfect matching.-/
+is a star forest with an uncovered vertex, or a perfect matching.
+@isnad1 id=iff.1h2v.s5.8c2f883581db from=translated src=- shape=f6f6c551 vocab=e1ae05aa
+-/
 theorem irredundant_iff {n : ℕ} (S : Finset (Finset (Fin n))) (hS : S ⊆ verts n) :
     Irredundant S ↔ (Star S ∧ Unc S) ∨ PM S := by
   have key : Irredundant S ↔

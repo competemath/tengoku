@@ -24,6 +24,9 @@ namespace Count
 def comps (n : ℕ) : Finset (List ℕ) :=
   (Finset.univ : Finset (Composition n)).image Composition.blocks
 
+/--
+@isnad1 id=iff.0h2v.s5.dba6efdce5af from=translated src=- shape=bf8a03c5 vocab=2e294043
+-/
 theorem mem_comps {n : ℕ} {l : List ℕ} : l ∈ comps n ↔ (∀ x ∈ l, 0 < x) ∧ l.sum = n := by
   unfold comps
   rw [Finset.mem_image]
@@ -33,7 +36,9 @@ theorem mem_comps {n : ℕ} {l : List ℕ} : l ∈ comps n ↔ (∀ x ∈ l, 0 <
   · rintro ⟨h1, h2⟩
     exact ⟨⟨l, fun {i} hi => h1 i hi, h2⟩, Finset.mem_univ _, rfl⟩
 
-/-- Decomposition of the compositions of `n` by their first element.-/
+/-- Decomposition of the compositions of `n` by their first element.
+@isnad1 id=eq.0h1v.s7.5cd4af3660f4 from=translated src=- shape=ce828f02 vocab=187cf10b
+-/
 theorem comps_eq (n : ℕ) :
     comps n = (if n = 0 then {[]} else ∅) ∪
       (Finset.range n).biUnion fun i => (comps (n - (i + 1))).image (fun l => (i + 1) :: l) := by
@@ -61,6 +66,9 @@ theorem comps_eq (n : ℕ) :
         rw [List.sum_cons]
         omega
 
+/--
+@isnad1 id=eq.0h2v.s7.4358710f5fd5 from=translated src=- shape=502945e3 vocab=e489aed3
+-/
 theorem card_filter (P : List ℕ → Bool) (n : ℕ) :
     ((comps n).filter (fun l => P l = true)).card =
       (if n = 0 ∧ P [] = true then 1 else 0) +
@@ -109,11 +117,17 @@ def acc0 : List ℕ → Bool
   | [] => true
   | x :: l => if x % 2 = 0 then acc0 l else acc1 l
 
+/--
+@isnad1 id=iff.0h1v.s4.a797a2553eab from=translated src=- shape=eb62fe02 vocab=a8de569c
+-/
 theorem acc2_iff (l : List ℕ) : acc2 l = true ↔ ∀ x ∈ l, Even x := by
   induction l with
   | nil => simp [acc2]
   | cons x l ih => simp [acc2, ih, Nat.even_iff]
 
+/--
+@isnad1 id=iff.0h1v.s6.51c2f6d8f0c3 from=translated src=- shape=400dd27f vocab=8af107fe
+-/
 theorem acc1_iff (l : List ℕ) :
     acc1 l = true ↔ ∃ o e : List ℕ, l = o ++ e ∧ (∀ x ∈ o, Odd x) ∧ (∀ x ∈ e, Even x) := by
   induction l with
@@ -157,6 +171,9 @@ theorem acc1_iff (l : List ℕ) :
           rw [Nat.odd_iff] at this
           exact h this
 
+/--
+@isnad1 id=iff.0h1v.s6.766698d87818 from=translated src=- shape=e9dff3e2 vocab=95bda41d
+-/
 theorem acc0_iff (l : List ℕ) :
     acc0 l = true ↔ ∃ e₁ o e₂ : List ℕ, l = e₁ ++ o ++ e₂ ∧
       (∀ x ∈ e₁, Even x) ∧ (∀ x ∈ o, Odd x) ∧ (∀ x ∈ e₂, Even x) := by
@@ -230,6 +247,9 @@ def Sev (f : ℕ → ℕ) (n : ℕ) : ℕ :=
 def Sod (f : ℕ → ℕ) (n : ℕ) : ℕ :=
   ∑ i ∈ Finset.range n, if (i + 1) % 2 = 1 then f (n - (i + 1)) else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.48bb7197e6e3 from=translated src=- shape=e04ec59d vocab=952d2beb
+-/
 theorem Sev_shift (f : ℕ → ℕ) (n : ℕ) : Sev f (n + 2) = f n + Sev f n := by
   unfold Sev
   rw [Finset.sum_range_succ', Finset.sum_range_succ']
@@ -239,6 +259,9 @@ theorem Sev_shift (f : ℕ → ℕ) (n : ℕ) : Sev f (n + 2) = f n + Sev f n :=
   simp
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.5013be1453cc from=translated src=- shape=690884b8 vocab=70d74416
+-/
 theorem Sod_shift (f : ℕ → ℕ) (n : ℕ) : Sod f (n + 2) = f (n + 1) + Sod f n := by
   unfold Sod
   rw [Finset.sum_range_succ', Finset.sum_range_succ']
@@ -248,6 +271,9 @@ theorem Sod_shift (f : ℕ → ℕ) (n : ℕ) : Sod f (n + 2) = f (n + 1) + Sod 
   simp
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.4290993c8a71 from=translated src=- shape=327ef0f7 vocab=2192ec91
+-/
 theorem N2_eq (n : ℕ) : N2 n = (if n = 0 then 1 else 0) + Sev N2 n := by
   rw [N2, card_filter]
   congr 1
@@ -257,6 +283,9 @@ theorem N2_eq (n : ℕ) : N2 n = (if n = 0 then 1 else 0) + Sev N2 n := by
     generalize i + 1 = x
     by_cases h : x % 2 = 0 <;> simp [acc2, h, N2]
 
+/--
+@isnad1 id=eq.0h1v.s5.a0d6792a3d20 from=translated src=- shape=53bc57fe vocab=adebf4ff
+-/
 theorem N1_eq (n : ℕ) : N1 n = (if n = 0 then 1 else 0) + Sod N1 n + Sev N2 n := by
   rw [N1, card_filter, add_assoc]
   congr 1
@@ -267,6 +296,9 @@ theorem N1_eq (n : ℕ) : N1 n = (if n = 0 then 1 else 0) + Sod N1 n + Sev N2 n 
     generalize i + 1 = x
     rcases Nat.mod_two_eq_zero_or_one x with h | h <;> simp [acc1, h, N1, N2]
 
+/--
+@isnad1 id=eq.0h1v.s5.eb1f6ad6b325 from=translated src=- shape=53bc57fe vocab=5d8d60f6
+-/
 theorem N0_eq (n : ℕ) : N0 n = (if n = 0 then 1 else 0) + Sev N0 n + Sod N1 n := by
   rw [N0, card_filter, add_assoc]
   congr 1
@@ -277,12 +309,18 @@ theorem N0_eq (n : ℕ) : N0 n = (if n = 0 then 1 else 0) + Sev N0 n + Sod N1 n 
     generalize i + 1 = x
     rcases Nat.mod_two_eq_zero_or_one x with h | h <;> simp [acc0, h, N0, N1]
 
+/--
+@isnad1 id=eq.0h1v.s6.4a4c6a607410 from=translated src=- shape=f6cc07e7 vocab=a2528bd8
+-/
 theorem N2_step (n : ℕ) : N2 (n + 2) + (if n = 0 then 1 else 0) = 2 * N2 n := by
   have h1 := N2_eq (n + 2)
   have h2 := N2_eq n
   rw [Sev_shift, ite_eq_right (by omega)] at h1
   omega
 
+/--
+@isnad1 id=eq.0h1v.s6.d9a4a45b1880 from=translated src=- shape=5e5bcf37 vocab=597b236d
+-/
 theorem N1_step (n : ℕ) :
     N1 (n + 2) + (if n = 0 then 1 else 0) = N1 (n + 1) + N1 n + N2 n := by
   have h1 := N1_eq (n + 2)
@@ -290,6 +328,9 @@ theorem N1_step (n : ℕ) :
   rw [Sev_shift, Sod_shift, ite_eq_right (by omega)] at h1
   omega
 
+/--
+@isnad1 id=eq.0h1v.s6.822ac3f8b007 from=translated src=- shape=6e96ca75 vocab=3328c9fc
+-/
 theorem N0_step (n : ℕ) :
     N0 (n + 2) + (if n = 0 then 1 else 0) = 2 * N0 n + N1 (n + 1) := by
   have h1 := N0_eq (n + 2)
@@ -297,31 +338,58 @@ theorem N0_step (n : ℕ) :
   rw [Sev_shift, Sod_shift, ite_eq_right (by omega)] at h1
   omega
 
+/--
+@isnad1 id=eq.0h0v.s3.692aa5f53c06 from=translated src=- shape=3c26ae4f vocab=f8e3f11d
+-/
 theorem N2_zero : N2 0 = 1 := by have := N2_eq 0; simpa [Sev] using this
+/--
+@isnad1 id=eq.0h0v.s3.bf39b189edf3 from=translated src=- shape=3c26ae4f vocab=9f268422
+-/
 theorem N1_zero : N1 0 = 1 := by have := N1_eq 0; simpa [Sev, Sod] using this
+/--
+@isnad1 id=eq.0h0v.s3.f4c9f390a5d0 from=translated src=- shape=3c26ae4f vocab=2a1effce
+-/
 theorem N0_zero : N0 0 = 1 := by have := N0_eq 0; simpa [Sev, Sod] using this
+/--
+@isnad1 id=eq.0h0v.s3.a99e75c92b1d from=translated src=- shape=3c26ae4f vocab=f8e3f11d
+-/
 theorem N2_one : N2 1 = 0 := by have := N2_eq 1; simpa [Sev] using this
+/--
+@isnad1 id=eq.0h0v.s3.0ca6d60c8d77 from=translated src=- shape=3c26ae4f vocab=9f268422
+-/
 theorem N1_one : N1 1 = 1 := by
   have := N1_eq 1
   unfold Sev Sod at this
   rw [Finset.sum_range_one, Finset.sum_range_one] at this
   simpa [N1_zero] using this
+/--
+@isnad1 id=eq.0h0v.s3.a20e3f0b665f from=translated src=- shape=3c26ae4f vocab=2a1effce
+-/
 theorem N0_one : N0 1 = 1 := by
   have := N0_eq 1
   unfold Sev Sod at this
   rw [Finset.sum_range_one, Finset.sum_range_one] at this
   simpa [N1_zero] using this
 
+/--
+@isnad1 id=eq.1h1v.s5.b7595a293cf0 from=translated src=- shape=e24c6b83 vocab=80b204f5
+-/
 theorem N2_step' (n : ℕ) (hn : 1 ≤ n) : N2 (n + 2) = 2 * N2 n := by
   have := N2_step n
   rw [ite_eq_right (by omega)] at this
   omega
 
+/--
+@isnad1 id=eq.1h1v.s5.173ffa345210 from=translated src=- shape=5213b6d2 vocab=6d553bf3
+-/
 theorem N1_step' (n : ℕ) (hn : 1 ≤ n) : N1 (n + 2) = N1 (n + 1) + N1 n + N2 n := by
   have := N1_step n
   rw [ite_eq_right (by omega)] at this
   omega
 
+/--
+@isnad1 id=eq.1h1v.s5.f2d4ebc2d618 from=translated src=- shape=4a13990b vocab=3204c475
+-/
 theorem N0_step' (n : ℕ) (hn : 1 ≤ n) : N0 (n + 2) = 2 * N0 n + N1 (n + 1) := by
   have := N0_step n
   rw [ite_eq_right (by omega)] at this
@@ -334,14 +402,23 @@ open Count
 /-- A concrete finite set containing exactly the valid lists.-/
 def validSet (n : ℕ) : Finset (List ℕ) := (comps n).filter (fun l => acc0 l = true)
 
+/--
+@isnad1 id=iff.0h2v.s4.ebcc3061eb87 from=translated src=- shape=394722c6 vocab=e1d566be
+-/
 theorem mem_validSet (n : ℕ) (l : List ℕ) : l ∈ validSet n ↔ Valid n l := by
   rw [validSet, Finset.mem_filter, mem_comps, acc0_iff]
   exact ⟨fun ⟨⟨hp, hs⟩, h⟩ => ⟨hs, hp, h⟩, fun ⟨hs, hp, h⟩ => ⟨⟨hp, hs⟩, h⟩⟩
 
 def c (n : ℕ) : ℕ := (validSet n).card
 
+/--
+@isnad1 id=eq.0h1v.s3.43cb0d2a9105 from=translated src=- shape=0fc427d2 vocab=f7fb5d1e
+-/
 theorem c_eq_N0 (n : ℕ) : c n = N0 n := rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.c168441765f5 from=translated src=- shape=a9c4038e vocab=d791e062
+-/
 theorem c_recurrence (n : ℕ) (hn : 1 ≤ n) :
     c (n + 6) + 4 * c (n + 3) + 8 * c (n + 2) =
       c (n + 5) + 5 * c (n + 4) + 4 * c (n + 1) + 4 * c n := by
@@ -357,6 +434,9 @@ theorem c_recurrence (n : ℕ) (hn : 1 ≤ n) :
   have c1 : N2 (n + 3) = 2 * N2 (n + 1) := N2_step' (n + 1) (by omega)
   omega
 
+/--
+@isnad1 id=and.0h0v.s6.ee82bc4458ff from=translated src=- shape=88c2556a vocab=987a2dfb
+-/
 theorem c_init : c 1 = 1 ∧ c 2 = 2 ∧ c 3 = 4 ∧ c 4 = 7 ∧ c 5 = 14 ∧ c 6 = 23 ∧ c 7 = 45 := by
   simp only [c_eq_N0]
   have z0 := N0_zero

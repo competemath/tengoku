@@ -18,6 +18,9 @@ def endPos : List Bool → ℤ → ℤ
   | true :: w, pos => endPos w (pos + 1)
   | false :: w, pos => endPos w (pos - 1)
 
+/--
+@isnad1 id=and.0h2v.s5.cbc8888ec270 from=translated src=- shape=ae903b40 vocab=87502b97
+-/
 theorem endPos_bounds (w : List Bool) :
     ∀ pos : ℤ, pos - w.length ≤ endPos w pos ∧ endPos w pos ≤ pos + w.length := by
   induction w with
@@ -32,6 +35,9 @@ theorem endPos_bounds (w : List Bool) :
       simp only [endPos, List.length_cons]
       omega
 
+/--
+@isnad1 id=eq.0h3v.s7.1e2dcd32abac from=translated src=- shape=bb8d1fbf vocab=dd657107
+-/
 theorem indSum (n : ℕ) (p : ℤ) : ∀ m : ℕ,
     ((List.range m).map fun i : ℕ => if p = (i : ℤ) - n then 1 else 0).sum =
       if -(n : ℤ) ≤ p ∧ p < (m : ℤ) - n then 1 else 0 := by
@@ -43,6 +49,9 @@ theorem indSum (n : ℕ) (p : ℤ) : ∀ m : ℕ,
     simp only [List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
     split_ifs <;> omega
 
+/--
+@isnad1 id=eq.2h3v.s6.260399e914df from=translated src=- shape=7d56128f vocab=e27b0c2d
+-/
 theorem sum_edge (n : ℕ) (w : List Bool) :
     ∀ pos : ℤ, -(n : ℤ) ≤ pos - w.length → pos + w.length ≤ n →
       ((List.range (2 * n)).map fun i : ℕ => edgeCount w pos ((i : ℤ) - n)).sum = w.length := by
@@ -59,6 +68,9 @@ theorem sum_edge (n : ℕ) (w : List Bool) :
       rw [indSum, ih (pos + 1) (by omega) (by omega), ite_eq_left (by omega)]
       omega
 
+/--
+@isnad1 id=eq.0h1v.s5.bb33d0c41c78 from=translated src=- shape=af926cd6 vocab=d72b3eab
+-/
 theorem sum_filter_pos (l : List ℕ) : (l.filter (0 < ·)).sum = l.sum := by
   induction l with
   | nil => rfl
@@ -69,6 +81,9 @@ theorem sum_filter_pos (l : List ℕ) : (l.filter (0 < ·)).sum = l.sum := by
       subst this
       simp [ih]
 
+/--
+@isnad1 id=iff.0h3v.s5.5185745dad7b from=translated src=- shape=543343f5 vocab=d52c67d9
+-/
 theorem odd_edge (w : List Bool) : ∀ pos j : ℤ,
     Odd (edgeCount w pos j) ↔
       (pos ≤ j ∧ j < endPos w pos) ∨ (endPos w pos ≤ j ∧ j < pos) := by
@@ -91,6 +106,9 @@ theorem odd_edge (w : List Bool) : ∀ pos j : ℤ,
       · rw [Nat.add_comm, Nat.odd_add_one, ih]; omega
       · rw [Nat.zero_add, ih]; omega
 
+/--
+@isnad1 id=eq.2h3v.s6.c499d0e1a6c3 from=translated src=- shape=277e90a2 vocab=1fdd56dc
+-/
 theorem range_split (N i₁ i₂ : ℕ) (h1 : i₁ ≤ i₂) (h2 : i₂ ≤ N) :
     List.range N =
       List.range' 0 i₁ ++ List.range' i₁ (i₂ - i₁) ++ List.range' i₂ (N - i₂) := by
@@ -103,6 +121,9 @@ theorem range_split (N i₁ i₂ : ℕ) (h1 : i₁ ≤ i₂) (h2 : i₂ ≤ N) :
 end Fwd
 
 open Fwd in
+/--
+@isnad1 id=valid.1h2v.s4.246c8a46564a from=translated src=- shape=1b77c6f3 vocab=34cfdc46
+-/
 theorem trace_valid (n : ℕ) (w : List Bool) (hw : w.length = n) : Valid n (trace n w) := by
   have hb := endPos_bounds w 0
   rw [hw] at hb

@@ -23,15 +23,23 @@ def M (n q c : ℕ) : ℤ :=
   ∑ j ∈ Finset.range (c + 1),
     (-1) ^ j * ((c + 1 - j).choose j : ℤ) * ((n - j).descFactorial (q - j) : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s4.a1a74974e8e5 from=translated src=- shape=c6f7e240 vocab=fe21d0a6
+-/
 theorem M_zero (n q : ℕ) : M n q 0 = n.descFactorial q := by
   simp [M]
 
+/--
+@isnad1 id=eq.0h2v.s6.27b55754a4b9 from=translated src=- shape=f0e678d1 vocab=3cdde0b6
+-/
 theorem M_one (n q : ℕ) :
     M (n + 1) (q + 1) 1 = ((n + 1).descFactorial (q + 1) : ℤ) - n.descFactorial q := by
   simp [M, Finset.sum_range_succ]
   ring
 
-/-- Peel off the `j = 0` term and shift the index.-/
+/-- Peel off the `j = 0` term and shift the index.
+@isnad1 id=eq.0h3v.s7.626a7fc6231d from=translated src=- shape=f7c27cb9 vocab=efbcc5cf
+-/
 theorem M_shift (n q c : ℕ) :
     M (n + 1) (q + 1) (c + 1) = ((n + 1).descFactorial (q + 1) : ℤ) +
       ∑ j ∈ Finset.range (c + 1),
@@ -43,6 +51,9 @@ theorem M_shift (n q c : ℕ) :
     Nat.cast_one, one_mul]
   rw [add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s6.9824cc2da815 from=translated src=- shape=80a0b724 vocab=5a9bd704
+-/
 theorem M_succ (n q c : ℕ) :
     M (n + 1) (q + 1) (c + 2) = M (n + 1) (q + 1) (c + 1) - M n q c := by
   show M (n + 1) (q + 1) (c + 1 + 1) = _
@@ -68,6 +79,9 @@ theorem M_succ (n q c : ℕ) :
   rw [key]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.945d0024e65e from=translated src=- shape=68d39647 vocab=9cf6b19e
+-/
 theorem sum_parity (g : ℕ → ℤ) (n : ℕ) :
     ∑ L ∈ Finset.Icc 2 (2 * n), g L
       = ∑ k ∈ Finset.Icc 1 n, g (2 * k) + ∑ k ∈ Finset.Icc 1 (n - 1), g (2 * k + 1) := by
@@ -84,6 +98,9 @@ theorem sum_parity (g : ℕ → ℤ) (n : ℕ) :
         Finset.sum_Icc_succ_top (a := 1) (b := m) (by omega) (fun k => g (2 * k + 1)), e]
       ring
 
+/--
+@isnad1 id=eq.1h2v.s7.982f67479fa7 from=translated src=- shape=3c186aff vocab=2e36909c
+-/
 theorem M_even (n k : ℕ) (hk : 1 ≤ k) :
     M n k (2 * k - 1) = ∑ j ∈ Finset.range (k + 1),
       (-1) ^ j * ((2 * k - j).choose j : ℤ) * ((n - j).descFactorial (k - j) : ℤ) := by
@@ -100,6 +117,9 @@ theorem M_even (n k : ℕ) (hk : 1 ≤ k) :
     rw [Nat.choose_eq_zero_of_lt (by omega)]
     simp
 
+/--
+@isnad1 id=eq.0h2v.s7.99f55fb87af0 from=translated src=- shape=12fc6ccf vocab=efbcc5cf
+-/
 theorem M_odd (n k : ℕ) :
     M n k (2 * k) = ∑ j ∈ Finset.range (k + 1),
       (-1) ^ j * ((2 * k + 1 - j).choose j : ℤ) * ((n - j).descFactorial (k - j) : ℤ) := by
@@ -114,6 +134,9 @@ theorem M_odd (n k : ℕ) :
     rw [Nat.choose_eq_zero_of_lt (by omega)]
     simp
 
+/--
+@isnad1 id=eq.0h2v.s6.3c4ef3e710b5 from=translated src=- shape=0b4059f2 vocab=f218fa49
+-/
 theorem cast_desc_succ (n p : ℕ) :
     ((n + 1).descFactorial (p + 1) : ℤ) = (n + 1) * (n.descFactorial p : ℤ) := by
   rw [Nat.succ_descFactorial_succ]
@@ -122,6 +145,9 @@ theorem cast_desc_succ (n p : ℕ) :
 
 end Closed
 
+/--
+@isnad1 id=eq.4h4v.s8.664bc1d48a43 from=translated src=- shape=51dda1fa vocab=128719ed
+-/
 theorem closed_form (F : ℕ → ℕ → ℕ → ℕ)
     (h0 : ∀ n L, F n L 0 = n.descFactorial ((L + 1) / 2) * n.descFactorial (L / 2))
     (hz : ∀ L c, 1 ≤ L → F 0 L c = 0)
@@ -173,6 +199,9 @@ theorem closed_form (F : ℕ → ℕ → ℕ → ℕ)
       rw [Closed.cast_desc_succ n ((L' + 1) / 2)] at h' ⊢
       linear_combination h'
 
+/--
+@isnad1 id=eq.3h2v.s8.be93b8bac2d6 from=translated src=- shape=db4de6f0 vocab=8064583d
+-/
 theorem sum_eq_formula (F : ℕ → ℕ → ℕ → ℕ)
     (h0 : ∀ n L, F n L 0 = n.descFactorial ((L + 1) / 2) * n.descFactorial (L / 2))
     (hz : ∀ L c, 1 ≤ L → F 0 L c = 0)

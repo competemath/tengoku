@@ -27,28 +27,52 @@ def emb (a b i : ℕ) : ℕ := if i < a then i else if i + 1 < b then i + 1 else
 /-- Left inverse of `emb a b`.-/
 def inv (a b w : ℕ) : ℕ := if w < a then w else if w < b then w - 1 else w - 2
 
+/--
+@isnad1 id=lt.1h4v.s5.335f6fc3393d from=translated src=- shape=66006fae vocab=c11d698e
+-/
 theorem emb_lt (a b i m : ℕ) (hi : i < m) : emb a b i < m + 2 := by
   simp only [emb]; split_ifs <;> omega
 
+/--
+@isnad1 id=ne.1h3v.s4.bbff9739fb31 from=translated src=- shape=17778a03 vocab=2ce4bbb6
+-/
 theorem emb_ne_a (a b i : ℕ) (_h : a < b) : emb a b i ≠ a := by
   simp only [emb]; split_ifs <;> omega
 
+/--
+@isnad1 id=ne.1h3v.s4.86823991f109 from=translated src=- shape=bf74a6b0 vocab=2ce4bbb6
+-/
 theorem emb_ne_b (a b i : ℕ) (h : a < b) : emb a b i ≠ b := by
   simp only [emb]; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.1h3v.s4.5cdac94c0b2f from=translated src=- shape=6ff0fd41 vocab=235bc00c
+-/
 theorem inv_emb (a b i : ℕ) (_h : a < b) : inv a b (emb a b i) = i := by
   simp only [emb, inv]; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.3h3v.s5.4627ffdd4edd from=translated src=- shape=2af3df87 vocab=235bc00c
+-/
 theorem emb_inv (a b w : ℕ) (h : a < b) (h1 : w ≠ a) (h2 : w ≠ b) : emb a b (inv a b w) = w := by
   simp only [emb, inv]; split_ifs <;> omega
 
+/--
+@isnad1 id=lt.5h4v.s6.064671cccda9 from=translated src=- shape=bdae0d81 vocab=77e748aa
+-/
 theorem inv_lt (a b w m : ℕ) (h : a < b) (hb : b < m + 2) (hw : w < m + 2) (h1 : w ≠ a)
     (h2 : w ≠ b) : inv a b w < m := by
   simp only [inv]; split_ifs <;> omega
 
+/--
+@isnad1 id=iff.0h4v.s4.f0ed294d8d78 from=translated src=- shape=49b138d1 vocab=2ce4bbb6
+-/
 theorem emb_lt_emb (a b i j : ℕ) : emb a b i < emb a b j ↔ i < j := by
   simp only [emb]; split_ifs <;> omega
 
+/--
+@isnad1 id=iff.1h3v.s5.dde7f08c1192 from=translated src=- shape=838be0ba vocab=d16a81c7
+-/
 theorem emb_lt_b (a b i : ℕ) (h : a < b) : emb a b i < b ↔ i < b - 1 := by
   simp only [emb]; split_ifs <;> omega
 
@@ -64,27 +88,45 @@ def R (u cc : Fin (m + 2)) (h : u < cc) (w : Fin (m + 2)) (hw : ¬(w = u ∨ w =
   ⟨inv u cc w, inv_lt _ _ _ _ (Fin.lt_def.mp h) cc.isLt w.isLt
     (fun e => hw (Or.inl (Fin.ext e))) (fun e => hw (Or.inr (Fin.ext e)))⟩
 
+/--
+@isnad1 id=ne.1h4v.s6.c4effc6f8737 from=translated src=- shape=60072d26 vocab=c8ae459c
+-/
 theorem E_ne_u (h : u < cc) (i : Fin m) : E u cc i ≠ u := fun H =>
   emb_ne_a _ _ _ (Fin.lt_def.mp h) (congrArg Fin.val H)
 
+/--
+@isnad1 id=ne.1h4v.s6.5ce0b5dddb03 from=translated src=- shape=3bbb30d2 vocab=c8ae459c
+-/
 theorem E_ne_cc (h : u < cc) (i : Fin m) : E u cc i ≠ cc := fun H =>
   emb_ne_b _ _ _ (Fin.lt_def.mp h) (congrArg Fin.val H)
 
+/--
+@isnad1 id=eq.2h5v.s6.8b9beaaef9f3 from=translated src=- shape=b6cb3d7a vocab=c8ae459c
+-/
 theorem E_inj (h : u < cc) {i j : Fin m} (H : E u cc i = E u cc j) : i = j := by
   have h1 : emb u cc i = emb u cc j := congrArg Fin.val H
   have h2 := inv_emb u cc i (Fin.lt_def.mp h)
   rw [h1, inv_emb u cc j (Fin.lt_def.mp h)] at h2
   exact Fin.ext h2.symm
 
+/--
+@isnad1 id=eq.2h4v.s7.241fa21054ea from=translated src=- shape=29620c3c vocab=ade57958
+-/
 theorem E_R (h : u < cc) (w : Fin (m + 2)) (hw : ¬(w = u ∨ w = cc)) :
     E u cc (R u cc h w hw) = w :=
   Fin.ext (emb_inv _ _ _ (Fin.lt_def.mp h)
     (fun e => hw (Or.inl (Fin.ext e))) (fun e => hw (Or.inr (Fin.ext e))))
 
+/--
+@isnad1 id=eq.2h4v.s6.2cdff2fcd197 from=translated src=- shape=9e2a12da vocab=ade57958
+-/
 theorem R_E (h : u < cc) (i : Fin m) (hw : ¬(E u cc i = u ∨ E u cc i = cc)) :
     R u cc h (E u cc i) hw = i :=
   Fin.ext (inv_emb _ _ _ (Fin.lt_def.mp h))
 
+/--
+@isnad1 id=or.1h4v.s7.9466a243b57e from=translated src=- shape=9c3ef41b vocab=c8ae459c
+-/
 theorem cases (h : u < cc) (w : Fin (m + 2)) : w = u ∨ w = cc ∨ ∃ i, w = E u cc i := by
   by_cases hw : w = u ∨ w = cc
   · rcases hw with e | e
@@ -92,9 +134,15 @@ theorem cases (h : u < cc) (w : Fin (m + 2)) : w = u ∨ w = cc ∨ ∃ i, w = E
     · exact Or.inr (Or.inl e)
   · exact Or.inr (Or.inr ⟨R u cc h w hw, (E_R h w hw).symm⟩)
 
+/--
+@isnad1 id=iff.1h5v.s6.b1b82878d3ff from=translated src=- shape=940f1b0d vocab=c8ae459c
+-/
 theorem E_lt_iff (_h : u < cc) {i j : Fin m} : E u cc i < E u cc j ↔ i < j := by
   rw [Fin.lt_def, Fin.lt_def]; exact emb_lt_emb _ _ _ _
 
+/--
+@isnad1 id=iff.1h4v.s7.95ec02c3ec91 from=translated src=- shape=039696a3 vocab=37578732
+-/
 theorem E_val_lt (h : u < cc) (i : Fin m) : (E u cc i).val < cc.val ↔ i.val < cc.val - 1 :=
   emb_lt_b _ _ _ (Fin.lt_def.mp h)
 
@@ -108,23 +156,38 @@ def Phi (u cc : Fin (m + 2)) (h : u < cc) (g' : Fin m → Fin m) (w : Fin (m + 2
 def Psi (u cc : Fin (m + 2)) (h : u < cc) (g : Fin (m + 2) → Fin (m + 2)) (i : Fin m) : Fin m :=
   if hw : g (E u cc i) = u ∨ g (E u cc i) = cc then i else R u cc h (g (E u cc i)) hw
 
+/--
+@isnad1 id=eq.1h4v.s6.d3166f60f964 from=translated src=- shape=0adfe902 vocab=391e92e9
+-/
 theorem Phi_u (h : u < cc) (g' : Fin m → Fin m) : Phi u cc h g' u = cc := by
   simp [Phi]
 
+/--
+@isnad1 id=eq.1h4v.s6.1143db118d59 from=translated src=- shape=04efeb5c vocab=391e92e9
+-/
 theorem Phi_cc (h : u < cc) (g' : Fin m → Fin m) : Phi u cc h g' cc = cc := by
   simp [Phi]
 
+/--
+@isnad1 id=eq.1h5v.s6.97e6db4f0143 from=translated src=- shape=4083943c vocab=99cd3d8e
+-/
 theorem Phi_E (h : u < cc) (g' : Fin m → Fin m) (i : Fin m) :
     Phi u cc h g' (E u cc i) = E u cc (g' i) := by
   have hw : ¬(E u cc i = u ∨ E u cc i = cc) := not_or.mpr ⟨E_ne_u h i, E_ne_cc h i⟩
   unfold Phi
   rw [dite_eq_right hw, R_E]
 
+/--
+@isnad1 id=eq.2h5v.s7.f8656c9de40b from=translated src=- shape=11901876 vocab=895b936a
+-/
 theorem E_Psi (h : u < cc) (g : Fin (m + 2) → Fin (m + 2)) (i : Fin m)
     (hw : ¬(g (E u cc i) = u ∨ g (E u cc i) = cc)) : E u cc (Psi u cc h g i) = g (E u cc i) := by
   unfold Psi
   rw [dite_eq_right hw, E_R]
 
+/--
+@isnad1 id=or.2h5v.s7.3e47100a76fb from=translated src=- shape=271f3d72 vocab=391e92e9
+-/
 theorem Phi_eq_cc (h : u < cc) (g' : Fin m → Fin m) {w : Fin (m + 2)}
     (hw : Phi u cc h g' w = cc) : w = u ∨ w = cc := by
   rcases cases h w with e | e | ⟨i, e⟩
@@ -133,6 +196,9 @@ theorem Phi_eq_cc (h : u < cc) (g' : Fin m → Fin m) {w : Fin (m + 2)}
   · rw [e, Phi_E] at hw
     exact absurd hw (E_ne_cc h _)
 
+/--
+@isnad1 id=iff.1h5v.s6.950ce57cb767 from=translated src=- shape=594a215d vocab=d1e55c62
+-/
 theorem badAt_Phi_E (h : u < cc) (g' : Fin m → Fin m) (i : Fin m) :
     BadAt (Phi u cc h g') (E u cc i) ↔ BadAt g' i := by
   constructor
@@ -163,6 +229,9 @@ theorem badAt_Phi_E (h : u < cc) (g' : Fin m → Fin m) (i : Fin m) :
       · left; rw [e, e']
       · right; rw [e, e']
 
+/--
+@isnad1 id=and.3h4v.s7.a557cbef8c4f from=translated src=- shape=936c32fa vocab=6b6c0398
+-/
 theorem Phi_mem (h : u < cc) (g' : Fin m → Fin m) (hI : Idem g')
     (hB : ∀ v : Fin m, v.val < cc.val - 1 → ¬BadAt g' v) :
     Idem (Phi u cc h g') ∧ (∀ v : Fin (m + 2), v.val < cc.val → ¬BadAt (Phi u cc h g') v) ∧
@@ -185,6 +254,9 @@ theorem Phi_mem (h : u < cc) (g' : Fin m → Fin m) (hI : Idem g')
       exact hB i ((E_val_lt h i).mp hv) ((badAt_Phi_E h g' i).mp hbad)
   · exact ⟨Phi_cc h g', u, h, Phi_u h g', fun w hw => Phi_eq_cc h g' hw⟩
 
+/--
+@isnad1 id=and.5h4v.s8.927c3307d0bd from=translated src=- shape=62c4efb2 vocab=90895bb1
+-/
 theorem Psi_spec (h : u < cc) (g : Fin (m + 2) → Fin (m + 2)) (hI : Idem g)
     (hB : ∀ v : Fin (m + 2), v.val < cc.val → ¬BadAt g v) (hbad : BadAt g cc) (hu : g u = cc) :
     (Idem (Psi u cc h g) ∧ ∀ v : Fin m, v.val < cc.val - 1 → ¬BadAt (Psi u cc h g) v) ∧
@@ -230,11 +302,16 @@ theorem Psi_spec (h : u < cc) (g : Fin (m + 2) → Fin (m + 2)) (hI : Idem g)
 /-- The `j`-th point below `c`, as a point of `Fin (m + 2)`.-/
 def U {m c : ℕ} (hc : c < m + 2) (j : Fin c) : Fin (m + 2) := ⟨j.val, lt_trans j.isLt hc⟩
 
+/--
+@isnad1 id=lt.1h3v.s6.fd9eb8926b87 from=translated src=- shape=788c4165 vocab=4bb8c067
+-/
 theorem U_lt {m c : ℕ} (hc : c < m + 2) (j : Fin c) : U hc j < ⟨c, hc⟩ :=
   Fin.lt_def.mpr j.isLt
 
 /-- The maps counted by `D (m + 2) c` in which `c` is bad: `c` choices of the leaf `u`, then a
-map counted by `D m (c - 1)`.-/
+map counted by `D m (c - 1)`.
+@isnad1 id=eq.1h2v.s9.d68da850aa74 from=translated src=- shape=ee3b26aa vocab=77bc63b3
+-/
 theorem card_V (m c : ℕ) (hc : c < m + 2) :
     (Finset.univ.filter fun g : Fin (m + 2) → Fin (m + 2) =>
       Idem g ∧ (∀ v : Fin (m + 2), v.val < c → ¬BadAt g v) ∧ BadAt g ⟨c, hc⟩).card
@@ -275,7 +352,9 @@ theorem card_V (m c : ℕ) (hc : c < m + 2) :
       Finset.mem_product.mpr ⟨Finset.mem_univ _,
         Finset.mem_filter.mpr ⟨Finset.mem_univ _, spec.1⟩⟩, spec.2⟩
 
-/-- Splitting the maps counted by `D n c` according to whether `c` is bad.-/
+/-- Splitting the maps counted by `D n c` according to whether `c` is bad.
+@isnad1 id=eq.1h2v.s7.f6939d549571 from=translated src=- shape=54f70022 vocab=dbd3ef59
+-/
 theorem D_split (n c : ℕ) (hc : c < n) :
     D n c = D n (c + 1) + (Finset.univ.filter fun g : Fin n → Fin n =>
       Idem g ∧ (∀ v : Fin n, v.val < c → ¬BadAt g v) ∧ BadAt g ⟨c, hc⟩).card := by
@@ -316,7 +395,9 @@ namespace A347722
 open StepD in
 /-- The recurrence for `D`: a map counted by `D n c` either has `c` not bad (`D n (c + 1)`), or
 has `c` as a fixed point with a single leaf `u < c`; removing `u` and `c` leaves a map counted
-by `D (n - 2) (c - 1)`, and there are `c` choices for `u`.-/
+by `D (n - 2) (c - 1)`, and there are `c` choices for `u`.
+@isnad1 id=eq.1h2v.s6.2808f01e0208 from=translated src=- shape=8e5b5818 vocab=7bd5d594
+-/
 theorem D_succ (n c : ℕ) (hc : c < n) : D n (c + 1) + c * D (n - 2) (c - 1) = D n c := by
   rw [D_split n c hc]
   congr 1

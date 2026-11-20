@@ -17,6 +17,9 @@ variable {n L : ℕ}
 def Φ (p : Bool × (Fin L → Fin n)) : Fin L → V n :=
   fun i => (xor p.1 (decide (i.val % 2 = 1)), p.2 i)
 
+/--
+@isnad1 id=injectiv.1h2v.s4.019da8b67ba6 from=translated src=- shape=c439d944 vocab=68d4878d
+-/
 theorem Φ_injective (hL : 1 ≤ L) :
     Function.Injective (Φ : Bool × (Fin L → Fin n) → (Fin L → V n)) := by
   rintro ⟨s, z⟩ ⟨t, w⟩ h
@@ -28,6 +31,9 @@ theorem Φ_injective (hL : 1 ≤ L) :
   have hs : s = t := by simpa using h0
   rw [hs, hz]
 
+/--
+@isnad1 id=ne.1h3v.s6.b01d9adabbb2 from=translated src=- shape=91ad264c vocab=b1397754
+-/
 theorem side_ne (s : Bool) (a b : ℕ) (h : a % 2 ≠ b % 2) :
     xor s (decide (a % 2 = 1)) ≠ xor s (decide (b % 2 = 1)) := by
   have ha : a % 2 = 0 ∨ a % 2 = 1 := by omega
@@ -38,6 +44,9 @@ theorem side_ne (s : Bool) (a b : ℕ) (h : a % 2 ≠ b % 2) :
   · rw [ha, hb]; cases s <;> simp
   · omega
 
+/--
+@isnad1 id=iff.0h4v.s6.80a0944889ba from=translated src=- shape=72ce6721 vocab=5555eaff
+-/
 theorem Φ_mem_iff (s : Bool) (z : Fin L → Fin n) :
     Φ (s, z) ∈ dirPaths n L ↔
       Sp z ∧ ∀ i j : Fin L, i.val + 1 = j.val → i.val < L - 1 → z i ≠ z j := by
@@ -67,6 +76,9 @@ theorem Φ_mem_iff (s : Bool) (z : Fin L → Fin n) :
       · exact side_ne s _ _ (by omega)
       · exact hne i j hij (by have := j.isLt; omega)
 
+/--
+@isnad1 id=eq.2h4v.s7.434cf7ef4bd6 from=translated src=- shape=5a140ac6 vocab=b5d3831c
+-/
 theorem step (a b c : Bool) (k : ℕ) (h1 : a ≠ b) (h2 : a = xor c (decide (k % 2 = 1))) :
     b = xor c (decide ((k + 1) % 2 = 1)) := by
   subst h2
@@ -79,6 +91,9 @@ theorem step (a b c : Bool) (k : ℕ) (h1 : a ≠ b) (h2 : a = xor c (decide (k 
     rw [hk] at h1; rw [hk']
     revert h1; cases b <;> cases c <;> simp
 
+/--
+@isnad1 id=eq.3h4v.s7.c7095c17fe91 from=translated src=- shape=0df30d65 vocab=267d9ec4
+-/
 theorem side_eq {f : Fin L → V n} (hf : f ∈ dirPaths n L) (hL : 1 ≤ L) :
     ∀ k (h : k < L), (f ⟨k, h⟩).1 = xor (f ⟨0, hL⟩).1 (decide (k % 2 = 1)) := by
   simp only [dirPaths, Finset.mem_filter, Finset.mem_univ, true_and] at hf
@@ -91,6 +106,9 @@ theorem side_eq {f : Fin L → V n} (hf : f ∈ dirPaths n L) (hL : 1 ≤ L) :
 
 end Paths
 
+/--
+@isnad1 id=eq.1h2v.s5.6477f2dab7bc from=translated src=- shape=f91d1de1 vocab=eb2dfa1b
+-/
 theorem card_dirPaths (n L : ℕ) (hL : 1 ≤ L) : (dirPaths n L).card = 2 * B n L (L - 1) := by
   have key : dirPaths n L =
       (Finset.univ ×ˢ (Finset.univ.filter fun z : Fin L → Fin n =>

@@ -18,7 +18,9 @@ namespace A347722.Base
 open Finset
 
 /-- The idempotent maps with fixed-point set `A` form a product: a point of `A` goes to itself,
-any other point goes anywhere in `A`.-/
+any other point goes anywhere in `A`.
+@isnad1 id=eq.0h2v.s7.38299ef0c395 from=translated src=- shape=947bb586 vocab=2c8df924
+-/
 theorem fiber_eq {n : ℕ} (A : Finset (Fin n)) :
     (univ.filter fun g : Fin n → Fin n => Idem g ∧ (univ.filter fun v => g v = v) = A)
       = Fintype.piFinset (fun v => if v ∈ A then {v} else A) := by
@@ -44,7 +46,9 @@ theorem fiber_eq {n : ℕ} (A : Finset (Fin n)) :
       by_contra hv
       exact hv (e ▸ h2 v hv)
 
-/-- There are `|A| ^ (n - |A|)` idempotent maps with fixed-point set `A`.-/
+/-- There are `|A| ^ (n - |A|)` idempotent maps with fixed-point set `A`.
+@isnad1 id=eq.0h2v.s7.eb71e47023a2 from=translated src=- shape=7cacafc4 vocab=faceb0e8
+-/
 theorem card_fiber {n : ℕ} (A : Finset (Fin n)) :
     (univ.filter fun g : Fin n → Fin n => Idem g ∧ (univ.filter fun v => g v = v) = A).card
       = A.card ^ (n - A.card) := by
@@ -55,7 +59,9 @@ theorem card_fiber {n : ℕ} (A : Finset (Fin n)) :
   have hc : (univ.filter fun v : Fin n => v ∉ A) = Aᶜ := by ext v; simp
   rw [prod_ite, prod_const_one, one_mul, prod_const, hc, card_compl, Fintype.card_fin]
 
-/-- The number of idempotent maps on `Fin n`.-/
+/-- The number of idempotent maps on `Fin n`.
+@isnad1 id=eq.0h1v.s5.37209f7e2968 from=translated src=- shape=3c9c0c8c vocab=b7781779
+-/
 theorem card_idem (n : ℕ) :
     (univ.filter fun g : Fin n → Fin n => Idem g).card = h n := by
   rw [card_eq_sum_card_fiberwise (f := fun g : Fin n → Fin n => univ.filter fun v => g v = v)
@@ -69,7 +75,9 @@ end A347722.Base
 namespace A347722
 
 /-- With no point constrained, `D n 0` counts all idempotent maps on `n` points, and there are
-`h n = ∑ k, C(n,k) k^(n-k)` of them.-/
+`h n = ∑ k, C(n,k) k^(n-k)` of them.
+@isnad1 id=eq.0h1v.s3.48b7a4420190 from=translated src=- shape=53eb01b5 vocab=1c699846
+-/
 theorem D_zero (n : ℕ) : D n 0 = h n := by
   rw [← Base.card_idem]
   unfold D

@@ -19,6 +19,9 @@ variable {n L : ℕ}
 def skip (c : ℕ) (i : Fin L) : Fin (L + 2) :=
   if i.val < c then ⟨i.val, by omega⟩ else ⟨i.val + 2, by omega⟩
 
+/--
+@isnad1 id=or.0h3v.s6.7a01102d2486 from=translated src=- shape=4aefd17e vocab=e7133705
+-/
 theorem skip_val (c : ℕ) (i : Fin L) :
     ((skip c i).val = i.val ∧ i.val < c) ∨ ((skip c i).val = i.val + 2 ∧ c ≤ i.val) := by
   unfold skip
@@ -32,11 +35,17 @@ def Ψ (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n) (i : Fi
   if h : i.val < c then v.succAbove (z' ⟨i.val, by omega⟩)
   else if h2 : c + 1 < i.val then v.succAbove (z' ⟨i.val - 2, by omega⟩) else v
 
+/--
+@isnad1 id=eq.2h6v.s6.defb35db128d from=translated src=- shape=f04c1bf6 vocab=c9c36b01
+-/
 theorem Ψ_mid (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n) (i : Fin (L + 2))
     (h : i.val = c ∨ i.val = c + 1) : Ψ c hc v z' i = v := by
   unfold Ψ
   rw [dite_eq_right (show ¬ i.val < c by omega), dite_eq_right (show ¬ c + 1 < i.val by omega)]
 
+/--
+@isnad1 id=ex.2h3v.s6.d4bc4b5fee66 from=translated src=- shape=135f4899 vocab=675331c2
+-/
 theorem cover (c : ℕ) (hc : c ≤ L) (i : Fin (L + 2)) (h : ¬ (i.val = c ∨ i.val = c + 1)) :
     ∃ j : Fin L, skip c j = i := by
   by_cases h1 : i.val < c
@@ -49,6 +58,9 @@ theorem cover (c : ℕ) (hc : c ≤ L) (i : Fin (L + 2)) (h : ¬ (i.val = c ∨ 
     rw [ite_eq_right h2]
     exact Fin.ext (by dsimp only; omega)
 
+/--
+@isnad1 id=eq.1h6v.s6.6ae90dfdc4f7 from=translated src=- shape=14a45856 vocab=f29a0783
+-/
 theorem Ψ_skip (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n) (i : Fin L) :
     Ψ c hc v z' (skip c i) = v.succAbove (z' i) := by
   unfold Ψ skip
@@ -58,6 +70,9 @@ theorem Ψ_skip (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n
     have h4 : c + 1 < i.val + 2 := by omega
     simp [h, h3, h4]
 
+/--
+@isnad1 id=sp.2h5v.s6.455c01a60d16 from=translated src=- shape=9902f63a vocab=82f6bbc1
+-/
 theorem Ψ_sp (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n) (hz : Sp z') :
     Sp (Ψ c hc v z') := by
   unfold Sp
@@ -71,6 +86,9 @@ theorem Ψ_sp (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n) 
     | exact fun h => hz _ _ (Fin.ne_of_val_ne (by dsimp only; omega)) (by dsimp only; omega)
         (Fin.succAbove_right_injective h)
 
+/--
+@isnad1 id=ne.4h7v.s7.13ef79827af4 from=translated src=- shape=445e7635 vocab=e35b6866
+-/
 theorem Ψ_pairs (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin n)
     (hz : ∀ i j : Fin L, i.val + 1 = j.val → i.val < c - 1 → z' i ≠ z' j) :
     ∀ i j : Fin (L + 2), i.val + 1 = j.val → i.val < c → Ψ c hc v z' i ≠ Ψ c hc v z' j := by
@@ -83,6 +101,9 @@ theorem Ψ_pairs (c : ℕ) (hc : c ≤ L) (v : Fin (n + 1)) (z' : Fin L → Fin 
     | exact fun h => hz _ _ (by dsimp only; omega) (by dsimp only; omega)
         (Fin.succAbove_right_injective h)
 
+/--
+@isnad1 id=and.2h7v.s6.feda9aecfdc8 from=translated src=- shape=f1a5efea vocab=58213f65
+-/
 theorem Ψ_inj (c : ℕ) (hc : c ≤ L) (v w : Fin (n + 1)) (z' y' : Fin L → Fin n)
     (h : Ψ c hc v z' = Ψ c hc w y') : v = w ∧ z' = y' := by
   have hv : v = w := by
@@ -96,6 +117,9 @@ theorem Ψ_inj (c : ℕ) (hc : c ≤ L) (v w : Fin (n + 1)) (z' y' : Fin L → F
   rw [Ψ_skip, Ψ_skip] at this
   exact Fin.succAbove_right_injective this
 
+/--
+@isnad1 id=ex.4h4v.s8.80ab645bae26 from=translated src=- shape=d860f772 vocab=b027d7a7
+-/
 theorem Ψ_surj (c : ℕ) (hc : c ≤ L) (z : Fin (L + 2) → Fin (n + 1)) (hs : Sp z)
     (hp : ∀ i j : Fin (L + 2), i.val + 1 = j.val → i.val < c → z i ≠ z j)
     (he : z ⟨c, by omega⟩ = z ⟨c + 1, by omega⟩) :
@@ -138,6 +162,9 @@ theorem Ψ_surj (c : ℕ) (hc : c ≤ L) (z : Fin (L + 2) → Fin (n + 1)) (hs :
       rw [Ψ_skip]
       exact hz' j
 
+/--
+@isnad1 id=eq.3h5v.s9.dab9d6c8f654 from=translated src=- shape=efa04764 vocab=1e23d83b
+-/
 theorem bad_card (c : ℕ) (hc : c ≤ L) (S : Finset (Fin (L + 2) → Fin (n + 1)))
     (T : Finset (Fin L → Fin n))
     (hS : ∀ z, z ∈ S ↔ (Sp z ∧ ∀ i j : Fin (L + 2), i.val + 1 = j.val → i.val < c → z i ≠ z j) ∧
@@ -167,6 +194,9 @@ end A307917.Step
 
 namespace A307917
 
+/--
+@isnad1 id=eq.1h3v.s6.e599ecead52e from=translated src=- shape=d4fe9619 vocab=0220a7dd
+-/
 theorem B_succ (n L c : ℕ) (hc : c ≤ L) :
     B (n + 1) (L + 2) (c + 1) + (n + 1) * B n L (c - 1) = B (n + 1) (L + 2) c := by
   unfold B
