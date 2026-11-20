@@ -12,7 +12,9 @@ namespace LMLFTest.Results
 open LMLF.Definitions LMLF.ODE
 
 /-- A focused consumer combining the all-parameter Gauss equation with the exceptional
-factorization and the analytic, nonvanishing residual factor that certifies exponent `N + 1`.-/
+factorization and the analytic, nonvanishing residual factor that certifies exponent `N + 1`.
+@isnad1 id=other.1h3v.s9.58ca275793f4 from=translated src=- shape=dfb7df25 vocab=4d15d336
+-/
 theorem exceptionalGaussExponentCertificate
     {a b : ℂ} (N : ℕ)
     (hpref : (ascPochhammer ℂ (N + 1)).eval a *

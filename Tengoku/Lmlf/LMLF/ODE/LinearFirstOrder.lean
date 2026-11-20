@@ -29,7 +29,9 @@ private theorem integral_hasDerivAt_of_continuousOn
   · exact ha.continuousAt (hI.mem_nhds hx)
 
 /-- Every real constant times the exponential of the negative integral solves
-the corresponding first-order homogeneous equation.-/
+the corresponding first-order homogeneous equation.
+@isnad1 id=hasderiv.5h5v.s7.001d0fb7d672 from=translated src=- shape=9dc648b4 vocab=1c955384
+-/
 theorem hasDerivAt_const_mul_exp_neg_integral
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {a : ℝ → ℝ} (ha : ContinuousOn a I)
@@ -43,7 +45,9 @@ theorem hasDerivAt_const_mul_exp_neg_integral
   exact (hA.neg.exp.const_mul c).congr_deriv (by simp only [Pi.neg_apply]; ring)
 
 /-- Every real solution of `w' = -a w` agrees on the interval with its
-basepoint-normalized exponential-of-an-integral formula.-/
+basepoint-normalized exponential-of-an-integral formula.
+@isnad1 id=eqon.5h4v.s7.a223b9a5072a from=translated src=- shape=a8b2e86f vocab=ee90aaac
+-/
 theorem eqOn_const_mul_exp_neg_integral_of_hasDerivAt
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {a w : ℝ → ℝ} (ha : ContinuousOn a I)
@@ -76,7 +80,9 @@ theorem eqOn_const_mul_exp_neg_integral_of_hasDerivAt
     _ = w x₀ * Real.exp (-∫ t in x₀..x, a t) := by rfl
 
 /-- Every complex constant times the complex exponential of the negative
-integral solves the corresponding real-time first-order homogeneous equation.-/
+integral solves the corresponding real-time first-order homogeneous equation.
+@isnad1 id=hasderiv.5h5v.s7.bacdabfc4dac from=translated src=- shape=f9680fb5 vocab=55047841
+-/
 theorem hasDerivAt_const_mul_cexp_neg_integral
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {a : ℝ → ℂ} (ha : ContinuousOn a I)
@@ -90,7 +96,9 @@ theorem hasDerivAt_const_mul_cexp_neg_integral
   exact (hA.neg.cexp.const_mul c).congr_deriv (by simp only [Pi.neg_apply]; ring)
 
 /-- Every complex-valued real-time solution of `w' = -a w` agrees on the
-interval with its basepoint-normalized exponential-of-an-integral formula.-/
+interval with its basepoint-normalized exponential-of-an-integral formula.
+@isnad1 id=eqon.5h4v.s7.b12d0a00f063 from=translated src=- shape=73370017 vocab=63f4cfc5
+-/
 theorem eqOn_const_mul_cexp_neg_integral_of_hasDerivAt
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {a w : ℝ → ℂ} (ha : ContinuousOn a I)

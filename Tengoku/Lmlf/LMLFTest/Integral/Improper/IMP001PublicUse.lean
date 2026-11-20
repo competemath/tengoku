@@ -27,7 +27,9 @@ variable {E H : Type*}
   [NormedAddCommGroup H] [NormedSpace ℝ H] [CompleteSpace H]
 
 /-- IMP-R20: arbitrary `S`, with both T06 side conditions derived from a
-separate flat bound and `h > 0`.-/
+separate flat bound and `h > 0`.
+@isnad1 id=hasimpro.4h7v.s8.b0cee16d1517 from=translated src=- shape=35a9e47d vocab=76df8ccd
+-/
 theorem r20_arbitrary_S_from_bounded_primitive
     {g F : ℝ → E} {k h L : ℝ} {S : Finset ℝ}
     (hF : IsFiniteExceptionalPrimitive g k S F)
@@ -73,7 +75,9 @@ theorem r20_arbitrary_S_from_bounded_primitive
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
 /-- A finite limit and continuity give a flat bound, but the bound is derived
-outside T08 and is not a field of either public predicate.-/
+outside T08 and is not a field of either public predicate.
+@isnad1 id=ex.2h4v.s6.b3ec560433c1 from=translated src=- shape=3ccc9317 vocab=fadbcc0f
+-/
 theorem flat_bound_of_continuousOn_Ici_of_tendsto
     {F : ℝ → E} {k : ℝ} {I : E}
     (hcont : ContinuousOn F (Ici k)) (hlim : Tendsto F atTop (nhds I)) :
@@ -101,7 +105,9 @@ theorem flat_bound_of_continuousOn_Ici_of_tendsto
         _ ≤ max C (‖I‖ + 1) := le_max_right _ _
 
 /-- Historical partial IMP-R24 evidence from the frozen harness: changing only
-the initial-point value preserves the T07 bridge. It does not claim full R24.-/
+the initial-point value preserves the T07 bridge. It does not claim full R24.
+@isnad1 id=hasimpro.2h5v.s6.6b4b1377c62f from=translated src=- shape=9b5ac784 vocab=bfcc9333
+-/
 theorem r07_initial_point_value_irrelevant
     (f : ℝ → E) (k : ℝ) (S : Finset ℝ) (z : E)
     (hS : ∀ c ∈ S, k < c) (hf : IntegrableOn f (Ioi k)) :
@@ -120,7 +126,9 @@ theorem r07_initial_point_value_irrelevant
   exact hrel
 
 /-- T03 retains the literal `biUnion` and supports a distinct complete output
-codomain.-/
+codomain.
+@isnad1 id=hasimpro.1h9v.s8.59811dcc0c2c from=translated src=- shape=fe6f5cf7 vocab=ee0b498f
+-/
 theorem r03_cross_codomain_literal_union
     {A : Type*} (s : Finset A) (f : A → ℝ → E)
     (S : A → Finset ℝ) (I : A → E) (T : A → E →L[ℝ] H) {k : ℝ}
@@ -131,7 +139,9 @@ theorem r03_cross_codomain_literal_union
   HasImproperIntegralAtTopExcept.finset_clm s f S I T h
 
 /-- A one-model finite subtraction instance used by the source-shaped chain.
-It is proved only through T03; no relation representation is opened.-/
+It is proved only through T03; no relation representation is opened.
+@isnad1 id=hasimpro.2h8v.s8.b5491a85081a from=translated src=- shape=fa4ea9f7 vocab=224b2d92
+-/
 theorem subtract_one_model
     {q m : ℝ → E} {k : ℝ} {S : Finset ℝ} {Q M : E}
     (U : E →L[ℝ] E)
@@ -164,7 +174,9 @@ theorem subtract_one_model
   rw [hunion] at hcomb
   simpa [f, vals, maps, Fin.sum_univ_two, sub_eq_add_neg] using hcomb
 
-/-- A one-model finite recombination instance used by the source-shaped chain.-/
+/-- A one-model finite recombination instance used by the source-shaped chain.
+@isnad1 id=hasimpro.2h8v.s8.e19c494c27c2 from=translated src=- shape=fa4ea9f7 vocab=e2792bbc
+-/
 theorem add_one_model
     {r m : ℝ → E} {k : ℝ} {S : Finset ℝ} {R M : E}
     (U : E →L[ℝ] E)
@@ -198,7 +210,9 @@ theorem add_one_model
   simpa [f, vals, maps, Fin.sum_univ_two] using hcomb
 
 /-- T04 has the exact `J + I` orientation; T08 then extracts an existential
-primitive, and its flat bound is proved by the separate theorem above.-/
+primitive, and its flat bound is proved by the separate theorem above.
+@isnad1 id=ex.4h6v.s7.d89e27f62dba from=translated src=- shape=b5b1fcf1 vocab=d60f13b4
+-/
 theorem r04_split_then_r08_extract_and_bound
     (f : ℝ → E) {a k : ℝ} (S : Finset ℝ) (I : E)
     (hak : a ≤ k) (hS : ∀ c ∈ S, k < c)
@@ -217,7 +231,9 @@ theorem r04_split_then_r08_extract_and_bound
     ⟨L, hL, hflat⟩
   exact ⟨F, L, hprim, hlim, hL, hflat⟩
 
-/-- A bounded, complete source-shaped path through the public IMP API.-/
+/-- A bounded, complete source-shaped path through the public IMP API.
+@isnad1 id=ex.8h8v.s11.e4ab3ffd05e3 from=translated src=- shape=08659653 vocab=68d6aa6e
+-/
 theorem source_shaped_public_chain_one_model
     (q m : ℝ → E) (U : E →L[ℝ] E) (S : Finset ℝ)
     (QX : E) {k h : ℝ}

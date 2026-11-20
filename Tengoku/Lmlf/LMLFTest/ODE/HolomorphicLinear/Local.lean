@@ -9,7 +9,9 @@ namespace LMLFTest.ODE
 universe u
 
 /-- The disk theorem retains universe-polymorphic Banach values, an arbitrary
-basepoint, and its on-disk `EqOn` uniqueness conclusion.-/
+basepoint, and its on-disk `EqOn` uniqueness conclusion.
+@isnad1 id=ex.3h6v.s9.6ed35bc82401 from=translated src=- shape=f786d6a6 vocab=5baff900
+-/
 theorem genericHolomorphicLinearIVP_ball
     {E : Type u} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     {q : ℂ} {R : ℝ} (hR : 0 < R) {A : ℂ → (E →L[ℂ] E)}
@@ -22,7 +24,9 @@ theorem genericHolomorphicLinearIVP_ball
   LMLF.ODE.exists_unique_holomorphicLinearIVP_ball hR hA hx₀ u₀
 
 /-- For the zero coefficient, the public uniqueness clause identifies the
-constructed solution with the constant function.-/
+constructed solution with the constant function.
+@isnad1 id=ex.2h5v.s7.839dacf0ebe5 from=translated src=- shape=274ea50a vocab=03c19760
+-/
 theorem zeroCoefficient_holomorphicLinearIVP
     {E : Type u} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     {q x₀ : ℂ} {R : ℝ} (hR : 0 < R) (hx₀ : x₀ ∈ ball q R) (u₀ : E) :

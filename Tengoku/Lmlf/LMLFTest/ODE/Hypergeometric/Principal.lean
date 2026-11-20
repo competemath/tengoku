@@ -18,7 +18,9 @@ namespace LMLFTest.ODE.Hypergeometric.Principal
 open LMLF.Definitions LMLF.ODE
 
 /-- Regression for the nonzero off-domain fallback: the terminating regularized series with
-`a = b = 0`, `c = 1` is the constant one at every ambient point.-/
+`a = b = 0`, `c = 1` is the constant one at every ambient point.
+@isnad1 id=eq.0h1v.s4.e4b04965c61c from=translated src=- shape=dd6c531f vocab=0ffdff85
+-/
 theorem terminatingRegularizedGaussSeries_zero_zero_one (z : ℂ) :
     regularizedGaussHypergeometricSeriesSum 0 0 1 z = 1 := by
   change (Complex.regularizedGaussHGFunSeries 0 0 1).sum z = 1
@@ -35,7 +37,9 @@ theorem terminatingRegularizedGaussSeries_zero_zero_one (z : ℂ) :
       exact ⟨0, hkpos, by simp⟩
     simp [hpoch]
 
-/-- Named boundary regression guarding against the obsolete zero fallback.-/
+/-- Named boundary regression guarding against the obsolete zero fallback.
+@isnad1 id=and.0h0v.s6.4cbea8bd26bf from=translated src=- shape=4c0ab75b vocab=f8bac9e9
+-/
 theorem terminatingPrincipalGauss_at_one :
     regularizedGaussHypergeometric 0 0 1 1 = 1 ∧
       gaussHypergeometric 0 0 1 1 = 1 := by

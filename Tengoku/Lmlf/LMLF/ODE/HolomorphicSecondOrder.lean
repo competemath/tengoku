@@ -16,7 +16,9 @@ open Filter Metric Set
 open scoped Topology
 
 /-- A scalar second-order homogeneous linear equation with analytic coefficients on a simply
-connected complex domain has a unique solution for each value and first derivative.-/
+connected complex domain has a unique solution for each value and first derivative.
+@isnad1 id=ex.5h6v.s9.594a1b62e6a0 from=translated src=- shape=f4e4dff9 vocab=092ec282
+-/
 theorem exists_unique_holomorphicSecondOrderLinear
     {Z : Set ℂ} (hZ : IsOpen Z) (hZc : IsSimplyConnected Z)
     {f g : ℂ → ℂ} (hf : AnalyticOnNhd ℂ f Z) (hg : AnalyticOnNhd ℂ g Z)
@@ -91,7 +93,9 @@ theorem exists_unique_holomorphicSecondOrderLinear
     exact congrArg Prod.fst (hUQ hz)
 
 /-- There are infinitely many holomorphic solutions, counted as functions on the domain rather
-than by arbitrary values of ambient extensions away from it.-/
+than by arbitrary values of ambient extensions away from it.
+@isnad1 id=infinite.4h3v.s8.9199201753b7 from=translated src=- shape=ae207d19 vocab=3f3b1f05
+-/
 theorem infinite_holomorphicSecondOrderLinearSolutions
     {Z : Set ℂ} (hZ : IsOpen Z) (hZc : IsSimplyConnected Z)
     {f g : ℂ → ℂ} (hf : AnalyticOnNhd ℂ f Z) (hg : AnalyticOnNhd ℂ g Z) :

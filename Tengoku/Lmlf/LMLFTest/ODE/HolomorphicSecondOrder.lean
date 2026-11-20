@@ -11,7 +11,9 @@ open scoped Topology
 -- The scalar theorem exposes a genuine `HasDerivAt (deriv w)` equation.
 
 /-- The generic scalar IVP theorem is genuinely reusable by the accepted regularized Gauss series
-on every simply connected subdomain where the normalized coefficients are nonsingular.-/
+on every simply connected subdomain where the normalized coefficients are nonsingular.
+@isnad1 id=other.5h5v.s9.201feca49022 from=translated src=- shape=203c4ae2 vocab=74409027
+-/
 theorem regularizedGauss_reuses_holomorphicSecondOrderLinearIVP
     (a b c : ℂ) {Z : Set ℂ} (hZ : IsOpen Z) (hZc : IsSimplyConnected Z)
     (hZball : Z ⊆ ball 0 1) (h0Z : 0 ∉ Z) {x₀ : ℂ} (hx₀ : x₀ ∈ Z) :

@@ -12,7 +12,9 @@ open LMLF.Definitions LMLF.ODE
 
 /-- A public consumer composing the principal exceptional shift, principal analyticity, and the
 principal polynomial Gauss equation. It intentionally makes no exact vanishing-order claim when
-the Pochhammer prefactor is zero.-/
+the Pochhammer prefactor is zero.
+@isnad1 id=other.0h3v.s8.c9ce0738dacb from=translated src=- shape=30086e30 vocab=2c312908
+-/
 theorem principalExceptionalGaussCertificate (a b : ℂ) (N : ℕ) :
     let H : ℂ → ℂ := fun z ↦
       ((ascPochhammer ℂ (N + 1)).eval a *

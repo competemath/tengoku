@@ -14,7 +14,9 @@ open Set
 
 namespace LMLFTest.ODE
 
-/-- The canonical complex IVP pair has nowhere-vanishing Wronskian.-/
+/-- The canonical complex IVP pair has nowhere-vanishing Wronskian.
+@isnad1 id=ex.5h4v.s9.6d3b8c4d8502 from=translated src=- shape=d28de234 vocab=d5c4dfc6
+-/
 theorem complexCanonicalLinearIVP_wronskian_ne_zero
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -36,7 +38,9 @@ theorem complexCanonicalLinearIVP_wronskian_ne_zero
   have hbase := (LMLF.ODE.wronskian_eq_zero_iff hI hIc hf hy₁ hv₁ hy₂ hv₂ hx₀ hx).1 hzero
   simp [LMLF.ODE.wronskian, hy₁₀, hv₁₀, hy₂₀, hv₂₀] at hbase
 
-/-- The canonical real IVP pair has nowhere-vanishing Wronskian.-/
+/-- The canonical real IVP pair has nowhere-vanishing Wronskian.
+@isnad1 id=ex.5h4v.s8.0bfdcf368006 from=translated src=- shape=c526d36c vocab=341b5dcb
+-/
 theorem realCanonicalLinearIVP_wronskian_ne_zero
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)

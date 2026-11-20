@@ -43,7 +43,9 @@ private theorem canonicalPrimitivePackage
   refine ⟨hP, ?_⟩
   exact MeasureTheory.intervalIntegral_tendsto_integral_Ioi k hf tendsto_id
 
-/-- IMP-001-T07.-/
+/-- IMP-001-T07.
+@isnad1 id=hasimpro.2h4v.s6.0fd576b5fd0b from=translated src=- shape=95582a95 vocab=350db8a2
+-/
 theorem HasImproperIntegralAtTopExcept.of_integrableOn_Ioi
     [CompleteSpace E] (f : ℝ → E) (k : ℝ) (S : Finset ℝ)
     (hS : ∀ c ∈ S, k < c) (hf : IntegrableOn f (Ioi k)) :

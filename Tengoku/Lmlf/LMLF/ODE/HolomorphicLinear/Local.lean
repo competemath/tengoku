@@ -371,7 +371,9 @@ private lemma solution_unique_on_ball
   simpa [D] using sub_eq_zero.mp hDz
 
 /-- A holomorphic homogeneous linear initial-value problem on a complex disk has a
-unique solution on the whole disk.-/
+unique solution on the whole disk.
+@isnad1 id=ex.3h6v.s9.6ed35bc82401 from=translated src=- shape=f786d6a6 vocab=5baff900
+-/
 theorem exists_unique_holomorphicLinearIVP_ball
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     {q : ℂ} {R : ℝ} (hR : 0 < R)

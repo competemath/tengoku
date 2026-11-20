@@ -65,7 +65,9 @@ private theorem regularizedGauss_secondDerivative_hasFPowerSeriesOnBall (a b c :
     simp only [Function.comp_apply, ContinuousLinearMap.apply_apply, deriv]
 
 /-- The regularized local Gauss series satisfies the unnormalized Gauss equation throughout the
-open unit disk, including exceptional denominator parameters and the origin.-/
+open unit disk, including exceptional denominator parameters and the origin.
+@isnad1 id=eq.1h4v.s7.28571fc4a919 from=translated src=- shape=ee95cee3 vocab=107ee948
+-/
 theorem regularizedGaussHypergeometricSeriesSum_gaussEquation
     {a b c z : ℂ} (hz : ‖z‖ < 1) :
     z * (1 - z) *
@@ -194,7 +196,9 @@ theorem regularizedGaussHypergeometricSeriesSum_gaussEquation
     _ = 0 := hres
 
 /-- For a source-valid denominator parameter, the ordinary local Gauss series satisfies the
-unnormalized Gauss equation throughout the open unit disk.-/
+unnormalized Gauss equation throughout the open unit disk.
+@isnad1 id=eq.2h4v.s8.918bdc1916bc from=translated src=- shape=d2e3e741 vocab=0c6394fb
+-/
 theorem gaussHypergeometricSeriesSum_gaussEquation
     {a b c z : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) (hz : ‖z‖ < 1) :
     z * (1 - z) * deriv (deriv (gaussHypergeometricSeriesSum a b c)) z

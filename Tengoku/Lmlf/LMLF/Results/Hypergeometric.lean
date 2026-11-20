@@ -68,7 +68,9 @@ private theorem regularizedGauss_neg_nat_tail_coefficient
   ring
 
 /-- The exceptional regularized Gauss series is a shifted regularized Gauss series on the source
-disk.-/
+disk.
+@isnad1 id=eq.1h4v.s7.a686cd4354b7 from=translated src=- shape=13195bd6 vocab=6500e256
+-/
 theorem regularizedGaussHypergeometricSeriesSum_neg_nat
     {a b z : ℂ} (N : ℕ) (hz : ‖z‖ < 1) :
     regularizedGaussHypergeometricSeriesSum a b (-(N : ℂ)) z =
@@ -118,7 +120,9 @@ theorem regularizedGaussHypergeometricSeriesSum_neg_nat
   simpa only [K, mul_assoc] using hunique
 
 /-- The exceptional regularized Gauss series is a shifted ordinary Gauss series on the source
-disk.-/
+disk.
+@isnad1 id=eq.1h4v.s7.19249f0c3e70 from=translated src=- shape=f058c032 vocab=36952b02
+-/
 theorem regularizedGaussHypergeometricSeriesSum_neg_nat_eq_gauss
     {a b z : ℂ} (N : ℕ) (hz : ‖z‖ < 1) :
     regularizedGaussHypergeometricSeriesSum a b (-(N : ℂ)) z =

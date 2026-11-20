@@ -70,7 +70,9 @@ private theorem regularizedGaussHypergeometricSeriesSum_eq_zero_of_early_right
   rw [hterms, tsum_zero]
 
 /-- The exceptional regularized principal Gauss function is a shifted principal Gauss function
-throughout the cut plane.-/
+throughout the cut plane.
+@isnad1 id=eq.1h4v.s7.e939ff0786e7 from=translated src=- shape=006a7ba5 vocab=ec210e1b
+-/
 theorem regularizedGaussHypergeometric_neg_nat
     {a b z : ℂ} (N : ℕ) (hz : z ∈ gaussHypergeometricDomain) :
     regularizedGaussHypergeometric a b (-(N : ℂ)) z =
@@ -103,7 +105,9 @@ theorem regularizedGaussHypergeometric_neg_nat
     a b (-(N : ℂ)) hv hvgerm hz
 
 /-- The exceptional regularized principal Gauss function is a shifted ordinary principal Gauss
-function, with the positive-integer Gamma value written as a factorial.-/
+function, with the positive-integer Gamma value written as a factorial.
+@isnad1 id=eq.1h4v.s7.25ae826cf2d2 from=translated src=- shape=963565dd vocab=3b26f37d
+-/
 theorem regularizedGaussHypergeometric_neg_nat_eq_gauss
     {a b z : ℂ} (N : ℕ) (hz : z ∈ gaussHypergeometricDomain) :
     regularizedGaussHypergeometric a b (-(N : ℂ)) z =
@@ -133,7 +137,9 @@ theorem regularizedGaussHypergeometric_neg_nat_eq_gauss
   ring
 
 /-- If the left numerator terminates no later than an exceptional denominator, the ambient
-regularized principal Gauss function is identically zero, including on the branch cut.-/
+regularized principal Gauss function is identically zero, including on the branch cut.
+@isnad1 id=eq.1h4v.s5.a324cf228601 from=translated src=- shape=499c5c85 vocab=98594789
+-/
 theorem regularizedGaussHypergeometric_eq_zero_of_early_left_termination
     (b : ℂ) (m N : ℕ) (hm : m ≤ N) (z : ℂ) :
     regularizedGaussHypergeometric (-(m : ℂ)) b (-(N : ℂ)) z = 0 := by
@@ -146,7 +152,9 @@ theorem regularizedGaussHypergeometric_eq_zero_of_early_left_termination
     exact regularizedGaussHypergeometricSeriesSum_eq_zero_of_early_left b m N hm z
 
 /-- If the right numerator terminates no later than an exceptional denominator, the ambient
-regularized principal Gauss function is identically zero, including on the branch cut.-/
+regularized principal Gauss function is identically zero, including on the branch cut.
+@isnad1 id=eq.1h4v.s5.1b06b9b69af9 from=translated src=- shape=730f63f1 vocab=98594789
+-/
 theorem regularizedGaussHypergeometric_eq_zero_of_early_right_termination
     (a : ℂ) (m N : ℕ) (hm : m ≤ N) (z : ℂ) :
     regularizedGaussHypergeometric a (-(m : ℂ)) (-(N : ℂ)) z = 0 := by

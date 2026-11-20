@@ -22,7 +22,9 @@ namespace LMLF.Definitions
 /-- The principal Gauss domain, the complex plane cut along the real ray `[1, ∞)`.-/
 def gaussHypergeometricDomain : Set ℂ := (Set.Ici (1 : ℂ))ᶜ
 
-/-- Coordinate description of the principal Gauss domain.-/
+/-- Coordinate description of the principal Gauss domain.
+@isnad1 id=iff.0h1v.s5.5d8fd8eeeef2 from=translated src=- shape=2402eb22 vocab=3335b9e1
+-/
 @[simp] theorem mem_gaussHypergeometricDomain_iff (z : ℂ) :
     z ∈ gaussHypergeometricDomain ↔ z.im ≠ 0 ∨ z.re < 1 := by
   simp only [gaussHypergeometricDomain, Set.mem_compl_iff, Set.mem_Ici, Complex.le_def]
@@ -35,7 +37,9 @@ def gaussHypergeometricDomain : Set ℂ := (Set.Ici (1 : ℂ))ᶜ
     · exact hz (by simpa using h.2.symm)
     · exact (not_le_of_gt hz) h.1
 
-/-- The principal Gauss domain is open.-/
+/-- The principal Gauss domain is open.
+@isnad1 id=isopen.0h0v.s4.b1dfd0405f46 from=translated src=- shape=25b03439 vocab=8d1fc132
+-/
 theorem isOpen_gaussHypergeometricDomain : IsOpen gaussHypergeometricDomain :=
   isClosed_Ici.isOpen_compl
 
@@ -67,7 +71,9 @@ private theorem zero_mem_gaussHypergeometricDomain :
     (0 : ℂ) ∈ gaussHypergeometricDomain := by
   simp
 
-/-- The principal Gauss domain is simply connected.-/
+/-- The principal Gauss domain is simply connected.
+@isnad1 id=issimply.0h0v.s4.a2fd8e09d59b from=translated src=- shape=25b03439 vocab=357a77a8
+-/
 theorem isSimplyConnected_gaussHypergeometricDomain :
     IsSimplyConnected gaussHypergeometricDomain := by
   let _ : ContractibleSpace gaussHypergeometricDomain :=
@@ -516,7 +522,9 @@ noncomputable def regularizedGaussHypergeometric (a b c : ℂ) : ℂ → ℂ := 
 noncomputable def gaussHypergeometric (a b c : ℂ) : ℂ → ℂ := fun z ↦
   Complex.Gamma c * regularizedGaussHypergeometric a b c z
 
-/-- On the open unit disk, the regularized principal function is the original series sum.-/
+/-- On the open unit disk, the regularized principal function is the original series sum.
+@isnad1 id=eqon.0h3v.s5.1c6a389bf0e0 from=translated src=- shape=6cc34a52 vocab=b2e4e54b
+-/
 theorem regularizedGaussHypergeometric_eqOn_seriesSum (a b c : ℂ) :
     Set.EqOn (regularizedGaussHypergeometric a b c)
       (regularizedGaussHypergeometricSeriesSum a b c) (Metric.ball 0 1) := by
@@ -525,7 +533,9 @@ theorem regularizedGaussHypergeometric_eqOn_seriesSum (a b c : ℂ) :
   have hzD := gaussSeriesDisk_subset_domain hzDisk
   rw [regularizedGaussHypergeometric, ite_eq_left hzD, ite_eq_left hzDisk]
 
-/-- Off the principal domain, the ambient regularized function retains the original series sum.-/
+/-- Off the principal domain, the ambient regularized function retains the original series sum.
+@isnad1 id=eqon.0h3v.s4.8c3b8581bdc8 from=translated src=- shape=16270d2e vocab=1ec0a590
+-/
 theorem regularizedGaussHypergeometric_eqOn_seriesSum_compl (a b c : ℂ) :
     Set.EqOn (regularizedGaussHypergeometric a b c)
       (regularizedGaussHypergeometricSeriesSum a b c) gaussHypergeometricDomainᶜ := by
@@ -555,7 +565,9 @@ private theorem regularizedGaussHypergeometric_eqOn_chartB (a b c : ℂ) :
       exact gaussChartSolutions_eqOn_inter a b c ⟨hzA, hz⟩
     · rw [regularizedGaussHypergeometric, ite_eq_left hzD, ite_eq_right hzBall, ite_eq_right hzA]
 
-/-- The regularized principal function is analytic throughout the cut plane.-/
+/-- The regularized principal function is analytic throughout the cut plane.
+@isnad1 id=analytic.0h3v.s5.78a306132b1d from=translated src=- shape=e04264f0 vocab=ef7e38b8
+-/
 theorem regularizedGaussHypergeometric_analyticOnNhd (a b c : ℂ) :
     AnalyticOnNhd ℂ (regularizedGaussHypergeometric a b c) gaussHypergeometricDomain := by
   have hDisk : AnalyticOnNhd ℂ (regularizedGaussHypergeometric a b c) gaussSeriesDisk :=
@@ -578,7 +590,9 @@ theorem regularizedGaussHypergeometric_analyticOnNhd (a b c : ℂ) :
   · exact hA z hzA
   · exact hB z hzB
 
-/-- An analytic function on the principal domain is determined by the whole local-series germ.-/
+/-- An analytic function on the principal domain is determined by the whole local-series germ.
+@isnad1 id=eqon.2h4v.s6.d779d4807dcd from=translated src=- shape=9eae4489 vocab=f4debb1d
+-/
 theorem regularizedGaussHypergeometric_eqOn_of_eqOn_seriesSum
     (a b c : ℂ) {v : ℂ → ℂ}
     (hv : AnalyticOnNhd ℂ v gaussHypergeometricDomain)
@@ -596,7 +610,9 @@ theorem regularizedGaussHypergeometric_eqOn_of_eqOn_seriesSum
         zero_mem_gaussHypergeometricDomain).isConnected.isPreconnected
       zero_mem_gaussHypergeometricDomain hevent
 
-/-- On the source disk, the ordinary principal function is the ordinary Gauss series.-/
+/-- On the source disk, the ordinary principal function is the ordinary Gauss series.
+@isnad1 id=eqon.1h3v.s5.779c7be2d766 from=translated src=- shape=86b2dcdd vocab=05d7768b
+-/
 theorem gaussHypergeometric_eqOn_seriesSum
     (a b c : ℂ) (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     Set.EqOn (gaussHypergeometric a b c) (gaussHypergeometricSeriesSum a b c)
@@ -612,14 +628,18 @@ theorem gaussHypergeometric_eqOn_seriesSum
     regularizedGaussHypergeometric_eqOn_seriesSum a b c hz, hseries]
   ring
 
-/-- The ordinary principal function is analytic on the principal domain.-/
+/-- The ordinary principal function is analytic on the principal domain.
+@isnad1 id=analytic.1h3v.s5.853576a9dc68 from=translated src=- shape=bd8f8787 vocab=150043da
+-/
 theorem gaussHypergeometric_analyticOnNhd
     (a b c : ℂ) (_hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     AnalyticOnNhd ℂ (gaussHypergeometric a b c) gaussHypergeometricDomain := by
   exact analyticOnNhd_const.mul (regularizedGaussHypergeometric_analyticOnNhd a b c)
 
 /-- An analytic ordinary function on the principal domain is determined by its whole series
-germ.-/
+germ.
+@isnad1 id=eqon.3h4v.s6.bb683e7c8f6d from=translated src=- shape=41995b7a vocab=de44bb5d
+-/
 theorem gaussHypergeometric_eqOn_of_eqOn_seriesSum
     (a b c : ℂ) (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) {v : ℂ → ℂ}
     (hv : AnalyticOnNhd ℂ v gaussHypergeometricDomain)
@@ -636,7 +656,9 @@ theorem gaussHypergeometric_eqOn_of_eqOn_seriesSum
       zero_mem_gaussHypergeometricDomain hevent
 
 /-- Dividing the ordinary principal function by its nonzero Gamma factor recovers the
-regularized principal function at every ambient point.-/
+regularized principal function at every ambient point.
+@isnad1 id=eq.1h4v.s5.b38917d440de from=translated src=- shape=63dccfbb vocab=b0e40c84
+-/
 theorem gaussHypergeometric_div_Gamma
     (a b c : ℂ) (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) (z : ℂ) :
     gaussHypergeometric a b c z / Complex.Gamma c =
@@ -692,7 +714,9 @@ namespace LMLF.ODE
 open LMLF.Definitions
 
 /-- The regularized principal Gauss function satisfies the unnormalized Gauss equation on the
-entire principal domain, including the singular origin and every denominator parameter.-/
+entire principal domain, including the singular origin and every denominator parameter.
+@isnad1 id=eq.1h4v.s7.0d811813adfc from=translated src=- shape=a682ffc9 vocab=fce6aebe
+-/
 theorem regularizedGaussHypergeometric_gaussEquation
     (a b c : ℂ) {z : ℂ} (hz : z ∈ gaussHypergeometricDomain) :
     z * (1 - z) * deriv (deriv (regularizedGaussHypergeometric a b c)) z +
@@ -720,7 +744,9 @@ theorem regularizedGaussHypergeometric_gaussEquation
     · exact regularizedGaussHypergeometric_gaussEquation_chartB a b c hzB
 
 /-- The ordinary principal Gauss function satisfies the same homogeneous equation on the
-principal domain.-/
+principal domain.
+@isnad1 id=eq.2h4v.s8.06524fe69d67 from=translated src=- shape=92eae72f vocab=b26c000e
+-/
 theorem gaussHypergeometric_gaussEquation
     (a b c : ℂ) (_hc : ∀ n : ℕ, c ≠ -(n : ℂ)) {z : ℂ}
     (hz : z ∈ gaussHypergeometricDomain) :

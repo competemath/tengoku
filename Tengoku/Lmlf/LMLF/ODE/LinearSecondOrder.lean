@@ -759,7 +759,9 @@ private theorem exists_unique_linearIVP
   · intro x hx
     exact congrArg Prod.snd (hEq hx)
 
-/-- Existence and `EqOn` uniqueness for a complex second-order linear phase IVP.-/
+/-- Existence and `EqOn` uniqueness for a complex second-order linear phase IVP.
+@isnad1 id=ex.5h6v.s9.5d76d747d5fa from=translated src=- shape=98680280 vocab=c39d027d
+-/
 theorem exists_unique_complexLinearIVP
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -776,7 +778,9 @@ theorem exists_unique_complexLinearIVP
         EqOn y y' I ∧ EqOn v v' I :=
   exists_unique_linearIVP hI hIc hf hg hx₀ y₀ v₀
 
-/-- Existence and `EqOn` uniqueness for a real second-order linear phase IVP.-/
+/-- Existence and `EqOn` uniqueness for a real second-order linear phase IVP.
+@isnad1 id=ex.5h6v.s8.5a3ead0bc5d0 from=translated src=- shape=d16679e4 vocab=00801166
+-/
 theorem exists_unique_realLinearIVP
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -827,7 +831,9 @@ private theorem exists_unique_secondOrderLinear
       (hI.mem_nhds hx)).hasDerivAt
   exact (hunique z (deriv z) hz₀ hdz₀ hzFirst hzEq).1
 
-/-- Olver's source-form complex second-order linear IVP theorem.-/
+/-- Olver's source-form complex second-order linear IVP theorem.
+@isnad1 id=ex.5h6v.s9.44f200400676 from=translated src=- shape=c1e779ad vocab=1dc17cd6
+-/
 theorem exists_unique_complexSecondOrderLinear
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -845,7 +851,9 @@ theorem exists_unique_complexSecondOrderLinear
         EqOn y z I :=
   exists_unique_secondOrderLinear hI hIc hf hg hx₀ y₀ v₀
 
-/-- Olver's source-form real second-order linear IVP theorem.-/
+/-- Olver's source-form real second-order linear IVP theorem.
+@isnad1 id=ex.5h6v.s9.6bb76073b709 from=translated src=- shape=daa39052 vocab=72815e33
+-/
 theorem exists_unique_realSecondOrderLinear
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -888,7 +896,9 @@ private theorem infinite_secondOrderLinearSolutions
     simpa only [Φ, hsolVal] using h
   exact Set.infinite_coe_iff.mp (Infinite.of_injective Φ hΦ)
 
-/-- There are infinitely many complex `C²` solutions of the homogeneous equation.-/
+/-- There are infinitely many complex `C²` solutions of the homogeneous equation.
+@isnad1 id=infinite.5h3v.s8.8f4b5df01eaa from=translated src=- shape=599a9f67 vocab=bdfb941d
+-/
 theorem infinite_complexSecondOrderLinearSolutions
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I) :
@@ -898,7 +908,9 @@ theorem infinite_complexSecondOrderLinearSolutions
         (-f x * deriv y x - g x * y x) x} :=
   infinite_secondOrderLinearSolutions hIne hI hIc hf hg
 
-/-- There are infinitely many real `C²` solutions of the homogeneous equation.-/
+/-- There are infinitely many real `C²` solutions of the homogeneous equation.
+@isnad1 id=infinite.5h3v.s7.d19c3b1a6045 from=translated src=- shape=c095ce43 vocab=14fe0521
+-/
 theorem infinite_realSecondOrderLinearSolutions
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I) :

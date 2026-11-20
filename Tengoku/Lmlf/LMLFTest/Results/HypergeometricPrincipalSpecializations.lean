@@ -11,7 +11,9 @@ namespace LMLFTest.Results
 open LMLF.Definitions
 
 /-- A public consumer combining the principal specialization, the `Gamma(1)` convention bridge,
-and the geometric-series API on its convergence disk.-/
+and the geometric-series API on its convergence disk.
+@isnad1 id=and.1h2v.s7.4cc38878c169 from=translated src=- shape=5843be16 vocab=606afdfc
+-/
 theorem principalGaussSpecializationConventionSeriesCertificate
     (a : ℂ) {z : ℂ} (hz : ‖z‖ < 1) :
     gaussHypergeometric a 1 1 z = (1 - z) ^ (-a) ∧

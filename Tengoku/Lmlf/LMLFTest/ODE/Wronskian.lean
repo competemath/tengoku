@@ -76,7 +76,9 @@ private theorem hypergeometric_integral_factor (a b c x₀ x : ℝ)
     Real.log_div (ne_of_gt (sub_pos.mpr hx.2)) (ne_of_gt (sub_pos.mpr hx₀.2))]
   ring
 
-/-- C1: Abel's identity specialized to the hypergeometric equation on `(0,1)`.-/
+/-- C1: Abel's identity specialized to the hypergeometric equation on `(0,1)`.
+@isnad1 id=eq.6h9v.s9.55977ee35f92 from=translated src=- shape=1008b0f7 vocab=5b1d1364
+-/
 theorem hypergeometric_wronskian (a b c : ℝ) (y₁ v₁ y₂ v₂ : ℝ → ℂ)
     (hy₁ : ∀ t ∈ Ioo (0 : ℝ) 1, HasDerivAt y₁ (v₁ t) t)
     (hv₁ : ∀ t ∈ Ioo (0 : ℝ) 1,
@@ -138,7 +140,9 @@ private theorem legendre_integral_factor (x₀ x : ℝ)
   dsimp [F]
   rw [neg_sub, Real.exp_sub, Real.exp_log hposx₀, Real.exp_log hposx]
 
-/-- C2: Abel's identity specialized to the associated Legendre equation on `(-1,1)`.-/
+/-- C2: Abel's identity specialized to the associated Legendre equation on `(-1,1)`.
+@isnad1 id=eq.6h8v.s9.321775071784 from=translated src=- shape=0070319f vocab=99bba3d4
+-/
 theorem associatedLegendre_wronskian (μ ν : ℂ) (y₁ v₁ y₂ v₂ : ℝ → ℂ)
     (hy₁ : ∀ t ∈ Ioo (-1 : ℝ) 1, HasDerivAt y₁ (v₁ t) t)
     (hv₁ : ∀ t ∈ Ioo (-1 : ℝ) 1,

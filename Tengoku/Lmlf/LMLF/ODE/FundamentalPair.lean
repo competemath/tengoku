@@ -28,7 +28,9 @@ def SpansSecondOrderLinearSolutionsOn {𝕂 : Type*} [RCLike 𝕂]
     ∃ A B : 𝕂, EqOn y (fun x ↦ A * y₁ x + B * y₂ x) I
 
 /-- Linear independence of two restrictions is exactly absence of a
-nontrivial constant scalar relation on the set.-/
+nontrivial constant scalar relation on the set.
+@isnad1 id=iff.0h5v.s7.90bd0a5df615 from=translated src=- shape=9452e286 vocab=12a9da23
+-/
 theorem linearIndependent_restrict_pair_iff
     {X 𝕂 : Type*} [Ring 𝕂] (I : Set X) (y₁ y₂ : X → 𝕂) :
     LinearIndependent 𝕂
@@ -140,7 +142,9 @@ private theorem linearSolution_eqOn_cramer
     ring
   exact phaseSolution_eqOn hI hIc hf hg hx₀ hIVP hy hv hphase.1 hphase.2 hy₀ hv₀
 
-/-- Cramer's formulas represent both coordinates of a complex phase solution.-/
+/-- Cramer's formulas represent both coordinates of a complex phase solution.
+@isnad1 id=other.12h10v.s9.40e9c1d48f99 from=translated src=- shape=c64d71b2 vocab=86347bfb
+-/
 theorem complexLinearSolution_eqOn_cramer
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -160,7 +164,9 @@ theorem complexLinearSolution_eqOn_cramer
   exact linearSolution_eqOn_cramer hI hIc hf hg hx₀
     (exists_unique_complexLinearIVP hI hIc hf hg hx₀) hy₁ hv₁ hy₂ hv₂ hy hv hW
 
-/-- Cramer's formulas represent both coordinates of a real phase solution.-/
+/-- Cramer's formulas represent both coordinates of a real phase solution.
+@isnad1 id=other.12h10v.s9.473b7eef7a8a from=translated src=- shape=22b4d9b0 vocab=832fd32c
+-/
 theorem realLinearSolution_eqOn_cramer
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -350,7 +356,9 @@ private theorem fundamentalPair_iff_aux
   exact ⟨⟨hspanW, hWspan⟩, ⟨hWind, hindW⟩⟩
 
 /-- A complex pair of phase solutions spans exactly when its Wronskian is
-nowhere zero, equivalently when its scalar restrictions are independent.-/
+nowhere zero, equivalently when its scalar restrictions are independent.
+@isnad1 id=and.9h7v.s9.7e7e00e03124 from=translated src=- shape=b347134c vocab=1cd1beb1
+-/
 theorem complexFundamentalPair_iff
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g y₁ v₁ y₂ v₂ : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -370,7 +378,9 @@ theorem complexFundamentalPair_iff
       hy₁ hv₁ hy₂ hv₂ hy hv hW)
 
 /-- A real pair of phase solutions spans exactly when its Wronskian is
-nowhere zero, equivalently when its scalar restrictions are independent.-/
+nowhere zero, equivalently when its scalar restrictions are independent.
+@isnad1 id=and.9h7v.s8.a949424255e4 from=translated src=- shape=495ddb9f vocab=ed824675
+-/
 theorem realFundamentalPair_iff
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g y₁ v₁ y₂ v₂ : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -482,7 +492,9 @@ private theorem secondOrderFundamentalPair_iff_aux
       exact hspan y (deriv y) (firstDerivative_of_contDiffOn_two hI hyC2) hyEq
   exact ⟨hsource_phase.trans hphase.1, hphase.2⟩
 
-/-- Olver's source-`C²` complex fundamental-pair characterization.-/
+/-- Olver's source-`C²` complex fundamental-pair characterization.
+@isnad1 id=and.9h5v.s10.bb384eb2ba41 from=translated src=- shape=173c14a7 vocab=1c394ae1
+-/
 theorem complexSecondOrderFundamentalPair_iff
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g y₁ y₂ : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -507,7 +519,9 @@ theorem complexSecondOrderFundamentalPair_iff
       (firstDerivative_of_contDiffOn_two hI hy₁C2) hy₁Eq
       (firstDerivative_of_contDiffOn_two hI hy₂C2) hy₂Eq hy hv hW)
 
-/-- Olver's source-`C²` real fundamental-pair characterization.-/
+/-- Olver's source-`C²` real fundamental-pair characterization.
+@isnad1 id=and.9h5v.s9.b44de96640f8 from=translated src=- shape=4dc2d074 vocab=fc491517
+-/
 theorem realSecondOrderFundamentalPair_iff
     {I : Set ℝ} (hIne : I.Nonempty) (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g y₁ y₂ : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -532,7 +546,9 @@ theorem realSecondOrderFundamentalPair_iff
       (firstDerivative_of_contDiffOn_two hI hy₁C2) hy₁Eq
       (firstDerivative_of_contDiffOn_two hI hy₂C2) hy₂Eq hy hv hW)
 
-/-- The two normalized complex IVPs form a canonical fundamental pair.-/
+/-- The two normalized complex IVPs form a canonical fundamental pair.
+@isnad1 id=ex.5h4v.s9.5675f6cc3d31 from=translated src=- shape=d46c041a vocab=e38e04ed
+-/
 theorem exists_complexCanonicalFundamentalPair
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℂ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)
@@ -573,7 +589,9 @@ theorem exists_complexCanonicalFundamentalPair
     hy₁ hv₁ hy₂ hv₂ hy hv hW₀
   simpa [wronskian, hy₁₀, hv₁₀, hy₂₀, hv₂₀] using hcr
 
-/-- The two normalized real IVPs form a canonical fundamental pair.-/
+/-- The two normalized real IVPs form a canonical fundamental pair.
+@isnad1 id=ex.5h4v.s9.95238804736c from=translated src=- shape=652e680b vocab=1f113b87
+-/
 theorem exists_realCanonicalFundamentalPair
     {I : Set ℝ} (hI : IsOpen I) (hIc : IsPreconnected I)
     {f g : ℝ → ℝ} (hf : ContinuousOn f I) (hg : ContinuousOn g I)

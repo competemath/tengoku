@@ -33,7 +33,9 @@ private theorem endpoint_ae_eq
 
 omit [CompleteSpace E] in
 /-- REG.50: interval integrability and the (possibly totalized) interval
-integral are invariant under arbitrary changes on `{k} ∪ S`.-/
+integral are invariant under arbitrary changes on `{k} ∪ S`.
+@isnad1 id=and.1h7v.s7.592956f01b69 from=translated src=- shape=6a80db23 vocab=80031c69
+-/
 theorem finiteEndpoint_interval_invariance
     {f ftilde : ℝ → E} {k a b : ℝ} {S : Finset ℝ}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ) :
@@ -48,7 +50,9 @@ theorem finiteEndpoint_interval_invariance
 
 omit [CompleteSpace E] in
 /-- REG.51: honest integrability and the set-integral value on the open ray
-are invariant under arbitrary changes on `{k} ∪ S`.-/
+are invariant under arbitrary changes on `{k} ∪ S`.
+@isnad1 id=and.1h5v.s7.05e13a972bf7 from=translated src=- shape=6d51ac7b vocab=dcb37b55
+-/
 theorem finiteEndpoint_Ioi_invariance
     {f ftilde : ℝ → E} {k : ℝ} {S : Finset ℝ}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ) :
@@ -61,7 +65,9 @@ theorem finiteEndpoint_Ioi_invariance
       (hae.mono fun _ ht _ ↦ ht)
 
 /-- REG.53: for every fixed `F`, the complete public T05 statement is
-invariant under arbitrary changes of the integrand on `{k} ∪ S`.-/
+invariant under arbitrary changes of the integrand on `{k} ∪ S`.
+@isnad1 id=iff.1h6v.s6.0a1a50d69a05 from=translated src=- shape=2e14d5cd vocab=f3caf280
+-/
 theorem finiteEndpoint_primitive_iff
     {f ftilde F : ℝ → E} {k : ℝ} {S : Finset ℝ}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ) :
@@ -82,7 +88,9 @@ theorem finiteEndpoint_primitive_iff
     exact ⟨(hinterval a b).1.mpr hInt, hinc.trans (hinterval a b).2.symm⟩
 
 /-- REG.54: the complete existential right-hand side of public T08 is
-invariant, using the same primitive witness in either direction.-/
+invariant, using the same primitive witness in either direction.
+@isnad1 id=iff.1h6v.s7.55adc811af9d from=translated src=- shape=db106e1a vocab=24756c02
+-/
 theorem finiteEndpoint_exists_primitive_iff
     {f ftilde : ℝ → E} {k : ℝ} {S : Finset ℝ} {I : E}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ) :
@@ -100,7 +108,9 @@ theorem finiteEndpoint_exists_primitive_iff
 
 /-- REG.52 / IMP-R24: T01 is invariant at every proposed value. The proof
 uses only the public T08 equivalence and the fixed-primitive transport above;
-it does not inspect T01's private component representation.-/
+it does not inspect T01's private component representation.
+@isnad1 id=iff.1h6v.s6.700be9f0b76d from=translated src=- shape=e92e1345 vocab=27afa569
+-/
 theorem finiteEndpoint_update_iff
     {f ftilde : ℝ → E} {k : ℝ} {S : Finset ℝ} {I : E}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ) :
@@ -121,7 +131,9 @@ theorem finiteEndpoint_update_iff
 
 /-- The explicit two-sided T07 regression. Integrability of either endpoint
 version gives honest `IntegrableOn` witnesses for both versions, their set
-integrals agree, and public T07 supplies both corresponding T01 relations.-/
+integrals agree, and public T07 supplies both corresponding T01 relations.
+@isnad1 id=and.3h5v.s8.ed991a773d19 from=translated src=- shape=76023ff3 vocab=8b23a736
+-/
 theorem finiteEndpoint_t07_transport
     {f ftilde : ℝ → E} {k : ℝ} {S : Finset ℝ}
     (hEq : Set.EqOn f ftilde ({k} ∪ (↑S : Set ℝ))ᶜ)

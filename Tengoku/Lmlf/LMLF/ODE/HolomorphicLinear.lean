@@ -287,7 +287,9 @@ private theorem isCoveringMap_holomorphicLinear
       _ = TopCat.stalkToFiber P y germ := hs
 
 /-- A holomorphic homogeneous linear initial-value problem on a simply connected complex domain
-has a unique solution on that domain.-/
+has a unique solution on that domain.
+@isnad1 id=ex.4h5v.s9.66b876ad51dc from=translated src=- shape=c793f76e vocab=57db2bb5
+-/
 theorem exists_unique_holomorphicLinearIVP
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     {Z : Set ℂ} (hZ : IsOpen Z) (hZc : IsSimplyConnected Z)

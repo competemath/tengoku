@@ -29,7 +29,9 @@ point where no convergence theorem applies is not an analytically continued valu
 noncomputable def regularizedGaussHypergeometricSeriesSum (a b c : ℂ) : ℂ → ℂ :=
   Complex.regularizedGaussHGFun a b c
 
-/-- For a source-valid denominator parameter, the ordinary Gauss series has radius at least one.-/
+/-- For a source-valid denominator parameter, the ordinary Gauss series has radius at least one.
+@isnad1 id=le.1h3v.s6.84aa18accb1b from=translated src=- shape=13beb4ee vocab=69240c96
+-/
 theorem ordinaryHypergeometricSeries_radius_ge_one
     {a b c : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     1 ≤ (ordinaryHypergeometricSeries ℂ a b c).radius := by
@@ -53,7 +55,9 @@ theorem ordinaryHypergeometricSeries_radius_ge_one
       exact hc n (by simpa using congrArg Neg.neg h.symm)
   rw [ordinaryHypergeometricSeries_radius_eq_one ℂ a b c habc]
 
-/-- The ordinary Gauss sum has its defining power series throughout the open unit disk.-/
+/-- The ordinary Gauss sum has its defining power series throughout the open unit disk.
+@isnad1 id=hasfpowe.1h3v.s6.ebe7181578c1 from=translated src=- shape=15e718fc vocab=f59e56e1
+-/
 theorem gaussHypergeometricSeriesSum_hasFPowerSeriesOnBall
     {a b c : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     HasFPowerSeriesOnBall
@@ -67,7 +71,9 @@ theorem gaussHypergeometricSeriesSum_hasFPowerSeriesOnBall
   exact ((ordinaryHypergeometricSeries ℂ a b c).hasFPowerSeriesOnBall hr_pos).mono
     zero_lt_one hr
 
-/-- The regularized Gauss sum has its defining power series throughout the open unit disk.-/
+/-- The regularized Gauss sum has its defining power series throughout the open unit disk.
+@isnad1 id=hasfpowe.0h3v.s5.5d9a8791fae1 from=translated src=- shape=9f25ffc5 vocab=c39aba50
+-/
 theorem regularizedGaussHypergeometricSeriesSum_hasFPowerSeriesOnBall (a b c : ℂ) :
     HasFPowerSeriesOnBall
       (regularizedGaussHypergeometricSeriesSum a b c)
@@ -81,7 +87,9 @@ theorem regularizedGaussHypergeometricSeriesSum_hasFPowerSeriesOnBall (a b c : �
   exact ((Complex.regularizedGaussHGFunSeries a b c).hasFPowerSeriesOnBall hr_pos).mono
     zero_lt_one hr
 
-/-- The ordinary Gauss coefficients genuinely sum to the named local series inside the unit disk.-/
+/-- The ordinary Gauss coefficients genuinely sum to the named local series inside the unit disk.
+@isnad1 id=hassum.2h4v.s7.03a71f739e82 from=translated src=- shape=885cac1c vocab=07a315c6
+-/
 theorem hasSum_gaussHypergeometricSeries
     {a b c z : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) (hz : ‖z‖ < 1) :
     HasSum
@@ -97,7 +105,9 @@ theorem hasSum_gaussHypergeometricSeries
   simpa only [ordinaryHypergeometricSeries_apply_eq (𝔸 := ℂ), smul_eq_mul, zero_add] using h
 
 /-- The regularized Gauss coefficients genuinely sum to the named local series inside the unit
-disk.-/
+disk.
+@isnad1 id=hassum.1h4v.s7.8c57de474d4d from=translated src=- shape=2310ce15 vocab=d76db093
+-/
 theorem hasSum_regularizedGaussHypergeometricSeries
     {a b c z : ℂ} (hz : ‖z‖ < 1) :
     HasSum
@@ -112,20 +122,26 @@ theorem hasSum_regularizedGaussHypergeometricSeries
     Complex.coeff_regularizedGaussHGFunSeries, mul_comm] using
     (regularizedGaussHypergeometricSeriesSum_hasFPowerSeriesOnBall a b c).hasSum hz'
 
-/-- On the source disk, the ordinary local series divided by `Gamma c` is the regularized series.-/
+/-- On the source disk, the ordinary local series divided by `Gamma c` is the regularized series.
+@isnad1 id=eq.2h4v.s5.b251ba36dd49 from=translated src=- shape=1c5ec7d9 vocab=022239cb
+-/
 theorem gaussHypergeometricSeriesSum_div_Gamma
     {a b c z : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) (hz : ‖z‖ < 1) :
     gaussHypergeometricSeriesSum a b c z / Complex.Gamma c =
       regularizedGaussHypergeometricSeriesSum a b c z := by
   exact Complex.ordinaryHypergeometric_div_Gamma_eq hc
 
-/-- The source-valid ordinary Gauss local series is normalized to one at the origin.-/
+/-- The source-valid ordinary Gauss local series is normalized to one at the origin.
+@isnad1 id=eq.1h3v.s5.b22d5a9553ec from=translated src=- shape=665a869b vocab=bceb7d46
+-/
 @[simp] theorem gaussHypergeometricSeriesSum_zero
     {a b c : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     gaussHypergeometricSeriesSum a b c 0 = 1 := by
   exact ordinaryHypergeometric_zero a b c
 
-/-- The regularized Gauss local series has constant term `(Gamma c)⁻¹`.-/
+/-- The regularized Gauss local series has constant term `(Gamma c)⁻¹`.
+@isnad1 id=eq.0h3v.s4.f5e0bd002b2d from=translated src=- shape=8431c51b vocab=b16ebcea
+-/
 @[simp] theorem regularizedGaussHypergeometricSeriesSum_zero (a b c : ℂ) :
     regularizedGaussHypergeometricSeriesSum a b c 0 = (Complex.Gamma c)⁻¹ := by
   have hcoeff :=
@@ -135,7 +151,9 @@ theorem gaussHypergeometricSeriesSum_div_Gamma
     Complex.coeff_regularizedGaussHGFunSeries] at hcoeff
   simpa using hcoeff.symm
 
-/-- The ordinary Gauss local-series sum is analytic throughout the open unit disk.-/
+/-- The ordinary Gauss local-series sum is analytic throughout the open unit disk.
+@isnad1 id=analytic.1h3v.s6.72195eab4eab from=translated src=- shape=3ca6980e vocab=e147a29d
+-/
 theorem gaussHypergeometricSeriesSum_analyticOnNhd
     {a b c : ℂ} (hc : ∀ n : ℕ, c ≠ -(n : ℂ)) :
     AnalyticOnNhd ℂ (gaussHypergeometricSeriesSum a b c) (Metric.ball 0 1) := by
@@ -144,7 +162,9 @@ theorem gaussHypergeometricSeriesSum_analyticOnNhd
   rw [← ENNReal.ofReal_one, Metric.eball_ofReal] at h
   simpa using h
 
-/-- The regularized Gauss local-series sum is analytic throughout the open unit disk.-/
+/-- The regularized Gauss local-series sum is analytic throughout the open unit disk.
+@isnad1 id=analytic.0h3v.s5.0fef99bf0587 from=translated src=- shape=de6a368a vocab=e88c3884
+-/
 theorem regularizedGaussHypergeometricSeriesSum_analyticOnNhd (a b c : ℂ) :
     AnalyticOnNhd ℂ (regularizedGaussHypergeometricSeriesSum a b c) (Metric.ball 0 1) := by
   have h :=

@@ -47,7 +47,9 @@ private theorem gammaEndpointBase_integral :
 /-- REG.44--REG.45 / positive IMP-R22: the exact translated
 `exp (-(t-k)) / sqrt (t-k)` singularity is honestly Bochner integrable on the
 open initial ray, has the positive value `Gamma (1/2)`, and public T07 accepts
-it for every finite exceptional set satisfying its exact above-`k` premise.-/
+it for every finite exceptional set satisfying its exact above-`k` premise.
+@isnad1 id=and.1h2v.s8.d0b2c1341031 from=translated src=- shape=24450d2c vocab=56cd99aa
+-/
 theorem initialEndpoint_integrable_example (k : ℝ) (S : Finset ℝ)
     (hS : ∀ c ∈ S, k < c) :
     IntegrableOn

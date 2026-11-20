@@ -67,7 +67,9 @@ private theorem gaussHypergeometricSeriesSum_one_one
   have hsumBinomial := hbinomial.hasSum hball
   simpa only [zero_add, neg_neg, sub_eq_add_neg] using hsumGauss.unique hsumBinomial
 
-/-- The principal specialization `F(a, 1; 1; z)` is the principal power `(1 - z) ^ (-a)`.-/
+/-- The principal specialization `F(a, 1; 1; z)` is the principal power `(1 - z) ^ (-a)`.
+@isnad1 id=eq.1h2v.s5.8f086ffbf21d from=translated src=- shape=3a82af57 vocab=c544fc27
+-/
 theorem gaussHypergeometric_one_one
     (a : ℂ) {z : ℂ} (hz : z ∈ gaussHypergeometricDomain) :
     gaussHypergeometric a 1 1 z = (1 - z) ^ (-a) := by
@@ -86,7 +88,9 @@ theorem gaussHypergeometric_one_one
   exact gaussHypergeometric_eqOn_of_eqOn_seriesSum a 1 1 one_ne_neg_natCast hv hvgerm hz
 
 /-- At denominator parameter one, the regularized principal function agrees with the ordinary
-principal specialization.-/
+principal specialization.
+@isnad1 id=eq.1h2v.s5.936f750850fe from=translated src=- shape=3a82af57 vocab=eda0cd68
+-/
 theorem regularizedGaussHypergeometric_one_one
     (a : ℂ) {z : ℂ} (hz : z ∈ gaussHypergeometricDomain) :
     regularizedGaussHypergeometric a 1 1 z = (1 - z) ^ (-a) := by
@@ -94,14 +98,18 @@ theorem regularizedGaussHypergeometric_one_one
   rw [gaussHypergeometric_one_one a hz, Complex.Gamma_one, div_one] at hquotient
   exact hquotient.symm
 
-/-- The principal Gauss function `F(1, 1; 1; z)` is the reciprocal of `1 - z`.-/
+/-- The principal Gauss function `F(1, 1; 1; z)` is the reciprocal of `1 - z`.
+@isnad1 id=eq.1h1v.s5.c63018a953e4 from=translated src=- shape=4bbea949 vocab=5147eb17
+-/
 theorem gaussHypergeometric_geometric
     {z : ℂ} (hz : z ∈ gaussHypergeometricDomain) :
     gaussHypergeometric 1 1 1 z = (1 - z)⁻¹ := by
   simpa only [neg_one_mul, Complex.cpow_neg_one] using
     (gaussHypergeometric_one_one (1 : ℂ) hz)
 
-/-- Inside the unit disk, the geometric series sums to the principal Gauss specialization.-/
+/-- Inside the unit disk, the geometric series sums to the principal Gauss specialization.
+@isnad1 id=hassum.1h1v.s6.276bd25559a3 from=translated src=- shape=46120cb5 vocab=787e7c4b
+-/
 theorem hasSum_gaussHypergeometric_geometric
     {z : ℂ} (hz : ‖z‖ < 1) :
     HasSum (fun n : ℕ ↦ z ^ n) (gaussHypergeometric 1 1 1 z) := by

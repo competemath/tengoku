@@ -741,7 +741,9 @@ private theorem reverseInitialPrimitive
       refine ⟨F c, I - F c, hkc, hInt, hleft, htail, ?_⟩
       simp
 
-/-- IMP-001-T08.-/
+/-- IMP-001-T08.
+@isnad1 id=iff.0h5v.s6.f9134ac59ba4 from=translated src=- shape=3e0dfdeb vocab=d46d867d
+-/
 theorem hasImproperIntegralAtTopExcept_iff_exists_primitive
     [CompleteSpace E] {f : ℝ → E} {k : ℝ} {S : Finset ℝ} {I : E} :
     HasImproperIntegralAtTopExcept f k S I ↔
@@ -912,7 +914,9 @@ private theorem HasImproperIntegralAtTopBreaks.unique
       have htail : II = IJ := HasImproperIntegralTailFromBreaks.unique htailI htailJ
       rw [hleft, htail]
 
-/-- IMP-001-T02.-/
+/-- IMP-001-T02.
+@isnad1 id=eq.2h6v.s5.583d92de0ae9 from=translated src=- shape=7772f32d vocab=08c592ca
+-/
 theorem HasImproperIntegralAtTopExcept.unique
     [CompleteSpace E] {f : ℝ → E} {k : ℝ} {S : Finset ℝ} {I J : E}
     (hI : HasImproperIntegralAtTopExcept f k S I)
@@ -931,7 +935,9 @@ private theorem IsFiniteExceptionalPrimitive.weaken
     intro c hc
     exact hSU (by simpa using hc))
 
-/-- IMP-001-T03.-/
+/-- IMP-001-T03.
+@isnad1 id=hasimpro.1h9v.s8.8a4ade661d6f from=translated src=- shape=9b0b837d vocab=ee0b498f
+-/
 theorem HasImproperIntegralAtTopExcept.finset_clm
     {H : Type*} [NormedAddCommGroup H] [NormedSpace ℝ H]
     [CompleteSpace E] [CompleteSpace H]
@@ -1004,7 +1010,9 @@ theorem HasImproperIntegralAtTopExcept.finset_clm
     intro i hi
     exact (T i).continuous.continuousAt.tendsto.comp (hFlim i hi)
 
-/-- IMP-001-T04.-/
+/-- IMP-001-T04.
+@isnad1 id=iff.3h6v.s7.025c7e541dd6 from=translated src=- shape=5d5d6b45 vocab=4bb3ec53
+-/
 theorem HasImproperIntegralAtTopExcept.split_regular
     [CompleteSpace E] (f : ℝ → E) {a k : ℝ} (S : Finset ℝ) (I : E)
     (hak : a ≤ k) (hS : ∀ c ∈ S, k < c)

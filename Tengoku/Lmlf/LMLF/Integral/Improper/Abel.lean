@@ -257,7 +257,9 @@ private theorem transformedPrimitivePackage
     simpa only [G, q, w, zero_add] using hLim.add (hQLim.const_smul h)
   exact ⟨hGprim, hGLim⟩
 
-/-- IMP-001-T06.-/
+/-- IMP-001-T06.
+@isnad1 id=hasimpro.3h6v.s9.3b23c1c90b20 from=translated src=- shape=b1100eb2 vocab=88cd9585
+-/
 theorem IsFiniteExceptionalPrimitive.hasImproperIntegralAtTopExcept_exp_smul
     [CompleteSpace E] {g F : ℝ → E} {k : ℝ} {S : Finset ℝ}
     (hF : IsFiniteExceptionalPrimitive g k S F) (h : ℝ)

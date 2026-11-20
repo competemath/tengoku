@@ -97,7 +97,9 @@ private theorem FJ_not_continuousOn : ¬ ContinuousOn FJ (Ici 0) := by
   norm_num at this
 
 /-- IMP-R11: all componentwise primitive fields except continuity hold, while
-the Abel value is wrong by the strictly positive jump `exp (-1)`.-/
+the Abel value is wrong by the strictly positive jump `exp (-1)`.
+@isnad1 id=and.0h0v.s9.26882acc0141 from=translated src=- shape=04bed9ee vocab=67a5bfbb
+-/
 theorem discontinuousPrimitive_counterexample :
     (∀ c ∈ ({1} : Finset ℝ), (0 : ℝ) < c) ∧
       FJ 0 = 0 ∧
@@ -236,7 +238,9 @@ private theorem weightedFB_integral_pos {h : ℝ} (hh : 0 < h) :
       measure_mono hsubset
 
 /-- IMP-R12: endpoint matching for the compact bump does not imply the
-all-intermediate increment law, and every positive Abel weight detects it.-/
+all-intermediate increment law, and every positive Abel weight detects it.
+@isnad1 id=and.0h0v.s9.c23f8d6467ef from=translated src=- shape=1f239fbf vocab=9567602f
+-/
 theorem endpointOnly_counterexample :
     Continuous FB ∧ FB 0 = 0 ∧ FB 1 = 0 ∧
       FB 1 - FB 0 = ∫ t in (0 : ℝ)..1, gB t ∧
@@ -552,7 +556,9 @@ private theorem weightedFI_integral {h : ℝ} (hh : 0 < h) :
 
 /-- IMP-R13: the exact interval indicator has the clipped primitive, which is
 bounded, eventually constant, and nondifferentiable at both corners. For every
-positive weight, both T06 hypotheses and both exact weighted values hold.-/
+positive weight, both T06 hypotheses and both exact weighted values hold.
+@isnad1 id=and.0h0v.s9.57c8beb6fa58 from=translated src=- shape=6b5ba025 vocab=15ba1d6a
+-/
 theorem indicatorPrimitive_nondifferentiable :
     IsFiniteExceptionalPrimitive gI 0 ∅ FI ∧
       ¬ DifferentiableAt ℝ FI 1 ∧ ¬ DifferentiableAt ℝ FI 2 ∧
