@@ -125,6 +125,7 @@ import Tengoku.SpherePackingOrig
 import Tengoku.BezoutCounterexampleLean
 import Tengoku.Ulmstheorem
 import Tengoku.ChebotarevDensity
+import Tengoku.Rank3kum
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Stafford38Formal

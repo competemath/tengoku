@@ -1,0 +1,1 @@
+-- Rank3kum: a factory bundle (data/intake/rank3kum). This file only marks the library for Tengoku/All.lean.

@@ -1,0 +1,47 @@
+import Tengoku.Rank3kum.Rank3KUM.TightSetReduction
+import Tengoku.Rank3kum.Rank3KUM.StrictDensity
+import Tengoku.Rank3kum.Rank3KUM.InductionStep
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms Rank3KUM.exists_cyclicBasisOrder3_of_strict_case` (it only prints; the queue checks the axioms of every declaration). -/
+
+namespace Rank3KUM
+
+open Set
+
+noncomputable section
+
+variable {α : Type*}
+
+/--
+All nontrivial tight-set cases are discharged, so the full rank-three theorem
+reduces exactly to the strictly dense case.
+@isnad1 id=ex.6h3v.s7.a2f60678ab83 from=translated src=- shape=c197b519 vocab=52d64829
+-/
+theorem exists_cyclicBasisOrder3_of_strict_case
+    (M : Matroid α) (k : ℕ)
+    (hk : 0 < k)
+    (hE : M.E.Finite)
+    (hRank : M.eRank = 3)
+    (hEcard : M.E.encard = ((3 * k : ℕ) : ℕ∞))
+    (hDense : UniformlyDense M k)
+    (hStrictCase :
+      StrictlyUniformlyDense M k →
+        ∃ order : Fin (3 * k) ≃ M.E,
+          CyclicBasisOrder3 M (by omega) order) :
+    ∃ order : Fin (3 * k) ≃ M.E,
+      CyclicBasisOrder3 M (by omega) order := by
+  rcases
+      exists_nonempty_proper_tight_or_strictlyUniformlyDense
+        M k hDense with
+    ⟨X, hX, hXnonempty, hXproper⟩ | hStrict
+  · exact
+      exists_cyclicBasisOrder3_of_nonempty_proper_tight
+        M k hk hE hRank hEcard hDense
+        hX hXnonempty hXproper
+  · exact hStrictCase hStrict
+
+end
+
+end Rank3KUM

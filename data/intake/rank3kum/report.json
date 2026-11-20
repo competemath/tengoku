@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "6e6cb00a90e9801de856f4c7506c71b86134c3c6189f8b750b6d1ba6339a018d",
+ "factory_changes": {
+  "modules changed": 23,
+  "print lines removed": 82
+ },
+ "gate2_unjudged": [],
+ "library": "rank3kum",
+ "lint_mode": "proposed",
+ "modules": 48,
+ "part": 1,
+ "theorems": 250
+}
