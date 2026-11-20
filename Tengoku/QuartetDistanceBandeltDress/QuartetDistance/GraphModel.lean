@@ -42,10 +42,16 @@ variable {α V : Type*} [Fintype V] [DecidableEq V]
 def leafVertex (P : BinaryPhyloGraph α V) (a : α) : V :=
   (P.leafEquiv a).1
 
+/--
+@isnad1 id=eq.0h4v.s5.ec01e9f7f996 from=translated src=- shape=4da09228 vocab=bbbcaf9a
+-/
 @[simp] theorem degree_leafVertex (P : BinaryPhyloGraph α V) (a : α) :
     P.G.degree (P.leafVertex a) = 1 :=
   (P.leafEquiv a).2
 
+/--
+@isnad1 id=injectiv.0h3v.s4.84c23920e07b from=translated src=- shape=24ab1612 vocab=59994731
+-/
 theorem leafVertex_injective (P : BinaryPhyloGraph α V) :
     Function.Injective P.leafVertex := by
   intro a b h
@@ -57,11 +63,17 @@ def labelOfLeaf (P : BinaryPhyloGraph α V) (v : V)
     (hv : P.G.degree v = 1) : α :=
   P.leafEquiv.symm ⟨v, hv⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.02efc1f09d64 from=translated src=- shape=3c553260 vocab=45b71987
+-/
 @[simp] theorem leafVertex_labelOfLeaf (P : BinaryPhyloGraph α V) (v : V)
     (hv : P.G.degree v = 1) :
     P.leafVertex (P.labelOfLeaf v hv) = v := by
   exact congrArg Subtype.val (P.leafEquiv.apply_symm_apply ⟨v, hv⟩)
 
+/--
+@isnad1 id=eq.0h4v.s5.fb89f65091b1 from=translated src=- shape=28d23859 vocab=87c290d0
+-/
 @[simp] theorem labelOfLeaf_leafVertex (P : BinaryPhyloGraph α V) (a : α) :
     P.labelOfLeaf (P.leafVertex a) (P.degree_leafVertex a) = a := by
   exact P.leafEquiv.symm_apply_apply a
@@ -71,6 +83,9 @@ noncomputable def children (P : BinaryPhyloGraph α V) (root v : V) : Finset V :
   (P.G.neighborFinset v).filter fun w =>
     P.G.dist root v < P.G.dist root w
 
+/--
+@isnad1 id=iff.0h6v.s6.18e03d823444 from=translated src=- shape=d753eb9b vocab=2cb5a146
+-/
 theorem mem_children_iff (P : BinaryPhyloGraph α V) (root v w : V) :
     w ∈ P.children root v ↔
       P.G.Adj v w ∧ P.G.dist root w = P.G.dist root v + 1 := by
@@ -90,6 +105,9 @@ the chosen root.-/
 def IsParent (P : BinaryPhyloGraph α V) (root v w : V) : Prop :=
   P.G.Adj v w ∧ P.G.dist root w + 1 = P.G.dist root v
 
+/--
+@isnad1 id=ex.1h5v.s5.752b3a291411 from=translated src=- shape=c47293e6 vocab=b72d991b
+-/
 theorem exists_parent (P : BinaryPhyloGraph α V) {root v : V}
     (hne : v ≠ root) : ∃ w, P.IsParent root v w := by
   obtain ⟨p, hp, hlen⟩ := P.isTree.connected.exists_path_of_dist root v
@@ -102,6 +120,9 @@ theorem exists_parent (P : BinaryPhyloGraph α V) {root v : V}
   rw [← hdropdist, ← hlen]
   exact p.length_dropLast_add_one hpnon
 
+/--
+@isnad1 id=eq.2h7v.s5.8c1ac7577e39 from=translated src=- shape=3a2fb6df vocab=b72d991b
+-/
 theorem parent_unique (P : BinaryPhyloGraph α V) {root v w₁ w₂ : V}
     (h₁ : P.IsParent root v w₁) (h₂ : P.IsParent root v w₂) : w₁ = w₂ := by
   obtain ⟨p₁, hp₁, hlen₁⟩ := P.isTree.connected.exists_path_of_dist root w₁
@@ -121,11 +142,17 @@ theorem parent_unique (P : BinaryPhyloGraph α V) {root v w₁ w₂ : V}
   have hpen := congrArg Walk.penultimate hq
   simpa [q₁, q₂] using hpen
 
+/--
+@isnad1 id=existsun.1h5v.s5.952a87f7af6e from=translated src=- shape=c47293e6 vocab=b93fb1c4
+-/
 theorem existsUnique_parent (P : BinaryPhyloGraph α V) {root v : V}
     (hne : v ≠ root) : ∃! w, P.IsParent root v w := by
   obtain ⟨w, hw⟩ := P.exists_parent hne
   exact ⟨w, hw, fun y hy => P.parent_unique hy hw⟩
 
+/--
+@isnad1 id=eq.2h6v.s6.c5e49773f17d from=translated src=- shape=d7aebc38 vocab=d5e118ea
+-/
 theorem neighborFinset_eq_insert_children (P : BinaryPhyloGraph α V)
     {root v parent : V} (_hv : v ≠ root) (hp : P.IsParent root v parent) :
     P.G.neighborFinset v = insert parent (P.children root v) := by
@@ -142,6 +169,9 @@ theorem neighborFinset_eq_insert_children (P : BinaryPhyloGraph α V)
     · exact hp.1
     · exact hadj
 
+/--
+@isnad1 id=not.1h6v.s5.19dfd515fbf5 from=translated src=- shape=e93669e8 vocab=8cc2fcb9
+-/
 theorem parent_not_mem_children (P : BinaryPhyloGraph α V)
     {root v parent : V} (hp : P.IsParent root v parent) :
     parent ∉ P.children root v := by
@@ -150,6 +180,9 @@ theorem parent_not_mem_children (P : BinaryPhyloGraph α V)
   have hcloser := hp.2
   omega
 
+/--
+@isnad1 id=eq.2h6v.s6.0b6fed93e6f2 from=translated src=- shape=129c9817 vocab=5d45e848
+-/
 theorem degree_eq_card_children_add_one (P : BinaryPhyloGraph α V)
     {root v parent : V} (hv : v ≠ root) (hp : P.IsParent root v parent) :
     P.G.degree v = (P.children root v).card + 1 := by
@@ -157,6 +190,9 @@ theorem degree_eq_card_children_add_one (P : BinaryPhyloGraph α V)
     P.neighborFinset_eq_insert_children hv hp,
     Finset.card_insert_of_notMem (P.parent_not_mem_children hp)]
 
+/--
+@isnad1 id=eq.2h5v.s6.cb84306f5e09 from=translated src=- shape=7a557bdb vocab=1b2272c5
+-/
 theorem card_children_of_degree_one (P : BinaryPhyloGraph α V)
     {root v : V} (hv : v ≠ root) (hdeg : P.G.degree v = 1) :
     (P.children root v).card = 0 := by
@@ -164,6 +200,9 @@ theorem card_children_of_degree_one (P : BinaryPhyloGraph α V)
   have h := P.degree_eq_card_children_add_one hv hp
   omega
 
+/--
+@isnad1 id=eq.2h5v.s6.183632c4cea2 from=translated src=- shape=f2cd2b0f vocab=1b2272c5
+-/
 theorem card_children_of_internal (P : BinaryPhyloGraph α V)
     {root v : V} (hv : v ≠ root) (hdeg : P.G.degree v ≠ 1) :
     (P.children root v).card = 2 := by
@@ -172,6 +211,9 @@ theorem card_children_of_internal (P : BinaryPhyloGraph α V)
   have hthree := P.internal_degree v hdeg
   omega
 
+/--
+@isnad1 id=lt.0h5v.s5.159202c1cf31 from=translated src=- shape=9ef62970 vocab=9a41a704
+-/
 theorem dist_lt_card (P : BinaryPhyloGraph α V) (root v : V) :
     P.G.dist root v < Fintype.card V := by
   obtain ⟨p, hp, hlen⟩ := P.isTree.connected.exists_path_of_dist root v
@@ -183,6 +225,9 @@ theorem dist_lt_card (P : BinaryPhyloGraph α V) (root v : V) :
 def childRel (P : BinaryPhyloGraph α V) (root : V) (w v : V) : Prop :=
   w ∈ P.children root v
 
+/--
+@isnad1 id=lt.1h6v.s6.f9785bc25c63 from=translated src=- shape=e927e5ed vocab=2274177e
+-/
 theorem childRel_height_decreases (P : BinaryPhyloGraph α V) (root : V)
     {w v : V} (h : P.childRel root w v) :
     Fintype.card V - P.G.dist root w <
@@ -191,6 +236,9 @@ theorem childRel_height_decreases (P : BinaryPhyloGraph α V) (root : V)
   have hwbound := P.dist_lt_card root w
   omega
 
+/--
+@isnad1 id=wellfoun.0h4v.s4.b40ceb558faa from=translated src=- shape=0e33829b vocab=3c5c065f
+-/
 theorem childRel_wellFounded (P : BinaryPhyloGraph α V) (root : V) :
     WellFounded (P.childRel root) := by
   exact Subrelation.wf (fun h => P.childRel_height_decreases root h)
@@ -200,6 +248,9 @@ theorem childRel_wellFounded (P : BinaryPhyloGraph α V) (root : V) :
 abbrev Descendants (P : BinaryPhyloGraph α V) (root v : V) :=
   {w : V // Relation.ReflTransGen (P.childRel root) w v}
 
+/--
+@isnad1 id=le.1h6v.s5.c669768a8ea5 from=translated src=- shape=bc8b1ef0 vocab=da0e360d
+-/
 theorem dist_le_of_descendant (P : BinaryPhyloGraph α V) (root : V)
     {w v : V} (h : Relation.ReflTransGen (P.childRel root) w v) :
     P.G.dist root v ≤ P.G.dist root w := by
@@ -219,6 +270,9 @@ theorem eq_of_descendant_of_dist_eq (P : BinaryPhyloGraph α V) (root : V)
       have hstep := (P.mem_children_iff root v b).mp hchild |>.2
       omega
 
+/--
+@isnad1 id=rightuni.0h4v.s4.fe3ce424c2d8 from=translated src=- shape=83a4e77f vocab=e37a152a
+-/
 theorem childRel_rightUnique (P : BinaryPhyloGraph α V) (root : V) :
     Relator.RightUnique (P.childRel root) := by
   intro child parent₁ parent₂ h₁ h₂
@@ -230,6 +284,9 @@ theorem childRel_rightUnique (P : BinaryPhyloGraph α V) (root : V) :
     exact ⟨h.1.symm, h.2.symm⟩
   exact P.parent_unique hp₁ hp₂
 
+/--
+@isnad1 id=eq.4h8v.s6.9644d10f3ab0 from=translated src=- shape=b555a002 vocab=000facc4
+-/
 theorem descendant_branch_unique (P : BinaryPhyloGraph α V) (root : V)
     {w c₁ c₂ v : V}
     (hw₁ : Relation.ReflTransGen (P.childRel root) w c₁)
@@ -242,6 +299,9 @@ theorem descendant_branch_unique (P : BinaryPhyloGraph α V) (root : V)
   · exact P.eq_of_descendant_of_dist_eq root h (by omega)
   · exact (P.eq_of_descendant_of_dist_eq root h (by omega)).symm
 
+/--
+@isnad1 id=ne.2h7v.s5.9e55ef9e248d from=translated src=- shape=1bf9c355 vocab=000facc4
+-/
 theorem descendant_of_child_ne_parent (P : BinaryPhyloGraph α V) (root : V)
     {w child parent : V}
     (hw : Relation.ReflTransGen (P.childRel root) w child)
@@ -261,6 +321,9 @@ noncomputable def assembleDescendants (P : BinaryPhyloGraph α V)
   | .inl _ => ⟨v, .refl⟩
   | .inr z => ⟨z.2.1, z.2.2.trans (.single z.1.2)⟩
 
+/--
+@isnad1 id=surjecti.0h5v.s6.8a6c5b06885a from=translated src=- shape=d4cc1f3c vocab=534e6bdf
+-/
 theorem assembleDescendants_surjective (P : BinaryPhyloGraph α V)
     (root v : V) : Function.Surjective (P.assembleDescendants root v) := by
   intro w
@@ -271,6 +334,9 @@ theorem assembleDescendants_surjective (P : BinaryPhyloGraph α V)
   · refine ⟨.inr ⟨⟨c, hcv⟩, ⟨w.1, hwc⟩⟩, ?_⟩
     rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s6.3332e34e13ff from=translated src=- shape=d4cc1f3c vocab=cc3e056e
+-/
 theorem assembleDescendants_injective (P : BinaryPhyloGraph α V)
     (root v : V) : Function.Injective (P.assembleDescendants root v) := by
   rintro (u | z) (u' | z') h
@@ -304,6 +370,9 @@ noncomputable def descendantsEquiv (P : BinaryPhyloGraph α V) (root v : V) :
     ⟨P.assembleDescendants_injective root v,
       P.assembleDescendants_surjective root v⟩
 
+/--
+@isnad1 id=iff.0h6v.s5.7da86d09e56c from=translated src=- shape=af65c007 vocab=33b3834a
+-/
 theorem adj_iff_childRel (P : BinaryPhyloGraph α V) (root x y : V) :
     P.G.Adj x y ↔ P.childRel root x y ∨ P.childRel root y x := by
   constructor
@@ -317,6 +386,9 @@ theorem adj_iff_childRel (P : BinaryPhyloGraph α V) (root x y : V) :
     · exact ((P.mem_children_iff root y x).mp h).1.symm
     · exact ((P.mem_children_iff root x y).mp h).1
 
+/--
+@isnad1 id=iff.2h7v.s5.3ec62b428076 from=translated src=- shape=f0ac7c57 vocab=98d8727a
+-/
 theorem adj_parent_descendant_iff (P : BinaryPhyloGraph α V) (root : V)
     {child parent w : V}
     (hc : P.childRel root child parent)
@@ -335,6 +407,9 @@ theorem adj_parent_descendant_iff (P : BinaryPhyloGraph α V) (root : V)
     subst w
     exact ((P.mem_children_iff root parent child).mp hc).1
 
+/--
+@isnad1 id=not.5h9v.s6.69145cd2209e from=translated src=- shape=ab83b3a0 vocab=98d8727a
+-/
 theorem not_adj_descendants_of_distinct_children
     (P : BinaryPhyloGraph α V) (root : V)
     {c₁ c₂ parent x y : V} (hc₁ : P.childRel root c₁ parent)
@@ -351,7 +426,9 @@ theorem not_adj_descendants_of_distinct_children
       (Relation.ReflTransGen.single hyx).trans hx
     exact hne (P.descendant_branch_unique root hyc₁ hy hc₁ hc₂)
 
-/-- Every vertex has a parent chain to the chosen root.-/
+/-- Every vertex has a parent chain to the chosen root.
+@isnad1 id=refltran.0h5v.s4.516ddf1b126b from=translated src=- shape=33ca9db8 vocab=000facc4
+-/
 theorem descendant_root (P : BinaryPhyloGraph α V) (root w : V) :
     Relation.ReflTransGen (P.childRel root) w root := by
   generalize hd : P.G.dist root w = d
@@ -373,20 +450,32 @@ theorem descendant_root (P : BinaryPhyloGraph α V) (root w : V) :
 noncomputable def rootNeighbor (P : BinaryPhyloGraph α V) (a : α) : V :=
   (degree_eq_one_iff_existsUnique_adj.mp (P.degree_leafVertex a)).choose
 
+/--
+@isnad1 id=adj.0h4v.s5.adbdfcd62f9b from=translated src=- shape=78cbf840 vocab=696eda80
+-/
 theorem root_adj_rootNeighbor (P : BinaryPhyloGraph α V) (a : α) :
     P.G.Adj (P.leafVertex a) (P.rootNeighbor a) :=
   (degree_eq_one_iff_existsUnique_adj.mp (P.degree_leafVertex a)).choose_spec.1
 
+/--
+@isnad1 id=ne.0h4v.s5.1e6ceec760fe from=translated src=- shape=f0e859e1 vocab=88bfdf98
+-/
 theorem rootNeighbor_ne_root (P : BinaryPhyloGraph α V) (a : α) :
     P.rootNeighbor a ≠ P.leafVertex a :=
   (P.root_adj_rootNeighbor a).ne.symm
 
+/--
+@isnad1 id=isparent.0h4v.s5.e42c2bf125b3 from=translated src=- shape=11b499ad vocab=691e4e0a
+-/
 theorem root_isParent_rootNeighbor (P : BinaryPhyloGraph α V) (a : α) :
     P.IsParent (P.leafVertex a) (P.rootNeighbor a) (P.leafVertex a) := by
   refine ⟨(P.root_adj_rootNeighbor a).symm, ?_⟩
   have hdist := SimpleGraph.dist_eq_one_iff_adj.mpr (P.root_adj_rootNeighbor a)
   simpa using hdist.symm
 
+/--
+@isnad1 id=iff.0h5v.s5.fb738a4de372 from=translated src=- shape=5abd5a7d vocab=7ec98436
+-/
 theorem childRel_root_iff (P : BinaryPhyloGraph α V) (a : α) (v : V) :
     P.childRel (P.leafVertex a) v (P.leafVertex a) ↔
       v = P.rootNeighbor a := by
@@ -401,7 +490,9 @@ theorem childRel_root_iff (P : BinaryPhyloGraph α V) (a : α) (v : V) :
     simpa using hdist
 
 /-- The crown rooted at the neighbor of the distinguished leaf contains
-exactly all graph vertices other than that leaf.-/
+exactly all graph vertices other than that leaf.
+@isnad1 id=iff.0h5v.s5.ab11b268846d from=translated src=- shape=864d8547 vocab=c5a597c8
+-/
 theorem mem_descendants_rootNeighbor_iff (P : BinaryPhyloGraph α V)
     (a : α) (w : V) :
     Relation.ReflTransGen (P.childRel (P.leafVertex a)) w (P.rootNeighbor a) ↔
@@ -427,6 +518,9 @@ section Encoding
 
 variable [Fintype α] [DecidableEq α]
 
+/--
+@isnad1 id=eq.3h6v.s6.9878ae14dbf4 from=translated src=- shape=7447f125 vocab=d9fe34c1
+-/
 theorem descendant_eq_of_degree_one (P : BinaryPhyloGraph α V)
     {root v w : V} (hv : v ≠ root) (hdeg : P.G.degree v = 1)
     (hw : Relation.ReflTransGen (P.childRel root) w v) : w = v := by
@@ -473,7 +567,9 @@ noncomputable def twoBranchEquiv
     (Equiv.sigmaCongrRight fun b => by cases b <;> exact Equiv.refl _).trans <|
       Equiv.sigmaCongrLeft e
 
-/-- A child is strictly farther from the root, hence is not the root.-/
+/-- A child is strictly farther from the root, hence is not the root.
+@isnad1 id=ne.0h6v.s6.7893f7abf4ef from=translated src=- shape=254eca17 vocab=d1f45b26
+-/
 theorem child_ne_root (P : BinaryPhyloGraph α V) {root v : V}
     {c : ↑(P.children root v)} : c.1 ≠ root := by
   intro hc
@@ -501,6 +597,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
         (Equiv.sigmaCongrRight fun c => (E c).graphIso.toEquiv)).trans <|
         P.descendantsEquiv (P.leafVertex rootLabel) v
 
+/--
+@isnad1 id=eq.0h7v.s12.db866b2c1c10 from=translated src=- shape=25ed2939 vocab=b4be683e
+-/
 @[simp] theorem forkVertexEquiv_root (P : BinaryPhyloGraph α V)
     (rootLabel : α) (v : V)
     (e : Bool ≃ ↑(P.children (P.leafVertex rootLabel) v))
@@ -510,6 +609,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       ⟨v, Relation.ReflTransGen.refl⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.6c8e23f3290f from=translated src=- shape=f083393a vocab=fa4f64f9
+-/
 @[simp] theorem forkVertexEquiv_left (P : BinaryPhyloGraph α V)
     (rootLabel : α) (v : V)
     (e : Bool ≃ ↑(P.children (P.leafVertex rootLabel) v))
@@ -522,6 +624,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
           (.single (e false).2)⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.bf1795dbfb2a from=translated src=- shape=159e540f vocab=c5fef939
+-/
 @[simp] theorem forkVertexEquiv_right (P : BinaryPhyloGraph α V)
     (rootLabel : α) (v : V)
     (e : Bool ≃ ↑(P.children (P.leafVertex rootLabel) v))
@@ -534,6 +639,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
           (.single (e true).2)⟩ := by
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.1356fda4f6aa from=translated src=- shape=180ed2b2 vocab=c5be8cc5
+-/
 @[simp] theorem graph_fork_adj_left_left (l r : Tree.FullTree α)
     (x y : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -541,12 +649,18 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       (TreeAdequacy.FullTree.graph l).Adj x y := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h5v.s6.e306f317c97a from=translated src=- shape=2fdd17d0 vocab=2e0313b2
+-/
 @[simp] theorem graph_fork_adj_right_right (l r : Tree.FullTree α)
     (x y : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj (.inr x) (.inr y) ↔
       (TreeAdequacy.FullTree.graph r).Adj x y := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s6.be5569f573a3 from=translated src=- shape=e36032e3 vocab=8f9855ca
+-/
 @[simp] theorem graph_fork_adj_root_left (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -554,6 +668,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       x = TreeAdequacy.FullTree.rootVertex l := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s6.9b6c2b3e075d from=translated src=- shape=341931c8 vocab=8f9855ca
+-/
 @[simp] theorem graph_fork_adj_left_root (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -561,6 +678,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       x = TreeAdequacy.FullTree.rootVertex l := by
   rw [SimpleGraph.adj_comm, graph_fork_adj_root_left]
 
+/--
+@isnad1 id=iff.0h4v.s6.fec80cc7d7f2 from=translated src=- shape=637af1c7 vocab=8f9855ca
+-/
 @[simp] theorem graph_fork_adj_root_right (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -568,6 +688,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       x = TreeAdequacy.FullTree.rootVertex r := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s6.33b5312df7aa from=translated src=- shape=fa792817 vocab=8f9855ca
+-/
 @[simp] theorem graph_fork_adj_right_root (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -575,6 +698,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
       x = TreeAdequacy.FullTree.rootVertex r := by
   rw [SimpleGraph.adj_comm, graph_fork_adj_root_right]
 
+/--
+@isnad1 id=not.0h5v.s5.0e31c36e553c from=translated src=- shape=32bc96cd vocab=c5be8cc5
+-/
 @[simp] theorem not_graph_fork_adj_left_right (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l)
     (y : TreeAdequacy.FullTree.Vertex r) :
@@ -582,6 +708,9 @@ noncomputable def forkVertexEquiv (P : BinaryPhyloGraph α V)
         (.inl (.inr x)) (.inr y) := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=not.0h5v.s5.32662fc67f84 from=translated src=- shape=cf245d6e vocab=c5be8cc5
+-/
 @[simp] theorem not_graph_fork_adj_right_left (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r)
     (y : TreeAdequacy.FullTree.Vertex l) :
@@ -756,7 +885,9 @@ noncomputable def forkGraphIso (P : BinaryPhyloGraph α V)
     exact (E (e true)).graphIso.map_rel_iff'
 
 /-- At an internal vertex, a labelled leaf is a descendant exactly when it
-is a descendant of one of the two children.-/
+is a descendant of one of the two children.
+@isnad1 id=iff.1h6v.s7.e0b9df085eb4 from=translated src=- shape=e23ca40f vocab=f35979a2
+-/
 theorem leaf_descendant_iff_exists_child (P : BinaryPhyloGraph α V)
     (root : V) {v : V} (hdeg : P.G.degree v ≠ 1) (a : α) :
     Relation.ReflTransGen (P.childRel root) (P.leafVertex a) v ↔
@@ -836,7 +967,9 @@ noncomputable def forkSubtreeEncoding (P : BinaryPhyloGraph α V)
       | true => exact Or.inr ((R.mem_leaves_iff a).mpr hac)
 
 /-- Well-founded recursion down the distance orientation produces an exact
-encoding of every non-root descendant subtree.-/
+encoding of every non-root descendant subtree.
+@isnad1 id=nonempty.1h5v.s5.b98c9499d925 from=translated src=- shape=f2fc0dfd vocab=0010a424
+-/
 theorem exists_subtreeEncoding (P : BinaryPhyloGraph α V)
     (rootLabel : α) (v : V) (hv : v ≠ P.leafVertex rootLabel) :
     Nonempty (P.SubtreeEncoding rootLabel v) := by
@@ -914,6 +1047,9 @@ noncomputable def crownGraphIso (P : BinaryPhyloGraph α V)
     (TreeAdequacy.FullTree.graph C.tree).Adj x y
   exact C.graphIso.map_rel_iff'
 
+/--
+@isnad1 id=eq.0h4v.s8.ddcd40a2410c from=translated src=- shape=6b1b3326 vocab=4b17691a
+-/
 @[simp] theorem crownGraphIso_root (P : BinaryPhyloGraph α V)
     (rootLabel : α) :
     ((P.crownGraphIso rootLabel)
@@ -921,6 +1057,9 @@ noncomputable def crownGraphIso (P : BinaryPhyloGraph α V)
       P.rootNeighbor rootLabel := by
   exact (P.crownEncoding rootLabel).root_eq
 
+/--
+@isnad1 id=iff.0h5v.s5.abb71d972800 from=translated src=- shape=8082109f vocab=696eda80
+-/
 theorem adj_root_iff_rootNeighbor (P : BinaryPhyloGraph α V)
     (a : α) (w : V) :
     P.G.Adj (P.leafVertex a) w ↔ w = P.rootNeighbor a := by
@@ -938,11 +1077,17 @@ noncomputable def encodeVertexEquiv (P : BinaryPhyloGraph α V)
     (P.crownGraphIso rootLabel).toEquiv).trans
       (attachRootEquiv (P.leafVertex rootLabel))
 
+/--
+@isnad1 id=eq.0h4v.s7.f0ffd506e3ad from=translated src=- shape=93d0771d vocab=19aea47c
+-/
 @[simp] theorem encodeVertexEquiv_root (P : BinaryPhyloGraph α V)
     (rootLabel : α) :
     P.encodeVertexEquiv rootLabel (.inl ()) = P.leafVertex rootLabel := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.4a84e295fc1e from=translated src=- shape=63d6235d vocab=85f72299
+-/
 @[simp] theorem encodeVertexEquiv_crown (P : BinaryPhyloGraph α V)
     (rootLabel : α)
     (x : TreeAdequacy.FullTree.Vertex (P.encode rootLabel).crown) :
@@ -950,18 +1095,27 @@ noncomputable def encodeVertexEquiv (P : BinaryPhyloGraph α V)
       ((P.crownGraphIso rootLabel) x).1 := by
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.d12c3b6e827c from=translated src=- shape=a327ae79 vocab=1e6e57f4
+-/
 @[simp] theorem phyloGraph_adj_root_crown (T : Tree.PhyloTree α)
     (x : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inl ()) (.inr x) ↔
       x = TreeAdequacy.FullTree.rootVertex T.crown := by
   simp [TreeAdequacy.PhyloTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h3v.s6.bb68c738fd3a from=translated src=- shape=0989635e vocab=1e6e57f4
+-/
 @[simp] theorem phyloGraph_adj_crown_root (T : Tree.PhyloTree α)
     (x : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inr x) (.inl ()) ↔
       x = TreeAdequacy.FullTree.rootVertex T.crown := by
   rw [SimpleGraph.adj_comm, phyloGraph_adj_root_crown]
 
+/--
+@isnad1 id=iff.0h4v.s7.35ac1fd00637 from=translated src=- shape=bc16c349 vocab=1083f5cb
+-/
 @[simp] theorem phyloGraph_adj_crown_crown (T : Tree.PhyloTree α)
     (x y : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inr x) (.inr y) ↔
@@ -1013,11 +1167,17 @@ noncomputable def encodeGraphIso (P : BinaryPhyloGraph α V)
   · simp only [ve, phyloGraph_adj_crown_crown]
     exact (P.crownGraphIso rootLabel).map_rel_iff'
 
+/--
+@isnad1 id=eq.0h4v.s7.668ce50c7ef9 from=translated src=- shape=9231f71e vocab=51e699bd
+-/
 @[simp] theorem encodeGraphIso_root (P : BinaryPhyloGraph α V)
     (rootLabel : α) :
     P.encodeGraphIso rootLabel (.inl ()) = P.leafVertex rootLabel := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.249f17f2e0ce from=translated src=- shape=ef879c8e vocab=f075f656
+-/
 @[simp] theorem encodeGraphIso_crown (P : BinaryPhyloGraph α V)
     (rootLabel : α)
     (x : TreeAdequacy.FullTree.Vertex (P.encode rootLabel).crown) :
@@ -1026,7 +1186,9 @@ noncomputable def encodeGraphIso (P : BinaryPhyloGraph α V)
   rfl
 
 /-- The final graph isomorphism preserves every taxon label, not merely the
-unlabelled graph structure.-/
+unlabelled graph structure.
+@isnad1 id=iff.0h6v.s7.5ea241f19acd from=translated src=- shape=4d0e24d3 vocab=981f8bd2
+-/
 theorem encodeGraphIso_label_iff (P : BinaryPhyloGraph α V)
     (rootLabel a : α)
     (x : TreeAdequacy.PhyloTree.Vertex (P.encode rootLabel)) :
@@ -1093,7 +1255,9 @@ open SimpleGraph
 variable {α : Type*}
 
 /-- A vertex carrying a full-tree label witnesses membership of that label
-in the syntactic leaf list.-/
+in the syntactic leaf list.
+@isnad1 id=mem.1h4v.s5.c17084f2fb2a from=translated src=- shape=eb1f28c8 vocab=751f8d61
+-/
 theorem fullTree_label_mem_leaves (t : Tree.FullTree α)
     {x : TreeAdequacy.FullTree.Vertex t} {a : α}
     (hx : TreeAdequacy.FullTree.label? t x = some a) :
@@ -1111,7 +1275,9 @@ theorem fullTree_label_mem_leaves (t : Tree.FullTree α)
         exact Or.inr (ihr hx)
 
 /-- With no repeated leaves, a full-tree label occurs at a unique graph
-vertex.-/
+vertex.
+@isnad1 id=eq.3h5v.s5.36178787f926 from=translated src=- shape=b6071f90 vocab=83ca0287
+-/
 theorem fullTree_label_unique_of_nodup (t : Tree.FullTree α)
     (hn : t.leaves.Nodup)
     {x y : TreeAdequacy.FullTree.Vertex t} {a : α}
@@ -1153,7 +1319,9 @@ noncomputable local instance syntaxFiniteNeighborSet
     Fintype (G.neighborSet v) := Fintype.ofFinite _
 
 /-- Labels in a valid phylogenetic syntax tree occur at unique realization
-vertices.-/
+vertices.
+@isnad1 id=eq.2h5v.s5.4f6955bd0e82 from=translated src=- shape=70a5a478 vocab=71900022
+-/
 theorem label_unique (T : Tree.PhyloTree α)
     {x y : TreeAdequacy.PhyloTree.Vertex T} {a : α}
     (hx : TreeAdequacy.PhyloTree.label? T x = some a)
@@ -1196,10 +1364,16 @@ noncomputable def labelledVertex (T : Tree.PhyloTree α) (a : α) :
     TreeAdequacy.PhyloTree.Vertex T :=
   Classical.choose (TreeAdequacy.PhyloTree.exists_vertex_label T a)
 
+/--
+@isnad1 id=eq.0h3v.s5.f458b9cab016 from=translated src=- shape=1e7f64e2 vocab=be4fa116
+-/
 @[simp] theorem label_labelledVertex (T : Tree.PhyloTree α) (a : α) :
     TreeAdequacy.PhyloTree.label? T (T.labelledVertex a) = some a :=
   Classical.choose_spec (TreeAdequacy.PhyloTree.exists_vertex_label T a)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.8e3e9ac9e023 from=translated src=- shape=061290fe vocab=3f6e2b70
+-/
 theorem labelledVertex_injective (T : Tree.PhyloTree α) :
     Function.Injective T.labelledVertex := by
   intro a b hab
@@ -1225,10 +1399,16 @@ noncomputable def leafEquiv (T : Tree.PhyloTree α) :
       apply Subtype.ext
       exact T.label_unique (T.label_labelledVertex a) ha⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.a9b9b4242aa8 from=translated src=- shape=972863d2 vocab=163c2580
+-/
 @[simp] theorem leafEquiv_val (T : Tree.PhyloTree α) (a : α) :
     (T.leafEquiv a).1 = T.labelledVertex a := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.1415e31382ed from=translated src=- shape=a4dc0975 vocab=a04a925b
+-/
 @[simp] theorem label_leafEquiv (T : Tree.PhyloTree α) (a : α) :
     TreeAdequacy.PhyloTree.label? T (T.leafEquiv a).1 = some a := by
   exact T.label_labelledVertex a
@@ -1249,13 +1429,22 @@ noncomputable def toBinaryPhyloGraph (T : Tree.PhyloTree α) :
       rw [TreeAdequacy.PhyloTree.degree_profile, ite_eq_left hlabel]
     · rw [ite_eq_right hlabel]
 
+/--
+@isnad1 id=eq.0h2v.s6.ae1015202c0a from=translated src=- shape=6e58132e vocab=4076d365
+-/
 @[simp] theorem toBinaryPhyloGraph_G (T : Tree.PhyloTree α) :
     T.toBinaryPhyloGraph.G = TreeAdequacy.PhyloTree.graph T := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.c9ac8df270c1 from=translated src=- shape=aec302b7 vocab=156072ec
+-/
 @[simp] theorem toBinaryPhyloGraph_leafVertex (T : Tree.PhyloTree α)
     (a : α) :
     T.toBinaryPhyloGraph.leafVertex a = T.labelledVertex a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e8e7aaacb9d0 from=translated src=- shape=f876a277 vocab=5ca2f7f5
+-/
 @[simp] theorem toBinaryPhyloGraph_label (T : Tree.PhyloTree α)
     (a : α) :
     TreeAdequacy.PhyloTree.label? T

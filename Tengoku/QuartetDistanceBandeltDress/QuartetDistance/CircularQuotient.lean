@@ -28,30 +28,45 @@ def crossingList [DecidableEq X] : List X → QuartetSplit X
   | [a, b, c, d] => splitOf a b c d
   | _ => ∅
 
+/--
+@isnad1 id=eq.0h5v.s4.f34bcd4d204e from=translated src=- shape=c063d92b vocab=305bfaf8
+-/
 theorem splitOf_rotate [DecidableEq X] (a b c d : X) :
     splitOf a b c d = splitOf b c d a := by
   ext A
   simp [splitOf, pair]
   aesop
 
+/--
+@isnad1 id=eq.0h5v.s4.1d6cd21b0a09 from=translated src=- shape=9aaabc44 vocab=305bfaf8
+-/
 theorem splitOf_reverse [DecidableEq X] (a b c d : X) :
     splitOf a b c d = splitOf d c b a := by
   ext A
   simp [splitOf, pair]
   aesop
 
+/--
+@isnad1 id=eq.1h3v.s5.71135fd023b3 from=translated src=- shape=32d04291 vocab=ed8c1873
+-/
 theorem crossingList_cons_eq_append_singleton [DecidableEq X]
     (a : X) (zs : List X) (hz : zs.length = 3) :
     crossingList (a :: zs) = crossingList (zs ++ [a]) := by
   obtain ⟨b, c, d, rfl⟩ := List.length_eq_three.mp hz
   exact splitOf_rotate _ _ _ _
 
+/--
+@isnad1 id=eq.1h2v.s5.5479ac216105 from=translated src=- shape=fd0d1179 vocab=9f1c8eba
+-/
 theorem crossingList_reverse [DecidableEq X] (l : List X)
     (hl : l.length = 4) :
     crossingList l.reverse = crossingList l := by
   obtain ⟨a, b, c, d, rfl⟩ := List.length_eq_four.mp hl
   exact (splitOf_reverse _ _ _ _).symm
 
+/--
+@isnad1 id=eq.1h3v.s5.6e1f692e679f from=translated src=- shape=1137b9da vocab=eaf0d0ce
+-/
 theorem crossingList_filter_rotate_one [DecidableEq X]
     (Q : Finset X) (l : List X)
     (hl : (restrictLabels Q l).length = 4) :
@@ -68,6 +83,9 @@ theorem crossingList_filter_rotate_one [DecidableEq X]
           (crossingList_cons_eq_append_singleton a (restrictLabels Q l) htail).symm
       · simp [restrictLabels, ha, List.filter_append]
 
+/--
+@isnad1 id=eq.1h3v.s5.a72bd6bf893a from=translated src=- shape=39369869 vocab=46ddcca2
+-/
 theorem crossingList_filter_reverse [DecidableEq X]
     (Q : Finset X) (l : List X)
     (hl : (restrictLabels Q l).length = 4) :
@@ -78,6 +96,9 @@ theorem crossingList_filter_reverse [DecidableEq X]
 
 /-! ## Representatives and their underlying words -/
 
+/--
+@isnad1 id=eq.0h2v.s5.1c4530ebddf4 from=translated src=- shape=621016eb vocab=72819b2a
+-/
 theorem circularOrderList_rotate (C : Circular.CircularOrder n) :
     circularOrderList ((finRotate n).trans C) =
       (circularOrderList C).rotate 1 := by
@@ -99,6 +120,9 @@ theorem circularOrderList_rotate (C : Circular.CircularOrder n) :
       apply Fin.ext
       simp [finRotate_apply]
 
+/--
+@isnad1 id=eq.0h3v.s4.86e384c5c2e3 from=translated src=- shape=19292d70 vocab=ca8c74de
+-/
 theorem ofFn_rev : ∀ (n : ℕ) (f : Fin n → X),
     List.ofFn (fun i => f i.rev) = (List.ofFn f).reverse
   | 0, f => by simp
@@ -110,6 +134,9 @@ theorem ofFn_rev : ∀ (n : ℕ) (f : Fin n → X),
       simpa only [Fin.rev_succ] using
         ofFn_rev n (fun i : Fin n => f i.castSucc)
 
+/--
+@isnad1 id=eq.0h2v.s4.60bd3af31b9b from=translated src=- shape=dda9135c vocab=33a6df36
+-/
 theorem circularOrderList_reverse (C : Circular.CircularOrder n) :
     circularOrderList (Fin.revPerm.trans C) =
       (circularOrderList C).reverse := by
@@ -117,6 +144,9 @@ theorem circularOrderList_reverse (C : Circular.CircularOrder n) :
 
 /-! ### Bridge to `Circular.crossingOnLabels` -/
 
+/--
+@isnad1 id=eq.0h2v.s6.b5d4f032eb4c from=translated src=- shape=ae2cd94c vocab=1866005f
+-/
 theorem finRange_filter_mem_eq_sort (s : Finset (Fin n)) :
     (List.finRange n).filter (fun i => i ∈ s) = s.sort (· ≤ ·) := by
   have hp :
@@ -133,6 +163,9 @@ theorem finRange_filter_mem_eq_sort (s : Finset (Fin n)) :
     hslt.imp fun h => le_of_lt h
   exact hp.eq_of_sortedLE hsle.sortedLE (s.sortedLT_sort.sortedLE)
 
+/--
+@isnad1 id=eq.1h2v.s6.511c0e34a4f5 from=translated src=- shape=87153991 vocab=137c6ddf
+-/
 theorem ofFn_enumerateFour_eq_sort (s : Finset (Fin n)) (h : s.card = 4) :
     List.ofFn (enumerateFour s h) = s.sort (· ≤ ·) := by
   have hlength : (s.sort (· ≤ ·)).length = 4 := by simp [h]
@@ -147,6 +180,9 @@ theorem ofFn_enumerateFour_eq_sort (s : Finset (Fin n)) (h : s.card = 4) :
       (List.ofFn_congr hlength (s.sort (· ≤ ·)).get).symm
     _ = s.sort (· ≤ ·) := List.ofFn_get _
 
+/--
+@isnad1 id=eq.1h3v.s6.b04a293bb234 from=translated src=- shape=3dfebeb1 vocab=05b3f20c
+-/
 theorem restrict_circularOrderList_eq_ofFn_crossingEmbedding
     (C : Circular.CircularOrder n) (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     restrictLabels Q (circularOrderList C) =
@@ -167,10 +203,16 @@ theorem restrict_circularOrderList_eq_ofFn_crossingEmbedding
   rw [← ofFn_enumerateFour_eq_sort p hp]
   exact List.ofFn_comp' _ _ |>.symm
 
+/--
+@isnad1 id=eq.0h2v.s6.d50c93c85714 from=translated src=- shape=215e7ac1 vocab=092a8462
+-/
 @[simp] theorem crossingList_of_embedding [DecidableEq X] (q : Four ↪ X) :
     crossingList [q 0, q 1, q 2, q 3] = crossing q := by
   simp [crossingList, crossing, canonicalCrossing, mapSplit, splitOf, pair]
 
+/--
+@isnad1 id=eq.1h3v.s5.9f634cc3fb2e from=translated src=- shape=623767a7 vocab=670cf15b
+-/
 theorem crossingOnLabels_eq_crossingList_restrict_circularOrderList
     (C : Circular.CircularOrder n) (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     crossingOnLabels C Q hQ =
@@ -182,12 +224,18 @@ theorem crossingOnLabels_eq_crossingList_restrict_circularOrderList
   change crossing r = crossingList [r 0, r 1, r 2, r 3]
   exact (crossingList_of_embedding r).symm
 
+/--
+@isnad1 id=eq.1h3v.s5.d96041ddf858 from=translated src=- shape=d66aa9fe vocab=9bdb97ed
+-/
 theorem restrictLabels_circularOrderList_length
     (C : Circular.CircularOrder n) (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     (restrictLabels Q (circularOrderList C)).length = 4 := by
   rw [restrict_circularOrderList_eq_ofFn_crossingEmbedding C Q hQ]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s5.1e5e684463f8 from=translated src=- shape=3d2feadf vocab=9933f130
+-/
 theorem crossingOnLabels_rotate (C : Circular.CircularOrder n)
     (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     crossingOnLabels ((finRotate n).trans C) Q hQ =
@@ -198,6 +246,9 @@ theorem crossingOnLabels_rotate (C : Circular.CircularOrder n)
   exact crossingList_filter_rotate_one Q (circularOrderList C)
     (restrictLabels_circularOrderList_length C Q hQ)
 
+/--
+@isnad1 id=eq.1h3v.s5.3c2e9c9276eb from=translated src=- shape=3d2feadf vocab=c94f449a
+-/
 theorem crossingOnLabels_reverse (C : Circular.CircularOrder n)
     (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     crossingOnLabels (Fin.revPerm.trans C) Q hQ =
@@ -234,22 +285,34 @@ def DihedralCircularOrder (n : ℕ) : Type :=
 def mk (C : Circular.CircularOrder n) : DihedralCircularOrder n :=
   Quotient.mk (circularOrderSetoid n) C
 
+/--
+@isnad1 id=eq.1h3v.s4.d9355c80d02d from=translated src=- shape=890278fc vocab=600a5c03
+-/
 theorem mk_eq_mk_of_related {C C' : Circular.CircularOrder n}
     (h : ReindexRelated C C') : mk C = mk C' :=
   Quotient.sound (s := circularOrderSetoid n) h
 
+/--
+@isnad1 id=iff.0h3v.s4.fdbd84d2123b from=translated src=- shape=13199de6 vocab=600a5c03
+-/
 theorem mk_eq_mk_iff {C C' : Circular.CircularOrder n} :
     mk C = mk C' ↔ ReindexRelated C C' := by
   constructor
   · exact fun h => Quotient.exact h
   · exact mk_eq_mk_of_related
 
+/--
+@isnad1 id=eq.0h2v.s4.e430ab9b4dfa from=translated src=- shape=b393a506 vocab=1055574f
+-/
 @[simp] theorem mk_rotate (C : Circular.CircularOrder n) :
     mk ((finRotate n).trans C) = mk C := by
   apply Quotient.sound
   exact Relation.EqvGen.symm _ _
     (Relation.EqvGen.rel _ _ (Or.inl rfl : ReindexStep C ((finRotate n).trans C)))
 
+/--
+@isnad1 id=eq.0h2v.s4.9d539c1deaca from=translated src=- shape=b393a506 vocab=860cc69e
+-/
 @[simp] theorem mk_reverse (C : Circular.CircularOrder n) :
     mk (Fin.revPerm.trans C) = mk C := by
   apply Quotient.sound
@@ -257,7 +320,9 @@ theorem mk_eq_mk_iff {C C' : Circular.CircularOrder n} :
     (Relation.EqvGen.rel _ _ (Or.inr rfl : ReindexStep C (Fin.revPerm.trans C)))
 
 /-- Pointwise crossing splits are constant on the generated equivalence
-classes of representatives.-/
+classes of representatives.
+@isnad1 id=eq.2h4v.s5.b69e26d74ea0 from=translated src=- shape=d5ab982d vocab=3eb5a408
+-/
 theorem crossingOnLabels_eq_of_related
     {C C' : Circular.CircularOrder n} (h : ReindexRelated C C')
     (Q : Finset (Fin n)) (hQ : Q.card = 4) :
@@ -282,6 +347,9 @@ noncomputable def quotientCrossing (O : DihedralCircularOrder n)
   Quotient.lift (fun C => crossingOnLabels C Q hQ)
     (fun _ _ h => crossingOnLabels_eq_of_related h Q hQ) O
 
+/--
+@isnad1 id=eq.1h3v.s5.f81a9eb67737 from=translated src=- shape=2165e1fe vocab=b7742fba
+-/
 @[simp] theorem quotientCrossing_mk (C : Circular.CircularOrder n)
     (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     quotientCrossing (mk C) Q hQ = crossingOnLabels C Q hQ := by
@@ -304,18 +372,25 @@ noncomputable def K (O O' : DihedralCircularOrder n) : ℕ :=
   ((Finset.univ.powersetCard 4).filter (CrossingAgrees O O')).card
 
 /-- On representatives, quotient `K` is the label-set count from
-`Circular`.-/
+`Circular`.
+@isnad1 id=eq.0h3v.s4.57174a9671f1 from=translated src=- shape=9b03c2cf vocab=4b3051c2
+-/
 theorem K_mk_mk_eq_labelK (C C' : Circular.CircularOrder n) :
     K (mk C) (mk C') = labelK C C' := by
   classical
   unfold K labelK
   congr 1
 
-/-- Thus quotient `K` is exactly the existing representative statistic.-/
+/-- Thus quotient `K` is exactly the existing representative statistic.
+@isnad1 id=eq.0h3v.s4.4a037caa5dbb from=translated src=- shape=9b03c2cf vocab=2fd840a9
+-/
 @[simp] theorem K_mk_mk (C C' : Circular.CircularOrder n) :
     K (mk C) (mk C') = Circular.K C C' := by
   rw [K_mk_mk_eq_labelK, labelK_eq_K]
 
+/--
+@isnad1 id=le.0h3v.s4.0c214503a371 from=translated src=- shape=3fe7bd4a vocab=d5a59952
+-/
 theorem K_le_choose (O O' : DihedralCircularOrder n) :
     K O O' ≤ Nat.choose n 4 := by
   induction O using Quotient.inductionOn with
@@ -326,6 +401,9 @@ theorem K_le_choose (O O' : DihedralCircularOrder n) :
           rw [K_mk_mk]
           exact Circular.K_le_choose C C'
 
+/--
+@isnad1 id=eq.0h3v.s4.ae4a07787ecd from=translated src=- shape=9ee3e7a7 vocab=7ed0d2ce
+-/
 theorem K_comm (O O' : DihedralCircularOrder n) : K O O' = K O' O := by
   induction O using Quotient.inductionOn with
   | _ C =>
@@ -335,6 +413,9 @@ theorem K_comm (O O' : DihedralCircularOrder n) : K O O' = K O' O := by
           rw [K_mk_mk, K_mk_mk]
           exact Circular.K_comm C C'
 
+/--
+@isnad1 id=eq.0h2v.s4.e0a1f7e7a671 from=translated src=- shape=20c244f4 vocab=452cd5a5
+-/
 theorem K_self (O : DihedralCircularOrder n) : K O O = Nat.choose n 4 := by
   induction O using Quotient.inductionOn with
   | _ C =>
@@ -344,7 +425,9 @@ theorem K_self (O : DihedralCircularOrder n) : K O O = Nat.choose n 4 := by
 
 /-- The paper's finite circular-order lower bound stated directly on genuine
 circular orders modulo cyclic shift and reversal, rather than on chosen
-linear representatives.-/
+linear representatives.
+@isnad1 id=le.2h3v.s6.86eac77d4431 from=translated src=- shape=38b2e89f vocab=af88fc23
+-/
 theorem circularOrderBound (hpublished : Circular.StepPermutonTheorem n)
     (O O' : DihedralCircularOrder n) (hn : 4 ≤ n) :
     (1 - 2 / (3 * Circular.stepAlpha n)) * (Nat.choose n 4 : ℚ) ≤ K O O' := by
@@ -359,6 +442,9 @@ theorem circularOrderBound (hpublished : Circular.StepPermutonTheorem n)
 
 /-! Explicit representative-invariance corollaries. -/
 
+/--
+@isnad1 id=eq.0h3v.s4.1c7981fbc08a from=translated src=- shape=d6ee1577 vocab=2f5aae8c
+-/
 theorem representative_K_rotate_left (C C' : Circular.CircularOrder n) :
     Circular.K ((finRotate n).trans C) C' = Circular.K C C' := by
   calc
@@ -368,6 +454,9 @@ theorem representative_K_rotate_left (C C' : Circular.CircularOrder n) :
     _ = K (mk C) (mk C') := by rw [mk_rotate]
     _ = Circular.K C C' := K_mk_mk _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.752e693534b7 from=translated src=- shape=d6ee1577 vocab=22cf0891
+-/
 theorem representative_K_reverse_left (C C' : Circular.CircularOrder n) :
     Circular.K (Fin.revPerm.trans C) C' = Circular.K C C' := by
   calc
@@ -377,16 +466,24 @@ theorem representative_K_reverse_left (C C' : Circular.CircularOrder n) :
     _ = K (mk C) (mk C') := by rw [mk_reverse]
     _ = Circular.K C C' := K_mk_mk _ _
 
+/--
+@isnad1 id=eq.0h3v.s4.ac7420be4f80 from=translated src=- shape=fc3d03a4 vocab=2f5aae8c
+-/
 theorem representative_K_rotate_right (C C' : Circular.CircularOrder n) :
     Circular.K C ((finRotate n).trans C') = Circular.K C C' := by
   rw [Circular.K_comm, representative_K_rotate_left, Circular.K_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.fb6373ef35f9 from=translated src=- shape=fc3d03a4 vocab=22cf0891
+-/
 theorem representative_K_reverse_right (C C' : Circular.CircularOrder n) :
     Circular.K C (Fin.revPerm.trans C') = Circular.K C C' := by
   rw [Circular.K_comm, representative_K_reverse_left, Circular.K_comm]
 
 /-- `Circular.K` is invariant under an arbitrary generated change of its
-first representative, not merely under one generator step.-/
+first representative, not merely under one generator step.
+@isnad1 id=eq.1h4v.s4.6d88374fe672 from=translated src=- shape=f71f3ac8 vocab=10ed377f
+-/
 theorem representative_K_eq_of_related_left
     {C D : Circular.CircularOrder n} (h : ReindexRelated C D)
     (C' : Circular.CircularOrder n) : Circular.K C C' = Circular.K D C' := by
@@ -396,7 +493,9 @@ theorem representative_K_eq_of_related_left
     _ = Circular.K D C' := K_mk_mk _ _
 
 /-- `Circular.K` is invariant under an arbitrary generated change of its
-second representative.-/
+second representative.
+@isnad1 id=eq.1h4v.s4.11ac47a1ff32 from=translated src=- shape=7640956b vocab=10ed377f
+-/
 theorem representative_K_eq_of_related_right
     (C : Circular.CircularOrder n) {C' D' : Circular.CircularOrder n}
     (h : ReindexRelated C' D') : Circular.K C C' = Circular.K C D' := by
@@ -405,6 +504,9 @@ theorem representative_K_eq_of_related_right
     _ = K (mk C) (mk D') := by rw [mk_eq_mk_of_related h]
     _ = Circular.K C D' := K_mk_mk _ _
 
+/--
+@isnad1 id=eq.2h5v.s5.f06e0f72dcda from=translated src=- shape=bf67bcdc vocab=10ed377f
+-/
 theorem representative_K_congr
     {C D C' D' : Circular.CircularOrder n}
     (h : ReindexRelated C D) (h' : ReindexRelated C' D') :

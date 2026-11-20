@@ -41,6 +41,9 @@ def pairAgreementCount [Fintype Ω₁] [Fintype Ω₂]
     (out₁ : Ω₁ → Q → S) (out₂ : Ω₂ → Q → S) (q : Q) : ℕ :=
   (Finset.univ.filter fun p : Ω₁ × Ω₂ => out₁ p.1 q = out₂ p.2 q).card
 
+/--
+@isnad1 id=eq.0h7v.s6.cfe676324073 from=translated src=- shape=6d523351 vocab=8eaaf0b4
+-/
 lemma pairAgreementCount_eq_sum [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
     (out₁ : Ω₁ → Q → S) (out₂ : Ω₂ → Q → S) (q : Q) :
@@ -67,6 +70,9 @@ lemma pairAgreementCount_eq_sum [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     aesop]
   simp [channelCount]
 
+/--
+@isnad1 id=eq.2h9v.s7.fa4c00bd1a3b from=translated src=- shape=dc38dde2 vocab=6df389e5
+-/
 lemma four_mul_pairAgreementCount_eq_filtered
     [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -104,12 +110,18 @@ lemma four_mul_pairAgreementCount_eq_filtered
       rw [← Finset.sum_filter]
       exact Finset.sum_const_nat fun _ _ => rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.b915210f8036 from=translated src=- shape=8f16c1f8 vocab=f61ee3a1
+-/
 lemma card_avoiding_one [Fintype S] [DecidableEq S]
     (hcard : Fintype.card S = 3) (a : S) :
     (Finset.univ.filter fun s : S => s ≠ a).card = 2 := by
   rw [Finset.filter_ne', Finset.card_erase_of_mem (Finset.mem_univ a)]
   simpa using hcard
 
+/--
+@isnad1 id=eq.2h3v.s6.5c788015d210 from=translated src=- shape=ea7b709b vocab=f61ee3a1
+-/
 lemma card_avoiding_two [Fintype S] [DecidableEq S]
     (hcard : Fintype.card S = 3) {a b : S} (hab : a ≠ b) :
     (Finset.univ.filter fun s : S => s ≠ a ∧ s ≠ b).card = 1 := by
@@ -119,7 +131,9 @@ lemma card_avoiding_two [Fintype S] [DecidableEq S]
   rw [Finset.card_erase_of_mem (Finset.mem_univ a)]
   simp [hcard]
 
-/-- Agreement at a quartet on which the true topologies coincide has count one half.-/
+/-- Agreement at a quartet on which the true topologies coincide has count one half.
+@isnad1 id=eq.4h9v.s6.a1242313d6a1 from=translated src=- shape=b1316778 vocab=57ae5c69
+-/
 theorem two_mul_pairAgreementCount_of_truth_eq
     [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -134,7 +148,9 @@ theorem two_mul_pairAgreementCount_of_truth_eq
   rw [card_avoiding_one hcard] at h4
   omega
 
-/-- Agreement at a quartet on which true topologies differ has count one quarter.-/
+/-- Agreement at a quartet on which true topologies differ has count one quarter.
+@isnad1 id=eq.4h9v.s6.bc78fbcc66cd from=translated src=- shape=57ec27f7 vocab=57ae5c69
+-/
 theorem four_mul_pairAgreementCount_of_truth_ne
     [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -156,6 +172,9 @@ def truthDistance [Fintype Q] [DecidableEq S]
     (truth₁ truth₂ : Q → S) : ℕ :=
   (Finset.univ.filter fun q => truth₁ q ≠ truth₂ q).card
 
+/--
+@isnad1 id=eq.0h4v.s5.6797dba9827f from=translated src=- shape=2fd8e57a vocab=316f75f8
+-/
 lemma truthAgreementCount_add_truthDistance [Fintype Q] [DecidableEq S]
     (truth₁ truth₂ : Q → S) :
     truthAgreementCount truth₁ truth₂ + truthDistance truth₁ truth₂ = Fintype.card Q := by
@@ -175,6 +194,9 @@ def totalK [Fintype Q] [Fintype Ω₁] [Fintype Ω₂]
     (out₁ : Ω₁ → Q → S) (out₂ : Ω₂ → Q → S) : ℕ :=
   ∑ p : Ω₁ × Ω₂, sampledK out₁ out₂ p.1 p.2
 
+/--
+@isnad1 id=eq.0h6v.s6.ddf7057168b8 from=translated src=- shape=4c4a10f9 vocab=19b829a8
+-/
 lemma totalK_eq_sum_pairAgreementCount
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -185,7 +207,9 @@ lemma totalK_eq_sum_pairAgreementCount
     Finset.sum_filter]
   rw [Finset.sum_comm]
 
-/-- Exact integer form of `E K = (N+A)/4`.-/
+/-- Exact integer form of `E K = (N+A)/4`.
+@isnad1 id=eq.3h8v.s7.58521d6d2ffa from=translated src=- shape=3df78273 vocab=231bb1db
+-/
 theorem four_mul_totalK
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -228,7 +252,9 @@ noncomputable def expectedK [Fintype Q] [Fintype Ω₁] [Fintype Ω₂]
     (out₁ : Ω₁ → Q → S) (out₂ : Ω₂ → Q → S) : ℚ :=
   (totalK out₁ out₂ : ℚ) / (Fintype.card Ω₁ * Fintype.card Ω₂ : ℕ)
 
-/-- The paper's expectation identity, now as an actual rational average.-/
+/-- The paper's expectation identity, now as an actual rational average.
+@isnad1 id=eq.3h8v.s7.62f6f06c8a62 from=translated src=- shape=74e62e51 vocab=04e305f7
+-/
 theorem expectedK_eq
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -254,7 +280,9 @@ def PointwiseLowerBound [Fintype Q] [DecidableEq Q] [DecidableEq S]
     denominator * sampledK out₁ out₂ ω₁ ω₂
 
 /-- The abstract double-counting upper bound.  It is the cleared form of
-`D ≤ (2 - 4 numerator / denominator) N`.-/
+`D ≤ (2 - 4 numerator / denominator) N`.
+@isnad1 id=le.4h10v.s7.9878d044fad1 from=translated src=- shape=d9164a77 vocab=a094eeff
+-/
 theorem cleared_truthDistance_upper_bound
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -325,7 +353,9 @@ def PointwiseLowerBoundWithError [Fintype Q] [DecidableEq Q] [DecidableEq S]
   ∀ ω₁ ω₂, denominator * Fintype.card Q ≤
     denominator * sampledK out₁ out₂ ω₁ ω₂ + error * Fintype.card Q
 
-/-- Double counting in the additive-error form.-/
+/-- Double counting in the additive-error form.
+@isnad1 id=le.4h10v.s7.8fcf5c7468d7 from=translated src=- shape=9fdaac29 vocab=af39c0b1
+-/
 theorem cleared_truthDistance_upper_bound_with_error
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -418,7 +448,9 @@ theorem cleared_truthDistance_upper_bound_with_error
 /-- The specialization used after the step-permuton estimate.  Here
 `fallingFour` denotes the cancelled factor `(n - 1)(n - 2)(n - 3)` in
 `stepAlpha n`; the supplied pointwise inequality is exactly the circular
-lower bound after clearing its denominator.-/
+lower bound after clearing its denominator.
+@isnad1 id=le.4h10v.s7.de53a3fce22a from=translated src=- shape=a4546076 vocab=972ae130
+-/
 theorem cleared_stepPermuton_truthDistance_upper_bound
     [Fintype Q] [Fintype Ω₁] [Fintype Ω₂] [Fintype S]
     [DecidableEq Q] [DecidableEq Ω₁] [DecidableEq Ω₂] [DecidableEq S]
@@ -448,6 +480,9 @@ def pointRelabelDisagreementCount [Fintype Ω] [DecidableEq Ω] [DecidableEq S]
     (truth : Q → S) (out : Ω → Q → S) (q : Q) : ℕ :=
   (Finset.univ.filter fun ω => truth q ≠ out ω q).card
 
+/--
+@isnad1 id=eq.1h6v.s6.a850d3af01e4 from=translated src=- shape=63d19a46 vocab=37a5230d
+-/
 lemma three_mul_pointRelabelDisagreementCount
     [Fintype Ω] [DecidableEq Ω] [DecidableEq S]
     (truth : Q → S) (out : Ω → Q → S) (h : UniformChannelLaw out) (q : Q) :
@@ -475,6 +510,9 @@ def totalRelabelDistance [Fintype Q] [Fintype Ω]
     (truth : Q → S) (out : Ω → Q → S) : ℕ :=
   ∑ ω : Ω, relabelDistance truth out ω
 
+/--
+@isnad1 id=eq.0h5v.s5.44b3f428d4f7 from=translated src=- shape=bd9c420c vocab=d6149306
+-/
 lemma totalRelabelDistance_eq_sum_point
     [Fintype Q] [Fintype Ω] [DecidableEq Q] [DecidableEq Ω] [DecidableEq S]
     (truth : Q → S) (out : Ω → Q → S) :
@@ -486,7 +524,9 @@ lemma totalRelabelDistance_eq_sum_point
   rw [Finset.sum_comm]
 
 /-- Exact integer form of the standard random-labelling expectation
-`E distance = (2/3) N`.-/
+`E distance = (2/3) N`.
+@isnad1 id=eq.1h5v.s6.fc8446868e39 from=translated src=- shape=9c27ca31 vocab=62642c69
+-/
 theorem three_mul_totalRelabelDistance
     [Fintype Q] [Fintype Ω] [DecidableEq Q] [DecidableEq Ω] [DecidableEq S]
     (truth : Q → S) (out : Ω → Q → S) (h : UniformChannelLaw out) :
@@ -502,7 +542,9 @@ theorem three_mul_totalRelabelDistance
       Finset.sum_const_nat fun _ _ => rfl
     _ = 2 * Fintype.card Ω * Fintype.card Q := by ring
 
-/-- Some relabelling attains at least the `2/3` average.-/
+/-- Some relabelling attains at least the `2/3` average.
+@isnad1 id=ex.1h5v.s6.01a4f892fd96 from=translated src=- shape=2e76d850 vocab=92d4acad
+-/
 theorem exists_relabeling_two_thirds
     [Fintype Q] [Fintype Ω] [DecidableEq Q] [DecidableEq Ω] [DecidableEq S]
     [Nonempty Ω]
@@ -531,6 +573,9 @@ abbrev Topology := {x : Four // x ≠ 0}
 /-- The fixed pairing of the four leaf positions.-/
 def opposite : Perm4 := (Equiv.swap 0 2).trans (Equiv.swap 1 3)
 
+/--
+@isnad1 id=ne.0h1v.s4.26231750307e from=translated src=- shape=460a73bb vocab=602a33fe
+-/
 lemma opposite_ne_self (i : Four) : opposite i ≠ i := by
   revert i
   decide

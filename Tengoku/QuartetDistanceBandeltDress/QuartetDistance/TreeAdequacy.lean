@@ -37,7 +37,9 @@ private theorem card_edgeSet_sum
   rw [Nat.card_congr (SimpleGraph.edgeSetSumEquiv (G := G) (H := H))]
   exact Nat.card_sum
 
-/-- Connecting two finite trees by one edge again gives a tree.-/
+/-- Connecting two finite trees by one edge again gives a tree.
+@isnad1 id=istree.2h6v.s5.b94c2edfc8f4 from=translated src=- shape=e354cef7 vocab=84954717
+-/
 theorem isTree_sum_sup_edge
     {V W : Type*} [Fintype V] [Fintype W]
     (G : SimpleGraph V) (H : SimpleGraph W) (v : V) (w : W)
@@ -168,7 +170,9 @@ def label? : (t : Tree.FullTree α) → Vertex t → Option α
   | .fork l _, .inl (.inr v) => label? l v
   | .fork _ r, .inr v => label? r v
 
-/-- Every full binary syntax tree realizes to a finite graph-theoretic tree.-/
+/-- Every full binary syntax tree realizes to a finite graph-theoretic tree.
+@isnad1 id=istree.0h2v.s3.673ccbece3e9 from=translated src=- shape=609b34e5 vocab=b1a1b8f3
+-/
 theorem graph_isTree (t : Tree.FullTree α) : (graph t).IsTree := by
   induction t with
   | leaf a =>
@@ -216,7 +220,9 @@ private theorem degree_right_fork (l r : Tree.FullTree α) (v : Vertex r) :
     all_goals simp [hv]
 
 /-- Supplying the one parent edge missing at the root gives degree one at
-labelled leaves and degree three at forks.-/
+labelled leaves and degree three at forks.
+@isnad1 id=eq.0h3v.s6.3ba6efbb5373 from=translated src=- shape=f1167691 vocab=bbd7e31b
+-/
 theorem augmented_degree (t : Tree.FullTree α) (v : Vertex t) :
     graphDegree (graph t) v + (if v = rootVertex t then 1 else 0) =
       if (label? t v).isSome then 1 else 3 := by
@@ -250,7 +256,9 @@ theorem augmented_degree (t : Tree.FullTree α) (v : Vertex t) :
           if (label? r v).isSome then 1 else 3
         exact ihr v
 
-/-- Every syntactic leaf occurrence supplies its label to a graph vertex.-/
+/-- Every syntactic leaf occurrence supplies its label to a graph vertex.
+@isnad1 id=ex.1h3v.s5.f2399eedab09 from=translated src=- shape=96dd5077 vocab=751f8d61
+-/
 theorem exists_vertex_label_of_mem (t : Tree.FullTree α) {a : α}
     (ha : a ∈ t.leaves) : ∃ v : Vertex t, label? t v = some a := by
   induction t with
@@ -289,7 +297,9 @@ def label? (T : Tree.PhyloTree α) : Vertex T → Option α
   | .inl _ => some T.root
   | .inr v => (FullTree.label? T.crown v).map Subtype.val
 
-/-- The realization really is a connected acyclic simple graph.-/
+/-- The realization really is a connected acyclic simple graph.
+@isnad1 id=istree.0h2v.s4.4f3d2b5b685b from=translated src=- shape=0e29dda8 vocab=6020a829
+-/
 theorem graph_isTree (T : Tree.PhyloTree α) : (graph T).IsTree := by
   simpa [graph] using isTree_sum_sup_edge
     (⊥ : SimpleGraph Unit) (FullTree.graph T.crown) ()
@@ -329,23 +339,33 @@ private theorem graphDegree_profile (T : Tree.PhyloTree α) (v : Vertex T) :
     simpa [label?] using FullTree.augmented_degree T.crown v
 
 /-- Graph-theoretic degree profile: labelled vertices have degree one and
-every unlabelled (internal) vertex has degree three.-/
+every unlabelled (internal) vertex has degree three.
+@isnad1 id=eq.0h3v.s6.d44066ce18fb from=translated src=- shape=9d9973b2 vocab=e7b411ed
+-/
 theorem degree_profile (T : Tree.PhyloTree α) (v : Vertex T) :
     (graph T).degree v = if (label? T v).isSome then 1 else 3 := by
   rw [degree_eq_natCard_neighborSet]
   exact graphDegree_profile T v
 
+/--
+@isnad1 id=iff.0h3v.s6.f6a53f908f0f from=translated src=- shape=481fa7a8 vocab=3fe570cf
+-/
 theorem degree_eq_one_iff (T : Tree.PhyloTree α) (v : Vertex T) :
     (graph T).degree v = 1 ↔ (label? T v).isSome := by
   rw [degree_profile]
   cases h : label? T v <;> simp
 
+/--
+@isnad1 id=iff.0h3v.s6.7e52cd4b4856 from=translated src=- shape=2d97f2ba vocab=3fe570cf
+-/
 theorem degree_eq_three_iff (T : Tree.PhyloTree α) (v : Vertex T) :
     (graph T).degree v = 3 ↔ ¬ (label? T v).isSome := by
   rw [degree_profile]
   cases h : label? T v <;> simp
 
-/-- Every taxon labels a degree-one vertex of the realization.-/
+/-- Every taxon labels a degree-one vertex of the realization.
+@isnad1 id=ex.0h3v.s5.23a28b6f9633 from=translated src=- shape=c3e461b7 vocab=71900022
+-/
 theorem exists_vertex_label (T : Tree.PhyloTree α) (a : α) :
     ∃ v : Vertex T, label? T v = some a := by
   by_cases ha : a = T.root
@@ -356,7 +376,9 @@ theorem exists_vertex_label (T : Tree.PhyloTree α) (a : α) :
     refine ⟨.inr v, ?_⟩
     simp [label?, hv]
 
-/-- In particular, each taxon occurs on an actual graph-theoretic leaf.-/
+/-- In particular, each taxon occurs on an actual graph-theoretic leaf.
+@isnad1 id=ex.0h3v.s6.c400f019fa76 from=translated src=- shape=c2d81dcb vocab=4e6e3955
+-/
 theorem exists_degree_one_vertex (T : Tree.PhyloTree α) (a : α) :
     ∃ v : Vertex T, (graph T).degree v = 1 ∧ label? T v = some a := by
   obtain ⟨v, hv⟩ := exists_vertex_label T a

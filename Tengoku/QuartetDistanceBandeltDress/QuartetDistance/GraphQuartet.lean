@@ -41,6 +41,9 @@ def EdgeSeparates {α V : Type*} [DecidableEq V]
     (ComponentSeparatesAt G label? u v A B ∨
       ComponentSeparatesAt G label? u v B A)
 
+/--
+@isnad1 id=iff.0h6v.s5.e741080a5582 from=translated src=- shape=7f93d461 vocab=a822a55f
+-/
 theorem edgeSeparates_comm {α V : Type*} [DecidableEq V]
     (G : SimpleGraph V) (label? : V → Option α) (A B : Finset α) :
     EdgeSeparates G label? A B ↔ EdgeSeparates G label? B A := by
@@ -53,7 +56,9 @@ theorem edgeSeparates_comm {α V : Type*} [DecidableEq V]
     · exact ⟨u, v, huv, Or.inl h⟩
 
 /-- After deleting one edge, every vertex originally reachable from an
-endpoint remains reachable from at least one of the two endpoints.-/
+endpoint remains reachable from at least one of the two endpoints.
+@isnad1 id=or.1h5v.s5.70d37eda6c0c from=translated src=- shape=44dfe235 vocab=a1c76ead
+-/
 theorem reachable_endpoint_or_endpoint_after_delete {V : Type*}
     (G : SimpleGraph V) (u v x : V) (hux : G.Reachable u x) :
     (G.deleteEdges {s(u, v)}).Reachable u x ∨
@@ -97,15 +102,27 @@ def ProperSubtree.tree : {t : Tree.FullTree α} → ProperSubtree t → Tree.Ful
   | .fork _ _, .inLeft p => p.tree
   | .fork _ _, .inRight p => p.tree
 
+/--
+@isnad1 id=eq.0h3v.s4.160489865bde from=translated src=- shape=61b5cc14 vocab=68c6dcee
+-/
 @[simp] theorem ProperSubtree.tree_left (l r : Tree.FullTree α) :
     (ProperSubtree.left l r).tree = l := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.a3d4394f715c from=translated src=- shape=4280305d vocab=e9fe6ff5
+-/
 @[simp] theorem ProperSubtree.tree_right (l r : Tree.FullTree α) :
     (ProperSubtree.right l r).tree = r := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.d9fccad891b5 from=translated src=- shape=a8a039d6 vocab=119a9adc
+-/
 @[simp] theorem ProperSubtree.tree_inLeft {l r : Tree.FullTree α}
     (p : ProperSubtree l) : (p.inLeft (r := r)).tree = p.tree := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.eb674cd80f32 from=translated src=- shape=a0df89a8 vocab=adff46ba
+-/
 @[simp] theorem ProperSubtree.tree_inRight {l r : Tree.FullTree α}
     (p : ProperSubtree r) : (p.inRight (l := l)).tree = p.tree := rfl
 
@@ -135,6 +152,9 @@ def ProperSubtree.Below {t : Tree.FullTree α} (p : ProperSubtree t)
     (x : TreeAdequacy.FullTree.Vertex t) : Prop :=
   x ∈ Set.range p.embed
 
+/--
+@isnad1 id=injectiv.0h3v.s4.2c290b0b947e from=translated src=- shape=cfc9fce5 vocab=f3dbfb83
+-/
 theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
     (p : ProperSubtree t) : Function.Injective p.embed := by
   induction p with
@@ -156,10 +176,16 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       change Sum.inr (p.embed x) = Sum.inr (p.embed y) at h
       exact ih (Sum.inr.inj h)
 
+/--
+@isnad1 id=below.0h3v.s4.808dcb6f4f48 from=translated src=- shape=059cbeef vocab=aca24029
+-/
 @[simp] theorem ProperSubtree.child_below {t : Tree.FullTree α}
     (p : ProperSubtree t) : p.Below p.child := by
   exact ⟨TreeAdequacy.FullTree.rootVertex p.tree, rfl⟩
 
+/--
+@isnad1 id=not.0h3v.s4.ef18040da23e from=translated src=- shape=e65cc3b3 vocab=905213ae
+-/
 @[simp] theorem ProperSubtree.parent_not_below {t : Tree.FullTree α}
     (p : ProperSubtree t) : ¬ p.Below p.parent := by
   induction p with
@@ -185,6 +211,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       change Sum.inr (p.embed x) = Sum.inr p.parent at hx
       exact Sum.inr.inj hx
 
+/--
+@isnad1 id=not.0h3v.s4.feccf93d93ef from=translated src=- shape=21bac238 vocab=751af661
+-/
 @[simp] theorem ProperSubtree.root_not_below {t : Tree.FullTree α}
     (p : ProperSubtree t) :
     ¬ p.Below (TreeAdequacy.FullTree.rootVertex t) := by
@@ -202,6 +231,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       rintro ⟨x, hx⟩
       simp [ProperSubtree.embed, TreeAdequacy.FullTree.rootVertex] at hx
 
+/--
+@isnad1 id=iff.0h5v.s6.184a121710d7 from=translated src=- shape=55a4072b vocab=099f5f64
+-/
 @[simp] theorem graph_fork_adj_left_left (l r : Tree.FullTree α)
     (x y : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -209,12 +241,18 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       (TreeAdequacy.FullTree.graph l).Adj x y := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h5v.s5.d57882e3d98d from=translated src=- shape=7ec86e27 vocab=23ddd64b
+-/
 @[simp] theorem graph_fork_adj_right_right (l r : Tree.FullTree α)
     (x y : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj (.inr x) (.inr y) ↔
       (TreeAdequacy.FullTree.graph r).Adj x y := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s6.a80c8c4e29fb from=translated src=- shape=60af81ea vocab=5f382f91
+-/
 @[simp] theorem graph_fork_adj_left_root (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -222,6 +260,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       x = TreeAdequacy.FullTree.rootVertex l := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s6.9fff9a2f7d72 from=translated src=- shape=ef7cb272 vocab=5f382f91
+-/
 @[simp] theorem graph_fork_adj_root_left (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -229,6 +270,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       x = TreeAdequacy.FullTree.rootVertex l := by
   rw [SimpleGraph.adj_comm, graph_fork_adj_left_root]
 
+/--
+@isnad1 id=iff.0h4v.s5.02f699eadc1a from=translated src=- shape=7999c9c7 vocab=5f382f91
+-/
 @[simp] theorem graph_fork_adj_right_root (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -236,6 +280,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       x = TreeAdequacy.FullTree.rootVertex r := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h4v.s5.cea7cec0ea09 from=translated src=- shape=7d840c18 vocab=5f382f91
+-/
 @[simp] theorem graph_fork_adj_root_right (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r) :
     (TreeAdequacy.FullTree.graph (.fork l r)).Adj
@@ -243,6 +290,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
       x = TreeAdequacy.FullTree.rootVertex r := by
   rw [SimpleGraph.adj_comm, graph_fork_adj_right_root]
 
+/--
+@isnad1 id=not.0h5v.s5.a0e283dcb202 from=translated src=- shape=19ac48a3 vocab=099f5f64
+-/
 @[simp] theorem not_graph_fork_adj_left_right (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex l)
     (y : TreeAdequacy.FullTree.Vertex r) :
@@ -250,6 +300,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
         (.inl (.inr x)) (.inr y) := by
   simp [TreeAdequacy.FullTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=not.0h5v.s5.7fe6800fb45e from=translated src=- shape=af210f03 vocab=099f5f64
+-/
 @[simp] theorem not_graph_fork_adj_right_left (l r : Tree.FullTree α)
     (x : TreeAdequacy.FullTree.Vertex r)
     (y : TreeAdequacy.FullTree.Vertex l) :
@@ -258,7 +311,9 @@ theorem ProperSubtree.embed_injective {t : Tree.FullTree α}
   rw [SimpleGraph.adj_comm]
   exact not_graph_fork_adj_left_right l r y x
 
-/-- The parent edge is the only graph edge leaving a subtree occurrence.-/
+/-- The parent edge is the only graph edge leaving a subtree occurrence.
+@isnad1 id=and.3h5v.s5.b139c8d22d6f from=translated src=- shape=e0696ee0 vocab=63277b9d
+-/
 theorem ProperSubtree.adj_boundary {t : Tree.FullTree α}
     (p : ProperSubtree t) {x y : TreeAdequacy.FullTree.Vertex t}
     (hx : p.Below x) (hy : ¬ p.Below y)
@@ -334,7 +389,9 @@ theorem ProperSubtree.adj_boundary {t : Tree.FullTree α}
           rfl
 
 /-- Internal adjacency is preserved by the vertex embedding of a subtree
-occurrence.-/
+occurrence.
+@isnad1 id=adj.1h5v.s5.f4c36d488595 from=translated src=- shape=778758f7 vocab=a6e8fb70
+-/
 theorem ProperSubtree.map_adj {t : Tree.FullTree α}
     (p : ProperSubtree t) {x y : TreeAdequacy.FullTree.Vertex p.tree}
     (hxy : (TreeAdequacy.FullTree.graph p.tree).Adj x y) :
@@ -361,7 +418,9 @@ def ProperSubtree.embedDeletedHom {t : Tree.FullTree α}
     · exact p.parent_not_below ⟨y, hy⟩
 
 /-- Every vertex below a parent edge stays reachable from the child endpoint
-after that edge is deleted.-/
+after that edge is deleted.
+@isnad1 id=reachabl.1h4v.s5.44fe101c7196 from=translated src=- shape=28ec199e vocab=41c96786
+-/
 theorem ProperSubtree.reachable_of_below {t : Tree.FullTree α}
     (p : ProperSubtree t) {x : TreeAdequacy.FullTree.Vertex t}
     (hx : p.Below x) :
@@ -377,7 +436,9 @@ theorem ProperSubtree.reachable_of_below {t : Tree.FullTree α}
   exact hmapped
 
 /-- Conversely, a walk from the child endpoint that avoids the parent edge
-cannot leave the subtree occurrence.-/
+cannot leave the subtree occurrence.
+@isnad1 id=below.1h4v.s5.2077387e5c74 from=translated src=- shape=dc99b386 vocab=41c96786
+-/
 theorem ProperSubtree.below_of_reachable {t : Tree.FullTree α}
     (p : ProperSubtree t) {x : TreeAdequacy.FullTree.Vertex t}
     (hx : ((TreeAdequacy.FullTree.graph t).deleteEdges
@@ -394,13 +455,18 @@ theorem ProperSubtree.below_of_reachable {t : Tree.FullTree α}
       simp only [Set.mem_singleton_iff, Sym2.eq_iff]
       exact Or.inr ⟨hb, hcparent⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.6a12882c5743 from=translated src=- shape=cf4ac5b8 vocab=41c96786
+-/
 theorem ProperSubtree.reachable_iff_below {t : Tree.FullTree α}
     (p : ProperSubtree t) (x : TreeAdequacy.FullTree.Vertex t) :
     ((TreeAdequacy.FullTree.graph t).deleteEdges {s(p.parent, p.child)}).Reachable
       p.child x ↔ p.Below x :=
   ⟨p.below_of_reachable, p.reachable_of_below⟩
 
-/-- A label seen at a realization vertex occurs in the syntax leaf list.-/
+/-- A label seen at a realization vertex occurs in the syntax leaf list.
+@isnad1 id=mem.1h4v.s5.c17084f2fb2a from=translated src=- shape=eb1f28c8 vocab=751f8d61
+-/
 theorem label_mem_leaves (t : Tree.FullTree α)
     {x : TreeAdequacy.FullTree.Vertex t} {a : α}
     (hx : TreeAdequacy.FullTree.label? t x = some a) : a ∈ t.leaves := by
@@ -418,7 +484,9 @@ theorem label_mem_leaves (t : Tree.FullTree α)
         exact Or.inr (ihr hx)
 
 /-- With duplicate-free syntax leaves, a label occurs at only one graph
-vertex.-/
+vertex.
+@isnad1 id=eq.3h5v.s5.36178787f926 from=translated src=- shape=b6071f90 vocab=83ca0287
+-/
 theorem label_vertex_unique_of_nodup (t : Tree.FullTree α)
     (ht : t.leaves.Nodup) {x y : TreeAdequacy.FullTree.Vertex t} {a : α}
     (hx : TreeAdequacy.FullTree.label? t x = some a)
@@ -442,7 +510,9 @@ theorem label_vertex_unique_of_nodup (t : Tree.FullTree α)
         exact False.elim (List.disjoint_left.mp ht.disjoint hyl hxr)
       · exact congrArg Sum.inr (ihr ht.of_append_right hx hy)
 
-/-- The subtree embedding preserves the partial leaf label map.-/
+/-- The subtree embedding preserves the partial leaf label map.
+@isnad1 id=eq.0h4v.s5.64fb7f64788b from=translated src=- shape=18953382 vocab=05196ad2
+-/
 theorem ProperSubtree.label_embed {t : Tree.FullTree α}
     (p : ProperSubtree t) (x : TreeAdequacy.FullTree.Vertex p.tree) :
     TreeAdequacy.FullTree.label? t (p.embed x) =
@@ -454,7 +524,9 @@ theorem ProperSubtree.label_embed {t : Tree.FullTree α}
   | inRight p ih => exact ih x
 
 /-- Labels in the child component of an oriented parent edge are exactly the
-leaves of the corresponding syntax subtree.-/
+leaves of the corresponding syntax subtree.
+@isnad1 id=iff.0h4v.s5.dd776431d483 from=translated src=- shape=45d4c85b vocab=02690503
+-/
 theorem ProperSubtree.exists_label_below_iff {t : Tree.FullTree α}
     (p : ProperSubtree t) (a : α) :
     (∃ x : TreeAdequacy.FullTree.Vertex t,
@@ -469,6 +541,9 @@ theorem ProperSubtree.exists_label_below_iff {t : Tree.FullTree α}
     obtain ⟨z, hz⟩ := TreeAdequacy.FullTree.exists_vertex_label_of_mem p.tree ha
     exact ⟨p.embed z, p.label_embed z ▸ hz, ⟨z, rfl⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.9faec8a854fb from=translated src=- shape=10d4ed34 vocab=3a0efc85
+-/
 theorem ProperSubtree.exists_label_reachable_iff {t : Tree.FullTree α}
     (p : ProperSubtree t) (a : α) :
     (∃ x : TreeAdequacy.FullTree.Vertex t,
@@ -481,7 +556,9 @@ theorem ProperSubtree.exists_label_reachable_iff {t : Tree.FullTree α}
 
 /-- Every graph edge of a full-tree realization is the parent edge of a
 unique syntax subtree occurrence, up to orientation.  Existence is the part
-needed for quartet separation.-/
+needed for quartet separation.
+@isnad1 id=ex.1h4v.s6.137ebae2f112 from=translated src=- shape=3477f0cf vocab=bbca22e6
+-/
 theorem exists_properSubtree_of_adj (t : Tree.FullTree α)
     {x y : TreeAdequacy.FullTree.Vertex t}
     (hxy : (TreeAdequacy.FullTree.graph t).Adj x y) :
@@ -549,6 +626,9 @@ theorem exists_properSubtree_of_adj (t : Tree.FullTree α)
           · rw [hp.2]
             rfl
 
+/--
+@isnad1 id=le.0h3v.s5.e57296feb72c from=translated src=- shape=ad89e374 vocab=0d75bc3d
+-/
 theorem ProperSubtree.leaves_subset [DecidableEq α] {t : Tree.FullTree α}
     (p : ProperSubtree t) : p.tree.leaves.toFinset ⊆ t.leaves.toFinset := by
   induction p with
@@ -557,6 +637,9 @@ theorem ProperSubtree.leaves_subset [DecidableEq α] {t : Tree.FullTree α}
   | inLeft p ih => exact ih.trans (by simp [Tree.FullTree.leaves])
   | inRight p ih => exact ih.trans (by simp [Tree.FullTree.leaves])
 
+/--
+@isnad1 id=nodup.1h3v.s4.544c81f0e17b from=translated src=- shape=b92febe4 vocab=b07def6c
+-/
 theorem ProperSubtree.leaves_nodup {t : Tree.FullTree α}
     (p : ProperSubtree t) (ht : t.leaves.Nodup) : p.tree.leaves.Nodup := by
   induction p with
@@ -572,7 +655,9 @@ private theorem leaves_finset_disjoint [DecidableEq α] (l r : Tree.FullTree α)
   intro a hal har
   exact List.disjoint_left.mp h.disjoint (by simpa using hal) (by simpa using har)
 
-/-- Leaf clusters of two rooted subtree occurrences are laminar.-/
+/-- Leaf clusters of two rooted subtree occurrences are laminar.
+@isnad1 id=or.1h4v.s6.a3a854e84e7c from=translated src=- shape=14c7d565 vocab=8e0602a5
+-/
 theorem ProperSubtree.clusters_laminar [DecidableEq α] {t : Tree.FullTree α}
     (p q : ProperSubtree t) (ht : t.leaves.Nodup) :
     p.tree.leaves.toFinset ⊆ q.tree.leaves.toFinset ∨
@@ -637,7 +722,9 @@ namespace PhyloTree
 variable {α : Type} [DecidableEq α]
 
 /-- Two `2+2` partitions of the same quartet agree up to exchanging their
-sides whenever their chosen sides arise by restricting laminar clusters.-/
+sides whenever their chosen sides arise by restricting laminar clusters.
+@isnad1 id=eq.6h4v.s7.4b587a06f972 from=translated src=- shape=dd6ba477 vocab=2ca657ca
+-/
 theorem pair_sdiff_eq_of_laminar (Q A L : Finset α)
     (hQ : Q.card = 4) (hAQ : A ⊆ Q) (hLQ : L ⊆ Q)
     (hAcard : A.card = 2) (hLcard : L.card = 2)
@@ -696,9 +783,15 @@ def EdgePosition.tree {T : Tree.PhyloTree α} :
   | .crown => T.crown
   | .inside p => p.tree
 
+/--
+@isnad1 id=eq.0h2v.s5.e62ce35f1b03 from=translated src=- shape=0654c1ac vocab=f9dbe269
+-/
 @[simp] theorem EdgePosition.tree_crown (T : Tree.PhyloTree α) :
     (EdgePosition.crown (T := T)).tree = T.crown := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.64dce81a5982 from=translated src=- shape=9def1478 vocab=097bab47
+-/
 @[simp] theorem EdgePosition.tree_inside {T : Tree.PhyloTree α}
     (p : FullTree.ProperSubtree T.crown) :
     (EdgePosition.inside p).tree = p.tree := rfl
@@ -722,10 +815,16 @@ def EdgePosition.Below {T : Tree.PhyloTree α} (p : EdgePosition T)
     (x : TreeAdequacy.PhyloTree.Vertex T) : Prop :=
   x ∈ Set.range p.embed
 
+/--
+@isnad1 id=below.0h3v.s4.5f9c83430b9c from=translated src=- shape=9aa6b677 vocab=f7042c40
+-/
 @[simp] theorem EdgePosition.child_below {T : Tree.PhyloTree α}
     (p : EdgePosition T) : p.Below p.child :=
   ⟨TreeAdequacy.FullTree.rootVertex p.tree, rfl⟩
 
+/--
+@isnad1 id=not.0h3v.s5.43b9a9fe270f from=translated src=- shape=900d509e vocab=8eaa97a3
+-/
 @[simp] theorem EdgePosition.parent_not_below {T : Tree.PhyloTree α}
     (p : EdgePosition T) : ¬ p.Below p.parent := by
   cases p with
@@ -735,18 +834,27 @@ def EdgePosition.Below {T : Tree.PhyloTree α} (p : EdgePosition T)
       change Sum.inr (p.embed x) = Sum.inr p.parent at hx
       exact p.parent_not_below ⟨x, Sum.inr.inj hx⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.f51a47e2d063 from=translated src=- shape=02b55ed1 vocab=1e6e57f4
+-/
 @[simp] theorem graph_adj_root_crown (T : Tree.PhyloTree α)
     (x : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inl ()) (.inr x) ↔
       x = TreeAdequacy.FullTree.rootVertex T.crown := by
   simp [TreeAdequacy.PhyloTree.graph, SimpleGraph.edge_adj]
 
+/--
+@isnad1 id=iff.0h3v.s6.56e8dd0005b8 from=translated src=- shape=b2b81d71 vocab=1e6e57f4
+-/
 @[simp] theorem graph_adj_crown_root (T : Tree.PhyloTree α)
     (x : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inr x) (.inl ()) ↔
       x = TreeAdequacy.FullTree.rootVertex T.crown := by
   rw [SimpleGraph.adj_comm, graph_adj_root_crown]
 
+/--
+@isnad1 id=iff.0h4v.s7.7e72d7b372c3 from=translated src=- shape=86e98bfe vocab=1083f5cb
+-/
 @[simp] theorem graph_adj_crown_crown (T : Tree.PhyloTree α)
     (x y : TreeAdequacy.FullTree.Vertex T.crown) :
     (TreeAdequacy.PhyloTree.graph T).Adj (.inr x) (.inr y) ↔
@@ -754,7 +862,9 @@ def EdgePosition.Below {T : Tree.PhyloTree α} (p : EdgePosition T)
   simp [TreeAdequacy.PhyloTree.graph, SimpleGraph.edge_adj]
 
 /-- The oriented parent edge is the only edge leaving the represented crown
-subtree.-/
+subtree.
+@isnad1 id=and.3h5v.s6.c3244ad8fa09 from=translated src=- shape=fdfc272b vocab=cb53e912
+-/
 theorem EdgePosition.adj_boundary {T : Tree.PhyloTree α}
     (p : EdgePosition T) {x y : TreeAdequacy.PhyloTree.Vertex T}
     (hx : p.Below x) (hy : ¬ p.Below y)
@@ -791,6 +901,9 @@ theorem EdgePosition.adj_boundary {T : Tree.PhyloTree α}
         · change Sum.inr y = Sum.inr p.parent
           rw [hypar]
 
+/--
+@isnad1 id=adj.1h5v.s6.46fb274d501b from=translated src=- shape=b61ebfb1 vocab=3490beb1
+-/
 theorem EdgePosition.map_adj {T : Tree.PhyloTree α}
     (p : EdgePosition T) {x y : TreeAdequacy.FullTree.Vertex p.tree}
     (hxy : (TreeAdequacy.FullTree.graph p.tree).Adj x y) :
@@ -812,6 +925,9 @@ def EdgePosition.embedDeletedHom {T : Tree.PhyloTree α}
     · exact p.parent_not_below ⟨x, hx⟩
     · exact p.parent_not_below ⟨y, hy⟩
 
+/--
+@isnad1 id=reachabl.1h4v.s6.19724affe82d from=translated src=- shape=4b85a810 vocab=521c51d4
+-/
 theorem EdgePosition.reachable_of_below {T : Tree.PhyloTree α}
     (p : EdgePosition T) {x : TreeAdequacy.PhyloTree.Vertex T}
     (hx : p.Below x) :
@@ -826,6 +942,9 @@ theorem EdgePosition.reachable_of_below {T : Tree.PhyloTree α}
     {s(p.parent, p.child)}).Reachable p.child (p.embed z) at hmapped
   exact hmapped
 
+/--
+@isnad1 id=below.1h4v.s6.3ee141b4131e from=translated src=- shape=4cac8fe2 vocab=521c51d4
+-/
 theorem EdgePosition.below_of_reachable {T : Tree.PhyloTree α}
     (p : EdgePosition T) {x : TreeAdequacy.PhyloTree.Vertex T}
     (hx : ((TreeAdequacy.PhyloTree.graph T).deleteEdges
@@ -842,13 +961,18 @@ theorem EdgePosition.below_of_reachable {T : Tree.PhyloTree α}
       simp only [Set.mem_singleton_iff, Sym2.eq_iff]
       exact Or.inr ⟨hb, hcparent⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.d5d08c237d82 from=translated src=- shape=bd69198d vocab=521c51d4
+-/
 theorem EdgePosition.reachable_iff_below {T : Tree.PhyloTree α}
     (p : EdgePosition T) (x : TreeAdequacy.PhyloTree.Vertex T) :
     ((TreeAdequacy.PhyloTree.graph T).deleteEdges {s(p.parent, p.child)}).Reachable
       p.child x ↔ p.Below x :=
   ⟨p.below_of_reachable, p.reachable_of_below⟩
 
-/-- The other endpoint reaches precisely the complementary component.-/
+/-- The other endpoint reaches precisely the complementary component.
+@isnad1 id=iff.0h4v.s6.1ec57ce3bbe0 from=translated src=- shape=7669336f vocab=521c51d4
+-/
 theorem EdgePosition.parent_reachable_iff_not_below {T : Tree.PhyloTree α}
     (p : EdgePosition T) (x : TreeAdequacy.PhyloTree.Vertex T) :
     ((TreeAdequacy.PhyloTree.graph T).deleteEdges {s(p.parent, p.child)}).Reachable
@@ -869,7 +993,9 @@ theorem EdgePosition.parent_reachable_iff_not_below {T : Tree.PhyloTree α}
     · exact False.elim (hbelow (p.below_of_reachable hc))
 
 /-- The partial label map of a syntactic phylogenetic graph is injective on
-its labelled vertices.-/
+its labelled vertices.
+@isnad1 id=eq.2h5v.s5.1095e432da29 from=translated src=- shape=a3bb142c vocab=71900022
+-/
 theorem label_vertex_unique (T : Tree.PhyloTree α)
     {x y : TreeAdequacy.PhyloTree.Vertex T} {a : α}
     (hx : TreeAdequacy.PhyloTree.label? T x = some a)
@@ -909,6 +1035,9 @@ theorem label_vertex_unique (T : Tree.PhyloTree α)
 def EdgePosition.cluster {T : Tree.PhyloTree α} (p : EdgePosition T) : Finset α :=
   p.tree.leaves.toFinset.image Subtype.val
 
+/--
+@isnad1 id=eq.0h4v.s6.06873c3ad83a from=translated src=- shape=c3e7b7b1 vocab=5701675a
+-/
 theorem EdgePosition.label_embed {T : Tree.PhyloTree α}
     (p : EdgePosition T) (x : TreeAdequacy.FullTree.Vertex p.tree) :
     TreeAdequacy.PhyloTree.label? T (p.embed x) =
@@ -919,6 +1048,9 @@ theorem EdgePosition.label_embed {T : Tree.PhyloTree α}
       change (TreeAdequacy.FullTree.label? T.crown (p.embed x)).map Subtype.val = _
       simpa using congrArg (Option.map Subtype.val) (p.label_embed x)
 
+/--
+@isnad1 id=iff.0h4v.s6.14f1ba76625c from=translated src=- shape=20185dee vocab=7cef485c
+-/
 theorem EdgePosition.exists_label_below_iff {T : Tree.PhyloTree α}
     (p : EdgePosition T) (a : α) :
     (∃ x : TreeAdequacy.PhyloTree.Vertex T,
@@ -945,6 +1077,9 @@ theorem EdgePosition.exists_label_below_iff {T : Tree.PhyloTree α}
     rw [p.label_embed, hz]
     simpa using hba
 
+/--
+@isnad1 id=iff.0h4v.s6.a3ca9830cd5f from=translated src=- shape=169e88dd vocab=6799da7f
+-/
 theorem EdgePosition.exists_label_reachable_iff {T : Tree.PhyloTree α}
     (p : EdgePosition T) (a : α) :
     (∃ x : TreeAdequacy.PhyloTree.Vertex T,
@@ -956,7 +1091,9 @@ theorem EdgePosition.exists_label_reachable_iff {T : Tree.PhyloTree α}
   exact p.exists_label_below_iff a
 
 /-- The generic graph-component predicate has the expected finite cluster
-description on every oriented edge of the syntax realization.-/
+description on every oriented edge of the syntax realization.
+@isnad1 id=iff.0h5v.s7.3459dd001c9a from=translated src=- shape=3a2060b0 vocab=8e059fd4
+-/
 theorem componentSeparatesAt_position_iff {T : Tree.PhyloTree α}
     (p : EdgePosition T) (A B : Finset α) :
     ComponentSeparatesAt (TreeAdequacy.PhyloTree.graph T)
@@ -985,6 +1122,9 @@ theorem componentSeparatesAt_position_iff {T : Tree.PhyloTree α}
       apply (p.exists_label_reachable_iff b).1
       exact ⟨x, hx, by simpa only [hedge] using hr⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.5c9afc0782bc from=translated src=- shape=51444c78 vocab=6799da7f
+-/
 theorem EdgePosition.exists_label_parent_reachable_iff
     {T : Tree.PhyloTree α} (p : EdgePosition T) (a : α) :
     (∃ x : TreeAdequacy.PhyloTree.Vertex T,
@@ -1006,6 +1146,9 @@ theorem EdgePosition.exists_label_parent_reachable_iff
     apply (p.exists_label_below_iff a).1
     exact ⟨x, hx, hxbelow⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.e1e56347008d from=translated src=- shape=47ce2c11 vocab=8e059fd4
+-/
 theorem componentSeparatesAt_parent_iff {T : Tree.PhyloTree α}
     (p : EdgePosition T) (A B : Finset α) :
     ComponentSeparatesAt (TreeAdequacy.PhyloTree.graph T)
@@ -1030,7 +1173,9 @@ theorem componentSeparatesAt_parent_iff {T : Tree.PhyloTree α}
       exact hnot (hB b hb)
 
 /-- Every edge of the unrooted realization has one of the above rooted
-positions, up to orientation.-/
+positions, up to orientation.
+@isnad1 id=ex.1h4v.s6.137ce0c6610e from=translated src=- shape=270ccd8f vocab=97c9eb63
+-/
 theorem exists_edgePosition_of_adj (T : Tree.PhyloTree α)
     {x y : TreeAdequacy.PhyloTree.Vertex T}
     (hxy : (TreeAdequacy.PhyloTree.graph T).Adj x y) :
@@ -1069,7 +1214,9 @@ theorem exists_edgePosition_of_adj (T : Tree.PhyloTree α)
         rfl
 
 /-- Oriented edge clusters are laminar because all edges are oriented away
-from the distinguished root leaf.-/
+from the distinguished root leaf.
+@isnad1 id=or.0h4v.s6.49c0f853f315 from=translated src=- shape=20705def vocab=5220ba24
+-/
 theorem EdgePosition.clusters_laminar {T : Tree.PhyloTree α}
     (p q : EdgePosition T) :
     p.cluster ⊆ q.cluster ∨ q.cluster ⊆ p.cluster ∨
@@ -1105,7 +1252,9 @@ open Tree
 
 /-- On a four-leaf full tree, the side selected by `displayedSplit` is the
 leaf set below an actual syntax edge.  This is the local quartet fact that
-will be transported back through pruning.-/
+will be transported back through pruning.
+@isnad1 id=ex.1h2v.s6.f37b87bf43b8 from=translated src=- shape=82e6a4b1 vocab=d969d1db
+-/
 theorem exists_position_for_displayedSplit [DecidableEq α]
     (t : Tree.FullTree α) (hlen : t.leaves.length = 4) :
     ∃ p : ProperSubtree t,
@@ -1149,7 +1298,9 @@ private theorem prune_leaves_toFinset_eq_inter [DecidableEq α]
 /-- Every proper subtree position after pruning is induced by a proper
 subtree position before pruning, with exactly the expected restricted leaf
 cluster.  This explicitly accounts for the unary forks suppressed by
-`FullTree.prune`.-/
+`FullTree.prune`.
+@isnad1 id=ex.1h5v.s6.9ef4afaf89a9 from=translated src=- shape=07289661 vocab=a2687621
+-/
 theorem ProperSubtree.exists_lift_of_prune [DecidableEq α]
     {t u : Tree.FullTree α} (S : Finset α)
     (h : t.prune S = some u) (q : ProperSubtree u) :
@@ -1208,6 +1359,9 @@ def ProperSubtree.unmap (f : α → β) :
   | .fork _ _, .inLeft p => (p.unmap f).inLeft
   | .fork _ _, .inRight p => (p.unmap f).inRight
 
+/--
+@isnad1 id=eq.0h5v.s5.d3459db26275 from=translated src=- shape=4cc7daee vocab=ded433a7
+-/
 @[simp] theorem ProperSubtree.tree_unmap (f : α → β)
     {t : Tree.FullTree α} (p : ProperSubtree (t.map f)) :
     (p.unmap f).tree.map f = p.tree := by
@@ -1224,6 +1378,9 @@ def ProperSubtree.unmap (f : α → β) :
           change (p.unmap f).tree.map f = p.tree
           exact ihr p
 
+/--
+@isnad1 id=eq.0h4v.s5.8e2ccc3df34c from=translated src=- shape=a610becb vocab=fa39d64f
+-/
 theorem leaves_map_toFinset [DecidableEq α] [DecidableEq β]
     (f : α → β) (t : Tree.FullTree α) :
     (t.map f).leaves.toFinset = t.leaves.toFinset.image f := by
@@ -1231,6 +1388,9 @@ theorem leaves_map_toFinset [DecidableEq α] [DecidableEq β]
   simp only [Tree.FullTree.leaves_map, List.mem_toFinset,
     List.mem_map, Finset.mem_image]
 
+/--
+@isnad1 id=eq.0h5v.s5.7d6df9d61014 from=translated src=- shape=601103b4 vocab=21f8874c
+-/
 @[simp] theorem ProperSubtree.image_unmap_leaves
     [DecidableEq α] [DecidableEq β] (f : α → β)
     {t : Tree.FullTree α} (p : ProperSubtree (t.map f)) :
@@ -1248,6 +1408,9 @@ namespace PhyloTree
 
 variable {α : Type} [Fintype α] [DecidableEq α]
 
+/--
+@isnad1 id=eq.1h3v.s5.0818bdd348ce from=translated src=- shape=49814bd0 vocab=8dbd9750
+-/
 @[simp] theorem restrictedTree_leaves_toFinset (T : Tree.PhyloTree α)
     (Q : Finset α) (hQ : Q.card = 4) :
     (T.restrictedTree Q hQ).leaves.toFinset = Q := by
@@ -1256,7 +1419,9 @@ variable {α : Type} [Fintype α] [DecidableEq α]
   simp [Tree.FullTree.restrictList, T.mem_referenceLeaves a]
 
 /-- The cherry edge of the suppressed four-leaf restriction lifts to a
-genuine edge of the original unrooted graph.-/
+genuine edge of the original unrooted graph.
+@isnad1 id=ex.1h3v.s7.9fa638652c26 from=translated src=- shape=a7ba0c6b vocab=3520e30e
+-/
 theorem exists_position_for_displayedSplitOn (T : Tree.PhyloTree α)
     (Q : Finset α) (hQ : Q.card = 4) :
     ∃ p : EdgePosition T,

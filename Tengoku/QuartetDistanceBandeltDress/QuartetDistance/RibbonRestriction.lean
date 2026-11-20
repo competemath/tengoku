@@ -36,6 +36,9 @@ def CircularInterval [DecidableEq α] (S : Finset α) (word : List α) : Prop :=
     word = before ++ middle ++ after ∧
       (middle.toFinset = S ∨ (after ++ before).toFinset = S)
 
+/--
+@isnad1 id=circular.1h3v.s4.85a831ec3cb5 from=translated src=- shape=f15eaebe vocab=8584e2e9
+-/
 theorem LinearInterval.circular [DecidableEq α] {S : Finset α} {word : List α}
     (h : LinearInterval S word) : CircularInterval S word := by
   obtain ⟨before, middle, after, hword, hmiddle⟩ := h
@@ -53,7 +56,9 @@ inductive IsSubtree : Tree.FullTree α → Tree.FullTree α → Prop where
       IsSubtree u r → IsSubtree u (.fork l r)
 
 /-- A selected frontier of an embedded subtree is a literal contiguous block
-inside every selected frontier of the whole tree.-/
+inside every selected frontier of the whole tree.
+@isnad1 id=ex.2h4v.s6.46248645c934 from=translated src=- shape=944cbdf6 vocab=bec1fa75
+-/
 theorem frontier_block_of_isSubtree {u t : Tree.FullTree α}
     (hut : IsSubtree u t) {word : List α}
     (hword : word ∈ t.frontierProfile) :
@@ -86,7 +91,9 @@ theorem frontier_block_of_isSubtree {u t : Tree.FullTree α}
         simp [hrightEq, List.append_assoc]
 
 /-- The labels below a selected edge form a linear interval in every
-frontier word, independently of all rotations.-/
+frontier word, independently of all rotations.
+@isnad1 id=linearin.2h4v.s5.abfbdb9aa556 from=translated src=- shape=ffaa7b66 vocab=235a3e33
+-/
 theorem linearInterval_leaves_of_isSubtree [DecidableEq α]
     {u t : Tree.FullTree α} (hut : IsSubtree u t) {word : List α}
     (hword : word ∈ t.frontierProfile) :
@@ -127,7 +134,9 @@ private theorem outside_block_toFinset [DecidableEq α]
     · exact Or.inl ha
 
 /-- For a noduplicated tree labelling, the complementary side of the same
-edge is the circular block crossing the cut of the linear frontier.-/
+edge is the circular block crossing the cut of the linear frontier.
+@isnad1 id=circular.3h4v.s5.2611d5c948d7 from=translated src=- shape=760b8973 vocab=e754ca18
+-/
 theorem circularInterval_complement_of_isSubtree [DecidableEq α]
     {u t : Tree.FullTree α} (hut : IsSubtree u t) {word : List α}
     (hword : word ∈ t.frontierProfile) (hn : word.Nodup) :
@@ -152,7 +161,9 @@ theorem circularInterval_complement_of_isSubtree [DecidableEq α]
 
 /-- Filtering one chosen frontier gives a frontier of the pruned optional
 tree.  This is the deterministic, pointwise content behind the profile
-identity (which additionally counts all forgotten rotation bits).-/
+identity (which additionally counts all forgotten rotation bits).
+@isnad1 id=mem.1h4v.s5.eb16de70b06d from=translated src=- shape=e22d9c60 vocab=c85446c3
+-/
 theorem restrictList_mem_optionProfile_of_mem_frontier [DecidableEq α]
     (t : Tree.FullTree α) (S : Finset α) {word : List α}
     (hword : word ∈ t.frontierProfile) :
@@ -166,7 +177,9 @@ theorem restrictList_mem_optionProfile_of_mem_frontier [DecidableEq α]
 
 /-- Conversely, every frontier word of the suppressed tree is the exact
 filter of at least one frontier word of the original tree.  The lift is not
-canonical because suppressed forks forget rotation bits.-/
+canonical because suppressed forks forget rotation bits.
+@isnad1 id=ex.1h4v.s5.81e9f37586a6 from=translated src=- shape=c2a7217d vocab=c85446c3
+-/
 theorem exists_frontier_lift_of_mem_optionProfile [DecidableEq α]
     (t : Tree.FullTree α) (S : Finset α) {restricted : List α}
     (hrestricted : restricted ∈
@@ -185,7 +198,9 @@ theorem exists_frontier_lift_of_mem_optionProfile [DecidableEq α]
 /-! ## Unrooted phylogenetic boundary words -/
 
 /-- Every boundary word chosen from the rooted-at-a-leaf representation is
-also one of the two top-fork frontiers of the restored full tree.-/
+also one of the two top-fork frontiers of the restored full tree.
+@isnad1 id=mem.1h3v.s5.7c8ce3a77956 from=translated src=- shape=02196bb3 vocab=ca97f33d
+-/
 theorem mem_asFullTree_frontierProfile_of_mem_boundaryProfile
     [Fintype α] [DecidableEq α] (T : Tree.PhyloTree α)
     {word : List α} (hword : word ∈ T.boundaryProfile) :
@@ -198,7 +213,9 @@ theorem mem_asFullTree_frontierProfile_of_mem_boundaryProfile
   simp
 
 /-- The restored full tree contains every label, so its leaf set is the
-ambient finite universe.-/
+ambient finite universe.
+@isnad1 id=eq.0h2v.s4.d4b5352a228b from=translated src=- shape=3eee2401 vocab=dc1faa13
+-/
 theorem asFullTree_leaves_toFinset_eq_univ
     [Fintype α] [DecidableEq α] (T : Tree.PhyloTree α) :
     T.asFullTree.leaves.toFinset = Finset.univ := by
@@ -208,7 +225,9 @@ theorem asFullTree_leaves_toFinset_eq_univ
 
 /-- Literal edge-interval lemma for an unrooted phylogenetic tree: either
 side selected as a subtree of the cut-open full tree is consecutive in every
-chosen boundary word.-/
+chosen boundary word.
+@isnad1 id=linearin.2h4v.s5.8512a09a7beb from=translated src=- shape=5ff7f4f6 vocab=92598e17
+-/
 theorem boundary_linearInterval_edgeSide [Fintype α] [DecidableEq α]
     (T : Tree.PhyloTree α) {u : Tree.FullTree α}
     (hu : IsSubtree u T.asFullTree) {word : List α}
@@ -217,7 +236,9 @@ theorem boundary_linearInterval_edgeSide [Fintype α] [DecidableEq α]
   linearInterval_leaves_of_isSubtree hu
     (mem_asFullTree_frontierProfile_of_mem_boundaryProfile T hword)
 
-/-- The opposite side of an unrooted edge is consecutive cyclically.-/
+/-- The opposite side of an unrooted edge is consecutive cyclically.
+@isnad1 id=circular.2h4v.s5.1872b71736a2 from=translated src=- shape=48b082c2 vocab=ca4ed387
+-/
 theorem boundary_circularInterval_oppositeEdgeSide
     [Fintype α] [DecidableEq α]
     (T : Tree.PhyloTree α) {u : Tree.FullTree α}
@@ -231,7 +252,9 @@ theorem boundary_circularInterval_oppositeEdgeSide
 
 /-- Pointwise restriction/suppression for a chosen global boundary outcome:
 its exact restriction to a quartet is a frontier of the induced four-leaf
-tree.-/
+tree.
+@isnad1 id=mem.2h4v.s6.013a56d2378c from=translated src=- shape=3dea1cda vocab=7a31f54b
+-/
 theorem restrict_boundary_mem_restrictedTree_frontier
     [Fintype α] [DecidableEq α]
     (T : Tree.PhyloTree α) (Q : Finset α) (hQ : Q.card = 4)
@@ -245,7 +268,9 @@ theorem restrict_boundary_mem_restrictedTree_frontier
   exact hpruned
 
 /-- Applying the crossing readout to the preceding pointwise restriction
-lands in the crossing profile of the induced quartet.-/
+lands in the crossing profile of the induced quartet.
+@isnad1 id=mem.2h4v.s6.3e73b07ab55a from=translated src=- shape=4cb8bf16 vocab=9769d5c8
+-/
 theorem crossing_restriction_mem_restrictedTree_crossingProfile
     [Fintype α] [DecidableEq α]
     (T : Tree.PhyloTree α) (Q : Finset α) (hQ : Q.card = 4)

@@ -48,11 +48,17 @@ def mapSplit [DecidableEq X] [DecidableEq Y] (f : X ↪ Y)
     { toFun := fun A => A.map f
       inj' := Finset.map_injective f }
 
+/--
+@isnad1 id=injectiv.0h3v.s4.bf6ac6d03ab5 from=translated src=- shape=6c65be4e vocab=fa167ef9
+-/
 theorem mapSplit_injective [DecidableEq X] [DecidableEq Y] (f : X ↪ Y) :
     Function.Injective (mapSplit f) := by
   intro s t h
   exact Finset.map_injective _ h
 
+/--
+@isnad1 id=eq.0h6v.s5.cd9805adae58 from=translated src=- shape=8c7be92d vocab=e6f3dc3e
+-/
 @[simp] theorem mapSplit_mapSplit [DecidableEq X] [DecidableEq Y]
     [DecidableEq Z] (f : X ↪ Y) (g : Y ↪ Z) (s : QuartetSplit X) :
     mapSplit g (mapSplit f s) = mapSplit (f.trans g) s := by
@@ -107,21 +113,35 @@ def dihedral4 : Finset Perm4 :=
 instance (σ : Perm4) : Decidable (IsDihedral4 σ) :=
   inferInstanceAs (Decidable (mapSplit σ.toEmbedding canonicalCrossing = canonicalCrossing))
 
+/--
+@isnad1 id=iff.0h1v.s4.a7fb3e1e3540 from=translated src=- shape=ef567fc7 vocab=c8540fce
+-/
 theorem isDihedral4_iff_mem : ∀ σ : Perm4, IsDihedral4 σ ↔ σ ∈ dihedral4 := by
   decide
 
+/--
+@isnad1 id=isdihedr.0h0v.s1.7b4fe55e87bb from=translated src=- shape=87ceb31f vocab=88ddb972
+-/
 theorem isDihedral4_refl : IsDihedral4 (Equiv.refl Four) := by decide
 
+/--
+@isnad1 id=iff.0h1v.s3.1745bc713196 from=translated src=- shape=5d1fe9c6 vocab=43640358
+-/
 theorem isDihedral4_inv (σ : Perm4) : IsDihedral4 σ.symm ↔ IsDihedral4 σ := by
   revert σ
   decide
 
+/--
+@isnad1 id=eq.0h3v.s5.2609d4d8dd4e from=translated src=- shape=ee32aa52 vocab=f00cb771
+-/
 theorem crossing_comp (q : Four ↪ X) (σ : Perm4) [DecidableEq X] :
     crossing (σ.toEmbedding.trans q) = mapSplit q (mapSplit σ.toEmbedding canonicalCrossing) := by
   simp [crossing]
 
 /-- Two four-point circular representatives have the same crossing split
-exactly when their relative reindexing is one of the eight dihedral patterns.-/
+exactly when their relative reindexing is one of the eight dihedral patterns.
+@isnad1 id=iff.0h3v.s5.a0ebf44c0ef9 from=translated src=- shape=53a766cc vocab=2583f706
+-/
 theorem crossing_eq_iff_isDihedral4 [DecidableEq X] (q : Four ↪ X) (σ : Perm4) :
     crossing q = crossing (σ.toEmbedding.trans q) ↔ IsDihedral4 σ := by
   rw [crossing_comp, crossing, IsDihedral4]
@@ -146,13 +166,22 @@ def circularOrderOfList (l : List (Fin n)) (hnodup : l.Nodup)
 /-- The complete nodup list underlying a permutation representative.-/
 def circularOrderList (C : CircularOrder n) : List (Fin n) := List.ofFn C
 
+/--
+@isnad1 id=eq.0h2v.s3.b7d69af61dcc from=translated src=- shape=5f0b8119 vocab=c70e1602
+-/
 @[simp] theorem length_circularOrderList (C : CircularOrder n) :
     (circularOrderList C).length = n := by simp [circularOrderList]
 
+/--
+@isnad1 id=nodup.0h2v.s3.15950c07744a from=translated src=- shape=71337308 vocab=57dfddd2
+-/
 theorem nodup_circularOrderList (C : CircularOrder n) :
     (circularOrderList C).Nodup := by
   simpa [circularOrderList] using List.nodup_ofFn.mpr C.injective
 
+/--
+@isnad1 id=mem.0h3v.s4.052dce28628e from=translated src=- shape=86ed4f68 vocab=95f3bf48
+-/
 theorem mem_circularOrderList (C : CircularOrder n) (x : Fin n) :
     x ∈ circularOrderList C := by
   simpa [circularOrderList] using C.surjective x
@@ -161,14 +190,23 @@ theorem mem_circularOrderList (C : CircularOrder n) (x : Fin n) :
 def relativePermutation (C C' : CircularOrder n) : Equiv.Perm (Fin n) :=
   C.trans C'.symm
 
+/--
+@isnad1 id=eq.0h4v.s6.9bfb1fdbccaf from=translated src=- shape=89e7b355 vocab=c14892a1
+-/
 @[simp] theorem relativePermutation_apply (C C' : CircularOrder n) (i : Fin n) :
     relativePermutation C C' i = C'.symm (C i) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.ab822dcb55ff from=translated src=- shape=d05b61bf vocab=a23f2cc8
+-/
 @[simp] theorem relativePermutation_self (C : CircularOrder n) :
     relativePermutation C C = Equiv.refl (Fin n) := by
   ext i
   simp [relativePermutation]
 
+/--
+@isnad1 id=eq.0h3v.s4.4cff7797b2c0 from=translated src=- shape=8757fd68 vocab=adc29e32
+-/
 @[simp] theorem relativePermutation_symm (C C' : CircularOrder n) :
     (relativePermutation C C').symm = relativePermutation C' C := by
   ext i
@@ -178,10 +216,16 @@ def relativePermutation (C C' : CircularOrder n) : Equiv.Perm (Fin n) :=
 def enumerateFour (s : Finset (Fin n)) (h : s.card = 4) : Four ↪ Fin n :=
   (s.orderIsoOfFin h).toEquiv.toEmbedding.trans (Function.Embedding.subtype _)
 
+/--
+@isnad1 id=mem.1h3v.s5.38e89c4d5139 from=translated src=- shape=a894fe5a vocab=251cdc7e
+-/
 @[simp] theorem enumerateFour_mem (s : Finset (Fin n)) (h : s.card = 4) (i : Four) :
     enumerateFour s h i ∈ s :=
   (s.orderIsoOfFin h i).property
 
+/--
+@isnad1 id=eq.1h2v.s5.cc887cbeb1e3 from=translated src=- shape=764f4f53 vocab=b5e8b4a8
+-/
 @[simp] theorem range_enumerateFour (s : Finset (Fin n)) (h : s.card = 4) :
     Finset.univ.map (enumerateFour s h) = s := by
   apply Finset.Subset.antisymm
@@ -213,7 +257,9 @@ def relativePattern (π : Equiv.Perm (Fin n)) (s : Finset (Fin n))
         (by simpa only [Finset.card_map] using h)).toEquiv.symm
 
 /-- The defining property of standardization: enumerating the image at the
-new rank gives the image under `π` of the old enumeration.-/
+new rank gives the image under `π` of the old enumeration.
+@isnad1 id=eq.1h4v.s6.6d6f919a0106 from=translated src=- shape=cbd8759f vocab=0508b1cf
+-/
 theorem relativePattern_spec (π : Equiv.Perm (Fin n)) (s : Finset (Fin n))
     (h : s.card = 4) (i : Four) :
     enumerateFour (s.map π.toEmbedding)
@@ -228,6 +274,9 @@ def crossingOn (C : CircularOrder n) (s : Finset (Fin n)) (h : s.card = 4) :
     QuartetSplit (Fin n) :=
   crossing ((enumerateFour s h).trans C.toEmbedding)
 
+/--
+@isnad1 id=eq.3h4v.s5.7d326cde7258 from=translated src=- shape=92b1530f vocab=c2911989
+-/
 theorem crossingOn_congr (C : CircularOrder n) {s t : Finset (Fin n)}
     (hst : s = t) (hs : s.card = 4) (ht : t.card = 4) :
     crossingOn C s hs = crossingOn C t ht := by
@@ -241,6 +290,9 @@ def crossingOnSecond (C C' : CircularOrder n) (s : Finset (Fin n))
   crossingOn C' (s.map π.toEmbedding)
     (by simpa only [Finset.card_map] using h)
 
+/--
+@isnad1 id=other.1h5v.s7.74989f4a5e56 from=translated src=- shape=01d32e51 vocab=3dfc8702
+-/
 theorem relativePattern_labels (C C' : CircularOrder n) (s : Finset (Fin n))
     (h : s.card = 4) (i : Four) :
     let π := relativePermutation C C'
@@ -254,7 +306,9 @@ theorem relativePattern_labels (C C' : CircularOrder n) (s : Finset (Fin n))
 
 set_option maxHeartbeats 800000
 
-/-- Paper Lemma (relative permutation), in representative form.-/
+/-- Paper Lemma (relative permutation), in representative form.
+@isnad1 id=iff.1h4v.s5.1b8aaa7fcc72 from=translated src=- shape=a367b022 vocab=240745e2
+-/
 theorem crossingOn_eq_iff_relativePattern (C C' : CircularOrder n)
     (s : Finset (Fin n)) (h : s.card = 4) :
     crossingOn C s h = crossingOnSecond C C' s h ↔
@@ -290,6 +344,9 @@ noncomputable def permutationK (π : Equiv.Perm (Fin n)) : ℕ :=
 noncomputable def K (C C' : CircularOrder n) : ℕ :=
   permutationK (relativePermutation C C')
 
+/--
+@isnad1 id=le.0h2v.s4.1abad598da25 from=translated src=- shape=d982cba4 vocab=3e9f3a79
+-/
 theorem permutationK_le_choose (π : Equiv.Perm (Fin n)) :
     permutationK π ≤ Nat.choose n 4 := by
   rw [permutationK]
@@ -298,6 +355,9 @@ theorem permutationK_le_choose (π : Equiv.Perm (Fin n)) :
         (Finset.univ.powersetCard 4).card := Finset.card_filter_le _ _
     _ = Nat.choose n 4 := by simp [Finset.card_powersetCard]
 
+/--
+@isnad1 id=le.0h3v.s4.a79a7d2f01fd from=translated src=- shape=3fe7bd4a vocab=1647f8a4
+-/
 theorem K_le_choose (C C' : CircularOrder n) : K C C' ≤ Nat.choose n 4 :=
   permutationK_le_choose _
 
@@ -307,15 +367,24 @@ theorem K_le_choose (C C' : CircularOrder n) : K C C' ≤ Nat.choose n 4 :=
 def labelPositions (C : CircularOrder n) (Q : Finset (Fin n)) : Finset (Fin n) :=
   Q.map C.symm.toEmbedding
 
+/--
+@isnad1 id=eq.0h3v.s4.9ba58217ad90 from=translated src=- shape=9a580b5d vocab=61cc070c
+-/
 @[simp] theorem card_labelPositions (C : CircularOrder n) (Q : Finset (Fin n)) :
     (labelPositions C Q).card = Q.card := by
   simp [labelPositions]
 
+/--
+@isnad1 id=eq.0h3v.s4.46895d788905 from=translated src=- shape=87ed318e vocab=8d4c293f
+-/
 @[simp] theorem labelPositions_map_order (C : CircularOrder n) (s : Finset (Fin n)) :
     labelPositions C (s.map C.toEmbedding) = s := by
   ext i
   simp [labelPositions]
 
+/--
+@isnad1 id=eq.0h4v.s5.8dae58df2b67 from=translated src=- shape=c3ab930f vocab=bc43bdd3
+-/
 theorem labelPositions_second (C C' : CircularOrder n) (Q : Finset (Fin n)) :
     labelPositions C' Q =
       (labelPositions C Q).map (relativePermutation C C').toEmbedding := by
@@ -336,7 +405,9 @@ def crossingOnLabels (C : CircularOrder n) (Q : Finset (Fin n))
   crossingOn C (labelPositions C Q) (by simpa only [card_labelPositions] using h)
 
 /-- Equality of crossing splits on a label quartet is detected by the
-restricted relative permutation.-/
+restricted relative permutation.
+@isnad1 id=iff.1h4v.s5.dece5538f86d from=translated src=- shape=0d6eb9ab vocab=fb1c9b8e
+-/
 theorem crossingOnLabels_eq_iff_relativePattern (C C' : CircularOrder n)
     (Q : Finset (Fin n)) (h : Q.card = 4) :
     crossingOnLabels C Q h = crossingOnLabels C' Q h ↔
@@ -363,6 +434,9 @@ def CrossingAgreesOnLabels (C C' : CircularOrder n) (Q : Finset (Fin n)) : Prop 
 noncomputable instance (C C' : CircularOrder n) (Q : Finset (Fin n)) :
     Decidable (CrossingAgreesOnLabels C C' Q) := Classical.dec _
 
+/--
+@isnad1 id=iff.0h4v.s4.84d332c5b73e from=translated src=- shape=bdce41ce vocab=49da8f5c
+-/
 theorem crossingAgreesOnLabels_iff (C C' : CircularOrder n)
     (Q : Finset (Fin n)) :
     CrossingAgreesOnLabels C C' Q ↔
@@ -380,7 +454,9 @@ noncomputable def labelK (C C' : CircularOrder n) : ℕ :=
   ((Finset.univ.powersetCard 4).filter (CrossingAgreesOnLabels C C')).card
 
 /-- The label-subset count is exactly the position-subset count used in the
-step-permuton reduction.-/
+step-permuton reduction.
+@isnad1 id=eq.0h3v.s4.72b95a4165f2 from=translated src=- shape=dd7bc548 vocab=b4c73cfb
+-/
 theorem labelK_eq_K (C C' : CircularOrder n) : labelK C C' = K C C' := by
   classical
   unfold labelK K permutationK
@@ -403,12 +479,18 @@ theorem labelK_eq_K (C C' : CircularOrder n) : labelK C C' = K C C' := by
       exact hs.2
     · exact hpositions
 
+/--
+@isnad1 id=iff.0h4v.s4.0dd5c498cd4e from=translated src=- shape=8364d464 vocab=0935e21f
+-/
 theorem crossingAgreesOnLabels_comm (C C' : CircularOrder n) (Q : Finset (Fin n)) :
     CrossingAgreesOnLabels C C' Q ↔ CrossingAgreesOnLabels C' C Q := by
   constructor <;> rintro ⟨h, heq⟩
   · exact ⟨h, heq.symm⟩
   · exact ⟨h, heq.symm⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.377abb677290 from=translated src=- shape=9ee3e7a7 vocab=0c1903fb
+-/
 theorem labelK_comm (C C' : CircularOrder n) : labelK C C' = labelK C' C := by
   classical
   unfold labelK
@@ -421,9 +503,15 @@ theorem labelK_comm (C C' : CircularOrder n) : labelK C C' = labelK C' C := by
   · rintro ⟨hQ, hagree⟩
     exact ⟨hQ, (crossingAgreesOnLabels_comm C C' Q).mpr hagree⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.50bca1071d98 from=translated src=- shape=9ee3e7a7 vocab=758b5918
+-/
 theorem K_comm (C C' : CircularOrder n) : K C C' = K C' C := by
   rw [← labelK_eq_K, ← labelK_eq_K, labelK_comm]
 
+/--
+@isnad1 id=eq.0h2v.s4.0e0853ae325e from=translated src=- shape=20c244f4 vocab=656c3753
+-/
 theorem labelK_self (C : CircularOrder n) : labelK C C = Nat.choose n 4 := by
   classical
   unfold labelK
@@ -434,6 +522,9 @@ theorem labelK_self (C : CircularOrder n) : labelK C C = Nat.choose n 4 := by
       simpa only [Finset.mem_powersetCard, Finset.subset_univ, true_and] using hQ
     exact ⟨hcard, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.61c55d8e74d0 from=translated src=- shape=20c244f4 vocab=3b0d13bc
+-/
 theorem K_self (C : CircularOrder n) : K C C = Nat.choose n 4 := by
   rw [← labelK_eq_K]
   exact labelK_self C
@@ -459,6 +550,9 @@ def injectiveStripSampleEquiv (n : ℕ) :
 /-- The falling factorial `(n)₄`.-/
 def fallingFour (n : ℕ) : ℕ := n * (n - 1) * (n - 2) * (n - 3)
 
+/--
+@isnad1 id=eq.0h1v.s5.5867bec4f3de from=translated src=- shape=4692d291 vocab=f75dd264
+-/
 theorem card_injectiveStripSample (n : ℕ) :
     Fintype.card {f : StripSample n // Function.Injective f} = fallingFour n := by
   rw [Fintype.card_congr (injectiveStripSampleEquiv n), Fintype.card_embedding_eq]
@@ -491,6 +585,9 @@ deriving DecidableEq, Fintype
 def tiedStripKey (f : StripSample n) (ranks : Perm4) (i : Four) : ℕ :=
   4 * (f i).val + (ranks i).val
 
+/--
+@isnad1 id=injectiv.0h3v.s3.2cac4e9fea07 from=translated src=- shape=38d65a7b vocab=63ddeb15
+-/
 theorem tiedStripKey_injective (f : StripSample n) (ranks : Perm4) :
     Function.Injective (tiedStripKey f ranks) := by
   intro i j hij
@@ -510,15 +607,24 @@ rank.-/
 def tiedStripOrderList (f : StripSample n) (ranks : Perm4) : List Four :=
   List.ofFn (tiedStripOrder f ranks)
 
+/--
+@isnad1 id=nodup.0h3v.s3.d9b4db18141e from=translated src=- shape=f2b11ff2 vocab=53f0ea5b
+-/
 theorem tiedStripOrderList_nodup (f : StripSample n) (ranks : Perm4) :
     (tiedStripOrderList f ranks).Nodup := by
   exact List.nodup_ofFn.mpr (tiedStripOrder f ranks).injective
 
+/--
+@isnad1 id=mem.0h4v.s4.afdd7a5b7293 from=translated src=- shape=90ead0e8 vocab=78f1e17b
+-/
 theorem mem_tiedStripOrderList (f : StripSample n) (ranks : Perm4) (i : Four) :
     i ∈ tiedStripOrderList f ranks := by
   rw [tiedStripOrderList, List.mem_ofFn']
   exact (tiedStripOrder f ranks).surjective i
 
+/--
+@isnad1 id=eq.0h3v.s4.013d0d76d469 from=translated src=- shape=67e13bf4 vocab=107e9ae2
+-/
 @[simp] theorem length_tiedStripOrderList (f : StripSample n) (ranks : Perm4) :
     (tiedStripOrderList f ranks).length = 4 := by
   simp [tiedStripOrderList]
@@ -541,6 +647,9 @@ noncomputable def tiedStepPattern (π : Equiv.Perm (Fin n))
   else
     tiedCollisionPattern π z
 
+/--
+@isnad1 id=eq.1h3v.s5.c9b1c87754b9 from=translated src=- shape=a27a9cda vocab=6631dd8e
+-/
 theorem tiedStepPattern_of_injective (π : Equiv.Perm (Fin n))
     (z : TiedStripSample n) (h : Function.Injective z.strips) :
     tiedStepPattern π z =
@@ -548,7 +657,9 @@ theorem tiedStepPattern_of_injective (π : Equiv.Perm (Fin n))
   simp only [tiedStepPattern, dite_eq_left h]
 
 /-- On distinct strips the concrete tied-sample model is exactly the
-`DihedralOn` event counted by `permutationK`.-/
+`DihedralOn` event counted by `permutationK`.
+@isnad1 id=iff.1h3v.s5.8f243ae30a52 from=translated src=- shape=a89b9ffc vocab=b92068be
+-/
 theorem isDihedral4_tiedStepPattern_iff_of_injective
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n)
     (h : Function.Injective z.strips) :
@@ -574,10 +685,16 @@ noncomputable def collisionDihedralCount (π : Equiv.Perm (Fin n)) : ℕ :=
 noncomputable def collisionDihedralDensity (π : Equiv.Perm (Fin n)) : ℚ :=
   (collisionDihedralCount π : ℚ) / (collisionSamples n).card
 
+/--
+@isnad1 id=le.0h2v.s4.247786afddbc from=translated src=- shape=e71c00c0 vocab=eea5bd51
+-/
 theorem collisionDihedralCount_le (π : Equiv.Perm (Fin n)) :
     collisionDihedralCount π ≤ (collisionSamples n).card := by
   exact Finset.card_filter_le _ _
 
+/--
+@isnad1 id=lt.1h1v.s4.5a0b0c790397 from=translated src=- shape=a1210d1f vocab=88427cc2
+-/
 theorem collisionSamples_card_pos {n : ℕ} (hn : 1 ≤ n) :
     0 < (collisionSamples n).card := by
   let f : StripSample n := fun _ => ⟨0, by omega⟩
@@ -590,10 +707,16 @@ theorem collisionSamples_card_pos {n : ℕ} (hn : 1 ≤ n) :
   have h01 : (0 : Four) = 1 := hf (show f 0 = f 1 by rfl)
   norm_num at h01
 
+/--
+@isnad1 id=le.0h2v.s4.07f8421a5ab0 from=translated src=- shape=2c701dde vocab=4bf4c72f
+-/
 theorem collisionDihedralDensity_nonneg (π : Equiv.Perm (Fin n)) :
     0 ≤ collisionDihedralDensity π := by
   exact div_nonneg (by positivity) (by positivity)
 
+/--
+@isnad1 id=le.1h2v.s4.3ff7de7c4728 from=translated src=- shape=0c6332f7 vocab=4bf4c72f
+-/
 theorem collisionDihedralDensity_le_one {n : ℕ} (π : Equiv.Perm (Fin n))
     (hn : 1 ≤ n) : collisionDihedralDensity π ≤ 1 := by
   have hden : (0 : ℚ) < ((collisionSamples n).card : ℚ) := by
@@ -644,6 +767,9 @@ noncomputable def globalTiedDihedralCount (π : Equiv.Perm (Fin n)) : ℕ :=
 noncomputable def globalTiedDihedralDensity (π : Equiv.Perm (Fin n)) : ℚ :=
   (globalTiedDihedralCount π : ℚ) / Fintype.card (GlobalTiedSample n)
 
+/--
+@isnad1 id=eq.0h0v.s5.75123c547753 from=translated src=- shape=b0ae1d2b vocab=71c05dd5
+-/
 theorem card_perm4 : Fintype.card Perm4 = 24 := by decide
 
 noncomputable def dihedralFourSubsetEquiv (π : Equiv.Perm (Fin n)) :
@@ -682,7 +808,9 @@ noncomputable def dihedralGlobalCollisionSampleEquiv
   right_inv z := by rfl
 
 /-- Exact success-count decomposition of the global sample into its distinct
-and collision branches.-/
+and collision branches.
+@isnad1 id=eq.0h2v.s5.4b1225eca0cb from=translated src=- shape=85607bc4 vocab=6fb0e3a5
+-/
 theorem globalTiedDihedralCount_eq (π : Equiv.Perm (Fin n)) :
     globalTiedDihedralCount π =
       permutationK π * 24 ^ 3 + collisionDihedralCount π := by
@@ -736,11 +864,17 @@ noncomputable def collisionTiedSampleEquiv (n : ℕ) :
   left_inv z := by rfl
   right_inv z := by rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.d163cd62d46a from=translated src=- shape=6be99fd2 vocab=d3bbfc35
+-/
 theorem card_tiedStripSample (n : ℕ) :
     Fintype.card (TiedStripSample n) = n ^ 4 * 24 ^ 2 := by
   rw [Fintype.card_congr (tiedStripSampleEquiv n), Fintype.card_prod]
   simp [StripSample, card_perm4]
 
+/--
+@isnad1 id=eq.0h1v.s6.189c9ae37eed from=translated src=- shape=3105193f vocab=2e4531a1
+-/
 theorem card_injectiveTiedStripSample (n : ℕ) :
     Fintype.card {z : TiedStripSample n // Function.Injective z.strips} =
       fallingFour n * 24 ^ 2 := by
@@ -748,6 +882,9 @@ theorem card_injectiveTiedStripSample (n : ℕ) :
     card_injectiveStripSample]
   simp [card_perm4]
 
+/--
+@isnad1 id=eq.0h1v.s6.1441757a9761 from=translated src=- shape=45cc7d26 vocab=eba9e0e7
+-/
 theorem injective_add_collision_card (n : ℕ) :
     fallingFour n * 24 ^ 2 + (collisionSamples n).card = n ^ 4 * 24 ^ 2 := by
   classical
@@ -765,18 +902,27 @@ theorem injective_add_collision_card (n : ℕ) :
   rw [hcollision] at hadd
   simpa only [Nat.add_comm] using hadd
 
+/--
+@isnad1 id=eq.0h1v.s4.ef11b17de94f from=translated src=- shape=77592283 vocab=39c3179a
+-/
 theorem twentyFour_mul_choose_eq_fallingFour (n : ℕ) :
     24 * Nat.choose n 4 = fallingFour n := by
   have h := Nat.descFactorial_eq_factorial_mul_choose n 4
   norm_num at h
   simpa [fallingFour, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm] using h.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.509b99c7d025 from=translated src=- shape=ab3c06d2 vocab=dd5c8971
+-/
 theorem distinct_add_collision_card (n : ℕ) :
     Nat.choose n 4 * 24 ^ 3 + (collisionSamples n).card = n ^ 4 * 24 ^ 2 := by
   have h := injective_add_collision_card n
   rw [← twentyFour_mul_choose_eq_fallingFour n] at h
   nlinarith
 
+/--
+@isnad1 id=eq.0h1v.s7.1aaa2ea3e974 from=translated src=- shape=26431c0d vocab=534a5730
+-/
 theorem card_globalTiedSample (n : ℕ) :
     Fintype.card (GlobalTiedSample n) =
       Nat.choose n 4 * 24 ^ 3 + (collisionSamples n).card := by
@@ -796,6 +942,9 @@ noncomputable def stepDihedralDensity (π : Equiv.Perm (Fin n)) : ℚ :=
   stepAlpha n * distinctDihedralDensity π +
     (1 - stepAlpha n) * collisionDihedralDensity π
 
+/--
+@isnad1 id=lt.1h1v.s4.21d67564847b from=translated src=- shape=f8216502 vocab=1c5a172e
+-/
 theorem stepAlpha_pos {n : ℕ} (hn : 4 ≤ n) : 0 < stepAlpha n := by
   have h4 : (4 : ℚ) ≤ (n : ℚ) := by exact_mod_cast hn
   have hn0 : (0 : ℚ) < (n : ℚ) := by linarith
@@ -805,6 +954,9 @@ theorem stepAlpha_pos {n : ℕ} (hn : 4 ≤ n) : 0 < stepAlpha n := by
   unfold stepAlpha
   exact div_pos (mul_pos (mul_pos h1 h2) h3) (pow_pos hn0 _)
 
+/--
+@isnad1 id=le.1h1v.s4.da710b139c13 from=translated src=- shape=01574b0e vocab=ca84bfbf
+-/
 theorem stepAlpha_le_one {n : ℕ} (hn : 4 ≤ n) : stepAlpha n ≤ 1 := by
   have h4 : (4 : ℚ) ≤ (n : ℚ) := by exact_mod_cast hn
   have hn0 : (0 : ℚ) ≤ (n : ℚ) := by positivity
@@ -815,6 +967,9 @@ theorem stepAlpha_le_one {n : ℕ} (hn : 4 ≤ n) : stepAlpha n ≤ 1 := by
   apply (div_le_one₀ (by positivity : (0 : ℚ) < (n : ℚ) ^ 3)).2
   nlinarith
 
+/--
+@isnad1 id=eq.1h1v.s6.992cc1a7e7cb from=translated src=- shape=bec67180 vocab=9af563cf
+-/
 theorem one_sub_stepAlpha {n : ℕ} (hn : 4 ≤ n) :
     1 - stepAlpha n =
       (6 * (n : ℚ) ^ 2 - 11 * (n : ℚ) + 6) / (n : ℚ) ^ 3 := by
@@ -825,12 +980,17 @@ theorem one_sub_stepAlpha {n : ℕ} (hn : 4 ≤ n) :
   field_simp [hn0]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s4.1b3a6814af03 from=translated src=- shape=c2d9354c vocab=e3bfc975
+-/
 theorem choose_four_pos {n : ℕ} (hn : 4 ≤ n) :
     (0 : ℚ) < (Nat.choose n 4 : ℚ) := by
   exact_mod_cast Nat.choose_pos hn
 
 /-- The filter-card density on the single global sample space is exactly the
-distinct/collision mixture used in the finite reduction.-/
+distinct/collision mixture used in the finite reduction.
+@isnad1 id=eq.1h2v.s4.26954b832e25 from=translated src=- shape=47b583e5 vocab=173d95bb
+-/
 theorem globalTiedDihedralDensity_eq_stepDihedralDensity {n : ℕ}
     (π : Equiv.Perm (Fin n)) (hn : 4 ≤ n) :
     globalTiedDihedralDensity π = stepDihedralDensity π := by
@@ -891,7 +1051,9 @@ def StepPermutonTheorem (n : ℕ) : Prop :=
   ∀ π : Equiv.Perm (Fin n), StepPermutonInequality π
 
 /-- Elementary collision reduction.  No measure theory or independence
-between different four-subsets is used here.-/
+between different four-subsets is used here.
+@isnad1 id=le.4h3v.s7.19a5d1b0d8a7 from=translated src=- shape=9aa80e33 vocab=9a15ac25
+-/
 theorem collisionReduction {α p r : ℚ} (hα : 0 < α) (hα1 : α ≤ 1)
     (hr : r ≤ 1) (hpermuton : (1 : ℚ) / 3 ≤ α * p + (1 - α) * r) :
     1 - 2 / (3 * α) ≤ p := by
@@ -906,7 +1068,9 @@ theorem collisionReduction {α p r : ℚ} (hα : 0 < α) (hα1 : α ≤ 1)
   exact hcore
 
 /-- The finite distinct-strip density bound obtained from the step-permuton
-inequality by charging every collision as potentially dihedral.-/
+inequality by charging every collision as potentially dihedral.
+@isnad1 id=le.2h2v.s6.e416616c5556 from=translated src=- shape=d9d5ff99 vocab=e08cde1b
+-/
 theorem distinctDihedralDensity_bound {n : ℕ} (π : Equiv.Perm (Fin n))
     (hn : 4 ≤ n) (hstep : StepPermutonInequality π) :
     1 - 2 / (3 * stepAlpha n) ≤ distinctDihedralDensity π := by
@@ -917,7 +1081,9 @@ theorem distinctDihedralDensity_bound {n : ℕ} (π : Equiv.Perm (Fin n))
       rw [globalTiedDihedralDensity_eq_stepDihedralDensity π hn] at hglobal
       simpa only [stepDihedralDensity] using hglobal)
 
-/-- Finite collision bound for a relative permutation.-/
+/-- Finite collision bound for a relative permutation.
+@isnad1 id=le.2h2v.s6.204490af3790 from=translated src=- shape=7cdcad7d vocab=ae5ad603
+-/
 theorem permutationCollisionBound {n : ℕ} (π : Equiv.Perm (Fin n))
     (hn : 4 ≤ n) (hstep : StepPermutonInequality π) :
     (1 - 2 / (3 * stepAlpha n)) * (Nat.choose n 4 : ℚ) ≤
@@ -926,14 +1092,18 @@ theorem permutationCollisionBound {n : ℕ} (π : Equiv.Perm (Fin n))
   exact (le_div_iff₀ hN).mp (distinctDihedralDensity_bound π hn hstep)
 
 /-- The paper's circular-order bound
-`K(C,C') ≥ (1 - 2/(3 αₙ)) * choose n 4`.-/
+`K(C,C') ≥ (1 - 2/(3 αₙ)) * choose n 4`.
+@isnad1 id=le.2h3v.s6.532250c0f273 from=translated src=- shape=594a144f vocab=94f35d7a
+-/
 theorem circularCollisionBound {n : ℕ} (C C' : CircularOrder n)
     (hn : 4 ≤ n) (hstep : StepPermutonInequality (relativePermutation C C')) :
     (1 - 2 / (3 * stepAlpha n)) * (Nat.choose n 4 : ℚ) ≤ (K C C' : ℚ) := by
   exact permutationCollisionBound (relativePermutation C C') hn hstep
 
 /-- Uniform version when the published inequality is supplied for every step
-permuton of size `n`.-/
+permuton of size `n`.
+@isnad1 id=le.2h3v.s6.e0d0f5e95bcb from=translated src=- shape=38b2e89f vocab=72d33d71
+-/
 theorem circularOrderBound {n : ℕ} (hpublished : StepPermutonTheorem n)
     (C C' : CircularOrder n) (hn : 4 ≤ n) :
     (1 - 2 / (3 * stepAlpha n)) * (Nat.choose n 4 : ℚ) ≤ (K C C' : ℚ) := by

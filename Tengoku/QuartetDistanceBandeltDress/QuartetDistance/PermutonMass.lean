@@ -19,7 +19,9 @@ namespace QuartetDistance.Permuton
 open MeasureTheory
 
 /-- Equivalent formulation using the single global tied-sample space used by
-the finite collision reduction.-/
+the finite collision reduction.
+@isnad1 id=eq.1h2v.s4.388103f4797b from=translated src=- shape=38091827 vocab=8e496ad7
+-/
 theorem dihedralDensity_stepPermuton_eq_globalTiedDihedralDensity {n : ℕ}
     (hn : 0 < n) (π : Equiv.Perm (Fin n)) :
     dihedralDensity (stepPermuton hn π) =
@@ -28,7 +30,9 @@ theorem dihedralDensity_stepPermuton_eq_globalTiedDihedralDensity {n : ℕ}
   exact dihedralDensity_stepPermuton hn π
 
 /-- The published real-valued permuton inequality supplies exactly the
-rational finite step-permuton hypothesis used by the counting proof.-/
+rational finite step-permuton hypothesis used by the counting proof.
+@isnad1 id=stepperm.2h1v.s4.22fe6ed18bc9 from=translated src=- shape=9edaa0d7 vocab=6cfe1ce0
+-/
 theorem publishedPermutonInequality_implies_stepPermutonTheorem {n : ℕ}
     (hn : 4 ≤ n) (hpublished : PublishedPermutonInequality) :
     Circular.StepPermutonTheorem n := by

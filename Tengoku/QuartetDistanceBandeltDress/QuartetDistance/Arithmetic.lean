@@ -16,14 +16,18 @@ namespace QuartetDistance
 /-- The number of four-element subsets of an `n`-element set.-/
 def quartetCount (n : ℕ) : ℕ := n.choose 4
 
-/-- The elementary identity `24 * choose n 4 = (n)₄`.-/
+/-- The elementary identity `24 * choose n 4 = (n)₄`.
+@isnad1 id=eq.0h1v.s6.6c1ef3b41195 from=translated src=- shape=3908ae04 vocab=cf192e71
+-/
 theorem twentyFour_mul_quartetCount (n : ℕ) :
     24 * quartetCount n = n * (n - 1) * (n - 2) * (n - 3) := by
   have h := Nat.descFactorial_eq_factorial_mul_choose n 4
   norm_num at h
   simpa [quartetCount, mul_assoc, mul_comm, mul_left_comm] using h.symm
 
-/-- The collision polynomial in the step-permuton construction.-/
+/-- The collision polynomial in the step-permuton construction.
+@isnad1 id=eq.0h1v.s7.a97ac42a981f from=translated src=- shape=663fbc5e vocab=fb2191f5
+-/
 theorem fourth_power_sub_falling_four (x : ℤ) :
     x ^ 4 - x * (x - 1) * (x - 2) * (x - 3) =
       x * (6 * x ^ 2 - 11 * x + 6) := by
@@ -41,11 +45,16 @@ def normalizedUpperCoefficientRat (n : ℕ) : ℚ :=
   let x : ℚ := n
   2 / 3 + 8 * (6 * x ^ 2 - 11 * x + 6) / (3 * (x - 1) * (x - 2) * (x - 3))
 
+/--
+@isnad1 id=eq.0h1v.s3.d305caeb328a from=translated src=- shape=7ed3a59c vocab=5afccd0e
+-/
 theorem normalizedUpperCoefficientRat_cast (n : ℕ) :
     (normalizedUpperCoefficientRat n : ℝ) = normalizedUpperCoefficient (n : ℝ) := by
   norm_num [normalizedUpperCoefficientRat, normalizedUpperCoefficient, normalizedError]
 
-/-- Exact version of the displayed asymptotic expansion, including its remainder.-/
+/-- Exact version of the displayed asymptotic expansion, including its remainder.
+@isnad1 id=eq.4h1v.s8.f7ef400f3dc6 from=translated src=- shape=f3437a04 vocab=bc100578
+-/
 theorem normalizedError_expansion (x : ℝ)
     (hx0 : x ≠ 0) (hx1 : x ≠ 1) (hx2 : x ≠ 2) (hx3 : x ≠ 3) :
     normalizedError x =
@@ -61,7 +70,9 @@ noncomputable def normalizedRemainder (x : ℝ) : ℝ :=
   8 * (90 * x ^ 2 - 239 * x + 150) /
     (3 * x ^ 2 * (x - 1) * (x - 2) * (x - 3))
 
-/-- An explicit `1/n³` bound for the remainder in the displayed expansion.-/
+/-- An explicit `1/n³` bound for the remainder in the displayed expansion.
+@isnad1 id=le.1h1v.s5.da72b99a0860 from=translated src=- shape=d66f606e vocab=1096709b
+-/
 theorem normalizedRemainder_bound (n : ℕ) (hn : 4 ≤ n) :
     |normalizedRemainder (n : ℝ)| ≤ 5000 / (n : ℝ) ^ 3 := by
   have hnR : (4 : ℝ) ≤ n := by exact_mod_cast hn
@@ -111,7 +122,9 @@ theorem normalizedRemainder_bound (n : ℕ) (hn : 4 ≤ n) :
           (3 * (n : ℝ) ^ 2 * ((n : ℝ) - 1) * ((n : ℝ) - 2) * ((n : ℝ) - 3)) := by
             ring
 
-/-- Formal meaning of the paper's `O(n⁻³)` remainder.-/
+/-- Formal meaning of the paper's `O(n⁻³)` remainder.
+@isnad1 id=isbigo.0h0v.s5.4b1ff0d3c905 from=translated src=- shape=c40bee10 vocab=f77bb574
+-/
 theorem normalizedRemainder_isBigO :
     (fun n : ℕ => normalizedRemainder (n : ℝ)) =O[Filter.atTop]
       (fun n : ℕ => ((n : ℝ)⁻¹) ^ 3) := by
@@ -127,6 +140,9 @@ theorem normalizedRemainder_isBigO :
 noncomputable def additiveError (x : ℝ) : ℝ :=
   x * (6 * x ^ 2 - 11 * x + 6) / 9
 
+/--
+@isnad1 id=le.1h1v.s5.73add3e4fef1 from=translated src=- shape=374fdd97 vocab=4ddeaca7
+-/
 theorem additiveError_bound (n : ℕ) (hn : 1 ≤ n) :
     |additiveError (n : ℝ)| ≤ (n : ℝ) ^ 3 := by
   have hnR : (1 : ℝ) ≤ n := by exact_mod_cast hn
@@ -142,7 +158,9 @@ theorem additiveError_bound (n : ℕ) (hn : 1 ≤ n) :
   have hm := mul_le_mul_of_nonneg_left hpoly hn0
   nlinarith
 
-/-- Formal meaning of the remark that the additive error is `O(n³)`.-/
+/-- Formal meaning of the remark that the additive error is `O(n³)`.
+@isnad1 id=isbigo.0h0v.s5.755895e4340c from=translated src=- shape=1e354ff3 vocab=cfb45781
+-/
 theorem additiveError_isBigO :
     (fun n : ℕ => additiveError (n : ℝ)) =O[Filter.atTop]
       (fun n : ℕ => (n : ℝ) ^ 3) := by
@@ -154,7 +172,9 @@ theorem additiveError_isBigO :
   rw [hpow]
   exact additiveError_bound n hn
 
-/-- A uniform explicit bound showing that the normalized error is `O(1/n)`.-/
+/-- A uniform explicit bound showing that the normalized error is `O(1/n)`.
+@isnad1 id=le.1h1v.s5.42526040e639 from=translated src=- shape=30ebe56e vocab=91508374
+-/
 theorem normalizedError_bound (n : ℕ) (hn : 4 ≤ n) :
     |normalizedError (n : ℝ)| ≤ 300 / (n : ℝ) := by
   have hnR : (4 : ℝ) ≤ n := by exact_mod_cast hn
@@ -191,7 +211,9 @@ theorem normalizedError_bound (n : ℕ) (hn : 4 ≤ n) :
     _ = 300 / (n : ℝ) *
           (3 * ((n : ℝ) - 1) * ((n : ℝ) - 2) * ((n : ℝ) - 3)) := by ring
 
-/-- Formal meaning of the paper's `O(1/n)` normalized error.-/
+/-- Formal meaning of the paper's `O(1/n)` normalized error.
+@isnad1 id=isbigo.0h0v.s4.6553b54bebcf from=translated src=- shape=36fb6814 vocab=524eb0ca
+-/
 theorem normalizedError_isBigO :
     (fun n : ℕ => normalizedError (n : ℝ)) =O[Filter.atTop]
       (fun n : ℕ => ((n : ℝ)⁻¹)) := by
@@ -203,7 +225,9 @@ theorem normalizedError_isBigO :
   rw [hinv]
   simpa [div_eq_mul_inv] using normalizedError_bound n hn
 
-/-- The exact coefficient first improves on the trivial coefficient `1` at `n = 53`.-/
+/-- The exact coefficient first improves on the trivial coefficient `1` at `n = 53`.
+@isnad1 id=and.0h0v.s5.2d9cc308a7b4 from=translated src=- shape=7d23b56d vocab=1bb06b3b
+-/
 theorem first_trivial_improvement :
     normalizedUpperCoefficient 53 < 1 ∧
       ∀ n ∈ Finset.Icc (4 : ℕ) 52,
@@ -245,7 +269,9 @@ theorem first_trivial_improvement :
     rw [normalizedUpperCoefficient]
     linarith
 
-/-- The exact coefficient first drops below `0.69` at `n = 690`.-/
+/-- The exact coefficient first drops below `0.69` at `n = 690`.
+@isnad1 id=and.0h0v.s6.5cef03a2b4bc from=translated src=- shape=86a634db vocab=1e9ccc4d
+-/
 theorem first_below_point_six_nine :
     normalizedUpperCoefficient 690 < (69 : ℝ) / 100 ∧
       ∀ n ∈ Finset.Icc (4 : ℕ) 689,

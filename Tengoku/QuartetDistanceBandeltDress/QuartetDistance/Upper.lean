@@ -18,6 +18,9 @@ open scoped BigOperators
 
 abbrev Quartet (n : ℕ) := {Q : Finset (Fin n) // Q.card = 4}
 
+/--
+@isnad1 id=eq.0h1v.s5.74d0178fc667 from=translated src=- shape=5f32f2e5 vocab=38fe22ea
+-/
 @[simp] theorem card_quartet (n : ℕ) :
     Fintype.card (Quartet n) = Nat.choose n 4 := by
   simp [Quartet]
@@ -30,6 +33,9 @@ def canonicalTopology : Fin 3 → Circular.QuartetSplit Circular.Four :=
     Circular.splitOf 0 2 1 3,
     Circular.splitOf 0 1 3 2]
 
+/--
+@isnad1 id=injectiv.0h0v.s3.cb7ea04de093 from=translated src=- shape=b032868b vocab=24ef2502
+-/
 theorem canonicalTopology_injective : Function.Injective canonicalTopology := by
   decide
 
@@ -42,6 +48,9 @@ def splitOfTopology (q : Quartet n) (i : Fin 3) :
     Circular.QuartetSplit (Fin n) :=
   Circular.mapSplit (quartetEmbedding q) (canonicalTopology i)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.5c79f471b386 from=translated src=- shape=8eeed44f vocab=414d3b98
+-/
 theorem splitOfTopology_injective (q : Quartet n) :
     Function.Injective (splitOfTopology q) := by
   intro i j hij
@@ -54,6 +63,9 @@ def topologyOfSplit (q : Quartet n) (s : Circular.QuartetSplit (Fin n)) : Fin 3 
   else if s = splitOfTopology q 1 then 1
   else 2
 
+/--
+@isnad1 id=eq.0h3v.s4.0a892919e48f from=translated src=- shape=ec61c04b vocab=f1a0115e
+-/
 @[simp] theorem topologyOfSplit_splitOfTopology (q : Quartet n) (i : Fin 3) :
     topologyOfSplit q (splitOfTopology q i) = i := by
   fin_cases i
@@ -81,6 +93,9 @@ noncomputable def enumerationPermutation (q : Quartet n) (r : Circular.Four ↪ 
     (hr : q.1 = Finset.univ.map r) : Circular.Perm4 :=
   (enumerationEquiv q r hr).trans (q.1.orderIsoOfFin q.2).toEquiv.symm
 
+/--
+@isnad1 id=eq.1h3v.s6.086c634b3677 from=translated src=- shape=fb38b07b vocab=3c6e1321
+-/
 theorem enumeration_eq_permutation_trans (q : Quartet n)
     (r : Circular.Four ↪ Fin n) (hr : q.1 = Finset.univ.map r) :
     r = (enumerationPermutation q r hr).toEmbedding.trans (quartetEmbedding q) := by
@@ -88,13 +103,18 @@ theorem enumeration_eq_permutation_trans (q : Quartet n)
   simp [enumerationPermutation, enumerationEquiv, quartetEmbedding,
     Circular.enumerateFour]
 
+/--
+@isnad1 id=mem.0h1v.s5.d8835389c4a2 from=translated src=- shape=8c5f3a48 vocab=9a988838
+-/
 theorem permutedCanonical_mem_range (σ : Circular.Perm4) :
     Circular.mapSplit σ.toEmbedding Circular.canonicalCrossing ∈
       Set.range canonicalTopology := by
   revert σ
   decide
 
-/-- Every well-formed split of `q` is one of the fixed three channels.-/
+/-- Every well-formed split of `q` is one of the fixed three channels.
+@isnad1 id=mem.1h3v.s5.59c8047f18f8 from=translated src=- shape=4456244f vocab=1c7aa675
+-/
 theorem isQuartetSplit_mem_range (q : Quartet n)
     {s : Circular.QuartetSplit (Fin n)}
     (hs : Circular.IsQuartetSplit q.1 s) :
@@ -120,6 +140,9 @@ noncomputable def crossingTopology (C : Circular.CircularOrder n)
 /-- The numerator of `stepAlpha` after cancelling its leading factor `n`.-/
 def cyclicFallingThree (n : ℕ) : ℕ := (n - 1) * (n - 2) * (n - 3)
 
+/--
+@isnad1 id=eq.1h1v.s5.d6cc79c20ba3 from=translated src=- shape=433e780a vocab=af239499
+-/
 theorem stepAlpha_eq_cyclicFallingThree_div (n : ℕ) (hn : 4 ≤ n) :
     Circular.stepAlpha n =
       (cyclicFallingThree n : ℚ) / (n : ℚ) ^ 3 := by
@@ -128,7 +151,9 @@ theorem stepAlpha_eq_cyclicFallingThree_div (n : ℕ) (hn : 4 ≤ n) :
     Nat.cast_sub (by omega : 3 ≤ n)]
   norm_num
 
-/-- The step-permuton circular estimate with all denominators cleared.-/
+/-- The step-permuton circular estimate with all denominators cleared.
+@isnad1 id=le.2h3v.s7.ea8af6207b45 from=translated src=- shape=3dfb8506 vocab=91fd0687
+-/
 theorem circular_cleared_lower_bound {n : ℕ}
     (hpublished : Circular.StepPermutonTheorem n) (hn : 4 ≤ n)
     (C C' : Circular.CircularOrder n) :
@@ -173,11 +198,17 @@ theorem circular_cleared_lower_bound {n : ℕ}
 
 /-! ## Arithmetic normalization to the displayed paper bound -/
 
+/--
+@isnad1 id=eq.0h1v.s5.8f44d3ee08af from=translated src=- shape=c780a421 vocab=097278ea
+-/
 theorem twentyFour_mul_choose_eq_n_mul_cyclicFallingThree (n : ℕ) :
     24 * Nat.choose n 4 = n * cyclicFallingThree n := by
   simpa only [quartetCount, cyclicFallingThree, mul_assoc] using
     twentyFour_mul_quartetCount n
 
+/--
+@isnad1 id=eq.1h1v.s7.11081f7a4f8f from=translated src=- shape=f3f132c7 vocab=32545042
+-/
 theorem choose_add_collision_error (n : ℕ) (hn : 4 ≤ n) :
     24 * Nat.choose n 4 + n * (6 * n ^ 2 - 11 * n + 6) = n ^ 4 := by
   have hp : 11 * n ≤ 6 * n ^ 2 := by nlinarith
@@ -199,7 +230,9 @@ theorem choose_add_collision_error (n : ℕ) (hn : 4 ≤ n) :
   ring
 
 /-- Normalize the direct output of `Counting` to the integer inequality
-displayed in the paper.-/
+displayed in the paper.
+@isnad1 id=le.2h2v.s7.d56cb8b334ac from=translated src=- shape=6af7a1ea vocab=67aa7a05
+-/
 theorem paper_cleared_bound_of_counting_bound {n D : ℕ} (hn : 4 ≤ n)
     (hcount :
       3 * cyclicFallingThree n * D +
@@ -230,6 +263,9 @@ theorem paper_cleared_bound_of_counting_bound {n D : ℕ} (hn : 4 ≤ n)
   have hid := choose_add_collision_error n hn
   omega
 
+/--
+@isnad1 id=le.2h2v.s8.adc813eba887 from=translated src=- shape=6a7d90d0 vocab=0397fd27
+-/
 theorem paper_rational_bound_of_cleared {n D : ℕ} (hn : 4 ≤ n)
     (hcleared :
       9 * D ≤ 6 * Nat.choose n 4 + n * (6 * n ^ 2 - 11 * n + 6)) :
@@ -262,16 +298,25 @@ noncomputable def rotationWord (T : Tree.PhyloTree (Fin n)) (ω : RotationSample
     List (Fin n) :=
   (boundaryProfileVector T).get ω
 
+/--
+@isnad1 id=mem.0h3v.s5.1851a7ddfe4b from=translated src=- shape=09d75595 vocab=9759a824
+-/
 theorem rotationWord_mem_boundaryProfile (T : Tree.PhyloTree (Fin n))
     (ω : RotationSample T) : rotationWord T ω ∈ T.boundaryProfile := by
   have hm : rotationWord T ω ∈ T.boundaryProfile.toList := by
     exact List.get_mem _ _
   simpa [Multiset.mem_toList] using hm
 
+/--
+@isnad1 id=nodup.0h3v.s4.b2652562841c from=translated src=- shape=79bc0ecd vocab=2e47806d
+-/
 theorem rotationWord_nodup (T : Tree.PhyloTree (Fin n))
     (ω : RotationSample T) : (rotationWord T ω).Nodup :=
   T.mem_boundaryProfile_nodup (rotationWord_mem_boundaryProfile T ω)
 
+/--
+@isnad1 id=mem.0h4v.s4.497db9e2cf44 from=translated src=- shape=0a4ba687 vocab=d053f8cc
+-/
 theorem rotationWord_complete (T : Tree.PhyloTree (Fin n))
     (ω : RotationSample T) (x : Fin n) : x ∈ rotationWord T ω := by
   have hm := rotationWord_mem_boundaryProfile T ω
@@ -286,6 +331,9 @@ theorem rotationWord_complete (T : Tree.PhyloTree (Fin n))
     simp only [List.mem_cons, List.mem_map]
     exact Or.inr ⟨y, hy, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.dcfa2e1640cb from=translated src=- shape=da7bcaec vocab=12214715
+-/
 @[simp] theorem rotationWord_length (T : Tree.PhyloTree (Fin n))
     (ω : RotationSample T) : (rotationWord T ω).length = n := by
   have hfinset : (rotationWord T ω).toFinset = Finset.univ :=
@@ -303,6 +351,9 @@ noncomputable def rotationOrder (T : Tree.PhyloTree (Fin n))
     (rotationWord_nodup T ω) (rotationWord_complete T ω)
     (rotationWord_length T ω)
 
+/--
+@isnad1 id=eq.0h3v.s4.98246db7ad55 from=translated src=- shape=bc3d8bf1 vocab=f9291452
+-/
 @[simp] theorem circularOrderList_rotationOrder (T : Tree.PhyloTree (Fin n))
     (ω : RotationSample T) :
     Circular.circularOrderList (rotationOrder T ω) = rotationWord T ω := by
@@ -313,6 +364,9 @@ noncomputable def rotationOrder (T : Tree.PhyloTree (Fin n))
   rw [← List.ofFn_congr hlength l.get]
   exact List.ofFn_get l
 
+/--
+@isnad1 id=eq.0h2v.s6.b5d4f032eb4c from=translated src=- shape=ae2cd94c vocab=1866005f
+-/
 theorem finRange_filter_mem_eq_sort (s : Finset (Fin n)) :
     (List.finRange n).filter (fun i => i ∈ s) = s.sort (· ≤ ·) := by
   have hp :
@@ -329,6 +383,9 @@ theorem finRange_filter_mem_eq_sort (s : Finset (Fin n)) :
     hslt.imp fun h => le_of_lt h
   exact hp.eq_of_sortedLE hsle.sortedLE (s.sortedLT_sort.sortedLE)
 
+/--
+@isnad1 id=eq.1h2v.s6.511c0e34a4f5 from=translated src=- shape=87153991 vocab=137c6ddf
+-/
 theorem ofFn_enumerateFour_eq_sort (s : Finset (Fin n)) (h : s.card = 4) :
     List.ofFn (Circular.enumerateFour s h) = s.sort (· ≤ ·) := by
   have hlength : (s.sort (· ≤ ·)).length = 4 := by simp [h]
@@ -343,6 +400,9 @@ theorem ofFn_enumerateFour_eq_sort (s : Finset (Fin n)) (h : s.card = 4) :
       (List.ofFn_congr hlength (s.sort (· ≤ ·)).get).symm
     _ = s.sort (· ≤ ·) := List.ofFn_get _
 
+/--
+@isnad1 id=eq.1h3v.s6.6f57ecd6fd29 from=translated src=- shape=3dfebeb1 vocab=783357fe
+-/
 theorem restrict_circularOrderList_eq_ofFn_crossingEmbedding
     (C : Circular.CircularOrder n) (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     Tree.FullTree.restrictList Q (Circular.circularOrderList C) =
@@ -363,6 +423,9 @@ theorem restrict_circularOrderList_eq_ofFn_crossingEmbedding
   rw [← ofFn_enumerateFour_eq_sort p hp]
   exact List.ofFn_comp' _ _ |>.symm
 
+/--
+@isnad1 id=eq.1h3v.s5.0baf0e335c0c from=translated src=- shape=623767a7 vocab=f270e8a6
+-/
 theorem crossingOnLabels_eq_crossingList_restrict_circularOrderList
     (C : Circular.CircularOrder n) (Q : Finset (Fin n)) (hQ : Q.card = 4) :
     Circular.crossingOnLabels C Q hQ =
@@ -376,6 +439,9 @@ theorem crossingOnLabels_eq_crossingList_restrict_circularOrderList
     Tree.FullTree.crossingList [r 0, r 1, r 2, r 3]
   exact (Tree.FullTree.crossingList_of_embedding r).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.8f7c1dfb5edf from=translated src=- shape=1a0b5ea3 vocab=80750b31
+-/
 @[simp] theorem crossingOnLabels_rotationOrder
     (T : Tree.PhyloTree (Fin n)) (ω : RotationSample T) (q : Quartet n) :
     Circular.crossingOnLabels (rotationOrder T ω) q.1 q.2 =
@@ -384,6 +450,9 @@ theorem crossingOnLabels_eq_crossingList_restrict_circularOrderList
   rw [crossingOnLabels_eq_crossingList_restrict_circularOrderList,
     circularOrderList_rotationOrder]
 
+/--
+@isnad1 id=isquarte.1h5v.s6.deae93149e3b from=translated src=- shape=61561026 vocab=46cc5d51
+-/
 theorem blockSplit_isQuartetSplit {α : Type*} [DecidableEq α]
     (a b c d : α) (h : [a, b, c, d].Nodup) :
     Circular.IsQuartetSplit ({a, b, c, d} : Finset α)
@@ -427,6 +496,9 @@ theorem blockSplit_isQuartetSplit {α : Type*} [DecidableEq α]
       | (all_goals decide; done)
       | (all_goals tauto; done)
 
+/--
+@isnad1 id=isquarte.2h2v.s5.d3f38376b701 from=translated src=- shape=7d84e72c vocab=f6b69f81
+-/
 theorem displayedSplit_isQuartetSplit {α : Type*} [DecidableEq α]
     (t : Tree.FullTree α) (hlength : t.leaves.length = 4)
     (hnodup : t.leaves.Nodup) :
@@ -472,12 +544,18 @@ theorem displayedSplit_isQuartetSplit {α : Type*} [DecidableEq α]
     rw [Tree.FullTree.displayedSplit_shape_three_one a b c d hn]
     simpa [Tree.FullTree.leaves] using blockSplit_isQuartetSplit a b c d hn
 
+/--
+@isnad1 id=eq.0h3v.s6.b2610e50eb83 from=translated src=- shape=7a6ebce7 vocab=0b21c190
+-/
 theorem restrictedTree_leaves_toFinset (T : Tree.PhyloTree (Fin n))
     (q : Quartet n) : (T.restrictedTree q.1 q.2).leaves.toFinset = q.1 := by
   rw [T.restrictedTree_leaves]
   ext x
   simp [Tree.FullTree.restrictList, T.mem_referenceLeaves x]
 
+/--
+@isnad1 id=isquarte.0h3v.s6.4a41f178353a from=translated src=- shape=74f4952b vocab=e76c0147
+-/
 theorem displayedSplitOn_isQuartetSplit (T : Tree.PhyloTree (Fin n))
     (q : Quartet n) :
     Circular.IsQuartetSplit q.1 (T.displayedSplitOn q.1 q.2) := by
@@ -486,6 +564,9 @@ theorem displayedSplitOn_isQuartetSplit (T : Tree.PhyloTree (Fin n))
     (T.restrictedTree_nodup q.1 q.2)
   simpa [Tree.PhyloTree.displayedSplitOn, restrictedTree_leaves_toFinset T q] using h
 
+/--
+@isnad1 id=eq.0h3v.s5.07c9dbb3f2bc from=translated src=- shape=268f4898 vocab=27565b0e
+-/
 theorem card_validSplitsOn (T : Tree.PhyloTree (Fin n)) (q : Quartet n) :
     (T.validSplitsOn q.1 q.2).card = 3 := by
   obtain ⟨a, b, c, d, hleaves⟩ :=
@@ -502,6 +583,9 @@ theorem card_validSplitsOn (T : Tree.PhyloTree (Fin n)) (q : Quartet n) :
 def topologySplits (q : Quartet n) : Finset (Circular.QuartetSplit (Fin n)) :=
   Finset.univ.map ⟨splitOfTopology q, splitOfTopology_injective q⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.abc2fd903057 from=translated src=- shape=18c82c2c vocab=2c23271a
+-/
 @[simp] theorem card_topologySplits (q : Quartet n) :
     (topologySplits q).card = 3 := by simp [topologySplits]
 
@@ -516,6 +600,9 @@ def displayedTopology (T : Tree.PhyloTree (Fin n)) (q : Quartet n) : Fin 3 :=
 def quartetDistance (T₁ T₂ : Tree.PhyloTree (Fin n)) : ℕ :=
   Counting.truthDistance (displayedTopology T₁) (displayedTopology T₂)
 
+/--
+@isnad1 id=le.0h3v.s5.6733724a3c2e from=translated src=- shape=ce591aa2 vocab=372d63fb
+-/
 theorem quartetDistance_le_choose (T₁ T₂ : Tree.PhyloTree (Fin n)) :
     quartetDistance T₁ T₂ ≤ Nat.choose n 4 := by
   calc
@@ -524,6 +611,9 @@ theorem quartetDistance_le_choose (T₁ T₂ : Tree.PhyloTree (Fin n)) :
       exact Finset.card_filter_le (Finset.univ : Finset (Quartet n)) _
     _ = Nat.choose n 4 := card_quartet n
 
+/--
+@isnad1 id=eq.0h3v.s5.240b1f70ad98 from=translated src=- shape=6daafc06 vocab=2d9a2691
+-/
 @[simp] theorem splitOfTopology_displayedTopology
     (T : Tree.PhyloTree (Fin n)) (q : Quartet n) :
     splitOfTopology q (displayedTopology T q) = T.displayedSplitOn q.1 q.2 := by

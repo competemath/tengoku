@@ -15,6 +15,9 @@ namespace QuartetDistance.Circular
 
 open Function
 
+/--
+@isnad1 id=eq.0h2v.s6.51d733af38a5 from=translated src=- shape=f86e9422 vocab=fe5132c2
+-/
 theorem fourSubset_card {n : ℕ} (q : FourSubset n) : q.1.card = 4 := by
   have h : True ∧ q.1.card = 4 := by
     simpa only [FourSubset, Finset.mem_powersetCard, Finset.subset_univ] using q.2
@@ -26,7 +29,9 @@ def stripRange {n : ℕ} (f : StripSample n) (hf : Function.Injective f) :
   ⟨Finset.univ.map ⟨f, hf⟩, by simp⟩
 
 /-- Sorting an injective four-tuple gives its canonical increasing
-enumeration.-/
+enumeration.
+@isnad1 id=eq.1h2v.s7.8ccd7a5cbc23 from=translated src=- shape=1104f31d vocab=53e55390
+-/
 theorem enumerateFour_stripRange {n : ℕ} (f : StripSample n)
     (hf : Function.Injective f) :
     (enumerateFour (stripRange f hf).1 (fourSubset_card (stripRange f hf)) :
@@ -105,7 +110,9 @@ noncomputable def injectiveStripSampleDataEquiv (n : ℕ) :
 
 /-! ## The pointwise tie-ranking bridge -/
 
-/-- Sorting by `(strip,tie-rank)` makes the strip coordinate monotone.-/
+/-- Sorting by `(strip,tie-rank)` makes the strip coordinate monotone.
+@isnad1 id=monotone.0h3v.s5.780288d14dbc from=translated src=- shape=e4a45485 vocab=c70e09e1
+-/
 theorem monotone_strips_comp_tiedStripOrder {n : ℕ} (f : StripSample n)
     (ranks : Perm4) : Monotone (f ∘ tiedStripOrder f ranks) := by
   intro i j hij
@@ -122,7 +129,9 @@ theorem monotone_strips_comp_tiedStripOrder {n : ℕ} (f : StripSample n)
   omega
 
 /-- On distinct strips, lexicographic sorting is independent of the supplied
-tie rankings.-/
+tie rankings.
+@isnad1 id=eq.1h3v.s4.95eb2cef8abd from=translated src=- shape=7e1b1e1f vocab=325ad318
+-/
 theorem tiedStripOrder_eq_sort_of_injective {n : ℕ} (f : StripSample n)
     (ranks : Perm4) (hf : Function.Injective f) :
     tiedStripOrder f ranks = Tuple.sort f := by
@@ -136,7 +145,9 @@ theorem tiedStripOrder_eq_sort_of_injective {n : ℕ} (f : StripSample n)
   exact congrFun hfun i
 
 /-- The increasing enumeration of the image of an injective strip tuple
-under a permutation is the sorted tuple of image values.-/
+under a permutation is the sorted tuple of image values.
+@isnad1 id=other.1h3v.s8.f13966ee4001 from=translated src=- shape=56e76b52 vocab=e84ac359
+-/
 theorem enumerateFour_map_stripRange {n : ℕ} (f : StripSample n)
     (hf : Function.Injective f) (π : Equiv.Perm (Fin n)) :
     let s := (stripRange f hf).1
@@ -154,7 +165,9 @@ theorem enumerateFour_map_stripRange {n : ℕ} (f : StripSample n)
       (π.injective.comp (hf.comp (Tuple.sort (fun i ↦ π (f i))).injective))
 
 /-- On an injective strip tuple, the standardized relative pattern is the
-relative permutation of the two sorting permutations.-/
+relative permutation of the two sorting permutations.
+@isnad1 id=eq.1h3v.s6.e55063dbeb08 from=translated src=- shape=7179ae62 vocab=58fb0745
+-/
 theorem relativePattern_stripRange {n : ℕ} (π : Equiv.Perm (Fin n))
     (f : StripSample n) (hf : Function.Injective f) :
     relativePattern π (stripRange f hf).1 (fourSubset_card (stripRange f hf)) =
@@ -185,7 +198,9 @@ theorem relativePattern_stripRange {n : ℕ} (π : Equiv.Perm (Fin n))
   simp [Function.comp_apply]
 
 /-- The uniform lexicographic formula and the piecewise `tiedStepPattern`
-agree pointwise on the injective branch.-/
+agree pointwise on the injective branch.
+@isnad1 id=eq.1h3v.s4.7907420ba2df from=translated src=- shape=29198e42 vocab=8ec96d71
+-/
 theorem tiedCollisionPattern_eq_tiedStepPattern_of_injective {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n)
     (hz : Function.Injective z.strips) :
@@ -198,7 +213,9 @@ theorem tiedCollisionPattern_eq_tiedStepPattern_of_injective {n : ℕ}
   exact (relativePattern_stripRange π z.strips hz).symm
 
 /-- On the collision branch, `tiedStepPattern` uses the lexicographic formula
-by definition.-/
+by definition.
+@isnad1 id=eq.1h3v.s4.97467c33e65c from=translated src=- shape=def69ef3 vocab=8ec96d71
+-/
 theorem tiedCollisionPattern_eq_tiedStepPattern_of_not_injective {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n)
     (hz : ¬ Function.Injective z.strips) :
@@ -206,7 +223,9 @@ theorem tiedCollisionPattern_eq_tiedStepPattern_of_not_injective {n : ℕ}
   simp only [tiedStepPattern, dite_eq_right hz]
 
 /-- The ostensibly piecewise step pattern is exactly the single natural
-lexicographic pattern on every tied sample.-/
+lexicographic pattern on every tied sample.
+@isnad1 id=eq.0h3v.s4.aeeac9ec9bb9 from=translated src=- shape=8f757caa vocab=33badf7a
+-/
 theorem tiedCollisionPattern_eq_tiedStepPattern {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n) :
     tiedCollisionPattern π z = tiedStepPattern π z := by
@@ -215,6 +234,9 @@ theorem tiedCollisionPattern_eq_tiedStepPattern {n : ℕ}
   · exact tiedCollisionPattern_eq_tiedStepPattern_of_injective π z hz
   · exact tiedCollisionPattern_eq_tiedStepPattern_of_not_injective π z hz
 
+/--
+@isnad1 id=iff.0h3v.s4.e43a54c0643c from=translated src=- shape=1ebeb059 vocab=11430c19
+-/
 theorem isDihedral4_tiedCollisionPattern_iff_tiedStepPattern {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n) :
     IsDihedral4 (tiedCollisionPattern π z) ↔
@@ -233,6 +255,9 @@ noncomputable def injectiveTiedSampleDataEquiv (n : ℕ) :
       (Equiv.refl (Perm4 × Perm4))).trans <|
         Equiv.prodAssoc (FourSubset n) Perm4 (Perm4 × Perm4)
 
+/--
+@isnad1 id=eq.1h2v.s7.cbb2f2f670c4 from=translated src=- shape=5bef097d vocab=cbd2050d
+-/
 @[simp] theorem injectiveTiedSampleDataEquiv_apply {n : ℕ}
     (z : TiedStripSample n) (hz : Function.Injective z.strips) :
     injectiveTiedSampleDataEquiv n ⟨z, hz⟩ =
@@ -248,6 +273,9 @@ noncomputable def tiedStripSampleGlobalEquiv (n : ℕ) :
     Equiv.sumCongr (injectiveTiedSampleDataEquiv n)
       (Equiv.refl (CollisionTiedSample n))
 
+/--
+@isnad1 id=eq.1h2v.s6.7eb336b66530 from=translated src=- shape=e348f475 vocab=3dd94255
+-/
 theorem tiedStripSampleGlobalEquiv_apply_of_injective {n : ℕ}
     (z : TiedStripSample n) (hz : Function.Injective z.strips) :
     tiedStripSampleGlobalEquiv n z = Sum.inl
@@ -255,6 +283,9 @@ theorem tiedStripSampleGlobalEquiv_apply_of_injective {n : ℕ}
   classical
   simp [tiedStripSampleGlobalEquiv, hz]
 
+/--
+@isnad1 id=eq.1h2v.s6.941f61a50104 from=translated src=- shape=6fd82de7 vocab=543a26f5
+-/
 theorem tiedStripSampleGlobalEquiv_apply_of_not_injective {n : ℕ}
     (z : TiedStripSample n) (hz : ¬ Function.Injective z.strips) :
     tiedStripSampleGlobalEquiv n z = Sum.inr ⟨z, hz⟩ := by
@@ -262,7 +293,9 @@ theorem tiedStripSampleGlobalEquiv_apply_of_not_injective {n : ℕ}
   simp [tiedStripSampleGlobalEquiv, hz]
 
 /-- The success event is preserved pointwise by the global
-reparametrization.-/
+reparametrization.
+@isnad1 id=iff.0h3v.s5.49d2977c9177 from=translated src=- shape=7c0f4ed7 vocab=71df9779
+-/
 theorem isDihedral4_tiedStepPattern_iff_globalTiedDihedral {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : TiedStripSample n) :
     IsDihedral4 (tiedStepPattern π z) ↔
@@ -307,6 +340,9 @@ noncomputable def tiedCollisionDihedralCount {n : ℕ}
   (Finset.univ.filter fun z : TiedStripSample n ↦
     IsDihedral4 (tiedCollisionPattern π z)).card
 
+/--
+@isnad1 id=eq.0h2v.s3.88446e7292ff from=translated src=- shape=b2001a49 vocab=e0479222
+-/
 theorem tiedCollisionDihedralCount_eq_tiedDihedralCount {n : ℕ}
     (π : Equiv.Perm (Fin n)) :
     tiedCollisionDihedralCount π = tiedDihedralCount π := by
@@ -317,7 +353,9 @@ theorem tiedCollisionDihedralCount_eq_tiedDihedralCount {n : ℕ}
   exact isDihedral4_tiedCollisionPattern_iff_tiedStepPattern π z
 
 /-- The literal all-samples filter count is exactly the count used by the
-global finite model.-/
+global finite model.
+@isnad1 id=eq.0h2v.s3.e2f182a42765 from=translated src=- shape=b2001a49 vocab=481ee193
+-/
 theorem tiedDihedralCount_eq_globalTiedDihedralCount {n : ℕ}
     (π : Equiv.Perm (Fin n)) :
     tiedDihedralCount π = globalTiedDihedralCount π := by
@@ -331,13 +369,17 @@ noncomputable def tiedDihedralDensity {n : ℕ}
     (π : Equiv.Perm (Fin n)) : ℚ :=
   (tiedDihedralCount π : ℚ) / Fintype.card (TiedStripSample n)
 
-/-- The literal and global sample spaces have exactly the same cardinality.-/
+/-- The literal and global sample spaces have exactly the same cardinality.
+@isnad1 id=eq.0h1v.s7.d50571fca25b from=translated src=- shape=a0b80d1f vocab=c095992f
+-/
 theorem card_tiedStripSample_eq_card_globalTiedSample (n : ℕ) :
     Fintype.card (TiedStripSample n) =
       Fintype.card (GlobalTiedSample n) :=
   Fintype.card_congr (tiedStripSampleGlobalEquiv n)
 
-/-- Both presentations contain exactly `n^4 * 24^2` samples.-/
+/-- Both presentations contain exactly `n^4 * 24^2` samples.
+@isnad1 id=eq.0h1v.s5.d163cd62d46a from=translated src=- shape=6be99fd2 vocab=d3bbfc35
+-/
 theorem card_tiedStripSample_eq_total (n : ℕ) :
     Fintype.card (TiedStripSample n) = n ^ 4 * 24 ^ 2 :=
   card_tiedStripSample n

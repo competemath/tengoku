@@ -43,7 +43,9 @@ attribute [instance] BorelPermuton.isProbability
 
 /-- The first coordinate of a permuton lies in the unit interval almost
 everywhere.  This is a consequence of the first marginal identity, rather
-than an additional support assumption.-/
+than an additional support assumption.
+@isnad1 id=eventual.0h1v.s5.e67d56642228 from=translated src=- shape=b95ade89 vocab=de5a3e35
+-/
 theorem BorelPermuton.ae_fst_mem_unitInterval (μ : BorelPermuton) :
     ∀ᵐ z ∂μ.measure, z.1 ∈ Ioc (0 : ℝ) 1 := by
   rw [show (∀ᵐ z ∂μ.measure, z.1 ∈ Ioc (0 : ℝ) 1) ↔
@@ -53,7 +55,9 @@ theorem BorelPermuton.ae_fst_mem_unitInterval (μ : BorelPermuton) :
   simp [unitMeasure, Real.volume_Ioc]
 
 /-- The second coordinate of a permuton lies in the unit interval almost
-everywhere, by the second marginal identity.-/
+everywhere, by the second marginal identity.
+@isnad1 id=eventual.0h1v.s5.0ccdf7c47239 from=translated src=- shape=b95ade89 vocab=6c832c83
+-/
 theorem BorelPermuton.ae_snd_mem_unitInterval (μ : BorelPermuton) :
     ∀ᵐ z ∂μ.measure, z.2 ∈ Ioc (0 : ℝ) 1 := by
   rw [show (∀ᵐ z ∂μ.measure, z.2 ∈ Ioc (0 : ℝ) 1) ↔
@@ -63,14 +67,18 @@ theorem BorelPermuton.ae_snd_mem_unitInterval (μ : BorelPermuton) :
   simp [unitMeasure, Real.volume_Ioc]
 
 /-- Both marginal identities force the whole permuton measure to be
-concentrated on the unit square.-/
+concentrated on the unit square.
+@isnad1 id=eventual.0h1v.s6.10f780fb273c from=translated src=- shape=3172183b vocab=816424ec
+-/
 theorem BorelPermuton.ae_mem_unitSquare (μ : BorelPermuton) :
     ∀ᵐ z ∂μ.measure, z ∈ Ioc (0 : ℝ) 1 ×ˢ Ioc (0 : ℝ) 1 := by
   filter_upwards [μ.ae_fst_mem_unitInterval, μ.ae_snd_mem_unitInterval]
     with z hz₁ hz₂
   exact ⟨hz₁, hz₂⟩
 
-/-- A Borel permuton gives mass one to the unit square.-/
+/-- A Borel permuton gives mass one to the unit square.
+@isnad1 id=eq.0h1v.s6.46f1b30dbc45 from=translated src=- shape=f79fe610 vocab=7881f5bb
+-/
 theorem BorelPermuton.measure_unitSquare (μ : BorelPermuton) :
     μ.measure (Ioc (0 : ℝ) 1 ×ˢ Ioc (0 : ℝ) 1) = 1 := by
   rw [← mem_ae_iff_prob_eq_one (measurableSet_Ioc.prod measurableSet_Ioc)]
@@ -80,9 +88,15 @@ theorem BorelPermuton.measure_unitSquare (μ : BorelPermuton) :
 def strip (n : ℕ) (i : Fin n) : Set ℝ :=
   Ioc ((i : ℝ) / n) (((i : ℕ) + 1 : ℕ) / (n : ℝ))
 
+/--
+@isnad1 id=measurab.0h2v.s3.e75906ac1fbb from=translated src=- shape=595ce0b1 vocab=80cee631
+-/
 theorem measurableSet_strip (n : ℕ) (i : Fin n) : MeasurableSet (strip n i) :=
   measurableSet_Ioc
 
+/--
+@isnad1 id=pairwise.0h1v.s5.2058d699d71c from=translated src=- shape=ef2c3dbf vocab=2760604a
+-/
 theorem strip_pairwise_disjoint (n : ℕ) :
     Pairwise (fun i j : Fin n => Disjoint (strip n i) (strip n j)) := by
   intro i j hij
@@ -100,6 +114,9 @@ theorem strip_pairwise_disjoint (n : ℕ) :
       gcongr
     exact (not_lt_of_ge (hxj.2.trans hle)) hxi.1
 
+/--
+@isnad1 id=eq.1h1v.s5.9201ce2aeb6a from=translated src=- shape=7564e88d vocab=37f14223
+-/
 theorem iUnion_strip {n : ℕ} (hn : 0 < n) :
     (⋃ i : Fin n, strip n i) = Ioc (0 : ℝ) 1 := by
   apply Set.Subset.antisymm
@@ -125,7 +142,9 @@ theorem iUnion_strip {n : ℕ} (hn : 0 < n) :
     obtain ⟨i, hi, hxi⟩ := hx'
     exact ⟨⟨i, hi⟩, hxi⟩
 
-/-- The strip restrictions sum to uniform Lebesgue measure on `(0,1]`.-/
+/-- The strip restrictions sum to uniform Lebesgue measure on `(0,1]`.
+@isnad1 id=eq.1h1v.s5.7e39a6548607 from=translated src=- shape=b631f6e8 vocab=c1feae97
+-/
 theorem sum_restrict_strip {n : ℕ} (hn : 0 < n) :
     (∑ i : Fin n, volume.restrict (strip n i)) = unitMeasure := by
   rw [← Measure.sum_fintype,
@@ -133,6 +152,9 @@ theorem sum_restrict_strip {n : ℕ} (hn : 0 < n) :
     iUnion_strip hn]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.57e8cf514b7d from=translated src=- shape=64f6f128 vocab=2f17049c
+-/
 theorem volume_strip {n : ℕ} (hn : 0 < n) (i : Fin n) :
     volume (strip n i) = (n : ℝ≥0∞)⁻¹ := by
   rw [strip, Real.volume_Ioc]
@@ -155,6 +177,9 @@ noncomputable def stepMeasure {n : ℕ} (π : Equiv.Perm (Fin n)) :
       ((volume.restrict (strip n i)).prod
         (volume.restrict (strip n (π i))))
 
+/--
+@isnad1 id=eq.1h2v.s5.337ae2568aad from=translated src=- shape=b1d03880 vocab=55d336b9
+-/
 theorem map_fst_stepMeasure {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) :
     Measure.map Prod.fst (stepMeasure π) = unitMeasure := by
@@ -168,6 +193,9 @@ theorem map_fst_stepMeasure {n : ℕ} (hn : 0 < n)
   simp only [ENNReal.mul_inv_cancel hnE (by simp), one_smul]
   exact sum_restrict_strip hn
 
+/--
+@isnad1 id=eq.1h2v.s5.9c54548e47af from=translated src=- shape=b1d03880 vocab=5be403ba
+-/
 theorem map_snd_stepMeasure {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) :
     Measure.map Prod.snd (stepMeasure π) = unitMeasure := by
@@ -182,6 +210,9 @@ theorem map_snd_stepMeasure {n : ℕ} (hn : 0 < n)
   exact (Equiv.sum_comp π
     (fun i : Fin n => volume.restrict (strip n i))).trans (sum_restrict_strip hn)
 
+/--
+@isnad1 id=isprobab.1h2v.s4.b0f7b70038e2 from=translated src=- shape=af58c996 vocab=6be7f74e
+-/
 theorem stepMeasure_isProbability {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) : IsProbabilityMeasure (stepMeasure π) := by
   refine ⟨?_⟩
@@ -219,10 +250,16 @@ increasing order.  Adjacent inequalities suffice on `Fin 4`.-/
 def rankChamber (σ : Perm4) : Set (Four → ℝ) :=
   {x | ∀ i : Fin 3, x (σ i.castSucc) < x (σ i.succ)}
 
+/--
+@isnad1 id=iff.0h2v.s5.0e30563350b4 from=translated src=- shape=96eed293 vocab=a75d3c09
+-/
 theorem mem_rankChamber_iff (x : Four → ℝ) (σ : Perm4) :
     x ∈ rankChamber σ ↔ StrictMono (x ∘ σ) := by
   exact (Fin.strictMono_iff_lt_succ (f := x ∘ σ)).symm
 
+/--
+@isnad1 id=measurab.0h1v.s4.0aa255f3c833 from=translated src=- shape=57e05e33 vocab=94e0dff3
+-/
 theorem measurableSet_rankChamber (σ : Perm4) :
     MeasurableSet (rankChamber σ) := by
   rw [show rankChamber σ = ⋂ i : Fin 3,
@@ -232,6 +269,9 @@ theorem measurableSet_rankChamber (σ : Perm4) :
   exact MeasurableSet.iInter fun i =>
     measurableSet_lt (measurable_pi_apply _) (measurable_pi_apply _)
 
+/--
+@isnad1 id=pairwise.0h0v.s5.853b631ee7bf from=translated src=- shape=e04e932b vocab=737f04d3
+-/
 theorem rankChamber_pairwise_disjoint :
     Pairwise (fun σ τ : Perm4 => Disjoint (rankChamber σ) (rankChamber τ)) := by
   intro σ τ hστ
@@ -250,18 +290,27 @@ theorem rankChamber_pairwise_disjoint :
   ext i
   exact congrArg Fin.val (hxinj (congrFun hfun i))
 
+/--
+@isnad1 id=mem.1h1v.s4.8b08b218c05c from=translated src=- shape=3bc6bd60 vocab=ee4ce33d
+-/
 theorem injective_mem_iUnion_rankChamber {x : Four → ℝ}
     (hx : Function.Injective x) : x ∈ ⋃ σ : Perm4, rankChamber σ := by
   refine Set.mem_iUnion.2 ⟨Tuple.sort x, ?_⟩
   rw [mem_rankChamber_iff]
   exact (Tuple.monotone_sort x).strictMono_of_injective (hx.comp (Tuple.sort x).injective)
 
+/--
+@isnad1 id=eq.0h1v.s5.4fbd5028e187 from=translated src=- shape=addffeb0 vocab=80eced91
+-/
 theorem prod_diagonal_measure_zero (μ : Measure ℝ) [SFinite μ]
     [NullSingletonClass μ] :
     μ.prod μ (Set.diagonal ℝ) = 0 := by
   rw [Measure.prod_apply measurableSet_diagonal]
   simp [Set.diagonal]
 
+/--
+@isnad1 id=eq.1h2v.s6.a460f9b012d3 from=translated src=- shape=231a6bfd vocab=281ab7fe
+-/
 theorem rankMeasure_pair_eq_zero (i j : Four) (hij : i ≠ j) :
     rankMeasure {x | x i = x j} = 0 := by
   let X : (Four → ℝ) → ℝ := fun x => x i
@@ -282,6 +331,9 @@ theorem rankMeasure_pair_eq_zero (i j : Four) (hij : i ≠ j) :
   rw [Measure.map_apply (by fun_prop) measurableSet_diagonal] at hdiag
   simpa [X, Y, Set.diagonal] using hdiag
 
+/--
+@isnad1 id=eq.0h0v.s5.56996b90e43e from=translated src=- shape=a0755d36 vocab=915c0310
+-/
 theorem rankMeasure_noninjective_zero :
     rankMeasure {x : Four → ℝ | ¬ Function.Injective x} = 0 := by
   have hsubset : {x : Four → ℝ | ¬ Function.Injective x} ⊆
@@ -301,6 +353,9 @@ theorem rankMeasure_noninjective_zero :
   · simp [hij]
   · simp [hij, rankMeasure_pair_eq_zero i j]
 
+/--
+@isnad1 id=eventual.0h0v.s5.6c0c3417c4c3 from=translated src=- shape=a4036c36 vocab=1215cab6
+-/
 theorem rankChamber_iUnion_ae_univ :
     (⋃ σ : Perm4, rankChamber σ) =ᵐ[rankMeasure] Set.univ := by
   apply ae_eq_univ.mpr
@@ -309,7 +364,9 @@ theorem rankChamber_iUnion_ae_univ :
   by_contra hxin
   exact hx (injective_mem_iUnion_rankChamber (Classical.not_not.mp hxin))
 
-/-- Reindexing iid coordinates by a permutation preserves their joint law.-/
+/-- Reindexing iid coordinates by a permutation preserves their joint law.
+@isnad1 id=measurep.0h1v.s5.0a832211a082 from=translated src=- shape=bc574c5c vocab=caaf8ebf
+-/
 theorem measurePreserving_reindex (σ : Perm4) :
     MeasurePreserving (fun x : Four → ℝ => x ∘ σ) rankMeasure rankMeasure := by
   unfold rankMeasure
@@ -321,6 +378,9 @@ theorem measurePreserving_reindex (σ : Perm4) :
     (MeasurableEquiv.piCongrLeft_apply_apply
       (β := fun _ : Four => ℝ) σ.symm x (σ i)).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.d566c5c8f9df from=translated src=- shape=6fbb5923 vocab=efc58d61
+-/
 theorem rankChamber_measure_eq (σ τ : Perm4) :
     rankMeasure (rankChamber σ) = rankMeasure (rankChamber τ) := by
   let ρ : Perm4 := τ.symm.trans σ
@@ -343,7 +403,9 @@ theorem rankChamber_measure_eq (σ τ : Perm4) :
       (Measure.map_apply hmp.measurable (measurableSet_rankChamber τ)).symm
     _ = rankMeasure (rankChamber τ) := by rw [hmp.map_eq]
 
-/-- Every one of the `4!` strict rank chambers has probability `1/24`.-/
+/-- Every one of the `4!` strict rank chambers has probability `1/24`.
+@isnad1 id=eq.0h1v.s5.81f9ed8d1270 from=translated src=- shape=e8388ddd vocab=7aa04a07
+-/
 theorem rankChamber_measure (σ : Perm4) :
     rankMeasure (rankChamber σ) = (24 : ℝ≥0∞)⁻¹ := by
   have hunion : rankMeasure (⋃ τ : Perm4, rankChamber τ) = 1 := by
@@ -373,11 +435,17 @@ theorem rankChamber_measure (σ : Perm4) :
 noncomputable def affineStrip (n : ℕ) (i : Fin n) (u : ℝ) : ℝ :=
   ((i : ℝ) + u) / n
 
+/--
+@isnad1 id=measurab.0h2v.s3.6eac6ce8fcee from=translated src=- shape=16cd4ef3 vocab=0847ca96
+-/
 theorem measurable_affineStrip (n : ℕ) (i : Fin n) :
     Measurable (affineStrip n i) := by
   unfold affineStrip
   fun_prop
 
+/--
+@isnad1 id=eq.1h2v.s5.11402bd73c70 from=translated src=- shape=9699b4c2 vocab=ac84d7e0
+-/
 theorem affineStrip_preimage_strip {n : ℕ} (hn : 0 < n) (i : Fin n) :
     affineStrip n i ⁻¹' strip n i = Ioc (0 : ℝ) 1 := by
   ext u
@@ -400,6 +468,9 @@ theorem affineStrip_preimage_strip {n : ℕ} (hn : 0 < n) (i : Fin n) :
       norm_num
       linarith
 
+/--
+@isnad1 id=eq.1h2v.s6.8d9230a621f0 from=translated src=- shape=5fe6f614 vocab=d261a885
+-/
 theorem map_volume_affineStrip {n : ℕ} (hn : 0 < n) (i : Fin n) :
     Measure.map (affineStrip n i) volume = (n : ℝ≥0∞) • volume := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -417,7 +488,9 @@ theorem map_volume_affineStrip {n : ℕ} (hn : 0 < n) (i : Fin n) :
   rw [inv_inv, abs_of_pos hnR, ENNReal.ofReal_natCast]
 
 /-- A uniform unit coordinate, affinely placed in strip `i`, has density `n`
-on that strip.-/
+on that strip.
+@isnad1 id=eq.1h2v.s6.600c3db709f7 from=translated src=- shape=5a765d89 vocab=71802174
+-/
 theorem map_unitMeasure_affineStrip {n : ℕ} (hn : 0 < n) (i : Fin n) :
     Measure.map (affineStrip n i) unitMeasure =
       (n : ℝ≥0∞) • volume.restrict (strip n i) := by
@@ -435,11 +508,17 @@ instance (n : ℕ) [Nonempty (Fin n)] :
   unfold uniformFinMeasure
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s5.64978f48c53f from=translated src=- shape=a4051305 vocab=28137634
+-/
 theorem uniformFinMeasure_singleton {n : ℕ} [Nonempty (Fin n)] (i : Fin n) :
     uniformFinMeasure n {i} = (n : ℝ≥0∞)⁻¹ := by
   rw [uniformFinMeasure, PMF.toMeasure_apply_singleton _ _ (MeasurableSet.singleton i)]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.058adcd4cbfa from=translated src=- shape=54540e40 vocab=950de3be
+-/
 theorem uniformFinMeasure_eq_sum {n : ℕ} [Nonempty (Fin n)] :
     uniformFinMeasure n = ∑ i : Fin n, (n : ℝ≥0∞)⁻¹ • Measure.dirac i := by
   calc
@@ -471,6 +550,9 @@ noncomputable def stepPointMap {n : ℕ} (π : Equiv.Perm (Fin n)) :
     Fin n × (ℝ × ℝ) → ℝ × ℝ := fun z =>
   (affineStrip n z.1 z.2.1, affineStrip n (π z.1) z.2.2)
 
+/--
+@isnad1 id=measurab.0h2v.s5.4b15b4a262cc from=translated src=- shape=bf00176c vocab=35413ee8
+-/
 theorem measurable_stepPointMap {n : ℕ} (π : Equiv.Perm (Fin n)) :
     Measurable (stepPointMap π) := by
   unfold stepPointMap
@@ -482,6 +564,9 @@ theorem measurable_stepPointMap {n : ℕ} (π : Equiv.Perm (Fin n)) :
     exact (((measurable_of_finite (fun i : Fin n => (π i : ℝ))).comp measurable_fst).add
       (measurable_snd.comp measurable_snd)).div_const _
 
+/--
+@isnad1 id=eq.1h3v.s7.8fba50b6f9a5 from=translated src=- shape=a1987aa9 vocab=0c6d7ad2
+-/
 theorem map_stepPointMap_dirac_prod {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) (i : Fin n) :
     Measure.map (stepPointMap π)
@@ -502,7 +587,9 @@ theorem map_stepPointMap_dirac_prod {n : ℕ} (hn : 0 < n)
     Measure.prod_smul_left, Measure.prod_smul_right, smul_smul, pow_two]
 
 /-- The latent one-point construction has exactly the Borel step measure as
-its pushforward law.-/
+its pushforward law.
+@isnad1 id=eq.1h2v.s6.bf549b3ffe9d from=translated src=- shape=6ace3960 vocab=2739c582
+-/
 theorem map_stepPointMap_pointSourceMeasure {n : ℕ} [Nonempty (Fin n)] (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) :
     Measure.map (stepPointMap π) (pointSourceMeasure n) = stepMeasure π := by
@@ -534,6 +621,9 @@ def groupPointSources {n : ℕ} :
       Circular.StripSample n × ((Four → ℝ) × (Four → ℝ)) := fun z =>
   (fun i => (z i).1, (fun i => (z i).2.1, fun i => (z i).2.2))
 
+/--
+@isnad1 id=measurep.0h1v.s7.7fd2f1eb1e13 from=translated src=- shape=bca9dfa3 vocab=8b0fd908
+-/
 theorem measurePreserving_groupPointSources (n : ℕ) [Nonempty (Fin n)] :
     MeasurePreserving groupPointSources
       (Measure.pi fun _ : Four => pointSourceMeasure n)
@@ -561,6 +651,9 @@ noncomputable def latentStepPoints {n : ℕ} (π : Equiv.Perm (Fin n)) :
   (affineStrip n (z.1 i) (z.2.1 i),
     affineStrip n (π (z.1 i)) (z.2.2 i))
 
+/--
+@isnad1 id=measurab.0h2v.s6.17d37fe080d4 from=translated src=- shape=6f7e4e33 vocab=7c6ccf4e
+-/
 theorem measurable_latentStepPoints {n : ℕ} (π : Equiv.Perm (Fin n)) :
     Measurable (latentStepPoints π) := by
   rw [measurable_pi_iff]
@@ -575,7 +668,9 @@ theorem measurable_latentStepPoints {n : ℕ} (π : Equiv.Perm (Fin n)) :
         ((measurable_pi_apply i).comp (measurable_snd.comp measurable_snd))).div_const _
 
 /-- Four grouped latent samples push forward to four iid draws from the
-Borel step measure.-/
+Borel step measure.
+@isnad1 id=eq.1h2v.s7.00708cf0b5a4 from=translated src=- shape=d8df8ff1 vocab=2c5585e5
+-/
 theorem map_latentStepPoints {n : ℕ} [Nonempty (Fin n)] (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) :
     Measure.map (latentStepPoints π) (latentFourMeasure n) =
@@ -604,6 +699,9 @@ theorem map_latentStepPoints {n : ℕ} [Nonempty (Fin n)] (hn : 0 < n)
 
 /-! ## Identifying real-coordinate ranks with the finite tied model -/
 
+/--
+@isnad1 id=strictmo.0h3v.s5.180768096ad5 from=translated src=- shape=1090ef3a vocab=0e81d60b
+-/
 theorem tiedStripOrder_strictMono_key {n : ℕ} (f : Circular.StripSample n)
     (ranks : Perm4) :
     StrictMono (Circular.tiedStripKey f ranks ∘
@@ -616,6 +714,9 @@ theorem tiedStripOrder_strictMono_key {n : ℕ} (f : Circular.StripSample n)
 measure.-/
 def InUnit (u : Four → ℝ) : Prop := ∀ i, u i ∈ Ioc (0 : ℝ) 1
 
+/--
+@isnad1 id=lt.4h6v.s6.dbf8296c1a10 from=translated src=- shape=7cd19bd6 vocab=2c831f5f
+-/
 theorem key_lt_imp_affine_lt {n : ℕ} (hn : 0 < n)
     (f : Circular.StripSample n) (u : Four → ℝ) (q : Perm4)
     (hu : InUnit u) (hq : u ∈ rankChamber q) {i j : Four}
@@ -646,6 +747,9 @@ theorem key_lt_imp_affine_lt {n : ℕ} (hn : 0 < n)
     rw [hfFin]
     linarith
 
+/--
+@isnad1 id=strictmo.3h4v.s6.cf429d93447a from=translated src=- shape=e69b1fe4 vocab=e93a39b7
+-/
 theorem strictMono_affine_comp_tiedStripOrder {n : ℕ} (hn : 0 < n)
     (f : Circular.StripSample n) (u : Four → ℝ) (q : Perm4)
     (hu : InUnit u) (hq : u ∈ rankChamber q) :
@@ -656,7 +760,9 @@ theorem strictMono_affine_comp_tiedStripOrder {n : ℕ} (hn : 0 < n)
   exact tiedStripOrder_strictMono_key f q.symm hij
 
 /-- Sorting the actual real coordinates gives exactly the key-based tied
-order used in `Circular.tiedCollisionPattern`.-/
+order used in `Circular.tiedCollisionPattern`.
+@isnad1 id=eq.3h4v.s6.dbe652522c8f from=translated src=- shape=59329b2c vocab=e2ffc412
+-/
 theorem tiedStripOrder_eq_sort_affine {n : ℕ} (hn : 0 < n)
     (f : Circular.StripSample n) (u : Four → ℝ) (q : Perm4)
     (hu : InUnit u) (hq : u ∈ rankChamber q) :
@@ -680,7 +786,9 @@ theorem tiedStripOrder_eq_sort_affine {n : ℕ} (hn : 0 < n)
 
 /-- If the four strip indices are distinct, sorting by `(strip,tie-rank)` is
 just sorting by the strip index; in particular the result is independent of
-the tie ranks.-/
+the tie ranks.
+@isnad1 id=strictmo.1h3v.s5.7fdfb8a7bcf1 from=translated src=- shape=faa20847 vocab=c32e6e61
+-/
 theorem strictMono_strip_comp_tiedStripOrder_of_injective {n : ℕ}
     (f : Circular.StripSample n) (ranks : Perm4)
     (hf : Function.Injective f) :
@@ -695,7 +803,9 @@ theorem strictMono_strip_comp_tiedStripOrder_of_injective {n : ℕ}
   omega
 
 /-- The increasing enumeration of the image of an injective strip sample is
-the sample-name order obtained from `tiedStripOrder`.-/
+the sample-name order obtained from `tiedStripOrder`.
+@isnad1 id=eq.1h3v.s6.c3029f951905 from=translated src=- shape=3a0108f5 vocab=ce125f37
+-/
 theorem enumerateFour_map_eq_tiedStripOrder_of_injective {n : ℕ}
     (f : Circular.StripSample n) (ranks : Perm4)
     (hf : Function.Injective f) :
@@ -727,7 +837,9 @@ theorem enumerateFour_map_eq_tiedStripOrder_of_injective {n : ℕ}
 
 /-- On distinct strips the concrete lexicographic pattern agrees pointwise
 with the usual standardized restriction.  Thus the analytic latent model and
-the finite model use the same convention even off the collision branch.-/
+the finite model use the same convention even off the collision branch.
+@isnad1 id=eq.1h3v.s5.a513404e7915 from=translated src=- shape=a27a9cda vocab=7b988542
+-/
 theorem tiedCollisionPattern_eq_relativePattern_of_injective {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : Circular.TiedStripSample n)
     (hf : Function.Injective z.strips) :
@@ -774,6 +886,9 @@ theorem tiedCollisionPattern_eq_relativePattern_of_injective {n : ℕ}
   simpa only [sx, sy, Function.comp_apply] using
     (hyi.symm.trans (hspec'.trans (congrArg π hxi))).symm
 
+/--
+@isnad1 id=eq.0h3v.s4.aeeac9ec9bb9 from=translated src=- shape=8f757caa vocab=33badf7a
+-/
 theorem tiedCollisionPattern_eq_tiedStepPattern {n : ℕ}
     (π : Equiv.Perm (Fin n)) (z : Circular.TiedStripSample n) :
     Circular.tiedCollisionPattern π z = Circular.tiedStepPattern π z := by
@@ -792,11 +907,17 @@ def firstCoordinates (z : Four → ℝ × ℝ) : Four → ℝ :=
 def secondCoordinates (z : Four → ℝ × ℝ) : Four → ℝ :=
   fun i => (z i).2
 
+/--
+@isnad1 id=measurab.0h0v.s5.f96c42d4e1d5 from=translated src=- shape=1f4b5bb6 vocab=89e4388b
+-/
 theorem measurable_firstCoordinates : Measurable firstCoordinates := by
   rw [measurable_pi_iff]
   intro i
   exact measurable_fst.comp (measurable_pi_apply i)
 
+/--
+@isnad1 id=measurab.0h0v.s5.fb5b213a4ad4 from=translated src=- shape=1f4b5bb6 vocab=76f052af
+-/
 theorem measurable_secondCoordinates : Measurable secondCoordinates := by
   rw [measurable_pi_iff]
   intro i
@@ -813,6 +934,9 @@ def dihedralPointEvent : Set (Four → ℝ × ℝ) :=
       firstCoordinates ⁻¹' rankChamber qx ∩
         secondCoordinates ⁻¹' rankChamber qy
 
+/--
+@isnad1 id=measurab.0h0v.s4.535c149fc00f from=translated src=- shape=5e676665 vocab=14c21543
+-/
 theorem measurableSet_dihedralPointEvent : MeasurableSet dihedralPointEvent := by
   unfold dihedralPointEvent
   apply MeasurableSet.iUnion
@@ -824,6 +948,9 @@ theorem measurableSet_dihedralPointEvent : MeasurableSet dihedralPointEvent := b
   exact ((measurableSet_rankChamber qx).preimage measurable_firstCoordinates).inter
     ((measurableSet_rankChamber qy).preimage measurable_secondCoordinates)
 
+/--
+@isnad1 id=iff.2h1v.s6.1ffd801e0160 from=translated src=- shape=79c7fde5 vocab=a1fb3076
+-/
 theorem mem_dihedralPointEvent_iff (z : Four → ℝ × ℝ)
     (hx : Function.Injective (firstCoordinates z))
     (hy : Function.Injective (secondCoordinates z)) :
@@ -859,7 +986,9 @@ theorem mem_dihedralPointEvent_iff (z : Four → ℝ × ℝ)
       hd, hxsort, hysort⟩
 
 /-- Under strict latent rank chambers, the analytic point event is exactly
-the outcome in the finite tied-strip model.-/
+the outcome in the finite tied-strip model.
+@isnad1 id=iff.5h7v.s6.1efbe83ba650 from=translated src=- shape=219c11a0 vocab=9cc239d6
+-/
 theorem latentStepPoints_mem_dihedralPointEvent_iff {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n)
     (u v : Four → ℝ) (qx qy : Perm4)
@@ -911,26 +1040,40 @@ def PublishedPermutonInequality : Prop :=
 
 def inUnitSet : Set (Four → ℝ) := {u | InUnit u}
 
+/--
+@isnad1 id=eq.0h0v.s4.2644a68a0491 from=translated src=- shape=67f5e919 vocab=6494648a
+-/
 theorem inUnitSet_eq_pi :
     inUnitSet = Set.pi Set.univ (fun _ : Four => Ioc (0 : ℝ) 1) := by
   ext u
   simp [inUnitSet, InUnit]
 
+/--
+@isnad1 id=measurab.0h0v.s3.e47247459b87 from=translated src=- shape=67086572 vocab=7a0f883e
+-/
 theorem measurableSet_inUnitSet : MeasurableSet inUnitSet := by
   rw [inUnitSet_eq_pi]
   exact MeasurableSet.univ_pi fun _ => measurableSet_Ioc
 
+/--
+@isnad1 id=eq.0h0v.s5.861230b96adf from=translated src=- shape=14d0f5bc vocab=153a17a6
+-/
 theorem rankMeasure_inUnitSet : rankMeasure inUnitSet = 1 := by
   rw [inUnitSet_eq_pi, rankMeasure, Measure.pi_pi]
   simp [unitMeasure, Real.volume_Ioc]
 
+/--
+@isnad1 id=eventual.0h0v.s5.6de2a700490f from=translated src=- shape=b4624190 vocab=168c2714
+-/
 theorem ae_inUnit : ∀ᵐ u ∂rankMeasure, InUnit u := by
   rw [show (∀ᵐ u ∂rankMeasure, InUnit u) ↔
       (∀ᵐ u ∂rankMeasure, u ∈ inUnitSet) by rfl]
   apply (ae_mem_iff_measure_eq measurableSet_inUnitSet.nullMeasurableSet).2
   rw [rankMeasure_inUnitSet, measure_univ]
 
-/-- Every atom of the iid strip-vector law has mass `n⁻⁴`.-/
+/-- Every atom of the iid strip-vector law has mass `n⁻⁴`.
+@isnad1 id=eq.0h2v.s6.3d1a57809436 from=translated src=- shape=e1aef9de vocab=0060f9cf
+-/
 theorem stripVectorMeasure_singleton {n : ℕ} [Nonempty (Fin n)]
     (f : Circular.StripSample n) :
     stripVectorMeasure n {f} = ((n : ℝ≥0∞)⁻¹) ^ 4 := by
@@ -938,7 +1081,9 @@ theorem stripVectorMeasure_singleton {n : ℕ} [Nonempty (Fin n)]
   simp only [uniformFinMeasure_singleton, Finset.prod_const]
   rw [Finset.card_univ, show Fintype.card Four = 4 from by decide]
 
-/-- The iid strip-vector law is the uniform finite atomic measure.-/
+/-- The iid strip-vector law is the uniform finite atomic measure.
+@isnad1 id=eq.0h1v.s7.2a01e473452e from=translated src=- shape=7f80308b vocab=70ab2710
+-/
 theorem stripVectorMeasure_eq_sum {n : ℕ} [Nonempty (Fin n)] :
     stripVectorMeasure n =
       ∑ f : Circular.StripSample n,
@@ -962,11 +1107,17 @@ def rankPairCell (r : Perm4 × Perm4) :
     Set ((Four → ℝ) × (Four → ℝ)) :=
   rankChamber r.1.symm ×ˢ rankChamber r.2.symm
 
+/--
+@isnad1 id=measurab.0h1v.s5.0174134ea3be from=translated src=- shape=02acb544 vocab=5f129727
+-/
 theorem measurableSet_rankPairCell (r : Perm4 × Perm4) :
     MeasurableSet (rankPairCell r) :=
   (measurableSet_rankChamber r.1.symm).prod
     (measurableSet_rankChamber r.2.symm)
 
+/--
+@isnad1 id=pairwise.0h0v.s6.9da2e0cfcdb2 from=translated src=- shape=d465d5d5 vocab=70bb8c76
+-/
 theorem rankPairCell_pairwise_disjoint :
     Pairwise (fun r s : Perm4 × Perm4 =>
       Disjoint (rankPairCell r) (rankPairCell s)) := by
@@ -1005,12 +1156,18 @@ noncomputable def successfulRankSet {n : ℕ}
     Set ((Four → ℝ) × (Four → ℝ)) :=
   ⋃ r : ↑(successfulRankPairs π f), rankPairCell r.1
 
+/--
+@isnad1 id=measurab.0h3v.s5.de009b9fc710 from=translated src=- shape=53621e98 vocab=3236367d
+-/
 theorem measurableSet_successfulRankSet {n : ℕ}
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n) :
     MeasurableSet (successfulRankSet π f) := by
   unfold successfulRankSet
   exact MeasurableSet.iUnion fun r => measurableSet_rankPairCell r.1
 
+/--
+@isnad1 id=eq.0h3v.s7.80944c3f62d2 from=translated src=- shape=cfc90bf4 vocab=07c1ce7d
+-/
 theorem successfulRankSet_measure {n : ℕ}
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n) :
     (rankMeasure.prod rankMeasure) (successfulRankSet π f) =
@@ -1028,10 +1185,16 @@ finite chamber label is defined uniquely.-/
 def goodRankSet : Set (Four → ℝ) :=
   inUnitSet ∩ ⋃ q : Perm4, rankChamber q
 
+/--
+@isnad1 id=measurab.0h0v.s3.459780de753e from=translated src=- shape=67086572 vocab=0147c4f7
+-/
 theorem measurableSet_goodRankSet : MeasurableSet goodRankSet := by
   exact measurableSet_inUnitSet.inter
     (MeasurableSet.iUnion measurableSet_rankChamber)
 
+/--
+@isnad1 id=eventual.0h0v.s5.5337620637c2 from=translated src=- shape=fb59c50d vocab=281dc9f8
+-/
 theorem ae_goodRankSet : ∀ᵐ u ∂rankMeasure, u ∈ goodRankSet := by
   have hchambers : ∀ᵐ u ∂rankMeasure,
       u ∈ ⋃ q : Perm4, rankChamber q := by
@@ -1040,11 +1203,17 @@ theorem ae_goodRankSet : ∀ᵐ u ∂rankMeasure, u ∈ goodRankSet := by
   filter_upwards [ae_inUnit, hchambers] with u hu hc
   exact ⟨hu, hc⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.f78d197620bf from=translated src=- shape=14d0f5bc vocab=7f11cd77
+-/
 theorem goodRankSet_measure : rankMeasure goodRankSet = 1 := by
   have h := (ae_mem_iff_measure_eq
     measurableSet_goodRankSet.nullMeasurableSet).mp ae_goodRankSet
   simpa only [measure_univ] using h
 
+/--
+@isnad1 id=eventual.0h0v.s7.46aa5d5fa49d from=translated src=- shape=c88d9f17 vocab=f6d6ceaf
+-/
 theorem ae_prod_goodRankSet :
     ∀ᵐ uv ∂rankMeasure.prod rankMeasure,
       uv ∈ goodRankSet ×ˢ goodRankSet := by
@@ -1059,11 +1228,17 @@ def fixedStripEvent {n : ℕ} (π : Equiv.Perm (Fin n))
     Set ((Four → ℝ) × (Four → ℝ)) :=
   (fun uv => latentStepPoints π (f, uv)) ⁻¹' dihedralPointEvent
 
+/--
+@isnad1 id=measurab.0h3v.s5.b150004a42d5 from=translated src=- shape=53621e98 vocab=0f70a57d
+-/
 theorem measurableSet_fixedStripEvent {n : ℕ} (π : Equiv.Perm (Fin n))
     (f : Circular.StripSample n) : MeasurableSet (fixedStripEvent π f) := by
   exact measurableSet_dihedralPointEvent.preimage
     ((measurable_latentStepPoints π).comp (measurable_const.prodMk measurable_id))
 
+/--
+@isnad1 id=iff.3h5v.s7.a88f0fb94616 from=translated src=- shape=74a286f0 vocab=b99eb752
+-/
 theorem mem_fixedStripEvent_iff_successfulRankSet {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n)
     (u v : Four → ℝ) (hu : u ∈ goodRankSet) (hv : v ∈ goodRankSet) :
@@ -1098,6 +1273,9 @@ theorem mem_fixedStripEvent_iff_successfulRankSet {n : ℕ} (hn : 0 < n)
       (by simpa [rankPairCell] using hrank.1)
       (by simpa [rankPairCell] using hrank.2)).mpr (by simpa using hsuccess)
 
+/--
+@isnad1 id=eventual.1h3v.s7.e811c3504813 from=translated src=- shape=e3a44f9b vocab=48a581b6
+-/
 theorem fixedStripEvent_ae_eq_successfulRankSet {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n) :
     fixedStripEvent π f =ᵐ[rankMeasure.prod rankMeasure]
@@ -1106,6 +1284,9 @@ theorem fixedStripEvent_ae_eq_successfulRankSet {n : ℕ} (hn : 0 < n)
   exact propext
     (mem_fixedStripEvent_iff_successfulRankSet hn π f uv.1 uv.2 huv.1 huv.2)
 
+/--
+@isnad1 id=eq.1h3v.s7.f316fd2231ea from=translated src=- shape=eac1caa2 vocab=c42f0df2
+-/
 theorem fixedStripEvent_measure {n : ℕ} (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n) :
     (rankMeasure.prod rankMeasure) (fixedStripEvent π f) =
@@ -1130,6 +1311,9 @@ noncomputable def successfulRankSigmaEquiv {n : ℕ}
   left_inv z := by cases z with | mk f r => cases r with | mk r hr => cases r; rfl
   right_inv z := by cases z with | mk z hz => cases z; rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.532e6dc2501d from=translated src=- shape=2c1821ca vocab=7b61407f
+-/
 theorem sum_successfulRankPairs_card {n : ℕ}
     (π : Equiv.Perm (Fin n)) :
     ∑ f : Circular.StripSample n, (successfulRankPairs π f).card =
@@ -1153,10 +1337,16 @@ def latentDihedralEvent {n : ℕ} (π : Equiv.Perm (Fin n)) :
     Set (Circular.StripSample n × ((Four → ℝ) × (Four → ℝ))) :=
   latentStepPoints π ⁻¹' dihedralPointEvent
 
+/--
+@isnad1 id=measurab.0h2v.s5.ca5055cad37a from=translated src=- shape=2e3c351b vocab=c85813b1
+-/
 theorem measurableSet_latentDihedralEvent {n : ℕ}
     (π : Equiv.Perm (Fin n)) : MeasurableSet (latentDihedralEvent π) :=
   measurableSet_dihedralPointEvent.preimage (measurable_latentStepPoints π)
 
+/--
+@isnad1 id=eq.0h1v.s9.96c2d8fa7142 from=translated src=- shape=5a283b68 vocab=ea54171b
+-/
 theorem latentFourMeasure_eq_sum {n : ℕ} [Nonempty (Fin n)] :
     latentFourMeasure n =
       ∑ f : Circular.StripSample n,
@@ -1166,6 +1356,9 @@ theorem latentFourMeasure_eq_sum {n : ℕ} [Nonempty (Fin n)] :
     ← Measure.sum_fintype, Measure.prod_sum_left, Measure.sum_fintype]
   simp only [Measure.prod_smul_left]
 
+/--
+@isnad1 id=eq.0h3v.s8.2bbb22e199a4 from=translated src=- shape=3dd4cd6c vocab=e941f4e3
+-/
 theorem dirac_prod_latentDihedralEvent {n : ℕ}
     (π : Equiv.Perm (Fin n)) (f : Circular.StripSample n) :
     ((Measure.dirac f).prod (rankMeasure.prod rankMeasure))
@@ -1175,6 +1368,9 @@ theorem dirac_prod_latentDihedralEvent {n : ℕ}
     Measure.map_apply measurable_prodMk_left (measurableSet_latentDihedralEvent π)]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.6d86eedc4924 from=translated src=- shape=3797a88b vocab=1594a7cc
+-/
 theorem latentDihedralEvent_measure {n : ℕ} [Nonempty (Fin n)] (hn : 0 < n)
     (π : Equiv.Perm (Fin n)) :
     latentFourMeasure n (latentDihedralEvent π) =
@@ -1200,7 +1396,9 @@ theorem latentDihedralEvent_measure {n : ℕ} [Nonempty (Fin n)] (hn : 0 < n)
   ring
 
 /-- Therefore four iid samples from the Borel step permuton have exactly the
-same ENNReal event mass as the literal finite tied model.-/
+same ENNReal event mass as the literal finite tied model.
+@isnad1 id=eq.1h2v.s7.2a240dd7a020 from=translated src=- shape=7fd129b0 vocab=d6bf7d3a
+-/
 theorem iidStepMeasure_dihedralPointEvent {n : ℕ} [Nonempty (Fin n)]
     (hn : 0 < n) (π : Equiv.Perm (Fin n)) :
     (Measure.pi (fun _ : Four => stepMeasure π)) dihedralPointEvent =
@@ -1212,7 +1410,9 @@ theorem iidStepMeasure_dihedralPointEvent {n : ℕ} [Nonempty (Fin n)]
   exact latentDihedralEvent_measure hn π
 
 /-- The analytic density of a step permuton is the literal finite tied-sample
-density (and hence the global density used by `Circular`).-/
+density (and hence the global density used by `Circular`).
+@isnad1 id=eq.1h2v.s5.85b5a0cd7983 from=translated src=- shape=c2f7593a vocab=f717f0bf
+-/
 theorem dihedralDensity_stepPermuton {n : ℕ} [Nonempty (Fin n)]
     (hn : 0 < n) (π : Equiv.Perm (Fin n)) :
     dihedralDensity (stepPermuton hn π) =

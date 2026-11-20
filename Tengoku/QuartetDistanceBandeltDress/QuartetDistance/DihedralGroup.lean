@@ -21,6 +21,9 @@ def dihedralSubgroup : Subgroup Perm4 where
   mul_mem' := by decide
   inv_mem' := by decide
 
+/--
+@isnad1 id=iff.0h1v.s4.1eb971a0162f from=translated src=- shape=9022d97a vocab=3d25dd6b
+-/
 @[simp] theorem mem_dihedralSubgroup (σ : Perm4) :
     σ ∈ dihedralSubgroup ↔ IsDihedral4 σ :=
   (isDihedral4_iff_mem σ).symm

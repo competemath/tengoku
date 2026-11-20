@@ -30,6 +30,9 @@ def awayEquiv (e : α ≃ β) (r : α) :
   left_inv a := by ext; simp
   right_inv b := by ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s8.95f408077ff8 from=translated src=- shape=4fb3b3a5 vocab=e6c15296
+-/
 @[simp] theorem awayEquiv_coe (e : α ≃ β) (r : α) (a : {a : α // a ≠ r}) :
     (awayEquiv e r a : β) = e a := rfl
 
@@ -48,6 +51,9 @@ def relabel [Fintype α] [DecidableEq α] [Fintype β] [DecidableEq β]
     rw [Tree.FullTree.leaves_map, List.mem_map]
     exact ⟨a, ha, (awayEquiv e T.root).apply_symm_apply b⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.a501f881a04f from=translated src=- shape=8b42bc84 vocab=c9127fd8
+-/
 @[simp] theorem relabel_root [Fintype α] [DecidableEq α]
     [Fintype β] [DecidableEq β] (e : α ≃ β) (T : PhyloTree α) :
     (relabel e T).root = e T.root := rfl
@@ -65,6 +71,9 @@ private theorem fullTree_map_map {α : Type u} {β : Type v} {γ : Type w}
   | leaf => rfl
   | fork l r ihl ihr => simp [Tree.FullTree.map, ihl, ihr]
 
+/--
+@isnad1 id=eq.0h6v.s6.469c6aca18d2 from=translated src=- shape=e3dfc788 vocab=af0e8026
+-/
 theorem relabel_trans [Fintype α] [DecidableEq α]
     [Fintype β] [DecidableEq β] [Fintype γ] [DecidableEq γ]
     (e : α ≃ β) (f : β ≃ γ) (T : PhyloTree α) :
@@ -80,6 +89,9 @@ theorem relabel_trans [Fintype α] [DecidableEq α]
 
 /-! ## Naturality of restriction and displayed quartet splits -/
 
+/--
+@isnad1 id=eq.0h5v.s6.b7fb304d4c0e from=translated src=- shape=83e7835f vocab=3a862d71
+-/
 theorem prune_map_equiv [DecidableEq α] [DecidableEq β]
     (e : α ≃ β) (t : FullTree α) (S : Finset α) :
     (t.map e).prune (S.map e.toEmbedding) =
@@ -90,6 +102,9 @@ theorem prune_map_equiv [DecidableEq α] [DecidableEq β]
       simp only [Tree.FullTree.map, Tree.FullTree.prune, ihl, ihr]
       cases l.prune S <;> cases r.prune S <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.e79d1c944263 from=translated src=- shape=6e92e2cd vocab=6045362c
+-/
 theorem asFullTree_relabel [Fintype α] [DecidableEq α]
     [Fintype β] [DecidableEq β] (e : α ≃ β) (T : PhyloTree α) :
     (relabel e T).asFullTree = T.asFullTree.map e := by
@@ -102,6 +117,9 @@ theorem asFullTree_relabel [Fintype α] [DecidableEq α]
       intro a
       rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.7abe17140946 from=translated src=- shape=59bcdb27 vocab=61189c2b
+-/
 theorem mapSplit_blockSplit [DecidableEq α] [DecidableEq β]
     (e : α ≃ β) (a b c d : α) :
     Circular.mapSplit e.toEmbedding (Tree.FullTree.blockSplit a b c d) =
@@ -111,7 +129,9 @@ theorem mapSplit_blockSplit [DecidableEq α] [DecidableEq β]
     Circular.pair]
 
 /-- On a genuine four-leaf tree, applying an equivalence to all leaf labels
-applies the same equivalence to its displayed split.-/
+applies the same equivalence to its displayed split.
+@isnad1 id=eq.2h4v.s6.286e8a797603 from=translated src=- shape=ae7d799e vocab=e8c548f8
+-/
 theorem displayedSplit_map_equiv [DecidableEq α] [DecidableEq β]
     (e : α ≃ β) (t : FullTree α)
     (hlen : t.leaves.length = 4) (hnodup : t.leaves.Nodup) :
@@ -176,6 +196,9 @@ theorem displayedSplit_map_equiv [DecidableEq α] [DecidableEq β]
     · exact (mapSplit_blockSplit e a b c d).symm
     · exact hn.map e.injective
 
+/--
+@isnad1 id=eq.1h5v.s6.a0fb6982badb from=translated src=- shape=98915974 vocab=bc8bbcec
+-/
 theorem restrictedTree_relabel [Fintype α] [DecidableEq α]
     [Fintype β] [DecidableEq β] (e : α ≃ β) (T : PhyloTree α)
     (Q : Finset α) (hQ : Q.card = 4) :
@@ -189,7 +212,9 @@ theorem restrictedTree_relabel [Fintype α] [DecidableEq α]
     T.prune_asFullTree_eq_restrictedTree Q hQ] at hm
   simpa using hm
 
-/-- Relabelling transports the true split on an image quartet.-/
+/-- Relabelling transports the true split on an image quartet.
+@isnad1 id=eq.1h5v.s6.c33b405c0600 from=translated src=- shape=df9a9497 vocab=b065c59b
+-/
 theorem displayedSplitOn_relabel [Fintype α] [DecidableEq α]
     [Fintype β] [DecidableEq β] (e : α ≃ β) (T : PhyloTree α)
     (Q : Finset α) (hQ : Q.card = 4) :
@@ -201,6 +226,9 @@ theorem displayedSplitOn_relabel [Fintype α] [DecidableEq α]
   exact displayedSplit_map_equiv e (T.restrictedTree Q hQ)
     (T.restrictedTree_leaves_length Q hQ) (T.restrictedTree_nodup Q hQ)
 
+/--
+@isnad1 id=eq.1h3v.s5.eb193d1e852f from=translated src=- shape=ea9606d4 vocab=8dbd9750
+-/
 theorem restrictedTree_toFinset [Fintype α] [DecidableEq α]
     (T : PhyloTree α) (Q : Finset α) (hQ : Q.card = 4) :
     (T.restrictedTree Q hQ).leaves.toFinset = Q := by
@@ -225,6 +253,9 @@ def topologyCycle : Equiv.Perm (Fin 3) where
 noncomputable def quartetCycle (q : Upper.Quartet n) : Equiv.Perm (Fin n) :=
   slotCycle.extendDomain (Upper.quartetEmbedding q).toEquivRange
 
+/--
+@isnad1 id=eq.0h3v.s6.375590f7b7bf from=translated src=- shape=f42bff7d vocab=547d6967
+-/
 @[simp] theorem quartetCycle_apply (q : Upper.Quartet n) (i : Circular.Four) :
     quartetCycle q (Upper.quartetEmbedding q i) =
       Upper.quartetEmbedding q (slotCycle i) := by
@@ -253,6 +284,9 @@ def caterpillar : (a : α) → List α → FullTree α
   | a, [] => .leaf a
   | a, b :: xs => .fork (.leaf a) (caterpillar b xs)
 
+/--
+@isnad1 id=eq.0h3v.s4.ec5d12e5e881 from=translated src=- shape=4e2dc77a vocab=1899ff33
+-/
 @[simp] theorem caterpillar_leaves (a : α) (xs : List α) :
     (caterpillar a xs).leaves = a :: xs := by
   induction xs generalizing a with
@@ -261,7 +295,9 @@ def caterpillar : (a : α) → List α → FullTree α
 
 /-- For every `n ≥ 4` the concrete rooted model is inhabited.  The witness
 is the caterpillar whose distinguished root is `0` and whose crown starts at
-`1`; the remaining labels are taken from the finite universe exactly once.-/
+`1`; the remaining labels are taken from the finite universe exactly once.
+@isnad1 id=nonempty.1h1v.s4.fbb578b818fa from=translated src=- shape=74fbb319 vocab=197e0a7b
+-/
 theorem nonempty_phyloTree_fin (n : ℕ) (hn : 4 ≤ n) :
     Nonempty (PhyloTree (Fin n)) := by
   let r : Fin n := ⟨0, by omega⟩

@@ -26,7 +26,9 @@ open Tree
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- Pruning the restored full tree to a nonempty set of leaves cannot produce
-the empty optional tree.-/
+the empty optional tree.
+@isnad1 id=eq.1h3v.s5.561f2020e02e from=translated src=- shape=0a25a656 vocab=8bb62bdf
+-/
 theorem prune_asFullTree_isSome_of_nonempty (T : PhyloTree α)
     (Y : Finset α) (hY : Y.Nonempty) :
     (T.asFullTree.prune Y).isSome = true := by
@@ -46,6 +48,9 @@ def inducedTree (T : PhyloTree α) (Y : Finset α) (hY : Y.Nonempty) :
     FullTree α :=
   (T.asFullTree.prune Y).get (prune_asFullTree_isSome_of_nonempty T Y hY)
 
+/--
+@isnad1 id=eq.1h3v.s5.e7c6974c04bd from=translated src=- shape=8151e46a vocab=9871a5ca
+-/
 theorem prune_asFullTree_eq_inducedTree (T : PhyloTree α)
     (Y : Finset α) (hY : Y.Nonempty) :
     T.asFullTree.prune Y = some (inducedTree T Y hY) := by
@@ -58,14 +63,18 @@ theorem prune_asFullTree_eq_inducedTree (T : PhyloTree α)
   | some u => simp [inducedTree, h]
 
 /-- The leaf word of the induced tree is exactly the original reference leaf
-word filtered to the selected set.-/
+word filtered to the selected set.
+@isnad1 id=eq.1h3v.s5.8f1dc439a414 from=translated src=- shape=a399c967 vocab=5808c068
+-/
 theorem inducedTree_leaves (T : PhyloTree α) (Y : Finset α)
     (hY : Y.Nonempty) :
     (inducedTree T Y hY).leaves =
       FullTree.restrictList Y T.asFullTree.leaves :=
   FullTree.prune_leaves _ _ _ (prune_asFullTree_eq_inducedTree T Y hY)
 
-/-- Consequently, the set of leaves of the induced tree is literally `Y`.-/
+/-- Consequently, the set of leaves of the induced tree is literally `Y`.
+@isnad1 id=eq.1h3v.s5.5dbf0f48b259 from=translated src=- shape=39f9c7dd vocab=0f4b2140
+-/
 theorem inducedTree_leaves_toFinset (T : PhyloTree α) (Y : Finset α)
     (hY : Y.Nonempty) :
     (inducedTree T Y hY).leaves.toFinset = Y := by
@@ -73,7 +82,9 @@ theorem inducedTree_leaves_toFinset (T : PhyloTree α) (Y : Finset α)
   ext a
   simp [FullTree.restrictList, T.mem_referenceLeaves a]
 
-/-- Restriction preserves the absence of repeated leaf labels.-/
+/-- Restriction preserves the absence of repeated leaf labels.
+@isnad1 id=nodup.1h3v.s4.2c564e2417ca from=translated src=- shape=1026fce9 vocab=f945de30
+-/
 theorem inducedTree_leaves_nodup (T : PhyloTree α) (Y : Finset α)
     (hY : Y.Nonempty) :
     (inducedTree T Y hY).leaves.Nodup := by
@@ -81,7 +92,9 @@ theorem inducedTree_leaves_nodup (T : PhyloTree α) (Y : Finset α)
   exact T.asFullTree_nodup.filter _
 
 /-- The induced tree has exactly as many leaf occurrences as `Y` has
-elements.-/
+elements.
+@isnad1 id=eq.1h3v.s5.167c1d4e1e6b from=translated src=- shape=0bd9601a vocab=9195558e
+-/
 theorem inducedTree_leaves_length (T : PhyloTree α) (Y : Finset α)
     (hY : Y.Nonempty) :
     (inducedTree T Y hY).leaves.length = Y.card := by
@@ -94,7 +107,9 @@ theorem inducedTree_leaves_length (T : PhyloTree α) (Y : Finset α)
 /-- Pointwise restriction of the boundary order: for every deterministic
 rotation outcome of `T`, deleting the labels outside `Y` gives a frontier of
 the induced pruned-and-suppressed tree.  This applies, in particular, whenever
-`2 ≤ Y.card`, as in the paper.-/
+`2 ≤ Y.card`, as in the paper.
+@isnad1 id=mem.2h4v.s5.c338d7b4b873 from=translated src=- shape=ff8d3f3e vocab=eef740bc
+-/
 theorem restrict_boundary_mem_inducedTree_frontier (T : PhyloTree α)
     (Y : Finset α) (hY : Y.Nonempty) {word : List α}
     (hword : word ∈ T.boundaryProfile) :
@@ -112,7 +127,9 @@ theorem restrict_boundary_mem_inducedTree_frontier (T : PhyloTree α)
 global boundary word after restriction, up to cyclic rotation.  The possible
 rotation is precisely the harmless choice of putting the distinguished root
 leaf at the beginning rather than at the end of the restored full-tree
-frontier.-/
+frontier.
+@isnad1 id=ex.2h4v.s6.804ba0491d4b from=translated src=- shape=e8b66178 vocab=1adbf77a
+-/
 theorem exists_boundary_lift_isRotated (T : PhyloTree α)
     (Y : Finset α) (hY : Y.Nonempty) {restricted : List α}
     (hrestricted : restricted ∈ (inducedTree T Y hY).frontierProfile) :

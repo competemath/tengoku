@@ -28,6 +28,9 @@ def patternPointEvent (σ : Perm4) : Set (Four → ℝ × ℝ) :=
       Permuton.firstCoordinates ⁻¹' Permuton.rankChamber qx ∩
         Permuton.secondCoordinates ⁻¹' Permuton.rankChamber qy
 
+/--
+@isnad1 id=measurab.0h1v.s4.ab86275a875e from=translated src=- shape=661fc97e vocab=634abebb
+-/
 theorem measurableSet_patternPointEvent (σ : Perm4) :
     MeasurableSet (patternPointEvent σ) := by
   unfold patternPointEvent
@@ -45,7 +48,9 @@ theorem measurableSet_patternPointEvent (σ : Perm4) :
 
 /-- Membership in a strict pattern event forces both coordinate vectors to
 be injective.  Thus tied samples are excluded rather than assigned an
-arbitrary pattern.-/
+arbitrary pattern.
+@isnad1 id=and.1h2v.s5.40a20cd423f0 from=translated src=- shape=e0991c99 vocab=2e0f1931
+-/
 theorem injective_coordinates_of_mem_patternPointEvent
     {σ : Perm4} {z : Four → ℝ × ℝ} (hz : z ∈ patternPointEvent σ) :
     Function.Injective (Permuton.firstCoordinates z) ∧
@@ -70,6 +75,9 @@ theorem injective_coordinates_of_mem_patternPointEvent
       simpa only [Function.comp_apply, Equiv.apply_symm_apply] using hij
     exact qy.symm.injective (hsy.injective hcomp)
 
+/--
+@isnad1 id=not.1h2v.s5.28032f592a3a from=translated src=- shape=07307d5c vocab=f91a364a
+-/
 theorem not_mem_patternPointEvent_of_not_injective_first
     (σ : Perm4) (z : Four → ℝ × ℝ)
     (hz : ¬ Function.Injective (Permuton.firstCoordinates z)) :
@@ -77,6 +85,9 @@ theorem not_mem_patternPointEvent_of_not_injective_first
   intro hmem
   exact hz (injective_coordinates_of_mem_patternPointEvent hmem).1
 
+/--
+@isnad1 id=not.1h2v.s5.428817994300 from=translated src=- shape=07307d5c vocab=9660fcff
+-/
 theorem not_mem_patternPointEvent_of_not_injective_second
     (σ : Perm4) (z : Four → ℝ × ℝ)
     (hz : ¬ Function.Injective (Permuton.secondCoordinates z)) :
@@ -85,7 +96,9 @@ theorem not_mem_patternPointEvent_of_not_injective_second
   exact hz (injective_coordinates_of_mem_patternPointEvent hmem).2
 
 /-- On a tie-free sample, event membership is exactly equality with the usual
-standardized four-point pattern.-/
+standardized four-point pattern.
+@isnad1 id=iff.2h2v.s6.26d9f8355b40 from=translated src=- shape=eb1870e3 vocab=909a36e1
+-/
 theorem mem_patternPointEvent_iff (σ : Perm4) (z : Four → ℝ × ℝ)
     (hx : Function.Injective (Permuton.firstCoordinates z))
     (hy : Function.Injective (Permuton.secondCoordinates z)) :
@@ -125,7 +138,9 @@ theorem mem_patternPointEvent_iff (σ : Perm4) (z : Four → ℝ × ℝ)
     exact ⟨Tuple.sort (Permuton.firstCoordinates z),
       Tuple.sort (Permuton.secondCoordinates z), hpattern, hxsort, hysort⟩
 
-/-- Distinct strict patterns are disjoint events.-/
+/-- Distinct strict patterns are disjoint events.
+@isnad1 id=disjoint.1h2v.s6.ae4eb7c123e0 from=translated src=- shape=f0da93a8 vocab=c4a681f3
+-/
 theorem patternPointEvent_disjoint {σ τ : Perm4} (hστ : σ ≠ τ) :
     Disjoint (patternPointEvent σ) (patternPointEvent τ) := by
   apply Set.disjoint_left.2
@@ -146,12 +161,17 @@ theorem patternPointEvent_disjoint {σ τ : Perm4} (hστ : σ ≠ τ) :
     _ = τ := hτ
 
 /-- All twenty-four pattern events are pairwise disjoint; in particular this
-holds for the eight events indexed by `Circular.dihedral4`.-/
+holds for the eight events indexed by `Circular.dihedral4`.
+@isnad1 id=pairwise.0h0v.s6.7db7a6e3ea57 from=translated src=- shape=c65b5bb9 vocab=25314852
+-/
 theorem patternPointEvent_pairwise_disjoint :
     Pairwise (fun σ τ : Perm4 => Disjoint (patternPointEvent σ) (patternPointEvent τ)) := by
   intro σ τ hστ
   exact patternPointEvent_disjoint hστ
 
+/--
+@isnad1 id=pairwise.0h0v.s6.dea64395b529 from=translated src=- shape=0ad2b0a6 vocab=37e5eee6
+-/
 theorem dihedralPatternEvents_pairwise_disjoint :
     Set.Pairwise (↑Circular.dihedral4)
       (fun σ τ => Disjoint (patternPointEvent σ) (patternPointEvent τ)) := by
@@ -159,7 +179,9 @@ theorem dihedralPatternEvents_pairwise_disjoint :
   exact patternPointEvent_disjoint hστ
 
 /-- The event used in `Permuton.dihedralDensity` is exactly the finite union
-of the eight individual pattern events.-/
+of the eight individual pattern events.
+@isnad1 id=eq.0h0v.s5.8e1543bcd754 from=translated src=- shape=98ae3b5a vocab=01a55717
+-/
 theorem dihedralPointEvent_eq_biUnion_patternPointEvent :
     Permuton.dihedralPointEvent =
       ⋃ σ ∈ Circular.dihedral4, patternPointEvent σ := by
@@ -177,7 +199,9 @@ noncomputable def d (σ : Perm4) (μ : Permuton.BorelPermuton) : ℝ :=
   (Measure.pi (fun _ : Four => μ.measure) (patternPointEvent σ)).toReal
 
 /-- The sum of the eight individual densities is the dihedral-event density
-used by the analytic development.-/
+used by the analytic development.
+@isnad1 id=eq.0h1v.s4.9050e2ff8a56 from=translated src=- shape=09e22ce3 vocab=89930ca6
+-/
 theorem sum_d_dihedral4_eq_dihedralDensity (μ : Permuton.BorelPermuton) :
     (∑ σ ∈ Circular.dihedral4, d σ μ) = Permuton.dihedralDensity μ := by
   let ν : Measure (Four → ℝ × ℝ) := Measure.pi fun _ : Four => μ.measure
@@ -203,7 +227,9 @@ def PublishedPermutonPatternSumInequality : Prop :=
     (1 : ℝ) / 3 ≤ ∑ σ ∈ Circular.dihedral4, d σ μ
 
 /-- The literal sum formulation is exactly equivalent to the event-level
-external hypothesis used elsewhere in the formalization.-/
+external hypothesis used elsewhere in the formalization.
+@isnad1 id=iff.0h0v.s1.94d64c5e8fbe from=translated src=- shape=25b03439 vocab=d1cb8fa9
+-/
 theorem publishedPermutonPatternSumInequality_iff :
     PublishedPermutonPatternSumInequality ↔
       Permuton.PublishedPermutonInequality := by

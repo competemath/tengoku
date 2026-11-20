@@ -64,18 +64,26 @@ noncomputable def canonicalize (P : BinaryPhyloGraph α V) :
         exact P.internal_degree v hw }
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s4.95a53a9f8f20 from=translated src=- shape=5f128c17 vocab=52186b56
+-/
 @[simp] theorem canonicalize_vertexCount (P : BinaryPhyloGraph α V) :
     P.canonicalize.vertexCount = Fintype.card V :=
   rfl
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h3v.s6.2f834ebda306 from=translated src=- shape=9c8e1f99 vocab=0f694a6d
+-/
 @[simp] theorem canonicalize_graph (P : BinaryPhyloGraph α V) :
     P.canonicalize.tree.G = P.G.overFin rfl :=
   rfl
 
 omit [DecidableEq V] in
 /-- Canonicalization preserves each labelled leaf, not merely the underlying
-unlabelled graph.-/
+unlabelled graph.
+@isnad1 id=eq.0h4v.s6.0f2471f8c094 from=translated src=- shape=710c05a0 vocab=8d85cd01
+-/
 @[simp] theorem canonicalIso_leafVertex (P : BinaryPhyloGraph α V) (a : α) :
     P.canonicalIso (P.leafVertex a) = P.canonicalize.tree.leafVertex a :=
   rfl
@@ -86,11 +94,17 @@ noncomputable def leafLabel? (P : BinaryPhyloGraph α V) (v : V) : Option α :=
   if hv : P.G.degree v = 1 then some (P.labelOfLeaf v hv) else none
 
 omit [Fintype α] in
+/--
+@isnad1 id=eq.0h4v.s5.63e0e8a6c309 from=translated src=- shape=3db7eed2 vocab=744d90ab
+-/
 @[simp] theorem leafLabel?_leafVertex (P : BinaryPhyloGraph α V) (a : α) :
     P.leafLabel? (P.leafVertex a) = some a := by
   simp [leafLabel?, P.degree_leafVertex]
 
 omit [Fintype α] in
+/--
+@isnad1 id=iff.0h5v.s5.a91907a57073 from=translated src=- shape=b8c2ab16 vocab=744d90ab
+-/
 theorem leafLabel?_eq_some_iff (P : BinaryPhyloGraph α V) (v : V) (a : α) :
     P.leafLabel? v = some a ↔ v = P.leafVertex a := by
   classical
@@ -117,7 +131,9 @@ namespace Tree.PhyloTree
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- The degree-one labelling recovered from the graph realization is exactly
-the original syntax labelling at every vertex.-/
+the original syntax labelling at every vertex.
+@isnad1 id=eq.0h3v.s6.fb2c5e0fef65 from=translated src=- shape=eb2124c9 vocab=fbaa9c8d
+-/
 theorem toBinaryPhyloGraph_leafLabel? (T : Tree.PhyloTree α)
     (v : TreeAdequacy.PhyloTree.Vertex T) :
     T.toBinaryPhyloGraph.leafLabel? v =
@@ -162,6 +178,9 @@ noncomputable def encodeGraphIsoAt (P : CanonicalBinaryPhyloGraph α)
     TreeAdequacy.PhyloTree.graph (P.encodeAt rootLabel) ≃g P.tree.G :=
   P.tree.encodeGraphIso rootLabel
 
+/--
+@isnad1 id=iff.0h5v.s7.6fbd5eea5092 from=translated src=- shape=d22ec430 vocab=f5b5bd1e
+-/
 @[simp] theorem encodeGraphIsoAt_label (P : CanonicalBinaryPhyloGraph α)
     (rootLabel a : α)
     (x : TreeAdequacy.PhyloTree.Vertex (P.encodeAt rootLabel)) :
@@ -171,7 +190,9 @@ noncomputable def encodeGraphIsoAt (P : CanonicalBinaryPhyloGraph α)
   exact (P.tree.encodeGraphIso_label_iff rootLabel a x).symm
 
 /-- The graph isomorphism from the syntax encoding preserves the entire
-partial taxon labelling.-/
+partial taxon labelling.
+@isnad1 id=eq.0h4v.s7.04f401c92d85 from=translated src=- shape=551541ff vocab=c6347b94
+-/
 theorem encodeGraphIsoAt_leafLabel? (P : CanonicalBinaryPhyloGraph α)
     (rootLabel : α)
     (x : TreeAdequacy.PhyloTree.Vertex (P.encodeAt rootLabel)) :
@@ -236,20 +257,27 @@ def deleteEdgeIso (e : G ≃g H) (u v : V) :
       simpa only [Sym2.map_mk] using heq
 
 omit [DecidableEq V] [DecidableEq W] in
+/--
+@isnad1 id=eq.0h8v.s7.c9a1a611436c from=translated src=- shape=c37a7c7e vocab=fd315075
+-/
 @[simp] theorem deleteEdgeIso_apply (e : G ≃g H) (u v x : V) :
     deleteEdgeIso e u v x = e x :=
   rfl
 
 omit [DecidableEq V] [DecidableEq W] in
 /-- Reachability after deleting an edge is invariant under a graph
-isomorphism.-/
+isomorphism.
+@isnad1 id=iff.0h9v.s7.12e5ef07230d from=translated src=- shape=a0bb7e5a vocab=f77fa5ee
+-/
 theorem deleteEdge_reachable_iff (e : G ≃g H) (u v x y : V) :
     (H.deleteEdges {s(e u, e v)}).Reachable (e x) (e y) ↔
       (G.deleteEdges {s(u, v)}).Reachable x y :=
   SimpleGraph.Iso.reachable_iff (φ := deleteEdgeIso e u v)
 
 /-- `ComponentSeparatesAt` is invariant under a pointwise
-label-preserving graph isomorphism.-/
+label-preserving graph isomorphism.
+@isnad1 id=iff.1h12v.s7.fd97cad2607d from=translated src=- shape=56b2e17a vocab=b24ca4ce
+-/
 theorem componentSeparatesAt_iff_of_iso
     (e : G ≃g H) (labelV : V → Option α) (labelW : W → Option α)
     (hlabel : ∀ x, labelW (e x) = labelV x)
@@ -292,7 +320,9 @@ theorem componentSeparatesAt_iff_of_iso
       simpa [x] using hry
 
 /-- The generic edge-separation predicate is invariant under every
-label-preserving graph isomorphism.-/
+label-preserving graph isomorphism.
+@isnad1 id=iff.1h10v.s6.054305f1d1ca from=translated src=- shape=cbcc4406 vocab=019eb569
+-/
 theorem edgeSeparates_iff_of_iso
     (e : G ≃g H) (labelV : V → Option α) (labelW : W → Option α)
     (hlabel : ∀ x, labelW (e x) = labelV x)
@@ -333,7 +363,9 @@ namespace CanonicalBinaryPhyloGraph
 variable {α : Type*} [Fintype α] [DecidableEq α]
 
 /-- Edge separation in a canonical conventional graph is exactly edge
-separation in any of its cut-open syntax encodings.-/
+separation in any of its cut-open syntax encodings.
+@isnad1 id=iff.0h5v.s7.b3e6141ed4ba from=translated src=- shape=3f635f9d vocab=4a218e2d
+-/
 theorem edgeSeparates_encodeAt_iff (P : CanonicalBinaryPhyloGraph α)
     (rootLabel : α) (A B : Finset α) :
     GraphQuartet.EdgeSeparates P.tree.G P.tree.leafLabel? A B ↔
@@ -359,7 +391,9 @@ namespace CanonicalBinaryPhyloGraph
 variable {α : Type} [Fintype α] [DecidableEq α]
 
 /-- The direct display predicate on a conventional graph agrees with the
-same direct predicate on every cut-open syntax encoding.-/
+same direct predicate on every cut-open syntax encoding.
+@isnad1 id=iff.0h5v.s5.af2a2d575310 from=translated src=- shape=4f18da4a vocab=d64fe979
+-/
 theorem graphDisplaysSplit_encodeAt_iff
     (P : CanonicalBinaryPhyloGraph α) (rootLabel : α)
     (Q : Finset α) (s : Circular.QuartetSplit α) :
