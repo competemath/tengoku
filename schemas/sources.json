@@ -184,7 +184,6 @@
     "https://github.com/xiangyazi24/palomar-qseries-row-factorization",
     "https://github.com/frenzymath/PiIrrationalityMeasure",
     "https://github.com/andrew-tawfeek/twinprime",
-    "https://github.com/t4v1/thurston23",
     "https://github.com/DavidVFeldman/qpcf-lean",
     "https://github.com/davidsavitt/KLSposet",
     "https://github.com/apellis/lie-lean",
@@ -282,7 +281,6 @@
     "https://github.com/blawton/fried-conj-lean",
     "https://github.com/JD-Jones-ASES/gnm-lean",
     "https://github.com/YijunYuan/FormalizedSparse",
-    "https://github.com/luohaoyuan0420-w/lhyMathLib",
     "https://github.com/RamenSensei/HellingerRepoLean4",
     "https://github.com/xinjiegit/ben_27_formalization",
     "https://github.com/JJYYY-JJY/burning-path-token-graphs",
@@ -301,7 +299,19 @@
     "https://github.com/cameronfreer/forcing",
     "https://github.com/BrandonMYates/qharm",
     "https://github.com/123yhxie-a11y/moran-lean",
-    "https://github.com/Pjotr5/ShearerTriangleFreeInd"
+    "https://github.com/Pjotr5/ShearerTriangleFreeInd",
+    "https://github.com/wqirocks/S3xS3-LI-Einstein",
+    "https://github.com/ljhfafa/jsp-000290-lean",
+    "https://github.com/graph-container-team/graph-container",
+    "https://github.com/jewoo-suh/oeis-lean",
+    "https://github.com/ibrahimmian36/veles",
+    "https://github.com/danielfagerstrom/scale-space-lean",
+    "https://github.com/miosync-masa/LagTwoPositivity",
+    "https://github.com/dagurtomas/LeanCondensed",
+    "https://github.com/barnettcaleb1/q1-lean-verification",
+    "https://github.com/derekszen/erdos-64",
+    "https://github.com/zoowirt/inverse-generator-lean",
+    "https://github.com/LingYi-Liang/squarefree-fuglede-lean"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -498,7 +508,6 @@
     "https://github.com/xiangyazi24/palomar-qseries-row-factorization": "Apache-2.0",
     "https://github.com/frenzymath/PiIrrationalityMeasure": "Apache-2.0",
     "https://github.com/andrew-tawfeek/twinprime": "Apache-2.0",
-    "https://github.com/t4v1/thurston23": "Apache-2.0",
     "https://github.com/DavidVFeldman/qpcf-lean": "Apache-2.0",
     "https://github.com/davidsavitt/KLSposet": "Apache-2.0",
     "https://github.com/apellis/lie-lean": "Apache-2.0",
@@ -596,7 +605,6 @@
     "https://github.com/blawton/fried-conj-lean": "Apache-2.0",
     "https://github.com/JD-Jones-ASES/gnm-lean": "MIT",
     "https://github.com/YijunYuan/FormalizedSparse": "Apache-2.0",
-    "https://github.com/luohaoyuan0420-w/lhyMathLib": "Apache-2.0",
     "https://github.com/RamenSensei/HellingerRepoLean4": "MIT",
     "https://github.com/xinjiegit/ben_27_formalization": "Apache-2.0",
     "https://github.com/JJYYY-JJY/burning-path-token-graphs": "Apache-2.0",
@@ -615,7 +623,19 @@
     "https://github.com/cameronfreer/forcing": "Apache-2.0",
     "https://github.com/BrandonMYates/qharm": "Apache-2.0",
     "https://github.com/123yhxie-a11y/moran-lean": "Apache-2.0",
-    "https://github.com/Pjotr5/ShearerTriangleFreeInd": "Apache-2.0"
+    "https://github.com/Pjotr5/ShearerTriangleFreeInd": "Apache-2.0",
+    "https://github.com/wqirocks/S3xS3-LI-Einstein": "Apache-2.0",
+    "https://github.com/ljhfafa/jsp-000290-lean": "MIT",
+    "https://github.com/graph-container-team/graph-container": "Apache-2.0",
+    "https://github.com/jewoo-suh/oeis-lean": "Apache-2.0",
+    "https://github.com/ibrahimmian36/veles": "Apache-2.0",
+    "https://github.com/danielfagerstrom/scale-space-lean": "Apache-2.0",
+    "https://github.com/miosync-masa/LagTwoPositivity": "Apache-2.0",
+    "https://github.com/dagurtomas/LeanCondensed": "Apache-2.0",
+    "https://github.com/barnettcaleb1/q1-lean-verification": "Apache-2.0",
+    "https://github.com/derekszen/erdos-64": "Apache-2.0",
+    "https://github.com/zoowirt/inverse-generator-lean": "Apache-2.0",
+    "https://github.com/LingYi-Liang/squarefree-fuglede-lean": "MIT"
   },
   "corpora": {
     "equational-theories": {
@@ -1849,18 +1869,6 @@
         "TwinPrime"
       ]
     },
-    "thurston23": {
-      "repo": "https://github.com/t4v1/thurston23",
-      "commit": "3e118f265ef17eddb117513b9b401483fba13dc5",
-      "roots": [
-        "CatalanEisensteinRatio",
-        "CatalanLattice",
-        "CatalanLogSin",
-        "EisensteinLogSin",
-        "Thurston23",
-        "Thurston23Eisenstein"
-      ]
-    },
     "qpcf-lean": {
       "repo": "https://github.com/DavidVFeldman/qpcf-lean",
       "commit": "3610bafc5e8c47b4cd7f490b451b31dd772aa87d",
@@ -2875,13 +2883,6 @@
         "FormalizedSparse"
       ]
     },
-    "lhymathlib": {
-      "repo": "https://github.com/luohaoyuan0420-w/lhyMathLib",
-      "commit": "f69123de02bacebb912891735c17310ba57ac0b3",
-      "roots": [
-        "LhyMathLib"
-      ]
-    },
     "hellingerrepolean4": {
       "repo": "https://github.com/RamenSensei/HellingerRepoLean4",
       "commit": "9d24bdff6158d2e9d7088d1ff39e40df8a7ace37",
@@ -3017,6 +3018,90 @@
       "commit": "e23808a95cd600a39f252007b60582588317d65c",
       "roots": [
         "ShearerTriangleFreeInd"
+      ]
+    },
+    "s3xs3-li-einstein": {
+      "repo": "https://github.com/wqirocks/S3xS3-LI-Einstein",
+      "commit": "6000022940f7e736a8fc84bfb287e36d1a0e335f",
+      "roots": [
+        "S3xS3"
+      ]
+    },
+    "jsp-000290-lean": {
+      "repo": "https://github.com/ljhfafa/jsp-000290-lean",
+      "commit": "a65923973350f2a1e5dbc4ec7f7c40432a37e0b6",
+      "roots": [
+        "Jsp290"
+      ]
+    },
+    "graph-container": {
+      "repo": "https://github.com/graph-container-team/graph-container",
+      "commit": "19eedbed4d6787e99667d72fd88473ebe306c156",
+      "roots": [
+        "GraphContainer"
+      ]
+    },
+    "oeis-lean": {
+      "repo": "https://github.com/jewoo-suh/oeis-lean",
+      "commit": "1b2f715df2642944650976bdbfbf7a9adf76e290",
+      "roots": [
+        "OeisLean"
+      ]
+    },
+    "veles": {
+      "repo": "https://github.com/ibrahimmian36/veles",
+      "commit": "e95e7b26033e8d834a664d90426430dba16c5253",
+      "roots": [
+        "Veles"
+      ]
+    },
+    "scale-space-lean": {
+      "repo": "https://github.com/danielfagerstrom/scale-space-lean",
+      "commit": "8ac4b5a8b4cca58278e58a988a603a3456c6d514",
+      "roots": [
+        "ScaleSpaceCore"
+      ]
+    },
+    "lagtwopositivity": {
+      "repo": "https://github.com/miosync-masa/LagTwoPositivity",
+      "commit": "c5a3e3f951210e2e8738020ec60f69bb87191cbf",
+      "roots": [
+        "LagTwoPositivity"
+      ]
+    },
+    "leancondensed": {
+      "repo": "https://github.com/dagurtomas/LeanCondensed",
+      "commit": "339ecc99fdc4bdb68ef248c16da0148dce61a639",
+      "roots": [
+        "LeanCondensed"
+      ]
+    },
+    "q1-lean-verification": {
+      "repo": "https://github.com/barnettcaleb1/q1-lean-verification",
+      "commit": "0cdf41e1569d2839957158dfd73195a241fd8719",
+      "roots": [
+        "Q1"
+      ]
+    },
+    "erdos-64": {
+      "repo": "https://github.com/derekszen/erdos-64",
+      "commit": "cec563dd81a1c72563b47f01e3b460fa3d07da43",
+      "roots": [
+        "Erdos64"
+      ]
+    },
+    "inverse-generator-lean": {
+      "repo": "https://github.com/zoowirt/inverse-generator-lean",
+      "commit": "f4e6d5a8b1bcfa15a8c357ca5a718a81a9e86492",
+      "roots": [
+        "InverseGenerator"
+      ]
+    },
+    "squarefree-fuglede-lean": {
+      "repo": "https://github.com/LingYi-Liang/squarefree-fuglede-lean",
+      "commit": "3c043465f7be7e2ab534cd5230852c18d06ab984",
+      "roots": [
+        "FugledeAudit"
       ]
     }
   },

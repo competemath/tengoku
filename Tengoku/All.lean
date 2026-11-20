@@ -20,6 +20,7 @@ import Tengoku.Zflean
 import Tengoku.YamaguchiPapers
 import Tengoku.Degiorgi
 import Tengoku.LongGapsBetweenPrimes
+import Tengoku.Leancondensed
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Aintlib
 import Tengoku.Jsp000198Lean
@@ -60,6 +61,7 @@ import Tengoku.Foundation
 import Tengoku.Erdos1196
 import Tengoku.Xilab
 import Tengoku.Erdos647
+import Tengoku.GraphContainer
 import Tengoku.OpenaiMath
 import Tengoku.TheIwasawaTowerLawForRamanujanSThirdOrderMockThetaFunction
 import Tengoku.ImmermanVardi
@@ -95,6 +97,7 @@ import Tengoku.MiscYd
 import Tengoku.Kostkanumbers
 import Tengoku.DamianFormalizare
 import Tengoku.Arklib
+import Tengoku.InverseGeneratorLean
 import Tengoku.Vcvio
 import Tengoku.Jsp000958Lean
 import Tengoku.PcfCyclotomicLean
@@ -239,6 +242,7 @@ import Tengoku.Shearertrianglefreeind
 import Tengoku.BtcVerified
 import Tengoku.Erdos260
 import Tengoku.Leaninfotheory
+import Tengoku.Jsp000290Lean
 import Tengoku.ZkevmClean
 import Tengoku.MoranLean
 import Tengoku.FltStickelberger
