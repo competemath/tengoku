@@ -53,10 +53,16 @@ def l1Distance {n : ℕ} (x y : Grade n) : ℕ :=
 def realL1Distance {n : ℕ} (x y : RealGrade n) : ℝ :=
   ∑ i, |x i - y i|
 
+/--
+@isnad1 id=eq.0h2v.s4.ec6495493fa3 from=translated src=- shape=fc61c6a6 vocab=f15bf17a
+-/
 @[simp]
 theorem l1Distance_self {n : ℕ} (x : Grade n) : l1Distance x x = 0 := by
   simp [l1Distance]
 
+/--
+@isnad1 id=eq.0h2v.s4.6f1ba163d275 from=translated src=- shape=48892474 vocab=b9ffd950
+-/
 @[simp]
 theorem realL1Distance_self {n : ℕ} (x : RealGrade n) : realL1Distance x x = 0 := by
   simp [realL1Distance]
@@ -115,10 +121,16 @@ def gGrade (m : ℕ) : Simplex m → Grade 3
   | .edge (.a j) => ![0, (j.1 + 1 : ℕ), 0]
   | .edge (.b j) => ![0, 0, m - j.1]
 
+/--
+@isnad1 id=monotone.0h1v.s3.ea1c022d9331 from=translated src=- shape=25b9e9c0 vocab=80941fa1
+-/
 theorem fGrade_monotone (m : ℕ) : MonotoneFiltration (fGrade m) := by
   intro e v hv i
   fin_cases i <;> cases e <;> simp_all [endpoints, fGrade] <;> positivity
 
+/--
+@isnad1 id=monotone.0h1v.s3.45d6f9ccb4c2 from=translated src=- shape=25b9e9c0 vocab=3008cef3
+-/
 theorem gGrade_monotone (m : ℕ) : MonotoneFiltration (gGrade m) := by
   intro e v hv i
   fin_cases i <;> cases e <;> simp_all [endpoints, gGrade] <;> positivity
@@ -128,6 +140,9 @@ the finite-complex `ℓ¹` norm used in the source theorem.-/
 def filtrationL1Distance {m n : ℕ} (F G : Simplex m → Grade n) : ℕ :=
   ∑ σ, l1Distance (F σ) (G σ)
 
+/--
+@isnad1 id=eq.0h1v.s4.062750230e80 from=translated src=- shape=babc0173 vocab=f0cfb05f
+-/
 theorem filtrationL1Distance_fGrade_gGrade (m : ℕ) :
     filtrationL1Distance (fGrade m) (gGrade m) = 1 := by
   classical
@@ -173,7 +188,9 @@ noncomputable def ordinaryH0Dim {m n : ℕ} (F : Simplex m → Grade n)
   exact if verticesActive F x then Nat.card (sublevelGraph F x).ConnectedComponent else 0
 
 /-- The coordinate model of graph `H₀` has the expected component-count
-dimension over every coefficient field.-/
+dimension over every coefficient field.
+@isnad1 id=eq.0h3v.s6.48ed503c2f8e from=translated src=- shape=8819ff1d vocab=6813d2e0
+-/
 theorem finrank_graphH0 (𝕜 : Type*) [Field 𝕜] {V : Type*} [Fintype V]
     (G : SimpleGraph V)
     [DecidableRel G.Adj] :
@@ -195,17 +212,26 @@ def starGraph {m : ℕ} (left right : Fin m → Prop) (central : Prop) :
     | .u j, .t => right j
     | _, _ => False
 
+/--
+@isnad1 id=iff.0h4v.s4.749a7672142b from=translated src=- shape=df2fe9d5 vocab=68a65a97
+-/
 @[simp]
 theorem starGraph_adj_s_t {m : ℕ} {left right : Fin m → Prop} {central : Prop} :
     (starGraph left right central).Adj .s .t ↔ central := by
   simp [starGraph]
 
+/--
+@isnad1 id=iff.0h5v.s5.bf3034f6a561 from=translated src=- shape=e53a76bd vocab=e9e67b6c
+-/
 @[simp]
 theorem starGraph_adj_s_u {m : ℕ} {left right : Fin m → Prop} {central : Prop}
     (j : Fin m) :
     (starGraph left right central).Adj .s (.u j) ↔ left j := by
   simp [starGraph]
 
+/--
+@isnad1 id=iff.0h5v.s5.11f58948fd1e from=translated src=- shape=f7ac257e vocab=5f1047d5
+-/
 @[simp]
 theorem starGraph_adj_u_t {m : ℕ} {left right : Fin m → Prop} {central : Prop}
     (j : Fin m) :
@@ -271,6 +297,9 @@ def joinedLabel {m : ℕ} (left right : Fin m → Prop) [DecidablePred left]
       if h : left j ∨ right j then .inl ()
       else .inr ⟨j, not_or.mp h⟩
 
+/--
+@isnad1 id=surjecti.0h3v.s5.90a1e7b90d7d from=translated src=- shape=28be2130 vocab=66f1f1b3
+-/
 theorem splitLabel_surjective {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] :
     Function.Surjective (splitLabel left right) := by
@@ -282,6 +311,9 @@ theorem splitLabel_surjective {m : ℕ} (left right : Fin m → Prop)
     simp only [splitLabel, dite_eq_right j.2.1, dite_eq_right j.2.2]
     exact congrArg Sum.inr (Subtype.ext rfl)
 
+/--
+@isnad1 id=surjecti.0h3v.s5.6896b60d366c from=translated src=- shape=28be2130 vocab=c007364e
+-/
 theorem joinedLabel_surjective {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] :
     Function.Surjective (joinedLabel left right) := by
@@ -292,6 +324,9 @@ theorem joinedLabel_surjective {m : ℕ} (left right : Fin m → Prop)
     simp only [joinedLabel, dite_eq_right hj]
     exact congrArg Sum.inr (Subtype.ext rfl)
 
+/--
+@isnad1 id=eq.2h5v.s6.b0a37b513bac from=translated src=- shape=087bf3cc vocab=2dc6b0cd
+-/
 theorem splitLabel_eq_of_adj {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right]
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) {v w : Vertex m}
@@ -304,6 +339,9 @@ theorem splitLabel_eq_of_adj {m : ℕ} (left right : Fin m → Prop)
     cases v <;> cases w <;>
     simp_all [starGraph, splitLabel]
 
+/--
+@isnad1 id=eq.2h5v.s6.7426b7d3a4d5 from=translated src=- shape=087bf3cc vocab=0134dabf
+-/
 theorem splitLabel_eq_of_reachable {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right]
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) {v w : Vertex m}
@@ -315,12 +353,18 @@ theorem splitLabel_eq_of_reachable {m : ℕ} (left right : Fin m → Prop)
   | cons hAdj _ ih =>
       exact (splitLabel_eq_of_adj left right hdisjoint hAdj).trans ih
 
+/--
+@isnad1 id=iff.0h4v.s5.c6f81a3cb209 from=translated src=- shape=bb39391c vocab=9606ea39
+-/
 @[simp]
 theorem splitLabel_u_eq_left {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (j : Fin m) :
     splitLabel left right (.u j) = .inl false ↔ left j := by
   by_cases hl : left j <;> by_cases hr : right j <;> simp [splitLabel, hl, hr]
 
+/--
+@isnad1 id=iff.1h4v.s5.f91b9ccf7e07 from=translated src=- shape=1d92f2a7 vocab=edaf0998
+-/
 @[simp]
 theorem splitLabel_u_eq_right {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right]
@@ -331,6 +375,9 @@ theorem splitLabel_u_eq_right {m : ℕ} (left right : Fin m → Prop)
     simp [splitLabel, hl, hr]
   · simp [splitLabel, hl]
 
+/--
+@isnad1 id=reachabl.2h5v.s6.708ab4fa8ca1 from=translated src=- shape=52e57652 vocab=0134dabf
+-/
 theorem splitLabel_reachable_of_eq {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right]
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) {v w : Vertex m}
@@ -385,6 +432,9 @@ theorem splitLabel_reachable_of_eq {m : ℕ} (left right : Fin m → Prop)
               subst k
               exact .rfl
 
+/--
+@isnad1 id=iff.1h5v.s6.d1af09d2ae29 from=translated src=- shape=8e8e83bf vocab=0134dabf
+-/
 theorem splitLabel_reachable_iff {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right]
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) (v w : Vertex m) :
@@ -393,6 +443,9 @@ theorem splitLabel_reachable_iff {m : ℕ} (left right : Fin m → Prop)
   ⟨splitLabel_eq_of_reachable left right hdisjoint,
     splitLabel_reachable_of_eq left right hdisjoint⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.09f006e596fe from=translated src=- shape=7386ea8a vocab=ea417bb1
+-/
 theorem joinedLabel_eq_of_adj {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (central : Prop)
     {v w : Vertex m} (h : (starGraph left right central).Adj v w) :
@@ -402,6 +455,9 @@ theorem joinedLabel_eq_of_adj {m : ℕ} (left right : Fin m → Prop)
     cases v <;> cases w <;>
     simp_all [starGraph, joinedLabel]
 
+/--
+@isnad1 id=eq.1h6v.s5.3a327bca9029 from=translated src=- shape=7386ea8a vocab=0df872f3
+-/
 theorem joinedLabel_eq_of_reachable {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (central : Prop)
     {v w : Vertex m} (h : (starGraph left right central).Reachable v w) :
@@ -412,12 +468,18 @@ theorem joinedLabel_eq_of_reachable {m : ℕ} (left right : Fin m → Prop)
   | cons hAdj _ ih =>
       exact (joinedLabel_eq_of_adj left right central hAdj).trans ih
 
+/--
+@isnad1 id=iff.0h4v.s5.fb07181cf667 from=translated src=- shape=f09b75f1 vocab=a17382df
+-/
 @[simp]
 theorem joinedLabel_u_eq_core {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (j : Fin m) :
     joinedLabel left right (.u j) = .inl () ↔ left j ∨ right j := by
   by_cases h : left j ∨ right j <;> simp [joinedLabel, h]
 
+/--
+@isnad1 id=reachabl.2h6v.s6.294852c2535e from=translated src=- shape=5e7aee5a vocab=0df872f3
+-/
 theorem joinedLabel_reachable_of_eq {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (central : Prop)
     (hjoined : central ∨ ∃ j, left j ∧ right j) {v w : Vertex m}
@@ -474,6 +536,9 @@ theorem joinedLabel_reachable_of_eq {m : ℕ} (left right : Fin m → Prop)
             subst k
             exact .rfl
 
+/--
+@isnad1 id=iff.1h6v.s6.75a29e3366d6 from=translated src=- shape=5e4e83bf vocab=0df872f3
+-/
 theorem joinedLabel_reachable_iff {m : ℕ} (left right : Fin m → Prop)
     [DecidablePred left] [DecidablePred right] (central : Prop)
     (hjoined : central ∨ ∃ j, left j ∧ right j) (v w : Vertex m) :
@@ -498,6 +563,9 @@ noncomputable def joinedComponentEquiv {m : ℕ} (left right : Fin m → Prop)
     (joinedLabel left right) (joinedLabel_surjective left right)
     (joinedLabel_reachable_iff left right central hjoined)
 
+/--
+@isnad1 id=eq.1h3v.s5.ace2a42d1287 from=translated src=- shape=fcbac2d9 vocab=9ae768fd
+-/
 theorem card_connectedComponent_split {m : ℕ} (left right : Fin m → Prop)
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) :
     Nat.card (starGraph left right False).ConnectedComponent =
@@ -509,6 +577,9 @@ theorem card_connectedComponent_split {m : ℕ} (left right : Fin m → Prop)
       Nat.card_congr (splitComponentEquiv left right hdisjoint)
     _ = 2 + Nat.card (Detached left right) := by simp [SplitLabel, Nat.card_sum]
 
+/--
+@isnad1 id=eq.1h4v.s5.cdfd9ffbdcbe from=translated src=- shape=6a3d4b9b vocab=9ae768fd
+-/
 theorem card_connectedComponent_joined {m : ℕ} (left right : Fin m → Prop)
     (central : Prop) (hjoined : central ∨ ∃ j, left j ∧ right j) :
     Nat.card (starGraph left right central).ConnectedComponent =
@@ -521,7 +592,9 @@ theorem card_connectedComponent_joined {m : ℕ} (left right : Fin m → Prop)
     _ = 1 + Nat.card (Detached left right) := by simp [JoinedLabel, Nat.card_sum]
 
 /-- Adding the central edge lowers the component count by exactly one when no
-two-edge path was already complete.-/
+two-edge path was already complete.
+@isnad1 id=eq.1h3v.s5.f13238aa9571 from=translated src=- shape=df696205 vocab=2f7ebe38
+-/
 theorem card_split_eq_card_joined_add_one {m : ℕ} (left right : Fin m → Prop)
     (hdisjoint : ∀ j, ¬ (left j ∧ right j)) :
     Nat.card (starGraph left right False).ConnectedComponent =
@@ -531,7 +604,9 @@ theorem card_split_eq_card_joined_add_one {m : ℕ} (left right : Fin m → Prop
   omega
 
 /-- If a two-edge path is already complete, the central edge does not change
-the component count.-/
+the component count.
+@isnad1 id=eq.1h3v.s5.e54885ea8010 from=translated src=- shape=355caacc vocab=57b269cf
+-/
 theorem card_split_eq_card_joined_of_path {m : ℕ} (left right : Fin m → Prop)
     (hpath : ∃ j, left j ∧ right j) :
     Nat.card (starGraph left right False).ConnectedComponent =
@@ -547,7 +622,9 @@ noncomputable def splitComponentExtra (joined : Prop) : ℕ :=
 
 /-- Uniform component count for the theta graph: one core component, one for
 each detached middle vertex, and one extra core component exactly when neither
-the central edge nor a complete two-edge path joins `s` to `t`.-/
+the central edge nor a complete two-edge path joins `s` to `t`.
+@isnad1 id=eq.0h4v.s6.6830faa2750f from=translated src=- shape=eb0ba662 vocab=cffe5ad1
+-/
 theorem card_connectedComponent_starGraph {m : ℕ}
     (left right : Fin m → Prop) (central : Prop) :
     Nat.card (starGraph left right central).ConnectedComponent =
@@ -568,12 +645,18 @@ theorem card_connectedComponent_starGraph {m : ℕ}
       splitComponentExtra, ite_eq_right hjoined]
     omega
 
+/--
+@isnad1 id=eq.0h4v.s5.bf71cd0e6906 from=translated src=- shape=e8a80efc vocab=b96abdec
+-/
 @[simp]
 theorem sublevelGraph_eq_starGraph {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) :
     sublevelGraph F x = starGraph (fun j ↦ edgeActive F x (.a j))
       (fun j ↦ edgeActive F x (.b j)) (edgeActive F x .e) := rfl
 
+/--
+@isnad1 id=iff.0h2v.s6.a5c9891e3400 from=translated src=- shape=76c266d7 vocab=83457558
+-/
 theorem verticesActive_fGrade_iff (m : ℕ) (x : RealGrade 3) :
     verticesActive (fGrade m) x ↔ 0 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
   simp only [verticesActive, Grade.leReal, fGrade]
@@ -583,6 +666,9 @@ theorem verticesActive_fGrade_iff (m : ℕ) (x : RealGrade 3) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h2v.s6.7f7ca16e7647 from=translated src=- shape=76c266d7 vocab=9cee09bc
+-/
 theorem verticesActive_gGrade_iff (m : ℕ) (x : RealGrade 3) :
     verticesActive (gGrade m) x ↔ 0 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
   simp only [verticesActive, Grade.leReal, gGrade]
@@ -592,6 +678,9 @@ theorem verticesActive_gGrade_iff (m : ℕ) (x : RealGrade 3) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h2v.s6.565a36754f15 from=translated src=- shape=003c841f vocab=d944b5d2
+-/
 theorem edgeActive_fGrade_e_iff (m : ℕ) (x : RealGrade 3) :
     edgeActive (fGrade m) x .e ↔ 2 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
   simp only [edgeActive, Grade.leReal, fGrade]
@@ -601,6 +690,9 @@ theorem edgeActive_fGrade_e_iff (m : ℕ) (x : RealGrade 3) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h2v.s6.545e338723fa from=translated src=- shape=003c841f vocab=9ac73c0b
+-/
 theorem edgeActive_gGrade_e_iff (m : ℕ) (x : RealGrade 3) :
     edgeActive (gGrade m) x .e ↔ 1 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
   simp only [edgeActive, Grade.leReal, gGrade]
@@ -610,6 +702,9 @@ theorem edgeActive_gGrade_e_iff (m : ℕ) (x : RealGrade 3) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h3v.s6.e868a2b99595 from=translated src=- shape=da3e7d46 vocab=79fec0c9
+-/
 theorem edgeActive_fGrade_a_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
     edgeActive (fGrade m) x (.a j) ↔
       0 ≤ x 0 ∧ (j.1 + 1 : ℕ) ≤ x 1 ∧ 0 ≤ x 2 := by
@@ -620,6 +715,9 @@ theorem edgeActive_fGrade_a_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h3v.s6.dd784fd9a275 from=translated src=- shape=da3e7d46 vocab=4667fe69
+-/
 theorem edgeActive_gGrade_a_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
     edgeActive (gGrade m) x (.a j) ↔
       0 ≤ x 0 ∧ (j.1 + 1 : ℕ) ≤ x 1 ∧ 0 ≤ x 2 := by
@@ -630,6 +728,9 @@ theorem edgeActive_gGrade_a_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h3v.s6.7401aa32ab8d from=translated src=- shape=3fcf9d40 vocab=f5afc033
+-/
 theorem edgeActive_fGrade_b_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
     edgeActive (fGrade m) x (.b j) ↔
       0 ≤ x 0 ∧ 0 ≤ x 1 ∧ (m - j.1 : ℕ) ≤ x 2 := by
@@ -640,6 +741,9 @@ theorem edgeActive_fGrade_b_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
   · rintro ⟨h0, h1, h2⟩ i
     fin_cases i <;> norm_num at * <;> assumption
 
+/--
+@isnad1 id=iff.0h3v.s6.24efc53d30e2 from=translated src=- shape=3fcf9d40 vocab=bbb5c325
+-/
 theorem edgeActive_gGrade_b_iff (m : ℕ) (x : RealGrade 3) (j : Fin m) :
     edgeActive (gGrade m) x (.b j) ↔
       0 ≤ x 0 ∧ 0 ≤ x 1 ∧ (m - j.1 : ℕ) ≤ x 2 := by
@@ -658,6 +762,9 @@ def leftAt (m : ℕ) (x : RealGrade 3) (j : Fin m) : Prop :=
 def rightAt (m : ℕ) (x : RealGrade 3) (j : Fin m) : Prop :=
   ((m - j.1 : ℕ) : ℝ) ≤ x 2
 
+/--
+@isnad1 id=eq.3h2v.s7.355b0a5a4410 from=translated src=- shape=10ed4114 vocab=eb968edc
+-/
 theorem sublevelGraph_fGrade_eq (m : ℕ) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
     sublevelGraph (fGrade m) x =
@@ -672,6 +779,9 @@ theorem sublevelGraph_fGrade_eq (m : ℕ) (x : RealGrade 3)
       simp [rightAt, h0, h1]
   · exact propext <| (edgeActive_fGrade_e_iff m x).trans <| by simp [h1, h2]
 
+/--
+@isnad1 id=eq.3h2v.s7.f205bbe8f602 from=translated src=- shape=10ed4114 vocab=7ec39c64
+-/
 theorem sublevelGraph_gGrade_eq (m : ℕ) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
     sublevelGraph (gGrade m) x =
@@ -686,6 +796,9 @@ theorem sublevelGraph_gGrade_eq (m : ℕ) (x : RealGrade 3)
       simp [rightAt, h0, h1]
   · exact propext <| (edgeActive_gGrade_e_iff m x).trans <| by simp [h1, h2]
 
+/--
+@isnad1 id=eq.3h2v.s7.1efa7b780e30 from=translated src=- shape=126f83a7 vocab=182fe279
+-/
 theorem ordinaryH0Dim_fGrade_of_active (m : ℕ) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
     ordinaryH0Dim (fGrade m) x =
@@ -697,6 +810,9 @@ theorem ordinaryH0Dim_fGrade_of_active (m : ℕ) (x : RealGrade 3)
   rw [ordinaryH0Dim, ite_eq_left hv, sublevelGraph_fGrade_eq m x h0 h1 h2,
     card_connectedComponent_starGraph]
 
+/--
+@isnad1 id=eq.3h2v.s7.fb9a47267363 from=translated src=- shape=126f83a7 vocab=69500217
+-/
 theorem ordinaryH0Dim_gGrade_of_active (m : ℕ) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
     ordinaryH0Dim (gGrade m) x =
@@ -722,7 +838,9 @@ noncomputable def h0HilbertDifference (m : ℕ) (x : RealGrade 3) : ℤ :=
   (ordinaryH0Dim (fGrade m) x : ℤ) - (ordinaryH0Dim (gGrade m) x : ℤ)
 
 /-- The difference of the ordinary `H₀` Hilbert functions is a slab indicator
-times the staircase complement.-/
+times the staircase complement.
+@isnad1 id=eq.0h2v.s6.569f661e178f from=translated src=- shape=aad3a5f2 vocab=508e9e34
+-/
 theorem h0HilbertDifference_eq_slab_staircase (m : ℕ) (x : RealGrade 3) :
     h0HilbertDifference m x = slabIndicator (x 0) * staircase m (x 1) (x 2) := by
   classical
@@ -813,12 +931,18 @@ noncomputable def lowerCoefficientHom {n : ℕ} (a x : RealGrade n) : ℤ →+ �
   classical
   exact if RealGrade.LE a x then AddMonoidHom.id ℤ else 0
 
+/--
+@isnad1 id=eq.1h4v.s5.530058994f74 from=translated src=- shape=630ab9eb vocab=6c402b26
+-/
 @[simp]
 theorem lowerCoefficientHom_apply_of_le {n : ℕ} (a x : RealGrade n) (c : ℤ)
     (h : RealGrade.LE a x) : lowerCoefficientHom a x c = c := by
   classical
   simp [lowerCoefficientHom, h]
 
+/--
+@isnad1 id=eq.1h4v.s5.8c8dfb1ead0c from=translated src=- shape=82ca23e0 vocab=6c402b26
+-/
 @[simp]
 theorem lowerCoefficientHom_apply_of_not_le {n : ℕ} (a x : RealGrade n) (c : ℤ)
     (h : ¬ RealGrade.LE a x) : lowerCoefficientHom a x c = 0 := by
@@ -834,22 +958,34 @@ noncomputable def cumulative {n : ℕ} (μ : AtomicSignedMeasure n) (x : RealGra
   classical
   exact μ.sum fun a ↦ lowerCoefficientHom a x
 
+/--
+@isnad1 id=eq.0h3v.s4.2bd2ec9264d1 from=translated src=- shape=d235c16b vocab=9e265ed0
+-/
 @[simp]
 theorem cumulative_atom {n : ℕ} (a x : RealGrade n) :
     cumulative (atom a) x = lowerIndicator a x := by
   classical
   simp [cumulative, atom, lowerIndicator]
 
+/--
+@isnad1 id=eq.0h4v.s5.70b93e0fda24 from=translated src=- shape=4e1ee233 vocab=ed9ddd00
+-/
 theorem cumulative_single {n : ℕ} (a : RealGrade n) (c : ℤ) (x : RealGrade n) :
     cumulative (Finsupp.single a c) x = lowerCoefficientHom a x c := by
   classical
   simp [cumulative]
 
+/--
+@isnad1 id=eq.0h4v.s5.c0604ce6947d from=translated src=- shape=96b0168c vocab=12cfd37a
+-/
 theorem cumulative_add {n : ℕ} (μ ν : AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (μ + ν) x = cumulative μ x + cumulative ν x := by
   classical
   simp [cumulative]
 
+/--
+@isnad1 id=eq.0h3v.s5.08e1af5979b4 from=translated src=- shape=e1245658 vocab=f2601210
+-/
 theorem cumulative_neg {n : ℕ} (μ : AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (-μ) x = -cumulative μ x := by
   classical
@@ -858,6 +994,9 @@ theorem cumulative_neg {n : ℕ} (μ : AtomicSignedMeasure n) (x : RealGrade n) 
     simp [cumulative]
   omega
 
+/--
+@isnad1 id=eq.0h4v.s5.dda98965db25 from=translated src=- shape=96b0168c vocab=10ce9f72
+-/
 theorem cumulative_sub {n : ℕ} (μ ν : AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (μ - ν) x = cumulative μ x - cumulative ν x := by
   rw [sub_eq_add_neg, cumulative_add, cumulative_neg, sub_eq_add_neg]
@@ -869,6 +1008,9 @@ noncomputable def cumulativeAddHom {n : ℕ} (x : RealGrade n) :
   map_zero' := by classical simp [cumulative]
   map_add' μ ν := cumulative_add μ ν x
 
+/--
+@isnad1 id=eq.0h3v.s5.e543e74eb528 from=translated src=- shape=ddc4d920 vocab=84308c1f
+-/
 @[simp]
 theorem cumulativeAddHom_apply {n : ℕ} (x : RealGrade n) (μ : AtomicSignedMeasure n) :
     cumulativeAddHom x μ = cumulative μ x := rfl
@@ -883,6 +1025,9 @@ def IsHilbertDecomposition {n : ℕ} (h : RealGrade n → ℤ)
 proof.-/
 def coordinateWeight {n : ℕ} (a : RealGrade n) : ℝ := ∑ i, a i
 
+/--
+@isnad1 id=lt.2h3v.s4.f4c15ea0196b from=translated src=- shape=1f20e1e4 vocab=d324acd8
+-/
 theorem coordinateWeight_lt_of_le_of_ne {n : ℕ} {a b : RealGrade n}
     (hle : RealGrade.LE a b) (hne : a ≠ b) : coordinateWeight a < coordinateWeight b := by
   classical
@@ -890,6 +1035,9 @@ theorem coordinateWeight_lt_of_le_of_ne {n : ℕ} {a b : RealGrade n}
   apply Finset.sum_lt_sum (fun j _ ↦ hle j)
   exact ⟨i, Finset.mem_univ i, lt_of_le_of_ne (hle i) hi⟩
 
+/--
+@isnad1 id=ex.1h2v.s6.cc55b4a4822a from=translated src=- shape=fa433c92 vocab=89fae663
+-/
 theorem exists_coordinatewise_minimal_atom {n : ℕ} {μ : AtomicSignedMeasure n}
     (hμ : μ ≠ 0) :
     ∃ a ∈ μ.support, ∀ b ∈ μ.support, RealGrade.LE b a → b = a := by
@@ -901,6 +1049,9 @@ theorem exists_coordinatewise_minimal_atom {n : ℕ} {μ : AtomicSignedMeasure n
   by_contra hne
   exact (not_lt_of_ge (hmin b hb)) (coordinateWeight_lt_of_le_of_ne hle hne)
 
+/--
+@isnad1 id=eq.2h3v.s6.243a7c027e76 from=translated src=- shape=2ca637dc vocab=ba74cf8d
+-/
 theorem cumulative_eq_coefficient_of_minimal {n : ℕ} {μ : AtomicSignedMeasure n}
     {a : RealGrade n} (ha : a ∈ μ.support)
     (hmin : ∀ b ∈ μ.support, RealGrade.LE b a → b = a) :
@@ -920,7 +1071,9 @@ theorem cumulative_eq_coefficient_of_minimal {n : ℕ} {μ : AtomicSignedMeasure
 
 /-- Finite signed point measures are uniquely determined by all lower-orthant
 cumulative values.  This is the finite uniqueness bridge used to identify the
-Hilbert decomposition measure, rather than merely an analogous atom formula.-/
+Hilbert decomposition measure, rather than merely an analogous atom formula.
+@isnad1 id=eq.1h3v.s4.e1c20cbfe5a1 from=translated src=- shape=56a2f518 vocab=8b179d8c
+-/
 theorem atomicSignedMeasure_ext {n : ℕ} {μ ν : AtomicSignedMeasure n}
     (h : ∀ x, cumulative μ x = cumulative ν x) : μ = ν := by
   apply sub_eq_zero.mp
@@ -931,6 +1084,9 @@ theorem atomicSignedMeasure_ext {n : ℕ} {μ ν : AtomicSignedMeasure n}
   have hcoeff := cumulative_eq_coefficient_of_minimal ha hmin
   exact (Finsupp.mem_support_iff.mp ha) (hcoeff ▸ hzero)
 
+/--
+@isnad1 id=eq.2h4v.s4.6e3b60b1bd9d from=translated src=- shape=4bafb8a0 vocab=ee021880
+-/
 theorem IsHilbertDecomposition.unique {n : ℕ} {h : RealGrade n → ℤ}
     {μ ν : AtomicSignedMeasure n} (hμ : IsHilbertDecomposition h μ)
     (hν : IsHilbertDecomposition h ν) : μ = ν :=
@@ -940,6 +1096,9 @@ theorem IsHilbertDecomposition.unique {n : ℕ} {h : RealGrade n → ℤ}
 def lowerOrthant {n : ℕ} (x : RealGrade n) : Set (RealGrade n) :=
   {a | RealGrade.LE a x}
 
+/--
+@isnad1 id=measurab.0h2v.s4.7d200cb6db1a from=translated src=- shape=8e4ef8bc vocab=f691d970
+-/
 theorem measurableSet_lowerOrthant {n : ℕ} (x : RealGrade n) :
     MeasurableSet (lowerOrthant x) := by
   change MeasurableSet {a : Fin n → ℝ | ∀ i, a i ≤ x i}
@@ -953,12 +1112,18 @@ noncomputable def AtomicSignedMeasure.toSignedMeasure {n : ℕ}
     (μ : AtomicSignedMeasure n) : MeasureTheory.SignedMeasure (RealGrade n) :=
   μ.sum fun a c ↦ (c : ℝ) • (Measure.dirac a).toSignedMeasure
 
+/--
+@isnad1 id=eq.0h3v.s7.4e03bd2d7c1f from=translated src=- shape=2d71d6de vocab=f7aab629
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_add {n : ℕ}
     (μ ν : AtomicSignedMeasure n) :
     (μ + ν).toSignedMeasure = μ.toSignedMeasure + ν.toSignedMeasure := by
   classical
   simp [AtomicSignedMeasure.toSignedMeasure, Finsupp.sum_add_index', add_smul]
 
+/--
+@isnad1 id=eq.0h2v.s6.4fe7aad2357a from=translated src=- shape=4e075bec vocab=3f0314a8
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_neg {n : ℕ}
     (mu : AtomicSignedMeasure n) :
     (-mu).toSignedMeasure = -mu.toSignedMeasure := by
@@ -967,12 +1132,18 @@ theorem AtomicSignedMeasure.toSignedMeasure_neg {n : ℕ}
     simp [AtomicSignedMeasure.toSignedMeasure]
   exact eq_neg_of_add_eq_zero_right h
 
+/--
+@isnad1 id=eq.0h3v.s7.aa5d6165183d from=translated src=- shape=2d71d6de vocab=854eee87
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_sub {n : ℕ}
     (mu nu : AtomicSignedMeasure n) :
     (mu - nu).toSignedMeasure = mu.toSignedMeasure - nu.toSignedMeasure := by
   simp [sub_eq_add_neg, AtomicSignedMeasure.toSignedMeasure_add,
     AtomicSignedMeasure.toSignedMeasure_neg]
 
+/--
+@isnad1 id=eq.0h4v.s6.bc21f9ddfb8e from=translated src=- shape=6b269042 vocab=286b432f
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_single_apply_lowerOrthant {n : ℕ}
     (a : RealGrade n) (c : ℤ) (x : RealGrade n) :
     AtomicSignedMeasure.toSignedMeasure (Finsupp.single a c : AtomicSignedMeasure n)
@@ -989,7 +1160,9 @@ theorem AtomicSignedMeasure.toSignedMeasure_single_apply_lowerOrthant {n : ℕ}
   · simp
 
 /-- The finite cumulative definition is exactly evaluation of the genuine
-signed Dirac measure on a lower orthant.-/
+signed Dirac measure on a lower orthant.
+@isnad1 id=eq.0h3v.s6.4f224d588f21 from=translated src=- shape=64642e5b vocab=412882ec
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_apply_lowerOrthant {n : ℕ}
     (μ : AtomicSignedMeasure n) (x : RealGrade n) :
     μ.toSignedMeasure (lowerOrthant x) = (cumulative μ x : ℝ) := by
@@ -1032,7 +1205,9 @@ noncomputable def staircaseMeasure (m : ℕ) : AtomicSignedMeasure 2 :=
     ∑ j ∈ Finset.range (m - 1), atom (cornerPointNat m j)
 
 /-- The range-indexed definition is the Möbius atom formula for the
-staircase.-/
+staircase.
+@isnad1 id=eq.0h1v.s8.a7c27ab2952c from=translated src=- shape=2bfea311 vocab=691372e6
+-/
 theorem staircaseMeasure_eq_pdf_formula (m : ℕ) :
     staircaseMeasure m =
       atom ![0, 0] - (∑ j : Fin m, atom (pathPoint m j)) +
@@ -1055,6 +1230,9 @@ theorem staircaseMeasure_eq_pdf_formula (m : ℕ) :
 def concatGrade {n k : ℕ} (x : RealGrade n) (y : RealGrade k) : RealGrade (n + k) :=
   Fin.addCases x y
 
+/--
+@isnad1 id=iff.0h6v.s5.54e6ea209f8a from=translated src=- shape=39ed4a0b vocab=ef7e5945
+-/
 theorem concatGrade_le_iff {n k : ℕ} (a x : RealGrade n) (b y : RealGrade k) :
     RealGrade.LE (concatGrade a b) (concatGrade x y) ↔
       RealGrade.LE a x ∧ RealGrade.LE b y := by
@@ -1073,6 +1251,9 @@ noncomputable def AtomicSignedMeasure.tensor {n k : ℕ}
     AtomicSignedMeasure (n + k) :=
   μ.sum fun a ca ↦ ν.sum fun b cb ↦ (ca * cb) • atom (concatGrade a b)
 
+/--
+@isnad1 id=eq.0h5v.s6.ced087f982b0 from=translated src=- shape=e2c9ba8c vocab=355c4a28
+-/
 theorem AtomicSignedMeasure.tensor_add_left {n k : ℕ}
     (μ₁ μ₂ : AtomicSignedMeasure n) (ν : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor (μ₁ + μ₂) ν =
@@ -1080,6 +1261,9 @@ theorem AtomicSignedMeasure.tensor_add_left {n k : ℕ}
   classical
   simp [AtomicSignedMeasure.tensor, Finsupp.sum_add_index', add_mul, add_smul]
 
+/--
+@isnad1 id=eq.0h5v.s6.ed198ed97abe from=translated src=- shape=b9df018d vocab=355c4a28
+-/
 theorem AtomicSignedMeasure.tensor_add_right {n k : ℕ}
     (μ : AtomicSignedMeasure n) (ν₁ ν₂ : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor μ (ν₁ + ν₂) =
@@ -1088,6 +1272,9 @@ theorem AtomicSignedMeasure.tensor_add_right {n k : ℕ}
   simp [AtomicSignedMeasure.tensor, Finsupp.sum_add_index', mul_add, add_smul,
     Finsupp.sum_add]
 
+/--
+@isnad1 id=eq.0h6v.s6.49b605f9a331 from=translated src=- shape=4661b4f7 vocab=b429c11f
+-/
 theorem AtomicSignedMeasure.tensor_single_single {n k : ℕ}
     (a : RealGrade n) (ca : ℤ) (b : RealGrade k) (cb : ℤ) :
     AtomicSignedMeasure.tensor (Finsupp.single a ca) (Finsupp.single b cb) =
@@ -1102,11 +1289,17 @@ noncomputable def slabMeasure : AtomicSignedMeasure 1 := atom ![1] - atom ![2]
 noncomputable def hilbertDifferenceMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
   AtomicSignedMeasure.tensor slabMeasure (staircaseMeasure m)
 
+/--
+@isnad1 id=eq.0h4v.s5.673dfde7e492 from=translated src=- shape=d9b276ad vocab=ab0b21d9
+-/
 theorem cumulative_smul {n : ℕ} (c : ℤ) (μ : AtomicSignedMeasure n)
     (x : RealGrade n) : cumulative (c • μ) x = c * cumulative μ x := by
   classical
   simpa [smul_eq_mul] using (cumulativeAddHom x).map_zsmul c μ
 
+/--
+@isnad1 id=eq.0h5v.s5.d8f4272294a9 from=translated src=- shape=0ee08203 vocab=eca6caa4
+-/
 theorem cumulative_finset_sum {n : ℕ} {ι : Type*} (s : Finset ι)
     (μ : ι → AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (∑ i ∈ s, μ i) x = ∑ i ∈ s, cumulative (μ i) x := by
@@ -1115,12 +1308,18 @@ theorem cumulative_finset_sum {n : ℕ} {ι : Type*} (s : Finset ι)
   | empty => simp [cumulative]
   | @insert a s ha ih => simp [ha, cumulative_add, ih]
 
+/--
+@isnad1 id=eq.0h4v.s5.9981f352f71b from=translated src=- shape=6ad7fd97 vocab=ddbd8d84
+-/
 theorem cumulative_fintype_sum {n : ℕ} {ι : Type*} [Fintype ι]
     (μ : ι → AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (∑ i, μ i) x = ∑ i, cumulative (μ i) x := by
   classical
   simpa using cumulative_finset_sum (Finset.univ : Finset ι) μ x
 
+/--
+@isnad1 id=eq.0h7v.s6.f689c7c24117 from=translated src=- shape=eef30660 vocab=abd3f3a5
+-/
 theorem cumulative_tensor_single_left {n k : ℕ} (a : RealGrade n) (ca : ℤ)
     (ν : AtomicSignedMeasure k) (x : RealGrade n) (y : RealGrade k) :
     cumulative (AtomicSignedMeasure.tensor (Finsupp.single a ca) ν) (concatGrade x y) =
@@ -1137,6 +1336,9 @@ theorem cumulative_tensor_single_left {n k : ℕ} (a : RealGrade n) (ca : ℤ)
         simp [lowerIndicator, concatGrade_le_iff, hax, hby]
       ring
 
+/--
+@isnad1 id=eq.0h6v.s5.27e4a93f9ad8 from=translated src=- shape=349cece7 vocab=568c7df3
+-/
 theorem cumulative_tensor {n k : ℕ} (μ : AtomicSignedMeasure n)
     (ν : AtomicSignedMeasure k) (x : RealGrade n) (y : RealGrade k) :
     cumulative (AtomicSignedMeasure.tensor μ ν) (concatGrade x y) =
@@ -1153,6 +1355,9 @@ theorem cumulative_tensor {n k : ℕ} (μ : AtomicSignedMeasure n)
 noncomputable def halfOpenIntervalMeasure (a b : ℝ) : AtomicSignedMeasure 1 :=
   atom ![a] - atom ![b]
 
+/--
+@isnad1 id=eq.1h3v.s7.76b7fdb4c95e from=translated src=- shape=3b990a0c vocab=7d19714f
+-/
 theorem cumulative_halfOpenIntervalMeasure (a b : ℝ) (hab : a ≤ b)
     (x : RealGrade 1) :
     cumulative (halfOpenIntervalMeasure a b) x =
@@ -1179,6 +1384,9 @@ noncomputable def detachedBoxMeasure (m : ℕ) (j : Fin m) :
       (halfOpenIntervalMeasure 0 (j.1 + 1 : ℕ))
       (halfOpenIntervalMeasure 0 (m - j.1 : ℕ)))
 
+/--
+@isnad1 id=eq.0h3v.s9.c2e82f937755 from=translated src=- shape=5507818a vocab=5d0557c3
+-/
 theorem cumulative_detachedBoxMeasure (m : ℕ) (j : Fin m)
     (x : RealGrade 3) :
     cumulative (detachedBoxMeasure m j) x =
@@ -1206,6 +1414,9 @@ theorem cumulative_detachedBoxMeasure (m : ℕ) (j : Fin m)
     simp [xr, xy, xz, h0, h1, h1', h2, h2',
       Nat.cast_sub (Nat.le_of_lt j.isLt)]
 
+/--
+@isnad1 id=eq.0h1v.s5.b06630cba27c from=translated src=- shape=a9d0e2c6 vocab=f5d90511
+-/
 theorem cumulative_slabMeasure (x : RealGrade 1) :
     cumulative slabMeasure x = slabIndicator (x 0) := by
   classical
@@ -1223,11 +1434,17 @@ theorem cumulative_slabMeasure (x : RealGrade 1) :
 
 /-! ### Proof of the staircase inversion -/
 
+/--
+@isnad1 id=iff.0h3v.s6.d67261c8692e from=translated src=- shape=d5f63f87 vocab=23194dee
+-/
 theorem pathPointNat_le_iff (m j : ℕ) (x : RealGrade 2) :
     RealGrade.LE (pathPointNat m j) x ↔
       ((j + 1 : ℕ) : ℝ) ≤ x 0 ∧ ((m - j : ℕ) : ℝ) ≤ x 1 := by
   simp [RealGrade.LE, pathPointNat, Fin.forall_fin_two]
 
+/--
+@isnad1 id=iff.0h3v.s6.69eede8a0d27 from=translated src=- shape=d5f63f87 vocab=bcd8bf13
+-/
 theorem cornerPointNat_le_iff (m j : ℕ) (x : RealGrade 2) :
     RealGrade.LE (cornerPointNat m j) x ↔
       ((j + 2 : ℕ) : ℝ) ≤ x 0 ∧ ((m - j : ℕ) : ℝ) ≤ x 1 := by
@@ -1238,16 +1455,25 @@ noncomputable def staircasePrefixMeasure (m k : ℕ) : AtomicSignedMeasure 2 :=
   atom ![0, 0] - (∑ j ∈ Finset.range k, atom (pathPointNat m j)) +
     ∑ j ∈ Finset.range (k - 1), atom (cornerPointNat m j)
 
+/--
+@isnad1 id=eq.0h1v.s5.06e92f3df911 from=translated src=- shape=4fc7f2aa vocab=777a30f0
+-/
 @[simp]
 theorem staircasePrefixMeasure_zero (m : ℕ) :
     staircasePrefixMeasure m 0 = atom ![0, 0] := by
   simp [staircasePrefixMeasure]
 
+/--
+@isnad1 id=eq.0h1v.s6.0cffc631a290 from=translated src=- shape=39527511 vocab=6d98e02f
+-/
 theorem staircasePrefixMeasure_one (m : ℕ) :
     staircasePrefixMeasure m 1 =
       staircasePrefixMeasure m 0 - atom (pathPointNat m 0) := by
   simp [staircasePrefixMeasure]
 
+/--
+@isnad1 id=eq.0h2v.s7.b6cd5ec0fe34 from=translated src=- shape=8502b05d vocab=53b989ea
+-/
 theorem staircasePrefixMeasure_succ_succ (m k : ℕ) :
     staircasePrefixMeasure m (k + 2) =
       staircasePrefixMeasure m (k + 1) - atom (pathPointNat m (k + 1)) +
@@ -1257,6 +1483,9 @@ theorem staircasePrefixMeasure_succ_succ (m k : ℕ) :
     Finset.sum_range_succ]
   abel
 
+/--
+@isnad1 id=eq.0h1v.s3.b8a934120a2a from=translated src=- shape=4085c55b vocab=b68dd955
+-/
 theorem staircasePrefixMeasure_self (m : ℕ) :
     staircasePrefixMeasure m m = staircaseMeasure m := rfl
 
@@ -1267,6 +1496,9 @@ noncomputable def staircasePrefixValue (m k : ℕ) (x : RealGrade 2) : ℤ :=
     exact if RealGrade.LE ![0, 0] x ∧
         ∀ j < k, ¬ RealGrade.LE (pathPointNat m j) x then 1 else 0
 
+/--
+@isnad1 id=le.3h3v.s6.6352e20de4df from=translated src=- shape=a04d4bce vocab=c969c34c
+-/
 theorem pathPointNat_previous_of_below {m k : ℕ} (x : RealGrade 2)
     (hkm : k + 2 ≤ m)
     (hnew : RealGrade.LE (pathPointNat m (k + 1)) x)
@@ -1280,6 +1512,9 @@ theorem pathPointNat_previous_of_below {m k : ℕ} (x : RealGrade 2)
   · have hsub : m - k ≤ m - j := by omega
     exact le_trans (by exact_mod_cast hsub) hj.2
 
+/--
+@isnad1 id=iff.1h3v.s6.ef7409bcc2ae from=translated src=- shape=a2134543 vocab=94b40962
+-/
 theorem cornerPointNat_below_iff {m k : ℕ} (x : RealGrade 2)
     (hkm : k + 2 ≤ m) :
     RealGrade.LE (cornerPointNat m k) x ↔
@@ -1295,6 +1530,9 @@ theorem cornerPointNat_below_iff {m k : ℕ} (x : RealGrade 2)
   · rintro ⟨⟨_, hz⟩, ⟨hx, _⟩⟩
     exact ⟨by simpa [Nat.add_assoc] using hx, hz⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.0112f6c3055d from=translated src=- shape=214190bc vocab=13a96747
+-/
 theorem noPath_succ_iff (P : ℕ → Prop) (k : ℕ) :
     (∀ j < k + 1, ¬ P j) ↔ (∀ j < k, ¬ P j) ∧ ¬ P k := by
   constructor
@@ -1306,6 +1544,9 @@ theorem noPath_succ_iff (P : ℕ → Prop) (k : ℕ) :
     · have : j = k := by omega
       simpa [this] using hk
 
+/--
+@isnad1 id=le.1h3v.s5.b1eecf215e17 from=translated src=- shape=736d2543 vocab=fa5bda5b
+-/
 theorem origin_below_of_pathPointNat_below {m j : ℕ} {x : RealGrade 2}
     (h : RealGrade.LE (pathPointNat m j) x) :
     RealGrade.LE ![0, 0] x := by
@@ -1314,11 +1555,16 @@ theorem origin_below_of_pathPointNat_below {m j : ℕ} {x : RealGrade 2}
     simp [RealGrade.LE, Fin.forall_fin_two]]
   exact ⟨le_trans (by positivity) h.1, le_trans (by positivity) h.2⟩
 
+/--
+@isnad1 id=iff.0h1v.s6.c6ff62fea61d from=translated src=- shape=10d4d0e9 vocab=f44fbdcb
+-/
 theorem originGrade_le_iff (x : RealGrade 2) :
     RealGrade.LE ![0, 0] x ↔ 0 ≤ x 0 ∧ 0 ≤ x 1 := by
   simp [RealGrade.LE, Fin.forall_fin_two]
 
-/-- The cumulative formula, first for an arbitrary staircase prefix.-/
+/-- The cumulative formula, first for an arbitrary staircase prefix.
+@isnad1 id=eq.1h3v.s5.a807368b3f66 from=translated src=- shape=5da0640c vocab=72d81ae9
+-/
 theorem cumulative_staircasePrefixMeasure (m k : ℕ) (x : RealGrade 2)
     (hkm : k ≤ m) :
     cumulative (staircasePrefixMeasure m k) x = staircasePrefixValue m k x := by
@@ -1412,7 +1658,9 @@ theorem cumulative_staircasePrefixMeasure (m k : ℕ) (x : RealGrade 2)
         simp [staircasePrefixValue, noPath_succ_iff, ho, hn, hc,
           lowerIndicator, lowerCoefficientHom]
 
-/-- The prefix predicate at `k=m` is exactly the staircase complement `qₘ`.-/
+/-- The prefix predicate at `k=m` is exactly the staircase complement `qₘ`.
+@isnad1 id=eq.0h2v.s5.d55c4e5f3ece from=translated src=- shape=fae12609 vocab=68deb0ae
+-/
 theorem staircasePrefixValue_self (m : ℕ) (x : RealGrade 2) :
     staircasePrefixValue m m x = staircase m (x 0) (x 1) := by
   have hcond :
@@ -1443,7 +1691,9 @@ theorem staircasePrefixValue_self (m : ℕ) (x : RealGrade 2) :
       fun h ↦ hleft (hcond.mpr h)
     rw [staircasePrefixValue, staircase, ite_eq_right hleft, ite_eq_right hright]
 
-/-- The cumulative function of `νₘ` is exactly the staircase complement.-/
+/-- The cumulative function of `νₘ` is exactly the staircase complement.
+@isnad1 id=eq.0h2v.s5.0b6f4a69a0f6 from=translated src=- shape=9441d16f vocab=d15e1e6f
+-/
 theorem cumulative_staircaseMeasure (m : ℕ) (x : RealGrade 2) :
     cumulative (staircaseMeasure m) x = staircase m (x 0) (x 1) := by
   rw [← staircasePrefixMeasure_self]
@@ -1478,6 +1728,9 @@ noncomputable def h0FMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
 noncomputable def h0GMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
   h0MeasureAtThreshold m 1
 
+/--
+@isnad1 id=eq.0h1v.s8.66a896f35727 from=translated src=- shape=651f0c27 vocab=d8ca3912
+-/
 theorem cumulative_h0CoreMeasure (x : RealGrade 3) :
     cumulative h0CoreMeasure x =
       if 0 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 then 1 else 0 := by
@@ -1497,6 +1750,9 @@ theorem cumulative_h0CoreMeasure (x : RealGrade 3) :
       fun hx ↦ h (hle.1 hx)
     simp [lowerIndicator, lowerCoefficientHom, h, hgrade]
 
+/--
+@isnad1 id=eq.0h2v.s9.1d7afa96462f from=translated src=- shape=ced9ea06 vocab=36ee9a85
+-/
 theorem cumulative_h0DetachedMeasure (m : ℕ) (x : RealGrade 3) :
     cumulative (h0DetachedMeasure m) x =
       ∑ j : Fin m,
@@ -1507,6 +1763,9 @@ theorem cumulative_h0DetachedMeasure (m : ℕ) (x : RealGrade 3) :
   intro j _
   exact cumulative_detachedBoxMeasure m j x
 
+/--
+@isnad1 id=eq.3h2v.s6.cf757858bfef from=translated src=- shape=935cee34 vocab=6a5cf8b7
+-/
 theorem cumulative_h0DetachedMeasure_of_active (m : ℕ) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
     cumulative (h0DetachedMeasure m) x =
@@ -1534,6 +1793,9 @@ theorem cumulative_h0DetachedMeasure_of_active (m : ℕ) (x : RealGrade 3)
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.c4dd418a71cc from=translated src=- shape=289f5891 vocab=91c6653f
+-/
 theorem cumulative_h0SplitMeasure (m : ℕ) (threshold : ℝ)
     (hthreshold : 0 ≤ threshold) (x : RealGrade 3) :
     cumulative (h0SplitMeasure m threshold) x =
@@ -1550,6 +1812,9 @@ theorem cumulative_h0SplitMeasure (m : ℕ) (threshold : ℝ)
     cumulative_staircaseMeasure]
   rfl
 
+/--
+@isnad1 id=eq.4h3v.s7.23d25c753a71 from=translated src=- shape=49c2bebd vocab=436581d1
+-/
 theorem cumulative_h0SplitMeasure_of_active (m : ℕ) (threshold : ℝ)
     (hthreshold : 0 ≤ threshold) (x : RealGrade 3)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : 0 ≤ x 2) :
@@ -1577,6 +1842,9 @@ theorem cumulative_h0SplitMeasure_of_active (m : ℕ) (threshold : ℝ)
       rw [hstair]
       simp [h0, hxt, ht, hp, splitComponentExtra]
 
+/--
+@isnad1 id=ishilber.0h1v.s4.b03542b1076a from=translated src=- shape=92543759 vocab=e3fdd66f
+-/
 theorem h0FMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition
       (fun x ↦ (ordinaryH0Dim (fGrade m) x : ℤ)) (h0FMeasure m) := by
@@ -1600,6 +1868,9 @@ theorem h0FMeasure_isHilbertDecomposition (m : ℕ) :
       cumulative_h0DetachedMeasure, cumulative_h0SplitMeasure m 2 (by norm_num)]
     simp [h0, h1, h2, staircase]
 
+/--
+@isnad1 id=ishilber.0h1v.s4.64d22119bf98 from=translated src=- shape=92543759 vocab=d25435fc
+-/
 theorem h0GMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition
       (fun x ↦ (ordinaryH0Dim (gGrade m) x : ℤ)) (h0GMeasure m) := by
@@ -1629,13 +1900,18 @@ def firstCoordinate (x : RealGrade 3) : RealGrade 1 := ![x 0]
 
 def lastTwoCoordinates (x : RealGrade 3) : RealGrade 2 := ![x 1, x 2]
 
+/--
+@isnad1 id=eq.0h1v.s5.86bee7c817f4 from=translated src=- shape=f5d3de9c vocab=bff873b7
+-/
 theorem concat_first_last (x : RealGrade 3) :
     concatGrade (firstCoordinate x) (lastTwoCoordinates x) = x := by
   funext i
   fin_cases i <;> rfl
 
 /-- The product Möbius measure has precisely the graph's Hilbert-function
-difference as its cumulative function.-/
+difference as its cumulative function.
+@isnad1 id=eq.0h2v.s4.5c79bbcd6c7f from=translated src=- shape=8abf66ba vocab=06398034
+-/
 theorem cumulative_hilbertDifferenceMeasure (m : ℕ) (x : RealGrade 3) :
     cumulative (hilbertDifferenceMeasure m) x = h0HilbertDifference m x := by
   rw [← concat_first_last x, hilbertDifferenceMeasure, cumulative_tensor,
@@ -1643,13 +1919,18 @@ theorem cumulative_hilbertDifferenceMeasure (m : ℕ) (x : RealGrade 3) :
     h0HilbertDifference_eq_slab_staircase]
   rfl
 
+/--
+@isnad1 id=ishilber.0h1v.s3.8a31253a53fa from=translated src=- shape=88774e53 vocab=689ccbb3
+-/
 theorem hilbertDifferenceMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition (h0HilbertDifference m)
       (hilbertDifferenceMeasure m) :=
   cumulative_hilbertDifferenceMeasure m
 
 /-- The finite atom formula is also an actual mathlib signed measure whose
-lower-orthant values equal the ordinary-`H₀` Hilbert-function difference.-/
+lower-orthant values equal the ordinary-`H₀` Hilbert-function difference.
+@isnad1 id=eq.0h2v.s6.c91ef45dd8d4 from=translated src=- shape=bcf22b94 vocab=84d1f911
+-/
 theorem hilbertDifferenceSignedMeasure_apply_lowerOrthant (m : ℕ)
     (x : RealGrade 3) :
     (hilbertDifferenceMeasure m).toSignedMeasure (lowerOrthant x) =
@@ -1685,6 +1966,9 @@ def OnlyCentralEdgeDiffers {m n : ℕ}
     (F G : Simplex m → RealGrade n) : Prop :=
   ∀ sigma, sigma ≠ .edge .e → F sigma = G sigma
 
+/--
+@isnad1 id=realmono.1h3v.s4.dc0f35697320 from=translated src=- shape=d9165612 vocab=f3f76b5b
+-/
 theorem realifyFiltration_monotone {m n : ℕ} {F : Simplex m → Grade n}
     (hF : MonotoneFiltration F) : RealMonotoneFiltration (realifyFiltration F) := by
   intro e v hv i
@@ -1696,11 +1980,17 @@ def realFiltrationL1Distance {m n : ℕ}
     (F G : Simplex m → RealGrade n) : ℝ :=
   ∑ sigma, realL1Distance (F sigma) (G sigma)
 
+/--
+@isnad1 id=eq.0h3v.s4.50ce3fe8b313 from=translated src=- shape=d30e88b1 vocab=53047fb7
+-/
 theorem realL1Distance_toReal {n : ℕ} (a b : Grade n) :
     realL1Distance a.toReal b.toReal = (l1Distance a b : ℝ) := by
   simp [realL1Distance, l1Distance, Grade.toReal, ← Int.cast_sub,
     ← Int.cast_abs, Nat.cast_natAbs]
 
+/--
+@isnad1 id=eq.0h4v.s5.ed62c930db05 from=translated src=- shape=eb45e38f vocab=a12831f2
+-/
 theorem realFiltrationL1Distance_realify {m n : ℕ}
     (F G : Simplex m → Grade n) :
     realFiltrationL1Distance (realifyFiltration F) (realifyFiltration G) =
@@ -1721,6 +2011,9 @@ def realAllVerticesActive {m n : ℕ} (F : Simplex m → RealGrade n)
     (x : RealGrade n) : Prop :=
   ∀ v, RealGrade.LE (F (.vertex v)) x
 
+/--
+@isnad1 id=iff.1h4v.s4.1243f1942d1f from=translated src=- shape=fdf9d946 vocab=f0706c5b
+-/
 theorem realAllVerticesActive_iff {m n : ℕ}
     {F : Simplex m → RealGrade n} (hcommon : CommonVertexGrade F)
     (x : RealGrade n) :
@@ -1742,7 +2035,9 @@ def realSublevelGraph {m n : ℕ} (F : Simplex m → RealGrade n)
     | _, _ => False
 
 /-- The hard-coded sublevel adjacency is carried by the concrete graph
-`graph m`; no extra edge can appear.-/
+`graph m`; no extra edge can appear.
+@isnad1 id=le.0h4v.s4.7b8087da5878 from=translated src=- shape=d5cfb302 vocab=e13f4b50
+-/
 theorem realSublevelGraph_le_graph {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
     realSublevelGraph F x ≤ graph m := by
@@ -1783,28 +2078,42 @@ noncomputable def realOrdinaryH0Dim {m n : ℕ}
   exact if realVerticesActive F x then
     Nat.card (realSublevelGraph F x).ConnectedComponent else 0
 
+/--
+@isnad1 id=eq.0h4v.s4.682de172960f from=translated src=- shape=22c6dfe9 vocab=242b574d
+-/
 @[simp]
 theorem realVerticesActive_realify {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) :
     realVerticesActive (realifyFiltration F) x = verticesActive F x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.497fc9dd98cb from=translated src=- shape=5c291ad3 vocab=67d25201
+-/
 @[simp]
 theorem realSublevelGraph_realify {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) :
     realSublevelGraph (realifyFiltration F) x = sublevelGraph F x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.6fb3ea49503d from=translated src=- shape=bca35a73 vocab=f5c2e1c8
+-/
 @[simp]
 theorem realOrdinaryH0Dim_realify {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) :
     realOrdinaryH0Dim (realifyFiltration F) x = ordinaryH0Dim F x := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.a48212a8f49d from=translated src=- shape=f6578e3b vocab=9091e299
+-/
 @[simp]
 theorem Grade.toReal_zero_two :
     Grade.toReal (![(0 : ℤ), 0] : Grade 2) = (![0, 0] : RealGrade 2) := by
   funext i
   fin_cases i <;> simp [Grade.toReal]
 
-/-- Distinct integer-lattice points are at `ℓ¹` distance at least one.-/
+/-- Distinct integer-lattice points are at `ℓ¹` distance at least one.
+@isnad1 id=le.1h3v.s4.6a24d5317aa6 from=translated src=- shape=59fb85ea vocab=64c14e63
+-/
 theorem one_le_realL1Distance_toReal_of_ne {n : ℕ} {a b : Grade n}
     (h : a ≠ b) : 1 ≤ realL1Distance a.toReal b.toReal := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp h
@@ -1835,6 +2144,9 @@ def staircasePositiveInteger (m : ℕ) : StaircasePositiveIndex m → Grade 2
 def staircaseNegativeInteger (m : ℕ) (j : Fin m) : Grade 2 :=
   pathPointInteger m j.1
 
+/--
+@isnad1 id=ne.1h3v.s4.834e7999b0d1 from=translated src=- shape=0213d381 vocab=0d948ff2
+-/
 theorem staircasePositiveInteger_ne_negativeInteger {m : ℕ} (hm : 1 ≤ m)
     (i : StaircasePositiveIndex m) (j : Fin m) :
     staircasePositiveInteger m i ≠ staircaseNegativeInteger m j := by
@@ -1877,6 +2189,9 @@ def counterexampleSourcePoint (m : ℕ) (i : CounterexampleAtomIndex m) :
 def counterexampleTargetPoint (m : ℕ) (i : CounterexampleAtomIndex m) :
     RealGrade 3 := (counterexampleTargetInteger m i).toReal
 
+/--
+@isnad1 id=ne.1h3v.s4.cb3f12733105 from=translated src=- shape=1cd4ec99 vocab=41ecba7f
+-/
 theorem counterexampleSourceInteger_ne_targetInteger {m : ℕ} (hm : 1 ≤ m)
     (i j : CounterexampleAtomIndex m) :
     counterexampleSourceInteger m i ≠ counterexampleTargetInteger m j := by
@@ -1907,6 +2222,9 @@ theorem counterexampleSourceInteger_ne_targetInteger {m : ℕ} (hm : 1 ≤ m)
           norm_num [counterexampleSourceInteger, counterexampleTargetInteger,
             prependInteger] at h0
 
+/--
+@isnad1 id=le.1h3v.s5.33c3ccce1614 from=translated src=- shape=05bfde64 vocab=58f3cc77
+-/
 theorem one_le_counterexample_source_target_distance {m : ℕ} (hm : 1 ≤ m)
     (i j : CounterexampleAtomIndex m) :
     1 ≤ realL1Distance (counterexampleSourcePoint m i)
@@ -1914,6 +2232,9 @@ theorem one_le_counterexample_source_target_distance {m : ℕ} (hm : 1 ≤ m)
   one_le_realL1Distance_toReal_of_ne
     (counterexampleSourceInteger_ne_targetInteger hm i j)
 
+/--
+@isnad1 id=eq.0h2v.s4.9d7786eae945 from=translated src=- shape=ed63b922 vocab=ae92b422
+-/
 theorem counterexample_corresponding_distance (m : ℕ)
     (i : CounterexampleAtomIndex m) :
     realL1Distance (counterexampleSourcePoint m i)
@@ -1924,6 +2245,9 @@ theorem counterexample_corresponding_distance (m : ℕ)
       Grade.toReal, prependInteger, realL1Distance, Fin.sum_univ_succ] <;>
     norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.2ca9dd282ade from=translated src=- shape=bf1af62c vocab=09785418
+-/
 theorem card_counterexampleAtomIndex {m : ℕ} (hm : 1 ≤ m) :
     Fintype.card (CounterexampleAtomIndex m) = 2 * m := by
   simp [CounterexampleAtomIndex, StaircasePositiveIndex]
@@ -1950,12 +2274,18 @@ noncomputable def identityUnitCoupling {n : ℕ} {I : Type*}
   row_sum i := by simp
   column_sum j := by simp
 
+/--
+@isnad1 id=eq.0h4v.s5.65d3e10d341b from=translated src=- shape=a49b865b vocab=ec010d9b
+-/
 theorem identityUnitCoupling_cost {n : ℕ} {I : Type*}
     [Fintype I] [DecidableEq I] (source target : I → RealGrade n) :
     (identityUnitCoupling source target).cost =
       ∑ i, realL1Distance (source i) (target i) := by
   simp [UnitCoupling.cost, identityUnitCoupling]
 
+/--
+@isnad1 id=le.0h5v.s5.741fe3290cb6 from=translated src=- shape=27658934 vocab=fbc2fb4c
+-/
 theorem UnitCoupling.cost_nonnegative {n : ℕ} {I : Type*} [Fintype I]
     {source target : I → RealGrade n} (c : UnitCoupling source target) :
     0 ≤ c.cost := by
@@ -1968,6 +2298,9 @@ theorem UnitCoupling.cost_nonnegative {n : ℕ} {I : Type*} [Fintype I]
   intro q _
   exact abs_nonneg _
 
+/--
+@isnad1 id=le.1h5v.s5.43498f4bc8a9 from=translated src=- shape=27391bd7 vocab=da151231
+-/
 theorem UnitCoupling.card_le_cost {n : ℕ} {I : Type*} [Fintype I]
     {source target : I → RealGrade n} (c : UnitCoupling source target)
     (hdistance : ∀ i j, 1 ≤ realL1Distance (source i) (target j)) :
@@ -1991,6 +2324,9 @@ noncomputable def unitAtomicKR1 {n : ℕ} {I : Type*} [Fintype I]
     (source target : I → RealGrade n) : ℝ :=
   sInf {r | ∃ c : UnitCoupling source target, c.cost = r}
 
+/--
+@isnad1 id=eq.2h4v.s6.ef2611c32acb from=translated src=- shape=d493a50a vocab=894db57e
+-/
 theorem unitAtomicKR1_eq_card_of_separated_unit_matching {n : ℕ}
     {I : Type*} [Fintype I] [DecidableEq I]
     (source target : I → RealGrade n)
@@ -2014,7 +2350,9 @@ theorem unitAtomicKR1_eq_card_of_separated_unit_matching {n : ℕ}
       obtain ⟨c, rfl⟩ := hr
       exact c.card_le_cost hsep
 
-/-- Exact transport cost for the positive and negative atoms of `Δₘ`.-/
+/-- Exact transport cost for the positive and negative atoms of `Δₘ`.
+@isnad1 id=eq.1h1v.s6.3b5e48952ca1 from=translated src=- shape=0ce73914 vocab=bd352aed
+-/
 theorem counterexample_unitAtomicKR1 (m : ℕ) (hm : 1 ≤ m) :
     unitAtomicKR1 (counterexampleSourcePoint m) (counterexampleTargetPoint m) =
       2 * m := by
@@ -2031,24 +2369,36 @@ noncomputable def staircasePositiveMeasure (m : ℕ) : AtomicSignedMeasure 2 :=
 noncomputable def staircaseNegativeMeasure (m : ℕ) : AtomicSignedMeasure 2 :=
   ∑ j ∈ Finset.range m, atom (pathPointNat m j)
 
+/--
+@isnad1 id=eq.0h1v.s5.84d519b5ab5d from=translated src=- shape=e43f9819 vocab=b2681560
+-/
 theorem staircaseMeasure_eq_positive_sub_negative (m : ℕ) :
     staircaseMeasure m =
       staircasePositiveMeasure m - staircaseNegativeMeasure m := by
   simp only [staircaseMeasure, staircasePositiveMeasure, staircaseNegativeMeasure]
   abel
 
+/--
+@isnad1 id=eq.0h3v.s6.9efa98d37dc9 from=translated src=- shape=5cb894db vocab=355c4a28
+-/
 theorem AtomicSignedMeasure.tensor_zero_left {n k : ℕ}
     (nu : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor (0 : AtomicSignedMeasure n) nu = 0 := by
   classical
   simp [AtomicSignedMeasure.tensor]
 
+/--
+@isnad1 id=eq.0h3v.s6.4e7e8ed7395a from=translated src=- shape=ef74edb5 vocab=355c4a28
+-/
 theorem AtomicSignedMeasure.tensor_zero_right {n k : ℕ}
     (mu : AtomicSignedMeasure n) :
     AtomicSignedMeasure.tensor mu (0 : AtomicSignedMeasure k) = 0 := by
   classical
   simp [AtomicSignedMeasure.tensor]
 
+/--
+@isnad1 id=eq.0h4v.s6.e591c2c00536 from=translated src=- shape=0e45e110 vocab=3caaad46
+-/
 theorem AtomicSignedMeasure.tensor_neg_left {n k : ℕ}
     (mu : AtomicSignedMeasure n) (nu : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor (-mu) nu = -AtomicSignedMeasure.tensor mu nu := by
@@ -2058,6 +2408,9 @@ theorem AtomicSignedMeasure.tensor_neg_left {n k : ℕ}
     simp [AtomicSignedMeasure.tensor_zero_left]
   exact eq_neg_of_add_eq_zero_right h
 
+/--
+@isnad1 id=eq.0h4v.s6.911f11d58afe from=translated src=- shape=56f0c68d vocab=3caaad46
+-/
 theorem AtomicSignedMeasure.tensor_neg_right {n k : ℕ}
     (mu : AtomicSignedMeasure n) (nu : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor mu (-nu) = -AtomicSignedMeasure.tensor mu nu := by
@@ -2067,6 +2420,9 @@ theorem AtomicSignedMeasure.tensor_neg_right {n k : ℕ}
     simp [AtomicSignedMeasure.tensor_zero_right]
   exact eq_neg_of_add_eq_zero_right h
 
+/--
+@isnad1 id=eq.0h5v.s6.a87950f5f9a3 from=translated src=- shape=de2805cd vocab=6f64486b
+-/
 theorem AtomicSignedMeasure.tensor_sub_left {n k : ℕ}
     (mu₁ mu₂ : AtomicSignedMeasure n) (nu : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor (mu₁ - mu₂) nu =
@@ -2074,6 +2430,9 @@ theorem AtomicSignedMeasure.tensor_sub_left {n k : ℕ}
   simp [sub_eq_add_neg, AtomicSignedMeasure.tensor_add_left,
     AtomicSignedMeasure.tensor_neg_left]
 
+/--
+@isnad1 id=eq.0h5v.s6.5a537ee27893 from=translated src=- shape=6c5452e5 vocab=6f64486b
+-/
 theorem AtomicSignedMeasure.tensor_sub_right {n k : ℕ}
     (mu : AtomicSignedMeasure n) (nu₁ nu₂ : AtomicSignedMeasure k) :
     AtomicSignedMeasure.tensor mu (nu₁ - nu₂) =
@@ -2081,11 +2440,17 @@ theorem AtomicSignedMeasure.tensor_sub_right {n k : ℕ}
   simp [sub_eq_add_neg, AtomicSignedMeasure.tensor_add_right,
     AtomicSignedMeasure.tensor_neg_right]
 
+/--
+@isnad1 id=eq.0h4v.s5.c9e345c502c2 from=translated src=- shape=59abd867 vocab=1b02e5c2
+-/
 theorem AtomicSignedMeasure.tensor_atom_atom {n k : ℕ}
     (a : RealGrade n) (b : RealGrade k) :
     AtomicSignedMeasure.tensor (atom a) (atom b) = atom (concatGrade a b) := by
   simpa [atom] using AtomicSignedMeasure.tensor_single_single a 1 b 1
 
+/--
+@isnad1 id=eq.0h5v.s6.ab10ee877384 from=translated src=- shape=0a280de3 vocab=d58067c5
+-/
 theorem AtomicSignedMeasure.tensor_fintype_sum_right {n k : ℕ}
     {I : Type*} [Fintype I] (mu : AtomicSignedMeasure n)
     (nu : I → AtomicSignedMeasure k) :
@@ -2097,6 +2462,9 @@ theorem AtomicSignedMeasure.tensor_fintype_sum_right {n k : ℕ}
   | @insert i s hi ih =>
       simp [hi, AtomicSignedMeasure.tensor_add_right, ih]
 
+/--
+@isnad1 id=eq.0h6v.s6.55113aa83d0f from=translated src=- shape=34fd0609 vocab=29dad01c
+-/
 theorem AtomicSignedMeasure.tensor_finset_sum_right {n k : ℕ}
     {I : Type*} (s : Finset I) (mu : AtomicSignedMeasure n)
     (nu : I → AtomicSignedMeasure k) :
@@ -2120,6 +2488,9 @@ noncomputable def counterexampleNegativeMeasure (m : ℕ) :
   AtomicSignedMeasure.tensor (atom ![1]) (staircaseNegativeMeasure m) +
     AtomicSignedMeasure.tensor (atom ![2]) (staircasePositiveMeasure m)
 
+/--
+@isnad1 id=eq.0h1v.s5.7c10d7edf7b4 from=translated src=- shape=e43f9819 vocab=bac07f82
+-/
 theorem hilbertDifferenceMeasure_eq_positive_sub_negative (m : ℕ) :
     hilbertDifferenceMeasure m =
       counterexamplePositiveMeasure m - counterexampleNegativeMeasure m := by
@@ -2131,21 +2502,33 @@ theorem hilbertDifferenceMeasure_eq_positive_sub_negative (m : ℕ) :
   simp only [counterexamplePositiveMeasure, counterexampleNegativeMeasure]
   abel
 
+/--
+@isnad1 id=eq.0h2v.s4.f0f98850498e from=translated src=- shape=8e7de0ad vocab=59f6239a
+-/
 theorem pathPointInteger_toReal (m j : ℕ) :
     (pathPointInteger m j).toReal = pathPointNat m j := by
   funext i
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.283405e86704 from=translated src=- shape=8e7de0ad vocab=f84734e6
+-/
 theorem cornerPointInteger_toReal (m j : ℕ) :
     (cornerPointInteger m j).toReal = cornerPointNat m j := by
   funext i
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f17cccb44fd6 from=translated src=- shape=b291de07 vocab=5044e03f
+-/
 theorem prependInteger_toReal (r : ℤ) (a : Grade 2) :
     (prependInteger r a).toReal = concatGrade ![(r : ℝ)] a.toReal := by
   funext i
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.390348825370 from=translated src=- shape=90d776b9 vocab=98ae5799
+-/
 theorem sum_counterexampleSourcePoint_atoms (m : ℕ) :
     (∑ i : CounterexampleAtomIndex m, atom (counterexampleSourcePoint m i)) =
       counterexamplePositiveMeasure m := by
@@ -2180,6 +2563,9 @@ theorem sum_counterexampleSourcePoint_atoms (m : ℕ) :
   simp [counterexampleSourcePoint, counterexampleSourceInteger,
     staircasePositiveInteger, prependInteger_toReal, Grade.toReal]
 
+/--
+@isnad1 id=eq.0h1v.s6.2d3d00927ece from=translated src=- shape=90d776b9 vocab=bdfdc550
+-/
 theorem sum_counterexampleTargetPoint_atoms (m : ℕ) :
     (∑ i : CounterexampleAtomIndex m, atom (counterexampleTargetPoint m i)) =
       counterexampleNegativeMeasure m := by
@@ -2215,7 +2601,9 @@ theorem sum_counterexampleTargetPoint_atoms (m : ℕ) :
     staircasePositiveInteger, prependInteger_toReal, Grade.toReal, add_comm]
 
 /-- Coefficient-level identification of the exact positive and negative atom
-families used by the transport problem.-/
+families used by the transport problem.
+@isnad1 id=eq.0h1v.s7.f1b5ff83d105 from=translated src=- shape=3cbf33a0 vocab=30ad6ec2
+-/
 theorem hilbertDifferenceMeasure_eq_indexed_jordan (m : ℕ) :
     hilbertDifferenceMeasure m =
       (∑ i : CounterexampleAtomIndex m, atom (counterexampleSourcePoint m i)) -
@@ -2223,6 +2611,9 @@ theorem hilbertDifferenceMeasure_eq_indexed_jordan (m : ℕ) :
   rw [sum_counterexampleSourcePoint_atoms, sum_counterexampleTargetPoint_atoms,
     hilbertDifferenceMeasure_eq_positive_sub_negative]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.59758f414823 from=translated src=- shape=ca92e646 vocab=9855cdac
+-/
 theorem Grade.toReal_injective {n : ℕ} :
     Function.Injective (@Grade.toReal n) := by
   intro a b h
@@ -2231,6 +2622,9 @@ theorem Grade.toReal_injective {n : ℕ} :
   change (a i : ℝ) = (b i : ℝ) at hi
   exact Int.cast_injective hi
 
+/--
+@isnad1 id=injectiv.0h1v.s3.6284c8c359eb from=translated src=- shape=8588cafe vocab=9e31c57b
+-/
 theorem staircasePositiveInteger_injective (m : ℕ) :
     Function.Injective (staircasePositiveInteger m) := by
   intro i j h
@@ -2259,6 +2653,9 @@ theorem staircasePositiveInteger_injective (m : ℕ) :
           subst j
           rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.e1864db0faca from=translated src=- shape=8588cafe vocab=767c8ced
+-/
 theorem staircaseNegativeInteger_injective (m : ℕ) :
     Function.Injective (staircaseNegativeInteger m) := by
   intro i j h
@@ -2267,6 +2664,9 @@ theorem staircaseNegativeInteger_injective (m : ℕ) :
   simp [staircaseNegativeInteger, pathPointInteger] at h0
   omega
 
+/--
+@isnad1 id=injectiv.0h1v.s3.51c7b98b235e from=translated src=- shape=8588cafe vocab=1606300a
+-/
 theorem counterexampleSourceInteger_injective (m : ℕ) :
     Function.Injective (counterexampleSourceInteger m) := by
   intro i j h
@@ -2298,6 +2698,9 @@ theorem counterexampleSourceInteger_injective (m : ℕ) :
           subst j
           rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.45d6ec06b907 from=translated src=- shape=8588cafe vocab=d1844087
+-/
 theorem counterexampleTargetInteger_injective (m : ℕ) :
     Function.Injective (counterexampleTargetInteger m) := by
   intro i j h
@@ -2329,14 +2732,23 @@ theorem counterexampleTargetInteger_injective (m : ℕ) :
           subst j
           rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s3.99aa3ad94aec from=translated src=- shape=8588cafe vocab=b97c7cf8
+-/
 theorem counterexampleSourcePoint_injective (m : ℕ) :
     Function.Injective (counterexampleSourcePoint m) :=
   Grade.toReal_injective.comp (counterexampleSourceInteger_injective m)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.28492ef9da24 from=translated src=- shape=8588cafe vocab=d25d12c0
+-/
 theorem counterexampleTargetPoint_injective (m : ℕ) :
     Function.Injective (counterexampleTargetPoint m) :=
   Grade.toReal_injective.comp (counterexampleTargetInteger_injective m)
 
+/--
+@isnad1 id=ne.1h3v.s4.90e1df434a13 from=translated src=- shape=1cd4ec99 vocab=aeea950d
+-/
 theorem counterexampleSourcePoint_ne_targetPoint {m : ℕ} (hm : 1 ≤ m)
     (i j : CounterexampleAtomIndex m) :
     counterexampleSourcePoint m i ≠ counterexampleTargetPoint m j := by
@@ -2358,12 +2770,18 @@ noncomputable def unitAtomMeasure {n : ℕ} {I : Type*} [Fintype I]
     (points : I → RealGrade n) : Measure (RealGrade n) :=
   ∑ i, Measure.dirac (points i)
 
+/--
+@isnad1 id=isfinite.0h3v.s4.14abe1ee4c26 from=translated src=- shape=683fdc13 vocab=7940ddb2
+-/
 noncomputable instance isFiniteMeasure_unitAtomMeasure {n : ℕ}
     {I : Type*} [Fintype I] (points : I → RealGrade n) :
     IsFiniteMeasure (unitAtomMeasure points) := by
   unfold unitAtomMeasure
   infer_instance
 
+/--
+@isnad1 id=eq.0h4v.s6.0e0d5b312398 from=translated src=- shape=02e12515 vocab=5a505b19
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_finset_sum {n : ℕ}
     {I : Type*} (s : Finset I) (mu : I → AtomicSignedMeasure n) :
     (∑ i ∈ s, mu i).toSignedMeasure = ∑ i ∈ s, (mu i).toSignedMeasure := by
@@ -2373,12 +2791,18 @@ theorem AtomicSignedMeasure.toSignedMeasure_finset_sum {n : ℕ}
   | @insert i s hi ih =>
       simp [hi, AtomicSignedMeasure.toSignedMeasure_add, ih]
 
+/--
+@isnad1 id=eq.0h3v.s6.bdb4c7fb2903 from=translated src=- shape=f5e518d6 vocab=3bd14120
+-/
 theorem AtomicSignedMeasure.toSignedMeasure_fintype_sum {n : ℕ}
     {I : Type*} [Fintype I] (mu : I → AtomicSignedMeasure n) :
     (∑ i, mu i).toSignedMeasure = ∑ i, (mu i).toSignedMeasure := by
   classical
   simpa using AtomicSignedMeasure.toSignedMeasure_finset_sum Finset.univ mu
 
+/--
+@isnad1 id=eq.0h4v.s6.7151ac6de623 from=translated src=- shape=34832a1a vocab=0d5b3c44
+-/
 theorem Measure.toSignedMeasure_finset_sum {X I : Type*} [MeasurableSpace X]
     (s : Finset I) (mu : I → Measure X) [∀ i, IsFiniteMeasure (mu i)] :
     (∑ i ∈ s, mu i).toSignedMeasure = ∑ i ∈ s, (mu i).toSignedMeasure := by
@@ -2387,6 +2811,9 @@ theorem Measure.toSignedMeasure_finset_sum {X I : Type*} [MeasurableSpace X]
   | empty => simp
   | @insert i s hi ih => simp [hi, ih]
 
+/--
+@isnad1 id=eq.0h3v.s6.369ee9526fe7 from=translated src=- shape=0dded64e vocab=82f726ed
+-/
 theorem Measure.toSignedMeasure_fintype_sum {X I : Type*} [MeasurableSpace X]
     [Fintype I] (mu : I → Measure X) [∀ i, IsFiniteMeasure (mu i)] :
     (∑ i, mu i).toSignedMeasure = ∑ i, (mu i).toSignedMeasure := by
@@ -2394,7 +2821,9 @@ theorem Measure.toSignedMeasure_fintype_sum {X I : Type*} [MeasurableSpace X]
   simpa using Measure.toSignedMeasure_finset_sum Finset.univ mu
 
 /-- The coefficient-level sum of unit atoms realizes exactly the corresponding
-finite sum of mathlib Dirac measures.-/
+finite sum of mathlib Dirac measures.
+@isnad1 id=eq.0h3v.s6.b2f6a25a3603 from=translated src=- shape=d9ec2bf8 vocab=1cf4b639
+-/
 theorem unitAtomMeasure_toSignedMeasure {n : ℕ} {I : Type*} [Fintype I]
     (points : I → RealGrade n) :
     (unitAtomMeasure points).toSignedMeasure =
@@ -2408,7 +2837,9 @@ theorem unitAtomMeasure_toSignedMeasure {n : ℕ} {I : Type*} [Fintype I]
   intro i _
   simp [atom, AtomicSignedMeasure.toSignedMeasure]
 
-/-- Disjoint finite point supports give mutually singular positive measures.-/
+/-- Disjoint finite point supports give mutually singular positive measures.
+@isnad1 id=mutually.1h4v.s5.94ec20fe7076 from=translated src=- shape=bbf26f08 vocab=638cc0cf
+-/
 theorem unitAtomMeasure_mutuallySingular {n : ℕ} {I : Type*} [Fintype I]
     {source target : I → RealGrade n} (hcross : ∀ i j, source i ≠ target j) :
     unitAtomMeasure source ⟂ₘ unitAtomMeasure target := by
@@ -2440,7 +2871,9 @@ noncomputable def unitAtomicJordanDecomposition {n : ℕ} {I : Type*}
 
 /-- A unit-atom Jordan certificate identifies the positive and negative
 families with mathlib's unique Jordan decomposition of the genuine signed
-Dirac measure.-/
+Dirac measure.
+@isnad1 id=eq.1h5v.s6.d055f9b7525c from=translated src=- shape=c9593311 vocab=2110d91b
+-/
 theorem IsUnitAtomicJordanRepresentation.toJordanDecomposition {n : ℕ}
     {I : Type*} [Fintype I] {mu : AtomicSignedMeasure n}
     {source target : I → RealGrade n}
@@ -2460,6 +2893,9 @@ theorem IsUnitAtomicJordanRepresentation.toJordanDecomposition {n : ℕ}
         ← unitAtomMeasure_toSignedMeasure target]
       rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.3cc8510d2a38 from=translated src=- shape=ab7b7b54 vocab=08b31b19
+-/
 theorem IsUnitAtomicJordanRepresentation.posPart_eq_unitAtomMeasure {n : ℕ}
     {I : Type*} [Fintype I] {mu : AtomicSignedMeasure n}
     {source target : I → RealGrade n}
@@ -2468,6 +2904,9 @@ theorem IsUnitAtomicJordanRepresentation.posPart_eq_unitAtomMeasure {n : ℕ}
   rw [h.toJordanDecomposition]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.82a391d3fe70 from=translated src=- shape=d248774f vocab=1b57aeee
+-/
 theorem IsUnitAtomicJordanRepresentation.negPart_eq_unitAtomMeasure {n : ℕ}
     {I : Type*} [Fintype I] {mu : AtomicSignedMeasure n}
     {source target : I → RealGrade n}
@@ -2514,6 +2953,9 @@ noncomputable def matchingMeasureCoupling {n : ℕ} {I : Type*}
     intro i _
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.61b48c47f985 from=translated src=- shape=dd9cda6b vocab=dbc1e118
+-/
 theorem unitAtomMeasure_compl_range {n : ℕ} {I : Type*}
     [Fintype I] (points : I → RealGrade n) :
     unitAtomMeasure points (Set.range points)ᶜ = 0 := by
@@ -2522,6 +2964,9 @@ theorem unitAtomMeasure_compl_range {n : ℕ} {I : Type*}
   have hS : MeasurableSet S := Set.toFinite S |>.measurableSet
   simp [unitAtomMeasure, Measure.finsetSum_apply, hS.compl, S]
 
+/--
+@isnad1 id=eq.0h5v.s7.6cad3ab182a4 from=translated src=- shape=ec37df99 vocab=8e1f3d0f
+-/
 theorem L1MeasureCoupling.totalMass_unitAtoms {n : ℕ}
     {I : Type*} [Fintype I] {source target : I → RealGrade n}
     (c : L1MeasureCoupling (unitAtomMeasure source) (unitAtomMeasure target)) :
@@ -2533,7 +2978,9 @@ theorem L1MeasureCoupling.totalMass_unitAtoms {n : ℕ}
 
 /-- The measure-theoretic lower certificate: the marginal equations force
 the plan to be supported on the finite source-target product, where every
-unit of mass travels at least one.-/
+unit of mass travels at least one.
+@isnad1 id=le.1h5v.s6.2d2cb7c62e1f from=translated src=- shape=fad7462d vocab=3d894fcb
+-/
 theorem L1MeasureCoupling.card_le_cost_of_separated {n : ℕ}
     {I : Type*} [Fintype I] {source target : I → RealGrade n}
     (c : L1MeasureCoupling (unitAtomMeasure source) (unitAtomMeasure target))
@@ -2567,6 +3014,9 @@ theorem L1MeasureCoupling.card_le_cost_of_separated {n : ℕ}
           rw [lintegral_const, one_mul, c.totalMass_unitAtoms]
     _ ≤ c.cost := lintegral_mono_ae hdistance
 
+/--
+@isnad1 id=eq.1h4v.s6.29f790ce4499 from=translated src=- shape=d11071a3 vocab=c4c96200
+-/
 theorem matchingMeasureCoupling_cost {n : ℕ} {I : Type*}
     [Fintype I] (source target : I → RealGrade n)
     (hmatch : ∀ i, realL1Distance (source i) (target i) = 1) :
@@ -2584,7 +3034,9 @@ noncomputable def measureKR1 {n : ℕ}
 
 /-- Exact measure-coupling transport for separated unit atoms with a
 unit-cost matching.  This proves both directions over all product measures,
-not merely over a preselected matrix representation.-/
+not merely over a preselected matrix representation.
+@isnad1 id=eq.2h4v.s6.196df3b47054 from=translated src=- shape=c4d15da3 vocab=11148e4e
+-/
 theorem measureKR1_eq_card_of_separated_unit_matching {n : ℕ}
     {I : Type*} [Fintype I] (source target : I → RealGrade n)
     (hsep : ∀ i j, 1 ≤ realL1Distance (source i) (target j))
@@ -2602,7 +3054,9 @@ theorem measureKR1_eq_card_of_separated_unit_matching {n : ℕ}
     rintro r ⟨c, rfl⟩
     exact c.card_le_cost_of_separated hsep
 
-/-- Arbitrary-scale version of the measure-theoretic lower certificate.-/
+/-- Arbitrary-scale version of the measure-theoretic lower certificate.
+@isnad1 id=le.1h6v.s6.78671288aca0 from=translated src=- shape=4decdad2 vocab=c0e06dc7
+-/
 theorem L1MeasureCoupling.ofReal_mul_card_le_cost_of_separated
     {n : ℕ} {I : Type*} [Fintype I]
     {source target : I → RealGrade n}
@@ -2638,6 +3092,9 @@ theorem L1MeasureCoupling.ofReal_mul_card_le_cost_of_separated
           rw [lintegral_const, c.totalMass_unitAtoms]
     _ ≤ c.cost := lintegral_mono_ae hdistance
 
+/--
+@isnad1 id=eq.1h5v.s6.01166380a722 from=translated src=- shape=a3a473cb vocab=e1a2b84b
+-/
 theorem matchingMeasureCoupling_cost_eq_mul_card
     {n : ℕ} {I : Type*} [Fintype I]
     (d : ℝ) (source target : I → RealGrade n)
@@ -2649,7 +3106,9 @@ theorem matchingMeasureCoupling_cost_eq_mul_card
     lintegral_finsetSum_measure, hmatch, mul_comm]
 
 /-- Exact measure-coupling transport at an arbitrary common separation and
-matching scale.-/
+matching scale.
+@isnad1 id=eq.2h5v.s6.7ea54b4900c5 from=translated src=- shape=57f3bdf1 vocab=b7300bf6
+-/
 theorem measureKR1_eq_ofReal_mul_card_of_separated_matching
     {n : ℕ} {I : Type*} [Fintype I]
     (d : ℝ) (source target : I → RealGrade n)
@@ -2668,6 +3127,9 @@ theorem measureKR1_eq_ofReal_mul_card_of_separated_matching
     rintro r ⟨c, rfl⟩
     exact c.ofReal_mul_card_le_cost_of_separated d hsep
 
+/--
+@isnad1 id=isunitat.1h1v.s6.9d45104198c2 from=translated src=- shape=87a9a61e vocab=f4f85b67
+-/
 theorem counterexample_isUnitAtomicJordanRepresentation (m : ℕ) (hm : 1 ≤ m) :
     IsUnitAtomicJordanRepresentation (hilbertDifferenceMeasure m)
       (counterexampleSourcePoint m) (counterexampleTargetPoint m) :=
@@ -2677,7 +3139,9 @@ theorem counterexample_isUnitAtomicJordanRepresentation (m : ℕ) (hm : 1 ≤ m)
     hilbertDifferenceMeasure_eq_indexed_jordan m⟩
 
 /-- Consequently, the exact coupling computation is the standard `KR₁`
-norm of the Hilbert signed measure's Jordan parts.-/
+norm of the Hilbert signed measure's Jordan parts.
+@isnad1 id=and.1h1v.s7.96119c29d200 from=translated src=- shape=538b97c2 vocab=65821dba
+-/
 theorem hilbertDifferenceMeasure_KR1 (m : ℕ) (hm : 1 ≤ m) :
     IsUnitAtomicJordanRepresentation (hilbertDifferenceMeasure m)
         (counterexampleSourcePoint m) (counterexampleTargetPoint m) ∧
@@ -2687,7 +3151,9 @@ theorem hilbertDifferenceMeasure_KR1 (m : ℕ) (hm : 1 ≤ m) :
     counterexample_unitAtomicKR1 m hm⟩
 
 /-- The same exact value for the paper's product-measure/marginal/integral
-definition of `KR₁`, applied literally to the Mathlib Jordan parts.-/
+definition of `KR₁`, applied literally to the Mathlib Jordan parts.
+@isnad1 id=eq.1h1v.s7.5bcbdc9b3520 from=translated src=- shape=a05f7f70 vocab=fb18212f
+-/
 theorem hilbertDifferenceMeasure_measureKR1 (m : ℕ) (hm : 1 ≤ m) :
     measureKR1
         (hilbertDifferenceMeasure m).toSignedMeasure.toJordanDecomposition.posPart
@@ -2711,6 +3177,9 @@ noncomputable def graphComponentSum (K : Type*) [Field K]
     (V →₀ K) →ₗ[K] (G.ConnectedComponent →₀ K) :=
   Finsupp.lmapDomain K K G.connectedComponentMk
 
+/--
+@isnad1 id=surjecti.0h3v.s8.b624efd360a3 from=translated src=- shape=99cb32ce vocab=f053c308
+-/
 theorem graphComponentSum_surjective (K : Type*) [Field K]
     {V : Type*} (G : SimpleGraph V) :
     Function.Surjective (graphComponentSum K G) := by
@@ -2730,7 +3199,9 @@ noncomputable def graphChainH0EquivComponents (K : Type*) [Field K]
       (graphComponentSum_surjective K G)).trans
     (Finsupp.linearEquivFunOnFinite K K G.ConnectedComponent)
 
-/-- Every cellular edge boundary is killed by component augmentation.-/
+/-- Every cellular edge boundary is killed by component augmentation.
+@isnad1 id=mem.1h5v.s9.aa69101779bb from=translated src=- shape=913e3753 vocab=d3918b61
+-/
 theorem edgeBoundary_mem_graphComponentSum_ker (K : Type*) [Field K]
     {V : Type*} (G : SimpleGraph V) {v w : V} (hvw : G.Adj v w) :
     Finsupp.single v (1 : K) - Finsupp.single w 1 ∈
@@ -2745,6 +3216,9 @@ noncomputable def cellularEdgeBoundarySpan (K : Type*) [Field K]
   Submodule.span K {z | ∃ v w, G.Adj v w ∧
     z = Finsupp.single v (1 : K) - Finsupp.single w 1}
 
+/--
+@isnad1 id=mem.0h6v.s8.ec3442772904 from=translated src=- shape=c611efcf vocab=2fa1d48a
+-/
 theorem walkBoundary_mem_cellularEdgeBoundarySpan (K : Type*) [Field K]
     {V : Type*} (G : SimpleGraph V) {v w : V} (p : G.Walk v w) :
     Finsupp.single v (1 : K) - Finsupp.single w 1 ∈
@@ -2762,6 +3236,9 @@ theorem walkBoundary_mem_cellularEdgeBoundarySpan (K : Type*) [Field K]
       rw [heq]
       exact (cellularEdgeBoundarySpan K G).add_mem hedge ih
 
+/--
+@isnad1 id=mem.1h5v.s8.6c30895d8327 from=translated src=- shape=c611efcf vocab=e8b9cee8
+-/
 theorem reachableBoundary_mem_cellularEdgeBoundarySpan (K : Type*) [Field K]
     {V : Type*} (G : SimpleGraph V) {v w : V} (hvw : G.Reachable v w) :
     Finsupp.single v (1 : K) - Finsupp.single w 1 ∈
@@ -2769,6 +3246,9 @@ theorem reachableBoundary_mem_cellularEdgeBoundarySpan (K : Type*) [Field K]
   obtain ⟨p⟩ := hvw
   exact walkBoundary_mem_cellularEdgeBoundarySpan K G p
 
+/--
+@isnad1 id=le.0h3v.s8.a634813b3438 from=translated src=- shape=432a1f69 vocab=a49a4993
+-/
 theorem cellularEdgeBoundarySpan_le_componentSum_ker (K : Type*) [Field K]
     {V : Type*} (G : SimpleGraph V) :
     cellularEdgeBoundarySpan K G ≤ LinearMap.ker (graphComponentSum K G) := by
@@ -2783,12 +3263,18 @@ abbrev CellularGraphH0 (K : Type*) [Field K] {V : Type*} (G : SimpleGraph V) :=
 noncomputable def componentRepresentative {V : Type*} (G : SimpleGraph V) :
     G.ConnectedComponent → V := fun c ↦ Quot.out c
 
+/--
+@isnad1 id=eq.0h3v.s4.699f6fde3caf from=translated src=- shape=a5bc72c5 vocab=9a8e1942
+-/
 @[simp]
 theorem connectedComponentMk_componentRepresentative {V : Type*}
     (G : SimpleGraph V) (c : G.ConnectedComponent) :
     G.connectedComponentMk (componentRepresentative G c) = c := by
   exact Quot.out_eq c
 
+/--
+@isnad1 id=reachabl.0h3v.s4.42113d1aa264 from=translated src=- shape=5fc544b4 vocab=bd62a007
+-/
 theorem vertex_reachable_componentRepresentative {V : Type*}
     (G : SimpleGraph V) (v : V) :
     G.Reachable v (componentRepresentative G (G.connectedComponentMk v)) := by
@@ -2807,6 +3293,9 @@ noncomputable def componentsToCellularH0 (K : Type*) [Field K]
   (cellularEdgeBoundarySpan K G).mkQ.comp
     (Finsupp.lmapDomain K K (componentRepresentative G))
 
+/--
+@isnad1 id=eq.0h3v.s9.ac0841e3c162 from=translated src=- shape=0695b014 vocab=89fbe1fa
+-/
 theorem cellularH0ToComponents_comp_componentsToCellularH0
     (K : Type*) [Field K] {V : Type*} (G : SimpleGraph V) :
     (cellularH0ToComponents K G).comp (componentsToCellularH0 K G) =
@@ -2815,6 +3304,9 @@ theorem cellularH0ToComponents_comp_componentsToCellularH0
   simp [cellularH0ToComponents, componentsToCellularH0,
     graphComponentSum, Finsupp.lmapDomain_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.d5eee972eb2a from=translated src=- shape=6baf5264 vocab=89fbe1fa
+-/
 theorem componentsToCellularH0_comp_cellularH0ToComponents
     (K : Type*) [Field K] {V : Type*} (G : SimpleGraph V) :
     (componentsToCellularH0 K G).comp (cellularH0ToComponents K G) =
@@ -2854,6 +3346,9 @@ noncomputable def cellularGraphH0EquivComponents (K : Type*) [Field K]
         (cellularH0ToComponents_comp_componentsToCellularH0 K G) z }
   exact e.trans (Finsupp.linearEquivFunOnFinite K K G.ConnectedComponent)
 
+/--
+@isnad1 id=eq.0h3v.s7.f718563dc9db from=translated src=- shape=8819ff1d vocab=8119c29d
+-/
 theorem finrank_cellularGraphH0 (K : Type*) [Field K]
     {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj] :
     Module.finrank K (CellularGraphH0 K G) = Nat.card G.ConnectedComponent := by
@@ -2875,7 +3370,9 @@ noncomputable def commonVertexFilteredGraphH0
 
 /-- For a common-vertex-grade filtration, the component-count function used
 throughout the finite calculation is pointwise the dimension of the genuine
-cellular `H₀` module, over every coefficient field and at every parameter.-/
+cellular `H₀` module, over every coefficient field and at every parameter.
+@isnad1 id=eq.1h5v.s6.798d89324e7a from=translated src=- shape=07ae02e2 vocab=45f6a870
+-/
 theorem finrank_commonVertexFilteredGraphH0
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (hcommon : CommonVertexGrade F)
@@ -2914,6 +3411,9 @@ def IsCommonVertexOrdinaryH0Model {m n : ℕ}
       Module.finrank K (commonVertexFilteredGraphH0 K F x) =
         realOrdinaryH0Dim F x
 
+/--
+@isnad1 id=iscommon.1h3v.s4.4144c2b661a5 from=translated src=- shape=efde2dd3 vocab=801d85c3
+-/
 theorem isCommonVertexOrdinaryH0Model_of_common {m n : ℕ}
     {F : Simplex m → RealGrade n} (hcommon : CommonVertexGrade F) :
     IsCommonVertexOrdinaryH0Model F := by
@@ -2922,7 +3422,9 @@ theorem isCommonVertexOrdinaryH0Model_of_common {m n : ℕ}
   exact finrank_commonVertexFilteredGraphH0 K F hcommon x
 
 /-- The chain quotient has component-count dimension, making the
-component-count model used above a proved ordinary-`H₀` model.-/
+component-count model used above a proved ordinary-`H₀` model.
+@isnad1 id=eq.0h3v.s8.e070f979aa8a from=translated src=- shape=8819ff1d vocab=bc72149f
+-/
 theorem finrank_graphChainH0 (K : Type*) [Field K]
     {V : Type*} [Fintype V] (G : SimpleGraph V) [DecidableRel G.Adj] :
     Module.finrank K (GraphChainH0 K G) = Nat.card G.ConnectedComponent := by
@@ -2945,6 +3447,9 @@ def leftCoordinates {n k : ℕ} (x : RealGrade (n + k)) : RealGrade n :=
 def rightCoordinates {n k : ℕ} (x : RealGrade (n + k)) : RealGrade k :=
   fun j ↦ x (Fin.natAdd n j)
 
+/--
+@isnad1 id=eq.0h3v.s5.dea16be947b6 from=translated src=- shape=6434be99 vocab=8c63a53c
+-/
 theorem concat_left_right {n k : ℕ} (x : RealGrade (n + k)) :
     concatGrade (leftCoordinates x) (rightCoordinates x) = x := by
   funext i
@@ -2963,6 +3468,9 @@ noncomputable def nonnegativeIndicator {k : ℕ} (y : RealGrade k) : ℤ := by
   classical
   exact if allNonnegative y then 1 else 0
 
+/--
+@isnad1 id=iff.0h5v.s5.854607886636 from=translated src=- shape=10458c1c vocab=e9b4c943
+-/
 theorem Grade.leReal_zeroPad_concat_iff {n k : ℕ}
     (a : Grade n) (x : RealGrade n) (y : RealGrade k) :
     Grade.leReal a.zeroPad (concatGrade x y) ↔
@@ -2981,6 +3489,9 @@ theorem Grade.leReal_zeroPad_concat_iff {n k : ℕ}
 def padFiltration {m n k : ℕ} (F : Simplex m → Grade n) :
     Simplex m → Grade (n + k) := fun sigma ↦ (F sigma).zeroPad
 
+/--
+@isnad1 id=monotone.1h4v.s5.6ebe02abdac6 from=translated src=- shape=6f70fabe vocab=19422a30
+-/
 theorem padFiltration_monotone {m n k : ℕ} {F : Simplex m → Grade n}
     (hF : MonotoneFiltration F) : MonotoneFiltration (padFiltration (k := k) F) := by
   intro e v hv i
@@ -2994,24 +3505,39 @@ def fGradePadded (m k : ℕ) : Simplex m → Grade (3 + k) :=
 def gGradePadded (m k : ℕ) : Simplex m → Grade (3 + k) :=
   padFiltration (k := k) (gGrade m)
 
+/--
+@isnad1 id=monotone.0h2v.s4.18ad8fd18df0 from=translated src=- shape=2e490c89 vocab=d27a727b
+-/
 theorem fGradePadded_monotone (m k : ℕ) :
     MonotoneFiltration (fGradePadded m k) :=
   padFiltration_monotone (fGrade_monotone m)
 
+/--
+@isnad1 id=monotone.0h2v.s4.3ebfa22f1d62 from=translated src=- shape=2e490c89 vocab=5ae787e9
+-/
 theorem gGradePadded_monotone (m k : ℕ) :
     MonotoneFiltration (gGradePadded m k) :=
   padFiltration_monotone (gGrade_monotone m)
 
+/--
+@isnad1 id=commonve.0h2v.s5.58b91a3168ff from=translated src=- shape=8d6c94ac vocab=9e96a402
+-/
 theorem fGradePadded_commonVertexGrade (m k : ℕ) :
     CommonVertexGrade (realifyFiltration (fGradePadded m k)) := by
   intro v
   rfl
 
+/--
+@isnad1 id=commonve.0h2v.s5.3d6b7b1e9361 from=translated src=- shape=8d6c94ac vocab=496ff492
+-/
 theorem gGradePadded_commonVertexGrade (m k : ℕ) :
     CommonVertexGrade (realifyFiltration (gGradePadded m k)) := by
   intro v
   rfl
 
+/--
+@isnad1 id=onlycent.0h2v.s5.44fe7fb1ed9b from=translated src=- shape=aa6fbd72 vocab=c73fc14b
+-/
 theorem fGradePadded_gGradePadded_onlyCentralEdgeDiffers (m k : ℕ) :
     OnlyCentralEdgeDiffers
       (realifyFiltration (fGradePadded m k))
@@ -3025,21 +3551,33 @@ theorem fGradePadded_gGradePadded_onlyCentralEdgeDiffers (m k : ℕ) :
       | a j => rfl
       | b j => rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4980dacffb1e from=translated src=- shape=b4ee77f2 vocab=b02632f3
+-/
 theorem l1Distance_zeroPad {n k : ℕ} (a b : Grade n) :
     l1Distance (Grade.zeroPad (k := k) a) (Grade.zeroPad b) = l1Distance a b := by
   simp [l1Distance, Grade.zeroPad, Fin.sum_univ_add]
 
+/--
+@isnad1 id=eq.0h5v.s5.57c0d8055aac from=translated src=- shape=692a8037 vocab=d4beefaa
+-/
 theorem filtrationL1Distance_padFiltration {m n k : ℕ}
     (F G : Simplex m → Grade n) :
     filtrationL1Distance (padFiltration (k := k) F) (padFiltration G) =
       filtrationL1Distance F G := by
   simp [filtrationL1Distance, padFiltration, l1Distance_zeroPad]
 
+/--
+@isnad1 id=eq.0h2v.s5.b12e1668d93f from=translated src=- shape=d57f8851 vocab=709ae893
+-/
 theorem filtrationL1Distance_fGradePadded_gGradePadded (m k : ℕ) :
     filtrationL1Distance (fGradePadded m k) (gGradePadded m k) = 1 := by
   rw [fGradePadded, gGradePadded, filtrationL1Distance_padFiltration,
     filtrationL1Distance_fGrade_gGrade]
 
+/--
+@isnad1 id=iff.0h7v.s5.debe26eb0c07 from=translated src=- shape=078cd352 vocab=69e639a1
+-/
 theorem edgeActive_padFiltration_concat_iff {m n k : ℕ}
     (F : Simplex m → Grade n) (x : RealGrade n) (y : RealGrade k)
     (e : Edge m) :
@@ -3047,12 +3585,18 @@ theorem edgeActive_padFiltration_concat_iff {m n k : ℕ}
       edgeActive F x e ∧ allNonnegative y := by
   exact Grade.leReal_zeroPad_concat_iff (F (.edge e)) x y
 
+/--
+@isnad1 id=iff.0h6v.s5.ff63f5824749 from=translated src=- shape=d3f2e3ef vocab=1b510563
+-/
 theorem verticesActive_padFiltration_concat_iff {m n k : ℕ}
     (F : Simplex m → Grade n) (x : RealGrade n) (y : RealGrade k) :
     verticesActive (padFiltration (k := k) F) (concatGrade x y) ↔
       verticesActive F x ∧ allNonnegative y := by
   exact Grade.leReal_zeroPad_concat_iff (F (.vertex .s)) x y
 
+/--
+@isnad1 id=eq.1h6v.s5.28ff603baa00 from=translated src=- shape=9705e12e vocab=4f749707
+-/
 theorem sublevelGraph_padFiltration_concat_eq {m n k : ℕ}
     (F : Simplex m → Grade n) (x : RealGrade n) (y : RealGrade k)
     (hy : allNonnegative y) :
@@ -3062,6 +3606,9 @@ theorem sublevelGraph_padFiltration_concat_eq {m n k : ℕ}
   cases v <;> cases w <;>
     simp [sublevelGraph, edgeActive_padFiltration_concat_iff, hy]
 
+/--
+@isnad1 id=eq.0h6v.s5.b54efbbf0a5b from=translated src=- shape=6053c8df vocab=0beadf9d
+-/
 theorem ordinaryH0Dim_padFiltration_concat {m n k : ℕ}
     (F : Simplex m → Grade n) (x : RealGrade n) (y : RealGrade k) :
     ordinaryH0Dim (padFiltration (k := k) F) (concatGrade x y) =
@@ -3093,6 +3640,9 @@ noncomputable def h0HilbertDifferencePadded (m k : ℕ)
   (ordinaryH0Dim (fGradePadded m k) x : ℤ) -
     (ordinaryH0Dim (gGradePadded m k) x : ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s5.34305fd7498a from=translated src=- shape=1b48c1c3 vocab=2686199b
+-/
 theorem h0HilbertDifferencePadded_concat (m k : ℕ)
     (x : RealGrade 3) (y : RealGrade k) :
     h0HilbertDifferencePadded m k (concatGrade x y) =
@@ -3123,6 +3673,9 @@ noncomputable def h0GMeasurePadded (m k : ℕ) :
   AtomicSignedMeasure.tensor (h0GMeasure m)
     (atom (RealGrade.zero : RealGrade k))
 
+/--
+@isnad1 id=eq.0h2v.s3.2788fc3be586 from=translated src=- shape=ba149911 vocab=5db1d4aa
+-/
 theorem lowerIndicator_zero (k : ℕ) (y : RealGrade k) :
     lowerIndicator (RealGrade.zero : RealGrade k) y =
       nonnegativeIndicator y := by
@@ -3135,6 +3688,9 @@ theorem lowerIndicator_zero (k : ℕ) (y : RealGrade k) :
       simpa [RealGrade.LE, RealGrade.zero, allNonnegative] using hy
     simp [lowerIndicator, lowerCoefficientHom, hnle, hy, nonnegativeIndicator]
 
+/--
+@isnad1 id=eq.0h4v.s6.db593e983f0c from=translated src=- shape=3a28a1d1 vocab=c7564412
+-/
 theorem cumulative_h0FMeasurePadded_concat (m k : ℕ)
     (x : RealGrade 3) (y : RealGrade k) :
     cumulative (h0FMeasurePadded m k) (concatGrade x y) =
@@ -3145,6 +3701,9 @@ theorem cumulative_h0FMeasurePadded_concat (m k : ℕ)
   by_cases hy : allNonnegative y <;>
     simp [hy, nonnegativeIndicator, restrictNatToNonnegative]
 
+/--
+@isnad1 id=eq.0h4v.s6.7e6f4341685e from=translated src=- shape=3a28a1d1 vocab=7ead8af1
+-/
 theorem cumulative_h0GMeasurePadded_concat (m k : ℕ)
     (x : RealGrade 3) (y : RealGrade k) :
     cumulative (h0GMeasurePadded m k) (concatGrade x y) =
@@ -3155,6 +3714,9 @@ theorem cumulative_h0GMeasurePadded_concat (m k : ℕ)
   by_cases hy : allNonnegative y <;>
     simp [hy, nonnegativeIndicator, restrictNatToNonnegative]
 
+/--
+@isnad1 id=ishilber.0h2v.s5.bc90cc65bbec from=translated src=- shape=385ebccf vocab=5d5a1369
+-/
 theorem h0FMeasurePadded_isHilbertDecomposition (m k : ℕ) :
     IsHilbertDecomposition
       (fun x ↦ (ordinaryH0Dim (fGradePadded m k) x : ℤ))
@@ -3164,6 +3726,9 @@ theorem h0FMeasurePadded_isHilbertDecomposition (m k : ℕ) :
   exact cumulative_h0FMeasurePadded_concat m k
     (leftCoordinates x) (rightCoordinates x)
 
+/--
+@isnad1 id=ishilber.0h2v.s5.f6c8885fa6e8 from=translated src=- shape=385ebccf vocab=32c6a776
+-/
 theorem h0GMeasurePadded_isHilbertDecomposition (m k : ℕ) :
     IsHilbertDecomposition
       (fun x ↦ (ordinaryH0Dim (gGradePadded m k) x : ℤ))
@@ -3173,6 +3738,9 @@ theorem h0GMeasurePadded_isHilbertDecomposition (m k : ℕ) :
   exact cumulative_h0GMeasurePadded_concat m k
     (leftCoordinates x) (rightCoordinates x)
 
+/--
+@isnad1 id=eq.0h4v.s5.c2125bd8989e from=translated src=- shape=1ce5d99e vocab=4434ac73
+-/
 theorem cumulative_hilbertDifferenceMeasurePadded_concat (m k : ℕ)
     (x : RealGrade 3) (y : RealGrade k) :
     cumulative (hilbertDifferenceMeasurePadded m k) (concatGrade x y) =
@@ -3182,6 +3750,9 @@ theorem cumulative_hilbertDifferenceMeasurePadded_concat (m k : ℕ)
     h0HilbertDifferencePadded_concat]
   ring
 
+/--
+@isnad1 id=ishilber.0h2v.s4.dabb3d4529d5 from=translated src=- shape=544c76b8 vocab=112e94af
+-/
 theorem hilbertDifferenceMeasurePadded_isHilbertDecomposition (m k : ℕ) :
     IsHilbertDecomposition (h0HilbertDifferencePadded m k)
       (hilbertDifferenceMeasurePadded m k) := by
@@ -3198,11 +3769,17 @@ def counterexampleTargetPointPadded (m k : ℕ)
     (i : CounterexampleAtomIndex m) : RealGrade (3 + k) :=
   concatGrade (counterexampleTargetPoint m i) RealGrade.zero
 
+/--
+@isnad1 id=eq.0h4v.s5.c510ddae8bf4 from=translated src=- shape=1720caf9 vocab=7e11f8e4
+-/
 theorem realL1Distance_zeroPad {n k : ℕ} (a b : RealGrade n) :
     realL1Distance (concatGrade a (RealGrade.zero : RealGrade k))
       (concatGrade b RealGrade.zero) = realL1Distance a b := by
   simp [realL1Distance, concatGrade, RealGrade.zero, Fin.sum_univ_add]
 
+/--
+@isnad1 id=injectiv.0h2v.s4.8e07e3f14afa from=translated src=- shape=0bbf76ac vocab=9c1dfd1b
+-/
 theorem counterexampleSourcePointPadded_injective (m k : ℕ) :
     Function.Injective (counterexampleSourcePointPadded m k) := by
   intro i j h
@@ -3211,6 +3788,9 @@ theorem counterexampleSourcePointPadded_injective (m k : ℕ) :
   have hq := congrFun h (Fin.castAdd k q)
   simpa [counterexampleSourcePointPadded, concatGrade] using hq
 
+/--
+@isnad1 id=injectiv.0h2v.s4.d133b9c27d5b from=translated src=- shape=0bbf76ac vocab=b5d52c52
+-/
 theorem counterexampleTargetPointPadded_injective (m k : ℕ) :
     Function.Injective (counterexampleTargetPointPadded m k) := by
   intro i j h
@@ -3219,6 +3799,9 @@ theorem counterexampleTargetPointPadded_injective (m k : ℕ) :
   have hq := congrFun h (Fin.castAdd k q)
   simpa [counterexampleTargetPointPadded, concatGrade] using hq
 
+/--
+@isnad1 id=ne.1h4v.s5.c8f27042fcef from=translated src=- shape=c7a2412f vocab=8abefaf3
+-/
 theorem counterexampleSourcePointPadded_ne_targetPointPadded {m : ℕ}
     (hm : 1 ≤ m) (k : ℕ) (i j : CounterexampleAtomIndex m) :
     counterexampleSourcePointPadded m k i ≠
@@ -3230,6 +3813,9 @@ theorem counterexampleSourcePointPadded_ne_targetPointPadded {m : ℕ}
   simpa [counterexampleSourcePointPadded, counterexampleTargetPointPadded,
     concatGrade] using hq
 
+/--
+@isnad1 id=eq.0h5v.s6.caa975743c67 from=translated src=- shape=52b6bbff vocab=d58067c5
+-/
 theorem AtomicSignedMeasure.tensor_fintype_sum_left {n k : ℕ}
     {I : Type*} [Fintype I] (mu : I → AtomicSignedMeasure n)
     (nu : AtomicSignedMeasure k) :
@@ -3241,6 +3827,9 @@ theorem AtomicSignedMeasure.tensor_fintype_sum_left {n k : ℕ}
   | @insert i s hi ih =>
       simp [hi, AtomicSignedMeasure.tensor_add_left, ih]
 
+/--
+@isnad1 id=eq.0h2v.s8.218bc6053a61 from=translated src=- shape=4657eca3 vocab=629981b7
+-/
 theorem hilbertDifferenceMeasurePadded_eq_indexed_jordan (m k : ℕ) :
     hilbertDifferenceMeasurePadded m k =
       (∑ i : CounterexampleAtomIndex m,
@@ -3255,6 +3844,9 @@ theorem hilbertDifferenceMeasurePadded_eq_indexed_jordan (m k : ℕ) :
   simp [counterexampleSourcePointPadded, counterexampleTargetPointPadded,
     AtomicSignedMeasure.tensor_atom_atom]
 
+/--
+@isnad1 id=isunitat.1h2v.s6.e759e0cafa8f from=translated src=- shape=f6278a74 vocab=954b545d
+-/
 theorem counterexamplePadded_isUnitAtomicJordanRepresentation
     (m k : ℕ) (hm : 1 ≤ m) :
     IsUnitAtomicJordanRepresentation (hilbertDifferenceMeasurePadded m k)
@@ -3265,6 +3857,9 @@ theorem counterexamplePadded_isUnitAtomicJordanRepresentation
     counterexampleSourcePointPadded_ne_targetPointPadded hm k,
     hilbertDifferenceMeasurePadded_eq_indexed_jordan m k⟩
 
+/--
+@isnad1 id=le.1h4v.s5.7f1fdacfcd07 from=translated src=- shape=d8f44457 vocab=0db22d02
+-/
 theorem one_le_counterexamplePadded_source_target_distance {m : ℕ}
     (hm : 1 ≤ m) (k : ℕ) (i j : CounterexampleAtomIndex m) :
     1 ≤ realL1Distance (counterexampleSourcePointPadded m k i)
@@ -3273,6 +3868,9 @@ theorem one_le_counterexamplePadded_source_target_distance {m : ℕ}
     realL1Distance_zeroPad]
   exact one_le_counterexample_source_target_distance hm i j
 
+/--
+@isnad1 id=eq.0h3v.s5.086e93ce188f from=translated src=- shape=44b1caf9 vocab=a4e9542e
+-/
 theorem counterexamplePadded_corresponding_distance (m k : ℕ)
     (i : CounterexampleAtomIndex m) :
     realL1Distance (counterexampleSourcePointPadded m k i)
@@ -3281,6 +3879,9 @@ theorem counterexamplePadded_corresponding_distance (m k : ℕ)
     realL1Distance_zeroPad]
   exact counterexample_corresponding_distance m i
 
+/--
+@isnad1 id=eq.1h2v.s6.8984c242757c from=translated src=- shape=713fac0d vocab=cfdb0f65
+-/
 theorem counterexamplePadded_unitAtomicKR1 (m k : ℕ) (hm : 1 ≤ m) :
     unitAtomicKR1 (counterexampleSourcePointPadded m k)
       (counterexampleTargetPointPadded m k) = 2 * m := by
@@ -3290,6 +3891,9 @@ theorem counterexamplePadded_unitAtomicKR1 (m k : ℕ) (hm : 1 ≤ m) :
     card_counterexampleAtomIndex hm]
   norm_num
 
+/--
+@isnad1 id=eq.1h2v.s8.3df91b2380a4 from=translated src=- shape=2ae4f53a vocab=a3f7d50f
+-/
 theorem counterexamplePadded_measureKR1 (m k : ℕ) (hm : 1 ≤ m) :
     measureKR1
         (hilbertDifferenceMeasurePadded m k).toSignedMeasure.toJordanDecomposition.posPart
@@ -3307,6 +3911,9 @@ theorem counterexamplePadded_measureKR1 (m k : ℕ) (hm : 1 ≤ m) :
 
 /-! ## Public theorem and consequences -/
 
+/--
+@isnad1 id=eq.1h5v.s9.4fc1ddf4dbfa from=translated src=- shape=6bf4d113 vocab=b541f878
+-/
 theorem ordinaryH0Dim_eq_finrank_graphChainH0_of_active
     (K : Type*) [Field K] {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) (hv : verticesActive F x) :
@@ -3316,7 +3923,9 @@ theorem ordinaryH0Dim_eq_finrank_graphChainH0_of_active
   rw [ordinaryH0Dim, ite_eq_left hv, finrank_graphChainH0]
 
 /-- The component-count Hilbert function is the dimension of the genuine
-cellular quotient `C₀ / im ∂₁`, not merely of a coordinate proxy.-/
+cellular quotient `C₀ / im ∂₁`, not merely of a coordinate proxy.
+@isnad1 id=eq.1h5v.s7.2adaaa5a5a8d from=translated src=- shape=6bf4d113 vocab=6c8ac72a
+-/
 theorem ordinaryH0Dim_eq_finrank_cellularGraphH0_of_active
     (K : Type*) [Field K] {m n : ℕ} (F : Simplex m → Grade n)
     (x : RealGrade n) (hv : verticesActive F x) :
@@ -3326,7 +3935,9 @@ theorem ordinaryH0Dim_eq_finrank_cellularGraphH0_of_active
   rw [ordinaryH0Dim, ite_eq_left hv, finrank_cellularGraphH0]
 
 /-- Real-valued version of the cellular bridge used by the public theorem.
-It holds over every coefficient field.-/
+It holds over every coefficient field.
+@isnad1 id=eq.1h5v.s7.3917e864154c from=translated src=- shape=45fbcf96 vocab=ab1e27bc
+-/
 theorem realOrdinaryH0Dim_eq_finrank_cellularGraphH0_of_active
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n)
@@ -3336,12 +3947,18 @@ theorem realOrdinaryH0Dim_eq_finrank_cellularGraphH0_of_active
   classical
   rw [realOrdinaryH0Dim, ite_eq_left hv, finrank_cellularGraphH0]
 
+/--
+@isnad1 id=eq.1h4v.s5.0879b5d3424c from=translated src=- shape=755c2591 vocab=b6d57256
+-/
 theorem ordinaryH0Dim_eq_zero_of_not_active
     {m n : ℕ} (F : Simplex m → Grade n) (x : RealGrade n)
     (hv : ¬ verticesActive F x) : ordinaryH0Dim F x = 0 := by
   classical
   rw [ordinaryH0Dim, ite_eq_right hv]
 
+/--
+@isnad1 id=eq.1h4v.s5.3dc5892e6460 from=translated src=- shape=a2e3a145 vocab=14ee5223
+-/
 theorem realOrdinaryH0Dim_eq_zero_of_not_active
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n)
     (hv : ¬ realVerticesActive F x) : realOrdinaryH0Dim F x = 0 := by
@@ -3350,7 +3967,9 @@ theorem realOrdinaryH0Dim_eq_zero_of_not_active
 
 /-- Linearity/uniqueness bridge: whenever the two ordinary-`H₀` Hilbert
 measures are presented separately, their difference is exactly the atom
-formula proved above.-/
+formula proved above.
+@isnad1 id=eq.2h3v.s6.26a85631c05f from=translated src=- shape=0778e43d vocab=27ac910c
+-/
 theorem hilbertDifferenceMeasure_eq_sub_of_decompositions (m : ℕ)
     {muF muG : AtomicSignedMeasure 3}
     (hF : IsHilbertDecomposition
@@ -3363,6 +3982,9 @@ theorem hilbertDifferenceMeasure_eq_sub_of_decompositions (m : ℕ)
   rw [cumulative_sub, hF x, hG x]
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s8.f504a84498eb from=translated src=- shape=1fc34690 vocab=efcf92af
+-/
 theorem hilbertDifferenceSignedMeasure_eq_sub_of_decompositions (m : ℕ)
     {muF muG : AtomicSignedMeasure 3}
     (hF : IsHilbertDecomposition
@@ -3374,12 +3996,18 @@ theorem hilbertDifferenceSignedMeasure_eq_sub_of_decompositions (m : ℕ)
   rw [← AtomicSignedMeasure.toSignedMeasure_sub,
     hilbertDifferenceMeasure_eq_sub_of_decompositions m hF hG]
 
+/--
+@isnad1 id=eq.0h1v.s5.d02166181e33 from=translated src=- shape=f9e1d2b5 vocab=e1fa576f
+-/
 theorem h0FMeasure_sub_h0GMeasure (m : ℕ) :
     h0FMeasure m - h0GMeasure m = hilbertDifferenceMeasure m :=
   hilbertDifferenceMeasure_eq_sub_of_decompositions m
     (h0FMeasure_isHilbertDecomposition m)
     (h0GMeasure_isHilbertDecomposition m)
 
+/--
+@isnad1 id=eq.2h4v.s7.5ff507c7a589 from=translated src=- shape=bfac8e14 vocab=9a953a92
+-/
 theorem hilbertDifferenceMeasurePadded_eq_sub_of_decompositions (m k : ℕ)
     {muF muG : AtomicSignedMeasure (3 + k)}
     (hF : IsHilbertDecomposition
@@ -3393,6 +4021,9 @@ theorem hilbertDifferenceMeasurePadded_eq_sub_of_decompositions (m k : ℕ)
   rw [cumulative_sub, hF x, hG x]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f755405dfc14 from=translated src=- shape=c02a1340 vocab=f9dffe01
+-/
 theorem h0FMeasurePadded_sub_h0GMeasurePadded (m k : ℕ) :
     h0FMeasurePadded m k - h0GMeasurePadded m k =
       hilbertDifferenceMeasurePadded m k :=
@@ -3400,6 +4031,9 @@ theorem h0FMeasurePadded_sub_h0GMeasurePadded (m k : ℕ) :
     (h0FMeasurePadded_isHilbertDecomposition m k)
     (h0GMeasurePadded_isHilbertDecomposition m k)
 
+/--
+@isnad1 id=eq.0h2v.s8.3908d147a744 from=translated src=- shape=2ab90140 vocab=0c3b1bdf
+-/
 theorem hilbertDifferenceSignedMeasurePadded_eq_sub (m k : ℕ) :
     (hilbertDifferenceMeasurePadded m k).toSignedMeasure =
       (h0FMeasurePadded m k).toSignedMeasure -
@@ -3426,6 +4060,9 @@ def IsOrdinaryH0HilbertKRPair {m n : ℕ} {I : Type*} [Fintype I]
   mu.toSignedMeasure.toJordanDecomposition.posPart = unitAtomMeasure source ∧
   mu.toSignedMeasure.toJordanDecomposition.negPart = unitAtomMeasure target
 
+/--
+@isnad1 id=isordina.1h2v.s6.ef6ff7604677 from=translated src=- shape=fd0cd94a vocab=0642b705
+-/
 theorem counterexamplePadded_isOrdinaryH0HilbertKRPair
     (m k : ℕ) (hm : 1 ≤ m) :
     IsOrdinaryH0HilbertKRPair
@@ -3452,7 +4089,9 @@ are genuinely `ℝⁿ`-valued filtrations of the concrete finite graph `graph m`
 The measures `muF,muG` separately invert their ordinary cellular-`H₀` Hilbert
 functions, `mu` is their difference as an actual mathlib signed measure, and
 `source,target` are exactly its mathlib Jordan parts.  Thus the final transport
-identity is the published `KR₁` quantity, not merely an atom-list proxy.-/
+identity is the published `KR₁` quantity, not merely an atom-list proxy.
+@isnad1 id=ex.2h2v.s9.917eb2d3ea38 from=translated src=- shape=c02384a4 vocab=99cee1be
+-/
 theorem theorem1_H0_counterexample_family (n m : ℕ) (hn : 3 ≤ n) (hm : 1 ≤ m) :
     ∃ (F G : Simplex m → RealGrade n)
       (muF muG mu : AtomicSignedMeasure n)
@@ -3539,6 +4178,9 @@ def HilbertH0KRBound (n : ℕ) (C : ℝ) : Prop :=
         mu.toSignedMeasure.toJordanDecomposition.negPart ≤
       ENNReal.ofReal (C * realFiltrationL1Distance F G)
 
+/--
+@isnad1 id=isordina.1h1v.s6.d94a9d4f5a3f from=translated src=- shape=6863337b vocab=dcda2e32
+-/
 theorem counterexample_isOrdinaryH0HilbertKRPair (m : ℕ) (hm : 1 ≤ m) :
     IsOrdinaryH0HilbertKRPair
       (realifyFiltration (fGrade m)) (realifyFiltration (gGrade m))
@@ -3559,7 +4201,9 @@ theorem counterexample_isOrdinaryH0HilbertKRPair (m : ℕ) (hm : 1 ≤ m) :
     hJordan.negPart_eq_unitAtomMeasure⟩
 
 /-- Explicit real-valued witnesses whose ratio already exceeds the proposed
-constant `n`.-/
+constant `n`.
+@isnad1 id=ex.1h1v.s8.7a3532a29875 from=translated src=- shape=5e3f79b9 vocab=db5d7d6c
+-/
 theorem exists_counterexample_to_constant_n_P1 (n : ℕ) (hn : 3 ≤ n) :
     ∃ (m : ℕ) (F G : Simplex m → RealGrade n)
       (muF muG mu : AtomicSignedMeasure n)
@@ -3600,7 +4244,9 @@ theorem exists_counterexample_to_constant_n_P1 (n : ℕ) (hn : 3 ≤ n) :
     simpa using (ENNReal.ofReal_lt_ofReal_iff hpos).2 hreal
 
 /-- Corollary 1: the proposed constant-`n` P1 inequality is false in every
-fixed dimension `n ≥ 3`.-/
+fixed dimension `n ≥ 3`.
+@isnad1 id=not.1h1v.s4.2d986bbc5f83 from=translated src=- shape=b0a04d86 vocab=9bd93449
+-/
 theorem proposed_constant_n_P1_inequality_false (n : ℕ) (hn : 3 ≤ n) :
     ¬ HilbertH0KRBound n n := by
   obtain ⟨m, F, G, muF, muG, mu, source, target,
@@ -3612,7 +4258,9 @@ theorem proposed_constant_n_P1_inequality_false (n : ℕ) (hn : 3 ≤ n) :
       source target hpair)) hgt
 
 /-- Quantitative unboundedness, with real-valued filtered-graph and actual
-Hilbert/Jordan witnesses retained in the conclusion.-/
+Hilbert/Jordan witnesses retained in the conclusion.
+@isnad1 id=ex.1h2v.s8.8537e1bc8e95 from=translated src=- shape=73247982 vocab=db5d7d6c
+-/
 theorem counterexample_family_unbounded (n : ℕ) (hn : 3 ≤ n) (C : ℝ) :
     ∃ (m : ℕ) (F G : Simplex m → RealGrade n)
       (muF muG mu : AtomicSignedMeasure n)
@@ -3655,7 +4303,9 @@ theorem counterexample_family_unbounded (n : ℕ) (hn : 3 ≤ n) (C : ℝ) :
     simpa using (ENNReal.ofReal_lt_ofReal_iff hpos).2 hreal
 
 /-- Corollary 2: no finite constant depending only on the fixed dimension can
-bound the Hilbert signed-measure `KR₁` distance by filtration displacement.-/
+bound the Hilbert signed-measure `KR₁` distance by filtration displacement.
+@isnad1 id=not.1h1v.s4.f353c23a2398 from=translated src=- shape=cec59ee4 vocab=753ede19
+-/
 theorem no_finite_dimension_only_P2_constant (n : ℕ) (hn : 3 ≤ n) :
     ¬ ∃ C : ℝ, HilbertH0KRBound n C := by
   rintro ⟨C, hbound⟩
@@ -3683,6 +4333,9 @@ def scaleRealFiltration {m n : ℕ} (c : ℝ)
     (F : Simplex m → RealGrade n) : Simplex m → RealGrade n :=
   fun sigma ↦ scaleRealGrade c (F sigma)
 
+/--
+@isnad1 id=iff.1h4v.s5.67f454c294ec from=translated src=- shape=320479a4 vocab=426fb995
+-/
 theorem scaleRealGrade_le_iff {n : ℕ} {c : ℝ} (hc : 0 < c)
     (a x : RealGrade n) :
     RealGrade.LE (scaleRealGrade c a) x ↔
@@ -3693,12 +4346,18 @@ theorem scaleRealGrade_le_iff {n : ℕ} {c : ℝ} (hc : 0 < c)
   · have hi := (le_div_iff₀ hc).1 (h i)
     simpa [scaleRealGrade, mul_comm] using hi
 
+/--
+@isnad1 id=realmono.2h4v.s5.bc83790e7286 from=translated src=- shape=06bf3938 vocab=a48b8427
+-/
 theorem scaleRealFiltration_monotone {m n : ℕ} {c : ℝ} (hc : 0 ≤ c)
     {F : Simplex m → RealGrade n} (hF : RealMonotoneFiltration F) :
     RealMonotoneFiltration (scaleRealFiltration c F) := by
   intro e v hv i
   exact mul_le_mul_of_nonneg_left (hF e v hv i) hc
 
+/--
+@isnad1 id=eq.1h4v.s5.fa8fda3077b7 from=translated src=- shape=5467294e vocab=5410a694
+-/
 theorem realL1Distance_scaleRealGrade {n : ℕ} {c : ℝ} (hc : 0 ≤ c)
     (x y : RealGrade n) :
     realL1Distance (scaleRealGrade c x) (scaleRealGrade c y) =
@@ -3706,6 +4365,9 @@ theorem realL1Distance_scaleRealGrade {n : ℕ} {c : ℝ} (hc : 0 ≤ c)
   simp [realL1Distance, scaleRealGrade, ← mul_sub, abs_mul, abs_of_nonneg hc,
     Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h5v.s5.4cc45b14913a from=translated src=- shape=e4a141fa vocab=e63c9840
+-/
 theorem realFiltrationL1Distance_scaleRealFiltration {m n : ℕ}
     {c : ℝ} (hc : 0 ≤ c) (F G : Simplex m → RealGrade n) :
     realFiltrationL1Distance (scaleRealFiltration c F)
@@ -3714,12 +4376,18 @@ theorem realFiltrationL1Distance_scaleRealFiltration {m n : ℕ}
   simp [realFiltrationL1Distance, scaleRealFiltration,
     realL1Distance_scaleRealGrade hc, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h5v.s5.fbbfcfe52f4d from=translated src=- shape=c90cad66 vocab=dfc00cfa
+-/
 theorem realVerticesActive_scaleRealFiltration {m n : ℕ} {c : ℝ}
     (hc : 0 < c) (F : Simplex m → RealGrade n) (x : RealGrade n) :
     realVerticesActive (scaleRealFiltration c F) x =
       realVerticesActive F (unscaleRealGrade c x) := by
   exact propext (scaleRealGrade_le_iff hc _ _)
 
+/--
+@isnad1 id=eq.1h5v.s5.0ca5c2163087 from=translated src=- shape=85b53e94 vocab=81d9b436
+-/
 theorem realSublevelGraph_scaleRealFiltration {m n : ℕ} {c : ℝ}
     (hc : 0 < c) (F : Simplex m → RealGrade n) (x : RealGrade n) :
     realSublevelGraph (scaleRealFiltration c F) x =
@@ -3729,6 +4397,9 @@ theorem realSublevelGraph_scaleRealFiltration {m n : ℕ} {c : ℝ}
     simp [realSublevelGraph, realEdgeActive, scaleRealFiltration,
       scaleRealGrade_le_iff hc]
 
+/--
+@isnad1 id=eq.1h5v.s5.59cbb1e597d9 from=translated src=- shape=1a63d1ea vocab=576a4e99
+-/
 theorem realOrdinaryH0Dim_scaleRealFiltration {m n : ℕ} {c : ℝ}
     (hc : 0 < c) (F : Simplex m → RealGrade n) (x : RealGrade n) :
     realOrdinaryH0Dim (scaleRealFiltration c F) x =
@@ -3744,12 +4415,18 @@ noncomputable def AtomicSignedMeasure.scale {n : ℕ} (c : ℝ)
     (mu : AtomicSignedMeasure n) : AtomicSignedMeasure n :=
   Finsupp.mapDomain (scaleRealGrade c) mu
 
+/--
+@isnad1 id=injectiv.1h2v.s4.af72bc81b83a from=translated src=- shape=c61ee032 vocab=2b5007a4
+-/
 theorem scaleRealGrade_injective {n : ℕ} {c : ℝ} (hc : c ≠ 0) :
     Function.Injective (scaleRealGrade (n := n) c) := by
   intro x y h
   funext i
   exact (mul_left_cancel₀ hc (congrFun h i))
 
+/--
+@isnad1 id=eq.1h4v.s5.74f194b61c08 from=translated src=- shape=49173868 vocab=d15413d1
+-/
 theorem lowerCoefficientHom_scale {n : ℕ} {c : ℝ} (hc : 0 < c)
     (a x : RealGrade n) :
     lowerCoefficientHom (scaleRealGrade c a) x =
@@ -3757,6 +4434,9 @@ theorem lowerCoefficientHom_scale {n : ℕ} {c : ℝ} (hc : 0 < c)
   unfold lowerCoefficientHom
   rw [propext (scaleRealGrade_le_iff hc a x)]
 
+/--
+@isnad1 id=eq.1h4v.s5.dd96be288caf from=translated src=- shape=4bc502a6 vocab=cb876cb9
+-/
 theorem cumulative_scale {n : ℕ} {c : ℝ} (hc : 0 < c)
     (mu : AtomicSignedMeasure n) (x : RealGrade n) :
     cumulative (mu.scale c) x =
@@ -3765,18 +4445,27 @@ theorem cumulative_scale {n : ℕ} {c : ℝ} (hc : 0 < c)
   simp [AtomicSignedMeasure.scale, cumulative,
     lowerCoefficientHom_scale hc]
 
+/--
+@isnad1 id=eq.0h3v.s4.77448aeb7486 from=translated src=- shape=bfd6e634 vocab=1e9654c8
+-/
 theorem AtomicSignedMeasure.scale_atom {n : ℕ} (c : ℝ)
     (a : RealGrade n) :
     (atom a).scale c = atom (scaleRealGrade c a) := by
   classical
   simp [AtomicSignedMeasure.scale, atom]
 
+/--
+@isnad1 id=eq.0h4v.s5.bd11acc9fa00 from=translated src=- shape=cdfa5384 vocab=e80fb85c
+-/
 theorem AtomicSignedMeasure.scale_add {n : ℕ} (c : ℝ)
     (mu nu : AtomicSignedMeasure n) :
     (mu + nu).scale c = mu.scale c + nu.scale c := by
   classical
   exact Finsupp.mapDomain_add
 
+/--
+@isnad1 id=eq.0h3v.s5.76fbc17166db from=translated src=- shape=a5ea1dad vocab=0bcff532
+-/
 theorem AtomicSignedMeasure.scale_neg {n : ℕ} (c : ℝ)
     (mu : AtomicSignedMeasure n) :
     (-mu).scale c = -(mu.scale c) := by
@@ -3786,12 +4475,18 @@ theorem AtomicSignedMeasure.scale_neg {n : ℕ} (c : ℝ)
     (f := scaleRealGrade c)
   simpa [AtomicSignedMeasure.scale] using h
 
+/--
+@isnad1 id=eq.0h4v.s6.4397b7a83ce8 from=translated src=- shape=cdfa5384 vocab=41ccdb91
+-/
 theorem AtomicSignedMeasure.scale_sub {n : ℕ} (c : ℝ)
     (mu nu : AtomicSignedMeasure n) :
     (mu - nu).scale c = mu.scale c - nu.scale c := by
   rw [sub_eq_add_neg, AtomicSignedMeasure.scale_add,
     AtomicSignedMeasure.scale_neg, sub_eq_add_neg]
 
+/--
+@isnad1 id=ishilber.2h5v.s5.02228939e8dd from=translated src=- shape=c04673b2 vocab=b08ba031
+-/
 theorem IsHilbertDecomposition.scale {m n : ℕ} {c : ℝ} (hc : 0 < c)
     {F : Simplex m → RealGrade n} {mu : AtomicSignedMeasure n}
     (hmu : IsHilbertDecomposition
@@ -3806,7 +4501,9 @@ theorem IsHilbertDecomposition.scale {m n : ℕ} {c : ℝ} (hc : 0 < c)
   exact realOrdinaryH0Dim_scaleRealFiltration hc F x |>.symm
 
 /-- The transport lower certificate with an arbitrary common separation
-scale.-/
+scale.
+@isnad1 id=le.1h6v.s6.a794c2707a2e from=translated src=- shape=20d3a5c7 vocab=0062becb
+-/
 theorem UnitCoupling.mul_card_le_cost {n : ℕ} {I : Type*} [Fintype I]
     {source target : I → RealGrade n} (d : ℝ)
     (coupling : UnitCoupling source target)
@@ -3829,6 +4526,9 @@ theorem UnitCoupling.mul_card_le_cost {n : ℕ} {I : Type*} [Fintype I]
         (coupling.nonnegative i j)
     _ = coupling.cost := rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.ba6bc98f64c0 from=translated src=- shape=710286dd vocab=3f34c52d
+-/
 theorem unitAtomicKR1_eq_mul_card_of_separated_matching {n : ℕ}
     {I : Type*} [Fintype I] [DecidableEq I]
     (d : ℝ) (hd : 0 ≤ d) (source target : I → RealGrade n)
@@ -3852,6 +4552,9 @@ theorem unitAtomicKR1_eq_mul_card_of_separated_matching {n : ℕ}
       obtain ⟨c, rfl⟩ := hr
       exact c.mul_card_le_cost d hsep
 
+/--
+@isnad1 id=eq.3h5v.s6.df0990ca1514 from=translated src=- shape=24df8e9b vocab=c79c9cc0
+-/
 theorem unitAtomicKR1_scaled_of_separated_unit_matching {n : ℕ}
     {I : Type*} [Fintype I] [DecidableEq I]
     {c : ℝ} (hc : 0 ≤ c) (source target : I → RealGrade n)
@@ -3867,6 +4570,9 @@ theorem unitAtomicKR1_scaled_of_separated_unit_matching {n : ℕ}
   · intro i
     rw [realL1Distance_scaleRealGrade hc, hmatch i, mul_one]
 
+/--
+@isnad1 id=eq.3h5v.s6.34d69ef23851 from=translated src=- shape=98298c84 vocab=72c12d3f
+-/
 theorem measureKR1_scaled_of_separated_unit_matching {n : ℕ}
     {I : Type*} [Fintype I]
     {c : ℝ} (hc : 0 ≤ c) (source target : I → RealGrade n)
@@ -3884,6 +4590,9 @@ theorem measureKR1_scaled_of_separated_unit_matching {n : ℕ}
   · intro i
     rw [realL1Distance_scaleRealGrade hc, hmatch i, mul_one]
 
+/--
+@isnad1 id=isunitat.2h6v.s6.e84a507bb89e from=translated src=- shape=e8970937 vocab=5ba7cd3f
+-/
 theorem IsUnitAtomicJordanRepresentation.scale {n : ℕ}
     {I : Type*} [Fintype I] {mu : AtomicSignedMeasure n}
     {source target : I → RealGrade n} {c : ℝ} (hc : c ≠ 0)
@@ -3901,7 +4610,9 @@ theorem IsUnitAtomicJordanRepresentation.scale {n : ℕ}
       Finsupp.mapDomain_finsetSum]
 
 /-- Positive scalar dilation preserves the full ordinary-`H₀`
-Hilbert/Jordan bridge, not merely the displayed atom lists.-/
+Hilbert/Jordan bridge, not merely the displayed atom lists.
+@isnad1 id=isordina.2h11v.s6.b80523582109 from=translated src=- shape=623e1bab vocab=f801f8ee
+-/
 theorem IsOrdinaryH0HilbertKRPair.scale {m n : ℕ}
     {I : Type*} [Fintype I]
     {F G : Simplex m → RealGrade n}
@@ -3946,6 +4657,9 @@ def InUnitCube {n : ℕ} (x : RealGrade n) : Prop :=
 /-- The normalization factor used for the `m`-th counterexample.-/
 noncomputable def unitScale (m : ℕ) : ℝ := ((m : ℝ)⁻¹)
 
+/--
+@isnad1 id=and.1h3v.s5.22eea7218e85 from=translated src=- shape=6ee2adb4 vocab=3f84a9af
+-/
 theorem fGrade_coordinate_bounds {m : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) (i : Fin 3) :
     0 ≤ fGrade m sigma i ∧ fGrade m sigma i ≤ (m : ℤ) := by
@@ -3961,6 +4675,9 @@ theorem fGrade_coordinate_bounds {m : ℕ} (hm : 2 ≤ m)
       | b j =>
           fin_cases i <;> simp [fGrade] <;> omega
 
+/--
+@isnad1 id=and.1h3v.s5.0bb8bbd796ea from=translated src=- shape=6ee2adb4 vocab=2e673bd2
+-/
 theorem gGrade_coordinate_bounds {m : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) (i : Fin 3) :
     0 ≤ gGrade m sigma i ∧ gGrade m sigma i ≤ (m : ℤ) := by
@@ -3976,6 +4693,9 @@ theorem gGrade_coordinate_bounds {m : ℕ} (hm : 2 ≤ m)
       | b j =>
           fin_cases i <;> simp [gGrade] <;> omega
 
+/--
+@isnad1 id=and.1h4v.s5.8099d5507311 from=translated src=- shape=36d42885 vocab=1329ed40
+-/
 theorem fGradePadded_coordinate_bounds {m k : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) (i : Fin (3 + k)) :
     0 ≤ fGradePadded m k sigma i ∧
@@ -3985,6 +4705,9 @@ theorem fGradePadded_coordinate_bounds {m k : ℕ} (hm : 2 ≤ m)
       fGrade_coordinate_bounds hm sigma j
   · simp [fGradePadded, padFiltration, Grade.zeroPad]
 
+/--
+@isnad1 id=and.1h4v.s5.6f195acd51eb from=translated src=- shape=36d42885 vocab=a9ac997d
+-/
 theorem gGradePadded_coordinate_bounds {m k : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) (i : Fin (3 + k)) :
     0 ≤ gGradePadded m k sigma i ∧
@@ -3994,6 +4717,9 @@ theorem gGradePadded_coordinate_bounds {m k : ℕ} (hm : 2 ≤ m)
       gGrade_coordinate_bounds hm sigma j
   · simp [gGradePadded, padFiltration, Grade.zeroPad]
 
+/--
+@isnad1 id=inunitcu.2h3v.s5.baaaf4fad34a from=translated src=- shape=fbb7e035 vocab=d4ec44a7
+-/
 theorem scale_to_unit_cube_of_coordinate_bounds {n m : ℕ}
     (hm : 1 ≤ m) (a : Grade n)
     (ha : ∀ i, 0 ≤ a i ∧ a i ≤ (m : ℤ)) :
@@ -4009,6 +4735,9 @@ theorem scale_to_unit_cube_of_coordinate_bounds {n m : ℕ}
         mul_le_mul_of_nonneg_left ham (inv_nonneg.mpr hmreal.le)
       _ = 1 := by simp [unitScale, ne_of_gt hmreal]
 
+/--
+@isnad1 id=inunitcu.1h3v.s6.6f05fce6cfe8 from=translated src=- shape=f4deeb7a vocab=00fcd57c
+-/
 theorem scaled_fGradePadded_in_unit_cube {m k : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) :
     InUnitCube
@@ -4017,6 +4746,9 @@ theorem scaled_fGradePadded_in_unit_cube {m k : ℕ} (hm : 2 ≤ m)
   apply scale_to_unit_cube_of_coordinate_bounds (hm.trans' (by omega))
   exact fGradePadded_coordinate_bounds hm sigma
 
+/--
+@isnad1 id=inunitcu.1h3v.s6.860950b199e4 from=translated src=- shape=f4deeb7a vocab=d62c1dcd
+-/
 theorem scaled_gGradePadded_in_unit_cube {m k : ℕ} (hm : 2 ≤ m)
     (sigma : Simplex m) :
     InUnitCube
@@ -4025,9 +4757,15 @@ theorem scaled_gGradePadded_in_unit_cube {m k : ℕ} (hm : 2 ≤ m)
   apply scale_to_unit_cube_of_coordinate_bounds (hm.trans' (by omega))
   exact gGradePadded_coordinate_bounds hm sigma
 
+/--
+@isnad1 id=lt.1h1v.s4.a7ec4e15f34f from=translated src=- shape=f8216502 vocab=5c5d0261
+-/
 theorem unitScale_pos {m : ℕ} (hm : 1 ≤ m) : 0 < unitScale m := by
   exact inv_pos.mpr (by exact_mod_cast (Nat.zero_lt_of_lt hm))
 
+/--
+@isnad1 id=eq.1h2v.s6.cc569bf45fd3 from=translated src=- shape=760915f3 vocab=f0c0b29e
+-/
 theorem scaled_counterexamplePadded_unitAtomicKR1
     (m k : ℕ) (hm : 1 ≤ m) :
     unitAtomicKR1
@@ -4053,6 +4791,9 @@ theorem scaled_counterexamplePadded_unitAtomicKR1
         2 * ((m : ℝ)⁻¹ * (m : ℝ)) := by ring
     _ = 2 := by rw [inv_mul_cancel₀ hmne, mul_one]
 
+/--
+@isnad1 id=eq.1h2v.s8.290a0ae69fc6 from=translated src=- shape=fc25ade1 vocab=97836bdd
+-/
 theorem scaled_counterexamplePadded_measureKR1
     (m k : ℕ) (hm : 1 ≤ m) :
     measureKR1
@@ -4086,7 +4827,9 @@ theorem scaled_counterexamplePadded_measureKR1
 
 /-- Unit-cube strengthening of Theorem 1.  For `m ≥ 2`, every simplex grade
 lies in `[0,1]ⁿ`, the input distance is `1/m`, and the exact Hilbert
-signed-measure `KR₁` distance remains `2`.-/
+signed-measure `KR₁` distance remains `2`.
+@isnad1 id=ex.2h2v.s8.d423b2d63ffa from=translated src=- shape=8797f1fa vocab=5677cba7
+-/
 theorem unit_cube_H0_counterexample_family
     (n m : ℕ) (hn : 3 ≤ n) (hm : 2 ≤ m) :
     ∃ (F G : Simplex m → RealGrade n)
@@ -4128,7 +4871,9 @@ theorem unit_cube_H0_counterexample_family
 
 /-- Counterexamples persist at arbitrarily small filtration displacement,
 even when all grades lie in a fixed unit cube and the output distance stays
-equal to two.-/
+equal to two.
+@isnad1 id=ex.2h2v.s8.60583a22dc48 from=translated src=- shape=f220a23c vocab=95a12729
+-/
 theorem arbitrarily_close_unit_cube_counterexamples
     (n : ℕ) (hn : 3 ≤ n) {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     ∃ (m : ℕ) (F G : Simplex m → RealGrade n)
@@ -4171,6 +4916,9 @@ def edgeTarget {m : ℕ} : Edge m → Vertex m
   | .a j => .u j
   | .b _ => .t
 
+/--
+@isnad1 id=adj.1h5v.s5.854dc7cac6d0 from=translated src=- shape=11d1c582 vocab=84041e40
+-/
 theorem realSublevelGraph_adj_edgeSource_edgeTarget {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) (e : Edge m)
     (he : realEdgeActive F x e) :
@@ -4189,6 +4937,9 @@ theorem realSublevelGraph_adj_edgeSource_edgeTarget {m n : ℕ}
         (realEdgeActive F x (.b j) ∨ False)
       exact ⟨by simp, Or.inl he⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.9155e36e9569 from=translated src=- shape=e8f9d7d4 vocab=84041e40
+-/
 theorem realSublevelGraph_adj_iff_active_edge {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n)
     (v w : Vertex m) :
@@ -4256,6 +5007,9 @@ noncomputable def activeEdgeBoundary (K : Type*) [Field K]
   Finsupp.lsum K fun e ↦
     LinearMap.id.smulRight (edgeBoundaryVector K e.1)
 
+/--
+@isnad1 id=eq.0h7v.s9.95de4fe6014c from=translated src=- shape=c83bc92b vocab=da3c36ab
+-/
 @[simp]
 theorem activeEdgeBoundary_single (K : Type*) [Field K]
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n)
@@ -4264,6 +5018,9 @@ theorem activeEdgeBoundary_single (K : Type*) [Field K]
       c • edgeBoundaryVector K e.1 := by
   simp [activeEdgeBoundary]
 
+/--
+@isnad1 id=eq.0h5v.s8.c383745f859d from=translated src=- shape=d321c1af vocab=3dfd82d1
+-/
 theorem activeEdgeBoundary_range_eq_cellularEdgeBoundarySpan
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
@@ -4307,6 +5064,9 @@ noncomputable abbrev CellularFilteredGraphH0 (K : Type*) [Field K]
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n) :=
   (Vertex m →₀ K) ⧸ LinearMap.range (activeEdgeBoundary K F x)
 
+/--
+@isnad1 id=eq.0h5v.s8.8033a9ee8199 from=translated src=- shape=479c825c vocab=669d3a9d
+-/
 theorem finrank_cellularFilteredGraphH0 (K : Type*) [Field K]
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n) :
     Module.finrank K (CellularFilteredGraphH0 K F x) =
@@ -4334,7 +5094,9 @@ noncomputable def realActiveEdgeCount {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) : ℕ :=
   Nat.card (ActiveEdge F x)
 
-/-- Euler--Poincaré at chain level for the filtered graph.-/
+/-- Euler--Poincaré at chain level for the filtered graph.
+@isnad1 id=eq.0h5v.s9.2fb654de2035 from=translated src=- shape=eabf3072 vocab=8c45ed9e
+-/
 theorem finrank_cellularFilteredGraphH1_add_vertices
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
@@ -4384,6 +5146,9 @@ noncomputable def realOrdinaryH1Dim {m n : ℕ}
     Module.finrank ℚ (CellularFilteredGraphH1 ℚ F x)
   else 0
 
+/--
+@isnad1 id=eq.0h5v.s10.99d26a9b94a0 from=translated src=- shape=07f7d324 vocab=8333996c
+-/
 theorem finrank_cellularFilteredGraphH1_field_independent
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
@@ -4393,6 +5158,9 @@ theorem finrank_cellularFilteredGraphH1_field_independent
   have hQ := finrank_cellularFilteredGraphH1_add_vertices ℚ F x
   omega
 
+/--
+@isnad1 id=eq.1h5v.s9.5e48f555fe24 from=translated src=- shape=72a19768 vocab=64cd337c
+-/
 theorem realOrdinaryH1Dim_eq_finrank_cellularFilteredGraphH1_of_active
     (K : Type*) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n)
@@ -4402,12 +5170,18 @@ theorem realOrdinaryH1Dim_eq_finrank_cellularFilteredGraphH1_of_active
   rw [realOrdinaryH1Dim, ite_eq_left hactive,
     finrank_cellularFilteredGraphH1_field_independent K]
 
+/--
+@isnad1 id=eq.1h4v.s5.8c01331c48f0 from=translated src=- shape=a2e3a145 vocab=0c70441f
+-/
 theorem realOrdinaryH1Dim_eq_zero_of_not_active
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n)
     (hactive : ¬ realVerticesActive F x) :
     realOrdinaryH1Dim F x = 0 := by
   simp [realOrdinaryH1Dim, hactive]
 
+/--
+@isnad1 id=eq.1h4v.s6.b7d76cbfcdad from=translated src=- shape=97e07cdd vocab=5efc827b
+-/
 theorem realOrdinaryH1Dim_euler_of_active
     {m n : ℕ} (F : Simplex m → RealGrade n) (x : RealGrade n)
     (hactive : realVerticesActive F x) :
@@ -4454,6 +5228,9 @@ def activeEdgeEquiv {m n : ℕ} (F : Simplex m → RealGrade n)
         | inl j => rcases j with ⟨j, hj⟩; rfl
         | inr j => rcases j with ⟨j, hj⟩; rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.7e7f72b08416 from=translated src=- shape=6f06de57 vocab=f13ff600
+-/
 theorem realActiveEdgeCount_eq_central_add_arms {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
     realActiveEdgeCount F x =
@@ -4464,6 +5241,9 @@ theorem realActiveEdgeCount_eq_central_add_arms {m n : ℕ}
     Nat.card_sum, Nat.card_sum]
   omega
 
+/--
+@isnad1 id=iff.0h2v.s6.de95fcd74dda from=translated src=- shape=e347bceb vocab=60dc8ab3
+-/
 theorem realEdgeActive_realify_fGrade_e_iff (m : ℕ) (x : RealGrade 3) :
     realEdgeActive (realifyFiltration (fGrade m)) x .e ↔
       2 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
@@ -4480,6 +5260,9 @@ theorem realEdgeActive_realify_fGrade_e_iff (m : ℕ) (x : RealGrade 3) :
       simpa [realEdgeActive, realifyFiltration, fGrade,
         RealGrade.LE, Grade.toReal] using ‹_›
 
+/--
+@isnad1 id=iff.0h2v.s6.c6547380e0d4 from=translated src=- shape=e347bceb vocab=c182031b
+-/
 theorem realEdgeActive_realify_gGrade_e_iff (m : ℕ) (x : RealGrade 3) :
     realEdgeActive (realifyFiltration (gGrade m)) x .e ↔
       1 ≤ x 0 ∧ 0 ≤ x 1 ∧ 0 ≤ x 2 := by
@@ -4496,6 +5279,9 @@ theorem realEdgeActive_realify_gGrade_e_iff (m : ℕ) (x : RealGrade 3) :
       simpa [realEdgeActive, realifyFiltration, gGrade,
         RealGrade.LE, Grade.toReal] using ‹_›
 
+/--
+@isnad1 id=eq.0h1v.s7.315329163aa9 from=translated src=- shape=c0a1d5fb vocab=02405d8e
+-/
 theorem lowerIndicator_origin_lastTwoCoordinates (x : RealGrade 3) :
     lowerIndicator (![0, 0] : RealGrade 2) (lastTwoCoordinates x) =
       if 0 ≤ x 1 ∧ 0 ≤ x 2 then 1 else 0 := by
@@ -4506,6 +5292,9 @@ theorem lowerIndicator_origin_lastTwoCoordinates (x : RealGrade 3) :
   · simp [lowerIndicator, lowerCoefficientHom, RealGrade.LE,
       lastTwoCoordinates, h]
 
+/--
+@isnad1 id=eq.0h2v.s6.450fa258b347 from=translated src=- shape=d16ee534 vocab=f4c36d03
+-/
 theorem realActiveEdgeCount_fGrade_sub_gGrade (m : ℕ)
     (x : RealGrade 3) :
     (realActiveEdgeCount (realifyFiltration (fGrade m)) x : ℤ) -
@@ -4555,6 +5344,9 @@ noncomputable def h1HilbertDifference (m : ℕ) (x : RealGrade 3) : ℤ :=
   (realOrdinaryH1Dim (realifyFiltration (fGrade m)) x : ℤ) -
     (realOrdinaryH1Dim (realifyFiltration (gGrade m)) x : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s6.9102c8b4c461 from=translated src=- shape=ff0e5ab9 vocab=024b19a6
+-/
 theorem h1HilbertDifference_eq_h0_sub_euler_atom
     (m : ℕ) (x : RealGrade 3) :
     h1HilbertDifference m x =
@@ -4619,6 +5411,9 @@ noncomputable def h1HilbertDifferenceMeasure (m : ℕ) :
     AtomicSignedMeasure.tensor slabMeasure
       (atom (![0, 0] : RealGrade 2))
 
+/--
+@isnad1 id=eq.0h2v.s4.3b68452e16af from=translated src=- shape=8abf66ba vocab=1fc1aaf0
+-/
 theorem cumulative_h1HilbertDifferenceMeasure (m : ℕ)
     (x : RealGrade 3) :
     cumulative (h1HilbertDifferenceMeasure m) x =
@@ -4630,6 +5425,9 @@ theorem cumulative_h1HilbertDifferenceMeasure (m : ℕ)
     h1HilbertDifference_eq_h0_sub_euler_atom]
   rfl
 
+/--
+@isnad1 id=ishilber.0h1v.s3.779123220e1a from=translated src=- shape=88774e53 vocab=5d403d96
+-/
 theorem h1HilbertDifferenceMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition (h1HilbertDifference m)
       (h1HilbertDifferenceMeasure m) :=
@@ -4644,6 +5442,9 @@ def h1AtomEmbedding (m : ℕ) :
   | .inl j => .inl (.inr j)
   | .inr j => .inr j
 
+/--
+@isnad1 id=injectiv.0h1v.s3.7d80a7c53425 from=translated src=- shape=ca92e646 vocab=6497fc87
+-/
 theorem h1AtomEmbedding_injective (m : ℕ) :
     Function.Injective (h1AtomEmbedding m) := by
   intro i j h
@@ -4655,37 +5456,58 @@ def h1SourcePoint (m : ℕ) (i : H1AtomIndex m) : RealGrade 3 :=
 def h1TargetPoint (m : ℕ) (i : H1AtomIndex m) : RealGrade 3 :=
   counterexampleTargetPoint m (h1AtomEmbedding m i)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.48e487aea168 from=translated src=- shape=8588cafe vocab=f8a72094
+-/
 theorem h1SourcePoint_injective (m : ℕ) :
     Function.Injective (h1SourcePoint m) :=
   (counterexampleSourcePoint_injective m).comp
     (h1AtomEmbedding_injective m)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.396465287a00 from=translated src=- shape=8588cafe vocab=03d3e9af
+-/
 theorem h1TargetPoint_injective (m : ℕ) :
     Function.Injective (h1TargetPoint m) :=
   (counterexampleTargetPoint_injective m).comp
     (h1AtomEmbedding_injective m)
 
+/--
+@isnad1 id=ne.1h3v.s4.a41023627565 from=translated src=- shape=1cd4ec99 vocab=e93019ba
+-/
 theorem h1SourcePoint_ne_targetPoint {m : ℕ} (hm : 1 ≤ m)
     (i j : H1AtomIndex m) :
     h1SourcePoint m i ≠ h1TargetPoint m j :=
   counterexampleSourcePoint_ne_targetPoint hm
     (h1AtomEmbedding m i) (h1AtomEmbedding m j)
 
+/--
+@isnad1 id=le.1h3v.s5.109965acc599 from=translated src=- shape=05bfde64 vocab=31962edf
+-/
 theorem one_le_h1_source_target_distance {m : ℕ} (hm : 1 ≤ m)
     (i j : H1AtomIndex m) :
     1 ≤ realL1Distance (h1SourcePoint m i) (h1TargetPoint m j) :=
   one_le_counterexample_source_target_distance hm
     (h1AtomEmbedding m i) (h1AtomEmbedding m j)
 
+/--
+@isnad1 id=eq.0h2v.s4.1ebbba51e352 from=translated src=- shape=ed63b922 vocab=06f92966
+-/
 theorem h1_corresponding_distance (m : ℕ) (i : H1AtomIndex m) :
     realL1Distance (h1SourcePoint m i) (h1TargetPoint m i) = 1 :=
   counterexample_corresponding_distance m (h1AtomEmbedding m i)
 
+/--
+@isnad1 id=eq.1h1v.s6.172955bfac9c from=translated src=- shape=8c36cd01 vocab=f1cadc82
+-/
 theorem card_H1AtomIndex {m : ℕ} (hm : 1 ≤ m) :
     Fintype.card (H1AtomIndex m) = 2 * m - 1 := by
   simp [H1AtomIndex]
   omega
 
+/--
+@isnad1 id=eq.1h1v.s6.4fb06a264dde from=translated src=- shape=8c73741b vocab=84e0a8fa
+-/
 theorem h1_unitAtomicKR1 (m : ℕ) (hm : 1 ≤ m) :
     unitAtomicKR1 (h1SourcePoint m) (h1TargetPoint m) =
       2 * m - 1 := by
@@ -4709,6 +5531,9 @@ noncomputable def h1NegativeMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
   AtomicSignedMeasure.tensor (atom ![1]) (h1PathMeasure m) +
     AtomicSignedMeasure.tensor (atom ![2]) (h1CornerMeasure m)
 
+/--
+@isnad1 id=eq.0h1v.s7.8432893d2425 from=translated src=- shape=c8d7d92d vocab=75380501
+-/
 theorem staircaseMeasure_sub_origin_eq_h1Corner_sub_h1Path (m : ℕ) :
     staircaseMeasure m - atom (![0, 0] : RealGrade 2) =
       h1CornerMeasure m - h1PathMeasure m := by
@@ -4717,6 +5542,9 @@ theorem staircaseMeasure_sub_origin_eq_h1Corner_sub_h1Path (m : ℕ) :
     h1CornerMeasure, h1PathMeasure]
   abel
 
+/--
+@isnad1 id=eq.0h1v.s5.b77a6be8ff4d from=translated src=- shape=e43f9819 vocab=c724ec2d
+-/
 theorem h1HilbertDifferenceMeasure_eq_positive_sub_negative (m : ℕ) :
     h1HilbertDifferenceMeasure m =
       h1PositiveMeasure m - h1NegativeMeasure m := by
@@ -4729,6 +5557,9 @@ theorem h1HilbertDifferenceMeasure_eq_positive_sub_negative (m : ℕ) :
   simp only [h1PositiveMeasure, h1NegativeMeasure]
   abel
 
+/--
+@isnad1 id=eq.0h1v.s6.ba766dc24361 from=translated src=- shape=90d776b9 vocab=b8ced7fa
+-/
 theorem sum_h1SourcePoint_atoms (m : ℕ) :
     (∑ i : H1AtomIndex m, atom (h1SourcePoint m i)) =
       h1PositiveMeasure m := by
@@ -4760,6 +5591,9 @@ theorem sum_h1SourcePoint_atoms (m : ℕ) :
     AtomicSignedMeasure.tensor_finset_sum_right,
     AtomicSignedMeasure.tensor_atom_atom]
 
+/--
+@isnad1 id=eq.0h1v.s6.2f25856a0e37 from=translated src=- shape=90d776b9 vocab=0c3f05da
+-/
 theorem sum_h1TargetPoint_atoms (m : ℕ) :
     (∑ i : H1AtomIndex m, atom (h1TargetPoint m i)) =
       h1NegativeMeasure m := by
@@ -4792,6 +5626,9 @@ theorem sum_h1TargetPoint_atoms (m : ℕ) :
     AtomicSignedMeasure.tensor_atom_atom]
   abel
 
+/--
+@isnad1 id=eq.0h1v.s7.1609614efa0b from=translated src=- shape=3cbf33a0 vocab=e1becc43
+-/
 theorem h1HilbertDifferenceMeasure_eq_indexed_jordan (m : ℕ) :
     h1HilbertDifferenceMeasure m =
       (∑ i : H1AtomIndex m, atom (h1SourcePoint m i)) -
@@ -4799,6 +5636,9 @@ theorem h1HilbertDifferenceMeasure_eq_indexed_jordan (m : ℕ) :
   rw [sum_h1SourcePoint_atoms, sum_h1TargetPoint_atoms,
     h1HilbertDifferenceMeasure_eq_positive_sub_negative]
 
+/--
+@isnad1 id=isunitat.1h1v.s5.d62de2a796e6 from=translated src=- shape=87a9a61e vocab=bcc36df3
+-/
 theorem h1_isUnitAtomicJordanRepresentation (m : ℕ) (hm : 1 ≤ m) :
     IsUnitAtomicJordanRepresentation (h1HilbertDifferenceMeasure m)
       (h1SourcePoint m) (h1TargetPoint m) :=
@@ -4806,6 +5646,9 @@ theorem h1_isUnitAtomicJordanRepresentation (m : ℕ) (hm : 1 ≤ m) :
     h1SourcePoint_ne_targetPoint hm,
     h1HilbertDifferenceMeasure_eq_indexed_jordan m⟩
 
+/--
+@isnad1 id=and.1h1v.s8.7f075107dda4 from=translated src=- shape=7c61adcf vocab=37473d3d
+-/
 theorem h1HilbertDifferenceMeasure_KR1 (m : ℕ) (hm : 1 ≤ m) :
     (h1HilbertDifferenceMeasure m).toSignedMeasure.toJordanDecomposition.posPart =
         unitAtomMeasure (h1SourcePoint m) ∧
@@ -4816,6 +5659,9 @@ theorem h1HilbertDifferenceMeasure_KR1 (m : ℕ) (hm : 1 ≤ m) :
   exact ⟨hJordan.posPart_eq_unitAtomMeasure,
     hJordan.negPart_eq_unitAtomMeasure, h1_unitAtomicKR1 m hm⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.b05d36465d6b from=translated src=- shape=3dc8a8a3 vocab=54556029
+-/
 theorem h1HilbertDifferenceMeasure_measureKR1 (m : ℕ) (hm : 1 ≤ m) :
     measureKR1
         (h1HilbertDifferenceMeasure m).toSignedMeasure.toJordanDecomposition.posPart
@@ -4843,6 +5689,9 @@ noncomputable def eulerHilbertDifferenceMeasure :
   AtomicSignedMeasure.tensor slabMeasure
     (atom (![0, 0] : RealGrade 2))
 
+/--
+@isnad1 id=eq.0h2v.s6.3825597ac231 from=translated src=- shape=2bc32a1a vocab=3e0ef841
+-/
 theorem eulerHilbertDifference_eq_slab_origin
     (m : ℕ) (x : RealGrade 3) :
     eulerHilbertDifference m x =
@@ -4853,6 +5702,9 @@ theorem eulerHilbertDifference_eq_slab_origin
     h1HilbertDifference_eq_h0_sub_euler_atom]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.63ca05e5a39a from=translated src=- shape=56217473 vocab=e2d0dc2f
+-/
 theorem cumulative_eulerHilbertDifferenceMeasure
     (m : ℕ) (x : RealGrade 3) :
     cumulative eulerHilbertDifferenceMeasure x =
@@ -4862,6 +5714,9 @@ theorem cumulative_eulerHilbertDifferenceMeasure
     eulerHilbertDifference_eq_slab_origin]
   rfl
 
+/--
+@isnad1 id=ishilber.0h1v.s3.21de9145375b from=translated src=- shape=54e46bee vocab=13e1f6b5
+-/
 theorem eulerHilbertDifferenceMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition (eulerHilbertDifference m)
       eulerHilbertDifferenceMeasure :=
@@ -4873,18 +5728,27 @@ def eulerSourcePoint (_ : Unit) : RealGrade 3 :=
 def eulerTargetPoint (_ : Unit) : RealGrade 3 :=
   ![2, 0, 0]
 
+/--
+@isnad1 id=ne.0h2v.s3.f0d60a75295a from=translated src=- shape=6d56a713 vocab=8ed12bc5
+-/
 theorem eulerSourcePoint_ne_targetPoint (i j : Unit) :
     eulerSourcePoint i ≠ eulerTargetPoint j := by
   intro h
   have h0 := congrFun h (0 : Fin 3)
   norm_num [eulerSourcePoint, eulerTargetPoint] at h0
 
+/--
+@isnad1 id=eq.0h1v.s4.87bde342e32d from=translated src=- shape=78eed0d6 vocab=3ca4196e
+-/
 theorem euler_corresponding_distance (i : Unit) :
     realL1Distance (eulerSourcePoint i) (eulerTargetPoint i) = 1 := by
   cases i
   norm_num [eulerSourcePoint, eulerTargetPoint,
     realL1Distance, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s6.eed47468cb9a from=translated src=- shape=14afa32d vocab=d6732284
+-/
 theorem eulerHilbertDifferenceMeasure_eq_indexed_jordan :
     eulerHilbertDifferenceMeasure =
       (∑ i : Unit, atom (eulerSourcePoint i)) -
@@ -4905,6 +5769,9 @@ theorem eulerHilbertDifferenceMeasure_eq_indexed_jordan :
     fin_cases i <;> rfl
   rw [hsource, htarget]
 
+/--
+@isnad1 id=isunitat.0h0v.s3.f2e0bb57b606 from=translated src=- shape=4482ab1b vocab=8b4c375e
+-/
 theorem euler_isUnitAtomicJordanRepresentation :
     IsUnitAtomicJordanRepresentation eulerHilbertDifferenceMeasure
       eulerSourcePoint eulerTargetPoint :=
@@ -4913,6 +5780,9 @@ theorem euler_isUnitAtomicJordanRepresentation :
     eulerSourcePoint_ne_targetPoint,
     eulerHilbertDifferenceMeasure_eq_indexed_jordan⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.065c8d66dc5f from=translated src=- shape=8cadb4e0 vocab=64f698e7
+-/
 theorem euler_unitAtomicKR1 :
     unitAtomicKR1 eulerSourcePoint eulerTargetPoint = 1 := by
   rw [unitAtomicKR1_eq_card_of_separated_unit_matching
@@ -4925,6 +5795,9 @@ theorem euler_unitAtomicKR1 :
     euler_corresponding_distance]
   norm_num
 
+/--
+@isnad1 id=and.0h0v.s7.5bf771e3655f from=translated src=- shape=42f10c59 vocab=87f28b52
+-/
 theorem eulerHilbertDifferenceMeasure_KR1 :
     eulerHilbertDifferenceMeasure.toSignedMeasure.toJordanDecomposition.posPart =
         unitAtomMeasure eulerSourcePoint ∧
@@ -4935,6 +5808,9 @@ theorem eulerHilbertDifferenceMeasure_KR1 :
   exact ⟨hJordan.posPart_eq_unitAtomMeasure,
     hJordan.negPart_eq_unitAtomMeasure, euler_unitAtomicKR1⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.ae07bf860f87 from=translated src=- shape=62e66f02 vocab=a06ff61d
+-/
 theorem eulerHilbertDifferenceMeasure_measureKR1 :
     measureKR1
         eulerHilbertDifferenceMeasure.toSignedMeasure.toJordanDecomposition.posPart
@@ -4959,6 +5835,9 @@ noncomputable def edgeGradeMeasure {m n : ℕ}
     (F : Simplex m → RealGrade n) : AtomicSignedMeasure n :=
   ∑ e : Edge m, atom (F (.edge e))
 
+/--
+@isnad1 id=eq.0h4v.s4.156525b85b74 from=translated src=- shape=26eac5ec vocab=ea7ef60c
+-/
 theorem cumulative_edgeGradeMeasure {m n : ℕ}
     (F : Simplex m → RealGrade n) (x : RealGrade n) :
     cumulative (edgeGradeMeasure F) x =
@@ -4984,6 +5863,9 @@ theorem cumulative_edgeGradeMeasure {m n : ℕ}
     Fintype.card_subtype]
   simpa only [Finset.sum_boole]
 
+/--
+@isnad1 id=eq.3h4v.s5.535efcc53728 from=translated src=- shape=979ead9b vocab=bb695268
+-/
 theorem realActiveEdgeCount_eq_zero_of_not_verticesActive
     {m n : ℕ} {F : Simplex m → RealGrade n}
     (hF : RealMonotoneFiltration F)
@@ -5013,6 +5895,9 @@ noncomputable def cellularH1Measure {m n : ℕ}
   muH0 + edgeGradeMeasure F -
     (Fintype.card (Vertex m) : ℤ) • atom (F (.vertex .s))
 
+/--
+@isnad1 id=ishilber.3h4v.s6.f81d367c527b from=translated src=- shape=b2d1ff26 vocab=8bf18788
+-/
 theorem cellularH1Measure_isHilbertDecomposition
     {m n : ℕ} {F : Simplex m → RealGrade n}
     {muH0 : AtomicSignedMeasure n}
@@ -5060,6 +5945,9 @@ noncomputable def h1FMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
 noncomputable def h1GMeasure (m : ℕ) : AtomicSignedMeasure 3 :=
   cellularH1Measure (realifyFiltration (gGrade m)) (h0GMeasure m)
 
+/--
+@isnad1 id=ishilber.0h1v.s5.d1f93533364f from=translated src=- shape=22a330ea vocab=4373b6bc
+-/
 theorem h1FMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition
       (fun x ↦
@@ -5071,6 +5959,9 @@ theorem h1FMeasure_isHilbertDecomposition (m : ℕ) :
     rfl
   · exact h0FMeasure_isHilbertDecomposition m
 
+/--
+@isnad1 id=ishilber.0h1v.s5.e1d1ed66ed87 from=translated src=- shape=22a330ea vocab=d8d3bff4
+-/
 theorem h1GMeasure_isHilbertDecomposition (m : ℕ) :
     IsHilbertDecomposition
       (fun x ↦
@@ -5082,6 +5973,9 @@ theorem h1GMeasure_isHilbertDecomposition (m : ℕ) :
     rfl
   · exact h0GMeasure_isHilbertDecomposition m
 
+/--
+@isnad1 id=eq.0h1v.s5.738f3834abeb from=translated src=- shape=f9e1d2b5 vocab=3d842e28
+-/
 theorem h1FMeasure_sub_h1GMeasure (m : ℕ) :
     h1FMeasure m - h1GMeasure m =
       h1HilbertDifferenceMeasure m := by
@@ -5093,6 +5987,9 @@ theorem h1FMeasure_sub_h1GMeasure (m : ℕ) :
     rfl
   · exact h1HilbertDifferenceMeasure_isHilbertDecomposition m
 
+/--
+@isnad1 id=eq.0h1v.s7.1ec8713eabe4 from=translated src=- shape=1472d9f7 vocab=912123e3
+-/
 theorem h1HilbertDifferenceSignedMeasure_eq_sub (m : ℕ) :
     (h1HilbertDifferenceMeasure m).toSignedMeasure =
       (h1FMeasure m).toSignedMeasure -
@@ -5103,7 +6000,9 @@ theorem h1HilbertDifferenceSignedMeasure_eq_sub (m : ℕ) :
 /-- Same-family `H₁`/Euler proposition.  The `H₁` function is defined from
 the kernel of the actual cellular boundary, its two separate Hilbert signed
 measures have the displayed difference with exact `KR₁ = 2m-1`, and
-subtracting it from the `H₀` difference leaves one unit-cost Euler atom.-/
+subtracting it from the `H₀` difference leaves one unit-cost Euler atom.
+@isnad1 id=and.1h1v.s10.9352d31ca947 from=translated src=- shape=bac16326 vocab=6a3b6292
+-/
 theorem same_family_H1_and_Euler_cancellation
     (m : ℕ) (hm : 1 ≤ m) :
     IsHilbertDecomposition

@@ -63,6 +63,9 @@ def rowSpace (P : LabeledPresentation K n Row Column) (x : RealGrade n) :
     intro a v hv r hr
     simp [hv r hr]
 
+/--
+@isnad1 id=le.1h7v.s8.d32c5b0a0cf5 from=translated src=- shape=2547f33f vocab=b58e3344
+-/
 theorem rowSpace_mono (P : LabeledPresentation K n Row Column)
     {x y : RealGrade n} (hxy : RealGrade.LE x y) :
     P.rowSpace x ≤ P.rowSpace y := by
@@ -93,6 +96,9 @@ def rowInclusion (P : LabeledPresentation K n Row Column)
     P.rowSpace x →ₗ[K] P.rowSpace y :=
   Submodule.inclusion (P.rowSpace_mono hxy)
 
+/--
+@isnad1 id=eq.2h8v.s11.3c99613719e9 from=translated src=- shape=56f00c9e vocab=034f096e
+-/
 theorem rowInclusion_activeColumn
     (P : LabeledPresentation K n Row Column)
     {x y : RealGrade n} (hxy : RealGrade.LE x y)
@@ -101,6 +107,9 @@ theorem rowInclusion_activeColumn
       P.activeColumn y c (fun i ↦ (hc i).trans (hxy i)) := by
   rfl
 
+/--
+@isnad1 id=le.1h7v.s11.9ac17fc13888 from=translated src=- shape=50b75dcf vocab=75030ff4
+-/
 theorem relationSpace_le_comap_rowInclusion
     (P : LabeledPresentation K n Row Column)
     {x y : RealGrade n} (hxy : RealGrade.LE x y) :
@@ -179,6 +188,9 @@ def LabeledPresentation.Presents
     (P : LabeledPresentation K n Row Column) (M : PersistenceModule K n) : Prop :=
   Nonempty (PersistenceModuleIso P.toPersistenceModule M)
 
+/--
+@isnad1 id=presents.0h5v.s5.926c84082964 from=translated src=- shape=1859ab4c vocab=13ca5c89
+-/
 theorem LabeledPresentation.presents_toPersistenceModule
     {K : Type u} [Field K] {n : ℕ}
     {Row Column : Type} [Fintype Row] [Fintype Column]
@@ -205,6 +217,9 @@ presentations above.-/
 def FinitelyPresented {K : Type u} [Field K] {n : ℕ}
     (M : PersistenceModule K n) : Prop := Nonempty (PresentationWitness M)
 
+/--
+@isnad1 id=finitely.0h5v.s5.86e789afb42a from=translated src=- shape=1b55ee23 vocab=a94cae9b
+-/
 theorem LabeledPresentation.finitelyPresented_toPersistenceModule
     {K : Type u} [Field K] {n : ℕ}
     {Row Column : Type} [Fintype Row] [Fintype Column]
@@ -223,6 +238,9 @@ def presentationLabelL1 {K : Type u} [Field K] {n : ℕ}
   (∑ r, realL1Distance (P.rowGrade r) (Q.rowGrade r)) +
     ∑ c, realL1Distance (P.columnGrade c) (Q.columnGrade c)
 
+/--
+@isnad1 id=le.0h6v.s5.77c3abe188a1 from=translated src=- shape=7f43bba7 vocab=35250239
+-/
 theorem presentationLabelL1_nonnegative {K : Type u} [Field K] {n : ℕ}
     {Row Column : Type} [Fintype Row] [Fintype Column]
     (P Q : LabeledPresentation K n Row Column) :
@@ -258,6 +276,9 @@ noncomputable def preliminaryPresentationDistance
     (M N : PersistenceModule K n) : ℝ≥0∞ :=
   sInf (Set.range fun P : CompatiblePresentationPair M N ↦ P.cost)
 
+/--
+@isnad1 id=le.0h5v.s5.33126ac4f450 from=translated src=- shape=ce0a6ab1 vocab=fea03013
+-/
 theorem preliminaryPresentationDistance_le_cost
     {K : Type u} [Field K] {n : ℕ} {M N : PersistenceModule K n}
     (P : CompatiblePresentationPair M N) :
@@ -284,6 +305,9 @@ noncomputable def directPresentationPath
     (M N : PersistenceModule K n) : PresentationPath M N :=
   .cons M N N (.nil N)
 
+/--
+@isnad1 id=eq.0h4v.s5.e7841872c8a8 from=translated src=- shape=04b46eaf vocab=0697eb10
+-/
 @[simp]
 theorem directPresentationPath_cost
     {K : Type u} [Field K] {n : ℕ}
@@ -298,6 +322,9 @@ noncomputable def presentationDistance1
     (M N : PersistenceModule K n) : ℝ≥0∞ :=
   sInf (Set.range fun path : PresentationPath M N ↦ path.cost)
 
+/--
+@isnad1 id=le.0h4v.s5.7278a4613b44 from=translated src=- shape=ec64b97f vocab=8f430ab9
+-/
 theorem presentationDistance1_le_preliminary
     {K : Type u} [Field K] {n : ℕ}
     (M N : PersistenceModule K n) :
@@ -305,6 +332,9 @@ theorem presentationDistance1_le_preliminary
   apply sInf_le
   exact ⟨directPresentationPath M N, directPresentationPath_cost M N⟩
 
+/--
+@isnad1 id=le.0h5v.s5.0fdfdf641822 from=translated src=- shape=ce0a6ab1 vocab=1d41d97f
+-/
 theorem presentationDistance1_le_compatible_cost
     {K : Type u} [Field K] {n : ℕ} {M N : PersistenceModule K n}
     (P : CompatiblePresentationPair M N) :
@@ -328,6 +358,9 @@ def incidenceMatrix (K : Type u) [Field K] (m : ℕ) :
   | .t, .b _ => -1
   | .u i, .b j => if i = j then 1 else 0
 
+/--
+@isnad1 id=mem.1h4v.s5.392fe0853e06 from=translated src=- shape=2ab0f5fd vocab=3f661562
+-/
 theorem incidenceMatrix_nonzero_mem_endpoints
     (K : Type u) [Field K] (m : ℕ) (v : Vertex m) (edge : Edge m)
     (h : incidenceMatrix K m v edge ≠ 0) : v ∈ endpoints edge := by
@@ -372,7 +405,9 @@ noncomputable def activeRowEquivFinsupp
   map_smul' _ _ := by simp
 
 /-- Under the zero-chain equivalence, every presentation column is its actual
-oriented cellular edge boundary.-/
+oriented cellular edge boundary.
+@isnad1 id=eq.4h6v.s11.f6c44dfcbe0d from=translated src=- shape=dcfbf69c vocab=53f026f9
+-/
 theorem activeRowEquivFinsupp_activeColumn
     (K : Type u) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (hF : RealMonotoneFiltration F)
@@ -401,7 +436,9 @@ theorem activeRowEquivFinsupp_activeColumn
       | u j => by_cases h : j = je <;> simp [incidenceMatrix, h]
 
 /-- The span of the active presentation columns is exactly the cellular edge
-boundary span of the real sublevel graph.-/
+boundary span of the real sublevel graph.
+@isnad1 id=eq.3h5v.s10.85c9c148a118 from=translated src=- shape=70879cf9 vocab=c887f985
+-/
 theorem activeRelationSpace_map_eq_cellularEdgeBoundarySpan
     (K : Type u) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (hF : RealMonotoneFiltration F)
@@ -523,7 +560,9 @@ noncomputable def activeModuleAtEquivCellularGraphH0
 
 /-- For a filtered graph whose vertices all enter together, the pointwise
 finrank of its labeled cellular presentation is exactly the ordinary-`H₀`
-component-count Hilbert function used in P1.-/
+component-count Hilbert function used in P1.
+@isnad1 id=eq.2h5v.s9.f29d0ebd5904 from=translated src=- shape=92794aa5 vocab=2eff2881
+-/
 theorem cellularH0Presentation_finrank_eq_realOrdinaryH0Dim
     (K : Type u) [Field K] {m n : ℕ}
     (F : Simplex m → RealGrade n) (hF : RealMonotoneFiltration F)
@@ -568,18 +607,30 @@ def p3FFiltration (m k : ℕ) : Simplex m → RealGrade (3 + k) :=
 def p3GFiltration (m k : ℕ) : Simplex m → RealGrade (3 + k) :=
   realifyFiltration (gGradePadded m k)
 
+/--
+@isnad1 id=realmono.0h2v.s4.1ee13f117810 from=translated src=- shape=2e490c89 vocab=2775a06e
+-/
 theorem p3FFiltration_monotone (m k : ℕ) :
     RealMonotoneFiltration (p3FFiltration m k) :=
   realifyFiltration_monotone (fGradePadded_monotone m k)
 
+/--
+@isnad1 id=realmono.0h2v.s4.f4e69217d128 from=translated src=- shape=2e490c89 vocab=0f9e732b
+-/
 theorem p3GFiltration_monotone (m k : ℕ) :
     RealMonotoneFiltration (p3GFiltration m k) :=
   realifyFiltration_monotone (gGradePadded_monotone m k)
 
+/--
+@isnad1 id=eq.0h3v.s5.7330fb2dd811 from=translated src=- shape=f3c66bab vocab=07289538
+-/
 theorem p3FFiltration_vertexGrade_eq (m k : ℕ) (v : Vertex m) :
     p3FFiltration m k (.vertex v) =
       p3FFiltration m k (.vertex (.s : Vertex m)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7a443ebeb63a from=translated src=- shape=f3c66bab vocab=7ef01241
+-/
 theorem p3GFiltration_vertexGrade_eq (m k : ℕ) (v : Vertex m) :
     p3GFiltration m k (.vertex v) =
       p3GFiltration m k (.vertex (.s : Vertex m)) := rfl
@@ -600,7 +651,9 @@ noncomputable def p3GModule (K : Type u) [Field K] (m k : ℕ) :
     PersistenceModule K (3 + k) := (p3GPresentation K m k).toPersistenceModule
 
 /-- The pointwise dimension of the presented `fₘ` module is exactly the P1
-ordinary-`H₀` Hilbert function.-/
+ordinary-`H₀` Hilbert function.
+@isnad1 id=eq.0h4v.s7.6136729e83b1 from=translated src=- shape=e8e09439 vocab=9d25cc5f
+-/
 theorem p3FModule_finrank_eq_realOrdinaryH0Dim
     (K : Type u) [Field K] (m k : ℕ) (x : RealGrade (3 + k)) :
     Module.finrank K ((p3FModule K m k).obj x) =
@@ -611,7 +664,9 @@ theorem p3FModule_finrank_eq_realOrdinaryH0Dim
       (p3FFiltration_vertexGrade_eq m k) x
 
 /-- The pointwise dimension of the presented `gₘ` module is exactly the P1
-ordinary-`H₀` Hilbert function.-/
+ordinary-`H₀` Hilbert function.
+@isnad1 id=eq.0h4v.s7.02dd5355e7d2 from=translated src=- shape=e8e09439 vocab=518f3ed9
+-/
 theorem p3GModule_finrank_eq_realOrdinaryH0Dim
     (K : Type u) [Field K] (m k : ℕ) (x : RealGrade (3 + k)) :
     Module.finrank K ((p3GModule K m k).obj x) =
@@ -621,26 +676,38 @@ theorem p3GModule_finrank_eq_realOrdinaryH0Dim
     K (p3GFiltration m k) (p3GFiltration_monotone m k)
       (p3GFiltration_vertexGrade_eq m k) x
 
+/--
+@isnad1 id=finitely.0h3v.s4.39208fc2d0b7 from=translated src=- shape=f05572a8 vocab=a05025f0
+-/
 theorem p3FModule_finitelyPresented (K : Type u) [Field K] (m k : ℕ) :
     FinitelyPresented (p3FModule K m k) :=
   (p3FPresentation K m k).finitelyPresented_toPersistenceModule
 
+/--
+@isnad1 id=finitely.0h3v.s4.4706292319c2 from=translated src=- shape=f05572a8 vocab=b8c48e87
+-/
 theorem p3GModule_finitelyPresented (K : Type u) [Field K] (m k : ℕ) :
     FinitelyPresented (p3GModule K m k) :=
   (p3GPresentation K m k).finitelyPresented_toPersistenceModule
 
-/-- The underlying incidence matrices agree entry-for-entry.-/
+/-- The underlying incidence matrices agree entry-for-entry.
+@isnad1 id=eq.0h3v.s6.2e6513411fae from=translated src=- shape=f1a8d5b0 vocab=408f238d
+-/
 theorem p3_presentations_same_incidence_matrix
     (K : Type u) [Field K] (m k : ℕ) :
     (p3FPresentation K m k).matrix = (p3GPresentation K m k).matrix := rfl
 
-/-- All row (generator) labels agree.-/
+/-- All row (generator) labels agree.
+@isnad1 id=eq.0h4v.s6.2925ca23a8f5 from=translated src=- shape=f12f5bcc vocab=6bff5a73
+-/
 theorem p3_presentations_rowLabels_agree
     (K : Type u) [Field K] (m k : ℕ) (v : Vertex m) :
     (p3FPresentation K m k).rowGrade v =
       (p3GPresentation K m k).rowGrade v := rfl
 
-/-- Every relation-column label except the central edge label agrees.-/
+/-- Every relation-column label except the central edge label agrees.
+@isnad1 id=eq.1h4v.s6.e0032a9be660 from=translated src=- shape=d90247cc vocab=cd9f78e8
+-/
 theorem p3_presentations_columnLabels_agree_of_ne_e
     (K : Type u) [Field K] (m k : ℕ) (edge : Edge m) (he : edge ≠ .e) :
     (p3FPresentation K m k).columnGrade edge =
@@ -650,7 +717,9 @@ theorem p3_presentations_columnLabels_agree_of_ne_e
   | a j => rfl
   | b j => rfl
 
-/-- The exceptional central relation label moves by exactly one in `ℓ¹`.-/
+/-- The exceptional central relation label moves by exactly one in `ℓ¹`.
+@isnad1 id=eq.0h3v.s6.ba602a0cc3b9 from=translated src=- shape=2670d656 vocab=5e569b11
+-/
 theorem p3_presentations_centralColumn_distance
     (K : Type u) [Field K] (m k : ℕ) :
     realL1Distance
@@ -662,7 +731,9 @@ theorem p3_presentations_centralColumn_distance
   rw [realL1Distance_toReal, l1Distance_zeroPad]
   norm_num [fGrade, gGrade, l1Distance, Fin.sum_univ_succ]
 
-/-- Hence the full same-matrix `p=1` presentation-label cost is one.-/
+/-- Hence the full same-matrix `p=1` presentation-label cost is one.
+@isnad1 id=eq.0h3v.s5.ea8ce1e48632 from=translated src=- shape=6e8eef02 vocab=d0fa38aa
+-/
 theorem p3_presentations_labelCost_eq_one
     (K : Type u) [Field K] (m k : ℕ) :
     presentationLabelL1 (p3FPresentation K m k) (p3GPresentation K m k) = 1 := by
@@ -694,6 +765,9 @@ noncomputable def p3CompatiblePresentationPair
   leftPresents := (p3FPresentation K m k).presents_toPersistenceModule
   rightPresents := (p3GPresentation K m k).presents_toPersistenceModule
 
+/--
+@isnad1 id=eq.0h3v.s5.01ec22360345 from=translated src=- shape=5e54e76c vocab=8603d8ef
+-/
 theorem p3CompatiblePresentationPair_cost
     (K : Type u) [Field K] (m k : ℕ) :
     (p3CompatiblePresentationPair K m k).cost = 1 := by
@@ -703,7 +777,9 @@ theorem p3CompatiblePresentationPair_cost
   rw [p3_presentations_labelCost_eq_one]
   norm_num
 
-/-- The direct compatible presentations bound the preliminary distance.-/
+/-- The direct compatible presentations bound the preliminary distance.
+@isnad1 id=le.0h3v.s5.a5e9eb1da48e from=translated src=- shape=efab0b01 vocab=9137035b
+-/
 theorem p3_preliminaryPresentationDistance_le_one
     (K : Type u) [Field K] (m k : ℕ) :
     preliminaryPresentationDistance (p3FModule K m k) (p3GModule K m k) ≤ 1 := by
@@ -713,7 +789,9 @@ theorem p3_preliminaryPresentationDistance_le_one
       preliminaryPresentationDistance_le_cost (p3CompatiblePresentationPair K m k)
     _ = 1 := p3CompatiblePresentationPair_cost K m k
 
-/-- The actual path-metric `1`-presentation distance satisfies `d_I^1 ≤ 1`.-/
+/-- The actual path-metric `1`-presentation distance satisfies `d_I^1 ≤ 1`.
+@isnad1 id=le.0h3v.s5.d7e44c9598f1 from=translated src=- shape=efab0b01 vocab=358c056b
+-/
 theorem p3_presentationDistance1_le_one
     (K : Type u) [Field K] (m k : ℕ) :
     presentationDistance1 (p3FModule K m k) (p3GModule K m k) ≤ 1 :=
@@ -735,6 +813,9 @@ def IsCentralColumnUnitMove {K : Type u} [Field K] {n m : ℕ}
   realL1Distance (P.columnGrade .e) (Q.columnGrade .e) = 1 ∧
   presentationLabelL1 P Q = 1
 
+/--
+@isnad1 id=iscentra.0h3v.s5.36ce7f84e9e1 from=translated src=- shape=08e1e1b5 vocab=94d8aa00
+-/
 theorem p3_presentations_isCentralColumnUnitMove
     (K : Type u) [Field K] (m k : ℕ) :
     IsCentralColumnUnitMove (p3FPresentation K m k)
@@ -774,6 +855,9 @@ noncomputable def hilbertSignedWasserstein1 {n : ℕ} {I : Type} [Fintype I]
     (source target : I → RealGrade n) : ℝ≥0∞ :=
   measureKR1 (unitAtomMeasure source) (unitAtomMeasure target)
 
+/--
+@isnad1 id=eq.1h2v.s6.5bae6f0a65c0 from=translated src=- shape=ef8217f6 vocab=31bff780
+-/
 theorem p3_hilbertSignedWasserstein1_eq
     (m k : ℕ) (hm : 1 ≤ m) :
     hilbertSignedWasserstein1 (counterexampleSourcePointPadded m k)
@@ -790,7 +874,9 @@ theorem p3_hilbertSignedWasserstein1_eq
 The presentations are cellular ordinary-`H₀` presentations of the same real
 filtered graph used in P1; their exact label cost is one, hence the actual
 Bjerkevik--Lesnick path metric is at most one, while the Hilbert signed
-Wasserstein distance is exactly `2m`.-/
+Wasserstein distance is exactly `2m`.
+@isnad1 id=ex.2h3v.s8.f29fd59b80ed from=translated src=- shape=fa6e284d vocab=750176cc
+-/
 theorem p3_H0_presentation_counterexample_family
     (K : Type u) [Field K] (n m : ℕ) (hn : 3 ≤ n) (hm : 1 ≤ m) :
     ∃ (F G : Simplex m → RealGrade n)
@@ -847,7 +933,9 @@ def OrdinaryH0HilbertPresentationBound
       (C : ℝ≥0∞) * presentationDistance1 M N
 
 /-- Quantitative P3 failure: in each fixed `n ≥ 3`, every finite proposed
-constant is exceeded by members of the cellular ordinary-`H₀` family.-/
+constant is exceeded by members of the cellular ordinary-`H₀` family.
+@isnad1 id=ex.1h3v.s8.01e3a99fb732 from=translated src=- shape=13b2cedb vocab=b9216e56
+-/
 theorem p3_counterexample_family_unbounded
     (K : Type u) [Field K] (n : ℕ) (hn : 3 ≤ n) (C : ℝ≥0) :
     ∃ (m : ℕ) (F G : Simplex m → RealGrade n)
@@ -907,7 +995,9 @@ theorem p3_counterexample_family_unbounded
 
 /-- P3: no finite Hilbert signed-Wasserstein stability constant depending only
 on a fixed dimension `n ≥ 3` exists, already for the finite ordinary-`H₀`
-cellular graph modules above.-/
+cellular graph modules above.
+@isnad1 id=not.1h2v.s4.2daa21028d99 from=translated src=- shape=2d373b91 vocab=4ba6328f
+-/
 theorem no_finite_dimension_only_P3_constant
     (K : Type u) [Field K] (n : ℕ) (hn : 3 ≤ n) :
     ¬ ∃ C : ℝ≥0, OrdinaryH0HilbertPresentationBound K n C := by
