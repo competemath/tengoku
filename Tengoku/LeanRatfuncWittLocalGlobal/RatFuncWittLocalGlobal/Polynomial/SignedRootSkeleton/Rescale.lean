@@ -1,0 +1,67 @@
+/-
+Copyright (c) 2026 Mocho Go. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Mocho Go
+-/
+
+import Tengoku.LeanRatfuncWittLocalGlobal.RatFuncWittLocalGlobal.Polynomial.SignedRootSkeleton.Basic
+import Tengoku.LeanRatfuncWittLocalGlobal.RatFuncWittLocalGlobal.Polynomial.LocalLaurent
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Rescaling a signed linear-root skeleton
+
+The dimension-independent core of skeleton rescaling.  Multiplying the scale
+by a nonzero scalar preserves the root set and multiplies both the polynomial
+and every local Laurent leading coefficient by that scalar.
+-/
+
+namespace RatFuncWittLocalGlobal
+
+open _root_.Polynomial
+
+universe u
+
+noncomputable section
+
+namespace SignedLinearRootSkeleton
+
+variable {R : Type u} [Field R]
+
+/-- Multiply the scale by one nonzero scalar without changing the roots.-/
+def rescale (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0) :
+    SignedLinearRootSkeleton R where
+  roots := S.roots
+  scale := t * S.scale
+  scale_ne_zero := mul_ne_zero ht S.scale_ne_zero
+
+/-- Rescaling multiplies the represented polynomial by the same constant.
+@isnad1 id=eq.1h3v.s7.a8248ad2c84a from=translated src=- shape=e169dde1 vocab=6cf4a11b
+-/
+theorem poly_rescale (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0) :
+    (S.rescale t ht).poly = C t * S.poly := by
+  change C (t * S.scale) * ∏ r ∈ S.roots, (X - C r) =
+    C t * (C S.scale * ∏ r ∈ S.roots, (X - C r))
+  rw [map_mul]
+  ring
+
+/-- Every local Laurent leading coefficient is multiplied by the rescaling
+scalar.
+@isnad1 id=eq.1h5v.s6.15298dbf73ca from=translated src=- shape=fde0453e vocab=79d5b936
+-/
+@[simp]
+theorem localLaurentLeadingCoeff_rescale
+    (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0)
+    (r ε : R) :
+    localLaurentLeadingCoeff r ε
+        (S.rescale t ht).poly =
+      t * localLaurentLeadingCoeff r ε S.poly := by
+  rw [S.poly_rescale t ht, localLaurentLeadingCoeff_mul]
+  simp [localLaurentLeadingCoeff]
+
+end SignedLinearRootSkeleton
+
+end
+
+end RatFuncWittLocalGlobal
