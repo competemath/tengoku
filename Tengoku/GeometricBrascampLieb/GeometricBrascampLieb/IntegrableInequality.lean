@@ -17,6 +17,9 @@ open scoped Topology BigOperators
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=le.5h6v.s7.8ec1e44ebd2a from=translated src=- shape=2beccc53 vocab=8c1450a2
+-/
 theorem lintegral_ofReal_le_of_ae_tendsto {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {u : ℕ → α → ℝ} {f : α → ℝ} {C : ℕ → ℝ} {c : ℝ}
     (hu : ∀ n, Integrable (u n) μ) (hu0 : ∀ n x, 0 ≤ u n x)
@@ -50,7 +53,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)]
   (D : Datum ι E F) {f : ∀ i, F i → ℝ}
 
-/-- The finite nonnegative integral bound for arbitrary nonnegative `L¹` inputs.-/
+/-- The finite nonnegative integral bound for arbitrary nonnegative `L¹` inputs.
+@isnad1 id=le.2h5v.s9.aaccf7a32252 from=translated src=- shape=da8b30e4 vocab=3fa90a74
+-/
 theorem lintegral_ofReal_prod_le_integrable
     (hf : ∀ i, Integrable (f i)) (hf0 : ∀ i y, 0 ≤ f i y) :
     (∫⁻ x, ENNReal.ofReal (∏ i, (f i (D.map i x))^D.weight i)) ≤
@@ -72,6 +77,9 @@ theorem lintegral_ofReal_prod_le_integrable
   filter_upwards [ae_all_iff.mpr hp] with x hx
   exact tendsto_finsetProd _ fun i _ => (hx i).rpow_const (Or.inr (D.weight_nonneg i))
 
+/--
+@isnad1 id=aestrong.1h5v.s9.4ef550ebae1a from=translated src=- shape=adc68f62 vocab=64ed0f0c
+-/
 theorem aestronglyMeasurable_prod_of_integrable (hf : ∀ i, Integrable (f i)) :
     AEStronglyMeasurable (fun x => ∏ i, (f i (D.map i x))^D.weight i) := by
   apply Finset.aestronglyMeasurable_fun_prod
@@ -79,7 +87,9 @@ theorem aestronglyMeasurable_prod_of_integrable (hf : ∀ i, Integrable (f i)) :
   exact (Real.continuous_rpow_const (D.weight_nonneg i)).comp_aestronglyMeasurable
     ((hf i).aestronglyMeasurable.comp_quasiMeasurePreserving (D.map_quasiMeasurePreserving i))
 
-/-- Geometric products of nonnegative `L¹` inputs are integrable.-/
+/-- Geometric products of nonnegative `L¹` inputs are integrable.
+@isnad1 id=integrab.2h5v.s9.36491990901e from=translated src=- shape=3e2798f8 vocab=94dc29be
+-/
 theorem integrable_prod_of_integrable (hf : ∀ i, Integrable (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
     Integrable (fun x => ∏ i, (f i (D.map i x))^D.weight i) := by
@@ -89,7 +99,9 @@ theorem integrable_prod_of_integrable (hf : ∀ i, Integrable (f i))
     (Eventually.of_forall h0)).mp
   exact ne_top_of_le_ne_top ENNReal.ofReal_ne_top (D.lintegral_ofReal_prod_le_integrable hf hf0)
 
-/-- The sharp geometric BL inequality for arbitrary nonnegative integrable real functions.-/
+/-- The sharp geometric BL inequality for arbitrary nonnegative integrable real functions.
+@isnad1 id=le.2h5v.s9.765257486b88 from=translated src=- shape=b35640d6 vocab=3154236a
+-/
 theorem integral_prod_le_integrable (hf : ∀ i, Integrable (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
     (∫ x, ∏ i, (f i (D.map i x))^D.weight i) ≤ ∏ i, (∫ y, f i y)^D.weight i := by
@@ -102,7 +114,9 @@ theorem integral_prod_le_integrable (hf : ∀ i, Integrable (f i))
   rw [← ofReal_integral_eq_lintegral_ofReal hi (Eventually.of_forall h0)] at h
   exact (ENNReal.ofReal_le_ofReal_iff hb0).mp h
 
-/-- The extended nonnegative integral version for arbitrary nonnegative `L¹` real inputs.-/
+/-- The extended nonnegative integral version for arbitrary nonnegative `L¹` real inputs.
+@isnad1 id=le.2h5v.s9.9a26c0b54a0c from=translated src=- shape=dd68a8a0 vocab=8345ef77
+-/
 theorem lintegral_prod_le_integrable (hf : ∀ i, Integrable (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
     (∫⁻ x, ∏ i, (ENNReal.ofReal (f i (D.map i x)))^D.weight i) ≤

@@ -21,6 +21,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 def logarithmicHessian (v : ℝ) (g : E) (H : E →L[ℝ] E) : E →L[ℝ] E :=
   v⁻¹ • H - (v⁻¹ ^ 2) • (innerSL ℝ g).smulRight g
 
+/--
+@isnad1 id=eq.0h4v.s10.291a0f9fc567 from=translated src=- shape=ca8b1c53 vocab=f7b50806
+-/
 theorem logarithmicHessian_trace (v : ℝ) (g : E) (H : E →L[ℝ] E) :
     LinearMap.trace ℝ E (logarithmicHessian v g H).toLinearMap + ‖v⁻¹ • g‖ ^ 2 =
       LinearMap.trace ℝ E H.toLinearMap / v := by
@@ -34,6 +37,9 @@ theorem logarithmicHessian_trace (v : ℝ) (g : E) (H : E →L[ℝ] E) :
   ring
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.3h5v.s10.59c4eef4b773 from=translated src=- shape=c649ecf0 vocab=1e66e9d8
+-/
 theorem hasFDerivAt_logarithmicGradient {u : E → ℝ} {g : E → E}
     {H : E →L[ℝ] E} {x : E} (hu : u x ≠ 0)
     (hd : HasFDerivAt u (innerSL ℝ (g x)) x) (hg : HasFDerivAt g H x) :

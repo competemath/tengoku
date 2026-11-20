@@ -21,6 +21,9 @@ variable {E G : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup G] [NormedSpace ℝ G] [CompleteSpace G]
 
 omit [NormedSpace ℝ E] [CompleteSpace G] in
+/--
+@isnad1 id=integrab.3h7v.s7.fb1b8702b2bb from=translated src=- shape=1d700bd4 vocab=29d1d5bc
+-/
 theorem integrable_smul_bounded_kernel {f : E → ℝ} (hf : Integrable f μ)
     {g : E → G} (hg : Continuous g) {C : ℝ} (hC : ∀ y, ‖g y‖ ≤ C) (x : E) :
     Integrable (fun z => f z • g (x - z)) μ := by
@@ -31,6 +34,9 @@ theorem integrable_smul_bounded_kernel {f : E → ℝ} (hf : Integrable f μ)
     simpa only [norm_smul] using mul_le_mul_of_nonneg_left (hC (x-z)) (norm_nonneg (f z))
 
 omit [CompleteSpace G] in
+/--
+@isnad1 id=hasfderi.6h9v.s10.3f8a3071f8ee from=translated src=- shape=e402d326 vocab=c9b6df0e
+-/
 theorem hasFDerivAt_convolution_of_bounded_kernel {f : E → ℝ} (hf : Integrable f μ)
     {g : E → G} {g' : E → E →L[ℝ] G}
     (hg : Continuous g) (hg' : Continuous g')

@@ -36,6 +36,9 @@ def convolutionProductGrowth (R : ι → ℝ) (t : ℝ) : ℝ :=
   D.growthCoefficient (fun i => convolutionGrowthCoefficient (R i) t)
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.1h7v.s7.1bd408fac761 from=translated src=- shape=7e5e138c vocab=8c22e2d4
+-/
 theorem convolutionAmplitude_continuousAt (f : ∀ i, F i → ℝ) (R : ι → ℝ)
     {t : ℝ} (ht : 0 < t) : ContinuousAt (D.convolutionAmplitude f R) t := by
   unfold convolutionAmplitude convolutionLogAmplitude
@@ -43,6 +46,9 @@ theorem convolutionAmplitude_continuousAt (f : ∀ i, F i → ℝ) (R : ι → �
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)] in
+/--
+@isnad1 id=continuo.1h6v.s7.b22d85e48bef from=translated src=- shape=e4cdb2ff vocab=a7ea1cc8
+-/
 theorem convolutionProductGrowth_continuousAt (R : ι → ℝ) {t : ℝ} (ht : 0 < t) :
     ContinuousAt (D.convolutionProductGrowth R) t := by
   unfold convolutionProductGrowth growthCoefficient convolutionGrowthCoefficient
@@ -54,7 +60,9 @@ variable {f : ∀ i, F i → ℝ}
 
 include hsupport
 
-/-- The five analytic conditions for general bounded-support positive-mass data.-/
+/-- The five analytic conditions for general bounded-support positive-mass data.
+@isnad1 id=heatinte.4h6v.s8.a08c0b559664 from=translated src=- shape=fb13a177 vocab=12c48cf7
+-/
 theorem convolution_heatIntegrability :
     D.HeatIntegrability (fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)) := by
   let U := fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)
@@ -84,7 +92,9 @@ theorem convolution_heatIntegrability :
   · exact fun t ht x => D.scoreDerivative_le_of_growth U t (ha t ht) (hh t ht) x
   · exact fun t ht x => D.timeRate_le_of_growth U t (ha t ht) (hg t ht) (hh t ht) x
 
-/-- Monotonicity for actual regularizations, with no unproved analytic hypothesis.-/
+/-- Monotonicity for actual regularizations, with no unproved analytic hypothesis.
+@isnad1 id=monotone.4h6v.s9.83f565500b25 from=translated src=- shape=14c37da4 vocab=62b47d1b
+-/
 theorem convolution_heat_integral_monotoneOn :
     MonotoneOn (fun t => ∫ x, D.heatProduct
       (fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)) t x) (Ioi 0) :=

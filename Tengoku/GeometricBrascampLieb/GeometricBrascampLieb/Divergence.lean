@@ -21,6 +21,9 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E]
   [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.4h7v.s11.17bc537778d2 from=translated src=- shape=4b234679 vocab=b4ec9564
+-/
 theorem integral_partial_derivative_eq_zero [NormedSpace ℝ E] {n : ℕ}
     (e : E ≃L[ℝ] (Fin (n + 1) → ℝ)) {ν : Measure E}
     (he : MeasurePreserving e ν volume) (i : Fin (n + 1))
@@ -50,7 +53,9 @@ section InnerProduct
 variable [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
 
 /-- All of the analytic conditions needed to cancel a divergence are explicit:
-the vector field and its diagonal directional derivatives are integrable.-/
+the vector field and its diagonal directional derivatives are integrable.
+@isnad1 id=eq.3h5v.s10.bf5b03e6f3a6 from=translated src=- shape=1abd29ac vocab=aa561cb6
+-/
 theorem integral_trace_derivative_eq_zero {n : ℕ}
     (b : OrthonormalBasis (Fin n) ℝ E)
     {V : E → E} {dV : E → E →L[ℝ] E}

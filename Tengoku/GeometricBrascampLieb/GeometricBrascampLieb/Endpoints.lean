@@ -14,6 +14,9 @@ open scoped Topology
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=le.3h3v.s6.005485e08bfb from=translated src=- shape=cb3282fc vocab=e0d3371d
+-/
 theorem le_of_positive_monotone_limits {g : ℝ → ℝ} {a b : ℝ}
     (hg : MonotoneOn g (Ioi 0))
     (hzero : Tendsto g (𝓝[>] 0) (𝓝 a))
@@ -37,7 +40,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   (D : Datum ι E F) (U : ∀ i, LogHeatFlow (F i))
 
 /-- Once the analytic bounds and the endpoint limits are supplied, the
-geometric heat calculation yields the corresponding integral inequality.-/
+geometric heat calculation yields the corresponding integral inequality.
+@isnad1 id=le.3h7v.s8.504dfcfe699a from=translated src=- shape=998d7cf2 vocab=77a6cfc1
+-/
 theorem le_of_heat_limits (H : D.HeatIntegrability U) {a b : ℝ}
     (hzero : Tendsto (fun t => ∫ x, D.heatProduct U t x) (𝓝[>] 0) (𝓝 a))
     (hinfty : Tendsto (fun t => ∫ x, D.heatProduct U t x) atTop (𝓝 b)) : a ≤ b :=

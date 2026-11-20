@@ -18,7 +18,9 @@ open scoped Topology BigOperators
 
 namespace GeometricBrascampLieb
 
-/-- A uniform integral bound passes to a pointwise limit of nonnegative functions.-/
+/-- A uniform integral bound passes to a pointwise limit of nonnegative functions.
+@isnad1 id=le.4h5v.s7.8a91107f8adc from=translated src=- shape=93233421 vocab=0ef34dbd
+-/
 theorem lintegral_ofReal_le_of_pointwise_tendsto {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {u : ℕ → α → ℝ} {f : α → ℝ} {C : ℝ}
     (hu : ∀ n, Integrable (u n) μ) (hu0 : ∀ n x, 0 ≤ u n x)
@@ -51,7 +53,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)]
   (D : Datum ι E F) {f : ∀ i, F i → ℝ}
 
-/-- The nonnegative integral bound for continuous bounded-support data.-/
+/-- The nonnegative integral bound for continuous bounded-support data.
+@isnad1 id=le.6h7v.s9.ae7ea143d943 from=translated src=- shape=c9e7a6bc vocab=43b4bd6c
+-/
 theorem lintegral_ofReal_prod_le_of_bounded_support
     (hf : ∀ i, Integrable (f i)) (hfc : ∀ i, Continuous (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y)
@@ -80,7 +84,9 @@ theorem lintegral_ofReal_prod_le_of_bounded_support
   exact ((heatConvolution_tendsto_zero (hfc i) (hbound i) (D.map i x)).comp hτ).rpow_const
     (Or.inr (D.weight_nonneg i))
 
-/-- The original product is integrable; its real integral is not using the default value for a nonintegrable function.-/
+/-- The original product is integrable; its real integral is not using the default value for a nonintegrable function.
+@isnad1 id=integrab.6h7v.s9.cee10c94cb51 from=translated src=- shape=02b61810 vocab=88d6fdc1
+-/
 theorem integrable_prod_of_bounded_support
     (hf : ∀ i, Integrable (f i)) (hfc : ∀ i, Continuous (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y)
@@ -97,7 +103,9 @@ theorem integrable_prod_of_bounded_support
   exact ne_top_of_le_ne_top ENNReal.ofReal_ne_top
     (D.lintegral_ofReal_prod_le_of_bounded_support hf hfc hf0 hmass hbound hsupport)
 
-/-- The extended nonnegative formulation, for real-valued bounded-support inputs.-/
+/-- The extended nonnegative formulation, for real-valued bounded-support inputs.
+@isnad1 id=le.6h7v.s9.997a5d4e3749 from=translated src=- shape=6d9bbac0 vocab=43b4bd6c
+-/
 theorem lintegral_prod_le_of_bounded_support
     (hf : ∀ i, Integrable (f i)) (hfc : ∀ i, Continuous (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y)
@@ -120,7 +128,9 @@ theorem lintegral_prod_le_of_bounded_support
   simpa only [hp, hm] using
     D.lintegral_ofReal_prod_le_of_bounded_support hf hfc hf0 hmass hbound hsupport
 
-/-- Geometric BL in the ordinary real integral notation for bounded-support data.-/
+/-- Geometric BL in the ordinary real integral notation for bounded-support data.
+@isnad1 id=le.6h7v.s9.f731979f8899 from=translated src=- shape=b998c31d vocab=88d6fdc1
+-/
 theorem integral_prod_le_of_bounded_support
     (hf : ∀ i, Integrable (f i)) (hfc : ∀ i, Continuous (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y)
@@ -138,7 +148,9 @@ theorem integral_prod_le_of_bounded_support
   simpa only [ENNReal.toReal_ofReal (Finset.prod_nonneg
     (fun i _ => Real.rpow_nonneg (hmass i).le (D.weight i)))] using h
 
-/-- The sharp inequality for continuous compactly supported nonnegative inputs of positive mass.-/
+/-- The sharp inequality for continuous compactly supported nonnegative inputs of positive mass.
+@isnad1 id=le.4h5v.s9.7c545db1ed72 from=translated src=- shape=2e9266e7 vocab=9762c7e4
+-/
 theorem integral_prod_le_of_hasCompactSupport
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y) :

@@ -12,13 +12,18 @@ open scoped ENNReal Topology BigOperators
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=eq.2h2v.s6.b51acbfd69a1 from=translated src=- shape=acd8cc5d vocab=d6e1dac1
+-/
 theorem iSup_ennreal_rpow_of_monotone (u : ℕ → ℝ≥0∞) (hu : Monotone u)
     {c : ℝ} (hc : 0 ≤ c) :
     (⨆ n, (u n)^c) = (⨆ n, u n)^c :=
   iSup_eq_of_tendsto (fun _ _ h => ENNReal.rpow_le_rpow (hu h) hc)
     ((tendsto_atTop_iSup hu).ennrpow_const c)
 
-/-- Increasing finite products commute with supremum even when zero and infinity coexist.-/
+/-- Increasing finite products commute with supremum even when zero and infinity coexist.
+@isnad1 id=eq.1h3v.s6.663a89ebd4ce from=translated src=- shape=528197d1 vocab=6018b2e9
+-/
 theorem prod_iSup_ennreal_of_monotone {ι : Type*} (s : Finset ι)
     (u : ι → ℕ → ℝ≥0∞) (hu : ∀ i, Monotone (u i)) :
     (∏ i ∈ s, ⨆ n, u i n) = ⨆ n, ∏ i ∈ s, u i n := by

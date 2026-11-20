@@ -61,20 +61,32 @@ def fluxDerivative (t : ℝ) (x : E) : E →L[ℝ] E :=
     D.heatProduct U t x • D.scoreDerivative U t x
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=lt.0h7v.s7.70719caecc97 from=translated src=- shape=42210145 vocab=ecc37277
+-/
 theorem heatProduct_pos (t : ℝ) (x : E) : 0 < D.heatProduct U t x := Real.exp_pos _
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasderiv.1h7v.s7.b12961dcdce9 from=translated src=- shape=7fe16869 vocab=41fb96e0
+-/
 theorem logProduct_hasDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasDerivAt (fun s => D.logProduct U s x) (D.timeRate U t x) t := by
   exact HasDerivAt.fun_sum fun i _ => ((U i).time_deriv t ht (D.map i x)).const_mul _
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasderiv.1h7v.s7.f762ca06c1d8 from=translated src=- shape=ca137b15 vocab=e3b15e8b
+-/
 theorem heatProduct_hasDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasDerivAt (fun s => D.heatProduct U s x)
       (D.heatProduct U t x * D.timeRate U t x) t :=
   (D.logProduct_hasDerivAt U ht x).exp
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.1h7v.s10.e8042081820c from=translated src=- shape=5d431e95 vocab=8f4b5129
+-/
 theorem logProduct_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (D.logProduct U t) (innerSL ℝ (D.score U t x)) x := by
   have h : HasFDerivAt (D.logProduct U t)
@@ -90,12 +102,18 @@ theorem logProduct_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
   exact h
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.1h7v.s11.e68fbba598d8 from=translated src=- shape=7ab4c542 vocab=9712835e
+-/
 theorem heatProduct_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (D.heatProduct U t)
       (D.heatProduct U t x • innerSL ℝ (D.score U t x)) x :=
   (D.logProduct_hasFDerivAt U ht x).exp
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.1h7v.s8.51757d3d2c59 from=translated src=- shape=f9d6dadf vocab=6e67aa7c
+-/
 theorem score_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (D.score U t) (D.scoreDerivative U t x) x := by
   exact HasFDerivAt.fun_sum fun i _ =>
@@ -103,18 +121,27 @@ theorem score_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
       ((U i).gradient_deriv t ht (D.map i x))).comp x (D.map i).hasFDerivAt).const_smul _
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.1h7v.s8.7863f1641fff from=translated src=- shape=f9d6dadf vocab=4e7b7422
+-/
 theorem flux_hasFDerivAt {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (D.flux U t) (D.fluxDerivative U t x) x := by
   change HasFDerivAt (fun y => D.heatProduct U t y • D.score U t y) _ x
   simpa only [fluxDerivative, add_comm] using
     (D.heatProduct_hasFDerivAt U ht x).fun_smul (D.score_hasFDerivAt U ht x)
 
+/--
+@isnad1 id=eq.0h7v.s11.f437d0e41535 from=translated src=- shape=7e13af64 vocab=b6083aaf
+-/
 theorem trace_scoreDerivative (t : ℝ) (x : E) :
     LinearMap.trace ℝ E (D.scoreDerivative U t x).toLinearMap =
       ∑ i, D.weight i * LinearMap.trace ℝ (F i) ((U i).hessian t (D.map i x)).toLinearMap := by
   simp only [scoreDerivative, ContinuousLinearMap.toLinearMap_sum,
     ContinuousLinearMap.toLinearMap_smul, map_sum, map_smul, smul_eq_mul, D.trace_lift]
 
+/--
+@isnad1 id=eq.0h7v.s11.b598464866d3 from=translated src=- shape=ec0d125c vocab=9035a0a1
+-/
 theorem trace_fluxDerivative (t : ℝ) (x : E) :
     LinearMap.trace ℝ E (D.fluxDerivative U t x).toLinearMap =
       D.heatProduct U t x * (‖D.score U t x‖ ^ 2 +
@@ -130,7 +157,9 @@ theorem trace_fluxDerivative (t : ℝ) (x : E) :
     real_inner_self_eq_norm_sq, D.trace_scoreDerivative]
   ring
 
-/-- The local heat-flow defect is exactly the nonnegative geometric quadratic defect.-/
+/-- The local heat-flow defect is exactly the nonnegative geometric quadratic defect.
+@isnad1 id=eq.0h7v.s10.5b917bc8324a from=translated src=- shape=1692dc28 vocab=91956798
+-/
 theorem timeRate_sub_divergence (t : ℝ) (x : E) :
     D.heatProduct U t x * D.timeRate U t x -
       LinearMap.trace ℝ E (D.fluxDerivative U t x).toLinearMap =
@@ -140,6 +169,9 @@ theorem timeRate_sub_divergence (t : ℝ) (x : E) :
   simp only [timeRate, mul_add, Finset.sum_add_distrib]
   ring
 
+/--
+@isnad1 id=le.0h7v.s9.226dad65b959 from=translated src=- shape=33cde66a vocab=dd9b8591
+-/
 theorem divergence_le_time_derivative (t : ℝ) (x : E) :
     LinearMap.trace ℝ E (D.fluxDerivative U t x).toLinearMap ≤
       D.heatProduct U t x * D.timeRate U t x := by

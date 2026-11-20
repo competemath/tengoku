@@ -27,6 +27,9 @@ def gaussianScore (z : E) (t : ℝ) (x : E) : E := -(2 * t)⁻¹ • (x - z)
 def gaussianHessian (t : ℝ) : E →L[ℝ] E := -(2 * t)⁻¹ • ContinuousLinearMap.id ℝ E
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.0h5v.s10.970321188afe from=translated src=- shape=47faaae9 vocab=3cb8af76
+-/
 theorem gaussianLog_hasFDerivAt (a : ℝ) (z : E) (t : ℝ) (x : E) :
     HasFDerivAt (gaussianLog a z t) (innerSL ℝ (gaussianScore z t x)) x := by
   have h := ((((hasFDerivAt_id (𝕜 := ℝ) x).sub_const z).norm_sq).const_mul (4 * t)⁻¹).const_sub
@@ -43,10 +46,16 @@ theorem gaussianLog_hasFDerivAt (a : ℝ) (z : E) (t : ℝ) (x : E) :
   exact h
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=hasfderi.0h4v.s6.a12d1fc5c44a from=translated src=- shape=a7c03771 vocab=bdd7286c
+-/
 theorem gaussianScore_hasFDerivAt (z : E) (t : ℝ) (x : E) :
     HasFDerivAt (gaussianScore z t) (gaussianHessian t) x := by
   exact ((hasFDerivAt_id x).sub_const z).fun_const_smul _
 
+/--
+@isnad1 id=hasderiv.1h5v.s9.5c6e692de5ac from=translated src=- shape=ade2af71 vocab=8f965522
+-/
 theorem gaussianLog_hasDerivAt (a : ℝ) (z : E) {t : ℝ} (ht : 0 < t) (x : E) :
     HasDerivAt (fun s => gaussianLog a z s x)
       (LinearMap.trace ℝ E (gaussianHessian t).toLinearMap + ‖gaussianScore z t x‖ ^ 2) t := by

@@ -25,7 +25,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)]
   (D : Datum ι E F)
 
-/-- Geometric Brascamp–Lieb for arbitrary extended nonnegative measurable functions.-/
+/-- Geometric Brascamp–Lieb for arbitrary extended nonnegative measurable functions.
+@isnad1 id=le.1h5v.s9.7379077a0e41 from=translated src=- shape=c08a8158 vocab=f9a26697
+-/
 theorem lintegral_prod_le (f : ∀ i, F i → ℝ≥0∞) (hf : ∀ i, Measurable (f i)) :
     (∫⁻ x, ∏ i, (f i (D.map i x))^D.weight i) ≤
       ∏ i, (∫⁻ y, f i y)^D.weight i := by
@@ -60,7 +62,9 @@ theorem lintegral_prod_le (f : ∀ i, F i → ℝ≥0∞) (hf : ∀ i, Measurabl
       (fun m n h x => Finset.prod_le_prod' fun i _ => hmono i x h)
     _ ≤ _ := iSup_le hbound
 
-/-- The original project goal, now proved from the two geometric identities.-/
+/-- The original project goal, now proved from the two geometric identities.
+@isnad1 id=integral.0h4v.s7.35c6ede22d97 from=translated src=- shape=eaa0867c vocab=7b963416
+-/
 theorem integralInequality : D.IntegralInequality := D.lintegral_prod_le
 
 end GeometricBrascampLieb.Datum

@@ -12,10 +12,16 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=continuo.2h3v.s7.1124c2d3917d from=translated src=- shape=b67f729b vocab=bd59a215
+-/
 theorem gaussianConvolutionGradient_continuous {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) : Continuous (gaussianConvolutionGradient b f) :=
   continuous_iff_continuousAt.mpr fun x => (gaussianConvolutionGradient_hasFDerivAt hf hb x).continuousAt
 
+/--
+@isnad1 id=continuo.2h3v.s8.86079958bd9a from=translated src=- shape=f12ae945 vocab=e04fcc0d
+-/
 theorem gaussianConvolutionHessian_continuous {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) : Continuous (gaussianConvolutionHessian b f) := by
   have hbound : BddAbove (range fun x : E => ‖gaussianKernelHessian b x‖) := by
@@ -25,6 +31,9 @@ theorem gaussianConvolutionHessian_continuous {f : E → ℝ} (hf : Integrable f
   exact hbound.continuous_convolution_right_of_integrable
     (L := ContinuousLinearMap.lsmul ℝ ℝ) hf (gaussianKernelHessian_continuous b)
 
+/--
+@isnad1 id=continuo.4h3v.s8.c2b925fc6966 from=translated src=- shape=ecfccae7 vocab=70e37440
+-/
 theorem convolutionLogHeatFlow_hessian_continuous {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) (hmass : 0 < ∫ z, f z)
     {t : ℝ} (ht : 0 < t) : Continuous ((convolutionLogHeatFlow hf hf0 hmass).hessian t) := by

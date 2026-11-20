@@ -16,12 +16,18 @@ open scoped Topology
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=le.1h3v.s6.14c7fe8956ba from=translated src=- shape=9a9e3285 vocab=cef4cf1d
+-/
 theorem le_quadratic_of_sq_le {v K r : ℝ} (h : v^2 ≤ K*(1+r^2)) :
     v ≤ (1+K)*(1+r^2) := by
   have hv : v ≤ 1+v^2 := by nlinarith [sq_nonneg (v-1)]
   have hr : 1+K*(1+r^2) ≤ (1+K)*(1+r^2) := by nlinarith [sq_nonneg r]
   exact hv.trans ((add_le_add le_rfl h).trans hr)
 
+/--
+@isnad1 id=le.4h6v.s7.25fae0d20eef from=translated src=- shape=59fab2da vocab=2446b050
+-/
 theorem mul_le_polynomial_gaussian {q v A K b r : ℝ} (hq : 0 ≤ q) (hK : 0 ≤ K)
     (hqa : q ≤ A*Real.exp (-b*r^2)) (hv : v ≤ K*(1+r^2)) :
     q*v ≤ (A*K)*(1+r^2)*Real.exp (-b*r^2) := by
@@ -41,6 +47,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [MeasurableSpace E] [BorelSpace E]
   (D : Datum ι E F) (U : ∀ i, LogHeatFlow (F i))
 
+/--
+@isnad1 id=heatinte.10h8v.s10.e3aaf1616757 from=translated src=- shape=4f985a48 vocab=8ba83f76
+-/
 theorem heatIntegrability_of_gaussian_bounds (A b K : ℝ → ℝ)
     (hb : ∀ t, 0 < t → 0 < b t) (hK : ∀ t, 0 < t → 0 ≤ K t)
     (hAcont : ∀ t, 0 < t → ContinuousAt A t)

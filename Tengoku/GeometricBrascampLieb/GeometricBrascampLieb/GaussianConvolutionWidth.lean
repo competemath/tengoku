@@ -19,6 +19,9 @@ def gaussianConvolutionWidthDerivative (b : ℝ) (f : E → ℝ) (x : E) : ℝ :
   ∫ z, f z * (-‖x-z‖ ^ 2 * gaussianKernel b (x-z))
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=le.2h4v.s7.76f73e60d743 from=translated src=- shape=74b212a2 vocab=74e634b8
+-/
 theorem gaussianKernel_widthDerivative_norm_le {b a : ℝ} (hb : 0 < b) (hba : b ≤ a) (x : E) :
     ‖-‖x‖ ^ 2 * gaussianKernel a x‖ ≤ 1 + 2 / (b / 2) ^ 2 := by
   have he : gaussianKernel a x ≤ gaussianKernel b x := by
@@ -33,12 +36,18 @@ theorem gaussianKernel_widthDerivative_norm_le {b a : ℝ} (hb : 0 < b) (hba : b
     _ ≤ ‖x‖ ^ 2 * gaussianKernel b x := mul_le_mul_of_nonneg_left he (sq_nonneg _)
     _ ≤ _ := hp
 
+/--
+@isnad1 id=integrab.2h4v.s7.9618e33873eb from=translated src=- shape=555b3e8a vocab=f7791686
+-/
 theorem gaussianConvolutionWidthDerivative_integrand_integrable {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     Integrable (fun z => f z * (-‖x-z‖ ^ 2 * gaussianKernel b (x-z))) := by
   exact integrable_smul_bounded_kernel hf (by unfold gaussianKernel; fun_prop)
     (gaussianKernel_widthDerivative_norm_le hb le_rfl) x
 
+/--
+@isnad1 id=hasderiv.2h4v.s7.f68860f0b2f9 from=translated src=- shape=1c85174d vocab=95246dbf
+-/
 theorem gaussianConvolution_hasDerivAt_width {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     HasDerivAt (fun a => gaussianConvolution a f x) (gaussianConvolutionWidthDerivative b f x) b := by

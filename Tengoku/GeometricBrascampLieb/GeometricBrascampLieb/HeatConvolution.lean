@@ -21,6 +21,9 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.1h2v.s10.3651f54c65dd from=translated src=- shape=aa03bb7f vocab=e4f47ed1
+-/
 theorem trace_integral_operator {A : E → E →L[ℝ] E} (hA : Integrable A) :
     LinearMap.trace ℝ E (∫ z, A z).toLinearMap =
       ∫ z, LinearMap.trace ℝ E (A z).toLinearMap := by
@@ -40,6 +43,9 @@ theorem trace_integral_operator {A : E → E →L[ℝ] E} (hA : Integrable A) :
     _ = _ := integral_congr_ae (Filter.Eventually.of_forall fun z => by
       simpa only [ContinuousLinearMap.coe_coe] using (LinearMap.trace_eq_sum_inner (A z).toLinearMap b).symm)
 
+/--
+@isnad1 id=eq.2h4v.s9.1c4e188d01a7 from=translated src=- shape=486fe87e vocab=0ada22f4
+-/
 theorem trace_gaussianConvolutionHessian {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     LinearMap.trace ℝ E (gaussianConvolutionHessian b f x).toLinearMap =
@@ -75,6 +81,9 @@ def heatConvolutionHessian (f : E → ℝ) (t : ℝ) (x : E) : E →L[ℝ] E :=
   heatNormalization (E := E) t • gaussianConvolutionHessian (4*t)⁻¹ f x
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=hasderiv.1h2v.s7.8db6d6197708 from=translated src=- shape=54c9b380 vocab=64c9c600
+-/
 theorem heatNormalization_hasDerivAt {t : ℝ} (ht : 0 < t) :
     HasDerivAt (heatNormalization (E := E))
       (heatNormalization (E := E) t * (-((Module.finrank ℝ E : ℝ)/2) / t)) t := by
@@ -85,6 +94,9 @@ theorem heatNormalization_hasDerivAt {t : ℝ} (ht : 0 < t) :
   simp only [heatNormalization, id_eq, mul_one]
   field_simp
 
+/--
+@isnad1 id=eq.1h4v.s6.843e043a88ae from=translated src=- shape=83a37233 vocab=2851f2e0
+-/
 theorem heatConvolution_eq_gaussianRegularization {t : ℝ} (ht : 0 < t)
     (f : E → ℝ) (x : E) :
     heatConvolution f t x = gaussianRegularization (4*t)⁻¹ f x := by
@@ -98,23 +110,38 @@ theorem heatConvolution_eq_gaussianRegularization {t : ℝ} (ht : 0 < t)
   congr 2
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.c3528edee11d from=translated src=- shape=724fb78d vocab=83c6a8b4
+-/
 theorem integral_heatConvolution {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) : ∫ x, heatConvolution f t x = ∫ x, f x := by
   simp_rw [heatConvolution_eq_gaussianRegularization ht]
   exact integral_gaussianRegularization hf (by positivity)
 
+/--
+@isnad1 id=integrab.2h3v.s7.e71522afeede from=translated src=- shape=58628f43 vocab=3b9ff0f7
+-/
 theorem heatConvolution_integrable {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) : Integrable (heatConvolution f t) :=
   (gaussianConvolution_integrable hf (by positivity : 0 < (4*t)⁻¹)).const_mul _
 
+/--
+@isnad1 id=continuo.2h3v.s7.9c445b259a90 from=translated src=- shape=d0b1beea vocab=654b346a
+-/
 theorem heatConvolution_continuous {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) : Continuous (heatConvolution f t) :=
   continuous_const.mul (gaussianConvolution_continuous hf (by positivity : 0 < (4*t)⁻¹))
 
+/--
+@isnad1 id=lt.4h4v.s7.7c33b322841c from=translated src=- shape=b681ab05 vocab=11a0ff95
+-/
 theorem heatConvolution_pos {f : E → ℝ} (hf : Integrable f) (hf0 : ∀ x, 0 ≤ f x)
     (hmass : 0 < ∫ x, f x) {t : ℝ} (ht : 0 < t) (x : E) : 0 < heatConvolution f t x :=
   mul_pos (Real.exp_pos _) (gaussianConvolution_pos hf hf0 hmass (by positivity) x)
 
+/--
+@isnad1 id=hasfderi.2h4v.s10.16efbcbf9f92 from=translated src=- shape=2bb4df4c vocab=d6abbc59
+-/
 theorem heatConvolution_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (heatConvolution f t) (innerSL ℝ (heatConvolutionGradient f t x)) x := by
@@ -125,11 +152,17 @@ theorem heatConvolution_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
     (gaussianConvolution_hasFDerivAt hf (by positivity : 0 < (4*t)⁻¹) x).const_mul
       (heatNormalization (E := E) t)
 
+/--
+@isnad1 id=hasfderi.2h4v.s7.98e69975ccf9 from=translated src=- shape=97e593ed vocab=ef8e2bee
+-/
 theorem heatConvolutionGradient_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) (x : E) :
     HasFDerivAt (heatConvolutionGradient f t) (heatConvolutionHessian f t x) x :=
   (gaussianConvolutionGradient_hasFDerivAt hf (by positivity : 0 < (4*t)⁻¹) x).fun_const_smul _
 
+/--
+@isnad1 id=hasderiv.2h4v.s9.b8599b83520e from=translated src=- shape=0d2c14a0 vocab=74115118
+-/
 theorem heatConvolution_hasDerivAt {f : E → ℝ} (hf : Integrable f)
     {t : ℝ} (ht : 0 < t) (x : E) :
     HasDerivAt (fun s => heatConvolution f s x)

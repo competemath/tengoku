@@ -16,11 +16,17 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 def convolutionLogAmplitude (f : E → ℝ) (R t : ℝ) : ℝ :=
   -((Module.finrank ℝ E : ℝ)/2)*Real.log (4*Real.pi*t) + Real.log (∫ z, f z) + (4*t)⁻¹*R^2
 
+/--
+@isnad1 id=continuo.1h4v.s6.85c97048b73a from=translated src=- shape=0e204d5d vocab=45a1bf1e
+-/
 theorem convolutionLogAmplitude_continuousAt (f : E → ℝ) (R : ℝ) {t : ℝ} (ht : 0 < t) :
     ContinuousAt (convolutionLogAmplitude f R) t := by
   unfold convolutionLogAmplitude
   fun_prop (disch := positivity)
 
+/--
+@isnad1 id=le.5h5v.s8.e23dd6daac91 from=translated src=- shape=d13814b6 vocab=5ac137f2
+-/
 theorem convolutionLogHeatFlow_logValue_le {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) (hmass : 0 < ∫ z, f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {t : ℝ} (ht : 0 < t) (x : E) :
@@ -51,6 +57,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, CompleteSpace (F i)] [∀ i, FiniteDimensional ℝ (F i)]
   (D : Datum ι E F) (U : ∀ i, LogHeatFlow (F i))
 
+/--
+@isnad1 id=le.1h9v.s8.a4f5fa580fc6 from=translated src=- shape=56462a7d vocab=329b4f56
+-/
 theorem heatProduct_le_of_logValue_le (t : ℝ) (a : ι → ℝ) (b : ℝ)
     (hlog : ∀ i y, (U i).logValue t y ≤ a i-b*‖y‖^2) (x : E) :
     D.heatProduct U t x ≤ Real.exp (∑ i, D.weight i*a i)*Real.exp (-b*‖x‖^2) := by

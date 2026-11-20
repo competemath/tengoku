@@ -28,6 +28,9 @@ def gaussianKernelHessian (b : ℝ) (x : E) : E →L[ℝ] E :=
   (-2 * b * gaussianKernel b x) • ContinuousLinearMap.id ℝ E +
     (4 * b ^ 2 * gaussianKernel b x) • (innerSL ℝ x).smulRight x
 
+/--
+@isnad1 id=hasfderi.0h3v.s10.70c31fb03676 from=translated src=- shape=31979c65 vocab=fa187404
+-/
 theorem gaussianKernel_hasFDerivAt (b : ℝ) (x : E) :
     HasFDerivAt (gaussianKernel b) (innerSL ℝ (gaussianKernelGradient b x)) x := by
   have h := (((hasFDerivAt_id (𝕜 := ℝ) x).norm_sq).const_mul (-b)).exp
@@ -38,6 +41,9 @@ theorem gaussianKernel_hasFDerivAt (b : ℝ) (x : E) :
     innerSL_apply_apply, id_eq]
   ring
 
+/--
+@isnad1 id=hasfderi.0h3v.s6.8b4f1d45c334 from=translated src=- shape=aebfbb90 vocab=db8b7c24
+-/
 theorem gaussianKernelGradient_hasFDerivAt (b : ℝ) (x : E) :
     HasFDerivAt (gaussianKernelGradient b) (gaussianKernelHessian b x) x := by
   have h := ((gaussianKernel_hasFDerivAt b x).const_mul (-2 * b)).fun_smul
@@ -52,6 +58,9 @@ theorem gaussianKernelGradient_hasFDerivAt (b : ℝ) (x : E) :
   ring
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=hasderiv.0h3v.s6.c3b7cacee6cf from=translated src=- shape=d9e770ef vocab=cd3de461
+-/
 theorem gaussianKernel_hasDerivAt (b : ℝ) (x : E) :
     HasDerivAt (fun a => gaussianKernel a x) (-‖x‖ ^ 2 * gaussianKernel b x) b := by
   have h : HasDerivAt (fun a : ℝ => -a * ‖x‖ ^ 2) (-‖x‖ ^ 2) b := by
@@ -60,15 +69,24 @@ theorem gaussianKernel_hasDerivAt (b : ℝ) (x : E) :
   exact h.exp.congr_deriv (mul_comm _ _)
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=continuo.0h2v.s4.3640651b5c10 from=translated src=- shape=e89acc56 vocab=377c54bf
+-/
 theorem gaussianKernel_continuous (b : ℝ) : Continuous (gaussianKernel b : E → ℝ) := by
   unfold gaussianKernel
   fun_prop
 
+/--
+@isnad1 id=continuo.0h2v.s5.228cb29bb56c from=translated src=- shape=26d15402 vocab=ed31b1fa
+-/
 theorem gaussianKernelGradient_continuous (b : ℝ) :
     Continuous (gaussianKernelGradient b : E → E) := by
   unfold gaussianKernelGradient
   exact (continuous_const.mul (gaussianKernel_continuous b)).smul continuous_id
 
+/--
+@isnad1 id=continuo.0h2v.s7.2d2924b7dd59 from=translated src=- shape=6659b02c vocab=ea66d8c5
+-/
 theorem gaussianKernelHessian_continuous (b : ℝ) :
     Continuous (gaussianKernelHessian b : E → E →L[ℝ] E) := by
   have hr : Continuous (fun x : E => (innerSL ℝ x).smulRight x) :=
@@ -78,17 +96,26 @@ theorem gaussianKernelHessian_continuous (b : ℝ) :
     ((continuous_const.mul (gaussianKernel_continuous b)).smul hr)
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=le.1h3v.s5.e705c0b141c6 from=translated src=- shape=608e2c44 vocab=ff3647d1
+-/
 theorem gaussianKernel_le_one {b : ℝ} (hb : 0 ≤ b) (x : E) : gaussianKernel b x ≤ 1 := by
   apply Real.exp_le_one_iff.mpr
   exact mul_nonpos_of_nonpos_of_nonneg (neg_nonpos.mpr hb) (sq_nonneg _)
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=le.1h4v.s6.85ff1acbe19e from=translated src=- shape=70434658 vocab=13f48e70
+-/
 theorem norm_pow_mul_gaussianKernel_le (n : ℕ) {b : ℝ} (hb : 0 < b) (x : E) :
     ‖x‖ ^ n * gaussianKernel b x ≤ 1 + (n.factorial : ℝ) / (b / 2) ^ n := by
   exact (pow_mul_gaussian_le ‖x‖ n hb).trans (by
     simpa only [mul_one, gaussianKernel] using mul_le_mul_of_nonneg_left
       (gaussianKernel_le_one (half_pos hb).le x) (by positivity))
 
+/--
+@isnad1 id=le.1h3v.s6.1a5ae4787d0f from=translated src=- shape=ad039df0 vocab=e335852a
+-/
 theorem gaussianKernelGradient_norm_le {b : ℝ} (hb : 0 < b) (x : E) :
     ‖gaussianKernelGradient b x‖ ≤ 2 * b * (1 + 1 / (b / 2)) := by
   have h := norm_pow_mul_gaussianKernel_le 1 hb x
@@ -101,6 +128,9 @@ theorem gaussianKernelGradient_norm_le {b : ℝ} (hb : 0 < b) (x : E) :
       ring
     _ ≤ _ := mul_le_mul_of_nonneg_left h (by positivity)
 
+/--
+@isnad1 id=le.1h3v.s8.70339921263f from=translated src=- shape=24938610 vocab=45609958
+-/
 theorem gaussianKernelHessian_norm_le {b : ℝ} (hb : 0 < b) (x : E) :
     ‖gaussianKernelHessian b x‖ ≤
       2 * b + 4 * b ^ 2 * (1 + 2 / (b / 2) ^ 2) := by
@@ -124,6 +154,9 @@ theorem gaussianKernelHessian_norm_le {b : ℝ} (hb : 0 < b) (x : E) :
 
 variable [FiniteDimensional ℝ E]
 
+/--
+@isnad1 id=eq.0h3v.s9.aa169e524aed from=translated src=- shape=f151ac2c vocab=5de0749e
+-/
 theorem trace_gaussianKernelHessian (b : ℝ) (x : E) :
     LinearMap.trace ℝ E (gaussianKernelHessian b x).toLinearMap =
       (-2 * b * (Module.finrank ℝ E : ℝ) + 4 * b ^ 2 * ‖x‖ ^ 2) * gaussianKernel b x := by

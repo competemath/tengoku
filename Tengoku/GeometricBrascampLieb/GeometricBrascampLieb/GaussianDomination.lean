@@ -15,6 +15,9 @@ open scoped Topology
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=le.0h5v.s7.dd043e4c74c9 from=translated src=- shape=5abffc89 vocab=8e6b9641
+-/
 theorem abs_quadratic_mul_gaussian_le (A P R b r : ℝ) :
     |A * (P + R * r ^ 2) * Real.exp (-b * r ^ 2)| ≤
       (|A| * (|P| + |R|)) * (1 + r ^ 2) * Real.exp (-b * r ^ 2) := by
@@ -34,13 +37,18 @@ theorem abs_quadratic_mul_gaussian_le (A P R b r : ℝ) :
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=integrab.1h6v.s7.10b6eb0844d7 from=translated src=- shape=c70b9a16 vocab=672f89d2
+-/
 theorem integrable_quadratic_mul_gaussian (z : E) (A P R : ℝ) {b : ℝ} (hb : 0 < b) :
     Integrable (fun x : E => A * (P + R * ‖x - z‖ ^ 2) * Real.exp (-b * ‖x - z‖ ^ 2)) := by
   apply integrable_of_polynomial_gaussian_bound (by fun_prop) z 2 (|A| * (|P| + |R|)) hb
   intro x
   exact abs_quadratic_mul_gaussian_le A P R b ‖x - z‖
 
-/-- A local time-independent integrable bound for Gaussian quadratic expressions.-/
+/-- A local time-independent integrable bound for Gaussian quadratic expressions.
+@isnad1 id=ex.6h7v.s8.3b112cf4b2a7 from=translated src=- shape=625f65f3 vocab=b133142e
+-/
 theorem exists_local_quadratic_gaussian_bound
     (z : E) {A b P R : ℝ → ℝ} {t : ℝ} (ht : 0 < t) (hb : 0 < b t)
     (hA : ContinuousAt A t) (hbcont : ContinuousAt b t)

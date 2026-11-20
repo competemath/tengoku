@@ -31,6 +31,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
 
 include hf hf0 hmass hsupport
 
+/--
+@isnad1 id=tendsto.4h6v.s9.3675c6aaa6bc from=translated src=- shape=de199d36 vocab=7c1260bb
+-/
 theorem integral_prod_heatConvolution_tendsto_sq_atTop :
     Tendsto (fun a : ℝ => ∫ x, ∏ i, (heatConvolution (f i) (a^2) (D.map i x))^D.weight i)
       atTop (𝓝 (∏ i, (∫ z, f i z)^D.weight i)) := by
@@ -40,7 +43,9 @@ theorem integral_prod_heatConvolution_tendsto_sq_atTop :
   filter_upwards [eventually_gt_atTop (0 : ℝ)] with a ha
   exact (D.integral_prod_heatConvolution_eq_rescaled hf hf0 hmass ha).symm
 
-/-- The actual large-time endpoint, in the original heat parameter.-/
+/-- The actual large-time endpoint, in the original heat parameter.
+@isnad1 id=tendsto.4h6v.s9.466a8b04921d from=translated src=- shape=5a1ed120 vocab=3c639bdb
+-/
 theorem integral_prod_heatConvolution_tendsto_atTop :
     Tendsto (fun t => ∫ x, ∏ i, (heatConvolution (f i) t (D.map i x))^D.weight i)
       atTop (𝓝 (∏ i, (∫ z, f i z)^D.weight i)) := by
@@ -51,7 +56,9 @@ theorem integral_prod_heatConvolution_tendsto_atTop :
   change (∫ x, ∏ i, (heatConvolution (f i) ((Real.sqrt t)^2) (D.map i x))^D.weight i) = _
   rw [Real.sq_sqrt ht]
 
-/-- The sharp geometric BL bound for every positive heat regularization.-/
+/-- The sharp geometric BL bound for every positive heat regularization.
+@isnad1 id=le.5h7v.s9.db20013c3e07 from=translated src=- shape=dbe6422b vocab=1fc6148a
+-/
 theorem integral_prod_heatConvolution_le {t : ℝ} (ht : 0 < t) :
     (∫ x, ∏ i, (heatConvolution (f i) t (D.map i x))^D.weight i) ≤
       ∏ i, (∫ z, f i z)^D.weight i := by

@@ -16,6 +16,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.1h4v.s8.f8fc75a300a3 from=translated src=- shape=d561e99e vocab=5d306f96
+-/
 theorem gaussian_exponent_scale {a : ℝ} (ha : 0 < a) (x z : E) :
     -(4*a^2)⁻¹*‖a • x-z‖^2 = -(1/4 : ℝ)*‖x-a⁻¹ • z‖^2 := by
   have he : a • x-z = a • (x-a⁻¹ • z) := by
@@ -23,6 +26,9 @@ theorem gaussian_exponent_scale {a : ℝ} (ha : 0 < a) (x z : E) :
   rw [he, norm_smul, Real.norm_eq_abs, mul_pow, sq_abs]
   field_simp
 
+/--
+@isnad1 id=eq.1h4v.s7.2687134adb20 from=translated src=- shape=087bf03d vocab=70c5f364
+-/
 theorem gaussianConvolution_scale (f : E → ℝ) {a : ℝ} (ha : 0 < a) (x : E) :
     gaussianConvolution (4*a^2)⁻¹ f (a • x) = rescaledConvolution f a⁻¹ x := by
   apply integral_congr_ae
@@ -31,6 +37,9 @@ theorem gaussianConvolution_scale (f : E → ℝ) {a : ℝ} (ha : 0 < a) (x : E)
     rw [gaussian_exponent_scale ha]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.1h2v.s6.5cca748418fc from=translated src=- shape=6a78c611 vocab=183e1cff
+-/
 theorem heatNormalization_scale {a : ℝ} (ha : 0 < a) :
     heatNormalization (E := E) (a^2) =
       Real.exp (-(Module.finrank ℝ E : ℝ)*Real.log a)*heatNormalization (E := E) 1 := by
@@ -40,12 +49,18 @@ theorem heatNormalization_scale {a : ℝ} (ha : 0 < a) :
   congr 1
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.5ee30bdd92cb from=translated src=- shape=9311bc84 vocab=cedd2353
+-/
 theorem heatConvolution_scale (f : E → ℝ) {a : ℝ} (ha : 0 < a) (x : E) :
     heatConvolution f (a^2) (a • x) =
       Real.exp (-(Module.finrank ℝ E : ℝ)*Real.log a)*rescaledHeat f a⁻¹ x := by
   rw [heatConvolution, gaussianConvolution_scale f ha, heatNormalization_scale ha, rescaledHeat, mul_assoc]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.1h2v.s5.9f9e1b2e7ff2 from=translated src=- shape=c1c582f9 vocab=7d9ceece
+-/
 theorem exp_neg_nat_mul_log {a : ℝ} (ha : 0 < a) (n : ℕ) :
     Real.exp (-(n : ℝ)*Real.log a) = (a^n)⁻¹ := by
   rw [neg_mul, Real.exp_neg, Real.exp_nat_mul, Real.exp_log ha]
@@ -67,6 +82,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
 include hf hf0 hmass
 
 omit [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.4h7v.s9.1932051f25fa from=translated src=- shape=af92e3d6 vocab=ef395530
+-/
 theorem heatProduct_convolution_scale {a : ℝ} (ha : 0 < a) (x : E) :
     D.heatProduct (fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)) (a^2) (a • x) =
       (a^Module.finrank ℝ E)⁻¹*D.rescaledProduct f a⁻¹ x := by
@@ -85,7 +103,9 @@ theorem heatProduct_convolution_scale {a : ℝ} (ha : 0 < a) (x : E) :
       ring
     _ = _ := by rw [D.dimension_identity]; ring
 
-/-- The geometric dimension identity exactly cancels the change-of-variables factor.-/
+/-- The geometric dimension identity exactly cancels the change-of-variables factor.
+@isnad1 id=eq.4h6v.s9.295faafa07f0 from=translated src=- shape=02b769c7 vocab=073663b0
+-/
 theorem integral_heatProduct_eq_rescaled {a : ℝ} (ha : 0 < a) :
     (∫ x, D.heatProduct (fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)) (a^2) x) =
       ∫ x, D.rescaledProduct f a⁻¹ x := by
@@ -98,6 +118,9 @@ theorem integral_heatProduct_eq_rescaled {a : ℝ} (ha : 0 < a) :
   rw [hp, smul_eq_mul] at hs
   exact (mul_left_cancel₀ (inv_ne_zero (pow_ne_zero _ ha.ne')) hs).symm
 
+/--
+@isnad1 id=eq.4h6v.s9.0b04ba59a22c from=translated src=- shape=e200479b vocab=f4f7b255
+-/
 theorem integral_prod_heatConvolution_eq_rescaled {a : ℝ} (ha : 0 < a) :
     (∫ x, ∏ i, (heatConvolution (f i) (a^2) (D.map i x))^D.weight i) =
       ∫ x, D.rescaledProduct f a⁻¹ x := by

@@ -21,6 +21,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, CompleteSpace (F i)]
 
 omit [CompleteSpace E] [∀ i, CompleteSpace (F i)] in
+/--
+@isnad1 id=eq.1h7v.s9.3990ad0ac1cc from=translated src=- shape=eca415e7 vocab=b8b995bf
+-/
 theorem sum_weight_inner_of_norm_sq
     (B : ∀ i, E →L[ℝ] F i) (c : ι → ℝ)
     (hframe : ∀ x, ∑ i, c i * ‖B i x‖ ^ 2 = ‖x‖ ^ 2) (x y : E) :
@@ -36,6 +39,9 @@ theorem sum_weight_inner_of_norm_sq
   rw [hframe x, hframe y, hcross] at h
   linarith
 
+/--
+@isnad1 id=eq.1h5v.s12.2fb4d7fce0d6 from=translated src=- shape=75c6c2b4 vocab=a0fa638f
+-/
 theorem resolution_of_norm_sq
     (B : ∀ i, E →L[ℝ] F i) (c : ι → ℝ)
     (hframe : ∀ x, ∑ i, c i * ‖B i x‖ ^ 2 = ‖x‖ ^ 2) :

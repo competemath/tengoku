@@ -19,7 +19,9 @@ namespace GeometricBrascampLieb
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} [SigmaFinite μ]
 
 /-- A derivative in one spatial coordinate has zero integral when the
-function and that derivative are integrable on the product space.-/
+function and that derivative are integrable on the product space.
+@isnad1 id=eq.3h4v.s7.54a8f51040a0 from=translated src=- shape=9373171b vocab=a2158518
+-/
 theorem integral_coordinate_derivative_eq_zero
     {f g : ℝ × X → ℝ}
     (hf : Integrable f (volume.prod μ)) (hg : Integrable g (volume.prod μ))
@@ -31,7 +33,9 @@ theorem integral_coordinate_derivative_eq_zero
     exact integral_eq_zero_of_hasDerivAt_of_integrable (hderiv y) hyg hyf
   rw [integral_congr_ae hz, integral_zero]
 
-/-- Transfer coordinate cancellation through a volume-preserving coordinate chart.-/
+/-- Transfer coordinate cancellation through a volume-preserving coordinate chart.
+@isnad1 id=eq.4h7v.s8.5125f80a3557 from=translated src=- shape=c3fd10a7 vocab=456f261e
+-/
 theorem integral_derivative_eq_zero_of_coordinates
     {Y : Type*} [MeasurableSpace Y] {ν : Measure Y}
     (e : Y ≃ᵐ ℝ × X) (he : MeasurePreserving e ν (volume.prod μ))
@@ -47,7 +51,9 @@ theorem integral_derivative_eq_zero_of_coordinates
 omit [SigmaFinite μ] in
 /-- The elementary integration step in the heat-flow argument. It is enough
 to dominate the actual time derivative locally and prove that its integral is
-nonnegative. No assumption about monotonicity is used.-/
+nonnegative. No assumption about monotonicity is used.
+@isnad1 id=monotone.7h5v.s8.011329ebcbe9 from=translated src=- shape=fc2baba2 vocab=5c6df31a
+-/
 theorem monotoneOn_integral_of_local_derivative
     {u du : ℝ → X → ℝ} {I : Set ℝ} (hI : Convex ℝ I) (hIo : IsOpen I)
     (hint : ∀ t ∈ I, Integrable (u t) μ)

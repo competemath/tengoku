@@ -24,7 +24,9 @@ variable {ι E : Type*} [Fintype ι]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- Real scalar targets, stated using a quadratic frame identity.-/
+/-- Real scalar targets, stated using a quadratic frame identity.
+@isnad1 id=le.4h5v.s9.e8720710c34c from=translated src=- shape=82bd7671 vocab=73b88682
+-/
 theorem real_lintegral_prod_le_of_norm_sq
     (B : ι → (E →L[ℝ] ℝ)) (c : ι → ℝ) (hc : ∀ i, 0 ≤ c i)
     (hB : ∀ i, ‖B i‖ = 1)
@@ -42,7 +44,9 @@ variable {ι E : Type*} [Fintype ι]
   [IsScalarTower ℝ ℂ E] [CompleteSpace E] [FiniteDimensional ℝ E]
   [MeasurableSpace E] [BorelSpace E]
 
-/-- Complex scalar targets with their ordinary two-dimensional Lebesgue measure.-/
+/-- Complex scalar targets with their ordinary two-dimensional Lebesgue measure.
+@isnad1 id=le.4h5v.s9.3a3a068ca484 from=translated src=- shape=b427ea89 vocab=043bddec
+-/
 theorem complex_lintegral_prod_le_of_norm_sq
     (B : ι → (E →L[ℂ] ℂ)) (c : ι → ℝ) (hc : ∀ i, 0 ≤ c i)
     (hB : ∀ i, ‖B i‖ = 1)

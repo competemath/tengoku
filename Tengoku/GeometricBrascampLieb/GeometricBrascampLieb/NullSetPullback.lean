@@ -21,7 +21,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)]
   (D : Datum ι E F)
 
-/-- A geometric map pulls back every null set to a null set, even with nontrivial kernel.-/
+/-- A geometric map pulls back every null set to a null set, even with nontrivial kernel.
+@isnad1 id=quasimea.0h5v.s8.c9eff9348b07 from=translated src=- shape=36311fff vocab=a7b065ad
+-/
 theorem map_quasiMeasurePreserving (i : ι) :
     Measure.QuasiMeasurePreserving (D.map i) (volume : Measure E) (volume : Measure (F i)) := by
   refine ⟨(D.map i).continuous.measurable, ?_⟩

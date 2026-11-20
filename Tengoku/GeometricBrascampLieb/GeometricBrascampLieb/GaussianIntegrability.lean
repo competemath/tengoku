@@ -30,16 +30,25 @@ def gaussianAmplitude (a : ι → ℝ) (z : ∀ i, F i) (t : ℝ) : ℝ :=
     (4 * t)⁻¹ * D.gaussianDefect z)
 
 omit [FiniteDimensional ℝ E] [∀ i, FiniteDimensional ℝ (F i)] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=lt.0h7v.s6.161df2ec9158 from=translated src=- shape=618b98b4 vocab=1f028204
+-/
 theorem gaussianAmplitude_pos (a : ι → ℝ) (z : ∀ i, F i) (t : ℝ) :
     0 < D.gaussianAmplitude a z t := Real.exp_pos _
 
 omit [FiniteDimensional ℝ E] [∀ i, FiniteDimensional ℝ (F i)] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.1h7v.s7.b01b8200f98a from=translated src=- shape=5a663b1e vocab=f63cab87
+-/
 theorem gaussianAmplitude_continuousAt (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     ContinuousAt (D.gaussianAmplitude a z) t := by
   unfold gaussianAmplitude
   fun_prop (disch := positivity)
 
 omit [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.0h8v.s9.5a5ffabb838f from=translated src=- shape=c96fdd8d vocab=9df6e9a8
+-/
 theorem gaussian_timeDerivative (a : ι → ℝ) (z : ∀ i, F i) (t : ℝ) (x : E) :
     D.heatProduct (fun i => gaussianLogHeatFlow (a i) (z i)) t x *
       D.timeRate (fun i => gaussianLogHeatFlow (a i) (z i)) t x =
@@ -50,12 +59,18 @@ theorem gaussian_timeDerivative (a : ι → ℝ) (z : ∀ i, F i) (t : ℝ) (x :
   rw [D.gaussian_heatProduct, D.gaussian_timeRate, gaussianAmplitude]
   ring
 
+/--
+@isnad1 id=integrab.1h7v.s8.c101f49aadd8 from=translated src=- shape=ed7a22f8 vocab=88f85e3b
+-/
 theorem gaussian_heatProduct_integrable (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     Integrable (D.heatProduct (fun i => gaussianLogHeatFlow (a i) (z i)) t) := by
   change Integrable (fun x => D.heatProduct (fun i => gaussianLogHeatFlow (a i) (z i)) t x)
   simp_rw [D.gaussian_heatProduct]
   exact (integrable_gaussian_shift (D.synthesis z) (by positivity : 0 < (4 * t)⁻¹)).const_mul _
 
+/--
+@isnad1 id=integrab.1h7v.s8.27fdd093cf4d from=translated src=- shape=6f4be5bc vocab=3694f9f8
+-/
 theorem gaussian_timeDerivative_integrable (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     Integrable (fun x => D.heatProduct (fun i => gaussianLogHeatFlow (a i) (z i)) t x *
       D.timeRate (fun i => gaussianLogHeatFlow (a i) (z i)) t x) := by
@@ -63,6 +78,9 @@ theorem gaussian_timeDerivative_integrable (a : ι → ℝ) (z : ∀ i, F i) {t 
   exact integrable_quadratic_mul_gaussian (D.synthesis z) _ _ _ (by positivity)
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.1h8v.s8.4ba14fc5d0dc from=translated src=- shape=af003e3b vocab=96563dd0
+-/
 theorem gaussian_score_norm (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) (x : E) :
     ‖D.score (fun i => gaussianLogHeatFlow (a i) (z i)) t x‖ =
       (2 * t)⁻¹ * ‖x - D.synthesis z‖ := by
@@ -70,6 +88,9 @@ theorem gaussian_score_norm (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 
     abs_of_pos (by positivity : 0 < (2 * t)⁻¹)]
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=le.1h8v.s8.64468a7f0cf8 from=translated src=- shape=ac4bbeb5 vocab=e78359c0
+-/
 theorem gaussian_scoreDerivative_norm_le (a : ι → ℝ) (z : ∀ i, F i)
     {t : ℝ} (ht : 0 < t) (x : E) :
     ‖D.scoreDerivative (fun i => gaussianLogHeatFlow (a i) (z i)) t x‖ ≤ (2 * t)⁻¹ := by
@@ -79,6 +100,9 @@ theorem gaussian_scoreDerivative_norm_le (a : ι → ℝ) (z : ∀ i, F i)
     (ContinuousLinearMap.norm_id_le (𝕜 := ℝ) (E := E)) (by positivity : 0 ≤ (2 * t)⁻¹)
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=le.0h7v.s8.4846fefc55a1 from=translated src=- shape=923968a7 vocab=6a226b81
+-/
 theorem norm_fluxDerivative_le (U : ∀ i, LogHeatFlow (F i)) (t : ℝ) (x : E) :
     ‖D.fluxDerivative U t x‖ ≤ D.heatProduct U t x *
       (‖D.score U t x‖ ^ 2 + ‖D.scoreDerivative U t x‖) := by
@@ -91,6 +115,9 @@ theorem norm_fluxDerivative_le (U : ∀ i, LogHeatFlow (F i)) (t : ℝ) (x : E) 
     _ ≤ _ := h
     _ = _ := by ring
 
+/--
+@isnad1 id=integrab.1h7v.s8.335eeee58bbc from=translated src=- shape=af170d1c vocab=a7796277
+-/
 theorem gaussian_flux_integrable (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     Integrable (D.flux (fun i => gaussianLogHeatFlow (a i) (z i)) t) := by
   let U := fun i => gaussianLogHeatFlow (a i) (z i)
@@ -109,6 +136,9 @@ theorem gaussian_flux_integrable (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht
   simpa only [gaussianAmplitude, pow_one, mul_assoc, mul_comm, mul_left_comm] using h
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.1h7v.s8.55e18e5b7c73 from=translated src=- shape=d4f84ea7 vocab=95a1b01f
+-/
 theorem gaussian_fluxDerivative_continuous (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     Continuous (D.fluxDerivative (fun i => gaussianLogHeatFlow (a i) (z i)) t) := by
   let U := fun i => gaussianLogHeatFlow (a i) (z i)
@@ -124,6 +154,9 @@ theorem gaussian_fluxDerivative_continuous (a : ι → ℝ) (z : ∀ i, F i) {t 
     (hQ.smul ((innerSL ℝ).continuous.comp hS))).clm_apply hS
   exact hT.add (hQ.smul hA)
 
+/--
+@isnad1 id=integrab.1h7v.s9.5a561ac47ea6 from=translated src=- shape=216c7cc4 vocab=de9efb2e
+-/
 theorem gaussian_fluxDerivative_integrable (a : ι → ℝ) (z : ∀ i, F i) {t : ℝ} (ht : 0 < t) :
     Integrable (D.fluxDerivative (fun i => gaussianLogHeatFlow (a i) (z i)) t) := by
   let U := fun i => gaussianLogHeatFlow (a i) (z i)
@@ -147,7 +180,9 @@ theorem gaussian_fluxDerivative_integrable (a : ι → ℝ) (z : ∀ i, F i) {t 
       mul_le_mul_of_nonneg_left hp (D.heatProduct_pos U t x).le
     _ = _ := by rw [D.gaussian_heatProduct, gaussianAmplitude]; ring
 
-/-- The analytic hypotheses are now proved for concrete geometric Gaussian flows.-/
+/-- The analytic hypotheses are now proved for concrete geometric Gaussian flows.
+@isnad1 id=heatinte.0h6v.s7.8d8a22238506 from=translated src=- shape=94d85b07 vocab=59000c56
+-/
 theorem gaussian_heatIntegrability (a : ι → ℝ) (z : ∀ i, F i) :
     D.HeatIntegrability (fun i => gaussianLogHeatFlow (a i) (z i)) where
   product_integrable := fun _ ht => D.gaussian_heatProduct_integrable a z ht
@@ -165,7 +200,9 @@ theorem gaussian_heatIntegrability (a : ι → ℝ) (z : ∀ i, F i) :
       hP hR
     simpa only [D.gaussian_timeDerivative] using h
 
-/-- Monotonicity with no unproved heat-integrability hypothesis remaining.-/
+/-- Monotonicity with no unproved heat-integrability hypothesis remaining.
+@isnad1 id=monotone.0h6v.s8.8d7fc66ce694 from=translated src=- shape=83dd2567 vocab=3a1fdd15
+-/
 theorem gaussian_heat_integral_monotoneOn (a : ι → ℝ) (z : ∀ i, F i) :
     MonotoneOn (fun t => ∫ x, D.heatProduct (fun i => gaussianLogHeatFlow (a i) (z i)) t x)
       (Ioi 0) := D.heat_integral_monotoneOn _ (D.gaussian_heatIntegrability a z)

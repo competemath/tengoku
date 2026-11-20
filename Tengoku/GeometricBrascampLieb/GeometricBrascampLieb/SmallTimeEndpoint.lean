@@ -14,12 +14,17 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.0h4v.s7.7ae9f977bfa7 from=translated src=- shape=7edf36fb vocab=3a09a77e
+-/
 theorem gaussianConvolution_swap (f : E → ℝ) (b : ℝ) (x : E) :
     gaussianConvolution b f x = ∫ z, f (x-z)*Real.exp (-b*‖z‖^2) := by
   change (f ⋆[ContinuousLinearMap.mul ℝ ℝ] (fun z : E => Real.exp (-b*‖z‖^2))) x = _
   exact convolution_mul_swap
 
-/-- A fixed Gaussian kernel, with the small spatial scale moved into the input.-/
+/-- A fixed Gaussian kernel, with the small spatial scale moved into the input.
+@isnad1 id=eq.1h4v.s8.3d5c33c6bf07 from=translated src=- shape=79ba6505 vocab=c5318c40
+-/
 theorem heatConvolution_sq_eq_integral (f : E → ℝ) {a : ℝ} (ha : 0 < a) (x : E) :
     heatConvolution f (a^2) x =
       ∫ z, (heatNormalization (E := E) 1*Real.exp (-(1/4 : ℝ)*‖z‖^2))*f (x-a • z) := by
@@ -39,6 +44,9 @@ theorem heatConvolution_sq_eq_integral (f : E → ℝ) {a : ℝ} (ha : 0 < a) (x
         rw [he]
         ring
 
+/--
+@isnad1 id=continuo.2h4v.s8.081161e9381e from=translated src=- shape=c5792eaf vocab=27c56f23
+-/
 theorem initialAverage_continuousAt_zero {f : E → ℝ} (hf : Continuous f)
     {C : ℝ} (hbound : ∀ y, ‖f y‖ ≤ C) (x : E) :
     ContinuousAt (fun a : ℝ =>
@@ -57,7 +65,9 @@ theorem initialAverage_continuousAt_zero {f : E → ℝ} (hf : Continuous f)
       change ContinuousAt (fun a : ℝ => k z*f (x-a • z)) 0
       exact continuous_const.continuousAt.mul (hf.continuousAt.comp (by fun_prop))
 
-/-- Small-time convergence, first in the square-root time parameter.-/
+/-- Small-time convergence, first in the square-root time parameter.
+@isnad1 id=tendsto.2h4v.s7.a23586d5014a from=translated src=- shape=63e1b068 vocab=3f8006ca
+-/
 theorem heatConvolution_tendsto_sq_zero {f : E → ℝ} (hf : Continuous f)
     {C : ℝ} (hbound : ∀ y, ‖f y‖ ≤ C) (x : E) :
     Tendsto (fun a : ℝ => heatConvolution f (a^2) x) (𝓝[>] 0) (𝓝 (f x)) := by
@@ -68,7 +78,9 @@ theorem heatConvolution_tendsto_sq_zero {f : E → ℝ} (hf : Continuous f)
   filter_upwards [self_mem_nhdsWithin] with a (ha : 0 < a)
   exact (heatConvolution_sq_eq_integral f ha x).symm
 
-/-- Positive-time heat regularization tends to the bounded continuous input.-/
+/-- Positive-time heat regularization tends to the bounded continuous input.
+@isnad1 id=tendsto.2h4v.s7.0f6a11823680 from=translated src=- shape=84f160f1 vocab=4de5a99f
+-/
 theorem heatConvolution_tendsto_zero {f : E → ℝ} (hf : Continuous f)
     {C : ℝ} (hbound : ∀ y, ‖f y‖ ≤ C) (x : E) :
     Tendsto (fun t => heatConvolution f t x) (𝓝[>] 0) (𝓝 (f x)) := by

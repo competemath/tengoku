@@ -15,6 +15,9 @@ open MeasureTheory
 
 namespace GeometricBrascampLieb
 
+/--
+@isnad1 id=le.1h3v.s7.838c729f176d from=translated src=- shape=e1d2879a vocab=135158ca
+-/
 theorem pow_mul_gaussian_le (r : ℝ) (n : ℕ) {b : ℝ} (hb : 0 < b) :
     r ^ n * Real.exp (-b * r ^ 2) ≤
       (1 + (n.factorial : ℝ) / (b / 2) ^ n) * Real.exp (-(b / 2) * r ^ 2) := by
@@ -35,6 +38,9 @@ theorem pow_mul_gaussian_le (r : ℝ) (n : ℕ) {b : ℝ} (hb : 0 < b) :
 
 variable {E : Type*} [NormedAddCommGroup E]
 
+/--
+@isnad1 id=le.0h3v.s6.33be7e73e5aa from=translated src=- shape=b93fd998 vocab=09b20155
+-/
 theorem half_norm_sq_sub_norm_sq_le (x z : E) :
     ‖x‖ ^ 2 / 2 - ‖z‖ ^ 2 ≤ ‖x - z‖ ^ 2 := by
   have hn : ‖x‖ ≤ ‖x - z‖ + ‖z‖ := by
@@ -43,6 +49,9 @@ theorem half_norm_sq_sub_norm_sq_le (x z : E) :
     pow_le_pow_left₀ (norm_nonneg x) hn 2
   nlinarith [sq_nonneg (‖x - z‖ - ‖z‖)]
 
+/--
+@isnad1 id=le.2h5v.s7.f78afcd2a3ba from=translated src=- shape=f8c67268 vocab=58829ca4
+-/
 theorem gaussian_shift_le_uniform (x z : E) {R b : ℝ} (hR : ‖z‖ ≤ R) (hb : 0 ≤ b) :
     Real.exp (-b * ‖x - z‖ ^ 2) ≤
       Real.exp (b * R ^ 2) * Real.exp (-(b / 2) * ‖x‖ ^ 2) := by
@@ -52,6 +61,9 @@ theorem gaussian_shift_le_uniform (x z : E) {R b : ℝ} (hR : ‖z‖ ≤ R) (hb
   have h := mul_le_mul_of_nonneg_left (half_norm_sq_sub_norm_sq_le x z) hb
   nlinarith [mul_le_mul_of_nonneg_left hz hb]
 
+/--
+@isnad1 id=le.2h6v.s8.4eae661ab33d from=translated src=- shape=51a3eadf vocab=a8b67ad5
+-/
 theorem norm_sub_pow_mul_gaussian_le_uniform (x z : E) (n : ℕ) {R b : ℝ}
     (hR : ‖z‖ ≤ R) (hb : 0 < b) :
     ‖x - z‖ ^ n * Real.exp (-b * ‖x - z‖ ^ 2) ≤
@@ -67,7 +79,9 @@ theorem norm_sub_pow_mul_gaussian_le_uniform (x z : E) (n : ℕ) {R b : ℝ}
 
 variable [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- One integrable function controls all centers in a fixed ball.-/
+/-- One integrable function controls all centers in a fixed ball.
+@isnad1 id=ex.1h4v.s7.a65967bf159e from=translated src=- shape=c7f4f4ee vocab=6abe7915
+-/
 theorem exists_integrable_gaussian_majorant (R : ℝ) (n : ℕ) {b : ℝ} (hb : 0 < b) :
     ∃ g : E → ℝ, Integrable g ∧ ∀ x z, ‖z‖ ≤ R →
       ‖x - z‖ ^ n * Real.exp (-b * ‖x - z‖ ^ 2) ≤ g x := by

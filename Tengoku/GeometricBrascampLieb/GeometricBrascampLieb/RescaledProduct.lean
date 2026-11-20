@@ -14,6 +14,9 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=eq.0h1v.s7.595b7a3b1a37 from=translated src=- shape=f179c471 vocab=b6ab5f93
+-/
 theorem integral_normalized_gaussian :
     (∫ x : E, heatNormalization (E := E) 1 * Real.exp (-(1/4 : ℝ)*‖x‖^2)) = 1 := by
   rw [integral_const_mul, GaussianFourier.integral_rexp_neg_mul_sq_norm (by norm_num : 0 < (1/4 : ℝ))]
@@ -41,6 +44,9 @@ def rescaledProduct (f : ∀ i, F i → ℝ) (e : ℝ) (x : E) : ℝ :=
 
 omit [MeasurableSpace E] [BorelSpace E]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)] in
+/--
+@isnad1 id=eq.0h8v.s9.29c94c235e43 from=translated src=- shape=6e73d1a5 vocab=52965592
+-/
 theorem sum_weight_affine_quadratic (a : ι → ℝ) (k b : ℝ) (x : E) :
     (∑ i, D.weight i*(a i+k*(Module.finrank ℝ (F i) : ℝ)-b*‖D.map i x‖^2)) =
       (∑ i, D.weight i*a i)+k*(Module.finrank ℝ E : ℝ)-b*‖x‖^2 := by
@@ -59,6 +65,9 @@ variable {f : ∀ i, F i → ℝ}
 include hf hf0 hmass
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.3h5v.s8.4ed1d0d37f6a from=translated src=- shape=6cac6220 vocab=6256647c
+-/
 theorem rescaledProduct_continuous :
     Continuous (fun p : ℝ × E => D.rescaledProduct f p.1 p.2) := by
   apply Real.continuous_exp.comp
@@ -70,6 +79,9 @@ theorem rescaledProduct_continuous :
   exact hu.log (fun p => (rescaledHeat_pos (hf i) (hf0 i) (hmass i) p.1 _).ne')
 
 omit [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=le.5h8v.s9.ba18d9f461fe from=translated src=- shape=c209d9a2 vocab=1468c818
+-/
 theorem rescaledProduct_le {R : ι → ℝ}
     (hsupport : ∀ i z, f i z ≠ 0 → ‖z‖ ≤ R i) {e : ℝ} (he : |e| ≤ 1) (x : E) :
     D.rescaledProduct f e x ≤ D.convolutionAmplitude f R 1*Real.exp (-(1/8 : ℝ)*‖x‖^2) := by
@@ -83,6 +95,9 @@ theorem rescaledProduct_le {R : ι → ℝ}
       simpa only [zero_mul, add_zero, sub_eq_add_neg, neg_mul] using
         D.sum_weight_affine_quadratic (fun i => convolutionLogAmplitude (f i) (R i) 1) 0 (1/8) x
 
+/--
+@isnad1 id=continuo.4h6v.s8.48b9fff3e606 from=translated src=- shape=c3e4a8b7 vocab=d12ee668
+-/
 theorem integral_rescaledProduct_continuousAt_zero {R : ι → ℝ}
     (hsupport : ∀ i z, f i z ≠ 0 → ‖z‖ ≤ R i) :
     ContinuousAt (fun e => ∫ x, D.rescaledProduct f e x) 0 := by
@@ -101,6 +116,9 @@ theorem integral_rescaledProduct_continuousAt_zero {R : ι → ℝ}
   · exact Eventually.of_forall fun x => (hc.comp (continuous_id.prodMk continuous_const)).continuousAt
 
 omit hf hf0 [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.1h6v.s8.f1a0a4699541 from=translated src=- shape=c2ab348d vocab=fab76821
+-/
 theorem rescaledProduct_zero (x : E) :
     D.rescaledProduct f 0 x = Real.exp (∑ i, D.weight i*Real.log (∫ z, f i z))*
       (heatNormalization (E := E) 1*Real.exp (-(1/4 : ℝ)*‖x‖^2)) := by
@@ -116,6 +134,9 @@ theorem rescaledProduct_zero (x : E) :
     _ = _ := by rw [D.sum_weight_affine_quadratic]; ring
 
 omit hf hf0 in
+/--
+@isnad1 id=eq.1h5v.s8.d5699c2f707b from=translated src=- shape=0b00834e vocab=892f1803
+-/
 theorem integral_rescaledProduct_zero :
     (∫ x, D.rescaledProduct f 0 x) = ∏ i, (∫ z, f i z)^D.weight i := by
   simp_rw [D.rescaledProduct_zero hmass]
@@ -126,7 +147,9 @@ theorem integral_rescaledProduct_zero :
   congr 1
   ring
 
-/-- The rescaled heat-product integral converges to the product of initial masses.-/
+/-- The rescaled heat-product integral converges to the product of initial masses.
+@isnad1 id=tendsto.4h6v.s9.a9b1627cf891 from=translated src=- shape=ee195d35 vocab=9d3f2d37
+-/
 theorem tendsto_integral_rescaledProduct_zero {R : ι → ℝ}
     (hsupport : ∀ i z, f i z ≠ 0 → ‖z‖ ≤ R i) :
     Tendsto (fun e => ∫ x, D.rescaledProduct f e x) (𝓝 0)

@@ -17,6 +17,9 @@ namespace GeometricBrascampLieb
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
+/--
+@isnad1 id=eq.1h3v.s6.6ff7dce7e037 from=translated src=- shape=1fe0cf85 vocab=94dd9f2a
+-/
 theorem gaussianKernelGradient_norm_eq {b : ℝ} (hb : 0 ≤ b) (x : E) :
     ‖gaussianKernelGradient b x‖ = 2*b*‖x‖*gaussianKernel b x := by
   simp only [gaussianKernelGradient, norm_smul, Real.norm_eq_abs, abs_mul,
@@ -24,6 +27,9 @@ theorem gaussianKernelGradient_norm_eq {b : ℝ} (hb : 0 ≤ b) (x : E) :
   norm_num
   ring
 
+/--
+@isnad1 id=le.1h3v.s7.39f71c72a2a1 from=translated src=- shape=bc6e1e91 vocab=b48483b3
+-/
 theorem gaussianKernelHessian_norm_le_kernel {b : ℝ} (hb : 0 ≤ b) (x : E) :
     ‖gaussianKernelHessian b x‖ ≤ (2*b + 4*b^2*‖x‖^2)*gaussianKernel b x := by
   have hk : 0 ≤ gaussianKernel b x := (Real.exp_pos _).le
@@ -38,6 +44,9 @@ theorem gaussianKernelHessian_norm_le_kernel {b : ℝ} (hb : 0 ≤ b) (x : E) :
       exact ContinuousLinearMap.norm_id_le
     _ = _ := by ring
 
+/--
+@isnad1 id=le.2h4v.s7.833b8e4fc5fb from=translated src=- shape=8290a44c vocab=007a0e96
+-/
 theorem norm_inv_smul_le_of_norm_le_mul {G : Type*} [NormedAddCommGroup G]
     [NormedSpace ℝ G] {u C : ℝ} {g : G} (hu : 0 < u) (hg : ‖g‖ ≤ C*u) :
     ‖u⁻¹ • g‖ ≤ C := by
@@ -46,6 +55,9 @@ theorem norm_inv_smul_le_of_norm_le_mul {G : Type*} [NormedAddCommGroup G]
     _ ≤ u⁻¹*(C*u) := mul_le_mul_of_nonneg_left hg (inv_nonneg.mpr hu.le)
     _ = C := by field_simp
 
+/--
+@isnad1 id=le.3h6v.s8.4b0824337db3 from=translated src=- shape=c1fdac6f vocab=a9e4600c
+-/
 theorem logarithmicHessian_norm_le {u C K : ℝ} {g : E} {H : E →L[ℝ] E}
     (hu : 0 < u) (hg : ‖g‖ ≤ C*u) (hH : ‖H‖ ≤ K*u) :
     ‖logarithmicHessian u g H‖ ≤ K + C^2 := by
@@ -61,6 +73,9 @@ theorem logarithmicHessian_norm_le {u C K : ℝ} {g : E} {H : E →L[ℝ] E}
 
 variable [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=le.4h5v.s7.5c825cf0f7dd from=translated src=- shape=4506425b vocab=94e90294
+-/
 theorem gaussianConvolutionGradient_norm_le_of_support_bound {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {b : ℝ} (hb : 0 < b) (x : E) :
@@ -81,6 +96,9 @@ theorem gaussianConvolutionGradient_norm_le_of_support_bound {f : E → ℝ}
           gcongr
         _ = _ := by unfold gaussianKernel; ring
 
+/--
+@isnad1 id=le.4h5v.s8.e278db5f4ce2 from=translated src=- shape=b90a487d vocab=b30a8726
+-/
 theorem gaussianConvolutionHessian_norm_le_of_support_bound {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {b : ℝ} (hb : 0 < b) (x : E) :
@@ -103,6 +121,9 @@ theorem gaussianConvolutionHessian_norm_le_of_support_bound {f : E → ℝ}
           gcongr
         _ = _ := by unfold gaussianKernel; ring
 
+/--
+@isnad1 id=le.4h5v.s7.c382fb7da536 from=translated src=- shape=1527cc23 vocab=49ccb58a
+-/
 theorem heatConvolutionGradient_norm_le_of_support_bound {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {t : ℝ} (ht : 0 < t) (x : E) :
@@ -117,6 +138,9 @@ theorem heatConvolutionGradient_norm_le_of_support_bound {f : E → ℝ}
         hf hf0 hsupport (by positivity) x) (Real.exp_pos _).le
     _ = _ := by unfold heatConvolution; ring
 
+/--
+@isnad1 id=le.4h5v.s8.2db453b7ca0e from=translated src=- shape=9be5c3c6 vocab=4bff7b7a
+-/
 theorem heatConvolutionHessian_norm_le_of_support_bound {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {t : ℝ} (ht : 0 < t) (x : E) :
@@ -131,6 +155,9 @@ theorem heatConvolutionHessian_norm_le_of_support_bound {f : E → ℝ}
         hf hf0 hsupport (by positivity) x) (Real.exp_pos _).le
     _ = _ := by unfold heatConvolution; ring
 
+/--
+@isnad1 id=le.5h5v.s8.0eec8ed0cefd from=translated src=- shape=fc79d9b7 vocab=5fb5794c
+-/
 theorem convolutionLogHeatFlow_gradient_norm_le {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) (hmass : 0 < ∫ z, f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {t : ℝ} (ht : 0 < t) (x : E) :
@@ -138,6 +165,9 @@ theorem convolutionLogHeatFlow_gradient_norm_le {f : E → ℝ}
   norm_inv_smul_le_of_norm_le_mul (heatConvolution_pos hf hf0 hmass ht x)
     (heatConvolutionGradient_norm_le_of_support_bound hf hf0 hsupport ht x)
 
+/--
+@isnad1 id=le.5h5v.s8.94b43e806861 from=translated src=- shape=a17ba490 vocab=04dd357e
+-/
 theorem convolutionLogHeatFlow_hessian_norm_le {f : E → ℝ}
     (hf : Integrable f) (hf0 : ∀ z, 0 ≤ f z) (hmass : 0 < ∫ z, f z) {R : ℝ}
     (hsupport : ∀ z, f z ≠ 0 → ‖z‖ ≤ R) {t : ℝ} (ht : 0 < t) (x : E) :

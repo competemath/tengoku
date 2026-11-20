@@ -24,6 +24,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, MeasurableSpace (F i)] [∀ i, BorelSpace (F i)]
   (D : Datum ι E F) {f : ∀ i, F i → ℝ}
 
+/--
+@isnad1 id=le.4h5v.s9.0267103362ef from=translated src=- shape=bb033431 vocab=39214977
+-/
 theorem lintegral_ofReal_prod_le_compact_of_pos
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) (hmass : ∀ i, 0 < ∫ y, f i y) :
@@ -37,7 +40,9 @@ theorem lintegral_ofReal_prod_le_compact_of_pos
   choose R hR using hs
   exact D.lintegral_ofReal_prod_le_of_bounded_support hf hfc hf0 hmass hC hR
 
-/-- The nonnegative integral bound with no positive-mass hypothesis.-/
+/-- The nonnegative integral bound with no positive-mass hypothesis.
+@isnad1 id=le.3h5v.s9.d91e89a4bf7a from=translated src=- shape=2fe6128f vocab=a689613f
+-/
 theorem lintegral_ofReal_prod_le_continuous_compact
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
@@ -72,7 +77,9 @@ theorem lintegral_ofReal_prod_le_continuous_compact
         (fun i => integral_compactPerturbation_pos (hf i) (hf0 i) he)
     _ = _ := by simp only [g, integral_compactPerturbation (hf _)]
 
-/-- The original product is integrable, including zero-mass and zero-weight cases.-/
+/-- The original product is integrable, including zero-mass and zero-weight cases.
+@isnad1 id=integrab.3h5v.s9.8c1e5275007b from=translated src=- shape=efcab13a vocab=a973c5c7
+-/
 theorem integrable_prod_continuous_compact
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
@@ -87,7 +94,9 @@ theorem integrable_prod_continuous_compact
   exact ne_top_of_le_ne_top ENNReal.ofReal_ne_top
     (D.lintegral_ofReal_prod_le_continuous_compact hfc hcompact hf0)
 
-/-- Geometric BL for every nonnegative continuous compactly supported real input.-/
+/-- Geometric BL for every nonnegative continuous compactly supported real input.
+@isnad1 id=le.3h5v.s9.aa0f82259976 from=translated src=- shape=4f0af827 vocab=a36cf5b9
+-/
 theorem integral_prod_le_continuous_compact
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :
@@ -101,7 +110,9 @@ theorem integral_prod_le_continuous_compact
   rw [← ofReal_integral_eq_lintegral_ofReal hi (Eventually.of_forall h0)] at h
   exact (ENNReal.ofReal_le_ofReal_iff hb0).mp h
 
-/-- The extended nonnegative integral version, with arbitrary nonnegative weights.-/
+/-- The extended nonnegative integral version, with arbitrary nonnegative weights.
+@isnad1 id=le.3h5v.s9.426e54cb0504 from=translated src=- shape=35049597 vocab=6b6bce0c
+-/
 theorem lintegral_prod_le_continuous_compact
     (hfc : ∀ i, Continuous (f i)) (hcompact : ∀ i, HasCompactSupport (f i))
     (hf0 : ∀ i y, 0 ≤ f i y) :

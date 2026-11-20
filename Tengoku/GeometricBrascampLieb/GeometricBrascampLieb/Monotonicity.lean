@@ -39,6 +39,9 @@ structure HeatIntegrability : Prop where
 variable (H : D.HeatIntegrability U)
 include H
 
+/--
+@isnad1 id=le.2h6v.s8.de30a091410c from=translated src=- shape=60faf300 vocab=07af2b4b
+-/
 theorem integral_time_derivative_nonneg {t : ℝ} (ht : 0 < t) :
     0 ≤ ∫ x, D.heatProduct U t x * D.timeRate U t x := by
   let b := stdOrthonormalBasis ℝ E
@@ -55,7 +58,9 @@ theorem integral_time_derivative_nonneg {t : ℝ} (ht : 0 < t) :
     (D.divergence_le_time_derivative U t)
   rwa [hz] at hle
 
-/-- The geometric BL heat functional is nondecreasing on positive times.-/
+/-- The geometric BL heat functional is nondecreasing on positive times.
+@isnad1 id=monotone.1h5v.s8.b80b20f0ac5c from=translated src=- shape=679183f8 vocab=0630af88
+-/
 theorem heat_integral_monotoneOn :
     MonotoneOn (fun t => ∫ x, D.heatProduct U t x) (Ioi 0) := by
   apply monotoneOn_integral_of_local_derivative (convex_Ioi 0) isOpen_Ioi

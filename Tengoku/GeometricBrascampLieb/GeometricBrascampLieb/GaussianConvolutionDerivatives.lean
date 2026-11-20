@@ -25,18 +25,27 @@ def gaussianConvolutionGradient (b : ℝ) (f : E → ℝ) (x : E) : E :=
 def gaussianConvolutionHessian (b : ℝ) (f : E → ℝ) (x : E) : E →L[ℝ] E :=
   ∫ z, f z • gaussianKernelHessian b (x-z)
 
+/--
+@isnad1 id=integrab.2h4v.s7.dbcc07fe9912 from=translated src=- shape=a063bb4a vocab=37947685
+-/
 theorem gaussianConvolutionGradient_integrand_integrable {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     Integrable (fun z => f z • gaussianKernelGradient b (x-z)) :=
   integrable_smul_bounded_kernel hf (gaussianKernelGradient_continuous b)
     (gaussianKernelGradient_norm_le hb) x
 
+/--
+@isnad1 id=integrab.2h4v.s9.1c6d60ce6b78 from=translated src=- shape=ecd80c69 vocab=59493022
+-/
 theorem gaussianConvolutionHessian_integrand_integrable {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     Integrable (fun z => f z • gaussianKernelHessian b (x-z)) :=
   integrable_smul_bounded_kernel hf (gaussianKernelHessian_continuous b)
     (gaussianKernelHessian_norm_le hb) x
 
+/--
+@isnad1 id=hasfderi.2h4v.s10.9be26f49a66b from=translated src=- shape=c94f6e59 vocab=26cb1158
+-/
 theorem gaussianConvolution_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     HasFDerivAt (gaussianConvolution b f)
@@ -57,6 +66,9 @@ theorem gaussianConvolution_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
   rw [he] at h
   exact h
 
+/--
+@isnad1 id=hasfderi.2h4v.s7.53b7bc32dbd9 from=translated src=- shape=e4b90ddf vocab=f5f918e8
+-/
 theorem gaussianConvolutionGradient_hasFDerivAt {f : E → ℝ} (hf : Integrable f)
     {b : ℝ} (hb : 0 < b) (x : E) :
     HasFDerivAt (gaussianConvolutionGradient b f) (gaussianConvolutionHessian b f x) x :=

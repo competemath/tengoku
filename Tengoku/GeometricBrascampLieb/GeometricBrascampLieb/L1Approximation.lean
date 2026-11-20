@@ -15,6 +15,9 @@ namespace GeometricBrascampLieb
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
+/--
+@isnad1 id=ex.3h3v.s8.f223cc94cf4b from=translated src=- shape=acc203a6 vocab=121fe211
+-/
 theorem exists_nonneg_compact_approx {f : E → ℝ} (hf : Integrable f)
     (hf0 : ∀ x, 0 ≤ f x) {ε : ℝ} (hε : 0 < ε) :
     ∃ g : E → ℝ, Continuous g ∧ HasCompactSupport g ∧ (∀ x, 0 ≤ g x) ∧
@@ -25,7 +28,9 @@ theorem exists_nonneg_compact_approx {f : E → ℝ} (hf : Integrable f)
     simpa only [Real.norm_eq_abs, abs_of_nonneg (hf0 x)] using abs_norm_sub_norm_le (f x) (g x)
   exact (integral_mono (hf.sub hgi.norm).norm (hf.sub hgi).norm hpoint).trans herr
 
-/-- Nonnegative `L¹` data admit compact continuous approximations converging a.e. and in mass.-/
+/-- Nonnegative `L¹` data admit compact continuous approximations converging a.e. and in mass.
+@isnad1 id=ex.2h2v.s8.e8a9068ae35d from=translated src=- shape=4f5722cb vocab=82413925
+-/
 theorem exists_nonneg_compact_approximation {f : E → ℝ} (hf : Integrable f)
     (hf0 : ∀ x, 0 ≤ f x) :
     ∃ g : ℕ → E → ℝ, (∀ n, Continuous (g n)) ∧ (∀ n, HasCompactSupport (g n)) ∧

@@ -9,6 +9,9 @@ open scoped BigOperators
 
 namespace GeometricBrascampLieb.Datum
 
+/--
+@isnad1 id=le.0h2v.s6.a5d782dd227b from=translated src=- shape=13c4d831 vocab=03fd0904
+-/
 theorem norm_add_sq_le (a r : ℝ) : ‖a+r^2‖ ≤ ‖a‖+r^2 := by
   calc
     _ ≤ ‖a‖+‖r^2‖ := norm_add_le _ _
@@ -19,9 +22,15 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
   [∀ i, NormedAddCommGroup (F i)] [∀ i, InnerProductSpace ℝ (F i)]
   [∀ i, CompleteSpace (F i)] (D : Datum ι E F)
 
+/--
+@isnad1 id=eq.0h6v.s11.bd695c65b4f7 from=translated src=- shape=12e18570 vocab=908b43a2
+-/
 theorem norm_adjoint_apply (i : ι) (v : F i) : ‖(D.map i).adjoint v‖ = ‖v‖ :=
   (sq_eq_sq₀ (norm_nonneg _) (norm_nonneg _)).mp (D.adjoint_norm_sq i v)
 
+/--
+@isnad1 id=le.0h6v.s8.fe019c1ba700 from=translated src=- shape=a0f1892d vocab=268bfab2
+-/
 theorem norm_map_apply_le (i : ι) (x : E) : ‖D.map i x‖ ≤ ‖x‖ := by
   have h := real_inner_le_norm x ((D.map i).adjoint (D.map i x))
   rw [ContinuousLinearMap.adjoint_inner_right, real_inner_self_eq_norm_sq, D.norm_adjoint_apply] at h
@@ -31,6 +40,9 @@ theorem norm_map_apply_le (i : ι) (x : E) : ‖D.map i x‖ ≤ ‖x‖ := by
   · have hp : 0 < ‖D.map i x‖ := lt_of_le_of_ne (norm_nonneg _) (Ne.symm hz)
     exact le_of_mul_le_mul_right (by simpa only [pow_two] using h) hp
 
+/--
+@isnad1 id=le.0h6v.s12.64c567b70677 from=translated src=- shape=dd86b231 vocab=ce65e154
+-/
 theorem norm_lift_le (i : ι) (H : F i →L[ℝ] F i) :
     ‖(D.map i).adjoint.comp (H.comp (D.map i))‖ ≤ ‖H‖ := by
   apply ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg H)
@@ -43,12 +55,18 @@ variable [∀ i, FiniteDimensional ℝ (F i)]
 def growthCoefficient (a : ι → ℝ) : ℝ :=
   ∑ i, D.weight i * (1+‖operatorTrace (E := F i)‖) * a i
 
+/--
+@isnad1 id=le.1h5v.s7.5a733f3133a2 from=translated src=- shape=106fd857 vocab=cf6bd6ae
+-/
 theorem growthCoefficient_nonneg {a : ι → ℝ} (ha : ∀ i, 0 ≤ a i) :
     0 ≤ D.growthCoefficient a := by
   apply Finset.sum_nonneg
   intro i _
   exact mul_nonneg (mul_nonneg (D.weight_nonneg i) (by positivity)) (ha i)
 
+/--
+@isnad1 id=le.2h7v.s8.07f91eb89688 from=translated src=- shape=0a68e2f9 vocab=1b7efed8
+-/
 theorem weighted_growth_le {a v : ι → ℝ} (ha : ∀ i, 0 ≤ a i) (r : ℝ)
     (hv : ∀ i, v i ≤ a i*(1+r^2)) :
     ∑ i, D.weight i*v i ≤ D.growthCoefficient a*(1+r^2) := by
@@ -65,6 +83,9 @@ theorem weighted_growth_le {a v : ι → ℝ} (ha : ∀ i, 0 ≤ a i) (r : ℝ)
 
 variable (U : ∀ i, LogHeatFlow (F i))
 
+/--
+@isnad1 id=le.2h8v.s8.77a3ee08f92e from=translated src=- shape=efc712dd vocab=c32edb10
+-/
 theorem score_sq_le_of_growth (t : ℝ) {a : ι → ℝ} (ha : ∀ i, 0 ≤ a i)
     (hg : ∀ i y, ‖(U i).gradient t y‖^2 ≤ a i*(1+‖y‖^2)) (x : E) :
     ‖D.score U t x‖^2 ≤ D.growthCoefficient a*(1+‖x‖^2) := by
@@ -74,6 +95,9 @@ theorem score_sq_le_of_growth (t : ℝ) {a : ι → ℝ} (ha : ∀ i, 0 ≤ a i)
   exact mul_le_mul_of_nonneg_left (add_le_add le_rfl
     (pow_le_pow_left₀ (norm_nonneg _) (D.norm_map_apply_le i x) 2)) (ha i)
 
+/--
+@isnad1 id=le.2h8v.s9.f110f0621d26 from=translated src=- shape=3465f25d vocab=135a2e1e
+-/
 theorem scoreDerivative_le_of_growth (t : ℝ) {a : ι → ℝ} (ha : ∀ i, 0 ≤ a i)
     (hH : ∀ i y, ‖(U i).hessian t y‖ ≤ a i*(1+‖y‖^2)) (x : E) :
     ‖D.scoreDerivative U t x‖ ≤ D.growthCoefficient a*(1+‖x‖^2) := by
@@ -90,6 +114,9 @@ theorem scoreDerivative_le_of_growth (t : ℝ) {a : ι → ℝ} (ha : ∀ i, 0 �
   exact mul_le_mul_of_nonneg_left (add_le_add le_rfl
     (pow_le_pow_left₀ (norm_nonneg _) (D.norm_map_apply_le i x) 2)) (ha i)
 
+/--
+@isnad1 id=le.3h8v.s9.17915e11aed8 from=translated src=- shape=1792241a vocab=30c22ace
+-/
 theorem timeRate_le_of_growth (t : ℝ) {a : ι → ℝ} (ha : ∀ i, 0 ≤ a i)
     (hg : ∀ i y, ‖(U i).gradient t y‖^2 ≤ a i*(1+‖y‖^2))
     (hH : ∀ i y, ‖(U i).hessian t y‖ ≤ a i*(1+‖y‖^2)) (x : E) :

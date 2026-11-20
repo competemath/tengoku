@@ -23,6 +23,9 @@ variable {ι E : Type*} {F : ι → Type*} [Fintype ι]
 include hf hf0 hmass
 
 omit [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.4h7v.s9.0f83988a3c89 from=translated src=- shape=240e7028 vocab=c0f55851
+-/
 theorem heatProduct_convolution_eq_prod {t : ℝ} (ht : 0 < t) (x : E) :
     D.heatProduct (fun i => convolutionLogHeatFlow (hf i) (hf0 i) (hmass i)) t x =
       ∏ i, (heatConvolution (f i) t (D.map i x)) ^ D.weight i := by
@@ -34,7 +37,9 @@ theorem heatProduct_convolution_eq_prod {t : ℝ} (ht : 0 < t) (x : E) :
   congr 1
   ring
 
-/-- The usual BL heat functional is nondecreasing for bounded-support data.-/
+/-- The usual BL heat functional is nondecreasing for bounded-support data.
+@isnad1 id=monotone.4h6v.s9.a280dc4708a9 from=translated src=- shape=81f15c4b vocab=391f775e
+-/
 theorem integral_prod_heatConvolution_monotoneOn {R : ι → ℝ}
     (hsupport : ∀ i z, f i z ≠ 0 → ‖z‖ ≤ R i) :
     MonotoneOn (fun t => ∫ x, ∏ i, (heatConvolution (f i) t (D.map i x)) ^ D.weight i) (Ioi 0) := by
