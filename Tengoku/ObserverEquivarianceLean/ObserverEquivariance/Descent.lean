@@ -62,13 +62,17 @@ namespace Tengoku.ObserverEquivarianceLean.VerticallyTrivial
 
 /-- Clause (i) of paper `def:vertical-trivial` is redundant: given a strict section, any two
     objects of one fiber are joined by a vertical arrow (`StrictSection.fiberHom`), and an
-    identity arrow has equal source and target.-/
+    identity arrow has equal source and target.
+@isnad1 id=eq.2h8v.s6.66941f4db29b from=translated src=- shape=bac40f81 vocab=5d70a045
+-/
 theorem obj_eq {F : O ⥤ C} (hF : VerticallyTrivial p F) (σ : StrictSection p) {x y : O}
     (h : p.obj x = p.obj y) : F.obj x = F.obj y :=
   (hF (σ.fiberHom h) (σ.fiberHom_isVertical h)).1
 
 /-- Clause (i) of paper `def:vertical-trivial` is redundant, for a minimal specification: the
-    unique vertical arrow `m.verticalHom h` joins any two objects of one fiber.-/
+    unique vertical arrow `m.verticalHom h` joins any two objects of one fiber.
+@isnad1 id=eq.2h9v.s6.e2ad3c59ea93 from=translated src=- shape=2cfb6974 vocab=43b2a2bb
+-/
 theorem obj_eq_of_minSpec {F : O ⥤ C} (hF : VerticallyTrivial p F) (m : MinSpec G p) {x y : O}
     (h : p.obj x = p.obj y) : F.obj x = F.obj y :=
   (hF (m.verticalHom h) (m.verticalHom_isVertical h)).1
@@ -77,7 +81,9 @@ end Tengoku.ObserverEquivarianceLean.VerticallyTrivial
 
 /-- The paper's two-clause formulation of `def:vertical-trivial` ((i) equal images over a fiber,
     (ii) vertical arrows go to identities) is equivalent to the one-clause predicate
-    `VerticallyTrivial`, i.e. clause (i) follows from (ii) (paper `def:vertical-trivial`).-/
+    `VerticallyTrivial`, i.e. clause (i) follows from (ii) (paper `def:vertical-trivial`).
+@isnad1 id=iff.0h6v.s7.59c9a857fbc5 from=translated src=- shape=bfdb00f2 vocab=3f416ad4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.verticallyTrivial_iff_two_clauses (σ : StrictSection p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔
       (∀ {x y : O}, p.obj x = p.obj y → F.obj x = F.obj y) ∧
@@ -85,7 +91,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.verticallyTrivial_iff_two_clause
   ⟨fun hF => ⟨fun h => hF.obj_eq σ h, fun v hv => hF v hv⟩, fun hF => fun v hv => hF.2 v hv⟩
 
 /-- A strictly factored functor `p ⋙ E` is vertically trivial: `E` sends the identity `p v` to
-    an identity (paper `thm:descent`, "only if" direction; no section needed).-/
+    an identity (paper `thm:descent`, "only if" direction; no section needed).
+@isnad1 id=vertical.0h5v.s5.7f53466cbf51 from=translated src=- shape=9d8bf7fb vocab=9c1c3de2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.verticallyTrivial_comp (p : O ⥤ S) (E : S ⥤ C) : VerticallyTrivial p (p ⋙ E) := by
   intro x y v hv
   obtain ⟨h, e⟩ := hv
@@ -93,7 +101,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.verticallyTrivial_comp (p : O �
   show E.map (p.map v) = eqToHom (congrArg E.obj h)
   rw [e, eqToHom_map]
 
-/-- Clause (i) for a strictly factored functor, directly (paper `thm:descent`, "only if").-/
+/-- Clause (i) for a strictly factored functor, directly (paper `thm:descent`, "only if").
+@isnad1 id=eq.1h7v.s6.b160cb7704b9 from=translated src=- shape=59cb0caa vocab=d5f57afe
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.obj_eq_of_factor (E : S ⥤ C) {x y : O} (h : p.obj x = p.obj y) :
     (p ⋙ E).obj x = (p ⋙ E).obj y :=
   congrArg E.obj h
@@ -109,24 +119,32 @@ variable (σ : StrictSection p)
 def ηHom (x : O) : σ.B.obj (p.obj x) ⟶ x :=
   σ.η.hom.app x
 
-/-- The clean components `η_x` are vertical (paper `cor:section`, used in `thm:descent`).-/
+/-- The clean components `η_x` are vertical (paper `cor:section`, used in `thm:descent`).
+@isnad1 id=isvertic.0h5v.s5.5ed184d5c161 from=translated src=- shape=8866b3b3 vocab=d32bf73d
+-/
 theorem ηHom_isVertical (x : O) : IsVertical p (σ.ηHom x) :=
   σ.η_vertical x
 
 /-- Naturality of `η` in clean endpoints: `B(p f) ≫ η_y = η_x ≫ f`
-    (paper `thm:descent`, proof: `f η_x = η_y B(p(f))`).-/
+    (paper `thm:descent`, proof: `f η_x = η_y B(p(f))`).
+@isnad1 id=eq.0h7v.s7.698c53ecbaed from=translated src=- shape=c00f2ff0 vocab=0663b991
+-/
 theorem ηHom_naturality {x y : O} (f : x ⟶ y) :
     σ.B.map (p.map f) ≫ σ.ηHom y = σ.ηHom x ≫ f :=
   σ.η.hom.naturality f
 
 /-- A vertically trivial functor sends the components of `η` to identities
-    (paper `thm:descent`, proof).-/
+    (paper `thm:descent`, proof).
+@isnad1 id=ex.1h7v.s7.7cd7362cf381 from=translated src=- shape=cbb7d83b vocab=b96d1b63
+-/
 theorem map_η_hom_app {F : O ⥤ C} (hF : VerticallyTrivial p F) (x : O) :
     ∃ h : F.obj (σ.B.obj (p.obj x)) = F.obj x, F.map (σ.ηHom x) = eqToHom h :=
   hF (σ.ηHom x) (σ.ηHom_isVertical x)
 
 /-- For a vertically trivial `F`, the functor `B ⋙ F` is a strict factor: `p ⋙ (B ⋙ F) = F`
-    on objects AND arrows (paper `thm:descent`, "if" direction, `F = (FB)p`).-/
+    on objects AND arrows (paper `thm:descent`, "if" direction, `F = (FB)p`).
+@isnad1 id=eq.1h6v.s6.87e60153f754 from=translated src=- shape=16330759 vocab=83a01d7d
+-/
 theorem factor_eq {F : O ⥤ C} (hF : VerticallyTrivial p F) : p ⋙ (σ.B ⋙ F) = F := by
   choose hobj hmap using σ.map_η_hom_app hF
   fapply CategoryTheory.Functor.ext
@@ -140,7 +158,9 @@ theorem factor_eq {F : O ⥤ C} (hF : VerticallyTrivial p F) : p ⋙ (σ.B ⋙ F
     exact key
 
 /-- Uniqueness of the strict factor: if `p ⋙ E = F` then `E = B ⋙ F`
-    (paper `thm:descent`, "`J = JpB = FB`").-/
+    (paper `thm:descent`, "`J = JpB = FB`").
+@isnad1 id=eq.1h7v.s6.970048eed646 from=translated src=- shape=b0bc171d vocab=c5f7c8ea
+-/
 theorem factor_unique {F : O ⥤ C} {E : S ⥤ C} (hE : p ⋙ E = F) : E = σ.B ⋙ F := by
   rw [← hE, ← Functor.assoc, σ.B_comp_p, Functor.id_comp]
 
@@ -149,7 +169,9 @@ end Tengoku.ObserverEquivarianceLean.StrictSection
 /-- Strict factorization criterion (paper `thm:descent`), for any target category `C` and any
     strict section `σ` of `p`: `F` is vertically trivial iff it factors strictly and uniquely
     through `p`.  The unique factor is `σ.B ⋙ F` (`StrictSection.factor_eq`,
-    `StrictSection.factor_unique`).-/
+    `StrictSection.factor_unique`).
+@isnad1 id=iff.0h6v.s6.b90bbbd0b6d5 from=translated src=- shape=d33fa3c7 vocab=a4e1edfd
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.strictSection_descent (σ : StrictSection p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔ ∃! E : S ⥤ C, p ⋙ E = F := by
   constructor
@@ -160,7 +182,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.strictSection_descent (σ : Stri
 
 /-- Strict factorization criterion with the factor named (paper `thm:descent`, including "The
     factor `F̄` is unique and is given by `F̄ = FB`"): `F` is vertically trivial iff `B ⋙ F` is
-    a strict factor of `F` through `p` and every strict factor equals `B ⋙ F`.-/
+    a strict factor of `F` through `p` and every strict factor equals `B ⋙ F`.
+@isnad1 id=iff.0h6v.s6.9e912e7d459a from=translated src=- shape=8bd87ef0 vocab=83a01d7d
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.strictSection_descent_factor (σ : StrictSection p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔
       (p ⋙ (σ.B ⋙ F) = F ∧ ∀ E : S ⥤ C, p ⋙ E = F → E = σ.B ⋙ F) := by
@@ -192,14 +216,18 @@ namespace Tengoku.ObserverEquivarianceLean.StrictSection
 variable (σ : StrictSection p)
 
 /-- Transport of a component along an object equality (helper for the paragraph after paper
-    `thm:descent`).-/
+    `thm:descent`).
+@isnad1 id=eq.1h7v.s7.3cd342fa3dcf from=translated src=- shape=f0700598 vocab=e63f1478
+-/
 theorem natTrans_app_congr {E E' : S ⥤ C} (β : E ⟶ E') {s s' : S} (h : s = s') :
     β.app s = eqToHom (congrArg E.obj h) ≫ β.app s' ≫ eqToHom (congrArg E'.obj h).symm := by
   subst h; simp
 
 /-- A family `a_x : E(p x) ⟶ E'(p x)` natural along `p` takes the same value (up to the casts)
     at the two ends of an arrow lying over an identity (helper for the paragraph after paper
-    `thm:descent`: "naturality along `η_x` gives `α_x = α_{b_{p(x)}}`").-/
+    `thm:descent`: "naturality along `η_x` gives `α_x = α_{b_{p(x)}}`").
+@isnad1 id=eq.3h10v.s9.a88339e65439 from=translated src=- shape=dc1da97f vocab=fb2fa09a
+-/
 theorem family_app_eq_of_vertical {E E' : S ⥤ C} (a : ∀ x : O, E.obj (p.obj x) ⟶ E'.obj (p.obj x))
     (ha : ∀ {x y : O} (f : x ⟶ y), E.map (p.map f) ≫ a y = a x ≫ E'.map (p.map f))
     {y x : O} (v : y ⟶ x) (h : p.obj y = p.obj x) (hv : p.map v = eqToHom h) :
@@ -209,7 +237,9 @@ theorem family_app_eq_of_vertical {E E' : S ⥤ C} (a : ∀ x : O, E.obj (p.obj 
   rw [← nat, ← Category.assoc, eqToHom_trans, eqToHom_refl, Category.id_comp]
 
 /-- The strict section equation whiskered by `E`: `B ⋙ (p ⋙ E) = E`
-    (helper for the paragraph after paper `thm:descent`).-/
+    (helper for the paragraph after paper `thm:descent`).
+@isnad1 id=eq.0h6v.s6.bfadaf309b06 from=translated src=- shape=18fca7e1 vocab=c5f7c8ea
+-/
 theorem B_comp_p_comp (E : S ⥤ C) : σ.B ⋙ (p ⋙ E) = E := by
   rw [← Functor.assoc, σ.B_comp_p, Functor.id_comp]
 
@@ -219,7 +249,9 @@ def descendNatTrans {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') : E ⟶ E' :=
   eqToHom (σ.B_comp_p_comp E).symm ≫ Functor.whiskerLeft σ.B α ≫ eqToHom (σ.B_comp_p_comp E')
 
 /-- `β̄_s = α_{B s}` up to the `p(B s) = s` casts (paragraph after paper `thm:descent`,
-    `ᾱ_s = α_{b_s}`).-/
+    `ᾱ_s = α_{b_s}`).
+@isnad1 id=eq.0h9v.s8.00dbe306794e from=translated src=- shape=3ee40c92 vocab=75957694
+-/
 theorem descendNatTrans_app {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (s : S) :
     (σ.descendNatTrans α).app s
       = eqToHom (congrArg E.obj (σ.p_obj_B s)).symm ≫ α.app (σ.B.obj s)
@@ -227,7 +259,9 @@ theorem descendNatTrans_app {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (s : S)
   simp [descendNatTrans, eqToHom_app]
 
 /-- Naturality along `η_x` gives `α_x = α_{B(p x)}` up to the casts, for any transformation
-    between strictly factored functors (paragraph after paper `thm:descent`).-/
+    between strictly factored functors (paragraph after paper `thm:descent`).
+@isnad1 id=eq.0h9v.s8.d726fc4d756a from=translated src=- shape=089ac386 vocab=a4d056d4
+-/
 theorem natTrans_app_eq {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (x : O) :
     α.app x = eqToHom (congrArg E.obj (σ.p_obj_B (p.obj x))).symm
       ≫ α.app (σ.B.obj (p.obj x)) ≫ eqToHom (congrArg E'.obj (σ.p_obj_B (p.obj x))) := by
@@ -235,7 +269,9 @@ theorem natTrans_app_eq {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (x : O) :
   exact family_app_eq_of_vertical (fun x => α.app x) (fun f => α.naturality f) (σ.ηHom x) h e
 
 /-- The whiskering of the descended transformation recovers `α` (paragraph after paper
-    `thm:descent`, `α = ᾱ p`).-/
+    `thm:descent`, `α = ᾱ p`).
+@isnad1 id=eq.0h8v.s7.d080bc82d0e0 from=translated src=- shape=6845cb19 vocab=ae28eba4
+-/
 theorem whiskerLeft_descendNatTrans {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') :
     Functor.whiskerLeft p (σ.descendNatTrans α) = α := by
   ext x
@@ -246,7 +282,9 @@ end Tengoku.ObserverEquivarianceLean.StrictSection
 /-- Natural transformations between strictly factored functors descend uniquely
     (paragraph after paper `thm:descent`): for `α : p ⋙ E ⟶ p ⋙ E'` there is a unique
     `β : E ⟶ E'` with `whiskerLeft p β = α`, namely `σ.descendNatTrans α`
-    (`β_s = α_{b_s}` up to casts, `StrictSection.descendNatTrans_app`).-/
+    (`β_s = α_{b_s}` up to casts, `StrictSection.descendNatTrans_app`).
+@isnad1 id=existsun.0h8v.s7.02264a935671 from=translated src=- shape=99411017 vocab=8debbf8a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent (σ : StrictSection p) {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = α := by
   refine ⟨σ.descendNatTrans α, σ.whiskerLeft_descendNatTrans α, fun β hβ => ?_⟩
@@ -258,7 +296,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent (σ : StrictSec
     `thm:descent`: "If `F = F̄p`, `F' = F̄'p`, and `α : F ⇒ F'`, ... there is a unique natural
     transformation `ᾱ : F̄ ⇒ F̄'` with `α = ᾱp`"): for strictly factored functors given by
     hypotheses `hE : p ⋙ E = F`, `hE' : p ⋙ E' = F'` and any `α : F ⟶ F'`, there is a unique
-    `β : E ⟶ E'` whose whiskering by `p` is `α` up to the `eqToHom` casts along `hE`, `hE'`.-/
+    `β : E ⟶ E'` whose whiskering by `p` is `α` up to the `eqToHom` casts along `hE`, `hE'`.
+@isnad1 id=existsun.2h10v.s8.bc5d96179a7c from=translated src=- shape=98b7b8b9 vocab=1bb015e9
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent_of_eq (σ : StrictSection p) {F F' : O ⥤ C} {E E' : S ⥤ C}
     (hE : p ⋙ E = F) (hE' : p ⋙ E' = F') (α : F ⟶ F') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = eqToHom hE ≫ α ≫ eqToHom hE'.symm := by
@@ -271,7 +311,9 @@ namespace Tengoku.ObserverEquivarianceLean.StrictSection
 
 variable (σ : StrictSection p)
 
-/-- Naturality of `F η` in clean endpoints (helper for paper `prop:weak-descent`).-/
+/-- Naturality of `F η` in clean endpoints (helper for paper `prop:weak-descent`).
+@isnad1 id=eq.0h9v.s8.2497bab4cc2b from=translated src=- shape=d78c9129 vocab=fe207584
+-/
 theorem map_η_naturality (F : O ⥤ C) {x y : O} (f : x ⟶ y) :
     F.map (σ.B.map (p.map f)) ≫ F.map (σ.η.hom.app y) = F.map (σ.η.hom.app x) ≫ F.map f := by
   rw [← F.map_comp, ← F.map_comp]
@@ -285,12 +327,16 @@ end Tengoku.ObserverEquivarianceLean.StrictSection
 noncomputable def _root_.Tengoku.ObserverEquivarianceLean.weakDescentIso (σ : StrictSection p) (F : O ⥤ C) : (p ⋙ σ.B) ⋙ F ≅ F :=
   NatIso.ofComponents (fun x => F.mapIso (σ.η.app x)) (fun f => σ.map_η_naturality F f)
 
-/-- The components of the weak factorization are `F(η_x)` (paper `prop:weak-descent`).-/
+/-- The components of the weak factorization are `F(η_x)` (paper `prop:weak-descent`).
+@isnad1 id=eq.0h7v.s7.ae0432aece49 from=translated src=- shape=1d0b4129 vocab=2604c710
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.weakDescentIso_hom_app (σ : StrictSection p) (F : O ⥤ C) (x : O) :
     (weakDescentIso σ F).hom.app x = F.map (σ.η.hom.app x) := rfl
 
 /-- Every functor factors through `p` up to natural isomorphism, with factor `B ⋙ F`
-    (paper `prop:weak-descent`; contrast `strictSection_descent`).-/
+    (paper `prop:weak-descent`; contrast `strictSection_descent`).
+@isnad1 id=ex.0h6v.s6.9baaaefd18a6 from=translated src=- shape=29854c72 vocab=f44ce81c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.weak_descent (σ : StrictSection p) (F : O ⥤ C) : ∃ E : S ⥤ C, Nonempty (p ⋙ E ≅ F) :=
   ⟨σ.B ⋙ F, ⟨weakDescentIso σ F⟩⟩
 
@@ -301,42 +347,56 @@ namespace Tengoku.ObserverEquivarianceLean.MinSpec
 variable (m : MinSpec G p)
 
 /-- Strict factorization criterion for a minimal specification (paper `thm:descent`): the unique
-    factor is `m.sectionFunctor ⋙ F`.-/
+    factor is `m.sectionFunctor ⋙ F`.
+@isnad1 id=iff.0h7v.s6.0d7159611621 from=translated src=- shape=5424b16b vocab=f790a7b2
+-/
 theorem descent (m : MinSpec G p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔ ∃! E : S ⥤ C, p ⋙ E = F :=
   strictSection_descent m.strictSection F
 
 /-- Strict factorization criterion with the factor named, for a minimal specification (paper
-    `thm:descent`, "the factor is unique and is given by `F̄ = FB`", `B = m.sectionFunctor`).-/
+    `thm:descent`, "the factor is unique and is given by `F̄ = FB`", `B = m.sectionFunctor`).
+@isnad1 id=iff.0h7v.s7.b4ce66f439f9 from=translated src=- shape=ba439b55 vocab=dcfdf6b1
+-/
 theorem descent_factor (m : MinSpec G p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔
       (p ⋙ (m.sectionFunctor ⋙ F) = F ∧ ∀ E : S ⥤ C, p ⋙ E = F → E = m.sectionFunctor ⋙ F) :=
   strictSection_descent_factor m.strictSection F
 
 /-- The strict factor of a vertically trivial functor is `B ⋙ F`, `B(s) = b_s`
-    (paper `thm:descent`).-/
+    (paper `thm:descent`).
+@isnad1 id=eq.1h7v.s6.3dbbdeee438e from=translated src=- shape=01abd19b vocab=dcfdf6b1
+-/
 theorem factor_eq {F : O ⥤ C} (hF : VerticallyTrivial p F) : p ⋙ (m.sectionFunctor ⋙ F) = F :=
   m.strictSection.factor_eq hF
 
-/-- Uniqueness of the strict factor for a minimal specification (paper `thm:descent`).-/
+/-- Uniqueness of the strict factor for a minimal specification (paper `thm:descent`).
+@isnad1 id=eq.1h8v.s6.418d31ada973 from=translated src=- shape=79880804 vocab=6dd76d8e
+-/
 theorem factor_unique {F : O ⥤ C} {E : S ⥤ C} (hE : p ⋙ E = F) : E = m.sectionFunctor ⋙ F :=
   m.strictSection.factor_unique hE
 
 /-- Natural transformations between strictly factored functors descend uniquely, for a minimal
-    specification (paragraph after paper `thm:descent`).-/
+    specification (paragraph after paper `thm:descent`).
+@isnad1 id=existsun.0h9v.s7.10a0b5519bb7 from=translated src=- shape=fe45c905 vocab=d29424eb
+-/
 theorem natTrans_descent (m : MinSpec G p) {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = α :=
   _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent m.strictSection α
 
 /-- Natural transformations descend uniquely in the paper's form (`F = p ⋙ E`, `F' = p ⋙ E'`
-    given as hypotheses), for a minimal specification (paragraph after paper `thm:descent`).-/
+    given as hypotheses), for a minimal specification (paragraph after paper `thm:descent`).
+@isnad1 id=existsun.2h11v.s8.e4b9b2fe1084 from=translated src=- shape=bf4af9c2 vocab=2a8b815c
+-/
 theorem natTrans_descent_of_eq (m : MinSpec G p) {F F' : O ⥤ C} {E E' : S ⥤ C}
     (hE : p ⋙ E = F) (hE' : p ⋙ E' = F') (α : F ⟶ F') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = eqToHom hE ≫ α ≫ eqToHom hE'.symm :=
   _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent_of_eq m.strictSection hE hE' α
 
 /-- The descended transformation has components `ᾱ_s = α_{b_s}` up to the casts
-    `p(b_s) = s` (paragraph after paper `thm:descent`).-/
+    `p(b_s) = s` (paragraph after paper `thm:descent`).
+@isnad1 id=eq.0h10v.s8.5b540e07bd2c from=translated src=- shape=372bc19e vocab=738dc288
+-/
 theorem descendNatTrans_app {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (s : S) :
     (m.strictSection.descendNatTrans α).app s
       = eqToHom (congrArg E.obj (m.p_base s)).symm ≫ α.app (m.base s)
@@ -349,13 +409,17 @@ noncomputable def weakDescentIso (F : O ⥤ C) : (p ⋙ m.sectionFunctor) ⋙ F 
   _root_.Tengoku.ObserverEquivarianceLean.weakDescentIso m.strictSection F
 
 /-- The components are `F` applied to the unique vertical lifts `b_{p x} ⟶ x`
-    (paper `prop:weak-descent`).-/
+    (paper `prop:weak-descent`).
+@isnad1 id=eq.0h8v.s7.f6dd1900f077 from=translated src=- shape=fe3f6aee vocab=1e9fe086
+-/
 @[simp] theorem weakDescentIso_hom_app (F : O ⥤ C) (x : O) :
     (m.weakDescentIso F).hom.app x = F.map (m.liftOver (𝟙 (p.obj x)) (m.p_base (p.obj x)) rfl) :=
   rfl
 
 /-- Object functions (end of paper `sec:descent`): a function `f : Ob O → X` is invariant under
-    the right action iff it factors as `f = f' ∘ p` for a UNIQUE `f' : Ob S → X`.-/
+    the right action iff it factors as `f = f' ∘ p` for a UNIQUE `f' : Ob S → X`.
+@isnad1 id=iff.0h7v.s6.0bc32e314685 from=translated src=- shape=a26a4ee0 vocab=3a767859
+-/
 theorem objectFunction_descent {X : Sort*} (f : O → X) :
     (∀ x g, f (m.act x g) = f x) ↔ ∃! f' : S → X, f = f' ∘ p.obj := by
   constructor
@@ -378,42 +442,56 @@ namespace Tengoku.ObserverEquivarianceLean.OEData
 variable (d : OEData G p)
 
 /-- Strict factorization criterion for normalized data (paper `thm:descent`): the unique factor
-    is `d.sectionFunctor ⋙ F`, `B(s) = b_s` definitionally.-/
+    is `d.sectionFunctor ⋙ F`, `B(s) = b_s` definitionally.
+@isnad1 id=iff.0h7v.s6.92c198a9623a from=translated src=- shape=5424b16b vocab=316c0a15
+-/
 theorem descent (d : OEData G p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔ ∃! E : S ⥤ C, p ⋙ E = F :=
   strictSection_descent d.strictSection F
 
 /-- Strict factorization criterion with the factor named, for normalized data (paper
     `thm:descent`, "the factor is unique and is given by `F̄ = FB`", `B = d.sectionFunctor`,
-    `B(s) = b_s` definitionally).-/
+    `B(s) = b_s` definitionally).
+@isnad1 id=iff.0h7v.s7.bf8a3e28895b from=translated src=- shape=ba439b55 vocab=8ad85791
+-/
 theorem descent_factor (d : OEData G p) (F : O ⥤ C) :
     VerticallyTrivial p F ↔
       (p ⋙ (d.sectionFunctor ⋙ F) = F ∧ ∀ E : S ⥤ C, p ⋙ E = F → E = d.sectionFunctor ⋙ F) :=
   strictSection_descent_factor d.strictSection F
 
-/-- The strict factor of a vertically trivial functor is `B ⋙ F` (paper `thm:descent`).-/
+/-- The strict factor of a vertically trivial functor is `B ⋙ F` (paper `thm:descent`).
+@isnad1 id=eq.1h7v.s6.5244346d3741 from=translated src=- shape=01abd19b vocab=8ad85791
+-/
 theorem factor_eq {F : O ⥤ C} (hF : VerticallyTrivial p F) : p ⋙ (d.sectionFunctor ⋙ F) = F :=
   d.strictSection.factor_eq hF
 
-/-- Uniqueness of the strict factor for normalized data (paper `thm:descent`).-/
+/-- Uniqueness of the strict factor for normalized data (paper `thm:descent`).
+@isnad1 id=eq.1h8v.s6.70e66b65c3b9 from=translated src=- shape=79880804 vocab=2c142f33
+-/
 theorem factor_unique {F : O ⥤ C} {E : S ⥤ C} (hE : p ⋙ E = F) : E = d.sectionFunctor ⋙ F :=
   d.strictSection.factor_unique hE
 
 /-- Natural transformations between strictly factored functors descend uniquely, for
-    normalized data (paragraph after paper `thm:descent`).-/
+    normalized data (paragraph after paper `thm:descent`).
+@isnad1 id=existsun.0h9v.s7.2dbe55436c40 from=translated src=- shape=fe45c905 vocab=00403094
+-/
 theorem natTrans_descent (d : OEData G p) {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = α :=
   _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent d.strictSection α
 
 /-- Natural transformations descend uniquely in the paper's form (`F = p ⋙ E`, `F' = p ⋙ E'`
-    given as hypotheses), for normalized data (paragraph after paper `thm:descent`).-/
+    given as hypotheses), for normalized data (paragraph after paper `thm:descent`).
+@isnad1 id=existsun.2h11v.s8.3de4162d042e from=translated src=- shape=bf4af9c2 vocab=d2e9b4a2
+-/
 theorem natTrans_descent_of_eq (d : OEData G p) {F F' : O ⥤ C} {E E' : S ⥤ C}
     (hE : p ⋙ E = F) (hE' : p ⋙ E' = F') (α : F ⟶ F') :
     ∃! β : E ⟶ E', Functor.whiskerLeft p β = eqToHom hE ≫ α ≫ eqToHom hE'.symm :=
   _root_.Tengoku.ObserverEquivarianceLean.natTrans_descent_of_eq d.strictSection hE hE' α
 
 /-- The descended transformation has components `ᾱ_s = α_{b_s}` up to the casts
-    `p(b_s) = s` (paragraph after paper `thm:descent`).-/
+    `p(b_s) = s` (paragraph after paper `thm:descent`).
+@isnad1 id=eq.0h10v.s8.4ccfb3d7b169 from=translated src=- shape=8b074b7e vocab=9baeb332
+-/
 theorem descendNatTrans_app {E E' : S ⥤ C} (α : p ⋙ E ⟶ p ⋙ E') (s : S) :
     (d.strictSection.descendNatTrans α).app s
       = eqToHom (congrArg E.obj (d.p_base s)).symm ≫ α.app (d.base s)
@@ -425,14 +503,18 @@ noncomputable def weakDescentIso (F : O ⥤ C) : (p ⋙ d.sectionFunctor) ⋙ F 
   _root_.Tengoku.ObserverEquivarianceLean.weakDescentIso d.strictSection F
 
 /-- The components are `F(ℓ_{g_x, b_{p x}})` followed by the (N2) target identification
-    (paper `prop:weak-descent`).-/
+    (paper `prop:weak-descent`).
+@isnad1 id=eq.0h8v.s9.a627efdb557f from=translated src=- shape=ee1d2da4 vocab=67c65a04
+-/
 @[simp] theorem weakDescentIso_hom_app (F : O ⥤ C) (x : O) :
     (d.weakDescentIso F).hom.app x
       = F.map (d.ltrans (d.coord x) (d.base (p.obj x)) ≫ eqToHom (d.sectionEta_target_eq x)) :=
   rfl
 
 /-- Object functions for normalized data (end of paper `sec:descent`): `f (x · g) = f x` for all
-    `x, g` iff `f = f' ∘ p` for a UNIQUE `f'`.-/
+    `x, g` iff `f = f' ∘ p` for a UNIQUE `f'`.
+@isnad1 id=iff.0h7v.s6.c2161e04ee3c from=translated src=- shape=fd8cacb3 vocab=6b50ebac
+-/
 theorem objectFunction_descent {X : Sort*} (f : O → X) :
     (∀ x g, f (d.act x g) = f x) ↔ ∃! f' : S → X, f = f' ∘ p.obj := by
   constructor
@@ -452,7 +534,9 @@ end Tengoku.ObserverEquivarianceLean.OEData
 
 /-! ## Invariance without strict factorization (paper `ex:invariant`) -/
 
-/-- `Pair PUnit` has exactly one object (paper `ex:invariant`, the terminal category `*`).-/
+/-- `Pair PUnit` has exactly one object (paper `ex:invariant`, the terminal category `*`).
+@isnad1 id=eq.0h2v.s3.01970634f077 from=translated src=- shape=9cbe0fc3 vocab=c5285499
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.pairPUnit_obj_eq (a b : Pair PUnit) : a = b := by
   obtain ⟨⟨⟩⟩ := a
   obtain ⟨⟨⟩⟩ := b
@@ -460,7 +544,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.pairPUnit_obj_eq (a b : Pair PUn
 
 /-- `Pair PUnit` is terminal (paper `ex:invariant`, the terminal category `*`): any two functors
     from any category `D` into `Pair PUnit` are equal, on objects and arrows (it has one object,
-    and each hom-set is a singleton).-/
+    and each hom-set is a singleton).
+@isnad1 id=eq.0h3v.s5.cde6258a57c1 from=translated src=- shape=d0227f3b vocab=edfa75b1
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.pairPUnit_functor_eq {D : Type*} [Category D] (F F' : D ⥤ Pair PUnit) : F = F' :=
   CategoryTheory.Functor.ext (fun _ => pairPUnit_obj_eq _ _) (fun _ _ _ => Subsingleton.elim _ _)
 
@@ -477,12 +563,16 @@ def _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor (G : Type*) [Gr
     show c.pt * a.pt⁻¹ = (c.pt * b.pt⁻¹) * (b.pt * a.pt⁻¹)
     group
 
-/-- `F(a ⟶ b) = b a⁻¹` (paper `ex:invariant`).-/
+/-- `F(a ⟶ b) = b a⁻¹` (paper `ex:invariant`).
+@isnad1 id=eq.0h4v.s7.49f4951d0485 from=translated src=- shape=aa8cb85b vocab=7697d01b
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_map (G : Type*) [Group G] {a b : Pair G} (f : a ⟶ b) :
     (invariantPairFunctor G).map f = (b.pt * a.pt⁻¹ : G) := rfl
 
 /-- `F` is strictly invariant under the right action: `F R_h = F`, since
-    `(b h)(a h)⁻¹ = b a⁻¹` (paper `ex:invariant`).-/
+    `(b h)(a h)⁻¹ = b a⁻¹` (paper `ex:invariant`).
+@isnad1 id=eq.0h2v.s6.5b71bd8dcdd1 from=translated src=- shape=f2b3e1e5 vocab=4408ff06
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_invariant (G : Type*) [Group G] (h : G) :
     (witness G).actFunctor h ⋙ invariantPairFunctor G = invariantPairFunctor G := by
   fapply CategoryTheory.Functor.ext
@@ -494,7 +584,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_invariant (
     group
 
 /-- For nontrivial `G`, `F` is NOT vertically trivial: the vertical arrow `1 ⟶ g` with `g ≠ 1`
-    is sent to `g ≠ 1` (paper `ex:invariant`).-/
+    is sent to `g ≠ 1` (paper `ex:invariant`).
+@isnad1 id=not.0h1v.s5.ddab7cbea75a from=translated src=- shape=3a5764a5 vocab=eef224f8
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_not_verticallyTrivial (G : Type*) [Group G] [Nontrivial G] :
     ¬ VerticallyTrivial (pWit G) (invariantPairFunctor G) := by
   intro hF
@@ -510,7 +602,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_not_vertica
     the projection `pWit G : Pair G ⥤ Pair PUnit` (by `thm:descent`).  The base `Pair PUnit` is
     the paper's terminal category `*`: it has exactly one object and exactly one arrow (the
     identity), and every functor into it is unique (`pairPUnit_functor_eq`), so `pWit G` is the
-    unique functor `Pair G ⥤ *`.-/
+    unique functor `Pair G ⥤ *`.
+@isnad1 id=not.0h1v.s6.721c528d0190 from=translated src=- shape=4a0d6ac5 vocab=559048c6
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_no_factor (G : Type*) [Group G] [Nontrivial G] :
     ¬ ∃ E : Pair PUnit ⥤ SingleObj G, pWit G ⋙ E = invariantPairFunctor G := by
   rintro ⟨E, hE⟩

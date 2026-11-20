@@ -161,17 +161,23 @@ def _root_.Tengoku.ObserverEquivarianceLean.IsCartesianOver (p : O ⥤ S) {x y :
 
 namespace Tengoku.ObserverEquivarianceLean.OEData
 
-/-- `coord` shifts on the right under the action:  `coord (x · g) = coord x * g`.-/
+/-- `coord` shifts on the right under the action:  `coord (x · g) = coord x * g`.
+@isnad1 id=eq.0h7v.s6.6f1f0271df1e from=translated src=- shape=a435d0c5 vocab=d5043a09
+-/
 theorem coord_act (d : OEData G p) (x : O) (g : G) :
     d.coord (d.act x g) = d.coord x * g := by
   conv_lhs => rw [← d.base_coord x, d.act_mul, d.coord_base]
 
-/-- Projection of the lift on objects:  `p (b_{A s} · coord x) = A s`.-/
+/-- Projection of the lift on objects:  `p (b_{A s} · coord x) = A s`.
+@isnad1 id=eq.0h7v.s6.97530505e690 from=translated src=- shape=9c62dc52 vocab=9321adc6
+-/
 theorem p_liftObj (d : OEData G p) (A : S ⥤ S) (x : O) :
     p.obj (d.act (d.base (A.obj (p.obj x))) (d.coord x)) = A.obj (p.obj x) :=
   (d.p_act _ _).trans (d.p_base _)
 
-/-- The reindexed object in coordinates:  `u*y = b_s · coord y`.-/
+/-- The reindexed object in coordinates:  `u*y = b_s · coord y`.
+@isnad1 id=eq.1h9v.s7.eaee9cb381ca from=translated src=- shape=d9d48926 vocab=69435c01
+-/
 theorem reind_eq (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     d.reind u y hy = d.act (d.base s) (d.coord y) := by
   have hy2 : d.act (d.base t) (d.coord y) = y := by rw [← hy]; exact d.base_coord y
@@ -180,14 +186,18 @@ theorem reind_eq (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y 
   simp only [hy2] at key
   exact key
 
-/-- The coordinate of a reindexed object is unchanged:  `coord (u*y) = coord y`.-/
+/-- The coordinate of a reindexed object is unchanged:  `coord (u*y) = coord y`.
+@isnad1 id=eq.1h9v.s6.b16c0949c161 from=translated src=- shape=e3303f91 vocab=759d90e5
+-/
 theorem coord_reind (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     d.coord (d.reind u y hy) = d.coord y := by
   rw [d.reind_eq, d.coord_base]
 
 /-- `p` is FULL — this is a DERIVED consequence, not a new assumption.  A lift of a base
     morphism `w : p x ⟶ p y` is the vertical translation `ltrans` of `x` into `w*y`,
-    followed by the chosen cartesian arrow `chi w y`.-/
+    followed by the chosen cartesian arrow `chi w y`.
+@isnad1 id=full.0h5v.s5.1621d8f15077 from=translated src=- shape=b13eb8df vocab=042e856d
+-/
 theorem isFull (d : OEData G p) : p.Full where
   map_surjective {x y} w := by
     refine ⟨d.ltrans (d.coord (d.reind w y rfl) * (d.coord x)⁻¹) x
@@ -205,14 +215,18 @@ noncomputable def actFunctor (d : OEData G p) (g : G) : O ⥤ O where
   map_id x := d.actHom_id x g
   map_comp f h := d.actHom_comp f h g
 
-/-- The identity element acts as the identity functor (uses `actHom_one`).-/
+/-- The identity element acts as the identity functor (uses `actHom_one`).
+@isnad1 id=eq.0h5v.s5.e6e5fb9af290 from=translated src=- shape=9ecb265a vocab=b0c226f5
+-/
 theorem actFunctor_one (d : OEData G p) : d.actFunctor (1 : G) = 𝟭 O := by
   fapply CategoryTheory.Functor.ext
   · intro x; exact d.act_one x
   · intro X Y f; exact d.actHom_one f
 
 /-- The morphism action is multiplicative:  `actFunctor g ⋙ actFunctor h = actFunctor (g*h)`
-    (uses `actHom_mul`).  `⋙` is "first `g`, then `h`", matching `act_mul`.-/
+    (uses `actHom_mul`).  `⋙` is "first `g`, then `h`", matching `act_mul`.
+@isnad1 id=eq.0h7v.s6.3b8857a81f45 from=translated src=- shape=a1183c34 vocab=59ccda64
+-/
 theorem actFunctor_mul (d : OEData G p) (g h : G) :
     d.actFunctor g ⋙ d.actFunctor h = d.actFunctor (g * h) := by
   fapply CategoryTheory.Functor.ext
@@ -221,7 +235,9 @@ theorem actFunctor_mul (d : OEData G p) (g h : G) :
 
 /-- Every arrow of `O` is `p`-cartesian, from DERIVED fullness (`isFull`) plus the assumed
     faithfulness (`p_faithful`).  This is the strong universal property `IsCartesianOver`,
-    not merely a weak lift.  (Paper `prop:cartesian`, first sentence.)-/
+    not merely a weak lift.  (Paper `prop:cartesian`, first sentence.)
+@isnad1 id=iscartes.0h8v.s5.0d72fb0e53d9 from=translated src=- shape=a980389e vocab=45da4b04
+-/
 theorem isCartesian_of_fullyFaithful (d : OEData G p) {x y : O} (f : x ⟶ y) :
     IsCartesianOver p f := by
   haveI := d.isFull
@@ -234,7 +250,9 @@ theorem isCartesian_of_fullyFaithful (d : OEData G p) {x y : O} (f : x ⟶ y) :
     apply p.map_injective
     rw [hk1, p.map_preimage]
 
-/-- The chosen cleavage arrows `χ_{u,y}` are `p`-cartesian in the strict normal-form regime.-/
+/-- The chosen cleavage arrows `χ_{u,y}` are `p`-cartesian in the strict normal-form regime.
+@isnad1 id=iscartes.1h9v.s6.ed5a2c2b3791 from=translated src=- shape=c7c42a12 vocab=bf48f680
+-/
 theorem chi_isCartesian (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     IsCartesianOver p (d.chi u y hy) :=
   d.isCartesian_of_fullyFaithful _
@@ -245,7 +263,9 @@ theorem chi_isCartesian (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p
     four splitting laws of paper `def:data` (N3): `(𝟙 s)^* y = y`, `χ_{𝟙,y} = 𝟙`,
     `(u ≫ v)^* z = u^*(v^* z)` and `χ_{u ≫ v, z} = χ_{u, v^* z} ≫ χ_{v,z}`, up to the displayed
     `eqToHom` casts.  The fibration notion is this file's `IsCartesianOver` together with the
-    chosen cleavage; no connection to mathlib's `Functor.IsFibered` API is claimed here.-/
+    chosen cleavage; no connection to mathlib's `Functor.IsFibered` API is claimed here.
+@isnad1 id=and.0h5v.s9.d70a69c4d807 from=translated src=- shape=1116872e vocab=e60e6647
+-/
 theorem chi_split_cartesian (d : OEData G p) :
     (∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t), IsCartesianOver p (d.chi u y hy)) ∧
     (∀ {s : S} (y : O) (hy : p.obj y = s), d.reind (𝟙 s) y hy = y) ∧
@@ -262,7 +282,9 @@ theorem chi_split_cartesian (d : OEData G p) :
 /-- The chosen vertical arrows `ltrans g x` are isomorphisms (the invertibility clause of
     paper `def:data` (N5)).  DERIVED, not assumed: `p.map (ltrans g x)` is an `eqToHom`
     (`p_ltrans`), hence an isomorphism, and the fully faithful `p` (`isFull` + `p_faithful`)
-    reflects isomorphisms.-/
+    reflects isomorphisms.
+@isnad1 id=isiso.0h7v.s7.21b0030cf371 from=translated src=- shape=1906111f vocab=bbd20ed0
+-/
 instance ltrans_isIso (d : OEData G p) (g : G) (x : O) : IsIso (d.ltrans g x) := by
   haveI := d.isFull
   haveI := d.p_faithful
@@ -275,13 +297,21 @@ noncomputable def ltransIso (d : OEData G p) (g : G) (x : O) :
     x ≅ d.act (d.base (p.obj x)) (g * d.coord x) :=
   asIso (d.ltrans g x)
 
+/--
+@isnad1 id=eq.0h7v.s7.7dee94ad7299 from=translated src=- shape=d06cb135 vocab=e2199ae9
+-/
 @[simp] theorem ltransIso_hom (d : OEData G p) (g : G) (x : O) :
     (d.ltransIso g x).hom = d.ltrans g x := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.5201986b5d2e from=translated src=- shape=e3551f08 vocab=62c1d9ac
+-/
 @[simp] theorem ltransIso_inv (d : OEData G p) (g : G) (x : O) :
     (d.ltransIso g x).inv = inv (d.ltrans g x) := rfl
 
-/-- Projection of the inverse vertical arrow:  `p (ltrans g x)⁻¹` is the reverse `eqToHom`.-/
+/-- Projection of the inverse vertical arrow:  `p (ltrans g x)⁻¹` is the reverse `eqToHom`.
+@isnad1 id=eq.0h7v.s8.15740f6c6bef from=translated src=- shape=1966293b vocab=0dcd9799
+-/
 theorem p_map_inv_ltrans (d : OEData G p) (g : G) (x : O) :
     p.map (inv (d.ltrans g x))
       = eqToHom ((d.p_act (d.base (p.obj x)) (g * d.coord x)).trans (d.p_base (p.obj x))) := by
@@ -309,7 +339,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.Λ (d : OEData G p) (g
   map_id x := by simp
   map_comp {x y z} f h := by simp
 
-/-- `Λ d g` covers the identity on `S`:  `Λ d g ⋙ p = p`.  (So `Λ d g ∈ ker Φ`.)-/
+/-- `Λ d g` covers the identity on `S`:  `Λ d g ⋙ p = p`.  (So `Λ d g ∈ ker Φ`.)
+@isnad1 id=eq.0h6v.s5.e295d7891cea from=translated src=- shape=bed83558 vocab=a1828a13
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_comp_p (d : OEData G p) (g : G) : Λ d g ⋙ p = p := by
   have hobj : ∀ x, (Λ d g ⋙ p).obj x = p.obj x := fun x =>
     (d.p_act (d.base (p.obj x)) (g * d.coord x)).trans (d.p_base (p.obj x))
@@ -388,7 +420,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftFunctor (d : OEDat
       refine p.map_injective ?_
       simp [p.map_preimage, p.map_comp, Category.assoc] }
 
-/-- The lift is `G`-equivariant.-/
+/-- The lift is `G`-equivariant.
+@isnad1 id=isgequiv.0h6v.s5.a3b017ae80a3 from=translated src=- shape=7bb549ad vocab=626f9e49
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.lift_isGEquivariant (d : OEData G p) (A : S ⥤ S) :
     IsGEquivariant d (liftFunctor d A) := by
   intro x g
@@ -396,7 +430,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.lift_isGEquivariant (d : OEData 
      = d.act (d.act (d.base (A.obj (p.obj x))) (d.coord x)) g
   rw [d.p_act, d.coord_act, d.act_mul]
 
-/-- The lift covers `A` and preserves the chosen cleavage.-/
+/-- The lift covers `A` and preserves the chosen cleavage.
+@isnad1 id=preserve.0h6v.s5.02c420066bda from=translated src=- shape=96267c29 vocab=9207ab3b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.lift_preservesCleavage (d : OEData G p) (A : S ⥤ S) :
     PreservesCleavage d (liftFunctor d A) A where
   covers := by
@@ -414,17 +450,23 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.lift_preservesCleavage (d : OEDa
 /-- Existence of lifts (paper `thm:strict`: the canonical section gives surjectivity of `Φ`).  Every base autoequivalence lifts to a
     `G`-equivariant, cleavage-preserving bundle *functor* covering it — a witness of the three
     predicates, NOT yet a bundled element of `AutBoxG` with a strict inverse (that packaging is
-    `liftAut`).  The name reflects the ∃-statement it actually proves.-/
+    `liftAut`).  The name reflects the ∃-statement it actually proves.
+@isnad1 id=ex.0h6v.s6.547838521a92 from=translated src=- shape=46e4fb6c vocab=eb18bb7a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.lift_exists (d : OEData G p) (A : S ≌ S) :
     ∃ F : O ⥤ O, IsGEquivariant d F ∧ PreservesCleavage d F A.functor :=
   ⟨liftFunctor d A.functor, lift_isGEquivariant d A.functor, lift_preservesCleavage d A.functor⟩
 
-/-- Alias of `lift_exists`.-/
+/-- Alias of `lift_exists`.
+@isnad1 id=ex.0h6v.s6.547838521a92 from=translated src=- shape=46e4fb6c vocab=eb18bb7a
+-/
 alias Tengoku.ObserverEquivarianceLean.strict_lift := lift_exists
 
 /-- Two equivariant functors covering the same base (i.e. equal after `⋙ p`) that agree on
     objects are equal (`p` faithful: the morphism values have equal source/target and
-    projection).  Used by both `rigidity` and `rigidityθ`, and throughout §§6–9.-/
+    projection).  Used by both `rigidity` and `rigidityθ`, and throughout §§6–9.
+@isnad1 id=eq.2h7v.s6.6274aee6b23b from=translated src=- shape=eea32299 vocab=acca56f1
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.funct_ext (d : OEData G p) {F₁ F₂ : O ⥤ O} (hobj : ∀ x, F₁.obj x = F₂.obj x)
     (hcomp : F₁ ⋙ p = F₂ ⋙ p) : F₁ = F₂ := by
   haveI := d.p_faithful
@@ -435,7 +477,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.funct_ext (d : OEData G p) {F₁
 
 /-- Lemma (Rigidity, paper `thm:strict`).  Two cleavage-preserving equivariant lifts of the same base
     autoequivalence differ by a unique normalized fiber translation.  (Uses `S` connected
-    for the constancy of the local element `g_s`, and `p` faithful for the morphism step.)-/
+    for the constancy of the local element `g_s`, and `p` faithful for the morphism step.)
+@isnad1 id=existsun.4h8v.s7.be4296eca093 from=translated src=- shape=7313d696 vocab=4971afaf
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.rigidity (d : OEData G p) (A : S ≌ S) [IsConnected S] (F₁ F₂ : O ⥤ O)
     (h₁ : IsGEquivariant d F₁) (h₂ : IsGEquivariant d F₂)
     (pc₁ : PreservesCleavage d F₁ A.functor) (pc₂ : PreservesCleavage d F₂ A.functor) :
@@ -500,23 +544,31 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.rigidity (d : OEData G p) (A : S
     -- hev : coord (F₂ b_{s₀}) = g' * coord (F₁ b_{s₀})
     rw [hev]; group
 
-/-- `𝟭 O` is `G`-equivariant.-/
+/-- `𝟭 O` is `G`-equivariant.
+@isnad1 id=isgequiv.0h5v.s5.5d13a064fcd8 from=translated src=- shape=3bc2011f vocab=be4dc360
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.id_isGEquivariant (d : OEData G p) : IsGEquivariant d (𝟭 O) := fun _ _ => rfl
 
-/-- `𝟭 O` preserves the chosen cleavage (over `id_S`).-/
+/-- `𝟭 O` preserves the chosen cleavage (over `id_S`).
+@isnad1 id=preserve.0h5v.s5.4d7727cd54da from=translated src=- shape=986640aa vocab=aac95e02
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.id_preservesCleavage (d : OEData G p) :
     PreservesCleavage d (𝟭 O) (𝟭 S) where
   covers := by rw [Functor.id_comp, Functor.comp_id]
   src _ _ _ := rfl
 
-/-- `Λ d g` is `G`-equivariant.-/
+/-- `Λ d g` is `G`-equivariant.
+@isnad1 id=isgequiv.0h6v.s5.0d8add415838 from=translated src=- shape=69b9f106 vocab=6e22a262
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_isGEquivariant (d : OEData G p) (g : G) : IsGEquivariant d (Λ d g) := by
   intro x h
   show d.act (d.base (p.obj (d.act x h))) (g * d.coord (d.act x h))
      = d.act (d.act (d.base (p.obj x)) (g * d.coord x)) h
   rw [d.p_act, d.coord_act, d.act_mul, mul_assoc]
 
-/-- `Λ d g` preserves the chosen cleavage (over `id_S`), hence lies in `ker Φ`.-/
+/-- `Λ d g` preserves the chosen cleavage (over `id_S`), hence lies in `ker Φ`.
+@isnad1 id=preserve.0h6v.s5.bab1c6ff59a3 from=translated src=- shape=1b29b0e0 vocab=10193d05
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_preservesCleavage (d : OEData G p) (g : G) :
     PreservesCleavage d (Λ d g) (𝟭 S) where
   covers := by rw [Λ_comp_p, Functor.comp_id]
@@ -531,7 +583,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_preservesCleavage (d : OEData
     `Aut□_G(O/p)`.  Second conjunct: kernel characterization.  A `G`-equivariant functor
     preserves the cleavage over `𝟭 S` iff it is a normalized fiber translation `Λ d g`.
     The group-level short exact sequence  1 → G → Aut□_G(O/p) → Aut(S) → 1  is the separate
-    package `Φ_surjective` / `ΛHom_injective` / `ker_Φ_eq_range_Λ`.-/
+    package `Φ_surjective` / `ΛHom_injective` / `ker_Φ_eq_range_Λ`.
+@isnad1 id=and.0h5v.s7.5473528b2f37 from=translated src=- shape=0bde4317 vocab=737ebaae
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.unbundled_lift_classification (d : OEData G p) [IsConnected S] :
     (∀ A : S ≌ S, ∃ F : O ⥤ O, IsGEquivariant d F ∧ PreservesCleavage d F A.functor) ∧
     (∀ F : O ⥤ O, IsGEquivariant d F →
@@ -549,7 +603,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.unbundled_lift_classification (d
     exact Λ_preservesCleavage d g
 
 /-- Alias of `unbundled_lift_classification`.  The group-theoretic short exact sequence is the
-    separate `Φ_surjective` / `ΛHom_injective` / `ker_Φ_eq_range_Λ` package.-/
+    separate `Φ_surjective` / `ΛHom_injective` / `ker_Φ_eq_range_Λ` package.
+@isnad1 id=and.0h5v.s7.5473528b2f37 from=translated src=- shape=0bde4317 vocab=737ebaae
+-/
 alias Tengoku.ObserverEquivarianceLean.exact_sequence := unbundled_lift_classification
 
 /-! ## 5. Non-degeneracy witness
@@ -579,6 +635,9 @@ instance (X : Type*) : Groupoid (Pair X) where
   inv_comp _ := rfl
   comp_inv _ := rfl
 
+/--
+@isnad1 id=subsingl.0h3v.s4.bb5dc8656ff4 from=translated src=- shape=8e8062c2 vocab=9156a554
+-/
 instance Tengoku.ObserverEquivarianceLean.Pair.homSubsingleton {X : Type*} (a b : Pair X) : Subsingleton (a ⟶ b) :=
   ⟨fun _ _ => rfl⟩
 
@@ -661,8 +720,17 @@ instance : Group (StrictAut C) where
   mul_one a := by ext <;> rfl
   inv_mul_cancel a := by ext <;> exact a.hom_inv_id
 
+/--
+@isnad1 id=eq.0h1v.s5.f6d1e3872338 from=translated src=- shape=462cbb7c vocab=919e78da
+-/
 @[simp] lemma one_hom : (1 : StrictAut C).hom = 𝟭 C := rfl
+/--
+@isnad1 id=eq.0h1v.s5.6dd1cf58fe02 from=translated src=- shape=462cbb7c vocab=9b46d230
+-/
 @[simp] lemma one_inv : (1 : StrictAut C).inv = 𝟭 C := rfl
+/--
+@isnad1 id=eq.0h3v.s6.ff27fb68df7c from=translated src=- shape=d61733c0 vocab=4063bf98
+-/
 @[simp] lemma mul_hom (e₁ e₂ : StrictAut C) : (e₁ * e₂).hom = e₂.hom ⋙ e₁.hom := rfl
 
 end Tengoku.ObserverEquivarianceLean.StrictAut
@@ -671,14 +739,18 @@ end Tengoku.ObserverEquivarianceLean.StrictAut
 
 variable (d : OEData G p)
 
-/-- `G`-equivariance is closed under composition.-/
+/-- `G`-equivariance is closed under composition.
+@isnad1 id=isgequiv.2h7v.s6.62124b45e585 from=translated src=- shape=54328d23 vocab=27caf3b4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_comp {F F' : O ⥤ O}
     (h : IsGEquivariant d F) (h' : IsGEquivariant d F') : IsGEquivariant d (F ⋙ F') :=
   fun x g => by
     show F'.obj (F.obj (d.act x g)) = d.act (F'.obj (F.obj x)) g
     rw [h x g, h' (F.obj x) g]
 
-/-- `G`-equivariance transfers to a strict inverse.-/
+/-- `G`-equivariance transfers to a strict inverse.
+@isnad1 id=isgequiv.3h7v.s6.82acfc950003 from=translated src=- shape=2f4eda1a vocab=6e32147c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_inv {F Finv : O ⥤ O} (hi : F ⋙ Finv = 𝟭 O) (ih : Finv ⋙ F = 𝟭 O)
     (h : IsGEquivariant d F) : IsGEquivariant d Finv := by
   have hFcancel : ∀ z, F.obj (Finv.obj z) = z := fun z => by
@@ -692,7 +764,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_inv {F Finv : O �
   apply hinj
   rw [h (Finv.obj x) g, hFcancel, hFcancel]
 
-/-- Cleavage preservation is closed under composition.-/
+/-- Cleavage preservation is closed under composition.
+@isnad1 id=preserve.2h9v.s6.87a78c346452 from=translated src=- shape=0631142c vocab=26ce36ec
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.preservesCleavage_comp {F F' : O ⥤ O} {A A' : S ⥤ S}
     (pc : PreservesCleavage d F A) (pc' : PreservesCleavage d F' A') :
     PreservesCleavage d (F ⋙ F') (A ⋙ A') where
@@ -701,7 +775,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.preservesCleavage_comp {F F' : O
     simp only [Functor.comp_obj, Functor.comp_map]
     rw [pc.src u y hy, pc'.src]
 
-/-- Cleavage preservation transfers to a strict inverse (with the inverse base).-/
+/-- Cleavage preservation transfers to a strict inverse (with the inverse base).
+@isnad1 id=preserve.3h8v.s6.e8dac385024f from=translated src=- shape=b0070b36 vocab=aa91393c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.preservesCleavage_inv {F Finv : O ⥤ O} {B : StrictAut S}
     (hi : F ⋙ Finv = 𝟭 O) (ih : Finv ⋙ F = 𝟭 O)
     (pc : PreservesCleavage d F B.hom) : PreservesCleavage d Finv B.inv where
@@ -725,13 +801,17 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.preservesCleavage_inv {F Finv : 
     congr 1
     exact congrArg d.base (Functor.congr_obj B.inv_hom_id _).symm
 
-/-- `Λ` is trivial at the identity:  `Λ d 1 = 𝟭 O`.-/
+/-- `Λ` is trivial at the identity:  `Λ d 1 = 𝟭 O`.
+@isnad1 id=eq.0h5v.s5.3698d952d957 from=translated src=- shape=9ecb265a vocab=61201780
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_one : Λ d (1 : G) = 𝟭 O :=
   funct_ext d (fun x => by
     show d.act (d.base (p.obj x)) (1 * d.coord x) = x
     rw [one_mul, d.base_coord]) (by rw [Λ_comp_p, Functor.id_comp])
 
-/-- `Λ` is an (anti)homomorphism:  `Λ d g ⋙ Λ d h = Λ d (h * g)`.-/
+/-- `Λ` is an (anti)homomorphism:  `Λ d g ⋙ Λ d h = Λ d (h * g)`.
+@isnad1 id=eq.0h7v.s6.d8e8ed85a339 from=translated src=- shape=1796e47f vocab=0aa580a5
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_comp (g h : G) : Λ d g ⋙ Λ d h = Λ d (h * g) :=
   funct_ext d (fun x => by
     simp only [Functor.comp_obj, Λ, d.p_act, d.p_base, d.coord_base, mul_assoc])
@@ -753,7 +833,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.ΛFun (d : OEData G p)
   map_id x := by simp
   map_comp {x y z} f h := by simp
 
-/-- `ΛFun d γ` covers the identity on `S`:  `ΛFun d γ ⋙ p = p` (paper `lem:local`).-/
+/-- `ΛFun d γ` covers the identity on `S`:  `ΛFun d γ ⋙ p = p` (paper `lem:local`).
+@isnad1 id=eq.0h6v.s5.c5f8427ab5ae from=translated src=- shape=93b31550 vocab=9885dc8c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_comp_p (d : OEData G p) (γ : S → G) : ΛFun d γ ⋙ p = p := by
   have hobj : ∀ x, (ΛFun d γ ⋙ p).obj x = p.obj x := fun x =>
     (d.p_act (d.base (p.obj x)) (γ (p.obj x) * d.coord x)).trans (d.p_base (p.obj x))
@@ -763,10 +845,14 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_comp_p (d : OEData G p) (�
   rfl
 
 /-- A constant object function gives the ordinary fiber translation:
-    `ΛFun d (fun _ => g) = Λ d g` (paper `lem:local`).-/
+    `ΛFun d (fun _ => g) = Λ d g` (paper `lem:local`).
+@isnad1 id=eq.0h6v.s5.94ad2b4ef3ae from=translated src=- shape=900c73e7 vocab=90b50342
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_const (d : OEData G p) (g : G) : ΛFun d (fun _ => g) = Λ d g := rfl
 
-/-- The trivial object function gives the identity:  `ΛFun d 1 = 𝟭 O` (paper `lem:local`).-/
+/-- The trivial object function gives the identity:  `ΛFun d 1 = 𝟭 O` (paper `lem:local`).
+@isnad1 id=eq.0h5v.s6.e5e6a6324d22 from=translated src=- shape=2171154c vocab=e4ba4395
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_one (d : OEData G p) : ΛFun d 1 = 𝟭 O :=
   funct_ext d (fun x => by
     show d.act (d.base (p.obj x)) ((1 : S → G) (p.obj x) * d.coord x) = x
@@ -774,13 +860,17 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_one (d : OEData G p) : ΛF
 
 /-- Composition of object-function translations multiplies the multipliers pointwise, in the
     same (anti) order as `Λ_comp`:  `ΛFun d γ ⋙ ΛFun d δ = ΛFun d (δ * γ)`
-    (paper `lem:local`).-/
+    (paper `lem:local`).
+@isnad1 id=eq.0h7v.s6.a69e59493a8f from=translated src=- shape=735071c2 vocab=008a6d70
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_comp (d : OEData G p) (γ δ : S → G) : ΛFun d γ ⋙ ΛFun d δ = ΛFun d (δ * γ) :=
   funct_ext d (fun x => by
     simp only [Functor.comp_obj, ΛFun, d.p_act, d.p_base, d.coord_base, Pi.mul_apply, mul_assoc])
     (by rw [Functor.assoc, ΛFun_comp_p, ΛFun_comp_p, ΛFun_comp_p])
 
-/-- `ΛFun d γ` is `G`-equivariant (paper `lem:local`).-/
+/-- `ΛFun d γ` is `G`-equivariant (paper `lem:local`).
+@isnad1 id=isgequiv.0h6v.s5.ea4510d8ae42 from=translated src=- shape=fd16ceba vocab=1a75599e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_isGEquivariant (d : OEData G p) (γ : S → G) : IsGEquivariant d (ΛFun d γ) := by
   intro x h
   show d.act (d.base (p.obj (d.act x h))) (γ (p.obj (d.act x h)) * d.coord (d.act x h))
@@ -788,7 +878,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_isGEquivariant (d : OEData
   rw [d.p_act, d.coord_act, d.act_mul, mul_assoc]
 
 /-- `ΛFun d γ` preserves the chosen cleavage (over `id_S`) iff its multiplier is constant along
-    every base arrow (paper `lem:local`, `prop:components`).-/
+    every base arrow (paper `lem:local`, `prop:components`).
+@isnad1 id=iff.0h6v.s6.868e28afaa11 from=translated src=- shape=1c2e48a2 vocab=71a7c55c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛFun_preservesCleavage_iff (d : OEData G p) (γ : S → G) :
     PreservesCleavage d (ΛFun d γ) (𝟭 S) ↔ ∀ {s t : S} (_ : s ⟶ t), γ s = γ t := by
   constructor
@@ -850,14 +942,28 @@ instance : Group (AutBoxG d) where
   inv_mul_cancel a := by
     refine AutBoxG.ext ?_ ?_ ?_ <;> first | exact a.hom_inv_id | exact inv_mul_cancel _
 
+/--
+@isnad1 id=eq.0h7v.s7.948cd0053bd9 from=translated src=- shape=4aa5c957 vocab=53b540e5
+-/
 @[simp] lemma mul_hom (e₁ e₂ : AutBoxG d) : (e₁ * e₂).hom = e₂.hom ⋙ e₁.hom := rfl
+/--
+@isnad1 id=eq.0h7v.s7.1fd24db15616 from=translated src=- shape=f25a88cb vocab=be0c30a2
+-/
 @[simp] lemma mul_base (e₁ e₂ : AutBoxG d) : (e₁ * e₂).base = e₁.base * e₂.base := rfl
+/--
+@isnad1 id=eq.0h5v.s6.c1a2f2a8610d from=translated src=- shape=3c977eb5 vocab=cb102685
+-/
 @[simp] lemma one_hom : (1 : AutBoxG d).hom = 𝟭 O := rfl
+/--
+@isnad1 id=eq.0h5v.s7.19746d4210d8 from=translated src=- shape=d9b421de vocab=3bdcd00c
+-/
 @[simp] lemma one_base : (1 : AutBoxG d).base = 1 := rfl
 
 end Tengoku.ObserverEquivarianceLean.AutBoxG
 
-/-- The lift is a strict homomorphism:  `liftFunctor A ⋙ liftFunctor B = liftFunctor (A ⋙ B)`.-/
+/-- The lift is a strict homomorphism:  `liftFunctor A ⋙ liftFunctor B = liftFunctor (A ⋙ B)`.
+@isnad1 id=eq.0h7v.s6.e7bb00df5a22 from=translated src=- shape=28584f1d vocab=2dead7c9
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.lift_comp (d : OEData G p) (A B : S ⥤ S) :
     liftFunctor d A ⋙ liftFunctor d B = liftFunctor d (A ⋙ B) :=
   funct_ext d
@@ -865,7 +971,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.lift_comp (d : OEData G p) (A B 
     (by rw [Functor.assoc, (lift_preservesCleavage d B).covers, ← Functor.assoc,
         (lift_preservesCleavage d A).covers, Functor.assoc, (lift_preservesCleavage d (A ⋙ B)).covers])
 
-/-- The lift of the identity is the identity.-/
+/-- The lift of the identity is the identity.
+@isnad1 id=eq.0h5v.s5.df1d58b55758 from=translated src=- shape=9cb99d8e vocab=4b218394
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.lift_id (d : OEData G p) : liftFunctor d (𝟭 S) = 𝟭 O :=
   funct_ext d
     (fun x => by
@@ -901,6 +1009,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.ΛHom (d : OEData G p)
     · show Λ d (g * h)⁻¹ = Λ d g⁻¹ ⋙ Λ d h⁻¹; rw [Λ_comp, mul_inv_rev]
     · rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.92290a11b9bc from=translated src=- shape=b28e34c7 vocab=97a1c567
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHom_base (d : OEData G p) (g : G) : (ΛHom d g).base = 1 := rfl
 
 /-- The canonical strict lift of a base automorphism, bundled as an element of `AutBoxG`
@@ -914,13 +1025,25 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftAut (d : OEData G 
   equiv := lift_isGEquivariant d A.hom
   pres := lift_preservesCleavage d A.hom
 
+/--
+@isnad1 id=eq.0h6v.s6.32349ab7c414 from=translated src=- shape=0e7fdefc vocab=b5b32892
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftAut_hom (d : OEData G p) (A : StrictAut S) :
     (liftAut d A).hom = liftFunctor d A.hom := rfl
+/--
+@isnad1 id=eq.0h6v.s6.d81e7e06872d from=translated src=- shape=0e7fdefc vocab=2f884fd4
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftAut_inv (d : OEData G p) (A : StrictAut S) :
     (liftAut d A).inv = liftFunctor d A.inv := rfl
+/--
+@isnad1 id=eq.0h6v.s5.c1bbfa168a23 from=translated src=- shape=2ac2150a vocab=5b10ff3f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftAut_base (d : OEData G p) (A : StrictAut S) :
     (liftAut d A).base = A := rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.e9e195c41fd8 from=translated src=- shape=9ca8b5dd vocab=1a6ea30b
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.Φ_liftAut (d : OEData G p) (A : StrictAut S) :
     Φ d (liftAut d A) = A := rfl
 
@@ -945,11 +1068,15 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftHom (d : OEData G 
     · rfl
 
 /-- `Φ` is surjective:  every strict base automorphism is covered by the canonical lift
-    (`⇒` surjectivity of the exact sequence).-/
+    (`⇒` surjectivity of the exact sequence).
+@isnad1 id=surjecti.0h5v.s7.e3c1c95ff08d from=translated src=- shape=c3cd218f vocab=8ae4b355
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Φ_surjective (d : OEData G p) : Function.Surjective (Φ d) :=
   fun A => ⟨liftAut d A, rfl⟩
 
-/-- `Λ` is injective (needs a basepoint; freeness of the action does the rest).-/
+/-- `Λ` is injective (needs a basepoint; freeness of the action does the rest).
+@isnad1 id=injectiv.0h5v.s7.11a026878c87 from=translated src=- shape=8c99219b vocab=3fcd35e8
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHom_injective (d : OEData G p) [Nonempty S] : Function.Injective (ΛHom d) := by
   intro g h hgh
   obtain ⟨s₀⟩ := ‹Nonempty S›
@@ -961,7 +1088,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHom_injective (d : OEData G p)
   exact d.act_free _ _ _ hev
 
 /-- The kernel of `Φ` is exactly the image of `Λ`:  `ker Φ = range Λ`.  This is exactness of
-    `1 → G →[Λ] Aut□_G(O/p) →[Φ] Aut(S) → 1` at the middle term.-/
+    `1 → G →[Λ] Aut□_G(O/p) →[Φ] Aut(S) → 1` at the middle term.
+@isnad1 id=eq.0h5v.s7.a9cd8d760c89 from=translated src=- shape=27c43b63 vocab=8a84b230
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ker_Φ_eq_range_Λ (d : OEData G p) [IsConnected S] : (Φ d).ker = (ΛHom d).range := by
   ext e
   simp only [MonoidHom.mem_ker, MonoidHom.mem_range]
@@ -1012,12 +1141,16 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ker_Φ_eq_range_Λ (d : OEData G
 def _root_.Tengoku.ObserverEquivarianceLean.IsTwistedEquivariant (d : OEData G p) (θ : MulAut G) (F : O ⥤ O) : Prop :=
   ∀ (x : O) (g : G), F.obj (d.act x g) = d.act (F.obj x) (θ g)
 
-/-- At `θ = 1`, twisted equivariance is exactly `IsGEquivariant`.-/
+/-- At `θ = 1`, twisted equivariance is exactly `IsGEquivariant`.
+@isnad1 id=iff.0h6v.s7.5897db8e9cbd from=translated src=- shape=c3ab0767 vocab=4f0fdb1e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isTwistedEquivariant_one (d : OEData G p) (F : O ⥤ O) :
     IsTwistedEquivariant d (1 : MulAut G) F ↔ IsGEquivariant d F := Iff.rfl
 
 namespace Tengoku.ObserverEquivarianceLean.OEData
-/-- Projection of a twisted lift on objects (for ANY fiber element):  `p(b_{A s} · g') = A s`.-/
+/-- Projection of a twisted lift on objects (for ANY fiber element):  `p(b_{A s} · g') = A s`.
+@isnad1 id=eq.0h8v.s6.d2b2a3b73ec9 from=translated src=- shape=4f70dd52 vocab=e3d85ad5
+-/
 theorem p_liftObjθ (d : OEData G p) (A : S ⥤ S) (x : O) (g' : G) :
     p.obj (d.act (d.base (A.obj (p.obj x))) g') = A.obj (p.obj x) :=
   (d.p_act _ _).trans (d.p_base _)
@@ -1039,7 +1172,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ (d : OED
       refine p.map_injective ?_
       simp [p.map_preimage, p.map_comp, Category.assoc] }
 
-/-- The twisted lift is `θ`-twisted `G`-equivariant (analogue of `lift_isGEquivariant`).-/
+/-- The twisted lift is `θ`-twisted `G`-equivariant (analogue of `lift_isGEquivariant`).
+@isnad1 id=istwiste.0h7v.s6.7afa21ea2495 from=translated src=- shape=caeeec3b vocab=8f3eff6f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_isTwistedEquivariant (d : OEData G p) (A : S ⥤ S) (θ : MulAut G) :
     IsTwistedEquivariant d θ (liftFunctorθ d A θ) := by
   intro x g
@@ -1047,7 +1182,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_isTwistedEquivariant (d :
      = d.act (d.act (d.base (A.obj (p.obj x))) (θ (d.coord x))) (θ g)
   rw [d.p_act, d.coord_act, map_mul, d.act_mul]
 
-/-- The twisted lift covers `A`:  `liftFunctorθ d A θ ⋙ p = p ⋙ A`.-/
+/-- The twisted lift covers `A`:  `liftFunctorθ d A θ ⋙ p = p ⋙ A`.
+@isnad1 id=eq.0h7v.s6.7f1d0ab152d3 from=translated src=- shape=0da94113 vocab=8811aa85
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_covers (d : OEData G p) (A : S ⥤ S) (θ : MulAut G) :
     liftFunctorθ d A θ ⋙ p = p ⋙ A := by
   have hobj : ∀ x, (liftFunctorθ d A θ ⋙ p).obj x = (p ⋙ A).obj x :=
@@ -1060,12 +1197,16 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_covers (d : OEData G p) (
   rw [p.map_preimage]
   rfl
 
-/-- Twisted lift at `θ = 1` is the strict lift.-/
+/-- Twisted lift at `θ = 1` is the strict lift.
+@isnad1 id=eq.0h6v.s7.cabe01128d0f from=translated src=- shape=bd10a7e2 vocab=a574534f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_one (d : OEData G p) (A : S ⥤ S) :
     liftFunctorθ d A (1 : MulAut G) = liftFunctor d A := rfl
 
 /-- The twisted lift preserves the chosen cleavage (same `PreservesCleavage` predicate —
-    the twist does not affect the source-identity, since `coord (Ã y) = θ (coord y)`).-/
+    the twist does not affect the source-identity, since `coord (Ã y) = θ (coord y)`).
+@isnad1 id=preserve.0h7v.s6.0915a3a319e8 from=translated src=- shape=8c451b0c vocab=d6169b92
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_preservesCleavage (d : OEData G p) (A : S ⥤ S) (θ : MulAut G) :
     PreservesCleavage d (liftFunctorθ d A θ) A where
   covers := liftθ_covers d A θ
@@ -1074,19 +1215,25 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_preservesCleavage (d : OE
 
 /-- Twisted lift existence (analogue of `lift_exists`):  every base autoequivalence admits a
     `θ`-twisted equivariant cleavage-preserving lift covering it.  As with `lift_exists`, this is
-    the ∃-witness of the predicates, not a bundled `AutBoxGθ` element.-/
+    the ∃-witness of the predicates, not a bundled `AutBoxGθ` element.
+@isnad1 id=ex.0h7v.s6.641b4c79ba45 from=translated src=- shape=0022892e vocab=b37ed8b6
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twisted_lift_exists (d : OEData G p) (A : S ≌ S) (θ : MulAut G) :
     ∃ F : O ⥤ O, IsTwistedEquivariant d θ F ∧ PreservesCleavage d F A.functor :=
   ⟨liftFunctorθ d A.functor θ, liftθ_isTwistedEquivariant d A.functor θ,
     liftθ_preservesCleavage d A.functor θ⟩
 
-/-- Alias of `twisted_lift_exists`.-/
+/-- Alias of `twisted_lift_exists`.
+@isnad1 id=ex.0h7v.s6.641b4c79ba45 from=translated src=- shape=0022892e vocab=b37ed8b6
+-/
 alias Tengoku.ObserverEquivarianceLean.strict_liftθ := twisted_lift_exists
 
 /-- Twisted rigidity (analogue of `rigidity`).  Two `θ`-twisted equivariant cleavage-preserving
     lifts of the same base autoequivalence (the SAME twist `θ`) differ by a unique normalized
     fiber translation `Λ d g`.  The twist cancels — both carry it — so the difference is the
-    untwisted `Λ d g`.  (`[IsConnected S]`; `p` faithful for the morphism step.)-/
+    untwisted `Λ d g`.  (`[IsConnected S]`; `p` faithful for the morphism step.)
+@isnad1 id=existsun.4h9v.s7.9a07044fe3fb from=translated src=- shape=8219d595 vocab=3f296c61
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.rigidityθ (d : OEData G p) (A : S ≌ S) (θ : MulAut G) [IsConnected S] (F₁ F₂ : O ⥤ O)
     (h₁ : IsTwistedEquivariant d θ F₁) (h₂ : IsTwistedEquivariant d θ F₂)
     (pc₁ : PreservesCleavage d F₁ A.functor) (pc₂ : PreservesCleavage d F₂ A.functor) :
@@ -1151,7 +1298,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.rigidityθ (d : OEData G p) (A :
         `Λ d g ⋙ Ã = Ã ⋙ Λ d (θ g)`,   i.e.   `Ã ∘ Λ d g ∘ Ã⁻¹ = Λ d (θ g)`.
     This is trivial (`Ã Λ_g Ã⁻¹ = Λ_g`) exactly when `θ = 1` — recovering the direct product
     `G × Aut(S)` of the strict theorem — and nontrivial otherwise, making the extension semidirect
-    rather than direct (the kernel `G` is acted on by `θ`; paper `thm:twisted`).-/
+    rather than direct (the kernel `G` is acted on by `θ`; paper `thm:twisted`).
+@isnad1 id=eq.0h8v.s7.11b3452067d9 from=translated src=- shape=6caf49de vocab=d138be44
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_comp_liftθ (d : OEData G p) (A : S ⥤ S) (θ : MulAut G) (g : G) :
     Λ d g ⋙ liftFunctorθ d A θ = liftFunctorθ d A θ ⋙ Λ d (θ g) := by
   have hL : (Λ d g ⋙ liftFunctorθ d A θ) ⋙ p = p ⋙ A := by
@@ -1162,14 +1311,18 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_comp_liftθ (d : OEData G p) 
   simp only [Functor.comp_obj, Λ, liftFunctorθ, d.p_act, d.p_base, d.coord_base, map_mul]
 
 /-- At `θ = 1` the semidirect relation degenerates to commutation `Λ d g ⋙ Ã = Ã ⋙ Λ d g`
-    (the direct-product case): conjugation by a strict lift fixes every `Λ d g`.-/
+    (the direct-product case): conjugation by a strict lift fixes every `Λ d g`.
+@isnad1 id=eq.0h7v.s6.0685cbc1d48d from=translated src=- shape=3ae09c77 vocab=7bf5b14b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_comp_lift_one (d : OEData G p) (A : S ⥤ S) (g : G) :
     Λ d g ⋙ liftFunctor d A = liftFunctor d A ⋙ Λ d g := by
   have := Λ_comp_liftθ d A (1 : MulAut G) g
   rwa [liftFunctorθ_one] at this
 
 /-- Composition of twisted lifts:  `liftθ A θ ⋙ liftθ B φ = liftθ (A ⋙ B) (φ * θ)`.  The
-    twists multiply in `MulAut G` (contravariantly, matching the lift's action on coordinates).-/
+    twists multiply in `MulAut G` (contravariantly, matching the lift's action on coordinates).
+@isnad1 id=eq.0h9v.s8.05649db89b11 from=translated src=- shape=5199f85a vocab=14edf793
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_comp (d : OEData G p) (A B : S ⥤ S) (θ φ : MulAut G) :
     liftFunctorθ d A θ ⋙ liftFunctorθ d B φ = liftFunctorθ d (A ⋙ B) (φ * θ) := by
   have hcov : (liftFunctorθ d A θ ⋙ liftFunctorθ d B φ) ⋙ p = p ⋙ (A ⋙ B) := by
@@ -1177,18 +1330,24 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_comp (d : OEData G p) (A 
   refine funct_ext d (fun x => ?_) (hcov.trans (liftθ_covers d (A ⋙ B) (φ * θ)).symm)
   simp only [Functor.comp_obj, liftFunctorθ, d.p_act, d.p_base, d.coord_base, MulAut.mul_apply]
 
-/-- The twisted lift of the identity at the trivial twist is the identity.-/
+/-- The twisted lift of the identity at the trivial twist is the identity.
+@isnad1 id=eq.0h5v.s7.568c28132e0e from=translated src=- shape=5d9cd1b1 vocab=3afcc10a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftθ_id (d : OEData G p) : liftFunctorθ d (𝟭 S) (1 : MulAut G) = 𝟭 O := by
   rw [liftFunctorθ_one]; exact lift_id d
 
-/-- Twisted equivariance is closed under composition; the twists multiply in `MulAut G`.-/
+/-- Twisted equivariance is closed under composition; the twists multiply in `MulAut G`.
+@isnad1 id=istwiste.2h9v.s7.365147d2cbb4 from=translated src=- shape=718eae17 vocab=1483697e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isTwistedEquivariant_comp {F F' : O ⥤ O} {θ θ' : MulAut G}
     (h : IsTwistedEquivariant d θ F) (h' : IsTwistedEquivariant d θ' F') :
     IsTwistedEquivariant d (θ' * θ) (F ⋙ F') := fun x g => by
   show F'.obj (F.obj (d.act x g)) = d.act (F'.obj (F.obj x)) ((θ' * θ) g)
   rw [h x g, h' (F.obj x) (θ g), MulAut.mul_apply]
 
-/-- Twisted equivariance transfers to a strict inverse, inverting the twist.-/
+/-- Twisted equivariance transfers to a strict inverse, inverting the twist.
+@isnad1 id=istwiste.3h8v.s7.9722ce5f7369 from=translated src=- shape=afe31da7 vocab=4221e542
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isTwistedEquivariant_inv {F Finv : O ⥤ O} {θ : MulAut G}
     (hi : F ⋙ Finv = 𝟭 O) (ih : Finv ⋙ F = 𝟭 O) (h : IsTwistedEquivariant d θ F) :
     IsTwistedEquivariant d θ⁻¹ Finv := by
@@ -1266,9 +1425,21 @@ instance : Group (AutBoxGθ d θ) where
   inv_mul_cancel a := by
     refine AutBoxGθ.ext ?_ ?_ ?_ <;> first | exact a.hom_inv_id | exact inv_mul_cancel _
 
+/--
+@isnad1 id=eq.0h8v.s8.16e5f5344684 from=translated src=- shape=28e1b332 vocab=c104ed98
+-/
 @[simp] lemma mul_hom (e₁ e₂ : AutBoxGθ d θ) : (e₁ * e₂).hom = e₂.hom ⋙ e₁.hom := rfl
+/--
+@isnad1 id=eq.0h8v.s8.cb9fa53c97e2 from=translated src=- shape=e0718a5c vocab=b5f2df39
+-/
 @[simp] lemma mul_base (e₁ e₂ : AutBoxGθ d θ) : (e₁ * e₂).base = e₁.base * e₂.base := rfl
+/--
+@isnad1 id=eq.0h6v.s7.9f8ba59c7429 from=translated src=- shape=4858acd0 vocab=429a16ea
+-/
 @[simp] lemma one_hom : (1 : AutBoxGθ d θ).hom = 𝟭 O := rfl
+/--
+@isnad1 id=eq.0h6v.s7.df6d19f293e7 from=translated src=- shape=7c1a9a9f vocab=e8a46556
+-/
 @[simp] lemma one_base : (1 : AutBoxGθ d θ).base = 1 := rfl
 
 end Tengoku.ObserverEquivarianceLean.AutBoxGθ
@@ -1313,18 +1484,31 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftAutθ (d : OEData 
   equiv := liftθ_isTwistedEquivariant d A.hom (θ A)
   pres := liftθ_preservesCleavage d A.hom (θ A)
 
+/--
+@isnad1 id=eq.0h7v.s8.8847a5f10b26 from=translated src=- shape=a0eb3dc3 vocab=d3ec41ac
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftAutθ_hom (d : OEData G p) (θ : StrictAut S →* MulAut G) (A : StrictAut S) :
     (liftAutθ d θ A).hom = liftFunctorθ d A.hom (θ A) := rfl
+/--
+@isnad1 id=eq.0h7v.s7.128e20b96e0b from=translated src=- shape=1b9e32b6 vocab=19e01e57
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftAutθ_base (d : OEData G p) (θ : StrictAut S →* MulAut G) (A : StrictAut S) :
     (liftAutθ d θ A).base = A := rfl
+/--
+@isnad1 id=eq.0h7v.s8.71fad4d4571d from=translated src=- shape=c3efe137 vocab=cb659386
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.Φθ_liftAutθ (d : OEData G p) (θ : StrictAut S →* MulAut G) (A : StrictAut S) :
     Φθ d θ (liftAutθ d θ A) = A := rfl
 
-/-- `Φθ` is surjective:  every base symmetry is covered by its `θ`-twisted strict lift.-/
+/-- `Φθ` is surjective:  every base symmetry is covered by its `θ`-twisted strict lift.
+@isnad1 id=surjecti.0h6v.s8.772f2950a52c from=translated src=- shape=84363120 vocab=8138c17b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Φθ_surjective (d : OEData G p) (θ : StrictAut S →* MulAut G) :
     Function.Surjective (Φθ d θ) := fun A => ⟨liftAutθ d θ A, rfl⟩
 
-/-- `Λθ` is injective (needs a basepoint; freeness of the action does the rest).-/
+/-- `Λθ` is injective (needs a basepoint; freeness of the action does the rest).
+@isnad1 id=injectiv.0h6v.s8.cfd73d499467 from=translated src=- shape=04248bb6 vocab=a099134f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθ_injective (d : OEData G p) (θ : StrictAut S →* MulAut G) [Nonempty S] :
     Function.Injective (ΛHomθ d θ) := by
   intro g h hgh
@@ -1339,7 +1523,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθ_injective (d : OEData G 
 /-- Exactness at the middle:  `ker Φθ = range Λθ`.  A twisted bundle automorphism covers `id_S`
     (twist `θ 1 = 1`, so it is strictly equivariant) iff it is a normalized fiber translation.
     With `Φθ_surjective` and `ΛHomθ_injective` this is the SEMIDIRECT exact sequence
-    `1 → G →[Λθ] Aut□^θ_G(O/p) →[Φθ] Aut(S) → 1`.-/
+    `1 → G →[Λθ] Aut□^θ_G(O/p) →[Φθ] Aut(S) → 1`.
+@isnad1 id=eq.0h6v.s7.5fc153f806c6 from=translated src=- shape=982223f1 vocab=c0ff78b7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ker_Φθ_eq_range_Λθ (d : OEData G p) (θ : StrictAut S →* MulAut G) [IsConnected S] :
     (Φθ d θ).ker = (ΛHomθ d θ).range := by
   ext e
@@ -1486,7 +1672,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.θSingleObj (G : Type*) [Group G] : 
 
 /-- `θSingleObj` is surjective:  every group automorphism of `G` is realized by a strict
     autoequivalence of `SingleObj G` (so `θSingleObj` is the iso `StrictAut (SingleObj G) ≅
-    MulAut G`).-/
+    MulAut G`).
+@isnad1 id=surjecti.0h1v.s8.2c7164beb642 from=translated src=- shape=70052d6d vocab=435fd547
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.θSingleObj_surjective (G : Type*) [Group G] : Function.Surjective (θSingleObj G) := by
   intro φ
   have hi : φ.symm.toMonoidHom.comp φ.toMonoidHom = MonoidHom.id G := by
@@ -1534,20 +1722,34 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftHomθ (d : OEData 
       rw [liftθ_comp, map_mul, mul_inv_rev]
     · rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.d95d8f14ad7d from=translated src=- shape=d45b3686 vocab=ba3e102d
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomθ_base (d : OEData G p) (θ : StrictAut S →* MulAut G) (A : StrictAut S) :
     (liftHomθ d θ A).base = A := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.2737f1cad1c3 from=translated src=- shape=1533a7ad vocab=ad0bbc9e
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.Φθ_apply (d : OEData G p) (θ : StrictAut S →* MulAut G) (e : AutBoxGθ d θ) :
     Φθ d θ e = e.base := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.1b158423cb04 from=translated src=- shape=d3021a07 vocab=5ee7ad7a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθ_base (d : OEData G p) (θ : StrictAut S →* MulAut G) (g : G) :
     (ΛHomθ d θ g).base = 1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.be283dc1ff1a from=translated src=- shape=337ac277 vocab=8d7f15a9
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.AutBoxGθ_inv_base (d : OEData G p) (θ : StrictAut S →* MulAut G)
     (e : AutBoxGθ d θ) : (e⁻¹).base = e.base⁻¹ := rfl
 
 /-- The compatibility condition for `SemidirectProduct.lift`:  conjugating `Λθ g` by the lift of
-    `A` twists `g` by `θ A` (this is `Λ_comp_liftθ` at the group level).-/
+    `A` twists `g` by `θ A` (this is `Λ_comp_liftθ` at the group level).
+@isnad1 id=eq.0h7v.s11.269fb04d6502 from=translated src=- shape=3fa98e50 vocab=5a23bf80
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomθ_conj (d : OEData G p) (θ : StrictAut S →* MulAut G) (A : StrictAut S) :
     (ΛHomθ d θ).comp (θ A).toMonoidHom
       = (MulAut.conj (liftHomθ d θ A)).toMonoidHom.comp (ΛHomθ d θ) := by
@@ -1569,10 +1771,16 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθ 
     SemidirectProduct G (StrictAut S) θ →* AutBoxGθ d θ :=
   SemidirectProduct.lift (ΛHomθ d θ) (liftHomθ d θ) (liftHomθ_conj d θ)
 
+/--
+@isnad1 id=eq.0h7v.s9.b539b64de133 from=translated src=- shape=7790ab6a vocab=98c10de7
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθ_inl (d : OEData G p) (θ : StrictAut S →* MulAut G) (g : G) :
     semidirectToAutBoxGθ d θ (SemidirectProduct.inl g) = ΛHomθ d θ g :=
   SemidirectProduct.lift_inl _ _ _ g
 
+/--
+@isnad1 id=eq.0h7v.s9.9a5c1c287be8 from=translated src=- shape=ad0fc0ff vocab=587b6705
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθ_inr (d : OEData G p) (θ : StrictAut S →* MulAut G)
     (A : StrictAut S) :
     semidirectToAutBoxGθ d θ (SemidirectProduct.inr A) = liftHomθ d θ A :=
@@ -1607,13 +1815,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGθMulEquivSemid
 
 /-- The inverse of `autBoxGθMulEquivSemidirect` is the canonical map
     `G ⋊[θ] Aut(S) → Aut□^θ_G(O/p)`, `(a, A) ↦ Λ_a Ã_θ` (paper `thm:twisted`, ambient-group
-    analogue).-/
+    analogue).
+@isnad1 id=eq.0h7v.s9.540e5430f71b from=translated src=- shape=a3fe865c vocab=4708610f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθMulEquivSemidirect_symm_apply (d : OEData G p)
     (θ : StrictAut S →* MulAut G) [IsConnected S] (x : SemidirectProduct G (StrictAut S) θ) :
     (autBoxGθMulEquivSemidirect d θ).symm x = semidirectToAutBoxGθ d θ x := rfl
 
 /-- Projection: the right part of `autBoxGθMulEquivSemidirect` is `Φθ`
-    (paper `thm:twisted`, ambient-group analogue).-/
+    (paper `thm:twisted`, ambient-group analogue).
+@isnad1 id=eq.0h7v.s9.f990f7a1184c from=translated src=- shape=39eff35e vocab=761f372a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθMulEquivSemidirect_apply_right (d : OEData G p)
     (θ : StrictAut S →* MulAut G) [IsConnected S] (e : AutBoxGθ d θ) :
     (autBoxGθMulEquivSemidirect d θ e).right = Φθ d θ e := by
@@ -1631,7 +1843,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGθMulEquivSemid
   translation `Λ h` and then conjugate `Λ` nontrivially when `G` is nonabelian). -/
 
 /-- The canonical normalized lifts commute with `Λ` at the group level (from `Λ_comp_lift_one`).
-    Only the canonical section `liftHom` centralizes the kernel — not an arbitrary lift.-/
+    Only the canonical section `liftHom` centralizes the kernel — not an arbitrary lift.
+@isnad1 id=eq.0h7v.s9.375db2576b34 from=translated src=- shape=1825ea65 vocab=91adab55
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHom_comm_liftHom (d : OEData G p) (g : G) (A : StrictAut S) :
     ΛHom d g * liftHom d A = liftHom d A * ΛHom d g := by
   refine AutBoxG.ext ?_ ?_ ?_
@@ -1657,6 +1871,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.prodToAutBoxG (d : OED
     simp only [mul_assoc]
     rw [← mul_assoc (ΛHom d g₂), ΛHom_comm_liftHom, mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s9.3d719fb7632c from=translated src=- shape=c68ddacd vocab=7f0531a8
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.prodToAutBoxG_apply (d : OEData G p) (g : G) (A : StrictAut S) :
     prodToAutBoxG d (g, A) = ΛHom d g * liftHom d A := rfl
 
@@ -1690,13 +1907,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGMulEquivProd (d
   exact (MulEquiv.ofBijective (prodToAutBoxG d) ⟨hinj, hsurj⟩).symm
 
 /-- The inverse of `autBoxGMulEquivProd` is the paper's map `(a, A) ↦ Λ_a Ã`
-    (paper `thm:strict`, ambient group `H = Aut(S)`).-/
+    (paper `thm:strict`, ambient group `H = Aut(S)`).
+@isnad1 id=eq.0h6v.s9.4b9939b10ff1 from=translated src=- shape=9ba3dc45 vocab=5d7249fa
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGMulEquivProd_symm_apply (d : OEData G p) [IsConnected S]
     (x : G × StrictAut S) :
     (autBoxGMulEquivProd d).symm x = ΛHom d x.1 * liftHom d x.2 := rfl
 
 /-- Projection: the second component of `autBoxGMulEquivProd` is `Φ`
-    (paper `thm:strict`, ambient group).-/
+    (paper `thm:strict`, ambient group).
+@isnad1 id=eq.0h6v.s9.28c485d5bf13 from=translated src=- shape=68f5d382 vocab=d16545ee
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGMulEquivProd_apply_snd (d : OEData G p) [IsConnected S] (e : AutBoxG d) :
     (autBoxGMulEquivProd d e).2 = Φ d e := by
   conv_rhs => rw [← (autBoxGMulEquivProd d).symm_apply_apply e]
@@ -1719,30 +1940,44 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.normalFormTo (d : OEDa
   map_id x := Prod.ext (p.map_id x) (Subsingleton.elim _ _)
   map_comp f g := Prod.ext (p.map_comp f g) (Subsingleton.elim _ _)
 
+/--
+@isnad1 id=eq.0h6v.s6.8ecb89311430 from=translated src=- shape=11de3b68 vocab=d7a5fa7a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.normalFormTo_obj (d : OEData G p) (x : O) :
     (normalFormTo d).obj x = (p.obj x, ⟨d.coord x⟩) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.f91457edfef5 from=translated src=- shape=8464122e vocab=f1c853d4
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.normalFormTo_map (d : OEData G p) {x y : O} (f : x ⟶ y) :
     (normalFormTo d).map f = (p.map f, ⟨⟩) := rfl
 
-/-- The first product projection recovers `p`:  `normalFormTo d ⋙ fst = p`.-/
+/-- The first product projection recovers `p`:  `normalFormTo d ⋙ fst = p`.
+@isnad1 id=eq.0h5v.s6.ee6031b4172c from=translated src=- shape=ab250e59 vocab=39b04c9c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.normalFormTo_fst (d : OEData G p) :
     normalFormTo d ⋙ CategoryTheory.Prod.fst S (Pair G) = p := rfl
 
 /-- On objects the comparison intertwines the right `G`-action with right multiplication in
-    the `Pair G` coordinate.-/
+    the `Pair G` coordinate.
+@isnad1 id=eq.0h7v.s7.38a011cc04af from=translated src=- shape=efc037a6 vocab=3401f5cb
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.normalForm_coord_act (d : OEData G p) (x : O) (g : G) :
     (normalFormTo d).obj (d.act x g) = (p.obj x, ⟨d.coord x * g⟩) := by
   simp only [normalFormTo_obj, d.p_act, d.coord_act]
 
-/-- The basepoint section goes to the unit coordinate:  `base s ↦ (s, ⟨1⟩)`.-/
+/-- The basepoint section goes to the unit coordinate:  `base s ↦ (s, ⟨1⟩)`.
+@isnad1 id=eq.0h6v.s6.787eaf9af8a3 from=translated src=- shape=91e34174 vocab=64ccfe1d
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.normalForm_base (d : OEData G p) (s : S) :
     (normalFormTo d).obj (d.base s) = (s, (⟨1⟩ : Pair G)) := by
   have hc : d.coord (d.base s) = 1 := by have := d.coord_base s 1; rwa [d.act_one] at this
   show (p.obj (d.base s), (⟨d.coord (d.base s)⟩ : Pair G)) = (s, ⟨1⟩)
   rw [d.p_base, hc]
 
-/-- Reindexing preserves the `Pair G` coordinate:  `u*y ↦ (s, ⟨coord y⟩)`.-/
+/-- Reindexing preserves the `Pair G` coordinate:  `u*y ↦ (s, ⟨coord y⟩)`.
+@isnad1 id=eq.1h9v.s7.e4bafbfd045b from=translated src=- shape=ad617d07 vocab=fe6f8f09
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.normalForm_reind (d : OEData G p) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     (normalFormTo d).obj (d.reind u y hy) = (s, (⟨d.coord y⟩ : Pair G)) := by
   show (p.obj (d.reind u y hy), (⟨d.coord (d.reind u y hy)⟩ : Pair G)) = (s, ⟨d.coord y⟩)
@@ -1772,6 +2007,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.productNormalForm (d :
   haveI : (normalFormTo d).IsEquivalence := {}
   exact (normalFormTo d).asEquivalence
 
+/--
+@isnad1 id=eq.0h5v.s6.b50e91e95dad from=translated src=- shape=8feaea2c vocab=acdc7966
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productNormalForm_functor (d : OEData G p) :
     (productNormalForm d).functor = normalFormTo d := rfl
 
@@ -1785,6 +2023,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.projectionEquivalence 
   haveI : p.IsEquivalence := {}
   exact p.asEquivalence
 
+/--
+@isnad1 id=eq.0h5v.s5.8dc345ac178e from=translated src=- shape=8cecaab4 vocab=ddf8c988
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.projectionEquivalence_functor (d : OEData G p) :
     (projectionEquivalence d).functor = p := rfl
 
@@ -1798,7 +2039,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.normalFormProductAction (g : G) : S 
 
 /-- Functorial `G`-equivariance of the comparison functor:  the upstairs action `actFunctor g`
     intertwines with the product action `normalFormProductAction g` through `normalFormTo`.
-    Uses `p_actHom` (the morphism part of the right `G`-action).-/
+    Uses `p_actHom` (the morphism part of the right `G`-action).
+@isnad1 id=eq.0h6v.s7.f1e176f95f86 from=translated src=- shape=c0064105 vocab=15a8dfe6
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.normalForm_equivariant (d : OEData G p) (g : G) :
     d.actFunctor g ⋙ normalFormTo d = normalFormTo d ⋙ normalFormProductAction g := by
   have hfst : ∀ {a b : S × Pair G} (m : a ⟶ b),
@@ -1817,7 +2060,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.normalForm_equivariant (d : OEDa
     back along the fully faithful projection.
     `O` is an arbitrary category, so the groupoid property is the explicit extra hypothesis
     `hO` of `rem:groupoid`; no general result depends on this theorem.
-    Stated as a theorem, not a global `Groupoid S` instance.-/
+    Stated as a theorem, not a global `Groupoid S` instance.
+@isnad1 id=isiso.1h8v.s6.7c34fe451415 from=translated src=- shape=d09a3c60 vocab=2e933a68
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.base_hom_isIso (d : OEData G p) (hO : ∀ {x y : O} (f : x ⟶ y), IsIso f)
     {s t : S} (u : s ⟶ t) : IsIso u := by
   haveI := d.isFull
@@ -1830,7 +2075,9 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.base_hom_isIso (d : OEData G p) 
 /-- Groupoid specialization, converse half (paper `rem:groupoid`).  IF every arrow of `S` is
     invertible (hypothesis `hS`, i.e. `S` is a groupoid), then every arrow of `O` is
     invertible:  `p.map f` is an iso by `hS`, and the fully faithful `p` (`isFull` +
-    `p_faithful`) reflects isomorphisms.-/
+    `p_faithful`) reflects isomorphisms.
+@isnad1 id=isiso.1h8v.s6.9539c9e43c90 from=translated src=- shape=6f396791 vocab=2e933a68
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.hom_isIso_of_base_isIso (d : OEData G p) (hS : ∀ {s t : S} (u : s ⟶ t), IsIso u)
     {x y : O} (f : x ⟶ y) : IsIso f := by
   haveI := d.isFull
@@ -1895,13 +2142,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftHomOver (d : OEDat
   map_one' := Subtype.ext (liftHom d).map_one
   map_mul' A B := Subtype.ext ((liftHom d).map_mul A.1 B.1)
 
-/-- `ΛHomOver` is injective (needs a basepoint).-/
+/-- `ΛHomOver` is injective (needs a basepoint).
+@isnad1 id=injectiv.0h6v.s8.394286fcf644 from=translated src=- shape=60605533 vocab=25707b67
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomOver_injective (d : OEData G p) (H : Subgroup (StrictAut S)) [Nonempty S] :
     Function.Injective (ΛHomOver d H) := fun _ _ hgh =>
   ΛHom_injective d (Subtype.ext_iff.mp hgh)
 
 /-- Exactness at the middle for the restricted sequence:  `ker ΦOver = range ΛHomOver`.
-    A bundle automorphism over `H` covers `id_S` iff it is a fiber translation.-/
+    A bundle automorphism over `H` covers `id_S` iff it is a fiber translation.
+@isnad1 id=eq.0h6v.s8.65dcc8aa98da from=translated src=- shape=26530290 vocab=74702c56
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ker_ΦOver_eq_range_ΛOver (d : OEData G p) (H : Subgroup (StrictAut S)) [IsConnected S] :
     (ΦOver d H).ker = (ΛHomOver d H).range := by
   ext e
@@ -1916,7 +2167,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ker_ΦOver_eq_range_ΛOver (d : 
   · rintro ⟨g, rfl⟩
     rfl
 
-/-- The canonical restricted lifts commute with `Λ` at the group level.-/
+/-- The canonical restricted lifts commute with `Λ` at the group level.
+@isnad1 id=eq.0h8v.s11.ee1f3e9828ce from=translated src=- shape=e98191a4 vocab=cf222c9a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomOver_comm_liftHomOver (d : OEData G p) (H : Subgroup (StrictAut S))
     (g : G) (A : H) : ΛHomOver d H g * liftHomOver d H A = liftHomOver d H A * ΛHomOver d H g :=
   Subtype.ext (ΛHom_comm_liftHom d g A.1)
@@ -1935,6 +2188,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.prodToAutBoxGOver (d :
     simp only [mul_assoc]
     rw [← mul_assoc (ΛHomOver d H g₂), ΛHomOver_comm_liftHomOver, mul_assoc]
 
+/--
+@isnad1 id=eq.0h8v.s11.4cc5088fc1df from=translated src=- shape=cfe6e2f8 vocab=a0420820
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.prodToAutBoxGOver_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     (g : G) (A : H) : prodToAutBoxGOver d H (g, A) = ΛHomOver d H g * liftHomOver d H A := rfl
 
@@ -1968,13 +2224,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivPro
   exact (MulEquiv.ofBijective (prodToAutBoxGOver d H) ⟨hinj, hsurj⟩).symm
 
 /-- The inverse of `autBoxGOverMulEquivProd` is the paper's map `G × H → Sym_H(p)`,
-    `(a, A) ↦ Λ_a Ã` (paper `thm:strict`).-/
+    `(a, A) ↦ Λ_a Ã` (paper `thm:strict`).
+@isnad1 id=eq.0h7v.s11.325e4d22f899 from=translated src=- shape=37699414 vocab=8de97013
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivProd_symm_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     [IsConnected S] (x : G × H) :
     (autBoxGOverMulEquivProd d H).symm x = ΛHomOver d H x.1 * liftHomOver d H x.2 := rfl
 
 /-- Projection: the second component of `autBoxGOverMulEquivProd` is `ΦOver`
-    (paper `thm:strict`).-/
+    (paper `thm:strict`).
+@isnad1 id=eq.0h7v.s10.867115543683 from=translated src=- shape=926cb401 vocab=4c8a366e
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivProd_apply_snd (d : OEData G p) (H : Subgroup (StrictAut S))
     [IsConnected S] (e : AutBoxGOver d H) :
     (autBoxGOverMulEquivProd d H e).2 = ΦOver d H e := by
@@ -2070,10 +2330,25 @@ instance : Group (AutBoxGθOver d H θ) where
   inv_mul_cancel a := by
     refine AutBoxGθOver.ext ?_ ?_ ?_ <;> first | exact a.hom_inv_id | exact inv_mul_cancel _
 
+/--
+@isnad1 id=eq.0h9v.s9.fd622b09f4be from=translated src=- shape=2be9c059 vocab=fac51ad8
+-/
 @[simp] lemma mul_hom (e₁ e₂ : AutBoxGθOver d H θ) : (e₁ * e₂).hom = e₂.hom ⋙ e₁.hom := rfl
+/--
+@isnad1 id=eq.0h9v.s9.21f3ca267cf5 from=translated src=- shape=b8ccc1f2 vocab=183688b9
+-/
 @[simp] lemma mul_base (e₁ e₂ : AutBoxGθOver d H θ) : (e₁ * e₂).base = e₁.base * e₂.base := rfl
+/--
+@isnad1 id=eq.0h7v.s8.236209803d7e from=translated src=- shape=3d96c950 vocab=ac6ee827
+-/
 @[simp] lemma one_hom : (1 : AutBoxGθOver d H θ).hom = 𝟭 O := rfl
+/--
+@isnad1 id=eq.0h7v.s9.13b71ee49960 from=translated src=- shape=6e89a401 vocab=2296bbe8
+-/
 @[simp] lemma one_base : (1 : AutBoxGθOver d H θ).base = 1 := rfl
+/--
+@isnad1 id=eq.0h8v.s9.df9bf978f41c from=translated src=- shape=87cd4202 vocab=e274cbb6
+-/
 @[simp] lemma inv_base (e : AutBoxGθOver d H θ) : (e⁻¹).base = e.base⁻¹ := rfl
 
 end Tengoku.ObserverEquivarianceLean.AutBoxGθOver
@@ -2085,6 +2360,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.ΦθOver (d : OEData G p) (H : Subgr
   map_one' := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.805e4be5464e from=translated src=- shape=42a01ca6 vocab=d7f88511
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.ΦθOver_apply (d : OEData G p) (H : Subgroup (StrictAut S)) (θ : H →* MulAut G)
     (e : AutBoxGθOver d H θ) : ΦθOver d H θ e = e.base := rfl
 
@@ -2110,6 +2388,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.ΛHomθOver (d : OEDat
     · show Λ d (g * h)⁻¹ = Λ d g⁻¹ ⋙ Λ d h⁻¹; rw [Λ_comp, mul_inv_rev]
     · rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.b31a990ca2e6 from=translated src=- shape=183d91e5 vocab=3bad2a0a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθOver_base (d : OEData G p) (H : Subgroup (StrictAut S)) (θ : H →* MulAut G)
     (g : G) : (ΛHomθOver d H θ g).base = 1 := rfl
 
@@ -2142,10 +2423,15 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.liftHomθOver (d : OED
       rw [liftθ_comp, map_mul, mul_inv_rev]
     · rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.543bfbb1eefb from=translated src=- shape=2886ea21 vocab=ea5dbec5
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomθOver_base (d : OEData G p) (H : Subgroup (StrictAut S))
     (θ : H →* MulAut G) (A : H) : (liftHomθOver d H θ A).base = A := rfl
 
-/-- `ΛHomθOver` is injective (needs a basepoint).-/
+/-- `ΛHomθOver` is injective (needs a basepoint).
+@isnad1 id=injectiv.0h7v.s9.d38ce35e0301 from=translated src=- shape=bada19a4 vocab=e4884ea6
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθOver_injective (d : OEData G p) (H : Subgroup (StrictAut S)) (θ : H →* MulAut G)
     [Nonempty S] : Function.Injective (ΛHomθOver d H θ) := by
   intro g h hgh
@@ -2157,7 +2443,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ΛHomθOver_injective (d : OEDat
   simp only [Λ, d.p_base, hc, mul_one] at hev
   exact d.act_free _ _ _ hev
 
-/-- Exactness at the middle for the restricted twisted sequence:  `ker ΦθOver = range ΛHomθOver`.-/
+/-- Exactness at the middle for the restricted twisted sequence:  `ker ΦθOver = range ΛHomθOver`.
+@isnad1 id=eq.0h7v.s9.f99287695efe from=translated src=- shape=089c9741 vocab=b91b4199
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.ker_ΦθOver_eq_range_ΛθOver (d : OEData G p) (H : Subgroup (StrictAut S))
     (θ : H →* MulAut G) [IsConnected S] :
     (ΦθOver d H θ).ker = (ΛHomθOver d H θ).range := by
@@ -2181,7 +2469,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.ker_ΦθOver_eq_range_ΛθOver (
     rfl
 
 /-- The `SemidirectProduct.lift` compatibility for the restricted twist:  conjugating `Λθ g` by
-    the lift of `A ∈ H` twists `g` by `θ A`.-/
+    the lift of `A ∈ H` twists `g` by `θ A`.
+@isnad1 id=eq.0h8v.s11.bfe5fd4b275e from=translated src=- shape=d8820881 vocab=ab80ebf7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomθOver_conj (d : OEData G p) (H : Subgroup (StrictAut S)) (θ : H →* MulAut G)
     (A : H) :
     (ΛHomθOver d H θ).comp (θ A).toMonoidHom
@@ -2204,11 +2494,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθO
     (θ : H →* MulAut G) : SemidirectProduct G H θ →* AutBoxGθOver d H θ :=
   SemidirectProduct.lift (ΛHomθOver d H θ) (liftHomθOver d H θ) (liftHomθOver_conj d H θ)
 
+/--
+@isnad1 id=eq.0h8v.s11.70350f6854a9 from=translated src=- shape=1d9265d3 vocab=799bb1ce
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθOver_inl (d : OEData G p) (H : Subgroup (StrictAut S))
     (θ : H →* MulAut G) (g : G) :
     semidirectToAutBoxGθOver d H θ (SemidirectProduct.inl g) = ΛHomθOver d H θ g :=
   SemidirectProduct.lift_inl _ _ _ g
 
+/--
+@isnad1 id=eq.0h8v.s11.21b8c105c93c from=translated src=- shape=7e8ae66a vocab=d553292f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.semidirectToAutBoxGθOver_inr (d : OEData G p) (H : Subgroup (StrictAut S))
     (θ : H →* MulAut G) (A : H) :
     semidirectToAutBoxGθOver d H θ (SemidirectProduct.inr A) = liftHomθOver d H θ A :=
@@ -2245,14 +2541,18 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverMulEquivS
   exact (MulEquiv.ofBijective (semidirectToAutBoxGθOver d H θ) ⟨hinj, hsurj⟩).symm
 
 /-- The inverse of `autBoxGθOverMulEquivSemidirect` is the canonical map
-    `G ⋊[θ] H → Sym^θ_H(p)`, `(a, A) ↦ Λ_a Ã_θ` (paper `thm:twisted`).-/
+    `G ⋊[θ] H → Sym^θ_H(p)`, `(a, A) ↦ Λ_a Ã_θ` (paper `thm:twisted`).
+@isnad1 id=eq.0h8v.s11.a2e656fef01d from=translated src=- shape=3956a161 vocab=0a72e2a3
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverMulEquivSemidirect_symm_apply (d : OEData G p)
     (H : Subgroup (StrictAut S)) (θ : H →* MulAut G) [IsConnected S]
     (x : SemidirectProduct G H θ) :
     (autBoxGθOverMulEquivSemidirect d H θ).symm x = semidirectToAutBoxGθOver d H θ x := rfl
 
 /-- Projection: the right part of `autBoxGθOverMulEquivSemidirect` is `ΦθOver`
-    (paper `thm:twisted`).-/
+    (paper `thm:twisted`).
+@isnad1 id=eq.0h8v.s10.9a2be6e3d3a5 from=translated src=- shape=60eda63a vocab=30693e47
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverMulEquivSemidirect_apply_right (d : OEData G p)
     (H : Subgroup (StrictAut S)) (θ : H →* MulAut G) [IsConnected S] (e : AutBoxGθOver d H θ) :
     (autBoxGθOverMulEquivSemidirect d H θ e).right = ΦθOver d H θ e := by
@@ -2293,12 +2593,16 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverOneMulEqu
   map_mul' _ _ := rfl
 
 /-- `autBoxGθOverOneMulEquiv` is the identity on the total functor (paper, remark after
-    `thm:twisted`).-/
+    `thm:twisted`).
+@isnad1 id=eq.0h7v.s14.57be5b11adb7 from=translated src=- shape=b20e06fd vocab=c5d78a91
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverOneMulEquiv_apply_hom (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutBoxGθOver d H 1) : (autBoxGθOverOneMulEquiv d H e).1.hom = e.hom := rfl
 
 /-- `autBoxGθOverOneMulEquiv` is the identity on the covered base symmetry (paper, remark after
-    `thm:twisted`).-/
+    `thm:twisted`).
+@isnad1 id=eq.0h7v.s14.169e7fdb1717 from=translated src=- shape=9b3b7a3a vocab=15180b7a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverOneMulEquiv_apply_base (d : OEData G p)
     (H : Subgroup (StrictAut S)) (e : AutBoxGθOver d H 1) :
     (autBoxGθOverOneMulEquiv d H e).1.base = e.base.1 := rfl
@@ -2323,7 +2627,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.zmod3NegMulAut : MulAut G3 where
   right_inv := inv_inv
   map_mul' a b := mul_inv a b
 
-/-- The negation automorphism is nontrivial:  it sends `ofAdd 1` to `ofAdd (-1) = ofAdd 2 ≠ ofAdd 1`.-/
+/-- The negation automorphism is nontrivial:  it sends `ofAdd 1` to `ofAdd (-1) = ofAdd 2 ≠ ofAdd 1`.
+@isnad1 id=ne.0h0v.s8.97cabc788bf2 from=translated src=- shape=2d527563 vocab=ae7769b7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.zmod3NegMulAut_ne_one : zmod3NegMulAut ≠ 1 := by
   intro h
   have hval : (Multiplicative.ofAdd (1 : ZMod 3))⁻¹ = Multiplicative.ofAdd (1 : ZMod 3) :=
@@ -2359,7 +2665,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.zmod3SemidirectWitness
   throughout this section: state every intermediate cast with syntactically clean endpoints in
   a `have`, justify it by a defeq `exact`, and only then rewrite. -/
 
-/-- A strict autoequivalence is determined by its `hom` functor (its strict inverse is unique).-/
+/-- A strict autoequivalence is determined by its `hom` functor (its strict inverse is unique).
+@isnad1 id=eq.1h3v.s5.1318b4c8616e from=translated src=- shape=1a8ef8bc vocab=cca69aa9
+-/
 theorem Tengoku.ObserverEquivarianceLean.StrictAut.ext_hom {C : Type*} [Category C] {A B : StrictAut C} (h : A.hom = B.hom) :
     A = B := by
   refine StrictAut.ext h ?_
@@ -2368,7 +2676,9 @@ theorem Tengoku.ObserverEquivarianceLean.StrictAut.ext_hom {C : Type*} [Category
     _ = (A.inv ⋙ A.hom) ⋙ B.inv := rfl
     _ = B.inv := by rw [A.inv_hom_id, Functor.id_comp]
 
-/-- `θSingleObj` is injective, hence (with `θSingleObj_surjective`) a genuine group isomorphism.-/
+/-- `θSingleObj` is injective, hence (with `θSingleObj_surjective`) a genuine group isomorphism.
+@isnad1 id=injectiv.0h1v.s8.7fdef4355da6 from=translated src=- shape=70052d6d vocab=bf0eead7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.θSingleObj_injective (G : Type*) [Group G] : Function.Injective (θSingleObj G) := by
   intro A B hAB
   have hfun : ∀ g, ((SingleObj.mapHom G G).symm A.hom) g = ((SingleObj.mapHom G G).symm B.hom) g :=
@@ -2382,6 +2692,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.θSingleObjEquiv (G : 
     StrictAut (SingleObj G) ≃* MulAut G :=
   MulEquiv.ofBijective (θSingleObj G) ⟨θSingleObj_injective G, θSingleObj_surjective G⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.9fca65cce5d5 from=translated src=- shape=73f305fe vocab=a4b8c6a8
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.θSingleObjEquiv_apply (G : Type*) [Group G] (A : StrictAut (SingleObj G)) :
     θSingleObjEquiv G A = θSingleObj G A := rfl
 
@@ -2389,7 +2702,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.θSingleObjEquiv (G : 
     `pc.src`, the covering equation and `p_faithful` force the morphism equality
     `F(χ_{u,y}) = χ_{A u, F y}` up to the `eqToHom` cast supplied by `pc.src`.  So the
     object-level `PreservesCleavage` really is the full "chosen cartesian arrows to chosen
-    cartesian arrows" condition.-/
+    cartesian arrows" condition.
+@isnad1 id=eq.4h11v.s8.95bbc917b617 from=translated src=- shape=b9a17e28 vocab=b581c40d
+-/
 theorem Tengoku.ObserverEquivarianceLean.PreservesCleavage.map_chi (d : OEData G p) {F : O ⥤ O} {A : S ⥤ S}
     (pc : PreservesCleavage d F A) {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t)
     {hy' : p.obj (F.obj y) = A.obj t}
@@ -2413,7 +2728,9 @@ theorem Tengoku.ObserverEquivarianceLean.PreservesCleavage.map_chi (d : OEData G
 
 /-- Morphism-level `G`-equivariance is DERIVED (the article's `def:lifts`
     remark):  an object-equivariant `F` covering a base functor is automatically equivariant on
-    morphisms, up to the `eqToHom` casts supplied by object equivariance.-/
+    morphisms, up to the `eqToHom` casts supplied by object equivariance.
+@isnad1 id=eq.2h11v.s9.c0828267fd51 from=translated src=- shape=c1482740 vocab=3508ee45
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_map_actHom (d : OEData G p) {F : O ⥤ O} {A : S ⥤ S}
     (hF : IsGEquivariant d F) (hc : F ⋙ p = p ⋙ A) {x y : O} (f : x ⟶ y) (g : G) :
     F.map (d.actHom f g)
@@ -2438,7 +2755,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_map_actHom (d : O
     determined by `F`):  since every base object is
     `p.obj (base s)` and every base arrow lifts through derived fullness, precomposition with
     `p` is injective on functors:  `p ⋙ A = p ⋙ B → A = B`.  Hence the `base` field of a
-    bundle automorphism is determined by its `hom` field.-/
+    bundle automorphism is determined by its `hom` field.
+@isnad1 id=eq.1h7v.s6.08c401a99c5c from=translated src=- shape=b728fd8c vocab=59b01e11
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.base_unique (d : OEData G p) {A B : S ⥤ S} (hAB : p ⋙ A = p ⋙ B) : A = B := by
   haveI := d.isFull
   haveI := d.p_faithful
@@ -2467,7 +2786,9 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.base_unique (d : OEData G p) {A 
 
 /-- `AutBoxG` extensionality by `hom` alone:  equal `hom` functors force
     equal `base` (`base_unique` + `StrictAut.ext_hom`) and equal `inv` (a strict inverse is
-    unique), so the same total functor cannot cover two different base symmetries.-/
+    unique), so the same total functor cannot cover two different base symmetries.
+@isnad1 id=eq.1h7v.s6.917f3000e37f from=translated src=- shape=7244f288 vocab=870c179d
+-/
 theorem Tengoku.ObserverEquivarianceLean.AutBoxG.ext_hom (d : OEData G p) {e₁ e₂ : AutBoxG d} (h : e₁.hom = e₂.hom) :
     e₁ = e₂ := by
   have hbase : e₁.base = e₂.base := by

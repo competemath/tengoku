@@ -77,7 +77,9 @@ def liftComp {α : Sort*} (f : S → α) (hf : ∀ {s t : S} (_ : s ⟶ t), f s 
     CategoryTheory.ConnectedComponents S → α :=
   Quotient.lift f (fun _ _ h => eq_of_zigzag_of_hom f hf h)
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.1h4v.s5.35fabdb26783 from=translated src=- shape=0b40b3c6 vocab=8ad83cc6
+-/
 @[simp] theorem liftComp_mk {α : Sort*} (f : S → α) (hf : ∀ {s t : S} (_ : s ⟶ t), f s = f t)
     (s : S) : liftComp f hf (compMk s) = f s := rfl
 
@@ -87,16 +89,22 @@ abbrev componentMap (A : S ⥤ S) :
     CategoryTheory.ConnectedComponents S → CategoryTheory.ConnectedComponents S :=
   A.mapConnectedComponents
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.0h3v.s5.c035138169e1 from=translated src=- shape=2af6760d vocab=96b9b9f3
+-/
 @[simp] theorem componentMap_mk (A : S ⥤ S) (s : S) :
     componentMap A (compMk s) = compMk (A.obj s) := rfl
 
-/-- Functoriality of the induced map of components (paper `prop:components`).-/
+/-- Functoriality of the induced map of components (paper `prop:components`).
+@isnad1 id=eq.0h4v.s5.08dbab4d1f3c from=translated src=- shape=35987e0a vocab=20322fd5
+-/
 theorem componentMap_comp (A B : S ⥤ S) (c : CategoryTheory.ConnectedComponents S) :
     componentMap (A ⋙ B) c = componentMap B (componentMap A c) := by
   induction c using Quotient.ind; rfl
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.0h2v.s4.a8adc075c613 from=translated src=- shape=2c343361 vocab=0db64456
+-/
 theorem componentMap_id (c : CategoryTheory.ConnectedComponents S) :
     componentMap (𝟭 S) c = c := by
   induction c using Quotient.ind; rfl
@@ -136,7 +144,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.componentAction (H : Subgroup (Stric
     show γ (componentMap (A.1.inv ⋙ B.1.inv) c) = γ (componentMap B.1.inv (componentMap A.1.inv c))
     rw [componentMap_comp]
 
-/-- (paper `prop:components`, `(A · γ)(c) = γ(A⁻¹ c)`)-/
+/-- (paper `prop:components`, `(A · γ)(c) = γ(A⁻¹ c)`)
+@isnad1 id=eq.0h6v.s10.e280b814d2ad from=translated src=- shape=f1a7726e vocab=d7a05673
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.componentAction_apply (H : Subgroup (StrictAut S)) (A : H)
     (γ : CategoryTheory.ConnectedComponents S → G) (c : CategoryTheory.ConnectedComponents S) :
     componentAction H G A γ c = γ (componentMap A.1.inv c) := rfl
@@ -157,7 +167,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.objectAction (H : Subgroup (StrictAu
   map_one' := MulEquiv.ext fun _ => rfl
   map_mul' _ _ := MulEquiv.ext fun _ => rfl
 
-/-- (paper `prop:nocleavage`, `(A · γ)(s) = γ(A⁻¹ s)`)-/
+/-- (paper `prop:nocleavage`, `(A · γ)(s) = γ(A⁻¹ s)`)
+@isnad1 id=eq.0h6v.s10.1c4471027353 from=translated src=- shape=3b620dd8 vocab=9f7aed75
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.objectAction_apply (H : Subgroup (StrictAut S)) (A : H) (γ : S → G) (s : S) :
     objectAction H G A γ s = γ (A.1.inv.obj s) := rfl
 
@@ -166,7 +178,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.objectAction (H : Subgroup (StrictAu
 namespace Components
 
 /-- Composition of multiplier lifts (paper `prop:components` proof, the semidirect law):
-    `F_k^A ⋙ F_l^B = F^{A ⋙ B}_{s ↦ l(A s) k(s)}`.-/
+    `F_k^A ⋙ F_l^B = F^{A ⋙ B}_{s ↦ l(A s) k(s)}`.
+@isnad1 id=eq.0h9v.s7.a10f6bc6c50a from=translated src=- shape=c8815eb9 vocab=a5cfc6c3
+-/
 theorem liftByMultiplier_comp (d : OEData G p) (A B : S ⥤ S) (k l : S → G) :
     liftByMultiplier d A k ⋙ liftByMultiplier d B l
       = liftByMultiplier d (A ⋙ B) (fun s => l (A.obj s) * k s) := by
@@ -181,7 +195,9 @@ theorem liftByMultiplier_comp (d : OEData G p) (A B : S ⥤ S) (k l : S → G) :
 
 /-- The factorization `F = Λ_γ Ã` of paper `prop:components` / `prop:nocleavage`, Lean order
     `Ã ⋙ ΛFun γ`: its multiplier at `s` is `γ(A s)` (not `γ(s)`), i.e.
-    `liftByMultiplier d A (γ ∘ A) = liftFunctor d A ⋙ ΛFun d γ`.-/
+    `liftByMultiplier d A (γ ∘ A) = liftFunctor d A ⋙ ΛFun d γ`.
+@isnad1 id=eq.0h7v.s6.d2914c2f127b from=translated src=- shape=02bcb253 vocab=cbf047d9
+-/
 theorem liftByMultiplier_eq_liftFunctor_comp_ΛFun (d : OEData G p) (A : S ⥤ S) (γ : S → G) :
     liftByMultiplier d A (fun s => γ (A.obj s)) = liftFunctor d A ⋙ ΛFun d γ := by
   refine lift_eq_of_obj_eq d (liftByMultiplier_covers d _ _) ?_ (fun x => ?_)
@@ -195,7 +211,9 @@ theorem liftByMultiplier_eq_liftFunctor_comp_ΛFun (d : OEData G p) (A : S ⥤ S
 /-- The conjugation identity of paper `prop:components` / `prop:nocleavage` at functor level:
     `Ã Λ_γ Ã⁻¹ = Λ_{γ ∘ A⁻¹}`.  In Lean order (first `Ã⁻¹`, then `Λ_γ`, then `Ã`):
     `liftFunctor d A.inv ⋙ ΛFun d γ ⋙ liftFunctor d A.hom = ΛFun d (γ ∘ A.inv)`, for any object
-    function `γ : S → G`.-/
+    function `γ : S → G`.
+@isnad1 id=eq.0h7v.s6.4f9e454ba3d8 from=translated src=- shape=d891bc6a vocab=8cefa0f5
+-/
 theorem liftFunctor_conj_ΛFun (d : OEData G p) (A : StrictAut S) (γ : S → G) :
     liftFunctor d A.inv ⋙ ΛFun d γ ⋙ liftFunctor d A.hom
       = ΛFun d (fun s => γ (A.inv.obj s)) := by
@@ -208,7 +226,9 @@ theorem liftFunctor_conj_ΛFun (d : OEData G p) (A : StrictAut S) (γ : S → G)
   funext s
   exact one_mul _
 
-/-- Elements of `AutBoxGOver d H` are determined by their total functor (paper `def:lifts`).-/
+/-- Elements of `AutBoxGOver d H` are determined by their total functor (paper `def:lifts`).
+@isnad1 id=eq.1h8v.s8.36297000721b from=translated src=- shape=8e3ab61e vocab=2e8136c2
+-/
 theorem autBoxGOver_ext {d : OEData G p} {H : Subgroup (StrictAut S)} {e₁ e₂ : AutBoxGOver d H}
     (h : e₁.1.hom = e₂.1.hom) : e₁ = e₂ :=
   Subtype.ext (AutBoxG.ext_hom d h)
@@ -226,13 +246,17 @@ def componentMultiplier (d : OEData G p) {F : O ⥤ O} {A : S ⥤ S} (pc : Prese
     CategoryTheory.ConnectedComponents S → G :=
   liftComp (liftMultiplier d F) (fun u => liftMultiplier_eq_of_hom d pc u)
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.1h8v.s6.c9697ec26c9c from=translated src=- shape=ad7cee75 vocab=1a54036c
+-/
 @[simp] theorem componentMultiplier_mk (d : OEData G p) {F : O ⥤ O} {A : S ⥤ S}
     (pc : PreservesCleavage d F A) (s : S) :
     componentMultiplier d pc (compMk s) = liftMultiplier d F s := rfl
 
 /-- The multiplier of a transport-preserving functor factors uniquely through the component
-    quotient `S → π₀(S)` (paper `prop:components` proof).  No connectedness or nonemptiness.-/
+    quotient `S → π₀(S)` (paper `prop:components` proof).  No connectedness or nonemptiness.
+@isnad1 id=existsun.1h7v.s6.8cc1dc2ff45f from=translated src=- shape=2efb8b1c vocab=a30e44cb
+-/
 theorem liftMultiplier_factors_through_components (d : OEData G p) {F : O ⥤ O} {A : S ⥤ S}
     (pc : PreservesCleavage d F A) :
     ∃! κ : CategoryTheory.ConnectedComponents S → G, ∀ s, liftMultiplier d F s = κ (compMk s) :=
@@ -246,13 +270,17 @@ def componentLiftMultiplier (A : S ⥤ S) (γ : CategoryTheory.ConnectedComponen
   fun s => γ (compMk (A.obj s))
 
 omit [Group G] in
-/-- The multiplier `s ↦ γ [A s]` is constant along base arrows (paper `prop:components`).-/
+/-- The multiplier `s ↦ γ [A s]` is constant along base arrows (paper `prop:components`).
+@isnad1 id=eq.0h7v.s5.5276b39507e3 from=translated src=- shape=33428c82 vocab=a0cfe612
+-/
 theorem componentLiftMultiplier_hom (A : S ⥤ S) (γ : CategoryTheory.ConnectedComponents S → G)
     {s t : S} (u : s ⟶ t) : componentLiftMultiplier A γ s = componentLiftMultiplier A γ t :=
   congrArg γ (Quotient.sound (Zigzag.of_hom (A.map u)))
 
 /-- The factorization of paper `prop:components`: the multiplier lift with multiplier
-    `s ↦ γ [A s]` is `Λ_γ Ã`, Lean order `liftFunctor d A ⋙ ΛFun d (γ ∘ [·])`.-/
+    `s ↦ γ [A s]` is `Λ_γ Ã`, Lean order `liftFunctor d A ⋙ ΛFun d (γ ∘ [·])`.
+@isnad1 id=eq.0h7v.s6.d2e8a18ae1e6 from=translated src=- shape=0dcf6e10 vocab=bb3ce04c
+-/
 theorem liftByMultiplier_components_eq (d : OEData G p) (A : S ⥤ S)
     (γ : CategoryTheory.ConnectedComponents S → G) :
     liftByMultiplier d A (componentLiftMultiplier A γ)
@@ -271,7 +299,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverOfComponent
     (fun u => componentLiftMultiplier_hom _ _ u)
 
 /-- The lift attached to `(γ, A)` is `Λ_γ Ã`, Lean order `Ã ⋙ ΛFun d (γ ∘ [·])` (paper
-    `prop:components` proof).-/
+    `prop:components` proof).
+@isnad1 id=eq.0h7v.s8.693f8233fc76 from=translated src=- shape=89c4ca76 vocab=5d83ff70
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverOfComponents_hom_eq (d : OEData G p) (H : Subgroup (StrictAut S))
     (x : (CategoryTheory.ConnectedComponents S → G) ⋊[componentAction H G] H) :
     (autBoxGOverOfComponents d H x).1.hom
@@ -306,7 +336,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.semidirectComponentsTo
       from Functor.congr_obj x.right.1.hom_inv_id _])
 
 /-- `autBoxGOverToComponents` is a left inverse of `autBoxGOverOfComponents` (paper
-    `prop:components`: the expression `Λ_γ Ã` is unique).-/
+    `prop:components`: the expression `Λ_γ Ã` is unique).
+@isnad1 id=eq.0h7v.s7.5990d85164ef from=translated src=- shape=67218b73 vocab=cccc674c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverToComponents_ofComponents (d : OEData G p) (H : Subgroup (StrictAut S))
     (x : (CategoryTheory.ConnectedComponents S → G) ⋊[componentAction H G] H) :
     autBoxGOverToComponents d H (autBoxGOverOfComponents d H x) = x := by
@@ -320,7 +352,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverToComponents_ofCompon
     rw [show x.right.1.hom.obj (x.right.1.inv.obj a) = a from Functor.congr_obj x.right.1.inv_hom_id a]
 
 /-- `autBoxGOverOfComponents` is a left inverse of `autBoxGOverToComponents` (paper
-    `prop:components`: every lift has an expression `Λ_γ Ã`).-/
+    `prop:components`: every lift has an expression `Λ_γ Ã`).
+@isnad1 id=eq.0h7v.s6.392517d8db28 from=translated src=- shape=88ae15df vocab=a7cf9bff
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverOfComponents_toComponents (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutBoxGOver d H) :
     autBoxGOverOfComponents d H (autBoxGOverToComponents d H e) = e := by
@@ -344,19 +378,25 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivCom
       autBoxGOverToComponents_ofComponents d H, autBoxGOverOfComponents_toComponents d H⟩
     (semidirectComponentsToAutBoxGOver d H).map_mul).symm
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.0h7v.s9.e1f4d1fd3319 from=translated src=- shape=6917cede vocab=fac21739
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivComponents_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutBoxGOver d H) :
     autBoxGOverMulEquivComponents d H e = autBoxGOverToComponents d H e := rfl
 
-/-- (paper `prop:components`)-/
+/-- (paper `prop:components`)
+@isnad1 id=eq.0h7v.s10.b44f37b34010 from=translated src=- shape=4faa7cde vocab=6452b639
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivComponents_symm_apply (d : OEData G p)
     (H : Subgroup (StrictAut S))
     (x : (CategoryTheory.ConnectedComponents S → G) ⋊[componentAction H G] H) :
     (autBoxGOverMulEquivComponents d H).symm x = autBoxGOverOfComponents d H x := rfl
 
 /-- The second factor is realized by the canonical lifts: `(1, A) ↦ Ã = liftHomOver d H A` (paper
-    `prop:components` proof, `γ = 1` in `Λ_γ Ã`).-/
+    `prop:components` proof, `γ = 1` in `Λ_γ Ã`).
+@isnad1 id=eq.0h7v.s11.302c4ba79b90 from=translated src=- shape=044bc335 vocab=91d20962
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivComponents_symm_inr (d : OEData G p) (H : Subgroup (StrictAut S))
     (A : H) :
     (autBoxGOverMulEquivComponents d H).symm (SemidirectProduct.inr A) = liftHomOver d H A := by
@@ -367,7 +407,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverMulEquivComponents_sy
 
 /-- The key conjugation identity of paper `prop:components`, at group level in `AutBoxGOver d H`:
     `Ã Λ_δ Ã⁻¹ = Λ_{δ ∘ A⁻¹}`, where `Λ_δ` is the image of `(δ, 1)`, `Ã = liftHomOver d H A`, and
-    `δ ∘ A⁻¹ = componentAction H G A δ`.  (Group multiplication is operator order.)-/
+    `δ ∘ A⁻¹ = componentAction H G A δ`.  (Group multiplication is operator order.)
+@isnad1 id=eq.0h8v.s12.d983f2369691 from=translated src=- shape=78c83555 vocab=1ea2db92
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomOver_conj_components (d : OEData G p) (H : Subgroup (StrictAut S)) (A : H)
     (δ : CategoryTheory.ConnectedComponents S → G) :
     liftHomOver d H A * (autBoxGOverMulEquivComponents d H).symm (SemidirectProduct.inl δ)
@@ -379,7 +421,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftHomOver_conj_components (d :
 
 /-- The key conjugation identity of paper `prop:components` at functor level:
     `Ã Λ_δ Ã⁻¹ = Λ_{δ ∘ A⁻¹}`, Lean order
-    `liftFunctor d A⁻¹ ⋙ ΛFun d (δ ∘ [·]) ⋙ liftFunctor d A = ΛFun d ((A · δ) ∘ [·])`.-/
+    `liftFunctor d A⁻¹ ⋙ ΛFun d (δ ∘ [·]) ⋙ liftFunctor d A = ΛFun d ((A · δ) ∘ [·])`.
+@isnad1 id=eq.0h8v.s10.9fdcd4334045 from=translated src=- shape=27eb9c5b vocab=8650735b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctor_conj_ΛFun_components (d : OEData G p) (H : Subgroup (StrictAut S)) (A : H)
     (δ : CategoryTheory.ConnectedComponents S → G) :
     liftFunctor d A.1.inv ⋙ ΛFun d (fun s => δ (compMk s)) ⋙ liftFunctor d A.1.hom
@@ -392,14 +436,18 @@ namespace Components
 
 omit [Group G] in
 /-- For an empty base the component functions form the trivial group (remark after paper
-    `prop:components`: "For an empty base, `G^{π₀(S)}` is the trivial group").-/
+    `prop:components`: "For an empty base, `G^{π₀(S)}` is the trivial group").
+@isnad1 id=nonempty.0h2v.s4.1beeea79d98b from=translated src=- shape=5b6df8cc vocab=89dacff5
+-/
 theorem componentFunctions_unique_of_isEmpty [IsEmpty S] :
     Nonempty (Unique (CategoryTheory.ConnectedComponents S → G)) := by
   haveI : IsEmpty (CategoryTheory.ConnectedComponents S) :=
     ⟨fun c => Quotient.inductionOn c (fun s => isEmptyElim s)⟩
   exact ⟨Pi.uniqueOfIsEmpty _⟩
 
-/-- A preconnected base has at most one component (remark after paper `prop:components`).-/
+/-- A preconnected base has at most one component (remark after paper `prop:components`).
+@isnad1 id=subsingl.0h1v.s3.78664bd64b74 from=translated src=- shape=9499e9bc vocab=1ca13b5b
+-/
 theorem components_subsingleton [IsPreconnected S] :
     Subsingleton (CategoryTheory.ConnectedComponents S) :=
   ⟨fun c₁ c₂ => Quotient.inductionOn₂ c₁ c₂ (fun a b => Quotient.sound (isPreconnected_zigzag a b))⟩
@@ -449,13 +497,17 @@ namespace Tengoku.ObserverEquivarianceLean.AutEquivOver
 variable {d : OEData G p} {H : Subgroup (StrictAut S)}
 
 omit [Group G] in
-/-- The covering equation is closed under composition (paper `prop:nocleavage`).-/
+/-- The covering equation is closed under composition (paper `prop:nocleavage`).
+@isnad1 id=eq.2h7v.s7.50a590891e27 from=translated src=- shape=4963e4e7 vocab=296c09de
+-/
 theorem covers_comp {F F' : O ⥤ O} {A A' : S ⥤ S} (hc : F ⋙ p = p ⋙ A)
     (hc' : F' ⋙ p = p ⋙ A') : (F ⋙ F') ⋙ p = p ⋙ (A ⋙ A') := by
   rw [Functor.assoc, hc', ← Functor.assoc, hc, Functor.assoc]
 
 omit [Group G] in
-/-- The covering equation transfers to strict inverses (paper `prop:nocleavage`).-/
+/-- The covering equation transfers to strict inverses (paper `prop:nocleavage`).
+@isnad1 id=eq.2h6v.s6.68d20b7f25d1 from=translated src=- shape=29df19c4 vocab=bcb82c34
+-/
 theorem covers_inv {F Finv : O ⥤ O} {B : StrictAut S} (ih : Finv ⋙ F = 𝟭 O)
     (hc : F ⋙ p = p ⋙ B.hom) : Finv ⋙ p = p ⋙ B.inv := by
   have h1 : (Finv ⋙ p) ⋙ B.hom = p := by
@@ -495,19 +547,31 @@ instance : Group (AutEquivOver d H) where
   inv_mul_cancel a := by
     refine AutEquivOver.ext ?_ ?_ ?_ <;> first | exact a.hom_inv_id | exact inv_mul_cancel _
 
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h8v.s7.ac4f191a5be6 from=translated src=- shape=78dff0dd vocab=60cc9592
+-/
 @[simp] lemma mul_hom (e₁ e₂ : AutEquivOver d H) : (e₁ * e₂).hom = e₂.hom ⋙ e₁.hom := rfl
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h8v.s8.3d59173cf8e7 from=translated src=- shape=7ff80bef vocab=678b08f8
+-/
 @[simp] lemma mul_base (e₁ e₂ : AutEquivOver d H) : (e₁ * e₂).base = e₁.base * e₂.base := rfl
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h6v.s7.29f514801d65 from=translated src=- shape=9d00862b vocab=31b95320
+-/
 @[simp] lemma one_hom : (1 : AutEquivOver d H).hom = 𝟭 O := rfl
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h6v.s7.1b036c6ce33d from=translated src=- shape=27afed7a vocab=f905c29c
+-/
 @[simp] lemma one_base : (1 : AutEquivOver d H).base = 1 := rfl
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h7v.s7.e0c07150127e from=translated src=- shape=2aef1460 vocab=5d50a2a1
+-/
 @[simp] lemma inv_hom (e : AutEquivOver d H) : e⁻¹.hom = e.inv := rfl
 
 /-- An unrestricted lift is determined by its total functor and its base (paper
-    `prop:nocleavage`; the strict inverse is unique).-/
+    `prop:nocleavage`; the strict inverse is unique).
+@isnad1 id=eq.2h8v.s7.93d9182851de from=translated src=- shape=0c41b61f vocab=c40e1cf6
+-/
 theorem ext_hom {e₁ e₂ : AutEquivOver d H} (h : e₁.hom = e₂.hom) (hb : e₁.base = e₂.base) :
     e₁ = e₂ := by
   refine AutEquivOver.ext h ?_ hb
@@ -524,7 +588,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.ΦEquivOver (d : OEData G p) (H : Su
   map_one' := rfl
   map_mul' _ _ := rfl
 
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h7v.s9.87b09951b78c from=translated src=- shape=3bef3844 vocab=82eb2554
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.ΦEquivOver_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutEquivOver d H) : ΦEquivOver d H e = e.base := rfl
 
@@ -548,7 +614,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autEquivOverOfObject (
   autEquivOverOfMultiplier d H x.right (fun s => x.left (x.right.1.hom.obj s))
 
 /-- The lift attached to `(γ, A)` is `Λ_γ Ã`, Lean order `Ã ⋙ ΛFun d γ` with
-    `Λ_γ(s,g) = (s, γ(s) g)` (paper `prop:nocleavage` proof).-/
+    `Λ_γ(s,g) = (s, γ(s) g)` (paper `prop:nocleavage` proof).
+@isnad1 id=eq.0h7v.s8.a4d2c96c4122 from=translated src=- shape=c3f33565 vocab=c2086f29
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverOfObject_hom_eq (d : OEData G p) (H : Subgroup (StrictAut S))
     (x : (S → G) ⋊[objectAction H G] H) :
     (autEquivOverOfObject d H x).hom = liftFunctor d x.right.1.hom ⋙ ΛFun d x.left :=
@@ -580,7 +648,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.semidirectObjectToAutE
     rw [show x.right.1.inv.obj (x.right.1.hom.obj (y.right.1.hom.obj s)) = y.right.1.hom.obj s
       from Functor.congr_obj x.right.1.hom_inv_id _]) rfl
 
-/-- (paper `prop:nocleavage`: the expression `Λ_γ Ã` is unique)-/
+/-- (paper `prop:nocleavage`: the expression `Λ_γ Ã` is unique)
+@isnad1 id=eq.0h7v.s7.c09e64b047c6 from=translated src=- shape=b7b9e159 vocab=22d3f54f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverToObject_ofObject (d : OEData G p) (H : Subgroup (StrictAut S))
     (x : (S → G) ⋊[objectAction H G] H) :
     autEquivOverToObject d H (autEquivOverOfObject d H x) = x := by
@@ -591,7 +661,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverToObject_ofObject (d
   show x.left (x.right.1.hom.obj (x.right.1.inv.obj t)) = x.left t
   rw [show x.right.1.hom.obj (x.right.1.inv.obj t) = t from Functor.congr_obj x.right.1.inv_hom_id t]
 
-/-- (paper `prop:nocleavage`: every unrestricted lift has an expression `Λ_γ Ã`)-/
+/-- (paper `prop:nocleavage`: every unrestricted lift has an expression `Λ_γ Ã`)
+@isnad1 id=eq.0h7v.s6.4bd36332f989 from=translated src=- shape=88ae15df vocab=5e5cede4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverOfObject_toObject (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutEquivOver d H) : autEquivOverOfObject d H (autEquivOverToObject d H e) = e := by
   refine AutEquivOver.ext_hom ?_ rfl
@@ -613,11 +685,15 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv (
       autEquivOverToObject_ofObject d H, autEquivOverOfObject_toObject d H⟩
     (semidirectObjectToAutEquivOver d H).map_mul).symm
 
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h7v.s9.03e3aa5a9525 from=translated src=- shape=812a022e vocab=a22107eb
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutEquivOver d H) : autEquivOverMulEquiv d H e = autEquivOverToObject d H e := rfl
 
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h7v.s10.2cc669373579 from=translated src=- shape=73b69b2b vocab=4a2aaea2
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_symm_apply (d : OEData G p) (H : Subgroup (StrictAut S))
     (x : (S → G) ⋊[objectAction H G] H) :
     (autEquivOverMulEquiv d H).symm x = autEquivOverOfObject d H x := rfl
@@ -645,7 +721,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.kerΦEquivOverMulEquiv
     rw [map_mul, SemidirectProduct.mul_left, hr, map_one, MulAut.one_apply]
 
 /-- An unrestricted lift preserves the chosen transport iff its first coordinate `γ` is constant
-    along every base arrow (paper `prop:nocleavage` vs `prop:components`).-/
+    along every base arrow (paper `prop:nocleavage` vs `prop:components`).
+@isnad1 id=iff.0h7v.s10.cba35c6c1ca3 from=translated src=- shape=8278c315 vocab=1d881ea4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOver_preservesCleavage_iff (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutEquivOver d H) :
     PreservesCleavage d e.hom e.base.1.hom ↔
@@ -671,17 +749,23 @@ def _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverToAutEquivOver (d : OEDat
   map_one' := rfl
   map_mul' _ _ := rfl
 
-/-- (paper `prop:nocleavage`)-/
+/-- (paper `prop:nocleavage`)
+@isnad1 id=eq.0h7v.s9.0808947f6896 from=translated src=- shape=af86adfd vocab=165c1e21
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverToAutEquivOver_hom (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutBoxGOver d H) : (autBoxGOverToAutEquivOver d H e).hom = e.1.hom := rfl
 
-/-- The forgetful map is injective (paper `prop:nocleavage`).-/
+/-- The forgetful map is injective (paper `prop:nocleavage`).
+@isnad1 id=injectiv.0h6v.s8.de086d648ab5 from=translated src=- shape=89565198 vocab=02c2f925
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverToAutEquivOver_injective (d : OEData G p) (H : Subgroup (StrictAut S)) :
     Function.Injective (autBoxGOverToAutEquivOver d H) :=
   fun _ _ h => autBoxGOver_ext (congrArg AutEquivOver.hom h)
 
 /-- The image of the forgetful map is exactly the transport-preserving unrestricted lifts (paper
-    `prop:nocleavage` vs `def:lifts`).-/
+    `prop:nocleavage` vs `def:lifts`).
+@isnad1 id=iff.0h7v.s8.67b34d9d9115 from=translated src=- shape=c19198fc vocab=58e7517b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.mem_range_autBoxGOverToAutEquivOver_iff (d : OEData G p) (H : Subgroup (StrictAut S))
     (e : AutEquivOver d H) :
     e ∈ (autBoxGOverToAutEquivOver d H).range ↔ PreservesCleavage d e.hom e.base.1.hom := by
@@ -692,7 +776,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.mem_range_autBoxGOverToAutEquivO
     exact ⟨⟨⟨e.hom, e.inv, e.hom_inv_id, e.inv_hom_id, e.base.1, e.equiv, pc⟩, e.base.2⟩, rfl⟩
 
 /-- The second factor of paper `prop:nocleavage` is realized by the canonical lifts, functor form:
-    `(1, A) ↦ Ã = liftFunctor d A`.-/
+    `(1, A) ↦ Ã = liftFunctor d A`.
+@isnad1 id=eq.0h7v.s11.b75897addf1e from=translated src=- shape=34a1d1a6 vocab=3bbd852f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_symm_inr_hom (d : OEData G p) (H : Subgroup (StrictAut S)) (A : H) :
     ((autEquivOverMulEquiv d H).symm (SemidirectProduct.inr A)).hom = liftFunctor d A.1.hom := by
   rw [autEquivOverMulEquiv_symm_apply, autEquivOverOfObject_hom_eq]
@@ -700,7 +786,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_symm_inr_ho
   rw [ΛFun_one, Functor.comp_id]; rfl
 
 /-- `(1, A)` goes to the canonical lift `liftHomOver d H A`, viewed as an unrestricted lift
-    (paper `prop:nocleavage` proof).-/
+    (paper `prop:nocleavage` proof).
+@isnad1 id=eq.0h7v.s11.c8a9865b51f2 from=translated src=- shape=c0cfe930 vocab=8d4c12fd
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_symm_inr (d : OEData G p) (H : Subgroup (StrictAut S)) (A : H) :
     (autEquivOverMulEquiv d H).symm (SemidirectProduct.inr A)
       = autBoxGOverToAutEquivOver d H (liftHomOver d H A) :=
@@ -708,7 +796,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOverMulEquiv_symm_inr (d
 
 /-- Paper `prop:nocleavage` proof, "conjugation by `Ã` gives the displayed action", at group level
     in `AutEquivOver d H`: `Ã Λ_δ Ã⁻¹ = Λ_{δ ∘ A⁻¹}` for every object function `δ : S → G`, with
-    `δ ∘ A⁻¹ = objectAction H G A δ`.  The functor-level form is `liftFunctor_conj_ΛFun`.-/
+    `δ ∘ A⁻¹ = objectAction H G A δ`.  The functor-level form is `liftFunctor_conj_ΛFun`.
+@isnad1 id=eq.0h8v.s12.5ea94b3cdea1 from=translated src=- shape=d2cd735a vocab=71fb6781
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.autEquivOver_conj_object (d : OEData G p) (H : Subgroup (StrictAut S)) (A : H)
     (δ : S → G) :
     autBoxGOverToAutEquivOver d H (liftHomOver d H A)
@@ -732,7 +822,9 @@ namespace ComponentsSwapExample
 def discSwapFunctor : Discrete (Fin 2) ⥤ Discrete (Fin 2) :=
   Discrete.functor (fun i => Discrete.mk i.rev)
 
-/-- The swap is an involution (remark after paper `prop:components`).-/
+/-- The swap is an involution (remark after paper `prop:components`).
+@isnad1 id=eq.0h0v.s6.3d1013a138c6 from=translated src=- shape=2685b024 vocab=856667f4
+-/
 theorem discSwapFunctor_comp_self :
     discSwapFunctor ⋙ discSwapFunctor = 𝟭 (Discrete (Fin 2)) :=
   CategoryTheory.Functor.ext (fun i => by
@@ -744,7 +836,9 @@ def discSwapAut : StrictAut (Discrete (Fin 2)) :=
   ⟨discSwapFunctor, discSwapFunctor, discSwapFunctor_comp_self, discSwapFunctor_comp_self⟩
 
 /-- The discrete base on `Fin 2` has two distinct components (remark after paper
-    `prop:components`: a disconnected base).-/
+    `prop:components`: a disconnected base).
+@isnad1 id=ne.0h0v.s6.15872918dbf5 from=translated src=- shape=c200e7b0 vocab=2df74d79
+-/
 theorem compMk_zero_ne_one :
     compMk (Discrete.mk (0 : Fin 2)) ≠ compMk (Discrete.mk (1 : Fin 2)) := by
   intro h
@@ -753,12 +847,16 @@ theorem compMk_zero_ne_one :
   exact absurd this (by decide)
 
 /-- The swap sends the component of `0` to the component of `1` (remark after paper
-    `prop:components`).-/
+    `prop:components`).
+@isnad1 id=eq.0h0v.s7.9e66f0d8cb0a from=translated src=- shape=7ad16ae1 vocab=d2cf904d
+-/
 theorem componentPerm_discSwapAut_zero :
     componentPerm discSwapAut (compMk (Discrete.mk 0)) = compMk (Discrete.mk 1) := rfl
 
 /-- The swap permutes the components nontrivially (remark after paper `prop:components`: "`H` may
-    permute its components").-/
+    permute its components").
+@isnad1 id=ne.0h0v.s6.88542e655277 from=translated src=- shape=892fd5ac vocab=2593b6d4
+-/
 theorem componentPerm_discSwapAut_ne_one : componentPerm discSwapAut ≠ 1 := fun h =>
   compMk_zero_ne_one ((congrArg (fun π => π (compMk (Discrete.mk 0))) h).symm.trans
     componentPerm_discSwapAut_zero)

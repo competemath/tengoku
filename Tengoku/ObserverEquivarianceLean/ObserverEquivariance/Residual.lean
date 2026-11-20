@@ -61,7 +61,9 @@ variable {C : Type*} [Category C]
     `prop:residual`).  This DUPLICATES `LocalLifts.actFunctor_comp_p` of
     `ObserverEquivariance.LocalLifts` (same statement, same one-line proof from
     `MinSpec.actFunctor_comp_p`); it has a separate name because this module does not
-    import `LocalLifts`, and the two declarations would clash if it did.-/
+    import `LocalLifts`, and the two declarations would clash if it did.
+@isnad1 id=eq.0h6v.s5.16552ce5b3dd from=translated src=- shape=bed83558 vocab=8d9e53de
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.actFunctor_covers_id (d : OEData G p) (h : G) : d.actFunctor h ⋙ p = p := by
   rw [← d.toMinSpec_actFunctor]; exact d.toMinSpec.actFunctor_comp_p h
 
@@ -76,26 +78,34 @@ namespace Tengoku.ObserverEquivarianceLean.OEData.IsInvariant
 variable {d : OEData G p} {F : O ⥤ C}
 
 /-- The object part of invariance with clean endpoints: `F(x · h) = F(x)`
-    (paper `prop:residual`).-/
+    (paper `prop:residual`).
+@isnad1 id=eq.1h9v.s6.2ddbcd9fb342 from=translated src=- shape=c7a0b4f3 vocab=648b58a5
+-/
 theorem obj_eq (hF : OEData.IsInvariant d F) (h : G) (x : O) : F.obj (d.act x h) = F.obj x :=
   Functor.congr_obj (hF h) x
 
 /-- The arrow part of invariance with clean endpoints: `F(R_h f) = F(f)` up to the object casts
-    (paper `prop:residual`).-/
+    (paper `prop:residual`).
+@isnad1 id=eq.1h11v.s8.ce63a4211d8f from=translated src=- shape=c701ea0d vocab=6f53a047
+-/
 theorem map_eq (hF : OEData.IsInvariant d F) (h : G) {x y : O} (f : x ⟶ y) :
     F.map ((d.actFunctor h).map f)
       = eqToHom (hF.obj_eq h x) ≫ F.map f ≫ eqToHom (hF.obj_eq h y).symm :=
   Functor.congr_hom (hF h) f
 
 /-- An invariant functor takes the same value on an object and on its basepoint:
-    `F(b_{p x}) = F(x)`, since `x = b_{p x} · g_x` (paper `prop:residual`, "`F(s, a) = E(s)`").-/
+    `F(b_{p x}) = F(x)`, since `x = b_{p x} · g_x` (paper `prop:residual`, "`F(s, a) = E(s)`").
+@isnad1 id=eq.1h8v.s6.2121d33ec4fb from=translated src=- shape=43034664 vocab=520b42fa
+-/
 theorem obj_base_eq (hF : OEData.IsInvariant d F) (x : O) : F.obj (d.base (p.obj x)) = F.obj x :=
   (hF.obj_eq (d.coord x) (d.base (p.obj x))).symm.trans (congrArg F.obj (d.base_coord x))
 
 end Tengoku.ObserverEquivarianceLean.OEData.IsInvariant
 
 /-- A strictly factored functor `p ⋙ L` is invariant, since `R_h ⋙ p = p`
-    (paper `prop:residual` and `cor:invariant-calibration`).-/
+    (paper `prop:residual` and `cor:invariant-calibration`).
+@isnad1 id=isinvari.0h7v.s5.1b8966c0cc10 from=translated src=- shape=275b92d6 vocab=1f098fe2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isInvariant_comp_p (d : OEData G p) (L : S ⥤ C) : OEData.IsInvariant d (p ⋙ L) := fun h => by
   rw [← Functor.assoc, d.actFunctor_covers_id]
 
@@ -110,13 +120,17 @@ def _root_.Tengoku.ObserverEquivarianceLean.IsInvariantNatTrans (d : OEData G p)
     α.app (d.act x h) = eqToHom (hF.obj_eq h x) ≫ α.app x ≫ eqToHom (hF'.obj_eq h x).symm
 
 /-- The identity transformation of an invariant functor is invariant (paragraph after paper
-    `prop:residual`).-/
+    `prop:residual`).
+@isnad1 id=isinvari.1h7v.s6.410b39698963 from=translated src=- shape=d676db73 vocab=ab5d9d5f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isInvariantNatTrans_id (d : OEData G p) {F : O ⥤ C} (hF : OEData.IsInvariant d F) :
     IsInvariantNatTrans d hF hF (𝟙 F) := by
   intro h x
   simp
 
-/-- Invariant transformations compose (paragraph after paper `prop:residual`).-/
+/-- Invariant transformations compose (paragraph after paper `prop:residual`).
+@isnad1 id=isinvari.5h11v.s7.2fc8a4120388 from=translated src=- shape=1b497ccf vocab=7567bcda
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isInvariantNatTrans_comp (d : OEData G p) {F F' F'' : O ⥤ C} {hF : OEData.IsInvariant d F}
     {hF' : OEData.IsInvariant d F'} {hF'' : OEData.IsInvariant d F''} {α : F ⟶ F'} {β : F' ⟶ F''}
     (hα : IsInvariantNatTrans d hF hF' α) (hβ : IsInvariantNatTrans d hF' hF'' β) :
@@ -140,12 +154,16 @@ def pairArr {s t : S} (u : s ⟶ t) (a b : G) : ((s, Pair.mk a) : S × Pair G) �
   (u, PUnit.unit)
 
 omit [Group G] in
-/-- Composition of the arrows `(u : a → b)` (helper for paper `prop:residual`).-/
+/-- Composition of the arrows `(u : a → b)` (helper for paper `prop:residual`).
+@isnad1 id=eq.0h10v.s7.50c89d8a7bcc from=translated src=- shape=9dc05f25 vocab=16d9ebf1
+-/
 theorem pairArr_comp {s t r : S} (u : s ⟶ t) (v : t ⟶ r) (a b c : G) :
     pairArr u a b ≫ pairArr v b c = pairArr (u ≫ v) a c := rfl
 
 omit [Group G] in
-/-- Identities among the arrows `(u : a → b)` (helper for paper `prop:residual`).-/
+/-- Identities among the arrows `(u : a → b)` (helper for paper `prop:residual`).
+@isnad1 id=eq.0h4v.s6.c6cad4f47c22 from=translated src=- shape=ea28cc6a vocab=b62be5ef
+-/
 theorem pairArr_id (s : S) (a : G) : pairArr (𝟙 s) a a = 𝟙 ((s, Pair.mk a) : S × Pair G) := rfl
 
 omit [Group G] in
@@ -162,7 +180,9 @@ namespace Tengoku.ObserverEquivarianceLean.IsProductInvariant
 variable {F : S × Pair G ⥤ C}
 
 /-- An invariant functor on the product takes the same value on all objects of one fiber:
-    `F(s, a) = F(s, b)` (paper `prop:residual`).-/
+    `F(s, a) = F(s, b)` (paper `prop:residual`).
+@isnad1 id=eq.1h7v.s6.96ba53a4f693 from=translated src=- shape=a70900bf vocab=617b95b2
+-/
 theorem obj_eq (hF : IsProductInvariant F) (s : S) (a b : G) :
     F.obj (s, Pair.mk a) = F.obj (s, Pair.mk b) := by
   have h : F.obj (s, Pair.mk (a * (a⁻¹ * b))) = F.obj (s, Pair.mk a) :=
@@ -171,7 +191,9 @@ theorem obj_eq (hF : IsProductInvariant F) (s : S) (a b : G) :
   exact h.symm
 
 /-- Invariance on the arrows `(u : a → b)`: `F(u : a h → b h) = F(u : a → b)` up to the casts
-    (paper `prop:residual`).-/
+    (paper `prop:residual`).
+@isnad1 id=eq.1h10v.s9.f49135da1e3f from=translated src=- shape=0dd789dd vocab=022af2aa
+-/
 theorem map_pairArr_mul (hF : IsProductInvariant F) {s t : S} (u : s ⟶ t) (a b h : G) :
     F.map (pairArr u (a * h) (b * h))
       = eqToHom (hF.obj_eq s (a * h) a) ≫ F.map (pairArr u a b)
@@ -179,7 +201,9 @@ theorem map_pairArr_mul (hF : IsProductInvariant F) {s t : S} (u : s ⟶ t) (a b
   Functor.congr_hom (hF h) (pairArr u a b)
 
 /-- Translated form of `map_pairArr_mul` with arbitrary target coordinates (paper
-    `prop:residual`).-/
+    `prop:residual`).
+@isnad1 id=eq.3h12v.s9.65fcedf76cec from=translated src=- shape=ef860c2b vocab=022af2aa
+-/
 theorem map_pairArr_of_mul (hF : IsProductInvariant F) {s t : S} (u : s ⟶ t) {a b a' b' : G}
     (h : G) (ha : a * h = a') (hb : b * h = b') :
     F.map (pairArr u a' b')
@@ -188,7 +212,9 @@ theorem map_pairArr_of_mul (hF : IsProductInvariant F) {s t : S} (u : s ⟶ t) {
   exact hF.map_pairArr_mul u a b h
 
 /-- The value of an invariant functor on `(u : a → b)` only depends on `u` and `b a⁻¹`:
-    "`F(u : a → b) = F(u : 1 → b a⁻¹)`" (paper `prop:residual`, proof).-/
+    "`F(u : a → b) = F(u : 1 → b a⁻¹)`" (paper `prop:residual`, proof).
+@isnad1 id=eq.2h11v.s9.ab764df96c4b from=translated src=- shape=826f115b vocab=11f872bd
+-/
 theorem map_pairArr_eq (hF : IsProductInvariant F) {s t : S} (u : s ⟶ t) {a b a' b' : G}
     (hab : b * a⁻¹ = b' * a'⁻¹) :
     F.map (pairArr u a' b')
@@ -214,11 +240,15 @@ def _root_.Tengoku.ObserverEquivarianceLean.residualQ : S × Pair G ⥤ S × Sin
     show Z.2.pt * X.2.pt⁻¹ = (Z.2.pt * Y.2.pt⁻¹) * (Y.2.pt * X.2.pt⁻¹)
     group
 
-/-- `Q(s, a) = (s, *)` (paper `prop:residual`).-/
+/-- `Q(s, a) = (s, *)` (paper `prop:residual`).
+@isnad1 id=eq.0h3v.s6.23f7e727e579 from=translated src=- shape=46b1d16f vocab=af0c9532
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.residualQ_obj (X : S × Pair G) : (residualQ S G).obj X = (X.1, SingleObj.star G) :=
   rfl
 
-/-- `Q(u : a → b) = (u, b a⁻¹)` (paper `prop:residual`).-/
+/-- `Q(u : a → b) = (u, b a⁻¹)` (paper `prop:residual`).
+@isnad1 id=eq.0h5v.s8.580ac3a1071a from=translated src=- shape=dfdfcbaa vocab=101f921d
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.residualQ_map {X Y : S × Pair G} (f : X ⟶ Y) :
     (residualQ S G).map f = ((f.1, (Y.2.pt * X.2.pt⁻¹ : G)) : (X.1, SingleObj.star G) ⟶ (Y.1, SingleObj.star G)) :=
   rfl
@@ -249,16 +279,22 @@ def factor (hF : IsProductInvariant F) : S × SingleObj G ⥤ C where
         (b' := (g.2 : G) * (f.2 : G)) (by group)]
     simp
 
-/-- `Ecal(s, *) = F(s, 1)` (paper `prop:residual`, proof).-/
+/-- `Ecal(s, *) = F(s, 1)` (paper `prop:residual`, proof).
+@isnad1 id=eq.1h5v.s6.29d065aafa86 from=translated src=- shape=cf6d1842 vocab=d9fb9519
+-/
 @[simp] theorem factor_obj (hF : IsProductInvariant F) (X : S × SingleObj G) :
     hF.factor.obj X = F.obj (X.1, Pair.mk 1) := rfl
 
-/-- `Ecal(u, r) = F(u : 1 → r)` up to the cast (paper `prop:residual`, proof).-/
+/-- `Ecal(u, r) = F(u : 1 → r)` up to the cast (paper `prop:residual`, proof).
+@isnad1 id=eq.1h7v.s10.1fd1584661cc from=translated src=- shape=275ceaf4 vocab=ff34223b
+-/
 theorem factor_map (hF : IsProductInvariant F) {X Y : S × SingleObj G} (f : X ⟶ Y) :
     hF.factor.map f = F.map (pairArr f.1 1 (f.2 : G)) ≫ eqToHom (hF.obj_eq Y.1 (f.2 : G) 1) :=
   rfl
 
-/-- The factorization `Q ⋙ Ecal = F` (paper `prop:residual`: "`F = Ecal Q`").-/
+/-- The factorization `Q ⋙ Ecal = F` (paper `prop:residual`: "`F = Ecal Q`").
+@isnad1 id=eq.1h4v.s6.61fbd99a8a62 from=translated src=- shape=7d958cdc vocab=4b455d5f
+-/
 theorem residualQ_comp_factor (hF : IsProductInvariant F) : residualQ S G ⋙ hF.factor = F := by
   fapply CategoryTheory.Functor.ext
   · intro X; exact hF.obj_eq X.1 1 X.2.pt
@@ -273,7 +309,9 @@ theorem residualQ_comp_factor (hF : IsProductInvariant F) : residualQ S G ⋙ hF
 end Tengoku.ObserverEquivarianceLean.IsProductInvariant
 
 /-- `Q` is an epimorphism of categories: functors agreeing after `Q` are equal (uniqueness part
-    of paper `prop:residual`; every arrow `(u, r)` is `Q(u : 1 → r)`).-/
+    of paper `prop:residual`; every arrow `(u, r)` is `Q(u : 1 → r)`).
+@isnad1 id=eq.1h5v.s7.af3531304d41 from=translated src=- shape=201d8c3a vocab=a5c23407
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.residualQ_cancel {E₁ E₂ : S × SingleObj G ⥤ C}
     (h : residualQ S G ⋙ E₁ = residualQ S G ⋙ E₂) : E₁ = E₂ := by
   fapply CategoryTheory.Functor.ext
@@ -306,7 +344,9 @@ structure _root_.Tengoku.ObserverEquivarianceLean.ResidualData (S : Type*) [Cate
   natural : ∀ {s t : S} (u : s ⟶ t) (r : G), (σ s r).hom ≫ E.map u = E.map u ≫ (σ t r).hom
 
 /-- Extensionality for residual data: equal functors and equal actions up to the transport
-    along the functor equality (helper for paper `prop:residual`).-/
+    along the functor equality (helper for paper `prop:residual`).
+@isnad1 id=eq.2h5v.s9.9c962ef8ba5d from=translated src=- shape=b967826f vocab=24781fc0
+-/
 theorem Tengoku.ObserverEquivarianceLean.ResidualData.ext' {D D' : ResidualData S C G} (hE : D.E = D'.E)
     (hσ : ∀ (s : S) (r : G), (D.σ s r).hom
       = eqToHom (Functor.congr_obj hE s) ≫ (D'.σ s r).hom ≫ eqToHom (Functor.congr_obj hE s).symm) :
@@ -374,16 +414,22 @@ def ofFunctor (Ecal : S × SingleObj G ⥤ C) : ResidualData S C G where
     show (1 : G) * r = r * 1
     rw [one_mul, mul_one]
 
-/-- Recovery of `E` on objects: `E(s) = Ecal(s, *)` (paper `prop:residual`, proof).-/
+/-- Recovery of `E` on objects: `E(s) = Ecal(s, *)` (paper `prop:residual`, proof).
+@isnad1 id=eq.0h5v.s6.6022622e23f5 from=translated src=- shape=b7e98940 vocab=c9976928
+-/
 @[simp] theorem ofFunctor_E_obj (Ecal : S × SingleObj G ⥤ C) (s : S) :
     (ofFunctor Ecal).E.obj s = Ecal.obj (s, SingleObj.star G) := rfl
 
-/-- Recovery of `E` on arrows: `E(u) = Ecal(u, 1)` (paper `prop:residual`, proof).-/
+/-- Recovery of `E` on arrows: `E(u) = Ecal(u, 1)` (paper `prop:residual`, proof).
+@isnad1 id=eq.0h7v.s7.d98b07dcd769 from=translated src=- shape=2cb03b74 vocab=5374279a
+-/
 @[simp] theorem ofFunctor_E_map (Ecal : S × SingleObj G ⥤ C) {s t : S} (u : s ⟶ t) :
     (ofFunctor Ecal).E.map u
       = Ecal.map ((u, (1 : G)) : (s, SingleObj.star G) ⟶ (t, SingleObj.star G)) := rfl
 
-/-- Recovery of `σ`: `σ_s(r) = Ecal(𝟙_s, r)` (paper `prop:residual`, proof).-/
+/-- Recovery of `σ`: `σ_s(r) = Ecal(𝟙_s, r)` (paper `prop:residual`, proof).
+@isnad1 id=eq.0h6v.s9.c5b4a3ff244c from=translated src=- shape=b8fa3c1a vocab=0ce85df3
+-/
 @[simp] theorem ofFunctor_σ_hom (Ecal : S × SingleObj G ⥤ C) (s : S) (r : G) :
     ((ofFunctor Ecal).σ s r).hom
       = Ecal.map ((𝟙 s, r) : (s, SingleObj.star G) ⟶ (s, SingleObj.star G)) := rfl
@@ -402,13 +448,17 @@ end Tengoku.ObserverEquivarianceLean.IsProductInvariant
 
 /-- Transport of invariance to the product model: if `F` is invariant then so is `M ⋙ F`, since
     `P_h ⋙ M = M ⋙ R_h` (paper `prop:residual` "in the product coordinates of
-    `thm:normalform`").-/
+    `thm:normalform`").
+@isnad1 id=isproduc.1h7v.s6.da87359c16d3 from=translated src=- shape=3afc8dd4 vocab=d8539fc3
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.IsInvariant.isProductInvariant {d : OEData G p} {F : O ⥤ C}
     (hF : d.IsInvariant F) : IsProductInvariant (normalFormFrom d ⋙ F) := fun h => by
   rw [← Functor.assoc, normalFormFrom_equivariant, Functor.assoc, hF h]
 
 /-- Converse transport: if `M ⋙ F` is invariant on the product model then `F` is invariant,
-    since `R_h ⋙ N = N ⋙ P_h` and `N ⋙ M = 𝟭` (paper `prop:residual`, `thm:normalform`).-/
+    since `R_h ⋙ N = N ⋙ P_h` and `N ⋙ M = 𝟭` (paper `prop:residual`, `thm:normalform`).
+@isnad1 id=isinvari.1h7v.s6.a2262f07310f from=translated src=- shape=219dabbe vocab=d8539fc3
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.isInvariant_of_isProductInvariant {d : OEData G p} {F : O ⥤ C}
     (hP : IsProductInvariant (normalFormFrom d ⋙ F)) : d.IsInvariant F := fun h => by
   have hNM : F = normalFormTo d ⋙ normalFormFrom d ⋙ F := by
@@ -416,7 +466,9 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.isInvariant_of_isProductInvarian
   conv_lhs => rw [hNM]
   rw [← Functor.assoc, normalForm_equivariant, Functor.assoc, hP h, ← hNM]
 
-/-- Invariance on `O` is invariance of `M ⋙ F` on the product model (paper `prop:residual`).-/
+/-- Invariance on `O` is invariance of `M ⋙ F` on the product model (paper `prop:residual`).
+@isnad1 id=iff.0h7v.s6.8f80a40aa11a from=translated src=- shape=b0efd051 vocab=d8539fc3
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.isInvariant_iff_isProductInvariant (d : OEData G p) (F : O ⥤ C) :
     d.IsInvariant F ↔ IsProductInvariant (normalFormFrom d ⋙ F) :=
   ⟨fun hF => hF.isProductInvariant, OEData.isInvariant_of_isProductInvariant⟩
@@ -433,22 +485,30 @@ namespace Tengoku.ObserverEquivarianceLean.OEData
 
 variable (d : OEData G p)
 
-/-- `v_{s,r}` lies over an identity (paper `prop:residual`).-/
+/-- `v_{s,r}` lies over an identity (paper `prop:residual`).
+@isnad1 id=eq.0h7v.s7.40d7d3f0d908 from=translated src=- shape=a0e368f2 vocab=964dfc6e
+-/
 theorem p_map_vertArr (s : S) (r : G) :
     p.map (d.vertArr s r)
       = eqToHom ((d.p_base s).trans ((d.p_act (d.base s) r).trans (d.p_base s)).symm) := by
   simp only [vertArr, MinSpec.p_map_liftOver, Category.id_comp, eqToHom_trans]
 
-/-- `v_{s,r}` is vertical (paper `prop:residual`, `def:vertical-trivial`).-/
+/-- `v_{s,r}` is vertical (paper `prop:residual`, `def:vertical-trivial`).
+@isnad1 id=isvertic.0h7v.s6.946d3e53d117 from=translated src=- shape=fe2c5d3f vocab=8b937033
+-/
 theorem vertArr_isVertical (s : S) (r : G) : IsVertical p (d.vertArr s r) :=
   ⟨_, d.p_map_vertArr s r⟩
 
-/-- `v_{s,1}` is the identity up to the cast `b_s · 1 = b_s` (paper `prop:residual`).-/
+/-- `v_{s,1}` is the identity up to the cast `b_s · 1 = b_s` (paper `prop:residual`).
+@isnad1 id=eq.0h6v.s7.2e769230fff9 from=translated src=- shape=8ea9eefa vocab=fa0775c6
+-/
 theorem vertArr_one (s : S) : d.vertArr s 1 = eqToHom (d.act_one (d.base s)).symm :=
   d.toMinSpec.hom_ext (by rw [p_map_vertArr, eqToHom_map])
 
 /-- `v_{s, r q}` is `v_{s,q}` followed by the translate `v_{s,r} · q` (paper `prop:residual`,
-    proof: "replace the arrow by its right translate").-/
+    proof: "replace the arrow by its right translate").
+@isnad1 id=eq.0h8v.s9.2fbd8b91a946 from=translated src=- shape=0d988935 vocab=ee176de6
+-/
 theorem vertArr_mul (s : S) (r q : G) :
     d.vertArr s (r * q)
       = d.vertArr s q ≫ d.actHom (d.vertArr s r) q ≫ eqToHom (d.act_mul (d.base s) r q) := by
@@ -470,12 +530,16 @@ noncomputable def residualHom (hF : d.IsInvariant F) (s : S) (r : G) :
     F.obj (d.base s) ⟶ F.obj (d.base s) :=
   F.map (d.vertArr s r) ≫ eqToHom (hF.obj_eq r (d.base s))
 
-/-- `σ_s(1) = id` (paper `prop:residual`).-/
+/-- `σ_s(1) = id` (paper `prop:residual`).
+@isnad1 id=eq.1h8v.s7.0673f9d0298d from=translated src=- shape=89c074f1 vocab=829bb227
+-/
 theorem residualHom_one (hF : d.IsInvariant F) (s : S) : hF.residualHom s 1 = 𝟙 _ := by
   rw [residualHom, d.vertArr_one, eqToHom_map, eqToHom_trans, eqToHom_refl]
 
 /-- The group law `σ_s(r q) = σ_s(r) σ_s(q)` in operator order, i.e. `σ_s(q) ≫ σ_s(r)`
-    (paper `prop:residual`, proof: invariance and functoriality).-/
+    (paper `prop:residual`, proof: invariance and functoriality).
+@isnad1 id=eq.1h10v.s8.fd62d9ec425f from=translated src=- shape=53edfc91 vocab=41f62879
+-/
 theorem residualHom_mul (hF : d.IsInvariant F) (s : S) (r q : G) :
     hF.residualHom s (r * q) = hF.residualHom s q ≫ hF.residualHom s r := by
   have hmap : F.map (d.actHom (d.vertArr s r) q)
@@ -501,13 +565,17 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.residualAction (d : OE
   map_one' := Aut.ext (hF.residualHom_one s)
   map_mul' r q := Aut.ext (hF.residualHom_mul s r q)
 
-/-- `σ_s(r) = F(v_{s,r}) ≫ cast` (paper `prop:residual`, `cor:invariant-calibration`, proof).-/
+/-- `σ_s(r) = F(v_{s,r}) ≫ cast` (paper `prop:residual`, `cor:invariant-calibration`, proof).
+@isnad1 id=eq.1h9v.s9.468a5728dca8 from=translated src=- shape=ab4be5ce vocab=b56653b2
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.residualAction_hom (d : OEData G p) (F : O ⥤ C) (hF : d.IsInvariant F) (s : S)
     (r : G) :
     (residualAction d F hF s r).hom = F.map (d.vertArr s r) ≫ eqToHom (hF.obj_eq r (d.base s)) :=
   rfl
 
-/-- `σ_s(r)⁻¹ = σ_s(r⁻¹) = F(v_{s,r⁻¹}) ≫ cast` (paper `prop:residual`).-/
+/-- `σ_s(r)⁻¹ = σ_s(r⁻¹) = F(v_{s,r⁻¹}) ≫ cast` (paper `prop:residual`).
+@isnad1 id=eq.1h9v.s9.6879eb2f6610 from=translated src=- shape=3d6cd21a vocab=4b1e6cbb
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.residualAction_inv (d : OEData G p) (F : O ⥤ C) (hF : d.IsInvariant F) (s : S)
     (r : G) :
     (residualAction d F hF s r).inv
@@ -515,7 +583,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.residualAction (d : OE
   rfl
 
 /-- A residual action is trivial iff every `F(v_{s,r}) ≫ cast` is an identity (paper
-    `prop:residual`, `cor:invariant-calibration` (iii)).-/
+    `prop:residual`, `cor:invariant-calibration` (iii)).
+@isnad1 id=iff.1h8v.s10.b6f86a33564c from=translated src=- shape=631ff96d vocab=2c24b325
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.residualAction_eq_one_iff (d : OEData G p) (F : O ⥤ C) (hF : d.IsInvariant F) (s : S) :
     residualAction d F hF s = 1
       ↔ ∀ r : G, F.map (d.vertArr s r) ≫ eqToHom (hF.obj_eq r (d.base s)) = 𝟙 _ := by
@@ -529,7 +599,9 @@ namespace Residual
 
 /-- An arrow `(f, c)` of `S × BG` whose base component is a cast of an identity and whose group
     component is `r` is `Ecal(𝟙_s, r)` up to the object casts (helper for paper
-    `prop:residual`).-/
+    `prop:residual`).
+@isnad1 id=eq.4h10v.s9.e970610fd321 from=translated src=- shape=fbc04c9c vocab=288b3d7e
+-/
 theorem prodBG_map_eq_of_eq (E : S × SingleObj G ⥤ C) {s₁ s₂ s : S} (h₁ : s₁ = s) (h₂ : s₂ = s)
     (f : s₁ ⟶ s₂) (hf : f = eqToHom (h₁.trans h₂.symm)) (c r : G) (hc : c = r) :
     E.map ((f, c) : (s₁, SingleObj.star G) ⟶ (s₂, SingleObj.star G))
@@ -543,7 +615,9 @@ end Residual
 
 /-- Vertical triviality of an invariant functor is triviality of all its residual actions
     (paper `prop:residual`, last paragraph of the proof: the vertical arrow `b_s · a ⟶ b_s · b` is
-    the translate of `v_{s, b a⁻¹}`, and invariance moves it back).-/
+    the translate of `v_{s, b a⁻¹}`, and invariance moves it back).
+@isnad1 id=iff.1h7v.s9.824d116abc21 from=translated src=- shape=181557c0 vocab=be732557
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.IsInvariant.verticallyTrivial_iff_residualAction_trivial {d : OEData G p}
     {F : O ⥤ C} (hF : d.IsInvariant F) :
     VerticallyTrivial p F ↔ ∀ s, residualAction d F hF s = 1 := by
@@ -584,7 +658,9 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.IsInvariant.verticallyTrivial_if
     simp
 
 /-- Paper `prop:residual`, last assertion, on `O`: a strictly invariant `F : O ⥤ C` factors
-    strictly through `p` iff every residual action `σ_s` is trivial (via `thm:descent`).-/
+    strictly through `p` iff every residual action `σ_s` is trivial (via `thm:descent`).
+@isnad1 id=iff.1h7v.s9.31faedc833bc from=translated src=- shape=72be5d1a vocab=d48f0a07
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariant_descends_iff_residual_trivial (d : OEData G p) (F : O ⥤ C)
     (hF : d.IsInvariant F) :
     (∃ E : S ⥤ C, p ⋙ E = F) ↔ ∀ s, residualAction d F hF s = 1 := by
@@ -600,7 +676,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.invariant_descends_iff_residual_
 /-- Every arrow `f : x ⟶ y` of `O` is the right translate by `g_x` of the vertical arrow
     `v_{s, g_y g_x⁻¹}`, followed by the right translate by `g_y` of the section arrow `B(p f)`,
     up to the object casts `x = b_{p x} · g_x`, `y = b_{p y} · g_y` (helper for paper
-    `prop:residual`, formula `F(u : a → b) = E(u) σ_s(b a⁻¹)`).-/
+    `prop:residual`, formula `F(u : a → b) = E(u) σ_s(b a⁻¹)`).
+@isnad1 id=eq.1h8v.s10.e54f3179a80f from=translated src=- shape=13557992 vocab=544e9a78
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.hom_eq_actHom_vertArr_actHom_sectionFunctor (d : OEData G p) {x y : O}
     (f : x ⟶ y)
     (e : d.act (d.act (d.base (p.obj x)) (d.coord y * (d.coord x)⁻¹)) (d.coord x)
@@ -622,13 +700,17 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.hom_eq_actHom_vertArr_actHom_sec
 /-! ## The residual action of `ex:invariant` (remark after `cor:invariant-calibration`) -/
 
 /-- The functor of paper `ex:invariant` is strictly invariant in the sense of
-    `OEData.IsInvariant` (paper `ex:invariant`).-/
+    `OEData.IsInvariant` (paper `ex:invariant`).
+@isnad1 id=isinvari.0h1v.s5.0aee271b6b41 from=translated src=- shape=f68e9e17 vocab=f25e2d83
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_isInvariant (G : Type*) [Group G] :
     (witness G).IsInvariant (invariantPairFunctor G) :=
   invariantPairFunctor_invariant G
 
 /-- The residual action of `ex:invariant` sends `r` to `r` itself, read as an arrow of `BG`
-    (remark after paper `cor:invariant-calibration`).-/
+    (remark after paper `cor:invariant-calibration`).
+@isnad1 id=eq.0h3v.s10.67160286caec from=translated src=- shape=313ae46a vocab=36bced2b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_residualAction_hom (G : Type*) [Group G] (s : Pair PUnit) (r : G) :
     ((residualAction (witness G) (invariantPairFunctor G) (invariantPairFunctor_isInvariant G)
       s r).hom : G) = r := by
@@ -638,7 +720,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_residualAct
 
 /-- The residual action of `ex:invariant` is the identity homomorphism `G → G`, read through the
     identification `G ≃* Aut_{BG}(*)` (remark after paper `cor:invariant-calibration`: "The
-    residual action in Example `ex:invariant` is the identity homomorphism `G → G`").-/
+    residual action in Example `ex:invariant` is the identity homomorphism `G → G`").
+@isnad1 id=eq.0h2v.s9.1c6bf11e0b4d from=translated src=- shape=8a42156d vocab=920178ef
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.invariantPairFunctor_residualAction (G : Type*) [Group G] (s : Pair PUnit) :
     residualAction (witness G) (invariantPairFunctor G) (invariantPairFunctor_isInvariant G) s
       = (Units.toAut G).toMonoidHom.comp (toUnits (G := G)).toMonoidHom :=

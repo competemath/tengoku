@@ -117,42 +117,60 @@ def rebase (d : OEData G p) (c : G) : OEData G p where
   chi_comp := d.chi_comp
   p_faithful := d.p_faithful
 
-/-- The rebased datum has the same right action (paper `prop:basechange`: fixed action).-/
+/-- The rebased datum has the same right action (paper `prop:basechange`: fixed action).
+@isnad1 id=eq.0h6v.s6.9d831a7c7b52 from=translated src=- shape=eb4b8371 vocab=ae167ac0
+-/
 @[simp] theorem rebase_act (d : OEData G p) (c : G) : (d.rebase c).act = d.act := rfl
 
-/-- The rebased datum has the same morphism action (paper `prop:basechange`).-/
+/-- The rebased datum has the same morphism action (paper `prop:basechange`).
+@isnad1 id=eq.0h10v.s7.bb979a9eff98 from=translated src=- shape=26fe146b vocab=f31eb18c
+-/
 @[simp] theorem rebase_actHom (d : OEData G p) (c : G) {x y : O} (f : x ⟶ y) (g : G) :
     (d.rebase c).actHom f g = d.actHom f g := rfl
 
 /-- The rebased datum has the same transport on objects (paper `prop:basechange`: fixed
-    cleavage).-/
+    cleavage).
+@isnad1 id=eq.1h10v.s6.71026829c9f3 from=translated src=- shape=7ff239d0 vocab=32722aef
+-/
 theorem rebase_reind (d : OEData G p) (c : G) {s t : S} (u : s ⟶ t) (y : O)
     (hy : p.obj y = t) : (d.rebase c).reind u y hy = d.reind u y hy := rfl
 
-/-- The rebased datum has the same chosen transport arrows `χ` (paper `prop:basechange`).-/
+/-- The rebased datum has the same chosen transport arrows `χ` (paper `prop:basechange`).
+@isnad1 id=eq.1h10v.s7.a15eaa7617f9 from=translated src=- shape=a9e7a539 vocab=3ea0670e
+-/
 theorem rebase_chi (d : OEData G p) (c : G) {s t : S} (u : s ⟶ t) (y : O)
     (hy : p.obj y = t) : (d.rebase c).chi u y hy = d.chi u y hy := rfl
 
-/-- The basepoints of the rebased datum are `b'_s = b_s · c` (paper `prop:basechange`).-/
+/-- The basepoints of the rebased datum are `b'_s = b_s · c` (paper `prop:basechange`).
+@isnad1 id=eq.0h7v.s6.95c5f8bd6645 from=translated src=- shape=b4cb8d53 vocab=7df3dbc9
+-/
 @[simp] theorem rebase_base (d : OEData G p) (c : G) (s : S) :
     (d.rebase c).base s = d.act (d.base s) c := rfl
 
-/-- The coordinates of the rebased datum are `g'_x = c⁻¹ g_x` (paper `prop:basechange`).-/
+/-- The coordinates of the rebased datum are `g'_x = c⁻¹ g_x` (paper `prop:basechange`).
+@isnad1 id=eq.0h7v.s6.c5527f566ad1 from=translated src=- shape=db645936 vocab=8149694c
+-/
 @[simp] theorem rebase_coord (d : OEData G p) (c : G) (x : O) :
     (d.rebase c).coord x = c⁻¹ * d.coord x := rfl
 
 /-- The vertical arrows of the rebased datum (paper `prop:basechange`):
-    `ℓ'_{a,x} = ℓ_{cac⁻¹,x}` followed by the object identity.-/
+    `ℓ'_{a,x} = ℓ_{cac⁻¹,x}` followed by the object identity.
+@isnad1 id=ex.0h8v.s10.d0f1d93b9864 from=translated src=- shape=173cd5fe vocab=ce01c0bc
+-/
 theorem rebase_ltrans (d : OEData G p) (c : G) (a : G) (x : O) :
     ∃ h, (d.rebase c).ltrans a x = d.ltrans (c * a * c⁻¹) x ≫ eqToHom h := ⟨_, rfl⟩
 
-/-- Rebasing by `1` gives back the datum (paper `prop:basechange`, `c = 1`).-/
+/-- Rebasing by `1` gives back the datum (paper `prop:basechange`, `c = 1`).
+@isnad1 id=eq.0h5v.s5.a220989e67a4 from=translated src=- shape=870eb705 vocab=88cc0650
+-/
 theorem rebase_one (d : OEData G p) : d.rebase 1 = d :=
   OEData.ext_of_data _ _ rfl (funext fun s => d.act_one _)
     (funext fun x => by simp only [rebase_coord, inv_one, one_mul]) (fun _ _ _ => rfl)
 
 /-- Rebasing twice composes the constants (paper `prop:basechange`):
-    `(d.rebase c).rebase c' = d.rebase (c * c')`.-/
+    `(d.rebase c).rebase c' = d.rebase (c * c')`.
+@isnad1 id=eq.0h7v.s6.bd78214d8e98 from=translated src=- shape=bc511cc5 vocab=f53e9879
+-/
 theorem rebase_rebase (d : OEData G p) (c c' : G) :
     (d.rebase c).rebase c' = d.rebase (c * c') :=
   OEData.ext_of_data _ _ rfl (funext fun s => d.act_mul _ _ _)
@@ -164,7 +182,9 @@ end Tengoku.ObserverEquivarianceLean.OEData
 
 /-- Pointwise torsor description of another parallel choice of basepoints (paper
     `prop:basechange`, proof: "the torsor property gives `b'_s = b_s · c(s)`"), with
-    `c(s) = g_{b'_s}`.  No hypothesis relating `d'` to `d` is needed.-/
+    `c(s) = g_{b'_s}`.  No hypothesis relating `d'` to `d` is needed.
+@isnad1 id=eq.0h7v.s7.53a31021ef88 from=translated src=- shape=55048dc2 vocab=394d1f03
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_pointwise (d d' : OEData G p) (s : S) :
     d'.base s = d.act (d.base s) (d.coord (d'.base s)) := by
   have h := d.base_coord (d'.base s)
@@ -173,7 +193,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_pointwise (d
 
 /-- Local constancy of the pointwise factor (paper `prop:basechange`, proof: "applying
     transport along `u : s → t` and using equivariance gives `c(s) = c(t)`"): for data with
-    the same transport, `g_{b'_s} = g_{b'_t}` along every base arrow `u : s ⟶ t`.-/
+    the same transport, `g_{b'_s} = g_{b'_t}` along every base arrow `u : s ⟶ t`.
+@isnad1 id=eq.1h9v.s7.411cbdf8eff0 from=translated src=- shape=dc7f7723 vocab=8f37afd3
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_locally_const (d d' : OEData G p)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
       d'.reind u y hy = d.reind u y hy)
@@ -183,7 +205,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_locally_cons
   rw [← key, d.coord_base]
 
 /-- Uniqueness of the constant (paper `prop:basechange`): on a nonempty base, `b'_s = b_s · c`
-    for all `s` determines `c`.-/
+    for all `s` determines `c`.
+@isnad1 id=eq.2h8v.s7.3c8e9b63c179 from=translated src=- shape=ce1a2e76 vocab=9c91bb50
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_const_unique [Nonempty S] (d d' : OEData G p) {c c' : G}
     (hc : ∀ s, d'.base s = d.act (d.base s) c) (hc' : ∀ s, d'.base s = d.act (d.base s) c') :
     c = c' := by
@@ -194,7 +218,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_const_unique
     "Any other parallel choice of basepoints is `b'_s = b_s · c` for one constant `c ∈ G`"):
     on a connected base, any family `b' : S → O` with `p(b'_s) = s` that is parallel for the
     transport of `d` (`u^* b'_t = b'_s` for every `u : s ⟶ t`) is `b'_s = b_s · c` for a UNIQUE
-    `c ∈ G`.  No second normalized datum is assumed.-/
+    `c ∈ G`.  No second normalized datum is assumed.
+@isnad1 id=existsun.2h6v.s7.d4d18cf8fd38 from=translated src=- shape=469d2658 vocab=dc9610b8
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_family_eq_translate [IsConnected S] (d : OEData G p) (b' : S → O)
     (hp : ∀ s, p.obj (b' s) = s)
     (hpar : ∀ {s t : S} (u : s ⟶ t), d.reind u (b' t) (hp t) = b' s) :
@@ -213,7 +239,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_family_eq_translate [Is
 
 /-- Changing parallel basepoints, bare-family form (paper `prop:basechange`, first sentence):
     on a connected base, every parallel family `b'` for the transport of `d` is the basepoint
-    field of the rebased datum `d.rebase c` for a UNIQUE `c ∈ G`.-/
+    field of the rebased datum `d.rebase c` for a UNIQUE `c ∈ G`.
+@isnad1 id=existsun.2h6v.s7.8baf24f4582b from=translated src=- shape=b4409b1e vocab=a0939ba7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_family_eq_rebase_base [IsConnected S] (d : OEData G p) (b' : S → O)
     (hp : ∀ s, p.obj (b' s) = s)
     (hpar : ∀ {s t : S} (u : s ⟶ t), d.reind u (b' t) (hp t) = b' s) :
@@ -225,7 +253,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_family_eq_rebase_base [
     base, any other normalized datum `d'` with the same right action and the same transport has
     basepoints `b'_s = b_s · c` for ONE constant `c ∈ G`, and this `c` is unique.
     (The action hypothesis records that the right action is kept fixed; the proof only needs the
-    transport hypothesis, hence the binder name `_hact`.)-/
+    transport hypothesis, hence the binder name `_hact`.)
+@isnad1 id=existsun.2h6v.s7.cd5fd666e9b1 from=translated src=- shape=ac3f07b3 vocab=dc9610b8
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_eq_rebase [IsConnected S] (d d' : OEData G p)
     (_hact : ∀ x g, d'.act x g = d.act x g)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
@@ -242,7 +272,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.parallel_basepoints_eq_rebase [I
     rw [h, d.coord_base]
 
 /-- The coordinate formula `g'_x = c⁻¹ g_x` (paper `prop:basechange`): for the same action
-    and `b'_s = b_s · c`.-/
+    and `b'_s = b_s · c`.
+@isnad1 id=eq.2h8v.s7.1cd0202457d1 from=translated src=- shape=e6425e52 vocab=0519750c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.coord_eq_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (x : O) :
     d'.coord x = c⁻¹ * d.coord x := by
@@ -264,7 +296,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.eq_rebase_of_base (d d' : OEData
 
 /-- Changing parallel basepoints, datum form (paper `prop:basechange`): on a connected base,
     every normalized datum `d'` with the same action and transport as `d` is `d.rebase c` for a
-    unique `c ∈ G`.-/
+    unique `c ∈ G`.
+@isnad1 id=existsun.2h6v.s7.b7b4b09005ca from=translated src=- shape=792ad2c3 vocab=4bc8d8ec
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.exists_unique_eq_rebase [IsConnected S] (d d' : OEData G p)
     (hact : ∀ x g, d'.act x g = d.act x g)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
@@ -278,7 +312,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.exists_unique_eq_rebase [IsConne
 /-! ## 3. Functor formulas (no connectedness needed) -/
 
 /-- Normalized translations after a change of basepoints (paper `prop:basechange`):
-    `Λ'_a = Λ_{cac⁻¹}` as functors `O ⥤ O`.-/
+    `Λ'_a = Λ_{cac⁻¹}` as functors `O ⥤ O`.
+@isnad1 id=eq.2h8v.s7.fba646dcaa17 from=translated src=- shape=c0542a7a vocab=195528b4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_eq_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (a : G) :
     Λ d' a = Λ d (c * a * c⁻¹) := by
@@ -291,14 +327,18 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_eq_of_base (d d' : OEData G p
 
 /-- Normalized translations after a change of basepoints, conjugation form (paper
     `prop:basechange`): `Λ'_a = Λ_c Λ_a Λ_c⁻¹` (operator order), i.e.
-    `Λ d' a = Λ d c⁻¹ ⋙ Λ d a ⋙ Λ d c`.-/
+    `Λ d' a = Λ d c⁻¹ ⋙ Λ d a ⋙ Λ d c`.
+@isnad1 id=eq.2h8v.s7.95aadc5f36eb from=translated src=- shape=fd5e3cea vocab=a0202880
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_eq_conj_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (a : G) :
     Λ d' a = Λ d c⁻¹ ⋙ Λ d a ⋙ Λ d c := by
   rw [Λ_eq_of_base d d' hact hc, Λ_comp, Λ_comp]
 
 /-- Canonical lifts are unchanged by a change of parallel basepoints (paper
-    `prop:basechange`): `Ã' = Ã` as functors, for every `A : S ⥤ S`.-/
+    `prop:basechange`): `Ã' = Ã` as functors, for every `A : S ⥤ S`.
+@isnad1 id=eq.2h8v.s7.c0dec634948f from=translated src=- shape=3fe49535 vocab=d8f8f096
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctor_eq_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (A : S ⥤ S) :
     liftFunctor d' A = liftFunctor d A := by
@@ -309,7 +349,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctor_eq_of_base (d d' : O
   rw [hact, hc, d.act_mul, coord_eq_of_base d d' hact hc, mul_inv_cancel_left]
 
 /-- The displayed object identity in the proof of `prop:basechange`:
-    `b'_{A(p x)} · θ_A(g'_x) = b_{A(p x)} · (c θ_A(c⁻¹) θ_A(g_x))`.-/
+    `b'_{A(p x)} · θ_A(g'_x) = b_{A(p x)} · (c θ_A(c⁻¹) θ_A(g_x))`.
+@isnad1 id=eq.2h10v.s9.262ccb1ac8af from=translated src=- shape=6c402a91 vocab=ebd59b8a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_obj_eq_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (A : S ⥤ S) (θ : MulAut G) (x : O) :
     d'.act (d'.base (A.obj (p.obj x))) (θ (d'.coord x))
@@ -318,7 +360,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_obj_eq_of_base (d 
 
 /-- Twisted canonical lifts after a change of basepoints (paper `prop:basechange`):
     `Ã'_θ = Λ_{c θ_A(c⁻¹)} Ã_θ` (operator order), i.e.
-    `liftFunctorθ d' A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹)` as functors.-/
+    `liftFunctorθ d' A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹)` as functors.
+@isnad1 id=eq.2h9v.s8.d48d35f356ea from=translated src=- shape=ce0a113e vocab=d083173f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_eq_of_base (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (A : S ⥤ S) (θ : MulAut G) :
     liftFunctorθ d' A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹) := by
@@ -331,7 +375,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_eq_of_base (d d' :
 
 /-- Twisted canonical lifts after a change of basepoints, conjugation form (paper
     `prop:basechange`): `Ã'_θ = Λ_c Ã_θ Λ_c⁻¹` (operator order), i.e.
-    `liftFunctorθ d' A θ = Λ d c⁻¹ ⋙ liftFunctorθ d A θ ⋙ Λ d c`.-/
+    `liftFunctorθ d' A θ = Λ d c⁻¹ ⋙ liftFunctorθ d A θ ⋙ Λ d c`.
+@isnad1 id=eq.2h9v.s7.63d8447dae75 from=translated src=- shape=03794811 vocab=924d3213
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_eq_conj_of_base (d d' : OEData G p)
     (hact : ∀ x g, d'.act x g = d.act x g)
     {c : G} (hc : ∀ s, d'.base s = d.act (d.base s) c) (A : S ⥤ S) (θ : MulAut G) :
@@ -340,18 +386,24 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_eq_conj_of_base (d
     Λ_comp]
 
 /-- The rebased translations (paper `prop:basechange` for `d.rebase c`):
-    `Λ (d.rebase c) a = Λ d (c * a * c⁻¹)`.-/
+    `Λ (d.rebase c) a = Λ d (c * a * c⁻¹)`.
+@isnad1 id=eq.0h7v.s6.fc7f183833d4 from=translated src=- shape=0f4c33ce vocab=6f67645f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_rebase (d : OEData G p) (c a : G) : Λ (d.rebase c) a = Λ d (c * a * c⁻¹) :=
   Λ_eq_of_base d (d.rebase c) (fun _ _ => rfl) (fun _ => rfl) a
 
 /-- The rebased canonical lifts (paper `prop:basechange` for `d.rebase c`):
-    `liftFunctor (d.rebase c) A = liftFunctor d A`.-/
+    `liftFunctor (d.rebase c) A = liftFunctor d A`.
+@isnad1 id=eq.0h7v.s6.76bf3c5020e6 from=translated src=- shape=3523841b vocab=71472fae
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctor_rebase (d : OEData G p) (c : G) (A : S ⥤ S) :
     liftFunctor (d.rebase c) A = liftFunctor d A :=
   liftFunctor_eq_of_base d (d.rebase c) (fun _ _ => rfl) (fun _ => rfl) A
 
 /-- The rebased twisted lifts (paper `prop:basechange` for `d.rebase c`):
-    `liftFunctorθ (d.rebase c) A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹)`.-/
+    `liftFunctorθ (d.rebase c) A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹)`.
+@isnad1 id=eq.0h8v.s7.8debc5ef0563 from=translated src=- shape=510eaa12 vocab=bff53af4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_rebase (d : OEData G p) (c : G) (A : S ⥤ S) (θ : MulAut G) :
     liftFunctorθ (d.rebase c) A θ = liftFunctorθ d A θ ⋙ Λ d (c * θ c⁻¹) :=
   liftFunctorθ_eq_of_base d (d.rebase c) (fun _ _ => rfl) (fun _ => rfl) A θ
@@ -359,19 +411,25 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.liftFunctorθ_rebase (d : OEData
 /-! ## 4. The lift conditions do not refer to basepoints or coordinates -/
 
 /-- `G`-equivariance only depends on the right action (paper `sec:normalization`: the group
-    of admissible lifts does not refer to basepoints or coordinates).-/
+    of admissible lifts does not refer to basepoints or coordinates).
+@isnad1 id=iff.1h7v.s6.233bd4fde464 from=translated src=- shape=b79b491a vocab=05c22838
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isGEquivariant_iff_of_act_eq (d d' : OEData G p)
     (hact : ∀ x g, d'.act x g = d.act x g) (F : O ⥤ O) :
     IsGEquivariant d' F ↔ IsGEquivariant d F := by
   simp only [IsGEquivariant, hact]
 
-/-- Twisted equivariance only depends on the right action (paper `sec:normalization`).-/
+/-- Twisted equivariance only depends on the right action (paper `sec:normalization`).
+@isnad1 id=iff.1h8v.s6.59d6e19c78de from=translated src=- shape=efb37b3a vocab=6c61e5e5
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isTwistedEquivariant_iff_of_act_eq (d d' : OEData G p)
     (hact : ∀ x g, d'.act x g = d.act x g) (θ : MulAut G) (F : O ⥤ O) :
     IsTwistedEquivariant d' θ F ↔ IsTwistedEquivariant d θ F := by
   simp only [IsTwistedEquivariant, hact]
 
-/-- Cleavage preservation only depends on the transport (paper `sec:normalization`).-/
+/-- Cleavage preservation only depends on the transport (paper `sec:normalization`).
+@isnad1 id=iff.1h8v.s7.9bd60e6f6343 from=translated src=- shape=8c2a25a2 vocab=9bcef678
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.preservesCleavage_iff_of_reind_eq (d d' : OEData G p)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
       d'.reind u y hy = d.reind u y hy) (F : O ⥤ O) (A : S ⥤ S) :
@@ -417,19 +475,27 @@ variable (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
   (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
     d'.reind u y hy = d.reind u y hy)
 
-/-- `autBoxGCongr` is the identity on `hom` (paper `sec:normalization`).-/
+/-- `autBoxGCongr` is the identity on `hom` (paper `sec:normalization`).
+@isnad1 id=eq.2h7v.s9.9e3d1a2f99bb from=translated src=- shape=326798e7 vocab=e33b23fb
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGCongr_hom (e : AutBoxG d) :
     (autBoxGCongr d d' hact hreind e).hom = e.hom := rfl
 
-/-- `autBoxGCongr` is the identity on `inv` (paper `sec:normalization`).-/
+/-- `autBoxGCongr` is the identity on `inv` (paper `sec:normalization`).
+@isnad1 id=eq.2h7v.s9.b348613819d5 from=translated src=- shape=326798e7 vocab=ecde977a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGCongr_inv (e : AutBoxG d) :
     (autBoxGCongr d d' hact hreind e).inv = e.inv := rfl
 
-/-- `autBoxGCongr` is the identity on `base` (paper `sec:normalization`).-/
+/-- `autBoxGCongr` is the identity on `base` (paper `sec:normalization`).
+@isnad1 id=eq.2h7v.s9.c41bdefd60d8 from=translated src=- shape=282892fa vocab=4b3c5ebb
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGCongr_base (e : AutBoxG d) :
     (autBoxGCongr d d' hact hreind e).base = e.base := rfl
 
-/-- The inverse of `autBoxGCongr` is the identity on `hom` (paper `sec:normalization`).-/
+/-- The inverse of `autBoxGCongr` is the identity on `hom` (paper `sec:normalization`).
+@isnad1 id=eq.2h7v.s9.b893467decd3 from=translated src=- shape=a14ba6a5 vocab=c25749ac
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGCongr_symm_hom (e : AutBoxG d') :
     ((autBoxGCongr d d' hact hreind).symm e).hom = e.hom := rfl
 
@@ -449,7 +515,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverCongr (d d' : OEData G p)
   map_mul' _ _ := rfl
 
 /-- `autBoxGOverCongr` is `autBoxGCongr` on the underlying bundle automorphisms
-    (paper `sec:normalization`).-/
+    (paper `sec:normalization`).
+@isnad1 id=eq.2h8v.s10.0918432b6b2c from=translated src=- shape=76b58215 vocab=4f5cfdd6
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGOverCongr_coe (d d' : OEData G p)
     (hact : ∀ x g, d'.act x g = d.act x g)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
@@ -488,15 +556,21 @@ variable (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
   (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
     d'.reind u y hy = d.reind u y hy) (H : Subgroup (StrictAut S)) (θ : H →* MulAut G)
 
-/-- `autBoxGθOverCongr` is the identity on `hom` (paper `sec:normalization`).-/
+/-- `autBoxGθOverCongr` is the identity on `hom` (paper `sec:normalization`).
+@isnad1 id=eq.2h9v.s10.1412f332705e from=translated src=- shape=7087e918 vocab=7337c44d
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverCongr_hom (e : AutBoxGθOver d H θ) :
     (autBoxGθOverCongr d d' hact hreind H θ e).hom = e.hom := rfl
 
-/-- `autBoxGθOverCongr` is the identity on `inv` (paper `sec:normalization`).-/
+/-- `autBoxGθOverCongr` is the identity on `inv` (paper `sec:normalization`).
+@isnad1 id=eq.2h9v.s10.18c8eb8952da from=translated src=- shape=7087e918 vocab=16542f1f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverCongr_inv (e : AutBoxGθOver d H θ) :
     (autBoxGθOverCongr d d' hact hreind H θ e).inv = e.inv := rfl
 
-/-- `autBoxGθOverCongr` is the identity on `base` (paper `sec:normalization`).-/
+/-- `autBoxGθOverCongr` is the identity on `base` (paper `sec:normalization`).
+@isnad1 id=eq.2h9v.s10.ba8c5fec8530 from=translated src=- shape=1c5ee237 vocab=1c43ab86
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.autBoxGθOverCongr_base (e : AutBoxGθOver d H θ) :
     (autBoxGθOverCongr d d' hact hreind H θ e).base = e.base := rfl
 
@@ -513,7 +587,9 @@ variable (d d' : OEData G p) (hact : ∀ x g, d'.act x g = d.act x g)
 
 include hact hc in
 /-- Inverse translations after a change of basepoints (used for the `inv` fields):
-    `Λ'_{a⁻¹} = Λ_{(cac⁻¹)⁻¹}` (paper `prop:basechange`).-/
+    `Λ'_{a⁻¹} = Λ_{(cac⁻¹)⁻¹}` (paper `prop:basechange`).
+@isnad1 id=eq.2h8v.s7.aeebfc86a181 from=translated src=- shape=a13a67bf vocab=195528b4
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.Λ_inv_eq_of_base (a : G) : Λ d' a⁻¹ = Λ d (c * a * c⁻¹)⁻¹ := by
   rw [Λ_eq_of_base d d' hact hc]
   congr 1
@@ -539,7 +615,9 @@ end Identifications
     This is a local duplicate: the canonical statement is
     `OECocycle.coboundary_mul` in `Cocycles`, and `baseChange_twistFactor_eq_coboundary` (module
     `BaseChangeCocycle`) shows `c θ_A(c⁻¹) = OECocycle.coboundary θ c A`; downstream uses should
-    cite `OECocycle.coboundary_mul`.-/
+    cite `OECocycle.coboundary_mul`.
+@isnad1 id=eq.0h6v.s10.2a5eab4d5a01 from=translated src=- shape=4c4dab56 vocab=64dd4a73
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.baseChange_twistFactor_mul {H : Type*} [Group H] (θ : H →* MulAut G) (c : G)
     (A B : H) : c * θ (A * B) c⁻¹ = (c * θ A c⁻¹) * θ A (c * θ B c⁻¹) := by
   simp only [map_mul, MulAut.mul_apply, map_inv]

@@ -54,7 +54,9 @@ variable {G H : Type*} [Group G] [Group H] (θ : H →* MulAut G)
 def coboundary (c : G) (A : H) : G := c * θ A c⁻¹
 
 /-- The coboundary identity `z_c(AB) = z_c(A) θ_A(z_c(B))`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h6v.s8.69404000f9ef from=translated src=- shape=a985dc33 vocab=b68b6751
+-/
 theorem coboundary_mul (c : G) (A B : H) :
     coboundary θ c (A * B) = coboundary θ c A * θ A (coboundary θ c B) := by
   simp only [coboundary, map_mul, MulAut.mul_apply, map_inv, mul_assoc, inv_mul_cancel_left]
@@ -64,17 +66,23 @@ theorem coboundary_mul (c : G) (A B : H) :
 def IsCocycle (z : H → G) : Prop := ∀ A B : H, z (A * B) = z A * θ A (z B)
 
 variable {θ} in
-/-- A cocycle is normalized: `z 1 = 1` (paper `sec:normalization`, cocycle paragraph).-/
+/-- A cocycle is normalized: `z 1 = 1` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.1h4v.s7.1960ffae4c94 from=translated src=- shape=e5dd2795 vocab=56616483
+-/
 theorem IsCocycle.apply_one {z : H → G} (hz : IsCocycle θ z) : z 1 = 1 := by
   have h := hz 1 1
   simp only [mul_one, map_one, MulAut.one_apply] at h
   simpa using h
 
-/-- Every coboundary `z_c` is a cocycle (paper `sec:normalization`, cocycle paragraph).-/
+/-- Every coboundary `z_c` is a cocycle (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iscocycl.0h4v.s6.72279dc9be87 from=translated src=- shape=f8b1a268 vocab=878c0f63
+-/
 theorem isCocycle_coboundary (c : G) : IsCocycle θ (coboundary θ c) :=
   fun A B => coboundary_mul θ c A B
 
-/-- The trivial cocycle `A ↦ 1` (paper `sec:normalization`, cocycle paragraph).-/
+/-- The trivial cocycle `A ↦ 1` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iscocycl.0h3v.s6.f82604ef4f38 from=translated src=- shape=452ada6e vocab=56616483
+-/
 theorem isCocycle_one : IsCocycle θ (fun _ : H => (1 : G)) := by
   intro A B
   simp
@@ -123,19 +131,25 @@ def cocycleSectionEquiv :
     · exact (σ.2 A).symm
 
 /-- The section attached to a cocycle is `A ↦ (z(A), A)`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h5v.s10.a89cb9bfd4b5 from=translated src=- shape=2797b36c vocab=3cd33384
+-/
 @[simp]
 theorem cocycleSectionEquiv_apply (z : Cocycle θ) (A : H) :
     (cocycleSectionEquiv θ z).1 A = ⟨z.1 A, A⟩ := rfl
 
 /-- The cocycle attached to a section `σ` is `A ↦ (σ A).left`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h5v.s11.66201cb9113c from=translated src=- shape=04e6e0a2 vocab=5bdfdc46
+-/
 @[simp]
 theorem cocycleSectionEquiv_symm_apply (σ : SemidirectSection θ) (A : H) :
     ((cocycleSectionEquiv θ).symm σ).1 A = (σ.1 A).left := rfl
 
 /-- The trivial cocycle corresponds to the canonical section `inr`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h3v.s10.5022b57098ce from=translated src=- shape=c4a2430f vocab=27827e51
+-/
 theorem cocycleSectionEquiv_one :
     cocycleSectionEquiv θ ⟨fun _ => 1, isCocycle_one θ⟩ = ⟨inr, fun _ => rfl⟩ := by
   apply Subtype.ext
@@ -146,13 +160,17 @@ theorem cocycleSectionEquiv_one :
 /-! ### Conjugation by the kernel -/
 
 /-- Conjugation by `(c, 1) = inl c` in `G ⋊[θ] H`: `(c,1)(g,A)(c,1)⁻¹ = (c g θ_A(c⁻¹), A)`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h6v.s9.5be19fbb6dc4 from=translated src=- shape=ea203dee vocab=85fb7dd7
+-/
 theorem conj_inl_mk (c g : G) (A : H) :
     (inl c * ⟨g, A⟩ * (inl c)⁻¹ : G ⋊[θ] H) = ⟨c * g * θ A c⁻¹, A⟩ := by
   ext <;> simp
 
 /-- Conjugating the section value `(z(A), A)` by `(c, 1)` gives `(c z(A) θ_A(c⁻¹), A)`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h6v.s9.88c8b940c810 from=translated src=- shape=156904a7 vocab=85fb7dd7
+-/
 theorem conj_inl_section (z : H → G) (c : G) (A : H) :
     (inl c * ⟨z A, A⟩ * (inl c)⁻¹ : G ⋊[θ] H) = ⟨c * z A * θ A c⁻¹, A⟩ :=
   conj_inl_mk θ c (z A) A
@@ -163,12 +181,16 @@ theorem conj_inl_section (z : H → G) (c : G) (A : H) :
 (paper `sec:normalization`, cocycle paragraph).-/
 def Cohomologous (z z' : H → G) : Prop := ∃ c : G, ∀ A : H, z' A = c * z A * θ A c⁻¹
 
-/-- Reflexivity of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).-/
+/-- Reflexivity of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=cohomolo.0h4v.s6.728f7d688d48 from=translated src=- shape=2616ab12 vocab=467e3faf
+-/
 theorem Cohomologous.refl (z : H → G) : Cohomologous θ z z :=
   ⟨1, fun A => by simp⟩
 
 variable {θ} in
-/-- Symmetry of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).-/
+/-- Symmetry of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=cohomolo.1h5v.s7.00bfcdc7033e from=translated src=- shape=befe0b07 vocab=467e3faf
+-/
 theorem Cohomologous.symm {z z' : H → G} (h : Cohomologous θ z z') : Cohomologous θ z' z := by
   obtain ⟨c, hc⟩ := h
   refine ⟨c⁻¹, fun A => ?_⟩
@@ -177,7 +199,9 @@ theorem Cohomologous.symm {z z' : H → G} (h : Cohomologous θ z z') : Cohomolo
   group
 
 variable {θ} in
-/-- Transitivity of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).-/
+/-- Transitivity of `Cohomologous` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=cohomolo.2h6v.s7.faece7730e67 from=translated src=- shape=ded6b3b7 vocab=467e3faf
+-/
 theorem Cohomologous.trans {z z' z'' : H → G} (h : Cohomologous θ z z')
     (h' : Cohomologous θ z' z'') : Cohomologous θ z z'' := by
   obtain ⟨c, hc⟩ := h
@@ -187,13 +211,17 @@ theorem Cohomologous.trans {z z' z'' : H → G} (h : Cohomologous θ z z')
   simp only [map_inv, map_mul, mul_inv_rev]
   group
 
-/-- `Cohomologous θ` is an equivalence relation (paper `sec:normalization`, cocycle paragraph).-/
+/-- `Cohomologous θ` is an equivalence relation (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=equivale.0h3v.s6.e89b837602b6 from=translated src=- shape=a05c5f58 vocab=bc63b1c5
+-/
 theorem cohomologous_equivalence : Equivalence (Cohomologous θ) :=
   ⟨Cohomologous.refl θ, Cohomologous.symm, Cohomologous.trans⟩
 
 variable {θ} in
 /-- Being a cocycle is invariant under the cohomology relation
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iscocycl.2h5v.s7.8fe3c6cbef3a from=translated src=- shape=8dbb40c3 vocab=009dea61
+-/
 theorem IsCocycle.of_cohomologous {z z' : H → G} (hz : IsCocycle θ z)
     (h : Cohomologous θ z z') : IsCocycle θ z' := by
   obtain ⟨c, hc⟩ := h
@@ -232,30 +260,40 @@ instance : Inhabited (H1 θ) := ⟨H1.trivialClass θ⟩
 def H1.toPointed : Pointed := ⟨H1 θ, H1.trivialClass θ⟩
 
 /-- Every cohomology class is the class of a cocycle
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=surjecti.0h3v.s6.6b2b95e1b929 from=translated src=- shape=32f7bda3 vocab=b4d8a8eb
+-/
 theorem H1.mk_surjective : Function.Surjective (H1.mk θ) :=
   Quotient.mk_surjective
 
 /-- Two cocycles have the same class iff they are cohomologous
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iff.0h5v.s7.0bdcc021bcb1 from=translated src=- shape=0a9ed733 vocab=eff38b00
+-/
 theorem H1.mk_eq_mk_iff (z z' : Cocycle θ) :
     H1.mk θ z = H1.mk θ z' ↔ Cohomologous θ z.1 z'.1 :=
   Quotient.eq (r := cohomologousSetoid θ)
 
 /-- The coboundary `z_c` is cohomologous to the trivial cocycle
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=cohomolo.0h4v.s7.8550c1ad6f0d from=translated src=- shape=fe531c85 vocab=23d35c56
+-/
 theorem cohomologous_one_coboundary (c : G) :
     Cohomologous θ (fun _ => 1) (coboundary θ c) :=
   ⟨c, fun A => by simp [coboundary]⟩
 
 /-- The coboundary `z_c` represents the distinguished trivial class of `H¹(H,G)`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h4v.s7.0e53cd131fea from=translated src=- shape=f4cb6b18 vocab=498b8f40
+-/
 theorem H1.mk_coboundary (c : G) :
     H1.mk θ ⟨coboundary θ c, isCocycle_coboundary θ c⟩ = H1.trivialClass θ :=
   ((H1.mk_eq_mk_iff θ _ _).2 (cohomologous_one_coboundary θ c)).symm
 
 /-- A cocycle represents the trivial class iff it is a coboundary
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iff.0h4v.s7.5243daa4e263 from=translated src=- shape=281f2f9c vocab=40d524f5
+-/
 theorem H1.mk_eq_trivialClass_iff (z : Cocycle θ) :
     H1.mk θ z = H1.trivialClass θ ↔ ∃ c : G, z.1 = coboundary θ c := by
   unfold H1.trivialClass
@@ -282,7 +320,9 @@ def SectionConj (σ σ' : SemidirectSection θ) : Prop :=
   ∃ c : G, ∀ A : H, σ'.1 A = inl c * σ.1 A * (inl c)⁻¹
 
 /-- `SectionConj` is conjugation by an element of the kernel `rightHom.ker = inl.range`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iff.0h5v.s9.e4b82e2f36c4 from=translated src=- shape=54381e59 vocab=1718ca70
+-/
 theorem sectionConj_iff_exists_ker (σ σ' : SemidirectSection θ) :
     SectionConj θ σ σ' ↔
       ∃ k ∈ (rightHom : G ⋊[θ] H →* H).ker, ∀ A : H, σ'.1 A = k * σ.1 A * k⁻¹ := by
@@ -294,7 +334,9 @@ theorem sectionConj_iff_exists_ker (σ σ' : SemidirectSection θ) :
     exact ⟨c, hk⟩
 
 /-- The cohomology relation on cocycles is precisely conjugation by `(c, 1)` of the associated
-sections (paper `sec:normalization`, cocycle paragraph).-/
+sections (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iff.0h5v.s11.8861c2026f6d from=translated src=- shape=ec7ee522 vocab=c9f8da54
+-/
 theorem cohomologous_iff_sectionConj (z z' : Cocycle θ) :
     Cohomologous θ z.1 z'.1 ↔
       SectionConj θ (cocycleSectionEquiv θ z) (cocycleSectionEquiv θ z') := by
@@ -328,13 +370,17 @@ def H1EquivSectionClasses : H1 θ ≃ Quotient (sectionConjSetoid θ) :=
   Quotient.congr (cocycleSectionEquiv θ) (cohomologous_iff_sectionConj θ)
 
 /-- `H1EquivSectionClasses` sends the class of a cocycle to the class of its section
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h4v.s10.a2d5b529806d from=translated src=- shape=8f0fb796 vocab=3ffc3ace
+-/
 theorem H1EquivSectionClasses_mk (z : Cocycle θ) :
     H1EquivSectionClasses θ (H1.mk θ z) =
       Quotient.mk (sectionConjSetoid θ) (cocycleSectionEquiv θ z) := rfl
 
 /-- `H1EquivSectionClasses` preserves basepoints: the trivial class goes to the class of the
-canonical section `inr` (paper `sec:normalization`, cocycle paragraph).-/
+canonical section `inr` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h3v.s8.91a350d49749 from=translated src=- shape=66769f6b vocab=1008eb2e
+-/
 theorem H1EquivSectionClasses_trivialClass :
     H1EquivSectionClasses θ (H1.trivialClass θ) =
       Quotient.mk (sectionConjSetoid θ) ⟨inr, fun _ => rfl⟩ := by
@@ -343,7 +389,9 @@ theorem H1EquivSectionClasses_trivialClass :
 /-! ### Complements of the kernel -/
 
 /-- The image of a section is a complement of the kernel `inl.range = rightHom.ker`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iscomple.0h4v.s8.540a768d90fa from=translated src=- shape=621882ea vocab=1ec4833c
+-/
 theorem section_range_isComplement (σ : SemidirectSection θ) :
     Subgroup.IsComplement' (inl : G →* G ⋊[θ] H).range σ.1.range := by
   rw [Subgroup.isComplement'_def, Subgroup.isComplement_iff_existsUnique]
@@ -367,7 +415,9 @@ abbrev KernelComplement :=
   {K : Subgroup (G ⋊[θ] H) // Subgroup.IsComplement' (inl : G →* G ⋊[θ] H).range K}
 
 /-- A complement of the kernel contains exactly one element over each `A : H`
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=existsun.0h5v.s8.c64b9bc06824 from=translated src=- shape=de1ed1de vocab=fef9d9a8
+-/
 theorem KernelComplement.existsUnique (K : KernelComplement θ) (A : H) :
     ∃! k : G ⋊[θ] H, k ∈ K.1 ∧ k.right = A := by
   obtain ⟨⟨⟨n, hn⟩, ⟨k, hk⟩⟩, hnk, -⟩ := K.2.existsUnique (inr A)
@@ -393,11 +443,15 @@ theorem KernelComplement.existsUnique (K : KernelComplement θ) (A : H) :
 noncomputable def complementElt (K : KernelComplement θ) (A : H) : G ⋊[θ] H :=
   (KernelComplement.existsUnique θ K A).exists.choose
 
-/-- `complementElt K A ∈ K` (paper `sec:normalization`, cocycle paragraph).-/
+/-- `complementElt K A ∈ K` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=mem.0h5v.s7.d9f6d868b3ff from=translated src=- shape=086d97f5 vocab=d1465a9a
+-/
 theorem complementElt_mem (K : KernelComplement θ) (A : H) : complementElt θ K A ∈ K.1 :=
   (KernelComplement.existsUnique θ K A).exists.choose_spec.1
 
-/-- `complementElt K A` lies over `A` (paper `sec:normalization`, cocycle paragraph).-/
+/-- `complementElt K A` lies over `A` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h5v.s7.fbe52ba854ab from=translated src=- shape=e893fffb vocab=a8ca29a6
+-/
 theorem complementElt_right (K : KernelComplement θ) (A : H) : (complementElt θ K A).right = A :=
   (KernelComplement.existsUnique θ K A).exists.choose_spec.2
 
@@ -438,7 +492,9 @@ noncomputable def sectionComplementEquiv : SemidirectSection θ ≃ KernelComple
       exact MonoidHom.mem_range.2 ⟨k.right, (eq_complementElt θ K hk rfl).symm⟩
 
 /-- `sectionComplementEquiv` sends a section to its image
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h4v.s9.ee29a13f28a3 from=translated src=- shape=f07c5943 vocab=e2df571d
+-/
 @[simp]
 theorem sectionComplementEquiv_apply (σ : SemidirectSection θ) :
     (sectionComplementEquiv θ σ).1 = σ.1.range := rfl
@@ -449,7 +505,9 @@ def ComplementConj (K K' : KernelComplement θ) : Prop :=
   ∃ c : G, K'.1 = K.1.map (MulAut.conj (inl c : G ⋊[θ] H)).toMonoidHom
 
 /-- Sections are conjugate by the kernel iff their images are
-(paper `sec:normalization`, cocycle paragraph).-/
+(paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=iff.0h5v.s8.9f38e484f734 from=translated src=- shape=9c9953aa vocab=2a895e68
+-/
 theorem sectionConj_iff_complementConj (σ σ' : SemidirectSection θ) :
     SectionConj θ σ σ' ↔
       ComplementConj θ (sectionComplementEquiv θ σ) (sectionComplementEquiv θ σ') := by
@@ -494,7 +552,9 @@ noncomputable def H1EquivComplementClasses : H1 θ ≃ Quotient (complementConjS
     (Quotient.congr (sectionComplementEquiv θ) (sectionConj_iff_complementConj θ))
 
 /-- `H1EquivComplementClasses` sends the class of `z` to the class of the complement
-`{(z(A), A)}` (paper `sec:normalization`, cocycle paragraph).-/
+`{(z(A), A)}` (paper `sec:normalization`, cocycle paragraph).
+@isnad1 id=eq.0h4v.s10.7e1e573a7309 from=translated src=- shape=eb1d48d8 vocab=a3f4aa67
+-/
 theorem H1EquivComplementClasses_mk (z : Cocycle θ) :
     H1EquivComplementClasses θ (H1.mk θ z) =
       Quotient.mk (complementConjSetoid θ)
@@ -502,7 +562,9 @@ theorem H1EquivComplementClasses_mk (z : Cocycle θ) :
 
 /-- `H1EquivComplementClasses` preserves basepoints: the trivial class goes to the class of the
 canonical complement `(inr : H →* G ⋊[θ] H).range` (paper `sec:normalization`, cocycle
-paragraph).-/
+paragraph).
+@isnad1 id=eq.0h3v.s8.87d967e47e13 from=translated src=- shape=dedeb49c vocab=0fb457a5
+-/
 theorem H1EquivComplementClasses_trivialClass :
     H1EquivComplementClasses θ (H1.trivialClass θ) =
       Quotient.mk (complementConjSetoid θ)

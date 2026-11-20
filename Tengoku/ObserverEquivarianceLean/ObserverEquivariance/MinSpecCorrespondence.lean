@@ -44,7 +44,9 @@ variable {p : O ⥤ S}
 namespace Tengoku.ObserverEquivarianceLean.OEData
 
 /-- The basepoint has coordinate one, `g_{b_s} = 1` (paper `lem:coordinates`, first identity;
-    from (N1)–(N2)).-/
+    from (N1)–(N2)).
+@isnad1 id=eq.0h6v.s6.b4a4ae6a5ed5 from=translated src=- shape=59bdb187 vocab=5ba5908b
+-/
 theorem coord_base_eq_one (d : OEData G p) (s : S) : d.coord (d.base s) = 1 := by
   have h := d.coord_base s 1
   rwa [d.act_one] at h
@@ -52,7 +54,9 @@ theorem coord_base_eq_one (d : OEData G p) (s : S) : d.coord (d.base s) = 1 := b
 /-- Paper `lem:coordinates`, all four identities and freeness, for normalized data:
     `g_{b_s} = 1`, `g_{x·h} = g_x h`, `u*y = b_s · g_y`, `g_{u*y} = g_y`, and the action on each
     object fiber is free.  Freeness is proved from the coordinate identity `g_{x·h} = g_x h`
-    (taking coordinates), NOT read off the redundant structure field `act_free`.-/
+    (taking coordinates), NOT read off the redundant structure field `act_free`.
+@isnad1 id=and.0h5v.s8.d3bef54c736f from=translated src=- shape=e680b5c8 vocab=ac95fc21
+-/
 theorem coordinate_identities (d : OEData G p) :
     (∀ s, d.coord (d.base s) = 1) ∧
     (∀ x h, d.coord (d.act x h) = d.coord x * h) ∧
@@ -137,42 +141,60 @@ noncomputable def toOEData : OEData G p where
     simp
   p_faithful := m.faithful
 
-/-- The recovered action is the object action of `e` (paper `rem:audit`).-/
+/-- The recovered action is the object action of `e` (paper `rem:audit`).
+@isnad1 id=eq.0h7v.s6.16bfbcd499d3 from=translated src=- shape=8ac54ff1 vocab=15d3b20e
+-/
 @[simp] theorem toOEData_act (x : O) (g : G) : m.toOEData.act x g = m.act x g := rfl
 
-/-- The recovered basepoints are `b_s = e⁻¹(s,1)` (paper `rem:audit`).-/
+/-- The recovered basepoints are `b_s = e⁻¹(s,1)` (paper `rem:audit`).
+@isnad1 id=eq.0h6v.s6.070fed321be0 from=translated src=- shape=c83921d1 vocab=3d160e68
+-/
 @[simp] theorem toOEData_base (s : S) : m.toOEData.base s = m.base s := rfl
 
-/-- The recovered coordinates are `g_x = (e x).2` (paper `rem:audit`).-/
+/-- The recovered coordinates are `g_x = (e x).2` (paper `rem:audit`).
+@isnad1 id=eq.0h6v.s6.d7ac14042175 from=translated src=- shape=769e38fb vocab=f2db281a
+-/
 @[simp] theorem toOEData_coord (x : O) : m.toOEData.coord x = m.coord x := rfl
 
-/-- The recovered transport is `u* y = b_s · g_y` (paper `rem:audit`).-/
+/-- The recovered transport is `u* y = b_s · g_y` (paper `rem:audit`).
+@isnad1 id=eq.1h9v.s6.41a28a7b930a from=translated src=- shape=81267963 vocab=d3a2a605
+-/
 theorem toOEData_reind {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     m.toOEData.reind u y hy = m.act (m.base s) (m.coord y) :=
   m.e_symm_eq s (m.coord y)
 
 /-- The recovered morphism action is the unique lift of the projection with translated
-    endpoints (paper `rem:audit`).-/
+    endpoints (paper `rem:audit`).
+@isnad1 id=eq.0h9v.s7.0f6c0a418eba from=translated src=- shape=dddec53f vocab=6d720720
+-/
 @[simp] theorem toOEData_actHom {x y : O} (f : x ⟶ y) (g : G) :
     m.toOEData.actHom f g = m.liftOver (p.map f) (m.p_act x g) (m.p_act y g) := rfl
 
 /-- The recovered action functors are the action functors of the minimal specification
-    (paper `rem:audit`).-/
+    (paper `rem:audit`).
+@isnad1 id=eq.0h6v.s6.a5f4246f97ef from=translated src=- shape=fa631b56 vocab=0cacabeb
+-/
 theorem toOEData_actFunctor (g : G) : m.toOEData.actFunctor g = m.actFunctor g := rfl
 
 /-- The recovered `χ_{u,y}` is the unique arrow over `u` from `u* y` to `y`
-    (paper `rem:audit`).-/
+    (paper `rem:audit`).
+@isnad1 id=eq.1h9v.s7.e0c7bc1b6ddc from=translated src=- shape=099746cc vocab=d6ef3c63
+-/
 @[simp] theorem toOEData_chi {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t) :
     m.toOEData.chi u y hy = m.liftOver u (m.p_e_symm s (m.coord y)) hy := rfl
 
 /-- The recovered `ℓ_{a,x}` is the unique arrow over `𝟙 (p x)` from `x` to `b_{p(x)} · (a g_x)`
-    (paper `rem:audit`).-/
+    (paper `rem:audit`).
+@isnad1 id=eq.0h7v.s8.128535560ce3 from=translated src=- shape=2205d83b vocab=48cd449b
+-/
 @[simp] theorem toOEData_ltrans (a : G) (x : O) :
     m.toOEData.ltrans a x = m.liftOver (𝟙 (p.obj x)) rfl
       ((m.p_act (m.base (p.obj x)) (a * m.coord x)).trans (m.p_base (p.obj x))) := rfl
 
 /-- Uniqueness of the recovered cleavage arrows: any arrow `u* y ⟶ y` over `u` is `χ_{u,y}`
-    (paper `rem:audit`: "the unique arrow over `u` with these endpoints").-/
+    (paper `rem:audit`: "the unique arrow over `u` with these endpoints").
+@isnad1 id=eq.2h10v.s8.fca38e00a0da from=translated src=- shape=b8699518 vocab=e3b7fc2b
+-/
 theorem toOEData_chi_unique {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t)
     (f : m.toOEData.reind u y hy ⟶ y)
     (hf : p.map f = eqToHom (m.toOEData.p_reind u y hy) ≫ u ≫ eqToHom hy.symm) :
@@ -180,7 +202,9 @@ theorem toOEData_chi_unique {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t)
   (m.eq_liftOver_iff u (m.p_e_symm s (m.coord y)) hy f).2 hf
 
 /-- Uniqueness of the recovered vertical arrows: any arrow `x ⟶ b_{p(x)} · (a g_x)` over the
-    identity is `ℓ_{a,x}` (paper `rem:audit`).-/
+    identity is `ℓ_{a,x}` (paper `rem:audit`).
+@isnad1 id=eq.1h8v.s9.9edcde363cb5 from=translated src=- shape=6ebcfb65 vocab=fb76498f
+-/
 theorem toOEData_ltrans_unique (a : G) (x : O)
     (f : x ⟶ m.toOEData.act (m.toOEData.base (p.obj x)) (a * m.toOEData.coord x))
     (hf : p.map f = eqToHom (((m.toOEData.p_act (m.toOEData.base (p.obj x))
@@ -190,7 +214,9 @@ theorem toOEData_ltrans_unique (a : G) (x : O)
   rw [hf, m.toOEData.p_ltrans]
 
 /-- The reverse lift is an inverse of `ℓ_{a,x}` (paper `rem:audit`: "Its reverse lift is an
-    inverse by faithfulness").-/
+    inverse by faithfulness").
+@isnad1 id=and.0h7v.s9.b4a73b0962b8 from=translated src=- shape=d2cb93e4 vocab=e7f585c0
+-/
 theorem toOEData_ltrans_inv (a : G) (x : O) :
     m.toOEData.ltrans a x
         ≫ m.liftOver (𝟙 (p.obj x))
@@ -212,7 +238,9 @@ end Tengoku.ObserverEquivarianceLean.MinSpec
     via faithfulness, and all `Prop` fields by proof irrelevance).  Since it assumes equality of
     `act`, `base` and `reind`, it does not by itself show that these are determined; the
     stronger statement "(N3)–(N4) add no freely variable transport data" is
-    `OEData.ext_of_coord`.-/
+    `OEData.ext_of_coord`.
+@isnad1 id=eq.4h6v.s7.78d9eb28db63 from=translated src=- shape=01f80b73 vocab=69435c01
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.ext_of_data (d d' : OEData G p) (hact : d.act = d'.act)
     (hbase : d.base = d'.base) (hcoord : d.coord = d'.coord)
     (hreind : ∀ {s t : S} (u : s ⟶ t) (y : O) (hy : p.obj y = t),
@@ -251,14 +279,18 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.ext_of_data (d d' : OEData G p) 
 /-! ## The round trips and the equivalence (paper `rem:audit`) -/
 
 /-- Minimal specification → normalized data → minimal specification is the identity
-    (paper `rem:audit`: "each specification uniquely recovers the other").-/
+    (paper `rem:audit`: "each specification uniquely recovers the other").
+@isnad1 id=eq.0h5v.s5.90c356c539ad from=translated src=- shape=42c7ab69 vocab=f4878113
+-/
 theorem Tengoku.ObserverEquivarianceLean.MinSpec.toOEData_toMinSpec (m : MinSpec G p) : m.toOEData.toMinSpec = m :=
   MinSpec.ext (Equiv.ext fun x => by
     rw [OEData.toMinSpec_e_apply, m.e_apply]
     rfl)
 
 /-- Normalized data → minimal specification → normalized data is the identity, as an equality
-    of structures (paper `rem:audit`: "each specification uniquely recovers the other").-/
+    of structures (paper `rem:audit`: "each specification uniquely recovers the other").
+@isnad1 id=eq.0h5v.s5.f1c90d835152 from=translated src=- shape=42c7ab69 vocab=386efd5a
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.toMinSpec_toOEData (d : OEData G p) : d.toMinSpec.toOEData = d := by
   apply OEData.ext_of_data
   · funext x g
@@ -279,11 +311,15 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.oeDataEquivMinSpec : O
   left_inv := OEData.toMinSpec_toOEData
   right_inv := MinSpec.toOEData_toMinSpec
 
-/-- (paper `rem:audit`)-/
+/-- (paper `rem:audit`)
+@isnad1 id=eq.0h5v.s7.087f5a44576e from=translated src=- shape=103d5f8e vocab=27da10ff
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.oeDataEquivMinSpec_apply (d : OEData G p) :
     oeDataEquivMinSpec d = d.toMinSpec := rfl
 
-/-- (paper `rem:audit`)-/
+/-- (paper `rem:audit`)
+@isnad1 id=eq.0h5v.s7.5dd01b88ce9b from=translated src=- shape=640bb5fb vocab=6a0a23d4
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.oeDataEquivMinSpec_symm_apply (m : MinSpec G p) :
     oeDataEquivMinSpec.symm m = m.toOEData := rfl
 
@@ -291,7 +327,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.oeDataEquivMinSpec : O
     the same `coord` are equal (paper `rem:audit`: "(N3)–(N4) add no freely variable transport
     data once this based object trivialization and full faithfulness are fixed").  The based
     trivialization `e x = (p x, g_x)` depends only on `coord`, and `oeDataEquivMinSpec` is
-    injective, so action, basepoints, transport, `χ` and `ℓ` are all determined.-/
+    injective, so action, basepoints, transport, `χ` and `ℓ` are all determined.
+@isnad1 id=eq.1h6v.s6.b8e717a7ef76 from=translated src=- shape=a52cfb10 vocab=1810e401
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.ext_of_coord (d d' : OEData G p) (h : d.coord = d'.coord) : d = d' := by
   apply oeDataEquivMinSpec.injective
   apply MinSpec.ext
@@ -305,12 +343,16 @@ theorem Tengoku.ObserverEquivarianceLean.OEData.ext_of_coord (d d' : OEData G p)
     carried by `d.toMinSpec` equals `d.isFull`.  As an equality of proofs of the proposition
     `p.Full` this holds for ANY two proofs, so it records nothing about their origin.  The
     structural facts are that `OEData` has no fullness field and that `OEData.toMinSpec` is
-    defined with `full := d.isFull` (derived fullness, `prop:fullness`).-/
+    defined with `full := d.isFull` (derived fullness, `prop:fullness`).
+@isnad1 id=eq.0h5v.s5.ab277b50f36d from=translated src=- shape=81b965c3 vocab=11218a2f
+-/
 theorem Tengoku.ObserverEquivarianceLean.OEData.toMinSpec_full (d : OEData G p) : d.toMinSpec.full = d.isFull := rfl
 
 /-- Proof-irrelevance sanity check (paper `rem:audit`): derived fullness `m.toOEData.isFull`
     equals the hypothesis `m.full`.  As an equality of proofs of `p.Full` it holds for ANY two
     proofs; the structural fact is that `MinSpec.toOEData` uses `m.full` only to build the lifts
-    and produces an `OEData`, which has no fullness field.-/
+    and produces an `OEData`, which has no fullness field.
+@isnad1 id=eq.0h5v.s5.82a74a575ff4 from=translated src=- shape=81b965c3 vocab=ca31212e
+-/
 theorem Tengoku.ObserverEquivarianceLean.MinSpec.toOEData_isFull (m : MinSpec G p) : m.toOEData.isFull = m.full := rfl
 -- Tengoku: root names of this library moved to Tengoku.ObserverEquivarianceLean so they do not collide with other libraries (generated)

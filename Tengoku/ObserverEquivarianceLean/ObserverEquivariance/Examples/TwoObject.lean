@@ -35,16 +35,22 @@ namespace TwoObjectExample
 def arrow01 : (0 : Fin 2) ⟶ 1 := homOfLE (by decide)
 
 /-- Every hom-set of the base is a subsingleton (paper example after `prop:nocleavage`: "one
-    nonidentity arrow").-/
+    nonidentity arrow").
+@isnad1 id=subsingl.0h2v.s5.62552db40b91 from=translated src=- shape=4e1ca915 vocab=7502700f
+-/
 theorem hom_subsingleton (a b : Fin 2) : Subsingleton (a ⟶ b) := inferInstance
 
 /-- There is no arrow `1 ⟶ 0` (paper example after `prop:nocleavage`: "one nonidentity arrow
-    `0 → 1`"); together with `hom_subsingleton`, `arrow01` is the only nonidentity arrow.-/
+    `0 → 1`"); together with `hom_subsingleton`, `arrow01` is the only nonidentity arrow.
+@isnad1 id=isempty.0h0v.s6.747b3c5c05ad from=translated src=- shape=6cf5eb34 vocab=920f5046
+-/
 theorem hom_one_zero_isEmpty : IsEmpty ((1 : Fin 2) ⟶ 0) :=
   ⟨fun f => absurd (leOfHom f) (by decide)⟩
 
 /-- The base arrow `0 ⟶ 1` is genuinely noninvertible (paper example after `prop:nocleavage`:
-    "a genuinely noninvertible base arrow").-/
+    "a genuinely noninvertible base arrow").
+@isnad1 id=not.0h0v.s5.a519e49f340e from=translated src=- shape=41e94547 vocab=274068d1
+-/
 theorem arrow01_not_isIso : ¬ IsIso arrow01 := by
   intro h
   have h10 : (1 : Fin 2) ≤ 0 := leOfHom (inv arrow01)
@@ -66,7 +72,9 @@ abbrev twoObjData : OEData C2 (CategoryTheory.Prod.fst (Fin 2) (Pair C2)) :=
 def pairEquiv (X : Type*) : Pair X ≃ X := ⟨Pair.pt, Pair.mk, fun _ => rfl, fun _ => rfl⟩
 
 /-- The product `O = Fin 2 × Pair(C₂)` has four objects (paper example after `prop:nocleavage`:
-    "The product has four objects").-/
+    "The product has four objects").
+@isnad1 id=eq.0h0v.s4.81f34b5b0d79 from=translated src=- shape=7b1da844 vocab=538ac8f1
+-/
 theorem card_objects : Nat.card (Fin 2 × Pair C2) = 4 := by
   rw [Nat.card_prod, Nat.card_congr (pairEquiv C2), Nat.card_eq_fintype_card,
     Nat.card_eq_fintype_card]
@@ -81,7 +89,9 @@ def finTwoFunMulEquiv (G : Type*) [Group G] : (Fin 2 → G) ≃* G × G where
   right_inv _ := rfl
   map_mul' _ _ := rfl
 
-/-- (helper for paper example after `prop:nocleavage`)-/
+/-- (helper for paper example after `prop:nocleavage`)
+@isnad1 id=eq.0h2v.s8.91c7c130fc39 from=translated src=- shape=60ef1ab0 vocab=ff354e15
+-/
 @[simp] theorem finTwoFunMulEquiv_apply (G : Type*) [Group G] (γ : Fin 2 → G) :
     finTwoFunMulEquiv G γ = (γ 0, γ 1) := rfl
 
@@ -105,7 +115,9 @@ def diagSubgroup (G : Type*) [Group G] : Subgroup (G × G) where
     show x.1⁻¹ = x.2⁻¹
     rw [show x.1 = x.2 from hx]
 
-/-- (paper example after `prop:nocleavage`)-/
+/-- (paper example after `prop:nocleavage`)
+@isnad1 id=iff.0h2v.s5.3c44113bdb3d from=translated src=- shape=81e2258d vocab=44ae1667
+-/
 theorem mem_diagSubgroup {G : Type*} [Group G] (x : G × G) : x ∈ diagSubgroup G ↔ x.1 = x.2 :=
   Iff.rfl
 
@@ -130,7 +142,9 @@ noncomputable def transportKerToProd : (ΦOver twoObjData ⊤).ker →* C2 × C2
   (kerEquivProd).toMonoidHom.comp transportKerToKer
 
 /-- A transport-preserving automorphism over the identity is determined by its two flips (paper
-    example after `prop:nocleavage`).-/
+    example after `prop:nocleavage`).
+@isnad1 id=injectiv.0h0v.s16.66a8784a5fa2 from=translated src=- shape=b112a7d0 vocab=dc2c9166
+-/
 theorem transportKerToProd_injective : Function.Injective transportKerToProd := by
   intro e₁ e₂ h
   have h' : transportKerToKer e₁ = transportKerToKer e₂ := (kerEquivProd).injective h
@@ -140,7 +154,9 @@ theorem transportKerToProd_injective : Function.Injective transportKerToProd := 
 
 /-- Preserving the chosen comparison `(0, g) → (1, g)` forces the two flips to agree, and every
     agreeing pair occurs (paper example after `prop:nocleavage`): the image of the
-    transport-preserving kernel `(ΦOver d ⊤).ker` in `C₂ × C₂` is exactly the diagonal.-/
+    transport-preserving kernel `(ΦOver d ⊤).ker` in `C₂ × C₂` is exactly the diagonal.
+@isnad1 id=eq.0h0v.s13.28d5e81b0713 from=translated src=- shape=a3988bba vocab=d942c2bc
+-/
 theorem transportKerToProd_range : transportKerToProd.range = diagSubgroup C2 := by
   ext x
   rw [MonoidHom.mem_range, mem_diagSubgroup]
@@ -179,7 +195,9 @@ noncomputable def transportKerMulEquiv : (ΦOver twoObjData ⊤).ker ≃* C2 :=
 /-! ## 4. Transport preservation is a genuine restriction -/
 
 /-- The diagonal is a proper subgroup of `C₂ × C₂` (paper example after `prop:nocleavage`):
-    transport preservation cuts the unrestricted kernel `C₂ × C₂` down to `C₂`.-/
+    transport preservation cuts the unrestricted kernel `C₂ × C₂` down to `C₂`.
+@isnad1 id=ne.0h0v.s8.6247bf93e119 from=translated src=- shape=e6476493 vocab=2ee6d05e
+-/
 theorem diagSubgroup_ne_top : diagSubgroup C2 ≠ ⊤ := by
   intro h
   have hmem : ((1 : C2), Multiplicative.ofAdd (1 : ZMod 2)) ∈ diagSubgroup C2 :=

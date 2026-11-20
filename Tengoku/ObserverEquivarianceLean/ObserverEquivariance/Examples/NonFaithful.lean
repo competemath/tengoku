@@ -57,11 +57,15 @@ def _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulProj : SingleObj K ⥤ Di
 namespace NonFaithful
 
 omit [Group K] in
-/-- `SingleObj K` has exactly one object (helper for paper `ex:nonfaithful`).-/
+/-- `SingleObj K` has exactly one object (helper for paper `ex:nonfaithful`).
+@isnad1 id=eq.0h3v.s3.460100475c9a from=translated src=- shape=a9d537c8 vocab=1c89b735
+-/
 theorem obj_eq (x y : SingleObj K) : x = y := rfl
 
 /-- Every `eqToHom` in `SingleObj K` is the identity element `1 : K`
-    (helper for paper `ex:nonfaithful`).-/
+    (helper for paper `ex:nonfaithful`).
+@isnad1 id=eq.1h3v.s6.fa20cc9e791e from=translated src=- shape=d4442c69 vocab=ffa0c887
+-/
 theorem eqToHom_eq_one {x y : SingleObj K} (h : x = y) : (eqToHom h : x ⟶ y) = (1 : K) := by
   subst h
   rw [eqToHom_refl, SingleObj.id_as_one]
@@ -111,13 +115,17 @@ def _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum : NormalizedPreD
 
 /-- The chosen `ℓ`-arrows of the pre-datum of paper `ex:nonfaithful` are isomorphisms: the
     invertibility part of (N5), which is not a field of `NormalizedPreDatum` and so is
-    proven separately.  With `nonfaithfulPreDatum` this gives all of (N1)–(N5).-/
+    proven separately.  With `nonfaithfulPreDatum` this gives all of (N1)–(N5).
+@isnad1 id=isiso.0h3v.s7.1890dd6e633e from=translated src=- shape=8ad24bda vocab=81be7ec0
+-/
 instance _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_ltrans_isIso (g : PUnit.{1}) (x : SingleObj K) :
     IsIso ((nonfaithfulPreDatum K).ltrans g x) :=
   show IsIso (𝟙 x) from inferInstance
 
 /-- Failure of (N6) in paper `ex:nonfaithful`: for nontrivial `K` the projection `BK ⥤ *` is
-    not faithful (every `k : ⋆ ⟶ ⋆` has the same image).-/
+    not faithful (every `k : ⋆ ⟶ ⋆` has the same image).
+@isnad1 id=not.0h1v.s4.666f4f3f7bf5 from=translated src=- shape=4757ab2c vocab=a3b711b3
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulProj_not_faithful [Nontrivial K] : ¬ (nonfaithfulProj K).Faithful := by
   intro hF
   obtain ⟨k, hk⟩ := exists_ne (1 : K)
@@ -130,7 +138,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulProj_not_faithful [No
 /-- Paper `ex:nonfaithful`, bundled: this theorem records the invertibility part of (N5) (every
     chosen `ℓ`-arrow is an isomorphism) and, for nontrivial `K`, the failure of (N6).  The data
     and laws of (N1)–(N4) and the verticality of the `ℓ`-arrows are NOT part of this statement:
-    they are witnessed by the fields of the definition `nonfaithfulPreDatum K`.-/
+    they are witnessed by the fields of the definition `nonfaithfulPreDatum K`.
+@isnad1 id=and.0h1v.s7.42c4a0fb4b54 from=translated src=- shape=65d0886c vocab=7df3d067
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithful_N1_N5_and_not_N6 [Nontrivial K] :
     (∀ (g : PUnit.{1}) (x : SingleObj K), IsIso ((nonfaithfulPreDatum K).ltrans g x)) ∧
       ¬ (nonfaithfulProj K).Faithful :=
@@ -138,40 +148,56 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithful_N1_N5_and_not_N6 [No
 
 /-- Paper `ex:nonfaithful`: for nontrivial `K` the example cannot be an `OEData` — that
     structure contains faithfulness (N6) as the field `p_faithful` — for ANY presentation
-    group `G`, in particular not for `G = PUnit`.-/
+    group `G`, in particular not for `G = PUnit`.
+@isnad1 id=isempty.0h2v.s5.b5387f923c10 from=translated src=- shape=3632d833 vocab=669c006e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithful_isEmpty_OEData [Nontrivial K] (G : Type*) [Group G] :
     IsEmpty (OEData G (nonfaithfulProj K)) :=
   ⟨fun d => nonfaithfulProj_not_faithful K d.p_faithful⟩
 
 /-! ### Field lemmas (all `rfl`) -/
 
-/-- The action of the trivial presentation group is trivial (paper `ex:nonfaithful`).-/
+/-- The action of the trivial presentation group is trivial (paper `ex:nonfaithful`).
+@isnad1 id=eq.0h3v.s5.db415cd73be8 from=translated src=- shape=0cbf0870 vocab=aea1a271
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_act (x : SingleObj K) (g : PUnit.{1}) :
     (nonfaithfulPreDatum K).act x g = x := rfl
 
-/-- The arrow action is trivial (paper `ex:nonfaithful`).-/
+/-- The arrow action is trivial (paper `ex:nonfaithful`).
+@isnad1 id=eq.0h5v.s6.1ee6fa7828d8 from=translated src=- shape=eb0819e9 vocab=6413ccc6
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_actHom {x y : SingleObj K} (f : x ⟶ y) (g : PUnit.{1}) :
     (nonfaithfulPreDatum K).actHom f g = f := rfl
 
-/-- The unique basepoint (paper `ex:nonfaithful`).-/
+/-- The unique basepoint (paper `ex:nonfaithful`).
+@isnad1 id=eq.0h2v.s5.14688d93457e from=translated src=- shape=c9646dca vocab=6c9fe8fd
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_base (s : Discrete PUnit.{1}) :
     (nonfaithfulPreDatum K).base s = SingleObj.star K := rfl
 
-/-- The unique coordinate (paper `ex:nonfaithful`).-/
+/-- The unique coordinate (paper `ex:nonfaithful`).
+@isnad1 id=eq.0h2v.s5.eb4978b48a38 from=translated src=- shape=4cb6882a vocab=bae41234
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_coord (x : SingleObj K) :
     (nonfaithfulPreDatum K).coord x = 1 := rfl
 
-/-- Identity chosen transport on objects (paper `ex:nonfaithful`).-/
+/-- Identity chosen transport on objects (paper `ex:nonfaithful`).
+@isnad1 id=eq.1h5v.s6.ed0d4c1ded0b from=translated src=- shape=03b651b2 vocab=26aac16a
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_reind {s t : Discrete PUnit.{1}} (u : s ⟶ t)
     (y : SingleObj K) (hy : (nonfaithfulProj K).obj y = t) :
     (nonfaithfulPreDatum K).reind u y hy = y := rfl
 
-/-- Identity chosen `χ`-arrows (paper `ex:nonfaithful`).-/
+/-- Identity chosen `χ`-arrows (paper `ex:nonfaithful`).
+@isnad1 id=eq.1h5v.s7.0c601f6eeb4a from=translated src=- shape=ec5a1bc1 vocab=a6cbcfe8
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_chi {s t : Discrete PUnit.{1}} (u : s ⟶ t)
     (y : SingleObj K) (hy : (nonfaithfulProj K).obj y = t) :
     (nonfaithfulPreDatum K).chi u y hy = 𝟙 y := rfl
 
-/-- Identity chosen `ℓ`-arrows (paper `ex:nonfaithful`).-/
+/-- Identity chosen `ℓ`-arrows (paper `ex:nonfaithful`).
+@isnad1 id=eq.0h3v.s7.180fd1315ebc from=translated src=- shape=b2541a70 vocab=00b92fd8
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulPreDatum_ltrans (g : PUnit.{1}) (x : SingleObj K) :
     (nonfaithfulPreDatum K).ltrans g x = 𝟙 x := rfl
 
@@ -218,7 +244,9 @@ structure _root_.Tengoku.ObserverEquivarianceLean.IsNonfaithfulLift (F : SingleO
       = (nonfaithfulPreDatum K).ltrans g (F.obj x) ≫ eqToHom (NonFaithful.obj_eq K _ _)
 
 /-- Paper `ex:nonfaithful`: EVERY endofunctor of `BK` covers the identity and preserves all
-    the chosen data (on objects and on arrows).-/
+    the chosen data (on objects and on arrows).
+@isnad1 id=isnonfai.0h2v.s4.a3d9768cd80a from=translated src=- shape=63526d7b vocab=981f613f
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isNonfaithfulLift_of_functor (F : SingleObj K ⥤ SingleObj K) : IsNonfaithfulLift K F where
   covers := CategoryTheory.Functor.ext (fun _ => rfl) (fun _ _ _ => Subsingleton.elim _ _)
   equiv _ _ := rfl
@@ -234,7 +262,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.isNonfaithfulLift_of_functor (F 
     exact (F.map_id x).trans (mul_one (1 : K)).symm
 
 /-- Paper `ex:nonfaithful`: every endofunctor of `BK` also preserves the unique basepoint and
-    the unique coordinate.-/
+    the unique coordinate.
+@isnad1 id=and.0h2v.s7.55862bbfdcc8 from=translated src=- shape=f3c43e1f vocab=36c18343
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithful_preserves_base_coord (F : SingleObj K ⥤ SingleObj K) :
     (∀ s : Discrete PUnit.{1},
         F.obj ((nonfaithfulPreDatum K).base s) = (nonfaithfulPreDatum K).base s) ∧
@@ -242,13 +272,17 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithful_preserves_base_coord
   ⟨fun _ => rfl, fun _ => rfl⟩
 
 /-- Paper `ex:nonfaithful`: the terminal base `S = * = Discrete PUnit` has only the trivial
-    strict automorphism, so `Aut(S)` (and every `H ≤ Aut(S)`) is trivial.-/
+    strict automorphism, so `Aut(S)` (and every `H ≤ Aut(S)`) is trivial.
+@isnad1 id=subsingl.0h0v.s2.e48b1a1e80cf from=translated src=- shape=ed5d6145 vocab=e652caf7
+-/
 instance _root_.Tengoku.ObserverEquivarianceLean.subsingleton_strictAut_discretePUnit : Subsingleton (StrictAut (Discrete PUnit.{1})) :=
   ⟨fun _ _ => StrictAut.ext_hom (CategoryTheory.Functor.ext (fun _ => Subsingleton.elim _ _)
     (fun _ _ _ => Subsingleton.elim _ _))⟩
 
 /-- Paper `ex:nonfaithful`: every strict automorphism of the terminal base is the identity, so
-    every admissible pair `(F, A)` of `def:lifts` has `A = 1` and lies in the kernel of `Φ`.-/
+    every admissible pair `(F, A)` of `def:lifts` has `A = 1` and lies in the kernel of `Φ`.
+@isnad1 id=eq.0h1v.s5.e1984e2bdbe9 from=translated src=- shape=6b1f7d0b vocab=0018e618
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.strictAut_discretePUnit_eq_one (A : StrictAut (Discrete PUnit.{1})) : A = 1 :=
   Subsingleton.elim _ _
 
@@ -266,7 +300,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulLiftKernel : Subgroup (St
   one_mem' := isNonfaithfulLift_of_functor K _
   inv_mem' _ := isNonfaithfulLift_of_functor K _
 
-/-- Paper `ex:nonfaithful`: all strict automorphisms of `BK` lie in the lift kernel.-/
+/-- Paper `ex:nonfaithful`: all strict automorphisms of `BK` lie in the lift kernel.
+@isnad1 id=eq.0h1v.s6.3fcb480b6ce8 from=translated src=- shape=d3554b0d vocab=44f2d3ad
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulLiftKernel_eq_top : nonfaithfulLiftKernel K = ⊤ :=
   eq_top_iff.2 fun F _ => isNonfaithfulLift_of_functor K F.hom
 
@@ -277,7 +313,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulLiftKernelE
     (θSingleObjEquiv K)
 
 /-- The identification of paper `ex:nonfaithful` sends a kernel element to its induced
-    automorphism of `K`.-/
+    automorphism of `K`.
+@isnad1 id=eq.0h2v.s10.25481f85c22f from=translated src=- shape=e27b22c1 vocab=3767490f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulLiftKernelEquiv_apply (F : nonfaithfulLiftKernel K) :
     nonfaithfulLiftKernelEquiv K F = θSingleObj K F.1 := rfl
 
@@ -299,14 +337,18 @@ structure _root_.Tengoku.ObserverEquivarianceLean.IsNonfaithfulObjLift (F : Sing
           ((Functor.congr_obj covers y).trans (congrArg (𝟭 (Discrete PUnit.{1})).obj hy))
 
 /-- The object-and-arrow lift conditions imply the object-level conditions of paper
-    `def:lifts` (paper `ex:nonfaithful`).-/
+    `def:lifts` (paper `ex:nonfaithful`).
+@isnad1 id=isnonfai.1h2v.s5.6447742685a9 from=translated src=- shape=8cd894f8 vocab=6f77eef2
+-/
 theorem Tengoku.ObserverEquivarianceLean.IsNonfaithfulLift.toObjLift {F : SingleObj K ⥤ SingleObj K}
     (h : IsNonfaithfulLift K F) : IsNonfaithfulObjLift K F :=
   ⟨h.covers, h.equiv, h.src⟩
 
 /-- Paper `ex:nonfaithful`: in this example the object-level conditions of `def:lifts` and the
     stronger `IsNonfaithfulLift` are equivalent (both hold for every endofunctor of `BK`), so the
-    arrow-level conditions are not essential for the kernel conclusion.-/
+    arrow-level conditions are not essential for the kernel conclusion.
+@isnad1 id=iff.0h2v.s5.b352bbca2c36 from=translated src=- shape=4f69e4ec vocab=6f77eef2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.isNonfaithfulObjLift_iff (F : SingleObj K ⥤ SingleObj K) :
     IsNonfaithfulObjLift K F ↔ IsNonfaithfulLift K F :=
   ⟨fun _ => isNonfaithfulLift_of_functor K F, IsNonfaithfulLift.toObjLift K⟩
@@ -319,12 +361,16 @@ def _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulObjLiftKernel : Subgroup 
   one_mem' := (isNonfaithfulLift_of_functor K _).toObjLift K
   inv_mem' _ := (isNonfaithfulLift_of_functor K _).toObjLift K
 
-/-- Paper `ex:nonfaithful`: every strict automorphism of `BK` lies in the object-level kernel.-/
+/-- Paper `ex:nonfaithful`: every strict automorphism of `BK` lies in the object-level kernel.
+@isnad1 id=eq.0h1v.s6.040b2cb5c2f1 from=translated src=- shape=d3554b0d vocab=177509a9
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulObjLiftKernel_eq_top : nonfaithfulObjLiftKernel K = ⊤ :=
   eq_top_iff.2 fun F _ => (isNonfaithfulLift_of_functor K F.hom).toObjLift K
 
 /-- Paper `ex:nonfaithful`: the object-level kernel of `def:lifts` equals the kernel cut out by
-    the stronger `IsNonfaithfulLift` (both are `⊤`).-/
+    the stronger `IsNonfaithfulLift` (both are `⊤`).
+@isnad1 id=eq.0h1v.s5.3c473ca43f8a from=translated src=- shape=c4820085 vocab=b1169945
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.nonfaithfulObjLiftKernel_eq_nonfaithfulLiftKernel :
     nonfaithfulObjLiftKernel K = nonfaithfulLiftKernel K :=
   (nonfaithfulObjLiftKernel_eq_top K).trans (nonfaithfulLiftKernel_eq_top K).symm
@@ -342,13 +388,17 @@ section ZMod3
 
 namespace NonFaithful
 
-/-- `|Aut(C₃)| = 2` (helper for paper `ex:nonfaithful`).-/
+/-- `|Aut(C₃)| = 2` (helper for paper `ex:nonfaithful`).
+@isnad1 id=eq.0h0v.s5.5c0fe0385037 from=translated src=- shape=35225b15 vocab=08d3772f
+-/
 theorem nat_card_mulAut_G3 : Nat.card (MulAut G3) = 2 := by
   have h3 : Nat.card G3 = 3 := by
     rw [Nat.card_eq_fintype_card, Fintype.card_multiplicative, ZMod.card]
   rw [IsCyclic.card_mulAut, h3, Nat.totient_prime Nat.prime_three]
 
-/-- `|C₂| = 2` (helper for paper `ex:nonfaithful`).-/
+/-- `|C₂| = 2` (helper for paper `ex:nonfaithful`).
+@isnad1 id=eq.0h0v.s3.235b8b84f92c from=translated src=- shape=120b6148 vocab=bcb1fbce
+-/
 theorem nat_card_multiplicative_zmod2 : Nat.card (Multiplicative (ZMod 2)) = 2 := by
   rw [Nat.card_eq_fintype_card, Fintype.card_multiplicative, ZMod.card]
 

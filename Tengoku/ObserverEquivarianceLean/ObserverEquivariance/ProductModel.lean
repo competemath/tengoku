@@ -26,13 +26,17 @@ namespace ProductModel
 /-! ## Local helpers about arrows of `S × Pair G` -/
 
 /-- Arrows of `S × Pair G` are determined by their base component, since every hom-set of
-    `Pair G` is a singleton (helper for paper `thm:normalform`, product side).-/
+    `Pair G` is a singleton (helper for paper `thm:normalform`, product side).
+@isnad1 id=eq.1h6v.s7.73097c8d783a from=translated src=- shape=0782b35a vocab=4833e689
+-/
 theorem productHom_ext {S : Type*} [Category S] {G : Type*} {x y : S × Pair G}
     {f g : x ⟶ y} (h : f.1 = g.1) : f = g :=
   Prod.ext h (Subsingleton.elim _ _)
 
 /-- The base component of an `eqToHom` in `S × Pair G` is the `eqToHom` of the base
-    components (helper for paper `thm:normalform`, product side).-/
+    components (helper for paper `thm:normalform`, product side).
+@isnad1 id=eq.1h4v.s6.e4136d0369cb from=translated src=- shape=9bf73f8e vocab=72d1e657
+-/
 @[simp] theorem eqToHom_fst {S : Type*} [Category S] {G : Type*} {x y : S × Pair G}
     (h : x = y) : (eqToHom h).1 = eqToHom (congrArg Prod.fst h) := by
   subst h; rfl
@@ -83,46 +87,64 @@ section ProductDataSimp
 
 variable {S : Type*} [Category S] {G : Type*} [Group G]
 
-/-- Action of the product model (paper `thm:normalform`): `(s, a) · h = (s, a h)`.-/
+/-- Action of the product model (paper `thm:normalform`): `(s, a) · h = (s, a h)`.
+@isnad1 id=eq.0h4v.s6.b3faaee08627 from=translated src=- shape=6ecd396a vocab=ca290c73
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_act (x : S × Pair G) (h : G) :
     (productData S G).act x h = (x.1, ⟨x.2.pt * h⟩) := rfl
 
-/-- Morphism action of the product model (paper `thm:normalform`): `(u, *) · h = (u, *)`.-/
+/-- Morphism action of the product model (paper `thm:normalform`): `(u, *) · h = (u, *)`.
+@isnad1 id=eq.0h6v.s8.8cd910f9a209 from=translated src=- shape=a57757c7 vocab=b467c567
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_actHom {x y : S × Pair G} (f : x ⟶ y) (h : G) :
     (productData S G).actHom f h = (f.1, ⟨⟩) := rfl
 
-/-- Basepoints of the product model (paper `thm:normalform`): `b_s = (s, 1)`.-/
+/-- Basepoints of the product model (paper `thm:normalform`): `b_s = (s, 1)`.
+@isnad1 id=eq.0h3v.s6.bc3dead2de18 from=translated src=- shape=47d15845 vocab=035a7cfd
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_base (s : S) :
     (productData S G).base s = (s, ⟨1⟩) := rfl
 
-/-- Coordinates of the product model (paper `thm:normalform`): `coord (s, a) = a`.-/
+/-- Coordinates of the product model (paper `thm:normalform`): `coord (s, a) = a`.
+@isnad1 id=eq.0h3v.s6.f3b8da9cb233 from=translated src=- shape=0e8b6f3c vocab=5639b913
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_coord (x : S × Pair G) :
     (productData S G).coord x = x.2.pt := rfl
 
-/-- Reindexing of the product model (paper `thm:normalform`): `u* (t, a) = (s, a)`.-/
+/-- Reindexing of the product model (paper `thm:normalform`): `u* (t, a) = (s, a)`.
+@isnad1 id=eq.1h6v.s7.c5a14c68cf0c from=translated src=- shape=a0574239 vocab=8e1c0f8f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_reind {s t : S} (u : s ⟶ t) (y : S × Pair G)
     (hy : (CategoryTheory.Prod.fst S (Pair G)).obj y = t) :
     (productData S G).reind u y hy = (s, y.2) := rfl
 
 /-- Chosen cartesian lifts of the product model (paper `thm:normalform`): `χ_{u,y} = (u, *)`,
-    with the endpoint cast `t = y₁`.-/
+    with the endpoint cast `t = y₁`.
+@isnad1 id=eq.1h6v.s8.849d9768b1ed from=translated src=- shape=7e578f15 vocab=f1e62fdd
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_chi {s t : S} (u : s ⟶ t) (y : S × Pair G)
     (hy : (CategoryTheory.Prod.fst S (Pair G)).obj y = t) :
     (productData S G).chi u y hy = (u ≫ eqToHom hy.symm, ⟨⟩) := rfl
 
-/-- Vertical translations of the product model (paper `def:data` (N5)): `ltrans g x = (𝟙, *)`.-/
+/-- Vertical translations of the product model (paper `def:data` (N5)): `ltrans g x = (𝟙, *)`.
+@isnad1 id=eq.0h4v.s9.b42a242069df from=translated src=- shape=b8cdf95e vocab=5b0164ea
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.productData_ltrans (g : G) (x : S × Pair G) :
     (productData S G).ltrans g x = (𝟙 x.1, ⟨⟩) := rfl
 
 end ProductDataSimp
 
 /-- The action functor of the product model IS the product action of `thm:normalform`
-    (strict functor equality): `(productData S G).actFunctor h = normalFormProductAction h`.-/
+    (strict functor equality): `(productData S G).actFunctor h = normalFormProductAction h`.
+@isnad1 id=eq.0h3v.s6.51a165bcbe7f from=translated src=- shape=876404e3 vocab=0408702c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.productData_actFunctor (S : Type*) [Category S] (G : Type*) [Group G] (h : G) :
     (productData S G).actFunctor h = normalFormProductAction h := rfl
 
 /-- The pair groupoid on a nonempty type is connected (paper `def:data`, Pair groupoid;
-    used for connected bases such as `S = Pair({0,1})` in `ex:twist`).-/
+    used for connected bases such as `S = Pair({0,1})` in `ex:twist`).
+@isnad1 id=isconnec.0h1v.s3.d8ce33fea043 from=translated src=- shape=1666ae32 vocab=15c8e541
+-/
 instance _root_.Tengoku.ObserverEquivarianceLean.isConnected_pair (X : Type*) [Nonempty X] : IsConnected (Pair X) := by
   haveI : Nonempty (Pair X) := ⟨⟨Classical.arbitrary X⟩⟩
   exact zigzag_isConnected (fun a b => Zigzag.of_hom (⟨⟩ : a ⟶ b))

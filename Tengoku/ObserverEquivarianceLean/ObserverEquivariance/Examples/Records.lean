@@ -96,7 +96,9 @@ instance : SmallCategory RecDom where
   id _ := ⟨Finset.Subset.refl _⟩
   comp f g := ⟨g.down.trans f.down⟩
 
-/-- The base of paper `sec:records` is thin: at most one arrow between two domains.-/
+/-- The base of paper `sec:records` is thin: at most one arrow between two domains.
+@isnad1 id=subsingl.0h2v.s3.cc3bad9b3b01 from=translated src=- shape=63a1c864 vocab=899ec09f
+-/
 instance homSubsingleton (I J : RecDom) : Subsingleton (I ⟶ J) :=
   ⟨fun f g => by
     change PLift (J.dom ⊆ I.dom) at f g
@@ -105,7 +107,9 @@ instance homSubsingleton (I J : RecDom) : Subsingleton (I ⟶ J) :=
 /-- The arrow `u_{IJ} : I ⟶ J` for `J ⊆ I` (paper `sec:records`).-/
 def homOfSubset {I J : RecDom} (h : J.dom ⊆ I.dom) : I ⟶ J := ⟨h⟩
 
-/-- An arrow `I ⟶ J` of the base witnesses `J ⊆ I` (paper `sec:records`).-/
+/-- An arrow `I ⟶ J` of the base witnesses `J ⊆ I` (paper `sec:records`).
+@isnad1 id=le.0h3v.s5.850319134743 from=translated src=- shape=3913e0f0 vocab=270fc0ea
+-/
 theorem subset_of_hom {I J : RecDom} (u : I ⟶ J) : J.dom ⊆ I.dom := u.down
 
 /-- The full record domain `T = {0,1,2}` (paper `sec:records`).-/
@@ -120,7 +124,9 @@ def fromFull (I : RecDom) : full ⟶ I := ⟨Finset.subset_univ _⟩
 
 end Tengoku.ObserverEquivarianceLean.RecDom
 
-/-- The base of paper `sec:records` is connected, because `T` maps to every object.-/
+/-- The base of paper `sec:records` is connected, because `T` maps to every object.
+@isnad1 id=isconnec.0h0v.s1.d26d4d99a33a from=translated src=- shape=49959d42 vocab=0fe5433b
+-/
 instance Tengoku.ObserverEquivarianceLean.RecDom.isConnected : IsConnected RecDom := by
   haveI : Nonempty RecDom := ⟨RecDom.full⟩
   exact zigzag_isConnected fun I J =>
@@ -140,13 +146,17 @@ def _root_.Tengoku.ObserverEquivarianceLean.recordSpace (τ : ℝ) (I : RecDom) 
     rintro c x ⟨a, v, hx⟩
     exact ⟨c * a, c * v, fun j => by simp only [Pi.smul_apply, smul_eq_mul, hx]; ring⟩
 
-/-- Membership in the record space (paper `sec:records`).-/
+/-- Membership in the record space (paper `sec:records`).
+@isnad1 id=iff.0h3v.s10.2172df11c381 from=translated src=- shape=bc2b65be vocab=103c2478
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.mem_recordSpace {τ : ℝ} {I : RecDom} {x : ↥I.dom → ℝ} :
     x ∈ recordSpace τ I ↔ ∃ q₀ v : ℝ, ∀ j : ↥I.dom, x j = q₀ + v * (((j : Fin 3) : ℕ) : ℝ) * τ :=
   Iff.rfl
 
 /-- On the full domain `T`, the record space is cut out by the second-difference relation
-    `q₂ - 2 q₁ + q₀ = 0` (paper `sec:records`, display of `L(T)`; uses `τ > 0`).-/
+    `q₂ - 2 q₁ + q₀ = 0` (paper `sec:records`, display of `L(T)`; uses `τ > 0`).
+@isnad1 id=iff.1h2v.s10.8bb4799f9e0d from=translated src=- shape=eea9a46e vocab=95f3e9c2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.mem_recordSpace_full_iff {τ : ℝ} (hτ : 0 < τ) (x : ↥RecDom.full.dom → ℝ) :
     x ∈ recordSpace τ RecDom.full ↔
       x ⟨2, Finset.mem_univ _⟩ - 2 * x ⟨1, Finset.mem_univ _⟩ + x ⟨0, Finset.mem_univ _⟩ = 0 := by
@@ -174,7 +184,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.recordOne (τ : ℝ) (I : RecDom) : 
   ⟨fun _ => 1, 1, 0, fun _ => by simp⟩
 
 /-- The constant record `1` is nonzero, since observation domains are nonempty
-    (paper `sec:records`: "each `L(I)` is nonzero").-/
+    (paper `sec:records`: "each `L(I)` is nonzero").
+@isnad1 id=ne.0h2v.s11.1de31ddc0781 from=translated src=- shape=9c511549 vocab=8c91d312
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recordOne_ne_zero (τ : ℝ) (I : RecDom) : recordOne τ I ≠ 0 := by
   intro h
   obtain ⟨j, hj⟩ := I.nonempty
@@ -190,7 +202,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.recRestrict (τ : ℝ) {I J : RecDom
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
-/-- Values of the restriction map (paper `sec:records`): `(r_{IJ} x)_j = x_j`.-/
+/-- Values of the restriction map (paper `sec:records`): `(r_{IJ} x)_j = x_j`.
+@isnad1 id=eq.1h5v.s13.2e20a6d36589 from=translated src=- shape=7f54348b vocab=50edff43
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.recRestrict_apply (τ : ℝ) {I J : RecDom} (h : J.dom ⊆ I.dom)
     (x : recordSpace τ I) (j : ↥J.dom) :
     (recRestrict τ h x : ↥J.dom → ℝ) j = (x : ↥I.dom → ℝ) ⟨j.1, h j.2⟩ := rfl
@@ -203,7 +217,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.L₀ (τ : ℝ) : RecDom ⥤ ModuleC
   map_id _ := rfl
   map_comp _ _ := rfl
 
-/-- Values of `L₀(u_{IJ}) = r_{IJ}` (paper `sec:records`).-/
+/-- Values of `L₀(u_{IJ}) = r_{IJ}` (paper `sec:records`).
+@isnad1 id=eq.0h6v.s11.3715273cbf8f from=translated src=- shape=58b3c478 vocab=485ea29f
+-/
 @[simp] theorem _root_.Tengoku.ObserverEquivarianceLean.L₀_map_hom_apply (τ : ℝ) {I J : RecDom} (u : I ⟶ J) (x : recordSpace τ I)
     (j : ↥J.dom) :
     Subtype.val (((L₀ τ).map u).hom x) j
@@ -233,26 +249,38 @@ abbrev _root_.Tengoku.ObserverEquivarianceLean.recData : OEData ℤˣ (CategoryT
 /-! ## Signs acting on real vector spaces -/
 
 /-- The real scalar of a sign `ε ∈ ℤˣ` is multiplicative (paper `sec:records`, signs act on
-    records by `((ε : ℤ) : ℝ) • ·`).-/
+    records by `((ε : ℤ) : ℝ) • ·`).
+@isnad1 id=eq.0h2v.s5.f56b7b5a8891 from=translated src=- shape=00d5610a vocab=6cc3febd
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_mul (ε δ : ℤˣ) :
     (((ε * δ : ℤˣ) : ℤ) : ℝ) = ((ε : ℤ) : ℝ) * ((δ : ℤ) : ℝ) := by
   push_cast; ring
 
-/-- A sign squares to one (paper `sec:records`).-/
+/-- A sign squares to one (paper `sec:records`).
+@isnad1 id=eq.0h1v.s5.31dea2da2692 from=translated src=- shape=26b91b51 vocab=6cc3febd
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_mul_self (ε : ℤˣ) : ((ε : ℤ) : ℝ) * ((ε : ℤ) : ℝ) = 1 := by
   rcases Int.units_eq_one_or ε with rfl | rfl <;> norm_num
 
-/-- A sign is its own inverse (paper `sec:records`: `ε⁻¹ = ε`).-/
+/-- A sign is its own inverse (paper `sec:records`: `ε⁻¹ = ε`).
+@isnad1 id=eq.0h1v.s4.e045cc5268ee from=translated src=- shape=433eb104 vocab=c720e498
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_inv (ε : ℤˣ) : (((ε⁻¹ : ℤˣ) : ℤ) : ℝ) = ((ε : ℤ) : ℝ) := by
   rcases Int.units_eq_one_or ε with rfl | rfl <;> norm_num
 
-/-- The scalar of `+1` (paper `sec:records`).-/
+/-- The scalar of `+1` (paper `sec:records`).
+@isnad1 id=eq.0h0v.s4.29c9ed84e2f6 from=translated src=- shape=546b80ec vocab=88b89075
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_one : (((1 : ℤˣ) : ℤ) : ℝ) = 1 := by norm_num
 
-/-- The scalar of `-1` (paper `sec:records`).-/
+/-- The scalar of `-1` (paper `sec:records`).
+@isnad1 id=eq.0h0v.s5.11377921029b from=translated src=- shape=a77c4315 vocab=3974681a
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_neg_one : (((-1 : ℤˣ) : ℤ) : ℝ) = -1 := by norm_num
 
-/-- A sign scalar is nonzero (paper `sec:records`).-/
+/-- A sign scalar is nonzero (paper `sec:records`).
+@isnad1 id=ne.0h1v.s4.3b6d7cd724a7 from=translated src=- shape=c1245b1c vocab=88b89075
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_ne_zero (ε : ℤˣ) : ((ε : ℤ) : ℝ) ≠ 0 := by
   rcases Int.units_eq_one_or ε with rfl | rfl <;> norm_num
 
@@ -262,22 +290,30 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.recSign_ne_zero (ε : ℤˣ) : (
     and its implementation"), realized as `Fin.rev`.-/
 def _root_.Tengoku.ObserverEquivarianceLean.recρ : Fin 3 → Fin 3 := Fin.rev
 
-/-- `ρ(j) = 2 - j` as real numbers (paper `sec:records`).-/
+/-- `ρ(j) = 2 - j` as real numbers (paper `sec:records`).
+@isnad1 id=eq.0h1v.s5.9f700a38b200 from=translated src=- shape=8301cc61 vocab=237de9a2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recρ_cast (j : Fin 3) : (((recρ j : Fin 3) : ℕ) : ℝ) = 2 - (((j : Fin 3) : ℕ) : ℝ) := by
   fin_cases j <;> norm_num [recρ]
 
-/-- `ρ` is an involution (paper `sec:records`).-/
+/-- `ρ` is an involution (paper `sec:records`).
+@isnad1 id=eq.0h1v.s4.3c2021843b20 from=translated src=- shape=848cd2ae vocab=4bf6c25e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recρ_recρ (j : Fin 3) : recρ (recρ j) = j := Fin.rev_rev j
 
 /-- The relabeled domain `ρ(I)` (paper `sec:records`: `A(I) = ρ(I)`).-/
 def Tengoku.ObserverEquivarianceLean.RecDom.rev (I : RecDom) : RecDom :=
   ⟨I.dom.map Fin.revPerm.toEmbedding, I.nonempty.map⟩
 
-/-- Membership in `ρ(I)` (paper `sec:records`): `j ∈ ρ(I) ↔ ρ(j) ∈ I`.-/
+/-- Membership in `ρ(I)` (paper `sec:records`): `j ∈ ρ(I) ↔ ρ(j) ∈ I`.
+@isnad1 id=iff.0h2v.s6.fcbbbe1f6cb7 from=translated src=- shape=a397f041 vocab=36f6c722
+-/
 theorem Tengoku.ObserverEquivarianceLean.RecDom.mem_rev {I : RecDom} {j : Fin 3} : j ∈ I.rev.dom ↔ recρ j ∈ I.dom := by
   simp [RecDom.rev, Finset.mem_map_equiv, Fin.revPerm_symm, recρ]
 
-/-- `ρ(ρ(I)) = I` (paper `sec:records`).-/
+/-- `ρ(ρ(I)) = I` (paper `sec:records`).
+@isnad1 id=eq.0h1v.s3.bed585517b92 from=translated src=- shape=47dcad53 vocab=f451fb8b
+-/
 theorem Tengoku.ObserverEquivarianceLean.RecDom.rev_rev (I : RecDom) : I.rev.rev = I := by
   ext j
   rw [RecDom.mem_rev, RecDom.mem_rev, recρ_recρ]
@@ -288,7 +324,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.recAFunctor : RecDom ⥤ RecDom wher
   map u := RecDom.homOfSubset fun j hj =>
     RecDom.mem_rev.2 (RecDom.subset_of_hom u (RecDom.mem_rev.1 hj))
 
-/-- `A ⋙ A = 𝟭` on the nose (paper `sec:records`: `A` is an involution).-/
+/-- `A ⋙ A = 𝟭` on the nose (paper `sec:records`: `A` is an involution).
+@isnad1 id=eq.0h0v.s4.a0f1c1722a34 from=translated src=- shape=b71cb8de vocab=664fb832
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recAFunctor_comp_self : recAFunctor ⋙ recAFunctor = 𝟭 RecDom :=
   CategoryTheory.Functor.ext (fun I => RecDom.rev_rev I) (fun _ _ _ => Subsingleton.elim _ _)
 
@@ -296,20 +334,28 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.recAFunctor_comp_self : recAFunc
 def _root_.Tengoku.ObserverEquivarianceLean.recA : StrictAut RecDom :=
   ⟨recAFunctor, recAFunctor, recAFunctor_comp_self, recAFunctor_comp_self⟩
 
-/-- `A(I) = ρ(I)` (paper `sec:records`).-/
+/-- `A(I) = ρ(I)` (paper `sec:records`).
+@isnad1 id=eq.0h1v.s4.48f9af2e2b42 from=translated src=- shape=a07924ed vocab=4433430e
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recA_hom_obj (I : RecDom) : recA.hom.obj I = I.rev := rfl
 
-/-- `A² = 1` (paper `sec:records`).-/
+/-- `A² = 1` (paper `sec:records`).
+@isnad1 id=eq.0h0v.s6.7969e50a4272 from=translated src=- shape=5f5f2813 vocab=bf7ede6b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recA_mul_self : recA * recA = 1 :=
   StrictAut.ext recAFunctor_comp_self recAFunctor_comp_self
 
-/-- `ρ({0}) = {2}` (paper `sec:records`: "the singleton domains `{0}` and `{2}` differ").-/
+/-- `ρ({0}) = {2}` (paper `sec:records`: "the singleton domains `{0}` and `{2}` differ").
+@isnad1 id=eq.0h0v.s5.fba2e7224a6b from=translated src=- shape=2af8777e vocab=8eb919c2
+-/
 theorem Tengoku.ObserverEquivarianceLean.RecDom.rev_single_zero : (RecDom.single 0).rev = RecDom.single 2 := by
   ext j
   rw [RecDom.mem_rev]
   fin_cases j <;> decide
 
-/-- `A ≠ 1`: it moves `{0}` to `{2}` (paper `sec:records`).-/
+/-- `A ≠ 1`: it moves `{0}` to `{2}` (paper `sec:records`).
+@isnad1 id=ne.0h0v.s5.ad10dce8e535 from=translated src=- shape=2d527563 vocab=e4b8de92
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recA_ne_one : recA ≠ 1 := by
   intro h
   have h0 := congrArg (fun B : StrictAut RecDom => B.hom.obj (RecDom.single 0)) h
@@ -335,12 +381,16 @@ def c2Hom [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 
   map_mul' x y := by
     rcases hA x with rfl | rfl <;> rcases hA y with rfl | rfl <;> simp [ha, haa, hbb]
 
-/-- `c2Hom` sends `1` to `1` (helper for paper `sec:records`).-/
+/-- `c2Hom` sends `1` to `1` (helper for paper `sec:records`).
+@isnad1 id=eq.4h4v.s7.222030e4b542 from=translated src=- shape=5ac56f05 vocab=78e31ad1
+-/
 @[simp] theorem c2Hom_one' [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1)
     (haa : a * a = 1) (b : B) (hbb : b * b = 1) : c2Hom a hA ha haa b hbb 1 = 1 :=
   ite_eq_left rfl
 
-/-- `c2Hom` sends the generator to `b` (helper for paper `sec:records`).-/
+/-- `c2Hom` sends the generator to `b` (helper for paper `sec:records`).
+@isnad1 id=eq.4h4v.s7.bad074dc8399 from=translated src=- shape=3fa29e01 vocab=78e31ad1
+-/
 @[simp] theorem c2Hom_gen [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1)
     (haa : a * a = 1) (b : B) (hbb : b * b = 1) : c2Hom a hA ha haa b hbb a = b :=
   ite_eq_right ha
@@ -361,7 +411,9 @@ def c2MulEquiv [DecidableEq A] [DecidableEq B] (a : A) (hA : ∀ x : A, x = 1 �
       · simp only [OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe, c2Hom_one']
       · simp only [OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe, c2Hom_gen] }
 
-/-- `c2MulEquiv` sends the generator to the generator (helper for paper `sec:records`).-/
+/-- `c2MulEquiv` sends the generator to the generator (helper for paper `sec:records`).
+@isnad1 id=eq.6h4v.s8.04af69b88fc6 from=translated src=- shape=32453eca vocab=956020e7
+-/
 @[simp] theorem c2MulEquiv_gen [DecidableEq A] [DecidableEq B] (a : A)
     (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1) (haa : a * a = 1) (b : B)
     (hB : ∀ y : B, y = 1 ∨ y = b) (hb : b ≠ 1) (hbb : b * b = 1) :
@@ -373,13 +425,19 @@ end C2
 /-- The generator of `C₂ = Multiplicative (ZMod 2)` (paper `sec:records`).-/
 def c2Gen : Multiplicative (ZMod 2) := Multiplicative.ofAdd 1
 
-/-- Every element of `C₂` is `1` or the generator (paper `sec:records`).-/
+/-- Every element of `C₂` is `1` or the generator (paper `sec:records`).
+@isnad1 id=or.0h1v.s6.644b4e6f1afe from=translated src=- shape=5b461924 vocab=a07bc6e4
+-/
 theorem c2_cases : ∀ k : Multiplicative (ZMod 2), k = 1 ∨ k = c2Gen := by decide
 
-/-- The generator of `C₂` is nontrivial (paper `sec:records`).-/
+/-- The generator of `C₂` is nontrivial (paper `sec:records`).
+@isnad1 id=ne.0h0v.s6.232bf67841a0 from=translated src=- shape=d8fb023c vocab=a07bc6e4
+-/
 theorem c2Gen_ne_one : c2Gen ≠ 1 := by decide
 
-/-- The generator of `C₂` is an involution (paper `sec:records`).-/
+/-- The generator of `C₂` is an involution (paper `sec:records`).
+@isnad1 id=eq.0h0v.s7.e38d852db7ee from=translated src=- shape=5964f122 vocab=cdecb459
+-/
 theorem c2Gen_mul_self : c2Gen * c2Gen = 1 := by decide
 
 end RecordsExample
@@ -389,7 +447,9 @@ open RecordsExample
 /-- The selected base group `H = {1, A} = ⟨A⟩ ≤ Aut(S)` (paper `sec:records`).-/
 def _root_.Tengoku.ObserverEquivarianceLean.recH : Subgroup (StrictAut RecDom) := Subgroup.zpowers recA
 
-/-- The elements of `H` are exactly `1` and `A` (paper `sec:records`: `H = {1, A}`).-/
+/-- The elements of `H` are exactly `1` and `A` (paper `sec:records`: `H = {1, A}`).
+@isnad1 id=iff.0h1v.s6.3e69a869b1c9 from=translated src=- shape=188d6720 vocab=c4344200
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.mem_recH {B : StrictAut RecDom} : B ∈ recH ↔ B = 1 ∨ B = recA := by
   constructor
   · intro hB
@@ -406,16 +466,22 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.mem_recH {B : StrictAut RecDom} 
 /-- `A` as an element of `H` (paper `sec:records`).-/
 def _root_.Tengoku.ObserverEquivarianceLean.recHA : recH := ⟨recA, Subgroup.mem_zpowers _⟩
 
-/-- Every element of `H` is `1` or `A` (paper `sec:records`).-/
+/-- Every element of `H` is `1` or `A` (paper `sec:records`).
+@isnad1 id=or.0h1v.s7.5acec5c80fc2 from=translated src=- shape=c3d22372 vocab=8d786290
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recH_cases (B : recH) : B = 1 ∨ B = recHA := by
   rcases mem_recH.1 B.2 with h | h
   · exact Or.inl (Subtype.ext h)
   · exact Or.inr (Subtype.ext h)
 
-/-- `A ≠ 1` in `H` (paper `sec:records`).-/
+/-- `A ≠ 1` in `H` (paper `sec:records`).
+@isnad1 id=ne.0h0v.s7.7428cbf81865 from=translated src=- shape=4b8e7786 vocab=8d786290
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recHA_ne_one : recHA ≠ 1 := fun h => recA_ne_one (congrArg Subtype.val h)
 
-/-- `A² = 1` in `H` (paper `sec:records`).-/
+/-- `A² = 1` in `H` (paper `sec:records`).
+@isnad1 id=eq.0h0v.s8.587ad15d8b7a from=translated src=- shape=32a6edb9 vocab=adcf1762
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recHA_mul_self : recHA * recHA = 1 := Subtype.ext recA_mul_self
 
 open Classical in
@@ -475,7 +541,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.recRevEquiv (τ : ℝ) (I : RecDom) 
   right_inv y := Subtype.ext (funext fun j => congrArg (y : ↥I.dom → ℝ)
     (Subtype.ext (recρ_recρ j.1)))
 
-/-- Values of the time-reversal isomorphism (paper `sec:records`): `(α_I x)_j = x_{ρ(j)}`.-/
+/-- Values of the time-reversal isomorphism (paper `sec:records`): `(α_I x)_j = x_{ρ(j)}`.
+@isnad1 id=eq.0h4v.s14.60fbffd039c8 from=translated src=- shape=38c337ff vocab=5bac49e7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recRevEquiv_apply (τ : ℝ) (I : RecDom) (x : recordSpace τ I.rev) (j : ↥I.dom) :
     (recRevEquiv τ I x : ↥I.dom → ℝ) j
       = (x : ↥I.rev.dom → ℝ) ⟨recρ j.1, by rw [RecDom.mem_rev, recρ_recρ]; exact j.2⟩ := rfl
@@ -486,7 +554,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.recRevEquiv_apply (τ : ℝ) (I 
 noncomputable def _root_.Tengoku.ObserverEquivarianceLean.recα (τ : ℝ) : recA.hom ⋙ L₀ τ ≅ L₀ τ :=
   NatIso.ofComponents (fun I => (recRevEquiv τ I).toModuleIso) (fun _ => rfl)
 
-/-- Entries of a record at equal indices agree (helper for paper `sec:records`).-/
+/-- Entries of a record at equal indices agree (helper for paper `sec:records`).
+@isnad1 id=eq.3h5v.s11.44a4c3f58a78 from=translated src=- shape=431d2a47 vocab=9e54ab9d
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.recordSpace_val_congr {τ : ℝ} {I : RecDom} (x : recordSpace τ I) {j k : Fin 3}
     (hj : j ∈ I.dom) (hk : k ∈ I.dom) (h : j = k) :
     (x : ↥I.dom → ℝ) ⟨j, hj⟩ = (x : ↥I.dom → ℝ) ⟨k, hk⟩ := by

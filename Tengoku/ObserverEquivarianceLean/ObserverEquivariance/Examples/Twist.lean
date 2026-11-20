@@ -47,12 +47,16 @@ def c2Hom [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 
   map_mul' x y := by
     rcases hA x with rfl | rfl <;> rcases hA y with rfl | rfl <;> simp [ha, haa, hbb]
 
-/-- `c2Hom` sends `1` to `1` (helper for paper `ex:twist`).-/
+/-- `c2Hom` sends `1` to `1` (helper for paper `ex:twist`).
+@isnad1 id=eq.4h4v.s7.519e3f48c67f from=translated src=- shape=5ac56f05 vocab=2399c807
+-/
 @[simp] theorem c2Hom_one' [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1)
     (haa : a * a = 1) (b : B) (hbb : b * b = 1) : c2Hom a hA ha haa b hbb 1 = 1 :=
   ite_eq_left rfl
 
-/-- `c2Hom` sends the generator `a` to `b` (helper for paper `ex:twist`).-/
+/-- `c2Hom` sends the generator `a` to `b` (helper for paper `ex:twist`).
+@isnad1 id=eq.4h4v.s7.52168abba51f from=translated src=- shape=3fa29e01 vocab=2399c807
+-/
 @[simp] theorem c2Hom_gen [DecidableEq A] (a : A) (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1)
     (haa : a * a = 1) (b : B) (hbb : b * b = 1) : c2Hom a hA ha haa b hbb a = b :=
   ite_eq_right ha
@@ -73,7 +77,9 @@ def c2MulEquiv [DecidableEq A] [DecidableEq B] (a : A) (hA : ∀ x : A, x = 1 �
       · simp only [OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe, c2Hom_one']
       · simp only [OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe, c2Hom_gen] }
 
-/-- `c2MulEquiv` sends the generator to the generator (helper for paper `ex:twist`).-/
+/-- `c2MulEquiv` sends the generator to the generator (helper for paper `ex:twist`).
+@isnad1 id=eq.6h4v.s8.b75495765b17 from=translated src=- shape=32453eca vocab=016307b0
+-/
 @[simp] theorem c2MulEquiv_gen [DecidableEq A] [DecidableEq B] (a : A)
     (hA : ∀ x : A, x = 1 ∨ x = a) (ha : a ≠ 1) (haa : a * a = 1) (b : B)
     (hB : ∀ y : B, y = 1 ∨ y = b) (hb : b ≠ 1) (hbb : b * b = 1) :
@@ -87,16 +93,24 @@ end C2
 /-- The generator of `C₂ = Multiplicative (ZMod 2)` (paper `ex:twist`).-/
 def c2Gen : Multiplicative (ZMod 2) := Multiplicative.ofAdd 1
 
-/-- Every element of `C₂` is `1` or the generator (paper `ex:twist`).-/
+/-- Every element of `C₂` is `1` or the generator (paper `ex:twist`).
+@isnad1 id=or.0h1v.s6.3a5926716e8a from=translated src=- shape=5b461924 vocab=4fb20a2e
+-/
 theorem c2_cases : ∀ k : Multiplicative (ZMod 2), k = 1 ∨ k = c2Gen := by decide
 
-/-- The generator of `C₂` is nontrivial (paper `ex:twist`).-/
+/-- The generator of `C₂` is nontrivial (paper `ex:twist`).
+@isnad1 id=ne.0h0v.s6.f68b35139bc5 from=translated src=- shape=d8fb023c vocab=4fb20a2e
+-/
 theorem c2Gen_ne_one : c2Gen ≠ 1 := by decide
 
-/-- The generator of `C₂` is an involution (paper `ex:twist`).-/
+/-- The generator of `C₂` is an involution (paper `ex:twist`).
+@isnad1 id=eq.0h0v.s7.035370ca6435 from=translated src=- shape=5964f122 vocab=6d8eefeb
+-/
 theorem c2Gen_mul_self : c2Gen * c2Gen = 1 := by decide
 
-/-- Inversion on `C₃` is an involution of `G3` (paper `ex:twist`: `θ_A² = 1`).-/
+/-- Inversion on `C₃` is an involution of `G3` (paper `ex:twist`: `θ_A² = 1`).
+@isnad1 id=eq.0h0v.s9.73bb7aeb1fb1 from=translated src=- shape=5f5f2813 vocab=37f0cd4a
+-/
 theorem zmod3NegMulAut_mul_self : zmod3NegMulAut * zmod3NegMulAut = 1 := by
   ext g
   exact inv_inv g
@@ -107,7 +121,9 @@ open TwistExample
 
 /-! ## The base `S = Pair({0,1})` and the interchange `A` -/
 
-/-- The base of paper `ex:twist`, `S = Pair({0,1})`, is connected (needed by `thm:twisted`).-/
+/-- The base of paper `ex:twist`, `S = Pair({0,1})`, is connected (needed by `thm:twisted`).
+@isnad1 id=isconnec.0h0v.s4.4450fc542525 from=translated src=- shape=f4d8664b vocab=2357d77b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistBase_isConnected : IsConnected (Pair (Fin 2)) := inferInstance
 
 /-- The functor interchanging the two objects of `Pair({0,1})` (paper `ex:twist`, the base
@@ -117,7 +133,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.swapFunctor : Pair (Fin 2) ⥤ Pair 
   map _ := ⟨⟩
 
 /-- The interchange is an involution on the nose (paper `ex:twist`).  The hom universe of
-    `Pair` is pinned to a single `v` so that the intermediate universe is determined.-/
+    `Pair` is pinned to a single `v` so that the intermediate universe is determined.
+@isnad1 id=eq.0h0v.s7.a8f625b7fd8e from=translated src=- shape=2685b024 vocab=1fb7a8ce
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapFunctor_comp_self : swapFunctor.{v, v} ⋙ swapFunctor.{v, v} = 𝟭 (Pair (Fin 2)) :=
   CategoryTheory.Functor.ext (fun x => by cases x; simp [swapFunctor])
     (fun _ _ _ => Subsingleton.elim _ _)
@@ -127,24 +145,34 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.swapFunctor_comp_self : swapFunc
 def _root_.Tengoku.ObserverEquivarianceLean.swapAut : StrictAut (Pair (Fin 2)) :=
   ⟨swapFunctor, swapFunctor, swapFunctor_comp_self, swapFunctor_comp_self⟩
 
-/-- `A² = 1` (paper `ex:twist`).-/
+/-- `A² = 1` (paper `ex:twist`).
+@isnad1 id=eq.0h0v.s8.74c88739e5ce from=translated src=- shape=326034e2 vocab=a66fe90b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_mul_self : swapAut * swapAut = 1 :=
   StrictAut.ext swapFunctor_comp_self swapFunctor_comp_self
 
 /-- The interchange `A` sends the base object `0` to `1` (paper `ex:twist`: `A` interchanges
-    the two base objects).-/
+    the two base objects).
+@isnad1 id=eq.0h0v.s6.573522a2825d from=translated src=- shape=bbfbd652 vocab=819d82e0
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_obj_zero : swapAut.hom.obj (⟨0⟩ : Pair (Fin 2)) = ⟨1⟩ := rfl
 
 /-- The interchange `A` sends the base object `1` to `0` (paper `ex:twist`: `A` interchanges
-    the two base objects).-/
+    the two base objects).
+@isnad1 id=eq.0h0v.s6.fd24ff87fc39 from=translated src=- shape=bbfbd652 vocab=819d82e0
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_obj_one : swapAut.hom.obj (⟨1⟩ : Pair (Fin 2)) = ⟨0⟩ := rfl
 
-/-- Paper `ex:twist`: `A` interchanges the two base objects, `A 0 = 1` and `A 1 = 0`.-/
+/-- Paper `ex:twist`: `A` interchanges the two base objects, `A 0 = 1` and `A 1 = 0`.
+@isnad1 id=and.0h0v.s7.db38ef6c5775 from=translated src=- shape=cc02488f vocab=819d82e0
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_obj :
     swapAut.hom.obj (⟨0⟩ : Pair (Fin 2)) = ⟨1⟩ ∧ swapAut.hom.obj (⟨1⟩ : Pair (Fin 2)) = ⟨0⟩ :=
   ⟨rfl, rfl⟩
 
-/-- `A ≠ 1`: it moves the object `0` to `1` (paper `ex:twist`).-/
+/-- `A ≠ 1`: it moves the object `0` to `1` (paper `ex:twist`).
+@isnad1 id=ne.0h0v.s7.baef1ec0673d from=translated src=- shape=debe7e2a vocab=27ae72c7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_ne_one : swapAut ≠ 1 := by
   intro h
   have h0 := congrArg (fun B : StrictAut (Pair (Fin 2)) => (B.hom.obj ⟨0⟩).pt) h
@@ -153,7 +181,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.swapAut_ne_one : swapAut ≠ 1 :
 /-- The subgroup `H = C₂ = ⟨A⟩ ≤ Aut(S)` generated by the interchange (paper `ex:twist`).-/
 def _root_.Tengoku.ObserverEquivarianceLean.twistH : Subgroup (StrictAut (Pair (Fin 2))) := Subgroup.zpowers swapAut
 
-/-- The elements of `H = ⟨A⟩` are exactly `1` and `A` (paper `ex:twist`).-/
+/-- The elements of `H = ⟨A⟩` are exactly `1` and `A` (paper `ex:twist`).
+@isnad1 id=iff.0h1v.s8.419845a50ae7 from=translated src=- shape=cd7f6bf6 vocab=84bb143b
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.mem_twistH {B : StrictAut (Pair (Fin 2))} : B ∈ twistH ↔ B = 1 ∨ B = swapAut := by
   constructor
   · intro hB
@@ -170,16 +200,22 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.mem_twistH {B : StrictAut (Pair 
 /-- The interchange `A` as an element of `H` (paper `ex:twist`).-/
 def _root_.Tengoku.ObserverEquivarianceLean.twistHSwap : twistH := ⟨swapAut, Subgroup.mem_zpowers _⟩
 
-/-- Every element of `H` is `1` or `A` (paper `ex:twist`).-/
+/-- Every element of `H` is `1` or `A` (paper `ex:twist`).
+@isnad1 id=or.0h1v.s10.4aa54ff4ace9 from=translated src=- shape=fe648e4d vocab=fc81ddd7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistH_cases (B : twistH) : B = 1 ∨ B = twistHSwap := by
   rcases mem_twistH.1 B.2 with h | h
   · exact Or.inl (Subtype.ext h)
   · exact Or.inr (Subtype.ext h)
 
-/-- `A ≠ 1` in `H` (paper `ex:twist`).-/
+/-- `A ≠ 1` in `H` (paper `ex:twist`).
+@isnad1 id=ne.0h0v.s9.d1095438ca57 from=translated src=- shape=2372ea95 vocab=fc81ddd7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistHSwap_ne_one : twistHSwap ≠ 1 := fun h => swapAut_ne_one (congrArg Subtype.val h)
 
-/-- `A² = 1` in `H` (paper `ex:twist`).-/
+/-- `A² = 1` in `H` (paper `ex:twist`).
+@isnad1 id=eq.0h0v.s10.4cffe43f3886 from=translated src=- shape=8cac9f04 vocab=5e0fdf71
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistHSwap_mul_self : twistHSwap * twistHSwap = 1 := Subtype.ext swapAut_mul_self
 
 open Classical in
@@ -188,7 +224,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.twistHMulEquiv : twist
   c2MulEquiv twistHSwap twistH_cases twistHSwap_ne_one twistHSwap_mul_self
     c2Gen c2_cases c2Gen_ne_one c2Gen_mul_self
 
-/-- `twistHMulEquiv` sends `A` to the generator of `C₂` (paper `ex:twist`).-/
+/-- `twistHMulEquiv` sends `A` to the generator of `C₂` (paper `ex:twist`).
+@isnad1 id=eq.0h0v.s10.8b9a726ee08c from=translated src=- shape=8da8c69c vocab=142392b7
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistHMulEquiv_swap : twistHMulEquiv twistHSwap = c2Gen := by
   classical
   exact c2MulEquiv_gen _ _ _ _ _ _ _ _
@@ -201,7 +239,9 @@ noncomputable def _root_.Tengoku.ObserverEquivarianceLean.twistθ : twistH →* 
   c2Hom twistHSwap twistH_cases twistHSwap_ne_one twistHSwap_mul_self
     zmod3NegMulAut zmod3NegMulAut_mul_self
 
-/-- `θ_A` is inversion (paper `ex:twist`).-/
+/-- `θ_A` is inversion (paper `ex:twist`).
+@isnad1 id=eq.0h0v.s11.c1f4a774f51c from=translated src=- shape=4cf64222 vocab=ed6a46ad
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.twistθ_swap : twistθ twistHSwap = zmod3NegMulAut := by
   classical
   exact c2Hom_gen _ _ _ _ _ _
@@ -255,7 +295,9 @@ def _root_.Tengoku.ObserverEquivarianceLean.c2ToS3 : Multiplicative (ZMod 2) →
   c2Hom c2Gen c2_cases c2Gen_ne_one c2Gen_mul_self (Equiv.swap 0 1) (Equiv.swap_mul_self 0 1)
 
 /-- The dihedral relation `(12) (123)^k (12)⁻¹ = (123)^{-k}`, in the form required by
-    `SemidirectProduct.lift` (paper `ex:twist`).-/
+    `SemidirectProduct.lift` (paper `ex:twist`).
+@isnad1 id=eq.0h1v.s11.000a731dc1af from=translated src=- shape=08686476 vocab=44f6a492
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.c3c2ToS3_compat (g : Multiplicative (ZMod 2)) :
     c3ToS3.comp (twistθC2 g).toMonoidHom
       = (MulAut.conj (c2ToS3 g)).toMonoidHom.comp c3ToS3 := by
@@ -267,7 +309,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.c3c2ToS3_compat (g : Multiplicat
 def _root_.Tengoku.ObserverEquivarianceLean.c3c2ToS3 : SemidirectProduct G3 (Multiplicative (ZMod 2)) twistθC2 →* Equiv.Perm (Fin 3) :=
   SemidirectProduct.lift c3ToS3 c2ToS3 c3c2ToS3_compat
 
-/-- `c3c2ToS3` is bijective (paper `ex:twist`).-/
+/-- `c3c2ToS3` is bijective (paper `ex:twist`).
+@isnad1 id=bijectiv.0h0v.s10.f4710ba6dc05 from=translated src=- shape=6e7c57f4 vocab=355b2537
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.c3c2ToS3_bijective : Function.Bijective c3c2ToS3 := by
   have hinj : ∀ (a c : G3) (b e : Multiplicative (ZMod 2)),
       c3ToS3 a * c2ToS3 b = c3ToS3 c * c2ToS3 e → a = c ∧ b = e := by decide
@@ -297,43 +341,57 @@ def _root_.Tengoku.ObserverEquivarianceLean.twistR : G3 := Multiplicative.ofAdd 
 /-! ## Left versus right translation in `S₃` -/
 
 /-- Paper `ex:twist`: with right-to-left composition, `(12)(23) = (123)`; on `Fin 3`,
-    `swap 0 1 * swap 1 2 = c[0, 1, 2]` (`0 ↦ 1 ↦ 2 ↦ 0`).-/
+    `swap 0 1 * swap 1 2 = c[0, 1, 2]` (`0 ↦ 1 ↦ 2 ↦ 0`).
+@isnad1 id=eq.0h0v.s7.e81dd1ae3dbe from=translated src=- shape=3886010c vocab=5ad9dd7c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_swap01_mul_swap12 : Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2 = c[0, 1, 2] := by
   decide
 
 /-- Paper `ex:twist`: `(23)(12) = (132)`; on `Fin 3`, `swap 1 2 * swap 0 1 = c[0, 2, 1]`
-    (`0 ↦ 2 ↦ 1 ↦ 0`).-/
+    (`0 ↦ 2 ↦ 1 ↦ 0`).
+@isnad1 id=eq.0h0v.s7.fc314cac8775 from=translated src=- shape=3886010c vocab=5ad9dd7c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_swap12_mul_swap01 : Equiv.swap (1 : Fin 3) 2 * Equiv.swap 0 1 = c[0, 2, 1] := by
   decide
 
-/-- Explicit values of `(12)(23)`: `0 ↦ 1`, `1 ↦ 2`, `2 ↦ 0` (paper `ex:twist`).-/
+/-- Explicit values of `(12)(23)`: `0 ↦ 1`, `1 ↦ 2`, `2 ↦ 0` (paper `ex:twist`).
+@isnad1 id=and.0h0v.s9.6e240bd3d35f from=translated src=- shape=83bacea0 vocab=59a6425c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_swap01_mul_swap12_apply :
     (Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2 : Equiv.Perm (Fin 3)) 0 = 1 ∧
     (Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2 : Equiv.Perm (Fin 3)) 1 = 2 ∧
     (Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2 : Equiv.Perm (Fin 3)) 2 = 0 := by
   decide
 
-/-- Explicit values of `(23)(12)`: `0 ↦ 2`, `1 ↦ 0`, `2 ↦ 1` (paper `ex:twist`).-/
+/-- Explicit values of `(23)(12)`: `0 ↦ 2`, `1 ↦ 0`, `2 ↦ 1` (paper `ex:twist`).
+@isnad1 id=and.0h0v.s9.81f4c664d51e from=translated src=- shape=83bacea0 vocab=59a6425c
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_swap12_mul_swap01_apply :
     (Equiv.swap (1 : Fin 3) 2 * Equiv.swap 0 1 : Equiv.Perm (Fin 3)) 0 = 2 ∧
     (Equiv.swap (1 : Fin 3) 2 * Equiv.swap 0 1 : Equiv.Perm (Fin 3)) 1 = 0 ∧
     (Equiv.swap (1 : Fin 3) 2 * Equiv.swap 0 1 : Equiv.Perm (Fin 3)) 2 = 1 := by
   decide
 
-/-- The two three-cycles are distinct: `(123) ≠ (132)` (paper `ex:twist`).-/
+/-- The two three-cycles are distinct: `(123) ≠ (132)` (paper `ex:twist`).
+@isnad1 id=ne.0h0v.s8.4921d6f7b5ff from=translated src=- shape=b4cb422a vocab=bce51d72
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_left_ne_right :
     Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2 ≠ Equiv.swap (1 : Fin 3) 2 * Equiv.swap 0 1 := by
   decide
 
 /-- Paper `ex:twist`: for `G = S₃` (presentation `witness S₃`), `a = (12)` and the object with
-    coordinate `g = (23)`, the normalized translation `Λ_a` produces coordinate `a g = (123)`.-/
+    coordinate `g = (23)`, the normalized translation `Λ_a` produces coordinate `a g = (123)`.
+@isnad1 id=eq.0h0v.s8.427b1b26f0c0 from=translated src=- shape=e8ded018 vocab=cfd162d2
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_Λ_obj :
     (Λ (witness (Equiv.Perm (Fin 3))) (Equiv.swap 0 1)).obj ⟨Equiv.swap 1 2⟩ = ⟨c[0, 1, 2]⟩ := by
   show (⟨1 * (Equiv.swap 0 1 * Equiv.swap 1 2)⟩ : Pair (Equiv.Perm (Fin 3))) = _
   rw [one_mul, s3_swap01_mul_swap12]
 
 /-- Paper `ex:twist`: for the same data, the right action `R_a` produces coordinate
-    `g a = (132)`.-/
+    `g a = (132)`.
+@isnad1 id=eq.0h0v.s8.37900ded2b63 from=translated src=- shape=e8ded018 vocab=915e4871
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_actFunctor_obj :
     ((witness (Equiv.Perm (Fin 3))).actFunctor (Equiv.swap 0 1)).obj ⟨Equiv.swap 1 2⟩
       = ⟨c[0, 2, 1]⟩ := by
@@ -341,7 +399,9 @@ theorem _root_.Tengoku.ObserverEquivarianceLean.s3_actFunctor_obj :
   rw [s3_swap12_mul_swap01]
 
 /-- Paper `ex:twist`: `Λ_a` and `R_a` must not be identified for a general (non-abelian) `G`:
-    for `G = S₃` and `a = (12)`, `Λ_a ≠ R_a` (witnessed at the object with coordinate `(23)`).-/
+    for `G = S₃` and `a = (12)`, `Λ_a ≠ R_a` (witnessed at the object with coordinate `(23)`).
+@isnad1 id=ne.0h0v.s8.aa453ed72a41 from=translated src=- shape=fbaef61b vocab=f563afe3
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.s3_Λ_ne_actFunctor :
     Λ (witness (Equiv.Perm (Fin 3))) (Equiv.swap 0 1)
       ≠ (witness (Equiv.Perm (Fin 3))).actFunctor (Equiv.swap 0 1) := by

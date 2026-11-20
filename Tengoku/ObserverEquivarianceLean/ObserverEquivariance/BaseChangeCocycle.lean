@@ -39,7 +39,9 @@ variable {S O G : Type*} [Category S] [Category O] [Group G] {p : O ⥤ S}
 
 /-- The factor `z_c(A) = c θ_A(c⁻¹)` of `prop:basechange` is the nonabelian `1`-coboundary
     `OECocycle.coboundary θ c A` (paper `sec:normalization`, cocycle paragraph); hence
-    `baseChange_twistFactor_mul` is `OECocycle.coboundary_mul`.-/
+    `baseChange_twistFactor_mul` is `OECocycle.coboundary_mul`.
+@isnad1 id=eq.0h5v.s8.d6c770cadfa1 from=translated src=- shape=7a3725c7 vocab=2f2ee840
+-/
 theorem _root_.Tengoku.ObserverEquivarianceLean.baseChange_twistFactor_eq_coboundary {H : Type*} [Group H] (θ : H →* MulAut G) (c : G)
     (A : H) : c * θ A c⁻¹ = OECocycle.coboundary θ c A := rfl
 
