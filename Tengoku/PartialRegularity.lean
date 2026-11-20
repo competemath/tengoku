@@ -1,0 +1,1 @@
+import Tengoku.PartialRegularity.PartialRegularity.solution
