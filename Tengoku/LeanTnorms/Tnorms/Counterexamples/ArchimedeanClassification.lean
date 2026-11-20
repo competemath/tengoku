@@ -31,6 +31,9 @@ abbrev _root_.Tengoku.LeanTnorms.doubleInterval_le : DoubleInterval → DoubleIn
 
 instance : LE DoubleInterval := ⟨doubleInterval_le⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.87875e8568c6 from=translated src=- shape=91cd23f8 vocab=39331ccb
+-/
 @[simp, grind =]
 lemma _root_.Tengoku.LeanTnorms.doubleInterval_le_def (a b : DoubleInterval) : (a ≤ b) = doubleInterval_le a b := rfl
 

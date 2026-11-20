@@ -49,6 +49,9 @@ def OrderIso.conditionallyCompleteLinearOrder {α β : Type*} [ConditionallyComp
   csSup_of_not_bddAbove s hs := by simp [csSup_of_not_bddAbove, hs]
   csInf_of_not_bddBelow s hs := by simp [csInf_of_not_bddBelow, hs]
 
+/--
+@isnad1 id=iff.0h1v.s6.cd992f0b9bcf from=translated src=- shape=bb544786 vocab=243571ae
+-/
 theorem _root_.Tengoku.LeanTnorms.isReduced_iff_noZeroDivisors {M : Type*} [MonoidWithZero M]
     [LinearOrder M] [MulLeftMono M] [MulRightMono M] [IsBotZeroClass M] :
     IsReduced M ↔ NoZeroDivisors M := by
@@ -76,15 +79,27 @@ section MulMono
 
 variable [Preorder α] [Zero α] [Mul α]
 
+/--
+@isnad1 id=mulleftm.0h1v.s4.a896046857e7 from=translated src=- shape=fb04960b vocab=486fcf4a
+-/
 theorem PosMulMono.toMulLeftMono [IsBotZeroClass α] [PosMulMono α] : MulLeftMono α where
   elim _ _ _ h := mul_le_mul_of_nonneg_left h zero_le
 
+/--
+@isnad1 id=iff.0h1v.s4.eb41dc64852d from=translated src=- shape=6c04fe61 vocab=486fcf4a
+-/
 theorem PosMulMono.mulLeftMono_iff_posMulMono [IsBotZeroClass α] :
     MulLeftMono α ↔ PosMulMono α := ⟨fun _ ↦ inferInstance, fun h ↦ h.toMulLeftMono⟩
 
+/--
+@isnad1 id=mulright.0h1v.s4.f7489c92c230 from=translated src=- shape=fb04960b vocab=f08693a9
+-/
 theorem MulPosMono.toMulRightMono [IsBotZeroClass α] [MulPosMono α] : MulRightMono α where
   elim _ _ _ h := mul_le_mul_of_nonneg_right h zero_le
 
+/--
+@isnad1 id=iff.0h1v.s4.6e5d33edf6fb from=translated src=- shape=6c04fe61 vocab=f08693a9
+-/
 theorem MulPosMono.mulRightMono_iff_mulPosMono [IsBotZeroClass α] :
     MulRightMono α ↔ MulPosMono α := ⟨fun _ ↦ inferInstance, fun h ↦ h.toMulRightMono⟩
 
@@ -93,6 +108,9 @@ end MulMono
 section SemilatticeInf
 variable [SemilatticeInf α] [One α] [IsBotOneClass α]
 
+/--
+@isnad1 id=eq.0h2v.s5.eeb5a3a86a4b from=translated src=- shape=6a5d68bb vocab=8cf11148
+-/
 @[to_additive]
 theorem _root_.Tengoku.LeanTnorms.one_inf (a : α) : 1 ⊓ a = 1 := by simp
 
@@ -101,9 +119,15 @@ end SemilatticeInf
 section SemilatticeSup
 variable [SemilatticeSup α] [One α] [IsBotOneClass α]
 
+/--
+@isnad1 id=eq.0h2v.s5.28572ddc9fa6 from=translated src=- shape=4c2340e7 vocab=8dddef5d
+-/
 @[to_additive]
 theorem _root_.Tengoku.LeanTnorms.one_sup (a : α) : 1 ⊔ a = a := by simp
 
+/--
+@isnad1 id=iff.0h3v.s5.dca5084936bc from=translated src=- shape=cc849372 vocab=8dddef5d
+-/
 @[to_additive (attr := simp)]
 theorem _root_.Tengoku.LeanTnorms.sup_eq_one {a b : α} : a ⊔ b = 1 ↔ a = 1 ∧ b = 1 :=
   let := IsBotOneClass.toOrderBot α
@@ -111,6 +135,9 @@ theorem _root_.Tengoku.LeanTnorms.sup_eq_one {a b : α} : a ⊔ b = 1 ↔ a = 1 
 
 end SemilatticeSup
 
+/--
+@isnad1 id=eq.1h2v.s5.6e010c2d4b04 from=translated src=- shape=1f57bda4 vocab=94e268da
+-/
 lemma Int.toNat_mul' {a b : ℤ} (hb : 0 ≤ b) : (a * b).toNat = a.toNat * b.toNat := by
   by_cases! ha : 0 ≤ a
   · exact Int.toNat_mul ha hb
@@ -118,6 +145,9 @@ lemma Int.toNat_mul' {a b : ℤ} (hb : 0 ≤ b) : (a * b).toNat = a.toNat * b.to
     exact Int.mul_nonpos_of_nonpos_of_nonneg (le_of_lt ha) hb
 
 -- there might be a better way to do this
+/--
+@isnad1 id=le.2h3v.s5.195841ff6ff5 from=translated src=- shape=b4343e4a vocab=4a7c8f8e
+-/
 lemma _root_.Tengoku.LeanTnorms.comp_self_subset {α : Type*} [UniformSpace α] {U V : Set (α × α)}
     (hVU : SetRel.comp V V ⊆ U) (hV : V ∈ uniformity α) : V ⊆ U := by
   intro x hx
@@ -126,6 +156,9 @@ lemma _root_.Tengoku.LeanTnorms.comp_self_subset {α : Type*} [UniformSpace α] 
   use x.1
   simp [hx, refl_mem_uniformity hV]
 
+/--
+@isnad1 id=continuo.2h3v.s6.a44780c3474a from=translated src=- shape=883f580f vocab=20b469bb
+-/
 theorem Antitone.continuous_of_surjective {α β : Type*} [LinearOrder α] [TopologicalSpace α]
     [OrderTopology α] [LinearOrder β] [TopologicalSpace β] [OrderTopology β]
     [DenselyOrdered β] {f : α → β} (h_anti : Antitone f) (h_surj : Function.Surjective f) :
@@ -135,6 +168,9 @@ theorem Antitone.continuous_of_surjective {α β : Type*} [LinearOrder α] [Topo
   apply Monotone.continuous_of_surjective h_mono at h_surj'
   exact (continuous_congr (congrFun rfl)).mp h_surj'
 
+/--
+@isnad1 id=isnilpot.3h3v.s6.aae3e4a37a9e from=translated src=- shape=9809e273 vocab=c9ee4665
+-/
 lemma _root_.Tengoku.LeanTnorms.isNilpotent_monotone {R : Type*} [CommMonoidWithZero R] [PartialOrder R]
     [IsOrderedMonoid R]
     {x y : R} (hx0 : 0 ≤ x) (h : x ≤ y) (hy : IsNilpotent y) :
@@ -151,6 +187,9 @@ lemma _root_.Tengoku.LeanTnorms.isNilpotent_monotone {R : Type*} [CommMonoidWith
 
 -- Do these really belong in Mathlib?
 
+/--
+@isnad1 id=not.1h3v.s5.fcd4d3c1a062 from=translated src=- shape=c73de50a vocab=df0a4a47
+-/
 lemma _root_.Tengoku.LeanTnorms.notMem_of_sSup_lt {α : Type*} [CompleteLattice α] {x : α} {s : Set α} (h : sSup s < x) :
     x ∉ s := notMem_of_csSup_lt h <| OrderTop.bddAbove s
 
@@ -162,6 +201,9 @@ def φ {P : ℕ → ℕ → Prop} (hn : ∀ N, ∃ m > N, ∀ n ≤ N, P m n) : 
 
 variable {X : Type*} [MetricSpace X]
 
+/--
+@isnad1 id=ex.2h3v.s6.b0a1b415929c from=translated src=- shape=ec0aca35 vocab=a0d3bfdf
+-/
 lemma _root_.Tengoku.LeanTnorms.refine_seq_uniformity (x : ℕ → X) (y : X)
     (hx : Filter.Tendsto x Filter.atTop (nhds y))
     (hxy : ∀ n, x n ≠ y) :
@@ -204,6 +246,9 @@ lemma _root_.Tengoku.LeanTnorms.refine_seq_uniformity (x : ℕ → X) (y : X)
     intro m
     simp [φ, (Classical.choose_spec (hn (φ hn m))).2 (φ hn m) (by rfl)]
 
+/--
+@isnad1 id=ex.4h2v.s7.5cff4d336975 from=translated src=- shape=224da110 vocab=03198539
+-/
 lemma IsOpen.exists_Ioo_subset_mem_closure {α : Type*} [TopologicalSpace α] [Nontrivial α]
     [CompleteLinearOrder α] [OrderTopology α] [DenselyOrdered α] {s : Set α} (hs : IsOpen s)
     (h : s.Nonempty) (hsb : ⊥ ∉ s) (hst : ⊤ ∉ s) :
@@ -262,6 +307,9 @@ lemma IsOpen.exists_Ioo_subset_mem_closure {α : Type*} [TopologicalSpace α] [N
 
 open ENNReal
 
+/--
+@isnad1 id=ex.0h1v.s5.e152fd192288 from=translated src=- shape=2bed44f7 vocab=31a4f4f0
+-/
 theorem ENNReal.exists_seq_rat_tendsto (x : ℝ≥0∞) :
     ∃ u : ℕ → ℚ, (∀ n : ℕ, 0 ≤ u n) ∧ Filter.Tendsto (fun x ↦ ENNReal.ofReal (u x))
     Filter.atTop (nhds x) := by

@@ -110,6 +110,9 @@ private lemma aux_tendsto_sInf_of_tendsto {x : ℕ → M} {p : M}
     refine csInf_lt_of_lt ?_ (by grind) hk
     exact BddBelow.mono (by simp) (Filter.Tendsto.bddBelow_range hx₀)
 
+/--
+@isnad1 id=ex.1h3v.s6.c9b854aa211c from=translated src=- shape=5ff0bb05 vocab=bbfe1a94
+-/
 lemma _root_.Tengoku.LeanTnorms.mono_of_tendsto {x : ℕ → M} {p : M} (hx : Filter.Tendsto x Filter.atTop (nhds p)) :
     ∃ a : ℕ → M, Monotone a ∧ (∀ n : ℕ, (a n) ≤ (x n)) ∧
     Filter.Tendsto a Filter.atTop (nhds p) := by
@@ -119,6 +122,9 @@ lemma _root_.Tengoku.LeanTnorms.mono_of_tendsto {x : ℕ → M} {p : M} (hx : Fi
   · exact aux_le_of_tendsto hx
   · exact aux_tendsto_sInf_of_tendsto hx
 
+/--
+@isnad1 id=ex.2h4v.s7.f8657dd814a2 from=translated src=- shape=fba577d8 vocab=30962530
+-/
 lemma _root_.Tengoku.LeanTnorms.mono_of_tendsto' {x : ℕ → M} {p q : M} (hxq : ∀ n, q < x n)
     (hx : Filter.Tendsto x Filter.atTop (nhds p)) :
     ∃ a : ℕ → M, Monotone a ∧ (∀ n : ℕ, a n ≤ x n) ∧ (∀ n, q ≤ a n) ∧
@@ -219,6 +225,9 @@ private lemma aux_tendsto_sSup_of_tendsto {x : ℕ → M} {p : M}
     · obtain ⟨l, hl, hla⟩ := exists_index_eq_sSup_of_limit_lt hx₀ m hap
       grind
 
+/--
+@isnad1 id=ex.1h3v.s6.1ed85351ec54 from=translated src=- shape=335011eb vocab=c671eed6
+-/
 lemma _root_.Tengoku.LeanTnorms.anti_of_tendsto {x : ℕ → M} {p : M} (hx : Filter.Tendsto x Filter.atTop (nhds p)) :
     ∃ a : ℕ → M, Antitone a ∧ (∀ n : ℕ, (x n) ≤ (a n)) ∧
     Filter.Tendsto a Filter.atTop (nhds p) := by
@@ -256,6 +265,9 @@ section ContinuousMul
 variable {M : Type*} [TopologicalSpace M] [ConditionallyCompleteLinearOrder M]
     [CommMonoid M] [IsOrderedMonoid M] [OrderTopology M] [FirstCountableTopology M]
 
+/--
+@isnad1 id=iff.0h1v.s6.608fbf47900b from=translated src=- shape=cd973e87 vocab=156ecb56
+-/
 theorem _root_.Tengoku.LeanTnorms.continuousMul_iff_separatelyContinuousMul :
     ContinuousMul M ↔ SeparatelyContinuousMul M := by
   constructor
@@ -298,6 +310,9 @@ theorem _root_.Tengoku.LeanTnorms.continuousMul_iff_separatelyContinuousMul :
       refine lt_of_le_of_lt ?_ (hb n (by grind))
       exact mul_le_mul' (hbz n) <| le_trans (hdz n) (hdo (le_of_max_le_left hn))
 
+/--
+@isnad1 id=iff.0h1v.s6.9b81254df968 from=translated src=- shape=c61bdc7e vocab=4830e042
+-/
 theorem _root_.Tengoku.LeanTnorms.continuousMul_iff_leftRightContinuousMul :
     ContinuousMul M ↔ LeftContinuousMul M ∧ RightContinuousMul M :=
   ⟨fun _ ↦ ⟨inferInstance, inferInstance⟩, fun ⟨_, _⟩ ↦ inferInstance⟩

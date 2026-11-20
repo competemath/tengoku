@@ -60,6 +60,9 @@ def _root_.Tengoku.LeanTnorms.correction2 (q : I) : ℝ → I := fun a ↦
   if -1 ≤ a ∧ a ≤ 0 then interpolate (-1) 0 q 0 a
   else 0
 
+/--
+@isnad1 id=eq.2h6v.s6.ee137fc396e9 from=translated src=- shape=70c85435 vocab=c194b5ef
+-/
 lemma _root_.Tengoku.LeanTnorms.correction_add (x : ℕ → X) (y : X) (p : I) (q : I) (a : ℝ)
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hx : StrictAnti (fun n ↦ dist (x n) y)) :
@@ -91,6 +94,9 @@ lemma _root_.Tengoku.LeanTnorms.correction_add (x : ℕ → X) (y : X) (p : I) (
     simp_rw [and_comm, ← not_lt]
     exact Nat.exists_not_and_succ_of_not_zero_of_exists hd (by grind)
 
+/--
+@isnad1 id=uniformc.2h5v.s6.0dcf48d627c6 from=translated src=- shape=81b80c1d vocab=0a2b9db3
+-/
 lemma _root_.Tengoku.LeanTnorms.correction_uniformContinuous {x : ℕ → X} {y : X} {p : I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hx : StrictAnti (fun n ↦ dist (x n) y)) :
@@ -106,6 +112,9 @@ lemma _root_.Tengoku.LeanTnorms.correction_uniformContinuous {x : ℕ → X} {y 
   · refine UniformContinuous.comp uniformContinuous_subtype_val ?_
     exact ite_interpolate_uniformContinuous _ _ _ _ (by norm_num)
 
+/--
+@isnad1 id=continuo.3h5v.s7.9e90e7e50c96 from=translated src=- shape=3be2b2b6 vocab=43f118f6
+-/
 lemma ContinuousOn.Icc_of_tendsto_endpoints {α β : Type*} [TopologicalSpace α]
     [LinearOrder α] [DenselyOrdered α] [OrderTopology α] [TopologicalSpace β] [RegularSpace β]
     [T2Space β] {f : α → β} {a b : α} (h : ContinuousOn f (Set.Ioo a b))
@@ -129,6 +138,9 @@ lemma ContinuousOn.Icc_of_tendsto_endpoints {α β : Type*} [TopologicalSpace α
   refine extendFrom_extends h _ ?_
   grind
 
+/--
+@isnad1 id=tendsto.2h4v.s6.31a9d8e21ede from=translated src=- shape=1de20201 vocab=36a25a56
+-/
 lemma Metric.tendsto_nhdsWithin_Iio_of_tendsto_nhdsWithin_Ioc
     {f : ℝ → I} {a b : ℝ} {p : I} (hab : a < b)
     (h : Filter.Tendsto f (nhdsWithin b (Set.Ioc a b)) (nhds p)) :
@@ -144,12 +156,18 @@ lemma Metric.tendsto_nhdsWithin_Iio_of_tendsto_nhdsWithin_Ioc
   have hyo : y ∈ Set.Ioc a b := by grind [Real.dist_eq]
   exact h hyo (by grind)
 
+/--
+@isnad1 id=tendsto.2h5v.s6.b50656c62ac7 from=translated src=- shape=b02a6ac0 vocab=621198c5
+-/
 lemma Metric.tendsto_nhdsWithin_of_eqOn {f g : ℝ → I} {s : Set ℝ} {x : ℝ}
     {p : I} (h : Set.EqOn f g s) (hf : Filter.Tendsto f (nhdsWithin x s) (nhds p)) :
     Filter.Tendsto g (nhdsWithin x s) (nhds p) := by
   rw [Metric.tendsto_nhdsWithin_nhds] at hf ⊢
   grind
 
+/--
+@isnad1 id=tendsto.2h5v.s6.235e0df9916a from=translated src=- shape=d4b0fb11 vocab=b29a2f5e
+-/
 lemma Metric.tendsto_nhdsWithin_nhds_of_continuousOn {α β : Type*} [MetricSpace α] [MetricSpace β]
     {f : α → β} {s : Set α} {a : α} (ha : a ∈ s) (h : ContinuousOn f s) :
     Filter.Tendsto f (nhdsWithin a s) (nhds (f a)) := by
@@ -157,6 +175,9 @@ lemma Metric.tendsto_nhdsWithin_nhds_of_continuousOn {α β : Type*} [MetricSpac
   rw [Metric.continuousOn_iff] at h
   grind
 
+/--
+@isnad1 id=ne.1h4v.s5.c775c2e64560 from=translated src=- shape=808dfa09 vocab=87af80a4
+-/
 lemma _root_.Tengoku.LeanTnorms.ne_of_dist_strictAnti {x : ℕ → X} {y : X} (h : StrictAnti (fun n ↦ dist (x n) y))
     (n : ℕ) : x n ≠ y := by
   specialize h (lt_add_one n)
@@ -164,6 +185,9 @@ lemma _root_.Tengoku.LeanTnorms.ne_of_dist_strictAnti {x : ℕ → X} {y : X} (h
   contrapose! h
   simp [h]
 
+/--
+@isnad1 id=eq.1h6v.s6.d88c8c8c76aa from=translated src=- shape=a0a062d7 vocab=24d5b049
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_apply_dist {x : ℕ → X} {y : X} {p : ℕ → I} {q : I} (n : ℕ)
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
     dist_fun_compactSupport x y p q (dist (x n) y) = p n := by
@@ -187,9 +211,15 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_apply_dist {x : ℕ → 
     contrapose! hn'
     exact hd hn'
 
+/--
+@isnad1 id=eq.0h5v.s5.d7f1005db420 from=translated src=- shape=239c8151 vocab=201f4c68
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_apply_zero {x : ℕ → X} {y : X} {p : ℕ → I} {q : I} :
   dist_fun_compactSupport x y p q 0 = q := by simp [dist_fun_compactSupport]
 
+/--
+@isnad1 id=eqon.1h6v.s7.f6a1b115841c from=translated src=- shape=91e2de13 vocab=e6d7c02f
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_eqOn_interpolate_Icc {x : ℕ → X} {y : X} {p : ℕ → I} {q : I} (n : ℕ)
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
     Set.EqOn (dist_fun_compactSupport x y p q)
@@ -219,6 +249,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_eqOn_interpolate_Icc {x 
     contrapose! hn'
     exact lt_of_le_of_lt (StrictAnti.antitone hd hn') (by grind)
 
+/--
+@isnad1 id=eqon.1h6v.s7.7e91612d9803 from=translated src=- shape=91e2de13 vocab=d87eb84a
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_eqOn_interpolate_Ioc {x : ℕ → X} {y : X} {p : ℕ → I} {q : I} (n : ℕ)
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
     Set.EqOn (dist_fun_compactSupport x y p q)
@@ -226,6 +259,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_eqOn_interpolate_Ioc {x 
       (Set.Ioc (dist (x (n + 1)) y) (dist (x n) y)) :=
   Set.EqOn.mono Set.Ioc_subset_Icc_self <| dist_fun_compactSupport_eqOn_interpolate_Icc n hd
 
+/--
+@isnad1 id=continuo.2h6v.s6.a2dda3025cc5 from=translated src=- shape=80e0031f vocab=691af9fe
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_dist_Icc {x : ℕ → X} {y : X} {p : ℕ → I} {q : I} (i : ℕ)
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
@@ -251,6 +287,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_dist_Icc {x
   · exact isClosed_Icc
   · exact isClosed_Icc
 
+/--
+@isnad1 id=continuo.2h5v.s6.3c7a0e81e968 from=translated src=- shape=5d475b08 vocab=fa9499f0
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_zero_dist_Ioo {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
@@ -279,6 +318,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_zero_dist_I
   · intro i
     exact isOpen_Ioo
 
+/--
+@isnad1 id=continuo.3h5v.s7.00e3648fc60c from=translated src=- shape=b62f0d18 vocab=691af9fe
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_zero_dist_Icc {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y))
@@ -379,6 +421,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_zero_dist_I
         (by grind)
     exact dist_fun_compactSupport_eqOn_interpolate_Ioc 0 hd
 
+/--
+@isnad1 id=continuo.1h5v.s6.5b88c655ca88 from=translated src=- shape=0a41c7fb vocab=dc38bafd
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_dist_dist {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hd : StrictAnti (fun n ↦ dist (x n) y)) :
     ContinuousOn (dist_fun_compactSupport x y p q) (Set.Icc (dist (x 0) y) (dist (x 0) y + 1)) := by
@@ -425,6 +470,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuousOn_dist_dist {
     exact hd hn0
   simp [dist_fun_compactSupport, ha1, ha01, han, ha]
 
+/--
+@isnad1 id=continuo.3h5v.s6.dc1fafd24c1a from=translated src=- shape=b1e1e6ea vocab=38578551
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuous {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y))
@@ -476,6 +524,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_continuous {x : ℕ → 
 
   all_goals simp [isClosed_Iic, isClosed_Icc, isClosed_Ici]
 
+/--
+@isnad1 id=uniformc.3h5v.s6.6f53fdd6b4ec from=translated src=- shape=b1e1e6ea vocab=d347a242
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_uniformContinuous {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y))
@@ -506,6 +557,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_compactSupport_uniformContinuous {x : �
     have hbn0 : ¬ (dist (x 0) y ≤ b ∧ b ≤ dist (x 0) y + 1) := by grind
     simp [dist_fun_compactSupport, hb1, hb01, hbn, hbn0, ha0']
 
+/--
+@isnad1 id=eq.0h6v.s6.73c5f47cc8f2 from=translated src=- shape=0c19f2c8 vocab=b67eb222
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_add_compactSupport {x : ℕ → X} {y : X} (p : ℕ → I) (q : I) (a : ℝ) :
     ((dist_fun x y p q) a).1 = (dist_fun_compactSupport x y p q) a + (correction x y (p 0) q) a := by
   simp [dist_fun]
@@ -530,6 +584,9 @@ lemma _root_.Tengoku.LeanTnorms.dist_fun_add_compactSupport {x : ℕ → X} {y :
       · exact lt_add_one _
     · simp
 
+/--
+@isnad1 id=uniformc.3h5v.s6.02ea6f887e52 from=translated src=- shape=b1e1e6ea vocab=d8781565
+-/
 lemma _root_.Tengoku.LeanTnorms.dist_fun_uniformContinuous {x : ℕ → X} {y : X} {p : ℕ → I} {q : I}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y))
     (hd : StrictAnti (fun n ↦ dist (x n) y))

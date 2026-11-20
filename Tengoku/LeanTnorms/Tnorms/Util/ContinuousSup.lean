@@ -20,6 +20,9 @@ variable {α β : Type*}
     [OrderTopology α] [OrderTopology β]
     [FirstCountableTopology α]
 
+/--
+@isnad1 id=eq.3h4v.s6.587177dfb036 from=translated src=- shape=75ed3691 vocab=ef92e9cb
+-/
 lemma _root_.Tengoku.LeanTnorms.is_sSupHom_of_continuous_mono' {f : α → β} (h : Continuous f) (hm : Monotone f)
     (S : Set α) (hS : S.Nonempty) : sSup (f '' S) = f (sSup S) := by
   suffices ¬ sSup (f '' S) < f (sSup S) by
@@ -46,6 +49,9 @@ lemma _root_.Tengoku.LeanTnorms.is_sSupHom_of_continuous_mono' {f : α → β} (
     suffices f (u n) ≤ sSup (f '' S) by grind
     exact le_sSup (by grind)
 
+/--
+@isnad1 id=eq.3h4v.s7.f8530744dffe from=translated src=- shape=2a635965 vocab=6fe5675d
+-/
 lemma _root_.Tengoku.LeanTnorms.is_sSupHom_of_continuous_mono {f : α → β} (h : Continuous f) (hm : Monotone f)
     (hb : f ⊥ = ⊥) (S : Set α) : sSup (f '' S) = f (sSup S) := by
   by_cases! hS : ¬S.Nonempty

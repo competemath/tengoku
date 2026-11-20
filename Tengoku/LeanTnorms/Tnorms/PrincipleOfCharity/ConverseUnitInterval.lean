@@ -21,6 +21,9 @@ variable {X : Type*} [MetricSpace X]
 
 open unitInterval
 
+/--
+@isnad1 id=ex.1h1v.s7.2284c708ae23 from=translated src=- shape=319666a8 vocab=117931ed
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_match_fun_of_exists_accPt_unitInterval
     (h : ∃ x, AccPt x (⊤ : Filter X)) :
     ∃ x y : ℕ → X, (∀ U ∈ uniformity X, ∃ N : ℕ, ∀ n ≥ N, (x n, y n) ∈ U) ∧
@@ -84,6 +87,9 @@ lemma _root_.Tengoku.LeanTnorms.exists_match_fun_of_exists_accPt_unitInterval
 
 variable {M : Type*} [UniformSpace M]
 
+/--
+@isnad1 id=ex.1h3v.s8.7f8d2257f837 from=translated src=- shape=9e462591 vocab=cf3fb617
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_match_fun_of_match_fun_unitInterval (e : M ≃ᵤ I)
     (h : ∃ x y : ℕ → X, (∀ U ∈ uniformity X, ∃ N : ℕ, ∀ n ≥ N, (x n, y n) ∈ U) ∧
     ∀ q : I, ∀ p : ℕ → I, Filter.Tendsto p Filter.atTop (nhds q) → ∃ f : X → I,
@@ -113,6 +119,9 @@ lemma _root_.Tengoku.LeanTnorms.exists_match_fun_of_match_fun_unitInterval (e : 
     rw [← UniformEquiv.coe_symm_toEquiv, Equiv.symm_apply_eq, UniformEquiv.coe_toEquiv]
     exact hfy' n
 
+/--
+@isnad1 id=ex.1h3v.s7.e41c8a08a627 from=translated src=- shape=34b57467 vocab=93b2d016
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_match_fun_of_uniformEquiv_unitInterval (e : M ≃ᵤ I) (hX : ∃ x : X, AccPt x ⊤) :
     ∃ x y : ℕ → X, (∀ U ∈ uniformity X, ∃ N : ℕ, ∀ n ≥ N, (x n, y n) ∈ U) ∧
     ∀ q : M, ∀ p : ℕ → M, Filter.Tendsto p Filter.atTop (nhds q) → ∃ f : X → M,

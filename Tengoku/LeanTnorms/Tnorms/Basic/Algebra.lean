@@ -34,6 +34,9 @@ instance [Infinite M] : NontrivialZeroOne M where
     simp at ha
     use a
 
+/--
+@isnad1 id=nontrivi.1h1v.s4.d068622daf60 from=translated src=- shape=7894e3b2 vocab=0e7b50d1
+-/
 theorem _root_.Tengoku.LeanTnorms.nontrivialZeroOne_of_card_ge_three [Fintype M] (h : 2 < Fintype.card M) :
     NontrivialZeroOne M := by
   rw [Fintype.two_lt_card_iff] at h
@@ -50,17 +53,29 @@ instance [SubsingletonZeroOne M] [DecidableEq M] : Fintype M where
   elems := {(0 : M), (1 : M)}
   complete := by simp [SubsingletonZeroOne.allEq_zero_or_one]
 
+/--
+@isnad1 id=iff.0h1v.s4.780c52b41b84 from=translated src=- shape=ec580384 vocab=e6b88d2d
+-/
 theorem _root_.Tengoku.LeanTnorms.nontrivialZeroOne_iff_not_subsingletonZeroOne :
     NontrivialZeroOne M ↔ ¬ SubsingletonZeroOne M := by
   simp [subsingletonZeroOne_iff, nontrivialZeroOne_iff]
 
+/--
+@isnad1 id=iff.0h1v.s4.c7eec5120f75 from=translated src=- shape=ec580384 vocab=e6b88d2d
+-/
 theorem _root_.Tengoku.LeanTnorms.subsingletonZeroOne_iff_not_nontrivialZeroOne :
     SubsingletonZeroOne M ↔ ¬ NontrivialZeroOne M := by
   rw [nontrivialZeroOne_iff_not_subsingletonZeroOne, not_not]
 
+/--
+@isnad1 id=iff.0h1v.s4.72e4a63c49a9 from=translated src=- shape=1de50875 vocab=203daf99
+-/
 theorem _root_.Tengoku.LeanTnorms.nontrivialZeroOne_iff_exists_isNontrivial :
     NontrivialZeroOne M ↔ ∃ a : M, IsNontrivial a := nontrivialZeroOne_iff M
 
+/--
+@isnad1 id=iff.0h1v.s4.e67463aaff03 from=translated src=- shape=49021acd vocab=04ba9739
+-/
 theorem _root_.Tengoku.LeanTnorms.subsingletonZeroOne_iff_not_isNontrivial :
     SubsingletonZeroOne M ↔ ∀ a : M, ¬IsNontrivial a := by
   simp [subsingletonZeroOne_iff_not_nontrivialZeroOne, nontrivialZeroOne_iff_exists_isNontrivial]
@@ -78,6 +93,9 @@ instance [MulZeroClass M] [IsCancelMulZero M] : ConditionalCancellative M where
     intro p q r hrp h
     rwa [mul_right_inj' (left_ne_zero_of_mul hrp)] at h
 
+/--
+@isnad1 id=infinite.0h1v.s6.c1a3ecf0fef7 from=translated src=- shape=4ff572b6 vocab=dddb3910
+-/
 theorem MulPosStrictMon.toInfinite [PartialOrder M] [MulZeroOneClass M]
     [MulLeftMono M] [PosMulStrictMono M]
     [IsTopOneClass M] [NontrivialZeroOne M] :
@@ -121,6 +139,9 @@ end Cancel
 
 section Archimedean
 
+/--
+@isnad1 id=tendsto.1h2v.s7.ef4e15275664 from=translated src=- shape=02b0c323 vocab=c27cf15b
+-/
 lemma _root_.Tengoku.LeanTnorms.npow_tendsto_bot [TopologicalSpace M] [PartialOrder M] [OrderBot M]
     [OrderTopology M] [MonoidWithZero M] [PosMulMono M] [MulLeftMono M] [IsTopOneClass M]
     [MulArchimedeanDualWithZero M]
@@ -137,6 +158,9 @@ lemma _root_.Tengoku.LeanTnorms.npow_tendsto_bot [TopologicalSpace M] [PartialOr
   exact lt_of_le_of_lt (pow_right_anti₀ zero_le le_one hk) hn
 
 -- Theorem 2.12
+/--
+@isnad1 id=iff.0h1v.s6.266c60d92f2e from=translated src=- shape=18dc428b vocab=63421573
+-/
 theorem _root_.Tengoku.LeanTnorms.arch_iff_lim_prop [PartialOrder M] [CommMonoidWithZero M] [TopologicalSpace M]
     [OrderTopology M] [IsOrderedMonoid M] [IsBotZeroClass M] :
     MulArchimedeanDualWithZero M ↔ ∀ {p : M}, p < 1 →
@@ -158,6 +182,9 @@ theorem _root_.Tengoku.LeanTnorms.arch_iff_lim_prop [PartialOrder M] [CommMonoid
     grind
 
 -- Proposition 2.15 (v)
+/--
+@isnad1 id=mularchi.1h1v.s5.101ef697587a from=translated src=- shape=84de81f4 vocab=e539b470
+-/
 lemma _root_.Tengoku.LeanTnorms.arch_of_all_nilpt_els [PartialOrder M] [MonoidWithZero M]
     (h : ∀ p : M, p ≠ 1 → IsNilpotent p) : MulArchimedeanDualWithZero M where
   arch := by
@@ -165,6 +192,9 @@ lemma _root_.Tengoku.LeanTnorms.arch_of_all_nilpt_els [PartialOrder M] [MonoidWi
     obtain ⟨n, hn⟩ := h y (ne_of_lt hy)
     grind
 
+/--
+@isnad1 id=iff.0h1v.s6.27d8fdea83de from=translated src=- shape=cd973e87 vocab=565a4cf6
+-/
 theorem _root_.Tengoku.LeanTnorms.isReduced_iff_noZeroDivisors_of_arch [SemilatticeInf M]
     [MonoidWithZero M] [MulLeftMono M] [MulRightMono M] [IsTopOneClass M]
     [MulArchimedeanDualWithZero M] :

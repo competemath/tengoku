@@ -145,6 +145,9 @@ private lemma f_ne (hd : ¬ DiscreteUniformity X) (hX : ∀ x, ¬ AccPt x (⊤ :
   rw [hf]
   exact hc.1
 
+/--
+@isnad1 id=ex.2h1v.s7.6eb94e1a4fee from=translated src=- shape=6025561b vocab=02bd3fe9
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_inj_djsoint_seqs_dist_tendsto_zero (hd : ¬ DiscreteUniformity X)
     (hX : ∀ x, ¬ AccPt x (⊤ : Filter X)) :
     ∃ x y : ℕ → X, Filter.Tendsto (fun n ↦ dist (x n) (y n)) Filter.atTop (nhds 0) ∧

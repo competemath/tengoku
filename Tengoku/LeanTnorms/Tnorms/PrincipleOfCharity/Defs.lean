@@ -38,6 +38,9 @@ def _root_.Tengoku.LeanTnorms.IsCharitableOn (X M : Type*) [UniformSpace X]
 
 -- Proposition 1
 omit [UniformSpace X] [IsFuzzyLogic M] in
+/--
+@isnad1 id=antitone.0h3v.s6.1c6097c81d7e from=translated src=- shape=53bad73b vocab=bd46e716
+-/
 theorem _root_.Tengoku.LeanTnorms.poc_anti (f : X → M) : Antitone (PrincipleOfCharity f) := by
   intro U V h
   simp [PrincipleOfCharity]
@@ -51,6 +54,9 @@ theorem _root_.Tengoku.LeanTnorms.poc_anti (f : X → M) : Antitone (PrincipleOf
   · simp [PC_Imp, le_one, hU]
 
 -- Theorem 8
+/--
+@isnad1 id=ischarit.1h4v.s6.54063f5b971f from=translated src=- shape=3d7da837 vocab=24ec0a23
+-/
 theorem _root_.Tengoku.LeanTnorms.charitableOn_of_charitableOn {M N : Type*}
     [CompleteLinearOrder M] [CompleteLinearOrder N]
     [UniformSpace M] [UniformSpace N]
@@ -76,6 +82,9 @@ theorem _root_.Tengoku.LeanTnorms.charitableOn_of_charitableOn {M N : Type*}
   simp [g] at h
   exact h
 
+/--
+@isnad1 id=iff.0h4v.s6.50dbe81d26d8 from=translated src=- shape=15c2c305 vocab=24ec0a23
+-/
 theorem _root_.Tengoku.LeanTnorms.charitableOn_iff_charitableOn {M N : Type*}
     [CompleteLinearOrder M] [CompleteLinearOrder N]
     [UniformSpace M] [UniformSpace N]
@@ -86,6 +95,9 @@ theorem _root_.Tengoku.LeanTnorms.charitableOn_iff_charitableOn {M N : Type*}
   · exact charitableOn_of_charitableOn e
   · exact charitableOn_of_charitableOn e.symm
 
+/--
+@isnad1 id=ischarit.0h2v.s5.f2fd415f54e9 from=translated src=- shape=ff297375 vocab=2e9d8420
+-/
 lemma _root_.Tengoku.LeanTnorms.charitableOn_of_subsingleton [Subsingleton M] : IsCharitableOn X M := by
   intro f hf p hp
   use Set.univ

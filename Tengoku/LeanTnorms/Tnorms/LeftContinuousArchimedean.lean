@@ -32,12 +32,18 @@ lemma _root_.Tengoku.LeanTnorms.eq_one_of_antitone_of_tendsto_one [One M] [IsTop
   rw [Pi.one_apply]
   exact le_antisymm le_one <| Antitone.le_of_tendsto hax h n
 
+/--
+@isnad1 id=tendsto.3h4v.s6.1dd0a3cab777 from=translated src=- shape=a1745593 vocab=be85bc53
+-/
 theorem _root_.Tengoku.LeanTnorms.mul_tendsto_of_tendsto_one [MulOneClass M] [IsTopOneClass M] {q : M} {x y : ℕ → M}
     (hax : Antitone x) (hxt : Filter.Tendsto x Filter.atTop (nhds 1))
     (hyt : Filter.Tendsto y Filter.atTop (nhds q)) :
     Filter.Tendsto (x * y) Filter.atTop (nhds q) := by
   simp_rw [eq_one_of_antitone_of_tendsto_one hax hxt, one_mul, hyt]
 
+/--
+@isnad1 id=tendsto.3h4v.s6.6aaf818e0502 from=translated src=- shape=3ac481dc vocab=be85bc53
+-/
 theorem _root_.Tengoku.LeanTnorms.mul_tendsto_of_tendsto_one' [MulOneClass M] [IsTopOneClass M] {q : M} {x y : ℕ → M}
     (hax : Antitone x) (hxt : Filter.Tendsto x Filter.atTop (nhds 1))
     (hyt : Filter.Tendsto y Filter.atTop (nhds q)) :
@@ -50,6 +56,9 @@ section OrderTopology
 
 variable [Preorder M] [OrderTopology M]
 
+/--
+@isnad1 id=tendsto.1h3v.s6.90896bf82683 from=translated src=- shape=85de5781 vocab=0c2a8b8b
+-/
 theorem _root_.Tengoku.LeanTnorms.mul_tendsto_zero_of_tendsto_zero [MulZeroOneClass M] [MulLeftMono M] [IsTopOneClass M]
     {x y : ℕ → M} (hxt : Filter.Tendsto x Filter.atTop (nhds 0)) :
     Filter.Tendsto (x * y) Filter.atTop (nhds 0) := by
@@ -61,6 +70,9 @@ theorem _root_.Tengoku.LeanTnorms.mul_tendsto_zero_of_tendsto_zero [MulZeroOneCl
   intro m hnm
   exact lt_of_le_of_lt (mul_le_left _ _) <| hn m hnm
 
+/--
+@isnad1 id=tendsto.1h3v.s6.d6bda7ee503a from=translated src=- shape=3f29cec8 vocab=25881288
+-/
 theorem _root_.Tengoku.LeanTnorms.mul_tendsto_zero_of_tendsto_zero' [MulZeroOneClass M] [MulRightMono M] [IsTopOneClass M]
     {x y : ℕ → M} (hxt : Filter.Tendsto x Filter.atTop (nhds 0)) :
     Filter.Tendsto (y * x) Filter.atTop (nhds 0) := by
@@ -80,10 +92,16 @@ omit [TopologicalSpace M]
 
 variable [MonoidWithZero M] [PartialOrder M] [IsTopOneClass M]
 
+/--
+@isnad1 id=nonempty.1h3v.s6.5501625164bc from=translated src=- shape=195bf174 vocab=81b37728
+-/
 lemma _root_.Tengoku.LeanTnorms.nonempty_pow_gt (p q : M) (hq : q ≠ 1) : {n | p ^ n > q}.Nonempty := by
   use 0
   simp [lt_one_iff_ne_one, hq]
 
+/--
+@isnad1 id=bddabove.2h3v.s6.39066107b8e2 from=translated src=- shape=74dd8ac3 vocab=3a371e42
+-/
 lemma _root_.Tengoku.LeanTnorms.bddAbove_pow_gt [MulLeftMono M] [MulArchimedeanDualWithZero M]
     (p q : M) (hp : p ≠ 1) (hq : q ≠ 0) : BddAbove {n | p ^ n > q} := by
   obtain ⟨n, hn⟩ := MulArchimedeanDualWithZero.arch hq.pos hp.lt_one
@@ -95,12 +113,18 @@ lemma _root_.Tengoku.LeanTnorms.bddAbove_pow_gt [MulLeftMono M] [MulArchimedeanD
   have hpnk : p ^ k ≤ p ^ n := pow_le_pow_right_of_le_one' le_one (le_of_lt hnk)
   order
 
+/--
+@isnad1 id=lt.2h4v.s7.fcbdd0f774e8 from=translated src=- shape=b91f9f80 vocab=0e7fc948
+-/
 lemma _root_.Tengoku.LeanTnorms.pow_sSup_gt_gt [MulLeftMono M] [MulArchimedeanDualWithZero M]
     {p : M} (hp : IsNontrivial p) {z : ℕ → M} (m : ℕ) (hz : ∀ n, z n ≠ 1) :
     (z m) ^ (sSup {n | (z m) ^ n > p}) > p := by
   suffices (sSup {n | (z m) ^ n > p}) ∈ {n | (z m) ^ n > p} by simp_all
   exact Nat.sSup_mem (nonempty_pow_gt _ _ hp.2) (bddAbove_pow_gt _ _ (hz m) hp.1)
 
+/--
+@isnad1 id=not.2h4v.s7.dc4d4d3b6544 from=translated src=- shape=3c826aa6 vocab=b19260e0
+-/
 lemma _root_.Tengoku.LeanTnorms.pow_sSup_gt_not_gt [MulLeftMono M] [MulArchimedeanDualWithZero M]
     {p : M} (hp0 : p ≠ 0) {z : ℕ → M} (m : ℕ) (hz : ∀ n, z n ≠ 1) :
     ¬ (z m) ^ (sSup {n | (z m) ^ n > p} + 1) > p := by
@@ -112,6 +136,9 @@ def φ {P : ℕ → ℕ → Prop} (hn : ∀ n, ∃ m > n, P m n) : ℕ → ℕ
     | Nat.zero => 0
     | n + 1 => Classical.choose (hn (φ hn n))
 
+/--
+@isnad1 id=strictmo.1h1v.s4.8a41514d5ef2 from=translated src=- shape=a20333ac vocab=07a8b8a9
+-/
 lemma _root_.Tengoku.LeanTnorms.phi_strictMono {P : ℕ → ℕ → Prop} (hn : ∀ n, ∃ m > n, P m n) : StrictMono (φ hn) := by
   refine strictMono_nat_of_lt_succ ?_
   intro n
@@ -119,6 +146,9 @@ lemma _root_.Tengoku.LeanTnorms.phi_strictMono {P : ℕ → ℕ → Prop} (hn : 
 
 variable [TopologicalSpace M] [OrderTopology M]
 
+/--
+@isnad1 id=ex.2h3v.s6.6b0a5afd41bb from=translated src=- shape=408d47f7 vocab=d5b21a58
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_next {x : ℕ → M} (hx : Filter.Tendsto x Filter.atTop (nhds 1)) (hx1 : ∀ n, x n ≠ 1)
     (n : ℕ) : ∃ m > n, x n ≤ x m := by
   contrapose! hx
@@ -132,6 +162,9 @@ lemma _root_.Tengoku.LeanTnorms.exists_next {x : ℕ → M} (hx : Filter.Tendsto
     order
   · simp [hx1 n, lt_one_iff_ne_one]
 
+/--
+@isnad1 id=ex.2h2v.s7.12f576af3f99 from=translated src=- shape=b84b2fb7 vocab=e327b6fd
+-/
 lemma _root_.Tengoku.LeanTnorms.mono_of_tendsto_one {x : ℕ → M}
     (hx : Filter.Tendsto x Filter.atTop (nhds 1)) (hx1 : ∀ n, x n ≠ 1) :
     ∃ a : ℕ → M, Monotone a ∧ (∀ n : ℕ, ∃ m, a n ≤ x m) ∧
@@ -148,6 +181,9 @@ lemma _root_.Tengoku.LeanTnorms.mono_of_tendsto_one {x : ℕ → M}
 
 end PartialOrder
 
+/--
+@isnad1 id=rightcon.2h2v.s7.d51613bfb509 from=translated src=- shape=24db337b vocab=95dafd66
+-/
 theorem _root_.Tengoku.LeanTnorms.rightCont_of_leftCont_arch (M : Type*) [CompleteLinearOrder M]
     [TopologicalSpace M]
     [MonoidWithZero M] [MulLeftMono M] [MulRightMono M] [IsTopOneClass M]
