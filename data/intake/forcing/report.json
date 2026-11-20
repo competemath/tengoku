@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "f27c19c464de9f25cec8c709dc671a3260a30e222f5fbe031d68100d9755b107",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "forcing",
+ "lint_mode": "proposed",
+ "modules": 55,
+ "part": 1,
+ "theorems": 401
+}

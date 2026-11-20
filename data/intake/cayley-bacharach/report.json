@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "df4502ea87b2e81aa6a0d2947ff700e944324c572cadf735346072510a93acf0",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "cayley-bacharach",
+ "lint_mode": "proposed",
+ "modules": 23,
+ "part": 1,
+ "theorems": 370
+}

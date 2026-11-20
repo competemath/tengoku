@@ -1,13 +1,17 @@
+root-instance: instAllSmall
 root-instance: instInhabitedFoo
 root-instance: instMarkedNat
 root-instance: instReprFoo
+root-instance: instSmallAliasOfNatNat
 root-instance: instSmallOfNatNat
 root-syntax: tacticFixture_tac
 root-syntax: «termFixtureℝ²»
 root-syntax: «term_+fixture+_»
+root: instAllSmall
 root: instInhabitedFoo
 root: instMarkedNat
 root: instReprFoo
+root: instSmallAliasOfNatNat
 root: instSmallOfNatNat
 root: tacticFixture_tac
 root: «termFixtureℝ²»

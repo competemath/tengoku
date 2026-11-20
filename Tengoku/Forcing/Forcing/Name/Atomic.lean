@@ -1,0 +1,172 @@
+/-
+Copyright (c) 2026 Cameron Freer. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Cameron Freer
+-/
+import Tengoku.Seed.Order.GameAdd
+import Tengoku.Forcing.Forcing.Name.Subname
+import Tengoku.Forcing.Forcing.Order.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Atomic external forcing: membership and equality on typed names
+
+The atomic forcing relations, by the standard density clauses:
+
+```text
+p ⊩ τ ∈ σ   iff   {q | ∃ i, q ≤ σ.conds i ∧ q ⊩ τ = σ.elems i} is dense below p
+p ⊩ τ = σ   iff   every branch activated below p on either side is forced to belong
+                  to the other side
+```
+
+**The recursion kernel is pair recursion, not rank**: equality invokes membership in both
+orientations, so the well-founded measure is the *unordered* pair of names under
+`Sym2.GameAdd Subname` — the `fst_snd` constructor supplies exactly the argument swap that
+equality's second inclusion needs, so no separate left/right membership components and no
+coherence proof are required. The recursive pair is `memWitness`/`ForcesEq`, with `ForcesMem`
+the nonrecursive public wrapper — so the witness set is a named object (the adequacy layer's
+localized tests speak about it directly) while only the ordinary membership and equality
+relations carry the forcing reading.
+
+The unfolding laws (`forcesMem_iff`, `forcesEq_iff`) are named `↔`-laws, deliberately **not**
+`@[simp]` until their rewriting behavior is understood. **Persistence** (`ForcesMem.mono`,
+`ForcesEq.mono`) follows immediately from pullback stability of `IsDenseBelow`
+(`mono_condition`) and narrowing the equality quantifiers; **equality symmetry**
+(`ForcesEq.symm`) is the orientation sanity check, and reflexivity
+(`forcesEq_refl`) certifies the clause shape by structural induction.
+
+Scope (M6 discipline): external and typed; no name-family parameter yet (that arrives with
+the formula relation `p ⊩[𝒩] φ`); no genericity, no visibility, no truth-lemma claims here.
+
+## Main definitions
+
+* `Forcing.ForcesMem`, `Forcing.ForcesEq`: the atomic forcing relations.
+
+## Main results
+
+* `Forcing.forcesMem_iff`, `Forcing.forcesEq_iff`: the named unfolding laws.
+* `Forcing.ForcesMem.mono`, `Forcing.ForcesEq.mono`: persistence under strengthening.
+* `Forcing.ForcesEq.symm`, `Forcing.forcesEq_refl`: symmetry and reflexivity.
+-/
+
+universe u v
+
+namespace Forcing
+
+open PName
+
+variable {P : Type u} [Preorder P] {p q : P} {τ σ : PName P}
+
+/-- The well-founded measure of the atomic kernel: unordered pairs of names, one coordinate
+descending at a time. **Local**: the kernel needs it only during termination checking, and
+nothing downstream should inherit it as a global default measure on `Sym2 (PName P)`.-/
+local instance : WellFoundedRelation (Sym2 (PName P)) where
+  rel := Sym2.GameAdd Subname
+  wf := subname_wellFounded.sym2_gameAdd
+
+mutual
+
+/-- The membership-witness predicate: `q` activates a branch of `σ` on which agreement with
+`τ` is forced. `Prop`-valued so it can share the mutual block with `ForcesEq`; the named
+*set* is `memWitness`, its nonrecursive wrapper.-/
+def MemWitness (q : P) (τ σ : PName P) : Prop :=
+  ∃ i : σ.Idx, q ≤ σ.conds i ∧ ForcesEq q τ (σ.elems i)
+termination_by s(τ, σ)
+decreasing_by
+  exact Sym2.GameAdd.snd (subname_elems σ i)
+
+/-- Atomic forcing, equality: every branch activated below `p`, on either side, is forced to
+belong to the other side (spelled through `MemWitness`; the public form is `forcesEq_iff`).-/
+def ForcesEq (p : P) (τ σ : PName P) : Prop :=
+  (∀ i : τ.Idx, ∀ q ≤ p, q ≤ τ.conds i → IsDenseBelow {r | MemWitness r (τ.elems i) σ} q) ∧
+    (∀ j : σ.Idx, ∀ q ≤ p, q ≤ σ.conds j → IsDenseBelow {r | MemWitness r (σ.elems j) τ} q)
+termination_by s(τ, σ)
+decreasing_by
+  · exact Sym2.GameAdd.fst (subname_elems τ i)
+  · exact Sym2.GameAdd.fst_snd (subname_elems σ j)
+
+end
+
+/-- The **membership witness set**: the conditions activating a branch of `σ` on which
+agreement with `τ` is forced. The named object the adequacy layer's localized tests speak
+about.-/
+def memWitness (τ σ : PName P) : Set P :=
+  {q | MemWitness q τ σ}
+
+/-- Atomic forcing, membership: the membership witnesses are dense below `p`. The
+nonrecursive public wrapper of the kernel.-/
+def ForcesMem (p : P) (τ σ : PName P) : Prop :=
+  IsDenseBelow (memWitness τ σ) p
+
+/--
+@isnad1 id=iff.0h4v.s5.d1ac09a332d3 from=translated src=- shape=6038d205 vocab=5d645c8c
+-/
+theorem mem_memWitness_iff {q : P} :
+    q ∈ memWitness τ σ ↔ ∃ i : σ.Idx, q ≤ σ.conds i ∧ ForcesEq q τ (σ.elems i) := by
+  change MemWitness q τ σ ↔ _
+  rw [MemWitness]
+
+/-- The named unfolding law for membership. Deliberately not `@[simp]`.
+@isnad1 id=iff.0h4v.s5.cfca659603d1 from=translated src=- shape=200d948c vocab=e4395f84
+-/
+theorem forcesMem_iff :
+    ForcesMem p τ σ ↔
+      IsDenseBelow {q | ∃ i : σ.Idx, q ≤ σ.conds i ∧ ForcesEq q τ (σ.elems i)} p := by
+  simp only [ForcesMem, memWitness, MemWitness]
+
+/-- The named unfolding law for equality. Deliberately not `@[simp]`.
+@isnad1 id=iff.0h4v.s6.901ae0e96fe8 from=translated src=- shape=2361240f vocab=b0647046
+-/
+theorem forcesEq_iff :
+    ForcesEq p τ σ ↔
+      (∀ i : τ.Idx, ∀ q ≤ p, q ≤ τ.conds i → ForcesMem q (τ.elems i) σ) ∧
+        (∀ j : σ.Idx, ∀ q ≤ p, q ≤ σ.conds j → ForcesMem q (σ.elems j) τ) := by
+  rw [ForcesEq]
+  exact Iff.rfl
+
+/-- **Persistence** for membership: pullback stability of `IsDenseBelow`.
+@isnad1 id=forcesme.2h5v.s5.d2ef4fcf1c8d from=translated src=- shape=14c3c762 vocab=e4aee0a0
+-/
+theorem ForcesMem.mono (h : ForcesMem p τ σ) (hqp : q ≤ p) : ForcesMem q τ σ :=
+  IsDenseBelow.mono_condition h hqp
+
+/-- **Persistence** for equality: narrow the quantifiers.
+@isnad1 id=forceseq.2h5v.s5.8e135c7e22cd from=translated src=- shape=14c3c762 vocab=732fae6c
+-/
+theorem ForcesEq.mono (h : ForcesEq p τ σ) (hqp : q ≤ p) : ForcesEq q τ σ := by
+  rw [forcesEq_iff] at h ⊢
+  exact ⟨fun i r hrq hri ↦ h.1 i r (hrq.trans hqp) hri,
+    fun j r hrq hrj ↦ h.2 j r (hrq.trans hqp) hrj⟩
+
+/-- **Symmetry** of atomic equality — the orientation sanity check: the two inclusions of the
+clause swap.
+@isnad1 id=forceseq.1h4v.s4.392a54ba8d97 from=translated src=- shape=dc031dd4 vocab=1df87986
+-/
+theorem ForcesEq.symm (h : ForcesEq p τ σ) : ForcesEq p σ τ := by
+  rw [forcesEq_iff] at h ⊢
+  exact ⟨h.2, h.1⟩
+
+/--
+@isnad1 id=iff.0h4v.s4.5aec5de7819a from=translated src=- shape=91db3c66 vocab=1df87986
+-/
+theorem forcesEq_comm : ForcesEq p τ σ ↔ ForcesEq p σ τ :=
+  ⟨.symm, .symm⟩
+
+/-- **Reflexivity** of atomic equality, by structural induction — certifying the clause
+shape: each activated branch of `τ` is densely forced equal to itself inside `τ`.
+@isnad1 id=forceseq.0h3v.s4.707fb7a162af from=translated src=- shape=66e8874b vocab=1df87986
+-/
+theorem forcesEq_refl : ∀ (τ : PName P) (p : P), ForcesEq p τ τ := by
+  intro τ
+  induction τ with
+  | mk ι e c ih =>
+    intro p
+    rw [forcesEq_iff]
+    refine ⟨?_, ?_⟩ <;>
+    · intro i q _ hqi
+      rw [forcesMem_iff]
+      intro r hr
+      exact ⟨r, ⟨i, (Set.mem_Iic.1 hr).trans hqi, ih i r⟩, le_rfl⟩
+
+end Forcing
