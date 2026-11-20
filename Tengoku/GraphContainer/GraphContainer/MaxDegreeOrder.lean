@@ -40,16 +40,24 @@ def degreeWithin (A : Finset V) (v : V) : ℕ :=
 noncomputable def maxDegreeVertex (A : Finset V) (hA : A.Nonempty) : V :=
   (Finset.exists_max_image A (degreeWithin G A) hA).choose
 
+/--
+@isnad1 id=mem.1h3v.s5.9c06f25ae83b from=translated src=- shape=9a09e3b1 vocab=414ee79b
+-/
 theorem maxDegreeVertex_mem (A : Finset V) (hA : A.Nonempty) :
     maxDegreeVertex G A hA ∈ A := by
       exact (Finset.exists_max_image A (degreeWithin G A) hA).choose_spec.1
 
+/--
+@isnad1 id=le.2h4v.s6.884175fc9a1b from=translated src=- shape=e820c83a vocab=82596c03
+-/
 theorem degreeWithin_le_maxDegreeVertex (A : Finset V) (hA : A.Nonempty) (v : V)
     (hv : v ∈ A) :
     degreeWithin G A v ≤ degreeWithin G A (maxDegreeVertex G A hA) := by
       exact (Finset.exists_max_image A (degreeWithin G A) hA).choose_spec.2 v hv
 
-/-- The degree within a finset agrees with degree in the corresponding induced graph.-/
+/-- The degree within a finset agrees with degree in the corresponding induced graph.
+@isnad1 id=eq.0h4v.s8.19eba159beee from=translated src=- shape=5d9b1a62 vocab=496e8cb5
+-/
 theorem degreeWithin_eq_degree_induce (A : Finset V) (v : A) :
     degreeWithin G A v = (G.induce (A : Set V)).degree v := by
   calc
@@ -71,10 +79,16 @@ termination_by A.card
 decreasing_by
   exact Finset.card_erase_lt_of_mem (maxDegreeVertex_mem G A hA)
 
+/--
+@isnad1 id=eq.0h2v.s5.eadf7ec3ac75 from=translated src=- shape=30a8aef0 vocab=895da820
+-/
 theorem maxDegreeOrder_empty : maxDegreeOrder G ∅ = [] := by
   rw [maxDegreeOrder]
   exact dite_eq_right Finset.not_nonempty_empty
 
+/--
+@isnad1 id=iff.0h3v.s5.c1a8049122b2 from=translated src=- shape=63237b4e vocab=895da820
+-/
 theorem maxDegreeOrder_eq_nil_iff (A : Finset V) :
     maxDegreeOrder G A = [] ↔ A = ∅ := by
     constructor
@@ -112,15 +126,24 @@ private theorem maxDegreeOrder_nodup_and_toFinset (A : Finset V) :
   · rw [maxDegreeOrder, dite_eq_right hA, List.toFinset_nil]
     exact ⟨List.nodup_nil, (not_nonempty_iff_eq_empty.mp hA).symm⟩
 
+/--
+@isnad1 id=nodup.0h3v.s4.f3806ab6c9fb from=translated src=- shape=d0ca0649 vocab=06140100
+-/
 theorem maxDegreeOrder_nodup (A : Finset V) :
     (maxDegreeOrder G A).Nodup := by
   exact (maxDegreeOrder_nodup_and_toFinset G A).1
 
+/--
+@isnad1 id=eq.0h3v.s5.3f033ae9c139 from=translated src=- shape=0e2b9bee vocab=92f81f72
+-/
 @[simp]
 theorem maxDegreeOrder_toFinset (A : Finset V) :
     (maxDegreeOrder G A).toFinset = A := by
   exact (maxDegreeOrder_nodup_and_toFinset G A).2
 
+/--
+@isnad1 id=eq.0h3v.s5.21c3b18d2421 from=translated src=- shape=5ef06681 vocab=00580a77
+-/
 @[simp]
 theorem length_maxDegreeOrder (A : Finset V) :
     (maxDegreeOrder G A).length = #A := by
@@ -130,7 +153,9 @@ theorem length_maxDegreeOrder (A : Finset V) :
       (List.toFinset_card_of_nodup h.1).symm
     _ = #A := by rw [h.2]
 
-/-- Every vertex is maximal when it is reached in the max-degree ordering.-/
+/-- Every vertex is maximal when it is reached in the max-degree ordering.
+@isnad1 id=le.2h7v.s6.583383a8144f from=translated src=- shape=83339166 vocab=2b9bc374
+-/
 theorem degreeWithin_le_of_maxDegreeOrder_eq_append_cons
     (A : Finset V) {before suffix : List V} {v w : V}
     (horder : maxDegreeOrder G A = before ++ v :: suffix)

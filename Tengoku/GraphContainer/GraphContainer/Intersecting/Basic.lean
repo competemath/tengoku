@@ -42,7 +42,9 @@ def regularDegree : ℕ := (n - k).choose k
 /-- The range in which the asymptotic counting theorem is stated.-/
 def InRange : Prop := 3 ≤ k ∧ 2 * k + 1 ≤ n
 
-/-- There are `n.choose k` vertices.-/
+/-- There are `n.choose k` vertices.
+@isnad1 id=eq.0h2v.s4.b6e923682bea from=translated src=- shape=60a93c10 vocab=e1b6bab0
+-/
 theorem card_vertex : Fintype.card (Vertex n k) = vertexCount n k := by
   rw [Fintype.card_eq_nat_card, Set.powersetCard.card, Nat.card_fin]
   rfl
@@ -57,12 +59,17 @@ instance graph.instDecidableRelAdj : DecidableRel (graph n k).Adj :=
   inferInstanceAs (DecidableRel fun A B : Vertex n k ↦
     A ≠ B ∧ Disjoint (A : Finset (Fin n)) (B : Finset (Fin n)))
 
+/--
+@isnad1 id=iff.0h4v.s6.4b4559cc6f37 from=translated src=- shape=0035a2a9 vocab=7f4689ad
+-/
 @[simp] theorem graph_adj_iff {A B : Vertex n k} :
     (graph n k).Adj A B ↔
       A ≠ B ∧ Disjoint (A : Finset (Fin n)) (B : Finset (Fin n)) :=
   Iff.rfl
 
-/-- For positive `k`, adjacency is equivalent to disjointness.-/
+/-- For positive `k`, adjacency is equivalent to disjointness.
+@isnad1 id=iff.1h4v.s6.7bee5e0f5994 from=translated src=- shape=1f6f8054 vocab=e73830f2
+-/
 theorem graph_adj_iff_disjoint (hk : 0 < k) {A B : Vertex n k} :
     (graph n k).Adj A B ↔ Disjoint (A : Finset (Fin n)) (B : Finset (Fin n)) := by
   rw [graph_adj_iff]
@@ -82,7 +89,9 @@ def underlyingFamily (𝒜 : Finset (Vertex n k)) : Set (Finset (Fin n)) :=
 def IsIntersecting (𝒜 : Finset (Vertex n k)) : Prop :=
   (underlyingFamily n k 𝒜).Intersecting
 
-/-- Intersecting families are precisely independent sets in the Kneser graph.-/
+/-- Intersecting families are precisely independent sets in the Kneser graph.
+@isnad1 id=iff.1h3v.s6.7474e481878f from=translated src=- shape=5a7572f7 vocab=70c6493c
+-/
 theorem isIntersecting_iff_isIndepSet (hk : 0 < k) (𝒜 : Finset (Vertex n k)) :
     IsIntersecting n k 𝒜 ↔ (graph n k).IsIndepSet 𝒜 := by
   rw [SimpleGraph.isIndepSet_iff]
@@ -103,6 +112,9 @@ noncomputable def intersectingFamilies (n k : ℕ) : Finset (Finset (Vertex n k)
   classical
   exact Finset.univ.filter (IsIntersecting n k)
 
+/--
+@isnad1 id=iff.0h3v.s6.cc1d853f4a50 from=translated src=- shape=2007cf9b vocab=ad084f12
+-/
 @[simp] theorem mem_intersectingFamilies {𝒜 : Finset (Vertex n k)} :
     𝒜 ∈ intersectingFamilies n k ↔ IsIntersecting n k 𝒜 := by
   classical
@@ -112,7 +124,9 @@ noncomputable def intersectingFamilies (n k : ℕ) : Finset (Finset (Vertex n k)
 noncomputable def intersectingFamilyCount (n k : ℕ) : ℕ :=
   #(intersectingFamilies n k)
 
-/-- The empty family shows that the counting function is positive.-/
+/-- The empty family shows that the counting function is positive.
+@isnad1 id=lt.0h2v.s3.5fcabca9cb51 from=translated src=- shape=a120b2a8 vocab=d8f77d44
+-/
 theorem intersectingFamilyCount_pos (n k : ℕ) : 0 < intersectingFamilyCount n k := by
   classical
   rw [intersectingFamilyCount, Finset.card_pos]

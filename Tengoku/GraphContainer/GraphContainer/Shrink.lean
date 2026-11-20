@@ -32,7 +32,9 @@ namespace SimpleGraph.Container
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
-/-- Degree-sum formula restricted to a vertex finset.-/
+/-- Degree-sum formula restricted to a vertex finset.
+@isnad1 id=eq.0h3v.s5.c1de001bfd64 from=translated src=- shape=124d5aea vocab=30143083
+-/
 theorem sum_degreeWithin_eq_twice_inducedEdgeCount (A : Finset V) :
     (∑ v ∈ A, degreeWithin G A v) = 2 * inducedEdgeCount G A := by
   classical
@@ -41,7 +43,9 @@ theorem sum_degreeWithin_eq_twice_inducedEdgeCount (A : Finset V) :
   exact (G.induce (A : Set V)).sum_degrees_eq_twice_card_edges
 
 /-- The degree sum is at most the cardinality times the degree of any vertex whose degree is
-maximal on the finset.-/
+maximal on the finset.
+@isnad1 id=le.1h4v.s6.c3b6d203d0d5 from=translated src=- shape=9fd8bdf9 vocab=44570296
+-/
 theorem twice_inducedEdgeCount_le_card_mul_degreeWithin_of_forall_le
     {A : Finset V} {v : V}
     (hmax : ∀ w ∈ A, degreeWithin G A w ≤ degreeWithin G A v) :
@@ -52,7 +56,9 @@ theorem twice_inducedEdgeCount_le_card_mul_degreeWithin_of_forall_le
       A.sum_le_card_nsmul (degreeWithin G A) (degreeWithin G A v) hmax
   rwa [sum_degreeWithin_eq_twice_inducedEdgeCount] at hsum
 
-/-- Some vertex has at least the average degree in a nonempty induced subgraph.-/
+/-- Some vertex has at least the average degree in a nonempty induced subgraph.
+@isnad1 id=ex.1h3v.s6.ee6da3ee6341 from=translated src=- shape=4942d305 vocab=d3ebd4f5
+-/
 theorem exists_average_le_degreeWithin {A : Finset V} (hA : A.Nonempty) :
     ∃ v ∈ A,
       2 * inducedEdgeCount G A ≤ #A * degreeWithin G A v := by
@@ -63,7 +69,9 @@ theorem exists_average_le_degreeWithin {A : Finset V} (hA : A.Nonempty) :
     twice_inducedEdgeCount_le_card_mul_degreeWithin_of_forall_le G
       (fun w hw ↦ degreeWithin_le_maxDegreeVertex G A hA w hw)
 
-/-- Local density bounds the degree of any vertex whose degree is maximal on the finset.-/
+/-- Local density bounds the degree of any vertex whose degree is maximal on the finset.
+@isnad1 id=le.4h6v.s7.5f1c952aa8b4 from=translated src=- shape=de50fd38 vocab=8bb4cdca
+-/
 theorem beta_mul_card_sub_one_le_degreeWithin_of_forall_le
     {β : ℝ} {R : ℕ} (hdense : IsLocallyDense G β R)
     {A : Finset V} {v : V} (hAR : R ≤ #A) (hv : v ∈ A)
@@ -85,7 +93,9 @@ theorem beta_mul_card_sub_one_le_degreeWithin_of_forall_le
   norm_num at hd2 ⊢
   nlinarith
 
-/-- Local density gives the selected maximum-degree vertex at least `β * (|A| - 1)` neighbors.-/
+/-- Local density gives the selected maximum-degree vertex at least `β * (|A| - 1)` neighbors.
+@isnad1 id=le.3h5v.s6.7b5f5ac67d87 from=translated src=- shape=ddb5694b vocab=d1b53865
+-/
 theorem beta_mul_card_sub_one_le_degreeWithin_maxDegreeVertex
     {β : ℝ} {R : ℕ} (hdense : IsLocallyDense G β R)
     {A : Finset V} (hAR : R ≤ #A) (hA : A.Nonempty) :
@@ -98,7 +108,9 @@ theorem beta_mul_card_sub_one_le_degreeWithin_maxDegreeVertex
   exact degreeWithin_le_maxDegreeVertex G A hA w hw
 
 /-- The discarded portion of a successful step contains at least a `β` fraction of the old active
-set, provided the new active set is still larger than `R`.-/
+set, provided the new active set is still larger than `R`.
+@isnad1 id=le.4h7v.s6.6d1c2e4587bf from=translated src=- shape=e6e93bf8 vocab=5857aa4c
+-/
 theorem beta_mul_card_le_card_inter_discarded
     {β : ℝ} {R : ℕ} (hβ_one : β ≤ 1)
     (hdense : IsLocallyDense G β R) {I : Finset V} {state : State V} {v : V}
@@ -198,7 +210,9 @@ theorem beta_mul_card_le_card_inter_discarded
     nlinarith
   exact hbetaSmall.trans (by exact_mod_cast Finset.card_le_card hsmall)
 
-/-- One successful iteration contracts the active set by a factor of at most `1 - β`.-/
+/-- One successful iteration contracts the active set by a factor of at most `1 - β`.
+@isnad1 id=le.4h6v.s6.b5c4274d055a from=translated src=- shape=5930d068 vocab=508dde28
+-/
 theorem card_step_active_le_one_sub_mul
     {β : ℝ} {R : ℕ} (hβ_one : β ≤ 1)
     (hdense : IsLocallyDense G β R) {I : Finset V} {state : State V}
@@ -225,7 +239,9 @@ theorem card_step_active_le_one_sub_mul
       nlinarith
 
 /-- A successful step has either reached the threshold or contracts the active set by a factor of
-at most `1 - β`.-/
+at most `1 - β`.
+@isnad1 id=or.3h6v.s6.116ebadf81eb from=translated src=- shape=f830cc8f vocab=624eb8e0
+-/
 theorem card_step_active_le_threshold_or_le_one_sub_mul
     {β : ℝ} {R : ℕ} (hβ_one : β ≤ 1)
     (hdense : IsLocallyDense G β R) {I : Finset V} {state : State V}
@@ -237,7 +253,9 @@ theorem card_step_active_le_threshold_or_le_one_sub_mul
   · exact Or.inl (Nat.le_of_not_gt hlarge)
 
 /-- Conditional geometric decay after `q` iterations.  Assuming the final active set is larger
-than `R` ensures that local density was available at every earlier iteration.-/
+than `R` ensures that local density was available at every earlier iteration.
+@isnad1 id=le.5h6v.s7.f9cf8a583fb6 from=translated src=- shape=f62385d0 vocab=d6a2c28d
+-/
 theorem card_activeAfter_le_pow_mul_card
     {β : ℝ} {R q : ℕ} (hβ_one : β ≤ 1)
     (hdense : IsLocallyDense G β R) {I : Finset V}
@@ -273,7 +291,9 @@ theorem card_activeAfter_le_pow_mul_card
           ring
 
 /-- After `q` iterations, the active set has either reached the threshold or satisfies the
-geometric decay bound.-/
+geometric decay bound.
+@isnad1 id=or.4h6v.s7.844c9918e501 from=translated src=- shape=6f5785b2 vocab=78cc3066
+-/
 theorem card_activeAfter_le_threshold_or_le_pow_mul_card
     {β : ℝ} {R q : ℕ} (hβ_one : β ≤ 1)
     (hdense : IsLocallyDense G β R) {I : Finset V}
@@ -285,7 +305,9 @@ theorem card_activeAfter_le_threshold_or_le_pow_mul_card
   · exact Or.inr <| card_activeAfter_le_pow_mul_card G hβ_one hdense hI hqI hlarge
   · exact Or.inl (Nat.le_of_not_gt hlarge)
 
-/-- The elementary analytic estimate used by the paper.-/
+/-- The elementary analytic estimate used by the paper.
+@isnad1 id=le.1h2v.s5.faf9433ae7a5 from=translated src=- shape=11528f43 vocab=2b8c9761
+-/
 theorem one_sub_pow_le_exp_neg_mul {β : ℝ} (hβ_one : β ≤ 1) (q : ℕ) :
     (1 - β) ^ q ≤ Real.exp (-β * (q : ℝ)) := by
   calc
@@ -296,7 +318,9 @@ theorem one_sub_pow_le_exp_neg_mul {β : ℝ} (hβ_one : β ≤ 1) (q : ℕ) :
       congr 1
       ring
 
-/-- The final active set for an independent target of size at least `q` has at most `R` vertices.-/
+/-- The final active set for an independent target of size at least `q` has at most `R` vertices.
+@isnad1 id=le.3h6v.s6.f7e90a0f4bf8 from=translated src=- shape=bd798c56 vocab=3c5e2f89
+-/
 theorem card_activeAfter_le {β : ℝ} {R q : ℕ} (h : Hypotheses G β R q)
     {I : Finset V} (hI : G.IsIndepSet I) (hqI : q ≤ #I) :
     #(activeAfter G q I) ≤ R := by

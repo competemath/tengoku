@@ -38,6 +38,9 @@ def beforeVertex (order : List V) (v : V) : List V :=
   order.takeWhile fun w ↦ decide (w ≠ v)
 
 omit [Fintype V] in
+/--
+@isnad1 id=and.1h4v.s5.adaa30418b1b from=translated src=- shape=63438f55 vocab=08e5631f
+-/
 theorem firstIn_eq_some_mem {order : List V} {I : Finset V} {v : V}
     (h : firstIn order I = some v) : v ∈ order ∧ v ∈ I := by
   change order.find? (fun x ↦ decide (x ∈ I)) = some v at h
@@ -48,6 +51,9 @@ theorem firstIn_eq_some_mem {order : List V} {I : Finset V} {v : V}
     exact of_decide_eq_true hv
 
 omit [Fintype V] in
+/--
+@isnad1 id=not.2h5v.s5.99ce1e488e34 from=translated src=- shape=5aa031f3 vocab=e93218eb
+-/
 theorem beforeVertex_not_mem_of_firstIn_eq_some
     {order : List V} {I : Finset V} {v w : V}
     (h : firstIn order I = some v) (hw : w ∈ beforeVertex order v) :
@@ -73,6 +79,9 @@ theorem beforeVertex_not_mem_of_firstIn_eq_some
           · exact ih htail hw
 
 omit [Fintype V] in
+/--
+@isnad1 id=ex.1h4v.s5.8c0ceb91419e from=translated src=- shape=f49c8733 vocab=7144781a
+-/
 theorem exists_eq_beforeVertex_append_of_firstIn_eq_some
     {order : List V} {I : Finset V} {v : V}
     (h : firstIn order I = some v) :
@@ -146,27 +155,42 @@ noncomputable def fingerprint (q : ℕ) (I : Finset V) : Finset V :=
 noncomputable def activeAfter (q : ℕ) (I : Finset V) : Finset V :=
   (run G I q).active
 
+/--
+@isnad1 id=eq.0h3v.s5.f6896ee6f18e from=translated src=- shape=94d606f3 vocab=0dcc0d0f
+-/
 @[simp]
 theorem run_zero (I : Finset V) : run G I 0 = State.initial := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.135c2db5b18d from=translated src=- shape=b603d20d vocab=eb09819b
+-/
 @[simp]
 theorem run_succ (I : Finset V) (k : ℕ) :
     run G I (k + 1) = step G I (run G I k) := by
   rfl
 
+/--
+@isnad1 id=le.0h4v.s5.c5bac97ef627 from=translated src=- shape=62f09569 vocab=be47e225
+-/
 theorem step_selected_mono (I : Finset V) (state : State V) :
     state.selected ⊆ (step G I state).selected := by
   cases hnext : nextVertex G I state.active with
   | none => simp [step, hnext]
   | some v => simp [step, hnext]
 
+/--
+@isnad1 id=le.0h4v.s5.651c32fcb45f from=translated src=- shape=7edb8755 vocab=c82ff330
+-/
 theorem step_active_subset (I : Finset V) (state : State V) :
     (step G I state).active ⊆ state.active := by
   cases hnext : nextVertex G I state.active with
   | none => simp [step, hnext]
   | some v => simp [step, hnext]
 
+/--
+@isnad1 id=le.1h5v.s5.d7b73116cd8c from=translated src=- shape=f27ddd65 vocab=40a8faa6
+-/
 theorem run_selected_mono (I : Finset V) {j k : ℕ} (hjk : j ≤ k) :
     (run G I j).selected ⊆ (run G I k).selected := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hjk
@@ -178,6 +202,9 @@ theorem run_selected_mono (I : Finset V) {j k : ℕ} (hjk : j ≤ k) :
       rw [show j + Nat.succ d = (j + d) + 1 by omega, run_succ]
       exact step_selected_mono G I (run G I (j + d))
 
+/--
+@isnad1 id=le.1h5v.s5.19ba2c70ab2e from=translated src=- shape=23d4d9ff vocab=e3a48408
+-/
 theorem run_active_antitone (I : Finset V) {j k : ℕ} (hjk : j ≤ k) :
     (run G I k).active ⊆ (run G I j).active := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hjk
@@ -188,6 +215,9 @@ theorem run_active_antitone (I : Finset V) {j k : ℕ} (hjk : j ≤ k) :
       rw [show j + Nat.succ d = (j + d) + 1 by omega, run_succ]
       exact (step_active_subset G I (run G I (j + d))).trans ih
 
+/--
+@isnad1 id=le.0h4v.s5.fd23086ab63b from=translated src=- shape=27f500ed vocab=a9d4bf2a
+-/
 theorem fingerprint_subset (I : Finset V) (q : ℕ) :
     fingerprint G q I ⊆ I := by
   induction q with
@@ -205,11 +235,17 @@ theorem fingerprint_subset (I : Finset V) (q : ℕ) :
           · exact hvI
           · exact ih hx'
 
+/--
+@isnad1 id=isindeps.1h4v.s5.435e2afd9826 from=translated src=- shape=a7d5e388 vocab=daa389aa
+-/
 theorem fingerprint_isIndepSet {I : Finset V} (hI : G.IsIndepSet I) (q : ℕ) :
     G.IsIndepSet (fingerprint G q I) := by
   rw [SimpleGraph.isIndepSet_iff] at hI ⊢
   exact Set.Pairwise.mono (by simpa using fingerprint_subset G I q) hI
 
+/--
+@isnad1 id=disjoint.0h4v.s5.6f408f6af2b7 from=translated src=- shape=c26ee7cd vocab=60004b84
+-/
 theorem selected_disjoint_active (I : Finset V) (q : ℕ) :
     Disjoint (fingerprint G q I) (activeAfter G q I) := by
   induction q with
@@ -230,7 +266,9 @@ theorem selected_disjoint_active (I : Finset V) (q : ℕ) :
           · exact hxactive'.2 (by simp [discarded])
           · exact Finset.disjoint_left.mp ih hxselected' hxactive'.1
 
-/-- Independent target vertices that have not been selected remain active.-/
+/-- Independent target vertices that have not been selected remain active.
+@isnad1 id=le.1h4v.s6.7869844b3ce5 from=translated src=- shape=17d85021 vocab=662b578d
+-/
 theorem sdiff_fingerprint_subset_activeAfter {I : Finset V}
     (hI : G.IsIndepSet I) (q : ℕ) :
     I \ fingerprint G q I ⊆ activeAfter G q I := by
@@ -273,6 +311,9 @@ theorem sdiff_fingerprint_subset_activeAfter {I : Finset V}
             Finset.mem_sdiff.mpr ⟨by simpa [activeAfter] using hxactive, hxdiscarded⟩
           simpa [activeAfter, step, hnext] using hxnew
 
+/--
+@isnad1 id=le.0h4v.s5.e37e820f500f from=translated src=- shape=422bc315 vocab=ea5cafd0
+-/
 theorem card_fingerprint_le (I : Finset V) (q : ℕ) :
     #(fingerprint G q I) ≤ q := by
   induction q with
@@ -310,7 +351,9 @@ private theorem nextVertex_run_ne_none_of_card_fingerprint_lt
   have hxfalse := List.find?_eq_none.mp hfind x hxorder
   simp [hxI] at hxfalse
 
-/-- If the target contains at least `q` vertices, all `q` iterations make progress.-/
+/-- If the target contains at least `q` vertices, all `q` iterations make progress.
+@isnad1 id=eq.2h4v.s5.16933ed764fe from=translated src=- shape=f0215ba7 vocab=71395fa1
+-/
 theorem card_fingerprint_of_le_card {I : Finset V} (hI : G.IsIndepSet I)
     {q : ℕ} (hq : q ≤ #I) :
     #(fingerprint G q I) = q := by
@@ -347,7 +390,9 @@ theorem card_fingerprint_of_le_card {I : Finset V} (hI : G.IsIndepSet I)
             _ = q + 1 := by rw [ihcard]
 
 /-- Before the requested number of successful iterations has been reached, an active target
-vertex is available.-/
+vertex is available.
+@isnad1 id=ne.3h5v.s6.afbcc4d5d650 from=translated src=- shape=21367bd5 vocab=1e0a4019
+-/
 theorem nextVertex_run_ne_none {I : Finset V} (hI : G.IsIndepSet I)
     {q k : ℕ} (hq : q ≤ #I) (hk : k < q) :
     nextVertex G I (run G I k).active ≠ none := by
@@ -355,13 +400,17 @@ theorem nextVertex_run_ne_none {I : Finset V} (hI : G.IsIndepSet I)
   rw [card_fingerprint_of_le_card G hI (Nat.le_of_lt hk |>.trans hq)]
   exact hk.trans_le hq
 
-/-- The target is recovered from its fingerprint and residual set.-/
+/-- The target is recovered from its fingerprint and residual set.
+@isnad1 id=eq.0h4v.s5.210f414b4b4d from=translated src=- shape=31494405 vocab=68603ca7
+-/
 theorem fingerprint_union_sdiff (I : Finset V) (q : ℕ) :
     fingerprint G q I ∪ (I \ fingerprint G q I) = I := by
   exact Finset.union_sdiff_of_subset (fingerprint_subset G I q)
 
 /-- Reconstruction lemma: after `q` successful iterations, replaying the algorithm using only the
-fingerprint produces the same state.-/
+fingerprint produces the same state.
+@isnad1 id=eq.2h4v.s6.bbd9fe541a5b from=translated src=- shape=2a9674c0 vocab=97d3355c
+-/
 theorem run_fingerprint_eq_run {I : Finset V} (hI : G.IsIndepSet I)
     {q : ℕ} (hq : q ≤ #I) :
     run G (fingerprint G q I) q = run G I q := by

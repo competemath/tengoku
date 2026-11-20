@@ -80,6 +80,9 @@ def fingerprints (q : ℕ) : Finset (Finset V) :=
   univ.powersetCard q
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s5.8b83b967dc48 from=translated src=- shape=4a89cf16 vocab=6ed86ea1
+-/
 @[simp] theorem mem_fingerprints {q : ℕ} {S : Finset V} :
     S ∈ fingerprints (V := V) q ↔ #S = q := by
       rw [fingerprints, mem_powersetCard]
@@ -90,6 +93,9 @@ omit [DecidableEq V] in
         exact ⟨subset_univ S, h⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.0h2v.s4.41b5c5a222d8 from=translated src=- shape=5a4a1efd vocab=58357432
+-/
 @[simp] theorem card_fingerprints (q : ℕ) :
     #(fingerprints (V := V) q) = (Fintype.card V).choose q := by
       rw [fingerprints, card_powersetCard, card_univ]

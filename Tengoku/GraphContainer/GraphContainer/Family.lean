@@ -67,7 +67,9 @@ private theorem card_container_le {β : ℝ} {R q : ℕ}
   · rw [container, remainder, ite_eq_right hS, Finset.union_empty, hSq]
     exact Nat.le_add_left q R
 
-/-- The container family has at most `(Fintype.card V).choose q` members.-/
+/-- The container family has at most `(Fintype.card V).choose q` members.
+@isnad1 id=le.0h3v.s5.4247a2a01a30 from=translated src=- shape=f5277106 vocab=1debe6de
+-/
 theorem card_containerFamily_le (q : ℕ) :
     #(containerFamily G q) ≤ (Fintype.card V).choose q := by
   calc
@@ -107,7 +109,9 @@ private theorem independent_subset_some_container {q : ℕ}
 
 /-! ## The main theorem -/
 
-/-- The container family satisfies the size and covering requirements.-/
+/-- The container family satisfies the size and covering requirements.
+@isnad1 id=iscontai.1h5v.s5.f5e3d9b26830 from=translated src=- shape=3b6374aa vocab=b83fba01
+-/
 theorem containerFamily_isContainerFamily {β : ℝ} {R q : ℕ}
     (h : Hypotheses G β R q) :
     IsContainerFamily G R q (containerFamily G q) := by
@@ -125,7 +129,9 @@ theorem containerFamily_isContainerFamily {β : ℝ} {R q : ℕ}
 
 omit [DecidableEq V] in
 /-- There is a family of at most `(Fintype.card V).choose q` containers, each
-of cardinality at most `R + q`, that covers every independent set of `G`.-/
+of cardinality at most `R + q`, that covers every independent set of `G`.
+@isnad1 id=ex.1h5v.s5.2c9c4172516c from=translated src=- shape=acaad578 vocab=2f18532c
+-/
 theorem graph_container_theorem {β : ℝ} {R q : ℕ}
     (h : Hypotheses G β R q) :
     ∃ 𝒞 : Finset (Finset V),
@@ -147,7 +153,9 @@ structure IsCertificate (q R : ℕ) (I S A : Finset V) : Prop where
   residual_subset : I \ S ⊆ A
 
 /-- For a sufficiently large independent set, its algorithmic fingerprint and
-the remainder reconstructed from that fingerprint form a certificate.-/
+the remainder reconstructed from that fingerprint form a certificate.
+@isnad1 id=iscertif.3h6v.s6.7b266ca10f2c from=translated src=- shape=49f8badd vocab=4e2f5c5b
+-/
 theorem fingerprint_certificate {β : ℝ} {R q : ℕ}
     (h : Hypotheses G β R q)
     {I : Finset V} (hI : G.IsIndepSet I) (hqI : q ≤ #I) :
