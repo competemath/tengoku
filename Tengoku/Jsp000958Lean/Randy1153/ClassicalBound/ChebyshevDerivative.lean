@@ -24,7 +24,9 @@ noncomputable section
 /-- The sine of a natural multiple is at most that multiple times the original sine.
 
 This is the elementary triangle-inequality estimate obtained by induction from
-the sine addition formula.  It is stated without any restriction on `θ`.-/
+the sine addition formula.  It is stated without any restriction on `θ`.
+@isnad1 id=le.0h2v.s5.1354ffdcfb74 from=translated src=- shape=d75ac17b vocab=cc17ab84
+-/
 lemma abs_sin_nat_mul_le (m : ℕ) (θ : ℝ) :
     |Real.sin ((m : ℝ) * θ)| ≤ (m : ℝ) * |Real.sin θ| := by
   induction m with
@@ -50,7 +52,9 @@ absolute value at most `k + 1`.
 
 At interior points this is `U_k(cos θ) sin θ = sin((k+1)θ)` followed by
 `abs_sin_nat_mul_le`.  If `sin θ = 0`, the point is an endpoint and the
-explicit endpoint evaluations give equality in absolute value.-/
+explicit endpoint evaluations give equality in absolute value.
+@isnad1 id=le.1h2v.s6.fdbc15030fd0 from=translated src=- shape=de24bc85 vocab=3e1e31c8
+-/
 theorem abs_eval_chebyshevU_le (k : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     |(Polynomial.Chebyshev.U ℝ k).eval x| ≤ (k : ℝ) + 1 := by
@@ -86,7 +90,9 @@ theorem abs_eval_chebyshevU_le (k : ℕ) {x : ℝ}
     exact le_of_mul_le_mul_right hmul (abs_pos.mpr hs)
 
 /-- On `[-1,1]`, the derivative of the `k`-th Chebyshev polynomial of the
-first kind has absolute value at most `k²`.-/
+first kind has absolute value at most `k²`.
+@isnad1 id=le.1h2v.s8.7ce9410ed7fc from=translated src=- shape=fc0b60e6 vocab=e33c6300
+-/
 theorem abs_eval_derivative_chebyshevT_le (k : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     |(Polynomial.Chebyshev.T ℝ k).derivative.eval x| ≤ (k : ℝ) ^ 2 := by

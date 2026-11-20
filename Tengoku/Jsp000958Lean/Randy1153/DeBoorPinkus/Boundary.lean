@@ -33,7 +33,9 @@ noncomputable section
 /-- Exact product transport of a cardinal function between two nonnodal
 points.  This is the algebraic identity used in the displayed estimate in
 source Lemma 4; importantly, it transports one cardinal function between two
-points, rather than comparing two cardinal functions at colliding nodes.-/
+points, rather than comparing two cardinal functions at colliding nodes.
+@isnad1 id=eq.1h5v.s6.6d7734b11030 from=translated src=- shape=574ce475 vocab=daac745c
+-/
 lemma lagrangeFundamental_eval_transport {n : ℕ} (nodes : NodeFamily n)
     (k : Fin n) {x y : ℝ}
     (hx : ∀ j : Fin n, j ≠ k → x ≠ nodes.point j) :
@@ -50,7 +52,9 @@ lemma lagrangeFundamental_eval_transport {n : ℕ} (nodes : NodeFamily n)
   have hxj : x - nodes.point j ≠ 0 := sub_ne_zero.mpr (hx j hjk)
   field_simp
 
-/-- Absolute-value form of `lagrangeFundamental_eval_transport`.-/
+/-- Absolute-value form of `lagrangeFundamental_eval_transport`.
+@isnad1 id=eq.1h5v.s6.52d732adb4f5 from=translated src=- shape=66253d8b vocab=b404e36e
+-/
 lemma abs_lagrangeFundamental_eval_transport {n : ℕ} (nodes : NodeFamily n)
     (k : Fin n) {x y : ℝ}
     (hx : ∀ j : Fin n, j ≠ k → x ≠ nodes.point j) :
@@ -62,7 +66,9 @@ lemma abs_lagrangeFundamental_eval_transport {n : ℕ} (nodes : NodeFamily n)
     Finset.abs_prod]
 
 /-- A common pointwise cardinal amplification survives summation and hence
-amplifies the whole Lebesgue function.-/
+amplifies the whole Lebesgue function.
+@isnad1 id=le.1h5v.s5.5165c781aa72 from=translated src=- shape=f8cfae99 vocab=18344433
+-/
 lemma mul_le_lebesgueFunction_of_cardinal_domination {n : ℕ}
     (nodes : NodeFamily n) {K x y : ℝ}
     (hdom : ∀ k : Fin n,
@@ -75,7 +81,9 @@ lemma mul_le_lebesgueFunction_of_cardinal_domination {n : ℕ}
 
 /-! ## Compact gap maxima -/
 
-/-- Every endpoint-array Lebesgue function is at least one.-/
+/-- Every endpoint-array Lebesgue function is at least one.
+@isnad1 id=le.0h5v.s5.f0b77dbd6217 from=translated src=- shape=e4d2b4f6 vocab=a319364b
+-/
 lemma one_le_lebesgueFunction_endpointArray {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (x : ℝ) :
     1 ≤ lebesgueFunction nodes.toNodeFamily x := by
@@ -91,7 +99,9 @@ lemma one_le_lebesgueFunction_endpointArray {d : ℕ} {A B : ℝ}
     _ = lebesgueFunction nodes.toNodeFamily x := rfl
 
 /-- A gap height bounds the Lebesgue function at every point of its closed
-gap.-/
+gap.
+@isnad1 id=le.1h6v.s6.deeb0a9c9230 from=translated src=- shape=33e124c3 vocab=3651111a
+-/
 lemma lebesgueFunction_le_height {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (g : Fin (d + 1)) {x : ℝ}
     (hx : x ∈ closedGap nodes.toOrderedNodes g) :
@@ -101,7 +111,9 @@ lemma lebesgueFunction_le_height {d : ℕ} {A B : ℝ}
       (gap_left_lt_right nodes.toOrderedNodes g).le
   exact (hmax x hx).trans_eq heq.symm
 
-/-- Every compact gap height is at least one.-/
+/-- Every compact gap height is at least one.
+@isnad1 id=le.0h5v.s5.52acf48d81c6 from=translated src=- shape=998aafae vocab=08dfbbe6
+-/
 lemma one_le_height {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (g : Fin (d + 1)) :
     1 ≤ nodes.height g := by
@@ -111,7 +123,9 @@ lemma one_le_height {d : ℕ} {A B : ℝ}
       ⟨le_rfl, (gap_left_lt_right nodes.toOrderedNodes g).le⟩)
 
 /-- With at least three nodes, every gap height is strictly greater than one.
-This ensures that a maximizer cannot be either nodal endpoint.-/
+This ensures that a maximizer cannot be either nodal endpoint.
+@isnad1 id=lt.1h5v.s5.f2204ee05c0f from=translated src=- shape=e6854146 vocab=60263e63
+-/
 lemma one_lt_height {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (g : Fin (d + 1)) :
     1 < nodes.height g := by
@@ -123,7 +137,9 @@ lemma one_lt_height {d : ℕ} {A B : ℝ}
   exact hpoly.trans_le (lebesgueFunction_le_height nodes g hxClosed)
 
 /-- For an endpoint array with an interior node, the compact maximum on each
-gap is attained in its open interior.-/
+gap is attained in its open interior.
+@isnad1 id=ex.1h5v.s6.1b4ad4f76dbc from=translated src=- shape=c02d3d2e vocab=273b4fc2
+-/
 lemma exists_height_eq_lebesgueFunction_mem_openGap {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (g : Fin (d + 1)) :
     ∃ x ∈ openGap nodes.toOrderedNodes g,
@@ -193,19 +209,27 @@ def boundaryAmplification {d : ℕ} {A B : ℝ}
       (2 * endpointSpacing nodes q.succ)) *
     (endpointSpacing nodes q.castSucc / (2 * (B - A))) ^ d
 
+/--
+@isnad1 id=eq.0h2v.s5.045b04fade77 from=translated src=- shape=ef5963b3 vocab=7ed72810
+-/
 lemma boundary_common_index {d : ℕ} (q : Fin d) :
     gapRightIndex (n := d + 2) q.castSucc =
       gapLeftIndex (n := d + 2) q.succ := by
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=mem.0h5v.s5.56c4ab87cea5 from=translated src=- shape=b21ec47a vocab=b1e6dd13
+-/
 lemma boundaryMidpoint_mem_lowerGap {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) :
     boundaryMidpoint nodes q ∈ closedGap nodes.toOrderedNodes q.castSucc := by
   have h := gap_left_lt_right nodes.toOrderedNodes q.castSucc
   constructor <;> unfold boundaryMidpoint <;> linarith
 
-/-- A point in the open upper gap is not any interpolation node.-/
+/-- A point in the open upper gap is not any interpolation node.
+@isnad1 id=ne.1h7v.s6.5351e8b3f49d from=translated src=- shape=51346952 vocab=10904798
+-/
 lemma upperGap_point_ne_node {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) (j : Fin (d + 2)) :
@@ -226,7 +250,9 @@ lemma upperGap_point_ne_node {d : ℕ} {A B : ℝ}
     exact (lt_irrefl _ this)
 
 /-- Every node is at least half of the lower-gap length away from its
-midpoint.  Adjacency is what makes this uniform in the node index.-/
+midpoint.  Adjacency is what makes this uniform in the node index.
+@isnad1 id=le.0h6v.s6.3851222ec187 from=translated src=- shape=3c8a26be vocab=71315962
+-/
 lemma half_lowerSpacing_le_midpoint_distance {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) (j : Fin (d + 2)) :
     endpointSpacing nodes q.castSucc / 2 ≤
@@ -255,7 +281,9 @@ lemma half_lowerSpacing_le_midpoint_distance {d : ℕ} {A B : ℝ}
     linarith
 
 /-- Distances between an upper-gap point and any endpoint-array node are
-bounded by the fixed interval length.-/
+bounded by the fixed interval length.
+@isnad1 id=le.1h7v.s6.fbc2861d3024 from=translated src=- shape=8f2a6b3c vocab=730e7b73
+-/
 lemma upperGap_distance_le_intervalLength {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) (j : Fin (d + 2)) :
@@ -298,7 +326,9 @@ private lemma half_div_le_div_of_bounds {L D a b : ℝ}
     mul_le_mul_of_nonneg_left ha (mul_pos (by norm_num) hD).le
   nlinarith
 
-/-- Uniform bounded-factor estimate in the source product.-/
+/-- Uniform bounded-factor estimate in the source product.
+@isnad1 id=le.1h7v.s7.654fb8984eb3 from=translated src=- shape=9cd5950d vocab=ea18b02b
+-/
 lemma boundary_base_le_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) (j : Fin (d + 2)) :
@@ -314,7 +344,9 @@ lemma boundary_base_le_factor {d : ℕ} {A B : ℝ}
   · exact upperGap_distance_le_intervalLength nodes q hx j
 
 /-- The factor belonging to the common node contains the full reciprocal
-collapsing-spacing growth.-/
+collapsing-spacing growth.
+@isnad1 id=le.1h6v.s7.44db03811f2b from=translated src=- shape=369484ed vocab=184ddea4
+-/
 lemma boundary_ratio_le_common_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) :
@@ -337,7 +369,9 @@ lemma boundary_ratio_le_common_factor {d : ℕ} {A B : ℝ}
     linarith [hx.2]
 
 /-- The factor belonging to the right endpoint of the collapsing gap has the
-same reciprocal-spacing lower bound.-/
+same reciprocal-spacing lower bound.
+@isnad1 id=le.1h6v.s7.9b5e68c6a37f from=translated src=- shape=916b0e2a vocab=184ddea4
+-/
 lemma boundary_ratio_le_upperRight_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) :
@@ -357,7 +391,9 @@ lemma boundary_ratio_le_upperRight_factor {d : ℕ} {A B : ℝ}
     linarith [hx.1]
 
 /-- For every cardinal row, at least one of the two factors adjacent to the
-collapsing gap survives deletion of that cardinal's own node.-/
+collapsing gap survives deletion of that cardinal's own node.
+@isnad1 id=ex.1h7v.s8.b77799c2c918 from=translated src=- shape=89bc6acf vocab=90cd1ec2
+-/
 lemma exists_boundary_ratio_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) (k : Fin (d + 2)) :
@@ -378,7 +414,9 @@ lemma exists_boundary_ratio_factor {d : ℕ} {A B : ℝ}
 
 /-- Product form of the displayed estimate in source Lemma 4.  One of the
 two collision factors supplies the reciprocal upper spacing; the other `d`
-factors are bounded below using the fixed interval length.-/
+factors are bounded below using the fixed interval length.
+@isnad1 id=le.1h7v.s8.0171c151da6d from=translated src=- shape=666da686 vocab=6d7bd977
+-/
 lemma boundaryAmplification_le_factorProduct {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.succ) (k : Fin (d + 2)) :
@@ -424,7 +462,9 @@ lemma boundaryAmplification_le_factorProduct {d : ℕ} {A B : ℝ}
   simpa only [boundaryAmplification, s, f, c, R] using hprod
 
 /-- The explicit source product estimate supplies the precise common
-cardinal amplification premise needed by the finite-radius height lemma.-/
+cardinal amplification premise needed by the finite-radius height lemma.
+@isnad1 id=adjacent.0h5v.s4.be4dc295d69e from=translated src=- shape=8bfddc52 vocab=a93625d3
+-/
 theorem adjacentCardinalAmplification_boundaryAmplification
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (q : Fin d) :
     AdjacentCardinalAmplification nodes q (boundaryAmplification nodes q) := by
@@ -441,7 +481,9 @@ theorem adjacentCardinalAmplification_boundaryAmplification
     (abs_nonneg (lagrangeFundamental nodes.toNodeFamily k x))
 
 /-- Quantitative amplification tends to infinity when the upper spacing
-collapses and its lower neighbor is eventually bounded below.-/
+collapses and its lower neighbor is eventually bounded below.
+@isnad1 id=tendsto.3h6v.s6.7b72cb416a48 from=translated src=- shape=ae5d15ce vocab=1f9aa5d5
+-/
 theorem tendsto_boundaryAmplification_atTop_of_upperSpacing
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B) (q : Fin d)
     (hzero : Tendsto (fun m ↦ endpointSpacing (nodes m) q.succ)
@@ -501,7 +543,9 @@ theorem tendsto_boundaryAmplification_atTop_of_upperSpacing
 
 /-- Source Lemma 4's analytic heart in finite-radius form: a common cardinal
 amplification `K ≥ 1` forces the upper-minus-lower gap-height coordinate to
-be at most `1 - K`.-/
+be at most `1 - K`.
+@isnad1 id=le.2h6v.s5.1b724a27d061 from=translated src=- shape=20749762 vocab=45d8218b
+-/
 theorem gapDifference_le_one_sub_of_adjacentCardinalAmplification
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (q : Fin d) {K : ℝ}
     (hK : 1 ≤ K) (hamp : AdjacentCardinalAmplification nodes q K) :
@@ -527,7 +571,9 @@ theorem gapDifference_le_one_sub_of_adjacentCardinalAmplification
   nlinarith
 
 /-- Fully explicit finite-radius gap-height estimate from the source product
-argument.-/
+argument.
+@isnad1 id=le.1h5v.s5.2e0df931d30b from=translated src=- shape=3d248025 vocab=e59218cd
+-/
 theorem gapDifference_le_one_sub_boundaryAmplification
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (q : Fin d)
     (hK : 1 ≤ boundaryAmplification nodes q) :
@@ -537,7 +583,9 @@ theorem gapDifference_le_one_sub_boundaryAmplification
 
 /-- A sequence-level finite-radius form of the source boundary argument.
 Once amplifications tend to infinity, the norm of the selected coordinate of
-the gap-difference map tends to infinity.-/
+the gap-difference map tends to infinity.
+@isnad1 id=tendsto.2h6v.s6.b0ff50779970 from=translated src=- shape=83e28fc7 vocab=7240c49d
+-/
 theorem tendsto_norm_gapDifference_atTop_of_amplification
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B) (q : Fin d)
     (K : ℕ → ℝ) (hK : Tendsto K atTop atTop)
@@ -579,12 +627,18 @@ def rightBoundaryAmplification {d : ℕ} {A B : ℝ}
       (2 * endpointSpacing nodes q.castSucc)) *
     (endpointSpacing nodes q.succ / (2 * (B - A))) ^ d
 
+/--
+@isnad1 id=mem.0h5v.s5.5253e2069b33 from=translated src=- shape=b21ec47a vocab=40cca73a
+-/
 lemma rightBoundaryMidpoint_mem_upperGap {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) :
     rightBoundaryMidpoint nodes q ∈ closedGap nodes.toOrderedNodes q.succ := by
   have h := gap_left_lt_right nodes.toOrderedNodes q.succ
   constructor <;> unfold rightBoundaryMidpoint <;> linarith
 
+/--
+@isnad1 id=ne.1h7v.s6.cc1fa1efc4c3 from=translated src=- shape=51346952 vocab=88e9f252
+-/
 lemma lowerGap_point_ne_node {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) (j : Fin (d + 2)) :
@@ -604,6 +658,9 @@ lemma lowerGap_point_ne_node {d : ℕ} {A B : ℝ}
     rw [heq] at this
     exact (lt_irrefl _ this)
 
+/--
+@isnad1 id=le.0h6v.s6.3814535e1430 from=translated src=- shape=3c8a26be vocab=16f4fbb6
+-/
 lemma half_upperSpacing_le_rightMidpoint_distance {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) (j : Fin (d + 2)) :
     endpointSpacing nodes q.succ / 2 ≤
@@ -631,6 +688,9 @@ lemma half_upperSpacing_le_rightMidpoint_distance {d : ℕ} {A B : ℝ}
     unfold endpointSpacing rightBoundaryMidpoint
     linarith
 
+/--
+@isnad1 id=le.1h7v.s6.b809d445358b from=translated src=- shape=8f2a6b3c vocab=ddc80758
+-/
 lemma lowerGap_distance_le_intervalLength {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) (j : Fin (d + 2)) :
@@ -663,6 +723,9 @@ lemma lowerGap_distance_le_intervalLength {d : ℕ} {A B : ℝ}
   rw [abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.1h7v.s7.975fe33b8ca2 from=translated src=- shape=9cd5950d vocab=d691d4a0
+-/
 lemma rightBoundary_base_le_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) (j : Fin (d + 2)) :
@@ -677,6 +740,9 @@ lemma rightBoundary_base_le_factor {d : ℕ} {A B : ℝ}
   · exact half_upperSpacing_le_rightMidpoint_distance nodes q j
   · exact lowerGap_distance_le_intervalLength nodes q hx j
 
+/--
+@isnad1 id=le.1h6v.s7.620675d9c3ef from=translated src=- shape=916b0e2a vocab=00341e78
+-/
 lemma rightBoundary_ratio_le_common_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) :
@@ -697,6 +763,9 @@ lemma rightBoundary_ratio_le_common_factor {d : ℕ} {A B : ℝ}
     unfold endpointSpacing
     linarith [hx.1]
 
+/--
+@isnad1 id=le.1h6v.s7.b66efc491235 from=translated src=- shape=916b0e2a vocab=486594dd
+-/
 lemma rightBoundary_ratio_le_lowerLeft_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) :
@@ -717,6 +786,9 @@ lemma rightBoundary_ratio_le_lowerLeft_factor {d : ℕ} {A B : ℝ}
     unfold endpointSpacing
     linarith [hx.2]
 
+/--
+@isnad1 id=ex.1h7v.s8.ce256515830a from=translated src=- shape=89bc6acf vocab=f4085f6f
+-/
 lemma exists_rightBoundary_ratio_factor {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) (k : Fin (d + 2)) :
@@ -735,6 +807,9 @@ lemma exists_rightBoundary_ratio_factor {d : ℕ} {A B : ℝ}
   · exact ⟨gapRightIndex q.castSucc, by simp [hk],
       rightBoundary_ratio_le_common_factor nodes q hx⟩
 
+/--
+@isnad1 id=le.1h7v.s8.eaa8a4b900e1 from=translated src=- shape=666da686 vocab=418da1d4
+-/
 lemma rightBoundaryAmplification_le_factorProduct {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (q : Fin d) {x : ℝ}
     (hx : x ∈ openGap nodes.toOrderedNodes q.castSucc) (k : Fin (d + 2)) :
@@ -777,6 +852,9 @@ lemma rightBoundaryAmplification_le_factorProduct {d : ℕ} {A B : ℝ}
       _ = ∏ j ∈ s, f j := Finset.mul_prod_erase s f hrs
   simpa only [rightBoundaryAmplification, s, f, c, R] using hprod
 
+/--
+@isnad1 id=rightadj.0h5v.s4.675132c199ec from=translated src=- shape=8bfddc52 vocab=caf0bc3c
+-/
 theorem rightAdjacentCardinalAmplification_rightBoundaryAmplification
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (q : Fin d) :
     RightAdjacentCardinalAmplification nodes q
@@ -793,7 +871,9 @@ theorem rightAdjacentCardinalAmplification_rightBoundaryAmplification
   simpa only [mul_comm] using mul_le_mul_of_nonneg_left hprod
     (abs_nonneg (lagrangeFundamental nodes.toNodeFamily k x))
 
-/-- Reflected finite-radius height separation.-/
+/-- Reflected finite-radius height separation.
+@isnad1 id=le.2h6v.s5.b3fb332534c0 from=translated src=- shape=864cc724 vocab=3434308c
+-/
 theorem gapDifference_ge_sub_one_of_rightAdjacentCardinalAmplification
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (q : Fin d) {K : ℝ}
     (hK : 1 ≤ K) (hamp : RightAdjacentCardinalAmplification nodes q K) :
@@ -814,6 +894,9 @@ theorem gapDifference_ge_sub_one_of_rightAdjacentCardinalAmplification
   rw [hlower] at hone ⊢
   nlinarith
 
+/--
+@isnad1 id=tendsto.3h6v.s6.06fdff27dd0f from=translated src=- shape=ae5d15ce vocab=6fd4a658
+-/
 theorem tendsto_rightBoundaryAmplification_atTop_of_lowerSpacing
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B) (q : Fin d)
     (hzero : Tendsto (fun m ↦ endpointSpacing (nodes m) q.castSucc)
@@ -866,6 +949,9 @@ theorem tendsto_rightBoundaryAmplification_atTop_of_lowerSpacing
         (endpointSpacing (nodes m) q.succ / (2 * (B - A))) ^ d := by
       field_simp
 
+/--
+@isnad1 id=tendsto.2h6v.s6.0e13126f157c from=translated src=- shape=83e28fc7 vocab=56d04a7e
+-/
 theorem tendsto_norm_gapDifference_atTop_of_rightAmplification
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B) (q : Fin d)
     (K : ℕ → ℝ) (hK : Tendsto K atTop atTop)
@@ -910,7 +996,9 @@ def AdjacentBoundaryEscapeStatement (d : ℕ) (A B : ℝ) : Prop :=
 /-- The left-neighbor boundary escape statement is completely discharged by
 the explicit product estimate.  This includes collapse of the right endpoint
 gap; the reflected right-neighbor case is the remaining ingredient for an
-all-faces properness theorem.-/
+all-faces properness theorem.
+@isnad1 id=leftneig.0h3v.s3.b28d26998896 from=translated src=- shape=cee30f65 vocab=bb596664
+-/
 theorem boundaryEscape_leftNeighbor (d : ℕ) (A B : ℝ) :
     LeftNeighborBoundaryEscapeStatement d A B := by
   intro nodes q hzero hdelta
@@ -923,7 +1011,9 @@ theorem boundaryEscape_leftNeighbor (d : ℕ) (A B : ℝ) :
 
 /-- Reflected right-neighbor escape, proved by transporting every cardinal
 function from the collapsing lower gap to the midpoint of the surviving upper
-gap.-/
+gap.
+@isnad1 id=rightnei.0h3v.s3.f1eb74a1c06c from=translated src=- shape=cee30f65 vocab=bae5dfe8
+-/
 theorem boundaryEscape_rightNeighbor (d : ℕ) (A B : ℝ) :
     RightNeighborBoundaryEscapeStatement d A B := by
   intro nodes q hzero hdelta
@@ -935,7 +1025,9 @@ theorem boundaryEscape_rightNeighbor (d : ℕ) (A B : ℝ) :
     (fun m ↦ rightAdjacentCardinalAmplification_rightBoundaryAmplification
       (nodes m) q)
 
-/-- Both orientations of the adjacent boundary kernel.-/
+/-- Both orientations of the adjacent boundary kernel.
+@isnad1 id=adjacent.0h3v.s3.93823bba671f from=translated src=- shape=cee30f65 vocab=f5759a4e
+-/
 theorem adjacentBoundaryEscape (d : ℕ) (A B : ℝ) :
     AdjacentBoundaryEscapeStatement d A B :=
   ⟨boundaryEscape_leftNeighbor d A B, boundaryEscape_rightNeighbor d A B⟩
@@ -943,7 +1035,9 @@ theorem adjacentBoundaryEscape (d : ℕ) (A B : ℝ) :
 /-! ## Selection from a limiting boundary spacing profile -/
 
 /-- A nonnegative finite chain containing both a zero and a positive entry
-has an adjacent zero/positive transition.-/
+has an adjacent zero/positive transition.
+@isnad1 id=ex.3h2v.s7.2b3c8f6b3a3a from=translated src=- shape=258f28a5 vocab=15517b22
+-/
 lemma exists_adjacent_zero_positive {d : ℕ} (s : Fin (d + 1) → ℝ)
     (hs : ∀ g, 0 ≤ s g) (hzero : ∃ g, s g = 0) (hpos : ∃ g, 0 < s g) :
     ∃ q : Fin d,
@@ -995,7 +1089,9 @@ lemma exists_adjacent_zero_positive {d : ℕ} (s : Fin (d + 1) → ℝ)
 /-- Coordinatewise convergence of the positive spacing vectors to a genuine
 boundary profile forces one fixed adjacent coordinate of `gapDifference` to
 escape.  This is a whole-sequence result because the boundary profile itself
-is assumed to be the whole-sequence limit.-/
+is assumed to be the whole-sequence limit.
+@isnad1 id=ex.4h5v.s7.ff9e3368dc78 from=translated src=- shape=8e2751e5 vocab=38f65c85
+-/
 theorem exists_coordinate_escape_of_boundarySpacingProfile
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B)
     (s : Fin (d + 1) → ℝ)
@@ -1024,7 +1120,9 @@ theorem exists_coordinate_escape_of_boundarySpacingProfile
       ⟨s q.succ / 2, half_pos hright.2, hevent⟩
 
 /-- The norm of the full finite gap-difference vector escapes whenever one
-fixed coordinate does.-/
+fixed coordinate does.
+@isnad1 id=tendsto.4h5v.s7.240c4d02b7ba from=translated src=- shape=7eae9db0 vocab=38f65c85
+-/
 theorem tendsto_norm_gapDifference_atTop_of_boundarySpacingProfile
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B)
     (s : Fin (d + 1) → ℝ)
@@ -1048,6 +1146,9 @@ def SubsequenceBoundaryEscapeStatement (d : ℕ) (A B : ℝ) : Prop :=
       (∀ g, 0 ≤ s g) → (∃ g, s g = 0) → (∃ g, 0 < s g) →
       Tendsto (fun m ↦ ‖gapDifference (nodes (φ m))‖) atTop atTop
 
+/--
+@isnad1 id=subseque.0h3v.s3.5781c58d0849 from=translated src=- shape=cee30f65 vocab=a034a13b
+-/
 theorem subsequenceBoundaryEscape (d : ℕ) (A B : ℝ) :
     SubsequenceBoundaryEscapeStatement d A B := by
   intro nodes φ _hφ s hconv hs hzero hpos
@@ -1060,10 +1161,16 @@ theorem subsequenceBoundaryEscape (d : ℕ) (A B : ℝ) :
 def closedSpacingBox (d : ℕ) (A B : ℝ) : Set (Fin (d + 1) → ℝ) :=
   Set.univ.pi fun _ ↦ Set.Icc 0 (B - A)
 
+/--
+@isnad1 id=iscompac.0h3v.s6.35327e181cd5 from=translated src=- shape=ccce268c vocab=04571a79
+-/
 lemma isCompact_closedSpacingBox (d : ℕ) (A B : ℝ) :
     IsCompact (closedSpacingBox d A B) :=
   isCompact_univ_pi fun _ ↦ isCompact_Icc
 
+/--
+@isnad1 id=mem.0h4v.s6.eec8a7e5dc73 from=translated src=- shape=ea75c1b6 vocab=4208fcde
+-/
 lemma endpointSpacing_mem_closedSpacingBox {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     endpointSpacing nodes ∈ closedSpacingBox d A B := by
@@ -1077,7 +1184,9 @@ lemma endpointSpacing_mem_closedSpacingBox {d : ℕ} {A B : ℝ}
       _ = B - A := sum_endpointSpacing nodes
 
 /-- Every endpoint-array sequence has a subsequence whose complete spacing
-vector converges in the closed simplex.-/
+vector converges in the closed simplex.
+@isnad1 id=ex.0h4v.s7.06e6b41a5403 from=translated src=- shape=d52f2002 vocab=8912bf82
+-/
 theorem exists_convergent_spacing_subsequence
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B) :
     ∃ (s : Fin (d + 1) → ℝ) (φ : ℕ → ℕ),
@@ -1116,7 +1225,9 @@ def HasNoConvergentEndpointSubsequence {d : ℕ} {A B : ℝ}
 /-- Under sequential escape from the open simplex, compact spacing
 extraction necessarily lands on its boundary.  If every limiting spacing
 were positive, the committed spacing homeomorphism would reconstruct a
-convergent endpoint-array subsequence.-/
+convergent endpoint-array subsequence.
+@isnad1 id=ex.1h4v.s7.5fe116413f22 from=translated src=- shape=64d176f0 vocab=9d228aef
+-/
 theorem exists_boundary_spacing_subsequence_of_noConvergentEndpointSubsequence
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B)
     (hno : HasNoConvergentEndpointSubsequence nodes) :
@@ -1162,7 +1273,9 @@ theorem exists_boundary_spacing_subsequence_of_noConvergentEndpointSubsequence
 /-- What the compactness reduction proves without any further uniformity
 argument: every endpoint-array sequence with no convergent open-simplex
 subsequence has a subsequence along which the full gap-difference norm tends
-to infinity.-/
+to infinity.
+@isnad1 id=ex.1h4v.s6.9c2dd00e8cd6 from=translated src=- shape=5079ac95 vocab=01c07d69
+-/
 theorem exists_subsequence_tendsto_norm_gapDifference_atTop
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B)
     (hno : HasNoConvergentEndpointSubsequence nodes) :
@@ -1178,7 +1291,9 @@ theorem exists_subsequence_tendsto_norm_gapDifference_atTop
 in the open endpoint-array simplex, then the norm of its full gap-difference
 vector tends to infinity along the whole sequence.  The proof upgrades the
 subsequential boundary result by applying it to any hypothetical frequently
-bounded subsequence.-/
+bounded subsequence.
+@isnad1 id=tendsto.1h4v.s5.7d287af0247a from=translated src=- shape=638a2d8b vocab=b9b0f72a
+-/
 theorem tendsto_norm_gapDifference_atTop_of_noConvergentEndpointSubsequence
     {d : ℕ} {A B : ℝ} (nodes : ℕ → EndpointArray d A B)
     (hno : HasNoConvergentEndpointSubsequence nodes) :
@@ -1207,6 +1322,9 @@ def GapDifferenceSequentialEscapeStatement (d : ℕ) (A B : ℝ) : Prop :=
     HasNoConvergentEndpointSubsequence nodes →
       Tendsto (fun m ↦ ‖gapDifference (nodes m)‖) atTop atTop
 
+/--
+@isnad1 id=gapdiffe.0h3v.s3.0bab5eadcf05 from=translated src=- shape=cee30f65 vocab=efeee240
+-/
 theorem gapDifference_sequentialEscape (d : ℕ) (A B : ℝ) :
     GapDifferenceSequentialEscapeStatement d A B :=
   fun nodes ↦ tendsto_norm_gapDifference_atTop_of_noConvergentEndpointSubsequence nodes

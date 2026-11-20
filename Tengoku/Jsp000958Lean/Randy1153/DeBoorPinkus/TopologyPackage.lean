@@ -19,7 +19,9 @@ namespace Randy1153.DeBoorPinkus
 noncomputable section
 
 /-- The explicit consecutive-difference Jacobian is nonsingular at every
-endpoint array.-/
+endpoint array.
+@isnad1 id=gapdiffe.0h3v.s3.fb2c12bd54d0 from=translated src=- shape=cee30f65 vocab=e8abff8e
+-/
 theorem gapDifference_jacobianDeterminantCondition
     (d : ℕ) (A B : ℝ) :
     GapDifferenceJacobianDeterminantCondition d A B := by

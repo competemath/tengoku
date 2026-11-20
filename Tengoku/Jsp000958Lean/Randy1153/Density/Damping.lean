@@ -34,7 +34,9 @@ def j1Left (a b : ℝ) : ℝ := (7 * a + b) / 8
 /-- Right endpoint of the wider interval `J₁`.-/
 def j1Right (a b : ℝ) : ℝ := (a + 7 * b) / 8
 
-/-- The five endpoints are strictly nested whenever `a < b`.-/
+/-- The five endpoints are strictly nested whenever `a < b`.
+@isnad1 id=and.1h2v.s5.90593b67e832 from=translated src=- shape=f4375115 vocab=ff174fe3
+-/
 lemma nested_interval_endpoints {a b : ℝ} (hab : a < b) :
     a < j1Left a b ∧ j1Left a b < j0Left a b ∧
       j0Left a b < j0Right a b ∧ j0Right a b < j1Right a b ∧
@@ -48,9 +50,15 @@ lemma nested_interval_endpoints {a b : ℝ} (hab : a < b) :
   · nlinarith
   constructor <;> nlinarith
 
+/--
+@isnad1 id=le.1h2v.s4.e09ae19983d2 from=translated src=- shape=c62367f0 vocab=2a193b3b
+-/
 lemma j0_nonempty {a b : ℝ} (hab : a < b) : j0Left a b ≤ j0Right a b :=
   (nested_interval_endpoints hab).2.2.1.le
 
+/--
+@isnad1 id=le.1h2v.s5.60cd75dee192 from=translated src=- shape=93a95726 vocab=1158cb47
+-/
 lemma j0_subset_j1 {a b : ℝ} (hab : a < b) :
     Set.Icc (j0Left a b) (j0Right a b) ⊆
       Set.Icc (j1Left a b) (j1Right a b) := by
@@ -58,23 +66,34 @@ lemma j0_subset_j1 {a b : ℝ} (hab : a < b) :
   exact ⟨(nested_interval_endpoints hab).2.1.le.trans hx.1,
     hx.2.trans (nested_interval_endpoints hab).2.2.2.1.le⟩
 
+/--
+@isnad1 id=le.1h2v.s4.4a3e28a0b85c from=translated src=- shape=70713086 vocab=b553f135
+-/
 lemma j1_subset_Icc {a b : ℝ} (hab : a < b) :
     Set.Icc (j1Left a b) (j1Right a b) ⊆ Set.Icc a b := by
   intro x hx
   exact ⟨(nested_interval_endpoints hab).1.le.trans hx.1,
     hx.2.trans (nested_interval_endpoints hab).2.2.2.2.le⟩
 
+/--
+@isnad1 id=le.1h2v.s4.070685849857 from=translated src=- shape=70713086 vocab=6a4e5007
+-/
 lemma j0_subset_Icc {a b : ℝ} (hab : a < b) :
     Set.Icc (j0Left a b) (j0Right a b) ⊆ Set.Icc a b :=
   (j0_subset_j1 hab).trans (j1_subset_Icc hab)
 
 /-- The separation from either endpoint of `J₀` to the corresponding
-endpoint of `J₁` is exactly `(b-a)/8`.-/
+endpoint of `J₁` is exactly `(b-a)/8`.
+@isnad1 id=eq.0h2v.s5.00fff11a033e from=translated src=- shape=61dd124c vocab=28b47d06
+-/
 lemma j0_j1_separation_left (a b : ℝ) :
     j0Left a b - j1Left a b = (b - a) / 8 := by
   simp only [j0Left, j1Left]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.18effa8eb645 from=translated src=- shape=61dd124c vocab=34089947
+-/
 lemma j0_j1_separation_right (a b : ℝ) :
     j1Right a b - j0Right a b = (b - a) / 8 := by
   simp only [j0Right, j1Right]
@@ -86,11 +105,17 @@ lemma j0_j1_separation_right (a b : ℝ) :
 def insideIndices {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) : Finset (Fin n) :=
   Finset.univ.filter fun i => nodes.point i ∈ Set.Icc u v
 
+/--
+@isnad1 id=iff.0h5v.s5.fc958978795a from=translated src=- shape=13c54eea vocab=bbc0d01c
+-/
 @[simp]
 lemma mem_insideIndices {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) (i : Fin n) :
     i ∈ insideIndices nodes u v ↔ nodes.point i ∈ Set.Icc u v := by
   simp [insideIndices]
 
+/--
+@isnad1 id=le.0h4v.s4.0952098a4171 from=translated src=- shape=7fac572a vocab=a0764535
+-/
 lemma card_insideIndices_le {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) :
     (insideIndices nodes u v).card ≤ n := by
   exact (Finset.card_le_card (Finset.filter_subset _ _)).trans (by simp)
@@ -99,20 +124,31 @@ lemma card_insideIndices_le {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) :
 def insidePolynomial {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) : ℝ[X] :=
   ∏ i ∈ insideIndices nodes u v, (Polynomial.X - Polynomial.C (nodes.point i))
 
+/--
+@isnad1 id=monic.0h4v.s4.356e55949653 from=translated src=- shape=29db327a vocab=f8c8d958
+-/
 lemma insidePolynomial_monic {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) :
     (insidePolynomial nodes u v).Monic := by
   exact Polynomial.monic_prod_X_sub_C nodes.point (insideIndices nodes u v)
 
+/--
+@isnad1 id=ne.0h4v.s4.dbc6304e9287 from=translated src=- shape=db8f829e vocab=185ee6db
+-/
 lemma insidePolynomial_ne_zero {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) :
     insidePolynomial nodes u v ≠ 0 :=
   (insidePolynomial_monic nodes u v).ne_zero
 
+/--
+@isnad1 id=eq.0h4v.s4.934a38c793e4 from=translated src=- shape=7a206b69 vocab=ed5d8492
+-/
 @[simp]
 lemma natDegree_insidePolynomial {n : ℕ} (nodes : NodeFamily n) (u v : ℝ) :
     (insidePolynomial nodes u v).natDegree = (insideIndices nodes u v).card := by
   simp only [insidePolynomial, Polynomial.natDegree_finsetProd_X_sub_C_eq_card]
 
-/-- The product vanishes at every node used to construct it.-/
+/-- The product vanishes at every node used to construct it.
+@isnad1 id=eq.1h5v.s5.154d5530335c from=translated src=- shape=9b823a01 vocab=a55c4392
+-/
 lemma insidePolynomial_eval_node_eq_zero {n : ℕ} (nodes : NodeFamily n)
     {u v : ℝ} {i : Fin n} (hi : i ∈ insideIndices nodes u v) :
     (insidePolynomial nodes u v).eval (nodes.point i) = 0 := by
@@ -121,7 +157,9 @@ lemma insidePolynomial_eval_node_eq_zero {n : ℕ} (nodes : NodeFamily n)
   exact Finset.prod_eq_zero hi (by simp)
 
 /-- A nonzero real polynomial has a positive attained absolute maximum on a
-nondegenerate compact interval.-/
+nondegenerate compact interval.
+@isnad1 id=ex.2h3v.s6.d58b543219b0 from=translated src=- shape=d70a6ae6 vocab=f025a584
+-/
 lemma exists_positive_polyMaxIcc (p : ℝ[X]) (hp : p ≠ 0)
     {u v : ℝ} (huv : u < v) :
     ∃ x ∈ Set.Icc u v,
@@ -143,7 +181,9 @@ lemma exists_positive_polyMaxIcc (p : ℝ[X]) (hp : p ≠ 0)
     linarith
   exact ⟨x, hx, hmax, hxne, hge⟩
 
-/-- A nonzero polynomial cannot vanish on a nondegenerate real interval.-/
+/-- A nonzero polynomial cannot vanish on a nondegenerate real interval.
+@isnad1 id=ex.1h4v.s5.06c20b676589 from=translated src=- shape=514a7f6d vocab=41de2f68
+-/
 lemma exists_insidePolynomial_eval_ne_zero {n : ℕ} (nodes : NodeFamily n)
     {u v : ℝ} (huv : u < v) :
     ∃ x ∈ Set.Icc u v, (insidePolynomial nodes u v).eval x ≠ 0 := by
@@ -156,7 +196,9 @@ lemma exists_insidePolynomial_eval_ne_zero {n : ℕ} (nodes : NodeFamily n)
     (Polynomial.eq_zero_of_infinite_isRoot _ hinfinite)
 
 /-- The compact maximum of the inside-node product on a nondegenerate
-interval is attained at a point where the product is nonzero.-/
+interval is attained at a point where the product is nonzero.
+@isnad1 id=ex.1h4v.s6.0654367ec757 from=translated src=- shape=2967c00d vocab=1012e64d
+-/
 lemma exists_positive_insidePolynomial_maximizer {n : ℕ} (nodes : NodeFamily n)
     {u v : ℝ} (huv : u < v) :
     ∃ x ∈ Set.Icc u v,
@@ -178,17 +220,25 @@ def sparseIndices {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) : Finset (Fin n) 
 def sparsePolynomial {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) : ℝ[X] :=
   insidePolynomial nodes (j1Left a b) (j1Right a b)
 
+/--
+@isnad1 id=eq.0h4v.s4.18e377ff55b9 from=translated src=- shape=7a206b69 vocab=b30a7538
+-/
 @[simp]
 lemma natDegree_sparsePolynomial {n : ℕ} (nodes : NodeFamily n) (a b : ℝ) :
     (sparsePolynomial nodes a b).natDegree = (sparseIndices nodes a b).card := by
   simp only [sparsePolynomial, sparseIndices, natDegree_insidePolynomial]
 
+/--
+@isnad1 id=eq.1h5v.s5.06fe108e6234 from=translated src=- shape=9b823a01 vocab=9d808549
+-/
 lemma sparsePolynomial_eval_node_eq_zero {n : ℕ} (nodes : NodeFamily n)
     {a b : ℝ} {i : Fin n} (hi : i ∈ sparseIndices nodes a b) :
     (sparsePolynomial nodes a b).eval (nodes.point i) = 0 := by
   exact insidePolynomial_eval_node_eq_zero nodes hi
 
-/-- The specialized positive-maximizer theorem used by damping.-/
+/-- The specialized positive-maximizer theorem used by damping.
+@isnad1 id=ex.1h4v.s7.7e8e05ceb523 from=translated src=- shape=eac9b405 vocab=086e647c
+-/
 lemma exists_sparsePolynomial_maximizer {n : ℕ} (nodes : NodeFamily n)
     {a b : ℝ} (hab : a < b) :
     ∃ x ∈ Set.Icc (j0Left a b) (j0Right a b),
@@ -215,16 +265,25 @@ def dampingRho (a b : ℝ) : ℝ := 1 - (b - a) ^ 2 / 512
 def dampingFactor (xstar : ℝ) : ℝ[X] :=
   1 - Polynomial.C dampingAlpha * (Polynomial.X - Polynomial.C xstar) ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s5.ab6c981bed28 from=translated src=- shape=c04335ff vocab=b90f55d5
+-/
 @[simp]
 lemma dampingFactor_eval (xstar t : ℝ) :
     (dampingFactor xstar).eval t = 1 - dampingAlpha * (t - xstar) ^ 2 := by
   simp [dampingFactor]
 
+/--
+@isnad1 id=eq.0h1v.s4.019c55bd3794 from=translated src=- shape=9b5b2757 vocab=f76c51ac
+-/
 @[simp]
 lemma dampingFactor_eval_self (xstar : ℝ) :
     (dampingFactor xstar).eval xstar = 1 := by
   simp
 
+/--
+@isnad1 id=le.0h1v.s3.c8178ffa75d2 from=translated src=- shape=fcff7bf0 vocab=f9f39f9a
+-/
 lemma natDegree_dampingFactor_le (xstar : ℝ) :
     (dampingFactor xstar).natDegree ≤ 2 := by
   unfold dampingFactor
@@ -249,6 +308,9 @@ lemma natDegree_dampingFactor_le (xstar : ℝ) :
                 (Nat.mul_le_mul_left 2 (by simp))
           _ = 2 := by norm_num
 
+/--
+@isnad1 id=lt.3h2v.s5.1405d215e860 from=translated src=- shape=957443cb vocab=bdebeb02
+-/
 lemma dampingRho_pos {a b : ℝ} (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     0 < dampingRho a b := by
   have hdelta_pos : 0 < b - a := sub_pos.mpr hab
@@ -259,13 +321,18 @@ lemma dampingRho_pos {a b : ℝ} (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1) :
   simp only [dampingRho]
   nlinarith
 
+/--
+@isnad1 id=lt.1h2v.s4.43ab570de970 from=translated src=- shape=f1ca1094 vocab=4e96a675
+-/
 lemma dampingRho_lt_one {a b : ℝ} (hab : a < b) : dampingRho a b < 1 := by
   have hdelta : 0 < (b - a) ^ 2 := sq_pos_of_pos (sub_pos.mpr hab)
   simp only [dampingRho]
   nlinarith
 
 /-- On `[-1,1]`, the damping factor lies in `[0,1]`, uniformly for
-`x* ∈ J₀`.-/
+`x* ∈ J₀`.
+@isnad1 id=mem.5h4v.s6.169d06f57471 from=translated src=- shape=0ee6d8e7 vocab=76b9cb92
+-/
 lemma dampingFactor_eval_mem_Icc {a b xstar t : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hx : xstar ∈ Set.Icc (j0Left a b) (j0Right a b))
@@ -288,7 +355,9 @@ lemma dampingFactor_eval_mem_Icc {a b xstar t : ℝ}
     nlinarith
 
 /-- Outside `J₁`, the damping factor contracts by the fixed number
-`dampingRho a b < 1`.-/
+`dampingRho a b < 1`.
+@isnad1 id=le.6h4v.s6.41eebc9bed7f from=translated src=- shape=1d3e784b vocab=f1c871a5
+-/
 lemma abs_dampingFactor_eval_le_rho {a b xstar t : ℝ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hx : xstar ∈ Set.Icc (j0Left a b) (j0Right a b))
@@ -327,13 +396,18 @@ lemma abs_dampingFactor_eval_le_rho {a b xstar t : ℝ}
 linear factors.-/
 def dampingExponent (n m : ℕ) : ℕ := (n - 1 - m) / 2
 
+/--
+@isnad1 id=le.1h2v.s5.6c306d5d2de4 from=translated src=- shape=53fc2658 vocab=d48faf04
+-/
 lemma two_mul_dampingExponent_add_le {n m : ℕ} (hm : m ≤ n - 1) :
     2 * dampingExponent n m + m ≤ n - 1 := by
   unfold dampingExponent
   omega
 
 /-- A source-readable sufficient condition for leaving `e` damping slots
-after paying `K` slots for each of the `m` inside nodes.-/
+after paying `K` slots for each of the `m` inside nodes.
+@isnad1 id=le.1h4v.s6.bd3594feabe8 from=translated src=- shape=e2bb7b4e vocab=d48faf04
+-/
 lemma dampingBudget_of_slot_bound {n m K e : ℕ}
     (hslots : (2 * K + 1) * m + 2 * e ≤ n - 1) :
     K * m + e ≤ dampingExponent n m := by
@@ -352,25 +426,34 @@ polynomial ring.-/
 def dampedPolynomial (Q : ℝ[X]) (xstar : ℝ) (d : ℕ) : ℝ[X] :=
   (dampingFactor xstar) ^ d * Q * Polynomial.C (Q.eval xstar)⁻¹
 
+/--
+@isnad1 id=eq.0h4v.s6.ecbbc392c13f from=translated src=- shape=aaf0b20e vocab=0241d14f
+-/
 @[simp]
 lemma dampedPolynomial_eval (Q : ℝ[X]) (xstar t : ℝ) (d : ℕ) :
     (dampedPolynomial Q xstar d).eval t =
       (dampingFactor xstar).eval t ^ d * Q.eval t * (Q.eval xstar)⁻¹ := by
   simp [dampedPolynomial]
 
-/-- The normalized damped polynomial equals one at its maximizing point.-/
+/-- The normalized damped polynomial equals one at its maximizing point.
+@isnad1 id=eq.1h3v.s5.4abcafec5d4a from=translated src=- shape=e251c361 vocab=0ebe3de5
+-/
 lemma dampedPolynomial_eval_self (Q : ℝ[X]) {xstar : ℝ} (d : ℕ)
     (hx : Q.eval xstar ≠ 0) :
     (dampedPolynomial Q xstar d).eval xstar = 1 := by
   simp [dampedPolynomial_eval, hx]
 
-/-- Every zero of `Q` remains a zero after damping.-/
+/-- Every zero of `Q` remains a zero after damping.
+@isnad1 id=eq.1h4v.s5.43902c8fc361 from=translated src=- shape=ae7c231e vocab=0ebe3de5
+-/
 lemma dampedPolynomial_eval_eq_zero_of_Q_eval_eq_zero (Q : ℝ[X])
     {xstar t : ℝ} (d : ℕ) (ht : Q.eval t = 0) :
     (dampedPolynomial Q xstar d).eval t = 0 := by
   simp [dampedPolynomial_eval, ht]
 
-/-- Degree accounting before the concrete exponent is selected.-/
+/-- Degree accounting before the concrete exponent is selected.
+@isnad1 id=le.0h3v.s5.35cdec84aa52 from=translated src=- shape=16ed5fbd vocab=adfa5e1f
+-/
 lemma natDegree_dampedPolynomial_le (Q : ℝ[X]) (xstar : ℝ) (d : ℕ) :
     (dampedPolynomial Q xstar d).natDegree ≤ 2 * d + Q.natDegree := by
   have hpow : ((dampingFactor xstar) ^ d).natDegree ≤ 2 * d := by
@@ -390,7 +473,9 @@ lemma natDegree_dampedPolynomial_le (Q : ℝ[X]) (xstar : ℝ) (d : ℕ) :
     _ = 2 * d + Q.natDegree := by omega
 
 /-- Fixed-interval growth after normalization by the attained nonzero
-maximum on `[u,v]`.-/
+maximum on `[u,v]`.
+@isnad1 id=le.6h5v.s7.a0c6a9f3de89 from=translated src=- shape=48727b43 vocab=c72bca2f
+-/
 lemma abs_eval_mul_inv_le_growthBase_pow (Q : ℝ[X])
     {u v xstar t : ℝ} (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
     (hxmax : polyMaxIcc Q u v = |Q.eval xstar|) (hxne : Q.eval xstar ≠ 0)
@@ -410,7 +495,9 @@ lemma abs_eval_mul_inv_le_growthBase_pow (Q : ℝ[X])
 
 /-- Outside `J₁`, the normalized damped product has the advertised product
 decay: one factor `ρ^d` from damping and one fixed-interval growth factor for
-each zero in `Q`.-/
+each zero in `Q`.
+@isnad1 id=le.8h6v.s7.f6a88ef6c256 from=translated src=- shape=9c7ddd5d vocab=52e0723c
+-/
 lemma abs_dampedPolynomial_eval_le {Q : ℝ[X]} {a b xstar t : ℝ} {d : ℕ}
     (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hx : xstar ∈ Set.Icc (j0Left a b) (j0Right a b))
@@ -457,20 +544,27 @@ def sparseDampedPolynomial {n : ℕ} (nodes : NodeFamily n)
   dampedPolynomial (sparsePolynomial nodes a b) xstar
     (dampingExponent n (sparseIndices nodes a b).card)
 
+/--
+@isnad1 id=eq.1h5v.s5.f6184d382519 from=translated src=- shape=15ec0bcf vocab=26d2e3c0
+-/
 @[simp]
 lemma sparseDampedPolynomial_eval_self {n : ℕ} (nodes : NodeFamily n)
     {a b xstar : ℝ} (hxne : (sparsePolynomial nodes a b).eval xstar ≠ 0) :
     (sparseDampedPolynomial nodes a b xstar).eval xstar = 1 := by
   exact dampedPolynomial_eval_self _ _ hxne
 
-/-- All nodes in `J₁` are exact zeros of the sparse damped polynomial.-/
+/-- All nodes in `J₁` are exact zeros of the sparse damped polynomial.
+@isnad1 id=eq.1h6v.s5.35c629f67d5c from=translated src=- shape=3ef78c00 vocab=20491279
+-/
 lemma sparseDampedPolynomial_eval_inside_eq_zero {n : ℕ} (nodes : NodeFamily n)
     {a b xstar : ℝ} {i : Fin n} (hi : i ∈ sparseIndices nodes a b) :
     (sparseDampedPolynomial nodes a b xstar).eval (nodes.point i) = 0 := by
   exact dampedPolynomial_eval_eq_zero_of_Q_eval_eq_zero _ _
     (sparsePolynomial_eval_node_eq_zero nodes hi)
 
-/-- Exact degree budget for the canonical sparse damping exponent.-/
+/-- Exact degree budget for the canonical sparse damping exponent.
+@isnad1 id=le.1h5v.s5.25bbeaa81e03 from=translated src=- shape=acbb0846 vocab=86ec86ee
+-/
 lemma natDegree_sparseDampedPolynomial_le {n : ℕ} (nodes : NodeFamily n)
     {a b xstar : ℝ} (hm : (sparseIndices nodes a b).card ≤ n - 1) :
     (sparseDampedPolynomial nodes a b xstar).natDegree ≤ n - 1 := by
@@ -484,7 +578,9 @@ lemma natDegree_sparseDampedPolynomial_le {n : ℕ} (nodes : NodeFamily n)
     _ ≤ n - 1 := two_mul_dampingExponent_add_le hm
 
 /-- Every nodal value is bounded by the explicit sparse-decay expression.
-Inside `J₁` it is zero; outside `J₁` the damping estimate applies.-/
+Inside `J₁` it is zero; outside `J₁` the damping estimate applies.
+@isnad1 id=le.6h6v.s7.d05ad6b847bd from=translated src=- shape=80b70431 vocab=db29df3f
+-/
 lemma abs_sparseDampedPolynomial_eval_node_le {n : ℕ} (nodes : NodeFamily n)
     {a b xstar : ℝ} (ha : -1 ≤ a) (hab : a < b) (hb : b ≤ 1)
     (hx : xstar ∈ Set.Icc (j0Left a b) (j0Right a b))

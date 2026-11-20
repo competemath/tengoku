@@ -19,7 +19,9 @@ open Randy1153.Collapse
 
 noncomputable section
 
-/-- Membership in `sparseIndices` is order-convex for ordered nodes.-/
+/-- Membership in `sparseIndices` is order-convex for ordered nodes.
+@isnad1 id=mem.4h7v.s6.51c44c6e5d2d from=translated src=- shape=52614a2a vocab=6405d710
+-/
 lemma sparseIndices_mem_of_between {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ)
     {i j k : Fin n} (hi : i ∈ sparseIndices nodes.toNodeFamily a b)
     (hk : k ∈ sparseIndices nodes.toNodeFamily a b) (hij : i ≤ j) (hjk : j ≤ k) :
@@ -35,7 +37,9 @@ lemma sparseIndices_mem_of_between {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ
       ⟨hi'.1.trans hleft, hright.trans hk'.2⟩)
 
 /-- A nonempty sparse index set is exactly the finite index interval between
-its minimum and maximum.-/
+its minimum and maximum.
+@isnad1 id=eq.1h4v.s6.fefbf00e3fd6 from=translated src=- shape=c6a69bf3 vocab=ee713681
+-/
 lemma sparseIndices_eq_Icc_min'_max' {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty) :
     sparseIndices nodes.toNodeFamily a b =
@@ -70,6 +74,9 @@ noncomputable def sparseConsecutiveBlock {n : ℕ} (nodes : OrderedNodes n) (a b
     change lo.val + S.card ≤ n
     omega
 
+/--
+@isnad1 id=eq.1h4v.s5.080adaae97cb from=translated src=- shape=45b2b68d vocab=216b5465
+-/
 @[simp]
 lemma sparseConsecutiveBlock_start {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty) :
@@ -77,7 +84,9 @@ lemma sparseConsecutiveBlock_start {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ
       ((sparseIndices nodes.toNodeFamily a b).min' hS).val :=
   rfl
 
-/-- Every literal block index belongs to the sparse index set.-/
+/-- Every literal block index belongs to the sparse index set.
+@isnad1 id=mem.1h5v.s6.ca0560a6337b from=translated src=- shape=1b7741ef vocab=e133cb46
+-/
 lemma sparseConsecutiveBlock_index_mem {n : ℕ} (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
     (k : Fin (sparseIndices nodes.toNodeFamily a b).card) :
@@ -104,7 +113,9 @@ lemma sparseConsecutiveBlock_index_mem {n : ℕ} (nodes : OrderedNodes n) (a b :
     omega
 
 /-- The block's offset enumeration is the canonical increasing enumeration
-of the sparse finset.-/
+of the sparse finset.
+@isnad1 id=eq.1h5v.s7.b984ac70de1b from=translated src=- shape=188ee3fd vocab=436af951
+-/
 lemma sparseConsecutiveBlock_index_eq_orderEmbOfFin {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -122,7 +133,9 @@ lemma sparseConsecutiveBlock_index_eq_orderEmbOfFin {n : ℕ}
   exact DFunLike.congr_fun he k
 
 /-- Membership in the sparse finset is exactly membership in the literal
-offset block; there are no omitted indices or extra block indices.-/
+offset block; there are no omitted indices or extra block indices.
+@isnad1 id=iff.1h5v.s6.b9d60686a386 from=translated src=- shape=726b5ea3 vocab=6b2042e7
+-/
 lemma mem_sparseIndices_iff_sparseConsecutiveBlock_Mem {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty) (i : Fin n) :
@@ -155,6 +168,9 @@ noncomputable def sparseConsecutiveBlockOfCardPos {n : ℕ}
     ConsecutiveBlock n (sparseIndices nodes.toNodeFamily a b).card :=
   sparseConsecutiveBlock nodes a b (Finset.card_pos.mp hcard)
 
+/--
+@isnad1 id=eq.1h5v.s7.5f27cae522b1 from=translated src=- shape=c6aaa432 vocab=9aa229a6
+-/
 @[simp]
 lemma sparseConsecutiveBlockOfCardPos_index {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
@@ -166,7 +182,9 @@ lemma sparseConsecutiveBlockOfCardPos_index {n : ℕ}
     (Finset.card_pos.mp hcard) k
 
 /-- Every point indexed by the block lies in `J₁`.  In particular this
-contains both endpoints of every internal block gap.-/
+contains both endpoints of every internal block gap.
+@isnad1 id=mem.1h5v.s6.29a8aa553a2e from=translated src=- shape=c676bcf6 vocab=4bb95448
+-/
 lemma sparseConsecutiveBlock_point_mem_j1 {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -176,7 +194,9 @@ lemma sparseConsecutiveBlock_point_mem_j1 {n : ℕ}
   simpa only [sparseIndices, mem_insideIndices] using
     sparseConsecutiveBlock_index_mem nodes a b hS k
 
-/-- Every point indexed by the block lies in the original interval.-/
+/-- Every point indexed by the block lies in the original interval.
+@isnad1 id=mem.2h5v.s6.a0a07c3d52b3 from=translated src=- shape=4ce22d3d vocab=5e2527ec
+-/
 lemma sparseConsecutiveBlock_point_mem_Icc {n : ℕ}
     (nodes : OrderedNodes n) {a b : ℝ} (hab : a < b)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -186,7 +206,9 @@ lemma sparseConsecutiveBlock_point_mem_Icc {n : ℕ}
   j1_subset_Icc hab (sparseConsecutiveBlock_point_mem_j1 nodes a b hS k)
 
 /-- The closed hull between any two block nodes stays in `J₁`.  This
-form is also useful when the chosen two nodes are not adjacent.-/
+form is also useful when the chosen two nodes are not adjacent.
+@isnad1 id=le.1h6v.s6.8711bbad6838 from=translated src=- shape=459c7ec6 vocab=3f84d23f
+-/
 lemma sparseConsecutiveBlock_hull_subset_j1 {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -200,7 +222,9 @@ lemma sparseConsecutiveBlock_hull_subset_j1 {n : ℕ}
   have hj := sparseConsecutiveBlock_point_mem_j1 nodes a b hS j
   exact ⟨hi.1.trans hx.1, hx.2.trans hj.2⟩
 
-/-- The same closed hull stays in `[a,b]`.-/
+/-- The same closed hull stays in `[a,b]`.
+@isnad1 id=le.2h6v.s6.3f6ae06962cc from=translated src=- shape=1c23dea3 vocab=bfa587e4
+-/
 lemma sparseConsecutiveBlock_hull_subset_Icc {n : ℕ}
     (nodes : OrderedNodes n) {a b : ℝ} (hab : a < b)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -223,6 +247,9 @@ def sparseConsecutiveBlockGapIndex {n : ℕ}
     have hfits := (sparseConsecutiveBlock nodes a b hS).fits
     omega⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.adf8a6272cb5 from=translated src=- shape=55dfae4a vocab=522a2f67
+-/
 @[simp]
 lemma sparseConsecutiveBlockGapIndex_val {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
@@ -232,6 +259,9 @@ lemma sparseConsecutiveBlockGapIndex_val {n : ℕ}
       (sparseConsecutiveBlock nodes a b hS).start + g.val :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.673b785b848d from=translated src=- shape=db7c7509 vocab=a83a8ed9
+-/
 lemma gapLeftIndex_sparseConsecutiveBlockGapIndex {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -242,6 +272,9 @@ lemma gapLeftIndex_sparseConsecutiveBlockGapIndex {n : ℕ}
   simp only [gapLeftIndex_val, sparseConsecutiveBlockGapIndex_val,
     Collapse.ConsecutiveBlock.index_val]
 
+/--
+@isnad1 id=eq.1h5v.s6.caacfe8a911c from=translated src=- shape=db7c7509 vocab=7b24687b
+-/
 lemma gapRightIndex_sparseConsecutiveBlockGapIndex {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -253,7 +286,9 @@ lemma gapRightIndex_sparseConsecutiveBlockGapIndex {n : ℕ}
     Collapse.ConsecutiveBlock.index_val]
   omega
 
-/-- Every internal closed nodal gap of the sparse block lies in `J₁`.-/
+/-- Every internal closed nodal gap of the sparse block lies in `J₁`.
+@isnad1 id=le.1h5v.s6.f511f8380d81 from=translated src=- shape=62a08730 vocab=043ede50
+-/
 lemma sparseConsecutiveBlock_closedGap_subset_j1 {n : ℕ}
     (nodes : OrderedNodes n) (a b : ℝ)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)
@@ -265,7 +300,9 @@ lemma sparseConsecutiveBlock_closedGap_subset_j1 {n : ℕ}
   exact sparseConsecutiveBlock_hull_subset_j1 nodes a b hS
     (gapLeftIndex g) (gapRightIndex g)
 
-/-- Every internal closed nodal gap of the sparse block lies in `[a,b]`.-/
+/-- Every internal closed nodal gap of the sparse block lies in `[a,b]`.
+@isnad1 id=le.2h5v.s6.9c4ce61e4b7f from=translated src=- shape=3d8fe970 vocab=8c407521
+-/
 lemma sparseConsecutiveBlock_closedGap_subset_Icc {n : ℕ}
     (nodes : OrderedNodes n) {a b : ℝ} (hab : a < b)
     (hS : (sparseIndices nodes.toNodeFamily a b).Nonempty)

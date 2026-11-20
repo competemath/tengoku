@@ -32,6 +32,9 @@ def gapIndex {n m : ℕ} (block : ConsecutiveBlock n m)
     have hfit := block.fits
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.417dfb82dad9 from=translated src=- shape=448f57e0 vocab=ed8f43ae
+-/
 @[simp]
 lemma gapIndex_val {n m : ℕ} (block : ConsecutiveBlock n m)
     (g : Fin (m - 1)) :

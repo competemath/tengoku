@@ -29,6 +29,9 @@ variable {n d : ℕ} (spec : Spec n d)
 def exteriorPolynomial : ℝ[X] :=
   ∏ j ∈ spec.block.exterior, (Polynomial.X - Polynomial.C (spec.nodes.point j))
 
+/--
+@isnad1 id=eq.0h4v.s6.e45f5dd188fd from=translated src=- shape=c7d054cc vocab=a2c08d55
+-/
 lemma exteriorPolynomial_eval (x : ℝ) :
     spec.exteriorPolynomial.eval x =
       ∏ j ∈ spec.block.exterior, (x - spec.nodes.point j) := by
@@ -57,6 +60,9 @@ def fullCardinal (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) : ℝ :=
     (x - spec.point δ j) /
       (spec.point δ (spec.block.index k) - spec.point δ j)
 
+/--
+@isnad1 id=eq.0h6v.s6.c2bb3c3ef5d7 from=translated src=- shape=e0c94ceb vocab=33ece819
+-/
 lemma exteriorRatio_eq_product (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) :
     spec.exteriorRatio δ k x =
       ∏ j ∈ spec.block.exterior,
@@ -110,7 +116,9 @@ private lemma inside_product_eq_clusterCardinal
   simp only [spec.point_index]
 
 /-- Exact algebraic factorization of every clustered cardinal function into
-the exterior ratio and the affine-cluster cardinal function.-/
+the exterior ratio and the affine-cluster cardinal function.
+@isnad1 id=eq.0h6v.s5.674e4c5e3372 from=translated src=- shape=23b1371a vocab=50f88aab
+-/
 theorem fullCardinal_factorization (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) :
     spec.fullCardinal δ k x =
       spec.exteriorRatio δ k x * spec.clusterCardinal δ k x := by
@@ -135,7 +143,9 @@ theorem fullCardinal_factorization (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) :
   · exact spec.inside_product_eq_clusterCardinal δ k x
 
 /-- The full product is the project fundamental function for every admissible
-collapsed ordered array.-/
+collapsed ordered array.
+@isnad1 id=eq.1h6v.s6.dba7e3449cb0 from=translated src=- shape=8f0398c1 vocab=26cbab54
+-/
 lemma fullCardinal_eq_lagrangeFundamental (δ : ℝ) (hδ : spec.Admissible δ)
     (k : Fin (d + 2)) (x : ℝ) :
     spec.fullCardinal δ k x =
@@ -153,6 +163,9 @@ coordinates in `[0,1]`.-/
 def patternOffset (z : ℝ) : ℝ :=
   if spec.placement = .rightEndpoint then z - 1 else z
 
+/--
+@isnad1 id=monotone.0h3v.s4.b1c327ca125a from=translated src=- shape=135df5e3 vocab=1268491b
+-/
 lemma patternOffset_monotone : Monotone spec.patternOffset := by
   intro x y hxy
   cases hplace : spec.placement <;> simp [patternOffset, hplace] <;> linarith
@@ -161,6 +174,9 @@ private lemma patternOffset_sub_offset (z : ℝ) (l : Fin (d + 2)) :
     spec.patternOffset z - spec.offset l = z - spec.pattern.point l := by
   cases hplace : spec.placement <;> simp [patternOffset, offset, hplace]
 
+/--
+@isnad1 id=mem.1h4v.s5.11690b2e40d3 from=translated src=- shape=7bd806ac vocab=26d1311d
+-/
 lemma patternOffset_mem_Icc {z : ℝ} (hz : z ∈ Set.Icc (0 : ℝ) 1) :
     spec.patternOffset z ∈ Set.Icc (-1 : ℝ) 1 := by
   constructor
@@ -170,7 +186,9 @@ lemma patternOffset_mem_Icc {z : ℝ} (hz : z ∈ Set.Icc (0 : ℝ) 1) :
       linarith [hz.1, hz.2]
 
 /-- Rescaling the cluster interval removes the affine transformation exactly:
-the cluster factor is the cardinal function of the supplied pattern.-/
+the cluster factor is the cardinal function of the supplied pattern.
+@isnad1 id=eq.1h6v.s6.3d638dc759e0 from=translated src=- shape=9f67086d vocab=7ddfc50c
+-/
 theorem clusterCardinal_rescale (δ z : ℝ) (hδ : δ ≠ 0)
     (k : Fin (d + 2)) :
     spec.clusterCardinal δ k (spec.anchor + δ * spec.patternOffset z) =
@@ -197,6 +215,9 @@ theorem clusterCardinal_rescale (δ z : ℝ) (hδ : δ ≠ 0)
       δ * (spec.offset k - spec.offset l) by ring,
     hoffz, hoff, mul_div_mul_left _ _ hδ]
 
+/--
+@isnad1 id=ne.1h4v.s5.2b36ed7fe93b from=translated src=- shape=6d2eba28 vocab=ae394a5d
+-/
 lemma anchor_ne_exterior {j : Fin n} (hj : j ∈ spec.block.exterior) :
     spec.anchor ≠ spec.nodes.point j := by
   have hjnot : ¬ spec.block.Mem j := by simpa using hj
@@ -223,6 +244,9 @@ lemma anchor_ne_exterior {j : Fin n} (hj : j ∈ spec.block.exterior) :
     rw [← hindex]
     exact spec.block.mem_index spec.localLeft
 
+/--
+@isnad1 id=ne.0h3v.s4.946d0165ca50 from=translated src=- shape=b526bb61 vocab=f8cf9f14
+-/
 lemma exteriorPolynomial_eval_anchor_ne_zero :
     spec.exteriorPolynomial.eval spec.anchor ≠ 0 := by
   rw [spec.exteriorPolynomial_eval, Finset.prod_ne_zero_iff]
@@ -231,7 +255,9 @@ lemma exteriorPolynomial_eval_anchor_ne_zero :
 
 /-- The exterior ratio tends to one uniformly in the pattern coordinate and
 in the finitely many clustered cardinal functions.  This is an explicit
-epsilon estimate, not a postulated compact-convergence principle.-/
+epsilon estimate, not a postulated compact-convergence principle.
+@isnad1 id=ex.1h4v.s7.62edcdc36c0c from=translated src=- shape=0529e75e vocab=1e244365
+-/
 theorem uniform_exteriorRatio_tendsto_one :
     ∀ ε : ℝ, 0 < ε → ∃ η : ℝ, 0 < η ∧
       ∀ δ : ℝ, |δ| < η → ∀ z ∈ Set.Icc (0 : ℝ) 1,
@@ -278,7 +304,9 @@ theorem uniform_exteriorRatio_tendsto_one :
   simpa only [F, exteriorRatio, clusterPoint, hFzero, Real.dist_eq] using hout
 
 /-- Uniform convergence of each clustered cardinal function to its supplied
-pattern cardinal function, on the whole rescaled pattern interval.-/
+pattern cardinal function, on the whole rescaled pattern interval.
+@isnad1 id=ex.1h5v.s7.ea415bdd2146 from=translated src=- shape=8c3ad605 vocab=1ea67308
+-/
 theorem uniform_fullCardinal_tendsto_pattern (k : Fin (d + 2)) :
     ∀ ε : ℝ, 0 < ε → ∃ η : ℝ, 0 < η ∧
       ∀ δ : ℝ, 0 < δ → δ < η → ∀ z ∈ Set.Icc (0 : ℝ) 1,
@@ -324,9 +352,15 @@ theorem uniform_fullCardinal_tendsto_pattern (k : Fin (d + 2)) :
 def patternBound : ℝ :=
   max 1 (lebesgueOn spec.pattern.toNodeFamily 0 1)
 
+/--
+@isnad1 id=lt.0h3v.s4.e663f1c35118 from=translated src=- shape=d11c6b12 vocab=6c781b7c
+-/
 lemma patternBound_pos : 0 < spec.patternBound :=
   lt_of_lt_of_le zero_lt_one (le_max_left _ _)
 
+/--
+@isnad1 id=le.1h5v.s6.64c7a64468c4 from=translated src=- shape=a4e48f41 vocab=b64381f7
+-/
 lemma abs_patternCardinal_le_patternBound (k : Fin (d + 2))
     {z : ℝ} (hz : z ∈ Set.Icc (0 : ℝ) 1) :
     |lagrangeFundamental spec.pattern.toNodeFamily k z| ≤ spec.patternBound := by
@@ -346,7 +380,9 @@ def clusterContribution (δ z : ℝ) : ℝ :=
     |spec.fullCardinal δ k (spec.anchor + δ * spec.patternOffset z)|
 
 /-- The clustered part of the full Lebesgue function converges uniformly to
-the pattern Lebesgue function throughout the rescaled cluster.-/
+the pattern Lebesgue function throughout the rescaled cluster.
+@isnad1 id=ex.1h4v.s7.d4d4b3b5d566 from=translated src=- shape=1aa1e75c vocab=3a07398c
+-/
 theorem uniform_clusterContribution_tendsto_pattern :
     ∀ ε : ℝ, 0 < ε → ∃ η : ℝ, 0 < η ∧
       ∀ δ : ℝ, 0 < δ → δ < η → ∀ z ∈ Set.Icc (0 : ℝ) 1,
@@ -401,12 +437,17 @@ theorem uniform_clusterContribution_tendsto_pattern :
         Nat.cast_add, Nat.cast_ofNat]
       field_simp
 
+/--
+@isnad1 id=eq.0h4v.s6.2bef4bc82df7 from=translated src=- shape=53c66072 vocab=2ceb058f
+-/
 lemma patternOffset_point (k : Fin (d + 2)) :
     spec.patternOffset (spec.pattern.point k) = spec.offset k := by
   cases hplace : spec.placement <;> simp [patternOffset, offset, hplace]
 
 /-- A rescaled point of a pattern gap lies in the corresponding global
-cluster gap.-/
+cluster gap.
+@isnad1 id=mem.2h6v.s6.704bf6f79c77 from=translated src=- shape=842760af vocab=bcffa4d1
+-/
 lemma rescaled_mem_closedGap (δ : ℝ) (hδ : spec.Admissible δ)
     (g : Fin (d + 1)) {z : ℝ}
     (hz : z ∈ closedGap spec.pattern.toOrderedNodes g) :
@@ -425,7 +466,9 @@ lemma rescaled_mem_closedGap (δ : ℝ) (hδ : spec.Admissible δ)
         hδ.scale_pos.le) spec.anchor
 
 /-- Clustered cardinal functions form a nonnegative subsum of the full
-Lebesgue function.-/
+Lebesgue function.
+@isnad1 id=le.1h5v.s5.b315392dd037 from=translated src=- shape=0d1a32cc vocab=01b50b80
+-/
 lemma clusterContribution_le_lebesgueFunction (δ : ℝ)
     (hδ : spec.Admissible δ) (z : ℝ) :
     spec.clusterContribution δ z ≤
@@ -448,7 +491,9 @@ lemma clusterContribution_le_lebesgueFunction (δ : ℝ)
     (fun i hi _ => abs_nonneg _)
 
 /-- Any cluster contribution evaluated in a local pattern gap is bounded by
-the corresponding global collapsed gap height.-/
+the corresponding global collapsed gap height.
+@isnad1 id=le.2h6v.s6.abc65b7054e7 from=translated src=- shape=278af4ee vocab=179d57b7
+-/
 lemma clusterContribution_le_gapHeight (δ : ℝ) (hδ : spec.Admissible δ)
     (g : Fin (d + 1)) {z : ℝ}
     (hz : z ∈ closedGap spec.pattern.toOrderedNodes g) :
@@ -468,7 +513,9 @@ lemma clusterContribution_le_gapHeight (δ : ℝ) (hδ : spec.Admissible δ)
 
 /-- Checked internal-gap limit in the direction needed by block comparison:
 every collapsed cluster gap is eventually at least the corresponding pattern
-gap height minus an arbitrary positive error.-/
+gap height minus an arbitrary positive error.
+@isnad1 id=ex.1h5v.s6.1ea37f257b5e from=translated src=- shape=119b35a9 vocab=31f3c625
+-/
 theorem eventually_pattern_gapHeight_sub_lt (g : Fin (d + 1))
     (ε : ℝ) (hε : 0 < ε) :
     ∃ η : ℝ, 0 < η ∧ ∀ δ : ℝ, 0 < δ → δ < η →

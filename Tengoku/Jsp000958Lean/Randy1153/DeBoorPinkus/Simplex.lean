@@ -19,7 +19,9 @@ namespace Randy1153.DeBoorPinkus
 noncomputable section
 
 /-- Every full node index is the left endpoint, the right endpoint, or one
-of the interior indices.  The statement remains valid when `d = 0`.-/
+of the interior indices.  The statement remains valid when `d = 0`.
+@isnad1 id=or.0h2v.s6.0e289a584b68 from=translated src=- shape=dc9d5267 vocab=6aa295ae
+-/
 lemma endpoint_index_cases {d : ℕ} (k : Fin (d + 2)) :
     k = endpointLeftIndex d ∨ k = endpointRightIndex d ∨
       ∃ i : Fin d, k = interiorNodeIndex i := by
@@ -51,11 +53,17 @@ def endpointPoint {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
       omega
     omega⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.90440366df40 from=translated src=- shape=dea11a17 vocab=06f0a49f
+-/
 @[simp]
 lemma endpointPoint_left {d : ℕ} (A B : ℝ) (u : Fin d → ℝ) :
     endpointPoint A B u (endpointLeftIndex d) = A := by
   simp [endpointPoint]
 
+/--
+@isnad1 id=eq.0h4v.s4.310e2c586f93 from=translated src=- shape=206cbbb0 vocab=9516bd57
+-/
 @[simp]
 lemma endpointPoint_right {d : ℕ} (A B : ℝ) (u : Fin d → ℝ) :
     endpointPoint A B u (endpointRightIndex d) = B := by
@@ -65,6 +73,9 @@ lemma endpointPoint_right {d : ℕ} (A B : ℝ) (u : Fin d → ℝ) :
     simp at this
   simp [endpointPoint, hne]
 
+/--
+@isnad1 id=eq.0h5v.s4.8a292e648791 from=translated src=- shape=7233017f vocab=7d624fbd
+-/
 @[simp]
 lemma endpointPoint_interior {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
     (i : Fin d) :
@@ -76,7 +87,9 @@ lemma endpointPoint_interior {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
   simp only [endpointPoint, dite_eq_right hleft, dite_eq_right hright]
   congr 1
 
-/-- Strict ordering of the adjoined full coordinate vector.-/
+/-- Strict ordering of the adjoined full coordinate vector.
+@isnad1 id=strictmo.2h4v.s6.0d14e166d07c from=translated src=- shape=36e7737f vocab=4de95caa
+-/
 lemma endpointPoint_strictMono {d : ℕ} {A B : ℝ} {u : Fin d → ℝ}
     (hAB : A < B) (hu : u ∈ endpointNodeSpace d A B) :
     StrictMono (endpointPoint A B u) := by
@@ -108,7 +121,9 @@ lemma endpointPoint_strictMono {d : ℕ} {A B : ℝ} {u : Fin d → ℝ}
         exact Fin.lt_def.mpr (Nat.add_lt_add_iff_right.mp hij)
       simpa using hu.2.1 hrs
 
-/-- Every coordinate of the adjoined full vector remains in `[-1,1]`.-/
+/-- Every coordinate of the adjoined full vector remains in `[-1,1]`.
+@isnad1 id=mem.2h5v.s6.4500618b27c4 from=translated src=- shape=9017b435 vocab=979766d5
+-/
 lemma endpointPoint_mem_Icc {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B) {u : Fin d → ℝ}
     (hu : u ∈ endpointNodeSpace d A B) (k : Fin (d + 2)) :
@@ -137,6 +152,9 @@ def endpointArrayOfInterior {d : ℕ} {A B : ℝ}
   left_endpoint := endpointPoint_left A B u.1
   right_endpoint := endpointPoint_right A B u.1
 
+/--
+@isnad1 id=eq.1h5v.s7.87c27a251579 from=translated src=- shape=562575bf vocab=47a6b7e8
+-/
 @[simp]
 lemma endpointArrayOfInterior_point {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
@@ -145,6 +163,9 @@ lemma endpointArrayOfInterior_point {d : ℕ} {A B : ℝ}
     (endpointArrayOfInterior hAB u).point k = endpointPoint A B u.1 k :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.ae1239510c2d from=translated src=- shape=e685f78c vocab=140272de
+-/
 @[simp]
 lemma interior_endpointArrayOfInterior {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
@@ -153,7 +174,9 @@ lemma interior_endpointArrayOfInterior {d : ℕ} {A B : ℝ}
   funext i
   exact endpointPoint_interior A B u.1 i
 
-/-- Endpoint arrays are extensional in their full point function.-/
+/-- Endpoint arrays are extensional in their full point function.
+@isnad1 id=eq.1h5v.s6.2ed1162ffabf from=translated src=- shape=4a5f29bf vocab=6bef4750
+-/
 lemma EndpointArray.ext {d : ℕ} {A B : ℝ} {x y : EndpointArray d A B}
     (h : ∀ k, x.point k = y.point k) : x = y := by
   cases x with
@@ -166,7 +189,9 @@ lemma EndpointArray.ext {d : ℕ} {A B : ℝ} {x y : EndpointArray d A B}
               NodeFamily.ext_iff]
             exact funext h
 
-/-- Interior coordinates determine the endpoint array.-/
+/-- Interior coordinates determine the endpoint array.
+@isnad1 id=eq.1h5v.s5.a715929e5d60 from=translated src=- shape=a7bee7b5 vocab=68e8f38f
+-/
 lemma EndpointArray.ext_interior {d : ℕ} {A B : ℝ}
     {x y : EndpointArray d A B} (h : x.interior = y.interior) : x = y := by
   apply EndpointArray.ext
@@ -179,6 +204,9 @@ lemma EndpointArray.ext_interior {d : ℕ} {A B : ℝ}
   · subst k
     exact congrFun h i
 
+/--
+@isnad1 id=eq.1h4v.s5.4935952af501 from=translated src=- shape=b2dff654 vocab=83497944
+-/
 @[simp]
 lemma endpointArrayOfInterior_interior {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B) (nodes : EndpointArray d A B) :
@@ -221,6 +249,9 @@ empty function.-/
 def equispacedInterior (d : ℕ) (A B : ℝ) : Fin d → ℝ :=
   fun i ↦ A + ((i.val + 1 : ℕ) : ℝ) / (d + 1 : ℕ) * (B - A)
 
+/--
+@isnad1 id=mem.1h3v.s5.fcd93f93f5b7 from=translated src=- shape=5e39b8a5 vocab=7f6e6a27
+-/
 lemma equispacedInterior_mem_endpointNodeSpace {d : ℕ} {A B : ℝ}
     (hAB : A < B) :
     equispacedInterior d A B ∈ endpointNodeSpace d A B := by
@@ -254,12 +285,16 @@ lemma equispacedInterior_mem_endpointNodeSpace {d : ℕ} {A B : ℝ}
     linarith
 
 /-- The coordinate simplex is nonempty on every nondegenerate interval,
-including dimension zero.-/
+including dimension zero.
+@isnad1 id=nonempty.1h3v.s4.b73573f19240 from=translated src=- shape=1d4323ee vocab=75a3f545
+-/
 lemma endpointNodeSpace_nonempty {d : ℕ} {A B : ℝ} (hAB : A < B) :
     (endpointNodeSpace d A B).Nonempty :=
   ⟨equispacedInterior d A B, equispacedInterior_mem_endpointNodeSpace hAB⟩
 
-/-- The strict ordered coordinate simplex is convex.-/
+/-- The strict ordered coordinate simplex is convex.
+@isnad1 id=convex.0h3v.s5.249bffaf091f from=translated src=- shape=f97fc9f9 vocab=8ca1d21f
+-/
 lemma convex_endpointNodeSpace (d : ℕ) (A B : ℝ) :
     Convex ℝ (endpointNodeSpace d A B) := by
   rw [convex_iff_forall_pos]
@@ -291,23 +326,33 @@ lemma convex_endpointNodeSpace (d : ℕ) (A B : ℝ) :
       a * u i + b * v i < a * B + b * B := add_lt_add hua hvb
       _ = B := by rw [← add_mul, hab, one_mul]
 
+/--
+@isnad1 id=ispathco.1h3v.s5.18ba6e1129c7 from=translated src=- shape=1d4323ee vocab=c99fe4f9
+-/
 lemma isPathConnected_endpointNodeSpace {d : ℕ} {A B : ℝ} (hAB : A < B) :
     IsPathConnected (endpointNodeSpace d A B) :=
   (convex_endpointNodeSpace d A B).isPathConnected
     (endpointNodeSpace_nonempty hAB)
 
+/--
+@isnad1 id=isconnec.1h3v.s5.a8fb0e2b093a from=translated src=- shape=1d4323ee vocab=21daddbd
+-/
 lemma isConnected_endpointNodeSpace {d : ℕ} {A B : ℝ} (hAB : A < B) :
     IsConnected (endpointNodeSpace d A B) :=
   (isPathConnected_endpointNodeSpace hAB).isConnected
 
-/-- The simplex subtype is path connected.-/
+/-- The simplex subtype is path connected.
+@isnad1 id=pathconn.1h3v.s6.829e22f03642 from=translated src=- shape=3f873916 vocab=a5f2e85e
+-/
 lemma pathConnectedSpace_endpointNodeSpace {d : ℕ} {A B : ℝ} (hAB : A < B) :
     PathConnectedSpace {u : Fin d → ℝ // u ∈ endpointNodeSpace d A B} :=
   isPathConnected_iff_pathConnectedSpace.mp
     (isPathConnected_endpointNodeSpace hAB)
 
 /-- Endpoint arrays inherit path connectedness through the proved
-homeomorphism, not merely from openness of the coordinate image.-/
+homeomorphism, not merely from openness of the coordinate image.
+@isnad1 id=pathconn.1h3v.s4.3cd6bb9a0252 from=translated src=- shape=8426a8b0 vocab=cf2ecb91
+-/
 lemma pathConnectedSpace_endpointArray {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B) :
     PathConnectedSpace (EndpointArray d A B) := by
@@ -328,6 +373,9 @@ lemma pathConnectedSpace_endpointArray {d : ℕ} {A B : ℝ}
 def positiveSpacingSimplex (d : ℕ) (L : ℝ) : Set (Fin (d + 1) → ℝ) :=
   {s | (∀ g, 0 < s g) ∧ ∑ g, s g = L}
 
+/--
+@isnad1 id=iff.0h3v.s7.e5701aaf059e from=translated src=- shape=d280b45a vocab=3b3b8b6f
+-/
 lemma mem_positiveSpacingSimplex {d : ℕ} {L : ℝ}
     {s : Fin (d + 1) → ℝ} :
     s ∈ positiveSpacingSimplex d L ↔
@@ -338,6 +386,9 @@ lemma mem_positiveSpacingSimplex {d : ℕ} {L : ℝ}
 def logRatioDenominator {d : ℕ} (z : Fin d → ℝ) : ℝ :=
   1 + ∑ i, Real.exp (z i)
 
+/--
+@isnad1 id=lt.0h2v.s4.b68466cbdcde from=translated src=- shape=42a2b5ba vocab=8a42d4bb
+-/
 lemma logRatioDenominator_pos {d : ℕ} (z : Fin d → ℝ) :
     0 < logRatioDenominator z := by
   unfold logRatioDenominator
@@ -351,11 +402,17 @@ def softmaxSpacing {d : ℕ} (L : ℝ) (z : Fin d → ℝ) :
     (L / logRatioDenominator z)
     (fun i ↦ L * Real.exp (z i) / logRatioDenominator z) g
 
+/--
+@isnad1 id=eq.0h3v.s4.5078b296cca5 from=translated src=- shape=b7247efe vocab=01645945
+-/
 @[simp]
 lemma softmaxSpacing_last {d : ℕ} (L : ℝ) (z : Fin d → ℝ) :
     softmaxSpacing L z (Fin.last d) = L / logRatioDenominator z := by
   simp [softmaxSpacing]
 
+/--
+@isnad1 id=eq.0h4v.s5.6b9a458c1adb from=translated src=- shape=e0af038c vocab=7f6f28a5
+-/
 @[simp]
 lemma softmaxSpacing_castSucc {d : ℕ} (L : ℝ) (z : Fin d → ℝ)
     (i : Fin d) :
@@ -363,6 +420,9 @@ lemma softmaxSpacing_castSucc {d : ℕ} (L : ℝ) (z : Fin d → ℝ)
       L * Real.exp (z i) / logRatioDenominator z := by
   simp [softmaxSpacing]
 
+/--
+@isnad1 id=lt.1h4v.s5.b6a2490e9e6e from=translated src=- shape=3741c63b vocab=fd711eb6
+-/
 lemma softmaxSpacing_pos {d : ℕ} {L : ℝ} (hL : 0 < L)
     (z : Fin d → ℝ) (g : Fin (d + 1)) :
     0 < softmaxSpacing L z g := by
@@ -372,6 +432,9 @@ lemma softmaxSpacing_pos {d : ℕ} {L : ℝ} (hL : 0 < L)
   · rw [softmaxSpacing_castSucc]
     exact div_pos (mul_pos hL (Real.exp_pos _)) (logRatioDenominator_pos z)
 
+/--
+@isnad1 id=eq.0h3v.s6.b60598744de8 from=translated src=- shape=277379a8 vocab=4c9bd4e7
+-/
 lemma sum_softmaxSpacing {d : ℕ} (L : ℝ) (z : Fin d → ℝ) :
     ∑ g, softmaxSpacing L z g = L := by
   rw [Fin.sum_univ_castSucc]
@@ -384,6 +447,9 @@ lemma sum_softmaxSpacing {d : ℕ} (L : ℝ) (z : Fin d → ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=mem.1h3v.s6.f0a15813f1f1 from=translated src=- shape=cb51a2e6 vocab=7f4facbe
+-/
 lemma softmaxSpacing_mem_positiveSpacingSimplex {d : ℕ} {L : ℝ}
     (hL : 0 < L) (z : Fin d → ℝ) :
     softmaxSpacing L z ∈ positiveSpacingSimplex d L :=
@@ -393,6 +459,9 @@ lemma softmaxSpacing_mem_positiveSpacingSimplex {d : ℕ} {L : ℝ}
 def spacingLogRatio {d : ℕ} (s : Fin (d + 1) → ℝ) : Fin d → ℝ :=
   fun i ↦ Real.log (s i.castSucc / s (Fin.last d))
 
+/--
+@isnad1 id=eq.1h3v.s5.c4426ff7e9ec from=translated src=- shape=974ad9d5 vocab=922bee70
+-/
 @[simp]
 lemma spacingLogRatio_softmaxSpacing {d : ℕ} {L : ℝ} (hL : 0 < L)
     (z : Fin d → ℝ) :
@@ -409,12 +478,18 @@ lemma spacingLogRatio_softmaxSpacing {d : ℕ} {L : ℝ} (hL : 0 < L)
     field_simp
   rw [hratio, Real.log_exp]
 
+/--
+@isnad1 id=eq.1h3v.s6.4e3d7fcfce5c from=translated src=- shape=861141f6 vocab=e5f55372
+-/
 lemma exp_spacingLogRatio {d : ℕ} {s : Fin (d + 1) → ℝ}
     (hs : ∀ g, 0 < s g) (i : Fin d) :
     Real.exp (spacingLogRatio s i) = s i.castSucc / s (Fin.last d) := by
   unfold spacingLogRatio
   exact Real.exp_log (div_pos (hs _) (hs _))
 
+/--
+@isnad1 id=eq.1h2v.s7.f9affb5513a1 from=translated src=- shape=89c0c0b0 vocab=9150fdeb
+-/
 lemma logRatioDenominator_spacingLogRatio {d : ℕ}
     {s : Fin (d + 1) → ℝ} (hs : ∀ g, 0 < s g) :
     logRatioDenominator (spacingLogRatio s) =
@@ -428,6 +503,9 @@ lemma logRatioDenominator_spacingLogRatio {d : ℕ}
   field_simp
   ring
 
+/--
+@isnad1 id=eq.3h3v.s7.90ff0495b94a from=translated src=- shape=83c804c3 vocab=65491330
+-/
 @[simp]
 lemma softmaxSpacing_spacingLogRatio {d : ℕ} {L : ℝ} (hL : 0 < L)
     (s : Fin (d + 1) → ℝ) (hs : ∀ g, 0 < s g)
@@ -457,12 +535,18 @@ def positiveSpacingLogRatioEquiv {d : ℕ} {L : ℝ} (hL : 0 < L) :
   right_inv s := Subtype.ext
     (softmaxSpacing_spacingLogRatio hL s.1 s.2.1 s.2.2)
 
+/--
+@isnad1 id=continuo.0h1v.s4.76a81889529c from=translated src=- shape=bbef8654 vocab=b15fda23
+-/
 lemma continuous_logRatioDenominator {d : ℕ} :
     Continuous (logRatioDenominator : (Fin d → ℝ) → ℝ) := by
   unfold logRatioDenominator
   exact continuous_const.add (continuous_finsetSum Finset.univ fun i _ ↦
     (continuous_apply i).rexp)
 
+/--
+@isnad1 id=continuo.0h2v.s6.714d0efa5da7 from=translated src=- shape=69ee6195 vocab=f4129e9b
+-/
 lemma continuous_softmaxSpacing {d : ℕ} (L : ℝ) :
     Continuous (softmaxSpacing L : (Fin d → ℝ) → Fin (d + 1) → ℝ) := by
   apply continuous_pi
@@ -486,6 +570,9 @@ lemma continuous_softmaxSpacing {d : ℕ} (L : ℝ) :
     funext a
     simp [softmaxSpacing_castSucc, Pi.div_apply, Pi.mul_apply]
 
+/--
+@isnad1 id=continuo.0h2v.s8.5b9e8f44303f from=translated src=- shape=22e56a66 vocab=ec09474f
+-/
 lemma continuous_spacingLogRatio_positive {d : ℕ} {L : ℝ} :
     Continuous (fun s :
       {s : Fin (d + 1) → ℝ // s ∈ positiveSpacingSimplex d L} ↦
@@ -511,12 +598,16 @@ def positiveSpacingLogRatioHomeomorph {d : ℕ} {L : ℝ} (hL : 0 < L) :
   continuous_invFun := continuous_spacingLogRatio_positive
 
 /-- Dimension zero is not hidden in the formulas: the log-ratio vector is
-the unique function out of `Fin 0`.-/
+the unique function out of `Fin 0`.
+@isnad1 id=eq.0h1v.s5.6f084a3e059e from=translated src=- shape=ab10c8fe vocab=f2acd5ca
+-/
 lemma spacingLogRatio_zero (s : Fin 1 → ℝ) :
     spacingLogRatio s = (fun i : Fin 0 ↦ Fin.elim0 i) :=
   Subsingleton.elim _ _
 
-/-- In dimension zero, softmax returns the single prescribed spacing.-/
+/-- In dimension zero, softmax returns the single prescribed spacing.
+@isnad1 id=eq.0h2v.s5.551affcb9dc4 from=translated src=- shape=7d3f1999 vocab=6dcc29e7
+-/
 lemma softmaxSpacing_zero (L : ℝ) (z : Fin 0 → ℝ) :
     softmaxSpacing L z = fun _ ↦ L := by
   funext g
@@ -531,12 +622,18 @@ def endpointSpacing {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) :
     Fin (d + 1) → ℝ :=
   fun g ↦ nodes.point (gapRightIndex g) - nodes.point (gapLeftIndex g)
 
+/--
+@isnad1 id=lt.0h5v.s5.a644ac2823ae from=translated src=- shape=998aafae vocab=ee6657a6
+-/
 lemma endpointSpacing_pos {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (g : Fin (d + 1)) :
     0 < endpointSpacing nodes g := by
   exact sub_pos.mpr (nodes.point_lt
     (gapLeftIndex_lt_rightIndex (n := d + 2) g))
 
+/--
+@isnad1 id=eq.0h4v.s6.766587a886a4 from=translated src=- shape=f6418eda vocab=8d907f50
+-/
 lemma sum_endpointSpacing {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     ∑ g, endpointSpacing nodes g = B - A := by
@@ -571,6 +668,9 @@ lemma sum_endpointSpacing {d : ℕ} {A B : ℝ}
         nodes.point (endpointLeftIndex d) := htel
     _ = B - A := by rw [nodes.right_endpoint, nodes.left_endpoint]
 
+/--
+@isnad1 id=mem.0h4v.s6.b39a157a33ce from=translated src=- shape=747d9862 vocab=d039c939
+-/
 lemma endpointSpacing_mem_positiveSpacingSimplex {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     endpointSpacing nodes ∈ positiveSpacingSimplex d (B - A) :=
@@ -582,11 +682,17 @@ def spacingPoint {d : ℕ} (A : ℝ) (s : Fin (d + 1) → ℝ)
   A + ∑ i ∈ Finset.range k.val,
     if hi : i < d + 1 then s ⟨i, hi⟩ else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.ffa0f5caddaa from=translated src=- shape=d06bcaf5 vocab=c8912986
+-/
 @[simp]
 lemma spacingPoint_left {d : ℕ} (A : ℝ) (s : Fin (d + 1) → ℝ) :
     spacingPoint A s (endpointLeftIndex d) = A := by
   simp [spacingPoint, endpointLeftIndex]
 
+/--
+@isnad1 id=strictmo.1h3v.s6.08e5c39555d9 from=translated src=- shape=042a1ba8 vocab=20dbce83
+-/
 lemma spacingPoint_strictMono {d : ℕ} (A : ℝ) {s : Fin (d + 1) → ℝ}
     (hs : ∀ g, 0 < s g) :
     StrictMono (spacingPoint A s) := by
@@ -606,6 +712,9 @@ lemma spacingPoint_strictMono {d : ℕ} (A : ℝ) {s : Fin (d + 1) → ℝ}
     _ = A + ((∑ r ∈ Finset.range i.val,
           if hr : r < d + 1 then s ⟨r, hr⟩ else 0) + s i) := by ring
 
+/--
+@isnad1 id=eq.1h4v.s6.1ed58bf57a1a from=translated src=- shape=81272b16 vocab=4560dfbc
+-/
 @[simp]
 lemma spacingPoint_right {d : ℕ} {A B : ℝ}
     {s : Fin (d + 1) → ℝ} (hsum : ∑ g, s g = B - A) :
@@ -643,6 +752,9 @@ def endpointArrayOfSpacings {d : ℕ} {A B : ℝ}
   left_endpoint := spacingPoint_left A s.1
   right_endpoint := spacingPoint_right s.2.2
 
+/--
+@isnad1 id=eq.1h4v.s7.fad68cf1cfcd from=translated src=- shape=f6cd3d5d vocab=71c8bbcf
+-/
 @[simp]
 lemma endpointSpacing_endpointArrayOfSpacings {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
@@ -654,6 +766,9 @@ lemma endpointSpacing_endpointArrayOfSpacings {d : ℕ} {A B : ℝ}
   rw [Finset.sum_range_succ, dite_eq_left g.isLt]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.337622f96c78 from=translated src=- shape=10045dc8 vocab=a170c1c4
+-/
 lemma spacingPoint_endpointSpacing {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (k : Fin (d + 2)) :
     spacingPoint A (endpointSpacing nodes) k = nodes.point k := by
@@ -696,6 +811,9 @@ lemma spacingPoint_endpointSpacing {d : ℕ} {A B : ℝ}
         exact (Nat.min_eq_left hi.le).symm
     _ = nodes.point k := by rw [htel]; ring
 
+/--
+@isnad1 id=eq.1h4v.s7.823087021354 from=translated src=- shape=ea19ed0c vocab=b4c9cb6b
+-/
 @[simp]
 lemma endpointArrayOfSpacings_endpointSpacing {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B) (nodes : EndpointArray d A B) :
@@ -723,6 +841,9 @@ def endpointArrayLogRatioEquiv {d : ℕ} {A B : ℝ}
   (endpointArraySpacingEquiv hAB).trans
     (positiveSpacingLogRatioEquiv (sub_pos.mpr hAB.2.1)).symm
 
+/--
+@isnad1 id=continuo.0h4v.s6.b5bb0b10fcc4 from=translated src=- shape=ef01cfc6 vocab=1b67c625
+-/
 lemma continuous_endpointArray_point {d : ℕ} {A B : ℝ}
     (k : Fin (d + 2)) :
     Continuous (fun nodes : EndpointArray d A B ↦ nodes.point k) := by
@@ -740,6 +861,9 @@ lemma continuous_endpointArray_point {d : ℕ} {A B : ℝ}
       (continuous_induced_dom : Continuous
         (fun nodes : EndpointArray d A B ↦ nodes.interior))
 
+/--
+@isnad1 id=continuo.0h3v.s6.7110dcf5fbd3 from=translated src=- shape=eb0a6a3a vocab=0b1290f9
+-/
 lemma continuous_endpointSpacing {d : ℕ} {A B : ℝ} :
     Continuous (endpointSpacing : EndpointArray d A B → Fin (d + 1) → ℝ) := by
   apply continuous_pi
@@ -747,6 +871,9 @@ lemma continuous_endpointSpacing {d : ℕ} {A B : ℝ} :
   exact (continuous_endpointArray_point (gapRightIndex g)).sub
     (continuous_endpointArray_point (gapLeftIndex g))
 
+/--
+@isnad1 id=continuo.1h3v.s8.51cc90bdc88a from=translated src=- shape=62532930 vocab=749b8476
+-/
 lemma continuous_endpointArrayOfSpacings {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B) :
     Continuous (endpointArrayOfSpacings (d := d) hAB) := by
@@ -790,7 +917,9 @@ def endpointArrayLogRatioHomeomorph {d : ℕ} {A B : ℝ}
     (positiveSpacingLogRatioHomeomorph (sub_pos.mpr hAB.2.1)).symm
 
 /-- In dimension zero the coordinate simplex is literally the whole
-singleton function space, independent of endpoint inequalities.-/
+singleton function space, independent of endpoint inequalities.
+@isnad1 id=eq.0h2v.s4.aacd299a564d from=translated src=- shape=d0e369bd vocab=3e403d0f
+-/
 lemma endpointNodeSpace_zero_eq_univ (A B : ℝ) :
     endpointNodeSpace 0 A B = Set.univ := by
   apply Set.eq_univ_of_forall
@@ -800,7 +929,9 @@ lemma endpointNodeSpace_zero_eq_univ (A B : ℝ) :
   exact Fin.elim0 i
 
 /-- Consequently, any two zero-dimensional endpoint arrays with the same
-fixed endpoints are equal.-/
+fixed endpoints are equal.
+@isnad1 id=eq.0h4v.s5.4ab635ab81ed from=translated src=- shape=f03121ba vocab=b83ee79f
+-/
 lemma endpointArray_zero_unique {A B : ℝ} (x y : EndpointArray 0 A B) :
     x = y := by
   apply EndpointArray.ext_interior

@@ -66,6 +66,9 @@ def coordinateCriticalValue {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
     (g : Fin (d + 1)) (x : ℝ) : ℝ :=
   (coordinateGapPolynomial A B u g).derivative.eval x
 
+/--
+@isnad1 id=eq.1h5v.s7.35860c5eda60 from=translated src=- shape=c910fa5d vocab=86e6bd6b
+-/
 lemma coordinateLagrangePolynomial_eq {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -77,7 +80,9 @@ lemma coordinateLagrangePolynomial_eq {d : ℕ} {A B : ℝ}
 
 /-- On the ordered simplex the ambient coordinate formula is exactly the
 committed signed gap polynomial, not merely an extension with the same nodal
-values.-/
+values.
+@isnad1 id=eq.1h5v.s6.fd17fb2f33be from=translated src=- shape=3a869a86 vocab=2e8d599e
+-/
 lemma coordinateGapPolynomial_eq {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -91,6 +96,9 @@ lemma coordinateGapPolynomial_eq {d : ℕ} {A B : ℝ}
   rw [coordinateLagrangePolynomial_eq hAB u]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.5eee97178503 from=translated src=- shape=02f8e098 vocab=f7e6e530
+-/
 lemma coordinateGapValue_eq {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -99,6 +107,9 @@ lemma coordinateGapValue_eq {d : ℕ} {A B : ℝ}
       (gapPolynomial (endpointArrayOfInterior hAB u).toOrderedNodes g).eval x := by
   rw [coordinateGapValue, coordinateGapPolynomial_eq hAB u]
 
+/--
+@isnad1 id=eq.1h6v.s7.c80bd4ddb224 from=translated src=- shape=ea359c24 vocab=ef4aad13
+-/
 lemma coordinateCriticalValue_eq {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -121,6 +132,9 @@ def coordinateGapArgmax {d : ℕ} {A B : ℝ}
     (g : Fin (d + 1)) : ℝ :=
   gapArgmax (endpointArrayOfInterior hAB u).toOrderedNodes g
 
+/--
+@isnad1 id=eq.1h5v.s6.1a6dc23a0bde from=translated src=- shape=a97153cc vocab=d7861a40
+-/
 lemma coordinateGapHeight_eq_value_at_argmax {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -143,6 +157,9 @@ def coordinateBasisDenominator {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
   ∏ k ∈ Finset.univ.erase (interiorNodeIndex j),
     (endpointPoint A B u (interiorNodeIndex j) - endpointPoint A B u k)
 
+/--
+@isnad1 id=ne.1h5v.s6.03235ce8ead1 from=translated src=- shape=099f494e vocab=2744ac34
+-/
 lemma coordinateBasisDenominator_ne_zero {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B}) (j : Fin d) :
@@ -153,6 +170,9 @@ lemma coordinateBasisDenominator_ne_zero {d : ℕ} {A B : ℝ}
   have hne : interiorNodeIndex j ≠ k := (Finset.mem_erase.mp hk).1.symm
   exact sub_ne_zero.mpr ((endpointPoint_strictMono hAB.2.1 u.2).injective.ne hne)
 
+/--
+@isnad1 id=eq.0h6v.s7.5f76a6b97dab from=translated src=- shape=9f65a140 vocab=fe781180
+-/
 lemma coordinateNodalValue_eq_mul_erase {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (j : Fin d) (x : ℝ) :
     coordinateNodalValue A B u x =
@@ -163,6 +183,9 @@ lemma coordinateNodalValue_eq_mul_erase {d : ℕ} (A B : ℝ)
   exact (Finset.mul_prod_erase (Finset.univ : Finset (Fin (d + 2)))
     (fun k => x - endpointPoint A B u k) (Finset.mem_univ _)).symm
 
+/--
+@isnad1 id=eq.1h6v.s8.c832802b7983 from=translated src=- shape=8a0c3202 vocab=f82fb3ab
+-/
 lemma lagrangeFundamental_interior_eq {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -201,6 +224,9 @@ def gapHeightJacobianModel {d : ℕ} {A B : ℝ}
   fun g j => gapJacobianRowFactor nodes g *
     gapQuotientEvaluationMatrix nodes g j * gapJacobianColumnFactor nodes j
 
+/--
+@isnad1 id=eq.0h6v.s8.80deec1fdfa6 from=translated src=- shape=fc06d6be vocab=7f737e9e
+-/
 lemma gapPolynomial_derivative_eval_interior_eq {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (g : Fin (d + 1)) (j : Fin d) :
     (gapPolynomial nodes.toOrderedNodes g).derivative.eval
@@ -216,7 +242,9 @@ lemma gapPolynomial_derivative_eval_interior_eq {d : ℕ} {A B : ℝ}
 
 /-- Entrywise envelope formula after removing the critical factor.  This is
 the algebraic heart of the Jacobian calculation; it does not assume that the
-height map has already been differentiated.-/
+height map has already been differentiated.
+@isnad1 id=eq.0h6v.s8.8b063967d9ea from=translated src=- shape=7f581285 vocab=96b549b6
+-/
 lemma gapHeightJacobianModel_apply_eq {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (g : Fin (d + 1)) (j : Fin d) :
     gapHeightJacobianModel nodes g j =
@@ -241,6 +269,9 @@ lemma gapHeightJacobianModel_apply_eq {d : ℕ} {A B : ℝ}
   simp only [endpointPoint_interior, EndpointArray.interior_apply]
   ring
 
+/--
+@isnad1 id=ne.1h5v.s5.3e763fff5825 from=translated src=- shape=c477a6e3 vocab=5025f889
+-/
 lemma gapJacobianRowFactor_ne_zero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (g : Fin (d + 1)) :
     gapJacobianRowFactor nodes g ≠ 0 := by
@@ -271,6 +302,9 @@ lemma gapJacobianRowFactor_ne_zero {d : ℕ} {A B : ℝ}
     rw [← hpoint, ← heq] at hle
     exact (not_lt_of_ge hle hopen.2)
 
+/--
+@isnad1 id=ne.0h5v.s4.6ae6abeab005 from=translated src=- shape=3502cccc vocab=3d836a63
+-/
 lemma gapJacobianColumnFactor_ne_zero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (j : Fin d) :
     gapJacobianColumnFactor nodes j ≠ 0 := by
@@ -280,6 +314,9 @@ lemma gapJacobianColumnFactor_ne_zero {d : ℕ} {A B : ℝ}
 
 /-! ## Maximal-minor reduction -/
 
+/--
+@isnad1 id=eq.0h4v.s8.ac7dd4917b8c from=translated src=- shape=70a1b632 vocab=304f821f
+-/
 lemma gapHeightJacobianModel_factorization {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) :
     gapHeightJacobianModel nodes =
@@ -295,7 +332,9 @@ def deletedRowMinor {d : ℕ} (M : Matrix (Fin (d + 1)) (Fin d) ℝ)
   (M.submatrix omitted.succAbove id).det
 
 /-- Every maximal height-Jacobian minor is the corresponding quotient-
-evaluation minor times the explicit row and column products.-/
+evaluation minor times the explicit row and column products.
+@isnad1 id=eq.0h5v.s6.d9774fa68b68 from=translated src=- shape=e70f3f04 vocab=2e6ced98
+-/
 theorem deletedRowMinor_gapHeightJacobianModel {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (omitted : Fin (d + 1)) :
     deletedRowMinor (gapHeightJacobianModel nodes) omitted =
@@ -316,6 +355,9 @@ theorem deletedRowMinor_gapHeightJacobianModel {d : ℕ} {A B : ℝ}
   rw [deletedRowMinor, hmatrix, Matrix.det_mul, Matrix.det_mul]
   simp [R, Q, C, deletedRowMinor]
 
+/--
+@isnad1 id=iff.1h5v.s6.a915c0f98668 from=translated src=- shape=cf007984 vocab=b8936bd3
+-/
 theorem deletedRowMinor_gapHeightJacobianModel_ne_zero_iff {d : ℕ}
     {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (omitted : Fin (d + 1)) :
@@ -333,11 +375,17 @@ theorem deletedRowMinor_gapHeightJacobianModel_ne_zero_iff {d : ℕ}
 
 /-! ## The zero-dimensional/two-node exception -/
 
+/--
+@isnad1 id=eq.0h5v.s5.83b02659a20f from=translated src=- shape=0c230f6d vocab=3b2f4132
+-/
 lemma coordinateGapPolynomial_zero_dim (A B : ℝ) (u v : Fin 0 → ℝ)
     (g : Fin 1) :
     coordinateGapPolynomial A B u g = coordinateGapPolynomial A B v g := by
   rw [Subsingleton.elim u v]
 
+/--
+@isnad1 id=eq.1h4v.s7.d965d106d6e5 from=translated src=- shape=040e1791 vocab=1f888822
+-/
 lemma coordinateGapPolynomial_zero_dim_eq_one {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin 0 → ℝ // v ∈ endpointNodeSpace 0 A B}) (g : Fin 1) :
@@ -346,6 +394,9 @@ lemma coordinateGapPolynomial_zero_dim_eq_one {A B : ℝ}
   exact gapPolynomial_eq_one_of_two_nodes
     (endpointArrayOfInterior hAB u).toOrderedNodes g
 
+/--
+@isnad1 id=eq.1h5v.s7.fae1875fdb02 from=translated src=- shape=5ecd270b vocab=0f25d546
+-/
 lemma coordinateCriticalValue_zero_dim {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin 0 → ℝ // v ∈ endpointNodeSpace 0 A B})
@@ -355,6 +406,9 @@ lemma coordinateCriticalValue_zero_dim {A B : ℝ}
     gapPolynomial_derivative_eq_zero_of_two_nodes]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.85e21699d68d from=translated src=- shape=cfbd578f vocab=77d50995
+-/
 lemma coordinateGapHeight_zero_dim {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin 0 → ℝ // v ∈ endpointNodeSpace 0 A B}) (g : Fin 1) :
@@ -363,12 +417,18 @@ lemma coordinateGapHeight_zero_dim {A B : ℝ}
     gapPolynomial_eq_one_of_two_nodes]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.db7fea8b55d1 from=translated src=- shape=28401c42 vocab=93d4fe24
+-/
 lemma gapHeightJacobianModel_zero_dim {A B : ℝ}
     (nodes : EndpointArray 0 A B) :
     gapHeightJacobianModel nodes = (0 : Matrix (Fin 1) (Fin 0) ℝ) := by
   ext g j
   exact Fin.elim0 j
 
+/--
+@isnad1 id=eq.0h4v.s5.1010dd267546 from=translated src=- shape=843f9861 vocab=0ff6cea8
+-/
 lemma deletedRowMinor_zero_dim {A B : ℝ} (nodes : EndpointArray 0 A B)
     (omitted : Fin 1) :
     deletedRowMinor (gapHeightJacobianModel nodes) omitted = 1 := by
@@ -403,6 +463,9 @@ def criticalVerticalCoefficient {d : ℕ} {A B : ℝ}
   (gapPolynomial nodes.toOrderedNodes g).derivative.derivative.eval
     (gapArgmax nodes.toOrderedNodes g)
 
+/--
+@isnad1 id=lt.1h5v.s5.a9ce36defb26 from=translated src=- shape=c477a6e3 vocab=0508d59b
+-/
 lemma criticalVerticalCoefficient_neg {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 2 ≤ d) (g : Fin (d + 1)) :
     criticalVerticalCoefficient nodes g < 0 := by
@@ -411,7 +474,9 @@ lemma criticalVerticalCoefficient_neg {d : ℕ} {A B : ℝ}
 
 /-- In the one-coordinate/three-node case the second derivative need not use
 the `n ≥ 4` logarithmic-concavity argument: the first derivative is a
-nonzero polynomial of degree at most one with a root at the maximizer.-/
+nonzero polynomial of degree at most one with a root at the maximizer.
+@isnad1 id=ne.0h4v.s5.5b76e7a165d6 from=translated src=- shape=62cf588c vocab=427d65ab
+-/
 lemma criticalVerticalCoefficient_ne_zero_of_one_coordinate {A B : ℝ}
     (nodes : EndpointArray 1 A B) (g : Fin 2) :
     criticalVerticalCoefficient nodes g ≠ 0 := by
@@ -439,7 +504,9 @@ lemma criticalVerticalCoefficient_ne_zero_of_one_coordinate {A B : ℝ}
 
 /-- The vertical derivative is nonzero in every nonexceptional dimension.
 This combines the elementary three-node case with strict negativity for at
-least four nodes.-/
+least four nodes.
+@isnad1 id=ne.1h5v.s5.1570f32d8477 from=translated src=- shape=c477a6e3 vocab=53e23578
+-/
 lemma criticalVerticalCoefficient_ne_zero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d) (g : Fin (d + 1)) :
     criticalVerticalCoefficient nodes g ≠ 0 := by
@@ -448,6 +515,9 @@ lemma criticalVerticalCoefficient_ne_zero {d : ℕ} {A B : ℝ}
     exact criticalVerticalCoefficient_ne_zero_of_one_coordinate nodes g
   · exact ne_of_lt (criticalVerticalCoefficient_neg nodes (by omega) g)
 
+/--
+@isnad1 id=eq.2h5v.s6.eac1c466c95a from=translated src=- shape=95311862 vocab=9329d897
+-/
 lemma coordinateCriticalMap_eq_zero {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -491,7 +561,9 @@ structure GapCoordinateDerivativesAt {d : ℕ} {A B : ℝ}
 
 /-- Abstract envelope cancellation: when the vertical derivative of the
 value vanishes, the derivative of `u ↦ F(u,τ(u))` is just the horizontal
-partial derivative, independently of `Dτ`.-/
+partial derivative, independently of `Dτ`.
+@isnad1 id=hasfderi.3h6v.s9.f30ccb10f63d from=translated src=- shape=d4665b6f vocab=a3db4944
+-/
 lemma hasFDerivAt_envelope_of_vertical_eq_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {F : E × ℝ → ℝ} {F' : E × ℝ →L[ℝ] ℝ} {τ : E → ℝ}
@@ -526,6 +598,9 @@ def QuotientEvaluationMaximalMinorsNonzero {d : ℕ} {A B : ℝ}
   ∀ omitted : Fin (d + 1),
     deletedRowMinor (gapQuotientEvaluationMatrix nodes) omitted ≠ 0
 
+/--
+@isnad1 id=ne.2h5v.s5.7387fc2cd93a from=translated src=- shape=2b3d3bb1 vocab=3ee36068
+-/
 theorem gapHeightJacobianModel_maximalMinors_nonzero {d : ℕ} {A B : ℝ}
     (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (hQ : QuotientEvaluationMaximalMinorsNonzero nodes) :
@@ -543,6 +618,9 @@ def coordinateLagrangeFactorValue {d : ℕ} (A B : ℝ) (u : Fin d → ℝ)
   (x - endpointPoint A B u i) *
     (endpointPoint A B u k - endpointPoint A B u i)⁻¹
 
+/--
+@isnad1 id=eq.0h6v.s7.61a99de3bfe5 from=translated src=- shape=65370b63 vocab=da6bb3e6
+-/
 lemma coordinateLagrangePolynomial_eval_eq_prod_factor {d : ℕ}
     (A B : ℝ) (u : Fin d → ℝ) (k : Fin (d + 2)) (x : ℝ) :
     (coordinateLagrangePolynomial A B u k).eval x =
@@ -552,6 +630,9 @@ lemma coordinateLagrangePolynomial_eval_eq_prod_factor {d : ℕ}
     Polynomial.eval_mul, Polynomial.eval_sub, Polynomial.eval_X,
     Polynomial.eval_C, coordinateLagrangeFactorValue]
 
+/--
+@isnad1 id=differen.0h4v.s6.22f2a152405f from=translated src=- shape=31cb6605 vocab=b49a39ba
+-/
 @[fun_prop]
 lemma differentiable_endpointPoint_coordinate {d : ℕ} (A B : ℝ)
     (k : Fin (d + 2)) :
@@ -561,6 +642,9 @@ lemma differentiable_endpointPoint_coordinate {d : ℕ} (A B : ℝ)
   · fun_prop
   · split <;> fun_prop
 
+/--
+@isnad1 id=ne.2h6v.s7.067d0e8a3786 from=translated src=- shape=5f414fd5 vocab=72bba6a5
+-/
 lemma endpointPoint_sub_ne_zero {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -569,6 +653,9 @@ lemma endpointPoint_sub_ne_zero {d : ℕ} {A B : ℝ}
   exact sub_ne_zero.mpr
     ((endpointPoint_strictMono hAB.2.1 u.2).injective.ne hki)
 
+/--
+@isnad1 id=differen.2h7v.s8.56ef1563f99e from=translated src=- shape=87637cce vocab=658dda62
+-/
 lemma differentiableAt_coordinateLagrangeFactorValue {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -587,6 +674,9 @@ lemma differentiableAt_coordinateLagrangeFactorValue {d : ℕ} {A B : ℝ}
           _ differentiableAt_fst)
     · exact endpointPoint_sub_ne_zero hAB u hki
 
+/--
+@isnad1 id=differen.1h6v.s8.1cb5f582d49a from=translated src=- shape=97e2388a vocab=236f5ac5
+-/
 lemma differentiableAt_coordinateLagrangePolynomial_eval {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -606,6 +696,9 @@ lemma differentiableAt_coordinateLagrangePolynomial_eval {d : ℕ}
     (fun i hi => (hfac i hi).hasFDerivAt)
   exact hprod.differentiableAt
 
+/--
+@isnad1 id=differen.1h6v.s8.7bab8f116c6f from=translated src=- shape=f720ec74 vocab=06136b77
+-/
 lemma differentiableAt_coordinateGapValueMap {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -634,6 +727,9 @@ def coordinateLagrangeCriticalFormula {d : ℕ} (A B : ℝ)
       coordinateLagrangeFactorValue A B u k m x) *
       (endpointPoint A B u k - endpointPoint A B u i)⁻¹
 
+/--
+@isnad1 id=hasderiv.0h7v.s6.c3e65e13b881 from=translated src=- shape=25a4b721 vocab=92db94c2
+-/
 lemma hasDerivAt_coordinateLagrangeFactorValue_evaluation {d : ℕ}
     {A B : ℝ} {u : Fin d → ℝ} {k i : Fin (d + 2)} {x : ℝ} :
     HasDerivAt (fun y => coordinateLagrangeFactorValue A B u k i y)
@@ -644,6 +740,9 @@ lemma hasDerivAt_coordinateLagrangeFactorValue_evaluation {d : ℕ}
       (endpointPoint A B u k - endpointPoint A B u i)⁻¹ using 1
   all_goals first | rfl | ring
 
+/--
+@isnad1 id=eq.0h6v.s7.44209c6f5642 from=translated src=- shape=860817b7 vocab=46e99423
+-/
 lemma coordinateLagrangeCriticalFormula_eq {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (k : Fin (d + 2)) (x : ℝ) :
     (coordinateLagrangePolynomial A B u k).derivative.eval x =
@@ -673,6 +772,9 @@ def coordinateGapCriticalFormula {d : ℕ} (A B : ℝ)
   ∑ k : Fin (d + 2), gapCoefficient g k *
     coordinateLagrangeCriticalFormula A B u k x
 
+/--
+@isnad1 id=eq.0h6v.s5.be33a7bb1a28 from=translated src=- shape=d43f120a vocab=d95cb225
+-/
 lemma coordinateGapCriticalFormula_eq {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (g : Fin (d + 1)) (x : ℝ) :
     coordinateCriticalValue A B u g x =
@@ -683,6 +785,9 @@ lemma coordinateGapCriticalFormula_eq {d : ℕ} (A B : ℝ)
     Polynomial.eval_finsetSum, Polynomial.eval_mul, Polynomial.eval_C,
     coordinateGapCriticalFormula, coordinateLagrangeCriticalFormula_eq]
 
+/--
+@isnad1 id=contdiff.0h5v.s6.1387a1d604ad from=translated src=- shape=89f01b39 vocab=a7832c83
+-/
 @[fun_prop]
 lemma contDiff_endpointPoint_coordinate {d : ℕ} (n : WithTop ℕ∞)
     (A B : ℝ) (k : Fin (d + 2)) :
@@ -716,6 +821,9 @@ private lemma contDiffAt_finset_sum_scalar {E ι : Type*}
       simp only [Finset.sum_insert ha]
       exact (hf a (by simp)).add (ih (fun i hi => hf i (by simp [hi])))
 
+/--
+@isnad1 id=contdiff.2h8v.s8.c6923599cc23 from=translated src=- shape=a553f359 vocab=545fd70e
+-/
 lemma contDiffAt_coordinateLagrangeFactorValue {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -734,6 +842,9 @@ lemma contDiffAt_coordinateLagrangeFactorValue {d : ℕ} {A B : ℝ}
           (u.1, x) contDiffAt_fst)
     · exact endpointPoint_sub_ne_zero hAB u hki
 
+/--
+@isnad1 id=contdiff.1h7v.s7.438b740d84b6 from=translated src=- shape=690d589a vocab=d6019571
+-/
 lemma contDiffAt_coordinateLagrangeCriticalFormula {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -757,6 +868,9 @@ lemma contDiffAt_coordinateLagrangeCriticalFormula {d : ℕ} {A B : ℝ}
     · exact endpointPoint_sub_ne_zero hAB u
         (Finset.mem_erase.mp hi).1.symm
 
+/--
+@isnad1 id=contdiff.1h7v.s7.b16626fb4d22 from=translated src=- shape=443fff8e vocab=b4b8ef28
+-/
 lemma contDiffAt_coordinateCriticalMap {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -786,6 +900,9 @@ private lemma fderiv_comp_inr_eq_of_hasDeriv {E : Type*}
   have hcomp := hf.hasFDerivAt.comp x hcurve
   exact hcomp.unique hx
 
+/--
+@isnad1 id=eq.1h6v.s9.5560545d6c1e from=translated src=- shape=6df14a31 vocab=4df82d90
+-/
 lemma coordinateGapValueMap_fderiv_vertical {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -801,6 +918,9 @@ lemma coordinateGapValueMap_fderiv_vertical {d : ℕ} {A B : ℝ}
   simpa only [coordinateGapValue, coordinateCriticalValue] using
     (coordinateGapPolynomial A B u.1 g).hasDerivAt x
 
+/--
+@isnad1 id=eq.1h6v.s9.f73c92dfb2c5 from=translated src=- shape=ada8fd81 vocab=68d1fff0
+-/
 lemma coordinateCriticalMap_fderiv_vertical {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -827,17 +947,26 @@ def coordinateShift {d : ℕ} (u : Fin d → ℝ) (j : Fin d) (s : ℝ) :
     Fin d → ℝ :=
   u + s • coordinateDirection j
 
+/--
+@isnad1 id=eq.0h3v.s4.658525f9f86f from=translated src=- shape=3201f16c vocab=defd55a1
+-/
 @[simp]
 lemma coordinateShift_zero {d : ℕ} (u : Fin d → ℝ) (j : Fin d) :
     coordinateShift u j 0 = u := by
   ext i
   simp [coordinateShift]
 
+/--
+@isnad1 id=eq.0h4v.s4.d0a9c4c67d3b from=translated src=- shape=6c801be6 vocab=4d375ae6
+-/
 lemma coordinateShift_apply_self {d : ℕ} (u : Fin d → ℝ)
     (j : Fin d) (s : ℝ) :
     coordinateShift u j s j = u j + s := by
   simp [coordinateShift, coordinateDirection]
 
+/--
+@isnad1 id=eq.1h5v.s5.c682bfc5e3dd from=translated src=- shape=44363b9d vocab=defd55a1
+-/
 lemma coordinateShift_apply_of_ne {d : ℕ} (u : Fin d → ℝ)
     {j i : Fin d} (hij : i ≠ j) (s : ℝ) :
     coordinateShift u j s i = u i := by
@@ -847,6 +976,9 @@ lemma coordinateShift_apply_of_ne {d : ℕ} (u : Fin d → ℝ)
 def coordinateNodeVelocity {d : ℕ} (j : Fin d) (k : Fin (d + 2)) : ℝ :=
   if k = interiorNodeIndex j then 1 else 0
 
+/--
+@isnad1 id=hasderiv.0h6v.s6.4c106afd1a97 from=translated src=- shape=b7c232a3 vocab=990eeabd
+-/
 lemma hasDerivAt_endpointPoint_coordinateShift {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (j : Fin d) (k : Fin (d + 2)) :
     HasDerivAt (fun s => endpointPoint A B (coordinateShift u j s) k)
@@ -879,6 +1011,9 @@ lemma hasDerivAt_endpointPoint_coordinateShift {d : ℕ} (A B : ℝ)
       simpa [coordinateNodeVelocity, hnode] using
         (hasDerivAt_const (x := (0 : ℝ)) (c := u i))
 
+/--
+@isnad1 id=eq.0h7v.s6.68e3fbb6357f from=translated src=- shape=86172b69 vocab=1cf45b28
+-/
 lemma endpointPoint_coordinateShift {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (j : Fin d) (k : Fin (d + 2)) (s : ℝ) :
     endpointPoint A B (coordinateShift u j s) k =
@@ -898,6 +1033,9 @@ lemma endpointPoint_coordinateShift {d : ℕ} (A B : ℝ)
       simp [coordinateNodeVelocity, hne,
         coordinateShift_apply_of_ne u hij]
 
+/--
+@isnad1 id=hasfderi.0h3v.s8.87321cd8bef7 from=translated src=- shape=4a36fb84 vocab=411d12c5
+-/
 lemma hasFDerivAt_coordinateShift {d : ℕ} (u : Fin d → ℝ) (j : Fin d) :
     HasFDerivAt (coordinateShift u j)
       (ContinuousLinearMap.smulRight (1 : ℝ →L[ℝ] ℝ)
@@ -924,6 +1062,9 @@ def coordinateLagrangeFactorPartialPolynomial {d : ℕ} (A B : ℝ)
         C (coordinateNodeVelocity j k - coordinateNodeVelocity j i)) *
     C (((endpointPoint A B u k - endpointPoint A B u i) ^ 2)⁻¹)
 
+/--
+@isnad1 id=eq.0h7v.s6.bcf3485f8ead from=translated src=- shape=ce704fee vocab=90c97bcd
+-/
 lemma coordinateLagrangeFactorPolynomial_eval {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (k i : Fin (d + 2)) (x : ℝ) :
     (coordinateLagrangeFactorPolynomial A B u k i).eval x =
@@ -931,6 +1072,9 @@ lemma coordinateLagrangeFactorPolynomial_eval {d : ℕ} (A B : ℝ)
   simp [coordinateLagrangeFactorPolynomial,
     coordinateLagrangeFactorValue]
 
+/--
+@isnad1 id=hasderiv.2h8v.s7.b75149894a2c from=translated src=- shape=c22e192d vocab=a2c25fd4
+-/
 lemma hasDerivAt_coordinateLagrangeFactor_coordinateShift {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -974,6 +1118,9 @@ def coordinateGapPartialPolynomial {d : ℕ} (A B : ℝ)
   ∑ k : Fin (d + 2), C (gapCoefficient g k) *
     coordinateLagrangePartialPolynomial A B u j k
 
+/--
+@isnad1 id=hasderiv.1h7v.s7.2bca8041f20b from=translated src=- shape=dc085813 vocab=f2c7907f
+-/
 lemma hasDerivAt_coordinateLagrange_coordinateShift {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1013,6 +1160,9 @@ private lemma hasDerivAt_finset_sum_scalar {ι : Type*} {s : Finset ι}
       convert (hf a (by simp)).add (ih (fun i hi => hf i (by simp [hi]))) using 1 <;>
         first | rfl | (funext y; simp)
 
+/--
+@isnad1 id=hasderiv.1h7v.s7.f57b43ddabda from=translated src=- shape=9a28bb36 vocab=45667b7d
+-/
 lemma hasDerivAt_coordinateGapValue_coordinateShift {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1062,6 +1212,9 @@ private lemma fderiv_apply_inl_direction_eq_of_hasDeriv {E : Type*}
   have happly := congrArg (fun L : ℝ →L[ℝ] ℝ => L 1) hvalue
   simpa using happly
 
+/--
+@isnad1 id=eq.1h7v.s9.0b8e2e404f2e from=translated src=- shape=478cff33 vocab=38199112
+-/
 lemma coordinateGapValueMap_fderiv_horizontal_explicit {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1077,6 +1230,9 @@ lemma coordinateGapValueMap_fderiv_horizontal_explicit {d : ℕ}
 
 /-! ### Identification of the moving-node derivative -/
 
+/--
+@isnad1 id=eventual.0h5v.s6.f9bb3fb9e5c2 from=translated src=- shape=835f4d60 vocab=fae7dc59
+-/
 lemma eventually_coordinateShift_mem_endpointNodeSpace {d : ℕ}
     {A B : ℝ}
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B}) (j : Fin d) :
@@ -1086,6 +1242,9 @@ lemma eventually_coordinateShift_mem_endpointNodeSpace {d : ℕ}
     simpa using (isOpen_endpointNodeSpace d A B).mem_nhds u.2
   exact (hasFDerivAt_coordinateShift u.1 j).continuousAt.eventually hmem
 
+/--
+@isnad1 id=eventual.1h7v.s7.15eb1099f89e from=translated src=- shape=6d734777 vocab=69b1875d
+-/
 lemma eventually_coordinateGapValue_shift_at_node {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1103,7 +1262,9 @@ lemma eventually_coordinateGapValue_shift_at_node {d : ℕ} {A B : ℝ}
 
 /-- The directional derivative polynomial has the values forced by
 differentiating the interpolation equations: it vanishes at every stationary
-node and equals `-F'_g(t_j)` at the moving node.-/
+node and equals `-F'_g(t_j)` at the moving node.
+@isnad1 id=eq.1h7v.s8.f9569f522edd from=translated src=- shape=19e44fb0 vocab=7c35fa80
+-/
 lemma coordinateGapPartialPolynomial_eval_node {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1178,6 +1339,9 @@ lemma coordinateGapPartialPolynomial_eval_node {d : ℕ} {A B : ℝ}
       (coordinateGapPolynomial A B u.1 g).derivative.eval t
   linarith
 
+/--
+@isnad1 id=le.0h6v.s6.fe4818aa089c from=translated src=- shape=7f235b92 vocab=81f9ca30
+-/
 lemma degree_coordinateLagrangeFactorPolynomial_le_one {d : ℕ}
     (A B : ℝ) (u : Fin d → ℝ) (k i : Fin (d + 2)) :
     (coordinateLagrangeFactorPolynomial A B u k i).degree ≤ 1 := by
@@ -1188,6 +1352,9 @@ lemma degree_coordinateLagrangeFactorPolynomial_le_one {d : ℕ}
     simpa using add_le_add
       (degree_X_sub_C_le (R := ℝ) (endpointPoint A B u i)) hc
 
+/--
+@isnad1 id=le.0h7v.s6.33476df9dd80 from=translated src=- shape=1ac8391d vocab=b96f83cd
+-/
 lemma degree_coordinateLagrangeFactorPartialPolynomial_le_one {d : ℕ}
     (A B : ℝ) (u : Fin d → ℝ) (j : Fin d)
     (k i : Fin (d + 2)) :
@@ -1215,6 +1382,9 @@ lemma degree_coordinateLagrangeFactorPartialPolynomial_le_one {d : ℕ}
         ℝ[X]).degree ≤ 0 := degree_C_le
   simpa using add_le_add hsub hclast
 
+/--
+@isnad1 id=le.0h6v.s6.40e958f90e3a from=translated src=- shape=f9216f0f vocab=db1614f1
+-/
 lemma degree_coordinateLagrangePartialPolynomial_le {d : ℕ}
     (A B : ℝ) (u : Fin d → ℝ) (j : Fin d) (k : Fin (d + 2)) :
     (coordinateLagrangePartialPolynomial A B u j k).degree ≤
@@ -1246,6 +1416,9 @@ lemma degree_coordinateLagrangePartialPolynomial_le {d : ℕ}
       (degree_coordinateLagrangeFactorPartialPolynomial_le_one A B u j k i)
       hprod
 
+/--
+@isnad1 id=lt.0h6v.s6.78cce630c496 from=translated src=- shape=da5bc304 vocab=081c7ad7
+-/
 lemma degree_coordinateGapPartialPolynomial_lt {d : ℕ} (A B : ℝ)
     (u : Fin d → ℝ) (g : Fin (d + 1)) (j : Fin d) :
     (coordinateGapPartialPolynomial A B u g j).degree < (d + 2 : ℕ) := by
@@ -1267,7 +1440,9 @@ lemma degree_coordinateGapPartialPolynomial_lt {d : ℕ} (A B : ℝ)
 
 /-- The moving-node derivative is the source sensitivity polynomial
 `-F'_g(t_j) l_j`.  The proof uses its derived nodal values and the degree
-budget, rather than assuming the formula.-/
+budget, rather than assuming the formula.
+@isnad1 id=eq.1h6v.s8.176c628b4754 from=translated src=- shape=63a5728c vocab=23ae1aab
+-/
 lemma coordinateGapPartialPolynomial_eq_sourceSensitivity {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1339,6 +1514,9 @@ lemma coordinateGapPartialPolynomial_eq_sourceSensitivity {d : ℕ}
             ((endpointArrayOfInterior hAB u).point k)
       rw [heval, mul_zero]
 
+/--
+@isnad1 id=eq.1h7v.s9.ae1a9b03d3d4 from=translated src=- shape=5be352a7 vocab=9d1d5cb9
+-/
 lemma coordinateGapValueMap_fderiv_horizontal_source {d : ℕ}
     {A B : ℝ} (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})
@@ -1405,7 +1583,9 @@ def concreteGapCoordinateDerivativesAt {d : ℕ} {A B : ℝ}
     rfl
 
 /-- The analytic interface is inhabited at every simplex point, in every
-dimension including the zero-dimensional/two-node exception.-/
+dimension including the zero-dimensional/two-node exception.
+@isnad1 id=nonempty.1h5v.s6.ea90f99c18d5 from=translated src=- shape=77568b84 vocab=baa20a1d
+-/
 theorem exists_gapCoordinateDerivativesAt {d : ℕ} {A B : ℝ}
     (hAB : AdmissibleInterval A B)
     (u : {v : Fin d → ℝ // v ∈ endpointNodeSpace d A B})

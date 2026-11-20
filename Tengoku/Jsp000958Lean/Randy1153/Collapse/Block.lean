@@ -63,12 +63,18 @@ def endpointArrayOfCommonEndpoints {q : ℕ} (nodes : OrderedNodes (q + 2))
   left_endpoint := hA
   right_endpoint := hB
 
+/--
+@isnad1 id=eq.0h2v.s6.943c60f536d2 from=translated src=- shape=3a5977f6 vocab=bd3b972b
+-/
 @[simp]
 lemma endpointArrayOfOrdered_toOrdered {q : ℕ}
     (nodes : OrderedNodes (q + 2)) :
     (endpointArrayOfOrdered nodes).toOrderedNodes = nodes :=
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.158fb06e71fb from=translated src=- shape=7fdd4049 vocab=c1b13119
+-/
 @[simp]
 lemma endpointArrayOfCommonEndpoints_toOrdered {q : ℕ}
     (nodes : OrderedNodes (q + 2)) (A B : ℝ)
@@ -78,7 +84,9 @@ lemma endpointArrayOfCommonEndpoints_toOrdered {q : ℕ}
   rfl
 
 /-- Exact transport of the de Boor--Pinkus coordinatewise rigidity interface
-to ordered arrays with common endpoint values.-/
+to ordered arrays with common endpoint values.
+@isnad1 id=eq.6h5v.s7.9ce492b41819 from=translated src=- shape=d5badb05 vocab=4850631a
+-/
 theorem orderedNodes_eq_of_gapHeight_le
     {q : ℕ} {A B : ℝ} (pkg : ComparisonPackage q A B)
     (s t : OrderedNodes (q + 2))
@@ -99,10 +107,16 @@ namespace Spec
 
 variable {q d : ℕ} (spec : Spec (q + 2) d)
 
+/--
+@isnad1 id=eq.0h3v.s5.e5196f13d362 from=translated src=- shape=bb4cfdfa vocab=38580833
+-/
 lemma globalLeft_eq_endpointLeft : spec.globalLeft = endpointLeftIndex q := by
   apply Fin.ext
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.5dc4f298cdd3 from=translated src=- shape=bb4cfdfa vocab=e5f5ed7f
+-/
 lemma globalRight_eq_endpointRight : spec.globalRight = endpointRightIndex q := by
   apply Fin.ext
   simp
@@ -113,6 +127,9 @@ def sourceLeft : ℝ := spec.nodes.point (endpointLeftIndex q)
 /-- The original full-array right endpoint used by the rigidity package.-/
 def sourceRight : ℝ := spec.nodes.point (endpointRightIndex q)
 
+/--
+@isnad1 id=eq.1h4v.s6.57d5d2bd711c from=translated src=- shape=3e0bd0cb vocab=eed96e84
+-/
 lemma collapsed_left_endpoint_of_not_full (δ : ℝ)
     (hnotfull : spec.placement ≠ .full) :
     spec.point δ (endpointLeftIndex q) = spec.sourceLeft := by
@@ -120,6 +137,9 @@ lemma collapsed_left_endpoint_of_not_full (δ : ℝ)
   rw [spec.globalLeft_eq_endpointLeft] at hfix
   exact hfix
 
+/--
+@isnad1 id=eq.1h4v.s6.e1189bdc9030 from=translated src=- shape=3e0bd0cb vocab=fc1012ee
+-/
 lemma collapsed_right_endpoint_of_not_full (δ : ℝ)
     (hnotfull : spec.placement ≠ .full) :
     spec.point δ (endpointRightIndex q) = spec.sourceRight := by
@@ -137,6 +157,9 @@ def collapsedEndpointArray (δ : ℝ) (hδ : spec.Admissible δ)
     (spec.collapsed_left_endpoint_of_not_full δ hnotfull)
     (spec.collapsed_right_endpoint_of_not_full δ hnotfull)
 
+/--
+@isnad1 id=eq.2h4v.s6.aa5ba4408ac0 from=translated src=- shape=e63bf249 vocab=cc5eccb0
+-/
 @[simp]
 lemma collapsedEndpointArray_toOrdered (δ : ℝ)
     (hδ : spec.Admissible δ) (hnotfull : spec.placement ≠ .full) :
@@ -154,6 +177,9 @@ def localGapIndex (g : Fin (q + 1)) (hg : spec.IsInternalGap g) : Fin (d + 1) :=
     rcases hg with ⟨hleft, hright⟩
     omega⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.1a72a967de21 from=translated src=- shape=6a563e4e vocab=3b5cf738
+-/
 lemma gapIndex_localGapIndex (g : Fin (q + 1)) (hg : spec.IsInternalGap g) :
     spec.gapIndex (spec.localGapIndex g hg) = g := by
   apply Fin.ext
@@ -161,6 +187,9 @@ lemma gapIndex_localGapIndex (g : Fin (q + 1)) (hg : spec.IsInternalGap g) :
   rcases hg with ⟨hleft, hright⟩
   omega
 
+/--
+@isnad1 id=or.0h4v.s5.0a5e1bacbcec from=translated src=- shape=f461d9c4 vocab=cc72b17c
+-/
 lemma internal_or_exterior_gap (g : Fin (q + 1)) :
     spec.IsInternalGap g ∨ spec.IsExteriorGap g := by
   by_cases hleft : g.val < spec.block.start
@@ -173,13 +202,18 @@ lemma internal_or_exterior_gap (g : Fin (q + 1)) :
 pattern gap.-/
 def patternHeight : ℝ := spec.pattern.height (0 : Fin (d + 1))
 
+/--
+@isnad1 id=eq.1h4v.s6.93eb1cf7e47b from=translated src=- shape=759608dd vocab=ddd47448
+-/
 lemma pattern_height_eq (hequi : Equioscillates spec.pattern)
     (g : Fin (d + 1)) :
     spec.pattern.height g = spec.patternHeight :=
   hequi g 0
 
 /-- If an original internal gap is strictly below the common pattern height,
-the corresponding collapsed cluster gap is eventually strictly higher.-/
+the corresponding collapsed cluster gap is eventually strictly higher.
+@isnad1 id=ex.2h4v.s8.632ba580a29e from=translated src=- shape=30a2a741 vocab=3d3bd30e
+-/
 lemma eventually_internal_gapHeight_gt
     (hequi : Equioscillates spec.pattern) (g : Fin (d + 1))
     (hbelow : gapHeight spec.nodes (spec.gapIndex g) < spec.patternHeight) :
@@ -200,7 +234,9 @@ lemma eventually_internal_gapHeight_gt
 /-- Under the negation of the desired localization conclusion, every global
 gap of the collapsed comparison array is eventually strictly higher than the
 corresponding original gap.  Internal and exterior/bridge gaps use different
-checked estimates.-/
+checked estimates.
+@isnad1 id=ex.3h3v.s8.d2b66c9c01ea from=translated src=- shape=274d225f vocab=c8ce95f8
+-/
 theorem eventually_all_gapHeight_gt
     (hnotfull : spec.placement ≠ .full)
     (hequi : Equioscillates spec.pattern)
@@ -235,6 +271,9 @@ theorem eventually_all_gapHeight_gt
   intro δ hδpos hδη hAdm g
   exact hall δ hδpos hδη g (Finset.mem_univ g) hAdm
 
+/--
+@isnad1 id=eq.1h4v.s6.9ee0b3367b6f from=translated src=- shape=7e693b94 vocab=20a35845
+-/
 lemma point_lastIndex_eq_anchor_add (δ : ℝ)
     (hplace : spec.placement ≠ .rightEndpoint) :
     spec.point δ spec.lastIndex = spec.anchor + δ := by
@@ -242,6 +281,9 @@ lemma point_lastIndex_eq_anchor_add (δ : ℝ)
     spec.point_index, clusterPoint, spec.offset_localRight, ite_eq_right hplace]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.a2f9f44a29a1 from=translated src=- shape=c902c90c vocab=9b25fcef
+-/
 lemma point_firstIndex_eq_anchor_sub (δ : ℝ)
     (hplace : spec.placement = .rightEndpoint) :
     spec.point δ spec.firstIndex = spec.anchor - δ := by
@@ -252,7 +294,9 @@ lemma point_firstIndex_eq_anchor_sub (δ : ℝ)
 /-- In every non-full placement the collapsed comparison genuinely differs
 from the original array at all sufficiently small positive scales.  The
 moving endpoint is the block's right endpoint in the left/interior cases and
-its left endpoint in the right-endpoint case.-/
+its left endpoint in the right-endpoint case.
+@isnad1 id=ex.1h3v.s7.1418fe4008b6 from=translated src=- shape=b26d9d09 vocab=f7edad3c
+-/
 theorem eventually_collapsed_ne_source
     (hnotfull : spec.placement ≠ .full) :
     ∃ η : ℝ, 0 < η ∧ ∀ δ : ℝ, 0 < δ → δ < η →
@@ -310,7 +354,9 @@ theorem eventually_collapsed_ne_source
 
 /-- Every non-full placement supplies admissible arrays at all sufficiently
 small positive scales.  This restates the placement split in the common
-shape used by the localization proof.-/
+shape used by the localization proof.
+@isnad1 id=ex.1h3v.s6.32facb51dca2 from=translated src=- shape=3b0f7581 vocab=b1f3d5d0
+-/
 theorem eventually_admissible_of_not_full
     (hnotfull : spec.placement ≠ .full) :
     ∃ η : ℝ, 0 < η ∧ ∀ δ : ℝ, 0 < δ → δ < η → spec.Admissible δ := by
@@ -331,7 +377,9 @@ theorem eventually_admissible_of_not_full
 
 /-- Conditional block localization for each genuine small-scale placement.
 No comparison theorem is postulated here: `pkg` is the explicit unproved
-source package supplied by the caller.-/
+source package supplied by the caller.
+@isnad1 id=ex.3h3v.s7.9f7cd64cb7f0 from=translated src=- shape=a3f728c0 vocab=eee7e415
+-/
 theorem exists_internal_gap_ge_patternHeight_of_not_full
     (pkg : ComparisonPackage q spec.sourceLeft spec.sourceRight)
     (hnotfull : spec.placement ≠ .full)
@@ -365,7 +413,9 @@ theorem exists_internal_gap_ge_patternHeight_of_not_full
       (spec.collapsed_right_endpoint_of_not_full δ hnotfull) hle
   exact hmove δ hδpos hδηm hAdm heq.symm
 
-/-- Every global index belongs to a full block.-/
+/-- Every global index belongs to a full block.
+@isnad1 id=mem.1h4v.s6.6025f8d6990d from=translated src=- shape=54d59bd1 vocab=3ca25a88
+-/
 lemma block_mem_of_full (hfull : spec.placement = .full) (i : Fin (q + 2)) :
     spec.block.Mem i := by
   have hv : Placement.Valid .full spec.block := by
@@ -382,22 +432,34 @@ def fullBlockIndexEquiv (hfull : spec.placement = .full) :
       ⟨spec.block.localIndex i (spec.block_mem_of_full hfull i),
         spec.block.index_localIndex i (spec.block_mem_of_full hfull i)⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.b9805886fa08 from=translated src=- shape=aa27982d vocab=2dfab1a9
+-/
 @[simp]
 lemma fullBlockIndexEquiv_apply (hfull : spec.placement = .full)
     (k : Fin (d + 2)) :
     spec.fullBlockIndexEquiv hfull k = spec.block.index k :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.6901971443a6 from=translated src=- shape=39ea6176 vocab=d75b8573
+-/
 lemma exterior_eq_empty_of_full (hfull : spec.placement = .full) :
     spec.block.exterior = ∅ := by
   ext i
   simp [spec.block_mem_of_full hfull i]
 
+/--
+@isnad1 id=eq.1h6v.s6.4bcc603418b0 from=translated src=- shape=da96af67 vocab=ed60701a
+-/
 lemma exteriorRatio_eq_one_of_full (hfull : spec.placement = .full)
     (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) :
     spec.exteriorRatio δ k x = 1 := by
   simp [exteriorRatio, exteriorPolynomial, spec.exterior_eq_empty_of_full hfull]
 
+/--
+@isnad1 id=eq.2h6v.s7.7e1d443766a4 from=translated src=- shape=23ca0b32 vocab=b4daa0d9
+-/
 lemma fullCardinal_rescale_of_full (hfull : spec.placement = .full)
     (δ z : ℝ) (hδ : δ ≠ 0) (k : Fin (d + 2)) :
     spec.fullCardinal δ k (spec.anchor + δ * spec.patternOffset z) =
@@ -407,7 +469,9 @@ lemma fullCardinal_rescale_of_full (hfull : spec.placement = .full)
     one_mul, spec.clusterCardinal_rescale δ z hδ]
 
 /-- On a full block, affine rescaling identifies the entire collapsed
-Lebesgue function with the supplied pattern Lebesgue function exactly.-/
+Lebesgue function with the supplied pattern Lebesgue function exactly.
+@isnad1 id=eq.2h5v.s7.2f34f4987f76 from=translated src=- shape=649d9357 vocab=f64ac976
+-/
 lemma lebesgueFunction_rescale_of_full
     (hfull : spec.placement = .full) (δ z : ℝ) (hδ : spec.Admissible δ) :
     lebesgueFunction (spec.orderedNodes δ hδ).toNodeFamily
@@ -436,7 +500,9 @@ lemma lebesgueFunction_rescale_of_full
             intro k hk
             rw [spec.fullCardinal_rescale_of_full hfull δ z hδ.scale_pos.ne']
 
-/-- Inverse affine coordinates on a full collapsed pattern gap.-/
+/-- Inverse affine coordinates on a full collapsed pattern gap.
+@isnad1 id=other.3h6v.s8.f6c23f5583b2 from=translated src=- shape=d4d654c6 vocab=974e31ae
+-/
 lemma pattern_closedGap_of_full {g : Fin (d + 1)}
     (hfull : spec.placement = .full) (δ : ℝ) (hδ : spec.Admissible δ)
     {x : ℝ} (hx : x ∈ closedGap (spec.orderedNodes δ hδ) (spec.gapIndex g)) :
@@ -463,7 +529,9 @@ lemma pattern_closedGap_of_full {g : Fin (d + 1)}
 
 /-- Exact affine invariance of each gap height in the full-block replacement.
 Unlike the three genuine collapse placements, this uses the single
-endpoint-preserving scale rather than a limit as `δ → 0`.-/
+endpoint-preserving scale rather than a limit as `δ → 0`.
+@isnad1 id=eq.1h4v.s7.3e3e2f290449 from=translated src=- shape=448cd95e vocab=4558526c
+-/
 theorem full_gapHeight_eq_pattern_height
     (hfull : spec.placement = .full) (g : Fin (d + 1)) :
     gapHeight
@@ -524,18 +592,27 @@ def fullGapIndexEquiv (hfull : spec.placement = .full) :
       exact ⟨spec.localGapIndex g hint,
         spec.gapIndex_localGapIndex g hint⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.1120025f15f6 from=translated src=- shape=14ca1caf vocab=b07bb7f5
+-/
 @[simp]
 lemma fullGapIndexEquiv_apply (hfull : spec.placement = .full)
     (g : Fin (d + 1)) :
     spec.fullGapIndexEquiv hfull g = spec.gapIndex g :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.42a05a9dd864 from=translated src=- shape=34b41d3f vocab=c196aa2d
+-/
 lemma collapsed_left_endpoint_full (hfull : spec.placement = .full) :
     spec.point spec.fullScale (endpointLeftIndex q) = spec.sourceLeft := by
   have hfix := (spec.extreme_points_fixed_full hfull).1
   rw [spec.globalLeft_eq_endpointLeft] at hfix
   exact hfix
 
+/--
+@isnad1 id=eq.1h3v.s6.95b548dfcbfb from=translated src=- shape=34b41d3f vocab=7130f7bc
+-/
 lemma collapsed_right_endpoint_full (hfull : spec.placement = .full) :
     spec.point spec.fullScale (endpointRightIndex q) = spec.sourceRight := by
   have hfix := (spec.extreme_points_fixed_full hfull).2
@@ -544,7 +621,9 @@ lemma collapsed_right_endpoint_full (hfull : spec.placement = .full) :
 
 /-- Under the contradictory assumption that all original full-block gaps lie
 below the common pattern height, the endpoint-preserving full replacement is
-genuinely a different ordered array.-/
+genuinely a different ordered array.
+@isnad1 id=ne.3h3v.s7.77eb7c5bfe7a from=translated src=- shape=bfed5345 vocab=e0352e34
+-/
 lemma full_collapsed_ne_source_of_below
     (hfull : spec.placement = .full)
     (hequi : Equioscillates spec.pattern)
@@ -559,7 +638,9 @@ lemma full_collapsed_ne_source_of_below
 
 /-- Conditional localization in the exceptional full-block placement.  Its
 comparison scale is the unique endpoint-preserving `fullScale`, and affine
-invariance replaces the small-scale convergence argument.-/
+invariance replaces the small-scale convergence argument.
+@isnad1 id=ex.3h3v.s7.281714d8d156 from=translated src=- shape=a3f728c0 vocab=eee7e415
+-/
 theorem exists_internal_gap_ge_patternHeight_of_full
     (pkg : ComparisonPackage q spec.sourceLeft spec.sourceRight)
     (hfull : spec.placement = .full)
@@ -593,7 +674,9 @@ theorem exists_internal_gap_ge_patternHeight_of_full
 
 /-- Strong conditional block-localization theorem, with all four placements
 dispatched explicitly.  The only hard external input is the caller-supplied
-`ComparisonPackage`; no inhabitant is asserted in this file.-/
+`ComparisonPackage`; no inhabitant is asserted in this file.
+@isnad1 id=ex.2h3v.s7.46e1d8e438f3 from=translated src=- shape=105a373e vocab=29fd5743
+-/
 theorem exists_internal_gap_ge_patternHeight
     (pkg : ComparisonPackage q spec.sourceLeft spec.sourceRight)
     (hequi : Equioscillates spec.pattern) :
@@ -608,7 +691,9 @@ theorem exists_internal_gap_ge_patternHeight
   · exact spec.exists_internal_gap_ge_patternHeight_of_not_full pkg
       (by simp [hp]) hequi
 
-/-- Plan-facing spelling of the conditional block theorem.-/
+/-- Plan-facing spelling of the conditional block theorem.
+@isnad1 id=ex.2h3v.s7.b76744ab120b from=translated src=- shape=d5e85c8b vocab=c3e0ac8a
+-/
 theorem exists_block_gap_ge_equioscHeight
     (pkg : ComparisonPackage q spec.sourceLeft spec.sourceRight)
     (hequi : Equioscillates spec.pattern) :

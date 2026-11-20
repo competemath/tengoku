@@ -29,7 +29,9 @@ namespace ClassicalBound
 noncomputable section
 
 /-- Any selected family of bins has cardinality at most the total number
-of bins.-/
+of bins.
+@isnad1 id=le.0h2v.s3.a6cc413f02ab from=translated src=- shape=df17f8d0 vocab=c788f210
+-/
 lemma card_finset_fin_le (K : ℕ) (bins : Finset (Fin K)) :
     bins.card ≤ K := by
   simpa using Finset.card_le_card (Finset.subset_univ bins)
@@ -37,7 +39,9 @@ lemma card_finset_fin_le (K : ℕ) (bins : Finset (Fin K)) :
 /-- Real-valued sparse-bin mass estimate.
 
 The non-strict pointwise hypothesis is intentionally the weakest useful
-one.  A strict sparse threshold immediately implies it.-/
+one.  A strict sparse threshold immediately implies it.
+@isnad1 id=le.2h4v.s6.a6ac284796fc from=translated src=- shape=fcc3fe01 vocab=6f58d943
+-/
 theorem sum_sparseCounts_le_div {K n : ℕ} (hK : 0 < K)
     (count : Fin K → ℕ) (sparse : Finset (Fin K))
     (hsparse : ∀ s ∈ sparse,
@@ -57,7 +61,9 @@ theorem sum_sparseCounts_le_div {K n : ℕ} (hK : 0 < K)
       have hK0 : (K : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hK)
       field_simp
 
-/-- Strict sparse thresholds imply the non-strict total-mass estimate.-/
+/-- Strict sparse thresholds imply the non-strict total-mass estimate.
+@isnad1 id=le.2h4v.s6.a8bb22ddf134 from=translated src=- shape=00ad0e3a vocab=6f58d943
+-/
 theorem sum_strictSparseCounts_le_div {K n : ℕ} (hK : 0 < K)
     (count : Fin K → ℕ) (sparse : Finset (Fin K))
     (hsparse : ∀ s ∈ sparse,
@@ -67,13 +73,17 @@ theorem sum_strictSparseCounts_le_div {K n : ℕ} (hK : 0 < K)
     (fun s hs ↦ (hsparse s hs).le)
 
 /-- The real sum of all natural bin counts is the cast of their prescribed
-natural total.-/
+natural total.
+@isnad1 id=eq.1h3v.s5.cb255873d345 from=translated src=- shape=a6d1db3f vocab=beac3b7a
+-/
 lemma sum_count_cast_eq {K n : ℕ} (count : Fin K → ℕ)
     (hsum : ∑ s : Fin K, count s = n) :
     (∑ s : Fin K, (count s : ℝ)) = (n : ℝ) := by
   exact_mod_cast hsum
 
-/-- Complementary dense bins retain at least n - n/K real mass.-/
+/-- Complementary dense bins retain at least n - n/K real mass.
+@isnad1 id=le.3h4v.s7.6ebf0c0e35c0 from=translated src=- shape=3c845f5a vocab=4dc45af2
+-/
 theorem sub_div_le_sum_denseCounts {K n : ℕ} (hK : 0 < K)
     (count : Fin K → ℕ) (hsum : ∑ s : Fin K, count s = n)
     (sparse : Finset (Fin K))
@@ -93,7 +103,9 @@ theorem sub_div_le_sum_denseCounts {K n : ℕ} (hK : 0 < K)
   linarith
 
 /-- Strict sparse thresholds give the same complementary dense-mass
-bound.-/
+bound.
+@isnad1 id=le.3h4v.s7.1334c463d849 from=translated src=- shape=771a933c vocab=4dc45af2
+-/
 theorem sub_div_le_sum_denseCounts_of_strict {K n : ℕ} (hK : 0 < K)
     (count : Fin K → ℕ) (hsum : ∑ s : Fin K, count s = n)
     (sparse : Finset (Fin K))
@@ -107,7 +119,9 @@ theorem sub_div_le_sum_denseCounts_of_strict {K n : ℕ} (hK : 0 < K)
 /-- Weighted Engel/Cauchy inequality on an arbitrary finite index set.
 
 Both weights are assumed strictly positive so every denominator appearing
-in the conclusion and in the Engel reduction is honest.-/
+in the conclusion and in the Engel reduction is honest.
+@isnad1 id=le.2h5v.s7.fdfd680f5ddf from=translated src=- shape=445b7cfe vocab=02999aa4
+-/
 theorem sq_sum_div_sum_div_le_sum_mul_sq_div
     {ι : Type*} [DecidableEq ι] (bins : Finset ι)
     (mass a h : ι → ℝ)
@@ -129,7 +143,9 @@ theorem sq_sum_div_sum_div_le_sum_mul_sq_div
       have hh0 : h s ≠ 0 := (hh s hs).ne'
       field_simp
 
-/-- Natural-count specialization of the weighted Engel inequality.-/
+/-- Natural-count specialization of the weighted Engel inequality.
+@isnad1 id=le.2h5v.s7.9c9b6eea4420 from=translated src=- shape=df79797e vocab=a00afb4f
+-/
 theorem sq_sum_natCount_div_sum_div_le_sum_mul_sq_div
     {ι : Type*} [DecidableEq ι] (bins : Finset ι)
     (count : ι → ℕ) (a h : ι → ℝ)
@@ -141,7 +157,9 @@ theorem sq_sum_natCount_div_sum_div_le_sum_mul_sq_div
     (fun s ↦ (count s : ℝ)) a h ha hh
 
 /-- The form used when all K bins participate and their natural counts sum
-to n.-/
+to n.
+@isnad1 id=le.3h5v.s7.b1994c7fff78 from=translated src=- shape=f5f6b568 vocab=061efeff
+-/
 theorem sq_total_div_sum_div_le_sum_mul_countSq_div
     {K n : ℕ} (count : Fin K → ℕ)
     (hsum : ∑ s : Fin K, count s = n) (a h : Fin K → ℝ)

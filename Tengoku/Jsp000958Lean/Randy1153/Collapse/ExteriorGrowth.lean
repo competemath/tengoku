@@ -29,6 +29,9 @@ variable {n d : ℕ} (spec : Spec n d)
 def clusterDenominator (k : Fin (d + 2)) : ℝ :=
   ∏ l ∈ Finset.univ.erase k, (spec.offset k - spec.offset l)
 
+/--
+@isnad1 id=ne.0h4v.s5.331b3999324e from=translated src=- shape=5135f76a vocab=16e6b215
+-/
 lemma clusterDenominator_ne_zero (k : Fin (d + 2)) :
     spec.clusterDenominator k ≠ 0 := by
   rw [clusterDenominator, Finset.prod_ne_zero_iff]
@@ -68,7 +71,9 @@ private lemma clusterCardinal_eq_numerator_div (δ : ℝ)
   rw [Finset.prod_div_distrib, spec.cluster_denominator_product]
 
 /-- Exact pole extraction for a clustered cardinal function at a fixed
-physical point.-/
+physical point.
+@isnad1 id=eq.0h6v.s6.f7ff731626ab from=translated src=- shape=53e14752 vocab=09577c3e
+-/
 theorem fullCardinal_eq_blowupCoefficient_div_pow
     (δ : ℝ) (k : Fin (d + 2)) (x : ℝ) :
     spec.fullCardinal δ k x =
@@ -79,6 +84,9 @@ theorem fullCardinal_eq_blowupCoefficient_div_pow
   simp only [div_eq_mul_inv, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=continuo.0h5v.s5.2fc7f06e1c5e from=translated src=- shape=2562435f vocab=b49fa2da
+-/
 lemma continuousAt_exteriorRatio_zero (k : Fin (d + 2)) (x : ℝ) :
     ContinuousAt (fun δ => spec.exteriorRatio δ k x) 0 := by
   have hden : ContinuousAt
@@ -88,6 +96,9 @@ lemma continuousAt_exteriorRatio_zero (k : Fin (d + 2)) (x : ℝ) :
   exact continuousAt_const.div hden (by
     simpa [clusterPoint] using spec.exteriorPolynomial_eval_anchor_ne_zero)
 
+/--
+@isnad1 id=continuo.0h5v.s5.14c5a3d4b12e from=translated src=- shape=2562435f vocab=1c6dcde1
+-/
 lemma continuousAt_clusterNumerator_zero (k : Fin (d + 2)) (x : ℝ) :
     ContinuousAt (fun δ => spec.clusterNumerator δ k x) 0 := by
   unfold clusterNumerator
@@ -95,12 +106,18 @@ lemma continuousAt_clusterNumerator_zero (k : Fin (d + 2)) (x : ℝ) :
     continuous_const.sub
       (continuous_const.add (continuous_id.mul continuous_const))).continuousAt
 
+/--
+@isnad1 id=continuo.0h5v.s5.8a9d16d3fea5 from=translated src=- shape=2562435f vocab=5b0b6817
+-/
 lemma continuousAt_blowupCoefficient_zero (k : Fin (d + 2)) (x : ℝ) :
     ContinuousAt (fun δ => spec.blowupCoefficient δ k x) 0 := by
   unfold blowupCoefficient
   exact ((spec.continuousAt_exteriorRatio_zero k x).mul
     (spec.continuousAt_clusterNumerator_zero k x)).div_const _
 
+/--
+@isnad1 id=ne.1h4v.s6.ac3fbaadb973 from=translated src=- shape=46fabad1 vocab=1ead11d4
+-/
 lemma exteriorPolynomial_eval_ne_zero_of_away {x : ℝ}
     (hx : ∀ j ∈ spec.block.exterior, x ≠ spec.nodes.point j) :
     spec.exteriorPolynomial.eval x ≠ 0 := by
@@ -108,6 +125,9 @@ lemma exteriorPolynomial_eval_ne_zero_of_away {x : ℝ}
   intro j hj
   exact sub_ne_zero.mpr (hx j hj)
 
+/--
+@isnad1 id=ne.1h5v.s5.246c10c03a54 from=translated src=- shape=99ec1296 vocab=9b42e202
+-/
 lemma clusterNumerator_zero_ne_zero (k : Fin (d + 2)) {x : ℝ}
     (hx : x ≠ spec.anchor) :
     spec.clusterNumerator 0 k x ≠ 0 := by
@@ -115,6 +135,9 @@ lemma clusterNumerator_zero_ne_zero (k : Fin (d + 2)) {x : ℝ}
   intro l hl
   simpa only [clusterPoint, zero_mul, add_zero, sub_ne_zero] using hx
 
+/--
+@isnad1 id=ne.2h5v.s6.c18128642855 from=translated src=- shape=500a61fa vocab=3ef5f6af
+-/
 lemma blowupCoefficient_zero_ne_zero (k : Fin (d + 2)) {x : ℝ}
     (hxanchor : x ≠ spec.anchor)
     (hxext : ∀ j ∈ spec.block.exterior, x ≠ spec.nodes.point j) :
@@ -172,7 +195,9 @@ private theorem eventually_abs_div_pow_gt
   exact hApow
 
 /-- Placement-independent exterior growth at a fixed point separated from
-the limiting cluster and all fixed nodes.-/
+the limiting cluster and all fixed nodes.
+@isnad1 id=ex.2h6v.s7.c664c733a8df from=translated src=- shape=58103c03 vocab=0ec0e2d5
+-/
 theorem eventually_abs_fullCardinal_gt
     (k : Fin (d + 2)) {x : ℝ}
     (hxanchor : x ≠ spec.anchor)
@@ -209,6 +234,9 @@ def ExteriorGapKind.Valid (kind : ExteriorGapKind) (g : Fin (n - 1)) : Prop :=
 def IsExteriorGap (g : Fin (n - 1)) : Prop :=
   g.val < spec.block.start ∨ spec.block.start + d + 1 ≤ g.val
 
+/--
+@isnad1 id=or.1h4v.s5.e90119df2c32 from=translated src=- shape=221856ab vocab=96bde816
+-/
 lemma exteriorGapKind_classification (g : Fin (n - 1))
     (hg : spec.IsExteriorGap g) :
     (ExteriorGapKind.leftFixed.Valid spec g) ∨
@@ -228,7 +256,9 @@ lemma exteriorGapKind_classification (g : Fin (n - 1))
     · exact Or.inr (Or.inr (Or.inl hbridge))
     · exact Or.inr (Or.inr (Or.inr (by omega)))
 
-/-- A full block has no exterior or bridge gap.-/
+/-- A full block has no exterior or bridge gap.
+@isnad1 id=not.1h4v.s5.534d2974c73f from=translated src=- shape=2f90c090 vocab=c317e9ef
+-/
 lemma not_isExteriorGap_of_full (hfull : spec.placement = .full)
     (g : Fin (n - 1)) : ¬ spec.IsExteriorGap g := by
   have hv : spec.block.start = 0 ∧ spec.block.start + d + 2 = n := by
@@ -242,6 +272,9 @@ lemma not_isExteriorGap_of_full (hfull : spec.placement = .full)
 /-- Arithmetic midpoint.-/
 def midpoint (u v : ℝ) : ℝ := (u + v) / 2
 
+/--
+@isnad1 id=mem.1h2v.s4.1249c66ab468 from=translated src=- shape=4c4349f8 vocab=88066577
+-/
 lemma midpoint_mem_Ioo {u v : ℝ} (huv : u < v) :
     midpoint u v ∈ Set.Ioo u v := by
   constructor <;> unfold midpoint <;> linarith
@@ -259,11 +292,16 @@ def leftBridgeWitness (g : Fin (n - 1)) : ℝ :=
 def rightBridgeWitness (g : Fin (n - 1)) : ℝ :=
   midpoint spec.anchor (spec.nodes.point (gapRightIndex g))
 
+/--
+@isnad1 id=mem.0h4v.s5.cda9e4cc3d12 from=translated src=- shape=4bfd5e61 vocab=a73d4760
+-/
 lemma fixedGapWitness_mem_original_openGap (g : Fin (n - 1)) :
     spec.fixedGapWitness g ∈ openGap spec.nodes g :=
   midpoint_mem_Ioo (gap_left_lt_right spec.nodes g)
 
-/-- No original node can equal the midpoint of one original nodal gap.-/
+/-- No original node can equal the midpoint of one original nodal gap.
+@isnad1 id=ne.0h5v.s5.4fd148858835 from=translated src=- shape=ca49eac0 vocab=1d0472ff
+-/
 lemma fixedGapWitness_ne_node (g : Fin (n - 1)) (j : Fin n) :
     spec.fixedGapWitness g ≠ spec.nodes.point j := by
   have hw := spec.fixedGapWitness_mem_original_openGap g
@@ -283,6 +321,9 @@ lemma fixedGapWitness_ne_node (g : Fin (n - 1)) (j : Fin n) :
     rw [heq] at hw
     linarith
 
+/--
+@isnad1 id=ne.0h4v.s5.459eba431af6 from=translated src=- shape=a54ca0a1 vocab=c3c3c19c
+-/
 lemma fixedGapWitness_ne_anchor (g : Fin (n - 1)) :
     spec.fixedGapWitness g ≠ spec.anchor := by
   cases hp : spec.placement
@@ -291,11 +332,17 @@ lemma fixedGapWitness_ne_anchor (g : Fin (n - 1)) :
   · simpa [anchor, hp] using spec.fixedGapWitness_ne_node g spec.lastIndex
   · simpa [anchor, hp] using spec.fixedGapWitness_ne_node g spec.firstIndex
 
+/--
+@isnad1 id=ne.1h5v.s6.5379de8e07d3 from=translated src=- shape=9315d6e1 vocab=9c51486c
+-/
 lemma fixedGapWitness_away_exterior (g : Fin (n - 1)) :
     ∀ j ∈ spec.block.exterior,
       spec.fixedGapWitness g ≠ spec.nodes.point j :=
   fun j _ => spec.fixedGapWitness_ne_node g j
 
+/--
+@isnad1 id=mem.2h5v.s5.e82883126da0 from=translated src=- shape=37c0b407 vocab=7af8b7d2
+-/
 lemma fixedGapWitness_mem_closedGap_of_leftFixed
     {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftFixed.Valid spec g)
@@ -317,6 +364,9 @@ lemma fixedGapWitness_mem_closedGap_of_leftFixed
   rw [spec.point_of_not_mem δ hleft, spec.point_of_not_mem δ hright]
   exact ⟨hw.1.le, hw.2.le⟩
 
+/--
+@isnad1 id=mem.2h5v.s5.4b97886dcc98 from=translated src=- shape=37c0b407 vocab=4b237b17
+-/
 lemma fixedGapWitness_mem_closedGap_of_rightFixed
     {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightFixed.Valid spec g)
@@ -338,6 +388,9 @@ lemma fixedGapWitness_mem_closedGap_of_rightFixed
   rw [spec.point_of_not_mem δ hleft, spec.point_of_not_mem δ hright]
   exact ⟨hw.1.le, hw.2.le⟩
 
+/--
+@isnad1 id=lt.1h4v.s5.fd0e86b44c6b from=translated src=- shape=569134cd vocab=11deca03
+-/
 lemma leftBridge_left_lt_anchor {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g) :
     spec.nodes.point (gapLeftIndex g) < spec.anchor := by
@@ -359,6 +412,9 @@ lemma leftBridge_left_lt_anchor {g : Fin (n - 1)}
       simp only [Fin.lt_def, gapLeftIndex_val, spec.firstIndex_val]
       omega)
 
+/--
+@isnad1 id=lt.1h4v.s5.e01910781b6c from=translated src=- shape=7d24a683 vocab=aba6b52b
+-/
 lemma anchor_lt_rightBridge_right {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g) :
     spec.anchor < spec.nodes.point (gapRightIndex g) := by
@@ -386,6 +442,9 @@ lemma anchor_lt_rightBridge_right {g : Fin (n - 1)}
 def leftBridgeRadius (g : Fin (n - 1)) : ℝ :=
   (spec.anchor - spec.nodes.point (gapLeftIndex g)) / 2
 
+/--
+@isnad1 id=lt.1h4v.s5.8d965685f440 from=translated src=- shape=04ec395a vocab=a9afa31b
+-/
 lemma leftBridgeRadius_pos {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g) :
     0 < spec.leftBridgeRadius g := by
@@ -396,12 +455,18 @@ lemma leftBridgeRadius_pos {g : Fin (n - 1)}
 def rightBridgeRadius (g : Fin (n - 1)) : ℝ :=
   (spec.nodes.point (gapRightIndex g) - spec.anchor) / 2
 
+/--
+@isnad1 id=lt.1h4v.s5.a6d67e269fec from=translated src=- shape=04ec395a vocab=25d3d8e1
+-/
 lemma rightBridgeRadius_pos {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g) :
     0 < spec.rightBridgeRadius g := by
   unfold rightBridgeRadius
   exact div_pos (sub_pos.mpr (spec.anchor_lt_rightBridge_right hg)) (by norm_num)
 
+/--
+@isnad1 id=eq.1h4v.s5.401652460085 from=translated src=- shape=270ec243 vocab=6f01e67c
+-/
 lemma gapRightIndex_eq_firstIndex_of_leftBridge {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g) :
     gapRightIndex g = spec.firstIndex := by
@@ -409,6 +474,9 @@ lemma gapRightIndex_eq_firstIndex_of_leftBridge {g : Fin (n - 1)}
   simp only [gapRightIndex_val, spec.firstIndex_val]
   exact hg
 
+/--
+@isnad1 id=eq.1h4v.s5.54c07cccdefd from=translated src=- shape=270ec243 vocab=988534af
+-/
 lemma gapLeftIndex_eq_lastIndex_of_rightBridge {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g) :
     gapLeftIndex g = spec.lastIndex := by
@@ -417,7 +485,9 @@ lemma gapLeftIndex_eq_lastIndex_of_rightBridge {g : Fin (n - 1)}
   exact hg
 
 /-- At scales below half the limiting bridge length, the fixed midpoint is
-still inside the moving left bridge.-/
+still inside the moving left bridge.
+@isnad1 id=mem.3h5v.s6.1bf94ad0b6bb from=translated src=- shape=b9233175 vocab=9837ad21
+-/
 lemma leftBridgeWitness_mem_openGap {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g)
     (δ : ℝ) (hδ : spec.Admissible δ)
@@ -454,6 +524,9 @@ lemma leftBridgeWitness_mem_openGap {g : Fin (n - 1)}
   · rw [spec.first_point_fixed_of_not_right δ (by simp [hp])]
     simpa [anchor, hp] using hmid.2
 
+/--
+@isnad1 id=mem.3h5v.s6.309438f1f9ae from=translated src=- shape=b9233175 vocab=0e81ba03
+-/
 lemma leftBridgeWitness_mem_closedGap {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g)
     (δ : ℝ) (hδ : spec.Admissible δ)
@@ -463,7 +536,9 @@ lemma leftBridgeWitness_mem_closedGap {g : Fin (n - 1)}
   ⟨hw.1.le, hw.2.le⟩
 
 /-- At scales below half the limiting bridge length, the fixed midpoint is
-still inside the moving right bridge.-/
+still inside the moving right bridge.
+@isnad1 id=mem.3h5v.s6.d0ee92252513 from=translated src=- shape=b9233175 vocab=4b99a939
+-/
 lemma rightBridgeWitness_mem_openGap {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g)
     (δ : ℝ) (hδ : spec.Admissible δ)
@@ -506,6 +581,9 @@ lemma rightBridgeWitness_mem_openGap {g : Fin (n - 1)}
     unfold rightBridgeWitness midpoint
     linarith
 
+/--
+@isnad1 id=mem.3h5v.s6.09b107137332 from=translated src=- shape=b9233175 vocab=2e6f05a0
+-/
 lemma rightBridgeWitness_mem_closedGap {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g)
     (δ : ℝ) (hδ : spec.Admissible δ)
@@ -514,18 +592,27 @@ lemma rightBridgeWitness_mem_closedGap {g : Fin (n - 1)}
   let hw := spec.rightBridgeWitness_mem_openGap hg δ hδ hsmall
   ⟨hw.1.le, hw.2.le⟩
 
+/--
+@isnad1 id=ne.1h4v.s5.f281fb604da3 from=translated src=- shape=20980945 vocab=e4f428ad
+-/
 lemma leftBridgeWitness_ne_anchor {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g) :
     spec.leftBridgeWitness g ≠ spec.anchor := by
   have hw := midpoint_mem_Ioo (spec.leftBridge_left_lt_anchor hg)
   exact ne_of_lt hw.2
 
+/--
+@isnad1 id=ne.1h4v.s5.330cb3725948 from=translated src=- shape=20980945 vocab=2775a56c
+-/
 lemma rightBridgeWitness_ne_anchor {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g) :
     spec.rightBridgeWitness g ≠ spec.anchor := by
   have hw := midpoint_mem_Ioo (spec.anchor_lt_rightBridge_right hg)
   exact ne_of_gt hw.1
 
+/--
+@isnad1 id=ne.2h5v.s6.e1cf7dcae6cb from=translated src=- shape=2122bbf8 vocab=c335bc87
+-/
 lemma leftBridgeWitness_away_exterior {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g) :
     ∀ j ∈ spec.block.exterior,
@@ -570,6 +657,9 @@ lemma leftBridgeWitness_away_exterior {g : Fin (n - 1)}
         simpa [anchor, hp] using spec.nodes.strictMono hfirstj
       exact ne_of_lt (hmid.2.trans hanchorj)
 
+/--
+@isnad1 id=ne.2h5v.s6.4f679327c51c from=translated src=- shape=2122bbf8 vocab=cfedf3c3
+-/
 lemma rightBridgeWitness_away_exterior {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g) :
     ∀ j ∈ spec.block.exterior,
@@ -617,7 +707,9 @@ lemma rightBridgeWitness_away_exterior {g : Fin (n - 1)}
       exact ne_of_lt (hmid.2.trans_le (spec.nodes.strictMono.monotone hrightle))
 
 /-- A single clustered cardinal evaluated inside a collapsed gap is bounded
-by that gap's Lebesgue height.-/
+by that gap's Lebesgue height.
+@isnad1 id=le.2h7v.s6.b63f23a81c8e from=translated src=- shape=ccbe394a vocab=63303e1f
+-/
 lemma abs_fullCardinal_le_gapHeight (δ : ℝ) (hδ : spec.Admissible δ)
     (g : Fin (n - 1)) (k : Fin (d + 2)) {x : ℝ}
     (hx : x ∈ closedGap (spec.orderedNodes δ hδ) g) :
@@ -639,7 +731,9 @@ lemma abs_fullCardinal_le_gapHeight (δ : ℝ) (hδ : spec.Admissible δ)
   exact hterm.trans (hmax x hx)
 
 /-- Every clustered cardinal forces blowup on a fixed gap to the left of the
-block.  Both endpoints of this gap remain fixed.-/
+block.  Both endpoints of this gap remain fixed.
+@isnad1 id=ex.1h6v.s6.ab224219a5b4 from=translated src=- shape=b783faa4 vocab=268408a5
+-/
 theorem eventually_leftFixed_gapHeight_gt {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftFixed.Valid spec g)
     (k : Fin (d + 2)) (A : ℝ) :
@@ -656,7 +750,9 @@ theorem eventually_leftFixed_gapHeight_gt {g : Fin (n - 1)}
       (spec.fixedGapWitness_mem_closedGap_of_leftFixed hg δ hδ))
 
 /-- Every clustered cardinal forces blowup on the moving bridge immediately
-to the left of the block.-/
+to the left of the block.
+@isnad1 id=ex.1h6v.s6.7ed4dfa9f436 from=translated src=- shape=b783faa4 vocab=1fee2ca9
+-/
 theorem eventually_leftBridge_gapHeight_gt {g : Fin (n - 1)}
     (hg : ExteriorGapKind.leftBridge.Valid spec g)
     (k : Fin (d + 2)) (A : ℝ) :
@@ -676,7 +772,9 @@ theorem eventually_leftBridge_gapHeight_gt {g : Fin (n - 1)}
     (spec.abs_fullCardinal_le_gapHeight δ hδ g k hmem)
 
 /-- Every clustered cardinal forces blowup on the moving bridge immediately
-to the right of the block.-/
+to the right of the block.
+@isnad1 id=ex.1h6v.s6.ebb39d4451cf from=translated src=- shape=b783faa4 vocab=18ee89b7
+-/
 theorem eventually_rightBridge_gapHeight_gt {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightBridge.Valid spec g)
     (k : Fin (d + 2)) (A : ℝ) :
@@ -696,7 +794,9 @@ theorem eventually_rightBridge_gapHeight_gt {g : Fin (n - 1)}
     (spec.abs_fullCardinal_le_gapHeight δ hδ g k hmem)
 
 /-- Every clustered cardinal forces blowup on a fixed gap to the right of
-the block.  Both endpoints of this gap remain fixed.-/
+the block.  Both endpoints of this gap remain fixed.
+@isnad1 id=ex.1h6v.s6.917971d94559 from=translated src=- shape=b783faa4 vocab=db200306
+-/
 theorem eventually_rightFixed_gapHeight_gt {g : Fin (n - 1)}
     (hg : ExteriorGapKind.rightFixed.Valid spec g)
     (k : Fin (d + 2)) (A : ℝ) :
@@ -717,7 +817,9 @@ the cluster's internal `d+1` gaps.  In fact the conclusion holds for every
 choice of clustered cardinal `k`; the theorem records one explicitly.
 
 The `hnotfull` argument is intentional: the small-scale collapse family is
-only a comparison family in the three non-full placements.-/
+only a comparison family in the three non-full placements.
+@isnad1 id=ex.2h6v.s6.cc0d34f22598 from=translated src=- shape=bd8bd8a0 vocab=b71bcde7
+-/
 theorem eventually_exteriorGap_gapHeight_gt
     (hnotfull : spec.placement ≠ .full) {g : Fin (n - 1)}
     (hg : spec.IsExteriorGap g) (k : Fin (d + 2)) (A : ℝ) :
@@ -738,7 +840,9 @@ proof exists and the selected exterior gap height exceeds `A`.
 
 This theorem makes the left-endpoint, right-endpoint, and interior
 admissibility constructions explicit; the full placement is discharged by
-the stated exception rather than treated as a small-scale family.-/
+the stated exception rather than treated as a small-scale family.
+@isnad1 id=ex.2h6v.s6.396e4686afa6 from=translated src=- shape=b3bfa1db vocab=b71bcde7
+-/
 theorem eventually_exists_admissible_exteriorGap_gapHeight_gt
     (hnotfull : spec.placement ≠ .full) {g : Fin (n - 1)}
     (hg : spec.IsExteriorGap g) (k : Fin (d + 2)) (A : ℝ) :

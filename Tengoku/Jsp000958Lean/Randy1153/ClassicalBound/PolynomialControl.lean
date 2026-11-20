@@ -20,7 +20,9 @@ open Polynomial
 noncomputable section
 
 /-- Every real polynomial satisfies the clipped Bernstein interface from its
-own degree, interval, and supremum hypotheses.-/
+own degree, interval, and supremum hypotheses.
+@isnad1 id=pointwis.0h4v.s3.549ae0c9b853 from=translated src=- shape=5f7b4f7c vocab=8957bfba
+-/
 theorem pointwiseClippedBernsteinAt (d : ℕ) (p : ℝ[X]) (x M : ℝ) :
     PointwiseClippedBernsteinAt d p x M := by
   cases d with
@@ -40,7 +42,9 @@ theorem pointwiseClippedBernsteinAt (d : ℕ) (p : ℝ[X]) (x M : ℝ) :
           hM hexp hweighted) hd hpdeg hx hsup
 
 /-- Unconditional clipped Bernstein control for every signed derivative-row
-polynomial.-/
+polynomial.
+@isnad1 id=pointwis.0h3v.s5.4fc6e8dc4581 from=translated src=- shape=9d62c522 vocab=446d0d20
+-/
 theorem pointwiseClippedBernsteinAt_signedDerivativeRowPolynomial
     {n : ℕ} (nodes : OrderedNodes n) (j : Fin n) :
     PointwiseClippedBernsteinAt (n - 1)

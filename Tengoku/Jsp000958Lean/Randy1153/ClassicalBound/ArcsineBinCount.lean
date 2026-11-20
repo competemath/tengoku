@@ -24,7 +24,9 @@ calculation.-/
 def arcsineGeometricExponent (d : ℕ) (q : ℝ) : ℕ :=
   ⌈Real.log (cubicChebyshevFloor d)⁻¹ / Real.log q⌉₊
 
-/-- For positive degree, the cubic Chebyshev floor is at most one.-/
+/-- For positive degree, the cubic Chebyshev floor is at most one.
+@isnad1 id=le.1h1v.s4.3aac9cee4801 from=translated src=- shape=01574b0e vocab=9829974a
+-/
 lemma cubicChebyshevFloor_le_one {d : ℕ} (hd : 1 ≤ d) :
     cubicChebyshevFloor d ≤ 1 := by
   unfold cubicChebyshevFloor
@@ -36,7 +38,9 @@ lemma cubicChebyshevFloor_le_one {d : ℕ} (hd : 1 ≤ d) :
   have hdR : (1 : ℝ) ≤ (d : ℝ) := by exact_mod_cast hd
   nlinarith [sq_nonneg (d : ℝ)]
 
-/-- The logarithmic ratio defining the exponent is nonnegative.-/
+/-- The logarithmic ratio defining the exponent is nonnegative.
+@isnad1 id=le.2h2v.s5.772ca89cfc24 from=translated src=- shape=d236b9c6 vocab=98b4cad5
+-/
 lemma arcsineGeometricExponent_ratio_nonneg {d : ℕ} {q : ℝ}
     (hd : 1 ≤ d) (hq : 1 < q) :
     0 ≤ Real.log (cubicChebyshevFloor d)⁻¹ / Real.log q := by
@@ -45,7 +49,9 @@ lemma arcsineGeometricExponent_ratio_nonneg {d : ℕ} {q : ℝ}
     (one_le_inv₀ hc0).2 (cubicChebyshevFloor_le_one hd)
   exact div_nonneg (Real.log_nonneg hcinv) (Real.log_pos hq).le
 
-/-- The ceiling exponent really reaches the terminal scale.-/
+/-- The ceiling exponent really reaches the terminal scale.
+@isnad1 id=le.2h2v.s5.41bbbdd789f9 from=translated src=- shape=23cb6d3a vocab=dbbb8f0e
+-/
 theorem arcsineGeometricExponent_terminal {d : ℕ} {q : ℝ}
     (_hd : 1 ≤ d) (hq : 1 < q) :
     1 ≤ q ^ arcsineGeometricExponent d q * cubicChebyshevFloor d := by
@@ -68,7 +74,9 @@ theorem arcsineGeometricExponent_terminal {d : ℕ} {q : ℝ}
     _ = q ^ arcsineGeometricExponent d q * cubicChebyshevFloor d := rfl
 
 /-- Exact ceiling loss: the number `K+1` of half-bins is at most the
-unrounded logarithmic ratio plus two.-/
+unrounded logarithmic ratio plus two.
+@isnad1 id=le.2h2v.s6.a84f602b3a99 from=translated src=- shape=8ad34fb4 vocab=2cfb711e
+-/
 theorem arcsineGeometricExponent_add_one_le_logRatio_add_two
     {d : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q) :
     ((arcsineGeometricExponent d q + 1 : ℕ) : ℝ) ≤
@@ -79,7 +87,9 @@ theorem arcsineGeometricExponent_add_one_le_logRatio_add_two
   norm_num only [Nat.cast_add, Nat.cast_one]
   linarith
 
-/-- The reciprocal cubic floor is bounded above by `2 d^2`.-/
+/-- The reciprocal cubic floor is bounded above by `2 d^2`.
+@isnad1 id=le.1h1v.s5.cdc9370aab9d from=translated src=- shape=6289ff91 vocab=d186916a
+-/
 lemma cubicChebyshevFloor_inv_le_two_mul_sq {d : ℕ} (hd : 1 ≤ d) :
     (cubicChebyshevFloor d)⁻¹ ≤ 2 * (d : ℝ) ^ 2 := by
   have hA : 0 < 2 * (d : ℝ) ^ 2 := by
@@ -90,7 +100,9 @@ lemma cubicChebyshevFloor_inv_le_two_mul_sq {d : ℕ} (hd : 1 ≤ d) :
       (by simpa [one_div] using inv_two_mul_sq_le_cubicChebyshevFloor hd)
 
 /-- Finite logarithmic half-bin count.  This is the explicit estimate
-behind the `O_q(log d)` assertion; no asymptotic notation is hidden.-/
+behind the `O_q(log d)` assertion; no asymptotic notation is hidden.
+@isnad1 id=le.2h2v.s6.2442ef1b280f from=translated src=- shape=11171944 vocab=2f71be7d
+-/
 theorem arcsineGeometricExponent_add_one_le_logDegree
     {d : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q) :
     ((arcsineGeometricExponent d q + 1 : ℕ) : ℝ) ≤
@@ -114,7 +126,9 @@ theorem arcsineGeometricExponent_add_one_le_logDegree
       norm_num
 
 /-- A literal constant-times-`(log d + 1)` version of the half-bin count.
-The coefficient depends only on the fixed geometric ratio `q`.-/
+The coefficient depends only on the fixed geometric ratio `q`.
+@isnad1 id=le.2h2v.s6.261d5afa3cf1 from=translated src=- shape=991f1b50 vocab=2f71be7d
+-/
 theorem arcsineGeometricExponent_add_one_le_constant_mul_logDegree
     {d : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q) :
     ((arcsineGeometricExponent d q + 1 : ℕ) : ℝ) ≤
@@ -147,7 +161,9 @@ theorem arcsineGeometricExponent_add_one_le_constant_mul_logDegree
           (Real.log (d : ℝ) + 1) := by
       linarith
 
-/-- The corresponding reflected construction has twice as many bins.-/
+/-- The corresponding reflected construction has twice as many bins.
+@isnad1 id=le.2h2v.s7.621ea9d84c65 from=translated src=- shape=139cf1fd vocab=2f71be7d
+-/
 theorem two_mul_arcsineGeometricExponent_add_one_le_logDegree
     {d : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q) :
     ((2 * (arcsineGeometricExponent d q + 1) : ℕ) : ℝ) ≤
@@ -156,7 +172,9 @@ theorem two_mul_arcsineGeometricExponent_add_one_le_logDegree
   exact mul_le_mul_of_nonneg_left
     (arcsineGeometricExponent_add_one_le_logDegree hd hq) (by norm_num)
 
-/-- Constant-times-log bound for the total number of reflected bins.-/
+/-- Constant-times-log bound for the total number of reflected bins.
+@isnad1 id=le.2h2v.s7.c97b58b77fdc from=translated src=- shape=51ae6a41 vocab=2f71be7d
+-/
 theorem two_mul_arcsineGeometricExponent_add_one_le_constant_mul_logDegree
     {d : ℕ} {q : ℝ} (hd : 1 ≤ d) (hq : 1 < q) :
     ((2 * (arcsineGeometricExponent d q + 1) : ℕ) : ℝ) ≤

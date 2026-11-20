@@ -41,11 +41,17 @@ def arcsineDenseThreshold (n : ℕ) (q : ℝ) (R : ℕ) : ℕ :=
 def arcsineTotalBinCountCoefficient (q : ℝ) : ℝ :=
   2 * ((Real.log 2 + 2) / Real.log q + 2)
 
+/--
+@isnad1 id=lt.0h2v.s3.0ca412c10f20 from=translated src=- shape=25b8bdde vocab=59617c7a
+-/
 lemma arcsineTotalBinCount_pos (n : ℕ) (q : ℝ) :
     0 < arcsineTotalBinCount n q := by
   unfold arcsineTotalBinCount
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.37287c94b9c7 from=translated src=- shape=35bd48ee vocab=1b28353a
+-/
 lemma arcsineTotalBinCountCoefficient_pos {q : ℝ} (hq : 1 < q) :
     0 < arcsineTotalBinCountCoefficient q := by
   unfold arcsineTotalBinCountCoefficient
@@ -53,16 +59,23 @@ lemma arcsineTotalBinCountCoefficient_pos {q : ℝ} (hq : 1 < q) :
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   positivity
 
-/-- The degree `n-1` is positive from `n=2` onward.-/
+/-- The degree `n-1` is positive from `n=2` onward.
+@isnad1 id=le.1h1v.s5.ceb5722f42ca from=translated src=- shape=6528d12f vocab=cf369417
+-/
 lemma one_le_pred_of_two_le {n : ℕ} (hn : 2 ≤ n) :
     1 ≤ n - 1 := by omega
 
+/--
+@isnad1 id=eventual.0h0v.s4.3c425a56abeb from=translated src=- shape=ed68300b vocab=82fc9de5
+-/
 theorem eventually_one_le_pred :
     ∀ᶠ n : ℕ in atTop, 1 ≤ n - 1 := by
   filter_upwards [eventually_ge_atTop 2] with n hn
   omega
 
-/-- Replace `log(n-1)` by `log n` in the committed total-bin estimate.-/
+/-- Replace `log(n-1)` by `log n` in the committed total-bin estimate.
+@isnad1 id=le.2h2v.s5.210454def32c from=translated src=- shape=4d6d9194 vocab=0301a262
+-/
 theorem arcsineTotalBinCount_le_coefficient_mul_log
     {n : ℕ} {q : ℝ} (hn : 2 ≤ n) (hq : 1 < q) :
     (arcsineTotalBinCount n q : ℝ) ≤
@@ -93,7 +106,9 @@ theorem arcsineTotalBinCount_le_coefficient_mul_log
       ring
 
 /-- A fixed multiple of `log x + 1` is eventually bounded by every
-positive real power of `x`.-/
+positive real power of `x`.
+@isnad1 id=eventual.2h2v.s6.9fd86f9bed5f from=translated src=- shape=594d6171 vocab=de16a433
+-/
 lemma eventually_const_mul_log_add_one_le_rpow
     {A δ : ℝ} (hA : 0 ≤ A) (hδ : 0 < δ) :
     ∀ᶠ x : ℝ in atTop, A * (Real.log x + 1) ≤ x ^ δ := by
@@ -112,7 +127,9 @@ lemma eventually_const_mul_log_add_one_le_rpow
   simpa only [Real.norm_eq_abs, abs_of_nonneg hleft, abs_of_nonneg hright] using hx
 
 /-- The total number of bins times any fixed natural factors is eventually
-at most `n^delta`.-/
+at most `n^delta`.
+@isnad1 id=eventual.2h4v.s6.419b095398ff from=translated src=- shape=5ef957c6 vocab=66abf777
+-/
 theorem eventually_totalBinCount_mul_fixed_le_rpow
     {q δ : ℝ} (hq : 1 < q) (hδ : 0 < δ) (R L : ℕ) :
     ∀ᶠ n : ℕ in atTop,
@@ -142,7 +159,9 @@ theorem eventually_totalBinCount_mul_fixed_le_rpow
     _ ≤ (n : ℝ) ^ δ := hpower
 
 /-- Eventually the fixed local divisor `L` fits below the natural dense-bin
-threshold.-/
+threshold.
+@isnad1 id=eventual.3h3v.s5.5d7b1fa84147 from=translated src=- shape=48ac606c vocab=61b30a1b
+-/
 theorem eventually_le_arcsineDenseThreshold
     {q : ℝ} (hq : 1 < q) {R L : ℕ} (hR : 1 ≤ R) (_hL : 1 ≤ L) :
     ∀ᶠ n : ℕ in atTop, L ≤ arcsineDenseThreshold n q R := by
@@ -157,7 +176,9 @@ theorem eventually_le_arcsineDenseThreshold
   simpa [Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm] using hnat
 
 /-- Exact division loss: removing `B * floor(n/(B R))` leaves at least the
-fraction `1-1/R` of the original mass.-/
+fraction `1-1/R` of the original mass.
+@isnad1 id=le.1h3v.s6.3421e8931d21 from=translated src=- shape=adc98bc0 vocab=892f75de
+-/
 theorem one_sub_inv_mul_le_sub_totalBinCount_mul_denseThreshold
     {n R : ℕ} {q : ℝ} (hR : 0 < R) :
     (1 - (R : ℝ)⁻¹) * (n : ℝ) ≤
@@ -189,7 +210,9 @@ theorem one_sub_inv_mul_le_sub_totalBinCount_mul_denseThreshold
   linarith
 
 /-- The further quotient by `L` is one natural division by the product of
-all three fixed/logarithmic factors.-/
+all three fixed/logarithmic factors.
+@isnad1 id=eq.0h4v.s5.434c59119dbe from=translated src=- shape=afc1391e vocab=fa2c9ac7
+-/
 lemma denseThreshold_div_eq
     (n : ℕ) (q : ℝ) (R L : ℕ) :
     arcsineDenseThreshold n q R / L =
@@ -197,7 +220,9 @@ lemma denseThreshold_div_eq
   rw [arcsineDenseThreshold, Nat.div_div_eq_div_mul]
 
 /-- The harmonic factor at the dense-bin scale retains any prescribed
-fraction of `log n`.-/
+fraction of `log n`.
+@isnad1 id=eventual.4h4v.s6.6d8236293b9f from=translated src=- shape=069f9900 vocab=55d91c27
+-/
 theorem eventually_one_sub_mul_log_le_realHarmonic_denseThreshold_div
     {q : ℝ} (hq : 1 < q) {R L : ℕ} (hR : 1 ≤ R) (hL : 1 ≤ L)
     {η : ℝ} (hη : 0 < η) :

@@ -28,6 +28,9 @@ used only with `0 < d` and `i ≤ d`.-/
 def equiNode (u v : ℝ) (d i : ℕ) : ℝ :=
   u + (v - u) * ((i : ℝ) / (d : ℝ))
 
+/--
+@isnad1 id=eq.1h5v.s6.e29899ac25a0 from=translated src=- shape=aee15aa8 vocab=b32ab4c8
+-/
 lemma equiNode_sub_equiNode {u v : ℝ} {d i j : ℕ} (hd : 0 < d) :
     equiNode u v d i - equiNode u v d j =
       ((v - u) / d) * ((i : ℝ) - j) := by
@@ -35,6 +38,9 @@ lemma equiNode_sub_equiNode {u v : ℝ} {d i j : ℕ} (hd : 0 < d) :
   field_simp
   ring
 
+/--
+@isnad1 id=injon.2h3v.s5.f65a8eedbc6d from=translated src=- shape=284b243c vocab=e572b79c
+-/
 lemma equiNode_injOn {u v : ℝ} {d : ℕ} (hd : 0 < d) (huv : u < v) :
     Set.InjOn (equiNode u v d) (Finset.range (d + 1)) := by
   intro i _ j _ hij
@@ -50,6 +56,9 @@ lemma equiNode_injOn {u v : ℝ} {d : ℕ} (hd : 0 < d) (huv : u < v) :
   have : (i : ℝ) = j := sub_eq_zero.mp hcast
   exact_mod_cast this
 
+/--
+@isnad1 id=mem.3h4v.s5.9bfdc0cdbb15 from=translated src=- shape=49028240 vocab=09842336
+-/
 lemma equiNode_mem_Icc {u v : ℝ} {d i : ℕ} (hd : 0 < d)
     (huv : u ≤ v) (hi : i ≤ d) : equiNode u v d i ∈ Set.Icc u v := by
   have hdR : (0 : ℝ) < d := by exact_mod_cast hd
@@ -61,7 +70,9 @@ lemma equiNode_mem_Icc {u v : ℝ} {d i : ℕ} (hd : 0 < d)
 
 /-- The exact product of the integer spacings from the `i`th point of a
 `d+1` point grid.  This is the factorial cancellation that keeps the
-Lagrange estimate exponential rather than superexponential.-/
+Lagrange estimate exponential rather than superexponential.
+@isnad1 id=eq.1h2v.s6.3c976f1dc0e9 from=translated src=- shape=b5f39dbd vocab=b6bf7af4
+-/
 lemma prod_abs_cast_sub_eq_factorials {d i : ℕ} (hi : i ≤ d) :
     (∏ j ∈ (Finset.range (d + 1)).erase i, |(i : ℝ) - (j : ℝ)|) =
       (i.factorial : ℝ) * ((d - i).factorial : ℝ) := by
@@ -125,7 +136,9 @@ def polyMaxIcc (p : ℝ[X]) (u v : ℝ) : ℝ :=
   sSup ((fun x => |p.eval x|) '' Set.Icc u v)
 
 /-- On a nonempty closed interval, `polyMaxIcc` is attained and dominates
-every other value of `|p|` on that interval.-/
+every other value of `|p|` on that interval.
+@isnad1 id=ex.1h3v.s6.22975013d4b6 from=translated src=- shape=1c4f4f0c vocab=31844b40
+-/
 lemma exists_polyMaxIcc_eq_and_ge (p : ℝ[X]) {u v : ℝ} (huv : u ≤ v) :
     ∃ x ∈ Set.Icc u v,
       polyMaxIcc p u v = |p.eval x| ∧
@@ -134,12 +147,18 @@ lemma exists_polyMaxIcc_eq_and_ge (p : ℝ[X]) {u v : ℝ} (huv : u ≤ v) :
     (isCompact_Icc.exists_sSup_image_eq_and_ge (Set.nonempty_Icc.mpr huv)
       p.continuous.abs.continuousOn)
 
+/--
+@isnad1 id=le.2h4v.s5.9275a7aa24e9 from=translated src=- shape=59931976 vocab=31844b40
+-/
 lemma abs_eval_le_polyMaxIcc (p : ℝ[X]) {u v x : ℝ} (huv : u ≤ v)
     (hx : x ∈ Set.Icc u v) : |p.eval x| ≤ polyMaxIcc p u v := by
   obtain ⟨z, hz, hmax, hge⟩ := exists_polyMaxIcc_eq_and_ge p huv
   rw [hmax]
   exact hge x hx
 
+/--
+@isnad1 id=le.1h3v.s4.5d6e482d3a3b from=translated src=- shape=4ab32028 vocab=c2bd0a24
+-/
 lemma polyMaxIcc_nonneg (p : ℝ[X]) {u v : ℝ} (huv : u ≤ v) :
     0 ≤ polyMaxIcc p u v := by
   obtain ⟨x, hx, hmax, _⟩ := exists_polyMaxIcc_eq_and_ge p huv
@@ -153,6 +172,9 @@ def equiBasisValue (u v : ℝ) (d i : ℕ) (t : ℝ) : ℝ :=
   ∏ j ∈ (Finset.range (d + 1)).erase i,
     (t - equiNode u v d j) / (equiNode u v d i - equiNode u v d j)
 
+/--
+@isnad1 id=eq.0h5v.s5.69a990518461 from=translated src=- shape=b536b7d2 vocab=7e663179
+-/
 lemma equiBasisValue_eq_eval_basis (u v : ℝ) (d i : ℕ) (t : ℝ) :
     equiBasisValue u v d i t =
       (Lagrange.basis (Finset.range (d + 1)) (equiNode u v d) i).eval t := by
@@ -165,7 +187,9 @@ lemma equiBasisValue_eq_eval_basis (u v : ℝ) (d i : ℕ) (t : ℝ) :
   ring
 
 /-- Lagrange interpolation of a degree-at-most-`d` polynomial on the
-`d+1` equispaced points of `[u,v]`.-/
+`d+1` equispaced points of `[u,v]`.
+@isnad1 id=eq.3h5v.s6.8148c37c4669 from=translated src=- shape=2305c710 vocab=e574cfaa
+-/
 lemma eval_eq_sum_equiBasisValue {p : ℝ[X]} {u v t : ℝ} {d : ℕ}
     (hd : 0 < d) (huv : u < v) (hdeg : p.natDegree ≤ d) :
     p.eval t = ∑ i ∈ Finset.range (d + 1),
@@ -188,13 +212,18 @@ lemma eval_eq_sum_equiBasisValue {p : ℝ[X]} {u v t : ℝ} {d : ℕ}
   intro i _
   rw [equiBasisValue_eq_eval_basis]
 
+/--
+@isnad1 id=le.2h2v.s6.4d0158c9cdc9 from=translated src=- shape=c837677f vocab=4d91b127
+-/
 lemma abs_sub_le_two_of_mem_Icc {x y : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) (hy : y ∈ Set.Icc (-1 : ℝ) 1) :
     |x - y| ≤ 2 := by
   rw [abs_le]
   constructor <;> linarith [hx.1, hx.2, hy.1, hy.2]
 
-/-- Exact denominator size for the equispaced Lagrange basis.-/
+/-- Exact denominator size for the equispaced Lagrange basis.
+@isnad1 id=eq.3h4v.s7.1929db90ae8d from=translated src=- shape=8f13a4d4 vocab=6c26d4c9
+-/
 lemma prod_abs_equiNode_sub_eq {u v : ℝ} {d i : ℕ} (hd : 0 < d)
     (huv : u < v) (hi : i ≤ d) :
     (∏ j ∈ (Finset.range (d + 1)).erase i,
@@ -222,6 +251,9 @@ lemma prod_abs_equiNode_sub_eq {u v : ℝ} {d i : ℕ} (hd : 0 < d)
             Finset.card_range, prod_abs_cast_sub_eq_factorials hi]
           simp
 
+/--
+@isnad1 id=eq.3h5v.s7.06568b93bfc9 from=translated src=- shape=26b88af5 vocab=f6a9990e
+-/
 lemma abs_equiBasisValue_eq {u v t : ℝ} {d i : ℕ} (hd : 0 < d)
     (huv : u < v) (hi : i ≤ d) :
     |equiBasisValue u v d i t| =
@@ -232,6 +264,9 @@ lemma abs_equiBasisValue_eq {u v t : ℝ} {d i : ℕ} (hd : 0 < d)
   simp only [equiBasisValue, abs_prod, abs_div, Finset.prod_div_distrib]
   rw [prod_abs_equiNode_sub_eq hd huv hi]
 
+/--
+@isnad1 id=le.6h5v.s7.f1203c9a7d56 from=translated src=- shape=99db9120 vocab=37140387
+-/
 lemma prod_abs_sub_equiNode_le_two_pow {u v t : ℝ} {d i : ℕ}
     (hd : 0 < d) (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hi : i ≤ d) :
@@ -254,6 +289,9 @@ lemma prod_abs_sub_equiNode_le_two_pow {u v t : ℝ} {d i : ℕ}
       rw [Finset.prod_const, Finset.card_erase_of_mem himem, Finset.card_range]
       simp
 
+/--
+@isnad1 id=le.6h5v.s7.7a66cce2d5b8 from=translated src=- shape=1746d71c vocab=6aa0158e
+-/
 lemma abs_equiBasisValue_le_factorial {u v t : ℝ} {d i : ℕ}
     (hd : 0 < d) (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hi : i ≤ d) :
@@ -280,7 +318,9 @@ private lemma div_pow_factorial_cancel (q : ℝ) (hq : q ≠ 0) (d i : ℕ) :
   rw [div_pow]
   field_simp
 
-/-- Each grid-basis value is controlled by its binomial coefficient.-/
+/-- Each grid-basis value is controlled by its binomial coefficient.
+@isnad1 id=le.6h5v.s7.ff7e7acc48d3 from=translated src=- shape=62ce0220 vocab=3c43ed66
+-/
 lemma abs_equiBasisValue_le_choose {u v t : ℝ} {d i : ℕ}
     (hd : 0 < d) (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) (hi : i ≤ d) :
@@ -314,10 +354,16 @@ lemma abs_equiBasisValue_le_choose {u v t : ℝ} {d i : ℕ}
 def fixedIntervalGrowthBase (u v : ℝ) : ℝ :=
   4 * Real.exp 1 / (v - u)
 
+/--
+@isnad1 id=le.0h1v.s5.a4a9ebb31ad9 from=translated src=- shape=3a8826a3 vocab=38f987ca
+-/
 lemma pow_nat_div_factorial_le_exp (d : ℕ) :
     (d : ℝ) ^ d / (d.factorial : ℝ) ≤ Real.exp (d : ℝ) := by
   simpa using Real.pow_div_factorial_le_exp (x := (d : ℝ)) (by positivity) d
 
+/--
+@isnad1 id=le.1h3v.s6.ecddc798535d from=translated src=- shape=62cbdd5a vocab=e36292aa
+-/
 lemma scaled_pow_div_factorial_le_growthBase {u v : ℝ} (huv : u < v) (d : ℕ) :
     (((4 : ℝ) * d / (v - u)) ^ d / (d.factorial : ℝ)) ≤
       fixedIntervalGrowthBase u v ^ d := by
@@ -341,6 +387,9 @@ lemma scaled_pow_div_factorial_le_growthBase {u v : ℝ} (huv : u < v) (d : ℕ)
       simp only [fixedIntervalGrowthBase]
       field_simp
 
+/--
+@isnad1 id=le.5h4v.s6.664c8fcefae7 from=translated src=- shape=3f61b6c0 vocab=057a974b
+-/
 lemma sum_abs_equiBasisValue_le_growthBase {u v t : ℝ} {d : ℕ}
     (hd : 0 < d) (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) :
@@ -368,7 +417,9 @@ lemma sum_abs_equiBasisValue_le_growthBase {u v t : ℝ} {d : ℕ}
       scaled_pow_div_factorial_le_growthBase huv d
 
 /-- Pointwise fixed-interval growth for a positive-degree polynomial.  The
-right side uses the attained compact maximum on `[u,v]`.-/
+right side uses the attained compact maximum on `[u,v]`.
+@isnad1 id=le.5h4v.s6.7871ab0dc90d from=translated src=- shape=7b04410d vocab=5f89ea71
+-/
 lemma abs_eval_le_growthBase_pow_mul_polyMaxIcc_of_pos_natDegree
     {p : ℝ[X]} {u v t : ℝ} (hd : 0 < p.natDegree)
     (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
@@ -410,7 +461,9 @@ lemma abs_eval_le_growthBase_pow_mul_polyMaxIcc_of_pos_natDegree
     _ = fixedIntervalGrowthBase u v ^ p.natDegree * polyMaxIcc p u v :=
       mul_comm _ _
 
-/-- Pointwise fixed-subinterval growth, including constant polynomials.-/
+/-- Pointwise fixed-subinterval growth, including constant polynomials.
+@isnad1 id=le.4h4v.s6.13125a79b654 from=translated src=- shape=0dd37e90 vocab=5f89ea71
+-/
 theorem abs_eval_le_growthBase_pow_mul_polyMaxIcc
     (p : ℝ[X]) {u v t : ℝ}
     (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1)
@@ -426,7 +479,9 @@ theorem abs_eval_le_growthBase_pow_mul_polyMaxIcc
       (Nat.pos_of_ne_zero hd) hu huv hv ht
 
 /-- The fixed-interval growth base is genuinely larger than one whenever
-`[u,v]` is a nondegenerate subinterval of `[-1,1]`.-/
+`[u,v]` is a nondegenerate subinterval of `[-1,1]`.
+@isnad1 id=lt.3h2v.s5.565f3b9d1513 from=translated src=- shape=957443cb vocab=032da768
+-/
 lemma one_lt_fixedIntervalGrowthBase {u v : ℝ}
     (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1) :
     1 < fixedIntervalGrowthBase u v := by
@@ -438,7 +493,9 @@ lemma one_lt_fixedIntervalGrowthBase {u v : ℝ}
 
 /-- Source-transparent Phase 6.1 estimate: the compact maximum on `[-1,1]`
 is at most an explicit fixed base to the polynomial degree times the compact
-maximum on the fixed nondegenerate subinterval `[u,v]`.-/
+maximum on the fixed nondegenerate subinterval `[u,v]`.
+@isnad1 id=le.3h3v.s6.f87bbb6e19c4 from=translated src=- shape=15bcf9d8 vocab=2000c970
+-/
 theorem polyMaxIcc_neg_one_one_le_growthBase_pow_mul
     (p : ℝ[X]) {u v : ℝ}
     (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1) :
@@ -450,7 +507,9 @@ theorem polyMaxIcc_neg_one_one_le_growthBase_pow_mul
   exact abs_eval_le_growthBase_pow_mul_polyMaxIcc p hu huv hv ht
 
 /-- Existential form matching the Phase 6.1 planning contract.  The witness
-is explicitly `4 * exp 1 / (v-u)` and is independent of the polynomial.-/
+is explicitly `4 * exp 1 / (v-u)` and is independent of the polynomial.
+@isnad1 id=ex.3h2v.s6.4c8ca33a7dde from=translated src=- shape=fef077cf vocab=21a999ff
+-/
 theorem exists_fixedInterval_growthBase {u v : ℝ}
     (hu : -1 ≤ u) (huv : u < v) (hv : v ≤ 1) :
     ∃ C : ℝ, 1 < C ∧ ∀ p : ℝ[X],

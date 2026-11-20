@@ -25,7 +25,9 @@ noncomputable section
 
 /-- A compact set in the finite-dimensional target has a uniform norm
 bound.  This small wrapper keeps the contradiction in the properness proof
-explicit.-/
+explicit.
+@isnad1 id=ex.1h2v.s6.6c4a51991933 from=translated src=- shape=e54f7435 vocab=295b8477
+-/
 lemma exists_norm_bound_of_isCompact {d : ℕ} {K : Set (Fin d → ℝ)}
     (hK : IsCompact K) :
     ∃ C : ℝ, ∀ y ∈ K, ‖y‖ ≤ C :=
@@ -36,7 +38,9 @@ lemma exists_norm_bound_of_isCompact {d : ℕ} {K : Set (Fin d → ℝ)}
 Continuity is used only to show that the limit of a convergent endpoint-array
 subsequence remains in the preimage of the closed compact target set.  The
 existence of the subsequence comes from the checked sequential boundary
-escape theorem in `Boundary`.-/
+escape theorem in `Boundary`.
+@isnad1 id=iscompac.2h4v.s6.e5c8f1e156dc from=translated src=- shape=f3934b01 vocab=582134b7
+-/
 theorem isCompact_preimage_gapDifference_of_continuous
     {d : ℕ} {A B : ℝ}
     (hcont : Continuous
@@ -93,7 +97,9 @@ theorem isCompact_preimage_gapDifference_of_continuous
 
 /-- The promised one-line packaging: once continuity of gap heights (and
 hence of `gapDifference`) is available, the de Boor--Pinkus difference map is
-proper.-/
+proper.
+@isnad1 id=isproper.1h3v.s6.c7383b9199df from=translated src=- shape=bd438285 vocab=01e449ca
+-/
 theorem gapDifference_isProperMap_of_continuous
     {d : ℕ} {A B : ℝ}
     (hcont : Continuous
@@ -112,7 +118,9 @@ def GapDifferenceContinuityStatement (d : ℕ) (A B : ℝ) : Prop :=
   Continuous (gapDifference : EndpointArray d A B → Fin d → ℝ)
 
 /-- Continuity-to-properness packaging in the exact project-level proposition
-language reserved by `Boundary`.-/
+language reserved by `Boundary`.
+@isnad1 id=gapdiffe.1h3v.s3.6a1dcf0c2dab from=translated src=- shape=1802f65d vocab=72e775e0
+-/
 theorem gapDifference_topologicalProperness_of_continuity
     {d : ℕ} {A B : ℝ} :
     GapDifferenceContinuityStatement d A B →

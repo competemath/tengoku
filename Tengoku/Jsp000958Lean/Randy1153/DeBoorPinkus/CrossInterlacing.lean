@@ -27,6 +27,9 @@ noncomputable section
 def gapPairParity {n : ℕ} (g h : Fin (n - 1)) : ℝ :=
   (-1 : ℝ) ^ (h.val - g.val)
 
+/--
+@isnad1 id=or.0h3v.s5.d30e6a4d33bf from=translated src=- shape=baea1d32 vocab=7f5ed9cc
+-/
 lemma gapPairParity_eq_one_or_neg_one {n : ℕ} (g h : Fin (n - 1)) :
     gapPairParity g h = 1 ∨ gapPairParity g h = -1 := by
   rw [gapPairParity]
@@ -37,12 +40,17 @@ lemma gapPairParity_eq_one_or_neg_one {n : ℕ} (g h : Fin (n - 1)) :
       rw [pow_succ]
       rcases ih with ih | ih <;> simp [ih]
 
+/--
+@isnad1 id=eq.0h3v.s5.aa27f222b2d0 from=translated src=- shape=a5e0973e vocab=90c44203
+-/
 @[simp]
 lemma sq_gapPairParity {n : ℕ} (g h : Fin (n - 1)) :
     gapPairParity g h ^ 2 = 1 := by
   rcases gapPairParity_eq_one_or_neg_one g h with hp | hp <;> simp [hp]
 
-/-- Coefficient relation underlying both source combinations.-/
+/-- Coefficient relation underlying both source combinations.
+@isnad1 id=eq.1h4v.s7.3bc43d651f4d from=translated src=- shape=62341ff2 vocab=3d08b8ba
+-/
 lemma gapPairParity_mul_gapCoefficient {n : ℕ} (g h : Fin (n - 1))
     (hgh : g < h) (k : Fin n) :
     gapPairParity g h * gapCoefficient h k =
@@ -87,6 +95,9 @@ def gapSumCombination {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) : ℝ[X] :=
   gapPolynomial nodes g + C (gapPairParity g h) * gapPolynomial nodes h
 
+/--
+@isnad1 id=eq.1h5v.s7.c73353e9dae1 from=translated src=- shape=aba0982f vocab=1318e39c
+-/
 lemma gapDifferenceCombination_eval_node {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (k : Fin n) :
     (gapDifferenceCombination nodes g h).eval (nodes.point k) =
@@ -97,6 +108,9 @@ lemma gapDifferenceCombination_eval_node {n : ℕ} (nodes : OrderedNodes n)
     gapPairParity_mul_gapCoefficient g h hgh k]
   split_ifs <;> ring
 
+/--
+@isnad1 id=eq.1h5v.s7.94cc5c0bcf6e from=translated src=- shape=a744b75b vocab=ca0ece39
+-/
 lemma gapSumCombination_eval_node {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (k : Fin n) :
     (gapSumCombination nodes g h).eval (nodes.point k) =
@@ -107,6 +121,9 @@ lemma gapSumCombination_eval_node {n : ℕ} (nodes : OrderedNodes n)
     gapPairParity_mul_gapCoefficient g h hgh k]
   split_ifs <;> ring
 
+/--
+@isnad1 id=le.0h4v.s6.8c06b042492c from=translated src=- shape=7233ee05 vocab=8db3aefd
+-/
 lemma degree_gapDifferenceCombination_le {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) :
     (gapDifferenceCombination nodes g h).degree ≤ (n - 1 : ℕ) := by
@@ -116,6 +133,9 @@ lemma degree_gapDifferenceCombination_le {n : ℕ} (nodes : OrderedNodes n)
   · exact (degree_mul_le _ _).trans <| by
       simpa using add_le_add degree_C_le (degree_gapPolynomial_le nodes h)
 
+/--
+@isnad1 id=le.0h4v.s6.166e2548df0c from=translated src=- shape=7233ee05 vocab=73e71c3c
+-/
 lemma degree_gapSumCombination_le {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) :
     (gapSumCombination nodes g h).degree ≤ (n - 1 : ℕ) := by
@@ -125,6 +145,9 @@ lemma degree_gapSumCombination_le {n : ℕ} (nodes : OrderedNodes n)
   · exact (degree_mul_le _ _).trans <| by
       simpa using add_le_add degree_C_le (degree_gapPolynomial_le nodes h)
 
+/--
+@isnad1 id=ne.1h4v.s6.709f5850c51f from=translated src=- shape=a155ddbd vocab=79718305
+-/
 lemma gapDifferenceCombination_ne_zero {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     gapDifferenceCombination nodes g h ≠ 0 := by
@@ -141,7 +164,9 @@ lemma gapDifferenceCombination_ne_zero {n : ℕ} (nodes : OrderedNodes n)
   exact (mul_ne_zero htwo hcoeff) heval.symm
 
 /-- The difference combination has a root in every gap strictly between
-`g` and `h`; these are the non-nodal roots in the source count for `G₁`.-/
+`g` and `h`; these are the non-nodal roots in the source count for `G₁`.
+@isnad1 id=ex.3h5v.s7.05674a852fbf from=translated src=- shape=d81a4e40 vocab=15e491e0
+-/
 theorem exists_gapDifferenceCombination_root_in_middleGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1))
     (hgh : g < h) (hgq : g < q) (hqh : q < h) :
@@ -194,12 +219,18 @@ def gapDifferenceRootPoint {n : ℕ} (nodes : OrderedNodes n)
     Classical.choose (exists_gapDifferenceCombination_root_in_middleGap
       nodes g h q hgh (by omega) (by omega))
 
+/--
+@isnad1 id=eq.2h5v.s7.56d45ec87c2d from=translated src=- shape=df890167 vocab=27abcef8
+-/
 lemma gapDifferenceRootPoint_eq_left_of_le {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : Fin (n - 1))
     (hqg : q.val ≤ g.val) :
     gapDifferenceRootPoint nodes g h hgh q = nodes.point (gapLeftIndex q) := by
   simp [gapDifferenceRootPoint, hqg]
 
+/--
+@isnad1 id=eq.2h5v.s7.8b191a0d98cc from=translated src=- shape=a6caaf47 vocab=66db074d
+-/
 lemma gapDifferenceRootPoint_eq_right_of_le {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : Fin (n - 1))
     (hhq : h.val ≤ q.val) :
@@ -207,6 +238,9 @@ lemma gapDifferenceRootPoint_eq_right_of_le {n : ℕ} (nodes : OrderedNodes n)
   have hnqg : ¬q.val ≤ g.val := by omega
   simp [gapDifferenceRootPoint, hnqg, hhq]
 
+/--
+@isnad1 id=mem.3h5v.s7.003f12252bfe from=translated src=- shape=181d934a vocab=413d6ef6
+-/
 lemma gapDifferenceRootPoint_mem_openGap_of_between {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : Fin (n - 1)) (hgq : g < q) (hqh : q < h) :
@@ -217,6 +251,9 @@ lemma gapDifferenceRootPoint_mem_openGap_of_between {n : ℕ}
   exact (Classical.choose_spec (exists_gapDifferenceCombination_root_in_middleGap
     nodes g h q hgh hgq hqh)).1
 
+/--
+@isnad1 id=eq.1h5v.s6.166f8aafb53a from=translated src=- shape=079d0287 vocab=eb7d107e
+-/
 lemma gapDifferenceCombination_eval_rootPoint {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : Fin (n - 1)) :
@@ -236,6 +273,9 @@ lemma gapDifferenceCombination_eval_rootPoint {n : ℕ}
       exact (Classical.choose_spec (exists_gapDifferenceCombination_root_in_middleGap
         nodes g h q hgh hgq hqh)).2
 
+/--
+@isnad1 id=mem.1h5v.s6.c38ed522c54d from=translated src=- shape=bb59eeca vocab=e0fa15a6
+-/
 lemma gapDifferenceRootPoint_mem_closedGap {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : Fin (n - 1)) :
     gapDifferenceRootPoint nodes g h hgh q ∈ closedGap nodes q := by
@@ -251,6 +291,9 @@ lemma gapDifferenceRootPoint_mem_closedGap {n : ℕ} (nodes : OrderedNodes n)
         nodes g h hgh q hgq hqh
       exact ⟨hopen.1.le, hopen.2.le⟩
 
+/--
+@isnad1 id=lt.2h5v.s7.5f4ae6a01ccf from=translated src=- shape=547f8f07 vocab=3b10f4d6
+-/
 lemma gapDifferenceRootPoint_lt_right_of_lt {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : Fin (n - 1))
     (hqh : q < h) :
@@ -261,6 +304,9 @@ lemma gapDifferenceRootPoint_lt_right_of_lt {n : ℕ} (nodes : OrderedNodes n)
   · have hgq : g < q := Fin.lt_def.mpr (Nat.lt_of_not_ge hqg)
     exact (gapDifferenceRootPoint_mem_openGap_of_between nodes g h hgh q hgq hqh).2
 
+/--
+@isnad1 id=lt.2h5v.s7.db2be32a8a71 from=translated src=- shape=cf5f7821 vocab=2c67d293
+-/
 lemma left_lt_gapDifferenceRootPoint_of_lt {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : Fin (n - 1))
     (hgq : g < q) :
@@ -271,6 +317,9 @@ lemma left_lt_gapDifferenceRootPoint_of_lt {n : ℕ} (nodes : OrderedNodes n)
   · have hqh : q < h := Fin.lt_def.mpr (Nat.lt_of_not_ge hhq)
     exact (gapDifferenceRootPoint_mem_openGap_of_between nodes g h hgh q hgq hqh).1
 
+/--
+@isnad1 id=strictmo.1h4v.s6.3d20ecb65f35 from=translated src=- shape=0fe3390d vocab=9bf540c9
+-/
 lemma gapDifferenceRootPoint_strictMono {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     StrictMono (gapDifferenceRootPoint nodes g h hgh) := by
@@ -298,7 +347,9 @@ lemma gapDifferenceRootPoint_strictMono {n : ℕ} (nodes : OrderedNodes n)
         left_lt_gapDifferenceRootPoint_of_lt nodes g h hgh r hgr
 
 /-- Sharp root count for the source difference combination: its `n-1`
-listed roots exhaust the multiset, so all are simple.-/
+listed roots exhaust the multiset, so all are simple.
+@isnad1 id=eq.1h4v.s7.4cd0e9612db2 from=translated src=- shape=c5cd7c77 vocab=140173ab
+-/
 lemma roots_gapDifferenceCombination {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     (gapDifferenceCombination nodes g h).roots =
@@ -322,6 +373,9 @@ lemma roots_gapDifferenceCombination {n : ℕ} (nodes : OrderedNodes n)
     exact hnatDegree
   · exact gapDifferenceCombination_ne_zero nodes g h hgh
 
+/--
+@isnad1 id=ne.1h4v.s6.95a0260870e4 from=translated src=- shape=a155ddbd vocab=a599d5d2
+-/
 lemma gapSumCombination_ne_zero {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     gapSumCombination nodes g h ≠ 0 := by
@@ -337,7 +391,9 @@ lemma gapSumCombination_ne_zero {n : ℕ} (nodes : OrderedNodes n)
   exact (mul_ne_zero htwo hcoeff) heval.symm
 
 /-- The sum combination has a root in every nodal gap outside the closed
-index block from `g` through `h`.-/
+index block from `g` through `h`.
+@isnad1 id=ex.2h5v.s7.ceaf35d09c8a from=translated src=- shape=c61c2cff vocab=b51c9f85
+-/
 theorem exists_gapSumCombination_root_in_outerGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1))
     (hgh : g < h) (hq : q < g ∨ h < q) :
@@ -394,6 +450,9 @@ def gapSumRootPoint {n : ℕ} (nodes : OrderedNodes n)
   else
     nodes.point (gapRightIndex q.1)
 
+/--
+@isnad1 id=mem.2h5v.s8.e6954d0217df from=translated src=- shape=85d3bb0f vocab=dfd4b038
+-/
 lemma gapSumRootPoint_mem_openGap_of_outer {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : OtherGapIndex h) (hq : q.1 < g ∨ h < q.1) :
@@ -407,6 +466,9 @@ lemma gapSumRootPoint_mem_openGap_of_outer {n : ℕ}
     exact (Classical.choose_spec (exists_gapSumCombination_root_in_outerGap
       nodes g h q.1 hgh (Or.inr hhq))).1
 
+/--
+@isnad1 id=eq.3h5v.s8.2bb79d54f4d2 from=translated src=- shape=a7c61416 vocab=3d00da24
+-/
 lemma gapSumRootPoint_eq_right_of_between {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : OtherGapIndex h) (hgq : g ≤ q.1) (hqh : q.1 < h) :
@@ -415,6 +477,9 @@ lemma gapSumRootPoint_eq_right_of_between {n : ℕ}
   have hnhq : ¬h < q.1 := not_lt.mpr hqh.le
   simp [gapSumRootPoint, hnqg, hnhq]
 
+/--
+@isnad1 id=eq.1h5v.s6.0f99de0a854c from=translated src=- shape=06f22eee vocab=4824b8fc
+-/
 lemma gapSumCombination_eval_rootPoint {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : OtherGapIndex h) :
@@ -439,6 +504,9 @@ lemma gapSumCombination_eval_rootPoint {n : ℕ}
         intro h
         rcases h with h | h <;> omega
 
+/--
+@isnad1 id=mem.1h5v.s7.0de4ec76ec2a from=translated src=- shape=519a6d7f vocab=1447195e
+-/
 lemma gapSumRootPoint_mem_closedGap {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (q : OtherGapIndex h) :
     gapSumRootPoint nodes g h hgh q ∈ closedGap nodes q.1 := by
@@ -455,12 +523,18 @@ lemma gapSumRootPoint_mem_closedGap {n : ℕ} (nodes : OrderedNodes n)
       rw [gapSumRootPoint_eq_right_of_between nodes g h hgh q hgq hqh]
       exact ⟨(gap_left_lt_right nodes q.1).le, le_rfl⟩
 
+/--
+@isnad1 id=lt.2h5v.s8.750b82e3362a from=translated src=- shape=ad475426 vocab=16736798
+-/
 lemma gapSumRootPoint_lt_right_of_outer {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : OtherGapIndex h) (hq : q.1 < g ∨ h < q.1) :
     gapSumRootPoint nodes g h hgh q < nodes.point (gapRightIndex q.1) :=
   (gapSumRootPoint_mem_openGap_of_outer nodes g h hgh q hq).2
 
+/--
+@isnad1 id=lt.2h5v.s7.9c16cbc2ceed from=translated src=- shape=4673e267 vocab=d70648d6
+-/
 lemma left_lt_gapSumRootPoint_of_g_le {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h)
     (q : OtherGapIndex h) (hgq : g ≤ q.1) :
@@ -472,6 +546,9 @@ lemma left_lt_gapSumRootPoint_of_g_le {n : ℕ}
     rw [gapSumRootPoint_eq_right_of_between nodes g h hgh q hgq hqh]
     exact gap_left_lt_right nodes q.1
 
+/--
+@isnad1 id=strictmo.1h4v.s7.a9f96d7d5d9e from=translated src=- shape=452895b7 vocab=90264592
+-/
 lemma gapSumRootPoint_strictMono {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     StrictMono (gapSumRootPoint nodes g h hgh) := by
@@ -512,7 +589,9 @@ lemma gapSumRootPoint_strictMono {n : ℕ} (nodes : OrderedNodes n)
 
 /-- The source sum combination has at least `n-2` distinct real roots.
 Together with its degree bound, this leaves exactly one possible additional
-degree/multiplicity slot.-/
+degree/multiplicity slot.
+@isnad1 id=le.1h4v.s6.1f94aa941fbb from=translated src=- shape=9b54ac45 vocab=69ad1416
+-/
 lemma sub_two_le_card_gapSumCombination_roots_toFinset {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h) :
     n - 2 ≤ (gapSumCombination nodes g h).roots.toFinset.card := by
@@ -528,6 +607,9 @@ lemma sub_two_le_card_gapSumCombination_roots_toFinset {n : ℕ}
       (gapSumRootPoint_strictMono nodes g h hgh).injective
         (congrArg Subtype.val heq))
 
+/--
+@isnad1 id=le.1h4v.s6.c63b4163118e from=translated src=- shape=076b00ce vocab=90f3c0e9
+-/
 lemma natDegree_gapSumCombination_le_sub_one {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h) :
     (gapSumCombination nodes g h).natDegree ≤ n - 1 := by
@@ -536,7 +618,9 @@ lemma natDegree_gapSumCombination_le_sub_one {n : ℕ}
     (gapSumCombination_ne_zero nodes g h hgh)] at hdegree
   exact_mod_cast hdegree
 
-/-- Exact one-slot budget for the source sum polynomial's real roots.-/
+/-- Exact one-slot budget for the source sum polynomial's real roots.
+@isnad1 id=le.1h4v.s6.0787dc96ba3d from=translated src=- shape=7522593e vocab=9d76086f
+-/
 lemma card_gapSumCombination_roots_le_toFinset_card_add_one {n : ℕ}
     (nodes : OrderedNodes n) (g h : Fin (n - 1)) (hgh : g < h) :
     (gapSumCombination nodes g h).roots.card ≤
@@ -629,7 +713,9 @@ private lemma ne_gapSumRootPoint_of_mem_middleGap {n : ℕ}
 /-- The parity step in the source proof of `(5f)`: after factoring the
 `n-2` listed roots from the sum combination, its remaining linear-or-
 constant quotient has no root in the middle block.  Consequently the sum
-combination has no root in any open nodal gap strictly inside that block.-/
+combination has no root in any open nodal gap strictly inside that block.
+@isnad1 id=not.4h6v.s7.af0491305a31 from=translated src=- shape=34698d37 vocab=61bd252b
+-/
 theorem not_isRoot_gapSumCombination_of_mem_middleGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hgq : g ≤ q) (hqh : q < h) {x : ℝ} (hx : x ∈ openGap nodes q) :
@@ -875,7 +961,9 @@ private lemma ne_gapDifferenceRootPoint_of_mem_outerGap {n : ℕ}
 
 /-- The exact `n-1` root count for the difference combination rules out any
 interior root in an outer shared nodal gap.  These are precisely the gaps
-used for source `(5a--e)`.-/
+used for source `(5a--e)`.
+@isnad1 id=not.3h6v.s7.82531f87c7d4 from=translated src=- shape=c3ba89d8 vocab=3bc7a4c6
+-/
 theorem not_isRoot_gapDifferenceCombination_of_mem_outerGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hq : q < g ∨ h < q) {x : ℝ} (hx : x ∈ openGap nodes q) :
@@ -1125,7 +1213,9 @@ private theorem exists_gapSumFactorData {n : ℕ} (nodes : OrderedNodes n)
   · simpa only [P, D] using hQ
   · simpa only [a, b] using hQevalProduct
 
-/-- Every internal nodal root listed for the sum combination is simple.-/
+/-- Every internal nodal root listed for the sum combination is simple.
+@isnad1 id=eq.3h5v.s7.e91714575d70 from=translated src=- shape=23da4d65 vocab=11cac82e
+-/
 theorem rootMultiplicity_gapSumCombination_internal_node {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hgq : g ≤ q) (hqh : q < h) :
@@ -1210,7 +1300,9 @@ private lemma card_filter_between_otherGapIndex {n : ℕ}
     _ = (Finset.Ico g u).card := congrArg Finset.card himage
     _ = u.val - g.val := by simp
 
-/-- Source `(5f)` sign on every middle gap.-/
+/-- Source `(5f)` sign on every middle gap.
+@isnad1 id=lt.4h6v.s7.1d6b4c791ab4 from=translated src=- shape=bfb53fc5 vocab=986a6d44
+-/
 theorem gapSumCombination_sign_middleGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hgq : g ≤ q) (hqh : q < h) {x : ℝ} (hx : x ∈ openGap nodes q) :
@@ -1436,7 +1528,9 @@ private lemma card_filter_right_difference_roots {n : ℕ}
   rw [heq]
   simp
 
-/-- Source `(5a--b)` sign on every shared gap to the left of the block.-/
+/-- Source `(5a--b)` sign on every shared gap to the left of the block.
+@isnad1 id=lt.3h6v.s7.b82d0090ce39 from=translated src=- shape=29c65e41 vocab=8e066329
+-/
 theorem gapDifferenceCombination_sign_leftGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hqg : q < g) {x : ℝ} (hx : x ∈ openGap nodes q) :
@@ -1545,7 +1639,9 @@ theorem gapDifferenceCombination_sign_leftGap {n : ℕ}
   rw [hPy] at htotal
   nlinarith
 
-/-- Source `(5c--e)` sign on every shared gap to the right of the block.-/
+/-- Source `(5c--e)` sign on every shared gap to the right of the block.
+@isnad1 id=lt.3h6v.s7.f2a8aebde629 from=translated src=- shape=8342a9fc vocab=8e066329
+-/
 theorem gapDifferenceCombination_sign_rightGap {n : ℕ}
     (nodes : OrderedNodes n) (g h q : Fin (n - 1)) (hgh : g < h)
     (hhq : h < q) {x : ℝ} (hx : x ∈ openGap nodes q) :
@@ -1654,7 +1750,9 @@ theorem gapDifferenceCombination_sign_rightGap {n : ℕ}
   nlinarith
 
 /-- Before its unique root in another gap, a gap polynomial has the sign of
-its left endpoint value.-/
+its left endpoint value.
+@isnad1 id=lt.2h5v.s7.08e689a380c7 from=translated src=- shape=ea8f203f vocab=c7ea17a1
+-/
 lemma gapPolynomial_sign_before_otherGapRoot {n : ℕ}
     (nodes : OrderedNodes n) (i : Fin (n - 1)) (q : OtherGapIndex i)
     {x : ℝ} (hx : x ∈ openGap nodes q.1)
@@ -1685,7 +1783,9 @@ lemma gapPolynomial_sign_before_otherGapRoot {n : ℕ}
   rwa [hpa] at hprod
 
 /-- After its unique root in another gap, a gap polynomial has the sign of
-its right endpoint value, the negative of its left endpoint value.-/
+its right endpoint value, the negative of its left endpoint value.
+@isnad1 id=lt.2h5v.s7.8b9dd44a698d from=translated src=- shape=c7aff935 vocab=29b8a5e8
+-/
 lemma gapPolynomial_sign_after_otherGapRoot {n : ℕ}
     (nodes : OrderedNodes n) (i : Fin (n - 1)) (q : OtherGapIndex i)
     {x : ℝ} (hx : x ∈ openGap nodes q.1)
@@ -1736,7 +1836,9 @@ def SourceCombinationSignTable {n : ℕ} (nodes : OrderedNodes n)
       (gapSumCombination nodes g h).eval x)
 
 /-- The source sign table is inhabited by the checked root-factor and parity
-arguments above.-/
+arguments above.
+@isnad1 id=sourceco.1h4v.s6.37423e313641 from=translated src=- shape=987fe5be vocab=b412d703
+-/
 theorem sourceCombinationSignTable {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     SourceCombinationSignTable nodes g h := by
@@ -1764,7 +1866,9 @@ def StrictCrossRootOrder {n : ℕ} (nodes : OrderedNodes n)
     otherGapRoot nodes g ⟨q, ne_of_gt hgq⟩ <
       otherGapRoot nodes h ⟨q, ne_of_lt hqh⟩)
 
-/-- Source Lemma 1 in stable common-gap form.-/
+/-- Source Lemma 1 in stable common-gap form.
+@isnad1 id=strictcr.1h4v.s6.cf9ea0429992 from=translated src=- shape=30169ffc vocab=828e7eb7
+-/
 theorem strictCrossRootOrder {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) :
     StrictCrossRootOrder nodes g h hgh := by

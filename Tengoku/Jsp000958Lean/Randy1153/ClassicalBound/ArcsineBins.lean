@@ -27,13 +27,17 @@ namespace ClassicalBound
 
 noncomputable section
 
-/-- The clipped scale is even.-/
+/-- The clipped scale is even.
+@isnad1 id=eq.0h2v.s3.59264f819629 from=translated src=- shape=5a76020b vocab=580c641b
+-/
 lemma clippedArcsineScale_neg (d : ℕ) (x : ℝ) :
     clippedArcsineScale d (-x) = clippedArcsineScale d x := by
   simp [clippedArcsineScale]
 
 /-- In the angle coordinate the unclipped square-root scale is exactly
-the sine.-/
+the sine.
+@isnad1 id=eq.2h2v.s5.6a00a909e9bb from=translated src=- shape=92604ac7 vocab=c06c1755
+-/
 lemma clippedArcsineScale_cos {d : ℕ} {θ : ℝ}
     (hθ0 : 0 ≤ θ) (hθpi : θ ≤ Real.pi) :
     clippedArcsineScale d (Real.cos θ) =
@@ -41,7 +45,9 @@ lemma clippedArcsineScale_cos {d : ℕ} {θ : ℝ}
   rw [clippedArcsineScale, ← Real.sin_eq_sqrt_one_sub_cos_sq hθ0 hθpi]
 
 /-- The clipped scale along the cosine coordinate is monotone on the
-right half-angle interval.-/
+right half-angle interval.
+@isnad1 id=le.3h3v.s5.bacea09be055 from=translated src=- shape=e102f0de vocab=99097231
+-/
 lemma clippedArcsineScale_cos_mono {d : ℕ} {u v : ℝ}
     (hu : 0 ≤ u) (hv : v ≤ Real.pi / 2) (huv : u ≤ v) :
     clippedArcsineScale d (Real.cos u) ≤
@@ -53,7 +59,9 @@ lemma clippedArcsineScale_cos_mono {d : ℕ} {u v : ℝ}
       (by linarith [Real.pi_pos]) hv huv)
     le_rfl
 
-/-- Sharp elementary angle estimate for one cosine interval.-/
+/-- Sharp elementary angle estimate for one cosine interval.
+@isnad1 id=le.3h2v.s6.efb823bd1adf from=translated src=- shape=b3227aff vocab=ccf1c8d2
+-/
 lemma cos_sub_cos_le_sin_mul_sub {u v : ℝ}
     (hu : 0 ≤ u) (hv : v ≤ Real.pi / 2) (huv : u ≤ v) :
     Real.cos u - Real.cos v ≤ Real.sin v * (v - u) := by
@@ -85,7 +93,9 @@ lemma cos_sub_cos_le_sin_mul_sub {u v : ℝ}
     _ = Real.sin v * (v - u) := by ring
 
 /-- One clipped-scale angle bin has length-over-lower-scale bounded by q
-times its angle width.-/
+times its angle width.
+@isnad1 id=le.4h4v.s6.41c2a062627f from=translated src=- shape=262cd60b vocab=b1468965
+-/
 theorem cosBin_length_div_scale_le {d : ℕ} {q u v : ℝ}
     (hu : 0 ≤ u) (hv : v ≤ Real.pi / 2) (huv : u ≤ v)
     (hratio : clippedArcsineScale d (Real.cos v) ≤
@@ -116,16 +126,25 @@ def angleBinLeft {K : ℕ} (i : Fin K) : Fin (K + 1) :=
 def angleBinRight {K : ℕ} (i : Fin K) : Fin (K + 1) :=
   ⟨i.val + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.f130385676f5 from=translated src=- shape=278ca375 vocab=967be881
+-/
 @[simp]
 lemma angleBinLeft_val {K : ℕ} (i : Fin K) :
     (angleBinLeft i).val = i.val :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.82d687f96f07 from=translated src=- shape=b42a634a vocab=57366a12
+-/
 @[simp]
 lemma angleBinRight_val {K : ℕ} (i : Fin K) :
     (angleBinRight i).val = i.val + 1 :=
   rfl
 
+/--
+@isnad1 id=lt.0h2v.s5.607446d11636 from=translated src=- shape=af1341c4 vocab=28638af5
+-/
 lemma angleBinLeft_lt_right {K : ℕ} (i : Fin K) :
     angleBinLeft i < angleBinRight i := by
   simp [Fin.lt_def]
@@ -160,12 +179,18 @@ structure HalfArcsinePartition (d K : ℕ) (q : ℝ) where
 
 namespace HalfArcsinePartition
 
+/--
+@isnad1 id=le.0h5v.s5.272ceecfb984 from=translated src=- shape=e32c4ca1 vocab=71eb085f
+-/
 lemma angle_nonneg {d K : ℕ} {q : ℝ}
     (P : HalfArcsinePartition d K q) (i : Fin (K + 1)) :
     0 ≤ P.angle i := by
   rw [← P.angle_zero]
   exact P.monotone_angle (by simp [Fin.le_def])
 
+/--
+@isnad1 id=le.0h5v.s5.460126dd5e27 from=translated src=- shape=0e5bfda7 vocab=6df91c92
+-/
 lemma angle_le_pi_div_two {d K : ℕ} {q : ℝ}
     (P : HalfArcsinePartition d K q) (i : Fin (K + 1)) :
     P.angle i ≤ Real.pi / 2 := by
@@ -174,13 +199,18 @@ lemma angle_le_pi_div_two {d K : ℕ} {q : ℝ}
   simp only [Fin.le_def]
   omega
 
+/--
+@isnad1 id=le.0h5v.s5.330bc862855c from=translated src=- shape=7aacb56c vocab=0bc41ba3
+-/
 lemma angle_left_le_right {d K : ℕ} {q : ℝ}
     (P : HalfArcsinePartition d K q) (i : Fin K) :
     P.angle (angleBinLeft i) ≤ P.angle (angleBinRight i) :=
   P.monotone_angle (angleBinLeft_lt_right i).le
 
 /-- Every angle inside one bin has clipped scale between the left endpoint
-scale and q times that endpoint scale.-/
+scale and q times that endpoint scale.
+@isnad1 id=and.1h6v.s6.81d8f93c3e99 from=translated src=- shape=3795be41 vocab=8f8a3683
+-/
 theorem scale_oscillation {d K : ℕ} {q θ : ℝ}
     (P : HalfArcsinePartition d K q) (i : Fin K)
     (hθ : θ ∈ Set.Icc
@@ -196,7 +226,9 @@ theorem scale_oscillation {d K : ℕ} {q θ : ℝ}
   · exact (clippedArcsineScale_cos_mono
       (hleft0.trans hθ.1) hrightpi hθ.2).trans (P.scale_ratio i)
 
-/-- The angle widths telescope exactly across the half partition.-/
+/-- The angle widths telescope exactly across the half partition.
+@isnad1 id=eq.0h4v.s5.41cfd6089e5a from=translated src=- shape=441c507f vocab=fbf0e3bc
+-/
 lemma sum_angleBinWidth
     {d K : ℕ} {q : ℝ} (P : HalfArcsinePartition d K q) :
     (∑ i : Fin K, angleBinWidth P.angle i) = Real.pi / 2 := by
@@ -222,7 +254,9 @@ lemma sum_angleBinWidth
   · apply Fin.ext
     exact (Nat.min_eq_left (by omega)).symm
 
-/-- Exact q*pi/2 length-over-scale budget on the nonnegative half.-/
+/-- Exact q*pi/2 length-over-scale budget on the nonnegative half.
+@isnad1 id=le.0h4v.s6.8723483a299b from=translated src=- shape=a1e81dfb vocab=6badbbd7
+-/
 theorem sum_cosineBinLength_div_lowerScale_le
     {d K : ℕ} {q : ℝ} (P : HalfArcsinePartition d K q) :
     (∑ i : Fin K,
@@ -243,7 +277,9 @@ theorem sum_cosineBinLength_div_lowerScale_le
       rw [← Finset.mul_sum, P.sum_angleBinWidth]
 
 /-- After reflection, the two half-partitions have total budget at most
-q*pi.-/
+q*pi.
+@isnad1 id=le.0h4v.s6.596aa3af4559 from=translated src=- shape=a5e05598 vocab=6badbbd7
+-/
 theorem two_mul_sum_cosineBinLength_div_lowerScale_le
     {d K : ℕ} {q : ℝ} (P : HalfArcsinePartition d K q) :
     2 * (∑ i : Fin K,

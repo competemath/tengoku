@@ -66,7 +66,9 @@ private lemma updateRow_tailMatrix_eq_permuted_deletedRow
       rw [Fin.succAbove_succ_of_lt k i hki]
 
 /-- Replacing row `k` of the tail matrix by row zero is the deleted-`k+1`
-minor, with exactly the row-cycle sign used in source equation (8).-/
+minor, with exactly the row-cycle sign used in source equation (8).
+@isnad1 id=eq.0h3v.s7.d313d9e50a0d from=translated src=- shape=f18295c2 vocab=63dd35c7
+-/
 theorem det_updateRow_tailMatrix
     {d : ℕ} (H : Matrix (Fin (d + 1)) (Fin d) ℝ) (k : Fin d) :
     ((H.submatrix (0 : Fin (d + 1)).succAbove id).updateRow k (H 0)).det =

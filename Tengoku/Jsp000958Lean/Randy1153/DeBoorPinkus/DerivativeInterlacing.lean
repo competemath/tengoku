@@ -19,7 +19,9 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- Critical points occur in strict nodal-gap order.-/
+/-- Critical points occur in strict nodal-gap order.
+@isnad1 id=lt.2h4v.s6.f60c9bb52ded from=translated src=- shape=976fe94e vocab=69b53202
+-/
 lemma gapArgmax_lt_of_gap_lt {n : ℕ} (nodes : OrderedNodes n)
     (hn : 3 ≤ n) {g h : Fin (n - 1)} (hgh : g < h) :
     gapArgmax nodes g < gapArgmax nodes h := by
@@ -27,12 +29,17 @@ lemma gapArgmax_lt_of_gap_lt {n : ℕ} (nodes : OrderedNodes n)
     (gapArgmax_mem_openGap nodes hn g)
     (gapArgmax_mem_openGap nodes hn h)
 
+/--
+@isnad1 id=strictmo.1h2v.s6.f55262b6165e from=translated src=- shape=33ede4e0 vocab=f1129923
+-/
 lemma gapArgmax_strictMono {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n) :
     StrictMono (gapArgmax nodes) :=
   fun _g _h hgh => gapArgmax_lt_of_gap_lt nodes hn hgh
 
 /-- Off the removed critical point, quotient evaluation is exactly derivative
-evaluation divided by the ordered critical-point displacement.-/
+evaluation divided by the ordered critical-point displacement.
+@isnad1 id=eq.2h4v.s7.45cbaab43166 from=translated src=- shape=f50237ab vocab=ec85f10f
+-/
 lemma gapDerivativeQuotient_eval_eq_derivative_div {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) (i j : Fin (n - 1)) (hij : j ≠ i) :
     (gapDerivativeQuotient nodes i).eval (gapArgmax nodes j) =
@@ -84,7 +91,9 @@ def CrossDerivativeCriticalSignTable {n : ℕ}
 
 /-- The quotient checkerboard signs imply precisely the two oriented
 cross-derivative sign families.  This direction uses no root-interlacing
-input beyond the strict order of the chosen critical points.-/
+input beyond the strict order of the chosen critical points.
+@isnad1 id=crossder.2h2v.s4.830c2b13b464 from=translated src=- shape=6d4606ad vocab=a8f2a1f0
+-/
 lemma crossDerivativeCriticalSignTable_of_derivativeQuotientSignTable
     {n : ℕ} (nodes : OrderedNodes n) (hn : 3 ≤ n)
     (htable : DerivativeQuotientSignTable nodes) :
@@ -114,7 +123,9 @@ lemma crossDerivativeCriticalSignTable_of_derivativeQuotientSignTable
 /-- Conversely, once the finite Markov derivative signs are known, division
 by the ordered critical displacement gives the paper's quotient sign table.
 The diagonal is supplied independently by strict concavity on the owning
-gap.-/
+gap.
+@isnad1 id=derivati.2h2v.s4.fccf63463c1b from=translated src=- shape=6d4606ad vocab=a8f2a1f0
+-/
 theorem derivativeQuotientSignTable_of_crossDerivativeCriticalSignTable
     {n : ℕ} (nodes : OrderedNodes n) (hn : 4 ≤ n)
     (hcross : CrossDerivativeCriticalSignTable nodes) :
@@ -138,6 +149,9 @@ def CommonGapRootInterlacing {n : ℕ} (nodes : OrderedNodes n) : Prop :=
   ∀ (g h : Fin (n - 1)) (hgh : g < h),
     StrictCrossRootOrder nodes g h hgh
 
+/--
+@isnad1 id=commonga.0h2v.s3.b1947f190efd from=translated src=- shape=b3b449db vocab=b71a02b4
+-/
 theorem commonGapRootInterlacing {n : ℕ} (nodes : OrderedNodes n) :
     CommonGapRootInterlacing nodes :=
   fun g h hgh => strictCrossRootOrder nodes g h hgh
@@ -756,7 +770,9 @@ private lemma gapDifference_sum_residue_pos {n : ℕ}
 /-- The strict Wronskian form of the finite Markov theorem for the two
 source combinations.  In particular it covers both possible degree cases
 for `S`: the interpolation remainder removes a possible same-degree
-exterior root automatically.-/
+exterior root automatically.
+@isnad1 id=lt.1h5v.s8.8a1a81bacfad from=translated src=- shape=bea9c445 vocab=309ef40b
+-/
 theorem gapCombination_wronskian_neg {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hgh : g < h) (x : ℝ) :
     (gapDifferenceCombination nodes g h).eval x *
@@ -804,7 +820,9 @@ private lemma gapCombination_wronskian_eq_gapPolynomials {n : ℕ}
 
 /-- Source Lemma 2 in the exact oriented form required by the quotient sign
 table.  The proof specializes the checked negative Wronskian at the two
-ordered own-gap critical points.-/
+ordered own-gap critical points.
+@isnad1 id=crossder.1h2v.s4.c3968f33c807 from=translated src=- shape=88b65865 vocab=0b0426a7
+-/
 theorem crossDerivativeCriticalSignTable {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) :
     CrossDerivativeCriticalSignTable nodes := by
@@ -857,7 +875,9 @@ theorem crossDerivativeCriticalSignTable {n : ℕ}
     rwa [hparity]
 
 /-- Complete general quotient sign table, including the diagonal supplied
-by strict own-gap concavity.-/
+by strict own-gap concavity.
+@isnad1 id=derivati.1h2v.s4.62fd63ece5ca from=translated src=- shape=88b65865 vocab=062bcf22
+-/
 theorem derivativeQuotientSignTable {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) :
     DerivativeQuotientSignTable nodes :=
@@ -865,13 +885,17 @@ theorem derivativeQuotientSignTable {n : ℕ}
     (crossDerivativeCriticalSignTable nodes (by omega))
 
 /-- The diagonal half of the quotient sign table for the genuine
-multi-gap range.-/
+multi-gap range.
+@isnad1 id=lt.1h3v.s5.fc8d68d0f731 from=translated src=- shape=e64a1608 vocab=b7aeec5b
+-/
 lemma gapDerivativeQuotient_signTable_diagonal {n : ℕ}
     (nodes : OrderedNodes n) (hn : 4 ≤ n) (i : Fin (n - 1)) :
     (gapDerivativeQuotient nodes i).eval (gapArgmax nodes i) < 0 :=
   gapDerivativeQuotient_eval_gapArgmax_neg nodes hn i
 
-/-- In the three-node case the removed-critical-factor quotient is constant.-/
+/-- In the three-node case the removed-critical-factor quotient is constant.
+@isnad1 id=eq.0h2v.s5.d6d3c852ce96 from=translated src=- shape=3d385cad vocab=5bf99701
+-/
 lemma natDegree_gapDerivativeQuotient_eq_zero_of_three_nodes
     (nodes : OrderedNodes 3) (i : Fin 2) :
     (gapDerivativeQuotient nodes i).natDegree = 0 := by
@@ -880,7 +904,9 @@ lemma natDegree_gapDerivativeQuotient_eq_zero_of_three_nodes
   have hdegree := natDegree_gapPolynomial_derivative_le_one_of_three_nodes nodes i
   omega
 
-/-- The three-node quotient has the same value at every point.-/
+/-- The three-node quotient has the same value at every point.
+@isnad1 id=eq.0h4v.s5.2fe4ceb857a6 from=translated src=- shape=1604866a vocab=33addf70
+-/
 lemma gapDerivativeQuotient_eval_eq_of_three_nodes
     (nodes : OrderedNodes 3) (i : Fin 2) (x y : ℝ) :
     (gapDerivativeQuotient nodes i).eval x =
@@ -891,7 +917,9 @@ lemma gapDerivativeQuotient_eval_eq_of_three_nodes
   simp
 
 /-- For three nodes the constant critical quotient is strictly negative.
-This is the complete low-dimensional (`d=1`) sign table.-/
+This is the complete low-dimensional (`d=1`) sign table.
+@isnad1 id=lt.0h3v.s5.fb7975daf2d5 from=translated src=- shape=c53bcdc9 vocab=fb5eaa97
+-/
 lemma gapDerivativeQuotient_eval_neg_of_three_nodes
     (nodes : OrderedNodes 3) (i : Fin 2) (x : ℝ) :
     (gapDerivativeQuotient nodes i).eval x < 0 := by
@@ -927,7 +955,9 @@ lemma gapDerivativeQuotient_eval_neg_of_three_nodes
   rw [gapDerivativeQuotient_eval_eq_of_three_nodes nodes i x z]
   exact hqz
 
-/-- Complete quotient sign table in the three-node (`d=1`) case.-/
+/-- Complete quotient sign table in the three-node (`d=1`) case.
+@isnad1 id=derivati.0h1v.s3.5346fc9752ae from=translated src=- shape=9315f4f4 vocab=d0f664d2
+-/
 theorem derivativeQuotientSignTable_three_nodes (nodes : OrderedNodes 3) :
     DerivativeQuotientSignTable nodes := by
   constructor
@@ -939,7 +969,9 @@ theorem derivativeQuotientSignTable_three_nodes (nodes : OrderedNodes 3) :
       exact gapDerivativeQuotient_eval_neg_of_three_nodes nodes _ _
 
 /-- Uniform nondegenerate sign-table API.  The proof keeps the constant
-`n = 3` quotient separate from the strict-concavity `n ≥ 4` branch.-/
+`n = 3` quotient separate from the strict-concavity `n ≥ 4` branch.
+@isnad1 id=derivati.1h2v.s4.a05b6bb0fb83 from=translated src=- shape=88b65865 vocab=062bcf22
+-/
 theorem derivativeQuotientSignTable_of_three_le {n : ℕ}
     (nodes : OrderedNodes n) (hn : 3 ≤ n) :
     DerivativeQuotientSignTable nodes := by
@@ -995,7 +1027,9 @@ def SourceLemmaTwoInternalPattern {n : ℕ}
   SimpleInternalDerivativeInterlacing nodes ∧
     NoAdjacentDerivativeQuotientRoot nodes
 
-/-- The quotient is nowhere zero in the three-node case.-/
+/-- The quotient is nowhere zero in the three-node case.
+@isnad1 id=not.0h3v.s4.b897b2d3d243 from=translated src=- shape=2da7e9b7 vocab=4ecc9898
+-/
 lemma not_isRoot_gapDerivativeQuotient_of_three_nodes
     (nodes : OrderedNodes 3) (i : Fin 2) (x : ℝ) :
     ¬(gapDerivativeQuotient nodes i).IsRoot x := by
@@ -1003,25 +1037,36 @@ lemma not_isRoot_gapDerivativeQuotient_of_three_nodes
   exact ne_of_lt (gapDerivativeQuotient_eval_neg_of_three_nodes nodes i x)
 
 /-- Source Lemma 2 has no internal quotient zero when there are only two
-gaps: every critical interval touches the removed critical point.-/
+gaps: every critical interval touches the removed critical point.
+@isnad1 id=internal.0h1v.s3.c22dc032f5fc from=translated src=- shape=9315f4f4 vocab=3fadf80f
+-/
 theorem internalDerivativeInterlacing_three_nodes
     (nodes : OrderedNodes 3) :
     InternalDerivativeInterlacing nodes := by
   intro i j hfar
   fin_cases i <;> fin_cases j <;> omega
 
+/--
+@isnad1 id=simplein.0h1v.s3.a42ba797df11 from=translated src=- shape=9315f4f4 vocab=dcbbd3be
+-/
 theorem simpleInternalDerivativeInterlacing_three_nodes
     (nodes : OrderedNodes 3) :
     SimpleInternalDerivativeInterlacing nodes := by
   intro i j hfar
   fin_cases i <;> fin_cases j <;> omega
 
+/--
+@isnad1 id=noadjace.0h1v.s3.fe4fd25f8201 from=translated src=- shape=9315f4f4 vocab=0262a8ba
+-/
 theorem noAdjacentDerivativeQuotientRoot_three_nodes
     (nodes : OrderedNodes 3) :
     NoAdjacentDerivativeQuotientRoot nodes := by
   intro i j _hadj r _hr
   exact not_isRoot_gapDerivativeQuotient_of_three_nodes nodes i r
 
+/--
+@isnad1 id=sourcele.0h1v.s3.f650a50251c2 from=translated src=- shape=9315f4f4 vocab=2c8e1c36
+-/
 theorem sourceLemmaTwoInternalPattern_three_nodes
     (nodes : OrderedNodes 3) :
     SourceLemmaTwoInternalPattern nodes :=
@@ -1029,7 +1074,9 @@ theorem sourceLemmaTwoInternalPattern_three_nodes
     noAdjacentDerivativeQuotientRoot_three_nodes nodes⟩
 
 /-- In the three-node case each derivative has exactly its own critical
-point as a real zero, and the two zeros occur in strict gap order.-/
+point as a real zero, and the two zeros occur in strict gap order.
+@isnad1 id=and.0h1v.s8.dbb1dd54ea59 from=translated src=- shape=060ac024 vocab=04749157
+-/
 theorem derivativeZeros_three_nodes (nodes : OrderedNodes 3) :
     gapArgmax nodes (0 : Fin 2) < gapArgmax nodes (1 : Fin 2) ∧
     (∀ r : ℝ, (gapPolynomial nodes (0 : Fin 2)).derivative.eval r = 0 ↔
@@ -1048,6 +1095,9 @@ theorem derivativeZeros_three_nodes (nodes : OrderedNodes 3) :
     · rintro rfl
       exact gapPolynomial_derivative_eval_gapArgmax nodes (by norm_num) 1
 
+/--
+@isnad1 id=crossder.0h1v.s3.ba17af22de30 from=translated src=- shape=9315f4f4 vocab=353146bd
+-/
 theorem crossDerivativeCriticalSignTable_three_nodes
     (nodes : OrderedNodes 3) :
     CrossDerivativeCriticalSignTable nodes :=
@@ -1056,6 +1106,9 @@ theorem crossDerivativeCriticalSignTable_three_nodes
 
 /-! ### The genuine two-node exception -/
 
+/--
+@isnad1 id=eq.0h2v.s5.41a6ea78f33c from=translated src=- shape=52279d4b vocab=f0993137
+-/
 @[simp]
 lemma gapDerivativeQuotient_eq_zero_of_two_nodes
     (nodes : OrderedNodes 2) (g : Fin 1) :
@@ -1064,13 +1117,18 @@ lemma gapDerivativeQuotient_eq_zero_of_two_nodes
   simp
 
 /-- With two nodes the derivative vanishes at every real point, so there is
-no distinguished derivative zero and no strict sign table.-/
+no distinguished derivative zero and no strict sign table.
+@isnad1 id=eq.0h3v.s7.18f2bad3a686 from=translated src=- shape=bd565699 vocab=8f6f8697
+-/
 lemma gapPolynomial_derivative_eval_eq_zero_of_two_nodes
     (nodes : OrderedNodes 2) (g : Fin 1) (x : ℝ) :
     (gapPolynomial nodes g).derivative.eval x = 0 := by
   rw [gapPolynomial_derivative_eq_zero_of_two_nodes]
   simp
 
+/--
+@isnad1 id=not.0h1v.s3.e04e828baec3 from=translated src=- shape=4026175e vocab=d0f664d2
+-/
 theorem not_derivativeQuotientSignTable_two_nodes
     (nodes : OrderedNodes 2) :
     ¬DerivativeQuotientSignTable nodes := by

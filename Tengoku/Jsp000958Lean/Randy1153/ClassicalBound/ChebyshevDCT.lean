@@ -295,7 +295,9 @@ private lemma abs_chebyshevExpansion_coefficient_le_two_mul
 
 /-- Every real polynomial of natural degree at most `d`, uniformly bounded
 by a nonnegative `M` on `[-1,1]`, has the bounded Chebyshev expansion used by
-the cubic derivative argument.-/
+the cubic derivative argument.
+@isnad1 id=boundedc.3h3v.s6.c5d1f073896b from=translated src=- shape=2211103d vocab=9d67ed42
+-/
 theorem boundedChebyshevExpansion_of_natDegree_le_of_sup_le
     {d : ℕ} {p : ℝ[X]} {M : ℝ}
     (hM : 0 ≤ M) (hpdeg : p.natDegree ≤ d)

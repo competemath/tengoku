@@ -35,7 +35,9 @@ def BoundedChebyshevExpansion (d : ℕ) (p : ℝ[X]) (M : ℝ) : Prop :=
         Polynomial.C (c k) * Polynomial.Chebyshev.T ℝ (k.val : ℤ) ∧
       ∀ k : Fin (d + 1), |c k| ≤ 2 * M
 
-/-- Exact real sum of the squares `0² + ... + d²`.-/
+/-- Exact real sum of the squares `0² + ... + d²`.
+@isnad1 id=eq.0h1v.s7.b79b5179ee50 from=translated src=- shape=4bbec2e0 vocab=c4c2374b
+-/
 lemma sum_fin_cast_sq (d : ℕ) :
     (∑ k : Fin (d + 1), (k.val : ℝ) ^ 2) =
       (d : ℝ) * ((d + 1 : ℕ) : ℝ) * ((2 * d + 1 : ℕ) : ℝ) / 6 := by
@@ -49,7 +51,9 @@ lemma sum_fin_cast_sq (d : ℕ) :
       ring
 
 /-- A concrete bounded Chebyshev expansion gives the cubic derivative
-estimate on the entire source interval.-/
+estimate on the entire source interval.
+@isnad1 id=le.3h4v.s8.57e4e025e9be from=translated src=- shape=ede8f97e vocab=bfa7329b
+-/
 theorem abs_derivative_le_cubic_of_boundedChebyshevExpansion
     {d : ℕ} {p : ℝ[X]} {M x : ℝ}
     (hM : 0 ≤ M) (hx : x ∈ Set.Icc (-1 : ℝ) 1)
@@ -87,7 +91,9 @@ theorem abs_derivative_le_cubic_of_boundedChebyshevExpansion
       ring
 
 /-- The exact cubic-Chebyshev floor converts the cubic derivative estimate
-into the endpoint branch of the clipped Bernstein bound.-/
+into the endpoint branch of the clipped Bernstein bound.
+@isnad1 id=le.1h4v.s8.2caa16d10808 from=translated src=- shape=b2074cc1 vocab=00db5068
+-/
 lemma cubicChebyshevFloor_mul_abs_derivative_le_degree_mul
     {d : ℕ} {p : ℝ[X]} {M x : ℝ}
     (hcubic : |p.derivative.eval x| ≤
@@ -107,7 +113,9 @@ lemma cubicChebyshevFloor_mul_abs_derivative_le_degree_mul
       rw [cubicChebyshevFloor_mul_cubicDerivativeFactor]
     _ = (d : ℝ) * M := by ring
 
-/-- A bounded expansion supplies the floor branch directly.-/
+/-- A bounded expansion supplies the floor branch directly.
+@isnad1 id=le.3h4v.s7.a7acb7776966 from=translated src=- shape=7d964eed vocab=9f268901
+-/
 theorem cubicChebyshevFloor_mul_abs_derivative_le_of_boundedExpansion
     {d : ℕ} {p : ℝ[X]} {M x : ℝ}
     (hM : 0 ≤ M) (hx : x ∈ Set.Icc (-1 : ℝ) 1)
@@ -122,7 +130,9 @@ def RootWeightedBernsteinAt (d : ℕ) (p : ℝ[X]) (x M : ℝ) : Prop :=
 
 /-- If the bounded expansion and the root-weighted inequality are both
 provided, the two branches combine into the existing transparent clipped
-Bernstein interface.  Neither input is asserted to exist.-/
+Bernstein interface.  Neither input is asserted to exist.
+@isnad1 id=pointwis.3h4v.s5.86ff9587cfb4 from=translated src=- shape=e200486d vocab=046383b3
+-/
 theorem pointwiseClippedBernsteinAt_of_boundedExpansion_of_rootWeighted
     {d : ℕ} {p : ℝ[X]} {M x : ℝ}
     (hM : 0 ≤ M) (hexp : BoundedChebyshevExpansion d p M)

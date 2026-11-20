@@ -28,11 +28,17 @@ exactly one.-/
 def interpolationSign (x : ℝ) : ℝ :=
   if 0 ≤ x then 1 else -1
 
+/--
+@isnad1 id=eq.0h1v.s4.e100bd069591 from=translated src=- shape=38becc55 vocab=2b84eafb
+-/
 @[simp]
 lemma abs_interpolationSign (x : ℝ) : |interpolationSign x| = 1 := by
   unfold interpolationSign
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.4deda4977e58 from=translated src=- shape=9a232c61 vocab=092e654f
+-/
 lemma interpolationSign_mul_self (x : ℝ) : interpolationSign x * x = |x| := by
   unfold interpolationSign
   split_ifs with hx
@@ -47,6 +53,9 @@ def normingPolynomial {n : ℕ} (nodes : NodeFamily n) (t : ℝ) : ℝ[X] :=
   Lagrange.interpolate Finset.univ nodes.point
     (fun k ↦ interpolationSign (lagrangeFundamental nodes k t))
 
+/--
+@isnad1 id=lt.0h3v.s4.6f171d181f8b from=translated src=- shape=7a7bc91c vocab=3cc208b0
+-/
 lemma degree_normingPolynomial_lt {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
     (normingPolynomial nodes t).degree < n := by
   simpa only [normingPolynomial, Finset.card_univ, Fintype.card_fin] using
@@ -55,6 +64,9 @@ lemma degree_normingPolynomial_lt {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
       (r := fun k ↦ interpolationSign (lagrangeFundamental nodes k t))
       nodes.injective.injOn)
 
+/--
+@isnad1 id=eq.0h4v.s4.37fac33f6ef5 from=translated src=- shape=e19725a5 vocab=50c2b87b
+-/
 @[simp]
 lemma normingPolynomial_eval_node {n : ℕ} (nodes : NodeFamily n) (t : ℝ)
     (k : Fin n) :
@@ -65,12 +77,18 @@ lemma normingPolynomial_eval_node {n : ℕ} (nodes : NodeFamily n) (t : ℝ)
       (r := fun j ↦ interpolationSign (lagrangeFundamental nodes j t))
       nodes.injective.injOn (Finset.mem_univ k))
 
+/--
+@isnad1 id=eq.0h4v.s5.e4e4fc8ba29c from=translated src=- shape=0dc20a33 vocab=feca3d1c
+-/
 @[simp]
 lemma abs_normingPolynomial_eval_node {n : ℕ} (nodes : NodeFamily n) (t : ℝ)
     (k : Fin n) :
     |(normingPolynomial nodes t).eval (nodes.point k)| = 1 := by
   rw [normingPolynomial_eval_node, abs_interpolationSign]
 
+/--
+@isnad1 id=eq.0h4v.s5.ed03705f07a7 from=translated src=- shape=a49a7c94 vocab=54d71341
+-/
 lemma normingPolynomial_eval_eq_sum {n : ℕ} (nodes : NodeFamily n) (t u : ℝ) :
     (normingPolynomial nodes t).eval u =
       ∑ k : Fin n, interpolationSign (lagrangeFundamental nodes k t) *
@@ -84,7 +102,9 @@ lemma normingPolynomial_eval_eq_sum {n : ℕ} (nodes : NodeFamily n) (t u : ℝ)
     (lagrangeBasis nodes k).eval u = _
   rw [lagrangeBasis_eval]
 
-/-- The norming polynomial realizes the Lebesgue function exactly.-/
+/-- The norming polynomial realizes the Lebesgue function exactly.
+@isnad1 id=eq.0h3v.s4.640776d7a213 from=translated src=- shape=8caa6e88 vocab=83e837c0
+-/
 lemma normingPolynomial_eval_self {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
     (normingPolynomial nodes t).eval t = lebesgueFunction nodes t := by
   rw [normingPolynomial_eval_eq_sum, lebesgueFunction]
@@ -92,12 +112,17 @@ lemma normingPolynomial_eval_self {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
   intro k _
   exact interpolationSign_mul_self _
 
+/--
+@isnad1 id=le.0h3v.s4.50ecbc6b2d67 from=translated src=- shape=33fe603d vocab=39cedbf7
+-/
 lemma lebesgueFunction_nonneg {n : ℕ} (nodes : NodeFamily n) (t : ℝ) :
     0 ≤ lebesgueFunction nodes t := by
   exact Finset.sum_nonneg fun _ _ ↦ abs_nonneg _
 
 /-- At each point, the Lebesgue function is realized by a polynomial whose
-nodal absolute values are one.-/
+nodal absolute values are one.
+@isnad1 id=polynomi.2h4v.s5.152454ebda3b from=translated src=- shape=3d6ed4a7 vocab=f7b2f54b
+-/
 lemma normingPolynomial_is_certificate {n : ℕ} (nodes : NodeFamily n)
     {A t : ℝ} (ht : t ∈ Set.Icc (-1 : ℝ) 1)
     (hA : A < lebesgueFunction nodes t) :
@@ -107,7 +132,9 @@ lemma normingPolynomial_is_certificate {n : ℕ} (nodes : NodeFamily n)
   rw [normingPolynomial_eval_self, abs_of_nonneg (lebesgueFunction_nonneg nodes t)]
   exact hA
 
-/-- The polynomial certificate interface is exact, not merely sufficient.-/
+/-- The polynomial certificate interface is exact, not merely sufficient.
+@isnad1 id=iff.0h3v.s5.25743e955107 from=translated src=- shape=bbc6aed2 vocab=f7b2f54b
+-/
 lemma polynomialCertificate_iff_exists_point {n : ℕ} (nodes : NodeFamily n) (A : ℝ) :
     PolynomialCertificate nodes A ↔
       ∃ t ∈ Set.Icc (-1 : ℝ) 1, A < lebesgueFunction nodes t := by
@@ -119,7 +146,9 @@ lemma polynomialCertificate_iff_exists_point {n : ℕ} (nodes : NodeFamily n) (A
     exact normingPolynomial_is_certificate nodes ht hlarge
 
 /-- Equivalently, polynomial certificates characterize strict lower bounds
-for the full-interval Lebesgue constant.-/
+for the full-interval Lebesgue constant.
+@isnad1 id=iff.0h3v.s5.c0bb782d313b from=translated src=- shape=aafbf425 vocab=a9c83e6f
+-/
 lemma polynomialCertificate_iff_lt_lebesgueOn {n : ℕ}
     (nodes : NodeFamily n) (A : ℝ) :
     PolynomialCertificate nodes A ↔ A < lebesgueOn nodes (-1) 1 := by
@@ -131,7 +160,9 @@ def realHarmonic (n : ℕ) : ℝ :=
   (harmonic n : ℝ)
 
 /-- The elementary sharp-leading-coefficient comparison
-`log n ≤ H_(n-1)` for positive `n`.-/
+`log n ≤ H_(n-1)` for positive `n`.
+@isnad1 id=le.1h1v.s5.64385368301d from=translated src=- shape=8b12c17b vocab=56ab3b72
+-/
 lemma log_nat_le_realHarmonic_pred {n : ℕ} (hn : 1 ≤ n) :
     Real.log (n : ℝ) ≤ realHarmonic (n - 1) := by
   have h := log_add_one_le_harmonic (n - 1)

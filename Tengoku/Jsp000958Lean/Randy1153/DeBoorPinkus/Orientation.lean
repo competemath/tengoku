@@ -54,7 +54,9 @@ def CoherentHeightMaximalMinorSigns {d : ℕ} {A B : ℝ}
       0 < sign * (-1 : ℝ) ^ (omitted.val + 1) *
         deletedRowMinor (gapHeightJacobianModel nodes) omitted
 
-/-- Coherent signs in particular make every maximal minor nonzero.-/
+/-- Coherent signs in particular make every maximal minor nonzero.
+@isnad1 id=ne.1h5v.s5.4097d4279180 from=translated src=- shape=2c4313ba vocab=2b10a542
+-/
 theorem deletedRowMinor_ne_zero_of_coherentSigns
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (hsigns : CoherentHeightMaximalMinorSigns nodes)
@@ -67,7 +69,9 @@ theorem deletedRowMinor_ne_zero_of_coherentSigns
   linarith
 
 /-- Source equation (8): every Cramer coefficient expressing the omitted
-height as a function of the other heights is strictly negative.-/
+height as a function of the other heights is strictly negative.
+@isnad1 id=lt.2h5v.s5.5fbe4c7c120c from=translated src=- shape=6b2e4ef3 vocab=25750adc
+-/
 theorem heightZeroCramerCoefficient_neg_of_coherentSigns
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) (hd : 1 ≤ d)
     (hsigns : CoherentHeightMaximalMinorSigns nodes) (k : Fin d) :
@@ -138,7 +142,9 @@ def TailHeightLocalOrientationStatement (d : ℕ) (A B : ℝ) : Prop :=
       Nonempty (OrientedTailHeightChart nodes)
 
 /-- The local oriented charts make the tail-height map a genuine local
-homeomorphism.-/
+homeomorphism.
+@isnad1 id=islocalh.2h3v.s5.7e86d4d0c1d7 from=translated src=- shape=2d84601e vocab=71df30d9
+-/
 theorem tailGapHeight_isLocalHomeomorph_of_localOrientation
     {d : ℕ} {A B : ℝ}
     (hlocal : TailHeightLocalOrientationStatement d A B) (hd : 1 ≤ d) :
@@ -148,7 +154,9 @@ theorem tailGapHeight_isLocalHomeomorph_of_localOrientation
   let e := (hlocal.2 hd nodes).some
   exact ⟨e.chart, e.mem_source, e.chart_eq⟩
 
-/-- Consequently all tail heights vary continuously.-/
+/-- Consequently all tail heights vary continuously.
+@isnad1 id=continuo.2h3v.s5.934a021bf19b from=translated src=- shape=2d84601e vocab=1418ff0c
+-/
 theorem continuous_tailGapHeight_of_localOrientation
     {d : ℕ} {A B : ℝ}
     (hlocal : TailHeightLocalOrientationStatement d A B) (hd : 1 ≤ d) :
@@ -156,6 +164,9 @@ theorem continuous_tailGapHeight_of_localOrientation
       (tailGapHeight : EndpointArray d A B → Fin d → ℝ) :=
   (tailGapHeight_isLocalHomeomorph_of_localOrientation hlocal hd).continuous
 
+/--
+@isnad1 id=mem.0h5v.s6.cb73461e29a6 from=translated src=- shape=35270e6b vocab=eccc6a1d
+-/
 lemma OrientedTailHeightChart.tail_mem_target
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (e : OrientedTailHeightChart nodes) :
@@ -163,6 +174,9 @@ lemma OrientedTailHeightChart.tail_mem_target
   rw [e.chart_eq]
   exact e.chart.map_source e.mem_source
 
+/--
+@isnad1 id=eq.0h5v.s6.f5768d81bbd0 from=translated src=- shape=b551d60c vocab=2f413570
+-/
 @[simp]
 lemma OrientedTailHeightChart.symm_tail_eq
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
@@ -177,11 +191,17 @@ lemma OrientedTailHeightChart.symm_tail_eq
 def tailLine {d : ℕ} (y z : Fin d → ℝ) (u : I) : Fin d → ℝ :=
   fun i ↦ (1 - (u : ℝ)) * y i + (u : ℝ) * z i
 
+/--
+@isnad1 id=continuo.0h3v.s5.a8d70625d29c from=translated src=- shape=e7082c7c vocab=6d2918dc
+-/
 lemma continuous_tailLine {d : ℕ} (y z : Fin d → ℝ) :
     Continuous (tailLine y z) := by
   unfold tailLine
   fun_prop
 
+/--
+@isnad1 id=mem.0h4v.s6.0cd7cd2e7898 from=translated src=- shape=4b47435b vocab=d6a1cc8c
+-/
 lemma tailLine_mem_segment {d : ℕ} (y z : Fin d → ℝ) (u : I) :
     tailLine y z u ∈ segment ℝ y z := by
   rw [segment_eq_image_lineMap]
@@ -206,6 +226,9 @@ def OrientedTailHeightChart.liftSegment
     intro u
     exact e.convex_target.segment_subset hy hz (tailLine_mem_segment y z u)
 
+/--
+@isnad1 id=eq.2h8v.s8.fd17d37767a2 from=translated src=- shape=719b4eae vocab=747980cb
+-/
 lemma OrientedTailHeightChart.tail_liftSegment
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (e : OrientedTailHeightChart nodes)
@@ -216,6 +239,9 @@ lemma OrientedTailHeightChart.tail_liftSegment
   exact e.chart.right_inv
     (e.convex_target.segment_subset hy hz (tailLine_mem_segment y z u))
 
+/--
+@isnad1 id=eq.2h7v.s8.cbb5e6d02834 from=translated src=- shape=5d71e803 vocab=2cdad57f
+-/
 @[simp]
 lemma OrientedTailHeightChart.liftSegment_zero
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
@@ -228,6 +254,9 @@ lemma OrientedTailHeightChart.liftSegment_zero
   funext i
   simp [tailLine]
 
+/--
+@isnad1 id=eq.2h7v.s8.f5f3147cec56 from=translated src=- shape=48d36f26 vocab=2cdad57f
+-/
 @[simp]
 lemma OrientedTailHeightChart.liftSegment_one
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
@@ -240,7 +269,9 @@ lemma OrientedTailHeightChart.liftSegment_one
   funext i
   simp [tailLine]
 
-/-- Integrated equation (8) on one convex chart.-/
+/-- Integrated equation (8) on one convex chart.
+@isnad1 id=strictan.4h7v.s8.fbb92d2dcea5 from=translated src=- shape=9cabcd4d vocab=8c44b840
+-/
 theorem OrientedTailHeightChart.height_zero_strictAnti_liftSegment
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (e : OrientedTailHeightChart nodes)
@@ -275,7 +306,9 @@ theorem OrientedTailHeightChart.height_zero_strictAnti_liftSegment
 /-- The reversed form of integrated equation (8): if every tail coordinate
 decreases along a nonconstant chart-contained affine segment, height zero
 strictly increases.  This is the local motion used for the source's diagonal
-ray.-/
+ray.
+@isnad1 id=strictmo.4h7v.s8.678e0531e79b from=translated src=- shape=94b8cb4a vocab=87665481
+-/
 theorem OrientedTailHeightChart.height_zero_strictMono_liftSegment
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (e : OrientedTailHeightChart nodes)
@@ -311,7 +344,9 @@ theorem OrientedTailHeightChart.height_zero_strictMono_liftSegment
 
 /-- The increasing affine lift supplied while the target segment remains in
 one local chart.  This is the exact local step iterated in the source's
-maximal-interval argument.-/
+maximal-interval argument.
+@isnad1 id=ex.5h5v.s9.9f7a76ede3ca from=translated src=- shape=128648ea vocab=9ecf8105
+-/
 theorem exists_local_increasingSegment_lift
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hlocal : TailHeightLocalOrientationStatement d A B)
@@ -335,7 +370,9 @@ theorem exists_local_increasingSegment_lift
   · exact e.height_zero_strictAnti_liftSegment hymem hzmem hzle hzNe.symm
 
 /-- Dually, a chart-contained common decrease of all tail coordinates makes
-height zero strictly increase.-/
+height zero strictly increase.
+@isnad1 id=lt.3h6v.s8.c26ee27d7721 from=translated src=- shape=a1ab0866 vocab=587ebbb7
+-/
 theorem height_zero_lt_of_local_diagonal_decrease
     {d : ℕ} {A B : ℝ} {nodes : EndpointArray d A B}
     (e : OrientedTailHeightChart nodes) (z : Fin d → ℝ)
@@ -355,7 +392,9 @@ theorem height_zero_lt_of_local_diagonal_decrease
 
 /-- A chart-contained common decrease of the tail coordinates has a
 continuous lift on which height zero strictly increases.  This is the exact
-local step iterated in the decreasing-ray continuation.-/
+local step iterated in the decreasing-ray continuation.
+@isnad1 id=ex.4h5v.s9.e05ac1a6bda8 from=translated src=- shape=1d1eabe3 vocab=0c7f4cfa
+-/
 theorem exists_local_decreasingDiagonal_lift
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hlocal : TailHeightLocalOrientationStatement d A B)
@@ -398,6 +437,9 @@ def differenceOfBaseTail {d : ℕ} (z : ℝ × (Fin d → ℝ)) : Fin d → ℝ 
   fun i ↦ if hi : i.val = 0 then z.2 i - z.1
     else z.2 i - z.2 ⟨i.val - 1, by omega⟩
 
+/--
+@isnad1 id=continuo.0h1v.s5.0487508fc9fc from=translated src=- shape=b23881e2 vocab=1822b745
+-/
 lemma continuous_differenceOfBaseTail {d : ℕ} :
     Continuous (differenceOfBaseTail :
       ℝ × (Fin d → ℝ) → Fin d → ℝ) := by
@@ -408,6 +450,9 @@ lemma continuous_differenceOfBaseTail {d : ℕ} :
   · fun_prop
   · fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s6.156be0b0db50 from=translated src=- shape=3b6dc84d vocab=c600657f
+-/
 lemma differenceOfBaseTail_height_eq_gapDifference
     {d : ℕ} {A B : ℝ} (nodes : EndpointArray d A B) :
     differenceOfBaseTail
@@ -442,7 +487,9 @@ The proof is deliberately routed through the global difference
 homeomorphism.  On the slab, `(height 0, tailHeight)` lies in the compact box
 `[a,b] × K`; `differenceOfBaseTail` maps this box to a bounded set containing
 all gap-difference vectors.  The slab is closed, so its image under the
-homeomorphism is closed and bounded in finite-dimensional Euclidean space.-/
+homeomorphism is closed and bounded in finite-dimensional Euclidean space.
+@isnad1 id=iscompac.5h6v.s6.2a212afe11e0 from=translated src=- shape=aaaee0cd vocab=f74cf8d1
+-/
 theorem isCompact_tailHeightSlab
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d) (hAB : AdmissibleInterval A B)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -484,7 +531,9 @@ theorem isCompact_tailHeightSlab
 the tail stays in its compact affine segment, height zero is bounded below
 by the elementary Lebesgue bound `1`, and strict antitonicity bounds it above
 by its initial value.  Thus no finite continuation time can escape through
-the boundary while such a lift exists.-/
+the boundary while such a lift exists.
+@isnad1 id=le.3h6v.s9.a24f2bacbcca from=translated src=- shape=4406b09a vocab=d2f42f54
+-/
 theorem increasingSegment_lift_range_subset_tailHeightSlab
     {d : ℕ} {A B : ℝ} (s : EndpointArray d A B)
     (y : Fin d → ℝ) (g : C(I, EndpointArray d A B))
@@ -514,7 +563,9 @@ theorem increasingSegment_lift_range_subset_tailHeightSlab
 
 /-- In particular, under the already-committed global difference
 homeomorphism, the range of every increasing-segment lift is contained in a
-compact subset of endpoint-array space.-/
+compact subset of endpoint-array space.
+@isnad1 id=ex.7h6v.s9.4ff703303490 from=translated src=- shape=fdd3510b vocab=ae6c9536
+-/
 theorem exists_compact_superset_range_increasingSegment_lift
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d) (hAB : AdmissibleInterval A B)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -540,7 +591,9 @@ theorem exists_compact_superset_range_increasingSegment_lift
       s y g hgzero hgtail hganti
 
 /-- Sequential form of the compact slab, ready for the endpoint step in a
-maximal-lift argument.-/
+maximal-lift argument.
+@isnad1 id=ex.6h7v.s7.fb01961f378d from=translated src=- shape=a8f8e331 vocab=5753485b
+-/
 theorem exists_convergent_subsequence_of_tailHeightSlab
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d) (hAB : AdmissibleInterval A B)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -612,7 +665,9 @@ def restrict {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     exact L.map_eq ⟨ht.1, ht.2.trans hvu⟩
 
 /-- Prefix lifts through a local homeomorphism are unique on their common
-interval once their initial values agree.-/
+interval once their initial values agree.
+@isnad1 id=eqon.2h8v.s6.10a4e97ec39f from=translated src=- shape=98d9347f vocab=a6855300
+-/
 theorem eqOn {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [T2Space E] {f : E → X} {gamma : ℝ → X} {e0 : E} {u : ℝ}
     (hloc : IsLocalHomeomorph f) (hu : 0 ≤ u)
@@ -675,6 +730,9 @@ def appendChart {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
       rw [hchart]
       exact chart.right_inv (htarget t ⟨le_of_not_ge htu, ht.2⟩)
 
+/--
+@isnad1 id=eq.7h10v.s7.3136cda69e6b from=translated src=- shape=5365c772 vocab=beefae89
+-/
 @[simp]
 theorem appendChart_apply_of_le
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
@@ -697,7 +755,9 @@ an open set by `PrefixLift.appendChart`.  Sequential compactness of the set
 containing every reachable endpoint makes that set closed: endpoints along
 a convergent sequence of prefix lengths have a convergent subsequence, and
 one final chart glues in the limiting prefix.  Connectedness of `[0,T]` then
-gives a lift of the entire curve.-/
+gives a lift of the entire curve.
+@isnad1 id=nonempty.6h7v.s7.17fcd8a63be5 from=translated src=- shape=18a68438 vocab=255f283a
+-/
 theorem exists_prefixLift_of_isLocalHomeomorph_of_seqCompact
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [T2Space E] [T2Space X]
@@ -827,6 +887,9 @@ theorem exists_prefixLift_of_isLocalHomeomorph_of_seqCompact
 def realTailLine {d : ℕ} (y z : Fin d → ℝ) (t : ℝ) : Fin d → ℝ :=
   fun i ↦ (1 - t) * y i + t * z i
 
+/--
+@isnad1 id=continuo.0h3v.s5.180ef2031732 from=translated src=- shape=8a78eb04 vocab=5c785fcb
+-/
 lemma continuous_realTailLine {d : ℕ} (y z : Fin d → ℝ) :
     Continuous (realTailLine y z) := by
   unfold realTailLine
@@ -836,7 +899,9 @@ lemma continuous_realTailLine {d : ℕ} (y z : Fin d → ℝ) :
 height zero.  The extreme-value proof is the formal version of the source's
 monotonicity sentence: if a maximum occurred at positive time, a sufficiently
 close point immediately to its left would lie in the same oriented chart and
-have strictly larger height zero.-/
+have strictly larger height zero.
+@isnad1 id=le.5h7v.s7.22a60115d954 from=translated src=- shape=c760d65e vocab=b4ec1a2f
+-/
 theorem PrefixLift.heightZero_endpoint_le_of_realTailLine
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hlocal : TailHeightLocalOrientationStatement d A B)
@@ -967,7 +1032,9 @@ def PrefixLift.reparamRealTailLine
 /-- Strict form of the endpoint estimate for a positive-length increasing
 tail prefix.  A short first piece lies in the initial oriented chart and
 strictly lowers height zero; the non-strict extreme-value estimate applied to
-the remaining reparameterized suffix preserves that strict loss.-/
+the remaining reparameterized suffix preserves that strict loss.
+@isnad1 id=lt.6h7v.s7.661f01bffd72 from=translated src=- shape=993a01e3 vocab=abcc6cd7
+-/
 theorem PrefixLift.heightZero_endpoint_lt_of_realTailLine
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hlocal : TailHeightLocalOrientationStatement d A B)
@@ -1059,7 +1126,9 @@ theorem PrefixLift.heightZero_endpoint_lt_of_realTailLine
   simpa using hfinal
 
 /-- The globally continued increasing affine-tail lift, including the
-source-required strict antitonicity of height zero.-/
+source-required strict antitonicity of height zero.
+@isnad1 id=ex.5h5v.s8.0c36a320b618 from=translated src=- shape=6db2f6b7 vocab=922032cd
+-/
 theorem exists_increasingSegment_lift_of_homeomorphism_of_localOrientation
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -1163,6 +1232,9 @@ theorem exists_increasingSegment_lift_of_homeomorphism_of_localOrientation
 def decreasingTailRay {d : ℕ} (y : Fin d → ℝ) (t : ℝ) : Fin d → ℝ :=
   fun i ↦ y i - t
 
+/--
+@isnad1 id=continuo.0h2v.s5.7aac388d18d0 from=translated src=- shape=72c96590 vocab=4c5d7c6a
+-/
 lemma continuous_decreasingTailRay {d : ℕ} (y : Fin d → ℝ) :
     Continuous (decreasingTailRay y) := by
   unfold decreasingTailRay
@@ -1171,7 +1243,9 @@ lemma continuous_decreasingTailRay {d : ℕ} (y : Fin d → ℝ) :
 /-- Stop and reparameterize a decreasing-ray prefix once its first
 consecutive difference has fallen to the prescribed level.  The intermediate
 value theorem supplies the first required time; positivity follows because
-the initial difference is strictly larger.-/
+the initial difference is strictly larger.
+@isnad1 id=ex.5h7v.s9.ce8feb214a16 from=translated src=- shape=18b2cc03 vocab=75668081
+-/
 theorem exists_stopped_decreasingRay_of_prefix_endpoint_le
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -1233,7 +1307,9 @@ stopped lift, every reachable prefix has first difference `> c`; hence height
 zero is bounded above by `tail₀(r)-c`, while all tail vectors remain in a
 fixed compact segment.  Compact continuation reaches a time at which the
 elementary bound `height ≥ 1` forces the first difference below `c`, and the
-preceding stopping lemma gives the contradiction.-/
+preceding stopping lemma gives the contradiction.
+@isnad1 id=ex.4h5v.s8.c01cbe2158ad from=translated src=- shape=f0e5c507 vocab=579d39cb
+-/
 theorem exists_decreasingRay_to_firstDifference_of_homeomorphism_of_localOrientation
     {d : ℕ} {A B : ℝ} (hd : 1 ≤ d)
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)
@@ -1339,7 +1415,9 @@ theorem exists_decreasingRay_to_firstDifference_of_homeomorphism_of_localOrienta
 
 /-- The complete source path/ray orientation interface, derived from the
 global gap-difference homeomorphism and the single local coherent-orientation
-input.  No global path or ray is included among the assumptions.-/
+input.  No global path or ray is included among the assumptions.
+@isnad1 id=gapheigh.2h3v.s4.c736cea060c5 from=translated src=- shape=84edd881 vocab=b8f80a4f
+-/
 theorem gapHeightPathRayOrientation_of_homeomorphism_of_localOrientation
     {d : ℕ} {A B : ℝ}
     (hhomeomorph : GapDifferenceHomeomorphismStatement d A B)

@@ -34,14 +34,22 @@ Multiplying that estimate by this floor leaves precisely `d * M`.-/
 def cubicChebyshevFloor (d : ℕ) : ℝ :=
   3 / (((d + 1 : ℕ) : ℝ) * ((2 * d + 1 : ℕ) : ℝ))
 
+/--
+@isnad1 id=lt.0h1v.s3.8bd97c869da3 from=translated src=- shape=b9369acb vocab=9388dcb9
+-/
 lemma cubicChebyshevFloor_pos (d : ℕ) : 0 < cubicChebyshevFloor d := by
   unfold cubicChebyshevFloor
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.39307ee979e1 from=translated src=- shape=b9369acb vocab=9829974a
+-/
 lemma cubicChebyshevFloor_nonneg (d : ℕ) : 0 ≤ cubicChebyshevFloor d :=
   (cubicChebyshevFloor_pos d).le
 
-/-- Exact cancellation with the cubic derivative factor.-/
+/-- Exact cancellation with the cubic derivative factor.
+@isnad1 id=eq.0h1v.s6.8afccb609ae7 from=translated src=- shape=97d83756 vocab=4a16b85d
+-/
 lemma cubicChebyshevFloor_mul_cubicDerivativeFactor (d : ℕ) :
     cubicChebyshevFloor d *
         ((d : ℝ) * ((d + 1 : ℕ) : ℝ) * ((2 * d + 1 : ℕ) : ℝ) / 3) =
@@ -52,7 +60,9 @@ lemma cubicChebyshevFloor_mul_cubicDerivativeFactor (d : ℕ) :
   field_simp
 
 /-- For positive degrees, the exact floor is bounded below by a simple
-inverse-square scale.-/
+inverse-square scale.
+@isnad1 id=le.1h1v.s5.15b3ac3e8432 from=translated src=- shape=e4c2bfd0 vocab=d186916a
+-/
 lemma inv_two_mul_sq_le_cubicChebyshevFloor {d : ℕ} (hd : 1 ≤ d) :
     (2 * (d : ℝ) ^ 2)⁻¹ ≤ cubicChebyshevFloor d := by
   have hdR : (0 : ℝ) < d := by exact_mod_cast (Nat.zero_lt_of_lt hd)
@@ -76,7 +86,9 @@ lemma inv_two_mul_sq_le_cubicChebyshevFloor {d : ℕ} (hd : 1 ≤ d) :
     _ = cubicChebyshevFloor d := rfl
 
 /-- For positive degrees, the exact floor is also bounded above by the
-matching inverse-square scale up to the factor three.-/
+matching inverse-square scale up to the factor three.
+@isnad1 id=le.1h1v.s6.879c4fb00df7 from=translated src=- shape=58725ad5 vocab=d186916a
+-/
 lemma cubicChebyshevFloor_le_three_mul_inv_two_mul_sq {d : ℕ} (hd : 1 ≤ d) :
     cubicChebyshevFloor d ≤ 3 * (2 * (d : ℝ) ^ 2)⁻¹ := by
   have hdR : (0 : ℝ) < d := by exact_mod_cast (Nat.zero_lt_of_lt hd)
@@ -103,10 +115,16 @@ positive cubic-Chebyshev floor.-/
 def clippedArcsineScale (d : ℕ) (x : ℝ) : ℝ :=
   max (Real.sqrt (1 - x ^ 2)) (cubicChebyshevFloor d)
 
+/--
+@isnad1 id=le.0h2v.s4.1b5d2c7f8959 from=translated src=- shape=787c1379 vocab=7c17fd1f
+-/
 lemma clippedArcsineScale_nonneg (d : ℕ) (x : ℝ) :
     0 ≤ clippedArcsineScale d x := by
   exact (Real.sqrt_nonneg _).trans (le_max_left _ _)
 
+/--
+@isnad1 id=lt.0h2v.s4.e5f4907905ba from=translated src=- shape=787c1379 vocab=58633d86
+-/
 lemma clippedArcsineScale_pos (d : ℕ) (x : ℝ) :
     0 < clippedArcsineScale d x := by
   exact (cubicChebyshevFloor_pos d).trans_le (le_max_right _ _)
@@ -126,6 +144,9 @@ def signedDerivativeRowPolynomial {n : ℕ} (nodes : OrderedNodes n)
     Polynomial.C (derivativeRowSign nodes j k) *
       lagrangeBasis nodes.toNodeFamily k
 
+/--
+@isnad1 id=le.0h3v.s4.fe7ad62b1954 from=translated src=- shape=19d46099 vocab=3c059308
+-/
 lemma natDegree_signedDerivativeRowPolynomial_le {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) :
     (signedDerivativeRowPolynomial nodes j).natDegree ≤ n - 1 := by
@@ -135,6 +156,9 @@ lemma natDegree_signedDerivativeRowPolynomial_le {n : ℕ}
   exact (Polynomial.natDegree_C_mul_le _ _).trans
     (natDegree_lagrangeBasis_le nodes.toNodeFamily k)
 
+/--
+@isnad1 id=lt.0h3v.s4.1618dc53dccd from=translated src=- shape=b42b2fdf vocab=041973ce
+-/
 lemma degree_signedDerivativeRowPolynomial_lt {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) :
     (signedDerivativeRowPolynomial nodes j).degree < n := by
@@ -144,6 +168,9 @@ lemma degree_signedDerivativeRowPolynomial_lt {n : ℕ}
     have hn : 0 < n := Fin.pos j
     exact (natDegree_signedDerivativeRowPolynomial_le nodes j).trans_lt (by omega)
 
+/--
+@isnad1 id=eq.0h3v.s4.1ab6f730ed95 from=translated src=- shape=ffd67fc2 vocab=9f72e6b0
+-/
 @[simp]
 lemma signedDerivativeRowPolynomial_eval_self {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) :
@@ -157,6 +184,9 @@ lemma signedDerivativeRowPolynomial_eval_self {n : ℕ}
     exact (Finset.mem_erase.mp hk).1.symm
   rw [lagrangeBasis_eval_of_ne nodes.toNodeFamily hjk, mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s5.38c4fa8eef67 from=translated src=- shape=d62f872e vocab=8fb61b52
+-/
 lemma signedDerivativeRowPolynomial_eval_of_ne {n : ℕ}
     (nodes : OrderedNodes n) {j m : Fin n} (hmj : m ≠ j) :
     (signedDerivativeRowPolynomial nodes j).eval (nodes.point m) =
@@ -172,6 +202,9 @@ lemma signedDerivativeRowPolynomial_eval_of_ne {n : ℕ}
   · intro hmnot
     exact (hmnot (Finset.mem_erase.mpr ⟨hmj, Finset.mem_univ m⟩)).elim
 
+/--
+@isnad1 id=le.0h4v.s5.207948bc8ca6 from=translated src=- shape=96740573 vocab=49ade5b2
+-/
 lemma abs_signedDerivativeRowPolynomial_eval_node_le_one {n : ℕ}
     (nodes : OrderedNodes n) (j m : Fin n) :
     |(signedDerivativeRowPolynomial nodes j).eval (nodes.point m)| ≤ 1 := by
@@ -181,6 +214,9 @@ lemma abs_signedDerivativeRowPolynomial_eval_node_le_one {n : ℕ}
   · rw [signedDerivativeRowPolynomial_eval_of_ne nodes hmj,
       derivativeRowSign, abs_interpolationSign]
 
+/--
+@isnad1 id=le.0h4v.s4.9b9a23c48134 from=translated src=- shape=5cc61f44 vocab=491c58ad
+-/
 lemma abs_signedDerivativeRowPolynomial_eval_le_lebesgueFunction {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) (t : ℝ) :
     |(signedDerivativeRowPolynomial nodes j).eval t| ≤
@@ -190,6 +226,9 @@ lemma abs_signedDerivativeRowPolynomial_eval_le_lebesgueFunction {n : ℕ}
     (degree_signedDerivativeRowPolynomial_lt nodes j) t
     (abs_signedDerivativeRowPolynomial_eval_node_le_one nodes j)
 
+/--
+@isnad1 id=le.1h4v.s6.38e90d5bef76 from=translated src=- shape=a34f0b5e vocab=1d706327
+-/
 lemma abs_signedDerivativeRowPolynomial_eval_le_lebesgueOn {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) {t : ℝ}
     (ht : t ∈ Set.Icc (-1 : ℝ) 1) :
@@ -198,6 +237,9 @@ lemma abs_signedDerivativeRowPolynomial_eval_le_lebesgueOn {n : ℕ}
   exact (abs_signedDerivativeRowPolynomial_eval_le_lebesgueFunction nodes j t).trans
     (lebesgueFunction_le_lebesgueOn nodes.toNodeFamily (by norm_num) ht)
 
+/--
+@isnad1 id=eq.0h3v.s8.1db015e35906 from=translated src=- shape=d9d724dc vocab=7b2858ce
+-/
 lemma signedDerivativeRowPolynomial_derivative_eval_self {n : ℕ}
     (nodes : OrderedNodes n) (j : Fin n) :
     (signedDerivativeRowPolynomial nodes j).derivative.eval (nodes.point j) =

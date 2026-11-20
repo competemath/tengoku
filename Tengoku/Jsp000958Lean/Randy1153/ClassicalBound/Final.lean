@@ -24,12 +24,16 @@ open Filter Polynomial
 
 noncomputable section
 
-/-- Natural logarithms of natural numbers tend to infinity.-/
+/-- Natural logarithms of natural numbers tend to infinity.
+@isnad1 id=tendsto.0h0v.s4.fd30a69a800d from=translated src=- shape=f2cca0a6 vocab=56f69aea
+-/
 lemma tendsto_log_nat_atTop :
     Filter.Tendsto (fun n : ℕ ↦ Real.log (n : ℝ)) Filter.atTop Filter.atTop :=
   Real.tendsto_log_atTop.comp tendsto_natCast_atTop_atTop
 
-/-- A fixed additive loss is eventually smaller than `ε log n`.-/
+/-- A fixed additive loss is eventually smaller than `ε log n`.
+@isnad1 id=eventual.1h2v.s5.dcff43414eb4 from=translated src=- shape=aee9c015 vocab=db8f84d2
+-/
 lemma eventually_const_lt_epsilon_mul_log_nat (C ε : ℝ) (hε : 0 < ε) :
     ∀ᶠ n : ℕ in Filter.atTop, C < ε * Real.log (n : ℝ) := by
   filter_upwards [(tendsto_log_nat_atTop.eventually_gt_atTop (C / ε))] with n hn
@@ -37,7 +41,9 @@ lemma eventually_const_lt_epsilon_mul_log_nat (C ε : ℝ) (hε : 0 < ε) :
   nlinarith
 
 /-- The honest finite `2/π log n - C` estimate implies the exact uniform
-epsilon/eventual statement.-/
+epsilon/eventual statement.
+@isnad1 id=fullinte.1h2v.s6.bdd17c0d6a73 from=translated src=- shape=4a36db3a vocab=6c444065
+-/
 theorem fullIntervalEventual_of_uniform_additive_bound
     (C : ℝ) (N₀ : ℕ)
     (hclassical : ∀ n : ℕ, N₀ ≤ n → ∀ nodes : NodeFamily n,
@@ -61,7 +67,9 @@ theorem fullIntervalEventual_of_uniform_additive_bound
 
 /-- A uniform harmonic-size polynomial certificate implies the complete
 sharp classical epsilon/eventual bound.  The only analytic estimate used in
-the reduction is `log n ≤ H_(n-1)`.-/
+the reduction is `log n ≤ H_(n-1)`.
+@isnad1 id=fullinte.1h2v.s4.91afb4053dc7 from=translated src=- shape=6f12104e vocab=a715c6eb
+-/
 theorem fullIntervalEventual_of_uniform_harmonic_certificates
     (C : ℝ) (N₀ : ℕ)
     (hcert : ∀ n : ℕ, N₀ ≤ n → 1 ≤ n → ∀ nodes : NodeFamily n,
@@ -81,7 +89,9 @@ theorem fullIntervalEventual_of_uniform_harmonic_certificates
       (lt_lebesgueOn_of_polynomialCertificate (hcert n hn₀ hnpos nodes)).le
 
 /-- A strict lower bound for one ordered nodal gap is also a strict lower
-bound for the full-interval Lebesgue constant.-/
+bound for the full-interval Lebesgue constant.
+@isnad1 id=lt.1h4v.s5.9112dfcc381e from=translated src=- shape=2a66be26 vocab=440faf82
+-/
 lemma lt_lebesgueOn_of_lt_gapHeight {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) {A : ℝ} (hA : A < gapHeight nodes g) :
     A < lebesgueOn nodes.toNodeFamily (-1) 1 := by
@@ -98,7 +108,9 @@ lemma lt_lebesgueOn_of_lt_gapHeight {n : ℕ} (nodes : OrderedNodes n)
 
 /-- It is enough to prove a harmonic lower bound on one gap of the sorted
 node family.  This is the most concrete checked interface for an independent
-Randy--Turán/Randy mesoscopic argument.-/
+Randy--Turán/Randy mesoscopic argument.
+@isnad1 id=fullinte.1h2v.s6.6bb757a4955a from=translated src=- shape=223ae856 vocab=ad730c63
+-/
 theorem fullIntervalEventual_of_uniform_harmonic_gap_bound
     (C : ℝ) (N₀ : ℕ)
     (hgap : ∀ n : ℕ, N₀ ≤ n → 2 ≤ n → ∀ nodes : NodeFamily n,

@@ -26,7 +26,9 @@ open Polynomial
 noncomputable section
 
 /-- The signed gap polynomial is nonzero, witnessed by either endpoint of
-its own gap.-/
+its own gap.
+@isnad1 id=ne.0h3v.s5.296023f92d47 from=translated src=- shape=f253dcf7 vocab=65a2c6c7
+-/
 lemma gapPolynomial_ne_zero {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     gapPolynomial nodes g ≠ 0 := by
   intro hzero
@@ -35,7 +37,9 @@ lemma gapPolynomial_ne_zero {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1))
   norm_num at h
 
 /-- The partition of unity makes the signed polynomial at least one on its
-own closed gap.-/
+own closed gap.
+@isnad1 id=le.1h4v.s5.8f0c259a5f3b from=translated src=- shape=a6c8919e vocab=0bcc3252
+-/
 lemma one_le_eval_gapPolynomial_of_mem_closedGap {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) {t : ℝ}
     (ht : t ∈ closedGap nodes g) :
@@ -50,7 +54,9 @@ lemma one_le_eval_gapPolynomial_of_mem_closedGap {n : ℕ}
   rw [← lebesgueFunction_eq_eval_gapPolynomial nodes g ht, lebesgueFunction]
   simpa using habs
 
-/-- There is no zero of `F_g` in its own closed nodal gap.-/
+/-- There is no zero of `F_g` in its own closed nodal gap.
+@isnad1 id=not.1h4v.s5.a1411b6a939a from=translated src=- shape=74de1af4 vocab=44cead66
+-/
 lemma not_isRoot_gapPolynomial_of_mem_closedGap {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) {t : ℝ}
     (ht : t ∈ closedGap nodes g) :
@@ -60,7 +66,9 @@ lemma not_isRoot_gapPolynomial_of_mem_closedGap {n : ℕ}
     (one_le_eval_gapPolynomial_of_mem_closedGap nodes g ht))
 
 /-- Every point in an earlier open nodal gap lies before every point in a
-later open nodal gap.-/
+later open nodal gap.
+@isnad1 id=lt.3h6v.s6.b3827af6c7c1 from=translated src=- shape=8a3bd230 vocab=c41363a8
+-/
 lemma openGap_point_lt_of_gap_lt {n : ℕ} (nodes : OrderedNodes n)
     {g h : Fin (n - 1)} (hgh : g < h) {x y : ℝ}
     (hx : x ∈ openGap nodes g) (hy : y ∈ openGap nodes h) :
@@ -78,6 +86,9 @@ lemma openGap_point_lt_of_gap_lt {n : ℕ} (nodes : OrderedNodes n)
 abbrev OtherGapIndex {n : ℕ} (g : Fin (n - 1)) :=
   {h : Fin (n - 1) // h ≠ g}
 
+/--
+@isnad1 id=eq.0h2v.s7.bc06eabe4707 from=translated src=- shape=8dd3e7c7 vocab=9408eab7
+-/
 @[simp]
 lemma card_otherGapIndex {n : ℕ} (g : Fin (n - 1)) :
     Fintype.card (OtherGapIndex g) = n - 2 := by
@@ -88,7 +99,9 @@ lemma card_otherGapIndex {n : ℕ} (g : Fin (n - 1)) :
   omega
 
 /-- A gap polynomial takes opposite, nonzero values at the endpoints of every
-other nodal gap.-/
+other nodal gap.
+@isnad1 id=eq.1h4v.s6.805720830062 from=translated src=- shape=6fb5b0c7 vocab=d553ca6b
+-/
 lemma gapPolynomial_endpoint_values_opposite {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hhg : h ≠ g) :
     (gapPolynomial nodes g).eval (nodes.point (gapRightIndex h)) =
@@ -96,6 +109,9 @@ lemma gapPolynomial_endpoint_values_opposite {n : ℕ} (nodes : OrderedNodes n)
   rw [gapPolynomial_eval_node, gapPolynomial_eval_node,
     gapCoefficient_right_eq_neg_left_of_ne g h hhg]
 
+/--
+@isnad1 id=ne.0h4v.s5.e297b691f2d1 from=translated src=- shape=510f094d vocab=cd00c87c
+-/
 lemma gapPolynomial_endpoint_value_ne_zero {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) :
     (gapPolynomial nodes g).eval (nodes.point (gapLeftIndex h)) ≠ 0 := by
@@ -103,7 +119,9 @@ lemma gapPolynomial_endpoint_value_ne_zero {n : ℕ} (nodes : OrderedNodes n)
   exact gapCoefficient_ne_zero g (gapLeftIndex h)
 
 /-- The initial root-existence step in source Lemma 1: `F_g` has a real root
-strictly inside every nodal gap other than `g`.-/
+strictly inside every nodal gap other than `g`.
+@isnad1 id=ex.1h4v.s6.310c00db4a06 from=translated src=- shape=ab6bd930 vocab=44a70345
+-/
 theorem exists_gapPolynomial_root_in_other_gap {n : ℕ} (nodes : OrderedNodes n)
     (g h : Fin (n - 1)) (hhg : h ≠ g) :
     ∃ r ∈ openGap nodes h, (gapPolynomial nodes g).eval r = 0 := by
@@ -135,24 +153,35 @@ def otherGapRoot {n : ℕ} (nodes : OrderedNodes n) (g : Fin (n - 1))
     (h : OtherGapIndex g) : ℝ :=
   Classical.choose (exists_gapPolynomial_root_in_other_gap nodes g h.1 h.property)
 
+/--
+@isnad1 id=mem.0h4v.s6.99784fca78c2 from=translated src=- shape=629793bf vocab=83e68660
+-/
 lemma otherGapRoot_mem_openGap {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) (h : OtherGapIndex g) :
     otherGapRoot nodes g h ∈ openGap nodes h.1 :=
   (Classical.choose_spec
     (exists_gapPolynomial_root_in_other_gap nodes g h.1 h.property)).1
 
+/--
+@isnad1 id=eq.0h4v.s5.c08bb00a0dec from=translated src=- shape=f56f68bf vocab=163d1971
+-/
 lemma gapPolynomial_eval_otherGapRoot {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) (h : OtherGapIndex g) :
     (gapPolynomial nodes g).eval (otherGapRoot nodes g h) = 0 :=
   (Classical.choose_spec
     (exists_gapPolynomial_root_in_other_gap nodes g h.1 h.property)).2
 
+/--
+@isnad1 id=isroot.0h4v.s5.d9167e3f3ec2 from=translated src=- shape=412c1b1f vocab=27b5d90a
+-/
 lemma otherGapRoot_isRoot {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) (h : OtherGapIndex g) :
     (gapPolynomial nodes g).IsRoot (otherGapRoot nodes g h) :=
   gapPolynomial_eval_otherGapRoot nodes g h
 
-/-- The chosen internal roots occur in strict nodal-gap order.-/
+/-- The chosen internal roots occur in strict nodal-gap order.
+@isnad1 id=strictmo.0h3v.s6.e70c19e52b08 from=translated src=- shape=557deaef vocab=dc711c8c
+-/
 lemma otherGapRoot_strictMono {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     StrictMono (otherGapRoot nodes g) := by
@@ -162,7 +191,9 @@ lemma otherGapRoot_strictMono {n : ℕ} (nodes : OrderedNodes n)
     (otherGapRoot_mem_openGap nodes g k)
 
 /-- The paper's first root count, made explicit: `F_g` has at least `n-2`
-distinct real roots, one in every other nodal gap.-/
+distinct real roots, one in every other nodal gap.
+@isnad1 id=le.0h3v.s5.a68ac7f1d53a from=translated src=- shape=b89a6e1a vocab=401667d2
+-/
 lemma sub_two_le_card_gapPolynomial_roots_toFinset {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     n - 2 ≤ (gapPolynomial nodes g).roots.toFinset.card := by
@@ -178,13 +209,18 @@ lemma sub_two_le_card_gapPolynomial_roots_toFinset {n : ℕ}
 
 /-- Consequently the natural degree is at least `n-2`.  Together with the
 interpolation upper bound, only one degree/multiplicity slot remains; closing
-that slot is precisely where the source's parity/interlacing argument enters.-/
+that slot is precisely where the source's parity/interlacing argument enters.
+@isnad1 id=le.0h3v.s5.08abeb2bad1a from=translated src=- shape=f0b0ffcc vocab=6b008ece
+-/
 lemma sub_two_le_natDegree_gapPolynomial {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     n - 2 ≤ (gapPolynomial nodes g).natDegree :=
   (sub_two_le_card_gapPolynomial_roots_toFinset nodes g).trans <|
     (Multiset.toFinset_card_le _).trans (Polynomial.card_roots' _)
 
+/--
+@isnad1 id=le.0h3v.s5.136399b18f62 from=translated src=- shape=c526324b vocab=6b008ece
+-/
 lemma natDegree_gapPolynomial_le_sub_one {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) :
     (gapPolynomial nodes g).natDegree ≤ n - 1 := by
@@ -194,7 +230,9 @@ lemma natDegree_gapPolynomial_le_sub_one {n : ℕ} (nodes : OrderedNodes n)
 
 /-- Exact degree dichotomy left by the first root count.  The source's full
 Lemma 1 must decide this final slot while controlling real-root
-multiplicities; it cannot be discarded by a distinct-root count alone.-/
+multiplicities; it cannot be discarded by a distinct-root count alone.
+@isnad1 id=or.0h3v.s6.b33b4d382ab8 from=translated src=- shape=02d387b7 vocab=9b16b17b
+-/
 lemma natDegree_gapPolynomial_eq_sub_two_or_sub_one {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).natDegree = n - 2 ∨
@@ -208,7 +246,9 @@ lemma natDegree_gapPolynomial_eq_sub_two_or_sub_one {n : ℕ}
 
 /-- Counting multiplicity, the real-root multiset has at most one slot more
 than the already separated `n-2` roots.  This is the precise budget used by
-the paper's implicit parity argument.-/
+the paper's implicit parity argument.
+@isnad1 id=le.0h3v.s5.a57ffabb2b8a from=translated src=- shape=ab71b860 vocab=615098fa
+-/
 lemma card_gapPolynomial_roots_le_toFinset_card_add_one {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).roots.card ≤
@@ -246,7 +286,9 @@ private lemma toFinset_card_add_count_sub_one_le_card {α : Type*}
 the parity argument compressed into the sentence preceding source Lemma 1:
 a double root consumes the only spare multiplicity slot, so it would be the
 only root in that gap; after factoring out its square, IVT forces another
-root because the endpoint values of `F_g` are opposite.-/
+root because the endpoint values of `F_g` are opposite.
+@isnad1 id=eq.0h4v.s5.6e5b21636ce2 from=translated src=- shape=ea55c124 vocab=6f983ff3
+-/
 lemma rootMultiplicity_otherGapRoot {n : ℕ} (nodes : OrderedNodes n)
     (g : Fin (n - 1)) (h : OtherGapIndex g) :
     (gapPolynomial nodes g).rootMultiplicity (otherGapRoot nodes g h) = 1 := by
@@ -383,7 +425,9 @@ lemma rootMultiplicity_otherGapRoot {n : ℕ} (nodes : OrderedNodes n)
 
 /-- If the final degree slot vanishes, the selected roots exhaust the whole
 real-root multiset.  Thus all unresolved root placement is confined to the
-source's genuine degree-`n-1` branch.-/
+source's genuine degree-`n-1` branch.
+@isnad1 id=eq.1h3v.s7.d197ecfc42bf from=translated src=- shape=506c7246 vocab=a38e4d68
+-/
 lemma roots_gapPolynomial_eq_otherGapRoots_of_natDegree_eq_sub_two {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1))
     (hdegree : (gapPolynomial nodes g).natDegree = n - 2) :
@@ -406,7 +450,9 @@ lemma roots_gapPolynomial_eq_otherGapRoots_of_natDegree_eq_sub_two {n : ℕ}
 /-- The selected root is the only root in its nodal gap.  Factoring the
 `n-2` simple selected roots leaves a quotient of degree at most one.  On a
 fixed other gap both the selected-root product and `F_g` change sign, so the
-linear quotient has equal endpoint sign and cannot vanish inside.-/
+linear quotient has equal endpoint sign and cannot vanish inside.
+@isnad1 id=iff.1h5v.s6.bccd8b0e5b06 from=translated src=- shape=b76b72ec vocab=f302d95d
+-/
 lemma isRoot_in_other_gap_iff_eq_otherGapRoot {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (h : OtherGapIndex g)
     {x : ℝ} (hx : x ∈ openGap nodes h.1) :
@@ -582,7 +628,9 @@ lemma isRoot_in_other_gap_iff_eq_otherGapRoot {n : ℕ}
   · rintro rfl
     exact otherGapRoot_isRoot nodes g h
 
-/-- Exact simple root placement on every gap other than `g`.-/
+/-- Exact simple root placement on every gap other than `g`.
+@isnad1 id=existsun.0h4v.s6.95104e20d32f from=translated src=- shape=990fd62b vocab=25b36fa3
+-/
 theorem existsUnique_gapPolynomial_root_in_other_gap {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (h : OtherGapIndex g) :
     ∃! r : ℝ, r ∈ openGap nodes h.1 ∧ (gapPolynomial nodes g).IsRoot r := by
@@ -591,6 +639,9 @@ theorem existsUnique_gapPolynomial_root_in_other_gap {n : ℕ}
   intro r hr
   exact (isRoot_in_other_gap_iff_eq_otherGapRoot nodes g h hr.1).mp hr.2
 
+/--
+@isnad1 id=eq.2h5v.s6.4e8fb043c824 from=translated src=- shape=d52e7ef3 vocab=db28eb29
+-/
 lemma rootMultiplicity_eq_one_of_mem_other_gap {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) (h : OtherGapIndex g)
     {r : ℝ} (hr : r ∈ openGap nodes h.1) (hroot : (gapPolynomial nodes g).IsRoot r) :
@@ -600,7 +651,9 @@ lemma rootMultiplicity_eq_one_of_mem_other_gap {n : ℕ}
 
 /-- Rolle separation between any two ordered selected roots.  Full source
 Lemma 2 must sharpen these existentials into an exhaustive, strictly
-interlacing derivative-root list.-/
+interlacing derivative-root list.
+@isnad1 id=ex.1h5v.s7.357c3567fa67 from=translated src=- shape=8e17b409 vocab=0ab0dade
+-/
 theorem exists_derivative_root_between_otherGapRoots {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1))
     (h k : OtherGapIndex g) (hhk : h < k) :
@@ -616,6 +669,9 @@ theorem exists_derivative_root_between_otherGapRoots {n : ℕ}
   refine ⟨r, hr, ?_⟩
   simpa only [p, Polynomial.deriv] using hderiv
 
+/--
+@isnad1 id=le.0h3v.s7.604722cbaf85 from=translated src=- shape=cde59a90 vocab=51cc62b6
+-/
 lemma natDegree_gapPolynomial_derivative_le_sub_two {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     (gapPolynomial nodes g).derivative.natDegree ≤ n - 2 := by
@@ -629,7 +685,9 @@ lemma natDegree_gapPolynomial_derivative_le_sub_two {n : ℕ}
 
 /-- Rolle's theorem supplies at least one critical point of `F_g` in its own
 gap.  The de Boor--Pinkus/Kilgore kernel later strengthens this to a unique
-critical point and identifies it as the unique gap maximum.-/
+critical point and identifies it as the unique gap maximum.
+@isnad1 id=ex.0h3v.s7.83a683fb1e2f from=translated src=- shape=09bb107a vocab=b2528ae0
+-/
 theorem exists_gapPolynomial_derivative_root_in_gap {n : ℕ}
     (nodes : OrderedNodes n) (g : Fin (n - 1)) :
     ∃ r ∈ openGap nodes g, (gapPolynomial nodes g).derivative.eval r = 0 := by
