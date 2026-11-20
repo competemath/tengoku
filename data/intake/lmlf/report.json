@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "2999164811c217614df72b10f5ba014ed190040ad96d50322772644fb5ed0a98",
+ "factory_changes": {
+  "inert lines removed": 2,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "lmlf",
+ "lint_mode": "proposed",
+ "modules": 35,
+ "part": 1,
+ "theorems": 128
+}
