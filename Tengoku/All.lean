@@ -60,6 +60,7 @@ import Tengoku.Foundation
 import Tengoku.Erdos1196
 import Tengoku.Xilab
 import Tengoku.Erdos647
+import Tengoku.GraphContainer
 import Tengoku.OpenaiMath
 import Tengoku.TheIwasawaTowerLawForRamanujanSThirdOrderMockThetaFunction
 import Tengoku.ImmermanVardi
