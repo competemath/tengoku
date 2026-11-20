@@ -88,7 +88,9 @@ scope note in `README.md` says exactly what is and is not proved.
 -/
 
 /-- The Christoffel symbols are symmetric in their two lower indices — the connection is
-torsion-free.  This is exactly where symmetry of the metric is used.-/
+torsion-free.  This is exactly where symmetry of the metric is used.
+@isnad1 id=eq.1h6v.s5.53742dc083d6 from=translated src=- shape=da7b6ac0 vocab=aeeb01ea
+-/
 theorem christoffel_symm {g : MetricFn n} (hg : IsSymmetricMetric g) (x : Fin n → ℝ)
     (a b c : Fin n) : christoffel g x a b c = christoffel g x a c b := by
   unfold christoffel
@@ -98,7 +100,9 @@ theorem christoffel_symm {g : MetricFn n} (hg : IsSymmetricMetric g) (x : Fin n 
   rw [hbc]
   ring
 
-/-- The Riemann tensor is antisymmetric in its last two indices.-/
+/-- The Riemann tensor is antisymmetric in its last two indices.
+@isnad1 id=eq.0h7v.s5.83d5cf196dfa from=translated src=- shape=eaf0cd62 vocab=c62ec523
+-/
 theorem riemann_antisymm (g : MetricFn n) (x : Fin n → ℝ) (a b c d : Fin n) :
     riemann g x a b c d = -riemann g x a b d c := by
   have hs : ∑ e : Fin n, (christoffel g x a d e * christoffel g x e c b
@@ -110,14 +114,18 @@ theorem riemann_antisymm (g : MetricFn n) (x : Fin n → ℝ) (a b c d : Fin n) 
   unfold riemann
   rw [hs]; ring
 
-/-- `R^a_{bcc} = 0`.-/
+/-- `R^a_{bcc} = 0`.
+@isnad1 id=eq.0h6v.s5.57c196cf986a from=translated src=- shape=5d38e909 vocab=c18bc5b8
+-/
 @[simp] theorem riemann_self (g : MetricFn n) (x : Fin n → ℝ) (a b c : Fin n) :
     riemann g x a b c c = 0 := by
   have := riemann_antisymm g x a b c c
   linarith
 
 /-- A metric that is *locally constant* around `x` has vanishing Christoffel symbols
-at every point of that neighbourhood, hence vanishing curvature at `x`.-/
+at every point of that neighbourhood, hence vanishing curvature at `x`.
+@isnad1 id=eq.1h7v.s5.5dc2f4bb669d from=translated src=- shape=195c3830 vocab=2820ac5c
+-/
 theorem christoffel_eq_zero_of_const {g : MetricFn n} {G : Matrix (Fin n) (Fin n) ℝ}
     (hg : ∀ y, g y = G) (x : Fin n → ℝ) (a b c : Fin n) : christoffel g x a b c = 0 := by
   have hz : ∀ (b d c : Fin n), pderiv b (fun y => g y d c) x = 0 := by
@@ -126,7 +134,9 @@ theorem christoffel_eq_zero_of_const {g : MetricFn n} {G : Matrix (Fin n) (Fin n
     rw [this]; exact pderiv_const _ _ _
   simp [christoffel, hz]
 
-/-- If the Christoffel symbols vanish identically then so does the Riemann tensor.-/
+/-- If the Christoffel symbols vanish identically then so does the Riemann tensor.
+@isnad1 id=eq.1h7v.s6.f41a3b5805e2 from=translated src=- shape=2d91a0b6 vocab=a9cc24f6
+-/
 theorem riemann_eq_zero_of_christoffel_eq_zero {g : MetricFn n}
     (h : ∀ y a b c, christoffel g y a b c = 0) (x : Fin n → ℝ) (a b c d : Fin n) :
     riemann g x a b c d = 0 := by
@@ -137,7 +147,9 @@ theorem riemann_eq_zero_of_christoffel_eq_zero {g : MetricFn n}
 
 /-! ### The metric trace, and the vacuum equations -/
 
-/-- `gᵇᵈ g_{bd} = n` for a symmetric invertible metric.-/
+/-- `gᵇᵈ g_{bd} = n` for a symmetric invertible metric.
+@isnad1 id=eq.2h3v.s6.45fb4aa430db from=translated src=- shape=58019a7d vocab=aba576b9
+-/
 theorem sum_inv_mul_metric {g : MetricFn n} (hg : IsSymmetricMetric g) {x : Fin n → ℝ}
     (hx : IsUnit (g x).det) :
     ∑ b : Fin n, ∑ d : Fin n, (g x)⁻¹ b d * g x b d = (n : ℝ) := by
@@ -150,7 +162,9 @@ theorem sum_inv_mul_metric {g : MetricFn n} (hg : IsSymmetricMetric g) {x : Fin 
   rw [h1, Matrix.nonsing_inv_mul _ hx]
   simp
 
-/-- Contracting the Einstein tensor: `gᵇᵈ G_{bd} = (1 − n/2) R`.-/
+/-- Contracting the Einstein tensor: `gᵇᵈ G_{bd} = (1 − n/2) R`.
+@isnad1 id=eq.2h3v.s7.65f3771b42dc from=translated src=- shape=d1e84d93 vocab=a689b709
+-/
 theorem trace_einstein {g : MetricFn n} (hg : IsSymmetricMetric g) {x : Fin n → ℝ}
     (hx : IsUnit (g x).det) :
     ∑ b : Fin n, ∑ d : Fin n, (g x)⁻¹ b d * einstein g x b d
@@ -172,7 +186,9 @@ theorem trace_einstein {g : MetricFn n} (hg : IsSymmetricMetric g) {x : Fin n �
 
 /-- **Vacuum Einstein equations.**  Away from `n = 2`, `G_{bd} = 0` and `R_{bd} = 0` are
 equivalent.  This is why "Ricci-flat" and "solves the vacuum field equations" are used
-interchangeably in general relativity.-/
+interchangeably in general relativity.
+@isnad1 id=iff.3h3v.s6.429a7cc19588 from=translated src=- shape=5763bd31 vocab=14ca01e2
+-/
 theorem einstein_eq_zero_iff_ricciFlat {g : MetricFn n} (hg : IsSymmetricMetric g)
     {x : Fin n → ℝ} (hx : IsUnit (g x).det) (hn : (n : ℝ) ≠ 2) :
     (∀ b d, einstein g x b d = 0) ↔ RicciFlatAt g x := by

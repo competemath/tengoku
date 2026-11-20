@@ -76,7 +76,9 @@ noncomputable def kiselevF₂ (M c w : ℝ) : ℝ → ℝ :=
 /-- The Kiselev metric: a black hole surrounded by quintessence of equation of state `w`.-/
 noncomputable def kiselev (M c w : ℝ) : MetricFn 4 := ssMetric (kiselevF M c w)
 
-/-- `kiselev` is a static spherically symmetric chart, hence symmetric.-/
+/-- `kiselev` is a static spherically symmetric chart, hence symmetric.
+@isnad1 id=issymmet.0h3v.s4.13999d791e9d from=translated src=- shape=8c2e48b4 vocab=175ec9c4
+-/
 theorem kiselev_isSymm (M c w : ℝ) : IsSymmetricMetric (kiselev M c w) :=
   ssMetric_isSymm _
 
@@ -87,7 +89,9 @@ constant times an `rpow`).  The only real work is that `Real.hasDerivAt_rpow_con
 the exponent as `p - 1`, which is equal to the wanted exponent only *as a real number*, not
 syntactically; a `rw [show … by ring]` fixes it before the combinators are applied. -/
 
-/-- **`f′` for the Kiselev lapse.**-/
+/-- **`f′` for the Kiselev lapse.**
+@isnad1 id=hasderiv.1h4v.s5.13c11ebf08e4 from=translated src=- shape=6c8b10b6 vocab=1c8b449c
+-/
 theorem hasDerivAt_kiselevF (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
     HasDerivAt (kiselevF M c w) (kiselevF₁ M c w r) r := by
   have hr0 : r ≠ 0 := ne_of_gt hr
@@ -102,7 +106,9 @@ theorem hasDerivAt_kiselevF (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
       = 2 * M / r ^ 2 + c * (3 * w + 1) * r ^ (-(3 * w + 2))
   ring1
 
-/-- **`f″` for the Kiselev lapse.**-/
+/-- **`f″` for the Kiselev lapse.**
+@isnad1 id=hasderiv.1h4v.s5.8a47ab87de2d from=translated src=- shape=6c8b10b6 vocab=c48d37e7
+-/
 theorem hasDerivAt_kiselevF' (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
     HasDerivAt (kiselevF₁ M c w) (kiselevF₂ M c w r) r := by
   have hr0 : r ≠ 0 := ne_of_gt hr
@@ -125,7 +131,9 @@ common power; after that `r ^ p` is an atom and `field_simp` / `ring1` finish. -
 /-- The angular bracket: `1 − f − r f′ = −3wc r^{−(3w+1)}`.
 
 It vanishes exactly when `w = 0` or `c = 0`: for dust the quintessence term `c/r` is
-indistinguishable from a shift of the mass.-/
+indistinguishable from a shift of the mass.
+@isnad1 id=eq.1h4v.s7.71ea38721d65 from=translated src=- shape=d7065fd4 vocab=fc8439a3
+-/
 theorem kiselevLapse_areal (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
     1 - kiselevF M c w r - r * kiselevF₁ M c w r
       = -(3 * w * c * r ^ (-(3 * w + 1))) := by
@@ -139,7 +147,9 @@ theorem kiselevLapse_areal (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
   field_simp
   ring1
 
-/-- The radial bracket: `f″/2 + f′/r = −(3/2) w c (3w+1) r^{−(3w+3)}`.-/
+/-- The radial bracket: `f″/2 + f′/r = −(3/2) w c (3w+1) r^{−(3w+3)}`.
+@isnad1 id=eq.1h4v.s7.14d439f2c5e3 from=translated src=- shape=b5725360 vocab=9a236bc7
+-/
 theorem kiselevLapse_radial (M c w : ℝ) {r : ℝ} (hr : 0 < r) :
     kiselevF₂ M c w r / 2 + kiselevF₁ M c w r / r
       = -(3 * w * c * (3 * w + 1) / 2 * r ^ (-(3 * w + 3))) := by

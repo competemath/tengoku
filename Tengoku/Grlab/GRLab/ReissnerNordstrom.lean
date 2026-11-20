@@ -97,11 +97,15 @@ noncomputable def stressEM (g : MetricFn 4)
 
 /-! ### Basic structure of the chart -/
 
-/-- The Reissner–Nordström metric is diagonal, hence symmetric.-/
+/-- The Reissner–Nordström metric is diagonal, hence symmetric.
+@isnad1 id=issymmet.0h2v.s3.4e6749fac1c4 from=translated src=- shape=fb4338bf vocab=e26bb451
+-/
 theorem reissnerNordstrom_isSymm (M Q : ℝ) : IsSymmetricMetric (reissnerNordstrom M Q) :=
   ssMetric_isSymm _
 
-/-- The chart region is open in the radial direction.-/
+/-- The chart region is open in the radial direction.
+@isnad1 id=eventual.2h3v.s5.978009fa4eb9 from=translated src=- shape=2fcd1234 vocab=a9747cda
+-/
 theorem eventually_rnF_ne_zero {M Q r : ℝ} (hr : r ≠ 0) (h : rnF M Q r ≠ 0) :
     ∀ᶠ s in 𝓝 r, rnF M Q s ≠ 0 :=
   (hasDerivAt_rnLapse M Q hr).continuousAt.eventually_ne h

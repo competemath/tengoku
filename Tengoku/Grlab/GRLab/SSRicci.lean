@@ -30,7 +30,9 @@ set `{r ≠ 0, f(r) ≠ 0, sinθ ≠ 0}`.  These lemmas move between the two.
 -/
 
 /-- Two functions agreeing on a set that the coordinate line eventually lies in have the
-same partial derivative at the point.-/
+same partial derivative at the point.
+@isnad1 id=eq.2h6v.s6.75ae62a415d9 from=translated src=- shape=a449b47b vocab=4a65e78c
+-/
 lemma pderiv_congr_of_mem {n : ℕ} {b : Fin n} {F G : (Fin n → ℝ) → ℝ} {x : Fin n → ℝ}
     {U : Set (Fin n → ℝ)} (hU : ∀ᶠ t in 𝓝 (x b), coordLine x b t ∈ U)
     (hFG : ∀ y ∈ U, F y = G y) : pderiv b F x = pderiv b G x :=

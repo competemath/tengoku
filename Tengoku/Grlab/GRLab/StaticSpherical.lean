@@ -33,13 +33,18 @@ open Matrix Filter Topology
 noncomputable def ssMetric (f : ℝ → ℝ) : MetricFn 4 := fun x =>
   Matrix.diagonal ![-(f (x 1)), (f (x 1))⁻¹, (x 1) ^ 2, (x 1) ^ 2 * Real.sin (x 2) ^ 2]
 
+/--
+@isnad1 id=eq.0h4v.s7.7cc0b9085a03 from=translated src=- shape=65fded34 vocab=96a58bd2
+-/
 lemma ssMetric_apply (f : ℝ → ℝ) (x : Fin 4 → ℝ) (i j : Fin 4) :
     ssMetric f x i j =
       if i = j then ![-(f (x 1)), (f (x 1))⁻¹, (x 1) ^ 2, (x 1) ^ 2 * Real.sin (x 2) ^ 2] i
       else 0 := by
   simp [ssMetric, Matrix.diagonal_apply]
 
-/-- A diagonal metric is symmetric.-/
+/-- A diagonal metric is symmetric.
+@isnad1 id=issymmet.0h1v.s3.1c36fc0ed2bf from=translated src=- shape=b76121aa vocab=86b89a68
+-/
 theorem ssMetric_isSymm (f : ℝ → ℝ) : IsSymmetricMetric (ssMetric f) := by
   intro y i j
   rcases eq_or_ne i j with h | h

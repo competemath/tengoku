@@ -36,6 +36,9 @@ noncomputable def schwF₂ (M : ℝ) : ℝ → ℝ := fun s => -(4 * M / s ^ 3)
 /-- **The Schwarzschild metric** in Schwarzschild coordinates, mass `M`, `G = c = 1`.-/
 noncomputable def schwarzschild (M : ℝ) : MetricFn 4 := ssMetric (schwF M)
 
+/--
+@isnad1 id=issymmet.0h1v.s3.ad21b8591923 from=translated src=- shape=6e63af07 vocab=097e4618
+-/
 theorem schwarzschild_isSymm (M : ℝ) : IsSymmetricMetric (schwarzschild M) :=
   ssMetric_isSymm _
 

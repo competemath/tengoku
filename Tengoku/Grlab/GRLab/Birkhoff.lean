@@ -45,7 +45,9 @@ namespace GRLab
 /-- If `r f′ + f − 1 = 0` on a convex set `s ⊆ ℝ`, the quantity `r f(r) − r` is constant on `s`.
 
 No openness or connectedness hypothesis on `s` is needed: convexity alone suffices, via the
-mean value inequality with Lipschitz constant `0`.-/
+mean value inequality with Lipschitz constant `0`.
+@isnad1 id=eq.5h5v.s7.dc5a370eb040 from=translated src=- shape=a6ed9c09 vocab=8f25c94b
+-/
 theorem areal_invariant_const {f f₁ : ℝ → ℝ} {s : Set ℝ} (hs : Convex ℝ s)
     (hd : ∀ r ∈ s, HasDerivAt f (f₁ r) r)
     (hz : ∀ r ∈ s, 1 - f r - r * f₁ r = 0) :
@@ -68,7 +70,9 @@ theorem areal_invariant_const {f f₁ : ℝ → ℝ} {s : Set ℝ} (hs : Convex 
   exact h.symm
 
 /-- **Birkhoff (areal static gauge), uniqueness.**  On an interval avoiding `r = 0`, the only
-lapses solving `R_θθ = 0` are the Schwarzschild family `f = 1 − 2M/r`.-/
+lapses solving `R_θθ = 0` are the Schwarzschild family `f = 1 − 2M/r`.
+@isnad1 id=ex.4h4v.s7.96ceabab620e from=translated src=- shape=608e0ac0 vocab=06a4992e
+-/
 theorem exists_mass_of_areal_vacuum {f f₁ : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hd : ∀ r ∈ Set.Ioo a b, HasDerivAt f (f₁ r) r)
     (hz : ∀ r ∈ Set.Ioo a b, 1 - f r - r * f₁ r = 0)
@@ -82,7 +86,9 @@ theorem exists_mass_of_areal_vacuum {f f₁ : ℝ → ℝ} {a b : ℝ} (hab : a 
   field_simp
   linarith
 
-/-- Converse: every Schwarzschild lapse does solve `R_θθ = 0`.-/
+/-- Converse: every Schwarzschild lapse does solve `R_θθ = 0`.
+@isnad1 id=eq.1h2v.s7.18ff89fa8fff from=translated src=- shape=16127339 vocab=533ed9c4
+-/
 theorem areal_vacuum_of_mass (M : ℝ) {r : ℝ} (hr : r ≠ 0) :
     1 - (1 - 2 * M / r) - r * (2 * M / r ^ 2) = 0 := by
   field_simp

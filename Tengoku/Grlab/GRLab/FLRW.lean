@@ -192,7 +192,9 @@ section Good
 variable {a a₁ : ℝ → ℝ} {x : Fin 4 → ℝ}
 
 /-- Convenience: a differentiable, locally nonvanishing scale factor is eventually
-nonzero — the analytic side condition of every theorem below, from a pointwise one.-/
+nonzero — the analytic side condition of every theorem below, from a pointwise one.
+@isnad1 id=eventual.2h3v.s6.727d7186dd56 from=translated src=- shape=0a433efc vocab=f7e85ff4
+-/
 theorem eventually_ne_zero_of_hasDerivAt {a a₁ : ℝ → ℝ} {t : ℝ}
     (hd : HasDerivAt a (a₁ t) t) (ha : a t ≠ 0) : ∀ᶠ s in 𝓝 t, a s ≠ 0 :=
   hd.continuousAt.eventually_ne ha

@@ -55,31 +55,46 @@ horizon `r = L`, off the poles.-/
 def DSRegion (L : ℝ) : Set (Fin 4 → ℝ) :=
   {x | 0 < x 1 ∧ dsF L (x 1) ≠ 0 ∧ Real.sin (x 2) ≠ 0}
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.acb9f2da2c54 from=translated src=- shape=d9353bef vocab=fd3aa7a6
+-/
 theorem hasDerivAt_dsF (L : ℝ) (r : ℝ) : HasDerivAt (dsF L) (dsF₁ L r) r := by
   have h1 : HasDerivAt (fun s : ℝ => s ^ 2) (2 * r) r := by
     simpa using hasDerivAt_pow 2 r
   exact ((h1.div_const (L ^ 2)).const_sub 1).congr_deriv (by simp only [dsF₁])
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.9b7b2595a0f7 from=translated src=- shape=d9353bef vocab=608aa525
+-/
 theorem hasDerivAt_dsF' (L : ℝ) (r : ℝ) : HasDerivAt (dsF₁ L) (dsF₂ L r) r :=
   ((((hasDerivAt_id' r).const_mul 2).div_const (L ^ 2)).neg).congr_deriv (by
     simp only [dsF₂]
     ring)
 
+/--
+@isnad1 id=issymmet.0h1v.s3.35fa473a1b82 from=translated src=- shape=6e63af07 vocab=e09ca73d
+-/
 theorem deSitterStatic_isSymm (L : ℝ) : IsSymmetricMetric (deSitterStatic L) :=
   ssMetric_isSymm _
 
-/-- The static patch is open in the radial direction.-/
+/-- The static patch is open in the radial direction.
+@isnad1 id=eventual.1h2v.s5.a2a684b09992 from=translated src=- shape=42c98aa2 vocab=86d5ee94
+-/
 theorem eventually_dsF_ne_zero {L r : ℝ} (h : dsF L r ≠ 0) : ∀ᶠ s in 𝓝 r, dsF L s ≠ 0 :=
   (hasDerivAt_dsF L r).continuousAt.eventually_ne h
 
-/-- The angular bracket for static de Sitter: `1 − f − r f′ = 3r²/L²`.-/
+/-- The angular bracket for static de Sitter: `1 − f − r f′ = 3r²/L²`.
+@isnad1 id=eq.1h2v.s6.c1eca90fe19e from=translated src=- shape=ad62b321 vocab=99f0bce8
+-/
 theorem dsLapse_areal (L : ℝ) {r : ℝ} (hL : L ≠ 0) :
     1 - dsF L r - r * dsF₁ L r = 3 * r ^ 2 / L ^ 2 := by
   simp only [dsF, dsF₁]
   field_simp
   ring
 
-/-- The radial bracket for static de Sitter: `f″/2 + f′/r = −3/L²`.-/
+/-- The radial bracket for static de Sitter: `f″/2 + f′/r = −3/L²`.
+@isnad1 id=eq.2h2v.s6.632f6c581ff6 from=translated src=- shape=9f7540f5 vocab=f36dfb50
+-/
 theorem dsLapse_radial (L : ℝ) {r : ℝ} (hL : L ≠ 0) (hr : r ≠ 0) :
     dsF₂ L r / 2 + dsF₁ L r / r = -(3 / L ^ 2) := by
   simp only [dsF₁, dsF₂]
@@ -96,6 +111,9 @@ noncomputable def flatF₁ : ℝ → ℝ := fun _ => 0
 `ds² = −dt² + dr² + r²dθ² + r² sin²θ dφ²`.-/
 noncomputable def minkowskiSpherical : MetricFn 4 := ssMetric flatF
 
+/--
+@isnad1 id=issymmet.0h0v.s2.3704f2bed552 from=translated src=- shape=cef8a6bf vocab=8801e9a7
+-/
 theorem minkowskiSpherical_isSymm : IsSymmetricMetric minkowskiSpherical :=
   ssMetric_isSymm _
 

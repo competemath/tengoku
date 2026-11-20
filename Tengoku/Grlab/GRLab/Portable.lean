@@ -67,6 +67,9 @@ noncomputable def schwG (M : ℝ) (x : Fin 4 → ℝ) : Matrix (Fin 4) (Fin 4) �
 Each of these is closed by `rfl`, so the restatement above is not a paraphrase: it is the
 same definition. -/
 
+/--
+@isnad1 id=eq.0h3v.s5.7bb4cc1aea1b from=translated src=- shape=6e1112e0 vocab=8f4df1bb
+-/
 theorem pd_eq (b : Fin 4) (F : (Fin 4 → ℝ) → ℝ) (x : Fin 4 → ℝ) :
     pd b F x = GRLab.pderiv b F x := rfl
 
@@ -100,6 +103,9 @@ noncomputable def Ein (g : (Fin 4 → ℝ) → Matrix (Fin 4) (Fin 4) ℝ) (x : 
     (b d : Fin 4) : ℝ :=
   Rc g x b d - (1 / 2 : ℝ) * Sc g x * g x b d
 
+/--
+@isnad1 id=eq.0h4v.s5.389e0791e1e4 from=translated src=- shape=b461b73d vocab=7596ad1f
+-/
 theorem Ein_eq (g : GRLab.MetricFn 4) (x : Fin 4 → ℝ) (b d : Fin 4) :
     Ein g x b d = GRLab.einstein g x b d := rfl
 
@@ -130,6 +136,9 @@ noncomputable def coulF (Q : ℝ) (x : Fin 4 → ℝ) : Matrix (Fin 4) (Fin 4) �
   Matrix.of ![![0, Q / (x 1) ^ 2, 0, 0], ![-(Q / (x 1) ^ 2), 0, 0, 0],
               ![0, 0, 0, 0], ![0, 0, 0, 0]]
 
+/--
+@isnad1 id=eq.0h5v.s6.435d92271334 from=translated src=- shape=17a89d2c vocab=2a638075
+-/
 theorem Tem_eq (g : GRLab.MetricFn 4) (F : (Fin 4 → ℝ) → Matrix (Fin 4) (Fin 4) ℝ)
     (x : Fin 4 → ℝ) (μ ν : Fin 4) : Tem g F x μ ν = GRLab.stressEM g F x μ ν := rfl
 
