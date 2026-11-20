@@ -46,6 +46,10 @@ _TOP_LEVEL_LINE_RE = re.compile(r"^[^\s|].*$", re.MULTILINE)
 # file (e.g. a "catalog of competition problems" tracking what's done vs.
 # not yet). A proof corpus that can't tell those apart isn't a proof corpus.
 _SORRY_RE = re.compile(r"\bsorry\b")
+# `admit` is Lean's synonym for the `sorry` tactic: the proof is just as unchecked. formalizedsparse (batch 13, Gitar on tengoku#930) had two theorems proved by
+# `:= by admit` that `_SORRY_RE` let through, and two records that rewrote with them. Only the tactic counts: not a name that merely contains the word
+# (`admit_nonneg`, `Foo.admit`, `admit'`).
+_ADMIT_RE = re.compile(r"(?<![\w.'])admit(?![\w'])")
 
 # A `/-- … -/` directly above a declaration that carries an `Author:` line is the
 # contributor's credit (README, *Contributors*): it travels with the statement
@@ -55,7 +59,7 @@ _CREDIT_RE = re.compile(r"\bAuthors?:", re.I)
 
 
 def _contains_sorry(proof: str) -> bool:
-    return bool(_SORRY_RE.search(proof))
+    return bool(_SORRY_RE.search(proof) or _ADMIT_RE.search(proof))
 
 
 def _credit_docstring(source_lines: list[str], decl_line: int) -> str | None:
