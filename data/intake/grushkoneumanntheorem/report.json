@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "2d67e3d6d9476bb4dbeec076eefa41ee9d63e4f83157e5e07d49ea84ac36e4f2",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "grushkoneumanntheorem",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 306
+}
