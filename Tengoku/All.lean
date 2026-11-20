@@ -144,6 +144,7 @@ import Tengoku.LeanCharacteristicSet
 import Tengoku.GnmLean
 import Tengoku.NegativePowerMeans
 import Tengoku.SpherePackingOrig
+import Tengoku.OneEdgeInstability
 import Tengoku.BezoutCounterexampleLean
 import Tengoku.Ulmstheorem
 import Tengoku.ChebotarevDensity
