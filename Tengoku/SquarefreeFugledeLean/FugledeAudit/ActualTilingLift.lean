@@ -7,7 +7,9 @@ set_option autoImplicit false
 namespace FugledeAudit
 
 /-- The graph lift written in the original group: the complement is the full
-inverse image of the quotient complement. Injectivity is required on A only.-/
+inverse image of the quotient complement. Injectivity is required on A only.
+@isnad1 id=isexactt.2h5v.s8.e9a9aa134db5 from=translated src=- shape=65a385a1 vocab=2f68c9a0
+-/
 theorem quotient_lifts_exact_tiling
     {G H : Type*} [AddCommGroup G] [AddCommGroup H] [Fintype G]
     [DecidableEq G] [DecidableEq H]
@@ -46,6 +48,9 @@ theorem quotient_lifts_exact_tiling
     rw [hav] at hv
     exact eq_sub_iff_add_eq.mpr (by simpa only [add_comm] using hv)
 
+/--
+@isnad1 id=istransl.2h4v.s7.a2b704c8a470 from=translated src=- shape=8a9d4640 vocab=b310294d
+-/
 theorem quotient_lifts_tiling
     {G H : Type*} [AddCommGroup G] [AddCommGroup H] [Fintype G]
     [DecidableEq G] [DecidableEq H]

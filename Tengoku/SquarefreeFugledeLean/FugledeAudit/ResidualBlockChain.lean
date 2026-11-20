@@ -21,7 +21,9 @@ namespace FugledeAudit
 open Module
 
 /-- A rightmost shift factor is injective because its full cyclic product is
-I-D^q and the latter is invertible. V and W need not have equal dimension.-/
+I-D^q and the latter is invertible. V and W need not have equal dimension.
+@isnad1 id=injectiv.3h6v.s8.3db848190302 from=translated src=- shape=8767360d vocab=f6933213
+-/
 theorem shift_injective_of_return_identity
     {V W : Type*} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     [AddCommGroup W] [Module ℂ W]
@@ -37,7 +39,9 @@ theorem shift_injective_of_return_identity
   exact hTS (congrArg T hvw)
 
 /-- The full middle block argument, without assuming S injective or the
-levels equidimensional. T_j denotes the return product after S_j.-/
+levels equidimensional. T_j denotes the return product after S_j.
+@isnad1 id=and.8h7v.s13.1645cec06de1 from=translated src=- shape=31fc0dfe vocab=0cc00ee4
+-/
 theorem residual_block_chain
     {ι : Type*} [Fintype ι] (σ : Equiv.Perm ι)
     (V : ι → Type*) [∀ j, NormedAddCommGroup (V j)]
@@ -81,7 +85,9 @@ theorem residual_block_chain
 
 /-- Specialization to residual spaces constructed from the actual finite-order
 unitary. The exclusion of unit-circle eigenvalues is now a proved dependency,
-not a hypothesis of this theorem. The remaining block identities stay explicit.-/
+not a hypothesis of this theorem. The remaining block identities stay explicit.
+@isnad1 id=and.9h7v.s16.70d1901f7933 from=translated src=- shape=976c739c vocab=e42cdca3
+-/
 theorem constructed_residual_block_chain
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) [NeZero q] (hq : 3 ≤ q)

@@ -8,6 +8,9 @@ namespace FugledeAudit
 
 open Module
 
+/--
+@isnad1 id=eq.1h2v.s7.c0d9b527f3ad from=translated src=- shape=34a1380d vocab=22872370
+-/
 theorem standard_character_average (q : ℕ) [NeZero q] (hq : q.Prime) (d : ZMod q) :
     (q : ℂ)⁻¹ * ∑ r : Fin q, ZMod.stdAddChar d ^ r.val = if d = 0 then 1 else 0 := by
   classical
@@ -19,6 +22,9 @@ theorem standard_character_average (q : ℕ) [NeZero q] (hq : q.Prime) (d : ZMod
         (standard_character_nonzero_primitive q hq d hd).geom_sum_eq_zero hq.one_lt
     rw [hz, mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s8.ff4f95e3b0cb from=translated src=- shape=5466ce59 vocab=d75c59a4
+-/
 theorem phase_average_eq_coordinate_mask
     {ι : Type*} [Fintype ι] (q : ℕ) [NeZero q] (hq : q.Prime)
     (label : ι → ZMod q) (i : ZMod q) :
@@ -40,6 +46,9 @@ theorem phase_average_eq_coordinate_mask
   rw [hs, ← mul_assoc, standard_character_average q hq]
   simp [sub_eq_zero, ite_mul]
 
+/--
+@isnad1 id=eq.0h7v.s10.a1248cfa1ae8 from=translated src=- shape=113b5a5a vocab=df94cc97
+-/
 theorem conjugated_average_apply
     {ι E : Type*} [Fintype ι] [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [FiniteDimensional ℂ E]
@@ -58,7 +67,9 @@ noncomputable def spectralPhysicalProjection
     ((coordinateMask (fun a : A => (physicalCRT q H a.val).1) i).comp (fourierBackward A Λ))
 
 /-- The averaged powers are identified with the original Fourier-conjugated
-coordinate projector, including its actual normalization and indices.-/
+coordinate projector, including its actual normalization and indices.
+@isnad1 id=eq.2h5v.s12.6dd65a865516 from=translated src=- shape=dddf6c80 vocab=0edf2976
+-/
 theorem spectral_physical_projection_eq_average
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ) (i : ZMod q) :
@@ -70,6 +81,9 @@ theorem spectral_physical_projection_eq_average
   rw [spectralPrimeUnitary, conjugated_average_apply, phase_average_eq_coordinate_mask q hq]
   rfl
 
+/--
+@isnad1 id=eq.4h7v.s15.b5eab5e52ad1 from=translated src=- shape=8720c9aa vocab=d4102e42
+-/
 theorem spectral_pair_residual_projector_eigenvector
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hq3 : 3 ≤ q)
     (hcop : Nat.Coprime q H)

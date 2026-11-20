@@ -8,6 +8,9 @@ namespace FugledeAudit
 
 open Matrix
 
+/--
+@isnad1 id=eq.1h3v.s5.5f8e61e8618f from=translated src=- shape=b138d9b4 vocab=11aef550
+-/
 theorem exact_tiling_cardinality
     {G : Type*} [AddGroup G] [Fintype G] (A T : Finset G)
     (h : IsExactTilingPair A T) : A.card * T.card = Fintype.card G := by
@@ -24,12 +27,18 @@ theorem exact_tiling_cardinality
   simpa only [Fintype.card_prod, Fintype.card_coe] using
     Fintype.card_congr (Equiv.ofBijective f hf)
 
+/--
+@isnad1 id=dvd.1h2v.s5.4c6a47169205 from=translated src=- shape=1c32c009 vocab=50265e29
+-/
 theorem tile_cardinality_dvd_order
     (N : ℕ) [NeZero N] (A : Finset (ZMod N))
     (h : IsTranslationalTile A) : A.card ∣ N := by
   obtain ⟨T, hT⟩ := h
   exact ⟨T.card, by simpa only [ZMod.card] using (exact_tiling_cardinality A T hT).symm⟩
 
+/--
+@isnad1 id=iff.0h3v.s9.5ee1564e3cff from=translated src=- shape=5587a984 vocab=6fd793c2
+-/
 theorem restricted_hadamard_iff_spectral_pair
     (N : ℕ) [NeZero N] (A Λ : Finset (ZMod N)) :
     IsCyclicSpectralPair A Λ ↔

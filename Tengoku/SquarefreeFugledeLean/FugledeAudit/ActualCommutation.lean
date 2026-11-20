@@ -11,6 +11,9 @@ open Module
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [FiniteDimensional ℂ E]
 
+/--
+@isnad1 id=eq.1h5v.s7.65ffb5154d63 from=translated src=- shape=d17f1f0b vocab=7caf2d1d
+-/
 theorem local_eigen_space_eq_level_of_residual_eq_bot
     (T : End ℂ E) (L : Submodule ℂ E) (ω : ℂ) (q : ℕ)
     (h : localResidual T L ω q = ⊥) : localEigenSpace T L ω q = L := by
@@ -27,6 +30,9 @@ theorem local_eigen_space_eq_level_of_residual_eq_bot
   rw [he]
   exact W.starProjection_apply_mem v
 
+/--
+@isnad1 id=eq.2h3v.s10.fd330398b6a3 from=translated src=- shape=5da4ee0a vocab=e0c48382
+-/
 theorem reducing_map_commutes_projection
     (T : End ℂ E) (L : Submodule ℂ E)
     (hL : ∀ x, x ∈ L → T x ∈ L)
@@ -41,6 +47,9 @@ theorem reducing_map_commutes_projection
   exact hO _ (L.sub_starProjection_mem_orthogonal v)
 
 omit [FiniteDimensional ℂ E] in
+/--
+@isnad1 id=eq.1h5v.s9.ff33f406d676 from=translated src=- shape=daeae586 vocab=d8b5347a
+-/
 theorem commuting_map_commutes_average
     (Q T : End ℂ E) (h : Q * T = T * Q) (q : ℕ) (c : Fin q → ℂ) :
     Q * averagedPowers T q c = averagedPowers T q c * Q := by

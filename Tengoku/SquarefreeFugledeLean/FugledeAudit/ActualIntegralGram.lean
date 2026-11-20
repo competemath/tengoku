@@ -13,6 +13,9 @@ noncomputable def coordinateMaskMatrix {ι J : Type*} (label : ι → J) (i : J)
   classical
   exact Matrix.diagonal (fun a => if label a = i then 1 else 0)
 
+/--
+@isnad1 id=eq.0h4v.s12.adda480f2aee from=translated src=- shape=89f5485d vocab=fae949d6
+-/
 theorem coordinate_mask_matrix_to_linear_map
     {ι J : Type*} [Fintype ι] [DecidableEq ι] [DecidableEq J] (label : ι → J) (i : J) :
     (coordinateMaskMatrix label i).toEuclideanLin = coordinateMask label i := by
@@ -20,6 +23,9 @@ theorem coordinate_mask_matrix_to_linear_map
   rw [Matrix.toLpLin_apply, coordinate_mask_apply]
   simp [coordinateMaskMatrix, Matrix.mulVec_diagonal, ite_mul]
 
+/--
+@isnad1 id=eq.0h4v.s5.a49536189e28 from=translated src=- shape=9ce5d719 vocab=d9f3fb36
+-/
 theorem coordinate_mask_matrix_star
     {ι J : Type*} (label : ι → J) (i : J) :
     (coordinateMaskMatrix label i)ᴴ = coordinateMaskMatrix label i := by
@@ -30,6 +36,9 @@ theorem coordinate_mask_matrix_star
     simp [coordinateMaskMatrix]
   · simp [coordinateMaskMatrix, hab, Ne.symm hab]
 
+/--
+@isnad1 id=eq.0h4v.s5.a75b9e954a50 from=translated src=- shape=8d91bef6 vocab=777700fc
+-/
 theorem coordinate_mask_matrix_square
     {ι J : Type*} [Fintype ι] (label : ι → J) (i : J) :
     coordinateMaskMatrix label i * coordinateMaskMatrix label i = coordinateMaskMatrix label i := by
@@ -39,6 +48,9 @@ theorem coordinate_mask_matrix_square
   funext a
   split_ifs <;> simp
 
+/--
+@isnad1 id=isintegr.2h7v.s6.f8eadfc11e8a from=translated src=- shape=63690bc9 vocab=daf88765
+-/
 theorem integral_matrix_product_entries
     {ι κ τ : Type*} [Fintype κ] (B : Matrix ι κ ℂ) (C : Matrix κ τ ℂ)
     (hB : ∀ i k, IsIntegral ℤ (B i k)) (hC : ∀ k j, IsIntegral ℤ (C k j)) :
@@ -48,6 +60,9 @@ theorem integral_matrix_product_entries
   intro k _
   exact (hB i k).mul (hC k j)
 
+/--
+@isnad1 id=isintegr.0h6v.s4.9d773f84cfb6 from=translated src=- shape=de63f734 vocab=8752a00d
+-/
 theorem integral_coordinate_mask_entries
     {ι J : Type*} (label : ι → J) (i : J) :
     ∀ a b, IsIntegral ℤ (coordinateMaskMatrix label i a b) := by
@@ -56,6 +71,9 @@ theorem integral_coordinate_mask_entries
   simp only [coordinateMaskMatrix, Matrix.diagonal_apply]
   split_ifs <;> first | exact isIntegral_one | exact isIntegral_zero
 
+/--
+@isnad1 id=isintegr.0h5v.s6.53d6985ae143 from=translated src=- shape=966ed01d vocab=fca36d8c
+-/
 theorem integral_restricted_fourier_entries
     {N : ℕ} [NeZero N] (A Λ : Finset (ZMod N)) :
     ∀ ξ a, IsIntegral ℤ (restrictedFourierMatrix A Λ ξ a) := by
@@ -75,6 +93,9 @@ noncomputable def rawPrimeGram
     (A Λ : Finset (ZMod (q * H))) (i j : ZMod q) : Matrix Λ Λ ℂ :=
   rawPrimeBlock q H A Λ i j * (rawPrimeBlock q H A Λ i j)ᴴ
 
+/--
+@isnad1 id=isintegr.0h8v.s7.a60dca8f81bb from=translated src=- shape=6ec9937c vocab=19643735
+-/
 theorem integral_raw_prime_gram_entries
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (i j : ZMod q) :
@@ -85,6 +106,9 @@ theorem integral_raw_prime_gram_entries
       (integral_restricted_fourier_entries A Λ)
   · exact integral_coordinate_mask_entries _ _
 
+/--
+@isnad1 id=eq.0h6v.s12.f2f381add820 from=translated src=- shape=87a370dc vocab=2039f962
+-/
 theorem raw_prime_gram_sandwich
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (i j : ZMod q) :
@@ -100,7 +124,9 @@ theorem raw_prime_gram_sandwich
   rw [← Matrix.mul_assoc (coordinateMaskMatrix _ i), coordinate_mask_matrix_square]
 
 /-- Equality in the original ambient coordinate basis. The Gram matrix is
-unnormalized and no integrality property is asserted after a basis change.-/
+unnormalized and no integrality property is asserted after a basis change.
+@isnad1 id=eq.1h6v.s16.58faeed4e90d from=translated src=- shape=3592d544 vocab=cd0747ff
+-/
 theorem raw_prime_gram_to_linear_map
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ) (i j : ZMod q) :
@@ -134,6 +160,9 @@ theorem raw_prime_gram_to_linear_map
     fourierForward, fourierBackward]
   rfl
 
+/--
+@isnad1 id=eq.4h7v.s16.4c6688b2fb68 from=translated src=- shape=53751248 vocab=b50288ae
+-/
 theorem spectral_pair_residual_raw_gram_eigenvector
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hq3 : 3 ≤ q)
     (hcop : Nat.Coprime q H)

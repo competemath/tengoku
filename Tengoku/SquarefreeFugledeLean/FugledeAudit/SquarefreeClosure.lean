@@ -6,6 +6,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=istransl.0h1v.s4.4dd898c76e1e from=translated src=- shape=456cb356 vocab=5f777470
+-/
 theorem whole_group_tiles
     (G : Type*) [AddGroup G] [Fintype G] [DecidableEq G] :
     IsTranslationalTile (Finset.univ : Finset G) := by
@@ -19,6 +22,9 @@ theorem whole_group_tiles
     simpa only [ht, add_zero] using hv
   · exact Subtype.ext ht
 
+/--
+@isnad1 id=dvd.3h2v.s5.32cb74890004 from=translated src=- shape=8131cf88 vocab=44871a4d
+-/
 theorem squarefree_dvd_twice_of_odd_primes_dvd
     (N m : ℕ) (hs : Squarefree N) (hm : 0 < m)
     (hp : ∀ q, q.Prime → 3 ≤ q → q ∣ N → q ∣ m) : N ∣ 2 * m := by
@@ -35,6 +41,9 @@ theorem squarefree_dvd_twice_of_odd_primes_dvd
     · exact dvd_mul_of_dvd_right (hp q hq (by have := hq.two_le; omega) hqN) 2
   simpa only [Nat.prod_primeFactors_of_squarefree hs] using hd
 
+/--
+@isnad1 id=or.3h2v.s5.951a25de462c from=translated src=- shape=c2b64a89 vocab=3a19dee0
+-/
 theorem size_eq_order_or_half
     (N m : ℕ) (hm : 0 < m) (hmN : m ≤ N) (hd : N ∣ 2 * m) :
     m = N ∨ N = 2 * m := by
@@ -44,6 +53,9 @@ theorem size_eq_order_or_half
   have hkle : k ≤ 2 := by nlinarith
   interval_cases k <;> omega
 
+/--
+@isnad1 id=istransl.3h3v.s7.96369bb45ff9 from=translated src=- shape=da8e909a vocab=4c502d89
+-/
 theorem half_order_spectral_set_tiles
     (H : ℕ) [NeZero H] (hs : Squarefree (2 * H))
     (A Λ : Finset (ZMod (2 * H))) (h : IsCyclicSpectralPair A Λ) (hm : A.card = H) :

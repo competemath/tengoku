@@ -7,6 +7,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=isprimit.2h2v.s6.f20bd8b61b3e from=translated src=- shape=421cfe32 vocab=355eb591
+-/
 theorem standard_character_nonzero_primitive (q : ℕ) [NeZero q]
     (hq : q.Prime) (d : ZMod q) (hd : d ≠ 0) :
     IsPrimitiveRoot (ZMod.stdAddChar d) q := by
@@ -18,17 +21,25 @@ theorem standard_character_nonzero_primitive (q : ℕ) [NeZero q]
   have hz := ZMod.injective_stdAddChar he
   exact (ZMod.natCast_eq_zero_iff n q).mp ((mul_eq_zero.mp hz).resolve_right hd)
 
+/--
+@isnad1 id=eq.0h3v.s7.2a636bac4543 from=translated src=- shape=0890c344 vocab=7fc90a6c
+-/
 theorem standard_character_mul_power (q : ℕ) [NeZero q] (x d : ZMod q) :
     ZMod.stdAddChar d ^ x.val = ZMod.stdAddChar (x * d) := by
   rw [← AddChar.map_nsmul_eq_pow]
   simp [nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s7.f2b5b97afe30 from=translated src=- shape=e9daeac7 vocab=0b994f5a
+-/
 theorem dual_crt_sub (q H : ℕ) (ξ μ : ZMod (q * H)) :
     dualCRT q H (ξ - μ) = dualCRT q H ξ - dualCRT q H μ := by
   ext <;> simp [dualCRT, physicalCRT, map_sub, mul_sub]
 
 /-- A zero for two actual, distinct prime-level rows transfers to every
-nonzero prime phase. The other CRT coordinate may repeat arbitrarily.-/
+nonzero prime phase. The other CRT coordinate may repeat arbitrarily.
+@isnad1 id=eq.5h7v.s10.fd92bdd88b00 from=translated src=- shape=04cd22e1 vocab=7e497575
+-/
 theorem spectral_pair_weighted_fourier_zero
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ)

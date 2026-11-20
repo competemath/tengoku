@@ -8,6 +8,9 @@ namespace FugledeAudit
 
 open Polynomial
 
+/--
+@isnad1 id=eq.3h5v.s6.838576000a47 from=translated src=- shape=26d8daaa vocab=22cf0e25
+-/
 theorem primitive_root_power_sum_transfer
     {ι : Type*} [Fintype ι] (H : ℕ) [NeZero H]
     (ω Ω : ℂ) (hω : IsPrimitiveRoot ω H) (hΩ : IsPrimitiveRoot Ω H)
@@ -27,6 +30,9 @@ theorem primitive_root_power_sum_transfer
   have hp : aeval Ω p = 0 := by rw [hs, map_mul, hc, zero_mul]
   simpa [p] using hp
 
+/--
+@isnad1 id=eq.2h4v.s7.eaeb06cd2122 from=translated src=- shape=6c86a374 vocab=a074fb5f
+-/
 theorem standard_character_unit_sum_transfer
     {ι : Type*} [Fintype ι] (H u : ℕ) [NeZero H] (hcop : Nat.Coprime u H)
     (label : ι → ZMod H) (hzero : ∑ a, ZMod.stdAddChar (label a) = 0) :
@@ -40,6 +46,9 @@ theorem standard_character_unit_sum_transfer
   have ht := primitive_root_power_sum_transfer H _ _ hω hΩ (fun a => (label a).val) h1
   simpa only [standard_character_mul_power, mul_comm] using ht
 
+/--
+@isnad1 id=eq.1h3v.s6.ae8e5af317db from=translated src=- shape=ac08a65a vocab=38911cb9
+-/
 theorem dual_cofactor_scaled_by_prime
     (q H : ℕ) [NeZero q] [NeZero H] (hcop : Nat.Coprime q H) (ξ : ZMod (q * H)) :
     (q : ZMod H) * (dualCRT q H ξ).2 = (physicalCRT q H ξ).2 := by

@@ -26,7 +26,9 @@ def firewallVector : Fin 3 → ℂ := ![1, 1, 1]
 
 /-- An orthogonal compression of an integer matrix can have eigenvalue 1/3
 without the ambient matrix having that eigenvector. Orthogonality of the
-projection alone does not justify the integrality argument.-/
+projection alone does not justify the integrality argument.
+@isnad1 id=and.0h0v.s8.b6761bd6512b from=translated src=- shape=aeb2d9cc vocab=1a6ae774
+-/
 theorem compression_without_invariance_counterexample :
     firewallProjection * firewallProjection = firewallProjection ∧
     firewallProjection.conjTranspose = firewallProjection ∧

@@ -28,6 +28,9 @@ noncomputable def spectralPhasePowerMatrix
     Matrix.diagonal (fun a : A => ZMod.stdAddChar (physicalCRT q H a.val).1 ^ r) *
     (normalizedFourierMatrix A Λ)ᴴ
 
+/--
+@isnad1 id=eq.1h5v.s15.c22b2602e5bf from=translated src=- shape=643b2d67 vocab=ba6f304e
+-/
 theorem spectral_prime_power_matrix
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ) (r : ℕ) :
@@ -46,6 +49,9 @@ theorem spectral_prime_power_matrix
   rw [phase_power_apply, Matrix.toLpLin_apply]
   simp [Matrix.mulVec_diagonal, fourierBackward, Matrix.toLpLin_apply]
 
+/--
+@isnad1 id=eq.0h7v.s10.f03028892d7b from=translated src=- shape=d6f9b1d5 vocab=ca56c879
+-/
 theorem spectral_phase_power_entry
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (r : ℕ) (ξ μ : Λ) :
@@ -66,6 +72,9 @@ theorem spectral_phase_power_entry
   simp only [Complex.star_def]
   ring
 
+/--
+@isnad1 id=eq.5h7v.s9.2ad0146977fd from=translated src=- shape=35ade00c vocab=5c54813f
+-/
 theorem spectral_phase_power_entry_zero
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ) (r : ℕ)
@@ -76,6 +85,9 @@ theorem spectral_phase_power_entry_zero
   rw [spectral_phase_power_entry,
     spectral_pair_weighted_fourier_zero q H hq hcop A Λ h ξ μ r hd hr, mul_zero]
 
+/--
+@isnad1 id=eq.5h7v.s16.fcb1ca9c9ea5 from=translated src=- shape=1ddaf2dc vocab=b2f1d416
+-/
 theorem spectral_pair_sparse_powers
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ)

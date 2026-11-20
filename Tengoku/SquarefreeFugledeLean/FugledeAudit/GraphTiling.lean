@@ -14,7 +14,9 @@ def graphSet (X : Finset H) (f : H → K) : Finset (K × H) :=
   X.image (fun x => (f x, x))
 
 /-- The graph-lifting argument in the manuscript, with uniqueness of the
-tiling decomposition included, not merely coverage.-/
+tiling decomposition included, not merely coverage.
+@isnad1 id=isexactt.1h5v.s6.7114097086bd from=translated src=- shape=c09b8a7f vocab=42a14c60
+-/
 theorem graph_lifts_exact_tiling [Fintype K] (X T : Finset H) (f : H → K)
     (h : IsExactTilingPair X T) :
     IsExactTilingPair (graphSet X f) (Finset.univ.product T) := by
@@ -56,6 +58,9 @@ theorem graph_lifts_exact_tiling [Fintype K] (X T : Finset H) (f : H → K)
         exact eq_sub_iff_add_eq.mpr (by simpa only [add_comm] using he)
       · exact hvt
 
+/--
+@isnad1 id=istransl.1h4v.s5.4e0071252e23 from=translated src=- shape=68b80d6a vocab=3f8b5a67
+-/
 theorem graph_lifts_tiling [Fintype K] (X : Finset H) (f : H → K)
     (h : IsTranslationalTile X) : IsTranslationalTile (graphSet X f) := by
   obtain ⟨T, hT⟩ := h

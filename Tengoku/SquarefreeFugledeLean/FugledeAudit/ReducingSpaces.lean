@@ -21,6 +21,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 def globalEigenSpace {ι : Type*} (U : End ℂ E) (L : ι → Submodule ℂ E)
     (ω : ℂ) (q : ℕ) : Submodule ℂ E := ⨆ j, localEigenSpace U (L j) ω q
 
+/--
+@isnad1 id=mem.2h5v.s9.7f8ce5decb15 from=translated src=- shape=a8fcf79a vocab=c5b5cbf6
+-/
 theorem linear_map_preserves_iSup
     {ι : Type*} (T : End ℂ E) (L : ι → Submodule ℂ E)
     (hL : ∀ j x, x ∈ L j → T x ∈ L j) :
@@ -33,6 +36,9 @@ theorem linear_map_preserves_iSup
   · intro y z hy hz
     simpa only [map_add] using (⨆ j, L j).add_mem hy hz
 
+/--
+@isnad1 id=mem.2h5v.s9.92b18320a79f from=translated src=- shape=bcb6a7ba vocab=367545a2
+-/
 theorem linear_map_preserves_pow
     (T : End ℂ E) (W : Submodule ℂ E)
     (hW : ∀ x, x ∈ W → T x ∈ W) : ∀ n x, x ∈ W → (T ^ n) x ∈ W := by
@@ -44,11 +50,17 @@ theorem linear_map_preserves_pow
     rw [pow_succ']
     exact hW ((T ^ n) x) (ih x hx)
 
+/--
+@isnad1 id=le.0h5v.s7.64900b42ea9f from=translated src=- shape=286b6fee vocab=4c17b747
+-/
 theorem local_eigen_space_le_level
     (U : End ℂ E) (L : Submodule ℂ E) (ω : ℂ) (q : ℕ) :
     localEigenSpace U L ω q ≤ L := by
   exact iSup_le fun _ => inf_le_left
 
+/--
+@isnad1 id=mem.1h6v.s8.326bb7d8f670 from=translated src=- shape=e87ddba3 vocab=2e3416de
+-/
 theorem local_eigen_space_invariant
     (U : End ℂ E) (L : Submodule ℂ E) (ω : ℂ) (q : ℕ) :
     ∀ x, x ∈ localEigenSpace U L ω q → U x ∈ localEigenSpace U L ω q := by
@@ -58,11 +70,17 @@ theorem local_eigen_space_invariant
   rw [he]
   exact (L ⊓ U.eigenspace (ω ^ i.val)).smul_mem _ hx
 
+/--
+@isnad1 id=mem.1h7v.s8.b4900f55b3df from=translated src=- shape=67e16e4d vocab=2c065fbe
+-/
 theorem global_eigen_space_invariant
     {ι : Type*} (U : End ℂ E) (L : ι → Submodule ℂ E) (ω : ℂ) (q : ℕ) :
     ∀ x, x ∈ globalEigenSpace U L ω q → U x ∈ globalEigenSpace U L ω q := by
   exact linear_map_preserves_iSup U _ (fun j => local_eigen_space_invariant U (L j) ω q)
 
+/--
+@isnad1 id=eq.2h4v.s10.c1ada191bb2e from=translated src=- shape=47676bb0 vocab=fb474991
+-/
 theorem finite_order_unitary_inverse_apply
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) (hq : 0 < q) (hU : U.toLinearMap ^ q = 1) (v : E) :
     U.symm v = (U.toLinearMap ^ (q - 1)) v := by
@@ -73,6 +91,9 @@ theorem finite_order_unitary_inverse_apply
     _ = (U.toLinearMap ^ ((q - 1) + 1)) v := by rw [pow_succ']; rfl
     _ = v := by rw [Nat.sub_add_cancel (by omega : 1 ≤ q), hU]; rfl
 
+/--
+@isnad1 id=mem.4h5v.s10.221c4fc61a3f from=translated src=- shape=990b572c vocab=b4a1854c
+-/
 theorem finite_order_invariant_orthogonal
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) (hq : 0 < q) (hU : U.toLinearMap ^ q = 1)
     (W : Submodule ℂ E) (hW : ∀ x, x ∈ W → U x ∈ W) :
@@ -86,6 +107,9 @@ theorem finite_order_invariant_orthogonal
     _ = ⟪U.symm w, x⟫_ℂ := U.inner_map_map _ _
     _ = 0 := hx _ hwinv
 
+/--
+@isnad1 id=mem.3h7v.s10.6ca00a04f918 from=translated src=- shape=58486181 vocab=1810d888
+-/
 theorem global_residual_invariant
     {ι : Type*} (U : E ≃ₗᵢ[ℂ] E) (L : ι → Submodule ℂ E) (ω : ℂ)
     (q : ℕ) (hq : 0 < q) (hU : U.toLinearMap ^ q = 1) :
@@ -98,6 +122,9 @@ section Projections
 
 variable [FiniteDimensional ℂ E]
 
+/--
+@isnad1 id=mem.2h8v.s9.11a74cc6af4d from=translated src=- shape=3f03c836 vocab=cc72ebde
+-/
 theorem level_projection_preserves_global_eigen_space
     {ι : Type*} (U : End ℂ E) (L : ι → Submodule ℂ E) (ω : ℂ) (q : ℕ)
     (horth : Pairwise fun j k => (L j).IsOrtho (L k)) (j : ι) :
@@ -119,6 +146,9 @@ theorem level_projection_preserves_global_eigen_space
     simpa only [map_add] using (globalEigenSpace U L ω q).add_mem hy hz
 
 omit [FiniteDimensional ℂ E] in
+/--
+@isnad1 id=mem.3h4v.s9.3e6ba8c37682 from=translated src=- shape=cf5e01ed vocab=1a7c41c1
+-/
 theorem symmetric_map_preserves_orthogonal
     (T : End ℂ E) (hT : T.IsSymmetric) (W : Submodule ℂ E)
     (hW : ∀ x, x ∈ W → T x ∈ W) : ∀ x, x ∈ Wᗮ → T x ∈ Wᗮ := by
@@ -126,6 +156,9 @@ theorem symmetric_map_preserves_orthogonal
   rw [← hT y x]
   exact hx _ (hW y hy)
 
+/--
+@isnad1 id=mem.2h8v.s9.f11a0af037e8 from=translated src=- shape=57a71b3f vocab=68b6468b
+-/
 theorem level_projection_preserves_global_residual
     {ι : Type*} (U : End ℂ E) (L : ι → Submodule ℂ E) (ω : ℂ) (q : ℕ)
     (horth : Pairwise fun j k => (L j).IsOrtho (L k)) (j : ι) :
@@ -137,7 +170,9 @@ theorem level_projection_preserves_global_residual
 
 omit [FiniteDimensional ℂ E] in
 /-- The locally defined residual space is exactly its level's part of the
-global orthogonal complement. No level decomposition is asserted by fiat.-/
+global orthogonal complement. No level decomposition is asserted by fiat.
+@isnad1 id=eq.1h7v.s7.e7cbf95b12e1 from=translated src=- shape=ab659ac1 vocab=59db428e
+-/
 theorem local_residual_eq_level_inf_global
     {ι : Type*} (U : End ℂ E) (L : ι → Submodule ℂ E) (ω : ℂ) (q : ℕ)
     (horth : Pairwise fun j k => (L j).IsOrtho (L k)) (j : ι) :
@@ -159,6 +194,9 @@ theorem local_residual_eq_level_inf_global
   · intro hv
     exact ⟨hv.1, fun w hw => hv.2 w (Submodule.mem_iSup_of_mem j hw)⟩
 
+/--
+@isnad1 id=mem.3h10v.s11.c3aec874fe5f from=translated src=- shape=a89d5d24 vocab=76ef53a8
+-/
 theorem projected_power_mem_local_residual
     {ι : Type*} (U : E ≃ₗᵢ[ℂ] E) (L : ι → Submodule ℂ E) (ω : ℂ)
     (q : ℕ) (hq : 0 < q) (hU : U.toLinearMap ^ q = 1)
@@ -174,6 +212,9 @@ theorem projected_power_mem_local_residual
   have hv := (le_of_eq (local_residual_eq_level_inf_global U.toLinearMap L ω q horth k)) v.property
   exact hv.2
 
+/--
+@isnad1 id=eq.2h4v.s9.fdd5d1d077fe from=translated src=- shape=40d29550 vocab=62c7604f
+-/
 theorem nested_projection_eq_of_mem
     (K L : Submodule ℂ E) (hKL : K ≤ L) (v : E) (hv : L.starProjection v ∈ K) :
     K.starProjection v = L.starProjection v := by

@@ -20,6 +20,9 @@ open Matrix
 def projectionBlocks {ι R : Type*} [Ring R] (Q : ι → R) (U : R) : Matrix ι ι R :=
   fun j k => Q j * U * Q k
 
+/--
+@isnad1 id=eq.2h5v.s7.106aaccf290d from=translated src=- shape=eb16865f vocab=86aaf5f2
+-/
 theorem projection_blocks_mul
     {ι R : Type*} [Fintype ι] [Ring R] (Q : ι → R)
     (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1) (U V : R) :
@@ -38,7 +41,9 @@ theorem projection_blocks_mul
     _ = _ := by rw [hsum]; noncomm_ring
 
 /-- Only positive powers are asserted: matrix power zero has ambient I on
-the diagonal, while the blockification of U^0 has Q_j on the diagonal.-/
+the diagonal, while the blockification of U^0 has Q_j on the diagonal.
+@isnad1 id=eq.3h5v.s7.a39d33366ac4 from=translated src=- shape=997ca77b vocab=34c5a86e
+-/
 theorem projection_blocks_positive_power
     {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R] (Q : ι → R)
     (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1) (U : R)
@@ -54,6 +59,9 @@ theorem projection_blocks_positive_power
       _ = projectionBlocks Q (U ^ n.succ * U) := projection_blocks_mul Q hQ hsum _ _
       _ = _ := by rw [← pow_succ]
 
+/--
+@isnad1 id=eq.1h4v.s8.d0a657c14755 from=translated src=- shape=e4e5f33c vocab=933deaf0
+-/
 theorem projection_blocks_eq_cyclic_band
     (q : ℕ) [NeZero q] {R : Type*} [Ring R] (Q : ZMod q → R) (U : R)
     (hsparse : ∀ j k, k ≠ j → k ≠ j + 1 → Q j * U * Q k = 0) :
@@ -66,6 +74,9 @@ theorem projection_blocks_eq_cyclic_band
     · subst k; simp [projectionBlocks, cyclicBand, h1]
     · simp [projectionBlocks, cyclicBand, h1, h2, hsparse j k h1 h2]
 
+/--
+@isnad1 id=eq.6h6v.s8.94a24e3dd943 from=translated src=- shape=ae71acd5 vocab=8293fe16
+-/
 theorem actual_projection_short_diagonal
     (q : ℕ) [NeZero q] (hq : 2 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1)
@@ -78,7 +89,9 @@ theorem actual_projection_short_diagonal
     projection_blocks_positive_power Q hQ hsum U n hn] at h
   exact h
 
-/-- The q-th return identity for the actual ambient projection blocks.-/
+/-- The q-th return identity for the actual ambient projection blocks.
+@isnad1 id=eq.5h5v.s9.eb698724ead8 from=translated src=- shape=75bbc93b vocab=e45bc2b7
+-/
 theorem actual_projection_qth_return
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1)
@@ -98,6 +111,9 @@ theorem actual_projection_qth_return
   rw [hpow q (by omega), hpow (q - 1) (by omega)] at h
   simpa only [projectionBlocks, hU, mul_one, hQ, sub_add_cancel] using h
 
+/--
+@isnad1 id=eq.4h5v.s9.a5ffa1b590de from=translated src=- shape=251f1985 vocab=f74343ca
+-/
 theorem actual_projection_square_shift
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1)
@@ -112,6 +128,9 @@ theorem actual_projection_square_shift
     projection_blocks_positive_power Q hQ hsum U 2 (by decide)] at h
   exact h
 
+/--
+@isnad1 id=eq.4h5v.s9.377d495c2128 from=translated src=- shape=19b5061e vocab=f74343ca
+-/
 theorem actual_projection_cube_shift
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (hQ : ∀ j, Q j * Q j = Q j) (hsum : ∑ j, Q j = 1)

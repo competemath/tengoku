@@ -16,6 +16,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 noncomputable def averagedPowers (U : End ℂ E) (q : ℕ) (c : Fin q → ℂ) : End ℂ E :=
   (q : ℂ)⁻¹ • ∑ r : Fin q, c r • U ^ r.val
 
+/--
+@isnad1 id=eq.8h8v.s12.1c253d2a77df from=translated src=- shape=8d9c2cce vocab=f187ea92
+-/
 theorem actual_residual_short_return_zero
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) [NeZero q] (hq : 3 ≤ q)
     (ω : ℂ) (hω : IsPrimitiveRoot ω q) (hU : U.toLinearMap ^ q = 1)
@@ -48,7 +51,9 @@ theorem actual_residual_short_return_zero
 
 /-- This is an ambient equality for every actual residual vector, not merely
 an eigenvalue of an abstract compression. The coefficient condition c(0)=1 is
-the only condition on the spectral-projector coefficients used at this step.-/
+the only condition on the spectral-projector coefficients used at this step.
+@isnad1 id=eq.7h8v.s12.d153d2eb901e from=translated src=- shape=a543e26c vocab=8b0e9cb3
+-/
 theorem actual_residual_averaged_power_eigenvector
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) [NeZero q] (hq : 3 ≤ q)
     (ω : ℂ) (hω : IsPrimitiveRoot ω q) (hU : U.toLinearMap ^ q = 1)

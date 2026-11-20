@@ -7,6 +7,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=mem.0h2v.s7.68658490b787 from=translated src=- shape=40577e0c vocab=919031c0
+-/
 theorem standard_character_in_cyclotomic_field (H : ℕ) [NeZero H] (x : ZMod H) :
     ZMod.stdAddChar x ∈ IntermediateField.adjoin ℚ {ZMod.stdAddChar (1 : ZMod H)} := by
   have hx : ZMod.stdAddChar x = ZMod.stdAddChar (1 : ZMod H) ^ x.val := by
@@ -16,7 +19,9 @@ theorem standard_character_in_cyclotomic_field (H : ℕ) [NeZero H] (x : ZMod H)
   exact pow_mem (IntermediateField.mem_adjoin_simple_self ℚ _) x.val
 
 /-- A finite family is grouped by its actual prime-level label. Empty fibres
-are allowed, and no independence or noncollision of the other labels is used.-/
+are allowed, and no independence or noncollision of the other labels is used.
+@isnad1 id=eq.6h8v.s8.2ee1d3624491 from=translated src=- shape=3d9adb93 vocab=bd725952
+-/
 theorem coprime_fibre_fourier_transfer
     {ι : Type*} [Fintype ι]
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)

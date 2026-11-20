@@ -21,13 +21,17 @@ open Matrix Polynomial
 
 namespace FugledeAudit
 
-/-- Every positive-order root of unity is an algebraic integer.-/
+/-- Every positive-order root of unity is an algebraic integer.
+@isnad1 id=isintegr.2h2v.s5.fe19f2ce3c4d from=translated src=- shape=733f9193 vocab=922892e1
+-/
 theorem integral_of_root_of_unity (ζ : ℂ) (H : ℕ) (hH : 0 < H)
     (hζ : ζ ^ H = 1) : IsIntegral ℤ ζ := by
   exact IsIntegral.of_pow hH (hζ ▸ isIntegral_one)
 
 /-- Entries of the actual unnormalised Gram matrix are integral whenever the
-entries of the rectangular Fourier block are integral.-/
+entries of the rectangular Fourier block are integral.
+@isnad1 id=isintegr.1h5v.s6.afdcc356f833 from=translated src=- shape=7111723c vocab=75ce58d0
+-/
 theorem integral_gram_entries
     {n k : Type*} [Fintype k]
     (M : Matrix n k ℂ) (hM : ∀ i j, IsIntegral ℤ (M i j)) :
@@ -39,7 +43,9 @@ theorem integral_gram_entries
   exact (hM i x).mul (map_isIntegral_int Complex.conjAe.toRingHom (hM j x))
 
 /-- A rational algebraic integer m/q, with q nonzero, forces q to divide m.
-Primality, square-freeness and prime separation are not needed for this step.-/
+Primality, square-freeness and prime separation are not needed for this step.
+@isnad1 id=dvd.2h2v.s5.aa8978adcc78 from=translated src=- shape=3354d305 vocab=45ea38af
+-/
 theorem dvd_of_integral_quotient (m q : ℕ) (hq : q ≠ 0)
     (h : IsIntegral ℤ ((m : ℚ) / (q : ℚ))) : q ∣ m := by
   obtain ⟨z, hz⟩ := IsIntegrallyClosed.algebraMap_eq_of_integral h
@@ -56,7 +62,9 @@ theorem dvd_of_integral_quotient (m q : ℕ) (hq : q ≠ 0)
 
 /-- A genuine eigenvalue of a finite matrix of algebraic integers is integral.
 The integral matrix is constructed in its original basis; no unitary change
-of basis is used to assert integrality of the entries.-/
+of basis is used to assert integrality of the entries.
+@isnad1 id=isintegr.3h4v.s6.86aff32e4f8b from=translated src=- shape=39f31f8c vocab=b9f2df17
+-/
 theorem integral_of_matrix_eigenvector
     {n : Type*} [Fintype n] [DecidableEq n]
     (B : Matrix n n ℂ) (hB : ∀ i j, IsIntegral ℤ (B i j))

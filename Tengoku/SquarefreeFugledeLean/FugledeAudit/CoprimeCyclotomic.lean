@@ -10,7 +10,9 @@ namespace FugledeAudit
 open Polynomial IntermediateField
 
 /-- The relative minimal-polynomial fact used in Lemma 3.1. The only
-separation assumption is coprimality of the orders; no size inequality occurs.-/
+separation assumption is coprimality of the orders; no size inequality occurs.
+@isnad1 id=eq.3h4v.s9.d15072dca2de from=translated src=- shape=7ce2e12f vocab=fd54c476
+-/
 theorem coprime_cyclotomic_minpoly
     (q H : ℕ) [NeZero q] [NeZero H] (hcop : Nat.Coprime q H)
     (ω η : ℂ) (hω : IsPrimitiveRoot ω q) (hη : IsPrimitiveRoot η H) :
@@ -63,7 +65,9 @@ theorem coprime_cyclotomic_minpoly
     (by simpa only [natDegree_cyclotomic] using hdegree)
 
 /-- Coefficient rigidity at a prime root over the coprime cyclotomic field.
-This includes zero coefficients and the degree-drop case.-/
+This includes zero coefficients and the degree-drop case.
+@isnad1 id=eq.5h7v.s8.6b2b2d423956 from=translated src=- shape=b9aeaf3a vocab=dff873f9
+-/
 theorem coprime_prime_coefficient_rigidity
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (ω η : ℂ) (hω : IsPrimitiveRoot ω q) (hη : IsPrimitiveRoot η H)

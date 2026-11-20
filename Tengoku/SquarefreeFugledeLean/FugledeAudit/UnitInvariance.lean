@@ -7,6 +7,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=iscyclic.1h4v.s6.a55ec7917e0a from=translated src=- shape=ce363e68 vocab=5058fd63
+-/
 theorem spectral_pair_unit_image
     (H : ℕ) [NeZero H] (u : (ZMod H)ˣ) (B L : Finset (ZMod H))
     (h : IsCyclicSpectralPair B L) :
@@ -32,7 +35,9 @@ theorem spectral_pair_unit_image
     rw [Finset.sum_coe_sort B (fun a => ZMod.stdAddChar ((u : ZMod H) * (a * (x - y))))] at ht
     simpa only [cyclicFourierEntry, ← mul_sub, mul_left_comm] using ht
 
-/-- The two-sided assertion in Lemma 2.1, for the literal frequency set.-/
+/-- The two-sided assertion in Lemma 2.1, for the literal frequency set.
+@isnad1 id=iff.0h4v.s6.d6d72829e4cd from=translated src=- shape=e75abccb vocab=5058fd63
+-/
 theorem spectral_pair_unit_invariance
     (H : ℕ) [NeZero H] (u : (ZMod H)ˣ) (B L : Finset (ZMod H)) :
     IsCyclicSpectralPair B L ↔
@@ -44,6 +49,9 @@ theorem spectral_pair_unit_invariance
   simpa only [Finset.image_image, Function.comp_def, ← mul_assoc, Units.inv_mul,
     one_mul, Finset.image_id'] using ht
 
+/--
+@isnad1 id=iff.0h4v.s7.770fe93df84d from=translated src=- shape=71190be2 vocab=88220d9e
+-/
 theorem tiling_add_equiv_invariance
     {G H : Type*} [AddCommGroup G] [AddCommGroup H] [Fintype G] [Fintype H]
     [DecidableEq G] [DecidableEq H] (e : G ≃+ H) (A : Finset G) :
@@ -62,6 +70,9 @@ def unitAddEquiv (H : ℕ) (u : (ZMod H)ˣ) : ZMod H ≃+ ZMod H where
   right_inv x := by simp only [← mul_assoc, Units.mul_inv, one_mul]
   map_add' x y := mul_add _ _ _
 
+/--
+@isnad1 id=iff.0h3v.s6.90b8737f0890 from=translated src=- shape=c8aee675 vocab=f1eda90e
+-/
 theorem tiling_unit_invariance
     (H : ℕ) [NeZero H] (u : (ZMod H)ˣ) (B : Finset (ZMod H)) :
     IsTranslationalTile B ↔

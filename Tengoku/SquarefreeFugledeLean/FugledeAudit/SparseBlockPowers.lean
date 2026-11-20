@@ -27,6 +27,9 @@ def cyclicBand (D S : ZMod q → R) : Matrix (ZMod q) (ZMod q) R :=
   fun j k => if k = j then D j else if k = j + 1 then S j else 0
 
 omit [NeZero q] in
+/--
+@isnad1 id=ne.1h2v.s6.80e5c7f4da35 from=translated src=- shape=31d18dc3 vocab=9644f837
+-/
 theorem cyclic_successor_ne (hq : 2 ≤ q) (j : ZMod q) : j + 1 ≠ j := by
   intro h
   have h1 : (1 : ZMod q) = 0 := add_left_cancel (by simpa only [add_zero] using h)
@@ -34,14 +37,23 @@ theorem cyclic_successor_ne (hq : 2 ≤ q) (j : ZMod q) : j + 1 ≠ j := by
   omega
 
 omit [NeZero q] in
+/--
+@isnad1 id=eq.0h5v.s5.3474387463b9 from=translated src=- shape=8d77d52c vocab=4f6f3fbc
+-/
 theorem cyclic_band_self (D S : ZMod q → R) (j : ZMod q) :
     cyclicBand q D S j j = D j := by simp [cyclicBand]
 
 omit [NeZero q] in
+/--
+@isnad1 id=eq.1h5v.s6.052af68cb771 from=translated src=- shape=7275c9e9 vocab=880ada3f
+-/
 theorem cyclic_band_next (D S : ZMod q → R) (hq : 2 ≤ q) (j : ZMod q) :
     cyclicBand q D S j (j + 1) = S j := by
   simp [cyclicBand, cyclic_successor_ne q hq j]
 
+/--
+@isnad1 id=eq.1h7v.s7.7fac6cde0e57 from=translated src=- shape=04dfaa78 vocab=3883d389
+-/
 theorem cyclic_band_mul_row (D S : ZMod q → R) (hq : 2 ≤ q)
     (A : Matrix (ZMod q) (ZMod q) R) (j k : ZMod q) :
     (cyclicBand q D S * A) j k = D j * A j k + S j * A (j + 1) k := by
@@ -51,6 +63,9 @@ theorem cyclic_band_mul_row (D S : ZMod q → R) (hq : 2 ≤ q)
   · intro x hx
     simp [cyclicBand, hx.1, hx.2]
 
+/--
+@isnad1 id=eq.1h7v.s7.d2abfeeafb0b from=translated src=- shape=8466674f vocab=a120ee2c
+-/
 theorem cyclic_band_mul_column (D S : ZMod q → R) (hq : 2 ≤ q)
     (A : Matrix (ZMod q) (ZMod q) R) (j k : ZMod q) :
     (A * cyclicBand q D S) j k = A j k * D k + A j (k - 1) * S (k - 1) := by
@@ -68,7 +83,9 @@ theorem cyclic_band_mul_column (D S : ZMod q → R) (hq : 2 ≤ q)
     simp [cyclicBand, h1, h2]
 
 /-- A nonzero length-n matrix entry has a path with between 0 and n shifts.
-This is proved for all n; it is not a small-modulus enumeration.-/
+This is proved for all n; it is not a small-modulus enumeration.
+@isnad1 id=ex.2h7v.s7.bc9f39d9c6eb from=translated src=- shape=3fdb2220 vocab=bda7bd49
+-/
 theorem cyclic_band_power_support (D S : ZMod q → R) (hq : 2 ≤ q)
     (n : ℕ) (j k : ZMod q)
     (h : (cyclicBand q D S ^ n) j k ≠ 0) : ∃ s ≤ n, k = j + (s : ZMod q) := by
@@ -90,7 +107,9 @@ theorem cyclic_band_power_support (D S : ZMod q → R) (hq : 2 ≤ q)
     · obtain ⟨s, hs, he⟩ := ih j k hl
       exact ⟨s, Nat.le_succ_of_le hs, he⟩
 
-/-- Before q steps, a path cannot complete a nontrivial circuit.-/
+/-- Before q steps, a path cannot complete a nontrivial circuit.
+@isnad1 id=eq.2h6v.s7.802cbe9b8a11 from=translated src=- shape=e0505e2a vocab=2e7f6ccd
+-/
 theorem cyclic_band_short_return_zero (D S : ZMod q → R) (hq : 2 ≤ q)
     (n : ℕ) (hn : n + 1 < q) (j : ZMod q) :
     (cyclicBand q D S ^ n) (j + 1) j = 0 := by
@@ -102,6 +121,9 @@ theorem cyclic_band_short_return_zero (D S : ZMod q → R) (hq : 2 ≤ q)
   exact (Nat.not_dvd_of_pos_of_lt (Nat.succ_pos s)
     (lt_of_le_of_lt (Nat.succ_le_succ hs) hn)) ((ZMod.natCast_eq_zero_iff _ _).mp hcast)
 
+/--
+@isnad1 id=eq.2h6v.s7.c8e3ef43bdac from=translated src=- shape=8f70d9aa vocab=6135022a
+-/
 theorem cyclic_band_power_diagonal_before_wrap (D S : ZMod q → R) (hq : 2 ≤ q)
     (n : ℕ) (hn : n < q) (j : ZMod q) : (cyclicBand q D S ^ n) j j = D j ^ n := by
   induction n with
@@ -112,7 +134,9 @@ theorem cyclic_band_power_diagonal_before_wrap (D S : ZMod q → R) (hq : 2 ≤ 
     simp only [mul_zero, add_zero, pow_succ']
 
 /-- The q-th diagonal identity with the actual rightmost shift factor.
-The return factor is the corresponding block of the (q-1)-st power.-/
+The return factor is the corresponding block of the (q-1)-st power.
+@isnad1 id=eq.1h5v.s8.9bca1a2f02d8 from=translated src=- shape=fa62896c vocab=f1c705d6
+-/
 theorem cyclic_band_qth_return_identity (D S : ZMod q → R) (hq : 2 ≤ q) (j : ZMod q) :
     (cyclicBand q D S ^ q) j j = D j ^ q +
       (cyclicBand q D S ^ (q - 1)) j (j - 1) * S (j - 1) := by
@@ -124,11 +148,17 @@ theorem cyclic_band_qth_return_identity (D S : ZMod q → R) (hq : 2 ≤ q) (j :
       cyclic_band_power_diagonal_before_wrap q D S hq (q - 1) hn j, pow_succ]
   simpa only [Nat.sub_add_cancel hq1] using h
 
+/--
+@isnad1 id=eq.1h5v.s7.9065cd5c0fd3 from=translated src=- shape=dd0f3209 vocab=9ec3f565
+-/
 theorem cyclic_band_square_shift (D S : ZMod q → R) (hq : 2 ≤ q) (j : ZMod q) :
     (cyclicBand q D S ^ 2) j (j + 1) = D j * S j + S j * D (j + 1) := by
   rw [pow_two, cyclic_band_mul_row q D S hq,
     cyclic_band_next q D S hq, cyclic_band_self]
 
+/--
+@isnad1 id=eq.1h5v.s8.f004f41b06ce from=translated src=- shape=37710ef9 vocab=9ec3f565
+-/
 theorem cyclic_band_cube_shift (D S : ZMod q → R) (hq : 3 ≤ q) (j : ZMod q) :
     (cyclicBand q D S ^ 3) j (j + 1) =
       D j ^ 2 * S j + D j * S j * D (j + 1) + S j * D (j + 1) ^ 2 := by

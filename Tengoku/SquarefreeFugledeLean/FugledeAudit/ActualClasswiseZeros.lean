@@ -15,6 +15,9 @@ noncomputable def spectralPhysicalProjectionMatrix
     coordinateMaskMatrix (fun a : A => (physicalCRT q H a.val).1) i *
     (normalizedFourierMatrix A Λ)ᴴ
 
+/--
+@isnad1 id=eq.0h5v.s15.248de1dc274c from=translated src=- shape=069c9604 vocab=0e19c8a8
+-/
 theorem physical_projection_matrix_to_linear_map
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (i : ZMod q) :
@@ -25,6 +28,9 @@ theorem physical_projection_matrix_to_linear_map
     coordinate_mask_matrix_to_linear_map, spectralPhysicalProjection, fourierForward, fourierBackward]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.b991aa2a437e from=translated src=- shape=67125985 vocab=951dc412
+-/
 theorem physical_projection_matrix_entry
     (q H : ℕ) [NeZero q] [NeZero H]
     (A Λ : Finset (ZMod (q * H))) (i : ZMod q) (ξ μ : Λ) :

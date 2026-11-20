@@ -6,6 +6,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=dvd.3h4v.s6.bf4a51244676 from=translated src=- shape=e28317e6 vocab=95c777a8
+-/
 theorem prime_root_zero_sum_card_divisible
     {ι : Type*} [Fintype ι] (q : ℕ) [NeZero q] (hq : q.Prime)
     (ω : ℂ) (hω : IsPrimitiveRoot ω q) (label : ι → Fin q)
@@ -35,7 +38,9 @@ theorem prime_root_zero_sum_card_divisible
   simp [hn]
 
 /-- Collision exclusion needs primality and coprimality, but not q >= 3.
-This supplies the order-two endpoint of the square-free induction.-/
+This supplies the order-two endpoint of the square-free induction.
+@isnad1 id=injon.4h4v.s8.ca384bb0295d from=translated src=- shape=deb85395 vocab=89ef58e1
+-/
 theorem spectral_frequency_projection_injective_any_prime
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ)
@@ -67,6 +72,9 @@ theorem spectral_frequency_projection_injective_any_prime
     (by simpa only [standard_character_mul_power] using hz)
   simpa only [Fintype.card_coe] using hv
 
+/--
+@isnad1 id=injon.4h4v.s8.beed2e0b27e1 from=translated src=- shape=ede0a035 vocab=89ef58e1
+-/
 theorem spectral_physical_projection_injective_any_prime
     (q H : ℕ) [NeZero q] [NeZero H] (hq : q.Prime) (hcop : Nat.Coprime q H)
     (A Λ : Finset (ZMod (q * H))) (h : IsCyclicSpectralPair A Λ)

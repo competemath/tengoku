@@ -14,6 +14,9 @@ second and third relations are derived, rather than separately assumed.
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=ne.2h3v.s6.baf9d3021542 from=translated src=- shape=318fd3b0 vocab=7a191bd5
+-/
 theorem cyclic_next_ne_later
     (q r : ℕ) (hr : 2 ≤ r) (hrq : r < q) (j : ZMod q) :
     j + 1 ≠ j + (r : ZMod q) := by
@@ -24,6 +27,9 @@ theorem cyclic_next_ne_later
   rw [Nat.mod_eq_of_lt (by omega : 1 < q), Nat.mod_eq_of_lt hrq] at hm
   omega
 
+/--
+@isnad1 id=eq.2h5v.s8.2313c82838b4 from=translated src=- shape=fce1b49b vocab=fdcd663d
+-/
 theorem sparse_powers_square_shift_zero
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (U : R)
@@ -33,6 +39,9 @@ theorem sparse_powers_square_shift_zero
   exact hsparse 2 (by decide) (by omega) j (j + 1)
     (cyclic_successor_ne q (by omega) j) (cyclic_next_ne_later q 2 (by decide) (by omega) j)
 
+/--
+@isnad1 id=eq.4h5v.s8.f85bafd89775 from=translated src=- shape=1d69aa11 vocab=fdcd663d
+-/
 theorem sparse_powers_cube_shift_zero
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (horth : ∀ j k, j ≠ k → Q j * Q k = 0)
@@ -49,7 +58,9 @@ theorem sparse_powers_cube_shift_zero
 
 /-- All three ambient relations used by the residual-block argument follow
 from one sparse-power interface and the projection identities. Restriction to
-the constructed residual subspaces remains a separate, explicit task.-/
+the constructed residual subspaces remains a separate, explicit task.
+@isnad1 id=and.6h5v.s10.e20aae03d268 from=translated src=- shape=de88e244 vocab=0d13b252
+-/
 theorem actual_projection_block_relations
     (q : ℕ) [NeZero q] (hq : 3 ≤ q) {R : Type*} [Ring R]
     (Q : ZMod q → R) (hQ : ∀ j, Q j * Q j = Q j)

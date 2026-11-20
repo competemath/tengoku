@@ -17,6 +17,9 @@ namespace FugledeAudit
 open Module
 open scoped InnerProductSpace
 
+/--
+@isnad1 id=and.6h5v.s13.cdeea52c5aeb from=translated src=- shape=01fafe18 vocab=70c96284
+-/
 theorem actual_residual_diagonal_zero_and_unitary_shifts
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     (U : E ≃ₗᵢ[ℂ] E) (q : ℕ) [NeZero q] (hq : 3 ≤ q)

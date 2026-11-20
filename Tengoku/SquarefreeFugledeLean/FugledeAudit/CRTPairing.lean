@@ -8,6 +8,9 @@ set_option autoImplicit false
 
 namespace FugledeAudit
 
+/--
+@isnad1 id=eq.1h4v.s7.b10e329090e4 from=translated src=- shape=6ad8faa6 vocab=a2a94fb2
+-/
 theorem standard_character_scaled (N n k : ℕ) [NeZero N] [NeZero n]
     (hN : N = n * k) (t : ℤ) :
     ZMod.stdAddChar ((k : ZMod N) * (t : ZMod N)) = ZMod.stdAddChar (t : ZMod n) := by
@@ -21,12 +24,18 @@ theorem standard_character_scaled (N n k : ℕ) [NeZero N] [NeZero n]
   rw [hN, Nat.cast_mul]
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s5.27e76755ac33 from=translated src=- shape=6c005add vocab=9dc3c591
+-/
 theorem crt_bezout (q H : ℕ) (hcop : Nat.Coprime q H) :
     (H : ℤ) * Nat.gcdB q H + (q : ℤ) * Nat.gcdA q H = 1 := by
   have hb := Nat.gcd_eq_gcd_ab q H
   rw [hcop.gcd_eq_one] at hb
   simpa only [Nat.cast_one, add_comm] using hb.symm
 
+/--
+@isnad1 id=eq.1h3v.s8.de213b768976 from=translated src=- shape=017d98db vocab=bf4bf39e
+-/
 theorem standard_character_crt (q H : ℕ) [NeZero q] [NeZero H]
     (hcop : Nat.Coprime q H) (t : ℤ) :
     ZMod.stdAddChar (t : ZMod (q * H)) =
@@ -58,7 +67,9 @@ def dualCRT (q H : ℕ) (ξ : ZMod (q * H)) : ZMod q × ZMod H :=
     (Nat.gcdA q H : ZMod H) * (physicalCRT q H ξ).2)
 
 /-- The dual coordinates carry the inverse factors required by the original
-Fourier pairing; the same unscaled CRT map is not used on both sides.-/
+Fourier pairing; the same unscaled CRT map is not used on both sides.
+@isnad1 id=eq.1h4v.s7.61ea0b60b9ec from=translated src=- shape=d266bbce vocab=7196f694
+-/
 theorem cyclic_fourier_crt_pairing (q H : ℕ) [NeZero q] [NeZero H]
     (hcop : Nat.Coprime q H) (a ξ : ZMod (q * H)) :
     cyclicFourierEntry a ξ =
@@ -71,6 +82,9 @@ theorem cyclic_fourier_crt_pairing (q H : ℕ) [NeZero q] [NeZero H]
   simp only [Int.cast_mul]
   congr 2 <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s9.155f54b82ec6 from=translated src=- shape=f9ff7227 vocab=2c24d9d3
+-/
 theorem physical_crt_eq_chinese_remainder (q H : ℕ) (hcop : Nat.Coprime q H)
     (a : ZMod (q * H)) : physicalCRT q H a = ZMod.chineseRemainder hcop a := by
   obtain ⟨a, rfl⟩ := ZMod.intCast_surjective a
