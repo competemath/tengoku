@@ -152,6 +152,7 @@ import Tengoku.Ulmstheorem
 import Tengoku.ChebotarevDensity
 import Tengoku.Rank3kum
 import Tengoku.Compfiles
+import Tengoku.PshdLean
 import Tengoku.Pfr
 import Tengoku.Stafford38Formal
 import Tengoku.ChoppedPlanePointIdeals
