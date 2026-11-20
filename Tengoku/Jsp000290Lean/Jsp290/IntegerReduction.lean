@@ -8,6 +8,9 @@ open Finset
 
 def negateAt (a : Sequence) (j : ℕ) : Sequence := Function.update a j (-a j)
 
+/--
+@isnad1 id=eq.0h2v.s3.2f5b6be759e2 from=translated src=- shape=e2610455 vocab=5ff57cc1
+-/
 theorem negateAt_involutive (a : Sequence) (j : ℕ) :
     negateAt (negateAt a j) j = a := by
   funext i
@@ -15,6 +18,9 @@ theorem negateAt_involutive (a : Sequence) (j : ℕ) :
   · subst i; simp [negateAt]
   · simp [negateAt, h]
 
+/--
+@isnad1 id=represen.2h4v.s5.8f6e7d29403e from=translated src=- shape=b14b243f vocab=c2db46d5
+-/
 theorem representsAfter_negateAt {a : Sequence} {D : Finset ℕ} {j : ℕ}
     (hj : j ∉ D) {x : ℤ} (h : RepresentsAfter a D x) :
     RepresentsAfter (negateAt a j) D (x - a j) := by
@@ -43,6 +49,9 @@ theorem representsAfter_negateAt {a : Sequence} {D : Finset ℕ} {j : ℕ}
       rw [he, hx]
       simp [negateAt, sub_eq_add_neg, add_comm]
 
+/--
+@isnad1 id=complete.1h3v.s4.92c812f17448 from=translated src=- shape=83ed05ce vocab=6f1338d3
+-/
 theorem completeAfter_negateAt {a : Sequence} {D : Finset ℕ} (j : ℕ)
     (h : CompleteAfter a D) : CompleteAfter (negateAt a j) D := by
   classical
@@ -66,6 +75,9 @@ theorem completeAfter_negateAt {a : Sequence} {D : Finset ℕ} (j : ℕ)
     have hrep := representsAfter_negateAt hj (hT (x + a j) (by omega))
     simpa using hrep
 
+/--
+@isnad1 id=iff.0h3v.s4.d33633f9f35e from=translated src=- shape=64db9841 vocab=6f1338d3
+-/
 theorem completeAfter_negateAt_iff (a : Sequence) (D : Finset ℕ) (j : ℕ) :
     CompleteAfter (negateAt a j) D ↔ CompleteAfter a D := by
   constructor
@@ -76,6 +88,9 @@ theorem completeAfter_negateAt_iff (a : Sequence) (D : Finset ℕ) (j : ℕ) :
 def flipSigns (a : Sequence) (S : Finset ℕ) : Sequence :=
   fun i => if i ∈ S then -a i else a i
 
+/--
+@isnad1 id=iff.0h3v.s4.0562a70b92c3 from=translated src=- shape=91684bb6 vocab=c7011f13
+-/
 theorem completeAfter_flipSigns_iff (a : Sequence) (D S : Finset ℕ) :
     CompleteAfter (flipSigns a S) D ↔ CompleteAfter a D := by
   classical
@@ -93,6 +108,9 @@ theorem completeAfter_flipSigns_iff (a : Sequence) (D S : Finset ℕ) :
       · simp [flipSigns, negateAt, hi]
     rw [he, completeAfter_negateAt_iff, ih]
 
+/--
+@isnad1 id=iff.1h3v.s5.2e3d1f57aacb from=translated src=- shape=8b3f57e2 vocab=7ce774df
+-/
 theorem completeAfter_abs_iff (a : Sequence) (K : ℕ)
     (hK : ∀ i, K ≤ i → 0 ≤ a i) (D : Finset ℕ) :
     CompleteAfter (fun i => |a i|) D ↔ CompleteAfter a D := by
@@ -110,6 +128,9 @@ theorem completeAfter_abs_iff (a : Sequence) (K : ℕ)
   rw [he]
   exact completeAfter_flipSigns_iff a D S
 
+/--
+@isnad1 id=iff.2h4v.s5.69c6adb6dc8d from=translated src=- shape=781bce5d vocab=24df2f8c
+-/
 theorem representsAfter_reindex_iff (a : Sequence) (f : ℕ → ℕ)
     (hf : Function.Injective f) (hz : ∀ i, i ∉ Set.range f → a i = 0)
     (D : Finset ℕ) (x : ℤ) :
@@ -146,12 +167,18 @@ theorem representsAfter_reindex_iff (a : Sequence) (f : ℕ → ℕ)
           exact hi (hz i h)
         _ = x := hsum
 
+/--
+@isnad1 id=iff.2h3v.s5.31292b80a2ea from=translated src=- shape=161d1ed2 vocab=1d0960b1
+-/
 theorem completeAfter_reindex_iff (a : Sequence) (f : ℕ → ℕ)
     (hf : Function.Injective f) (hz : ∀ i, i ∉ Set.range f → a i = 0)
     (D : Finset ℕ) :
     CompleteAfter (fun i => a (f i)) D ↔ CompleteAfter a (D.image f) := by
   simp only [CompleteAfter, representsAfter_reindex_iff a f hf hz]
 
+/--
+@isnad1 id=ex.2h1v.s6.03e48fdabe8a from=translated src=- shape=adcda8c4 vocab=d232ca67
+-/
 theorem exists_positive_model (a : Sequence) (ha : Monotone a)
     (hu : ∀ C : ℤ, ∃ i : ℕ, C < a i) :
     ∃ b : Sequence, Monotone b ∧ (∀ i, 0 < b i) ∧

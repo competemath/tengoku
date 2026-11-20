@@ -18,6 +18,9 @@ def fibonacciSequence (i : ℕ) : ℤ := Nat.fib (i + 1)
 def erasedSequence (a : Sequence) (D : Finset ℕ) (i : ℕ) : ℤ :=
   if i ∈ D then 0 else a i
 
+/--
+@isnad1 id=prefixre.4h3v.s6.ab7e2ea69487 from=translated src=- shape=cf1d2f42 vocab=9ebea1e7
+-/
 theorem brown_prefix (a : Sequence) (hpos : ∀ i, 0 ≤ a i)
     (hstep : ∀ i, a i ≤ PrefixSum a i + 1) :
     ∀ N x, 0 ≤ x → x ≤ PrefixSum a N → PrefixRep a N x := by
@@ -38,6 +41,9 @@ theorem brown_prefix (a : Sequence) (hpos : ∀ i, 0 ≤ a i)
       have hh := (ih (x - a N) hxlo hxhi).add_term (le_refl N) (Nat.lt_succ_self N)
       simpa using hh
 
+/--
+@isnad1 id=le.1h2v.s4.24eff9a2ede5 from=translated src=- shape=96e971da vocab=423bd5e8
+-/
 theorem prefixSum_ge_index_of_one_le (a : Sequence) (hpos : ∀ i, 1 ≤ a i) (N : ℕ) :
     (N : ℤ) ≤ PrefixSum a N := by
   induction N with
@@ -48,12 +54,18 @@ theorem prefixSum_ge_index_of_one_le (a : Sequence) (hpos : ∀ i, 1 ≤ a i) (N
     push_cast
     omega
 
+/--
+@isnad1 id=le.1h3v.s5.634349111446 from=translated src=- shape=6ef97163 vocab=8f014ef8
+-/
 theorem erased_nonneg {a : Sequence} (ha : ∀ i, 0 ≤ a i) (D : Finset ℕ) :
     ∀ i, 0 ≤ erasedSequence a D i := by
   intro i
   simp only [erasedSequence]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=represen.1h3v.s4.316fa6e23cdf from=translated src=- shape=156c2870 vocab=68b63885
+-/
 theorem erased_represents {a : Sequence} {D : Finset ℕ} {x : ℤ}
     (h : Represents (erasedSequence a D) x) : RepresentsAfter a D x := by
   classical
@@ -66,6 +78,9 @@ theorem erased_represents {a : Sequence} {D : Finset ℕ} {x : ℤ}
     intro i hi
     by_cases hD : i ∈ D <;> simp [erasedSequence, hD]
 
+/--
+@isnad1 id=eq.0h3v.s5.ab051fa06640 from=translated src=- shape=82aed2ac vocab=7ceff7b5
+-/
 theorem erased_singleton_prefix (a : Sequence) (j N : ℕ) :
     PrefixSum (erasedSequence a {j}) N =
       PrefixSum a N - if j < N then a j else 0 := by
@@ -82,6 +97,9 @@ theorem erased_singleton_prefix (a : Sequence) (j N : ℕ) :
       · have hjN' : ¬j < N + 1 := by omega
         simp [erasedSequence, hj, Ne.symm hj, hjN, hjN']
 
+/--
+@isnad1 id=le.3h3v.s6.14aa9254e32d from=translated src=- shape=2ea1b874 vocab=717be288
+-/
 theorem subset_range_of_sum_lt {a : Sequence} (hpos : ∀ i, 0 ≤ a i)
     (hmono : Monotone a) {s : Finset ℕ} {N : ℕ}
     (hs : ∑ i ∈ s, a i < a N) : s ⊆ range N := by
@@ -93,6 +111,9 @@ theorem subset_range_of_sum_lt {a : Sequence} (hpos : ∀ i, 0 ≤ a i)
   have := hmono hNi
   omega
 
+/--
+@isnad1 id=le.4h4v.s6.1d977e76fe1e from=translated src=- shape=6bc8742a vocab=053fbe2b
+-/
 theorem sum_add_omitted_le_prefix {a : Sequence} (hpos : ∀ i, 0 ≤ a i)
     {s : Finset ℕ} {N i : ℕ} (hs : s ⊆ range N) (hiN : i < N) (his : i ∉ s) :
     (∑ j ∈ s, a j) + a i ≤ PrefixSum a N := by
@@ -100,13 +121,22 @@ theorem sum_add_omitted_le_prefix {a : Sequence} (hpos : ∀ i, 0 ≤ a i)
   have h := sum_le_sum_of_subset_of_nonneg hsub (fun j _ _ => hpos j)
   simpa [sum_insert his, PrefixSum, add_comm] using h
 
+/--
+@isnad1 id=le.0h1v.s3.191b27a52415 from=translated src=- shape=b9369acb vocab=efc6fdb7
+-/
 theorem binary_pos (i : ℕ) : 1 ≤ binarySequence i := by
   exact one_le_pow₀ (by norm_num : (1 : ℤ) ≤ 2)
 
+/--
+@isnad1 id=monotone.0h0v.s4.cecf2b151a4a from=translated src=- shape=54c8eceb vocab=9e88aa70
+-/
 theorem binary_mono : Monotone binarySequence := by
   intro i j hij
   exact pow_le_pow_right₀ (by norm_num : (1 : ℤ) ≤ 2) hij
 
+/--
+@isnad1 id=eq.0h1v.s4.f89fa782e49f from=translated src=- shape=595a7b15 vocab=09a47e52
+-/
 theorem binary_prefix (N : ℕ) : PrefixSum binarySequence N = binarySequence N - 1 := by
   induction N with
   | zero => simp [PrefixSum, binarySequence]
@@ -115,6 +145,9 @@ theorem binary_prefix (N : ℕ) : PrefixSum binarySequence N = binarySequence N 
     simp [binarySequence, pow_succ]
     ring
 
+/--
+@isnad1 id=le.0h2v.s4.0516a07cac96 from=translated src=- shape=8dfd58a8 vocab=10f9cd39
+-/
 theorem binary_growth (j k : ℕ) : binarySequence j + k ≤ binarySequence (j + k) := by
   induction k with
   | zero => simp
@@ -128,6 +161,9 @@ theorem binary_growth (j k : ℕ) : binarySequence j + k ≤ binarySequence (j +
     push_cast
     omega
 
+/--
+@isnad1 id=complete.0h0v.s1.00f0081ddc4e from=translated src=- shape=49959d42 vocab=2756d681
+-/
 theorem binary_complete : Complete binarySequence := by
   refine ⟨0, fun x hx => ?_⟩
   have hsum : x ≤ PrefixSum binarySequence x.toNat := by
@@ -136,6 +172,9 @@ theorem binary_complete : Complete binarySequence := by
   exact (brown_prefix binarySequence (fun i => le_trans (by norm_num) (binary_pos i))
     (fun i => by rw [binary_prefix]; omega) x.toNat x hx hsum).represents
 
+/--
+@isnad1 id=not.0h1v.s3.35f7307cef84 from=translated src=- shape=edd686c1 vocab=df4ecf2f
+-/
 theorem binary_delete_one (j : ℕ) : ¬ CompleteAfter binarySequence {j} := by
   rw [not_completeAfter_iff]
   intro T
@@ -162,22 +201,34 @@ theorem binary_delete_one (j : ℕ) : ¬ CompleteAfter binarySequence {j} := by
   dsimp [x] at hsum
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.12c84b29ff8a from=translated src=- shape=b9369acb vocab=e7f6946c
+-/
 theorem fibonacci_pos (i : ℕ) : 1 ≤ fibonacciSequence i := by
   have h : 0 < Nat.fib (i + 1) := Nat.fib_pos.mpr (by omega)
   dsimp [fibonacciSequence]
   omega
 
+/--
+@isnad1 id=monotone.0h0v.s4.7be5245ca5a2 from=translated src=- shape=54c8eceb vocab=e611ef2e
+-/
 theorem fibonacci_mono : Monotone fibonacciSequence := by
   intro i j hij
   dsimp [fibonacciSequence]
   exact_mod_cast Nat.fib_mono (Nat.add_le_add_right hij 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.46b501325f4f from=translated src=- shape=58e287f5 vocab=ff8b1d4e
+-/
 theorem fibonacci_recurrence (i : ℕ) :
     fibonacciSequence (i + 2) = fibonacciSequence i + fibonacciSequence (i + 1) := by
   have h := Nat.fib_add_two (n := i + 1)
   dsimp [fibonacciSequence]
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h1v.s5.6450ab1e27ee from=translated src=- shape=ebfd840f vocab=2c295848
+-/
 theorem fibonacci_prefix (N : ℕ) :
     PrefixSum fibonacciSequence N = fibonacciSequence (N + 1) - 1 := by
   induction N with
@@ -188,6 +239,9 @@ theorem fibonacci_prefix (N : ℕ) :
     norm_num only [Nat.add_assoc] at *
     omega
 
+/--
+@isnad1 id=eq.0h1v.s5.83407bb3232a from=translated src=- shape=ea58a925 vocab=47b8558c
+-/
 theorem fibonacci_prefix_two (N : ℕ) :
     PrefixSum fibonacciSequence (N + 2) =
       PrefixSum fibonacciSequence N + fibonacciSequence (N + 2) := by
@@ -196,6 +250,9 @@ theorem fibonacci_prefix_two (N : ℕ) :
   norm_num only [Nat.add_assoc] at *
   omega
 
+/--
+@isnad1 id=complete.0h1v.s3.8757aaf251b0 from=translated src=- shape=4e86ff51 vocab=07eba256
+-/
 theorem fibonacci_delete_one (j : ℕ) : CompleteAfter fibonacciSequence {j} := by
   let a := erasedSequence fibonacciSequence {j}
   have hpos : ∀ i, 0 ≤ a i :=
@@ -232,6 +289,9 @@ theorem fibonacci_delete_one (j : ℕ) : CompleteAfter fibonacciSequence {j} := 
     split_ifs <;> omega
   exact erased_represents (brown_prefix a hpos hstep N x hx hxsum).represents
 
+/--
+@isnad1 id=not.1h3v.s5.b361c0e3ecc2 from=translated src=- shape=0d4bd8a2 vocab=7e59cafe
+-/
 theorem fibonacci_pair_missing (i j : ℕ) (hij : i < j) (t : ℕ) :
     ¬ RepresentsAfter fibonacciSequence {i, j} (PrefixSum fibonacciSequence (j + 2 * t)) := by
   have hp : ∀ k, 0 ≤ fibonacciSequence k :=
@@ -283,6 +343,9 @@ theorem fibonacci_pair_missing (i j : ℕ) (hij : i < j) (t : ℕ) :
     change ∑ r ∈ s.erase (k + 2), fibonacciSequence r = PrefixSum fibonacciSequence k
     omega
 
+/--
+@isnad1 id=not.1h2v.s4.384941eff963 from=translated src=- shape=7f3ef33d vocab=7f1ccdba
+-/
 theorem fibonacci_delete_pair (i j : ℕ) (hij : i < j) :
     ¬ CompleteAfter fibonacciSequence {i, j} := by
   rw [not_completeAfter_iff]
@@ -292,6 +355,9 @@ theorem fibonacci_delete_pair (i j : ℕ) (hij : i < j) :
   have h := prefixSum_ge_index_of_one_le fibonacciSequence fibonacci_pos (j + 2 * T.toNat)
   omega
 
+/--
+@isnad1 id=admissib.1h1v.s4.c17d77b60d44 from=translated src=- shape=2dea5467 vocab=c429d0cf
+-/
 theorem admissible_zero (n : ℕ) (hn : 0 < n) : Admissible 0 n := by
   refine ⟨binarySequence, binary_mono, ?_, ?_⟩
   · intro D hD
@@ -302,6 +368,9 @@ theorem admissible_zero (n : ℕ) (hn : 0 < n) : Admissible 0 n := by
     obtain ⟨j, hj⟩ := card_pos.mp (show 0 < D.card by omega)
     exact binary_delete_one j (hC.mono (singleton_subset_iff.mpr hj))
 
+/--
+@isnad1 id=admissib.1h1v.s4.2a3021e3a8fe from=translated src=- shape=2dea5467 vocab=c429d0cf
+-/
 theorem admissible_one (n : ℕ) (hn : 1 < n) : Admissible 1 n := by
   refine ⟨fibonacciSequence, fibonacci_mono, ?_, ?_⟩
   · intro D hD
@@ -315,6 +384,9 @@ theorem admissible_one (n : ℕ) (hn : 1 < n) : Admissible 1 n := by
     · have hpair' : {j, i} ⊆ D := insert_subset hj (singleton_subset_iff.mpr hi)
       exact fibonacci_delete_pair j i hji (hC.mono hpair')
 
+/--
+@isnad1 id=admissib.2h2v.s4.6a45f2107bb6 from=translated src=- shape=2238ea8a vocab=0ad91062
+-/
 theorem admissible_of_le_one (m n : ℕ) (hmn : m < n) (hm : m ≤ 1) :
     Admissible m n := by
   have : m = 0 ∨ m = 1 := by omega

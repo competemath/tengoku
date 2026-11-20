@@ -7,7 +7,9 @@ namespace Jsp290
 open Finset
 
 /-- Deleting finitely many copies from an infinite constant tail preserves all
-subset sums, even when that constant is zero or negative.-/
+subset sums, even when that constant is zero or negative.
+@isnad1 id=represen.3h4v.s5.b1bc6c5a6465 from=translated src=- shape=bc84b979 vocab=64b0240f
+-/
 theorem representsAfter_of_constant_tail {a : Sequence} {K : ℕ}
     (hK : ∀ n : ℕ, K ≤ n → a n = a K)
     {D : Finset ℕ} (hD : ∀ i ∈ D, K ≤ i)
@@ -63,6 +65,9 @@ theorem representsAfter_of_constant_tail {a : Sequence} {K : ℕ}
       omega
   · rw [sum_union huw, hwval, ← hvsum, ← sum_union huv, huvs, hs]
 
+/--
+@isnad1 id=complete.3h3v.s5.6eb7a8bbc0d8 from=translated src=- shape=cf915241 vocab=aed1f7a0
+-/
 theorem completeAfter_of_constant_tail {a : Sequence} {K : ℕ}
     (hK : ∀ n : ℕ, K ≤ n → a n = a K)
     {D : Finset ℕ} (hD : ∀ i ∈ D, K ≤ i)
@@ -70,6 +75,9 @@ theorem completeAfter_of_constant_tail {a : Sequence} {K : ℕ}
   obtain ⟨T, hT⟩ := hc
   exact ⟨T, fun x hx => representsAfter_of_constant_tail hK hD (hT x hx)⟩
 
+/--
+@isnad1 id=ex.3h2v.s5.16b02cbfbd08 from=translated src=- shape=48b90bd0 vocab=cc9bfab8
+-/
 theorem exists_completeAfter_card_bounded {a : Sequence}
     (hm : Monotone a) (hb : ∃ B : ℤ, ∀ i, a i ≤ B) (hc : Complete a)
     (n : ℕ) : ∃ D : Finset ℕ, D.card = n ∧ CompleteAfter a D := by

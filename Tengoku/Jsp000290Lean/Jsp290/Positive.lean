@@ -11,6 +11,9 @@ namespace Jsp290
 
 open Finset
 
+/--
+@isnad1 id=centrali.5h2v.s5.583dccd103c3 from=translated src=- shape=adf8b576 vocab=baf3c5d2
+-/
 theorem central_intervals {a : Sequence} (hm : Monotone a)
     (ha : ∀ i, 0 < a i) {T : ℤ} (hT : 1 ≤ T)
     (hc : ∀ x : ℤ, T ≤ x → Represents a x) (hd : DivergingSlack a) :
@@ -22,6 +25,9 @@ theorem central_intervals {a : Sequence} (hm : Monotone a)
       exact hu
     exact central_intervals_bounded hm ha hb hc
 
+/--
+@isnad1 id=finitece.4h2v.s5.0ec965906338 from=translated src=- shape=b4bd42f1 vocab=7b1e9c80
+-/
 theorem finiteCentralAfter_of_slack {a : Sequence}
     (hm : Monotone a) (ha : ∀ i, 0 < a i) (hd : DivergingSlack a)
     {D : Finset ℕ} (hc : CompleteAfter a D) : FiniteCentralAfter a D := by
@@ -51,7 +57,9 @@ theorem finiteCentralAfter_of_slack {a : Sequence}
     rw [sum_survivor_image] at hxupper
     exact prefixRep_erase_image (hN₀ N (le_max_left _ _) x hx hxupper)
 
-/-- Two-deletion robustness allows some deletion of every finite size.-/
+/-- Two-deletion robustness allows some deletion of every finite size.
+@isnad1 id=ex.3h2v.s6.90883e25bb40 from=translated src=- shape=ef344498 vocab=d232ca67
+-/
 theorem positive_deletions_arbitrary_card {a : Sequence}
     (hm : Monotone a) (ha : ∀ i, 0 < a i)
     (h2 : ∀ D : Finset ℕ, D.card = 2 → CompleteAfter a D)
@@ -70,6 +78,9 @@ theorem positive_deletions_arbitrary_card {a : Sequence}
       (completeAfter_of_smaller_card h2 ∅ (by simp)).complete
     exact exists_completeAfter_card_bounded hm hb hc n
 
+/--
+@isnad1 id=false.5h3v.s6.dc4b7ac01565 from=translated src=- shape=aadc3137 vocab=573e5556
+-/
 theorem positive_exclusion {a : Sequence} (hm : Monotone a)
     (ha : ∀ i, 0 < a i) {m n : ℕ} (hm2 : 2 ≤ m)
     (hrobust : ∀ D : Finset ℕ, D.card = m → CompleteAfter a D)

@@ -6,6 +6,9 @@ namespace Jsp290
 
 open Finset
 
+/--
+@isnad1 id=ex.2h1v.s5.23bfe6b8ee2d from=translated src=- shape=3a86a6c5 vocab=c56b7cd7
+-/
 theorem monotone_bounded_eventually_constant {a : Sequence} (hm : Monotone a)
     (hb : ∃ B : ℤ, ∀ i, a i ≤ B) :
     ∃ K : ℕ, ∀ n : ℕ, K ≤ n → a n = a K := by
@@ -16,6 +19,9 @@ theorem monotone_bounded_eventually_constant {a : Sequence} (hm : Monotone a)
   obtain ⟨K, rfl⟩ := hv
   exact ⟨K, fun n hn => le_antisymm (hmax (Set.mem_range_self n)) (hm hn)⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.3019d76bf52a from=translated src=- shape=6d14630d vocab=097748c2
+-/
 theorem prefixSum_constant_tail {a : Sequence} {K : ℕ}
     (hK : ∀ n : ℕ, K ≤ n → a n = a K) (r : ℕ) :
     PrefixSum a (K + r) = PrefixSum a K + (r : ℤ) * a K := by
@@ -27,6 +33,9 @@ theorem prefixSum_constant_tail {a : Sequence} {K : ℕ}
     push_cast
     ring
 
+/--
+@isnad1 id=eq.1h3v.s5.cb77bb37af85 from=translated src=- shape=8b5eb459 vocab=ebdd7538
+-/
 theorem sum_Ico_constant_tail {a : Sequence} {K : ℕ}
     (hK : ∀ n : ℕ, K ≤ n → a n = a K) (r : ℕ) :
     (∑ i ∈ Ico K (K + r), a i) = (r : ℤ) * a K := by
@@ -37,7 +46,9 @@ theorem sum_Ico_constant_tail {a : Sequence} {K : ℕ}
       exact hK i (mem_Ico.mp hi).1
     _ = (r : ℤ) * a K := by simp [nsmul_eq_mul]
 
-/-- Compress a representation's constant-tail occurrences into a bounded prefix.-/
+/-- Compress a representation's constant-tail occurrences into a bounded prefix.
+@isnad1 id=prefixre.5h4v.s6.c63844d2e999 from=translated src=- shape=2dea524a vocab=d4330074
+-/
 theorem prefixRep_compress_constant_tail {a : Sequence} (ha : ∀ i, 0 ≤ a i)
     {K r : ℕ} (hpos : 0 < a K)
     (hK : ∀ n : ℕ, K ≤ n → a n = a K)
@@ -89,6 +100,9 @@ theorem prefixRep_compress_constant_tail {a : Sequence} (ha : ∀ i, 0 ≤ a i)
     rw [sum_Ico_constant_tail hK v.card]
     exact hsum
 
+/--
+@isnad1 id=centrali.3h3v.s5.b7f9d4a58fd6 from=translated src=- shape=81fab1a4 vocab=fd5cb9f7
+-/
 theorem central_intervals_of_eventually_constant {a : Sequence}
     (ha : ∀ i, 0 < a i) {K : ℕ}
     (hK : ∀ n : ℕ, K ≤ n → a n = a K)
@@ -116,6 +130,9 @@ theorem central_intervals_of_eventually_constant {a : Sequence}
       (hc (PrefixSum a (K + r) - x) hylo) hyhi
     exact PrefixRep.complement_iff.mp hy
 
+/--
+@isnad1 id=centrali.4h2v.s6.956c507f04ed from=translated src=- shape=0a808dff vocab=1d7bb8d9
+-/
 theorem central_intervals_bounded {a : Sequence} (hm : Monotone a)
     (ha : ∀ i, 0 < a i) (hb : ∃ B : ℤ, ∀ i, a i ≤ B)
     {T : ℤ} (hc : ∀ x : ℤ, T ≤ x → Represents a x) :

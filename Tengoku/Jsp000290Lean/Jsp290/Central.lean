@@ -14,6 +14,9 @@ namespace Central
 
 open Finset
 
+/--
+@isnad1 id=strictmo.1h1v.s5.4031abed8152 from=translated src=- shape=c80a7580 vocab=962f4607
+-/
 theorem prefixSum_strictMono {a : Sequence} (ha : ∀ i, 0 < a i) :
     StrictMono (PrefixSum a) := by
   apply strictMono_nat_of_lt_succ
@@ -21,7 +24,9 @@ theorem prefixSum_strictMono {a : Sequence} (ha : ∀ i, 0 < a i) :
   rw [prefixSum_succ]
   exact lt_add_of_pos_right _ (ha n)
 
-/-- A central missing sum is just below an earlier prefix total.-/
+/-- A central missing sum is just below an earlier prefix total.
+@isnad1 id=ex.7h4v.s7.8c6f92b4030e from=translated src=- shape=b4e36cc1 vocab=da3fb896
+-/
 theorem locate_missing {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     {N : ℕ} {x : ℤ} (hx : T ≤ x) (hxN : x ≤ PrefixSum a N - T)
@@ -54,7 +59,9 @@ theorem locate_missing {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     exact hmiss (hh.mono hiN)
   refine ⟨j, by omega, PrefixSum a j - x, ?_, ?_, ?_⟩ <;> omega
 
-/-- Finitely many global representations can be placed in one prefix.-/
+/-- Finitely many global representations can be placed in one prefix.
+@isnad1 id=ex.0h2v.s5.50b4cbcf0d60 from=translated src=- shape=018a904f vocab=93e2263e
+-/
 theorem finite_representations (a : Sequence) (X : Finset ℤ) :
     ∃ J : ℕ, ∀ x ∈ X, Represents a x → PrefixRep a J x := by
   classical
@@ -75,12 +82,17 @@ theorem finite_representations (a : Sequence) (X : Finset ℤ) :
       · exact (hr hry).elim
       · exact hJ y hy hry
 
+/--
+@isnad1 id=ex.0h2v.s5.3d86657d2edc from=translated src=- shape=f662000c vocab=6066953c
+-/
 theorem small_representations (a : Sequence) (T : ℤ) :
     ∃ J : ℕ, ∀ x : ℤ, 0 ≤ x → x < T → Represents a x → PrefixRep a J x := by
   obtain ⟨J, hJ⟩ := finite_representations a (Ico 0 T)
   exact ⟨J, fun x hx hxT hr => hJ x (mem_Ico.mpr ⟨hx, hxT⟩) hr⟩
 
-/-- A globally represented sum missing from a prefix must be at least its next term.-/
+/-- A globally represented sum missing from a prefix must be at least its next term.
+@isnad1 id=le.4h3v.s5.115509b95ca0 from=translated src=- shape=bb70c049 vocab=c6064f6a
+-/
 theorem next_le_missing {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {N : ℕ} {x : ℤ} (hx : Represents a x) (hmiss : ¬ PrefixRep a N x) : a N ≤ x := by
   by_contra h
@@ -105,12 +117,21 @@ def State.Normalized {a : Sequence} {T : ℤ} (s : State a T) : Prop :=
 noncomputable def State.least {a : Sequence} {T : ℤ} (s : State a T) : ℤ :=
   s.labels.min' s.nonempty
 
+/--
+@isnad1 id=mem.0h3v.s4.3b52a1bb5afb from=translated src=- shape=1aff97f9 vocab=83bf1f03
+-/
 theorem State.least_mem {a : Sequence} {T : ℤ} (s : State a T) :
     s.least ∈ s.labels := min'_mem _ _
 
+/--
+@isnad1 id=le.0h3v.s4.d8d7980398cf from=translated src=- shape=171962e3 vocab=59c1082e
+-/
 theorem State.least_pos {a : Sequence} {T : ℤ} (s : State a T) : 1 ≤ s.least :=
   (s.label_spec _ s.least_mem).1
 
+/--
+@isnad1 id=lt.0h3v.s4.2921bc977750 from=translated src=- shape=7b60ecfe vocab=add5b552
+-/
 theorem State.least_lt {a : Sequence} {T : ℤ} (s : State a T) : s.least < T :=
   (s.label_spec _ s.least_mem).2.1
 
@@ -119,6 +140,9 @@ noncomputable def State.potential {a : Sequence} {T : ℤ} (s : State a T) : ℤ
   exact if s.Constant then (T + 1) * s.labels.card + s.least
     else (T + 1) * (s.labels.card + 1)
 
+/--
+@isnad1 id=le.1h3v.s4.eb0a030d7d25 from=translated src=- shape=16a00ee0 vocab=0d6ee26d
+-/
 theorem State.potential_nonneg {a : Sequence} {T : ℤ} (hT : 1 ≤ T)
     (s : State a T) : 0 ≤ s.potential := by
   have hp := s.least_pos
@@ -126,6 +150,9 @@ theorem State.potential_nonneg {a : Sequence} {T : ℤ} (hT : 1 ≤ T)
   unfold State.potential
   split_ifs <;> nlinarith
 
+/--
+@isnad1 id=le.1h3v.s6.20533a5acae4 from=translated src=- shape=a7f55afb vocab=0777bb7c
+-/
 theorem State.potential_le {a : Sequence} {T : ℤ} (hT : 1 ≤ T)
     (s : State a T) :
     s.potential ≤ (T + 1) * ((Ico (1 : ℤ) T).card + 1) := by
@@ -138,10 +165,16 @@ theorem State.potential_le {a : Sequence} {T : ℤ} (hT : 1 ≤ T)
   unfold State.potential
   split_ifs <;> nlinarith
 
+/--
+@isnad1 id=le.1h4v.s5.4f99a37816e9 from=translated src=- shape=e3bb4fda vocab=ad59d54c
+-/
 theorem State.least_le {a : Sequence} {T : ℤ} (s : State a T)
     {e : ℤ} (he : e ∈ s.labels) : s.least ≤ e :=
   min'_le s.labels e he
 
+/--
+@isnad1 id=eq.1h5v.s5.fdbf4a8ca478 from=translated src=- shape=07d7bc7b vocab=13ced2cb
+-/
 theorem State.least_translate {a : Sequence} {T : ℤ} (s t : State a T) (c : ℤ)
     (hlabels : t.labels = s.labels.image (fun e => e + c)) : t.least = s.least + c := by
   classical
@@ -155,6 +188,9 @@ theorem State.least_translate {a : Sequence} {T : ℤ} (s t : State a T) (c : �
   have hlower := s.least_le he
   omega
 
+/--
+@isnad1 id=eq.2h4v.s5.5bcc5c9a977b from=translated src=- shape=6571d8d7 vocab=ae0077bf
+-/
 theorem State.potential_congr {a : Sequence} {T : ℤ} (s t : State a T)
     (hlabels : t.labels = s.labels) (htype : t.Constant ↔ s.Constant) :
     t.potential = s.potential := by
@@ -170,7 +206,9 @@ theorem State.potential_congr {a : Sequence} {T : ℤ} (s t : State a T)
     simp [State.potential, hc, htc, hlabels, hleast]
 
 /-- Move a constant cut to the first occurrence of its available value.
-The output type and labels are unchanged, including when no move is needed.-/
+The output type and labels are unchanged, including when no move is needed.
+@isnad1 id=ex.1h3v.s6.2cdf66b47404 from=translated src=- shape=4ae78ec1 vocab=26c53df7
+-/
 theorem State.normalization {a : Sequence} {T : ℤ} (hm : Monotone a)
     (s : State a T) :
     ∃ t : State a T, t.Normalized ∧ t.labels = s.labels ∧
@@ -228,7 +266,9 @@ theorem State.normalization {a : Sequence} {T : ℤ} (hm : Monotone a)
     omega
 
 /-- A gap after an available value is bounded by every missing label.
-The larger value need not occur in the certifying prefix.-/
+The larger value need not occur in the certifying prefix.
+@isnad1 id=le.6h5v.s6.c6e2cca56808 from=translated src=- shape=773f309c vocab=2ba8eb83
+-/
 theorem State.value_gap {a : Sequence} {T : ℤ}
     (hm : Monotone a) (ha : ∀ i, 0 < a i)
     (hc : ∀ x : ℤ, T ≤ x → Represents a x)
@@ -265,6 +305,9 @@ theorem State.value_gap {a : Sequence} {T : ℤ}
   apply s.missing e he
   convert hh using 1 <;> ring
 
+/--
+@isnad1 id=ex.2h3v.s6.988fcc9a20dc from=translated src=- shape=da3888fb vocab=d05f1683
+-/
 theorem State.distinct_value {a : Sequence} {T : ℤ} (hm : Monotone a)
     (s : State a T) (hc : ¬ s.Constant) :
     ∃ i : ℕ, s.cut < i ∧ i < s.last ∧ a s.cut < a i ∧
@@ -299,7 +342,9 @@ theorem State.distinct_value {a : Sequence} {T : ℤ} (hm : Monotone a)
     omega
 
 /-- A narrow, sufficiently high cluster of missing sums shares one earlier cut.
-All size thresholds are explicit, so this lemma is uniform over the cluster.-/
+All size thresholds are explicit, so this lemma is uniform over the cluster.
+@isnad1 id=ex.9h5v.s8.ae2fa7ba5f53 from=translated src=- shape=8620427a vocab=a60e641b
+-/
 theorem align_cluster {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     {Q j : ℕ} (hsmall : ∀ u : ℤ, 0 ≤ u → u < T → Represents a u → PrefixRep a Q u)
@@ -373,7 +418,9 @@ theorem align_cluster {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
   change PrefixSum a l - x = PrefixSum a l - y at hxy
   omega
 
-/-- The transition from a normalized constant state, before final normalization.-/
+/-- The transition from a normalized constant state, before final normalization.
+@isnad1 id=ex.12h4v.s7.7dc148c62a77 from=translated src=- shape=1f0b5344 vocab=05a98e40
+-/
 theorem constant_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     {Q : ℕ} (hsmall : ∀ u : ℤ, 0 ≤ u → u < T → Represents a u → PrefixRep a Q u)
@@ -468,7 +515,9 @@ theorem constant_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a 
     simp only [State.potential, ite_eq_left hconst, ite_eq_right htc, hcard]
     nlinarith
 
-/-- Two available values strictly increase the number of missing labels.-/
+/-- Two available values strictly increase the number of missing labels.
+@isnad1 id=ex.10h4v.s7.c445fd11e442 from=translated src=- shape=b9d6ea6f vocab=fb9ba671
+-/
 theorem distinct_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     {Q : ℕ} (hsmall : ∀ u : ℤ, 0 ≤ u → u < T → Represents a u → PrefixRep a Q u)
@@ -551,7 +600,9 @@ theorem distinct_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a 
   split_ifs <;> nlinarith
 
 /-- The state transition preserves an arbitrarily prescribed lower cut bound.
-This is the quantified replacement for recurring-state subsequences.-/
+This is the quantified replacement for recurring-state subsequences.
+@isnad1 id=ex.6h3v.s7.e7243134abca from=translated src=- shape=23588fda vocab=a63f2cff
+-/
 theorem uniform_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     (hu : ∀ C : ℤ, ∃ i : ℕ, C < a i) (hd : DivergingSlack a) :
@@ -596,7 +647,9 @@ theorem uniform_transition {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i
   have hpoteq := t.potential_congr t' hlabels htype
   exact ⟨t', htn, le_of_lt (hcut K hlarge), by omega⟩
 
-/-- Failure of central coverage yields normalized states at arbitrarily high cuts.-/
+/-- Failure of central coverage yields normalized states at arbitrarily high cuts.
+@isnad1 id=ex.6h3v.s6.df1fff5df7bf from=translated src=- shape=2bd06da9 vocab=97f57a6c
+-/
 theorem unbounded_states_of_failure {a : Sequence} (hm : Monotone a) (ha : ∀ i, 0 < a i)
     {T : ℤ} (hT : 1 ≤ T) (hc : ∀ x : ℤ, T ≤ x → Represents a x)
     (hu : ∀ C : ℤ, ∃ i : ℕ, C < a i) (hn : ¬ CentralIntervals a T) :
@@ -642,7 +695,9 @@ theorem unbounded_states_of_failure {a : Sequence} (hm : Monotone a) (ha : ∀ i
   have hlarge : a K < a s.cut := lt_of_lt_of_le hLbig (hm (le_of_lt hLj))
   exact ⟨t, htn, le_of_lt (htcut K hlarge)⟩
 
-/-- An abstract finite-potential principle with explicit uniform escape thresholds.-/
+/-- An abstract finite-potential principle with explicit uniform escape thresholds.
+@isnad1 id=ex.3h4v.s6.ec61a7cda099 from=translated src=- shape=c614739a vocab=0e1f62c8
+-/
 theorem bounded_potential_no_unbounded_states {S : Type*} (cut : S → ℕ) (pot : S → ℤ)
     (M : ℤ) (hbound : ∀ s, pot s ≤ M)
     (hgrow : ∀ K : ℕ, ∃ J : ℕ, ∀ s : S, J ≤ cut s →
@@ -669,7 +724,9 @@ theorem bounded_potential_no_unbounded_states {S : Type*} (cut : S → ℕ) (pot
   push_cast at hs
   omega
 
-/-- Geneson's central-interval theorem for the unbounded-term branch.-/
+/-- Geneson's central-interval theorem for the unbounded-term branch.
+@isnad1 id=centrali.6h2v.s6.a91d87fd5a93 from=translated src=- shape=f7cfec9b vocab=baf3c5d2
+-/
 theorem central_intervals_unbounded {a : Sequence} (hm : Monotone a)
     (ha : ∀ i, 0 < a i) {T : ℤ} (hT : 1 ≤ T)
     (hc : ∀ x : ℤ, T ≤ x → Represents a x)

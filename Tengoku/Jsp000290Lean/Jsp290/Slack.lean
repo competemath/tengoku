@@ -6,6 +6,9 @@ namespace Jsp290
 
 open Finset
 
+/--
+@isnad1 id=le.1h2v.s4.eae2a646fe7a from=translated src=- shape=4f48a06f vocab=9eb6b180
+-/
 theorem prefixSum_ge_index {a : Sequence} (ha : ∀ i, 0 < a i) (N : ℕ) :
     (N : ℤ) ≤ PrefixSum a N := by
   induction N with
@@ -17,7 +20,9 @@ theorem prefixSum_ge_index {a : Sequence} (ha : ∀ i, 0 < a i) (N : ℕ) :
     omega
 
 /-- The surviving prefix total plus one is a genuine missing integer whenever
-the next term exceeds it. The proof retains the original indexed support.-/
+the next term exceeds it. The proof retains the original indexed support.
+@isnad1 id=le.4h3v.s6.71d79d76d395 from=translated src=- shape=23a1f71b vocab=20299e5b
+-/
 theorem prefix_slack_after_one {a : Sequence} (ha : ∀ i, 0 ≤ a i)
     (hm : Monotone a) {i N : ℕ} (hiN : i < N)
     (hrep : RepresentsAfter a {i} (PrefixSum a N - a i + 1)) :
@@ -43,7 +48,9 @@ theorem prefix_slack_after_one {a : Sequence} (ha : ∀ i, 0 ≤ a i)
   omega
 
 /-- Eventual completeness after every single deletion forces diverging slack
-for an unbounded positive monotone sequence.-/
+for an unbounded positive monotone sequence.
+@isnad1 id=divergin.4h1v.s5.15605c7771e7 from=translated src=- shape=2c01f5d0 vocab=f27e666e
+-/
 theorem divergingSlack_of_one_deletion {a : Sequence}
     (ha : ∀ i, 0 < a i) (hm : Monotone a)
     (hu : ∀ C : ℤ, ∃ i, C < a i)
@@ -60,7 +67,9 @@ theorem divergingSlack_of_one_deletion {a : Sequence}
   have hb := prefix_slack_after_one (fun k => (ha k).le) hm hiN hrep
   omega
 
-/-- A bounded positive sequence has diverging slack without any deletion hypothesis.-/
+/-- A bounded positive sequence has diverging slack without any deletion hypothesis.
+@isnad1 id=divergin.2h1v.s5.cf0691eed9ae from=translated src=- shape=13a67be9 vocab=0e9b57ed
+-/
 theorem divergingSlack_of_bounded {a : Sequence} (ha : ∀ i, 0 < a i)
     (hb : ∃ B : ℤ, ∀ i, a i ≤ B) : DivergingSlack a := by
   obtain ⟨B, hB⟩ := hb

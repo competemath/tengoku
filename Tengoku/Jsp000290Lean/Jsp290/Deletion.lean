@@ -13,6 +13,9 @@ def FiniteCentralAfter (a : Sequence) (D : Finset ℕ) : Prop :=
       ∀ x : ℤ, T ≤ x → x ≤ (∑ k ∈ F, a k) - T →
         ∃ s : Finset ℕ, s ⊆ F ∧ ∑ k ∈ s, a k = x
 
+/--
+@isnad1 id=eq.0h3v.s5.21a0a81bfa5c from=translated src=- shape=9f5f3818 vocab=bf378887
+-/
 theorem sum_inter_add_sum_sdiff (a : Sequence) (s D : Finset ℕ) :
     (∑ i ∈ s ∩ D, a i) + (∑ i ∈ s \ D, a i) = ∑ i ∈ s, a i := by
   have hd : Disjoint (s ∩ D) (s \ D) := by
@@ -27,7 +30,9 @@ theorem sum_inter_add_sum_sdiff (a : Sequence) (s D : Finset ℕ) :
 
 /-- A central interval converts two-deletion robustness into an extra deletable term.
 This is the gap argument of Geneson, Lemma 4/Proposition 5, expressed directly
-through a missing integer and a three-part decomposition of a representation.-/
+through a missing integer and a three-part decomposition of a representation.
+@isnad1 id=ex.4h2v.s6.ad0f381a1522 from=translated src=- shape=6b76987a vocab=764a0caf
+-/
 theorem deletion_extension_of_central {a : Sequence}
     (ha : ∀ i, 0 ≤ a i) (hu : ∀ C : ℤ, ∃ i, C < a i)
     (h2 : ∀ E : Finset ℕ, E.card = 2 → CompleteAfter a E)
@@ -107,12 +112,18 @@ theorem deletion_extension_of_central {a : Sequence}
   · rw [sum_union htq, ht]
     omega
 
+/--
+@isnad1 id=complete.2h3v.s5.cd3d39d0ffa5 from=translated src=- shape=c12bf5dc vocab=970be950
+-/
 theorem completeAfter_of_smaller_card {a : Sequence} {m : ℕ}
     (hm : ∀ D : Finset ℕ, D.card = m → CompleteAfter a D)
     (D : Finset ℕ) (hD : D.card ≤ m) : CompleteAfter a D := by
   obtain ⟨E, hDE, hE⟩ := Infinite.exists_superset_card_eq D m hD
   exact (hm E hE).mono hDE
 
+/--
+@isnad1 id=ex.4h2v.s6.1ad0700af937 from=translated src=- shape=1b1e1be6 vocab=c3d4dabe
+-/
 theorem deletions_arbitrary_card_of_central {a : Sequence}
     (ha : ∀ i, 0 ≤ a i) (hu : ∀ C : ℤ, ∃ i, C < a i)
     (h2 : ∀ E : Finset ℕ, E.card = 2 → CompleteAfter a E)

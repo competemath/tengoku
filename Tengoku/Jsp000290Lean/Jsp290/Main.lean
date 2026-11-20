@@ -17,6 +17,9 @@ Mathematical source: Jesse Geneson, arXiv:2609.25107v1, Theorem 1.
 
 namespace Jsp290
 
+/--
+@isnad1 id=iff.1h2v.s4.9436d9fa7a60 from=translated src=- shape=5e1eebc1 vocab=0ad91062
+-/
 theorem admissible_iff (m n : ℕ) (hmn : m < n) :
     Admissible m n ↔ m ≤ 1 := by
   constructor
@@ -43,7 +46,9 @@ theorem admissible_iff (m n : ℕ) (hmn : m < n) :
       exact hfail D hD hcD
   · exact admissible_of_le_one m n hmn
 
-/-- The complete target with its definitions expanded for statement review.-/
+/-- The complete target with its definitions expanded for statement review.
+@isnad1 id=iff.1h2v.s7.a91a513b2eb4 from=translated src=- shape=49d9b31f vocab=0fe84727
+-/
 theorem jsp_000290 (m n : ℕ) (hmn : m < n) :
     (∃ a : ℕ → ℤ, Monotone a ∧
       (∀ D : Finset ℕ, D.card = m →
