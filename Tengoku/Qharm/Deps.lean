@@ -1,0 +1,1 @@
+-- Qharm: a factory bundle (data/intake/qharm). This file only marks the library for Tengoku/All.lean.
