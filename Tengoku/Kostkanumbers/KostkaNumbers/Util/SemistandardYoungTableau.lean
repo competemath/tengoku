@@ -22,9 +22,15 @@ namespace SemistandardYoungTableau
 
 variable {γ : YoungDiagram}
 
+/--
+@isnad1 id=eq.1h4v.s5.5e3ae38f1076 from=translated src=- shape=91a5efe1 vocab=ed839512
+-/
 lemma entry_eq_zero_of_bot (T : SemistandardYoungTableau γ) {i j : ℕ} (h : γ = ⊥) : T i j = 0 :=
   T.zeros <| h ▸ notMem_bot _
 
+/--
+@isnad1 id=le.1h4v.s5.7bfd236b9b25 from=translated src=- shape=8df34028 vocab=ff97dd9f
+-/
 lemma col_le_entry {i j : ℕ} (h : (i, j) ∈ γ) (T : SemistandardYoungTableau γ) : i ≤ T i j := by
   induction i with
   | zero => exact Nat.zero_le _

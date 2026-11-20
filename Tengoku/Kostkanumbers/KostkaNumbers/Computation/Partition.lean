@@ -55,11 +55,17 @@ public section
 Enumeration of the partitions for n ≤ 6
 -/
 
+/--
+@isnad1 id=eq.2h1v.s5.35afbfc1553e from=translated src=- shape=5cd6ef00 vocab=29abcaa2
+-/
 lemma _root_.Tengoku.Kostkanumbers.partition0 (μ : Multiset ℕ) (h : μ.sum = 0) (hp : ∀ x ∈ μ, x > 0) :
     μ = 0 := by
   apply Multiset.card_le_sum at hp
   rwa [h, Nat.le_zero, Multiset.card_eq_zero] at hp
 
+/--
+@isnad1 id=eq.2h1v.s5.41002e0a8f73 from=translated src=- shape=396c8a7b vocab=362aeb4e
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition1 (μ : Multiset ℕ) (h : μ.sum = 1) (hp : ∀ x ∈ μ, x > 0) :
     μ = {1} := by
   have hμ := ne_nil_of_sum_ne_zero h one_ne_zero
@@ -74,6 +80,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition1 (μ : Multiset ℕ) (h : μ.sum 
     have h0 := partition0 (μ.erase 1) hms hmp
     simp [h0]
 
+/--
+@isnad1 id=or.2h1v.s6.17e15c032742 from=translated src=- shape=766fbdbe vocab=2ab20acc
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition2 (μ : Multiset ℕ) (h : μ.sum = 2) (hp : ∀ x ∈ μ, x > 0) :
     μ = {2} ∨ μ = {1, 1} := by
   have hμ := ne_nil_of_sum_ne_zero h two_ne_zero
@@ -89,6 +98,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition2 (μ : Multiset ℕ) (h : μ.sum 
   · ring_nf at hms
     simp [partition0 (μ.erase 2) hms hmp]
 
+/--
+@isnad1 id=or.2h1v.s6.072302805a59 from=translated src=- shape=38a98803 vocab=2ab20acc
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition3 (μ : Multiset ℕ) (h : μ.sum = 3) (hp : ∀ x ∈ μ, x > 0) :
     μ = {3} ∨ μ = {2, 1} ∨ μ = {1, 1, 1} := by
   have hμ := ne_nil_of_sum_ne_zero h three_ne_zero
@@ -110,6 +122,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition3 (μ : Multiset ℕ) (h : μ.sum 
     have h0 := partition0 (μ.erase 3) hms hmp
     simp [h0]
 
+/--
+@isnad1 id=or.2h1v.s7.6580e54d664f from=translated src=- shape=c4f678d9 vocab=2ab20acc
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition4 (μ : Multiset ℕ) (h : μ.sum = 4) (hp : ∀ x ∈ μ, x > 0) :
     μ = {4} ∨ μ = {3, 1} ∨ μ = {2, 2} ∨ μ = {2, 1, 1} ∨ μ = {1, 1, 1, 1} := by
   have hμ := ne_nil_of_sum_ne_zero h four_ne_zero
@@ -134,6 +149,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition4 (μ : Multiset ℕ) (h : μ.sum 
     have h0 := partition0 (μ.erase 4) hms hmp
     simp [h0]
 
+/--
+@isnad1 id=or.2h1v.s8.82dbc8595b66 from=translated src=- shape=95dd53dd vocab=2ab20acc
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition5 (μ : Multiset ℕ) (h : μ.sum = 5) (hp : ∀ x ∈ μ, x > 0) :
     μ = {5} ∨ μ = {4, 1} ∨ μ = {3, 2} ∨ μ = {3, 1, 1} ∨ μ = {2, 2, 1} ∨
     μ = {2, 1, 1, 1} ∨ μ = {1, 1, 1, 1, 1} := by
@@ -163,6 +181,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition5 (μ : Multiset ℕ) (h : μ.sum 
     have h0 := partition0 (μ.erase 5) hms hmp
     simp [h0]
 
+/--
+@isnad1 id=or.2h1v.s8.43f6f8520834 from=translated src=- shape=960d7014 vocab=2ab20acc
+-/
 theorem _root_.Tengoku.Kostkanumbers.partition6 (μ : Multiset ℕ) (h : μ.sum = 6) (hp : ∀ x ∈ μ, x > 0) :
     μ = {6} ∨ μ = {5, 1} ∨ μ = {4, 2} ∨ μ = {4, 1, 1} ∨ μ = {3, 3} ∨ μ = {3, 2, 1} ∨
     μ = {3, 1, 1, 1} ∨ μ = {2, 2, 2} ∨ μ = {2, 2, 1, 1} ∨ μ = {2, 1, 1, 1, 1} ∨
@@ -197,6 +218,9 @@ theorem _root_.Tengoku.Kostkanumbers.partition6 (μ : Multiset ℕ) (h : μ.sum 
     have h0 := partition0 (μ.erase 6) hms hmp
     simp [h0]
 
+/--
+@isnad1 id=eq.0h0v.s6.5f514fbf80f8 from=translated src=- shape=5f89bda4 vocab=4d16dd2c
+-/
 lemma _root_.Tengoku.Kostkanumbers.nat_partition2 : (Finset.univ : Finset (Nat.Partition 2)) =
     ({⟨{2}, by simp, by simp⟩, ⟨{1, 1}, by simp, by simp⟩} :
     Finset (Nat.Partition 2)) := by
