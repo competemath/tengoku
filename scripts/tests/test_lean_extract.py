@@ -105,5 +105,36 @@ class HarvestEndToEnd(unittest.TestCase):
         self.assertEqual(recs["two"]["statement"], "lemma two : 2 = 2")
 
 
+class AdmitIsSorry(unittest.TestCase):
+    """`admit` is Lean's synonym of the `sorry` tactic. Real case: formalizedsparse's Kedlaya.kedlaya_2001a_theorem15 (`:= by   admit`) and kedlaya_2017_theorem13_4
+    (`:= by admit`) were harvested as records (batch 13, Gitar on tengoku#930) because only the word `sorry` was refused."""
+
+    def names(self, src: str) -> list[str]:
+        return [d.name for d in lean_extract.extract_declarations(src)]
+
+    def test_the_real_admit_proofs_are_refused_and_a_real_proof_is_kept(self):
+        src = (
+            "namespace Kedlaya\n\n"
+            "theorem kedlaya_2001a_theorem15 (x : ℕ) : x = x :=\n  by   admit\n\n"
+            "theorem kedlaya_2017_theorem13_4 (x : ℕ) : x + 0 = x := by admit\n\n"
+            "theorem proved (x : ℕ) : x + 0 = x := by simp\n\nend Kedlaya\n"
+        )
+        self.assertEqual(self.names(src), ["Kedlaya.proved"])
+
+    def test_sorry_is_still_refused(self):
+        self.assertEqual(self.names("theorem a (x : ℕ) : x = x := by sorry\n\ntheorem b (x : ℕ) : x = x := rfl\n"), ["b"])
+
+    def test_admit_on_its_own_line_in_a_tactic_block_is_refused(self):
+        self.assertEqual(self.names("theorem a (x : ℕ) : x = x := by\n  have h : x = x := rfl\n  admit\n"), [])
+
+    def test_a_name_that_only_contains_the_word_is_not_refused(self):
+        src = "theorem uses_it (x : ℕ) : x = x := by\n  exact Foo.admit_nonneg x\n\ntheorem other (x : ℕ) : x = x := by\n  exact Bar.admit x\n"
+        self.assertEqual(self.names(src), ["uses_it", "other"])
+
+    def test_mutant_without_the_admit_check_the_real_proofs_pass(self):
+        self.assertFalse(lean_extract._SORRY_RE.search(":= by   admit"))  # the filter as it was lets the admit proof through
+        self.assertTrue(lean_extract._contains_sorry(":= by   admit"))
+
+
 if __name__ == "__main__":
     unittest.main()
