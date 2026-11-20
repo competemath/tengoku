@@ -79,14 +79,18 @@ noncomputable def signMult (α : K) : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n)
 end
 
 omit [CharZero K] in
-/-- `rotSynth` factors as `diag(T_n(β), T_n(-γ)) * rot2`.-/
+/-- `rotSynth` factors as `diag(T_n(β), T_n(-γ)) * rot2`.
+@isnad1 id=eq.0h4v.s7.0450c5fb6e93 from=translated src=- shape=047713c0 vocab=83b5939a
+-/
 theorem rotSynth_eq (n : ℕ) (β γ : K) :
     rotSynth n β γ
       = fromBlocks (toeplitz n β) 0 0 (toeplitz n (-γ)) * rot2 n := by
   rw [rot2, rotSynth, fromBlocks_multiply]
   simp
 
-/-- `rot2` is a unit, with inverse `2⁻¹ • rot2`.-/
+/-- `rot2` is a unit, with inverse `2⁻¹ • rot2`.
+@isnad1 id=isunit.0h2v.s6.a0744104b530 from=translated src=- shape=eb38884a vocab=411d6eb1
+-/
 theorem rot2_isUnit (n : ℕ) : IsUnit (rot2 (K := K) n) := by
   have h2 : (2 : K) ≠ 0 := two_ne_zero
   have key : rot2 (K := K) n * ((2 : K)⁻¹ • rot2 n) = 1 := by
@@ -113,7 +117,9 @@ theorem rot2_isUnit (n : ℕ) : IsUnit (rot2 (K := K) n) := by
     congr 1 <;> rw [smul_smul, inv_mul_cancel₀ h2, one_smul]
   exact ⟨⟨_, _, key, key'⟩, rfl⟩
 
-/-- `diag(T_n(β), T_n(-γ))` is a unit.-/
+/-- `diag(T_n(β), T_n(-γ))` is a unit.
+@isnad1 id=isunit.0h4v.s7.a7b1b6d0fcae from=translated src=- shape=1f5dc298 vocab=0709988a
+-/
 theorem blockDiag_toeplitz_isUnit (n : ℕ) (β γ : K) :
     IsUnit (fromBlocks (toeplitz n β) 0 0 (toeplitz n (-γ))) := by
   refine ⟨⟨fromBlocks (toeplitz n β) 0 0 (toeplitz n (-γ)),
@@ -123,7 +129,9 @@ theorem blockDiag_toeplitz_isUnit (n : ℕ) (β γ : K) :
   · simp only [fromBlocks_multiply, Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add,
       toeplitz_mul_neg, toeplitz_neg_mul, fromBlocks_one]
 
-/-- The synthesis matrix is invertible.-/
+/-- The synthesis matrix is invertible.
+@isnad1 id=isunit.0h4v.s6.ea1b0ec1bd22 from=translated src=- shape=92b0e975 vocab=9adefdea
+-/
 theorem rotSynth_isUnit (n : ℕ) (β γ : K) : IsUnit (rotSynth n β γ) := by
   rw [rotSynth_eq]
   exact (blockDiag_toeplitz_isUnit n β γ).mul (rot2_isUnit n)
@@ -133,7 +141,9 @@ theorem rotSynth_isUnit (n : ℕ) (β γ : K) : IsUnit (rotSynth n β γ) := by
 Δ_n * W = W * D,   Δ_n = [[0, T(β+γ)], [T(-(β+γ)), 0]].
 ```
 The whole content is the group law of Lemma A.1: `T(α) T(-γ) = T(β)` and
-`T(-α) T(β) = T(-γ)` when `α = β + γ`.-/
+`T(-α) T(β) = T(-γ)` when `α = β + γ`.
+@isnad1 id=eq.0h4v.s7.ce57f64c82e4 from=translated src=- shape=7a1b3d3d vocab=aed2cc92
+-/
 theorem signMult_mul_rotSynth (n : ℕ) (β γ : K) :
     signMult n (β + γ) * rotSynth n β γ = rotSynth n β γ * signCoeff n := by
   rw [signMult, rotSynth, signCoeff, fromBlocks_multiply, fromBlocks_multiply]
@@ -143,7 +153,9 @@ theorem signMult_mul_rotSynth (n : ℕ) (β γ : K) :
 
 /-- **Proposition 2.1, Step 1** in conjugated form: the alternating sign multiplier is
 similar to `diag(1, -1)` via the synthesis matrix, and equals the antidiagonal
-Toeplitz block.-/
+Toeplitz block.
+@isnad1 id=eq.0h4v.s8.2b01864dbb82 from=translated src=- shape=853ddce3 vocab=ed827249
+-/
 theorem signMult_eq_conj (n : ℕ) (β γ : K) :
     signMult n (β + γ) = rotSynth n β γ * signCoeff n * (rotSynth n β γ)⁻¹ := by
   have hU := rotSynth_isUnit (K := K) n β γ

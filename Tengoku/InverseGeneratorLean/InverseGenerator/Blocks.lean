@@ -73,7 +73,9 @@ def zIndex {n : ℕ} : Fin n ⊕ Fin n → ℕ
   | .inl j => 2 * (j : ℕ)
   | .inr j => 2 * (j : ℕ) + 1
 
-/-- The index type of `A_n` has `2n` elements, matching `A_n ∈ M_{2n}(ℂ)`.-/
+/-- The index type of `A_n` has `2n` elements, matching `A_n ∈ M_{2n}(ℂ)`.
+@isnad1 id=eq.0h1v.s5.57f3c6435881 from=translated src=- shape=57e575ba vocab=37905c64
+-/
 theorem card_blockIndex (n : ℕ) : Fintype.card (Fin n ⊕ Fin n) = 2 * n := by
   simp [two_mul]
 
@@ -83,17 +85,25 @@ noncomputable def towerPoint (k : ℕ) : ℂ := -1 + Complex.I * (tower k : ℂ)
 /-- `λ_k = b_k⁻¹`, the spectrum of `A_n`.-/
 noncomputable def towerSpec (k : ℕ) : ℂ := (towerPoint k)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s4.d511efc54707 from=translated src=- shape=a8607e2e vocab=a4d99960
+-/
 @[simp] theorem towerPoint_re (k : ℕ) : (towerPoint k).re = -1 := by
   simp [towerPoint]
 
 /-- `b_k ≠ 0`, since `Re b_k = -1`.  This is what makes `A_n` invertible and puts
-the spectrum of `B_n = A_n⁻¹` on the line `Re z = -1`.-/
+the spectrum of `B_n = A_n⁻¹` on the line `Re z = -1`.
+@isnad1 id=ne.0h1v.s3.fc943347c320 from=translated src=- shape=a311c14d vocab=6b72a1b1
+-/
 theorem towerPoint_ne_zero (k : ℕ) : towerPoint k ≠ 0 := by
   intro h
   have := towerPoint_re k
   rw [h] at this
   norm_num at this
 
+/--
+@isnad1 id=ne.0h1v.s3.e4ba16bd50e9 from=translated src=- shape=a311c14d vocab=0eef7b5c
+-/
 theorem towerSpec_ne_zero (k : ℕ) : towerSpec k ≠ 0 :=
   inv_ne_zero (towerPoint_ne_zero k)
 
@@ -101,6 +111,9 @@ theorem towerSpec_ne_zero (k : ℕ) : towerSpec k ≠ 0 :=
 noncomputable def blockSynth (n : ℕ) (α : ℝ) : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℂ :=
   rotSynth n ((α / 2 : ℝ) : ℂ) ((α / 2 : ℝ) : ℂ)
 
+/--
+@isnad1 id=isunit.0h2v.s6.90e116a29d38 from=translated src=- shape=8eef0de4 vocab=acb56072
+-/
 theorem blockSynth_isUnit (n : ℕ) (α : ℝ) : IsUnit (blockSynth n α) :=
   rotSynth_isUnit _ _ _
 
@@ -108,6 +121,9 @@ theorem blockSynth_isUnit (n : ℕ) (α : ℝ) : IsUnit (blockSynth n α) :=
 noncomputable def blockDiag (n : ℕ) : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℂ :=
   Matrix.diagonal fun s => towerSpec (zIndex s)
 
+/--
+@isnad1 id=isunit.0h1v.s6.49a3f4df44e7 from=translated src=- shape=70a2af2d vocab=154d34d1
+-/
 theorem blockDiag_isUnit (n : ℕ) : IsUnit (blockDiag n) := by
   refine ⟨⟨blockDiag n, Matrix.diagonal fun s => (towerSpec (zIndex s))⁻¹, ?_, ?_⟩, rfl⟩ <;>
     · rw [blockDiag, Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
@@ -122,7 +138,9 @@ noncomputable def blockGen (n : ℕ) (α : ℝ) : Matrix (Fin n ⊕ Fin n) (Fin 
   blockSynth n α * blockDiag n * (blockSynth n α)⁻¹
 
 /-- `A_n` is invertible: it is a conjugate of a diagonal matrix with nonzero
-entries.  This is the first conjunct of Theorem 1.1.-/
+entries.  This is the first conjunct of Theorem 1.1.
+@isnad1 id=isunit.0h2v.s6.96222d4ec618 from=translated src=- shape=8eef0de4 vocab=22e9ebf2
+-/
 theorem blockGen_isUnit (n : ℕ) (α : ℝ) : IsUnit (blockGen n α) := by
   rw [blockGen]
   exact ((blockSynth_isUnit n α).mul (blockDiag_isUnit n)).mul
@@ -145,7 +163,9 @@ induction plus the group law.  Note that the identity cannot be checked numerica
 of digits.
 -/
 
-/-- `B_n = A_n⁻¹` has spectrum `b_k = -1 + i y_k` on the line `Re z = -1`.-/
+/-- `B_n = A_n⁻¹` has spectrum `b_k = -1 + i y_k` on the line `Re z = -1`.
+@isnad1 id=eq.0h1v.s6.9d1b27940915 from=translated src=- shape=237e3718 vocab=6f135a02
+-/
 theorem blockDiag_inv (n : ℕ) :
     (blockDiag n)⁻¹ = Matrix.diagonal fun s => towerPoint (zIndex s) := by
   refine Matrix.inv_eq_right_inv ?_
@@ -153,6 +173,9 @@ theorem blockDiag_inv (n : ℕ) :
   refine congrArg _ (funext fun s => ?_)
   exact inv_mul_cancel₀ (towerPoint_ne_zero _)
 
+/--
+@isnad1 id=eq.0h2v.s8.59ef6b28fd11 from=translated src=- shape=d0efaa23 vocab=93ae45a6
+-/
 theorem blockGen_inv (n : ℕ) (α : ℝ) :
     (blockGen n α)⁻¹ = blockSynth n α * (blockDiag n)⁻¹ * (blockSynth n α)⁻¹ := by
   refine Matrix.inv_eq_right_inv ?_
@@ -170,7 +193,9 @@ theorem blockGen_inv (n : ℕ) (α : ℝ) :
           Matrix.mul_nonsing_inv _ hDdet, Matrix.one_mul,
           Matrix.mul_nonsing_inv _ hWdet]
 
-/-- `e^{π b_k} = e^{-π} · (-1)^k`, the scalar heart of the identity.-/
+/-- `e^{π b_k} = e^{-π} · (-1)^k`, the scalar heart of the identity.
+@isnad1 id=eq.0h1v.s5.0d3258ca37ad from=translated src=- shape=afb1be03 vocab=d2bcd4bf
+-/
 theorem cexp_pi_mul_towerPoint (k : ℕ) :
     Complex.exp ((Real.pi : ℂ) * towerPoint k) = Complex.exp (-(Real.pi : ℂ)) * (-1) ^ k := by
   have hsplit : (Real.pi : ℂ) * towerPoint k
@@ -181,7 +206,9 @@ theorem cexp_pi_mul_towerPoint (k : ℕ) :
     neg_one_pow_tower k]
 
 /-- **The identity of §2**: `e^{π A_n⁻¹} = e^{-π} · Δ_n`, where `Δ_n = signMult n α`
-is the antidiagonal Toeplitz block of Proposition 2.1, Step 1.-/
+is the antidiagonal Toeplitz block of Proposition 2.1, Step 1.
+@isnad1 id=eq.0h2v.s8.ea437813baac from=translated src=- shape=89fc99c4 vocab=3693272a
+-/
 theorem exp_pi_blockGen_inv (n : ℕ) (α : ℝ) :
     exp ((Real.pi : ℂ) • (blockGen n α)⁻¹)
       = Complex.exp (-(Real.pi : ℂ)) • signMult n (((α / 2 : ℝ) : ℂ) + ((α / 2 : ℝ) : ℂ)) := by

@@ -39,12 +39,17 @@ open Finset
 /-- `H_m = ∑_{ℓ=1}^m 1/ℓ`, as a real number.-/
 noncomputable def harmonicSum (m : ℕ) : ℝ := ∑ ℓ ∈ Icc 1 m, (ℓ : ℝ)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s3.c492e808e38a from=translated src=- shape=6b4ab8ce vocab=ad96462c
+-/
 theorem harmonicSum_eq_harmonic (m : ℕ) : harmonicSum m = (harmonic m : ℝ) := by
   rw [harmonicSum, harmonic_eq_sum_Icc]
   push_cast
   rfl
 
-/-- `H_m ≤ 1 + log m`.-/
+/-- `H_m ≤ 1 + log m`.
+@isnad1 id=le.0h1v.s4.ae8cdd64d689 from=translated src=- shape=bc0a3534 vocab=212c8b3b
+-/
 theorem harmonicSum_le (m : ℕ) : harmonicSum m ≤ 1 + Real.log m := by
   rw [harmonicSum_eq_harmonic]
   exact harmonic_le_one_add_log m
@@ -52,7 +57,9 @@ theorem harmonicSum_le (m : ℕ) : harmonicSum m ≤ 1 + Real.log m := by
 /-- **The sharpened harmonic lower bound** `log m + 1/2 + 1/(2m) ≤ H_m`, by induction:
 the induction step is exactly the trapezoid bound `log_one_add_le_trapezoid` at
 `x = 1/m`, whose right side is `1/(2m) + 1/(2(m+1))`.  Mathlib's `log (m+1) ≤ H_m`
-is half a unit weaker, which is not enough for the constant `3/2` of Lemma A.2.-/
+is half a unit weaker, which is not enough for the constant `3/2` of Lemma A.2.
+@isnad1 id=le.1h1v.s6.e148ac35e5c2 from=translated src=- shape=5deaaf99 vocab=681b5f95
+-/
 theorem log_add_half_le_harmonicSum {m : ℕ} (hm : 1 ≤ m) :
     Real.log m + 1 / 2 + 1 / (2 * m) ≤ harmonicSum m := by
   induction m with
@@ -96,7 +103,9 @@ theorem log_add_half_le_harmonicSum {m : ℕ} (hm : 1 ≤ m) :
         norm_num
       linarith
 
-/-- `log m + 1/2 ≤ H_m` for `m ≥ 1`.-/
+/-- `log m + 1/2 ≤ H_m` for `m ≥ 1`.
+@isnad1 id=le.1h1v.s5.27583bb4956d from=translated src=- shape=56d1d54e vocab=03434a52
+-/
 theorem log_add_half_le_harmonicSum' {m : ℕ} (hm : 1 ≤ m) :
     Real.log m + 1 / 2 ≤ harmonicSum m := by
   have h := log_add_half_le_harmonicSum hm

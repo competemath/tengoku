@@ -54,7 +54,9 @@ section Generic
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- The explicit inverse of the (scaled) synthesis matrix:
-`(√2·𝒱_n)⁻¹ = 2⁻¹ · [[T(-β), T(γ)], [T(-β), -T(γ)]]`.-/
+`(√2·𝒱_n)⁻¹ = 2⁻¹ · [[T(-β), T(γ)], [T(-β), -T(γ)]]`.
+@isnad1 id=eq.0h4v.s8.d989004d8c22 from=translated src=- shape=ed06876b vocab=b2b38524
+-/
 theorem rotSynth_inv (n : ℕ) (β γ : K) :
     (rotSynth n β γ)⁻¹
       = (2⁻¹ : K) • fromBlocks (toeplitz n (-β)) (toeplitz n γ)
@@ -95,7 +97,9 @@ open scoped Matrix.Norms.L2Operator
 variable {m₁ m₂ : Type*} [Fintype m₁] [Fintype m₂] [DecidableEq m₁] [DecidableEq m₂]
 
 omit [DecidableEq m₁] in
-/-- Squared form of `sqrt_sum_sq_mulVec_le`.-/
+/-- Squared form of `sqrt_sum_sq_mulVec_le`.
+@isnad1 id=le.0h4v.s7.6e0e8c9510dd from=translated src=- shape=ab84699f vocab=5b7cfc5c
+-/
 theorem sum_sq_mulVec_le (A : Matrix m₁ m₂ ℂ) (x : m₂ → ℂ) :
     ∑ p, ‖∑ q, A p q * x q‖ ^ 2 ≤ ‖A‖ ^ 2 * ∑ q, ‖x q‖ ^ 2 := by
   have h := sqrt_sum_sq_mulVec_le (A := A) x
@@ -106,7 +110,9 @@ theorem sum_sq_mulVec_le (A : Matrix m₁ m₂ ℂ) (x : m₂ → ℂ) :
   exact h3
 
 omit [DecidableEq m₁] in
-/-- **Rank-one norm bound**: `‖x ⊗ y*‖ ≤ ‖x‖₂ ‖y‖₂` in the `ℓ²`-operator norm.-/
+/-- **Rank-one norm bound**: `‖x ⊗ y*‖ ≤ ‖x‖₂ ‖y‖₂` in the `ℓ²`-operator norm.
+@isnad1 id=le.0h4v.s6.0dd3a449eb81 from=translated src=- shape=d4bec0dd vocab=a2e72e4e
+-/
 theorem l2_opNorm_vecMulVec_le (x : m₁ → ℂ) (y : m₂ → ℂ) :
     ‖Matrix.vecMulVec x y‖
       ≤ Real.sqrt (∑ i, ‖x i‖ ^ 2) * Real.sqrt (∑ j, ‖y j‖ ^ 2) := by
@@ -138,7 +144,9 @@ theorem l2_opNorm_vecMulVec_le (x : m₁ → ℂ) (y : m₂ → ℂ) :
           * Real.sqrt (∑ q, ‖z q‖ ^ 2) := by ring
 
 /-- **Block-diagonal norm bound**: `‖diag(A, D)‖ ≤ max` (stated with a common
-bound `C`).-/
+bound `C`).
+@isnad1 id=le.3h5v.s7.e8489a02888d from=translated src=- shape=a00b1d23 vocab=fdaaaa62
+-/
 theorem l2_opNorm_fromBlocks_diag_le {A : Matrix m₁ m₁ ℂ} {D : Matrix m₂ m₂ ℂ}
     {C : ℝ} (hC : 0 ≤ C) (hA : ‖A‖ ≤ C) (hD : ‖D‖ ≤ C) :
     ‖Matrix.fromBlocks A 0 0 D‖ ≤ C := by
@@ -206,7 +214,9 @@ section PrefixZ
 
 open scoped Matrix.Norms.L2Operator
 
-/-- `zIndex` never exceeds `2n - 1`.-/
+/-- `zIndex` never exceeds `2n - 1`.
+@isnad1 id=lt.0h2v.s4.1c816cca78bb from=translated src=- shape=1892d7a1 vocab=765dab2e
+-/
 theorem zIndex_lt {n : ℕ} (s : Fin n ⊕ Fin n) : zIndex s < 2 * n := by
   cases s with
   | inl j => have := j.isLt; simp only [zIndex]; omega
@@ -226,7 +236,9 @@ noncomputable def coordProjZ (n : ℕ) (α : ℝ) (k : ℕ) :
   blockSynth n α * Matrix.diagonal (fun s => if zIndex s = k then (1 : ℂ) else 0)
     * (blockSynth n α)⁻¹
 
-/-- Decomposition of a `zIndex`-diagonal into single-coordinate diagonals.-/
+/-- Decomposition of a `zIndex`-diagonal into single-coordinate diagonals.
+@isnad1 id=eq.0h2v.s7.5fa4e3b81ed2 from=translated src=- shape=786af71c vocab=900acc53
+-/
 theorem diagonal_zIndex_eq_sum (n : ℕ) (f : ℕ → ℂ) :
     Matrix.diagonal (fun s : Fin n ⊕ Fin n => f (zIndex s))
       = ∑ k ∈ range (2 * n),
@@ -254,7 +266,9 @@ theorem diagonal_zIndex_eq_sum (n : ℕ) (f : ℕ → ℂ) :
 
 /-- The conjugated form: any `zIndex`-diagonal multiplier is the sum of its
 rank-one coordinate projections.  Applied with `f = λ` it gives `A_n`, with
-`f = e^{tλ}` the flow, with `f = 1` the resolution of the identity.-/
+`f = e^{tλ}` the flow, with `f = 1` the resolution of the identity.
+@isnad1 id=eq.0h3v.s8.ac48dcb62d13 from=translated src=- shape=3a51bb66 vocab=3499d906
+-/
 theorem conj_diagonal_zIndex_eq_sum (n : ℕ) (α : ℝ) (f : ℕ → ℂ) :
     blockSynth n α * Matrix.diagonal (fun s => f (zIndex s)) * (blockSynth n α)⁻¹
       = ∑ k ∈ range (2 * n), f k • coordProjZ n α k := by
@@ -263,7 +277,9 @@ theorem conj_diagonal_zIndex_eq_sum (n : ℕ) (α : ℝ) (f : ℕ → ℂ) :
   rw [Matrix.mul_smul, Matrix.smul_mul]
   rfl
 
-/-- The coordinate projections sum to the prefix projections.-/
+/-- The coordinate projections sum to the prefix projections.
+@isnad1 id=eq.0h3v.s5.4ce79c01c4be from=translated src=- shape=549a5052 vocab=65ecfc81
+-/
 theorem sum_coordProjZ (n : ℕ) (α : ℝ) (K : ℕ) :
     ∑ k ∈ range K, coordProjZ n α k = prefixZ n α K := by
   have hdiag : (∑ k ∈ range K, Matrix.diagonal
@@ -286,7 +302,9 @@ theorem sum_coordProjZ (n : ℕ) (α : ℝ) (K : ℕ) :
   rw [prefixZ, ← hdiag, Finset.mul_sum, Finset.sum_mul]
   exact Finset.sum_congr rfl fun k _ => rfl
 
-/-- The full prefix is the identity: `𝒬_{n,2n} = 1`.-/
+/-- The full prefix is the identity: `𝒬_{n,2n} = 1`.
+@isnad1 id=eq.0h2v.s6.ea87f4e699c4 from=translated src=- shape=ab2cecde vocab=b4edff67
+-/
 theorem prefixZ_full (n : ℕ) (α : ℝ) : prefixZ n α (2 * n) = 1 := by
   rw [prefixZ]
   rw [show Matrix.diagonal (fun s : Fin n ⊕ Fin n => if zIndex s < 2 * n then (1 : ℂ) else 0)
@@ -300,7 +318,9 @@ theorem prefixZ_full (n : ℕ) (α : ℝ) : prefixZ n α (2 * n) = 1 := by
 
 /-- **Even prefixes are block-diagonal pairs of `prefixConj`s** — the heart of
 Proposition 2.1, Step 2.  The indicator diagonal for `zIndex s < 2k` commutes with the Hadamard
-rotation, so no interleaving survives.-/
+rotation, so no interleaving survives.
+@isnad1 id=eq.0h3v.s7.ee3ab9c736cd from=translated src=- shape=eb72a0b1 vocab=52c4e4e7
+-/
 theorem prefixZ_even (n : ℕ) (α : ℝ) (k : ℕ) :
     prefixZ n α (2 * k)
       = Matrix.fromBlocks (prefixConj n k (((α / 2 : ℝ)) : ℂ)) 0 0
@@ -367,7 +387,9 @@ theorem prefixZ_even (n : ℕ) (α : ℝ) (k : ℕ) :
       from (two_smul ℂ _).symm]
   exact hpack _ _
 
-/-- Odd prefixes add one rank-one coordinate projection.-/
+/-- Odd prefixes add one rank-one coordinate projection.
+@isnad1 id=eq.0h3v.s7.4522a9f4dabb from=translated src=- shape=0e95e763 vocab=36730387
+-/
 theorem prefixZ_odd (n : ℕ) (α : ℝ) (k : ℕ) :
     prefixZ n α (2 * k + 1) = prefixZ n α (2 * k) + coordProjZ n α (2 * k) := by
   have hfun : (fun s : Fin n ⊕ Fin n => if zIndex s < 2 * k + 1 then (1 : ℂ) else 0)
@@ -383,7 +405,9 @@ theorem prefixZ_odd (n : ℕ) (α : ℝ) (k : ℕ) :
     Matrix.add_mul]
 
 /-- The even coordinate projection is rank one: a column of `𝒱_n` tensored with a
-row of `𝒱_n⁻¹`.-/
+row of `𝒱_n⁻¹`.
+@isnad1 id=eq.0h3v.s7.c756f5d0d3d6 from=translated src=- shape=73f0ae5e vocab=d9c953f1
+-/
 theorem coordProjZ_eq_vecMulVec (n : ℕ) (α : ℝ) (k : Fin n) :
     coordProjZ n α (2 * (k : ℕ))
       = Matrix.vecMulVec (fun s => blockSynth n α s (Sum.inl k))
@@ -435,6 +459,9 @@ section BasisConst
 
 open scoped Matrix.Norms.L2Operator
 
+/--
+@isnad1 id=lt.2h1v.s6.234e27e421d6 from=translated src=- shape=25b94d54 vocab=d792fea9
+-/
 theorem half_abs_lt {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) : |α / 2| < 1 / 2 := by
   rw [abs_of_pos (by linarith)]
   linarith
@@ -460,16 +487,23 @@ section Multiplier
 
 open scoped Matrix.Norms.L2Operator
 
-/-- At `α = 0` the synthesis matrix degenerates to the Hadamard rotation.-/
+/-- At `α = 0` the synthesis matrix degenerates to the Hadamard rotation.
+@isnad1 id=eq.0h1v.s4.22c038408562 from=translated src=- shape=c3cfd6f1 vocab=96db3d40
+-/
 theorem blockSynth_zero (n : ℕ) : blockSynth n 0 = rot2 n := by
   rw [blockSynth, rotSynth, rot2]
   norm_num [toeplitz_zero]
 
-/-- The inverse of the `α = 0` synthesis matrix is `2⁻¹ • rot2`.-/
+/-- The inverse of the `α = 0` synthesis matrix is `2⁻¹ • rot2`.
+@isnad1 id=eq.0h1v.s7.7878c5926e50 from=translated src=- shape=90543cd3 vocab=b36de8e3
+-/
 theorem blockSynth_zero_inv (n : ℕ) : (blockSynth n 0)⁻¹ = (2⁻¹ : ℂ) • rot2 n := by
   rw [blockSynth, rotSynth_inv, rot2]
   norm_num [toeplitz_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.97b54939852c from=translated src=- shape=7c45b450 vocab=2bc06589
+-/
 theorem rot2_mulVec_inl {n : ℕ} (y : Fin n ⊕ Fin n → ℂ) (i : Fin n) :
     (rot2 n).mulVec y (Sum.inl i) = y (Sum.inl i) + y (Sum.inr i) := by
   have h : (rot2 n).mulVec y (Sum.inl i) = ∑ t, rot2 n (Sum.inl i) t * y t := rfl
@@ -482,6 +516,9 @@ theorem rot2_mulVec_inl {n : ℕ} (y : Fin n ⊕ Fin n → ℂ) (i : Fin n) :
     simp [rot2, Matrix.one_apply]
   rw [h1, h2]
 
+/--
+@isnad1 id=eq.0h3v.s6.7dc1fb292459 from=translated src=- shape=c398e621 vocab=29902054
+-/
 theorem rot2_mulVec_inr {n : ℕ} (y : Fin n ⊕ Fin n → ℂ) (i : Fin n) :
     (rot2 n).mulVec y (Sum.inr i) = y (Sum.inl i) - y (Sum.inr i) := by
   have h : (rot2 n).mulVec y (Sum.inr i) = ∑ t, rot2 n (Sum.inr i) t * y t := rfl
@@ -496,7 +533,9 @@ theorem rot2_mulVec_inr {n : ℕ} (y : Fin n ⊕ Fin n → ℂ) (i : Fin n) :
   ring
 
 /-- **The parallelogram identity for the Hadamard rotation**:
-`‖rot2 · y‖² = 2 ‖y‖²` in `ℓ²`.-/
+`‖rot2 · y‖² = 2 ‖y‖²` in `ℓ²`.
+@isnad1 id=eq.0h2v.s7.f7f316798254 from=translated src=- shape=64f7091c vocab=cf224a6d
+-/
 theorem sum_sq_rot2_mulVec {n : ℕ} (y : Fin n ⊕ Fin n → ℂ) :
     ∑ s, ‖(rot2 n).mulVec y s‖ ^ 2 = 2 * ∑ s, ‖y s‖ ^ 2 := by
   rw [Fintype.sum_sum_type (fun s => ‖(rot2 n).mulVec y s‖ ^ 2),
@@ -522,7 +561,9 @@ multiplier is bounded by the sup of its symbol.
 The Hadamard rotation scales the `ℓ²` norm by exactly `√2`
 (`sum_sq_rot2_mulVec`), and the two factors `√2` and `2⁻¹·√2` cancel, so no
 `√2`-normalisation is needed anywhere.  Everything is phrased in bare sums through
-`l2_opNorm_le_of_sum_sq`, which keeps `EuclideanSpace` out of the elaboration.-/
+`l2_opNorm_le_of_sum_sq`, which keeps `EuclideanSpace` out of the elaboration.
+@isnad1 id=le.2h3v.s8.2995d74eaebe from=translated src=- shape=8a1a5e8f vocab=1cd36930
+-/
 theorem l2_opNorm_conj_rot2_diag_le {n : ℕ} (f : ℕ → ℂ) {B : ℝ} (hB : 0 ≤ B)
     (hf : ∀ s : Fin n ⊕ Fin n, ‖f (zIndex s)‖ ≤ B) :
     ‖blockSynth n 0 * Matrix.diagonal (fun s => f (zIndex s)) * (blockSynth n 0)⁻¹‖
@@ -576,7 +617,9 @@ columns and rows has squared `ℓ²` norm `∑_{r≥1} a_r(θ)²` — exactly th
 in `CoeffBounds.lean`.
 -/
 
-/-- The entries of `T_n(θ) - I`.-/
+/-- The entries of `T_n(θ) - I`.
+@isnad1 id=eq.0h4v.s6.e25e49ca5639 from=translated src=- shape=8d65ab3b vocab=aa567ddf
+-/
 theorem toeplitz_sub_one_apply (θ : ℝ) {n : ℕ} (i k : Fin n) :
     toeplitz n ((θ : ℂ)) i k - (1 : Matrix (Fin n) (Fin n) ℂ) i k
       = ((if (k : ℕ) < (i : ℕ) then binomCoeff ((i : ℕ) - (k : ℕ)) θ else 0 : ℝ) : ℂ) := by
@@ -591,7 +634,9 @@ theorem toeplitz_sub_one_apply (θ : ℝ) {n : ℕ} (i k : Fin n) :
     · rw [ite_eq_right h, ite_eq_right (by omega)]
       norm_num
 
-/-- Squared `ℓ²` norm of a column of `T_n(θ) - I`, bounded by any tail bound.-/
+/-- Squared `ℓ²` norm of a column of `T_n(θ) - I`, bounded by any tail bound.
+@isnad1 id=le.1h4v.s7.5111156d22fc from=translated src=- shape=326d7a93 vocab=83d0883b
+-/
 theorem sum_sq_toeplitz_col_sub_le {θ C : ℝ}
     (hC : ∀ m : ℕ, ∑ r ∈ Icc 1 m, binomCoeff r θ ^ 2 ≤ C) {n : ℕ} (k : Fin n) :
     ∑ i : Fin n, ‖toeplitz n ((θ : ℂ)) i k - (1 : Matrix (Fin n) (Fin n) ℂ) i k‖ ^ 2
@@ -628,7 +673,9 @@ theorem sum_sq_toeplitz_col_sub_le {θ C : ℝ}
         sum_range_add_one_eq_sum_Icc (fun r => binomCoeff r θ ^ 2) _
     _ ≤ C := hC _
 
-/-- Squared `ℓ²` norm of a row of `T_n(θ) - I`, bounded by any tail bound.-/
+/-- Squared `ℓ²` norm of a row of `T_n(θ) - I`, bounded by any tail bound.
+@isnad1 id=le.1h4v.s7.babe27b7cf1f from=translated src=- shape=f48b9f75 vocab=83d0883b
+-/
 theorem sum_sq_toeplitz_row_sub_le {θ C : ℝ}
     (hC : ∀ m : ℕ, ∑ r ∈ Icc 1 m, binomCoeff r θ ^ 2 ≤ C) {n : ℕ} (i : Fin n) :
     ∑ j : Fin n, ‖toeplitz n ((θ : ℂ)) i j - (1 : Matrix (Fin n) (Fin n) ℂ) i j‖ ^ 2
@@ -668,7 +715,9 @@ theorem sum_sq_toeplitz_row_sub_le {θ C : ℝ}
 /-- Pointwise Pythagoras substitute: when at every index either the reference vector
 vanishes or the two vectors agree, the squared norms add up subadditively.  This
 replaces the paper's orthogonality argument `‖v‖² = 1 + ‖v - w‖²` and needs no inner
-products.-/
+products.
+@isnad1 id=le.1h3v.s7.621d13de78f2 from=translated src=- shape=53c1bbb2 vocab=6c49a698
+-/
 theorem sum_sq_le_add_of_support {ι : Type*} [Fintype ι] (b b₀ : ι → ℂ)
     (h : ∀ i, b₀ i = 0 ∨ b i = b₀ i) :
     ∑ i, ‖b i‖ ^ 2 ≤ (∑ i, ‖b₀ i‖ ^ 2) + ∑ i, ‖b i - b₀ i‖ ^ 2 := by
@@ -692,12 +741,17 @@ where the two factors `√2` cancel in the rank-one product.
 `∑_{r ≥ 1} a_r(θ)²` simultaneously at `θ = α/2` and `θ = -α/2`.-/
 noncomputable def tailSq (α : ℝ) : ℝ := 9 * α ^ 2 / (8 * (1 - α)) + α ^ 2 / 2
 
+/--
+@isnad1 id=le.1h1v.s4.782bc60c2f38 from=translated src=- shape=2b511f7f vocab=dd59e4e8
+-/
 theorem tailSq_nonneg {α : ℝ} (hα1 : α < 1) : 0 ≤ tailSq α := by
   have h : (0 : ℝ) < 1 - α := by linarith
   rw [tailSq]
   positivity
 
-/-- `t_α ≤ 13α²/(8(1-α))`, the form used in the final numeric estimate.-/
+/-- `t_α ≤ 13α²/(8(1-α))`, the form used in the final numeric estimate.
+@isnad1 id=le.2h1v.s6.16b9b2cbe5d5 from=translated src=- shape=2db5e9a6 vocab=203cd2de
+-/
 theorem tailSq_le {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α < 1) :
     tailSq α ≤ 13 * α ^ 2 / (8 * (1 - α)) := by
   have h : (0 : ℝ) < 1 - α := by linarith
@@ -709,6 +763,9 @@ theorem tailSq_le {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α < 1) :
   rw [tailSq]
   linarith
 
+/--
+@isnad1 id=le.2h2v.s7.b4f19532a0c0 from=translated src=- shape=af0be2e7 vocab=0a419c86
+-/
 theorem tail_half_pos {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) (m : ℕ) :
     ∑ r ∈ Icc 1 m, binomCoeff r (α / 2) ^ 2 ≤ 9 * α ^ 2 / (8 * (1 - α)) := by
   have h := sum_sq_binomCoeff_tail_pos (θ := α / 2) (by linarith) (by linarith) m
@@ -719,18 +776,25 @@ theorem tail_half_pos {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) (m : ℕ) :
     field_simp
     ring] at h
 
+/--
+@isnad1 id=le.2h2v.s6.3f035c8411b0 from=translated src=- shape=ff23df12 vocab=a2ee9730
+-/
 theorem tail_half_neg {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) (m : ℕ) :
     ∑ r ∈ Icc 1 m, binomCoeff r (-(α / 2)) ^ 2 ≤ α ^ 2 / 2 := by
   have h := sum_sq_binomCoeff_tail_neg (θ := -(α / 2)) (by linarith) (by linarith) m
   rwa [show 2 * (-(α / 2)) ^ 2 = α ^ 2 / 2 from by ring] at h
 
-/-- `blockSynth` in explicit block form.-/
+/-- `blockSynth` in explicit block form.
+@isnad1 id=eq.0h2v.s7.63290b1484d6 from=translated src=- shape=7d283fa1 vocab=efa49ac1
+-/
 theorem blockSynth_eq (n : ℕ) (α : ℝ) :
     blockSynth n α = fromBlocks (toeplitz n ((α / 2 : ℝ) : ℂ))
       (toeplitz n ((α / 2 : ℝ) : ℂ)) (toeplitz n (-((α / 2 : ℝ) : ℂ)))
       (-toeplitz n (-((α / 2 : ℝ) : ℂ))) := rfl
 
-/-- `(blockSynth)⁻¹` in explicit block form.-/
+/-- `(blockSynth)⁻¹` in explicit block form.
+@isnad1 id=eq.0h2v.s8.994dadc029b6 from=translated src=- shape=56ec93c0 vocab=f7ac2c8a
+-/
 theorem blockSynth_inv_eq (n : ℕ) (α : ℝ) :
     (blockSynth n α)⁻¹ = (2⁻¹ : ℂ) • fromBlocks (toeplitz n (-((α / 2 : ℝ) : ℂ)))
       (toeplitz n ((α / 2 : ℝ) : ℂ)) (toeplitz n (-((α / 2 : ℝ) : ℂ)))
@@ -739,7 +803,9 @@ theorem blockSynth_inv_eq (n : ℕ) (α : ℝ) :
   exact rotSynth_inv n _ _
 
 /-- The column of `blockSynth` differs from the Hadamard column by at most
-`√t_α` in `ℓ²`.-/
+`√t_α` in `ℓ²`.
+@isnad1 id=le.2h3v.s6.0b0df3bf7ac1 from=translated src=- shape=d1e3a5fe vocab=890b0d6c
+-/
 theorem sum_sq_synthCol_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : ℕ} (k : Fin n) :
     ∑ s : Fin n ⊕ Fin n,
         ‖blockSynth n α s (Sum.inl k) - blockSynth n 0 s (Sum.inl k)‖ ^ 2
@@ -754,7 +820,9 @@ theorem sum_sq_synthCol_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : �
   rw [tailSq]
   linarith
 
-/-- A column of the identity has squared `ℓ²` norm `1`.-/
+/-- A column of the identity has squared `ℓ²` norm `1`.
+@isnad1 id=eq.0h2v.s6.010db05e8d11 from=translated src=- shape=95048917 vocab=7e813200
+-/
 theorem sum_sq_one_col {n : ℕ} (k : Fin n) :
     ∑ i : Fin n, ‖(1 : Matrix (Fin n) (Fin n) ℂ) i k‖ ^ 2 = 1 := by
   have h : ∀ i : Fin n,
@@ -769,7 +837,9 @@ theorem sum_sq_one_col {n : ℕ} (k : Fin n) :
     Finset.sum_ite_eq' Finset.univ k (fun _ => (1 : ℝ))]
   simp
 
-/-- A row of the identity has squared `ℓ²` norm `1`.-/
+/-- A row of the identity has squared `ℓ²` norm `1`.
+@isnad1 id=eq.0h2v.s6.62e218f7faad from=translated src=- shape=eabb6c7a vocab=7e813200
+-/
 theorem sum_sq_one_row {n : ℕ} (k : Fin n) :
     ∑ j : Fin n, ‖(1 : Matrix (Fin n) (Fin n) ℂ) k j‖ ^ 2 = 1 := by
   have h : ∀ j : Fin n,
@@ -784,7 +854,9 @@ theorem sum_sq_one_row {n : ℕ} (k : Fin n) :
     Finset.sum_ite_eq Finset.univ k (fun _ => (1 : ℝ))]
   simp
 
-/-- The Hadamard column has squared `ℓ²` norm `2`.-/
+/-- The Hadamard column has squared `ℓ²` norm `2`.
+@isnad1 id=eq.0h2v.s6.847f5f7447ad from=translated src=- shape=5aa32275 vocab=a3db33ac
+-/
 theorem sum_sq_synthCol_zero {n : ℕ} (k : Fin n) :
     ∑ s : Fin n ⊕ Fin n, ‖blockSynth n 0 s (Sum.inl k)‖ ^ 2 = 2 := by
   rw [blockSynth_zero, rot2, Fintype.sum_sum_type]
@@ -793,7 +865,9 @@ theorem sum_sq_synthCol_zero {n : ℕ} (k : Fin n) :
   norm_num
 
 /-- The row of `(blockSynth)⁻¹` differs from the Hadamard row by at most
-`√(t_α)/2` in `ℓ²`.-/
+`√(t_α)/2` in `ℓ²`.
+@isnad1 id=le.2h3v.s7.d102e60ead6d from=translated src=- shape=8674ba6e vocab=f1503452
+-/
 theorem sum_sq_synthRow_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : ℕ} (k : Fin n) :
     ∑ t : Fin n ⊕ Fin n,
         ‖(blockSynth n α)⁻¹ (Sum.inl k) t - (blockSynth n 0)⁻¹ (Sum.inl k) t‖ ^ 2
@@ -812,7 +886,9 @@ theorem sum_sq_synthRow_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : �
   rw [hhalf, tailSq]
   nlinarith [h1, h2]
 
-/-- The Hadamard row has squared `ℓ²` norm `1/2`.-/
+/-- The Hadamard row has squared `ℓ²` norm `1/2`.
+@isnad1 id=eq.0h2v.s7.fab9ad2b996f from=translated src=- shape=58cf6896 vocab=185a3e51
+-/
 theorem sum_sq_synthRow_zero {n : ℕ} (k : Fin n) :
     ∑ t : Fin n ⊕ Fin n, ‖(blockSynth n 0)⁻¹ (Sum.inl k) t‖ ^ 2 = 1 / 2 := by
   rw [blockSynth_zero_inv, rot2, Fintype.sum_sum_type]
@@ -835,7 +911,9 @@ indices where the Hadamard row is supported, so the squared norms add termwise.
 The point is not the constant but the *shape*.  The triangle inequality
 `‖v‖ ≤ 1 + ‖v - w‖` would leave a cross term `√(t_α/2)`, irrational in `α`, and the
 closing inequality would no longer be polynomial; with the squared form the goal
-stays a polynomial inequality in `α` that `nlinarith` discharges.-/
+stays a polynomial inequality in `α` that `nlinarith` discharges.
+@isnad1 id=le.2h3v.s7.a26057a27045 from=translated src=- shape=47081e58 vocab=fce20e2e
+-/
 theorem sum_sq_synthRow_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : ℕ} (k : Fin n) :
     ∑ t : Fin n ⊕ Fin n, ‖(blockSynth n α)⁻¹ (Sum.inl k) t‖ ^ 2
       ≤ 1 / (2 * (1 - α)) := by
@@ -897,7 +975,9 @@ theorem sum_sq_synthRow_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : ℕ} 
 
 /-! ### The rank-one (odd-index) difference -/
 
-/-- Bilinear splitting of a difference of rank-one matrices.-/
+/-- Bilinear splitting of a difference of rank-one matrices.
+@isnad1 id=eq.0h6v.s7.227cec9b6a4e from=translated src=- shape=81234556 vocab=082a99a9
+-/
 theorem vecMulVec_sub_vecMulVec {ι κ : Type*}
     (a a₀ : ι → ℂ) (b b₀ : κ → ℂ) :
     Matrix.vecMulVec a b - Matrix.vecMulVec a₀ b₀
@@ -916,7 +996,9 @@ manipulating the sum of square roots `√t_α · ‖row‖ + √2 · √(t_α)/2
 squared through `(P+Q)² ≤ 2(P²+Q²)`, which turns the whole step into the numeric
 inequality `13/4 ≤ 4`.  That squaring is *exactly* tight against `√13/2` as `α → 0`
 — the two terms become equal there — so it could not prove the paper's constant; it
-has comfortable slack against `2`.-/
+has comfortable slack against `2`.
+@isnad1 id=le.2h3v.s7.91869300f8d2 from=translated src=- shape=adff6e69 vocab=b5c2b89a
+-/
 theorem l2_opNorm_coordProjZ_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n : ℕ}
     (k : Fin n) :
     ‖coordProjZ n α (2 * (k : ℕ)) - coordProjZ n 0 (2 * (k : ℕ))‖ ≤ 2 * α / (1 - α) := by
@@ -1003,11 +1085,17 @@ theorem l2_opNorm_coordProjZ_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {
 
 /-! ### The prefix difference and the multiplier bound -/
 
+/--
+@isnad1 id=eq.0h1v.s3.7205f82659a8 from=translated src=- shape=cd419dad vocab=dd0bcdd9
+-/
 theorem sharpPrefixConst_neg (θ : ℝ) : sharpPrefixConst (-θ) = sharpPrefixConst θ := by
   rw [sharpPrefixConst, sharpPrefixConst, abs_neg]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h6v.s7.5ee42104e02e from=translated src=- shape=786ed359 vocab=e6a2264b
+-/
 theorem fromBlocks_sub_diag {ι κ : Type*}
     (A A' : Matrix ι ι ℂ) (D D' : Matrix κ κ ℂ) :
     Matrix.fromBlocks A 0 0 D - Matrix.fromBlocks A' 0 0 D'
@@ -1015,7 +1103,9 @@ theorem fromBlocks_sub_diag {ι κ : Type*}
   ext s t
   cases s <;> cases t <;> simp
 
-/-- `sharpPrefixConst (α/2) = 3α/(1-α²) ≤ 3α/(1-α)`.-/
+/-- `sharpPrefixConst (α/2) = 3α/(1-α²) ≤ 3α/(1-α)`.
+@isnad1 id=le.2h1v.s6.68eeda8022e3 from=translated src=- shape=6080bcd6 vocab=aca71ba6
+-/
 theorem sharpPrefixConst_half_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) :
     sharpPrefixConst (α / 2) ≤ 3 * α / (1 - α) := by
   have hs : (0 : ℝ) < 1 - α := by linarith
@@ -1029,7 +1119,9 @@ theorem sharpPrefixConst_half_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) :
   nlinarith
 
 /-- **The even-index estimate**: `‖P_{n,2k} - Q_{n,2k}‖ ≤ 3α/(1-α)`, from Lemma A.4
-applied in each of the two diagonal blocks at `θ = ±α/2`.-/
+applied in each of the two diagonal blocks at `θ = ±α/2`.
+@isnad1 id=le.3h3v.s7.56ce10cde096 from=translated src=- shape=a9d28b89 vocab=5e533c23
+-/
 theorem l2_opNorm_prefixZ_sub_even_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n k : ℕ}
     (hk : k ≤ n) :
     ‖prefixZ n α (2 * k) - prefixZ n 0 (2 * k)‖ ≤ 3 * α / (1 - α) := by
@@ -1052,14 +1144,18 @@ theorem l2_opNorm_prefixZ_sub_even_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1)
   have hle := sharpPrefixConst_half_le hα0 hα1
   exact l2_opNorm_fromBlocks_diag_le (by positivity) (h1.trans hle) (h2.trans hle)
 
-/-- The coordinate-projection differences telescope to the prefix differences.-/
+/-- The coordinate-projection differences telescope to the prefix differences.
+@isnad1 id=eq.0h3v.s7.f65a608899bb from=translated src=- shape=f2597eab vocab=2446e175
+-/
 theorem sum_coordProjZ_sub (n : ℕ) (α : ℝ) (K : ℕ) :
     ∑ k ∈ range K, (coordProjZ n α k - coordProjZ n 0 k)
       = prefixZ n α K - prefixZ n 0 K := by
   rw [Finset.sum_sub_distrib, sum_coordProjZ, sum_coordProjZ]
 
 /-- **Proposition 2.1, Step 2**: the rotated basis is uniformly close to the
-orthonormal one, `sup_{k ≤ 2n} ‖P_{n,k} - Q_{n,k}‖ ≤ 5α/(1-α)`.-/
+orthonormal one, `sup_{k ≤ 2n} ‖P_{n,k} - Q_{n,k}‖ ≤ 5α/(1-α)`.
+@isnad1 id=le.3h3v.s7.6c6de67c5894 from=translated src=- shape=030917c1 vocab=5e533c23
+-/
 theorem l2_opNorm_prefixZ_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n k : ℕ}
     (hk : k ≤ 2 * n) :
     ‖prefixZ n α k - prefixZ n 0 k‖ ≤ 5 * α / (1 - α) := by
@@ -1101,7 +1197,9 @@ theorem l2_opNorm_prefixZ_sub_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) {n k
 This is Abel summation against the *differences* `P_{n,k} - Q_{n,k}`, which vanish at
 both ends, plus the `α = 0` bound `l2_opNorm_conj_rot2_diag_le` for the orthonormal
 part.  Taking `f = λ` gives `‖A_n‖ ≤ 1 + 5α/(1-α)`, and `f = e^{t(λ+ω)}` gives the
-exponentially decaying flow bound — both with the *same* constant `5`.-/
+exponentially decaying flow bound — both with the *same* constant `5`.
+@isnad1 id=le.4h4v.s8.810c2f712f1f from=translated src=- shape=24719c7e vocab=0cdddf87
+-/
 theorem l2_opNorm_multiplier_le {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1) (n : ℕ)
     (f : ℕ → ℂ) {B : ℝ} (hB : 0 ≤ B) (hbd : ∀ s : Fin n ⊕ Fin n, ‖f (zIndex s)‖ ≤ B) :
     ‖∑ k ∈ range (2 * n), f k • coordProjZ n α k‖

@@ -43,7 +43,9 @@ variable {𝕜 M : Type*} [NormedField 𝕜] [NormedAddCommGroup M] [NormedSpace
 multiplier bound.
 
 `K` bounds the prefix projections `Q_{k+1}` for `k < N - 1`; the final prefix `Q_N`
-appears separately, since in the application it is the identity.-/
+appears separately, since in the application it is the identity.
+@isnad1 id=le.1h6v.s8.d2fcaa12be37 from=translated src=- shape=2e5cd43c vocab=6c2b4f2b
+-/
 theorem norm_sum_smul_le (N : ℕ) (c : ℕ → 𝕜) (E : ℕ → M) (K : ℝ)
     (hQ : ∀ k ∈ range (N - 1), ‖∑ j ∈ range (k + 1), E j‖ ≤ K) :
     ‖∑ k ∈ range N, c k • E k‖

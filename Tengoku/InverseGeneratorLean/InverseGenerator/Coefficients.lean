@@ -53,21 +53,31 @@ variable {K : Type*} [Field K] [CharZero K]
 noncomputable def binomCoeff (r : ℕ) (θ : K) : K :=
   (∏ i ∈ range r, (θ + (i : K))) / (Nat.factorial r : K)
 
+/--
+@isnad1 id=eq.0h2v.s5.aae96315feb8 from=translated src=- shape=047257ea vocab=aa33348b
+-/
 @[simp]
 theorem binomCoeff_zero (θ : K) : binomCoeff 0 θ = 1 := by
   simp [binomCoeff]
 
-/-- `r!` is nonzero in a characteristic-zero field.-/
+/-- `r!` is nonzero in a characteristic-zero field.
+@isnad1 id=ne.0h2v.s5.34e45b8e5f79 from=translated src=- shape=28b20238 vocab=e419d87d
+-/
 theorem cast_factorial_ne_zero (r : ℕ) : ((Nat.factorial r : K)) ≠ 0 :=
   Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero r)
 
-/-- `(r : K) + 1 ≠ 0` in a characteristic-zero field.-/
+/-- `(r : K) + 1 ≠ 0` in a characteristic-zero field.
+@isnad1 id=ne.0h2v.s6.4612fa525949 from=translated src=- shape=6f31ed40 vocab=37ca5af0
+-/
 theorem cast_succ_ne_zero (r : ℕ) : ((r : K) + 1) ≠ 0 := by
   have h : ((r + 1 : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.mpr (Nat.succ_ne_zero r)
   push_cast at h
   exact h
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h2v.s6.2f110e4f942c from=translated src=- shape=7d55cef2 vocab=41457e4f
+-/
 theorem cast_factorial_succ (r : ℕ) :
     ((Nat.factorial (r + 1) : ℕ) : K) = ((r : K) + 1) * (Nat.factorial r : K) := by
   rw [Nat.factorial_succ]
@@ -76,7 +86,9 @@ theorem cast_factorial_succ (r : ℕ) :
 
 /-- Peeling the **last** factor of the rising factorial:
 `(r+1) * a (r+1) θ = a r θ * (θ + r)`.  This is the recursion used to step `p`
-upwards in Lemma A.1.-/
+upwards in Lemma A.1.
+@isnad1 id=eq.0h3v.s7.4d8eb4f23616 from=translated src=- shape=de2e4cbb vocab=6468f9e6
+-/
 theorem binomCoeff_succ_mul_right (r : ℕ) (θ : K) :
     ((r : K) + 1) * binomCoeff (r + 1) θ = binomCoeff r θ * (θ + r) := by
   unfold binomCoeff
@@ -88,7 +100,9 @@ theorem binomCoeff_succ_mul_right (r : ℕ) (θ : K) :
 /-- Peeling the **first** factor of the rising factorial:
 `(r+1) * a (r+1) θ = θ * a r (θ + 1)`.  Shifting the argument by one is what
 converts `a (q+1) (-θ)` into `a q (1 - θ)`, the move that makes Lemma A.1
-close.-/
+close.
+@isnad1 id=eq.0h3v.s7.1581678bb242 from=translated src=- shape=42fb0427 vocab=6468f9e6
+-/
 theorem binomCoeff_succ_mul_left (r : ℕ) (θ : K) :
     ((r : K) + 1) * binomCoeff (r + 1) θ = θ * binomCoeff r (θ + 1) := by
   unfold binomCoeff
@@ -106,7 +120,9 @@ theorem binomCoeff_succ_mul_left (r : ℕ) (θ : K) :
   ring
 
 /-- The shifted-argument form of `binomCoeff_succ_mul_left` specialised to `-θ`,
-which is how it is used in Lemma A.1: `(q+1) * a (q+1) (-θ) = -θ * a q (1 - θ)`.-/
+which is how it is used in Lemma A.1: `(q+1) * a (q+1) (-θ) = -θ * a q (1 - θ)`.
+@isnad1 id=eq.0h3v.s7.b5af544cdcab from=translated src=- shape=b8082b1a vocab=9cac681c
+-/
 theorem binomCoeff_succ_mul_neg (r : ℕ) (θ : K) :
     ((r : K) + 1) * binomCoeff (r + 1) (-θ) = -θ * binomCoeff r (1 - θ) := by
   have h := binomCoeff_succ_mul_left r (-θ)
@@ -114,7 +130,9 @@ theorem binomCoeff_succ_mul_neg (r : ℕ) (θ : K) :
   exact h
 
 /-- The finite hockey-stick identity, the hockey-stick form of `convolutionid`:
-`∑ r ∈ range (m+1), a r θ = a m (θ + 1)`.-/
+`∑ r ∈ range (m+1), a r θ = a m (θ + 1)`.
+@isnad1 id=eq.0h3v.s6.22db63a13aa3 from=translated src=- shape=519a960b vocab=183120eb
+-/
 theorem sum_binomCoeff (m : ℕ) (θ : K) :
     ∑ r ∈ range (m + 1), binomCoeff r θ = binomCoeff m (θ + 1) := by
   induction m with
@@ -129,7 +147,9 @@ theorem sum_binomCoeff (m : ℕ) (θ : K) :
     ring
 
 omit [CharZero K] in
-/-- `a r 0 = 0` for `r ≥ 1`: the rising factorial has a zero factor.-/
+/-- `a r 0 = 0` for `r ≥ 1`: the rising factorial has a zero factor.
+@isnad1 id=eq.1h2v.s5.b7a8490c4307 from=translated src=- shape=60bcd016 vocab=ee9f888f
+-/
 theorem binomCoeff_eq_zero_of_arg_zero {r : ℕ} (hr : 1 ≤ r) : binomCoeff r (0 : K) = 0 := by
   rw [binomCoeff, prod_eq_zero (mem_range.mpr hr) (by norm_num), zero_div]
 
@@ -157,6 +177,9 @@ This convolution is exactly the coefficient identity behind the group law
 
 open Polynomial in
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h3v.s6.7df233678750 from=translated src=- shape=9382d725 vocab=19876384
+-/
 theorem smeval_ascPochhammer_eq_prod (r : ℕ) (θ : K) :
     (ascPochhammer ℕ r).smeval θ = ∏ i ∈ range r, (θ + (i : K)) := by
   induction r with
@@ -166,7 +189,9 @@ theorem smeval_ascPochhammer_eq_prod (r : ℕ) (θ : K) :
       ← C_eq_natCast, smeval_C]
     simp
 
-/-- `binomCoeff` is Mathlib's `Ring.multichoose`.-/
+/-- `binomCoeff` is Mathlib's `Ring.multichoose`.
+@isnad1 id=eq.0h3v.s6.ec097eb744e4 from=translated src=- shape=5c4577b0 vocab=c3dced8c
+-/
 theorem binomCoeff_eq_multichoose (r : ℕ) (θ : K) :
     binomCoeff r θ = Ring.multichoose θ r := by
   have h := Ring.factorial_nsmul_multichoose_eq_ascPochhammer θ r
@@ -174,7 +199,9 @@ theorem binomCoeff_eq_multichoose (r : ℕ) (θ : K) :
   rw [binomCoeff, ← h, nsmul_eq_mul]
   exact mul_div_cancel_left₀ _ (cast_factorial_ne_zero r)
 
-/-- `a r θ = (-1)^r * Ring.choose (-θ) r`, the sign-flip bridge to `Ring.choose`.-/
+/-- `a r θ = (-1)^r * Ring.choose (-θ) r`, the sign-flip bridge to `Ring.choose`.
+@isnad1 id=eq.0h3v.s7.60006a8003b5 from=translated src=- shape=8212549a vocab=35ff0759
+-/
 theorem binomCoeff_eq_choose_neg (r : ℕ) (θ : K) :
     binomCoeff r θ = (-1 : K) ^ r * Ring.choose (-θ) r := by
   rw [binomCoeff_eq_multichoose, Ring.choose_neg', Units.smul_def, zsmul_eq_mul,
@@ -182,7 +209,9 @@ theorem binomCoeff_eq_choose_neg (r : ℕ) (θ : K) :
   norm_num
 
 /-- **Vandermonde convolution**: `∑ r ≤ k, a r θ * a (k-r) η = a k (θ+η)`.
-This is the coefficient form of the group law, `convolutionid` of Lemma A.1.-/
+This is the coefficient form of the group law, `convolutionid` of Lemma A.1.
+@isnad1 id=eq.0h4v.s6.89155868663d from=translated src=- shape=4cdc4530 vocab=096e5d0f
+-/
 theorem vandermonde (k : ℕ) (θ η : K) :
     ∑ r ∈ range (k + 1), binomCoeff r θ * binomCoeff (k - r) η = binomCoeff k (θ + η) := by
   have hV := Ring.add_choose_eq (R := K) (r := -θ) (s := -η) k (Commute.all _ _)

@@ -46,7 +46,9 @@ namespace InverseGenerator
 open Finset
 
 /-- Pointwise telescoping bound, sub-critical range `0 ≤ s < 1`:
-`(1-s)·x^{-s} ≤ x^{1-s} - (x-1)^{1-s}` for `x ≥ 1`.-/
+`(1-s)·x^{-s} ≤ x^{1-s} - (x-1)^{1-s}` for `x ≥ 1`.
+@isnad1 id=le.3h2v.s7.3cf6ae1d968f from=translated src=- shape=a9c71311 vocab=26851313
+-/
 theorem rpow_telescope_lt_one {s x : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (hx : 1 ≤ x) :
     (1 - s) * x ^ (-s) ≤ x ^ (1 - s) - (x - 1) ^ (1 - s) := by
   have hx0 : (0 : ℝ) < x := lt_of_lt_of_le one_pos hx
@@ -74,7 +76,9 @@ theorem rpow_telescope_lt_one {s x : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (hx : 1 
   linarith
 
 /-- Partial sums of the sub-critical `p`-series, cleared form:
-`(1-s) * ∑_{j=1}^m j^{-s} ≤ m^{1-s}` for `0 ≤ s < 1`.-/
+`(1-s) * ∑_{j=1}^m j^{-s} ≤ m^{1-s}` for `0 ≤ s < 1`.
+@isnad1 id=le.2h2v.s6.5a00c826837f from=translated src=- shape=ce9d580d vocab=22c824ba
+-/
 theorem mul_sum_rpow_neg_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (m : ℕ) :
     (1 - s) * ∑ j ∈ Icc 1 m, (j : ℝ) ^ (-s) ≤ (m : ℝ) ^ (1 - s) := by
   induction m with
@@ -91,14 +95,18 @@ theorem mul_sum_rpow_neg_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (m : ℕ) :
     linarith
 
 /-- **Partial sums of the sub-critical `p`-series**:
-`∑_{j=1}^m j^{-s} ≤ m^{1-s}/(1-s)` for `0 ≤ s < 1`.-/
+`∑_{j=1}^m j^{-s} ≤ m^{1-s}/(1-s)` for `0 ≤ s < 1`.
+@isnad1 id=le.2h2v.s6.33fc418edb1d from=translated src=- shape=62287e0f vocab=c3aad793
+-/
 theorem sum_rpow_neg_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (m : ℕ) :
     ∑ j ∈ Icc 1 m, (j : ℝ) ^ (-s) ≤ (m : ℝ) ^ (1 - s) / (1 - s) := by
   rw [le_div_iff₀ (by linarith : (0 : ℝ) < 1 - s)]
   linarith [mul_sum_rpow_neg_le hs0 hs1 m]
 
 /-- Pointwise telescoping bound, super-critical range: for `0 < σ ≤ 1` and `x ≥ 2`,
-`σ·x^{-(1+σ)} ≤ (x-1)^{-σ} - x^{-σ}`.-/
+`σ·x^{-(1+σ)} ≤ (x-1)^{-σ} - x^{-σ}`.
+@isnad1 id=le.3h2v.s6.7b82f59e22b2 from=translated src=- shape=fdeff97e vocab=a93c5883
+-/
 theorem rpow_telescope_gt_one {σ x : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) (hx : 2 ≤ x) :
     σ * x ^ (-(1 + σ)) ≤ (x - 1) ^ (-σ) - x ^ (-σ) := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -150,7 +158,9 @@ theorem rpow_telescope_gt_one {σ x : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) (hx
   linarith [step2, step3, step4]
 
 /-- Tails of the super-critical `p`-series, cleared telescoped form: for `m ≤ M`,
-`σ * ∑_{j=m+1}^M j^{-(1+σ)} ≤ m^{-σ} - M^{-σ}`.-/
+`σ * ∑_{j=m+1}^M j^{-(1+σ)} ≤ m^{-σ} - M^{-σ}`.
+@isnad1 id=le.4h3v.s7.8f6149432e5b from=translated src=- shape=b38d264b vocab=f9f9f0be
+-/
 theorem mul_sum_Ioc_rpow_neg_le {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) {m : ℕ} (hm : 1 ≤ m) :
     ∀ M : ℕ, m ≤ M →
       σ * ∑ j ∈ Ioc m M, (j : ℝ) ^ (-(1 + σ)) ≤ (m : ℝ) ^ (-σ) - (M : ℝ) ^ (-σ) := by
@@ -173,7 +183,9 @@ theorem mul_sum_Ioc_rpow_neg_le {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) {m 
         sub_self]
 
 /-- **Tails of the super-critical `p`-series**: for `0 < σ ≤ 1` and `1 ≤ m`,
-`∑_{j=m+1}^M j^{-(1+σ)} ≤ m^{-σ}/σ`, uniformly in `M`.-/
+`∑_{j=m+1}^M j^{-(1+σ)} ≤ m^{-σ}/σ`, uniformly in `M`.
+@isnad1 id=le.3h3v.s6.c930ad4c9bff from=translated src=- shape=4d659445 vocab=b810927f
+-/
 theorem sum_Ioc_rpow_neg_le {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) {m : ℕ} (hm : 1 ≤ m)
     (M : ℕ) :
     ∑ j ∈ Ioc m M, (j : ℝ) ^ (-(1 + σ)) ≤ (m : ℝ) ^ (-σ) / σ := by
@@ -192,14 +204,18 @@ The Schur sums of Lemma A.4 arrive as sums over `range` and `Ico` of terms in
 corollaries state the `p`-series bounds directly in that shifted form.
 -/
 
-/-- Shift `∑_{k<m} f (k+1)` onto `Icc 1 m`.-/
+/-- Shift `∑_{k<m} f (k+1)` onto `Icc 1 m`.
+@isnad1 id=eq.0h3v.s5.2217cc52ad17 from=translated src=- shape=7601991f vocab=ba34bedc
+-/
 theorem sum_range_add_one_eq_sum_Icc {M : Type*} [AddCommMonoid M] (f : ℕ → M) (m : ℕ) :
     ∑ k ∈ range m, f (k + 1) = ∑ j ∈ Icc 1 m, f j := by
   rw [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range]
   simp only [Nat.add_sub_cancel]
   exact Finset.sum_congr rfl fun i _ => by rw [Nat.add_comm]
 
-/-- Shift `∑_{q ∈ Ico p k} f (q+1)` onto `Ioc p k`.-/
+/-- Shift `∑_{q ∈ Ico p k} f (q+1)` onto `Ioc p k`.
+@isnad1 id=eq.0h4v.s5.128f54ba0ebb from=translated src=- shape=7ac83e9c vocab=33806423
+-/
 theorem sum_Ico_add_one_eq_sum_Ioc {M : Type*} [AddCommMonoid M] (f : ℕ → M) (p k : ℕ) :
     ∑ q ∈ Ico p k, f (q + 1) = ∑ j ∈ Ioc p k, f j := by
   have hIoc : Finset.Ioc p k = Finset.Ico (p + 1) (k + 1) := by
@@ -210,7 +226,9 @@ theorem sum_Ico_add_one_eq_sum_Ioc {M : Type*} [AddCommMonoid M] (f : ℕ → M)
   simp only [show k + 1 - (p + 1) = k - p from by omega]
   exact Finset.sum_congr rfl fun i _ => by rw [Nat.add_right_comm]
 
-/-- Range form of `sum_rpow_neg_le`: `∑_{q<m} (q+1)^{-s} ≤ m^{1-s}/(1-s)`.-/
+/-- Range form of `sum_rpow_neg_le`: `∑_{q<m} (q+1)^{-s} ≤ m^{1-s}/(1-s)`.
+@isnad1 id=le.2h2v.s6.0e37bd736b64 from=translated src=- shape=bd400cf9 vocab=d4df638a
+-/
 theorem sum_range_rpow_neg_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (m : ℕ) :
     ∑ q ∈ range m, ((q : ℝ) + 1) ^ (-s) ≤ (m : ℝ) ^ (1 - s) / (1 - s) := by
   have h : ∑ q ∈ range m, ((q : ℝ) + 1) ^ (-s) = ∑ j ∈ Icc 1 m, (j : ℝ) ^ (-s) := by
@@ -219,7 +237,9 @@ theorem sum_range_rpow_neg_le {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s < 1) (m : ℕ) 
   rw [h]
   exact sum_rpow_neg_le hs0 hs1 m
 
-/-- `Ico` form of the tail bound: `∑_{q ∈ Ico p k} (q+1)^{-(1+σ)} ≤ p^{-σ}/σ`.-/
+/-- `Ico` form of the tail bound: `∑_{q ∈ Ico p k} (q+1)^{-(1+σ)} ≤ p^{-σ}/σ`.
+@isnad1 id=le.3h3v.s6.c16cb4a668df from=translated src=- shape=beac907d vocab=51e677c4
+-/
 theorem sum_Ico_rpow_neg_le {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) {p : ℕ} (hp : 1 ≤ p)
     (k : ℕ) :
     ∑ q ∈ Ico p k, ((q : ℝ) + 1) ^ (-(1 + σ)) ≤ (p : ℝ) ^ (-σ) / σ := by
@@ -231,7 +251,9 @@ theorem sum_Ico_rpow_neg_le {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) {p : �
   exact sum_Ioc_rpow_neg_le hσ0 hσ1 hp k
 
 /-- **Full super-critical `p`-series**: for `0 < σ ≤ 1`,
-`∑_{j=1}^m j^{-(1+σ)} ≤ 1 + 1/σ`.-/
+`∑_{j=1}^m j^{-(1+σ)} ≤ 1 + 1/σ`.
+@isnad1 id=le.2h2v.s6.5a6874c666bd from=translated src=- shape=9d9419d3 vocab=9ba99488
+-/
 theorem sum_rpow_neg_le_of_one_lt {σ : ℝ} (hσ0 : 0 < σ) (hσ1 : σ ≤ 1) (m : ℕ) :
     ∑ j ∈ Icc 1 m, (j : ℝ) ^ (-(1 + σ)) ≤ 1 + 1 / σ := by
   rcases Nat.lt_or_ge m 1 with hm | hm
@@ -252,7 +274,9 @@ lower half of Lemma A.3's `‖T_n(α)‖ ≥ n^α/2` via the `1_n` test vector.
 -/
 
 /-- Pointwise telescoping bound for the lower `p`-series estimate: for `s ≥ 0` and
-`x ≥ 1`, `x^{s+1} - (x-1)^{s+1} ≤ (s+1)·x^s`.-/
+`x ≥ 1`, `x^{s+1} - (x-1)^{s+1} ≤ (s+1)·x^s`.
+@isnad1 id=le.2h2v.s6.306a311fbc69 from=translated src=- shape=0187b1cb vocab=1f75d421
+-/
 theorem rpow_telescope_lower {s x : ℝ} (hs : 0 ≤ s) (hx : 1 ≤ x) :
     x ^ (s + 1) - (x - 1) ^ (s + 1) ≤ (s + 1) * x ^ s := by
   have hx0 : (0 : ℝ) < x := lt_of_lt_of_le one_pos hx
@@ -280,7 +304,9 @@ theorem rpow_telescope_lower {s x : ℝ} (hs : 0 ≤ s) (hx : 1 ≤ x) :
     _ = (s + 1) * x ^ s := hxpow
 
 /-- Cleared form of the lower `p`-series bound:
-`m^{s+1} ≤ (s+1) ∑_{j=1}^m j^s` for `s ≥ 0`.-/
+`m^{s+1} ≤ (s+1) ∑_{j=1}^m j^s` for `s ≥ 0`.
+@isnad1 id=le.1h2v.s6.6cf8fef513b1 from=translated src=- shape=124da8bc vocab=da64bb8b
+-/
 theorem rpow_le_mul_sum_rpow {s : ℝ} (hs : 0 ≤ s) (m : ℕ) :
     (m : ℝ) ^ (s + 1) ≤ (s + 1) * ∑ j ∈ Icc 1 m, (j : ℝ) ^ s := by
   induction m with
@@ -297,7 +323,9 @@ theorem rpow_le_mul_sum_rpow {s : ℝ} (hs : 0 ≤ s) (m : ℕ) :
     linarith
 
 /-- **Lower `p`-series bound**, `range` form:
-`n^{s+1}/(s+1) ≤ ∑_{i<n} (i+1)^s` for `s ≥ 0`.-/
+`n^{s+1}/(s+1) ≤ ∑_{i<n} (i+1)^s` for `s ≥ 0`.
+@isnad1 id=le.1h2v.s6.012687df1c00 from=translated src=- shape=5e657eab vocab=e139705d
+-/
 theorem rpow_div_le_sum_range_rpow {s : ℝ} (hs : 0 ≤ s) (n : ℕ) :
     (n : ℝ) ^ (s + 1) / (s + 1) ≤ ∑ i ∈ range n, ((i : ℝ) + 1) ^ s := by
   have h : ∑ i ∈ range n, ((i : ℝ) + 1) ^ s = ∑ j ∈ Icc 1 n, (j : ℝ) ^ s := by

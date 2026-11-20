@@ -48,12 +48,16 @@ by `ω ≤ 1/y_{2n+1}` costs a further factor bounded through
 
 namespace InverseGenerator
 
-/-- Each tower step increases the sequence.-/
+/-- Each tower step increases the sequence.
+@isnad1 id=le.0h1v.s4.cadc70003c13 from=translated src=- shape=0dd30c50 vocab=bc37a9fb
+-/
 theorem tower_le_succ (k : ℕ) : tower k ≤ tower (k + 1) := by
   have h2 := two_mul_tower_le_tower_succ k
   omega
 
-/-- `tower` is monotone.-/
+/-- `tower` is monotone.
+@isnad1 id=le.1h2v.s4.4c37bd71c0c1 from=translated src=- shape=6bee9d27 vocab=bcbce4ab
+-/
 theorem tower_le_tower {j k : ℕ} (h : j ≤ k) : tower j ≤ tower k := by
   induction k with
   | zero =>
@@ -67,7 +71,9 @@ theorem tower_le_tower {j k : ℕ} (h : j ≤ k) : tower j ≤ tower k := by
       subst hj'
       exact le_rfl
 
-/-- The tower dominates a geometric sequence started at `y_N`: `2^j y_N ≤ y_{N+j}`.-/
+/-- The tower dominates a geometric sequence started at `y_N`: `2^j y_N ≤ y_{N+j}`.
+@isnad1 id=le.0h2v.s5.8a1a9f60e126 from=translated src=- shape=9ae9e6f9 vocab=1c2979b8
+-/
 theorem two_pow_mul_tower_le (N j : ℕ) : 2 ^ j * tower N ≤ tower (N + j) := by
   induction j with
   | zero => simp
@@ -77,7 +83,9 @@ theorem two_pow_mul_tower_le (N j : ℕ) : 2 ^ j * tower N ≤ tower (N + j) := 
       _ ≤ 2 * tower (N + j) := by omega
       _ ≤ tower (N + j + 1) := h2
 
-/-- Lemma 2.2: the tail of `∑ 1/y_k` is at most `2/y_N`.-/
+/-- Lemma 2.2: the tail of `∑ 1/y_k` is at most `2/y_N`.
+@isnad1 id=le.0h2v.s5.f74ed2751be8 from=translated src=- shape=25cd871b vocab=9162096a
+-/
 theorem sum_inv_tower_tail_le (N M : ℕ) : ∑ k ∈ Finset.Ico N M, (1:ℝ)/tower k ≤ 2/tower N := by
   rw [Finset.sum_Ico_eq_sum_range]
   have hterm : ∀ j ∈ Finset.range (M - N),
@@ -112,7 +120,9 @@ theorem sum_inv_tower_tail_le (N M : ℕ) : ∑ k ∈ Finset.Ico N M, (1:ℝ)/to
         positivity
     _ = 2/(tower N : ℝ) := by rw [mul_one_div]
 
-/-- The spectrum lies on the boundary curve: `Re λ_k = -1/y_{k+1}`.-/
+/-- The spectrum lies on the boundary curve: `Re λ_k = -1/y_{k+1}`.
+@isnad1 id=eq.0h1v.s5.47662d331c42 from=translated src=- shape=4009dedb vocab=ffc95ca8
+-/
 theorem towerSpec_re (k : ℕ) : (towerSpec k).re = -(1/(tower (k+1) : ℝ)) := by
   have him : (towerPoint k).im = (tower k : ℝ) := by simp [towerPoint]
   have hsq : Complex.normSq (towerPoint k) = (tower (k+1) : ℝ) := by
@@ -122,7 +132,9 @@ theorem towerSpec_re (k : ℕ) : (towerSpec k).re = -(1/(tower (k+1) : ℝ)) := 
   rw [towerSpec, Complex.inv_re, towerPoint_re, hsq]
   ring
 
-/-- `‖λ_k‖ ≤ 1/y_k`, since `|Im b_k| = y_k ≤ ‖b_k‖`.-/
+/-- `‖λ_k‖ ≤ 1/y_k`, since `|Im b_k| = y_k ≤ ‖b_k‖`.
+@isnad1 id=le.0h1v.s4.a95727a5bcdc from=translated src=- shape=8a9c0957 vocab=b6e02c5e
+-/
 theorem norm_towerSpec_le (k : ℕ) : ‖towerSpec k‖ ≤ 1/(tower k : ℝ) := by
   have hy : (0:ℝ) < (tower k : ℝ) := by exact_mod_cast tower_pos k
   have him : (towerPoint k).im = (tower k : ℝ) := by simp [towerPoint]
@@ -133,18 +145,24 @@ theorem norm_towerSpec_le (k : ℕ) : ‖towerSpec k‖ ≤ 1/(tower k : ℝ) :=
   rw [towerSpec, norm_inv, inv_eq_one_div]
   exact one_div_le_one_div_of_le hy hge
 
-/-- `Re (t λ_k) = -t/y_{k+1}`.-/
+/-- `Re (t λ_k) = -t/y_{k+1}`.
+@isnad1 id=eq.0h2v.s5.f331d8a25812 from=translated src=- shape=be9982d6 vocab=52c43038
+-/
 theorem re_ofReal_mul_towerSpec (t : ℝ) (k : ℕ) :
     ((t:ℂ) * towerSpec k).re = -(t/(tower (k+1) : ℝ)) := by
   rw [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero, towerSpec_re]
   ring
 
-/-- The modulus of the flow at `λ_k`: `‖e^{t λ_k}‖ = e^{-t/y_{k+1}}`.-/
+/-- The modulus of the flow at `λ_k`: `‖e^{t λ_k}‖ = e^{-t/y_{k+1}}`.
+@isnad1 id=eq.0h2v.s5.85c356cf11cd from=translated src=- shape=753900ee vocab=d4691856
+-/
 theorem norm_cexp_mul_towerSpec (t : ℝ) (k : ℕ) :
     ‖Complex.exp ((t:ℂ) * towerSpec k)‖ = Real.exp (-(t/(tower (k+1) : ℝ))) := by
   rw [Complex.norm_exp, re_ofReal_mul_towerSpec]
 
-/-- For `t ≥ 0` the flow at each spectral point is a contraction.-/
+/-- For `t ≥ 0` the flow at each spectral point is a contraction.
+@isnad1 id=le.1h2v.s5.a6a2a3920603 from=translated src=- shape=fb47b5bc vocab=d0ca6d6b
+-/
 theorem norm_cexp_mul_towerSpec_le_one {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
     ‖Complex.exp ((t:ℂ) * towerSpec k)‖ ≤ 1 := by
   rw [norm_cexp_mul_towerSpec, Real.exp_le_one_iff]
@@ -152,14 +170,18 @@ theorem norm_cexp_mul_towerSpec_le_one {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
   have h0 : 0 ≤ t/(tower (k+1) : ℝ) := div_nonneg ht hy.le
   linarith
 
-/-- `e^{-y} ≤ 1/y` for `y > 0`, from `y + 1 ≤ e^y`.-/
+/-- `e^{-y} ≤ 1/y` for `y > 0`, from `y + 1 ≤ e^y`.
+@isnad1 id=le.1h1v.s5.4c55085e24ad from=translated src=- shape=9a3496d6 vocab=468c15a2
+-/
 theorem exp_neg_le_one_div {y : ℝ} (hy : 0 < y) : Real.exp (-y) ≤ 1/y := by
   rw [Real.exp_neg, inv_eq_one_div]
   refine one_div_le_one_div_of_le hy ?_
   have h := Real.add_one_le_exp y
   linarith
 
-/-- Mean-value bound: for `z, w` in the closed left half-plane, `‖e^w - e^z‖ ≤ ‖w - z‖`.-/
+/-- Mean-value bound: for `z, w` in the closed left half-plane, `‖e^w - e^z‖ ≤ ‖w - z‖`.
+@isnad1 id=le.2h2v.s5.bd0f6e55fa09 from=translated src=- shape=836591b4 vocab=5073f68e
+-/
 theorem norm_cexp_sub_cexp_le {z w : ℂ} (hz : z.re ≤ 0) (hw : w.re ≤ 0) :
     ‖Complex.exp w - Complex.exp z‖ ≤ ‖w - z‖ := by
   -- the flow along the segment from `z` to `w`
@@ -194,7 +216,9 @@ theorem norm_cexp_sub_cexp_le {z w : ℂ} (hz : z.re ≤ 0) (hw : w.re ≤ 0) :
   have h0 : z + (0:ℝ) • (w - z) = z := by rw [zero_smul, add_zero]
   rwa [h1, h0] at hkey
 
-/-- Modulus bound for one flow increment: the `k`-th term is at most `2 e^{-t/y_{k+2}}`.-/
+/-- Modulus bound for one flow increment: the `k`-th term is at most `2 e^{-t/y_{k+2}}`.
+@isnad1 id=le.1h2v.s6.57ef994e2a85 from=translated src=- shape=b6f6d99a vocab=fac9bc9b
+-/
 theorem flow_term_le_modulus {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
     ‖Complex.exp ((t:ℂ) * towerSpec (k+1)) - Complex.exp ((t:ℂ) * towerSpec k)‖
       ≤ 2 * Real.exp (-(t/(tower (k+2) : ℝ))) := by
@@ -215,7 +239,9 @@ theorem flow_term_le_modulus {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
     _ ≤ 2 * Real.exp (-(t/(tower (k+2) : ℝ))) := by rw [h1, h2]; linarith
 
 /-- For `t > 4` there is a largest tower index `m` with `y_m² ≤ t`; beyond it,
-`t < y_k²`.-/
+`t < y_k²`.
+@isnad1 id=ex.1h1v.s6.b9e8dfe1048f from=translated src=- shape=3ee9e048 vocab=d67e6f02
+-/
 theorem exists_threshold {t : ℝ} (ht4 : 4 < t) :
     ∃ m : ℕ, ((tower m : ℝ))^2 ≤ t ∧ ∀ k, m < k → t < ((tower k : ℝ))^2 := by
   classical
@@ -250,17 +276,24 @@ Beyond the unshifted variation bound above, Theorem 1.1 needs three sharper fact
   source of `C = 50 = 5 · 10`.  Its unshifted core is `flow_variation_le_eight`.
 -/
 
-/-- `‖b_k‖² = y_{k+1}`: the squared modulus of the inverse spectrum.-/
+/-- `‖b_k‖² = y_{k+1}`: the squared modulus of the inverse spectrum.
+@isnad1 id=eq.0h1v.s5.5dd9408e2db7 from=translated src=- shape=4c43babb vocab=da4939c7
+-/
 theorem normSq_towerPoint (k : ℕ) : Complex.normSq (towerPoint k) = (tower (k + 1) : ℝ) := by
   have him : (towerPoint k).im = (tower k : ℝ) := by simp [towerPoint]
   rw [Complex.normSq_apply, towerPoint_re, him, tower_succ]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.5fe297d5bd97 from=translated src=- shape=d8f461c4 vocab=ed32b80a
+-/
 theorem norm_towerPoint_sq (k : ℕ) : ‖towerPoint k‖ ^ 2 = (tower (k + 1) : ℝ) := by
   rw [← Complex.normSq_eq_norm_sq, normSq_towerPoint]
 
-/-- `y_k ≤ ‖b_k‖`, since `‖b_k‖² = y_{k+1} ≥ y_k²`.-/
+/-- `y_k ≤ ‖b_k‖`, since `‖b_k‖² = y_{k+1} ≥ y_k²`.
+@isnad1 id=le.0h1v.s3.5efd31dc4f98 from=translated src=- shape=4cc57976 vocab=4b760fbc
+-/
 theorem le_norm_towerPoint (k : ℕ) : (tower k : ℝ) ≤ ‖towerPoint k‖ := by
   have h1 := norm_towerPoint_sq k
   have h2 : ((tower k : ℝ)) ^ 2 ≤ ‖towerPoint k‖ ^ 2 := by
@@ -269,7 +302,9 @@ theorem le_norm_towerPoint (k : ℕ) : (tower k : ℝ) ≤ ‖towerPoint k‖ :=
   have h3 : (0 : ℝ) ≤ (tower k : ℝ) := Nat.cast_nonneg _
   nlinarith [norm_nonneg (towerPoint k)]
 
-/-- `‖b_k‖ ≤ √y_M` whenever `k + 1 ≤ M`.-/
+/-- `‖b_k‖ ≤ √y_M` whenever `k + 1 ≤ M`.
+@isnad1 id=le.1h2v.s5.3e4b7ea4f074 from=translated src=- shape=aecdc0a6 vocab=0a804bb0
+-/
 theorem norm_towerPoint_le_sqrt {k M : ℕ} (h : k + 1 ≤ M) :
     ‖towerPoint k‖ ≤ Real.sqrt (tower M) := by
   have h1 : ‖towerPoint k‖ = Real.sqrt (tower (k + 1)) := by
@@ -278,7 +313,9 @@ theorem norm_towerPoint_le_sqrt {k M : ℕ} (h : k + 1 ≤ M) :
   exact Real.sqrt_le_sqrt (by exact_mod_cast tower_le_tower h)
 
 /-- `‖b_{k+1} - b_k‖ = y_{k+2} - y_{k+1}` exactly: the inverse spectrum is a vertical
-line and its variation telescopes.-/
+line and its variation telescopes.
+@isnad1 id=eq.0h1v.s5.2e879e0d1f81 from=translated src=- shape=13a2c1a4 vocab=1a24b9e5
+-/
 theorem norm_towerPoint_sub (k : ℕ) :
     ‖towerPoint (k + 1) - towerPoint k‖ = (tower (k + 1) : ℝ) - (tower k : ℝ) := by
   have hle : (tower k : ℝ) ≤ (tower (k + 1) : ℝ) := by exact_mod_cast tower_le_succ k
@@ -291,7 +328,9 @@ theorem norm_towerPoint_sub (k : ℕ) :
     abs_of_nonneg (by linarith)]
 
 /-- Total variation of the inverse spectrum: `∑_{k<N} ‖b_{k+1} - b_k‖ ≤ y_{N+1}`
-(it telescopes to `y_{N+1} - 2`).-/
+(it telescopes to `y_{N+1} - 2`).
+@isnad1 id=le.0h1v.s5.29c7bb48e3b0 from=translated src=- shape=efcacb5b vocab=2d0199ac
+-/
 theorem sum_norm_towerPoint_sub_le (N : ℕ) :
     ∑ k ∈ Finset.range N, ‖towerPoint (k + 1) - towerPoint k‖ ≤ (tower N : ℝ) := by
   induction N with
@@ -305,7 +344,9 @@ theorem sum_norm_towerPoint_sub_le (N : ℕ) :
 
 /-- **`eq:lambdadiff`, sharp form**: `‖towerSpec (k+1) - towerSpec k‖ ≤ 1/y_{k+1}`,
 i.e. `≤ 1/tower k` in the 0-based indexing.  This is what makes the total spectral
-variation `≤ 1` (`eq:lacunary-variation`) rather than merely finite.-/
+variation `≤ 1` (`eq:lacunary-variation`) rather than merely finite.
+@isnad1 id=le.0h1v.s5.17de824ea22a from=translated src=- shape=3ba8c7f7 vocab=1e448adf
+-/
 theorem norm_towerSpec_sub_le_inv (k : ℕ) :
     ‖towerSpec (k + 1) - towerSpec k‖ ≤ 1 / (tower k : ℝ) := by
   have ha0 : (0 : ℝ) < ‖towerPoint k‖ :=
@@ -332,7 +373,9 @@ theorem norm_towerSpec_sub_le_inv (k : ℕ) :
       _ = 1 * (‖towerPoint (k + 1)‖ * ‖towerPoint k‖) := by ring
   exact hstep.trans (one_div_le_one_div_of_le hTpos hTa)
 
-/-- Total spectral variation `∑ ‖λ_{k+1} - λ_k‖ ≤ 1` (`eq:lacunary-variation`).-/
+/-- Total spectral variation `∑ ‖λ_{k+1} - λ_k‖ ≤ 1` (`eq:lacunary-variation`).
+@isnad1 id=le.0h1v.s5.b168fce42a8a from=translated src=- shape=1702e0cf vocab=468eb69a
+-/
 theorem sum_norm_towerSpec_sub_le_one (N : ℕ) :
     ∑ k ∈ Finset.range N, ‖towerSpec (k + 1) - towerSpec k‖ ≤ 1 := by
   calc ∑ k ∈ Finset.range N, ‖towerSpec (k + 1) - towerSpec k‖
@@ -340,7 +383,9 @@ theorem sum_norm_towerSpec_sub_le_one (N : ℕ) :
         Finset.sum_le_sum fun k _ => norm_towerSpec_sub_le_inv k
     _ ≤ 1 := sum_inv_tower_le_one N
 
-/-- Sharp mean-value bound for one flow increment: at most `t/y_{k+1}`.-/
+/-- Sharp mean-value bound for one flow increment: at most `t/y_{k+1}`.
+@isnad1 id=le.1h2v.s6.51b66f620371 from=translated src=- shape=24ad3f3b vocab=5a00f7d6
+-/
 theorem flow_term_le_mvt' {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
     ‖Complex.exp ((t : ℂ) * towerSpec (k + 1)) - Complex.exp ((t : ℂ) * towerSpec k)‖
       ≤ t * (1 / (tower k : ℝ)) := by
@@ -359,7 +404,9 @@ theorem flow_term_le_mvt' {t : ℝ} (ht : 0 ≤ t) (k : ℕ) :
   exact mul_le_mul_of_nonneg_left (norm_towerSpec_sub_le_inv k) ht
 
 /-- **The unshifted flow variation is at most `8`** (`eq:auxestlambda`): the sharp
-version of `flow_variation_le`, needed for the shifted estimate below.-/
+version of `flow_variation_le`, needed for the shifted estimate below.
+@isnad1 id=le.1h2v.s6.d4e925735c44 from=translated src=- shape=5f705fb9 vocab=15f021e0
+-/
 theorem flow_variation_le_eight {t : ℝ} (ht : 0 ≤ t) (N : ℕ) :
     ∑ k ∈ Finset.range N,
       ‖Complex.exp ((t : ℂ) * towerSpec (k + 1)) - Complex.exp ((t : ℂ) * towerSpec k)‖
@@ -559,7 +606,9 @@ theorem flow_variation_le_eight {t : ℝ} (ht : 0 ≤ t) (N : ℕ) :
       _ = 8 := by norm_num
 
 /-- `∑_{j<J} e^{-(2^j - 1)/9} ≤ 5`: four explicit terms plus a `(3/8)`-geometric
-tail.  This is the numeric core of `eq:shifted-exponential-variation`.-/
+tail.  This is the numeric core of `eq:shifted-exponential-variation`.
+@isnad1 id=le.0h1v.s6.0db95607b3c3 from=translated src=- shape=51681e8f vocab=14cef85f
+-/
 theorem sum_exp_two_pow_le_five (J : ℕ) :
     ∑ j ∈ Finset.range J, Real.exp (-(((2 : ℝ) ^ j - 1) / 9)) ≤ 5 := by
   set f : ℕ → ℝ := fun j => Real.exp (-(((2 : ℝ) ^ j - 1) / 9)) with hf
@@ -669,7 +718,9 @@ theorem sum_exp_two_pow_le_five (J : ℕ) :
 /-- **`eq:shifted-exponential-variation`**: with the shift `ω = 1/y_{M+2}`
 (`= 1/tower (M+1)`), the flow variation over the first `M` steps is at most `10`,
 uniformly in `t ≥ 0`.  Applied at `M = 2n - 1` this gives the exponential decay
-`‖e^{tA_n}‖ ≤ (1 + 50α/(1-α)) e^{-ω_n t}` of Theorem 1.1.-/
+`‖e^{tA_n}‖ ≤ (1 + 50α/(1-α)) e^{-ω_n t}` of Theorem 1.1.
+@isnad1 id=le.1h2v.s7.673f94adbb26 from=translated src=- shape=914c6151 vocab=b21b24d0
+-/
 theorem shifted_flow_variation_le_ten {t : ℝ} (ht : 0 ≤ t) (M : ℕ) :
     ∑ k ∈ Finset.range M,
       ‖Complex.exp ((t : ℂ) * (towerSpec (k + 1) + (((tower (M + 1) : ℝ)⁻¹ : ℝ) : ℂ)))

@@ -48,7 +48,9 @@ variable {K : Type*} [Field K] [CharZero K]
 /-- Lemma A.1 in cleared form: the identity multiplied through by `(p + q)`.
 
 Stated this way it holds for **all** `p`, including `p = 0` where both sides are
-zero, so the induction carries no side condition.-/
+zero, so the induction carries no side condition.
+@isnad1 id=eq.0h4v.s8.dc4030e759a6 from=translated src=- shape=e018ead8 vocab=70c1cb46
+-/
 theorem convolution_mul (θ : K) : ∀ (q p : ℕ),
     ((p : K) + q) * ∑ r ∈ range (q + 1),
         binomCoeff (p + q - r) θ * binomCoeff r (-θ)
@@ -78,7 +80,9 @@ theorem convolution_mul (θ : K) : ∀ (q p : ℕ),
       + ((p : K) + (q : K) + 1) * binomCoeff p θ * h2
       - (p : K) * binomCoeff p θ * h3
 
-/-- `(p : K) + q ≠ 0` when `1 ≤ p`, in a characteristic-zero field.-/
+/-- `(p : K) + q ≠ 0` when `1 ≤ p`, in a characteristic-zero field.
+@isnad1 id=ne.1h3v.s6.fa96fa5b596c from=translated src=- shape=4e93b914 vocab=94ff57f2
+-/
 theorem cast_add_ne_zero {p q : ℕ} (hp : 1 ≤ p) : ((p : K) + q) ≠ 0 := by
   have h : ((p + q : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.mpr (by omega)
   push_cast at h
@@ -89,7 +93,9 @@ theorem cast_add_ne_zero {p q : ℕ} (hp : 1 ≤ p) : ((p : K) + q) ≠ 0 := by
 ∑ r ∈ range (q+1), a (p+q-r) θ * a r (-θ) = a p θ * (p / (p+q)) * a q (1-θ).
 ```
 This is the closed form of the matrix `R = C A⁻¹` appearing in the proof of
-Lemma A.4.-/
+Lemma A.4.
+@isnad1 id=eq.1h4v.s8.4ac82d2354a0 from=translated src=- shape=d86a128c vocab=e37dc1eb
+-/
 theorem convolution (θ : K) (p q : ℕ) (hp : 1 ≤ p) :
     ∑ r ∈ range (q + 1), binomCoeff (p + q - r) θ * binomCoeff r (-θ)
       = binomCoeff p θ * ((p : K) / ((p : K) + q)) * binomCoeff q (1 - θ) := by
@@ -130,7 +136,9 @@ noncomputable def prefixConj (n k : ℕ) (θ : K) : Matrix (Fin n) (Fin n) K :=
   toeplitz n θ * prefixProj n k * toeplitz n (-θ)
 
 omit [CharZero K] in
-/-- Entrywise form: the diagonal projection contributes a single indicator factor.-/
+/-- Entrywise form: the diagonal projection contributes a single indicator factor.
+@isnad1 id=eq.0h6v.s7.9ad19c82ba7a from=translated src=- shape=1680c2a4 vocab=be8d0471
+-/
 theorem prefixConj_apply {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n) :
     prefixConj n k θ i j
       = ∑ l : Fin n, toeplitz n θ i l * (if (l : ℕ) < k then 1 else 0)
@@ -140,7 +148,9 @@ theorem prefixConj_apply {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n) :
     simp only [prefixProj, Matrix.mul_diagonal]
 
 omit [CharZero K] in
-/-- Right-hand block: columns `j ≥ k` of `T_n(θ) P_k T_n(-θ)` vanish.-/
+/-- Right-hand block: columns `j ≥ k` of `T_n(θ) P_k T_n(-θ)` vanish.
+@isnad1 id=eq.1h6v.s5.2ea2f1591c9e from=translated src=- shape=ea080166 vocab=e723611b
+-/
 theorem prefixConj_apply_right {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n)
     (hj : k ≤ (j : ℕ)) :
     prefixConj n k θ i j = 0 := by
@@ -154,7 +164,9 @@ theorem prefixConj_apply_right {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n)
 
 No hypothesis on `j` is needed.  For `j < k` this is the identity block; for `j ≥ k`
 it agrees with `prefixConj_apply_right`, since then `i < k ≤ j` forces `i ≠ j` and
-both sides vanish.-/
+both sides vanish.
+@isnad1 id=eq.1h6v.s6.3b96776e61d6 from=translated src=- shape=b63e2b6d vocab=b100ead9
+-/
 theorem prefixConj_apply_upper {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n)
     (hi : (i : ℕ) < k) :
     prefixConj n k θ i j = if i = j then 1 else 0 := by
@@ -171,7 +183,9 @@ theorem prefixConj_apply_upper {n : ℕ} (k : ℕ) (θ : K) (i j : Fin n)
 
 /-- **The lower-left block**: on rows `i ≥ k` and columns `j < k`, the prefix
 conjugate `T_n(θ) P_k T_n(-θ)` is exactly the closed-form kernel of Lemma A.1, at
-`p = i - k + 1` and `q = k - j - 1`.-/
+`p = i - k + 1` and `q = k - j - 1`.
+@isnad1 id=eq.3h6v.s6.d5cf9e4b9234 from=translated src=- shape=2eb5de7b vocab=5d82c57b
+-/
 theorem prefixConj_apply_lower {n : ℕ} (k : ℕ) (θ : K) (hk : k ≤ n) (i j : Fin n)
     (hi : k ≤ (i : ℕ)) (hj : (j : ℕ) < k) :
     prefixConj n k θ i j

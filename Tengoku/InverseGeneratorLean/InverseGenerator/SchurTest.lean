@@ -47,7 +47,9 @@ open Finset
 
 variable {m n : Type*} [Fintype m] [Fintype n]
 
-/-- **Weighted Schur test**, elementary form.-/
+/-- **Weighted Schur test**, elementary form.
+@isnad1 id=le.4h7v.s7.cfe45d4a5592 from=translated src=- shape=e1df8599 vocab=77f2476d
+-/
 theorem schur_sum_sq {R : Matrix m n ℂ} {u : m → ℝ} {v : n → ℝ} {C : ℝ}
     (hv : ∀ q, 0 < v q) (hC : 0 ≤ C)
     (hrow : ∀ p, ∑ q, ‖R p q‖ * v q ≤ C * u p)
@@ -129,7 +131,9 @@ variable [DecidableEq n]
 
 /-- `‖A‖ ≤ C` from the vector bound.  `Matrix.l2_opNorm_def` is `rfl` to the norm of
 the associated continuous linear map, so `ContinuousLinearMap.opNorm_le_bound`
-applies directly.-/
+applies directly.
+@isnad1 id=le.2h4v.s10.642c980cec31 from=translated src=- shape=864701c3 vocab=5d759127
+-/
 theorem l2_opNorm_le_of_mulVec {A : Matrix m n ℂ} {C : ℝ} (hC : 0 ≤ C)
     (h : ∀ x : EuclideanSpace ℂ n,
       ‖(EuclideanSpace.equiv m ℂ).symm (Matrix.mulVec A x)‖ ≤ C * ‖x‖) :
@@ -140,7 +144,9 @@ theorem l2_opNorm_le_of_mulVec {A : Matrix m n ℂ} {C : ℝ} (hC : 0 ≤ C)
 /-- `‖A‖ ≤ C` from the **bare-sum** quadratic bound.  This is the same reduction as
 in `l2_opNorm_le_of_schur`, factored out so that callers never touch
 `EuclideanSpace`: all `WithLp` coercion friction stays inside the single `rfl`
-below, which also keeps elaboration cheap.-/
+below, which also keeps elaboration cheap.
+@isnad1 id=le.2h4v.s7.30823252bd65 from=translated src=- shape=3981d8ae vocab=5b7cfc5c
+-/
 theorem l2_opNorm_le_of_sum_sq {A : Matrix m n ℂ} {C : ℝ} (hC : 0 ≤ C)
     (h : ∀ x : n → ℂ, ∑ p, ‖∑ q, A p q * x q‖ ^ 2 ≤ C ^ 2 * ∑ q, ‖x q‖ ^ 2) :
     ‖A‖ ≤ C := by
@@ -158,7 +164,9 @@ theorem l2_opNorm_le_of_sum_sq {A : Matrix m n ℂ} {C : ℝ} (hC : 0 ≤ C)
         rw [Real.sqrt_mul (by positivity), Real.sqrt_sq hC]
 
 /-- **Weighted Schur test**, operator-norm form: the row and column tests give
-`‖R‖ ≤ C` in the `ℓ²`-operator norm.-/
+`‖R‖ ≤ C` in the `ℓ²`-operator norm.
+@isnad1 id=le.4h6v.s7.d88ec1e1b56d from=translated src=- shape=5d036a4c vocab=eafd2d8a
+-/
 theorem l2_opNorm_le_of_schur {R : Matrix m n ℂ} {u : m → ℝ} {v : n → ℝ} {C : ℝ}
     (hv : ∀ q, 0 < v q) (hC : 0 ≤ C)
     (hrow : ∀ p, ∑ q, ‖R p q‖ * v q ≤ C * u p)
@@ -183,7 +191,9 @@ theorem l2_opNorm_le_of_schur {R : Matrix m n ℂ} {u : m → ℝ} {v : n → �
 /-- The *lower*-bound companion: a bare-sum form of `Matrix.l2_opNorm_mulVec`.
 
 Stating it this way means callers never have to build an `EuclideanSpace` element, so
-all `WithLp` coercion friction is confined to this one proof.-/
+all `WithLp` coercion friction is confined to this one proof.
+@isnad1 id=le.0h4v.s7.b7cb49349b7f from=translated src=- shape=4c0d1365 vocab=641aed5e
+-/
 theorem sqrt_sum_sq_mulVec_le {A : Matrix m n ℂ} (x : n → ℂ) :
     Real.sqrt (∑ p, ‖∑ q, A p q * x q‖ ^ 2) ≤ ‖A‖ * Real.sqrt (∑ q, ‖x q‖ ^ 2) := by
   have h := Matrix.l2_opNorm_mulVec A ((EuclideanSpace.equiv n ℂ).symm x)

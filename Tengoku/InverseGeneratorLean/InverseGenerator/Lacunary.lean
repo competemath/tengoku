@@ -45,28 +45,46 @@ def tower : ℕ → ℕ
   | 0 => 2
   | (k + 1) => (tower k) ^ 2 + 1
 
+/--
+@isnad1 id=eq.0h0v.s3.5918f466c383 from=translated src=- shape=3c26ae4f vocab=dd382c33
+-/
 @[simp] theorem tower_zero : tower 0 = 2 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.7dc4b04f4118 from=translated src=- shape=d51d1f15 vocab=52be93e3
+-/
 @[simp] theorem tower_succ (k : ℕ) : tower (k + 1) = (tower k) ^ 2 + 1 := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.93683f9542a4 from=translated src=- shape=8a62b088 vocab=bcbce4ab
+-/
 theorem two_le_tower (k : ℕ) : 2 ≤ tower k := by
   induction k with
   | zero => simp
   | succ k ih => rw [tower_succ]; nlinarith
 
+/--
+@isnad1 id=lt.0h1v.s3.e16151944388 from=translated src=- shape=8a62b088 vocab=e29a0234
+-/
 theorem tower_pos (k : ℕ) : 0 < tower k := lt_of_lt_of_le two_pos (two_le_tower k)
 
-/-- Lacunarity: `y_k² ≤ y_{k+1}`, the hypothesis of Lemma 2.2.-/
+/-- Lacunarity: `y_k² ≤ y_{k+1}`, the hypothesis of Lemma 2.2.
+@isnad1 id=le.0h1v.s5.424e06683463 from=translated src=- shape=5c1b2dbf vocab=72f96dcf
+-/
 theorem tower_sq_le_tower_succ (k : ℕ) : (tower k) ^ 2 ≤ tower (k + 1) := by
   rw [tower_succ]; omega
 
-/-- `2 y_k ≤ y_{k+1}`, since `y_k² + 1 - 2 y_k = (y_k - 1)² ≥ 0`.-/
+/-- `2 y_k ≤ y_{k+1}`, since `y_k² + 1 - 2 y_k = (y_k - 1)² ≥ 0`.
+@isnad1 id=le.0h1v.s5.aee7278a20f0 from=translated src=- shape=156b4722 vocab=37dc738e
+-/
 theorem two_mul_tower_le_tower_succ (k : ℕ) : 2 * tower k ≤ tower (k + 1) := by
   have h := two_le_tower k
   rw [tower_succ]; nlinarith
 
 /-- `2^{k+1} ≤ y_k`: the tower dominates the geometric sequence, which is what
-makes `∑ 1/y_k` summable.-/
+makes `∑ 1/y_k` summable.
+@isnad1 id=le.0h1v.s5.103dda7ef238 from=translated src=- shape=351e2ddc vocab=72f96dcf
+-/
 theorem two_pow_le_tower (k : ℕ) : 2 ^ (k + 1) ≤ tower k := by
   induction k with
   | zero => simp
@@ -76,7 +94,9 @@ theorem two_pow_le_tower (k : ℕ) : 2 ^ (k + 1) ≤ tower k := by
       _ ≤ tower (k + 1) := two_mul_tower_le_tower_succ k
 
 /-- Double-exponential lower bound `2^{2^k} ≤ tower k` (paper: `2^{2^{k-1}} ≤ y_k`,
-in the 1-based indexing `y_k = tower (k-1)`).-/
+in the 1-based indexing `y_k = tower (k-1)`).
+@isnad1 id=le.0h1v.s5.4972ebe12a56 from=translated src=- shape=6211b91b vocab=72053bc2
+-/
 theorem two_pow_two_pow_le_tower (k : ℕ) : 2 ^ 2 ^ k ≤ tower k := by
   induction k with
   | zero => simp
@@ -86,7 +106,9 @@ theorem two_pow_two_pow_le_tower (k : ℕ) : 2 ^ 2 ^ k ≤ tower k := by
     omega
 
 /-- Double-exponential upper bound `tower k ≤ 2^{2^{k+1} - 1}` (paper:
-`y_k ≤ 2^{2^k - 1}`).-/
+`y_k ≤ 2^{2^k - 1}`).
+@isnad1 id=le.0h1v.s6.a64b3f4f6fa7 from=translated src=- shape=7e6b1a4b vocab=31b770c7
+-/
 theorem tower_le_two_pow_two_pow (k : ℕ) : tower k ≤ 2 ^ (2 ^ (k + 1) - 1) := by
   induction k with
   | zero => simp
@@ -111,7 +133,9 @@ theorem tower_le_two_pow_two_pow (k : ℕ) : tower k ≤ 2 ^ (2 ^ (k + 1) - 1) :
     omega
 
 /-- **Parity alternates**: `Even (y k) ↔ Even k`.  Equivalently `(-1)^{y_k} = (-1)^k`,
-which is the parity alternation used in §2.-/
+which is the parity alternation used in §2.
+@isnad1 id=iff.0h1v.s3.311e7dd69767 from=translated src=- shape=a9f41f7f vocab=7e3a9bf6
+-/
 theorem tower_even_iff (k : ℕ) : Even (tower k) ↔ Even k := by
   induction k with
   | zero => simp
@@ -123,7 +147,9 @@ theorem tower_even_iff (k : ℕ) : Even (tower k) ↔ Even k := by
     · intro h hp
       exact h (ih.mp hp.1)
 
-/-- The sign form of the parity alternation: `(-1)^{y_k} = (-1)^k`.-/
+/-- The sign form of the parity alternation: `(-1)^{y_k} = (-1)^k`.
+@isnad1 id=eq.0h2v.s6.cc312c738879 from=translated src=- shape=ea42f6f3 vocab=375905cc
+-/
 theorem neg_one_pow_tower {M : Type*} [Monoid M] [HasDistribNeg M] (k : ℕ) :
     (-1 : M) ^ tower k = (-1) ^ k := by
   rcases Nat.even_or_odd k with hk | hk
@@ -132,7 +158,9 @@ theorem neg_one_pow_tower {M : Type*} [Monoid M] [HasDistribNeg M] (k : ℕ) :
       Nat.not_even_iff_odd.mp fun h => (Nat.not_even_iff_odd.mpr hk) ((tower_even_iff k).mp h)
     rw [hodd.neg_one_pow, hk.neg_one_pow]
 
-/-- Auxiliary geometric sum: `∑_{k<N} (1/2)^{k+1} = 1 - (1/2)^N`.-/
+/-- Auxiliary geometric sum: `∑_{k<N} (1/2)^{k+1} = 1 - (1/2)^N`.
+@isnad1 id=eq.0h1v.s6.7a3a58758abc from=translated src=- shape=17410452 vocab=d978ee86
+-/
 theorem sum_half_pow_succ (N : ℕ) :
     ∑ k ∈ range N, (1 / 2 : ℝ) ^ (k + 1) = 1 - (1 / 2 : ℝ) ^ N := by
   induction N with
@@ -142,7 +170,9 @@ theorem sum_half_pow_succ (N : ℕ) :
 /-- `eq:lacunary-variation`: `∑_{k<N} 1/y_k ≤ 1`, uniformly in `N`.
 
 This is what bounds the total variation of the spectrum `(λ_k)`
-(`eq:lacunary-variation`), and hence gives `‖A_n‖ ≤ 1 + 5α/(1-α)`.-/
+(`eq:lacunary-variation`), and hence gives `‖A_n‖ ≤ 1 + 5α/(1-α)`.
+@isnad1 id=le.0h1v.s5.0634b247da99 from=translated src=- shape=369bb3c1 vocab=b69964b1
+-/
 theorem sum_inv_tower_le_one (N : ℕ) : ∑ k ∈ range N, (1 : ℝ) / tower k ≤ 1 := by
   have hterm : ∀ k ∈ range N, (1 : ℝ) / tower k ≤ (1 / 2 : ℝ) ^ (k + 1) := by
     intro k _

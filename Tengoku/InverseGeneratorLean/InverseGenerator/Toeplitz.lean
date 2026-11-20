@@ -54,23 +54,32 @@ noncomputable def toeplitz (n : ℕ) (θ : K) : Matrix (Fin n) (Fin n) K :=
   Matrix.of fun i j => if (j : ℕ) ≤ (i : ℕ) then binomCoeff ((i : ℕ) - (j : ℕ)) θ else 0
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h5v.s6.8c9f364ee207 from=translated src=- shape=d464dbea vocab=85be7d4e
+-/
 @[simp]
 theorem toeplitz_apply {n : ℕ} (θ : K) (i j : Fin n) :
     toeplitz n θ i j = if (j : ℕ) ≤ (i : ℕ) then binomCoeff ((i : ℕ) - (j : ℕ)) θ else 0 :=
   rfl
 
 omit [CharZero K] in
-/-- `T_n(θ)` is lower triangular.-/
+/-- `T_n(θ)` is lower triangular.
+@isnad1 id=eq.1h5v.s5.a3cbd37a4a21 from=translated src=- shape=4390f3c7 vocab=e49c3fc0
+-/
 theorem toeplitz_apply_of_lt {n : ℕ} (θ : K) {i j : Fin n} (h : (i : ℕ) < (j : ℕ)) :
     toeplitz n θ i j = 0 := by
   rw [toeplitz_apply, ite_eq_right (Nat.not_le.mpr h)]
 
-/-- The diagonal of `T_n(θ)` is `1`.-/
+/-- The diagonal of `T_n(θ)` is `1`.
+@isnad1 id=eq.0h4v.s5.8813459617df from=translated src=- shape=257c7d84 vocab=f39d1d75
+-/
 @[simp]
 theorem toeplitz_apply_self {n : ℕ} (θ : K) (i : Fin n) : toeplitz n θ i i = 1 := by
   simp [toeplitz]
 
-/-- `T_n(0) = 1`: the coefficients `a r 0` vanish for `r ≥ 1`.-/
+/-- `T_n(0) = 1`: the coefficients `a r 0` vanish for `r ≥ 1`.
+@isnad1 id=eq.0h2v.s6.c51c8820647f from=translated src=- shape=e393c62e vocab=ac5ec249
+-/
 @[simp]
 theorem toeplitz_zero (n : ℕ) : toeplitz n (0 : K) = 1 := by
   ext i j
@@ -85,7 +94,9 @@ theorem toeplitz_zero (n : ℕ) : toeplitz n (0 : K) = 1 := by
       binomCoeff_eq_zero_of_arg_zero (by omega : 1 ≤ (i : ℕ) - (j : ℕ)),
       Matrix.one_apply_ne (fun e => absurd (congrArg (Fin.val) e).symm (Nat.ne_of_lt h))]
 
-/-- **The group law** of Lemma A.1: `T_n(θ) * T_n(η) = T_n(θ + η)`.-/
+/-- **The group law** of Lemma A.1: `T_n(θ) * T_n(η) = T_n(θ + η)`.
+@isnad1 id=eq.0h4v.s6.f18297ef643f from=translated src=- shape=94060778 vocab=45f346ae
+-/
 theorem toeplitz_mul {n : ℕ} (θ η : K) :
     toeplitz n θ * toeplitz n η = toeplitz n (θ + η) := by
   ext i j
@@ -127,11 +138,16 @@ theorem toeplitz_mul {n : ℕ} (θ η : K) :
     · rw [ite_eq_right (by omega : ¬ (j : ℕ) ≤ k), mul_zero]
     · rw [ite_eq_right hki, zero_mul]
 
-/-- `T_n(θ) * T_n(-θ) = 1`, the second half of Lemma A.1.-/
+/-- `T_n(θ) * T_n(-θ) = 1`, the second half of Lemma A.1.
+@isnad1 id=eq.0h3v.s7.2dff24b621d1 from=translated src=- shape=62729799 vocab=a37ec54d
+-/
 @[simp]
 theorem toeplitz_mul_neg {n : ℕ} (θ : K) : toeplitz n θ * toeplitz n (-θ) = 1 := by
   rw [toeplitz_mul, add_neg_cancel, toeplitz_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.d01b7e7833c6 from=translated src=- shape=ac615307 vocab=a37ec54d
+-/
 theorem toeplitz_neg_mul {n : ℕ} (θ : K) : toeplitz n (-θ) * toeplitz n θ = 1 := by
   rw [toeplitz_mul, neg_add_cancel, toeplitz_zero]
 

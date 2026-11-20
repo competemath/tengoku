@@ -45,14 +45,18 @@ namespace InverseGenerator
 open Finset Matrix
 open scoped Matrix.Norms.L2Operator
 
-/-- `binomCoeff` commutes with the coercion `ℝ → ℂ`.-/
+/-- `binomCoeff` commutes with the coercion `ℝ → ℂ`.
+@isnad1 id=eq.0h2v.s4.f2758f8fef0f from=translated src=- shape=2a96958a vocab=0c338edf
+-/
 theorem binomCoeff_ofReal (r : ℕ) (θ : ℝ) :
     ((binomCoeff r θ : ℝ) : ℂ) = binomCoeff r ((θ : ℂ)) := by
   rw [binomCoeff, binomCoeff]
   push_cast
   rfl
 
-/-- The norm of a Toeplitz entry, in terms of the real coefficients.-/
+/-- The norm of a Toeplitz entry, in terms of the real coefficients.
+@isnad1 id=eq.0h4v.s6.686a5238d20d from=translated src=- shape=5bf25223 vocab=e6671e7d
+-/
 theorem norm_toeplitz_apply (θ : ℝ) {n : ℕ} (i j : Fin n) :
     ‖toeplitz n ((θ : ℂ)) i j‖
       = if (j : ℕ) ≤ (i : ℕ) then |binomCoeff ((i : ℕ) - (j : ℕ)) θ| else 0 := by
@@ -61,7 +65,9 @@ theorem norm_toeplitz_apply (θ : ℝ) {n : ℕ} (i j : Fin n) :
   · rw [← binomCoeff_ofReal, Complex.norm_real, Real.norm_eq_abs]
   · exact norm_zero
 
-/-- Every row `ℓ¹` sum of `T_n(θ)` is bounded by `∑_{r<n} |a_r(θ)|`.-/
+/-- Every row `ℓ¹` sum of `T_n(θ)` is bounded by `∑_{r<n} |a_r(θ)|`.
+@isnad1 id=le.0h3v.s5.2d1cd04afdab from=translated src=- shape=d1c8fc4f vocab=5e176cc0
+-/
 theorem toeplitz_row_l1_le (θ : ℝ) {n : ℕ} (i : Fin n) :
     ∑ j : Fin n, ‖toeplitz n ((θ : ℂ)) i j‖ ≤ ∑ r ∈ range n, |binomCoeff r θ| := by
   have hin : (i : ℕ) < n := i.isLt
@@ -91,7 +97,9 @@ theorem toeplitz_row_l1_le (θ : ℝ) {n : ℕ} (i : Fin n) :
     _ ≤ ∑ r ∈ range n, |binomCoeff r θ| :=
         Finset.sum_le_sum_of_subset_of_nonneg hsub fun _ _ _ => abs_nonneg _
 
-/-- Every column `ℓ¹` sum of `T_n(θ)` is bounded by `∑_{r<n} |a_r(θ)|`.-/
+/-- Every column `ℓ¹` sum of `T_n(θ)` is bounded by `∑_{r<n} |a_r(θ)|`.
+@isnad1 id=le.0h3v.s5.8a8280dac18f from=translated src=- shape=01b0d2c4 vocab=5e176cc0
+-/
 theorem toeplitz_col_l1_le (θ : ℝ) {n : ℕ} (j : Fin n) :
     ∑ i : Fin n, ‖toeplitz n ((θ : ℂ)) i j‖ ≤ ∑ r ∈ range n, |binomCoeff r θ| := by
   have hjn : (j : ℕ) < n := j.isLt
@@ -121,7 +129,9 @@ theorem toeplitz_col_l1_le (θ : ℝ) {n : ℕ} (j : Fin n) :
           fun _ _ _ => abs_nonneg _
 
 /-- **Row sums telescope**: `∑_j T_n(θ) i j = a_i(θ+1) = coeffProd θ i`, by the hockey
-stick `sum_binomCoeff`.  This is the `1_n` test vector of Lemma A.3's lower bound.-/
+stick `sum_binomCoeff`.  This is the `1_n` test vector of Lemma A.3's lower bound.
+@isnad1 id=eq.0h3v.s5.56f0d27da13b from=translated src=- shape=9d012ef2 vocab=97e7e432
+-/
 theorem toeplitz_row_sum (θ : ℝ) {n : ℕ} (i : Fin n) :
     ∑ j : Fin n, toeplitz n ((θ : ℂ)) i j = ((coeffProd θ (i : ℕ) : ℝ) : ℂ) := by
   have hin : (i : ℕ) < n := i.isLt
@@ -163,13 +173,18 @@ theorem toeplitz_row_sum (θ : ℝ) {n : ℕ} (i : Fin n) :
 any constant dominating both `ℓ¹` sums.
 -/
 
-/-- The `α/2 + α/2` produced by Proposition 2.1, Step 1 is just `α`.-/
+/-- The `α/2 + α/2` produced by Proposition 2.1, Step 1 is just `α`.
+@isnad1 id=eq.0h2v.s6.1716c575dd54 from=translated src=- shape=1840e99b vocab=788660ff
+-/
 theorem signMult_ofReal (n : ℕ) (α : ℝ) :
     signMult n (((α / 2 : ℝ) : ℂ) + ((α / 2 : ℝ) : ℂ)) = signMult n ((α : ℂ)) := by
   congr 1
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.bf34e22c447d from=translated src=- shape=d5654605 vocab=c924e4af
+-/
 theorem toeplitz_neg_ofReal (n : ℕ) (α : ℝ) :
     toeplitz n (-((α : ℝ) : ℂ)) = toeplitz n (((-α : ℝ) : ℂ)) := by
   congr 1
@@ -196,7 +211,9 @@ step: the entries of `Δ_±(0,1_n)` are the row sums
 `‖Δ_±‖ ≥ n^α/√(2α+1) ≥ n^α/2`.
 -/
 
-/-- **Proposition 2.1, sharp upper half**: `‖Δ_±‖ ≤ 2 n^α`.-/
+/-- **Proposition 2.1, sharp upper half**: `‖Δ_±‖ ≤ 2 n^α`.
+@isnad1 id=le.3h2v.s7.1dede679ed07 from=translated src=- shape=90a04153 vocab=83600aeb
+-/
 theorem l2_opNorm_signMult_le' {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α < 1) {n : ℕ} (hn : 1 ≤ n) :
     ‖signMult n ((α : ℂ))‖ ≤ 2 * (n : ℝ) ^ α := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -235,7 +252,9 @@ theorem l2_opNorm_signMult_le' {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α < 1) {n :
         Matrix.zero_apply, norm_zero, Finset.sum_const_zero, add_zero]
       exact (toeplitz_col_l1_le α j).trans hpos
 
-/-- **Proposition 2.1, sharp lower half**: `n^α/2 ≤ ‖Δ_±‖`.-/
+/-- **Proposition 2.1, sharp lower half**: `n^α/2 ≤ ‖Δ_±‖`.
+@isnad1 id=le.3h2v.s7.751c1c69bfd8 from=translated src=- shape=9177ca8b vocab=dee2c6b1
+-/
 theorem le_l2_opNorm_signMult' {α : ℝ} (hα0 : 0 ≤ α) (hα1 : α ≤ 1) {n : ℕ} (hn : 1 ≤ n) :
     (n : ℝ) ^ α / 2 ≤ ‖signMult n ((α : ℂ))‖ := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn

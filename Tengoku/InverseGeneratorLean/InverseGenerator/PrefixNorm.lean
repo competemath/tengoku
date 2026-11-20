@@ -54,7 +54,9 @@ namespace InverseGenerator
 
 open Finset Matrix
 
-/-- `schurKernel` commutes with the coercion `ℝ → ℂ`.-/
+/-- `schurKernel` commutes with the coercion `ℝ → ℂ`.
+@isnad1 id=eq.0h3v.s4.a82ebbd7c225 from=translated src=- shape=d07aac9f vocab=2f3da28d
+-/
 theorem schurKernel_ofReal (θ : ℝ) (p q : ℕ) :
     ((schurKernel θ p q : ℝ) : ℂ) = schurKernel ((θ : ℂ)) p q := by
   rw [schurKernel, schurKernel]
@@ -64,7 +66,9 @@ theorem schurKernel_ofReal (θ : ℝ) (p q : ℕ) :
 /-- **The kernel bound** (`eq:prefix-kernel-bound`):
 `‖R_{p,q}‖ ≤ (3/2)|θ| p^θ (q+1)^{-θ} / (p+q)` for `|θ| < 1/2` and `p ≥ 1`.  The
 `|θ|` factor is what makes the prefix constant vanish
-as `θ → 0`, and hence the explicit `C = 50` of Theorem 1.1 reachable.-/
+as `θ → 0`, and hence the explicit `C = 50` of Theorem 1.1 reachable.
+@isnad1 id=le.2h3v.s7.f1220d870f54 from=translated src=- shape=8595a69b vocab=aa2e8517
+-/
 theorem norm_schurKernel_le' {θ : ℝ} (hθ : |θ| < 1 / 2) {p : ℕ} (hp : 1 ≤ p) (q : ℕ) :
     ‖schurKernel ((θ : ℂ)) p q‖
       ≤ 3 / 2 * |θ| * (p : ℝ) ^ θ * ((q : ℝ) + 1) ^ (-θ) / ((p : ℝ) + q) := by
@@ -145,7 +149,9 @@ theorem norm_schurKernel_le' {θ : ℝ} (hθ : |θ| < 1 / 2) {p : ℕ} (hp : 1 �
 `‖R_{p,q}‖ ≤ c p^θ (q+1)^{-θ}/(p+q)`, then
 `∑_{q<k} ‖R_{p,q}‖ (q+1)^{-1/2} ≤ (c/(1/2-θ) + c/(1/2+θ)) p^{-1/2}`, uniformly
 in `k`.  Parametrizing over `c` makes the row and column tests one proof; it is
-instantiated at `c = (3/2)|θ|` from `norm_schurKernel_le'`.-/
+instantiated at `c = (3/2)|θ|` from `norm_schurKernel_le'`.
+@isnad1 id=le.4h4v.s8.2b9f3f4470c5 from=translated src=- shape=29358215 vocab=4b4a994b
+-/
 theorem schur_row_sum_le_of_kernel {θ c : ℝ} (hθ : |θ| < 1 / 2) (hc : 0 ≤ c) {p : ℕ}
     (hp : 1 ≤ p)
     (hker : ∀ q : ℕ, ‖schurKernel ((θ : ℂ)) p q‖
@@ -281,7 +287,9 @@ theorem schur_row_sum_le_of_kernel {θ c : ℝ} (hθ : |θ| < 1 / 2) (hc : 0 ≤
 /-- **The column test, parametrized over the kernel constant**: if
 `‖R_{r+1,q}‖ ≤ c (r+1)^θ (q+1)^{-θ}/(r+1+q)`, then
 `∑_{r<m} ‖R_{r+1,q}‖ (r+1)^{-1/2} ≤ (c/(1/2-θ) + c/(1/2+θ)) (q+1)^{-1/2}`,
-uniformly in `m`.-/
+uniformly in `m`.
+@isnad1 id=le.3h4v.s8.42153666cc30 from=translated src=- shape=1c7ad42b vocab=4b4a994b
+-/
 theorem schur_col_sum_le_of_kernel {θ c : ℝ} (hθ : |θ| < 1 / 2) (hc : 0 ≤ c) (q : ℕ)
     (hker : ∀ r : ℕ, ‖schurKernel ((θ : ℂ)) (r + 1) q‖
       ≤ c * ((r : ℝ) + 1) ^ θ * ((q : ℝ) + 1) ^ (-θ) / ((r : ℝ) + 1 + q)) (m : ℕ) :
@@ -435,12 +443,17 @@ noncomputable def lowBlock (n k : ℕ) (θ : K) : Matrix (Fin n) (Fin n) K :=
     else 0
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h6v.s7.a889d41a11fa from=translated src=- shape=deb99543 vocab=73564d6c
+-/
 theorem lowBlock_apply {n k : ℕ} (θ : K) (i j : Fin n) :
     lowBlock n k θ i j
       = if k ≤ (i : ℕ) ∧ (j : ℕ) < k then schurKernel θ ((i : ℕ) - k + 1) (k - (j : ℕ) - 1)
         else 0 := rfl
 
-/-- The block form as a decomposition: `T_n(θ) P_k T_n(-θ) = P_k + R̃`.-/
+/-- The block form as a decomposition: `T_n(θ) P_k T_n(-θ) = P_k + R̃`.
+@isnad1 id=eq.1h4v.s6.d969035950f8 from=translated src=- shape=8d20d2d2 vocab=d6562d2a
+-/
 theorem prefixConj_eq_add {n k : ℕ} (hk : k ≤ n) (θ : K) :
     prefixConj n k θ = prefixProj n k + lowBlock n k θ := by
   ext i j
@@ -472,7 +485,9 @@ open scoped Matrix.Norms.L2Operator
 
 /-- The padded block `R̃` passes the weighted Schur test, parametrized over the
 kernel constant: if `‖R_{p,q}‖ ≤ c p^θ (q+1)^{-θ}/(p+q)`, then
-`‖R̃‖ ≤ c/(1/2-θ) + c/(1/2+θ)`, uniformly in `n` and `k ≤ n`.-/
+`‖R̃‖ ≤ c/(1/2-θ) + c/(1/2+θ)`, uniformly in `n` and `k ≤ n`.
+@isnad1 id=le.4h4v.s8.762cbc6fb976 from=translated src=- shape=800d17bd vocab=17201b95
+-/
 theorem l2_opNorm_lowBlock_le_of_kernel {θ c : ℝ} (hθ : |θ| < 1 / 2) (hc : 0 ≤ c)
     (hker : ∀ {p : ℕ}, 1 ≤ p → ∀ q : ℕ, ‖schurKernel ((θ : ℂ)) p q‖
       ≤ c * (p : ℝ) ^ θ * ((q : ℝ) + 1) ^ (-θ) / ((p : ℝ) + q))
@@ -644,7 +659,9 @@ theorem l2_opNorm_lowBlock_le_of_kernel {θ c : ℝ} (hθ : |θ| < 1 / 2) (hc : 
 noncomputable def sharpPrefixConst (θ : ℝ) : ℝ := 6 * |θ| / (1 - 4 * θ ^ 2)
 
 /-- The padded block `R̃` obeys `‖R̃‖ ≤ 6|θ|/(1-4θ²)`, via the kernel bound
-`norm_schurKernel_le'` and the weighted Schur test.-/
+`norm_schurKernel_le'` and the weighted Schur test.
+@isnad1 id=le.2h3v.s6.f18d43152294 from=translated src=- shape=c34ec069 vocab=72686004
+-/
 theorem l2_opNorm_lowBlock_le' {θ : ℝ} (hθ : |θ| < 1 / 2) {n k : ℕ} (hk : k ≤ n) :
     ‖lowBlock n k ((θ : ℂ))‖ ≤ sharpPrefixConst θ := by
   obtain ⟨hθl, hθr⟩ := abs_lt.mp hθ
@@ -664,7 +681,9 @@ theorem l2_opNorm_lowBlock_le' {θ : ℝ} (hθ : |θ| < 1 / 2) {n k : ℕ} (hk :
 /-- **Lemma A.4**: the uniform prefix bound
 `‖T_n(θ) Π_k T_n(-θ) - Π_k‖ ≤ 6|θ|/(1-4θ²)` for `|θ| < 1/2`, uniformly in `n` and
 `k ≤ n`.  The `|θ|` factor makes the constant vanish as `θ → 0`, which is what the
-multiplier bound `‖Δ_ξ‖ ≤ max|ξ| + (5α/(1-α)) Var(ξ)` needs.-/
+multiplier bound `‖Δ_ξ‖ ≤ max|ξ| + (5α/(1-α)) Var(ξ)` needs.
+@isnad1 id=le.2h3v.s6.7872252a854b from=translated src=- shape=85d3951a vocab=71600208
+-/
 theorem l2_opNorm_prefixConj_sub_le {θ : ℝ} (hθ : |θ| < 1 / 2) {n k : ℕ} (hk : k ≤ n) :
     ‖prefixConj n k ((θ : ℂ)) - prefixProj n k‖ ≤ sharpPrefixConst θ := by
   rw [prefixConj_eq_add hk, add_sub_cancel_left]

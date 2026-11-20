@@ -35,14 +35,18 @@ namespace InverseGenerator
 
 open Real
 
-/-- `e^{-x} ≤ 1/(1+x)` for `x ≥ 0`, from `1 + x ≤ e^x`.-/
+/-- `e^{-x} ≤ 1/(1+x)` for `x ≥ 0`, from `1 + x ≤ e^x`.
+@isnad1 id=le.1h1v.s5.6b92f786807e from=translated src=- shape=36aacb5c vocab=96afd6b6
+-/
 theorem exp_neg_le_inv_one_add {x : ℝ} (hx : 0 ≤ x) : Real.exp (-x) ≤ (1 + x)⁻¹ := by
   have h := Real.add_one_le_exp x
   have hx1 : (0 : ℝ) < 1 + x := by linarith
   rw [Real.exp_neg, inv_eq_one_div, inv_eq_one_div]
   exact one_div_le_one_div_of_le hx1 (by linarith)
 
-/-- `e^x ≤ 1/(1-x)` for `x < 1`, from `1 - x ≤ e^{-x}`.-/
+/-- `e^x ≤ 1/(1-x)` for `x < 1`, from `1 - x ≤ e^{-x}`.
+@isnad1 id=le.1h1v.s5.61c5fe84346b from=translated src=- shape=8cfc1f2c vocab=cff3f0e7
+-/
 theorem exp_le_inv_one_sub {x : ℝ} (hx : x < 1) : Real.exp x ≤ (1 - x)⁻¹ := by
   have h : 1 - x ≤ Real.exp (-x) := by
     have := Real.add_one_le_exp (-x)
@@ -57,7 +61,9 @@ theorem exp_le_inv_one_sub {x : ℝ} (hx : x < 1) : Real.exp x ≤ (1 - x)⁻¹ 
 
 /-- **The trapezoid-rule log bound**: `log(1+x) ≤ x(x+2)/(2(x+1))` for `x ≥ 0`.
 This is `∫₀ˣ dt/(1+t)` compared against the trapezoid rule on one interval; it is
-what makes `H_m ≥ log m + 1/2` (rather than just `H_m ≥ log(m+1)`) provable.-/
+what makes `H_m ≥ log m + 1/2` (rather than just `H_m ≥ log(m+1)`) provable.
+@isnad1 id=le.1h1v.s6.e68da5e53430 from=translated src=- shape=5d2ec6ea vocab=848325a4
+-/
 theorem log_one_add_le_trapezoid {x : ℝ} (hx : 0 ≤ x) :
     Real.log (1 + x) ≤ x * (x + 2) / (2 * (x + 1)) := by
   set F : ℝ → ℝ := fun y => (y + 1 - (1 + y)⁻¹) / 2 - Real.log (1 + y) with hF
@@ -111,7 +117,9 @@ theorem log_one_add_le_trapezoid {x : ℝ} (hx : 0 ≤ x) :
         field_simp
         ring
 
-/-- `log(1-x) ≤ -x - x²/2` for `0 ≤ x < 1`: the second-order Taylor upper bound.-/
+/-- `log(1-x) ≤ -x - x²/2` for `0 ≤ x < 1`: the second-order Taylor upper bound.
+@isnad1 id=le.2h1v.s6.17249de64659 from=translated src=- shape=02a4eaf4 vocab=8f742609
+-/
 theorem log_one_sub_le {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     Real.log (1 - x) ≤ -x - x ^ 2 / 2 := by
   set G : ℝ → ℝ := fun y => -y - y ^ 2 / 2 - Real.log (1 - y) with hG
@@ -160,7 +168,9 @@ theorem log_one_sub_le {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
   simp only [hG] at h0x
   linarith
 
-/-- `e^3 ≤ 20.09`, from `e ≤ 2.7182818286`.-/
+/-- `e^3 ≤ 20.09`, from `e ≤ 2.7182818286`.
+@isnad1 id=le.0h0v.s4.5f4309e811f9 from=translated src=- shape=339e478a vocab=8b6aaff6
+-/
 theorem exp_three_le : Real.exp 3 ≤ 20.09 := by
   have h1 : Real.exp 3 = Real.exp 1 ^ (3 : ℕ) := by
     rw [← Real.exp_nat_mul]
@@ -172,7 +182,9 @@ theorem exp_three_le : Real.exp 3 ≤ 20.09 := by
   norm_num
 
 /-- `e^{3/8} ≤ 3/2`, since `e^3 ≤ 20.09 < 25.6 ≤ (3/2)^8`.  This is the constant
-that closes Lemma A.2's bound `a_r(θ) ≤ (3/2) θ r^{θ-1}`.-/
+that closes Lemma A.2's bound `a_r(θ) ≤ (3/2) θ r^{θ-1}`.
+@isnad1 id=le.0h0v.s5.310fa53f6f9c from=translated src=- shape=6675909f vocab=e030a0d9
+-/
 theorem exp_three_eighths_le : Real.exp (3 / 8) ≤ 3 / 2 := by
   rcases le_or_gt (Real.exp (3 / 8)) (3 / 2) with h | h
   · exact h
@@ -188,7 +200,9 @@ theorem exp_three_eighths_le : Real.exp (3 / 8) ≤ 3 / 2 := by
     linarith
 
 /-- `e^π ≤ 25`: `e^π ≤ e^{3.15} = e^3 e^{0.15} ≤ 20.09 / 0.85 < 25`.
-Hence `2 e^π < 50`, the lower constant of Theorem 1.1 at `C = 50`.-/
+Hence `2 e^π < 50`, the lower constant of Theorem 1.1 at `C = 50`.
+@isnad1 id=le.0h0v.s3.0353bdfa850c from=translated src=- shape=b0ae1d2b vocab=94018b5b
+-/
 theorem exp_pi_le_25 : Real.exp Real.pi ≤ 25 := by
   have hpi : Real.pi ≤ 3 + 0.15 := by
     have := Real.pi_lt_d2
@@ -207,7 +221,9 @@ theorem exp_pi_le_25 : Real.exp Real.pi ≤ 25 := by
         exact mul_le_mul h2 h3 h5.le (by norm_num)
     _ ≤ 25 := by norm_num
 
-/-- `2 ≤ e^π`, so `2 e^{-π} ≤ 1`: the upper constant of Theorem 1.1 is `1`.-/
+/-- `2 ≤ e^π`, so `2 e^{-π} ≤ 1`: the upper constant of Theorem 1.1 is `1`.
+@isnad1 id=le.0h0v.s3.e582dd8220af from=translated src=- shape=a1bca669 vocab=94018b5b
+-/
 theorem two_le_exp_pi : 2 ≤ Real.exp Real.pi := by
   have h1 : (1 : ℝ) ≤ Real.pi := by linarith [Real.pi_gt_three]
   have h2 : Real.exp 1 ≤ Real.exp Real.pi := Real.exp_le_exp.mpr h1
@@ -215,7 +231,9 @@ theorem two_le_exp_pi : 2 ≤ Real.exp Real.pi := by
   linarith
 
 /-- `e ≤ 4 log 2`.  Rewritten, this is `1 ≤ log(4 log 2) = 2 log 2 + log log 2`,
-which is precisely `n ≤ log log (ω_n⁻¹)` at its tightest point `n = 1`.-/
+which is precisely `n ≤ log log (ω_n⁻¹)` at its tightest point `n = 1`.
+@isnad1 id=le.0h0v.s5.a8520c6b78fb from=translated src=- shape=f34c6c95 vocab=4cb720f8
+-/
 theorem exp_one_le_four_mul_log_two : Real.exp 1 ≤ 4 * Real.log 2 := by
   have h1 := Real.exp_one_lt_d9
   have h2 := Real.log_two_gt_d9

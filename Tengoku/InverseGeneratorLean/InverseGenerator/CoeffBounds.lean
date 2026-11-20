@@ -55,15 +55,23 @@ open Finset
 `binomCoeff_add_one_eq_coeffProd`.-/
 noncomputable def coeffProd (t : ℝ) (m : ℕ) : ℝ := ∏ ℓ ∈ Icc 1 m, (1 + t / ℓ)
 
+/--
+@isnad1 id=eq.0h1v.s4.c8a68ce83f94 from=translated src=- shape=0e0c2bda vocab=ee30e705
+-/
 @[simp] theorem coeffProd_zero (t : ℝ) : coeffProd t 0 = 1 := by simp [coeffProd]
 
+/--
+@isnad1 id=eq.0h2v.s6.13fd130aec4a from=translated src=- shape=30ad21a6 vocab=071ae833
+-/
 theorem coeffProd_succ (t : ℝ) (m : ℕ) :
     coeffProd t (m + 1) = coeffProd t m * (1 + t / ((m : ℝ) + 1)) := by
   rw [coeffProd, coeffProd, Finset.prod_Icc_succ_top (by omega : 1 ≤ m + 1)]
   push_cast
   ring
 
-/-- Each factor `1 + t/ℓ` is positive when `t > -1` and `ℓ ≥ 1`.-/
+/-- Each factor `1 + t/ℓ` is positive when `t > -1` and `ℓ ≥ 1`.
+@isnad1 id=lt.2h2v.s6.aefd88d05b0f from=translated src=- shape=a9a50486 vocab=6d6c9452
+-/
 theorem one_add_div_pos {t : ℝ} (ht : -1 < t) {ℓ : ℕ} (hℓ : 1 ≤ ℓ) : 0 < 1 + t / ℓ := by
   have hℓR : (1 : ℝ) ≤ ℓ := by exact_mod_cast hℓ
   have hℓ0 : (0 : ℝ) < ℓ := by linarith
@@ -72,12 +80,17 @@ theorem one_add_div_pos {t : ℝ} (ht : -1 < t) {ℓ : ℕ} (hℓ : 1 ≤ ℓ) :
     nlinarith
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s4.53fa81ae5170 from=translated src=- shape=49007cc1 vocab=dc9303d8
+-/
 theorem coeffProd_pos {t : ℝ} (ht : -1 < t) (m : ℕ) : 0 < coeffProd t m :=
   Finset.prod_pos fun _ℓ hℓ => one_add_div_pos ht (Finset.mem_Icc.mp hℓ).1
 
 /-- **The product formula**: `a_m(t+1) = ∏_{ℓ=1}^m (1 + t/ℓ)`.
 
-This is the identity that makes Lemma A.2 elementary.-/
+This is the identity that makes Lemma A.2 elementary.
+@isnad1 id=eq.0h2v.s4.e37af54249a7 from=translated src=- shape=dc5fb99f vocab=70f84e35
+-/
 theorem binomCoeff_add_one_eq_coeffProd (t : ℝ) (m : ℕ) :
     binomCoeff m (t + 1) = coeffProd t m := by
   induction m with
@@ -95,7 +108,9 @@ Two facts, both immediate from the product formula, that the norm estimates need
 the sign of `a_r(θ)` for `θ ≥ 0`, and its sign for `θ ≤ 0` after the first index.
 -/
 
-/-- For `θ ≥ 0` all coefficients are nonnegative, so `|a_r θ| = a_r θ`.-/
+/-- For `θ ≥ 0` all coefficients are nonnegative, so `|a_r θ| = a_r θ`.
+@isnad1 id=le.1h2v.s4.15018991014e from=translated src=- shape=6191c93e vocab=fe2377b6
+-/
 theorem binomCoeff_nonneg {θ : ℝ} (hθ : 0 ≤ θ) (r : ℕ) : 0 ≤ binomCoeff r θ := by
   rw [binomCoeff]
   refine div_nonneg (Finset.prod_nonneg fun i _ => ?_) (by positivity)
@@ -118,7 +133,9 @@ needs the sharpened harmonic bound `H_m ≥ log m + 1/2`
 (`log_one_sub_le`) and the numeric `e^{3/8} ≤ 3/2` (`exp_three_eighths_le`).
 -/
 
-/-- The explicit first-factor peel: `a_{r+1}(θ) = θ · coeffProd θ r / (r+1)`.-/
+/-- The explicit first-factor peel: `a_{r+1}(θ) = θ · coeffProd θ r / (r+1)`.
+@isnad1 id=eq.0h2v.s5.604cdd29228e from=translated src=- shape=35241c3e vocab=dee3b173
+-/
 theorem binomCoeff_succ_eq (r : ℕ) (θ : ℝ) :
     binomCoeff (r + 1) θ = θ * coeffProd θ r / ((r : ℝ) + 1) := by
   have hkey := binomCoeff_succ_mul_left r θ
@@ -128,7 +145,9 @@ theorem binomCoeff_succ_eq (r : ℕ) (θ : ℝ) :
   linear_combination hkey
 
 /-- Single-factor Bernoulli comparison, downward: `1 + t/x ≤ ((x+1)/x)^t` for
-`-1 ≤ t ≤ 0` and `x ≥ 1`.-/
+`-1 ≤ t ≤ 0` and `x ≥ 1`.
+@isnad1 id=le.3h2v.s6.2a628d4929a6 from=translated src=- shape=41cb3b8b vocab=0e24d4dc
+-/
 theorem one_add_div_le_rpow_ratio {t : ℝ} (ht0 : -1 ≤ t) (ht1 : t ≤ 0) {x : ℝ}
     (hx : 1 ≤ x) : 1 + t / x ≤ ((x + 1) / x) ^ t := by
   have hx0 : (0 : ℝ) < x := lt_of_lt_of_le one_pos hx
@@ -158,7 +177,9 @@ theorem one_add_div_le_rpow_ratio {t : ℝ} (ht0 : -1 ≤ t) (ht1 : t ≤ 0) {x 
     _ ≤ (((x + 1) / x) ^ (-t))⁻¹ := h1.trans h2
 
 /-- Bernoulli upper product bound: `coeffProd t m ≤ (m+1)^t` for `-1 ≤ t ≤ 0`.
-At `t = θ - 1` this is Lemma A.2's `a_r(θ) ≤ (r+1)^{θ-1}` for `0 ≤ θ ≤ 1`.-/
+At `t = θ - 1` this is Lemma A.2's `a_r(θ) ≤ (r+1)^{θ-1}` for `0 ≤ θ ≤ 1`.
+@isnad1 id=le.2h2v.s5.fb750b5be266 from=translated src=- shape=5e31bafd vocab=deb5fb0d
+-/
 theorem coeffProd_le_rpow_succ {t : ℝ} (ht0 : -1 ≤ t) (ht1 : t ≤ 0) (m : ℕ) :
     coeffProd t m ≤ ((m : ℝ) + 1) ^ t := by
   induction m with
@@ -187,7 +208,9 @@ theorem coeffProd_le_rpow_succ {t : ℝ} (ht0 : -1 ≤ t) (ht1 : t ≤ 0) (m : �
       _ = (((m + 1 : ℕ) : ℝ) + 1) ^ t := by push_cast; ring_nf
 
 /-- Single-factor Bernoulli comparison, upward: `((x+1)/x)^t ≤ 1 + t/x` for
-`0 ≤ t ≤ 1` and `x ≥ 1`.-/
+`0 ≤ t ≤ 1` and `x ≥ 1`.
+@isnad1 id=le.3h2v.s6.12ac1e54267c from=translated src=- shape=9e0a8b6f vocab=ac0a4304
+-/
 theorem rpow_ratio_le_one_add_div {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) {x : ℝ}
     (hx : 1 ≤ x) : ((x + 1) / x) ^ t ≤ 1 + t / x := by
   have hx0 : (0 : ℝ) < x := lt_of_lt_of_le one_pos hx
@@ -200,7 +223,9 @@ theorem rpow_ratio_le_one_add_div {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) {x :
     _ = 1 + t / x := by ring
 
 /-- Bernoulli lower product bound: `(m+1)^t ≤ coeffProd t m` for `0 ≤ t ≤ 1`.
-At `t = θ - 1` this is Lemma A.2's `(r+1)^{θ-1} ≤ a_r(θ)` for `1 ≤ θ ≤ 2`.-/
+At `t = θ - 1` this is Lemma A.2's `(r+1)^{θ-1} ≤ a_r(θ)` for `1 ≤ θ ≤ 2`.
+@isnad1 id=le.2h2v.s5.e701eb3bd799 from=translated src=- shape=294a28a2 vocab=2036ad7d
+-/
 theorem rpow_succ_le_coeffProd {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) (m : ℕ) :
     ((m : ℝ) + 1) ^ t ≤ coeffProd t m := by
   induction m with
@@ -227,7 +252,9 @@ theorem rpow_succ_le_coeffProd {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) (m : �
 
 /-- `coeffProd t m ≤ (1+t) m^t` for `t ≥ 0`, `m ≥ 1`: peel the first factor, then
 `H_m - 1 ≤ log m`.  At `t = θ - 1` this is Lemma A.2's `a_r(θ) ≤ θ r^{θ-1}` for
-`1 < θ < 2`.-/
+`1 < θ < 2`.
+@isnad1 id=le.2h2v.s6.d77717543238 from=translated src=- shape=11e62839 vocab=e603c515
+-/
 theorem coeffProd_le_one_add_self_mul {t : ℝ} (ht : 0 ≤ t) {m : ℕ} (hm : 1 ≤ m) :
     coeffProd t m ≤ (1 + t) * (m : ℝ) ^ t := by
   have hmR : (0 : ℝ) < m := by exact_mod_cast hm
@@ -262,7 +289,9 @@ theorem coeffProd_le_one_add_self_mul {t : ℝ} (ht : 0 ≤ t) {m : ℕ} (hm : 1
   exact mul_le_mul_of_nonneg_left hexp (by linarith)
 
 /-- `coeffProd t m ≤ (3/2)(m+1)^t` for `0 ≤ t ≤ 1` — the sharp constant of
-Lemma A.2's `a_p(θ) ≤ (3/2) θ p^{θ-1}`.-/
+Lemma A.2's `a_p(θ) ≤ (3/2) θ p^{θ-1}`.
+@isnad1 id=le.2h2v.s6.6964f1f67fe1 from=translated src=- shape=67020c2d vocab=30121b8d
+-/
 theorem coeffProd_le_three_half_rpow_succ {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) (m : ℕ) :
     coeffProd t m ≤ 3 / 2 * ((m : ℝ) + 1) ^ t := by
   rcases Nat.eq_zero_or_pos m with hm | hm
@@ -388,7 +417,9 @@ theorem coeffProd_le_three_half_rpow_succ {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤
     _ = 3 / 2 * (((m : ℝ) + 1) * (((m : ℝ) + 1) ^ (-β))) := by ring
     _ = 3 / 2 * ((m : ℝ) + 1) ^ t := by rw [hfinal]
 
-/-- **Lemma A.2, first row**: `|a_p(θ)| ≤ |θ| p^{θ-1}` for `-1 < θ ≤ 0`, `p ≥ 1`.-/
+/-- **Lemma A.2, first row**: `|a_p(θ)| ≤ |θ| p^{θ-1}` for `-1 < θ ≤ 0`, `p ≥ 1`.
+@isnad1 id=le.3h2v.s6.f4803b21d01a from=translated src=- shape=95ba0df9 vocab=1c6aea02
+-/
 theorem abs_binomCoeff_le_mul_rpow {θ : ℝ} (hθ0 : -1 < θ) (hθ1 : θ ≤ 0) {p : ℕ}
     (hp : 1 ≤ p) : |binomCoeff p θ| ≤ |θ| * (p : ℝ) ^ (θ - 1) := by
   obtain ⟨r, rfl⟩ : ∃ r, p = r + 1 := ⟨p - 1, by omega⟩
@@ -404,7 +435,9 @@ theorem abs_binomCoeff_le_mul_rpow {θ : ℝ} (hθ0 : -1 < θ) (hθ1 : θ ≤ 0)
 
 /-- **Lemma A.2, the `3/2` bound**: `a_p(θ) ≤ (3/2) θ p^{θ-1}` for `0 < θ ≤ 1`,
 `p ≥ 1`.  The `θ` factor is what makes the prefix constant `6|θ|/(1-4θ²)` of
-Lemma A.4 vanish as `θ → 0`, and hence `C = 50` reachable.-/
+Lemma A.4 vanish as `θ → 0`, and hence `C = 50` reachable.
+@isnad1 id=le.3h2v.s6.99df65086fe8 from=translated src=- shape=858ce4f3 vocab=4e534cbd
+-/
 theorem binomCoeff_le_three_half_mul_rpow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {p : ℕ}
     (hp : 1 ≤ p) : binomCoeff p θ ≤ 3 / 2 * θ * (p : ℝ) ^ (θ - 1) := by
   obtain ⟨r, rfl⟩ : ∃ r, p = r + 1 := ⟨p - 1, by omega⟩
@@ -425,7 +458,9 @@ theorem binomCoeff_le_three_half_mul_rpow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : �
     _ = 3 / 2 * θ * ((r : ℝ) + 1) ^ (θ - 1) := by rw [hsplit]
 
 /-- `a_{r+1}(θ) ≤ 0` for `-1 < θ ≤ 0`: sign of the coefficients at a nonpositive
-parameter.-/
+parameter.
+@isnad1 id=le.2h2v.s5.4e3b912edde4 from=translated src=- shape=f6cf4596 vocab=960206fe
+-/
 theorem binomCoeff_succ_nonpos {θ : ℝ} (hθ0 : -1 < θ) (hθ1 : θ ≤ 0) (r : ℕ) :
     binomCoeff (r + 1) θ ≤ 0 := by
   rw [binomCoeff_succ_eq]
@@ -435,7 +470,9 @@ theorem binomCoeff_succ_nonpos {θ : ℝ} (hθ0 : -1 < θ) (hθ1 : θ ≤ 0) (r 
   exact div_nonpos_of_nonpos_of_nonneg h3 h2.le
 
 /-- **Lemma A.3 ingredient**: `∑_{r<n} |a_r(-σ)| = 2 - a_{n-1}(1-σ) ≤ 2` for
-`0 ≤ σ < 1`.  This is what bounds `‖T_n(-σ)‖ ≤ 2`.-/
+`0 ≤ σ < 1`.  This is what bounds `‖T_n(-σ)‖ ≤ 2`.
+@isnad1 id=le.2h2v.s5.92dd5f57e808 from=translated src=- shape=e2023c39 vocab=997af486
+-/
 theorem sum_abs_binomCoeff_neg_le_two {σ : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ < 1) (n : ℕ) :
     ∑ r ∈ range n, |binomCoeff r (-σ)| ≤ 2 := by
   rcases Nat.eq_zero_or_pos n with hn | hn
@@ -464,7 +501,9 @@ theorem sum_abs_binomCoeff_neg_le_two {σ : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ < 
   linarith
 
 /-- **Lemma A.3 ingredient**: `∑_{r<n} a_r(σ) = coeffProd σ (n-1) ≤ 2 n^σ` for
-`0 ≤ σ ≤ 1`.  This is what bounds `‖T_n(σ)‖ ≤ 2 n^σ`.-/
+`0 ≤ σ ≤ 1`.  This is what bounds `‖T_n(σ)‖ ≤ 2 n^σ`.
+@isnad1 id=le.3h2v.s6.d6695fdd3876 from=translated src=- shape=5514828e vocab=b92b8cde
+-/
 theorem sum_abs_binomCoeff_le_two_rpow {σ : ℝ} (hσ0 : 0 ≤ σ) (hσ1 : σ ≤ 1) {n : ℕ}
     (hn : 1 ≤ n) :
     ∑ r ∈ range n, |binomCoeff r σ| ≤ 2 * (n : ℝ) ^ σ := by
@@ -495,7 +534,9 @@ with constants proportional to `θ²`, so that the whole prefix difference is
 -/
 
 /-- For `0 < θ < 1/2`: `∑_{r=1}^m a_r(θ)² ≤ 9θ²/(2(1-2θ))`, from
-`a_r(θ) ≤ (3/2)θ r^{θ-1}` and the super-critical `p`-series at `σ = 1 - 2θ`.-/
+`a_r(θ) ≤ (3/2)θ r^{θ-1}` and the super-critical `p`-series at `σ = 1 - 2θ`.
+@isnad1 id=le.2h2v.s7.71379d86cb91 from=translated src=- shape=37a6b4fc vocab=0a419c86
+-/
 theorem sum_sq_binomCoeff_tail_pos {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1 / 2) (m : ℕ) :
     ∑ r ∈ Icc 1 m, binomCoeff r θ ^ 2 ≤ 9 * θ ^ 2 / (2 * (1 - 2 * θ)) := by
   have hσ0 : (0 : ℝ) < 1 - 2 * θ := by linarith
@@ -533,7 +574,9 @@ theorem sum_sq_binomCoeff_tail_pos {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1 / 2
         try ring
 
 /-- For `-1/2 < θ ≤ 0`: `∑_{r=1}^m a_r(θ)² ≤ 2θ²`, from `|a_r(θ)| ≤ |θ| r^{θ-1}`
-and `∑ r^{-2} ≤ 2` (the exponent `2 - 2θ ≥ 2` is dominated by `2`).-/
+and `∑ r^{-2} ≤ 2` (the exponent `2 - 2θ ≥ 2` is dominated by `2`).
+@isnad1 id=le.2h2v.s6.8699d4640e00 from=translated src=- shape=78538242 vocab=f1376dd2
+-/
 theorem sum_sq_binomCoeff_tail_neg {θ : ℝ} (hθ0 : -1 < θ) (hθ1 : θ ≤ 0) (m : ℕ) :
     ∑ r ∈ Icc 1 m, binomCoeff r θ ^ 2 ≤ 2 * θ ^ 2 := by
   have hterm : ∀ r ∈ Icc 1 m,
