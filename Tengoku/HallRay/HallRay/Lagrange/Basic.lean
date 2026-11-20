@@ -39,13 +39,17 @@ noncomputable def lambda (A : BiSequence) (i : ℤ) : ℝ :=
   value (A i).1 (rightDigits A i) + value 0 (leftDigits A i)
 
 /-- The local value split into its central partial quotient and two
-fractional tails.-/
+fractional tails.
+@isnad1 id=eq.0h2v.s5.833bfc549620 from=translated src=- shape=e1d8d19e vocab=9c53aa40
+-/
 theorem lambda_eq_center_add_tails (A : BiSequence) (i : ℤ) :
     lambda A i =
       (A i).1 + value 0 (rightDigits A i) + value 0 (leftDigits A i) := by
   rw [lambda, value_eq_head_add]
 
-/-- Uniform elementary bounds for a local Lagrange value.-/
+/-- Uniform elementary bounds for a local Lagrange value.
+@isnad1 id=mem.0h2v.s6.a0afba5625a6 from=translated src=- shape=31326f35 vocab=6694e484
+-/
 theorem lambda_mem_Icc (A : BiSequence) (i : ℤ) :
     lambda A i ∈ Set.Icc ((A i).1 : ℝ) ((A i).1 + 2) := by
   rw [lambda_eq_center_add_tails]
@@ -53,14 +57,18 @@ theorem lambda_mem_Icc (A : BiSequence) (i : ℤ) :
   rcases value_zero_mem_Icc (leftDigits A i) with ⟨hl0, hl1⟩
   constructor <;> linarith
 
-/-- A bound on all partial quotients gives a bound on all local values.-/
+/-- A bound on all partial quotients gives a bound on all local values.
+@isnad1 id=le.1h3v.s5.f1b821ccfd30 from=translated src=- shape=5b9ee449 vocab=a711bed9
+-/
 theorem lambda_le_of_digits_le (A : BiSequence) {M : ℝ}
     (hA : ∀ i, ((A i).1 : ℝ) ≤ M) (i : ℤ) :
     lambda A i ≤ M + 2 := by
   exact (lambda_mem_Icc A i).2.trans (by linarith [hA i])
 
 /-- Local Lagrange values are bounded below, hence are cobounded in the
-sense required by the conditionally-complete `limsup` API.-/
+sense required by the conditionally-complete `limsup` API.
+@isnad1 id=iscoboun.0h1v.s4.3c07023b09a8 from=translated src=- shape=6013013f vocab=13a697e3
+-/
 theorem lambda_isCobounded (A : BiSequence) :
     Filter.IsCoboundedUnder LE.le Filter.atTop
       (fun n : ℕ ↦ lambda A n) := by

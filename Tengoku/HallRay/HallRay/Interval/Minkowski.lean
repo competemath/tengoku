@@ -22,18 +22,25 @@ namespace Interval
 def minkowskiSum (X Y : Set ℝ) : Set ℝ :=
   Set.image2 (· + ·) X Y
 
-/-- Membership in a Minkowski sum, in the form most useful for proofs.-/
+/-- Membership in a Minkowski sum, in the form most useful for proofs.
+@isnad1 id=iff.0h3v.s5.9d67f6178bb2 from=translated src=- shape=5029b724 vocab=645ab2e5
+-/
 theorem mem_minkowskiSum {X Y : Set ℝ} {z : ℝ} :
     z ∈ minkowskiSum X Y ↔ ∃ x ∈ X, ∃ y ∈ Y, x + y = z := by
   rfl
 
-/-- Minkowski addition is monotone in both arguments.-/
+/-- Minkowski addition is monotone in both arguments.
+@isnad1 id=le.2h4v.s5.9da7b07c8216 from=translated src=- shape=1e98b407 vocab=ea5c5b57
+-/
 theorem minkowskiSum_mono {X₁ X₂ Y₁ Y₂ : Set ℝ}
     (hX : X₁ ⊆ X₂) (hY : Y₁ ⊆ Y₂) :
     minkowskiSum X₁ Y₁ ⊆ minkowskiSum X₂ Y₂ := by
   rintro z ⟨x, hx, y, hy, rfl⟩
   exact ⟨x, hX hx, y, hY hy, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.3d07b5214103 from=translated src=- shape=0ec67bdd vocab=a409a93c
+-/
 theorem minkowskiSum_comm (X Y : Set ℝ) :
     minkowskiSum X Y = minkowskiSum Y X := by
   ext z
@@ -43,6 +50,9 @@ theorem minkowskiSum_comm (X Y : Set ℝ) :
   · rintro ⟨y, hy, x, hx, rfl⟩
     exact ⟨x, hx, y, hy, add_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.d129d335e144 from=translated src=- shape=fc915f33 vocab=047271d1
+-/
 theorem minkowskiSum_union_left (X₁ X₂ Y : Set ℝ) :
     minkowskiSum (X₁ ∪ X₂) Y =
       minkowskiSum X₁ Y ∪ minkowskiSum X₂ Y := by
@@ -55,6 +65,9 @@ theorem minkowskiSum_union_left (X₁ X₂ Y : Set ℝ) :
     · exact ⟨x, Or.inl hx, y, hy, rfl⟩
     · exact ⟨x, Or.inr hx, y, hy, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.109f800dca39 from=translated src=- shape=7ed42449 vocab=047271d1
+-/
 theorem minkowskiSum_union_right (X Y₁ Y₂ : Set ℝ) :
     minkowskiSum X (Y₁ ∪ Y₂) =
       minkowskiSum X Y₁ ∪ minkowskiSum X Y₂ := by
@@ -62,7 +75,9 @@ theorem minkowskiSum_union_right (X Y₁ Y₂ : Set ℝ) :
   congr 1 <;> apply minkowskiSum_comm
 
 /-- The sum of two nonempty closed real intervals is the interval whose
-endpoints are the sums of the endpoints.-/
+endpoints are the sums of the endpoints.
+@isnad1 id=eq.2h4v.s5.bd466cf0092d from=translated src=- shape=87b80d7c vocab=379105b8
+-/
 theorem minkowskiSum_Icc {a b u v : ℝ} (hab : a ≤ b) (huv : u ≤ v) :
     minkowskiSum (Set.Icc a b) (Set.Icc u v) = Set.Icc (a + u) (b + v) := by
   ext z
@@ -91,7 +106,9 @@ theorem minkowskiSum_Icc {a b u v : ℝ} (hab : a ≤ b) (huv : u ≤ v) :
 Removing an open interval from one closed interval does not change its
 Minkowski sum with a second interval whose length is at least the gap length.
 
-This is Lemma 4.1 (`two-closed`) of `doc/main.tex`.-/
+This is Lemma 4.1 (`two-closed`) of `doc/main.tex`.
+@isnad1 id=eq.5h6v.s6.07014529bdf4 from=translated src=- shape=214c5b93 vocab=29c4d03d
+-/
 theorem minkowskiSum_Icc_split {a b c d u v : ℝ}
     (hac : a ≤ c) (hcd : c ≤ d) (hdb : d ≤ b) (huv : u ≤ v)
     (hgap : d - c ≤ v - u) :
@@ -120,6 +137,9 @@ theorem minkowskiSum_Icc_split {a b c d u v : ℝ}
 def intervalUnion {ι : Type*} (s : Finset ι) (l r : ι → ℝ) : Set ℝ :=
   ⋃ i ∈ s, Set.Icc (l i) (r i)
 
+/--
+@isnad1 id=iff.0h5v.s5.5b25edbc5424 from=translated src=- shape=d4e687d1 vocab=6ebf87ef
+-/
 theorem mem_intervalUnion {ι : Type*} {s : Finset ι} {l r : ι → ℝ} {x : ℝ} :
     x ∈ intervalUnion s l r ↔ ∃ i ∈ s, x ∈ Set.Icc (l i) (r i) := by
   constructor
@@ -130,7 +150,9 @@ theorem mem_intervalUnion {ι : Type*} {s : Finset ι} {l r : ι → ℝ} {x : �
     simp only [intervalUnion, Set.mem_iUnion]
     exact ⟨i, hi, hx.1, hx.2⟩
 
-/-- Splitting an interval along a short gap preserves its self-sum.-/
+/-- Splitting an interval along a short gap preserves its self-sum.
+@isnad1 id=eq.5h4v.s6.f2782ffe1494 from=translated src=- shape=4d6df193 vocab=29c4d03d
+-/
 theorem minkowskiSum_Icc_split_self {a b c d : ℝ}
     (hac : a ≤ c) (hcd : c ≤ d) (hdb : d ≤ b)
     (hleft : d - c ≤ c - a) (hright : d - c ≤ b - d) :
@@ -159,7 +181,9 @@ theorem minkowskiSum_Icc_split_self {a b c d : ℝ}
 /--
 Orientation-free version of `minkowskiSum_Icc_split_self`.  It is tailored
 to continued-fraction cylinders, whose common-prefix map alternates between
-increasing and decreasing.-/
+increasing and decreasing.
+@isnad1 id=eq.3h4v.s7.0157acc53d76 from=translated src=- shape=05b64a02 vocab=26cd0b6d
+-/
 theorem minkowskiSum_uIcc_split_self {x0 x1 x2 x3 : ℝ}
     (horder :
       (x0 ≤ x1 ∧ x1 ≤ x2 ∧ x2 ≤ x3) ∨
@@ -190,7 +214,9 @@ theorem minkowskiSum_uIcc_split_self {x0 x1 x2 x3 : ℝ}
       linarith
 
 /-- Orientation-free two-interval version used for cross terms in a finite
-union of continued-fraction cylinders.-/
+union of continued-fraction cylinders.
+@isnad1 id=eq.2h6v.s6.20346675fdc4 from=translated src=- shape=99c01aef vocab=26cd0b6d
+-/
 theorem minkowskiSum_uIcc_split {x0 x1 x2 x3 u v : ℝ}
     (horder :
       (x0 ≤ x1 ∧ x1 ≤ x2 ∧ x2 ≤ x3) ∨
@@ -231,7 +257,9 @@ theorem minkowskiSum_uIcc_split {x0 x1 x2 x3 u v : ℝ}
 /--
 Lemma 4.2 of `doc/main.tex`: if every interval in the remainder and both
 pieces adjacent to a removed gap are at least as long as that gap, removing
-the gap preserves the self-sum of the finite interval union.-/
+the gap preserves the self-sum of the finite interval union.
+@isnad1 id=other.7h8v.s7.539f0bf2554b from=translated src=- shape=0c1a7d52 vocab=375069ee
+-/
 theorem minkowskiSum_union_split_self {ι : Type*}
     (s : Finset ι) (l r : ι → ℝ) {a b c d : ℝ}
     (hvalid : ∀ i ∈ s, l i ≤ r i)
@@ -291,7 +319,9 @@ theorem minkowskiSum_union_split_self {ι : Type*}
 Minkowski self-sums commute with the intersection of a decreasing sequence
 of nonempty compact sets.
 
-This is Lemma 4.3 (`sum-cap-eq-cap-sum`) of `doc/main.tex`.-/
+This is Lemma 4.3 (`sum-cap-eq-cap-sum`) of `doc/main.tex`.
+@isnad1 id=eq.3h1v.s6.60cd2e2a7544 from=translated src=- shape=a8c2f417 vocab=81803255
+-/
 theorem minkowskiSum_iInter_self (K : ℕ → Set ℝ)
     (hanti : Antitone K) (_hne : ∀ n, (K n).Nonempty)
     (hcompact : ∀ n, IsCompact (K n)) :

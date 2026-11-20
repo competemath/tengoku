@@ -33,6 +33,9 @@ private def q1 : PartialQuotient := ⟨1, by omega⟩
 def anchor (n : ℕ) : ℕ :=
   2 * n * n + 2 * n + 10
 
+/--
+@isnad1 id=strictmo.0h0v.s2.ce62c03ed638 from=translated src=- shape=e3d48bcb vocab=e8e5f08a
+-/
 theorem strictMono_anchor : StrictMono anchor := by
   apply strictMono_nat_of_lt_succ
   intro n
@@ -43,16 +46,25 @@ theorem strictMono_anchor : StrictMono anchor := by
 def InAnchorRegion (p n : ℕ) : Prop :=
   anchor n - (n + 1) ≤ p ∧ p ≤ anchor n + (n + 1)
 
+/--
+@isnad1 id=eq.0h1v.s6.461959066895 from=translated src=- shape=58c4655a vocab=bf5cd846
+-/
 theorem anchor_sub_radius (n : ℕ) :
     anchor n - (n + 1) = 2 * n * n + n + 9 := by
   simp [anchor]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s6.d0f6f9e2d9f6 from=translated src=- shape=97c6ee8a vocab=7ec12028
+-/
 theorem anchor_add_radius (n : ℕ) :
     anchor n + (n + 1) = 2 * n * n + 3 * n + 11 := by
   simp [anchor]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s4.bb0f4ef6bbf8 from=translated src=- shape=920a25f1 vocab=7913b73e
+-/
 theorem anchor_regions_disjoint {p n m : ℕ}
     (hn : InAnchorRegion p n) (hm : InAnchorRegion p m) :
     n = m := by
@@ -75,12 +87,18 @@ noncomputable def regionOwner (p : ℕ) (h : ∃ n, InAnchorRegion p n) : ℕ :=
     classical
     exact Nat.find h
 
+/--
+@isnad1 id=eq.1h2v.s4.30aecd7d0221 from=translated src=- shape=af0979aa vocab=f0ebb426
+-/
 theorem regionOwner_eq {p n : ℕ} (hn : InAnchorRegion p n) :
     regionOwner p ⟨n, hn⟩ = n := by
   classical
   unfold regionOwner
   exact anchor_regions_disjoint (Nat.find_spec ⟨n, hn⟩) hn
 
+/--
+@isnad1 id=eq.2h2v.s4.4fe9317ef3d2 from=translated src=- shape=7f3c75ef vocab=0bae58d9
+-/
 theorem regionOwner_eq_of_mem {p n : ℕ}
     (h : ∃ m, InAnchorRegion p m) (hn : InAnchorRegion p n) :
     regionOwner p h = n := by
@@ -108,11 +126,17 @@ noncomputable def sparseSequence
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) : BiSequence :=
   fun i ↦ if 0 ≤ i then sparseDigits a b c i.toNat else q1
 
+/--
+@isnad1 id=inanchor.0h1v.s2.808229976e15 from=translated src=- shape=b54cd39a vocab=2ffb0748
+-/
 theorem anchor_mem_region (n : ℕ) : InAnchorRegion (anchor n) n := by
   constructor
   · exact Nat.sub_le _ _
   · omega
 
+/--
+@isnad1 id=eq.0h4v.s4.204b9b5ebc1e from=translated src=- shape=5fdcef89 vocab=f4e91804
+-/
 theorem sparseDigits_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) (n : ℕ) :
     sparseDigits a b c (anchor n) = a := by
@@ -123,12 +147,18 @@ theorem sparseDigits_anchor
     simp
   · exact False.elim (hcenter ⟨n, anchor_mem_region n⟩)
 
+/--
+@isnad1 id=inanchor.1h2v.s5.d2f06d21a9c3 from=translated src=- shape=73001c05 vocab=c085b2a0
+-/
 theorem right_position_mem_region {n k : ℕ} (hk : k ≤ n) :
     InAnchorRegion (anchor n + (k + 1)) n := by
   constructor
   · exact (Nat.sub_le _ _).trans (Nat.le_add_right _ _)
   · omega
 
+/--
+@isnad1 id=inanchor.1h2v.s5.7347d4d6d3a0 from=translated src=- shape=b1c43e48 vocab=ec4ea148
+-/
 theorem left_position_mem_region {n k : ℕ} (hk : k ≤ n) :
     InAnchorRegion (anchor n - (k + 1)) n := by
   have hrad : k + 1 ≤ n + 1 := Nat.add_le_add_right hk 1
@@ -136,6 +166,9 @@ theorem left_position_mem_region {n k : ℕ} (hk : k ≤ n) :
   · exact Nat.sub_le_sub_left hrad _
   · exact (Nat.sub_le _ _).trans (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=eq.1h5v.s5.636a723363af from=translated src=- shape=48fd9a7a vocab=7b866693
+-/
 theorem sparseDigits_right
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) {n k : ℕ} (hk : k ≤ n) :
     sparseDigits a b c (anchor n + (k + 1)) = c k := by
@@ -147,6 +180,9 @@ theorem sparseDigits_right
   have hright : anchor n < anchor n + (k + 1) := by omega
   simp [hright]
 
+/--
+@isnad1 id=eq.1h5v.s5.e0f313982561 from=translated src=- shape=40d71a9e vocab=9ea7dbd2
+-/
 theorem sparseDigits_left
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) {n k : ℕ} (hk : k ≤ n) :
     sparseDigits a b c (anchor n - (k + 1)) = b k := by
@@ -164,11 +200,17 @@ theorem sparseDigits_left
   congr 1
   omega
 
+/--
+@isnad1 id=eq.0h4v.s4.b290110c608e from=translated src=- shape=c58b8f4e vocab=3370dcb9
+-/
 theorem sparseSequence_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) (n : ℕ) :
     sparseSequence a b c (anchor n : ℤ) = a := by
   simp [sparseSequence, sparseDigits_anchor]
 
+/--
+@isnad1 id=le.3h4v.s6.aeccbf3086bb from=translated src=- shape=f46efcd6 vocab=681f785d
+-/
 theorem sparseDigits_le_four_of_not_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient)
     (hb : ∀ n, (b n).1 ≤ 4) (hc : ∀ n, (c n).1 ≤ 4)
@@ -187,6 +229,9 @@ theorem sparseDigits_le_four_of_not_anchor
     change 1 ≤ 4
     omega
 
+/--
+@isnad1 id=le.3h4v.s6.4db0baa9d62a from=translated src=- shape=2c3ec1ea vocab=80fe031e
+-/
 theorem sparseSequence_digit_le
     (a : PartialQuotient) (b c : ℕ → PartialQuotient)
     (ha : 4 ≤ a.1) (hb : ∀ n, (b n).1 ≤ 4) (hc : ∀ n, (c n).1 ≤ 4)
@@ -202,6 +247,9 @@ theorem sparseSequence_digit_le
   · change 1 ≤ a.1
     omega
 
+/--
+@isnad1 id=isbounde.3h3v.s6.56240c296547 from=translated src=- shape=4beb74fa vocab=2e7dfea7
+-/
 theorem lambda_sparseSequence_isBounded
     (a : PartialQuotient) (b c : ℕ → PartialQuotient)
     (ha : 4 ≤ a.1) (hb : ∀ n, (b n).1 ≤ 4) (hc : ∀ n, (c n).1 ≤ 4) :
@@ -216,6 +264,9 @@ theorem lambda_sparseSequence_isBounded
     exact_mod_cast sparseSequence_digit_le a b c ha hb hc i
   exact hrange.isBoundedUnder_of_range
 
+/--
+@isnad1 id=eq.1h5v.s5.eb1ef062b1d4 from=translated src=- shape=a120aae8 vocab=b9b986fc
+-/
 theorem rightDigits_sparseSequence_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) {n k : ℕ} (hk : k ≤ n) :
     rightDigits (sparseSequence a b c) (anchor n : ℤ) k = c k := by
@@ -230,6 +281,9 @@ theorem rightDigits_sparseSequence_anchor
     exact sparseDigits_right a b c hk
   · positivity
 
+/--
+@isnad1 id=eq.1h5v.s5.9e3e75f23caf from=translated src=- shape=3776e654 vocab=31a4529b
+-/
 theorem leftDigits_sparseSequence_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) {n k : ℕ} (hk : k ≤ n) :
     leftDigits (sparseSequence a b c) (anchor n : ℤ) k = b k := by
@@ -249,6 +303,9 @@ theorem leftDigits_sparseSequence_anchor
     exact sparseDigits_left a b c hk
   · exact sub_nonneg.mpr (by exact_mod_cast hanchor)
 
+/--
+@isnad1 id=eq.0h4v.s5.e5c25984074d from=translated src=- shape=dcdc8b6e vocab=c5761ccb
+-/
 theorem right_prefix_sparseSequence_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) (n : ℕ) :
     (List.range (n + 1)).map
@@ -258,6 +315,9 @@ theorem right_prefix_sparseSequence_anchor
   intro k hk
   exact rightDigits_sparseSequence_anchor a b c (Nat.lt_succ_iff.mp (List.mem_range.mp hk))
 
+/--
+@isnad1 id=eq.0h4v.s5.be155047ec61 from=translated src=- shape=1ebec14b vocab=490a2158
+-/
 theorem left_prefix_sparseSequence_anchor
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) (n : ℕ) :
     (List.range (n + 1)).map
@@ -267,6 +327,9 @@ theorem left_prefix_sparseSequence_anchor
   intro k hk
   exact leftDigits_sparseSequence_anchor a b c (Nat.lt_succ_iff.mp (List.mem_range.mp hk))
 
+/--
+@isnad1 id=le.0h4v.s7.bb71a9302714 from=translated src=- shape=46786ed0 vocab=dd8a189c
+-/
 theorem lambda_sparseSequence_anchor_error
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) (n : ℕ) :
     |lambda (sparseSequence a b c) (anchor n : ℤ) -
@@ -294,6 +357,9 @@ theorem lambda_sparseSequence_anchor_error
       add_le_add hr hl
     _ = 2 / 4 ^ ((n + 1) / 2) := by ring
 
+/--
+@isnad1 id=tendsto.0h0v.s4.200d70252db1 from=translated src=- shape=3cbeb68f vocab=d1d6c4e4
+-/
 theorem tendsto_anchor_even :
     Filter.Tendsto (fun n : ℕ ↦ anchor (2 * n)) Filter.atTop Filter.atTop := by
   rw [Filter.tendsto_atTop]
@@ -304,6 +370,9 @@ theorem tendsto_anchor_even :
     omega
   omega
 
+/--
+@isnad1 id=tendsto.0h3v.s6.0a0dcee52bc6 from=translated src=- shape=b7edbaba vocab=67466e82
+-/
 theorem tendsto_lambda_sparseSequence_anchor_even
     (a : PartialQuotient) (b c : ℕ → PartialQuotient) :
     Filter.Tendsto
@@ -323,6 +392,9 @@ theorem tendsto_lambda_sparseSequence_anchor_even
     (tendsto_pow_atTop_nhds_zero_of_lt_one
       (r := (1 / 4 : ℝ)) (by norm_num) (by norm_num)).const_mul (2 : ℝ)
 
+/--
+@isnad1 id=eventual.4h4v.s7.9bfa560a490a from=translated src=- shape=2c197a57 vocab=7601ef13
+-/
 theorem eventually_lambda_sparseSequence_lt_add
     (a : PartialQuotient) (b c : ℕ → PartialQuotient)
     (hb : ∀ n, (b n).1 ≤ 4) (hc : ∀ n, (c n).1 ≤ 4)
@@ -380,7 +452,9 @@ theorem eventually_lambda_sparseSequence_lt_add
 /--
 Analytic limsup criterion used by the block construction: an unbounded
 subsequence converging to `ell`, together with an eventual upper bound by
-`ell + ε`, forces the Lagrange value to equal `ell`.-/
+`ell + ε`, forces the Lagrange value to equal `ell`.
+@isnad1 id=eq.4h3v.s6.4d0f173d2ff2 from=translated src=- shape=342e2885 vocab=8b39fb81
+-/
 theorem lagrangeValue_eq_of_tendsto_subsequence
     (A : BiSequence) (ell : ℝ) (j : ℕ → ℕ)
     (hbdd : Filter.IsBoundedUnder LE.le Filter.atTop
@@ -406,7 +480,9 @@ theorem lagrangeValue_eq_of_tendsto_subsequence
     obtain ⟨n, hnN, hny⟩ := (hjN.and hsub_y).exists
     exact ⟨j n, hnN, hny⟩
 
-/-- The sparse block sequence realizes `a + [0;c…] + [0;b…]`.-/
+/-- The sparse block sequence realizes `a + [0;c…] + [0;b…]`.
+@isnad1 id=mem.4h3v.s7.e7dfaa0443e1 from=translated src=- shape=b44db6e2 vocab=9fcf0328
+-/
 theorem large_value_mem_spectrum
     (a : PartialQuotient) (b c : ℕ → PartialQuotient)
     (ha : 5 ≤ a.1) (hb : ∀ n, (b n).1 ≤ 4) (hc : ∀ n, (c n).1 ≤ 4)

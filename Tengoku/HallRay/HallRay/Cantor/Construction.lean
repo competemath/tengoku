@@ -28,9 +28,21 @@ def q2 : PartialQuotient := ⟨2, by omega⟩
 def q3 : PartialQuotient := ⟨3, by omega⟩
 def q4 : PartialQuotient := ⟨4, by omega⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.1b013cc4fe20 from=translated src=- shape=b961fbd3 vocab=71644291
+-/
 @[simp] theorem q1_val : q1.1 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.2f3a8be253d4 from=translated src=- shape=b961fbd3 vocab=f9ea1e3f
+-/
 @[simp] theorem q2_val : q2.1 = 2 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.461f669a7f3a from=translated src=- shape=b961fbd3 vocab=c8814954
+-/
 @[simp] theorem q3_val : q3.1 = 3 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.847946e89353 from=translated src=- shape=b961fbd3 vocab=1b492e69
+-/
 @[simp] theorem q4_val : q4.1 = 4 := rfl
 
 /--
@@ -60,29 +72,53 @@ noncomputable def delta : ℝ :=
 noncomputable def epsilon : ℝ :=
   2 * (Real.sqrt 2 - 1)
 
+/--
+@isnad1 id=eq.0h0v.s5.cf4d3864bf7d from=translated src=- shape=424e5f08 vocab=2d61703d
+-/
 theorem sqrt_two_sq : (Real.sqrt 2) ^ 2 = (2 : ℝ) := by
   norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.6905cbe19875 from=translated src=- shape=cf0a9d99 vocab=a8bb4d87
+-/
 theorem sqrt_two_pos : (0 : ℝ) < Real.sqrt 2 := Real.sqrt_pos.2 (by norm_num)
 
+/--
+@isnad1 id=lt.0h0v.s4.e588007e385d from=translated src=- shape=cf0a9d99 vocab=a8bb4d87
+-/
 theorem one_lt_sqrt_two : (1 : ℝ) < Real.sqrt 2 := by
   nlinarith [sqrt_two_sq, sqrt_two_pos]
 
+/--
+@isnad1 id=lt.0h0v.s4.8056e04ea349 from=translated src=- shape=3c26ae4f vocab=a8bb4d87
+-/
 theorem sqrt_two_lt_two : Real.sqrt 2 < (2 : ℝ) := by
   nlinarith [sqrt_two_sq, sqrt_two_pos]
 
+/--
+@isnad1 id=lt.0h0v.s3.922fab07d2ad from=translated src=- shape=ff3a10fc vocab=5eb4b3b4
+-/
 theorem delta_pos : 0 < delta := by
   unfold delta
   linarith [one_lt_sqrt_two]
 
+/--
+@isnad1 id=lt.0h0v.s3.c91528943cc7 from=translated src=- shape=ff3a10fc vocab=285b5bc1
+-/
 theorem epsilon_pos : 0 < epsilon := by
   unfold epsilon
   linarith [one_lt_sqrt_two]
 
+/--
+@isnad1 id=le.0h0v.s3.0f93564fdbf8 from=translated src=- shape=ffdda526 vocab=9d4cd8e6
+-/
 theorem epsilon_le_one : epsilon ≤ 1 := by
   unfold epsilon
   nlinarith [sqrt_two_sq, sqrt_two_pos]
 
+/--
+@isnad1 id=eq.0h0v.s4.12358d65a54f from=translated src=- shape=e4de06d0 vocab=7184c358
+-/
 theorem one_div_xi : 1 / xi = delta := by
   have hxi : xi ≠ 0 := by
     unfold xi
@@ -91,6 +127,9 @@ theorem one_div_xi : 1 / xi = delta := by
   unfold xi delta
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=eq.0h0v.s4.876bc68c4a18 from=translated src=- shape=e4de06d0 vocab=5d6620ce
+-/
 theorem one_div_eta : 1 / eta = epsilon := by
   have heta : eta ≠ 0 := by
     unfold eta
@@ -99,25 +138,42 @@ theorem one_div_eta : 1 / eta = epsilon := by
   unfold eta epsilon
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=le.0h0v.s2.f3a9565c6caf from=translated src=- shape=54c8eceb vocab=0f5e05dc
+-/
 theorem delta_le_epsilon : delta ≤ epsilon := by
   unfold delta epsilon
   linarith [one_lt_sqrt_two]
 
+/--
+@isnad1 id=eq.0h0v.s4.6cbc1ce53c84 from=translated src=- shape=f464b020 vocab=654dfde5
+-/
 theorem eta_eq_one_add_delta : eta = 1 + delta := by
   unfold eta delta
   ring
 
+/--
+@isnad1 id=eq.0h0v.s4.1e6bf3f0cf7c from=translated src=- shape=f464b020 vocab=1eab9d48
+-/
 theorem xi_eq_four_add_epsilon : xi = 4 + epsilon := by
   unfold xi epsilon
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.af34e166051a from=translated src=- shape=7a31b2fe vocab=36dbf0ae
+-/
 theorem one_div_four_add_epsilon : 1 / (4 + epsilon) = delta := by
   rw [← xi_eq_four_add_epsilon, one_div_xi]
 
+/--
+@isnad1 id=eq.0h0v.s5.22d0c586019f from=translated src=- shape=7a31b2fe vocab=cf954a9a
+-/
 theorem one_div_one_add_delta : 1 / (1 + delta) = epsilon := by
   rw [← eta_eq_one_add_delta, one_div_eta]
 
-/-- The interval `[δ, ε]` is invariant under every allowed tail step.-/
+/-- The interval `[δ, ε]` is invariant under every allowed tail step.
+@isnad1 id=mem.2h2v.s6.dbafa2bb48ab from=translated src=- shape=a9af29d3 vocab=38b668e7
+-/
 theorem tailStep_mem_delta_epsilon (a : PartialQuotient)
     (ha : a.1 ≤ 4) {x : ℝ} (hx : x ∈ Set.Icc delta epsilon) :
     1 / ((a.1 : ℝ) + x) ∈ Set.Icc delta epsilon := by
@@ -132,7 +188,9 @@ theorem tailStep_mem_delta_epsilon (a : PartialQuotient)
     exact one_div_le_one_div_of_le (by linarith [delta_pos])
       (by linarith [hx.1])
 
-/-- Allowed finite words preserve Hall's invariant tail interval.-/
+/-- Allowed finite words preserve Hall's invariant tail interval.
+@isnad1 id=mem.2h2v.s6.2dd2eeba63f9 from=translated src=- shape=18472485 vocab=32591e5e
+-/
 theorem tailMap_mem_delta_epsilon (w : Word)
     (hw : ∀ a ∈ w, a.1 ≤ 4) {x : ℝ}
     (hx : x ∈ Set.Icc delta epsilon) :
@@ -144,7 +202,9 @@ theorem tailMap_mem_delta_epsilon (w : Word)
       apply tailStep_mem_delta_epsilon a (hw a (by simp))
       exact ih (fun b hb ↦ hw b (by simp [hb])) hx
 
-/-- Values whose digits are at most four lie in the initial Hall interval.-/
+/-- Values whose digits are at most four lie in the initial Hall interval.
+@isnad1 id=mem.1h1v.s5.a8afc30a4b84 from=translated src=- shape=822a95a9 vocab=44583974
+-/
 theorem value_mem_delta_epsilon (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) :
     value 0 digits ∈ Set.Icc delta epsilon := by
@@ -194,6 +254,9 @@ abbrev Digit4 := Fin 4
 def digit4PartialQuotient (a : Digit4) : PartialQuotient :=
   ⟨a.1 + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.fe835e32aa91 from=translated src=- shape=8d5446ec vocab=5e6d55fc
+-/
 @[simp]
 theorem digit4PartialQuotient_val (a : Digit4) :
     (digit4PartialQuotient a).1 = a.1 + 1 := rfl
@@ -201,7 +264,9 @@ theorem digit4PartialQuotient_val (a : Digit4) :
 noncomputable def digit4Value (digits : ℕ → Digit4) : ℝ :=
   value 0 (fun n ↦ digit4PartialQuotient (digits n))
 
-/-- The value map on four-letter digit streams is continuous.-/
+/-- The value map on four-letter digit streams is continuous.
+@isnad1 id=continuo.0h0v.s4.3559372d1c83 from=translated src=- shape=db2d4fff vocab=d33ed6af
+-/
 theorem continuous_digit4Value : Continuous digit4Value := by
   rw [continuous_iff_continuousAt]
   intro digits
@@ -262,7 +327,9 @@ theorem continuous_digit4Value : Continuous digit4Value := by
         simpa only [abs_sub_comm] using hds
       linarith
 
-/-- `C(4)` is exactly the range of the compact four-letter stream space.-/
+/-- `C(4)` is exactly the range of the compact four-letter stream space.
+@isnad1 id=eq.0h0v.s3.3209ade6e4c6 from=translated src=- shape=91ba0f74 vocab=963e85db
+-/
 theorem C4_eq_range : C 4 = Set.range digit4Value := by
   ext x
   constructor
@@ -286,10 +353,16 @@ theorem C4_eq_range : C 4 = Set.range digit4Value := by
     simp only [digit4PartialQuotient_val]
     omega
 
+/--
+@isnad1 id=iscompac.0h0v.s3.b090edb19f81 from=translated src=- shape=9ae76a30 vocab=b91a248c
+-/
 theorem isCompact_C4 : IsCompact (C 4) := by
   rw [C4_eq_range, ← Set.image_univ]
   exact isCompact_univ.image continuous_digit4Value
 
+/--
+@isnad1 id=isclosed.0h0v.s3.a4d22b294677 from=translated src=- shape=9ae76a30 vocab=846c6676
+-/
 theorem isClosed_C4 : IsClosed (C 4) := isCompact_C4.isClosed
 
 /-- The interval `T₁(w)` from §2.2 of `doc/main.tex`.-/
@@ -305,7 +378,9 @@ noncomputable def T3 (w : Word) : Set ℝ :=
   Set.uIcc (prefixMap w xi) (prefixMap (w ++ [q3]) xi)
 
 /-- A bounded digit stream with a prescribed prefix lies in the corresponding
-state-`T₁` cylinder.-/
+state-`T₁` cylinder.
+@isnad1 id=mem.2h2v.s5.44bc3467400d from=translated src=- shape=538504ef vocab=34830ecd
+-/
 theorem value_mem_T1_of_prefix (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) (w : Word)
     (hpref : (List.range w.length).map digits = w) :
@@ -318,7 +393,9 @@ theorem value_mem_T1_of_prefix (digits : ℕ → PartialQuotient)
   exact value_mem_delta_epsilon _ (fun n ↦ hdigits (w.length + n))
 
 /-- State `T₂(w)` consists of bounded continuations whose next digit is at
-least two.-/
+least two.
+@isnad1 id=mem.3h2v.s6.d9f3a79cd1b0 from=translated src=- shape=ae63c876 vocab=efdacd74
+-/
 theorem value_mem_T2_of_prefix (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) (w : Word)
     (hpref : (List.range w.length).map digits = w)
@@ -357,7 +434,9 @@ theorem value_mem_T2_of_prefix (digits : ℕ → PartialQuotient)
   · exact ⟨htail.1, by simpa [hbeta] using hupper⟩
 
 /-- State `T₃(w)` consists of bounded continuations whose next digit is at
-least three.-/
+least three.
+@isnad1 id=mem.3h2v.s6.397c54028158 from=translated src=- shape=ae63c876 vocab=78e4f458
+-/
 theorem value_mem_T3_of_prefix (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) (w : Word)
     (hpref : (List.range w.length).map digits = w)
@@ -488,16 +567,28 @@ def nodesAtLevel : ℕ → List HallNode
 noncomputable def cantorStage (n : ℕ) : Set ℝ :=
   ⋃ v ∈ nodesAtLevel n, v.interval
 
+/--
+@isnad1 id=eq.0h0v.s3.c06d0d1bdf80 from=translated src=- shape=8ad1338f vocab=66fdc22f
+-/
 @[simp]
 theorem nodesAtLevel_zero : nodesAtLevel 0 = [rootNode] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.9bd421bf2de4 from=translated src=- shape=d87189cb vocab=4cd2ecaf
+-/
 @[simp]
 theorem nodesAtLevel_succ (n : ℕ) :
     nodesAtLevel (n + 1) = (nodesAtLevel n).flatMap HallNode.children := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.99053121ee99 from=translated src=- shape=c1e3249b vocab=8860ab4c
+-/
 theorem cantorStage_zero : cantorStage 0 = T1 [] := by
   simp [cantorStage, rootNode, HallNode.interval]
 
+/--
+@isnad1 id=mem.0h2v.s4.98251e3d49eb from=translated src=- shape=b1b9becc vocab=99e924a8
+-/
 theorem guidedPosition_mem_nodesAtLevel (digits : ℕ → PartialQuotient) (n : ℕ) :
     (guidedPosition digits n).node ∈ nodesAtLevel n := by
   induction n with
@@ -509,7 +600,9 @@ theorem guidedPosition_mem_nodesAtLevel (digits : ℕ → PartialQuotient) (n : 
       cases state <;> simp [guidedStep, HallNode.children] <;> split <;> simp
 
 /-- The guided automaton records precisely the already consumed prefix and
-the lower-bound invariant encoded by its current state.-/
+the lower-bound invariant encoded by its current state.
+@isnad1 id=and.1h2v.s6.0ec070095b1b from=translated src=- shape=d7d6b494 vocab=04fe21d3
+-/
 theorem guidedPosition_invariant (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) (n : ℕ) :
     (List.range (guidedPosition digits n).consumed).map digits =
@@ -589,6 +682,9 @@ theorem guidedPosition_invariant (digits : ℕ → PartialQuotient)
               simp [hq]
             · trivial
 
+/--
+@isnad1 id=mem.1h2v.s5.7e19ef62e54c from=translated src=- shape=ca60f3a0 vocab=38102ad7
+-/
 theorem value_mem_guidedPosition_interval (digits : ℕ → PartialQuotient)
     (hdigits : ∀ n, (digits n).1 ≤ 4) (n : ℕ) :
     value 0 digits ∈ (guidedPosition digits n).node.interval := by
@@ -608,6 +704,9 @@ theorem value_mem_guidedPosition_interval (digits : ℕ → PartialQuotient)
   | three =>
       exact value_mem_T3_of_prefix digits hdigits w hinv.1 hinv.2
 
+/--
+@isnad1 id=le.0h1v.s3.fc86abd3e258 from=translated src=- shape=b3d1ae1f vocab=a24bae00
+-/
 theorem C4_subset_cantorStage (n : ℕ) : C 4 ⊆ cantorStage n := by
   rintro x ⟨digits, hdigits, rfl⟩
   change value 0 digits ∈ ⋃ v ∈ nodesAtLevel n, v.interval
@@ -626,6 +725,9 @@ current state.-/
 def HallNode.extendedDigits (v : HallNode) (n : ℕ) : PartialQuotient :=
   v.word.getD n v.state.defaultDigit
 
+/--
+@isnad1 id=eq.0h1v.s4.091110d0c649 from=translated src=- shape=c5073f05 vocab=a129608e
+-/
 theorem map_range_extendedDigits (v : HallNode) :
     (List.range v.word.length).map v.extendedDigits = v.word := by
   apply List.ext_get
@@ -633,6 +735,9 @@ theorem map_range_extendedDigits (v : HallNode) :
   · intro i hi₁ hi₂
     simp [HallNode.extendedDigits, List.getD, hi₂]
 
+/--
+@isnad1 id=le.1h2v.s5.4a15a713e5d9 from=translated src=- shape=65709c01 vocab=6e8fed11
+-/
 theorem HallNode.extendedDigits_le_four (v : HallNode)
     (hw : ∀ a ∈ v.word, a.1 ≤ 4) (n : ℕ) :
     (v.extendedDigits n).1 ≤ 4 := by
@@ -643,6 +748,9 @@ theorem HallNode.extendedDigits_le_four (v : HallNode)
     cases state <;> simp [HallNode.extendedDigits, HallState.defaultDigit,
       List.getD, hn, q1_val, q2_val, q3_val]
 
+/--
+@isnad1 id=mem.1h1v.s5.3d4e00a6b3a4 from=translated src=- shape=1df52d49 vocab=b4f4a3b7
+-/
 theorem HallNode.extendedValue_mem_interval (v : HallNode)
     (hw : ∀ a ∈ v.word, a.1 ≤ 4) :
     value 0 v.extendedDigits ∈ v.interval := by
@@ -661,6 +769,9 @@ theorem HallNode.extendedValue_mem_interval (v : HallNode)
       simp [HallNode.extendedDigits, HallState.defaultDigit, List.getD,
         q3_val]
 
+/--
+@isnad1 id=mem.1h2v.s5.83a15172f061 from=translated src=- shape=63d81fce vocab=bc3b6458
+-/
 theorem prefixMap_append_xi_mem_T1 (w : Word) (q : PartialQuotient)
     (hq : q.1 ≤ 4) :
     prefixMap (w ++ [q]) xi ∈ T1 w := by
@@ -676,6 +787,9 @@ theorem prefixMap_append_xi_mem_T1 (w : Word) (q : PartialQuotient)
   simpa only [T1, prefixMap_eq_tailMap, one_div_eta, one_div_xi,
     tailMap_append, Set.uIcc_comm] using hmem
 
+/--
+@isnad1 id=le.0h1v.s3.93140d0004fa from=translated src=- shape=38bf8af6 vocab=83079d16
+-/
 theorem HallNode.interval_subset_T1 (v : HallNode) :
     v.interval ⊆ T1 v.word := by
   rcases v with ⟨w, state⟩
@@ -690,6 +804,9 @@ theorem HallNode.interval_subset_T1 (v : HallNode) :
       · exact Set.right_mem_uIcc
       · exact prefixMap_append_xi_mem_T1 w q3 (by rw [q3_val]; norm_num)
 
+/--
+@isnad1 id=le.2h3v.s6.7c966f10e401 from=translated src=- shape=110bfcf3 vocab=bc034461
+-/
 theorem HallNode.dist_le_cylinder {v : HallNode} {x y : ℝ}
     (hx : x ∈ v.interval) (hy : y ∈ v.interval) :
     dist x y ≤ 1 / 4 ^ (v.word.length / 2) := by
@@ -714,6 +831,9 @@ def HallNode.rank (v : HallNode) : ℕ :=
 def HallNode.WordAllowed (v : HallNode) : Prop :=
   ∀ a ∈ v.word, a.1 ≤ 4
 
+/--
+@isnad1 id=and.2h2v.s5.1b3d8cd6b91f from=translated src=- shape=f4ede46a vocab=2ba06c7d
+-/
 theorem HallNode.child_allowed_rank (v child : HallNode)
     (hchild : child ∈ v.children) (hv : v.WordAllowed) :
     child.WordAllowed ∧ v.rank + 1 ≤ child.rank := by
@@ -777,6 +897,9 @@ theorem HallNode.child_allowed_rank (v child : HallNode)
             rw [q4_val]
         · (simp [HallNode.rank, HallState.offset]; omega)
 
+/--
+@isnad1 id=and.1h2v.s4.dd5c0dea68a3 from=translated src=- shape=2020ff3a vocab=74c2bd79
+-/
 theorem nodeAtLevel_allowed_rank {n : ℕ} {v : HallNode}
     (hv : v ∈ nodesAtLevel n) :
     v.WordAllowed ∧ n ≤ v.rank := by
@@ -794,7 +917,9 @@ theorem nodeAtLevel_allowed_rank {n : ℕ} {v : HallNode}
       have hc := parent.child_allowed_rank v hchild hparent.1
       exact ⟨hc.1, le_trans (Nat.succ_le_succ hparent.2) hc.2⟩
 
-/-- The recursive interval construction has exactly `C(4)` as its survivor.-/
+/-- The recursive interval construction has exactly `C(4)` as its survivor.
+@isnad1 id=eq.0h0v.s4.27de6435d023 from=translated src=- shape=4881e9b4 vocab=e3fa08e4
+-/
 theorem C4_eq_iInter_cantorStage :
     C 4 = ⋂ n, cantorStage n := by
   apply Set.Subset.antisymm
@@ -849,14 +974,23 @@ theorem C4_eq_iInter_cantorStage :
     exact isClosed_C4.mem_of_tendsto hytend
       (Filter.Eventually.of_forall hyC)
 
+/--
+@isnad1 id=eq.0h2v.s5.ba758440663a from=translated src=- shape=09b1552b vocab=178892b2
+-/
 theorem prefixMap_append_eta (w : Word) (q : PartialQuotient) :
     prefixMap (w ++ [q]) eta = prefixMap w ((q.1 : ℝ) + epsilon) := by
   rw [prefixMap_append_singleton, one_div_eta]
 
+/--
+@isnad1 id=eq.0h2v.s5.f058b32375e2 from=translated src=- shape=09b1552b vocab=3f2b32e8
+-/
 theorem prefixMap_append_xi (w : Word) (q : PartialQuotient) :
     prefixMap (w ++ [q]) xi = prefixMap w ((q.1 : ℝ) + delta) := by
   rw [prefixMap_append_singleton, one_div_xi]
 
+/--
+@isnad1 id=eq.3h4v.s5.62698cbbbdb8 from=translated src=- shape=7056e83e vocab=4e28d3a1
+-/
 theorem uIcc_diff_uIoo_eq_union_uIcc {a0 a1 a2 a3 : ℝ}
     (h01 : a0 ≤ a1) (h12 : a1 ≤ a2) (h23 : a2 ≤ a3) :
     Set.uIcc a0 a3 \ Set.uIoo a1 a2 =
@@ -877,6 +1011,9 @@ theorem uIcc_diff_uIoo_eq_union_uIcc {a0 a1 a2 a3 : ℝ}
     · exact ⟨⟨(h01.trans h12).trans hx.1, hx.2⟩,
         fun hgap ↦ (not_lt_of_ge hx.1) hgap.2⟩
 
+/--
+@isnad1 id=eq.4h5v.s7.962687d93019 from=translated src=- shape=68b51171 vocab=4e28d3a1
+-/
 theorem uIcc_diff_uIoo_of_monotone_or_antitone
     (f : ℝ → ℝ) {x0 x1 x2 x3 : ℝ}
     (_h01 : x0 ≤ x1) (_h12 : x1 ≤ x2) (_h23 : x2 ≤ x3)
@@ -892,6 +1029,9 @@ theorem uIcc_diff_uIoo_of_monotone_or_antitone
     simpa [Set.union_comm] using
       (uIcc_diff_uIoo_eq_union_uIcc hanti.1 hanti.2.1 hanti.2.2)
 
+/--
+@isnad1 id=other.2h2v.s7.e0674d1afda5 from=translated src=- shape=3acbe364 vocab=d9f35534
+-/
 theorem prefixMap_four_order (w : Word) (k : ℕ)
     (hk1 : 1 ≤ k) (hk3 : k ≤ 3) :
     let x0 := (k : ℝ) + delta
@@ -948,6 +1088,9 @@ theorem prefixMap_four_order (w : Word) (k : ℕ)
   · exact Or.inr ⟨(ha hx2mem hx3mem h23lt).le,
       (ha hx1mem hx2mem h12lt).le, (ha hx0mem hx1mem h01lt).le⟩
 
+/--
+@isnad1 id=other.2h2v.s7.a4e7bcf8240f from=translated src=- shape=d8accbc7 vocab=a5f33e55
+-/
 theorem prefixMap_interval_split (w : Word) (k : ℕ)
     (hk1 : 1 ≤ k) (hk3 : k ≤ 3) :
     let x0 := (k : ℝ) + delta
@@ -1002,6 +1145,9 @@ theorem prefixMap_interval_split (w : Word) (k : ℕ)
   · exact Or.inr ⟨(ha hx2mem hx3mem h23lt).le,
       (ha hx1mem hx2mem h12lt).le, (ha hx0mem hx1mem h01lt).le⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.1edb283f9ca2 from=translated src=- shape=9604518e vocab=aea574d2
+-/
 theorem HallNode.interval_diff_gap (v : HallNode) :
     v.interval \ v.gap =
       v.leftChild.interval ∪ v.rightChild.interval := by
@@ -1036,7 +1182,9 @@ theorem HallNode.interval_diff_gap (v : HallNode) :
       simpa [Set.uIcc_comm, add_assoc, add_comm, add_left_comm] using h
 
 /-- One simultaneous subdivision removes exactly the gaps belonging to the
-nodes at the preceding level.-/
+nodes at the preceding level.
+@isnad1 id=eq.0h1v.s5.b8a2463c9b03 from=translated src=- shape=51b6b57e vocab=22b82ac7
+-/
 theorem cantorStage_succ (n : ℕ) :
     cantorStage (n + 1) =
       ⋃ v ∈ nodesAtLevel n, (v.interval \ v.gap) := by
@@ -1055,7 +1203,9 @@ theorem cantorStage_succ (n : ℕ) :
     · exact ⟨parent.leftChild, ⟨parent, hp, by simp [HallNode.children]⟩, hx⟩
     · exact ⟨parent.rightChild, ⟨parent, hp, by simp [HallNode.children]⟩, hx⟩
 
-/-- The finite stages form a decreasing sequence.-/
+/-- The finite stages form a decreasing sequence.
+@isnad1 id=le.0h1v.s4.1180fd7b556f from=translated src=- shape=c5b03586 vocab=7fbda76c
+-/
 theorem cantorStage_succ_subset (n : ℕ) :
     cantorStage (n + 1) ⊆ cantorStage n := by
   rw [cantorStage_succ]
@@ -1066,10 +1216,15 @@ theorem cantorStage_succ_subset (n : ℕ) :
   simp only [Set.mem_iUnion]
   exact ⟨v, hv, hx.1⟩
 
+/--
+@isnad1 id=antitone.0h0v.s4.471d98c4c413 from=translated src=- shape=4b736592 vocab=37134b8c
+-/
 theorem antitone_cantorStage : Antitone cantorStage := by
   exact antitone_nat_of_succ_le cantorStage_succ_subset
 
-/-- Every finite stage is compact.-/
+/-- Every finite stage is compact.
+@isnad1 id=iscompac.0h1v.s3.77c318ea96b6 from=translated src=- shape=1a6c1393 vocab=740eac01
+-/
 theorem isCompact_cantorStage (n : ℕ) : IsCompact (cantorStage n) := by
   classical
   let nodes := nodesAtLevel n
@@ -1089,6 +1244,9 @@ def leftSpine : ℕ → HallNode
   | 0 => rootNode
   | n + 1 => (leftSpine n).leftChild
 
+/--
+@isnad1 id=mem.0h1v.s3.47c11750f070 from=translated src=- shape=b5ca9b95 vocab=3958efb9
+-/
 theorem leftSpine_mem_nodesAtLevel (n : ℕ) :
     leftSpine n ∈ nodesAtLevel n := by
   induction n with
@@ -1097,6 +1255,9 @@ theorem leftSpine_mem_nodesAtLevel (n : ℕ) :
       simp only [leftSpine, nodesAtLevel_succ, List.mem_flatMap]
       exact ⟨leftSpine n, ih, by simp [HallNode.children]⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s2.601a46986edc from=translated src=- shape=1a6c1393 vocab=a7c9a442
+-/
 theorem cantorStage_nonempty (n : ℕ) : (cantorStage n).Nonempty := by
   have hv := leftSpine_mem_nodesAtLevel n
   refine ⟨?_, ?_⟩
@@ -1112,7 +1273,9 @@ theorem cantorStage_nonempty (n : ℕ) : (cantorStage n).Nonempty := by
     cases state <;> simp [HallNode.interval, T1, T2, T3, Set.left_mem_uIcc]
 
 /-- The initial interval in Hall's construction has the endpoints stated in
-Lemma 3.1 of `doc/main.tex`.-/
+Lemma 3.1 of `doc/main.tex`.
+@isnad1 id=eq.0h0v.s3.ba0cfa870a87 from=translated src=- shape=00f6e9cd vocab=17ae15c3
+-/
 theorem T1_nil : T1 [] = Set.Icc delta epsilon := by
   rw [T1, prefixMap_nil, prefixMap_nil, one_div_eta, one_div_xi,
     Set.uIcc_of_ge delta_le_epsilon]
@@ -1120,7 +1283,9 @@ theorem T1_nil : T1 [] = Set.Icc delta epsilon := by
 /--
 Hall's length condition in complete-quotient coordinates.  For each of the
 three state types, both intervals left after removing the gap are at least
-as long as the gap itself.-/
+as long as the gap itself.
+@isnad1 id=other.2h2v.s7.0f1273bd6a4f from=translated src=- shape=3d8c4b21 vocab=7eea6275
+-/
 theorem hall_length_condition (w : Word) (k : ℕ) (hk1 : 1 ≤ k) (hk3 : k ≤ 3) :
     let x0 := (k : ℝ) + delta
     let x1 := (k : ℝ) + epsilon

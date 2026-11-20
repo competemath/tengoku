@@ -54,17 +54,28 @@ limit whenever the convergents tend to one.-/
 noncomputable def value (head : ℝ) (digits : ℕ → PartialQuotient) : ℝ :=
   Filter.limUnder Filter.atTop (convergent head digits)
 
+/--
+@isnad1 id=eq.0h1v.s3.ea4974a84f6d from=translated src=- shape=f104d3d9 vocab=ab40f85c
+-/
 @[simp]
 theorem tailMap_nil (x : ℝ) : tailMap [] x = x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.6b3ff07b250e from=translated src=- shape=2dbbc3bb vocab=324c7434
+-/
 @[simp]
 theorem tailMap_cons (a : PartialQuotient) (w : Word) (x : ℝ) :
     tailMap (a :: w) x = 1 / ((a.1 : ℝ) + tailMap w x) := rfl
 
+/--
+@isnad1 id=le.0h1v.s4.dbe27aeeceee from=translated src=- shape=9569ee32 vocab=5c8c8769
+-/
 theorem one_le_partialQuotient (a : PartialQuotient) : (1 : ℝ) ≤ a.1 := by
   exact_mod_cast (Nat.succ_le_iff.mpr a.property)
 
-/-- A positive partial quotient sends the unit interval into itself.-/
+/-- A positive partial quotient sends the unit interval into itself.
+@isnad1 id=mem.1h2v.s6.585d58f4504c from=translated src=- shape=f5abb7a0 vocab=7a29f457
+-/
 theorem tailStep_mem_Icc (a : PartialQuotient) {x : ℝ} (hx : x ∈ Set.Icc 0 1) :
     1 / ((a.1 : ℝ) + x) ∈ Set.Icc (0 : ℝ) 1 := by
   have hden : 1 ≤ (a.1 : ℝ) + x := by
@@ -73,7 +84,9 @@ theorem tailStep_mem_Icc (a : PartialQuotient) {x : ℝ} (hx : x ∈ Set.Icc 0 1
   · positivity
   · exact (div_le_iff₀ (by linarith)).2 (by linarith)
 
-/-- Every finite continued-fraction tail maps the unit interval into itself.-/
+/-- Every finite continued-fraction tail maps the unit interval into itself.
+@isnad1 id=mem.1h2v.s5.a6507c8b6d2f from=translated src=- shape=5352e518 vocab=22b55ba1
+-/
 theorem tailMap_mem_Icc (w : Word) {x : ℝ} (hx : x ∈ Set.Icc 0 1) :
     tailMap w x ∈ Set.Icc (0 : ℝ) 1 := by
   induction w generalizing x with
@@ -82,7 +95,9 @@ theorem tailMap_mem_Icc (w : Word) {x : ℝ} (hx : x ∈ Set.Icc 0 1) :
       rw [tailMap_cons]
       exact tailStep_mem_Icc a (ih hx)
 
-/-- A finite continued-fraction prefix is continuous on the unit tail interval.-/
+/-- A finite continued-fraction prefix is continuous on the unit tail interval.
+@isnad1 id=continuo.0h1v.s5.5456b0e68660 from=translated src=- shape=15284fc1 vocab=6e11f2b1
+-/
 theorem continuousOn_tailMap_Icc (w : Word) :
     ContinuousOn (tailMap w) (Set.Icc (0 : ℝ) 1) := by
   induction w with
@@ -98,7 +113,9 @@ theorem continuousOn_tailMap_Icc (w : Word) :
         (fun x ↦ 1 / ((a.1 : ℝ) + tailMap w x)) (Set.Icc (0 : ℝ) 1)
       exact continuousOn_const.div (continuousOn_const.add ih) hden
 
-/-- A finite prefix is injective when its tail is restricted to the unit interval.-/
+/-- A finite prefix is injective when its tail is restricted to the unit interval.
+@isnad1 id=injon.0h1v.s4.cd652a7ae46a from=translated src=- shape=15284fc1 vocab=b905f85e
+-/
 theorem injOn_tailMap_Icc (w : Word) :
     Set.InjOn (tailMap w) (Set.Icc (0 : ℝ) 1) := by
   induction w with
@@ -116,7 +133,9 @@ theorem injOn_tailMap_Icc (w : Word) :
       linarith
 
 /-- A finite prefix sends a subinterval of the unit tail interval between
-the images of its endpoints (with either possible orientation).-/
+the images of its endpoints (with either possible orientation).
+@isnad1 id=mem.4h4v.s6.c74d9ea82d34 from=translated src=- shape=8e55154c vocab=959a99e9
+-/
 theorem tailMap_mem_uIcc {w : Word} {a b x : ℝ}
     (ha : 0 ≤ a) (hab : a ≤ b) (hb : b ≤ 1)
     (hx : x ∈ Set.Icc a b) :
@@ -136,7 +155,9 @@ theorem tailMap_mem_uIcc {w : Word} {a b x : ℝ}
       (ha'.antitoneOn hx hb_mem hx.2)
       (ha'.antitoneOn ha_mem hx hx.1)
 
-/-- Exact difference formula for one continued-fraction step.-/
+/-- Exact difference formula for one continued-fraction step.
+@isnad1 id=eq.2h3v.s7.01bbd61ac57a from=translated src=- shape=35b6345b vocab=bc78a8cd
+-/
 theorem abs_tailStep_sub_tailStep (a : PartialQuotient) {x y : ℝ}
     (hx : 0 ≤ x) (hy : 0 ≤ y) :
     |1 / ((a.1 : ℝ) + x) - 1 / ((a.1 : ℝ) + y)| =
@@ -149,7 +170,9 @@ theorem abs_tailStep_sub_tailStep (a : PartialQuotient) {x y : ℝ}
     abs_div, abs_mul, abs_of_pos hax, abs_of_pos hay]
   rw [show (a.1 : ℝ) + y - ((a.1 : ℝ) + x) = y - x by ring, abs_sub_comm]
 
-/-- One continued-fraction step is nonexpanding on the unit interval.-/
+/-- One continued-fraction step is nonexpanding on the unit interval.
+@isnad1 id=le.2h3v.s7.51cc5070f229 from=translated src=- shape=d938377f vocab=32c237f7
+-/
 theorem abs_tailStep_sub_le (a : PartialQuotient) {x y : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) (hy : y ∈ Set.Icc (0 : ℝ) 1) :
     |1 / ((a.1 : ℝ) + x) - 1 / ((a.1 : ℝ) + y)| ≤ |x - y| := by
@@ -162,7 +185,9 @@ theorem abs_tailStep_sub_le (a : PartialQuotient) {x y : ℝ}
 
 /-- Two continued-fraction steps contract distances by a factor at most `1/4`.
 This elementary uniform estimate is enough to prove convergence without
-developing the full classical theory of continuants first.-/
+developing the full classical theory of continuants first.
+@isnad1 id=le.2h4v.s8.1160a2fcd08f from=translated src=- shape=5536c8ba vocab=32c237f7
+-/
 theorem abs_two_tailSteps_sub_le (a b : PartialQuotient) {x y : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) (hy : y ∈ Set.Icc (0 : ℝ) 1) :
     |1 / ((a.1 : ℝ) + 1 / ((b.1 : ℝ) + x)) -
@@ -219,6 +244,9 @@ theorem abs_two_tailSteps_sub_le (a b : PartialQuotient) {x y : ℝ}
   rw [div_div]
   exact div_le_div_of_nonneg_left (abs_nonneg _) (by norm_num) hden
 
+/--
+@isnad1 id=eq.0h3v.s4.e122412ee4e4 from=translated src=- shape=7177eae1 vocab=daa235b7
+-/
 theorem tailMap_append (u v : Word) (x : ℝ) :
     tailMap (u ++ v) x = tailMap u (tailMap v x) := by
   induction u with
@@ -229,7 +257,9 @@ theorem tailMap_append (u v : Word) (x : ℝ) :
 /--
 A word of length `n` contracts the unit interval to diameter at most
 `4 ^ (-⌊n/2⌋)`.  This is the cylinder-diameter estimate used in both the
-Cantor construction and the block-sequence argument.-/
+Cantor construction and the block-sequence argument.
+@isnad1 id=le.2h3v.s7.43c762fb36ce from=translated src=- shape=c26f8cdb vocab=15344ac9
+-/
 theorem abs_tailMap_sub_le (w : Word) {x y : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) (hy : y ∈ Set.Icc (0 : ℝ) 1) :
     |tailMap w x - tailMap w y| ≤ |x - y| / 4 ^ (w.length / 2) := by
@@ -253,7 +283,9 @@ theorem abs_tailMap_sub_le (w : Word) {x y : ℝ}
           rw [hlen, pow_succ]
           ring
 
-/-- A convenient tail-insensitive version of the cylinder estimate.-/
+/-- A convenient tail-insensitive version of the cylinder estimate.
+@isnad1 id=le.2h3v.s6.c24b761b4380 from=translated src=- shape=c302c4d7 vocab=15344ac9
+-/
 theorem abs_tailMap_le_cylinder (w : Word) {x y : ℝ}
     (hx : x ∈ Set.Icc (0 : ℝ) 1) (hy : y ∈ Set.Icc (0 : ℝ) 1) :
     |tailMap w x - tailMap w y| ≤ 1 / 4 ^ (w.length / 2) := by
@@ -264,7 +296,9 @@ theorem abs_tailMap_le_cylinder (w : Word) {x y : ℝ}
   exact abs_sub_le_iff.2 ⟨by linarith, by linarith⟩
 
 /-- The finite convergents of every positive-integer continued fraction form
-a Cauchy sequence.-/
+a Cauchy sequence.
+@isnad1 id=cauchyse.0h2v.s4.aea5ecf1171f from=translated src=- shape=5877f359 vocab=e79bc6e1
+-/
 theorem cauchySeq_convergent (head : ℝ) (digits : ℕ → PartialQuotient) :
     CauchySeq (convergent head digits) := by
   rw [Metric.cauchySeq_iff']
@@ -301,13 +335,17 @@ theorem cauchySeq_convergent (head : ℝ) (digits : ℕ → PartialQuotient) :
     Real.dist_eq]
   simpa [w, t, finiteValue, finiteTail] using hcyl.trans_lt hbound
 
-/-- The declared infinite value is indeed the limit of the convergents.-/
+/-- The declared infinite value is indeed the limit of the convergents.
+@isnad1 id=tendsto.0h2v.s4.7d0b2ec6a467 from=translated src=- shape=f9b9f11d vocab=e62a2206
+-/
 theorem tendsto_convergent (head : ℝ) (digits : ℕ → PartialQuotient) :
     Filter.Tendsto (convergent head digits) Filter.atTop (𝓝 (value head digits)) := by
   exact (cauchySeq_convergent head digits).tendsto_limUnder
 
 /-- A fractional infinite continued fraction with positive digits lies in
-the closed unit interval.-/
+the closed unit interval.
+@isnad1 id=mem.0h1v.s5.df20d90db44d from=translated src=- shape=43cf9200 vocab=5ccfc55f
+-/
 theorem value_zero_mem_Icc (digits : ℕ → PartialQuotient) :
     value 0 digits ∈ Set.Icc (0 : ℝ) 1 := by
   constructor
@@ -321,7 +359,9 @@ theorem value_zero_mem_Icc (digits : ℕ → PartialQuotient) :
       (tailMap_mem_Icc ((List.range n).map digits) (by norm_num)).2
 
 /-- Separating off the real head agrees with the usual continued-fraction
-notation `[a; …] = a + [0; …]`.-/
+notation `[a; …] = a + [0; …]`.
+@isnad1 id=eq.0h2v.s4.ea61e242c4a1 from=translated src=- shape=3a9cd349 vocab=7bed5ee5
+-/
 theorem value_eq_head_add (head : ℝ) (digits : ℕ → PartialQuotient) :
     value head digits = head + value 0 digits := by
   apply tendsto_nhds_unique (tendsto_convergent head digits)
@@ -331,7 +371,9 @@ theorem value_eq_head_add (head : ℝ) (digits : ℕ → PartialQuotient) :
 
 /--
 Infinite continued fractions with the same first `n` digits differ by at
-most the diameter of their common cylinder.-/
+most the diameter of their common cylinder.
+@isnad1 id=le.1h3v.s6.5b01802d64ce from=translated src=- shape=68f0f8eb vocab=0a4fad79
+-/
 theorem abs_value_zero_sub_le_of_common_prefix
     (digits₁ digits₂ : ℕ → PartialQuotient) (n : ℕ)
     (hpref : (List.range n).map digits₁ = (List.range n).map digits₂) :
@@ -362,7 +404,9 @@ theorem abs_value_zero_sub_le_of_common_prefix
 /--
 An infinite continued fraction is within the diameter of its length-`n`
 cylinder of every point obtained by inserting an arbitrary unit-interval
-tail after the same prefix.-/
+tail after the same prefix.
+@isnad1 id=le.1h3v.s6.c3a174992363 from=translated src=- shape=dcde7bf6 vocab=e61dd0da
+-/
 theorem abs_value_zero_sub_tailMap_prefix_le
     (digits : ℕ → PartialQuotient) (n : ℕ) {t : ℝ}
     (ht : t ∈ Set.Icc (0 : ℝ) 1) :
@@ -390,7 +434,9 @@ theorem abs_value_zero_sub_tailMap_prefix_le
 
 /--
 Separating a finite prefix from an infinite continued fraction agrees with
-applying `tailMap` to the value of the shifted infinite tail.-/
+applying `tailMap` to the value of the shifted infinite tail.
+@isnad1 id=eq.0h2v.s5.6bc9981b0216 from=translated src=- shape=e5f838c3 vocab=db12357b
+-/
 theorem value_zero_eq_tailMap_prefix (digits : ℕ → PartialQuotient) (n : ℕ) :
     value 0 digits =
       tailMap ((List.range n).map digits)

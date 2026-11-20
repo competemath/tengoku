@@ -24,6 +24,9 @@ namespace Cantor
 open Interval
 open ContinuedFraction
 
+/--
+@isnad1 id=eq.0h1v.s5.50e231258864 from=translated src=- shape=10909225 vocab=e46e1c52
+-/
 theorem HallNode.minkowskiSum_interval_children (v : HallNode) :
     minkowskiSum v.interval v.interval =
       minkowskiSum (v.leftChild.interval ∪ v.rightChild.interval)
@@ -79,6 +82,9 @@ noncomputable def HallNode.gapLength (v : HallNode) : ℝ :=
   | .three =>
       |prefixMap (v.word ++ [q4]) xi - prefixMap (v.word ++ [q3]) eta|
 
+/--
+@isnad1 id=and.0h1v.s4.ab540e2f07ec from=translated src=- shape=4585c2b3 vocab=05c2bb27
+-/
 theorem HallNode.children_length_ge_gap (v : HallNode) :
     v.gapLength ≤ v.leftChild.intervalLength ∧
       v.gapLength ≤ v.rightChild.intervalLength := by
@@ -115,6 +121,9 @@ noncomputable def gapAt (w : Word) (k : ℕ) : ℝ :=
   |prefixMap w ((k : ℝ) + 1 + delta) -
     prefixMap w ((k : ℝ) + epsilon)|
 
+/--
+@isnad1 id=eq.0h1v.s5.9323d19de0d5 from=translated src=- shape=f4b99609 vocab=0f7dd053
+-/
 theorem HallNode.gapLength_eq_gapAt (v : HallNode) :
     v.gapLength =
       gapAt v.word
@@ -126,6 +135,9 @@ theorem HallNode.gapLength_eq_gapAt (v : HallNode) :
     simp only [q1_val, q2_val, q3_val, q4_val] <;>
     norm_num
 
+/--
+@isnad1 id=le.2h2v.s5.50d9a05067d0 from=translated src=- shape=0fa085ba vocab=1a9a0fbb
+-/
 theorem gapAt_succ_le (w : Word) (k : ℕ) (hk1 : 1 ≤ k) (_hk2 : k ≤ 2) :
     gapAt w (k + 1) ≤ gapAt w k := by
   let Cq : ℝ := (mobiusCoeffs w).C
@@ -189,6 +201,9 @@ theorem gapAt_succ_le (w : Word) (k : ℕ) (hk1 : 1 ≤ k) (_hk2 : k ≤ 2) :
 noncomputable def alpha : ℝ := (6 - 2 * Real.sqrt 2) / 7
 noncomputable def beta : ℝ := (2 * Real.sqrt 2 + 1) / 7
 
+/--
+@isnad1 id=eq.0h0v.s5.799c8d9eaf9c from=translated src=- shape=d0c0e1f4 vocab=8d9ad219
+-/
 theorem alpha_eq_one_div_two_add_delta :
     alpha = 1 / (2 + delta) := by
   have hden : (2 : ℝ) + delta ≠ 0 := by linarith [delta_pos]
@@ -196,6 +211,9 @@ theorem alpha_eq_one_div_two_add_delta :
   unfold alpha delta
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=eq.0h0v.s5.de2d67926ad7 from=translated src=- shape=d0c0e1f4 vocab=9622571b
+-/
 theorem beta_eq_one_div_one_add_epsilon :
     beta = 1 / (1 + epsilon) := by
   have hden : (1 : ℝ) + epsilon ≠ 0 := by linarith [epsilon_pos]
@@ -203,17 +221,29 @@ theorem beta_eq_one_div_one_add_epsilon :
   unfold beta epsilon
   nlinarith [sqrt_two_sq]
 
+/--
+@isnad1 id=eq.0h0v.s5.1cb1685fdcb2 from=translated src=- shape=59a33cb9 vocab=9d82838a
+-/
 theorem sqrt_two_cube : (Real.sqrt 2) ^ 3 = 2 * Real.sqrt 2 := by
   rw [pow_succ, sqrt_two_sq]
 
+/--
+@isnad1 id=lt.0h0v.s3.a0e0767c5a5c from=translated src=- shape=ff3a10fc vocab=6e983369
+-/
 theorem alpha_pos : 0 < alpha := by
   rw [alpha_eq_one_div_two_add_delta]
   exact one_div_pos.mpr (by linarith [delta_pos])
 
+/--
+@isnad1 id=lt.0h0v.s2.97064b78e738 from=translated src=- shape=54c8eceb vocab=b2cebd21
+-/
 theorem alpha_lt_beta : alpha < beta := by
   unfold alpha beta
   nlinarith [sqrt_two_sq, sqrt_two_pos]
 
+/--
+@isnad1 id=le.5h3v.s6.ea7e40e469bb from=translated src=- shape=98cff0b5 vocab=2460172b
+-/
 theorem appended_gap_one_le_gapAt (w : Word) (q k : ℕ)
     (hq1 : 1 ≤ q) (hq4 : q ≤ 4) (hk1 : 1 ≤ k) (hk3 : k ≤ 3)
     (hrel : q = k ∨ (q = 4 ∧ k = 3)) :
@@ -271,6 +301,9 @@ theorem appended_gap_one_le_gapAt (w : Word) (q k : ℕ)
       sq_nonneg Cq, sq_nonneg Dq, sq_nonneg (Cq - Dq),
       mul_nonneg hC.le hD, mul_nonneg hD (sub_nonneg.2 hDC)]
 
+/--
+@isnad1 id=eq.0h2v.s6.172b9efd1918 from=translated src=- shape=8dad9572 vocab=40e0a604
+-/
 theorem gapAt_append_one_eq (w : Word) (q : PartialQuotient) :
     gapAt (w ++ [q]) 1 =
       |prefixMap w ((q.1 : ℝ) + alpha) -
@@ -284,6 +317,9 @@ theorem gapAt_append_one_eq (w : Word) (q : PartialQuotient) :
     simpa only [one_div] using beta_eq_one_div_one_add_epsilon.symm
   rw [ha, hb]
 
+/--
+@isnad1 id=le.4h3v.s6.11d4c7846a5c from=translated src=- shape=5155a6f0 vocab=1395a038
+-/
 theorem gapAt_append_one_le (w : Word) (q : PartialQuotient) (k : ℕ)
     (hq4 : q.1 ≤ 4) (hk1 : 1 ≤ k) (hk3 : k ≤ 3)
     (hrel : q.1 = k ∨ (q.1 = 4 ∧ k = 3)) :
@@ -293,6 +329,9 @@ theorem gapAt_append_one_le (w : Word) (q : PartialQuotient) (k : ℕ)
     appended_gap_one_le_gapAt w q.1 k
       (Nat.succ_le_iff.mpr q.2) hq4 hk1 hk3 hrel
 
+/--
+@isnad1 id=le.1h2v.s4.92ae30444611 from=translated src=- shape=2ce6c408 vocab=bb661ba3
+-/
 theorem HallNode.child_gap_le (v child : HallNode)
     (hchild : child ∈ v.children) :
     child.gapLength ≤ v.gapLength := by
@@ -344,6 +383,9 @@ noncomputable def HallNode.x2 (v : HallNode) : ℝ :=
 noncomputable def HallNode.x3 (v : HallNode) : ℝ :=
   prefixMap v.word (4 + epsilon)
 
+/--
+@isnad1 id=eq.0h1v.s3.134e15b056ad from=translated src=- shape=8272c18e vocab=737f75f4
+-/
 theorem HallNode.interval_eq_coords (v : HallNode) :
     v.interval = Set.uIcc v.x0 v.x3 := by
   rcases v with ⟨w, state⟩
@@ -361,6 +403,9 @@ theorem HallNode.interval_eq_coords (v : HallNode) :
       rw [prefixMap_append_xi, xi_eq_four_add_epsilon, Set.uIcc_comm]
       simp only [q3_val]
 
+/--
+@isnad1 id=eq.0h1v.s5.2e87f8da7833 from=translated src=- shape=2ea2fc30 vocab=c07fc5d1
+-/
 theorem HallNode.children_union_eq_coords (v : HallNode) :
     v.leftChild.interval ∪ v.rightChild.interval =
       Set.uIcc v.x0 v.x1 ∪ Set.uIcc v.x2 v.x3 := by
@@ -395,12 +440,18 @@ theorem HallNode.children_union_eq_coords (v : HallNode) :
       norm_num at h
       exact h
 
+/--
+@isnad1 id=eq.0h1v.s4.3ab9e5ff5180 from=translated src=- shape=f209ea7b vocab=bb6a0543
+-/
 theorem HallNode.gapLength_eq_coords (v : HallNode) :
     v.gapLength = |v.x2 - v.x1| := by
   rw [v.gapLength_eq_gapAt]
   rcases v with ⟨w, state⟩
   cases state <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.6e83bed495dc from=translated src=- shape=f209ea7b vocab=d7df85a9
+-/
 theorem HallNode.intervalLength_eq_coords (v : HallNode) :
     v.intervalLength = |v.x3 - v.x0| := by
   rcases v with ⟨w, state⟩
@@ -422,6 +473,9 @@ theorem HallNode.intervalLength_eq_coords (v : HallNode) :
       norm_num
       rw [abs_sub_comm]
 
+/--
+@isnad1 id=or.0h1v.s5.8ab38c894d35 from=translated src=- shape=c2a01d75 vocab=8b77ee69
+-/
 theorem HallNode.coords_order (v : HallNode) :
     (v.x0 ≤ v.x1 ∧ v.x1 ≤ v.x2 ∧ v.x2 ≤ v.x3) ∨
       (v.x3 ≤ v.x2 ∧ v.x2 ≤ v.x1 ∧ v.x1 ≤ v.x0) := by
@@ -431,6 +485,9 @@ theorem HallNode.coords_order (v : HallNode) :
   | two => exact prefixMap_four_order w 2 (by omega) (by omega)
   | three => exact prefixMap_four_order w 3 (by omega) (by omega)
 
+/--
+@isnad1 id=le.0h1v.s3.c28301bb95ba from=translated src=- shape=b70c6bb1 vocab=8d0115ad
+-/
 theorem HallNode.gap_le_intervalLength (v : HallNode) :
     v.gapLength ≤ v.intervalLength := by
   rw [v.gapLength_eq_coords, v.intervalLength_eq_coords]
@@ -442,6 +499,9 @@ theorem HallNode.gap_le_intervalLength (v : HallNode) :
       abs_of_nonpos (sub_nonpos.2 (h.1.trans <| h.2.1.trans h.2.2))]
     linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.61aa285beb5d from=translated src=- shape=25ee746e vocab=6ef0b49d
+-/
 theorem HallNode.minkowskiSum_interval_with (v u : HallNode)
     (hgap : v.gapLength ≤ u.intervalLength) :
     minkowskiSum v.interval u.interval =
@@ -454,10 +514,16 @@ theorem HallNode.minkowskiSum_interval_with (v u : HallNode)
 def nodeUnion (nodes : List HallNode) : Set ℝ :=
   ⋃ v ∈ nodes, v.interval
 
+/--
+@isnad1 id=iff.0h2v.s5.4f2f0d0eee6c from=translated src=- shape=73c63729 vocab=2ae09df2
+-/
 theorem mem_nodeUnion {nodes : List HallNode} {x : ℝ} :
     x ∈ nodeUnion nodes ↔ ∃ v ∈ nodes, x ∈ v.interval := by
   simp [nodeUnion]
 
+/--
+@isnad1 id=eq.1h2v.s4.4d3641acaf0d from=translated src=- shape=fb193f49 vocab=254a4acc
+-/
 theorem nodeUnion_eq_of_perm {l₁ l₂ : List HallNode} (h : l₁.Perm l₂) :
     nodeUnion l₁ = nodeUnion l₂ := by
   ext x
@@ -468,6 +534,9 @@ theorem nodeUnion_eq_of_perm {l₁ l₂ : List HallNode} (h : l₁.Perm l₂) :
   · rintro ⟨v, hv, hx⟩
     exact ⟨v, h.mem_iff.mpr hv, hx⟩
 
+/--
+@isnad1 id=other.1h2v.s6.9f0f2bbe94fd from=translated src=- shape=6af06cf2 vocab=b125fd53
+-/
 theorem HallNode.minkowskiSum_union_split (v : HallNode) (rest : List HallNode)
     (hrest : ∀ u ∈ rest, v.gapLength ≤ u.intervalLength) :
     let A := v.interval
@@ -545,6 +614,9 @@ def ForestGood (bound : ℝ) (forest : List WorkNode) : Prop :=
   (∀ w ∈ forest, bound ≤ w.node.intervalLength) ∧
     (∀ w ∈ forest, w.remaining ≠ 0 → w.node.gapLength ≤ bound)
 
+/--
+@isnad1 id=ex.1h3v.s5.e87478771178 from=translated src=- shape=25e32031 vocab=ac1321e5
+-/
 theorem exists_list_max {α : Type*} (f : α → ℝ) {l : List α}
     (hl : l ≠ []) :
     ∃ m ∈ l, ∀ a ∈ l, f a ≤ f m := by
@@ -568,6 +640,9 @@ theorem exists_list_max {α : Type*} (f : α → ℝ) {l : List α}
             · exact le_rfl
             · exact (hmax b hb).trans hma⟩
 
+/--
+@isnad1 id=iff.0h1v.s5.90c4b6b15584 from=translated src=- shape=e7f9d7f5 vocab=f8af16fe
+-/
 theorem forestWork_eq_zero_iff (forest : List WorkNode) :
     forestWork forest = 0 ↔ ∀ w ∈ forest, w.remaining = 0 := by
   induction forest with
@@ -579,6 +654,9 @@ theorem forestWork_eq_zero_iff (forest : List WorkNode) :
           simpa [forestWork, WorkNode.work] using ih
       | succ n => simp [forestWork, WorkNode.work]
 
+/--
+@isnad1 id=eq.0h2v.s4.9116ff09505e from=translated src=- shape=81d990ec vocab=9b946a0e
+-/
 theorem descendants_succ (v : HallNode) (n : ℕ) :
     descendants v (n + 1) =
       (descendants v n).flatMap HallNode.children := by
@@ -591,6 +669,9 @@ theorem descendants_succ (v : HallNode) (n : ℕ) :
             (descendants v.leftChild n ++ descendants v.rightChild n)
       rw [List.flatMap_append, ih, ih]
 
+/--
+@isnad1 id=eq.0h1v.s3.f4ae0fc73195 from=translated src=- shape=70ecb312 vocab=d2ac7099
+-/
 theorem descendants_eq_nodesAtLevel (n : ℕ) :
     descendants rootNode n = nodesAtLevel n := by
   induction n with
@@ -598,17 +679,26 @@ theorem descendants_eq_nodesAtLevel (n : ℕ) :
   | succ n ih =>
       rw [descendants_succ, nodesAtLevel_succ, ih]
 
+/--
+@isnad1 id=iff.0h2v.s5.a9794fd26c13 from=translated src=- shape=05cb0613 vocab=ba52a803
+-/
 theorem mem_forestCurrent {forest : List WorkNode} {x : ℝ} :
     x ∈ forestCurrent forest ↔
       ∃ w ∈ forest, x ∈ w.node.interval := by
   simp [forestCurrent, mem_nodeUnion]
 
+/--
+@isnad1 id=eq.0h2v.s4.ab8e12f08c7c from=translated src=- shape=0a277962 vocab=b4f785a0
+-/
 theorem forestCurrent_cons (w : WorkNode) (forest : List WorkNode) :
     forestCurrent (w :: forest) =
       w.node.interval ∪ forestCurrent forest := by
   ext x
   simp [mem_forestCurrent]
 
+/--
+@isnad1 id=eq.1h2v.s4.282512668e57 from=translated src=- shape=fb193f49 vocab=817027bb
+-/
 theorem forestCurrent_eq_of_perm {f₁ f₂ : List WorkNode} (h : f₁.Perm f₂) :
     forestCurrent f₁ = forestCurrent f₂ := by
   ext x
@@ -619,6 +709,9 @@ theorem forestCurrent_eq_of_perm {f₁ f₂ : List WorkNode} (h : f₁.Perm f₂
   · rintro ⟨w, hw, hx⟩
     exact ⟨w, h.mem_iff.mpr hw, hx⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.525d6b0e5993 from=translated src=- shape=4dc48d79 vocab=4955135a
+-/
 theorem forestCurrent_erase (chosen : WorkNode) {forest : List WorkNode}
     (hchosen : chosen ∈ forest) :
     forestCurrent forest =
@@ -626,12 +719,18 @@ theorem forestCurrent_erase (chosen : WorkNode) {forest : List WorkNode}
   rw [forestCurrent_eq_of_perm (List.perm_cons_erase hchosen),
     forestCurrent_cons]
 
+/--
+@isnad1 id=eq.1h2v.s4.5f80f78928de from=translated src=- shape=fb193f49 vocab=6b054c08
+-/
 theorem forestTarget_eq_of_perm {f₁ f₂ : List WorkNode} (h : f₁.Perm f₂) :
     forestTarget f₁ = forestTarget f₂ := by
   unfold forestTarget
   apply nodeUnion_eq_of_perm
   exact h.flatMap fun _ _ ↦ List.Perm.refl _
 
+/--
+@isnad1 id=eq.0h3v.s5.d47854d41620 from=translated src=- shape=5804f3c7 vocab=af8333b1
+-/
 theorem forestTarget_split {v : HallNode} {r : ℕ}
     (rest : List WorkNode) :
     forestTarget (⟨v, r + 1⟩ :: rest) =
@@ -641,6 +740,9 @@ theorem forestTarget_split {v : HallNode} {r : ℕ}
   ext x
   simp [nodeUnion, Set.mem_iUnion]
 
+/--
+@isnad1 id=eq.2h4v.s5.08dd86f3000c from=translated src=- shape=63a50d0c vocab=c1981e26
+-/
 theorem forestTarget_erase_split {chosen : WorkNode} {forest : List WorkNode}
     (hchosen : chosen ∈ forest) {v : HallNode} {r : ℕ}
     (hchosen_eq : chosen = ⟨v, r + 1⟩) :
@@ -651,12 +753,18 @@ theorem forestTarget_erase_split {chosen : WorkNode} {forest : List WorkNode}
   subst chosen
   exact forestTarget_split _
 
+/--
+@isnad1 id=eq.0h3v.s4.660a2ac66291 from=translated src=- shape=f75637fa vocab=b1780cbd
+-/
 theorem WorkNode.work_node_irrel (v u : HallNode) (n : ℕ) :
     WorkNode.work ⟨v, n⟩ = WorkNode.work ⟨u, n⟩ := by
   induction n with
   | zero => simp [WorkNode.work]
   | succ n ih => simp [WorkNode.work, ih]
 
+/--
+@isnad1 id=lt.2h4v.s5.09101e8533c7 from=translated src=- shape=0d3dcdf0 vocab=d430a2b7
+-/
 theorem forestWork_split_lt {v : HallNode} {r : ℕ}
     {chosen : WorkNode} {forest : List WorkNode}
     (hchosen : chosen ∈ forest) (hchosen_eq : chosen = ⟨v, r + 1⟩) :
@@ -675,6 +783,9 @@ theorem forestWork_split_lt {v : HallNode} {r : ℕ}
   simp only [WorkNode.work] at hsum
   omega
 
+/--
+@isnad1 id=eq.1h1v.s4.6d23131465a9 from=translated src=- shape=a75b2145 vocab=bc6a1079
+-/
 theorem forestTarget_eq_current_of_zero (forest : List WorkNode)
     (hzero : ∀ w ∈ forest, w.remaining = 0) :
     forestTarget forest = forestCurrent forest := by
@@ -691,6 +802,9 @@ theorem forestTarget_eq_current_of_zero (forest : List WorkNode)
       subst remaining
       simp [WorkNode.target, descendants, ih hrest]
 
+/--
+@isnad1 id=eq.1h2v.s4.b5b9a9dfb24d from=translated src=- shape=fa237470 vocab=1a4fdc6d
+-/
 theorem forest_refinement_sum (bound : ℝ) (forest : List WorkNode)
     (hgood : ForestGood bound forest) :
     minkowskiSum (forestCurrent forest) (forestCurrent forest) =
@@ -795,6 +909,9 @@ theorem forest_refinement_sum (bound : ℝ) (forest : List WorkNode)
           _ = minkowskiSum (forestTarget forest) (forestTarget forest) := by
             rw [htarget]
 
+/--
+@isnad1 id=eq.0h1v.s4.8c2eaef6b0d5 from=translated src=- shape=951e8884 vocab=f2255885
+-/
 theorem cantorStage_selfSum_eq_zero (n : ℕ) :
     minkowskiSum (cantorStage n) (cantorStage n) =
       minkowskiSum (cantorStage 0) (cantorStage 0) := by
@@ -821,7 +938,9 @@ theorem cantorStage_selfSum_eq_zero (n : ℕ) :
   rw [hcurrent, htarget] at hrefine
   exact hrefine.symm
 
-/-- Hall's theorem: the self-sum of `C(4)` is an interval.-/
+/-- Hall's theorem: the self-sum of `C(4)` is an interval.
+@isnad1 id=eq.0h0v.s6.e97d2e794954 from=translated src=- shape=ed8de1ed vocab=bbdab5b7
+-/
 theorem hall_C4 :
     minkowskiSum (C 4) (C 4) =
       Set.Icc (Real.sqrt 2 - 1) (4 * Real.sqrt 2 - 4) := by

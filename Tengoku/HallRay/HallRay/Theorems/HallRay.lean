@@ -21,7 +21,9 @@ namespace HallRay
 open Lagrange
 open ContinuedFraction
 
-/-- Arithmetic decomposition used at the start of the Hall-ray argument.-/
+/-- Arithmetic decomposition used at the start of the Hall-ray argument.
+@isnad1 id=ex.1h1v.s7.1304fa608aed from=translated src=- shape=4825bc05 vocab=67f11264
+-/
 theorem exists_large_partialQuotient (ell : ℝ) (hell : 6 ≤ ell) :
     ∃ a : PartialQuotient,
       5 ≤ a.1 ∧
@@ -55,7 +57,9 @@ theorem exists_large_partialQuotient (ell : ℝ) (hell : 6 ≤ ell) :
   · dsimp [t] at hsucc
     linarith
 
-/-- Hall's ray obtained by Hall's continued-fraction construction.-/
+/-- Hall's ray obtained by Hall's continued-fraction construction.
+@isnad1 id=le.0h0v.s4.e31e0a1360cb from=translated src=- shape=37bd4349 vocab=bf37bdd0
+-/
 theorem hall_ray : Set.Ici (6 : ℝ) ⊆ spectrum := by
   intro ell hell
   obtain ⟨a, ha, hrem⟩ := exists_large_partialQuotient ell hell

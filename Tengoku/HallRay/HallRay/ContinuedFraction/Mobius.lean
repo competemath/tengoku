@@ -27,21 +27,36 @@ Adjoin the finite word `w` before the complete quotient `x`:
 noncomputable def prefixMap (w : Word) (x : ℝ) : ℝ :=
   w.foldr (fun a y ↦ 1 / ((a.1 : ℝ) + y)) (1 / x)
 
+/--
+@isnad1 id=eq.0h2v.s4.814cbdc2a202 from=translated src=- shape=d185650d vocab=3c031e8c
+-/
 theorem prefixMap_eq_tailMap (w : Word) (x : ℝ) :
     prefixMap w x = tailMap w (1 / x) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.4e32009f6dda from=translated src=- shape=601a8325 vocab=55696512
+-/
 @[simp]
 theorem prefixMap_nil (x : ℝ) : prefixMap [] x = 1 / x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.c0473a0b2962 from=translated src=- shape=2dbbc3bb vocab=b07ce2e3
+-/
 @[simp]
 theorem prefixMap_cons (a : PartialQuotient) (w : Word) (x : ℝ) :
     prefixMap (a :: w) x = 1 / ((a.1 : ℝ) + prefixMap w x) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.bbc4d73f86f8 from=translated src=- shape=d87e588a vocab=d09b8cff
+-/
 theorem prefixMap_append (u v : Word) (x : ℝ) :
     prefixMap (u ++ v) x = tailMap u (prefixMap v x) := by
   rw [prefixMap_eq_tailMap, tailMap_append]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.bf7b9486aee9 from=translated src=- shape=72cc8796 vocab=8c7b775f
+-/
 theorem prefixMap_append_singleton (w : Word) (a : PartialQuotient) (x : ℝ) :
     prefixMap (w ++ [a]) x = prefixMap w ((a.1 : ℝ) + 1 / x) := by
   rw [prefixMap_append]
@@ -64,6 +79,9 @@ def mobiusCoeffs : Word → MobiusCoeffs
       let c := mobiusCoeffs w
       ⟨c.C, c.D, a.1 * c.C + c.A, a.1 * c.D + c.B⟩
 
+/--
+@isnad1 id=lt.1h2v.s5.4ea5b09b85bb from=translated src=- shape=426fb358 vocab=b11f8a84
+-/
 theorem mobius_den_pos (w : Word) {x : ℝ} (hx : 0 < x) :
     0 < ((mobiusCoeffs w).C : ℝ) * x + (mobiusCoeffs w).D := by
   induction w with
@@ -88,7 +106,9 @@ theorem mobius_den_pos (w : Word) {x : ℝ} (hx : 0 < x) :
           0 ≤ ((mobiusCoeffs w).A : ℝ) * x + (mobiusCoeffs w).B := by positivity
       linarith
 
-/-- Möbius-transform expression for a common continued-fraction prefix.-/
+/-- Möbius-transform expression for a common continued-fraction prefix.
+@isnad1 id=eq.1h2v.s6.5dfc978ba18f from=translated src=- shape=ed54523f vocab=a2fe7dec
+-/
 theorem prefixMap_eq_mobius (w : Word) {x : ℝ} (hx : 0 < x) :
     prefixMap w x =
       (((mobiusCoeffs w).A : ℝ) * x + (mobiusCoeffs w).B) /
@@ -135,7 +155,9 @@ theorem prefixMap_eq_mobius (w : Word) {x : ℝ} (hx : 0 < x) :
       field_simp [ne_of_gt hden, ne_of_gt hE', ne_of_gt hsum]
 
 /-- Consecutive continuant coefficients have determinant of absolute value
-one.-/
+one.
+@isnad1 id=eq.0h1v.s5.eda41110eb6e from=translated src=- shape=687b5a19 vocab=2a7ee3fe
+-/
 theorem abs_mobius_det (w : Word) :
     |((mobiusCoeffs w).A : ℝ) * (mobiusCoeffs w).D -
         ((mobiusCoeffs w).B : ℝ) * (mobiusCoeffs w).C| = 1 := by
@@ -155,7 +177,9 @@ theorem abs_mobius_det (w : Word) :
       rw [heq, abs_neg, ih]
 
 /-- The denominator coefficients satisfy `0 ≤ D ≤ C`; equivalently the
-ratio `qₙ₋₁/qₙ` used in Hall's estimates lies in `[0,1]`.-/
+ratio `qₙ₋₁/qₙ` used in Hall's estimates lies in `[0,1]`.
+@isnad1 id=le.0h1v.s3.af47c78ea049 from=translated src=- shape=c14c2a45 vocab=2e30da84
+-/
 theorem mobius_D_le_C (w : Word) :
     (mobiusCoeffs w).D ≤ (mobiusCoeffs w).C := by
   have h :
@@ -181,6 +205,9 @@ theorem mobius_D_le_C (w : Word) :
             exact ih.1
   exact (h w).1
 
+/--
+@isnad1 id=lt.0h1v.s3.6e92e473936f from=translated src=- shape=25e12683 vocab=5af333d2
+-/
 theorem mobius_C_pos (w : Word) : 0 < (mobiusCoeffs w).C := by
   have hden := mobius_den_pos w (show (0 : ℝ) < 1 by norm_num)
   by_contra h
@@ -193,6 +220,9 @@ theorem mobius_C_pos (w : Word) : 0 < (mobiusCoeffs w).C := by
 noncomputable def denominatorRatio (w : Word) : ℝ :=
   (mobiusCoeffs w).D / (mobiusCoeffs w).C
 
+/--
+@isnad1 id=mem.0h1v.s4.5d55a215d7a7 from=translated src=- shape=39e72392 vocab=240258e9
+-/
 theorem denominatorRatio_mem_Icc (w : Word) :
     denominatorRatio w ∈ Set.Icc (0 : ℝ) 1 := by
   have hC : (0 : ℝ) < (mobiusCoeffs w).C := by
@@ -204,7 +234,9 @@ theorem denominatorRatio_mem_Icc (w : Word) :
   · exact (div_le_one hC).2 hDC
 
 /--
-Exact common-prefix length formula (Equation (2.1) in `doc/main.tex`).-/
+Exact common-prefix length formula (Equation (2.1) in `doc/main.tex`).
+@isnad1 id=eq.2h3v.s7.ab504c749703 from=translated src=- shape=4a70f526 vocab=67999eaf
+-/
 theorem abs_prefixMap_sub_prefixMap (w : Word) {x y : ℝ}
     (hx : 0 < x) (hy : 0 < y) :
     |prefixMap w x - prefixMap w y| =
@@ -233,6 +265,9 @@ theorem abs_prefixMap_sub_prefixMap (w : Word) {x y : ℝ}
     simpa [A, B, C, D] using hdet
   rw [hdet', one_mul]
 
+/--
+@isnad1 id=continuo.0h1v.s4.ae503679d46a from=translated src=- shape=b1024e6d vocab=23c4a5b5
+-/
 theorem continuousOn_prefixMap_pos (w : Word) :
     ContinuousOn (prefixMap w) (Set.Ioi (0 : ℝ)) := by
   let A : ℝ := (mobiusCoeffs w).A
@@ -253,6 +288,9 @@ theorem continuousOn_prefixMap_pos (w : Word) :
   dsimp [A, B, C, D]
   exact prefixMap_eq_mobius w hx
 
+/--
+@isnad1 id=injon.0h1v.s4.f10893dbe7de from=translated src=- shape=b1024e6d vocab=7f46aaa4
+-/
 theorem injOn_prefixMap_pos (w : Word) :
     Set.InjOn (prefixMap w) (Set.Ioi (0 : ℝ)) := by
   intro x hx y hy hxy
