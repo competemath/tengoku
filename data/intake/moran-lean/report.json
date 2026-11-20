@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "d6e3edd95fb3f31d62bfab880015a0198ed9ab110ee615f0d857f4bfa7757149",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "moran-lean",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 7
+}
