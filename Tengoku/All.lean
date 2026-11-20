@@ -27,6 +27,7 @@ import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
 import Tengoku.Dandelin
 import Tengoku.Polyfun
+import Tengoku.RegularityLemmata
 import Tengoku.Hironaka
 import Tengoku.LevinEntireFunctionsLean
 import Tengoku.Nashembedding

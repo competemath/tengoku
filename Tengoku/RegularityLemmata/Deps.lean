@@ -1,0 +1,1 @@
+-- RegularityLemmata: a factory bundle (data/intake/regularity-lemmata). This file only marks the library for Tengoku/All.lean.

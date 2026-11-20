@@ -1,0 +1,517 @@
+/-
+Copyright (c) 2026 Cameron Freer. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-/
+import Tengoku.Seed.Order.Partition.Finpartition
+import Tengoku.Seed.Algebra.Order.BigOperators.Group.Finset
+import Tengoku.Seed.Algebra.BigOperators.Ring.Finset
+import Tengoku.Seed.Data.Real.Basic
+import Tengoku.Seed.Data.Fin.VecNotation
+import Tengoku.Seed.Tactic.FinCases
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Part-union and counting lemmas over `Finpartition`
+
+Plumbing for partitions of a finite ground set `s : Finset α`, built directly on
+mathlib's `Finpartition` (this library never introduces a private partition type).
+
+**Refinement direction.** In the `Finpartition` order, `Q ≤ P` means `Q` is *finer*
+than `P`: every part of `Q` is contained in some part of `P`. (See the sanity example
+below.)
+
+A finset is a *part union* of `P` when it is a union of `P`-parts. Part unions behave
+like clopen sets: each part is inside or disjoint from them, and they are closed under
+relative complement. `sum_over_parents` reindexes sums over a finer partition by the
+containing coarser parts.
+
+`predicatePartition p s` is the at-most-two-cell partition of `s` by a decidable
+predicate, built on mathlib's `Finpartition.atomise` (not on relation-fiber machinery).
+-/
+
+namespace RegularityLemmata
+
+variable {α : Type*} [DecidableEq α] {s : Finset α}
+
+-- Sanity check for the refinement direction: `Q ≤ P` = `Q` finer.
+
+/-! ### Cardinality plumbing -/
+
+/-- Real-cast form of `Finpartition.sum_card_parts`.-/
+theorem sum_card_parts_cast (P : Finpartition s) :
+    (∑ A ∈ P.parts, (A.card : ℝ)) = (s.card : ℝ) := by
+  rw [← Nat.cast_sum, P.sum_card_parts]
+
+theorem parts_top_card_le_one : (⊤ : Finpartition s).parts.card ≤ 1 := by
+  calc (⊤ : Finpartition s).parts.card
+      ≤ ({s} : Finset (Finset α)).card :=
+        Finset.card_le_card (Finpartition.parts_top_subset _)
+    _ = 1 := Finset.card_singleton _
+
+/-- The common refinement has at most multiplicatively many parts.-/
+theorem card_parts_inf_le (P Q : Finpartition s) :
+    (P ⊓ Q).parts.card ≤ P.parts.card * Q.parts.card := by
+  rw [Finpartition.parts_inf]
+  calc (((P.parts ×ˢ Q.parts).image fun bc => bc.1 ⊓ bc.2).erase ⊥).card
+      ≤ ((P.parts ×ˢ Q.parts).image fun bc => bc.1 ⊓ bc.2).card := Finset.card_erase_le
+    _ ≤ (P.parts ×ˢ Q.parts).card := Finset.card_image_le
+    _ = P.parts.card * Q.parts.card := Finset.card_product _ _
+
+/-- Common refinement of a nonempty finite family: at most the product of the part
+counts.-/
+theorem card_parts_inf'_le {ι : Type*} {t : Finset ι} (ht : t.Nonempty)
+    (f : ι → Finpartition s) :
+    (t.inf' ht f).parts.card ≤ ∏ i ∈ t, (f i).parts.card := by
+  classical
+  induction t using Finset.cons_induction with
+  | empty => exact absurd ht (by simp)
+  | cons j t' hj ih =>
+    by_cases ht' : t'.Nonempty
+    · rw [Finset.inf'_cons (H := ht'), Finset.prod_cons]
+      calc (f j ⊓ t'.inf' ht' f).parts.card
+          ≤ (f j).parts.card * (t'.inf' ht' f).parts.card := card_parts_inf_le _ _
+        _ ≤ (f j).parts.card * ∏ i ∈ t', (f i).parts.card :=
+            Nat.mul_le_mul_left _ (ih ht')
+    · rw [Finset.not_nonempty_iff_eq_empty] at ht'
+      subst ht'
+      simp
+
+/-! ### The join of coordinate partitions -/
+
+/-- The common refinement of the coordinate partitions: the lattice meet over all coordinates.-/
+noncomputable def coordinateJoin {n : ℕ} (P : Fin (n + 1) → Finpartition s) : Finpartition s :=
+  Finset.univ.inf' Finset.univ_nonempty P
+
+theorem coordinateJoin_le {n : ℕ} (P : Fin (n + 1) → Finpartition s) (j : Fin (n + 1)) :
+    coordinateJoin P ≤ P j :=
+  Finset.inf'_le _ (Finset.mem_univ j)
+
+/-- **Join cardinality**: at most the product of the coordinate part counts.-/
+theorem card_parts_coordinateJoin_le {n : ℕ} (P : Fin (n + 1) → Finpartition s) :
+    (coordinateJoin P).parts.card ≤ ∏ j, (P j).parts.card :=
+  card_parts_inf'_le _ P
+
+/-- A constant family joins to itself.-/
+@[simp] theorem coordinateJoin_const {n : ℕ} (P : Finpartition s) :
+    coordinateJoin (fun _ : Fin (n + 1) ↦ P) = P :=
+  Finset.inf'_const _ _
+
+/-- For two coordinates the join is the lattice meet.-/
+theorem coordinateJoin_two (P₁ P₂ : Finpartition s) :
+    coordinateJoin ![P₁, P₂] = P₁ ⊓ P₂ := by
+  refine le_antisymm (le_inf (coordinateJoin_le _ 0) (coordinateJoin_le _ 1)) ?_
+  refine Finset.le_inf' _ _ fun j _ ↦ ?_
+  fin_cases j
+  · exact inf_le_left
+  · exact inf_le_right
+
+/-! ### Part unions -/
+
+/-- `S` is a union of parts of `P`.-/
+def IsPartUnion (P : Finpartition s) (S : Finset α) : Prop :=
+  (P.parts.filter (· ⊆ S)).biUnion id = S
+
+instance {P : Finpartition s} {S : Finset α} : Decidable (IsPartUnion P S) :=
+  inferInstanceAs (Decidable (_ = _))
+
+/-- A part of `P` is inside or disjoint from any part union.-/
+theorem part_subset_or_disjoint {P : Finpartition s} {S : Finset α} (hS : IsPartUnion P S)
+    {E : Finset α} (hE : E ∈ P.parts) : E ⊆ S ∨ Disjoint E S := by
+  rw [or_iff_not_imp_right, Finset.not_disjoint_iff]
+  rintro ⟨x, hxE, hxS⟩
+  have hSeq : (P.parts.filter (· ⊆ S)).biUnion id = S := hS
+  rw [← hSeq, Finset.mem_biUnion] at hxS
+  obtain ⟨E', hE'f, hxE'⟩ := hxS
+  rw [Finset.mem_filter] at hE'f
+  rw [P.eq_of_mem_parts hE hE'f.1 hxE hxE']
+  exact hE'f.2
+
+/-- A part union is contained in the ground set.-/
+theorem IsPartUnion.subset_ground {P : Finpartition s} {S : Finset α}
+    (hS : IsPartUnion P S) : S ⊆ s := by
+  rw [← hS]
+  exact Finset.biUnion_subset.mpr fun E hE => P.le (Finset.mem_filter.mp hE).1
+
+/-- The ground set is a part union.-/
+theorem isPartUnion_ground (P : Finpartition s) : IsPartUnion P s := by
+  have hfil : P.parts.filter (· ⊆ s) = P.parts :=
+    Finset.filter_true_of_mem fun E hE => P.le hE
+  rw [IsPartUnion, hfil]
+  exact P.biUnion_parts
+
+/-- The relative complement of a part union inside another is a part union.-/
+theorem isPartUnion_sdiff {P : Finpartition s} {C C' : Finset α}
+    (hC : IsPartUnion P C) (hC' : IsPartUnion P C') (_hsub : C' ⊆ C) :
+    IsPartUnion P (C \ C') := by
+  have hCeq : (P.parts.filter (· ⊆ C)).biUnion id = C := hC
+  show (P.parts.filter (· ⊆ C \ C')).biUnion id = C \ C'
+  apply Finset.Subset.antisymm
+  · intro x hx
+    rw [Finset.mem_biUnion] at hx
+    obtain ⟨E, hEf, hxE⟩ := hx
+    rw [Finset.mem_filter] at hEf
+    exact hEf.2 hxE
+  · intro x hxCC'
+    have hxC : x ∈ C := (Finset.mem_sdiff.mp hxCC').1
+    have hxC' : x ∉ C' := (Finset.mem_sdiff.mp hxCC').2
+    rw [← hCeq, Finset.mem_biUnion] at hxC
+    obtain ⟨E, hEf, hxE⟩ := hxC
+    rw [Finset.mem_filter] at hEf
+    rw [Finset.mem_biUnion]
+    refine ⟨E, ?_, hxE⟩
+    rw [Finset.mem_filter]
+    refine ⟨hEf.1, Finset.subset_sdiff.mpr ⟨hEf.2, ?_⟩⟩
+    rcases part_subset_or_disjoint hC' hEf.1 with h | h
+    · exact absurd (h hxE) hxC'
+    · exact h
+
+/-- Complement in the ground set of a part union is a part union.-/
+theorem isPartUnion_compl {P : Finpartition s} {S : Finset α} (hS : IsPartUnion P S) :
+    IsPartUnion P (s \ S) :=
+  isPartUnion_sdiff (isPartUnion_ground P) hS hS.subset_ground
+
+/-- The parts inside `C` split as those inside a part union `C' ⊆ C` and those inside
+`C \ C'`.-/
+theorem filter_subset_eq_union {P : Finpartition s} {C C' : Finset α}
+    (hC' : IsPartUnion P C') (hsub : C' ⊆ C) :
+    P.parts.filter (· ⊆ C) = P.parts.filter (· ⊆ C') ∪ P.parts.filter (· ⊆ C \ C') := by
+  ext E
+  simp only [Finset.mem_filter, Finset.mem_union]
+  constructor
+  · rintro ⟨hE, hEC⟩
+    rcases part_subset_or_disjoint hC' hE with h | h
+    · exact Or.inl ⟨hE, h⟩
+    · exact Or.inr ⟨hE, Finset.subset_sdiff.mpr ⟨hEC, h⟩⟩
+  · rintro (⟨hE, h⟩ | ⟨hE, h⟩)
+    · exact ⟨hE, h.trans hsub⟩
+    · exact ⟨hE, h.trans Finset.sdiff_subset⟩
+
+/-- The two halves of the split are disjoint.-/
+theorem filter_subset_disjoint {P : Finpartition s} {C C' : Finset α} :
+    Disjoint (P.parts.filter (· ⊆ C')) (P.parts.filter (· ⊆ C \ C')) := by
+  rw [Finset.disjoint_left]
+  rintro E hE1 hE2
+  rw [Finset.mem_filter] at hE1 hE2
+  obtain ⟨_, hdisjEC'⟩ := Finset.subset_sdiff.mp hE2.2
+  obtain ⟨x, hx⟩ := P.nonempty_of_mem_parts hE1.1
+  exact absurd (hE1.2 hx) (Finset.disjoint_left.mp hdisjEC' hx)
+
+/-! ### The inner part-union approximation -/
+
+/-- The largest part union of `P` inside `S`: the union of the parts contained in `S`.
+It equals `S` exactly when `S` is itself a part union — so it is the canonical inner
+approximation of an arbitrary set by a partition, and `S \ innerPartUnion P S` is the
+uncovered remainder that approximation arguments must bound.-/
+def innerPartUnion (P : Finpartition s) (S : Finset α) : Finset α :=
+  (P.parts.filter (· ⊆ S)).biUnion id
+
+theorem innerPartUnion_subset {P : Finpartition s} {S : Finset α} :
+    innerPartUnion P S ⊆ S := by
+  refine Finset.biUnion_subset.mpr fun E hE => ?_
+  simpa using (Finset.mem_filter.mp hE).2
+
+/-- A part contained in `S` is contained in the inner approximation.-/
+theorem subset_innerPartUnion {P : Finpartition s} {S E : Finset α} (hE : E ∈ P.parts)
+    (hES : E ⊆ S) : E ⊆ innerPartUnion P S := fun _ hx =>
+  Finset.mem_biUnion.mpr ⟨E, Finset.mem_filter.mpr ⟨hE, hES⟩, hx⟩
+
+/-- The inner approximation is monotone.-/
+theorem innerPartUnion_mono {P : Finpartition s} {S T : Finset α} (hST : S ⊆ T) :
+    innerPartUnion P S ⊆ innerPartUnion P T := by
+  refine Finset.biUnion_subset.mpr fun E hE => ?_
+  rw [Finset.mem_filter] at hE
+  exact subset_innerPartUnion hE.1 (hE.2.trans hST)
+
+/-- The inner approximation is a part union.-/
+theorem isPartUnion_innerPartUnion {P : Finpartition s} {S : Finset α} :
+    IsPartUnion P (innerPartUnion P S) := by
+  have hfil : P.parts.filter (· ⊆ innerPartUnion P S) = P.parts.filter (· ⊆ S) := by
+    ext E
+    simp only [Finset.mem_filter]
+    exact and_congr_right fun hE =>
+      ⟨fun h => h.trans innerPartUnion_subset, fun h => subset_innerPartUnion hE h⟩
+  show (P.parts.filter (· ⊆ innerPartUnion P S)).biUnion id = innerPartUnion P S
+  rw [hfil]
+  rfl
+
+/-- `S` is a part union exactly when it is its own inner approximation.-/
+theorem isPartUnion_iff_innerPartUnion_eq {P : Finpartition s} {S : Finset α} :
+    IsPartUnion P S ↔ innerPartUnion P S = S := Iff.rfl
+
+/-! ### Refinement fibers -/
+
+/-- When `Q` refines `P`, the `Q`-parts inside a `P`-part `C` cover `C`.-/
+theorem biUnion_filter_subset_eq {P Q : Finpartition s} (hQ : Q ≤ P)
+    {C : Finset α} (hC : C ∈ P.parts) :
+    (Q.parts.filter (· ⊆ C)).biUnion id = C := by
+  apply Finset.Subset.antisymm
+  · intro x hx
+    rw [Finset.mem_biUnion] at hx
+    obtain ⟨Q', hQ'f, hxQ'⟩ := hx
+    rw [Finset.mem_filter] at hQ'f
+    exact hQ'f.2 hxQ'
+  · intro x hxC
+    obtain ⟨Q', hQ'mem, hxQ'⟩ := Q.exists_mem (P.le hC hxC)
+    obtain ⟨C'', hC''mem, hQ'sub⟩ := hQ hQ'mem
+    have hxC'' : x ∈ C'' := hQ'sub hxQ'
+    have hCC : C = C'' := P.eq_of_mem_parts hC hC''mem hxC hxC''
+    rw [Finset.mem_biUnion]
+    exact ⟨Q', by rw [Finset.mem_filter]; exact ⟨hQ'mem, by rw [hCC]; exact hQ'sub⟩, hxQ'⟩
+
+/-- Each `P`-part is a part union of any refinement.-/
+theorem isPartUnion_of_mem_of_le {P Q : Finpartition s} (hQ : Q ≤ P) {C : Finset α}
+    (hC : C ∈ P.parts) : IsPartUnion Q C :=
+  biUnion_filter_subset_eq hQ hC
+
+/-- The `P`-parts' contained-`Q`-part families biUnion to all of `Q.parts`.-/
+theorem parts_biUnion_filter_subset {P Q : Finpartition s} (hQ : Q ≤ P) :
+    P.parts.biUnion (fun C => Q.parts.filter (· ⊆ C)) = Q.parts := by
+  ext Q'
+  simp only [Finset.mem_biUnion, Finset.mem_filter]
+  constructor
+  · rintro ⟨C, _, hQ'mem, _⟩; exact hQ'mem
+  · intro hQ'mem
+    obtain ⟨C, hCmem, hsub⟩ := hQ hQ'mem
+    exact ⟨C, hCmem, hQ'mem, hsub⟩
+
+/-- **Reindexing an arbitrary sub-family of fine parts by parents.** Any collection `I` of
+`Q`-parts splits over the `P`-part fibers, because each `Q`-part lies in a unique `P`-part.
+
+Stated for a sub-family rather than all of `Q.parts` because energy arguments select the fine
+cells meeting a witness rectangle and still need to group them under their coarse parents;
+`sum_over_parents` is the special case `I = Q.parts`.-/
+theorem sum_over_parents_subset {P Q : Finpartition s} (hQ : Q ≤ P) {I : Finset (Finset α)}
+    (hI : I ⊆ Q.parts) (g : Finset α → ℝ) :
+    ∑ C ∈ P.parts, ∑ C' ∈ I.filter (· ⊆ C), g C' = ∑ C' ∈ I, g C' := by
+  classical
+  have hfib : (↑P.parts : Set (Finset α)).PairwiseDisjoint
+      (fun C => I.filter (· ⊆ C)) := by
+    intro C₁ hC₁ C₂ hC₂ hne
+    simp only [Function.onFun, Finset.disjoint_left, Finset.mem_filter]
+    rintro Q' ⟨hQ'mem, hsub₁⟩ ⟨-, hsub₂⟩
+    obtain ⟨x, hx⟩ := Q.nonempty_of_mem_parts (hI hQ'mem)
+    exact hne (P.eq_of_mem_parts (Finset.mem_coe.mp hC₁) (Finset.mem_coe.mp hC₂)
+      (hsub₁ hx) (hsub₂ hx))
+  have hcover : P.parts.biUnion (fun C => I.filter (· ⊆ C)) = I := by
+    ext C'
+    simp only [Finset.mem_biUnion, Finset.mem_filter]
+    constructor
+    · rintro ⟨-, -, hC'mem, -⟩
+      exact hC'mem
+    · intro hC'mem
+      obtain ⟨C, hCmem, hsub⟩ := hQ (hI hC'mem)
+      exact ⟨C, hCmem, hC'mem, hsub⟩
+  conv_rhs => rw [← hcover]
+  rw [Finset.sum_biUnion hfib]
+
+/-- Reindexing: summing a function of `Q`-parts over the `P`-part fibers recovers the
+total (each `Q`-part lies in a unique `P`-part).-/
+theorem sum_over_parents {P Q : Finpartition s} (hQ : Q ≤ P) (g : Finset α → ℝ) :
+    ∑ C ∈ P.parts, ∑ C' ∈ Q.parts.filter (· ⊆ C), g C' = ∑ C' ∈ Q.parts, g C' :=
+  sum_over_parents_subset hQ Finset.Subset.rfl g
+
+/-- **Partitioning a point-indexed sum by the containing part.** A sum over `S` whose
+summand depends on each point *and* on the part containing it splits into a sum over the
+parts of their cell traces.
+
+`S ⊆ s` is essential and not cosmetic: a point outside the carrier contributes on the left
+through `P.part x = ∅`, but belongs to no cell on the right, so the two sides genuinely
+differ. See the falsification example among the tests.
+
+Deliberately stated for an arbitrary `AddCommMonoid` and an arbitrary `g : Finset α → α → M`,
+so that this file stays independent of the weight API and the statement captures only the
+combinatorics. The weighted forms are corollaries.-/
+theorem sum_over_parts {M : Type*} [AddCommMonoid M] (P : Finpartition s) {S : Finset α}
+    (hS : S ⊆ s) (g : Finset α → α → M) :
+    ∑ x ∈ S, g (P.part x) x = ∑ C ∈ P.parts, ∑ x ∈ S ∩ C, g C x := by
+  classical
+  have hdisj : (↑P.parts : Set (Finset α)).PairwiseDisjoint (fun C => S ∩ C) := by
+    intro C₁ hC₁ C₂ hC₂ hne
+    simp only [Function.onFun, Finset.disjoint_left, Finset.mem_inter]
+    rintro x ⟨-, hx₁⟩ ⟨-, hx₂⟩
+    exact hne (P.eq_of_mem_parts (Finset.mem_coe.mp hC₁) (Finset.mem_coe.mp hC₂) hx₁ hx₂)
+  have hcover : P.parts.biUnion (fun C => S ∩ C) = S := by
+    ext x
+    simp only [Finset.mem_biUnion, Finset.mem_inter]
+    constructor
+    · rintro ⟨C, -, hxS, -⟩; exact hxS
+    · intro hxS
+      obtain ⟨C, hC, hxC⟩ := P.exists_mem (hS hxS)
+      exact ⟨C, hC, hxS, hxC⟩
+  calc ∑ x ∈ S, g (P.part x) x
+      = ∑ x ∈ P.parts.biUnion (fun C => S ∩ C), g (P.part x) x := by rw [hcover]
+    _ = ∑ C ∈ P.parts, ∑ x ∈ S ∩ C, g (P.part x) x := Finset.sum_biUnion hdisj
+    _ = ∑ C ∈ P.parts, ∑ x ∈ S ∩ C, g C x :=
+        Finset.sum_congr rfl fun C hC => Finset.sum_congr rfl fun x hx => by
+          rw [P.part_eq_of_mem hC (Finset.mem_of_mem_inter_right hx)]
+
+/-- The parts of a refinement `Q` that sit inside a fixed `P`-part `C`, packaged as a
+`Finpartition` of `C`.
+
+The refinement hypothesis is consumed *here*, at the construction, so that statements about
+refinement variance can quantify over ordinary partitions and take `hQ` as an ordinary
+hypothesis rather than carrying proofs as data.-/
+def refinementOnPart {P Q : Finpartition s} (hQ : Q ≤ P) {C : Finset α} (hC : C ∈ P.parts) :
+    Finpartition C :=
+  Q.ofSubset (Finset.filter_subset (· ⊆ C) Q.parts)
+    (by rw [Finset.sup_eq_biUnion]; exact biUnion_filter_subset_eq hQ hC)
+
+@[simp]
+theorem parts_refinementOnPart {P Q : Finpartition s} (hQ : Q ≤ P) {C : Finset α}
+    (hC : C ∈ P.parts) :
+    (refinementOnPart hQ hC).parts = Q.parts.filter (· ⊆ C) := rfl
+
+/-- A partition refines itself trivially: the only `P`-part contained in a `P`-part `C`
+is `C`. This is what collapses one side of a two-sided refinement variance.-/
+theorem parts_filter_subset_eq_singleton {P : Finpartition s} {C : Finset α}
+    (hC : C ∈ P.parts) : P.parts.filter (· ⊆ C) = {C} := by
+  ext E
+  simp only [Finset.mem_filter, Finset.mem_singleton]
+  constructor
+  · rintro ⟨hE, hEC⟩
+    obtain ⟨x, hx⟩ := P.nonempty_of_mem_parts hE
+    exact P.eq_of_mem_parts hE hC hx (hEC hx)
+  · rintro rfl
+    exact ⟨hC, Finset.Subset.refl _⟩
+
+/-! ### Predicate partitions -/
+
+/-- The at-most-two-cell partition of `s` by a decidable predicate, via
+`Finpartition.atomise` with the one-set family `{s.filter p}`. (Deliberately NOT built
+on relation-fiber machinery.)-/
+def predicatePartition (p : α → Prop) [DecidablePred p] (s : Finset α) : Finpartition s :=
+  Finpartition.atomise s {s.filter p}
+
+/-- The predicate is constant on each cell of `predicatePartition`.-/
+theorem predicatePartition_constant {p : α → Prop} [DecidablePred p] {C : Finset α}
+    (hC : C ∈ (predicatePartition p s).parts) :
+    (∀ a ∈ C, p a) ∨ (∀ a ∈ C, ¬ p a) := by
+  obtain ⟨-, Q, -, rfl⟩ := Finpartition.mem_atomise.mp hC
+  by_cases hQ : s.filter p ∈ Q
+  · left
+    intro a ha
+    rw [Finset.mem_filter] at ha
+    have := (ha.2 (s.filter p) (Finset.mem_singleton_self _)).mp hQ
+    exact (Finset.mem_filter.mp this).2
+  · right
+    intro a ha hpa
+    rw [Finset.mem_filter] at ha
+    exact hQ ((ha.2 (s.filter p) (Finset.mem_singleton_self _)).mpr
+      (Finset.mem_filter.mpr ⟨ha.1, hpa⟩))
+
+theorem predicatePartition_parts_card_le (p : α → Prop) [DecidablePred p] (s : Finset α) :
+    (predicatePartition p s).parts.card ≤ 2 := by
+  simpa [predicatePartition] using
+    Finpartition.card_atomise_le (s := s) (F := {s.filter p})
+
+/-- Exact membership: the cells are the nonempty sets among `s.filter p` and
+`s.filter (¬ p ·)`.-/
+theorem mem_predicatePartition {p : α → Prop} [DecidablePred p] {C : Finset α} :
+    C ∈ (predicatePartition p s).parts ↔
+      C.Nonempty ∧ (C = s.filter p ∨ C = s.filter fun a => ¬ p a) := by
+  rw [predicatePartition, Finpartition.mem_atomise]
+  constructor
+  · rintro ⟨hne, Q, hQ, rfl⟩
+    refine ⟨hne, ?_⟩
+    rcases Finset.subset_singleton_iff.mp hQ with rfl | rfl
+    · right
+      ext a
+      simp only [Finset.mem_filter, Finset.mem_singleton, Finset.notMem_empty, false_iff,
+        forall_eq]
+      tauto
+    · left
+      ext a
+      simp [Finset.mem_filter]
+  · rintro ⟨hne, rfl | rfl⟩
+    · refine ⟨hne, {s.filter p}, subset_rfl, ?_⟩
+      ext a
+      simp [Finset.mem_filter]
+    · refine ⟨hne, ∅, Finset.empty_subset _, ?_⟩
+      ext a
+      simp only [Finset.mem_filter, Finset.mem_singleton, Finset.notMem_empty, false_iff,
+        forall_eq]
+      tauto
+
+/-- Exact parts formula for the predicate partition.-/
+theorem predicatePartition_parts (p : α → Prop) [DecidablePred p] (s : Finset α) :
+    (predicatePartition p s).parts
+      = ({s.filter p, s.filter fun a => ¬ p a} : Finset (Finset α)).filter
+          Finset.Nonempty := by
+  ext C
+  rw [mem_predicatePartition, Finset.mem_filter, Finset.mem_insert, Finset.mem_singleton]
+  tauto
+
+/-! ### One-cut refinement
+
+Cutting a partition by a single test set: each cell is split into its trace on the set and
+its trace off it. This is the atomic step of an energy-increment iteration, and it costs **at
+most** a factor of `2` in the part count — a uniform factor-2 bound, not an exact count. An
+empty or full cut costs nothing at all, and a cut respecting existing cell boundaries costs
+less than `2`.
+
+Named `cutRefinePartition` rather than `cutRefine` because the latter already denotes the
+unrelated polyad-witness color refinement of `RegularityLemmata/Hypergraph/PolyadWitness.lean`. -/
+
+/-- Refine `P` by cutting every cell along the test set `S`.-/
+def cutRefinePartition (P : Finpartition s) (S : Finset α) : Finpartition s :=
+  P ⊓ predicatePartition (· ∈ S) s
+
+/-- A cut refinement is a refinement.-/
+theorem cutRefinePartition_le (P : Finpartition s) (S : Finset α) :
+    cutRefinePartition P S ≤ P :=
+  inf_le_left
+
+/-- **The factor-2 part bound**, for one coordinate.-/
+theorem card_parts_cutRefinePartition_le (P : Finpartition s) (S : Finset α) :
+    (cutRefinePartition P S).parts.card ≤ 2 * P.parts.card := by
+  refine le_trans (card_parts_inf_le P (predicatePartition (· ∈ S) s)) ?_
+  rw [mul_comm]
+  exact Nat.mul_le_mul_right _ (predicatePartition_parts_card_le (· ∈ S) s)
+
+/-- **The cut separates `S`.** Every cell lands inside the test set or misses it entirely,
+which is what makes `S` a union of cells.-/
+theorem cutRefinePartition_part_subset_or_disjoint (P : Finpartition s) (S : Finset α)
+    {C : Finset α} (hC : C ∈ (cutRefinePartition P S).parts) : C ⊆ S ∨ Disjoint C S := by
+  obtain ⟨E, hE, hCE⟩ :=
+    (inf_le_right : cutRefinePartition P S ≤ predicatePartition (· ∈ S) s) hC
+  rcases predicatePartition_constant hE with hin | hout
+  · exact Or.inl fun x hx => hin x (hCE hx)
+  · exact Or.inr (Finset.disjoint_left.mpr fun x hx => hout x (hCE hx))
+
+/-- **The test set is a union of cells.** The form an energy step consumes: after the cut, `S`
+is exactly the union of the cells contained in it. `S ⊆ s` is required — a test set reaching
+outside the carrier is not covered by any cell.-/
+theorem biUnion_cutRefinePartition_filter_subset (P : Finpartition s) {S : Finset α}
+    (hS : S ⊆ s) :
+    ((cutRefinePartition P S).parts.filter (· ⊆ S)).biUnion id = S := by
+  classical
+  refine Finset.Subset.antisymm (fun x hx => ?_) (fun x hx => ?_)
+  · rw [Finset.mem_biUnion] at hx
+    obtain ⟨C, hCf, hxC⟩ := hx
+    exact (Finset.mem_filter.mp hCf).2 hxC
+  · have hxs : x ∈ s := hS hx
+    have hmem : (cutRefinePartition P S).part x ∈ (cutRefinePartition P S).parts :=
+      (cutRefinePartition P S).part_mem.2 hxs
+    have hxpart : x ∈ (cutRefinePartition P S).part x := (cutRefinePartition P S).mem_part hxs
+    have hsub : (cutRefinePartition P S).part x ⊆ S := by
+      rcases cutRefinePartition_part_subset_or_disjoint P S hmem with h | h
+      · exact h
+      · exact absurd hx (Finset.disjoint_left.mp h hxpart)
+    exact Finset.mem_biUnion.mpr
+      ⟨(cutRefinePartition P S).part x, Finset.mem_filter.mpr ⟨hmem, hsub⟩, hxpart⟩
+
+/-- **Part-size inheritance under refinement.** If `P` refines `Q` (`P ≤ Q`) and every cell of
+`Q` has cardinality at most `m`, then so does every cell of `P` — a finer cell sits inside a
+coarse one.-/
+theorem part_card_le_of_refines {m : ℕ} {P Q : Finpartition s} (hle : P ≤ Q)
+    (hm : ∀ B ∈ Q.parts, B.card ≤ m) : ∀ A ∈ P.parts, A.card ≤ m := by
+  intro A hA
+  obtain ⟨B, hB, hAB⟩ := hle hA
+  exact le_trans (Finset.card_le_card hAB) (hm B hB)
+
+/-! ### Tests and adversarial examples -/
+
+-- Tiny concrete partitions of {0,1,2}: singletons (⊥) and the indiscrete partition (⊤).
+
+end RegularityLemmata
