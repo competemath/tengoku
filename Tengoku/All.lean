@@ -69,6 +69,7 @@ import Tengoku.OpenaiMath
 import Tengoku.TheIwasawaTowerLawForRamanujanSThirdOrderMockThetaFunction
 import Tengoku.ImmermanVardi
 import Tengoku.GeneralStochToDet
+import Tengoku.S3xs3LiEinstein
 import Tengoku.MagnitudeConjecture
 import Tengoku.Pi2Lean
 import Tengoku.CrootUnitFractions
