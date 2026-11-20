@@ -1,0 +1,1 @@
+-- ObserverEquivarianceLean: a factory bundle (data/intake/observer-equivariance-lean). This file only marks the library for Tengoku/All.lean.
