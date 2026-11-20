@@ -1,0 +1,301 @@
+/-
+Copyright (c) 2026 Cameron Freer. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+-/
+import Tengoku.RegularityLemmata.RegularityLemmata.Hypergraph.Polyad
+import Tengoku.RegularityLemmata.RegularityLemmata.Finite.Inequalities
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Polyad energy and refinement monotonicity
+
+Phase 7 unit 3 (design freeze in `ARCHITECTURE.md`): the mass-weighted energy of a
+cell assignment `κ : RSet j α → Fin K` against an observable —
+
+`polyadEnergyNum κ obs = Σ_key density(block key)² · |block key|`
+
+— the polyad-level analogue of the pair energy in `RegularityLemmata/Partition/Energy.lean` and of
+the
+*index* of a partition family in V. Rödl, M. Schacht, *Regular partitions of
+hypergraphs: Regularity lemmas*, Combin. Probab. Comput. 16 (2007) (the mean-square
+density driving their iteration); the mass-weighted normalization follows the
+library's graph-ladder convention (A. Schrijver's CWI notes; Y. Zhao, *Graph Theory
+and Additive Combinatorics*). All blocks are included — the empty/unrealized keys
+contribute `0` under the guard-free conventions.
+
+The load-bearing fact is **refinement monotonicity** (`polyadEnergyNum_comp_le`):
+merging cells through any map `f : Fin K' → Fin K` can only lower the energy,
+because a merged block is the disjoint union of its fibers' blocks
+(`polyadBlock_comp`) and the Engel-form Cauchy–Schwarz (`titu_finset`,
+`RegularityLemmata/Finite/Inequalities.lean`) is exactly `(Σ r)²/(Σ b) ≤ Σ r²/b`. This is the
+square-root-free energy bookkeeping the one-step repair (unit 4) will consume.
+-/
+
+namespace RegularityLemmata
+
+variable {α : Type*} [Fintype α] [DecidableEq α] {j K K' : ℕ}
+
+/-- Mass-weighted polyad energy (numerator form): `Σ_key d² · |block|`.-/
+noncomputable def polyadEnergyNum (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : ℝ :=
+  ∑ key : Fin (j + 1) → Fin K,
+    densityOn (polyadBlock κ key) obs ^ 2 * ((polyadBlock κ key).card : ℝ)
+
+/--
+@isnad1 id=le.0h5v.s6.d6b377b46a4d from=translated src=- shape=bfc20f21 vocab=464e4324
+-/
+theorem polyadEnergyNum_nonneg (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    0 ≤ polyadEnergyNum κ obs :=
+  Finset.sum_nonneg fun _ _ =>
+    mul_nonneg (sq_nonneg _) (Nat.cast_nonneg _)
+
+/-- The energy is at most the total injective mass (densities are at most `1`).
+@isnad1 id=le.0h5v.s6.c69a93737b6f from=translated src=- shape=0e55dd50 vocab=38ab1ded
+-/
+theorem polyadEnergyNum_le_count (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    polyadEnergyNum κ obs ≤ (injectiveTupleCount α (j + 1) : ℝ) := by
+  have hle : polyadEnergyNum κ obs
+      ≤ ∑ key : Fin (j + 1) → Fin K, ((polyadBlock κ key).card : ℝ) := by
+    refine Finset.sum_le_sum fun key _ => ?_
+    have hd : densityOn (polyadBlock κ key) obs ^ 2 ≤ 1 := by
+      have h0 := densityOn_nonneg (S := polyadBlock κ key) (p := obs)
+      have h1 := densityOn_le_one (S := polyadBlock κ key) (p := obs)
+      nlinarith
+    exact le_trans (mul_le_mul_of_nonneg_right hd (Nat.cast_nonneg _)) (by rw [one_mul])
+  refine le_trans hle (le_of_eq ?_)
+  rw [← Nat.cast_sum]
+  exact_mod_cast sum_card_polyadBlock κ
+
+/-- **Fiber decomposition of a merged block**: coloring through `f : Fin K' → Fin K`
+makes each merged block the union of the blocks of the keys in its fiber.
+@isnad1 id=eq.0h7v.s8.a178d18f9669 from=translated src=- shape=73478ec0 vocab=0b1b70cb
+-/
+theorem polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (P : Fin (j + 1) → Fin K) :
+    polyadBlock (fun e => f (κ' e)) P
+      = (Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+          (fun i => f (P' i)) = P).biUnion (polyadBlock κ') := by
+  ext v
+  rw [Finset.mem_biUnion]
+  constructor
+  · intro hv
+    have hinj := injective_of_mem_polyadBlock hv
+    refine ⟨fun i => κ' (lowerFaceRSet hinj i),
+      Finset.mem_filter.mpr ⟨Finset.mem_univ _, ?_⟩, ?_⟩
+    · funext i
+      exact (mem_polyadBlock_iff_of_injective hinj).mp hv i
+    · rw [mem_polyadBlock_iff_of_injective hinj]
+      intro i
+      rfl
+  · rintro ⟨P', hP', hv⟩
+    have hinj := injective_of_mem_polyadBlock hv
+    rw [mem_polyadBlock_iff_of_injective hinj] at hv ⊢
+    rw [Finset.mem_filter] at hP'
+    intro i
+    rw [← congrFun hP'.2 i]
+    exact congrArg f (hv i)
+
+/-- Filtered cardinality of a merged block: the sum over its fiber.
+@isnad1 id=eq.0h8v.s8.1dad747514f8 from=translated src=- shape=cf3bf6e7 vocab=70f9416a
+-/
+theorem card_filter_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (P : Fin (j + 1) → Fin K) (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    ((polyadBlock (fun e => f (κ' e)) P).filter obs).card
+      = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+          (fun i => f (P' i)) = P, ((polyadBlock κ' P').filter obs).card := by
+  rw [polyadBlock_comp, Finset.filter_biUnion]
+  exact Finset.card_biUnion fun P₁ _ P₂ _ h =>
+    (polyadBlock_disjoint h).mono (Finset.filter_subset _ _) (Finset.filter_subset _ _)
+
+/-- Cardinality of a merged block: the sum over its fiber.
+@isnad1 id=eq.0h7v.s8.25bbf6c687ed from=translated src=- shape=546cb84f vocab=715a7151
+-/
+theorem card_polyadBlock_comp (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (P : Fin (j + 1) → Fin K) :
+    (polyadBlock (fun e => f (κ' e)) P).card
+      = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+          (fun i => f (P' i)) = P, (polyadBlock κ' P').card := by
+  rw [polyadBlock_comp]
+  exact Finset.card_biUnion fun P₁ _ P₂ _ h => polyadBlock_disjoint h
+
+/-- **Refinement monotonicity**: merging cells can only lower the energy. The heart
+is the Engel-form Cauchy–Schwarz `(Σ r)²/(Σ b) ≤ Σ r²/b` applied on each fiber.
+@isnad1 id=le.0h7v.s6.2a5d4358bd03 from=translated src=- shape=68eb62e9 vocab=464e4324
+-/
+theorem polyadEnergyNum_comp_le (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    polyadEnergyNum (fun e => f (κ' e)) obs ≤ polyadEnergyNum κ' obs := by
+  classical
+  have hstep : ∀ P : Fin (j + 1) → Fin K,
+      densityOn (polyadBlock (fun e => f (κ' e)) P) obs ^ 2
+          * ((polyadBlock (fun e => f (κ' e)) P).card : ℝ)
+        ≤ ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ) := by
+    intro P
+    rw [sq_densityOn_mul_card]
+    have hr : (((polyadBlock (fun e => f (κ' e)) P).filter obs).card : ℝ)
+        = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P, (((polyadBlock κ' P').filter obs).card : ℝ) := by
+      rw [← Nat.cast_sum]
+      exact_mod_cast card_filter_polyadBlock_comp f κ' P obs
+    have hb : ((polyadBlock (fun e => f (κ' e)) P).card : ℝ)
+        = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P, ((polyadBlock κ' P').card : ℝ) := by
+      rw [← Nat.cast_sum]
+      exact_mod_cast card_polyadBlock_comp f κ' P
+    rw [hr, hb]
+    refine le_trans
+      (titu_finset _ _ _ (fun P' _ => Nat.cast_nonneg _) fun P' _ hzero => ?_)
+      (le_of_eq (Finset.sum_congr rfl fun P' _ => ?_))
+    · have hcard : (polyadBlock κ' P').card = 0 := by exact_mod_cast hzero
+      have hle := Finset.card_filter_le (polyadBlock κ' P') obs
+      rw [hcard, Nat.le_zero] at hle
+      exact_mod_cast hle
+    · rw [sq_densityOn_mul_card]
+  calc polyadEnergyNum (fun e => f (κ' e)) obs
+      ≤ ∑ P : Fin (j + 1) → Fin K,
+          ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ) :=
+        Finset.sum_le_sum fun P _ => hstep P
+    _ = polyadEnergyNum κ' obs :=
+        Finset.sum_fiberwise_of_maps_to (fun P' _ => Finset.mem_univ _) _
+
+/-- Normalized polyad energy, per the frozen `|V|^{j+1}` convention (guard-free on
+`V = ∅`).-/
+noncomputable def polyadEnergy (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : ℝ :=
+  polyadEnergyNum κ obs / (Fintype.card α : ℝ) ^ (j + 1)
+
+/--
+@isnad1 id=le.0h5v.s6.54852ca18b1f from=translated src=- shape=bfc20f21 vocab=662bde39
+-/
+theorem polyadEnergy_nonneg (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : 0 ≤ polyadEnergy κ obs :=
+  div_nonneg (polyadEnergyNum_nonneg κ obs) (by positivity)
+
+/--
+@isnad1 id=le.0h5v.s6.048dd4d9621d from=translated src=- shape=40e5ef29 vocab=662bde39
+-/
+theorem polyadEnergy_le_one (κ : RSet j α → Fin K)
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] : polyadEnergy κ obs ≤ 1 := by
+  rw [polyadEnergy]
+  rcases Nat.eq_zero_or_pos (Fintype.card α) with hcard | hcard
+  · rw [hcard]
+    norm_num
+  · rw [div_le_one (by positivity)]
+    refine le_trans (polyadEnergyNum_le_count κ obs) ?_
+    exact_mod_cast injectiveTupleCount_le_pow (α := α) (j + 1)
+
+/--
+@isnad1 id=le.0h7v.s6.002aba8232d8 from=translated src=- shape=68eb62e9 vocab=662bde39
+-/
+theorem polyadEnergy_comp_le (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    polyadEnergy (fun e => f (κ' e)) obs ≤ polyadEnergy κ' obs :=
+  div_le_div_of_nonneg_right (polyadEnergyNum_comp_le f κ' obs) (by positivity)
+
+/-- **The exact refinement-variance identity**: the energy gap under merging is the
+mass-weighted variance of the fine block densities around their merged blocks'
+densities (the polyad analogue of the parallel-axis identity in
+`RegularityLemmata/Graph/Variance.lean`). Refinement monotonicity is its nonnegativity.
+@isnad1 id=eq.0h7v.s9.ebd42558ef35 from=translated src=- shape=c15c98dc vocab=006d9071
+-/
+theorem polyadEnergyNum_comp_variance (f : Fin K' → Fin K) (κ' : RSet j α → Fin K')
+    (obs : (Fin (j + 1) → α) → Prop) [DecidablePred obs] :
+    polyadEnergyNum κ' obs - polyadEnergyNum (fun e => f (κ' e)) obs
+      = ∑ P : Fin (j + 1) → Fin K,
+          ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            ((polyadBlock κ' P').card : ℝ)
+              * (densityOn (polyadBlock κ' P') obs
+                  - densityOn (polyadBlock (fun e => f (κ' e)) P) obs) ^ 2 := by
+  classical
+  have hkey : ∀ P : Fin (j + 1) → Fin K,
+      ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+          (fun i => f (P' i)) = P,
+          ((polyadBlock κ' P').card : ℝ)
+            * (densityOn (polyadBlock κ' P') obs
+                - densityOn (polyadBlock (fun e => f (κ' e)) P) obs) ^ 2
+        = (∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ))
+          - densityOn (polyadBlock (fun e => f (κ' e)) P) obs ^ 2
+            * ((polyadBlock (fun e => f (κ' e)) P).card : ℝ) := by
+    intro P
+    have hb : ((polyadBlock (fun e => f (κ' e)) P).card : ℝ)
+        = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P, ((polyadBlock κ' P').card : ℝ) := by
+      rw [← Nat.cast_sum]
+      exact_mod_cast card_polyadBlock_comp f κ' P
+    have hr : densityOn (polyadBlock (fun e => f (κ' e)) P) obs
+          * ((polyadBlock (fun e => f (κ' e)) P).card : ℝ)
+        = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs * ((polyadBlock κ' P').card : ℝ) := by
+      rw [densityOn_mul_card]
+      rw [show (((polyadBlock (fun e => f (κ' e)) P).filter obs).card : ℝ)
+          = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+              (fun i => f (P' i)) = P,
+              (((polyadBlock κ' P').filter obs).card : ℝ) from by
+        rw [← Nat.cast_sum]
+        exact_mod_cast card_filter_polyadBlock_comp f κ' P obs]
+      exact Finset.sum_congr rfl fun P' _ => (densityOn_mul_card _ _).symm
+    set dP := densityOn (polyadBlock (fun e => f (κ' e)) P) obs with hdP
+    calc ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            ((polyadBlock κ' P').card : ℝ)
+              * (densityOn (polyadBlock κ' P') obs - dP) ^ 2
+        = ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            (densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ)
+              - 2 * dP * (densityOn (polyadBlock κ' P') obs
+                  * ((polyadBlock κ' P').card : ℝ))
+              + dP ^ 2 * ((polyadBlock κ' P').card : ℝ)) :=
+          Finset.sum_congr rfl fun P' _ => by ring
+      _ = (∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ))
+          - 2 * dP * (∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+              (fun i => f (P' i)) = P,
+              densityOn (polyadBlock κ' P') obs * ((polyadBlock κ' P').card : ℝ))
+          + dP ^ 2 * (∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+              (fun i => f (P' i)) = P, ((polyadBlock κ' P').card : ℝ)) := by
+          rw [Finset.sum_add_distrib, Finset.sum_sub_distrib, Finset.mul_sum,
+            Finset.mul_sum]
+      _ = _ := by
+          rw [← hr, ← hb]
+          ring
+  calc polyadEnergyNum κ' obs - polyadEnergyNum (fun e => f (κ' e)) obs
+      = (∑ P : Fin (j + 1) → Fin K,
+          ∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ))
+        - polyadEnergyNum (fun e => f (κ' e)) obs := by
+        rw [polyadEnergyNum,
+          Finset.sum_fiberwise_of_maps_to (fun P' _ => Finset.mem_univ _)
+            fun P' : Fin (j + 1) → Fin K' =>
+              densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ)]
+    _ = ∑ P : Fin (j + 1) → Fin K,
+          ((∑ P' ∈ Finset.univ.filter fun P' : Fin (j + 1) → Fin K' =>
+            (fun i => f (P' i)) = P,
+            densityOn (polyadBlock κ' P') obs ^ 2 * ((polyadBlock κ' P').card : ℝ))
+          - densityOn (polyadBlock (fun e => f (κ' e)) P) obs ^ 2
+            * ((polyadBlock (fun e => f (κ' e)) P).card : ℝ)) := by
+        rw [Finset.sum_sub_distrib]
+        rfl
+    _ = _ := Finset.sum_congr rfl fun P _ => (hkey P).symm
+
+/-! ### Tests and adversarial examples -/
+
+section Tests
+
+-- The nowhere-true observable has zero energy.
+
+end Tests
+
+end RegularityLemmata

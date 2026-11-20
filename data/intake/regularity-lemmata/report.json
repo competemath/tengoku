@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "385c875cd843507528e2b65c3ddbd3ea97e0934952c9a994a580acf4615ea6f3",
+ "factory_changes": {
+  "inert lines removed": 2,
+  "modules changed": 6,
+  "print lines removed": 16
+ },
+ "gate2_unjudged": [],
+ "library": "regularity-lemmata",
+ "lint_mode": "proposed",
+ "modules": 163,
+ "part": 1,
+ "theorems": 1887
+}
