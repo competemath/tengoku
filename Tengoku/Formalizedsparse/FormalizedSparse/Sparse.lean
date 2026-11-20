@@ -64,9 +64,15 @@ instance : FunLike (DigitSeries) ℕ+ ℕ where
     simp only at hfg
     congr
 
+/--
+@isnad1 id=eq.1h1v.s4.5020a8b319ca from=translated src=- shape=55f66744 vocab=33fdd67d
+-/
 @[simp] theorem DigitSeries.coe_mk (f : ℕ+ → ℕ) (h) :
     ⇑(⟨f, h⟩ : DigitSeries) = f := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.337076d7e349 from=translated src=- shape=6dbcd907 vocab=ecac59e9
+-/
 @[simp] theorem DigitSeries.toFun_eq_coe (f : DigitSeries) : f.toFun = ⇑f := rfl
 
 namespace DigitSeries
@@ -89,12 +95,18 @@ noncomputable def value (p : ℕ) (f : DigitSeries) (n : ℕ) : ℕ :=
 def indices (n : ℕ) : Finset ℕ+ :=
   (Finset.range n).map ⟨Nat.succPNat, Nat.succPNat_injective⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.9bd4c5120713 from=translated src=- shape=5322d808 vocab=6425de38
+-/
 @[simp] lemma coeffs_length (f : ℕ+ → ℕ) (n : ℕ) :
     (coeffs f n).length = n := by
   induction n with
   | zero => rfl
   | succ n ih => simp [coeffs, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.8fb4f6384eb3 from=translated src=- shape=2dade4aa vocab=b4b3466c
+-/
 @[simp] lemma coeffs_sum (f : ℕ+ → ℕ) (n : ℕ) :
     (coeffs f n).sum = Finset.sum (indices n) f := by
   induction n with
@@ -108,15 +120,24 @@ def indices (n : ℕ) : Finset ℕ+ :=
       · simp [ih]
       · simp [indices]
 
+/--
+@isnad1 id=iff.0h2v.s4.7d10d3e57152 from=translated src=- shape=740b59f7 vocab=028766d5
+-/
 @[simp] lemma mem_indices (n k : ℕ) :
     Nat.succPNat k ∈ indices n ↔ k < n := by
   simp [indices]
 
+/--
+@isnad1 id=eq.0h1v.s4.26643cbcae0e from=translated src=- shape=fe098d52 vocab=70e1786d
+-/
 @[simp] lemma indices_succ (n : ℕ) :
     indices (n + 1) = insert (Nat.succPNat n) (indices n) := by
   ext i
   simp [indices, Finset.range_add_one, eq_comm]
 
+/--
+@isnad1 id=le.1h2v.s4.a04928b1949a from=translated src=- shape=ef3a04ae vocab=b8503a7d
+-/
 lemma le_maxIndex_of_mem_support (f : DigitSeries) {n : ℕ+} (hn : f n ≠ 0) :
     (n : ℕ) ≤ f.maxIndex := by
   classical
@@ -128,6 +149,9 @@ lemma eq_zero_of_maxIndex_lt (f : DigitSeries) {n : ℕ} (hn : f.maxIndex < n + 
   by_contra hne
   exact (not_lt_of_ge (f.le_maxIndex_of_mem_support hne)) hn
 
+/--
+@isnad1 id=eq.0h2v.s6.8f4eaa42f214 from=translated src=- shape=af3442fe vocab=cde2e8cd
+-/
 lemma cast_mul_zpow_neg_succ (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
     (p : ℚ) * (p : ℚ) ^ (-(n + 1 : ℤ)) = (p : ℚ) ^ (-(n : ℤ)) := by
   have hp0 : (p : ℚ) ≠ 0 := by
@@ -138,6 +162,9 @@ lemma cast_mul_zpow_neg_succ (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
   have hpow : (p : ℚ) ^ (↑n + 1) = (p : ℚ) * (p : ℚ) ^ n := by simpa using (pow_succ' (p : ℚ) n)
   exact hpow.symm
 
+/--
+@isnad1 id=eq.0h2v.s5.7ffb4f625e68 from=translated src=- shape=2a1539b6 vocab=e4229140
+-/
 lemma cast_pow_mul_zpow_neg (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
     ((p : ℚ) ^ n) * (p : ℚ) ^ (-(n : ℤ)) = 1 := by
   have hp0 : (p : ℚ) ≠ 0 := by
@@ -145,6 +172,9 @@ lemma cast_pow_mul_zpow_neg (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
   rw [zpow_neg, zpow_natCast]
   field_simp [hp0]
 
+/--
+@isnad1 id=eq.1h4v.s5.c0ce596dd1b5 from=translated src=- shape=7f7a15d7 vocab=3bec598d
+-/
 lemma coeffs_update_above (f : ℕ+ → ℕ) (n m : ℕ) (hm : m ≤ n) (a : ℕ) :
     coeffs (Function.update f (Nat.succPNat n) a) m = coeffs f m := by
   induction m with
@@ -172,6 +202,9 @@ noncomputable def ofCoeffs : List ℕ → DigitSeries
           · simp [h]
           · right; simpa [Function.update, h] using hi }
 
+/--
+@isnad1 id=eq.0h1v.s4.1ae005e27655 from=translated src=- shape=2b9d2956 vocab=c022f288
+-/
 @[simp] lemma coeffs_ofCoeffs : ∀ L : List ℕ, coeffs (ofCoeffs L) L.length = L
   | [] => rfl
   | a :: L => by
@@ -184,6 +217,9 @@ noncomputable def ofCoeffs : List ℕ → DigitSeries
         rw [coeffs_update_above (f := ofCoeffs L) (n := L.length) (m := L.length) le_rfl (a := a)]
         rw [coeffs_ofCoeffs L]
 
+/--
+@isnad1 id=lt.1h3v.s5.428e4246fa3e from=translated src=- shape=3b99442d vocab=dfc1d113
+-/
 lemma ofCoeffs_lt {p : ℕ} [Fact (Nat.Prime p)] :
     ∀ {L : List ℕ}, (∀ x ∈ L, x < p) → ∀ i, ofCoeffs L i < p
   | [], h, i => by
@@ -197,6 +233,9 @@ lemma ofCoeffs_lt {p : ℕ} [Fact (Nat.Prime p)] :
         simpa [Function.update, hi] using
           ofCoeffs_lt (p := p) (L := L) (fun x hx => h x (List.mem_cons_of_mem _ hx)) i
 
+/--
+@isnad1 id=le.1h2v.s4.815e8172da4e from=translated src=- shape=27fb0261 vocab=24392ae1
+-/
 lemma le_length_of_mem_support_ofCoeffs : ∀ {L : List ℕ} {i : ℕ+},
     ofCoeffs L i ≠ 0 → (i : ℕ) ≤ L.length
   | [], i, hi => by cases hi rfl
@@ -209,6 +248,9 @@ lemma le_length_of_mem_support_ofCoeffs : ∀ {L : List ℕ} {i : ℕ+},
           simpa [Function.update, htop] using hi
         exact Nat.le_trans (le_length_of_mem_support_ofCoeffs hi') (Nat.le_succ _)
 
+/--
+@isnad1 id=lt.0h1v.s4.18595335ae54 from=translated src=- shape=adb4f9d9 vocab=1d1e5035
+-/
 lemma maxIndex_ofCoeffs_lt (L : List ℕ) : (ofCoeffs L).maxIndex < L.length + 1 := by
   classical
   have hle : (ofCoeffs L).maxIndex ≤ L.length := by
@@ -217,6 +259,9 @@ lemma maxIndex_ofCoeffs_lt (L : List ℕ) : (ofCoeffs L).maxIndex < L.length + 1
     exact le_length_of_mem_support_ofCoeffs (by simpa using hi)
   exact Nat.lt_succ_of_le hle
 
+/--
+@isnad1 id=lt.0h1v.s4.b6d204593324 from=translated src=- shape=1173d5cd vocab=19540e01
+-/
 lemma maxIndex_ofCoeffs_zero_cons_lt (L : List ℕ) :
     (ofCoeffs (0 :: L)).maxIndex < L.length + 1 := by
   classical
@@ -260,10 +305,16 @@ def IsP (f : DigitSeries) (p : ℕ) [Fact (Nat.Prime p)] : Prop :=
 
 end DigitSeries
 
+/--
+@isnad1 id=eq.0h2v.s5.ae76c091eb07 from=translated src=- shape=8986ab43 vocab=6c716162
+-/
 lemma ofDigits_carry_last_eq (p x : ℕ) :
     Nat.ofDigits p [x] = Nat.ofDigits p [x % p, x / p] := by
   simp [Nat.ofDigits_cons, Nat.mod_add_div]
 
+/--
+@isnad1 id=eq.0h4v.s5.a9f39e280cbe from=translated src=- shape=16cfee0b vocab=b4d8085a
+-/
 lemma ofDigits_carry_eq (p x y : ℕ) (L : List ℕ) :
     Nat.ofDigits p (x :: y :: L) = Nat.ofDigits p (x % p :: (x / p + y) :: L) := by
   calc
@@ -274,6 +325,9 @@ lemma ofDigits_carry_eq (p x y : ℕ) (L : List ℕ) :
     _ = Nat.ofDigits p (x % p :: (x / p + y) :: L) := by
       simp [Nat.ofDigits_cons, Nat.mul_add, Nat.add_assoc]
 
+/--
+@isnad1 id=eq.1h2v.s5.298ad7f35ea2 from=translated src=- shape=9515e876 vocab=5284c00e
+-/
 lemma ofDigits_eq_zero_of_sum_eq_zero (p : ℕ) {L : List ℕ} (hsum : L.sum = 0) :
     Nat.ofDigits p L = 0 := by
   induction L with
@@ -284,6 +338,9 @@ lemma ofDigits_eq_zero_of_sum_eq_zero (p : ℕ) {L : List ℕ} (hsum : L.sum = 0
       have hxs : xs.sum = 0 := Nat.eq_zero_of_add_eq_zero_left hsum'
       simp [Nat.ofDigits_cons, hx, ih hxs]
 
+/--
+@isnad1 id=ex.2h2v.s6.90bef6c8cc49 from=translated src=- shape=05e03c08 vocab=aece0135
+-/
 lemma exists_small_sum_ofDigits_eq_of_exists_ge (p : ℕ) (hp : 1 < p) :
     ∀ {L : List ℕ}, (∃ x ∈ L, p ≤ x) →
       ∃ E : List ℕ, Nat.ofDigits p E = Nat.ofDigits p L ∧ E.sum < L.sum
@@ -330,6 +387,9 @@ lemma exists_small_sum_ofDigits_eq_of_exists_ge (p : ℕ) (hp : 1 < p) :
         · simp [Nat.ofDigits_cons, hEeq]
         · simpa [List.sum_cons] using Nat.add_lt_add_left hEsum x
 
+/--
+@isnad1 id=le.1h2v.s5.fab0f6d6220e from=translated src=- shape=da3f5cdc vocab=e1e108ec
+-/
 lemma digit_sum_ofDigits_le_sum (p : ℕ) (hp : 1 < p) :
     ∀ L : List ℕ, (Nat.digits p (Nat.ofDigits p L)).sum ≤ L.sum := by
   intro L
@@ -358,6 +418,9 @@ lemma digit_sum_ofDigits_le_sum (p : ℕ) (hp : 1 < p) :
           simpa using Nat.sum_digits_ofDigits_eq_sum hp ⟨rfl, hlt⟩
         exact hdigits.le
 
+/--
+@isnad1 id=lt.2h2v.s5.28e8ff2e807f from=translated src=- shape=99d6bfe7 vocab=30fb9217
+-/
 lemma digit_sum_ofDigits_lt_sum_of_exists_ge (p : ℕ) (hp : 1 < p) {L : List ℕ}
     (hbad : ∃ x ∈ L, p ≤ x) :
     (Nat.digits p (Nat.ofDigits p L)).sum < L.sum := by
@@ -366,6 +429,9 @@ lemma digit_sum_ofDigits_lt_sum_of_exists_ge (p : ℕ) (hp : 1 < p) {L : List �
   rw [hEeq] at hEle
   exact lt_of_le_of_lt hEle hEsum
 
+/--
+@isnad1 id=lt.3h3v.s5.4e80d08a6dbf from=translated src=- shape=27e55237 vocab=f8bf6c86
+-/
 lemma forall_lt_of_digit_sum_ofDigits_eq_sum (p : ℕ) (hp : 1 < p) {L : List ℕ}
     (hEq : (Nat.digits p (Nat.ofDigits p L)).sum = L.sum) :
     ∀ x ∈ L, x < p := by
@@ -378,7 +444,9 @@ lemma forall_lt_of_digit_sum_ofDigits_eq_sum (p : ℕ) (hp : 1 < p) {L : List �
 
 namespace DigitSeries
 
-/-- The first `n` digit values of a proper (`IsP p`) digit series are all `< p`.-/
+/-- The first `n` digit values of a proper (`IsP p`) digit series are all `< p`.
+@isnad1 id=lt.2h4v.s5.f85be89e3dbb from=translated src=- shape=ae8b4377 vocab=7eb56790
+-/
 lemma coeffs_lt {p : ℕ} [Fact (Nat.Prime p)] (f : DigitSeries) (hf : f.IsP p) (n : ℕ) :
     ∀ x ∈ DigitSeries.coeffs f n, x < p := by
   intro x hx
@@ -450,11 +518,15 @@ bridges. The deep technical bridges (linking `Real.ofDigits` tsums with finite
 DigitSeries sums) are left as sub-sorries with clear statements; once those are
 discharged, the main theorems follow structurally. -/
 
-/-- A digit `(decDigits p q n)` is `< p` by `Fin p` typing.-/
+/-- A digit `(decDigits p q n)` is `< p` by `Fin p` typing.
+@isnad1 id=lt.0h3v.s4.2614c62d8692 from=translated src=- shape=2ff5cac2 vocab=866d8fe1
+-/
 @[simp] lemma decDigits_val_lt (p : ℕ) [Fact (Nat.Prime p)] (q : ℚ) (n : ℕ+) :
     (decDigits p q n).val < p := (decDigits p q n).isLt
 
-/-- `pDigitSum p q ≠ ⊤` iff `decDigits p q` has finite support.-/
+/-- `pDigitSum p q ≠ ⊤` iff `decDigits p q` has finite support.
+@isnad1 id=iff.0h2v.s5.7586c8744702 from=translated src=- shape=4cbfec16 vocab=51ce6e0d
+-/
 lemma pDigitSum_ne_top_iff (p : ℕ) [Fact (Nat.Prime p)] (q : ℚ) :
     pDigitSum p q ≠ ⊤ ↔ (Function.support (decDigits p q)).Finite := by
   classical
@@ -488,7 +560,9 @@ noncomputable def DigitSeries.ofRat (p : ℕ) [Fact (Nat.Prime p)] (q : ℚ)
     rw [hzero]
     rfl
 
-/-- `DigitSeries.ofRat` has all digits `< p`.-/
+/-- `DigitSeries.ofRat` has all digits `< p`.
+@isnad1 id=isp.1h2v.s4.b0de70f3a154 from=translated src=- shape=e1168106 vocab=75e6a0b5
+-/
 lemma DigitSeries.ofRat_IsP (p : ℕ) [Fact (Nat.Prime p)] (q : ℚ)
     (hq : pDigitSum p q ≠ ⊤) : (DigitSeries.ofRat p q hq).IsP p := by
   intro n
@@ -516,13 +590,17 @@ noncomputable def indicatorSeries (A : Set ℕ) (hA_fin : A.Finite) : DigitSerie
       hA_fin.preimage (PNat.coe_injective.injOn)
     exact hsupp_eq ▸ hpre_fin
 
-/-- The indicator series at position n is 1 iff (n : ℕ) ∈ A.-/
+/-- The indicator series at position n is 1 iff (n : ℕ) ∈ A.
+@isnad1 id=eq.1h2v.s5.edea2488f5e9 from=translated src=- shape=1a566358 vocab=b1dd4753
+-/
 lemma indicatorSeries_apply (A : Set ℕ) (hA_fin : A.Finite) (n : ℕ+) :
     (indicatorSeries A hA_fin : ℕ+ → ℕ) n =
       haveI := Classical.propDecidable ((n : ℕ) ∈ A);
       (if (n : ℕ) ∈ A then 1 else 0) := rfl
 
-/-- The indicator series is IsP for any prime p ≥ 2.-/
+/-- The indicator series is IsP for any prime p ≥ 2.
+@isnad1 id=isp.1h2v.s4.943b6b8694a2 from=translated src=- shape=18a9a952 vocab=db758efc
+-/
 lemma indicatorSeries_IsP (p : ℕ) [Fact (Nat.Prime p)] (A : Set ℕ) (hA_fin : A.Finite) :
     (indicatorSeries A hA_fin).IsP p := by
   classical

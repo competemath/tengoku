@@ -66,7 +66,9 @@ noncomputable def toNNReal {e : ℝ≥0} (he : e ≠ 0) : WithZero (Multiplicati
       exact congrArg Rat.cast <| by
         simpa [toAdd_mul] using congrArg Multiplicative.toAdd hunzero_mul
 
-/-- The map `toNNReal` is strictly monotone whenever `1 < e`.-/
+/-- The map `toNNReal` is strictly monotone whenever `1 < e`.
+@isnad1 id=strictmo.1h1v.s6.ed5e9804a780 from=translated src=- shape=1a693ec2 vocab=1ccb2633
+-/
 theorem toNNReal_strictMono {e : ℝ≥0} (he : 1 < e) :
     StrictMono (toNNReal (ne_zero_of_lt he)) := by
   intro x y hxy
@@ -83,12 +85,16 @@ theorem toNNReal_strictMono {e : ℝ≥0} (he : 1 < e) :
 
 end WithZeroRat
 
-/-- The reciprocal `1 / p` of a prime `p` is nonzero in `ℝ≥0`.-/
+/-- The reciprocal `1 / p` of a prime `p` is nonzero in `ℝ≥0`.
+@isnad1 id=ne.0h1v.s5.951864ba6a9d from=translated src=- shape=17789740 vocab=e14cf9c8
+-/
 @[simp]
 lemma _root_.Tengoku.Formalizedsparse.pInv_ne_zero (p : ℕ) [Fact (Nat.Prime p)] : (1 / (p : NNReal)) ≠ 0 := by
   simpa using NeZero.ne p
 
-/-- A prime `p` is nonzero in `ℝ≥0`.-/
+/-- A prime `p` is nonzero in `ℝ≥0`.
+@isnad1 id=ne.0h1v.s4.f9350f7b90ab from=translated src=- shape=6b34ee07 vocab=07c2f0c4
+-/
 lemma _root_.Tengoku.Formalizedsparse.p_ne_zero (p : ℕ) [Fact (Nat.Prime p)] : (p : NNReal) ≠ 0 := by
   simpa using NeZero.ne p
 -- Tengoku: root names of this library moved to Tengoku.Formalizedsparse so they do not collide with other libraries (generated)

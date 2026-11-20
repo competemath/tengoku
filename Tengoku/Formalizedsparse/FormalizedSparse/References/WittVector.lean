@@ -80,7 +80,9 @@ abbrev QpUn (p : ℕ) [Fact (Nat.Prime p)] :=
   WithVal ((IsDiscreteValuationRing.maximalIdeal (ℤᵘⁿ_[p])).valuation ((FractionRing (ℤᵘⁿ_[p]))))
 @[inherit_doc] scoped notation "ℚᵘⁿ_[" p "]" => QpUn p
 
-/-- The Teichmüller lift `𝔽ᵃ_[p] → ℤᵘⁿ_[p]` is injective.-/
+/-- The Teichmüller lift `𝔽ᵃ_[p] → ℤᵘⁿ_[p]` is injective.
+@isnad1 id=injectiv.0h1v.s7.8e3609b22aaa from=translated src=- shape=a5a78327 vocab=bb6aba47
+-/
 theorem injective_teichmuller (p : ℕ) [Fact (Nat.Prime p)] :
     Function.Injective (teichmuller p : 𝔽ᵃ_[p] → ℤᵘⁿ_[p]) := by
   intro a b hab
@@ -97,7 +99,9 @@ noncomputable instance (p : ℕ) [Fact (Nat.Prime p)] :
 
 /-- The valuation `Valued.v` of the image of `r : ℤᵘⁿ_[p]` in `ℚᵘⁿ_[p]` equals the `intValuation`
 of `r`. Since `WithVal` is a structure in this mathlib version, `Valued.v` is the `comap` of the
-base valuation along `WithVal.equiv`; this lemma packages that bridge once for all proofs below.-/
+base valuation along `WithVal.equiv`; this lemma packages that bridge once for all proofs below.
+@isnad1 id=eq.0h2v.s11.d5d751c1c734 from=translated src=- shape=41f5485b vocab=9baceee8
+-/
 theorem valued_algebraMap (p : ℕ) [Fact (Nat.Prime p)] (r : ℤᵘⁿ_[p]) :
     Valued.v (algebraMap (ℤᵘⁿ_[p]) (ℚᵘⁿ_[p]) r) =
       (IsDiscreteValuationRing.maximalIdeal (ℤᵘⁿ_[p])).intValuation r := by
