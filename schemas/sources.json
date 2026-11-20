@@ -293,7 +293,15 @@
     "https://github.com/Ghostintheshell-iuseArchbtw/The-Iwasawa-Tower-Law-for-Ramanujan-s-Third-Order-Mock-Theta-Function",
     "https://github.com/jaumededios/LMLF",
     "https://github.com/KokunoYumeto/lean-mathematical-commons",
-    "https://github.com/noahbenjamin1994/erdos-815-lean"
+    "https://github.com/noahbenjamin1994/erdos-815-lean",
+    "https://github.com/peilinliu66-dev/jsp940-erdos1133-formalization",
+    "https://github.com/jpbald93/cayley-bacharach",
+    "https://github.com/AxiomMath/record-compositions",
+    "https://github.com/marcotom/Negative-Power-Means",
+    "https://github.com/cameronfreer/forcing",
+    "https://github.com/BrandonMYates/qharm",
+    "https://github.com/123yhxie-a11y/moran-lean",
+    "https://github.com/Pjotr5/ShearerTriangleFreeInd"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -599,7 +607,15 @@
     "https://github.com/Ghostintheshell-iuseArchbtw/The-Iwasawa-Tower-Law-for-Ramanujan-s-Third-Order-Mock-Theta-Function": "MIT",
     "https://github.com/jaumededios/LMLF": "MIT",
     "https://github.com/KokunoYumeto/lean-mathematical-commons": "Apache-2.0",
-    "https://github.com/noahbenjamin1994/erdos-815-lean": "Apache-2.0"
+    "https://github.com/noahbenjamin1994/erdos-815-lean": "Apache-2.0",
+    "https://github.com/peilinliu66-dev/jsp940-erdos1133-formalization": "Apache-2.0",
+    "https://github.com/jpbald93/cayley-bacharach": "Apache-2.0",
+    "https://github.com/AxiomMath/record-compositions": "MIT",
+    "https://github.com/marcotom/Negative-Power-Means": "MIT",
+    "https://github.com/cameronfreer/forcing": "Apache-2.0",
+    "https://github.com/BrandonMYates/qharm": "Apache-2.0",
+    "https://github.com/123yhxie-a11y/moran-lean": "Apache-2.0",
+    "https://github.com/Pjotr5/ShearerTriangleFreeInd": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -2943,6 +2959,64 @@
       "commit": "bce29bcdc1185acc497c33a35a67e8474dffab80",
       "roots": [
         "Erdos815"
+      ]
+    },
+    "jsp940-erdos1133-formalization": {
+      "repo": "https://github.com/peilinliu66-dev/jsp940-erdos1133-formalization",
+      "commit": "83ab7d38a4abbdfc1c9509cfbb7b49514cca217e",
+      "roots": [
+        "Erdos1133",
+        "Erdos1152"
+      ]
+    },
+    "cayley-bacharach": {
+      "repo": "https://github.com/jpbald93/cayley-bacharach",
+      "commit": "d9c674c68c0a1b475a284f9bd33ec5f7e6d52689",
+      "roots": [
+        "CayleyBacharach"
+      ]
+    },
+    "record-compositions": {
+      "repo": "https://github.com/AxiomMath/record-compositions",
+      "commit": "b1067cc48c378499be944d693c1665e5e9abd18e",
+      "roots": [
+        "RecordCompositions"
+      ]
+    },
+    "negative-power-means": {
+      "repo": "https://github.com/marcotom/Negative-Power-Means",
+      "commit": "8d9452844a62864ff6fc54ee6f11473fde6d98cd",
+      "roots": [
+        "BoundaryProofs",
+        "HiaiLimPowerMeans"
+      ]
+    },
+    "forcing": {
+      "repo": "https://github.com/cameronfreer/forcing",
+      "commit": "5d77761d21459022f052bb92e1ba3c92bbbe2342",
+      "roots": [
+        "Forcing"
+      ]
+    },
+    "qharm": {
+      "repo": "https://github.com/BrandonMYates/qharm",
+      "commit": "27f42bc146a647a47ce040e2d8be434d1faef856",
+      "roots": [
+        "QHarm"
+      ]
+    },
+    "moran-lean": {
+      "repo": "https://github.com/123yhxie-a11y/moran-lean",
+      "commit": "666de78ca109bf9e5de6db41c17ccb9e93afb8fc",
+      "roots": [
+        "Moran"
+      ]
+    },
+    "shearertrianglefreeind": {
+      "repo": "https://github.com/Pjotr5/ShearerTriangleFreeInd",
+      "commit": "e23808a95cd600a39f252007b60582588317d65c",
+      "roots": [
+        "ShearerTriangleFreeInd"
       ]
     }
   },
