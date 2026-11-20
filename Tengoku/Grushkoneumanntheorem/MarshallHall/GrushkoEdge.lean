@@ -34,6 +34,9 @@ identifying a self-reversing quiver arrow with a geometric edge pair.-/
 def ReverseFree : Prop :=
   ∀ e : AllArrow (V := V), allArrowReverse e ≠ e
 
+/--
+@isnad1 id=reversef.1h4v.s5.5079e04e8b7c from=translated src=- shape=53d66f1d vocab=e7f49950
+-/
 theorem foldReverseFree {a b : V} (e₀ : AllArrow (V := V))
     (hfree : ReverseFree (V := V)) :
     letI : Fintype (foldVertex a b) := foldVertexFintype a b
@@ -67,6 +70,9 @@ noncomputable instance edgeRepresentativeFintype :
   intro e
   simp
 
+/--
+@isnad1 id=lt.1h2v.s7.f87e5dc7ced2 from=translated src=- shape=4d78d27c vocab=81107fd0
+-/
 theorem edgeRepresentative_lt_reverse
     (hfree : ReverseFree (V := V)) (e : EdgeRepresentative (V := V)) :
     (allArrowIndex e.1).val <
@@ -96,12 +102,18 @@ def edgeRepresentativeOrientation
   | false => e.1
   | true => allArrowReverse e.1
 
+/--
+@isnad1 id=eq.0h3v.s5.e73498f6864d from=translated src=- shape=babc4687 vocab=dadf86d7
+-/
 theorem edgeRepresentativeOrientation_reverse
     (e : EdgeRepresentative (V := V)) (b : Bool) :
     allArrowReverse (edgeRepresentativeOrientation e b) =
       edgeRepresentativeOrientation e (!b) := by
   cases b <;> simp [edgeRepresentativeOrientation]
 
+/--
+@isnad1 id=injectiv.1h1v.s6.ca1ae22b9bbc from=translated src=- shape=0a21c9c0 vocab=945f28aa
+-/
 theorem edgeRepresentativeOrientation_injective
     (hfree : ReverseFree (V := V)) :
     Function.Injective
@@ -166,6 +178,9 @@ noncomputable def edgeRepresentativeOrientationEquiv
       change allArrowReverse (allArrowReverse e) = e
       simp
 
+/--
+@isnad1 id=eq.1h1v.s6.b7fb4eae5e09 from=translated src=- shape=f9e423c2 vocab=f914c350
+-/
 theorem edgeRepresentative_card_mul_two
     (hfree : ReverseFree (V := V)) :
     Fintype.card (EdgeRepresentative (V := V)) * 2 =
@@ -180,6 +195,9 @@ def edgeRepresentativeLabel
     (e : EdgeRepresentative (V := V)) : Sum G H :=
   allArrowLabel L e.1
 
+/--
+@isnad1 id=eq.0h5v.s6.adcdec84aaf5 from=translated src=- shape=b64d08a0 vocab=d21087f1
+-/
 theorem allArrowLabel_reverse
     (L : BinaryLabelling (G := G) (H := H) (V := V))
     (e : AllArrow (V := V)) :
@@ -189,6 +207,9 @@ theorem allArrowLabel_reverse
     factorWordInv (L.label (allArrowHom e))
   exact L.reverse_label (allArrowHom e)
 
+/--
+@isnad1 id=eq.2h5v.s7.891ff2c8c32e from=translated src=- shape=65143988 vocab=bf0de423
+-/
 theorem edgeRepresentativeLabels_closure_eq_top_of_markedGraph {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     (hfree : ReverseFree (V := V)) (hgen : M.IsGenerating) :
@@ -225,11 +246,17 @@ def padSeparated {m n : ℕ} (h : m ≤ n) (s : Fin m → Sum G H) :
     Fin n → Sum G H := fun i =>
   if hi : i.val < m then s ⟨i.val, hi⟩ else Sum.inl 1
 
+/--
+@isnad1 id=eq.1h6v.s5.728aa2e2cebd from=translated src=- shape=7d259622 vocab=b2fe2915
+-/
 theorem padSeparated_contains_original {m n : ℕ} (h : m ≤ n)
     (s : Fin m → Sum G H) (i : Fin m) :
     padSeparated h s ⟨i.val, lt_of_lt_of_le i.isLt h⟩ = s i := by
   simp [padSeparated]
 
+/--
+@isnad1 id=eq.2h5v.s8.cbf2cc42f92d from=translated src=- shape=95f8e7be vocab=00af1776
+-/
 theorem padSeparated_closure_eq_top {m n : ℕ} (h : m ≤ n)
     (s : Fin m → Sum G H)
     (hs : Subgroup.closure (Set.range (separatedMap ∘ s)) = ⊤) :
@@ -248,6 +275,9 @@ theorem padSeparated_closure_eq_top {m n : ℕ} (h : m ≤ n)
     rw [padSeparated_contains_original]
   exact hle ((hs ▸ hz))
 
+/--
+@isnad1 id=ex.3h5v.s7.503b6e7e7391 from=translated src=- shape=eedb4be9 vocab=8bbe924e
+-/
 theorem exists_separated_generators_of_edge_bound {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     (hfree : ReverseFree (V := V)) (hgen : M.IsGenerating)
@@ -277,6 +307,9 @@ theorem exists_separated_generators_of_edge_bound {n : ℕ}
     exact edgeRepresentativeLabels_closure_eq_top_of_markedGraph M hfree hgen
   refine ⟨padSeparated hcardm s₀, padSeparated_closure_eq_top hcardm s₀ hs₀⟩
 
+/--
+@isnad1 id=ex.4h5v.s8.63fae9de1777 from=translated src=- shape=ff398882 vocab=fdbbb4e2
+-/
 theorem exists_separated_generators_of_euler_bound {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     (hfree : ReverseFree (V := V)) (hgen : M.IsGenerating)

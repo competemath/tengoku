@@ -33,6 +33,9 @@ def rosePosition {n : ℕ} (w : Fin n → List (Sum G H))
   else if hlast : k.val = (w i).length then none
   else some ⟨i, ⟨k.val - 1, by omega⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.6706a0c9641d from=translated src=- shape=cd1607c8 vocab=058b5633
+-/
 @[simp] theorem rosePosition_zero {n : ℕ} (w : Fin n → List (Sum G H))
     (i : Fin n) :
     rosePosition w i ⟨0, by omega⟩ = none := by
@@ -47,6 +50,9 @@ def rosePosition {n : ℕ} (w : Fin n → List (Sum G H))
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
+/--
+@isnad1 id=eq.0h6v.s7.5d9b3f3308ae from=translated src=- shape=e1f2a6f7 vocab=7b198c36
+-/
 @[simp] theorem rosePosition_interior {n : ℕ} (w : Fin n → List (Sum G H))
     (i : Fin n) (k : Fin ((w i).length - 1)) :
     rosePosition w i ⟨k.val + 1, by omega⟩ = some ⟨i, k⟩ := by
@@ -82,6 +88,9 @@ def roseEdgeTarget {n : ℕ} {w : Fin n → List (Sum G H)} :
   | ⟨i, k, true⟩ => rosePosition w i ⟨k.val + 1, by omega⟩
   | ⟨i, k, false⟩ => rosePosition w i ⟨k.val, by omega⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.a4fea30d3b3c from=translated src=- shape=2f79ba4c vocab=4b5b3262
+-/
 theorem roseEdgeSource_flip {n : ℕ} {w : Fin n → List (Sum G H)}
     (e : RoseEdge w) :
     roseEdgeSource (RoseEdge.flip e) = roseEdgeTarget e := by
@@ -89,6 +98,9 @@ theorem roseEdgeSource_flip {n : ℕ} {w : Fin n → List (Sum G H)}
   | mk i k forward =>
       cases forward <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.0727957df07c from=translated src=- shape=2f79ba4c vocab=4b5b3262
+-/
 theorem roseEdgeTarget_flip {n : ℕ} {w : Fin n → List (Sum G H)}
     (e : RoseEdge w) :
     roseEdgeTarget (RoseEdge.flip e) = roseEdgeSource e := by
@@ -121,6 +133,9 @@ instance roseHasReverse {n : ℕ} (w : Fin n → List (Sum G H)) :
     | mk i k forward =>
         cases forward <;> rfl
 
+/--
+@isnad1 id=ne.0h5v.s6.ea8608d1c15b from=translated src=- shape=bf2ab196 vocab=7c2c9e3e
+-/
 theorem rose_allArrow_reverse_ne {n : ℕ}
     (w : Fin n → List (Sum G H))
     (e : AllArrow (V := RoseVertex w)) :
@@ -180,6 +195,9 @@ def roseForwardPathAux {n : ℕ} (w : Fin n → List (Sum G H))
       let e := roseForwardArrow w i ⟨k, by omega⟩
       p.cons e
 
+/--
+@isnad1 id=eq.1h6v.s7.bc816cdd661f from=translated src=- shape=85bdaf4a vocab=3b6c9aca
+-/
 theorem roseForwardPathAux_labels {n : ℕ} (w : Fin n → List (Sum G H))
     (i : Fin n) :
     ∀ (k : ℕ) (hk : k ≤ (w i).length),
@@ -203,6 +221,9 @@ noncomputable instance roseVertexFintype {n : ℕ} (w : Fin n → List (Sum G H)
   dsimp [RoseVertex]
   infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s5.07c68c47f79f from=translated src=- shape=ea41cdc8 vocab=556de29d
+-/
 theorem binaryReducedLetters_length (x : G ∗ H) :
     (binaryReducedLetters (G := G) (H := H) x).length = factorWordLength x := by
   simpa [binaryReducedLetters, binaryReducedLength] using

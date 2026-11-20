@@ -38,20 +38,35 @@ def allActionStates : List (α × Bool) → Finset (FreeGroup α)
   | [] => (actionStates []).toFinset
   | x :: w => allActionStates w ∪ (actionStates (x :: w)).toFinset
 
+/--
+@isnad1 id=eq.0h1v.s4.c23323fe2445 from=translated src=- shape=5efb74ab vocab=630330a7
+-/
 @[simp]
 theorem wordValue_nil : wordValue ([] : List (α × Bool)) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d6777af642b0 from=translated src=- shape=2ffbeb08 vocab=734aab65
+-/
 @[simp]
 theorem wordValue_cons (x : α × Bool) (w : List (α × Bool)) :
     wordValue (x :: w) = signedLetter x * wordValue w := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.cad9684347b2 from=translated src=- shape=753e510f vocab=2de3ed30
+-/
 @[simp]
 theorem actionStates_nil : actionStates ([] : List (α × Bool)) = [1] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.94984a78eb5c from=translated src=- shape=1514a746 vocab=1ea9288f
+-/
 @[simp]
 theorem actionStates_cons (x : α × Bool) (w : List (α × Bool)) :
     actionStates (x :: w) = actionStates w ++ [signedLetter x * wordValue w] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b26dfba64162 from=translated src=- shape=b7575917 vocab=48efbfbb
+-/
 @[simp]
 theorem wordValue_eq_freeGroup_mk (w : List (α × Bool)) :
     wordValue w = FreeGroup.mk w := by
@@ -69,6 +84,9 @@ theorem wordValue_eq_freeGroup_mk (w : List (α × Bool)) :
         _ = FreeGroup.mk ([x] ++ w) := FreeGroup.mul_mk
         _ = FreeGroup.mk (x :: w) := rfl
 
+/--
+@isnad1 id=mem.0h2v.s4.2bf230a174ef from=translated src=- shape=ba98f7c7 vocab=fe26a560
+-/
 theorem wordValue_mem_actionStates (w : List (α × Bool)) :
     wordValue w ∈ actionStates w := by
   induction w with
@@ -77,6 +95,9 @@ theorem wordValue_mem_actionStates (w : List (α × Bool)) :
       simp only [actionStates_cons, List.mem_append, List.mem_singleton]
       exact Or.inr rfl
 
+/--
+@isnad1 id=mem.0h2v.s4.cd1f98c89ba6 from=translated src=- shape=e60a0cd5 vocab=6f8fba6e
+-/
 theorem one_mem_actionStates (w : List (α × Bool)) :
     (1 : FreeGroup α) ∈ actionStates w := by
   induction w with
@@ -85,6 +106,9 @@ theorem one_mem_actionStates (w : List (α × Bool)) :
       simp only [actionStates_cons, List.mem_append, List.mem_singleton]
       exact Or.inl ih
 
+/--
+@isnad1 id=mem.1h3v.s5.044cdb94ec28 from=translated src=- shape=fcd0f5f7 vocab=d602d75e
+-/
 theorem actionStates_subset_allActionStates (w : List (α × Bool)) :
     ∀ x ∈ actionStates w, x ∈ allActionStates w := by
   induction w with
@@ -100,10 +124,16 @@ theorem actionStates_subset_allActionStates (w : List (α × Bool)) :
           simp only [actionStates_cons, List.mem_append, List.mem_singleton]
           exact Or.inr hx))
 
+/--
+@isnad1 id=mem.0h2v.s5.7a0fa60edc12 from=translated src=- shape=58719945 vocab=c6b4cbbd
+-/
 theorem one_mem_allActionStates (w : List (α × Bool)) :
     (1 : FreeGroup α) ∈ allActionStates w := by
   exact actionStates_subset_allActionStates w 1 (one_mem_actionStates w)
 
+/--
+@isnad1 id=mem.2h4v.s6.4ae89f010c90 from=translated src=- shape=114602ff vocab=76848da3
+-/
 theorem allActionStates_tail_mem (w u : List (α × Bool))
     (hu : u ∈ List.tails w) :
     ∀ x ∈ actionStates u, x ∈ allActionStates w := by
@@ -129,17 +159,26 @@ def corePoints [DecidableEq (FreeGroup α)] (S : Finset (FreeGroup α)) (g : Fre
     Finset (FreeGroup α) :=
   S.biUnion (fun s => (allActionStates s.toWord)) ∪ allActionStates g.toWord
 
+/--
+@isnad1 id=mem.2h5v.s6.d317aabf2685 from=translated src=- shape=486c23fc vocab=298aedad
+-/
 theorem mem_corePoints_of_generator [DecidableEq (FreeGroup α)]
     {S : Finset (FreeGroup α)} {g s : FreeGroup α}
     (hs : s ∈ S) (x : FreeGroup α) (hx : x ∈ allActionStates s.toWord) :
     x ∈ corePoints S g := by
   exact Finset.mem_union_left _ (Finset.mem_biUnion.mpr ⟨s, hs, hx⟩)
 
+/--
+@isnad1 id=mem.1h4v.s6.57c779c2c9c0 from=translated src=- shape=21b0ce74 vocab=298aedad
+-/
 theorem mem_corePoints_of_separating [DecidableEq (FreeGroup α)]
     {S : Finset (FreeGroup α)} {g x : FreeGroup α}
     (hx : x ∈ allActionStates g.toWord) : x ∈ corePoints S g := by
   exact Finset.mem_union_right _ hx
 
+/--
+@isnad1 id=mem.3h6v.s6.c963f38dd9ae from=translated src=- shape=d78ca4dd vocab=f9a33ddb
+-/
 theorem mem_corePoints_of_generator_suffix [DecidableEq (FreeGroup α)]
     {S : Finset (FreeGroup α)} {g s : FreeGroup α} {u : List (α × Bool)}
     (hs : s ∈ S) (hu : u ∈ List.tails s.toWord)
@@ -147,6 +186,9 @@ theorem mem_corePoints_of_generator_suffix [DecidableEq (FreeGroup α)]
   exact mem_corePoints_of_generator hs x
     (allActionStates_tail_mem s.toWord u hu x hx)
 
+/--
+@isnad1 id=mem.2h5v.s6.eecfb1ffc29b from=translated src=- shape=58f2f05c vocab=f9a33ddb
+-/
 theorem mem_corePoints_of_separating_suffix [DecidableEq (FreeGroup α)]
     {S : Finset (FreeGroup α)} {g : FreeGroup α} {u : List (α × Bool)}
     (hu : u ∈ List.tails g.toWord) {x : FreeGroup α}
@@ -154,6 +196,9 @@ theorem mem_corePoints_of_separating_suffix [DecidableEq (FreeGroup α)]
   exact mem_corePoints_of_separating
     (allActionStates_tail_mem g.toWord u hu x hx)
 
+/--
+@isnad1 id=ex.1h3v.s6.fd4f12614d96 from=translated src=- shape=42863039 vocab=59924012
+-/
 theorem exists_wordValue_of_mem_actionStates (u : List (α × Bool))
     {x : FreeGroup α} (hx : x ∈ actionStates u) :
     ∃ v ∈ List.tails u, x = wordValue v := by
@@ -173,6 +218,9 @@ theorem exists_wordValue_of_mem_actionStates (u : List (α × Bool))
         · simp [List.tails]
         · simpa [wordValue] using hx
 
+/--
+@isnad1 id=ex.1h3v.s6.02645ebb5204 from=translated src=- shape=1637049a vocab=ef525ddb
+-/
 theorem exists_wordValue_of_mem_allActionStates (u : List (α × Bool))
     {x : FreeGroup α} (hx : x ∈ allActionStates u) :
     ∃ v ∈ List.tails u, x = wordValue v := by

@@ -43,30 +43,45 @@ def freeToBinaryFreeProduct {α β : Type u} :
     | Sum.inl a => factorInclusionLeft (FreeGroup.of a)
     | Sum.inr b => factorInclusionRight (FreeGroup.of b))
 
+/--
+@isnad1 id=eq.0h3v.s8.f673725ddd91 from=translated src=- shape=ff04c4f1 vocab=84c5ba5d
+-/
 @[simp]
 theorem binaryFreeProductToFree_left {α β : Type u} (a : α) :
     binaryFreeProductToFree (α := α) (β := β)
       (factorInclusionLeft (FreeGroup.of a)) = FreeGroup.of (Sum.inl a) := by
   simp [binaryFreeProductToFree, factorInclusionLeft]
 
+/--
+@isnad1 id=eq.0h3v.s8.dde1c41735a0 from=translated src=- shape=790bd77f vocab=59bc3ed9
+-/
 @[simp]
 theorem binaryFreeProductToFree_right {α β : Type u} (b : β) :
     binaryFreeProductToFree (α := α) (β := β)
       (factorInclusionRight (FreeGroup.of b)) = FreeGroup.of (Sum.inr b) := by
   simp [binaryFreeProductToFree, factorInclusionRight]
 
+/--
+@isnad1 id=eq.0h3v.s8.f31b2eab298a from=translated src=- shape=c66b875b vocab=30515643
+-/
 @[simp]
 theorem freeToBinaryFreeProduct_left {α β : Type u} (a : α) :
     freeToBinaryFreeProduct (α := α) (β := β) (FreeGroup.of (Sum.inl a)) =
       factorInclusionLeft (FreeGroup.of a) := by
   simp [freeToBinaryFreeProduct]
 
+/--
+@isnad1 id=eq.0h3v.s8.8ff92996be32 from=translated src=- shape=8a48bf8a vocab=59c0fdd9
+-/
 @[simp]
 theorem freeToBinaryFreeProduct_right {α β : Type u} (b : β) :
     freeToBinaryFreeProduct (α := α) (β := β) (FreeGroup.of (Sum.inr b)) =
       factorInclusionRight (FreeGroup.of b) := by
   simp [freeToBinaryFreeProduct]
 
+/--
+@isnad1 id=eq.0h2v.s7.ea1cbc2581da from=translated src=- shape=07cdbec5 vocab=eb8bcc67
+-/
 theorem binaryFreeProduct_comp_left {α β : Type u} :
     (freeToBinaryFreeProduct (α := α) (β := β)).comp
         (binaryFreeProductToFree (α := α) (β := β)) = MonoidHom.id _ := by
@@ -86,6 +101,9 @@ theorem binaryFreeProduct_comp_left {α β : Type u} :
     simpa only [MonoidHom.comp_assoc, binaryFreeProductToFree,
       Monoid.Coprod.lift_comp_inr, MonoidHom.id_comp, factorInclusionRight] using hmap
 
+/--
+@isnad1 id=eq.0h2v.s7.209efe9d6016 from=translated src=- shape=9b3444b8 vocab=eb8bcc67
+-/
 theorem binaryFreeProduct_comp_right {α β : Type u} :
     (binaryFreeProductToFree (α := α) (β := β)).comp
         (freeToBinaryFreeProduct (α := α) (β := β)) = MonoidHom.id _ := by
@@ -120,6 +138,9 @@ def binaryFreeProductEquiv {α β : Type u} :
         (binaryFreeProduct_comp_right (α := α) (β := β))
       exact hy⟩)⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.5aa094eaae65 from=translated src=- shape=b8db0705 vocab=42219c9e
+-/
 @[simp]
 theorem binaryFreeProductEquiv_inl {α β : Type u} (x : FreeGroup α) :
     binaryFreeProductEquiv (α := α) (β := β) (Monoid.Coprod.inl x) =
@@ -136,12 +157,18 @@ theorem binaryFreeProductEquiv_inl {α β : Type u} (x : FreeGroup α) :
 def abelianizedValue {α : Type u} (x : FreeGroup α) : FreeAbelianGroup α :=
   Additive.ofMul (Abelianization.of x)
 
+/--
+@isnad1 id=eq.0h1v.s5.6180c037eaf0 from=translated src=- shape=88dc12f0 vocab=96e0f3f5
+-/
 @[simp]
 theorem abelianizedValue_one {α : Type u} :
     abelianizedValue (1 : FreeGroup α) = 0 := by
   simp [abelianizedValue]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ef652f7cd151 from=translated src=- shape=4d45420e vocab=a80a00cf
+-/
 @[simp]
 theorem abelianizedValue_mul {α : Type u} (x y : FreeGroup α) :
     abelianizedValue (x * y) = abelianizedValue x + abelianizedValue y := by
@@ -149,6 +176,9 @@ theorem abelianizedValue_mul {α : Type u} (x y : FreeGroup α) :
   rw [map_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f2bc0a0c5fe2 from=translated src=- shape=f2ef64f4 vocab=782cbd0f
+-/
 @[simp]
 theorem abelianizedValue_inv {α : Type u} (x : FreeGroup α) :
     abelianizedValue x⁻¹ = -abelianizedValue x := by
@@ -156,10 +186,16 @@ theorem abelianizedValue_inv {α : Type u} (x : FreeGroup α) :
   rw [map_inv]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.c97c9076d063 from=translated src=- shape=eca97296 vocab=cb36b889
+-/
 @[simp]
 theorem abelianizedValue_of {α : Type u} (a : α) :
     abelianizedValue (FreeGroup.of a) = FreeAbelianGroup.of a := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.871ff8df36f0 from=translated src=- shape=f1cbd57e vocab=15cd1ac3
+-/
 theorem rank_freeGroup_finite (α : Type u) [Fintype α] :
     Group.rank (FreeGroup α) = Fintype.card α := by
   classical
@@ -219,13 +255,18 @@ theorem rank_freeGroup_finite (α : Type u) [Fintype α] :
     exact hfin'.trans hT
   exact le_antisymm hup (by simpa [hcard] using hlow)
 
+/--
+@isnad1 id=fg.0h2v.s4.f4063d39b030 from=translated src=- shape=d88f5f7d vocab=07f2be83
+-/
 instance binaryFreeProduct_fg {α β : Type u} [Fintype α] [Fintype β] :
     Group.FG (BinaryFreeProduct α β) :=
   Group.fg_iff_monoid_fg.mpr
     (Monoid.fg_of_surjective (binaryFreeProductEquiv (α := α) (β := β)).symm.toMonoidHom
       (binaryFreeProductEquiv (α := α) (β := β)).symm.surjective)
 
-/-- Binary Grushko--Neumann for finite-rank free groups.-/
+/-- Binary Grushko--Neumann for finite-rank free groups.
+@isnad1 id=eq.0h2v.s5.1ab083db0afe from=translated src=- shape=894c621c vocab=031c8209
+-/
 theorem rank_binaryFreeProduct {α β : Type u} [Fintype α] [Fintype β] :
     Group.rank (BinaryFreeProduct α β) = Fintype.card α + Fintype.card β := by
   classical

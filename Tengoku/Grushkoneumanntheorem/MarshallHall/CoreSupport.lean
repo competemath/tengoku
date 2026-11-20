@@ -33,10 +33,16 @@ def forgetSubquiverPath {V : Type u} [Quiver V] {P : WideSubquiver V}
   | Path.nil => Path.nil
   | Path.cons p e => Path.cons (forgetSubquiverPath p) e.1
 
+/--
+@isnad1 id=eq.0h3v.s5.d581b548ca27 from=translated src=- shape=d5bba13a vocab=b153440f
+-/
 @[simp] theorem forgetSubquiverPath_nil {V : Type u} [Quiver V]
     {P : WideSubquiver V} {a : P} :
     forgetSubquiverPath (Path.nil : @Path P P.quiver a a) = Path.nil := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.c0d30a3eadb8 from=translated src=- shape=f9af6854 vocab=1d45f437
+-/
 @[simp] theorem forgetSubquiverPath_cons {V : Type u} [Quiver V]
     {P : WideSubquiver V} {a b c : P}
     (p : @Path P P.quiver a b) (e : b ⟶ c) :
@@ -52,6 +58,9 @@ def retractBasisElement {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (z : K) : K :=
   subsetBasisHom B Y (basisRetraction Y (B.repr z))
 
+/--
+@isnad1 id=eq.0h4v.s5.39ddf4775a7c from=translated src=- shape=0e9cb03b vocab=991cdd3d
+-/
 theorem retractBasisElement_one {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) :
     retractBasisElement B Y (1 : K) = 1 := by
@@ -59,6 +68,9 @@ theorem retractBasisElement_one {X K : Type u} [Group K]
   rw [B.repr.map_one, (basisRetraction Y).map_one, (subsetBasisHom B Y).map_one]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.2ac55fcd9bb7 from=translated src=- shape=dd1f6a87 vocab=7d5aaa2c
+-/
 theorem retractBasisElement_mul {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (z w : K) :
     retractBasisElement B Y (z * w) =
@@ -68,6 +80,9 @@ theorem retractBasisElement_mul {X K : Type u} [Group K]
     (subsetBasisHom B Y).map_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a58506b7bffb from=translated src=- shape=9c44bf31 vocab=6e79119f
+-/
 theorem retractBasisElement_inv {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (z : K) :
     retractBasisElement B Y z⁻¹ = (retractBasisElement B Y z)⁻¹ := by
@@ -75,6 +90,9 @@ theorem retractBasisElement_inv {X K : Type u} [Group K]
   rw [← retractBasisElement_mul]
   rw [inv_mul_cancel, retractBasisElement_one]
 
+/--
+@isnad1 id=eq.0h7v.s7.b84986fb2eb8 from=translated src=- shape=7fdb09f1 vocab=f7071cdc
+-/
 theorem loopOfHom_comp {T : WideSubquiver (Symmetrify (IsFreeGroupoid.Generators G))}
     [Arborescence T] {a b c : G} (p : a ⟶ b) (q : b ⟶ c) :
     IsFreeGroupoid.SpanningTree.loopOfHom T (p ≫ q) =
@@ -82,6 +100,9 @@ theorem loopOfHom_comp {T : WideSubquiver (Symmetrify (IsFreeGroupoid.Generators
         IsFreeGroupoid.SpanningTree.loopOfHom T p := by
   simp [IsFreeGroupoid.SpanningTree.loopOfHom, Category.assoc]
 
+/--
+@isnad1 id=eq.0h5v.s7.24586ea7dfe9 from=translated src=- shape=52493d61 vocab=898e0fc2
+-/
 theorem loopOfHom_inv {T : WideSubquiver (Symmetrify (IsFreeGroupoid.Generators G))}
     [Arborescence T] {a b : G} (p : a ⟶ b) :
       IsFreeGroupoid.SpanningTree.loopOfHom T (inv p) =

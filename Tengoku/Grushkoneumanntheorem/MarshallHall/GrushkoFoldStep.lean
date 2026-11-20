@@ -33,12 +33,18 @@ noncomputable instance foldQuotientFintype (a b : V) :
   classical
   exact Fintype.ofFinite _
 
+/--
+@isnad1 id=le.0h3v.s4.a7923804211e from=translated src=- shape=e2a1531a vocab=48ee8e0a
+-/
 theorem foldQuotient_card_le (a b : V) :
     Fintype.card (Quotient (foldSetoid a b)) ≤ Fintype.card V := by
   classical
   exact Fintype.card_le_of_surjective (Quotient.mk (foldSetoid a b))
     Quotient.mk_surjective
 
+/--
+@isnad1 id=lt.1h3v.s5.c516a5581b0b from=translated src=- shape=c981e4ce vocab=f025ff17
+-/
 theorem foldQuotient_card_lt {a b : V} (hab : a ≠ b) :
     Fintype.card (Quotient (foldSetoid a b)) < Fintype.card V := by
   classical
@@ -62,6 +68,9 @@ noncomputable instance deletedEdgeFintype (E : Type v) [Fintype E]
   change Fintype {e : E // e ≠ e₀ ∧ e ≠ e₀'}
   infer_instance
 
+/--
+@isnad1 id=lt.0h3v.s4.8c5cc8aa0985 from=translated src=- shape=94d23cec vocab=69b31d3a
+-/
 theorem deletedEdge_card_lt (E : Type v) [Fintype E]
     (e₀ e₀' : E) :
     Fintype.card (deletedEdge E e₀ e₀') < Fintype.card E := by
@@ -75,6 +84,9 @@ theorem deletedEdge_card_lt (E : Type v) [Fintype E]
     exact e.2.1 he
   exact Fintype.card_lt_of_injective_not_surjective f hinj hnot_surj
 
+/--
+@isnad1 id=le.1h3v.s5.17261e3dcb38 from=translated src=- shape=45e6fa6e vocab=817b8a3c
+-/
 theorem deletedEdge_card_add_two_le (E : Type v) [Fintype E]
     (e₀ e₀' : E) (hne : e₀ ≠ e₀') :
     Fintype.card (deletedEdge E e₀ e₀') + 2 ≤ Fintype.card E := by
@@ -116,6 +128,9 @@ theorem deletedEdge_card_add_two_le (E : Type v) [Fintype E]
   have hc := Fintype.card_le_of_injective f hinj
   simpa [f] using hc
 
+/--
+@isnad1 id=eq.1h3v.s5.bbe01edffa08 from=translated src=- shape=45e6fa6e vocab=85697a17
+-/
 theorem deletedEdge_card_add_two_eq (E : Type v) [Fintype E]
     (e₀ e₀' : E) (hne : e₀ ≠ e₀') :
     Fintype.card (deletedEdge E e₀ e₀') + 2 = Fintype.card E := by
@@ -168,14 +183,23 @@ def allArrowHom (e : AllArrow (V := V)) :
     allArrowSource e ⟶ allArrowTarget e :=
   e.2.2
 
+/--
+@isnad1 id=eq.0h4v.s5.016e62d6316b from=translated src=- shape=c15c0f59 vocab=0917bee4
+-/
 @[simp] theorem allArrowSource_of {a b : V} (e : a ⟶ b) :
     allArrowSource (allArrowOf e) = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2c0bee716048 from=translated src=- shape=4b498a6d vocab=debf0435
+-/
 @[simp] theorem allArrowTarget_of {a b : V} (e : a ⟶ b) :
     allArrowTarget (allArrowOf e) = b :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.561460776049 from=translated src=- shape=fa4e713e vocab=765609aa
+-/
 @[simp] theorem allArrowHom_of {a b : V} (e : a ⟶ b) :
     allArrowHom (allArrowOf e) = e :=
   rfl
@@ -183,25 +207,40 @@ def allArrowHom (e : AllArrow (V := V)) :
 def allArrowReverse : AllArrow (V := V) → AllArrow (V := V)
   | ⟨a, b, e⟩ => ⟨b, a, Quiver.reverse e⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.ea86883e920c from=translated src=- shape=6a24356c vocab=77906c08
+-/
 @[simp] theorem allArrowOf_reverse {a b : V} (e : a ⟶ b) :
     allArrowOf (Quiver.reverse e) = allArrowReverse (allArrowOf e) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.abcda2d20e15 from=translated src=- shape=c92930ec vocab=29e01649
+-/
 @[simp] theorem allArrowSource_reverse (e : AllArrow (V := V)) :
     allArrowSource (allArrowReverse e) = allArrowTarget e := by
   cases e
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.04ec417072e2 from=translated src=- shape=c92930ec vocab=29e01649
+-/
 @[simp] theorem allArrowTarget_reverse (e : AllArrow (V := V)) :
     allArrowTarget (allArrowReverse e) = allArrowSource e := by
   cases e
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.788b2f3e972e from=translated src=- shape=7cc5f622 vocab=4b74b361
+-/
 @[simp] theorem allArrowReverse_reverse (e : AllArrow (V := V)) :
     allArrowReverse (allArrowReverse e) = e := by
   cases e
   simp only [allArrowReverse, Quiver.reverse_reverse]
 
+/--
+@isnad1 id=injectiv.0h1v.s5.28d4fc07ea8f from=translated src=- shape=a2db3e23 vocab=ffbdabbd
+-/
 theorem allArrowReverse_injective : Function.Injective
     (allArrowReverse (V := V)) := by
   intro e₁ e₂ h
@@ -218,15 +257,24 @@ noncomputable def foldCode (a b v : V) : Option (deletedEdge V a b) := by
   exact if h : v = a ∨ v = b then none
     else some ⟨v, fun hva => h (Or.inl hva), fun hvb => h (Or.inr hvb)⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.8cc1d85b3c1d from=translated src=- shape=a4fdffbd vocab=da23c6e4
+-/
 theorem foldCode_rel {a b x y : V} (hxy : x = a ∧ y = b) :
     foldCode a b x = foldCode a b y := by
   simp [foldCode, hxy.1, hxy.2]
 
+/--
+@isnad1 id=iff.0h4v.s5.c8d8394b722c from=translated src=- shape=4eac70a1 vocab=f7a7b014
+-/
 theorem foldCode_eq_none_iff {a b v : V} :
     foldCode a b v = none ↔ v = a ∨ v = b := by
   classical
   by_cases h : v = a ∨ v = b <;> simp [foldCode, h]
 
+/--
+@isnad1 id=iff.0h5v.s6.f1e4c1d35b9a from=translated src=- shape=0b6d8027 vocab=12b4f45b
+-/
 theorem foldCode_eq_some_iff {a b v : V} (e : deletedEdge V a b) :
     foldCode a b v = some e ↔ e.1 = v := by
   classical
@@ -267,6 +315,9 @@ noncomputable def foldCodeQuotient (a b : V) :
     | symm x y h ih => exact ih.symm
     | trans x y z hxy hyz ihxy ihyz => exact ihxy.trans ihyz)
 
+/--
+@isnad1 id=eq.0h4v.s5.6da97865db6f from=translated src=- shape=0cb6e68a vocab=81ab3573
+-/
 @[simp] theorem foldCodeQuotient_mk (a b v : V) :
     foldCodeQuotient a b (Quotient.mk (foldSetoid a b) v) = foldCode a b v :=
   rfl
@@ -315,6 +366,9 @@ noncomputable def foldQuotientCodeEquiv {a b : V} (hab : a ≠ b) :
         rw [foldCodeQuotient_mk]
         exact (foldCode_eq_some_iff (a := a) (b := b) (v := e.1) e).mpr rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.df34ba3d6f77 from=translated src=- shape=6c8bdac0 vocab=62506c97
+-/
 theorem foldQuotient_card_add_one_eq {a b : V} (hab : a ≠ b) :
     Fintype.card (foldVertex a b) + 1 = Fintype.card V := by
   have hq := Fintype.card_congr (foldQuotientCodeEquiv hab)
@@ -364,6 +418,9 @@ def foldAllArrowToAllArrow {a b : V} (e₀ : AllArrow (V := V)) :
     @AllArrow (foldVertex a b) (foldQuiver e₀) → AllArrow (V := V) :=
   fun e => e.2.2.1.1
 
+/--
+@isnad1 id=injectiv.0h4v.s5.6550144cffec from=translated src=- shape=4db15fea vocab=937d4108
+-/
 theorem foldAllArrowToAllArrow_injective {a b : V}
     (e₀ : AllArrow (V := V)) :
     Function.Injective (foldAllArrowToAllArrow (a := a) (b := b) e₀) := by
@@ -403,6 +460,9 @@ def foldAllArrowToDeletedEdge {a b : V} (e₀ : AllArrow (V := V)) :
       deletedEdge (AllArrow (V := V)) e₀ (allArrowReverse e₀) :=
   fun e => ⟨e.2.2.1.1, e.2.2.1.2.1, e.2.2.1.2.2⟩
 
+/--
+@isnad1 id=injectiv.0h4v.s5.95df694a3ccb from=translated src=- shape=a27feefa vocab=d6e68349
+-/
 theorem foldAllArrowToDeletedEdge_injective {a b : V}
     (e₀ : AllArrow (V := V)) :
     Function.Injective (foldAllArrowToDeletedEdge (a := a) (b := b) e₀) := by
@@ -410,6 +470,9 @@ theorem foldAllArrowToDeletedEdge_injective {a b : V}
   apply foldAllArrowToAllArrow_injective e₀
   exact congrArg Subtype.val h
 
+/--
+@isnad1 id=le.0h4v.s6.1aa609fbfe00 from=translated src=- shape=4c88ec69 vocab=56a0bd83
+-/
 theorem foldAllArrow_card_le {a b : V} (e₀ : AllArrow (V := V)) :
     Fintype.card (@AllArrow (foldVertex a b) (foldQuiver e₀)) ≤
       Fintype.card (AllArrow (V := V)) := by
@@ -420,6 +483,9 @@ theorem foldAllArrow_card_le {a b : V} (e₀ : AllArrow (V := V)) :
     (foldAllArrowToAllArrow (a := a) (b := b) e₀)
     (foldAllArrowToAllArrow_injective e₀)
 
+/--
+@isnad1 id=le.1h4v.s6.6def1e2f01cc from=translated src=- shape=cc3986c3 vocab=efd0487c
+-/
 theorem foldAllArrow_card_add_two_le {a b : V} (e₀ : AllArrow (V := V))
     (hfree : allArrowReverse e₀ ≠ e₀) :
     Fintype.card (@AllArrow (foldVertex a b) (foldQuiver e₀)) + 2 ≤
@@ -473,6 +539,9 @@ def foldHasReverse {a b : V} (e₀ : AllArrow (V := V)) :
       apply Subtype.ext
       exact allArrowReverse_reverse e.1.1)
 
+/--
+@isnad1 id=ne.1h5v.s6.a462e246a60a from=translated src=- shape=0ddac5dc vocab=4babc61f
+-/
 theorem fold_allArrow_reverse_ne {a b : V} (e₀ : AllArrow (V := V))
     (hfree : ∀ e : AllArrow (V := V), allArrowReverse e ≠ e) :
     letI : Fintype (foldVertex a b) := foldVertexFintype a b
@@ -497,6 +566,9 @@ def allArrowLabel (L : BinaryLabelling (G := G) (H := H) (V := V))
     (e : AllArrow (V := V)) : Sum G H :=
   L.label (allArrowHom e)
 
+/--
+@isnad1 id=mem.0h7v.s7.91fd3a21b977 from=translated src=- shape=50fb1ab8 vocab=8c8bcdc4
+-/
 theorem pathRead_mem_closure_allArrowLabels
     (L : BinaryLabelling (G := G) (H := H) (V := V))
     {a b : V} (p : @Quiver.Path V qV a b) :
@@ -513,6 +585,9 @@ theorem pathRead_mem_closure_allArrowLabels
       apply Subgroup.subset_closure
       exact ⟨allArrowOf e, rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.68d6b8b12a91 from=translated src=- shape=ff2920f1 vocab=8cd68e0a
+-/
 theorem allArrowLabels_closure_eq_top_of_markedGraph {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     (hgen : M.IsGenerating) :
@@ -532,6 +607,9 @@ theorem allArrowLabels_closure_eq_top_of_markedGraph {n : ℕ}
     exact pathRead_mem_closure_allArrowLabels M.labeling (M.loops i)
   exact hle hx'
 
+/--
+@isnad1 id=ex.1h5v.s7.38fe78df4924 from=translated src=- shape=67a1b5d2 vocab=13b62bbc
+-/
 theorem exists_separated_generators_of_markedGraph {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     (hgen : M.IsGenerating) :
@@ -607,6 +685,9 @@ def foldOrdinaryPath {a b : V} (e₀ : AllArrow (V := V)) :
           (foldOrdinaryPath (a := a) (b := b) e₀ p hp'.1)
           (foldOrdinaryEdge (a := a) (b := b) e₀ e hp'.2.1 hp'.2.2)
 
+/--
+@isnad1 id=iff.0h7v.s6.177f5eea7192 from=translated src=- shape=3f61d989 vocab=a99226d5
+-/
 theorem foldPathAvoid_comp (e₀ : AllArrow (V := V))
     {x y z : V} (p : @Quiver.Path V _ x y)
     (q : @Quiver.Path V _ y z) :
@@ -617,6 +698,9 @@ theorem foldPathAvoid_comp (e₀ : AllArrow (V := V))
   | cons q e ih =>
       simp only [Path.comp_cons, foldPathAvoid, ih, and_assoc]
 
+/--
+@isnad1 id=foldpath.1h5v.s5.c48505cb4ea3 from=translated src=- shape=8d9c4994 vocab=085463dc
+-/
 theorem foldPathAvoid_reverse (e₀ : AllArrow (V := V))
     {x y : V} (p : @Quiver.Path V _ x y) (hp : foldPathAvoid e₀ p) :
     foldPathAvoid e₀ p.reverse := by
@@ -649,6 +733,9 @@ theorem foldPathAvoid_reverse (e₀ : AllArrow (V := V))
             allArrowOf (Quiver.reverse e) ≠ allArrowReverse e₀ from
           ⟨True.intro, havoid.1, havoid.2⟩)
 
+/--
+@isnad1 id=eq.1h10v.s7.ec1828740d69 from=translated src=- shape=17520825 vocab=a52d3c72
+-/
 theorem foldOrdinaryPath_labels {a b : V} (L : BinaryLabelling (G := G)
     (H := H) (V := V)) (e₀ : AllArrow (V := V))
     {x y : V} (p : @Quiver.Path V _ x y) (hp : foldPathAvoid e₀ p) :
@@ -668,6 +755,9 @@ theorem foldOrdinaryPath_labels {a b : V} (L : BinaryLabelling (G := G)
       rw [ih hp'.1]
       rfl
 
+/--
+@isnad1 id=eq.1h10v.s7.aee03acdc7ed from=translated src=- shape=b04c2540 vocab=da2d6276
+-/
 theorem foldOrdinaryPath_read {a b : V} (L : BinaryLabelling (G := G)
     (H := H) (V := V)) (e₀ : AllArrow (V := V))
     {x y : V} (p : @Quiver.Path V _ x y) (hp : foldPathAvoid e₀ p) :
@@ -790,14 +880,23 @@ def symmAllArrow {x y : Symmetrify V}
   | Sum.inl f => allArrowOf f
   | Sum.inr f => allArrowOf f
 
+/--
+@isnad1 id=eq.0h4v.s6.c6c379641627 from=translated src=- shape=e25f3330 vocab=ca642b72
+-/
 @[simp] theorem symmAllArrow_inl {x y : Symmetrify V} (f : x ⟶ y) :
     symmAllArrow (Sum.inl f) = allArrowOf f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.dcfcf444b6a5 from=translated src=- shape=b82c4753 vocab=b5820ee9
+-/
 @[simp] theorem symmAllArrow_inr {x y : Symmetrify V} (f : y ⟶ x) :
     symmAllArrow (Sum.inr f) = allArrowOf f :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.4bd306336de5 from=translated src=- shape=a166602a vocab=8f21e9f4
+-/
 @[simp] theorem symmAllArrow_reverse {x y : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
     symmAllArrow (Quiver.reverse e) = symmAllArrow e := by
@@ -812,16 +911,25 @@ def symmAllArrow {x y : Symmetrify V}
   | Sum.inl f => allArrowOf f
   | Sum.inr f => allArrowReverse (allArrowOf f)
 
+/--
+@isnad1 id=eq.0h4v.s5.b6c74da0a440 from=translated src=- shape=618ea90f vocab=4da4e8cd
+-/
 @[simp] theorem symmOrientedArrow_source {x y : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
     allArrowSource (symmOrientedArrow e) = (show V from x) := by
   cases e <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.4c4212e65e12 from=translated src=- shape=6d135d85 vocab=e1c66378
+-/
 @[simp] theorem symmOrientedArrow_target {x y : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
     allArrowTarget (symmOrientedArrow e) = (show V from y) := by
   cases e <;> rfl
 
+/--
+@isnad1 id=or.0h4v.s6.3973f15b34aa from=translated src=- shape=7ee8ac44 vocab=8093205c
+-/
 theorem symmAllArrow_eq_oriented_or_reverse {x y : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
     symmAllArrow e = symmOrientedArrow e ∨
@@ -854,16 +962,25 @@ def symmPathEdges {a : Symmetrify V} :
   | _, Path.nil => []
   | _, Path.cons p e => symmPathEdges p ++ [symmAllArrow e]
 
+/--
+@isnad1 id=eq.0h2v.s5.6cb89ef029a1 from=translated src=- shape=95a6b5d8 vocab=a6b58d2b
+-/
 @[simp] theorem symmPathEdges_nil {a : Symmetrify V} :
     symmPathEdges (qV := qV)
       (@Quiver.Path.nil (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) a) = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.79db6ee99cb8 from=translated src=- shape=a562b52d vocab=1ae6c8fa
+-/
 @[simp] theorem symmPathEdges_toPath {a b : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) a b) :
     symmPathEdges (qV := qV) e.toPath = [symmAllArrow e] := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.f5342d0369d1 from=translated src=- shape=f6ecdfb8 vocab=c56890ee
+-/
 theorem symmPathEdges_comp {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) a b) :
     ∀ {c : Symmetrify V}
@@ -880,6 +997,9 @@ def GeometricallySimple {a b : Symmetrify V}
   (symmPathEdges (qV := qV) p).Pairwise (fun e f =>
     e ≠ f ∧ e ≠ allArrowReverse f)
 
+/--
+@isnad1 id=foldsymm.1h6v.s6.f795670d98c0 from=translated src=- shape=b1aabc66 vocab=c4f9986a
+-/
 theorem foldSymmPathAvoid_of_geometricallySimple
     {a c b : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) a c)
@@ -947,6 +1067,9 @@ theorem foldSymmPathAvoid_of_geometricallySimple
   intro z hz
   exact hfirst' z hz
 
+/--
+@isnad1 id=iff.2h7v.s6.feb8b4113b84 from=translated src=- shape=024f9c80 vocab=553ebfeb
+-/
 theorem foldSymmPathAvoid_cast {e₀ : AllArrow (V := V)}
     {x y x' y' : Symmetrify V} (hx : x = x') (hy : y = y')
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
@@ -990,6 +1113,9 @@ def foldSymmOrdinaryPath {a b : V} (e₀ : AllArrow (V := V)) :
           (foldSymmOrdinaryPath e₀ p hp'.1)
           (foldSymmOrdinaryArrowPath e₀ e hp'.2.1 hp'.2.2)
 
+/--
+@isnad1 id=iff.0h7v.s6.e58f97140a12 from=translated src=- shape=f50416f5 vocab=9963bad0
+-/
 theorem foldSymmPathAvoid_comp (e₀ : AllArrow (V := V))
     {x y z : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y)
@@ -1007,6 +1133,9 @@ theorem foldSymmPathAvoid_comp (e₀ : AllArrow (V := V))
   | cons q e ih =>
       simp only [Path.comp_cons, foldSymmPathAvoid, ih, and_assoc]
 
+/--
+@isnad1 id=foldsymm.1h5v.s6.2e006c81049b from=translated src=- shape=b9869228 vocab=898802ba
+-/
 theorem foldSymmPathAvoid_reverse (e₀ : AllArrow (V := V))
     {x y : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y)
@@ -1026,6 +1155,9 @@ theorem foldSymmPathAvoid_reverse (e₀ : AllArrow (V := V))
             symmAllArrow e ≠ allArrowReverse e₀ from
           ⟨True.intro, hp'.2.1, hp'.2.2⟩)
 
+/--
+@isnad1 id=eq.2h10v.s7.45940b7a07e1 from=translated src=- shape=664d9950 vocab=bfba79f3
+-/
 theorem foldSymmOrdinaryArrowPath_read {a b : V}
     (L : BinaryLabelling (G := G) (H := H) (V := V))
     (e₀ : AllArrow (V := V))
@@ -1051,6 +1183,9 @@ theorem foldSymmOrdinaryArrowPath_read {a b : V}
         separatedMap (factorWordInv (L.label f))
       rw [← separatedMap_factorWordInv]
 
+/--
+@isnad1 id=eq.1h10v.s7.6619a5ba5dd0 from=translated src=- shape=31748aa1 vocab=e66d6171
+-/
 theorem foldSymmOrdinaryPath_read {a b : V}
     (L : BinaryLabelling (G := G) (H := H) (V := V))
     (e₀ : AllArrow (V := V))
@@ -1098,6 +1233,9 @@ theorem foldSymmOrdinaryPath_read {a b : V}
 
 /-! ### Substitution for an arbitrary symmetrized complementary path -/
 
+/--
+@isnad1 id=eq.3h11v.s8.cc2023dd2967 from=translated src=- shape=85769ddd vocab=b161c883
+-/
 theorem foldEdgePath_read {a b : V} (L : BinaryLabelling (G := G)
     (H := H) (V := V)) (e₀ : AllArrow (V := V))
     (ha : allArrowSource e₀ = a) {x y : V} (e : x ⟶ y)
@@ -1138,6 +1276,9 @@ theorem foldEdgePath_read {a b : V} (L : BinaryLabelling (G := G)
     · simp only [foldEdgePath, dite_eq_right h, dite_eq_right h']
       rfl
 
+/--
+@isnad1 id=eq.3h11v.s7.9678033dd591 from=translated src=- shape=69498ed5 vocab=0ff9badd
+-/
 theorem foldMapPath_read {a b : V} (L : BinaryLabelling (G := G)
     (H := H) (V := V)) (e₀ : AllArrow (V := V))
     (ha : allArrowSource e₀ = a)
@@ -1195,6 +1336,9 @@ def foldedMarkedGraph {n : ℕ}
     (foldLabelling M.labeling e₀)
     (fun i => foldMapPath e₀ ha q hq (M.loops i))
 
+/--
+@isnad1 id=eq.3h9v.s7.1140cf22b57b from=translated src=- shape=0907f428 vocab=fdf0abfd
+-/
 theorem foldedMarkedGraph_read {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     {a b : V} (e₀ : AllArrow (V := V))
@@ -1214,6 +1358,9 @@ theorem foldedMarkedGraph_read {n : ℕ}
     M.labeling.pathRead (M.loops i)
   exact foldMapPath_read M.labeling e₀ ha q hq hread (M.loops i)
 
+/--
+@isnad1 id=isgenera.4h9v.s7.15745db2046b from=translated src=- shape=3795891d vocab=232b691b
+-/
 theorem foldedMarkedGraph_isGenerating {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     {a b : V} (e₀ : AllArrow (V := V))
@@ -1236,6 +1383,9 @@ theorem foldedMarkedGraph_isGenerating {n : ℕ}
 path.  The marked loops are first viewed in the symmetrized quiver, then
 mapped edge-by-edge through the fold. -/
 
+/--
+@isnad1 id=lt.3h9v.s6.83daab117eaf from=translated src=- shape=63c05e10 vocab=92ca0b8f
+-/
 theorem foldedMarkedGraph_card_lt {n : ℕ}
     (M : MarkedBinaryGraph (G := G) (H := H) (V := V) n)
     {a b : V} (e₀ : AllArrow (V := V))
@@ -1263,6 +1413,9 @@ def SymmEdgeOccurrence (e₀ : AllArrow (V := V))
         (symmAllArrow e = e₀ ∨
           symmAllArrow e = allArrowReverse e₀)
 
+/--
+@isnad1 id=or.0h5v.s5.c7d950e64002 from=translated src=- shape=ca742f67 vocab=175aa7e2
+-/
 theorem foldSymmPathAvoid_or_occurrence (e₀ : AllArrow (V := V))
     {x y : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) x y) :
@@ -1287,6 +1440,9 @@ theorem foldSymmPathAvoid_or_occurrence (e₀ : AllArrow (V := V))
           rw [← Path.comp_toPath_eq_cons, hps]
           simp only [Path.comp_assoc], hf⟩
 
+/--
+@isnad1 id=ex.1h4v.s7.ea9da58ec138 from=translated src=- shape=1a4ca8be vocab=aff6e73a
+-/
 theorem exists_safe_or_reused_fold_data
     {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V qV) a b)
@@ -1306,6 +1462,9 @@ theorem exists_safe_or_reused_fold_data
 
 /-! ### Extracting a safe fold from a null path -/
 
+/--
+@isnad1 id=ex.2h7v.s8.7e2e5401f45d from=translated src=- shape=a8711df4 vocab=c9c9e13b
+-/
 theorem safeFoldData_of_nullPath {a b : V}
     (L : BinaryLabelling (G := G) (H := H) (V := V))
     (p : @Quiver.Path V _ a b) (hp : L.pathRead p = 1)

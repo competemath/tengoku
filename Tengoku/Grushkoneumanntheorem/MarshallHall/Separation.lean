@@ -21,23 +21,35 @@ def coreStateSet [DecidableEq α] (H : Subgroup (FreeGroup α))
   (fun x : FreeGroup α => (Quotient.mk'' x : LeftCosetQuotient H)) ''
     (corePoints S g : Set (FreeGroup α))
 
+/--
+@isnad1 id=finite.0h4v.s4.9a0cd2016962 from=translated src=- shape=f5f496a3 vocab=c7670ee7
+-/
 theorem coreStateSet_finite [DecidableEq α]
     (H : Subgroup (FreeGroup α)) (S : Finset (FreeGroup α)) (g : FreeGroup α) :
     (coreStateSet H S g).Finite := by
   exact (Finset.finite_toSet (corePoints S g)).image _
 
+/--
+@isnad1 id=mem.1h5v.s6.2305eebe2a83 from=translated src=- shape=10dc6e67 vocab=cdb5ede7
+-/
 theorem mem_coreStateSet [DecidableEq α]
     {H : Subgroup (FreeGroup α)} {S : Finset (FreeGroup α)} {g x : FreeGroup α}
     (hx : x ∈ corePoints S g) :
     (Quotient.mk'' x : LeftCosetQuotient H) ∈ coreStateSet H S g := by
   exact ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=mem.0h4v.s6.0ca08907897b from=translated src=- shape=c8a317a2 vocab=1e7c802d
+-/
 theorem one_mem_coreStateSet [DecidableEq α]
     (H : Subgroup (FreeGroup α)) (S : Finset (FreeGroup α)) (g : FreeGroup α) :
     (Quotient.mk'' (1 : FreeGroup α) : LeftCosetQuotient H) ∈ coreStateSet H S g := by
   apply mem_coreStateSet
   exact mem_corePoints_of_separating (one_mem_allActionStates g.toWord)
 
+/--
+@isnad1 id=ex.1h3v.s7.2e7824241c5d from=translated src=- shape=b32b5f85 vocab=01191266
+-/
 theorem freeGroup_subgroup_separable_proved
     {α : Type*} [Finite α]
     (H : Subgroup (FreeGroup α))

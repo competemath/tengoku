@@ -78,6 +78,9 @@ noncomputable instance roseAllArrowFintype {n : ℕ}
       (RoseVertex w) (roseQuiver w) a b) := roseHomFintype w a b
   exact allArrowFintype
 
+/--
+@isnad1 id=eq.0h4v.s6.32e2b9d1116d from=translated src=- shape=0f4271ed vocab=43bd3291
+-/
 theorem roseEdge_card {n : ℕ} (w : Fin n → List (Sum G H)) :
     Fintype.card (RoseEdge w) =
       2 * ∑ i : Fin n, (w i).length := by
@@ -87,6 +90,9 @@ theorem roseEdge_card {n : ℕ} (w : Fin n → List (Sum G H)) :
   rw [Finset.mul_sum]
   simp [Nat.mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s6.93748fb0a832 from=translated src=- shape=72b2d0ad vocab=096b7745
+-/
 theorem roseVertex_card {n : ℕ} (w : Fin n → List (Sum G H)) :
     Fintype.card (RoseVertex w) =
       1 + ∑ i : Fin n, ((w i).length - 1) := by
@@ -94,6 +100,9 @@ theorem roseVertex_card {n : ℕ} (w : Fin n → List (Sum G H)) :
   rw [Fintype.card_option, Fintype.card_sigma]
   simp [Nat.add_comm]
 
+/--
+@isnad1 id=le.0h4v.s6.46e4c4266730 from=translated src=- shape=d0d5b272 vocab=083a753c
+-/
 theorem roseWords_length_le {n : ℕ} (w : Fin n → List (Sum G H)) :
     (∑ i : Fin n, (w i).length) ≤
       n + ∑ i : Fin n, ((w i).length - 1) := by
@@ -104,11 +113,17 @@ theorem roseWords_length_le {n : ℕ} (w : Fin n → List (Sum G H)) :
     _ = n + ∑ i : Fin n, ((w i).length - 1) := by
       simp [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s5.856b027e9391 from=translated src=- shape=94e7baed vocab=a7bcde25
+-/
 theorem roseAllArrow_card_eq_roseEdge_card {n : ℕ}
     (w : Fin n → List (Sum G H)) :
     Fintype.card (AllArrow (V := RoseVertex w)) = Fintype.card (RoseEdge w) := by
   exact Fintype.card_congr (roseAllArrowEquiv w)
 
+/--
+@isnad1 id=le.0h4v.s6.79be750d3e9e from=translated src=- shape=4a02ddd2 vocab=f4e7ecbb
+-/
 theorem roseAllArrow_card_le_euler {n : ℕ}
     (w : Fin n → List (Sum G H)) :
     Fintype.card (AllArrow (V := RoseVertex w)) ≤
@@ -117,6 +132,9 @@ theorem roseAllArrow_card_le_euler {n : ℕ}
   have hwords := roseWords_length_le w
   omega
 
+/--
+@isnad1 id=le.3h5v.s7.72f6fedad2ec from=translated src=- shape=af491d4e vocab=a96374ad
+-/
 theorem foldAllArrow_card_le_euler {V : Type u} [Fintype V]
     [qV : Quiver V] [hV : HasInvolutiveReverse V]
     [∀ a b : V, Fintype (a ⟶ b)] {n : ℕ}
@@ -130,6 +148,9 @@ theorem foldAllArrow_card_le_euler {V : Type u} [Fintype V]
   have hv := foldQuotient_card_add_one_eq (a := a) (b := b) hab
   omega
 
+/--
+@isnad1 id=ex.4h5v.s8.c823bdf0141c from=translated src=- shape=dbb4e48c vocab=fdbbb4e2
+-/
 theorem terminal_euler_gives_separated_generators {V : Type u} [Fintype V]
     [qV : Quiver V] [hV : HasInvolutiveReverse V]
     [∀ a b : V, Fintype (a ⟶ b)] {n : ℕ}

@@ -76,6 +76,9 @@ def HasGeometricallySimpleNullPath : Prop :=
           M.labeling.symmPathRead p = 1 ∧
           GeometricallySimple (qV := qV) p
 
+/--
+@isnad1 id=hassafen.1h2v.s4.0a939b833be7 from=translated src=- shape=98d546ff vocab=019a98c2
+-/
 theorem hasSafeNullFold_of_hasGeometricallySimpleNullPath
     (hsimple : HasGeometricallySimpleNullPath (G := G) (H := H)) :
     HasSafeNullFold (G := G) (H := H) := by

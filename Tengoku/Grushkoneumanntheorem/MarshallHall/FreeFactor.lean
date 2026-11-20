@@ -78,18 +78,27 @@ def basisRetraction {X : Type u} (Y : Set X) : FreeGroup X →* FreeGroup Y :=
     classical
     exact FreeGroup.lift (fun x => if hx : x ∈ Y then FreeGroup.of ⟨x, hx⟩ else 1)
 
+/--
+@isnad1 id=eq.1h3v.s7.4769287ba4a8 from=translated src=- shape=075e9488 vocab=5ad5cfa0
+-/
 @[simp]
 theorem basisRetraction_apply_of_mem {X : Type u} (Y : Set X) {x : X} (hx : x ∈ Y) :
     basisRetraction Y (FreeGroup.of x) = FreeGroup.of ⟨x, hx⟩ := by
   classical
   simp [basisRetraction, hx]
 
+/--
+@isnad1 id=eq.1h3v.s7.22c438efd078 from=translated src=- shape=13e71071 vocab=12c21b06
+-/
 @[simp]
 theorem basisRetraction_apply_of_not_mem {X : Type u} (Y : Set X) {x : X} (hx : x ∉ Y) :
     basisRetraction Y (FreeGroup.of x) = 1 := by
   classical
   simp [basisRetraction, hx]
 
+/--
+@isnad1 id=eq.0h5v.s8.9b30e89928c9 from=translated src=- shape=f8cc0a53 vocab=830808c1
+-/
 @[simp]
 theorem subsetBasisHom_apply_of {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (y : Y) :
@@ -98,6 +107,9 @@ theorem subsetBasisHom_apply_of {X K : Type u} [Group K]
   classical
   simp [subsetBasisHom]
 
+/--
+@isnad1 id=eq.0h5v.s9.04e6775da866 from=translated src=- shape=c957762e vocab=c4cba3d9
+-/
 theorem subsetBasisHom_retraction_on_closure {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (x : generatedByBasis B Y) :
     ((subsetBasisHom B Y (basisRetraction Y (B.repr x.1))) : K) = x.1 := by
@@ -125,6 +137,9 @@ def subsetBasisRetraction {X K : Type u} [Group K]
     generatedByBasis B Y →* FreeGroup Y :=
   (basisRetraction Y).comp B.repr.toMonoidHom |>.comp (generatedByBasis B Y).subtype
 
+/--
+@isnad1 id=eq.0h4v.s9.8104eeacb3e9 from=translated src=- shape=b2fc5be6 vocab=4e10f40f
+-/
 theorem subsetBasisHom_comp_retraction {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) :
     (subsetBasisHom B Y).comp (subsetBasisRetraction B Y) = MonoidHom.id _ := by
@@ -132,6 +147,9 @@ theorem subsetBasisHom_comp_retraction {X K : Type u} [Group K]
   change ((subsetBasisHom B Y (subsetBasisRetraction B Y x)) : K) = x.1
   exact subsetBasisHom_retraction_on_closure B Y x
 
+/--
+@isnad1 id=eq.0h4v.s8.5688ebe70a43 from=translated src=- shape=93e44af4 vocab=4e10f40f
+-/
 theorem subsetBasisRetraction_comp_hom {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) :
     (subsetBasisRetraction B Y).comp (subsetBasisHom B Y) = MonoidHom.id _ := by
@@ -170,6 +188,9 @@ def basisSubsetFreeFactorEquiv {X K : Type u} [Group K]
         (binaryFreeProductEquiv (α := Y) (β := (Yᶜ : Set X)))).trans
         (FreeGroup.freeGroupCongr (Equiv.Set.sumCompl Y))).trans B.repr.symm
 
+/--
+@isnad1 id=eq.0h5v.s9.3400b6a6dcb8 from=translated src=- shape=1f99406f vocab=d94b5657
+-/
 theorem repr_subsetBasisHom {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (w : FreeGroup Y) :
     B.repr ((subsetBasisHom B Y w : generatedByBasis B Y) : K) =
@@ -192,6 +213,9 @@ theorem repr_subsetBasisHom {X K : Type u} [Group K]
       _ = FreeGroup.map (fun y : Y => (y : X)) (x * y) :=
         (FreeGroup.map_mul (fun y : Y => (y : X)) x y).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.e7714d6336ca from=translated src=- shape=ef4c3f59 vocab=f2219ef6
+-/
 theorem repr_subsetBasisEquiv {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) (h : generatedByBasis B Y) :
     FreeGroup.map (fun y : Y => (y : X)) (subsetBasisEquiv B Y h) = B.repr (h : K) := by
@@ -207,6 +231,9 @@ theorem repr_subsetBasisEquiv {X K : Type u} [Group K]
           exact repr_subsetBasisHom B Y (subsetBasisEquiv B Y h)
     _ = B.repr (h : K) := by rw [hh]
 
+/--
+@isnad1 id=isfreefa.0h4v.s4.da6a312d2e5d from=translated src=- shape=4449f374 vocab=a4722ddf
+-/
 theorem generatedByBasis_isFreeFactor {X K : Type u} [Group K]
     (B : FreeGroupBasis X K) (Y : Set X) :
     IsFreeFactor (generatedByBasis B Y) := by
@@ -222,6 +249,9 @@ theorem generatedByBasis_isFreeFactor {X K : Type u} [Group K]
   convert repr_subsetBasisEquiv B Y h using 1
   congr 1
 
+/--
+@isnad1 id=isfreefa.2h5v.s8.0986501dbe33 from=translated src=- shape=12877441 vocab=e4d3e563
+-/
 theorem isFreeFactor_of_basis_support {X K : Type u} [Group K]
     (H : Subgroup K) (B : FreeGroupBasis X K) (Y : Set X)
     (hY : ∀ y : Y, B y ∈ H)

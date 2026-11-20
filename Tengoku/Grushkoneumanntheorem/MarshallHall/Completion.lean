@@ -63,6 +63,9 @@ def coreCondition {H : Subgroup (FreeGroup α)}
   ∀ v ∈ List.tails u, ∀ x ∈ actionStates v,
     (Quotient.mk'' x : LeftCosetQuotient H) ∈ A
 
+/--
+@isnad1 id=corecond.1h5v.s5.91f7867bfaf6 from=translated src=- shape=61adcfa8 vocab=5111177e
+-/
 theorem coreCondition_tail {H : Subgroup (FreeGroup α)}
     {A : Set (LeftCosetQuotient H)} {x : α × Bool} {u : List (α × Bool)}
     (h : coreCondition A (x :: u)) : coreCondition A u := by
@@ -74,6 +77,9 @@ path.  This is the bridge from a subgroup word to the corresponding loop in
 the completed covering graph. -/
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h7v.s11.b56241f601d9 from=translated src=- shape=74bbc1f3 vocab=d0cba666
+-/
 theorem good_tree_path
     (H : Subgroup (FreeGroup α)) {O : Type u}
     [MulAction (FreeGroup α) O]

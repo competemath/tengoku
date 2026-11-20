@@ -27,6 +27,9 @@ universe u v
 variable {G H : Type u} {V : Type v} [Group G] [Group H] [Quiver V]
   [HasInvolutiveReverse V]
 
+/--
+@isnad1 id=eq.2h6v.s5.563f50985789 from=translated src=- shape=631d8527 vocab=50eaaa53
+-/
 theorem path_length_cast {a b a' b' : V} (ha : a = a') (hb : b = b')
     (p : Path a b) : (p.cast ha hb).length = p.length := by
   subst_vars
@@ -56,39 +59,63 @@ def IsMonochromatic {a b : V} (p : Path a b) (color : Bool) : Prop :=
   ∀ z ∈ L.pathLabels p,
     binarySumIndex (G := G) (H := H) z = color
 
+/--
+@isnad1 id=eq.0h5v.s5.a81b80f803c3 from=translated src=- shape=b5071b1b vocab=0d4997ac
+-/
 @[simp] theorem pathLabels_nil {a : V} :
     L.pathLabels (Path.nil : Path a a) = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.cfc38cc6af70 from=translated src=- shape=154f04dd vocab=d0badb58
+-/
 @[simp] theorem pathLabels_toPath {a b : V} (e : a ⟶ b) :
     L.pathLabels e.toPath = [L.label e] := by
   rfl
 
+/--
+@isnad1 id=eq.1h8v.s6.c9227b50da46 from=translated src=- shape=3730a492 vocab=174790cc
+-/
 theorem pathLabels_eq_of_endpoint_eq {a b c : V} (h : b = c)
     (p : Path a b) :
     L.pathLabels (h ▸ p) = L.pathLabels p := by
   cases h
   rfl
 
+/--
+@isnad1 id=eq.2h9v.s6.f785ec123626 from=translated src=- shape=01099727 vocab=00e1774a
+-/
 theorem pathLabels_cast {a b a' b' : V} (ha : a = a') (hb : b = b')
     (p : Path a b) :
     L.pathLabels (p.cast ha hb) = L.pathLabels p := by
   subst_vars
   rfl
 
+/--
+@isnad1 id=eq.2h9v.s6.55ca3ff2b62c from=translated src=- shape=84676b9b vocab=ded487f3
+-/
 theorem pathRead_cast {a b a' b' : V} (ha : a = a') (hb : b = b')
     (p : Path a b) :
     L.pathRead (p.cast ha hb) = L.pathRead p := by
   simp only [pathRead, pathLabels_cast]
 
+/--
+@isnad1 id=eq.0h5v.s7.d68cc2fe48dc from=translated src=- shape=49add644 vocab=13714931
+-/
 @[simp] theorem pathRead_nil {a : V} :
     L.pathRead (Path.nil : Path a a) = 1 := by
   simp [pathRead, pathLabels, factorWordProd]
 
+/--
+@isnad1 id=eq.0h7v.s6.8089e47860f4 from=translated src=- shape=60a9db2d vocab=d15de98b
+-/
 @[simp] theorem pathRead_toPath {a b : V} (e : a ⟶ b) :
     L.pathRead e.toPath = separatedMap (L.label e) := by
   simp [pathRead, pathLabels, factorWordProd, separatedMap]
 
+/--
+@isnad1 id=eq.0h9v.s6.8c09a0b320d1 from=translated src=- shape=70ae6474 vocab=19a7d29c
+-/
 theorem pathLabels_comp {a b : V} (p : Path a b) :
     ∀ {c : V} (q : Path b c), L.pathLabels (p.comp q) =
       L.pathLabels p ++ L.pathLabels q
@@ -97,6 +124,9 @@ theorem pathLabels_comp {a b : V} (p : Path a b) :
       simp only [Path.comp_cons, pathLabels]
       rw [pathLabels_comp p q, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s7.11bfb9d0a1d7 from=translated src=- shape=3e00c7c1 vocab=83c13750
+-/
 theorem pathRead_comp {a b : V} (p : Path a b) :
     ∀ {c : V} (q : Path b c), L.pathRead (p.comp q) =
       L.pathRead p * L.pathRead q
@@ -124,6 +154,9 @@ def symmPathRead {a b : Symmetrify V}
   G ∗ H :=
   factorWordProd (G := G) (H := H) (L.symmPathLabels p)
 
+/--
+@isnad1 id=eq.2h9v.s6.dba9889932c3 from=translated src=- shape=90d0067d vocab=1392e0bf
+-/
 theorem symmPathLabels_cast {a b a' b' : Symmetrify V}
     (ha : a = a') (hb : b = b')
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
@@ -131,33 +164,51 @@ theorem symmPathLabels_cast {a b a' b' : Symmetrify V}
   subst_vars
   rfl
 
+/--
+@isnad1 id=eq.2h9v.s6.5914f2efa314 from=translated src=- shape=4a828dac vocab=ed82f378
+-/
 theorem symmPathRead_cast {a b a' b' : Symmetrify V}
     (ha : a = a') (hb : b = b')
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmPathRead (p.cast ha hb) = L.symmPathRead p := by
   simp only [symmPathRead, symmPathLabels_cast]
 
+/--
+@isnad1 id=eq.0h5v.s5.0a917dee9301 from=translated src=- shape=a55cecab vocab=16d168b9
+-/
 @[simp] theorem symmPathLabels_nil {a : Symmetrify V} :
     L.symmPathLabels
       (@Quiver.Path.nil (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a) = [] :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.cf14e0a12485 from=translated src=- shape=b0db6ef0 vocab=0bc74c8f
+-/
 @[simp] theorem symmPathLabels_toPath {a b : Symmetrify V}
   (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmPathLabels e.toPath = [L.symmLabel e] := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.de58e4ed3790 from=translated src=- shape=8212aedf vocab=03d81d29
+-/
 @[simp] theorem symmPathRead_nil {a : Symmetrify V} :
     L.symmPathRead
       (@Quiver.Path.nil (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a) = 1 := by
   simp [symmPathRead, symmPathLabels, factorWordProd]
 
+/--
+@isnad1 id=eq.0h7v.s6.67cd43760fff from=translated src=- shape=86288970 vocab=67bbf0aa
+-/
 @[simp] theorem symmPathRead_toPath {a b : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmPathRead e.toPath = separatedMap (L.symmLabel e) := by
   change factorWordProd [L.symmLabel e] = separatedMap (L.symmLabel e)
   simp [factorWordProd]
 
+/--
+@isnad1 id=eq.0h9v.s7.9db9219d4269 from=translated src=- shape=b6e402c1 vocab=b40cbf7b
+-/
 theorem symmPathLabels_comp {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     ∀ {c : Symmetrify V}
@@ -171,6 +222,9 @@ theorem symmPathLabels_comp {a b : Symmetrify V}
       simp only [Path.comp_cons, symmPathLabels]
       rw [symmPathLabels_comp p q, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h9v.s7.c1a5ebbe40b4 from=translated src=- shape=188684d9 vocab=fc1d3322
+-/
 theorem symmPathRead_comp {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     ∀ {c : Symmetrify V}
@@ -179,6 +233,9 @@ theorem symmPathRead_comp {a b : Symmetrify V}
   | _, q => by
       simp only [symmPathRead, symmPathLabels_comp, factorWordProd_append]
 
+/--
+@isnad1 id=eq.0h7v.s6.845888184f0b from=translated src=- shape=7ef4d34d vocab=269d26d1
+-/
 theorem symmLabel_reverse {a b : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmLabel (Quiver.reverse e) = factorWordInv (L.symmLabel e) := by
@@ -188,6 +245,9 @@ theorem symmLabel_reverse {a b : Symmetrify V}
   | inr f =>
       simp [symmLabel]
 
+/--
+@isnad1 id=eq.0h7v.s6.590f66f6f912 from=translated src=- shape=bad07e47 vocab=98f56235
+-/
 theorem symmPathRead_reverse {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmPathRead p.reverse = (L.symmPathRead p)⁻¹ := by
@@ -200,6 +260,9 @@ theorem symmPathRead_reverse {a b : Symmetrify V}
         symmPathRead_comp, symmPathRead_toPath]
       simp [separatedMap_factorWordInv, mul_inv_rev]
 
+/--
+@isnad1 id=eq.0h7v.s6.592c55ea3504 from=translated src=- shape=b43f4c24 vocab=dcc774ac
+-/
 theorem symmPathRead_map_of {a b : V}
     (p : @Quiver.Path V _ a b) :
     L.symmPathRead
@@ -222,11 +285,17 @@ def symmIsMonochromatic {a b : Symmetrify V}
   ∀ z ∈ L.symmPathLabels p,
     binarySumIndex (G := G) (H := H) z = color
 
+/--
+@isnad1 id=symmismo.0h6v.s5.22b99e51450e from=translated src=- shape=5a5253b6 vocab=ff5ff1db
+-/
 @[simp] theorem symmIsMonochromatic_nil {a : Symmetrify V} (color : Bool) :
     L.symmIsMonochromatic
       (@Quiver.Path.nil (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a) color := by
   simp [symmIsMonochromatic]
 
+/--
+@isnad1 id=symmismo.0h7v.s6.2fae198a0e31 from=translated src=- shape=fb959887 vocab=efd349e6
+-/
 theorem symmIsMonochromatic_toPath {a b : Symmetrify V}
     (e : @Quiver.Hom (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b) :
     L.symmIsMonochromatic e.toPath
@@ -236,6 +305,9 @@ theorem symmIsMonochromatic_toPath {a b : Symmetrify V}
     simpa only [symmPathLabels_toPath, List.mem_singleton] using hz
   exact congrArg (binarySumIndex (G := G) (H := H)) hz'
 
+/--
+@isnad1 id=symmismo.2h10v.s6.c58bfaf095ec from=translated src=- shape=ce8b3f5e vocab=b4dc22cb
+-/
 theorem symmIsMonochromatic_comp {a b c : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b)
     (q : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) b c)
@@ -248,6 +320,9 @@ theorem symmIsMonochromatic_comp {a b c : Symmetrify V}
   · exact hp z hz
   · exact hq z hz
 
+/--
+@isnad1 id=ex.1h7v.s8.c9ae54a616e5 from=translated src=- shape=d1c89a7b vocab=bd18797b
+-/
 theorem symmPathRead_mono_false {a b : Symmetrify V}
     {p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b}
     (hp : L.symmIsMonochromatic p false) :
@@ -257,6 +332,9 @@ theorem symmPathRead_mono_false {a b : Symmetrify V}
   refine ⟨l.prod, ?_⟩
   rw [symmPathRead, hl, factorWordProd_map_inl]
 
+/--
+@isnad1 id=ex.1h7v.s8.e3b1697c4b5f from=translated src=- shape=1c6aea07 vocab=57171ee8
+-/
 theorem symmPathRead_mono_true {a b : Symmetrify V}
     {p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b}
     (hp : L.symmIsMonochromatic p true) :
@@ -313,6 +391,9 @@ def symmRunTag (r : SymmRunPiece L) : Sum G H :=
   | false => Sum.inl (Monoid.Coprod.fst (L.symmPathRead r.path))
   | true => Sum.inr (Monoid.Coprod.snd (L.symmPathRead r.path))
 
+/--
+@isnad1 id=eq.0h5v.s6.9af3aed2423b from=translated src=- shape=014639cc vocab=a572fa9d
+-/
 theorem separatedMap_symmRunTag (r : SymmRunPiece L) :
     separatedMap (L.symmRunTag r) = L.symmPathRead r.path := by
   cases hc : r.color with
@@ -357,6 +438,9 @@ def SymmRunChain.pieceColors : ∀ {a b : Symmetrify V},
   | _, _, .cons r rest =>
       SymmRunChain.pieceColors rest ++ [r.color]
 
+/--
+@isnad1 id=eq.0h7v.s6.219d208e9b58 from=translated src=- shape=c5a9b0e2 vocab=6f5e5ad0
+-/
 theorem SymmRunChain.pieceColors_eq_colors_reverse
     {a b : Symmetrify V} (c : SymmRunChain L a b) :
     (c.pieces.map (fun r => r.color)) = c.colors.reverse := by
@@ -365,6 +449,9 @@ theorem SymmRunChain.pieceColors_eq_colors_reverse
   | cons r rest ih =>
       simp [SymmRunChain.pieces, SymmRunChain.colors, ih]
 
+/--
+@isnad1 id=eq.0h7v.s6.81e2d06ef79a from=translated src=- shape=73e8b271 vocab=35b10e7d
+-/
 theorem SymmRunChain.pieceColors_eq_defined
     {a b : Symmetrify V} (c : SymmRunChain L a b) :
     c.pieceColors = c.pieces.map (fun r => r.color) := by
@@ -373,6 +460,9 @@ theorem SymmRunChain.pieceColors_eq_defined
   | cons r rest ih =>
       simp [SymmRunChain.pieceColors, SymmRunChain.pieces, ih]
 
+/--
+@isnad1 id=ischain.1h7v.s6.ae3c4ea790f5 from=translated src=- shape=05eab417 vocab=94195e3e
+-/
 theorem SymmRunChain.pieceColors_isChain
     {a b : Symmetrify V} (c : SymmRunChain L a b)
       (h : c.colors.IsChain (fun x y : Bool => x ≠ y)) :
@@ -382,10 +472,16 @@ theorem SymmRunChain.pieceColors_isChain
   apply List.isChain_reverse.mpr
   simpa [eq_comm] using h
 
+/--
+@isnad1 id=eq.0h5v.s5.448faac88a45 from=translated src=- shape=13b289b3 vocab=f33d4761
+-/
 theorem symmRunTag_index (r : SymmRunPiece L) :
     binarySumIndex (G := G) (H := H) (L.symmRunTag r) = r.color := by
   cases hc : r.color <;> simp [symmRunTag, hc]
 
+/--
+@isnad1 id=ischain.1h7v.s6.4aaea5cf00aa from=translated src=- shape=578fb9e2 vocab=2a92c237
+-/
 theorem SymmRunChain.tags_isChain
     {a b : Symmetrify V} (c : SymmRunChain L a b)
     (h : c.colors.IsChain (fun x y : Bool => x ≠ y)) :
@@ -399,6 +495,9 @@ theorem SymmRunChain.tags_isChain
   intro r s hrs
   simpa only [symmRunTag_index] using hrs
 
+/--
+@isnad1 id=eq.0h7v.s6.56dea22a79c4 from=translated src=- shape=a9c17ba8 vocab=c54b1e58
+-/
 theorem SymmRunChain.pathRead_eq_factorWordProd_tags
     {a b : Symmetrify V} (c : SymmRunChain L a b) :
     L.symmPathRead (c.path) =
@@ -411,6 +510,9 @@ theorem SymmRunChain.pathRead_eq_factorWordProd_tags
         L.symmPathRead_comp, factorWordProd_append,
         factorWordProd, separatedMap_symmRunTag, ih]
 
+/--
+@isnad1 id=ne.1h7v.s6.eaf83e41d655 from=translated src=- shape=8bc15c14 vocab=ea028b0f
+-/
 theorem SymmRunChain.pieces_ne_nil_of_path_ne_nil
     {a b : Symmetrify V} (c : SymmRunChain L a b)
     (hpath : c.path.length ≠ 0) :
@@ -419,6 +521,9 @@ theorem SymmRunChain.pieces_ne_nil_of_path_ne_nil
   | nil => simp [SymmRunChain.path] at hpath
   | cons r rest => simp [SymmRunChain.pieces]
 
+/--
+@isnad1 id=ex.1h8v.s7.c8cb1522c616 from=translated src=- shape=70379fcc vocab=b8f91d7f
+-/
 theorem SymmRunChain.exists_path_split_at_run
     {a b : Symmetrify V} (c : SymmRunChain L a b)
     {r : SymmRunPiece L} (hr : r ∈ c.pieces) :
@@ -438,6 +543,9 @@ theorem SymmRunChain.exists_path_split_at_run
       · refine ⟨SymmRunChain.path L rest, Path.nil, ?_⟩
         simp [SymmRunChain.path, Path.comp_assoc]
 
+/--
+@isnad1 id=ex.4h8v.s9.8dd35d3bf33c from=translated src=- shape=be0081f0 vocab=7c7de7bf
+-/
 theorem exists_shorter_null_path_of_null_loop_run
     {a b : Symmetrify V} (c : SymmRunChain L a b)
     {r : SymmRunPiece L} (hr : r ∈ c.pieces)
@@ -471,6 +579,9 @@ theorem exists_shorter_null_path_of_null_loop_run
       Quiver.Path.length_comp, Quiver.Path.length_comp]
     omega
 
+/--
+@isnad1 id=ex.3h7v.s8.1135abd61ff2 from=translated src=- shape=14a9ad26 vocab=35ca70ed
+-/
 theorem exists_null_piece_of_null_chain
     {a b : Symmetrify V} (c : SymmRunChain L a b)
     (hcolors : c.colors.IsChain (fun x y : Bool => x ≠ y))
@@ -561,6 +672,9 @@ def symmRunDecomposition {a b : Symmetrify V} :
   decreasing_by
     simp_wf
 
+/--
+@isnad1 id=ex.2h7v.s8.db3bf12fc3fe from=translated src=- shape=488e044e vocab=5b1116ec
+-/
 theorem exists_null_monochromatic_run_of_null_path
     {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b)
@@ -580,6 +694,9 @@ theorem exists_null_monochromatic_run_of_null_path
     exists_null_piece_of_null_chain L d.chain d.alternating hpieces hchainread
   exact ⟨r, hr, hrread⟩
 
+/--
+@isnad1 id=ex.1h4v.s6.7f29c28487f8 from=translated src=- shape=374d8cb0 vocab=dfd80b94
+-/
 theorem exists_first_edge_comp
     {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b)
@@ -602,6 +719,9 @@ theorem exists_first_edge_comp
         refine ⟨c, f, q.comp e.toPath, ?_⟩
         rw [← Path.comp_toPath_eq_cons, ← Path.comp_assoc, hpq]
 
+/--
+@isnad1 id=ex.3h7v.s9.25971c214ad6 from=translated src=- shape=78f3c45a vocab=5a5d3531
+-/
 theorem exists_null_nonloop_run_of_minimal_null_path
     {a b : Symmetrify V}
     (p : @Quiver.Path (Symmetrify V) (@Quiver.symmetrifyQuiver V _) a b)
@@ -632,6 +752,9 @@ theorem exists_null_nonloop_run_of_minimal_null_path
     rw [← d.path_eq]
     exact hqlength
 
+/--
+@isnad1 id=eq.0h7v.s6.d99690fce703 from=translated src=- shape=bf931a0a vocab=d855bb4a
+-/
 theorem pathLabels_reverse {a b : V} (p : Path a b) :
     L.pathLabels p.reverse =
       (L.pathLabels p).reverse.map (factorWordInv (G := G) (H := H)) := by
@@ -642,10 +765,16 @@ theorem pathLabels_reverse {a b : V} (p : Path a b) :
       rw [pathLabels_toPath, L.reverse_label]
       simp [pathLabels, ih]
 
+/--
+@isnad1 id=eq.0h7v.s6.43e16d870ff7 from=translated src=- shape=8a0aa5cc vocab=e681249f
+-/
 theorem pathRead_reverse {a b : V} (p : Path a b) :
     L.pathRead p.reverse = (L.pathRead p)⁻¹ := by
   simp only [pathRead, pathLabels_reverse, factorWordProd_reverse_inv]
 
+/--
+@isnad1 id=ismonoch.1h8v.s6.3b1ad39ebfde from=translated src=- shape=d9f384ff vocab=6b6edc40
+-/
 theorem isMonochromatic_reverse {a b : V} {p : Path a b} {color : Bool}
     (hp : L.IsMonochromatic p color) :
     L.IsMonochromatic p.reverse color := by
@@ -655,6 +784,9 @@ theorem isMonochromatic_reverse {a b : V} {p : Path a b} {color : Bool}
   simp only [binarySumIndex_factorWordInv]
   exact hp y (by simpa using hy)
 
+/--
+@isnad1 id=ex.1h7v.s7.5b261343308e from=translated src=- shape=a728b25b vocab=e13fc6cb
+-/
 theorem pathRead_mono_false {a b : V} {p : Path a b}
     (hp : L.IsMonochromatic p false) :
     ∃ g : G, L.pathRead p = Monoid.Coprod.inl g := by
@@ -663,6 +795,9 @@ theorem pathRead_mono_false {a b : V} {p : Path a b}
   refine ⟨l.prod, ?_⟩
   rw [pathRead, hl, factorWordProd_map_inl]
 
+/--
+@isnad1 id=ex.1h7v.s7.de9c4b3d582a from=translated src=- shape=9ef768b2 vocab=addf3ea8
+-/
 theorem pathRead_mono_true {a b : V} {p : Path a b}
     (hp : L.IsMonochromatic p true) :
     ∃ h : H, L.pathRead p = Monoid.Coprod.inr h := by
@@ -693,6 +828,9 @@ def LoopNielsenEquivalent {b : V} {n : ℕ}
 def loopRead {b : V} {n : ℕ} (x : Fin n → Path b b) : Fin n → G ∗ H :=
   fun i => L.pathRead (x i)
 
+/--
+@isnad1 id=nielsens.1h8v.s6.7ebd4e402b8e from=translated src=- shape=93757e8e vocab=fde51d45
+-/
 theorem loopNielsenStep_read {b : V} {n : ℕ}
     {x y : Fin n → Path b b} (h : LoopNielsenStep x y) :
     NielsenStep (L.loopRead x) (L.loopRead y) := by
@@ -716,6 +854,9 @@ theorem loopNielsenStep_read {b : V} {n : ℕ}
         simp [hEq, loopRead, pathRead_comp]
       · simp [hEq, loopRead, hki]
 
+/--
+@isnad1 id=nielsene.1h8v.s6.76ee446f22ad from=translated src=- shape=93757e8e vocab=d72a083a
+-/
 theorem loopNielsenEquivalent_read {b : V} {n : ℕ}
     {x y : Fin n → Path b b} (h : LoopNielsenEquivalent x y) :
     NielsenEquivalent (L.loopRead x) (L.loopRead y) := by
@@ -724,12 +865,18 @@ theorem loopNielsenEquivalent_read {b : V} {n : ℕ}
   | single hstep => exact Relation.ReflTransGen.single (loopNielsenStep_read L hstep)
   | trans h₁ h₂ ih₁ ih₂ => exact Relation.ReflTransGen.trans ih₁ ih₂
 
+/--
+@isnad1 id=eq.1h8v.s7.18c6858b5041 from=translated src=- shape=a0fff738 vocab=c69654b4
+-/
 theorem loopNielsenStep_read_closure_eq {b : V} {n : ℕ}
     {x y : Fin n → Path b b} (h : LoopNielsenStep x y) :
     Subgroup.closure (Set.range (L.loopRead x)) =
       Subgroup.closure (Set.range (L.loopRead y)) := by
   exact nielsenStep_closure_eq (loopNielsenStep_read L h)
 
+/--
+@isnad1 id=eq.1h8v.s7.2c53f29232ab from=translated src=- shape=a0fff738 vocab=26231cb3
+-/
 theorem loopNielsenEquivalent_read_closure_eq {b : V} {n : ℕ}
     {x y : Fin n → Path b b} (h : LoopNielsenEquivalent x y) :
     Subgroup.closure (Set.range (L.loopRead x)) =
@@ -764,11 +911,17 @@ def IsGenerating : Prop :=
 def WeaklyConnected : Prop :=
   ∀ v : V, Nonempty (@Path (Symmetrify V) _ M.base v)
 
+/--
+@isnad1 id=nielsene.1h7v.s7.8117e37de229 from=translated src=- shape=4c20db9d vocab=da4f2e6b
+-/
 theorem read_nielsenEquivalent {x y : Fin n → Path M.base M.base}
     (h : BinaryLabelling.LoopNielsenEquivalent x y) :
     NielsenEquivalent (M.labeling.loopRead x) (M.labeling.loopRead y) := by
   exact M.labeling.loopNielsenEquivalent_read h
 
+/--
+@isnad1 id=eq.2h7v.s8.3db3b9105caa from=translated src=- shape=1750ec78 vocab=3f8732a4
+-/
 theorem generating_of_loopNielsenEquivalent
     {x y : Fin n → Path M.base M.base}
     (hx : Subgroup.closure (Set.range (M.labeling.loopRead x)) = ⊤)
@@ -777,6 +930,9 @@ theorem generating_of_loopNielsenEquivalent
   rw [← M.labeling.loopNielsenEquivalent_read_closure_eq h]
   exact hx
 
+/--
+@isnad1 id=iff.0h5v.s7.d56db1213f8d from=translated src=- shape=c2d7c3d0 vocab=e570bb82
+-/
 theorem isGenerating_iff :
     M.IsGenerating ↔ Subgroup.closure (Set.range
       (M.labeling.loopRead M.loops)) = ⊤ :=
@@ -801,10 +957,16 @@ def loopReadSubgroup : Subgroup (G ∗ H) where
     refine ⟨p.reverse, ?_⟩
     rw [M.labeling.pathRead_reverse, hp]
 
+/--
+@isnad1 id=mem.0h6v.s7.08539f4d3888 from=translated src=- shape=5b6cfb5a vocab=048f71f9
+-/
 theorem mem_loopReadSubgroup_of_marked (i : Fin n) :
     M.read i ∈ M.loopReadSubgroup := by
   exact ⟨M.loops i, rfl⟩
 
+/--
+@isnad1 id=ex.1h6v.s7.d9d206ef3a2f from=translated src=- shape=dff167ed vocab=6e2340ed
+-/
 theorem exists_loop_read (hM : M.IsGenerating) (g : G ∗ H) :
     ∃ p : Path M.base M.base, M.labeling.pathRead p = g := by
   have hsub : Subgroup.closure (Set.range M.read) ≤ M.loopReadSubgroup := by
@@ -816,6 +978,9 @@ theorem exists_loop_read (hM : M.IsGenerating) (g : G ∗ H) :
     trivial
   exact hsub hg
 
+/--
+@isnad1 id=ex.2h6v.s8.648f1174de5e from=translated src=- shape=88aa4b5a vocab=46f19569
+-/
 theorem exists_null_path (hM : M.IsGenerating) {v : V}
     (hv : Nonempty (@Path (Symmetrify V) _ M.base v)) :
     ∃ p : @Path (Symmetrify V) _ M.base v,
@@ -834,6 +999,9 @@ theorem exists_null_path (hM : M.IsGenerating) {v : V}
       rw [M.labeling.symmPathRead_map_of]
     _ = 1 := by rw [hq]; simp
 
+/--
+@isnad1 id=ex.3h5v.s8.2a027b398536 from=translated src=- shape=2d64692f vocab=b586953b
+-/
 theorem exists_null_nonloop_path [Fintype V] (hgen : M.IsGenerating)
     (hconn : M.WeaklyConnected) (hcard : 1 < Fintype.card V) :
     ∃ v : V, v ≠ M.base ∧
@@ -854,6 +1022,9 @@ theorem exists_null_nonloop_path [Fintype V] (hgen : M.IsGenerating)
   exact ⟨v, hv, exists_null_path M hgen ⟨p⟩ |>.choose,
     (exists_null_path M hgen ⟨p⟩).choose_spec⟩
 
+/--
+@isnad1 id=ex.3h5v.s8.9d9cfd6265de from=translated src=- shape=f13608ba vocab=ddebd83b
+-/
 theorem exists_minimal_null_nonloop_path [Fintype V]
     (hgen : M.IsGenerating) (hconn : M.WeaklyConnected)
     (hcard : 1 < Fintype.card V) :
