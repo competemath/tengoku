@@ -673,61 +673,81 @@ def dataset_file(path: Path) -> Path:
     return path
 
 
+def is_dataset_path(p: Path) -> bool:
+    return p.exists() and ((p.is_dir() and (p / "snapshot.json").is_file()) or p.suffix in (".jsonl", ".gz"))
+
+
+def is_source_path(p: Path) -> bool:
+    return p.exists() and (p.suffix == ".lean" or p.is_dir())
+
+
+def migrate_dataset(path: Path, out: Optional[Path] = None, ids: Optional[Path] = None) -> Dict[str, Any]:
+    """a snapshot directory or a dataset file -> the version 2 dataset (written to `out` when given); a version 2 dataset is returned unchanged"""
+    rows = read_jsonl(dataset_file(path))
+    if schema_of(rows) == SCHEMA:
+        return {
+            "kind": "dataset",
+            "already": SCHEMA,
+            "rows": rows,
+            "report": {"records": len(rows), "note": "already version 2: returned unchanged"},
+        }
+    new, report = upgrade_dataset(rows, load_ids(ids) if ids else None)
+    problems = check(new)
+    if problems:
+        raise ValueError("the upgraded dataset breaks its own invariants: " + "; ".join(problems[:5]))
+    if out:
+        write_jsonl(out, new)
+    return {"kind": "dataset", "already": None, "rows": new, "report": report}
+
+
+def migrate_sources(path: Path, map_file: Optional[Path], projections: bool = False) -> Dict[str, Any]:
+    """a Lean file or a directory of them -> for every file its report and the patch (nothing is written)"""
+    if not map_file:
+        raise ValueError("migrating Lean sources needs --map (the output of `v2.py diff`)")
+    renames, gone = name_maps(read_jsonl(map_file))
+    files = [path] if path.is_file() else sorted(path.rglob("*.lean"))
+    results = []
+    for f in files:
+        old_text = f.read_text(encoding="utf-8")
+        new_text, rep = migrate_source(old_text, renames, gone, projections)
+        name = os.path.relpath(f)
+        diff = "".join(difflib.unified_diff(old_text.splitlines(True), new_text.splitlines(True), f"a/{name}", f"b/{name}"))
+        results.append({"file": str(f), "report": rep, "diff": diff, "new_text": new_text})
+    return {"kind": "source", "files": results}
+
+
+def resolve_name(query: str, dataset: Path, library: Optional[str] = None) -> Dict[str, Any]:
+    """what a name, a ref or a statement id names in a version 2 dataset"""
+    res = Index(read_jsonl(dataset)).resolve(query, library=library)
+    return {"kind": "query", "status": res.status, "refs": [r["ref"] for r in res.records], "candidates": res.candidates, "note": res.note}
+
+
 def migrate(
-    source: str,
-    out: Optional[str] = None,
-    ids: Optional[str] = None,
-    map_file: Optional[str] = None,
+    source: Any,
+    out: Any = None,
+    ids: Any = None,
+    map_file: Any = None,
     library: Optional[str] = None,
     projections: bool = False,
 ) -> Dict[str, Any]:
-    """the helper: anything a consumer has of version 1 goes in, version 2 comes out; the result says what it did and what is left to a person"""
-    p = Path(source)
-    if p.exists() and (p.is_dir() and (p / "snapshot.json").is_file() or p.suffix in (".jsonl", ".gz")):
-        rows = read_jsonl(dataset_file(p))
-        if schema_of(rows) == SCHEMA:
-            return {
-                "kind": "dataset",
-                "already": SCHEMA,
-                "rows": rows,
-                "report": {"records": len(rows), "note": "already version 2: returned unchanged"},
-            }
-        new, report = upgrade_dataset(rows, load_ids(Path(ids)) if ids else None)
-        problems = check(new)
-        if problems:
-            raise ValueError("the upgraded dataset breaks its own invariants: " + "; ".join(problems[:5]))
-        if out:
-            write_jsonl(Path(out), new)
-        return {"kind": "dataset", "already": None, "rows": new, "report": report}
-    if p.exists() and (p.suffix == ".lean" or p.is_dir()):
-        if not map_file:
-            raise ValueError("migrating Lean sources needs --map (the output of `v2.py diff`)")
-        changes = read_jsonl(Path(map_file))
-        renames, gone = name_maps(changes)
-        files = [p] if p.is_file() else sorted(p.rglob("*.lean"))
-        results = []
-        for f in files:
-            old_text = f.read_text(encoding="utf-8")
-            new_text, rep = migrate_source(old_text, renames, gone, projections)
-            name = os.path.relpath(f)
-            diff = "".join(difflib.unified_diff(old_text.splitlines(True), new_text.splitlines(True), f"a/{name}", f"b/{name}"))
-            results.append({"file": str(f), "report": rep, "diff": diff, "new_text": new_text})
-        return {"kind": "source", "files": results}
-    if out and Path(out).exists():
-        rows = read_jsonl(Path(out))
-        res = Index(rows).resolve(source, library=library)
-        return {
-            "kind": "query",
-            "status": res.status,
-            "refs": [r["ref"] for r in res.records],
-            "candidates": res.candidates,
-            "note": res.note,
-        }
+    """the helper: anything a consumer has of version 1 goes in, version 2 comes out; the result says what it did and what is left to a person.
+    `source` is a snapshot directory, a dataset file, a Lean file or directory (paths, or strings naming them), or a name; the command line does the same with its paths checked first (`main`)."""
+    p = source if isinstance(source, Path) else Path(str(source))
+
+    def opt(v: Any) -> Optional[Path]:
+        return None if v is None else (v if isinstance(v, Path) else Path(str(v)))
+
+    if is_dataset_path(p):
+        return migrate_dataset(p, opt(out), opt(ids))
+    if is_source_path(p):
+        return migrate_sources(p, opt(map_file), projections)
+    if out is not None and Path(str(out)).exists():
+        return resolve_name(str(source), Path(str(out)), library)
     raise ValueError(f"cannot tell what {source!r} is: a dataset or snapshot directory, a Lean file, or (with --out DATASET) a name")
 
 
-def path_arg(value: Optional[str]) -> Optional[str]:
-    return str(checked_path(Path(value))) if value else value
+def opt_path(value: Optional[str]) -> Optional[Path]:
+    return checked_path(Path(value)) if value else None
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -750,8 +770,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     d.add_argument("--out")
     a = ap.parse_args(argv)
     if a.cmd == "migrate":
-        source = path_arg(a.input) if Path(a.input).exists() else a.input  # a name is not a path
-        res = migrate(source, path_arg(a.out), path_arg(a.ids), path_arg(a.map), a.library, a.projections)
+        # every path is resolved and checked here, before anything is read or written; a name is not a path
+        target = Path(a.input)
+        if is_dataset_path(target):
+            res = migrate_dataset(checked_path(target), opt_path(a.out), opt_path(a.ids))
+        elif is_source_path(target):
+            res = migrate_sources(checked_path(target), opt_path(a.map), a.projections)
+        elif a.out and Path(a.out).exists():
+            res = resolve_name(a.input, checked_path(Path(a.out)), a.library)
+        else:
+            raise SystemExit(
+                f"v2: cannot tell what {a.input!r} is: a dataset or snapshot directory, a Lean file, or (with --out DATASET) a name"
+            )
         if res["kind"] == "source":
             # the sources are not written: the change is a patch on stdout (`... | git apply`), the report is on stderr
             sys.stdout.write("".join(f["diff"] for f in res["files"]))
