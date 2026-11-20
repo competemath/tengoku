@@ -60,11 +60,16 @@ def diagReq (x : ℕ → Bool) : Requirement Cond where
       n, !x n, lookup_insert_self, ?_⟩
     cases x n <;> simp
 
+/--
+@isnad1 id=iff.0h2v.s5.0bd8fa0ac5cf from=translated src=- shape=f28b0df4 vocab=09be044d
+-/
 @[simp] theorem mem_diagReq_support {p : Cond} :
     p ∈ (diagReq x).support ↔ ∃ n b, p.lookup n = some b ∧ b ≠ x n :=
   .rfl
 
-/-- **Meeting the diagonal requirement forces the generic real to differ from `x`.**-/
+/-- **Meeting the diagonal requirement forces the generic real to differ from `x`.**
+@isnad1 id=ex.1h2v.s5.be7bbd637a2a from=translated src=- shape=aa06e208 vocab=181e6d0e
+-/
 theorem exists_ne_of_meets_diagReq (h : Meets G (diagReq x).support) :
     ∃ n b, genericFun G n = some b ∧ b ≠ x n := by
   obtain ⟨q, hqG, n, b, hb, hne⟩ := h
@@ -74,7 +79,9 @@ theorem exists_ne_of_meets_diagReq (h : Meets G (diagReq x).support) :
 total and differs from every member of a supplied countable family.
 
 Note the statement: it is about the *supplied* family. It does not say the generic real is new,
-which would need a ground model — see `parity_separation` for why the distinction matters.-/
+which would need a ground model — see `parity_separation` for why the distinction matters.
+@isnad1 id=ex.0h3v.s6.60349a5142bc from=translated src=- shape=905e43cb vocab=e56f073e
+-/
 theorem exists_pfilter_total_diagonalizing {ι : Type*} [Countable ι] (x : ι → ℕ → Bool)
     (p : Cond) :
     ∃ G : PFilter Cond, p ∈ G ∧ (∀ n, (genericFun G n).isSome) ∧
@@ -98,12 +105,18 @@ ones.-/
 def parityReal (x : ℕ → ℕ → Bool) (m : ℕ) : Bool :=
   if m % 2 = 0 then !x (m / 2) m else false
 
+/--
+@isnad1 id=eq.0h2v.s5.584054d36b94 from=translated src=- shape=13d0a011 vocab=dfa2ab7f
+-/
 @[simp] theorem parityReal_even (x : ℕ → ℕ → Bool) (n : ℕ) :
     parityReal x (2 * n) = !x n (2 * n) := by
   have h : 2 * n % 2 = 0 := by omega
   have h' : 2 * n / 2 = n := by omega
   simp [parityReal, h, h']
 
+/--
+@isnad1 id=eq.0h2v.s5.14347e6de3c7 from=translated src=- shape=a1685af7 vocab=16cd16d1
+-/
 @[simp] theorem parityReal_odd (x : ℕ → ℕ → Bool) (n : ℕ) : parityReal x (2 * n + 1) = false := by
   have h : (2 * n + 1) % 2 ≠ 0 := by omega
   simp [parityReal]
@@ -112,12 +125,16 @@ def parityReal (x : ℕ → ℕ → Bool) (m : ℕ) : Bool :=
 def oddTrue : Set Cond :=
   {p | ∃ n, p.lookup (2 * n + 1) = some true}
 
-/-- `oddTrue` is persistent: putting `true` at an odd coordinate survives strengthening.-/
+/-- `oddTrue` is persistent: putting `true` at an odd coordinate survives strengthening.
+@isnad1 id=islowers.0h0v.s3.498673432ec9 from=translated src=- shape=25b03439 vocab=897df031
+-/
 theorem isLowerSet_oddTrue : IsLowerSet oddTrue :=
   fun _ _ hba ⟨n, hn⟩ ↦ ⟨n, hba hn⟩
 
 /-- `oddTrue` is dense: a condition decides only finitely many coordinates, so a large enough odd
-coordinate is free.-/
+coordinate is free.
+@isnad1 id=isdense.0h0v.s3.a9dff0ef063c from=translated src=- shape=25b03439 vocab=f175874d
+-/
 theorem isDense_oddTrue : IsDense oddTrue := by
   intro p
   set n := p.keys.sup id + 1 with hn
@@ -137,11 +154,16 @@ def oddTrueReq : Requirement Cond where
   persistent _ _ hqp hp := isLowerSet_oddTrue hqp hp
   attainable p := let ⟨q, hq, hqp⟩ := isDense_oddTrue p; ⟨q, hqp, hq⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.90d91575fe67 from=translated src=- shape=93ea8593 vocab=c4ec7567
+-/
 @[simp] theorem support_oddTrueReq : oddTrueReq.support = oddTrue :=
   rfl
 
 /-- `oddTrue` is a dense *open* test, so it belongs to the full doctrine `J_full`, which is
-defined by dense-open tests.-/
+defined by dense-open tests.
+@isnad1 id=isdenseo.0h0v.s3.3c92a2eaef7d from=translated src=- shape=25b03439 vocab=3ed77f7e
+-/
 theorem isDenseOpen_oddTrue : IsDenseOpen oddTrue :=
   oddTrueReq.isDenseOpen_support
 
@@ -150,7 +172,9 @@ meets every coordinate requirement and every diagonal requirement against the fa
 the dense set `oddTrue` — so it is not generic.
 
 Meeting all the tests that make the union a real differing from every supplied real is therefore
-strictly weaker than genericity: `J_new < J_full`.-/
+strictly weaker than genericity: `J_new < J_full`.
+@isnad1 id=and.0h1v.s6.6e423b9f5df2 from=translated src=- shape=573e456c vocab=3fac87b8
+-/
 theorem parity_separation (x : ℕ → ℕ → Bool) :
     (∀ n, Meets (ofFunction (parityReal x)) (coordReq n).support) ∧
       (∀ i, Meets (ofFunction (parityReal x)) (diagReq (x i)).support) ∧
@@ -166,7 +190,9 @@ theorem parity_separation (x : ℕ → ℕ → Bool) :
     exact Bool.noConfusion this
 
 /-- The separating filter's generic real is total and diagonalizes the family, and the filter is
-still not generic — the separation in the form the genericity spectrum uses.-/
+still not generic — the separation in the form the genericity spectrum uses.
+@isnad1 id=and.0h1v.s6.5a131453abc8 from=translated src=- shape=243651b0 vocab=eb82f250
+-/
 theorem parity_separation_total_diagonalizing (x : ℕ → ℕ → Bool) :
     (∀ n, (genericFun (ofFunction (parityReal x)) n).isSome) ∧
       (∀ i, ∃ n b, genericFun (ofFunction (parityReal x)) n = some b ∧ b ≠ x i n) ∧
@@ -183,7 +209,9 @@ The canonical filter of a real `x` decides every coordinate but cannot differ fr
 
 /-- **The strict separation `J_total < J_new`.** The canonical filter of `x` meets every
 coordinate requirement, yet misses the diagonal requirement against `x` itself: every condition
-in it agrees with `x`.-/
+in it agrees with `x`.
+@isnad1 id=and.0h1v.s6.59b9db4679f2 from=translated src=- shape=4fe56c35 vocab=a16bbe77
+-/
 theorem totality_separation (x : ℕ → Bool) :
     (∀ n, Meets (ofFunction x) (coordReq n).support) ∧
       ¬Meets (ofFunction x) (diagReq x).support := by

@@ -63,7 +63,9 @@ def genName [Top P] (κ : ConditionCode P) : PName P :=
   .mk P (fun p ↦ check (κ.repr p)) id
 
 /-- **The membership description**: along any condition set containing `⊤`, the generic's name
-values to the set of codes of members — a faithful material code of the condition set.-/
+values to the set of codes of members — a faithful material code of the condition set.
+@isnad1 id=iff.1h4v.s5.ab18f7b5ec5f from=translated src=- shape=c1185f5b vocab=f0c5e5ec
+-/
 theorem mem_zval_genName_iff [Top P] {S : Set P} (hS : (⊤ : P) ∈ S) {y : ZFSet.{u}} :
     y ∈ zval S (genName κ) ↔ ∃ p ∈ S, y = ZFSet.mk (κ.repr p) :=
   mem_zval_iff.trans
@@ -85,7 +87,9 @@ theorem eq_of_zval_genName_eq [Top P] {S T : Set P} (hS : (⊤ : P) ∈ S) (hT :
     rwa [κ.injective_mk hqe]
   exact Set.Subset.antisymm (key hS hT h) (key hT hS h.symm)
 
-/-- The filter corollary of the membership description, via `Order.PFilter.top_mem`.-/
+/-- The filter corollary of the membership description, via `Order.PFilter.top_mem`.
+@isnad1 id=iff.0h4v.s6.096212c7ab42 from=translated src=- shape=3ba5bf91 vocab=600bd985
+-/
 theorem mem_zval_genName_iff_pfilter [Preorder P] [OrderTop P] (G : Order.PFilter P)
     {y : ZFSet.{u}} :
     y ∈ zval (G : Set P) (genName κ) ↔ ∃ p ∈ G, y = ZFSet.mk (κ.repr p) :=

@@ -49,7 +49,9 @@ variable {P : Type u} [Preorder P] {β : Type v} {𝒩 : Set (PName P)} {v : β 
 variable {p q : P}
 
 /-- Formula-level blocker extraction, from density-regularity: failure of forcing yields a
-strengthening below which forcing is impossible.-/
+strengthening below which forcing is impossible.
+@isnad1 id=ex.1h8v.s6.aac109f7ca93 from=translated src=- shape=ac10355b vocab=16c0af35
+-/
 theorem exists_blocker_of_not_forcesFormula {n} {φ : memLang.BoundedFormula β n}
     {xs : Fin n → PName P} (h : ¬ForcesFormula 𝒩 v p φ xs) :
     ∃ s ≤ p, ∀ t ≤ s, ¬ForcesFormula 𝒩 v t φ xs := by
@@ -80,7 +82,9 @@ def allDecision (𝒩 : Set (PName P)) (v : β → PName P) {n}
     (φ : memLang.BoundedFormula β (n + 1)) (xs : Fin n → PName P) : Set P :=
   {p | ForcesFormula 𝒩 v p φ.all xs} ∪ allObstruction 𝒩 v φ xs
 
-/-- The implication decision test is globally dense open.-/
+/-- The implication decision test is globally dense open.
+@isnad1 id=isdenseo.0h8v.s5.5b4753a30837 from=translated src=- shape=ef0f1701 vocab=98e43c15
+-/
 theorem isDenseOpen_impDecision {n} (φ ψ : memLang.BoundedFormula β n)
     (xs : Fin n → PName P) : IsDenseOpen (impDecision 𝒩 v φ ψ xs) := by
   constructor
@@ -96,7 +100,9 @@ theorem isDenseOpen_impDecision {n} (φ ψ : memLang.BoundedFormula β n)
     rintro a b hba ⟨hφ, hblock⟩
     exact ⟨ForcesFormula.mono φ hφ hba, fun t htb ↦ hblock t (htb.trans hba)⟩
 
-/-- The universal decision test is globally dense open.-/
+/-- The universal decision test is globally dense open.
+@isnad1 id=isdenseo.0h7v.s5.cd539313bf0a from=translated src=- shape=56e83c59 vocab=2b7c03e1
+-/
 theorem isDenseOpen_allDecision {n} (φ : memLang.BoundedFormula β (n + 1))
     (xs : Fin n → PName P) : IsDenseOpen (allDecision 𝒩 v φ xs) := by
   constructor
@@ -126,7 +132,9 @@ def formulaTests (𝒩 : Set (PName P)) (v : β → PName P) :
       insert (allDecision 𝒩 v φ xs) (⋃ τ ∈ 𝒩, formulaTests 𝒩 v φ (Fin.snoc xs τ))
 
 /-- Every member of the family is dense open — structurally, so the truth lemma's observer
-owes only visibility.-/
+owes only visibility.
+@isnad1 id=isdenseo.1h8v.s5.9bd1a511bcce from=translated src=- shape=3e37d181 vocab=18ba8007
+-/
 theorem isDenseOpen_of_mem_formulaTests :
     ∀ {n} (φ : memLang.BoundedFormula β n) (xs : Fin n → PName P),
       ∀ D ∈ formulaTests 𝒩 v φ xs, IsDenseOpen D

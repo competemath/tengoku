@@ -69,16 +69,27 @@ variable (R : Requirement P)
 def support : Set P :=
   {p | R.holds p}
 
+/--
+@isnad1 id=iff.0h3v.s4.e3279b3febfd from=translated src=- shape=4001b49b vocab=bf3577a4
+-/
 @[simp] theorem mem_support {p : P} : p ∈ R.support ↔ R.holds p :=
   .rfl
 
+/--
+@isnad1 id=islowers.0h2v.s4.7771856ddc8b from=translated src=- shape=ed10201d vocab=5c717972
+-/
 theorem isLowerSet_support : IsLowerSet R.support :=
   fun _ _ hba ha ↦ R.persistent hba ha
 
+/--
+@isnad1 id=isdense.0h2v.s4.390f107fe2e1 from=translated src=- shape=ed10201d vocab=dadafc06
+-/
 theorem isDense_support : IsDense R.support :=
   fun p ↦ let ⟨q, hqp, hq⟩ := R.attainable p; ⟨q, hq, hqp⟩
 
-/-- The support of a requirement is dense open.-/
+/-- The support of a requirement is dense open.
+@isnad1 id=isdenseo.0h2v.s4.ae3e2837f560 from=translated src=- shape=ed10201d vocab=dddabc25
+-/
 theorem isDenseOpen_support : IsDenseOpen R.support :=
   ⟨R.isDense_support, R.isLowerSet_support⟩
 
@@ -88,6 +99,9 @@ def ofDenseOpen (D : Set P) (hD : IsDenseOpen D) : Requirement P where
   persistent _ _ hba ha := hD.2 hba ha
   attainable p := let ⟨q, hqD, hqp⟩ := hD.1 p; ⟨q, hqp, hqD⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.87f1aaa31929 from=translated src=- shape=5ef3cc44 vocab=b776aef0
+-/
 @[simp] theorem support_ofDenseOpen (hD : IsDenseOpen D) : (ofDenseOpen D hD).support = D :=
   rfl
 
@@ -104,6 +118,9 @@ def equivDenseOpen : Requirement P ≃ {D : Set P // IsDenseOpen D} where
 def normalize (D : Set P) (hD : IsDense D) : Requirement P :=
   ofDenseOpen (↑(lowerClosure D)) hD.isDenseOpen_lowerClosure
 
+/--
+@isnad1 id=eq.1h2v.s5.1d7e7ff5a899 from=translated src=- shape=bc347afe vocab=e93fb357
+-/
 @[simp] theorem support_normalize (hD : IsDense D) :
     (normalize D hD).support = ↑(lowerClosure D) :=
   rfl
@@ -112,14 +129,18 @@ end Requirement
 
 /-- **Normalization loses no genericity**: a filter meets a dense test exactly when it meets the
 test's canonical persistent form. So insisting that requirements be persistent — as the
-`Requirement` packaging does — costs nothing.-/
+`Requirement` packaging does — costs nothing.
+@isnad1 id=iff.1h3v.s5.315abe1c51b2 from=translated src=- shape=1d5df6d8 vocab=ce38c4d6
+-/
 theorem meets_normalize_iff (hD : IsDense D) :
     Meets G (Requirement.normalize D hD).support ↔ Meets G D :=
   meets_lowerClosure
 
 /-- Genericity for a family of requirements is `GenericFor` of the family of supports. This is
 immediate — though not literally definitional, since `Set.range` must be unpacked — and it is
-the only genericity statement about requirements: no competing predicate is introduced.-/
+the only genericity statement about requirements: no competing predicate is introduced.
+@isnad1 id=iff.0h4v.s5.7b71cd1eadda from=translated src=- shape=3ced51df vocab=f3caa812
+-/
 theorem genericFor_support_iff {ι : Type*} {ℛ : ι → Requirement P} :
     GenericFor (Set.range fun i ↦ (ℛ i).support) G ↔ ∀ i, Meets G (ℛ i).support := by
   constructor

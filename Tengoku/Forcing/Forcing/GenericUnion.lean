@@ -75,11 +75,16 @@ variable {i : ι} {b b' : β i}
 def UnionGraph (G : PFilter (FinitePartialFunction β)) (i : ι) (b : β i) : Prop :=
   ∃ p ∈ G, p.lookup i = some b
 
+/--
+@isnad1 id=uniongra.2h6v.s6.9782b22d3fdb from=translated src=- shape=e94bfb81 vocab=03133353
+-/
 theorem unionGraph_of_mem (hp : p ∈ G) (h : p.lookup i = some b) : UnionGraph G i b :=
   ⟨p, hp, h⟩
 
 /-- **The union of a filter is a partial function.** Two conditions in a filter have a common
-strengthening inside the filter, which decides the coordinate both ways at once.-/
+strengthening inside the filter, which decides the coordinate both ways at once.
+@isnad1 id=eq.2h6v.s5.8b0873cff9bb from=translated src=- shape=887dad16 vocab=c4267cee
+-/
 theorem unionGraph_unique (h : UnionGraph G i b) (h' : UnionGraph G i b') : b = b' := by
   obtain ⟨p, hpG, hp⟩ := h
   obtain ⟨q, hqG, hq⟩ := h'
@@ -91,6 +96,9 @@ noncomputable def unionFun (G : PFilter (FinitePartialFunction β)) (i : ι) : O
   letI := Classical.dec (∃ b, UnionGraph G i b)
   if h : ∃ b, UnionGraph G i b then some h.choose else none
 
+/--
+@isnad1 id=iff.0h5v.s5.60712e9ff2f4 from=translated src=- shape=d90deb9e vocab=87905764
+-/
 theorem unionFun_eq_some_iff : unionFun G i = some b ↔ UnionGraph G i b := by
   letI := Classical.dec (∃ b, UnionGraph G i b)
   constructor
@@ -106,7 +114,9 @@ theorem unionFun_eq_some_iff : unionFun G i = some b ↔ UnionGraph G i b := by
     exact congrArg some (unionGraph_unique hex.choose_spec h)
 
 /-- **Partiality actually occurs.** The principal filter at the weakest condition decides
-nothing, so its union is nowhere defined: an arbitrary filter is not enough for totality.-/
+nothing, so its union is nowhere defined: an arbitrary filter is not enough for totality.
+@isnad1 id=eq.0h3v.s5.fd6525ff90ed from=translated src=- shape=1a0ba5c4 vocab=739313cb
+-/
 @[simp] theorem unionFun_principal_top (i : ι) :
     unionFun (PFilter.principal (⊤ : FinitePartialFunction β)) i = none := by
   cases hu : unionFun (PFilter.principal (⊤ : FinitePartialFunction β)) i with
@@ -118,6 +128,9 @@ nothing, so its union is nowhere defined: an arbitrary filter is not enough for 
     rw [lookup_top] at htop
     simp at htop
 
+/--
+@isnad1 id=iff.0h4v.s5.d18a25038580 from=translated src=- shape=12b459a6 vocab=7ad0417b
+-/
 theorem isSome_unionFun_iff : (unionFun G i).isSome ↔ ∃ b, UnionGraph G i b := by
   constructor
   · intro h
@@ -152,11 +165,16 @@ def ofPartialFunction (c : ∀ i, Option (β i)) : PFilter (FinitePartialFunctio
       · exact hq h)
     (fun hxy hx _ _ h ↦ hx (le_def.1 hxy h))).toPFilter
 
+/--
+@isnad1 id=iff.0h4v.s6.596216ee75aa from=translated src=- shape=03150af2 vocab=d8915655
+-/
 @[simp] theorem mem_ofPartialFunction_iff {c : ∀ i, Option (β i)} :
     p ∈ ofPartialFunction c ↔ ∀ ⦃i⦄ ⦃b : β i⦄, p.lookup i = some b → c i = some b :=
   .rfl
 
-/-- The one-coordinate condition at a decided coordinate belongs to the canonical filter.-/
+/-- The one-coordinate condition at a decided coordinate belongs to the canonical filter.
+@isnad1 id=mem.1h5v.s6.0fd0f90c4deb from=translated src=- shape=b398d539 vocab=1c3eca39
+-/
 theorem insert_empty_mem_ofPartialFunction {c : ∀ i, Option (β i)} (h : c i = some b) :
     (∅ : FinitePartialFunction β).insert i b ∈ ofPartialFunction c :=
   mem_ofPartialFunction_iff.2 <| by
@@ -169,7 +187,9 @@ theorem insert_empty_mem_ofPartialFunction {c : ∀ i, Option (β i)} (h : c i =
 
 /-- **The first inverse law**: the union of the canonical filter is the partial function
 itself. Where `c` is defined, the one-coordinate condition witnesses it; where `c` is
-undefined, no member of the filter may decide it.-/
+undefined, no member of the filter may decide it.
+@isnad1 id=eq.0h3v.s5.980745012757 from=translated src=- shape=690de535 vocab=df149c5c
+-/
 @[simp] theorem unionFun_ofPartialFunction (c : ∀ i, Option (β i)) :
     unionFun (ofPartialFunction c) = c := by
   funext i
@@ -189,7 +209,9 @@ undefined, no member of the filter may decide it.-/
 /-- Assembly: a condition whose every decision is witnessed somewhere in the filter lies above
 a single member of the filter. This is where recovery consumes two filter axioms:
 *nonemptiness* supplies the base approximation (the `G.nonempty` opening move) and
-*directedness* combines the finitely many coordinate witnesses.-/
+*directedness* combines the finitely many coordinate witnesses.
+@isnad1 id=ex.1h4v.s7.a4935eada1d2 from=translated src=- shape=5a95e765 vocab=6c20de51
+-/
 theorem exists_mem_le_of_forall_unionGraph {q : FinitePartialFunction β}
     (h : ∀ ⦃i⦄ ⦃b : β i⦄, q.lookup i = some b → UnionGraph G i b) :
     ∃ r ∈ G, r ≤ q := by
@@ -228,7 +250,9 @@ keep. That a member's decisions lie in the union needs only *directedness* (uniq
 union value, `unionGraph_unique`). The converse — a condition extended by the union already
 belongs to the filter — consumes all three: *nonemptiness* and *directedness* for the assembly
 (`exists_mem_le_of_forall_unionGraph`), then *upward closure* (`Order.PFilter.mem_of_le`) for
-the final membership.-/
+the final membership.
+@isnad1 id=eq.0h3v.s5.edcb6549fd96 from=translated src=- shape=f934af3f vocab=b7c061fd
+-/
 @[simp] theorem ofPartialFunction_unionFun : ofPartialFunction (unionFun G) = G := by
   ext q
   constructor
@@ -252,7 +276,9 @@ noncomputable def pfilterEquivPartialFunction :
   left_inv _ := ofPartialFunction_unionFun
   right_inv := unionFun_ofPartialFunction
 
-/-- The canonical filter of a condition's own partial function is its principal filter.-/
+/-- The canonical filter of a condition's own partial function is its principal filter.
+@isnad1 id=eq.0h3v.s5.97c95513c226 from=translated src=- shape=d0f7cc98 vocab=6c9ea360
+-/
 @[simp] theorem ofPartialFunction_lookup (p : FinitePartialFunction β) :
     ofPartialFunction p.lookup = PFilter.principal p := by
   ext q
@@ -260,7 +286,9 @@ noncomputable def pfilterEquivPartialFunction :
     fun h ↦ mem_ofPartialFunction_iff.2 (le_def.1 (PFilter.mem_principal.1 h))⟩
 
 /-- The union of a principal filter is the condition's own partial function — the
-generalization of `unionFun_principal_top`.-/
+generalization of `unionFun_principal_top`.
+@isnad1 id=eq.0h3v.s5.cb980fb9ca25 from=translated src=- shape=78299c6d vocab=1c310a80
+-/
 @[simp] theorem unionFun_principal (p : FinitePartialFunction β) :
     unionFun (PFilter.principal p) = p.lookup := by
   rw [← ofPartialFunction_lookup, unionFun_ofPartialFunction]
@@ -277,6 +305,9 @@ partial correspondence.
 def ofFunction (c : ∀ i, β i) : PFilter (FinitePartialFunction β) :=
   ofPartialFunction fun i ↦ some (c i)
 
+/--
+@isnad1 id=iff.0h4v.s6.aad77614f5a8 from=translated src=- shape=7811ae0d vocab=c946812e
+-/
 @[simp] theorem mem_ofFunction_iff {c : ∀ i, β i} :
     p ∈ ofFunction c ↔ ∀ ⦃i⦄ ⦃b : β i⦄, p.lookup i = some b → c i = b := by
   constructor
@@ -285,11 +316,16 @@ def ofFunction (c : ∀ i, β i) : PFilter (FinitePartialFunction β) :=
   · intro h
     exact mem_ofPartialFunction_iff.2 fun i b hb ↦ congrArg some (h hb)
 
-/-- The one-coordinate condition agreeing with `c` belongs to its canonical filter.-/
+/-- The one-coordinate condition agreeing with `c` belongs to its canonical filter.
+@isnad1 id=mem.0h4v.s6.0a82bd43b45b from=translated src=- shape=de31a662 vocab=8c3c69e5
+-/
 theorem insert_empty_mem_ofFunction (c : ∀ i, β i) (i : ι) :
     (∅ : FinitePartialFunction β).insert i (c i) ∈ ofFunction c :=
   insert_empty_mem_ofPartialFunction rfl
 
+/--
+@isnad1 id=iff.0h5v.s5.2fc68ac2a837 from=translated src=- shape=8c99d63f vocab=34e716d7
+-/
 theorem unionGraph_ofFunction {c : ∀ i, β i} : UnionGraph (ofFunction c) i b ↔ c i = b := by
   constructor
   · rintro ⟨q, hq, hqi⟩
@@ -297,6 +333,9 @@ theorem unionGraph_ofFunction {c : ∀ i, β i} : UnionGraph (ofFunction c) i b 
   · rintro rfl
     exact ⟨_, insert_empty_mem_ofFunction c i, lookup_insert_self⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.7b38c20d0973 from=translated src=- shape=6e6b0ccb vocab=bf528b0c
+-/
 @[simp] theorem unionFun_ofFunction {c : ∀ i, β i} : unionFun (ofFunction c) i = some (c i) :=
   unionFun_eq_some_iff.2 (unionGraph_ofFunction.2 rfl)
 
@@ -308,6 +347,9 @@ noncomputable def totalUnion (G : PFilter (FinitePartialFunction β))
     (h : ∀ i, (unionFun G i).isSome) (i : ι) : β i :=
   (unionFun G i).get (h i)
 
+/--
+@isnad1 id=eq.1h4v.s5.3723831417e5 from=translated src=- shape=f49f1bab vocab=ca82ec7c
+-/
 @[simp] theorem unionFun_totalUnion (h : ∀ i, (unionFun G i).isSome) (i : ι) :
     unionFun G i = some (totalUnion G h i) :=
   (Option.some_get (h i)).symm
@@ -347,10 +389,15 @@ def coordReq (i : ι) : Requirement (FinitePartialFunction β) where
     · exact ⟨p.insert i (Classical.arbitrary (β i)), insert_le_of_notMem hi,
         mem_iff_isSome.2 (by rw [lookup_insert_self]; rfl)⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.d2a9a9861f19 from=translated src=- shape=33f321b8 vocab=969b0b99
+-/
 @[simp] theorem mem_coordReq_support : p ∈ (coordReq i (β := β)).support ↔ i ∈ p :=
   .rfl
 
-/-- **Meeting the coordinate requirement is exactly deciding the coordinate.**-/
+/-- **Meeting the coordinate requirement is exactly deciding the coordinate.**
+@isnad1 id=iff.0h4v.s6.283bb6ec8b0c from=translated src=- shape=d4d8924b vocab=eab1ea49
+-/
 theorem meets_coordReq_iff : Meets G (coordReq i (β := β)).support ↔ ∃ b, UnionGraph G i b := by
   constructor
   · rintro ⟨q, hqG, hq⟩
@@ -359,15 +406,23 @@ theorem meets_coordReq_iff : Meets G (coordReq i (β := β)).support ↔ ∃ b, 
   · rintro ⟨b, q, hqG, hq⟩
     exact ⟨q, hqG, mem_iff_isSome.2 (by rw [hq]; rfl)⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.f5c47208a626 from=translated src=- shape=32c90f5b vocab=de366a4e
+-/
 theorem meets_coordReq_iff_isSome_unionFun :
     Meets G (coordReq i (β := β)).support ↔ (unionFun G i).isSome :=
   meets_coordReq_iff.trans isSome_unionFun_iff.symm
 
+/--
+@isnad1 id=ex.1h4v.s6.399095d9e177 from=translated src=- shape=115535c2 vocab=eab1ea49
+-/
 theorem exists_unionGraph_of_meets (h : Meets G (coordReq i (β := β)).support) :
     ∃ b, UnionGraph G i b :=
   meets_coordReq_iff.1 h
 
-/-- **Meeting every coordinate requirement makes the union total.**-/
+/-- **Meeting every coordinate requirement makes the union total.**
+@isnad1 id=eq.1h4v.s6.a344fb1df440 from=translated src=- shape=c10041da vocab=de366a4e
+-/
 theorem isSome_unionFun (h : ∀ i, Meets G (coordReq i (β := β)).support) (i : ι) :
     (unionFun G i).isSome :=
   isSome_unionFun_iff.2 (exists_unionGraph_of_meets (h i))
@@ -375,14 +430,18 @@ theorem isSome_unionFun (h : ∀ i, Meets G (coordReq i (β := β)).support) (i 
 /-- **The global equivalence**: meeting *all* coordinate requirements is exactly totality of
 the union. The pointwise version is `meets_coordReq_iff_isSome_unionFun`; under this
 equivalence, coordinate-generic filters are exactly the total objects of
-`pfilterEquivPartialFunction`.-/
+`pfilterEquivPartialFunction`.
+@isnad1 id=iff.0h3v.s6.db2525575427 from=translated src=- shape=993958b6 vocab=de366a4e
+-/
 theorem forall_meets_coordReq_iff_isSome_unionFun :
     (∀ i, Meets G (coordReq i (β := β)).support) ↔ ∀ i, (unionFun G i).isSome :=
   forall_congr' fun _ ↦ meets_coordReq_iff_isSome_unionFun
 
 /-- Existence (Rasiowa–Sikorski): over a countable index type, every condition extends to a
 filter whose union is total. Adequacy without existence would be vacuous, so this is stated
-separately and explicitly.-/
+separately and explicitly.
+@isnad1 id=ex.0h3v.s6.2fc8036c887f from=translated src=- shape=b4bafe78 vocab=29165632
+-/
 theorem exists_pfilter_total [Countable ι] (p : FinitePartialFunction β) :
     ∃ G : PFilter (FinitePartialFunction β), p ∈ G ∧ ∀ i, (unionFun G i).isSome := by
   obtain ⟨G, hpG, hG⟩ :=
@@ -390,7 +449,9 @@ theorem exists_pfilter_total [Countable ι] (p : FinitePartialFunction β) :
       fun i ↦ (coordReq i (β := β)).isDense_support
   exact ⟨G, hpG, fun i ↦ isSome_unionFun hG i⟩
 
-/-- The canonical filter of a total function meets every coordinate requirement.-/
+/-- The canonical filter of a total function meets every coordinate requirement.
+@isnad1 id=meets.0h4v.s5.c61515c22c7f from=translated src=- shape=5c714b0b vocab=6c573165
+-/
 theorem meets_coordReq_ofFunction (c : ∀ i, β i) (i : ι) :
     Meets (ofFunction c) (coordReq i (β := β)).support :=
   ⟨(∅ : FinitePartialFunction β).insert i (c i), insert_empty_mem_ofFunction c i,
@@ -398,7 +459,9 @@ theorem meets_coordReq_ofFunction (c : ∀ i, β i) (i : ι) :
       mem_iff_isSome.2 (by rw [lookup_insert_self]; rfl)⟩
 
 /-- A coordinate-generic filter contains a condition deciding any prescribed finite set of
-coordinates.-/
+coordinates.
+@isnad1 id=ex.1h4v.s7.06219ddd25db from=translated src=- shape=6da7333a vocab=953dde36
+-/
 theorem exists_mem_keys_subset (h : ∀ i, Meets G (coordReq i (β := β)).support) (s : Finset ι) :
     ∃ r ∈ G, s ⊆ r.keys := by
   refine Finset.induction_on s ?_ ?_

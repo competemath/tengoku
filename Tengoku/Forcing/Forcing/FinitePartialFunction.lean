@@ -73,22 +73,39 @@ instance : Membership ι (FinitePartialFunction β) :=
   ⟨fun p i ↦ i ∈ p.keys⟩
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h4v.s5.b9a6e5f53a0b from=translated src=- shape=c1970ec0 vocab=8b7911b2
+-/
 theorem mem_def : i ∈ p ↔ i ∈ p.keys :=
   .rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.3c4d364ce443 from=translated src=- shape=39cd728b vocab=3dfae1ac
+-/
 @[simp] theorem mem_keys : i ∈ p.keys ↔ (p.lookup i).isSome := by
   rw [keys, Finmap.mem_keys, lookup, ← Finmap.lookup_isSome]
 
+/--
+@isnad1 id=iff.0h4v.s5.4cbd18436ed2 from=translated src=- shape=81f281f0 vocab=2566e38a
+-/
 theorem mem_iff_isSome : i ∈ p ↔ (p.lookup i).isSome := by
   rw [mem_def, mem_keys]
 
+/--
+@isnad1 id=iff.0h4v.s5.1af76f975afc from=translated src=- shape=3573aed3 vocab=eccddc54
+-/
 theorem lookup_eq_none_iff : p.lookup i = none ↔ i ∉ p := by
   simp [mem_iff_isSome, Option.isSome_iff_ne_none]
 
-/-- Conditions are determined by their lookups.-/
+/-- Conditions are determined by their lookups.
+@isnad1 id=eq.1h4v.s5.d1508f1f8a19 from=translated src=- shape=50abc3c2 vocab=d7f37484
+-/
 theorem ext_lookup (h : ∀ i, p.lookup i = q.lookup i) : p = q :=
   FinitePartialFunction.ext (Finmap.ext_lookup h)
 
+/--
+@isnad1 id=iff.0h4v.s5.9f8643747a50 from=translated src=- shape=75620299 vocab=d7f37484
+-/
 theorem ext_lookup_iff : p = q ↔ ∀ i, p.lookup i = q.lookup i :=
   ⟨fun h _ ↦ h ▸ rfl, ext_lookup⟩
 
@@ -96,6 +113,9 @@ theorem ext_lookup_iff : p = q ↔ ∀ i, p.lookup i = q.lookup i :=
 instance : EmptyCollection (FinitePartialFunction β) :=
   ⟨⟨∅⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.02aaaf731587 from=translated src=- shape=4e27d8f1 vocab=8cc04a58
+-/
 @[simp] theorem lookup_empty : (∅ : FinitePartialFunction β).lookup i = none :=
   Finmap.lookup_empty i
 
@@ -105,16 +125,28 @@ strengthens the original condition depends on the coordinate being fresh or the 
 def insert (p : FinitePartialFunction β) (i : ι) (b : β i) : FinitePartialFunction β :=
   ⟨p.toFinmap.insert i b⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.563f33691cee from=translated src=- shape=a01949b5 vocab=0e4173b2
+-/
 @[simp] theorem lookup_insert_self : (p.insert i b).lookup i = some b :=
   Finmap.lookup_insert _
 
+/--
+@isnad1 id=eq.1h6v.s5.89d0f4f9b08e from=translated src=- shape=1e5d34bf vocab=207b47be
+-/
 @[simp] theorem lookup_insert_of_ne (h : j ≠ i) : (p.insert i b).lookup j = p.lookup j :=
   Finmap.lookup_insert_of_ne _ h
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h2v.s4.4477cd9a8137 from=translated src=- shape=dfb3ebfc vocab=37e570da
+-/
 @[simp] theorem keys_empty : (∅ : FinitePartialFunction β).keys = ∅ :=
   Finmap.keys_empty
 
+/--
+@isnad1 id=eq.0h5v.s5.e024b034cffc from=translated src=- shape=d0a63aae vocab=df83bc9d
+-/
 @[simp] theorem keys_insert : (p.insert i b).keys = Insert.insert i p.keys := by
   ext j
   rcases eq_or_ne j i with rfl | hne
@@ -129,17 +161,28 @@ instance instPartialOrder : PartialOrder (FinitePartialFunction β) where
   le_antisymm _ _ hpq hqp :=
     ext_lookup fun _ ↦ Option.ext fun _ ↦ ⟨fun h ↦ hqp h, fun h ↦ hpq h⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.9117acac88f1 from=translated src=- shape=50791cf4 vocab=3f133070
+-/
 theorem le_def : q ≤ p ↔ ∀ ⦃i⦄ ⦃b : β i⦄, p.lookup i = some b → q.lookup i = some b :=
   .rfl
 
+/--
+@isnad1 id=le.1h4v.s6.73910eaae85d from=translated src=- shape=fc927e27 vocab=3f133070
+-/
 theorem le_of_lookup (h : ∀ ⦃i⦄ ⦃b : β i⦄, p.lookup i = some b → q.lookup i = some b) : q ≤ p :=
   h
 
-/-- A stronger condition decides every coordinate the weaker one decides.-/
+/-- A stronger condition decides every coordinate the weaker one decides.
+@isnad1 id=mem.2h5v.s5.0aa4168fddec from=translated src=- shape=53d8918a vocab=5073d7c3
+-/
 theorem mem_mono (h : q ≤ p) (hi : i ∈ p) : i ∈ q := by
   obtain ⟨b, hb⟩ := Option.isSome_iff_exists.1 (mem_iff_isSome.1 hi)
   exact mem_iff_isSome.2 (by rw [h hb]; rfl)
 
+/--
+@isnad1 id=le.1h4v.s5.49e3855ec54a from=translated src=- shape=0ceef3b6 vocab=942172d4
+-/
 theorem keys_mono (h : q ≤ p) : p.keys ⊆ q.keys :=
   fun _ hi ↦ mem_def.1 (mem_mono h (mem_def.2 hi))
 
@@ -149,13 +192,21 @@ instance instOrderTop : OrderTop (FinitePartialFunction β) where
   top := ∅
   le_top _ := fun _ _ h ↦ by rw [lookup_empty] at h; simp at h
 
+/--
+@isnad1 id=eq.0h2v.s5.22c3996bf825 from=translated src=- shape=f684cc77 vocab=101e66b9
+-/
 @[simp] theorem top_eq_empty : (⊤ : FinitePartialFunction β) = ∅ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9cb9a8af749b from=translated src=- shape=4e27d8f1 vocab=846feaa7
+-/
 @[simp] theorem lookup_top : (⊤ : FinitePartialFunction β).lookup i = none :=
   lookup_empty
 
-/-- `insert` strengthens exactly when the coordinate is fresh or the value agrees.-/
+/-- `insert` strengthens exactly when the coordinate is fresh or the value agrees.
+@isnad1 id=iff.0h5v.s6.8db5be2c6f23 from=translated src=- shape=e9a09f22 vocab=ce51b0a4
+-/
 theorem insert_le_iff : p.insert i b ≤ p ↔ p.lookup i = none ∨ p.lookup i = some b := by
   constructor
   · intro h
@@ -174,11 +225,15 @@ theorem insert_le_iff : p.insert i b ≤ p ↔ p.lookup i = none ∨ p.lookup i 
         exact h.symm.trans hj
     · rwa [lookup_insert_of_ne hne]
 
-/-- Deciding a fresh coordinate strengthens the condition.-/
+/-- Deciding a fresh coordinate strengthens the condition.
+@isnad1 id=le.1h5v.s5.f640e7455430 from=translated src=- shape=4c55f36b vocab=cfd51add
+-/
 theorem insert_le_of_notMem (h : i ∉ p) : p.insert i b ≤ p :=
   insert_le_iff.2 (Or.inl (lookup_eq_none_iff.2 h))
 
-/-- Re-deciding a coordinate the same way does not change the condition.-/
+/-- Re-deciding a coordinate the same way does not change the condition.
+@isnad1 id=eq.1h5v.s5.248bdb60fa5c from=translated src=- shape=389284a0 vocab=0e4173b2
+-/
 @[simp] theorem insert_eq_self (h : p.lookup i = some b) : p.insert i b = p := by
   refine ext_lookup fun j ↦ ?_
   rcases eq_or_ne j i with rfl | hne
@@ -186,12 +241,16 @@ theorem insert_le_of_notMem (h : i ∉ p) : p.insert i b ≤ p :=
   · rw [lookup_insert_of_ne hne]
 
 /-- Re-deciding a coordinate the same way strengthens the condition — indeed leaves it
-unchanged (`insert_eq_self`).-/
+unchanged (`insert_eq_self`).
+@isnad1 id=le.1h5v.s5.a5b6b9071577 from=translated src=- shape=36025dbe vocab=e86d45b4
+-/
 theorem insert_le_of_lookup_eq (h : p.lookup i = some b) : p.insert i b ≤ p :=
   insert_le_iff.2 (Or.inr h)
 
 /-- Over an infinite index type, every condition leaves some coordinate undecided: `keys` is
-finite.-/
+finite.
+@isnad1 id=ex.0h3v.s5.21fbe70c37a0 from=translated src=- shape=4cd63b5b vocab=8f40398c
+-/
 theorem exists_lookup_eq_none [Infinite ι] (p : FinitePartialFunction β) :
     ∃ i, p.lookup i = none := by
   obtain ⟨i, hi⟩ := Infinite.exists_notMem_finset p.keys
@@ -201,6 +260,9 @@ theorem exists_lookup_eq_none [Infinite ι] (p : FinitePartialFunction β) :
 def Agree (p q : FinitePartialFunction β) : Prop :=
   ∀ ⦃i⦄ ⦃b b' : β i⦄, p.lookup i = some b → q.lookup i = some b' → b = b'
 
+/--
+@isnad1 id=agree.1h4v.s4.c082d882b235 from=translated src=- shape=67bad3be vocab=c4f3c915
+-/
 theorem Agree.symm (h : Agree p q) : Agree q p :=
   fun _ _ _ hp hq ↦ (h hq hp).symm
 
@@ -211,16 +273,28 @@ noncommutative, and not a forcing meet.-/
 def union (p q : FinitePartialFunction β) : FinitePartialFunction β :=
   ⟨p.toFinmap ∪ q.toFinmap⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.951fdacf52c0 from=translated src=- shape=9af5f32c vocab=152825e8
+-/
 @[simp] theorem keys_union : (p.union q).keys = p.keys ∪ q.keys :=
   Finmap.keys_union
 
+/--
+@isnad1 id=iff.0h6v.s6.f9f3930b2fda from=translated src=- shape=0ca94be5 vocab=a4376f6a
+-/
 theorem lookup_union_eq_some_iff :
     (p.union q).lookup i = some b ↔ p.lookup i = some b ∨ (i ∉ p ∧ q.lookup i = some b) :=
   Finmap.mem_lookup_union
 
+/--
+@isnad1 id=le.0h4v.s5.919a434dad5d from=translated src=- shape=3512d591 vocab=384a7cb3
+-/
 theorem union_le_left (p q : FinitePartialFunction β) : p.union q ≤ p :=
   fun _ _ h ↦ lookup_union_eq_some_iff.2 (Or.inl h)
 
+/--
+@isnad1 id=le.1h4v.s5.130d21cdad72 from=translated src=- shape=bcf7bd58 vocab=33e2dc50
+-/
 theorem union_le_right (h : Agree p q) : p.union q ≤ q := by
   intro i b hb
   by_cases hi : i ∈ p
@@ -230,13 +304,18 @@ theorem union_le_right (h : Agree p q) : p.union q ≤ q := by
   · exact lookup_union_eq_some_iff.2 (Or.inr ⟨hi, hb⟩)
 
 /-- Compatibility is agreement: two conditions have a common strengthening exactly when they
-assign the same values wherever both are defined, and the union witnesses it.-/
+assign the same values wherever both are defined, and the union witnesses it.
+@isnad1 id=iff.0h4v.s5.dd8e90bb9692 from=translated src=- shape=6b6dfbf3 vocab=1c4178ea
+-/
 theorem compatible_iff_agree : Compatible p q ↔ Agree p q := by
   constructor
   · rintro ⟨r, hrp, hrq⟩ i b b' hp hq
     exact Option.some.inj ((hrp hp).symm.trans (hrq hq))
   · exact fun h ↦ ⟨p.union q, union_le_left p q, union_le_right h⟩
 
+/--
+@isnad1 id=compatib.1h4v.s5.e4876d8ae862 from=translated src=- shape=f5646a8f vocab=1c4178ea
+-/
 theorem Agree.compatible (h : Agree p q) : Compatible p q :=
   compatible_iff_agree.2 h
 

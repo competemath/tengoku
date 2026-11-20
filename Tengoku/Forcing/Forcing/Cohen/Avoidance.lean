@@ -41,7 +41,9 @@ open Order FinitePartialFunction
 variable {M : CohenVisibilityContext} {G : PFilter Cond}
 
 /-- Adequacy, totality half: an `M`-generic filter's union is total. Uses only the visibility
-obligations and genericity — no countability.-/
+obligations and genericity — no countability.
+@isnad1 id=eq.2h3v.s4.dff68301a81d from=translated src=- shape=181a7d9b vocab=8b76bdbd
+-/
 theorem isSome_genericFun_of_genericOver (hM : M.Sees) (hG : M.GenericOver G) (n : ℕ) :
     (genericFun G n).isSome :=
   isSome_genericFun (fun m ↦ hM.meets_coordReq hG m) n
@@ -49,7 +51,9 @@ theorem isSome_genericFun_of_genericOver (hM : M.Sees) (hG : M.GenericOver G) (n
 /-- Adequacy, avoidance half: the extracted real of an `M`-generic filter is not a designated real.
 The route is the M3 bridge: for each `x ∈ M.designatedReals` the diagonal requirement `diagReq x`
 is visible (`Sees.visible_diagReq`), genericity meets it, and meeting it forces disagreement.
-Uses only the visibility obligations and genericity — no countability.-/
+Uses only the visibility obligations and genericity — no countability.
+@isnad1 id=not.3h3v.s5.0e7bfca40de1 from=translated src=- shape=c68c64df vocab=d6b41f04
+-/
 theorem not_mem_designatedReals_of_genericOver (hM : M.Sees) (hG : M.GenericOver G)
     {c : ℕ → Bool} (hc : ∀ n, genericFun G n = some (c n)) :
     c ∉ M.designatedReals := by
@@ -61,7 +65,9 @@ theorem not_mem_designatedReals_of_genericOver (hM : M.Sees) (hG : M.GenericOver
 /-- Adequacy, packaged: an `M`-generic filter yields a total real outside the designated
 reals. Countability-free — this is the adequacy endpoint, with the total real extracted by the
 generic `totalUnion`, so that the existence corollary below is literally "countable existence
-composed with this theorem".-/
+composed with this theorem".
+@isnad1 id=ex.2h2v.s5.1d5d6289331c from=translated src=- shape=79a6fe77 vocab=d6b41f04
+-/
 theorem exists_avoidingReal_of_genericOver (hM : M.Sees) (hG : M.GenericOver G) :
     ∃ c : ℕ → Bool, (∀ n, genericFun G n = some (c n)) ∧ c ∉ M.designatedReals := by
   have htotal : ∀ n, (genericFun G n).isSome := isSome_genericFun_of_genericOver hM hG
@@ -73,7 +79,9 @@ is total, and the extracted real avoids every designated real. The proof is
 the adequacy/existence separation made literal: countable existence of a generic filter
 (`exists_pfilter_genericOver`) composed with the countability-free adequacy endpoint
 (`exists_avoidingReal_of_genericOver`). External countability of the visible dense-open family lives
-here and in no adequacy statement.-/
+here and in no adequacy statement.
+@isnad1 id=ex.2h2v.s6.f76985e61735 from=translated src=- shape=46a9dfbf vocab=7ea77034
+-/
 theorem exists_genericReal_avoiding_designatedReals (hM : M.Sees)
     (hcount : M.visibleDenseOpen.Countable) (p : Cond) :
     ∃ G : PFilter Cond, p ∈ G ∧ M.GenericOver G ∧

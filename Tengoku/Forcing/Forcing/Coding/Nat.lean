@@ -38,7 +38,9 @@ universe u
 namespace Forcing
 
 /-- The rank of the `n`-th von Neumann natural is `n`. Not in the pinned mathlib; a plausible
-upstream contribution.-/
+upstream contribution.
+@isnad1 id=eq.0h1v.s3.376e94df4cae from=translated src=- shape=0076f9db vocab=4bfbbd7e
+-/
 theorem rank_ofNat : ∀ n : ℕ, (PSet.ofNat.{u} n).rank = n
   | 0 => PSet.rank_empty
   | n + 1 => by
@@ -53,10 +55,15 @@ def natCode : ℕ ↪ ZFSet.{u} where
     rw [ZFSet.rank_mk, ZFSet.rank_mk, rank_ofNat, rank_ofNat] at hr
     exact_mod_cast hr
 
+/--
+@isnad1 id=eq.0h0v.s4.4867965020a5 from=translated src=- shape=3173e4c8 vocab=a43b994b
+-/
 @[simp] theorem natCode_zero : natCode.{u} 0 = ∅ :=
   rfl
 
-/-- The successor code is an `insert` — the shape material-membership arguments recurse on.-/
+/-- The successor code is an `insert` — the shape material-membership arguments recurse on.
+@isnad1 id=eq.0h1v.s5.0e9f4a15bbf2 from=translated src=- shape=dabd70c0 vocab=658661ee
+-/
 @[simp] theorem natCode_succ (n : ℕ) :
     natCode.{u} (n + 1) = insert (natCode.{u} n) (natCode.{u} n) :=
   rfl

@@ -69,25 +69,40 @@ def ForcesFormula (𝒩 : Set (PName P)) (v : β → PName P) :
 
 /-! ### The named unfolding laws (deliberately not `@[simp]`) -/
 
+/--
+@isnad1 id=iff.0h7v.s5.0f8de8579ed0 from=translated src=- shape=b3686be0 vocab=240c2f93
+-/
 theorem forcesFormula_falsum {n} {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p (.falsum : memLang.BoundedFormula β n) xs ↔ False :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h9v.s6.b6d83bf04d11 from=translated src=- shape=d3a701a7 vocab=29768b11
+-/
 theorem forcesFormula_equal {n} {t₁ t₂ : memLang.Term (β ⊕ Fin n)} {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p (.equal t₁ t₂) xs ↔
       ForcesEq p (evalTerm (Sum.elim v xs) t₁) (evalTerm (Sum.elim v xs) t₂) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s7.fed4624c1c38 from=translated src=- shape=51266bef vocab=efb82139
+-/
 theorem forcesFormula_rel {n} {ts : Fin 2 → memLang.Term (β ⊕ Fin n)} {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p (.rel .mem ts) xs ↔
       ForcesMem p (evalTerm (Sum.elim v xs) (ts 0)) (evalTerm (Sum.elim v xs) (ts 1)) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h9v.s6.bcd9ef1724df from=translated src=- shape=06e5857b vocab=01f4c831
+-/
 theorem forcesFormula_imp {n} {φ ψ : memLang.BoundedFormula β n} {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p (φ.imp ψ) xs ↔
       ∀ q ≤ p, ForcesFormula 𝒩 v q φ xs → ForcesFormula 𝒩 v q ψ xs :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h8v.s6.98e71254780e from=translated src=- shape=69a0516b vocab=5bbb456e
+-/
 theorem forcesFormula_all {n} {φ : memLang.BoundedFormula β (n + 1)} {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p φ.all xs ↔ ∀ τ ∈ 𝒩, ForcesFormula 𝒩 v p φ (Fin.snoc xs τ) :=
   Iff.rfl
@@ -95,7 +110,9 @@ theorem forcesFormula_all {n} {φ : memLang.BoundedFormula β (n + 1)} {xs : Fin
 /-! ### Persistence -/
 
 /-- **Persistence** under strengthening, structurally: atomic persistence, transitivity
-narrowing for implication, pointwise for the quantifier.-/
+narrowing for implication, pointwise for the quantifier.
+@isnad1 id=forcesfo.2h9v.s5.660548ceda58 from=translated src=- shape=25377293 vocab=16c0af35
+-/
 theorem ForcesFormula.mono :
     ∀ {n} {p q : P} (φ : memLang.BoundedFormula β n) {xs : Fin n → PName P},
       ForcesFormula 𝒩 v p φ xs → q ≤ p → ForcesFormula 𝒩 v q φ xs
@@ -107,7 +124,9 @@ theorem ForcesFormula.mono :
 
 /-! ### The atomic regularity instances -/
 
-/-- Regularity at atomic equality: `IsDenseBelow.trans` through the equality clause.-/
+/-- Regularity at atomic equality: `IsDenseBelow.trans` through the equality clause.
+@isnad1 id=forceseq.1h4v.s5.b38e2753ab00 from=translated src=- shape=b1dc510a vocab=2d90338a
+-/
 theorem forcesEq_of_isDenseBelow (h : IsDenseBelow {q | ForcesEq q τ σ} p) :
     ForcesEq p τ σ := by
   rw [forcesEq_iff]
@@ -123,7 +142,9 @@ theorem forcesEq_of_isDenseBelow (h : IsDenseBelow {q | ForcesEq q τ σ} p) :
       exact ⟨t, ⟨htEq, ((hts.trans (Set.mem_Iic.1 hs)).trans hrc)⟩, hts⟩
     exact hD.trans fun s hs ↦ (forcesEq_iff.1 hs.1).2 j s le_rfl hs.2
 
-/-- Regularity at atomic membership: density-below is itself regular.-/
+/-- Regularity at atomic membership: density-below is itself regular.
+@isnad1 id=forcesme.1h4v.s5.57d543b000c9 from=translated src=- shape=b1dc510a vocab=796a6345
+-/
 theorem forcesMem_of_isDenseBelow (h : IsDenseBelow {q | ForcesMem q τ σ} p) :
     ForcesMem p τ σ :=
   IsDenseBelow.trans h fun _ hq ↦ hq
@@ -132,7 +153,9 @@ theorem forcesMem_of_isDenseBelow (h : IsDenseBelow {q | ForcesMem q τ σ} p) :
 
 /-- The hard direction of density-regularity: if forcing is dense below `p`, then `p`
 forces. Atomic cases by `IsDenseBelow.trans`; implication and quantifier by structural
-induction.-/
+induction.
+@isnad1 id=forcesfo.1h8v.s5.9ab99261cd00 from=translated src=- shape=bfcc29e2 vocab=62a46503
+-/
 theorem forcesFormula_of_isDenseBelow :
     ∀ {n} (φ : memLang.BoundedFormula β n) {p : P} {xs : Fin n → PName P},
       IsDenseBelow {q | ForcesFormula 𝒩 v q φ xs} p → ForcesFormula 𝒩 v p φ xs
@@ -153,7 +176,9 @@ theorem forcesFormula_of_isDenseBelow :
 /-- **Density-regularity**: forcing is equivalent to forcing being dense below. The forward
 direction is persistence; the reverse is the formula-level blocker-extraction engine the
 truth lemma consumes — failure of forcing yields a strengthening below which forcing is
-impossible.-/
+impossible.
+@isnad1 id=iff.0h8v.s5.7bfd02889938 from=translated src=- shape=c28a136c vocab=62a46503
+-/
 theorem forcesFormula_iff_isDenseBelow {n} (φ : memLang.BoundedFormula β n)
     {xs : Fin n → PName P} :
     ForcesFormula 𝒩 v p φ xs ↔ IsDenseBelow {q | ForcesFormula 𝒩 v q φ xs} p :=
@@ -168,10 +193,16 @@ def ForcesSentence (𝒩 : Set (PName P)) (p : P) (φ : memLang.Sentence) : Prop
 
 @[inherit_doc] scoped notation:50 p " ⊩[" 𝒩 "] " φ:51 => ForcesSentence 𝒩 p φ
 
+/--
+@isnad1 id=forcesse.2h5v.s5.9ca2dbfa97bf from=translated src=- shape=5bcb12dd vocab=38440d1e
+-/
 theorem ForcesSentence.mono {φ : memLang.Sentence} (h : p ⊩[𝒩] φ) (hqp : q ≤ p) :
     q ⊩[𝒩] φ :=
   ForcesFormula.mono φ h hqp
 
+/--
+@isnad1 id=iff.0h4v.s5.498e7b43a5cc from=translated src=- shape=2eb98340 vocab=2f9bbb11
+-/
 theorem forcesSentence_iff_isDenseBelow (φ : memLang.Sentence) :
     p ⊩[𝒩] φ ↔ IsDenseBelow {q | q ⊩[𝒩] φ} p :=
   forcesFormula_iff_isDenseBelow φ

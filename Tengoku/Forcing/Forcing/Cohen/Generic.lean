@@ -42,16 +42,23 @@ abbrev coordReq (n : ℕ) : Requirement Cond :=
 noncomputable abbrev genericFun (G : PFilter Cond) : ℕ → Option Bool :=
   FinitePartialFunction.unionFun G
 
+/--
+@isnad1 id=iff.0h3v.s6.062308256ef3 from=translated src=- shape=07847f1d vocab=b43efee4
+-/
 theorem genericFun_eq_some_iff {n : ℕ} {b : Bool} :
     genericFun G n = some b ↔ ∃ p ∈ G, p.lookup n = some b :=
   unionFun_eq_some_iff
 
-/-- **Meeting every coordinate requirement makes the generic real total.**-/
+/-- **Meeting every coordinate requirement makes the generic real total.**
+@isnad1 id=eq.1h2v.s5.e115182f4e18 from=translated src=- shape=a0575a1a vocab=88c9f3ab
+-/
 theorem isSome_genericFun (h : ∀ n, Meets G (coordReq n).support) (n : ℕ) :
     (genericFun G n).isSome :=
   isSome_unionFun h n
 
-/-- Such filters exist: through any condition there is one whose generic real is total.-/
+/-- Such filters exist: through any condition there is one whose generic real is total.
+@isnad1 id=ex.0h1v.s6.5599088d27de from=translated src=- shape=cdac13d3 vocab=77008c32
+-/
 theorem exists_pfilter_total (p : Cond) :
     ∃ G : PFilter Cond, p ∈ G ∧ ∀ n, (genericFun G n).isSome :=
   FinitePartialFunction.exists_pfilter_total p

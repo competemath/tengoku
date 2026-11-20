@@ -85,18 +85,25 @@ variable (N : InternalNamePresentation M P)
 def names : Set (PName P) :=
   Set.range N.decode
 
+/--
+@isnad1 id=mem.0h4v.s4.5dcabcc8fbd3 from=translated src=- shape=01ba8662 vocab=9d0d2a45
+-/
 theorem decode_mem_names (i : N.Code) : N.decode i ∈ N.names :=
   ⟨i, rfl⟩
 
 /-- The family is closed under immediate subnames — the set-level form of the syntactic
-closure field, and the shape the material extension's transitivity proof consumes.-/
+closure field, and the shape the material extension's transitivity proof consumes.
+@isnad1 id=mem.1h5v.s5.10f4f1ac86d9 from=translated src=- shape=cb91ed2a vocab=7b622091
+-/
 theorem elems_mem_names {τ : PName P} (hτ : τ ∈ N.names) (j : τ.Idx) :
     τ.elems j ∈ N.names := by
   obtain ⟨i, rfl⟩ := hτ
   exact N.subname_closed i j
 
 /-- The internal name family is subname-closed, in the structural sense the adequacy and
-truth layers consume.-/
+truth layers consume.
+@isnad1 id=subnamec.0h3v.s3.fe4ff0553f35 from=translated src=- shape=0c494a9c vocab=f0815b0f
+-/
 theorem subnameClosed_names : SubnameClosed N.names :=
   fun _ hτ i ↦ N.elems_mem_names hτ i
 
@@ -126,7 +133,9 @@ variable {Pres : InternalForcingPresentation M P} {N : InternalNamePresentation 
 
 /-- **The checked-ground membership, proved**: every carrier element lands in the valuation
 image of the internal family, along any condition set containing `⊤`. The external layer's
-explicit `checkZF x ∈ N` hypothesis is discharged by the semantic representative.-/
+explicit `checkZF x ∈ N` hypothesis is discharged by the semantic representative.
+@isnad1 id=mem.3h6v.s6.17ba2028fc56 from=translated src=- shape=3214138a vocab=0585fef4
+-/
 theorem mem_valuationImage_of_mem (h : HasCanonicalNames Pres N) {x : ZFSet.{u}}
     (hx : x ∈ M) (hS : (⊤ : P) ∈ S) :
     x ∈ valuationImage N.names S := by
@@ -135,7 +144,9 @@ theorem mem_valuationImage_of_mem (h : HasCanonicalNames Pres N) {x : ZFSet.{u}}
 
 /-- **The generic-name membership, proved**: the generic's code lands in the valuation image
 of the internal family, along any condition set containing `⊤`. The external layer's explicit
-`genName κ ∈ N` hypothesis is discharged by the semantic representative.-/
+`genName κ ∈ N` hypothesis is discharged by the semantic representative.
+@isnad1 id=mem.2h5v.s6.370bde90b7b3 from=translated src=- shape=ac244bd8 vocab=cc0ac41a
+-/
 theorem zval_genName_mem_valuationImage (h : HasCanonicalNames Pres N)
     (hS : (⊤ : P) ∈ S) :
     zval S (genName Pres.conditionCode) ∈ valuationImage N.names S := by
@@ -148,7 +159,9 @@ end Canonical
 
 /-- The filter corollary of the checked-ground membership: the order and the filter laws
 supply `⊤ ∈ G` via `Order.PFilter.top_mem`, and `OrderTop` supplies the `Top` that the
-canonical bundle prices at `[Top P]`.-/
+canonical bundle prices at `[Top P]`.
+@isnad1 id=mem.2h6v.s6.9ce14a57ddb2 from=translated src=- shape=6a18a130 vocab=e275de35
+-/
 theorem HasCanonicalNames.mem_valuationImage_of_mem_pfilter [Preorder P] [OrderTop P]
     {Pres : InternalForcingPresentation M P} {N : InternalNamePresentation M P}
     (h : HasCanonicalNames Pres N) {x : ZFSet.{u}} (hx : x ∈ M) (G : Order.PFilter P) :

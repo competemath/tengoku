@@ -70,24 +70,36 @@ instance : SetLike (MaterialGround.{u} T) ZFSet.{u} where
     congr 1
     exact SetLike.coe_injective h
 
+/--
+@isnad1 id=iff.0h3v.s5.89b928176cd9 from=translated src=- shape=d8121f0a vocab=e90efae9
+-/
 @[simp] theorem mem_toMaterialCarrier {M : MaterialGround.{u} T} {x : ZFSet.{u}} :
     x ∈ M.toMaterialCarrier ↔ x ∈ M :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.c1e9fc2feff7 from=translated src=- shape=76c08729 vocab=4c1f37ab
+-/
 @[ext] theorem ext {M N : MaterialGround.{u} T} (h : ∀ x, x ∈ M ↔ x ∈ N) : M = N :=
   SetLike.ext h
 
-/-- Transitivity, inherited from the carrier.-/
+/-- Transitivity, inherited from the carrier.
+@isnad1 id=mem.2h4v.s5.817bf1fba0ae from=translated src=- shape=c3de87c3 vocab=4c1f37ab
+-/
 theorem mem_trans {M : MaterialGround.{u} T} {x y : ZFSet.{u}} (hxy : x ∈ y) (hyM : y ∈ M) :
     x ∈ M :=
   M.toMaterialCarrier.mem_trans hxy hyM
 
-/-- The satisfaction of `T` is available to instance search wherever the ground is.-/
+/-- The satisfaction of `T` is available to instance search wherever the ground is.
+@isnad1 id=model.0h2v.s4.657363df0793 from=translated src=- shape=c3628a37 vocab=b8410198
+-/
 instance instModel (M : MaterialGround.{u} T) : ↥M.toMaterialCarrier ⊨ T :=
   M.models
 
 /-- **The per-axiom accessor**: each axiom of `T` is realized in the ground. The ledger tool —
-downstream theorems cite the axioms they consume through this.-/
+downstream theorems cite the axioms they consume through this.
+@isnad1 id=realize.1h3v.s5.7638f32afec7 from=translated src=- shape=2fa27ab6 vocab=2f0a1006
+-/
 theorem realize_of_mem (M : MaterialGround.{u} T) {φ : memLang.Sentence} (hφ : φ ∈ T) :
     ↥M.toMaterialCarrier ⊨ φ :=
   Language.Theory.realize_sentence_of_mem T hφ
@@ -97,12 +109,17 @@ axioms is a weaker hypothesis, and the interface says so.-/
 def mono (M : MaterialGround.{u} T) (h : T' ⊆ T) : MaterialGround.{u} T' :=
   ⟨M.toMaterialCarrier, ⟨fun _ hφ ↦ M.realize_of_mem (h hφ)⟩⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.3415be94812a from=translated src=- shape=e6231abb vocab=6b551347
+-/
 @[simp] theorem toMaterialCarrier_mono (M : MaterialGround.{u} T) (h : T' ⊆ T) :
     (M.mono h).toMaterialCarrier = M.toMaterialCarrier :=
   rfl
 
 /-- **Nonemptiness is an axiom, not a field**: a ground of a theory containing
-`memLang.nonemptyTheory` has a nonempty domain. The first dividend of theory-indexing.-/
+`memLang.nonemptyTheory` has a nonempty domain. The first dividend of theory-indexing.
+@isnad1 id=nonempty.1h2v.s5.8fb7758d4a77 from=translated src=- shape=cfca3cf5 vocab=3ddbbe9a
+-/
 theorem nonempty_of_nonemptyTheory (M : MaterialGround.{u} T)
     (h : memLang.nonemptyTheory ⊆ T) : Nonempty ↥M.toMaterialCarrier :=
   (Language.model_nonemptyTheory_iff memLang).1 ⟨fun _ hφ ↦ M.realize_of_mem (h hφ)⟩

@@ -65,28 +65,44 @@ instance : CoeFun (DenseOrderEmbedding P Q) fun _ ↦ P → Q :=
 
 variable (e : DenseOrderEmbedding P Q) {p p' : P} {q : Q} {D' : Set Q}
 
+/--
+@isnad1 id=monotone.0h3v.s5.813f7f79adcd from=translated src=- shape=d115a454 vocab=1966507d
+-/
 protected theorem monotone : Monotone e :=
   e.toOrderEmbedding.monotone
 
+/--
+@isnad1 id=iff.0h5v.s6.638a509b60de from=translated src=- shape=64a43d44 vocab=55c39adf
+-/
 @[simp] theorem le_iff_le : e p ≤ e p' ↔ p ≤ p' :=
   e.toOrderEmbedding.le_iff_le
 
-/-- Density of the range, in applied form.-/
+/-- Density of the range, in applied form.
+@isnad1 id=ex.0h4v.s5.91439e13f8cf from=translated src=- shape=ad7965ee vocab=55c39adf
+-/
 theorem exists_apply_le (q : Q) : ∃ p, e p ≤ q := by
   obtain ⟨y, ⟨p, rfl⟩, hy⟩ := e.dense_range q
   exact ⟨p, hy⟩
 
+/--
+@isnad1 id=compatib.1h5v.s6.154f024f3c7c from=translated src=- shape=8027d971 vocab=1d8b08dc
+-/
 theorem compatible_map (h : Compatible p p') : Compatible (e p) (e p') :=
   let ⟨r, h1, h2⟩ := h
   ⟨e r, e.monotone h1, e.monotone h2⟩
 
 /-- Compatibility is reflected as well as preserved: density of the range puts some `e s` below
-any common strengthening, and order reflection pulls `s` below both preimages.-/
+any common strengthening, and order reflection pulls `s` below both preimages.
+@isnad1 id=iff.0h5v.s6.950cbcc792c0 from=translated src=- shape=64a43d44 vocab=1d8b08dc
+-/
 @[simp] theorem compatible_map_iff : Compatible (e p) (e p') ↔ Compatible p p' := by
   refine ⟨fun ⟨s, hs1, hs2⟩ ↦ ?_, e.compatible_map⟩
   obtain ⟨x, hx⟩ := e.exists_apply_le s
   exact ⟨x, e.le_iff_le.1 (hx.trans hs1), e.le_iff_le.1 (hx.trans hs2)⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.d216ba16fe8d from=translated src=- shape=64a43d44 vocab=55ca364a
+-/
 @[simp] theorem incompatible_map_iff : Incompatible (e p) (e p') ↔ Incompatible p p' :=
   not_congr e.compatible_map_iff
 
@@ -94,6 +110,9 @@ any common strengthening, and order reflection pulls `s` below both preimages.-/
 def pullDense (D' : Set Q) : Set P :=
   {p | ∃ q ∈ D', e p ≤ q}
 
+/--
+@isnad1 id=isdense.1h4v.s5.b3c458ac097d from=translated src=- shape=d052f1ac vocab=34b72557
+-/
 theorem isDense_pullDense (hD' : IsDense D') : IsDense (e.pullDense D') := by
   intro p
   obtain ⟨q', hq'D, hq'⟩ := hD' (e p)
@@ -114,12 +133,17 @@ def mapPFilter (G : Order.PFilter P) : Order.PFilter Q :=
       exact ⟨e r, ⟨r, hrG, le_rfl⟩, (e.monotone hr₁).trans h₁, (e.monotone hr₂).trans h₂⟩)
     (fun hxy ⟨p, hp, hple⟩ ↦ ⟨p, hp, hple.trans hxy⟩)).toPFilter
 
+/--
+@isnad1 id=iff.0h5v.s6.4647e215a175 from=translated src=- shape=866933cc vocab=7a979fb7
+-/
 @[simp] theorem mem_mapPFilter {G : Order.PFilter P} :
     q ∈ e.mapPFilter G ↔ ∃ p ∈ G, e p ≤ q :=
   .rfl
 
 /-- Meeting transports along the embedding as an equivalence: the generated filter meets `D'`
-iff the base filter meets the pulled-back dense set.-/
+iff the base filter meets the pulled-back dense set.
+@isnad1 id=iff.0h5v.s5.6a03dd6108b8 from=translated src=- shape=64d9a3b6 vocab=75a565f3
+-/
 theorem meets_mapPFilter_iff {G : Order.PFilter P} :
     Meets (e.mapPFilter G) D' ↔ Meets G (e.pullDense D') := by
   constructor
@@ -129,13 +153,17 @@ theorem meets_mapPFilter_iff {G : Order.PFilter P} :
     exact ⟨q', ⟨p, hpG, hpq'⟩, hq'D⟩
 
 /-- Forward transport of meeting: if `G` meets the pulled-back dense set, the generated filter
-meets the original.-/
+meets the original.
+@isnad1 id=meets.1h5v.s5.a95b9bf08235 from=translated src=- shape=81e155d6 vocab=75a565f3
+-/
 theorem meets_mapPFilter {G : Order.PFilter P} (h : Meets G (e.pullDense D')) :
     Meets (e.mapPFilter G) D' :=
   e.meets_mapPFilter_iff.2 h
 
 /-- Genericity transports along the embedding as an equivalence: the generated filter is generic
-for a family iff the base filter is generic for the pulled-back family.-/
+for a family iff the base filter is generic for the pulled-back family.
+@isnad1 id=iff.0h5v.s5.c2c29ad46bb2 from=translated src=- shape=be2fe654 vocab=3a45116d
+-/
 theorem genericFor_mapPFilter_iff {G : Order.PFilter P} {𝒟' : Set (Set Q)} :
     GenericFor 𝒟' (e.mapPFilter G) ↔ GenericFor (e.pullDense '' 𝒟') G := by
   constructor
@@ -145,7 +173,9 @@ theorem genericFor_mapPFilter_iff {G : Order.PFilter P} {𝒟' : Set (Set Q)} :
     exact e.meets_mapPFilter_iff.2 (h _ (Set.mem_image_of_mem _ hD'))
 
 /-- Forward transport of genericity: generic for the pulled-back family, generated filter
-generic for the original family.-/
+generic for the original family.
+@isnad1 id=genericf.1h5v.s5.d52a1461716f from=translated src=- shape=8cfd6105 vocab=3a45116d
+-/
 theorem genericFor_mapPFilter {G : Order.PFilter P} {𝒟' : Set (Set Q)}
     (h : GenericFor (e.pullDense '' 𝒟') G) : GenericFor 𝒟' (e.mapPFilter G) :=
   e.genericFor_mapPFilter_iff.2 h
@@ -155,7 +185,9 @@ provided `H` is *localized in the range* — every member of `H` has a strengthe
 `H ∩ range e`. In the model-relative setting, localization follows from `M`-genericity only
 once the relevant localized dense sets are shown to belong to `M` (meeting the range itself is
 insufficient); here it must be assumed, and without it the preimage can even be empty (see the
-counterexample below).-/
+counterexample below).
+@isnad1 id=ispfilte.1h4v.s7.acc391382a5c from=translated src=- shape=38dc4089 vocab=b20c72b2
+-/
 theorem isPFilter_preimage {H : Order.PFilter Q}
     (hloc : ∀ q ∈ H, ∃ p, e p ∈ H ∧ e p ≤ q) :
     Order.IsPFilter (⇑e ⁻¹' (H : Set Q)) := by
@@ -174,12 +206,17 @@ def comapPFilter (H : Order.PFilter Q) (hloc : ∀ q ∈ H, ∃ p, e p ∈ H ∧
     Order.PFilter P :=
   (e.isPFilter_preimage hloc).toPFilter
 
+/--
+@isnad1 id=iff.1h5v.s7.de893e514bb7 from=translated src=- shape=17d40ed0 vocab=39cb0d2d
+-/
 @[simp] theorem mem_comapPFilter {H : Order.PFilter Q}
     {hloc : ∀ q ∈ H, ∃ p, e p ∈ H ∧ e p ≤ q} {p : P} :
     p ∈ e.comapPFilter H hloc ↔ e p ∈ H :=
   .rfl
 
-/-- Pushing a range-localized filter down and back up recovers it.-/
+/-- Pushing a range-localized filter down and back up recovers it.
+@isnad1 id=eq.1h4v.s7.e6205f8736f2 from=translated src=- shape=7a68b831 vocab=8aeebc39
+-/
 theorem mapPFilter_comapPFilter (H : Order.PFilter Q)
     (hloc : ∀ q ∈ H, ∃ p, e p ∈ H ∧ e p ≤ q) :
     e.mapPFilter (e.comapPFilter H hloc) = H := by
@@ -189,12 +226,16 @@ theorem mapPFilter_comapPFilter (H : Order.PFilter Q)
     exact Order.PFilter.mem_of_le hpq' hpH
   · exact fun hq' ↦ hloc q' hq'
 
-/-- Generated filters are automatically range-localized.-/
+/-- Generated filters are automatically range-localized.
+@isnad1 id=ex.1h5v.s7.a3e3df3da709 from=translated src=- shape=ca3f2e3c vocab=7a979fb7
+-/
 theorem localized_mapPFilter (G : Order.PFilter P) :
     ∀ q ∈ e.mapPFilter G, ∃ p, e p ∈ e.mapPFilter G ∧ e p ≤ q :=
   fun _ ⟨p, hpG, hpq⟩ ↦ ⟨p, ⟨p, hpG, le_rfl⟩, hpq⟩
 
-/-- Pulling a generated filter back recovers the base filter.-/
+/-- Pulling a generated filter back recovers the base filter.
+@isnad1 id=eq.0h4v.s5.58a4df58246f from=translated src=- shape=a068def4 vocab=81add67d
+-/
 theorem comapPFilter_mapPFilter (G : Order.PFilter P) :
     e.comapPFilter (e.mapPFilter G) (e.localized_mapPFilter G) = G := by
   ext p

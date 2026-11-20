@@ -66,15 +66,21 @@ instance : SetLike MaterialCarrier.{u} ZFSet.{u} where
     congr 1
     exact ZFSet.ext fun z ↦ Set.ext_iff.1 h z
 
-/-- The one bridge between the raw projection and public membership.-/
+/-- The one bridge between the raw projection and public membership.
+@isnad1 id=iff.0h2v.s4.7bdc66b62ec4 from=translated src=- shape=1139befc vocab=52977dba
+-/
 @[simp] theorem mem_carrier : x ∈ M.carrier ↔ x ∈ M :=
   Iff.rfl
 
-/-- Membership-level extensionality: carriers with the same members are equal.-/
+/-- Membership-level extensionality: carriers with the same members are equal.
+@isnad1 id=eq.1h2v.s4.742fa77b4875 from=translated src=- shape=ddde6aa2 vocab=26754351
+-/
 @[ext] theorem ext (h : ∀ x, x ∈ M ↔ x ∈ N) : M = N :=
   SetLike.ext h
 
-/-- Transitivity in public membership notation: an element of an element is an element.-/
+/-- Transitivity in public membership notation: an element of an element is an element.
+@isnad1 id=mem.2h3v.s5.daaaa443b1ea from=translated src=- shape=3c2f987e vocab=26754351
+-/
 theorem mem_trans (hxy : x ∈ y) (hyM : y ∈ M) : x ∈ M :=
   M.isTransitive.mem_trans hxy hyM
 
@@ -88,22 +94,30 @@ anticipation of it.
 Nothing beyond transitivity is used: `⟨a, b⟩ = {{a}, {a, b}}`, so both components are members
 of members of the pair. -/
 
-/-- The left component of a coded pair in the carrier.-/
+/-- The left component of a coded pair in the carrier.
+@isnad1 id=mem.1h3v.s4.7be50acb8327 from=translated src=- shape=eb9c9e93 vocab=b4f4cfec
+-/
 theorem left_mem_of_pair_mem (h : ZFSet.pair x y ∈ M) : x ∈ M :=
   M.mem_trans (ZFSet.mem_pair.2 (Or.inl rfl))
     (M.mem_trans (ZFSet.mem_pair.2 (Or.inr rfl)) h)
 
-/-- The right component of a coded pair in the carrier.-/
+/-- The right component of a coded pair in the carrier.
+@isnad1 id=mem.1h3v.s4.3021c7fffa7b from=translated src=- shape=ebf9ed75 vocab=b4f4cfec
+-/
 theorem right_mem_of_pair_mem (h : ZFSet.pair x y ∈ M) : y ∈ M :=
   M.mem_trans (ZFSet.mem_pair.2 (Or.inr rfl))
     (M.mem_trans (ZFSet.mem_pair.2 (Or.inr rfl)) h)
 
-/-- Both components at once.-/
+/-- Both components at once.
+@isnad1 id=and.1h3v.s5.b87dc4b01f7f from=translated src=- shape=fd77128b vocab=b4f4cfec
+-/
 theorem pair_components_mem (h : ZFSet.pair x y ∈ M) : x ∈ M ∧ y ∈ M :=
   ⟨left_mem_of_pair_mem h, right_mem_of_pair_mem h⟩
 
 /-- Components of a coded pair that is a *member* of a carrier element — the shape that
-actually arises, where the pair reaches the carrier by one further transitivity step.-/
+actually arises, where the pair reaches the carrier by one further transitivity step.
+@isnad1 id=and.2h4v.s5.1273cb08eeec from=translated src=- shape=21711f8f vocab=b4f4cfec
+-/
 theorem pair_components_mem_of_mem {S : ZFSet.{u}} (hS : S ∈ M) (h : ZFSet.pair x y ∈ S) :
     x ∈ M ∧ y ∈ M :=
   pair_components_mem (M.mem_trans h hS)
@@ -112,7 +126,9 @@ theorem pair_components_mem_of_mem {S : ZFSet.{u}} (hS : S ∈ M) (h : ZFSet.pai
 ambient `ZFSet`s, and ambient membership is well-founded, so every inhabited member has an
 `∈`-minimal element — with transitivity placing that element, and everything relevant below
 it, back in the carrier. Dependency mining: the recursion layer must **not** be charged
-Foundation over transitive `ZFSet` carriers.-/
+Foundation over transitive `ZFSet` carriers.
+@isnad1 id=ex.2h3v.s6.8e3df7368e47 from=translated src=- shape=1921260a vocab=26754351
+-/
 theorem exists_minimal (M : MaterialCarrier.{u}) {a x : ZFSet.{u}} (ha : a ∈ M)
     (hx : x ∈ a) :
     ∃ y, y ∈ a ∧ y ∈ M ∧ ∀ z, z ∈ y → z ∉ a := by
@@ -131,7 +147,9 @@ end MaterialCarrier
 
 /-- Both components of a pair in `F` lie in `⋃⋃F`: the bound from which a family's coordinates
 are separated. Structural, carrier-free. Consumers: the recursion layer's projections and the
-check-graph value image.-/
+check-graph value image.
+@isnad1 id=and.1h3v.s5.bc874723a7ee from=translated src=- shape=9ce2e704 vocab=bc679c4a
+-/
 theorem components_mem_sUnion_sUnion {F a b : ZFSet.{u}} (h : ZFSet.pair a b ∈ F) :
     a ∈ ZFSet.sUnion (ZFSet.sUnion F) ∧ b ∈ ZFSet.sUnion (ZFSet.sUnion F) := by
   have hmid : ({a, b} : ZFSet.{u}) ∈ ZFSet.sUnion F :=

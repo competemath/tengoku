@@ -69,7 +69,9 @@ def Decides (𝒩 : Set (PName P)) (v : β → PName P) (p : P)
   ForcesFormula 𝒩 v p φ xs ∨ ForcesFormula 𝒩 v p (∼φ) xs
 
 /-- Forcing a formula and forcing its negation are **incompatible**: a common strengthening
-would force falsum. The engine of the homogeneity argument, and pure order theory.-/
+would force falsum. The engine of the homogeneity argument, and pure order theory.
+@isnad1 id=incompat.2h9v.s6.b3ac62bfb822 from=translated src=- shape=1596a4e2 vocab=8ab772b8
+-/
 theorem incompatible_of_forces_of_forces_not (hp : ForcesFormula 𝒩 v p φ xs)
     (hq : ForcesFormula 𝒩 v q (∼φ) xs) : Incompatible p q := by
   rintro ⟨r, hrp, hrq⟩
@@ -95,7 +97,9 @@ namespace HomogeneousFor
 
 /-- Under the shadow, no condition forces the negation once some condition forces the
 formula: the symmetry moves the forcer into compatibility with the refuter, and forcing
-against forcing-the-negation is incompatible.-/
+against forcing-the-negation is incompatible.
+@isnad1 id=not.2h10v.s6.e7973bc36b80 from=translated src=- shape=5cf823aa vocab=8068cc4a
+-/
 theorem not_forcesFormula_not (h : HomogeneousFor 𝒩 v φ xs H)
     (hp : ForcesFormula 𝒩 v p φ xs) (q : P) : ¬ForcesFormula 𝒩 v q (∼φ) xs := by
   intro hq
@@ -104,7 +108,9 @@ theorem not_forcesFormula_not (h : HomogeneousFor 𝒩 v φ xs H)
 
 /-- **The condition-local payoff**: if any condition forces the formula, every condition
 does. Deciders are dense, no decider can force the negation, so the forcers are dense below
-every condition — and density-regularity closes it. No `[OrderTop P]` is used.-/
+every condition — and density-regularity closes it. No `[OrderTop P]` is used.
+@isnad1 id=forcesfo.3h10v.s6.d899050ff8cc from=translated src=- shape=4dab7bc2 vocab=9dd57c8e
+-/
 theorem forcesFormula_of_exists (h : HomogeneousFor 𝒩 v φ xs H)
     (hdense : IsDense {r | Decides 𝒩 v r φ xs}) (hp : ForcesFormula 𝒩 v p φ xs) (q : P) :
     ForcesFormula 𝒩 v q φ xs := by
@@ -114,7 +120,9 @@ theorem forcesFormula_of_exists (h : HomogeneousFor 𝒩 v φ xs H)
   · exact ⟨s, hs, hsr⟩
   · exact absurd hs (h.not_forcesFormula_not hp s)
 
-/-- The familiar form when a weakest condition exists: the top condition forces.-/
+/-- The familiar form when a weakest condition exists: the top condition forces.
+@isnad1 id=forcesfo.3h9v.s6.1022d218809f from=translated src=- shape=1f8f013e vocab=33b4b882
+-/
 theorem forcesFormula_top_of_exists [OrderTop P] (h : HomogeneousFor 𝒩 v φ xs H)
     (hdense : IsDense {r | Decides 𝒩 v r φ xs}) (hp : ForcesFormula 𝒩 v p φ xs) :
     ForcesFormula 𝒩 v ⊤ φ xs :=
@@ -128,6 +136,9 @@ def WeaklyHomogeneousFor (𝒩 : Set (PName P)) (H : Set (Symmetry P)) : Prop :=
   ∀ {β : Type v} (v : β → PName P) {n : ℕ} (φ : memLang.BoundedFormula β n)
     (xs : Fin n → PName P), HomogeneousFor 𝒩 v φ xs H
 
+/--
+@isnad1 id=homogene.1h8v.s5.164652a63432 from=translated src=- shape=38b30ae8 vocab=d67c6fa9
+-/
 theorem WeaklyHomogeneousFor.homogeneousFor (h : WeaklyHomogeneousFor.{u, v} 𝒩 H)
     (v : β → PName P) (φ : memLang.BoundedFormula β n) (xs : Fin n → PName P) :
     HomogeneousFor 𝒩 v φ xs H :=

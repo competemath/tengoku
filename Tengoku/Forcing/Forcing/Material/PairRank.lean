@@ -22,7 +22,9 @@ universe u
 namespace Forcing
 
 /-- A branch code sits three Kuratowski levels above the subname code it carries, so the
-subname code has strictly smaller rank. *Rank only* — nothing about any domain.-/
+subname code has strictly smaller rank. *Rank only* — nothing about any domain.
+@isnad1 id=lt.1h3v.s4.6cc123cd8afd from=translated src=- shape=658fe7bb vocab=3ea4f679
+-/
 theorem rank_lt_of_pair_mem {c z w : ZFSet.{u}} (h : ZFSet.pair c z ∈ w) : z.rank < w.rank := by
   have h₁ : z.rank < ({c, z} : ZFSet.{u}).rank :=
     ZFSet.rank_lt_of_mem (ZFSet.mem_pair.2 (Or.inr rfl))

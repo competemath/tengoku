@@ -80,12 +80,16 @@ namespace InternalNameRecognition
 variable {M : MaterialCarrier.{u}} {P : Type u} {N : InternalNamePresentation M P}
   (R : InternalNameRecognition N)
 
-/-- Every code is recognized.-/
+/-- Every code is recognized.
+@isnad1 id=realize.0h5v.s6.47f3e3194f5a from=translated src=- shape=91aecf0b vocab=594c1cfa
+-/
 theorem realize_code (i : N.Code) :
     R.formula.Realize R.params ![⟨N.code i, N.code_mem i⟩] :=
   (R.realize_iff _).2 ⟨i, rfl⟩
 
-/-- Nothing else is.-/
+/-- Nothing else is.
+@isnad1 id=ex.1h5v.s7.7006b1749cf0 from=translated src=- shape=85939c9d vocab=fbc12523
+-/
 theorem exists_code_of_realize {c : ↥M} (h : R.formula.Realize R.params ![c]) :
     ∃ i : N.Code, (c : ZFSet.{u}) = N.code i :=
   (R.realize_iff c).1 h

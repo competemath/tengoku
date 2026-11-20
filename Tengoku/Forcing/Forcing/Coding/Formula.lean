@@ -65,7 +65,9 @@ def node (tag k n : ℕ) (payload : ZFSet.{u}) : ZFSet.{u} :=
   ZFSet.pair (natCode tag) (ZFSet.pair (ZFSet.pair (natCode k) (natCode n)) payload)
 
 /-- **The node law**: nodes are equal exactly when tag, arities, and payload all agree.
-Constructor disjointness, arity recovery, and payload decoding are all corollaries.-/
+Constructor disjointness, arity recovery, and payload decoding are all corollaries.
+@isnad1 id=iff.0h8v.s5.d7d64bcfec4d from=translated src=- shape=85fc3b33 vocab=87d95baf
+-/
 @[simp] theorem node_inj {tag k n tag' k' n' : ℕ} {p p' : ZFSet.{u}} :
     node tag k n p = node tag' k' n' p' ↔ tag = tag' ∧ k = k' ∧ n = n' ∧ p = p' := by
   simp only [node, ZFSet.pair_inj, and_assoc]
@@ -82,15 +84,23 @@ def termCode {k n : ℕ} : memLang.Term (Fin k ⊕ Fin n) → ZFSet.{u}
   | .var (Sum.inr j) => node 1 k n (natCode j)
   | .func f _ => f.elim
 
+/--
+@isnad1 id=eq.0h3v.s5.46402538b21b from=translated src=- shape=d5d0a51b vocab=01af179e
+-/
 @[simp] theorem termCode_free {k n : ℕ} (i : Fin k) :
     termCode (n := n) (.var (Sum.inl i)) = node 0 k n (natCode i) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.525cf71e888a from=translated src=- shape=0ad1ed35 vocab=83804474
+-/
 @[simp] theorem termCode_bound {k n : ℕ} (j : Fin n) :
     termCode (k := k) (.var (Sum.inr j)) = node 1 k n (natCode j) :=
   rfl
 
-/-- **Variable-index recovery**: term codes determine the variable, free or bound.-/
+/-- **Variable-index recovery**: term codes determine the variable, free or bound.
+@isnad1 id=eq.1h4v.s5.6f168da6915c from=translated src=- shape=6c960a0b vocab=5e62519a
+-/
 theorem termCode_inj {k n : ℕ} {s t : memLang.Term (Fin k ⊕ Fin n)}
     (h : termCode s = termCode t) : s = t := by
   match s, t with
@@ -115,28 +125,45 @@ def formulaCode : ∀ {k n : ℕ}, memLang.BoundedFormula (Fin k) n → ZFSet.{u
   | k, n, .imp φ ψ => node 5 k n (ZFSet.pair (formulaCode φ) (formulaCode ψ))
   | k, n, .all φ => node 6 k n (formulaCode φ)
 
+/--
+@isnad1 id=eq.0h2v.s4.698126dacc0a from=translated src=- shape=8f2cc3c7 vocab=b236d867
+-/
 @[simp] theorem formulaCode_falsum {k n : ℕ} :
     formulaCode (.falsum : memLang.BoundedFormula (Fin k) n) = node 2 k n ∅ := by
   rw [formulaCode]
 
+/--
+@isnad1 id=eq.0h4v.s5.12b6207b4912 from=translated src=- shape=a4e8ab2b vocab=c1a9d923
+-/
 @[simp] theorem formulaCode_equal {k n : ℕ} (t₁ t₂ : memLang.Term (Fin k ⊕ Fin n)) :
     formulaCode (.equal t₁ t₂) = node 3 k n (ZFSet.pair (termCode t₁) (termCode t₂)) := by
   rw [formulaCode]
 
+/--
+@isnad1 id=eq.0h3v.s6.63c57815b56d from=translated src=- shape=ab3ee537 vocab=7767944e
+-/
 @[simp] theorem formulaCode_rel {k n : ℕ} (ts : Fin 2 → memLang.Term (Fin k ⊕ Fin n)) :
     formulaCode (.rel memRel.mem ts) =
       node 4 k n (ZFSet.pair (termCode (ts 0)) (termCode (ts 1))) := by
   rw [formulaCode]
 
+/--
+@isnad1 id=eq.0h4v.s5.b91323d0d536 from=translated src=- shape=45bd2dd3 vocab=03af862e
+-/
 @[simp] theorem formulaCode_imp {k n : ℕ} (φ ψ : memLang.BoundedFormula (Fin k) n) :
     formulaCode (φ.imp ψ) = node 5 k n (ZFSet.pair (formulaCode φ) (formulaCode ψ)) := by
   rw [formulaCode]
 
+/--
+@isnad1 id=eq.0h3v.s5.8f2d916b484c from=translated src=- shape=6dab7ea4 vocab=3c38dbe9
+-/
 @[simp] theorem formulaCode_all {k n : ℕ} (φ : memLang.BoundedFormula (Fin k) (n + 1)) :
     formulaCode φ.all = node 6 k n (formulaCode φ) := by
   rw [formulaCode]
 
-/-- Every formula code is a node at its own arities — the shape arity recovery reads.-/
+/-- Every formula code is a node at its own arities — the shape arity recovery reads.
+@isnad1 id=ex.0h3v.s4.dda43d6a2568 from=translated src=- shape=6a6215f5 vocab=86c243ce
+-/
 theorem exists_node {k n : ℕ} (φ : memLang.BoundedFormula (Fin k) n) :
     ∃ tag p, formulaCode φ = node tag k n p := by
   match φ with
@@ -147,7 +174,9 @@ theorem exists_node {k n : ℕ} (φ : memLang.BoundedFormula (Fin k) n) :
   | .all φ => exact ⟨6, formulaCode φ, by simp⟩
 
 /-- **Arity recovery**: a formula code determines `k` and `n`, with no induction — every
-constructor stores them.-/
+constructor stores them.
+@isnad1 id=and.1h6v.s5.53866be566d1 from=translated src=- shape=4cdf1163 vocab=86226d2a
+-/
 theorem arity_eq {k n k' n' : ℕ} {φ : memLang.BoundedFormula (Fin k) n}
     {ψ : memLang.BoundedFormula (Fin k') n'} (h : formulaCode φ = formulaCode ψ) :
     k = k' ∧ n = n' := by
@@ -156,7 +185,9 @@ theorem arity_eq {k n k' n' : ℕ} {φ : memLang.BoundedFormula (Fin k) n}
   rw [hp, hp', node_inj] at h
   exact ⟨h.2.1, h.2.2.1⟩
 
-/-- Injectivity at fixed arities.-/
+/-- Injectivity at fixed arities.
+@isnad1 id=eq.1h4v.s5.86c65d8bb26b from=translated src=- shape=96df0257 vocab=86226d2a
+-/
 theorem formulaCode_inj_of_arity : ∀ {k n : ℕ} (φ ψ : memLang.BoundedFormula (Fin k) n),
     formulaCode φ = formulaCode ψ → φ = ψ
   | _, _, .falsum, .falsum, _ => rfl
@@ -201,7 +232,9 @@ theorem formulaCode_inj_of_arity : ∀ {k n : ℕ} (φ ψ : memLang.BoundedFormu
   | _, _, .all _, .imp _ _, h => by simp at h
 
 /-- **Injectivity across the dependent indices**: equal codes have equal arities, and the
-formulas agree once transported.-/
+formulas agree once transported.
+@isnad1 id=and.1h6v.s5.3652f831dc62 from=translated src=- shape=ee4854b2 vocab=659b1b2d
+-/
 theorem formulaCode_inj {k n k' n' : ℕ} {φ : memLang.BoundedFormula (Fin k) n}
     {ψ : memLang.BoundedFormula (Fin k') n'} (h : formulaCode φ = formulaCode ψ) :
     k = k' ∧ n = n' ∧ HEq φ ψ := by
@@ -223,7 +256,9 @@ inductive IsFormulaCode : ℕ → ℕ → ZFSet.{u} → Prop
   | all {k n : ℕ} {x : ZFSet.{u}} : IsFormulaCode k (n + 1) x →
       IsFormulaCode k n (node 6 k n x)
 
-/-- **Soundness of the parser**: every code is well-formed.-/
+/-- **Soundness of the parser**: every code is well-formed.
+@isnad1 id=isformul.0h3v.s4.8fff78fe6c81 from=translated src=- shape=9fd26202 vocab=aed6dda8
+-/
 theorem isFormulaCode_formulaCode : ∀ {k n : ℕ} (φ : memLang.BoundedFormula (Fin k) n),
     IsFormulaCode k n (formulaCode φ) := by
   intro k n φ
@@ -235,7 +270,9 @@ theorem isFormulaCode_formulaCode : ∀ {k n : ℕ} (φ : memLang.BoundedFormula
   | all _ ih => simpa using IsFormulaCode.all ih
 
 /-- **No junk**: every well-formed code is the code of a formula. Together with soundness,
-this is the characterization item 3 recognizes constructor cases against.-/
+this is the characterization item 3 recognizes constructor cases against.
+@isnad1 id=ex.1h3v.s4.76bdff5ebf54 from=translated src=- shape=ae096692 vocab=d178b9f5
+-/
 theorem exists_formulaCode {k n : ℕ} {x : ZFSet.{u}} (h : IsFormulaCode k n x) :
     ∃ φ : memLang.BoundedFormula (Fin k) n, formulaCode φ = x := by
   induction h with

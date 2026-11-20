@@ -34,13 +34,17 @@ open Order
 variable {P : Type*} [Preorder P] {M : VisibilityContext P} {G : PFilter P}
 
 /-- A requirement whose support is visible is a visible dense-open test: visibility is the
-hypothesis, dense-openness comes with being a requirement.-/
+hypothesis, dense-openness comes with being a requirement.
+@isnad1 id=mem.1h3v.s5.68bb7fecc332 from=translated src=- shape=d8489a68 vocab=f932638f
+-/
 theorem Requirement.mem_visibleDenseOpen (R : Requirement P) (hR : M.Visible R.support) :
     R.support ∈ M.visibleDenseOpen :=
   ⟨hR, R.isDenseOpen_support⟩
 
 /-- **A generic filter meets every visible requirement** — the generic form of the
-visibility-to-meeting passage.-/
+visibility-to-meeting passage.
+@isnad1 id=meets.2h4v.s5.359fc50ea217 from=translated src=- shape=0e8f10f5 vocab=94dbcf24
+-/
 theorem GenericOver.meets_requirement {R : Requirement P} (hG : GenericOver M G)
     (hR : M.Visible R.support) :
     Meets G R.support :=

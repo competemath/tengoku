@@ -51,7 +51,9 @@ def IsAtomless (P : Type*) [Preorder P] : Prop :=
 
 /-- **Branching**: over an atomless order, the complement of every forcing filter is a
 dense-open test. Density: split below any `p ∈ G` — directedness forbids the filter from
-containing both pieces. Openness: the complement of an up-set is a lower set.-/
+containing both pieces. Openness: the complement of an up-set is a lower set.
+@isnad1 id=isdenseo.1h2v.s4.08dd839d769f from=translated src=- shape=cdb6c462 vocab=0dbcbaea
+-/
 theorem isDenseOpen_compl_pfilter (h : IsAtomless P) (G : PFilter P) :
     IsDenseOpen ((G : Set P)ᶜ) := by
   constructor
@@ -68,7 +70,9 @@ theorem isDenseOpen_compl_pfilter (h : IsAtomless P) (G : PFilter P) :
 
 /-- **The visibility refutation**: a filter cannot be generic over any observer that can see
 its complement. Branching supplies the dense-open test; visibility makes it count; the filter
-cannot meet its own complement.-/
+cannot meet its own complement.
+@isnad1 id=not.2h3v.s5.338b5bb57408 from=translated src=- shape=05121846 vocab=70826035
+-/
 theorem not_genericOver_of_visible_compl (h : IsAtomless P) {M : VisibilityContext P}
     (hvis : M.Visible ((G : Set P)ᶜ)) : ¬GenericOver M G := by
   intro hG

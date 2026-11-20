@@ -65,7 +65,9 @@ def IsSigmaLinked (P : Type*) [Preorder P] : Prop :=
 def IsSigmaCentered (P : Type*) [Preorder P] : Prop :=
   ∃ c : ℕ → Set P, (∀ n, IsCentered (c n)) ∧ ∀ p : P, ∃ n, p ∈ c n
 
-/-- Centered implies linked: a common strengthening of `{p, q}` witnesses compatibility.-/
+/-- Centered implies linked: a common strengthening of `{p, q}` witnesses compatibility.
+@isnad1 id=islinked.1h2v.s4.7e43a8147dbf from=translated src=- shape=93e860ac vocab=2835759d
+-/
 theorem IsCentered.isLinked (h : IsCentered A) : IsLinked A := by
   classical
   intro p hp q hq
@@ -76,22 +78,30 @@ theorem IsCentered.isLinked (h : IsCentered A) : IsLinked A := by
     · exact Finset.mem_singleton.1 hx ▸ hq)
   exact ⟨r, hr p (by simp), hr q (by simp)⟩
 
-/-- σ-centered implies σ-linked, piecewise.-/
+/-- σ-centered implies σ-linked, piecewise.
+@isnad1 id=issigmal.1h1v.s3.d8cd738a60d9 from=translated src=- shape=c612a321 vocab=4a908aad
+-/
 theorem IsSigmaCentered.isSigmaLinked (h : IsSigmaCentered P) : IsSigmaLinked P :=
   h.imp fun _ ⟨hc, hcov⟩ ↦ ⟨fun n ↦ (hc n).isLinked, hcov⟩
 
-/-- A singleton is centered: the point strengthens itself.-/
+/-- A singleton is centered: the point strengthens itself.
+@isnad1 id=iscenter.0h2v.s4.8d77b1107c1a from=translated src=- shape=28391ba4 vocab=e8620d4d
+-/
 theorem isCentered_singleton (p : P) : IsCentered ({p} : Set P) :=
   fun _ _ hsub ↦ ⟨p, fun _ hq ↦ le_of_eq (hsub hq).symm⟩
 
-/-- The empty family is centered, vacuously.-/
+/-- The empty family is centered, vacuously.
+@isnad1 id=iscenter.0h1v.s3.ab7875ffeab7 from=translated src=- shape=b8471119 vocab=35e14911
+-/
 theorem isCentered_empty : IsCentered (∅ : Set P) :=
   fun _ hs hsub ↦ absurd (hsub hs.choose_spec) (Set.notMem_empty _)
 
 /-- **The certified external-vacuity warning** (architecture constraint 9): every countable
 preorder is σ-centered, by singleton decomposition. External width notions carry essentially
 no information over countable presentations; the hypotheses that preserve anything are
-`M`-internal and arrive with the material layer.-/
+`M`-internal and arrive with the material layer.
+@isnad1 id=issigmac.0h1v.s3.bd2c690417c3 from=translated src=- shape=c612a321 vocab=a8816f47
+-/
 theorem isSigmaCentered_of_countable [Countable P] : IsSigmaCentered P := by
   cases isEmpty_or_nonempty P with
   | inl h => exact ⟨fun _ ↦ ∅, fun _ ↦ isCentered_empty, fun p ↦ (h.false p).elim⟩

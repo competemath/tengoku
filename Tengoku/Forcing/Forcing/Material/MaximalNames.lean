@@ -80,9 +80,15 @@ namespace IsNameCode
 
 variable {cs x : ZFSet.{u}}
 
+/--
+@isnad1 id=ex.2h3v.s5.ee2844e18ec7 from=translated src=- shape=2e5b7740 vocab=683bc932
+-/
 theorem branch (h : IsNameCode cs x) : ∀ y ∈ x, ∃ c e, y = ZFSet.pair c e ∧ c ∈ cs := by
   cases h; assumption
 
+/--
+@isnad1 id=isnameco.3h5v.s5.9cfb6f8428c4 from=translated src=- shape=e23d3eae vocab=683bc932
+-/
 theorem sub (h : IsNameCode cs x) : ∀ y ∈ x, ∀ c e, y = ZFSet.pair c e → IsNameCode cs e := by
   cases h; assumption
 
@@ -96,7 +102,9 @@ def IsNameDomain (cs D : ZFSet.{u}) : Prop :=
   ∀ z ∈ D, ∀ y ∈ z, ∃ c e, y = ZFSet.pair c e ∧ c ∈ cs ∧ e ∈ D
 
 /-- **Soundness**: membership in a name domain certifies hereditary validity. Rank induction;
-axiom-free.-/
+axiom-free.
+@isnad1 id=isnameco.2h3v.s4.1a5dcc4c52ae from=translated src=- shape=028f76d3 vocab=95b406fe
+-/
 theorem isNameCode_of_mem_nameDomain {cs D : ZFSet.{u}} (hD : IsNameDomain cs D) :
     ∀ x ∈ D, IsNameCode cs x := by
   intro x
@@ -116,13 +124,17 @@ section Sets
 
 variable {cs c e x : ZFSet.{u}}
 
-/-- The empty set is a name code, vacuously.-/
+/-- The empty set is a name code, vacuously.
+@isnad1 id=isnameco.0h1v.s2.79fca98229b1 from=translated src=- shape=dbe0e813 vocab=c04a8a6d
+-/
 theorem isNameCode_empty (cs : ZFSet.{u}) : IsNameCode cs ∅ :=
   IsNameCode.mk ∅ (fun y hy ↦ absurd hy (ZFSet.notMem_empty y))
     (fun y hy ↦ absurd hy (ZFSet.notMem_empty y))
 
 /-- **The branch constructor**: adjoining a branch with a valid condition and a valid subname
-keeps a code valid.-/
+keeps a code valid.
+@isnad1 id=isnameco.3h4v.s5.81de884de331 from=translated src=- shape=e60f7a9a vocab=2fcf5147
+-/
 theorem isNameCode_insert_pair (hc : c ∈ cs) (he : IsNameCode cs e) (hx : IsNameCode cs x) :
     IsNameCode cs (insert (ZFSet.pair c e) x) := by
   refine IsNameCode.mk _ (fun y hy ↦ ?_) (fun y hy c' e' hy' ↦ ?_)
@@ -134,12 +146,16 @@ theorem isNameCode_insert_pair (hc : c ∈ cs) (he : IsNameCode cs e) (hx : IsNa
       exact he
     · exact hx.sub y hy c' e' hy'
 
-/-- The single-branch name code.-/
+/-- The single-branch name code.
+@isnad1 id=isnameco.2h3v.s4.b6ff7adaaa49 from=translated src=- shape=309b287b vocab=3c743f57
+-/
 theorem isNameCode_singleton_pair (hc : c ∈ cs) (he : IsNameCode cs e) :
     IsNameCode cs {ZFSet.pair c e} :=
   isNameCode_insert_pair hc he (isNameCode_empty cs)
 
-/-- **Union of codes**: the union of two valid codes is valid.-/
+/-- **Union of codes**: the union of two valid codes is valid.
+@isnad1 id=isnameco.2h3v.s4.1194ff313bec from=translated src=- shape=6f815e05 vocab=198182a1
+-/
 theorem isNameCode_union {y : ZFSet.{u}} (hx : IsNameCode cs x) (hy : IsNameCode cs y) :
     IsNameCode cs (x ∪ y) := by
   refine IsNameCode.mk _ (fun b hb ↦ ?_) (fun b hb c' e' hb' ↦ ?_)
@@ -168,17 +184,29 @@ noncomputable def branchCond (h : IsNameCode cs x) (hy : y ∈ x) : ZFSet.{u} :=
 noncomputable def branchSub (h : IsNameCode cs x) (hy : y ∈ x) : ZFSet.{u} :=
   Classical.choose (Classical.choose_spec (h.branch y hy))
 
+/--
+@isnad1 id=eq.2h3v.s5.78a23dcce012 from=translated src=- shape=067aff94 vocab=dae02883
+-/
 theorem branch_eq (h : IsNameCode cs x) (hy : y ∈ x) :
     y = ZFSet.pair (branchCond h hy) (branchSub h hy) :=
   (Classical.choose_spec (Classical.choose_spec (h.branch y hy))).1
 
+/--
+@isnad1 id=mem.2h3v.s5.ee630387d1df from=translated src=- shape=4959cb74 vocab=8532dd87
+-/
 theorem branchCond_mem (h : IsNameCode cs x) (hy : y ∈ x) : branchCond h hy ∈ cs :=
   (Classical.choose_spec (Classical.choose_spec (h.branch y hy))).2
 
+/--
+@isnad1 id=isnameco.2h3v.s4.753d31a646db from=translated src=- shape=fbf9248a vocab=ac270a3c
+-/
 theorem branchSub_isNameCode (h : IsNameCode cs x) (hy : y ∈ x) :
     IsNameCode cs (branchSub h hy) :=
   h.sub y hy _ _ (branch_eq h hy)
 
+/--
+@isnad1 id=lt.2h3v.s5.9eafeb7d71fb from=translated src=- shape=f5c5e199 vocab=671f85ff
+-/
 theorem branchSub_rank_lt (h : IsNameCode cs x) (hy : y ∈ x) :
     (branchSub h hy).rank < x.rank :=
   rank_lt_of_pair_mem (branch_eq h hy ▸ hy)
@@ -194,6 +222,9 @@ variable (Pres : InternalForcingPresentation M P)
 noncomputable def condOf {c : ZFSet.{u}} (hc : c ∈ (Pres.conditionSet : ZFSet.{u})) : P :=
   Classical.choose (Pres.code_surjective c hc)
 
+/--
+@isnad1 id=eq.1h4v.s5.33252496c9d3 from=translated src=- shape=614383a0 vocab=1021e470
+-/
 theorem condCode_condOf {c : ZFSet.{u}} (hc : c ∈ (Pres.conditionSet : ZFSet.{u})) :
     c = ZFSet.mk (Pres.conditionCode.repr (condOf Pres hc)) :=
   Classical.choose_spec (Pres.code_surjective c hc)
@@ -209,6 +240,9 @@ noncomputable def decode :
 termination_by x => x.rank
 decreasing_by exact branchSub_rank_lt h _
 
+/--
+@isnad1 id=eq.1h4v.s9.73d52bfd8344 from=translated src=- shape=85f92072 vocab=6098bdae
+-/
 theorem decode_eq (x : ZFSet.{u}) (h : IsNameCode (Pres.conditionSet : ZFSet.{u}) x) :
     decode Pres x h =
       PName.mk (Shrink.{u} x)
@@ -219,7 +253,9 @@ theorem decode_eq (x : ZFSet.{u}) (h : IsNameCode (Pres.conditionSet : ZFSet.{u}
 
 omit [Preorder P] in
 /-- Equal names have matching branches, index by index across the type equality that
-`PName.mk` injectivity yields.-/
+`PName.mk` injectivity yields.
+@isnad1 id=ex.1h8v.s5.4fcf5ad7c609 from=translated src=- shape=188efde9 vocab=4722ee41
+-/
 theorem mk_eq_mk_imp {ι ι' : Type u} {e : ι → PName P} {e' : ι' → PName P} {c : ι → P}
     {c' : ι' → P} (h : PName.mk ι e c = PName.mk ι' e' c') :
     ∀ i, ∃ i', e i = e' i' ∧ c i = c' i' := by
@@ -229,7 +265,9 @@ theorem mk_eq_mk_imp {ι ι' : Type u} {e : ι → PName P} {e' : ι' → PName 
   exact ⟨i, congrFun (eq_of_heq he) i, congrFun (eq_of_heq hc) i⟩
 
 /-- **Decode is injective** on hereditarily valid codes. Rank induction, recursing through the
-symmetric equation in the second containment so the measure decreases on the right side.-/
+symmetric equation in the second containment so the measure decreases on the right side.
+@isnad1 id=eq.3h5v.s6.e2e184b5b23d from=translated src=- shape=f7036499 vocab=9677e10e
+-/
 theorem decode_injective :
     ∀ (x : ZFSet.{u}) (h : IsNameCode (Pres.conditionSet : ZFSet.{u}) x)
       (x' : ZFSet.{u}) (h' : IsNameCode (Pres.conditionSet : ZFSet.{u}) x'),
@@ -277,7 +315,9 @@ decreasing_by all_goals apply branchSub_rank_lt
 /-! ### The presentation -/
 
 /-- A material carrier is small: it is the member type of a set. Local, per ADR 0006 clause 2:
-it exists only to discharge the `Shrink` construction below.-/
+it exists only to discharge the `Shrink` construction below.
+@isnad1 id=small.0h1v.s4.978ecac562da from=translated src=- shape=331f0ce0 vocab=72f9cee9
+-/
 local instance smallCarrier : Small.{u} ↥M :=
   small_of_injective (f := fun x : ↥M ↦ (⟨x.1, x.2⟩ : ↥M.carrier))
     (fun _ _ h ↦ Subtype.ext (congrArg Subtype.val h))
@@ -285,6 +325,9 @@ local instance smallCarrier : Small.{u} ↥M :=
 /-- Codes: hereditarily valid carrier elements, shrunk to `Type u`.-/
 abbrev MaxCode : Type u := Shrink.{u} {x : ↥M // IsNameCode (Pres.conditionSet : ZFSet.{u}) x}
 
+/--
+@isnad1 id=mem.3h5v.s6.0370ce452b3a from=translated src=- shape=6b17c165 vocab=b1a07b58
+-/
 theorem branchSub_mem_carrier {x y : ZFSet.{u}}
     (hx : IsNameCode (Pres.conditionSet : ZFSet.{u}) x) (hxM : x ∈ M) (hy : y ∈ x) :
     branchSub hx hy ∈ M :=
@@ -310,25 +353,33 @@ noncomputable def maximal : InternalNamePresentation M P where
     refine ⟨subCode Pres hx hxM ((equivShrink x).symm j).2, ?_⟩
     simp only [subCode, Equiv.symm_apply_apply, PName.elems_mk]
 
-/-- Codes are injective: faithfulness for free.-/
+/-- Codes are injective: faithfulness for free.
+@isnad1 id=injectiv.0h3v.s4.4c1df33ed49d from=translated src=- shape=1e078a32 vocab=33c35a24
+-/
 theorem maximal_code_injective : Function.Injective (maximal Pres).code := by
   intro i j h
   exact (equivShrink _).symm.injective (Subtype.ext (Subtype.ext h))
 
 /-- **Maximality, as a theorem.** Every hereditarily valid carrier element is a code. This is
-what will make recognition exact rather than merely sound.-/
+what will make recognition exact rather than merely sound.
+@isnad1 id=ex.2h4v.s6.b138c987660e from=translated src=- shape=8d484aa6 vocab=487acd40
+-/
 theorem exists_code_of_isNameCode {x : ZFSet.{u}} (hxM : x ∈ M)
     (hx : IsNameCode (Pres.conditionSet : ZFSet.{u}) x) :
     ∃ i : (maximal Pres).Code, (maximal Pres).code i = x :=
   ⟨equivShrink _ ⟨⟨x, hxM⟩, hx⟩, by simp [maximal]⟩
 
-/-- The range of `code` is exactly the hereditarily valid carrier elements.-/
+/-- The range of `code` is exactly the hereditarily valid carrier elements.
+@isnad1 id=iff.0h4v.s6.99f25b8f2c21 from=translated src=- shape=582e607b vocab=c35dad60
+-/
 theorem mem_range_code_iff {x : ZFSet.{u}} :
     x ∈ Set.range (maximal Pres).code ↔ x ∈ M ∧ IsNameCode (Pres.conditionSet : ZFSet.{u}) x :=
   ⟨fun ⟨i, hi⟩ ↦ hi ▸ ⟨(maximal Pres).code_mem i, ((equivShrink _).symm i).2⟩,
     fun ⟨hxM, hx⟩ ↦ exists_code_of_isNameCode Pres hxM hx⟩
 
-/-- The representation law, at an explicit code.-/
+/-- The representation law, at an explicit code.
+@isnad1 id=iff.2h5v.s10.2c75a400a264 from=translated src=- shape=0cea5e19 vocab=28a88d70
+-/
 theorem branch_mem_iff (x : ZFSet.{u}) (hxM : x ∈ M)
     (hx : IsNameCode (Pres.conditionSet : ZFSet.{u}) x) (y : ZFSet.{u}) :
     y ∈ x ↔ ∃ (k : (decode Pres x hx).Idx) (j : MaxCode Pres),
@@ -351,7 +402,9 @@ theorem branch_mem_iff (x : ZFSet.{u}) (hxM : x ∈ M)
     exact branch_eq hx hyk ▸ hyk
 
 /-- **The coding laws hold** for the maximal presentation: representation from
-`branch_mem_iff`, faithfulness from injectivity of `code`.-/
+`branch_mem_iff`, faithfulness from injectivity of `code`.
+@isnad1 id=internal.0h3v.s4.6565eb218df6 from=translated src=- shape=56f36118 vocab=8fc15e2c
+-/
 theorem maximal_coding : InternalNameCoding Pres (maximal Pres) where
   branch_mem_code_iff i y := branch_mem_iff Pres _ ((equivShrink _).symm i).1.2
     ((equivShrink _).symm i).2 y
@@ -359,20 +412,26 @@ theorem maximal_coding : InternalNameCoding Pres (maximal Pres) where
 
 /-! ### Richness pressure tests (ADR 0006, tranche 3): what the decodings are -/
 
-/-- Decoding is determined by the code alone.-/
+/-- Decoding is determined by the code alone.
+@isnad1 id=eq.3h5v.s6.95d656a64b4b from=translated src=- shape=c685cbe6 vocab=9677e10e
+-/
 theorem decode_congr {x x' : ZFSet.{u}} (h : IsNameCode (Pres.conditionSet : ZFSet.{u}) x)
     (h' : IsNameCode (Pres.conditionSet : ZFSet.{u}) x') (hxx : x = x') :
     decode Pres x h = decode Pres x' h' := by
   subst hxx
   rfl
 
-/-- **The empty name decodes to a name with no branches.**-/
+/-- **The empty name decodes to a name with no branches.**
+@isnad1 id=isempty.0h3v.s4.807b1190f94e from=translated src=- shape=5f11086c vocab=8c2f37d8
+-/
 theorem isEmpty_idx_decode_empty :
     IsEmpty (decode Pres ∅ (isNameCode_empty _)).Idx := by
   rw [decode_eq]
   exact ⟨fun i ↦ ZFSet.notMem_empty _ ((equivShrink (∅ : ZFSet.{u})).symm i).2⟩
 
-/-- **The singleton name decodes to a name with a branch reading `e` at `q`.**-/
+/-- **The singleton name decodes to a name with a branch reading `e` at `q`.**
+@isnad1 id=ex.1h5v.s7.b164b5118809 from=translated src=- shape=e354aaa1 vocab=1145104c
+-/
 theorem decode_singleton_pair (q : P) {e : ZFSet.{u}}
     (he : IsNameCode (Pres.conditionSet : ZFSet.{u}) e) :
     ∃ k : (decode Pres _ (isNameCode_singleton_pair (Pres.code_mem q) he)).Idx,
@@ -398,7 +457,9 @@ theorem decode_singleton_pair (q : P) {e : ZFSet.{u}}
 /-- **The decode-valuation reader**: the value of a maximal name along `S` consists of the
 values of the names whose codes are paired, inside its code, with the code of an admitted
 condition. Stated with `code`, `decode`, and `zval` only; proved from the coding laws, subname
-closure, and injectivity of condition codes.-/
+closure, and injectivity of condition codes.
+@isnad1 id=iff.0h6v.s7.ba49711c1c1d from=translated src=- shape=21b2da97 vocab=fe3a484f
+-/
 theorem mem_zval_decode_iff {S : Set P} (i : (maximal Pres).Code) {y : ZFSet.{u}} :
     y ∈ zval S ((maximal Pres).decode i) ↔
       ∃ p ∈ S, ∃ j : (maximal Pres).Code,

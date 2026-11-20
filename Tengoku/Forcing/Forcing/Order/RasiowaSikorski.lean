@@ -33,7 +33,9 @@ open Order
 variable {P : Type*} [Preorder P]
 
 /-- **The Rasiowa–Sikorski lemma**, indexed-family form: through any condition `p` there is a
-filter containing `p` and meeting every member of a countable family of dense sets.-/
+filter containing `p` and meeting every member of a countable family of dense sets.
+@isnad1 id=ex.1h4v.s5.0c72f2d6ac2b from=translated src=- shape=cd824c48 vocab=6ab5930c
+-/
 theorem exists_pfilter_genericFor (p : P) {ι : Type*} [Countable ι] (𝒟 : ι → Set P)
     (h : ∀ i, IsDense (𝒟 i)) : ∃ G : PFilter P, p ∈ G ∧ ∀ i, Meets G (𝒟 i) := by
   obtain ⟨enc⟩ := nonempty_encodable ι
@@ -42,7 +44,9 @@ theorem exists_pfilter_genericFor (p : P) {ι : Type*} [Countable ι] (𝒟 : ι
     fun i ↦ meets_iff_exists.2 (exists_mem_pfilterOfDense h i)⟩
 
 /-- **The Rasiowa–Sikorski lemma**, set-of-sets form: through any condition `p` there is a filter
-containing `p` and generic for a countable family of dense sets.-/
+containing `p` and generic for a countable family of dense sets.
+@isnad1 id=ex.2h3v.s6.e72392d1f7ae from=translated src=- shape=04a4e4c3 vocab=b9cae371
+-/
 theorem exists_pfilter_genericFor' (p : P) {𝒟 : Set (Set P)} (h𝒟 : 𝒟.Countable)
     (h : ∀ D ∈ 𝒟, IsDense D) : ∃ G : PFilter P, p ∈ G ∧ GenericFor 𝒟 G := by
   haveI := h𝒟.to_subtype

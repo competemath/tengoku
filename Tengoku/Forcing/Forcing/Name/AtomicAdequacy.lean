@@ -72,7 +72,9 @@ def eqDecision (τ σ : PName P) : Set P :=
   {p | ForcesEq p τ σ} ∪ eqObstruction τ σ ∪ eqObstruction σ τ
 
 /-- Failure of forced membership yields a *blocker*: a strengthening below which no
-membership witness lies.-/
+membership witness lies.
+@isnad1 id=ex.1h4v.s5.0264f6828aa3 from=translated src=- shape=558403a0 vocab=dedec382
+-/
 theorem exists_blocker_of_not_forcesMem (h : ¬ForcesMem q τ σ) :
     ∃ r ≤ q, ∀ s ∈ memWitness τ σ, ¬s ≤ r := by
   by_contra hcon
@@ -80,7 +82,9 @@ theorem exists_blocker_of_not_forcesMem (h : ¬ForcesMem q τ σ) :
   exact h fun a ha ↦ hcon a ha
 
 /-- **The decision test is globally dense open**: below any condition, either equality is
-forced, or the failing inclusion produces an obstruction below it.-/
+forced, or the failing inclusion produces an obstruction below it.
+@isnad1 id=isdenseo.0h3v.s4.56084c8a4dbe from=translated src=- shape=f2e61304 vocab=c8b1c448
+-/
 theorem isDenseOpen_eqDecision (τ σ : PName P) : IsDenseOpen (eqDecision τ σ) := by
   constructor
   · intro p
@@ -110,7 +114,9 @@ theorem isDenseOpen_eqDecision (τ σ : PName P) : IsDenseOpen (eqDecision τ σ
 /-- **Atomic semantic adequacy**, observer-free: over a subname-closed family, and given the
 two test-meeting budgets, forced membership and equality along `G` coincide with actual
 membership and equality of the valuations. The induction is `Sym2.GameAdd` on the unordered
-pair — the same descent certified by the kernel.-/
+pair — the same descent certified by the kernel.
+@isnad1 id=and.5h5v.s8.1a551d826368 from=translated src=- shape=209d0a0a vocab=fb51e823
+-/
 theorem forces_adequacy (h𝒩 : SubnameClosed 𝒩)
     (hmem : ∀ τ ∈ 𝒩, ∀ σ ∈ 𝒩, ∀ p ∈ G, ForcesMem p τ σ →
       Meets G (localizeBelow (memWitness τ σ) p))
@@ -181,7 +187,9 @@ theorem forces_adequacy (h𝒩 : SubnameClosed 𝒩)
           ⟨r, hrG, hpEq.2 j r hrp hrc⟩
   exact ⟨memAdeq, eqAdeq⟩
 
-/-- Membership adequacy, projected.-/
+/-- Membership adequacy, projected.
+@isnad1 id=iff.5h5v.s7.ebc314d1cde6 from=translated src=- shape=32cf7bd6 vocab=e7673b93
+-/
 theorem zval_mem_zval_iff_exists_forcesMem (h𝒩 : SubnameClosed 𝒩)
     (hmem : ∀ τ ∈ 𝒩, ∀ σ ∈ 𝒩, ∀ p ∈ G, ForcesMem p τ σ →
       Meets G (localizeBelow (memWitness τ σ) p))
@@ -190,7 +198,9 @@ theorem zval_mem_zval_iff_exists_forcesMem (h𝒩 : SubnameClosed 𝒩)
     zval (G : Set P) τ ∈ zval (G : Set P) σ ↔ ∃ p ∈ G, ForcesMem p τ σ :=
   (forces_adequacy h𝒩 hmem heq τ σ hτ hσ).1
 
-/-- Equality adequacy, projected.-/
+/-- Equality adequacy, projected.
+@isnad1 id=iff.5h5v.s7.29999a9eb0b0 from=translated src=- shape=c2282d53 vocab=fb51e823
+-/
 theorem zval_eq_zval_iff_exists_forcesEq (h𝒩 : SubnameClosed 𝒩)
     (hmem : ∀ τ ∈ 𝒩, ∀ σ ∈ 𝒩, ∀ p ∈ G, ForcesMem p τ σ →
       Meets G (localizeBelow (memWitness τ σ) p))
@@ -201,7 +211,9 @@ theorem zval_eq_zval_iff_exists_forcesEq (h𝒩 : SubnameClosed 𝒩)
 
 /-- **The visibility corollary**: over a generic filter, the two `Meets` budgets are
 discharged from visibility of the two test families — genericity is only the bridge from
-visible tests to meetings.-/
+visible tests to meetings.
+@isnad1 id=and.6h6v.s8.96a3b6352474 from=translated src=- shape=5bea140b vocab=f28e262e
+-/
 theorem forces_adequacy_of_genericOver {M : VisibilityContext P} (hG : GenericOver M G)
     (h𝒩 : SubnameClosed 𝒩)
     (hvmem : ∀ τ ∈ 𝒩, ∀ σ ∈ 𝒩, ∀ p ∈ G, ForcesMem p τ σ →

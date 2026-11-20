@@ -68,14 +68,18 @@ structure HasCohenRealName (N : InternalNamePresentation M Cond) : Prop where
 namespace HasCohenRealName
 
 /-- **Genericity-free membership**: the value of the Cohen-real name lands in the extension
-carrier, along any condition set containing `⊤`.-/
+carrier, along any condition set containing `⊤`.
+@isnad1 id=mem.2h3v.s6.d10c547ae82e from=translated src=- shape=9f210e30 vocab=622c0bfe
+-/
 theorem zval_mem_extensionCarrier (h : HasCohenRealName N) {S : Set Cond}
     (hS : (⊤ : Cond) ∈ S) : zval S cohenRealName ∈ N.extensionCarrier S := by
   obtain ⟨τ, hτ, hval⟩ := h.represented
   exact N.mem_extensionCarrier_of_mem_of_zval_eq hτ (hval S hS)
 
 /-- The total-union specialization, via the strong partial-union theorem: for a filter with a
-total union, the *real code of the extracted real* is in the extension carrier.-/
+total union, the *real code of the extracted real* is in the extension carrier.
+@isnad1 id=mem.2h3v.s6.360cad6954ff from=translated src=- shape=8b4682ec vocab=97601e5f
+-/
 theorem realCode_totalUnion_mem (h : HasCohenRealName N) {G : PFilter Cond}
     (htotal : ∀ n, (genericFun G n).isSome) :
     realCode (totalUnion G htotal) ∈ N.extensionCarrier (G : Set Cond) := by
@@ -87,7 +91,9 @@ end HasCohenRealName
 /-- **Countability-free adequacy**: an `M`-generic filter (over the derived context) yields
 the new-real pair for its canonical extracted real — membership in the extension carrier from
 the Cohen-real representative, material nonmembership from M3 avoidance through the derived
-designated reals. Totality is derived, not assumed; no countability, no `HasCanonicalNames`.-/
+designated reals. Totality is derived, not assumed; no countability, no `HasCanonicalNames`.
+@isnad1 id=ex.2h4v.s6.007e799ca1ae from=translated src=- shape=808ce8eb vocab=b164e215
+-/
 theorem exists_realCode_mem_not_mem (C : CohenMaterialPresentation M)
     (hreal : HasCohenRealName N) {G : PFilter Cond}
     (hG : C.derivedContext.GenericOver G) :
@@ -104,7 +110,9 @@ theorem exists_realCode_mem_not_mem (C : CohenMaterialPresentation M)
 there is a filter generic over the derived context whose extension satisfies the full
 contract — ground inclusion (by the existing extension-contract declarations, consumed here
 rather than reproved) together with the new-real pair. Only this existence step consumes
-countability, and only of the carrier.-/
+countability, and only of the carrier.
+@isnad1 id=ex.3h4v.s8.14723c2097fa from=translated src=- shape=894c317a vocab=35de1526
+-/
 theorem addsNewReal (C : CohenMaterialPresentation M)
     (hcan : HasCanonicalNames C.forcing N) (hreal : HasCohenRealName N)
     (hM : (M : Set ZFSet.{0}).Countable) (p : Cond) :

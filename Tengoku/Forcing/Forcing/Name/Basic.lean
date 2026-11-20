@@ -53,17 +53,28 @@ def elems : (τ : PName P) → τ.Idx → PName P
 def conds : (τ : PName P) → τ.Idx → P
   | .mk _ _ c => c
 
+/--
+@isnad1 id=eq.0h4v.s4.a79c2d1ca5d1 from=translated src=- shape=39488d06 vocab=06e273c4
+-/
 @[simp] theorem Idx_mk (ι : Type u) (e : ι → PName P) (c : ι → P) : (mk ι e c).Idx = ι :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.6cdc8b277a4e from=translated src=- shape=a17fa277 vocab=30c05d55
+-/
 @[simp] theorem elems_mk (ι : Type u) (e : ι → PName P) (c : ι → P) : (mk ι e c).elems = e :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.67d3124ab469 from=translated src=- shape=20cdd19f vocab=7fa266fc
+-/
 @[simp] theorem conds_mk (ι : Type u) (e : ι → PName P) (c : ι → P) : (mk ι e c).conds = c :=
   rfl
 
 /-- Every name is the `mk` of its projections — the eta rule, for destructing an abstract
-name.-/
+name.
+@isnad1 id=eq.0h2v.s4.44a6d77db01b from=translated src=- shape=81af32df vocab=4b0a3dfc
+-/
 @[simp] theorem eta : ∀ τ : PName P, mk τ.Idx τ.elems τ.conds = τ
   | .mk _ _ _ => rfl
 
@@ -74,6 +85,9 @@ instance : EmptyCollection (PName P) :=
 instance : Inhabited (PName P) :=
   ⟨∅⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.20767ff144c8 from=translated src=- shape=e5ec0d31 vocab=705b0cfd
+-/
 @[simp] theorem Idx_empty : (∅ : PName P).Idx = PEmpty :=
   rfl
 

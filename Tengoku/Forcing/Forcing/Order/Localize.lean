@@ -43,12 +43,17 @@ everything incompatible with `p`.-/
 def localizeBelow (D : Set P) (p : P) : Set P :=
   ↑(lowerClosure D) ∪ {q | Incompatible q p}
 
+/--
+@isnad1 id=mem.1h4v.s5.1b835a5ef129 from=translated src=- shape=2600d9e9 vocab=8e17453d
+-/
 theorem mem_localizeBelow_of_mem (h : q ∈ D) : q ∈ localizeBelow D p :=
   Or.inl (subset_lowerClosure h)
 
 /-- A locally dense test globalizes to a dense-open one: below anything compatible with `p`,
 strengthen into the test through a common strengthening; anything incompatible with `p` is
-already in the padding.-/
+already in the padding.
+@isnad1 id=isdenseo.1h3v.s4.b3839770e215 from=translated src=- shape=05107f25 vocab=6fe79234
+-/
 theorem isDenseOpen_localizeBelow (h : IsDenseBelow D p) :
     IsDenseOpen (localizeBelow D p) := by
   constructor
@@ -65,7 +70,9 @@ theorem isDenseOpen_localizeBelow (h : IsDenseBelow D p) :
 /-- **Through `p`, the padding is invisible**: a filter containing `p` meets the localized
 test exactly when it meets the original. The forward direction uses upward closure (through
 the lower closure) and directedness (a filter through `p` contains nothing incompatible with
-`p`); the reverse is inclusion.-/
+`p`); the reverse is inclusion.
+@isnad1 id=iff.1h4v.s5.c543bfc6d9f1 from=translated src=- shape=1013ec78 vocab=315426d3
+-/
 theorem meets_localizeBelow_iff (hp : p ∈ G) :
     Meets G (localizeBelow D p) ↔ Meets G D := by
   constructor

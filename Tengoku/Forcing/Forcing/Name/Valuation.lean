@@ -47,6 +47,9 @@ Uses only membership in `S` — no order, no filter laws, and no genericity.-/
 def val (S : Set P) : PName P → PSet.{u}
   | .mk _ e c => PSet.mk {i // c i ∈ S} fun i ↦ (e i.1).val S
 
+/--
+@isnad1 id=eq.0h5v.s6.aeae55b5b7bd from=translated src=- shape=6445a9d5 vocab=23245d6e
+-/
 @[simp] theorem val_mk (S : Set P) (ι : Type u) (e : ι → PName P) (c : ι → P) :
     (mk ι e c).val S = PSet.mk {i // c i ∈ S} fun i ↦ (e i.1).val S :=
   rfl
@@ -57,7 +60,9 @@ def zval (S : Set P) (τ : PName P) : ZFSet.{u} :=
   ZFSet.mk (τ.val S)
 
 /-- **The principal law**: a set belongs to the valuation of `τ` exactly when it is the
-valuation of a branch of `τ` whose condition is admitted.-/
+valuation of a branch of `τ` whose condition is admitted.
+@isnad1 id=iff.0h4v.s5.9a9eb92ab653 from=translated src=- shape=7114641e vocab=298e8480
+-/
 theorem mem_zval_iff {S : Set P} {τ : PName P} {y : ZFSet.{u}} :
     y ∈ zval S τ ↔ ∃ i : τ.Idx, τ.conds i ∈ S ∧ y = zval S (τ.elems i) := by
   obtain ⟨ι, e, c⟩ := τ
@@ -70,7 +75,9 @@ theorem mem_zval_iff {S : Set P} {τ : PName P} {y : ZFSet.{u}} :
     · rintro ⟨i, hi, hy⟩
       exact ⟨⟨i, hi⟩, ZFSet.exact hy⟩
 
-/-- The empty name values to the empty set along every condition set.-/
+/-- The empty name values to the empty set along every condition set.
+@isnad1 id=eq.0h2v.s4.a4c96ed6b299 from=translated src=- shape=6039c595 vocab=5a377479
+-/
 @[simp] theorem zval_empty (S : Set P) : zval S (∅ : PName P) = ∅ := by
   refine (ZFSet.eq_empty _).2 fun y hy ↦ ?_
   obtain ⟨i, -, -⟩ := mem_zval_iff.1 hy
@@ -85,7 +92,9 @@ the smaller set values the name to `{∅}` and the larger to `{{∅}}` — and `
 -/
 
 /-- **Valuation is not monotone in the condition set**: growing the set can change an existing
-element rather than merely add one.-/
+element rather than merely add one.
+@isnad1 id=ex.0h0v.s5.a06c924fb416 from=translated src=- shape=3d18171d vocab=3165d0e1
+-/
 theorem exists_not_zval_subset_zval :
     ∃ (τ : PName Bool) (S S' : Set Bool), S ⊆ S' ∧ ¬zval S τ ⊆ zval S' τ := by
   refine ⟨mk PUnit (fun _ ↦ mk PUnit (fun _ ↦ ∅) fun _ ↦ true) fun _ ↦ false,

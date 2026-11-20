@@ -59,8 +59,14 @@ Membership happens to behave as `<` on the sets the construction meets, but noth
 assumes that, and an order notation would suggest arbitrary `ZFSet`s carry one.-/
 def InApproxDomain (n k : ZFSet.{u}) : Prop := k ∈ n ∨ k = n
 
+/--
+@isnad1 id=inapprox.0h1v.s2.caec99804994 from=translated src=- shape=b3bac8d8 vocab=2224ec0e
+-/
 theorem inApproxDomain_self (n : ZFSet.{u}) : InApproxDomain n n := Or.inr rfl
 
+/--
+@isnad1 id=inapprox.1h2v.s4.0fb295ee80cb from=translated src=- shape=56babf0b vocab=c619f29a
+-/
 theorem inApproxDomain_of_mem {n k : ZFSet.{u}} (h : k ∈ n) : InApproxDomain n k := Or.inl h
 
 /-- **Bounded no-junk support**: every entry is a coded pair indexed inside the domain. Not
@@ -94,7 +100,9 @@ def IsApprox (seed n t : ZFSet.{u}) : Prop :=
   ApproxSupport n t ∧ ApproxTotalFunctional n t ∧ ApproxBase seed t ∧ ApproxStep n t
 
 /-- The exact domain, as the conjunction delivers it: an index carries an entry **iff** it
-lies in the bound. Neither conjunct gives this alone.-/
+lies in the bound. Neither conjunct gives this alone.
+@isnad1 id=iff.1h4v.s5.999361ae27f8 from=translated src=- shape=af3fdcd6 vocab=b2c4a329
+-/
 theorem isApprox_mem_domain_iff {seed n t : ZFSet.{u}} (h : IsApprox seed n t) (k : ZFSet.{u}) :
     (∃ S, ZFSet.pair k S ∈ t) ↔ InApproxDomain n k := by
   refine ⟨fun ⟨S, hS⟩ ↦ ?_, fun hdom ↦ ?_⟩
@@ -116,7 +124,9 @@ Foundation free for material carriers. None of them is charged to a theory. -/
 
 section Algebra
 
-/-- A successor is not its own base. Free.-/
+/-- A successor is not its own base. Free.
+@isnad1 id=ne.0h1v.s3.ba10783007f4 from=translated src=- shape=81d18f4f vocab=b4a307d6
+-/
 theorem succ_ne_self (k : ZFSet.{u}) : insert k k ≠ k := by
   intro h
   have hk : k ∈ insert k k := ZFSet.mem_insert_iff.2 (Or.inl rfl)
@@ -124,13 +134,17 @@ theorem succ_ne_self (k : ZFSet.{u}) : insert k k ≠ k := by
   exact ZFSet.mem_irrefl k hk
 
 /-- **A successor is fresh for its own bound**: it lies outside the bounded domain. Free, and
-it is what makes the extension step's disjointness automatic rather than hypothetical.-/
+it is what makes the extension step's disjointness automatic rather than hypothetical.
+@isnad1 id=not.0h1v.s3.bee4325b9299 from=translated src=- shape=a0477240 vocab=b34051fb
+-/
 theorem succ_notMem_approxDomain (n : ZFSet.{u}) : ¬ InApproxDomain n (insert n n) := by
   rintro (hmem | heq)
   · exact ZFSet.mem_asymm hmem (ZFSet.mem_insert_iff.2 (Or.inl rfl))
   · exact succ_ne_self n heq
 
-/-- **Successor injectivity.** Free.-/
+/-- **Successor injectivity.** Free.
+@isnad1 id=eq.1h2v.s4.e50be50b8d0e from=translated src=- shape=8331cf40 vocab=b4a307d6
+-/
 theorem succ_inj {k k' : ZFSet.{u}} (h : insert k k = insert k' k') : k = k' := by
   by_contra hne
   have hk : k ∈ insert k' k' := by
@@ -145,14 +159,18 @@ theorem succ_inj {k k' : ZFSet.{u}} (h : insert k k = insert k' k') : k = k' := 
     · exact hne rfl
     · exact ZFSet.mem_asymm hkk' hk'k
 
-/-- The successor domain, unfolded.-/
+/-- The successor domain, unfolded.
+@isnad1 id=iff.0h2v.s4.ca1d2dc13750 from=translated src=- shape=49605036 vocab=b34051fb
+-/
 theorem inApproxDomain_succ_iff {n k : ZFSet.{u}} :
     InApproxDomain (insert n n) k ↔ InApproxDomain n k ∨ k = insert n n := by
   unfold InApproxDomain
   rw [ZFSet.mem_insert_iff]
   tauto
 
-/-- **Values are determined inside a trace.**-/
+/-- **Values are determined inside a trace.**
+@isnad1 id=eq.4h5v.s5.ffddb1fe174e from=translated src=- shape=b1ea416b vocab=38ff80c2
+-/
 theorem approx_value_unique {n t k S U : ZFSet.{u}} (hTF : ApproxTotalFunctional n t)
     (hdom : InApproxDomain n k) (hS : ZFSet.pair k S ∈ t) (hU : ZFSet.pair k U ∈ t) :
     S = U := by
@@ -162,20 +180,26 @@ theorem approx_value_unique {n t k S U : ZFSet.{u}} (hTF : ApproxTotalFunctional
 /-- **The consumer-earned `∅` fact.** `∅` lies in the domain of any approximation — support
 applied to the base entry gives it. This is the fact deliberately left undeclared in
 `Forcing/Material/Omega.lean`, appearing here where it is actually used and priced at nothing:
-it is a consequence of the clauses, not an input to them.-/
+it is a consequence of the clauses, not an input to them.
+@isnad1 id=inapprox.1h3v.s4.2cf79474e98c from=translated src=- shape=9fed14d7 vocab=50ce10be
+-/
 theorem approx_empty_inApproxDomain {seed n t : ZFSet.{u}} (h : IsApprox seed n t) :
     InApproxDomain n (∅ : ZFSet.{u}) := by
   obtain ⟨k, S, hpair, hdom⟩ := h.1 _ h.2.2.1
   obtain ⟨rfl, -⟩ := ZFSet.pair_inj.1 hpair
   exact hdom
 
-/-- **Reading the base value.**-/
+/-- **Reading the base value.**
+@isnad1 id=eq.2h4v.s4.10d3887b07a1 from=translated src=- shape=3b17bf0e vocab=702ddf55
+-/
 theorem approx_base_value {seed n t S : ZFSet.{u}} (h : IsApprox seed n t)
     (hS : ZFSet.pair (∅ : ZFSet.{u}) S ∈ t) : S = seed :=
   approx_value_unique h.2.1 (approx_empty_inApproxDomain h) hS h.2.2.1
 
 /-- **The base trace.** The singleton `{⟨∅, seed⟩}` is an approximation at bound `∅`. Kept
-beside `isApprox_extend` so that both the base and the successor algebra stay ground-free.-/
+beside `isApprox_extend` so that both the base and the successor algebra stay ground-free.
+@isnad1 id=isapprox.1h2v.s4.87e58a140d99 from=translated src=- shape=6cbed534 vocab=702ddf55
+-/
 theorem isApprox_base {seed t : ZFSet.{u}}
     (ht : ∀ e, e ∈ t ↔ e = ZFSet.pair (∅ : ZFSet.{u}) seed) :
     IsApprox seed (∅ : ZFSet.{u}) t := by
@@ -189,7 +213,9 @@ theorem isApprox_base {seed t : ZFSet.{u}}
   · exact absurd hk (ZFSet.notMem_empty _)
 
 /-- **Extension by one step.** The new bound's value is the general union of the old bound's,
-and no hypothesis of freshness is needed — `succ_notMem_approxDomain` supplies it.-/
+and no hypothesis of freshness is needed — `succ_notMem_approxDomain` supplies it.
+@isnad1 id=isapprox.3h5v.s6.3e043ee627e6 from=translated src=- shape=583c8c14 vocab=bab2901b
+-/
 theorem isApprox_extend {seed n t S t' : ZFSet.{u}} (h : IsApprox seed n t)
     (hS : ZFSet.pair n S ∈ t)
     (ht' : ∀ e, e ∈ t' ↔ e ∈ t ∨ e = ZFSet.pair (insert n n) (ZFSet.sUnion S)) :
@@ -260,7 +286,9 @@ def PrefixAgree (N t u n : ZFSet.{u}) : Prop :=
 
 /-- **Extensionality from agreement.** Two approximations over the same seed and bound that
 agree across the bound's domain are equal as sets — support locates every entry inside the
-domain, and totality on the other side produces the matching entry.-/
+domain, and totality on the other side produces the matching entry.
+@isnad1 id=eq.3h4v.s5.fd91b18b47ad from=translated src=- shape=8444abb2 vocab=634476b8
+-/
 theorem isApprox_eq_of_prefixAgree {seed N t u : ZFSet.{u}}
     (ht : IsApprox seed N t) (hu : IsApprox seed N u)
     (hag : ∀ k, InApproxDomain N k → ValuesAgreeAt t u k) : t = u := by
@@ -275,7 +303,9 @@ theorem isApprox_eq_of_prefixAgree {seed N t u : ZFSet.{u}}
     exact hS
 
 /-- The base of the prefix induction: the only index in `∅`'s domain is `∅` itself, where both
-traces read `seed`.-/
+traces read `seed`.
+@isnad1 id=prefixag.2h4v.s4.f9cf64045f95 from=translated src=- shape=298127e4 vocab=b75f25d9
+-/
 theorem prefixAgree_empty {seed N t u : ZFSet.{u}}
     (ht : IsApprox seed N t) (hu : IsApprox seed N u) :
     PrefixAgree N t u (∅ : ZFSet.{u}) := by
@@ -286,7 +316,9 @@ theorem prefixAgree_empty {seed N t u : ZFSet.{u}}
 
 /-- The successor step of the prefix induction. `hNtrans` is where transitivity of the bound
 is consumed: it is what returns `n` to the bound's domain from `succ n`, so the induction
-hypothesis applies.-/
+hypothesis applies.
+@isnad1 id=prefixag.4h5v.s5.172b47e604c7 from=translated src=- shape=e06b95e4 vocab=06d50bfa
+-/
 theorem prefixAgree_succ {seed N t u n : ZFSet.{u}}
     (ht : IsApprox seed N t) (hu : IsApprox seed N u) (hNtrans : N.IsTransitive)
     (hprev : PrefixAgree N t u n) : PrefixAgree N t u (insert n n) := by

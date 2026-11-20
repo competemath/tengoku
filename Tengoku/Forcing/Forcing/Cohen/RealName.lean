@@ -56,12 +56,16 @@ consumer of `graphCode`, sharing the representation with `cohenConditionCode`.-/
 def realCode (c : ℕ → Bool) : ZFSet.{0} :=
   graphCode fun n ↦ some (c n)
 
-/-- The membership characterization for real codes: total, so every coordinate is decided.-/
+/-- The membership characterization for real codes: total, so every coordinate is decided.
+@isnad1 id=iff.0h3v.s5.06b76ed92d0d from=translated src=- shape=8001ee05 vocab=c84a27b5
+-/
 theorem pair_mem_realCode_iff {c : ℕ → Bool} {n : ℕ} {b : Bool} :
     ZFSet.pair (natCode n) (boolCode b) ∈ realCode c ↔ c n = b :=
   pair_mem_graphCode_iff.trans (by simp)
 
-/-- The real code is faithful.-/
+/-- The real code is faithful.
+@isnad1 id=injectiv.0h0v.s2.58a58cd9657a from=translated src=- shape=db2d4fff vocab=4f157939
+-/
 theorem realCode_injective : Function.Injective realCode := fun _ _ h ↦
   funext fun n ↦ Option.some.inj (congrFun (graphCode_injective h) n)
 
@@ -71,10 +75,16 @@ theorem realCode_injective : Function.Injective realCode := fun _ _ h ↦
 def singleCond (n : ℕ) (b : Bool) : Cond :=
   (∅ : Cond).insert n b
 
+/--
+@isnad1 id=eq.0h2v.s4.a44172352c6a from=translated src=- shape=cfdcb90b vocab=9a75035b
+-/
 @[simp] theorem lookup_singleCond_self {n : ℕ} {b : Bool} :
     (singleCond n b).lookup n = some b :=
   lookup_insert_self
 
+/--
+@isnad1 id=eq.1h3v.s4.92879c7a3d5b from=translated src=- shape=dde43774 vocab=af56fb27
+-/
 theorem lookup_singleCond_of_ne {m n : ℕ} {b : Bool} (h : m ≠ n) :
     (singleCond n b).lookup m = none := by
   rw [singleCond, lookup_insert_of_ne h, lookup_empty]
@@ -82,7 +92,9 @@ theorem lookup_singleCond_of_ne {m n : ℕ} {b : Bool} (h : m ≠ n) :
 /-- **The upward-closure bridge**: a filter contains the single-coordinate condition exactly
 when its partial union decides that coordinate that way. The forward direction is a witness;
 the reverse is upward closure — any member deciding the coordinate is a strengthening of the
-single-coordinate condition.-/
+single-coordinate condition.
+@isnad1 id=iff.0h3v.s5.6f8ffe7ae885 from=translated src=- shape=d2238ff8 vocab=fd5ca4ea
+-/
 theorem singleCond_mem_iff {G : PFilter Cond} {n : ℕ} {b : Bool} :
     singleCond n b ∈ G ↔ genericFun G n = some b := by
   rw [genericFun_eq_some_iff]
@@ -104,7 +116,9 @@ def cohenRealName : PName Cond :=
     fun x ↦ singleCond x.1 x.2
 
 /-- **The strong partial-union theorem**: along every forcing filter — no genericity, no
-totality — the Cohen-real name values to the graph code of the partial union.-/
+totality — the Cohen-real name values to the graph code of the partial union.
+@isnad1 id=eq.0h1v.s5.986fb6a7af9c from=translated src=- shape=4810c06e vocab=95bc54fa
+-/
 theorem zval_cohenRealName (G : PFilter Cond) :
     zval (G : Set Cond) cohenRealName = graphCode (genericFun G) := by
   ext y
@@ -124,7 +138,9 @@ theorem zval_cohenRealName (G : PFilter Cond) :
     rfl
 
 /-- The total specialization: a filter with a total union values the Cohen-real name to the
-real code of its extracted real. This is the object the material adapter internalizes.-/
+real code of its extracted real. This is the object the material adapter internalizes.
+@isnad1 id=eq.1h1v.s5.122cc960fbb8 from=translated src=- shape=e16ceaeb vocab=09ac3252
+-/
 theorem zval_cohenRealName_totalUnion {G : PFilter Cond}
     (h : ∀ n, (genericFun G n).isSome) :
     zval (G : Set Cond) cohenRealName = realCode (totalUnion G h) := by

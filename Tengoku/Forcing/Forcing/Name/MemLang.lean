@@ -34,11 +34,16 @@ def evalTerm {β : Type v} {P : Type u} (v : β → PName P) : memLang.Term β �
   | .var x => v x
   | .func f _ => f.elim
 
+/--
+@isnad1 id=eq.0h4v.s4.ce0b4d2a060d from=translated src=- shape=c6b7de0d vocab=31a85240
+-/
 @[simp] theorem evalTerm_var {β : Type v} {P : Type u} (v : β → PName P) (x : β) :
     evalTerm v (.var x) = v x :=
   rfl
 
-/-- Values of function-free terms stay inside any family containing the assignment.-/
+/-- Values of function-free terms stay inside any family containing the assignment.
+@isnad1 id=mem.1h5v.s5.1e8304e926bc from=translated src=- shape=e0e69e39 vocab=38326951
+-/
 theorem evalTerm_mem {β : Type v} {P : Type u} {𝒩 : Set (PName P)} {v : β → PName P}
     (hv : ∀ x, v x ∈ 𝒩) : ∀ t : memLang.Term β, evalTerm v t ∈ 𝒩
   | .var x => hv x

@@ -84,7 +84,9 @@ variable {M : MaterialCarrier.{u}} {P : Type u} [Preorder P]
 variable (Pres : InternalForcingPresentation M P)
 
 /-- Individual condition codes belong to the carrier: derived from transitivity, not
-assumed.-/
+assumed.
+@isnad1 id=mem.0h4v.s4.c3dbbeae56e3 from=translated src=- shape=da6837ce vocab=c538176f
+-/
 theorem code_mem_carrier (p : P) : ZFSet.mk (Pres.conditionCode.repr p) ∈ M :=
   M.mem_trans (Pres.code_mem p) Pres.conditionSet.property
 
@@ -97,7 +99,9 @@ noncomputable def conditionEquiv : P ≃ {x : ZFSet.{u} // x ∈ (Pres.condition
     ⟨fun _ _ h ↦ Pres.conditionCode.injective_mk (congrArg Subtype.val h),
       fun x ↦ (Pres.code_surjective x.1 x.2).imp fun _ hp ↦ Subtype.ext hp.symm⟩
 
-/-- The equivalence is the coding, on the nose.-/
+/-- The equivalence is the coding, on the nose.
+@isnad1 id=eq.0h4v.s7.7fcc32994b08 from=translated src=- shape=ca2a6fba vocab=57764024
+-/
 @[simp] theorem conditionEquiv_apply (p : P) :
     (Pres.conditionEquiv p : ZFSet.{u}) = ZFSet.mk (Pres.conditionCode.repr p) :=
   rfl
@@ -109,7 +113,9 @@ file.-/
 def externalizeSubset (d : ZFSet.{u}) : Set P :=
   {p | ZFSet.mk (Pres.conditionCode.repr p) ∈ d}
 
-/-- The externalization membership law, definitionally.-/
+/-- The externalization membership law, definitionally.
+@isnad1 id=iff.0h5v.s5.6ef9024eeb4f from=translated src=- shape=c905f5f2 vocab=2f826d0e
+-/
 @[simp] theorem mem_externalizeSubset {d : ZFSet.{u}} {p : P} :
     p ∈ Pres.externalizeSubset d ↔ ZFSet.mk (Pres.conditionCode.repr p) ∈ d :=
   Iff.rfl
@@ -126,6 +132,9 @@ variable {Pres}
 def InternalSubset.externalize (d : Pres.InternalSubset) : Set P :=
   Pres.externalizeSubset (d.1 : ZFSet.{u})
 
+/--
+@isnad1 id=iff.0h5v.s7.0eeede5ddf9b from=translated src=- shape=8b4c44be vocab=d92e7907
+-/
 @[simp] theorem InternalSubset.mem_externalize {d : Pres.InternalSubset} {p : P} :
     p ∈ d.externalize ↔ ZFSet.mk (Pres.conditionCode.repr p) ∈ (d.1 : ZFSet.{u}) :=
   Iff.rfl

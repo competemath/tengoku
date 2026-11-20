@@ -72,6 +72,9 @@ def boolCode : Bool ↪ ZFSet.{0} where
 def pairRepr (x y : PSet.{0}) : PSet.{0} :=
   {({x} : PSet), ({x, y} : PSet)}
 
+/--
+@isnad1 id=eq.0h2v.s3.06d41d8e34cd from=translated src=- shape=4b8415a6 vocab=6138fd11
+-/
 theorem mk_pairRepr (x y : PSet.{0}) :
     ZFSet.mk (pairRepr x y) = ZFSet.pair (ZFSet.mk x) (ZFSet.mk y) :=
   rfl
@@ -95,7 +98,9 @@ graphs).-/
 def graphCode (f : ℕ → Option Bool) : ZFSet.{0} :=
   ZFSet.mk (graphRepr f)
 
-/-- The full membership description of a graph code.-/
+/-- The full membership description of a graph code.
+@isnad1 id=iff.0h2v.s6.75da67e7b03d from=translated src=- shape=a3ae4e63 vocab=60ef6531
+-/
 theorem mem_graphCode_iff {f : ℕ → Option Bool} {y : ZFSet.{0}} :
     y ∈ graphCode f ↔
       ∃ n b, f n = some b ∧ y = ZFSet.pair (natCode n) (boolCode b) := by
@@ -112,7 +117,9 @@ theorem mem_graphCode_iff {f : ℕ → Option Bool} {y : ZFSet.{0}} :
 
 /-- **The membership characterization** — the real payoff of the structural coding: the coded
 graph decides membership of a coded pair exactly as the partial function decides the
-coordinate.-/
+coordinate.
+@isnad1 id=iff.0h3v.s5.db8e1dc4cd22 from=translated src=- shape=e1555029 vocab=60ef6531
+-/
 theorem pair_mem_graphCode_iff {f : ℕ → Option Bool} {n : ℕ} {b : Bool} :
     ZFSet.pair (natCode n) (boolCode b) ∈ graphCode f ↔ f n = some b := by
   refine mem_graphCode_iff.trans ⟨?_, fun h ↦ ⟨n, b, h, rfl⟩⟩
@@ -120,7 +127,9 @@ theorem pair_mem_graphCode_iff {f : ℕ → Option Bool} {n : ℕ} {b : Bool} :
   obtain ⟨hn, hb⟩ := ZFSet.pair_inj.1 he
   rwa [natCode.injective hn, boolCode.injective hb]
 
-/-- The graph code is faithful: the partial function is recovered from pair membership.-/
+/-- The graph code is faithful: the partial function is recovered from pair membership.
+@isnad1 id=injectiv.0h0v.s2.4995ef75928e from=translated src=- shape=d3be4fe0 vocab=2225da8e
+-/
 theorem graphCode_injective : Function.Injective graphCode := by
   intro f g h
   funext n
@@ -138,19 +147,25 @@ def cohenConditionCode : ConditionCode Cond where
     intro p q h
     exact ext_lookup (congrFun (graphCode_injective (show graphCode p.lookup = _ from h)))
 
-/-- The condition code is the graph code of the lookup function, on the nose.-/
+/-- The condition code is the graph code of the lookup function, on the nose.
+@isnad1 id=eq.0h1v.s4.dd029a2ec4e8 from=translated src=- shape=3bd56111 vocab=ef823291
+-/
 theorem mk_repr_eq_graphCode (p : Cond) :
     ZFSet.mk (cohenConditionCode.repr p) = graphCode p.lookup :=
   rfl
 
-/-- The full membership description of the condition code.-/
+/-- The full membership description of the condition code.
+@isnad1 id=iff.0h2v.s6.abe271a49eec from=translated src=- shape=31bafcfa vocab=34582170
+-/
 theorem mem_cohenConditionCode_iff {p : Cond} {y : ZFSet.{0}} :
     y ∈ ZFSet.mk (cohenConditionCode.repr p) ↔
       ∃ n b, p.lookup n = some b ∧ y = ZFSet.pair (natCode n) (boolCode b) :=
   mem_graphCode_iff
 
 /-- The membership characterization for conditions: the coded graph decides membership of a
-coded pair exactly as the condition decides the coordinate.-/
+coded pair exactly as the condition decides the coordinate.
+@isnad1 id=iff.0h3v.s5.b72d6b8e9c37 from=translated src=- shape=76b15680 vocab=34582170
+-/
 theorem pair_mem_cohenConditionCode_iff {p : Cond} {n : ℕ} {b : Bool} :
     ZFSet.pair (natCode n) (boolCode b) ∈ ZFSet.mk (cohenConditionCode.repr p) ↔
       p.lookup n = some b :=

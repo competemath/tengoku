@@ -52,31 +52,42 @@ parameterized by the family: the unrestricted image collapses
 def valuationImage (N : Set (PName P)) (S : Set P) : Set ZFSet.{u} :=
   zval S '' N
 
+/--
+@isnad1 id=mem.1h4v.s5.901f78685763 from=translated src=- shape=4741bd03 vocab=6bfe3c02
+-/
 theorem mem_valuationImage (hn : τ ∈ N) : zval S τ ∈ valuationImage N S :=
   Set.mem_image_of_mem _ hn
 
 /-- Membership via a **semantic representative**: if some name of the family values to `x`,
 then `x` lands in the image. The workhorse of the material layer's representative discipline —
 membership demands are stated up to valuation, never as literal membership of a distinguished
-name such as `checkZF x` or `genName κ`.-/
+name such as `checkZF x` or `genName κ`.
+@isnad1 id=mem.2h5v.s5.2c9d029598cd from=translated src=- shape=56169acf vocab=6bfe3c02
+-/
 theorem mem_valuationImage_of_mem_of_zval_eq (hn : τ ∈ N) {x : ZFSet.{u}}
     (h : zval S τ = x) : x ∈ valuationImage N S :=
   h ▸ mem_valuationImage hn
 
 /-- The image is monotone in the *family*. Contrast: valuation is **not** monotone in the
-*condition set* (`exists_not_zval_subset_zval`).-/
+*condition set* (`exists_not_zval_subset_zval`).
+@isnad1 id=le.1h4v.s5.92f822e3f9c8 from=translated src=- shape=68e55c43 vocab=32717844
+-/
 theorem valuationImage_mono (h : N ⊆ N') : valuationImage N S ⊆ valuationImage N' S :=
   Set.image_mono h
 
 /-- The ground-copy boundary, `ZFSet` form: a set whose check name belongs to the family lands
-in the image with its identity intact.-/
+in the image with its identity intact.
+@isnad1 id=mem.2h4v.s5.6b1009324d91 from=translated src=- shape=e60260ff vocab=a75b8926
+-/
 theorem mem_valuationImage_of_checkZF_mem [Top P] (hS : (⊤ : P) ∈ S) {x : ZFSet.{u}}
     (hx : checkZF x ∈ N) :
     x ∈ valuationImage N S := by
   have h := mem_valuationImage (S := S) hx
   rwa [zval_checkZF hS] at h
 
-/-- The ground-copy boundary, `PSet` form.-/
+/-- The ground-copy boundary, `PSet` form.
+@isnad1 id=mem.2h4v.s5.f42fd75a1702 from=translated src=- shape=17b016c6 vocab=54471964
+-/
 theorem mk_mem_valuationImage_of_check_mem [Top P] (hS : (⊤ : P) ∈ S) {x : PSet.{u}}
     (hx : check x ∈ N) :
     ZFSet.mk x ∈ valuationImage N S := by
@@ -85,7 +96,9 @@ theorem mk_mem_valuationImage_of_check_mem [Top P] (hS : (⊤ : P) ∈ S) {x : P
 
 /-- The generic's code lands in the image — under only the explicit hypothesis that its name
 belongs to the family. **No `⊤ ∈ S`**: membership in the image is separate from faithfulness,
-which is what the additional `⊤ ∈ S` buys via `mem_zval_genName_iff`.-/
+which is what the additional `⊤ ∈ S` buys via `mem_zval_genName_iff`.
+@isnad1 id=mem.1h4v.s5.89ed26c42c9b from=translated src=- shape=dd1ba179 vocab=85ddcd4f
+-/
 theorem zval_genName_mem_valuationImage [Top P] {κ : ConditionCode P}
     (hg : genName κ ∈ N) :
     zval S (genName κ) ∈ valuationImage N S :=
@@ -93,12 +106,16 @@ theorem zval_genName_mem_valuationImage [Top P] {κ : ConditionCode P}
 
 /-- **The failed construction, certified.** Allowing every name makes the valuation image the
 entire ambient universe, along any condition set containing `⊤`: every set has a check name.
-Restricting which names belong to the ground is what makes a genuine extension possible.-/
+Restricting which names belong to the ground is what makes a genuine extension possible.
+@isnad1 id=eq.1h2v.s4.e0698f131c70 from=translated src=- shape=f8914954 vocab=ee1cfd53
+-/
 theorem valuationImage_univ_eq_univ [Top P] {S : Set P} (hS : (⊤ : P) ∈ S) :
     valuationImage (Set.univ : Set (PName P)) S = Set.univ :=
   Set.eq_univ_of_forall fun _ ↦ mem_valuationImage_of_checkZF_mem hS trivial
 
-/-- The filter form of the collapse, via `Order.PFilter.top_mem`.-/
+/-- The filter form of the collapse, via `Order.PFilter.top_mem`.
+@isnad1 id=eq.0h2v.s5.bca2bc5296a2 from=translated src=- shape=d18f7d18 vocab=48b643ff
+-/
 theorem valuationImage_univ_eq_univ_pfilter [Preorder P] [OrderTop P] (G : Order.PFilter P) :
     valuationImage (Set.univ : Set (PName P)) (G : Set P) = Set.univ :=
   valuationImage_univ_eq_univ G.top_mem

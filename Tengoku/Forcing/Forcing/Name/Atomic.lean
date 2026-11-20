@@ -99,18 +99,25 @@ nonrecursive public wrapper of the kernel.-/
 def ForcesMem (p : P) (τ σ : PName P) : Prop :=
   IsDenseBelow (memWitness τ σ) p
 
+/--
+@isnad1 id=iff.0h4v.s5.d1ac09a332d3 from=translated src=- shape=6038d205 vocab=5d645c8c
+-/
 theorem mem_memWitness_iff {q : P} :
     q ∈ memWitness τ σ ↔ ∃ i : σ.Idx, q ≤ σ.conds i ∧ ForcesEq q τ (σ.elems i) := by
   change MemWitness q τ σ ↔ _
   rw [MemWitness]
 
-/-- The named unfolding law for membership. Deliberately not `@[simp]`.-/
+/-- The named unfolding law for membership. Deliberately not `@[simp]`.
+@isnad1 id=iff.0h4v.s5.cfca659603d1 from=translated src=- shape=200d948c vocab=e4395f84
+-/
 theorem forcesMem_iff :
     ForcesMem p τ σ ↔
       IsDenseBelow {q | ∃ i : σ.Idx, q ≤ σ.conds i ∧ ForcesEq q τ (σ.elems i)} p := by
   simp only [ForcesMem, memWitness, MemWitness]
 
-/-- The named unfolding law for equality. Deliberately not `@[simp]`.-/
+/-- The named unfolding law for equality. Deliberately not `@[simp]`.
+@isnad1 id=iff.0h4v.s6.901ae0e96fe8 from=translated src=- shape=2361240f vocab=b0647046
+-/
 theorem forcesEq_iff :
     ForcesEq p τ σ ↔
       (∀ i : τ.Idx, ∀ q ≤ p, q ≤ τ.conds i → ForcesMem q (τ.elems i) σ) ∧
@@ -118,27 +125,38 @@ theorem forcesEq_iff :
   rw [ForcesEq]
   exact Iff.rfl
 
-/-- **Persistence** for membership: pullback stability of `IsDenseBelow`.-/
+/-- **Persistence** for membership: pullback stability of `IsDenseBelow`.
+@isnad1 id=forcesme.2h5v.s5.d2ef4fcf1c8d from=translated src=- shape=14c3c762 vocab=e4aee0a0
+-/
 theorem ForcesMem.mono (h : ForcesMem p τ σ) (hqp : q ≤ p) : ForcesMem q τ σ :=
   IsDenseBelow.mono_condition h hqp
 
-/-- **Persistence** for equality: narrow the quantifiers.-/
+/-- **Persistence** for equality: narrow the quantifiers.
+@isnad1 id=forceseq.2h5v.s5.8e135c7e22cd from=translated src=- shape=14c3c762 vocab=732fae6c
+-/
 theorem ForcesEq.mono (h : ForcesEq p τ σ) (hqp : q ≤ p) : ForcesEq q τ σ := by
   rw [forcesEq_iff] at h ⊢
   exact ⟨fun i r hrq hri ↦ h.1 i r (hrq.trans hqp) hri,
     fun j r hrq hrj ↦ h.2 j r (hrq.trans hqp) hrj⟩
 
 /-- **Symmetry** of atomic equality — the orientation sanity check: the two inclusions of the
-clause swap.-/
+clause swap.
+@isnad1 id=forceseq.1h4v.s4.392a54ba8d97 from=translated src=- shape=dc031dd4 vocab=1df87986
+-/
 theorem ForcesEq.symm (h : ForcesEq p τ σ) : ForcesEq p σ τ := by
   rw [forcesEq_iff] at h ⊢
   exact ⟨h.2, h.1⟩
 
+/--
+@isnad1 id=iff.0h4v.s4.5aec5de7819a from=translated src=- shape=91db3c66 vocab=1df87986
+-/
 theorem forcesEq_comm : ForcesEq p τ σ ↔ ForcesEq p σ τ :=
   ⟨.symm, .symm⟩
 
 /-- **Reflexivity** of atomic equality, by structural induction — certifying the clause
-shape: each activated branch of `τ` is densely forced equal to itself inside `τ`.-/
+shape: each activated branch of `τ` is densely forced equal to itself inside `τ`.
+@isnad1 id=forceseq.0h3v.s4.707fb7a162af from=translated src=- shape=66e8874b vocab=1df87986
+-/
 theorem forcesEq_refl : ∀ (τ : PName P) (p : P), ForcesEq p τ τ := by
   intro τ
   induction τ with

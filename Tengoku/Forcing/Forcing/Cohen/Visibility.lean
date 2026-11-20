@@ -83,26 +83,34 @@ structure Sees (M : CohenVisibilityContext) : Prop where
   visible_diagReq : ∀ x ∈ M.designatedReals, M.Visible (diagReq x).support
 
 /-- Under the obligations, each coordinate requirement is a visible dense-open test. A thin
-specialization of the generic bridge `Requirement.mem_visibleDenseOpen`.-/
+specialization of the generic bridge `Requirement.mem_visibleDenseOpen`.
+@isnad1 id=mem.1h2v.s4.c2e783c1cb10 from=translated src=- shape=c56d08d6 vocab=8325c843
+-/
 theorem Sees.coordReq_mem_visibleDenseOpen (hM : M.Sees) (n : ℕ) :
     (coordReq n).support ∈ M.visibleDenseOpen :=
   (coordReq n).mem_visibleDenseOpen (hM.visible_coordReq n)
 
 /-- Under the bridge, the diagonal requirement of each designated real is a visible dense-open
-test. A thin specialization of the generic bridge `Requirement.mem_visibleDenseOpen`.-/
+test. A thin specialization of the generic bridge `Requirement.mem_visibleDenseOpen`.
+@isnad1 id=mem.2h2v.s5.185e91ba6f9f from=translated src=- shape=b257a3ef vocab=2f8f72af
+-/
 theorem Sees.diagReq_mem_visibleDenseOpen (hM : M.Sees) {x : ℕ → Bool}
     (hx : x ∈ M.designatedReals) :
     (diagReq x).support ∈ M.visibleDenseOpen :=
   (diagReq x).mem_visibleDenseOpen (hM.visible_diagReq x hx)
 
 /-- A filter generic over `M` meets every coordinate requirement. A thin specialization of the
-generic `GenericOver.meets_requirement`.-/
+generic `GenericOver.meets_requirement`.
+@isnad1 id=meets.2h3v.s5.f72771fdf7eb from=translated src=- shape=00b1f45b vocab=5c969e9f
+-/
 theorem Sees.meets_coordReq (hM : M.Sees) (hG : M.GenericOver G) (n : ℕ) :
     Meets G (coordReq n).support :=
   hG.meets_requirement (hM.visible_coordReq n)
 
 /-- A filter generic over `M` meets the diagonal requirement of every designated real. A thin
-specialization of the generic `GenericOver.meets_requirement`.-/
+specialization of the generic `GenericOver.meets_requirement`.
+@isnad1 id=meets.3h3v.s5.100078b5bbed from=translated src=- shape=8300c1ed vocab=d393a227
+-/
 theorem Sees.meets_diagReq (hM : M.Sees) (hG : M.GenericOver G) {x : ℕ → Bool}
     (hx : x ∈ M.designatedReals) :
     Meets G (diagReq x).support :=
@@ -112,7 +120,9 @@ theorem Sees.meets_diagReq (hM : M.Sees) (hG : M.GenericOver G) {x : ℕ → Boo
 def full (R : Set (ℕ → Bool)) : CohenVisibilityContext :=
   ⟨VisibilityContext.full Cond, R⟩
 
-/-- The full context satisfies the visibility obligations for any choice of designated reals.-/
+/-- The full context satisfies the visibility obligations for any choice of designated reals.
+@isnad1 id=sees.0h1v.s3.6ec56279279b from=translated src=- shape=00489fff vocab=373969bf
+-/
 theorem sees_full (R : Set (ℕ → Bool)) : (full R).Sees :=
   ⟨fun _ ↦ VisibilityContext.visible_full, fun _ _ ↦ VisibilityContext.visible_full⟩
 

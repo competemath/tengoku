@@ -50,13 +50,18 @@ mathlib's `IsMaxAntichain` at the `Compatible` relation.-/
 abbrev IsMaximalAntichain (A : Set P) : Prop :=
   IsMaxAntichain Compatible A
 
+/--
+@isnad1 id=iff.0h2v.s4.473adca3b6fd from=translated src=- shape=f5a701d4 vocab=bfc25aff
+-/
 theorem isForcingAntichain_iff_pairwise_incompatible :
     IsForcingAntichain A ↔ A.Pairwise Incompatible :=
   .rfl
 
 /-- Adjoining a condition incompatible with every member of an antichain yields an antichain.
 (Named without dot notation: `IsForcingAntichain` is an abbrev, so `hA.insert` would resolve to
-mathlib's `IsAntichain.insert`, which takes both one-sided hypotheses.)-/
+mathlib's `IsAntichain.insert`, which takes both one-sided hypotheses.)
+@isnad1 id=isforcin.2h3v.s5.bb768a900ed6 from=translated src=- shape=6ea58d48 vocab=392da27b
+-/
 theorem isForcingAntichain_insert (hA : IsForcingAntichain A)
     (h : ∀ a ∈ A, Incompatible p a) : IsForcingAntichain (insert p A) := by
   intro a ha b hb hab
@@ -69,7 +74,9 @@ theorem isForcingAntichain_insert (hA : IsForcingAntichain A)
     · exact hA ha hb hab
 
 /-- The predensity characterization of maximality: a set is a maximal antichain iff it is an
-antichain and predense.-/
+antichain and predense.
+@isnad1 id=iff.0h2v.s4.0758eccb0c14 from=translated src=- shape=74baf24e vocab=4d28a971
+-/
 theorem isMaximalAntichain_iff : IsMaximalAntichain A ↔ IsForcingAntichain A ∧ IsPredense A := by
   constructor
   · rintro ⟨hA, hmax⟩
@@ -86,7 +93,9 @@ theorem isMaximalAntichain_iff : IsMaximalAntichain A ↔ IsForcingAntichain A �
     · exact hab ▸ haA
     · exact absurd hba (ht hb (hAt haA) hab)
 
-/-- Every antichain extends to a maximal antichain (Zorn).-/
+/-- Every antichain extends to a maximal antichain (Zorn).
+@isnad1 id=ex.1h2v.s4.f5fef5548ed5 from=translated src=- shape=4e0ca074 vocab=6c73eb46
+-/
 theorem IsForcingAntichain.exists_isMaximalAntichain (hA : IsForcingAntichain A) :
     ∃ B, A ⊆ B ∧ IsMaximalAntichain B := by
   have H : ∀ c ⊆ {C : Set P | IsForcingAntichain C}, IsChain (· ⊆ ·) c → c.Nonempty →
@@ -101,7 +110,9 @@ theorem IsForcingAntichain.exists_isMaximalAntichain (hA : IsForcingAntichain A)
   exact ⟨B, hAB, hBmax.1, fun t ht hBt ↦ hBt.antisymm (hBmax.2 ht hBt)⟩
 
 /-- Every dense set contains a maximal antichain: refine the dense set by an antichain maximal
-among the antichains inside it, then use density to upgrade to global maximality.-/
+among the antichains inside it, then use density to upgrade to global maximality.
+@isnad1 id=ex.1h2v.s4.e6a8832dcf7e from=translated src=- shape=2a93bbd5 vocab=96cb2bbe
+-/
 theorem IsDense.exists_isMaximalAntichain_subset (hD : IsDense D) :
     ∃ A ⊆ D, IsMaximalAntichain A := by
   have H : ∀ c ⊆ {C : Set P | IsForcingAntichain C ∧ C ⊆ D}, IsChain (· ⊆ ·) c → c.Nonempty →
@@ -127,7 +138,9 @@ theorem IsDense.exists_isMaximalAntichain_subset (hD : IsDense D) :
       (Set.subset_insert q A)
     exact absurd (hgrow (Set.mem_insert q A)) hqA
 
-/-- The downward closure of a predense set is dense.-/
+/-- The downward closure of a predense set is dense.
+@isnad1 id=isdense.1h2v.s5.5d65d4a0424e from=translated src=- shape=6bf7a1d2 vocab=042dc2fc
+-/
 theorem IsPredense.isDense_lowerClosure (h : IsPredense A) :
     IsDense (↑(lowerClosure A) : Set P) := by
   intro p
@@ -135,7 +148,9 @@ theorem IsPredense.isDense_lowerClosure (h : IsPredense A) :
   exact ⟨r, mem_lowerClosure.2 ⟨q, hqA, hrq⟩, hrp⟩
 
 /-- The downward closure of a maximal antichain is dense. Together with
-`Forcing.meets_lowerClosure`, a filter meets a maximal antichain iff it meets this dense set.-/
+`Forcing.meets_lowerClosure`, a filter meets a maximal antichain iff it meets this dense set.
+@isnad1 id=isdense.1h2v.s5.d92c4b48ec3a from=translated src=- shape=6bf7a1d2 vocab=30f22725
+-/
 theorem IsMaximalAntichain.isDense_lowerClosure (h : IsMaximalAntichain A) :
     IsDense (↑(lowerClosure A) : Set P) :=
   (isMaximalAntichain_iff.1 h).2.isDense_lowerClosure

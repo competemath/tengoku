@@ -82,41 +82,55 @@ def derivedContext : CohenVisibilityContext where
   designatedReals := {c | realCode c ∈ M}
 
 /-- The underlying context **is** the presentation's general derived context — one derived
-context in the library, not two extensionally identical ones.-/
+context in the library, not two extensionally identical ones.
+@isnad1 id=eq.0h2v.s5.fdd8babe0e33 from=translated src=- shape=146666fe vocab=ad29bc00
+-/
 theorem derivedContext_toVisibilityContext :
     C.derivedContext.toVisibilityContext = C.forcing.derivedContext :=
   rfl
 
-/-- Visibility in the derived context is exactly internal-subset externalization.-/
+/-- Visibility in the derived context is exactly internal-subset externalization.
+@isnad1 id=iff.0h3v.s5.03e3566aab1e from=translated src=- shape=8dc6679c vocab=95c1d2ed
+-/
 theorem visible_derivedContext_iff {D : Set Cond} :
     C.derivedContext.Visible D ↔ ∃ d : C.forcing.InternalSubset, d.externalize = D :=
   Iff.rfl
 
-/-- The derived designated reals are the materially coded reals, definitionally.-/
+/-- The derived designated reals are the materially coded reals, definitionally.
+@isnad1 id=iff.0h3v.s5.5faf09a660b1 from=translated src=- shape=0e363d31 vocab=0fec6eb2
+-/
 @[simp] theorem mem_designatedReals_derivedContext {c : ℕ → Bool} :
     c ∈ C.derivedContext.designatedReals ↔ realCode c ∈ M :=
   Iff.rfl
 
 /-- M3's avoidance conclusion, read through the derived context, **is** the material
-nonmembership — no separate bridge.-/
+nonmembership — no separate bridge.
+@isnad1 id=iff.0h3v.s5.a13f198cd163 from=translated src=- shape=c06e2760 vocab=0fec6eb2
+-/
 theorem not_mem_designatedReals_iff {c : ℕ → Bool} :
     c ∉ C.derivedContext.designatedReals ↔ realCode c ∉ M :=
   Iff.rfl
 
 /-- **`Sees`, proved rather than assumed**: the carried internal test codes witness the
-visibility obligations through their externalization laws.-/
+visibility obligations through their externalization laws.
+@isnad1 id=sees.0h2v.s3.99edab38e34a from=translated src=- shape=1f8e965c vocab=95c71553
+-/
 theorem sees_derivedContext : C.derivedContext.Sees :=
   ⟨fun n ↦ ⟨C.coordCode n, C.coord_externalize n⟩,
     fun _ hc ↦ ⟨C.diagCode ⟨_, hc⟩, C.diag_externalize _⟩⟩
 
 /-- Stage one of countability: a countable carrier admits only countably many visible sets,
-since every visible set is the externalization of a carrier element.-/
+since every visible set is the externalization of a carrier element.
+@isnad1 id=countabl.1h2v.s4.6d2fe8c37bce from=translated src=- shape=d21e55b4 vocab=ab813563
+-/
 theorem countable_visible_derivedContext (hM : (M : Set ZFSet.{0}).Countable) :
     C.derivedContext.visible.Countable :=
   C.forcing.countable_visible_derivedContext hM
 
 /-- Stage two: the visible dense-open family is countable — the hypothesis Rasiowa–Sikorski
-existence consumes, from external countability of the carrier alone.-/
+existence consumes, from external countability of the carrier alone.
+@isnad1 id=countabl.1h2v.s4.13c11cc8474f from=translated src=- shape=08ba93ec vocab=1c454df2
+-/
 theorem countable_visibleDenseOpen_derivedContext (hM : (M : Set ZFSet.{0}).Countable) :
     C.derivedContext.visibleDenseOpen.Countable :=
   C.forcing.countable_visibleDenseOpen_derivedContext hM

@@ -39,6 +39,9 @@ variable {P : Type u}
 def Subname (σ τ : PName P) : Prop :=
   ∃ i : τ.Idx, τ.elems i = σ
 
+/--
+@isnad1 id=subname.0h3v.s4.e80bc76a4192 from=translated src=- shape=e8dbe213 vocab=b3e986f7
+-/
 theorem subname_elems (τ : PName P) (i : τ.Idx) : Subname (τ.elems i) τ :=
   ⟨i, rfl⟩
 
@@ -47,7 +50,9 @@ that keeps mutual name inductions inside a family.-/
 def SubnameClosed (𝒩 : Set (PName P)) : Prop :=
   ∀ τ ∈ 𝒩, ∀ i : τ.Idx, τ.elems i ∈ 𝒩
 
-/-- The subname relation is well-founded: names are well-founded trees.-/
+/-- The subname relation is well-founded: names are well-founded trees.
+@isnad1 id=wellfoun.0h1v.s2.90b18af379a3 from=translated src=- shape=27e09c58 vocab=fc434fdb
+-/
 theorem subname_wellFounded : WellFounded (Subname (P := P)) := by
   refine ⟨fun τ ↦ ?_⟩
   induction τ with

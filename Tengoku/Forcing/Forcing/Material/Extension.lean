@@ -68,7 +68,9 @@ def extensionSet (S : Set P) : ZFSet.{u} :=
   ZFSet.mk <| PSet.mk N.Code fun i ↦ (N.decode i).val S
 
 /-- **The indexed membership law**: the members of the extension set are exactly the values
-of the decoded names.-/
+of the decoded names.
+@isnad1 id=iff.0h5v.s5.53d43249b839 from=translated src=- shape=b72fa908 vocab=0893b662
+-/
 theorem mem_extensionSet_iff {S : Set P} {y : ZFSet.{u}} :
     y ∈ N.extensionSet S ↔ ∃ i, y = zval S (N.decode i) := by
   induction y using Quotient.inductionOn with
@@ -77,7 +79,9 @@ theorem mem_extensionSet_iff {S : Set P} {y : ZFSet.{u}} :
 
 /-- Agreement with the external semantics: as a set of sets, the extension is exactly the
 valuation image of the internal name family. The extensional `valuationImage` stays the
-external API; this indexed construction is what makes it material.-/
+external API; this indexed construction is what makes it material.
+@isnad1 id=eq.0h4v.s4.f529f53811bd from=translated src=- shape=aedfe9f2 vocab=54c597e7
+-/
 theorem toSet_extensionSet (S : Set P) :
     (N.extensionSet S).toSet = valuationImage N.names S := by
   ext y
@@ -91,7 +95,9 @@ theorem toSet_extensionSet (S : Set P) :
 
 /-- **Transitivity, from subname closure alone**: an element of a value is the value of a
 subname, and subnames are decoded. Proved through `mem_zval_iff` and `subname_closed`;
-nothing else of the presentation participates.-/
+nothing else of the presentation participates.
+@isnad1 id=istransi.0h4v.s4.6c2237996210 from=translated src=- shape=ed36f83f vocab=1b9cedb5
+-/
 theorem isTransitive_extensionSet (S : Set P) : (N.extensionSet S).IsTransitive := by
   intro y hy z hz
   rw [mem_extensionSet_iff] at hy
@@ -104,12 +110,17 @@ theorem isTransitive_extensionSet (S : Set P) : (N.extensionSet S).IsTransitive 
 def extensionCarrier (S : Set P) : MaterialCarrier.{u} :=
   ⟨N.extensionSet S, N.isTransitive_extensionSet S⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.49c983a033d0 from=translated src=- shape=c039586e vocab=ee03bce3
+-/
 @[simp] theorem mem_extensionCarrier_iff {S : Set P} {y : ZFSet.{u}} :
     y ∈ N.extensionCarrier S ↔ ∃ i, y = zval S (N.decode i) :=
   N.mem_extensionSet_iff
 
 /-- The indexed analog of `mem_valuationImage_of_mem_of_zval_eq`: membership via a semantic
-representative in the family.-/
+representative in the family.
+@isnad1 id=mem.2h6v.s5.c4a9d86a505a from=translated src=- shape=582e3058 vocab=48f0ed80
+-/
 theorem mem_extensionCarrier_of_mem_of_zval_eq {S : Set P} {τ : PName P} (hτ : τ ∈ N.names)
     {x : ZFSet.{u}} (h : zval S τ = x) : x ∈ N.extensionCarrier S := by
   obtain ⟨i, rfl⟩ := hτ
@@ -131,14 +142,18 @@ variable {N : InternalNamePresentation M P} {S : Set P}
 
 /-- **Ground inclusion** — the first half of the `M[G]` contract: every carrier element
 belongs to the extension carrier, along any condition set containing `⊤`. The external
-layer's explicit hypothesis is discharged by the semantic check-name representative.-/
+layer's explicit hypothesis is discharged by the semantic check-name representative.
+@isnad1 id=mem.3h6v.s6.6412bed2bb94 from=translated src=- shape=f151c511 vocab=f2279726
+-/
 theorem HasCanonicalNames.mem_extensionCarrier_of_mem (h : HasCanonicalNames Pres N)
     {x : ZFSet.{u}} (hx : x ∈ M) (hS : (⊤ : P) ∈ S) : x ∈ N.extensionCarrier S := by
   obtain ⟨τ, hτ, hval⟩ := h.check_represented x hx
   exact N.mem_extensionCarrier_of_mem_of_zval_eq hτ (hval S hS)
 
 /-- **Generic-code membership** — the second half of the `M[G]` contract: the value of the
-generic's name for the presentation's condition code belongs to the extension carrier.-/
+generic's name for the presentation's condition code belongs to the extension carrier.
+@isnad1 id=mem.2h5v.s6.5dccfc4f2152 from=translated src=- shape=d511d880 vocab=79e48df2
+-/
 theorem HasCanonicalNames.zval_genName_mem_extensionCarrier (h : HasCanonicalNames Pres N)
     (hS : (⊤ : P) ∈ S) :
     zval S (genName Pres.conditionCode) ∈ N.extensionCarrier S := by
@@ -147,14 +162,18 @@ theorem HasCanonicalNames.zval_genName_mem_extensionCarrier (h : HasCanonicalNam
 
 end Canonical
 
-/-- The filter corollary of ground inclusion, via `Order.PFilter.top_mem`.-/
+/-- The filter corollary of ground inclusion, via `Order.PFilter.top_mem`.
+@isnad1 id=mem.2h6v.s6.dd5d861002aa from=translated src=- shape=b08aa064 vocab=4c3cce65
+-/
 theorem HasCanonicalNames.mem_extensionCarrier_of_mem_pfilter [Preorder P] [OrderTop P]
     {Pres : InternalForcingPresentation M P} {N : InternalNamePresentation M P}
     (h : HasCanonicalNames Pres N) {x : ZFSet.{u}} (hx : x ∈ M) (G : Order.PFilter P) :
     x ∈ N.extensionCarrier (G : Set P) :=
   h.mem_extensionCarrier_of_mem hx G.top_mem
 
-/-- The filter corollary of generic-code membership.-/
+/-- The filter corollary of generic-code membership.
+@isnad1 id=mem.1h5v.s6.fcb741611b1c from=translated src=- shape=a09a6999 vocab=dc5a11c7
+-/
 theorem HasCanonicalNames.zval_genName_mem_extensionCarrier_pfilter [Preorder P] [OrderTop P]
     {Pres : InternalForcingPresentation M P} {N : InternalNamePresentation M P}
     (h : HasCanonicalNames Pres N) (G : Order.PFilter P) :

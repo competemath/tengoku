@@ -46,7 +46,9 @@ variable {M : CohenVisibilityContext} {x : ℕ → ℕ → Bool}
 
 /-- The witness avoids the designated reals: `parityReal x` differs from `x i` at coordinate
 `2 * i`, and the enumeration covers `M.designatedReals`. Uses only the covering enumeration — no
-visibility hypothesis at all.-/
+visibility hypothesis at all.
+@isnad1 id=not.1h2v.s5.2b404be1b563 from=translated src=- shape=c79ed504 vocab=9fbd860e
+-/
 theorem parityReal_not_mem_designatedReals (hx : M.designatedReals ⊆ Set.range x) :
     parityReal x ∉ M.designatedReals := by
   intro hmem
@@ -58,7 +60,9 @@ theorem parityReal_not_mem_designatedReals (hx : M.designatedReals ⊆ Set.range
 /-- The witness's canonical filter is not generic over `M`: it misses `oddTrue`, which `M`
 sees. Uses only the visibility of `oddTrue` — no enumeration, no `Sees`. The proof is the
 composition payoff of packaging the test as `oddTrueReq`: the generic requirement–visibility
-bridge applies directly.-/
+bridge applies directly.
+@isnad1 id=not.1h2v.s4.5ffc5d394176 from=translated src=- shape=ee6a2551 vocab=77f7ad85
+-/
 theorem not_genericOver_parityReal (hodd : M.Visible oddTrue) :
     ¬M.GenericOver (ofFunction (parityReal x)) :=
   fun hG ↦ (parity_separation x).2.2 (hG.meets_requirement (R := oddTrueReq) hodd)
@@ -67,7 +71,9 @@ theorem not_genericOver_parityReal (hodd : M.Visible oddTrue) :
 is total and its real avoids every designated real, yet it is not generic over `M`. A
 witness-specific implication failure, derived from the two single-hypothesis declarations
 above — which is how the incomparable budgets (enumeration for avoidance, `oddTrue` visibility
-for non-genericity, no `Sees` anywhere) stay visible in signatures.-/
+for non-genericity, no `Sees` anywhere) stay visible in signatures.
+@isnad1 id=and.2h2v.s6.e27863fcc689 from=translated src=- shape=9230566c vocab=bfdf4a7c
+-/
 theorem parityReal_avoiding_not_genericOver (hx : M.designatedReals ⊆ Set.range x)
     (hodd : M.Visible oddTrue) :
     (∀ n, (genericFun (ofFunction (parityReal x)) n).isSome) ∧

@@ -54,7 +54,9 @@ scoped instance (M : MaterialCarrier.{u}) : memLang.Structure M where
   RelMap := fun r x ↦ match r with | .mem => (x 0 : ZFSet) ∈ (x 1 : ZFSet)
 
 /-- The membership relation is interpreted as `ZFSet` membership of the underlying
-elements.-/
+elements.
+@isnad1 id=iff.0h2v.s6.f803e26ed400 from=translated src=- shape=0aab7dae vocab=f5a31b88
+-/
 @[simp] theorem relMap_mem {M : MaterialCarrier.{u}} {x : Fin 2 → M} :
     Language.Structure.RelMap (L := memLang) memRel.mem x ↔ (x 0 : ZFSet.{u}) ∈ (x 1 : ZFSet.{u}) :=
   Iff.rfl
@@ -71,6 +73,9 @@ section PairRealization
 variable {M : MaterialCarrier.{u}} {α : Type v} {n : ℕ} {x y z : memLang.Term (α ⊕ Fin n)}
 variable {v : α → M} {xs : Fin n → M}
 
+/--
+@isnad1 id=eq.0h7v.s7.14e99131f477 from=translated src=- shape=b2b24f6f vocab=ddd55010
+-/
 theorem realize_liftTerm (t : memLang.Term (α ⊕ Fin n)) (w : M) :
     Language.Term.realize (Sum.elim v (Fin.snoc xs w)) (liftTerm t) =
       Language.Term.realize (Sum.elim v xs) t := by
@@ -99,12 +104,17 @@ def extVal (N : InternalNamePresentation M P) (S : Set P) (τ : PName P) (hτ : 
     N.extensionCarrier S :=
   ⟨zval S τ, N.mem_extensionCarrier_of_mem_of_zval_eq hτ rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.e007f2b8da0f from=translated src=- shape=f309cca8 vocab=6f57e479
+-/
 @[simp] theorem coe_extVal {τ : PName P} (hτ : τ ∈ N.names) :
     (N.extVal S τ hτ : ZFSet.{u}) = zval S τ :=
   rfl
 
 /-- Realization of a function-free term along `extVal`-valued assignments is `extVal` of the
-syntactic evaluation.-/
+syntactic evaluation.
+@isnad1 id=eq.1h7v.s6.097aabdf9e65 from=translated src=- shape=feaef833 vocab=cd2ceaf9
+-/
 theorem realize_term_extVal {γ : Type v} {a : γ → PName P} (ha : ∀ g, a g ∈ N.names) :
     ∀ t : memLang.Term γ,
       (Language.Term.realize (M := N.extensionCarrier S)
@@ -114,7 +124,9 @@ theorem realize_term_extVal {γ : Type v} {a : γ → PName P} (ha : ∀ g, a g 
 
 /-- **The carrier-quantifier bridge**: quantification over the extension carrier is
 quantification over the internal names — every carrier element is the value of a decoded
-name, and every name's value lands in the carrier.-/
+name, and every name's value lands in the carrier.
+@isnad1 id=iff.0h5v.s6.900572b22449 from=translated src=- shape=9077cd95 vocab=02bc47c0
+-/
 theorem forall_extensionCarrier_iff_names (Φ : N.extensionCarrier S → Prop) :
     (∀ x, Φ x) ↔ ∀ τ, ∀ hτ : τ ∈ N.names, Φ (N.extVal S τ hτ) := by
   constructor

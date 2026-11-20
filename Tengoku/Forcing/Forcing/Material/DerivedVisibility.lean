@@ -44,20 +44,26 @@ internal subsets.-/
 def derivedContext : VisibilityContext P where
   visible := Set.range fun d : Pres.InternalSubset ↦ d.externalize
 
-/-- Visibility in the derived context is exactly internal-subset externalization.-/
+/-- Visibility in the derived context is exactly internal-subset externalization.
+@isnad1 id=iff.0h4v.s5.5a857d33d482 from=translated src=- shape=0791824d vocab=4ed9f875
+-/
 theorem visible_derivedContext_iff {D : Set P} :
     Pres.derivedContext.Visible D ↔ ∃ d : Pres.InternalSubset, d.externalize = D :=
   Iff.rfl
 
 /-- Stage one of countability: a countable carrier admits only countably many visible sets,
-since every visible set is the externalization of a carrier element.-/
+since every visible set is the externalization of a carrier element.
+@isnad1 id=countabl.1h3v.s4.f9d61affc267 from=translated src=- shape=678c1090 vocab=da83b8ec
+-/
 theorem countable_visible_derivedContext (hM : (M : Set ZFSet.{u}).Countable) :
     Pres.derivedContext.visible.Countable := by
   refine Set.Countable.mono ?_ (hM.image Pres.externalizeSubset)
   rintro D ⟨d, rfl⟩
   exact ⟨(d.1 : ZFSet.{u}), d.1.2, rfl⟩
 
-/-- Stage two: the visible dense-open family is countable.-/
+/-- Stage two: the visible dense-open family is countable.
+@isnad1 id=countabl.1h3v.s4.930d64094b6a from=translated src=- shape=678c1090 vocab=cc129f6a
+-/
 theorem countable_visibleDenseOpen_derivedContext (hM : (M : Set ZFSet.{u}).Countable) :
     Pres.derivedContext.visibleDenseOpen.Countable :=
   (Pres.countable_visible_derivedContext hM).mono (Set.sep_subset _ _)

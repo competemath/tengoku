@@ -60,6 +60,9 @@ examples below.-/
 def Visible (M : VisibilityContext P) (D : Set P) : Prop :=
   D ∈ M.visible
 
+/--
+@isnad1 id=iff.0h3v.s5.a8e0585bd5cb from=translated src=- shape=e9f638a5 vocab=f0d5a8e1
+-/
 theorem visible_def : M.Visible D ↔ D ∈ M.visible :=
   .rfl
 
@@ -67,11 +70,16 @@ theorem visible_def : M.Visible D ↔ D ∈ M.visible :=
 def visibleDenseOpen (M : VisibilityContext P) : Set (Set P) :=
   {D ∈ M.visible | IsDenseOpen D}
 
+/--
+@isnad1 id=iff.0h3v.s5.a5500f049ad6 from=translated src=- shape=e3b85132 vocab=7acb89ec
+-/
 @[simp] theorem mem_visibleDenseOpen :
     D ∈ M.visibleDenseOpen ↔ M.Visible D ∧ IsDenseOpen D :=
   Iff.rfl
 
-/-- Seeing more means owing more: the visible dense-open family is monotone in visibility.-/
+/-- Seeing more means owing more: the visible dense-open family is monotone in visibility.
+@isnad1 id=le.1h3v.s5.bba226fef180 from=translated src=- shape=8521fee7 vocab=120098e9
+-/
 theorem visibleDenseOpen_mono (h : M.visible ⊆ M'.visible) :
     M.visibleDenseOpen ⊆ M'.visibleDenseOpen :=
   fun _ hD ↦ ⟨h hD.1, hD.2⟩
@@ -81,9 +89,15 @@ every dense open set.-/
 def full (P : Type*) [Preorder P] : VisibilityContext P :=
   ⟨Set.univ⟩
 
+/--
+@isnad1 id=visible.0h2v.s3.9324a07b05f5 from=translated src=- shape=9e7302da vocab=9dc70682
+-/
 @[simp] theorem visible_full : (full P).Visible D :=
   Set.mem_univ D
 
+/--
+@isnad1 id=eq.0h1v.s4.3aa3000a0315 from=translated src=- shape=264fa0dd vocab=d92b3198
+-/
 @[simp] theorem visibleDenseOpen_full : (full P).visibleDenseOpen = {D | IsDenseOpen D} :=
   Set.sep_univ
 
@@ -91,9 +105,15 @@ def full (P : Type*) [Preorder P] : VisibilityContext P :=
 def empty (P : Type*) [Preorder P] : VisibilityContext P :=
   ⟨∅⟩
 
+/--
+@isnad1 id=not.0h2v.s4.9bc3595f2f8c from=translated src=- shape=95e6dcad vocab=eeeb46ff
+-/
 @[simp] theorem not_visible_empty : ¬(empty P).Visible D :=
   Set.notMem_empty D
 
+/--
+@isnad1 id=eq.0h1v.s4.33388940ef16 from=translated src=- shape=8ee16e86 vocab=f6ffd75c
+-/
 @[simp] theorem visibleDenseOpen_empty : (empty P).visibleDenseOpen = ∅ :=
   Set.sep_empty _
 

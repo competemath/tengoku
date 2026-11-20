@@ -71,13 +71,17 @@ variable {Pres : InternalForcingPresentation M P} {N : InternalNamePresentation 
 
 omit [Preorder P] in
 /-- Coded branches lie in the carrier — by transitivity from the name code, with no axiom
-consumed.-/
+consumed.
+@isnad1 id=mem.1h5v.s5.16280395a2a4 from=translated src=- shape=16af0e0c vocab=7ba88b1f
+-/
 theorem pair_mem_carrier {i : N.Code} {y : ZFSet.{u}} (hy : y ∈ N.code i) : y ∈ M :=
   M.mem_trans hy (N.code_mem i)
 
 /-- **Subname absoluteness**: a code is a coded branch of another exactly when its name is an
 immediate subname of the other's name. Derived from representation plus faithfulness — the
-whole point of stating the laws in that form.-/
+whole point of stating the laws in that form.
+@isnad1 id=iff.1h6v.s6.bfe816e5cce0 from=translated src=- shape=b525672e vocab=6e185d01
+-/
 theorem subname_absolute (h : InternalNameCoding Pres N) {i j : N.Code} :
     (∃ p : P, ZFSet.pair (ZFSet.mk (Pres.conditionCode.repr p)) (N.code j) ∈ N.code i) ↔
       Subname (N.decode j) (N.decode i) := by
@@ -89,7 +93,9 @@ theorem subname_absolute (h : InternalNameCoding Pres N) {i j : N.Code} :
   · rintro ⟨k, hk⟩
     refine ⟨(N.decode i).conds k, (h.branch_mem_code_iff i _).2 ⟨k, j, hk.symm, rfl⟩⟩
 
-/-- The condition side of a coded branch, in the carrier.-/
+/-- The condition side of a coded branch, in the carrier.
+@isnad1 id=mem.2h7v.s6.2c1e4f68a055 from=translated src=- shape=e9d8e0e3 vocab=653eb613
+-/
 theorem conditionCode_mem_carrier (h : InternalNameCoding Pres N) {i : N.Code}
     {k : (N.decode i).Idx} {j : N.Code} (hj : N.decode j = (N.decode i).elems k) :
     ZFSet.pair (ZFSet.mk (Pres.conditionCode.repr ((N.decode i).conds k))) (N.code j) ∈ M :=
