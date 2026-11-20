@@ -2,6 +2,7 @@
 import Tengoku.LeanPool
 import Tengoku.MerelyTrue
 import Tengoku.Algolean
+import Tengoku.BurningPathTokenGraphs
 import Tengoku.LanaTateCurvesTheta
 import Tengoku.LanaTemperedFundamentalGroups
 import Tengoku.AndersonConjecture
