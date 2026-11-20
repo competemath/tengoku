@@ -192,6 +192,7 @@ import Tengoku.Jsp940Erdos1133Formalization
 import Tengoku.MiyaokaMoriCharzero
 import Tengoku.LeanNct
 import Tengoku.NikoghosyanConjecture
+import Tengoku.LeanTnorms
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.TutteHomotopyLean
