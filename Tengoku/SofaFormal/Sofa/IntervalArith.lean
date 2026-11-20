@@ -43,6 +43,9 @@ def sinPoly (n : ℕ) (x : ℝ) : ℝ :=
 def cosPoly (n : ℕ) (x : ℝ) : ℝ :=
   ∑ j ∈ Finset.range n, (-1) ^ j * x ^ (2 * j) / (2 * j).factorial
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.2ed852624199 from=translated src=- shape=f4cbe5c8 vocab=5639bd34
+-/
 lemma hasDerivAt_sinPoly (n : ℕ) (x : ℝ) : HasDerivAt (sinPoly n) (cosPoly n x) x := by
   have h : ∀ j ∈ Finset.range n, HasDerivAt
       (fun y : ℝ => (-1) ^ j * y ^ (2 * j + 1) / ((2 * j + 1).factorial : ℝ))
@@ -57,12 +60,18 @@ lemma hasDerivAt_sinPoly (n : ℕ) (x : ℝ) : HasDerivAt (sinPoly n) (cosPoly n
   have := HasDerivAt.fun_sum h
   exact this
 
+/--
+@isnad1 id=eq.0h2v.s7.9bfc71f51942 from=translated src=- shape=70614b55 vocab=430efb55
+-/
 lemma cosPoly_succ (n : ℕ) (x : ℝ) :
     cosPoly (n + 1) x
       = (∑ i ∈ Finset.range n, (-1) ^ (i + 1) * x ^ (2 * i + 2) / (2 * i + 2).factorial) + 1 := by
   rw [cosPoly, Finset.sum_range_succ']
   simp [mul_add]
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.4b9fa274e081 from=translated src=- shape=286d1a6c vocab=f7851c15
+-/
 lemma hasDerivAt_cosPoly (n : ℕ) (x : ℝ) : HasDerivAt (cosPoly (n + 1)) (-sinPoly n x) x := by
   have e : cosPoly (n + 1) = fun y : ℝ =>
       (∑ i ∈ Finset.range n, (-1) ^ (i + 1) * y ^ (2 * i + 2) / ((2 * i + 2).factorial : ℝ))
@@ -85,13 +94,21 @@ lemma hasDerivAt_cosPoly (n : ℕ) (x : ℝ) : HasDerivAt (cosPoly (n + 1)) (-si
   rw [sinPoly, ← Finset.sum_neg_distrib]
   exact h2
 
+/--
+@isnad1 id=eq.0h1v.s4.ce1dbfde48e7 from=translated src=- shape=9b4d794a vocab=daa4d6de
+-/
 lemma sinPoly_zero (n : ℕ) : sinPoly n 0 = 0 := by
   simp [sinPoly]
 
+/--
+@isnad1 id=eq.0h1v.s4.8027e4b11779 from=translated src=- shape=c7b0d1d0 vocab=33a97690
+-/
 lemma cosPoly_succ_zero (n : ℕ) : cosPoly (n + 1) 0 = 1 := by
   rw [cosPoly_succ]; simp
 
-/-- A function vanishing at `0` whose derivative is `≤ 0` on `[0, ∞)` is `≤ 0` there.-/
+/-- A function vanishing at `0` whose derivative is `≤ 0` on `[0, ∞)` is `≤ 0` there.
+@isnad1 id=le.4h3v.s6.a0ad0608f803 from=translated src=- shape=de902b62 vocab=c694916f
+-/
 lemma nonpos_of_deriv_nonpos {g g' : ℝ → ℝ} (hg : ∀ y, HasDerivAt g (g' y) y) (h0 : g 0 = 0)
     (hd : ∀ y, 0 ≤ y → g' y ≤ 0) {x : ℝ} (hx : 0 ≤ x) : g x ≤ 0 := by
   have hanti : AntitoneOn g (Ici 0) := by
@@ -105,7 +122,9 @@ lemma nonpos_of_deriv_nonpos {g g' : ℝ → ℝ} (hg : ∀ y, HasDerivAt g (g' 
   rwa [h0] at this
 
 /-- The alternating Taylor bounds: for `x ≥ 0`,
-`(−1)^m (cos x − cosPoly (m+1) x) ≤ 0` and `(−1)^m (sin x − sinPoly (m+1) x) ≤ 0`.-/
+`(−1)^m (cos x − cosPoly (m+1) x) ≤ 0` and `(−1)^m (sin x − sinPoly (m+1) x) ≤ 0`.
+@isnad1 id=and.1h2v.s7.611667fb8cf6 from=translated src=- shape=480f12b3 vocab=799e4a7d
+-/
 theorem taylor_alt (m : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     (-1) ^ m * (cos x - cosPoly (m + 1) x) ≤ 0 ∧ (-1) ^ m * (sin x - sinPoly (m + 1) x) ≤ 0 := by
   induction m generalizing x with
@@ -133,29 +152,43 @@ theorem taylor_alt (m : ℕ) {x : ℝ} (hx : 0 ≤ x) :
       (fun y => ((hasDerivAt_sin y).sub (hasDerivAt_sinPoly (m + 1 + 1) y)).const_mul _)
       (by simp [sinPoly_zero]) hc hx
 
+/--
+@isnad1 id=eq.1h1v.s5.a105d31f52d4 from=translated src=- shape=eff5c8fd vocab=201a6ced
+-/
 lemma even_neg_one_pow {m : ℕ} (h : Even m) : ((-1 : ℝ) ^ m) = 1 := h.neg_one_pow
 
+/--
+@isnad1 id=eq.1h1v.s5.7309039921ea from=translated src=- shape=6579a96f vocab=cdd19377
+-/
 lemma odd_neg_one_pow {m : ℕ} (h : Odd m) : ((-1 : ℝ) ^ m) = -1 := h.neg_one_pow
 
-/-- `sin x ≤ sinPoly (2k + 1) x` for `x ≥ 0`.-/
+/-- `sin x ≤ sinPoly (2k + 1) x` for `x ≥ 0`.
+@isnad1 id=le.1h2v.s5.f0ffb5cfc131 from=translated src=- shape=3acbd268 vocab=55cfa491
+-/
 theorem sin_le_sinPoly (k : ℕ) {x : ℝ} (hx : 0 ≤ x) : sin x ≤ sinPoly (2 * k + 1) x := by
   have h := (taylor_alt (2 * k) hx).2
   rw [even_neg_one_pow (even_two_mul k), one_mul] at h
   linarith
 
-/-- `sinPoly (2k + 2) x ≤ sin x` for `x ≥ 0`.-/
+/-- `sinPoly (2k + 2) x ≤ sin x` for `x ≥ 0`.
+@isnad1 id=le.1h2v.s5.82048931c38e from=translated src=- shape=b1ae8678 vocab=55cfa491
+-/
 theorem sinPoly_le_sin (k : ℕ) {x : ℝ} (hx : 0 ≤ x) : sinPoly (2 * k + 2) x ≤ sin x := by
   have h := (taylor_alt (2 * k + 1) hx).2
   rw [odd_neg_one_pow (odd_two_mul_add_one k)] at h
   linarith
 
-/-- `cos x ≤ cosPoly (2k + 1) x` for `x ≥ 0`.-/
+/-- `cos x ≤ cosPoly (2k + 1) x` for `x ≥ 0`.
+@isnad1 id=le.1h2v.s5.5325319baa2a from=translated src=- shape=3acbd268 vocab=7c71a31c
+-/
 theorem cos_le_cosPoly (k : ℕ) {x : ℝ} (hx : 0 ≤ x) : cos x ≤ cosPoly (2 * k + 1) x := by
   have h := (taylor_alt (2 * k) hx).1
   rw [even_neg_one_pow (even_two_mul k), one_mul] at h
   linarith
 
-/-- `cosPoly (2k + 2) x ≤ cos x` for `x ≥ 0`.-/
+/-- `cosPoly (2k + 2) x ≤ cos x` for `x ≥ 0`.
+@isnad1 id=le.1h2v.s5.873f8491b353 from=translated src=- shape=b1ae8678 vocab=7c71a31c
+-/
 theorem cosPoly_le_cos (k : ℕ) {x : ℝ} (hx : 0 ≤ x) : cosPoly (2 * k + 2) x ≤ cos x := by
   have h := (taylor_alt (2 * k + 1) hx).1
   rw [odd_neg_one_pow (odd_two_mul_add_one k)] at h
@@ -166,8 +199,14 @@ theorem cosPoly_le_cos (k : ℕ) {x : ℝ} (hx : 0 ≤ x) : cosPoly (2 * k + 2) 
 /-- The fixed-point scale `S = 2⁴⁰`: an integer `m` stands for the real number `m / S`.-/
 def S : ℤ := 2 ^ 40
 
+/--
+@isnad1 id=lt.0h0v.s3.ffef7c3d59a8 from=translated src=- shape=ff3a10fc vocab=562c7e8f
+-/
 lemma S_pos' : (0 : ℤ) < S := by norm_num [S]
 
+/--
+@isnad1 id=lt.0h0v.s3.6d4f218cddaf from=translated src=- shape=62e5f382 vocab=50cc259e
+-/
 lemma S_pos : (0 : ℝ) < (S : ℝ) := by exact_mod_cast S_pos'
 
 /-- `a / S` rounded down.-/
@@ -176,11 +215,17 @@ def fdivS (a : ℤ) : ℤ := a / S
 /-- `a / S` rounded up.-/
 def cdivS (a : ℤ) : ℤ := -((-a) / S)
 
+/--
+@isnad1 id=le.0h1v.s4.e1aee8474a00 from=translated src=- shape=927c3118 vocab=f4cefd94
+-/
 lemma fdivS_le (a : ℤ) : ((fdivS a : ℤ) : ℝ) ≤ (a : ℝ) / S := by
   rw [le_div_iff₀ S_pos]
   have := Int.ediv_mul_le a (ne_of_gt S_pos')
   exact_mod_cast this
 
+/--
+@isnad1 id=le.0h1v.s4.63d1bb0ebaea from=translated src=- shape=d9336d9c vocab=d3ecd988
+-/
 lemma le_cdivS (a : ℤ) : (a : ℝ) / S ≤ ((cdivS a : ℤ) : ℝ) := by
   have h := fdivS_le (-a)
   simp only [fdivS] at h
@@ -194,6 +239,9 @@ def qdn (q : ℚ) : ℤ := ⌊q * S⌋
 /-- A rational number rounded up to the grid `ℤ / S`.-/
 def qup (q : ℚ) : ℤ := ⌈q * S⌉
 
+/--
+@isnad1 id=le.0h1v.s4.1d7c9e21e27e from=translated src=- shape=10341879 vocab=52faaa49
+-/
 lemma qdn_le (q : ℚ) : ((qdn q : ℤ) : ℝ) / S ≤ q := by
   rw [div_le_iff₀ S_pos]
   have h := Int.floor_le (q * S)
@@ -201,6 +249,9 @@ lemma qdn_le (q : ℚ) : ((qdn q : ℤ) : ℝ) / S ≤ q := by
   push_cast at h2
   exact h2
 
+/--
+@isnad1 id=le.0h1v.s4.ffe44f11e2db from=translated src=- shape=dff78ef9 vocab=cc36ee9a
+-/
 lemma le_qup (q : ℚ) : (q : ℝ) ≤ ((qup q : ℤ) : ℝ) / S := by
   rw [le_div_iff₀ S_pos]
   have h := Int.le_ceil (q * S)
@@ -228,35 +279,55 @@ def Iv.mul (a b : Iv) : Iv :=
 
 def Iv.const (q : ℚ) : Iv := ⟨qdn q, qup q⟩
 
+/--
+@isnad1 id=mem.2h4v.s4.b61df5146ffa from=translated src=- shape=ba6a0f37 vocab=0d58043c
+-/
 lemma Iv.mem_add {x y : ℝ} {a b : Iv} (hx : a.Mem x) (hy : b.Mem y) : (a.add b).Mem (x + y) := by
   obtain ⟨h1, h2⟩ := hx
   obtain ⟨h3, h4⟩ := hy
   refine ⟨?_, ?_⟩ <;> simp only [Iv.add, Int.cast_add, add_div] <;> linarith
 
+/--
+@isnad1 id=mem.1h2v.s3.7e950c776b0b from=translated src=- shape=7b03f8a2 vocab=fc6c47a5
+-/
 lemma Iv.mem_neg {x : ℝ} {a : Iv} (hx : a.Mem x) : a.neg.Mem (-x) := by
   obtain ⟨h1, h2⟩ := hx
   refine ⟨?_, ?_⟩ <;> simp only [Iv.neg, Int.cast_neg, neg_div] <;> linarith
 
+/--
+@isnad1 id=mem.2h4v.s4.9d9a6d4136da from=translated src=- shape=ba6a0f37 vocab=600e42de
+-/
 lemma Iv.mem_sub {x y : ℝ} {a b : Iv} (hx : a.Mem x) (hy : b.Mem y) : (a.sub b).Mem (x - y) := by
   obtain ⟨h1, h2⟩ := hx
   obtain ⟨h3, h4⟩ := hy
   refine ⟨?_, ?_⟩ <;> simp only [Iv.sub, Int.cast_sub, sub_div] <;> linarith
 
+/--
+@isnad1 id=mem.0h1v.s3.fd6f3f35a335 from=translated src=- shape=ce0f8464 vocab=165a8b3c
+-/
 lemma Iv.mem_const (q : ℚ) : (Iv.const q).Mem q := ⟨qdn_le q, le_qup q⟩
 
+/--
+@isnad1 id=le.2h4v.s5.dd5a75d8cfbd from=translated src=- shape=0de3ad8b vocab=861f3434
+-/
 lemma min_le_mul_of_mem {a b x y : ℝ} (h1 : a ≤ x) (h2 : x ≤ b) :
     min (a * y) (b * y) ≤ x * y := by
   rcases le_total 0 y with hy | hy
   · exact (min_le_left _ _).trans (mul_le_mul_of_nonneg_right h1 hy)
   · exact (min_le_right _ _).trans (mul_le_mul_of_nonpos_right h2 hy)
 
+/--
+@isnad1 id=le.2h4v.s5.fcbfaebbd5bd from=translated src=- shape=5011be55 vocab=e8b42584
+-/
 lemma mul_le_max_of_mem {a b x y : ℝ} (h1 : a ≤ x) (h2 : x ≤ b) :
     x * y ≤ max (a * y) (b * y) := by
   rcases le_total 0 y with hy | hy
   · exact (mul_le_mul_of_nonneg_right h2 hy).trans (le_max_right _ _)
   · exact (mul_le_mul_of_nonpos_right h1 hy).trans (le_max_left _ _)
 
-/-- A product of two reals in intervals lies between the extreme products of the corners.-/
+/-- A product of two reals in intervals lies between the extreme products of the corners.
+@isnad1 id=and.4h6v.s7.f8e6c742e4fc from=translated src=- shape=d5cfe443 vocab=3eb92015
+-/
 lemma mul_mem_corners {a b c d x y : ℝ} (h1 : a ≤ x) (h2 : x ≤ b) (h3 : c ≤ y) (h4 : y ≤ d) :
     min (min (a * c) (a * d)) (min (b * c) (b * d)) ≤ x * y
       ∧ x * y ≤ max (max (a * c) (a * d)) (max (b * c) (b * d)) := by
@@ -273,6 +344,9 @@ lemma mul_mem_corners {a b c d x y : ℝ} (h1 : a ≤ x) (h2 : x ≤ b) (h3 : c 
   · calc x * y ≤ max (a * y) (b * y) := mul_le_max_of_mem h1 h2
       _ ≤ _ := max_le_max ha' hb'
 
+/--
+@isnad1 id=mem.2h4v.s4.54b24176011a from=translated src=- shape=ba6a0f37 vocab=ffd0cdcf
+-/
 lemma Iv.mem_mul {x y : ℝ} {a b : Iv} (hx : a.Mem x) (hy : b.Mem y) : (a.mul b).Mem (x * y) := by
   obtain ⟨h1, h2⟩ := hx
   obtain ⟨h3, h4⟩ := hy
@@ -331,17 +405,37 @@ def IE.ieval (box : ℕ → Iv) : IE → Iv
   | .mul a b => (a.ieval box).mul (b.ieval box)
   | .neg a => (a.ieval box).neg
 
+/--
+@isnad1 id=eq.0h2v.s4.2af2ceb706c7 from=translated src=- shape=d817fcc1 vocab=364db4f3
+-/
 @[simp] lemma IE.eval_c (env : ℕ → ℝ) (q : ℚ) : (IE.c q).eval env = q := rfl
+/--
+@isnad1 id=eq.0h2v.s3.95b61a5b31d7 from=translated src=- shape=02ea90bc vocab=01153f69
+-/
 @[simp] lemma IE.eval_v (env : ℕ → ℝ) (i : ℕ) : (IE.v i).eval env = env i := rfl
+/--
+@isnad1 id=eq.0h3v.s5.0aae63715265 from=translated src=- shape=d3d0856c vocab=86ec7fa9
+-/
 @[simp] lemma IE.eval_add' (env : ℕ → ℝ) (a b : IE) : (a + b).eval env = a.eval env + b.eval env :=
   rfl
+/--
+@isnad1 id=eq.0h3v.s5.5a5eee298aeb from=translated src=- shape=d3d0856c vocab=a0b76419
+-/
 @[simp] lemma IE.eval_sub' (env : ℕ → ℝ) (a b : IE) : (a - b).eval env = a.eval env - b.eval env :=
   rfl
+/--
+@isnad1 id=eq.0h3v.s5.95c63441d123 from=translated src=- shape=d3d0856c vocab=dca23960
+-/
 @[simp] lemma IE.eval_mul' (env : ℕ → ℝ) (a b : IE) : (a * b).eval env = a.eval env * b.eval env :=
   rfl
+/--
+@isnad1 id=eq.0h2v.s4.b277ffb9dade from=translated src=- shape=aa4d8753 vocab=445a2cdb
+-/
 @[simp] lemma IE.eval_neg' (env : ℕ → ℝ) (a : IE) : (-a).eval env = -a.eval env := rfl
 
-/-- **Soundness of interval evaluation.**-/
+/-- **Soundness of interval evaluation.**
+@isnad1 id=mem.1h3v.s4.b6ca90e750b0 from=translated src=- shape=7c18937a vocab=5af23769
+-/
 theorem IE.mem_ieval {env : ℕ → ℝ} {box : ℕ → Iv} (h : ∀ i, (box i).Mem (env i)) :
     ∀ e : IE, (e.ieval box).Mem (e.eval env)
   | .c q => Iv.mem_const q
@@ -375,31 +469,45 @@ def cos6E : IE := .c 1 - tY * (.c (1 / 2) - tY * (.c (1 / 24) - tY * (.c (1 / 72
 def cos7E : IE := .c 1 - tY * (.c (1 / 2) - tY * (.c (1 / 24) - tY * (.c (1 / 720)
   - tY * (.c (1 / 40320) - tY * (.c (1 / 3628800) - tY * .c (1 / 479001600))))))
 
+/--
+@isnad1 id=eq.0h1v.s4.9b2a1c19de32 from=translated src=- shape=499dc428 vocab=9fc6b9ed
+-/
 lemma sin6E_eval (x : ℝ) : sin6E.eval (fun _ => x) = sinPoly 6 x := by
   simp only [sin6E, tY, tX, IE.eval_mul', IE.eval_sub', IE.eval_v, IE.eval_c, sinPoly,
     Finset.sum_range_succ, Finset.sum_range_zero]
   norm_num [Nat.factorial]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.a5a78c538568 from=translated src=- shape=499dc428 vocab=7805941e
+-/
 lemma sin7E_eval (x : ℝ) : sin7E.eval (fun _ => x) = sinPoly 7 x := by
   simp only [sin7E, tY, tX, IE.eval_mul', IE.eval_sub', IE.eval_v, IE.eval_c, sinPoly,
     Finset.sum_range_succ, Finset.sum_range_zero]
   norm_num [Nat.factorial]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.55f67e33c0c0 from=translated src=- shape=499dc428 vocab=c38b62b5
+-/
 lemma cos6E_eval (x : ℝ) : cos6E.eval (fun _ => x) = cosPoly 6 x := by
   simp only [cos6E, tY, tX, IE.eval_mul', IE.eval_sub', IE.eval_v, IE.eval_c, cosPoly,
     Finset.sum_range_succ, Finset.sum_range_zero]
   norm_num [Nat.factorial]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.042c22ccf53e from=translated src=- shape=499dc428 vocab=85694364
+-/
 lemma cos7E_eval (x : ℝ) : cos7E.eval (fun _ => x) = cosPoly 7 x := by
   simp only [cos7E, tY, tX, IE.eval_mul', IE.eval_sub', IE.eval_v, IE.eval_c, cosPoly,
     Finset.sum_range_succ, Finset.sum_range_zero]
   norm_num [Nat.factorial]
   ring
 
-/-- The interval value of a Taylor polynomial at the grid point `m / S`.-/
+/-- The interval value of a Taylor polynomial at the grid point `m / S`.
+@isnad1 id=mem.0h2v.s5.d51f648ae6ab from=translated src=- shape=c6615dd7 vocab=7a170d8d
+-/
 lemma mem_ieval_point (e : IE) (m : ℤ) :
     (e.ieval (fun _ => ⟨m, m⟩)).Mem (e.eval (fun _ => (m : ℝ) / S)) :=
   IE.mem_ieval (fun _ => ⟨le_rfl, le_rfl⟩) e
@@ -416,21 +524,33 @@ def cosLB (m : ℤ) : ℤ := (cos6E.ieval (fun _ => ⟨m, m⟩)).lo
 /-- An upper bound for `cos (m / S)` (for `0 ≤ m`).-/
 def cosUB (m : ℤ) : ℤ := (cos7E.ieval (fun _ => ⟨m, m⟩)).hi
 
+/--
+@isnad1 id=le.1h1v.s6.041844b9f3d0 from=translated src=- shape=e14f0d3d vocab=c4e73ff6
+-/
 lemma sinLB_le {m : ℤ} (hm : 0 ≤ (m : ℝ) / S) : (sinLB m : ℝ) / S ≤ Real.sin ((m : ℝ) / S) := by
   have h := (mem_ieval_point sin6E m).1
   rw [sin6E_eval] at h
   exact h.trans (sinPoly_le_sin 2 hm)
 
+/--
+@isnad1 id=le.1h1v.s6.bdc25ee8cb6e from=translated src=- shape=aede5dd4 vocab=09ecc464
+-/
 lemma le_sinUB {m : ℤ} (hm : 0 ≤ (m : ℝ) / S) : Real.sin ((m : ℝ) / S) ≤ (sinUB m : ℝ) / S := by
   have h := (mem_ieval_point sin7E m).2
   rw [sin7E_eval] at h
   exact (sin_le_sinPoly 3 hm).trans h
 
+/--
+@isnad1 id=le.1h1v.s6.306952cf5350 from=translated src=- shape=e14f0d3d vocab=8bdebcc9
+-/
 lemma cosLB_le {m : ℤ} (hm : 0 ≤ (m : ℝ) / S) : (cosLB m : ℝ) / S ≤ Real.cos ((m : ℝ) / S) := by
   have h := (mem_ieval_point cos6E m).1
   rw [cos6E_eval] at h
   exact h.trans (cosPoly_le_cos 2 hm)
 
+/--
+@isnad1 id=le.1h1v.s6.7ddb43182037 from=translated src=- shape=aede5dd4 vocab=c858f82f
+-/
 lemma le_cosUB {m : ℤ} (hm : 0 ≤ (m : ℝ) / S) : Real.cos ((m : ℝ) / S) ≤ (cosUB m : ℝ) / S := by
   have h := (mem_ieval_point cos7E m).2
   rw [cos7E_eval] at h
@@ -440,6 +560,9 @@ def Iv.sin (a : Iv) : Iv := if 0 ≤ a.lo ∧ a.hi ≤ S then ⟨sinLB a.lo, sin
 
 def Iv.cos (a : Iv) : Iv := if 0 ≤ a.lo ∧ a.hi ≤ S then ⟨cosLB a.hi, cosUB a.lo⟩ else ⟨-S, S⟩
 
+/--
+@isnad1 id=mem.1h2v.s3.b47e0399d672 from=translated src=- shape=c21b1870 vocab=4bd68e63
+-/
 lemma Iv.mem_sin {x : ℝ} {a : Iv} (hx : a.Mem x) : a.sin.Mem (Real.sin x) := by
   have hS := S_pos
   have hpi := pi_gt_three
@@ -457,6 +580,9 @@ lemma Iv.mem_sin {x : ℝ} {a : Iv} (hx : a.Mem x) : a.sin.Mem (Real.sin x) := b
     · rw [Int.cast_neg, neg_div, div_self hS.ne']; exact Real.neg_one_le_sin x
     · rw [div_self hS.ne']; exact Real.sin_le_one x
 
+/--
+@isnad1 id=mem.1h2v.s3.aaa8a22cf9b7 from=translated src=- shape=c21b1870 vocab=c5553a08
+-/
 lemma Iv.mem_cos {x : ℝ} {a : Iv} (hx : a.Mem x) : a.cos.Mem (Real.cos x) := by
   have hS := S_pos
   have hpi := pi_gt_three
@@ -477,6 +603,9 @@ lemma Iv.mem_cos {x : ℝ} {a : Iv} (hx : a.Mem x) : a.cos.Mem (Real.cos x) := b
 /-- An expression whose interval value is strictly negative or strictly positive does not vanish.-/
 def Iv.nonzero (I : Iv) : Bool := decide (I.hi < 0) || decide (0 < I.lo)
 
+/--
+@isnad1 id=ne.2h2v.s4.2afa1f354999 from=translated src=- shape=b10ec75a vocab=1f86a860
+-/
 lemma Iv.ne_zero_of_nonzero {x : ℝ} {I : Iv} (hx : I.Mem x) (h : I.nonzero = true) : x ≠ 0 := by
   have hS := S_pos
   unfold Iv.nonzero at h
@@ -491,6 +620,9 @@ lemma Iv.ne_zero_of_nonzero {x : ℝ} {I : Iv} (hx : I.Mem x) (h : I.nonzero = t
 /-- A bound for the absolute value on an interval: `max (−lo) hi`.-/
 def Iv.mag (I : Iv) : ℤ := max (-I.lo) I.hi
 
+/--
+@isnad1 id=le.1h2v.s5.b39214f97a0e from=translated src=- shape=22fe8fbf vocab=1185bccf
+-/
 lemma Iv.abs_le_mag {x : ℝ} {I : Iv} (hx : I.Mem x) : |x| ≤ (I.mag : ℝ) / S := by
   have hS := S_pos
   have h1 : ((-I.lo : ℤ) : ℝ) / S ≤ (I.mag : ℝ) / S :=
@@ -501,12 +633,16 @@ lemma Iv.abs_le_mag {x : ℝ} {I : Iv} (hx : I.Mem x) : |x| ≤ (I.mag : ℝ) / 
   rw [abs_le]
   exact ⟨by linarith [hx.1], hx.2.trans h2⟩
 
-/-- The point interval `[1, 1]`.-/
+/-- The point interval `[1, 1]`.
+@isnad1 id=mem.0h0v.s3.427aa3f5a70f from=translated src=- shape=ed7e7c82 vocab=7dcc838b
+-/
 lemma Iv.mem_one : (⟨S, S⟩ : Iv).Mem 1 := by
   have hS := S_pos
   exact ⟨(div_self hS.ne').le, (div_self hS.ne').ge⟩
 
-/-- A point on a segment between two points of an interval lies in the interval.-/
+/-- A point on a segment between two points of an interval lies in the interval.
+@isnad1 id=mem.4h4v.s6.005b288f4e00 from=translated src=- shape=97efd932 vocab=d5fbca72
+-/
 lemma Iv.mem_line {I : Iv} {a b τ : ℝ} (ha : I.Mem a) (hb : I.Mem b) (h0 : 0 ≤ τ) (h1 : τ ≤ 1) :
     I.Mem (a + τ * (b - a)) := by
   obtain ⟨ha1, ha2⟩ := ha
@@ -528,7 +664,9 @@ def IE.evalD (env δ : ℕ → ℝ) : IE → ℝ
   | .neg a => -a.evalD env δ
 
 /-- **Chain rule**: along a path of environments `ρ`, the value of an expression has derivative
-`evalD`.-/
+`evalD`.
+@isnad1 id=hasderiv.1h4v.s6.237e4a30e7ca from=translated src=- shape=97c78f94 vocab=92914eb4
+-/
 theorem IE.hasDerivAt_eval {ρ : ℝ → ℕ → ℝ} {δ : ℕ → ℝ} {t : ℝ}
     (h : ∀ i, HasDerivAt (fun s => ρ s i) (δ i) t) :
     ∀ e : IE, HasDerivAt (fun s => e.eval (ρ s)) (e.evalD (ρ t) δ) t
@@ -539,7 +677,9 @@ theorem IE.hasDerivAt_eval {ρ : ℝ → ℕ → ℝ} {δ : ℕ → ℝ} {t : �
   | .mul a b => (IE.hasDerivAt_eval h a).mul (IE.hasDerivAt_eval h b)
   | .neg a => (IE.hasDerivAt_eval h a).neg
 
-/-- `evalD` is linear in the derivatives of the variables.-/
+/-- `evalD` is linear in the derivatives of the variables.
+@isnad1 id=eq.0h6v.s6.8d4ddabaf7a3 from=translated src=- shape=4cf36773 vocab=b6ba8934
+-/
 theorem IE.evalD_lin (env δ₁ δ₂ : ℕ → ℝ) (u w : ℝ) :
     ∀ e : IE, e.evalD env (fun i => u * δ₁ i + w * δ₂ i) = u * e.evalD env δ₁ + w * e.evalD env δ₂
   | .c _ => by simp only [IE.evalD]; ring
@@ -562,6 +702,9 @@ def IE.diff (d : ℕ → IE) : IE → IE
   | .mul a b => .add (.mul (a.diff d) b) (.mul a (b.diff d))
   | .neg a => .neg (a.diff d)
 
+/--
+@isnad1 id=eq.0h3v.s4.919d88e96aa1 from=translated src=- shape=65112f09 vocab=d694f79a
+-/
 theorem IE.eval_diff (env : ℕ → ℝ) (d : ℕ → IE) :
     ∀ e : IE, (e.diff d).eval env = e.evalD env (fun i => (d i).eval env)
   | .c _ => by simp [IE.diff, IE.evalD]

@@ -28,7 +28,9 @@ open Set Filter MeasureTheory
 
 namespace Sofa
 
-/-- **Integration by parts against a Stieltjes measure.**-/
+/-- **Integration by parts against a Stieltjes measure.**
+@isnad1 id=eq.2h4v.s7.1ac7e9581533 from=translated src=- shape=8f2cee0a vocab=5d14e4d1
+-/
 theorem integral_Ioc_stieltjes (F : StieltjesFunction ℝ) {g : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hg : AbsolutelyContinuousOnInterval g a b) :
     ∫ t in Ioc a b, g t ∂F.measure

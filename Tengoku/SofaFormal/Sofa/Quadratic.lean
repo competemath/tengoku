@@ -57,11 +57,17 @@ def ConvexLinearOn (D : ConvexDomain V) (f : V → W) : Prop :=
   ∀ ⦃x⦄, x ∈ D.carrier → ∀ ⦃y⦄, y ∈ D.carrier → ∀ ⦃l : ℝ⦄, 0 ≤ l → l ≤ 1 →
     f (D.bary l x y) = (1 - l) • f x + l • f y
 
+/--
+@isnad1 id=convexli.0h4v.s4.891391d9ecdc from=translated src=- shape=ea188086 vocab=ca7bfec1
+-/
 lemma ConvexLinearOn.const (D : ConvexDomain V) (w : W) : ConvexLinearOn D (fun _ => w) := by
   intro x _ y _ l _ _
   show w = (1 - l) • w + l • w
   rw [← add_smul]; simp
 
+/--
+@isnad1 id=convexli.2h5v.s6.066aa9939f43 from=translated src=- shape=117866ee vocab=c48961fe
+-/
 lemma ConvexLinearOn.add {D : ConvexDomain V} {f g : V → W} (hf : ConvexLinearOn D f)
     (hg : ConvexLinearOn D g) : ConvexLinearOn D (fun x => f x + g x) := by
   intro x hx y hy l hl0 hl1
@@ -69,6 +75,9 @@ lemma ConvexLinearOn.add {D : ConvexDomain V} {f g : V → W} (hf : ConvexLinear
   rw [hf hx hy hl0 hl1, hg hx hy hl0 hl1, smul_add, smul_add]
   abel
 
+/--
+@isnad1 id=convexli.2h5v.s6.cdfafb8be28c from=translated src=- shape=117866ee vocab=4d858de8
+-/
 lemma ConvexLinearOn.sub {D : ConvexDomain V} {f g : V → W} (hf : ConvexLinearOn D f)
     (hg : ConvexLinearOn D g) : ConvexLinearOn D (fun x => f x - g x) := by
   intro x hx y hy l hl0 hl1
@@ -76,6 +85,9 @@ lemma ConvexLinearOn.sub {D : ConvexDomain V} {f g : V → W} (hf : ConvexLinear
   rw [hf hx hy hl0 hl1, hg hx hy hl0 hl1, smul_sub, smul_sub]
   abel
 
+/--
+@isnad1 id=convexli.1h5v.s6.7858ffa53f98 from=translated src=- shape=acc42d90 vocab=d6a26576
+-/
 lemma ConvexLinearOn.smul {D : ConvexDomain V} {f : V → W} (hf : ConvexLinearOn D f) (c : ℝ) :
     ConvexLinearOn D (fun x => c • f x) := by
   intro x hx y hy l hl0 hl1
@@ -85,7 +97,9 @@ lemma ConvexLinearOn.smul {D : ConvexDomain V} {f : V → W} (hf : ConvexLinearO
 omit [AddCommGroup W] [Module ℝ W] in
 /-- Composition: if `f` maps `D` into `E` preserving the barycentric operation (Baek's
 convex-linearity between convex domains) and `g` is convex-linear on `E`, then `g ∘ f` is
-convex-linear on `D`.  When `E = ConvexDomain.ofConvex`, `hbary` *is* `ConvexLinearOn D f`.-/
+convex-linear on `D`.  When `E = ConvexDomain.ofConvex`, `hbary` *is* `ConvexLinearOn D f`.
+@isnad1 id=convexli.3h7v.s7.8e65ec3921b3 from=translated src=- shape=7d132af6 vocab=0e20fc02
+-/
 lemma ConvexLinearOn.comp {U : Type*} [AddCommGroup U] [Module ℝ U] {D : ConvexDomain V}
     {E : ConvexDomain W} {f : V → W} {g : W → U}
     (hmap : ∀ x ∈ D.carrier, f x ∈ E.carrier)
@@ -107,7 +121,9 @@ def IsQuadraticOn (D : ConvexDomain V) (f : V → ℝ) : Prop :=
 
 /-! ## The quadratic expansion (7.1) -/
 
-/-- Baek's Equation (7.1).-/
+/-- Baek's Equation (7.1).
+@isnad1 id=eq.5h6v.s7.42bbbd91bf78 from=translated src=- shape=b067e9e2 vocab=e69585d3
+-/
 theorem ConvexBilinearOn.expand {D : ConvexDomain V} {g : V → V → ℝ}
     (hg : ConvexBilinearOn D g) {x y : V} (hx : x ∈ D.carrier) (hy : y ∈ D.carrier) {l : ℝ}
     (hl0 : 0 ≤ l) (hl1 : l ≤ 1) :
@@ -128,7 +144,9 @@ theorem ConvexBilinearOn.expand {D : ConvexDomain V} {g : V → V → ℝ}
 def dirDeriv (D : ConvexDomain V) (f : V → ℝ) (K K' : V) : ℝ :=
   derivWithin (fun l : ℝ => f (D.bary l K K')) (Ici 0) 0
 
-/-- The restriction of a quadratic functional to a `c_λ`-segment, in normalized form.-/
+/-- The restriction of a quadratic functional to a `c_λ`-segment, in normalized form.
+@isnad1 id=eq.6h7v.s7.4bcc3bd3a0dc from=translated src=- shape=ba82b220 vocab=e69585d3
+-/
 theorem quad_along {D : ConvexDomain V} {g : V → V → ℝ} (hg : ConvexBilinearOn D g)
     {f : V → ℝ} (hf : ∀ x ∈ D.carrier, f x = g x x) {K K' : V} (hK : K ∈ D.carrier)
     (hK' : K' ∈ D.carrier) {l : ℝ} (hl0 : 0 ≤ l) (hl1 : l ≤ 1) :
@@ -137,7 +155,9 @@ theorem quad_along {D : ConvexDomain V} {g : V → V → ℝ} (hg : ConvexBiline
   rw [hf _ (D.mem hK hK' hl0 hl1), hg.expand hK hK' hl0 hl1, hf K hK]
   ring
 
-/-- **Lemma 7.1.4.**-/
+/-- **Lemma 7.1.4.**
+@isnad1 id=eq.4h6v.s6.fb2d81d69b39 from=translated src=- shape=f00233c0 vocab=99f5f30a
+-/
 theorem dirDeriv_eq {D : ConvexDomain V} {g : V → V → ℝ} (hg : ConvexBilinearOn D g)
     {f : V → ℝ} (hf : ∀ x ∈ D.carrier, f x = g x x) {K K' : V} (hK : K ∈ D.carrier)
     (hK' : K' ∈ D.carrier) :
@@ -195,7 +215,9 @@ def ConcaveOnDomain (D : ConvexDomain V) (f : V → ℝ) : Prop :=
     (1 - l) * f x + l * f y ≤ f (D.bary l x y)
 
 /-- **Theorem 7.1.5.** A concave quadratic functional is maximized at `K` exactly when its
-directional derivative at `K` is nonpositive in every direction.-/
+directional derivative at `K` is nonpositive in every direction.
+@isnad1 id=iff.4h5v.s6.b0be026459f7 from=translated src=- shape=d48678b8 vocab=47c51d94
+-/
 theorem isMaxOn_iff_dirDeriv_nonpos {D : ConvexDomain V} {g : V → V → ℝ}
     (hg : ConvexBilinearOn D g) {f : V → ℝ} (hf : ∀ x ∈ D.carrier, f x = g x x)
     (hconc : ConcaveOnDomain D f) {K : V} (hK : K ∈ D.carrier) :
@@ -223,11 +245,17 @@ theorem isMaxOn_iff_dirDeriv_nonpos {D : ConvexDomain V} {g : V → V → ℝ}
 def EqUpToLinear (D : ConvexDomain V) (f g : V → ℝ) : Prop :=
   ConvexLinearOn D (fun x => f x - g x)
 
+/--
+@isnad1 id=equptoli.0h3v.s3.3212bb286331 from=translated src=- shape=bfc6e12f vocab=ff17ba70
+-/
 lemma EqUpToLinear.refl (D : ConvexDomain V) (f : V → ℝ) : EqUpToLinear D f f := by
   show ConvexLinearOn D (fun x => f x - f x)
   have he : (fun x : V => f x - f x) = fun _ : V => (0 : ℝ) := by funext x; ring
   rw [he]; exact ConvexLinearOn.const D 0
 
+/--
+@isnad1 id=equptoli.1h4v.s4.f8fd3f0b46dd from=translated src=- shape=000b45d4 vocab=ff17ba70
+-/
 lemma EqUpToLinear.symm {D : ConvexDomain V} {f g : V → ℝ} (h : EqUpToLinear D f g) :
     EqUpToLinear D g f := by
   have h2 := (ConvexLinearOn.const D (0 : ℝ)).sub h
@@ -235,6 +263,9 @@ lemma EqUpToLinear.symm {D : ConvexDomain V} {f g : V → ℝ} (h : EqUpToLinear
   have he : (fun x : V => g x - f x) = fun x : V => (0 : ℝ) - (f x - g x) := by funext x; ring
   rw [he]; exact h2
 
+/--
+@isnad1 id=equptoli.2h5v.s5.92160a26b457 from=translated src=- shape=edfd0fc4 vocab=ff17ba70
+-/
 lemma EqUpToLinear.trans {D : ConvexDomain V} {f g k : V → ℝ} (h1 : EqUpToLinear D f g)
     (h2 : EqUpToLinear D g k) : EqUpToLinear D f k := by
   have h3 := h1.add h2
