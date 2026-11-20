@@ -20,7 +20,9 @@ section CenterTuple
 
 variable {H : Type*} [Group H] {k : ℕ}
 
-/-- Equality of conjugates is equivalent to commuting with the relative element.-/
+/-- Equality of conjugates is equivalent to commuting with the relative element.
+@isnad1 id=iff.0h4v.s7.a4ff4cc9eb91 from=translated src=- shape=b58fe9bc vocab=9f72dee7
+-/
 theorem conjugate_eq_iff_relative_commutes (a b x : H) :
     a * x * a⁻¹ = b * x * b⁻¹ ↔ x * (a⁻¹ * b) = (a⁻¹ * b) * x := by
   constructor
@@ -35,7 +37,9 @@ theorem conjugate_eq_iff_relative_commutes (a b x : H) :
       _ = a * ((a⁻¹ * b) * x) * b⁻¹ := by rw [h]
       _ = b * x * b⁻¹ := by group
 
-/-- All generator coordinates agree exactly when the center-quotient cosets agree.-/
+/-- All generator coordinates agree exactly when the center-quotient cosets agree.
+@isnad1 id=iff.1h5v.s8.54cc1b746a85 from=translated src=- shape=a4294811 vocab=34f97f01
+-/
 theorem conjugate_generators_eq_iff_mk_eq (x : Fin k → H)
     (hgen : Subgroup.closure (Set.range x) = ⊤) (a b : H) :
     (∀ i, a * x i * a⁻¹ = b * x i * b⁻¹) ↔
@@ -55,6 +59,9 @@ noncomputable def centerConjugacyTuple (x : Fin k → H)
     (q : H ⧸ Subgroup.center H) : Fin k → H :=
   fun i => q.out * x i * q.out⁻¹
 
+/--
+@isnad1 id=eq.1h4v.s8.4e84613a67d9 from=translated src=- shape=9cb9f8f0 vocab=9de35964
+-/
 theorem centerConjugacyTuple_mk (x : Fin k → H)
     (hgen : Subgroup.closure (Set.range x) = ⊤) (a : H) :
     centerConjugacyTuple x (QuotientGroup.mk' (Subgroup.center H) a) =
@@ -63,6 +70,9 @@ theorem centerConjugacyTuple_mk (x : Fin k → H)
   apply (conjugate_generators_eq_iff_mk_eq x hgen _ a).mpr ?_ i
   exact Quotient.out_eq' _
 
+/--
+@isnad1 id=injectiv.1h3v.s5.eeb475c0f4a2 from=translated src=- shape=a7f24dfa vocab=7ada9a42
+-/
 theorem centerConjugacyTuple_injective (x : Fin k → H)
     (hgen : Subgroup.closure (Set.range x) = ⊤) :
     Function.Injective (centerConjugacyTuple x) := by
@@ -77,7 +87,9 @@ section WordImages
 
 variable {H K : Type*} [Group H] [Group K] [DecidableEq K]
 
-/-- Finite word balls commute with a homomorphism, including all shorter words.-/
+/-- Finite word balls commute with a homomorphism, including all shorter words.
+@isnad1 id=eq.0h5v.s7.96edbc7020ef from=translated src=- shape=2d6cb0aa vocab=a73a2330
+-/
 theorem wordBall_image (f : H →* K) (S : Finset H) (n : ℕ) :
     wordBall (S.image f) n = (wordBall S n).image f := by
   classical
@@ -116,7 +128,9 @@ theorem wordBall_image (f : H →* K) (S : Finset H) (n : ℕ) :
       exact Finset.mem_image.mpr ⟨s, hs s hs', rfl⟩
     · rw [← map_list_prod, hp]
 
-/-- Every quotient word has a lift of no greater intrinsic word length.-/
+/-- Every quotient word has a lift of no greater intrinsic word length.
+@isnad1 id=ex.1h6v.s7.a62f186913fd from=translated src=- shape=7e708a76 vocab=d48b4acd
+-/
 theorem mem_wordBall_image_lift (f : H →* K) (S : Finset H) (n : ℕ)
     {q : K} (hq : q ∈ wordBall (S.image f) n) :
     ∃ a ∈ wordBall S n, f a = q := by
@@ -130,7 +144,9 @@ section LengthBounds
 
 variable {H G : Type*} [Group H] [Group G]
 
-/-- A product of bounded letters has the corresponding ambient length bound.-/
+/-- A product of bounded letters has the corresponding ambient length bound.
+@isnad1 id=le.1h6v.s7.ba002b89f3a9 from=translated src=- shape=919e6c88 vocab=7f400da0
+-/
 theorem length_map_list_prod_le (L : LengthBall G) (f : H →* G)
     (w : List H) (M : ℕ) (hw : ∀ s ∈ w, L.length (f s) ≤ M) :
     L.length (f w.prod) ≤ M * w.length := by
@@ -143,6 +159,9 @@ theorem length_map_list_prod_le (L : LengthBall G) (f : H →* G)
     have hmul := L.length_mul (f s) (f w.prod)
     nlinarith
 
+/--
+@isnad1 id=le.2h8v.s7.d6e83812bd46 from=translated src=- shape=e9bc8bc3 vocab=73b4824a
+-/
 theorem length_map_wordBall_le (L : LengthBall G) (f : H →* G)
     (S : Finset H) (M n : ℕ) (hS : ∀ s ∈ S, L.length (f s) ≤ M)
     {a : H} (ha : a ∈ wordBall S n) : L.length (f a) ≤ M * n := by
@@ -161,17 +180,26 @@ noncomputable def tupleAlphabet (x : Fin k → H) : Finset H := by
   classical
   exact Finset.univ.image x ∪ Finset.univ.image (fun i => (x i)⁻¹)
 
+/--
+@isnad1 id=iff.0h4v.s6.9631683c0568 from=translated src=- shape=095c6299 vocab=10265708
+-/
 theorem mem_tupleAlphabet (x : Fin k → H) (s : H) :
     s ∈ tupleAlphabet x ↔ (∃ i, x i = s) ∨ ∃ i, (x i)⁻¹ = s := by
   classical
   simp [tupleAlphabet]
 
+/--
+@isnad1 id=mem.1h4v.s5.7e5c220e68a2 from=translated src=- shape=61c5d249 vocab=10265708
+-/
 theorem tupleAlphabet_inv_mem (x : Fin k → H) {s : H}
     (hs : s ∈ tupleAlphabet x) : s⁻¹ ∈ tupleAlphabet x := by
   rcases (mem_tupleAlphabet x s).mp hs with ⟨i, rfl⟩ | ⟨i, rfl⟩
   · exact (mem_tupleAlphabet x _).mpr (Or.inr ⟨i, rfl⟩)
   · exact (mem_tupleAlphabet x _).mpr (Or.inl ⟨i, by simp⟩)
 
+/--
+@isnad1 id=eq.1h3v.s5.a3cb610235af from=translated src=- shape=90762066 vocab=ff0a9498
+-/
 theorem tupleAlphabet_generates (x : Fin k → H)
     (hgen : Subgroup.closure (Set.range x) = ⊤) :
     Subgroup.closure (tupleAlphabet x : Set H) = ⊤ := by
@@ -187,6 +215,9 @@ noncomputable def quotientTupleAlphabet (x : Fin k → H) :
   classical
   exact (tupleAlphabet x).image (QuotientGroup.mk' (Subgroup.center H))
 
+/--
+@isnad1 id=eq.1h3v.s7.d0abef9f79f4 from=translated src=- shape=e464bb56 vocab=422acd96
+-/
 theorem quotientTupleAlphabet_generates (x : Fin k → H)
     (hgen : Subgroup.closure (Set.range x) = ⊤) :
     Subgroup.closure (quotientTupleAlphabet x : Set (H ⧸ Subgroup.center H)) = ⊤ := by
@@ -195,6 +226,9 @@ theorem quotientTupleAlphabet_generates (x : Fin k → H)
   rw [Finset.coe_image, ← MonoidHom.map_closure, tupleAlphabet_generates x hgen]
   exact Subgroup.map_top_of_surjective _ (QuotientGroup.mk'_surjective _)
 
+/--
+@isnad1 id=mem.1h4v.s7.55c0e9ee929d from=translated src=- shape=9bc7f9fe vocab=9a3409dc
+-/
 theorem quotientTupleAlphabet_inv_mem (x : Fin k → H)
     {s : H ⧸ Subgroup.center H} (hs : s ∈ quotientTupleAlphabet x) :
     s⁻¹ ∈ quotientTupleAlphabet x := by
@@ -208,6 +242,9 @@ section AmbientBound
 
 variable {G : Type*} [Group G] {k : ℕ}
 
+/--
+@isnad1 id=le.2h7v.s7.189662857936 from=translated src=- shape=e14e637c vocab=84f64f37
+-/
 theorem tupleAlphabet_ambient_length_le (L : LengthBall G) (A : Subgroup G)
     (x : Fin k → A) (M : ℕ) (hM : ∀ i, L.length (x i : G) ≤ M)
     {s : A} (hs : s ∈ tupleAlphabet x) : L.length (s : G) ≤ M := by
@@ -215,7 +252,9 @@ theorem tupleAlphabet_ambient_length_le (L : LengthBall G) (A : Subgroup G)
   · exact hM i
   · simpa only [Subgroup.coe_inv, L.length_inv] using hM i
 
-/-- A point of the quotient n-ball has an ambient lift of length at most M*n.-/
+/-- A point of the quotient n-ball has an ambient lift of length at most M*n.
+@isnad1 id=ex.2h8v.s11.b01776579028 from=translated src=- shape=f04ede8e vocab=0880612a
+-/
 theorem quotient_wordBall_bounded_lift (L : LengthBall G) (A : Subgroup G)
     (x : Fin k → A) (M n : ℕ) (hM : ∀ i, L.length (x i : G) ≤ M)
     {q : A ⧸ Subgroup.center A} (hq : q ∈ wordBall (quotientTupleAlphabet x) n) :
@@ -227,7 +266,9 @@ theorem quotient_wordBall_bounded_lift (L : LengthBall G) (A : Subgroup G)
   exact ⟨a, length_map_wordBall_le L A.subtype (tupleAlphabet x) M n
     (fun s hs => tupleAlphabet_ambient_length_le L A x M hM hs) ha, he⟩
 
-/-- The actual quotient word-ball injects into k copies of one rooted conjugacy ball.-/
+/-- The actual quotient word-ball injects into k copies of one rooted conjugacy ball.
+@isnad1 id=le.4h10v.s9.0fefcbd9d21a from=translated src=- shape=e61c9f5c vocab=4bec2cb1
+-/
 theorem quotient_center_wordBall_card_le_conjugacy [DecidableEq G]
     (L : LengthBall G) (A : Subgroup G)
     (x : Fin k → A) (hgen : Subgroup.closure (Set.range x) = ⊤)

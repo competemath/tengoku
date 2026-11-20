@@ -26,7 +26,9 @@ noncomputable def translateSymmDiff (g : G) (F : Finset G) : Finset G := by
   exact leftTranslate g F ∆ F
 
 /-- Equal translation cardinalities turn the one-sided loss into half the
-symmetric-difference cardinality.-/
+symmetric-difference cardinality.
+@isnad1 id=eq.0h3v.s5.9e3111bcab3c from=translated src=- shape=1b0c5854 vocab=fb561dd9
+-/
 theorem leftTranslate_symmDiff_card (g : G) (F : Finset G) :
     (translateSymmDiff g F).card = 2 * (translateBoundary g F).card := by
   classical
@@ -42,6 +44,9 @@ theorem leftTranslate_symmDiff_card (g : G) (F : Finset G) :
     omega
   · exact disjoint_sdiff_sdiff
 
+/--
+@isnad1 id=eq.0h3v.s5.c20affd119ef from=translated src=- shape=61f0aeda vocab=fecd9764
+-/
 theorem coe_leftTranslate (g : G) (F : Finset G) :
     (leftTranslate g F : Set G) = g • (F : Set G) := by
   classical
@@ -49,7 +54,9 @@ theorem coe_leftTranslate (g : G) (F : Finset G) :
   simp only [leftTranslate, Finset.mem_coe, Finset.mem_image, Set.mem_smul_set, smul_eq_mul]
 
 /-- The explicit finite Følner condition yields an invariant probability on
-every subset, with no Følner-filter hypothesis left to the caller.-/
+every subset, with no Følner-filter hypothesis left to the caller.
+@isnad1 id=hasinvar.1h1v.s3.6c6213788174 from=translated src=- shape=c612a321 vocab=18413135
+-/
 theorem hasInvariantMean_of_finiteFoelner (h : FiniteFoelner G) :
     HasInvariantMean G := by
   classical

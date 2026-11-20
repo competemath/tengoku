@@ -20,7 +20,9 @@ namespace Q1
 
 /-- Products of at most `n` letters in a finite commutative alphabet have at
 most `(n+1)^|S|` different exponent vectors. Neither symmetry nor generation
-of the ambient group is assumed.-/
+of the ambient group is assumed.
+@isnad1 id=le.0h3v.s5.1a06a73a74d9 from=translated src=- shape=38155033 vocab=5293adb5
+-/
 theorem wordBall_card_le_pow_card {G : Type*} [CommGroup G]
     (S : Finset G) (n : ℕ) : (wordBall S n).card ≤ (n + 1) ^ S.card := by
   classical
@@ -47,7 +49,9 @@ theorem wordBall_card_le_pow_card {G : Type*} [CommGroup G]
 
 /-- Polynomial word-ball upper growth for a particular finite alphabet prevents
 uniform expansion and gives its finite Følner approximation. No symmetry or
-generation assumption is used.-/
+generation assumption is used.
+@isnad1 id=generato.1h3v.s5.3e9a4b8f313e from=translated src=- shape=66b2e6f8 vocab=6b18c1ec
+-/
 theorem generatorFoelner_of_polynomial_wordBall {G : Type*} [Group G]
     (S : Finset G) (d : ℕ)
     (hpoly : ∀ n : ℕ, (wordBall S n).card ≤ (n + 1) ^ d) :
@@ -85,20 +89,26 @@ theorem generatorFoelner_of_polynomial_wordBall {G : Type*} [Group G]
   exact (not_lt_of_ge ((hexp n).trans hp)) hlt
 
 /-- Every finite set of translations in a commutative group has finite
-approximations with arbitrarily small relative one-sided translation boundary.-/
+approximations with arbitrarily small relative one-sided translation boundary.
+@isnad1 id=generato.0h2v.s3.26b23f43cac5 from=translated src=- shape=1df4a4a2 vocab=6c506900
+-/
 theorem generatorFoelner_of_commutative {G : Type*} [CommGroup G] (S : Finset G) :
     GeneratorFoelner S :=
   generatorFoelner_of_polynomial_wordBall S S.card (wordBall_card_le_pow_card S)
 
 /-- Every commutative group satisfies the explicit finite Følner condition,
-without finite-generation or countability assumptions.-/
+without finite-generation or countability assumptions.
+@isnad1 id=finitefo.0h1v.s3.0403fb0c374e from=translated src=- shape=c6850a32 vocab=5289b897
+-/
 theorem finiteFoelner_of_commutative (G : Type*) [CommGroup G] : FiniteFoelner G := by
   intro K
   exact generatorFoelner_of_commutative K
 
 open scoped IsMulCommutative in
 /-- In particular, the center of any group satisfies the explicit finite
-Følner condition, using its actual subgroup group structure.-/
+Følner condition, using its actual subgroup group structure.
+@isnad1 id=finitefo.0h1v.s5.2bc1674a4e29 from=translated src=- shape=7af3b1f0 vocab=06dd9fc9
+-/
 theorem finiteFoelner_center (G : Type*) [Group G] :
     FiniteFoelner (Subgroup.center G) :=
   finiteFoelner_of_commutative (Subgroup.center G)

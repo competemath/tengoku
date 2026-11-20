@@ -11,7 +11,9 @@ open scoped Topology
 namespace Q1
 
 /-- With rho at least one, the eventual upper-exponential definition is exactly
-ordinary convergence of log(rho(n))/n to zero. The term at n=0 is harmless.-/
+ordinary convergence of log(rho(n))/n to zero. The term at n=0 is harmless.
+@isnad1 id=iff.1h1v.s5.2f3d527c183e from=translated src=- shape=9ae15737 vocab=5bb10507
+-/
 theorem ordinarySRD_iff_log_limit (ρ : ℕ → ℝ) (hρ : ∀ n, 1 ≤ ρ n) :
     OrdinarySRD ρ ↔ Tendsto (fun n : ℕ => Real.log (ρ n) / (n : ℝ)) atTop (𝓝 0) := by
   constructor
@@ -40,7 +42,9 @@ theorem ordinarySRD_iff_log_limit (ρ : ℕ → ℝ) (hρ : ∀ n, 1 ≤ ρ n) :
       _ ≤ Real.exp (ε * n) := (Real.exp_lt_exp.mpr hl).le
 
 /-- The polynomial RD hypothesis gives the exact ordinary logarithmic SRD
-limit when the growth function is at least one.-/
+limit when the growth function is at least one.
+@isnad1 id=tendsto.2h3v.s6.dca64a23ce31 from=translated src=- shape=db35a62f vocab=f7701c35
+-/
 theorem log_limit_of_polynomial_bound (ρ : ℕ → ℝ) (hρ : ∀ n, 1 ≤ ρ n)
     (C d : ℝ) (hbound : ∀ n : ℕ, ρ n ≤ C * (1 + (n : ℝ)) ^ d) :
     Tendsto (fun n : ℕ => Real.log (ρ n) / (n : ℝ)) atTop (𝓝 0) :=

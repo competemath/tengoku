@@ -21,19 +21,26 @@ noncomputable def indicatorVector (F : Finset G) : GroupL2 G := by
   classical
   exact ∑ x ∈ F, lp.single 2 x (1 : ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s7.287e650ef58c from=translated src=- shape=411ae68d vocab=023f8465
+-/
 @[simp] theorem indicatorVector_apply (F : Finset G) (x : G) :
     indicatorVector F x = if x ∈ F then 1 else 0 := by
   classical
   simp only [indicatorVector, lp.coeFn_sum, lp.coeFn_single, Finset.sum_apply,
     Finset.sum_pi_single]
 
-/-- Pairing with an indicator is a genuine finite coordinate sum.-/
+/-- Pairing with an indicator is a genuine finite coordinate sum.
+@isnad1 id=eq.0h3v.s9.eaee05160eaa from=translated src=- shape=7bf15098 vocab=136ac9d4
+-/
 theorem inner_indicatorVector_left (F : Finset G) (ξ : GroupL2 G) :
     inner ℂ (indicatorVector F) ξ = ∑ x ∈ F, ξ x := by
   classical
   simp [indicatorVector, sum_inner, lp.inner_single_left]
 
-/-- The ambient Hilbert norm has exactly the counting-measure normalization.-/
+/-- The ambient Hilbert norm has exactly the counting-measure normalization.
+@isnad1 id=eq.0h2v.s7.f216ae4219c3 from=translated src=- shape=bde0bacd vocab=d0d72059
+-/
 theorem indicatorVector_norm_sq (F : Finset G) : ‖indicatorVector F‖ ^ 2 = (F.card : ℝ) := by
   classical
   have h : inner ℂ (indicatorVector F) (indicatorVector F) = (F.card : ℂ) := by
@@ -46,7 +53,9 @@ theorem indicatorVector_norm_sq (F : Finset G) : ‖indicatorVector F‖ ^ 2 = (
 
 variable [Group G]
 
-/-- The coordinate condition in a left-translated finite set.-/
+/-- The coordinate condition in a left-translated finite set.
+@isnad1 id=iff.0h4v.s6.12550badfe39 from=translated src=- shape=9469385a vocab=18dbbb0c
+-/
 theorem mem_leftTranslate_iff_inv_mul (g x : G) (F : Finset G) :
     x ∈ leftTranslate g F ↔ g⁻¹ * x ∈ F := by
   classical
@@ -57,7 +66,9 @@ theorem mem_leftTranslate_iff_inv_mul (g x : G) (F : Finset G) :
   · intro hx
     exact Finset.mem_image.mpr ⟨g⁻¹ * x, hx, by simp⟩
 
-/-- The indicator matrix coefficient counts an actual intersection.-/
+/-- The indicator matrix coefficient counts an actual intersection.
+@isnad1 id=eq.0h3v.s11.52c2bebfcfa2 from=translated src=- shape=34241a38 vocab=429b3b40
+-/
 theorem inner_indicatorVector_leftRegular (g : G) (F : Finset G) :
     inner ℂ (indicatorVector F) (leftRegular g (indicatorVector F)) =
       ((F ∩ leftTranslate g F).card : ℂ) := by
@@ -68,7 +79,9 @@ theorem inner_indicatorVector_leftRegular (g : G) (F : Finset G) :
   rw [← Finset.sum_filter]
   simp [Finset.filter_mem_eq_inter]
 
-/-- Matrix-coefficient mass equals total mass minus the one-sided boundary.-/
+/-- Matrix-coefficient mass equals total mass minus the one-sided boundary.
+@isnad1 id=eq.0h3v.s11.c7e9e1d8d325 from=translated src=- shape=36a833bb vocab=287df606
+-/
 theorem re_inner_indicatorVector_leftRegular (g : G) (F : Finset G) :
     (inner ℂ (indicatorVector F) (leftRegular g (indicatorVector F))).re =
       (F.card : ℝ) - (translateBoundary g F).card := by
@@ -83,7 +96,9 @@ theorem re_inner_indicatorVector_leftRegular (g : G) (F : Finset G) :
     exact_mod_cast hc
   linarith
 
-/-- Injective group homomorphisms preserve finite translated boundary sizes.-/
+/-- Injective group homomorphisms preserve finite translated boundary sizes.
+@isnad1 id=eq.1h5v.s7.6813bf558f09 from=translated src=- shape=099699fa vocab=ae602a90
+-/
 theorem translateBoundary_image_card {K : Type*} [Group K]
     (φ : K →* G) (hφ : Function.Injective φ) (g : K) (F : Finset K) :
     (translateBoundary (φ g) (F.image φ)).card = (translateBoundary g F).card := by
@@ -93,7 +108,9 @@ theorem translateBoundary_image_card {K : Type*} [Group K]
   have hc := Finset.card_image_of_injective (translateBoundary g F) hφ
   simpa only [translateBoundary, Finset.image_sdiff _ _ hφ, ← ht] using hc
 
-/-- A subgroup Følner set is realized in the ambient group with the same sizes.-/
+/-- A subgroup Følner set is realized in the ambient group with the same sizes.
+@isnad1 id=ex.3h4v.s7.11eb54fc3716 from=translated src=- shape=10bd9e19 vocab=b88b4018
+-/
 theorem exists_ambient_foelner_set (H : Subgroup G) (hH : FiniteFoelner H)
     (A : Finset G) (hA : ∀ g ∈ A, g ∈ H) (ε : ℝ) (hε : 0 < ε) :
     ∃ F : Finset G, F.Nonempty ∧
@@ -113,7 +130,9 @@ theorem exists_ambient_foelner_set (H : Subgroup G) (hH : FiniteFoelner H)
   rw [he, hc]
   exact hh
 
-/-- The triangle inequality gives the exact cardinal upper bound.-/
+/-- The triangle inequality gives the exact cardinal upper bound.
+@isnad1 id=le.0h2v.s12.6ebd4f14d87d from=translated src=- shape=cdec6b3d vocab=4b70e681
+-/
 theorem norm_sum_leftRegular_le_card (A : Finset G) :
     ‖∑ g ∈ A, leftRegular g‖ ≤ (A.card : ℝ) := by
   classical
@@ -122,7 +141,9 @@ theorem norm_sum_leftRegular_le_card (A : Finset G) :
     _ = _ := by simp
 
 /-- A finite boundary estimate gives a lower bound in the actual ambient
-operator norm; indicators are unnormalized and the cardinal factor cancels.-/
+operator norm; indicators are unnormalized and the cardinal factor cancels.
+@isnad1 id=le.2h4v.s12.9e0fc1875dc4 from=translated src=- shape=7a331c2f vocab=5bcda77d
+-/
 theorem card_mul_one_sub_le_norm_sum_leftRegular_of_boundary
     (A F : Finset G) (hF : F.Nonempty) (ε : ℝ)
     (hbd : ∀ g ∈ A, ((translateBoundary g F).card : ℝ) ≤ ε * F.card) :
@@ -152,7 +173,9 @@ theorem card_mul_one_sub_le_norm_sum_leftRegular_of_boundary
   exact le_of_mul_le_mul_right (hlo.trans hup) hpos
 
 /-- Every finite subset of a finite-Følner subgroup has its full cardinal mass
-as its actual ambient left-regular operator norm. No amenability converse is used.-/
+as its actual ambient left-regular operator norm. No amenability converse is used.
+@isnad1 id=eq.2h3v.s12.a75b26e872b7 from=translated src=- shape=fc4a6989 vocab=d2eca10f
+-/
 theorem norm_sum_leftRegular_eq_card_of_finiteFoelner
     (H : Subgroup G) (hH : FiniteFoelner H) (A : Finset G)
     (hA : ∀ g ∈ A, g ∈ H) :

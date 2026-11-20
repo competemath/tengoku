@@ -24,13 +24,18 @@ structure IsAmenableRadical (R : Subgroup G) : Prop where
   hasInvariantMean : HasInvariantMean R
   maximal : AmenableNormalCover R
 
+/--
+@isnad1 id=eq.2h3v.s4.c63ea468e6c9 from=translated src=- shape=c8d838e7 vocab=f4f20da6
+-/
 theorem IsAmenableRadical.unique {R T : Subgroup G}
     (hR : IsAmenableRadical R) (hT : IsAmenableRadical T) : R = T := by
   exact le_antisymm (hT.maximal R hR.normal hR.hasInvariantMean)
     (hR.maximal T hT.normal hT.hasInvariantMean)
 
 /-- Trivial radical domination is equivalent to absence of nontrivial normal
-subgroups with invariant means, with the quantifiers made explicit.-/
+subgroups with invariant means, with the quantifiers made explicit.
+@isnad1 id=iff.0h1v.s5.e1806bfc97d8 from=translated src=- shape=d0b5ce89 vocab=7b84f96b
+-/
 theorem amenableNormalCover_bot_iff : AmenableNormalCover (⊥ : Subgroup G) ↔
     ∀ N : Subgroup G, N.Normal → HasInvariantMean N → N = ⊥ := by
   constructor
@@ -41,7 +46,9 @@ theorem amenableNormalCover_bot_iff : AmenableNormalCover (⊥ : Subgroup G) ↔
 
 /-- Outside a subgroup dominating amenable normal subgroups, the actual normal
 closure fails the finite Følner condition. This uses the proved direction from
-finite Følner sets to an invariant mean, not an assumed criterion equivalence.-/
+finite Følner sets to an invariant mean, not an assumed criterion equivalence.
+@isnad1 id=not.2h3v.s6.7520cd61c38e from=translated src=- shape=a47a7079 vocab=83f58813
+-/
 theorem not_finiteFoelner_normalClosure_of_amenableNormalCover
     (R : Subgroup G) (hR : AmenableNormalCover R) (g : G) (hg : g ∉ R) :
     ¬ FiniteFoelner (Subgroup.normalClosure ({g} : Set G)) := by
@@ -50,7 +57,9 @@ theorem not_finiteFoelner_normalClosure_of_amenableNormalCover
     (hasInvariantMean_of_finiteFoelner hN)
   exact hg (hle (Subgroup.subset_normalClosure (by simp)))
 
-/-- A supplied radical structure specializes the preceding theorem directly.-/
+/-- A supplied radical structure specializes the preceding theorem directly.
+@isnad1 id=not.2h3v.s6.c6a159982cf0 from=translated src=- shape=a47a7079 vocab=e807f668
+-/
 theorem not_finiteFoelner_normalClosure_of_outside_radical
     (R : Subgroup G) (hR : IsAmenableRadical R) (g : G) (hg : g ∉ R) :
     ¬ FiniteFoelner (Subgroup.normalClosure ({g} : Set G)) :=

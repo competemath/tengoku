@@ -18,6 +18,9 @@ noncomputable def wordBall (S : Finset G) : ℕ → Finset G := by
   exact fun n => Nat.rec {1}
     (fun _ B => B ∪ S.biUnion (fun s => B.image (fun g => s * g))) n
 
+/--
+@isnad1 id=iff.0h4v.s6.8b320a8f8155 from=translated src=- shape=b2ed796c vocab=da9efa6d
+-/
 theorem mem_wordBall_iff (S : Finset G) (g : G) (n : ℕ) :
     g ∈ wordBall S n ↔
       ∃ w : List G, w.length ≤ n ∧ (∀ s ∈ w, s ∈ S) ∧ w.prod = g := by
@@ -69,7 +72,9 @@ theorem mem_wordBall_iff (S : Finset G) (g : G) (n : ℕ) :
           exact hs x (List.mem_cons_of_mem s hx)
         · simpa using hp
 
-/-- Inverse-closed subgroup generators give an actual finite word for every element.-/
+/-- Inverse-closed subgroup generators give an actual finite word for every element.
+@isnad1 id=ex.2h3v.s6.2e8c62689822 from=translated src=- shape=78c98565 vocab=11bf2bcc
+-/
 theorem exists_word_of_generates (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) :
@@ -101,6 +106,9 @@ theorem exists_word_of_generates (S : Finset G)
       exact hsym t (hw t ht)
     · rw [← List.prod_inv_reverse, hp]
 
+/--
+@isnad1 id=ex.2h3v.s6.d771a859e3e9 from=translated src=- shape=344ad221 vocab=78219c1e
+-/
 theorem exists_mem_wordBall (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) :
@@ -115,6 +123,9 @@ noncomputable def wordLength (S : Finset G)
   classical
   exact Nat.find (exists_mem_wordBall S hsym hgen g)
 
+/--
+@isnad1 id=iff.2h4v.s7.728fae5bf147 from=translated src=- shape=6711f1cb vocab=83acede1
+-/
 theorem wordLength_le_iff (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) (n : ℕ) :
@@ -131,6 +142,9 @@ theorem wordLength_le_iff (S : Finset G)
     exact Nat.find_min' (exists_mem_wordBall S hsym hgen g)
       ((mem_wordBall_iff S g n).mpr hw)
 
+/--
+@isnad1 id=eq.2h2v.s6.183e22c566b8 from=translated src=- shape=7612b6b9 vocab=5d56ede8
+-/
 theorem wordLength_one (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) :
@@ -138,6 +152,9 @@ theorem wordLength_one (S : Finset G)
   apply Nat.eq_zero_of_le_zero
   exact (wordLength_le_iff S hsym hgen 1 0).mpr ⟨[], by simp, by simp, by simp⟩
 
+/--
+@isnad1 id=le.2h4v.s6.7d14879eb9a2 from=translated src=- shape=1ea89e61 vocab=019a3172
+-/
 theorem wordLength_mul (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g h : G) :
@@ -169,6 +186,9 @@ private theorem wordLength_inv_le (S : Finset G)
     exact hsym t (hS t ht)
   · rw [← List.prod_inv_reverse, hp]
 
+/--
+@isnad1 id=eq.2h3v.s6.7c653a1dc833 from=translated src=- shape=2839dc75 vocab=5d56ede8
+-/
 theorem wordLength_inv (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) :
@@ -188,7 +208,9 @@ noncomputable def wordLengthBall (S : Finset G)
   mem_ball := fun g n => (mem_wordBall_iff S g n).trans
     (wordLength_le_iff S hsym hgen g n).symm
 
-/-- Exact word-list semantics for the exported LengthBall.-/
+/-- Exact word-list semantics for the exported LengthBall.
+@isnad1 id=iff.2h4v.s7.bfe4b4a3563f from=translated src=- shape=012b6d24 vocab=68b1ed5b
+-/
 theorem wordLengthBall_length_le_iff (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) (n : ℕ) :
@@ -196,7 +218,9 @@ theorem wordLengthBall_length_le_iff (S : Finset G)
       ∃ w : List G, w.length ≤ n ∧ (∀ s ∈ w, s ∈ S) ∧ w.prod = g :=
   wordLength_le_iff S hsym hgen g n
 
-/-- The least length is attained by a word of exactly that length.-/
+/-- The least length is attained by a word of exactly that length.
+@isnad1 id=ex.2h3v.s7.9a2a1b765111 from=translated src=- shape=e14376d5 vocab=c5fd5898
+-/
 theorem exists_word_length_eq (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) :
@@ -208,6 +232,9 @@ theorem exists_word_length_eq (S : Finset G)
   exact (wordLengthBall_length_le_iff S hsym hgen g w.length).mpr
     ⟨w, le_rfl, hS, hp⟩
 
+/--
+@isnad1 id=iff.2h3v.s6.85ade9c939dc from=translated src=- shape=3845753b vocab=43aba183
+-/
 theorem wordLengthBall_length_eq_zero_iff (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤) (g : G) :

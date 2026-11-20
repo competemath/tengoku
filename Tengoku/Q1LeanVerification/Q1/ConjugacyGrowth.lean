@@ -16,6 +16,9 @@ noncomputable def conjugacyBall (L : LengthBall G) (g : G) (r : ℕ) : Finset G 
   classical
   exact (L.ball r).image (fun t => t * g * t⁻¹)
 
+/--
+@isnad1 id=monotone.0h3v.s4.ed463e50c271 from=translated src=- shape=b3a08186 vocab=e0b5d3e9
+-/
 theorem conjugacyBall_mono (L : LengthBall G) (g : G) : Monotone (conjugacyBall L g) := by
   classical
   intro r s hrs
@@ -23,6 +26,9 @@ theorem conjugacyBall_mono (L : LengthBall G) (g : G) : Monotone (conjugacyBall 
   intro t ht
   exact (L.mem_ball _ _).mpr (((L.mem_ball _ _).mp ht).trans hrs)
 
+/--
+@isnad1 id=nonempty.0h4v.s4.97dcc085ed8d from=translated src=- shape=b6d2170e vocab=ac9f1aa9
+-/
 theorem conjugacyBall_nonempty (L : LengthBall G) (g : G) (r : ℕ) :
     (conjugacyBall L g r).Nonempty := by
   classical
@@ -31,7 +37,9 @@ theorem conjugacyBall_nonempty (L : LengthBall G) (g : G) (r : ℕ) :
 
 /-- The quantitative conclusion of Lemma 1 with its remaining amenability
 premise stated at the actual quotient by the center. Every radius is natural,
-and the ambient length is unchanged throughout the argument.-/
+and the ambient length is unchanged throughout the argument.
+@isnad1 id=ex.4h7v.s8.446fce7a8465 from=translated src=- shape=b7e7dca7 vocab=9b3dda11
+-/
 theorem exponential_conjugacy_growth_of_quotient_not_finiteFoelner
     (L : LengthBall G) (g : G) (A : Subgroup G) (k : ℕ) (hk : 0 < k)
     (x : Fin k → A) (u : Fin k → G)
@@ -74,7 +82,9 @@ theorem exponential_conjugacy_growth_of_quotient_not_finiteFoelner
     exponential_lower_bound_of_sampled_power β hβ hmono q k M D hq hk hM hsampled⟩
 
 /-- Pointwise exponential growth on a finite set has uniform positive constants.
-This is needed to pass from individual conjugacy roots to finite-block packing.-/
+This is needed to pass from individual conjugacy roots to finite-block packing.
+@isnad1 id=ex.1h3v.s7.052614d6a3ff from=translated src=- shape=4832015c vocab=8a0c7c27
+-/
 theorem uniform_exponential_constants {α : Type*} (P : Finset α) (β : α → ℕ → ℝ)
     (h : ∀ x ∈ P, ∃ c δ : ℝ, 0 < c ∧ c ≤ 1 ∧ 0 < δ ∧
       ∀ r : ℕ, c * Real.exp (δ * r) ≤ β x r) :

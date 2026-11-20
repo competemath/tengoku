@@ -21,11 +21,17 @@ def indicatorCoefficient (A : Finset G) : G →₀ ℂ :=
   Finsupp.indicator A (fun _ _ => 1)
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h3v.s5.7c0dbabb8da7 from=translated src=- shape=00a38836 vocab=f1b742ac
+-/
 @[simp] theorem indicatorCoefficient_apply [DecidableEq G] (A : Finset G) (g : G) :
     indicatorCoefficient A g = if g ∈ A then 1 else 0 := by
   simp [indicatorCoefficient, Finsupp.indicator_apply]
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h2v.s4.bcd6141adf9a from=translated src=- shape=3d7fb586 vocab=5553c06a
+-/
 @[simp] theorem support_indicatorCoefficient (A : Finset G) :
     (indicatorCoefficient A).support = A := by
   classical
@@ -33,6 +39,9 @@ omit [Group G] in
   simp [Finsupp.mem_support_iff, indicatorCoefficient_apply]
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h2v.s5.62bf2232c595 from=translated src=- shape=da0f3883 vocab=48e5ab35
+-/
 theorem coefficientL2Norm_indicator_sq (A : Finset G) :
     coefficientL2Norm (indicatorCoefficient A) ^ 2 = (A.card : ℝ) := by
   classical
@@ -45,10 +54,16 @@ theorem coefficientL2Norm_indicator_sq (A : Finset G) :
     _ = _ := by simp
 
 omit [Group G] in
+/--
+@isnad1 id=eq.0h2v.s4.a75c5454fc32 from=translated src=- shape=8ac73540 vocab=39f66d3f
+-/
 theorem coefficientL2Norm_indicator (A : Finset G) :
     coefficientL2Norm (indicatorCoefficient A) = Real.sqrt (A.card : ℝ) := by
   rw [← coefficientL2Norm_indicator_sq, Real.sqrt_sq (coefficientL2Norm_nonneg _)]
 
+/--
+@isnad1 id=eq.0h2v.s12.ad9ba3e7ca57 from=translated src=- shape=06291058 vocab=e02dbdc5
+-/
 theorem regularConvolution_indicator (A : Finset G) :
     regularConvolution (indicatorCoefficient A) = ∑ g ∈ A, leftRegular g := by
   classical
@@ -60,7 +75,9 @@ theorem regularConvolution_indicator (A : Finset G) :
   simp [hg]
 
 /-- Amenability in the exact invariant-set-probability convention gives the
-full positive mass as an actual ambient reduced operator norm.-/
+full positive mass as an actual ambient reduced operator norm.
+@isnad1 id=eq.2h3v.s11.a0ae21111c42 from=translated src=- shape=c899eabf vocab=b60cb06b
+-/
 theorem norm_regularConvolution_indicator_of_hasInvariantMean
     (H : Subgroup G) (hH : HasInvariantMean H) (A : Finset G)
     (hA : ∀ g ∈ A, g ∈ H) :
@@ -70,7 +87,9 @@ theorem norm_regularConvolution_indicator_of_hasInvariantMean
     (finiteFoelner_of_hasInvariantMean hH) A hA
 
 /-- Every finite amenable-subgroup subset inside B is bounded by the square of
-the actual reduced-norm growth constant on B.-/
+the actual reduced-norm growth constant on B.
+@isnad1 id=le.3h4v.s6.1291d49b0d84 from=translated src=- shape=efc44bd1 vocab=2c0d76a9
+-/
 theorem amenable_subset_card_le_reducedBallRho_sq
     (H : Subgroup G) (hH : HasInvariantMean H) (A B : Finset G)
     (hA : ∀ g ∈ A, g ∈ H) (hAB : A ⊆ B) :
@@ -86,7 +105,9 @@ theorem amenable_subset_card_le_reducedBallRho_sq
   nlinarith [sq_nonneg (reducedBallRho B - Real.sqrt (A.card : ℝ))]
 
 /-- The amenable subgroup-volume estimate uses the original ambient ball,
-not the intrinsic subgroup metric. No volume hypothesis remains.-/
+not the intrinsic subgroup metric. No volume hypothesis remains.
+@isnad1 id=le.1h4v.s6.8a17cdf90f4f from=translated src=- shape=6e9a1d31 vocab=464f5a2e
+-/
 theorem amenable_subgroupBall_card_le_reducedRho_sq [DecidableEq G]
     (L : LengthBall G) (H : Subgroup G) (hH : HasInvariantMean H) (r : ℕ) :
     ((subgroupBall L H r).card : ℝ) ≤ reducedRho L r ^ 2 := by
@@ -97,7 +118,9 @@ theorem amenable_subgroupBall_card_le_reducedRho_sq [DecidableEq G]
   · exact Finset.filter_subset _ _
 
 /-- Ordinary SRD, trivial radical and amenability rule out actual finite
-nonidentity confinement. The nonsimplicity-to-confinement bridge is still separate.-/
+nonidentity confinement. The nonsimplicity-to-confinement bridge is still separate.
+@isnad1 id=false.5h4v.s6.b40aee2cbcea from=translated src=- shape=bce5af5f vocab=d962601c
+-/
 theorem no_amenable_confined_subgroup_of_reducedSRD [DecidableEq G]
     (L : LengthBall G) (hR : AmenableNormalCover (⊥ : Subgroup G))
     (hSRD : ReducedSRD L) (H : Subgroup G) (hH : HasInvariantMean H)
@@ -106,7 +129,9 @@ theorem no_amenable_confined_subgroup_of_reducedSRD [DecidableEq G]
     (reducedRho L) (reducedRho_nonneg L) ((reducedSRD_iff_ordinarySRD L).mp hSRD)
     (amenable_subgroupBall_card_le_reducedRho_sq L H hH)
 
-/-- The actual polynomial RD result is a separate corollary.-/
+/-- The actual polynomial RD result is a separate corollary.
+@isnad1 id=false.5h4v.s6.a0ad5ae7175a from=translated src=- shape=bce5af5f vocab=3e390b59
+-/
 theorem no_amenable_confined_subgroup_of_reducedRD [DecidableEq G]
     (L : LengthBall G) (hR : AmenableNormalCover (⊥ : Subgroup G))
     (hRD : ReducedRD L) (H : Subgroup G) (hH : HasInvariantMean H)
@@ -114,7 +139,9 @@ theorem no_amenable_confined_subgroup_of_reducedRD [DecidableEq G]
   no_amenable_confined_subgroup_of_reducedSRD L hR hRD.subrapid H hH P hP hconf
 
 /-- The exact finite symmetric shortest-word-length SRD specialization, with
-trivial radical supplied by its full defining properties.-/
+trivial radical supplied by its full defining properties.
+@isnad1 id=false.7h4v.s7.d12d21ba36a5 from=translated src=- shape=f57e8edc vocab=fa801b69
+-/
 theorem no_amenable_confined_subgroup_word_srd [DecidableEq G]
     (S : Finset G) (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)
@@ -125,7 +152,9 @@ theorem no_amenable_confined_subgroup_word_srd [DecidableEq G]
   no_amenable_confined_subgroup_of_reducedSRD (wordLengthBall S hsym hgen)
     hR.maximal hSRD H hH P hP hconf
 
-/-- The separate actual word-length RD specialization.-/
+/-- The separate actual word-length RD specialization.
+@isnad1 id=false.7h4v.s7.a980d2525be5 from=translated src=- shape=f57e8edc vocab=d55ef68e
+-/
 theorem no_amenable_confined_subgroup_word_rd [DecidableEq G]
     (S : Finset G) (hsym : ∀ s ∈ S, s⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)

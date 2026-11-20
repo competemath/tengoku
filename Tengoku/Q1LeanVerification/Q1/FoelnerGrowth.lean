@@ -29,11 +29,16 @@ def GeneratorFoelner (S : Finset G) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ F : Finset G, F.Nonempty ∧
     ∀ g ∈ S, ((translateBoundary g F).card : ℝ) ≤ ε * F.card
 
+/--
+@isnad1 id=eq.0h2v.s5.7b2c7be82d5d from=translated src=- shape=ea74cc13 vocab=82c3747d
+-/
 @[simp] theorem translateBoundary_one (F : Finset G) : translateBoundary 1 F = ∅ := by
   classical
   simp [translateBoundary, leftTranslate]
 
-/-- Cardinal triangle inequality under multiplication of translations.-/
+/-- Cardinal triangle inequality under multiplication of translations.
+@isnad1 id=le.0h4v.s5.9b457f9d3f95 from=translated src=- shape=3bfe3d60 vocab=de1cf0c2
+-/
 theorem translateBoundary_mul_card_le (a b : G) (F : Finset G) :
     (translateBoundary (a * b) F).card ≤
       (translateBoundary a F).card + (translateBoundary b F).card := by
@@ -58,7 +63,9 @@ theorem translateBoundary_mul_card_le (a b : G) (F : Finset G) :
       Finset.card_union_le _ _
     _ = _ := by rw [leftTranslate, Finset.card_image_of_injective _ (mul_right_injective a)]
 
-/-- The translation loss of a word is bounded by its length times the generator loss.-/
+/-- The translation loss of a word is bounded by its length times the generator loss.
+@isnad1 id=le.3h5v.s7.157fecd08d8c from=translated src=- shape=47b2bb88 vocab=ed1d1c3b
+-/
 theorem translateBoundary_word_card_le (S F : Finset G) (ε : ℝ)
     (_hε : 0 ≤ ε) (hS : ∀ g ∈ S, ((translateBoundary g F).card : ℝ) ≤ ε * F.card)
     (w : List G) (hw : ∀ g ∈ w, g ∈ S) :
@@ -74,7 +81,9 @@ theorem translateBoundary_word_card_le (S F : Finset G) (ε : ℝ)
     simp only [List.prod_cons, List.length_cons, Nat.cast_add, Nat.cast_one]
     nlinarith
 
-/-- For a finite symmetric generating set, testing its generators suffices.-/
+/-- For a finite symmetric generating set, testing its generators suffices.
+@isnad1 id=finitefo.3h2v.s6.0156ba35ec4b from=translated src=- shape=927acfeb vocab=24636ccd
+-/
 theorem finiteFoelner_of_generatorFoelner (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S) (hgen : Subgroup.closure (S : Set G) = ⊤)
     (h : GeneratorFoelner S) : FiniteFoelner G := by
@@ -99,6 +108,9 @@ theorem finiteFoelner_of_generatorFoelner (S : Finset G)
     rwa [he] at hh
   exact hc.trans (mul_le_mul_of_nonneg_right hprodle (Nat.cast_nonneg _))
 
+/--
+@isnad1 id=iff.2h2v.s6.a16505002bde from=translated src=- shape=8aad76b1 vocab=24636ccd
+-/
 theorem finiteFoelner_iff_generatorFoelner (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S) (hgen : Subgroup.closure (S : Set G) = ⊤) :
     FiniteFoelner G ↔ GeneratorFoelner S := by
@@ -111,6 +123,9 @@ noncomputable def generatorBoundary (S F : Finset G) : Finset G := by
   classical
   exact (S.biUnion (fun s => leftTranslate s F)) \ F
 
+/--
+@isnad1 id=le.1h4v.s5.19fd8f486c8a from=translated src=- shape=6f3c47b9 vocab=78e99595
+-/
 theorem translateBoundary_subset_generatorBoundary (S F : Finset G) (s : G) (hs : s ∈ S) :
     translateBoundary s F ⊆ generatorBoundary S F := by
   classical
@@ -119,7 +134,9 @@ theorem translateBoundary_subset_generatorBoundary (S F : Finset G) (s : G) (hs 
   exact Finset.mem_sdiff.mpr ⟨Finset.mem_biUnion.mpr ⟨s, hs, hx⟩, hnot⟩
 
 /-- Failure of the full finite Følner condition forces uniform expansion by
-this fixed symmetric generating set.-/
+this fixed symmetric generating set.
+@isnad1 id=ex.3h2v.s6.fdd06cacf0eb from=translated src=- shape=ec634d57 vocab=c2b5590a
+-/
 theorem exists_generator_expansion_of_not_finiteFoelner (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S) (hgen : Subgroup.closure (S : Set G) = ⊤)
     (hnot : ¬ FiniteFoelner G) :
@@ -138,10 +155,15 @@ theorem exists_generator_expansion_of_not_finiteFoelner (S : Finset G)
     exact_mod_cast Finset.card_le_card (translateBoundary_subset_generatorBoundary S F s hs)
   exact hlarge.le.trans hc
 
+/--
+@isnad1 id=nonempty.0h3v.s4.fca1311a25ab from=translated src=- shape=1f30a21f vocab=27da839a
+-/
 theorem wordBall_nonempty (S : Finset G) (n : ℕ) : (wordBall S n).Nonempty := by
   exact ⟨1, (mem_wordBall_iff S 1 n).mpr ⟨[], by simp, by simp, by simp⟩⟩
 
-/-- The next word ball adds exactly the outside generator boundary.-/
+/-- The next word ball adds exactly the outside generator boundary.
+@isnad1 id=eq.0h3v.s5.8538b9eb9b13 from=translated src=- shape=e61307b7 vocab=3d1251c3
+-/
 theorem wordBall_succ_card (S : Finset G) (n : ℕ) :
     (wordBall S (n + 1)).card =
       (wordBall S n).card + (generatorBoundary S (wordBall S n)).card := by
@@ -153,7 +175,9 @@ theorem wordBall_succ_card (S : Finset G) (n : ℕ) :
       (wordBall S n)).symm
 
 /-- Genuine exponential word-ball growth at every natural radius follows from
-uniform boundary expansion; this uses no growth-rate dichotomy.-/
+uniform boundary expansion; this uses no growth-rate dichotomy.
+@isnad1 id=le.2h4v.s6.6e02154da47b from=translated src=- shape=cca30d57 vocab=9b56fe5b
+-/
 theorem exponential_wordBall_of_generator_expansion (S : Finset G) (ε : ℝ)
     (hε : 0 ≤ ε)
     (hexpand : ∀ F : Finset G, F.Nonempty →
@@ -171,6 +195,9 @@ theorem exponential_wordBall_of_generator_expansion (S : Finset G) (ε : ℝ)
     have hp := mul_le_mul_of_nonneg_right ih (show 0 ≤ 1 + ε by linarith)
     nlinarith
 
+/--
+@isnad1 id=ex.3h2v.s6.91abc4e65525 from=translated src=- shape=4fa0365d vocab=f041d3ed
+-/
 theorem exponential_wordBall_of_not_finiteFoelner (S : Finset G)
     (hsym : ∀ s ∈ S, s⁻¹ ∈ S) (hgen : Subgroup.closure (S : Set G) = ⊤)
     (hnot : ¬ FiniteFoelner G) :

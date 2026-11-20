@@ -15,15 +15,24 @@ noncomputable def conjugacyGrowthRate (q : ℝ) (k M : ℕ) : ℝ :=
 noncomputable def conjugacyGrowthConstant (q : ℝ) (k M D : ℕ) : ℝ :=
   Real.exp (-Real.log q / k - conjugacyGrowthRate q k M * D)
 
+/--
+@isnad1 id=lt.3h3v.s5.e05f78a74b43 from=translated src=- shape=e33b443a vocab=777609dc
+-/
 theorem conjugacyGrowthRate_pos (q : ℝ) (k M : ℕ)
     (hq : 1 < q) (hk : 0 < k) (hM : 0 < M) :
     0 < conjugacyGrowthRate q k M := by
   unfold conjugacyGrowthRate
   exact div_pos (Real.log_pos hq) (by positivity)
 
+/--
+@isnad1 id=lt.0h4v.s4.48763c5772e3 from=translated src=- shape=02e5b63f vocab=e5527277
+-/
 theorem conjugacyGrowthConstant_pos (q : ℝ) (k M D : ℕ) :
     0 < conjugacyGrowthConstant q k M D := Real.exp_pos _
 
+/--
+@isnad1 id=le.3h4v.s5.ee9a17c48c29 from=translated src=- shape=7ee3c76f vocab=690ae31c
+-/
 theorem conjugacyGrowthConstant_le_one (q : ℝ) (k M D : ℕ)
     (hq : 1 < q) (hk : 0 < k) (hM : 0 < M) :
     conjugacyGrowthConstant q k M D ≤ 1 := by
@@ -38,7 +47,9 @@ theorem conjugacyGrowthConstant_le_one (q : ℝ) (k M D : ℕ)
   linarith
 
 /-- A sampled exponential bound on the kth power gives a uniform exponential
-bound at every natural radius, including the finite initial segment r < D.-/
+bound at every natural radius, including the finite initial segment r < D.
+@isnad1 id=le.6h6v.s7.adb490a722ba from=translated src=- shape=e581b512 vocab=bbb9743c
+-/
 theorem exponential_lower_bound_of_sampled_power
     (β : ℕ → ℝ) (hβ : ∀ r, 1 ≤ β r) (hmono : Monotone β)
     (q : ℝ) (k M D : ℕ) (hq : 1 < q) (hk : 0 < k) (hM : 0 < M)

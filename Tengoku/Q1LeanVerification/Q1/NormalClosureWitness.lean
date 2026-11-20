@@ -15,6 +15,9 @@ noncomputable def finsetClosureTuple (P : Finset G) :
     Fin P.card → Subgroup.closure (↑P : Set G) := fun i =>
   ⟨((P.equivFin).symm i).val, Subgroup.subset_closure ((P.equivFin).symm i).property⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.23917b05d905 from=translated src=- shape=c424dbc6 vocab=d34e5f62
+-/
 theorem finsetClosureTuple_generates (P : Finset G) :
     Subgroup.closure (Set.range (finsetClosureTuple P)) = ⊤ := by
   classical
@@ -32,11 +35,16 @@ theorem finsetClosureTuple_generates (P : Finset G) :
       simp [finsetClosureTuple, y]
   rw [he]
 
+/--
+@isnad1 id=mem.0h3v.s5.0a793a89aac7 from=translated src=- shape=be26b5fe vocab=a0373111
+-/
 theorem finsetClosureTuple_mem (P : Finset G) (i : Fin P.card) :
     (finsetClosureTuple P i : G) ∈ P := ((P.equivFin).symm i).property
 
 /-- The finite-stage step of written Lemma 1, for the actual normal closure
-of a singleton and explicit conjugators in the ambient group.-/
+of a singleton and explicit conjugators in the ambient group.
+@isnad1 id=ex.1h2v.s8.d151e6b7fccd from=translated src=- shape=3807d2b2 vocab=bdf9689e
+-/
 theorem exists_conjugate_tuple_not_finiteFoelner (g : G)
     (hnot : ¬ FiniteFoelner (Subgroup.normalClosure ({g} : Set G))) :
     ∃ (A : Subgroup G) (k : ℕ) (_ : 0 < k) (x : Fin k → A) (u : Fin k → G),

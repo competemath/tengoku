@@ -32,6 +32,9 @@ noncomputable def conjugationLengthBall (L : LengthBall G) : LengthBall (ConjAct
         exact ⟨ConjAct.ofConjAct g, hg, ConjAct.toConjAct_ofConjAct g⟩ }
 
 omit [DecidableEq G] in
+/--
+@isnad1 id=eq.0h3v.s7.9284a2c673cd from=translated src=- shape=11a189a7 vocab=71b87e95
+-/
 @[simp] theorem conjugationLengthBall_length (L : LengthBall G) (g : ConjAct G) :
     (conjugationLengthBall L).length g = L.length (ConjAct.ofConjAct g) := rfl
 
@@ -39,9 +42,15 @@ omit [DecidableEq G] in
 def conjugateBlock (g : G) (P : Finset G) : Finset G :=
   P.image (fun x => g * x * g⁻¹)
 
+/--
+@isnad1 id=eq.0h3v.s7.c33095e22a8d from=translated src=- shape=6dfbf437 vocab=91d8195d
+-/
 theorem imageBlock_toConjAct (g : G) (P : Finset G) :
     imageBlock (ConjAct.toConjAct g) P = conjugateBlock g P := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.edebe336964a from=translated src=- shape=69f2d041 vocab=43be9b7b
+-/
 theorem conjugation_orbitBall (L : LengthBall G) (r : ℕ) (x : G) :
     orbitBall (conjugationLengthBall L) r x =
       (L.ball r).image (fun t => t * x * t⁻¹) := by
@@ -50,6 +59,9 @@ theorem conjugation_orbitBall (L : LengthBall G) (r : ℕ) (x : G) :
     ConjAct.toConjAct_smul]
 
 omit [DecidableEq G] in
+/--
+@isnad1 id=le.0h4v.s6.a5b049f384a2 from=translated src=- shape=e6de5d98 vocab=0a74259e
+-/
 theorem conjugate_length_le (L : LengthBall G) (t x : G) :
     L.length (t * x * t⁻¹) ≤ 2 * L.length t + L.length x := by
   have h₁ := L.length_mul (t * x) t⁻¹
@@ -57,7 +69,9 @@ theorem conjugate_length_le (L : LengthBall G) (t x : G) :
   rw [L.length_inv] at h₁
   omega
 
-/-- The support radius is measured in the original length.-/
+/-- The support radius is measured in the original length.
+@isnad1 id=le.2h6v.s6.3459cacc4c4a from=translated src=- shape=612e7a66 vocab=cc5812f6
+-/
 theorem conjugateBlock_subset_ball (L : LengthBall G) (t : G) (P : Finset G)
     (R ℓ : ℕ) (ht : L.length t ≤ R) (hP : ∀ x ∈ P, L.length x ≤ ℓ) :
     conjugateBlock t P ⊆ L.ball (2 * R + ℓ) := by

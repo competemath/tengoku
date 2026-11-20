@@ -36,10 +36,16 @@ noncomputable def packingLogB (m : ℕ) (c δ : ℝ) : ℝ :=
   ((2 ^ m - 1 : ℕ) : ℝ) *
     (Real.log ((packingEnvelope m : ℝ) / c) / δ + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.fde589031a76 from=translated src=- shape=8a62b088 vocab=cf35b4d4
+-/
 theorem packingEnvelope_pos (m : ℕ) : 0 < packingEnvelope m := by
   unfold packingEnvelope
   omega
 
+/--
+@isnad1 id=le.0h2v.s6.d0dfd7da189f from=translated src=- shape=24c85ff2 vocab=74ff0583
+-/
 theorem packing_threshold_le_envelope (m N : ℕ) :
     m * (m.factorial * ((N - 1) * m) ^ m) ≤
       (packingEnvelope m - 1) * N ^ m := by
@@ -52,13 +58,18 @@ theorem packing_threshold_le_envelope (m N : ℕ) :
       simp only [packingEnvelope, Nat.add_sub_cancel, mul_pow]
       ring
 
+/--
+@isnad1 id=lt.1h2v.s6.5f9e8ed2e723 from=translated src=- shape=aba73100 vocab=385abc21
+-/
 theorem packing_threshold_lt_envelope (m N : ℕ) (hN : 1 ≤ N) :
     m * (m.factorial * ((N - 1) * m) ^ m) < packingEnvelope m * N ^ m := by
   apply lt_of_le_of_lt (packing_threshold_le_envelope m N)
   exact Nat.mul_lt_mul_of_pos_right
     (Nat.sub_lt (packingEnvelope_pos m) (by decide)) (pow_pos (by omega) m)
 
-/-- The exponential lower bound at the ceiling radius strictly exceeds the threshold.-/
+/-- The exponential lower bound at the ceiling radius strictly exceeds the threshold.
+@isnad1 id=lt.3h4v.s6.96d15a6b4638 from=translated src=- shape=abfc654f vocab=8ff2fa8f
+-/
 theorem packing_threshold_lt_exp (m N : ℕ) (c δ : ℝ)
     (hc : 0 < c) (hδ : 0 < δ) (hN : 1 ≤ N) :
     (m * (m.factorial * ((N - 1) * m) ^ m) : ℕ) <
@@ -83,6 +94,9 @@ theorem packing_threshold_lt_exp (m N : ℕ) (c δ : ℝ)
     _ ≤ c * Real.exp (δ * (exponentialPackingA m c δ N : ℝ)) :=
       mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr hscaled) hc.le
 
+/--
+@isnad1 id=le.4h4v.s6.126c9c69d957 from=translated src=- shape=539003dd vocab=82194dc4
+-/
 theorem packingLogInput_nonneg (m N : ℕ) (c δ : ℝ)
     (hc : 0 < c) (hc1 : c ≤ 1) (hδ : 0 < δ) (hN : 1 ≤ N) :
     0 ≤ packingLogInput m c δ N := by
@@ -97,11 +111,17 @@ theorem packingLogInput_nonneg (m N : ℕ) (c δ : ℝ)
     (add_nonneg (Real.log_nonneg hratio)
       (mul_nonneg (Nat.cast_nonneg m) (Real.log_nonneg hNr))) hδ.le
 
+/--
+@isnad1 id=lt.1h2v.s4.6fda523c92cd from=translated src=- shape=696abc3b vocab=33c842b0
+-/
 theorem packingLogK_pos (m : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     0 < packingLogK m δ := by
   unfold packingLogK
   positivity
 
+/--
+@isnad1 id=le.3h3v.s5.6c96e762302b from=translated src=- shape=b729366d vocab=afaeaadc
+-/
 theorem packingLogB_nonneg (m : ℕ) (c δ : ℝ)
     (hc : 0 < c) (hc1 : c ≤ 1) (hδ : 0 < δ) :
     0 ≤ packingLogB m c δ := by
@@ -114,7 +134,9 @@ theorem packingLogB_nonneg (m : ℕ) (c δ : ℝ)
   exact mul_nonneg (Nat.cast_nonneg _)
     (add_nonneg (div_nonneg (Real.log_nonneg hratio) hδ.le) zero_le_one)
 
-/-- The explicit natural packing radius has the required logarithmic bound.-/
+/-- The explicit natural packing radius has the required logarithmic bound.
+@isnad1 id=le.4h4v.s6.60b4d724e7fe from=translated src=- shape=11e93326 vocab=65991360
+-/
 theorem exponentialPackingRadius_le_log (m N : ℕ) (c δ : ℝ)
     (hc : 0 < c) (hc1 : c ≤ 1) (hδ : 0 < δ) (hN : 1 ≤ N) :
     (exponentialPackingRadius m c δ N : ℝ) ≤
@@ -139,7 +161,9 @@ theorem exponentialPackingRadius_le_log (m N : ℕ) (c δ : ℝ)
 
 variable {G α : Type*} [Group G] [MulAction G α] [DecidableEq α]
 
-/-- Exponential rooted orbit growth supplies all finite thresholds needed for packing.-/
+/-- Exponential rooted orbit growth supplies all finite thresholds needed for packing.
+@isnad1 id=ex.4h7v.s7.eb48d1fcf546 from=translated src=- shape=005c85a2 vocab=1aee14b8
+-/
 theorem exponential_growth_packing (L : LengthBall G) (P : Finset α)
     (c δ : ℝ) (hc : 0 < c) (hδ : 0 < δ)
     (hgrowth : ∀ x ∈ P, ∀ r : ℕ,
@@ -154,7 +178,9 @@ theorem exponential_growth_packing (L : LengthBall G) (P : Finset α)
     (hgrowth x hx (exponentialPackingA P.card c δ N))
   exact_mod_cast h
 
-/-- A packaged explicit-radius result, suitable for the later analytic interface.-/
+/-- A packaged explicit-radius result, suitable for the later analytic interface.
+@isnad1 id=and.4h6v.s8.7e9b338f9b85 from=translated src=- shape=8ec390d9 vocab=9f50e3da
+-/
 theorem exponential_growth_logarithmic_packing (L : LengthBall G) (P : Finset α)
     (c δ : ℝ) (hc : 0 < c) (hc1 : c ≤ 1) (hδ : 0 < δ)
     (hgrowth : ∀ x ∈ P, ∀ r : ℕ,

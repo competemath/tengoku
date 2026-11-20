@@ -15,7 +15,9 @@ namespace Q1
 variable {G : Type*} [Group G]
 
 /-- An injective map that uses finitely many left translations preserves every
-finitely additive left-invariant set function on its domain.-/
+finitely additive left-invariant set function on its domain.
+@isnad1 id=eq.5h5v.s7.c32ef86df0b5 from=translated src=- shape=738045ed vocab=7f7a10db
+-/
 theorem mean_image_eq_of_piecewise_leftTranslate
     (m : Set G → ℝ≥0∞) (hm0 : m ∅ = 0)
     (hadd : ∀ A B, Disjoint A B → m (A ∪ B) = m A + m B)
@@ -62,7 +64,9 @@ theorem mean_image_eq_of_piecewise_leftTranslate
       _ = m A := by rw [← hadd _ _ hd, hBC]
 
 /-- A left-invariant probability rules out two disjoint injective copies of the
-group when both embeddings use a common finite collection of translations.-/
+group when both embeddings use a common finite collection of translations.
+@isnad1 id=false.3h3v.s6.66aa0ef563c1 from=translated src=- shape=31f875ec vocab=7d6f6198
+-/
 theorem no_doubling_map_of_hasInvariantMean (hmean : HasInvariantMean G)
     (K : Finset G) (f : G × Bool → G) (hf : Function.Injective f)
     (hK : ∀ p, ∃ k ∈ K, f p = k * p.1) : False := by
@@ -86,7 +90,9 @@ theorem no_doubling_map_of_hasInvariantMean (hmean : HasInvariantMean G)
   norm_num at hh
 
 /-- Hall's theorem turns doubling of all finite subsets into a two-copy
-injective map with finitely many possible left translations.-/
+injective map with finitely many possible left translations.
+@isnad1 id=ex.1h2v.s7.db352faa14f8 from=translated src=- shape=212aba7e vocab=710ddc35
+-/
 theorem exists_doubling_map_of_finset_expansion [DecidableEq G] (K : Finset G)
     (hdouble : ∀ F : Finset G, 2 * F.card ≤ (K * F).card) :
     ∃ f : G × Bool → G, Function.Injective f ∧
@@ -118,7 +124,9 @@ theorem exists_doubling_map_of_finset_expansion [DecidableEq G] (K : Finset G)
   exact ⟨k, hk, he.symm⟩
 
 /-- Failure of the one-sided finite Følner condition yields a fixed finite
-set whose left products expand every finite subset by a factor greater than one.-/
+set whose left products expand every finite subset by a factor greater than one.
+@isnad1 id=ex.1h1v.s6.7712254face9 from=translated src=- shape=b3bea1d5 vocab=7dda43ab
+-/
 theorem exists_finset_expansion_of_not_finiteFoelner [DecidableEq G]
     (hnot : ¬ FiniteFoelner G) :
     ∃ S : Finset G, ∃ q : ℝ, 1 < q ∧
@@ -148,7 +156,9 @@ theorem exists_finset_expansion_of_not_finiteFoelner [DecidableEq G]
     exact_mod_cast Finset.card_sdiff_add_card_eq_card hsub
   nlinarith
 
-/-- Iterating a uniform finite-set expansion produces a doubling set.-/
+/-- Iterating a uniform finite-set expansion produces a doubling set.
+@isnad1 id=ex.1h1v.s6.fd900255c066 from=translated src=- shape=7e4bdbc3 vocab=21babd82
+-/
 theorem exists_finset_doubling_of_not_finiteFoelner [DecidableEq G]
     (hnot : ¬ FiniteFoelner G) :
     ∃ K : Finset G, ∀ F : Finset G, 2 * F.card ≤ (K * F).card := by
@@ -171,7 +181,9 @@ theorem exists_finset_doubling_of_not_finiteFoelner [DecidableEq G]
   exact_mod_cast hh
 
 /-- The invariant probability on all subsets gives the exact simultaneous,
-one-sided finite Følner condition, for arbitrary groups.-/
+one-sided finite Følner condition, for arbitrary groups.
+@isnad1 id=finitefo.1h1v.s3.cfdd38151651 from=translated src=- shape=c612a321 vocab=18413135
+-/
 theorem finiteFoelner_of_hasInvariantMean (hmean : HasInvariantMean G) :
     FiniteFoelner G := by
   classical
@@ -180,6 +192,9 @@ theorem finiteFoelner_of_hasInvariantMean (hmean : HasInvariantMean G) :
   obtain ⟨f, hf, htrans⟩ := exists_doubling_map_of_finset_expansion K hK
   exact no_doubling_map_of_hasInvariantMean hmean K f hf htrans
 
+/--
+@isnad1 id=iff.0h1v.s3.d41adabe44e1 from=translated src=- shape=aa7e0af4 vocab=18413135
+-/
 theorem hasInvariantMean_iff_finiteFoelner : HasInvariantMean G ↔ FiniteFoelner G :=
   ⟨finiteFoelner_of_hasInvariantMean, hasInvariantMean_of_finiteFoelner⟩
 

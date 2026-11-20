@@ -14,11 +14,20 @@ variable {G : Type*} [Group G]
 
 abbrev RegularOperator (G : Type*) := GroupL2 G →L[ℂ] GroupL2 G
 
+/--
+@isnad1 id=eq.0h1v.s12.51ffc534c11d from=translated src=- shape=d15141a3 vocab=64192bdf
+-/
 @[simp] theorem leftRegular_one_eq_one : leftRegular (1 : G) = 1 := leftRegular_one
 
+/--
+@isnad1 id=eq.0h3v.s13.8c6ec4ba7510 from=translated src=- shape=0b42d950 vocab=435a8933
+-/
 theorem leftRegular_mul_eq_mul (g h : G) :
     leftRegular (g * h) = leftRegular g * leftRegular h := leftRegular_mul g h
 
+/--
+@isnad1 id=eq.0h2v.s11.2720d5779f65 from=translated src=- shape=8b69859b vocab=2a313661
+-/
 @[simp] theorem star_leftRegular (g : G) : star (leftRegular g) = leftRegular g⁻¹ := by
   rw [ContinuousLinearMap.star_eq_adjoint]
   symm
@@ -36,14 +45,23 @@ theorem leftRegular_mul_eq_mul (g h : G) :
 def finiteRegularSpan : Submodule ℂ (RegularOperator G) :=
   Submodule.span ℂ (Set.range (leftRegular (G := G)))
 
+/--
+@isnad1 id=mem.0h2v.s13.4bb95bc44956 from=translated src=- shape=dc0a96c4 vocab=2b4983e8
+-/
 theorem leftRegular_mem_finiteRegularSpan (g : G) : leftRegular g ∈ finiteRegularSpan :=
   Submodule.subset_span ⟨g, rfl⟩
 
+/--
+@isnad1 id=mem.0h2v.s13.29b13d6ec14f from=translated src=- shape=910ed5a2 vocab=80d53cf4
+-/
 theorem regularConvolution_mem_finiteRegularSpan (f : G →₀ ℂ) :
     regularConvolution f ∈ finiteRegularSpan := by
   classical
   exact Submodule.sum_mem _ fun g _ => Submodule.smul_mem _ _ (leftRegular_mem_finiteRegularSpan g)
 
+/--
+@isnad1 id=iff.0h2v.s13.6a6c0c443b46 from=translated src=- shape=7a9c9cf6 vocab=80d53cf4
+-/
 theorem mem_finiteRegularSpan_iff (a : RegularOperator G) :
     a ∈ finiteRegularSpan ↔ ∃ f : G →₀ ℂ, regularConvolution f = a := by
   classical
@@ -64,6 +82,9 @@ theorem mem_finiteRegularSpan_iff (a : RegularOperator G) :
   · rintro ⟨f, rfl⟩
     exact regularConvolution_mem_finiteRegularSpan f
 
+/--
+@isnad1 id=mem.2h3v.s14.5696e0911e7c from=translated src=- shape=fc522c76 vocab=f8a35f4e
+-/
 theorem mul_mem_finiteRegularSpan {a b : RegularOperator G}
     (ha : a ∈ finiteRegularSpan) (hb : b ∈ finiteRegularSpan) :
     a * b ∈ finiteRegularSpan := by
@@ -82,6 +103,9 @@ theorem mul_mem_finiteRegularSpan {a b : RegularOperator G}
   | add x y _ _ hx hy => simpa [add_mul] using (finiteRegularSpan.add_mem hx hy)
   | smul c x _ hx => simpa [smul_mul_assoc] using (finiteRegularSpan.smul_mem c hx)
 
+/--
+@isnad1 id=mem.1h2v.s14.38624047d137 from=translated src=- shape=bd8d5edd vocab=a42e8a7c
+-/
 theorem star_mem_finiteRegularSpan {a : RegularOperator G} (ha : a ∈ finiteRegularSpan) :
     star a ∈ finiteRegularSpan := by
   induction ha using Submodule.span_induction with
@@ -116,6 +140,9 @@ def reducedGroupAlgebra : StarSubalgebra ℂ (RegularOperator G) :=
 /-- The elements of the concrete reduced group C*-algebra, with inherited operator norm.-/
 abbrev ReducedGroupCStarAlgebra (G : Type*) [Group G] := reducedGroupAlgebra (G := G)
 
+/--
+@isnad1 id=isclosed.0h1v.s12.eaedd2eb55c9 from=translated src=- shape=ca3ddc34 vocab=e0615893
+-/
 instance reducedGroupAlgebra_isClosed :
     IsClosed (reducedGroupAlgebra (G := G) : Set (RegularOperator G)) :=
   finiteRegularAlgebra.isClosed_topologicalClosure
@@ -123,6 +150,9 @@ instance reducedGroupAlgebra_isClosed :
 instance : CStarAlgebra (ReducedGroupCStarAlgebra G) :=
   StarSubalgebra.cstarAlgebra _
 
+/--
+@isnad1 id=iff.0h2v.s13.9bb27e7ccb1f from=translated src=- shape=233d62a2 vocab=e09f4bbd
+-/
 theorem mem_reducedGroupAlgebra_iff (a : RegularOperator G) :
     a ∈ reducedGroupAlgebra ↔ a ∈ closure (Set.range (regularConvolution (G := G))) := by
   change a ∈ closure (finiteRegularAlgebra (G := G) : Set _) ↔ _
@@ -132,6 +162,9 @@ theorem mem_reducedGroupAlgebra_iff (a : RegularOperator G) :
     exact mem_finiteRegularSpan_iff b
   rw [hs]
 
+/--
+@isnad1 id=mem.0h2v.s12.ac956016cb90 from=translated src=- shape=910ed5a2 vocab=142367ab
+-/
 theorem regularConvolution_mem_reducedGroupAlgebra (f : G →₀ ℂ) :
     regularConvolution f ∈ reducedGroupAlgebra :=
   finiteRegularAlgebra.le_topologicalClosure (show regularConvolution f ∈ finiteRegularAlgebra from
@@ -141,13 +174,21 @@ theorem regularConvolution_mem_reducedGroupAlgebra (f : G →₀ ℂ) :
 def reducedPolynomial (f : G →₀ ℂ) : ReducedGroupCStarAlgebra G :=
   ⟨regularConvolution f, regularConvolution_mem_reducedGroupAlgebra f⟩
 
+/--
+@isnad1 id=eq.0h2v.s12.8bad33fb8586 from=translated src=- shape=78f04c59 vocab=461884b2
+-/
 @[simp] theorem reducedPolynomial_coe (f : G →₀ ℂ) :
     (reducedPolynomial f : RegularOperator G) = regularConvolution f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.80b49049dcaa from=translated src=- shape=ddd62b91 vocab=3052b586
+-/
 @[simp] theorem norm_reducedPolynomial (f : G →₀ ℂ) :
     ‖reducedPolynomial f‖ = ‖regularConvolution f‖ := rfl
 
-/-- Density is in the full operator norm, with no finite-dimensional truncation.-/
+/-- Density is in the full operator norm, with no finite-dimensional truncation.
+@isnad1 id=ex.1h3v.s15.5379099e4108 from=translated src=- shape=1dd1057f vocab=c6c2da6e
+-/
 theorem exists_reducedPolynomial_near (a : ReducedGroupCStarAlgebra G) {ε : ℝ} (hε : 0 < ε) :
     ∃ f : G →₀ ℂ, ‖reducedPolynomial f - a‖ < ε := by
   have ha := (mem_reducedGroupAlgebra_iff (a : RegularOperator G)).mp a.property
@@ -160,6 +201,9 @@ def regularRepresentation : G →* RegularOperator G where
   map_one' := leftRegular_one_eq_one
   map_mul' := leftRegular_mul_eq_mul
 
+/--
+@isnad1 id=eq.0h2v.s10.a26e28795808 from=translated src=- shape=8b99a73f vocab=62d5523e
+-/
 @[simp] theorem regularRepresentation_apply (g : G) :
     regularRepresentation g = leftRegular g := rfl
 
@@ -170,9 +214,15 @@ def reducedLeftRegular : G →* ReducedGroupCStarAlgebra G where
   map_one' := Subtype.ext leftRegular_one_eq_one
   map_mul' g h := Subtype.ext (leftRegular_mul_eq_mul g h)
 
+/--
+@isnad1 id=eq.0h2v.s16.026feb0887f6 from=translated src=- shape=53d0b2ae vocab=31ade2d2
+-/
 @[simp] theorem reducedLeftRegular_coe (g : G) :
     (reducedLeftRegular g : RegularOperator G) = leftRegular g := rfl
 
+/--
+@isnad1 id=eq.0h2v.s16.a908b358a0ce from=translated src=- shape=bc522119 vocab=09975ae1
+-/
 @[simp] theorem norm_reducedLeftRegular (g : G) : ‖reducedLeftRegular g‖ = 1 :=
   norm_leftRegular g
 

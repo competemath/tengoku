@@ -8,7 +8,9 @@ import Tengoku.Seed.Tactic
 namespace Q1
 
 /-- The finite-support Cauchy--Schwarz bound, with the counting measure and
-complex coefficient norm represented by the actual finite sum.-/
+complex coefficient norm represented by the actual finite sum.
+@isnad1 id=le.0h4v.s6.2aea7057f3ba from=translated src=- shape=41f8d728 vocab=053ef67b
+-/
 theorem sum_norm_le_sqrt_card_mul_sqrt_sum {ι E : Type*} [SeminormedAddCommGroup E]
     (F : Finset ι) (f : ι → E) :
     (∑ i ∈ F, ‖f i‖) ≤ Real.sqrt (F.card : ℝ) *
@@ -24,7 +26,9 @@ theorem sum_norm_le_sqrt_card_mul_sqrt_sum {ι E : Type*} [SeminormedAddCommGrou
   nlinarith
 
 /-- A squared finite norm bound gives the ratio bound, including a zero
-coefficient norm, for which division is zero.-/
+coefficient norm, for which division is zero.
+@isnad1 id=le.2h3v.s5.760f7ea9b015 from=translated src=- shape=c4a0b578 vocab=2d4ae70e
+-/
 theorem ratio_le_sqrt_card_of_norm_bound (a b : ℝ) (m : ℕ)
     (hb : 0 ≤ b)
     (hbound : a ≤ Real.sqrt (m : ℝ) * b) :

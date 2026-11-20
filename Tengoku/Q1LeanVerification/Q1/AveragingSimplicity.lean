@@ -40,13 +40,17 @@ def HasConjugationAveraging (u : G →* A) (τ : A →L[ℂ] ℂ) : Prop :=
     ∃ N : ℕ, 0 < N ∧ ∃ t : Fin N → G,
       ‖conjugationAverage u t a - τ a • (1 : A)‖ < ε
 
-/-- Uniform conjugation averaging fixes zero.-/
+/-- Uniform conjugation averaging fixes zero.
+@isnad1 id=eq.0h5v.s6.0e9ae906aee1 from=translated src=- shape=5b465927 vocab=e871de10
+-/
 @[simp]
 theorem conjugationAverage_zero (u : G →* A) {N : ℕ} (t : Fin N → G) :
     conjugationAverage u t (0 : A) = 0 := by
   simp only [conjugationAverage, mul_zero, zero_mul, Finset.sum_const_zero, smul_zero]
 
-/-- Every nonempty uniform conjugation average fixes the identity.-/
+/-- Every nonempty uniform conjugation average fixes the identity.
+@isnad1 id=eq.1h5v.s6.cd94b017ba1f from=translated src=- shape=0cdd4ac2 vocab=0f7a494a
+-/
 theorem conjugationAverage_one (u : G →* A) {N : ℕ} (t : Fin N → G) (hN : 0 < N) :
     conjugationAverage u t (1 : A) = 1 := by
   have hNc : (N : ℂ) ≠ 0 := by exact_mod_cast Nat.ne_of_gt hN
@@ -56,28 +60,36 @@ theorem conjugationAverage_one (u : G →* A) {N : ℕ} (t : Fin N → G) (hN : 
   simp only [conjugationAverage, hc, Finset.sum_const, Finset.card_univ, Fintype.card_fin,
     ← Nat.cast_smul_eq_nsmul ℂ N (1 : A), smul_smul, inv_mul_cancel₀ hNc, one_smul]
 
-/-- Uniform conjugation averaging preserves addition.-/
+/-- Uniform conjugation averaging preserves addition.
+@isnad1 id=eq.0h7v.s6.9e8ea66d718d from=translated src=- shape=4e772647 vocab=11927d05
+-/
 theorem conjugationAverage_add (u : G →* A) {N : ℕ} (t : Fin N → G)
     (a b : A) :
     conjugationAverage u t (a + b) =
       conjugationAverage u t a + conjugationAverage u t b := by
   simp only [conjugationAverage, mul_add, add_mul, Finset.sum_add_distrib, smul_add]
 
-/-- Uniform conjugation averaging preserves subtraction.-/
+/-- Uniform conjugation averaging preserves subtraction.
+@isnad1 id=eq.0h7v.s6.75bb8755365e from=translated src=- shape=4e772647 vocab=16cc0d37
+-/
 theorem conjugationAverage_sub (u : G →* A) {N : ℕ} (t : Fin N → G)
     (a b : A) :
     conjugationAverage u t (a - b) =
       conjugationAverage u t a - conjugationAverage u t b := by
   simp only [conjugationAverage, mul_sub, sub_mul, Finset.sum_sub_distrib, smul_sub]
 
-/-- Uniform conjugation averaging is complex linear.-/
+/-- Uniform conjugation averaging is complex linear.
+@isnad1 id=eq.0h7v.s7.aac5c3281693 from=translated src=- shape=49df0509 vocab=e1391d37
+-/
 theorem conjugationAverage_smul (u : G →* A) {N : ℕ} (t : Fin N → G)
     (c : ℂ) (a : A) :
     conjugationAverage u t (c • a) = c • conjugationAverage u t a := by
   simp only [conjugationAverage, mul_smul_comm, smul_mul_assoc, ← Finset.smul_sum]
   exact smul_comm _ _ _
 
-/-- Uniform conjugation averaging commutes with every finite sum.-/
+/-- Uniform conjugation averaging commutes with every finite sum.
+@isnad1 id=eq.0h8v.s6.f6b0a409222b from=translated src=- shape=d954d893 vocab=b5452406
+-/
 theorem conjugationAverage_sum (u : G →* A) {N : ℕ} (t : Fin N → G)
     {ι : Type*} (s : Finset ι) (f : ι → A) :
     conjugationAverage u t (∑ i ∈ s, f i) = ∑ i ∈ s, conjugationAverage u t (f i) := by
@@ -88,7 +100,9 @@ theorem conjugationAverage_sum (u : G →* A) {N : ℕ} (t : Fin N → G)
     simp only [Finset.sum_insert hi, conjugationAverage_add, ih]
 
 /-- If the group elements have norm at most one, each inner conjugation is
-contractive.-/
+contractive.
+@isnad1 id=le.1h5v.s8.a2ddcbe9bda2 from=translated src=- shape=9dbae846 vocab=83217ac8
+-/
 theorem norm_innerConjugation_le (u : G →* A) (hu : ∀ g : G, ‖u g‖ ≤ 1)
     (g : G) (a : A) : ‖u g * a * u g⁻¹‖ ≤ ‖a‖ := by
   calc
@@ -100,7 +114,9 @@ theorem norm_innerConjugation_le (u : G →* A) (hu : ∀ g : G, ‖u g‖ ≤ 1
     _ = ‖a‖ := by rw [one_mul, mul_one]
 
 /-- A nonempty uniform average of contractive inner conjugations is contractive
-in the actual algebra norm.-/
+in the actual algebra norm.
+@isnad1 id=le.2h6v.s7.e8938e6822f4 from=translated src=- shape=2c5b34b1 vocab=d821f36e
+-/
 theorem norm_conjugationAverage_le (u : G →* A) (hu : ∀ g : G, ‖u g‖ ≤ 1)
     {N : ℕ} (hN : 0 < N) (t : Fin N → G) (a : A) :
     ‖conjugationAverage u t a‖ ≤ ‖a‖ := by
@@ -121,7 +137,9 @@ theorem norm_conjugationAverage_le (u : G →* A) (hu : ∀ g : G, ‖u g‖ ≤
 
 /-- Averaging on a dense set extends to all elements if the conjugations and
 the functional are contractive. The dense approximation and the averaging
-tolerance are each `ε / 3`.-/
+tolerance are each `ε / 3`.
+@isnad1 id=hasconju.4h5v.s9.535328bf40d1 from=translated src=- shape=86485cd2 vocab=e2f0b45d
+-/
 theorem hasConjugationAveraging_of_dense [Nontrivial A]
     (u : G →* A) (τ : A →L[ℂ] ℂ)
     (hu : ∀ g : G, ‖u g‖ ≤ 1) (hτ : ∀ a : A, ‖τ a‖ ≤ ‖a‖)
@@ -158,14 +176,18 @@ theorem hasConjugationAveraging_of_dense [Nontrivial A]
     _ < ε := by linarith
 
 /-- A two-sided ideal absorbs complex scalar multiplication because scalar
-multiplication is multiplication by the image of the scalar in the algebra.-/
+multiplication is multiplication by the image of the scalar in the algebra.
+@isnad1 id=mem.1h4v.s7.1a33e4a222d2 from=translated src=- shape=b98d413c vocab=de243e24
+-/
 theorem twoSidedIdeal_complex_smul_mem (I : TwoSidedIdeal A)
     (c : ℂ) {a : A} (ha : a ∈ I) : c • a ∈ I := by
   rw [Algebra.smul_def]
   exact I.mul_mem_left _ _ ha
 
 /-- Each uniform conjugation average remains in every two-sided ideal containing
-the averaged element. Both multiplication absorption properties are used.-/
+the averaged element. Both multiplication absorption properties are used.
+@isnad1 id=mem.1h7v.s7.9b353eca778d from=translated src=- shape=b4a06483 vocab=01e0a1ba
+-/
 theorem conjugationAverage_mem (u : G →* A) {N : ℕ} (t : Fin N → G)
     (I : TwoSidedIdeal A) {a : A} (ha : a ∈ I) :
     conjugationAverage u t a ∈ I := by
@@ -174,7 +196,9 @@ theorem conjugationAverage_mem (u : G →* A) {N : ℕ} (t : Fin N → G)
   intro i _
   exact I.mul_mem_right _ _ (I.mul_mem_left _ _ ha)
 
-/-- A two-sided ideal containing an invertible element is the whole ring.-/
+/-- A two-sided ideal containing an invertible element is the whole ring.
+@isnad1 id=eq.2h3v.s6.fcb0b315d254 from=translated src=- shape=290e3c80 vocab=f8d269dc
+-/
 theorem twoSidedIdeal_eq_top_of_isUnit_mem (I : TwoSidedIdeal A)
     {a : A} (ha : a ∈ I) (hu : IsUnit a) : I = ⊤ := by
   rcases hu with ⟨v, rfl⟩
@@ -183,7 +207,9 @@ theorem twoSidedIdeal_eq_top_of_isUnit_mem (I : TwoSidedIdeal A)
 
 /-- Uniform conjugation averaging and faithfulness on positive squares imply
 simplicity for actual algebraic two-sided ideals, even without ideal closedness
-or closure under `star`.-/
+or closure under `star`.
+@isnad1 id=or.2h5v.s8.677acad33ef7 from=translated src=- shape=943f4d2e vocab=7e823343
+-/
 theorem twoSidedIdeal_eq_bot_or_top_of_conjugationAveraging
     (u : G →* A) (τ : A →L[ℂ] ℂ)
     (hfaithful : ∀ a : A, a ≠ 0 → τ (star a * a) ≠ 0)
@@ -222,7 +248,9 @@ theorem twoSidedIdeal_eq_bot_or_top_of_conjugationAveraging
   exact twoSidedIdeal_eq_top_of_isUnit_mem I hy hu
 
 /-- The preceding stronger algebraic simplicity theorem yields the usual
-closed two-sided ideal formulation of C*-simplicity.-/
+closed two-sided ideal formulation of C*-simplicity.
+@isnad1 id=cstarsim.2h4v.s8.d9e824f0374e from=translated src=- shape=263a2259 vocab=2d5e8852
+-/
 theorem cStarSimple_of_conjugationAveraging
     (u : G →* A) (τ : A →L[ℂ] ℂ)
     (hfaithful : ∀ a : A, a ≠ 0 → τ (star a * a) ≠ 0)

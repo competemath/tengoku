@@ -19,7 +19,9 @@ def blockMultiplicity {N : ℕ} (t : Fin N → G) (P : Finset α) (x : α) : ℕ
   (Finset.univ.filter (fun i => x ∈ imageBlock (t i) P)).card
 
 /-- The block count equals the full pair-fiber count in the original double sum.
-In particular no within-block or cross-block multiplicity has been discarded.-/
+In particular no within-block or cross-block multiplicity has been discarded.
+@isnad1 id=eq.0h6v.s7.f39190a88720 from=translated src=- shape=1f2b4a69 vocab=8362eadc
+-/
 theorem blockMultiplicity_eq_pair_count {N : ℕ} (t : Fin N → G)
     (P : Finset α) (x : α) :
     blockMultiplicity t P x =
@@ -50,7 +52,9 @@ theorem blockMultiplicity_eq_pair_count {N : ℕ} (t : Fin N → G)
   rw [← Finset.card_image_iff.mpr hinj]
   exact congrArg Finset.card himage.symm
 
-/-- For nonempty blocks the translating elements themselves are distinct.-/
+/-- For nonempty blocks the translating elements themselves are distinct.
+@isnad1 id=injectiv.2h5v.s6.17bd2fc88b99 from=translated src=- shape=636dc04c vocab=f329dfed
+-/
 theorem translators_injective {N : ℕ} (t : Fin N → G) (P : Finset α)
     (hP : P.Nonempty)
     (hd : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P))) :
@@ -62,6 +66,9 @@ theorem translators_injective {N : ℕ} (t : Fin N → G) (P : Finset α)
   have hj : t i • x ∈ imageBlock (t j) P := by simpa only [ht] using hi
   exact Finset.disjoint_left.mp (hd hij) hi hj
 
+/--
+@isnad1 id=le.1h6v.s6.3eb0d0704138 from=translated src=- shape=f872dc3f vocab=31e5c64f
+-/
 theorem blockMultiplicity_le_one {N : ℕ} (t : Fin N → G) (P : Finset α)
     (hd : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P)))
     (x : α) : blockMultiplicity t P x ≤ 1 := by
@@ -71,6 +78,9 @@ theorem blockMultiplicity_le_one {N : ℕ} (t : Fin N → G) (P : Finset α)
   exact Finset.disjoint_left.mp (hd hij)
     (Finset.mem_filter.mp hi).2 (Finset.mem_filter.mp hj).2
 
+/--
+@isnad1 id=eq.2h6v.s6.43ba48ba6327 from=translated src=- shape=d8007c7f vocab=04b1b5e1
+-/
 theorem blockMultiplicity_eq_one {N : ℕ} (t : Fin N → G) (P : Finset α)
     (hd : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P)))
     {x : α} (hx : x ∈ blockUnion t P) : blockMultiplicity t P x = 1 := by
@@ -80,6 +90,9 @@ theorem blockMultiplicity_eq_one {N : ℕ} (t : Fin N → G) (P : Finset α)
     exact Finset.card_pos.mpr ⟨i, Finset.mem_filter.mpr ⟨hi, hx⟩⟩
   omega
 
+/--
+@isnad1 id=eq.1h6v.s6.34ba09374007 from=translated src=- shape=3e3b0bd3 vocab=a298e42d
+-/
 theorem blockMultiplicity_eq_zero {N : ℕ} (t : Fin N → G) (P : Finset α)
     {x : α} (hx : x ∉ blockUnion t P) : blockMultiplicity t P x = 0 := by
   apply Finset.card_eq_zero.mpr
@@ -92,19 +105,27 @@ theorem blockMultiplicity_eq_zero {N : ℕ} (t : Fin N → G) (P : Finset α)
 noncomputable def uniformBlockCoefficient {N : ℕ} (t : Fin N → G)
     (P : Finset α) (x : α) : ℝ := blockMultiplicity t P x / (N : ℝ)
 
+/--
+@isnad1 id=eq.2h6v.s6.1b9fd4c6cd4b from=translated src=- shape=ad05c0d0 vocab=64ddb414
+-/
 theorem uniformBlockCoefficient_on_union {N : ℕ} (t : Fin N → G) (P : Finset α)
     (hd : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P)))
     {x : α} (hx : x ∈ blockUnion t P) :
     uniformBlockCoefficient t P x = 1 / (N : ℝ) := by
   simp only [uniformBlockCoefficient, blockMultiplicity_eq_one t P hd hx, Nat.cast_one]
 
+/--
+@isnad1 id=eq.1h6v.s6.df55d33a7275 from=translated src=- shape=293a7870 vocab=f9e5434f
+-/
 theorem uniformBlockCoefficient_off_union {N : ℕ} (t : Fin N → G) (P : Finset α)
     {x : α} (hx : x ∉ blockUnion t P) : uniformBlockCoefficient t P x = 0 := by
   simp only [uniformBlockCoefficient, blockMultiplicity_eq_zero t P hx, Nat.cast_zero,
     zero_div]
 
 /-- All cross-collisions are accounted for: exactly `N * P.card` coefficients
-are `1/N`, hence the squared coefficient norm is `P.card/N`.-/
+are `1/N`, hence the squared coefficient norm is `P.card/N`.
+@isnad1 id=eq.2h5v.s7.65561362e06b from=translated src=- shape=ed980e06 vocab=bbd1aca0
+-/
 theorem uniformBlockCoefficient_energy {N : ℕ} (hN : 0 < N)
     (t : Fin N → G) (P : Finset α)
     (hd : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P))) :

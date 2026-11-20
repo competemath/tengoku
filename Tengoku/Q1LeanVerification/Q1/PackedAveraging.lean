@@ -16,6 +16,9 @@ variable {G : Type*} [Group G] [DecidableEq G]
 def packedConjugateSet {N : ℕ} (t : Fin N → G) (g : G) : Finset G :=
   Finset.univ.image (fun i => t i * g * (t i)⁻¹)
 
+/--
+@isnad1 id=injectiv.2h5v.s6.7f8ba0e6763a from=translated src=- shape=74a5706c vocab=294e5cdc
+-/
 theorem packedConjugates_injective {N : ℕ} (t : Fin N → G) (P : Finset G)
     (hdisj : Pairwise (fun i j => Disjoint (conjugateBlock (t i) P) (conjugateBlock (t j) P)))
     (g : G) (hg : g ∈ P) : Function.Injective (fun i => t i * g * (t i)⁻¹) := by
@@ -29,11 +32,17 @@ theorem packedConjugates_injective {N : ℕ} (t : Fin N → G) (P : Finset G)
       exact Finset.mem_image.mpr ⟨g, hg, rfl⟩
   exact (Finset.disjoint_left.mp (hdisj hne) hi hj)
 
+/--
+@isnad1 id=eq.1h4v.s6.900ac4862c88 from=translated src=- shape=15b91afd vocab=39ffc33b
+-/
 theorem card_packedConjugateSet {N : ℕ} (t : Fin N → G) (g : G)
     (hinj : Function.Injective (fun i => t i * g * (t i)⁻¹)) :
     (packedConjugateSet t g).card = N := by
   rw [packedConjugateSet, Finset.card_image_of_injective _ hinj, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=le.2h7v.s6.a1a11cbe2627 from=translated src=- shape=895ff6ca vocab=d31564de
+-/
 theorem packedConjugateSet_subset_ball (L : LengthBall G) {N : ℕ} (t : Fin N → G)
     (g : G) (R ℓ : ℕ) (ht : ∀ i, L.length (t i) ≤ R) (hg : L.length g ≤ ℓ) :
     packedConjugateSet t g ⊆ L.ball (2 * R + ℓ) := by
@@ -42,7 +51,9 @@ theorem packedConjugateSet_subset_ball (L : LengthBall G) {N : ℕ} (t : Fin N �
   apply (L.mem_ball _ _).mpr
   exact (conjugate_length_le L (t i) g).trans (by have := ht i; omega)
 
-/-- Distinct conjugates have exactly unit indicator coefficients before averaging.-/
+/-- Distinct conjugates have exactly unit indicator coefficients before averaging.
+@isnad1 id=eq.1h4v.s12.950b01365110 from=translated src=- shape=4b36aa3e vocab=39e6e539
+-/
 theorem conjugationAverage_leftRegular_eq {N : ℕ} (t : Fin N → G) (g : G)
     (hinj : Function.Injective (fun i => t i * g * (t i)⁻¹)) :
     conjugationAverage regularRepresentation t (leftRegular g) =
@@ -51,7 +62,9 @@ theorem conjugationAverage_leftRegular_eq {N : ℕ} (t : Fin N → G) (g : G)
     Finset.sum_image (fun i _ j _ h => hinj h)]
   simp only [conjugationAverage, regularRepresentation_apply, ← leftRegular_mul_eq_mul]
 
-/-- The coefficient norm is sqrt(N), yielding the exact 1/sqrt(N) factor.-/
+/-- The coefficient norm is sqrt(N), yielding the exact 1/sqrt(N) factor.
+@isnad1 id=le.3h7v.s9.b2ff8fd2745c from=translated src=- shape=ece8b7c7 vocab=3bb27c28
+-/
 theorem norm_conjugationAverage_leftRegular_le (L : LengthBall G) {N : ℕ}
     (t : Fin N → G) (g : G) (R ℓ : ℕ)
     (ht : ∀ i, L.length (t i) ≤ R) (hg : L.length g ≤ ℓ)
@@ -76,7 +89,9 @@ theorem norm_conjugationAverage_leftRegular_le (L : LengthBall G) {N : ℕ}
         _ = reducedRho L (2 * R + ℓ) * (Real.sqrt (N : ℝ) * (N : ℝ)⁻¹) := by ring
         _ = _ := by rw [hs]
 
-/-- The same translating family controls every coefficient of a finite operator.-/
+/-- The same translating family controls every coefficient of a finite operator.
+@isnad1 id=le.3h7v.s9.8a2a2183b950 from=translated src=- shape=955d1e47 vocab=411bc672
+-/
 theorem norm_conjugationAverage_regularConvolution_le (L : LengthBall G) {N : ℕ}
     (t : Fin N → G) (f : G →₀ ℂ) (R ℓ : ℕ)
     (ht : ∀ i, L.length (t i) ≤ R) (hf : ∀ g ∈ f.support, L.length g ≤ ℓ)
@@ -105,7 +120,9 @@ theorem norm_conjugationAverage_regularConvolution_le (L : LengthBall G) {N : �
     _ = _ := (Finset.sum_mul _ _ _).symm
 
 /-- Trivial amenable radical gives logarithmic-radius disjoint conjugate blocks.
-This uses only the preceding exact group-growth and packing theorems.-/
+This uses only the preceding exact group-growth and packing theorems.
+@isnad1 id=ex.2h3v.s7.4550504f2a57 from=translated src=- shape=74fc7243 vocab=fc4766ec
+-/
 theorem logarithmic_conjugate_packing_of_trivial_radical (L : LengthBall G)
     (hR : AmenableNormalCover (⊥ : Subgroup G)) (P : Finset G) (hP : 1 ∉ P) :
     ∃ (R : ℕ → ℕ) (K B : ℝ), 0 < K ∧ 0 ≤ B ∧
@@ -139,7 +156,9 @@ theorem logarithmic_conjugate_packing_of_trivial_radical (L : LengthBall G)
   exact hd
 
 /-- Under ordinary SRD, every finite coefficient operator with zero identity
-coefficient has arbitrarily small uniform conjugation averages.-/
+coefficient has arbitrarily small uniform conjugation averages.
+@isnad1 id=ex.4h4v.s9.8153df38e7c4 from=translated src=- shape=d0cb3e5b vocab=5d1413bd
+-/
 theorem finite_zero_identity_averaging (L : LengthBall G)
     (hR : AmenableNormalCover (⊥ : Subgroup G)) (hsrd : ReducedSRD L)
     (f : G →₀ ℂ) (hf : f 1 = 0) (ε : ℝ) (hε : 0 < ε) :

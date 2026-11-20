@@ -21,11 +21,17 @@ def RepresentedWithin (L : LengthBall G) (P Q : Finset α) (B : ℕ) : Prop :=
   ∀ x ∈ Q, ∃ t : G, ∃ x₀ ∈ P, L.length t ≤ B ∧ x = t • x₀
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=represen.0h4v.s5.10a45c5832be from=translated src=- shape=a012add5 vocab=9ad84555
+-/
 theorem representedWithin_self (L : LengthBall G) (P : Finset α) :
     RepresentedWithin L P P 0 := by
   intro x hx
   exact ⟨1, x, hx, by simp [L.length_one], by simp⟩
 
+/--
+@isnad1 id=represen.2h8v.s6.71c0c0ecf562 from=translated src=- shape=d9c1a25f vocab=542758bd
+-/
 theorem representedWithin_image (L : LengthBall G) (P Q : Finset α)
     (B r : ℕ) (u : G) (hu : L.length u ≤ r)
     (hQ : RepresentedWithin L P Q B) :
@@ -37,13 +43,18 @@ theorem representedWithin_image (L : LengthBall G) (P Q : Finset α)
     (mul_smul u t x₀).symm⟩
 
 omit [DecidableEq α] in
+/--
+@isnad1 id=represen.2h7v.s6.202a5291ce6c from=translated src=- shape=0b10c4f7 vocab=0426c418
+-/
 theorem representedWithin_mono (L : LengthBall G) (P Q Q' : Finset α)
     (B : ℕ) (h : Q' ⊆ Q) (hQ : RepresentedWithin L P Q B) :
     RepresentedWithin L P Q' B := by
   intro x hx
   exact hQ x (h hx)
 
-/-- The exact recurrence used when the sunflower core becomes smaller.-/
+/-- The exact recurrence used when the sunflower core becomes smaller.
+@isnad1 id=le.1h4v.s7.b9f0e0011e92 from=translated src=- shape=cad09ba8 vocab=62399aff
+-/
 theorem displacement_cost (k ℓ B A : ℕ) (hℓ : ℓ < k) :
     (2 ^ ℓ - 1) * (2 * B + A + A) + (B + A) ≤
       (2 ^ k - 1) * (B + A) := by
@@ -55,7 +66,9 @@ theorem displacement_cost (k ℓ B A : ℕ) (hℓ : ℓ < k) :
   have hksub : 2 ^ k - 1 + 1 = 2 ^ k := Nat.sub_add_cancel hkpos
   nlinarith
 
-/-- Monotonicity of the elementary finite sunflower threshold.-/
+/-- Monotonicity of the elementary finite sunflower threshold.
+@isnad1 id=le.2h3v.s6.255ea514247b from=translated src=- shape=3325685f vocab=bf88f0e0
+-/
 theorem sunflower_threshold_mono (k m n : ℕ) (hkm : k ≤ m) (hn : 1 ≤ n) :
     k * (k.factorial * n ^ k) ≤ m * (m.factorial * n ^ m) := by
   exact Nat.mul_le_mul hkm
@@ -65,7 +78,9 @@ theorem sunflower_threshold_mono (k m n : ℕ) (hkm : k ≤ m) (hn : 1 ≤ n) :
 
 The rooted orbit-cardinality hypothesis is retained explicitly. No amenability,
 conjugacy-growth theorem, exponential-to-logarithmic conversion or SRD claim is
-hidden in this statement.-/
+hidden in this statement.
+@isnad1 id=ex.4h9v.s7.3a6d74961185 from=translated src=- shape=2501491a vocab=319d1d34
+-/
 theorem finite_threshold_displacement (L : LengthBall G) (P F : Finset α)
     (m A : ℕ) (hF : 1 ≤ F.card)
     (hgrowth : ∀ x ∈ P, m * (m.factorial * F.card ^ m) < (orbitBall L A x).card)
@@ -145,7 +160,9 @@ theorem finite_threshold_displacement (L : LengthBall G) (P F : Finset α)
 
 /-- Packing at one common radius from the explicit threshold at the largest
 forbidden-set size. This integrates the displacement induction with the greedy
-packing theorem, including all cross-block disjointness.-/
+packing theorem, including all cross-block disjointness.
+@isnad1 id=ex.1h6v.s7.e83f1ff993e1 from=translated src=- shape=949cbabe vocab=b22235f9
+-/
 theorem finite_threshold_packing (L : LengthBall G) (P : Finset α) (N A : ℕ)
     (hgrowth : ∀ x ∈ P,
       P.card * (P.card.factorial * ((N - 1) * P.card) ^ P.card) <

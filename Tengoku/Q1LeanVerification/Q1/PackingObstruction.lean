@@ -32,7 +32,9 @@ def ConfinedBy (H : Subgroup G) (P : Finset G) : Prop :=
 
 /-- Disjoint conjugate blocks give distinct subgroup elements at the same
 controlled support radius. This is the direct counting variant recorded at the
-end of the frozen written proof.-/
+end of the frozen written proof.
+@isnad1 id=le.4h8v.s7.b6f099f18bf2 from=translated src=- shape=42b0c6dd vocab=b5d0bc62
+-/
 theorem confined_subgroup_ball_card (L : LengthBall G) (H : Subgroup G)
     (P : Finset G) (hconf : ConfinedBy H P) (N R ℓ : ℕ)
     (hP : ∀ x ∈ P, L.length x ≤ ℓ) (t : Fin N → G)
@@ -60,7 +62,9 @@ theorem confined_subgroup_ball_card (L : LengthBall G) (H : Subgroup G)
     exact Finset.disjoint_left.mp (hd hij) hi hj
   simpa only [Fintype.card_fin, Fintype.card_coe] using Fintype.card_le_of_injective f hf
 
-/-- Numerical normalization of the subgroup-ball lower bound.-/
+/-- Numerical normalization of the subgroup-ball lower bound.
+@isnad1 id=le.3h2v.s6.b9ea876193d8 from=translated src=- shape=fc4f76d2 vocab=97fa0fb3
+-/
 theorem one_le_normalized_of_nat_le_sq (N : ℕ) (hN : 0 < N) (a : ℝ)
     (ha : 0 ≤ a) (hbound : (N : ℝ) ≤ a ^ 2) :
     1 ≤ a * Real.sqrt (1 / (N : ℝ)) := by
@@ -75,7 +79,9 @@ theorem one_le_normalized_of_nat_le_sq (N : ℕ) (hN : 0 < N) (a : ℝ)
 /-- Complete conditional finite-confinement contradiction.
 
 This theorem still assumes the unformalized exponential conjugacy-growth input
-and the amenable-subgroup `ρ²` volume input. It is not an end-to-end Q1 theorem.-/
+and the amenable-subgroup `ρ²` volume input. It is not an end-to-end Q1 theorem.
+@isnad1 id=false.8h7v.s7.a2f0677063e1 from=translated src=- shape=325dcc8a vocab=c6f86849
+-/
 theorem no_confined_subgroup_of_exponential_growth_and_srd_volume
     (L : LengthBall G) (H : Subgroup G) (P : Finset G)
     (hconf : ConfinedBy H P) (c δ : ℝ) (hc : 0 < c) (hc1 : c ≤ 1) (hδ : 0 < δ)

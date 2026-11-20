@@ -18,6 +18,9 @@ def NonFoelnerCenterQuotientWitness (g : G) : Prop :=
     (∀ i, (x i : G) = u i * g * (u i)⁻¹) ∧
     ¬ FiniteFoelner (A ⧸ Subgroup.center A)
 
+/--
+@isnad1 id=ex.1h3v.s6.a193387eb5b2 from=translated src=- shape=01fa12f5 vocab=5941f82e
+-/
 theorem exponential_conjugacy_growth_of_witness (L : LengthBall G) (g : G)
     (h : NonFoelnerCenterQuotientWitness g) :
     ∃ c δ : ℝ, 0 < c ∧ c ≤ 1 ∧ 0 < δ ∧
@@ -27,7 +30,9 @@ theorem exponential_conjugacy_growth_of_witness (L : LengthBall G) (g : G)
 
 /-- Quotient-center witnesses replace the prior integrated theorem's assumed
 exponential growth. The ordinary SRD and subgroup-ball upper bound remain
-separate, explicit hypotheses in the original ambient length.-/
+separate, explicit hypotheses in the original ambient length.
+@isnad1 id=false.5h5v.s6.a4bbd3398f09 from=translated src=- shape=5fa150bd vocab=6f229031
+-/
 theorem no_confined_subgroup_of_quotient_witnesses_and_srd_volume [DecidableEq G]
     (L : LengthBall G) (H : Subgroup G) (P : Finset G)
     (hconf : ConfinedBy H P)

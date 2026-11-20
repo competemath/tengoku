@@ -163,7 +163,9 @@ private theorem exists_sunflower_aux (k n : ℕ) (_hn : 1 ≤ n)
         · exact Finset.mem_insert_self _ _
         · exact Finset.mem_insert_of_mem (hcore B hB hx)
 
-/-- The elementary finite sunflower bound, with the strict core-size bound explicit.-/
+/-- The elementary finite sunflower bound, with the strict core-size bound explicit.
+@isnad1 id=ex.4h4v.s7.d0fb3b292637 from=translated src=- shape=1eb60f9f vocab=d1ec62f7
+-/
 theorem exists_sunflower (k n : ℕ) (_hk : 1 ≤ k) (hn : 1 ≤ n)
     (family : Finset (Finset α))
     (hcard : ∀ A ∈ family, A.card = k)
@@ -174,7 +176,9 @@ theorem exists_sunflower (k n : ℕ) (_hk : 1 ≤ k) (hn : 1 ≤ n)
   exists_sunflower_aux k n hn family hcard hlarge
 
 /-- More sunflower blocks than forbidden points ensure an avoiding block,
-provided the common core avoids the forbidden set.-/
+provided the common core avoids the forbidden set.
+@isnad1 id=ex.3h4v.s6.195a3bdd8dc1 from=translated src=- shape=b81f62c0 vocab=d2cbea02
+-/
 theorem exists_disjoint_of_sunflower
     (family : Finset (Finset α)) (core F : Finset α)
     (hflower : IsSunflower family core)

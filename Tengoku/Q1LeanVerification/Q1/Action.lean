@@ -32,37 +32,64 @@ variable [DecidableEq α]
 def imageBlock (g : G) (Q : Finset α) : Finset α :=
   Q.image (fun x => g • x)
 
+/--
+@isnad1 id=iff.0h5v.s6.d4064d1abb88 from=translated src=- shape=ba5514c5 vocab=75ed434b
+-/
 @[simp] theorem mem_imageBlock {g : G} {Q : Finset α} {x : α} :
     x ∈ imageBlock g Q ↔ ∃ y ∈ Q, g • y = x := by
   simp [imageBlock]
 
+/--
+@isnad1 id=eq.0h4v.s5.7ec151c2d4ba from=translated src=- shape=7b722de4 vocab=8298d948
+-/
 @[simp] theorem card_imageBlock (g : G) (Q : Finset α) :
     (imageBlock g Q).card = Q.card :=
   Finset.card_image_of_injective Q (MulAction.injective g)
 
+/--
+@isnad1 id=eq.0h3v.s5.4cf39c238ff4 from=translated src=- shape=88ee869c vocab=cc29ce96
+-/
 @[simp] theorem imageBlock_one (Q : Finset α) : imageBlock (1 : G) Q = Q := by
   simp [imageBlock]
 
+/--
+@isnad1 id=eq.0h5v.s6.d48ef82af32a from=translated src=- shape=b7b274dd vocab=ab83d2d0
+-/
 theorem imageBlock_mul (g h : G) (Q : Finset α) :
     imageBlock (g * h) Q = imageBlock g (imageBlock h Q) := by
   simp [imageBlock, Finset.image_image, Function.comp_def, mul_smul]
 
+/--
+@isnad1 id=eq.0h4v.s5.8d87cc5a3e84 from=translated src=- shape=7709c370 vocab=a61bc7ca
+-/
 @[simp] theorem imageBlock_inv (g : G) (Q : Finset α) :
     imageBlock g⁻¹ (imageBlock g Q) = Q := by
   rw [← imageBlock_mul, inv_mul_cancel, imageBlock_one]
 
+/--
+@isnad1 id=eq.0h4v.s5.2a0bceff2cda from=translated src=- shape=2ee70841 vocab=a61bc7ca
+-/
 @[simp] theorem imageBlock_inv' (g : G) (Q : Finset α) :
     imageBlock g (imageBlock g⁻¹ Q) = Q := by
   rw [← imageBlock_mul, mul_inv_cancel, imageBlock_one]
 
+/--
+@isnad1 id=iff.0h5v.s5.1eda46a6c7dc from=translated src=- shape=4a914ed8 vocab=a53ca875
+-/
 theorem imageBlock_disjoint_iff (g : G) (P Q : Finset α) :
     Disjoint (imageBlock g P) (imageBlock g Q) ↔ Disjoint P Q :=
   Finset.disjoint_image (MulAction.injective g)
 
+/--
+@isnad1 id=disjoint.1h5v.s5.448709d0dc41 from=translated src=- shape=7ae7f65a vocab=a53ca875
+-/
 theorem imageBlock_disjoint (g : G) {P Q : Finset α} (h : Disjoint P Q) :
     Disjoint (imageBlock g P) (imageBlock g Q) :=
   (imageBlock_disjoint_iff g P Q).2 h
 
+/--
+@isnad1 id=le.1h5v.s6.468d8ff54660 from=translated src=- shape=7ae7f65a vocab=4a35c0ac
+-/
 theorem imageBlock_mono (g : G) {P Q : Finset α} (h : P ⊆ Q) :
     imageBlock g P ⊆ imageBlock g Q :=
   Finset.image_subset_image h
@@ -71,17 +98,25 @@ theorem imageBlock_mono (g : G) {P Q : Finset α} (h : P ⊆ Q) :
 def orbitBall (L : LengthBall G) (r : ℕ) (x : α) : Finset α :=
   (L.ball r).image (fun g => g • x)
 
+/--
+@isnad1 id=iff.0h6v.s6.ff92660df64d from=translated src=- shape=6c5efc3f vocab=dd16cd7c
+-/
 @[simp] theorem mem_orbitBall {L : LengthBall G} {r : ℕ} {x y : α} :
     y ∈ orbitBall L r x ↔ ∃ g, L.length g ≤ r ∧ g • x = y := by
   simp [orbitBall, L.mem_ball]
 
+/--
+@isnad1 id=le.1h6v.s6.fc240ebf8f5a from=translated src=- shape=903c4e1e vocab=a7dbbf82
+-/
 theorem orbitBall_mono (L : LengthBall G) {r s : ℕ} (hrs : r ≤ s) (x : α) :
     orbitBall L r x ⊆ orbitBall L s x := by
   intro y hy
   obtain ⟨g, hg, rfl⟩ := mem_orbitBall.mp hy
   exact mem_orbitBall.mpr ⟨g, hg.trans hrs, rfl⟩
 
-/-- Moving a root costs the length of a representing element, additively.-/
+/-- Moving a root costs the length of a representing element, additively.
+@isnad1 id=le.1h7v.s6.ebad90c6fa88 from=translated src=- shape=35281497 vocab=37dd2bc5
+-/
 theorem orbitBall_transfer (L : LengthBall G) (A : ℕ) {x x₀ : α} {t : G}
     (hx : x = t • x₀) :
     orbitBall L A x₀ ⊆ orbitBall L (A + L.length t) x := by
@@ -94,13 +129,18 @@ theorem orbitBall_transfer (L : LengthBall G) (A : ℕ) {x x₀ : α} {t : G}
       _ ≤ A + L.length t := Nat.add_le_add_right hs _
   · rw [hx, mul_smul, inv_smul_smul]
 
+/--
+@isnad1 id=le.2h8v.s6.109451430759 from=translated src=- shape=75b8c4f6 vocab=37dd2bc5
+-/
 theorem orbitBall_transfer_of_le (L : LengthBall G) (A B : ℕ)
     {x x₀ : α} {t : G} (hx : x = t • x₀) (ht : L.length t ≤ B) :
     orbitBall L A x₀ ⊆ orbitBall L (B + A) x := by
   exact (orbitBall_transfer L A hx).trans
     (orbitBall_mono L (by simpa [Nat.add_comm] using Nat.add_le_add_left ht A) x)
 
-/-- A rooted orbit is covered by the distinct translated blocks containing its root.-/
+/-- A rooted orbit is covered by the distinct translated blocks containing its root.
+@isnad1 id=le.1h6v.s6.508d35e1f168 from=translated src=- shape=d13bd451 vocab=a4cf3a9a
+-/
 theorem orbitBall_subset_imageBlocks_union (L : LengthBall G) (r : ℕ)
     (Q : Finset α) {x : α} (hx : x ∈ Q) :
     orbitBall L r x ⊆
@@ -111,7 +151,9 @@ theorem orbitBall_subset_imageBlocks_union (L : LengthBall G) (r : ℕ)
   · exact Finset.mem_image.mpr ⟨g, (L.mem_ball g r).2 hg, rfl⟩
   · exact mem_imageBlock.mpr ⟨x, hx, rfl⟩
 
-/-- The cardinality bridge from rooted orbit volume to the family of distinct blocks.-/
+/-- The cardinality bridge from rooted orbit volume to the family of distinct blocks.
+@isnad1 id=le.1h6v.s6.b8a4df4e13f2 from=translated src=- shape=88d09e81 vocab=4cbf8b0f
+-/
 theorem orbitBall_card_le_imageBlocks (L : LengthBall G) (r : ℕ)
     (Q : Finset α) {x : α} (hx : x ∈ Q) :
     (orbitBall L r x).card ≤
@@ -131,11 +173,17 @@ theorem orbitBall_card_le_imageBlocks (L : LengthBall G) (r : ℕ)
 def blockUnion {n : ℕ} (t : Fin n → G) (P : Finset α) : Finset α :=
   Finset.univ.biUnion (fun i => imageBlock (t i) P)
 
+/--
+@isnad1 id=le.0h6v.s5.a6bcfc8b06bc from=translated src=- shape=1c4b12e9 vocab=23a4d6fd
+-/
 theorem imageBlock_subset_blockUnion {n : ℕ} (t : Fin n → G) (P : Finset α)
     (i : Fin n) : imageBlock (t i) P ⊆ blockUnion t P := by
   intro x hx
   exact Finset.mem_biUnion.mpr ⟨i, Finset.mem_univ i, hx⟩
 
+/--
+@isnad1 id=le.0h5v.s5.8212ca988ea1 from=translated src=- shape=590ba8d4 vocab=65261f17
+-/
 theorem card_blockUnion_le {n : ℕ} (t : Fin n → G) (P : Finset α) :
     (blockUnion t P).card ≤ n * P.card := by
   calc
@@ -143,7 +191,9 @@ theorem card_blockUnion_le {n : ℕ} (t : Fin n → G) (P : Finset α) :
       Finset.card_biUnion_le
     _ = n * P.card := by simp
 
-/-- Exact count when all whole blocks, including their cross terms, are disjoint.-/
+/-- Exact count when all whole blocks, including their cross terms, are disjoint.
+@isnad1 id=eq.1h5v.s6.aae646bcd687 from=translated src=- shape=bfdf6a11 vocab=1c7886a9
+-/
 theorem card_blockUnion {n : ℕ} (t : Fin n → G) (P : Finset α)
     (h : Pairwise (fun i j => Disjoint (imageBlock (t i) P) (imageBlock (t j) P))) :
     (blockUnion t P).card = n * P.card := by
@@ -157,7 +207,9 @@ theorem card_blockUnion {n : ℕ} (t : Fin n → G) (P : Finset α)
 /-- Greedy packing from finite-set displacement at a fixed common radius.
 
 The input displacement hypothesis is explicit: this theorem does not assert it
-for arbitrary actions.  Empty blocks and N = 0 are permitted.-/
+for arbitrary actions.  Empty blocks and N = 0 are permitted.
+@isnad1 id=ex.1h6v.s7.cf6614390eaa from=translated src=- shape=2fa474c9 vocab=2886b6c4
+-/
 theorem greedy_disjoint_blocks (L : LengthBall G) (P : Finset α) (N R : ℕ)
     (hdisp : ∀ F : Finset α, F.card ≤ (N - 1) * P.card →
       ∃ t : G, L.length t ≤ R ∧ Disjoint (imageBlock t P) F) :

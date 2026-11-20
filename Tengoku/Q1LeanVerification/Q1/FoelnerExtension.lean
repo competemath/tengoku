@@ -10,11 +10,17 @@ namespace Q1
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=iff.0h4v.s6.07a1aeb42538 from=translated src=- shape=7f13df23 vocab=39790a09
+-/
 theorem mem_leftTranslate_iff (g y : G) (F : Finset G) :
     y ∈ leftTranslate g F ↔ ∃ x ∈ F, g * x = y := by
   classical
   simp only [leftTranslate, Finset.mem_image]
 
+/--
+@isnad1 id=iff.0h4v.s6.bec53bd1175f from=translated src=- shape=6684c67c vocab=66b2532a
+-/
 theorem mem_translateBoundary_iff (g y : G) (F : Finset G) :
     y ∈ translateBoundary g F ↔ (∃ x ∈ F, g * x = y) ∧ y ∉ F := by
   classical
@@ -24,6 +30,9 @@ theorem mem_translateBoundary_iff (g y : G) (F : Finset G) :
 noncomputable def extensionPair (N : Subgroup G) [N.Normal]
     (z : (G ⧸ N) × N) : G := z.1.out * z.2
 
+/--
+@isnad1 id=eq.0h3v.s7.606eb1013b75 from=translated src=- shape=8f8653b3 vocab=2e2e58fb
+-/
 @[simp] theorem extensionPair_quotient (N : Subgroup G) [N.Normal]
     (z : (G ⧸ N) × N) : QuotientGroup.mk' N (extensionPair N z) = z.1 := by
   have hz : QuotientGroup.mk' N (z.2 : G) = 1 :=
@@ -31,7 +40,9 @@ noncomputable def extensionPair (N : Subgroup G) [N.Normal]
   simp only [extensionPair, map_mul, hz, mul_one, QuotientGroup.mk'_apply,
     QuotientGroup.out_eq']
 
-/-- Different quotient fibers, or different kernel coordinates, stay distinct.-/
+/-- Different quotient fibers, or different kernel coordinates, stay distinct.
+@isnad1 id=injectiv.0h2v.s5.53f482af7f5f from=translated src=- shape=d2a5e7a6 vocab=a662bec3
+-/
 theorem extensionPair_injective (N : Subgroup G) [N.Normal] :
     Function.Injective (extensionPair N) := by
   intro a b hab
@@ -55,6 +66,9 @@ noncomputable def extensionSet (N : Subgroup G) [N.Normal]
   classical
   exact (Q ×ˢ E).image (extensionPair N)
 
+/--
+@isnad1 id=iff.0h5v.s8.f016492ce40e from=translated src=- shape=0eb0d9b1 vocab=855b73a1
+-/
 theorem mem_extensionSet_iff (N : Subgroup G) [N.Normal]
     (Q : Finset (G ⧸ N)) (E : Finset N) (y : G) :
     y ∈ extensionSet N Q E ↔
@@ -67,6 +81,9 @@ theorem mem_extensionSet_iff (N : Subgroup G) [N.Normal]
   · rintro ⟨q, hq, n, hn, he⟩
     exact ⟨q, n, ⟨hq, hn⟩, he⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.690683ffe777 from=translated src=- shape=61210a29 vocab=a525637e
+-/
 @[simp] theorem extensionSet_card (N : Subgroup G) [N.Normal]
     (Q : Finset (G ⧸ N)) (E : Finset N) :
     (extensionSet N Q E).card = Q.card * E.card := by
@@ -74,6 +91,9 @@ theorem mem_extensionSet_iff (N : Subgroup G) [N.Normal]
   rw [extensionSet, Finset.card_image_of_injective _ (extensionPair_injective N),
     Finset.card_product]
 
+/--
+@isnad1 id=nonempty.2h4v.s6.89868b634508 from=translated src=- shape=0fdfa099 vocab=4aa1364b
+-/
 theorem extensionSet_nonempty (N : Subgroup G) [N.Normal]
     {Q : Finset (G ⧸ N)} {E : Finset N} (hQ : Q.Nonempty) (hE : E.Nonempty) :
     (extensionSet N Q E).Nonempty := by
@@ -87,6 +107,9 @@ noncomputable def extensionCocycle (N : Subgroup G) [N.Normal]
     apply (QuotientGroup.eq_one_iff _).mp
     simp [QuotientGroup.mk_mul, QuotientGroup.mk_inv, QuotientGroup.mk'_apply]⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.85cb43d16d68 from=translated src=- shape=8493c365 vocab=e50b835d
+-/
 theorem extensionCocycle_identity (N : Subgroup G) [N.Normal]
     (g : G) (q : G ⧸ N) (n : N) :
     g * extensionPair N (q, n) =
@@ -100,6 +123,9 @@ noncomputable def extensionBad (N : Subgroup G) [N.Normal]
   classical
   exact Q.filter (fun q => QuotientGroup.mk' N g * q ∉ Q)
 
+/--
+@isnad1 id=le.0h4v.s7.be4cc1c769bd from=translated src=- shape=4dbda623 vocab=2965e0a8
+-/
 theorem extensionBad_card_le (N : Subgroup G) [N.Normal]
     (g : G) (Q : Finset (G ⧸ N)) :
     (extensionBad N g Q).card ≤ (translateBoundary (QuotientGroup.mk' N g) Q).card := by
@@ -112,7 +138,9 @@ theorem extensionBad_card_le (N : Subgroup G) [N.Normal]
     exact (mem_translateBoundary_iff _ _ _).mpr ⟨⟨q, hmem.1, rfl⟩, hmem.2⟩
   · exact (mul_right_injective _).injOn
 
-/-- Each boundary point is in a bad quotient fiber or a translated kernel boundary.-/
+/-- Each boundary point is in a bad quotient fiber or a translated kernel boundary.
+@isnad1 id=le.0h5v.s8.b01ced3c4bfd from=translated src=- shape=080e0bf5 vocab=fe6fa3f6
+-/
 theorem extensionBoundary_subset [DecidableEq G] (N : Subgroup G) [N.Normal]
     (g : G) (Q : Finset (G ⧸ N)) (E : Finset N) :
     translateBoundary g (extensionSet N Q E) ⊆
@@ -142,7 +170,9 @@ theorem extensionBoundary_subset [DecidableEq G] (N : Subgroup G) [N.Normal]
     refine ⟨q, ?_, n, hn, rfl⟩
     simpa only [extensionBad, Finset.mem_filter] using And.intro hq hgood
 
-/-- Explicit extension boundary estimate, with no uncounted fibers or collisions.-/
+/-- Explicit extension boundary estimate, with no uncounted fibers or collisions.
+@isnad1 id=le.0h5v.s8.12a4d94942f3 from=translated src=- shape=bfec3f9c vocab=b6d041a1
+-/
 theorem extensionBoundary_card_le (N : Subgroup G) [N.Normal]
     (g : G) (Q : Finset (G ⧸ N)) (E : Finset N) :
     (translateBoundary g (extensionSet N Q E)).card ≤
@@ -164,7 +194,9 @@ theorem extensionBoundary_card_le (N : Subgroup G) [N.Normal]
         exact Nat.mul_le_mul_right _ (extensionBad_card_le N g Q)
       · exact Finset.sum_le_sum (fun _ _ => Finset.card_image_le)
 
-/-- Finite Følner sets pass from a normal kernel and its quotient to the group.-/
+/-- Finite Følner sets pass from a normal kernel and its quotient to the group.
+@isnad1 id=finitefo.2h2v.s5.9daf07cfde8e from=translated src=- shape=1ef1b324 vocab=41dcb312
+-/
 theorem finiteFoelner_extension (N : Subgroup G) [N.Normal]
     (hN : FiniteFoelner N) (hQ : FiniteFoelner (G ⧸ N)) : FiniteFoelner G := by
   classical

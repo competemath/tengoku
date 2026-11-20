@@ -22,7 +22,9 @@ def OrdinarySRD (ρ : ℕ → ℝ) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∀ᶠ n in atTop, ρ n ≤ Real.exp (ε * (n : ℝ))
 
 /-- Finitely many exceptional initial radii can be absorbed into a positive
-multiplicative constant. No monotonicity or sign assumption on `ρ` is needed.-/
+multiplicative constant. No monotonicity or sign assumption on `ρ` is needed.
+@isnad1 id=ex.2h2v.s6.ebbf82eb24dc from=translated src=- shape=4cab7f06 vocab=27499200
+-/
 theorem OrdinarySRD.exists_global_exp_bound {ρ : ℕ → ℝ}
     (hsrd : OrdinarySRD ρ) {ε : ℝ} (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, ρ n ≤ C * Real.exp (ε * (n : ℝ)) := by
@@ -46,7 +48,9 @@ theorem OrdinarySRD.exists_global_exp_bound {ρ : ℕ → ℝ}
         simpa using mul_le_mul_of_nonneg_left he hCpos.le
 
 /-- SRD evaluated at radii tending to infinity and bounded by a logarithm,
-multiplied by the square-root coefficient estimate, tends to zero.-/
+multiplied by the square-root coefficient estimate, tends to zero.
+@isnad1 id=tendsto.6h5v.s7.03d7360f3894 from=translated src=- shape=3c11ca6e vocab=c5c6a546
+-/
 theorem tendsto_srd_log_radius
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (r : ℕ → ℕ) (hr : Tendsto r atTop atTop)
@@ -100,7 +104,9 @@ theorem tendsto_srd_log_radius
     _ ≤ Real.sqrt m * Real.exp (ε * B - Real.log (N : ℝ) / 4) :=
       mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr he) (Real.sqrt_nonneg _)
 
-/-- The strict numerical inequality needed to contradict a norm lower bound of one.-/
+/-- The strict numerical inequality needed to contradict a norm lower bound of one.
+@isnad1 id=eventual.6h5v.s7.9069bf640736 from=translated src=- shape=40f8457e vocab=7711a595
+-/
 theorem eventually_srd_log_radius_lt_one
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (r : ℕ → ℕ) (hr : Tendsto r atTop atTop)
@@ -111,7 +117,9 @@ theorem eventually_srd_log_radius_lt_one
     (Iio_mem_nhds (by norm_num : (0 : ℝ) < 1))
 
 /-- Stronger numerical form: logarithmically bounded radii need not themselves
-tend to infinity, since ordinary SRD controls the finite initial radii too.-/
+tend to infinity, since ordinary SRD controls the finite initial radii too.
+@isnad1 id=tendsto.5h5v.s7.53991cef5060 from=translated src=- shape=6e4ee307 vocab=c5c6a546
+-/
 theorem tendsto_srd_log_radius_without_divergence
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (r : ℕ → ℕ) (K B m : ℝ) (hK : 0 < K) (hm : 0 ≤ m)
@@ -161,7 +169,9 @@ theorem tendsto_srd_log_radius_without_divergence
       mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr he)
         (mul_nonneg hC.le (Real.sqrt_nonneg _))
 
-/-- Contradiction-ready form, without a divergence hypothesis on the radii.-/
+/-- Contradiction-ready form, without a divergence hypothesis on the radii.
+@isnad1 id=eventual.5h5v.s7.a0c6ea9f10e1 from=translated src=- shape=2b8377f5 vocab=287dfdee
+-/
 theorem eventually_srd_log_radius_lt_one_without_divergence
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (r : ℕ → ℕ) (K B m : ℝ) (hK : 0 < K) (hm : 0 ≤ m)
@@ -170,7 +180,9 @@ theorem eventually_srd_log_radius_lt_one_without_divergence
   exact (tendsto_srd_log_radius_without_divergence ρ hρ hsrd r K B m hK hm hlog).eventually
     (Iio_mem_nhds (by norm_num : (0 : ℝ) < 1))
 
-/-- The exact coefficient/radius expression in the packing argument.-/
+/-- The exact coefficient/radius expression in the packing argument.
+@isnad1 id=tendsto.4h6v.s7.25bd47d9d168 from=translated src=- shape=370aadf6 vocab=c5c6a546
+-/
 theorem tendsto_srd_packing_bound
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (R : ℕ → ℕ) (K B : ℝ) (hK : 0 < K) (L m : ℕ)
@@ -186,7 +198,9 @@ theorem tendsto_srd_packing_bound
 
 /-- Numerical contradiction between the SRD packing estimate and an eventual
 lower bound of one. The lower bound is an explicit assumption, not an assertion
-about an unformalized operator algebra.-/
+about an unformalized operator algebra.
+@isnad1 id=false.5h6v.s7.936d95525d6d from=translated src=- shape=6a59551b vocab=287dfdee
+-/
 theorem false_of_srd_packing_lower_bound
     (ρ : ℕ → ℝ) (hρ : ∀ n, 0 ≤ ρ n) (hsrd : OrdinarySRD ρ)
     (R : ℕ → ℕ) (K B : ℝ) (hK : 0 < K) (L m : ℕ)
@@ -200,7 +214,9 @@ theorem false_of_srd_packing_lower_bound
 
 /-- A polynomial upper bound implies ordinary SRD. This even permits arbitrary
 real coefficients and exponents; the usual RD assumptions `0 < C` and `0 ≤ d`
-are therefore more than sufficient.-/
+are therefore more than sufficient.
+@isnad1 id=ordinary.1h3v.s5.0014c2074df9 from=translated src=- shape=ba4a25e4 vocab=81b5885f
+-/
 theorem ordinarySRD_of_polynomial_bound
     (ρ : ℕ → ℝ) (C d : ℝ)
     (hbound : ∀ n : ℕ, ρ n ≤ C * (1 + (n : ℝ)) ^ d) :
