@@ -1,0 +1,1 @@
+-- Jsp940Erdos1133Formalization: a factory bundle (data/intake/jsp940-erdos1133-formalization). This file only marks the library for Tengoku/All.lean.
