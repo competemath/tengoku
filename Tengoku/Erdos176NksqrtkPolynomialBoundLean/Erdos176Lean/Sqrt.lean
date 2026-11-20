@@ -33,6 +33,9 @@ section FejerWeights
 noncomputable def fejerWeight (D d : ℕ) : ℝ :=
   1 - (d : ℝ) / (D + 1 : ℝ)
 
+/--
+@isnad1 id=le.1h2v.s4.e9007da08ced from=translated src=- shape=7c81aa35 vocab=61884333
+-/
 theorem fejerWeight_nonneg {D d : ℕ} (hd : d ≤ D) :
     0 ≤ fejerWeight D d := by
   unfold fejerWeight
@@ -43,6 +46,9 @@ theorem fejerWeight_nonneg {D d : ℕ} (hd : d ≤ D) :
     linarith
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s6.ac469553c0b3 from=translated src=- shape=f49d97f1 vocab=c0cfc1ee
+-/
 theorem sum_range_succ_real (D : ℕ) :
     (∑ i ∈ Finset.range D, (((i + 1 : ℕ) : ℝ)))
       = (D : ℝ) * (D + 1 : ℝ) / 2 := by
@@ -54,6 +60,9 @@ theorem sum_range_succ_real (D : ℕ) :
       norm_num [Nat.cast_add, Nat.cast_one]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s7.f9a28342cae9 from=translated src=- shape=e9a5ee20 vocab=bebe769f
+-/
 theorem sum_range_succ_sq_real (D : ℕ) :
     (∑ i ∈ Finset.range D, (((i + 1 : ℕ) : ℝ) ^ 2))
       = (D : ℝ) * (D + 1 : ℝ) * (2 * (D : ℝ) + 1) / 6 := by
@@ -65,6 +74,9 @@ theorem sum_range_succ_sq_real (D : ℕ) :
       norm_num [Nat.cast_add, Nat.cast_one]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s5.38996da4abee from=translated src=- shape=fa01f7f9 vocab=50eedc77
+-/
 theorem sum_fejerWeight_range (D : ℕ) :
     (∑ i ∈ Finset.range D, fejerWeight D (i + 1)) = (D : ℝ) / 2 := by
   unfold fejerWeight
@@ -81,6 +93,9 @@ theorem sum_fejerWeight_range (D : ℕ) :
   field_simp [ne_of_gt hpos]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.6bb4eff9b86f from=translated src=- shape=21154b4c vocab=a2a5ab6d
+-/
 theorem sum_mul_fejerWeight_range (D : ℕ) :
     (∑ i ∈ Finset.range D, (((i + 1 : ℕ) : ℝ) * fejerWeight D (i + 1)))
       = (D : ℝ) * (D + 2 : ℝ) / 6 := by
@@ -109,7 +124,9 @@ theorem sum_mul_fejerWeight_range (D : ℕ) :
 
 /--
 Exact count of the lower triangular differences:
-the difference `i + 1` occurs exactly `D - i` times.-/
+the difference `i + 1` occurs exactly `D - i` times.
+@isnad1 id=eq.0h2v.s6.f3c773df4d4a from=translated src=- shape=828b6cee vocab=a9fc3bcc
+-/
 theorem lowerTriangle_sum_eq_weighted_count (F : ℕ → ℝ) (D : ℕ) :
     (∑ r ∈ Finset.range (D + 1), ∑ s ∈ Finset.range r, F (r - s)) =
       ∑ i ∈ Finset.range D, ((D - i : ℕ) : ℝ) * F (i + 1) := by
@@ -197,15 +214,24 @@ noncomputable def sqrtHtmlThresholdReal (k : ℕ) : ℝ :=
 noncomputable def sqrtHtmlBoundNat (k : ℕ) : ℕ :=
   Nat.floor (sqrtHtmlThresholdReal k) + 1
 
+/--
+@isnad1 id=lt.0h1v.s3.f8ff34642881 from=translated src=- shape=8a62b088 vocab=6e44eb39
+-/
 theorem sqrtHtmlBoundNat_pos (k : ℕ) :
     0 < sqrtHtmlBoundNat k := by
   simp [sqrtHtmlBoundNat]
 
+/--
+@isnad1 id=lt.0h1v.s3.b7cdd6b15335 from=translated src=- shape=6b4ab8ce vocab=458979ab
+-/
 theorem sqrtHtmlThresholdReal_lt_sqrtHtmlBoundNat (k : ℕ) :
     sqrtHtmlThresholdReal k < (sqrtHtmlBoundNat k : ℝ) := by
   simpa [sqrtHtmlBoundNat, Nat.cast_add, Nat.cast_one]
     using Nat.lt_floor_add_one (sqrtHtmlThresholdReal k)
 
+/--
+@isnad1 id=lt.1h2v.s4.644a90813b68 from=translated src=- shape=9ab11ad5 vocab=a8acdb89
+-/
 theorem sqrtHtmlThresholdReal_lt_of_sqrtHtmlBoundNat_le
     {k N : ℕ}
     (hN : sqrtHtmlBoundNat k ≤ N) :
