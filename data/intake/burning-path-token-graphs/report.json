@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "128fc0601b98ec60ea8acd259137db91e92806a1150c1e44d4e47a84333c2d5b",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "burning-path-token-graphs",
+ "lint_mode": "proposed",
+ "modules": 52,
+ "part": 1,
+ "theorems": 393
+}
