@@ -62,6 +62,9 @@ def genericFiberRelation : MvPolynomial (Option (Option (Fin 2))) k :=
     MvPolynomial.X (some (some 0)) * MvPolynomial.X none -
     2 * MvPolynomial.X (some none)
 
+/--
+@isnad1 id=eq.0h1v.s9.10c6c9269c89 from=translated src=- shape=4aa54690 vocab=5b934ada
+-/
 theorem optionEquivLeft_genericFiberRelation :
     optionEquivLeft k (Option (Fin 2)) (genericFiberRelation k) =
       genericFiberPolyRing k := by
@@ -72,6 +75,9 @@ theorem optionEquivLeft_genericFiberRelation :
 def genericSwapTA : Equiv.Perm (Option (Option (Fin 2))) :=
   Equiv.swap none (some none)
 
+/--
+@isnad1 id=irreduci.0h1v.s6.218083db1186 from=translated src=- shape=c20adcb5 vocab=68a8891e
+-/
 theorem genericFiberRelation_irreducible [CharZero k] :
     Irreducible (genericFiberRelation k) := by
   let q : Polynomial (MvPolynomial (Option (Fin 2)) k) :=
@@ -105,11 +111,17 @@ theorem genericFiberRelation_irreducible [CharZero k] :
     (renameEquiv k genericSwapTA).symm_apply_apply _
   rwa [hback] at this
 
+/--
+@isnad1 id=irreduci.0h1v.s6.72a3e6414adf from=translated src=- shape=46d5e16b vocab=9a65a3f7
+-/
 theorem genericFiberPolyRing_irreducible [CharZero k] :
     Irreducible (genericFiberPolyRing k) := by
   rw [← optionEquivLeft_genericFiberRelation]
   exact (genericFiberRelation_irreducible k).map (optionEquivLeft k (Option (Fin 2)))
 
+/--
+@isnad1 id=isprimit.0h1v.s5.296652c0f1e8 from=translated src=- shape=da9a72aa vocab=2214b96c
+-/
 theorem genericFiberPolyRing_isPrimitive [CharZero k] :
     (genericFiberPolyRing k).IsPrimitive := by
   rw [Polynomial.isPrimitive_iff_isUnit_of_C_dvd]
@@ -125,30 +137,42 @@ theorem genericFiberPolyRing_isPrimitive [CharZero k] :
       h2k.map (MvPolynomial.C : k →+* GenericCoeffRing k)
   exact isUnit_iff_dvd_one.mpr (hd.trans (isUnit_iff_dvd_one.mp h2))
 
-/-- The generic normalized cubic is irreducible over `k(a,b,c)`.-/
+/-- The generic normalized cubic is irreducible over `k(a,b,c)`.
+@isnad1 id=irreduci.0h1v.s8.23e732f96c74 from=translated src=- shape=46d5e16b vocab=97d85bdd
+-/
 theorem genericFiberPoly_irreducible [CharZero k] :
     Irreducible (genericFiberPoly k) := by
   rw [genericFiberPoly, ←
     (genericFiberPolyRing_isPrimitive k).irreducible_iff_irreducible_map_fraction_map]
   exact genericFiberPolyRing_irreducible k
 
+/--
+@isnad1 id=eq.0h1v.s5.d26d3a8314a4 from=translated src=- shape=46a7a1bc vocab=c8f7d9bf
+-/
 theorem genericFiberPolyRing_natDegree :
     (genericFiberPolyRing k).natDegree = 3 := by
   unfold genericFiberPolyRing
   compute_degree <;> simp [genericC]
 
+/--
+@isnad1 id=eq.0h1v.s7.c0bf2e195805 from=translated src=- shape=46a7a1bc vocab=f8896b95
+-/
 theorem genericFiberPoly_natDegree :
     (genericFiberPoly k).natDegree = 3 := by
   rw [genericFiberPoly, Polynomial.natDegree_map_eq_of_injective
     (IsFractionRing.injective (GenericCoeffRing k) (GenericTargetField k))]
   exact genericFiberPolyRing_natDegree k
 
-/-- In characteristic zero the generic cubic is separable.-/
+/-- In characteristic zero the generic cubic is separable.
+@isnad1 id=separabl.0h1v.s7.0775cebe6ad8 from=translated src=- shape=da9a72aa vocab=d0a0c9d5
+-/
 theorem genericFiberPoly_separable [CharZero k] :
     (genericFiberPoly k).Separable :=
   (genericFiberPoly_irreducible k).separable
 
-/-- The polynomial discriminant of the generic cubic is `-4W`.-/
+/-- The polynomial discriminant of the generic cubic is `-4W`.
+@isnad1 id=eq.0h1v.s10.7735df4664bb from=translated src=- shape=e85f11fc vocab=e23188ad
+-/
 theorem genericFiberPoly_discr :
     (genericFiberPoly k).discr =
       algebraMap (GenericCoeffRing k) (GenericTargetField k) (-4 * genericWallPoly k) := by

@@ -39,7 +39,9 @@ variable {K : Type*} [Field K]
 
 /-- **Characteristic-three normal form.**  If `3 = 0`, the translation
 `T = b + S` puts the fiber cubic into the form `cS³ + S² + W`, with vanishing
-linear term: the wall scalar is the constant term.  Certificate: the difference is `3·(explicit polynomial)`.-/
+linear term: the wall scalar is the constant term.  Certificate: the difference is `3·(explicit polynomial)`.
+@isnad1 id=eq.1h5v.s8.24acab943818 from=translated src=- shape=5bc446f0 vocab=7f346d2f
+-/
 theorem fiberCubic_char3_normal_form (h3 : (3 : K) = 0) (a b c s : K) :
     c * (b + s) ^ 3 - 2 * (b + s) ^ 2 + b * (b + s) - 2 * a =
       c * s ^ 3 + s ^ 2 + wallW a b c := by
@@ -49,7 +51,9 @@ theorem fiberCubic_char3_normal_form (h3 : (3 : K) = 0) (a b c s : K) :
       9 * a ^ 2 * c ^ 2 + 6 * a * b * c) * h3
 
 /-- In characteristic three the missed curve is empty: `3bc = 4` would force
-`1 = 0`.-/
+`1 = 0`.
+@isnad1 id=not.1h4v.s5.71132551d2ca from=translated src=- shape=34e12400 vocab=9624588d
+-/
 theorem not_onMissedCurve_char3 (h3 : (3 : K) = 0) (a b c : K) :
     ¬ OnMissedCurve a b c := by
   rintro ⟨-, h34⟩
@@ -62,7 +66,9 @@ cubic at any `t` forces `1 = 0`: in the normal form `cS³ + S² + W` the
 `S²`-coefficient is the unit `1`, while a cube `c(S − r)³` has no `S²` term
 when `3 = 0`.  Stated via the second divided difference: if `t` is a root of
 the cubic, of its derivative, and of its second Hasse derivative, we get a
-contradiction.-/
+contradiction.
+@isnad1 id=false.4h5v.s9.02fc70e1b649 from=translated src=- shape=0f33e17d vocab=7c99a4e5
+-/
 theorem no_triple_root_char3 (h3 : (3 : K) = 0) {a b c t : K}
     (_hP : c * t ^ 3 - 2 * t ^ 2 + b * t - 2 * a = 0)
     (_hP' : 3 * c * t ^ 2 - 4 * t + b = 0)

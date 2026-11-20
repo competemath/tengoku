@@ -3,7 +3,9 @@ import Tengoku.Seed.RingTheory.Localization.NumDen
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
 namespace Tengoku.AlpogeLean end Tengoku.AlpogeLean open Tengoku.AlpogeLean
-/-- An irreducible element of a UFD does not become a square in its fraction field.-/
+/-- An irreducible element of a UFD does not become a square in its fraction field.
+@isnad1 id=not.1h2v.s7.84e3143daee9 from=translated src=- shape=6d721f72 vocab=ee5adeec
+-/
 theorem _root_.Tengoku.AlpogeLean.irreducible_not_isSquare_fractionRing
     {R : Type*} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
     {p : R} (hp : Irreducible p) :
@@ -49,6 +51,9 @@ abbrev GenericBCring := MvPolynomial (Fin 2) k
 def genericBCObstruction : GenericBCring k :=
   4 - 3 * MvPolynomial.X 0 * MvPolynomial.X (Fin.succ 0)
 
+/--
+@isnad1 id=irreduci.0h1v.s5.5571f4935e01 from=translated src=- shape=da9a72aa vocab=2e9ef567
+-/
 theorem genericBCObstruction_irreducible :
     Irreducible (genericBCObstruction k) := by
   let q : Polynomial (MvPolynomial (Fin 1) k) :=
@@ -89,6 +94,9 @@ def genericWallAPoly : Polynomial (GenericBCring k) :=
         MvPolynomial.X 0 ^ 2)
 
 omit [CharZero k] in
+/--
+@isnad1 id=eq.0h1v.s9.954329638878 from=translated src=- shape=4bc7b5e1 vocab=6701d215
+-/
 theorem optionEquivLeft_genericWallPoly :
     optionEquivLeft k (Fin 2) (genericWallPoly k) = genericWallAPoly k := by
   simp [genericWallPoly, genericWallAPoly, genericA, genericB, genericC, map_ofNat]
@@ -99,23 +107,35 @@ def genericWallAPolyFrac :
   (genericWallAPoly k).map
     (algebraMap (GenericBCring k) (FractionRing (GenericBCring k)))
 
+/--
+@isnad1 id=eq.0h1v.s5.7e0a92ad29ab from=translated src=- shape=b5f7948f vocab=f5185c3b
+-/
 theorem genericWallAPoly_natDegree :
     (genericWallAPoly k).natDegree = 2 := by
   unfold genericWallAPoly
   compute_degree <;> simp
 
+/--
+@isnad1 id=eq.0h1v.s7.37343fb1df07 from=translated src=- shape=ee835f90 vocab=e705c50d
+-/
 theorem genericWallAPolyFrac_natDegree :
     (genericWallAPolyFrac k).natDegree = 2 := by
   rw [genericWallAPolyFrac, Polynomial.natDegree_map_eq_of_injective
     (IsFractionRing.injective (GenericBCring k) (FractionRing (GenericBCring k)))]
   exact genericWallAPoly_natDegree k
 
+/--
+@isnad1 id=not.0h1v.s10.2011b511308d from=translated src=- shape=47f4e43f vocab=bce82ecb
+-/
 theorem genericBCObstruction_not_isSquare :
     ¬ IsSquare
       (algebraMap (GenericBCring k) (FractionRing (GenericBCring k))
       (genericBCObstruction k)) :=
   irreducible_not_isSquare_fractionRing (genericBCObstruction_irreducible k)
 
+/--
+@isnad1 id=not.0h2v.s7.84c5c36d52eb from=translated src=- shape=4a7172a3 vocab=781eb044
+-/
 theorem genericWallAPolyFrac_not_isRoot
     (r : FractionRing (GenericBCring k)) :
     ¬ (genericWallAPolyFrac k).IsRoot r := by
@@ -154,6 +174,9 @@ theorem genericWallAPolyFrac_not_isRoot
     _ = (2 * A * r + B) ^ 2 := hsquare.symm
 
 omit [CharZero k] in
+/--
+@isnad1 id=irreduci.0h1v.s6.baf845cae262 from=translated src=- shape=31d98b99 vocab=54825b5f
+-/
 theorem genericBC_X_zero_irreducible :
     Irreducible (MvPolynomial.X (0 : Fin 2) : GenericBCring k) := by
   have hx : Irreducible
@@ -169,6 +192,9 @@ theorem genericBC_X_zero_irreducible :
   rwa [heq] at this
 
 omit [CharZero k] in
+/--
+@isnad1 id=irreduci.0h1v.s6.3cac39caa96e from=translated src=- shape=0821030a vocab=39c60ecc
+-/
 theorem genericBC_X_one_irreducible :
     Irreducible (MvPolynomial.X (Fin.succ 0) : GenericBCring k) := by
   let e : Equiv.Perm (Fin 2) := Equiv.swap 0 (Fin.succ 0)
@@ -176,6 +202,9 @@ theorem genericBC_X_one_irreducible :
   have he : e 0 = Fin.succ 0 := Equiv.swap_apply_left _ _
   simpa [MvPolynomial.renameEquiv_apply, he] using h
 
+/--
+@isnad1 id=isrelpri.0h1v.s7.97378c1eb1d0 from=translated src=- shape=0dd9ad3f vocab=eee7ff50
+-/
 theorem genericBC_c_isRelPrime_b :
     IsRelPrime
       (MvPolynomial.X (Fin.succ 0) : GenericBCring k)
@@ -185,6 +214,9 @@ theorem genericBC_c_isRelPrime_b :
   have hm := map_dvd (MvPolynomial.eval ![1, 0]) h
   norm_num at hm
 
+/--
+@isnad1 id=isrelpri.0h1v.s9.d94d219d6ac7 from=translated src=- shape=736014e3 vocab=a037e541
+-/
 theorem genericBC_c_isRelPrime_bc_sub_one :
     IsRelPrime
       (MvPolynomial.X (Fin.succ 0) : GenericBCring k)
@@ -195,6 +227,9 @@ theorem genericBC_c_isRelPrime_bc_sub_one :
   norm_num at hm
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=isprimit.0h1v.s5.1134183ab551 from=translated src=- shape=da9a72aa vocab=c3fa677d
+-/
 theorem genericWallAPoly_isPrimitive :
     (genericWallAPoly k).IsPrimitive := by
   rw [Polynomial.isPrimitive_iff_isUnit_of_C_dvd]
@@ -251,18 +286,27 @@ theorem genericWallAPoly_isPrimitive :
           (genericBC_c_isRelPrime_bc_sub_one k)
   exact (hcb.mul_right hcw) h2' h0'
 
+/--
+@isnad1 id=irreduci.0h1v.s9.f1f23efdd0ea from=translated src=- shape=20cb5451 vocab=06d315d4
+-/
 theorem genericWallAPolyFrac_irreducible :
     Irreducible (genericWallAPolyFrac k) := by
   apply Polynomial.irreducible_of_degree_le_three_of_not_isRoot
   · simp [genericWallAPolyFrac_natDegree]
   · exact genericWallAPolyFrac_not_isRoot k
 
+/--
+@isnad1 id=irreduci.0h1v.s6.a75c75376857 from=translated src=- shape=46d5e16b vocab=0c6a8d4b
+-/
 theorem genericWallAPoly_irreducible :
     Irreducible (genericWallAPoly k) := by
   apply (genericWallAPoly_isPrimitive k).irreducible_of_irreducible_map_of_injective
     (IsFractionRing.injective (GenericBCring k) (FractionRing (GenericBCring k)))
   exact genericWallAPolyFrac_irreducible k
 
+/--
+@isnad1 id=irreduci.0h1v.s5.19f331349861 from=translated src=- shape=da9a72aa vocab=6294e857
+-/
 theorem genericWallPoly_irreducible :
     Irreducible (genericWallPoly k) := by
   have h := (genericWallAPoly_irreducible k).map
@@ -270,6 +314,9 @@ theorem genericWallPoly_irreducible :
   rw [← optionEquivLeft_genericWallPoly] at h
   simpa using h
 
+/--
+@isnad1 id=irreduci.0h1v.s7.27f6ed68ccfe from=translated src=- shape=3f57c56b vocab=d0b73db5
+-/
 theorem neg_four_mul_genericWallPoly_irreducible :
     Irreducible (-4 * genericWallPoly k) := by
   have hu : IsUnit (-4 : GenericCoeffRing k) := by
@@ -279,6 +326,9 @@ theorem neg_four_mul_genericWallPoly_irreducible :
   exact (associated_unit_mul_right (genericWallPoly k) (-4) hu).irreducible
     (genericWallPoly_irreducible k)
 
+/--
+@isnad1 id=not.0h1v.s8.4df262c652cb from=translated src=- shape=f86bda64 vocab=4a0b95b5
+-/
 theorem genericFiberPoly_discr_not_isSquare :
     ¬ IsSquare (genericFiberPoly k).discr := by
   rw [genericFiberPoly_discr]

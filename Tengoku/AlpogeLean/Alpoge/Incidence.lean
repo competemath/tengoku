@@ -53,13 +53,17 @@ noncomputable def sourceEquivSimpleRootIncidence :
       fiberEquivSimpleRootsProj (K := K) (a := q.1) (b := q.2.1) (c := q.2.2))
 
 /-- Under the incidence equivalence, the Keller map is literally
-projection to the coefficients of the normalized binary cubic.-/
+projection to the coefficients of the normalized binary cubic.
+@isnad1 id=eq.0h2v.s6.fddb5b9000b5 from=translated src=- shape=8ca91801 vocab=e5933982
+-/
 @[simp] theorem sourceEquivSimpleRootIncidence_target (p : K × K × K) :
     target (sourceEquivSimpleRootIncidence (K := K) p) = F K p :=
   rfl
 
 /-- The root coordinate of the incidence equivalence is the
-projective resolvent of the source point.-/
+projective resolvent of the source point.
+@isnad1 id=eq.0h2v.s8.3efdadd48d33 from=translated src=- shape=d714ab12 vocab=2a1abc3e
+-/
 @[simp] theorem sourceEquivSimpleRootIncidence_root (p : K × K × K) :
     (sourceEquivSimpleRootIncidence (K := K) p).2.1 =
       projectiveResolventValue p :=
@@ -78,7 +82,9 @@ def rootDerivative (b c : K) : Option K → K
   | some t => 3 * c * t ^ 2 - 4 * t + b
 
 /-- A projective root is simple exactly when its root derivative is
-nonzero.-/
+nonzero.
+@isnad1 id=iff.0h5v.s6.3d973127fc84 from=translated src=- shape=908e189e vocab=86f525f8
+-/
 theorem projectiveSimpleRoot_iff_rootDerivative {a b c : K} {r : Option K} :
     projectiveSimpleRoot a b c r ↔
       IsProjectiveRoot a b c r ∧ rootDerivative b c r ≠ 0 := by
@@ -91,13 +97,17 @@ theorem projectiveSimpleRoot_iff_rootDerivative {a b c : K} {r : Option K} :
       rfl
 
 /-- Every point of the incidence space carries a nonvanishing root
-derivative.-/
+derivative.
+@isnad1 id=ne.0h2v.s8.4c63e6064561 from=translated src=- shape=14bd4385 vocab=0528f705
+-/
 theorem incidence_rootDerivative_ne_zero (i : Incidence K) :
     rootDerivative i.1.2.1 i.1.2.2 i.2.1 ≠ 0 :=
   (projectiveSimpleRoot_iff_rootDerivative.mp i.2.2).2
 
 /-- On the affine source chart the source coordinate satisfies
-`x * Q'(t) = 2`.-/
+`x * Q'(t) = 2`.
+@isnad1 id=eq.1h4v.s7.ce051cc08ea0 from=translated src=- shape=dd483ff7 vocab=bcc7d986
+-/
 theorem affine_source_mul_rootDerivative {x y z : K} (hx : x ≠ 0) :
     x * rootDerivative (F K (x, y, z)).2.1 (F K (x, y, z)).2.2
         (projectiveResolventValue (x, y, z)) = 2 := by
@@ -112,7 +122,9 @@ theorem affine_source_mul_rootDerivative {x y z : K} (hx : x ≠ 0) :
 
 omit [NeZero (2 : K)] in
 /-- On the complementary source chart, the projective root is infinity and
-its root derivative is the unit coefficient `-2`.-/
+its root derivative is the unit coefficient `-2`.
+@isnad1 id=and.1h4v.s7.b5e36167553f from=translated src=- shape=93d1f8ee vocab=cb53d6a1
+-/
 theorem infinity_source_root_and_deriv {x y z : K} (hx : x = 0) :
     projectiveResolventValue (x, y, z) = none ∧
       rootDerivative (F K (x, y, z)).2.1 (F K (x, y, z)).2.2
@@ -122,7 +134,9 @@ theorem infinity_source_root_and_deriv {x y z : K} (hx : x = 0) :
 
 /-- **Root-derivative normal form.**  Every source point is either the root
 at infinity, with derivative `-2`, or an affine root whose derivative is
-`2/x`.-/
+`2/x`.
+@isnad1 id=or.0h2v.s7.c4309f4a1a82 from=translated src=- shape=d04b92e1 vocab=05731460
+-/
 theorem source_rootDerivative_normalForm (p : K × K × K) :
     (p.1 = 0 ∧
         projectiveResolventValue p = none ∧

@@ -55,6 +55,9 @@ protected noncomputable def id : RegularFunction k σ σ := MvPolynomial.X
 noncomputable def pointMap (F : RegularFunction k σ τ) : (σ → k) → (τ → k) :=
   fun v i => eval v (F i)
 
+/--
+@isnad1 id=eq.0h6v.s6.867fe43206fe from=translated src=- shape=1aeba7a6 vocab=388d2e39
+-/
 theorem pointMap_comp (F : RegularFunction k σ τ)
     (G : RegularFunction k τ ι) :
     pointMap (comp F G) = pointMap G ∘ pointMap F := by
@@ -67,6 +70,9 @@ theorem pointMap_comp (F : RegularFunction k σ τ)
   rw [hC, eval₂_id]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5ed7ebc9aa38 from=translated src=- shape=01629124 vocab=1c5e91cc
+-/
 theorem pointMap_id : pointMap (FormalConjecturesJC.id k σ) = _root_.id := by
   funext v i
   simp [pointMap, FormalConjecturesJC.id]
@@ -91,7 +97,9 @@ private theorem pderiv_ofNat'' {σ R : Type*} [CommSemiring R] {i : σ} (n : ℕ
 
 set_option maxHeartbeats 1600000 in
 set_option maxRecDepth 8000 in
-/-- The mirrored Jacobian determinant of the counterexample is `-2`.-/
+/-- The mirrored Jacobian determinant of the counterexample is `-2`.
+@isnad1 id=eq.0h1v.s8.0492f5f5cca6 from=translated src=- shape=775dec0b vocab=fc18547a
+-/
 theorem jacobian_det_counterexample :
     (Jacobian (counterexample (K := K))).det = -2 := by
   have h : (Jacobian (counterexample (K := K))).det =
@@ -121,7 +129,9 @@ theorem jacobian_det_counterexample :
   ring
 
 /-- The mirrored Jacobian determinant is a unit — the hypothesis of the
-formal-conjectures statement holds for the counterexample.-/
+formal-conjectures statement holds for the counterexample.
+@isnad1 id=isunit.0h1v.s7.719e98f28744 from=translated src=- shape=b8b03757 vocab=0f594869
+-/
 theorem isUnit_jacobian_det [CharZero K] :
     IsUnit (Jacobian (counterexample (K := K))).det := by
   rw [jacobian_det_counterexample]
@@ -131,7 +141,9 @@ theorem isUnit_jacobian_det [CharZero K] :
     (isUnit_iff_ne_zero.mpr two_ne_zero)
 
 /-- The point map of the mirrored counterexample agrees with the concrete
-Alpöge map `F`.-/
+Alpöge map `F`.
+@isnad1 id=eq.0h2v.s8.05d1268834ab from=translated src=- shape=700e9e6a vocab=5c1b9c1a
+-/
 theorem pointMap_counterexample (v : Fin 3 → K) :
     pointMap (counterexample (K := K)) v =
       ![(F K (v 0, v 1, v 2)).1, (F K (v 0, v 1, v 2)).2.1,
@@ -144,7 +156,9 @@ theorem pointMap_counterexample (v : Fin 3 → K) :
 /-- **No polynomial inverse.**  Over any characteristic-zero field, the
 counterexample admits no two-sided compositional inverse: a polynomial
 right-composition inverse would make the induced point map injective,
-contradicting the three-point collision.-/
+contradicting the three-point collision.
+@isnad1 id=not.0h1v.s7.b0c24bbdfd4b from=translated src=- shape=eded45ba vocab=813339ea
+-/
 theorem no_polynomial_inverse [CharZero K] :
     ¬ ∃ G : RegularFunction K (Fin 3) (Fin 3),
         comp G (counterexample (K := K)) = FormalConjecturesJC.id K (Fin 3) ∧
@@ -176,7 +190,9 @@ end Counterexample
 /-- **The formal-conjectures Jacobian Conjecture statement is false.**
 This is the negation of the statement in
 `google-deepmind/formal-conjectures` (commit `4fac2db2`), witnessed by
-`k = ℚ`, `σ = Fin 3`, and the Alpöge map.-/
+`k = ℚ`, `σ = Fin 3`, and the Alpöge map.
+@isnad1 id=not.0h0v.s7.5ffd3608d1d9 from=translated src=- shape=9a9c140f vocab=71e1930f
+-/
 theorem jacobian_conjecture_false :
     ¬ ∀ (k : Type) [Field k] [CharZero k] (σ : Type) [Fintype σ] [DecidableEq σ]
         (F : RegularFunction k σ σ), IsUnit (Jacobian F).det →

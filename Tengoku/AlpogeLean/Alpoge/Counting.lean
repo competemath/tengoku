@@ -30,7 +30,9 @@ section VietaCore
 
 /-- **Vieta from three distinct roots.**  If `t₁, t₂, t₃` are pairwise
 distinct roots of the fiber cubic of `(a, b, c)`, the three Vieta relations
-hold — in particular `c` times the root sum equals `2`.-/
+hold — in particular `c` times the root sum equals `2`.
+@isnad1 id=and.6h7v.s9.655cd63c0ce2 from=translated src=- shape=af96713f vocab=7c99a4e5
+-/
 theorem vieta_of_three_roots {a b c t₁ t₂ t₃ : K}
     (h12 : t₁ ≠ t₂) (h13 : t₁ ≠ t₃) (h23 : t₂ ≠ t₃)
     (H1 : c * t₁ ^ 3 - 2 * t₁ ^ 2 + b * t₁ - 2 * a = 0)
@@ -62,7 +64,9 @@ theorem vieta_of_three_roots {a b c t₁ t₂ t₃ : K}
 
 /-- The sum of three distinct finite roots of a fiber cubic can never vanish
 (over a field with `2 ≠ 0`): the forbidden sum-zero triples support no
-target.-/
+target.
+@isnad1 id=ne.6h7v.s9.164cf84c65cb from=translated src=- shape=b718ad97 vocab=d4041564
+-/
 theorem sum_ne_zero_of_three_roots [NeZero (2 : K)] {a b c t₁ t₂ t₃ : K}
     (h12 : t₁ ≠ t₂) (h13 : t₁ ≠ t₃) (h23 : t₂ ≠ t₃)
     (H1 : c * t₁ ^ 3 - 2 * t₁ ^ 2 + b * t₁ - 2 * a = 0)
@@ -75,7 +79,9 @@ theorem sum_ne_zero_of_three_roots [NeZero (2 : K)] {a b c t₁ t₂ t₃ : K}
   exact two_ne_zero hsum.symm
 
 /-- **Uniqueness, all-finite case.**  A target is determined by three
-distinct finite roots of its fiber cubic.-/
+distinct finite roots of its fiber cubic.
+@isnad1 id=and.9h10v.s10.d2fb8e6dfa27 from=translated src=- shape=86f94bf1 vocab=d4041564
+-/
 theorem target_unique_of_three_roots [NeZero (2 : K)]
     {a b c a' b' c' t₁ t₂ t₃ : K}
     (h12 : t₁ ≠ t₂) (h13 : t₁ ≠ t₃) (h23 : t₂ ≠ t₃)
@@ -105,7 +111,9 @@ theorem target_unique_of_three_roots [NeZero (2 : K)]
   exact ⟨ha, hb, rfl⟩
 
 /-- **Uniqueness, root-at-infinity case.**  A target is determined by the
-root at infinity (`c = 0`) together with two distinct finite roots.-/
+root at infinity (`c = 0`) together with two distinct finite roots.
+@isnad1 id=and.5h7v.s9.da361f19701c from=translated src=- shape=bcc82f29 vocab=c8bcd12d
+-/
 theorem target_unique_of_two_roots_and_inf [NeZero (2 : K)]
     {a b a' b' t₁ t₂ : K} (h12 : t₁ ≠ t₂)
     (H1 : -2 * t₁ ^ 2 + b * t₁ - 2 * a = 0)
@@ -129,7 +137,9 @@ theorem target_unique_of_two_roots_and_inf [NeZero (2 : K)]
 /-- **Existence, all-finite case.**  Three distinct finite points with
 nonvanishing sum are the simple-root set of an explicit target:
 `(e₃/s, 2e₂/s, 2/s)` where `s, e₂, e₃` are the elementary symmetric
-functions.-/
+functions.
+@isnad1 id=ex.4h4v.s7.ca15801fecd2 from=translated src=- shape=81601b0b vocab=aad0c3f2
+-/
 theorem exists_target_of_three_roots [NeZero (2 : K)] {t₁ t₂ t₃ : K}
     (h12 : t₁ ≠ t₂) (h13 : t₁ ≠ t₃) (h23 : t₂ ≠ t₃)
     (hs : t₁ + t₂ + t₃ ≠ 0) :
@@ -178,7 +188,9 @@ theorem exists_target_of_three_roots [NeZero (2 : K)] {t₁ t₂ t₃ : K}
 
 /-- **Existence, root-at-infinity case.**  The point at infinity together
 with two distinct finite points is the simple-root set of the explicit
-target `(t₁t₂, 2(t₁+t₂), 0)`.-/
+target `(t₁t₂, 2(t₁+t₂), 0)`.
+@isnad1 id=ex.1h3v.s6.f423f4139f95 from=translated src=- shape=08755527 vocab=b67bf571
+-/
 theorem exists_target_of_two_roots_and_inf [NeZero (2 : K)] {t₁ t₂ : K}
     (h12 : t₁ ≠ t₂) :
     ∃ a b : K,
@@ -215,12 +227,17 @@ def simpleRootFinset (a b c : K) : Finset (Option K) :=
   Finset.univ.filter (projectiveSimpleRoot a b c ·)
 
 omit [NeZero (2 : K)] in
+/--
+@isnad1 id=iff.0h5v.s5.cf1773731b90 from=translated src=- shape=9dbda72e vocab=0cf1dc71
+-/
 theorem mem_simpleRootFinset {a b c : K} {r : Option K} :
     r ∈ simpleRootFinset a b c ↔ projectiveSimpleRoot a b c r := by
   simp [simpleRootFinset]
 
 /-- **The bridge**: the rational fiber count equals the number of simple
-projective roots, as a `Finset` cardinality.-/
+projective roots, as a `Finset` cardinality.
+@isnad1 id=eq.0h4v.s6.436e81728837 from=translated src=- shape=a2c7d03d vocab=131d8a41
+-/
 theorem ncard_fiber_eq_card_simpleRoots (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} =
       (simpleRootFinset a b c).card := by
@@ -232,7 +249,9 @@ theorem ncard_fiber_eq_card_simpleRoots (a b c : K) :
   rw [Nat.card_congr e, Nat.card_eq_fintype_card]
   exact Fintype.card_coe _
 
-/-- The number of simple projective roots is `0`, `1`, or `3`.-/
+/-- The number of simple projective roots is `0`, `1`, or `3`.
+@isnad1 id=mem.0h4v.s6.8d30c1538a1d from=translated src=- shape=1f53807f vocab=5c53e257
+-/
 theorem card_simpleRootFinset_mem (a b c : K) :
     (simpleRootFinset a b c).card ∈ ({0, 1, 3} : Set ℕ) := by
   rw [← ncard_fiber_eq_card_simpleRoots]
@@ -275,7 +294,9 @@ def distinctTripleEquivEmbedding :
     ext i
     fin_cases i <;> rfl
 
-/-- The number of ordered pairwise-distinct triples in a fintype.-/
+/-- The number of ordered pairwise-distinct triples in a fintype.
+@isnad1 id=eq.0h1v.s8.e29beffaa346 from=translated src=- shape=56398d51 vocab=596a03c9
+-/
 theorem card_filter_distinctTriple (α : Type*) [Fintype α] [DecidableEq α] :
     (Finset.univ.filter fun r : α × α × α =>
         r.1 ≠ r.2.1 ∧ r.1 ≠ r.2.2 ∧ r.2.1 ≠ r.2.2).card =
@@ -345,7 +366,9 @@ def memTripleEquiv {β : Type*} (s : Finset β) :
 
 omit [NeZero (2 : K)] in
 /-- The count of distinct root triples is the descending factorial of the
-simple-root count.-/
+simple-root count.
+@isnad1 id=eq.0h2v.s6.c0eda9489921 from=translated src=- shape=e2d7ab30 vocab=e00b48dc
+-/
 theorem card_rootTriples (v : K × K × K) :
     (rootTriples v).card =
       ((simpleRootFinset v.1 v.2.1 v.2.2).card).descFactorial 3 := by
@@ -366,7 +389,9 @@ theorem card_rootTriples (v : K × K × K) :
 def incidencePairs : Finset ((K × K × K) × Triple K) :=
   Finset.univ.filter fun x => IsDistinct x.2 ∧ IsRootTriple x.1 x.2
 
-/-- Left fiberwise count: over each target, the distinct root triples.-/
+/-- Left fiberwise count: over each target, the distinct root triples.
+@isnad1 id=eq.0h1v.s6.747ff675439e from=translated src=- shape=017b6c92 vocab=075f213e
+-/
 theorem card_incidencePairs_left :
     (incidencePairs (K := K)).card = ∑ v : K × K × K, (rootTriples v).card := by
   rw [Finset.card_eq_sum_card_fiberwise
@@ -401,7 +426,9 @@ private theorem psr_none {A B C : K}
 
 /-- **The per-triple target count.**  A distinct non-forbidden triple is the
 simple-root triple of exactly one target; zero-sum or non-distinct triples
-support no target.-/
+support no target.
+@isnad1 id=eq.0h2v.s7.157ec1554eea from=translated src=- shape=8cd6fed6 vocab=07854e54
+-/
 theorem card_targets_of_triple (r : Triple K) :
     (Finset.univ.filter fun v : K × K × K =>
         IsDistinct r ∧ IsRootTriple v r).card =
@@ -520,7 +547,9 @@ theorem card_targets_of_triple (r : Triple K) :
   · simp [hd]
 
 /-- Right fiberwise count: the incidence pairs are counted by admissible
-distinct triples.-/
+distinct triples.
+@isnad1 id=eq.0h1v.s7.1313e2d2e639 from=translated src=- shape=87a911d1 vocab=5f02b3fc
+-/
 theorem card_incidencePairs_right :
     (incidencePairs (K := K)).card =
       (Finset.univ.filter fun r : Triple K =>
@@ -550,7 +579,9 @@ theorem card_incidencePairs_right :
 
 /-! ### The combinatorial counts -/
 
-/-- A field with `2 ≠ 0` has at least three elements.-/
+/-- A field with `2 ≠ 0` has at least three elements.
+@isnad1 id=le.0h1v.s5.197710e958e4 from=translated src=- shape=6967a735 vocab=37afee6f
+-/
 theorem three_le_card : 3 ≤ Fintype.card K := by
   by_contra hlt
   push_neg at hlt
@@ -568,7 +599,9 @@ theorem three_le_card : 3 ≤ Fintype.card K := by
     exact one_ne_zero (α := K) (by linear_combination h)
 
 omit [NeZero (2 : K)] in
-/-- The distinct-triple count over the projective line.-/
+/-- The distinct-triple count over the projective line.
+@isnad1 id=eq.0h1v.s6.ec35aa5be438 from=translated src=- shape=d37cf021 vocab=7bae9bc9
+-/
 theorem card_distinct_triples :
     (Finset.univ.filter (IsDistinct (K := K))).card =
       (Fintype.card K + 1).descFactorial 3 := by
@@ -578,7 +611,9 @@ theorem card_distinct_triples :
     Finset.filter_congr fun r _ => Iff.rfl]
   rw [card_filter_distinctTriple, Fintype.card_option]
 
-/-- The allowed second coordinates of a sum-zero pair, as a complement.-/
+/-- The allowed second coordinates of a sum-zero pair, as a complement.
+@isnad1 id=eq.0h2v.s9.16bb665cde9c from=translated src=- shape=8c563e3d vocab=c7e25472
+-/
 theorem pair_filter_eq_compl (t : K) :
     (Finset.univ.filter fun y : K =>
         y ≠ t ∧ 2 * t + y ≠ 0 ∧ t + 2 * y ≠ 0) =
@@ -604,7 +639,9 @@ theorem pair_filter_eq_compl (t : K) :
     rw [hval]
     linear_combination h0
 
-/-- The cardinality of the excluded set `{t, −2t, −t/2}`.-/
+/-- The cardinality of the excluded set `{t, −2t, −t/2}`.
+@isnad1 id=eq.0h2v.s8.fdde737a3c1f from=translated src=- shape=3af2cf9b vocab=a6b1077d
+-/
 theorem card_excluded (t : K) :
     ({t, -2 * t, -(2⁻¹) * t} : Finset K).card =
       if (3 : K) = 0 then 1 else if t = 0 then 1 else 3 := by
@@ -652,7 +689,9 @@ theorem card_excluded (t : K) :
           (by simpa using d3),
         Finset.card_singleton]
 
-/-- The sum-zero pair count.-/
+/-- The sum-zero pair count.
+@isnad1 id=eq.0h1v.s10.e8cece7c8c79 from=translated src=- shape=522ee59d vocab=94c0a3ec
+-/
 theorem card_forbidden_pairs :
     (Finset.univ.filter fun p : K × K =>
         p.2 ≠ p.1 ∧ 2 * p.1 + p.2 ≠ 0 ∧ p.1 + 2 * p.2 ≠ 0).card =
@@ -708,7 +747,9 @@ theorem card_forbidden_pairs :
     rw [e1, e2, e3]
     ring
 
-/-- Forbidden distinct triples biject with sum-zero pairs.-/
+/-- Forbidden distinct triples biject with sum-zero pairs.
+@isnad1 id=eq.0h1v.s9.de0d6f11d8b0 from=translated src=- shape=767c5ef6 vocab=afa7b1fe
+-/
 theorem card_forbidden_triples :
     (Finset.univ.filter fun r : Triple K =>
         IsDistinct r ∧ HasZeroAffineSum r).card =
@@ -757,7 +798,9 @@ def targetCount (j : ℕ) : ℕ :=
   (Finset.univ.filter fun v : K × K × K =>
     (Finset.univ.filter fun p : K × K × K => F K p = v).card = j).card
 
-/-- The fiber filter counts simple roots.-/
+/-- The fiber filter counts simple roots.
+@isnad1 id=eq.0h2v.s7.69c6d4664c2c from=translated src=- shape=e7ab9e08 vocab=91420285
+-/
 theorem fiber_filter_card (v : K × K × K) :
     (Finset.univ.filter fun p : K × K × K => F K p = v).card =
       (simpleRootFinset v.1 v.2.1 v.2.2).card := by
@@ -769,7 +812,9 @@ theorem fiber_filter_card (v : K × K × K) :
   rw [hset, Set.ncard_coe_finset] at h
   exact h
 
-/-- The incidence count is six times the number of three-point fibers.-/
+/-- The incidence count is six times the number of three-point fibers.
+@isnad1 id=eq.0h1v.s6.6097653a012e from=translated src=- shape=90cd39a2 vocab=6cc69642
+-/
 theorem card_incidencePairs_eq :
     (incidencePairs (K := K)).card = 6 * targetCount (K := K) 3 := by
   rw [card_incidencePairs_left]
@@ -788,7 +833,9 @@ theorem card_incidencePairs_eq :
   rfl
 
 omit [NeZero (2 : K)] in
-/-- Source points partition into fibers.-/
+/-- Source points partition into fibers.
+@isnad1 id=eq.0h1v.s7.708b40581de4 from=translated src=- shape=8c66cb59 vocab=74999bf4
+-/
 theorem sum_fiber_filter_cards :
     ∑ v : K × K × K,
       (Finset.univ.filter fun p : K × K × K => F K p = v).card =
@@ -798,7 +845,9 @@ theorem sum_fiber_filter_cards :
   rw [Finset.card_univ, Fintype.card_prod, Fintype.card_prod]
   ring
 
-/-- One- and three-point fibers exhaust the source.-/
+/-- One- and three-point fibers exhaust the source.
+@isnad1 id=eq.0h1v.s6.5f6b0ed6e2cc from=translated src=- shape=ef0d13c9 vocab=0dc8c2b6
+-/
 theorem targetCount_one_add_three :
     targetCount (K := K) 1 + 3 * targetCount (K := K) 3 =
       Fintype.card K ^ 3 := by
@@ -818,7 +867,9 @@ theorem targetCount_one_add_three :
     ← Finset.mul_sum, ← Finset.card_filter, ← Finset.card_filter]
   rfl
 
-/-- All targets have zero, one, or three preimages.-/
+/-- All targets have zero, one, or three preimages.
+@isnad1 id=eq.0h1v.s6.f390d16aa38b from=translated src=- shape=df347788 vocab=78569444
+-/
 theorem targetCount_partition :
     targetCount (K := K) 0 + targetCount (K := K) 1 +
       targetCount (K := K) 3 = Fintype.card K ^ 3 := by
@@ -846,7 +897,9 @@ theorem targetCount_partition :
 
 /-- **Exact three-point-fiber count over a finite field** (`2 ≠ 0`):
 `6·N₃ = (q−1)(q²+2)` away from characteristic three, `6·N₃ = q²(q−1)` in
-characteristic three.-/
+characteristic three.
+@isnad1 id=eq.0h1v.s7.c615b0ef0578 from=translated src=- shape=8777dd83 vocab=19ee13c7
+-/
 theorem six_mul_targetCount_three :
     6 * targetCount (K := K) 3 =
       if (3 : K) = 0
@@ -892,7 +945,9 @@ preimages and `q` for the field size: every fiber has `0`, `1`, or `3`
 points; `6N₃ = (q−1)(q²+2)` (or `q²(q−1)` in characteristic `3`);
 `N₁ + 3N₃ = q³`; `N₀ + N₁ + N₃ = q³`; and consequently `N₀ = 2N₃`.  The
 fiber-count distribution satisfies `(N₀, N₁, N₃)/q³ → (1/3, 1/2, 1/6)`,
-the fixed-point distribution of `S₃`.-/
+the fixed-point distribution of `S₃`.
+@isnad1 id=and.0h1v.s8.f813a13391ab from=translated src=- shape=96ce8dc8 vocab=19ee13c7
+-/
 theorem finiteField_fiber_statistics :
     (6 * targetCount (K := K) 3 =
       if (3 : K) = 0

@@ -42,7 +42,9 @@ variable {K : Type*} [Field K]
 /-- **The `S₃` cycle-index identity**: the sum of `det(I − t·P_σ)` over the
 six elements of `S₃` (in its permutation representation) is `6(1 − t)` — the
 uniform average is the single linear factor `1 − t`, independent of the
-sheet structure.  Characteristic-free.-/
+sheet structure.  Characteristic-free.
+@isnad1 id=eq.0h2v.s8.66c385d8a9af from=translated src=- shape=2191e463 vocab=9c1cdc1d
+-/
 theorem S3_cycle_index {R : Type*} [CommRing R] (t : R) :
     (1 - t) ^ 3 + 3 * ((1 - t) * (1 - t ^ 2)) + 2 * (1 - t ^ 3) =
       6 * (1 - t) := by
@@ -64,6 +66,9 @@ variable [Fintype K] [DecidableEq K] [NeZero (2 : K)]
 def fiberCount (v : K × K × K) : ℕ :=
   (Finset.univ.filter fun p : K × K × K => F K p = v).card
 
+/--
+@isnad1 id=mem.0h2v.s6.81ba1026d8e4 from=translated src=- shape=9830ebcd vocab=194c02f8
+-/
 theorem fiberCount_mem (v : K × K × K) :
     fiberCount v ∈ ({0, 1, 3} : Set ℕ) := by
   unfold fiberCount
@@ -73,7 +78,9 @@ theorem fiberCount_mem (v : K × K × K) :
 /-- **The sign-biased `S₃` law.**  With `b := q³ − 6N₃` the exact integer
 bias, the fiber counts satisfy `2N₁ = q³ + b` and `3N₀ = q³ − b`: the
 fiber-count distribution is the uniform measure on `S₃` deformed by
-`(b/q³)·sgn`.  Division-free form over `ℤ`.-/
+`(b/q³)·sgn`.  Division-free form over `ℤ`.
+@isnad1 id=and.0h1v.s8.8ffe67496518 from=translated src=- shape=173f575a vocab=4d0395da
+-/
 theorem fiberCount_sign_bias :
     2 * (targetCount (K := K) 1 : ℤ) =
       (Fintype.card K : ℤ) ^ 3 +
@@ -90,7 +97,9 @@ theorem fiberCount_sign_bias :
 
 /-- **The bias is exactly `(q − 1)² + 1`** in characteristic `≠ 3`: no
 error term.  (Generic Chebotarev equidistribution would only force
-`b = O(q^{5/2})`.)-/
+`b = O(q^{5/2})`.)
+@isnad1 id=eq.1h1v.s7.173e9df0aa26 from=translated src=- shape=ede6a3d1 vocab=4d0395da
+-/
 theorem bias_eq_of_three_ne_zero (h3 : (3 : K) ≠ 0) :
     (Fintype.card K : ℤ) ^ 3 - 6 * (targetCount (K := K) 3 : ℤ) =
       ((Fintype.card K : ℤ) - 1) ^ 2 + 1 := by
@@ -101,7 +110,9 @@ theorem bias_eq_of_three_ne_zero (h3 : (3 : K) ≠ 0) :
   linear_combination -h6
 
 /-- **The bias is exactly `q²` in characteristic `3`** — the missed curve is
-empty, and the arc `κ_q = b/q³` degenerates to `1/q`.-/
+empty, and the arc `κ_q = b/q³` degenerates to `1/q`.
+@isnad1 id=eq.1h1v.s7.c71cbc024ad4 from=translated src=- shape=66ebdbd2 vocab=f48a5ef9
+-/
 theorem bias_eq_char3 (h3 : (3 : K) = 0) :
     (Fintype.card K : ℤ) ^ 3 - 6 * (targetCount (K := K) 3 : ℤ) =
       (Fintype.card K : ℤ) ^ 2 := by
@@ -119,7 +130,9 @@ theorem bias_eq_char3 (h3 : (3 : K) = 0) :
 in every commutative ring — the subtraction-free form of
 `q³·(1 − t)(1 − κ_q t²)` with `κ_q = (q³ − 6N₃)/q³`.  The uniform average
 would be `q³(1 − t)`; the entire deviation is carried by the
-sign-character term.-/
+sign-character term.
+@isnad1 id=eq.0h3v.s8.d862cf0ca35d from=translated src=- shape=61c071b3 vocab=1aa2c176
+-/
 theorem sum_permCharPoly_fiber {R : Type*} [CommRing R] (t : R) :
     ∑ v : K × K × K, permCharPoly R (fiberCount v) t =
       (1 - t) * ((Fintype.card K : R) ^ 3 * (1 - t ^ 2) +
@@ -164,7 +177,9 @@ theorem sum_permCharPoly_fiber {R : Type*} [CommRing R] (t : R) :
 /-- The averaged characteristic polynomial, fully explicit in
 characteristic `≠ 3`: the local factor is
 `(1 − t)·(q³(1 − t²) + (q − 1)(q² + 2)·t²) = q³·(1 − t)(1 − κ_q t²)` with
-`κ_q = ((q − 1)² + 1)/q³`.-/
+`κ_q = ((q − 1)² + 1)/q³`.
+@isnad1 id=eq.1h3v.s8.5d53ccc0be19 from=translated src=- shape=34a37e6f vocab=ea4e2e3c
+-/
 theorem sum_permCharPoly_fiber_of_three_ne_zero (h3 : (3 : K) ≠ 0)
     {R : Type*} [CommRing R] (t : R) :
     ∑ v : K × K × K, permCharPoly R (fiberCount v) t =

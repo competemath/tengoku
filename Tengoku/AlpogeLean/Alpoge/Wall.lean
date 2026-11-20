@@ -56,7 +56,9 @@ cannot carry two distinct rational fiber points — over any field. -/
 fiber cubic `cT³ − 2T² + bT − 2a`, the wall satisfies
 `−4W = c⁴ (t₁−t₂)² (t₁−t₃)² (t₂−t₃)²`.  This is `fiberCubic_discr` made
 explicit on split fibers; the certificate was found by CAS division and is
-checked by `linear_combination`.-/
+checked by `linear_combination`.
+@isnad1 id=eq.3h7v.s9.f177e504520b from=translated src=- shape=1d43ffba vocab=90c63916
+-/
 theorem neg_four_mul_wallW_eq_sq_sep {a b c t₁ t₂ t₃ : K}
     (hsum : c * (t₁ + t₂ + t₃) = 2)
     (hpair : c * (t₁ * t₂ + t₁ * t₃ + t₂ * t₃) = b)
@@ -84,7 +86,9 @@ theorem neg_four_mul_wallW_eq_sq_sep {a b c t₁ t₂ t₃ : K}
     (54 * a * c ^ 2 - 36 * b * c + 27 * c ^ 3 * t₁ * t₂ * t₃ + 32) * hprod
 
 /-- On the plane `c = 0`, a *single* simple affine root already forces
-`W ≠ 0`: on the root locus, `(b − 4t)² = −W`.-/
+`W ≠ 0`: on the root locus, `(b − 4t)² = −W`.
+@isnad1 id=ne.2h4v.s8.7e3eee8777e2 from=translated src=- shape=b0807bf6 vocab=90c63916
+-/
 theorem wallW_ne_zero_of_simpleRoot_czero {a b t : K}
     (hP : -2 * t ^ 2 + b * t - 2 * a = 0) (hd : -4 * t + b ≠ 0) :
     wallW a b 0 ≠ 0 := by
@@ -97,7 +101,9 @@ theorem wallW_ne_zero_of_simpleRoot_czero {a b t : K}
 
 /-- Two distinct simple affine roots of a genuine fiber cubic force `W ≠ 0`:
 Vieta closure supplies the third root, and the separation identity exhibits
-`−4W` as a product of nonzero factors.-/
+`−4W` as a product of nonzero factors.
+@isnad1 id=ne.4h6v.s9.8d994604a1a2 from=translated src=- shape=eb6b2a72 vocab=7f346d2f
+-/
 theorem wallW_ne_zero_of_two_simpleRoots {a b c t₁ t₂ : K} (hc : c ≠ 0)
     (hne : t₁ ≠ t₂)
     (h₁ : c * t₁ ^ 3 - 2 * t₁ ^ 2 + b * t₁ - 2 * a = 0 ∧
@@ -143,7 +149,9 @@ theorem wallW_ne_zero_of_two_simpleRoots {a b c t₁ t₂ : K} (hc : c ≠ 0)
 
 /-- **Wall pinch, projective form.**  Two distinct simple projective roots of
 the binary fiber cubic force `W ≠ 0` — over any field, with no
-characteristic hypothesis.-/
+characteristic hypothesis.
+@isnad1 id=ne.3h6v.s5.4fc5640f8acf from=translated src=- shape=9abf35c1 vocab=0ea40cdb
+-/
 theorem wallW_ne_zero_of_two_projectiveSimpleRoots {a b c : K}
     {r₁ r₂ : Option K} (h₁ : projectiveSimpleRoot a b c r₁)
     (h₂ : projectiveSimpleRoot a b c r₂) (hne : r₁ ≠ r₂) :
@@ -187,7 +195,9 @@ theorem wallW_ne_zero_of_two_projectiveSimpleRoots {a b c : K}
 
 /-- **Arithmetic wall pinch.**  Over any field with `2 ≠ 0`, two distinct
 rational points in one fiber force `W ≠ 0`: the wall carries no multiple
-rational point of any fiber.-/
+rational point of any fiber.
+@isnad1 id=ne.3h6v.s7.ae6fd5f81d6c from=translated src=- shape=08963c4b vocab=3963d205
+-/
 theorem wallW_ne_zero_of_two_fiber_points [NeZero (2 : K)] {a b c : K}
     {p₁ p₂ : K × K × K} (h₁ : F K p₁ = (a, b, c)) (h₂ : F K p₂ = (a, b, c))
     (hne : p₁ ≠ p₂) : wallW a b c ≠ 0 := by
@@ -200,7 +210,9 @@ theorem wallW_ne_zero_of_two_fiber_points [NeZero (2 : K)] {a b c : K}
 
 /-- **The wall pinches rational fibers.**  On `V(W)` every fiber has at most
 one rational point — over any field with `2 ≠ 0`, algebraically closed or
-not.-/
+not.
+@isnad1 id=le.1h4v.s6.88a869fde4e0 from=translated src=- shape=f5c8dee3 vocab=48198e9c
+-/
 theorem fiber_ncard_le_one_of_wallW_eq_zero [NeZero (2 : K)] {a b c : K}
     (hW : wallW a b c = 0) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} ≤ 1 := by
@@ -226,7 +238,9 @@ produces a second fiber point. -/
 
 /-- Off the wall, every root of the fiber cubic is simple: at a double root
 both terms of the universal certificate
-`−4W = P′(t)²·Δ(t) + λ(t)·P(t)` vanish.-/
+`−4W = P′(t)²·Δ(t) + λ(t)·P(t)` vanish.
+@isnad1 id=ne.2h5v.s8.e2ed25132043 from=translated src=- shape=96aa8cef vocab=8ccb8a88
+-/
 theorem simpleRoot_of_root_of_wallW_ne_zero [NeZero (2 : K)] {a b c t : K}
     (hW : wallW a b c ≠ 0)
     (hP : c * t ^ 3 - 2 * t ^ 2 + b * t - 2 * a = 0) :
@@ -247,7 +261,9 @@ theorem simpleRoot_of_root_of_wallW_ne_zero [NeZero (2 : K)] {a b c t : K}
 /-- Off the wall, over an algebraically closed field of characteristic zero,
 the fiber contains two distinct rational states: one from any root of the
 fiber cubic (automatically simple), a second from the quadratic formula on
-the residual quadratic, whose discriminant is a nonzero perfect square.-/
+the residual quadratic, whose discriminant is a nonzero perfect square.
+@isnad1 id=ex.1h4v.s7.74c9ae904ce5 from=translated src=- shape=d0879ce2 vocab=54b92f0f
+-/
 theorem exists_two_fiber_points_of_wallW_ne_zero [CharZero K] [IsAlgClosed K]
     {a b c : K} (hW : wallW a b c ≠ 0) :
     ∃ p₁ p₂ : K × K × K,
@@ -334,7 +350,9 @@ theorem exists_two_fiber_points_of_wallW_ne_zero [CharZero K] [IsAlgClosed K]
 
 /-- **Full stratum.**  Over an algebraically closed characteristic-zero
 field, the fiber has exactly three rational points iff the target is off the
-wall `V(W)`.-/
+wall `V(W)`.
+@isnad1 id=iff.0h4v.s6.bfb2963daa2b from=translated src=- shape=75f9f77a vocab=87f12699
+-/
 theorem fiber_ncard_eq_three_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} = 3 ↔ wallW a b c ≠ 0 := by
   constructor
@@ -363,7 +381,9 @@ theorem fiber_ncard_eq_three_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
     · exact h
 
 /-- **Middle stratum.**  The fiber has exactly one rational point iff the
-target is on the wall but off the missed curve.-/
+target is on the wall but off the missed curve.
+@isnad1 id=iff.0h4v.s6.699e4e661843 from=translated src=- shape=bbde0fc3 vocab=cc2125cc
+-/
 theorem fiber_ncard_eq_one_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} = 1 ↔
       wallW a b c = 0 ∧ ¬ OnMissedCurve a b c := by
@@ -392,7 +412,9 @@ theorem fiber_ncard_eq_one_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
 characteristic-zero field the fiber count reads off the wall exactly:
 `3` off `V(W)`, `1` on `V(W)` off the missed curve, `0` on the missed
 curve.  This upgrades the `0/1/3` law to an exact dictionary and identifies
-`V(W)` as the locus of fiber collapse.-/
+`V(W)` as the locus of fiber collapse.
+@isnad1 id=and.0h4v.s7.04ee41a897b3 from=translated src=- shape=2cab15dd vocab=cc2125cc
+-/
 theorem fiber_ncard_stratification [CharZero K] [IsAlgClosed K] (a b c : K) :
     (Set.ncard {p : K × K × K | F K p = (a, b, c)} = 3 ↔ wallW a b c ≠ 0) ∧
     (Set.ncard {p : K × K × K | F K p = (a, b, c)} = 1 ↔

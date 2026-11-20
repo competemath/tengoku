@@ -48,7 +48,9 @@ def OnDoubleRootSlice (v : K × K × K × K × K) : Prop :=
 /-- **The key resultant combination** (Sawin): the resultant decomposes as
 `Res = b·(ad + bc) + a·(ae − 2bd)`.  On the slice this forces
 `b = 1 + a·(2bd − ae)`: the coordinate `y = 2bd − ae` makes `b` polynomial
-in `(a, y)`.-/
+in `(a, y)`.
+@isnad1 id=eq.0h6v.s8.5a344b5c7451 from=translated src=- shape=faf503a9 vocab=7c99a4e5
+-/
 theorem res_eq_key_combination (a b c d e : K) :
     a ^ 2 * e - a * b * d + c * b ^ 2 =
       b * (a * d + b * c) + a * (a * e - 2 * b * d) := by
@@ -64,7 +66,9 @@ def sliceChart (x y z : K) : K × K × K × K × K :=
    -2 * z + 16 * y ^ 2 - 8 * x * y * z + 24 * x * y ^ 3 - 8 * x ^ 2 * y ^ 2 * z)
 
 /-- The chart lands in the slice: two `ℤ`-polynomial identities,
-characteristic-free.-/
+characteristic-free.
+@isnad1 id=ondouble.0h4v.s4.df360cba765f from=translated src=- shape=c50995b3 vocab=16da8105
+-/
 theorem sliceChart_mem (x y z : K) :
     OnDoubleRootSlice (sliceChart x y z) := by
   constructor <;> · simp only [sliceChart]; ring
@@ -78,7 +82,9 @@ noncomputable def sliceCoords (v : K × K × K × K × K) : K × K × K :=
       9 * v.2.2.2.2) / 2)
 
 /-- Retraction of the chart is the identity: the chart is injective with an
-explicit polynomial (in `1/2`) left inverse.-/
+explicit polynomial (in `1/2`) left inverse.
+@isnad1 id=eq.0h4v.s6.948821b38fad from=translated src=- shape=d724c66b vocab=915e6865
+-/
 theorem sliceCoords_sliceChart [NeZero (2 : K)] (x y z : K) :
     sliceCoords (sliceChart x y z) = (x, y, z) := by
   have h2 : (2 : K) ≠ 0 := two_ne_zero
@@ -99,7 +105,9 @@ exactly: with `u = 2bd − ae` and
   (after cancelling `a` resp. `a²`; the `a = 0` fibers, where `b = 1` is
   forced, are checked separately).
 
-Every step is a `linear_combination` against a CAS-extracted certificate.-/
+Every step is a `linear_combination` against a CAS-extracted certificate.
+@isnad1 id=eq.1h2v.s6.63447e7bc9a4 from=translated src=- shape=aa2da614 vocab=fe02655c
+-/
 theorem sliceChart_sliceCoords [NeZero (2 : K)] (v : K × K × K × K × K)
     (hv : OnDoubleRootSlice v) :
     sliceChart (sliceCoords v).1 (sliceCoords v).2.1 (sliceCoords v).2.2 = v := by

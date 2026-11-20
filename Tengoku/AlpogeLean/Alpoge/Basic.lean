@@ -90,24 +90,38 @@ def p₁ : K × K × K := (1, -(3 / 2), 13 / 2)
 /-- Third point of the three-point collision.-/
 def p₂ : K × K × K := (-1, 3 / 2, 13 / 2)
 
+/--
+@isnad1 id=eq.0h1v.s6.50f84839ce9e from=translated src=- shape=b2096e50 vocab=32f4497c
+-/
 theorem F_p₀_eq : F K (p₀ K) = (-(1 / 4), 0, 0) := by
   simp [F, p₀]
 
+/--
+@isnad1 id=eq.0h1v.s7.14f0e1818211 from=translated src=- shape=68b719f2 vocab=4817beaf
+-/
 theorem F_p₁_eq [CharZero K] : F K (p₁ K) = (-(1 / 4), 0, 0) := by
   simp only [F, p₁, Prod.mk.injEq]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s7.d3f070eb9871 from=translated src=- shape=68b719f2 vocab=d95e3f29
+-/
 theorem F_p₂_eq [CharZero K] : F K (p₂ K) = (-(1 / 4), 0, 0) := by
   simp only [F, p₂, Prod.mk.injEq]
   norm_num
 
 variable [CharZero K]
 
+/--
+@isnad1 id=ne.0h1v.s4.2f8dc9254705 from=translated src=- shape=7fd9b066 vocab=52dd5f1d
+-/
 theorem p₁_ne_p₂ : p₁ K ≠ p₂ K := by
   norm_num [p₁, p₂, Prod.ext_iff]
 
 /-- The map `F` identifies two distinct points: it is not injective over any
-characteristic-zero field.-/
+characteristic-zero field.
+@isnad1 id=not.0h1v.s5.fa3bba064ea9 from=translated src=- shape=61f5cfc5 vocab=0cce1a90
+-/
 theorem not_injective : ¬ Function.Injective (F K) := by
   intro h
   exact p₁_ne_p₂ K (h ((F_p₁_eq K).trans (F_p₂_eq K).symm))
@@ -117,7 +131,9 @@ theorem not_injective : ¬ Function.Injective (F K) := by
 degree-four cofactors witness `2sx` in the fiber ideal, forcing `x = 0`, which
 contradicts the third observed coordinate.  Found by eliminating the fiber
 system in the coordinates `u = 1 + xy`, `τ = f₃/x`, where the fiber cubic
-degenerates to `0·u = 4a` exactly on this curve.-/
+degenerates to `0·u = 4a` exactly on this curve.
+@isnad1 id=ne.1h3v.s7.ac88dacea871 from=translated src=- shape=8328563b vocab=2aa418a1
+-/
 theorem missed_curve (s : K) (hs : s ≠ 0) (p : K × K × K) :
     F K p ≠ (s ^ 2 / 12, s, 4 / (3 * s)) := by
   obtain ⟨x, y, z⟩ := p
@@ -146,7 +162,9 @@ theorem missed_curve (s : K) (hs : s ≠ 0) (p : K × K × K) :
 /-- **Non-surjectivity.**  The Keller map misses the explicit rational
 point `(1/12, 1, 4/3)`: its image is a proper subset of the codomain.
 Together with `not_injective`, the first Jacobian-Conjecture counterexample is
-doubly non-invertible — it identifies points and omits values.-/
+doubly non-invertible — it identifies points and omits values.
+@isnad1 id=not.0h1v.s5.622655fc35c3 from=translated src=- shape=61f5cfc5 vocab=13669642
+-/
 theorem not_surjective : ¬ Function.Surjective (F K) := by
   intro hsurj
   obtain ⟨p, hp⟩ := hsurj (1 / 12, 1, 4 / 3)
@@ -155,7 +173,9 @@ theorem not_surjective : ¬ Function.Surjective (F K) := by
   norm_num
 
 /-- The omitted point, stated against the range: `Set.range (F K)` omits
-`(1/12, 1, 4/3)`.-/
+`(1/12, 1, 4/3)`.
+@isnad1 id=not.0h1v.s7.7c36c09f9b7a from=translated src=- shape=cd0b16e8 vocab=7a3d8451
+-/
 theorem missed_point_not_mem_range :
     (1 / 12, 1, 4 / 3) ∉ Set.range (F K) := by
   rintro ⟨p, hp⟩
@@ -165,13 +185,17 @@ theorem missed_point_not_mem_range :
 
 omit [CharZero K] in
 /-- The plane `c = 0` lies entirely in the image: an explicit polynomial
-section of the map over that plane.-/
+section of the map over that plane.
+@isnad1 id=eq.0h3v.s7.d5a82d894835 from=translated src=- shape=41f5524b vocab=f6da26c8
+-/
 theorem plane_section (a b : K) : F K (0, b, a - 4 * b ^ 2) = (a, b, 0) := by
   simp only [F, Prod.mk.injEq]
   exact ⟨by ring, by ring, by ring⟩
 
 /-- Explicit attained targets on the discriminant wall along the axis
-`a = b = 0`: one rational preimage survives there.-/
+`a = b = 0`: one rational preimage survives there.
+@isnad1 id=eq.0h2v.s7.151bfcb05741 from=translated src=- shape=90a14cde vocab=ff497cba
+-/
 theorem wall_axis_attained (c : K) : F K (c / 2, 0, 0) = (0, 0, c) := by
   simp only [F, Prod.mk.injEq]
   refine ⟨by ring, by ring, ?_⟩
@@ -179,7 +203,9 @@ theorem wall_axis_attained (c : K) : F K (c / 2, 0, 0) = (0, 0, c) := by
   ring
 
 /-- **The three-point fiber, packaged.**  Three pairwise distinct points over
-`(-1/4, 0, 0)`.-/
+`(-1/4, 0, 0)`.
+@isnad1 id=and.0h1v.s8.c43cd628df6b from=translated src=- shape=d6bd4687 vocab=ce2ef92c
+-/
 theorem three_point_fiber :
     F K (p₀ K) = (-(1 / 4), 0, 0) ∧ F K (p₁ K) = (-(1 / 4), 0, 0) ∧
       F K (p₂ K) = (-(1 / 4), 0, 0) ∧
@@ -205,7 +231,9 @@ leading coefficient is exactly the discriminant scalar `W`: three sheets off
 the wall `V(W)`, a linear equation on it, and an inconsistent equation exactly
 on the missed curve (`W = 0`, `b² = 12a`, `a ≠ 0`).  The proof is one explicit
 Nullstellensatz certificate obtained from the extended Euclidean cofactors of
-the fiber resultant.-/
+the fiber resultant.
+@isnad1 id=eq.1h7v.s9.510f7a9a4fcb from=translated src=- shape=3c8799c7 vocab=69955f44
+-/
 theorem fiber_u_elimination (x y z a b c : K)
     (h : F K (x, y, z) = (a, b, c)) :
     c ^ 2 * ((27 * a ^ 2 * c ^ 2 - 18 * a * b * c + 16 * a + b ^ 3 * c - b ^ 2)
@@ -271,7 +299,9 @@ def wallD (r t : K) : K := 3 * r + 3 * t - 4
 /-- Numerator of the unique sheet over a simple τ-root.-/
 def wallN (A r t : K) : K := 9 * A - r + 2 * t
 
-/-- The constant term of the τ-cubic is exactly `-c²·W`.-/
+/-- The constant term of the τ-cubic is exactly `-c²·W`.
+@isnad1 id=eq.0h4v.s8.c95d79884b18 from=translated src=- shape=b06b99f3 vocab=54243245
+-/
 theorem sheetCubic_zero (a b c : K) :
     sheetCubic (a * c ^ 2) (b * c) 0 =
       -(c ^ 2 *
@@ -280,7 +310,9 @@ theorem sheetCubic_zero (a b c : K) :
   ring
 
 /-- **Chart coordinates.**  Over a target with `c ≠ 0`, every fiber point has
-`x ≠ 0` and satisfies both chart equations at `t = c/x`, `u = 1 + xy`.-/
+`x ≠ 0` and satisfies both chart equations at `t = c/x`, `u = 1 + xy`.
+@isnad1 id=and.2h7v.s8.990b0f60f202 from=translated src=- shape=01b96b88 vocab=97253671
+-/
 theorem fiber_tau_coordinates {x y z a b c : K} (hc : c ≠ 0)
     (h : F K (x, y, z) = (a, b, c)) :
     x ≠ 0 ∧ c / x ≠ 0 ∧
@@ -301,7 +333,9 @@ theorem fiber_tau_coordinates {x y z a b c : K} (hc : c ≠ 0)
 
 /-- **Chart reconstruction.**  Every chart solution with `t ≠ 0` arises from
 an actual fiber point, by explicit formulas; with `fiber_tau_coordinates`
-this makes the `c ≠ 0` fiber equivalent to the chart solution set.-/
+this makes the `c ≠ 0` fiber equivalent to the chart solution set.
+@isnad1 id=eq.4h6v.s8.04b7fcfc36b6 from=translated src=- shape=6db7412c vocab=08ba9043
+-/
 theorem reconstruct_fiber {a b c t u : K} (hc : c ≠ 0) (ht : t ≠ 0)
     (h1 : chartG₁ (a * c ^ 2) t u = 0) (h2 : chartG₂ (b * c) t u = 0) :
     F K (c / t, t * (u - 1) / c, t ^ 2 * (5 - 3 * u - t) / c ^ 2) = (a, b, c) := by
@@ -317,7 +351,9 @@ theorem reconstruct_fiber {a b c t u : K} (hc : c ≠ 0) (ht : t ≠ 0)
     ring
 
 /-- **The τ-cubic annihilates the chart**, with polynomial cofactors and no
-localization: every common chart zero is a root of the sheet cubic.-/
+localization: every common chart zero is a root of the sheet cubic.
+@isnad1 id=eq.2h5v.s6.8e023f88a34b from=translated src=- shape=255b44c1 vocab=2a7dc32a
+-/
 theorem tau_cubic {A r t u : K}
     (h1 : chartG₁ A t u = 0) (h2 : chartG₂ r t u = 0) :
     sheetCubic A r t = 0 := by
@@ -341,6 +377,9 @@ private theorem simple_root_G₂_aux {A r t v : K}
     (-3 * (v * (t * (3 * r + 3 * t - 4)) + (9 * A - r + 2 * t)) +
       4 * (3 * r + 3 * t - 4)) * hv
 
+/--
+@isnad1 id=eq.2h4v.s7.612a5d577b59 from=translated src=- shape=f57ba57f vocab=c6aac6cc
+-/
 theorem simple_root_G₂ (A r t : K) (ht : t ≠ 0) (hD : wallD r t ≠ 0) :
     wallD r t ^ 2 * chartG₂ r t (wallN A r t / (t * wallD r t)) =
       9 * sheetCubic A r t := by
@@ -365,6 +404,9 @@ private theorem simple_root_G₁_aux {A r t v : K}
       (3 * r + 3 * t - 4) * (v * (t * (3 * r + 3 * t - 4)) + (9 * A - r + 2 * t)) +
       t * (3 * r + 3 * t - 4) ^ 2) * hv
 
+/--
+@isnad1 id=eq.2h4v.s8.1d5bd5288a85 from=translated src=- shape=9e7e532f vocab=c714b143
+-/
 theorem simple_root_G₁ (A r t : K) (ht : t ≠ 0) (hD : wallD r t ≠ 0) :
     wallD r t ^ 3 * chartG₁ A t (wallN A r t / (t * wallD r t)) =
       (27 * A + 9 * t - 4) * sheetCubic A r t := by
@@ -375,7 +417,9 @@ theorem simple_root_G₁ (A r t : K) (ht : t ≠ 0) (hD : wallD r t ≠ 0) :
   simpa only [chartG₁, wallD, wallN, sheetCubic] using simple_root_G₁_aux hv
 
 /-- At a double root of the τ-cubic the sheet numerator vanishes:
-`3·sheetCubic + wallN² = -wallD·(-12A + r² - rt - 2t²)`.-/
+`3·sheetCubic + wallN² = -wallD·(-12A + r² - rt - 2t²)`.
+@isnad1 id=eq.2h4v.s6.b99bf92bad83 from=translated src=- shape=19b8843a vocab=09540f4b
+-/
 theorem wallN_eq_zero_of_double_root {A r t : K}
     (hQ : sheetCubic A r t = 0) (hD : wallD r t = 0) :
     wallN A r t = 0 := by
@@ -388,7 +432,9 @@ theorem wallN_eq_zero_of_double_root {A r t : K}
 
 /-- **Double-root reduction.**  Under `wallD = wallN = 0` the two chart
 equations are proportional: the certificate is `9·chartG₁ − (3tu+1)·chartG₂ =
-tu·wallD − wallN`.-/
+tu·wallD − wallN`.
+@isnad1 id=eq.2h5v.s7.896222cf166c from=translated src=- shape=a7a4f954 vocab=7b81b9da
+-/
 theorem double_root_reduction {A r t : K} (u : K)
     (hD : wallD r t = 0) (hN : wallN A r t = 0) :
     9 * chartG₁ A t u = (3 * t * u + 1) * chartG₂ r t u := by
@@ -402,14 +448,18 @@ theorem double_root_reduction {A r t : K} (u : K)
 double root are exactly the square roots of `9t`; in particular there are two
 of them over an algebraically closed field of characteristic `≠ 2, 3` when
 `t ≠ 0`.  (In general `discᵤ(chartG₂) = -4t²(3r - 6t - 4)`; it equals `36t³`
-only on `wallD = 0`.)-/
+only on `wallD = 0`.)
+@isnad1 id=eq.0h4v.s7.90d019ad8a1b from=translated src=- shape=3b00523e vocab=8dace3f4
+-/
 theorem three_mul_G₂ (r t u : K) :
     3 * chartG₂ r t u = 9 * t - (3 * t * u - 2) ^ 2 - wallD r t := by
   simp only [chartG₂, wallD]
   ring
 
 /-- Difference form of the τ-cubic derivative: no calculus needed downstream,
-and at `t = s` the factor is `2t·wallD`.-/
+and at `t = s` the factor is `2t·wallD`.
+@isnad1 id=eq.0h5v.s8.c8c7ff600bf8 from=translated src=- shape=06aa42b4 vocab=2f73c933
+-/
 theorem sheetCubic_sub (A r t s : K) :
     sheetCubic A r t - sheetCubic A r s =
       (t - s) * (2 * (t ^ 2 + t * s + s ^ 2) + (3 * r - 4) * (t + s)) := by
@@ -418,7 +468,9 @@ theorem sheetCubic_sub (A r t s : K) :
 
 /-- **The `c = 0` chart.**  Any fiber point over `(a, b, 0)` with `x ≠ 0`
 satisfies the sheet quadric `(16a − b²)x² = −4` — note `16a − b² = W(a,b,0)` —
-and has `u = 1 + xy` pinned linearly.-/
+and has `u = 1 + xy` pinned linearly.
+@isnad1 id=and.2h6v.s8.7ddef4780ec2 from=translated src=- shape=d4f08fc1 vocab=034b47e5
+-/
 theorem fiber_czero_equation {x y z a b : K} (hx : x ≠ 0)
     (h : F K (x, y, z) = (a, b, 0)) :
     (16 * a - b ^ 2) * x ^ 2 = -4 ∧ 4 * (1 + x * y) = b * x - 2 := by
@@ -437,7 +489,9 @@ theorem fiber_czero_equation {x y z a b : K} (hx : x ≠ 0)
 `x ≠ 0` produces an actual fiber point over `(a, b, 0)`; with
 `fiber_czero_equation` and the section `plane_section` this determines the
 whole `c = 0` fiber structure.  Characteristic zero is required (the chart
-divides by `4`).-/
+divides by `4`).
+@isnad1 id=eq.2h4v.s9.30d065d70e88 from=translated src=- shape=9c8de516 vocab=288961f3
+-/
 theorem reconstruct_czero [CharZero K] {x a b : K} (hx : x ≠ 0)
     (hquad : (16 * a - b ^ 2) * x ^ 2 = -4) :
     F K (x, (b * x - 6) / (4 * x), (26 - 3 * b * x) / (4 * x ^ 2)) = (a, b, 0) := by
@@ -482,7 +536,9 @@ variable {K : Type*} [Field K]
 def fiberCubic (a b c : K) : Cubic K := ⟨c, -2, b, -2 * a⟩
 
 /-- The discriminant of the fiber cubic is exactly `−4W`: the wall `V(W)` is
-precisely the discriminant hypersurface of the fiber family.-/
+precisely the discriminant hypersurface of the fiber family.
+@isnad1 id=eq.0h4v.s8.e78082163816 from=translated src=- shape=d7525461 vocab=b385c5b4
+-/
 theorem fiberCubic_discr (a b c : K) :
     (fiberCubic a b c).discr =
       -4 * (27 * a ^ 2 * c ^ 2 - 18 * a * b * c + 16 * a + b ^ 3 * c - b ^ 2) := by
@@ -492,7 +548,9 @@ theorem fiberCubic_discr (a b c : K) :
 /-- **Normalized cubic, cleared form.**  Every fiber point satisfies the fiber
 cubic at `t = y + 1/x`, multiplied through by `x³`.  No nondegeneracy
 hypothesis is needed: at `x = 0` the identity degenerates to `c = 0`, which
-is forced.-/
+is forced.
+@isnad1 id=eq.1h7v.s9.4f3a11575c3c from=translated src=- shape=be22eee6 vocab=69955f44
+-/
 theorem fiberCubic_cleared {x y z a b c : K}
     (h : F K (x, y, z) = (a, b, c)) :
     c * (x * y + 1) ^ 3 - 2 * x * (x * y + 1) ^ 2 + b * x ^ 2 * (x * y + 1) -
@@ -502,7 +560,9 @@ theorem fiberCubic_cleared {x y z a b c : K}
   linear_combination (2 * x ^ 3) * h1 - (x ^ 2 * (x * y + 1)) * h2 -
     ((x * y + 1) ^ 3) * h3
 
-/-- Division form of `fiberCubic_cleared` on the chart `x ≠ 0`.-/
+/-- Division form of `fiberCubic_cleared` on the chart `x ≠ 0`.
+@isnad1 id=eq.2h7v.s8.4beb3f947c3d from=translated src=- shape=ed7a47c1 vocab=6c1171f6
+-/
 theorem fiberCubic_div {x y z a b c : K} (hx : x ≠ 0)
     (h : F K (x, y, z) = (a, b, c)) :
     c * (y + 1 / x) ^ 3 - 2 * (y + 1 / x) ^ 2 + b * (y + 1 / x) - 2 * a = 0 := by
@@ -515,7 +575,9 @@ theorem fiberCubic_div {x y z a b c : K} (hx : x ≠ 0)
 
 /-- **Simple-root identity.**  `x²·P′(y + 1/x) = 2x`: every fiber point is a
 simple root of its own fiber cubic.  This is the Keller condition seen through
-the root coordinate.-/
+the root coordinate.
+@isnad1 id=eq.1h7v.s8.151ffa86ae49 from=translated src=- shape=8eae9f6b vocab=69955f44
+-/
 theorem fiberCubic_deriv_identity {x y z a b c : K}
     (h : F K (x, y, z) = (a, b, c)) :
     3 * c * (x * y + 1) ^ 2 - 4 * x * (x * y + 1) + b * x ^ 2 = 2 * x := by
@@ -525,7 +587,9 @@ theorem fiberCubic_deriv_identity {x y z a b c : K}
 
 /-- **Triple-root collapse on the missed curve.**  Under `12a = b²` and
 `3bc = 4` the fiber cubic is the perfect cube `c·(T − 2/(3c))³`: the omitted
-locus is exactly the triple-root stratum of the fiber family.-/
+locus is exactly the triple-root stratum of the fiber family.
+@isnad1 id=eq.2h5v.s9.712704e3ad43 from=translated src=- shape=68d68d7e vocab=624b944a
+-/
 theorem fiberCubic_on_curve [CharZero K] {a b c : K}
     (h12 : 12 * a = b ^ 2) (h34 : 3 * b * c = 4) (T : K) :
     c * T ^ 3 - 2 * T ^ 2 + b * T - 2 * a = c * (T - 2 / (3 * c)) ^ 3 := by
@@ -568,7 +632,9 @@ def wallW (a b c : K) : K :=
 /-- **Universal discriminant factorization along a root.**  In the polynomial
 ring in `a, b, c, t`:
 `−4W = P′(t)²·Δ(t) + λ(t)·P(t)` where `Δ` is the discriminant of the residual
-quadratic and `λ` is an explicit cubic.  Pure `ring`.-/
+quadratic and `λ` is an explicit cubic.  Pure `ring`.
+@isnad1 id=eq.0h5v.s10.98ce0d57387b from=translated src=- shape=1e69e82c vocab=90c63916
+-/
 theorem disc_factorization (a b c t : K) :
     -4 * wallW a b c =
       (3 * c * t ^ 2 - 4 * t + b) ^ 2 *
@@ -579,7 +645,9 @@ theorem disc_factorization (a b c t : K) :
   unfold wallW
   ring
 
-/-- Division form of the simple-root identity: `P′(y + 1/x) = 2/x`.-/
+/-- Division form of the simple-root identity: `P′(y + 1/x) = 2/x`.
+@isnad1 id=eq.2h7v.s8.73f702897853 from=translated src=- shape=417e6967 vocab=6c1171f6
+-/
 theorem fiberCubic_deriv_div {x y z a b c : K} (hx : x ≠ 0)
     (h : F K (x, y, z) = (a, b, c)) :
     3 * c * (y + 1 / x) ^ 2 - 4 * (y + 1 / x) + b = 2 / x := by
@@ -593,7 +661,9 @@ theorem fiberCubic_deriv_div {x y z a b c : K} (hx : x ≠ 0)
 the residual quadratic equals `−W·x²`.  Hence adjoining a square root of `−W`
 to the source splits the two remaining sheets of the fiber cubic.
 (Identifying `source(√−W)` with the full degree-six Galois closure would in
-addition require generic irreducibility, which is not formalized.)-/
+addition require generic irreducibility, which is not formalized.)
+@isnad1 id=eq.2h7v.s9.6a0044845632 from=translated src=- shape=20c9cee2 vocab=bf50ebbb
+-/
 theorem residual_disc [NeZero (2 : K)] {x y z a b c : K} (hx : x ≠ 0)
     (h : F K (x, y, z) = (a, b, c)) :
     (c * (y + 1 / x) - 2) ^ 2 -
@@ -612,7 +682,9 @@ theorem residual_disc [NeZero (2 : K)] {x y z a b c : K} (hx : x ≠ 0)
 `x·P′(t) = 2` solvable (equivalently `P′(t) ≠ 0`) reconstructs to an actual
 fiber point.  The certificate is one term per component.  Together with
 `fiberCubic_cleared` and `resolvent_injective` this identifies the fiber over
-targets with `c ≠ 0` with the simple roots of the fiber cubic.-/
+targets with `c ≠ 0` with the simple roots of the fiber cubic.
+@isnad1 id=eq.3h6v.s9.1808d5456a71 from=translated src=- shape=b21d9af2 vocab=278819b7
+-/
 theorem fiber_point_of_root [NeZero (2 : K)] {x t a b c : K} (hx : x ≠ 0)
     (hxd : x * (3 * c * t ^ 2 - 4 * t + b) = 2)
     (hP : c * t ^ 3 - 2 * t ^ 2 + b * t - 2 * a = 0) :
@@ -630,7 +702,9 @@ theorem fiber_point_of_root [NeZero (2 : K)] {x t a b c : K} (hx : x ≠ 0)
     ring
 
 /-- **The root coordinate separates the fiber.**  Two fiber points over one target
-with the same root-coordinate value `y + 1/x` coincide.-/
+with the same root-coordinate value `y + 1/x` coincide.
+@isnad1 id=eq.5h10v.s8.2a32d8d4f8ef from=translated src=- shape=b82d4584 vocab=2b682914
+-/
 theorem resolvent_injective [NeZero (2 : K)] {x₁ y₁ z₁ x₂ y₂ z₂ a b c : K}
     (hx₁ : x₁ ≠ 0) (hx₂ : x₂ ≠ 0)
     (h₁ : F K (x₁, y₁, z₁) = (a, b, c)) (h₂ : F K (x₂, y₂, z₂) = (a, b, c))
@@ -662,7 +736,9 @@ theorem resolvent_injective [NeZero (2 : K)] {x₁ y₁ z₁ x₂ y₂ z₂ a b 
 /-- **Sibling roots via the resolvent square root.**  Given one root `t` of
 the fiber cubic and a square root `σ` of the residual discriminant
 (equivalently, by `residual_disc`, of `−W·x²`), the quadratic formula
-produces the other roots.-/
+produces the other roots.
+@isnad1 id=eq.3h6v.s10.76325980b595 from=translated src=- shape=aabdbd38 vocab=6e3d7ba1
+-/
 theorem sibling_root [NeZero (2 : K)] {a b c t σ : K} (hc : c ≠ 0)
     (hP : c * t ^ 3 - 2 * t ^ 2 + b * t - 2 * a = 0)
     (hσ : σ ^ 2 = (c * t - 2) ^ 2 - 4 * c * (c * t ^ 2 - 2 * t + b)) :
@@ -723,7 +799,9 @@ noncomputable def fiberPoint (b c t : K) : K × K × K :=
         (t - 1 / (2 / (3 * c * t ^ 2 - 4 * t + b))) - c) /
     (2 / (3 * c * t ^ 2 - 4 * t + b)) ^ 3)
 
-/-- Every simple root of the fiber cubic reconstructs to a fiber point.-/
+/-- Every simple root of the fiber cubic reconstructs to a fiber point.
+@isnad1 id=eq.2h5v.s8.da515c762ff2 from=translated src=- shape=f50adb82 vocab=2a66d983
+-/
 theorem fiberPoint_mem {a b c t : K}
     (hP : c * t ^ 3 - 2 * t ^ 2 + b * t - 2 * a = 0)
     (hd : 3 * c * t ^ 2 - 4 * t + b ≠ 0) :
@@ -734,14 +812,18 @@ theorem fiberPoint_mem {a b c t : K}
 
 omit [NeZero (2 : K)] in
 /-- The reconstructed point has root-coordinate value exactly `t`: a pure ring
-identity `(t - 1/x) + 1/x = t`.-/
+identity `(t - 1/x) + 1/x = t`.
+@isnad1 id=eq.0h4v.s6.4c6ac88af3f0 from=translated src=- shape=581aba35 vocab=e411185e
+-/
 theorem fiberPoint_resolvent (b c t : K) :
     (fiberPoint b c t).2.1 + 1 / (fiberPoint b c t).1 = t := by
   dsimp only [fiberPoint]
   ring
 
 /-- The root-coordinate value of any fiber point with `x ≠ 0` is a simple root of
-the fiber cubic.-/
+the fiber cubic.
+@isnad1 id=and.2h7v.s9.41a6a84629fe from=translated src=- shape=0047b8df vocab=278819b7
+-/
 theorem resolvent_simpleRoot {x y z a b c : K} (hx : x ≠ 0)
     (h : F K (x, y, z) = (a, b, c)) :
     c * (y + 1 / x) ^ 3 - 2 * (y + 1 / x) ^ 2 + b * (y + 1 / x) - 2 * a = 0 ∧
@@ -794,7 +876,9 @@ def projectiveSimpleRoot (a b c : K) : Option K → Prop
 
 omit [NeZero (2 : K)] in
 /-- A fiber point with `x = 0` is the unique point supplied by the plane
-section; in particular its target has `c = 0`.-/
+section; in particular its target has `c = 0`.
+@isnad1 id=and.1h6v.s7.2b3cdbacdc5b from=translated src=- shape=4da167da vocab=f6da26c8
+-/
 theorem fiber_xzero {y z a b c : K} (h : F K (0, y, z) = (a, b, c)) :
     c = 0 ∧ y = b ∧ z = a - 4 * b ^ 2 := by
   simp only [F, Prod.mk.injEq] at h
@@ -840,6 +924,9 @@ noncomputable def projectiveFiberPoint {a b c : K}
     exact plane_section (K := K) a b
   · simpa [projectiveFiberPointValue] using fiberPoint_mem ht.1 ht.2
 
+/--
+@isnad1 id=eq.0h5v.s6.9f09994bd087 from=translated src=- shape=cacd7ed4 vocab=31273dad
+-/
 theorem projectiveFiberPoint_resolvent {a b c : K}
     (p : {p : K × K × K // F K p = (a, b, c)}) :
     projectiveFiberPoint (projectiveResolvent p) = p := by
@@ -860,6 +947,9 @@ theorem projectiveFiberPoint_resolvent {a b c : K}
     exact resolvent_injective (div_ne_zero two_ne_zero hd) hx
       (fiberPoint_mem hP hd) hp (fiberPoint_resolvent b c (y + 1 / x))
 
+/--
+@isnad1 id=eq.0h5v.s6.ac903b718c5a from=translated src=- shape=9b4ed696 vocab=68c93530
+-/
 theorem projectiveResolvent_fiberPoint {a b c : K}
     (t : {t : Option K // projectiveSimpleRoot a b c t}) :
     projectiveResolvent (projectiveFiberPoint t) = t := by
@@ -890,7 +980,9 @@ noncomputable def fiberEquivSimpleRootsProj {a b c : K} :
 omit [NeZero (2 : K)] in
 /-- Two distinct affine simple roots of a genuine cubic force a third distinct
 simple root over the same field.  This is Vieta closure, stated in the exact
-coefficient normalization used by `fiberCubic`.-/
+coefficient normalization used by `fiberCubic`.
+@isnad1 id=ex.4h6v.s10.0c4963c05eeb from=translated src=- shape=7ee204e0 vocab=7c99a4e5
+-/
 theorem third_simpleRoot {a b c t₁ t₂ : K} (hc : c ≠ 0) (hne : t₁ ≠ t₂)
     (h₁ : c * t₁ ^ 3 - 2 * t₁ ^ 2 + b * t₁ - 2 * a = 0 ∧
       3 * c * t₁ ^ 2 - 4 * t₁ + b ≠ 0)
@@ -937,7 +1029,9 @@ theorem third_simpleRoot {a b c t₁ t₂ : K} (hc : c ≠ 0) (hne : t₁ ≠ t�
   exact mul_ne_zero (mul_ne_zero hc (sub_ne_zero.mpr ht₃₁)) (sub_ne_zero.mpr ht₃₂)
 
 /-- At `c = 0`, one affine simple root forces the other affine root.  Together
-with `[1 : 0]`, these are the three projective simple roots.-/
+with `[1 : 0]`, these are the three projective simple roots.
+@isnad1 id=ex.1h4v.s9.3f8c9ff6db60 from=translated src=- shape=46ddc101 vocab=c8bcd12d
+-/
 theorem other_simpleRoot_at_infinity {a b t : K}
     (h : -2 * t ^ 2 + b * t - 2 * a = 0 ∧ -4 * t + b ≠ 0) :
     ∃ s : K, (-2 * s ^ 2 + b * s - 2 * a = 0 ∧ -4 * s + b ≠ 0) ∧ s ≠ t := by
@@ -967,7 +1061,9 @@ theorem other_simpleRoot_at_infinity {a b t : K}
 
 /-- **No-two law for projective roots.**  Any two distinct simple rational
 roots of the binary fiber cubic extend to three distinct simple rational
-roots.-/
+roots.
+@isnad1 id=ex.3h6v.s6.a4d63fa064f3 from=translated src=- shape=b861a66c vocab=270bb11b
+-/
 theorem projectiveSimpleRoot_exists_third {a b c : K} {r₁ r₂ : Option K}
     (h₁ : projectiveSimpleRoot a b c r₁)
     (h₂ : projectiveSimpleRoot a b c r₂) (hne : r₁ ≠ r₂) :
@@ -1002,7 +1098,9 @@ theorem projectiveSimpleRoot_exists_third {a b c : K} {r₁ r₂ : Option K}
 
 /-- **Arithmetic no-two law.**  Over every field of characteristic not two,
 two distinct points in one fiber force a third point in that same fiber,
-distinct from both.-/
+distinct from both.
+@isnad1 id=ex.3h6v.s7.958bc38797d3 from=translated src=- shape=3892f32c vocab=c29258b8
+-/
 theorem two_fiber_points_extend_to_three {a b c : K} {p₁ p₂ : K × K × K}
     (h₁ : F K p₁ = (a, b, c)) (h₂ : F K p₂ = (a, b, c)) (hne : p₁ ≠ p₂) :
     ∃ p₃, F K p₃ = (a, b, c) ∧ p₃ ≠ p₁ ∧ p₃ ≠ p₂ := by
@@ -1024,7 +1122,9 @@ theorem two_fiber_points_extend_to_three {a b c : K} {p₁ p₂ : K × K × K}
 
 /-- The projective simple-root set is finite.  Off `c = 0` it injects into
 the roots of a cubic; on `c = 0` it is the point at infinity plus roots of a
-quadratic.-/
+quadratic.
+@isnad1 id=finite.0h4v.s5.4b52e8d4bce4 from=translated src=- shape=6718cb15 vocab=3ce72518
+-/
 theorem projectiveSimpleRoots_finite (a b c : K) :
     Finite {r : Option K // projectiveSimpleRoot a b c r} := by
   classical
@@ -1088,7 +1188,9 @@ theorem projectiveSimpleRoots_finite (a b c : K) :
         (fiberEquivSimpleRoots hc)
     exact Finite.of_injective e e.injective
 
-/-- The projective simple-root set has at most three elements.-/
+/-- The projective simple-root set has at most three elements.
+@isnad1 id=le.0h4v.s6.8d16e87aa792 from=translated src=- shape=c38bad59 vocab=99dbd58c
+-/
 theorem projectiveSimpleRoots_ncard_le_three (a b c : K) :
     Set.ncard {r : Option K | projectiveSimpleRoot a b c r} ≤ 3 := by
   classical
@@ -1180,7 +1282,9 @@ theorem projectiveSimpleRoots_ncard_le_three (a b c : K) :
     rw [he]
     exact hA
 
-/-- Every fiber is finite, uniformly over the base field.-/
+/-- Every fiber is finite, uniformly over the base field.
+@isnad1 id=finite.0h4v.s6.9a1c41bfd3e8 from=translated src=- shape=005b4647 vocab=2d918be2
+-/
 theorem fiber_finite (a b c : K) :
     Set.Finite {p : K × K × K | F K p = (a, b, c)} := by
   letI : Finite {r : Option K // projectiveSimpleRoot a b c r} :=
@@ -1189,7 +1293,9 @@ theorem fiber_finite (a b c : K) :
   rw [← Set.finite_coe_iff]
   exact Finite.of_injective e e.injective
 
-/-- Every fiber has at most three rational points.-/
+/-- Every fiber has at most three rational points.
+@isnad1 id=le.0h4v.s6.98d7adca10cb from=translated src=- shape=ee6ded34 vocab=0c849e6f
+-/
 theorem fiber_ncard_le_three (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} ≤ 3 := by
   let e := fiberEquivSimpleRootsProj (K := K) (a := a) (b := b) (c := c)
@@ -1198,7 +1304,9 @@ theorem fiber_ncard_le_three (a b c : K) :
 /-- **The `0/1/3` law.**  Over every field with `2 ≠ 0` — in particular over
 every finite field of odd order — every `K`-rational fiber has cardinality
 zero, one, or three.  Cardinality two is impossible even when the fiber cubic
-does not split over `K`.-/
+does not split over `K`.
+@isnad1 id=mem.0h4v.s6.d33f650cc3d1 from=translated src=- shape=eb06a0fb vocab=b6853150
+-/
 theorem fiber_ncard_mem_zero_one_three (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} ∈ ({0, 1, 3} : Set ℕ) := by
   let S : Set (K × K × K) := {p | F K p = (a, b, c)}
@@ -1225,7 +1333,9 @@ omit [NeZero (2 : K)] in
 /-- Away from the triple-root curve, the projective binary cubic has a simple
 root over an algebraically closed field.  If an initially chosen root is
 double, Vieta's remaining root is simple unless all three roots coincide;
-that coincidence is exactly `OnMissedCurve`.-/
+that coincidence is exactly `OnMissedCurve`.
+@isnad1 id=ex.1h4v.s5.e33df13d9fd2 from=translated src=- shape=d968a485 vocab=9006683a
+-/
 theorem exists_projectiveSimpleRoot_of_not_onMissedCurve [CharZero K] [IsAlgClosed K]
     {a b c : K} (hC : ¬ OnMissedCurve a b c) :
     ∃ r, projectiveSimpleRoot a b c r := by
@@ -1272,7 +1382,9 @@ theorem exists_projectiveSimpleRoot_of_not_onMissedCurve [CharZero K] [IsAlgClos
 
 /-- **Exact image theorem.**  Over every algebraically closed
 characteristic-zero field, the image of `F` is precisely the complement of
-the smooth rational curve `12a = b²`, `3bc = 4`.-/
+the smooth rational curve `12a = b²`, `3bc = 4`.
+@isnad1 id=iff.0h4v.s6.d17fe969788f from=translated src=- shape=b5e7c406 vocab=5a81fae2
+-/
 theorem mem_range_iff_not_onMissedCurve [CharZero K] [IsAlgClosed K]
     (a b c : K) :
     (a, b, c) ∈ Set.range (F K) ↔ ¬ OnMissedCurve a b c := by
@@ -1295,7 +1407,9 @@ theorem mem_range_iff_not_onMissedCurve [CharZero K] [IsAlgClosed K]
     let e := fiberEquivSimpleRootsProj (K := K) (a := a) (b := b) (c := c)
     exact ⟨(e.symm ⟨r, hr⟩).1, (e.symm ⟨r, hr⟩).2⟩
 
-/-- Set-level form of `mem_range_iff_not_onMissedCurve`.-/
+/-- Set-level form of `mem_range_iff_not_onMissedCurve`.
+@isnad1 id=eq.0h1v.s6.2dcf169be8ee from=translated src=- shape=079bec6a vocab=989f3170
+-/
 theorem range_eq_compl_missedCurve [CharZero K] [IsAlgClosed K] :
     Set.range (F K) = {q : K × K × K | ¬ OnMissedCurve q.1 q.2.1 q.2.2} := by
   ext q
@@ -1316,7 +1430,9 @@ an equivalence with `K \ {0}` (the `K`-points of `𝔾ₘ`): projection to the
 
 variable {K : Type*} [Field K]
 
-/-- The wall polynomial `W` vanishes on the missed curve.-/
+/-- The wall polynomial `W` vanishes on the missed curve.
+@isnad1 id=eq.1h4v.s8.11aef2054970 from=translated src=- shape=a65a715e vocab=cc702b71
+-/
 theorem wallW_eq_zero_of_onMissedCurve [CharZero K] {a b c : K}
     (h : OnMissedCurve a b c) :
     27 * a ^ 2 * c ^ 2 - 18 * a * b * c + 16 * a + b ^ 3 * c - b ^ 2 = 0 := by
@@ -1353,7 +1469,9 @@ def missedCurveEquivNonzero [CharZero K] :
   right_inv s := Subtype.ext rfl
 
 /-- **Empty stratum.**  Over an algebraically closed field of characteristic
-zero, the fiber is empty exactly on the missed curve.-/
+zero, the fiber is empty exactly on the missed curve.
+@isnad1 id=iff.0h4v.s6.89564c510b2b from=translated src=- shape=3003b194 vocab=97737eb6
+-/
 theorem fiber_ncard_eq_zero_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} = 0 ↔ OnMissedCurve a b c := by
   rw [Set.ncard_eq_zero (fiber_finite a b c)]
@@ -1371,7 +1489,9 @@ theorem fiber_ncard_eq_zero_iff [CharZero K] [IsAlgClosed K] (a b c : K) :
     exact (mem_range_iff_not_onMissedCurve a b c).mp ⟨p, hp⟩ hC
 
 /-- **Nonempty strata.**  Off the missed curve, the fiber has exactly one or
-exactly three rational points.-/
+exactly three rational points.
+@isnad1 id=mem.1h4v.s6.2801988c33df from=translated src=- shape=806eca91 vocab=55fdae59
+-/
 theorem fiber_ncard_mem_one_three_of_not_onMissedCurve [CharZero K] [IsAlgClosed K]
     {a b c : K} (hC : ¬ OnMissedCurve a b c) :
     Set.ncard {p : K × K × K | F K p = (a, b, c)} ∈ ({1, 3} : Set ℕ) := by

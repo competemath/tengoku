@@ -22,12 +22,18 @@ variable (k : Type*) [Field k] [CharZero k]
 abbrev GenericSplittingField :=
   (genericFiberPoly k).SplittingField
 
+/--
+@isnad1 id=fact.0h1v.s8.1c9e8246d61f from=translated src=- shape=7638d510 vocab=fbfc4f27
+-/
 local instance genericFiberPoly_splitsFact :
     Fact
       ((genericFiberPoly k).map
         (algebraMap (GenericTargetField k) (GenericSplittingField k))).Splits :=
   ⟨Polynomial.SplittingField.splits _⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.282394ba632d from=translated src=- shape=c4b74d85 vocab=c9142b06
+-/
 theorem genericRootSet_card :
     Fintype.card ((genericFiberPoly k).rootSet (GenericSplittingField k)) = 3 := by
   rw [Polynomial.card_rootSet_eq_natDegree
@@ -42,6 +48,9 @@ def genericRootEquiv :
 def genericRoot (i : Fin 3) : GenericSplittingField k :=
   ((genericRootEquiv k).symm i : _)
 
+/--
+@isnad1 id=ne.1h3v.s5.96df6b699a15 from=translated src=- shape=2b8df02d vocab=3b9817dd
+-/
 theorem genericRoot_ne {i j : Fin 3} (hij : i ≠ j) :
     genericRoot k i ≠ genericRoot k j := by
   intro h
@@ -49,6 +58,9 @@ theorem genericRoot_ne {i j : Fin 3} (hij : i ≠ j) :
   apply (genericRootEquiv k).symm.injective
   exact Subtype.ext h
 
+/--
+@isnad1 id=eq.0h2v.s11.a94b8891457d from=translated src=- shape=05bf2881 vocab=8e2615c6
+-/
 theorem genericRoot_equation (i : Fin 3) :
     algebraMap (GenericCoeffRing k) (GenericSplittingField k) (genericC k) *
           genericRoot k i ^ 3 -
@@ -72,6 +84,9 @@ def genericDelta : GenericSplittingField k :=
     (genericRoot k 0 - genericRoot k 2) *
     (genericRoot k 1 - genericRoot k 2)
 
+/--
+@isnad1 id=eq.0h1v.s9.7854c7be3477 from=translated src=- shape=58be3367 vocab=eb0aab1d
+-/
 theorem genericDelta_sq :
     genericDelta k ^ 2 =
       algebraMap (GenericTargetField k) (GenericSplittingField k)
@@ -109,6 +124,9 @@ theorem genericDelta_sq :
       simp_rw [← IsScalarTower.algebraMap_apply
         (GenericCoeffRing k) (GenericTargetField k) (GenericSplittingField k)]
 
+/--
+@isnad1 id=not.0h1v.s9.04d66d9339cf from=translated src=- shape=f0276e0c vocab=538835af
+-/
 theorem genericDelta_not_mem_base :
     genericDelta k ∉
       (algebraMap (GenericTargetField k) (GenericSplittingField k)).range := by
@@ -125,6 +143,9 @@ theorem genericDelta_not_mem_base :
           algebraMap (GenericTargetField k) (GenericSplittingField k) x := by
       rw [hx, pow_two]
 
+/--
+@isnad1 id=eq.0h1v.s8.29992b132b90 from=translated src=- shape=45d88ff5 vocab=d70a0bca
+-/
 theorem genericDelta_minpoly_natDegree :
     (minpoly (GenericTargetField k) (genericDelta k)).natDegree = 2 := by
   let d := (genericFiberPoly k).discr
@@ -157,6 +178,9 @@ theorem genericDelta_minpoly_natDegree :
     minpoly.natDegree_pos hδ
   omega
 
+/--
+@isnad1 id=dvd.0h1v.s8.ed1c43488572 from=translated src=- shape=5ecf5efc vocab=34ff2ff6
+-/
 theorem two_dvd_genericSplittingField_finrank :
     2 ∣ Module.finrank (GenericTargetField k) (GenericSplittingField k) := by
   have hδ : IsIntegral (GenericTargetField k) (genericDelta k) :=
@@ -166,6 +190,9 @@ theorem two_dvd_genericSplittingField_finrank :
       (Normal.splits' (genericDelta k))
   rwa [genericDelta_minpoly_natDegree] at hdvd
 
+/--
+@isnad1 id=eq.0h1v.s6.b84d3cd78e9f from=translated src=- shape=7bd07b6a vocab=8286365a
+-/
 theorem genericGal_card :
     Nat.card (genericFiberPoly k).Gal = 6 := by
   classical
@@ -202,6 +229,9 @@ def genericGalActionHom :
     exact (Equiv.permCongrHom (genericRootEquiv k)).toMonoidHom.comp
       (Polynomial.Gal.galActionHom (genericFiberPoly k) (GenericSplittingField k))
 
+/--
+@isnad1 id=injectiv.0h1v.s9.629aaa6a9f42 from=translated src=- shape=f52a2685 vocab=abec41f3
+-/
 theorem genericGalActionHom_injective :
     Function.Injective (genericGalActionHom k) := by
   classical
