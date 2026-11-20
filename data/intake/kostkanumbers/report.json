@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "0ee5071a1e912b9a3f919b76e301c736b0fdf6ac87305451385498930e661e4b",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "kostkanumbers",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 1,
+ "theorems": 139
+}
