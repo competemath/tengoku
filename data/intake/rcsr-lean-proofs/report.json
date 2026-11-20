@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "688f93c7bb02187e27967b23607b548713ff6457254d434b186025554575915c",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "rcsr-lean-proofs",
+ "lint_mode": "proposed",
+ "modules": 16,
+ "part": 1,
+ "theorems": 179
+}
