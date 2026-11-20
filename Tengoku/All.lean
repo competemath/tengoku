@@ -152,6 +152,7 @@ import Tengoku.QuadraticAlgebras
 import Tengoku.Erdos1091Lean
 import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.Roundedrootsums
+import Tengoku.Grushkoneumanntheorem
 import Tengoku.ChandraFurstLipton
 import Tengoku.Nkbesicovitch
 import Tengoku.LeanEvalPlatonicClassification
