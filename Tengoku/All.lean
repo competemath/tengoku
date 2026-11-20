@@ -75,6 +75,7 @@ import Tengoku.AlternatingAnalyticCharacteristicP
 import Tengoku.PrimeGaps186
 import Tengoku.Flt
 import Tengoku.HasseMinkowski
+import Tengoku.GeometricBrascampLieb
 import Tengoku.Toric
 import Tengoku.Tiling
 import Tengoku.Jsp000937Lean
