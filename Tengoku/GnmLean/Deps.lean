@@ -1,0 +1,1 @@
+-- GnmLean: a factory bundle (data/intake/gnm-lean). This file only marks the library for Tengoku/All.lean.
