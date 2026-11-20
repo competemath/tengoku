@@ -34,6 +34,7 @@ import Tengoku.RegularityLemmata
 import Tengoku.Hironaka
 import Tengoku.LevinEntireFunctionsLean
 import Tengoku.Nashembedding
+import Tengoku.Qharm
 import Tengoku.KummerCriterion
 import Tengoku.FltRegular
 import Tengoku.HodgeStructuresLean4
