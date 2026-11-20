@@ -34,7 +34,9 @@ variable {Ω : Opens E} {u : E → EReal}
 /-- A singular disc-PSH potential which is locally integrable and finite almost
 everywhere has nonnegative distributional Levi derivatives. The integral
 positivity is proved for every actual nonnegative compactly supported test
-function, rather than assumed as part of the PSH definition.-/
+function, rather than assumed as part of the PSH definition.
+@isnad1 id=hasnonne.3h4v.s8.1da468e61891 from=translated src=- shape=d00f3af0 vocab=b864a629
+-/
 theorem DiscPshOn.hasNonnegativeDistributionalLevi_of_locallyIntegrable
     (hu : DiscPshOn u Ω)
     (huL : LocallyIntegrableOn (fun x => (u x).toReal) Ω μ)
@@ -73,7 +75,9 @@ theorem DiscPshOn.hasNonnegativeDistributionalLevi_of_locallyIntegrable
 
 /-- A nontrivial disc-PSH potential on a preconnected open domain induces an
 actual regular distribution with nonnegative Levi derivatives. Local
-integrability and a.e. finiteness are consequences of the stated hypotheses.-/
+integrability and a.e. finiteness are consequences of the stated hypotheses.
+@isnad1 id=hasnonne.3h4v.s8.96ffb330e0c9 from=translated src=- shape=060e3e45 vocab=e45a1783
+-/
 theorem DiscPshOn.pshRegularDistribution_hasNonnegativeDistributionalLevi
     (hu : DiscPshOn u Ω) (hΩ : IsPreconnected (Ω : Set E))
     (hne : ∃ a ∈ Ω, u a ≠ ⊥) :

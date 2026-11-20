@@ -139,7 +139,9 @@ omit [IsScalarTower ℝ ℂ E] in
 /-- A decreasing sequence of actual smooth disc-PSH functions which converges
 weakly to a distribution produces a genuine PSH representative.
 Almost-everywhere finiteness and local L1 are conclusions, including when the
-open domain is disconnected.-/
+open domain is disconnected.
+@isnad1 id=ex.1h5v.s7.8e7e089e8a05 from=translated src=- shape=6d67f903 vocab=4073ac28
+-/
 theorem exists_pshRepresentative_of_decreasing_approximation
     (μ : Measure E) [μ.IsAddHaarMeasure] {Ω : Opens E}
     {T : 𝓓'(Ω, ℝ)} {f : ℕ → E → ℝ}

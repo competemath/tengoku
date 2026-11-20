@@ -15,7 +15,9 @@ open scoped Topology ENNReal
 namespace PshLines.PSHD
 
 /-- Joint measurability of the real truncated ball integral on a finite
-measurable region, under the section hypotheses of Lemma 1.2.-/
+measurable region, under the section hypotheses of Lemma 1.2.
+@isnad1 id=measurab.6h7v.s8.1f4f8148d6d0 from=translated src=- shape=9fb0b071 vocab=e2b4af1c
+-/
 theorem measurable_integral_ball_min_restrict
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace X] [OpensMeasurableSpace X]
@@ -50,7 +52,9 @@ theorem measurable_integral_ball_min_restrict
   exact heq p
 
 /-- Division by a fixed normalization preserves Borel measurability.
-Taking `c = Real.pi * r ^ 2` gives the planar normalization of Lemma 1.2.-/
+Taking `c = Real.pi * r ^ 2` gives the planar normalization of Lemma 1.2.
+@isnad1 id=measurab.6h8v.s8.b98a0231d601 from=translated src=- shape=018c1f82 vocab=d42d0741
+-/
 theorem measurable_normalized_integral_ball_min_restrict
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace X] [OpensMeasurableSpace X]

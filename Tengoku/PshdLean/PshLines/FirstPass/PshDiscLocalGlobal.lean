@@ -37,7 +37,9 @@ def HasGlobalHarmonicCircleApproximation : Prop :=
 
 /-- On one complex line, germwise PSH plus global harmonic circle
 approximation gives the exact extended-real deficit submean inequality on
-every contained closed disc.-/
+every contained closed disc.
+@isnad1 id=le.5h5v.s7.74f4260d3efb from=translated src=- shape=2df6ac8e vocab=fd915ef1
+-/
 theorem PlurisubharmonicOn.circleSubmean_of_closedBall_subset_of_harmonicApproximation
     (hHA : HasGlobalHarmonicCircleApproximation)
     {u : ℂ → EReal} {Ω : Set ℂ} (hu : PlurisubharmonicOn u Ω)
@@ -91,7 +93,9 @@ theorem PlurisubharmonicOn.circleSubmean_of_closedBall_subset_of_harmonicApproxi
 
 /-- Conditional local-to-global theorem in an arbitrary complex normed
 space.  No openness of `U` is needed because `PlurisubharmonicOn` already
-stores ambient germs at all of its points.-/
+stores ambient germs at all of its points.
+@isnad1 id=discpsho.2h3v.s5.faca3ea540b0 from=translated src=- shape=50c40b57 vocab=62c2d383
+-/
 theorem PlurisubharmonicOn.discPshOn_of_harmonicApproximation
     (hHA : HasGlobalHarmonicCircleApproximation)
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -120,7 +124,9 @@ theorem PlurisubharmonicOn.discPshOn_of_harmonicApproximation
   rw [circleDeficit_comp_affine u L x] at hsub
   simpa [L] using hsub
 
-/-- Open-domain spelling of the local-to-global theorem.-/
+/-- Open-domain spelling of the local-to-global theorem.
+@isnad1 id=discpsho.3h3v.s5.bf2bf6e97ef0 from=translated src=- shape=2c44aa0e vocab=17234224
+-/
 theorem PlurisubharmonicOn.discPshOn_of_isOpen_of_harmonicApproximation
     (hHA : HasGlobalHarmonicCircleApproximation)
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -130,7 +136,9 @@ theorem PlurisubharmonicOn.discPshOn_of_isOpen_of_harmonicApproximation
     hHA hu
 
 /-- Fourier density on the additive circle supplies the harmonic
-approximation input used above, for either sign of the nonzero radius.-/
+approximation input used above, for either sign of the nonzero radius.
+@isnad1 id=hasgloba.0h0v.s0.1978cc362062 from=translated src=- shape=45709ebd vocab=1978cc36
+-/
 theorem hasGlobalHarmonicCircleApproximation :
     HasGlobalHarmonicCircleApproximation := by
   intro c R hR g hg ε hε
@@ -140,7 +148,9 @@ theorem hasGlobalHarmonicCircleApproximation :
 /-- Germwise plurisubharmonicity implies the full affine-disc criterion on
 an arbitrary domain.  Together with the existing reverse implication on
 open domains, this supplies the local-to-global bridge needed by the PSH
-supremum theorem.-/
+supremum theorem.
+@isnad1 id=discpsho.1h3v.s5.7e392d4506a8 from=translated src=- shape=267d2225 vocab=1120a96c
+-/
 theorem PlurisubharmonicOn.discPshOn
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → EReal} {U : Set E} (hu : PlurisubharmonicOn u U) :
@@ -148,7 +158,9 @@ theorem PlurisubharmonicOn.discPshOn
   PshLines.FirstPass.PlurisubharmonicOn.discPshOn_of_harmonicApproximation
     hasGlobalHarmonicCircleApproximation hu
 
-/-- Open-domain spelling of the unconditional local-to-global bridge.-/
+/-- Open-domain spelling of the unconditional local-to-global bridge.
+@isnad1 id=discpsho.2h3v.s5.9466c6415332 from=translated src=- shape=6db4a69f vocab=b358ce25
+-/
 theorem PlurisubharmonicOn.discPshOn_of_isOpen
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → EReal} {U : Set E} (hu : PlurisubharmonicOn u U)
@@ -162,7 +174,9 @@ end PshLines.FirstPass
 namespace PshLines
 
 /-- Public local-to-global bridge from ambient PSH germs to the complete
-affine-disc criterion.-/
+affine-disc criterion.
+@isnad1 id=discpsho.1h3v.s5.7e392d4506a8 from=translated src=- shape=267d2225 vocab=1120a96c
+-/
 theorem PlurisubharmonicOn.discPshOn
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → EReal} {U : Set E} (hu : PlurisubharmonicOn u U) :

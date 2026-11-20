@@ -27,7 +27,9 @@ def LineSubharmonicOn (u : E → ℝ) (D : Set E) : Prop :=
       (connectedComponentIn ((fun t : ℂ ↦ c + t • v) ⁻¹' D) z)
 
 omit [FiniteDimensional ℂ E] in
-/-- The parameters of a line lying in a closed ball form a compact set.-/
+/-- The parameters of a line lying in a closed ball form a compact set.
+@isnad1 id=iscompac.1h5v.s7.25bd1ed1c05f from=translated src=- shape=b6c290b4 vocab=6ee19f03
+-/
 theorem isCompact_line_preimage_closedBall (c : E) {v : E} (hv : v ≠ 0) (p : E) (r : ℝ) :
     IsCompact ((fun t : ℂ ↦ c + t • v) ⁻¹' closedBall p r) := by
   refine Metric.isCompact_of_isClosed_isBounded
@@ -43,7 +45,9 @@ theorem isCompact_line_preimage_closedBall (c : E) {v : E} (hv : v ≠ 0) (p : E
     _ ≤ r + ‖p - c‖ := by linarith
 
 omit [FiniteDimensional ℂ E] in
-/-- The parameters of a line lying in an open ball form a convex set.-/
+/-- The parameters of a line lying in an open ball form a convex set.
+@isnad1 id=convex.0h5v.s7.f69d2453475a from=translated src=- shape=62838cdc vocab=f26bb348
+-/
 theorem convex_line_preimage_ball (c v p : E) (r : ℝ) :
     Convex ℝ ((fun t : ℂ ↦ c + t • v) ⁻¹' ball p r) := by
   have h : (fun t : ℂ ↦ c + t • v) ⁻¹' ball p r =
@@ -58,7 +62,9 @@ theorem convex_line_preimage_ball (c v p : E) (r : ℝ) :
 
 variable [MeasurableSpace E] [BorelSpace E]
 
-/-- **Local upper bounds** (`pshd-vibe`, Proposition 2.1, Step 2).-/
+/-- **Local upper bounds** (`pshd-vibe`, Proposition 2.1, Step 2).
+@isnad1 id=ex.5h4v.s7.968a77902a56 from=translated src=- shape=43352349 vocab=22ba4c11
+-/
 theorem LineSubharmonicOn.exists_bddAbove (hn : 2 ≤ Module.finrank ℂ E) {u : E → ℝ}
     (hu : Measurable u) {D : Set E} (hD : IsOpen D) (hl : LineSubharmonicOn u D)
     {p : E} (hp : p ∈ D) : ∃ r > 0, BddAbove (u '' ball p r) := by

@@ -27,7 +27,9 @@ variable {E : Type*} [MetricSpace E] [ProperSpace E]
 
 /-- A compact set inside an open set has an open neighborhood whose fixed
 radius closed balls all lie in one compact subset of the original open set.
-The construction also applies to the empty compact set.-/
+The construction also applies to the empty compact set.
+@isnad1 id=ex.3h3v.s7.c5754b820860 from=translated src=- shape=2b86a1f4 vocab=42ef0d43
+-/
 theorem exists_open_compact_closedBall_neighborhood {S V : Set E}
     (hS : IsCompact S) (hV : IsOpen V) (hSV : S ⊆ V) :
     ∃ R > 0, ∃ U K : Set E, IsOpen U ∧ S ⊆ U ∧ U ⊆ K ∧
@@ -54,7 +56,9 @@ variable {μ : Measure E} [μ.IsAddHaarMeasure]
 variable {Ω : Opens E} {u : E → ℝ} {K U : Set E}
 
 /-- Compact localization leaves the actual mollification unchanged whenever
-the kernel's support ball lies in the cutoff set.-/
+the kernel's support ball lies in the cutoff set.
+@isnad1 id=eq.1h6v.s7.46c73a6f3620 from=translated src=- shape=be7ffc7e vocab=af360e2f
+-/
 theorem mollify_indicator_eq_of_closedBall_subset
     (φ : ContDiffBump (0 : E)) (z : E) (hzK : closedBall z φ.rOut ⊆ K) :
     mollify μ (K.indicator u) φ z = mollify μ u φ z :=
@@ -62,7 +66,9 @@ theorem mollify_indicator_eq_of_closedBall_subset
     ((tsupport_mollifier_translate_subset μ φ z).trans hzK)
 
 /-- The fixed compact cutoff converges to the original density almost
-everywhere on each measurable inner set contained in the cutoff.-/
+everywhere on each measurable inner set contained in the cutoff.
+@isnad1 id=eventual.6h7v.s8.b4eee4df3785 from=translated src=- shape=0f691895 vocab=cecb2eb0
+-/
 theorem ae_tendsto_mollify_indicator_on
     (hu : LocallyIntegrableOn u Ω μ) (hK : IsCompact K) (hKΩ : K ⊆ Ω)
     (hU : MeasurableSet U) (hUK : U ⊆ K) (R : ℝ) (hR : 0 < R) :
@@ -79,7 +85,9 @@ variable [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E]
 /-- A density with nonnegative distributional Levi form admits actual smooth
 PSH approximations on a common open neighborhood of every compact subset.
 Every approximant is globally smooth; the density is only locally integrable
-on Ω, and convergence is asserted only almost everywhere on the inner domain.-/
+on Ω, and convergence is asserted only almost everywhere on the inner domain.
+@isnad1 id=ex.4h5v.s9.c98837863a59 from=translated src=- shape=034ebd8e vocab=35300464
+-/
 theorem exists_smooth_psh_ae_approximation
     (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))

@@ -12,7 +12,9 @@ The elementary metric estimate in `pshd-vibe`, Lemma 1.3.
 
 namespace PshLines.PSHD
 
-/-- Separate radial and angular contributions to squared distance.-/
+/-- Separate radial and angular contributions to squared distance.
+@isnad1 id=eq.2h5v.s8.8b9040bb3935 from=translated src=- shape=3ec2b3e9 vocab=d7b5786d
+-/
 theorem norm_smul_sub_sq_of_unit
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {e f : E} (he : ‖e‖ = 1) (hf : ‖f‖ = 1) (r s : ℝ) :
@@ -22,7 +24,9 @@ theorem norm_smul_sub_sq_of_unit
     real_inner_smul_left, real_inner_smul_right]
   ring
 
-/-- On a positive annulus the angular term has a uniform coefficient.-/
+/-- On a positive annulus the angular term has a uniform coefficient.
+@isnad1 id=le.5h6v.s8.663762f1ccee from=translated src=- shape=811173a7 vocab=853459fa
+-/
 theorem annulus_chord_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {e f : E} (he : ‖e‖ = 1) (hf : ‖f‖ = 1)
@@ -36,7 +40,9 @@ theorem annulus_chord_lower_bound
   exact add_le_add le_rfl (mul_le_mul_of_nonneg_right hprod (sq_nonneg _))
 
 /-- Forgetting the phase of a Hermitian inner product only decreases the
-chordal lower bound.-/
+chordal lower bound.
+@isnad1 id=le.2h3v.s7.a9ce29f87a09 from=translated src=- shape=ff60a133 vocab=ec12b6bb
+-/
 theorem chord_sq_lower_bound_inner_norm
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {e f : E} (he : ‖e‖ = 1) (hf : ‖f‖ = 1) :
@@ -47,7 +53,9 @@ theorem chord_sq_lower_bound_inner_norm
   linarith
 
 /-- The phase-independent annular separation estimate used before the
-Fubini--Study distance comparison in the star energy proof.-/
+Fubini--Study distance comparison in the star energy proof.
+@isnad1 id=le.5h6v.s8.efc51dfee415 from=translated src=- shape=8a00ed33 vocab=1f1e3640
+-/
 theorem annulus_inner_norm_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {e f : E} (he : ‖e‖ = 1) (hf : ‖f‖ = 1)
@@ -62,7 +70,9 @@ theorem annulus_inner_norm_lower_bound
     _ ≤ _ := annulus_chord_lower_bound he hf hR hr hs
 
 /-- Arbitrary phase choices satisfy the same annular separation estimate.
-This applies directly to the measurable high-value circle selector.-/
+This applies directly to the measurable high-value circle selector.
+@isnad1 id=le.5h6v.s8.38af55d8f39d from=translated src=- shape=4bb70e23 vocab=30ffa4da
+-/
 theorem annulus_complex_smul_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {e f : E} (he : ‖e‖ = 1) (hf : ‖f‖ = 1)

@@ -25,7 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
   [MeasurableSpace E] [BorelSpace E]
 
 /-- The ball-deficit estimate for Borel functions that are subharmonic on
-line sections: the ball average dominates the central value.-/
+line sections: the ball average dominates the central value.
+@isnad1 id=le.4h7v.s7.1d39f226f497 from=translated src=- shape=c6084720 vocab=42f055a3
+-/
 theorem LineSubharmonicOn.ball_deficit_le {u : E → ℝ} {D : Set E}
     (hl : LineSubharmonicOn u D) (hu : Measurable u) (μ : Measure E) [μ.IsAddHaarMeasure]
     (a : E) (R C : ℝ) (hBD : ball a R ⊆ D) (hC : ∀ y ∈ ball a R, u y ≤ C) :
@@ -80,7 +82,9 @@ theorem LineSubharmonicOn.ball_deficit_le {u : E → ℝ} {D : Set E}
     ENNReal.ofReal_ne_top).mp hmul
 
 omit [InnerProductSpace ℂ E] [FiniteDimensional ℂ E] in
-/-- Rescaling a ball integral to the unit ball.-/
+/-- Rescaling a ball integral to the unit ball.
+@isnad1 id=eq.1h5v.s8.d23523980a25 from=translated src=- shape=d5f9f481 vocab=9daee86b
+-/
 theorem lintegral_ball_eq_ofReal_mul_lintegral_unitBall [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] (μ : Measure E) [μ.IsAddHaarMeasure]
     (g : E → ℝ≥0∞) (z : E) {r : ℝ} (hr : 0 < r) :
@@ -111,7 +115,9 @@ theorem lintegral_ball_eq_ofReal_mul_lintegral_unitBall [NormedSpace ℝ E]
 
 /-- Along every ray the deficit is lower semicontinuous at the center, so by
 Fatou's lemma small ball averages of the deficit exceed any number below the
-central deficit.-/
+central deficit.
+@isnad1 id=ex.6h8v.s8.a576b295ebfb from=translated src=- shape=b72ba37f vocab=f10f961b
+-/
 theorem LineSubharmonicOn.exists_ball_deficit_gt {u : E → ℝ} {D : Set E} (hD : IsOpen D)
     (hl : LineSubharmonicOn u D) (hu : Measurable u) (μ : Measure E) [μ.IsAddHaarMeasure]
     {z : E} (hz : z ∈ D) (C : ℝ) {t : ℝ≥0∞} (ht : t < ENNReal.ofReal (C - u z))
@@ -164,7 +170,9 @@ theorem LineSubharmonicOn.exists_ball_deficit_gt {u : E → ℝ} {D : Set E} (hD
 
 /-- **Upper semicontinuity from ball averages.** A nonnegative Borel function
 that is locally bounded above and subharmonic on every connected component of
-every affine complex-line section of an open set is upper semicontinuous there.-/
+every affine complex-line section of an open set is upper semicontinuous there.
+@isnad1 id=uppersem.5h3v.s7.9e2737ab58da from=translated src=- shape=e3ea2800 vocab=f4941f2c
+-/
 theorem LineSubharmonicOn.upperSemicontinuousOn {u : E → ℝ} {D : Set E} (hD : IsOpen D)
     (hl : LineSubharmonicOn u D) (hu : Measurable u) (hpos : ∀ x ∈ D, 0 ≤ u x)
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r)) : UpperSemicontinuousOn u D := by

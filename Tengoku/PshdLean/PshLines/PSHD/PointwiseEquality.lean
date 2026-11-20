@@ -24,7 +24,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
 
 /-- An almost-everywhere upper bound by an upper semicontinuous function is a
 pointwise upper bound for a Borel function which is locally bounded above and
-subharmonic on line sections.-/
+subharmonic on line sections.
+@isnad1 id=le.7h6v.s7.0b94eeccd278 from=translated src=- shape=39de5c17 vocab=eb733259
+-/
 theorem LineSubharmonicOn.coe_le_of_ae_le {u : E → ℝ} {v : E → EReal} {D : Set E}
     (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hu : Measurable u)
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))
@@ -66,7 +68,9 @@ theorem LineSubharmonicOn.coe_le_of_ae_le {u : E → ℝ} {v : E → EReal} {D :
   linarith
 
 /-- An almost-everywhere upper bound by a Borel function which is subharmonic on
-line sections is a pointwise upper bound for a plurisubharmonic function.-/
+line sections is a pointwise upper bound for a plurisubharmonic function.
+@isnad1 id=le.7h6v.s7.edc4be427e56 from=translated src=- shape=f2baccae vocab=f19a34bd
+-/
 theorem LineSubharmonicOn.le_coe_of_plurisubharmonicOn_of_ae_le {u : E → ℝ} {v : E → EReal}
     {D : Set E} (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hu : Measurable u)
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))
@@ -114,7 +118,9 @@ theorem LineSubharmonicOn.le_coe_of_plurisubharmonicOn_of_ae_le {u : E → ℝ} 
 A Borel function which is locally bounded above and subharmonic on every
 connected component of every affine complex-line section of an open set agrees
 at every point with any plurisubharmonic function equal to it almost
-everywhere.-/
+everywhere.
+@isnad1 id=eq.7h6v.s7.c44875dde872 from=translated src=- shape=aca94369 vocab=08fbc333
+-/
 theorem LineSubharmonicOn.eqOn_of_ae_eq {u : E → ℝ} {v : E → EReal} {D : Set E}
     (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hu : Measurable u)
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))

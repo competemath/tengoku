@@ -15,7 +15,9 @@ open scoped ENNReal
 namespace PshLines.PSHD
 
 /-- The high-value angles on every admissible affine circle have positive
-Lebesgue measure. No ambient measurability assumption is needed.-/
+Lebesgue measure. No ambient measurability assumption is needed.
+@isnad1 id=lt.3h6v.s7.216433eed57b from=translated src=- shape=6ab3fdab vocab=aecb630a
+-/
 theorem volume_highValue_angles_pos
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → ℝ} {U : Set E}

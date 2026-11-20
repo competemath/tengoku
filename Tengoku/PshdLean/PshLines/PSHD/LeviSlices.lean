@@ -30,7 +30,9 @@ omit [FiniteDimensional ℂ E] in
 locally bounded above and subharmonic on every connected component of every
 affine complex-line section of an open set, and a nonnegative smooth compactly
 supported function there, the planar Levi pairing along any complex line is
-nonnegative.-/
+nonnegative.
+@isnad1 id=le.10h6v.s9.f44b4f2fe7df from=translated src=- shape=616511ae vocab=651a0535
+-/
 theorem LineSubharmonicOn.integral_line_mul_leviForm_nonneg {u : E → ℝ} {D : Set E}
     (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hu : Measurable u)
     (hpos : ∀ x ∈ D, 0 ≤ u x) (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))
@@ -87,7 +89,9 @@ as in the article). For a nonnegative Borel function which is locally bounded
 above and subharmonic on every connected component of every affine complex-line
 section of an open set, every constant-direction Levi distribution is positive:
 by Fubini's theorem over `(ℂ ∙ a)ᗮ × ℂ`, its value on a nonnegative test function
-is a positive multiple of an integral of nonnegative planar pairings.-/
+is a positive multiple of an integral of nonnegative planar pairings.
+@isnad1 id=hasnonne.5h4v.s8.58cec3b33650 from=translated src=- shape=fb008459 vocab=2ab2af18
+-/
 theorem LineSubharmonicOn.hasNonnegativeDistributionalLevi_of_slices {Ω : Opens E} {u : E → ℝ}
     (hl : LineSubharmonicOn u Ω) (hu : Measurable u) (hpos : ∀ x ∈ Ω, 0 ≤ u x)
     (hbdd : ∀ p ∈ Ω, ∃ r > 0, BddAbove (u '' ball p r))

@@ -15,7 +15,9 @@ open scoped Topology
 namespace PshLines.PSHD
 
 /-- Moving the center of a ball changes the integral continuously at centers
-whose boundary sphere is null.-/
+whose boundary sphere is null.
+@isnad1 id=continuo.2h5v.s6.50159fe717b2 from=translated src=- shape=dfc73ca5 vocab=a65ecf46
+-/
 theorem continuousAt_integral_ball
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X]
     [OpensMeasurableSpace X] {μ : Measure X} {f : X → ℝ}

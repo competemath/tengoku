@@ -17,7 +17,9 @@ open scoped ENNReal
 namespace PshLines.PSHD
 
 /-- Every measurable choice on prescribed affine circles has energy bounded
-by the same radial/Hermitian parameter integral.-/
+by the same radial/Hermitian parameter integral.
+@isnad1 id=le.3h6v.s11.6bf30732ddca from=translated src=- shape=7fc9196d vocab=d258542e
+-/
 theorem rieszEnergy_star_le
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
@@ -45,7 +47,9 @@ theorem rieszEnergy_star_le
   simpa [heq, hfeq, hz, hw] using h
 
 /-- The high-value annulus probability measure with its phase-independent
-energy bound. No finiteness of the parameter integral is assumed or asserted.-/
+energy bound. No finiteness of the parameter integral is assumed or asserted.
+@isnad1 id=ex.4h7v.s11.9c231c059fc8 from=translated src=- shape=f6de4f8c vocab=fcc1c804
+-/
 theorem exists_highValue_annulus_energy_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]

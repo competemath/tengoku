@@ -31,6 +31,9 @@ def pshIntegrabilityLocus (u : E → EReal) (μ : Measure E) : Set E :=
     (∀ᵐ y ∂μ.restrict V, u y ≠ ⊤ ∧ u y ≠ ⊥) ∧
     IntegrableOn (fun y => (u y).toReal) V μ}
 
+/--
+@isnad1 id=isopen.0h3v.s5.510d1990a053 from=translated src=- shape=15df7a28 vocab=6bdbfd45
+-/
 theorem isOpen_pshIntegrabilityLocus (u : E → EReal) (μ : Measure E) :
     IsOpen (pshIntegrabilityLocus u μ) := by
   apply isOpen_iff_mem_nhds.mpr
@@ -42,7 +45,9 @@ variable [BorelSpace E] [NormedSpace ℂ E] [NormedSpace ℝ E] [IsScalarTower �
 variable [FiniteDimensional ℝ E] {u : E → EReal} {x : E}
 
 /-- A PSH germ with finite value controls a neighborhood in the actual
-almost-everywhere finite and integrable sense.-/
+almost-everywhere finite and integrable sense.
+@isnad1 id=mem.2h4v.s8.8628f816977d from=translated src=- shape=c9b1eb2a vocab=b63144ae
+-/
 theorem PlurisubharmonicAt.mem_pshIntegrabilityLocus
     (hu : PlurisubharmonicAt u x) (μ : Measure E) [μ.IsAddHaarMeasure]
     (hx : u x ≠ ⊥) : x ∈ pshIntegrabilityLocus u μ := by
@@ -51,6 +56,9 @@ theorem PlurisubharmonicAt.mem_pshIntegrabilityLocus
   have hball := huW.ae_finite_and_integrableOn_ball μ x hR hB hx
   exact ⟨ball x R, isOpen_ball, mem_ball_self hR, hball.1, hball.2.1⟩
 
+/--
+@isnad1 id=integrab.2h4v.s8.a6995728e5d9 from=translated src=- shape=5c8cfa5d vocab=63966a09
+-/
 theorem PlurisubharmonicAt.integrableAtFilter_toReal
     (hu : PlurisubharmonicAt u x) (μ : Measure E) [μ.IsAddHaarMeasure]
     (hx : u x ≠ ⊥) : IntegrableAtFilter (fun y => (u y).toReal) (𝓝 x) μ := by
@@ -58,7 +66,9 @@ theorem PlurisubharmonicAt.integrableAtFilter_toReal
   exact ⟨V, hV.mem_nhds hxV, hI⟩
 
 /-- At every PSH germ, the good locus contains its limit points. A nearby
-finite center is obtained from positive measure, not from upper semicontinuity.-/
+finite center is obtained from positive measure, not from upper semicontinuity.
+@isnad1 id=mem.2h4v.s8.55d89b32e31d from=translated src=- shape=e8b7aed5 vocab=946bd92f
+-/
 theorem PlurisubharmonicAt.mem_pshIntegrabilityLocus_of_mem_closure
     (hu : PlurisubharmonicAt u x) (μ : Measure E) [μ.IsAddHaarMeasure]
     (hx : x ∈ closure (pshIntegrabilityLocus u μ)) :
@@ -89,7 +99,9 @@ theorem PlurisubharmonicAt.mem_pshIntegrabilityLocus_of_mem_closure
   exact ⟨ball y (R / 2), isOpen_ball, hxB, hball.1, hball.2.1⟩
 
 /-- One finite point propagates the good locus throughout a preconnected set
-of PSH germs. The set need not itself be open.-/
+of PSH germs. The set need not itself be open.
+@isnad1 id=le.3h4v.s8.5ac70013ae97 from=translated src=- shape=ebfa0dcc vocab=b84de8d9
+-/
 theorem PlurisubharmonicOn.subset_pshIntegrabilityLocus {U : Set E}
     (hu : PlurisubharmonicOn u U) (μ : Measure E) [μ.IsAddHaarMeasure]
     (hU : IsPreconnected U) (hne : ∃ a ∈ U, u a ≠ ⊥) :
@@ -101,7 +113,9 @@ theorem PlurisubharmonicOn.subset_pshIntegrabilityLocus {U : Set E}
   exact (hu x hxU).mem_pshIntegrabilityLocus_of_mem_closure μ hxG
 
 /-- A nontrivial PSH potential is locally integrable on every preconnected
-domain of its ambient germs.-/
+domain of its ambient germs.
+@isnad1 id=locallyi.3h4v.s8.327c85ff886a from=translated src=- shape=43cc92af vocab=751fd5df
+-/
 theorem PlurisubharmonicOn.locallyIntegrableOn_toReal {U : Set E}
     (hu : PlurisubharmonicOn u U) (μ : Measure E) [μ.IsAddHaarMeasure]
     (hU : IsPreconnected U) (hne : ∃ a ∈ U, u a ≠ ⊥) :

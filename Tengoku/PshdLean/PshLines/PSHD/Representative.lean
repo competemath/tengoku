@@ -27,7 +27,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
 /-- **A plurisubharmonic representative** (Step 3 of Proposition 2.1). A
 nonnegative Borel function which is locally bounded above and subharmonic on
 every connected component of every affine complex-line section of an open set
-agrees almost everywhere with a plurisubharmonic function.-/
+agrees almost everywhere with a plurisubharmonic function.
+@isnad1 id=ex.5h4v.s7.34cefdb31bd8 from=translated src=- shape=55147a6a vocab=f19a34bd
+-/
 theorem LineSubharmonicOn.exists_plurisubharmonicOn_ae_eq {u : E → ℝ} {D : Set E}
     (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hu : Measurable u)
     (hpos : ∀ x ∈ D, 0 ≤ u x) (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))

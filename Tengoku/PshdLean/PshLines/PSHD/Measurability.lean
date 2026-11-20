@@ -19,7 +19,9 @@ open scoped Topology ENNReal
 namespace PshLines.PSHD
 
 /-- Reverse Fatou preserves upper semicontinuity under a common integrable
-majorant. No joint measurability of `f` is assumed.-/
+majorant. No joint measurability of `f` is assumed.
+@isnad1 id=uppersem.4h5v.s6.1ce6757c8ce9 from=translated src=- shape=de69913d vocab=ec24a082
+-/
 theorem upperSemicontinuous_lintegral_of_dominated
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace Y] {μ : Measure Y} {f : X → Y → ℝ≥0∞}
@@ -46,7 +48,9 @@ theorem upperSemicontinuous_lintegral_of_dominated
   exact (hx n).trans hn
 
 /-- Finite upper truncations have upper semicontinuous section integrals on
-a finite measure space, even when the untruncated function is unbounded.-/
+a finite measure space, even when the untruncated function is unbounded.
+@isnad1 id=uppersem.3h5v.s6.98ba39b451f4 from=translated src=- shape=6bcd10fb vocab=9411a46a
+-/
 theorem upperSemicontinuous_lintegral_min
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace Y] {μ : Measure Y} [IsFiniteMeasure μ]
@@ -64,7 +68,9 @@ theorem upperSemicontinuous_lintegral_min
       ENNReal.mul_ne_top hN (measure_ne_top μ univ)
 
 /-- A finite nonnegative integral over a moving ball is continuous whenever
-the boundary sphere is null.-/
+the boundary sphere is null.
+@isnad1 id=continuo.3h5v.s6.81bdf0560a1a from=translated src=- shape=85f86165 vocab=b4b915fa
+-/
 theorem continuousAt_lintegral_ball
     {Y : Type*} [PseudoMetricSpace Y] [MeasurableSpace Y]
     [OpensMeasurableSpace Y] {μ : Measure Y} {f : Y → ℝ≥0∞}
@@ -86,7 +92,9 @@ theorem continuousAt_lintegral_ball
 /-- Joint measurability of truncated moving-ball integrals follows from
 section measurability and upper semicontinuity, without joint measurability
 of the original integrand. The finite measure may be a restriction to a
-larger disc.-/
+larger disc.
+@isnad1 id=measurab.4h6v.s7.434912262f41 from=translated src=- shape=efc1f69e vocab=d61f4f3c
+-/
 theorem measurable_lintegral_ball_min
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace X] [OpensMeasurableSpace X]

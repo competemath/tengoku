@@ -36,6 +36,9 @@ def translatedTestFunction (φ : E → ℝ) (hφs : HasCompactSupport φ)
   ⟨fun x => φ (x - z), hφ.comp (contDiff_id.sub contDiff_const),
     hφs.comp_homeomorph (Homeomorph.subRight z), hzΩ⟩
 
+/--
+@isnad1 id=eq.3h5v.s8.ee14bb601f76 from=translated src=- shape=cf08823a vocab=043a18a3
+-/
 @[simp]
 theorem translatedTestFunction_apply (φ : E → ℝ) (hφs : HasCompactSupport φ)
     (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (z : E)
@@ -43,7 +46,9 @@ theorem translatedTestFunction_apply (φ : E → ℝ) (hφs : HasCompactSupport 
     translatedTestFunction φ hφs hφ z hzΩ x = φ (x - z) := rfl
 
 /-- Translation commutes with the actual iterated real derivative, including
-at points where no differentiability assumption is supplied.-/
+at points where no differentiability assumption is supplied.
+@isnad1 id=eq.0h6v.s6.b7b7f4f40ff1 from=translated src=- shape=fde0fb1b vocab=f70eea6c
+-/
 theorem realHessian_comp_sub (φ : E → ℝ) (z x v w : E) :
     realHessian (fun y => φ (y - z)) x v w = realHessian φ (x - z) v w := by
   simp only [realHessian, iteratedFDeriv_comp_sub]
@@ -52,6 +57,9 @@ section Complex
 
 variable [NormedSpace ℂ E]
 
+/--
+@isnad1 id=eq.0h5v.s6.6dabf178189d from=translated src=- shape=17448bf8 vocab=25f1ba8d
+-/
 theorem leviForm_comp_sub (φ : E → ℝ) (z x v : E) :
     leviForm (fun y => φ (y - z)) x v = leviForm φ (x - z) v := by
   simp only [leviForm, realHessian_comp_sub]
@@ -63,7 +71,9 @@ variable {μ : Measure E} [SFinite μ] [μ.IsAddLeftInvariant]
 variable {u g φ : E → ℝ}
 
 /-- Equality of the density on the translated support is enough for the
-classical Levi form to equal the distributional Levi pairing.-/
+classical Levi form to equal the distributional Levi pairing.
+@isnad1 id=eq.6h8v.s11.d8661e1ba79f from=translated src=- shape=9d2827e6 vocab=a6c49d55
+-/
 theorem leviForm_translationPairing_eq_distributionalLevi_of_eqOn
     (hg : LocallyIntegrable g μ) (hu : LocallyIntegrableOn u Ω μ)
     (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ)
@@ -87,7 +97,9 @@ theorem leviForm_translationPairing_eq_distributionalLevi_of_eqOn
         leviForm_eq_zero_of_notMem_tsupport hx v
     rw [hzero, mul_zero, mul_zero]
 
-/-- Positivity is tested against the actual nonnegative translated kernel.-/
+/-- Positivity is tested against the actual nonnegative translated kernel.
+@isnad1 id=le.8h8v.s8.579414981cc6 from=translated src=- shape=551ffbdb vocab=53003ab4
+-/
 theorem leviForm_translationPairing_nonneg_of_eqOn
     (hg : LocallyIntegrable g μ) (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))
@@ -100,7 +112,9 @@ theorem leviForm_translationPairing_nonneg_of_eqOn
     hg hu hφs hφ z hzΩ hgu v]
   exact hT v (translatedTestFunction φ hφs hφ z hzΩ) (fun x => hφn (x - z))
 
-/-- A globally locally integrable density can be regularized directly.-/
+/-- A globally locally integrable density can be regularized directly.
+@isnad1 id=le.6h7v.s8.7ae20210ae10 from=translated src=- shape=ef969118 vocab=5fced5bb
+-/
 theorem leviForm_translationPairing_nonneg
     (hu : LocallyIntegrable u μ)
     (hT : HasNonnegativeDistributionalLevi
@@ -116,6 +130,9 @@ section Plurisubharmonic
 
 variable [IsScalarTower ℝ ℂ E] {U : Set E}
 
+/--
+@isnad1 id=discpsho.6h6v.s8.32ff076a4b17 from=translated src=- shape=60a7c9f7 vocab=588cc892
+-/
 theorem discPshOn_translationPairing
     (hu : LocallyIntegrable u μ)
     (hT : HasNonnegativeDistributionalLevi
@@ -130,6 +147,9 @@ theorem discPshOn_translationPairing
   intro z hz v
   exact leviForm_translationPairing_nonneg hu hT hφs hφ hφn z (hUΩ z hz) v
 
+/--
+@isnad1 id=plurisub.7h6v.s8.9e9fcc14fd73 from=translated src=- shape=a3644451 vocab=d9f8eb1a
+-/
 theorem plurisubharmonicOn_translationPairing
     (hu : LocallyIntegrable u μ)
     (hT : HasNonnegativeDistributionalLevi
@@ -151,7 +171,9 @@ variable {μ : Measure E} {u φ : E → ℝ} {K U : Set E}
 
 omit [NormedSpace ℝ E] in
 /-- Local integrability on the domain gives a globally integrable compact
-cutoff. No finiteness assumption on the measure of the whole domain is used.-/
+cutoff. No finiteness assumption on the measure of the whole domain is used.
+@isnad1 id=integrab.3h5v.s7.18d5b4e75809 from=translated src=- shape=49f50b8a vocab=8c5bda44
+-/
 theorem integrable_indicator_of_locallyIntegrableOn_isCompact
     (hu : LocallyIntegrableOn u Ω μ) (hK : IsCompact K) (hKΩ : K ⊆ Ω) :
     Integrable (K.indicator u) μ :=
@@ -159,7 +181,9 @@ theorem integrable_indicator_of_locallyIntegrableOn_isCompact
 
 omit [NormedSpace ℝ E] [BorelSpace E] in
 /-- The cutoff does not change the scalar pairing when it contains the entire
-translated kernel support. This identity itself needs no integrability premise.-/
+translated kernel support. This identity itself needs no integrability premise.
+@isnad1 id=eq.1h6v.s6.fd8e8a209ee7 from=translated src=- shape=d04dc625 vocab=56f9a7f5
+-/
 theorem translationPairing_indicator_eq (u φ : E → ℝ) (z : E)
     (hzK : tsupport (fun x => φ (x - z)) ⊆ K) :
     translationPairing μ (K.indicator u) φ z = translationPairing μ u φ z := by
@@ -173,7 +197,9 @@ theorem translationPairing_indicator_eq (u φ : E → ℝ) (z : E)
     rw [hzero, mul_zero, mul_zero]
 
 /-- On an inner set with a common compact support bound, the original scalar
-pairing is smooth despite the density being locally integrable only on Ω.-/
+pairing is smooth despite the density being locally integrable only on Ω.
+@isnad1 id=contdiff.6h7v.s8.84ade1f2fad5 from=translated src=- shape=d1f64bed vocab=7504bf3f
+-/
 theorem contDiffOn_translationPairing_of_locallyIntegrableOn
     (hu : LocallyIntegrableOn u Ω μ)
     (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ)
@@ -188,7 +214,9 @@ theorem contDiffOn_translationPairing_of_locallyIntegrableOn
 variable [NormedSpace ℂ E] [SFinite μ] [μ.IsAddLeftInvariant]
 
 /-- Positive distributional Levi form survives compact localization wherever
-the translated smooth kernel is supported inside the cutoff.-/
+the translated smooth kernel is supported inside the cutoff.
+@isnad1 id=le.8h8v.s8.7dddf7bbb821 from=translated src=- shape=31628d54 vocab=55e0414a
+-/
 theorem leviForm_translationPairing_indicator_nonneg
     (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))
@@ -205,7 +233,9 @@ theorem leviForm_translationPairing_indicator_nonneg
 variable [IsScalarTower ℝ ℂ E]
 
 /-- A single compact cutoff gives a globally smooth pairing that is PSH on
-every inner set with translated kernel support inside that compact set.-/
+every inner set with translated kernel support inside that compact set.
+@isnad1 id=discpsho.8h7v.s8.448a898385e7 from=translated src=- shape=e4edf3fb vocab=b0dab9ae
+-/
 theorem discPshOn_translationPairing_indicator
     (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))
@@ -222,7 +252,9 @@ theorem discPshOn_translationPairing_indicator
     hK hKΩ z (hUK z hz) v
 
 /-- The original pairing is PSH on the inner set: compact localization is an
-auxiliary proof device and does not alter any value there.-/
+auxiliary proof device and does not alter any value there.
+@isnad1 id=discpsho.8h7v.s8.1c8306f759ea from=translated src=- shape=696b8337 vocab=fcc0b5d3
+-/
 theorem discPshOn_translationPairing_of_locallyIntegrableOn
     (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))
@@ -236,7 +268,9 @@ theorem discPshOn_translationPairing_of_locallyIntegrableOn
     (translationPairing_indicator_eq u φ z (hUK z hz))
 
 /-- The actual locally integrable density has smooth PSH regularizations on
-open inner domains with a common compact bound for translated kernel supports.-/
+open inner domains with a common compact bound for translated kernel supports.
+@isnad1 id=plurisub.9h7v.s9.6436475261c3 from=translated src=- shape=b9815094 vocab=89f9793b
+-/
 theorem plurisubharmonicOn_translationPairing_of_locallyIntegrableOn
     (hu : LocallyIntegrableOn u Ω μ)
     (hT : HasNonnegativeDistributionalLevi (regularDistribution μ u hu))

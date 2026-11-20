@@ -18,7 +18,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
 
 /-- The transform of the distribution of differences is the squared modulus
-of the original transform.-/
+of the original transform.
+@isnad1 id=eq.0h3v.s7.7ac67c89f4da from=translated src=- shape=8a3906bc vocab=bb9834a3
+-/
 theorem measureFourier_map_sub (μ : Measure E) [SFinite μ] (ξ : E) :
     measureFourier ((μ.prod μ).map (fun p : E × E ↦ p.1 - p.2)) ξ =
       ((‖measureFourier μ ξ‖ ^ 2 : ℝ) : ℂ) := by

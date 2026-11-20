@@ -46,10 +46,16 @@ def testFunctionToCompactlySupportedLM (Ω : Opens E) :
   map_add' φ ψ := by ext x; rfl
   map_smul' c φ := by ext x; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.7ab05f56d17a from=translated src=- shape=e17f3fd0 vocab=47e27a17
+-/
 @[simp]
 theorem testFunctionToCompactlySupportedLM_apply (φ : 𝓓(Ω, ℝ)) (x : Ω) :
     testFunctionToCompactlySupportedLM Ω φ x = φ x := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s10.0640904096d3 from=translated src=- shape=46bdaf95 vocab=f24e7a16
+-/
 theorem testFunctionToCompactlySupportedLM_injective :
     Injective (testFunctionToCompactlySupportedLM Ω) := by
   intro φ ψ h
@@ -63,7 +69,9 @@ theorem testFunctionToCompactlySupportedLM_injective :
 variable [FiniteDimensional ℝ E]
 
 /-- A compact subset of the open domain admits a nonnegative smooth test
-function which is at least one on that compact set.-/
+function which is at least one on that compact set.
+@isnad1 id=ex.2h3v.s8.0e6678966cca from=translated src=- shape=d04e6189 vocab=450d98c8
+-/
 theorem exists_nonneg_testFunction_one_le_on_compact {K : Set E}
     (hK : IsCompact K) (hKΩ : K ⊆ Ω) :
     ∃ φ : 𝓓(Ω, ℝ), (∀ x, 0 ≤ φ x) ∧ ∀ x ∈ K, 1 ≤ φ x := by
@@ -92,7 +100,9 @@ theorem exists_nonneg_testFunction_one_le_on_compact {K : Set E}
       _ ≤ (g a)⁻¹ * g x := mul_le_mul_of_nonneg_left (hmin hx) (inv_nonneg.mpr hga.le)
 
 /-- Every compactly supported continuous function on the domain has a
-nonnegative smooth test function dominating its absolute value.-/
+nonnegative smooth test function dominating its absolute value.
+@isnad1 id=ex.0h3v.s9.fd4b77047cc7 from=translated src=- shape=77972ba1 vocab=50e23b98
+-/
 theorem exists_nonneg_testFunction_abs_le (f : C_c(Ω, ℝ)) :
     ∃ φ : 𝓓(Ω, ℝ), (∀ x, 0 ≤ φ x) ∧ ∀ x : Ω, |f x| ≤ φ x := by
   let K : Set E := Subtype.val '' tsupport f
@@ -114,7 +124,9 @@ theorem exists_nonneg_testFunction_abs_le (f : C_c(Ω, ℝ)) :
     exact mul_nonneg hMn (hχn x)
 
 /-- A positive distribution extends to a positive linear functional on the
-compactly supported continuous functions of the open domain.-/
+compactly supported continuous functions of the open domain.
+@isnad1 id=ex.1h3v.s11.c14a73e1e2f5 from=translated src=- shape=790ce8d6 vocab=d3a17f08
+-/
 theorem PositiveDistribution.exists_positiveLinearMap {T : 𝓓'(Ω, ℝ)}
     (hT : PositiveDistribution T) :
     ∃ Λ : C_c(Ω, ℝ) →ₚ[ℝ] ℝ,
@@ -167,7 +179,9 @@ theorem PositiveDistribution.exists_positiveLinearMap {T : 𝓓'(Ω, ℝ)}
 variable [MeasurableSpace E] [BorelSpace E]
 
 /-- A positive distribution is integration against a regular, locally finite
-Borel measure on its open domain. This is an existence statement only.-/
+Borel measure on its open domain. This is an existence statement only.
+@isnad1 id=ex.1h3v.s10.c8d59a4d23a0 from=translated src=- shape=eee29fa3 vocab=bb7c11f6
+-/
 theorem PositiveDistribution.exists_regular_measure {T : 𝓓'(Ω, ℝ)}
     (hT : PositiveDistribution T) :
     ∃ ν : Measure Ω, ν.Regular ∧ IsLocallyFiniteMeasure ν ∧

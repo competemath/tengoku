@@ -19,7 +19,9 @@ namespace PshLines
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-/-- Unit discs in directions shorter than the ball radius stay in the ball.-/
+/-- Unit discs in directions shorter than the ball radius stay in the ball.
+@isnad1 id=le.1h4v.s5.fdcc32de9d24 from=translated src=- shape=6604949c vocab=db04fddd
+-/
 theorem affineClosedDisc_subset_ball (a v : E) {R : ℝ} (hv : ‖v‖ < R) :
     affineClosedDisc a v 1 ⊆ ball a R := by
   rintro _ ⟨z, hz, rfl⟩
@@ -29,7 +31,9 @@ theorem affineClosedDisc_subset_ball (a v : E) {R : ℝ} (hv : ‖v‖ < R) :
 variable [MeasurableSpace E] [BorelSpace E]
 
 /-- Local upper semicontinuity gives a measurable zero extension of the deficit.
-No regularity outside the indicated measurable set is assumed.-/
+No regularity outside the indicated measurable set is assumed.
+@isnad1 id=measurab.3h5v.s6.fe8f405b4a75 from=translated src=- shape=c4b9c450 vocab=8fdde5fa
+-/
 theorem DiscPshOn.measurable_indicator_deficit {u : E → EReal} {U s : Set E}
     (hu : DiscPshOn u U) (hs : MeasurableSet s) (hsU : s ⊆ U) (C : ℝ) :
     Measurable (s.indicator (fun x => ((C : EReal) - u x).toENNReal)) := by
@@ -53,6 +57,9 @@ theorem DiscPshOn.measurable_indicator_deficit {u : E → EReal} {U s : Set E}
     rw [hzero]
     exact measurable_const
 
+/--
+@isnad1 id=aemeasur.3h6v.s6.8ce2bfc0b13b from=translated src=- shape=7c4a4f03 vocab=ef28face
+-/
 theorem DiscPshOn.aemeasurable_deficit_restrict {u : E → EReal} {U s : Set E}
     (hu : DiscPshOn u U) (hs : MeasurableSet s) (hsU : s ⊆ U) (C : ℝ)
     (μ : Measure E) :
@@ -61,7 +68,9 @@ theorem DiscPshOn.aemeasurable_deficit_restrict {u : E → EReal} {U s : Set E}
     (hu.measurable_indicator_deficit hs hsU C).aemeasurable
 
 omit [MeasurableSpace E] [BorelSpace E] in
-/-- Compact subsets admit a finite majorant, even if the potential has poles.-/
+/-- Compact subsets admit a finite majorant, even if the potential has poles.
+@isnad1 id=ex.4h4v.s6.c41674915314 from=translated src=- shape=3822d7fc vocab=2fd55ecf
+-/
 theorem DiscPshOn.exists_compact_upper_bound {u : E → EReal} {U K : Set E}
     (hu : DiscPshOn u U) (hK : IsCompact K) (hne : K.Nonempty) (hKU : K ⊆ U) :
     ∃ C : ℝ, ∀ y ∈ K, u y ≤ (C : EReal) := by
@@ -73,7 +82,9 @@ theorem DiscPshOn.exists_compact_upper_bound {u : E → EReal} {U K : Set E}
 variable [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
 
 /-- Integrating the disc criterion over directions gives a ball estimate.
-The center may have value `⊥`; no integrability assumption is used.-/
+The center may have value `⊥`; no integrability assumption is used.
+@isnad1 id=le.3h7v.s8.2a951795237c from=translated src=- shape=b1e6031d vocab=7656a4f7
+-/
 theorem DiscPshOn.ball_deficit_le {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (μ : Measure E) [μ.IsAddHaarMeasure]
     (a : E) (R C : ℝ) (hBU : ball a R ⊆ U)
@@ -126,7 +137,9 @@ theorem DiscPshOn.ball_deficit_le {u : E → EReal} {U : Set E}
     ENNReal.ofReal_ne_top).mp hmul
 
 /-- A finite center of a disc-PSH potential controls an entire interior ball,
-including its almost-everywhere finiteness and actual real representative.-/
+including its almost-everywhere finiteness and actual real representative.
+@isnad1 id=and.4h6v.s8.f2306f2adaee from=translated src=- shape=3e33840a vocab=63dbbf9d
+-/
 theorem DiscPshOn.ae_finite_and_integrableOn_ball {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (μ : Measure E) [μ.IsAddHaarMeasure]
     (a : E) {R : ℝ} (hR : 0 < R) (hB : closedBall a R ⊆ U) (ha : u a ≠ ⊥) :

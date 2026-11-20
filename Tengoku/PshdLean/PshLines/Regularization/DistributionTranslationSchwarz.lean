@@ -24,7 +24,9 @@ namespace PshLines.Regularization
 
 /-- For a `C∞` map, differentiating in a fixed direction commutes with every
 iterated Fréchet derivative, after the cyclic permutation supplied by Schwarz
-symmetry.-/
+symmetry.
+@isnad1 id=eq.1h6v.s10.38fcded2643f from=translated src=- shape=d395430e vocab=a9a689e8
+-/
 theorem iteratedFDeriv_fderiv_apply_cyclic
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -99,7 +101,9 @@ theorem iteratedFDeriv_fderiv_apply_cyclic
         ((hG2.contDiffAt.isSymmSndFDerivAt (by norm_num)) (m 0) h)
 
 /-- Spatial differentiation of the first translation jet is the directional
-derivative of the corresponding spatial derivative of the kernel.-/
+derivative of the corresponding spatial derivative of the kernel.
+@isnad1 id=eq.1h6v.s10.73505e61816d from=translated src=- shape=6c2d8b1c vocab=f827af12
+-/
 theorem iteratedFDeriv_translationFirstJet
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (κ : E → ℝ) (hκ : ContDiff ℝ (⊤ : ℕ∞) κ)
@@ -112,7 +116,9 @@ theorem iteratedFDeriv_translationFirstJet
 
 /-- Every spatial derivative of the first translation remainder is exactly
 the first-order Taylor remainder of the corresponding spatial derivative of
-the kernel.-/
+the kernel.
+@isnad1 id=eq.1h6v.s11.9b312385dfcf from=translated src=- shape=35c600e1 vocab=aa3e19fa
+-/
 theorem iteratedFDeriv_translationFirstRemainder
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (κ : E → ℝ) (hκ : ContDiff ℝ (⊤ : ℕ∞) κ)
@@ -155,13 +161,18 @@ noncomputable def compactNormSup
     (K : Compacts E) (f : E → F) : ℝ :=
   max 0 (⨆ y : (K : Set E), ‖f y‖)
 
+/--
+@isnad1 id=le.0h4v.s5.1746d5906153 from=translated src=- shape=d5b469ce vocab=403bfa9f
+-/
 theorem compactNormSup_nonneg
     {E F : Type*} [TopologicalSpace E] [SeminormedAddCommGroup F]
     (K : Compacts E) (f : E → F) :
     0 ≤ compactNormSup K f :=
   le_max_left _ _
 
-/-- Every point of the compact set is bounded by `compactNormSup`.-/
+/-- Every point of the compact set is bounded by `compactNormSup`.
+@isnad1 id=le.2h5v.s6.087ddae2c936 from=translated src=- shape=cd8a2497 vocab=f04e7bce
+-/
 theorem norm_le_compactNormSup
     {E F : Type*} [TopologicalSpace E] [SeminormedAddCommGroup F]
     (K : Compacts E) (f : E → F) (hf : Continuous f)
@@ -185,6 +196,9 @@ noncomputable def translationDerivativeRemainderSup
   compactNormSup K
     (fun y ↦ iteratedFDeriv ℝ r (translationFirstRemainder κ z h) y)
 
+/--
+@isnad1 id=le.0h6v.s5.5e113f3ab1f5 from=translated src=- shape=b6377896 vocab=4d569335
+-/
 theorem translationDerivativeRemainderSup_nonneg
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (κ : E → ℝ) (K : Compacts E) (z : E) (r : ℕ) (h : E) :
@@ -192,7 +206,9 @@ theorem translationDerivativeRemainderSup_nonneg
   compactNormSup_nonneg K _
 
 /-- The raw uniform remainder bound for every fixed spatial derivative order
-is little-o of the translation increment.-/
+is little-o of the translation increment.
+@isnad1 id=islittle.1h5v.s6.caf394bf3b0b from=translated src=- shape=cff19aac vocab=e87a3000
+-/
 theorem translationDerivativeRemainderSup_isLittleO
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -235,7 +251,9 @@ noncomputable def cutoffDerivativeSup
   compactNormSup K (fun y ↦ iteratedFDeriv ℝ r (χ : E → ℝ) y)
 
 /-- The cutoff translation remainder is little-o in every individual
-fixed-support seminorm, with all derivative bounds constructed internally.-/
+fixed-support seminorm, with all derivative bounds constructed internally.
+@isnad1 id=islittle.2h7v.s9.da3a40383249 from=translated src=- shape=0b20c07b vocab=3f2922ae
+-/
 theorem cutoffTranslationFirstRemainder_seminorm_isLittleO_actual
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -271,7 +289,9 @@ theorem cutoffTranslationFirstRemainder_seminorm_isLittleO_actual
     exact translationDerivativeRemainderSup_isLittleO κ hκ K z j
 
 /-- The supremum of all fixed-support seminorms through any prescribed finite
-order is little-o of the translation increment.-/
+order is little-o of the translation increment.
+@isnad1 id=islittle.2h7v.s9.0e2a0ed3345a from=translated src=- shape=899ccfbd vocab=98b3898d
+-/
 theorem cutoffTranslationFirstRemainder_finiteOrderSeminorm_isLittleO_actual
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -324,7 +344,9 @@ theorem cutoffTranslationFirstRemainder_finiteOrderSeminorm_isLittleO_actual
 
 /-- Pairing a distribution with a smooth cutoff-translated kernel is
 Fréchet differentiable in the translation parameter, with derivative given
-by the first translation jet.-/
+by the first translation jet.
+@isnad1 id=hasfderi.3h7v.s10.8f7e436a3c31 from=translated src=- shape=04af7a00 vocab=2343eb06
+-/
 theorem distributionPairing_hasFDerivAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

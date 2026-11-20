@@ -23,19 +23,25 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 variable {Ω : Opens E}
 
 /-- At infinite test-function order the bundled directional derivative is the
-classical Fréchet derivative evaluated on the direction.-/
+classical Fréchet derivative evaluated on the direction.
+@isnad1 id=eq.0h5v.s10.357bb5ec9ddc from=translated src=- shape=fff39451 vocab=7ca56e69
+-/
 theorem testFunction_lineDerivCLM_apply_eq_fderiv (φ : 𝓓(Ω, ℝ)) (v x : E) :
     TestFunction.lineDerivCLM (n := ⊤) (k := ⊤) ℝ v φ x = fderiv ℝ φ x v := by
   rw [TestFunction.lineDerivCLM_eq_fderivCLM,
     TestFunction.fderivCLM_apply_of_le φ (by simp)]
 
-/-- A constant-direction derivative of a C² function is C¹.-/
+/-- A constant-direction derivative of a C² function is C¹.
+@isnad1 id=contdiff.1h3v.s8.e9612ac2af1f from=translated src=- shape=468061cb vocab=87b18e64
+-/
 theorem contDiff_fderiv_apply_of_two {u : E → ℝ} (hu : ContDiff ℝ 2 u) (v : E) :
     ContDiff ℝ 1 (fun x => fderiv ℝ u x v) :=
   (hu.fderiv_right (m := 1) (by norm_num)).clm_apply contDiff_const
 
 /-- Differentiating the first directional derivative gives the actual
-Fréchet Hessian, in the indicated order of its arguments.-/
+Fréchet Hessian, in the indicated order of its arguments.
+@isnad1 id=eq.1h5v.s9.0e0570a699c6 from=translated src=- shape=88ba3c5d vocab=75d4d6a8
+-/
 theorem fderiv_fderiv_apply_eq_realHessian {u : E → ℝ} (hu : ContDiff ℝ 2 u)
     (x v w : E) :
     fderiv ℝ (fun y => fderiv ℝ u y w) x v = realHessian u x v w := by
@@ -44,6 +50,9 @@ theorem fderiv_fderiv_apply_eq_realHessian {u : E → ℝ} (hu : ContDiff ℝ 2 
   rw [fderiv_clm_apply hD (differentiableAt_const w)]
   simp [realHessian_eq_fderiv]
 
+/--
+@isnad1 id=continuo.1h4v.s6.f8fbb54ce310 from=translated src=- shape=620e3743 vocab=55ee9ec8
+-/
 theorem continuous_realHessian {u : E → ℝ} (hu : ContDiff ℝ 2 u) (v w : E) :
     Continuous (fun x => realHessian u x v w) := by
   have hD : Continuous (fderiv ℝ (fderiv ℝ u)) :=
@@ -52,6 +61,9 @@ theorem continuous_realHessian {u : E → ℝ} (hu : ContDiff ℝ 2 u) (v w : E)
     (hD.clm_apply continuous_const).clm_apply continuous_const
   simpa only [realHessian_eq_fderiv] using h
 
+/--
+@isnad1 id=continuo.1h3v.s6.b0e496b1863b from=translated src=- shape=039ddd81 vocab=ce2df1f7
+-/
 theorem continuous_leviForm [NormedSpace ℂ E] {u : E → ℝ}
     (hu : ContDiff ℝ 2 u) (v : E) : Continuous (fun x => leviForm u x v) := by
   exact ((continuous_realHessian hu v v).add
@@ -63,7 +75,9 @@ variable [MeasurableSpace E] [BorelSpace E] [FiniteDimensional ℝ E]
 variable {μ : Measure E} [Measure.IsAddHaarMeasure μ]
 
 /-- Continuous differentiability supplies the local integrability of each
-directional derivative; this is not an extra density hypothesis.-/
+directional derivative; this is not an extra density hypothesis.
+@isnad1 id=locallyi.1h5v.s8.c95791d9762e from=translated src=- shape=d2e4fbd5 vocab=34bbc4fc
+-/
 theorem locallyIntegrableOn_fderiv_of_contDiff {u : E → ℝ}
     (hu : ContDiff ℝ 1 u) (v : E) :
     LocallyIntegrableOn (fun x => fderiv ℝ u x v) Ω μ :=
@@ -71,7 +85,9 @@ theorem locallyIntegrableOn_fderiv_of_contDiff {u : E → ℝ}
     |>.locallyIntegrableOn Ω
 
 /-- The distributional directional derivative of a C¹ density is its actual
-classical directional derivative. All derivative orders are explicitly `⊤`.-/
+classical directional derivative. All derivative orders are explicitly `⊤`.
+@isnad1 id=eq.1h5v.s11.5776ac34fb10 from=translated src=- shape=f7888991 vocab=bf19d1e1
+-/
 theorem lineDerivCLM_regularDistribution {u : E → ℝ}
     (hu : ContDiff ℝ 1 u) (v : E) :
     Distribution.lineDerivCLM (n := ⊤) (k := ⊤) v
@@ -101,7 +117,9 @@ theorem lineDerivCLM_regularDistribution {u : E → ℝ}
   simpa only [testFunction_lineDerivCLM_apply_eq_fderiv] using hibp.symm
 
 /-- Two distributional derivatives of a C² density have its real Hessian as
-their regular density.-/
+their regular density.
+@isnad1 id=eq.1h6v.s12.19991f2e0f89 from=translated src=- shape=37a021b6 vocab=89e699c2
+-/
 theorem lineDerivCLM_lineDerivCLM_regularDistribution {u : E → ℝ}
     (hu : ContDiff ℝ 2 u) (v w : E) :
     Distribution.lineDerivCLM (n := ⊤) (k := ⊤) v
@@ -120,14 +138,18 @@ theorem lineDerivCLM_lineDerivCLM_regularDistribution {u : E → ℝ}
 
 variable [NormedSpace ℂ E]
 
-/-- The classical C² Levi form defines a locally integrable density.-/
+/-- The classical C² Levi form defines a locally integrable density.
+@isnad1 id=locallyi.1h5v.s7.7a861a085158 from=translated src=- shape=206d8b57 vocab=fce9d8b8
+-/
 theorem locallyIntegrableOn_leviForm_of_contDiff {u : E → ℝ}
     (hu : ContDiff ℝ 2 u) (v : E) :
     LocallyIntegrableOn (fun x => leviForm u x v) Ω μ :=
   (continuous_leviForm hu v).locallyIntegrable.locallyIntegrableOn Ω
 
 /-- The distributional Levi operator agrees with the regular distribution
-whose density is the classical Levi form, with the same factor one quarter.-/
+whose density is the classical Levi form, with the same factor one quarter.
+@isnad1 id=eq.1h5v.s11.d68abfdce4d8 from=translated src=- shape=477bdd6f vocab=a48f5051
+-/
 theorem distributionalLeviCLM_regularDistribution {u : E → ℝ}
     (hu : ContDiff ℝ 2 u) (v : E) :
     distributionalLeviCLM v
@@ -154,7 +176,9 @@ theorem distributionalLeviCLM_regularDistribution {u : E → ℝ}
 
 /-- A nonnegative classical Levi form on the test-function domain produces
 nonnegative Levi distributions. No sign condition outside that domain is
-needed, because the test functions vanish there.-/
+needed, because the test functions vanish there.
+@isnad1 id=hasnonne.2h4v.s7.95760282e655 from=translated src=- shape=46cef901 vocab=a166bb7a
+-/
 theorem hasNonnegativeDistributionalLevi_regularDistribution {u : E → ℝ}
     (hu : ContDiff ℝ 2 u) (hL : ∀ x ∈ Ω, ∀ v : E, 0 ≤ leviForm u x v) :
     HasNonnegativeDistributionalLevi

@@ -24,7 +24,9 @@ open FirstPass
 open HolomorphicPullback
 open RadialPoissonCertificate
 
-/-- The normalized squared-radius profile is nonnegative.-/
+/-- The normalized squared-radius profile is nonnegative.
+@isnad1 id=le.1h4v.s5.4097f3e2b98a from=translated src=- shape=a9eefbaf vocab=910266f9
+-/
 theorem explicitRadialKernelSqProfile_nonneg
     {n : ℕ} (R : ℝ) (hR : 0 < R) (j : ℕ) (s : ℝ) :
     0 ≤ explicitRadialKernelSqProfile (n := n) R hR j s := by
@@ -32,7 +34,9 @@ theorem explicitRadialKernelSqProfile_nonneg
     (explicitRadialRaw_integral_pos (n := n) R hR j).le
 
 /-- In positive complex dimension, dilation of the spatial kernel becomes
-the corresponding dilation of its squared-radius profile.-/
+the corresponding dilation of its squared-radius profile.
+@isnad1 id=eq.3h5v.s7.3b235b8e218c from=translated src=- shape=188c4143 vocab=4b85da45
+-/
 theorem explicitRadialKernelSqProfile_scale
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     {s : ℝ} (hs : 0 ≤ s) :
@@ -63,7 +67,9 @@ noncomputable def radialKernelWeightedCumulative
   ∫ t in 0..s, t ^ (n - 1) *
     explicitRadialKernelSqProfile (n := n) R hR j t
 
-/-- Exact scaling law for weighted cumulative radial mass.-/
+/-- Exact scaling law for weighted cumulative radial mass.
+@isnad1 id=eq.3h5v.s6.d9adee1f00f6 from=translated src=- shape=b56f36d2 vocab=ec5ecfc6
+-/
 theorem radialKernelWeightedCumulative_scale
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     {s : ℝ} (hs : 0 ≤ s) :
@@ -112,7 +118,9 @@ theorem radialKernelWeightedCumulative_scale
       rfl
 
 /-- Cumulative weighted mass at a fixed scale is monotone on the nonnegative
-half-line.-/
+half-line.
+@isnad1 id=le.3h5v.s5.0b71787b7a60 from=translated src=- shape=3649bb2d vocab=33fb44a8
+-/
 theorem radialKernelWeightedCumulative_mono
     {n : ℕ} (R : ℝ) (hR : 0 < R) (j : ℕ)
     {s t : ℝ} (hs : 0 ≤ s) (hst : s ≤ t) :
@@ -133,7 +141,9 @@ theorem radialKernelWeightedCumulative_mono
     (hfcont.intervalIntegrable 0 t)
 
 /-- For increasing scale indices, the weighted cumulative difference of the
-two normalized radial kernels is nonpositive.-/
+two normalized radial kernels is nonpositive.
+@isnad1 id=le.4h5v.s6.be70ec31c653 from=translated src=- shape=6e63bb21 vocab=e753a59f
+-/
 theorem radialWeightedCumulative_explicitRadialKernelSqDifference_nonpos
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {s : ℝ} (hs : 0 ≤ s) :

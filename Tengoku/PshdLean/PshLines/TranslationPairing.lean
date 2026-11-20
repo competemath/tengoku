@@ -30,6 +30,9 @@ def translationPairing (u φ : E → ℝ) (z : E) : ℝ :=
   ∫ x, u x * φ (x - z) ∂μ
 
 omit [NormedSpace ℝ E] [BorelSpace E] in
+/--
+@isnad1 id=eq.0h4v.s7.4a42726772cf from=translated src=- shape=c8ca7e9f vocab=ad7befc2
+-/
 theorem translationPairing_eq_convolution (u φ : E → ℝ) :
     translationPairing μ u φ = u ⋆[ContinuousLinearMap.mul ℝ ℝ, μ] (fun x => φ (-x)) := by
   funext z
@@ -39,7 +42,9 @@ variable {μ} [SFinite μ] [μ.IsAddLeftInvariant]
 
 omit [NormedSpace ℝ E] [SFinite μ] [μ.IsAddLeftInvariant] in
 /-- Local integrability, together with a compact continuous kernel, suffices
-for integrability of every translated pairing.-/
+for integrability of every translated pairing.
+@isnad1 id=integrab.3h5v.s7.5908333aff5d from=translated src=- shape=0c4ccc92 vocab=e006a85d
+-/
 theorem integrable_translationPairing {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : Continuous φ) (z : E) :
     Integrable (fun x => u x * φ (x - z)) μ := by
@@ -51,7 +56,9 @@ theorem integrable_translationPairing {u φ : E → ℝ}
 
 omit [SFinite μ] [μ.IsAddLeftInvariant] in
 /-- Translation pairings inherit every finite or infinite smoothness order
-of their compact kernel. The density need only be locally integrable.-/
+of their compact kernel. The density need only be locally integrable.
+@isnad1 id=contdiff.3h5v.s7.e35e8639039c from=translated src=- shape=3a16a288 vocab=706bb84f
+-/
 theorem contDiff_translationPairing {u φ : E → ℝ} {n : ℕ∞}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ n φ) :
     ContDiff ℝ n (translationPairing μ u φ) := by
@@ -59,7 +66,9 @@ theorem contDiff_translationPairing {u φ : E → ℝ} {n : ℕ∞}
   exact (hφs.comp_homeomorph (Homeomorph.neg E)).contDiff_convolution_right
     (ContinuousLinearMap.mul ℝ ℝ) hu (hφ.comp contDiff_neg)
 
-/-- The first derivative differentiates the translated kernel with a minus sign.-/
+/-- The first derivative differentiates the translated kernel with a minus sign.
+@isnad1 id=eq.3h6v.s9.6e7610b6a804 from=translated src=- shape=b540ccab vocab=866e52cc
+-/
 theorem fderiv_translationPairing {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 1 φ)
     (z v : E) :
@@ -81,7 +90,9 @@ theorem fderiv_translationPairing {u φ : E → ℝ}
     mul_neg, integral_neg, translationPairing]
 
 /-- The second derivative of the scalar pairing is the integral of the kernel's
-real Hessian. The two signs from translation cancel.-/
+real Hessian. The two signs from translation cancel.
+@isnad1 id=eq.3h7v.s7.3da037cab14e from=translated src=- shape=be358470 vocab=68de92b5
+-/
 theorem realHessian_translationPairing {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 2 φ)
     (z v w : E) :
@@ -101,7 +112,9 @@ theorem realHessian_translationPairing {u φ : E → ℝ}
 
 omit [SFinite μ] [μ.IsAddLeftInvariant] in
 /-- The second-derivative density occurring in the pairing is genuinely
-integrable, because derivatives of the compact kernel retain compact support.-/
+integrable, because derivatives of the compact kernel retain compact support.
+@isnad1 id=integrab.3h7v.s7.aee74ac93584 from=translated src=- shape=315c5d0b vocab=7a22f545
+-/
 theorem integrable_translationPairing_realHessian {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 2 φ)
     (z v w : E) :
@@ -114,7 +127,9 @@ theorem integrable_translationPairing_realHessian {u φ : E → ℝ}
 variable [NormedSpace ℂ E]
 
 /-- The Levi form of the scalar pairing is the pairing with the classical
-Levi form of its translated kernel.-/
+Levi form of its translated kernel.
+@isnad1 id=eq.3h6v.s7.9ed36e869bfb from=translated src=- shape=5d879d4a vocab=fb945b06
+-/
 theorem leviForm_translationPairing {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 2 φ)
     (z v : E) :
@@ -132,14 +147,18 @@ variable [IsScalarTower ℝ ℂ E]
 
 omit [SFinite μ] [μ.IsAddLeftInvariant] in
 /-- Restricting the translation parameter to a complex line gives a C²
-real-valued function of the complex parameter.-/
+real-valued function of the complex parameter.
+@isnad1 id=contdiff.3h5v.s8.434381a6c5e5 from=translated src=- shape=c6052623 vocab=9060be40
+-/
 theorem contDiff_translationPairing_complexLine {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 2 φ)
     (v : E) : ContDiff ℝ 2 (fun z : ℂ => translationPairing μ u φ (z • v)) :=
   (contDiff_translationPairing hu hφs hφ).comp (complexLineLinear v).contDiff
 
 /-- The complex-line Laplacian of the scalar pairing is the integral of the
-two corresponding real Hessian entries of the translated kernel.-/
+two corresponding real Hessian entries of the translated kernel.
+@isnad1 id=eq.3h6v.s9.9b92bb6dbed2 from=translated src=- shape=220363cf vocab=96d04398
+-/
 theorem laplacian_translationPairing_complexLine {u φ : E → ℝ}
     (hu : LocallyIntegrable u μ) (hφs : HasCompactSupport φ) (hφ : ContDiff ℝ 2 φ)
     (z : ℂ) (v : E) :

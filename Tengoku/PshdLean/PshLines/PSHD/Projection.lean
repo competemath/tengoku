@@ -30,16 +30,25 @@ def unitaryProjection (e₀ : E) (U : UnitaryGroup E) (y : E) : (ℂ ∙ e₀)�
   (ℂ ∙ e₀)ᗮ.orthogonalProjectionOnto ((U : E →L[ℂ] E) y)
 
 omit [FiniteDimensional ℂ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.0h3v.s10.adfa46d48444 from=translated src=- shape=ed65ea33 vocab=4a443d56
+-/
 theorem continuous_unitaryProjection (e₀ : E) (U : UnitaryGroup E) :
     Continuous (unitaryProjection e₀ U) :=
   (ℂ ∙ e₀)ᗮ.orthogonalProjectionOnto.continuous.comp (U : E →L[ℂ] E).continuous
 
 omit [FiniteDimensional ℂ E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=continuo.0h2v.s12.8d829a22c68c from=translated src=- shape=d357b3d9 vocab=52d74512
+-/
 theorem continuous_unitaryProjection_uncurry (e₀ : E) :
     Continuous fun p : UnitaryGroup E × E ↦ unitaryProjection e₀ p.1 p.2 :=
   (ℂ ∙ e₀)ᗮ.orthogonalProjectionOnto.continuous.comp
     ((continuous_subtype_val.comp continuous_fst).clm_apply continuous_snd)
 
+/--
+@isnad1 id=measurab.0h3v.s13.d7128463e077 from=translated src=- shape=41b8fafe vocab=768a63b7
+-/
 theorem measurable_lintegral_measureFourier_sq (μ : Measure E) [IsFiniteMeasure μ] (e₀ : E) :
     Measurable fun U : UnitaryGroup E ↦ ∫⁻ ξ : (ℂ ∙ e₀)ᗮ,
       ‖measureFourier μ (((U⁻¹ : UnitaryGroup E) : E →L[ℂ] E) ξ)‖ₑ ^ 2 :=
@@ -47,7 +56,9 @@ theorem measurable_lintegral_measureFourier_sq (μ : Measure E) [IsFiniteMeasure
     ((continuous_subtype_val.comp continuous_fst.inv).clm_apply
       (continuous_subtype_val.comp continuous_snd)).measurable)
 
-/-- The transform of a projected measure is the restriction of the rotated transform.-/
+/-- The transform of a projected measure is the restriction of the rotated transform.
+@isnad1 id=eq.0h5v.s13.4bed5c170ff5 from=translated src=- shape=7efa473e vocab=f94794c2
+-/
 theorem measureFourier_map_unitaryProjection (μ : Measure E) (e₀ : E) (U : UnitaryGroup E)
     (ξ : (ℂ ∙ e₀)ᗮ) :
     measureFourier (μ.map (unitaryProjection e₀ U)) ξ =
@@ -74,10 +85,16 @@ def projectionConstant (e₀ : E) : ℝ≥0∞ :=
       ((2 * (Module.finrank ℂ E - 1) : ℕ) : ℝ))
 
 omit [FiniteDimensional ℂ E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.0h1v.s6.874b72a36f56 from=translated src=- shape=00536cf0 vocab=81df8253
+-/
 theorem finrank_real_eq_two_mul : Module.finrank ℝ E = 2 * Module.finrank ℂ E :=
   finrank_real_of_complex E
 
 omit [FiniteDimensional ℂ E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=and.1h1v.s7.fd84d1ffe015 from=translated src=- shape=5673c1d3 vocab=fa860217
+-/
 theorem rieszExponent_pos_lt (hn : 2 ≤ Module.finrank ℂ E) :
     0 < ((2 * (Module.finrank ℂ E - 1) : ℕ) : ℝ) ∧
       ((2 * (Module.finrank ℂ E - 1) : ℕ) : ℝ) < Module.finrank ℝ E := by
@@ -87,6 +104,9 @@ theorem rieszExponent_pos_lt (hn : 2 ≤ Module.finrank ℂ E) :
   · exact_mod_cast (by omega : 2 * (Module.finrank ℂ E - 1) < 2 * Module.finrank ℂ E)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=and.2h2v.s7.263a7daf836a from=translated src=- shape=de5f8d03 vocab=155b78de
+-/
 theorem projectionConstant_pos_ne_top (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E}
     (he₀ : ‖e₀‖ = 1) : 0 < projectionConstant e₀ ∧ projectionConstant e₀ ≠ ⊤ := by
   obtain ⟨ha, hat⟩ := croftonConstant_pos_ne_top hn he₀
@@ -95,7 +115,9 @@ theorem projectionConstant_pos_ne_top (hn : 2 ≤ Module.finrank ℂ E) {e₀ : 
   exact ⟨ENNReal.div_pos ha.ne' ENNReal.ofReal_ne_top,
     ENNReal.div_ne_top hat (ENNReal.ofReal_pos.mpr hb).ne'⟩
 
-/-- Integrated squared transforms over rotated hyperplanes equal a multiple of energy.-/
+/-- Integrated squared transforms over rotated hyperplanes equal a multiple of energy.
+@isnad1 id=eq.2h3v.s13.1e48f1408838 from=translated src=- shape=6f8c70f9 vocab=5f6ac644
+-/
 theorem lintegral_unitaryHaar_measureFourier_sq (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E}
     (he₀ : ‖e₀‖ = 1) (μ : Measure E) [IsFiniteMeasure μ] :
     ∫⁻ U, ∫⁻ ξ : (ℂ ∙ e₀)ᗮ, ‖measureFourier μ (((U⁻¹ : UnitaryGroup E) : E →L[ℂ] E) ξ)‖ₑ ^ 2
@@ -129,7 +151,9 @@ theorem lintegral_unitaryHaar_measureFourier_sq (hn : 2 ≤ Module.finrank ℂ E
 /-- **Projections onto complex hyperplanes** (`pshd-vibe`, Lemma 1.4). If a finite
 measure has finite Riesz energy of order `2n - 2`, then for almost every hyperplane
 the projected measure has a nonnegative square-integrable density, and the
-integrated squared densities equal `c_n I_{2n-2}(μ)`.-/
+integrated squared densities equal `c_n I_{2n-2}(μ)`.
+@isnad1 id=ex.3h3v.s14.099468c83b28 from=translated src=- shape=57267c42 vocab=d16b48b6
+-/
 theorem exists_projection_densities (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E}
     (he₀ : ‖e₀‖ = 1) (μ : Measure E) [IsFiniteMeasure μ]
     (hI : rieszEnergy ((2 * (Module.finrank ℂ E - 1) : ℕ) : ℝ) μ < ⊤) :

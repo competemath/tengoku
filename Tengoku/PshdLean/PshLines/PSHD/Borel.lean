@@ -14,7 +14,9 @@ open Set Metric MeasureTheory
 namespace PshLines.PSHD
 
 /-- Borel measurability from horizontal upper semicontinuity and
-subharmonicity on every connected component of each vertical section.-/
+subharmonicity on every connected component of each vertical section.
+@isnad1 id=measurab.4h3v.s8.483cf74d5427 from=translated src=- shape=3ef79d75 vocab=31627fe7
+-/
 theorem borel_measurable_of_sections
     {X : Type*} [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [BorelSpace X]

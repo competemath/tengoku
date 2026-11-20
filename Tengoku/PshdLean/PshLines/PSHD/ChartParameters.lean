@@ -12,7 +12,9 @@ open Set Metric
 
 namespace PshLines.PSHD
 
-/-- A maximum-metric ball supplies both admissible radii and bounded offsets.-/
+/-- A maximum-metric ball supplies both admissible radii and bounded offsets.
+@isnad1 id=and.1h3v.s7.64bc7368bb79 from=translated src=- shape=f20fe4bb vocab=97d0a680
+-/
 theorem chartParameter_ball_bounds {F : Type*} [NormedAddCommGroup F]
     {R : ℝ} {p : ℝ × F}
     (hp : p ∈ ball (3 * R / 4, (0 : F)) (min (R / 4) 1)) :
@@ -25,7 +27,9 @@ theorem chartParameter_ball_bounds {F : Type*} [NormedAddCommGroup F]
   simpa using (h.2.trans_le (min_le_right _ _)).le
 
 /-- Any circle-preserving chart map has a uniform lower distance bound on
-the chosen parameter ball.-/
+the chosen parameter ball.
+@isnad1 id=le.5h7v.s12.f3203d79e7f0 from=translated src=- shape=93fa2428 vocab=0db22325
+-/
 theorem chart_map_dist_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {e : E} (he : ‖e‖ = 1) {R : ℝ} (hR : 0 ≤ R) (x : E)

@@ -38,7 +38,9 @@ namespace PshLines.FirstPass.MongeAmpere
 variable {n : ℕ}
 
 /-- A locally bounded real-valued PSH function is uniformly bounded in absolute
-value on every compact subset of its domain.-/
+value on every compact subset of its domain.
+@isnad1 id=ex.3h4v.s7.20ed82384b58 from=translated src=- shape=24656c25 vocab=59ae2272
+-/
 theorem IsLocallyBoundedPshOn.exists_compact_abs_bound
     {Ω : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : IsLocallyBoundedPshOn Ω u) {K : Set (ComplexModel n)}
@@ -66,7 +68,9 @@ theorem IsLocallyBoundedPshOn.exists_compact_abs_bound
 
 /-- A finite-valued PSH function is locally integrable on an arbitrary open
 set.  Connectedness is unnecessary: around each point, apply the existing
-integrability theorem on a contained ball.-/
+integrability theorem on a contained ball.
+@isnad1 id=locallyi.1h3v.s9.86cafbcf4592 from=translated src=- shape=a0aed032 vocab=ebb77ccd
+-/
 theorem locallyIntegrableOn_of_plurisubharmonicOn_real
     {Ω : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : PlurisubharmonicOn (fun z ↦ (u z : EReal)) Ω) :
@@ -83,7 +87,9 @@ theorem locallyIntegrableOn_of_plurisubharmonicOn_real
     nhdsWithin_eq_nhds.mpr (Ω.isOpen.mem_nhds hz)] using hlocal
 
 /-- A real-valued PSH function has nonnegative distributional Levi form on its
-open domain.  The a.e. finiteness premise of the general theorem is automatic.-/
+open domain.  The a.e. finiteness premise of the general theorem is automatic.
+@isnad1 id=hasnonne.1h3v.s9.64e5c8cc5913 from=translated src=- shape=e7bc33cc vocab=37210fb2
+-/
 theorem hasNonnegativeDistributionalLevi_of_plurisubharmonicOn_real
     {Ω : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : PlurisubharmonicOn (fun z ↦ (u z : EReal)) Ω) :
@@ -98,7 +104,9 @@ theorem hasNonnegativeDistributionalLevi_of_plurisubharmonicOn_real
 /-- On a relatively compact subdomain, a real-valued PSH function has globally
 smooth PSH convolution approximants converging almost everywhere on the inner
 domain.  This is the strongest unconditional conclusion furnished by the
-current non-radial bump API.-/
+current non-radial bump API.
+@isnad1 id=ex.2h4v.s9.0b080e37bdb8 from=translated src=- shape=81f40ab2 vocab=1fcb4837
+-/
 theorem exists_smoothPsh_aeApproximation
     {Ω U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : IsLocallyBoundedPshOn Ω u) (hU : RelativelyCompactIn U Ω) :
@@ -124,7 +132,9 @@ function admits one compactly localized sequence of globally smooth
 approximants which is uniformly bounded on the whole ambient space.  The
 approximants are PSH on a common open neighborhood of the compact set and
 converge almost everywhere, globally, to the compact cutoff of the original
-function.-/
+function.
+@isnad1 id=ex.3h4v.s10.8d2404edbd08 from=translated src=- shape=f9d48631 vocab=aef387a9
+-/
 theorem exists_uniformlyBounded_smoothPsh_aeApproximation_on_compact
     {Ω : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : IsLocallyBoundedPshOn Ω u) {S : Set (ComplexModel n)}
@@ -180,7 +190,9 @@ theorem exists_uniformlyBounded_smoothPsh_aeApproximation_on_compact
 
 /-- A quantitative uniform approximation can be corrected by an explicit
 geometric constant to become pointwise decreasing.  The error budget `1/8`
-leaves room between two successive corrections.-/
+leaves room between two successive corrections.
+@isnad1 id=isdecrea.2h4v.s8.57dfd04b2d61 from=translated src=- shape=357f2b01 vocab=09a0d28a
+-/
 theorem isDecreasingApproximation_geometricCorrection
     {U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     {g : ℕ → ComplexModel n → ℝ}
@@ -233,7 +245,9 @@ theorem isDecreasingApproximation_geometricCorrection
 PSH approximation on every relatively compact subdomain.  Continuity is used
 only to make the compactly localized convolution error uniform; the geometric
 correction above then supplies monotonicity without any radiality assumption on
-the bundled bump kernel.-/
+the bundled bump kernel.
+@isnad1 id=ex.3h4v.s7.1921459e9b83 from=translated src=- shape=e4b18500 vocab=a56c35a1
+-/
 theorem exists_decreasingApproximation_of_continuousOn
     {Ω U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hu : IsLocallyBoundedPshOn Ω u) (hcont : ContinuousOn u Ω)

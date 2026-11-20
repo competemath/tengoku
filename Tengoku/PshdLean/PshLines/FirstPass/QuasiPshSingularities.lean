@@ -45,22 +45,34 @@ def LocalQuasiPshPotentialOn (u : E → EReal) (U : Set E) : Prop :=
     ∀ x ∈ U, ∀ V : Set E, IsOpen V → x ∈ V →
       ∃ y ∈ U ∩ V, u y ≠ ⊥
 
+/--
+@isnad1 id=quasiplu.1h3v.s5.65f8c4b6969c from=translated src=- shape=a25cc173 vocab=2b32e05b
+-/
 theorem PlurisubharmonicAt.quasiPlurisubharmonicAt {u : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) : QuasiPlurisubharmonicAt u x := by
   exact ⟨u, fun _ => 0, hu, Filter.Eventually.of_forall (fun _ => contDiffAt_const), by simp⟩
 
+/--
+@isnad1 id=quasiplu.2h4v.s6.2daf19883ed6 from=translated src=- shape=cdd7449d vocab=b20dcbbe
+-/
 theorem QuasiPlurisubharmonicAt.congr {u v : E → EReal} {x : E}
     (hu : QuasiPlurisubharmonicAt u x) (huv : u =ᶠ[𝓝 x] v) :
     QuasiPlurisubharmonicAt v x := by
   obtain ⟨p, h, hp, hh, heq⟩ := hu
   exact ⟨p, h, hp, hh, huv.symm.trans heq⟩
 
+/--
+@isnad1 id=ne.1h3v.s5.5d2ed5004512 from=translated src=- shape=f59f49dc vocab=6d6b5a6b
+-/
 theorem QuasiPlurisubharmonicAt.ne_top {u : E → EReal} {x : E}
     (hu : QuasiPlurisubharmonicAt u x) : u x ≠ ⊤ := by
   obtain ⟨p, h, hp, _, heq⟩ := hu
   rw [heq.eq_of_nhds]
   exact EReal.add_ne_top hp.ne_top (EReal.coe_ne_top _)
 
+/--
+@isnad1 id=quasiplu.2h4v.s6.3c4ee3d75013 from=translated src=- shape=66be7017 vocab=ee83a75f
+-/
 theorem QuasiPlurisubharmonicAt.add_smooth {u : E → EReal} {h : E → ℝ} {x : E}
     (hu : QuasiPlurisubharmonicAt u x) (hh : ∀ᶠ y in 𝓝 x, ContDiffAt ℝ ∞ h y) :
     QuasiPlurisubharmonicAt (fun y => u y + (h y : EReal)) x := by
@@ -71,16 +83,25 @@ theorem QuasiPlurisubharmonicAt.add_smooth {u : E → EReal} {h : E → ℝ} {x 
   filter_upwards [heq] with y hy
   rw [hy, EReal.coe_add, add_assoc]
 
+/--
+@isnad1 id=quasiplu.2h4v.s5.8aa37fde57a7 from=translated src=- shape=ad507478 vocab=fe4d3f93
+-/
 theorem QuasiPlurisubharmonicOn.mono {u : E → EReal} {U V : Set E}
     (hu : QuasiPlurisubharmonicOn u U) (hVU : V ⊆ U) :
     QuasiPlurisubharmonicOn u V := fun x hx => hu x (hVU hx)
 
+/--
+@isnad1 id=quasiplu.2h4v.s6.6be4a84b33d4 from=translated src=- shape=02ebb940 vocab=d45fa956
+-/
 theorem QuasiPlurisubharmonicOn.add_smooth {u : E → EReal} {h : E → ℝ} {U : Set E}
     (hu : QuasiPlurisubharmonicOn u U)
     (hh : ∀ x ∈ U, ∀ᶠ y in 𝓝 x, ContDiffAt ℝ ∞ h y) :
     QuasiPlurisubharmonicOn (fun y => u y + (h y : EReal)) U :=
   fun x hx => (hu x hx).add_smooth (hh x hx)
 
+/--
+@isnad1 id=localqua.3h4v.s6.902f47cf7c85 from=translated src=- shape=75dc5fc9 vocab=aa7b5340
+-/
 theorem LocalQuasiPshPotentialOn.mono {u : E → EReal} {U V : Set E}
     (hu : LocalQuasiPshPotentialOn u U) (hV : IsOpen V) (hVU : V ⊆ U) :
     LocalQuasiPshPotentialOn u V := by
@@ -89,6 +110,9 @@ theorem LocalQuasiPshPotentialOn.mono {u : E → EReal} {U V : Set E}
   obtain ⟨y, hy, hfin⟩ := hu.2.2 x (hVU hx) (V ∩ W) (hV.inter hW) ⟨hx, hxW⟩
   exact ⟨y, hy.2, hfin⟩
 
+/--
+@isnad1 id=localqua.1h3v.s5.a291ea83f4e8 from=translated src=- shape=8e35346e vocab=c6b9e85b
+-/
 theorem localQuasiPshPotentialOn_const (c : ℝ) {U : Set E} (hU : IsOpen U) :
     LocalQuasiPshPotentialOn (fun _ : E => (c : EReal)) U := by
   refine ⟨hU, fun x _ => (plurisubharmonicAt_const c (EReal.coe_ne_top c) x).quasiPlurisubharmonicAt, ?_⟩
@@ -109,13 +133,22 @@ of values and not subtraction of potentially infinite values.-/
 def SameSingularityTypeOn (u v : X → EReal) (U : Set X) : Prop :=
   MoreSingularOn u v U ∧ MoreSingularOn v u U
 
+/--
+@isnad1 id=moresing.1h4v.s5.ccd17cff0f3e from=translated src=- shape=ffd29c06 vocab=4882076a
+-/
 theorem MoreSingularOn.of_le {u v : X → EReal} {U : Set X}
     (h : ∀ x ∈ U, u x ≤ v x) : MoreSingularOn u v U :=
   ⟨0, by simpa using h⟩
 
+/--
+@isnad1 id=moresing.0h3v.s3.16359e854ce9 from=translated src=- shape=aa66c1fa vocab=6df43352
+-/
 theorem MoreSingularOn.refl (u : X → EReal) (U : Set X) : MoreSingularOn u u U :=
   .of_le (fun _ _ => le_rfl)
 
+/--
+@isnad1 id=moresing.2h5v.s5.ca9688fd31d6 from=translated src=- shape=630d3c74 vocab=6df43352
+-/
 theorem MoreSingularOn.trans {u v w : X → EReal} {U : Set X}
     (huv : MoreSingularOn u v U) (hvw : MoreSingularOn v w U) :
     MoreSingularOn u w U := by
@@ -127,6 +160,9 @@ theorem MoreSingularOn.trans {u v w : X → EReal} {U : Set X}
     _ ≤ (w x + (D : EReal)) + (C : EReal) := add_le_add (hD x hx) le_rfl
     _ = w x + ((D + C : ℝ) : EReal) := by rw [EReal.coe_add, add_assoc]
 
+/--
+@isnad1 id=moresing.2h5v.s5.89991ef5e795 from=translated src=- shape=f71ecf2f vocab=eeab96fe
+-/
 theorem MoreSingularOn.mono {u v : X → EReal} {U V : Set X}
     (h : MoreSingularOn u v U) (hVU : V ⊆ U) : MoreSingularOn u v V := by
   obtain ⟨C, hC⟩ := h
@@ -140,16 +176,28 @@ theorem MoreSingularOn.eq_bot_of_eq_bot {u v : X → EReal} {U : Set X}
   have h := hC x hx
   simpa [hv] using h
 
+/--
+@isnad1 id=samesing.0h3v.s3.d2da801bd3bb from=translated src=- shape=aa66c1fa vocab=c2dc4759
+-/
 theorem SameSingularityTypeOn.refl (u : X → EReal) (U : Set X) :
     SameSingularityTypeOn u u U := ⟨.refl u U, .refl u U⟩
 
+/--
+@isnad1 id=samesing.1h4v.s4.9dddf01d455f from=translated src=- shape=001343d5 vocab=c2dc4759
+-/
 theorem SameSingularityTypeOn.symm {u v : X → EReal} {U : Set X}
     (h : SameSingularityTypeOn u v U) : SameSingularityTypeOn v u U := ⟨h.2, h.1⟩
 
+/--
+@isnad1 id=samesing.2h5v.s5.255760153642 from=translated src=- shape=630d3c74 vocab=c2dc4759
+-/
 theorem SameSingularityTypeOn.trans {u v w : X → EReal} {U : Set X}
     (huv : SameSingularityTypeOn u v U) (hvw : SameSingularityTypeOn v w U) :
     SameSingularityTypeOn u w U := ⟨huv.1.trans hvw.1, hvw.2.trans huv.2⟩
 
+/--
+@isnad1 id=samesing.0h4v.s5.7b4e41bfe009 from=translated src=- shape=ec845514 vocab=1bc476c1
+-/
 theorem sameSingularityTypeOn_add_const (u : X → EReal) (U : Set X) (c : ℝ) :
     SameSingularityTypeOn (fun x => u x + (c : EReal)) u U := by
   refine ⟨⟨c, fun _ _ => le_rfl⟩, ⟨-c, fun x _ => ?_⟩⟩
@@ -161,9 +209,15 @@ variable [TopologicalSpace X]
 def MoreSingularAt (u v : X → EReal) (x : X) : Prop :=
   ∃ C : ℝ, ∀ᶠ y in 𝓝 x, u y ≤ v y + (C : EReal)
 
+/--
+@isnad1 id=moresing.0h3v.s4.e0469735a94f from=translated src=- shape=b1d49a06 vocab=b03ea485
+-/
 theorem MoreSingularAt.refl (u : X → EReal) (x : X) : MoreSingularAt u u x :=
   ⟨0, Filter.Eventually.of_forall (fun _ => by simp)⟩
 
+/--
+@isnad1 id=moresing.2h5v.s5.75a7a4cba1bf from=translated src=- shape=d41b1df9 vocab=b03ea485
+-/
 theorem MoreSingularAt.trans {u v w : X → EReal} {x : X}
     (huv : MoreSingularAt u v x) (hvw : MoreSingularAt v w x) :
     MoreSingularAt u w x := by
@@ -173,13 +227,18 @@ theorem MoreSingularAt.trans {u v w : X → EReal} {x : X}
   filter_upwards [hC, hD] with y hyC hyD
   simpa [EReal.coe_add, add_assoc] using hyC.trans (add_le_add hyD (le_rfl : (C : EReal) ≤ C))
 
+/--
+@isnad1 id=moresing.2h5v.s5.1048a412702b from=translated src=- shape=3dbe9944 vocab=89d4ef0b
+-/
 theorem MoreSingularOn.moreSingularAt {u v : X → EReal} {U : Set X}
     (h : MoreSingularOn u v U) {x : X} (hU : U ∈ 𝓝 x) : MoreSingularAt u v x := by
   obtain ⟨C, hC⟩ := h
   exact ⟨C, Filter.eventually_of_mem hU (fun y hy => hC y hy)⟩
 
 omit [TopologicalSpace X] in
-/-- The global branch lies below its actual collar maximum.-/
+/-- The global branch lies below its actual collar maximum.
+@isnad1 id=moresing.0h5v.s4.0e632533c7f6 from=translated src=- shape=bf7cbcd3 vocab=86d0b2eb
+-/
 theorem moreSingularOn_gluedMax (U V : Set X) (u v : X → EReal) :
     MoreSingularOn v (gluedMax U u v) V := by
   apply MoreSingularOn.of_le

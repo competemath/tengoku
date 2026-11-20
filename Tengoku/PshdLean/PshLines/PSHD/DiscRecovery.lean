@@ -18,7 +18,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
 
 /-- A finite disc-PSH function satisfies the ordinary real ball-submean
-inequality on every relatively compact ball.-/
+inequality on every relatively compact ball.
+@isnad1 id=le.3h6v.s8.658f5705f407 from=translated src=- shape=53811b9b vocab=daacda58
+-/
 theorem real_ball_submean {u : E → ℝ} {U : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)
     (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -66,7 +68,9 @@ theorem real_ball_submean {u : E → ℝ} {U : Set E}
     EReal.real_coe_toENNReal, ENNReal.toReal_ofReal (sub_nonneg.mpr hCa)] at hreal
   nlinarith
 
-/-- Normalized real ball means dominate the central value.-/
+/-- Normalized real ball means dominate the central value.
+@isnad1 id=le.3h6v.s8.5a7878894295 from=translated src=- shape=f77f91e5 vocab=2c581dc0
+-/
 theorem le_real_ball_average {u : E → ℝ} {U : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)
     (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -78,7 +82,9 @@ theorem le_real_ball_average {u : E → ℝ} {U : Set E}
     simpa only [mul_comm] using real_ball_submean hu μ a hR hB)
 
 /-- Upper semicontinuity and the submean inequality trap all sufficiently
-small normalized ball means between the central value and any larger number.-/
+small normalized ball means between the central value and any larger number.
+@isnad1 id=ex.3h6v.s8.17d90d2d72b8 from=translated src=- shape=631c6896 vocab=0b5571b9
+-/
 theorem exists_real_ball_average_bounds {u : E → ℝ} {U : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)
     (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -115,7 +121,9 @@ theorem exists_real_ball_average_bounds {u : E → ℝ} {U : Set E}
   simpa [integral_const, Measure.real, smul_eq_mul, mul_comm] using hle
 
 /-- Shrinking real ball means recover a finite disc-PSH function at every
-interior point, with the Haar normalization already used by the project.-/
+interior point, with the Haar normalization already used by the project.
+@isnad1 id=tendsto.2h5v.s8.ddab74ed2792 from=translated src=- shape=727af52d vocab=57dad305
+-/
 theorem tendsto_real_ball_average {u : E → ℝ} {U : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)
     (μ : Measure E) [μ.IsAddHaarMeasure]

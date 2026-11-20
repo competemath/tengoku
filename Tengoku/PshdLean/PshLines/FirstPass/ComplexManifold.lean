@@ -51,6 +51,9 @@ abbrev ComplexChart (n : ℕ) (M : Type*) [TopologicalSpace M]
 def complexChartAt (x : M) : ComplexChart n M :=
   ⟨chartAt (ComplexModel n) x, chart_mem_atlas (ComplexModel n) x⟩
 
+/--
+@isnad1 id=mem.0h3v.s8.145bb2a184f6 from=translated src=- shape=494fb68d vocab=bc97ab82
+-/
 theorem mem_complexChartAt_source (x : M) :
     x ∈ (complexChartAt (n := n) x).val.source :=
   mem_chart_source (ComplexModel n) x
@@ -65,7 +68,9 @@ noncomputable def chartTransitionDerivative (e f : ComplexChart n M)
     (z : ComplexModel n) : ComplexModel n →L[ℝ] ComplexModel n :=
   fderiv ℝ (chartTransition e f) z
 
-/-- Holomorphic overlap compatibility comes from the manifold structure.-/
+/-- Holomorphic overlap compatibility comes from the manifold structure.
+@isnad1 id=mem.0h4v.s8.a2e52742df67 from=translated src=- shape=d70d2b98 vocab=5a6571dc
+-/
 theorem chartTransition_mem_groupoid [IsComplexManifold n M]
     (e f : ComplexChart n M) :
     chartTransition e f ∈ contDiffGroupoid ∞ (𝓘(ℂ, ComplexModel n)) :=

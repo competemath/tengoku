@@ -25,7 +25,9 @@ universe u
 variable {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- Restricting to translates of a complex subspace preserves subharmonicity
-on line sections.-/
+on line sections.
+@isnad1 id=linesubh.1h5v.s9.0b5131ed9835 from=translated src=- shape=a89c12d6 vocab=f6552181
+-/
 theorem LineSubharmonicOn.comp_submodule_add {u : E → ℝ} {D : Set E}
     (hl : LineSubharmonicOn u D) (K : Submodule ℂ E) (a : E) :
     LineSubharmonicOn (fun w : K => u (w + a)) {w : K | (w : E) + a ∈ D} := by
@@ -43,7 +45,9 @@ theorem LineSubharmonicOn.comp_submodule_add {u : E → ℝ} {D : Set E}
   exact h
 
 /-- In complex dimension at most one, line subharmonicity already gives upper
-semicontinuity.-/
+semicontinuity.
+@isnad1 id=uppersem.3h3v.s6.273c68e78a80 from=translated src=- shape=8bbb55b6 vocab=9f97437f
+-/
 theorem LineSubharmonicOn.upperSemicontinuousOn_of_finrank_le_one [FiniteDimensional ℂ E]
     (hn : Module.finrank ℂ E ≤ 1) {u : E → ℝ} {D : Set E} (hD : IsOpen D)
     (hl : LineSubharmonicOn u D) : UpperSemicontinuousOn u D := by
@@ -67,7 +71,9 @@ theorem LineSubharmonicOn.upperSemicontinuousOn_of_finrank_le_one [FiniteDimensi
   simpa [hc] using hball hcε
 
 /-- **Step 1 of Proposition 2.1.** Upper semicontinuity on the slices parallel
-to a complex hyperplane gives Borel measurability through Lemma 1.2.-/
+to a complex hyperplane gives Borel measurability through Lemma 1.2.
+@isnad1 id=measurab.5h4v.s10.04937931fb4d from=translated src=- shape=993b1681 vocab=2b69377b
+-/
 theorem LineSubharmonicOn.measurable_indicator [MeasurableSpace E] [BorelSpace E]
     [FiniteDimensional ℂ E] {u : E → ℝ} {D : Set E} (hD : IsOpen D)
     (hpos : ∀ x ∈ D, 0 ≤ u x) (hl : LineSubharmonicOn u D) {e : E} (he : ‖e‖ = 1)
@@ -129,14 +135,18 @@ def BoundedLineSubharmonicUSC : Prop :=
     LineSubharmonicOn u D → Measurable u → (∀ x ∈ D, 0 ≤ u x) →
     (∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r)) → UpperSemicontinuousOn u D
 
-/-- The ball-average route closes Proposition 2.1.-/
+/-- The ball-average route closes Proposition 2.1.
+@isnad1 id=boundedl.0h0v.s0.9b71cf81d297 from=translated src=- shape=45709ebd vocab=d19378b0
+-/
 theorem boundedLineSubharmonicUSC_of_ballAverage : BoundedLineSubharmonicUSC.{u} :=
   fun hD hl hu hpos hbdd => hl.upperSemicontinuousOn hD hu hpos hbdd
 
 /-- **Induction of Proposition 2.1.** Given a closing step, every nonnegative
 function that is subharmonic on line sections of an open set is upper
 semicontinuous: slices along `(ℂ ∙ e)ᗮ` are upper semicontinuous by induction,
-which gives Borel measurability (Step 1) and local upper bounds (Step 2).-/
+which gives Borel measurability (Step 1) and local upper bounds (Step 2).
+@isnad1 id=uppersem.5h4v.s7.aba0dc87bd49 from=translated src=- shape=0795e825 vocab=59152a41
+-/
 theorem upperSemicontinuousOn_of_boundedLineSubharmonicUSC
     (hstep : BoundedLineSubharmonicUSC.{u}) (n : ℕ) :
     ∀ {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E],
@@ -171,7 +181,9 @@ theorem upperSemicontinuousOn_of_boundedLineSubharmonicUSC
 
 /-- **Proposition 2.1** (`pshd-vibe`). A nonnegative real function on an open
 set that is subharmonic on every connected component of every affine
-complex-line section is plurisubharmonic.-/
+complex-line section is plurisubharmonic.
+@isnad1 id=discpsho.3h3v.s6.cb7e15c2a381 from=translated src=- shape=4e8b9adb vocab=fe226cd7
+-/
 theorem LineSubharmonicOn.discPshOn_of_nonneg [FiniteDimensional ℂ E] {u : E → ℝ} {D : Set E}
     (hD : IsOpen D) (hpos : ∀ x ∈ D, 0 ≤ u x) (hl : LineSubharmonicOn u D) :
     DiscPshOn (fun x => (u x : EReal)) D :=

@@ -34,6 +34,9 @@ variable {X : Type*} [PseudoMetricSpace X]
 def uscFloor (C : ℝ) (n : ℕ) (a : EReal) : ℝ :=
   (max a (((C - (n : ℝ)) : ℝ) : EReal)).toReal
 
+/--
+@isnad1 id=eq.1h3v.s5.7724173cf0cc from=translated src=- shape=ba4600c9 vocab=05d56d4c
+-/
 theorem coe_uscFloor {C : ℝ} {n : ℕ} {a : EReal} (ha : a ≠ ⊤) :
     ((uscFloor C n a : ℝ) : EReal) =
       max a (((C - (n : ℝ)) : ℝ) : EReal) := by
@@ -42,11 +45,17 @@ theorem coe_uscFloor {C : ℝ} {n : ℕ} {a : EReal} (ha : a ≠ ⊤) :
   · exact ne_of_gt <|
       (EReal.bot_lt_coe (C - (n : ℝ))).trans_le (le_max_right _ _)
 
+/--
+@isnad1 id=le.1h3v.s4.3edd2b2fb072 from=translated src=- shape=1725a101 vocab=84f9d82a
+-/
 theorem le_coe_uscFloor {C : ℝ} {n : ℕ} {a : EReal} (ha : a ≠ ⊤) :
     a ≤ (uscFloor C n a : EReal) := by
   rw [coe_uscFloor ha]
   exact le_max_left _ _
 
+/--
+@isnad1 id=le.2h3v.s5.6c2b01d79d5f from=translated src=- shape=8c93b721 vocab=84f9d82a
+-/
 theorem uscFloor_le {C : ℝ} {n : ℕ} {a : EReal} (ha : a ≠ ⊤)
     (haC : a ≤ (C : EReal)) : uscFloor C n a ≤ C := by
   apply EReal.coe_le_coe_iff.mp
@@ -54,6 +63,9 @@ theorem uscFloor_le {C : ℝ} {n : ℕ} {a : EReal} (ha : a ≠ ⊤)
   exact max_le haC <| EReal.coe_le_coe_iff.mpr <| by
     exact sub_le_self C (Nat.cast_nonneg n)
 
+/--
+@isnad1 id=antitone.1h2v.s4.76312c4e75df from=translated src=- shape=f59208f7 vocab=5d02e6ee
+-/
 theorem uscFloor_antitone {C : ℝ} {a : EReal} (ha : a ≠ ⊤) :
     Antitone (fun n : ℕ => uscFloor C n a) := by
   intro n m hnm
@@ -86,6 +98,9 @@ private theorem uscSupConvolution_range_nonempty {K : Set X} {u : X → EReal}
   obtain ⟨y, hy⟩ := hne
   exact ⟨uscFloor C n (u y) - (n : ℝ) * dist x y, ⟨⟨y, hy⟩, rfl⟩⟩
 
+/--
+@isnad1 id=le.3h6v.s6.addaacfe429a from=translated src=- shape=e5400b4d vocab=0c7e46e7
+-/
 theorem uscSupConvolution_le {K : Set X} {u : X → EReal} {C : ℝ}
     (hne : K.Nonempty) (htop : ∀ y ∈ K, u y ≠ ⊤)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal)) (n : ℕ) (x : X) :
@@ -97,6 +112,9 @@ theorem uscSupConvolution_le {K : Set X} {u : X → EReal} {C : ℝ}
     mul_nonneg (Nat.cast_nonneg n) dist_nonneg
   linarith
 
+/--
+@isnad1 id=lipschit.3h5v.s6.19ab886b7309 from=translated src=- shape=21621147 vocab=f634223e
+-/
 theorem uscSupConvolution_lipschitz {K : Set X} {u : X → EReal} {C : ℝ}
     (hne : K.Nonempty) (htop : ∀ y ∈ K, u y ≠ ⊤)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal))
@@ -131,12 +149,18 @@ theorem uscSupConvolution_lipschitz {K : Set X} {u : X → EReal} {C : ℝ}
   simp only [NNReal.coe_natCast]
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=continuo.3h5v.s6.6b1cc17ab71a from=translated src=- shape=3cedf5c0 vocab=0f53bc93
+-/
 theorem continuous_uscSupConvolution {K : Set X} {u : X → EReal} {C : ℝ}
     (hne : K.Nonempty) (htop : ∀ y ∈ K, u y ≠ ⊤)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal))
     (n : ℕ) : Continuous (uscSupConvolution K u C n) :=
   (uscSupConvolution_lipschitz hne htop hC n).continuous
 
+/--
+@isnad1 id=le.4h6v.s6.89a752d21f62 from=translated src=- shape=4db202e5 vocab=0c7e46e7
+-/
 theorem le_coe_uscSupConvolution {K : Set X} {u : X → EReal} {C : ℝ}
     (_hne : K.Nonempty) (htop : ∀ y ∈ K, u y ≠ ⊤)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal)) (n : ℕ) {x : X} (hx : x ∈ K) :
@@ -149,6 +173,9 @@ theorem le_coe_uscSupConvolution {K : Set X} {u : X → EReal} {C : ℝ}
   exact (le_coe_uscFloor (htop x hx)).trans <|
     EReal.coe_le_coe_iff.mpr hterm
 
+/--
+@isnad1 id=antitone.3h5v.s6.c0546b997be8 from=translated src=- shape=91100b4b vocab=54347683
+-/
 theorem uscSupConvolution_antitone {K : Set X} {u : X → EReal} {C : ℝ}
     (hne : K.Nonempty) (htop : ∀ y ∈ K, u y ≠ ⊤)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal)) (x : X) :
@@ -200,6 +227,9 @@ private theorem exists_uscSupConvolution_le {K : Set X} {u : X → EReal} {C A :
       mul_le_mul_of_nonneg_left hfar hnnonneg
     linarith
 
+/--
+@isnad1 id=eq.5h5v.s6.9bddc546dbd9 from=translated src=- shape=280d7d13 vocab=1f1ce0f6
+-/
 theorem iInf_coe_uscSupConvolution {K : Set X} {u : X → EReal} {C : ℝ}
     (hne : K.Nonempty) (hu : UpperSemicontinuousOn u K)
     (htop : ∀ y ∈ K, u y ≠ ⊤) (hC : ∀ y ∈ K, u y ≤ (C : EReal))
@@ -217,7 +247,9 @@ theorem iInf_coe_uscSupConvolution {K : Set X} {u : X → EReal} {C : ℝ}
 /-- A compact upper-semicontinuous `EReal` function without `⊤` admits a
 decreasing sequence of continuous real-valued majorants.  Its pointwise
 `EReal` infimum on the compact set is the original function, including at
-points where the function is `⊥`.-/
+points where the function is `⊥`.
+@isnad1 id=ex.4h3v.s7.d482e94513dc from=translated src=- shape=f8f23564 vocab=ae3e8c88
+-/
 theorem exists_continuous_antitone_majorants_on_compact {K : Set X}
     (hK : IsCompact K) (hne : K.Nonempty) {u : X → EReal}
     (hu : UpperSemicontinuousOn u K) (htop : ∀ x ∈ K, u x ≠ ⊤) :

@@ -23,7 +23,9 @@ namespace PshLines.Regularization
 
 /-- A `C²` map has a first-order Taylor remainder that is uniformly little-o
 on a compact set of base points.  The conclusion is written in the
-epsilon-delta form needed for taking finitely many sup-seminorms later.-/
+epsilon-delta form needed for taking finitely many sup-seminorms later.
+@isnad1 id=ex.3h5v.s8.5f726d433318 from=translated src=- shape=905f8b40 vocab=2bd13da5
+-/
 theorem exists_uniform_taylor_remainder_bound_on_compact
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -69,7 +71,9 @@ theorem exists_uniform_taylor_remainder_bound_on_compact
 
 /-- Uniform Taylor control for the `m`-th spatial derivative of a translated
 smooth kernel.  The increment of the kernel argument is `-h`, hence the sign
-in the linear term.-/
+in the linear term.
+@isnad1 id=ex.2h6v.s11.90ab1185bc03 from=translated src=- shape=586e97e4 vocab=7c95be35
+-/
 theorem exists_uniform_iteratedFDeriv_translation_remainder_bound
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

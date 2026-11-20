@@ -30,11 +30,17 @@ circle of period `2π`.-/
 def harmonicCircleParam (c : ℂ) (R : ℝ) (q : AddCircle (2 * Real.pi)) : ℂ :=
   c + R * (AddCircle.homeomorphCircle' q : ℂ)
 
+/--
+@isnad1 id=continuo.0h2v.s6.798dfe28c120 from=translated src=- shape=6b423044 vocab=8d08424f
+-/
 theorem continuous_harmonicCircleParam (c : ℂ) (R : ℝ) :
     Continuous (harmonicCircleParam c R) := by
   unfold harmonicCircleParam
   fun_prop
 
+/--
+@isnad1 id=eq.0h3v.s5.2c30dc2dea8f from=translated src=- shape=3b8f2cb9 vocab=e920e2da
+-/
 @[simp] theorem harmonicCircleParam_coe (c : ℂ) (R t : ℝ) :
     harmonicCircleParam c R (t : AddCircle (2 * Real.pi)) = circleMap c R t := by
   simp [harmonicCircleParam, circleMap, AddCircle.homeomorphCircle'_apply_mk]
@@ -44,6 +50,9 @@ def globalHarmonicFourierMode (c : ℂ) (R : ℝ) (n : ℤ) (z : ℂ) : ℂ :=
   if 0 ≤ n then ((z - c) / (R : ℂ)) ^ n.toNat
   else conj (((z - c) / (R : ℂ)) ^ (-n).toNat)
 
+/--
+@isnad1 id=harmonic.0h3v.s4.016af6cfb15a from=translated src=- shape=694b27bb vocab=0bc98ac3
+-/
 theorem globalHarmonicFourierMode_harmonicOnNhd (c : ℂ) (R : ℝ) (n : ℤ) :
     InnerProductSpace.HarmonicOnNhd (globalHarmonicFourierMode c R n) univ := by
   intro z _
@@ -53,6 +62,9 @@ theorem globalHarmonicFourierMode_harmonicOnNhd (c : ℂ) (R : ℝ) (n : ℤ) :
   · exact (by fun_prop : AnalyticAt ℂ
         (fun w : ℂ => ((w - c) / (R : ℂ)) ^ (-n).toNat) z).harmonicAt_conj
 
+/--
+@isnad1 id=eq.1h4v.s7.d259e650ecd6 from=translated src=- shape=0dc5e610 vocab=03a63ba7
+-/
 theorem globalHarmonicFourierMode_param (c : ℂ) {R : ℝ} (hR : R ≠ 0)
     (n : ℤ) (q : AddCircle (2 * Real.pi)) :
     globalHarmonicFourierMode c R n (harmonicCircleParam c R q) =
@@ -91,7 +103,9 @@ theorem globalHarmonicFourierMode_param (c : ℂ) {R : ℝ} (hR : R ≠ 0)
     ring
 
 /-- Every finite Fourier sum has an exactly matching global harmonic extension
-to the complex plane.-/
+to the complex plane.
+@isnad1 id=ex.2h3v.s10.80cfd5f5cb80 from=translated src=- shape=9108621a vocab=e9268f2f
+-/
 theorem exists_global_harmonic_extension_of_mem_span_fourier
     (c : ℂ) {R : ℝ} (hR : R ≠ 0)
     (p : C(AddCircle (2 * Real.pi), ℂ))
@@ -122,7 +136,9 @@ theorem exists_global_harmonic_extension_of_mem_span_fourier
         simp [hbdy q]
 
 /-- Continuous real data on the abstract circle can be uniformly approximated,
-after affine circle parametrization, by a real-valued global harmonic function.-/
+after affine circle parametrization, by a real-valued global harmonic function.
+@isnad1 id=ex.2h4v.s8.4c068cfcf960 from=translated src=- shape=05cd210a vocab=837d3884
+-/
 theorem exists_global_harmonic_uniformApprox_circleParam
     (c : ℂ) {R : ℝ} (hR : R ≠ 0)
     (g : C(AddCircle (2 * Real.pi), ℝ)) {ε : ℝ} (hε : 0 < ε) :
@@ -162,7 +178,9 @@ theorem exists_global_harmonic_uniformApprox_circleParam
       _ < ε := hdist
 
 /-- Continuous real data on a positive-radius Euclidean circle can be uniformly
-approximated there by a real-valued harmonic function on the whole plane.-/
+approximated there by a real-valued harmonic function on the whole plane.
+@isnad1 id=ex.3h4v.s7.da64b4e7e334 from=translated src=- shape=c883f24b vocab=056208a3
+-/
 theorem exists_global_harmonic_uniformApproxOn_sphere
     (c : ℂ) {R : ℝ} (hR : 0 < R)
     {f : ℂ → ℝ} (hf : ContinuousOn f (sphere c R))

@@ -22,7 +22,9 @@ variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 variable {u : X → EReal} {C : ℝ}
 
 /-- A finite deficit integral excludes negative infinity almost everywhere,
-even without an upper-bound assumption.-/
+even without an upper-bound assumption.
+@isnad1 id=eventual.2h4v.s6.23cdabc82d9b from=translated src=- shape=d1198474 vocab=1e8e9241
+-/
 theorem ae_ne_bot_of_lintegral_deficit_lt_top
     (hd : AEMeasurable (fun x => ((C : EReal) - u x).toENNReal) μ)
     (hI : ∫⁻ x, ((C : EReal) - u x).toENNReal ∂μ < ⊤) :
@@ -32,7 +34,9 @@ theorem ae_ne_bot_of_lintegral_deficit_lt_top
   simp only [hbot, EReal.coe_sub_bot, EReal.toENNReal_top, lt_self_iff_false] at hx
 
 /-- Under a finite upper bound, the actual extended-real function agrees
-almost everywhere with its real representative.-/
+almost everywhere with its real representative.
+@isnad1 id=eventual.3h4v.s6.c53b4a190ea2 from=translated src=- shape=304b7e64 vocab=83a37c69
+-/
 theorem ae_coe_toReal_eq_of_lintegral_deficit_lt_top
     (hC : ∀ᵐ x ∂μ, u x ≤ (C : EReal))
     (hd : AEMeasurable (fun x => ((C : EReal) - u x).toENNReal) μ)
@@ -42,7 +46,9 @@ theorem ae_coe_toReal_eq_of_lintegral_deficit_lt_top
   exact EReal.coe_toReal (hx.trans_lt (EReal.coe_lt_top C)).ne hbot
 
 /-- The real representative is a constant minus the real nonnegative deficit
-almost everywhere. This equality is established only after finiteness.-/
+almost everywhere. This equality is established only after finiteness.
+@isnad1 id=eventual.3h4v.s7.286f39efe1dc from=translated src=- shape=e059c2af vocab=547913cf
+-/
 theorem ae_toReal_eq_const_sub_deficit_of_lintegral_lt_top
     (hC : ∀ᵐ x ∂μ, u x ≤ (C : EReal))
     (hd : AEMeasurable (fun x => ((C : EReal) - u x).toENNReal) μ)
@@ -60,7 +66,9 @@ theorem ae_toReal_eq_const_sub_deficit_of_lintegral_lt_top
   exact (sub_sub_cancel C (u x).toReal).symm
 
 /-- A finite nonnegative deficit gives an integrable real representative on
-a finite measure space.-/
+a finite measure space.
+@isnad1 id=integrab.3h4v.s7.6f42ddcaed47 from=translated src=- shape=cae087f1 vocab=0f6b1747
+-/
 theorem integrable_toReal_of_lintegral_deficit_lt_top [IsFiniteMeasure μ]
     (hC : ∀ᵐ x ∂μ, u x ≤ (C : EReal))
     (hd : AEMeasurable (fun x => ((C : EReal) - u x).toENNReal) μ)
@@ -71,7 +79,9 @@ theorem integrable_toReal_of_lintegral_deficit_lt_top [IsFiniteMeasure μ]
     (ae_toReal_eq_const_sub_deficit_of_lintegral_lt_top hC hd hI).symm
 
 /-- The complete finite-measure bridge retains both almost-everywhere
-finiteness and equality with the real representative.-/
+finiteness and equality with the real representative.
+@isnad1 id=and.3h4v.s7.fa17bd00074a from=translated src=- shape=e0357981 vocab=8ab2bf71
+-/
 theorem ae_finite_and_integrable_of_lintegral_deficit_lt_top [IsFiniteMeasure μ]
     (hC : ∀ᵐ x ∂μ, u x ≤ (C : EReal))
     (hd : AEMeasurable (fun x => ((C : EReal) - u x).toENNReal) μ)
@@ -85,7 +95,9 @@ theorem ae_finite_and_integrable_of_lintegral_deficit_lt_top [IsFiniteMeasure μ
   exact ⟨(hx.trans_lt (EReal.coe_lt_top C)).ne, hbot⟩
 
 /-- Restricted-set version; the set need not be measurable, and no separate
-measurability hypothesis on the extended-real function is needed.-/
+measurability hypothesis on the extended-real function is needed.
+@isnad1 id=and.4h5v.s7.fa8e34541055 from=translated src=- shape=3a8071a7 vocab=af644988
+-/
 theorem ae_finite_and_integrableOn_of_lintegral_deficit_lt_top {s : Set X}
     (hμs : μ s < ⊤)
     (hC : ∀ᵐ x ∂μ.restrict s, u x ≤ (C : EReal))

@@ -17,7 +17,9 @@ open scoped Topology ENNReal
 namespace PshLines
 
 /-- Subtraction from a finite real constant, followed by the nonnegative-part
-map, is continuous even at either infinite endpoint.-/
+map, is continuous even at either infinite endpoint.
+@isnad1 id=continuo.0h1v.s4.6aead11e0796 from=translated src=- shape=1df73b74 vocab=565f7a26
+-/
 theorem continuous_finiteDeficit (C : ℝ) :
     Continuous (fun z : EReal => ((C : EReal) - z).toENNReal) := by
   have hp : Continuous (fun z : EReal => ((C : EReal), -z)) :=
@@ -32,7 +34,9 @@ theorem continuous_finiteDeficit (C : ℝ) :
   exact EReal.continuous_toENNReal.comp hs
 
 /-- Finite deficits exchange arbitrary infima with suprema; no finiteness of
-the values, nor a lower bound for them, is required.-/
+the values, nor a lower bound for them, is required.
+@isnad1 id=eq.0h3v.s6.f7a26fe44b00 from=translated src=- shape=9b8057ad vocab=6d065549
+-/
 theorem finiteDeficit_iInf {ι : Sort*} (C : ℝ) (z : ι → EReal) :
     ((C : EReal) - ⨅ i, z i).toENNReal =
       ⨆ i, ((C : EReal) - z i).toENNReal := by
@@ -47,7 +51,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 /-- Monotone convergence for angular deficits needs only measurability of
 each deficit and pointwise antitonicity of the underlying boundary values.
 This form is useful when continuous real boundary majorants are supplied
-without a common `DiscPshOn` domain.-/
+without a common `DiscPshOn` domain.
+@isnad1 id=eq.2h6v.s8.09c9bb18aeda from=translated src=- shape=ccb7e7e8 vocab=c72600f7
+-/
 theorem circleDeficit_iInf_of_antitone_of_measurable
     {u : ℕ → E → EReal} (x v : E) {r : ℝ} (C : ℝ)
     (hm : ∀ n, Measurable fun t : ℝ =>
@@ -64,7 +70,9 @@ theorem circleDeficit_iInf_of_antitone_of_measurable
     (EReal.sub_le_sub le_rfl (hanti t hmn))
 
 /-- Monotone convergence for the actual nonnegative angular deficits of a
-decreasing sequence on a common disc domain.-/
+decreasing sequence on a common disc domain.
+@isnad1 id=eq.4h7v.s7.282c32ed2bfe from=translated src=- shape=f564fcd8 vocab=9553f3d7
+-/
 theorem circleDeficit_iInf_of_antitone {u : ℕ → E → EReal} {U : Set E}
     (hu : ∀ n, DiscPshOn (u n) U)
     (hanti : ∀ y ∈ U, Antitone (fun n => u n y))
@@ -80,7 +88,9 @@ theorem circleDeficit_iInf_of_antitone {u : ℕ → E → EReal} {U : Set E}
 
 /-- A pointwise decreasing sequence satisfying the disc criterion on one
 common set has a limit satisfying the same criterion. The limit may be
-identically negative infinity.-/
+identically negative infinity.
+@isnad1 id=discpsho.2h3v.s6.8d3800638859 from=translated src=- shape=8f73815b vocab=0ac3cee1
+-/
 theorem DiscPshOn.iInf_of_antitone {u : ℕ → E → EReal} {U : Set E}
     (hu : ∀ n, DiscPshOn (u n) U)
     (hanti : ∀ y ∈ U, Antitone (fun n => u n y)) :
@@ -112,7 +122,9 @@ theorem DiscPshOn.iInf_of_antitone {u : ℕ → E → EReal} {U : Set E}
 
 /-- The common-domain disc theorem yields ordinary local plurisubharmonicity
 on an open set. This does not assume a local-to-global disc theorem for
-arbitrary choices of shrinking germ neighborhoods.-/
+arbitrary choices of shrinking germ neighborhoods.
+@isnad1 id=plurisub.3h3v.s6.e081369a62f6 from=translated src=- shape=62ca96d2 vocab=ff54cd31
+-/
 theorem DiscPshOn.plurisubharmonicOn_iInf_of_antitone
     {u : ℕ → E → EReal} {U : Set E} (hU : IsOpen U)
     (hu : ∀ n, DiscPshOn (u n) U)

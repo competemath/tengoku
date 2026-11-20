@@ -14,7 +14,9 @@ open Set TopologicalSpace
 namespace PshLines.PSHD
 
 /-- On a second-countable space, measurability on an open neighborhood of
-each point implies measurability on the whole space.-/
+each point implies measurability on the whole space.
+@isnad1 id=measurab.1h3v.s6.1426078edb5b from=translated src=- shape=6e79827f vocab=31950186
+-/
 theorem measurable_of_open_neighborhoods
     {X Y : Type*} [TopologicalSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [OpensMeasurableSpace X] [MeasurableSpace Y]

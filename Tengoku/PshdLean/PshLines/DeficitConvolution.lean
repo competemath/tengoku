@@ -27,7 +27,9 @@ variable {μ : Measure E} [SFinite μ] [μ.IsAddLeftInvariant]
 omit [NormedSpace ℝ E] [SFinite μ] in
 /-- Translation turns an extended weighted deficit integral into the actual
 scalar pairing with its nonnegative real representative. The representative
-is required to agree only almost everywhere.-/
+is required to agree only almost everywhere.
+@isnad1 id=eq.6h6v.s7.fd92ced4f575 from=translated src=- shape=ae8c0e2e vocab=43ca8ccd
+-/
 theorem lintegral_deficit_translate_eq_ofReal_pairing
     {D : E → ℝ≥0∞} {f φ : E → ℝ}
     (hD : D =ᵐ[μ] fun x => ENNReal.ofReal (f x))
@@ -53,7 +55,9 @@ theorem lintegral_deficit_translate_eq_ofReal_pairing
         (ae_of_all _ (fun y => mul_nonneg (hfn y) (hφn (y - a))))).symm
 
 /-- For a continuous nonnegative function, an extended angular integral bound
-is exactly the corresponding ordinary circle-average upper bound.-/
+is exactly the corresponding ordinary circle-average upper bound.
+@isnad1 id=le.3h2v.s7.73c7dabf1f49 from=translated src=- shape=3f262983 vocab=6e57c03d
+-/
 theorem circleAverage_le_of_lintegral_ofReal_le {h : ℂ → ℝ}
     (hh : Continuous h) (hn : ∀ z, 0 ≤ h z) (r : ℝ)
     (hm : (∫⁻ t in Ioc 0 (2 * Real.pi), ENNReal.ofReal (h (circleMap 0 r t))) ≤
@@ -76,7 +80,9 @@ variable [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E]
 /-- The smooth pairing with a real representative of a singular deficit
 satisfies the supermean inequality whenever the weighted discs are admissible.
 Only the disc submean inequality and measurability of the localized deficit
-are used.-/
+are used.
+@isnad1 id=le.12h10v.s9.e65f33b764e5 from=translated src=- shape=d921c368 vocab=cc9d4c44
+-/
 theorem HasDiscSubmeanOn.circleAverage_deficit_pairing_le {u : E → EReal} {U K : Set E}
     (hu : HasDiscSubmeanOn u U) (hKU : K ⊆ U) (C : ℝ)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal))
@@ -111,7 +117,9 @@ theorem HasDiscSubmeanOn.circleAverage_deficit_pairing_le {u : E → EReal} {U K
 
 /-- A uniform admissible family of weighted discs forces the actual Levi
 pairing of the localized deficit to be nonpositive. Only the disc submean
-inequality and measurability of the localized deficit are used.-/
+inequality and measurability of the localized deficit are used.
+@isnad1 id=le.12h10v.s9.69193caee156 from=translated src=- shape=f2f16b15 vocab=9546a5af
+-/
 theorem HasDiscSubmeanOn.integral_deficit_mul_leviForm_nonpos {u : E → EReal} {U K : Set E}
     (hu : HasDiscSubmeanOn u U) (hKU : K ⊆ U) (C : ℝ)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal))
@@ -146,7 +154,9 @@ theorem HasDiscSubmeanOn.integral_deficit_mul_leviForm_nonpos {u : E → EReal} 
   linarith
 
 /-- The smooth pairing with a real representative of a singular deficit
-satisfies the supermean inequality whenever the weighted discs are admissible.-/
+satisfies the supermean inequality whenever the weighted discs are admissible.
+@isnad1 id=le.12h10v.s9.1a85b2ab5212 from=translated src=- shape=647e4ad4 vocab=95d26f30
+-/
 theorem DiscPshOn.circleAverage_deficit_pairing_le {u : E → EReal} {U K : Set E}
     (hu : DiscPshOn u U) (hK : MeasurableSet K) (hKU : K ⊆ U) (C : ℝ)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal)) {f φ : E → ℝ}
@@ -162,7 +172,9 @@ theorem DiscPshOn.circleAverage_deficit_pairing_le {u : E → EReal} {U K : Set 
     (hu.measurable_indicator_deficit hK hKU C) hD hf hfn hφs hφ hφn v hr hdisc
 
 /-- A uniform admissible family of weighted discs forces the actual Levi
-pairing of the localized deficit to be nonpositive.-/
+pairing of the localized deficit to be nonpositive.
+@isnad1 id=le.12h10v.s9.d02bc3eb5dab from=translated src=- shape=363f3e1b vocab=90af7c5d
+-/
 theorem DiscPshOn.integral_deficit_mul_leviForm_nonpos {u : E → EReal} {U K : Set E}
     (hu : DiscPshOn u U) (hK : MeasurableSet K) (hKU : K ⊆ U) (C : ℝ)
     (hC : ∀ y ∈ K, u y ≤ (C : EReal)) {f φ : E → ℝ}

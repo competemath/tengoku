@@ -43,7 +43,9 @@ noncomputable def explicitRadialRaw (R : ℝ) (hR : 0 < R) (j : ℕ)
   (ContDiffBumpBase.ofInnerProductSpace (ComplexModel n)).toFun 2
     ((shrinkingBump (E := ComplexModel n) R hR j).rIn⁻¹ • x)
 
-/-- Successive raw profiles are exact dilates of one fixed radial function.-/
+/-- Successive raw profiles are exact dilates of one fixed radial function.
+@isnad1 id=eq.1h5v.s7.9f3e9f70f03a from=translated src=- shape=f2a4525a vocab=c088b7c6
+-/
 theorem explicitRadialRaw_scale (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (x : ComplexModel n) :
     explicitRadialRaw R hR b x =
@@ -57,7 +59,9 @@ theorem explicitRadialRaw_scale (R : ℝ) (hR : 0 < R) (a b : ℕ)
   field_simp
 
 /-- The raw radial profile is smooth, directly from the explicit
-inner-product-space bump base.-/
+inner-product-space bump base.
+@isnad1 id=contdiff.1h3v.s7.768f4b4049cf from=translated src=- shape=16e52926 vocab=d02da8a0
+-/
 theorem explicitRadialRaw_contDiff (R : ℝ) (hR : 0 < R) (j : ℕ) :
     ContDiff ℝ (⊤ : ℕ∞) (explicitRadialRaw (n := n) R hR j) := by
   let B := ContDiffBumpBase.ofInnerProductSpace (ComplexModel n)
@@ -78,21 +82,31 @@ theorem explicitRadialRaw_contDiff (R : ℝ) (hR : 0 < R) (j : ℕ) :
     (shrinkingBump (E := ComplexModel n) R hR j).rIn⁻¹ • x)
   exact hB.comp hscale
 
-/-- The explicit raw profile takes values in `[0,1]`.-/
+/-- The explicit raw profile takes values in `[0,1]`.
+@isnad1 id=mem.1h4v.s5.e3875b6cb12d from=translated src=- shape=c67d37e0 vocab=f0b651ac
+-/
 theorem explicitRadialRaw_mem_Icc (R : ℝ) (hR : 0 < R) (j : ℕ)
     (x : ComplexModel n) : explicitRadialRaw R hR j x ∈ Set.Icc (0 : ℝ) 1 := by
   exact (ContDiffBumpBase.ofInnerProductSpace (ComplexModel n)).mem_Icc 2 _
 
+/--
+@isnad1 id=le.1h4v.s5.cfc48447118d from=translated src=- shape=fa0e889b vocab=e5e870e2
+-/
 theorem explicitRadialRaw_nonneg (R : ℝ) (hR : 0 < R) (j : ℕ)
     (x : ComplexModel n) : 0 ≤ explicitRadialRaw R hR j x :=
    (explicitRadialRaw_mem_Icc R hR j x).1
 
+/--
+@isnad1 id=le.1h4v.s5.40f99c38294c from=translated src=- shape=8120c0da vocab=e5e870e2
+-/
 theorem explicitRadialRaw_le_one (R : ℝ) (hR : 0 < R) (j : ℕ)
     (x : ComplexModel n) : explicitRadialRaw R hR j x ≤ 1 :=
   (explicitRadialRaw_mem_Icc R hR j x).2
 
 /-- The support of the raw profile is exactly the ball with the advertised
-outer radius.-/
+outer radius.
+@isnad1 id=eq.1h3v.s7.85081c417a21 from=translated src=- shape=d5d46f58 vocab=8b2b81c1
+-/
 theorem explicitRadialRaw_support (R : ℝ) (hR : 0 < R) (j : ℕ) :
     Function.support (explicitRadialRaw (n := n) R hR j) =
       ball 0 (R / ((j : ℝ) + 1)) := by
@@ -116,22 +130,34 @@ noncomputable def explicitRadialKernel (R : ℝ) (hR : 0 < R) (j : ℕ)
   explicitRadialRaw R hR j x /
     ∫ y : ComplexModel n, explicitRadialRaw R hR j y
 
+/--
+@isnad1 id=eq.1h3v.s7.95e2ae2b26e5 from=translated src=- shape=d5d46f58 vocab=aef09314
+-/
 theorem explicitRadialRaw_tsupport (R : ℝ) (hR : 0 < R) (j : ℕ) :
     tsupport (explicitRadialRaw (n := n) R hR j) =
       closedBall 0 (R / ((j : ℝ) + 1)) := by
   rw [tsupport, explicitRadialRaw_support R hR j,
     closure_ball _ (by positivity : R / ((j : ℝ) + 1) ≠ 0)]
 
+/--
+@isnad1 id=hascompa.1h3v.s5.4d5c4965299e from=translated src=- shape=fc120a0b vocab=6645b060
+-/
 theorem explicitRadialRaw_hasCompactSupport (R : ℝ) (hR : 0 < R) (j : ℕ) :
     HasCompactSupport (explicitRadialRaw (n := n) R hR j) := by
   rw [HasCompactSupport, explicitRadialRaw_tsupport R hR j]
   exact isCompact_closedBall _ _
 
+/--
+@isnad1 id=integrab.1h3v.s7.085cd6764082 from=translated src=- shape=a8765cc5 vocab=b9848218
+-/
 theorem explicitRadialRaw_integrable (R : ℝ) (hR : 0 < R) (j : ℕ) :
     Integrable (explicitRadialRaw (n := n) R hR j) volume :=
   (explicitRadialRaw_contDiff R hR j).continuous.integrable_of_hasCompactSupport
     (explicitRadialRaw_hasCompactSupport R hR j)
 
+/--
+@isnad1 id=lt.1h3v.s7.0ec96d868a99 from=translated src=- shape=0ab8bcf2 vocab=0c2ac282
+-/
 theorem explicitRadialRaw_integral_pos (R : ℝ) (hR : 0 < R) (j : ℕ) :
     0 < ∫ x : ComplexModel n, explicitRadialRaw R hR j x := by
   refine (integral_pos_iff_support_of_nonneg
@@ -139,15 +165,24 @@ theorem explicitRadialRaw_integral_pos (R : ℝ) (hR : 0 < R) (j : ℕ) :
   rw [explicitRadialRaw_support R hR j]
   exact measure_ball_pos volume 0 (by positivity)
 
+/--
+@isnad1 id=contdiff.1h3v.s7.3ccc00b08c1f from=translated src=- shape=16e52926 vocab=093a1087
+-/
 theorem explicitRadialKernel_contDiff (R : ℝ) (hR : 0 < R) (j : ℕ) :
     ContDiff ℝ (⊤ : ℕ∞) (explicitRadialKernel (n := n) R hR j) :=
   (explicitRadialRaw_contDiff R hR j).div_const _
 
+/--
+@isnad1 id=le.1h4v.s5.89c4dad27b09 from=translated src=- shape=fa0e889b vocab=ae48e867
+-/
 theorem explicitRadialKernel_nonneg (R : ℝ) (hR : 0 < R) (j : ℕ)
     (x : ComplexModel n) : 0 ≤ explicitRadialKernel R hR j x :=
   div_nonneg (explicitRadialRaw_nonneg R hR j x)
     (explicitRadialRaw_integral_pos R hR j).le
 
+/--
+@isnad1 id=eq.1h3v.s7.323858d885b7 from=translated src=- shape=61cfd361 vocab=4ae84de7
+-/
 theorem explicitRadialKernel_integral_one (R : ℝ) (hR : 0 < R) (j : ℕ) :
     ∫ x : ComplexModel n, explicitRadialKernel R hR j x = 1 := by
   simp_rw [explicitRadialKernel, div_eq_mul_inv,
@@ -155,7 +190,9 @@ theorem explicitRadialKernel_integral_one (R : ℝ) (hR : 0 < R) (j : ℕ) :
   exact inv_mul_cancel₀ (explicitRadialRaw_integral_pos R hR j).ne'
 
 /-- Successive normalized kernels are exact dilates, including in complex
-dimension zero.-/
+dimension zero.
+@isnad1 id=eq.1h5v.s8.f7f17c97c255 from=translated src=- shape=3509844e vocab=b92d01f5
+-/
 theorem explicitRadialKernel_scale (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (x : ComplexModel n) :
     explicitRadialKernel R hR b x =
@@ -185,6 +222,9 @@ theorem explicitRadialKernel_scale (R : ℝ) (hR : 0 < R) (a b : ℕ)
   dsimp [q]
   field_simp [hqpow, (explicitRadialRaw_integral_pos (n := n) R hR a).ne']
 
+/--
+@isnad1 id=eq.1h3v.s7.cfe941ac6983 from=translated src=- shape=d5d46f58 vocab=19b74cbe
+-/
 theorem explicitRadialKernel_tsupport (R : ℝ) (hR : 0 < R) (j : ℕ) :
     tsupport (explicitRadialKernel (n := n) R hR j) =
       closedBall 0 (R / ((j : ℝ) + 1)) := by
@@ -196,13 +236,18 @@ theorem explicitRadialKernel_tsupport (R : ℝ) (hR : 0 < R) (j : ℕ) :
     explicitRadialRaw_support R hR j,
     closure_ball _ (by positivity : R / ((j : ℝ) + 1) ≠ 0)]
 
+/--
+@isnad1 id=hascompa.1h3v.s5.9910c25aa250 from=translated src=- shape=fc120a0b vocab=ff7cea54
+-/
 theorem explicitRadialKernel_hasCompactSupport (R : ℝ) (hR : 0 < R) (j : ℕ) :
     HasCompactSupport (explicitRadialKernel (n := n) R hR j) := by
   rw [HasCompactSupport, explicitRadialKernel_tsupport R hR j]
   exact isCompact_closedBall _ _
 
 /-- The explicit kernel is invariant under scalar unitary rotations.  This is
-the radial identity that the abstract `ContDiffBump` API does not expose.-/
+the radial identity that the abstract `ContDiffBump` API does not expose.
+@isnad1 id=eq.2h5v.s6.858cf2227fe8 from=translated src=- shape=b78e8ea9 vocab=d19cbccc
+-/
 theorem explicitRadialKernel_unitary (R : ℝ) (hR : 0 < R) (j : ℕ)
     (a : ℂ) (ha : ‖a‖ = 1) (x : ComplexModel n) :
     explicitRadialKernel R hR j (a • x) =
@@ -211,7 +256,9 @@ theorem explicitRadialKernel_unitary (R : ℝ) (hR : 0 < R) (j : ℕ)
   congr 1
   simp [explicitRadialRaw, ContDiffBumpBase.ofInnerProductSpace, norm_smul, ha]
 
-/-- The explicit raw profile is one on its inner closed ball.-/
+/-- The explicit raw profile is one on its inner closed ball.
+@isnad1 id=eq.2h4v.s7.810e0511d18f from=translated src=- shape=99b415d3 vocab=c7e6f595
+-/
 theorem explicitRadialRaw_eq_one_of_mem_closedBall
     (R : ℝ) (hR : 0 < R) (j : ℕ) (x : ComplexModel n)
     (hx : x ∈ closedBall 0
@@ -226,7 +273,9 @@ theorem explicitRadialRaw_eq_one_of_mem_closedBall
   simpa only [div_eq_inv_mul] using
     ((div_le_one (shrinkingBump (E := ComplexModel n) R hR j).rIn_pos).2 hx')
 
-/-- The integral of the raw profile dominates the volume of its inner ball.-/
+/-- The integral of the raw profile dominates the volume of its inner ball.
+@isnad1 id=le.1h3v.s9.f1d308289744 from=translated src=- shape=99e7f166 vocab=c448dc3f
+-/
 theorem measure_closedBall_le_explicitRadialRaw_integral
     (R : ℝ) (hR : 0 < R) (j : ℕ) :
     volume.real (closedBall (0 : ComplexModel n)
@@ -247,7 +296,9 @@ theorem measure_closedBall_le_explicitRadialRaw_integral
         (Eventually.of_forall (explicitRadialRaw_nonneg R hR j))
 
 /-- The normalized explicit kernel has the scale-invariant bound required by
-the Lebesgue differentiation theorem.-/
+the Lebesgue differentiation theorem.
+@isnad1 id=le.1h4v.s9.5051bce48487 from=translated src=- shape=25f570df vocab=92cfabfe
+-/
 theorem explicitRadialKernel_le_div_measure_closedBall
     (R : ℝ) (hR : 0 < R) (j : ℕ) (x : ComplexModel n) :
     explicitRadialKernel R hR j x ≤
@@ -284,7 +335,9 @@ theorem explicitRadialKernel_le_div_measure_closedBall
       (measure_closedBall_pos volume (0 : ComplexModel n) φ.rOut_pos).ne'
       measure_closedBall_lt_top.ne
 
-/-- Translating the explicit kernel translates its support ball.-/
+/-- Translating the explicit kernel translates its support ball.
+@isnad1 id=le.1h4v.s7.0554d67d7a69 from=translated src=- shape=50cc43ea vocab=3ac8dd6c
+-/
 theorem tsupport_explicitRadialKernel_translate_subset
     (R : ℝ) (hR : 0 < R) (j : ℕ) (z : ComplexModel n) :
     tsupport (fun x : ComplexModel n ↦ explicitRadialKernel R hR j (x - z)) ⊆
@@ -297,13 +350,18 @@ theorem tsupport_explicitRadialKernel_translate_subset
   simpa only [mem_closedBall, dist_zero_right, dist_eq_norm, sub_zero, shrinkingBump]
     using hx'
 
+/--
+@isnad1 id=eq.1h4v.s6.c2c3dda3b805 from=translated src=- shape=e3ae8493 vocab=ea2e8fbc
+-/
 theorem explicitRadialKernel_neg (R : ℝ) (hR : 0 < R) (j : ℕ)
     (x : ComplexModel n) :
     explicitRadialKernel R hR j (-x) = explicitRadialKernel R hR j x := by
   simpa using explicitRadialKernel_unitary R hR j (-1 : ℂ) (by norm_num) x
 
 /-- After translating the center, changing from the `b`-th explicit kernel to
-the `a`-th kernel is exactly inverse dilation of the sampled density.-/
+the `a`-th kernel is exactly inverse dilation of the sampled density.
+@isnad1 id=eq.1h6v.s9.b84e128a7009 from=translated src=- shape=b0575f9f vocab=d3a8d2bf
+-/
 theorem translationPairing_explicitRadialKernel_scale
     (g : ComplexModel n → ℝ) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (z : ComplexModel n) :
@@ -357,7 +415,9 @@ theorem translationPairing_explicitRadialKernel_scale
 
 /-- The circle averages along an affine complex line of a smooth function
 plurisubharmonic on a neighborhood of the unit disc are monotone in the
-radius.-/
+radius.
+@isnad1 id=le.7h7v.s9.bb66b50ddf57 from=translated src=- shape=28b4ea64 vocab=5f77981e
+-/
 theorem circleAverage_affineLine_mono_of_smooth_pshOn
     {p : ComplexModel n → ℝ}
     (hpSmooth : ContDiff ℝ ∞ p)
@@ -384,7 +444,9 @@ theorem circleAverage_affineLine_mono_of_smooth_pshOn
     ⟨hr, hrs.trans hs⟩ ⟨hr.trans hrs, hs⟩ hrs
 
 /-- The circle averages along every affine complex line of a globally smooth
-plurisubharmonic function are monotone in the radius.-/
+plurisubharmonic function are monotone in the radius.
+@isnad1 id=le.5h6v.s8.fd078490c37a from=translated src=- shape=7686f93e vocab=0248033b
+-/
 theorem circleAverage_affineLine_mono_of_smooth_psh
     {p : ComplexModel n → ℝ}
     (hpSmooth : ContDiff ℝ ∞ p)
@@ -398,7 +460,9 @@ theorem circleAverage_affineLine_mono_of_smooth_psh
 
 /-- A continuous affine-circle integrand times a continuous compactly
 supported density is integrable on one period times the ambient space.  This
-is the product-integrability input for the radial Fubini argument.-/
+is the product-integrability input for the radial Fubini argument.
+@isnad1 id=integrab.3h5v.s9.da2b049bfbb9 from=translated src=- shape=c995cff8 vocab=01109311
+-/
 theorem integrable_circleMap_smul_mul_of_continuous_hasCompactSupport
     {p κ : ComplexModel n → ℝ}
     (hp : Continuous p) (hκ : Continuous κ) (hκc : HasCompactSupport κ)
@@ -436,7 +500,9 @@ theorem integrable_circleMap_smul_mul_of_continuous_hasCompactSupport
 
 /-- Averaging a continuous density along affine complex circles and then
 against a compactly supported radial kernel equals the radial pairing at the
-corresponding real scale.-/
+corresponding real scale.
+@isnad1 id=eq.4h5v.s9.ca38e270000f from=translated src=- shape=61cb4954 vocab=8445017d
+-/
 theorem integral_circleAverage_mul_eq_smul
     {p κ : ComplexModel n → ℝ}
     (hp : Continuous p) (hκ : Continuous κ) (hκc : HasCompactSupport κ)
@@ -503,7 +569,9 @@ theorem integral_circleAverage_mul_eq_smul
 
 /-- For a globally smooth function which is PSH on a neighborhood of every
 tested affine unit disc, integration against a nonnegative compactly supported
-radial kernel is monotone in the real dilation radius.-/
+radial kernel is monotone in the real dilation radius.
+@isnad1 id=le.11h7v.s10.f769a8cf714a from=translated src=- shape=c4877481 vocab=38c7e049
+-/
 theorem integral_add_real_smul_mul_mono_of_smooth_pshOn
     {p κ : ComplexModel n → ℝ}
     (hpSmooth : ContDiff ℝ ∞ p)
@@ -546,7 +614,9 @@ theorem integral_add_real_smul_mul_mono_of_smooth_pshOn
 
 /-- Almost-everywhere pointwise convergence survives precomposition by a
 nondegenerate real dilation followed by translation.  This is the null-set
-transport needed when applying dominated convergence to radial pairings.-/
+transport needed when applying dominated convergence to radial pairings.
+@isnad1 id=eventual.2h5v.s9.10c6c58ad649 from=translated src=- shape=8b450547 vocab=68b958ea
+-/
 theorem ae_tendsto_comp_add_real_smul
     {f : ℕ → ComplexModel n → ℝ} {g : ComplexModel n → ℝ}
     (h : ∀ᵐ x ∂volume,
@@ -568,7 +638,9 @@ theorem ae_tendsto_comp_add_real_smul
 
 /-- The explicit radial kernels form an approximate identity for every locally
 integrable density.  This is the Lebesgue differentiation part of the radial
-system and does not use plurisubharmonicity.-/
+system and does not use plurisubharmonicity.
+@isnad1 id=eventual.2h3v.s9.b224d6ca824c from=translated src=- shape=96cdfc4a vocab=9ff4ab5c
+-/
 theorem ae_tendsto_translationPairing_explicitRadialKernel
     {g : ComplexModel n → ℝ} (hg : LocallyIntegrable g volume)
     (R : ℝ) (hR : 0 < R) :
@@ -623,7 +695,9 @@ theorem ae_tendsto_translationPairing_explicitRadialKernel
 
 /-- The sole remaining radial-analysis atom: radial averages of a locally
 bounded PSH function decrease when their scale shrinks.  All kernel and
-approximate-identity fields are proved separately.-/
+approximate-identity fields are proved separately.
+@isnad1 id=antitone.8h7v.s9.cd4a8013c336 from=translated src=- shape=1bd0d33b vocab=b9c83a03
+-/
 theorem antitone_translationPairing_explicitRadialKernel_of_locallyBoundedPsh
     {Ω : Opens (ComplexModel n)} {p : ComplexModel n → ℝ}
     (hp : IsLocallyBoundedPshOn Ω p) {R : ℝ} (hR : 0 < R)
@@ -777,7 +851,9 @@ theorem antitone_translationPairing_explicitRadialKernel_of_locallyBoundedPsh
 
 /-- The explicit inner-product kernels, with all structure fields assembled.
 The construction uses the preceding monotonicity atom and the proved Lebesgue
-differentiation theorem.-/
+differentiation theorem.
+@isnad1 id=ex.7h6v.s9.eb8a97ce602a from=translated src=- shape=21f179b3 vocab=76551a12
+-/
 theorem exists_explicitRadialConvolutionSystem_of_locallyBoundedPsh
     {Ω : Opens (ComplexModel n)} {p : ComplexModel n → ℝ}
     (hp : IsLocallyBoundedPshOn Ω p) {R : ℝ} (hR : 0 < R)
@@ -823,7 +899,9 @@ theorem exists_explicitRadialConvolutionSystem_of_locallyBoundedPsh
 /-- The radial monotonicity atom, together with the already checked smoothness,
 PSH preservation, almost-everywhere convergence, and representative uniqueness,
 produces a pointwise decreasing smooth approximation on every relatively
-compact inner domain.-/
+compact inner domain.
+@isnad1 id=ex.2h4v.s6.fcd1dcc7104b from=translated src=- shape=bffd0e51 vocab=6fe985af
+-/
 theorem exists_decreasingMollifierApproximation
     {Ω A : Opens (ComplexModel n)} {p : ComplexModel n → ℝ}
     (hp : IsLocallyBoundedPshOn Ω p) (hA : RelativelyCompactIn A Ω) :
@@ -873,7 +951,9 @@ theorem exists_decreasingMollifierApproximation
 /-- A smooth real-valued PSH function pulls back by a smooth holomorphic map.
 This is the smooth kernel of the general pullback theorem: `smoothDDC_comp`
 cancels the second-derivative terms of the map, and the remaining Levi form is
-tested on its complex-linear differential.-/
+tested on its complex-linear differential.
+@isnad1 id=plurisub.6h6v.s9.1cd1e7ead294 from=translated src=- shape=2e775d75 vocab=c5af5e39
+-/
 theorem plurisubharmonicOn_coe_comp_of_smooth
     {F : ComplexModel k → ComplexModel n} {p : ComplexModel n → ℝ}
     {U : Set (ComplexModel k)} {V : Set (ComplexModel n)}
@@ -954,7 +1034,9 @@ theorem plurisubharmonicOn_coe_comp_of_smooth
 holomorphicity hypothesis as the singular theorem.  On each tested affine
 disc the map has scalar complex domain, hence is complex smooth by the Cauchy
 integral theorem; the preceding smooth Levi calculation then applies after
-the canonical identification `ComplexModel 1 ≃L[ℂ] ℂ`.-/
+the canonical identification `ComplexModel 1 ≃L[ℂ] ℂ`.
+@isnad1 id=plurisub.6h6v.s9.613df0d71500 from=translated src=- shape=f2dc57d0 vocab=6ad2e8ff
+-/
 theorem plurisubharmonicOn_coe_comp_holomorphic_of_smooth
     {F : ComplexModel k → ComplexModel n} {p : ComplexModel n → ℝ}
     {U : Set (ComplexModel k)} {V : Set (ComplexModel n)}
@@ -1022,7 +1104,9 @@ theorem plurisubharmonicOn_coe_comp_holomorphic_of_smooth
 smooth pullback kernel is proved above; the remaining input is pointwise
 decreasing radial regularization of an arbitrary nontrivial PSH germ.  The
 resulting pullback may be identically negative infinity, including when the
-source maps into the pole set.-/
+source maps into the pole set.
+@isnad1 id=plurisub.4h6v.s9.d02aaeb3f847 from=translated src=- shape=f62fb73c vocab=43778e7d
+-/
 theorem plurisubharmonicAt_comp_holomorphic
     {F : ComplexModel k → ComplexModel n} {u : ComplexModel n → EReal}
     {U : Set (ComplexModel k)} (hU : IsOpen U) (hF : DifferentiableOn ℂ F U)
@@ -1100,7 +1184,9 @@ theorem plurisubharmonicAt_comp_holomorphic
   exact tendsto_nhds_unique (tendsto_atTop_iInf (htruncAnti y hy)) htReal
 
 /-- The germ theorem gives pullback on any open source domain mapped to a
-set where the target potential has PSH germs.-/
+set where the target potential has PSH germs.
+@isnad1 id=plurisub.4h6v.s9.677d181ea656 from=translated src=- shape=b9280403 vocab=0c87bbc5
+-/
 theorem plurisubharmonicOn_comp_holomorphic
     {F : ComplexModel k → ComplexModel n} {u : ComplexModel n → EReal}
     {U : Set (ComplexModel k)} {V : Set (ComplexModel n)}
@@ -1111,7 +1197,9 @@ theorem plurisubharmonicOn_comp_holomorphic
   exact plurisubharmonicAt_comp_holomorphic hU hF hz (hu (F z) (hFV hz))
 
 /-- Smooth real summands and PSH germs transport separately. This is a raw
-quasi-PSH statement, with no conclusion about the finite locus.-/
+quasi-PSH statement, with no conclusion about the finite locus.
+@isnad1 id=quasiplu.4h6v.s9.28022df36f69 from=translated src=- shape=09018cef vocab=aad7e443
+-/
 theorem quasiPlurisubharmonicAt_comp_holomorphic
     {F : ComplexModel k → ComplexModel n} {u : ComplexModel n → EReal}
     {U : Set (ComplexModel k)} (hU : IsOpen U) (hF : ContDiffOn ℂ ∞ F U)

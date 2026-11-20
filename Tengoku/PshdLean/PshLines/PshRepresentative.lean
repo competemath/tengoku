@@ -34,7 +34,9 @@ def IsPshRepresentative (T : 𝓓'(Ω, ℝ)) (u : E → EReal) : Prop :=
 variable {μ} [μ.IsAddHaarMeasure] {T : 𝓓'(Ω, ℝ)} {u v : E → EReal}
 
 /-- Genuine PSH representatives are unique on the open domain, without a
-connectedness assumption. No uniqueness outside that domain is asserted.-/
+connectedness assumption. No uniqueness outside that domain is asserted.
+@isnad1 id=eqon.2h6v.s8.9e3b820611d7 from=translated src=- shape=165ccb43 vocab=a6ab16b9
+-/
 theorem IsPshRepresentative.unique (hu : IsPshRepresentative μ T u)
     (hv : IsPshRepresentative μ T v) : EqOn u v Ω := by
   obtain ⟨huP, huF, huL, huT⟩ := hu
@@ -45,7 +47,9 @@ theorem IsPshRepresentative.unique (hu : IsPshRepresentative μ T u)
     (huT.symm.trans hvT)
 
 /-- Every genuinely represented PSH distribution has nonnegative Levi
-derivatives. The converse must construct a representative rather than assume it.-/
+derivatives. The converse must construct a representative rather than assume it.
+@isnad1 id=hasnonne.1h5v.s8.532b2dc6a39c from=translated src=- shape=c287e555 vocab=76f4ed49
+-/
 theorem IsPshRepresentative.hasNonnegativeDistributionalLevi
     (hu : IsPshRepresentative μ T u) : HasNonnegativeDistributionalLevi T := by
   obtain ⟨huP, huF, huL, rfl⟩ := hu

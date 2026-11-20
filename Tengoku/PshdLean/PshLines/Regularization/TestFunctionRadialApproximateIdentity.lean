@@ -34,7 +34,9 @@ variable {E : Type*} [NormedAddCommGroup E]
 omit [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] [μ.IsAddHaarMeasure] in
 /-- The lifted bilinear map used by the iterated convolution formula is scalar
-multiplication on the corresponding space of continuous multilinear maps.-/
+multiplication on the corresponding space of continuous multilinear maps.
+@isnad1 id=eq.0h2v.s11.e753ac6ec129 from=translated src=- shape=403c8d34 vocab=03250653
+-/
 theorem convolutionRightIteratedCLM_lsmul (r : ℕ) :
     convolutionRightIteratedCLM (G := E)
         (ContinuousLinearMap.lsmul ℝ ℝ) r =
@@ -57,6 +59,9 @@ noncomputable def AdaptedRadialKernelData.includedTestFunctionSupportedIn
       (subset_closure (φ.tsupport_subset (subset_tsupport φ hy)))
 
 omit [BorelSpace E] [μ.IsAddHaarMeasure] in
+/--
+@isnad1 id=eq.0h7v.s9.f37660347837 from=translated src=- shape=3d6938aa vocab=3c347ef6
+-/
 @[simp]
 theorem AdaptedRadialKernelData.includedTestFunctionSupportedIn_apply
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) (y : E) :
@@ -65,7 +70,9 @@ theorem AdaptedRadialKernelData.includedTestFunctionSupportedIn_apply
 
 omit [BorelSpace E] [μ.IsAddHaarMeasure] in
 /-- The fixed-support representative agrees with mathlib's test-function
-inclusion into the ambient domain.-/
+inclusion into the ambient domain.
+@isnad1 id=eq.0h6v.s10.dda423e46934 from=translated src=- shape=03d2b981 vocab=8370d5f2
+-/
 theorem AdaptedRadialKernelData.includedTestFunctionSupportedIn_eq_monoCLM
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) :
     ((D.includedTestFunctionSupportedIn φ : E → ℝ)) =
@@ -74,7 +81,9 @@ theorem AdaptedRadialKernelData.includedTestFunctionSupportedIn_eq_monoCLM
 
 /-- Every derivative of the test-function convolution is convolution of the
 same kernel with the corresponding derivative of the zero-extended test
-function.-/
+function.
+@isnad1 id=eq.0h8v.s10.402f433802c0 from=translated src=- shape=640d18d2 vocab=012f5d18
+-/
 theorem AdaptedRadialKernelData.iteratedFDeriv_testFunctionRadialConvolution
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) (r : ℕ) :
@@ -106,7 +115,9 @@ theorem AdaptedRadialKernelData.iteratedFDeriv_testFunctionRadialConvolution
 omit [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] [μ.IsAddHaarMeasure] in
 /-- Every iterated derivative of a test function, viewed on the whole ambient
-vector space by zero extension, is uniformly continuous.-/
+vector space by zero extension, is uniformly continuous.
+@isnad1 id=uniformc.0h4v.s8.0c23efc954d6 from=translated src=- shape=34a9bde4 vocab=16c3949e
+-/
 theorem TestFunction.uniformContinuous_iteratedFDeriv
     {U : Opens E} (φ : 𝓓(U, ℝ)) (r : ℕ) :
     UniformContinuous (iteratedFDeriv ℝ r (fun y : E ↦ φ y)) := by
@@ -156,7 +167,9 @@ theorem TestFunction.uniformContinuous_iteratedFDeriv
       exact mul_div_cancel₀ ε hC1.ne'
 
 /-- The bundled fixed-support convolution has the same arbitrary-order
-derivative formula as its underlying function.-/
+derivative formula as its underlying function.
+@isnad1 id=eq.0h8v.s10.c31517635f60 from=translated src=- shape=3e771bf9 vocab=b45c2398
+-/
 theorem AdaptedRadialKernelData.iteratedFDeriv_testFunctionRadialConvolutionSupportedIn
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) (r : ℕ) :
@@ -169,7 +182,9 @@ theorem AdaptedRadialKernelData.iteratedFDeriv_testFunctionRadialConvolutionSupp
 
 omit [BorelSpace E] [μ.IsAddHaarMeasure] in
 /-- The fixed-support representative and the zero-extended test function have
-identical iterated derivatives.-/
+identical iterated derivatives.
+@isnad1 id=eq.0h7v.s9.947445608881 from=translated src=- shape=8f1a81ce vocab=b04a8d1e
+-/
 theorem AdaptedRadialKernelData.iteratedFDeriv_includedTestFunctionSupportedIn
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) (r : ℕ) :
     iteratedFDeriv ℝ r
@@ -178,7 +193,9 @@ theorem AdaptedRadialKernelData.iteratedFDeriv_includedTestFunctionSupportedIn
   rfl
 
 /-- For each derivative order, convolution by the adapted kernel converges
-uniformly to the corresponding derivative of the test function.-/
+uniformly to the corresponding derivative of the test function.
+@isnad1 id=eventual.1h8v.s12.ee9092256951 from=translated src=- shape=fe47a394 vocab=02b6a42f
+-/
 theorem AdaptedRadialKernelData.eventually_structureMapCLM_dist_lt
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ))
     (r : ℕ) {ε : ℝ} (hε : 0 < ε) :
@@ -216,7 +233,9 @@ theorem AdaptedRadialKernelData.eventually_structureMapCLM_dist_lt
   exact hnorm.trans_lt (half_lt_self hε)
 
 /-- The adapted radial convolutions converge to the zero-extended test
-function in the `C^∞` Fréchet topology of one fixed compact-support space.-/
+function in the `C^∞` Fréchet topology of one fixed compact-support space.
+@isnad1 id=tendsto.0h6v.s8.96cbfbb116cb from=translated src=- shape=abc31403 vocab=8a15d757
+-/
 theorem AdaptedRadialKernelData.tendsto_testFunctionRadialConvolutionSupportedIn
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) :
     Tendsto
@@ -243,7 +262,9 @@ theorem AdaptedRadialKernelData.tendsto_testFunctionRadialConvolutionSupportedIn
       (D.includedTestFunctionSupportedIn φ))).symm ▸ hN j hj
 
 /-- After the continuous inclusion of the fixed-support space, the same
-approximate identity converges in the ambient test-function space.-/
+approximate identity converges in the ambient test-function space.
+@isnad1 id=tendsto.0h6v.s10.eaa8c3f41493 from=translated src=- shape=aa45a5da vocab=af66cebb
+-/
 theorem AdaptedRadialKernelData.tendsto_ofSupportedIn_testFunctionRadialConvolutionSupportedIn
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) :
     Tendsto

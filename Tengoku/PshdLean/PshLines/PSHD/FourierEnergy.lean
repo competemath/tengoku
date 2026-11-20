@@ -19,7 +19,9 @@ open scoped ENNReal
 
 namespace PshLines.PSHD
 
-/-- The Gamma integral with a positive decay rate, as a lower Lebesgue integral.-/
+/-- The Gamma integral with a positive decay rate, as a lower Lebesgue integral.
+@isnad1 id=eq.2h2v.s7.bd016cdbfd91 from=translated src=- shape=3c77d761 vocab=7381b7b3
+-/
 theorem lintegral_rpow_mul_exp_neg_mul_Ioi {a c : ℝ} (ha : 0 < a) (hc : 0 < c) :
     ∫⁻ t in Ioi 0, ENNReal.ofReal (t ^ (a - 1) * exp (-(c * t))) =
       ENNReal.ofReal ((1 / c) ^ a * Gamma a) := by
@@ -31,7 +33,9 @@ theorem lintegral_rpow_mul_exp_neg_mul_Ioi {a c : ℝ} (ha : 0 < a) (hc : 0 < c)
     have : 0 < t := ht
     positivity
 
-/-- Without decay the Gamma integrand has infinite integral.-/
+/-- Without decay the Gamma integrand has infinite integral.
+@isnad1 id=eq.1h1v.s6.6c96aad9b05d from=translated src=- shape=518f1fdf vocab=a5588119
+-/
 theorem lintegral_rpow_Ioi_eq_top {a : ℝ} (ha : 0 < a) :
     ∫⁻ t in Ioi 0, ENNReal.ofReal (t ^ (a - 1)) = ⊤ := by
   by_contra hne
@@ -59,7 +63,9 @@ theorem lintegral_rpow_Ioi_eq_top {a : ℝ} (ha : 0 < a) :
     linarith
   linarith
 
-/-- The Gamma integral after the substitution `t ↦ t⁻¹`.-/
+/-- The Gamma integral after the substitution `t ↦ t⁻¹`.
+@isnad1 id=eq.2h2v.s7.565e3651a0f5 from=translated src=- shape=818577a1 vocab=7381b7b3
+-/
 theorem lintegral_rpow_mul_exp_neg_div_Ioi {a c : ℝ} (ha : 0 < a) (hc : 0 < c) :
     ∫⁻ t in Ioi 0, ENNReal.ofReal (t ^ (-a - 1) * exp (-(c / t))) =
       ENNReal.ofReal ((1 / c) ^ a * Gamma a) := by
@@ -88,7 +94,9 @@ theorem lintegral_rpow_mul_exp_neg_div_Ioi {a c : ℝ} (ha : 0 < a) (hc : 0 < c)
   push_cast
   ring
 
-/-- Gaussian subordination of the Riesz kernel, including the diagonal value `⊤`.-/
+/-- Gaussian subordination of the Riesz kernel, including the diagonal value `⊤`.
+@isnad1 id=eq.2h2v.s7.3f91b4900b29 from=translated src=- shape=2e09daab vocab=ad4ad0ca
+-/
 theorem inv_ofReal_rpow_eq_lintegral {s r : ℝ} (hs : 0 < s) (hr : 0 ≤ r) :
     (ENNReal.ofReal r ^ s)⁻¹ =
       ENNReal.ofReal (π ^ (s / 2) / Gamma (s / 2)) *
@@ -114,7 +122,9 @@ theorem inv_ofReal_rpow_eq_lintegral {s r : ℝ} (hs : 0 < s) (hr : 0 ≤ r) :
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E] [FiniteDimensional ℝ E]
 
-/-- A real Gaussian on a finite-dimensional inner product space is integrable.-/
+/-- A real Gaussian on a finite-dimensional inner product space is integrable.
+@isnad1 id=integrab.1h2v.s7.e9af97663cfc from=translated src=- shape=f9db3189 vocab=462c16eb
+-/
 theorem integrable_exp_neg_mul_sq_norm {b : ℝ} (hb : 0 < b) :
     Integrable (fun ξ : E ↦ exp (-(b * ‖ξ‖ ^ 2))) := by
   have h := GaussianFourier.integrable_cexp_neg_mul_sq_norm_add (V := E)
@@ -124,7 +134,9 @@ theorem integrable_exp_neg_mul_sq_norm {b : ℝ} (hb : 0 < b) :
   rw [← Complex.ofReal_pow, ← Complex.ofReal_neg, ← Complex.ofReal_mul, Complex.norm_exp_ofReal]
   ring_nf
 
-/-- Gaussian testing of the difference distribution, expressed through the transform.-/
+/-- Gaussian testing of the difference distribution, expressed through the transform.
+@isnad1 id=eq.1h3v.s8.3a2a5fc0e262 from=translated src=- shape=7f1ca35e vocab=d98fccf8
+-/
 theorem lintegral_prod_exp_neg_eq (μ : Measure E) [IsFiniteMeasure μ] {t : ℝ} (ht : 0 < t) :
     ∫⁻ p : E × E, ENNReal.ofReal (exp (-(π * ‖p.1 - p.2‖ ^ 2 * t))) ∂μ.prod μ =
       ENNReal.ofReal (t ^ (-(Module.finrank ℝ E / 2 : ℝ))) *
@@ -183,6 +195,9 @@ theorem lintegral_prod_exp_neg_eq (μ : Measure E) [IsFiniteMeasure μ] {t : ℝ
 def rieszFourierConstant (d s : ℝ) : ℝ :=
   π ^ (s / 2) / Gamma (s / 2) * ((1 / π) ^ ((d - s) / 2) * Gamma ((d - s) / 2))
 
+/--
+@isnad1 id=lt.2h2v.s5.19147e17d441 from=translated src=- shape=909fdf01 vocab=2e23fa8e
+-/
 theorem rieszFourierConstant_pos {d s : ℝ} (hs : 0 < s) (hsd : s < d) :
     0 < rieszFourierConstant d s := by
   have h1 := Gamma_pos_of_pos (show 0 < s / 2 by positivity)
@@ -193,7 +208,9 @@ theorem rieszFourierConstant_pos {d s : ℝ} (hs : 0 < s) (hsd : s < d) :
 
 /-- **Fourier representation of Riesz energy.** For a finite measure on a
 finite-dimensional real inner product space of dimension `d` and `0 < s < d`,
-`I_s(μ) = b_{d,s} ∫ |μ̂(ζ)|² |ζ|^{s-d} dζ`, including infinite values.-/
+`I_s(μ) = b_{d,s} ∫ |μ̂(ζ)|² |ζ|^{s-d} dζ`, including infinite values.
+@isnad1 id=eq.2h3v.s8.5127d4f79cf1 from=translated src=- shape=0081d1f9 vocab=f1eab137
+-/
 theorem rieszEnergy_eq_lintegral_measureFourier (μ : Measure E) [IsFiniteMeasure μ]
     {s : ℝ} (hs : 0 < s) (hsd : s < Module.finrank ℝ E) :
     rieszEnergy s μ =

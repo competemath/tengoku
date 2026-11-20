@@ -12,7 +12,9 @@ open Set MeasureTheory
 namespace PshLines.PSHD
 
 /-- The high-value angles, including both endpoints of a full turn, form a
-compact real set. The disc criterion is needed only along the given line.-/
+compact real set. The disc criterion is needed only along the given line.
+@isnad1 id=iscompac.3h4v.s6.5d01144cc3dc from=translated src=- shape=da419ed2 vocab=51edae24
+-/
 theorem isCompact_highValue_angles
     {u : ℂ → ℝ} {U : Set ℂ}
     (hu : DiscPshOn (fun z => (u z : EReal)) U)
@@ -28,7 +30,9 @@ theorem isCompact_highValue_angles
   exact isCompact_Icc.inter_right hc
 
 /-- A Borel ambient function gives a Borel family of angular high-value sets
-under measurable affine-circle parameters.-/
+under measurable affine-circle parameters.
+@isnad1 id=measurab.5h7v.s8.6430ae449f51 from=translated src=- shape=4952a08c vocab=c03b3ba0
+-/
 theorem measurableSet_highValue_angles
     {S E : Type*} [MeasurableSpace S]
     [NormedAddCommGroup E] [NormedSpace ℂ E]

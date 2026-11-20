@@ -42,6 +42,9 @@ noncomputable def cutoffTranslatedKernelJet
     (r : ℕ) (z y : E) (v : Fin r → E) : ℝ :=
   χ y * iteratedFDeriv ℝ r κ (y - z) (fun i ↦ -v i)
 
+/--
+@isnad1 id=eq.0h7v.s7.2b7a8654bce1 from=translated src=- shape=58e82b93 vocab=f4e22fc5
+-/
 @[simp]
 theorem cutoffTranslatedKernelJet_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -51,7 +54,9 @@ theorem cutoffTranslatedKernelJet_zero
   simp [cutoffTranslatedKernelJet]
 
 /-- Smoothness of a fixed directional translation jet in the spatial
-variable.-/
+variable.
+@isnad1 id=contdiff.1h7v.s6.e2a0385c5272 from=translated src=- shape=ce768f75 vocab=45254edc
+-/
 theorem cutoffTranslatedKernelJet_contDiff
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -87,6 +92,9 @@ noncomputable def cutoffTranslatedKernelJetSupportedIn
       exact (Function.support_mul_subset_left _ _).trans
         ((subset_tsupport χ).trans hχK))
 
+/--
+@isnad1 id=eq.2h9v.s9.26529c878deb from=translated src=- shape=f1a06a09 vocab=89c25d62
+-/
 @[simp]
 theorem cutoffTranslatedKernelJetSupportedIn_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -98,7 +106,9 @@ theorem cutoffTranslatedKernelJetSupportedIn_apply
   rfl
 
 /-- The zeroth translation jet is the original fixed-support translated
-kernel.-/
+kernel.
+@isnad1 id=eq.2h7v.s8.0ddc2759fa51 from=translated src=- shape=cea26e35 vocab=134195fa
+-/
 theorem cutoffTranslatedKernelJetSupportedIn_zero_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -119,6 +129,9 @@ noncomputable def distributionOnSupportedInCLM
     ContDiffMapSupportedIn E ℝ ⊤ K →L[ℝ] ℝ :=
   T.comp (TestFunction.ofSupportedInCLM ℝ hKΩ)
 
+/--
+@isnad1 id=eq.1h5v.s9.cecc3909a27b from=translated src=- shape=07bb5a85 vocab=b5891343
+-/
 @[simp]
 theorem distributionOnSupportedInCLM_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -141,7 +154,9 @@ noncomputable def distributionCutoffTranslatedKernelJet
     (cutoffTranslatedKernelJetSupportedIn χ κ hκ K hχK r z v)
 
 /-- At order zero the distributional jet is the original fixed-support
-cutoff-translated pairing.-/
+cutoff-translated pairing.
+@isnad1 id=eq.3h8v.s9.9a1219a8b7d0 from=translated src=- shape=11d465a3 vocab=7651aa38
+-/
 theorem distributionCutoffTranslatedKernelJet_zero_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (T : 𝓓'(Ω, ℝ)) (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -155,7 +170,9 @@ theorem distributionCutoffTranslatedKernelJet_zero_eq
     distributionOnSupportedInCLM_apply,
     cutoffTranslatedKernelJetSupportedIn_zero_eq]
 
-/-- Additivity of the fixed-support kernel jet in each direction slot.-/
+/-- Additivity of the fixed-support kernel jet in each direction slot.
+@isnad1 id=eq.2h11v.s8.f7f57cc8d010 from=translated src=- shape=8e080139 vocab=64799d46
+-/
 theorem cutoffTranslatedKernelJetSupportedIn_update_add
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -192,7 +209,9 @@ theorem cutoffTranslatedKernelJetSupportedIn_update_add
     (iteratedFDeriv ℝ r κ (q - z)).map_update_add]
   ring
 
-/-- Homogeneity of the fixed-support kernel jet in each direction slot.-/
+/-- Homogeneity of the fixed-support kernel jet in each direction slot.
+@isnad1 id=eq.2h11v.s8.7ca9e7d4b168 from=translated src=- shape=e75bc60e vocab=816799df
+-/
 theorem cutoffTranslatedKernelJetSupportedIn_update_smul
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -243,6 +262,9 @@ noncomputable def distributionCutoffTranslatedKernelJetMultilinearMap
         map_smul]
       rfl)
 
+/--
+@isnad1 id=eq.3h9v.s8.0e690d580c37 from=translated src=- shape=da17db79 vocab=c1e71f26
+-/
 @[simp]
 theorem distributionCutoffTranslatedKernelJetMultilinearMap_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -257,7 +279,9 @@ theorem distributionCutoffTranslatedKernelJetMultilinearMap_apply
   rfl
 
 /-- At order zero the algebraic multilinear package has the original
-fixed-support distribution pairing as its unique value.-/
+fixed-support distribution pairing as its unique value.
+@isnad1 id=eq.3h8v.s9.89d8ac7c1500 from=translated src=- shape=e41edf8d vocab=38f7f053
+-/
 @[simp]
 theorem distributionCutoffTranslatedKernelJetMultilinearMap_zero_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -338,6 +362,9 @@ noncomputable def multilinearMapToContinuousOfFiniteDimensional
     ContinuousMultilinearMap ℝ (fun _ : Fin r => E) ℝ :=
   (multilinearMapToContinuousOfFiniteDimensionalAux r f).1
 
+/--
+@isnad1 id=eq.0h4v.s8.c386a35d7fb4 from=translated src=- shape=a0046a93 vocab=d6671cb1
+-/
 @[simp]
 theorem multilinearMapToContinuousOfFiniteDimensional_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -361,6 +388,9 @@ noncomputable def distributionCutoffTranslatedKernelJetContinuousMultilinearMap
     (distributionCutoffTranslatedKernelJetMultilinearMap
       T χ κ hκ K hχK hKΩ r z)
 
+/--
+@isnad1 id=eq.3h9v.s8.d86a5c7674c4 from=translated src=- shape=763a8cd0 vocab=541692dd
+-/
 @[simp]
 theorem distributionCutoffTranslatedKernelJetContinuousMultilinearMap_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -378,7 +408,9 @@ theorem distributionCutoffTranslatedKernelJetContinuousMultilinearMap_apply
     distributionCutoffTranslatedKernelJetMultilinearMap_apply]
 
 /-- At order zero the continuous multilinear package has the original
-fixed-support distribution pairing as its unique value.-/
+fixed-support distribution pairing as its unique value.
+@isnad1 id=eq.3h8v.s9.c79a7ec0f542 from=translated src=- shape=02de5a3c vocab=a496fe6e
+-/
 @[simp]
 theorem distributionCutoffTranslatedKernelJetContinuousMultilinearMap_zero_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]

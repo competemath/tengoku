@@ -17,7 +17,9 @@ open scoped ENNReal Topology
 
 namespace PshLines
 
-/-- A real affine function of the real coordinate has zero Levi form.-/
+/-- A real affine function of the real coordinate has zero Levi form.
+@isnad1 id=eq.0h4v.s5.fe7e96457207 from=translated src=- shape=3725a403 vocab=1e8dd68d
+-/
 theorem leviForm_affine_re (p q : ℝ) (z w : ℂ) :
     leviForm (fun ζ : ℂ => p * ζ.re + q) z w = 0 := by
   let A : ℂ →L[ℝ] ℝ := p • Complex.reCLM
@@ -30,7 +32,9 @@ theorem leviForm_affine_re (p q : ℝ) (z w : ℂ) :
   simp
 
 /-- Real affine functions of the real coordinate are globally
-plurisubharmonic.-/
+plurisubharmonic.
+@isnad1 id=plurisub.0h3v.s5.5272e4d522ff from=translated src=- shape=7ab21dda vocab=d6b6d68c
+-/
 theorem plurisubharmonicOn_coe_affine_re (p q : ℝ) (U : Set ℂ) :
     PlurisubharmonicOn (fun z : ℂ => ((p * z.re + q : ℝ) : EReal)) U := by
   have hsmooth : ContDiff ℝ 2 (fun z : ℂ => p * z.re + q) := by
@@ -46,7 +50,9 @@ theorem plurisubharmonicOn_coe_affine_re (p q : ℝ) (U : Set ℂ) :
 
 /-- If a plurisubharmonic function is bounded above by a finite constant on a
 ball and reaches that constant at the center, then it is constant on the ball.
-This is the local strong maximum principle in the exact form used below.-/
+This is the local strong maximum principle in the exact form used below.
+@isnad1 id=eqon.4h5v.s6.39dd674161b9 from=translated src=- shape=0cf2bcdc vocab=ef2c6778
+-/
 theorem DiscPshOn.eqOn_ball_of_le_of_eq {u : ℂ → EReal} {U : Set ℂ}
     (hu : DiscPshOn u U) (a : ℂ) {R C : ℝ}
     (hBU : ball a R ⊆ U) (hC : ∀ y ∈ ball a R, u y ≤ (C : EReal))
@@ -72,7 +78,9 @@ theorem DiscPshOn.eqOn_ball_of_le_of_eq {u : ℂ → EReal} {U : Set ℂ}
 
 /-- An imaginary-translation-invariant plurisubharmonic function cannot attain
 a finite upper bound in the interior of an interval while being strictly below
-that bound at both endpoints.-/
+that bound at both endpoints.
+@isnad1 id=false.7h6v.s7.fe4a2525ce3d from=translated src=- shape=99c8bd4f vocab=c51ec7c4
+-/
 theorem PlurisubharmonicOn.comp_re_no_finite_strict_interior_max
     {v : ℝ → EReal} {I : Set ℝ}
     (hu : PlurisubharmonicOn (fun z : ℂ => v z.re) (Complex.re ⁻¹' I))
@@ -133,7 +141,9 @@ theorem PlurisubharmonicOn.comp_re_no_finite_strict_interior_max
   exact (ne_of_lt ha) haO.2
 
 /-- The finite values of an imaginary-translation-invariant plurisubharmonic
-function lie below the affine chord joining two finite endpoint values.-/
+function lie below the affine chord joining two finite endpoint values.
+@isnad1 id=le.10h5v.s7.ad7aa0d32f20 from=translated src=- shape=51893c4f vocab=52297a62
+-/
 theorem PlurisubharmonicOn.comp_re_toReal_le_affine_chord
     {v : ℝ → EReal} {I : Set ℝ}
     (hu : PlurisubharmonicOn (fun z : ℂ => v z.re) (Complex.re ⁻¹' I))
@@ -218,7 +228,9 @@ theorem PlurisubharmonicOn.comp_re_toReal_le_affine_chord
     (by simpa [hwa] using hCpos) (by simpa [hwb] using hCpos)
 
 /-- EReal-valued chord inequality for three finite values. The coefficients are
-ordinary real barycentric coordinates, coerced only after they are formed.-/
+ordinary real barycentric coordinates, coerced only after they are formed.
+@isnad1 id=le.10h5v.s7.3e6a81de35e4 from=translated src=- shape=d4f51577 vocab=24723482
+-/
 theorem PlurisubharmonicOn.comp_re_le_chord
     {v : ℝ → EReal} {I : Set ℝ}
     (hu : PlurisubharmonicOn (fun z : ℂ => v z.re) (Complex.re ⁻¹' I))

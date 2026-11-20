@@ -33,7 +33,9 @@ variable {E : Type*} [NormedAddCommGroup E]
 
 omit [BorelSpace E] [μ.IsAddHaarMeasure] in
 /-- Translating a function supported in the first adapted kernel ball keeps
-its support in the fixed compact buffer.-/
+its support in the fixed compact buffer.
+@isnad1 id=le.2h8v.s11.f86e7d8c3358 from=translated src=- shape=c5ae09d1 vocab=9307c0cd
+-/
 theorem AdaptedRadialKernelData.translated_tsupport_subset_compact
     (D : AdaptedRadialKernelData μ Ω x) {a : ℕ} {ψ : E → ℝ}
     (hψ : tsupport ψ ⊆ adaptedComplexModelEquiv ⁻¹'
@@ -56,7 +58,9 @@ theorem AdaptedRadialKernelData.translated_tsupport_subset_compact
 
 /-- In positive complex dimension, a two-scale difference is four times a
 finite sum of distributional Levi pairings against one nonnegative translated
-test function.-/
+test function.
+@isnad1 id=ex.3h9v.s11.c2787ab9a82c from=translated src=- shape=60015cd1 vocab=d10d4e7b
+-/
 theorem AdaptedRadialKernelData.exists_nonnegative_testFunction_value_sub_eq
     (D : AdaptedRadialKernelData μ Ω x) (T : 𝓓'(Ω, ℝ))
     (hn : 0 < Module.finrank ℂ E) {a b : ℕ} (hab : a ≤ b)
@@ -126,7 +130,9 @@ theorem AdaptedRadialKernelData.exists_nonnegative_testFunction_value_sub_eq
   ring
 
 /-- Adapted radial regularized values are antitone in the scale index for every
-distribution with nonnegative constant-direction Levi derivatives.-/
+distribution with nonnegative constant-direction Levi derivatives.
+@isnad1 id=le.3h9v.s8.ff257781fe9a from=translated src=- shape=34ec3c0f vocab=f2006c69
+-/
 theorem AdaptedRadialKernelData.distributionRegularizedValue_antitone
     (D : AdaptedRadialKernelData μ Ω x) (T : 𝓓'(Ω, ℝ))
     (hT : HasNonnegativeDistributionalLevi T)

@@ -39,20 +39,32 @@ structure KahlerBackground (n : ℕ) (M : Type*) [TopologicalSpace M]
 def CoefficientSemipositive (a : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ) : Prop :=
   ∀ v : ComplexModel n, 0 ≤ a ![v, Complex.I • v]
 
+/--
+@isnad1 id=coeffici.0h1v.s8.7a9fe011e925 from=translated src=- shape=0cb9bea4 vocab=2c256ab4
+-/
 theorem coefficientSemipositive_zero :
     CoefficientSemipositive (0 : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ) := by
   intro v
   exact le_refl 0
 
+/--
+@isnad1 id=coeffici.2h3v.s10.c1eae65393f1 from=translated src=- shape=73936581 vocab=c72d99fc
+-/
 theorem coefficientSemipositive_add
     {a b : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ}
     (ha : CoefficientSemipositive a) (hb : CoefficientSemipositive b) :
     CoefficientSemipositive (a + b) := fun v => add_nonneg (ha v) (hb v)
 
+/--
+@isnad1 id=coeffici.2h3v.s9.d660949597a0 from=translated src=- shape=f8ea2785 vocab=a0c640a4
+-/
 theorem coefficientSemipositive_smul {a : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ}
     {c : ℝ} (hc : 0 ≤ c) (ha : CoefficientSemipositive a) :
     CoefficientSemipositive (c • a) := fun v => mul_nonneg hc (ha v)
 
+/--
+@isnad1 id=issemipo.0h3v.s6.ec973ae2bb8f from=translated src=- shape=e90e8c3f vocab=bf026d68
+-/
 theorem KahlerBackground.isSemipositive (omega : KahlerBackground n M) :
     omega.form.val.IsSemipositive := by
   intro e z hz v
@@ -80,7 +92,9 @@ def BigWithRespectToViaPotentials (omega : KahlerBackground n M)
     (θ : ClosedRealOneOneForm n M) : Prop :=
   ∃ ε : ℝ, 0 < ε ∧ ∃ u : M → EReal, IsThetaPshPotential (θ - ε • omega.form).val u
 
-/-- Subtraction linearity holds on the open set of smoothness.-/
+/-- Subtraction linearity holds on the open set of smoothness.
+@isnad1 id=eq.4h5v.s10.bf2aaae309c8 from=translated src=- shape=fabc8b63 vocab=d34183d8
+-/
 theorem smoothDDC_sub {h f : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (hU : IsOpen U) (hh : ContDiffOn ℝ ∞ h U) (hf : ContDiffOn ℝ ∞ f U)
     {z : ComplexModel n} (hz : z ∈ U) :
@@ -88,7 +102,9 @@ theorem smoothDDC_sub {h f : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
   simp only [sub_eq_add_neg]
   rw [smoothDDC_add hU hh hf.neg hz, smoothDDC_neg hU hf hz]
 
-/-- Cancellation of finite corrections is valid also at extended-real poles.-/
+/-- Cancellation of finite corrections is valid also at extended-real poles.
+@isnad1 id=eq.0h3v.s5.668fd09ae3ae from=translated src=- shape=d51a3a65 vocab=e0c1503c
+-/
 theorem sub_coe_add_coe (a : EReal) (r s : ℝ) :
     a - (r : EReal) + ((s + r : ℝ) : EReal) = a + (s : EReal) := by
   rw [sub_eq_add_neg, ← EReal.coe_neg, add_assoc, ← EReal.coe_add]
@@ -97,7 +113,9 @@ theorem sub_coe_add_coe (a : EReal) (r s : ℝ) :
 
 /-- Under a smooth change of representative, subtract the same function from
 the potential and add it to each local smooth potential. The corrected PSH
-function is exactly unchanged, not merely equal away from poles.-/
+function is exactly unchanged, not merely equal away from poles.
+@isnad1 id=isthetap.3h6v.s10.f3f62a37e081 from=translated src=- shape=5988ef08 vocab=4a7956c3
+-/
 theorem thetaPshPotential_sub_smooth {θ η : SmoothRealForm n M 2}
     {f : M → ℝ} (hf : ChartSmooth (n := n) f)
     (hθη : ∀ (e : ComplexChart n M) (z : ComplexModel n), z ∈ e.val.target →
@@ -126,7 +144,9 @@ theorem thetaPshPotential_sub_smooth {θ η : SmoothRealForm n M 2}
     rw [sub_eq_add_neg, ← EReal.coe_neg]
     exact EReal.add_ne_bot_iff.mpr ⟨hfin, EReal.coe_ne_bot _⟩
 
-/-- A smooth test for `θ` becomes the test `h-f` for `η = θ + ddC f`.-/
+/-- A smooth test for `θ` becomes the test `h-f` for `η = θ + ddC f`.
+@isnad1 id=nefwithr.2h5v.s6.9bfb6707db57 from=translated src=- shape=eaf472ac vocab=3c8c222b
+-/
 theorem nefWithRespectTo_of_bottChernRel {θ η : ClosedRealOneOneForm n M}
     (omega : KahlerBackground n M) (hθη : BottChernRel θ η)
     (hθ : NefWithRespectTo omega θ) : NefWithRespectTo omega η := by
@@ -140,12 +160,18 @@ theorem nefWithRespectTo_of_bottChernRel {θ η : ClosedRealOneOneForm n M}
   congr 1
   abel
 
+/--
+@isnad1 id=iff.1h5v.s6.ce37d55fda3b from=translated src=- shape=847b1baf vocab=3c8c222b
+-/
 theorem nefWithRespectTo_bottChernRel_iff {θ η : ClosedRealOneOneForm n M}
     (omega : KahlerBackground n M) (hθη : BottChernRel θ η) :
     NefWithRespectTo omega θ ↔ NefWithRespectTo omega η :=
   ⟨nefWithRespectTo_of_bottChernRel omega hθη,
     nefWithRespectTo_of_bottChernRel omega hθη.symm⟩
 
+/--
+@isnad1 id=pseudoef.2h4v.s6.d1b8fa7adc26 from=translated src=- shape=f895beea vocab=ac2d52e0
+-/
 theorem pseudoeffectiveViaPotentials_of_bottChernRel {θ η : ClosedRealOneOneForm n M}
     (hθη : BottChernRel θ η) (hθ : PseudoeffectiveViaPotentials θ) :
     PseudoeffectiveViaPotentials η := by
@@ -153,12 +179,18 @@ theorem pseudoeffectiveViaPotentials_of_bottChernRel {θ η : ClosedRealOneOneFo
   obtain ⟨u, hu⟩ := hθ
   exact ⟨fun x => u x - (f x : EReal), thetaPshPotential_sub_smooth hf heq hu⟩
 
+/--
+@isnad1 id=iff.1h4v.s6.e5e043314f7b from=translated src=- shape=25cf70ff vocab=ac2d52e0
+-/
 theorem pseudoeffectiveViaPotentials_bottChernRel_iff {θ η : ClosedRealOneOneForm n M}
     (hθη : BottChernRel θ η) :
     PseudoeffectiveViaPotentials θ ↔ PseudoeffectiveViaPotentials η :=
   ⟨pseudoeffectiveViaPotentials_of_bottChernRel hθη,
     pseudoeffectiveViaPotentials_of_bottChernRel hθη.symm⟩
 
+/--
+@isnad1 id=bigwithr.2h5v.s6.8db16bb71b12 from=translated src=- shape=eaf472ac vocab=8aa0b994
+-/
 theorem bigWithRespectToViaPotentials_of_bottChernRel {θ η : ClosedRealOneOneForm n M}
     (omega : KahlerBackground n M) (hθη : BottChernRel θ η)
     (hθ : BigWithRespectToViaPotentials omega θ) : BigWithRespectToViaPotentials omega η := by
@@ -167,6 +199,9 @@ theorem bigWithRespectToViaPotentials_of_bottChernRel {θ η : ClosedRealOneOneF
     simpa only [sub_eq_add_neg] using hθη.add (BottChernRel.refl (-(ε • omega.form)))
   exact ⟨ε, hε, pseudoeffectiveViaPotentials_of_bottChernRel hrel hu⟩
 
+/--
+@isnad1 id=iff.1h5v.s6.b3dcf31b5f39 from=translated src=- shape=847b1baf vocab=8aa0b994
+-/
 theorem bigWithRespectToViaPotentials_bottChernRel_iff {θ η : ClosedRealOneOneForm n M}
     (omega : KahlerBackground n M) (hθη : BottChernRel θ η) :
     BigWithRespectToViaPotentials omega θ ↔ BigWithRespectToViaPotentials omega η :=
@@ -189,21 +224,32 @@ def ClassBigWithRespectToViaPotentials (omega : KahlerBackground n M)
   Quotient.lift (s := bottChernSetoid) (BigWithRespectToViaPotentials omega)
     (fun _ _ h => propext (bigWithRespectToViaPotentials_bottChernRel_iff omega h)) α
 
+/--
+@isnad1 id=iff.0h4v.s6.28b9652b9397 from=translated src=- shape=f7eb39c2 vocab=d7d45055
+-/
 @[simp] theorem classNefWithRespectTo_ofRepresentative (omega : KahlerBackground n M)
     (θ : ClosedRealOneOneForm n M) :
     ClassNefWithRespectTo omega (RealBottChern.ofRepresentative θ) ↔ NefWithRespectTo omega θ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.fe1fabd467c8 from=translated src=- shape=a5a98416 vocab=9394915b
+-/
 @[simp] theorem classPseudoeffectiveViaPotentials_ofRepresentative
     (θ : ClosedRealOneOneForm n M) :
     ClassPseudoeffectiveViaPotentials (RealBottChern.ofRepresentative θ) ↔
       PseudoeffectiveViaPotentials θ := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.9b3be42cc42d from=translated src=- shape=f7eb39c2 vocab=2cb10826
+-/
 @[simp] theorem classBigWithRespectToViaPotentials_ofRepresentative (omega : KahlerBackground n M)
     (θ : ClosedRealOneOneForm n M) :
     ClassBigWithRespectToViaPotentials omega (RealBottChern.ofRepresentative θ) ↔
       BigWithRespectToViaPotentials omega θ := Iff.rfl
 
-/-- The zero correction proves nefness for a semipositive representative.-/
+/-- The zero correction proves nefness for a semipositive representative.
+@isnad1 id=nefwithr.1h4v.s7.05d33c236ff2 from=translated src=- shape=d328f11d vocab=ecf6d735
+-/
 theorem nefWithRespectTo_of_semipositive (omega : KahlerBackground n M)
     {θ : ClosedRealOneOneForm n M} (hθ : θ.val.IsSemipositive) :
     NefWithRespectTo omega θ := by
@@ -214,11 +260,16 @@ theorem nefWithRespectTo_of_semipositive (omega : KahlerBackground n M)
   exact coefficientSemipositive_add (hθ e z hz)
     (coefficientSemipositive_smul hε.le (omega.isSemipositive e z hz))
 
+/--
+@isnad1 id=nefwithr.0h3v.s6.63a5f66da583 from=translated src=- shape=58585e34 vocab=b0bb4ef3
+-/
 theorem nefWithRespectTo_zero (omega : KahlerBackground n M) :
     NefWithRespectTo omega 0 :=
   nefWithRespectTo_of_semipositive omega (fun _ _ _ => coefficientSemipositive_zero)
 
-/-- Split the error evenly between the two smooth tests.-/
+/-- Split the error evenly between the two smooth tests.
+@isnad1 id=nefwithr.2h5v.s7.442f7d49d51d from=translated src=- shape=962ed8f5 vocab=2cbd6abd
+-/
 theorem nefWithRespectTo_add (omega : KahlerBackground n M)
     {θ η : ClosedRealOneOneForm n M}
     (hθ : NefWithRespectTo omega θ) (hη : NefWithRespectTo omega η) :
@@ -234,7 +285,9 @@ theorem nefWithRespectTo_add (omega : KahlerBackground n M)
     smul_eq_mul] at hsum ⊢
   linarith
 
-/-- For a positive scalar use error `ε/c`; zero is handled separately.-/
+/-- For a positive scalar use error `ε/c`; zero is handled separately.
+@isnad1 id=nefwithr.2h5v.s6.1d6dc613d840 from=translated src=- shape=a29aa6c1 vocab=b857ce8e
+-/
 theorem nefWithRespectTo_smul (omega : KahlerBackground n M)
     {θ : ClosedRealOneOneForm n M} {c : ℝ}
     (hc : 0 ≤ c) (hθ : NefWithRespectTo omega θ) :
@@ -251,14 +304,23 @@ theorem nefWithRespectTo_smul (omega : KahlerBackground n M)
     have hscaled := coefficientSemipositive_smul hc (hpos e z hz)
     simpa only [smul_add, smul_smul, heps] using hscaled
 
+/--
+@isnad1 id=classnef.1h4v.s7.e976e57142dd from=translated src=- shape=1fdc6252 vocab=913a54c1
+-/
 theorem classNefWithRespectTo_of_semipositive (omega : KahlerBackground n M)
     {θ : ClosedRealOneOneForm n M} (hθ : θ.val.IsSemipositive) :
     ClassNefWithRespectTo omega (RealBottChern.ofRepresentative θ) :=
   nefWithRespectTo_of_semipositive omega hθ
 
+/--
+@isnad1 id=classnef.0h3v.s6.e190c96e9844 from=translated src=- shape=58585e34 vocab=41502079
+-/
 theorem classNefWithRespectTo_zero (omega : KahlerBackground n M) :
     ClassNefWithRespectTo omega (0 : RealBottChern n M) := nefWithRespectTo_zero omega
 
+/--
+@isnad1 id=classnef.2h5v.s7.e23658a7c310 from=translated src=- shape=962ed8f5 vocab=78dae509
+-/
 theorem classNefWithRespectTo_add (omega : KahlerBackground n M)
     {α β : RealBottChern n M}
     (hα : ClassNefWithRespectTo omega α) (hβ : ClassNefWithRespectTo omega β) :
@@ -268,6 +330,9 @@ theorem classNefWithRespectTo_add (omega : KahlerBackground n M)
   intro θ η hθ hη
   exact nefWithRespectTo_add omega hθ hη
 
+/--
+@isnad1 id=classnef.2h5v.s6.5705abb700a4 from=translated src=- shape=a29aa6c1 vocab=307f74d9
+-/
 theorem classNefWithRespectTo_smul (omega : KahlerBackground n M)
     {α : RealBottChern n M} {c : ℝ} (hc : 0 ≤ c)
     (hα : ClassNefWithRespectTo omega α) : ClassNefWithRespectTo omega (c • α) := by

@@ -25,7 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 omit [CompleteSpace E] in
 /-- A radial nonnegative integral over a nontrivial complex space vanishes only
-if the corresponding radial integral over the complex plane vanishes.-/
+if the corresponding radial integral over the complex plane vanishes.
+@isnad1 id=eq.2h2v.s7.e8584960900e from=translated src=- shape=fc51507b vocab=c6e4585e
+-/
 theorem lintegral_norm_complex_eq_zero [Nontrivial E] {f : ℝ → ℝ≥0∞} (hf : Measurable f)
     (h : ∫⁻ ζ : E, f ‖ζ‖ = 0) : ∫⁻ t : ℂ, f ‖t‖ = 0 := by
   have hae : ∀ᵐ r ∂volume.restrict (Ioi (0 : ℝ)), f r = 0 := by
@@ -51,7 +53,9 @@ theorem lintegral_norm_complex_eq_zero [Nontrivial E] {f : ℝ → ℝ≥0∞} (
 
 /-- **Null sets on almost every line through a point.** A null set meets some
 complex line through any prescribed point, with unit direction, in a planar
-null set.-/
+null set.
+@isnad1 id=ex.1h3v.s8.2b805edfb983 from=translated src=- shape=6db8bf5f vocab=87e910c4
+-/
 theorem exists_unit_line_preimage_null [Nontrivial E] {N : Set E}
     (hN : (volume : Measure E) N = 0) (z : E) :
     ∃ e : E, ‖e‖ = 1 ∧ (volume : Measure ℂ) ((fun t : ℂ ↦ z + t • e) ⁻¹' N) = 0 := by

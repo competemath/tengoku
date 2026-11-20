@@ -14,7 +14,9 @@ namespace PshLines.PSHD
 
 variable {X : Type*} [MeasurableSpace X] (μ : Measure X) [IsFiniteMeasure μ]
 
-/-- A uniform lower bound on event masses persists on their set-theoretic limsup.-/
+/-- A uniform lower bound on event masses persists on their set-theoretic limsup.
+@isnad1 id=le.2h4v.s6.737922be9117 from=translated src=- shape=08247d13 vocab=c93389e4
+-/
 theorem le_measure_recurrent {s : ℕ → Set X} (hs : ∀ j, MeasurableSet (s j))
     {δ : ℝ≥0∞} (hδ : ∀ j, δ ≤ μ (s j)) :
     δ ≤ μ {x | ∀ m : ℕ, ∃ j, m ≤ j ∧ x ∈ s j} := by
@@ -35,7 +37,9 @@ theorem le_measure_recurrent {s : ℕ → Set X} (hs : ∀ j, MeasurableSet (s j
   intro x hx
   exact mem_iUnion.mpr ⟨m, mem_iUnion.mpr ⟨le_rfl, hx⟩⟩
 
-/-- Positive uniformly bounded event masses force one point to recur infinitely often.-/
+/-- Positive uniformly bounded event masses force one point to recur infinitely often.
+@isnad1 id=ex.3h4v.s6.7c348437421e from=translated src=- shape=8f8c7181 vocab=4108c6cd
+-/
 theorem exists_recurrent_of_measure_lower_bound {s : ℕ → Set X}
     (hs : ∀ j, MeasurableSet (s j)) {δ : ℝ≥0∞} (hδpos : 0 < δ)
     (hδ : ∀ j, δ ≤ μ (s j)) :

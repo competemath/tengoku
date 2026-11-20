@@ -13,13 +13,17 @@ namespace PshLines.PSHD
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
-/-- The affine lift above a unit vector has the expected Pythagorean norm.-/
+/-- The affine lift above a unit vector has the expected Pythagorean norm.
+@isnad1 id=eq.2h3v.s7.b1571fb4e49d from=translated src=- shape=901ac0dc vocab=8a734d1d
+-/
 theorem affineLift_norm_sq {e v : E} (he : ‖e‖ = 1)
     (hv : inner ℂ e v = 0) : ‖e + v‖ ^ 2 = 1 + ‖v‖ ^ 2 := by
   rw [norm_add_sq (𝕜 := ℂ), he, hv]
   simp
 
-/-- An affine lift with perpendicular offset cannot vanish.-/
+/-- An affine lift with perpendicular offset cannot vanish.
+@isnad1 id=ne.2h3v.s6.537aa5043f4e from=translated src=- shape=b56f94f6 vocab=be1141f6
+-/
 theorem affineLift_ne_zero {e v : E} (he : ‖e‖ = 1)
     (hv : inner ℂ e v = 0) : e + v ≠ 0 := by
   intro h
@@ -27,7 +31,9 @@ theorem affineLift_ne_zero {e v : E} (he : ‖e‖ = 1)
   rw [h, norm_zero] at this
   nlinarith [sq_nonneg ‖v‖]
 
-/-- Hermitian correlation in a normalized affine chart.-/
+/-- Hermitian correlation in a normalized affine chart.
+@isnad1 id=eq.3h4v.s8.5196d9753135 from=translated src=- shape=85376e37 vocab=84949b10
+-/
 theorem normalized_affineLift_inner_norm {e v w : E} (he : ‖e‖ = 1)
     (hv : inner ℂ e v = 0) (hw : inner ℂ e w = 0) :
     ‖inner ℂ (NormedSpace.normalize (e + v)) (NormedSpace.normalize (e + w))‖ =
@@ -45,7 +51,9 @@ theorem normalized_affineLift_inner_norm {e v w : E} (he : ‖e‖ = 1)
     inner_smul_left, inner_smul_right, norm_mul, hi, hd]
   simp [div_eq_mul_inv, mul_assoc, mul_left_comm, mul_comm]
 
-/-- The normalized chart retains quantitative separation after forgetting phase.-/
+/-- The normalized chart retains quantitative separation after forgetting phase.
+@isnad1 id=le.5h4v.s8.0aebf374693b from=translated src=- shape=5115e0c6 vocab=83223362
+-/
 theorem normalized_affineLift_correlation_lower_bound {e v w : E}
     (he : ‖e‖ = 1) (hv : inner ℂ e v = 0) (hw : inner ℂ e w = 0)
     (hv1 : ‖v‖ ≤ 1) (hw1 : ‖w‖ ≤ 1) :
@@ -55,7 +63,9 @@ theorem normalized_affineLift_correlation_lower_bound {e v w : E}
   exact affineChart_correlation_lower_bound hv1 hw1
 
 /-- Phase choices over a bounded affine chart satisfy a Euclidean quadratic
-separation estimate on the radius and chart parameters.-/
+separation estimate on the radius and chart parameters.
+@isnad1 id=le.8h7v.s9.a152be53caa0 from=translated src=- shape=d70cdf3a vocab=23784c5a
+-/
 theorem normalized_affineLift_annulus_lower_bound {e v w : E}
     (he : ‖e‖ = 1) (hv : inner ℂ e v = 0) (hw : inner ℂ e w = 0)
     (hv1 : ‖v‖ ≤ 1) (hw1 : ‖w‖ ≤ 1)
@@ -73,7 +83,9 @@ theorem normalized_affineLift_annulus_lower_bound {e v w : E}
   nlinarith
 
 /-- A lower Lipschitz estimate for any choice of phases over the bounded
-radius--chart parameters, with their maximum product metric.-/
+radius--chart parameters, with their maximum product metric.
+@isnad1 id=le.8h7v.s8.a9291bbe1e4a from=translated src=- shape=2da37a67 vocab=b3a0a35f
+-/
 theorem normalized_affineLift_max_lower_bound {e v w : E}
     (he : ‖e‖ = 1) (hv : inner ℂ e v = 0) (hw : inner ℂ e w = 0)
     (hv1 : ‖v‖ ≤ 1) (hw1 : ‖w‖ ≤ 1)

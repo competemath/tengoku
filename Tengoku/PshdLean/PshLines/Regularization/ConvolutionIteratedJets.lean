@@ -42,6 +42,9 @@ noncomputable def convolutionRightIteratedCLM
     (fun _ : Fin n ↦ G) E' F).comp L
 
 omit [MeasurableSpace G] [BorelSpace G] [NormedSpace ℝ F] in
+/--
+@isnad1 id=eq.0h10v.s13.dd3e9684ac12 from=translated src=- shape=2d99a84c vocab=03aac57a
+-/
 @[simp]
 theorem convolutionRightIteratedCLM_apply
     (L : E →L[𝕜] E' →L[𝕜] F) (n : ℕ) (u : E)
@@ -51,7 +54,9 @@ theorem convolutionRightIteratedCLM_apply
 
 omit [MeasurableSpace G] [BorelSpace G] in
 /-- Evaluating an iterated derivative on fixed directions preserves compact
-support.-/
+support.
+@isnad1 id=hascompa.1h6v.s8.8dcdfa3c7f48 from=translated src=- shape=af7b0063 vocab=0ccc9e34
+-/
 theorem hasCompactSupport_iteratedFDeriv_apply
     {g : G → E'} (hcg : HasCompactSupport g) (n : ℕ)
     (m : Fin n → G) :
@@ -64,7 +69,9 @@ theorem hasCompactSupport_iteratedFDeriv_apply
   exact hx (by simp only [hzero, zero_apply])
 
 /-- Every iterated derivative of a convolution can be moved to the compactly
-supported smooth right factor.-/
+supported smooth right factor.
+@isnad1 id=eq.3h12v.s11.5edd1fed04c9 from=translated src=- shape=a154c9f2 vocab=1a94d064
+-/
 theorem iteratedFDeriv_convolution_right_apply
     (L : E →L[𝕜] E' →L[𝕜] F) {f : G → E} {g : G → E'}
     (hf : LocallyIntegrable f μ) (hcg : HasCompactSupport g)
@@ -123,7 +130,9 @@ theorem iteratedFDeriv_convolution_right_apply
 
 /-- Map-valued form of `iteratedFDeriv_convolution_right_apply`: the full
 iterated derivative is the Bochner convolution of the original left factor
-with the map-valued iterated derivative of the right factor.-/
+with the map-valued iterated derivative of the right factor.
+@isnad1 id=eq.3h11v.s10.c52bf32fc20a from=translated src=- shape=29a052ef vocab=c25a87fd
+-/
 theorem iteratedFDeriv_convolution_right
     (L : E →L[𝕜] E' →L[𝕜] F) {f : G → E} {g : G → E'}
     (hf : LocallyIntegrable f μ) (hcg : HasCompactSupport g)

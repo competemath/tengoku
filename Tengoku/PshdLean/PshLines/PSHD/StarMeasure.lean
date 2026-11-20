@@ -15,7 +15,9 @@ namespace PshLines.PSHD
 
 /-- Any probability distribution of admissible radii and unit directions can
 be lifted measurably to high-value points, and its pushforward gives full mass
-to the high-value annulus. The lift preserves each specified complex line.-/
+to the high-value annulus. The lift preserves each specified complex line.
+@isnad1 id=ex.4h6v.s10.187c074a1e4f from=translated src=- shape=213e3f7f vocab=7ed8dde7
+-/
 theorem exists_highValue_annulus_map
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]

@@ -19,7 +19,9 @@ namespace PshLines.PSHD
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [FiniteDimensional ℂ E]
 
-/-- The radius--chart space has real dimension one below the ambient space.-/
+/-- The radius--chart space has real dimension one below the ambient space.
+@isnad1 id=eq.1h2v.s9.4bb1b12ff312 from=translated src=- shape=58d6ec7d vocab=357c3a0f
+-/
 theorem chartParameter_finrank {e : E} (he : ‖e‖ = 1) :
     Module.finrank ℝ (ℝ × (ℂ ∙ e)ᗮ) =
       2 * (Module.finrank ℂ E - 1) + 1 := by
@@ -32,7 +34,9 @@ theorem chartParameter_finrank {e : E} (he : ‖e‖ = 1) :
 
 /-- High values on all affine complex lines carry a probability measure with
 uniform finite Riesz energy of order twice the complex dimension minus two.
-The constant is independent of the function, domain and center.-/
+The constant is independent of the function, domain and center.
+@isnad1 id=ex.2h2v.s9.f217afa560db from=translated src=- shape=fe8ff848 vocab=9c493c51
+-/
 theorem exists_uniform_highValue_star
     [MeasurableSpace E] [BorelSpace E]
     (hn : 2 ≤ Module.finrank ℂ E) {R : ℝ} (hR : 0 < R) :
@@ -52,7 +56,9 @@ theorem exists_uniform_highValue_star
     exact_mod_cast Nat.lt_succ_self (2 * (Module.finrank ℂ E - 1))
 
 /-- The high-value star with the article's connected-component convention
-for affine complex-line sections.-/
+for affine complex-line sections.
+@isnad1 id=ex.2h2v.s9.6c8c49635ac9 from=translated src=- shape=c36cd024 vocab=26b2542b
+-/
 theorem exists_uniform_highValue_star_of_components
     [MeasurableSpace E] [BorelSpace E]
     (hn : 2 ≤ Module.finrank ℂ E) {R : ℝ} (hR : 0 < R) :

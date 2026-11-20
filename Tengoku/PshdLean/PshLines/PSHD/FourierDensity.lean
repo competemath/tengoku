@@ -22,7 +22,9 @@ namespace PshLines.PSHD
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E] [FiniteDimensional ℝ E]
 
-/-- Testing the transform of a finite measure against a Schwartz function.-/
+/-- Testing the transform of a finite measure against a Schwartz function.
+@isnad1 id=eq.0h3v.s8.fc444b56bb85 from=translated src=- shape=aaef8dc1 vocab=d41f110f
+-/
 theorem integral_fourier_schwartz_eq (η : Measure E) [IsFiniteMeasure η] (g : 𝓢(E, ℂ)) :
     ∫ x, 𝓕 g x ∂η = ∫ ξ, g ξ * measureFourier η ξ := by
   have h := VectorFourier.integral_fourierIntegral_smul_eq_flip
@@ -35,7 +37,9 @@ theorem integral_fourier_schwartz_eq (η : Measure E) [IsFiniteMeasure η] (g : 
   rfl
 
 /-- The inverse `L²` transform of the transform of a finite measure represents the
-measure on Schwartz tests.-/
+measure on Schwartz tests.
+@isnad1 id=eq.1h3v.s10.26870b38996e from=translated src=- shape=f5b4b5c0 vocab=ab3922b7
+-/
 theorem integral_schwartz_eq_fourierInv (η : Measure E) [IsFiniteMeasure η]
     (hF : MemLp (measureFourier η) 2) (g : 𝓢(E, ℂ)) :
     ∫ x, g x ∂η = ∫ x, g x * (𝓕⁻ (hF.toLp (measureFourier η)) : Lp ℂ 2 (volume : Measure E)) x := by
@@ -57,7 +61,9 @@ section CompactDetermination
 
 variable {X : Type*} [MetricSpace X] [ProperSpace X] [MeasurableSpace X] [BorelSpace X]
 
-/-- Compact sets generate the Borel sets of a proper metric space.-/
+/-- Compact sets generate the Borel sets of a proper metric space.
+@isnad1 id=eq.0h1v.s5.ce244ca3371e from=translated src=- shape=9ef9b437 vocab=c8b7bb6b
+-/
 theorem borel_eq_generateFrom_isCompact :
     ‹MeasurableSpace X› = MeasurableSpace.generateFrom {K : Set X | IsCompact K} := by
   refine le_antisymm ?_ (MeasurableSpace.generateFrom_le fun K hK ↦ hK.isClosed.measurableSet)
@@ -79,7 +85,9 @@ theorem borel_eq_generateFrom_isCompact :
     exact MeasurableSet.iUnion fun n ↦ MeasurableSpace.measurableSet_generateFrom
       ((isCompact_closedBall x₀ n).inter_left hC)
 
-/-- Measures finite on compact sets are determined by their values on compact sets.-/
+/-- Measures finite on compact sets are determined by their values on compact sets.
+@isnad1 id=eq.1h3v.s6.380b688f0eab from=translated src=- shape=56e61270 vocab=5a0e6c3f
+-/
 theorem Measure.ext_of_isCompact {μ ν : Measure X} [IsFiniteMeasureOnCompacts μ]
     (h : ∀ K, IsCompact K → μ K = ν K) : μ = ν := by
   obtain hX | ⟨⟨x₀⟩⟩ := isEmpty_or_nonempty X
@@ -96,7 +104,9 @@ theorem Measure.ext_of_isCompact {μ ν : Measure X} [IsFiniteMeasureOnCompacts 
 end CompactDetermination
 
 /-- Smooth compactly supported tests determine compact-set masses of a finite measure
-represented by a locally integrable density.-/
+represented by a locally integrable density.
+@isnad1 id=eq.3h4v.s8.ee2dd6c23edb from=translated src=- shape=92cb3158 vocab=d53dad63
+-/
 theorem measureReal_isCompact_eq_setIntegral (η : Measure E) [IsFiniteMeasure η]
     {f : E → ℂ} (hf : LocallyIntegrable f)
     (h : ∀ g : E → ℝ, ContDiff ℝ ∞ g → HasCompactSupport g →
@@ -168,7 +178,9 @@ theorem measureReal_isCompact_eq_setIntegral (η : Measure E) [IsFiniteMeasure �
     K_compact (g_zero _))] using L₂)
 
 omit [NormedAddCommGroup E] [InnerProductSpace ℝ E] [BorelSpace E] [FiniteDimensional ℝ E] in
-/-- The squared `L²` seminorm as a lower integral.-/
+/-- The squared `L²` seminorm as a lower integral.
+@isnad1 id=eq.0h4v.s7.68b70c112de3 from=translated src=- shape=7c06a85b vocab=dd481e7e
+-/
 theorem lintegral_enorm_sq_eq_eLpNorm_sq {F' : Type*} [NormedAddCommGroup F']
     (μ : Measure E) (f : E → F') :
     ∫⁻ x, ‖f x‖ₑ ^ 2 ∂μ = eLpNorm f 2 μ ^ 2 := by
@@ -178,7 +190,9 @@ theorem lintegral_enorm_sq_eq_eLpNorm_sq {F' : Type*} [NormedAddCommGroup F']
 
 /-- **Square-integrable transforms give square-integrable densities.** A finite
 measure whose transform lies in `L²` is absolutely continuous, with a nonnegative
-density whose squared `L²` norm equals that of the transform.-/
+density whose squared `L²` norm equals that of the transform.
+@isnad1 id=ex.1h2v.s8.86277cfc07d6 from=translated src=- shape=fb3e23d5 vocab=88248399
+-/
 theorem exists_density_of_memLp_measureFourier (η : Measure E) [IsFiniteMeasure η]
     (hF : MemLp (measureFourier η) 2) :
     ∃ g : E → ℝ, Measurable g ∧ (∀ x, 0 ≤ g x) ∧ MemLp g 2 ∧

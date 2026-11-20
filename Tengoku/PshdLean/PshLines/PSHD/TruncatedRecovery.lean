@@ -18,7 +18,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
 
 /-- Every sufficiently high natural truncation has shrinking ball means
-converging to the original finite disc-PSH function's value.-/
+converging to the original finite disc-PSH function's value.
+@isnad1 id=ex.2h5v.s8.c41828181cba from=translated src=- shape=d77b9dcc vocab=905fde13
+-/
 theorem exists_nat_tendsto_truncated_real_ball_average {u : E → ℝ} {U : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)
     (μ : Measure E) [μ.IsAddHaarMeasure]

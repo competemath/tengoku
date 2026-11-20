@@ -24,7 +24,9 @@ namespace PshLines.FirstPass
 noncomputable section
 
 /-- The deficit of a real-valued circle function is the circumference times
-the finite deficit of its ordinary circle average.-/
+the finite deficit of its ordinary circle average.
+@isnad1 id=eq.2h4v.s7.8fa9804775a6 from=translated src=- shape=33e0331a vocab=85844501
+-/
 theorem circleDeficit_coe_eq_mul_finiteDeficit_circleAverage
     {g : ℂ → ℝ} (c : ℂ) {R C : ℝ}
     (hg : Continuous g)
@@ -53,7 +55,9 @@ theorem circleDeficit_coe_eq_mul_finiteDeficit_circleAverage
 
 /-- If an extended-real center is below the ordinary average of a continuous
 real circle majorant, that majorant's boundary deficit is controlled by the
-center deficit of the extended-real function.-/
+center deficit of the extended-real function.
+@isnad1 id=le.3h5v.s7.0c257776481a from=translated src=- shape=6ad42233 vocab=85844501
+-/
 theorem circleDeficit_coe_le_of_le_circleAverage
     {g : ℂ → ℝ} (c : ℂ) {R C : ℝ} (w : EReal)
     (hg : Continuous g)
@@ -67,7 +71,9 @@ theorem circleDeficit_coe_le_of_le_circleAverage
 
 /-- A decreasing family of continuous real majorants on one parametrized
 circle transfers its ordinary center-average inequalities to the exact
-extended-real deficit inequality of the target.-/
+extended-real deficit inequality of the target.
+@isnad1 id=le.5h5v.s8.2c6d54a25a95 from=translated src=- shape=11394831 vocab=0c1c38c6
+-/
 theorem circleSubmean_of_continuous_antitone_majorants
     {w : ℂ → EReal} (c : ℂ) {R C : ℝ} (g : ℕ → ℂ → ℝ)
     (hg : ∀ n, Continuous (g n))

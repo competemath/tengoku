@@ -34,7 +34,9 @@ section RadialCalculus
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
-/-- The real Hessian of a smooth profile pulled back by the squared norm.-/
+/-- The real Hessian of a smooth profile pulled back by the squared norm.
+@isnad1 id=eq.1h5v.s8.44c72b64337c from=translated src=- shape=2ff089fd vocab=1123f706
+-/
 theorem realHessian_comp_norm_sq {G : ℝ → ℝ} (hG : ContDiff ℝ 2 G)
     (x v w : H) :
     realHessian (fun y : H => G (‖y‖ ^ 2)) x v w =
@@ -83,7 +85,9 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 local instance : InnerProductSpace ℝ H := InnerProductSpace.complexToReal
 
-/-- The Levi form of a smooth squared-radius profile.-/
+/-- The Levi form of a smooth squared-radius profile.
+@isnad1 id=eq.1h4v.s8.3e2ad1bb66d6 from=translated src=- shape=d412bec7 vocab=dc5ea94f
+-/
 theorem leviForm_comp_norm_sq {G : ℝ → ℝ} (hG : ContDiff ℝ 2 G)
     (x v : H) :
     leviForm (fun y : H => G (‖y‖ ^ 2)) x v =
@@ -107,13 +111,18 @@ section CoordinateTrace
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h2v.s5.145341c01941 from=translated src=- shape=a01a8b7d vocab=4b93b01d
+-/
 @[simp]
 theorem norm_coordinateVector (j : Fin n) :
     ‖coordinateVector j‖ = 1 := by
   simp [coordinateVector]
 
 /-- Parseval's identity for the standard complex coordinate frame, in the
-orientation needed by the radial Levi formula.-/
+orientation needed by the radial Levi formula.
+@isnad1 id=eq.0h2v.s7.5865115ea9c5 from=translated src=- shape=b6ed801b vocab=84b583db
+-/
 theorem sum_norm_inner_coordinateVector_sq (x : ComplexModel n) :
     ∑ j : Fin n, ‖inner ℂ x (coordinateVector j)‖ ^ 2 = ‖x‖ ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -126,7 +135,9 @@ def coordinateLeviTrace (u : ComplexModel n → ℝ) (x : ComplexModel n) : ℝ 
   ∑ j : Fin n, leviForm u x (coordinateVector j)
 
 /-- The coordinate Levi trace of a smooth squared-radius profile is the
-one-variable radial operator `s G'' + n G'`.-/
+one-variable radial operator `s G'' + n G'`.
+@isnad1 id=eq.1h3v.s8.23d58dfdc74d from=translated src=- shape=2ab12b96 vocab=bbf54f61
+-/
 theorem coordinateLeviTrace_comp_norm_sq {G : ℝ → ℝ}
     (hG : ContDiff ℝ 2 G) (x : ComplexModel n) :
     coordinateLeviTrace (fun y : ComplexModel n => G (‖y‖ ^ 2)) x =
@@ -153,7 +164,9 @@ noncomputable def explicitRadialPoissonPotential {n : ℕ}
     ((R / ((a : ℝ) + 1)) ^ 2) (‖x‖ ^ 2)
 
 /-- The explicit radial Poisson potential is globally smooth, including at
-the origin.-/
+the origin.
+@isnad1 id=contdiff.2h4v.s7.efc63c38262a from=translated src=- shape=4d47dbc2 vocab=52c88f8a
+-/
 theorem explicitRadialPoissonPotential_contDiff {n : ℕ} (hn : 0 < n)
     (R : ℝ) (hR : 0 < R) (a b : ℕ) :
     ContDiff ℝ (⊤ : ℕ∞)
@@ -163,7 +176,9 @@ theorem explicitRadialPoissonPotential_contDiff {n : ℕ} (hn : 0 < n)
     (contDiff_norm_sq ℝ)
 
 /-- For increasing scale indices, the explicit radial Poisson potential is
-nonnegative everywhere.-/
+nonnegative everywhere.
+@isnad1 id=le.3h5v.s5.70106149a4d0 from=translated src=- shape=ff44b1db vocab=d2cb1f43
+-/
 theorem explicitRadialPoissonPotential_nonneg {n : ℕ} (hn : 0 < n)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b)
     (x : ComplexModel n) :
@@ -185,7 +200,9 @@ theorem explicitRadialPoissonPotential_nonneg {n : ℕ} (hn : 0 < n)
   · rw [radialPoissonPrimitive_explicitRadialKernelSqDifference_eq_zero_of_outer
       hn R hR hab (le_of_not_ge hsA)]
 
-/-- The potential vanishes at and beyond the first scale's outer radius.-/
+/-- The potential vanishes at and beyond the first scale's outer radius.
+@isnad1 id=eq.4h5v.s6.863a1fb041aa from=translated src=- shape=caf1d3aa vocab=ada1f9b4
+-/
 theorem explicitRadialPoissonPotential_eq_zero_of_outer {n : ℕ}
     (hn : 0 < n) (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b)
     {x : ComplexModel n} (hx : R / ((a : ℝ) + 1) ≤ ‖x‖) :
@@ -195,7 +212,9 @@ theorem explicitRadialPoissonPotential_eq_zero_of_outer {n : ℕ}
   exact (sq_le_sq₀ (by positivity) (norm_nonneg x)).mpr hx
 
 /-- For increasing scale indices, the explicit Poisson potential has compact
-support contained in the closed ball of the first scale's outer radius.-/
+support contained in the closed ball of the first scale's outer radius.
+@isnad1 id=hascompa.3h4v.s6.b6f4fe0d26be from=translated src=- shape=c0438462 vocab=23f35ebe
+-/
 theorem explicitRadialPoissonPotential_hasCompactSupport {n : ℕ}
     (hn : 0 < n) (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) :
     HasCompactSupport
@@ -210,7 +229,9 @@ theorem explicitRadialPoissonPotential_hasCompactSupport {n : ℕ}
     hn R hR hab hrx)
 
 /-- Away from the origin, four times the standard coordinate Levi trace of
-the Poisson potential is exactly the one-variable kernel difference.-/
+the Poisson potential is exactly the one-variable kernel difference.
+@isnad1 id=eq.3h5v.s7.be02503b92a3 from=translated src=- shape=6ff1d179 vocab=0af42dc6
+-/
 theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_of_ne_zero
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     {x : ComplexModel n} (hx : x ≠ 0) :
@@ -244,7 +265,9 @@ theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_of_ne_zero
         hA hs
 
 /-- The same trace identity written as a difference of the two spatial
-normalized kernels.-/
+normalized kernels.
+@isnad1 id=eq.3h5v.s7.5e1ee6cf5304 from=translated src=- shape=67cbfc78 vocab=d0e0bda3
+-/
 theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_of_ne_zero_eq_kernel_sub
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     {x : ComplexModel n} (hx : x ≠ 0) :
@@ -258,7 +281,9 @@ theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_of_ne_zero_e
 /-- The derivative of the one-variable primitive at the removable origin is
 the limiting Poisson slope.  This is obtained from the exact affine formula
 on the flat inner region, rather than by assigning a value to the original
-`0 / 0` quotient.-/
+`0 / 0` quotient.
+@isnad1 id=eq.2h5v.s6.c363e30bf80a from=translated src=- shape=5c1975c2 vocab=c6c362d2
+-/
 theorem deriv_radialPoissonPrimitive_explicitRadialKernelSqDifference_zero
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ) (A : ℝ) :
     deriv (radialPoissonPrimitive n
@@ -289,7 +314,9 @@ theorem deriv_radialPoissonPrimitive_explicitRadialKernelSqDifference_zero
   exact (hlinear.congr_of_eventuallyEq hevent).deriv
 
 /-- Four times the standard coordinate Levi trace equals the kernel
-difference at every point, including the origin.-/
+difference at every point, including the origin.
+@isnad1 id=eq.2h5v.s6.9b29efddd17f from=translated src=- shape=f3d6a5f5 vocab=0af42dc6
+-/
 theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (x : ComplexModel n) :
@@ -322,7 +349,9 @@ theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential
       four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_of_ne_zero
         hn R hR a b hx
 
-/-- Global spatial form of the trace identity.-/
+/-- Global spatial form of the trace identity.
+@isnad1 id=eq.2h5v.s6.ca718fc366dc from=translated src=- shape=71f4347d vocab=aeccd29d
+-/
 theorem four_mul_coordinateLeviTrace_explicitRadialPoissonPotential_eq_kernel_sub
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (x : ComplexModel n) :

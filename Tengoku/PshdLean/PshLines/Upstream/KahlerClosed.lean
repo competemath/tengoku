@@ -40,13 +40,17 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 
 /-- The exterior derivative of a constant differential form vanishes (pointwise
 form). `extDeriv` is the alternatization of `fderiv`, and the
-derivative of a constant is `0`.-/
+derivative of a constant is `0`.
+@isnad1 id=eq.0h6v.s8.9694faa43796 from=translated src=- shape=b8931b00 vocab=beff0b69
+-/
 theorem extDeriv_const_apply (c : E [⋀^Fin n]→L[𝕜] F) (x : E) :
     extDeriv (fun _ : E => c) x = 0 := by
   rw [extDeriv, fderiv_fun_const, ← alternatizeUncurryFinCLM_apply]
   exact map_zero _
 
-/-- The exterior derivative of a constant differential form vanishes.-/
+/-- The exterior derivative of a constant differential form vanishes.
+@isnad1 id=eq.0h5v.s9.546a42e978f5 from=translated src=- shape=f647b34b vocab=beff0b69
+-/
 theorem extDeriv_const (c : E [⋀^Fin n]→L[𝕜] F) :
     extDeriv (fun _ : E => c) = 0 :=
   funext (extDeriv_const_apply c)
@@ -60,13 +64,17 @@ namespace Kahler
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- Right-slot additivity of the fundamental form (companion to
-`fundamentalForm_add_left`).-/
+`fundamentalForm_add_left`).
+@isnad1 id=eq.0h4v.s6.45ce83ab62c9 from=translated src=- shape=3c72dd87 vocab=c913738c
+-/
 theorem fundamentalForm_add_right (u v v' : E) :
     fundamentalForm u (v + v') = fundamentalForm u v + fundamentalForm u v' := by
   simp [fundamentalForm, inner_add_right]
 
 /-- Right-slot real homogeneity of the fundamental form (companion to
-`fundamentalForm_real_smul_left`).-/
+`fundamentalForm_real_smul_left`).
+@isnad1 id=eq.0h4v.s6.f0056d3f5ed7 from=translated src=- shape=1edb95c0 vocab=0f11cc2a
+-/
 theorem fundamentalForm_real_smul_right (r : ℝ) (u v : E) :
     fundamentalForm u (r • v) = r * fundamentalForm u v := by
   have hcast : (r • v : E) = ((r : ℂ)) • v := by
@@ -75,7 +83,9 @@ theorem fundamentalForm_real_smul_right (r : ℝ) (u v : E) :
   simp only [fundamentalForm, inner_smul_right, Complex.mul_im,
     Complex.ofReal_re, Complex.ofReal_im, zero_mul, add_zero]
 
-/-- Cauchy–Schwarz bound for the fundamental form: `|ω u v| ≤ ‖u‖ * ‖v‖`.-/
+/-- Cauchy–Schwarz bound for the fundamental form: `|ω u v| ≤ ‖u‖ * ‖v‖`.
+@isnad1 id=le.0h3v.s5.a53573a76a0f from=translated src=- shape=936ca691 vocab=1d7df4db
+-/
 theorem abs_fundamentalForm_le (u v : E) : |fundamentalForm u v| ≤ ‖u‖ * ‖v‖ :=
   calc |fundamentalForm u v| = |(inner ℂ u v).im| := rfl
     _ ≤ ‖(inner ℂ u v : ℂ)‖ := Complex.abs_im_le_norm _
@@ -95,6 +105,9 @@ noncomputable def fundamentalFormCLM : E →L[ℝ] E →L[ℝ] ℝ :=
   LinearMap.mkContinuous₂ fundamentalFormBilin 1 fun u v => by
     simpa [fundamentalFormBilin, Real.norm_eq_abs] using abs_fundamentalForm_le u v
 
+/--
+@isnad1 id=eq.0h3v.s9.34e53fd32468 from=translated src=- shape=e64ccb9d vocab=11e17775
+-/
 @[simp] lemma fundamentalFormCLM_apply (u v : E) :
     fundamentalFormCLM u v = fundamentalForm u v := rfl
 
@@ -106,6 +119,9 @@ noncomputable def fundamentalFormMulti :
     (((continuousMultilinearCurryFin1 ℝ E ℝ).symm.toLinearIsometry.toContinuousLinearMap).comp
       fundamentalFormCLM)
 
+/--
+@isnad1 id=eq.0h2v.s7.6a150062042a from=translated src=- shape=c9f35aa0 vocab=d8548cd5
+-/
 @[simp] lemma fundamentalFormMulti_apply (v : Fin 2 → E) :
     fundamentalFormMulti v = fundamentalForm (v 0) (v 1) := by
   simp [fundamentalFormMulti, Fin.tail]
@@ -119,16 +135,23 @@ noncomputable def fundamentalFormAlt : E [⋀^Fin 2]→L[ℝ] ℝ where
     fin_cases i <;> fin_cases j <;>
       simp_all [fundamentalFormMulti_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.a3fd77f959fc from=translated src=- shape=250ad4b2 vocab=0ed2a246
+-/
 @[simp] lemma fundamentalFormAlt_apply (v : Fin 2 → E) :
     fundamentalFormAlt v = fundamentalForm (v 0) (v 1) :=
   fundamentalFormMulti_apply v
 
-/-- The constant fundamental two-form has zero exterior derivative at every point.-/
+/-- The constant fundamental two-form has zero exterior derivative at every point.
+@isnad1 id=eq.0h2v.s8.d20be6fd7d6f from=translated src=- shape=76bee109 vocab=947657f8
+-/
 theorem extDeriv_fundamentalFormAlt (x : E) :
     extDeriv (fun _ : E => (fundamentalFormAlt : E [⋀^Fin 2]→L[ℝ] ℝ)) x = 0 :=
   extDeriv_const_apply _ x
 
-/-- ★ Flat closedness of the fundamental form, function form: `dω = 0`.-/
+/-- ★ Flat closedness of the fundamental form, function form: `dω = 0`.
+@isnad1 id=eq.0h1v.s9.fde6851e264b from=translated src=- shape=0379ecd8 vocab=947657f8
+-/
 theorem extDeriv_fundamentalFormAlt_eq_zero :
     extDeriv (fun _ : E => (fundamentalFormAlt : E [⋀^Fin 2]→L[ℝ] ℝ)) = 0 :=
   extDeriv_const _

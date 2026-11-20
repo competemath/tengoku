@@ -33,13 +33,18 @@ noncomputable def radialPoissonPrimitive
     (n : ℕ) (g : ℝ → ℝ) (A s : ℝ) : ℝ :=
   ∫ t in A..s, radialPoissonSlope n g t
 
+/--
+@isnad1 id=eq.0h3v.s4.070298937954 from=translated src=- shape=4c60304c vocab=2a3f2d71
+-/
 @[simp]
 theorem radialPoissonPrimitive_self
     (n : ℕ) (g : ℝ → ℝ) (A : ℝ) :
     radialPoissonPrimitive n g A A = 0 := by
   simp [radialPoissonPrimitive]
 
-/-- The radial Poisson slope is continuous on the positive half-line.-/
+/-- The radial Poisson slope is continuous on the positive half-line.
+@isnad1 id=continuo.2h2v.s5.5c6977012cf8 from=translated src=- shape=bd6750b7 vocab=f896e7df
+-/
 theorem radialPoissonSlope_continuousOn_Ioi
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g) :
     ContinuousOn (radialPoissonSlope n g) (Ioi 0) := by
@@ -47,7 +52,9 @@ theorem radialPoissonSlope_continuousOn_Ioi
   exact (radialPoissonSlope_hasDerivAt hn hg hs).continuousAt.continuousWithinAt
 
 /-- On the positive half-line, differentiating the primitive recovers the
-radial Poisson slope.-/
+radial Poisson slope.
+@isnad1 id=hasderiv.4h4v.s6.ef2f70d89813 from=translated src=- shape=d1084cb3 vocab=552a7239
+-/
 theorem radialPoissonPrimitive_hasDerivAt
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g)
     {A s : ℝ} (hA : 0 < A) (hs : 0 < s) :
@@ -66,7 +73,9 @@ theorem radialPoissonPrimitive_hasDerivAt
   exact intervalIntegral.integral_hasDerivAt_right hint hmeas hconts
 
 /-- The derivative of the primitive is itself differentiable away from the
-origin, with the quotient-rule derivative of the radial slope.-/
+origin, with the quotient-rule derivative of the radial slope.
+@isnad1 id=hasderiv.4h4v.s7.2adb9a784689 from=translated src=- shape=2aa25172 vocab=f4c49ae6
+-/
 theorem radialPoissonPrimitive_deriv_hasDerivAt
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g)
     {A s : ℝ} (hA : 0 < A) (hs : 0 < s) :
@@ -78,7 +87,9 @@ theorem radialPoissonPrimitive_deriv_hasDerivAt
   exact (radialPoissonPrimitive_hasDerivAt hn hg hA ht).deriv
 
 /-- The radial primitive satisfies the second-order one-variable Poisson
-equation on the positive half-line.-/
+equation on the positive half-line.
+@isnad1 id=eq.4h4v.s7.65d1a8bec0cc from=translated src=- shape=34f8bee3 vocab=b2f045c5
+-/
 theorem radialPoissonPrimitive_ode
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g)
     {A s : ℝ} (hA : 0 < A) (hs : 0 < s) :
@@ -90,7 +101,9 @@ theorem radialPoissonPrimitive_ode
   ring
 
 /-- If the radial slope is nonpositive between `s` and the normalization
-radius `A`, then the primitive is nonnegative at `s`.-/
+radius `A`, then the primitive is nonnegative at `s`.
+@isnad1 id=le.2h4v.s5.3478aeeb6ac3 from=translated src=- shape=9ab73046 vocab=31eb9d34
+-/
 theorem radialPoissonPrimitive_nonneg
     {n : ℕ} {g : ℝ → ℝ} {A s : ℝ} (hsA : s ≤ A)
     (hslope : ∀ t ∈ Icc s A, radialPoissonSlope n g t ≤ 0) :
@@ -104,7 +117,9 @@ theorem radialPoissonPrimitive_nonneg
       neg_nonneg.mpr (hslope t ht)
 
 /-- If the slope vanishes at and beyond the normalization radius, then the
-primitive vanishes there as well.-/
+primitive vanishes there as well.
+@isnad1 id=eq.2h4v.s5.a915429efbfd from=translated src=- shape=46d90ac6 vocab=21557f32
+-/
 theorem radialPoissonPrimitive_eq_zero_of_slope_eq_zero
     {n : ℕ} {g : ℝ → ℝ} {A s : ℝ} (hAs : A ≤ s)
     (hzero : ∀ t, A ≤ t → radialPoissonSlope n g t = 0) :
@@ -120,7 +135,9 @@ theorem radialPoissonPrimitive_eq_zero_of_slope_eq_zero
 
 /-- If a weighted radial datum is integrable on the positive half-line, has
 zero total weighted mass, and vanishes after `A`, then its weighted cumulative
-term vanishes at every `s ≥ A`.-/
+term vanishes at every `s ≥ A`.
+@isnad1 id=eq.5h4v.s7.0232e54abe84 from=translated src=- shape=3027f10d vocab=846e79ad
+-/
 theorem radialWeightedCumulative_eq_zero_of_total_and_outer_zero
     {n : ℕ} {g : ℝ → ℝ} {A s : ℝ} (hA : 0 < A) (hAs : A ≤ s)
     (hint : IntegrableOn (fun t : ℝ => t ^ (n - 1) * g t) (Ioi 0))
@@ -143,7 +160,9 @@ theorem radialWeightedCumulative_eq_zero_of_total_and_outer_zero
   exact hadd
 
 /-- The explicit kernel difference has a nonpositive Poisson slope whenever
-the scale index increases.-/
+the scale index increases.
+@isnad1 id=le.4h5v.s6.1a6a413809b9 from=translated src=- shape=f9146618 vocab=20715287
+-/
 theorem radialPoissonSlope_explicitRadialKernelSqDifference_nonpos
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {s : ℝ} (hs : 0 < s) :
@@ -154,7 +173,9 @@ theorem radialPoissonSlope_explicitRadialKernelSqDifference_nonpos
       hn R hR hab hs.le)
 
 /-- Before the normalization radius, the primitive associated to an
-increasing pair of kernel scales is nonnegative.-/
+increasing pair of kernel scales is nonnegative.
+@isnad1 id=le.5h6v.s6.84be284b48e4 from=translated src=- shape=da6a84d4 vocab=3fd8dc2e
+-/
 theorem radialPoissonPrimitive_explicitRadialKernelSqDifference_nonneg
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {A s : ℝ}
@@ -167,7 +188,9 @@ theorem radialPoissonPrimitive_explicitRadialKernelSqDifference_nonneg
     hn R hR hab (hs.trans_le ht.1)
 
 /-- The weighted cumulative term of the explicit kernel difference vanishes
-at and beyond the squared outer radius of the larger-support scale.-/
+at and beyond the squared outer radius of the larger-support scale.
+@isnad1 id=eq.4h5v.s6.8e1175f0e852 from=translated src=- shape=a194c688 vocab=57585b39
+-/
 theorem radialWeightedCumulative_explicitRadialKernelSqDifference_eq_zero_of_outer
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {s : ℝ}
@@ -206,7 +229,9 @@ theorem radialWeightedCumulative_explicitRadialKernelSqDifference_eq_zero_of_out
       R hR hab ht.le
 
 /-- The explicit Poisson slope vanishes at and beyond the squared outer
-radius of the larger-support scale.-/
+radius of the larger-support scale.
+@isnad1 id=eq.4h5v.s6.4bf61f156e86 from=translated src=- shape=a194c688 vocab=b1db8492
+-/
 theorem radialPoissonSlope_explicitRadialKernelSqDifference_eq_zero_of_outer
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {s : ℝ}
@@ -219,7 +244,9 @@ theorem radialPoissonSlope_explicitRadialKernelSqDifference_eq_zero_of_outer
     zero_div]
 
 /-- With the reference point chosen at the exact squared outer radius, the
-explicit primitive vanishes everywhere outside that radius.-/
+explicit primitive vanishes everywhere outside that radius.
+@isnad1 id=eq.4h5v.s7.65af139d6f1d from=translated src=- shape=e8b16d04 vocab=48cae86f
+-/
 theorem radialPoissonPrimitive_explicitRadialKernelSqDifference_eq_zero_of_outer
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R)
     {a b : ℕ} (hab : a ≤ b) {s : ℝ}

@@ -14,7 +14,9 @@ namespace PshLines.PSHD
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [ProperSpace E] [SecondCountableTopology E]
 
-/-- Proper second-countable complex normed spaces have Polish projectivizations.-/
+/-- Proper second-countable complex normed spaces have Polish projectivizations.
+@isnad1 id=polishsp.0h1v.s5.d70e037aac1c from=translated src=- shape=b6bd43ac vocab=fe5e3e84
+-/
 theorem projectivePolishSpace : PolishSpace (Projectivization ℂ E) := by
   let : MetricSpace (Projectivization ℂ E) :=
     TopologicalSpace.metrizableSpaceMetric _
@@ -22,7 +24,9 @@ theorem projectivePolishSpace : PolishSpace (Projectivization ℂ E) := by
 
 attribute [scoped instance] projectivePolishSpace
 
-/-- Their projective Borel structures are standard Borel.-/
+/-- Their projective Borel structures are standard Borel.
+@isnad1 id=standard.0h1v.s5.b473a486cb8c from=translated src=- shape=b6bd43ac vocab=637ff4c7
+-/
 theorem projectiveStandardBorelSpace : StandardBorelSpace (Projectivization ℂ E) := by
   infer_instance
 

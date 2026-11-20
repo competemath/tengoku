@@ -54,22 +54,33 @@ notion on an arbitrary closed subset.-/
 def PlurisubharmonicOn (u : E → EReal) (U : Set E) : Prop :=
   ∀ x ∈ U, PlurisubharmonicAt u x
 
+/--
+@isnad1 id=mem.1h4v.s5.896fbfd38a3a from=translated src=- shape=fde5a954 vocab=aa490a00
+-/
 theorem center_mem_affineClosedDisc (x v : E) {r : ℝ} (hr : 0 ≤ r) :
     x ∈ affineClosedDisc x v r := by
   refine ⟨0, ?_, by simp⟩
   simpa using hr
 
+/--
+@isnad1 id=mem.1h5v.s7.fd96b868cdaf from=translated src=- shape=1db1c569 vocab=a64d7323
+-/
 theorem circle_mem_affineClosedDisc (x v : E) {r : ℝ} (hr : 0 ≤ r) (t : ℝ) :
     x + circleMap 0 r t • v ∈ affineClosedDisc x v r := by
   refine ⟨circleMap 0 r t, ?_, rfl⟩
   exact sphere_subset_closedBall (circleMap_mem_sphere 0 hr t)
 
+/--
+@isnad1 id=iscompac.0h4v.s5.4b6bc32afbcc from=translated src=- shape=eccf1155 vocab=a802be55
+-/
 theorem isCompact_affineClosedDisc (x v : E) (r : ℝ) :
     IsCompact (affineClosedDisc x v r) := by
   apply (isCompact_closedBall (0 : ℂ) r).image
   fun_prop
 
-/-- Compact discs have finite upper bounds, including discs contained in poles.-/
+/-- Compact discs have finite upper bounds, including discs contained in poles.
+@isnad1 id=ex.3h6v.s6.73af372446f4 from=translated src=- shape=37da165a vocab=036c9997
+-/
 theorem DiscPshOn.exists_disc_upper_bound {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (x v : E) {r : ℝ} (hr : 0 ≤ r)
     (hD : affineClosedDisc x v r ⊆ U) :
@@ -79,17 +90,25 @@ theorem DiscPshOn.exists_disc_upper_bound {u : E → EReal} {U : Set E}
   obtain ⟨C, hC, _⟩ := EReal.exists_rat_btwn_of_lt (lt_top_iff_ne_top.mpr (hu.ne_top y (hD hy)))
   exact ⟨C, fun z hz => (hmax hz).trans hC.le⟩
 
+/--
+@isnad1 id=hasdiscs.2h4v.s5.8574ae990131 from=translated src=- shape=79164061 vocab=e17dbc21
+-/
 theorem HasDiscSubmeanOn.mono {u : E → EReal} {U V : Set E}
     (hu : HasDiscSubmeanOn u U) (hVU : V ⊆ U) : HasDiscSubmeanOn u V := by
   intro x v r hr hD C hC
   exact hu x v r hr (hD.trans hVU) C hC
 
+/--
+@isnad1 id=discpsho.2h4v.s5.9a413701a48a from=translated src=- shape=79164061 vocab=0d48ed7f
+-/
 theorem DiscPshOn.mono {u : E → EReal} {U V : Set E}
     (hu : DiscPshOn u U) (hVU : V ⊆ U) : DiscPshOn u V :=
   ⟨fun x hx => hu.ne_top x (hVU hx), hu.upperSemicontinuousOn.mono hVU,
     hu.submean.mono hVU⟩
 
-/-- Larger potentials have smaller deficits, without any finiteness premise.-/
+/-- Larger potentials have smaller deficits, without any finiteness premise.
+@isnad1 id=le.1h7v.s8.11bb7e7a668b from=translated src=- shape=e401ff7a vocab=44baa51e
+-/
 theorem circleDeficit_antitone {u w : E → EReal} (x v : E) (r C : ℝ)
     (huw : ∀ t : ℝ, u (x + circleMap 0 r t • v) ≤
       w (x + circleMap 0 r t • v)) :
@@ -99,6 +118,9 @@ theorem circleDeficit_antitone {u w : E → EReal} (x v : E) (r C : ℝ)
   intro t
   exact EReal.toENNReal_le_toENNReal (EReal.sub_le_sub le_rfl (huw t))
 
+/--
+@isnad1 id=hasdiscs.2h4v.s6.b5520bff2941 from=translated src=- shape=1824acee vocab=cc82557d
+-/
 theorem HasDiscSubmeanOn.max {u w : E → EReal} {U : Set E}
     (hu : HasDiscSubmeanOn u U) (hw : HasDiscSubmeanOn w U) :
     HasDiscSubmeanOn (fun x => Max.max (u x) (w x)) U := by
@@ -115,6 +137,9 @@ theorem HasDiscSubmeanOn.max {u w : E → EReal} {U : Set E}
       (w := fun y => Max.max (u y) (w y)) x v r C (fun _ => le_max_left _ _)
     simpa only [max_eq_left h] using hmono.trans (hu x v r hr hD C hCu)
 
+/--
+@isnad1 id=discpsho.2h4v.s6.45aa123f1a22 from=translated src=- shape=1824acee vocab=fea40a87
+-/
 theorem DiscPshOn.max {u w : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (hw : DiscPshOn w U) :
     DiscPshOn (fun x => Max.max (u x) (w x)) U := by
@@ -124,10 +149,16 @@ theorem DiscPshOn.max {u w : E → EReal} {U : Set E}
   exact ne_of_lt (max_lt (lt_top_iff_ne_top.mpr (hu.ne_top x hx))
     (lt_top_iff_ne_top.mpr (hw.ne_top x hx)))
 
+/--
+@isnad1 id=plurisub.2h3v.s5.61d0bfea3f5b from=translated src=- shape=6db4a69f vocab=b358ce25
+-/
 theorem DiscPshOn.plurisubharmonicOn {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (hU : IsOpen U) : PlurisubharmonicOn u U :=
   fun _ hx => ⟨U, hU, hx, hu⟩
 
+/--
+@isnad1 id=plurisub.2h4v.s6.510f0a2b29cd from=translated src=- shape=7c6844ca vocab=574bda93
+-/
 theorem PlurisubharmonicAt.max {u w : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) (hw : PlurisubharmonicAt w x) :
     PlurisubharmonicAt (fun y => Max.max (u y) (w y)) x := by
@@ -136,16 +167,24 @@ theorem PlurisubharmonicAt.max {u w : E → EReal} {x : E}
   exact ⟨U ∩ V, hU.inter hV, ⟨hxU, hxV⟩,
     (hu.mono inter_subset_left).max (hw.mono inter_subset_right)⟩
 
+/--
+@isnad1 id=plurisub.2h4v.s6.3d2e3975ada5 from=translated src=- shape=1824acee vocab=690c1604
+-/
 theorem PlurisubharmonicOn.max {u w : E → EReal} {U : Set E}
     (hu : PlurisubharmonicOn u U) (hw : PlurisubharmonicOn w U) :
     PlurisubharmonicOn (fun x => Max.max (u x) (w x)) U :=
   fun x hx => (hu x hx).max (hw x hx)
 
+/--
+@isnad1 id=plurisub.2h4v.s5.a3e22cacf478 from=translated src=- shape=79164061 vocab=f33e333d
+-/
 theorem PlurisubharmonicOn.mono {u : E → EReal} {U V : Set E}
     (hu : PlurisubharmonicOn u U) (hVU : V ⊆ U) : PlurisubharmonicOn u V :=
   fun x hx => hu x (hVU hx)
 
-/-- The submean condition is unchanged by equality on its domain.-/
+/-- The submean condition is unchanged by equality on its domain.
+@isnad1 id=hasdiscs.2h4v.s5.85a927fee51c from=translated src=- shape=1d74f7e5 vocab=9f3b5433
+-/
 theorem HasDiscSubmeanOn.congr {u w : E → EReal} {U : Set E}
     (hu : HasDiscSubmeanOn u U) (heq : EqOn u w U) : HasDiscSubmeanOn w U := by
   intro x v r hr hD C hC
@@ -157,6 +196,9 @@ theorem HasDiscSubmeanOn.congr {u w : E → EReal} {U : Set E}
   rw [← hcircle, ← heq hx]
   exact hu x v r hr hD C (fun y hy => (heq (hD hy)).trans_le (hC y hy))
 
+/--
+@isnad1 id=discpsho.2h4v.s5.68ae521f67f7 from=translated src=- shape=1d74f7e5 vocab=97bcb0e5
+-/
 theorem DiscPshOn.congr {u w : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (heq : EqOn u w U) : DiscPshOn w U := by
   refine ⟨fun x hx => (heq hx) ▸ hu.ne_top x hx, ?_, hu.submean.congr heq⟩
@@ -166,7 +208,9 @@ theorem DiscPshOn.congr {u w : E → EReal} {U : Set E}
   intro c
   rw [heq hy]
 
-/-- Plurisubharmonicity depends on the actual germ, including pole values.-/
+/-- Plurisubharmonicity depends on the actual germ, including pole values.
+@isnad1 id=plurisub.2h4v.s5.a74759b57c19 from=translated src=- shape=fd4fa65c vocab=c346ff00
+-/
 theorem PlurisubharmonicAt.congr {u w : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) (heq : u =ᶠ[𝓝 x] w) :
     PlurisubharmonicAt w x := by
@@ -175,11 +219,17 @@ theorem PlurisubharmonicAt.congr {u w : E → EReal} {x : E}
   refine ⟨U ∩ V, hU.inter hV, ⟨hxU, hxV⟩, ?_⟩
   exact (hu.mono inter_subset_left).congr (fun _ hy => hVsub hy.2)
 
+/--
+@isnad1 id=ne.1h3v.s5.3b08cd191bde from=translated src=- shape=d19eb6be vocab=2de0d5ae
+-/
 theorem PlurisubharmonicAt.ne_top {u : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) : u x ≠ ⊤ := by
   obtain ⟨_, _, hx, hu⟩ := hu
   exact hu.ne_top x hx
 
+/--
+@isnad1 id=uppersem.1h3v.s5.d6bfd809d01d from=translated src=- shape=7a8421d0 vocab=6b8653aa
+-/
 theorem PlurisubharmonicAt.upperSemicontinuousAt {u : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) : UpperSemicontinuousAt u x := by
   obtain ⟨U, hU, hx, hu⟩ := hu
@@ -188,24 +238,34 @@ theorem PlurisubharmonicAt.upperSemicontinuousAt {u : E → EReal} {x : E}
   rwa [nhdsWithin_eq_nhds.mpr (hU.mem_nhds hx)] at h
 
 /-- The circle-deficit expression has the expected value for every constant,
-including negative infinity.-/
+including negative infinity.
+@isnad1 id=eq.0h6v.s6.15ed86a9dcbe from=translated src=- shape=e1bf220d vocab=94c80cc5
+-/
 theorem circleDeficit_const (a : EReal) (x v : E) (r C : ℝ) :
     circleDeficit (fun _ => a) x v r C =
       ENNReal.ofReal (2 * Real.pi) * ((C : EReal) - a).toENNReal := by
   simp [circleDeficit, mul_comm]
 
+/--
+@isnad1 id=discpsho.1h3v.s5.ac9424a2c52c from=translated src=- shape=a914a98a vocab=8c95167c
+-/
 theorem discPshOn_const (a : EReal) (ha : a ≠ ⊤) (U : Set E) :
     DiscPshOn (fun _ => a) U := by
   refine ⟨fun _ _ => ha, upperSemicontinuousOn_const, ?_⟩
   intro x v r _ _ C _
   exact (circleDeficit_const a x v r C).le
 
+/--
+@isnad1 id=plurisub.1h3v.s5.736b2ae0f706 from=translated src=- shape=89b5a07e vocab=2de0d5ae
+-/
 theorem plurisubharmonicAt_const (a : EReal) (ha : a ≠ ⊤) (x : E) :
     PlurisubharmonicAt (fun _ => a) x :=
   ⟨univ, isOpen_univ, mem_univ x, discPshOn_const a ha univ⟩
 
 /-- Actual PSH stability for the collar construction already used in the
-topological module. This does not assert a current correspondence.-/
+topological module. This does not assert a current correspondence.
+@isnad1 id=plurisub.5h5v.s6.b4949f26e1f8 from=translated src=- shape=9da60d4b vocab=219256d0
+-/
 theorem gluedMax_plurisubharmonic {U U' : Set E} {u w : E → EReal}
     (hU : IsOpen U) (hclosure : closure U' ⊆ U)
     (hcollar : ∀ x ∈ U \ U', u x ≤ w x)
@@ -218,7 +278,9 @@ theorem gluedMax_plurisubharmonic {U U' : Set E} {u w : E → EReal}
   · exact (hw x (mem_univ x)).congr
       (gluedMax_eventually_eq_global hclosure hcollar hx).symm
 
-/-- The angular restriction in every admissible disc is genuinely measurable.-/
+/-- The angular restriction in every admissible disc is genuinely measurable.
+@isnad1 id=measurab.3h6v.s7.6f9087e0e580 from=translated src=- shape=ef490eb6 vocab=e1b4ae14
+-/
 theorem DiscPshOn.measurable_circle {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (x v : E) {r : ℝ} (hr : 0 ≤ r)
     (hD : affineClosedDisc x v r ⊆ U) :
@@ -228,6 +290,9 @@ theorem DiscPshOn.measurable_circle {u : E → EReal} {U : Set E}
       (fun t _ => hD (circle_mem_affineClosedDisc x v hr t))
   exact (upperSemicontinuousOn_univ_iff.mp hsc).measurable
 
+/--
+@isnad1 id=measurab.3h7v.s7.5bb9223c8d43 from=translated src=- shape=8329eaac vocab=a67ba198
+-/
 theorem DiscPshOn.measurable_circle_deficit {u : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (x v : E) {r : ℝ} (hr : 0 ≤ r)
     (hD : affineClosedDisc x v r ⊆ U) (C : ℝ) :
@@ -238,7 +303,9 @@ theorem DiscPshOn.measurable_circle_deficit {u : E → EReal} {U : Set E}
         ((measurable_const : Measurable (fun _ : ℝ => C)).sub measurable_id).coe_real_ereal)
   exact (hsub.comp (hu.measurable_circle x v hr hD)).ereal_toENNReal
 
-/-- Raising a finite majorant adds an ordinary finite constant to its deficit.-/
+/-- Raising a finite majorant adds an ordinary finite constant to its deficit.
+@isnad1 id=eq.2h3v.s6.492685e8a732 from=translated src=- shape=ebb333dd vocab=9f1a5ebc
+-/
 theorem finiteDeficit_add_bound (C a : ℝ) (ha : 0 ≤ a) (z : EReal)
     (hz : z ≤ (C : EReal)) :
     (((C + a : ℝ) : EReal) - z).toENNReal =
@@ -252,6 +319,9 @@ theorem finiteDeficit_add_bound (C a : ℝ) (ha : 0 ≤ a) (z : EReal)
   rw [heq, EReal.toENNReal_add (EReal.coe_nonneg.mpr ha) hn,
     EReal.real_coe_toENNReal]
 
+/--
+@isnad1 id=eq.3h7v.s7.41a74272e2cc from=translated src=- shape=be0fcb9c vocab=9fba989d
+-/
 theorem circleDeficit_add_bound {u : E → EReal} (x v : E) {r : ℝ}
     (hr : 0 ≤ r) (C a : ℝ) (ha : 0 ≤ a)
     (hC : ∀ y ∈ affineClosedDisc x v r, u y ≤ (C : EReal)) :
@@ -263,7 +333,9 @@ theorem circleDeficit_add_bound {u : E → EReal} (x v : E) {r : ℝ}
   rw [lintegral_add_left measurable_const]
   simp [mul_comm]
 
-/-- The submean test is independent of increasing the chosen finite bound.-/
+/-- The submean test is independent of increasing the chosen finite bound.
+@isnad1 id=iff.3h7v.s7.c6543c999a00 from=translated src=- shape=bcf503b7 vocab=58168f3d
+-/
 theorem discSubmean_add_bound_iff {u : E → EReal} (x v : E) {r : ℝ}
     (hr : 0 ≤ r) (C a : ℝ) (ha : 0 ≤ a)
     (hC : ∀ y ∈ affineClosedDisc x v r, u y ≤ (C : EReal)) :

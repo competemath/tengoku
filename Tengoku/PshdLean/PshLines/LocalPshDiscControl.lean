@@ -20,14 +20,18 @@ namespace PshLines
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 variable {u : E → EReal} {U K : Set E}
 
-/-- Ambient PSH germs are upper semicontinuous on their domain.-/
+/-- Ambient PSH germs are upper semicontinuous on their domain.
+@isnad1 id=uppersem.1h3v.s5.9457481ed1d3 from=translated src=- shape=122594cb vocab=0480573d
+-/
 theorem PlurisubharmonicOn.upperSemicontinuousOn (hu : PlurisubharmonicOn u U) :
     UpperSemicontinuousOn u U := by
   intro x hx c hc
   exact nhdsWithin_le_nhds ((hu x hx).upperSemicontinuousAt c hc)
 
 /-- A compact set of PSH germs has a nonnegative finite upper bound, including
-when the compact set is empty or the potential is identically negative infinity.-/
+when the compact set is empty or the potential is identically negative infinity.
+@isnad1 id=ex.3h4v.s6.701a5a2027e3 from=translated src=- shape=76c2e5f2 vocab=c963782a
+-/
 theorem PlurisubharmonicOn.exists_nonnegative_compact_upper_bound
     (hu : PlurisubharmonicOn u U) (hK : IsCompact K) (hKU : K ⊆ U) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x ∈ K, u x ≤ (C : EReal) := by
@@ -43,7 +47,9 @@ theorem PlurisubharmonicOn.exists_nonnegative_compact_upper_bound
   · exact ⟨0, le_rfl, fun x hx => False.elim (hne ⟨x, hx⟩)⟩
 
 /-- One positive radius works for all centers in a compact set, each inside
-one of the original disc-PSH neighborhoods witnessing its germ.-/
+one of the original disc-PSH neighborhoods witnessing its germ.
+@isnad1 id=ex.3h5v.s7.16a430febde7 from=translated src=- shape=3e6bd408 vocab=ef5d1fc7
+-/
 theorem PlurisubharmonicOn.exists_uniform_disc_neighborhoods
     (hu : PlurisubharmonicOn u U) (hK : IsCompact K) (hKU : K ⊆ U) (v : E) :
     ∃ R > 0, ∀ x ∈ K, ∃ W : Set E, IsOpen W ∧ x ∈ W ∧ DiscPshOn u W ∧
@@ -70,7 +76,9 @@ theorem PlurisubharmonicOn.exists_uniform_disc_neighborhoods
     ((mul_le_mul_of_nonneg_right hr (norm_nonneg v)).trans_lt hRδ))
 
 /-- The original deficit criterion holds uniformly for sufficiently small
-discs centered in a compact family of PSH germs, with any admissible majorant.-/
+discs centered in a compact family of PSH germs, with any admissible majorant.
+@isnad1 id=ex.3h5v.s7.f416b702bc36 from=translated src=- shape=cee582e9 vocab=c99efde2
+-/
 theorem PlurisubharmonicOn.exists_uniform_circleDeficit_bound
     (hu : PlurisubharmonicOn u U) (hK : IsCompact K) (hKU : K ⊆ U) (v : E) :
     ∃ R > 0, ∀ x ∈ K, ∀ r : ℝ, 0 < r → r ≤ R → ∀ C : ℝ,
@@ -86,7 +94,9 @@ theorem PlurisubharmonicOn.exists_uniform_circleDeficit_bound
 variable [MeasurableSpace E] [BorelSpace E]
 
 /-- Upper semicontinuity of PSH germs gives a measurable zero extension of
-their deficit on any measurable subset of the germ domain.-/
+their deficit on any measurable subset of the germ domain.
+@isnad1 id=measurab.3h5v.s6.a6f527a9e25c from=translated src=- shape=7cebecc4 vocab=e4b2edcb
+-/
 theorem PlurisubharmonicOn.measurable_indicator_deficit (hu : PlurisubharmonicOn u U)
     (hK : MeasurableSet K) (hKU : K ⊆ U) (C : ℝ) :
     Measurable (K.indicator (fun x => ((C : EReal) - u x).toENNReal)) := by

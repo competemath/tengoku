@@ -43,11 +43,17 @@ noncomputable instance finiteJetSpaceNormedSpace
     NormedSpace ℝ (FiniteJetSpace E m) :=
   Pi.normedSpace
 
+/--
+@isnad1 id=complete.0h2v.s5.6e99854968f4 from=translated src=- shape=a443d24e vocab=ce4da408
+-/
 instance finiteJetSpaceCompleteSpace
     (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] (m : ℕ) :
     CompleteSpace (FiniteJetSpace E m) :=
   Pi.complete _
 
+/--
+@isnad1 id=eq.1h4v.s8.2dc1b709d671 from=translated src=- shape=26792b05 vocab=9eeb4061
+-/
 @[ext]
 theorem finiteJetSpace_ext
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -55,6 +61,9 @@ theorem finiteJetSpace_ext
     (h : ∀ i, J i = H i) : J = H :=
   funext h
 
+/--
+@isnad1 id=eq.0h5v.s11.8e1e2fa7b592 from=translated src=- shape=630c2f64 vocab=7d39da47
+-/
 @[simp]
 theorem finiteJetSpace_add_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -62,6 +71,9 @@ theorem finiteJetSpace_add_apply
     (J + H) i = J i + H i :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.c0bc3390b39d from=translated src=- shape=ba144769 vocab=dfdf62f2
+-/
 @[simp]
 theorem finiteJetSpace_smul_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -69,6 +81,9 @@ theorem finiteJetSpace_smul_apply
     (c • J) i = c • J i :=
   rfl
 
+/--
+@isnad1 id=le.0h4v.s9.5b7abd21761e from=translated src=- shape=a3a0e877 vocab=8f82f0f8
+-/
 theorem norm_finiteJetSpace_apply_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m : ℕ} (J : FiniteJetSpace E m) (i : ↑(Finset.Iic m)) :
@@ -76,6 +91,9 @@ theorem norm_finiteJetSpace_apply_le
   norm_le_pi_norm (J : (i : ↑(Finset.Iic m)) →
     BoundedContinuousFunction E (E [×(i : ℕ)]→L[ℝ] ℝ)) i
 
+/--
+@isnad1 id=iff.1h4v.s9.f0238634ebf0 from=translated src=- shape=b3e93560 vocab=8f82f0f8
+-/
 theorem norm_finiteJetSpace_le_iff
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m : ℕ} (J : FiniteJetSpace E m) {r : ℝ} (hr : 0 ≤ r) :
@@ -92,6 +110,9 @@ noncomputable def finiteJetProj
   ContinuousLinearMap.proj (R := ℝ) (φ := fun i : ↑(Finset.Iic m) ↦
     BoundedContinuousFunction E (E [×(i : ℕ)]→L[ℝ] ℝ)) i
 
+/--
+@isnad1 id=eq.0h4v.s12.b7fd6d343bc5 from=translated src=- shape=5e7f453d vocab=8734b65b
+-/
 @[simp]
 theorem finiteJetProj_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -108,6 +129,9 @@ noncomputable def finiteJetEvalCLM
   (ContinuousMultilinearMap.apply ℝ (fun _ : Fin (i : ℕ) ↦ E) ℝ v).comp
     ((BoundedContinuousFunction.evalCLM ℝ y).comp (finiteJetProj (E := E) m i))
 
+/--
+@isnad1 id=eq.0h6v.s10.cb7a7e8af9f1 from=translated src=- shape=6ea46615 vocab=36310c6d
+-/
 @[simp]
 theorem finiteJetEvalCLM_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -137,6 +161,9 @@ noncomputable def finiteJetCLM
           (p := ContDiffMapSupportedIn.seminorm ℝ E ℝ ⊤ K)
           (x := f) i.property)⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.3d05a1c6bb26 from=translated src=- shape=7f3711a9 vocab=56d362d0
+-/
 @[simp]
 theorem finiteJetCLM_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -147,7 +174,9 @@ theorem finiteJetCLM_apply
   rfl
 
 /-- The finite jet map is injective because its zeroth component remembers
-the original function.-/
+the original function.
+@isnad1 id=injectiv.0h3v.s8.1eea3bef094d from=translated src=- shape=b1baefa2 vocab=33111c7e
+-/
 theorem finiteJetCLM_injective
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Compacts E) (m : ℕ) :
@@ -159,7 +188,9 @@ theorem finiteJetCLM_injective
 
 /-- The initial-order sup-seminorm is bounded by the norm of the finite jet.
 This is the direction needed to transport the distribution estimate to the
-jet image.-/
+jet image.
+@isnad1 id=le.0h4v.s10.6f7686bc4811 from=translated src=- shape=ab34e753 vocab=4761e2a3
+-/
 theorem finiteOrderSeminorm_le_norm_finiteJetCLM
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Compacts E) (m : ℕ)
@@ -176,7 +207,9 @@ theorem finiteOrderSeminorm_le_norm_finiteJetCLM
     (norm_finiteJetSpace_apply_le (finiteJetCLM K m f) j)
 
 /-- The finite jet norm is exactly the standard maximum of all derivative
-seminorms through order `m`.-/
+seminorms through order `m`.
+@isnad1 id=eq.0h4v.s10.4f0bed9117d6 from=translated src=- shape=7efde1b4 vocab=0cb0bbb9
+-/
 theorem norm_finiteJetCLM_eq_finiteOrderSeminorm
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Compacts E) (m : ℕ)
@@ -195,7 +228,9 @@ theorem norm_finiteJetCLM_eq_finiteOrderSeminorm
   · exact finiteOrderSeminorm_le_norm_finiteJetCLM K m f
 
 /-- A linear functional controlled by the initial derivative seminorm extends
-to a continuous functional on the ambient finite-jet Banach space.-/
+to a continuous functional on the ambient finite-jet Banach space.
+@isnad1 id=ex.2h5v.s11.958e097fd6b0 from=translated src=- shape=01058b61 vocab=28082a8d
+-/
 theorem exists_finiteJet_extension
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Compacts E) (m : ℕ)
@@ -253,7 +288,9 @@ theorem exists_finiteJet_extension
 
 /-- A distribution restricted to one compact support extends, after choosing
 the finite order supplied by continuity, to a continuous functional on the
-corresponding finite-jet Banach space.-/
+corresponding finite-jet Banach space.
+@isnad1 id=ex.1h4v.s10.19e6e67e2dbe from=translated src=- shape=cec156f2 vocab=0de007c3
+-/
 theorem exists_finiteJet_distribution_extension
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (T : Distribution Ω ℝ ⊤) (K : Compacts E)

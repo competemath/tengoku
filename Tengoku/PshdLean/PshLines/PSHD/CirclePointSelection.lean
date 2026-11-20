@@ -13,7 +13,9 @@ namespace PshLines.PSHD
 
 /-- A Borel function satisfying the planar disc criterion on a measurable
 family of affine lines has a measurable high-value point on each admissible
-circle. The chosen point remains on its specified affine line.-/
+circle. The chosen point remains on its specified affine line.
+@isnad1 id=ex.6h7v.s8.37c2488f282e from=translated src=- shape=d86b24ec vocab=60f3d9a8
+-/
 theorem exists_measurable_highValue_circlePoint
     {S E : Type*} [MeasurableSpace S]
     [NormedAddCommGroup E] [NormedSpace ℂ E]

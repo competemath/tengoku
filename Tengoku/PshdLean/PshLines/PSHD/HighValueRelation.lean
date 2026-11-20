@@ -14,7 +14,9 @@ open Set Metric
 namespace PshLines.PSHD
 
 /-- For any continuous direction map on the unit sphere, the relation specifying
-an annular radius, its direction, and a high-value unit vector is Borel.-/
+an annular radius, its direction, and a high-value unit vector is Borel.
+@isnad1 id=measurab.2h7v.s9.ab4048563f87 from=translated src=- shape=4160d054 vocab=e45309dd
+-/
 theorem measurableSet_highValue_relation
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]

@@ -17,7 +17,9 @@ namespace PshLines
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-/-- Deficits below separate finite upper bounds add, including at poles.-/
+/-- Deficits below separate finite upper bounds add, including at poles.
+@isnad1 id=eq.2h4v.s6.46bc8e92a9df from=translated src=- shape=700356eb vocab=ad33d2fc
+-/
 theorem finiteDeficit_add (C D : ℝ) {z w : EReal}
     (hz : z ≤ (C : EReal)) (hw : w ≤ (D : EReal)) :
     (((C + D : ℝ) : EReal) - (z + w)).toENNReal =
@@ -37,7 +39,9 @@ theorem finiteDeficit_add (C D : ℝ) {z w : EReal}
     ac_rfl
   rw [heq, EReal.toENNReal_add hzN hwN]
 
-/-- The angular deficit of a sum is the sum of its measurable deficits.-/
+/-- The angular deficit of a sum is the sum of its measurable deficits.
+@isnad1 id=eq.5h9v.s7.4f879fa94799 from=translated src=- shape=4d4be109 vocab=7d161d0a
+-/
 theorem DiscPshOn.circleDeficit_add {u w : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (x v : E) {r : ℝ} (hr : 0 ≤ r)
     (hD : affineClosedDisc x v r ⊆ U) (C D : ℝ)
@@ -52,7 +56,9 @@ theorem DiscPshOn.circleDeficit_add {u w : E → EReal} {U : Set E}
   exact lintegral_add_left (hu.measurable_circle_deficit x v hr hD C) _
 
 /-- The sum of two disc-PSH functions is disc-PSH, with no finiteness assumption
-on their negative parts and with identically negative infinity permitted.-/
+on their negative parts and with identically negative infinity permitted.
+@isnad1 id=discpsho.2h4v.s6.867c1277ed59 from=translated src=- shape=7cc3ea20 vocab=47902552
+-/
 theorem DiscPshOn.add {u w : E → EReal} {U : Set E}
     (hu : DiscPshOn u U) (hw : DiscPshOn w U) :
     DiscPshOn (fun y => u y + w y) U := by
@@ -82,7 +88,9 @@ theorem DiscPshOn.add {u w : E → EReal} {U : Set E}
     have hboundeq : C + (D + B - C) = D + B := by ring
     simpa only [hboundeq] using hsum
 
-/-- Addition preserves the genuine ambient PSH germ at a point.-/
+/-- Addition preserves the genuine ambient PSH germ at a point.
+@isnad1 id=plurisub.2h4v.s5.81fff97b160b from=translated src=- shape=92a6ba5d vocab=6f0edd0e
+-/
 theorem PlurisubharmonicAt.add {u w : E → EReal} {x : E}
     (hu : PlurisubharmonicAt u x) (hw : PlurisubharmonicAt w x) :
     PlurisubharmonicAt (fun y => u y + w y) x := by
@@ -91,7 +99,9 @@ theorem PlurisubharmonicAt.add {u w : E → EReal} {x : E}
   exact ⟨U ∩ V, hU.inter hV, ⟨hxU, hxV⟩,
     (hu.mono inter_subset_left).add (hw.mono inter_subset_right)⟩
 
-/-- Addition preserves PSH germs on any set.-/
+/-- Addition preserves PSH germs on any set.
+@isnad1 id=plurisub.2h4v.s6.96eac1f84282 from=translated src=- shape=7cc3ea20 vocab=a3cbb12d
+-/
 theorem PlurisubharmonicOn.add {u w : E → EReal} {U : Set E}
     (hu : PlurisubharmonicOn u U) (hw : PlurisubharmonicOn w U) :
     PlurisubharmonicOn (fun y => u y + w y) U :=

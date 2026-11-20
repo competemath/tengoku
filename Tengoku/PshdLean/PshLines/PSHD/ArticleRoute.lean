@@ -28,7 +28,9 @@ universe u
 /-- **Steps 3-4 of Proposition 2.1.** A nonnegative Borel function which is
 locally bounded above and subharmonic on every connected component of every
 affine complex-line section of an open set coincides with a plurisubharmonic
-function there, and is therefore upper semicontinuous.-/
+function there, and is therefore upper semicontinuous.
+@isnad1 id=uppersem.5h3v.s7.9e2737ab58da from=translated src=- shape=e3ea2800 vocab=f4941f2c
+-/
 theorem LineSubharmonicOn.upperSemicontinuousOn_of_pshRepresentative {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     [MeasurableSpace E] [BorelSpace E] {u : E → ℝ} {D : Set E} (hD : IsOpen D)
@@ -47,7 +49,9 @@ theorem LineSubharmonicOn.upperSemicontinuousOn_of_pshRepresentative {E : Type*}
   exact EReal.coe_lt_coe_iff.mp hy
 
 /-- The article's route through a plurisubharmonic representative closes
-Proposition 2.1.-/
+Proposition 2.1.
+@isnad1 id=boundedl.0h0v.s0.9b71cf81d297 from=translated src=- shape=45709ebd vocab=d19378b0
+-/
 theorem boundedLineSubharmonicUSC_of_pshRepresentative : BoundedLineSubharmonicUSC.{u} :=
   fun hD hl hu hpos hbdd => hl.upperSemicontinuousOn_of_pshRepresentative hD hu hpos hbdd
 
@@ -55,7 +59,9 @@ variable {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- **Proposition 2.1** (`pshd-vibe`), by the article's argument. A nonnegative
 real function on an open set that is subharmonic on every connected component
-of every affine complex-line section is plurisubharmonic.-/
+of every affine complex-line section is plurisubharmonic.
+@isnad1 id=discpsho.3h3v.s6.cb7e15c2a381 from=translated src=- shape=4e8b9adb vocab=fe226cd7
+-/
 theorem LineSubharmonicOn.discPshOn_of_nonneg_of_pshRepresentative [FiniteDimensional ℂ E]
     {u : E → ℝ} {D : Set E} (hD : IsOpen D) (hpos : ∀ x ∈ D, 0 ≤ u x)
     (hl : LineSubharmonicOn u D) :
@@ -64,7 +70,9 @@ theorem LineSubharmonicOn.discPshOn_of_nonneg_of_pshRepresentative [FiniteDimens
     boundedLineSubharmonicUSC_of_pshRepresentative _ rfl hD hpos hl)
 
 /-- **Theorem 1.1** (`pshd-vibe`), by the article's argument for
-Proposition 2.1.-/
+Proposition 2.1.
+@isnad1 id=discpsho.3h3v.s8.089c9a54fc57 from=translated src=- shape=5162f698 vocab=311284a3
+-/
 theorem discPshOn_of_line_sections_of_pshRepresentative [FiniteDimensional ℂ E]
     {φ : E → EReal} {Ω : Set E} (hΩ : IsOpen Ω) (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,
@@ -75,7 +83,9 @@ theorem discPshOn_of_line_sections_of_pshRepresentative [FiniteDimensional ℂ E
       (fun x hx => truncShift_nonneg (htop x hx) m) (lineSubharmonicOn_truncShift htop hl m)
 
 /-- **Theorem 1.1** (`pshd-vibe`) by the article's argument, in the form of
-plurisubharmonic germs.-/
+plurisubharmonic germs.
+@isnad1 id=and.3h3v.s8.803f947e7843 from=translated src=- shape=8699c943 vocab=113b151f
+-/
 theorem plurisubharmonicOn_of_line_sections_of_pshRepresentative [FiniteDimensional ℂ E]
     {φ : E → EReal} {Ω : Set E} (hΩ : IsOpen Ω) (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,

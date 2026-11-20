@@ -14,7 +14,9 @@ open Set Metric
 namespace PshLines.PSHD
 
 /-- The high-value section of a Hopf fiber is the continuous image of the
-high-value part of the parameter circle.-/
+high-value part of the parameter circle.
+@isnad1 id=eq.0h5v.s9.ed5db506f0bd from=translated src=- shape=6125a8e9 vocab=1f8746a0
+-/
 theorem highValue_hopf_fiber_eq_image
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (u : E → ℝ) (x : E) (r : ℝ) (e : sphere (0 : E) 1) :
@@ -34,7 +36,9 @@ theorem highValue_hopf_fiber_eq_image
     · simpa only [Set.mem_ofPred_eq, phaseOrbit, smul_smul, mul_comm] using hval
 
 /-- Every admissible affine line yields a nonempty compact high-value Hopf fiber.
-The scalar radius is absorbed into the line direction in the planar hypothesis.-/
+The scalar radius is absorbed into the line direction in the planar hypothesis.
+@isnad1 id=and.3h6v.s9.90f8cb52d73c from=translated src=- shape=19f417d4 vocab=ca40d521
+-/
 theorem nonempty_isCompact_highValue_hopf_fiber
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → ℝ} {x : E} {r : ℝ} (e : sphere (0 : E) 1) {U : Set ℂ}

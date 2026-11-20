@@ -40,7 +40,9 @@ noncomputable def finiteJetCutoffTranslatedKernelFirstJetCLM
   LinearMap.toContinuousLinearMap L
 
 /-- The finite jet of a cutoff-translated kernel is differentiable in its
-translation parameter.-/
+translation parameter.
+@isnad1 id=hasfderi.2h7v.s9.c83b419b2bb6 from=translated src=- shape=8eb3a192 vocab=41f89866
+-/
 theorem finiteJet_cutoffTranslatedKernel_hasFDerivAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -81,7 +83,9 @@ theorem finiteJet_cutoffTranslatedKernel_hasFDerivAt
     _ ≤ c * ‖h‖ := (Real.le_norm_self _).trans hh
 
 /-- Continuity of a translated kernel after retaining only finitely many
-spatial derivatives.-/
+spatial derivatives.
+@isnad1 id=continuo.2h6v.s9.4fa408e18bc8 from=translated src=- shape=2fec4c19 vocab=dc13d832
+-/
 theorem continuous_finiteJet_cutoffTranslatedKernel
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -131,6 +135,9 @@ noncomputable def AdaptedRadialKernelData.convolutionTestFunctionSupportedIn
       rw [D.cutoff_one_on_compact (z + w) hycompact]
       exact one_ne_zero)
 
+/--
+@isnad1 id=eq.0h8v.s9.25cecd5bd5b3 from=translated src=- shape=d9910992 vocab=8d9bcb36
+-/
 @[simp]
 theorem AdaptedRadialKernelData.convolutionTestFunctionSupportedIn_apply
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (φ : 𝓓(D.inner, ℝ))
@@ -141,7 +148,9 @@ theorem AdaptedRadialKernelData.convolutionTestFunctionSupportedIn_apply
   rfl
 
 /-- Multiplying the finite jet of the localized kernel by an inner-domain
-test function produces a Bochner-integrable Banach-space-valued map.-/
+test function produces a Bochner-integrable Banach-space-valued map.
+@isnad1 id=integrab.0h8v.s10.5c914cc43285 from=translated src=- shape=a4281335 vocab=8bd95730
+-/
 theorem AdaptedRadialKernelData.integrable_smul_finiteJet_localizedKernel
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) (m : ℕ) :
@@ -154,7 +163,9 @@ theorem AdaptedRadialKernelData.integrable_smul_finiteJet_localizedKernel
   · exact φ.hasCompactSupport.smul_right
 
 /-- On the support of the scalar weight, every coordinate of the localized
-finite jet is the corresponding coordinate of the uncut translated kernel.-/
+finite jet is the corresponding coordinate of the uncut translated kernel.
+@isnad1 id=eq.0h12v.s11.aab4d5a3036a from=translated src=- shape=8e50cbe2 vocab=5a0dcb1f
+-/
 theorem AdaptedRadialKernelData.smul_finiteJet_localizedKernel_apply
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) (m : ℕ) (z y : E)
@@ -178,7 +189,9 @@ theorem AdaptedRadialKernelData.smul_finiteJet_localizedKernel_apply
     simp only [smul_apply, smul_eq_mul]
 
 /-- The finite jet of the ordinary convolution is the Bochner integral of
-the weighted finite jets of the localized translated kernel.-/
+the weighted finite jets of the localized translated kernel.
+@isnad1 id=eq.0h8v.s10.e38a880ecf2d from=translated src=- shape=287b9a07 vocab=e31bf3e5
+-/
 theorem AdaptedRadialKernelData.finiteJet_convolutionTestFunctionSupportedIn_eq_integral
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) (m : ℕ) :
@@ -206,7 +219,9 @@ theorem AdaptedRadialKernelData.finiteJet_convolutionTestFunctionSupportedIn_eq_
     (D.smul_finiteJet_localizedKernel_apply j φ m z y i v).symm
 
 /-- Exact transpose identity for convolution of a distribution with an
-adapted kernel on the inner domain.-/
+adapted kernel on the inner domain.
+@isnad1 id=eq.0h8v.s9.52966cdcc2e6 from=translated src=- shape=92d617ae vocab=c3cbfad7
+-/
 theorem AdaptedRadialKernelData.distribution_convolution_transpose
     (D : AdaptedRadialKernelData μ Ω x) (T : 𝓓'(Ω, ℝ))
     (j : ℕ) (φ : 𝓓(D.inner, ℝ)) :

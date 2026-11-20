@@ -30,6 +30,9 @@ def shrinkingBump (R : ℝ) (hR : 0 < R) (n : ℕ) : ContDiffBump (0 : E) where
   rIn_lt_rOut := half_lt_self (by positivity)
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=le.1h3v.s5.1104c2898685 from=translated src=- shape=a6475015 vocab=eb50e8c3
+-/
 theorem shrinkingBump_rOut_le (R : ℝ) (hR : 0 < R) (n : ℕ) :
     (shrinkingBump (E := E) R hR n).rOut ≤ R := by
   change R / ((n : ℝ) + 1) ≤ R
@@ -37,6 +40,9 @@ theorem shrinkingBump_rOut_le (R : ℝ) (hR : 0 < R) (n : ℕ) :
   nlinarith [Nat.cast_nonneg (α := ℝ) n]
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=eq.1h3v.s6.ebad0c7a1d53 from=translated src=- shape=43d7ef46 vocab=a2a7523a
+-/
 theorem shrinkingBump_radius_ratio (R : ℝ) (hR : 0 < R) (n : ℕ) :
     (shrinkingBump (E := E) R hR n).rOut =
       2 * (shrinkingBump (E := E) R hR n).rIn := by
@@ -44,6 +50,9 @@ theorem shrinkingBump_radius_ratio (R : ℝ) (hR : 0 < R) (n : ℕ) :
   ring
 
 omit [NormedSpace ℝ E] in
+/--
+@isnad1 id=tendsto.1h2v.s6.70371faa84b5 from=translated src=- shape=2317e5a2 vocab=ee49ccb4
+-/
 theorem tendsto_shrinkingBump_rOut (R : ℝ) (hR : 0 < R) :
     Tendsto (fun n => (shrinkingBump (E := E) R hR n).rOut) atTop (𝓝 0) := by
   have h : Tendsto (fun n : ℕ => ((n : ℝ) + 1)⁻¹) atTop (𝓝 0) := by
@@ -61,7 +70,9 @@ def mollify (u : E → ℝ) (φ : ContDiffBump (0 : E)) : E → ℝ :=
   translationPairing μ u (φ.normed μ)
 
 /-- The translation-pairing convention agrees with the usual convolution:
-the normalized bump centered at zero is even.-/
+the normalized bump centered at zero is even.
+@isnad1 id=eq.0h4v.s7.79dbcac554de from=translated src=- shape=b2a51fea vocab=24dac559
+-/
 theorem mollify_eq_convolution (u : E → ℝ) (φ : ContDiffBump (0 : E)) :
     mollify μ u φ = φ.normed μ ⋆[ContinuousLinearMap.lsmul ℝ ℝ, μ] u := by
   funext z
@@ -74,12 +85,17 @@ theorem mollify_eq_convolution (u : E → ℝ) (φ : ContDiffBump (0 : E)) :
       rw [← φ.normed_neg (x - z), neg_sub]
     rw [hφ, mul_comm])
 
+/--
+@isnad1 id=contdiff.1h5v.s7.6c2f1e893e2e from=translated src=- shape=b24b7baa vocab=4c53f4ad
+-/
 theorem contDiff_mollify {u : E → ℝ} (hu : LocallyIntegrable u μ)
     (φ : ContDiffBump (0 : E)) {n : ℕ∞} : ContDiff ℝ n (mollify μ u φ) :=
   contDiff_translationPairing hu φ.hasCompactSupport_normed φ.contDiff_normed
 
 /-- Averaging against a normalized nonnegative bump preserves a uniform
-almost-everywhere absolute bound.-/
+almost-everywhere absolute bound.
+@isnad1 id=le.3h6v.s7.73856bd7097c from=translated src=- shape=0c0c8f22 vocab=aacf4cff
+-/
 theorem abs_mollify_le_of_ae_abs_le
     {u : E → ℝ} (hu : LocallyIntegrable u μ) {C : ℝ} (_hC : 0 ≤ C)
     (huC : ∀ᵐ x ∂μ, |u x| ≤ C) (φ : ContDiffBump (0 : E)) (z : E) :
@@ -115,7 +131,9 @@ theorem abs_mollify_le_of_ae_abs_le
       rw [integral_const_mul, integral_sub_right_eq_self, φ.integral_normed, mul_one]
 
 /-- The full topological support, including its boundary, is controlled by
-the outer radius after translating the kernel to its center.-/
+the outer radius after translating the kernel to its center.
+@isnad1 id=le.0h4v.s7.39d37b834816 from=translated src=- shape=b5b11a8d vocab=7b46c5f0
+-/
 theorem tsupport_mollifier_translate_subset (φ : ContDiffBump (0 : E)) (z : E) :
     tsupport (fun x => φ.normed μ (x - z)) ⊆ closedBall z φ.rOut := by
   apply closure_minimal _ isClosed_closedBall
@@ -127,7 +145,9 @@ theorem tsupport_mollifier_translate_subset (φ : ContDiffBump (0 : E)) (z : E) 
   simpa only [mem_closedBall, dist_eq_norm] using hnorm.le
 
 /-- Lebesgue differentiation applies to these actual normalized kernels;
-the density is only locally integrable.-/
+the density is only locally integrable.
+@isnad1 id=eventual.2h4v.s7.115ba06c67d0 from=translated src=- shape=be4a598d vocab=3afbf544
+-/
 theorem ae_tendsto_mollify {u : E → ℝ} (hu : LocallyIntegrable u μ)
     (R : ℝ) (hR : 0 < R) :
     ∀ᵐ x ∂μ, Tendsto (fun n => mollify μ u (shrinkingBump R hR n) x)

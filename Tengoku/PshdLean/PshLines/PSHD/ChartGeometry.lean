@@ -10,7 +10,9 @@ Lemma 1.3. The chart vectors are `(1,v)` before normalization.
 
 namespace PshLines.PSHD
 
-/-- The Gram determinant of `(1,v)` and `(1,w)` controls `‖v-w‖²`.-/
+/-- The Gram determinant of `(1,v)` and `(1,w)` controls `‖v-w‖²`.
+@isnad1 id=le.0h3v.s7.640ab156cdae from=translated src=- shape=055ff338 vocab=7965592d
+-/
 theorem affineChart_gram_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] (v w : E) :
     ‖v - w‖ ^ 2 ≤
@@ -26,7 +28,9 @@ theorem affineChart_gram_lower_bound
   nlinarith
 
 /-- On a unit affine chart, the normalized Hermitian correlation controls
-Euclidean separation with an absolute constant.-/
+Euclidean separation with an absolute constant.
+@isnad1 id=le.2h3v.s8.1a8e8c863d23 from=translated src=- shape=cb28e760 vocab=2fd64363
+-/
 theorem affineChart_correlation_lower_bound
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {v w : E} (hv : ‖v‖ ≤ 1) (hw : ‖w‖ ≤ 1) :

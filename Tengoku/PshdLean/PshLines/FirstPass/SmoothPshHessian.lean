@@ -44,7 +44,9 @@ private theorem I_smul_conjugateCoordinateCombination (x : Fin n → ℂ) :
   apply Complex.ext <;> simp
 
 /-- The quadratic form of the coordinate complex Hessian is the Levi form of
-the vector having the conjugate coordinate tuple.-/
+the vector having the conjugate coordinate tuple.
+@isnad1 id=eq.1h4v.s8.fdd410a48800 from=translated src=- shape=6e40f016 vocab=2fc5be47
+-/
 theorem complexHessian_dotProduct_mulVec_eq_leviForm
     {u : ComplexModel n → ℝ} {z : ComplexModel n}
     (hu : ContDiffAt ℝ 2 u z) (x : Fin n → ℂ) :
@@ -73,7 +75,9 @@ theorem complexHessian_dotProduct_mulVec_eq_leviForm
 
 /-- A real-valued smooth PSH function has nonnegative Levi form in every
 direction.  Only open-domain smoothness is assumed; a globally smooth
-representative is constructed separately at each germ.-/
+representative is constructed separately at each germ.
+@isnad1 id=le.3h5v.s9.7d5e2f1da47e from=translated src=- shape=da31db44 vocab=e0ffdc89
+-/
 theorem leviForm_nonneg_of_contDiffOn_plurisubharmonicOn
     {U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     (hs : ContDiffOn ℝ ∞ u U)
@@ -145,7 +149,9 @@ theorem leviForm_nonneg_of_contDiffOn_plurisubharmonicOn
 namespace MongeAmpere
 
 /-- Smooth plurisubharmonicity on an open domain already supplies the genuine
-coordinate-Hessian semipositivity certificate.-/
+coordinate-Hessian semipositivity certificate.
+@isnad1 id=issmooth.2h3v.s8.3f5c1d1e9fa0 from=translated src=- shape=c57d3952 vocab=82af5bfc
+-/
 theorem isSmoothPshOn_of_psh {U : Opens (ComplexModel n)}
     {u : ComplexModel n → ℝ} (hs : ContDiffOn ℝ ∞ u U)
     (hp : PlurisubharmonicOn (fun z ↦ (u z : EReal)) U) :

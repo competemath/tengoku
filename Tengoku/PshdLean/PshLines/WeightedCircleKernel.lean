@@ -24,7 +24,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Tonelli's theorem integrates a pointwise angular bound against an arbitrary
 measurable nonnegative weight. The bound is needed only where the weight is
-nonzero, and the coefficient and weight may both take the value infinity.-/
+nonzero, and the coefficient and weight may both take the value infinity.
+@isnad1 id=le.3h7v.s8.a1c7dedecb45 from=translated src=- shape=6d662f86 vocab=f66bb7ee
+-/
 theorem weighted_circle_lintegral_le_of_pointwise
     (μ : Measure E) [SFinite μ] {D w : E → ℝ≥0∞}
     (hD : Measurable D) (hw : Measurable w) (v : E) (r : ℝ) {κ : ℝ≥0∞}

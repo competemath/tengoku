@@ -32,6 +32,9 @@ def LocallyUniformlyBoundedAbove (F : Set (X → EReal)) (Ω : Set X) : Prop :=
   ∀ x ∈ Ω, ∃ U : Set X, U ∈ 𝓝[Ω] x ∧
     ∃ C : ℝ, ∀ f ∈ F, ∀ y ∈ U ∩ Ω, f y ≤ (C : EReal)
 
+/--
+@isnad1 id=locallyu.2h4v.s5.1f1291fc8718 from=translated src=- shape=3446124a vocab=7d903c94
+-/
 theorem LocallyUniformlyBoundedAbove.mono_family {F G : Set (X → EReal)}
     {Ω : Set X} (hF : LocallyUniformlyBoundedAbove F Ω) (hGF : G ⊆ F) :
     LocallyUniformlyBoundedAbove G Ω := by
@@ -39,6 +42,9 @@ theorem LocallyUniformlyBoundedAbove.mono_family {F G : Set (X → EReal)}
   obtain ⟨U, hU, C, hC⟩ := hF x hx
   exact ⟨U, hU, C, fun f hf => hC f (hGF hf)⟩
 
+/--
+@isnad1 id=locallyu.2h4v.s5.cd052e624d81 from=translated src=- shape=8bebd8c9 vocab=7d903c94
+-/
 theorem LocallyUniformlyBoundedAbove.mono_domain {F : Set (X → EReal)}
     {Ω V : Set X} (hF : LocallyUniformlyBoundedAbove F Ω) (hVΩ : V ⊆ Ω) :
     LocallyUniformlyBoundedAbove F V := by
@@ -52,7 +58,9 @@ theorem LocallyUniformlyBoundedAbove.mono_domain {F : Set (X → EReal)}
 /-- A locally uniform real upper bound becomes one uniform real upper bound on
 every compact subset of the domain.  The proof chooses relative
 neighbourhoods, extracts a finite subcover, and takes the maximum of their
-constants.-/
+constants.
+@isnad1 id=ex.3h4v.s6.15f4776e3ef9 from=translated src=- shape=4c0da2e1 vocab=25550640
+-/
 theorem LocallyUniformlyBoundedAbove.exists_uniform_upper_bound_on_compact
     {F : Set (X → EReal)} {Ω K : Set X}
     (hF : LocallyUniformlyBoundedAbove F Ω) (hK : IsCompact K)
@@ -78,7 +86,9 @@ theorem LocallyUniformlyBoundedAbove.exists_uniform_upper_bound_on_compact
   exact hlocal.trans <| EReal.coe_le_coe_iff.mpr (Finset.le_sup' C hi)
 
 /-- Compact-image interface: a compact parameter space mapped continuously
-into `Ω` inherits a common real upper bound for the whole family.-/
+into `Ω` inherits a common real upper bound for the whole family.
+@isnad1 id=ex.4h6v.s6.dc5df5a5ecbe from=translated src=- shape=85bb9439 vocab=af2fe071
+-/
 theorem LocallyUniformlyBoundedAbove.exists_uniform_upper_bound_on_compact_image
     {F : Set (X → EReal)} {Ω : Set X} {Y : Type*} [TopologicalSpace Y]
     (hF : LocallyUniformlyBoundedAbove F Ω) {L : Set Y} (hL : IsCompact L)

@@ -24,7 +24,9 @@ noncomputable section
 
 /-- The maximum principle and harmonic mean-value property turn uniform
 harmonic approximation of a continuous boundary majorant into a center
-submean inequality.-/
+submean inequality.
+@isnad1 id=le.6h5v.s7.e94758875e10 from=translated src=- shape=9525bf30 vocab=0f39f222
+-/
 theorem PlurisubharmonicOn.le_circleAverage_of_continuous_majorant
     {u : ℂ → EReal} {Ω : Set ℂ} (hu : PlurisubharmonicOn u Ω)
     {c : ℂ} {R : ℝ} (hR : 0 < R)

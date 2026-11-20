@@ -26,7 +26,9 @@ noncomputable section
 
 variable {n : ℕ}
 
-/-- The normalized first derivative of a smooth function is smooth on its open domain.-/
+/-- The normalized first derivative of a smooth function is smooth on its open domain.
+@isnad1 id=contdiff.2h3v.s9.f310a646db2a from=translated src=- shape=696ba833 vocab=fbd28546
+-/
 theorem smoothDc_contDiffOn {h : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (hU : IsOpen U) (hh : ContDiffOn ℝ ∞ h U) :
     ContDiffOn ℝ ∞ (smoothDc h) U := by
@@ -35,12 +37,17 @@ theorem smoothDc_contDiffOn {h : ComplexModel n → ℝ} {U : Set (ComplexModel 
   exact ((hh.fderiv_of_isOpen hU (by simp)).clm_comp
     contDiffOn_const).const_smul (-1 / (4 * Real.pi) : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s9.3bf79ad1c8f3 from=translated src=- shape=0682533a vocab=4d54017e
+-/
 @[simp] theorem smoothDc_zero (z : ComplexModel n) :
     smoothDc (fun _ : ComplexModel n => (0 : ℝ)) z = 0 := by
   ext v
   simp [smoothDc_apply]
 
-/-- Additivity is asserted at points where both functions are differentiable.-/
+/-- Additivity is asserted at points where both functions are differentiable.
+@isnad1 id=eq.2h4v.s10.e28f7625147a from=translated src=- shape=84f5ded8 vocab=316c9141
+-/
 theorem smoothDc_add {h g : ComplexModel n → ℝ} {z : ComplexModel n}
     (hh : DifferentiableAt ℝ h z) (hg : DifferentiableAt ℝ g z) :
     smoothDc (fun y => h y + g y) z = smoothDc h z + smoothDc g z := by
@@ -48,6 +55,9 @@ theorem smoothDc_add {h g : ComplexModel n → ℝ} {z : ComplexModel n}
   ext v
   simp [smoothDc_apply, fderiv_add hh hg, mul_add]
 
+/--
+@isnad1 id=eq.1h4v.s10.9e6bbf5d6931 from=translated src=- shape=bcaed785 vocab=0415e4cf
+-/
 theorem smoothDc_smul {h : ComplexModel n → ℝ} {z : ComplexModel n}
     (hh : DifferentiableAt ℝ h z) (c : ℝ) :
     smoothDc (fun y => c • h y) z = c • smoothDc h z := by
@@ -57,6 +67,9 @@ theorem smoothDc_smul {h : ComplexModel n → ℝ} {z : ComplexModel n}
     smoothDc_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.33cf7aa341e0 from=translated src=- shape=4126b548 vocab=4646ba39
+-/
 theorem smoothDc_neg {h : ComplexModel n → ℝ} {z : ComplexModel n}
     (hh : DifferentiableAt ℝ h z) :
     smoothDc (fun y => -h y) z = -smoothDc h z := by
@@ -69,6 +82,9 @@ theorem smoothDc_neg {h : ComplexModel n → ℝ} {z : ComplexModel n}
   ext v
   exact neg_one_mul _
 
+/--
+@isnad1 id=eq.0h2v.s9.7cb94918ff62 from=translated src=- shape=0682533a vocab=920a44a0
+-/
 @[simp] theorem smoothDDC_zero (z : ComplexModel n) :
     smoothDDC (fun _ : ComplexModel n => (0 : ℝ)) z = 0 := by
   have hzero : smoothDc (fun _ : ComplexModel n => (0 : ℝ)) = 0 := by
@@ -77,7 +93,9 @@ theorem smoothDc_neg {h : ComplexModel n → ℝ} {z : ComplexModel n}
   simp only [smoothDDC, hzero, extDeriv, fderiv_zero, Pi.zero_apply]
   exact map_zero (ContinuousAlternatingMap.alternatizeUncurryFinCLM ℝ (ComplexModel n) ℝ)
 
-/-- Open-domain linearity uses equality of smooth germs, not arbitrary extensions.-/
+/-- Open-domain linearity uses equality of smooth germs, not arbitrary extensions.
+@isnad1 id=eq.4h5v.s10.071b55bfe228 from=translated src=- shape=fabc8b63 vocab=49acd053
+-/
 theorem smoothDDC_add {h g : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (hU : IsOpen U) (hh : ContDiffOn ℝ ∞ h U) (hg : ContDiffOn ℝ ∞ g U)
     {z : ComplexModel n} (hz : z ∈ U) :
@@ -92,6 +110,9 @@ theorem smoothDDC_add {h g : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (((smoothDc_contDiffOn hU hg) z hz).contDiffAt (hU.mem_nhds hz)
       |>.differentiableAt (by simp)))
 
+/--
+@isnad1 id=eq.3h5v.s10.6d2e11617cfe from=translated src=- shape=9adbed90 vocab=b9ed2947
+-/
 theorem smoothDDC_smul {h : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (hU : IsOpen U) (hh : ContDiffOn ℝ ∞ h U) (c : ℝ)
     {z : ComplexModel n} (hz : z ∈ U) :
@@ -102,6 +123,9 @@ theorem smoothDDC_smul {h : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
       ((hh y hy).contDiffAt (hU.mem_nhds hy) |>.differentiableAt (by simp)) c
   exact heq.extDeriv_eq.trans (extDeriv_smul c (smoothDc h))
 
+/--
+@isnad1 id=eq.3h4v.s9.19ffc5722be7 from=translated src=- shape=28bf386f vocab=0637879d
+-/
 theorem smoothDDC_neg {h : ComplexModel n → ℝ} {U : Set (ComplexModel n)}
     (hU : IsOpen U) (hh : ContDiffOn ℝ ∞ h U) {z : ComplexModel n} (hz : z ∈ U) :
     smoothDDC (fun y => -h y) z = -smoothDDC h z := by
@@ -124,6 +148,9 @@ variable {M : Type*} [TopologicalSpace M] [ChartedSpace (ComplexModel n) M]
 
 namespace ClosedRealOneOneForm
 
+/--
+@isnad1 id=eq.1h4v.s8.7427762e5b29 from=translated src=- shape=62871e9e vocab=b1f62aac
+-/
 @[ext] theorem ext {a b : ClosedRealOneOneForm n M}
     (h : ∀ e z, a.val.coeff e z = b.val.coeff e z) : a = b := by
   rcases a with ⟨⟨ac, as, ap⟩, ha⟩
@@ -177,15 +204,27 @@ instance instSMul : SMul ℝ (ClosedRealOneOneForm n M) where
 
 instance instNeg : Neg (ClosedRealOneOneForm n M) := ⟨fun a => (-1 : ℝ) • a⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.7947bd93516e from=translated src=- shape=9801e0ed vocab=b1f62aac
+-/
 @[simp] theorem coeff_zero (e : ComplexChart n M) (z : ComplexModel n) :
     (0 : ClosedRealOneOneForm n M).val.coeff e z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.656b8c9d1e41 from=translated src=- shape=c3846d14 vocab=f55d4830
+-/
 @[simp] theorem coeff_add (a b : ClosedRealOneOneForm n M) (e : ComplexChart n M)
     (z : ComplexModel n) : (a + b).val.coeff e z = a.val.coeff e z + b.val.coeff e z := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.ad2a7a52adaa from=translated src=- shape=cd571df7 vocab=dab4752e
+-/
 @[simp] theorem coeff_smul (c : ℝ) (a : ClosedRealOneOneForm n M) (e : ComplexChart n M)
     (z : ComplexModel n) : (c • a).val.coeff e z = c • a.val.coeff e z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.40c1f5bd96d0 from=translated src=- shape=eaefc248 vocab=a84dc2ce
+-/
 @[simp] theorem coeff_neg (a : ClosedRealOneOneForm n M) (e : ComplexChart n M)
     (z : ComplexModel n) : (-a).val.coeff e z = -a.val.coeff e z := by
   ext v
@@ -218,11 +257,17 @@ def BottChernRel (a b : ClosedRealOneOneForm n M) : Prop :=
     ∀ (e : ComplexChart n M) (z : ComplexModel n), z ∈ e.val.target →
       b.val.coeff e z = a.val.coeff e z + smoothDDC (fun y => h (e.val.symm y)) z
 
+/--
+@isnad1 id=bottcher.0h3v.s6.744516e661f9 from=translated src=- shape=39f022f2 vocab=443459fd
+-/
 theorem BottChernRel.refl (a : ClosedRealOneOneForm n M) : BottChernRel a a := by
   refine ⟨fun _ => 0, fun _ => contDiffOn_const, ?_⟩
   intro e z hz
   rw [smoothDDC_zero, add_zero]
 
+/--
+@isnad1 id=bottcher.1h4v.s6.b68a066d5c64 from=translated src=- shape=b8848842 vocab=443459fd
+-/
 theorem BottChernRel.symm {a b : ClosedRealOneOneForm n M}
     (hab : BottChernRel a b) : BottChernRel b a := by
   obtain ⟨h, hh, heq⟩ := hab
@@ -230,6 +275,9 @@ theorem BottChernRel.symm {a b : ClosedRealOneOneForm n M}
   intro e z hz
   rw [smoothDDC_neg e.val.open_target (hh e) hz, heq e z hz, add_neg_cancel_right]
 
+/--
+@isnad1 id=bottcher.2h5v.s6.9cb47713c504 from=translated src=- shape=1dbb0b63 vocab=443459fd
+-/
 theorem BottChernRel.trans {a b c : ClosedRealOneOneForm n M}
     (hab : BottChernRel a b) (hbc : BottChernRel b c) : BottChernRel a c := by
   obtain ⟨h, hh, heq⟩ := hab
@@ -239,7 +287,9 @@ theorem BottChernRel.trans {a b c : ClosedRealOneOneForm n M}
   rw [smoothDDC_add e.val.open_target (hh e) (hg e) hz, geq e z hz, heq e z hz,
     add_assoc]
 
-/-- Geometric equality is included, using the zero potential.-/
+/-- Geometric equality is included, using the zero potential.
+@isnad1 id=bottcher.1h4v.s7.803c1e9ee922 from=translated src=- shape=e99e570a vocab=a128030d
+-/
 theorem bottChernRel_of_geometricallyEq {a b : ClosedRealOneOneForm n M}
     (hab : a.val.GeometricallyEq b.val) : BottChernRel a b := by
   refine ⟨fun _ => 0, fun _ => contDiffOn_const, ?_⟩
@@ -247,6 +297,9 @@ theorem bottChernRel_of_geometricallyEq {a b : ClosedRealOneOneForm n M}
   rw [smoothDDC_zero, add_zero]
   exact (hab e hz).symm
 
+/--
+@isnad1 id=iff.2h6v.s8.53f3555c65cd from=translated src=- shape=d25fecc5 vocab=a128030d
+-/
 theorem bottChernRel_geometricallyEq_iff {a a' b b' : ClosedRealOneOneForm n M}
     (haa : a.val.GeometricallyEq a'.val) (hbb : b.val.GeometricallyEq b'.val) :
     BottChernRel a b ↔ BottChernRel a' b' := by
@@ -254,6 +307,9 @@ theorem bottChernRel_geometricallyEq_iff {a a' b b' : ClosedRealOneOneForm n M}
   have hb := bottChernRel_of_geometricallyEq hbb
   exact ⟨fun h => ha.symm.trans (h.trans hb), fun h => ha.trans (h.trans hb.symm)⟩
 
+/--
+@isnad1 id=bottcher.2h6v.s7.f70280ffd81f from=translated src=- shape=50f52949 vocab=931e8ad8
+-/
 theorem BottChernRel.add {a b c d : ClosedRealOneOneForm n M}
     (hab : BottChernRel a b) (hcd : BottChernRel c d) : BottChernRel (a + c) (b + d) := by
   obtain ⟨h, hh, heq⟩ := hab
@@ -264,6 +320,9 @@ theorem BottChernRel.add {a b c d : ClosedRealOneOneForm n M}
     heq e z hz, geq e z hz]
   abel
 
+/--
+@isnad1 id=bottcher.1h5v.s7.cd7fe4eb87bf from=translated src=- shape=f197c0a8 vocab=bf00815b
+-/
 theorem BottChernRel.smul {a b : ClosedRealOneOneForm n M}
     (hab : BottChernRel a b) (c : ℝ) : BottChernRel (c • a) (c • b) := by
   obtain ⟨h, hh, heq⟩ := hab
@@ -272,6 +331,9 @@ theorem BottChernRel.smul {a b : ClosedRealOneOneForm n M}
   rw [coeff_smul, coeff_smul, smoothDDC_smul e.val.open_target (hh e) c hz,
     heq e z hz, smul_add]
 
+/--
+@isnad1 id=bottcher.1h4v.s6.ab4a07c0ce5b from=translated src=- shape=1888153f vocab=3f4277ae
+-/
 theorem BottChernRel.neg {a b : ClosedRealOneOneForm n M}
     (hab : BottChernRel a b) : BottChernRel (-a) (-b) := hab.smul (-1)
 
@@ -292,11 +354,16 @@ namespace RealBottChern
 def ofRepresentative (a : ClosedRealOneOneForm n M) : RealBottChern n M :=
   Quotient.mk _ a
 
-/-- Class equality is exactly existence of a globally chart-smooth `ddᶜ` difference.-/
+/-- Class equality is exactly existence of a globally chart-smooth `ddᶜ` difference.
+@isnad1 id=iff.0h4v.s6.e90496f7c5c2 from=translated src=- shape=3daa497d vocab=7c65c6b9
+-/
 theorem ofRepresentative_eq_iff (a b : ClosedRealOneOneForm n M) :
     ofRepresentative a = ofRepresentative b ↔ ClosedRealOneOneForm.BottChernRel a b :=
   Quotient.eq
 
+/--
+@isnad1 id=eq.1h4v.s7.8276df3e486d from=translated src=- shape=0fa67eb4 vocab=14ba38b7
+-/
 theorem ofRepresentative_eq_of_geometricallyEq {a b : ClosedRealOneOneForm n M}
     (hab : a.val.GeometricallyEq b.val) : ofRepresentative a = ofRepresentative b :=
   (ofRepresentative_eq_iff a b).mpr
@@ -316,15 +383,27 @@ instance instNeg : Neg (RealBottChern n M) where
   neg a := Quotient.liftOn a (fun a => ofRepresentative (-a))
     (fun _ _ hab => Quotient.sound (ClosedRealOneOneForm.BottChernRel.neg hab))
 
+/--
+@isnad1 id=eq.0h2v.s6.0380a84f5e7f from=translated src=- shape=8f1deb6b vocab=f832d520
+-/
 @[simp] theorem ofRepresentative_zero :
     ofRepresentative (0 : ClosedRealOneOneForm n M) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b7587a5099a2 from=translated src=- shape=5bee3bca vocab=bea299bf
+-/
 @[simp] theorem ofRepresentative_add (a b : ClosedRealOneOneForm n M) :
     ofRepresentative (a + b) = ofRepresentative a + ofRepresentative b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.379bd5d7c1be from=translated src=- shape=cce8cf69 vocab=4de25910
+-/
 @[simp] theorem ofRepresentative_smul (c : ℝ) (a : ClosedRealOneOneForm n M) :
     ofRepresentative (c • a) = c • ofRepresentative a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6250fd5b11ef from=translated src=- shape=2c80c9c5 vocab=2e519dd5
+-/
 @[simp] theorem ofRepresentative_neg (a : ClosedRealOneOneForm n M) :
     ofRepresentative (-a) = -ofRepresentative a := rfl
 

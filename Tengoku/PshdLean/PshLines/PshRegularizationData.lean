@@ -25,15 +25,23 @@ domain inclusion excludes the zero fallback of `TestFunction.monoCLM`.-/
 def restrictDistribution (T : 𝓓'(Ω, ℝ)) (_hUΩ : U ≤ Ω) : 𝓓'(U, ℝ) :=
   T.comp (TestFunction.monoCLM ℝ)
 
-/-- Inclusion into a larger open domain does not change a test function's values.-/
+/-- Inclusion into a larger open domain does not change a test function's values.
+@isnad1 id=eq.1h4v.s10.0cf0fa60fa7b from=translated src=- shape=ae6da7bb vocab=e89cc7f9
+-/
 theorem testFunction_inclusion_coe (hUΩ : U ≤ Ω) (φ : 𝓓(U, ℝ)) :
     ((TestFunction.monoCLM ℝ φ : 𝓓(Ω, ℝ)) : E → ℝ) = φ := by
   simp only [TestFunction.monoCLM_apply, le_refl, hUΩ, and_self, ite_true]
 
+/--
+@isnad1 id=eq.1h5v.s10.1cd153a691d0 from=translated src=- shape=5c98356e vocab=1920807c
+-/
 theorem restrictDistribution_apply (T : 𝓓'(Ω, ℝ)) (hUΩ : U ≤ Ω)
     (φ : 𝓓(U, ℝ)) :
     restrictDistribution T hUΩ φ = T (TestFunction.monoCLM ℝ φ) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.fd04fed56dc3 from=translated src=- shape=44618994 vocab=3a98661d
+-/
 theorem restrictDistribution_self (T : 𝓓'(Ω, ℝ)) :
     restrictDistribution T le_rfl = T := by
   ext φ
@@ -45,7 +53,9 @@ theorem restrictDistribution_self (T : 𝓓'(Ω, ℝ)) :
 
 /-- Restriction of distributions is transitive.  Although the bundled test
 functions are included in two stages on the left, both inclusions have the
-same underlying function as the direct inclusion on the right.-/
+same underlying function as the direct inclusion on the right.
+@isnad1 id=eq.2h5v.s7.92403f01252e from=translated src=- shape=2f8ea105 vocab=2d758495
+-/
 theorem restrictDistribution_trans {V : Opens E} (T : 𝓓'(Ω, ℝ))
     (hVU : V ≤ U) (hUΩ : U ≤ Ω) :
     restrictDistribution (restrictDistribution T hUΩ) hVU =
@@ -68,7 +78,9 @@ variable [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E]
 
 omit [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E] in
 /-- Restricting a regular distribution gives the regular distribution of the
-same density on the smaller open set.-/
+same density on the smaller open set.
+@isnad1 id=eq.2h5v.s7.c35419a08e91 from=translated src=- shape=f7209c8e vocab=5501d12c
+-/
 theorem restrictDistribution_regularDistribution (μ : Measure E)
     {u : E → ℝ} (hu : LocallyIntegrableOn u Ω μ) (hUΩ : U ≤ Ω) :
     restrictDistribution (regularDistribution μ u hu) hUΩ =
@@ -83,7 +95,9 @@ theorem restrictDistribution_regularDistribution (μ : Measure E)
 
 omit [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E] in
 /-- A genuine PSH representative remains a representative after restricting
-both its distribution and its open domain.-/
+both its distribution and its open domain.
+@isnad1 id=ispshrep.2h6v.s7.82b1c84e06a7 from=translated src=- shape=102b4cc4 vocab=fcf4894f
+-/
 theorem IsPshRepresentative.restrict (μ : Measure E) {T : 𝓓'(Ω, ℝ)}
     {u : E → EReal} (hu : IsPshRepresentative μ T u) (hUΩ : U ≤ Ω) :
     IsPshRepresentative μ (restrictDistribution T hUΩ) u := by

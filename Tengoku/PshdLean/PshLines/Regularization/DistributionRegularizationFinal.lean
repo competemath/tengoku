@@ -34,7 +34,9 @@ variable {E : Type*} [NormedAddCommGroup E]
 
 /-- The cutoff-supported test function occurring in the distributional
 transpose identity is the same ambient test function as the compact-buffered
-radial convolution used by the approximate-identity theorem.-/
+radial convolution used by the approximate-identity theorem.
+@isnad1 id=eq.0h7v.s8.3955b84a328a from=translated src=- shape=58369247 vocab=9d298e30
+-/
 theorem AdaptedRadialKernelData.ofSupportedIn_convolution_eq_radialConvolution
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (φ : 𝓓(D.inner, ℝ)) :
@@ -51,7 +53,9 @@ theorem AdaptedRadialKernelData.ofSupportedIn_convolution_eq_radialConvolution
   rfl
 
 /-- The adapted radial convolution test functions converge after inclusion in
-the ambient test-function space.-/
+the ambient test-function space.
+@isnad1 id=tendsto.0h6v.s10.0abf8780a127 from=translated src=- shape=aa45a5da vocab=8c16b760
+-/
 theorem AdaptedRadialKernelData.tendsto_ambientConvolutionTestFunction
     (D : AdaptedRadialKernelData μ Ω x) (φ : 𝓓(D.inner, ℝ)) :
     Tendsto
@@ -63,7 +67,9 @@ theorem AdaptedRadialKernelData.tendsto_ambientConvolutionTestFunction
 
 /-- A distribution with nonnegative constant-direction Levi derivatives has a
 decreasing sequence of globally smooth disc-PSH regularizations on an inner
-neighborhood, converging weakly to the actual restricted distribution.-/
+neighborhood, converging weakly to the actual restricted distribution.
+@isnad1 id=ex.2h5v.s9.756251562a30 from=translated src=- shape=fc57d7a2 vocab=7bb0310d
+-/
 theorem exists_local_decreasing_psh_regularization
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E]

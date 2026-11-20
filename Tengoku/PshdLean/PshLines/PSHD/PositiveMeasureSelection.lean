@@ -39,7 +39,9 @@ private theorem cuts_nonempty {K : Set ℝ} {b : ℝ} (hK : K ⊆ Iic b)
   have heq : K ∩ Iio (r : ℝ) = K := inter_eq_left.mpr fun x hx => lt_of_le_of_lt (hK hx) hr
   simpa [heq] using hpos
 
-/-- The essential endpoint belongs to every closed bounded positive-measure set.-/
+/-- The essential endpoint belongs to every closed bounded positive-measure set.
+@isnad1 id=mem.3h3v.s6.63d9d0f58feb from=translated src=- shape=dc60541f vocab=a9cc730c
+-/
 theorem positiveMeasureEndpoint_mem {K : Set ℝ} {a b : ℝ}
     (hclosed : IsClosed K) (hK : K ⊆ Icc a b) (hpos : 0 < volume K) :
     positiveMeasureEndpoint K ∈ K := by
@@ -72,7 +74,9 @@ theorem positiveMeasureEndpoint_mem {K : Set ℝ} {a b : ℝ}
   exact (not_lt_of_ge hm) hr
 
 /-- Positive-measure closed sections of a Borel relation in a fixed compact real
-interval admit a measurable selector.-/
+interval admit a measurable selector.
+@isnad1 id=ex.4h4v.s7.f2c7e7fbb7c0 from=translated src=- shape=b0a74e10 vocab=59cb8e81
+-/
 theorem exists_measurable_mem_of_closed_positive_sections
     {S : Type*} [MeasurableSpace S] {K : Set (S × ℝ)} {a b : ℝ}
     (hK : MeasurableSet K)

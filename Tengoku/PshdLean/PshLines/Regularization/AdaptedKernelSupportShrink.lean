@@ -29,7 +29,9 @@ variable {E : Type*} [NormedAddCommGroup E]
   {μ : Measure E} [μ.IsAddHaarMeasure] {Ω : Opens E} {x : E}
 
 /-- The support of the adapted normalized kernels shrinks to the origin in the
-original norm, not only in the auxiliary coordinate norm.-/
+original norm, not only in the auxiliary coordinate norm.
+@isnad1 id=eventual.1h6v.s8.e381dac884c9 from=translated src=- shape=b7581bcd vocab=b1be6ce7
+-/
 theorem AdaptedRadialKernelData.eventually_kernel_support_subset_ball
     (D : AdaptedRadialKernelData μ Ω x) {δ : ℝ} (hδ : 0 < δ) :
     ∀ᶠ j : ℕ in atTop, Function.support (D.kernel j) ⊆ ball 0 δ := by
@@ -74,7 +76,9 @@ noncomputable def AdaptedRadialKernelData.testFunctionRadialConvolution
 
 /-- The buffered compact set contains every test-function convolution, for
 every scale.  The first summand lies in the inner domain and the second lies
-in the adapted radius ball, exactly matching `coordinate_buffer`.-/
+in the adapted radius ball, exactly matching `coordinate_buffer`.
+@isnad1 id=le.0h7v.s8.438c010d49d8 from=translated src=- shape=1e0f1e24 vocab=3b356f0e
+-/
 theorem AdaptedRadialKernelData.testFunctionRadialConvolution_support_subset
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (φ : 𝓓(D.inner, ℝ)) :
     Function.support (D.testFunctionRadialConvolution j φ) ⊆ D.compact := by
@@ -92,7 +96,9 @@ theorem AdaptedRadialKernelData.testFunctionRadialConvolution_support_subset
     exact div_le_self D.radius_pos.le hj
   exact D.coordinate_buffer z hzinner (z + w) (by simpa using hcoord)
 
-/-- Test-function convolution with an adapted kernel is globally smooth.-/
+/-- Test-function convolution with an adapted kernel is globally smooth.
+@isnad1 id=contdiff.0h7v.s8.489a70b4d588 from=translated src=- shape=588e692f vocab=35e7481c
+-/
 theorem AdaptedRadialKernelData.testFunctionRadialConvolution_contDiff
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (φ : 𝓓(D.inner, ℝ)) :
     ContDiff ℝ (⊤ : ℕ∞) (D.testFunctionRadialConvolution j φ) :=
@@ -108,6 +114,9 @@ noncomputable def AdaptedRadialKernelData.testFunctionRadialConvolutionSupported
   .of_support_subset (D.testFunctionRadialConvolution_contDiff j φ)
     (D.testFunctionRadialConvolution_support_subset j φ)
 
+/--
+@isnad1 id=eq.0h8v.s8.3e4ce3da4100 from=translated src=- shape=535a66c4 vocab=e11e4178
+-/
 @[simp]
 theorem AdaptedRadialKernelData.testFunctionRadialConvolutionSupportedIn_apply
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (φ : 𝓓(D.inner, ℝ)) (y : E) :

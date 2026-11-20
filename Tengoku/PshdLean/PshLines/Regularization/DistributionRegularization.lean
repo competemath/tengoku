@@ -36,7 +36,9 @@ open FirstPass
 
 /-- A compact subset of an open finite-dimensional real vector space admits a
 smooth test-function cutoff which equals one on a neighborhood of the compact
-set and takes values in `[0, 1]`.-/
+set and takes values in `[0, 1]`.
+@isnad1 id=ex.2h3v.s8.eccc7ea05636 from=translated src=- shape=6ac416c2 vocab=6544c470
+-/
 theorem exists_testFunction_eq_one_nhds_compact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {Ω : Opens E} {K : Set E}
@@ -90,7 +92,9 @@ noncomputable def AdaptedRadialKernelData.kernel
   adaptedRadialKernel μ D.radius D.radius_pos j
 
 /-- The buffered cutoff is one at every point reached by translating a center
-in the closed inner domain by a vector in the adapted coordinate ball.-/
+in the closed inner domain by a vector in the adapted coordinate ball.
+@isnad1 id=eq.2h7v.s10.939907517015 from=translated src=- shape=29235063 vocab=957be09d
+-/
 theorem AdaptedRadialKernelData.cutoff_eq_one_of_coordinate_displacement
     {μ : Measure E} {Ω : Opens E} {x : E}
     (D : AdaptedRadialKernelData μ Ω x) {z y : E}
@@ -99,7 +103,9 @@ theorem AdaptedRadialKernelData.cutoff_eq_one_of_coordinate_displacement
     D.cutoff y = 1 :=
   D.cutoff_one_on_compact y (D.coordinate_buffer z hz y hy)
 
-/-- The closed inner domain is contained in the compact buffer.-/
+/-- The closed inner domain is contained in the compact buffer.
+@isnad1 id=le.0h5v.s8.cf27a2e0fea0 from=translated src=- shape=e35646e7 vocab=88fe5182
+-/
 theorem AdaptedRadialKernelData.closure_inner_subset_compact
     {μ : Measure E} {Ω : Opens E} {x : E}
     (D : AdaptedRadialKernelData μ Ω x) :
@@ -107,7 +113,9 @@ theorem AdaptedRadialKernelData.closure_inner_subset_compact
   intro z hz
   exact D.coordinate_buffer z hz z (by simp [D.radius_pos.le])
 
-/-- The adapted regularization data exist around every point of the domain.-/
+/-- The adapted regularization data exist around every point of the domain.
+@isnad1 id=nonempty.1h4v.s8.9b0546b109eb from=translated src=- shape=99b2f5ef vocab=679b3866
+-/
 theorem exists_adaptedRadialKernelData
     (μ : Measure E) [μ.IsAddHaarMeasure] {Ω : Opens E} {x : E}
     (hx : x ∈ Ω) : Nonempty (AdaptedRadialKernelData μ Ω x) := by
@@ -135,37 +143,58 @@ theorem exists_adaptedRadialKernelData
 variable {μ : Measure E} [BorelSpace E] [μ.IsAddHaarMeasure]
   {Ω : Opens E} {x : E}
 
+/--
+@isnad1 id=contdiff.0h6v.s8.b2628fc7ab99 from=translated src=- shape=693774cd vocab=d60ee054
+-/
 theorem AdaptedRadialKernelData.kernel_contDiff
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) :
     ContDiff ℝ (⊤ : ℕ∞) (D.kernel j) :=
   adaptedRadialKernel_contDiff μ D.radius D.radius_pos j
 
+/--
+@isnad1 id=le.0h7v.s8.f02b850262f7 from=translated src=- shape=05285674 vocab=7d105fd6
+-/
 theorem AdaptedRadialKernelData.kernel_nonneg
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (y : E) :
     0 ≤ D.kernel j y :=
   adaptedRadialKernel_nonneg μ D.radius D.radius_pos j y
 
+/--
+@isnad1 id=eq.0h6v.s8.ca9e6862b54b from=translated src=- shape=6eb8c154 vocab=a6198956
+-/
 theorem AdaptedRadialKernelData.kernel_integral_one
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) :
     ∫ y : E, D.kernel j y ∂μ = 1 :=
   adaptedRadialKernel_integral_one μ D.radius D.radius_pos j
 
+/--
+@isnad1 id=hascompa.0h6v.s8.ed8f0af20f74 from=translated src=- shape=1eac17a2 vocab=60bd7686
+-/
 theorem AdaptedRadialKernelData.kernel_hasCompactSupport
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) :
     HasCompactSupport (D.kernel j) :=
   adaptedRadialKernel_hasCompactSupport μ D.radius D.radius_pos j
 
+/--
+@isnad1 id=integrab.0h6v.s8.b79422b2e23d from=translated src=- shape=7663fbc0 vocab=761f8d27
+-/
 theorem AdaptedRadialKernelData.kernel_integrable
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) :
     Integrable (D.kernel j) μ :=
   adaptedRadialKernel_integrable μ D.radius D.radius_pos j
 
+/--
+@isnad1 id=le.0h6v.s10.0567feeb7452 from=translated src=- shape=b3141a5e vocab=0cbdd4a5
+-/
 theorem AdaptedRadialKernelData.kernel_tsupport_subset
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) :
     tsupport (D.kernel j) ⊆
       {y | ‖adaptedComplexModelEquiv y‖ ≤ D.radius / ((j : ℝ) + 1)} :=
   adaptedRadialKernel_tsupport_subset_norm μ D.radius D.radius_pos j
 
+/--
+@isnad1 id=eq.1h8v.s11.97c0d4ea21eb from=translated src=- shape=99801703 vocab=f5a765c4
+-/
 theorem AdaptedRadialKernelData.kernel_unitary
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ)
     (a : ℂ) (ha : ‖a‖ = 1) (y : E) :
@@ -174,11 +203,17 @@ theorem AdaptedRadialKernelData.kernel_unitary
       D.kernel j y :=
   adaptedRadialKernel_unitary μ D.radius D.radius_pos j a ha y
 
+/--
+@isnad1 id=eq.0h7v.s8.bd2a34f841e8 from=translated src=- shape=3d8b703d vocab=de459a51
+-/
 theorem AdaptedRadialKernelData.kernel_even
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (y : E) :
     D.kernel j (-y) = D.kernel j y := by
   simpa using D.kernel_unitary j (-1 : ℂ) (by simp) y
 
+/--
+@isnad1 id=eq.0h8v.s11.b7b2ce608689 from=translated src=- shape=ee81756c vocab=c80b4172
+-/
 theorem AdaptedRadialKernelData.kernel_scale
     (D : AdaptedRadialKernelData μ Ω x) (a b : ℕ) (y : E) :
     D.kernel b y =
@@ -191,7 +226,9 @@ theorem AdaptedRadialKernelData.kernel_scale
   adaptedRadialKernel_scale μ D.radius D.radius_pos a b y
 
 /-- In complex dimension zero the adapted kernel family is constant in its
-scale index.-/
+scale index.
+@isnad1 id=eq.1h7v.s8.9f58c76f0303 from=translated src=- shape=5c52615f vocab=ad4779aa
+-/
 theorem AdaptedRadialKernelData.kernel_eq_of_finrank_complex_eq_zero
     (D : AdaptedRadialKernelData μ Ω x) (hE : Module.finrank ℂ E = 0)
     (a b : ℕ) : D.kernel a = D.kernel b := by
@@ -225,6 +262,9 @@ def cutoffTranslatedTestFunction
     χ.hasCompactSupport.mul_right,
     tsupport_mul_subset_left.trans χ.tsupport_subset⟩
 
+/--
+@isnad1 id=eq.1h6v.s8.36f65ceaa512 from=translated src=- shape=fa1ce36e vocab=41107e8c
+-/
 @[simp]
 theorem cutoffTranslatedTestFunction_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -232,6 +272,9 @@ theorem cutoffTranslatedTestFunction_apply
     (hκ : ContDiff ℝ (⊤ : ℕ∞) κ) (z y : E) :
     cutoffTranslatedTestFunction χ κ hκ z y = χ y * κ (y - z) := rfl
 
+/--
+@isnad1 id=le.1h5v.s8.49e4b63a72e7 from=translated src=- shape=78ecffeb vocab=4b617908
+-/
 theorem cutoffTranslatedTestFunction_tsupport_subset
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -241,7 +284,9 @@ theorem cutoffTranslatedTestFunction_tsupport_subset
 
 /-- On the closed inner domain, the fixed cutoff does not alter the translated
 adapted kernel.  This is the local identity that lets the distributional
-transpose be computed with a single compact support.-/
+transpose be computed with a single compact support.
+@isnad1 id=eq.1h8v.s8.32a11537d1e5 from=translated src=- shape=9606fd5d vocab=0d085034
+-/
 theorem AdaptedRadialKernelData.cutoffTranslatedTestFunction_eq_kernel
     {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E]
@@ -276,6 +321,9 @@ def cutoffTranslatedKernelSupportedIn
     (χ.contDiff.mul (hκ.comp (contDiff_id.sub contDiff_const)))
     (subset_closure.trans (tsupport_mul_subset_left.trans hχK))
 
+/--
+@isnad1 id=eq.2h7v.s8.b60dbbb5de62 from=translated src=- shape=7b2af4cf vocab=e5a47143
+-/
 @[simp]
 theorem cutoffTranslatedKernelSupportedIn_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -286,6 +334,9 @@ theorem cutoffTranslatedKernelSupportedIn_apply
       χ y * κ (y - z) := by
   rfl
 
+/--
+@isnad1 id=eq.3h6v.s8.40441e3c3d13 from=translated src=- shape=206a963a vocab=90d2b752
+-/
 theorem ofSupportedIn_cutoffTranslatedKernelSupportedIn
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -311,6 +362,9 @@ def AdaptedRadialKernelData.cutoffCompact
   ⟨tsupport D.cutoff, D.cutoff.hasCompactSupport⟩
 
 omit [BorelSpace E] [μ.IsAddHaarMeasure] in
+/--
+@isnad1 id=le.0h5v.s8.a078afc1befc from=translated src=- shape=ccc410c1 vocab=2e1e9dd7
+-/
 theorem AdaptedRadialKernelData.cutoffCompact_subset
     (D : AdaptedRadialKernelData μ Ω x) :
     (D.cutoffCompact : Set E) ⊆ Ω :=
@@ -324,6 +378,9 @@ def AdaptedRadialKernelData.localizedKernelSupportedIn
   cutoffTranslatedKernelSupportedIn D.cutoff (D.kernel j)
     (D.kernel_contDiff j) D.cutoffCompact (by rfl) z
 
+/--
+@isnad1 id=eq.0h8v.s9.17ffa032e994 from=translated src=- shape=61bddd58 vocab=7ad211d1
+-/
 @[simp]
 theorem AdaptedRadialKernelData.localizedKernelSupportedIn_apply
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (z y : E) :
@@ -331,6 +388,9 @@ theorem AdaptedRadialKernelData.localizedKernelSupportedIn_apply
       D.cutoff y * D.kernel j (y - z) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.b64873ca86d9 from=translated src=- shape=51e1d622 vocab=ccf2f559
+-/
 theorem AdaptedRadialKernelData.ofSupportedIn_localizedKernelSupportedIn
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) (z : E) :
     TestFunction.ofSupportedIn D.cutoffCompact_subset
@@ -341,7 +401,9 @@ theorem AdaptedRadialKernelData.ofSupportedIn_localizedKernelSupportedIn
     (D.kernel_contDiff j) D.cutoffCompact (by rfl) D.cutoffCompact_subset z
 
 /-- On the closed inner domain, the fixed-support representative evaluates to
-the untruncated translated adapted kernel.-/
+the untruncated translated adapted kernel.
+@isnad1 id=eq.1h8v.s8.b8e0ef5cbfa3 from=translated src=- shape=44145299 vocab=8064b166
+-/
 theorem AdaptedRadialKernelData.localizedKernelSupportedIn_eq_kernel
     (D : AdaptedRadialKernelData μ Ω x) (j : ℕ) {z y : E}
     (hz : z ∈ closure (D.inner : Set E)) :
@@ -362,7 +424,9 @@ def AdaptedRadialKernelData.distributionRegularizedValue
 end LocalizedAdaptedKernel
 
 /-- On a fixed compact set, a distribution is controlled by finitely many of the
-standard derivative seminorms on smooth functions supported in that compact set.-/
+standard derivative seminorms on smooth functions supported in that compact set.
+@isnad1 id=ex.1h4v.s10.57231d8caaa8 from=translated src=- shape=a842b562 vocab=8ea12f91
+-/
 theorem exists_finite_seminorm_bound_on_compact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (T : 𝓓'(Ω, ℝ)) (K : Compacts E)
@@ -388,7 +452,9 @@ theorem exists_finite_seminorm_bound_on_compact
 
 /-- A distribution has finite order on every fixed compact subset of its domain:
 one common derivative order controls its value on all smooth functions supported
-in that compact set.-/
+in that compact set.
+@isnad1 id=ex.1h4v.s10.db63aabea577 from=translated src=- shape=ccac18ac vocab=64fdc23c
+-/
 theorem exists_finite_order_seminorm_bound_on_compact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (T : 𝓓'(Ω, ℝ)) (K : Compacts E)

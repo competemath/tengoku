@@ -41,6 +41,9 @@ noncomputable def cutoffTranslatedKernelFirstJetLM
     simp [cutoffTranslatedKernelJetSupportedIn_apply, map_smul]
     ring
 
+/--
+@isnad1 id=eq.2h7v.s9.d0e6f15d5a35 from=translated src=- shape=01beb782 vocab=bbfc708c
+-/
 @[simp]
 theorem cutoffTranslatedKernelFirstJetLM_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -54,7 +57,9 @@ theorem cutoffTranslatedKernelFirstJetLM_apply
 
 /-- A scalar linear functional bounded by one seminorm preserves the
 first-order Frechet remainder.  Finite dimensionality supplies continuity of
-the composite candidate derivative.-/
+the composite candidate derivative.
+@isnad1 id=hasfderi.3h8v.s9.744e3cda1343 from=translated src=- shape=666bc9e1 vocab=53aad04a
+-/
 theorem hasFDerivAt_linear_of_seminorm_remainder
     {E A : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [AddCommGroup A] [Module ℝ A]
@@ -79,7 +84,9 @@ theorem hasFDerivAt_linear_of_seminorm_remainder
 /-- A finite-order sup-seminorm Taylor remainder for the fixed-support
 translated kernels implies differentiability of their pairing with a
 distribution.  The required seminorm order and bound are supplied by the
-distribution's continuity on the fixed compact support.-/
+distribution's continuity on the fixed compact support.
+@isnad1 id=hasfderi.4h7v.s11.6f2ec8cd3912 from=translated src=- shape=fbfbb8b0 vocab=b407e960
+-/
 theorem distributionPairing_hasFDerivAt_of_supSeminorm_remainder
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

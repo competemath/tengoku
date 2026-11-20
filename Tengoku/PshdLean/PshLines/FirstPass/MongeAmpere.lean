@@ -58,6 +58,9 @@ def complexTopCoefficient (H : Matrix (Fin n) (Fin n) ℂ) : ℂ :=
   (n.factorial : ℂ) * (Complex.I / (2 * (Real.pi : ℂ))) ^ n * H.det *
     (-2 * Complex.I) ^ n
 
+/--
+@isnad1 id=eq.0h2v.s5.f9da604a0bae from=translated src=- shape=d9d5faea vocab=4312b522
+-/
 theorem complexTopCoefficient_eq (H : Matrix (Fin n) (Fin n) ℂ) :
     complexTopCoefficient H = ((n.factorial : ℝ) / Real.pi ^ n : ℝ) * H.det := by
   have hpi : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -73,6 +76,9 @@ theorem complexTopCoefficient_eq (H : Matrix (Fin n) (Fin n) ℂ) :
           ac_rfl
     _ = _ := by rw [hc]; simp [div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h3v.s4.8be7fba8654e from=translated src=- shape=43cebf46 vocab=4b188801
+-/
 theorem smoothDensity_eq_re_topCoefficient (u : ComplexModel n → ℝ)
     (z : ComplexModel n) :
     smoothDensity u z = (complexTopCoefficient (complexHessian u z)).re := by
@@ -80,16 +86,25 @@ theorem smoothDensity_eq_re_topCoefficient (u : ComplexModel n → ℝ)
   simp only [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im,
     zero_mul, sub_zero, smoothDensity]
 
+/--
+@isnad1 id=eq.0h3v.s5.509d666b7653 from=translated src=- shape=3260c9b4 vocab=669d1d6f
+-/
 @[simp] theorem complexHessian_const (c : ℝ) (z : ComplexModel n) :
     complexHessian (fun _ => c) z = 0 := by
   ext j k
   simp [complexHessian]
 
+/--
+@isnad1 id=eq.0h4v.s7.468639ec79c8 from=translated src=- shape=1ef23881 vocab=24d387cb
+-/
 theorem complexHessian_diagonal_re (u : ComplexModel n → ℝ)
     (z : ComplexModel n) (j : Fin n) :
     (complexHessian u z j j).re = leviForm u z (coordinateVector j) := by
   simp [complexHessian, leviForm, Complex.add_re, Complex.div_ofNat_re]
 
+/--
+@isnad1 id=eq.2h4v.s8.f90811456404 from=translated src=- shape=1f64e099 vocab=155adf76
+-/
 theorem complexHessian_add {u v : ComplexModel n → ℝ} {z : ComplexModel n}
     (hu : ContDiffAt ℝ 2 u z) (hv : ContDiffAt ℝ 2 v z) :
     complexHessian (u + v) z = complexHessian u z + complexHessian v z := by
@@ -98,6 +113,9 @@ theorem complexHessian_add {u v : ComplexModel n → ℝ} {z : ComplexModel n}
     Complex.ofReal_add, Complex.ofReal_sub]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.e8efefb2f05c from=translated src=- shape=792ad957 vocab=20b9345e
+-/
 theorem complexHessian_smul {u : ComplexModel n → ℝ} {z : ComplexModel n}
     (hu : ContDiffAt ℝ 2 u z) (c : ℝ) :
     complexHessian (c • u) z = (c : ℂ) • complexHessian u z := by
@@ -106,6 +124,9 @@ theorem complexHessian_smul {u : ComplexModel n → ℝ} {z : ComplexModel n}
     Complex.ofReal_sub, Complex.ofReal_mul, Matrix.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=ishermit.1h3v.s7.191ffbbd4362 from=translated src=- shape=8214ff8a vocab=1e67ba2c
+-/
 theorem complexHessian_isHermitian {u : ComplexModel n → ℝ} {z : ComplexModel n}
     (hu : ContDiffAt ℝ 2 u z) : (complexHessian u z).IsHermitian := by
   have hs (a b : ComplexModel n) : realHessian u z a b = realHessian u z b a := by
@@ -118,6 +139,9 @@ theorem complexHessian_isHermitian {u : ComplexModel n → ℝ} {z : ComplexMode
       hs (coordinateVector k) (Complex.I • coordinateVector j),
       hs (Complex.I • coordinateVector k) (coordinateVector j)]
 
+/--
+@isnad1 id=eq.0h2v.s6.a01722d85934 from=translated src=- shape=9ee28ee9 vocab=73bdeafe
+-/
 @[simp] theorem complexHessian_norm_sq (z : ComplexModel n) :
     complexHessian (fun w : ComplexModel n => ‖w‖ ^ 2) z = 1 := by
   ext j k
@@ -128,16 +152,25 @@ theorem complexHessian_isHermitian {u : ComplexModel n → ℝ} {z : ComplexMode
   · simp [complexHessian, realHessian_norm_sq, coordinateVector, PiLp.inner_apply,
       apply_ite, h, Ne.symm h]
 
+/--
+@isnad1 id=eq.0h2v.s6.b9c8e7412144 from=translated src=- shape=1df7594b vocab=8c9b11dd
+-/
 @[simp] theorem smoothDensity_norm_sq (z : ComplexModel n) :
     smoothDensity (fun w : ComplexModel n => ‖w‖ ^ 2) z =
       (n.factorial : ℝ) / Real.pi ^ n := by
   simp [smoothDensity]
 
+/--
+@isnad1 id=le.1h3v.s5.3be7dac48dc7 from=translated src=- shape=27e724a1 vocab=a8c4e170
+-/
 theorem smoothDensity_nonneg {u : ComplexModel n → ℝ} {z : ComplexModel n}
     (h : (complexHessian u z).PosSemidef) : 0 ≤ smoothDensity u z := by
   apply mul_nonneg (by positivity)
   exact (Complex.nonneg_iff.mp h.det_nonneg).1
 
+/--
+@isnad1 id=eq.0h3v.s5.377ebfd526a5 from=translated src=- shape=cb7b3a78 vocab=c9d4842d
+-/
 @[simp] theorem smoothDensity_const (c : ℝ) (z : ComplexModel (n + 1)) :
     smoothDensity (fun _ => c) z = 0 := by
   simp [smoothDensity]
@@ -156,7 +189,9 @@ def smoothMeasure (U : Opens (ComplexModel n)) (u : ComplexModel n → ℝ)
   (volume.restrict (U : Set (ComplexModel n))).withDensity
     (fun z => ENNReal.ofReal (smoothDensity u z))
 
-/-- A concrete nonconstant potential instantiates all constructor hypotheses.-/
+/-- A concrete nonconstant potential instantiates all constructor hypotheses.
+@isnad1 id=issmooth.0h2v.s6.82c5d23a4e1d from=translated src=- shape=f10cf330 vocab=d784fd8f
+-/
 theorem isSmoothPshOn_norm_sq (U : Opens (ComplexModel n)) :
     IsSmoothPshOn U (fun z : ComplexModel n => ‖z‖ ^ 2) := by
   refine ⟨(contDiff_norm_sq ℝ).contDiffOn,
@@ -165,12 +200,18 @@ theorem isSmoothPshOn_norm_sq (U : Opens (ComplexModel n)) :
   rw [complexHessian_norm_sq]
   exact Matrix.PosSemidef.one
 
+/--
+@isnad1 id=eq.2h4v.s7.2d0fea53849b from=translated src=- shape=95b4aa91 vocab=da7aa1e6
+-/
 theorem smoothMeasure_weight_toReal (U : Opens (ComplexModel n))
     (u : ComplexModel n → ℝ) (hu : IsSmoothPshOn U u) {z : ComplexModel n}
     (hz : z ∈ U) :
     (ENNReal.ofReal (smoothDensity u z)).toReal = smoothDensity u z :=
   ENNReal.toReal_ofReal (smoothDensity_nonneg (hu.2.2 z hz))
 
+/--
+@isnad1 id=eq.3h4v.s8.57c727536796 from=translated src=- shape=96fa943f vocab=621e1b1b
+-/
 theorem smoothMeasure_restrict {U V : Opens (ComplexModel n)} (hVU : V ≤ U)
     (u : ComplexModel n → ℝ) (hu : IsSmoothPshOn U u) (hv : IsSmoothPshOn V u) :
     (smoothMeasure U u hu).restrict (V : Set (ComplexModel n)) =
@@ -223,6 +264,9 @@ def IsLocalBedfordTaylorMeasure (Ω : Opens (ComplexModel n))
       (∃ f, IsDecreasingApproximation U u f) ∧
       ∀ f (hf : IsDecreasingApproximation U u f), WeaklyTendsTo U f hf.1 μ
 
+/--
+@isnad1 id=ex.2h5v.s7.57a8914ea8aa from=translated src=- shape=db792b03 vocab=c1c8ce35
+-/
 theorem IsLocalBedfordTaylorMeasure.approximations_exist
     {Ω U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     {μ : Measure (ComplexModel n)} (hμ : IsLocalBedfordTaylorMeasure Ω u μ)
@@ -231,7 +275,9 @@ theorem IsLocalBedfordTaylorMeasure.approximations_exist
 
 /-- Any two admissible sequences have the same compact-test limits once the
 Bedford–Taylor relation is established. Existence of that measure is not used
-or asserted by this elementary consequence.-/
+or asserted by this elementary consequence.
+@isnad1 id=and.4h7v.s7.cf3f1e8b09fd from=translated src=- shape=70a08fc9 vocab=7421a3a7
+-/
 theorem IsLocalBedfordTaylorMeasure.sequence_independent
     {Ω U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     {μ : Measure (ComplexModel n)} (hμ : IsLocalBedfordTaylorMeasure Ω u μ)
@@ -241,7 +287,9 @@ theorem IsLocalBedfordTaylorMeasure.sequence_independent
     WeaklyTendsTo U f hf.1 μ ∧ WeaklyTendsTo U g hg.1 μ :=
   ⟨(hμ.2.2.2 U hU).2 f hf, (hμ.2.2.2 U hU).2 g hg⟩
 
-/-- Nonvacuity for smooth potentials: the constant sequence is admissible.-/
+/-- Nonvacuity for smooth potentials: the constant sequence is admissible.
+@isnad1 id=isdecrea.1h3v.s5.bc3851c0caf0 from=translated src=- shape=d9e96e97 vocab=10a49d16
+-/
 theorem IsSmoothPshOn.constantApproximation {U : Opens (ComplexModel n)}
     {u : ComplexModel n → ℝ} (hu : IsSmoothPshOn U u) :
     IsDecreasingApproximation U u (fun _ => u) :=

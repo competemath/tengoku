@@ -30,7 +30,9 @@ open HolomorphicPullback
 open RadialPoissonCertificate
 
 /-- Polar integration for a profile of the squared norm on a positive
-dimensional standard complex model.-/
+dimensional standard complex model.
+@isnad1 id=eq.1h2v.s9.30a90df60b01 from=translated src=- shape=2e4981fc vocab=453aa025
+-/
 theorem integral_sqNorm_radial {n : ℕ} (hn : 0 < n) (f : ℝ → ℝ) :
     ∫ x : ComplexModel n, f (‖x‖ ^ 2) ∂volume =
       ((n : ℝ) * volume.real (ball (0 : ComplexModel n) 1)) *
@@ -56,7 +58,9 @@ theorem integral_sqNorm_radial {n : ℕ} (hn : 0 < n) (f : ℝ → ℝ) :
   ring
 
 /-- Every two normalized explicit radial kernels have zero weighted
-squared-radius mass difference in positive complex dimension.-/
+squared-radius mass difference in positive complex dimension.
+@isnad1 id=eq.2h4v.s6.8297a2a97c63 from=translated src=- shape=19db669a vocab=6dd0326a
+-/
 theorem integral_explicitRadialKernelSqDifference_weighted_eq_zero
     {n : ℕ} (hn : 0 < n) (R : ℝ) (hR : 0 < R) (a b : ℕ) :
     ∫ s in Ioi (0 : ℝ), s ^ (n - 1) *

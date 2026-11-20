@@ -66,19 +66,25 @@ For a positive `(1,1)`-form this is the underlying real Hermitian metric.-/
 def associatedMetric (a : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ)
     (u v : ComplexModel n) : ℝ := a ![u, Complex.I • v]
 
-/-- Positivity of the associated quadratic form follows directly from positivity.-/
+/-- Positivity of the associated quadratic form follows directly from positivity.
+@isnad1 id=lt.2h3v.s7.02e982b75706 from=translated src=- shape=25db53cd vocab=15a71d8c
+-/
 theorem associatedMetric_self_pos {a : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ}
     (ha : IsStrictlyPositive a) {u : ComplexModel n} (hu : u ≠ 0) :
     0 < associatedMetric a u u := ha u hu
 
-/-- The standard flat fundamental form is `J`-invariant.-/
+/-- The standard flat fundamental form is `J`-invariant.
+@isnad1 id=isoneone.0h1v.s5.352afc294d2b from=translated src=- shape=6a6a934a vocab=39180014
+-/
 theorem flatFundamentalForm_isOneOne (n : ℕ) :
     IsOneOne (Kahler.fundamentalFormAlt : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ) := by
   intro u v
   simpa only [Kahler.fundamentalFormAlt_apply, Kahler.complexStructure, Matrix.cons_val_zero,
     Matrix.cons_val_one, Matrix.head_cons] using Kahler.fundamentalForm_complexStructure u v
 
-/-- The standard flat fundamental form is strictly positive.-/
+/-- The standard flat fundamental form is strictly positive.
+@isnad1 id=isstrict.0h1v.s5.cb97648fc51d from=translated src=- shape=6a6a934a vocab=9a47eea5
+-/
 theorem flatFundamentalForm_isStrictlyPositive (n : ℕ) :
     IsStrictlyPositive
       (Kahler.fundamentalFormAlt : (ComplexModel n) [⋀^Fin 2]→L[ℝ] ℝ) := by
@@ -101,7 +107,9 @@ def flatKahlerForm (n : ℕ) : SmoothRealForm n (ComplexModel n) 2 where
       Kahler.fundamentalFormAlt (fun i => (fderiv ℝ id z) (v i))
     simp
 
-/-- The explicit flat form is Hermitian and closed.-/
+/-- The explicit flat form is Hermitian and closed.
+@isnad1 id=iskahler.0h1v.s6.8651300f1406 from=translated src=- shape=376b6259 vocab=6eaebc57
+-/
 theorem flatKahlerForm_isKahler (n : ℕ) : (flatKahlerForm n).IsKahler := by
   constructor
   · intro e z hz
@@ -109,7 +117,9 @@ theorem flatKahlerForm_isKahler (n : ℕ) : (flatKahlerForm n).IsKahler := by
   · intro e z hz
     exact Kahler.extDeriv_fundamentalFormAlt z
 
-/-- A genuine existence theorem for the model space only.-/
+/-- A genuine existence theorem for the model space only.
+@isnad1 id=admitska.0h1v.s6.c191b09ada6f from=translated src=- shape=9d44d080 vocab=ae3864c5
+-/
 theorem complexModel_admitsKahlerForm (n : ℕ) : AdmitsKahlerForm n (ComplexModel n) :=
   ⟨flatKahlerForm n, flatKahlerForm_isKahler n⟩
 

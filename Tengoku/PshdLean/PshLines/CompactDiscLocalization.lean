@@ -21,14 +21,18 @@ namespace PshLines
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-/-- Increasing the radius enlarges an affine closed disc.-/
+/-- Increasing the radius enlarges an affine closed disc.
+@isnad1 id=le.1h5v.s5.0b12bbe925b4 from=translated src=- shape=a43f286f vocab=070a7379
+-/
 theorem affineClosedDisc_mono_radius (x v : E) {r R : ℝ} (hrR : r ≤ R) :
     affineClosedDisc x v r ⊆ affineClosedDisc x v R :=
   image_mono (closedBall_subset_closedBall hrR)
 
 /-- The metric radius of an affine disc is bounded by the parameter radius
 times the norm of its direction. Negative radii cause no exception: the disc
-is then empty.-/
+is then empty.
+@isnad1 id=le.0h4v.s5.314036147fd1 from=translated src=- shape=186f1354 vocab=a2583031
+-/
 theorem affineClosedDisc_subset_closedBall (x v : E) (r : ℝ) :
     affineClosedDisc x v r ⊆ closedBall x (r * ‖v‖) := by
   rintro y ⟨z, hz, rfl⟩
@@ -37,7 +41,9 @@ theorem affineClosedDisc_subset_closedBall (x v : E) (r : ℝ) :
     mul_le_mul_of_nonneg_right hz' (norm_nonneg v)
 
 /-- A disc centered in a set lies in its closed thickening when its metric
-radius is no larger than the thickening radius.-/
+radius is no larger than the thickening radius.
+@isnad1 id=le.2h6v.s6.9f2e192fb10f from=translated src=- shape=1cade994 vocab=49ac2fb8
+-/
 theorem affineClosedDisc_subset_cthickening {K : Set E} {x : E} (hx : x ∈ K)
     (v : E) {r δ : ℝ} (hrδ : r * ‖v‖ ≤ δ) :
     affineClosedDisc x v r ⊆ cthickening δ K :=
@@ -46,7 +52,9 @@ theorem affineClosedDisc_subset_cthickening {K : Set E} {x : E} (hx : x ∈ K)
 
 /-- In a proper complex normed space, sufficiently small discs with centers in
 a compact subset of an open set all lie in one compact subset of that open set.
-This also applies to an empty compact set.-/
+This also applies to an empty compact set.
+@isnad1 id=ex.3h4v.s7.481d7bfd5fbe from=translated src=- shape=50777f85 vocab=e427abeb
+-/
 theorem exists_compact_affineClosedDisc_neighborhood [ProperSpace E]
     {K U : Set E} (hK : IsCompact K) (hU : IsOpen U) (hKU : K ⊆ U) (v : E) :
     ∃ R > 0, ∃ L : Set E, IsCompact L ∧ L ⊆ U ∧
@@ -69,7 +77,9 @@ theorem exists_compact_affineClosedDisc_neighborhood [ProperSpace E]
 
 /-- The finite-dimensional form, with every smaller radius included. The same
 compact set also contains all centers. The real and complex scalar actions
-need no extra relation for this purely metric assertion.-/
+need no extra relation for this purely metric assertion.
+@isnad1 id=ex.3h4v.s7.d6ffaf84a5c9 from=translated src=- shape=daba4f1a vocab=bbc14368
+-/
 theorem exists_compact_affineClosedDisc_family [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {K U : Set E}
     (hK : IsCompact K) (hU : IsOpen U) (hKU : K ⊆ U) (v : E) :

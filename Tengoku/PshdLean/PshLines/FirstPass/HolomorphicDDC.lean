@@ -23,7 +23,9 @@ noncomputable section
 
 variable {k n : ℕ}
 
-/-- The normalized one-form commutes with holomorphic pullback at a point.-/
+/-- The normalized one-form commutes with holomorphic pullback at a point.
+@isnad1 id=eq.2h5v.s10.086990f6e482 from=translated src=- shape=08527a24 vocab=00ee6f48
+-/
 theorem smoothDc_comp {F : ComplexModel k → ComplexModel n}
     {ρ : ComplexModel n → ℝ} {z : ComplexModel k}
     (hF : DifferentiableAt ℂ F z) (hρ : DifferentiableAt ℝ ρ (F z)) :
@@ -39,7 +41,9 @@ theorem smoothDc_comp {F : ComplexModel k → ComplexModel n}
     ((fderiv ℂ F z).map_smul Complex.I (v 0))
 
 /-- The complete normalized two-form, not just its diagonal values, commutes
-with a smooth holomorphic map between open sets.-/
+with a smooth holomorphic map between open sets.
+@isnad1 id=eq.6h7v.s10.5f3c35ba72d0 from=translated src=- shape=c4227636 vocab=f09869da
+-/
 theorem smoothDDC_comp {F : ComplexModel k → ComplexModel n}
     {ρ : ComplexModel n → ℝ} {U : Set (ComplexModel k)}
     {V : Set (ComplexModel n)} (hU : IsOpen U) (hV : IsOpen V)

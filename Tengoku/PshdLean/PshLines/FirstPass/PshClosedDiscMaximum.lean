@@ -23,7 +23,9 @@ namespace PshLines
 noncomputable section
 
 /-- A germwise plurisubharmonic function bounded by a finite constant on the
-boundary circle is bounded by the same constant on the closed disc.-/
+boundary circle is bounded by the same constant on the closed disc.
+@isnad1 id=le.5h6v.s7.ded5c275ade3 from=translated src=- shape=0c8086ad vocab=d6b8118a
+-/
 theorem PlurisubharmonicOn.le_const_on_closedBall_of_le_on_sphere
     {u : ℂ → EReal} {Ω : Set ℂ} (hu : PlurisubharmonicOn u Ω)
     {c : ℂ} {R C : ℝ} (hR : 0 < R) (hD : closedBall c R ⊆ Ω)

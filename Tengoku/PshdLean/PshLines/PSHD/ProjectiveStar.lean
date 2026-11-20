@@ -14,7 +14,9 @@ open Set Metric
 
 namespace PshLines.PSHD
 
-/-- The article's projective high-value relation is Borel.-/
+/-- The article's projective high-value relation is Borel.
+@isnad1 id=measurab.1h5v.s9.50a22a4b4c86 from=translated src=- shape=b7618daf vocab=c226870f
+-/
 theorem measurableSet_projective_highValue_relation
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
@@ -25,7 +27,9 @@ theorem measurableSet_projective_highValue_relation
   measurableSet_highValue_relation continuous_hopf hu x R A
 
 /-- Every projective direction has a nonempty compact high-value section on an
-admissible sphere, assuming the planar disc criterion on affine line pullbacks.-/
+admissible sphere, assuming the planar disc criterion on affine line pullbacks.
+@isnad1 id=and.4h6v.s9.e266353185e9 from=translated src=- shape=dfe9e5ec vocab=b1fbef86
+-/
 theorem nonempty_isCompact_projective_highValue_section
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {u : E → ℝ} {D : Set E} (hD : IsOpen D) {x : E}

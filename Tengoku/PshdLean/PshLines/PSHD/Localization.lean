@@ -16,7 +16,9 @@ namespace PshLines.PSHD
 
 /-- Localize the joint measurability theorem to a measurable region of finite
 measure. Only sections on this region need to be measurable or upper
-semicontinuous.-/
+semicontinuous.
+@isnad1 id=measurab.5h7v.s7.8c1a871585a0 from=translated src=- shape=f88aeeba vocab=ba9c814f
+-/
 theorem measurable_lintegral_ball_min_restrict
     {X Y : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace X] [OpensMeasurableSpace X]

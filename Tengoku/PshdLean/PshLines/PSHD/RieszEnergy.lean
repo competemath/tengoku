@@ -20,14 +20,18 @@ noncomputable def rieszEnergy {E : Type*} [PseudoEMetricSpace E]
     [MeasurableSpace E] (s : ℝ) (μ : Measure E) : ℝ≥0∞ :=
   ∫⁻ p : E × E, (edist p.1 p.2 ^ s)⁻¹ ∂μ.prod μ
 
-/-- Scaling mass scales energy quadratically.-/
+/-- Scaling mass scales energy quadratically.
+@isnad1 id=eq.0h4v.s6.5ba4e12f269c from=translated src=- shape=9ae214d7 vocab=19b0fa8a
+-/
 theorem rieszEnergy_smul {E : Type*} [PseudoEMetricSpace E]
     [MeasurableSpace E] (s : ℝ) (μ : Measure E) [SFinite μ] (c : ℝ≥0∞) :
     rieszEnergy s (c • μ) = c ^ 2 * rieszEnergy s μ := by
   simp only [rieszEnergy, Measure.prod_smul_left, Measure.prod_smul_right,
     lintegral_smul_measure, smul_eq_mul, pow_two, mul_assoc]
 
-/-- Energy of a measurable pushforward, expressed on its parameter space.-/
+/-- Energy of a measurable pushforward, expressed on its parameter space.
+@isnad1 id=eq.1h5v.s6.c7020d25794e from=translated src=- shape=86c7029f vocab=4ccdd989
+-/
 theorem rieszEnergy_map {S E : Type*} [MeasurableSpace S]
     [PseudoEMetricSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] (s : ℝ) (m : Measure S) [SFinite m]
@@ -39,7 +43,9 @@ theorem rieszEnergy_map {S E : Type*} [MeasurableSpace S]
   exact lintegral_map (by fun_prop) (hΨ.prodMap hΨ)
 
 /-- Almost-everywhere separation suffices to control transported energy.
-This permits probability laws restricted to bounded parameter regions.-/
+This permits probability laws restricted to bounded parameter regions.
+@isnad1 id=le.5h6v.s7.559c38c0cc12 from=translated src=- shape=1a8cacd9 vocab=abb3f170
+-/
 theorem rieszEnergy_map_le_of_ae_edist_le
     {S E : Type*} [PseudoEMetricSpace S] [MeasurableSpace S] [BorelSpace S]
     [SecondCountableTopology S] [PseudoEMetricSpace E] [MeasurableSpace E]
@@ -66,7 +72,9 @@ theorem rieszEnergy_map_le_of_ae_edist_le
 
 /-- A lower bound on distances gives an upper bound on transported energy.
 The coefficient is positive and finite, so the estimate retains diagonal
-singularities without any exceptional-set convention.-/
+singularities without any exceptional-set convention.
+@isnad1 id=le.5h6v.s7.ff8b9d68cbcb from=translated src=- shape=690a0461 vocab=09d7ef63
+-/
 theorem rieszEnergy_map_le_of_edist_le
     {S E : Type*} [PseudoEMetricSpace S] [MeasurableSpace S] [BorelSpace S]
     [SecondCountableTopology S] [PseudoEMetricSpace E] [MeasurableSpace E]
@@ -90,7 +98,9 @@ theorem rieszEnergy_map_le_of_edist_le
           ENNReal.mul_inv (Or.inl hc) (Or.inl hct)]
     _ = _ := lintegral_const_mul _ (by fun_prop)
 
-/-- At even integral order, the kernel is an inverse power of squared distance.-/
+/-- At even integral order, the kernel is an inverse power of squared distance.
+@isnad1 id=eq.1h5v.s7.0cbb572bccaa from=translated src=- shape=3de08cd7 vocab=cf8c9ccc
+-/
 theorem rieszEnergy_map_even {S E : Type*} [MeasurableSpace S]
     [NormedAddCommGroup E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] (k : ℕ) (m : Measure S) [SFinite m]

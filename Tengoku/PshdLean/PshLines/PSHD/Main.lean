@@ -25,6 +25,9 @@ variable {E : Type*}
 def truncShift (φ : E → EReal) (m : ℕ) (x : E) : ℝ :=
   (max (φ x) ((-(m : ℝ) : ℝ) : EReal)).toReal + m
 
+/--
+@isnad1 id=eq.1h4v.s6.be81675c7958 from=translated src=- shape=70f49a25 vocab=8178b751
+-/
 theorem coe_truncShift {φ : E → EReal} {x : E} (hx : φ x ≠ ⊤) (m : ℕ) :
     ((truncShift φ m x : ℝ) : EReal) = max (φ x) ((-(m : ℝ) : ℝ) : EReal) + (m : ℝ) := by
   have h1 : max (φ x) ((-(m : ℝ) : ℝ) : EReal) ≠ ⊤ :=
@@ -33,6 +36,9 @@ theorem coe_truncShift {φ : E → EReal} {x : E} (hx : φ x ≠ ⊤) (m : ℕ) 
     ne_bot_of_le_ne_bot (EReal.coe_ne_bot _) (le_max_right _ _)
   rw [truncShift, EReal.coe_add, EReal.coe_toReal h1 h2]
 
+/--
+@isnad1 id=le.1h4v.s5.85bbd5fad666 from=translated src=- shape=32f91881 vocab=4a654287
+-/
 theorem truncShift_nonneg {φ : E → EReal} {x : E} (hx : φ x ≠ ⊤) (m : ℕ) :
     0 ≤ truncShift φ m x := by
   have h := coe_truncShift hx m
@@ -47,7 +53,9 @@ variable [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- **Lower truncations.** If `φ` has no value `⊤` on `Ω` and satisfies the disc
 criterion on every component of every affine complex-line section, then each
-finite nonnegative truncation `max φ (-m) + m` is subharmonic on these sections.-/
+finite nonnegative truncation `max φ (-m) + m` is subharmonic on these sections.
+@isnad1 id=linesubh.2h4v.s8.ca8f684b402a from=translated src=- shape=5e7cffda vocab=bb674927
+-/
 theorem lineSubharmonicOn_truncShift {φ : E → EReal} {Ω : Set E} (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,
       DiscPshOn (fun t ↦ φ (c + t • v)) (connectedComponentIn ((fun t : ℂ ↦ c + t • v) ⁻¹' Ω) z))
@@ -63,7 +71,9 @@ theorem lineSubharmonicOn_truncShift {φ : E → EReal} {Ω : Set E} (htop : ∀
 /-- **Passage from finite to extended-real functions.** If an extended-real
 function without the value `⊤` satisfies the disc criterion on line sections
 and all of its shifted lower truncations `max φ (-m) + m` are plurisubharmonic,
-then it is plurisubharmonic: it is the decreasing limit of the truncations.-/
+then it is plurisubharmonic: it is the decreasing limit of the truncations.
+@isnad1 id=discpsho.3h3v.s8.5266ec2ff154 from=translated src=- shape=50ed0ee8 vocab=b5c54215
+-/
 theorem discPshOn_of_line_sections_of_truncShift {φ : E → EReal} {Ω : Set E}
     (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,
@@ -94,7 +104,9 @@ theorem discPshOn_of_line_sections_of_truncShift {φ : E → EReal} {Ω : Set E}
 /-- **Theorem 1.1** (`pshd-vibe`). If an extended-real function without the
 value `⊤` on an open set satisfies the disc criterion on every connected
 component of every affine complex-line section, then it is upper
-semicontinuous, hence plurisubharmonic.-/
+semicontinuous, hence plurisubharmonic.
+@isnad1 id=discpsho.3h3v.s8.089c9a54fc57 from=translated src=- shape=5162f698 vocab=311284a3
+-/
 theorem discPshOn_of_line_sections [FiniteDimensional ℂ E] {φ : E → EReal} {Ω : Set E}
     (hΩ : IsOpen Ω) (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,
@@ -104,7 +116,9 @@ theorem discPshOn_of_line_sections [FiniteDimensional ℂ E] {φ : E → EReal} 
     LineSubharmonicOn.discPshOn_of_nonneg hΩ (fun x hx => truncShift_nonneg (htop x hx) m)
       (lineSubharmonicOn_truncShift htop hl m)
 
-/-- **Theorem 1.1** (`pshd-vibe`), in the form of plurisubharmonic germs.-/
+/-- **Theorem 1.1** (`pshd-vibe`), in the form of plurisubharmonic germs.
+@isnad1 id=and.3h3v.s8.803f947e7843 from=translated src=- shape=8699c943 vocab=113b151f
+-/
 theorem plurisubharmonicOn_of_line_sections [FiniteDimensional ℂ E] {φ : E → EReal}
     {Ω : Set E} (hΩ : IsOpen Ω) (htop : ∀ x ∈ Ω, φ x ≠ ⊤)
     (hl : ∀ c v : E, v ≠ 0 → ∀ z ∈ (fun t : ℂ ↦ c + t • v) ⁻¹' Ω,

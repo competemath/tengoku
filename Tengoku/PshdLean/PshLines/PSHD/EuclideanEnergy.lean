@@ -18,7 +18,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
   {μ : Measure E} [μ.IsAddHaarMeasure]
 
-/-- The singular Riesz kernel is integrable on every ball below ambient dimension.-/
+/-- The singular Riesz kernel is integrable on every ball below ambient dimension.
+@isnad1 id=lt.2h4v.s7.5b60b459541c from=translated src=- shape=64708539 vocab=b7f32397
+-/
 theorem lintegral_rieszKernel_ball_lt_top {s : ℝ}
     (hs : 0 < s) (hd : s < Module.finrank ℝ E) (R : ℝ) :
     (∫⁻ x in ball (0 : E) R, (edist x 0 ^ s)⁻¹ ∂μ) < ⊤ := by
@@ -40,7 +42,9 @@ theorem lintegral_rieszKernel_ball_lt_top {s : ℝ}
   exact hi.lintegral_lt_top
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- A uniform bound on the potential of the restriction of Haar measure to a ball.-/
+/-- A uniform bound on the potential of the restriction of Haar measure to a ball.
+@isnad1 id=le.1h6v.s7.c04162aa118b from=translated src=- shape=5d63706b vocab=c040e7b4
+-/
 theorem lintegral_rieszKernel_ball_le (s : ℝ) {c x : E} {R : ℝ}
     (hx : x ∈ ball c R) :
     (∫⁻ y in ball c R, (edist x y ^ s)⁻¹ ∂μ) ≤
@@ -63,7 +67,9 @@ theorem lintegral_rieszKernel_ball_le (s : ℝ) {c x : E} {R : ℝ}
         exact bot_le
     _ = _ := by rw [lintegral_sub_right_eq_self, lintegral_indicator measurableSet_ball]
 
-/-- Haar measure restricted to any bounded ball has finite subdimensional Riesz energy.-/
+/-- Haar measure restricted to any bounded ball has finite subdimensional Riesz energy.
+@isnad1 id=lt.2h5v.s7.b94f6a053f89 from=translated src=- shape=6b3f5e01 vocab=63364cb0
+-/
 theorem rieszEnergy_restrict_ball_lt_top {s : ℝ}
     (hs : 0 < s) (hd : s < Module.finrank ℝ E) (c : E) (R : ℝ) :
     rieszEnergy s (μ.restrict (ball c R)) < ⊤ := by
@@ -80,7 +86,9 @@ theorem rieszEnergy_restrict_ball_lt_top {s : ℝ}
       exact ENNReal.mul_lt_top (lintegral_rieszKernel_ball_lt_top hs hd _) measure_ball_lt_top
 
 /-- Normalizing Haar measure on a positive-radius ball gives a probability
-carried by that ball with finite subdimensional Riesz energy.-/
+carried by that ball with finite subdimensional Riesz energy.
+@isnad1 id=other.3h5v.s7.1c5da86674b9 from=translated src=- shape=78e5c32f vocab=7cb7355a
+-/
 theorem normalized_restrict_ball_properties {s : ℝ}
     (hs : 0 < s) (hd : s < Module.finrank ℝ E) (c : E) {R : ℝ} (hR : 0 < R) :
     let m := (μ (ball c R))⁻¹ • μ.restrict (ball c R)

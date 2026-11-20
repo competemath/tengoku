@@ -15,7 +15,9 @@ namespace PshLines.PSHD
 
 /-- Nonnegative real functions on an open product domain are Borel when
 their horizontal sections are upper semicontinuous and their vertical
-complex sections satisfy the disc criterion.-/
+complex sections satisfy the disc criterion.
+@isnad1 id=measurab.4h3v.s8.29e427454feb from=translated src=- shape=53d0373e vocab=dde7c7d0
+-/
 theorem measurable_on_open_of_discPsh_sections
     {X : Type*} [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [BorelSpace X]

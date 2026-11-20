@@ -35,21 +35,32 @@ def polarAngularDerivative (u : ℂ → ℝ) (c : ℂ) (r θ : ℝ) : ℝ :=
 def polarRadialFlux (u : ℂ → ℝ) (c : ℂ) (r θ : ℝ) : ℝ :=
   r * polarRadialDerivative u c r θ
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.bcf9fd649455 from=translated src=- shape=c42c3206 vocab=cfac96c6
+-/
 theorem hasDerivAt_polarPoint_radius (c : ℂ) (r θ : ℝ) :
     HasDerivAt (fun s : ℝ ↦ polarPoint c s θ) (circleMap 0 1 θ) r := by
   simpa [polarPoint] using
     ((hasDerivAt_id r).smul_const (circleMap (0 : ℂ) 1 θ)).const_add c
 
+/--
+@isnad1 id=hasderiv.0h3v.s6.ccfd732c11ff from=translated src=- shape=49fb9fed vocab=c9dd1053
+-/
 theorem hasDerivAt_polarPoint_angle (c : ℂ) (r θ : ℝ) :
     HasDerivAt (polarPoint c r) (r • (circleMap 0 1 θ * I)) θ := by
   change HasDerivAt (fun t ↦ c + r • circleMap 0 1 t) _ θ
   exact ((hasDerivAt_circleMap 0 1 θ).const_smul r).const_add c
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.b1965f000658 from=translated src=- shape=298e549b vocab=900cf0a4
+-/
 theorem hasDerivAt_polar_unitTangent (θ : ℝ) :
     HasDerivAt (fun t ↦ circleMap 0 1 t * I) (-circleMap 0 1 θ) θ := by
   simpa [mul_assoc] using (hasDerivAt_circleMap 0 1 θ).mul_const I
 
-/-- A real bilinear form has the same trace in any rotated orthogonal basis.-/
+/-- A real bilinear form has the same trace in any rotated orthogonal basis.
+@isnad1 id=eq.0h2v.s11.ad88befca7b2 from=translated src=- shape=4824680b vocab=bdfa1811
+-/
 theorem complex_bilinear_rotated_trace (B : ℂ →L[ℝ] ℂ →L[ℝ] ℝ) (z : ℂ) :
     B z z + B (z * I) (z * I) = ‖z‖ ^ 2 * (B 1 1 + B I I) := by
   have hsplit (w : ℂ) : w = w.re • (1 : ℂ) + w.im • I := by
@@ -68,6 +79,9 @@ theorem complex_bilinear_rotated_trace (B : ℂ →L[ℝ] ℂ →L[ℝ] ℝ) (z 
     zero_sub, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.ad271657fa3b from=translated src=- shape=dd965885 vocab=2ed9bb61
+-/
 theorem polar_hessian_trace (u : ℂ → ℝ) (c : ℂ) (r θ : ℝ) :
     realHessian u (polarPoint c r θ) (circleMap 0 1 θ) (circleMap 0 1 θ) +
       realHessian u (polarPoint c r θ) (circleMap 0 1 θ * I) (circleMap 0 1 θ * I) =
@@ -77,6 +91,9 @@ theorem polar_hessian_trace (u : ℂ → ℝ) (c : ℂ) (r θ : ℝ) :
   simpa [realHessian_eq_fderiv, InnerProductSpace.laplacian_eq_iteratedFDeriv_complexPlane,
     iteratedFDeriv_two_apply] using h
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.b439131642b2 from=translated src=- shape=6c222ef9 vocab=bcc59d6a
+-/
 theorem hasDerivAt_polarRadialDerivative {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r θ : ℝ) :
     HasDerivAt (fun s ↦ polarRadialDerivative u c s θ)
@@ -92,6 +109,9 @@ theorem hasDerivAt_polarRadialDerivative {u : ℂ → ℝ} (hu : ContDiff ℝ 2 
   simpa only [map_zero, add_zero] using!
     hc.clm_apply (hasDerivAt_const r (circleMap (0 : ℂ) 1 θ))
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.58a27214698c from=translated src=- shape=c10e9e13 vocab=c49107fd
+-/
 theorem hasDerivAt_polarRadialFlux {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r θ : ℝ) :
     HasDerivAt (fun s ↦ polarRadialFlux u c s θ)
@@ -100,6 +120,9 @@ theorem hasDerivAt_polarRadialFlux {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
   simpa only [polarRadialFlux, Pi.mul_apply, id_eq, one_mul] using!
     (hasDerivAt_id r).mul (hasDerivAt_polarRadialDerivative hu c r θ)
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.8a67d8704f66 from=translated src=- shape=8c6752db vocab=46f4cc8d
+-/
 theorem hasDerivAt_polarAngularDerivative {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r θ : ℝ) :
     HasDerivAt (polarAngularDerivative u c r)
@@ -116,7 +139,9 @@ theorem hasDerivAt_polarAngularDerivative {u : ℂ → ℝ} (hu : ContDiff ℝ 2
   simpa only [Function.comp_def, map_smul, smul_apply, smul_eq_mul, map_neg,
     sub_eq_add_neg] using! h
 
-/-- The pointwise polar divergence identity, with no division by the radius.-/
+/-- The pointwise polar divergence identity, with no division by the radius.
+@isnad1 id=eq.1h4v.s7.11995bc59e5c from=translated src=- shape=d2685027 vocab=97c7884f
+-/
 theorem polar_divergence_identity {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r θ : ℝ) :
     deriv (fun s ↦ polarRadialFlux u c s θ) r +
@@ -126,24 +151,39 @@ theorem polar_divergence_identity {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     ← polar_hessian_trace u c r θ]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s4.edb0036f366e from=translated src=- shape=7758d52e vocab=e2d53076
+-/
 @[simp] theorem polarPoint_eq_circleMap (c : ℂ) (r θ : ℝ) :
     polarPoint c r θ = circleMap c r θ := by
   simp [polarPoint, circleMap, Complex.real_smul]
 
+/--
+@isnad1 id=continuo.0h1v.s5.f761754759eb from=translated src=- shape=12ee726c vocab=3283d5df
+-/
 theorem continuous_polarPoint (c : ℂ) :
     Continuous (Function.uncurry (polarPoint c)) := by
   change Continuous (fun p : ℝ × ℝ ↦ c + p.1 • circleMap 0 1 p.2)
   exact continuous_const.add (continuous_fst.smul ((continuous_circleMap 0 1).comp continuous_snd))
 
+/--
+@isnad1 id=continuo.1h2v.s6.03a9f8438506 from=translated src=- shape=25cb04e4 vocab=92ea830f
+-/
 theorem continuous_polarRadialDerivative {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) : Continuous (Function.uncurry (polarRadialDerivative u c)) := by
   exact ((hu.continuous_fderiv (by norm_num)).comp (continuous_polarPoint c)).clm_apply
     ((continuous_circleMap 0 1).comp continuous_snd)
 
+/--
+@isnad1 id=continuo.1h2v.s6.b83644c2758f from=translated src=- shape=25cb04e4 vocab=d2593a42
+-/
 theorem continuous_polarRadialFlux {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) : Continuous (Function.uncurry (polarRadialFlux u c)) := by
   exact continuous_fst.mul (continuous_polarRadialDerivative hu c)
 
+/--
+@isnad1 id=continuo.3h4v.s7.03d83f5db96c from=translated src=- shape=fced0af8 vocab=94a76753
+-/
 theorem continuous_polarHessian {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (a b : ℝ × ℝ → ℂ) (ha : Continuous a) (hb : Continuous b) :
     Continuous (fun p : ℝ × ℝ ↦ realHessian u (polarPoint c p.1 p.2) (a p) (b p)) := by
@@ -152,7 +192,9 @@ theorem continuous_polarHessian {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (continuous_polarPoint c)).clm_apply ha).clm_apply hb
 
 /-- Differentiation under a finite interval integral for a continuously
-parameter-dependent derivative. Compactness supplies the domination bound.-/
+parameter-dependent derivative. Compactness supplies the domination bound.
+@isnad1 id=hasderiv.3h5v.s7.db020d87709a from=translated src=- shape=af4dbf1a vocab=71b14531
+-/
 theorem hasDerivAt_intervalIntegral_of_jointly_continuous
     {F F' : ℝ → ℝ → ℝ} (hF : Continuous F.uncurry)
     (hF' : Continuous F'.uncurry) (hderiv : ∀ r θ, HasDerivAt (fun s ↦ F s θ) (F' r θ) r)
@@ -175,6 +217,9 @@ theorem hasDerivAt_intervalIntegral_of_jointly_continuous
   · filter_upwards with θ _ s _
     exact hderiv s θ
 
+/--
+@isnad1 id=eq.1h3v.s7.5f8d9ef4551e from=translated src=- shape=35fa41e4 vocab=7d9f3daa
+-/
 theorem integral_polarAngularDerivative_deriv_eq_zero {u : ℂ → ℝ}
     (hu : ContDiff ℝ 2 u) (c : ℂ) (r : ℝ) :
     (∫ θ in 0..2 * π,
@@ -197,7 +242,9 @@ def circleFluxIntegral (u : ℂ → ℝ) (c : ℂ) (r : ℝ) : ℝ :=
   ∫ θ in 0..2 * π, polarRadialFlux u c r θ
 
 /-- Angular integration turns the polar divergence identity into a derivative
-of the outward flux. This also holds at radius zero.-/
+of the outward flux. This also holds at radius zero.
+@isnad1 id=hasderiv.1h3v.s7.9c53e5a1f76a from=translated src=- shape=5437a4d5 vocab=8e54100f
+-/
 theorem hasDerivAt_circleFluxIntegral {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r : ℝ) :
     HasDerivAt (circleFluxIntegral u c)
@@ -239,6 +286,9 @@ theorem hasDerivAt_circleFluxIntegral {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
   rw [← hsum]
   exact hd
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.3e9fa52e0ca8 from=translated src=- shape=37414343 vocab=9df84ea8
+-/
 theorem hasDerivAt_circleAverage_radius {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) (r : ℝ) :
     HasDerivAt (Real.circleAverage u c)
@@ -256,15 +306,24 @@ theorem hasDerivAt_circleAverage_radius {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u
   simpa only [Real.circleAverage_def, polarPoint_eq_circleMap, smul_eq_mul] using!
     h.const_mul ((2 * π)⁻¹)
 
+/--
+@isnad1 id=mem.2h4v.s5.099390d4beda from=translated src=- shape=3dd7d672 vocab=4d34756f
+-/
 theorem polarPoint_mem_closedBall (c : ℂ) {r R : ℝ} (hr : 0 ≤ r) (hrR : r ≤ R)
     (θ : ℝ) : polarPoint c r θ ∈ closedBall c R := by
   rw [polarPoint_eq_circleMap]
   exact closedBall_subset_closedBall hrR (circleMap_mem_closedBall c hr θ)
 
+/--
+@isnad1 id=eq.0h2v.s4.8ca2d944b0a5 from=translated src=- shape=515686d5 vocab=f4879030
+-/
 @[simp] theorem circleFluxIntegral_zero (u : ℂ → ℝ) (c : ℂ) :
     circleFluxIntegral u c 0 = 0 := by
   simp [circleFluxIntegral, polarRadialFlux]
 
+/--
+@isnad1 id=monotone.2h3v.s6.26cfbb3be100 from=translated src=- shape=b1655c3c vocab=e27c81d6
+-/
 theorem circleFluxIntegral_monotoneOn {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) {R : ℝ} (hΔ : ∀ z ∈ closedBall c R, 0 ≤ Δ u z) :
     MonotoneOn (circleFluxIntegral u c) (Icc 0 R) := by
@@ -279,13 +338,18 @@ theorem circleFluxIntegral_monotoneOn {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
   intro θ
   exact mul_nonneg hr'.1 (hΔ _ (polarPoint_mem_closedBall c hr'.1 hr'.2 θ))
 
+/--
+@isnad1 id=le.4h4v.s7.b0f426065015 from=translated src=- shape=04eb211f vocab=7e7e7451
+-/
 theorem circleFluxIntegral_nonneg {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) {R r : ℝ} (hR : 0 ≤ R) (hΔ : ∀ z ∈ closedBall c R, 0 ≤ Δ u z)
     (hr : r ∈ Icc 0 R) : 0 ≤ circleFluxIntegral u c r := by
   simpa only [circleFluxIntegral_zero] using
     (circleFluxIntegral_monotoneOn hu c hΔ) ⟨le_rfl, hR⟩ hr hr.1
 
-/-- A nonnegative Laplacian makes concentric circle averages monotone.-/
+/-- A nonnegative Laplacian makes concentric circle averages monotone.
+@isnad1 id=monotone.3h3v.s7.3e8b94b8fed8 from=translated src=- shape=c9d8c19d vocab=a8f30d43
+-/
 theorem circleAverage_monotoneOn_of_laplacian_nonneg {u : ℂ → ℝ}
     (hu : ContDiff ℝ 2 u) (c : ℂ) {R : ℝ} (hR : 0 ≤ R)
     (hΔ : ∀ z ∈ closedBall c R, 0 ≤ Δ u z) :
@@ -305,7 +369,9 @@ theorem circleAverage_monotoneOn_of_laplacian_nonneg {u : ℂ → ℝ}
   exact mul_nonneg (by positivity) hrad
 
 /-- The classical submean inequality for a globally C² real function whose
-Laplacian is nonnegative on the specified closed disc.-/
+Laplacian is nonnegative on the specified closed disc.
+@isnad1 id=le.3h3v.s7.7582e9b82b08 from=translated src=- shape=6a854135 vocab=32ddc72a
+-/
 theorem submean_of_laplacian_nonneg {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u)
     (c : ℂ) {R : ℝ} (hR : 0 ≤ R) (hΔ : ∀ z ∈ closedBall c R, 0 ≤ Δ u z) :
     u c ≤ Real.circleAverage u c R := by

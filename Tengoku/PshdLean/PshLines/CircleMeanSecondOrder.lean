@@ -20,7 +20,9 @@ open scoped Topology
 namespace PshLines
 
 /-- The ordinary Laplacian of a globally C² function on the complex plane is
-continuous, with the normalization used in the complex-line Levi formula.-/
+continuous, with the normalization used in the complex-line Levi formula.
+@isnad1 id=continuo.1h1v.s6.8c4b021461da from=translated src=- shape=8a05f8ab vocab=3a8128ab
+-/
 theorem continuous_laplacian_complex {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u) :
     Continuous (Δ u) := by
   have hD : Continuous (fderiv ℝ (fderiv ℝ u)) :=
@@ -32,7 +34,9 @@ theorem continuous_laplacian_complex {u : ℂ → ℝ} (hu : ContDiff ℝ 2 u) :
   simpa [InnerProductSpace.laplacian_eq_iteratedFDeriv_complexPlane,
     iteratedFDeriv_two_apply] using! h₁.add hI
 
-/-- The squared distance to the center has Laplacian four in the complex plane.-/
+/-- The squared distance to the center has Laplacian four in the complex plane.
+@isnad1 id=eq.0h2v.s6.d356892810a9 from=translated src=- shape=9805f95b vocab=9807756e
+-/
 theorem laplacian_complex_norm_sub_sq (c z : ℂ) :
     Δ (fun w : ℂ ↦ ‖w - c‖ ^ 2) z = 4 := by
   have h := laplacian_complexLine
@@ -40,7 +44,9 @@ theorem laplacian_complex_norm_sub_sq (c z : ℂ) :
     (contDiff_norm_sq ℂ) (-c) 1 z
   simpa [leviForm_norm_sq, sub_eq_add_neg, add_comm] using h
 
-/-- Squared distance to the center is constant on a circle.-/
+/-- Squared distance to the center is constant on a circle.
+@isnad1 id=eq.0h2v.s6.724378faac31 from=translated src=- shape=bf9cc99f vocab=ee78b402
+-/
 theorem circleAverage_complex_norm_sub_sq (c : ℂ) (R : ℝ) :
     Real.circleAverage (fun z : ℂ ↦ ‖z - c‖ ^ 2) c R = R ^ 2 := by
   calc
@@ -53,7 +59,9 @@ theorem circleAverage_complex_norm_sub_sq (c : ℂ) (R : ℝ) :
     _ = R ^ 2 := Real.circleAverage_const _ _ _
 
 /-- A lower bound for the Laplacian gives the exact quadratic correction to the
-circle submean inequality. The real constant `k` need not be positive.-/
+circle submean inequality. The real constant `k` need not be positive.
+@isnad1 id=le.3h4v.s7.162b5b2543da from=translated src=- shape=90919d53 vocab=bda9291a
+-/
 theorem quadratic_submean_of_laplacian_lower_bound {u : ℂ → ℝ}
     (hu : ContDiff ℝ 2 u) (c : ℂ) {R k : ℝ} (hR : 0 ≤ R)
     (hΔ : ∀ z ∈ closedBall c R, 4 * k ≤ Δ u z) :
@@ -80,7 +88,9 @@ theorem quadratic_submean_of_laplacian_lower_bound {u : ℂ → ℝ}
 
 /-- For a globally C² real function, the ordinary circle submean inequalities
 at all sufficiently small positive radii force a nonnegative Laplacian at the
-center. No differentiability property of circle averages is assumed.-/
+center. No differentiability property of circle averages is assumed.
+@isnad1 id=le.2h2v.s7.764a5536358a from=translated src=- shape=1e5df453 vocab=ed250a0e
+-/
 theorem laplacian_nonneg_of_eventually_circleAverage_submean {u : ℂ → ℝ}
     (hu : ContDiff ℝ 2 u) (c : ℂ)
     (hmean : ∀ᶠ r in 𝓝[>] (0 : ℝ), u c ≤ Real.circleAverage u c r) :
@@ -111,7 +121,9 @@ theorem laplacian_nonneg_of_eventually_circleAverage_submean {u : ℂ → ℝ}
   simp only [Pi.neg_apply] at hmod
   linarith
 
-/-- A version with an explicit positive radius bound.-/
+/-- A version with an explicit positive radius bound.
+@isnad1 id=le.3h3v.s7.30b436448fa8 from=translated src=- shape=12076991 vocab=61719a9e
+-/
 theorem laplacian_nonneg_of_circleAverage_submean {u : ℂ → ℝ}
     (hu : ContDiff ℝ 2 u) (c : ℂ) {R : ℝ} (hR : 0 < R)
     (hmean : ∀ r ∈ Ioo 0 R, u c ≤ Real.circleAverage u c r) :

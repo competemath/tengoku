@@ -22,7 +22,9 @@ section CauchySchwarz
 
 variable {α : Type*} [MeasurableSpace α]
 
-/-- Cauchy–Schwarz for a measure with density.-/
+/-- Cauchy–Schwarz for a measure with density.
+@isnad1 id=le.2h4v.s7.41590a246e30 from=translated src=- shape=79e80d1a vocab=91407423
+-/
 theorem withDensity_apply_le_sqrt (ν : Measure α) {f : α → ℝ≥0∞} (hf : AEMeasurable f ν)
     {A : Set α} (hA : MeasurableSet A) :
     ν.withDensity f A ≤ (∫⁻ x, f x ^ 2 ∂ν) ^ (1 / 2 : ℝ) * ν A ^ (1 / 2 : ℝ) := by
@@ -46,7 +48,9 @@ theorem withDensity_apply_le_sqrt (ν : Measure α) {f : α → ℝ≥0∞} (hf 
   rw [h2, h3]
 
 omit [MeasurableSpace α] in
-/-- A pointwise geometric-mean lower bound integrates to a product lower bound.-/
+/-- A pointwise geometric-mean lower bound integrates to a product lower bound.
+@isnad1 id=le.3h5v.s7.651df566eb85 from=translated src=- shape=44e7ee20 vocab=f54161c1
+-/
 theorem sq_le_lintegral_mul_lintegral [MeasurableSpace α] (m : Measure α) [IsProbabilityMeasure m]
     {N V : α → ℝ≥0∞} (hN : AEMeasurable N m) (hV : AEMeasurable V m) {a : ℝ≥0∞}
     (h : ∀ᵐ U ∂m, a ≤ N U ^ (1 / 2 : ℝ) * V U ^ (1 / 2 : ℝ)) :
@@ -79,7 +83,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [FiniteDimensional ℂ E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
 
 omit [FiniteDimensional ℂ E] [MeasurableSpace E] [BorelSpace E] in
-/-- A fiber of a rotated hyperplane projection is an affine complex line.-/
+/-- A fiber of a rotated hyperplane projection is an affine complex line.
+@isnad1 id=ex.1h5v.s13.1f2454fe2548 from=translated src=- shape=2d7628be vocab=05508267
+-/
 theorem exists_eq_add_smul_of_unitaryProjection_eq (e₀ : E) (U : UnitaryGroup E)
     {c : (ℂ ∙ e₀)ᗮ} {y : E} (h : unitaryProjection e₀ U y = c) :
     ∃ t : ℂ, y = ((U⁻¹ : UnitaryGroup E) : E →L[ℂ] E) c +
@@ -101,7 +107,9 @@ theorem exists_eq_add_smul_of_unitaryProjection_eq (e₀ : E) (U : UnitaryGroup 
 /-- **Incidence** (`pshd-vibe`, Lemma 1.5). Let `n ≥ 2`, `K` compact and `S j ⊆ K`
 Borel. If probability measures `μ j` carried by `S j` have uniformly bounded
 `(2n - 2)`-energy, then one affine complex line `c + ℂ v` meets `S j` for
-infinitely many `j`.-/
+infinitely many `j`.
+@isnad1 id=ex.7h5v.s8.b0d64655e7dd from=translated src=- shape=1baf7cbd vocab=dfc555a6
+-/
 theorem exists_affineLine_frequently_meets (hn : 2 ≤ Module.finrank ℂ E) {K : Set E}
     (hK : IsCompact K) {S : ℕ → Set E} (hS : ∀ j, MeasurableSet (S j)) (hSK : ∀ j, S j ⊆ K)
     (μ : ℕ → Measure E) [∀ j, IsProbabilityMeasure (μ j)] (hμS : ∀ j, μ j (S j) = 1)

@@ -29,7 +29,9 @@ noncomputable def translationFirstRemainder
     (κ : E → ℝ) (z h y : E) : ℝ :=
   κ (y - (z + h)) - κ (y - z) - fderiv ℝ κ (y - z) (-h)
 
-/-- Smoothness in the spatial variable of the scalar translation remainder.-/
+/-- Smoothness in the spatial variable of the scalar translation remainder.
+@isnad1 id=contdiff.1h4v.s6.277beec42145 from=translated src=- shape=a60212ee vocab=6c5cd961
+-/
 theorem translationFirstRemainder_contDiff
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (κ : E → ℝ) (hκ : ContDiff ℝ (⊤ : ℕ∞) κ) (z h : E) :
@@ -58,6 +60,9 @@ noncomputable def cutoffTranslationFirstRemainderSupportedIn
     cutoffTranslatedKernelSupportedIn χ κ hκ K hχK z -
     cutoffTranslatedKernelFirstJetLM χ κ hκ K hχK z h
 
+/--
+@isnad1 id=eq.2h8v.s8.ddfa94dcbb44 from=translated src=- shape=07dca5a4 vocab=f5749636
+-/
 @[simp]
 theorem cutoffTranslationFirstRemainderSupportedIn_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -75,7 +80,9 @@ theorem cutoffTranslationFirstRemainderSupportedIn_apply
 
 /-- A quantitative Leibniz estimate for one seminorm of the cutoff translation
 remainder.  The arrays `A` and `B` may be any uniform derivative bounds for the
-cutoff and the uncut scalar remainder on `K`.-/
+cutoff and the uncut scalar remainder on `K`.
+@isnad1 id=le.6h10v.s10.2a1a921af85c from=translated src=- shape=03ad5a41 vocab=e2fc57e9
+-/
 theorem cutoffTranslationFirstRemainder_seminorm_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)
@@ -128,7 +135,9 @@ theorem cutoffTranslationFirstRemainder_seminorm_le
         (mul_nonneg (Nat.cast_nonneg _) (hA0 i hir))
 
 /-- Little-o bounds for the finitely many uncut spatial derivatives pass
-through multiplication by the fixed cutoff to each fixed-support seminorm.-/
+through multiplication by the fixed cutoff to each fixed-support seminorm.
+@isnad1 id=islittle.7h9v.s10.b888c4838d6c from=translated src=- shape=ae0e41f8 vocab=1f77babb
+-/
 theorem cutoffTranslationFirstRemainder_seminorm_isLittleO
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {Ω : Opens E} (χ : 𝓓(Ω, ℝ)) (κ : E → ℝ)

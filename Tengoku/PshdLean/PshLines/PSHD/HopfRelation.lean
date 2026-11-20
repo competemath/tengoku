@@ -15,7 +15,9 @@ open Set Metric
 
 namespace PshLines.PSHD
 
-/-- Equality of projective directions is a closed relation on the unit sphere.-/
+/-- Equality of projective directions is a closed relation on the unit sphere.
+@isnad1 id=isclosed.0h1v.s9.85a9811a493c from=translated src=- shape=56d2aadd vocab=30c7e2d7
+-/
 theorem isClosed_hopf_relation
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] :
     IsClosed {p : sphere (0 : E) 1 × sphere (0 : E) 1 | hopf p.1 = hopf p.2} := by
@@ -37,7 +39,9 @@ theorem isClosed_hopf_relation
   rw [heq]
   exact isClosedMap_snd_of_compactSpace C hC
 
-/-- The high-value star relation lifted to unit direction vectors is Borel.-/
+/-- The high-value star relation lifted to unit direction vectors is Borel.
+@isnad1 id=measurab.1h5v.s10.33e3aa1838e1 from=translated src=- shape=b695590b vocab=d3b9e528
+-/
 theorem measurableSet_highValue_hopf_relation
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]

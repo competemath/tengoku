@@ -29,7 +29,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
 /-- **Pointwise recovery of the representative along lines** (Step 4 of
 Proposition 2.1). A real function which is subharmonic on every connected
 component of every affine complex-line section of an open set agrees at every
-point with any plurisubharmonic function equal to it almost everywhere.-/
+point with any plurisubharmonic function equal to it almost everywhere.
+@isnad1 id=eq.5h6v.s7.9d93dfea251c from=translated src=- shape=afaa7bc6 vocab=a43ffb85
+-/
 theorem LineSubharmonicOn.eqOn_of_ae_eq_of_lines {u : E → ℝ} {v : E → EReal} {D : Set E}
     (hD : IsOpen D) (hl : LineSubharmonicOn u D) (hv : PlurisubharmonicOn v D)
     (μ : Measure E) [μ.IsAddHaarMeasure]

@@ -26,7 +26,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Almost-everywhere comparison with an upper semicontinuous function implies
 pointwise comparison for actual PSH germs. The comparison function may even
-take the value `⊤`; no local integrability assumption is needed.-/
+take the value `⊤`; no local integrability assumption is needed.
+@isnad1 id=le.5h6v.s8.0747b0f1433f from=translated src=- shape=dccb4a39 vocab=7b91ec55
+-/
 theorem PlurisubharmonicOn.le_of_ae_le {u v : E → EReal} {Ω : Set E}
     (hu : PlurisubharmonicOn u Ω) (hΩ : IsOpen Ω)
     (hv : UpperSemicontinuousOn v Ω)
@@ -94,7 +96,9 @@ theorem PlurisubharmonicOn.le_of_ae_le {u v : E → EReal} {Ω : Set E}
   linarith
 
 /-- Two plurisubharmonic functions that agree almost everywhere agree at
-every point of their open domain, including points with value `⊥`.-/
+every point of their open domain, including points with value `⊥`.
+@isnad1 id=eqon.4h5v.s8.6ddb0a232db4 from=translated src=- shape=0f17d850 vocab=b65213e5
+-/
 theorem PlurisubharmonicOn.eqOn_of_ae_eq {u v : E → EReal} {Ω : Set E}
     (hu : PlurisubharmonicOn u Ω) (hv : PlurisubharmonicOn v Ω) (hΩ : IsOpen Ω)
     (μ : Measure E) [μ.IsAddHaarMeasure]
@@ -106,7 +110,9 @@ theorem PlurisubharmonicOn.eqOn_of_ae_eq {u v : E → EReal} {Ω : Set E}
 omit [NormedSpace ℂ E] [IsScalarTower ℝ ℂ E] in
 /-- Equality of actual regular distributions determines their locally
 integrable real densities almost everywhere on the test-function domain.
-The density-separation theorem is supplied by mathlib.-/
+The density-separation theorem is supplied by mathlib.
+@isnad1 id=eventual.3h5v.s8.00bd754777b3 from=translated src=- shape=042e2382 vocab=633fc1aa
+-/
 theorem ae_eq_of_regularDistribution_eq {Ω : Opens E} {f g : E → ℝ}
     (μ : Measure E) (hf : LocallyIntegrableOn f Ω μ) (hg : LocallyIntegrableOn g Ω μ)
     (heq : regularDistribution μ f hf = regularDistribution μ g hg) :
@@ -133,7 +139,9 @@ theorem ae_eq_of_regularDistribution_eq {Ω : Opens E} {f g : E → ℝ}
 
 /-- Equality of regular distributions of genuine almost-everywhere real
 representatives determines their PSH potentials. The representative hypotheses
-exclude identifying `⊥` with the zero value of its `toReal`.-/
+exclude identifying `⊥` with the zero value of its `toReal`.
+@isnad1 id=eqon.7h5v.s9.5962f711ed0c from=translated src=- shape=56bd9724 vocab=fa34742d
+-/
 theorem PlurisubharmonicOn.eqOn_of_regularDistribution_eq
     {u v : E → EReal} {Ω : Opens E}
     (hu : PlurisubharmonicOn u Ω) (hv : PlurisubharmonicOn v Ω)
@@ -151,7 +159,9 @@ theorem PlurisubharmonicOn.eqOn_of_regularDistribution_eq
 
 /-- A nontrivial PSH potential on a preconnected open domain is determined by
 its actual regular distribution. Local integrability and genuine real
-representatives follow from the PSH hypotheses.-/
+representatives follow from the PSH hypotheses.
+@isnad1 id=iff.5h5v.s9.93a68db2bce6 from=translated src=- shape=c9780b3b vocab=19f2c368
+-/
 theorem pshRegularDistribution_eq_iff {u v : E → EReal} {Ω : Opens E}
     (hu : PlurisubharmonicOn u Ω) (hv : PlurisubharmonicOn v Ω)
     (μ : Measure E) [μ.IsAddHaarMeasure] (hΩ : IsPreconnected (Ω : Set E))

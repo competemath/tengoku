@@ -23,7 +23,9 @@ noncomputable def radialPoissonSlope
   radialWeightedCumulative n g s / (4 * s ^ n)
 
 /-- On the positive half-line, the radial Poisson slope has the derivative
-given by the quotient-rule formula in ODE form.-/
+given by the quotient-rule formula in ODE form.
+@isnad1 id=hasderiv.3h3v.s7.f0f7b153169a from=translated src=- shape=1fce9894 vocab=5bba5b4c
+-/
 theorem radialPoissonSlope_hasDerivAt
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g)
     {s : ℝ} (hs : 0 < s) :
@@ -52,7 +54,9 @@ theorem radialPoissonSlope_hasDerivAt
   ring
 
 /-- The defining first-order radial Poisson equation on the positive
-half-line.-/
+half-line.
+@isnad1 id=eq.3h3v.s6.8d3191781475 from=translated src=- shape=44d167f4 vocab=97ae69b9
+-/
 theorem radialPoissonSlope_ode
     {n : ℕ} (hn : 0 < n) {g : ℝ → ℝ} (hg : Continuous g)
     {s : ℝ} (hs : 0 < s) :
@@ -63,7 +67,9 @@ theorem radialPoissonSlope_ode
   ring
 
 /-- A nonpositive weighted cumulative term gives a nonpositive Poisson slope
-at every positive squared radius.-/
+at every positive squared radius.
+@isnad1 id=le.2h3v.s5.a686e2c804ac from=translated src=- shape=7f8a72d8 vocab=84907f4b
+-/
 theorem radialPoissonSlope_nonpos
     {n : ℕ} {g : ℝ → ℝ} {s : ℝ} (hs : 0 < s)
     (hC : radialWeightedCumulative n g s ≤ 0) :

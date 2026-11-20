@@ -18,7 +18,9 @@ open scoped ENNReal
 namespace PshLines.PSHD
 
 /-- A fixed unit vector supplies uniform high-value star measures at every
-positive energy order below the real dimension of its radius--chart space.-/
+positive energy order below the real dimension of its radius--chart space.
+@isnad1 id=ex.4h4v.s10.3a1cbd2724bf from=translated src=- shape=dfae95de vocab=3b137127
+-/
 theorem exists_uniform_highValue_star_of_unit
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [FiniteDimensional ℂ E] [MeasurableSpace E] [BorelSpace E]

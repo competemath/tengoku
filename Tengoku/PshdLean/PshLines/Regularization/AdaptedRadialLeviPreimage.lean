@@ -36,7 +36,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
   [NormedSpace ℂ F] [IsScalarTower ℝ ℂ F]
 
-/-- Levi forms commute with pullback by a continuous complex-linear map.-/
+/-- Levi forms commute with pullback by a continuous complex-linear map.
+@isnad1 id=eq.1h6v.s9.4648b93143ac from=translated src=- shape=61e676c4 vocab=bec26e28
+-/
 theorem leviForm_comp_complexLinearMap
     (A : E →L[ℂ] F) {u : F → ℝ} (hu : ContDiff ℝ 2 u)
     (x v : E) :
@@ -57,7 +59,9 @@ section CoordinateNormalization
 variable {n : ℕ} (ν : Measure (ComplexModel n)) [ν.IsAddHaarMeasure]
 
 /-- The integral used to normalize a coordinate radial kernel differs from
-the standard-volume integral by the positive Haar scalar.-/
+the standard-volume integral by the positive Haar scalar.
+@isnad1 id=eq.1h4v.s9.d79084a84507 from=translated src=- shape=645a1a51 vocab=7a6c2df8
+-/
 theorem integral_explicitRadialRaw_eq_haarScalar_mul
     (R : ℝ) (hR : 0 < R) (j : ℕ) :
     (∫ x : ComplexModel n, explicitRadialRaw R hR j x ∂ν) =
@@ -69,7 +73,9 @@ theorem integral_explicitRadialRaw_eq_haarScalar_mul
       (explicitRadialRaw_hasCompactSupport R hR j))
 
 /-- A coordinate-normalized kernel is the standard-volume kernel divided by
-the Haar scalar.-/
+the Haar scalar.
+@isnad1 id=eq.1h5v.s8.ad43319c4a0d from=translated src=- shape=19a85afd vocab=1d4f1c39
+-/
 theorem coordinateRadialKernel_eq_inv_haarScalar_mul
     (R : ℝ) (hR : 0 < R) (j : ℕ) (x : ComplexModel n) :
     coordinateRadialKernel ν R hR j x =
@@ -101,6 +107,9 @@ noncomputable def adaptedCoordinateVector
   (adaptedComplexModelEquiv (E := E)).symm (coordinateVector j)
 
 omit [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.0h2v.s10.488a47257162 from=translated src=- shape=ac9e8eb1 vocab=fe58b19f
+-/
 @[simp] theorem adaptedComplexModelEquiv_adaptedCoordinateVector
     (j : Fin (Module.finrank ℂ E)) :
     adaptedComplexModelEquiv (adaptedCoordinateVector (E := E) j) =
@@ -115,7 +124,9 @@ noncomputable def adaptedRadialPoissonPotential
     explicitRadialPoissonPotential R hR a b (adaptedComplexModelEquiv x)
 
 /-- The adapted Poisson potential is radial in the transported complex
-coordinates: it is a one-variable profile of the squared coordinate norm.-/
+coordinates: it is a one-variable profile of the squared coordinate norm.
+@isnad1 id=ex.1h5v.s10.b297d0f37b2f from=translated src=- shape=1db49d49 vocab=0ae98db2
+-/
 theorem adaptedRadialPoissonPotential_eq_profile
     (R : ℝ) (hR : 0 < R) (a b : ℕ) :
     ∃ G : ℝ → ℝ, ∀ x : E,
@@ -132,7 +143,9 @@ theorem adaptedRadialPoissonPotential_eq_profile
   rfl
 
 /-- In particular, the adapted potential is invariant under complex scalar
-rotations in its transported coordinates.-/
+rotations in its transported coordinates.
+@isnad1 id=eq.2h7v.s11.97f5e1492516 from=translated src=- shape=536db66e vocab=f1403970
+-/
 theorem adaptedRadialPoissonPotential_unitary
     (R : ℝ) (hR : 0 < R) (a b : ℕ)
     (ζ : ℂ) (hζ : ‖ζ‖ = 1) (x : E) :
@@ -143,6 +156,9 @@ theorem adaptedRadialPoissonPotential_unitary
   simp [adaptedRadialPoissonPotential, explicitRadialPoissonPotential,
     norm_smul, hζ]
 
+/--
+@isnad1 id=contdiff.2h5v.s8.65a53551b08f from=translated src=- shape=e0191cbe vocab=ff6450ad
+-/
 theorem adaptedRadialPoissonPotential_contDiff
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) (a b : ℕ) :
@@ -152,6 +168,9 @@ theorem adaptedRadialPoissonPotential_contDiff
     ((explicitRadialPoissonPotential_contDiff hn R hR a b).comp
       ((adaptedComplexModelEquiv (E := E)).toContinuousLinearMap.restrictScalars ℝ).contDiff)
 
+/--
+@isnad1 id=le.3h6v.s8.06ecf8304143 from=translated src=- shape=c4c6256d vocab=b70a06c3
+-/
 theorem adaptedRadialPoissonPotential_nonneg
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) (x : E) :
@@ -163,7 +182,9 @@ theorem adaptedRadialPoissonPotential_nonneg
       (adaptedComplexModelEquiv x))
 
 /-- The adapted Poisson potential vanishes at and beyond the outer coordinate
-radius of the first kernel scale.-/
+radius of the first kernel scale.
+@isnad1 id=eq.4h6v.s10.d584f11a4c6e from=translated src=- shape=b6612d84 vocab=3651ade9
+-/
 theorem adaptedRadialPoissonPotential_eq_zero_of_outer
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) {x : E}
@@ -177,6 +198,9 @@ theorem adaptedRadialPoissonPotential_eq_zero_of_outer
   rw [explicitRadialPoissonPotential_eq_zero_of_outer hn R hR hab hx,
     mul_zero]
 
+/--
+@isnad1 id=hascompa.3h5v.s8.0f4e5c7a3ee1 from=translated src=- shape=a05bce73 vocab=13ba6a0b
+-/
 theorem adaptedRadialPoissonPotential_hasCompactSupport
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) :
@@ -187,7 +211,9 @@ theorem adaptedRadialPoissonPotential_hasCompactSupport
         (adaptedComplexModelEquiv (E := E)).toHomeomorph).mul_left
 
 /-- The topological support of the adapted potential lies in the pullback of
-the first kernel's outer coordinate ball.-/
+the first kernel's outer coordinate ball.
+@isnad1 id=le.3h5v.s10.604bc9f7f539 from=translated src=- shape=b1d59d8d vocab=5039ebbd
+-/
 theorem adaptedRadialPoissonPotential_tsupport_subset
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) :
@@ -207,7 +233,9 @@ theorem adaptedRadialPoissonPotential_tsupport_subset
   · exact isClosed_closedBall.preimage adaptedComplexModelEquiv.continuous
 
 /-- Four times the sum of Levi forms in the adapted coordinate directions is
-the difference of the two adapted normalized kernels.-/
+the difference of the two adapted normalized kernels.
+@isnad1 id=eq.2h6v.s8.f645021e3f8c from=translated src=- shape=4ed6a2fb vocab=b097e65d
+-/
 theorem four_mul_sum_leviForm_adaptedRadialPoissonPotential_eq_kernel_sub
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) (a b : ℕ) (x : E) :
@@ -274,7 +302,9 @@ theorem four_mul_sum_leviForm_adaptedRadialPoissonPotential_eq_kernel_sub
       ring
 
 /-- In complex dimension zero the adapted normalized kernel is independent of
-the scale index.-/
+the scale index.
+@isnad1 id=eq.2h6v.s8.71f9180156e3 from=translated src=- shape=04c4fa5a vocab=20adb1d2
+-/
 theorem adaptedRadialKernel_eq_of_finrank_complex_eq_zero
     (hzero : Module.finrank ℂ E = 0)
     (R : ℝ) (hR : 0 < R) (a b : ℕ) (x : E) :
@@ -297,7 +327,9 @@ theorem adaptedRadialKernel_eq_of_finrank_complex_eq_zero
     hdim, pow_zero, one_mul, harg]
 
 /-- Complete positive-dimensional adapted radial scale-difference
-certificate.-/
+certificate.
+@isnad1 id=ex.3h5v.s11.73490529bd15 from=translated src=- shape=508bea20 vocab=002e6540
+-/
 theorem exists_adaptedRadialScaleDifferenceLeviPreimage
     (hn : 0 < Module.finrank ℂ E)
     (R : ℝ) (hR : 0 < R) {a b : ℕ} (hab : a ≤ b) :

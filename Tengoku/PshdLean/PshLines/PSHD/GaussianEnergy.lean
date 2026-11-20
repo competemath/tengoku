@@ -21,7 +21,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [MeasurableSpace E] [BorelSpace E]
 
 omit [BorelSpace E] in
-/-- The measure transform is the vector Fourier integral of the constant one.-/
+/-- The measure transform is the vector Fourier integral of the constant one.
+@isnad1 id=eq.0h3v.s6.d1fad95e1720 from=translated src=- shape=d596de1c vocab=2259a1d6
+-/
 theorem measureFourier_eq_vectorFourier (μ : Measure E) (ξ : E) :
     measureFourier μ ξ =
       VectorFourier.fourierIntegral Real.fourierChar μ (innerₗ E) (fun _ ↦ (1 : ℂ)) ξ := by
@@ -31,7 +33,9 @@ theorem measureFourier_eq_vectorFourier (μ : Measure E) (ξ : E) :
 variable [FiniteDimensional ℝ E]
 
 /-- Gaussian testing of a finite measure's transform equals testing the measure
-against the Fourier-transformed Gaussian.-/
+against the Fourier-transformed Gaussian.
+@isnad1 id=eq.1h3v.s8.3e22ed2d41b6 from=translated src=- shape=fccbd25a vocab=266d6010
+-/
 theorem integral_measureFourier_mul_gaussian (μ : Measure E) [IsFiniteMeasure μ]
     {b : ℂ} (hb : 0 < b.re) :
     (∫ ξ : E, measureFourier μ ξ * Complex.exp (-b * ‖ξ‖ ^ 2)) =

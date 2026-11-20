@@ -15,7 +15,9 @@ open Set MeasureTheory Metric
 namespace PshLines.PSHD
 
 /-- A measurable family of subharmonic circle restrictions admits a Borel
-choice of an angle with value at least the central value.-/
+choice of an angle with value at least the central value.
+@isnad1 id=ex.5h4v.s7.5cf354b787b7 from=translated src=- shape=2faea539 vocab=fa49e375
+-/
 theorem exists_measurable_highValue_phase
     {S : Type*} [MeasurableSpace S]
     {u : S → ℂ → ℝ} {U : S → Set ℂ} {r : S → ℝ}

@@ -18,6 +18,9 @@ namespace PshLines
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
+/--
+@isnad1 id=eq.2h6v.s8.67b1dd73c971 from=translated src=- shape=939d9fcb vocab=24a7a013
+-/
 theorem circleDeficit_coe_eq {u : E → ℝ} (x v : E) (r C : ℝ)
     (hu : IntervalIntegrable (fun t : ℝ => u (x + circleMap 0 r t • v))
       volume 0 (2 * Real.pi))
@@ -38,7 +41,9 @@ theorem circleDeficit_coe_eq {u : E → ℝ} (x v : E) (r C : ℝ)
     intervalIntegral.integral_const]
   simp only [sub_zero, smul_eq_mul]
 
-/-- For finite values, the extended-real test is exactly the usual mean inequality.-/
+/-- For finite values, the extended-real test is exactly the usual mean inequality.
+@isnad1 id=iff.3h6v.s8.26845b164c9f from=translated src=- shape=ff656a89 vocab=793986f2
+-/
 theorem circleDeficit_coe_le_iff {u : E → ℝ} (x v : E) (r C : ℝ)
     (hu : IntervalIntegrable (fun t : ℝ => u (x + circleMap 0 r t • v))
       volume 0 (2 * Real.pi))
@@ -55,7 +60,9 @@ theorem circleDeficit_coe_le_iff {u : E → ℝ} (x v : E) (r C : ℝ)
   constructor <;> intro h <;> nlinarith
 
 /-- A continuous real potential satisfying ordinary circle submean inequalities
-satisfies the extended-real disc criterion.-/
+satisfies the extended-real disc criterion.
+@isnad1 id=discpsho.2h3v.s7.c8573ab0322c from=translated src=- shape=c0d47c65 vocab=d6e60947
+-/
 theorem discPshOn_of_circleAverage {u : E → ℝ} {U : Set E} (hu : Continuous u)
     (hmean : ∀ (x v : E) (r : ℝ), 0 < r → affineClosedDisc x v r ⊆ U →
       u x ≤ Real.circleAverage (fun z : ℂ => u (x + z • v)) 0 r) :

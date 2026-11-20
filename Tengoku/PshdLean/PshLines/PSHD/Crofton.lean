@@ -24,7 +24,9 @@ section Radial
 variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [MeasurableSpace V]
   [BorelSpace V] [FiniteDimensional ℝ V] [Nontrivial V]
 
-/-- Polar coordinates for radial nonnegative functions, as lower integrals.-/
+/-- Polar coordinates for radial nonnegative functions, as lower integrals.
+@isnad1 id=eq.1h3v.s8.4e6cd96b656e from=translated src=- shape=826632bf vocab=6e8d7e25
+-/
 theorem lintegral_fun_norm_addHaar (μ : Measure V) [μ.IsAddHaarMeasure]
     {f : ℝ → ℝ≥0∞} (hf : Measurable f) :
     ∫⁻ x, f ‖x‖ ∂μ = Module.finrank ℝ V * μ (ball 0 1) *
@@ -56,7 +58,9 @@ open scoped InnerProductSpace
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
-/-- A complex reflection exchanges two vectors of equal norm with real inner product.-/
+/-- A complex reflection exchanges two vectors of equal norm with real inner product.
+@isnad1 id=eq.2h3v.s9.e91bfe52261c from=translated src=- shape=06274669 vocab=4bf36584
+-/
 theorem reflection_sub_complex {v w : E} [(ℂ ∙ (v - w))ᗮ.HasOrthogonalProjection]
     (h : ‖v‖ = ‖w‖) (him : (⟪v, w⟫_ℂ).im = 0) :
     (ℂ ∙ (v - w))ᗮ.reflection v = w := by
@@ -78,7 +82,9 @@ theorem reflection_sub_complex {v w : E} [(ℂ ∙ (v - w))ᗮ.HasOrthogonalProj
   · simp
   · abel
 
-/-- Linear isometries act transitively on each sphere.-/
+/-- Linear isometries act transitively on each sphere.
+@isnad1 id=ex.1h3v.s8.7fe00e6cf867 from=translated src=- shape=b68ac8ee vocab=c8934476
+-/
 theorem exists_linearIsometryEquiv_apply_eq [FiniteDimensional ℂ E] {v w : E}
     (h : ‖v‖ = ‖w‖) : ∃ L : E ≃ₗᵢ[ℂ] E, L v = w := by
   by_cases hz : ⟪v, w⟫_ℂ = 0
@@ -114,11 +120,16 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [FiniteDimensional ℂ E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
 
 omit [FiniteDimensional ℂ E] [MeasurableSpace E] [BorelSpace E] in
-/-- The action of an inverse unitary on a vector.-/
+/-- The action of an inverse unitary on a vector.
+@isnad1 id=continuo.0h1v.s13.0ce5c174fd4a from=translated src=- shape=8fa02c77 vocab=fe957073
+-/
 theorem continuous_unitary_inv_apply :
     Continuous fun p : UnitaryGroup E × E ↦ ((p.1⁻¹ : UnitaryGroup E) : E →L[ℂ] E) p.2 :=
   (continuous_subtype_val.comp continuous_fst.inv).clm_apply continuous_snd
 
+/--
+@isnad1 id=measurab.0h1v.s13.0b191304dc6a from=translated src=- shape=ee987b32 vocab=e78a54b3
+-/
 theorem measurable_unitary_inv_apply :
     Measurable fun p : UnitaryGroup E × E ↦ ((p.1⁻¹ : UnitaryGroup E) : E →L[ℂ] E) p.2 :=
   continuous_unitary_inv_apply.measurable
@@ -128,12 +139,17 @@ variable (E) in
 def unitaryAverage (g : E → ℝ≥0∞) (ζ : E) : ℝ≥0∞ :=
   ∫⁻ U, g (((U⁻¹ : UnitaryGroup E) : E →L[ℂ] E) ζ) ∂unitaryHaar E
 
+/--
+@isnad1 id=measurab.1h2v.s6.95dfa98e9a40 from=translated src=- shape=eae17963 vocab=a9d07618
+-/
 theorem measurable_unitaryAverage {g : E → ℝ≥0∞} (hg : Measurable g) :
     Measurable (unitaryAverage E g) :=
   (hg.comp measurable_unitary_inv_apply).lintegral_prod_left'
 
 omit [MeasurableSpace E] [BorelSpace E] in
-/-- The orbit average is unitary invariant.-/
+/-- The orbit average is unitary invariant.
+@isnad1 id=eq.0h4v.s11.94ca75ab59af from=translated src=- shape=dab36ab1 vocab=11eac3f5
+-/
 theorem unitaryAverage_apply_unitary (g : E → ℝ≥0∞) (V : UnitaryGroup E) (ζ : E) :
     unitaryAverage E g ((V : E →L[ℂ] E) ζ) = unitaryAverage E g ζ := by
   unfold unitaryAverage
@@ -144,7 +160,9 @@ theorem unitaryAverage_apply_unitary (g : E → ℝ≥0∞) (V : UnitaryGroup E)
   rfl
 
 omit [MeasurableSpace E] [BorelSpace E] in
-/-- The orbit average depends only on the norm.-/
+/-- The orbit average depends only on the norm.
+@isnad1 id=eq.1h4v.s7.83db621a6678 from=translated src=- shape=36fc52a7 vocab=0b9f5f06
+-/
 theorem unitaryAverage_eq_norm_smul (g : E → ℝ≥0∞) {e₀ : E} (he₀ : ‖e₀‖ = 1) (ζ : E) :
     unitaryAverage E g ζ = unitaryAverage E g ((‖ζ‖ : ℂ) • e₀) := by
   obtain ⟨L, hL⟩ := exists_linearIsometryEquiv_apply_eq
@@ -152,7 +170,9 @@ theorem unitaryAverage_eq_norm_smul (g : E → ℝ≥0∞) {e₀ : E} (he₀ : �
   conv_lhs => rw [← hL]
   exact unitaryAverage_apply_unitary g (Unitary.linearIsometryEquiv.symm L) _
 
-/-- Unitary averaging does not change integrals against a radial weight.-/
+/-- Unitary averaging does not change integrals against a radial weight.
+@isnad1 id=eq.2h3v.s7.6e21a2394a63 from=translated src=- shape=2ec0c146 vocab=2aeb6b20
+-/
 theorem lintegral_mul_radial_eq_unitaryAverage {g : E → ℝ≥0∞} (hg : Measurable g)
     {k : ℝ → ℝ≥0∞} (hk : Measurable k) :
     ∫⁻ ζ, g ζ * k ‖ζ‖ = ∫⁻ ζ, unitaryAverage E g ζ * k ‖ζ‖ := by
@@ -199,6 +219,9 @@ def croftonConstant (e₀ : E) : ℝ≥0∞ :=
     (Module.finrank ℝ E * (volume : Measure E) (ball 0 1))
 
 omit [FiniteDimensional ℂ E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E] in
+/--
+@isnad1 id=eq.2h2v.s8.d1e5df915383 from=translated src=- shape=4c8cdd60 vocab=6be38d41
+-/
 theorem finrank_real_orthogonal_span_singleton (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E}
     (he₀ : e₀ ≠ 0) :
     Module.finrank ℝ (ℂ ∙ e₀)ᗮ + 2 = Module.finrank ℝ E := by
@@ -210,7 +233,9 @@ theorem finrank_real_orthogonal_span_singleton (hn : 2 ≤ Module.finrank ℂ E)
 
 /-- **Crofton formula for complex hyperplanes.** Averaging Lebesgue integrals
 over the unitary images of a fixed complex hyperplane gives a multiple of the
-weight `|ζ|⁻²`.-/
+weight `|ζ|⁻²`.
+@isnad1 id=eq.3h3v.s13.a64aebf21fa5 from=translated src=- shape=176905f8 vocab=0b9928e5
+-/
 theorem lintegral_unitaryHaar_hyperplane_eq (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E}
     (he₀ : ‖e₀‖ = 1) {g : E → ℝ≥0∞} (hg : Measurable g) :
     ∫⁻ U, ∫⁻ h : (ℂ ∙ e₀)ᗮ, g (((U⁻¹ : UnitaryGroup E) : E →L[ℂ] E) h) ∂volume
@@ -271,6 +296,9 @@ theorem lintegral_unitaryHaar_hyperplane_eq (hn : 2 ≤ Module.finrank ℂ E) {e
   · exact ENNReal.mul_ne_top (by simp) measure_ball_lt_top.ne
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=and.2h2v.s7.0a71b25086f1 from=translated src=- shape=de5f8d03 vocab=df81fc98
+-/
 theorem croftonConstant_pos_ne_top (hn : 2 ≤ Module.finrank ℂ E) {e₀ : E} (he₀ : ‖e₀‖ = 1) :
     0 < croftonConstant e₀ ∧ croftonConstant e₀ ≠ ⊤ := by
   have he₀' : e₀ ≠ 0 := by

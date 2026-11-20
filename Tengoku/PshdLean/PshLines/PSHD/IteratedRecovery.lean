@@ -15,7 +15,9 @@ open scoped Topology ENNReal
 namespace PshLines.PSHD
 
 /-- If every sufficiently high row of a measurable double sequence converges
-to the same value at each point, that value is measurable.-/
+to the same value at each point, that value is measurable.
+@isnad1 id=measurab.2h3v.s6.fb8350eac924 from=translated src=- shape=78d37812 vocab=86f6e86a
+-/
 theorem measurable_of_eventually_tendsto
     {X : Type*} [MeasurableSpace X] {f : ℕ → ℕ → X → ℝ} {u : X → ℝ}
     (hf : ∀ N k, Measurable (f N k))
@@ -37,7 +39,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [NormedSpace ℝ E] [IsScalarTower ℝ ℂ E] [FiniteDimensional ℝ E]
 
 /-- Restricting the integration measure to a neighborhood of the center
-does not change eventual recovery by the upper-truncated ball means.-/
+does not change eventual recovery by the upper-truncated ball means.
+@isnad1 id=ex.3h6v.s8.b989505011c0 from=translated src=- shape=bac21fed vocab=905fde13
+-/
 theorem exists_nat_tendsto_truncated_real_ball_average_restrict
     {u : E → ℝ} {U s : Set E}
     (hu : DiscPshOn (fun x => (u x : EReal)) U)

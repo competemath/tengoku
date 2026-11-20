@@ -25,7 +25,9 @@ open scoped Topology ENNReal Distributions ContDiff
 namespace PshLines.PSHD
 
 /-- A function which is locally bounded above on an open set is bounded above
-on each compact subset.-/
+on each compact subset.
+@isnad1 id=ex.3h4v.s6.4be894db8486 from=translated src=- shape=5197e22f vocab=f85932de
+-/
 theorem exists_upper_bound_of_isCompact {X : Type*} [PseudoMetricSpace X] {u : X → ℝ}
     {D K : Set X}
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r)) (hK : IsCompact K) (hKD : K ⊆ D) :
@@ -44,7 +46,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
   [MeasurableSpace E] [BorelSpace E]
 
 /-- A Borel function which is nonnegative and locally bounded above on an open
-set is locally integrable there.-/
+set is locally integrable there.
+@isnad1 id=locallyi.4h4v.s7.a59eed4335aa from=translated src=- shape=96f97623 vocab=f50ed9af
+-/
 theorem locallyIntegrableOn_of_bddAbove {u : E → ℝ} {D : Set E} (hD : IsOpen D)
     (hu : Measurable u) (hpos : ∀ x ∈ D, 0 ≤ u x)
     (hbdd : ∀ p ∈ D, ∃ r > 0, BddAbove (u '' ball p r))
@@ -63,7 +67,9 @@ theorem locallyIntegrableOn_of_bddAbove {u : E → ℝ} {D : Set E} (hD : IsOpen
 Proposition 2.1). For a Borel function which is locally integrable, locally
 bounded above and subharmonic on every connected component of every affine
 complex-line section of an open set, every constant-direction Levi
-distribution is positive.-/
+distribution is positive.
+@isnad1 id=hasnonne.4h4v.s8.d677148e9dc1 from=translated src=- shape=4d74c480 vocab=675c8068
+-/
 theorem LineSubharmonicOn.hasNonnegativeDistributionalLevi {Ω : Opens E} {u : E → ℝ}
     (hl : LineSubharmonicOn u Ω) (hu : Measurable u)
     (hbdd : ∀ p ∈ Ω, ∃ r > 0, BddAbove (u '' ball p r))

@@ -15,7 +15,9 @@ namespace PshLines.PSHD
 
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
-/-- The normalized affine lift on a perpendicular hyperplane is continuous.-/
+/-- The normalized affine lift on a perpendicular hyperplane is continuous.
+@isnad1 id=continuo.1h2v.s9.bfe1c1aed43c from=translated src=- shape=adcabbb7 vocab=73646787
+-/
 theorem continuous_normalized_affineLift {e : E} (he : ‖e‖ = 1) :
     Continuous (fun v : (ℂ ∙ e)ᗮ => NormedSpace.normalize (e + (v : E))) := by
   have hc : Continuous (fun v : (ℂ ∙ e)ᗮ => e + (v : E)) := by fun_prop
@@ -26,7 +28,9 @@ theorem continuous_normalized_affineLift {e : E} (he : ‖e‖ = 1) :
 
 /-- A Borel high-value point for every radius--chart parameter. Radii are
 clamped to the fixed annulus, so the selector is defined on the entire
-Euclidean parameter space.-/
+Euclidean parameter space.
+@isnad1 id=ex.5h6v.s11.e1bad588c3e9 from=translated src=- shape=fd76cea0 vocab=583271d2
+-/
 theorem exists_highValue_chart_map
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
     {u : E → ℝ} (hum : Measurable u) {D : Set E} (x : E)

@@ -17,7 +17,9 @@ namespace PshLines.PSHD
 set_option maxHeartbeats 800000 in
 /-- A nonnegative function with upper semicontinuous horizontal sections
 and disc-PSH vertical sections is jointly Borel on a product with an open
-planar region of finite area.-/
+planar region of finite area.
+@isnad1 id=measurab.4h3v.s7.f80d4722d95f from=translated src=- shape=2943b5c4 vocab=18e7aace
+-/
 theorem measurable_on_product_of_discPsh
     {X : Type*} [TopologicalSpace X] [SequentialSpace X]
     [MeasurableSpace X] [OpensMeasurableSpace X]

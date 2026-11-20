@@ -23,7 +23,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 /-- A disc submean inequality remains valid after integration against any
 measurable nonnegative weight whose translated discs stay in the bounded set,
 provided the localized deficit is measurable. No upper semicontinuity, local
-integrability or almost-everywhere finiteness of `u` is assumed.-/
+integrability or almost-everywhere finiteness of `u` is assumed.
+@isnad1 id=le.7h9v.s8.1e577079bb40 from=translated src=- shape=98207fdf vocab=1fd670e0
+-/
 theorem HasDiscSubmeanOn.weighted_circle_deficit_le {u : E → EReal} {U K : Set E}
     (hu : HasDiscSubmeanOn u U) (μ : Measure E) [SFinite μ]
     (hKU : K ⊆ U) (C : ℝ)
@@ -78,7 +80,9 @@ theorem HasDiscSubmeanOn.weighted_circle_deficit_le {u : E → EReal} {U K : Set
 
 /-- A disc submean inequality remains valid after integration against any
 measurable nonnegative weight whose translated discs stay in the bounded set.
-No local integrability or almost-everywhere finiteness of `u` is assumed.-/
+No local integrability or almost-everywhere finiteness of `u` is assumed.
+@isnad1 id=le.7h9v.s8.3b6fde09ea37 from=translated src=- shape=d2ec6541 vocab=242f2589
+-/
 theorem DiscPshOn.weighted_circle_deficit_le {u : E → EReal} {U K : Set E}
     (hu : DiscPshOn u U) (μ : Measure E) [SFinite μ]
     (hK : MeasurableSet K) (hKU : K ⊆ U) (C : ℝ)

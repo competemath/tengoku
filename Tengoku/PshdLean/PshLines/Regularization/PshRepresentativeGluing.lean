@@ -113,7 +113,9 @@ private theorem regularDistribution_eq_of_eqOn
 
 /-- Local PSH representatives of restrictions glue to a genuine representative
 of the original distribution. No compatibility is assumed as extra data: it
-must follow from the already checked uniqueness theorem.-/
+must follow from the already checked uniqueness theorem.
+@isnad1 id=ex.1h4v.s9.60f723051660 from=translated src=- shape=38dc622a vocab=67aa4ab3
+-/
 theorem exists_pshRepresentative_of_locally
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [NormedSpace ℂ E]
     [IsScalarTower ℝ ℂ E] [MeasurableSpace E] [BorelSpace E] [FiniteDimensional ℝ E]

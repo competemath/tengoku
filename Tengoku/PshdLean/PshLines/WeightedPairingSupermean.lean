@@ -25,7 +25,9 @@ variable {μ : Measure E} [SFinite μ] [μ.IsAddLeftInvariant]
 
 /-- A measurable nonnegative kernel satisfying pointwise angular bounds on the
 support of the test function gives a supermean inequality for its scalar
-pairing. There is no plurisubharmonicity hypothesis.-/
+pairing. There is no plurisubharmonicity hypothesis.
+@isnad1 id=le.8h7v.s9.99325d90adcf from=translated src=- shape=48a5edf1 vocab=7c02230b
+-/
 theorem circleAverage_pairing_le_of_pointwise_circle_lintegral
     {D : E → ℝ≥0∞} {f φ : E → ℝ}
     (hDm : Measurable D) (hDf : D =ᵐ[μ] fun x => ENNReal.ofReal (f x))
@@ -59,7 +61,9 @@ theorem circleAverage_pairing_le_of_pointwise_circle_lintegral
 /-- Pointwise angular bounds on a uniform interval of positive radii force
 the actual integral against the classical Levi form of the test function to
 be nonpositive. The kernel may be singular and agrees with the real density
-only almost everywhere.-/
+only almost everywhere.
+@isnad1 id=le.9h7v.s9.246c000dabef from=translated src=- shape=2ec23730 vocab=131ce6be
+-/
 theorem integral_mul_leviForm_nonpos_of_pointwise_circle_lintegral
     {D : E → ℝ≥0∞} {f φ : E → ℝ}
     (hDm : Measurable D) (hDf : D =ᵐ[μ] fun x => ENNReal.ofReal (f x))

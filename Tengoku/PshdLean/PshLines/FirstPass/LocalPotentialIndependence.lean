@@ -32,7 +32,9 @@ noncomputable section
 variable {n : ℕ}
 
 /-- Coordinate formula for the actual normalized exterior derivative
-`ddᶜu = d(-du ∘ I /(4π))`.-/
+`ddᶜu = d(-du ∘ I /(4π))`.
+@isnad1 id=eq.1h5v.s9.ba85659a80f6 from=translated src=- shape=35f0cc83 vocab=fd373f19
+-/
 theorem smoothDDC_apply_eq_realHessian {u : ComplexModel n → ℝ}
     {z : ComplexModel n} (hu : ContDiffAt ℝ 2 u z) (v w : ComplexModel n) :
     smoothDDC u z ![v, w] =
@@ -79,7 +81,9 @@ theorem smoothDDC_apply_eq_realHessian {u : ComplexModel n → ℝ}
     exact (houter.comp_contDiffAt z hinner).differentiableAt (by norm_num)
 
 /-- A smooth germ on an open subset of the complex model has a globally smooth
-representative.  The cutoff is supported strictly inside the open set.-/
+representative.  The cutoff is supported strictly inside the open set.
+@isnad1 id=ex.3h4v.s8.3266e3d9806a from=translated src=- shape=ef13c875 vocab=f8cdcf5d
+-/
 theorem exists_contDiff_eventuallyEq_of_contDiffOn
     {W : Set (ComplexModel n)} {h : ComplexModel n → ℝ}
     (hW : IsOpen W) (hh : ContDiffOn ℝ ∞ h W) {x : ComplexModel n} (hx : x ∈ W) :
@@ -121,7 +125,9 @@ theorem exists_contDiff_eventuallyEq_of_contDiffOn
   simp [g, hyW, hby]
 
 /-- The complex diagonal of the normalized `ddᶜ` is the Levi form divided by
-`π`.-/
+`π`.
+@isnad1 id=eq.1h4v.s9.36c64df7ed35 from=translated src=- shape=8591cd5b vocab=a7c02d0e
+-/
 theorem smoothDDC_complexDiagonal_eq_leviForm {u : ComplexModel n → ℝ}
     {z : ComplexModel n} (hu : ContDiffAt ℝ 2 u z) (v : ComplexModel n) :
     smoothDDC u z ![v, Complex.I • v] = leviForm u z v / Real.pi := by
@@ -131,7 +137,9 @@ theorem smoothDDC_complexDiagonal_eq_leviForm {u : ComplexModel n → ℝ}
   ring
 
 /-- A smooth function with zero `ddᶜ` on an open domain is genuinely PSH there.
-The same theorem applied to its negative gives local pluriharmonicity.-/
+The same theorem applied to its negative gives local pluriharmonicity.
+@isnad1 id=plurisub.3h3v.s9.c25c9c76e56c from=translated src=- shape=69ca710c vocab=4a356578
+-/
 theorem plurisubharmonicOn_coe_of_smoothDDC_eq_zero
     {W : Set (ComplexModel n)} {h : ComplexModel n → ℝ}
     (hW : IsOpen W) (hh : ContDiffOn ℝ ∞ h W)
@@ -165,7 +173,9 @@ theorem plurisubharmonicOn_coe_of_smoothDDC_eq_zero
   filter_upwards [hV.mem_nhds hxV] with y hy
   rw [heqV hy]
 
-/-- Finite corrections cancel without changing either infinity of `EReal`.-/
+/-- Finite corrections cancel without changing either infinity of `EReal`.
+@isnad1 id=eq.0h3v.s5.bb242ed4d002 from=translated src=- shape=3d9fa5d6 vocab=e0c1503c
+-/
 theorem corrected_add_sub (a : EReal) (r s : ℝ) :
     (a + (r : EReal)) + ((s - r : ℝ) : EReal) = a + (s : EReal) := by
   rw [add_assoc, ← EReal.coe_add]
@@ -173,7 +183,9 @@ theorem corrected_add_sub (a : EReal) (r s : ℝ) :
   ring
 
 /-- Two smooth local potentials of the same form differ by a pluriharmonic
-function, so the corrected PSH test is independent of the chosen potential.-/
+function, so the corrected PSH test is independent of the chosen potential.
+@isnad1 id=iff.2h8v.s8.c884254600d5 from=translated src=- shape=3f75fe57 vocab=f5656ed0
+-/
 theorem smoothLocalPotential_psh_iff
     {M : Type*} [TopologicalSpace M] [ChartedSpace (ComplexModel n) M]
     [IsComplexManifold n M] (θ : SmoothRealForm n M 2) (e : ComplexChart n M)

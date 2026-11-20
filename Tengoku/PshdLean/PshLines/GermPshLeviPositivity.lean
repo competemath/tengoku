@@ -31,7 +31,9 @@ variable {u : E → EReal} {U S K : Set E}
 
 /-- A compact family of PSH germs gives one angular inequality for a fixed
 localized deficit at every sufficiently small radius. The compact set used
-for localization need not itself satisfy a global disc criterion.-/
+for localization need not itself satisfy a global disc criterion.
+@isnad1 id=ex.7h8v.s8.4e2fbb91f746 from=translated src=- shape=35c8e817 vocab=e90189c8
+-/
 theorem PlurisubharmonicOn.exists_uniform_indicator_deficit_bound
     (hu : PlurisubharmonicOn u U) (hS : IsCompact S) (hSU : S ⊆ U)
     (v : E) {R₀ : ℝ} (hR₀ : 0 < R₀) (hSK : S ⊆ K)
@@ -72,7 +74,9 @@ variable {Ω : Opens E} {u : E → EReal}
 /-- Actual local PSH germs, together with local integrability and a.e.
 finiteness, produce a regular distribution with nonnegative Levi derivatives.
 Uniformity is required only near the compact support of each individual test
-function, and follows from the original germs.-/
+function, and follows from the original germs.
+@isnad1 id=hasnonne.3h4v.s8.59188cba7c67 from=translated src=- shape=d00f3af0 vocab=a0091b49
+-/
 theorem PlurisubharmonicOn.hasNonnegativeDistributionalLevi_of_locallyIntegrable
     (hu : PlurisubharmonicOn u Ω)
     (huL : LocallyIntegrableOn (fun x => (u x).toReal) Ω μ)
@@ -106,7 +110,9 @@ theorem PlurisubharmonicOn.hasNonnegativeDistributionalLevi_of_locallyIntegrable
 /-- A nontrivial PSH potential on a preconnected open domain defines an actual
 regular distribution with nonnegative distributional Levi form. Both local
 integrability and almost-everywhere finiteness follow from PSH, and no
-global-disc hypothesis is present.-/
+global-disc hypothesis is present.
+@isnad1 id=hasnonne.3h4v.s8.f189607dc76d from=translated src=- shape=f613083e vocab=96b51b91
+-/
 theorem PlurisubharmonicOn.pshRegularDistribution_hasNonnegativeDistributionalLevi
     (hu : PlurisubharmonicOn u Ω) (hΩ : IsPreconnected (Ω : Set E))
     (hne : ∃ a ∈ Ω, u a ≠ ⊥) :

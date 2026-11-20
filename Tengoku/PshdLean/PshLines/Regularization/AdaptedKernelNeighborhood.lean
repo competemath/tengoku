@@ -19,7 +19,9 @@ namespace PshLines.Regularization
 
 /-- A point in an open finite-dimensional real vector space has an inner open
 neighborhood whose closure admits one positive-radius compact buffer inside
-the original domain.-/
+the original domain.
+@isnad1 id=ex.1h3v.s8.7821a9f1e2b7 from=translated src=- shape=34453699 vocab=c55c3a13
+-/
 theorem exists_open_closure_closedBall_neighborhood
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {Ω : Opens E} {x : E} (hx : x ∈ Ω) :
@@ -42,7 +44,9 @@ theorem exists_open_closure_closedBall_neighborhood
 
 /-- The preceding buffer may be measured through any chosen continuous linear
 coordinates.  The coordinate radius is shrunk by a uniform operator-norm
-bound for the inverse equivalence.-/
+bound for the inverse equivalence.
+@isnad1 id=ex.1h5v.s9.1fe63a232ba1 from=translated src=- shape=927c4455 vocab=1d85834e
+-/
 theorem exists_open_closure_coordinateBall_neighborhood
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F]

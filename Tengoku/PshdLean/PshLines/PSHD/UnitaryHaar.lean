@@ -24,6 +24,9 @@ variable (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 /-- The unitary group of `E`, as unitary elements of the C⋆-algebra of operators.-/
 abbrev UnitaryGroup := unitary (E →L[ℂ] E)
 
+/--
+@isnad1 id=iscompac.0h1v.s9.f400e28f2c29 from=translated src=- shape=7b7c9944 vocab=7e79079a
+-/
 theorem isCompact_unitary : IsCompact (unitary (E →L[ℂ] E) : Set (E →L[ℂ] E)) := by
   have : ProperSpace (E →L[ℂ] E) := FiniteDimensional.proper ℂ _
   refine Metric.isCompact_of_isClosed_isBounded isClosed_unitary ?_

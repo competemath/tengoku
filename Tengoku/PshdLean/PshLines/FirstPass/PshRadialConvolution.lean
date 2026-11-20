@@ -58,7 +58,9 @@ structure RadialConvolutionSystem (V : Opens (ComplexModel n))
 upgrades to pointwise `EReal` convergence to the given PSH representative.
 The representative may have genuine `⊥` poles.  This is the
 order/representative part of radial regularization and is independent of the
-construction of the kernels.-/
+construction of the kernels.
+@isnad1 id=tendsto.5h5v.s10.a621af38aab9 from=translated src=- shape=9b15fafe vocab=85619982
+-/
 theorem tendsto_everywhere_ereal_of_ae_of_antitone_psh
     {U : Opens (ComplexModel n)} {u : ComplexModel n → EReal}
     {f : ℕ → ComplexModel n → ℝ}
@@ -89,7 +91,9 @@ theorem tendsto_everywhere_ereal_of_ae_of_antitone_psh
   exact tendsto_atTop_iInf (hantiE z hz)
 
 /-- Real-valued specialization of
-`tendsto_everywhere_ereal_of_ae_of_antitone_psh`.-/
+`tendsto_everywhere_ereal_of_ae_of_antitone_psh`.
+@isnad1 id=tendsto.5h5v.s10.24445aa97492 from=translated src=- shape=a0f98648 vocab=cdc52549
+-/
 theorem tendsto_everywhere_of_ae_of_antitone_psh
     {U : Opens (ComplexModel n)} {u : ComplexModel n → ℝ}
     {f : ℕ → ComplexModel n → ℝ}
