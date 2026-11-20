@@ -232,6 +232,7 @@ import Tengoku.DuistermaatVanDerKallenNonvanishing
 import Tengoku.Tauceti
 import Tengoku.Fagin
 import Tengoku.Forcing
+import Tengoku.Shearertrianglefreeind
 import Tengoku.BtcVerified
 import Tengoku.Erdos260
 import Tengoku.Leaninfotheory
