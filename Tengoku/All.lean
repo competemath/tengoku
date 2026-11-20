@@ -93,6 +93,7 @@ import Tengoku.Kostkanumbers
 import Tengoku.DamianFormalizare
 import Tengoku.Arklib
 import Tengoku.Vcvio
+import Tengoku.Jsp000958Lean
 import Tengoku.PcfCyclotomicLean
 import Tengoku.LanaPi1
 import Tengoku.Tnlean
