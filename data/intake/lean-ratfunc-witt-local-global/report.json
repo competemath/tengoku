@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1a843de0e2d147d88fe06131c89cfd004d486126acb6a4207498197c07eab4ad",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-ratfunc-witt-local-global",
+ "lint_mode": "proposed",
+ "modules": 73,
+ "part": 1,
+ "theorems": 389
+}

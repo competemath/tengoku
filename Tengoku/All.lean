@@ -209,6 +209,7 @@ import Tengoku.Twinprime
 import Tengoku.TaoAnalysis
 import Tengoku.Tautology
 import Tengoku.Absorptioncutoff
+import Tengoku.LeanRatfuncWittLocalGlobal
 import Tengoku.GrunbaumLean
 import Tengoku.MahlerHansenCograph
 import Tengoku.Complexitylib
