@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1c4593b5ea704c43e81c684ce8df445136b749cbc9e454f1558f152de36172ed",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "negative-power-means",
+ "lint_mode": "proposed",
+ "modules": 20,
+ "part": 1,
+ "theorems": 176
+}

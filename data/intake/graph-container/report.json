@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "6171b641c8c599ffc588f6e044510c7ea22103be779e69230bb4f71a2ef305d0",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "graph-container",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 51
+}

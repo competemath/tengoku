@@ -1,0 +1,1 @@
+-- TheIwasawaTowerLawForRamanujanSThirdOrderMockThetaFunction: a factory bundle (data/intake/the-iwasawa-tower-law-for-ramanujan-s-third-order-mock-theta-function). This file only marks the library for Tengoku/All.lean.

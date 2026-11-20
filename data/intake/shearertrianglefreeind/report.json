@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "f152333f2b842ab5be1c0ce7a4e336ce1015dbdf9f6736084bd214b476bd4165",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "shearertrianglefreeind",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 109
+}

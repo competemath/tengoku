@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "18c6c947d8a2aa411bfffa308e50915e709ef604cdfe8228d46a8e3344adff2f",
+ "factory_changes": {
+  "inert lines removed": 4,
+  "modules changed": 20,
+  "print lines removed": 123
+ },
+ "gate2_unjudged": [],
+ "library": "qharm",
+ "lint_mode": "proposed",
+ "modules": 22,
+ "part": 1,
+ "theorems": 240
+}

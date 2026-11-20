@@ -1,0 +1,1 @@
+-- InverseGeneratorLean: a factory bundle (data/intake/inverse-generator-lean). This file only marks the library for Tengoku/All.lean.
