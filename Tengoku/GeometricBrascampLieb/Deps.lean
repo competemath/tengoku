@@ -1,0 +1,1 @@
+-- GeometricBrascampLieb: a factory bundle (data/intake/geometric-brascamp-lieb). This file only marks the library for Tengoku/All.lean.

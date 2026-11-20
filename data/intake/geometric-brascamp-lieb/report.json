@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "ec89002766fd9632631d7ccaef7294c977561d64c697f06911879774f733cc08",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "geometric-brascamp-lieb",
+ "lint_mode": "proposed",
+ "modules": 48,
+ "part": 1,
+ "theorems": 249
+}
