@@ -18,11 +18,14 @@ renames the one clumsy field, and carries the statement identity (isnad, docs/is
 from __future__ import annotations
 
 import argparse
+import difflib
 import gzip
 import hashlib
 import json
+import os
 import re
 import sys
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
@@ -653,6 +656,16 @@ def name_maps(changes: List[Dict[str, Any]]) -> Tuple[Dict[str, str], Dict[str, 
     return renames, gone
 
 
+def checked_path(arg: Path) -> Path:
+    """A path given on the command line, resolved; it must lie in the working directory or the temporary directory, so an argument cannot point a read or a write anywhere else
+    (the rule of scripts/ci/axiom_scan.py; Sonar S8707)."""
+    p = arg.resolve()
+    roots = [Path.cwd(), Path(tempfile.gettempdir())] + ([Path(os.environ["RUNNER_TEMP"])] if os.environ.get("RUNNER_TEMP") else [])
+    if not any(p.is_relative_to(r.resolve()) for r in roots):
+        raise SystemExit(f"v2: {arg} is outside the working directory and the temporary directory")
+    return p
+
+
 def dataset_file(path: Path) -> Path:
     if path.is_dir():
         manifest = json.loads((path / "snapshot.json").read_text(encoding="utf-8"))
@@ -694,12 +707,11 @@ def migrate(
         files = [p] if p.is_file() else sorted(p.rglob("*.lean"))
         results = []
         for f in files:
-            new_text, rep = migrate_source(f.read_text(encoding="utf-8"), renames, gone, projections)
-            if out and any(r["action"] == "rewritten" for r in rep):
-                target = Path(out) / f.name if p.is_file() else Path(out) / f.relative_to(p)
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text(new_text, encoding="utf-8")
-            results.append({"file": str(f), "report": rep})
+            old_text = f.read_text(encoding="utf-8")
+            new_text, rep = migrate_source(old_text, renames, gone, projections)
+            name = os.path.relpath(f)
+            diff = "".join(difflib.unified_diff(old_text.splitlines(True), new_text.splitlines(True), f"a/{name}", f"b/{name}"))
+            results.append({"file": str(f), "report": rep, "diff": diff, "new_text": new_text})
         return {"kind": "source", "files": results}
     if out and Path(out).exists():
         rows = read_jsonl(Path(out))
@@ -712,6 +724,10 @@ def migrate(
             "note": res.note,
         }
     raise ValueError(f"cannot tell what {source!r} is: a dataset or snapshot directory, a Lean file, or (with --out DATASET) a name")
+
+
+def path_arg(value: Optional[str]) -> Optional[str]:
+    return str(checked_path(Path(value))) if value else value
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -734,24 +750,30 @@ def main(argv: Optional[List[str]] = None) -> int:
     d.add_argument("--out")
     a = ap.parse_args(argv)
     if a.cmd == "migrate":
-        res = migrate(a.input, a.out, a.ids, a.map, a.library, a.projections)
+        source = path_arg(a.input) if Path(a.input).exists() else a.input  # a name is not a path
+        res = migrate(source, path_arg(a.out), path_arg(a.ids), path_arg(a.map), a.library, a.projections)
+        if res["kind"] == "source":
+            # the sources are not written: the change is a patch on stdout (`... | git apply`), the report is on stderr
+            sys.stdout.write("".join(f["diff"] for f in res["files"]))
+            print(json.dumps([{"file": f["file"], "report": f["report"]} for f in res["files"]], indent=1, sort_keys=True), file=sys.stderr)
+            return 0
         print(json.dumps({k: v for k, v in res.items() if k != "rows"}, indent=1, sort_keys=True))
         return 0
     if a.cmd == "check":
-        rows = read_jsonl(dataset_file(Path(a.dataset)))
+        rows = read_jsonl(dataset_file(checked_path(Path(a.dataset))))
         problems = check(rows)
         for x in problems[:50]:
             print(x)
         print(f"{len(rows)} rows, {len(problems)} problem(s)")
         return 1 if problems else 0
-    old, new = read_jsonl(dataset_file(Path(a.old))), read_jsonl(dataset_file(Path(a.new)))
+    old, new = read_jsonl(dataset_file(checked_path(Path(a.old)))), read_jsonl(dataset_file(checked_path(Path(a.new))))
     if schema_of(old) == 1:
         old, _ = upgrade_dataset(old)
     if schema_of(new) == 1:
         new, _ = upgrade_dataset(new)
     changes = classify(old, new)
     if a.out:
-        write_jsonl(Path(a.out), changes)
+        write_jsonl(checked_path(Path(a.out)), changes)
     print(json.dumps(summarise(changes), sort_keys=True))
     return 0
 

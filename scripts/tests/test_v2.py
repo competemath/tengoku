@@ -632,17 +632,22 @@ class Migrate(unittest.TestCase):
         rows = v2.migrate(str(d), ids=str(self.dir / "ids.tsv"))["rows"]
         self.assertEqual([r.get("id") for r in rows], [i1, None, None])
 
-    def test_a_lean_file_is_rewritten_with_a_migration_record(self):
+    def test_a_lean_file_gets_a_patch_and_a_report_and_nothing_is_written(self):
         changes = [{"old": "l:old_name", "new": "l:new_name", "change": "renamed"}, {"old": "l:gone", "new": None, "change": "removed"}]
         v2.write_jsonl(self.dir / "map.jsonl", changes)
         src = self.dir / "src"
         src.mkdir()
         (src / "A.lean").write_text("theorem t : old_name 1 := gone\n")
         (src / "B.lean").write_text("theorem u : 1 = 1\n")
-        res = v2.migrate(str(src), out=str(self.dir / "out"), map_file=str(self.dir / "map.jsonl"))
-        self.assertEqual((self.dir / "out" / "A.lean").read_text(), "theorem t : new_name 1 := gone\n")
-        self.assertFalse((self.dir / "out" / "B.lean").exists())
+        res = v2.migrate(str(src), map_file=str(self.dir / "map.jsonl"))
+        a, b = res["files"]
+        self.assertEqual(a["new_text"], "theorem t : new_name 1 := gone\n")
+        self.assertIn("-theorem t : old_name 1 := gone\n+theorem t : new_name 1 := gone\n", a["diff"])
+        self.assertEqual(b["diff"], "")
         self.assertEqual([r["action"] for f in res["files"] for r in f["report"]], ["rewritten", "removed"])
+        self.assertEqual(
+            (src / "A.lean").read_text(), "theorem t : old_name 1 := gone\n"
+        )  # the source is untouched: the patch is the output
 
     def test_a_lean_file_needs_the_record(self):
         (self.dir / "A.lean").write_text("theorem t : 1 = 1\n")
@@ -686,6 +691,45 @@ class CommandLine(unittest.TestCase):
             json.loads(d.stdout), {"unchanged": 1, "corrected": 0, "moved": 0, "renamed": 1, "restated": 0, "removed": 1, "added": 1}
         )
         self.assertEqual(len(v2.read_jsonl(self.dir / "map.jsonl")), 4)
+
+    def test_the_sources_come_out_as_a_patch_that_git_can_apply(self):
+        src = self.dir / "src"
+        src.mkdir()
+        (src / "A.lean").write_text("theorem t : old_name 1 := gone\n")
+        v2.write_jsonl(
+            self.dir / "map.jsonl",
+            [{"old": "l:old_name", "new": "l:new_name", "change": "renamed"}, {"old": "l:gone", "new": None, "change": "removed"}],
+        )
+        r = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "v2.py"), "migrate", str(src), "--map", str(self.dir / "map.jsonl")],
+            capture_output=True,
+            text=True,
+            cwd=self.dir,
+        )
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("+theorem t : new_name 1 := gone", r.stdout)
+        self.assertIn('"action": "removed"', r.stderr)
+        subprocess.run(["git", "init", "-q"], cwd=self.dir, check=True)
+        (self.dir / "p.patch").write_text(
+            r.stdout.replace("a/" + os.path.relpath(src / "A.lean", self.dir), "a/src/A.lean").replace(
+                "b/" + os.path.relpath(src / "A.lean", self.dir), "b/src/A.lean"
+            )
+        )
+        applied = subprocess.run(["git", "apply", "p.patch"], cwd=self.dir, capture_output=True, text=True)
+        self.assertEqual(applied.returncode, 0, applied.stderr)
+        self.assertEqual((src / "A.lean").read_text(), "theorem t : new_name 1 := gone\n")
+
+    def test_a_path_outside_the_working_and_temporary_directories_is_refused(self):
+        r = self.run_cli("check", "/etc/hosts")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("outside the working directory", r.stderr)
+        link = self.dir / "link"
+        os.symlink("/etc", link)  # a symlink does not smuggle a path out: the path is resolved first
+        self.assertNotEqual(self.run_cli("check", str(link / "hosts")).returncode, 0)
+        self.assertNotEqual(self.run_cli("diff", str(self.dir / ".." / ".." / "etc" / "hosts"), str(self.dir / "x")).returncode, 0)
+
+    def test_a_path_inside_is_accepted(self):
+        self.assertEqual(v2.checked_path(self.dir / "a" / ".." / "b"), (self.dir / "b").resolve())
 
     def test_check_fails_on_a_version_1_file(self):
         v2.write_jsonl(self.dir / "old.jsonl", [rec("a")])

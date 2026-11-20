@@ -292,11 +292,11 @@ def main() -> None:
     )
     ap.add_argument("--ids", help="schema 2: a TSV of library, name, isnad id; a record listed there carries the id")
     args = ap.parse_args()
-    root, out = Path(args.root), Path(args.out)
+    root, out = v2.checked_path(Path(args.root)), v2.checked_path(Path(args.out))
     out.mkdir(parents=True, exist_ok=True)
     records, counts = dataset(root)
     if args.schema == 2:
-        records, _ = v2.upgrade_dataset(records, v2.load_ids(Path(args.ids)) if args.ids else None)
+        records, _ = v2.upgrade_dataset(records, v2.load_ids(v2.checked_path(Path(args.ids))) if args.ids else None)
         problems = v2.check(records)
         if problems:
             raise SystemExit("the schema 2 dataset breaks its own invariants: " + "; ".join(problems[:5]))
@@ -308,7 +308,7 @@ def main() -> None:
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True).stdout.strip() or None
     toolchain = (root / "lean-toolchain").read_text().strip() if (root / "lean-toolchain").exists() else None
     fields = sorted(v2.V2_FIELDS if args.schema == 2 else FIELDS)  # not read from the rows: a release with no records keeps the same fields
-    previous = previous_release(Path(args.previous) if args.previous else None, args.schema)
+    previous = previous_release(v2.checked_path(Path(args.previous)) if args.previous else None, args.schema)
     names = {key_of(r) for r in records}
     if args.schema == 2 and previous is not None:
         old_refs = set(previous[1])
@@ -344,7 +344,9 @@ def main() -> None:
     }
     (out / "snapshot.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.notes:
-        Path(args.notes).write_text(release_notes(version, previous, records, toolchain, fields, args.schema), encoding="utf-8")
+        v2.checked_path(Path(args.notes)).write_text(
+            release_notes(version, previous, records, toolchain, fields, args.schema), encoding="utf-8"
+        )
     print(f"v{version} ({manifest['date']}): {len(records)} trusted records, sha256 {manifest['dataset']['sha256'][:16]}…")
 
 
