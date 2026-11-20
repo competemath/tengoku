@@ -162,6 +162,7 @@ import Tengoku.SalemTheorem
 import Tengoku.Apap
 import Tengoku.Sendov
 import Tengoku.DgLean
+import Tengoku.SquarefreeFugledeLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
 import Tengoku.AdianRabin
 import Tengoku.LeanCommutator
