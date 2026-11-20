@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "6ea1974b4092011bcb8bb2ae1bd9ff6e4b2ccd6cf2a7bb5500edf19a9c5140c4",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "tuza-lean",
+ "lint_mode": "proposed",
+ "modules": 23,
+ "part": 1,
+ "theorems": 322
+}

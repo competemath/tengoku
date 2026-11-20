@@ -99,6 +99,7 @@ import Tengoku.Erdos278
 import Tengoku.SplittingDensityRationality
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
+import Tengoku.TuzaLean
 import Tengoku.ErdosLean
 import Tengoku.AclGeom
 import Tengoku.Certifyinginvariantsnf
