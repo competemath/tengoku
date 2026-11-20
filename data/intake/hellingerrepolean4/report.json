@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "375c36bb571a3718908b6ab5e652a43452bfb267b96421e178aae16b1fa5e695",
+ "factory_changes": {
+  "modules changed": 53,
+  "print lines removed": 170
+ },
+ "gate2_unjudged": [],
+ "library": "hellingerrepolean4",
+ "lint_mode": "proposed",
+ "modules": 88,
+ "part": 1,
+ "theorems": 1047
+}
