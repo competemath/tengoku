@@ -20,6 +20,7 @@ import Tengoku.Zflean
 import Tengoku.YamaguchiPapers
 import Tengoku.Degiorgi
 import Tengoku.LongGapsBetweenPrimes
+import Tengoku.Leancondensed
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Aintlib
 import Tengoku.Jsp000198Lean

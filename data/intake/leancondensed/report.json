@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "cfee0b4b9e8f69e89b75fcca7439ce5482db65de53d63d5a7c7aebdc15ade627",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "leancondensed",
+ "lint_mode": "proposed",
+ "modules": 13,
+ "part": 1,
+ "theorems": 163
+}
