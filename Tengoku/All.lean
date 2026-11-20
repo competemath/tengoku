@@ -164,6 +164,7 @@ import Tengoku.Sendov
 import Tengoku.DgLean
 import Tengoku.SquarefreeFugledeLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
+import Tengoku.Erdos64
 import Tengoku.AdianRabin
 import Tengoku.LeanCommutator
 import Tengoku.Leancert
