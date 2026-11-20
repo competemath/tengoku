@@ -107,6 +107,7 @@ import Tengoku.ErdosUnitDistance1
 import Tengoku.TuzaLean
 import Tengoku.ErdosLean
 import Tengoku.AclGeom
+import Tengoku.Jsp000936UnitCircleLean
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.SingularityCompleteLean
 import Tengoku.LanaOrbicurveCores
