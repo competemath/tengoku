@@ -1,0 +1,12 @@
+import Tengoku.Jsp000290Lean.Jsp290.Basic
+import Tengoku.Jsp000290Lean.Jsp290.BoundedDeletion
+import Tengoku.Jsp000290Lean.Jsp290.Central
+import Tengoku.Jsp000290Lean.Jsp290.CentralBounded
+import Tengoku.Jsp000290Lean.Jsp290.Defs
+import Tengoku.Jsp000290Lean.Jsp290.Deletion
+import Tengoku.Jsp000290Lean.Jsp290.Examples
+import Tengoku.Jsp000290Lean.Jsp290.IntegerReduction
+import Tengoku.Jsp000290Lean.Jsp290.Main
+import Tengoku.Jsp000290Lean.Jsp290.Positive
+import Tengoku.Jsp000290Lean.Jsp290.Reindex
+import Tengoku.Jsp000290Lean.Jsp290.Slack

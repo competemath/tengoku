@@ -241,6 +241,7 @@ import Tengoku.Shearertrianglefreeind
 import Tengoku.BtcVerified
 import Tengoku.Erdos260
 import Tengoku.Leaninfotheory
+import Tengoku.Jsp000290Lean
 import Tengoku.ZkevmClean
 import Tengoku.MoranLean
 import Tengoku.FltStickelberger
