@@ -100,12 +100,18 @@ noncomputable def configurationEquivGamma {n k : ℕ} (hk : k ≤ n) :
     Configuration (Fin n) k ≃ Gamma (n - k) k :=
   (configurationEquivOrderEmbedding (Fin n) k).trans (finOrderEmbeddingEquivGamma hk)
 
+/--
+@isnad1 id=eq.1h4v.s7.9b59aa7014de from=translated src=- shape=3afa08ce vocab=8ac73084
+-/
 @[simp]
 theorem configurationEquivGamma_apply {n k : ℕ} (hk : k ≤ n)
     (A : Configuration (Fin n) k) (i : Fin k) :
     (configurationEquivGamma hk A).1 i = (coordinate A i).val - i.val :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.04857df99a01 from=translated src=- shape=2cd0a3e1 vocab=9ce378cb
+-/
 @[simp]
 theorem coordinate_configurationEquivGamma_symm {n k : ℕ} (hk : k ≤ n)
     (z : Gamma (n - k) k) (i : Fin k) :
@@ -118,7 +124,9 @@ theorem coordinate_configurationEquivGamma_symm {n k : ℕ} (hk : k ≤ n)
   rw [Equiv.apply_symm_apply]
   rfl
 
-/-- The chamber encoding preserves the ordered-coordinate `ℓ₁` distance exactly.-/
+/-- The chamber encoding preserves the ordered-coordinate `ℓ₁` distance exactly.
+@isnad1 id=eq.1h4v.s7.932b8ba5af86 from=translated src=- shape=38c77ff6 vocab=a9b33848
+-/
 theorem pathConfigurationDist_eq_gammaL1Dist {n k : ℕ} (hk : k ≤ n)
     (A B : Configuration (Fin n) k) :
     pathConfigurationDist A B =
@@ -135,7 +143,9 @@ theorem pathConfigurationDist_eq_gammaL1Dist {n k : ℕ} (hk : k ≤ n)
     Nat.dist_add_add_right ((coordinate A i).val - i.val) i.val
       ((coordinate B i).val - i.val)
 
-/-- Equivalently, applying the inverse chamber equivalence also preserves distance.-/
+/-- Equivalently, applying the inverse chamber equivalence also preserves distance.
+@isnad1 id=eq.1h4v.s8.a5db5560b0b7 from=translated src=- shape=9a726266 vocab=ca032ce1
+-/
 theorem gammaL1Dist_eq_pathConfigurationDist {n k : ℕ} (hk : k ≤ n)
     (z w : Gamma (n - k) k) :
     gammaL1Dist z w =

@@ -27,11 +27,17 @@ def blockIndex (n s : ℕ) (hs : 1 ≤ s) (x : Fin n) : Fin (blockCount n s) := 
     simpa [blockCount, nsmul_eq_mul, mul_comm] using
       (le_smul_ceilDiv (a := s) (b := n) (Nat.zero_lt_of_lt hs))
 
+/--
+@isnad1 id=eq.1h3v.s5.05a07b45782b from=translated src=- shape=15e8c60b vocab=06ed142c
+-/
 @[simp]
 theorem blockIndex_val (n s : ℕ) (hs : 1 ≤ s) (x : Fin n) :
     (blockIndex n s hs x).val = x.val / s := by
   rfl
 
+/--
+@isnad1 id=monotone.1h2v.s5.d3bff8cb48e2 from=translated src=- shape=aa1d5200 vocab=2fe36d4d
+-/
 theorem blockIndex_monotone (n s : ℕ) (hs : 1 ≤ s) :
     Monotone (blockIndex n s hs) := by
   intro x y hxy
@@ -43,6 +49,9 @@ noncomputable def blockCoordinates {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     (A : Configuration (Fin n) k) : Fin k → Fin (blockCount n s) :=
   fun i ↦ blockIndex n s hs (coordinate A i)
 
+/--
+@isnad1 id=monotone.1h4v.s5.0b75172c1ff8 from=translated src=- shape=2eb84578 vocab=406fbdb5
+-/
 theorem blockCoordinates_monotone {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     (A : Configuration (Fin n) k) :
     Monotone (blockCoordinates s hs A) :=
@@ -57,14 +66,18 @@ noncomputable def blockSignature {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     (A : Configuration (Fin n) k) : BlockSignature n k s :=
   Sym.mk (List.ofFn (blockCoordinates s hs A)) (by simp)
 
-/-- There are exactly `choose (m + k - 1) k` possible signatures for `m` blocks.-/
+/-- There are exactly `choose (m + k - 1) k` possible signatures for `m` blocks.
+@isnad1 id=eq.0h3v.s5.697451ad93d7 from=translated src=- shape=45550b79 vocab=18707ec7
+-/
 theorem card_blockSignature (n k s : ℕ) :
     Fintype.card (BlockSignature n k s) =
       Nat.choose (blockCount n s + k - 1) k := by
   simpa [BlockSignature] using
     (Sym.card_sym_eq_choose (α := Fin (blockCount n s)) k)
 
-/-- Equal signatures have equal weakly increasing block coordinates.-/
+/-- Equal signatures have equal weakly increasing block coordinates.
+@isnad1 id=eq.2h5v.s6.58dd912b4e3a from=translated src=- shape=c4f9a369 vocab=0d84ebc6
+-/
 theorem blockCoordinates_eq_of_blockSignature_eq {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     {A B : Configuration (Fin n) k} (h : blockSignature s hs A = blockSignature s hs B) :
     blockCoordinates s hs A = blockCoordinates s hs B := by
@@ -98,7 +111,9 @@ private theorem natDist_le_pred_of_div_eq {a b s : ℕ} (hs : 1 ≤ s)
   · rw [Nat.dist_eq_sub_of_le_right hba]
     omega
 
-/-- Corresponding ordered coordinates in the same blocks are at total distance at most `k(s-1)`.-/
+/-- Corresponding ordered coordinates in the same blocks are at total distance at most `k(s-1)`.
+@isnad1 id=le.2h5v.s6.a03a2d13bc51 from=translated src=- shape=3088c8d3 vocab=d26624ca
+-/
 theorem pathConfigurationDist_le_of_blockCoordinates_eq {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     (A B : Configuration (Fin n) k)
     (h : blockCoordinates s hs A = blockCoordinates s hs B) :
@@ -114,7 +129,9 @@ theorem pathConfigurationDist_le_of_blockCoordinates_eq {n k : ℕ} (s : ℕ) (h
       exact congrArg Fin.val hi
     _ = k * (s - 1) := by simp
 
-/-- Configurations with the same block signature are within the common block radius.-/
+/-- Configurations with the same block signature are within the common block radius.
+@isnad1 id=le.2h5v.s6.8973a94f8ae6 from=translated src=- shape=4ce01c4d vocab=19c919f6
+-/
 theorem pathConfigurationDist_le_of_blockSignature_eq {n k : ℕ} (s : ℕ) (hs : 1 ≤ s)
     (A B : Configuration (Fin n) k)
     (h : blockSignature s hs A = blockSignature s hs B) :

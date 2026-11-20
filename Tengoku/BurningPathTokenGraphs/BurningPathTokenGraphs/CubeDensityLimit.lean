@@ -38,14 +38,18 @@ private theorem cubeDensityValues_bddBelow (k : ℕ) :
   rintro x ⟨L, hL, rfl⟩
   exact div_nonneg (by positivity) (pow_nonneg hL.le k)
 
-/-- The bulk infimum is a lower bound for every positive-side density.-/
+/-- The bulk infimum is a lower bound for every positive-side density.
+@isnad1 id=le.1h2v.s4.7afbda5fa74c from=translated src=- shape=6c5b63fd vocab=c56965ee
+-/
 theorem cubeBulkDensity_le_densityAt {k : ℕ} {L : ℝ} (hL : 0 < L) :
     cubeBulkDensity k ≤ cubeCoverDensityAt k L := by
   rw [cubeBulkDensity]
   apply csInf_le (cubeDensityValues_bddBelow k)
   exact ⟨L, hL, rfl⟩
 
-/-- Every strict upper bound on the infimum is beaten at some positive side length.-/
+/-- Every strict upper bound on the infimum is beaten at some positive side length.
+@isnad1 id=ex.1h2v.s5.d91877d614e0 from=translated src=- shape=8a035c4d vocab=7920eb0c
+-/
 theorem exists_cubeCoverDensityAt_lt {k : ℕ} {U : ℝ}
     (hU : cubeBulkDensity k < U) :
     ∃ L : ℝ, 0 < L ∧ cubeCoverDensityAt k L < U := by
@@ -58,7 +62,9 @@ theorem exists_cubeCoverDensityAt_lt {k : ℕ} {U : ℝ}
 noncomputable def cubeReplicationFactor (L₀ L : ℝ) : ℝ :=
   (⌈L / L₀⌉₊ : ℝ) / (L / L₀)
 
-/-- For fixed positive `L₀`, the replication factor tends to one.-/
+/-- For fixed positive `L₀`, the replication factor tends to one.
+@isnad1 id=tendsto.1h1v.s5.11d5b0a5a1f5 from=translated src=- shape=d7cac9b4 vocab=e30767d1
+-/
 theorem tendsto_cubeReplicationFactor (L₀ : ℝ) (hL₀ : 0 < L₀) :
     Tendsto (cubeReplicationFactor L₀) atTop (𝓝 1) := by
   have hratio :
@@ -67,7 +73,9 @@ theorem tendsto_cubeReplicationFactor (L₀ : ℝ) (hL₀ : 0 < L₀) :
       tendsto_id.const_mul_atTop (inv_pos.mpr hL₀)
   exact tendsto_nat_ceil_div_atTop.comp hratio
 
-/-- Replication bounds a large-side density by a fixed density times the ceiling factor.-/
+/-- Replication bounds a large-side density by a fixed density times the ceiling factor.
+@isnad1 id=le.2h3v.s5.e3a3c1c9370b from=translated src=- shape=c34c8aa3 vocab=2879e3ef
+-/
 theorem cubeCoverDensityAt_le_replication {k : ℕ} {L₀ L : ℝ}
     (hL₀ : 0 < L₀) (hL₀L : L₀ ≤ L) :
     cubeCoverDensityAt k L ≤
@@ -96,7 +104,9 @@ theorem cubeCoverDensityAt_le_replication {k : ℕ} {L₀ L : ℝ}
       push_cast
       field_simp [hL.ne', hL₀.ne', pow_ne_zero]
 
-/-- Normalized cube-cover counts converge to their variational infimum.-/
+/-- Normalized cube-cover counts converge to their variational infimum.
+@isnad1 id=tendsto.0h1v.s4.1b12af8a9a4c from=translated src=- shape=5e4ebc91 vocab=82e93f39
+-/
 theorem tendsto_cubeCoverDensityAt (k : ℕ) :
     Tendsto (cubeCoverDensityAt k) atTop (𝓝 (cubeBulkDensity k)) := by
   apply tendsto_order.2
@@ -118,7 +128,9 @@ theorem tendsto_cubeCoverDensityAt (k : ℕ) :
       with L hL hfactor
     exact (cubeCoverDensityAt_le_replication hL₀ hL).trans_lt hfactor
 
-/-- The same limit written directly in terms of `cubeCoverNumber`.-/
+/-- The same limit written directly in terms of `cubeCoverNumber`.
+@isnad1 id=tendsto.0h1v.s5.3217295176b6 from=translated src=- shape=0cb546e0 vocab=1b503293
+-/
 theorem cubeBulkDensity_eq_limit (k : ℕ) :
     Tendsto
       (fun L ↦ (cubeCoverNumber k L : ℝ) / L ^ k)

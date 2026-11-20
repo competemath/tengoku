@@ -17,11 +17,16 @@ namespace BurningPath
 noncomputable def cubeGridCount (k : ℕ) (L : ℝ) : ℕ :=
   max 1 ⌈((k + 1 : ℕ) : ℝ) * L / 2⌉₊
 
+/--
+@isnad1 id=le.0h2v.s3.d20f98a50743 from=translated src=- shape=25b8bdde vocab=2853b7a8
+-/
 theorem cubeGridCount_pos (k : ℕ) (L : ℝ) :
     1 ≤ cubeGridCount k L :=
   le_max_left _ _
 
-/-- The chosen grid intervals have length at most `2/(k+1)`.-/
+/-- The chosen grid intervals have length at most `2/(k+1)`.
+@isnad1 id=le.1h2v.s6.bc75b001ff4e from=translated src=- shape=db47e267 vocab=4de80f6d
+-/
 theorem cubeGrid_mesh_bound {k : ℕ} {L : ℝ} (_hL : 0 ≤ L) :
     L / cubeGridCount k L ≤ 2 / ((k + 1 : ℕ) : ℝ) := by
   let x := (((k + 1 : ℕ) : ℝ) * L / 2)
@@ -49,7 +54,9 @@ theorem cubeGrid_mesh_bound {k : ℕ} {L : ℝ} (_hL : 0 ≤ L) :
 
 /--
 If `m` intervals per coordinate have mesh at most `2/(k+1)`, their
-midpoints give a cover with `(k+1)m^k` normalized ranks.-/
+midpoints give a cover with `(k+1)m^k` normalized ranks.
+@isnad1 id=hascuber.3h3v.s6.23e5d6d09d25 from=translated src=- shape=14eed706 vocab=d9c61996
+-/
 theorem hasCubeRankedCover_midpointGrid {k m : ℕ} {L : ℝ}
     (hm : 1 ≤ m) (hL : 0 ≤ L)
     (hmesh : L / m ≤ 2 / ((k + 1 : ℕ) : ℝ)) :
@@ -152,14 +159,18 @@ theorem hasCubeRankedCover_midpointGrid {k m : ℕ} {L : ℝ}
       ⟨0, zero_mem_realCube hL⟩ hq hMq net hnetLegal hnetCover hradius
   simpa [HasCubeRankedCover, M, Tile] using hcover
 
-/-- An explicit finite normalized cover of a real cube.-/
+/-- An explicit finite normalized cover of a real cube.
+@isnad1 id=hascuber.1h2v.s5.b82fe84fdae6 from=translated src=- shape=f21d1cb0 vocab=e91d7252
+-/
 theorem hasCubeRankedCover_grid {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
     HasCubeRankedCover k L
       ((k + 1) * (cubeGridCount k L) ^ k) := by
   exact hasCubeRankedCover_midpointGrid
     (cubeGridCount_pos k L) hL (cubeGrid_mesh_bound hL)
 
-/-- Consequently `ν_k(L)` is finite and obeys the explicit grid bound.-/
+/-- Consequently `ν_k(L)` is finite and obeys the explicit grid bound.
+@isnad1 id=le.1h2v.s5.1d3cb8f4f5be from=translated src=- shape=8e7e8e0d vocab=84670d57
+-/
 theorem cubeCoverNumber_le_grid {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
     cubeCoverNumber k L ≤ (k + 1) * (cubeGridCount k L) ^ k := by
   apply cubeCoverNumber_min

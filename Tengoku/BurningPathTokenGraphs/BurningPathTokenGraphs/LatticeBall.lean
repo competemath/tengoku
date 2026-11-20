@@ -20,6 +20,9 @@ namespace BurningPath
 def latticeBall (k r : ℕ) : Set (Fin k → ℤ) :=
   {z | ∑ i, Int.natAbs (z i) ≤ r}
 
+/--
+@isnad1 id=iff.0h3v.s5.f6f075212f61 from=translated src=- shape=5ca8b76c vocab=7d7cfcf9
+-/
 @[simp]
 theorem mem_latticeBall {k r : ℕ} {z : Fin k → ℤ} :
     z ∈ latticeBall k r ↔ ∑ i, Int.natAbs (z i) ≤ r := by
@@ -66,7 +69,9 @@ private def intCoordinateEquiv (r : ℕ) : IntCoordinate r ≃ Option (Fin r ⊕
 private noncomputable instance intCoordinateFintype (r : ℕ) : Fintype (IntCoordinate r) :=
   Fintype.ofEquiv (Option (Fin r ⊕ Fin r)) (intCoordinateEquiv r).symm
 
-/-- The integer `ℓ₁` ball is finite.-/
+/-- The integer `ℓ₁` ball is finite.
+@isnad1 id=finite.0h2v.s3.22386c5b9f72 from=translated src=- shape=6b41d89c vocab=c578cef0
+-/
 theorem latticeBall_finite (k r : ℕ) : (latticeBall k r).Finite := by
   have hcoordinate : ({x : ℤ | x.natAbs ≤ r} : Set ℤ).Finite := by
     exact Set.finite_def.mpr ⟨intCoordinateFintype r⟩
@@ -218,7 +223,9 @@ private theorem latticeBall_card_eq_polynomial (k r : ℕ) :
         _ = latticeBallPolynomial (k + 1) r :=
           (latticeBallPolynomial_succ_dim k r).symm
 
-/-- The exact cardinality of the ambient integer `ℓ₁` ball.-/
+/-- The exact cardinality of the ambient integer `ℓ₁` ball.
+@isnad1 id=eq.0h2v.s4.d99927e4d950 from=translated src=- shape=8c5bb4d5 vocab=01a1253e
+-/
 theorem latticeBall_ncard (k r : ℕ) :
     (latticeBall k r).ncard = latticeBallPolynomial k r := by
   calc
@@ -227,7 +234,9 @@ theorem latticeBall_ncard (k r : ℕ) :
       simp
     _ = latticeBallPolynomial k r := latticeBall_card_eq_polynomial k r
 
-/-- Expanded Delannoy formula for the cardinality of the ambient integer `ℓ₁` ball.-/
+/-- Expanded Delannoy formula for the cardinality of the ambient integer `ℓ₁` ball.
+@isnad1 id=eq.0h2v.s6.b6b80689ad4d from=translated src=- shape=905e8bc5 vocab=01437ec9
+-/
 theorem latticeBall_ncard_formula (k r : ℕ) :
     (latticeBall k r).ncard =
       ∑ j ∈ Finset.range (k + 1), 2 ^ j * k.choose j * r.choose j := by

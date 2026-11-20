@@ -19,7 +19,9 @@ namespace BurningPath
 noncomputable def cubeGridDensityBound (k : ℕ) (L : ℝ) : ℝ :=
   (((k + 1) * cubeGridCount k L ^ k : ℕ) : ℝ) / L ^ k
 
-/-- The grid count divided by `L` tends to `(k+1)/2`.-/
+/-- The grid count divided by `L` tends to `(k+1)/2`.
+@isnad1 id=tendsto.0h1v.s6.eda6b24b9734 from=translated src=- shape=5cad09bb vocab=4569a97a
+-/
 theorem tendsto_cubeGridCount_div (k : ℕ) :
     Tendsto
       (fun L : ℝ ↦ (cubeGridCount k L : ℝ) / L)
@@ -43,7 +45,9 @@ theorem tendsto_cubeGridCount_div (k : ℕ) :
   rw [harg] at hceilPos ⊢
   rw [max_eq_right hceilPos]
 
-/-- The explicit normalized grid bound has the constant from equation (45).-/
+/-- The explicit normalized grid bound has the constant from equation (45).
+@isnad1 id=tendsto.0h1v.s6.18418d3fe391 from=translated src=- shape=a379fb38 vocab=1a1277e3
+-/
 theorem tendsto_cubeGridDensityBound (k : ℕ) :
     Tendsto (cubeGridDensityBound k) atTop
       (𝓝 ((((k + 1 : ℕ) : ℝ) ^ (k + 1)) / 2 ^ k)) := by
@@ -67,7 +71,9 @@ theorem tendsto_cubeGridDensityBound (k : ℕ) :
     norm_num [Nat.cast_add, Nat.cast_one]
     ring
 
-/-- The true density is bounded by the explicit grid density at every positive side length.-/
+/-- The true density is bounded by the explicit grid density at every positive side length.
+@isnad1 id=le.1h2v.s4.fb4d225b43a5 from=translated src=- shape=0eb5832c vocab=6deceadb
+-/
 theorem cubeCoverDensityAt_le_grid {k : ℕ} {L : ℝ} (hL : 0 < L) :
     cubeCoverDensityAt k L ≤ cubeGridDensityBound k L := by
   unfold cubeCoverDensityAt cubeGridDensityBound
@@ -75,7 +81,9 @@ theorem cubeCoverDensityAt_le_grid {k : ℕ} {L : ℝ} (hL : 0 < L) :
   · exact_mod_cast cubeCoverNumber_le_grid (k := k) hL.le
   · exact pow_nonneg hL.le k
 
-/-- Explicit upper bound for the cube bulk density.-/
+/-- Explicit upper bound for the cube bulk density.
+@isnad1 id=le.0h1v.s6.0d155d0aa0fb from=translated src=- shape=15320f64 vocab=6e5a6f64
+-/
 theorem cubeBulkDensity_le_explicit (k : ℕ) :
     cubeBulkDensity k ≤
       (((k + 1 : ℕ) : ℝ) ^ (k + 1)) / 2 ^ k := by

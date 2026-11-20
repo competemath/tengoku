@@ -20,6 +20,9 @@ namespace BurningPath
 noncomputable def coordinate {n k : ℕ} (A : Configuration (Fin n) k) (i : Fin k) : Fin n :=
   configurationEquivOrderEmbedding (Fin n) k A i
 
+/--
+@isnad1 id=strictmo.0h3v.s4.9e8653389d55 from=translated src=- shape=5268e410 vocab=50ca0ae5
+-/
 theorem coordinate_strictMono {n k : ℕ} (A : Configuration (Fin n) k) :
     StrictMono (coordinate A) :=
   (configurationEquivOrderEmbedding (Fin n) k A).strictMono
@@ -29,21 +32,33 @@ noncomputable def pathConfigurationDist {n k : ℕ}
     (A B : Configuration (Fin n) k) : ℕ :=
   ∑ i : Fin k, Nat.dist (coordinate A i).val (coordinate B i).val
 
+/--
+@isnad1 id=eq.0h3v.s4.cb56f22097be from=translated src=- shape=703bece1 vocab=24b9e557
+-/
 @[simp]
 theorem pathConfigurationDist_self {n k : ℕ} (A : Configuration (Fin n) k) :
     pathConfigurationDist A A = 0 := by
   simp [pathConfigurationDist]
 
+/--
+@isnad1 id=eq.0h4v.s4.38500e471677 from=translated src=- shape=825885f6 vocab=24b9e557
+-/
 theorem pathConfigurationDist_comm {n k : ℕ} (A B : Configuration (Fin n) k) :
     pathConfigurationDist A B = pathConfigurationDist B A := by
   simp only [pathConfigurationDist, Nat.dist_comm]
 
+/--
+@isnad1 id=le.0h5v.s5.0ce3ad9c6c7f from=translated src=- shape=462184ee vocab=ea8d268d
+-/
 theorem pathConfigurationDist_triangle {n k : ℕ}
     (A B C : Configuration (Fin n) k) :
     pathConfigurationDist A C ≤ pathConfigurationDist A B + pathConfigurationDist B C := by
   simp only [pathConfigurationDist, ← Finset.sum_add_distrib]
   exact Finset.sum_le_sum fun i _ ↦ Nat.dist.triangle_inequality _ _ _
 
+/--
+@isnad1 id=iff.0h4v.s5.b99a34ba82dd from=translated src=- shape=7fa9cc7e vocab=24b9e557
+-/
 theorem pathConfigurationDist_eq_zero_iff {n k : ℕ}
     (A B : Configuration (Fin n) k) :
     pathConfigurationDist A B = 0 ↔ A = B := by
@@ -56,7 +71,9 @@ theorem pathConfigurationDist_eq_zero_iff {n k : ℕ}
   · rintro rfl
     exact pathConfigurationDist_self A
 
-/-- Natural distance is the natural absolute value of the corresponding integer difference.-/
+/-- Natural distance is the natural absolute value of the corresponding integer difference.
+@isnad1 id=eq.0h2v.s4.94bb5c0e8440 from=translated src=- shape=8d1aeb36 vocab=86cde8e0
+-/
 theorem natDist_eq_natAbs_intSub (a b : ℕ) :
     Nat.dist a b = ((a : ℤ) - b).natAbs := by
   rcases le_total a b with hab | hba

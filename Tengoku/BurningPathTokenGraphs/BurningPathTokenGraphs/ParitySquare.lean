@@ -18,6 +18,9 @@ the condition that the inverse sum/difference transformation has integer coordin
 def parityOffsetSquare (r : ℕ) : Set (ℤ × ℤ) :=
   {p | max p.1.natAbs p.2.natAbs ≤ r ∧ p.1 ≡ p.2 [ZMOD 2]}
 
+/--
+@isnad1 id=iff.0h2v.s5.7aa9cd18fe3b from=translated src=- shape=36b956e5 vocab=df8ca925
+-/
 @[simp]
 theorem mem_parityOffsetSquare {r : ℕ} {p : ℤ × ℤ} :
     p ∈ parityOffsetSquare r ↔
@@ -49,6 +52,9 @@ private theorem even_add_of_modEq_two {u v : ℤ} (h : u ≡ v [ZMOD 2]) :
   obtain ⟨a, ha⟩ := even_sub_of_modEq_two h
   exact ⟨a + v, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.da4ea509b303 from=translated src=- shape=8a18fef9 vocab=28514bb3
+-/
 @[simp]
 theorem parityOffsetSquareInverseCoordinates_add {r : ℕ} (p : parityOffsetSquare r) :
     (parityOffsetSquareInverseCoordinates p.1).1 +
@@ -61,6 +67,9 @@ theorem parityOffsetSquareInverseCoordinates_add {r : ℕ} (p : parityOffsetSqua
   simp only [parityOffsetSquareInverseCoordinates] at hx hy ⊢
   omega
 
+/--
+@isnad1 id=eq.0h2v.s6.4eccacf85550 from=translated src=- shape=8a18fef9 vocab=adc6a977
+-/
 @[simp]
 theorem parityOffsetSquareInverseCoordinates_sub {r : ℕ} (p : parityOffsetSquare r) :
     (parityOffsetSquareInverseCoordinates p.1).2 -
@@ -112,7 +121,9 @@ def latticeBallTwoEquivParityOffsetSquare (r : ℕ) :
     · exact parityOffsetSquareInverseCoordinates_add p
     · exact parityOffsetSquareInverseCoordinates_sub p
 
-/-- In dimension two, the lattice-ball polynomial is the square-model quadratic.-/
+/-- In dimension two, the lattice-ball polynomial is the square-model quadratic.
+@isnad1 id=eq.0h1v.s6.1fd17f46049b from=translated src=- shape=ab83e3a2 vocab=d5cde26f
+-/
 theorem latticeBallPolynomial_two (r : ℕ) :
     latticeBallPolynomial 2 r = 2 * r ^ 2 + 2 * r + 1 := by
   simp only [latticeBallPolynomial, Finset.sum_range_succ, Finset.sum_range_zero,
@@ -127,7 +138,9 @@ theorem latticeBallPolynomial_two (r : ℕ) :
       have hdiv := Nat.div_mul_cancel heven.two_dvd
       nlinarith
 
-/-- A full radius-`r` parity square contains exactly `2r² + 2r + 1` lattice points.-/
+/-- A full radius-`r` parity square contains exactly `2r² + 2r + 1` lattice points.
+@isnad1 id=eq.0h1v.s6.53c09aae0ff2 from=translated src=- shape=1035ac18 vocab=2ce24a4c
+-/
 theorem parityOffsetSquare_ncard (r : ℕ) :
     (parityOffsetSquare r).ncard = 2 * r ^ 2 + 2 * r + 1 := by
   letI : Fintype (latticeBall 2 r) := (latticeBall_finite 2 r).fintype

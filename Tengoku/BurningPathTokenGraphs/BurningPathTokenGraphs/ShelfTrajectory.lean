@@ -25,7 +25,9 @@ private theorem sum_range_forward_difference (z : ℕ → ℝ) (m : ℕ) :
 
 /--
 The square-sum estimate in (23), under the required monotonicity and
-decrement hypotheses.-/
+decrement hypotheses.
+@isnad1 id=le.5h3v.s8.4b8d86145485 from=translated src=- shape=a94de572 vocab=c3b6af6b
+-/
 theorem shelfTrajectory_sum_sq_le {m : ℕ} (w z : ℕ → ℝ)
     (hwNonneg : ∀ i ≤ m, 0 ≤ w i)
     (hzFinal : 0 ≤ z m)
@@ -71,7 +73,9 @@ theorem shelfTrajectory_sum_sq_le {m : ℕ} (w z : ℕ → ℝ)
     _ ≤ (2 / 3 : ℝ) * w 0 * z 0 := by
       nlinarith
 
-/-- Summing one-step potential losses gives the exact accumulated loss.-/
+/-- Summing one-step potential losses gives the exact accumulated loss.
+@isnad1 id=le.1h3v.s7.a023c81c50cd from=translated src=- shape=5c29284d vocab=f7466023
+-/
 theorem shelfPotential_trajectory_loss {m : ℕ} (w z : ℕ → ℝ)
     (hstep :
       ∀ i < m,
@@ -94,7 +98,9 @@ theorem shelfPotential_trajectory_loss {m : ℕ} (w z : ℕ → ℝ)
       rw [Finset.sum_range_succ]
       nlinarith
 
-/-- Equation (23): the square-sum estimate converts `45` per step into total loss `30 w₀z₀`.-/
+/-- Equation (23): the square-sum estimate converts `45` per step into total loss `30 w₀z₀`.
+@isnad1 id=le.2h3v.s7.80cd442bde9f from=translated src=- shape=161af167 vocab=397f2b0e
+-/
 theorem shelfPotential_trajectory_lower {m : ℕ} (w z : ℕ → ℝ)
     (hsum :
       ∑ i ∈ Finset.range m, w i ^ 2 ≤ (2 / 3 : ℝ) * w 0 * z 0)

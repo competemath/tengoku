@@ -40,12 +40,17 @@ def shelfRadiusEmbedding (w q : ℕ) (hqw : q ≤ w) : Fin q ↪ Fin w where
     change w - (i.val + 1) = w - (j.val + 1) at hval
     omega
 
+/--
+@isnad1 id=eq.1h3v.s5.e0461f0fd32f from=translated src=- shape=e69f1dbb vocab=15673bc1
+-/
 @[simp]
 theorem shelfRadiusEmbedding_val (w q : ℕ) (hqw : q ≤ w) (i : Fin q) :
     (shelfRadiusEmbedding w q hqw i).val = w - (i.val + 1) :=
   rfl
 
-/-- A residual cap is contained in the cap from which its bottom band was removed.-/
+/-- A residual cap is contained in the cap from which its bottom band was removed.
+@isnad1 id=le.1h4v.s6.4623528e4407 from=translated src=- shape=ccfe808b vocab=d167c97e
+-/
 theorem residual_parityCap_subset {h z a : ℕ} {σ : ℤ} (ha : 2 * a ≤ z) :
     parityCap (h + 2 * a) (z - 2 * a) σ ⊆ parityCap h z σ := by
   intro p hp
@@ -68,7 +73,9 @@ theorem residual_parityCap_subset {h z a : ℕ} {σ : ℤ} (ha : 2 * a ≤ z) :
 
 /--
 Extend a shelf that covers the whole cap to a full ranked cover.  Unused lower radii receive the
-legal apex center.-/
+legal apex center.
+@isnad1 id=ex.4h6v.s7.759532945fa9 from=translated src=- shape=159c4bc7 vocab=e58e61a0
+-/
 theorem exists_full_rankedCover_of_shelf {h z w q : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2]) (hqw : q ≤ w)
     (shelfCenters : Fin q → ℤ × ℤ)
@@ -103,7 +110,9 @@ theorem exists_full_rankedCover_of_shelf {h z w q : ℕ} {σ : ℤ}
 
 /--
 Combine one nonterminal shelf with a ranked cover of its residual cap.  The two pieces occupy
-disjoint high and low radius intervals.-/
+disjoint high and low radius intervals.
+@isnad1 id=ex.6h7v.s8.2d4f06bfa477 from=translated src=- shape=96eb7efc vocab=b25dc222
+-/
 theorem exists_full_rankedCover_of_shelf_and_residual {h z w q : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2]) (hqw : q ≤ w)
     (hnonterminal : 2 * (w - q) < z)
@@ -197,7 +206,9 @@ structure ShelfRun (m : ℕ) (h z w q : ℕ → ℕ) : Prop where
   terminal :
     z m ≤ w m - 1 ∨ z m ≤ 2 * (w m - q m)
 
-/-- Every finite shelf run assembles into a legal cover using all radii below the initial width.-/
+/-- Every finite shelf run assembles into a legal cover using all radii below the initial width.
+@isnad1 id=ex.2h6v.s6.5054bfbf5496 from=translated src=- shape=52233b82 vocab=e1b1f571
+-/
 theorem ShelfRun.exists_rankedCover {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {σ : ℤ}
     (hσ : (h 0 + z 0 : ℕ) ≡ σ [ZMOD 2]) :
@@ -300,7 +311,9 @@ theorem ShelfRun.exists_rankedCover {m : ℕ} {h z w q : ℕ → ℕ}
         exists_full_rankedCover_of_shelf_and_residual hσ hqw.le hnonterminal
           shelfCenters hlegal hresidual adjustedLower hadjusted
 
-/-- Widths along a shelf run never exceed the initial width.-/
+/-- Widths along a shelf run never exceed the initial width.
+@isnad1 id=le.2h6v.s5.300afbdeb32d from=translated src=- shape=07d92051 vocab=4b1e9f56
+-/
 theorem ShelfRun.w_le_initial {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {i : ℕ} (hi : i ≤ m) :
     w i ≤ w 0 := by
@@ -312,7 +325,9 @@ theorem ShelfRun.w_le_initial {m : ℕ} {h z w q : ℕ → ℕ}
         _ ≤ w i := Nat.sub_le _ _
         _ ≤ w 0 := ih (by omega)
 
-/-- Each nonterminal update retains at least three quarters of the preceding width.-/
+/-- Each nonterminal update retains at least three quarters of the preceding width.
+@isnad1 id=le.2h6v.s6.55229c347fd0 from=translated src=- shape=3a0c052a vocab=e0aa37d8
+-/
 theorem ShelfRun.three_mul_w_le_four_mul_w_next {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {i : ℕ} (hi : i < m) :
     3 * w i ≤ 4 * w (i + 1) := by
@@ -322,7 +337,9 @@ theorem ShelfRun.three_mul_w_le_four_mul_w_next {m : ℕ}
   rw [run.w_next i hi]
   exact hbounds.2.2
 
-/-- The cap height decrement is exactly twice the next width.-/
+/-- The cap height decrement is exactly twice the next width.
+@isnad1 id=eq.2h6v.s6.4f65ce0033d7 from=translated src=- shape=82617412 vocab=b76dfb08
+-/
 theorem ShelfRun.z_sub_z_next {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {i : ℕ} (hi : i < m) :
     (z i : ℝ) - z (i + 1) = 2 * (w (i + 1) : ℝ) := by
@@ -332,7 +349,9 @@ theorem ShelfRun.z_sub_z_next {m : ℕ} {h z w q : ℕ → ℕ}
   rw [Nat.cast_sub hsub]
   norm_num
 
-/-- Every update in a shelf run satisfies the one-step potential estimate.-/
+/-- Every update in a shelf run satisfies the one-step potential estimate.
+@isnad1 id=le.2h6v.s7.8b8545383353 from=translated src=- shape=b75ae3be vocab=60ce09ac
+-/
 theorem ShelfRun.potential_step {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {i : ℕ} (hi : i < m) :
     shelfPotential (w (i + 1) : ℝ) (z (i + 1) : ℝ) ≥
@@ -345,7 +364,9 @@ theorem ShelfRun.potential_step {m : ℕ} {h z w q : ℕ → ℕ}
   rw [run.w_next i hi, run.z_next i hi]
   exact hstep
 
-/-- Equation (23)'s square-sum estimate holds for every prefix of a shelf run.-/
+/-- Equation (23)'s square-sum estimate holds for every prefix of a shelf run.
+@isnad1 id=le.2h6v.s6.4ededc270904 from=translated src=- shape=ab3b8763 vocab=e344ab4b
+-/
 theorem ShelfRun.sum_sq_le {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {j : ℕ} (hj : j ≤ m) :
     ∑ i ∈ Finset.range j, (w i : ℝ) ^ 2 ≤
@@ -361,7 +382,9 @@ theorem ShelfRun.sum_sq_le {m : ℕ} {h z w q : ℕ → ℕ}
   · intro i hi
     exact run.z_sub_z_next (hi.trans_le hj)
 
-/-- Equation (23)'s accumulated potential estimate holds at every stage of a shelf run.-/
+/-- Equation (23)'s accumulated potential estimate holds at every stage of a shelf run.
+@isnad1 id=le.2h6v.s6.f1548b7f6a4b from=translated src=- shape=fe791412 vocab=b3a94b5d
+-/
 theorem ShelfRun.potential_lower {m : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {j : ℕ} (hj : j ≤ m) :
     shelfPotential (w j : ℝ) (z j : ℝ) ≥
@@ -372,7 +395,9 @@ theorem ShelfRun.potential_lower {m : ℕ} {h z w q : ℕ → ℕ}
   · intro i hi
     exact run.potential_step (hi.trans_le hj)
 
-/-- A sufficient initial potential margin persists throughout the run.-/
+/-- A sufficient initial potential margin persists throughout the run.
+@isnad1 id=le.3h7v.s6.f004865d82f6 from=translated src=- shape=a5728ad9 vocab=1911d0d4
+-/
 theorem ShelfRun.potential_ge_of_initial_margin {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {E : ℝ}
     (hmargin :
@@ -383,7 +408,9 @@ theorem ShelfRun.potential_ge_of_initial_margin {m : ℕ}
   have htrajectory := run.potential_lower hj
   linarith
 
-/-- The persistent potential margin gives the cubic part of the width bound in (31).-/
+/-- The persistent potential margin gives the cubic part of the width bound in (31).
+@isnad1 id=le.3h7v.s7.a63d38fbd931 from=translated src=- shape=39a4f470 vocab=8680cb9a
+-/
 theorem ShelfRun.width_cube_ge_of_initial_margin {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {E : ℝ}
     (hmargin :
@@ -403,7 +430,9 @@ private theorem sum_range_forward_difference (z : ℕ → ℝ) (m : ℕ) :
 
 /--
 If every preterminal width is at least `B`, each nonterminal shelf removes at least `3B/2`
-height in total.-/
+height in total.
+@isnad1 id=le.2h6v.s6.892403208b12 from=translated src=- shape=ba77a4c7 vocab=83395a67
+-/
 theorem ShelfRun.nonterminal_count_mul_le {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {B : ℝ}
     (hB : ∀ i < m, B ≤ (w i : ℝ)) :
@@ -424,7 +453,9 @@ theorem ShelfRun.nonterminal_count_mul_le {m : ℕ}
   simpa only [Finset.sum_const, Finset.card_range, nsmul_eq_mul] using
     hsum.trans (by nlinarith : (z 0 : ℝ) - z m ≤ z 0)
 
-/-- Ceiling form of the explicit nonterminal-shelf count.-/
+/-- Ceiling form of the explicit nonterminal-shelf count.
+@isnad1 id=le.3h6v.s6.b789112415d4 from=translated src=- shape=77b65a31 vocab=b05d6abc
+-/
 theorem ShelfRun.nonterminal_count_le_ceil {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {B : ℝ}
     (hBpos : 0 < B) (hB : ∀ i < m, B ≤ (w i : ℝ)) :
@@ -439,7 +470,9 @@ theorem ShelfRun.nonterminal_count_le_ceil {m : ℕ}
     Nat.le_ceil _
   exact_mod_cast hreal.trans hceil
 
-/-- Including the final shelf gives the stated `ceiling + 1` shelf bound.-/
+/-- Including the final shelf gives the stated `ceiling + 1` shelf bound.
+@isnad1 id=le.3h6v.s7.4695f26c4bc4 from=translated src=- shape=9f9c3e61 vocab=77b994fd
+-/
 theorem ShelfRun.shelf_count_le_ceil_add_one {m : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q) {B : ℝ}
     (hBpos : 0 < B) (hB : ∀ i < m, B ≤ (w i : ℝ)) :
@@ -458,6 +491,9 @@ noncomputable def shelfBeta (ε : ℝ) : ℝ :=
 noncomputable def shelfWidthScale (N : ℕ) : ℝ :=
   (N : ℝ) ^ (2 / 3 : ℝ)
 
+/--
+@isnad1 id=lt.1h1v.s4.079bee69daed from=translated src=- shape=35bd48ee vocab=c0070500
+-/
 theorem shelfDelta_pos {ε : ℝ} (hε : 0 < ε) :
     0 < shelfDelta ε := by
   have hone : (1 : ℝ) < 1 + ε := by linarith
@@ -467,12 +503,18 @@ theorem shelfDelta_pos {ε : ℝ} (hε : 0 < ε) :
   norm_num at hpow ⊢
   exact hpow
 
+/--
+@isnad1 id=lt.1h1v.s4.53462f3a4f7a from=translated src=- shape=35bd48ee vocab=d7e2f3d3
+-/
 theorem shelfBeta_pos {ε : ℝ} (hε : 0 < ε) :
     0 < shelfBeta ε := by
   rw [shelfBeta]
   apply Real.rpow_pos_of_pos
   exact div_pos (mul_pos (by norm_num) (shelfDelta_pos hε)) (by norm_num)
 
+/--
+@isnad1 id=eq.1h1v.s6.307c229bde90 from=translated src=- shape=1a7dfaee vocab=5ba948d0
+-/
 @[simp]
 theorem shelfBeta_pow_three {ε : ℝ} (hε : 0 < ε) :
     shelfBeta ε ^ 3 = (3 * shelfDelta ε) / 8 := by
@@ -481,6 +523,9 @@ theorem shelfBeta_pow_three {ε : ℝ} (hε : 0 < ε) :
       (div_nonneg (mul_nonneg (by norm_num) (shelfDelta_pos hε).le) (by norm_num))
       (by norm_num))
 
+/--
+@isnad1 id=eq.0h1v.s5.3bd40401a20c from=translated src=- shape=83850f4f vocab=83d6a5d1
+-/
 @[simp]
 theorem shelfWidthScale_pow_three (N : ℕ) :
     shelfWidthScale N ^ 3 = (N : ℝ) ^ 2 := by
@@ -490,18 +535,26 @@ theorem shelfWidthScale_pow_three (N : ℕ) :
   norm_num [shelfWidthScale, Real.rpow_natCast] at h ⊢
   exact h
 
+/--
+@isnad1 id=lt.1h1v.s4.dc934b927e3a from=translated src=- shape=7f2e781e vocab=95dfa640
+-/
 theorem shelfWidthScale_pos {N : ℕ} (hN : 0 < N) :
     0 < shelfWidthScale N := by
   rw [shelfWidthScale]
   apply Real.rpow_pos_of_pos
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.9ba2bc2c1a46 from=translated src=- shape=b9369acb vocab=2dfaf37d
+-/
 theorem shelfWidthScale_nonneg (N : ℕ) :
     0 ≤ shelfWidthScale N := by
   rw [shelfWidthScale]
   exact Real.rpow_nonneg (by positivity) _
 
-/-- The cubic potential consequence in (31), converted to its advertised width lower bound.-/
+/-- The cubic potential consequence in (31), converted to its advertised width lower bound.
+@isnad1 id=le.4h8v.s7.76dddada394f from=translated src=- shape=bdf01a72 vocab=35e9a08b
+-/
 theorem ShelfRun.shelfBeta_mul_widthScale_le {m N : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q)
     {ε : ℝ} (hε : 0 < ε)
@@ -527,7 +580,9 @@ theorem ShelfRun.shelfBeta_mul_widthScale_le {m N : ℕ}
 
 /--
 Equation (31) for every stage of a run under the initial accumulated-loss
-margin for the global shelf cover.-/
+margin for the global shelf cover.
+@isnad1 id=and.4h8v.s8.934e568c7c7d from=translated src=- shape=069b8069 vocab=35e9a08b
+-/
 theorem ShelfRun.equation31 {m N : ℕ} {h z w q : ℕ → ℕ}
     (run : ShelfRun m h z w q) {ε : ℝ} (hε : 0 < ε)
     (hmargin :
@@ -551,7 +606,9 @@ private theorem width_scale_quotient {N : ℕ} (hN : 0 < N) :
   norm_num [shelfWidthScale, Real.rpow_one] at h ⊢
   exact h
 
-/-- Explicit shelf-count bound in terms of the initial cap size.-/
+/-- Explicit shelf-count bound in terms of the initial cap size.
+@isnad1 id=le.5h7v.s8.56e334f5e323 from=translated src=- shape=e014de6e vocab=ba10aeb3
+-/
 theorem ShelfRun.shelf_count_explicit_bound {m N : ℕ}
     {h z w q : ℕ → ℕ} (run : ShelfRun m h z w q)
     {ε : ℝ} (hε : 0 < ε) (hN : 0 < N) (hz0 : z 0 = N)
@@ -581,17 +638,25 @@ def prependNat (x : ℕ) (f : ℕ → ℕ) : ℕ → ℕ
   | 0 => x
   | i + 1 => f i
 
+/--
+@isnad1 id=eq.0h2v.s4.669e522f94c0 from=translated src=- shape=a9fb1440 vocab=be0ba193
+-/
 @[simp]
 theorem prependNat_zero (x : ℕ) (f : ℕ → ℕ) :
     prependNat x f 0 = x :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.148de5c675c9 from=translated src=- shape=1d992269 vocab=16497f44
+-/
 @[simp]
 theorem prependNat_succ (x : ℕ) (f : ℕ → ℕ) (i : ℕ) :
     prependNat x f (i + 1) = f i :=
   rfl
 
-/-- Prepend one nonterminal least-width update to an existing shelf run.-/
+/-- Prepend one nonterminal least-width update to an existing shelf run.
+@isnad1 id=shelfrun.9h9v.s8.10917b35128b from=translated src=- shape=a89606c8 vocab=f9faf405
+-/
 theorem ShelfRun.prepend {m : ℕ} {H Z W Q : ℕ → ℕ}
     (tail : ShelfRun m H Z W Q) {h z w q : ℕ}
     (hw : 144 ≤ w) (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3)
@@ -652,7 +717,9 @@ def HasShelfRun (h z w : ℕ) : Prop :=
   ∃ m : ℕ, ∃ H Z W Q : ℕ → ℕ,
     H 0 = h ∧ Z 0 = z ∧ W 0 = w ∧ ShelfRun m H Z W Q
 
-/-- A finite run immediately yields the global ranked cover at its initial state.-/
+/-- A finite run immediately yields the global ranked cover at its initial state.
+@isnad1 id=ex.2h4v.s5.d563a7446ac8 from=translated src=- shape=2f525a92 vocab=1866907c
+-/
 theorem HasShelfRun.exists_rankedCover {h z w : ℕ} (hrun : HasShelfRun h z w)
     {σ : ℤ} (hσ : (h + z : ℕ) ≡ σ [ZMOD 2]) :
     ∃ centers : Fin w → ℤ × ℤ,
@@ -667,7 +734,9 @@ theorem HasShelfRun.exists_rankedCover {h z w : ℕ} (hrun : HasShelfRun h z w)
   subst w
   exact ⟨centers, hcenters⟩
 
-/-- The reserve invariant supplies the width and cube hypotheses at the current state.-/
+/-- The reserve invariant supplies the width and cube hypotheses at the current state.
+@isnad1 id=and.4h5v.s8.e7cb043086e1 from=translated src=- shape=7055599d vocab=77d66391
+-/
 theorem shelf_state_bounds_of_reserve {w₀ z₀ z w : ℕ} {E : ℝ}
     (hzle : z ≤ z₀)
     (hmargin :
@@ -699,7 +768,9 @@ theorem shelf_state_bounds_of_reserve {w₀ z₀ z w : ℕ} {E : ℝ}
 
 /--
 Strong-induction construction of the finite shelf trajectory.  The reserve term records exactly
-the portion of the accumulated `30 w₀ z₀` loss already spent.-/
+the portion of the accumulated `30 w₀ z₀` loss already spent.
+@isnad1 id=hasshelf.5h6v.s7.9cc34984f95d from=translated src=- shape=3191f157 vocab=1bc22281
+-/
 theorem exists_hasShelfRun_of_reserve {w₀ z₀ h z w : ℕ} {E : ℝ}
     (hzle : z ≤ z₀) (hwle : w ≤ w₀)
     (hmargin :
@@ -850,7 +921,9 @@ theorem exists_hasShelfRun_of_reserve {w₀ z₀ h z w : ℕ} {E : ℝ}
           exact
             tail.prepend hw144 hcube htall hleast hnonterminal hH hZ hW
 
-/-- Initial-state form of the trajectory existence theorem.-/
+/-- Initial-state form of the trajectory existence theorem.
+@isnad1 id=hasshelf.2h4v.s6.d646da2317e4 from=translated src=- shape=ed0ad1df vocab=2f42c50f
+-/
 theorem exists_hasShelfRun_of_initial_margin {h z w : ℕ} {E : ℝ}
     (hmargin :
       E + 30 * (w : ℝ) * (z : ℝ) ≤
@@ -875,12 +948,18 @@ noncomputable def shelfIdealWidth (ε : ℝ) (N : ℕ) : ℝ :=
 noncomputable def shelfInitialWidth (ε : ℝ) (N : ℕ) : ℕ :=
   ⌈shelfIdealWidth ε N⌉₊
 
+/--
+@isnad1 id=lt.0h0v.s3.5bd99c7e1875 from=translated src=- shape=ff3a10fc vocab=2ee3754e
+-/
 theorem shelfSharpConstant_pos :
     0 < shelfSharpConstant := by
   rw [shelfSharpConstant]
   apply Real.rpow_pos_of_pos
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.979bd1fc1708 from=translated src=- shape=bce64568 vocab=f83f9d35
+-/
 @[simp]
 theorem shelfSharpConstant_pow_three :
     shelfSharpConstant ^ 3 = (3 / 4 : ℝ) := by
@@ -888,7 +967,9 @@ theorem shelfSharpConstant_pow_three :
     (Real.rpow_inv_natCast_pow (x := (3 / 4 : ℝ)) (n := 3)
       (by norm_num) (by norm_num))
 
-/-- Equation (32): ceiling the ideal width can only increase the initial potential.-/
+/-- Equation (32): ceiling the ideal width can only increase the initial potential.
+@isnad1 id=le.1h2v.s5.1ffb13681ff6 from=translated src=- shape=ac9c7f83 vocab=e66317a2
+-/
 theorem shelfPotential_initial_lower {ε : ℝ} (hε : 0 < ε) (N : ℕ) :
     shelfDelta ε * (N : ℝ) ^ 2 ≤
       shelfPotential (shelfInitialWidth ε N : ℝ) (N : ℝ) := by
@@ -916,6 +997,9 @@ theorem shelfPotential_initial_lower {ε : ℝ} (hε : 0 < ε) (N : ℕ) :
   rw [shelfDelta]
   nlinarith
 
+/--
+@isnad1 id=tendsto.0h0v.s3.094d20c97296 from=translated src=- shape=d5274890 vocab=6ea9e57c
+-/
 theorem tendsto_shelfWidthScale_atTop :
     Tendsto (fun N : ℕ ↦ shelfWidthScale N) atTop atTop := by
   exact
@@ -929,6 +1013,9 @@ private theorem shelfWidthScale_div_natCast {N : ℕ} (hN : 0 < N) :
   norm_num [shelfWidthScale, Real.rpow_one] at h ⊢
   exact h.symm
 
+/--
+@isnad1 id=tendsto.0h0v.s5.1b66323c6977 from=translated src=- shape=15fb6055 vocab=aa5cec42
+-/
 theorem tendsto_shelfWidthScale_div_natCast :
     Tendsto (fun N : ℕ ↦ shelfWidthScale N / (N : ℝ)) atTop (𝓝 0) := by
   have h :=
@@ -938,6 +1025,9 @@ theorem tendsto_shelfWidthScale_div_natCast :
   filter_upwards [eventually_gt_atTop 0] with N hN
   exact (shelfWidthScale_div_natCast hN).symm
 
+/--
+@isnad1 id=tendsto.1h1v.s4.ca166757c892 from=translated src=- shape=264d12bc vocab=105b8fe1
+-/
 theorem tendsto_shelfIdealWidth_atTop {ε : ℝ} (hε : 0 < ε) :
     Tendsto (shelfIdealWidth ε) atTop atTop := by
   have hcoefficient :
@@ -947,6 +1037,9 @@ theorem tendsto_shelfIdealWidth_atTop {ε : ℝ} (hε : 0 < ε) :
   funext N
   simp only [shelfIdealWidth]
 
+/--
+@isnad1 id=tendsto.0h1v.s5.8caafbe44e01 from=translated src=- shape=fa7fe8fc vocab=e7a18162
+-/
 theorem tendsto_shelfIdealWidth_div_natCast {ε : ℝ} :
     Tendsto (fun N : ℕ ↦ shelfIdealWidth ε N / (N : ℝ)) atTop (𝓝 0) := by
   have hconst :
@@ -956,6 +1049,9 @@ theorem tendsto_shelfIdealWidth_div_natCast {ε : ℝ} :
   have h := hconst.mul tendsto_shelfWidthScale_div_natCast
   simpa only [shelfIdealWidth, mul_div_assoc, mul_zero] using h
 
+/--
+@isnad1 id=tendsto.1h1v.s5.5b900e6a1059 from=translated src=- shape=bf590e69 vocab=26750ca7
+-/
 theorem tendsto_shelfInitialWidth_div_natCast {ε : ℝ} (hε : 0 < ε) :
     Tendsto
       (fun N : ℕ ↦ (shelfInitialWidth ε N : ℝ) / (N : ℝ))
@@ -980,6 +1076,9 @@ theorem tendsto_shelfInitialWidth_div_natCast {ε : ℝ} (hε : 0 < ε) :
     field_simp [hidealN.ne', show (N : ℝ) ≠ 0 by positivity]
   simpa only [one_mul] using hproduct.congr' heq
 
+/--
+@isnad1 id=eventual.1h1v.s6.175ca47495f6 from=translated src=- shape=417ac41c vocab=ec80d35b
+-/
 theorem eventually_shelf_large_conditions {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ N : ℕ in atTop,
       30 * (shelfInitialWidth ε N : ℝ) * (N : ℝ) ≤
@@ -1012,7 +1111,9 @@ private theorem shelfBeta_widthScale_cube {ε : ℝ} (hε : 0 < ε) (N : ℕ) :
   rw [mul_pow, shelfBeta_pow_three hε, shelfWidthScale_pow_three]
   ring
 
-/-- The large-`N` inequalities from (33) produce the finite least-width shelf run.-/
+/-- The large-`N` inequalities from (33) produce the finite least-width shelf run.
+@isnad1 id=hasshelf.3h2v.s7.1668588818f9 from=translated src=- shape=c362f993 vocab=e19e3d89
+-/
 theorem exists_hasShelfRun_of_large_conditions {ε : ℝ}
     (hε : 0 < ε) {N : ℕ}
     (hloss :
@@ -1039,7 +1140,9 @@ theorem exists_hasShelfRun_of_large_conditions {ε : ℝ}
 
 /--
 The trajectory furnished by the large-`N` conditions satisfies (31) at every
-stage and the explicit shelf-count bound.-/
+stage and the explicit shelf-count bound.
+@isnad1 id=ex.3h2v.s8.e47ffc034d92 from=translated src=- shape=faafa08a vocab=f5659a38
+-/
 theorem exists_shelfRun_certificate_of_large_conditions {ε : ℝ}
     (hε : 0 < ε) {N : ℕ}
     (hloss :
@@ -1078,7 +1181,9 @@ theorem exists_shelfRun_certificate_of_large_conditions {ε : ℝ}
 
 /--
 The two explicit large-`N` inequalities from (33) imply existence of the full
-parity-triangle cover.-/
+parity-triangle cover.
+@isnad1 id=ex.4h3v.s7.11aaf7073369 from=translated src=- shape=dfa65a33 vocab=81bcdc95
+-/
 theorem exists_parityTriangleCover_of_large_conditions {ε : ℝ}
     (hε : 0 < ε) {N : ℕ} {σ : ℤ}
     (hσ : (N : ℕ) ≡ σ [ZMOD 2])
@@ -1096,7 +1201,9 @@ theorem exists_parityTriangleCover_of_large_conditions {ε : ℝ}
 
 /--
 For fixed `ε ∈ (0,1)`, all sufficiently large parity triangles have a
-legal-center ranked cover of length `ceil((1+ε)cN^(2/3))`.-/
+legal-center ranked cover of length `ceil((1+ε)cN^(2/3))`.
+@isnad1 id=eventual.1h1v.s6.e8afdacecabe from=translated src=- shape=2e0f3796 vocab=acc787e6
+-/
 theorem eventually_exists_parityTriangleCover {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∀ᶠ N : ℕ in atTop,
@@ -1111,7 +1218,9 @@ theorem eventually_exists_parityTriangleCover {ε : ℝ}
 
 /--
 Threshold form of the global parity-triangle cover with an explicit
-existential `N_ε`.-/
+existential `N_ε`.
+@isnad1 id=ex.1h1v.s6.312a107d9a8c from=translated src=- shape=de5fc925 vocab=3592b25c
+-/
 theorem exists_parityTriangleCover_threshold {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∃ Nε : ℕ, ∀ N ≥ Nε, ∀ σ : ℤ, (N : ℕ) ≡ σ [ZMOD 2] →

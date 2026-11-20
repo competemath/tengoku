@@ -19,17 +19,25 @@ namespace BurningPath
 noncomputable def pathTokenStandardScale (k n : ℕ) : ℝ :=
   (n : ℝ) ^ ((k : ℝ) / (k + 1 : ℝ))
 
+/--
+@isnad1 id=le.0h2v.s4.f92dcd689c42 from=translated src=- shape=5ffe46ab vocab=b15e01e4
+-/
 theorem pathTokenStandardScale_nonneg (k n : ℕ) :
     0 ≤ pathTokenStandardScale k n := by
   unfold pathTokenStandardScale
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.9c7cd499188b from=translated src=- shape=cee548f2 vocab=bd6aa9fd
+-/
 theorem pathTokenStandardScale_pos {k n : ℕ} (hn : 0 < n) :
     0 < pathTokenStandardScale k n := by
   unfold pathTokenStandardScale
   exact Real.rpow_pos_of_pos (by exact_mod_cast hn) _
 
-/-- The constructive upper estimate gives the `O` half of part (C).-/
+/-- The constructive upper estimate gives the `O` half of part (C).
+@isnad1 id=isbigo.1h1v.s4.38f93d8398a6 from=translated src=- shape=45b0721c vocab=a0bf3575
+-/
 theorem pathTokenBurning_isBigO_standardScale (k : ℕ) (hk : 2 ≤ k) :
     (fun n ↦ (pathTokenBurningNumberTotal k n : ℝ)) =O[atTop]
       pathTokenStandardScale k := by
@@ -53,7 +61,9 @@ theorem pathTokenBurning_isBigO_standardScale (k : ℕ) (hk : 2 ≤ k) :
   simpa [Real.norm_eq_abs, abs_of_nonneg,
     pathTokenStandardScale_nonneg] using hmul
 
-/-- The volume lower estimate gives the reverse `O` half of part (C).-/
+/-- The volume lower estimate gives the reverse `O` half of part (C).
+@isnad1 id=isbigo.1h1v.s4.cb3ee58128e6 from=translated src=- shape=2fc77fa1 vocab=a0bf3575
+-/
 theorem standardScale_isBigO_pathTokenBurning (k : ℕ) (hk : 2 ≤ k) :
     pathTokenStandardScale k =O[atTop]
       (fun n ↦ (pathTokenBurningNumberTotal k n : ℝ)) := by
@@ -93,7 +103,9 @@ theorem standardScale_isBigO_pathTokenBurning (k : ℕ) (hk : 2 ≤ k) :
   simpa [Real.norm_eq_abs, abs_of_nonneg hscaleNonneg,
     abs_of_nonneg hburnNonneg] using hbound
 
-/-- Part (C): `b(F_k(P_n)) = Θ_k(n^(k/(k+1)))`.-/
+/-- Part (C): `b(F_k(P_n)) = Θ_k(n^(k/(k+1)))`.
+@isnad1 id=istheta.1h1v.s4.38e7a8dbf7f7 from=translated src=- shape=45b0721c vocab=62509c4f
+-/
 theorem pathTokenBurning_isTheta_standardScale (k : ℕ) (hk : 2 ≤ k) :
     (fun n ↦ (pathTokenBurningNumberTotal k n : ℝ)) =Θ[atTop]
       pathTokenStandardScale k :=
@@ -102,7 +114,9 @@ theorem pathTokenBurning_isTheta_standardScale (k : ℕ) (hk : 2 ≤ k) :
 
 /--
 Once the constructive upper bound supplies real boundedness, the general
-lower estimate also has the usual real-valued liminf formulation.-/
+lower estimate also has the usual real-valued liminf formulation.
+@isnad1 id=le.1h1v.s4.9352b1ae7bd7 from=translated src=- shape=12e37351 vocab=d66ce403
+-/
 theorem generalLowerAsymptotic_real_liminf (k : ℕ) (hk : 2 ≤ k) :
     volumeLowerConstant k ≤ liminf (pathTokenBurningRatio k) atTop := by
   have hupper :
@@ -122,7 +136,9 @@ theorem generalLowerAsymptotic_real_liminf (k : ℕ) (hk : 2 ≤ k) :
   intro c hc
   exact eventually_constant_le_pathTokenBurningRatio k (by omega) hc
 
-/-- Real liminf form of the exact two-token lower bound.-/
+/-- Real liminf form of the exact two-token lower bound.
+@isnad1 id=le.0h0v.s6.9ea2f943c5a8 from=translated src=- shape=f785669c vocab=786772e5
+-/
 theorem twoTokenLowerAsymptotic_liminf :
     ((3 / 4 : ℝ) ^ (3 : ℝ)⁻¹) ≤
       liminf

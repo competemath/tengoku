@@ -20,19 +20,31 @@ namespace BurningPath
 def realL1Dist {k : ℕ} (x y : Fin k → ℝ) : ℝ :=
   ∑ i, |x i - y i|
 
+/--
+@isnad1 id=eq.0h2v.s4.bbea372c7087 from=translated src=- shape=bbd3ee09 vocab=9ac2dbdc
+-/
 @[simp]
 theorem realL1Dist_self {k : ℕ} (x : Fin k → ℝ) :
     realL1Dist x x = 0 := by
   simp [realL1Dist]
 
+/--
+@isnad1 id=le.0h3v.s4.3d8d32d2e6dd from=translated src=- shape=0c97f166 vocab=405482b5
+-/
 theorem realL1Dist_nonneg {k : ℕ} (x y : Fin k → ℝ) :
     0 ≤ realL1Dist x y :=
   Finset.sum_nonneg fun _ _ ↦ abs_nonneg _
 
+/--
+@isnad1 id=eq.0h3v.s4.45826aae2d83 from=translated src=- shape=7d1fcdcb vocab=9ac2dbdc
+-/
 theorem realL1Dist_comm {k : ℕ} (x y : Fin k → ℝ) :
     realL1Dist x y = realL1Dist y x := by
   simp only [realL1Dist, abs_sub_comm]
 
+/--
+@isnad1 id=le.0h4v.s5.b51d0e1804ae from=translated src=- shape=ef001573 vocab=eff5cd36
+-/
 theorem realL1Dist_triangle {k : ℕ} (x y z : Fin k → ℝ) :
     realL1Dist x z ≤ realL1Dist x y + realL1Dist y z := by
   simp only [realL1Dist, ← Finset.sum_add_distrib]
@@ -42,6 +54,9 @@ theorem realL1Dist_triangle {k : ℕ} (x y z : Fin k → ℝ) :
     |x i - z i| = |(x i - y i) + (y i - z i)| := by ring_nf
     _ ≤ |x i - y i| + |y i - z i| := abs_add_le _ _
 
+/--
+@isnad1 id=iff.0h3v.s5.58012a1080b2 from=translated src=- shape=4107d150 vocab=9ac2dbdc
+-/
 theorem realL1Dist_eq_zero_iff {k : ℕ} (x y : Fin k → ℝ) :
     realL1Dist x y = 0 ↔ x = y := by
   constructor
@@ -65,16 +80,25 @@ def realCube (k : ℕ) (L : ℝ) : Set (Fin k → ℝ) :=
 def orderedSimplex (k : ℕ) (L : ℝ) : Set (Fin k → ℝ) :=
   {x | (∀ i, 0 ≤ x i ∧ x i ≤ L) ∧ Monotone x}
 
+/--
+@isnad1 id=le.0h2v.s4.04b2eb9b828e from=translated src=- shape=b8054e39 vocab=75e8cfa8
+-/
 theorem orderedSimplex_subset_cube (k : ℕ) (L : ℝ) :
     orderedSimplex k L ⊆ realCube k L :=
   fun _ hx ↦ hx.1
 
+/--
+@isnad1 id=mem.1h2v.s5.f160198070c7 from=translated src=- shape=1dffec9d vocab=90185b28
+-/
 @[simp]
 theorem zero_mem_realCube {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
     (0 : Fin k → ℝ) ∈ realCube k L := by
   intro i
   simp [hL]
 
+/--
+@isnad1 id=mem.1h2v.s5.17be1e3365eb from=translated src=- shape=1dffec9d vocab=46b47dea
+-/
 @[simp]
 theorem zero_mem_orderedSimplex {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
     (0 : Fin k → ℝ) ∈ orderedSimplex k L := by
@@ -94,7 +118,9 @@ def HasL1NormalizedRankedCover {k : ℕ} (S : Set (Fin k → ℝ)) (q : ℕ) : P
 
 /--
 An order-preserving enlargement of the normalized radii lets a cover be reindexed into a longer
-rank list; unused ranks receive an arbitrary legal center.-/
+rank list; unused ranks receive an arbitrary legal center.
+@isnad1 id=ex.3h6v.s7.e4447bf85666 from=translated src=- shape=b3fe7cf9 vocab=b30a60e3
+-/
 theorem IsL1NormalizedRankedCover.reindex {k q₀ q : ℕ} {S : Set (Fin k → ℝ)}
     {centers : Fin q₀ → (Fin k → ℝ)} (hcover : IsL1NormalizedRankedCover S centers)
     (hS : S.Nonempty) (e : Fin q₀ ↪ Fin q)
@@ -125,7 +151,9 @@ theorem IsL1NormalizedRankedCover.reindex {k q₀ q : ℕ} {S : Set (Fin k → �
     rw [hfull]
     exact hi.trans (hradius i)
 
-/-- The ceiling rank-padding map pads every nonempty legal `ℓ₁` cover to a longer rank list.-/
+/-- The ceiling rank-padding map pads every nonempty legal `ℓ₁` cover to a longer rank list.
+@isnad1 id=ex.4h5v.s6.93334822190a from=translated src=- shape=1c8a562b vocab=a30f9694
+-/
 theorem IsL1NormalizedRankedCover.pad {k q₀ q : ℕ} {S : Set (Fin k → ℝ)}
     {centers : Fin q₀ → (Fin k → ℝ)} (hcover : IsL1NormalizedRankedCover S centers)
     (hS : S.Nonempty) (hq₀ : 1 ≤ q₀) (hqq₀ : q₀ ≤ q) :
@@ -155,28 +183,42 @@ noncomputable def simplexCoverNumber (k : ℕ) (L : ℝ) : ℕ :=
 noncomputable def cubeBulkDensity (k : ℕ) : ℝ :=
   sInf {x | ∃ L : ℝ, 0 < L ∧ x = (cubeCoverNumber k L : ℝ) / L ^ k}
 
+/--
+@isnad1 id=and.1h2v.s5.9cc88bc90ee4 from=translated src=- shape=13baabc2 vocab=2d7bf513
+-/
 theorem cubeCoverNumber_spec {k : ℕ} {L : ℝ}
     (h : ∃ q, 1 ≤ q ∧ HasCubeRankedCover k L q) :
     1 ≤ cubeCoverNumber k L ∧ HasCubeRankedCover k L (cubeCoverNumber k L) :=
   Nat.sInf_mem h
 
+/--
+@isnad1 id=le.1h3v.s4.300cb1194bdb from=translated src=- shape=5b6b3f5a vocab=2d7bf513
+-/
 theorem cubeCoverNumber_min {k q : ℕ} {L : ℝ}
     (hq : 1 ≤ q ∧ HasCubeRankedCover k L q) :
     cubeCoverNumber k L ≤ q :=
   Nat.sInf_le hq
 
+/--
+@isnad1 id=and.1h2v.s5.a00bf982f7bc from=translated src=- shape=13baabc2 vocab=8007341b
+-/
 theorem simplexCoverNumber_spec {k : ℕ} {L : ℝ}
     (h : ∃ q, 1 ≤ q ∧ HasSimplexRankedCover k L q) :
     1 ≤ simplexCoverNumber k L ∧
       HasSimplexRankedCover k L (simplexCoverNumber k L) :=
   Nat.sInf_mem h
 
+/--
+@isnad1 id=le.1h3v.s4.0bee24debd2c from=translated src=- shape=5b6b3f5a vocab=8007341b
+-/
 theorem simplexCoverNumber_min {k q : ℕ} {L : ℝ}
     (hq : 1 ≤ q ∧ HasSimplexRankedCover k L q) :
     simplexCoverNumber k L ≤ q :=
   Nat.sInf_le hq
 
-/-- Rank padding makes cube-cover feasibility upward closed.-/
+/-- Rank padding makes cube-cover feasibility upward closed.
+@isnad1 id=hascuber.4h4v.s5.889fc3fa2a36 from=translated src=- shape=0b2e2af1 vocab=4a91b96f
+-/
 theorem HasCubeRankedCover.mono {k q₀ q : ℕ} {L : ℝ} (hL : 0 ≤ L)
     (hq₀ : 1 ≤ q₀) (hqq₀ : q₀ ≤ q) (hcover : HasCubeRankedCover k L q₀) :
     HasCubeRankedCover k L q := by
@@ -185,7 +227,9 @@ theorem HasCubeRankedCover.mono {k q₀ q : ℕ} {L : ℝ} (hL : 0 ≤ L)
     hcenters.pad ⟨0, zero_mem_realCube hL⟩ hq₀ hqq₀
   exact ⟨fullCenters, hfull⟩
 
-/-- Rank padding makes ordered-simplex-cover feasibility upward closed.-/
+/-- Rank padding makes ordered-simplex-cover feasibility upward closed.
+@isnad1 id=hassimpl.4h4v.s5.cadecb37c511 from=translated src=- shape=0b2e2af1 vocab=b32857f3
+-/
 theorem HasSimplexRankedCover.mono {k q₀ q : ℕ} {L : ℝ} (hL : 0 ≤ L)
     (hq₀ : 1 ≤ q₀) (hqq₀ : q₀ ≤ q) (hcover : HasSimplexRankedCover k L q₀) :
     HasSimplexRankedCover k L q := by

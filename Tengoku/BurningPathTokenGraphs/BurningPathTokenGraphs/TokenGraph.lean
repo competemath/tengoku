@@ -35,6 +35,9 @@ noncomputable def configurationEquivOrderEmbedding (V : Type*) [LinearOrder V] (
     intro i
     simp
 
+/--
+@isnad1 id=eq.0h3v.s7.bc9e2ce875f9 from=translated src=- shape=0a0544dc vocab=f2383216
+-/
 @[simp]
 theorem configurationEquivOrderEmbedding_apply (V : Type*) [LinearOrder V] (k : ℕ)
     (A : Configuration V k) :
@@ -64,6 +67,9 @@ noncomputable def tokenGraph {V : Type*} (G : SimpleGraph V) (k : ℕ) :
             have hu := congrArg (fun s : Set V ↦ u ∈ s) hAA
             simp at hu } }
 
+/--
+@isnad1 id=iff.0h5v.s6.8f5d2cd4ab08 from=translated src=- shape=1520f544 vocab=b977e7b4
+-/
 @[simp]
 theorem tokenGraph_adj {V : Type*} (G : SimpleGraph V) (k : ℕ)
     (A B : Configuration V k) :
@@ -75,6 +81,9 @@ theorem tokenGraph_adj {V : Type*} (G : SimpleGraph V) (k : ℕ)
 noncomputable abbrev pathTokenGraph (n k : ℕ) :=
   tokenGraph (SimpleGraph.pathGraph n) k
 
+/--
+@isnad1 id=iff.0h4v.s7.1d585776e04c from=translated src=- shape=51f7581d vocab=807c33a8
+-/
 @[simp, nolint simpNF]
 theorem pathTokenGraph_adj (n k : ℕ) (A B : Configuration (Fin n) k) :
     (pathTokenGraph n k).Adj A B ↔
@@ -83,19 +92,25 @@ theorem pathTokenGraph_adj (n k : ℕ) (A B : Configuration (Fin n) k) :
   rw [tokenGraph_adj]
   simp only [SimpleGraph.pathGraph_adj]
 
-/-- There are `choose |V| k` configurations of `k` tokens on a finite vertex set.-/
+/-- There are `choose |V| k` configurations of `k` tokens on a finite vertex set.
+@isnad1 id=eq.0h2v.s5.e2660499d855 from=translated src=- shape=588bfa65 vocab=45114229
+-/
 @[simp, nolint simpNF]
 theorem card_configuration (V : Type*) [Fintype V] (k : ℕ) :
     Fintype.card (Configuration V k) = Nat.choose (Fintype.card V) k :=
   Fintype.card_finset_len k
 
-/-- In particular, `F_k(P_n)` has `choose n k` vertices.-/
+/-- In particular, `F_k(P_n)` has `choose n k` vertices.
+@isnad1 id=eq.0h2v.s5.d3ddf9b08450 from=translated src=- shape=3c32c445 vocab=555603a6
+-/
 @[simp, nolint simpNF]
 theorem card_pathTokenConfiguration (n k : ℕ) :
     Fintype.card (Configuration (Fin n) k) = Nat.choose n k := by
   simp
 
-/-- A `k`-token configuration exists whenever the finite vertex type has at least `k` elements.-/
+/-- A `k`-token configuration exists whenever the finite vertex type has at least `k` elements.
+@isnad1 id=nonempty.1h2v.s4.fc75eec5d797 from=translated src=- shape=7e4cc14d vocab=1cd4051c
+-/
 theorem nonempty_configuration_of_le (V : Type*) [Fintype V] {k : ℕ}
     (hk : k ≤ Fintype.card V) :
     Nonempty (Configuration V k) := by

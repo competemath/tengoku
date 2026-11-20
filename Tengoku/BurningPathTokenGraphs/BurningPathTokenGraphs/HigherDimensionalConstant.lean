@@ -16,12 +16,18 @@ namespace BurningPath
 noncomputable def pathTokenLimitConstant (k : ℕ) : ℝ :=
   (cubeBulkDensity k / Nat.factorial k) ^ (k + 1 : ℝ)⁻¹
 
+/--
+@isnad1 id=lt.1h1v.s4.d80f1ee1acb9 from=translated src=- shape=f8216502 vocab=2f8dda58
+-/
 theorem pathTokenLimitConstant_pos {k : ℕ} (hk : 2 ≤ k) :
     0 < pathTokenLimitConstant k := by
   unfold pathTokenLimitConstant
   apply Real.rpow_pos_of_pos
   exact div_pos (cubeBulkDensity_pos hk) (by positivity)
 
+/--
+@isnad1 id=eq.1h1v.s5.3cf8b5b8c3b0 from=translated src=- shape=0704c581 vocab=e5cc6aea
+-/
 @[simp]
 theorem pathTokenLimitConstant_pow {k : ℕ} (hk : 2 ≤ k) :
     pathTokenLimitConstant k ^ (k + 1) =
@@ -32,7 +38,9 @@ theorem pathTokenLimitConstant_pow {k : ℕ} (hk : 2 ≤ k) :
       (div_nonneg (cubeBulkDensity_pos hk).le (by positivity))
       (by omega))
 
-/-- Explicit two-sided bounds for the candidate limit.-/
+/-- Explicit two-sided bounds for the candidate limit.
+@isnad1 id=and.1h1v.s7.f0b4531f8e8c from=translated src=- shape=c7b33d3d vocab=6b3ef680
+-/
 theorem pathTokenLimitConstant_bounds {k : ℕ} (hk : 2 ≤ k) :
     (((k + 1 : ℝ) / (2 : ℝ) ^ k) ^ (k + 1 : ℝ)⁻¹) ≤
         pathTokenLimitConstant k ∧

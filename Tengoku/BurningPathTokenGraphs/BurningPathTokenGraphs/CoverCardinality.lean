@@ -20,7 +20,9 @@ variable {V : Type u}
 
 /--
 If every radius-`r` ball has at most `f r` vertices, a ranked cover of length `t`
-forces the whole graph to have at most `∑ r < t, f r` vertices.-/
+forces the whole graph to have at most `∑ r < t, f r` vertices.
+@isnad1 id=le.2h5v.s6.9c405498a9f4 from=translated src=- shape=8fe82827 vocab=fbac517d
+-/
 theorem card_le_sum_ball_bound [Fintype V] {G : SimpleGraph V} {t : ℕ}
     {centers : Fin t → V} (hcover : G.IsRankedCover centers) (f : ℕ → ℕ)
     (hball : ∀ c r, (G.closedBall c r).ncard ≤ f r) :

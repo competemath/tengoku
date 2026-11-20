@@ -12,7 +12,9 @@ This module converts parity-triangle square covers into two-token graph covers.
 
 namespace BurningPath
 
-/-- The integer-square and centered coordinate-square formulations agree.-/
+/-- The integer-square and centered coordinate-square formulations agree.
+@isnad1 id=iff.0h3v.s5.ddf55a7da25a from=translated src=- shape=6a7b3c0d vocab=dbdac2e6
+-/
 theorem mem_integerSquare_iff_centeredCoordinateSquare
     {c p : ℤ × ℤ} {r : ℕ} :
     p ∈ integerSquare c r ↔ p ∈ centeredCoordinateSquare c r := by
@@ -43,7 +45,9 @@ theorem mem_integerSquare_iff_centeredCoordinateSquare
 
 /--
 A legal parity-triangle ranked square cover is exactly a ranked cover of the
-two-token path graph.-/
+two-token path graph.
+@isnad1 id=ex.3h4v.s6.c710952f1cdb from=translated src=- shape=f1e48670 vocab=5f68a3c1
+-/
 theorem IsParityCapRankedCover.toPathTokenRankedCover
     {n t : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2])
@@ -81,7 +85,9 @@ theorem IsParityCapRankedCover.toPathTokenRankedCover
   rw [hcenterPhi]
   exact mem_integerSquare_iff_centeredCoordinateSquare.mp hr
 
-/-- A parity-triangle cover of length `t` gives a finite two-token burning bound.-/
+/-- A parity-triangle cover of length `t` gives a finite two-token burning bound.
+@isnad1 id=le.3h3v.s6.63b8008e8875 from=translated src=- shape=7bd80e7b vocab=4bbedea0
+-/
 theorem pathTokenBurningNumber_le_of_parityTriangleCover
     {n t : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2])
@@ -103,7 +109,9 @@ theorem pathTokenBurningNumber_le_of_parityTriangleCover
     exact lt_of_le_of_lt (Nat.zero_le r.val) r.isLt
   exact ⟨ht, centers, hcenters⟩
 
-/-- Finite two-token bound under the two explicit large-`N` shelf conditions.-/
+/-- Finite two-token bound under the two explicit large-`N` shelf conditions.
+@isnad1 id=le.4h2v.s7.ecaf12ffe751 from=translated src=- shape=d5fb155c vocab=fbfff773
+-/
 theorem pathTokenBurningNumber_le_shelfInitialWidth_of_large_conditions
     {ε : ℝ} (hε : 0 < ε) {n : ℕ} (hn : 2 ≤ n)
     (hloss :

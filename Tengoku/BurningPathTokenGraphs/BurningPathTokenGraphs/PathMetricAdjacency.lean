@@ -50,7 +50,9 @@ private theorem strictMono_update_of_pathGraph_adj {n k : ℕ} {f : Fin k → Fi
 
 /--
 Along an edge of the path token graph, the target coordinate list is obtained by updating
-one source coordinate to an adjacent unoccupied path vertex.-/
+one source coordinate to an adjacent unoccupied path vertex.
+@isnad1 id=ex.1h4v.s6.d9c07b681cb6 from=translated src=- shape=8f1bbb05 vocab=ecaa63ad
+-/
 theorem pathTokenGraph_adj_exists_coordinate_update {n k : ℕ}
     (A B : Configuration (Fin n) k) (h : (pathTokenGraph n k).Adj A B) :
     ∃ i : Fin k, ∃ v : Fin n,
@@ -96,7 +98,9 @@ theorem pathTokenGraph_adj_exists_coordinate_update {n k : ℕ}
     exact huv
   · simpa [updated] using hcoordinate
 
-/-- Adjacent path-token configurations have ordered-coordinate `ℓ₁` distance one.-/
+/-- Adjacent path-token configurations have ordered-coordinate `ℓ₁` distance one.
+@isnad1 id=eq.1h4v.s5.34d78fda77b8 from=translated src=- shape=b4f8cd67 vocab=13870224
+-/
 theorem pathConfigurationDist_eq_one_of_adj {n k : ℕ}
     (A B : Configuration (Fin n) k) (h : (pathTokenGraph n k).Adj A B) :
     pathConfigurationDist A B = 1 := by

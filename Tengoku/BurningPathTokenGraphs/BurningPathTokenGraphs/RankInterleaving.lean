@@ -35,13 +35,18 @@ def interleavedRankEmbedding (M q : ℕ) (hM : 1 ≤ M) :
       exact Nat.eq_of_mul_eq_mul_left (by omega) hmul
     exact Prod.ext (Fin.ext hab) (Fin.ext hjl)
 
+/--
+@isnad1 id=eq.1h4v.s6.19439ae79a41 from=translated src=- shape=e548195c vocab=74dae548
+-/
 @[simp]
 theorem interleavedRankEmbedding_val (M q : ℕ) (hM : 1 ≤ M)
     (a : Fin M) (j : Fin q) :
     (interleavedRankEmbedding M q hM (a, j)).val = M * j.val + a.val :=
   rfl
 
-/-- Interleaving never decreases a local normalized radius.-/
+/-- Interleaving never decreases a local normalized radius.
+@isnad1 id=le.2h4v.s7.49dff0e9b961 from=translated src=- shape=761ef85a vocab=6ff092bf
+-/
 theorem interleavedRank_normalized_le {M q : ℕ} (hM : 1 ≤ M)
     (hq : 1 ≤ q) (a : Fin M) (j : Fin q) :
     (j.val : ℝ) / q ≤
@@ -62,7 +67,9 @@ theorem interleavedRank_normalized_le {M q : ℕ} (hM : 1 ≤ M)
 
 /--
 Interleave `M` local normalized covers of a common region.  The geometric
-application supplies which copy and local rank cover each point.-/
+application supplies which copy and local rank cover each point.
+@isnad1 id=hasl1nor.4h5v.s7.2b48890355a3 from=translated src=- shape=dc692c3d vocab=de2cfc3d
+-/
 theorem hasL1NormalizedRankedCover_interleave {k M q : ℕ}
     {S : Set (Fin k → ℝ)} (hM : 1 ≤ M) (hq : 1 ≤ q)
     (centers : Fin M → Fin q → (Fin k → ℝ))

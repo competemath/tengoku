@@ -19,6 +19,9 @@ def topRankEmbedding (q M : ℕ) (hMq : M ≤ q) : Fin M ↪ Fin q where
     apply Fin.ext
     exact Nat.add_left_cancel (congrArg Fin.val hij)
 
+/--
+@isnad1 id=eq.1h3v.s5.8afa89571d2e from=translated src=- shape=dfcc76de vocab=bb197572
+-/
 @[simp]
 theorem topRankEmbedding_val (q M : ℕ) (hMq : M ≤ q) (i : Fin M) :
     (topRankEmbedding q M hMq i).val = q - M + i.val :=
@@ -26,7 +29,9 @@ theorem topRankEmbedding_val (q M : ℕ) (hMq : M ≤ q) (i : Fin M) :
 
 /--
 A legal `δ`-net with `M` points gives a normalized cover of length `q`
-whenever the lowest of the top `M` ranks has radius at least `δ`.-/
+whenever the lowest of the top `M` ranks has radius at least `δ`.
+@isnad1 id=hasl1nor.6h6v.s7.92c125f8086c from=translated src=- shape=d1d1f61f vocab=39d4338f
+-/
 theorem hasL1NormalizedRankedCover_of_finiteNet {k M q : ℕ}
     {S : Set (Fin k → ℝ)} {δ : ℝ}
     (hS : S.Nonempty) (hq : 1 ≤ q) (hMq : M ≤ q)

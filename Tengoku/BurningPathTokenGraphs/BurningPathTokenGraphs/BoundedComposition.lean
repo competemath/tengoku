@@ -15,7 +15,9 @@ namespace BurningPath
 
 /--
 If `m` slots each have capacity `a`, every total `s ≤ m * a` can be distributed
-among the slots without exceeding their capacities.-/
+among the slots without exceeding their capacities.
+@isnad1 id=ex.1h3v.s5.f0de21f7ea74 from=translated src=- shape=fce723ce vocab=f28e408c
+-/
 theorem exists_fin_bounded_composition (m a s : ℕ) (h : s ≤ m * a) :
     ∃ e : Fin m → ℕ, (∀ i, e i ≤ a) ∧ ∑ i, e i = s := by
   induction m generalizing s with

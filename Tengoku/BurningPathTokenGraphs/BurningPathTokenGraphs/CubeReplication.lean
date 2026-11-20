@@ -13,7 +13,9 @@ This module proves the geometric replication estimate
 
 namespace BurningPath
 
-/-- Every point of `[0,mL]` lies in one of the `m` consecutive intervals of length `L`.-/
+/-- Every point of `[0,mL]` lies in one of the `m` consecutive intervals of length `L`.
+@isnad1 id=ex.3h3v.s6.125f0434b541 from=translated src=- shape=291be526 vocab=a51b41dd
+-/
 theorem exists_cube_tile_interval {m : ℕ} (hm : 1 ≤ m)
     {L x : ℝ} (hx0 : 0 ≤ x) (hxm : x ≤ m * L) :
     ∃ a : Fin m, (a.val : ℝ) * L ≤ x ∧ x ≤ (a.val + 1 : ℕ) * L := by
@@ -32,7 +34,9 @@ theorem exists_cube_tile_interval {m : ℕ} (hm : 1 ≤ m)
           · refine ⟨⟨m + 1, by omega⟩, le_of_not_ge hx, ?_⟩
             simpa [Nat.cast_add, Nat.cast_one] using hxm
 
-/-- Translation preserves the real `ℓ₁` distance.-/
+/-- Translation preserves the real `ℓ₁` distance.
+@isnad1 id=eq.0h4v.s5.451d10e714de from=translated src=- shape=95aec994 vocab=fc12ece5
+-/
 theorem realL1Dist_add_left {k : ℕ} (a x y : Fin k → ℝ) :
     realL1Dist (fun i ↦ a i + x i) (fun i ↦ a i + y i) =
       realL1Dist x y := by
@@ -42,7 +46,9 @@ theorem realL1Dist_add_left {k : ℕ} (a x y : Fin k → ℝ) :
 def clampToCube (L : ℝ) {k : ℕ} (x : Fin k → ℝ) : Fin k → ℝ :=
   fun i ↦ min (x i) L
 
-/-- Clamping a center into a smaller cube cannot increase its distance to a point of that cube.-/
+/-- Clamping a center into a smaller cube cannot increase its distance to a point of that cube.
+@isnad1 id=le.1h4v.s5.cd9d17d30972 from=translated src=- shape=3e8ae2cf vocab=9f65b44d
+-/
 theorem realL1Dist_clampToCube_le {k : ℕ} {L : ℝ}
     (x c : Fin k → ℝ) (hx : x ∈ realCube k L) :
     realL1Dist x (clampToCube L c) ≤ realL1Dist x c := by
@@ -59,7 +65,9 @@ theorem realL1Dist_clampToCube_le {k : ℕ} {L : ℝ}
 
 /--
 A cover of a larger cube restricts to a smaller cube after clamping every
-center to the smaller cube.-/
+center to the smaller cube.
+@isnad1 id=hascuber.3h4v.s5.c01592586df7 from=translated src=- shape=c0aa0b27 vocab=4a91b96f
+-/
 theorem HasCubeRankedCover.restrict {k q : ℕ} {L U : ℝ}
     (hL : 0 ≤ L) (hLU : L ≤ U)
     (hcover : HasCubeRankedCover k U q) :
@@ -83,7 +91,9 @@ theorem HasCubeRankedCover.restrict {k q : ℕ} {L U : ℝ}
 
 /--
 Replicate a normalized ranked cover of `Q_L` in the `m^k` axis-parallel
-tiles of `Q_(mL)` and interleave their ranks.-/
+tiles of `Q_(mL)` and interleave their ranks.
+@isnad1 id=hascuber.4h4v.s6.908627579c49 from=translated src=- shape=2d40aa7e vocab=d9f0e2f9
+-/
 theorem HasCubeRankedCover.replicate {k m q : ℕ} {L : ℝ}
     (hm : 1 ≤ m) (hq : 1 ≤ q) (hL : 0 ≤ L)
     (hcover : HasCubeRankedCover k L q) :
@@ -154,7 +164,9 @@ theorem HasCubeRankedCover.replicate {k m q : ℕ} {L : ℝ}
     hasL1NormalizedRankedCover_interleave hM hq centers hlegal hpoint
   simpa [HasCubeRankedCover, M, Tile, Nat.mul_comm] using hinterleaved
 
-/-- Replicating a cube cover across `m^k` tiles multiplies its size by at most `m^k`.-/
+/-- Replicating a cube cover across `m^k` tiles multiplies its size by at most `m^k`.
+@isnad1 id=le.3h3v.s6.d3294b321059 from=translated src=- shape=758e8287 vocab=33b74fbb
+-/
 theorem cubeCoverNumber_nat_mul_le {k m : ℕ} {L : ℝ}
     (hm : 1 ≤ m) (hL : 0 ≤ L)
     (hexists : ∃ q, 1 ≤ q ∧ HasCubeRankedCover k L q) :
@@ -165,7 +177,9 @@ theorem cubeCoverNumber_nat_mul_le {k m : ℕ} {L : ℝ}
   · exact Nat.mul_pos (pow_pos hm k) hq
   · exact hcover.replicate hm hq hL
 
-/-- Coordinatewise clamping extends the replication bound to arbitrary side lengths.-/
+/-- Coordinatewise clamping extends the replication bound to arbitrary side lengths.
+@isnad1 id=le.3h3v.s6.4505b1dd25a1 from=translated src=- shape=a7c2d0e4 vocab=20fc2d18
+-/
 theorem cubeCoverNumber_le_ceil_mul {k : ℕ} {L₀ L : ℝ}
     (hL₀ : 0 < L₀) (hL₀L : L₀ ≤ L)
     (hexists : ∃ q, 1 ≤ q ∧ HasCubeRankedCover k L₀ q) :

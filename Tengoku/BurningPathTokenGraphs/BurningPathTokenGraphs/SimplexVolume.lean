@@ -15,6 +15,9 @@ open MeasureTheory
 
 namespace BurningPath
 
+/--
+@isnad1 id=measurab.0h2v.s4.2648a55362d0 from=translated src=- shape=663d86fd vocab=b3347267
+-/
 theorem measurableSet_orderedSimplex (k : ℕ) (L : ℝ) :
     MeasurableSet (orderedSimplex k L) := by
   rw [show orderedSimplex k L =
@@ -134,7 +137,9 @@ private theorem setLIntegral_pow_div_factorial (k : ℕ) {L : ℝ}
   push_cast
   field_simp
 
-/-- The exact volume formula `vol(Δ_L) = L^k / k!`.-/
+/-- The exact volume formula `vol(Δ_L) = L^k / k!`.
+@isnad1 id=eq.1h2v.s6.73047fa93b7c from=translated src=- shape=056b6f1a vocab=6f187098
+-/
 theorem volume_orderedSimplex (k : ℕ) {L : ℝ} (hL : 0 ≤ L) :
     volume (orderedSimplex k L) =
       ENNReal.ofReal (L ^ k / (k.factorial : ℝ)) := by

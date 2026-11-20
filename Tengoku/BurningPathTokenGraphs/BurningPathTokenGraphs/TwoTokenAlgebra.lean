@@ -15,7 +15,9 @@ namespace BurningPath
 
 /--
 The linear change of coordinates `(p, q) ↦ (p + q, q - p)` sends the `ℓ₁` norm on
-`ℤ × ℤ` to the `ℓ∞` norm.-/
+`ℤ × ℤ` to the `ℓ∞` norm.
+@isnad1 id=eq.0h2v.s5.e671a9e4d7fb from=translated src=- shape=304d7e0a vocab=ba66122f
+-/
 theorem max_abs_add_sub (p q : ℤ) :
     max |p + q| |q - p| = |p| + |q| := by
   rcases le_total 0 p with hp | hp
@@ -39,7 +41,9 @@ theorem max_abs_add_sub (p q : ℤ) :
         max (-(p + q)) |q - p| = -(p + q) := max_eq_left (by rw [abs_le]; omega)
         _ = -p + -q := by omega
 
-/-- The natural-valued form of `max_abs_add_sub`, suited to graph distances.-/
+/-- The natural-valued form of `max_abs_add_sub`, suited to graph distances.
+@isnad1 id=eq.0h2v.s5.6fc3ce2fb237 from=translated src=- shape=f679174d vocab=9d613471
+-/
 theorem max_natAbs_add_sub (p q : ℤ) :
     max (p + q).natAbs (q - p).natAbs = p.natAbs + q.natAbs := by
   apply Int.ofNat_inj.mp
@@ -47,7 +51,9 @@ theorem max_natAbs_add_sub (p q : ℤ) :
 
 /--
 The two transformed coordinate differences have maximum absolute value equal to the original
-`ℓ₁` coordinate distance.-/
+`ℓ₁` coordinate distance.
+@isnad1 id=eq.0h4v.s6.9f51c05a1922 from=translated src=- shape=f6579637 vocab=9d613471
+-/
 theorem max_natAbs_sumDiff_sub_sumDiff (x y x' y' : ℤ) :
     max ((x + y) - (x' + y')).natAbs ((y - x) - (y' - x')).natAbs =
       (x - x').natAbs + (y - y').natAbs := by
@@ -55,7 +61,9 @@ theorem max_natAbs_sumDiff_sub_sumDiff (x y x' y' : ℤ) :
   rw [show (y - x) - (y' - x') = (y - y') - (x - x') by omega]
   exact max_natAbs_add_sub (x - x') (y - y')
 
-/-- Translating both points by the same vector leaves the transformed-coordinate distance fixed.-/
+/-- Translating both points by the same vector leaves the transformed-coordinate distance fixed.
+@isnad1 id=eq.0h6v.s7.09591d2358ae from=translated src=- shape=b5c3231d vocab=9d613471
+-/
 theorem max_natAbs_sumDiff_translation (x y x' y' a b : ℤ) :
     max (((x + a) + (y + b)) - ((x' + a) + (y' + b))).natAbs
         (((y + b) - (x + a)) - ((y' + b) - (x' + a))).natAbs =
@@ -66,20 +74,26 @@ theorem max_natAbs_sumDiff_translation (x y x' y' a b : ℤ) :
   · apply congrArg Int.natAbs
     omega
 
-/-- The sum and difference coordinates of two integers are congruent modulo two.-/
+/-- The sum and difference coordinates of two integers are congruent modulo two.
+@isnad1 id=modeq.0h2v.s4.56d0cbc02021 from=translated src=- shape=54c0da88 vocab=823e3542
+-/
 theorem add_modEq_sub_two (x y : ℤ) :
     x + y ≡ y - x [ZMOD 2] := by
   rw [Int.modEq_iff_dvd]
   exact ⟨-x, by omega⟩
 
-/-- Testing either transformed coordinate against a parity class gives the same result.-/
+/-- Testing either transformed coordinate against a parity class gives the same result.
+@isnad1 id=iff.0h3v.s5.1004b471411f from=translated src=- shape=9e7b283c vocab=823e3542
+-/
 theorem add_modEq_iff_sub_modEq_two (x y σ : ℤ) :
     x + y ≡ σ [ZMOD 2] ↔ y - x ≡ σ [ZMOD 2] := by
   constructor
   · exact fun h ↦ (add_modEq_sub_two x y).symm.trans h
   · exact fun h ↦ (add_modEq_sub_two x y).trans h
 
-/-- In particular, the sum and difference coordinates are either both even or both odd.-/
+/-- In particular, the sum and difference coordinates are either both even or both odd.
+@isnad1 id=iff.0h2v.s4.050031f19c46 from=translated src=- shape=59e6036d vocab=b4db8ed6
+-/
 theorem even_add_iff_even_sub (x y : ℤ) :
     Even (x + y) ↔ Even (y - x) := by
   simp only [Int.even_add, Int.even_sub, iff_comm]

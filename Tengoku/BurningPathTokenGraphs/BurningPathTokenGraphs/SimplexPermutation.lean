@@ -21,7 +21,9 @@ def permuteCoordinates {k : ℕ} (σ : Equiv.Perm (Fin k))
     (x : Fin k → ℝ) : Fin k → ℝ :=
   fun i ↦ x (σ.symm i)
 
-/-- Coordinate permutation preserves the relevant `ℓ₁` distance.-/
+/-- Coordinate permutation preserves the relevant `ℓ₁` distance.
+@isnad1 id=eq.0h4v.s5.496f4323e933 from=translated src=- shape=b80acbac vocab=30761567
+-/
 theorem realL1Dist_permuteCoordinates {k : ℕ}
     (σ : Equiv.Perm (Fin k)) (x c : Fin k → ℝ) :
     realL1Dist x (permuteCoordinates σ c) =
@@ -39,7 +41,9 @@ theorem realL1Dist_permuteCoordinates {k : ℕ}
       intro i _
       simp [permuteCoordinates]
 
-/-- The sorted coordinate tuple of a cube point lies in the ordered simplex.-/
+/-- The sorted coordinate tuple of a cube point lies in the ordered simplex.
+@isnad1 id=mem.1h3v.s6.053d3509856c from=translated src=- shape=3f8cb4e3 vocab=33f3e31f
+-/
 theorem comp_sort_mem_orderedSimplex {k : ℕ} {L : ℝ}
     {x : Fin k → ℝ} (hx : x ∈ realCube k L) :
     x ∘ Tuple.sort x ∈ orderedSimplex k L := by
@@ -50,7 +54,9 @@ theorem comp_sort_mem_orderedSimplex {k : ℕ} {L : ℝ}
 
 /--
 Permute a legal simplex cover through all `k!` coordinate chambers and
-interleave the local ranks.-/
+interleave the local ranks.
+@isnad1 id=hascuber.2h3v.s5.7d03c2ca0096 from=translated src=- shape=e7378dac vocab=7b75e6f5
+-/
 theorem HasSimplexRankedCover.toCubePermutationCover {k q : ℕ} {L : ℝ}
     (hq : 1 ≤ q) (hcover : HasSimplexRankedCover k L q) :
     HasCubeRankedCover k L (Nat.factorial k * q) := by
@@ -83,7 +89,9 @@ theorem HasSimplexRankedCover.toCubePermutationCover {k q : ℕ} {L : ℝ}
     hasL1NormalizedRankedCover_interleave hM hq centers hlegal hpoint
   simpa [HasCubeRankedCover, M, Perm, Fintype.card_perm] using hinterleaved
 
-/-- The cube cover number is at most `k!` times the ordered-simplex cover number.-/
+/-- The cube cover number is at most `k!` times the ordered-simplex cover number.
+@isnad1 id=le.2h2v.s5.f6fbd8d685fe from=translated src=- shape=c063be1c vocab=e6f12a12
+-/
 theorem cubeCoverNumber_le_factorial_mul_simplexCoverNumber
     {k : ℕ} {L : ℝ} (hk : 1 ≤ k) (hL : 0 ≤ L) :
     cubeCoverNumber k L ≤ Nat.factorial k * simplexCoverNumber k L := by
@@ -94,7 +102,9 @@ theorem cubeCoverNumber_le_factorial_mul_simplexCoverNumber
     ⟨Nat.mul_pos (Nat.factorial_pos k) hq,
       hcover.toCubePermutationCover hq⟩
 
-/-- Normalized form of the permutation lower bound.-/
+/-- Normalized form of the permutation lower bound.
+@isnad1 id=le.2h2v.s6.c429fa0e8d4e from=translated src=- shape=cb130d26 vocab=e3521fff
+-/
 theorem cubeDensity_le_simplexDensity {k : ℕ} {L : ℝ}
     (hk : 1 ≤ k) (hL : 0 < L) :
     cubeCoverDensityAt k L ≤

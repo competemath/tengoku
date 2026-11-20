@@ -36,7 +36,9 @@ private theorem l1ClosedBall_eq_preimage_add {k : ℕ} (c : Fin k → ℝ) (r : 
     ring
   rw [hdist]
 
-/-- Translation does not change the volume of a closed `ℓ₁` ball.-/
+/-- Translation does not change the volume of a closed `ℓ₁` ball.
+@isnad1 id=eq.0h3v.s7.43dbbe320910 from=translated src=- shape=ca091053 vocab=37c048e9
+-/
 theorem volume_l1ClosedBall_center {k : ℕ} (c : Fin k → ℝ) (r : ℝ) :
     volume (l1ClosedBall c r) =
       volume (l1ClosedBall (0 : Fin k → ℝ) r) := by
@@ -44,7 +46,9 @@ theorem volume_l1ClosedBall_center {k : ℕ} (c : Fin k → ℝ) (r : ℝ) :
   exact measure_preimage_add volume (-c) (l1ClosedBall 0 r)
 
 /-- The closed `ℓ₁` ball of radius `r` has volume
-`r^k · 2^k / k!` in extended nonnegative reals.-/
+`r^k · 2^k / k!` in extended nonnegative reals.
+@isnad1 id=eq.1h3v.s7.1f68c76cac27 from=translated src=- shape=758c8fb5 vocab=aefa9289
+-/
 theorem volume_l1ClosedBall {k : ℕ} (hk : 1 ≤ k) (c : Fin k → ℝ) (r : ℝ) :
     volume (l1ClosedBall c r) =
       ENNReal.ofReal r ^ k *
@@ -63,7 +67,9 @@ theorem volume_l1ClosedBall {k : ℕ} (hk : 1 ≤ k) (c : Fin k → ℝ) (r : �
   congr 2
   norm_num [Real.Gamma_nat_eq_factorial]
 
-/-- The unit cross-polytope has volume `2^k / k!`.-/
+/-- The unit cross-polytope has volume `2^k / k!`.
+@isnad1 id=eq.1h1v.s7.1ff8bffc2f24 from=translated src=- shape=41600548 vocab=32348b11
+-/
 theorem volume_crossPolytope {k : ℕ} (hk : 1 ≤ k) :
     volume (crossPolytope k) =
       ENNReal.ofReal ((2 : ℝ) ^ k / k.factorial) := by
@@ -80,7 +86,9 @@ theorem volume_crossPolytope {k : ℕ} (hk : 1 ≤ k) :
   congr 1
   norm_num [Real.Gamma_nat_eq_factorial]
 
-/-- The cube `[0,L]^k` has volume `L^k` when `L` is nonnegative.-/
+/-- The cube `[0,L]^k` has volume `L^k` when `L` is nonnegative.
+@isnad1 id=eq.1h2v.s6.06b56c183e16 from=translated src=- shape=245b29a8 vocab=e294019e
+-/
 theorem volume_realCube {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
     volume (realCube k L) = ENNReal.ofReal (L ^ k) := by
   rw [show realCube k L = Set.Icc (0 : Fin k → ℝ) (fun _ ↦ L) by
@@ -98,7 +106,9 @@ theorem volume_realCube {k : ℕ} {L : ℝ} (hL : 0 ≤ L) :
 
 /--
 Volume subadditivity for a normalized cube cover, with the exact volume of every ranked
-`ℓ₁` ball substituted.-/
+`ℓ₁` ball substituted.
+@isnad1 id=le.4h4v.s7.95bf46c6e361 from=translated src=- shape=7b75fb5c vocab=f29eaeff
+-/
 theorem realCube_pow_le_rankedBallVolumeSum {k q : ℕ} {L : ℝ}
     (hk : 1 ≤ k) (hq : 1 ≤ q) (hL : 0 ≤ L)
     {centers : Fin q → (Fin k → ℝ)}
@@ -144,7 +154,9 @@ theorem realCube_pow_le_rankedBallVolumeSum {k q : ℕ} {L : ℝ}
     _ = ((2 : ℝ) ^ k / k.factorial) *
         ∑ i : Fin q, ((i.1 : ℝ) / q) ^ k := mul_comm _ _
 
-/-- The normalized rank powers form a left Riemann sum for `x^k` on `[0,1]`.-/
+/-- The normalized rank powers form a left Riemann sum for `x^k` on `[0,1]`.
+@isnad1 id=le.1h2v.s6.27144c476171 from=translated src=- shape=1eb15232 vocab=6be98112
+-/
 theorem normalizedRankPowSum_le {k q : ℕ} (hq : 1 ≤ q) :
     ∑ i : Fin q, ((i.1 : ℝ) / q) ^ k ≤ (q : ℝ) / (k + 1) := by
   have hmono : MonotoneOn (fun x : ℝ ↦ x ^ k) (Set.Icc 0 (0 + q)) := by
@@ -170,7 +182,9 @@ theorem normalizedRankPowSum_le {k q : ℕ} (hq : 1 ≤ q) :
 
 /--
 Every normalized ranked cover of `Q_L` has density at least
-`k! (k+1) / 2^k`.-/
+`k! (k+1) / 2^k`.
+@isnad1 id=le.4h4v.s7.58e856ec252a from=translated src=- shape=a6cdbef9 vocab=4e83f3e6
+-/
 theorem cubeNormalizedRankedCover_ratio_lower {k q : ℕ} {L : ℝ}
     (hk : 2 ≤ k) (hL : 0 < L) (hq : 1 ≤ q)
     {centers : Fin q → (Fin k → ℝ)}
@@ -192,7 +206,9 @@ theorem cubeNormalizedRankedCover_ratio_lower {k q : ℕ} {L : ℝ}
   rw [div_le_div_iff₀ (by positivity) (by positivity)]
   nlinarith
 
-/-- Existence-form wrapper for equation (46).-/
+/-- Existence-form wrapper for equation (46).
+@isnad1 id=le.4h3v.s7.6e218db5e075 from=translated src=- shape=82a2c18e vocab=756f03db
+-/
 theorem cubeRankedCover_ratio_lower {k q : ℕ} {L : ℝ}
     (hk : 2 ≤ k) (hL : 0 < L) (hq : 1 ≤ q)
     (hcover : HasCubeRankedCover k L q) :

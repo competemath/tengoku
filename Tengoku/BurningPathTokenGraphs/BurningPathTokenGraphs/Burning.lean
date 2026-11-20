@@ -24,11 +24,17 @@ variable {V : Type u} {ι : Type v}
 def closedBall (G : SimpleGraph V) (c : V) (r : ℕ) : Set V :=
   {v | G.edist v c ≤ (r : ℕ∞)}
 
+/--
+@isnad1 id=iff.0h5v.s5.2ab6f4319291 from=translated src=- shape=0334cc1c vocab=381ed24f
+-/
 @[simp]
 theorem mem_closedBall {G : SimpleGraph V} {c v : V} {r : ℕ} :
     v ∈ G.closedBall c r ↔ G.edist v c ≤ (r : ℕ∞) :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h4v.s4.caecd7e4076b from=translated src=- shape=3971d209 vocab=b560b615
+-/
 @[simp, nolint simpNF]
 theorem mem_closedBall_self (G : SimpleGraph V) (c : V) (r : ℕ) :
     c ∈ G.closedBall c r := by
@@ -47,7 +53,9 @@ def IsRankedSubcover (G : SimpleGraph V) {t : ℕ} (radii : ι ↪ Fin t)
 
 /--
 A ranked subcover can be filled at every omitted radius without changing any of its
-chosen centers.-/
+chosen centers.
+@isnad1 id=ex.1h6v.s6.f9653997c05f from=translated src=- shape=928619b6 vocab=c915dac4
+-/
 theorem IsRankedSubcover.extend [Nonempty V] {G : SimpleGraph V} {t : ℕ}
     {radii : ι ↪ Fin t} {centers : ι → V} (h : G.IsRankedSubcover radii centers) :
     ∃ fullCenters : Fin t → V,
@@ -66,7 +74,9 @@ theorem IsRankedSubcover.extend [Nonempty V] {G : SimpleGraph V} {t : ℕ}
   rw [hfull i]
   exact hi
 
-/-- Increasing the available length preserves the existence of a ranked cover.-/
+/-- Increasing the available length preserves the existence of a ranked cover.
+@isnad1 id=ex.2h5v.s5.d53d042c64c2 from=translated src=- shape=56cd5581 vocab=3a56c8a4
+-/
 theorem IsRankedCover.extendLength [Nonempty V] {G : SimpleGraph V} {s t : ℕ}
     {centers : Fin s → V} (h : G.IsRankedCover centers) (hst : s ≤ t) :
     ∃ fullCenters : Fin t → V, G.IsRankedCover fullCenters := by
@@ -87,22 +97,34 @@ def chronologicalToRanked {t : ℕ} (sources : Fin t → V) : Fin t → V :=
 def rankedToChronological {t : ℕ} (centers : Fin t → V) : Fin t → V :=
   fun i ↦ centers i.rev
 
+/--
+@isnad1 id=eq.0h4v.s4.4ff88e07adae from=translated src=- shape=8845664e vocab=2238a9ce
+-/
 @[simp]
 theorem chronologicalToRanked_apply {t : ℕ} (sources : Fin t → V) (r : Fin t) :
     chronologicalToRanked sources r = sources r.rev :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.adb44f3e0c36 from=translated src=- shape=8845664e vocab=a4e6f117
+-/
 @[simp]
 theorem rankedToChronological_apply {t : ℕ} (centers : Fin t → V) (i : Fin t) :
     rankedToChronological centers i = centers i.rev :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.564cdbb17967 from=translated src=- shape=85d531ed vocab=141d295a
+-/
 @[simp]
 theorem chronologicalToRanked_rankedToChronological {t : ℕ} (centers : Fin t → V) :
     chronologicalToRanked (rankedToChronological centers) = centers := by
   funext r
   simp
 
+/--
+@isnad1 id=eq.0h3v.s4.9e25ae862ec5 from=translated src=- shape=85d531ed vocab=141d295a
+-/
 @[simp]
 theorem rankedToChronological_chronologicalToRanked {t : ℕ} (sources : Fin t → V) :
     rankedToChronological (chronologicalToRanked sources) = sources := by
@@ -113,11 +135,16 @@ theorem rankedToChronological_chronologicalToRanked {t : ℕ} (sources : Fin t �
 def chronologicalRadius {t : ℕ} (i : Fin t) : ℕ :=
   i.rev.1
 
+/--
+@isnad1 id=eq.0h2v.s5.ada50fd6b365 from=translated src=- shape=16b5a628 vocab=871013ad
+-/
 theorem chronologicalRadius_eq {t : ℕ} (i : Fin t) :
     chronologicalRadius i = t - (i.1 + 1) :=
   Fin.val_rev i
 
-/-- The chronological source at index `r.rev` has final radius `r`.-/
+/-- The chronological source at index `r.rev` has final radius `r`.
+@isnad1 id=eq.0h2v.s3.88207f03379a from=translated src=- shape=74148a6e vocab=fb6f21d5
+-/
 @[simp]
 theorem chronologicalRadius_rev {t : ℕ} (r : Fin t) :
     chronologicalRadius r.rev = r.1 := by
@@ -127,6 +154,9 @@ theorem chronologicalRadius_rev {t : ℕ} (r : Fin t) :
 def IsChronologicalCover (G : SimpleGraph V) {t : ℕ} (sources : Fin t → V) : Prop :=
   ∀ v, ∃ i : Fin t, v ∈ G.closedBall (sources i) (chronologicalRadius i)
 
+/--
+@isnad1 id=iff.0h4v.s4.0b75d074146a from=translated src=- shape=6bc2e6e0 vocab=40fe69eb
+-/
 theorem isChronologicalCover_iff_isRankedCover {G : SimpleGraph V} {t : ℕ}
     {sources : Fin t → V} :
     G.IsChronologicalCover sources ↔ G.IsRankedCover (chronologicalToRanked sources) := by
@@ -146,7 +176,9 @@ def IsBurningLength (G : SimpleGraph V) (t : ℕ) : Prop :=
 
 /--
 A positive length admits a ranked cover exactly when it admits the chronological
-source-ball formulation of the burning process.-/
+source-ball formulation of the burning process.
+@isnad1 id=iff.0h3v.s5.4f5a7d51ce04 from=translated src=- shape=00c2931c vocab=769f1e28
+-/
 theorem isBurningLength_iff_exists_isChronologicalCover {G : SimpleGraph V} {t : ℕ} :
     G.IsBurningLength t ↔
       1 ≤ t ∧ ∃ sources : Fin t → V, G.IsChronologicalCover sources := by
@@ -160,7 +192,9 @@ theorem isBurningLength_iff_exists_isChronologicalCover {G : SimpleGraph V} {t :
       ⟨ht, chronologicalToRanked sources,
         isChronologicalCover_iff_isRankedCover.mp hcover⟩
 
-/-- Every graph on a finite nonempty vertex type has a feasible burning length.-/
+/-- Every graph on a finite nonempty vertex type has a feasible burning length.
+@isnad1 id=ex.0h2v.s4.51096523fd39 from=translated src=- shape=b184f226 vocab=ef3167d6
+-/
 theorem exists_isBurningLength [Finite V] [Nonempty V] (G : SimpleGraph V) :
     ∃ t, G.IsBurningLength t := by
   letI := Fintype.ofFinite V
@@ -170,7 +204,9 @@ theorem exists_isBurningLength [Finite V] [Nonempty V] (G : SimpleGraph V) :
   refine ⟨e v, ?_⟩
   simp [closedBall]
 
-/-- Feasible burning lengths are upward closed.-/
+/-- Feasible burning lengths are upward closed.
+@isnad1 id=isburnin.2h4v.s4.27ef3521ba0f from=translated src=- shape=5d1452b4 vocab=b9671d4c
+-/
 theorem IsBurningLength.mono [Nonempty V] {G : SimpleGraph V} {s t : ℕ}
     (h : G.IsBurningLength s) (hst : s ≤ t) : G.IsBurningLength t := by
   refine ⟨h.1.trans hst, ?_⟩
@@ -182,23 +218,32 @@ noncomputable def burningNumber [Fintype V] [Nonempty V] (G : SimpleGraph V) : �
   classical
   exact Nat.find G.exists_isBurningLength
 
-/-- The burning number itself is a feasible burning length.-/
+/-- The burning number itself is a feasible burning length.
+@isnad1 id=isburnin.0h2v.s4.a9e98bc7f52b from=translated src=- shape=fe3051fb vocab=d454258f
+-/
 theorem burningNumber_spec [Fintype V] [Nonempty V] (G : SimpleGraph V) :
     G.IsBurningLength G.burningNumber := by
   classical
   simpa only [burningNumber] using Nat.find_spec G.exists_isBurningLength
 
+/--
+@isnad1 id=le.0h2v.s4.13a5d5df6fda from=translated src=- shape=abec20dc vocab=7b660dd1
+-/
 theorem one_le_burningNumber [Fintype V] [Nonempty V] (G : SimpleGraph V) :
     1 ≤ G.burningNumber :=
   (G.burningNumber_spec).1
 
-/-- The burning number is no larger than any feasible burning length.-/
+/-- The burning number is no larger than any feasible burning length.
+@isnad1 id=le.1h3v.s4.e653b1c8892f from=translated src=- shape=02a20c49 vocab=42a5dfe4
+-/
 theorem burningNumber_min [Fintype V] [Nonempty V] (G : SimpleGraph V) {t : ℕ}
     (h : G.IsBurningLength t) : G.burningNumber ≤ t := by
   classical
   simpa only [burningNumber] using Nat.find_min' G.exists_isBurningLength h
 
-/-- A length is at least the burning number exactly when it admits a ranked cover.-/
+/-- A length is at least the burning number exactly when it admits a ranked cover.
+@isnad1 id=iff.0h3v.s5.5fdc241be72b from=translated src=- shape=8085a1a0 vocab=842db2c8
+-/
 theorem burningNumber_le_iff [Fintype V] [Nonempty V] (G : SimpleGraph V) {t : ℕ} :
     G.burningNumber ≤ t ↔
       1 ≤ t ∧ ∃ centers : Fin t → V, G.IsRankedCover centers := by

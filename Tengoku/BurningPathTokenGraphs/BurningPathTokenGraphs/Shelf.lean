@@ -22,7 +22,9 @@ def parityCap (h z : ℕ) (σ : ℤ) : Set (ℤ × ℤ) :=
     (h : ℤ) ≤ p.2 ∧ p.2 ≤ h + z ∧
       |p.1| ≤ (h + z : ℕ) - p.2 ∧ p.1 - p.2 ≡ σ [ZMOD 2]}
 
-/-- The parity triangle is the height-zero special case of a parity cap.-/
+/-- The parity triangle is the height-zero special case of a parity cap.
+@isnad1 id=eq.0h2v.s4.114f071429ac from=translated src=- shape=178cd945 vocab=d4a95fcc
+-/
 theorem parityCap_zero (z : ℕ) (σ : ℤ) :
     parityCap 0 z σ = parityTriangle z σ := by
   ext p
@@ -36,6 +38,9 @@ def intLinfDist (p c : ℤ × ℤ) : ℤ :=
 def integerSquare (c : ℤ × ℤ) (r : ℕ) : Set (ℤ × ℤ) :=
   {p | intLinfDist p c ≤ r}
 
+/--
+@isnad1 id=iff.0h3v.s5.ead4e6d2c8e1 from=translated src=- shape=0e693c45 vocab=972536d3
+-/
 @[simp]
 theorem mem_integerSquare {c p : ℤ × ℤ} {r : ℕ} :
     p ∈ integerSquare c r ↔ intLinfDist p c ≤ r :=
@@ -45,7 +50,9 @@ theorem mem_integerSquare {c p : ℤ × ℤ} {r : ℕ} :
 def parityCapApex (h z : ℕ) : ℤ × ℤ :=
   (0, h + z)
 
-/-- If the apex parity is `σ`, the apex is a legal cap center.-/
+/-- If the apex parity is `σ`, the apex is a legal cap center.
+@isnad1 id=mem.1h3v.s5.006bd6c22fe6 from=translated src=- shape=5101d231 vocab=0226e51e
+-/
 theorem parityCapApex_mem {h z : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2]) :
     parityCapApex h z ∈ parityCap h z σ := by
@@ -61,7 +68,9 @@ theorem parityCapApex_mem {h z : ℕ} {σ : ℤ}
     refine ⟨a + h + z, ?_⟩
     omega
 
-/-- The radius-`z` square centered at the apex covers the entire cap.-/
+/-- The radius-`z` square centered at the apex covers the entire cap.
+@isnad1 id=le.0h3v.s4.95220b3832f8 from=translated src=- shape=672fc4b1 vocab=316e5deb
+-/
 theorem parityCap_subset_apex_square (h z : ℕ) (σ : ℤ) :
     parityCap h z σ ⊆ integerSquare (parityCapApex h z) z := by
   intro p hp
@@ -72,7 +81,9 @@ theorem parityCap_subset_apex_square (h z : ℕ) (σ : ℤ) :
   · rw [abs_le]
     constructor <;> omega
 
-/-- Radius `w-1` covers the cap whenever `z ≤ w-1`.-/
+/-- Radius `w-1` covers the cap whenever `z ≤ w-1`.
+@isnad1 id=le.1h4v.s5.98b800c78a0f from=translated src=- shape=62cee1ea vocab=93e8b890
+-/
 theorem parityCap_subset_terminal_square {h z w : ℕ} (σ : ℤ) (hz : z ≤ w - 1) :
     parityCap h z σ ⊆ integerSquare (parityCapApex h z) (w - 1) :=
   fun p hp ↦ by
@@ -83,7 +94,9 @@ theorem parityCap_subset_terminal_square {h z w : ℕ} (σ : ℤ) (hz : z ≤ w 
 
 /--
 A chain of radius-`a` intervals whose consecutive centers are at distance at most `2a`
-covers the interval from the first left endpoint to the last right endpoint.-/
+covers the interval from the first left endpoint to the last right endpoint.
+@isnad1 id=ex.3h4v.s6.e0f5d31c3e7f from=translated src=- shape=05732bee vocab=28a8f5d6
+-/
 theorem exists_mem_abs_sub_le_of_chain (a : ℕ) (x : ℤ) (xs : List ℤ)
     (hchain : (x :: xs).IsChain fun u v ↦ v - u ≤ 2 * (a : ℤ)) {X : ℤ}
     (hleft : x - (a : ℤ) ≤ X)
@@ -113,7 +126,9 @@ theorem exists_mem_abs_sub_le_of_chain (a : ℕ) (x : ℤ) (xs : List ℤ)
         exact ⟨c, by simp [hc], hdist⟩
 
 /--
-Finite-function form of `exists_mem_abs_sub_le_of_chain`.-/
+Finite-function form of `exists_mem_abs_sub_le_of_chain`.
+@isnad1 id=ex.4h4v.s7.0ac7899df45f from=translated src=- shape=984a588d vocab=2caef688
+-/
 theorem exists_fin_abs_sub_le_of_chain (a q : ℕ) (hq : 0 < q) (f : Fin q → ℤ)
     (hstep :
       ∀ i (hi : i + 1 < q),
@@ -167,7 +182,9 @@ theorem exists_fin_abs_sub_le_of_chain (a q : ℕ) (hq : 0 < q) (f : Fin q → �
 
 /--
 The pointwise shelf construction. The `i`-th center, indexed from zero,
-uses radius `w - (i + 1)`, so the radii are exactly `w-q, …, w-1`.-/
+uses radius `w - (i + 1)`, so the radii are exactly `w-q, …, w-1`.
+@isnad1 id=ex.6h5v.s7.f6c5d5e6e621 from=translated src=- shape=9e10b0b9 vocab=f7c7a11a
+-/
 theorem exists_shelf_centers {h z w q : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2])
     (hw : 3 ≤ w) (hz : w - 1 < z)
@@ -288,7 +305,9 @@ theorem exists_shelf_centers {h z w q : ℕ} {σ : ℤ}
 
 /--
 Removing a bottom band of height `2a` leaves a cap with the same apex and parity parameter.
-The bottom boundary is retained, allowing overlap between consecutive shelves.-/
+The bottom boundary is retained, allowing overlap between consecutive shelves.
+@isnad1 id=mem.3h5v.s7.9ec84460217f from=translated src=- shape=8908829a vocab=049e9c71
+-/
 theorem mem_residual_parityCap {h z a : ℕ} {σ : ℤ} {p : ℤ × ℤ}
     (ha : 2 * a ≤ z) (hp : p ∈ parityCap h z σ) (hY : (h + 2 * a : ℕ) ≤ p.2) :
     p ∈ parityCap (h + 2 * a) (z - 2 * a) σ := by
@@ -308,7 +327,9 @@ theorem mem_residual_parityCap {h z a : ℕ} {σ : ℤ} {p : ℤ × ℤ}
     exact hpSide
   · exact hpParity
 
-/-- If the first shelf reaches the apex, the centers cover the whole cap.-/
+/-- If the first shelf reaches the apex, the centers cover the whole cap.
+@isnad1 id=ex.7h5v.s7.936245c9810d from=translated src=- shape=1d65ae57 vocab=c9419ba4
+-/
 theorem exists_shelf_centers_cover_cap {h z w q : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2])
     (hw : 3 ≤ w) (hz : w - 1 < z)
@@ -328,7 +349,9 @@ theorem exists_shelf_centers_cover_cap {h z w q : ℕ} {σ : ℤ}
 
 /--
 In the nonterminal case, every point not covered by the first shelf belongs
-to the residual cap with unchanged apex and parity.-/
+to the residual cap with unchanged apex and parity.
+@isnad1 id=ex.7h5v.s8.c5b7c4600c6f from=translated src=- shape=f13ba8d9 vocab=f7c7a11a
+-/
 theorem exists_shelf_centers_with_residual {h z w q : ℕ} {σ : ℤ}
     (hσ : (h + z : ℕ) ≡ σ [ZMOD 2])
     (hw : 3 ≤ w) (hz : w - 1 < z)

@@ -198,7 +198,9 @@ private theorem gridFloor_error_le {k D : ℕ} {L : ℝ}
 
 /--
 Every nonnegative bounded ordered simplex has some finite normalized ranked cover. This supplies
-the nonemptiness required for `simplexCoverNumber` to have its intended least-cover semantics.-/
+the nonemptiness required for `simplexCoverNumber` to have its intended least-cover semantics.
+@isnad1 id=ex.2h2v.s5.26a39fdf94f9 from=translated src=- shape=e00155e7 vocab=b32857f3
+-/
 theorem exists_simplexRankedCover {k : ℕ} {L : ℝ} (hk : 1 ≤ k) (hL : 0 ≤ L) :
     ∃ q, 1 ≤ q ∧ HasSimplexRankedCover k L q := by
   classical
@@ -254,7 +256,9 @@ theorem exists_simplexRankedCover {k : ℕ} {L : ℝ} (hk : 1 ≤ k) (hL : 0 ≤
       norm_num
       exact_mod_cast (show M + M ≤ (M + i.1) * 2 by omega))
 
-/-- A path-token graph ranked cover becomes a ranked cover of the isometric chamber.-/
+/-- A path-token graph ranked cover becomes a ranked cover of the isometric chamber.
+@isnad1 id=isgammar.2h4v.s7.3d0fd4c881cb from=translated src=- shape=ddd23cb5 vocab=7e25b9a0
+-/
 theorem SimpleGraph.IsRankedCover.toGammaRankedCover {n k t : ℕ}
     (hk : k ≤ n) {centers : Fin t → Configuration (Fin n) k}
     (hcover : (pathTokenGraph n k).IsRankedCover centers) :
@@ -270,7 +274,9 @@ theorem SimpleGraph.IsRankedCover.toGammaRankedCover {n k t : ℕ}
   rw [gammaL1Dist_eq_pathConfigurationDist hk]
   simpa using hdist
 
-/-- A chamber ranked cover becomes a path-token graph ranked cover through the exact isometry.-/
+/-- A chamber ranked cover becomes a path-token graph ranked cover through the exact isometry.
+@isnad1 id=isranked.2h4v.s7.9bd4d38d29bf from=translated src=- shape=0e4776e8 vocab=e9824369
+-/
 theorem IsGammaRankedCover.toPathTokenRankedCover {n k t : ℕ}
     (hk : k ≤ n) {centers : Fin t → Gamma (n - k) k}
     (hcover : IsGammaRankedCover centers) :
@@ -289,7 +295,9 @@ theorem IsGammaRankedCover.toPathTokenRankedCover {n k t : ℕ}
 
 /--
 Shift the ranks of a discrete chamber cover by `k`; after scaling by `t + k`, the resulting
-centers cover the normalized real ordered simplex.-/
+centers cover the normalized real ordered simplex.
+@isnad1 id=hassimpl.2h4v.s6.5e2b36a4f478 from=translated src=- shape=73ef99f5 vocab=564b324b
+-/
 theorem IsGammaRankedCover.toSimplexRankedCover_add {N k t : ℕ}
     {centers : Fin t → Gamma N k} (hcover : IsGammaRankedCover centers)
     (hq : 1 ≤ t + k) :
@@ -362,7 +370,9 @@ theorem IsGammaRankedCover.toSimplexRankedCover_add {N k t : ℕ}
 
 /--
 Floor the centers of a normalized simplex cover after scaling by `q`; shifting every old rank by
-`k` gives a ranked cover of the discrete chamber of length `q + k`.-/
+`k` gives a ranked cover of the discrete chamber of length `q + k`.
+@isnad1 id=ex.2h4v.s6.e270361e9c87 from=translated src=- shape=9278ee8e vocab=3b75aea1
+-/
 theorem IsL1NormalizedRankedCover.toGammaRankedCover_add {N k q : ℕ}
     {centers : Fin q → (Fin k → ℝ)}
     (hcover :
@@ -430,7 +440,9 @@ theorem IsL1NormalizedRankedCover.toGammaRankedCover_add {N k q : ℕ}
 
 /--
 A path-token burning cover of length at most `t` gives a normalized
-ordered-simplex cover of length `t + k`.-/
+ordered-simplex cover of length `t + k`.
+@isnad1 id=le.4h3v.s6.b027bf08a8fa from=translated src=- shape=73942d6d vocab=b2db3449
+-/
 theorem simplexCoverNumber_le_add_of_pathTokenBurningNumber_le
     {n k t : ℕ} (hk2 : 2 ≤ k) (hkn : k ≤ n) (hkt : k < t)
     (hburn : pathTokenBurningNumber n k hkn ≤ t) :
@@ -452,7 +464,9 @@ theorem simplexCoverNumber_le_add_of_pathTokenBurningNumber_le
 
 /--
 A normalized ordered-simplex cover number at most `t - k` gives a path-token
-burning cover of length at most `t`.-/
+burning cover of length at most `t`.
+@isnad1 id=le.4h3v.s6.cd9c39e223d8 from=translated src=- shape=167dee9d vocab=5332282c
+-/
 theorem pathTokenBurningNumber_le_of_simplexCoverNumber_le_sub
     {n k t : ℕ} (hk2 : 2 ≤ k) (hkn : k ≤ n) (hkt : k < t)
     (hcoverNumber :

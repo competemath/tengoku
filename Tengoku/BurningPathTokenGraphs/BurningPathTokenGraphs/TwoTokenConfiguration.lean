@@ -49,11 +49,17 @@ noncomputable def configurationEquivOrderedFinPair (n : ℕ) :
   (configurationEquivOrderEmbedding (Fin n) 2).trans
     (finTwoOrderEmbeddingEquivOrderedFinPair n)
 
+/--
+@isnad1 id=eq.0h2v.s7.6ba9c856b00a from=translated src=- shape=c22f91ad vocab=d8870942
+-/
 @[simp]
 theorem configurationEquivOrderedFinPair_fst {n : ℕ} (A : Configuration (Fin n) 2) :
     (configurationEquivOrderedFinPair n A).1.1 = coordinate A 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.8cbfc861ac45 from=translated src=- shape=dfc90c12 vocab=d8870942
+-/
 @[simp]
 theorem configurationEquivOrderedFinPair_snd {n : ℕ} (A : Configuration (Fin n) 2) :
     (configurationEquivOrderedFinPair n A).1.2 = coordinate A 1 :=
@@ -63,6 +69,9 @@ theorem configurationEquivOrderedFinPair_snd {n : ℕ} (A : Configuration (Fin n
 def finOfOneBasedInt {n : ℕ} (x : ℤ) (hx : 1 ≤ x) (hxn : x ≤ n) : Fin n :=
   ⟨(x - 1).toNat, (Int.toNat_lt (by omega)).2 (by omega)⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.590383c71320 from=translated src=- shape=e9aafff8 vocab=aa7adbf3
+-/
 @[simp]
 theorem finOfOneBasedInt_val {n : ℕ} (x : ℤ) (hx : 1 ≤ x) (hxn : x ≤ n) :
     ((finOfOneBasedInt x hx hxn).val : ℤ) + 1 = x := by
@@ -83,11 +92,17 @@ def orderedFinPairToTwoPathPoint {n : ℕ} (p : OrderedFinPair n) : TwoPathPoint
     omega
   · omega
 
+/--
+@isnad1 id=eq.0h2v.s6.06d83302f903 from=translated src=- shape=270290ad vocab=087f6ae4
+-/
 @[simp]
 theorem orderedFinPairToTwoPathPoint_fst {n : ℕ} (p : OrderedFinPair n) :
     (orderedFinPairToTwoPathPoint p).1.1 = (p.1.1.val : ℤ) + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.9fba973015a7 from=translated src=- shape=67ceb08e vocab=087f6ae4
+-/
 @[simp]
 theorem orderedFinPairToTwoPathPoint_snd {n : ℕ} (p : OrderedFinPair n) :
     (orderedFinPairToTwoPathPoint p).1.2 = (p.1.2.val : ℤ) + 1 :=
@@ -106,6 +121,9 @@ def twoPathPointToOrderedFinPair {n : ℕ} (p : TwoPathPoint n) : OrderedFinPair
   change (p.1.1 - 1).toNat < (p.1.2 - 1).toNat
   exact (Int.toNat_lt_toNat (by omega)).2 (by omega)
 
+/--
+@isnad1 id=eq.0h2v.s6.7b8d4122918e from=translated src=- shape=3493c593 vocab=a61e4aea
+-/
 @[simp]
 theorem twoPathPointToOrderedFinPair_fst_val {n : ℕ} (p : TwoPathPoint n) :
     (((twoPathPointToOrderedFinPair p).1.1.val : ℤ) + 1) = p.1.1 := by
@@ -116,6 +134,9 @@ theorem twoPathPointToOrderedFinPair_fst_val {n : ℕ} (p : TwoPathPoint n) :
   change ((finOfOneBasedInt p.1.1 hx hxn).val : ℤ) + 1 = p.1.1
   exact finOfOneBasedInt_val p.1.1 hx hxn
 
+/--
+@isnad1 id=eq.0h2v.s6.9ed15be504e6 from=translated src=- shape=97e8dc0b vocab=a61e4aea
+-/
 @[simp]
 theorem twoPathPointToOrderedFinPair_snd_val {n : ℕ} (p : TwoPathPoint n) :
     (((twoPathPointToOrderedFinPair p).1.2.val : ℤ) + 1) = p.1.2 := by
@@ -155,11 +176,17 @@ noncomputable def twoConfigurationEquivTwoPathPoint (n : ℕ) :
     Configuration (Fin n) 2 ≃ TwoPathPoint n :=
   (configurationEquivOrderedFinPair n).trans (orderedFinPairEquivTwoPathPoint n)
 
+/--
+@isnad1 id=eq.0h2v.s7.1597d84274a6 from=translated src=- shape=a2c4db11 vocab=269ecd1c
+-/
 @[simp]
 theorem twoConfigurationEquivTwoPathPoint_fst {n : ℕ} (A : Configuration (Fin n) 2) :
     (twoConfigurationEquivTwoPathPoint n A).1.1 = ((coordinate A 0).val : ℤ) + 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.abe98947cd2c from=translated src=- shape=30062053 vocab=269ecd1c
+-/
 @[simp]
 theorem twoConfigurationEquivTwoPathPoint_snd {n : ℕ} (A : Configuration (Fin n) 2) :
     (twoConfigurationEquivTwoPathPoint n A).1.2 = ((coordinate A 1).val : ℤ) + 1 :=
@@ -167,7 +194,9 @@ theorem twoConfigurationEquivTwoPathPoint_snd {n : ℕ} (A : Configuration (Fin 
 
 /--
 For two-token configurations, the ordered-coordinate distance is the `ℓ₁` distance between the
-corresponding one-based integer pairs.-/
+corresponding one-based integer pairs.
+@isnad1 id=eq.0h3v.s8.dc59297d844f from=translated src=- shape=ddf06357 vocab=10e67cf0
+-/
 theorem pathConfigurationDist_eq_twoPathPoint {n : ℕ}
     (A B : Configuration (Fin n) 2) :
     pathConfigurationDist A B =
@@ -180,7 +209,9 @@ theorem pathConfigurationDist_eq_twoPathPoint {n : ℕ}
   rw [natDist_eq_natAbs_intSub, natDist_eq_natAbs_intSub]
   congr 1 <;> omega
 
-/-- The shifted two-token coordinates have `ℓ∞` distance equal to `pathConfigurationDist`.-/
+/-- The shifted two-token coordinates have `ℓ∞` distance equal to `pathConfigurationDist`.
+@isnad1 id=eq.0h3v.s8.217a51e0cf1f from=translated src=- shape=59061962 vocab=4767b434
+-/
 theorem twoTokenPhi_configuration_isometry {n : ℕ}
     (A B : Configuration (Fin n) 2) :
     max

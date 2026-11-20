@@ -15,7 +15,9 @@ namespace BurningPath
 
 /--
 Part (A): the exact finite ranked-volume lower bound and its fixed-dimensional
-explicit-constant liminf consequence.-/
+explicit-constant liminf consequence.
+@isnad1 id=and.1h1v.s7.14849261a6a2 from=translated src=- shape=b8387074 vocab=9938d0ae
+-/
 theorem burningPathToken_partA (k : ℕ) (hk : 2 ≤ k) :
     (∀ {n : ℕ} (hnk : k + 1 ≤ n),
       volumeThreshold k (n.choose k) ≤
@@ -42,7 +44,9 @@ theorem burningPathToken_partA (k : ℕ) (hk : 2 ≤ k) :
 
 /--
 Part (B): the exact finite optimal block upper bound and its
-fixed-dimensional explicit-constant limsup consequence.-/
+fixed-dimensional explicit-constant limsup consequence.
+@isnad1 id=and.1h1v.s7.2a202756eace from=translated src=- shape=15c51782 vocab=2dbcf1b3
+-/
 theorem burningPathToken_partB (k : ℕ) (hk : 2 ≤ k) :
     (∀ {n : ℕ} (hnk : k + 1 ≤ n),
       pathTokenBurningNumber n k ((Nat.le_add_right k 1).trans hnk) ≤
@@ -59,7 +63,9 @@ theorem burningPathToken_partB (k : ℕ) (hk : 2 ≤ k) :
     exact pathTokenBurningNumber_le_optimalBlockUpperBound hnk
   · exact generalUpperAsymptotic_limsup k hk
 
-/-- Part (C): the fixed-dimensional `Θ` estimate on the standard scale.-/
+/-- Part (C): the fixed-dimensional `Θ` estimate on the standard scale.
+@isnad1 id=istheta.1h1v.s4.38e7a8dbf7f7 from=translated src=- shape=45b0721c vocab=62509c4f
+-/
 theorem burningPathToken_partC (k : ℕ) (hk : 2 ≤ k) :
     (fun n ↦ (pathTokenBurningNumberTotal k n : ℝ)) =Θ[atTop]
       pathTokenStandardScale k :=
@@ -67,7 +73,9 @@ theorem burningPathToken_partC (k : ℕ) (hk : 2 ≤ k) :
 
 /--
 Part (D): the exact two-token cubic threshold, the sharp normalized limit,
-and the equivalent asymptotic expansion.-/
+and the equivalent asymptotic expansion.
+@isnad1 id=and.0h0v.s8.e2760cb27142 from=translated src=- shape=c712f566 vocab=6d8fae3d
+-/
 theorem burningPathToken_partD :
     (∀ {n : ℕ} (hn : 2 ≤ n),
       twoTokenCubicThreshold (n.choose 2) ≤

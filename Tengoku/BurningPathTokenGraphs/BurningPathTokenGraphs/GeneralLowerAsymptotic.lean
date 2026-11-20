@@ -21,7 +21,9 @@ namespace BurningPath
 def lowerRankedVolumeCoefficient (k : ℕ) : ℕ :=
   ∑ j ∈ Finset.range k, 2 ^ j * k.choose j
 
-/-- The ranked volume polynomial is monotone in its length argument.-/
+/-- The ranked volume polynomial is monotone in its length argument.
+@isnad1 id=monotone.0h1v.s3.576e7fb5befa from=translated src=- shape=f736e2c1 vocab=c2992715
+-/
 theorem rankedVolumePolynomial_mono (k : ℕ) :
     Monotone (rankedVolumePolynomial k) := by
   intro a b hab
@@ -32,7 +34,9 @@ theorem rankedVolumePolynomial_mono (k : ℕ) :
 
 /--
 The top-degree summand is kept exact, while all lower-degree summands are bounded by a fixed
-coefficient times `t^k`.-/
+coefficient times `t^k`.
+@isnad1 id=le.1h2v.s6.6b00fd1b7407 from=translated src=- shape=c4f281b8 vocab=5dfbb835
+-/
 theorem rankedVolumePolynomial_le_lower_add_leading (k t : ℕ) (ht : 1 ≤ t) :
     rankedVolumePolynomial k t ≤
       lowerRankedVolumeCoefficient k * t ^ k + 2 ^ k * t.choose (k + 1) := by
@@ -51,14 +55,18 @@ theorem rankedVolumePolynomial_le_lower_add_leading (k t : ℕ) (ht : 1 ≤ t) :
     _ = (∑ j ∈ Finset.range k, 2 ^ j * k.choose j) * t ^ k := by
       rw [Finset.sum_mul]
 
-/-- The exact threshold inequality holds at the path-token burning number itself.-/
+/-- The exact threshold inequality holds at the path-token burning number itself.
+@isnad1 id=le.1h2v.s4.4be322797123 from=translated src=- shape=ac80b1a6 vocab=560a76b2
+-/
 theorem choose_le_rankedVolumePolynomial_pathToken {n k : ℕ} (hk : k ≤ n) :
     n.choose k ≤ rankedVolumePolynomial k (pathTokenBurningNumberTotal k n) := by
   rw [pathTokenBurningNumberTotal_eq hk]
   exact (volumeThreshold_spec k (n.choose k)).2.trans <|
     rankedVolumePolynomial_mono k (pathToken_volumeThreshold_lower_of_le hk)
 
-/-- For positive fixed dimension, `choose n k` tends to infinity.-/
+/-- For positive fixed dimension, `choose n k` tends to infinity.
+@isnad1 id=tendsto.1h1v.s4.4deb9616d7f0 from=translated src=- shape=57bb9501 vocab=9f3ebfc1
+-/
 theorem tendsto_choose_atTop (k : ℕ) (hk : 0 < k) :
     Tendsto (fun n : ℕ ↦ n.choose k) atTop atTop := by
   rw [← tendsto_natCast_atTop_iff (R := ℝ)]
@@ -67,7 +75,9 @@ theorem tendsto_choose_atTop (k : ℕ) (hk : 0 < k) :
     (tendsto_pow_atTop (α := ℝ) hk.ne').comp tendsto_natCast_atTop_atTop
   exact hpow.atTop_div_const (by positivity : (0 : ℝ) < k.factorial)
 
-/-- The usual fixed-`k` normalization of the binomial coefficient.-/
+/-- The usual fixed-`k` normalization of the binomial coefficient.
+@isnad1 id=tendsto.0h1v.s6.3656f662faeb from=translated src=- shape=2f069499 vocab=6a70ca90
+-/
 theorem tendsto_choose_div_pow (k : ℕ) :
     Tendsto (fun n : ℕ ↦ (n.choose k : ℝ) / (n : ℝ) ^ k) atTop
       (𝓝 (1 / (k.factorial : ℝ))) := by
@@ -85,7 +95,9 @@ theorem tendsto_choose_div_pow (k : ℕ) :
 noncomputable def leadingRankedVolumeCoefficient (k : ℕ) : ℝ :=
   (2 : ℝ) ^ k / (k + 1).factorial
 
-/-- A real-valued upper bound separating the leading and lower-degree terms.-/
+/-- A real-valued upper bound separating the leading and lower-degree terms.
+@isnad1 id=le.1h2v.s6.faaa4bc33ff8 from=translated src=- shape=d65ecb80 vocab=e91c6371
+-/
 theorem cast_rankedVolumePolynomial_le (k t : ℕ) (ht : 1 ≤ t) :
     (rankedVolumePolynomial k t : ℝ) ≤
       (lowerRankedVolumeCoefficient k : ℝ) * (t : ℝ) ^ k +
@@ -107,7 +119,9 @@ theorem cast_rankedVolumePolynomial_le (k t : ℕ) (ht : 1 ≤ t) :
       rw [leadingRankedVolumeCoefficient]
       ring
 
-/-- The normalized binomial coefficient is eventually above any smaller constant.-/
+/-- The normalized binomial coefficient is eventually above any smaller constant.
+@isnad1 id=eventual.1h2v.s6.0d0e24a1353a from=translated src=- shape=4bb52529 vocab=84f328a0
+-/
 theorem eventually_choose_lower (k : ℕ) {η : ℝ} (hη : 0 < η) :
     ∀ᶠ n : ℕ in atTop,
       (1 / (k.factorial : ℝ) - η) * (n : ℝ) ^ k ≤ (n.choose k : ℝ) := by
@@ -121,7 +135,9 @@ theorem eventually_choose_lower (k : ℕ) {η : ℝ} (hη : 0 < η) :
       (mul_le_mul_of_nonneg_right hnratio.le hpow.le)
     _ = (n.choose k : ℝ) := by field_simp
 
-/-- For fixed positive dimension, the totalized path-token burning sequence tends to infinity.-/
+/-- For fixed positive dimension, the totalized path-token burning sequence tends to infinity.
+@isnad1 id=tendsto.1h1v.s4.6705f2fda714 from=translated src=- shape=52e44ca1 vocab=9a49af53
+-/
 theorem tendsto_pathTokenBurningNumberTotal_atTop (k : ℕ) (hk : 0 < k) :
     Tendsto (pathTokenBurningNumberTotal k) atTop atTop := by
   apply tendsto_atTop.2
@@ -134,7 +150,9 @@ theorem tendsto_pathTokenBurningNumberTotal_atTop (k : ℕ) (hk : 0 < k) :
   have hpoly := rankedVolumePolynomial_mono k hle
   omega
 
-/-- Along the burning sequence, the lower-degree volume terms can be absorbed into any `η > 0`.-/
+/-- Along the burning sequence, the lower-degree volume terms can be absorbed into any `η > 0`.
+@isnad1 id=eventual.2h2v.s6.b3922bd9acb4 from=translated src=- shape=661fd143 vocab=c85a598e
+-/
 theorem eventually_rankedVolumePolynomial_pathToken_upper (k : ℕ) (hk : 0 < k)
     {η : ℝ} (hη : 0 < η) :
     ∀ᶠ n : ℕ in atTop,
@@ -182,11 +200,17 @@ theorem eventually_rankedVolumePolynomial_pathToken_upper (k : ℕ) (hk : 0 < k)
 noncomputable def volumeLowerPowerConstant (k : ℕ) : ℝ :=
   (k + 1 : ℝ) / (2 : ℝ) ^ k
 
+/--
+@isnad1 id=lt.0h1v.s3.4313a9339ef8 from=translated src=- shape=b9369acb vocab=22f657f7
+-/
 theorem volumeLowerPowerConstant_pos (k : ℕ) :
     0 < volumeLowerPowerConstant k := by
   rw [volumeLowerPowerConstant]
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.d4adbfe6879c from=translated src=- shape=eec7492d vocab=c3c347b2
+-/
 theorem volumeLowerPowerConstant_mul_leading (k : ℕ) :
     volumeLowerPowerConstant k * leadingRankedVolumeCoefficient k =
       1 / (k.factorial : ℝ) := by
@@ -196,7 +220,9 @@ theorem volumeLowerPowerConstant_mul_leading (k : ℕ) :
 
 /--
 Every constant strictly below `(k+1)/2^k` is eventually a lower bound for the normalized
-`(k+1)`-st power of the burning number.-/
+`(k+1)`-st power of the burning number.
+@isnad1 id=eventual.3h2v.s6.ccca7ad16527 from=translated src=- shape=0fde3eb2 vocab=4d846eb6
+-/
 theorem eventually_pathTokenBurningNumberTotal_pow_lower (k : ℕ) (hk : 0 < k)
     {d : ℝ} (hd0 : 0 ≤ d) (hd : d < volumeLowerPowerConstant k) :
     ∀ᶠ n : ℕ in atTop,
@@ -252,6 +278,9 @@ theorem eventually_pathTokenBurningNumberTotal_pow_lower (k : ℕ) (hk : 0 < k)
 noncomputable def pathTokenAsymptoticScale (k n : ℕ) : ℝ :=
   ((n : ℝ) ^ k) ^ (k + 1 : ℝ)⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s5.059609a2af2f from=translated src=- shape=54a9d814 vocab=ac25978b
+-/
 @[simp]
 theorem pathTokenAsymptoticScale_pow (k n : ℕ) :
     pathTokenAsymptoticScale k n ^ (k + 1) = (n : ℝ) ^ k := by
@@ -259,17 +288,25 @@ theorem pathTokenAsymptoticScale_pow (k n : ℕ) :
     (Real.rpow_inv_natCast_pow (x := (n : ℝ) ^ k) (n := k + 1)
       (pow_nonneg (Nat.cast_nonneg n) k) (by omega))
 
-/-- The scale above is the standard `n^(k/(k+1))` normalization.-/
+/-- The scale above is the standard `n^(k/(k+1))` normalization.
+@isnad1 id=eq.0h2v.s5.765b0441a4cc from=translated src=- shape=3e289321 vocab=f4472838
+-/
 theorem pathTokenAsymptoticScale_eq_rpow (k n : ℕ) :
     pathTokenAsymptoticScale k n = (n : ℝ) ^ ((k : ℝ) / (k + 1 : ℝ)) := by
   simpa [pathTokenAsymptoticScale, div_eq_mul_inv, Real.rpow_natCast] using
     (Real.rpow_mul (show 0 ≤ (n : ℝ) by positivity) (k : ℝ) (k + 1 : ℝ)⁻¹).symm
 
+/--
+@isnad1 id=le.0h2v.s4.d02165decb23 from=translated src=- shape=5ffe46ab vocab=d8b7f7ca
+-/
 theorem pathTokenAsymptoticScale_nonneg (k n : ℕ) :
     0 ≤ pathTokenAsymptoticScale k n := by
   rw [pathTokenAsymptoticScale]
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.f908c7e5c752 from=translated src=- shape=cee548f2 vocab=c9f95c86
+-/
 theorem pathTokenAsymptoticScale_pos {k n : ℕ} (hn : 0 < n) :
     0 < pathTokenAsymptoticScale k n := by
   rw [pathTokenAsymptoticScale]
@@ -280,10 +317,16 @@ theorem pathTokenAsymptoticScale_pos {k n : ℕ} (hn : 0 < n) :
 noncomputable def volumeLowerConstant (k : ℕ) : ℝ :=
   volumeLowerPowerConstant k ^ (k + 1 : ℝ)⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s3.a6f19aa55ba7 from=translated src=- shape=b9369acb vocab=6ab3f2d1
+-/
 theorem volumeLowerConstant_pos (k : ℕ) :
     0 < volumeLowerConstant k := by
   exact Real.rpow_pos_of_pos (volumeLowerPowerConstant_pos k) _
 
+/--
+@isnad1 id=eq.0h1v.s5.f5564d45df41 from=translated src=- shape=729b7206 vocab=8c574ba2
+-/
 @[simp]
 theorem volumeLowerConstant_pow (k : ℕ) :
     volumeLowerConstant k ^ (k + 1) = volumeLowerPowerConstant k := by
@@ -295,6 +338,9 @@ theorem volumeLowerConstant_pow (k : ℕ) :
 noncomputable def pathTokenBurningRatio (k n : ℕ) : ℝ :=
   (pathTokenBurningNumberTotal k n : ℝ) / pathTokenAsymptoticScale k n
 
+/--
+@isnad1 id=le.0h2v.s4.acad05641e21 from=translated src=- shape=5ffe46ab vocab=965c8e1e
+-/
 theorem pathTokenBurningRatio_nonneg (k n : ℕ) :
     0 ≤ pathTokenBurningRatio k n := by
   exact div_nonneg (Nat.cast_nonneg _) (pathTokenAsymptoticScale_nonneg k n)
@@ -305,7 +351,9 @@ noncomputable def pathTokenBurningRatioENNReal (k n : ℕ) : ENNReal :=
 
 /--
 Every constant strictly below the sharp root constant is eventually a lower bound for the
-normalized burning number.-/
+normalized burning number.
+@isnad1 id=eventual.2h2v.s5.52562a084721 from=translated src=- shape=60f2be6a vocab=cd7437a8
+-/
 theorem eventually_constant_le_pathTokenBurningRatio (k : ℕ) (hk : 0 < k)
     {c : ℝ} (hc : c < volumeLowerConstant k) :
     ∀ᶠ n : ℕ in atTop, c ≤ pathTokenBurningRatio k n := by
@@ -328,7 +376,9 @@ theorem eventually_constant_le_pathTokenBurningRatio (k : ℕ) (hk : 0 < k)
 
 /--
 The sharp constant is a lower bound for the extended-real liminf of the normalized burning
-numbers. Using `ℝ≥0∞` makes this statement independent of any asymptotic upper bound.-/
+numbers. Using `ℝ≥0∞` makes this statement independent of any asymptotic upper bound.
+@isnad1 id=le.1h1v.s5.34587141513e from=translated src=- shape=0ed46b91 vocab=7294f372
+-/
 theorem volumeLowerConstant_le_liminf_pathTokenBurningRatio (k : ℕ) (hk : 0 < k) :
     ENNReal.ofReal (volumeLowerConstant k) ≤
       liminf (pathTokenBurningRatioENNReal k) atTop := by
@@ -343,7 +393,9 @@ theorem volumeLowerConstant_le_liminf_pathTokenBurningRatio (k : ℕ) (hk : 0 < 
 
 /--
 Part (A2), in standard notation: for fixed `k ≥ 2`, the normalized burning numbers have
-extended-real liminf at least `((k+1)/2^k)^(1/(k+1))`.-/
+extended-real liminf at least `((k+1)/2^k)^(1/(k+1))`.
+@isnad1 id=le.1h1v.s7.ca2040a614f9 from=translated src=- shape=42a6fc45 vocab=e72bf69f
+-/
 theorem generalLowerAsymptotic_liminf (k : ℕ) (hk : 2 ≤ k) :
     ENNReal.ofReal
         (((k + 1 : ℝ) / (2 : ℝ) ^ k) ^ (k + 1 : ℝ)⁻¹) ≤
@@ -359,7 +411,9 @@ theorem generalLowerAsymptotic_liminf (k : ℕ) (hk : 2 ≤ k) :
 
 /--
 Equivalent `ε`-form of (A2): every positive loss from the sharp constant gives an eventual
-real-valued lower bound in the usual `n^(k/(k+1))` scale.-/
+real-valued lower bound in the usual `n^(k/(k+1))` scale.
+@isnad1 id=eventual.2h2v.s7.5d16ae417f7d from=translated src=- shape=49b8caf0 vocab=6708540b
+-/
 theorem eventually_generalLowerAsymptotic (k : ℕ) (hk : 2 ≤ k)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ n : ℕ in atTop,

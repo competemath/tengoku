@@ -19,7 +19,9 @@ variable {V : Type u}
 
 /--
 The exact volume threshold is a lower bound for the burning number of every finite nonempty graph
-whose balls satisfy the stated Delannoy-polynomial bound.-/
+whose balls satisfy the stated Delannoy-polynomial bound.
+@isnad1 id=le.1h3v.s5.853426842edc from=translated src=- shape=0af91d07 vocab=ce103864
+-/
 theorem volumeThreshold_le_burningNumber_of_ball_bound
     [Fintype V] [Nonempty V] (G : SimpleGraph V) (k : ℕ)
     (hball : ∀ c r, (G.closedBall c r).ncard ≤ latticeBallPolynomial k r) :

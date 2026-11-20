@@ -46,23 +46,34 @@ def squareToTriangleCoordinates (n : ℕ) (p : ℤ × ℤ) : ℤ × ℤ :=
 def triangleToSquareCoordinates (n : ℕ) (p : ℤ × ℤ) : ℤ × ℤ :=
   (p.1 + (n + 1), p.2 + 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.26e65938925f from=translated src=- shape=2a935572 vocab=cba25f94
+-/
 @[simp]
 theorem squareToTriangleCoordinates_twoTokenSquareCoordinates {n : ℕ}
     (p : TwoPathPoint n) :
     squareToTriangleCoordinates n (twoTokenSquareCoordinates p) = twoTokenPhi p :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0774750bc63b from=translated src=- shape=d0414de6 vocab=9ba5e1b3
+-/
 @[simp]
 theorem triangleToSquareCoordinates_squareToTriangleCoordinates (n : ℕ) (p : ℤ × ℤ) :
     triangleToSquareCoordinates n (squareToTriangleCoordinates n p) = p := by
   ext <;> simp [triangleToSquareCoordinates, squareToTriangleCoordinates]
 
+/--
+@isnad1 id=eq.0h2v.s4.b734c619c009 from=translated src=- shape=d0414de6 vocab=9ba5e1b3
+-/
 @[simp]
 theorem squareToTriangleCoordinates_triangleToSquareCoordinates (n : ℕ) (p : ℤ × ℤ) :
     squareToTriangleCoordinates n (triangleToSquareCoordinates n p) = p := by
   ext <;> simp [triangleToSquareCoordinates, squareToTriangleCoordinates]
 
-/-- The unshifted parity lattice is exactly the translated parity triangle.-/
+/-- The unshifted parity lattice is exactly the translated parity triangle.
+@isnad1 id=iff.1h2v.s6.0f8ee9a9d4c8 from=translated src=- shape=2e3248dc vocab=ac7e33bb
+-/
 theorem squareToTriangleCoordinates_mem_iff {n : ℕ} (hn : 2 ≤ n) (p : ℤ × ℤ) :
     squareToTriangleCoordinates n p ∈ parityTriangle (n - 2) n ↔
       p ∈ parityLattice n := by
@@ -93,7 +104,9 @@ theorem squareToTriangleCoordinates_mem_iff {n : ℕ} (hn : 2 ≤ n) (p : ℤ ×
       refine ⟨a + n, ?_⟩
       omega
 
-/-- Legal ordered pairs map into the unshifted parity lattice.-/
+/-- Legal ordered pairs map into the unshifted parity lattice.
+@isnad1 id=mem.0h2v.s4.8c8ae5f676de from=translated src=- shape=6cce048f vocab=24355d3c
+-/
 theorem twoTokenSquareCoordinates_mem {n : ℕ} (p : TwoPathPoint n) :
     twoTokenSquareCoordinates p ∈ parityLattice n := by
   rcases p.2 with ⟨hx, hxy, hy⟩
@@ -106,7 +119,9 @@ theorem twoTokenSquareCoordinates_mem {n : ℕ} (p : TwoPathPoint n) :
 
 /--
 If `σ` is the parity of `n`, the shifted coordinates of a legal pair lie in
-`𝒯_(n-2)^(σ)`.-/
+`𝒯_(n-2)^(σ)`.
+@isnad1 id=mem.2h3v.s5.582c8ea3880a from=translated src=- shape=01ea1c19 vocab=969be0dd
+-/
 theorem twoTokenPhi_mem_parityTriangle {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) (p : TwoPathPoint n) :
     twoTokenPhi p ∈ parityTriangle (n - 2) σ := by
@@ -125,7 +140,9 @@ theorem twoTokenPhi_mem_parityTriangle {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     refine ⟨a + ((n : ℤ) - p.1.1), ?_⟩
     omega
 
-/-- The first inverse numerator is even under the triangle parity condition.-/
+/-- The first inverse numerator is even under the triangle parity condition.
+@isnad1 id=even.2h3v.s6.968bac1801e2 from=translated src=- shape=8679676e vocab=0f80cb53
+-/
 theorem even_twoTokenPhiInverse_first {n : ℕ} (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) {p : ℤ × ℤ} (hp : p ∈ parityTriangle (n - 2) σ) :
     Even (p.1 - p.2 + n) := by
@@ -136,7 +153,9 @@ theorem even_twoTokenPhiInverse_first {n : ℕ} (σ : ℤ)
   refine ⟨σ - a - b, ?_⟩
   omega
 
-/-- The second inverse numerator is even under the triangle parity condition.-/
+/-- The second inverse numerator is even under the triangle parity condition.
+@isnad1 id=even.2h3v.s6.c19ac21620b4 from=translated src=- shape=fdee4fc4 vocab=0f80cb53
+-/
 theorem even_twoTokenPhiInverse_second {n : ℕ} (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) {p : ℤ × ℤ} (hp : p ∈ parityTriangle (n - 2) σ) :
     Even (p.1 + p.2 + n + 2) := by
@@ -144,12 +163,18 @@ theorem even_twoTokenPhiInverse_second {n : ℕ} (σ : ℤ)
   refine ⟨a + p.2 + 1, ?_⟩
   omega
 
+/--
+@isnad1 id=eq.2h3v.s6.d71c4667c051 from=translated src=- shape=2d4bddb5 vocab=46159bbb
+-/
 theorem twoTokenPhiInverse_first_mul_two {n : ℕ} (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) {p : ℤ × ℤ} (hp : p ∈ parityTriangle (n - 2) σ) :
     (twoTokenPhiInverseCoordinates n p).1 * 2 = p.1 - p.2 + n := by
   simpa [twoTokenPhiInverseCoordinates, mul_comm] using
     Int.ediv_two_mul_two_of_even (even_twoTokenPhiInverse_first σ hσ hp)
 
+/--
+@isnad1 id=eq.2h3v.s6.d72cb89c02ca from=translated src=- shape=c275b3fd vocab=46159bbb
+-/
 theorem twoTokenPhiInverse_second_mul_two {n : ℕ} (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) {p : ℤ × ℤ} (hp : p ∈ parityTriangle (n - 2) σ) :
     (twoTokenPhiInverseCoordinates n p).2 * 2 = p.1 + p.2 + n + 2 := by
@@ -173,13 +198,18 @@ def parityTriangleToTwoPathPoint {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
   · omega
   · omega
 
+/--
+@isnad1 id=eq.2h3v.s7.c922f101c093 from=translated src=- shape=7b7983f2 vocab=3d38f3cd
+-/
 @[simp]
 theorem parityTriangleToTwoPathPoint_val {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) (p : {z // z ∈ parityTriangle (n - 2) σ}) :
     (parityTriangleToTwoPathPoint hn σ hσ p).1 = twoTokenPhiInverseCoordinates n p.1 :=
   rfl
 
-/-- Applying the inverse formulas after `Φ_n` recovers the original legal pair.-/
+/-- Applying the inverse formulas after `Φ_n` recovers the original legal pair.
+@isnad1 id=eq.2h3v.s6.48b668385a23 from=translated src=- shape=5384e4e9 vocab=21466c81
+-/
 theorem parityTriangleToTwoPathPoint_twoTokenPhi {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) (p : TwoPathPoint n) :
     parityTriangleToTwoPathPoint hn σ hσ
@@ -198,7 +228,9 @@ theorem parityTriangleToTwoPathPoint_twoTokenPhi {n : ℕ} (hn : 2 ≤ n) (σ : 
         2 * p.1.2 by omega]
     exact Int.mul_ediv_cancel_left _ (by norm_num)
 
-/-- Applying `Φ_n` after the inverse formulas recovers the parity-triangle point.-/
+/-- Applying `Φ_n` after the inverse formulas recovers the parity-triangle point.
+@isnad1 id=eq.2h3v.s6.c0f2d8290004 from=translated src=- shape=73a96877 vocab=04db7104
+-/
 theorem twoTokenPhi_parityTriangleToTwoPathPoint {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
     (hσ : (n : ℤ) ≡ σ [ZMOD 2]) (p : {z // z ∈ parityTriangle (n - 2) σ}) :
     twoTokenPhi (parityTriangleToTwoPathPoint hn σ hσ p) = p.1 := by
@@ -223,7 +255,9 @@ def twoTokenPhiEquiv {n : ℕ} (hn : 2 ≤ n) (σ : ℤ)
   left_inv := parityTriangleToTwoPathPoint_twoTokenPhi hn σ hσ
   right_inv p := Subtype.ext (twoTokenPhi_parityTriangleToTwoPathPoint hn σ hσ p)
 
-/-- The unshifted coordinate change is an exact `ℓ₁`-to-`ℓ∞` isometry.-/
+/-- The unshifted coordinate change is an exact `ℓ₁`-to-`ℓ∞` isometry.
+@isnad1 id=eq.0h3v.s8.1b9f2ed5b50e from=translated src=- shape=9a40eb68 vocab=fda4912a
+-/
 theorem twoTokenSquareCoordinates_isometry {n : ℕ} (p q : TwoPathPoint n) :
     max
         ((twoTokenSquareCoordinates p).1 - (twoTokenSquareCoordinates q).1).natAbs
@@ -231,7 +265,9 @@ theorem twoTokenSquareCoordinates_isometry {n : ℕ} (p q : TwoPathPoint n) :
       (p.1.1 - q.1.1).natAbs + (p.1.2 - q.1.2).natAbs := by
   exact max_natAbs_sumDiff_sub_sumDiff p.1.1 p.1.2 q.1.1 q.1.2
 
-/-- The shifted parity-triangle coordinates preserve the exact distance.-/
+/-- The shifted parity-triangle coordinates preserve the exact distance.
+@isnad1 id=eq.0h3v.s8.989cc0e416d2 from=translated src=- shape=9a40eb68 vocab=a28c49db
+-/
 theorem twoTokenPhi_isometry {n : ℕ} (p q : TwoPathPoint n) :
     max ((twoTokenPhi p).1 - (twoTokenPhi q).1).natAbs
         ((twoTokenPhi p).2 - (twoTokenPhi q).2).natAbs =

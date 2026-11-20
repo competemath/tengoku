@@ -21,6 +21,9 @@ noncomputable def pathConfigurationDisplacement {n k : ℕ}
     (C A : Configuration (Fin n) k) : Fin k → ℤ :=
   fun i ↦ ((coordinate A i).val : ℤ) - (coordinate C i).val
 
+/--
+@isnad1 id=mem.1h5v.s5.ff4f80866c5f from=translated src=- shape=9d988103 vocab=a48eb0c2
+-/
 theorem pathConfigurationDisplacement_mem_latticeBall {n k r : ℕ}
     {C A : Configuration (Fin n) k} (hA : A ∈ pathConfigurationBall C r) :
     pathConfigurationDisplacement C A ∈ latticeBall k r := by
@@ -28,6 +31,9 @@ theorem pathConfigurationDisplacement_mem_latticeBall {n k r : ℕ}
   simpa only [pathConfigurationDisplacement, pathConfigurationBall, Set.mem_ofPred_eq,
     pathConfigurationDist, natDist_eq_natAbs_intSub] using hA
 
+/--
+@isnad1 id=injectiv.0h3v.s4.e618e8aa3daa from=translated src=- shape=5a3f3fa5 vocab=a0f9189d
+-/
 theorem pathConfigurationDisplacement_injective {n k : ℕ}
     (C : Configuration (Fin n) k) :
     Function.Injective (pathConfigurationDisplacement C) := by
@@ -38,7 +44,9 @@ theorem pathConfigurationDisplacement_injective {n k : ℕ}
   simp only [pathConfigurationDisplacement, coordinate] at hi
   omega
 
-/-- Every explicit path-configuration ball is bounded by the exact ambient lattice-ball count.-/
+/-- Every explicit path-configuration ball is bounded by the exact ambient lattice-ball count.
+@isnad1 id=le.0h4v.s4.9401df121021 from=translated src=- shape=6bacb66d vocab=e8cbeb54
+-/
 theorem pathConfigurationBall_ncard_le {n k : ℕ}
     (C : Configuration (Fin n) k) (r : ℕ) :
     (pathConfigurationBall C r).ncard ≤ latticeBallPolynomial k r := by

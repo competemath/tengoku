@@ -24,7 +24,9 @@ def IsLeastShelfWidth (w z q : ℕ) : Prop :=
 
 /--
 The integer cube inequality is the square-root upper bound written as
-`z ≤ √(4/3) w √w`.-/
+`z ≤ √(4/3) w √w`.
+@isnad1 id=iff.0h2v.s6.b8a7ac7dc840 from=translated src=- shape=ab962267 vocab=cda7cdd9
+-/
 theorem shelf_cube_bound_iff_real_upper (w z : ℕ) :
     3 * z ^ 2 ≤ 4 * w ^ 3 ↔
       (z : ℝ) ≤ Real.sqrt (4 / 3) * (w : ℝ) * Real.sqrt w := by
@@ -56,7 +58,9 @@ theorem shelf_cube_bound_iff_real_upper (w z : ℕ) :
     exact_mod_cast hR
 
 /--
-For `w ≥ 144`, the explicit integer `3 * Nat.sqrt w` is admissible and is at most `w / 4`.-/
+For `w ≥ 144`, the explicit integer `3 * Nat.sqrt w` is admissible and is at most `w / 4`.
+@isnad1 id=and.2h2v.s6.9fa61bcaadff from=translated src=- shape=4cd931fa vocab=00292c81
+-/
 theorem three_mul_natSqrt_candidate {w z : ℕ} (hw : 144 ≤ w)
     (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) :
     ShelfWidthAdmissible w z (3 * Nat.sqrt w) ∧
@@ -96,7 +100,9 @@ theorem three_mul_natSqrt_candidate {w z : ℕ} (hw : 144 ≤ w)
   change ShelfWidthAdmissible w z q ∧ 4 * q ≤ w
   exact ⟨⟨by omega, by omega, by omega⟩, hq4⟩
 
-/-- Under the size bound, a least admissible integer shelf width exists.-/
+/-- Under the size bound, a least admissible integer shelf width exists.
+@isnad1 id=ex.2h2v.s6.d66e452d7878 from=translated src=- shape=32d8650c vocab=1575bf6e
+-/
 theorem exists_isLeastShelfWidth {w z : ℕ} (hw : 144 ≤ w)
     (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) :
     ∃ q, IsLeastShelfWidth w z q := by
@@ -108,7 +114,9 @@ theorem exists_isLeastShelfWidth {w z : ℕ} (hw : 144 ≤ w)
   intro m hm
   exact Nat.find_min' hex hm
 
-/-- The same existence result under the original real square-root hypothesis.-/
+/-- The same existence result under the original real square-root hypothesis.
+@isnad1 id=ex.2h2v.s6.9efdbc3b4544 from=translated src=- shape=5fc9da40 vocab=73b122a0
+-/
 theorem exists_isLeastShelfWidth_of_real_upper {w z : ℕ} (hw : 144 ≤ w)
     (hupper : (z : ℝ) ≤ Real.sqrt (4 / 3) * (w : ℝ) * Real.sqrt w) :
     ∃ q, IsLeastShelfWidth w z q :=
@@ -116,7 +124,9 @@ theorem exists_isLeastShelfWidth_of_real_upper {w z : ℕ} (hw : 144 ≤ w)
 
 /--
 The least width satisfies the root-free square bound, lies below `w / 4`, and leaves at least
-three quarters of `w`.-/
+three quarters of `w`.
+@isnad1 id=and.3h3v.s7.6bbbffb65f99 from=translated src=- shape=a48a0ec8 vocab=ef6a956f
+-/
 theorem IsLeastShelfWidth.bounds {w z q : ℕ} (hq : IsLeastShelfWidth w z q)
     (hw : 144 ≤ w) (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) :
     q ^ 2 ≤ 9 * w ∧ 4 * q ≤ w ∧ 3 * w ≤ 4 * (w - q) := by
@@ -129,7 +139,9 @@ theorem IsLeastShelfWidth.bounds {w z q : ℕ} (hq : IsLeastShelfWidth w z q)
   have hqw : q ≤ w := by omega
   omega
 
-/-- The root-free square bound implies the advertised real inequality `q ≤ 3√w`.-/
+/-- The root-free square bound implies the advertised real inequality `q ≤ 3√w`.
+@isnad1 id=le.3h3v.s6.4a14592d3e8c from=translated src=- shape=90ab9170 vocab=dfe67b3e
+-/
 theorem IsLeastShelfWidth.le_three_mul_sqrt {w z q : ℕ}
     (hq : IsLeastShelfWidth w z q) (hw : 144 ≤ w)
     (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) :
@@ -142,7 +154,9 @@ theorem IsLeastShelfWidth.le_three_mul_sqrt {w z q : ℕ}
   have hsqrt0 : 0 ≤ Real.sqrt (w : ℝ) := Real.sqrt_nonneg _
   nlinarith
 
-/-- In real form, the remainder `a = w - q` satisfies `a ≥ 3w/4`.-/
+/-- In real form, the remainder `a = w - q` satisfies `a ≥ 3w/4`.
+@isnad1 id=le.3h3v.s7.29bd397d0835 from=translated src=- shape=c640cddc vocab=2d62db7d
+-/
 theorem IsLeastShelfWidth.remainder_ge_three_quarters {w z q : ℕ}
     (hq : IsLeastShelfWidth w z q) (hw : 144 ≤ w)
     (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) :
@@ -154,7 +168,9 @@ theorem IsLeastShelfWidth.remainder_ge_three_quarters {w z q : ℕ}
   norm_num
   nlinarith
 
-/-- Minimality gives the strict lower estimate for `z`.-/
+/-- Minimality gives the strict lower estimate for `z`.
+@isnad1 id=lt.2h3v.s6.83b0d286ac59 from=translated src=- shape=093a2054 vocab=c332ebb8
+-/
 theorem IsLeastShelfWidth.minimality_lower {w z q : ℕ}
     (hq : IsLeastShelfWidth w z q) (hz : w - 1 < z) :
     (q - 1) * (w - q + 1) < z := by
@@ -176,7 +192,9 @@ theorem IsLeastShelfWidth.minimality_lower {w z q : ℕ}
     have := hq.2 (q - 1) hadm
     omega
 
-/-- The algebraic one-step estimate from the square and minimality bounds.-/
+/-- The algebraic one-step estimate from the square and minimality bounds.
+@isnad1 id=le.5h3v.s7.8fb81b23970e from=translated src=- shape=c87c5ed2 vocab=53ccdcdd
+-/
 theorem shelfPotential_update_ge_sub_44_of_bounds {w z q : ℕ}
     (hq2 : 2 ≤ q) (hqw : q ≤ w) (hsq : q ^ 2 ≤ 9 * w)
     (hminimal : (q - 1) * (w - q + 1) < z)
@@ -231,7 +249,9 @@ theorem shelfPotential_update_ge_sub_44_of_bounds {w z q : ℕ}
   rw [← hAq]
   nlinarith
 
-/-- A nonterminal least-width update loses at most `45w²` of shelf potential.-/
+/-- A nonterminal least-width update loses at most `45w²` of shelf potential.
+@isnad1 id=le.5h3v.s7.e44a41154a97 from=translated src=- shape=28bbc18a vocab=53a53ab3
+-/
 theorem IsLeastShelfWidth.potential_update {w z q : ℕ}
     (hq : IsLeastShelfWidth w z q) (hw : 144 ≤ w) (hz : w - 1 < z)
     (hcube : 3 * z ^ 2 ≤ 4 * w ^ 3) (hnonterminal : 2 * (w - q) < z) :

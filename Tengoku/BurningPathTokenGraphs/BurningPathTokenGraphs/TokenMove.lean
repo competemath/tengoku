@@ -30,7 +30,9 @@ private theorem symmDiff_pair_eq_insert_erase {A : Finset V} {u v : V}
 
 /--
 Two configurations are adjacent in the token graph exactly when one token moves along an
-edge of `G` to an unoccupied vertex.-/
+edge of `G` to an unoccupied vertex.
+@isnad1 id=iff.0h5v.s7.e868b12ae957 from=translated src=- shape=937bdafc vocab=2fd59e2f
+-/
 theorem tokenGraph_adj_iff_exists_move (G : SimpleGraph V) (k : ℕ)
     (A B : Configuration V k) :
     (tokenGraph G k).Adj A B ↔
@@ -107,7 +109,9 @@ theorem tokenGraph_adj_iff_exists_move (G : SimpleGraph V) (k : ℕ)
 omit [DecidableEq V] in
 /--
 For the witnesses of a token move, the removed endpoint is absent from the target
-configuration and the inserted endpoint is present there.-/
+configuration and the inserted endpoint is present there.
+@isnad1 id=ex.1h5v.s7.e1ad89ad3a0e from=translated src=- shape=b9aa21a0 vocab=eba7f227
+-/
 theorem tokenGraph_adj_exists_move_membership (G : SimpleGraph V) (k : ℕ)
     (A B : Configuration V k) (h : (tokenGraph G k).Adj A B) :
     ∃ u v, u ∈ A.1 ∧ u ∉ B.1 ∧ v ∉ A.1 ∧ v ∈ B.1 ∧ G.Adj u v := by
@@ -120,7 +124,9 @@ theorem tokenGraph_adj_exists_move_membership (G : SimpleGraph V) (k : ℕ)
   · rw [hB]
     simp
 
-/-- The same move characterization, oriented from the target configuration.-/
+/-- The same move characterization, oriented from the target configuration.
+@isnad1 id=iff.0h5v.s7.f9d63ccde8e2 from=translated src=- shape=5d3871e0 vocab=2fd59e2f
+-/
 theorem tokenGraph_adj_iff_exists_reverseMove (G : SimpleGraph V) (k : ℕ)
     (A B : Configuration V k) :
     (tokenGraph G k).Adj A B ↔

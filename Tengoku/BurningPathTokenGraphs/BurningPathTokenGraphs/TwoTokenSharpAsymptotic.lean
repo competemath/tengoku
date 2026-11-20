@@ -23,13 +23,18 @@ namespace BurningPath
 noncomputable def twoTokenNormalizedBurning (n : ℕ) : ℝ :=
   (pathTokenBurningNumberTotal 2 n : ℝ) / (n : ℝ) ^ (2 / 3 : ℝ)
 
+/--
+@isnad1 id=le.0h1v.s3.6a304a1176c1 from=translated src=- shape=b9369acb vocab=e6a4a2fa
+-/
 theorem twoTokenNormalizedBurning_nonneg (n : ℕ) :
     0 ≤ twoTokenNormalizedBurning n := by
   exact div_nonneg (Nat.cast_nonneg _) (Real.rpow_nonneg (Nat.cast_nonneg _) _)
 
 /--
 The eventual finite shelf inequality, with `N = n - 2`, stated for the
-totalized burning number.-/
+totalized burning number.
+@isnad1 id=eventual.1h1v.s5.83942443f17c from=translated src=- shape=fc44b247 vocab=dec75cce
+-/
 theorem eventually_twoTokenBurning_le_shelfInitialWidth {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∀ᶠ n : ℕ in atTop,
@@ -42,14 +47,18 @@ theorem eventually_twoTokenBurning_le_shelfInitialWidth {ε : ℝ}
     pathTokenBurningNumber_le_shelfInitialWidth_of_large_conditions
       hε.1 hn hnlarge.1 hnlarge.2
 
-/-- Threshold form of the eventual finite shelf inequality.-/
+/-- Threshold form of the eventual finite shelf inequality.
+@isnad1 id=ex.1h1v.s5.020db2626a1d from=translated src=- shape=aed508c8 vocab=025d0a77
+-/
 theorem exists_twoTokenBurning_upper_threshold {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∃ nε : ℕ, ∀ n ≥ nε,
       pathTokenBurningNumberTotal 2 n ≤ shelfInitialWidth ε (n - 2) := by
   exact eventually_atTop.1 (eventually_twoTokenBurning_le_shelfInitialWidth hε)
 
-/-- Threshold inequality for the actual two-token burning number.-/
+/-- Threshold inequality for the actual two-token burning number.
+@isnad1 id=ex.1h1v.s6.e8041667893e from=translated src=- shape=02bde3bf vocab=82c75795
+-/
 theorem exists_twoTokenBurning_upper_threshold_actual {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∃ nε : ℕ, ∀ n ≥ nε, ∀ hn : 2 ≤ n,
@@ -60,7 +69,9 @@ theorem exists_twoTokenBurning_upper_threshold_actual {ε : ℝ}
   have htotal := hthreshold n hnε
   rwa [pathTokenBurningNumberTotal_eq hn] at htotal
 
-/-- Subtracting two from the path length has asymptotically negligible relative effect.-/
+/-- Subtracting two from the path length has asymptotically negligible relative effect.
+@isnad1 id=tendsto.0h0v.s5.0047388985ba from=translated src=- shape=d3a37df7 vocab=f664ac8f
+-/
 theorem tendsto_sub_two_div_natCast :
     Tendsto
       (fun n : ℕ ↦ ((n - 2 : ℕ) : ℝ) / (n : ℝ))
@@ -83,7 +94,9 @@ theorem tendsto_sub_two_div_natCast :
   field_simp
   norm_num
 
-/-- The shifted shelf scale divided by the unshifted two-token scale tends to one.-/
+/-- The shifted shelf scale divided by the unshifted two-token scale tends to one.
+@isnad1 id=tendsto.0h0v.s6.ea1959600d61 from=translated src=- shape=efc240ba vocab=1be7e665
+-/
 theorem tendsto_shelfWidthScale_sub_two_div_twoTokenScale :
     Tendsto
       (fun n : ℕ ↦
@@ -105,7 +118,9 @@ theorem tendsto_shelfWidthScale_sub_two_div_twoTokenScale :
       (show 0 ≤ ((n - 2 : ℕ) : ℝ) by positivity)
       (show 0 ≤ (n : ℝ) by positivity) (2 / 3 : ℝ))
 
-/-- The unrounded global shelf width has the expected shifted sharp-scale limit.-/
+/-- The unrounded global shelf width has the expected shifted sharp-scale limit.
+@isnad1 id=tendsto.0h1v.s6.e5cf7e21302d from=translated src=- shape=0037b107 vocab=44470f05
+-/
 theorem tendsto_shelfIdealWidth_sub_two_div_twoTokenScale {ε : ℝ} :
     Tendsto
       (fun n : ℕ ↦
@@ -120,7 +135,9 @@ theorem tendsto_shelfIdealWidth_sub_two_div_twoTokenScale {ε : ℝ} :
     hconst.mul tendsto_shelfWidthScale_sub_two_div_twoTokenScale
   simpa only [shelfIdealWidth, mul_div_assoc, mul_one] using h
 
-/-- Ceiling the global shelf width preserves its shifted sharp-scale limit.-/
+/-- Ceiling the global shelf width preserves its shifted sharp-scale limit.
+@isnad1 id=tendsto.1h1v.s6.0543d803c688 from=translated src=- shape=742d6732 vocab=40fc411a
+-/
 theorem tendsto_shelfInitialWidth_sub_two_div_twoTokenScale {ε : ℝ}
     (hε : 0 < ε) :
     Tendsto
@@ -158,7 +175,9 @@ theorem tendsto_shelfInitialWidth_sub_two_div_twoTokenScale {ε : ℝ}
     field_simp [hideal.ne', hscale]
   simpa only [one_mul] using hproduct.congr' heq
 
-/-- The finite shelf bound after division by `n^(2/3)`.-/
+/-- The finite shelf bound after division by `n^(2/3)`.
+@isnad1 id=eventual.1h1v.s6.2dbc241197f5 from=translated src=- shape=fe594a99 vocab=8c81e5a4
+-/
 theorem eventually_twoTokenNormalizedBurning_le_shelfWidthRatio {ε : ℝ}
     (hε : ε ∈ Set.Ioo (0 : ℝ) 1) :
     ∀ᶠ n : ℕ in atTop,
@@ -171,7 +190,9 @@ theorem eventually_twoTokenNormalizedBurning_le_shelfWidthRatio {ε : ℝ}
   exact div_le_div_of_nonneg_right (by exact_mod_cast hn)
     (Real.rpow_nonneg (Nat.cast_nonneg _) _)
 
-/-- The normalized two-token burning number has sharp limsup at most `(3/4)^(1/3)`.-/
+/-- The normalized two-token burning number has sharp limsup at most `(3/4)^(1/3)`.
+@isnad1 id=le.0h0v.s3.f5480ac91618 from=translated src=- shape=361168c6 vocab=ec78a40c
+-/
 theorem twoTokenSharpUpper_limsup :
     limsup twoTokenNormalizedBurning atTop ≤ shelfSharpConstant := by
   have hcob :
@@ -232,7 +253,9 @@ private theorem twoTokenNormalizedBurning_bddBelow :
   change ∃ b : ℝ, ∀ᶠ n : ℕ in atTop, twoTokenNormalizedBurning n ≥ b
   exact ⟨0, Eventually.of_forall twoTokenNormalizedBurning_nonneg⟩
 
-/-- The normalized two-token burning number converges to the sharp constant.-/
+/-- The normalized two-token burning number converges to the sharp constant.
+@isnad1 id=tendsto.0h0v.s3.4ff118c21980 from=translated src=- shape=da6689a5 vocab=f77a6ad4
+-/
 theorem tendsto_twoTokenNormalizedBurning :
     Tendsto twoTokenNormalizedBurning atTop (𝓝 shelfSharpConstant) := by
   apply tendsto_of_le_liminf_of_limsup_le
@@ -248,7 +271,9 @@ theorem tendsto_twoTokenNormalizedBurning :
   · exact twoTokenNormalizedBurning_bddAbove
   · exact twoTokenNormalizedBurning_bddBelow
 
-/-- The sharp two-token limit in the common fixed-dimensional ratio notation.-/
+/-- The sharp two-token limit in the common fixed-dimensional ratio notation.
+@isnad1 id=tendsto.0h0v.s4.55f62252dd2c from=translated src=- shape=781efb68 vocab=32507521
+-/
 theorem tendsto_pathTokenBurningRatio_two :
     Tendsto (pathTokenBurningRatio 2) atTop (𝓝 shelfSharpConstant) := by
   have hfun :
@@ -262,7 +287,9 @@ theorem tendsto_pathTokenBurningRatio_two :
 
 /--
 Sharp two-token asymptotic equivalence:
-`b(F₂(Pₙ)) = (3/4)^(1/3) n^(2/3) + o(n^(2/3))`.-/
+`b(F₂(Pₙ)) = (3/4)^(1/3) n^(2/3) + o(n^(2/3))`.
+@isnad1 id=isequiva.0h0v.s6.6db81c26b6c8 from=translated src=- shape=da75c153 vocab=42a41dbe
+-/
 theorem twoTokenBurning_isEquivalent_sharp :
     (fun n : ℕ ↦ (pathTokenBurningNumberTotal 2 n : ℝ)) ~[atTop]
       (fun n : ℕ ↦

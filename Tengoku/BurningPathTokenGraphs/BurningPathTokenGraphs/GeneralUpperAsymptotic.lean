@@ -36,7 +36,9 @@ noncomputable def idealBlockLength (k n : ℕ) : ℝ :=
 noncomputable def asymptoticBlockLength (k n : ℕ) : ℕ :=
   Nat.ceil (idealBlockLength k n)
 
-/-- The chosen integer block length differs from the balancing value by less than one.-/
+/-- The chosen integer block length differs from the balancing value by less than one.
+@isnad1 id=and.0h2v.s5.b85f79446a90 from=translated src=- shape=f4c8e987 vocab=6b16cda4
+-/
 theorem asymptoticBlockLength_spec (k n : ℕ) :
     idealBlockLength k n ≤ (asymptoticBlockLength k n : ℝ) ∧
       (asymptoticBlockLength k n : ℝ) < idealBlockLength k n + 1 := by
@@ -47,17 +49,25 @@ theorem asymptoticBlockLength_spec (k n : ℕ) :
         rw [idealBlockLength]
         positivity))
 
+/--
+@isnad1 id=lt.0h1v.s3.ddff8d80bf45 from=translated src=- shape=b9369acb vocab=1bc0406c
+-/
 theorem factorialRoot_pos (k : ℕ) : 0 < factorialRoot k := by
   rw [factorialRoot]
   apply Real.rpow_pos_of_pos
   positivity
 
-/-- The balancing block length is the standard path-token scale divided by `(k!)^(1/(k+1))`.-/
+/-- The balancing block length is the standard path-token scale divided by `(k!)^(1/(k+1))`.
+@isnad1 id=eq.0h2v.s4.0a39c816882d from=translated src=- shape=5c99b5b3 vocab=b67efe02
+-/
 theorem idealBlockLength_eq_scale_div (k n : ℕ) :
     idealBlockLength k n = pathTokenAsymptoticScale k n / factorialRoot k := by
   rw [idealBlockLength, pathTokenAsymptoticScale, factorialRoot,
     Real.div_rpow (by positivity) (by positivity)]
 
+/--
+@isnad1 id=eq.0h2v.s6.b53d0255d181 from=translated src=- shape=c025139a vocab=0e90f7f1
+-/
 @[simp]
 theorem idealBlockLength_pow (k n : ℕ) :
     idealBlockLength k n ^ (k + 1) = (n : ℝ) ^ k / (k.factorial : ℝ) := by
@@ -66,12 +76,18 @@ theorem idealBlockLength_pow (k n : ℕ) :
       (x := (n : ℝ) ^ k / (k.factorial : ℝ)) (n := k + 1)
       (by positivity) (by omega))
 
+/--
+@isnad1 id=lt.1h2v.s4.4f45688e555b from=translated src=- shape=cee548f2 vocab=c2a5fc8a
+-/
 theorem idealBlockLength_pos {k n : ℕ} (hn : 0 < n) :
     0 < idealBlockLength k n := by
   rw [idealBlockLength]
   apply Real.rpow_pos_of_pos
   positivity
 
+/--
+@isnad1 id=tendsto.1h1v.s4.ea996e5ae4bb from=translated src=- shape=fb5337d2 vocab=9d37cd6c
+-/
 theorem tendsto_pathTokenAsymptoticScale_atTop (k : ℕ) (hk : 0 < k) :
     Tendsto (pathTokenAsymptoticScale k) atTop atTop := by
   have hexp : 0 < (k : ℝ) / (k + 1 : ℝ) := by positivity
@@ -80,6 +96,9 @@ theorem tendsto_pathTokenAsymptoticScale_atTop (k : ℕ) (hk : 0 < k) :
   simpa [Function.comp_def] using
     (tendsto_rpow_atTop hexp).comp tendsto_natCast_atTop_atTop
 
+/--
+@isnad1 id=tendsto.1h1v.s4.c06ea7292fef from=translated src=- shape=fb5337d2 vocab=a06fe957
+-/
 theorem tendsto_idealBlockLength_atTop (k : ℕ) (hk : 0 < k) :
     Tendsto (idealBlockLength k) atTop atTop := by
   rw [show idealBlockLength k = fun n ↦
@@ -93,10 +112,15 @@ theorem tendsto_idealBlockLength_atTop (k : ℕ) (hk : 0 < k) :
 noncomputable def blockAspect (k n : ℕ) : ℝ :=
   (n : ℝ) / idealBlockLength k n
 
+/--
+@isnad1 id=le.0h2v.s4.29bb78c9166b from=translated src=- shape=5ffe46ab vocab=a05f751a
+-/
 theorem blockAspect_nonneg (k n : ℕ) : 0 ≤ blockAspect k n := by
   exact div_nonneg (by positivity) (by rw [idealBlockLength]; positivity)
 
-/-- The balancing identity relating the number-of-blocks scale to the block-length scale.-/
+/-- The balancing identity relating the number-of-blocks scale to the block-length scale.
+@isnad1 id=eq.1h2v.s5.97915c7ab9e1 from=translated src=- shape=397715b6 vocab=5fb20df3
+-/
 theorem blockAspect_pow {k n : ℕ} (hn : 0 < n) :
     blockAspect k n ^ k = (k.factorial : ℝ) * idealBlockLength k n := by
   have hx : 0 < idealBlockLength k n := idealBlockLength_pos hn
@@ -110,6 +134,9 @@ theorem blockAspect_pow {k n : ℕ} (hn : 0 < n) :
   rw [blockAspect, div_pow, hnPow, pow_succ]
   field_simp [hx.ne']
 
+/--
+@isnad1 id=tendsto.1h1v.s4.a8ae9661093f from=translated src=- shape=fb5337d2 vocab=21cc7922
+-/
 theorem tendsto_blockAspect_atTop (k : ℕ) (hk : 0 < k) :
     Tendsto (blockAspect k) atTop atTop := by
   apply tendsto_atTop.2
@@ -133,6 +160,9 @@ to the block-class count and the common-radius padding term.-/
 noncomputable def upperEnvelopeFactor (k n : ℕ) : ℝ :=
   ((1 + (k + 1 : ℝ) / blockAspect k n) ^ k + k) / factorialRoot k
 
+/--
+@isnad1 id=tendsto.1h1v.s4.01448eb9bf33 from=translated src=- shape=4a65615d vocab=b16f6f2e
+-/
 theorem tendsto_upperEnvelopeFactor (k : ℕ) (hk : 0 < k) :
     Tendsto (upperEnvelopeFactor k) atTop (𝓝 (generalUpperConstant k)) := by
   have hzero :
@@ -152,6 +182,9 @@ theorem tendsto_upperEnvelopeFactor (k : ℕ) (hk : 0 < k) :
       factorialRoot k) atTop (𝓝 ((k + 1 : ℝ) / factorialRoot k))
   simpa only [Nat.cast_add, Nat.cast_one] using hadd.div_const (factorialRoot k)
 
+/--
+@isnad1 id=le.1h2v.s5.25eccbe531c2 from=translated src=- shape=863b95d0 vocab=8606c257
+-/
 theorem ceilDiv_le_div_add_one (n s : ℕ) (hs : 0 < s) :
     n ⌈/⌉ s ≤ n / s + 1 := by
   rw [ceilDiv_le_iff_le_mul hs]
@@ -160,16 +193,25 @@ theorem ceilDiv_le_div_add_one (n s : ℕ) (hs : 0 < s) :
     _ ≤ s * (n / s) + s := Nat.add_le_add_left (Nat.le_of_lt (Nat.mod_lt n hs)) _
     _ = s * (n / s + 1) := by ring
 
+/--
+@isnad1 id=le.1h2v.s5.0043de3b93c1 from=translated src=- shape=47e53395 vocab=ade5146a
+-/
 theorem cast_div_le_div (n s : ℕ) (hs : 0 < s) :
     ((n / s : ℕ) : ℝ) ≤ (n : ℝ) / (s : ℝ) := by
   apply (le_div_iff₀ (by exact_mod_cast hs)).2
   exact_mod_cast Nat.div_mul_le_self n s
 
+/--
+@isnad1 id=le.1h2v.s4.fb4207a77265 from=translated src=- shape=676e8bff vocab=f38dd258
+-/
 theorem one_le_asymptoticBlockLength {k n : ℕ} (hn : 0 < n) :
     1 ≤ asymptoticBlockLength k n := by
   simpa [asymptoticBlockLength] using
     (Nat.ceil_pos.mpr (idealBlockLength_pos (k := k) hn))
 
+/--
+@isnad1 id=lt.1h2v.s5.f62bf026a5e3 from=translated src=- shape=9193e8a4 vocab=9341ef47
+-/
 theorem cast_pred_asymptoticBlockLength_lt_ideal {k n : ℕ} (hn : 0 < n) :
     ((asymptoticBlockLength k n - 1 : ℕ) : ℝ) < idealBlockLength k n := by
   have hs := one_le_asymptoticBlockLength (k := k) hn
@@ -185,7 +227,9 @@ theorem cast_pred_asymptoticBlockLength_lt_ideal {k n : ℕ} (hn : 0 < n) :
 
 /--
 At the constructive block length, the normalized burning number is bounded by the explicit
-envelope above.-/
+envelope above.
+@isnad1 id=le.3h2v.s5.d54432fe3682 from=translated src=- shape=c589bcad vocab=b92f5736
+-/
 theorem pathTokenBurningRatio_le_upperEnvelopeFactor {k n : ℕ} (hk : 0 < k)
     (hkn : k ≤ n) (hn : 0 < n) :
     pathTokenBurningRatio k n ≤ upperEnvelopeFactor k n := by
@@ -272,7 +316,9 @@ theorem pathTokenBurningRatio_le_upperEnvelopeFactor {k n : ℕ} (hk : 0 < k)
 
 /--
 Every epsilon above the sharp constructive constant is eventually an upper bound for the
-normalized burning number.-/
+normalized burning number.
+@isnad1 id=eventual.2h2v.s5.7c29c207ebc7 from=translated src=- shape=2004e526 vocab=55810997
+-/
 theorem eventually_pathTokenBurningRatio_le_generalUpperConstant_add
     (k : ℕ) (hk : 0 < k) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ n : ℕ in atTop,
@@ -282,6 +328,9 @@ theorem eventually_pathTokenBurningRatio_le_generalUpperConstant_add
   filter_upwards [henv, eventually_ge_atTop k, eventually_gt_atTop 0] with n hn hkn hnpos
   exact (pathTokenBurningRatio_le_upperEnvelopeFactor hk hkn hnpos).trans hn.le
 
+/--
+@isnad1 id=le.1h1v.s4.0d7d36496cee from=translated src=- shape=15ce7fba vocab=9f9382c7
+-/
 theorem limsup_pathTokenBurningRatio_le_generalUpperConstant (k : ℕ) (hk : 0 < k) :
     limsup (pathTokenBurningRatio k) atTop ≤ generalUpperConstant k := by
   have hcob :
@@ -294,7 +343,9 @@ theorem limsup_pathTokenBurningRatio_le_generalUpperConstant (k : ℕ) (hk : 0 <
 
 /--
 Part (B2), epsilon form: for fixed `k ≥ 2`, the normalized burning number is eventually at most
-`(k+1)/(k!)^(1/(k+1)) + ε`.-/
+`(k+1)/(k!)^(1/(k+1)) + ε`.
+@isnad1 id=eventual.2h2v.s7.2f2c63145d32 from=translated src=- shape=9f527bc2 vocab=c333959d
+-/
 theorem generalUpperAsymptotic_eventually (k : ℕ) (hk : 2 ≤ k)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ n : ℕ in atTop,
@@ -306,7 +357,9 @@ theorem generalUpperAsymptotic_eventually (k : ℕ) (hk : 2 ≤ k)
     eventually_pathTokenBurningRatio_le_generalUpperConstant_add k (by omega) hε
 
 /--
-Part (B2), limsup form, with the constructive block-cover constant.-/
+Part (B2), limsup form, with the constructive block-cover constant.
+@isnad1 id=le.1h1v.s7.b6fecae0b66b from=translated src=- shape=97efff75 vocab=08828de1
+-/
 theorem generalUpperAsymptotic_limsup (k : ℕ) (hk : 2 ≤ k) :
     limsup
         (fun n : ℕ ↦ (pathTokenBurningNumberTotal k n : ℝ) /

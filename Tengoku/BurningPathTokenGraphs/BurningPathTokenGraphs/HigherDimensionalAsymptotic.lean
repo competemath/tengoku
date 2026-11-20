@@ -24,7 +24,9 @@ namespace BurningPath
 
 /--
 The lower simplex-density comparison and the discrete-continuum transfer imply
-the powered discrete lower estimate.-/
+the powered discrete lower estimate.
+@isnad1 id=eventual.2h2v.s7.7a8b1d7441bb from=translated src=- shape=d8e6fb36 vocab=cdde4b46
+-/
 theorem eventually_density_power_lower (k : ℕ) (hk : 2 ≤ k)
     {η : ℝ} (hη : 0 < η) :
     ∀ᶠ n : ℕ in atTop,
@@ -71,7 +73,9 @@ theorem eventually_density_power_lower (k : ℕ) (hk : 2 ≤ k)
       rw [pow_succ]
       ring
 
-/-- The endpoint correction `(n-k)/n` tends to one.-/
+/-- The endpoint correction `(n-k)/n` tends to one.
+@isnad1 id=tendsto.0h1v.s5.9ba31fcf1dc3 from=translated src=- shape=a1244a4a vocab=f664ac8f
+-/
 theorem tendsto_shiftedNatRatio (k : ℕ) :
     Tendsto
       (fun n : ℕ ↦ ((n - k : ℕ) : ℝ) / (n : ℝ))
@@ -92,7 +96,9 @@ theorem tendsto_shiftedNatRatio (k : ℕ) :
     field_simp
   exact hbase
 
-/-- The endpoint correction `(n-k)^k/n^k` tends to one.-/
+/-- The endpoint correction `(n-k)^k/n^k` tends to one.
+@isnad1 id=tendsto.0h1v.s6.8ce5e5e8d143 from=translated src=- shape=3df637f5 vocab=3d34e334
+-/
 theorem tendsto_shiftedNatPowerRatio (k : ℕ) :
     Tendsto
       (fun n : ℕ ↦
@@ -101,7 +107,9 @@ theorem tendsto_shiftedNatPowerRatio (k : ℕ) :
   have hbase := tendsto_shiftedNatRatio k
   simpa only [div_pow, one_pow] using hbase.pow k
 
-/-- The additive rank shift in the discrete-continuum transfer is negligible after normalization.-/
+/-- The additive rank shift in the discrete-continuum transfer is negligible after normalization.
+@isnad1 id=tendsto.1h1v.s5.2eeee4115710 from=translated src=- shape=e4fff2a3 vocab=cb33692a
+-/
 theorem tendsto_dimension_div_pathTokenScale (k : ℕ) (hk : 0 < k) :
     Tendsto
       (fun n : ℕ ↦ (k : ℝ) / pathTokenAsymptoticScale k n)
@@ -112,6 +120,9 @@ theorem tendsto_dimension_div_pathTokenScale (k : ℕ) (hk : 0 < k) :
 noncomputable def pathTokenCandidateWidth (k : ℕ) (c : ℝ) (n : ℕ) : ℕ :=
   ⌈c * pathTokenAsymptoticScale k n⌉₊
 
+/--
+@isnad1 id=and.1h3v.s6.d44070fe0407 from=translated src=- shape=47527e5a vocab=7b7f7f83
+-/
 theorem pathTokenCandidateWidth_spec {k : ℕ} {c : ℝ} (hc : 0 ≤ c) (n : ℕ) :
     c * pathTokenAsymptoticScale k n ≤
         (pathTokenCandidateWidth k c n : ℝ) ∧
@@ -123,6 +134,9 @@ theorem pathTokenCandidateWidth_spec {k : ℕ} {c : ℝ} (hc : 0 ≤ c) (n : ℕ
     apply Nat.ceil_lt_add_one
     exact mul_nonneg hc (pathTokenAsymptoticScale_nonneg k n)
 
+/--
+@isnad1 id=tendsto.2h2v.s5.65bf87b7f296 from=translated src=- shape=1e906fb0 vocab=4c2b0016
+-/
 theorem tendsto_pathTokenCandidateWidth_atTop {k : ℕ} (hk : 0 < k)
     {c : ℝ} (hc : 0 < c) :
     Tendsto (pathTokenCandidateWidth k c) atTop atTop := by
@@ -134,6 +148,9 @@ theorem tendsto_pathTokenCandidateWidth_atTop {k : ℕ} (hk : 0 < k)
   funext n
   rfl
 
+/--
+@isnad1 id=tendsto.2h2v.s5.6150c28021d5 from=translated src=- shape=68a0ca97 vocab=81df8d36
+-/
 theorem tendsto_pathTokenCandidateWidth_div_scale {k : ℕ} (hk : 0 < k)
     {c : ℝ} (hc : 0 < c) :
     Tendsto
@@ -165,6 +182,9 @@ theorem tendsto_pathTokenCandidateWidth_div_scale {k : ℕ} (hk : 0 < k)
           pathTokenAsymptoticScale k n := by
         field_simp
 
+/--
+@isnad1 id=tendsto.2h2v.s6.c631b5841f37 from=translated src=- shape=8c4a0afa vocab=6dfdc1aa
+-/
 theorem tendsto_pathTokenCandidateWidth_sub_div_scale {k : ℕ}
     (hk : 0 < k) {c : ℝ} (hc : 0 < c) :
     Tendsto
@@ -205,6 +225,9 @@ private theorem natCast_div_pathTokenScale_eq_rpow {k n : ℕ} (hn : 0 < n) :
   rw [hexp] at h
   exact h
 
+/--
+@isnad1 id=tendsto.0h1v.s4.c96c24fd2eb3 from=translated src=- shape=515ee929 vocab=f7762e87
+-/
 theorem tendsto_natCast_div_pathTokenScale_atTop (k : ℕ) :
     Tendsto
       (fun n : ℕ ↦ (n : ℝ) / pathTokenAsymptoticScale k n)
@@ -222,6 +245,9 @@ noncomputable def pathTokenCandidateSimplexSide
   ((n - k : ℕ) : ℝ) /
     ((pathTokenCandidateWidth k c n - k : ℕ) : ℝ)
 
+/--
+@isnad1 id=tendsto.2h2v.s5.1b40503a0d54 from=translated src=- shape=16ea8c50 vocab=111d06b0
+-/
 theorem tendsto_pathTokenCandidateSimplexSide_atTop {k : ℕ}
     (hk : 0 < k) {c : ℝ} (hc : 0 < c) :
     Tendsto (pathTokenCandidateSimplexSide k c) atTop atTop := by
@@ -265,7 +291,9 @@ theorem tendsto_pathTokenCandidateSimplexSide_atTop {k : ℕ}
 
 /--
 Every constant below the variational candidate is eventually a lower bound for the normalized
-path-token burning number.-/
+path-token burning number.
+@isnad1 id=eventual.2h2v.s5.6ed1718cd403 from=translated src=- shape=9e68390a vocab=089fe524
+-/
 theorem eventually_constant_le_pathTokenBurningRatio_of_lt_limit
     (k : ℕ) (hk : 2 ≤ k) {c : ℝ}
     (hc : c < pathTokenLimitConstant k) :
@@ -365,7 +393,9 @@ theorem eventually_constant_le_pathTokenBurningRatio_of_lt_limit
     exact Eventually.of_forall fun n ↦
       hcneg.le.trans (pathTokenBurningRatio_nonneg k n)
 
-/-- Real-valued liminf lower bound for the normalized burning number.-/
+/-- Real-valued liminf lower bound for the normalized burning number.
+@isnad1 id=le.1h1v.s4.2649954dd004 from=translated src=- shape=12e37351 vocab=bb3f0fdb
+-/
 theorem pathTokenLimitConstant_le_liminf (k : ℕ) (hk : 2 ≤ k) :
     pathTokenLimitConstant k ≤ liminf (pathTokenBurningRatio k) atTop := by
   have hupper :
@@ -384,7 +414,9 @@ theorem pathTokenLimitConstant_le_liminf (k : ℕ) (hk : 2 ≤ k) :
   intro c hc
   exact eventually_constant_le_pathTokenBurningRatio_of_lt_limit k hk hc
 
-/-- Variational formula for the candidate limit, with the cube infimum expanded.-/
+/-- Variational formula for the candidate limit, with the cube infimum expanded.
+@isnad1 id=eq.0h1v.s6.01d86d78a21d from=translated src=- shape=daac4288 vocab=683fbf57
+-/
 theorem pathTokenLimitConstant_variational_formula (k : ℕ) :
     pathTokenLimitConstant k =
       ((1 / (Nat.factorial k : ℝ)) *
@@ -395,7 +427,9 @@ theorem pathTokenLimitConstant_variational_formula (k : ℕ) :
   apply congrArg (fun x : ℝ ↦ x ^ (k + 1 : ℝ)⁻¹)
   rw [div_eq_mul_inv, one_div, mul_comm]
 
-/-- Explicit two-sided bounds re-exported at the asymptotic layer.-/
+/-- Explicit two-sided bounds re-exported at the asymptotic layer.
+@isnad1 id=and.1h1v.s7.f0b4531f8e8c from=translated src=- shape=c7b33d3d vocab=6b3ef680
+-/
 theorem higherDimensionalConstant_bounds (k : ℕ) (hk : 2 ≤ k) :
     (((k + 1 : ℝ) / (2 : ℝ) ^ k) ^ (k + 1 : ℝ)⁻¹) ≤
         pathTokenLimitConstant k ∧
@@ -405,7 +439,9 @@ theorem higherDimensionalConstant_bounds (k : ℕ) (hk : 2 ≤ k) :
             (k + 1 : ℝ)⁻¹) :=
   pathTokenLimitConstant_bounds hk
 
-/-- Once the matching limsup inequality is supplied, the real normalized sequence converges.-/
+/-- Once the matching limsup inequality is supplied, the real normalized sequence converges.
+@isnad1 id=tendsto.2h1v.s5.0c105f874134 from=translated src=- shape=2ca59074 vocab=a921eb6e
+-/
 theorem tendsto_pathTokenBurningRatio_of_limsup_le (k : ℕ) (hk : 2 ≤ k)
     (hupper :
       limsup (pathTokenBurningRatio k) atTop ≤ pathTokenLimitConstant k) :
@@ -427,7 +463,9 @@ theorem tendsto_pathTokenBurningRatio_of_limsup_le (k : ℕ) (hk : 2 ≤ k)
       (pathTokenLimitConstant_le_liminf k hk) hupper
       hboundedAbove hboundedBelow
 
-/-- The sharp two-token limit determines the exact two-dimensional bulk density.-/
+/-- The sharp two-token limit determines the exact two-dimensional bulk density.
+@isnad1 id=eq.0h0v.s5.ebaf34523ba7 from=translated src=- shape=4683683d vocab=cff86360
+-/
 theorem cubeBulkDensity_two :
     cubeBulkDensity 2 = (3 / 2 : ℝ) := by
   have hcandidate :

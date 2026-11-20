@@ -262,7 +262,9 @@ private theorem exists_adj_pathConfigurationDist_eq_succ {n k : ℕ}
       omega
     exact ⟨C, hAC, pathConfigurationDist_eq_succ_of_update i v hcoordinate hstep⟩
 
-/-- There is a path-token walk attaining the ordered-coordinate distance.-/
+/-- There is a path-token walk attaining the ordered-coordinate distance.
+@isnad1 id=ex.0h4v.s5.3ccdfe49d8e9 from=translated src=- shape=0ec3e518 vocab=56fba775
+-/
 theorem exists_pathTokenGraph_walk_length_eq_pathConfigurationDist {n k : ℕ}
     (A B : Configuration (Fin n) k) :
     ∃ p : (pathTokenGraph n k).Walk A B,
@@ -281,13 +283,17 @@ theorem exists_pathTokenGraph_walk_length_eq_pathConfigurationDist {n k : ℕ}
 termination_by pathConfigurationDist A B
 decreasing_by omega
 
-/-- Any two path-token configurations are reachable.-/
+/-- Any two path-token configurations are reachable.
+@isnad1 id=reachabl.0h4v.s4.d88124c6c6ca from=translated src=- shape=5f1edc8b vocab=30209b08
+-/
 theorem pathTokenGraph_reachable {n k : ℕ} (A B : Configuration (Fin n) k) :
     (pathTokenGraph n k).Reachable A B := by
   obtain ⟨p, _⟩ := exists_pathTokenGraph_walk_length_eq_pathConfigurationDist A B
   exact p.reachable
 
-/-- The graph distance on the path token graph is the ordered-coordinate distance.-/
+/-- The graph distance on the path token graph is the ordered-coordinate distance.
+@isnad1 id=eq.0h4v.s4.c1fc54e6227c from=translated src=- shape=bbe0af80 vocab=b104a78f
+-/
 theorem pathTokenGraph_dist_eq_pathConfigurationDist {n k : ℕ}
     (A B : Configuration (Fin n) k) :
     (pathTokenGraph n k).dist A B = pathConfigurationDist A B := by
@@ -298,7 +304,9 @@ theorem pathTokenGraph_dist_eq_pathConfigurationDist {n k : ℕ}
   · obtain ⟨q, hq⟩ := hreach.exists_walk_length_eq_dist
     simpa [hq] using pathConfigurationDist_le_walk_length q
 
-/-- The extended graph distance has the same finite value.-/
+/-- The extended graph distance has the same finite value.
+@isnad1 id=eq.0h4v.s5.71d1fc6620b0 from=translated src=- shape=6bd1f26f vocab=b1317973
+-/
 theorem pathTokenGraph_edist_eq_pathConfigurationDist {n k : ℕ}
     (A B : Configuration (Fin n) k) :
     (pathTokenGraph n k).edist A B = (pathConfigurationDist A B : ℕ∞) := by

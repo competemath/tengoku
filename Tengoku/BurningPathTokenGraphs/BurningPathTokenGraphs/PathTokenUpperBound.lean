@@ -12,7 +12,9 @@ ranked covers. The burning-number bounds then follow from minimality.
 
 namespace BurningPath
 
-/-- An explicit path-metric ranked cover is a ranked cover of the path-token graph.-/
+/-- An explicit path-metric ranked cover is a ranked cover of the path-token graph.
+@isnad1 id=isranked.1h4v.s4.facd38eb7dbd from=translated src=- shape=e9df7565 vocab=d53ba74e
+-/
 theorem IsPathMetricRankedCover.isRankedCover_pathTokenGraph {n k t : ℕ}
     {centers : Fin t → Configuration (Fin n) k}
     (h : IsPathMetricRankedCover centers) :
@@ -24,7 +26,9 @@ theorem IsPathMetricRankedCover.isRankedCover_pathTokenGraph {n k t : ℕ}
     pathTokenGraph_edist_eq_pathConfigurationDist]
   exact_mod_cast hr
 
-/-- An explicit path-metric ranked cover gives a feasible path-token burning length.-/
+/-- An explicit path-metric ranked cover gives a feasible path-token burning length.
+@isnad1 id=isburnin.1h3v.s4.5a80e0f898ae from=translated src=- shape=be191b82 vocab=7fb60394
+-/
 theorem HasPathMetricRankedCover.isBurningLength_pathTokenGraph
     [Nonempty (Configuration (Fin n) k)] {t : ℕ}
     (h : HasPathMetricRankedCover n k t) :
@@ -38,7 +42,9 @@ theorem HasPathMetricRankedCover.isBurningLength_pathTokenGraph
     ⟨Fin.pos_iff_nonempty.mpr hfin, centers,
       hcover.isRankedCover_pathTokenGraph⟩
 
-/-- Every admissible block length gives a finite upper bound for the path-token burning number.-/
+/-- Every admissible block length gives a finite upper bound for the path-token burning number.
+@isnad1 id=le.2h3v.s5.13858716da96 from=translated src=- shape=b7122c76 vocab=db37cc1a
+-/
 theorem pathTokenBurningNumber_le_blockUpperBound {n k s : ℕ}
     (hk : k ≤ n) (hs : 1 ≤ s) :
     pathTokenBurningNumber n k hk ≤ blockUpperBound n k s := by
@@ -50,7 +56,9 @@ theorem pathTokenBurningNumber_le_blockUpperBound {n k s : ℕ}
 
 /--
 Part (B), exact finite form: under `k + 1 ≤ n`, the path-token burning
-number is at most the minimum of all admissible finite block bounds.-/
+number is at most the minimum of all admissible finite block bounds.
+@isnad1 id=le.1h2v.s5.cc2ba0934b6b from=translated src=- shape=50d93cb5 vocab=90d9b2bd
+-/
 theorem pathTokenBurningNumber_le_optimalBlockUpperBound {n k : ℕ}
     (hnk : k + 1 ≤ n) :
     pathTokenBurningNumber n k ((Nat.le_add_right k 1).trans hnk) ≤
