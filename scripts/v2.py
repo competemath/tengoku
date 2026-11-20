@@ -211,17 +211,30 @@ def assign_refs(v1: List[Dict[str, Any]], names: Optional[List[str]] = None) -> 
 
 
 def upgrade_dataset(
-    v1: List[Dict[str, Any]], ids: Optional[Dict[Tuple[str, str], str]] = None
+    v1: List[Dict[str, Any]], ids: Optional[Dict[Tuple[str, str, Optional[str]], str]] = None
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-    """version 1 rows -> version 2 rows, and a report. `ids` maps (library, name) to a statement id; a pair that is not in it has no id"""
+    """version 1 rows -> version 2 rows, and a report.
+
+    `ids` maps (library, name, module) to a statement id; module None means any module. A record gets an id from its own module's entry; from a module-less entry only when its (library, name)
+    is not shared in the dataset (an id says what a statement is: it is not put on every record that merely has the same name, and `ids_skipped_shared` counts the records where that was refused)."""
     names = [repaired_name(r) for r in v1]
     refs = assign_refs(v1, names)
     ids = ids or {}
     out: List[Dict[str, Any]] = []
-    matched = 0
+    matched = skipped = 0
+    shared: Dict[Tuple[str, str], int] = defaultdict(int)
+    for r, name in zip(v1, names):
+        shared[(r["library"], name)] += 1
     for r, ref, name in zip(v1, refs, names):
         row: Dict[str, Any] = {"schema": SCHEMA, "ref": ref, "status": "trusted"}
-        ident = ids.get((r["library"], name)) or ids.get((r["library"], r["name"]))
+        module = module_of(r.get("source_url"))
+        ident = ids.get((r["library"], name, module)) if module else None
+        any_module = ids.get((r["library"], name, None)) or ids.get((r["library"], r["name"], None))
+        if ident is None and any_module is not None:
+            if shared[(r["library"], name)] == 1:
+                ident = any_module
+            else:
+                skipped += 1
         if ident is not None:
             row["id"] = ident
             matched += 1
@@ -244,6 +257,7 @@ def upgrade_dataset(
     return out, {
         "records": len(out),
         "with_id": matched,
+        "ids_skipped_shared": skipped,
         "names_repaired": sum(1 for r in out if "legacy_name" in r),
         "refs_with_a_tag": sum(1 for r in out if "~" in r["ref"]),
         "modules": sum(1 for r in out if "module" in r),
@@ -556,11 +570,17 @@ def qualified_names(code: str, base: int) -> Iterable[Tuple[int, int, str]]:
         yield base + m.start(), base + m.end(), m.group(0)
 
 
-def migrate_source(text: str, renames: Dict[str, str], gone: Optional[Dict[str, str]] = None) -> Tuple[str, List[Dict[str, Any]]]:
+def migrate_source(
+    text: str, renames: Dict[str, str], gone: Optional[Dict[str, str]] = None, projections: bool = False
+) -> Tuple[str, List[Dict[str, Any]]]:
     """rewrite a Lean source file: every code occurrence of a renamed name becomes its new name; occurrences of a removed or restated name are reported, never changed.
 
-    `renames` maps old name -> new name; `gone` maps old name -> why it cannot be rewritten (`removed` or `restated`). Comments and strings are left alone. A name that appears only as the
-    last part of a longer dotted name is not an occurrence (`Foo.bar` is not `bar`): a use of a short name under `open` is not seen, and the report says how many short names it could not judge."""
+    `renames` maps old name -> new name; `gone` maps old name -> why it cannot be rewritten (`removed`, `restated`, `ambiguous`). Comments and strings are left alone.
+
+    A dotted name that merely *begins* with a changed name (`old_name.symm`, `old_name.trans h`, `old_name.sub`) is not that name: it is the name used with a projection, or a different declaration under it,
+    and a file cannot say which. It is reported as `unjudged` with its head and what happened to the head, and left as it is, unless `projections` is true, which rewrites the head of a renamed one
+    (right for `.symm`, `.mp` and the like, wrong when `old_name.sub` is a declaration of its own). A name that only *ends* with a changed name (`Foo.old_name`, `x.old_name`) is not an occurrence. A use of a
+    short name under `open` is not seen at all."""
     gone = gone or {}
     out: List[str] = []
     cursor = 0
@@ -575,6 +595,22 @@ def migrate_source(text: str, renames: Dict[str, str], gone: Optional[Dict[str, 
                 report.append({"line": line, "name": name, "action": "rewritten", "to": renames[name]})
             elif name in gone:
                 report.append({"line": line, "name": name, "action": gone[name]})
+            elif "." in name:
+                parts = name.split(".")
+                for k in range(len(parts) - 1, 0, -1):
+                    head = ".".join(parts[:k])
+                    if head in renames or head in gone:
+                        if projections and head in renames:
+                            out.append(text[cursor:s])
+                            out.append(renames[head])
+                            cursor = s + len(head)
+                            report.append(
+                                {"line": line, "name": name, "action": "rewritten", "to": renames[head] + name[len(head) :], "head": head}
+                            )
+                        else:
+                            change = f"renamed to {renames[head]}" if head in renames else gone[head]
+                            report.append({"line": line, "name": name, "action": "unjudged", "head": head, "head_change": change})
+                        break
     out.append(text[cursor:])
     return "".join(out), report
 
@@ -582,13 +618,13 @@ def migrate_source(text: str, renames: Dict[str, str], gone: Optional[Dict[str, 
 # ---------------------------------------------------------------------------------------------------------------- the command line
 
 
-def load_ids(path: Path) -> Dict[Tuple[str, str], str]:
-    """a TSV of `library<TAB>name<TAB>id` (a pair that is listed with two different ids has none)"""
-    seen: Dict[Tuple[str, str], set] = defaultdict(set)
+def load_ids(path: Path) -> Dict[Tuple[str, str, Optional[str]], str]:
+    """a TSV of `library<TAB>name<TAB>id` or `library<TAB>name<TAB>id<TAB>module` (an entry that is listed with two different ids has none)"""
+    seen: Dict[Tuple[str, str, Optional[str]], set] = defaultdict(set)
     for line in path.read_text(encoding="utf-8").splitlines():
         parts = line.split("\t")
         if len(parts) >= 3 and ISNAD_ID.match(parts[2]):
-            seen[(parts[0], parts[1])].add(parts[2])
+            seen[(parts[0], parts[1], parts[3] if len(parts) > 3 and parts[3] else None)].add(parts[2])
     return {k: next(iter(v)) for k, v in seen.items() if len(v) == 1}
 
 
@@ -625,7 +661,12 @@ def dataset_file(path: Path) -> Path:
 
 
 def migrate(
-    source: str, out: Optional[str] = None, ids: Optional[str] = None, map_file: Optional[str] = None, library: Optional[str] = None
+    source: str,
+    out: Optional[str] = None,
+    ids: Optional[str] = None,
+    map_file: Optional[str] = None,
+    library: Optional[str] = None,
+    projections: bool = False,
 ) -> Dict[str, Any]:
     """the helper: anything a consumer has of version 1 goes in, version 2 comes out; the result says what it did and what is left to a person"""
     p = Path(source)
@@ -653,7 +694,7 @@ def migrate(
         files = [p] if p.is_file() else sorted(p.rglob("*.lean"))
         results = []
         for f in files:
-            new_text, rep = migrate_source(f.read_text(encoding="utf-8"), renames, gone)
+            new_text, rep = migrate_source(f.read_text(encoding="utf-8"), renames, gone, projections)
             if out and any(r["action"] == "rewritten" for r in rep):
                 target = Path(out) / f.name if p.is_file() else Path(out) / f.relative_to(p)
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -682,6 +723,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     m.add_argument("--ids")
     m.add_argument("--map")
     m.add_argument("--library")
+    m.add_argument(
+        "--projections", action="store_true", help="Lean sources: also rewrite the head of `old_name.symm`-like names (docs/v2.md)"
+    )
     c = sub.add_parser("check")
     c.add_argument("dataset")
     d = sub.add_parser("diff")
@@ -690,7 +734,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     d.add_argument("--out")
     a = ap.parse_args(argv)
     if a.cmd == "migrate":
-        res = migrate(a.input, a.out, a.ids, a.map, a.library)
+        res = migrate(a.input, a.out, a.ids, a.map, a.library, a.projections)
         print(json.dumps({k: v for k, v in res.items() if k != "rows"}, indent=1, sort_keys=True))
         return 0
     if a.cmd == "check":

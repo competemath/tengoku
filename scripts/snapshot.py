@@ -201,9 +201,18 @@ def release_notes(
         )
     old, old_rows = previous
     rows = {key_of(r): r for r in records}
-    added = [rows[n] for n in sorted(set(rows) - set(old_rows))]
-    retracted = sorted(set(old_rows) - set(rows))
-    corrected = sorted(n for n in set(rows) & set(old_rows) if rows[n] != old_rows[n])
+    renamed: list[dict] = []
+    if schema == 2:
+        # a ref depends on the whole dataset (a second record called `foo` gives both a tag), so the two releases are compared by what each record is, not by the string of its ref
+        changes = v2.classify(list(old_rows.values()), records)
+        added = [rows[c["new"]] for c in changes if c["change"] == "added"]
+        retracted = sorted(c["old"] for c in changes if c["change"] == "removed")
+        renamed = [c for c in changes if c["change"] == "renamed"]
+        corrected = sorted(c["new"] for c in changes if c["change"] in ("corrected", "restated", "moved"))
+    else:
+        added = [rows[n] for n in sorted(set(rows) - set(old_rows))]
+        retracted = sorted(set(old_rows) - set(rows))
+        corrected = sorted(n for n in set(rows) & set(old_rows) if rows[n] != old_rows[n])
     lines = [f"## What changed since v{old['version']}", ""]
     lines.append(f"- **Added:** {len(added):,} trusted theorems" + (f" ({by_library(added)})." if added else "."))
     lines.append(
@@ -214,6 +223,11 @@ def release_notes(
         f"- **Corrected:** {len(corrected):,} existing theorems (a credit or another field changed)"
         + ("." if not corrected else f", e.g. `{corrected[0]}`.")
     )
+    if renamed:
+        lines.append(
+            f"- **Renamed:** {len(renamed):,} records changed their `ref` (the same statement under another name, or the same name that is now shared): "
+            f"`{renamed[0]['old']}` → `{renamed[0]['new']}`" + (", for example." if len(renamed) > 1 else ".")
+        )
     if old.get("toolchain") != toolchain:
         lines.append(f"- **Toolchain:** `{old.get('toolchain')}` → `{toolchain}`.")
     else:
@@ -295,9 +309,15 @@ def main() -> None:
     toolchain = (root / "lean-toolchain").read_text().strip() if (root / "lean-toolchain").exists() else None
     fields = sorted(v2.V2_FIELDS if args.schema == 2 else FIELDS)  # not read from the rows: a release with no records keeps the same fields
     previous = previous_release(Path(args.previous) if args.previous else None, args.schema)
+    names = {key_of(r) for r in records}
+    if args.schema == 2 and previous is not None:
+        old_refs = set(previous[1])
+        names = old_refs | {
+            c["new"] for c in v2.classify(list(previous[1].values()), records) if c["change"] == "added"
+        }  # only what is really new counts as added
     version = next_version(
         previous,
-        {key_of(r) for r in records},
+        names,
         fields,
         toolchain,
         hashlib.sha256(raw).hexdigest(),

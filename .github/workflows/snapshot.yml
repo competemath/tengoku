@@ -10,12 +10,6 @@ on:
   schedule:
     - cron: "17 3 1 * *"   # the 1st of every month
   workflow_dispatch:
-    inputs:
-      schema:
-        description: "The dataset's schema: keep (the previous release's, 1 when there is none: what the monthly run does) or 2 (docs/v2.md: cuts 2.0.0 when the previous release is schema 1)"
-        type: choice
-        options: ["keep", "2"]
-        default: "keep"
 permissions: {}
 concurrency:
   group: snapshot
@@ -41,13 +35,8 @@ jobs:
           echo "previous release: $prev"
       - name: Dataset and manifest
         id: snap
-        env: { SCHEMA_INPUT: "${{ inputs.schema || 'keep' }}" }
         run: |
-          schema=1
-          if [ "$SCHEMA_INPUT" = 2 ]; then schema=2
-          elif [ -f previous/snapshot.json ]; then schema="$(python3 -c 'import json; print(json.load(open("previous/snapshot.json")).get("schema", 1))')"; fi
-          echo "dataset schema $schema"
-          args=(--out snapshot --notes release-notes.md --schema "$schema"); [ -d previous ] && args+=(--previous previous)
+          args=(--out snapshot --notes release-notes.md); [ -d previous ] && args+=(--previous previous)
           python3 scripts/snapshot.py "${args[@]}"
           if [ -f snapshot/unchanged ]; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
           version="$(python3 -c 'import json; print(json.load(open("snapshot/snapshot.json"))["version"])')"

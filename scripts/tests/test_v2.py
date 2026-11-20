@@ -141,11 +141,9 @@ class Refs(unittest.TestCase):
     def test_the_same_statement_twice_is_told_apart_by_source_and_numbered(self):
         rows = [rec("a", sha="b" * 40, path="Mathlib/Z.lean"), rec("a", sha="b" * 40, path="Mathlib/A.lean")]
         refs = v2.assign_refs(rows)
-        self.assertEqual(len(set(refs)), 2)
-        self.assertTrue(
-            refs[1].endswith(refs[1].split("~")[1]) and "." not in refs[1].split("~")[1]
-        )  # the one that sorts first has no number
-        self.assertTrue(refs[0].endswith(".2"))
+        tag = hashlib.sha256(rows[0]["statement"].encode()).hexdigest()[:10]
+        # the source_url sorts Mathlib/A.lean before Mathlib/Z.lean: the first has no number, the second is `.2`
+        self.assertEqual(refs, [f"mathlib:a~{tag}.2", f"mathlib:a~{tag}"])
 
     def test_the_refs_do_not_depend_on_the_order_of_the_records(self):
         for seed in range(40):
@@ -203,10 +201,27 @@ class Upgrade(unittest.TestCase):
 
     def test_the_id_comes_from_the_table_and_only_when_the_pair_has_one_id(self):
         ident = "eq.1h3v.s4.01215b3d171d"
-        rows, report = v2.upgrade_dataset([rec("a"), rec("b")], {("mathlib", "a"): ident})
+        rows, report = v2.upgrade_dataset([rec("a"), rec("b")], {("mathlib", "a", None): ident})
         self.assertEqual(rows[0]["id"], ident)
         self.assertNotIn("id", rows[1])
         self.assertEqual(report["with_id"], 1)
+
+    def test_an_id_is_not_put_on_every_record_that_shares_a_name(self):
+        ident, other = "eq.1h3v.s4.01215b3d171d", "le.2h1v.s5.aaaaaaaaaaaa"
+        rows = [
+            rec("foo", statement="theorem foo : 1 = 1", path="Mathlib/A.lean"),
+            rec("foo", statement="theorem foo : 2 = 2", path="Mathlib/B.lean"),
+            rec("solo"),
+        ]
+        ids = {("mathlib", "foo", None): ident, ("mathlib", "solo", None): other}
+        new, report = v2.upgrade_dataset(rows, ids)
+        self.assertEqual([r.get("id") for r in new], [None, None, other])
+        self.assertEqual((report["with_id"], report["ids_skipped_shared"]), (1, 2))
+        # with the module, the id goes to the record it is about and to no other
+        ids = {("mathlib", "foo", "Mathlib.A"): ident}
+        new, report = v2.upgrade_dataset(rows, ids)
+        self.assertEqual([r.get("id") for r in new], [ident, None, None])
+        self.assertEqual(report["ids_skipped_shared"], 0)
 
     def test_the_round_trip_is_exact_on_every_random_dataset(self):
         for seed in range(200):
@@ -273,7 +288,7 @@ class Resolve(unittest.TestCase):
             rec("Adj.symm", statement="theorem Adj.symm : 2 = 2"),
             rec("solo"),
         ]
-        self.rows, _ = v2.upgrade_dataset(rows, {("mathlib", "solo"): ident})
+        self.rows, _ = v2.upgrade_dataset(rows, {("mathlib", "solo", None): ident})
         self.idx = v2.Index(self.rows)
         self.ident = ident
 
@@ -351,8 +366,8 @@ class Classify(unittest.TestCase):
 
     def test_a_rename_found_by_id_beats_the_text(self):
         ident = "eq.1h3v.s4.01215b3d171d"
-        old, _ = v2.upgrade_dataset([rec("o", statement="theorem o : A")], {("mathlib", "o"): ident})
-        new, _ = v2.upgrade_dataset([rec("n", statement="theorem n : totally different text")], {("mathlib", "n"): ident})
+        old, _ = v2.upgrade_dataset([rec("o", statement="theorem o : A")], {("mathlib", "o", None): ident})
+        new, _ = v2.upgrade_dataset([rec("n", statement="theorem n : totally different text")], {("mathlib", "n", None): ident})
         self.assertEqual(self.only(old, new), {("mathlib:o", "mathlib:n"): "renamed"})
 
     def test_a_successor_is_never_guessed(self):
@@ -419,18 +434,18 @@ class Source(unittest.TestCase):
             "  exact (old_name)\n"
         )
         new, rep = v2.migrate_source(text, {"old_name": "new_name"})
-        self.assertIn("theorem t : new_name 1 = 2", new)
-        self.assertIn("exact (new_name)", new)
-        self.assertEqual(new.count("old_name"), 5 + 0 - 0 if False else new.count("old_name"))  # see the explicit checks below
-        for kept in (
-            "uses old_name in a docstring",
-            "-- old_name in a comment",
-            '"old_name in a string"',
-            "nested old_name -/ still old_name",
-            "Ns.old_name",
-            "old_name_more",
-        ):
-            self.assertIn(kept, new)
+        self.assertEqual(
+            new,
+            "import Foo\n"
+            "/-- uses old_name in a docstring -/\n"
+            "theorem t : new_name 1 = 2 := by\n"
+            "  -- old_name in a comment\n"
+            '  have := "old_name in a string"\n'
+            "  /- block old_name /- nested old_name -/ still old_name -/\n"
+            "  exact Ns.old_name x\n"
+            "  exact old_name_more x\n"
+            "  exact (new_name)\n",
+        )
         self.assertEqual([r["line"] for r in rep], [3, 9])
 
     def test_a_removed_or_restated_name_is_reported_and_left_alone(self):
@@ -513,7 +528,7 @@ class SourceFuzz(unittest.TestCase):
             text = fuzz_text(random.Random(seed), self.NAMES)
             once, rep = v2.migrate_source(text, ren)
             self.assertEqual(v2.migrate_source(once, back)[0], text, seed)
-            self.assertEqual(len(rep), sum(1 for r in rep if r["action"] == "rewritten"))
+            self.assertTrue(all(r["action"] in ("rewritten", "unjudged") for r in rep), seed)
 
     def test_comments_strings_and_literals_are_never_touched(self):
         ren = {"old_a": "NEWA", "old_b": "NEWB", "Old.c": "New.c"}
@@ -531,9 +546,37 @@ class SourceFuzz(unittest.TestCase):
                 self.assertIn("old_a", lines[r["line"] - 1], seed)
 
     def test_a_longer_name_is_not_an_occurrence_of_a_shorter_one(self):
-        new, rep = v2.migrate_source("exact old_a_more old_a.sub x.old_a old_a'\n", {"old_a": "NEWA"})
-        self.assertEqual(new, "exact old_a_more old_a.sub x.old_a old_a'\n")
+        new, rep = v2.migrate_source("exact old_a_more x.old_a old_a' Ns.old_a\n", {"old_a": "NEWA"})
+        self.assertEqual(new, "exact old_a_more x.old_a old_a' Ns.old_a\n")
         self.assertEqual(rep, [])
+
+    def test_a_projection_of_a_renamed_name_is_reported_and_left_alone_by_default(self):
+        text = "exact old_a.symm h\nexact (old_a.trans h).mp\nexact gone_x.out\nexact other.symm\n"
+        new, rep = v2.migrate_source(text, {"old_a": "NEWA"}, {"gone_x": "removed"})
+        self.assertEqual(new, text)
+        self.assertEqual(
+            [(r["line"], r["name"], r["action"], r["head"], r["head_change"]) for r in rep],
+            [
+                (1, "old_a.symm", "unjudged", "old_a", "renamed to NEWA"),
+                (2, "old_a.trans", "unjudged", "old_a", "renamed to NEWA"),
+                (3, "gone_x.out", "unjudged", "gone_x", "removed"),
+            ],
+        )
+
+    def test_projections_can_be_rewritten_on_request_and_the_longest_head_wins(self):
+        text = "exact old_a.symm h\nexact A.B.c.d\n"
+        new, rep = v2.migrate_source(text, {"old_a": "NEWA", "A.B": "X", "A.B.c": "Y"}, projections=True)
+        self.assertEqual(new, "exact NEWA.symm h\nexact Y.d\n")
+        self.assertEqual([r["to"] for r in rep], ["NEWA.symm", "Y.d"])
+
+    def test_with_projections_a_rename_and_its_reverse_still_restore_the_file(self):
+        ren = {"old_a": "NEWA", "old_b": "NEWB", "Old.c": "New.c"}
+        back = {v: k for k, v in ren.items()}
+        for seed in range(200):
+            text = fuzz_text(random.Random(seed), self.NAMES)
+            once, _ = v2.migrate_source(text, ren, projections=True)
+            self.assertEqual(v2.migrate_source(once, back, projections=True)[0], text, seed)
+            self.assertEqual(non_code(once), non_code(text), seed)
 
 
 class Migrate(unittest.TestCase):
@@ -581,7 +624,9 @@ class Migrate(unittest.TestCase):
 
     def test_the_id_table_adds_ids_and_ignores_a_pair_with_two(self):
         i1, i2 = "eq.1h3v.s4.01215b3d171d", "le.1h3v.s4.01215b3d171d"
-        (self.dir / "ids.tsv").write_text(f"mathlib\ta\t{i1}\nmathlib\tb\t{i1}\nmathlib\tb\t{i2}\nmathlib\tc\tnot-an-id\n")
+        (self.dir / "ids.tsv").write_text(
+            f"mathlib\ta\t{i1}\nmathlib\tb\t{i1}\nmathlib\tb\t{i2}\nmathlib\tc\tnot-an-id\n"
+        )  # b has two ids: none
         d = self.dir / "d.jsonl"
         v2.write_jsonl(d, [rec("a"), rec("b"), rec("c")])
         rows = v2.migrate(str(d), ids=str(self.dir / "ids.tsv"))["rows"]
@@ -781,6 +826,36 @@ class SnapshotSchema2(unittest.TestCase):
         notes = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2"))
         self.assertEqual(json.loads((self.root / "r2b" / "snapshot.json").read_text())["version"], "1.1.0")
         self.assertIn("**Added:** 1 trusted theorems", notes.read_text())
+
+    def test_a_second_record_of_a_name_is_a_rename_of_the_first_not_a_retraction(self):
+        self.snap(self.root / "r2", "--schema", "2")
+        fields = ("name", "statement", "proof", "source_url", "toolchain", "library")
+        with (self.root / "data" / "trusted" / "mathlib.jsonl").open("a") as fh:
+            fh.write(
+                json.dumps({**{k: v for k, v in rec("A₂_x", statement="theorem A₂_x : 5 = 5").items() if k in fields}, "status": "trusted"})
+                + "\n"
+            )
+        notes = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2"))
+        text = notes.read_text()
+        self.assertIn("**Retracted:** 0.", text)
+        self.assertIn("**Added:** 1 trusted theorems", text)
+        self.assertIn("**Renamed:** 1 records changed their `ref`", text)
+        self.assertIn("`mathlib:A₂_x` → `mathlib:A₂_x~", text)
+        self.assertEqual(json.loads((self.root / "r2b" / "snapshot.json").read_text())["version"], "1.1.0")
+
+    def test_two_records_that_state_the_same_thing_are_not_guessed_apart(self):
+        # the second record of the name states the same thing as the first: the old ref cannot be assigned to one of them, and the notes say so instead of guessing
+        self.snap(self.root / "r2", "--schema", "2")
+        fields = ("name", "statement", "proof", "source_url", "toolchain", "library")
+        twin = {
+            **{k: v for k, v in rec("A₂_x", statement="theorem A₂_x : True", path="Mathlib/Other.lean").items() if k in fields},
+            "status": "trusted",
+        }
+        with (self.root / "data" / "trusted" / "mathlib.jsonl").open("a") as fh:
+            fh.write(json.dumps(twin) + "\n")
+        text = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2")).read_text()
+        self.assertIn("**Retracted:** 1", text)
+        self.assertIn("**Added:** 2 trusted theorems", text)
 
 
 @unittest.skipUnless(
