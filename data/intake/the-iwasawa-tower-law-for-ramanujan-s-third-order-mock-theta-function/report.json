@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "8c2a760ed08617d82e09d8418b621381d7d84d6e7421fe9400b1bc1c67f66d13",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "the-iwasawa-tower-law-for-ramanujan-s-third-order-mock-theta-function",
+ "lint_mode": "proposed",
+ "modules": 8,
+ "part": 1,
+ "theorems": 9
+}
