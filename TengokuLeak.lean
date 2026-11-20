@@ -333,9 +333,13 @@ def scan (pfxs : List Name) : CoreM (Array Leak × Counts) := do
       if idxs.contains m && n.isAtomic && !n.isInternal && !n.hasMacroScopes then
         counts := { counts with roots := counts.roots.push n }
         -- an instance the table does not show (`local instance`, final inventory 2026-11-14: Flt `instT2Space`, 23 in four libraries): what it declares is of a class
-        let ofClass := match (conclusion ci.type).getAppFn.constName? with
+        -- a class, as Lean itself decides it when it accepts `local instance : T`: through binders and through a reducible abbreviation of a class (`IsNoetherianRing R` is `IsNoetherian R R`,
+        -- `CategoryTheory.HasExt C` is a `∀` into a class), which the head constant of the written type does not show (zanello-lc, 2026-11-19: `instIsNoetherianRingQuotientIdeal`, `instHasExtModuleCat`)
+        let ofClassHead := match (conclusion ci.type).getAppFn.constName? with
           | some c => isClass env c
           | none => false
+        let ofClass ← if ofClassHead then pure true else
+          try pure ((← (Meta.isClass? ci.type).run').isSome) catch _ => pure false
         let kind := ci.type.isConstOf ``Lean.ParserDescr || ci.type.isConstOf ``Lean.TrailingParserDescr
         if instNames.contains n || ofClass || kind then
           -- only a name Lean generated: one the source spells where it declares it (`instance instFoo`, `def instFoo : Monoid X`, `syntax (name := termFoo)`) is an ordinary root
