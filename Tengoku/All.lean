@@ -58,6 +58,7 @@ import Tengoku.ImmermanVardi
 import Tengoku.GeneralStochToDet
 import Tengoku.MagnitudeConjecture
 import Tengoku.Pi2Lean
+import Tengoku.CrootUnitFractions
 import Tengoku.PadicLFunctions
 import Tengoku.QrcpBoundedCoherence
 import Tengoku.Quantumoptimization

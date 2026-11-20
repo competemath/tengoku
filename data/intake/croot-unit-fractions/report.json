@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "9fb9f03a0f43c3a88ef7ed1a753af45523b5775ea03a831bd8e584a403f9b8c1",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "croot-unit-fractions",
+ "lint_mode": "proposed",
+ "modules": 15,
+ "part": 1,
+ "theorems": 155
+}

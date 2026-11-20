@@ -1,0 +1,1 @@
+-- CrootUnitFractions: a factory bundle (data/intake/croot-unit-fractions). This file only marks the library for Tengoku/All.lean.
